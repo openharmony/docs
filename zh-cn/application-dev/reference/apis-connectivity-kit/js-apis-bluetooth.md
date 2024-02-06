@@ -1833,7 +1833,7 @@ server端添加服务。
 
 | 参数名     | 类型                          | 必填   | 说明                       |
 | ------- | --------------------------- | ---- | ------------------------ |
-| service | [GattService](#gattservice) | 是    | 服务端的service数据。BLE广播的相关参数 |
+| service | [GattService](#gattservicedeprecated) | 是    | 服务端的service数据。BLE广播的相关参数 |
 
 **返回值：**
 
@@ -2545,7 +2545,7 @@ client端获取蓝牙低功耗设备的所有服务，即服务发现 。
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------ |
-| callback | AsyncCallback&lt;Array&lt;[GattService](#gattservice)&gt;&gt; | 是    | client进行服务发现，通过注册回调函数获取。 |
+| callback | AsyncCallback&lt;Array&lt;[GattService](#gattservicedeprecated)&gt;&gt; | 是    | client进行服务发现，通过注册回调函数获取。 |
 
 **返回值：**
 
@@ -2591,7 +2591,7 @@ client端获取蓝牙低功耗设备的所有服务，即服务发现。
 
 | 类型                                       | 说明                          |
 | ---------------------------------------- | --------------------------- |
-| Promise&lt;Array&lt;[GattService](#gattservice)&gt;&gt; | client进行服务发现，通过promise形式获取。 |
+| Promise&lt;Array&lt;[GattService](#gattservicedeprecated)&gt;&gt; | client进行服务发现，通过promise形式获取。 |
 
 **示例：**
 
@@ -3291,7 +3291,7 @@ gattClient.getRssiValue().then((data : number) => {
 | ------ | ------------------- | ---- | ---- | ----------- |
 | uuid   | string              | 是    | 是    | spp单据的uuid。 |
 | secure | boolean             | 是    | 是    | 是否是安全通道。    |
-| type   | [SppType](#spptypedeprecated) | 是    | 是    | Spp链路类型。    |
+| type   | [SppType](#spptype8deprecated) | 是    | 是    | Spp链路类型。    |
 
 
 ## SppType<sup>8+</sup><sup>(deprecated)</sup>
@@ -3322,7 +3322,7 @@ gattClient.getRssiValue().then((data : number) => {
 | serviceUuid     | string                                   | 是    | 是    | 特定服务（service）的UUID，例如：00001888-0000-1000-8000-00805f9b34fb。 |
 | isPrimary       | boolean                                  | 是    | 是    | 如果是主服务设置为true，否则设置为false。                |
 | characteristics | Array&lt;[BLECharacteristic](#blecharacteristicdeprecated)&gt; | 是    | 是    | 当前服务包含的特征列表。                             |
-| includeServices | Array&lt;[GattService](#gattservice)&gt; | 是    | 是    | 当前服务依赖的其它服务。                             |
+| includeServices | Array&lt;[GattService](#gattservicedeprecated)&gt; | 是    | 是    | 当前服务依赖的其它服务。                             |
 
 
 ## BLECharacteristic<sup>(deprecated)</sup>
@@ -3721,8 +3721,8 @@ gattClient.getRssiValue().then((data : number) => {
 
 | 名称              | 类型                                | 可读   | 可写   | 说明               |
 | --------------- | ----------------------------------- | ---- | ---- | ---------------- |
-| majorClass      | [MajorClass](#majorclassdeprecated)           | 是    | 否    | 表示蓝牙设备主要类别的枚举。   |
-| majorMinorClass | [MajorMinorClass](#majorminorclassdeprecated) | 是    | 否    | 表示主要次要蓝牙设备类别的枚举。 |
+| majorClass      | [MajorClass](#majorclass8deprecated)           | 是    | 否    | 表示蓝牙设备主要类别的枚举。   |
+| majorMinorClass | [MajorMinorClass](#majorminorclass8deprecated) | 是    | 否    | 表示主要次要蓝牙设备类别的枚举。 |
 | classOfDevice   | number                              | 是    | 否    | 表示设备类别。          |
 
 
