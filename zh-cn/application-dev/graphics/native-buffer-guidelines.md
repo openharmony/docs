@@ -1,4 +1,4 @@
-# NativeBuffer开发指导
+# NativeBuffer开发指导 (C/C++)
 
 ## 场景介绍
 

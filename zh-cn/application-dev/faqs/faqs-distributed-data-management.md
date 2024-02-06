@@ -9,7 +9,7 @@
 
 **参考链接**
 
-[关系型数据库](../reference/apis/js-apis-data-relationalStore.md#storeconfig)
+[关系型数据库](../reference/apis-arkdata/js-apis-data-relationalStore.md#storeconfig)
 
 
 ## 关系型数据库rdb中使用TRUNCATE TABLE语句无法清空表数据(API 9)
@@ -73,7 +73,7 @@ PixelMap应该被转换成相应的ArrayBuffer再放进数据库。
 
 **参考链接**
 
-[readPixelsToBuffer](../reference/apis/js-apis-image.md#readpixelstobuffer7-1)
+[readPixelsToBuffer](../reference/apis-image-kit/js-apis-image.md#readpixelstobuffer7-1)
 
 
 ## 如何获取rdb关系型数据库文件(API 9)
