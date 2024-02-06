@@ -63,6 +63,9 @@
     - 其他
         - [@ohos.base (公共回调信息)](./js-apis-base.md)
         - [@ohos.time (时间时区)(系统接口)](js-apis-system-date-time.md)
+        - [@ohos.wallpaper (壁纸)](js-apis-wallpaper.md)
+        - [@ohos.wallpaper (壁纸)(系统接口)](js-apis-wallpaper-sys.md)
+        - [@ohos.WallpaperExtensionAbility (WallpaperExtensionAbility)(系统接口)](js-apis-WallpaperExtensionAbility-sys.md)
     - 已停止维护的接口
         - [系统公共事件定义](./commonEvent-definitions.md)
         - [@ohos.commonEvent (公共事件模块)](./js-apis-commonEvent.md)
