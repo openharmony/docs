@@ -48,7 +48,7 @@ setDarkMode(mode: DarkMode, callback: AsyncCallback\<void>): void
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-uiappearance](../errorcodes/errorcode-uiappearance.md)。
+错误码详细介绍请参考[errcode-uiappearance](errorcode-uiappearance.md)。
 
 | 错误码ID | 错误信息 |
 | -- | -- |
@@ -98,7 +98,7 @@ setDarkMode(mode: DarkMode): Promise\<void>;
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-uiappearance](../errorcodes/errorcode-uiappearance.md)。
+错误码详细介绍请参考[errcode-uiappearance](errorcode-uiappearance.md)。
 
 | 错误码ID | 错误信息 |
 | -- | -- |
@@ -140,7 +140,7 @@ getDarkMode(): DarkMode;
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-uiappearance](../errorcodes/errorcode-uiappearance.md)。
+错误码详细介绍请参考[errcode-uiappearance](errorcode-uiappearance.md)。
 
 | 错误码ID | 错误信息 |
 | -- | -- |

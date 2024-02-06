@@ -28,7 +28,7 @@ getPixelMap(): image.PixelMap
 
 | 类型                                       | 说明       |
 | ---------------------------------------- | -------- |
-| [image.PixelMap](../apis/js-apis-image.md#pixelmap7) | PixelMap |
+| [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | PixelMap |
 
 **示例：**
   ```ts
@@ -91,7 +91,7 @@ getPixelMap(): image.PixelMap
 
 | 类型                                       | 说明       |
 | ---------------------------------------- | -------- |
-| [image.PixelMap](../apis/js-apis-image.md#pixelmap7) | PixelMap |
+| [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | PixelMap |
 
 **示例：**
   ```ts
