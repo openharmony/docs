@@ -51,7 +51,7 @@ queryNavDestinationInfo(): NavDestinationInfo | undefined;
 
 | 类型                                                                       | 说明      |
 | -------------------------------------------------------------------------- | --------- |
-| [NavDestinationInfo](../../apis/js-apis-arkui-observer.md#navdestinationinfo) \| undefined | 返回NavDestinationInfo实例对象。 |
+| [NavDestinationInfo](../js-apis-arkui-observer.md#navdestinationinfo) \| undefined | 返回NavDestinationInfo实例对象。 |
 
 **示例：**
 

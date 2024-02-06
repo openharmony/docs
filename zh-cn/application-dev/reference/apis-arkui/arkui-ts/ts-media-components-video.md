@@ -77,7 +77,7 @@ Video(value: VideoOptions)
 
 ## VideoController
 
-一个VideoController对象可以控制一个或多个video，可用视频播放实例请参考[@ohos.multimedia.media](../../apis/js-apis-media.md)。
+一个VideoController对象可以控制一个或多个video，可用视频播放实例请参考[@ohos.multimedia.media](../../apis-media-kit/js-apis-media.md)。
 
 
 ### 导入对象
