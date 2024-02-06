@@ -1206,7 +1206,7 @@ bindDialogTarget(token: rpc.RemoteObject, deathCallback: Callback&lt;void&gt;, c
 
 | 参数名       | 类型                      | 必填 | 说明                  |
 | ----------- | ------------------------- | ---- | -------------------- |
-| token       | [rpc.RemoteObject](../apis/js-apis-rpc.md#remoteobject) | 是   | 目标窗口token值。 |
+| token       | [rpc.RemoteObject](../apis-ipc-kit/js-apis-rpc.md#remoteobject) | 是   | 目标窗口token值。 |
 | deathCallback | Callback&lt;void&gt;        | 是   | 模态窗口销毁监听。 |
 | callback    | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
 
@@ -1290,7 +1290,7 @@ bindDialogTarget(token: rpc.RemoteObject, deathCallback: Callback&lt;void&gt;): 
 
 | 参数名       | 类型                      | 必填 | 说明                  |
 | ----------- | ------------------------- | ---- | -------------------- |
-| token       | [rpc.RemoteObject](../apis/js-apis-rpc.md#remoteobject) | 是   | 目标窗口token值。 |
+| token       | [rpc.RemoteObject](../apis-ipc-kit/js-apis-rpc.md#remoteobject) | 是   | 目标窗口token值。 |
 | deathCallback | Callback&lt;void&gt;        | 是   | 模态窗口销毁监听。 |
 
 **返回值：**
@@ -1380,7 +1380,7 @@ bindDialogTarget(requestInfo: dialogRequest.RequestInfo, deathCallback: Callback
 
 | 参数名       | 类型                      | 必填 | 说明                  |
 | ----------- | ------------------------- | ---- | -------------------- |
-| requestInfo | [dialogRequest.RequestInfo](../apis/js-apis-app-ability-dialogRequest.md#requestinfo) | 是   | 目标窗口RequestInfo值。 |
+| requestInfo | [dialogRequest.RequestInfo](../apis-ability-kit/js-apis-app-ability-dialogRequest.md#requestinfo) | 是   | 目标窗口RequestInfo值。 |
 | deathCallback | Callback&lt;void&gt;    | 是   | 模态窗口销毁监听。 |
 | callback    | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
 
@@ -1449,7 +1449,7 @@ bindDialogTarget(requestInfo: dialogRequest.RequestInfo, deathCallback: Callback
 
 | 参数名       | 类型                      | 必填 | 说明                  |
 | ----------- | ------------------------- | ---- | -------------------- |
-| requestInfo | [dialogRequest.RequestInfo](../apis/js-apis-app-ability-dialogRequest.md#requestinfo) | 是   | 目标窗口RequestInfo值。 |
+| requestInfo | [dialogRequest.RequestInfo](../apis-ability-kit/js-apis-app-ability-dialogRequest.md#requestinfo) | 是   | 目标窗口RequestInfo值。 |
 | deathCallback | Callback&lt;void&gt;    | 是   | 模态窗口销毁监听。 |
 
 **返回值：**
@@ -2827,7 +2827,7 @@ promise.then(() => {
 
 窗口管理器。管理各个基本窗口单元，即[Window](#window)实例。
 
-下列API示例中都需在[onWindowStageCreate()](../apis/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate)函数中使用WindowStage的实例调用对应方法。
+下列API示例中都需在[onWindowStageCreate()](../apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate)函数中使用WindowStage的实例调用对应方法。
 
 ### disableWindowDecor()<sup>9+</sup>
 
@@ -2932,7 +2932,7 @@ export default class EntryAbility extends UIAbility {
 
 completeTransition(isCompleted: boolean): void
 
-设置属性转换的最终完成状态。该函数需要在动画函数[animateTo()](../arkui-ts/ts-explicit-animation.md)执行后设置。
+设置属性转换的最终完成状态。该函数需要在动画函数[animateTo()](arkui-ts/ts-explicit-animation.md)执行后设置。
 
 **系统接口：** 此接口为系统接口。
 

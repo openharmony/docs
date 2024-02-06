@@ -14,11 +14,11 @@
 
 ![Playback status change](figures/video-playback-status-change.png)
 
-状态的详细说明请参考[AVPlayerState](../reference/apis/js-apis-media.md#avplayerstate9)。当播放处于prepared / playing / paused / completed状态时，播放引擎处于工作状态，这需要占用系统较多的运行内存。当客户端暂时不使用播放器时，调用reset()或release()回收内存资源，做好资源利用。
+状态的详细说明请参考[AVPlayerState](../reference/apis-media-kit/js-apis-media.md#avplayerstate9)。当播放处于prepared / playing / paused / completed状态时，播放引擎处于工作状态，这需要占用系统较多的运行内存。当客户端暂时不使用播放器时，调用reset()或release()回收内存资源，做好资源利用。
 
 ## 开发步骤及注意事项
 
-详细的API说明请参考[AVPlayer API参考](../reference/apis/js-apis-media.md#avplayer9)。
+详细的API说明请参考[AVPlayer API参考](../reference/apis-media-kit/js-apis-media.md#avplayer9)。
 
 1. 调用createAVPlayer()创建AVPlayer实例，初始化进入idle状态。
 
@@ -48,12 +48,12 @@
    > 
    > - 如果使用网络播放路径，需[声明权限](../security/AccessToken/declare-permissions.md)：ohos.permission.INTERNET。
    > 
-   > - 如果使用ResourceManager.getRawFd打开HAP资源文件描述符，使用方法可参考[ResourceManager API参考](../reference/apis/js-apis-resource-manager.md#getrawfd9)。
+   > - 如果使用ResourceManager.getRawFd打开HAP资源文件描述符，使用方法可参考[ResourceManager API参考](../reference/apis-localization-kit/js-apis-resource-manager.md#getrawfd9)。
    > 
    > - 需要使用[支持的播放格式与协议](media-kit-intro.md#支持的格式与协议)。
 
 4. 设置窗口：获取并设置属性SurfaceID，用于设置显示画面。
-   应用需要从XComponent组件获取surfaceID，获取方式请参考[XComponent](../reference/arkui-ts/ts-basic-components-xcomponent.md)。
+   应用需要从XComponent组件获取surfaceID，获取方式请参考[XComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)。
 
 5. 准备播放：调用prepare()，AVPlayer进入prepared状态，此时可以获取duration，设置缩放模式、音量等。
 

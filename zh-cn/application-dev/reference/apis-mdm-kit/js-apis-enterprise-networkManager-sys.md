@@ -33,7 +33,7 @@ getAllNetworkInterfaces(admin: Want, callback: AsyncCallback&lt;Array&lt;string&
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
 | callback | AsyncCallback&lt;Array&lt;string&gt;&gt;            | 是    | 回调函数。当接口调用成功，err为null，data为网络接口名称数组，否则err为错误对象。     |
 
 **错误码**：
@@ -78,7 +78,7 @@ getAllNetworkInterfaces(admin: Want): Promise&lt;Array&lt;string&gt;&gt;
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
 
 **返回值：**
 
@@ -127,7 +127,7 @@ getIpAddress(admin: Want, networkInterface: string, callback: AsyncCallback&lt;s
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
 | networkInterface    | string     | 是    | 指定网络接口。                  |
 | callback | AsyncCallback&lt;string&gt;            | 是    | 回调函数。当接口调用成功，err为null，data为IP地址，否则err为错误对象。       |
 
@@ -173,7 +173,7 @@ getIpAddress(admin: Want, networkInterface: string): Promise&lt;string&gt;
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
 | networkInterface    | string     | 是    | 指定网络接口。                  |
 
 **返回值：**
@@ -223,7 +223,7 @@ getMac(admin: Want, networkInterface: string, callback: AsyncCallback&lt;string&
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis/js-apis-app-ability-want.md)      | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是    | 设备管理应用。                  |
 | networkInterface    | string     | 是    | 指定网络接口。                  |
 | callback | AsyncCallback&lt;string&gt;            | 是    | 回调函数。当接口调用成功，err为null，data为设备MAC地址，否则err为错误对象。       |
 
@@ -269,7 +269,7 @@ getMac(admin: Want, networkInterface: string): Promise\<string>
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
 | networkInterface    | string     | 是    | 指定网络接口。                  |
 
 **返回值：**
@@ -319,7 +319,7 @@ isNetworkInterfaceDisabled(admin: Want, networkInterface: string, callback: Asyn
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis/js-apis-app-ability-want.md)      | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是    | 设备管理应用。                  |
 | networkInterface    | string     | 是    | 指定网络接口。                  |
 | callback | AsyncCallback&lt;boolean&gt;            | 是    | 回调函数。当接口调用成功，err为null，data为指定网络接口是否被禁用，true表示该网络接口被禁用，false表示该网络接口未被禁用，否则err为错误对象。       |
 
@@ -365,7 +365,7 @@ isNetworkInterfaceDisabled(admin: Want, networkInterface: string): Promise&lt;bo
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
 | networkInterface    | string     | 是    | 指定网络接口。                  |
 
 **返回值：**
@@ -415,7 +415,7 @@ setNetworkInterfaceDisabled(admin: Want, networkInterface: string, isDisabled: b
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis/js-apis-app-ability-want.md)      | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是    | 设备管理应用。                  |
 | networkInterface    | string     | 是    | 指定网络接口。                  |
 | isDisabled    | boolean     | 是    | true表示禁用该网络接口，false表示开启该网络接口。                  |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数。当接口调用成功，err为null，否则err为错误对象。       |
@@ -462,7 +462,7 @@ setNetworkInterfaceDisabled(admin: Want, networkInterface: string, isDisabled: b
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
 | networkInterface    | string     | 是    | 指定网络接口。                  |
 | isDisabled    | boolean     | 是    | true表示禁用该网络接口，false表示开启该网络接口。                  |
 
@@ -513,8 +513,8 @@ setGlobalProxy(admin: Want, httpProxy: connection.HttpProxy, callback: AsyncCall
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis/js-apis-app-ability-want.md)      | 是    | 设备管理应用。                  |
-| httpProxy    | [connection.HttpProxy](../apis/js-apis-net-connection.md#httpproxy10)     | 是    | 网络全局Http代理配置信息。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是    | 设备管理应用。                  |
+| httpProxy    | [connection.HttpProxy](../apis-network-kit/js-apis-net-connection.md#httpproxy10)     | 是    | 网络全局Http代理配置信息。                  |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数。当接口调用成功，err为null，否则err为错误对象。       |
 
 **错误码**：
@@ -567,8 +567,8 @@ setGlobalProxy(admin: Want, httpProxy: connection.HttpProxy): Promise\<void>
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
-| httpProxy    | [connection.HttpProxy](../apis/js-apis-net-connection.md#httpproxy10)     | 是    | 网络全局Http代理配置信息。                  |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| httpProxy    | [connection.HttpProxy](../apis-network-kit/js-apis-net-connection.md#httpproxy10)     | 是    | 网络全局Http代理配置信息。                  |
 
 **返回值：**
 
@@ -625,8 +625,8 @@ getGlobalProxy(admin: Want, callback: AsyncCallback\<connection.HttpProxy>): voi
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis/js-apis-app-ability-want.md)      | 是    | 设备管理应用。                  |
-| callback | AsyncCallback&lt;[connection.HttpProxy](../apis/js-apis-net-connection.md#httpproxy10)&gt;            | 是    | 回调函数。当接口调用成功，err为null，否则err为错误对象。       |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是    | 设备管理应用。                  |
+| callback | AsyncCallback&lt;[connection.HttpProxy](../apis-network-kit/js-apis-net-connection.md#httpproxy10)&gt;            | 是    | 回调函数。当接口调用成功，err为null，否则err为错误对象。       |
 
 **错误码**：
 
@@ -670,13 +670,13 @@ getGlobalProxy(admin: Want): Promise\<connection.HttpProxy>
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
 
 **返回值：**
 
 | 类型                   | 说明                      |
 | --------------------- | ------------------------- |
-| Promise&lt;[connection.HttpProxy](../apis/js-apis-net-connection.md#httpproxy10)&gt; | Promise对象，返回网络全局Http代理配置信息。  |
+| Promise&lt;[connection.HttpProxy](../apis-network-kit/js-apis-net-connection.md#httpproxy10)&gt; | Promise对象，返回网络全局Http代理配置信息。  |
 
 **错误码**：
 
@@ -719,7 +719,7 @@ addIptablesFilterRule(admin: Want, filterRule: AddFilterRule, callback: AsyncCal
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis/js-apis-app-ability-want.md)      | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是    | 设备管理应用。                  |
 | filterRule    | [AddFilterRule](#addfilterrule)     | 是    | 添加网络包过滤规则。                  |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数。当接口调用成功，err为null，否则err为错误对象。       |
 
@@ -777,7 +777,7 @@ addIptablesFilterRule(admin: Want, filterRule: AddFilterRule): Promise\<void>
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
 | filterRule    | [AddFilterRule](#addfilterrule)     | 是    | 添加网络包过滤规则。                  |
 
 **返回值：**
@@ -839,7 +839,7 @@ removeIptablesFilterRule(admin: Want, filterRule: RemoveFilterRule, callback: As
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis/js-apis-app-ability-want.md)      | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是    | 设备管理应用。                  |
 | filterRule    | [RemoveFilterRule](#removefilterrule)     | 是    | 移除网络包过滤规则。                  |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数。当接口调用成功，err为null，否则err为错误对象。       |
 
@@ -895,7 +895,7 @@ removeIptablesFilterRule(admin: Want, filterRule: RemoveFilterRule): Promise\<vo
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
 | filterRule    | [RemoveFilterRule](#removefilterrule)     | 是    | 移除网络包过滤规则。                  |
 
 **返回值：**
@@ -955,7 +955,7 @@ listIptablesFilterRules(admin: Want, callback: AsyncCallback\<string>): void
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis/js-apis-app-ability-want.md)      | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是    | 设备管理应用。                  |
 | callback | AsyncCallback&lt;string&gt;            | 是    | 回调函数。当接口调用成功，err为null，否则err为错误对象。       |
 
 **错误码**：
@@ -1000,7 +1000,7 @@ listIptablesFilterRules(admin: Want): Promise\<string>
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
 
 **返回值：**
 
@@ -1050,7 +1050,7 @@ addFirewallRule(admin: Want, firewallRule: FirewallRule): void
 
 | 参数名          | 类型                                  | 必填   | 说明         |
 |--------------|-------------------------------------| ---- |------------|
-| admin        | [Want](../apis/js-apis-app-ability-want.md) | 是    | 设备管理应用。    |
+| admin        | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。    |
 | firewallRule | [FirewallRule](#firewallrule11)       | 是    | 添加防火墙过滤规则。 |
 
 **错误码**：
@@ -1101,7 +1101,7 @@ removeFirewallRule(admin: Want, firewallRule?: FirewallRule): void
 
 | 参数名          | 类型                                  | 必填 | 说明                          |
 |--------------|-------------------------------------|----|-----------------------------|
-| admin        | [Want](../apis/js-apis-app-ability-want.md) | 是  | 设备管理应用。                     |
+| admin        | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是  | 设备管理应用。                     |
 | firewallRule | [FirewallRule](#firewallrule11)       | 否  | 移除防火墙过滤规则。值为空时，清空所有的防火墙规则。 |
 
 **错误码**：
@@ -1154,7 +1154,7 @@ getFirewallRules(admin: Want): Array\<FirewallRule>
 
 | 参数名          | 类型                                  | 必填 | 说明                          |
 |--------------|-------------------------------------|----|-----------------------------|
-| admin        | [Want](../apis/js-apis-app-ability-want.md) | 是  | 设备管理应用。                     |
+| admin        | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是  | 设备管理应用。                     |
 
 **返回值：**
 
@@ -1200,7 +1200,7 @@ addDomainFilterRule(admin: Want, domainFilterRule: DomainFilterRule): void
 
 | 参数名          | 类型                                    | 必填   | 说明         |
 |--------------|---------------------------------------| ---- |------------|
-| admin        | [Want](../apis/js-apis-app-ability-want.md)   | 是    | 设备管理应用。    |
+| admin        | [Want](../apis-ability-kit/js-apis-app-ability-want.md)   | 是    | 设备管理应用。    |
 | domainFilterRule | [DomainFilterRule](#domainfilterrule11) | 是    | 添加域名过滤规则。 |
 
 **错误码**：
@@ -1246,7 +1246,7 @@ removeDomainFilterRule(admin: Want, domainFilterRule?: DomainFilterRule): void
 
 | 参数名          | 类型                                    | 必填 | 说明                       |
 |--------------|---------------------------------------|----|--------------------------|
-| admin        | [Want](../apis/js-apis-app-ability-want.md)   | 是  | 设备管理应用。                  |
+| admin        | [Want](../apis-ability-kit/js-apis-app-ability-want.md)   | 是  | 设备管理应用。                  |
 | domainFilterRule | [DomainFilterRule](#domainfilterrule11) | 否  | 移除域名过滤规则。值为空时，清空所有的域名规则。 |
 
 **错误码**：
@@ -1294,7 +1294,7 @@ getDomainFilterRules(admin: Want): Array\<DomainFilterRule>
 
 | 参数名          | 类型                                  | 必填 | 说明                          |
 |--------------|-------------------------------------|----|-----------------------------|
-| admin        | [Want](../apis/js-apis-app-ability-want.md) | 是  | 设备管理应用。                     |
+| admin        | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是  | 设备管理应用。                     |
 
 **返回值：**
 

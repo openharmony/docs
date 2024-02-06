@@ -27,7 +27,7 @@ Buffer输入是指一块预先分配好的内存区域，调用者需要将原�
 
 ## 开发指导
 
-详细的API说明请参考[API文档](../reference/native-apis/_video_encoder.md)。
+详细的API说明请参考[API文档](../reference/apis-avcodec-kit/_video_encoder.md)。
 如下为视频编码调用关系图：
 ![Invoking relationship of video encode stream](figures/video-encode.png)
 
@@ -505,7 +505,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
    // 通过OHNativeWindow*变量类型，配置输入数据的Surface
    ```
 
-   OHNativeWindow*变量类型的使用方法请参考图形子系统 [OHNativeWindow](../reference/native-apis/_native_window.md#ohnativewindow)
+   OHNativeWindow*变量类型的使用方法请参考图形子系统 [OHNativeWindow](../reference/apis-arkgraphics2d/_native_window.md#ohnativewindow)
 7. 调用OH_VideoEncoder_Start()启动编码器。
 
    ```c++

@@ -13,7 +13,7 @@
 
 ## 属性
 
-除支持[通用属性](../arkui-js/js-components-common-attributes.md)外，还支持如下属性：
+除支持[通用属性](js-components-common-attributes.md)外，还支持如下属性：
 
 | 名称   | 类型     | 默认值  | 必填   | 描述                                       |
 | ---- | ------ | ---- | ---- | ---------------------------------------- |
@@ -66,7 +66,7 @@
 
 ## 样式
 
-除支持[通用样式](../arkui-js/js-components-common-styles.md)外，还支持如下样式：
+除支持[通用样式](js-components-common-styles.md)外，还支持如下样式：
 
 | 名称                               | 类型             | 默认值        | 必填   | 描述                                       |
 | -------------------------------- | -------------- | ---------- | ---- | ---------------------------------------- |
@@ -76,7 +76,7 @@
 | selected-font-size               | &lt;length&gt; | 20px       | 否    | 选中项字体尺寸，类型length，单位px。                   |
 | disappear-color<sup>5+</sup>     | &lt;color&gt;  | \#ffffff   | 否    | 渐变消失项的字体颜色。消失项是在一列中有五个选项场景下最上和最下的两个选项。   |
 | disappear-font-size<sup>5+</sup> | &lt;length&gt; | 14px       | 否    | 渐变消失项的字体尺寸。消失项是在一列中有五个选项场景下最上和最下的两个选项。   |
-| font-family                      | string         | sans-serif | 否    | 选项字体类型。字体列表，用逗号分隔，每个字体用字体名或者字体族名设置。列表中第一个系统中存在的或者通过[自定义字体](../arkui-js/js-components-common-customizing-font.md)指定的字体，会被选中作为文本的字体。 |
+| font-family                      | string         | sans-serif | 否    | 选项字体类型。字体列表，用逗号分隔，每个字体用字体名或者字体族名设置。列表中第一个系统中存在的或者通过[自定义字体](js-components-common-customizing-font.md)指定的字体，会被选中作为文本的字体。 |
 
 
 ## 事件

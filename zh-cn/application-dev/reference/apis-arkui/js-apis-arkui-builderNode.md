@@ -344,7 +344,7 @@ postTouchEvent(event: TouchEvent): boolean
 
 | 参数名 | 类型                                                                      | 必填 | 说明       |
 | ------ | ------------------------------------------------------------------------- | ---- | ---------- |
-| event  | [TouchEvent](../arkui-ts/ts-universal-events-touch.md#touchevent对象说明) | 是   | 触摸事件。 |
+| event  | [TouchEvent](arkui-ts/ts-universal-events-touch.md#touchevent对象说明) | 是   | 触摸事件。 |
 
 **返回值：**
 

@@ -65,4 +65,4 @@ async function createController() {
 }
 ```
 
-更多关于AVSessionManager的方法，可以参考[API文档](../reference/apis/js-apis-avsession.md)。
+更多关于AVSessionManager的方法，可以参考[API文档](../reference/apis-avsession-kit/js-apis-avsession.md)。

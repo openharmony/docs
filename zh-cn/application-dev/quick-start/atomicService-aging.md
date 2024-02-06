@@ -1,6 +1,6 @@
 # 原子化服务空间管理（仅对系统应用开放）
 
-从用户的角度，用户不感知原子化服务的安装，也不会主动的卸载原子化服务；从操作系统的角度，原子化服务使用[免安装特性](../reference/apis/js-apis-freeInstall.md)，但并不是真的不安装。因此，为了减少系统空间占用，需要对原子化服务有序管理。
+从用户的角度，用户不感知原子化服务的安装，也不会主动的卸载原子化服务；从操作系统的角度，原子化服务使用[免安装特性](../reference/apis-ability-kit/js-apis-freeInstall-sys.md)，但并不是真的不安装。因此，为了减少系统空间占用，需要对原子化服务有序管理。
 
 ## 原子化服务数据目录配额管理
 
@@ -10,7 +10,7 @@
 
 ## 主动销毁原子化服务
 
-可以通过[uninstall](../reference/apis/js-apis-installer.md#bundleinstalleruninstall)接口主动销毁原子化服务。
+可以通过[uninstall](../reference/apis-ability-kit/js-apis-installer-sys.md#bundleinstalleruninstall)接口主动销毁原子化服务。
 
 **示例：**
 
@@ -53,7 +53,7 @@ try {
 
 #### 原子化服务可销毁
 
-- 通过[isHapModuleRemovable](../reference/apis/js-apis-freeInstall.md#ishapmoduleremovable)返回true
+- 通过[isHapModuleRemovable](../reference/apis-ability-kit/js-apis-freeInstall-sys.md#ishapmoduleremovable)返回true
 - 非运行状态
 
 #### 销毁开始条件

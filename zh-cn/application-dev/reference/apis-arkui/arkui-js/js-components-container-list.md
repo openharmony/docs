@@ -12,12 +12,12 @@
 
 ## 子组件
 
-仅支持&lt;[list-item-group](../arkui-js/js-components-container-list-item-group.md)&gt;和&lt;[list-item](../arkui-js/js-components-container-list-item.md)&gt;。
+仅支持&lt;[list-item-group](js-components-container-list-item-group.md)&gt;和&lt;[list-item](js-components-container-list-item.md)&gt;。
 
 
 ## 属性
 
-除支持[通用属性](../arkui-js/js-components-common-attributes.md)外，还支持如下属性：
+除支持[通用属性](js-components-common-attributes.md)外，还支持如下属性：
 
 | 名称                          | 类型                                       | 默认值     | 必填   | 描述                                       |
 | --------------------------- | ---------------------------------------- | ------- | ---- | ---------------------------------------- |
@@ -25,7 +25,7 @@
 | cachedcount                 | number                                   | 0       | 否    | 长列表延迟加载时list-item最少缓存数量。<br/>可视区域外缓存的list-item数量少于该值时，会触发requestitem事件。 |
 | scrollbar                   | string                                   | off     | 否    | 侧边滑动栏的显示模式（当前只支持纵向）：<br/>-&nbsp;off：不显示。<br/>-&nbsp;auto：按需显示(触摸时显示，2s后消失)。<br/>-&nbsp;on：常驻显示。 |
 | scrolleffect                | string                                   | spring  | 否    | 滑动效果，目前支持如下滑动效果：<br/>-&nbsp;spring：弹性物理动效，滑动到边缘后可以根据初始速度或通过触摸事件继续滑动一段距离，松手后回弹。<br/>-&nbsp;fade：渐隐物理动效，滑动到边缘后展示一个波浪形的渐隐，根据速度和滑动距离的变化渐隐也会发送一定的变化。<br/>-&nbsp;no：滑动到边缘后无效果。 |
-| indexer                     | boolean&nbsp;\|&nbsp;Array&lt;string&gt; | false   | 否    | 是否展示侧边栏快速字母索引栏。设置为true或者自定义索引时，索引栏会显示在列表右边界处。示例：<br/>"indexer"&nbsp;:&nbsp;"true"表示使用默认字母索引表。<br/>"indexer"&nbsp;:&nbsp;"false"表示无索引。<br/>"indexer"&nbsp;:&nbsp;['\#',‘1’,'2',‘3’,'4',‘5’,'6',‘7’,'8']表示自定义索引表。自定义时"\#"必须要存在。<br/>indexer属性生效需要flex-direction属性配合设置为column，且columns属性设置为1。<br/>点击索引条进行列表项索引需要list-item子组件配合设置相应的[section属性](../arkui-js/js-components-container-list-item.md#属性)。 |
+| indexer                     | boolean&nbsp;\|&nbsp;Array&lt;string&gt; | false   | 否    | 是否展示侧边栏快速字母索引栏。设置为true或者自定义索引时，索引栏会显示在列表右边界处。示例：<br/>"indexer"&nbsp;:&nbsp;"true"表示使用默认字母索引表。<br/>"indexer"&nbsp;:&nbsp;"false"表示无索引。<br/>"indexer"&nbsp;:&nbsp;['\#',‘1’,'2',‘3’,'4',‘5’,'6',‘7’,'8']表示自定义索引表。自定义时"\#"必须要存在。<br/>indexer属性生效需要flex-direction属性配合设置为column，且columns属性设置为1。<br/>点击索引条进行列表项索引需要list-item子组件配合设置相应的[section属性](js-components-container-list-item.md#属性)。 |
 | indexercircle<sup>5+</sup>  | boolean                                  | -       | 否    | 是否为环形索引。<br/>穿戴设备默认为true，其他为false。indexer为false时不生效。 |
 | indexermulti<sup>5+</sup>   | boolean                                  | false   | 否    | 是否开启索引条多语言功能。<br/>indexer为false时不生效。     |
 | indexerbubble<sup>5+</sup>  | boolean                                  | true    | 否    | 是否开启索引切换的气泡提示。<br/>indexer为false时不生效。    |
@@ -40,7 +40,7 @@
 
 ## 样式
 
-除支持[通用样式](../arkui-js/js-components-common-styles.md)外，还支持如下样式：
+除支持[通用样式](js-components-common-styles.md)外，还支持如下样式：
 
 | 名称                            | 类型                                       | 默认值         | 必填   | 描述                                       |
 | ----------------------------- | ---------------------------------------- | ----------- | ---- | ---------------------------------------- |
@@ -60,7 +60,7 @@
 
 ## 事件
 
-除支持[通用事件](../arkui-js/js-components-common-events.md)外，还支持如下事件：
+除支持[通用事件](js-components-common-events.md)外，还支持如下事件：
 
 | 名称                       | 参数                                                         | 描述                                                         |
 | -------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -76,7 +76,7 @@
 
 ## 方法
 
-支持[通用方法](../arkui-js/js-components-common-methods.md)外，还支持如下方法：
+支持[通用方法](js-components-common-methods.md)外，还支持如下方法：
 
 | 名称            | 参数                                       | 描述                                       |
 | ------------- | ---------------------------------------- | ---------------------------------------- |

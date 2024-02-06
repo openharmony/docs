@@ -54,7 +54,7 @@ Plugin组件模板参数。
 
 | 名称        | 类型                                  | 必填   | 说明                                       |
 | --------- | ----------------------------------- | ---- | ---------------------------------------- |
-| want      | [Want](../apis/js-apis-application-want.md) | 是    | 组件使用者Ability信息。                          |
+| want      | [Want](../apis-ability-kit/js-apis-application-want.md) | 是    | 组件使用者Ability信息。                          |
 | name      | string                              | 是    | 组件名称。                                    |
 | data      | [KVObject](#kvobject)               | 是    | 组件数据值。                                   |
 | extraData | [KVObject](#kvobject)               | 是    | 附加数据值。                                   |
@@ -70,7 +70,7 @@ Plugin组件模板参数。
 
 | 名称       | 类型                                  | 必填   | 说明                                       |
 | -------- | ----------------------------------- | ---- | ---------------------------------------- |
-| want     | [Want](../apis/js-apis-application-want.md) | 是    | 组件提供者Ability信息。                          |
+| want     | [Want](../apis-ability-kit/js-apis-application-want.md) | 是    | 组件提供者Ability信息。                          |
 | name     | string                              | 是    | 请求组件名称。                                  |
 | data     | [KVObject](#kvobject)               | 是    | 附加数据。                                    |
 | jsonPath | string                              | 否    | 存放模板路径的[external.json](#externaljson文件说明)文件的路径。jsonPath字段不为空或者未设置的时候不触发Request通信。 |
@@ -110,7 +110,7 @@ OnPushEventCallback = (source: Want, template: PluginComponentTemplate, data: KV
 
 | 参数        | 类型                                       | 必填   | 说明                     |
 | --------- | ---------------------------------------- | ---- | ---------------------- |
-| source    | [Want](../apis/js-apis-application-want.md)      | 是    | Push请求发送方相关信息。         |
+| source    | [Want](../apis-ability-kit/js-apis-application-want.md)      | 是    | Push请求发送方相关信息。         |
 | template  | [PluginComponentTemplate](#plugincomponenttemplate) | 是    | Push请求发送方相关信息请求组件模板名称。 |
 | data      | [KVObject](#kvobject)                    | 是    | 数据。                    |
 | extraData | [KVObject](#kvobject)                    | 是    | 附加数据。                  |
@@ -141,7 +141,7 @@ OnRequestEventCallback = (source: Want, name: string, data: KVObject) => Request
 
 | 参数        | 类型                                  | 必填   | 说明                |
 | --------- | ----------------------------------- | ---- | ----------------- |
-| source    | [Want](../apis/js-apis-application-want.md) | 是    | request请求发送方相关信息。 |
+| source    | [Want](../apis-ability-kit/js-apis-application-want.md) | 是    | request请求发送方相关信息。 |
 | name      | string                              | 是    | 模板名称。             |
 | extraData | [KVObject](#kvobject)               | 是    | 附加数据。             |
 

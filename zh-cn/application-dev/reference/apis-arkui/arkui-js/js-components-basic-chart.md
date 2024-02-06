@@ -17,7 +17,7 @@
 
 ## 属性
 
-除支持[通用属性](../arkui-js/js-components-common-attributes.md)外，还支持如下属性：
+除支持[通用属性](js-components-common-attributes.md)外，还支持如下属性：
 
 | 名称                             | 类型                                       | 默认值  | 必填   | 描述                                       |
 | ------------------------------ | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
@@ -133,7 +133,7 @@
 
 
 
-除支持[通用样式](../arkui-js/js-components-common-styles.md)外，还支持如下样式：
+除支持[通用样式](js-components-common-styles.md)外，还支持如下样式：
 
 | 名称                       | 类型             | 默认值                        | 必填   | 描述                                       |
 | ------------------------ | -------------- | -------------------------- | ---- | ---------------------------------------- |
@@ -145,18 +145,18 @@
 | radius                   | &lt;length&gt; | -                          | 否    | 量规组件刻度条半径，该样式优先于通用样式的width和height样式。该样式需要和center-x和center-y一起配置才能生效。（仅量规图支持） |
 | colors                   | Array          | -                          | 否    | 量规组件刻度条每一个区段的颜色。<br/>如：colors:&nbsp;\#ff0000,&nbsp;\#00ff00。（仅量规图支持） |
 | weights                  | Array          | -                          | 否    | 量规组件刻度条每一个区段的权重。<br/>如：weights:&nbsp;2,&nbsp;2。（仅量规图支持） |
-| font-family<sup>5+</sup> | Array          | -                          | 否    | 表示绘制注释的字体样式，支持[自定义字体](../arkui-js/js-components-common-customizing-font.md)。 |
+| font-family<sup>5+</sup> | Array          | -                          | 否    | 表示绘制注释的字体样式，支持[自定义字体](js-components-common-customizing-font.md)。 |
 | font-size<sup>5+</sup>   | &lt;length&gt; | -                          | 否    | 表示绘制注释的字体的大小。                            |
 
 
 ## 事件
 
-支持[通用事件](../arkui-js/js-components-common-events.md)。
+支持[通用事件](js-components-common-events.md)。
 
 
 ## 方法
 
-除支持[通用方法](../arkui-js/js-components-common-methods.md)外，还支持如下方法：
+除支持[通用方法](js-components-common-methods.md)外，还支持如下方法：
 
 | 方法     | 参数                                       | 描述                                       |
 | ------ | ---------------------------------------- | ---------------------------------------- |

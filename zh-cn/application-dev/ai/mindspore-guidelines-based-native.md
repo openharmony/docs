@@ -2,11 +2,11 @@
 
 ## 使用场景
 
-开发者可使用[MindSpore Lite提供的Native API](../reference/native-apis/_mind_spore.md)来部署AI算法，并提供高层接口供UI层调用，进行AI模型推理。典型场景如：AI套件SDK开发。
+开发者可使用[MindSpore Lite提供的Native API](../reference/apis-mindspore-lite-kit/_mind_spore.md)来部署AI算法，并提供高层接口供UI层调用，进行AI模型推理。典型场景如：AI套件SDK开发。
 
 ## 基本概念
 
-- [N-API](../reference/native-lib/third_party_napi/napi.md)：用于构建JS本地化组件的一套接口。可利用N-API，将C/C++开发的库封装成JS模块。
+- N-API：用于构建JS本地化组件的一套接口。可利用N-API，将C/C++开发的库封装成JS模块。
 
 ## 环境准备
 

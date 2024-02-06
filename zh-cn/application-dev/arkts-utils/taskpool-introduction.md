@@ -1,6 +1,6 @@
 # TaskPool简介
 
-任务池（TaskPool）作用是为应用程序提供一个多线程的运行环境，降低整体资源的消耗、提高系统的整体性能，且您无需关心线程实例的生命周期。具体接口信息及使用方法详情请见[TaskPool](../reference/apis/js-apis-taskpool.md)。
+任务池（TaskPool）作用是为应用程序提供一个多线程的运行环境，降低整体资源的消耗、提高系统的整体性能，且您无需关心线程实例的生命周期。具体接口信息及使用方法详情请见[TaskPool](../reference/apis-arkts/js-apis-taskpool.md)。
 
 
 ## TaskPool运作机制
@@ -22,7 +22,7 @@ TaskPool支持开发者在主线程封装任务抛给任务队列，系统选择
 
 - 实现任务的函数入参需满足序列化支持的类型，详情请参见[TaskPool和Worker支持的序列化类型](serialization-support-types.md#TaskPool和Worker支持的序列化类型)。
 
-- ArrayBuffer参数在TaskPool中默认转移，需要设置转移列表的话可通过接口[setTransferList()](../reference/apis/js-apis-taskpool.md#settransferlist10)设置。
+- ArrayBuffer参数在TaskPool中默认转移，需要设置转移列表的话可通过接口[setTransferList()](../reference/apis-arkts/js-apis-taskpool.md#settransferlist10)设置。
 
 - 由于不同线程中上下文对象是不同的，因此TaskPool工作线程只能使用线程安全的库，例如UI相关的非线程安全库不能使用，具体请见[多线程安全注意事项](multi-thread-safety.md)。
 

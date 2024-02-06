@@ -936,8 +936,8 @@ startDLPManagerForResult(context: common.UIAbilityContext, want: Want): Promise&
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| context | [common.UIAbilityContext](../apis/js-apis-inner-application-uiAbilityContext.md) | 是 | 当前窗口UIAbility上下文。 |
-| want | [Want](../apis/js-apis-app-ability-want.md) | 是 | 请求对象。 |
+| context | [common.UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) | 是 | 当前窗口UIAbility上下文。 |
+| want | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是 | 请求对象。 |
 
 **返回值：**
 
@@ -1170,7 +1170,7 @@ DLP文件授权类型的枚举。
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | resultCode | number | 是 | 否 | 表示打开DLP权限管理应用并退出后返回的结果码。 |
-| want | [Want](../apis/js-apis-app-ability-want.md) | 是 | 否 | 表示打开DLP权限管理应用并退出后返回的数据。 |
+| want | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是 | 否 | 表示打开DLP权限管理应用并退出后返回的数据。 |
 
 ## RetentionSandboxInfo
 

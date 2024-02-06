@@ -25,7 +25,7 @@ HiAppEvent是在系统层面为应用开发者提供的一种事件打点机制�
 
 ## 接口说明
 
-应用事件打点接口由hiAppEvent模块提供，API接口的具体使用说明（参数使用限制、具体取值范围等）请参考[应用事件打点API文档](../reference/apis/js-apis-hiviewdfx-hiappevent.md)。
+应用事件打点接口由hiAppEvent模块提供，API接口的具体使用说明（参数使用限制、具体取值范围等）请参考[应用事件打点API文档](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-hiappevent.md)。
 
 **打点接口功能介绍：**
 

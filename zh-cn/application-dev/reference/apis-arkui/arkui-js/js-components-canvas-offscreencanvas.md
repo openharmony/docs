@@ -35,7 +35,7 @@ getContext(type: string, options?: CanvasRenderingContext2DSettings): OffscreenC
 
 | 类型                                       | 说明                          |
 | ---------------------------------------- | --------------------------- |
-| [OffscreenCanvasRenderingContext2D](../arkui-js/js-offscreencanvasrenderingcontext2d.md) | 2D绘制对象，用于在画布组件上绘制矩形、文本、图片等。 |
+| [OffscreenCanvasRenderingContext2D](js-offscreencanvasrenderingcontext2d.md) | 2D绘制对象，用于在画布组件上绘制矩形、文本、图片等。 |
 
 ### CanvasRenderingContext2DSettings
 
@@ -77,7 +77,7 @@ transferToImageBitmap(): ImageBitmap
 
 | 类型                                       | 说明              |
 | ---------------------------------------- | --------------- |
-| [ImageBitmap](../arkui-js/js-components-canvas-imagebitmap.md) | 存储离屏画布上渲染的像素数据。 |
+| [ImageBitmap](js-components-canvas-imagebitmap.md) | 存储离屏画布上渲染的像素数据。 |
 
 
 ## 示例

@@ -1,4 +1,4 @@
-# NativeImage开发指导
+# NativeImage开发指导 (C/C++)
 
 ## 场景介绍
 

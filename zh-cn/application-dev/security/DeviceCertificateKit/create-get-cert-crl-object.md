@@ -4,21 +4,21 @@
 
 ## 开发步骤
 
-1. 导入[证书算法库框架模块](../../reference/apis/js-apis-cert.md)。
+1. 导入[证书算法库框架模块](../../reference/apis-device-certificate-kit/js-apis-cert.md)。
 
    ```ts
    import certFramework from '@ohos.security.cert';
    ```
 
-2. 基于已有的证书数据，调用[cryptoCert.createX509Cert](../../reference/apis/js-apis-cert.md#cryptocertcreatex509cert)创建X509证书的对象。
+2. 基于已有的证书数据，调用[cryptoCert.createX509Cert](../../reference/apis-device-certificate-kit/js-apis-cert.md#cryptocertcreatex509cert)创建X509证书的对象。
 
-3. 基于已有的CRL数据，调用[cryptoCert.createX509CRL](../../reference/apis/js-apis-cert.md#cryptocertcreatex509crl11)创建X509证书吊销列表的对象。
+3. 基于已有的CRL数据，调用[cryptoCert.createX509CRL](../../reference/apis-device-certificate-kit/js-apis-cert.md#cryptocertcreatex509crl11)创建X509证书吊销列表的对象。
 
-4. 调用[cryptoCert.createCertCRLCollection](../../reference/apis/js-apis-cert.md#cryptocertcreatecertcrlcollection11)创建[CertCRLCollection](../../reference/apis/js-apis-cert.md#certcrlcollection11)的对象，并返回相应的结果。
+4. 调用[cryptoCert.createCertCRLCollection](../../reference/apis-device-certificate-kit/js-apis-cert.md#cryptocertcreatecertcrlcollection11)创建[CertCRLCollection](../../reference/apis-device-certificate-kit/js-apis-cert.md#certcrlcollection11)的对象，并返回相应的结果。
 
-5. 调用[CertCRLCollection.selectCerts](../../reference/apis/js-apis-cert.md#selectcerts11)查找所有与[X509CertMatchParameters](../../reference/apis/js-apis-cert.md#x509certmatchparameters11)匹配的证书对象数组，并返回结果。
+5. 调用[CertCRLCollection.selectCerts](../../reference/apis-device-certificate-kit/js-apis-cert.md#selectcerts11)查找所有与[X509CertMatchParameters](../../reference/apis-device-certificate-kit/js-apis-cert.md#x509certmatchparameters11)匹配的证书对象数组，并返回结果。
 
-6. 调用[CertCRLCollection.selectCRLs](../../reference/apis/js-apis-cert.md#selectcrls11)查找所有与[X509CRLMatchParameters](../../reference/apis/js-apis-cert.md#x509crlmatchparameters11)匹配的证书吊销列表数组，并返回结果。
+6. 调用[CertCRLCollection.selectCRLs](../../reference/apis-device-certificate-kit/js-apis-cert.md#selectcrls11)查找所有与[X509CRLMatchParameters](../../reference/apis-device-certificate-kit/js-apis-cert.md#x509crlmatchparameters11)匹配的证书吊销列表数组，并返回结果。
 
 ```ts
 import certFramework from '@ohos.security.cert';

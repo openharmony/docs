@@ -10,7 +10,7 @@
 
 2. 初始化密钥属性集。用于删除时指定密钥的属性TAG，比如删除的密钥范围(全量/单个)，当删除单个时，TAG字段可传空。
 
-3. 调用接口[deleteKeyItem](../../reference/apis/js-apis-huks.md#huksdeletekeyitem9)，删除密钥。
+3. 调用接口[deleteKeyItem](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksdeletekeyitem9)，删除密钥。
 
 ```ts
 /*

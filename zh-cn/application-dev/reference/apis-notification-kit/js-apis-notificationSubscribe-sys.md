@@ -36,7 +36,7 @@ subscribe(subscriber: NotificationSubscriber, info: NotificationSubscribeInfo, c
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | ----------------------------------- |
@@ -92,7 +92,7 @@ subscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void\>): 
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -151,7 +151,7 @@ subscribe(subscriber: NotificationSubscriber, info?: NotificationSubscribeInfo):
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -203,7 +203,7 @@ subscribeSelf(subscriber: NotificationSubscriber): Promise\<void\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -253,7 +253,7 @@ unsubscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void\>)
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -308,7 +308,7 @@ unsubscribe(subscriber: NotificationSubscriber): Promise\<void\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -357,7 +357,7 @@ remove(bundle: BundleOption, notificationKey: NotificationKey, reason: RemoveRea
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -421,7 +421,7 @@ remove(bundle: BundleOption, notificationKey: NotificationKey, reason: RemoveRea
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -474,7 +474,7 @@ remove(hashCode: string, reason: RemoveReason, callback: AsyncCallback\<void\>):
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -527,7 +527,7 @@ remove(hashCode: string, reason: RemoveReason): Promise\<void\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -571,7 +571,7 @@ remove(hashCodes: Array\<String\>, reason: RemoveReason, callback: AsyncCallback
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -623,7 +623,7 @@ remove(hashCodes: Array\<String\>, reason: RemoveReason): Promise\<void\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -666,7 +666,7 @@ removeAll(bundle: BundleOption, callback: AsyncCallback\<void\>): void
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -713,7 +713,7 @@ removeAll(callback: AsyncCallback\<void\>): void
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -762,7 +762,7 @@ removeAll(bundle?: BundleOption): Promise\<void\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -805,7 +805,7 @@ removeAll(userId: number, callback: AsyncCallback\<void>): void
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -850,7 +850,7 @@ removeAll(userId: number): Promise\<void>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |

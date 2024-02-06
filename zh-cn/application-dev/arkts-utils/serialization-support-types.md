@@ -38,8 +38,8 @@ let sharedBuffer: SharedArrayBuffer = new SharedArrayBuffer(1024);
 
 Native绑定对象（Native Binding Object）是系统所提供的对象，该对象与底层系统功能进行绑定，提供直接访问底层系统功能的能力。
 
-当前支持序列化传输的Native绑定对象主要包含：[Context](../application-models/application-context-stage.md)和[RemoteObject](../reference/apis/js-apis-rpc.md#remoteobject)。
+当前支持序列化传输的Native绑定对象主要包含：[Context](../application-models/application-context-stage.md)和[RemoteObject](../reference/apis-ipc-kit/js-apis-rpc.md#remoteobject)。
 
 Context对象包含应用程序组件的上下文信息，它提供了一种访问系统服务和资源的方式，使得应用程序组件可以与系统进行交互。获取Context信息的方法可以参考[获取上下文信息](../application-models/application-context-stage.md)。
 
-RemoteObject对象的主要作用是实现远程通信的功能，它允许在不同的进程间传递对象的引用，使得不同进程之间可以共享对象的状态和方法，服务提供者必须继承此类，RemoteObject对象的创建可以参考[RemoteObject的实现](../reference/apis/js-apis-rpc.md#remoteobject)。
+RemoteObject对象的主要作用是实现远程通信的功能，它允许在不同的进程间传递对象的引用，使得不同进程之间可以共享对象的状态和方法，服务提供者必须继承此类，RemoteObject对象的创建可以参考[RemoteObject的实现](../reference/apis-ipc-kit/js-apis-rpc.md#remoteobject)。
