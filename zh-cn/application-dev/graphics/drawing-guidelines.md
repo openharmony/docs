@@ -8,7 +8,7 @@ Drawing绘制的内容无法直接在屏幕上显示，需要借用XComponent以
 
 ## 接口说明
 
-Drawing常用接口如下表所示，详细的接口说明请参考[Drawing](../reference/native-apis/_drawing.md)。
+Drawing常用接口如下表所示，详细的接口说明请参考[Drawing](../reference/apis-arkgraphics2d/_drawing.md)。
 
 | 接口名 | 描述 | 
 | -------- | -------- |
