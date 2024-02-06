@@ -32,7 +32,7 @@ isNfcAvailable(): boolean
 查询设备是否有NFC能力。
 
 > **说明：**
-> 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用[canIUse("SystemCapability.Communication.NFC.Core")](../native-apis/init.md)替代。
+> 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用[canIUse("SystemCapability.Communication.NFC.Core")](../common/init.md)替代。
 
 **系统能力：** SystemCapability.Communication.NFC.Core
 
