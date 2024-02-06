@@ -16,7 +16,7 @@ NativeWindow是**本地平台化窗口**，表示图形队列的生产者端。�
 | OH_NativeWindow_NativeWindowFlushBuffer (OHNativeWindow \*window, OHNativeWindowBuffer \*buffer, int fenceFd, Region region) | 通过OHNativeWindow将生产好内容的OHNativeWindowBuffer放回到Buffer队列中，用以内容消费。 | 
 | OH_NativeWindow_NativeWindowHandleOpt (OHNativeWindow \*window, int code,...) | 设置/获取OHNativeWindow的属性，包括设置/获取宽高、内容格式等。 | 
 
-详细的接口说明请参考[native_window](../reference/native-apis/_native_window.md)。
+详细的接口说明请参考[native_window](../reference/apis-arkgraphics2d/_native_window.md)。
 
 ## 开发步骤
 
@@ -38,7 +38,7 @@ libnative_window.so
 
 1. **获取OHNativeWindow实例**。
 
-    可在[`OH_NativeXComponent_Callback`](../reference/native-apis/_o_h___native_x_component___callback.md)提供的接口中获取OHNativeWindow，下面提供一份代码示例。XComponent模块的具体使用方法请参考[XComponent开发指导](xcomponent-guidelines.md)。
+    可在[`OH_NativeXComponent_Callback`](../reference/native-apis/_o_h___native_x_component___callback.md)提供的接口中获取OHNativeWindow，下面提供一份代码示例。XComponent模块的具体使用方法请参考[XComponent开发指导](../ui/napi-xcomponent-guidelines.md)。
     1. 在xxx.ets中添加一个XComponent组件。
         ```ts
         XComponent({ id: 'xcomponentId', type: 'surface', libraryname: 'entry'})
