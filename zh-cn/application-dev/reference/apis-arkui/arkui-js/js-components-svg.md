@@ -15,12 +15,12 @@
 
 ## 子组件
 
-支持[svg](js-components-svg.md)、[rect](js-components-svg-rect.md)、[circle](js-components-svg-circle.md)、[ellipse](../arkui-js/js-components-svg-ellipse.md)、[path](js-components-svg-path.md)、[line](../arkui-js/js-components-svg-line.md)、[polygon](../arkui-js/js-components-svg-polygon.md)、[polyline](js-components-svg-polyline.md)、[text](js-components-svg-text.md)、[animate](js-components-svg-animate.md)、[animateTransform](js-components-svg-animatetransform.md)。
+支持[svg](js-components-svg.md)、[rect](js-components-svg-rect.md)、[circle](js-components-svg-circle.md)、[ellipse](js-components-svg-ellipse.md)、[path](js-components-svg-path.md)、[line](js-components-svg-line.md)、[polygon](js-components-svg-polygon.md)、[polyline](js-components-svg-polyline.md)、[text](js-components-svg-text.md)、[animate](js-components-svg-animate.md)、[animateTransform](js-components-svg-animatetransform.md)。
 
 
 ## 属性
 
-支持Svg组件[通用属性](../arkui-js/js-components-svg-common-attributes.md)和以下属性，设置的通用属性会传递给子组件。
+支持Svg组件[通用属性](js-components-svg-common-attributes.md)和以下属性，设置的通用属性会传递给子组件。
 
 | 名称      | 类型                                 | 默认值  | 必填   | 描述                                       |
 | ------- | ---------------------------------- | ---- | ---- | ---------------------------------------- |

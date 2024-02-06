@@ -53,7 +53,7 @@ Navigation(pathInfos: NavPathStack)
 | navBarWidth<sup>9+</sup>           | [Length](ts-types.md#length)             | 导航栏宽度。<br/>默认值：240<br/>单位：vp<br/>**说明：** <br/>仅在Navigation组件分栏时生效。 |
 | navBarPosition<sup>9+</sup>        | [NavBarPosition](#navbarposition9枚举说明)    | 导航栏位置。<br/>默认值：NavBarPosition.Start<br/>**说明：** <br/>仅在Navigation组件分栏时生效。 |
 | mode<sup>9+</sup>                  | [NavigationMode](#navigationmode9枚举说明)    | 导航栏的显示模式。<br/>默认值：NavigationMode.Auto<br/>自适应：基于组件宽度自适应单栏和双栏。<br/>**说明：** <br/>支持Stack、Split与Auto模式。 |
-| backButtonIcon<sup>9+</sup>        | string \| [PixelMap](../../apis/js-apis-image.md#pixelmap7) \| [Resource](ts-types.md#resource) | 设置标题栏中返回键图标。 |
+| backButtonIcon<sup>9+</sup>        | string \| [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) \| [Resource](ts-types.md#resource) | 设置标题栏中返回键图标。 |
 | hideNavBar<sup>9+</sup>            | boolean                                  | 是否隐藏导航栏。设置为true时，隐藏Navigation的导航栏，包括标题栏、内容区和工具栏。如果此时路由栈中存在NavDestination页面，则直接显示栈顶NavDestination页面，反之显示空白。从API Version 9开始到API Version 10仅在双栏模式下生效。从API Version 11开始在单栏、双栏与自适应模式均生效。<br/>默认值：false |
 | navDestination<sup>10+</sup>       | builder: (name: string, param: unknown) => void | 创建NavDestination组件。<br/>**说明：** <br/>使用builder函数，基于name和param构造NavDestination组件。builder中允许在NavDestination组件外包含一层自定义组件， 但自定义组件不允许设置属性和事件，否则仅显示空白。 |
 | navBarWidthRange<sup>10+</sup>     | [[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)] | 导航栏最小和最大宽度（双栏模式下生效）。<br/>默认值：最小默认值 240，最大默认值为组件宽度的40% ，且不大于 432，如果只设置一个值，则未设置的值按照默认值计算。<br/>单位：vp<br/>规则：优先级规则详见说明。|
@@ -144,7 +144,7 @@ pushDestination(info: NavPathInfo, animated?: boolean): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](../../errorcodes/errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcode-router.md)错误码。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -175,7 +175,7 @@ pushDestinationByName(name: string, param: Object, animated?: boolean): Promise&
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](../../errorcodes/errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcode-router.md)错误码。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -207,7 +207,7 @@ pushDestinationByName(name: string, param: Object, onPop: import('../api/@ohos.b
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](../../errorcodes/errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcode-router.md)错误码。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |

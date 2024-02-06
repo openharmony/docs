@@ -45,7 +45,7 @@ isSharedBundleRunning(bundleName: string, versionCode: number): Promise\<boolean
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -88,7 +88,7 @@ isSharedBundleRunning(bundleName: string, versionCode: number, callback: AsyncCa
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -123,7 +123,7 @@ on(type: 'applicationState', observer: ApplicationStateObserver): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 调用接口类型，固定填'applicationState'字符串。 |
-| observer | [ApplicationStateObserver](../apis/js-apis-inner-application-applicationStateObserver.md) | 是 | 应用状态观测器，用于观测应用的生命周期变化。 |
+| observer | [ApplicationStateObserver](js-apis-inner-application-applicationStateObserver-sys.md) | 是 | 应用状态观测器，用于观测应用的生命周期变化。 |
 
 **返回值：**
 
@@ -137,7 +137,7 @@ on(type: 'applicationState', observer: ApplicationStateObserver): number
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -189,7 +189,7 @@ on(type: 'applicationState', observer: ApplicationStateObserver, bundleNameList:
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 调用接口类型，固定填'applicationState'字符串。 |
-| observer | [ApplicationStateObserver](../apis/js-apis-inner-application-applicationStateObserver.md) | 是 | 应用状态观测器，用于观测应用的生命周期变化。 |
+| observer | [ApplicationStateObserver](js-apis-inner-application-applicationStateObserver-sys.md) | 是 | 应用状态观测器，用于观测应用的生命周期变化。 |
 | bundleNameList | `Array<string>` | 是 | 表示需要注册监听的bundleName数组。最大值128。 |
 
 **返回值：**
@@ -204,7 +204,7 @@ on(type: 'applicationState', observer: ApplicationStateObserver, bundleNameList:
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -257,7 +257,7 @@ on(type: 'appForegroundState', observer: AppForegroundStateObserver): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 调用接口类型，固定填'appForegroundState'字符串。 |
-| observer | [AppForegroundStateObserver](../apis/js-apis-inner-application-appForegroundStateObserver.md) | 是 | 应用状态观测器，用于观测应用的启动和退出。 |
+| observer | [AppForegroundStateObserver](js-apis-inner-application-appForegroundStateObserver-sys.md) | 是 | 应用状态观测器，用于观测应用的启动和退出。 |
 
 **错误码**：
 
@@ -265,7 +265,7 @@ on(type: 'appForegroundState', observer: AppForegroundStateObserver): void
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -313,7 +313,7 @@ off(type: 'applicationState', observerId: number,  callback: AsyncCallback\<void
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -399,7 +399,7 @@ off(type: 'applicationState', observerId: number): Promise\<void>
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -467,7 +467,7 @@ off(type: 'appForegroundState', observer?: AppForegroundStateObserver): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 调用接口类型，固定填'appForegroundState'字符串。|
-| observer | [AppForegroundStateObserver](../apis/js-apis-inner-application-appForegroundStateObserver.md) | 否 | 取消注册的应用启动和退出观测器。|
+| observer | [AppForegroundStateObserver](js-apis-inner-application-appForegroundStateObserver-sys.md) | 否 | 取消注册的应用启动和退出观测器。|
 
 **错误码**：
 
@@ -475,7 +475,7 @@ off(type: 'appForegroundState', observer?: AppForegroundStateObserver): void
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -513,7 +513,7 @@ try {
 
 getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void
 
-获取当前所有前台应用的信息。该应用信息由[AppStateData](../apis/js-apis-inner-application-appStateData.md)定义。
+获取当前所有前台应用的信息。该应用信息由[AppStateData](js-apis-inner-application-appStateData-sys.md)定义。
 
 **需要权限**：ohos.permission.GET_RUNNING_INFO
 
@@ -525,7 +525,7 @@ getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback\<Array\<[AppStateData](../apis/js-apis-inner-application-appStateData.md)>> | 是 | 以回调方式方式返回接口运行结果及应用状态数据数组，可进行错误处理或其他自定义处理。 |
+| callback | AsyncCallback\<Array\<[AppStateData](js-apis-inner-application-appStateData-sys.md)>> | 是 | 以回调方式方式返回接口运行结果及应用状态数据数组，可进行错误处理或其他自定义处理。 |
 
 **错误码**：
 
@@ -533,7 +533,7 @@ getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -561,7 +561,7 @@ try {
 
 getForegroundApplications(): Promise\<Array\<AppStateData>>
 
-获取当前所有前台应用的信息。该应用信息由[AppStateData](../apis/js-apis-inner-application-appStateData.md)定义。
+获取当前所有前台应用的信息。该应用信息由[AppStateData](js-apis-inner-application-appStateData-sys.md)定义。
 
 **需要权限**：ohos.permission.GET_RUNNING_INFO
 
@@ -573,7 +573,7 @@ getForegroundApplications(): Promise\<Array\<AppStateData>>
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<Array\<[AppStateData](../apis/js-apis-inner-application-appStateData.md)>> | 返回前台进程应用程序的数组。 |
+| Promise\<Array\<[AppStateData](js-apis-inner-application-appStateData-sys.md)>> | 返回前台进程应用程序的数组。 |
 
 **错误码**：
 
@@ -581,7 +581,7 @@ getForegroundApplications(): Promise\<Array\<AppStateData>>
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -617,7 +617,7 @@ killProcessWithAccount(bundleName: string, accountId: number): Promise\<void\>
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | bundleName | string | 是 | 应用Bundle名称。 |
-| accountId | number | 是 | 系统帐号的帐号ID，详情参考[getOsAccountLocalId](../apis/js-apis-osAccount.md#getosaccountlocalid9)。 |
+| accountId | number | 是 | 系统帐号的帐号ID，详情参考[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)。 |
 
 **错误码**：
 
@@ -625,7 +625,7 @@ killProcessWithAccount(bundleName: string, accountId: number): Promise\<void\>
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -670,7 +670,7 @@ killProcessWithAccount(bundleName: string, accountId: number, callback: AsyncCal
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | bundleName | string | 是 | 应用Bundle名称。 | 
-  | accountId | number | 是 | 系统帐号的帐号ID，详情参考[getOsAccountLocalId](../apis/js-apis-osAccount.md#getosaccountlocalid9)。 | 
+  | accountId | number | 是 | 系统帐号的帐号ID，详情参考[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)。 | 
   | callback | AsyncCallback\<void\> | 是 | 以回调方式返回接口运行结果，可进行错误处理或其他自定义处理。 | 
 
 **错误码**：
@@ -679,7 +679,7 @@ killProcessWithAccount(bundleName: string, accountId: number, callback: AsyncCal
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -724,7 +724,7 @@ killProcessesByBundleName(bundleName: string, callback: AsyncCallback\<void>)
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -779,7 +779,7 @@ killProcessesByBundleName(bundleName: string): Promise\<void>
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -826,7 +826,7 @@ clearUpApplicationData(bundleName: string, callback: AsyncCallback\<void>)
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -881,7 +881,7 @@ clearUpApplicationData(bundleName: string): Promise\<void>
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -926,7 +926,7 @@ getProcessMemoryByPid(pid: number, callback: AsyncCallback\<number>): void
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -979,7 +979,7 @@ getProcessMemoryByPid(pid: number): Promise\<number>
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1016,7 +1016,7 @@ getRunningProcessInfoByBundleName(bundleName: string, callback: AsyncCallback\<A
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | bundleName | string | 是 | 表示Bundle名称。 |
-| callback | AsyncCallback\<Array\<[ProcessInformation](../apis/js-apis-inner-application-processInformation.md)>> | 是 | 以回调方式返回接口运行结果及有关运行进程的信息，可进行错误处理或其他自定义处理。 |
+| callback | AsyncCallback\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>> | 是 | 以回调方式返回接口运行结果及有关运行进程的信息，可进行错误处理或其他自定义处理。 |
 
 **错误码**：
 
@@ -1024,7 +1024,7 @@ getRunningProcessInfoByBundleName(bundleName: string, callback: AsyncCallback\<A
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1069,7 +1069,7 @@ getRunningProcessInfoByBundleName(bundleName: string): Promise\<Array\<ProcessIn
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<Array\<[ProcessInformation](../apis/js-apis-inner-application-processInformation.md)>> | 以Promise方式返回接口运行结果及有关运行进程的信息，可进行错误处理或其他自定义处理。 |
+| Promise\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>> | 以Promise方式返回接口运行结果及有关运行进程的信息，可进行错误处理或其他自定义处理。 |
 
 **错误码**：
 
@@ -1077,7 +1077,7 @@ getRunningProcessInfoByBundleName(bundleName: string): Promise\<Array\<ProcessIn
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1115,7 +1115,7 @@ getRunningProcessInfoByBundleName(bundleName: string, userId: number, callback: 
 | -------- | -------- | -------- | -------- |
 | bundleName | string | 是 | 表示Bundle名称。 |
 | userId | number | 是 | 表示用户Id。 |
-| callback | AsyncCallback\<Array\<[ProcessInformation](../apis/js-apis-inner-application-processInformation.md)>> | 是 | 以回调方式返回接口运行结果及有关运行进程的信息，可进行错误处理或其他自定义处理。 |
+| callback | AsyncCallback\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>> | 是 | 以回调方式返回接口运行结果及有关运行进程的信息，可进行错误处理或其他自定义处理。 |
 
 **错误码**：
 
@@ -1123,7 +1123,7 @@ getRunningProcessInfoByBundleName(bundleName: string, userId: number, callback: 
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1170,7 +1170,7 @@ getRunningProcessInfoByBundleName(bundleName: string, userId: number): Promise\<
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<Array\<[ProcessInformation](../apis/js-apis-inner-application-processInformation.md)>> | 以Promise方式返回接口运行结果及有关运行进程的信息，可进行错误处理或其他自定义处理。 |
+| Promise\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>> | 以Promise方式返回接口运行结果及有关运行进程的信息，可进行错误处理或其他自定义处理。 |
 
 **错误码**：
 
@@ -1178,7 +1178,7 @@ getRunningProcessInfoByBundleName(bundleName: string, userId: number): Promise\<
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1231,7 +1231,7 @@ isApplicationRunning(bundleName: string): Promise\<boolean>
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[errcode-ability](errorcode-ability.md)。
 
 **示例：**
 
@@ -1272,7 +1272,7 @@ isApplicationRunning(bundleName: string, callback: AsyncCallback\<boolean>): voi
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[errcode-ability](errorcode-ability.md)。
 
 **示例：**
 
@@ -1298,7 +1298,7 @@ try {
 
 ## ApplicationState
 
-应用状态，该类型为枚举，可配合[AbilityStateData](../apis/js-apis-inner-application-appStateData.md)返回相应的应用状态。
+应用状态，该类型为枚举，可配合[AbilityStateData](js-apis-inner-application-appStateData-sys.md)返回相应的应用状态。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1314,7 +1314,7 @@ try {
 
 ## ProcessState<sup>10+</sup>
 
-进程状态，该类型为枚举，可配合[ProcessData](../apis/js-apis-inner-application-processData.md)返回相应的进程状态。
+进程状态，该类型为枚举，可配合[ProcessData](js-apis-inner-application-processData-sys.md)返回相应的进程状态。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 

@@ -52,18 +52,18 @@ query(id: string, callback: AsyncCallback&lt;TaskInfo&gt;): void
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | id | string | 是 | 任务id。 |
-  | callback | AsyncCallback&lt;[TaskInfo](#taskinfo10)&gt; | 是 | 回调函数，返回任务详细信息。 |
+| 参数名 | 类型                                           | 必填 | 说明 |
+|----------------------------------------------| -------- | -------- | -------- |
+| id | string                                       | 是 | 任务id。 |
+| callback | AsyncCallback&lt;[TaskInfo](#taskinfo10)&gt; | 是 | 回调函数，返回任务详细信息。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
-  | 错误码ID | 错误信息 |
+| 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 13400003 | task service ability error. |
-  | 21900006 | task not found error. |
+| 13400003 | task service ability error. |
+| 21900006 | task not found error. |
 
 **示例：**
 
@@ -92,23 +92,23 @@ query(id: string): Promise&lt;TaskInfo&gt;
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | id | string | 是 | 任务id。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| id | string | 是 | 任务id。 |
 
-**返回值：** 
+**返回值：**
 
-| 类型                | 说明                      |
-| ------------------- | ------------------------- |
+| 类型                                     | 说明                      |
+|----------------------------------------| ------------------------- |
 | Promise&lt;[TaskInfo](#taskinfo10)&gt; | Promise对象。返回任务详细信息的Promise对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
-  | 错误码ID | 错误信息 |
+| 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 13400003 | task service ability error. |
-  | 21900006 | task not found error. |
+| 13400003 | task service ability error. |
+| 21900006 | task not found error. |
 
 **示例：**
 
@@ -119,5 +119,3 @@ query(id: string): Promise&lt;TaskInfo&gt;
     console.error(`Failed to query a upload task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
-
-<!--no_check-->

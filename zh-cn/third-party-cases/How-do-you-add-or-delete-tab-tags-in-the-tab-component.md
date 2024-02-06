@@ -271,13 +271,13 @@ struct Drag {
 
 ## 参考
 
-[Tabs](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-navigation-tabs.md)
+[Tabs](../application-dev/ui/arkts-navigation-tabs.md)
 
-[@State装饰器：组件内状态](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/arkts-state.md)
+[@State装饰器：组件内状态](../application-dev/quick-start/arkts-state.md)
 
-[ForEach：循环渲染](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/arkts-rendering-control-foreach.md)
+[ForEach：循环渲染](../application-dev/quick-start/arkts-rendering-control-foreach.md)
 
-[层叠布局（Stack）](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-layout-development-stack-layout.md)
+[层叠布局（Stack）](../application-dev/ui/arkts-layout-development-stack-layout.md)
 
 
 

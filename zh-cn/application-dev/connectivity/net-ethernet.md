@@ -5,7 +5,7 @@
 以太网连接的功能是提供支持设备通过硬件接口，以插入网线的形式访问互联网的能力。 设备接入网线后，可以获取动态分配的IP地址，子网掩码，Gateway，DNS等一系列网络属性；通过静态模式，手动配置与获取设备的网络属性。
 
 > **说明：**
-> 为了保证应用的运行效率，大部分API调用都是异步的，对于异步调用的API均提供了callback和Promise两种方式，以下示例均采用callback函数，更多方式可以查阅[API参考](../reference/apis/js-apis-net-ethernet.md)。
+> 为了保证应用的运行效率，大部分API调用都是异步的，对于异步调用的API均提供了callback和Promise两种方式，以下示例均采用callback函数，更多方式可以查阅[API参考](../reference/apis-network-kit/js-apis-net-ethernet-sys.md)。
 
 ## 约束
 
@@ -24,7 +24,7 @@
 
 ## 接口说明
 
-完整的JS API说明以及实例代码请参考：[以太网连接](../reference/apis/js-apis-net-ethernet.md)。
+完整的JS API说明以及实例代码请参考：[以太网连接](../reference/apis-network-kit/js-apis-net-ethernet-sys.md)。
 
 | 类型 | 接口 | 功能说明 |
 | ---- | ---- | ---- |

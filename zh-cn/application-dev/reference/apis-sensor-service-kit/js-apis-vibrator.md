@@ -33,7 +33,7 @@ startVibration(effect: VibrateEffect, attribute: VibrateAttribute, callback: Asy
 
 **错误码**：
 
-以下错误码的详细介绍请参见 [ohos.vibrator错误码](../errorcodes/errorcode-vibrator.md)
+以下错误码的详细介绍请参见 [ohos.vibrator错误码](errorcode-vibrator.md)。
 
 | 错误码ID | 错误信息                 |
 | -------- | ------------------------ |
@@ -152,7 +152,7 @@ startVibration(effect: VibrateEffect, attribute: VibrateAttribute): Promise&lt;v
 
 **错误码**：
 
-以下错误码的详细介绍请参见 [ohos.vibrator错误码](../errorcodes/errorcode-vibrator.md)
+以下错误码的详细介绍请参见 [ohos.vibrator错误码](errorcode-vibrator.md)。
 
 | 错误码ID | 错误信息                 |
 | -------- | ------------------------ |
@@ -686,7 +686,7 @@ try {
 
 ## VibrateFromFile<sup>10+</sup>
 
-自定义振动类型，仅部分设备支持，当设备不支持此振动类型时，返回[设备不支持错误码](../errorcodes/errorcode-universal.md)。
+自定义振动类型，仅部分设备支持，当设备不支持此振动类型时，返回[设备不支持错误码](../errorcode-universal.md)。
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
@@ -697,7 +697,7 @@ try {
 
 ## HapticFileDescriptor<sup>10+</sup>
 
-自定义振动配置文件的描述符，必须确认资源文件可用，其参数可通过[文件管理API](js-apis-file-fs.md#fsopen)从沙箱路径获取或者通过[资源管理API](js-apis-resource-manager.md#getrawfd9)从HAP资源获取。使用场景：振动序列被存储在一个文件中，需要根据偏移量和长度进行振动，振动序列存储格式，请参考[自定义振动格式](../../device/vibrator-guidelines.md#自定义振动)。
+自定义振动配置文件的描述符，必须确认资源文件可用，其参数可通过[文件管理API](../apis-core-file-kit/js-apis-file-fs.md#fsopen)从沙箱路径获取或者通过[资源管理API](../apis-localization-kit/js-apis-resource-manager.md#getrawfd9)从HAP资源获取。使用场景：振动序列被存储在一个文件中，需要根据偏移量和长度进行振动，振动序列存储格式，请参考[自定义振动格式](../../device/vibrator-guidelines.md#自定义振动)。
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 

@@ -39,7 +39,7 @@ getWant(agent: WantAgent, callback: AsyncCallback\<Want\>): void
 | 16000015   | Service timeout.|
 | 16000151   | Invalid wantagent object.|
 
-错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)
+错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)
 
 **示例：**
 
@@ -138,7 +138,7 @@ getWant(agent: WantAgent): Promise\<Want\>
 | 16000015   | Service timeout.|
 | 16000151   | Invalid wantagent object.|
 
-错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)
+错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)
 
 **示例：**
 

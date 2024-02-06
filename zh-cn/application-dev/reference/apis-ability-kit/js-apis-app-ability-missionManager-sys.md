@@ -35,7 +35,7 @@ on(type:'mission', listener: MissionListener): number
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type     | string   | 是       | 监听的任务名称。 |
-  | listener | [MissionListener](../apis/js-apis-inner-application-missionListener.md) | 是 | 系统任务监听器。 |
+  | listener | [MissionListener](js-apis-inner-application-missionListener-sys.md) | 是 | 系统任务监听器。 |
 
 **返回值：**
 
@@ -140,7 +140,7 @@ off(type: 'mission', listenerId: number, callback: AsyncCallback&lt;void&gt;): v
 | ------- | -------- |
 | 16300002 | Input error. The specified mission listener does not exist. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -244,7 +244,7 @@ off(type: 'mission', listenerId: number): Promise&lt;void&gt;
 | ------- | -------- |
 | 16300002 | Input error. The specified mission listener does not exist. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -334,7 +334,7 @@ getMissionInfo(deviceId: string, missionId: number, callback: AsyncCallback&lt;M
   | -------- | -------- | -------- | -------- |
   | deviceId | string | 是 | 设备ID，本机默认为空字符串。 |
   | missionId | number | 是 | 任务ID。 |
-  | callback | AsyncCallback&lt;[MissionInfo](../apis/js-apis-inner-application-missionInfo.md)&gt; | 是 | 执行结果回调函数，返回任务信息。 |
+  | callback | AsyncCallback&lt;[MissionInfo](js-apis-inner-application-missionInfo-sys.md)&gt; | 是 | 执行结果回调函数，返回任务信息。 |
 
 **示例：**
 
@@ -395,7 +395,7 @@ getMissionInfo(deviceId: string, missionId: number): Promise&lt;MissionInfo&gt;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;[MissionInfo](../apis/js-apis-inner-application-missionInfo.md)&gt; | 任务信息。 |
+  | Promise&lt;[MissionInfo](js-apis-inner-application-missionInfo-sys.md)&gt; | 任务信息。 |
 
 **示例：**
 
@@ -434,7 +434,7 @@ getMissionInfos(deviceId: string, numMax: number, callback: AsyncCallback&lt;Arr
   | -------- | -------- | -------- | -------- |
   | deviceId | string | 是 | 设备ID，本机默认为空字符串。 |
   | numMax | number | 是 | 任务信息数量上限。 |
-  | callback | AsyncCallback&lt;Array&lt;[MissionInfo](../apis/js-apis-inner-application-missionInfo.md)&gt;&gt; | 是 | 执行结果回调函数，返回任务信息数组。 |
+  | callback | AsyncCallback&lt;Array&lt;[MissionInfo](js-apis-inner-application-missionInfo-sys.md)&gt;&gt; | 是 | 执行结果回调函数，返回任务信息数组。 |
 
 **示例：**
 
@@ -482,7 +482,7 @@ getMissionInfos(deviceId: string, numMax: number): Promise&lt;Array&lt;MissionIn
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;Array&lt;[MissionInfo](../apis/js-apis-inner-application-missionInfo.md)&gt;&gt; | 任务信息数组。 |
+  | Promise&lt;Array&lt;[MissionInfo](js-apis-inner-application-missionInfo-sys.md)&gt;&gt; | 任务信息数组。 |
 
 **示例：**
 
@@ -520,7 +520,7 @@ getMissionSnapShot(deviceId: string, missionId: number, callback: AsyncCallback&
   | -------- | -------- | -------- | -------- |
   | deviceId | string | 是 | 设备ID，本机默认为空字符串。 |
   | missionId | number | 是 | 任务ID。 |
-  | callback | AsyncCallback&lt;[MissionSnapshot](../apis/js-apis-inner-application-missionSnapshot.md)&gt; | 是 | 执行结果回调函数，返回任务快照信息。 |
+  | callback | AsyncCallback&lt;[MissionSnapshot](js-apis-inner-application-missionSnapshot-sys.md)&gt; | 是 | 执行结果回调函数，返回任务快照信息。 |
 
 **示例：**
 ```ts
@@ -565,7 +565,7 @@ getMissionSnapShot(deviceId: string, missionId: number): Promise&lt;MissionSnaps
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;[MissionSnapshot](../apis/js-apis-inner-application-missionSnapshot.md)&gt; | 任务快照信息。 |
+  | Promise&lt;[MissionSnapshot](js-apis-inner-application-missionSnapshot-sys.md)&gt; | 任务快照信息。 |
 
 **示例：**
 ```ts
@@ -603,7 +603,7 @@ getLowResolutionMissionSnapShot(deviceId: string, missionId: number, callback: A
   | -------- | -------- | -------- | -------- |
   | deviceId | string | 是 | 设备ID，本机默认为空字符串。 |
   | missionId | number | 是 | 任务ID。 |
-  | callback | AsyncCallback&lt;[MissionSnapshot](../apis/js-apis-inner-application-missionSnapshot.md)&gt; | 是 | 执行结果回调函数，返回任务快照信息。 |
+  | callback | AsyncCallback&lt;[MissionSnapshot](js-apis-inner-application-missionSnapshot-sys.md)&gt; | 是 | 执行结果回调函数，返回任务快照信息。 |
 
 **示例：**
 ```ts
@@ -648,7 +648,7 @@ getLowResolutionMissionSnapShot(deviceId: string, missionId: number): Promise\<M
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;[MissionSnapshot](../apis/js-apis-inner-application-missionSnapshot.md)&gt; | 任务快照信息。 |
+  | Promise&lt;[MissionSnapshot](js-apis-inner-application-missionSnapshot-sys.md)&gt; | 任务快照信息。 |
 
 **示例：**
 
@@ -695,7 +695,7 @@ lockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void
 | ------- | -------- |
 | 16300001 | Mission not found. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -748,7 +748,7 @@ lockMission(missionId: number): Promise&lt;void&gt;
 | ------- | -------- |
 | 16300001 | Mission not found. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 ```ts
@@ -793,7 +793,7 @@ unlockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void
 | ------- | -------- |
 | 16300001 | Mission not found. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 ```ts
@@ -845,7 +845,7 @@ unlockMission(missionId: number): Promise&lt;void&gt;
 | ------- | -------- |
 | 16300001 | Mission not found. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1049,7 +1049,7 @@ moveMissionToFront(missionId: number, callback: AsyncCallback&lt;void&gt;): void
 | ------- | -------- |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1089,7 +1089,7 @@ moveMissionToFront(missionId: number, options: StartOptions, callback: AsyncCall
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | missionId | number | 是 | 任务ID。 |
-  | options | [StartOptions](../apis/js-apis-app-ability-startOptions.md) | 是 | 启动参数选项，用于指定任务切到前台时的窗口模式，设备ID等。 |
+  | options | [StartOptions](js-apis-app-ability-startOptions.md) | 是 | 启动参数选项，用于指定任务切到前台时的窗口模式，设备ID等。 |
   | callback | AsyncCallback&lt;void&gt; | 是 | 执行结果回调函数。 |
 
 **错误码**：
@@ -1098,7 +1098,7 @@ moveMissionToFront(missionId: number, options: StartOptions, callback: AsyncCall
 | ------- | -------- |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1138,7 +1138,7 @@ moveMissionToFront(missionId: number, options?: StartOptions): Promise&lt;void&g
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | missionId | number | 是 | 任务ID。 |
-  | options | [StartOptions](../apis/js-apis-app-ability-startOptions.md) | 否 | 启动参数选项，用于指定任务切到前台时的窗口模式，设备ID等。默认为空，表示按照默认启动参数。 |
+  | options | [StartOptions](js-apis-app-ability-startOptions.md) | 否 | 启动参数选项，用于指定任务切到前台时的窗口模式，设备ID等。默认为空，表示按照默认启动参数。 |
 
 **返回值：**
 
@@ -1152,7 +1152,7 @@ moveMissionToFront(missionId: number, options?: StartOptions): Promise&lt;void&g
 | ------- | -------- |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1194,7 +1194,7 @@ moveMissionsToForeground(missionIds: Array&lt;number&gt;, callback: AsyncCallbac
 
 **错误码**：
 
-以下错误码的详细介绍请参见[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以下错误码的详细介绍请参见[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
@@ -1261,7 +1261,7 @@ moveMissionsToForeground(missionIds: Array&lt;number&gt;, topMission: number, ca
 
 **错误码**：
 
-以下错误码的详细介绍请参见[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以下错误码的详细介绍请参见[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
@@ -1333,7 +1333,7 @@ moveMissionsToForeground(missionIds: Array&lt;number&gt;, topMission?: number): 
 
 **错误码**：
 
-以下错误码的详细介绍请参见[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以下错误码的详细介绍请参见[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
@@ -1395,7 +1395,7 @@ moveMissionsToBackground(missionIds: Array&lt;number&gt;, callback: AsyncCallbac
 
 **错误码**：
 
-以下错误码的详细介绍请参见[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以下错误码的详细介绍请参见[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
@@ -1462,7 +1462,7 @@ moveMissionsToBackground(missionIds : Array&lt;number&gt;): Promise&lt;Array&lt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以下错误码的详细介绍请参见[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
