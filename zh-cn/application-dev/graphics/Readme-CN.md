@@ -6,3 +6,8 @@
   - [请求动画绘制帧率](displaysync-animation.md)
   - [请求UI绘制帧率](displaysync-ui.md)
   - [请求自绘制内容绘制帧率](displaysync-xcomponent.md)
+- [使用Drawing实现图形绘制与显示 (C/C++)](drawing-guidelines.md)
+- [NativeBuffer开发指导 (C/C++)](native-buffer-guidelines.md)
+- [NativeImage开发指导 (C/C++)](native-image-guidelines.md)
+- [NativeVsync开发指导 (C/C++)](native-vsync-guidelines.md)
+- [NativeWindow开发指导 (C/C++)](native-window-guidelines.md)

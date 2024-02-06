@@ -214,11 +214,11 @@ class SimplifyChatInfo {
 
 ## 参考
 
-[Badge](https://gitee.com/openharmony/docs/blob/OpenHarmony-4.0-Release/zh-cn/application-dev/reference/arkui-ts/ts-container-badge.md)
+[Badge](../application-dev/reference/apis-arkui/arkui-ts/ts-container-badge.md)
 
-[@Observed装饰器和@ObjectLink装饰器：嵌套类对象属性变化](https://gitee.com/openharmony/docs/blob/OpenHarmony-4.0-Release/zh-cn/application-dev/quick-start/arkts-observed-and-objectlink.md)
+[@Observed装饰器和@ObjectLink装饰器：嵌套类对象属性变化](../application-dev/quick-start/arkts-observed-and-objectlink.md)
 
-[ForEach：循环渲染](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/arkts-rendering-control-foreach.md)
+[ForEach：循环渲染](../application-dev/quick-start/arkts-rendering-control-foreach.md)
 
 
 

@@ -50,9 +50,9 @@
 
 | 名称                                       | 类型                                       | 描述                                       |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| [fillStyle](#fillstyle)                  | &lt;color&gt;&nbsp;\|&nbsp;[CanvasGradient](../arkui-js/js-components-canvas-canvasgradient.md)&nbsp;\|&nbsp;CanvasPattern | 指定绘制的填充色。<br/>-&nbsp;类型为&lt;color&gt;时，表示设置填充区域的颜色。<br/>-&nbsp;类型为CanvasGradient时，表示渐变对象，使用&nbsp;createLinearGradient()方法创建。<br/>-&nbsp;类型为CanvasPattern时，使用&nbsp;createPattern()方法创建。 |
+| [fillStyle](#fillstyle)                  | &lt;color&gt;&nbsp;\|&nbsp;[CanvasGradient](js-components-canvas-canvasgradient.md)&nbsp;\|&nbsp;CanvasPattern | 指定绘制的填充色。<br/>-&nbsp;类型为&lt;color&gt;时，表示设置填充区域的颜色。<br/>-&nbsp;类型为CanvasGradient时，表示渐变对象，使用&nbsp;createLinearGradient()方法创建。<br/>-&nbsp;类型为CanvasPattern时，使用&nbsp;createPattern()方法创建。 |
 | [lineWidth](#linewidth)                  | number                                   | 设置绘制线条的宽度。                               |
-| [strokeStyle](#strokestyle)              | &lt;color&gt;&nbsp;\|&nbsp;[CanvasGradient](../arkui-js/js-components-canvas-canvasgradient.md)&nbsp;\|&nbsp;CanvasPattern | 设置描边的颜色。<br/>-&nbsp;类型为&lt;color&gt;时，表示设置描边使用的颜色。<br/>-&nbsp;类型为CanvasGradient时，表示渐变对象，使用&nbsp;createLinearGradient()方法创建。<br/>-&nbsp;类型为CanvasPattern时，使用&nbsp;createPattern()方法创建。 |
+| [strokeStyle](#strokestyle)              | &lt;color&gt;&nbsp;\|&nbsp;[CanvasGradient](js-components-canvas-canvasgradient.md)&nbsp;\|&nbsp;CanvasPattern | 设置描边的颜色。<br/>-&nbsp;类型为&lt;color&gt;时，表示设置描边使用的颜色。<br/>-&nbsp;类型为CanvasGradient时，表示渐变对象，使用&nbsp;createLinearGradient()方法创建。<br/>-&nbsp;类型为CanvasPattern时，使用&nbsp;createPattern()方法创建。 |
 | [lineCap](#linecap)                      | string                                   | 指定线端点的样式，可选值为：<br/>-&nbsp;butt：线端点以方形结束。<br/>-&nbsp;round：线端点以圆形结束。<br/>-&nbsp;square：线端点以方形结束，该样式下会增加一个长度和线段厚度相同，宽度是线段厚度一半的矩形。<br>默认值：butt |
 | [lineJoin](#linejoin)                    | string                                   | 指定线段间相交的交点样式，可选值为：<br/>-&nbsp;round：在线段相连处绘制一个扇形，扇形的圆角半径是线段的宽度。<br/>-&nbsp;bevel：在线段相连处使用三角形为底填充，&nbsp;每个部分矩形拐角独立。<br/>-&nbsp;miter：在相连部分的外边缘处进行延伸，使其相交于一点，形成一个菱形区域，该属性可以通过设置miterLimit属性展现效果。<br>默认值：miter |
 | [miterLimit](#miterlimit)                | number                                   | 设置斜接面限制值，该值指定了线条相交处内角和外角的距离。<br>默认值：10   |
@@ -971,7 +971,7 @@ createPattern(image: Image, repetition: string): Object
 
 | 参数         | 类型     | 描述                                       |
 | ---------- | ------ | ---------------------------------------- |
-| image      | Image  | 图源对象，具体参考[Image对象](../arkui-js/js-components-canvas-image.md)。 |
+| image      | Image  | 图源对象，具体参考[Image对象](js-components-canvas-image.md)。 |
 | repetition | string | 设置图像重复的方式，取值为：'repeat'、'repeat-x'、&nbsp;'repeat-y'、'no-repeat'。 |
 
 **返回值：** 
@@ -1518,7 +1518,7 @@ createPath2D(path: Path2D, cmds: string): Path2D
 
 **返回值：**
 
-  [Path2D对象](../arkui-js/js-components-canvas-path2d.md)
+  [Path2D对象](js-components-canvas-path2d.md)
 
 **示例：** 
   ```html
@@ -1560,7 +1560,7 @@ drawImage(image: Image | PixelMap, sx: number, sy: number, sWidth: number, sHeig
 
 | 参数      | 类型                             | 描述                                       |
 | ------- | ------------------------------ | ---------------------------------------- |
-| image   | Image \| PixelMap<sup>9+</sup> | 图片资源，请参考[Image对象](../arkui-js/js-components-canvas-image.md) 或[PixelMap对象](../../apis-image-kit/js-apis-image.md#pixelmap7)。 |
+| image   | Image \| PixelMap<sup>9+</sup> | 图片资源，请参考[Image对象](js-components-canvas-image.md) 或[PixelMap对象](../../apis-image-kit/js-apis-image.md#pixelmap7)。 |
 | sx      | number                         | 裁切源图像时距离源图像左上角的x坐标值。                     |
 | sy      | number                         | 裁切源图像时距离源图像左上角的y坐标值。                     |
 | sWidth  | number                         | 裁切源图像时需要裁切的宽度。                           |
@@ -1647,7 +1647,7 @@ save(): void
 
 createLinearGradient(x0: number, y0: number, x1: number, y1: number): Object
 
-创建一个线性渐变色，返回CanvasGradient对象，请参考[CanvasGradient对象](../arkui-js/js-components-canvas-canvasgradient.md)。
+创建一个线性渐变色，返回CanvasGradient对象，请参考[CanvasGradient对象](js-components-canvas-canvasgradient.md)。
 
 **参数：** 
 
@@ -1751,7 +1751,7 @@ createRadialGradient(x0: number, y0: number, r0: number, x1: number, y1: number,
 
 createImageData(width: number, height: number, imageData: Object): Object
 
-创建新的ImageData 对象，请参考[ImageData对象](../arkui-js/js-components-canvas-imagedata.md)。
+创建新的ImageData 对象，请参考[ImageData对象](js-components-canvas-imagedata.md)。
 
 **参数：** 
 
