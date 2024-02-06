@@ -55,7 +55,7 @@
 
 | 接口名 | 描述 |
 | -------- | -------- |
-| startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: [WantAgent](../reference/apis-backgroundtasks-kit/js-apis-app-ability-wantAgent.md)): Promise&lt;void&gt; | 申请长时任务 |
+| startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: [WantAgent](../reference/apis-ability-kit/js-apis-app-ability-wantAgent.md)): Promise&lt;void&gt; | 申请长时任务 |
 | stopBackgroundRunning(context: Context): Promise&lt;void&gt; | 取消长时任务 |
 
 ## 开发步骤
