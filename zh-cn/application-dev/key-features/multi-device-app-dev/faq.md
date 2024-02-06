@@ -17,7 +17,7 @@
    ```
 
 2. 在应用开发过程中查询设备类型。
-   - 通过deviceInfo查询设备类型，deviceInfo中各个字段的含义请参考[设备信息](../../reference/apis/js-apis-device-info.md)。
+   - 通过deviceInfo查询设备类型，deviceInfo中各个字段的含义请参考[设备信息](../../reference/apis-basic-services-kit/js-apis-device-info.md)。
      
       ```ts
        import deviceInfo from'@ohos.deviceInfo'

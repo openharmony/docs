@@ -48,7 +48,7 @@
 
 通过窗口对象监听断点变化的核心是获取窗口对象及注册窗口尺寸变化的回调函数。
 
-1. 在UIAbility的[onWindowStageCreate](../../application-models/uiability-lifecycle.md)生命周期回调中，通过[窗口](../../reference/apis/js-apis-window.md)对象获取启动时的应用窗口宽度并注册回调函数监听窗口尺寸变化。将窗口尺寸的长度单位[由px换算为vp](../../../design/ux-design/visual-basis.md#视觉基础)后，即可基于前文中介绍的规则得到当前断点值，此时可以使用[状态变量](../../quick-start/arkts-state.md)记录当前的断点值方便后续使用。
+1. 在UIAbility的[onWindowStageCreate](../../application-models/uiability-lifecycle.md)生命周期回调中，通过[窗口](../../reference/apis-arkui/js-apis-window.md)对象获取启动时的应用窗口宽度并注册回调函数监听窗口尺寸变化。将窗口尺寸的长度单位[由px换算为vp](../../../design/ux-design/visual-basis.md#视觉基础)后，即可基于前文中介绍的规则得到当前断点值，此时可以使用[状态变量](../../quick-start/arkts-state.md)记录当前的断点值方便后续使用。
 
    ```ts
    // MainAbility.ts
@@ -138,7 +138,7 @@
 
 
 > **说明：**
-> 类Web开发范式，支持在js文件和css文件中使用媒体查询，请查看[js媒体查询](../../reference/apis/js-apis-mediaquery.md)和[css媒体查询](../../reference/arkui-js/js-components-common-mediaquery.md)了解详细用法。
+> 类Web开发范式，支持在js文件和css文件中使用媒体查询，请查看[js媒体查询](../../reference/apis-arkui/js-apis-mediaquery.md)和[css媒体查询](../../reference/arkui-js/js-components-common-mediaquery.md)了解详细用法。
 
 
 **示例：**
