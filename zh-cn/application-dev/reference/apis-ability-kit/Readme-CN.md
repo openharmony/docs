@@ -1,4 +1,5 @@
 # Ability Kit API参考
+
 - ArkTS API
   - Stage模型能力的接口
     - [@ohos.app.ability.Ability (Ability基类)](js-apis-app-ability-ability.md)
@@ -106,7 +107,7 @@
       - [shellCmdResult](js-apis-inner-application-shellCmdResult.md)
       - [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md)
       - [UIExtensionContext](js-apis-inner-application-uiExtensionContext.md)
-      - [AbilityForegroundStateObserver(系统接口)](js-apis-inner-application-abilityForegroundStateObserver-sys.md)
+      - [AbilityForegroundStateObserver(系统接口)](js-apis-inner-application-abilityForegroundStateObserver-sys)
       - [AbilityRunningInfo(系统接口)](js-apis-inner-application-abilityRunningInfo-sys.md)
       - [AbilityStateData(系统接口)](js-apis-inner-application-abilityStateData-sys.md)
       - [AppForegroundStateObserver(系统接口)](js-apis-inner-application-appForegroundStateObserver-sys.md)

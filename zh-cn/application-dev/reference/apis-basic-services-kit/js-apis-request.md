@@ -95,7 +95,7 @@ uploadFile(context: BaseContext, config: UploadConfig): Promise&lt;UploadTask&gt
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -148,7 +148,7 @@ uploadFile(context: BaseContext, config: UploadConfig, callback: AsyncCallback&l
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -725,7 +725,7 @@ downloadFile(context: BaseContext, config: DownloadConfig): Promise&lt;DownloadT
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -775,7 +775,7 @@ downloadFile(context: BaseContext, config: DownloadConfig, callback: AsyncCallba
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -2105,43 +2105,40 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| bundle | string | 否 | 指定应用程序的包名，仅对系统应用开放。<br/>**系统接口**：此接口为系统接口。 |
-| before | number | 否 | 结束的Unix时间戳（毫秒），默认为调用时刻。 |
-| after | number | 否 | 开始的Unix时间戳（毫秒），默认值为调用时刻减24小时。 |
-| state | [State](#state10) | 否 | 指定任务的状态。 |
-| action | [Action](#action10) | 否 | 任务操作选项。<br/>-UPLOAD表示上传任务。<br/>-DOWNLOAD表示下载任务。 |
-| mode | [Mode](#mode10) | 否 | 任务模式。<br/>-FOREGROUND表示前端任务。<br/>-BACKGROUND表示后台任务。<br/>-如果未填写，则查询所有任务。 |
+| 名称                              | 类型 | 必填 | 说明 |
+|---------------------------------| -------- | -------- | -------- |
+| before                          | number | 否 | 结束的Unix时间戳（毫秒），默认为调用时刻。 |
+| after                           | number | 否 | 开始的Unix时间戳（毫秒），默认值为调用时刻减24小时。 |
+| state                           | [State](#state10) | 否 | 指定任务的状态。 |
+| action                          | [Action](#action10) | 否 | 任务操作选项。<br/>-UPLOAD表示上传任务。<br/>-DOWNLOAD表示下载任务。 |
+| mode                            | [Mode](#mode10) | 否 | 任务模式。<br/>-FOREGROUND表示前端任务。<br/>-BACKGROUND表示后台任务。<br/>-如果未填写，则查询所有任务。 |
 
 ## TaskInfo<sup>10+</sup> 
 查询结果的任务信息数据结构，提供普通查询和系统查询，两种字段的可见范围不同。
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| uid | string | 否 | 应用程序的UID，仅用于系统查询。<br/>**系统接口**：此接口为系统接口。|
-| bundle | string | 否 | 应用程序的包名，仅用于系统查询。<br/>**系统接口**：此接口为系统接口。|
-| saveas | string | 否 | 保存下载文件的路径，包括如下两种：<br/>-相对路径，如"./xxx/yyy/zzz.html"、"xxx/yyy/zzz.html"，位于调用方的缓存路径下。<br/>-uri路径，如"datashare://bundle/xxx/yyy/zzz.html"，仅对具有访问url路径权限的应用开放。该功能暂不支持。<br/>默认为相对路径，即下载至应用当前缓存路径下。|
-| url | string | 否 | 任务的url。<br/>- 通过[request.agent.show<sup>10+</sup>](#requestagentshow10-1)、[request.agent.touch<sup>10+</sup>](#requestagenttouch10-1)、[request.agent.query<sup>10+</sup>](#requestagentquery10-1)进行查询。其中，使用[request.agent.query<sup>10+</sup>](#requestagentquery10-1)进行查询时会返回空字符串。 |
-| data | string \| Array&lt;[FormItem](#formitem10)&gt; | 否 | 任务值。<br/>- 通过[request.agent.show<sup>10+</sup>](#requestagentshow10-1)、[request.agent.touch<sup>10+</sup>](#requestagenttouch10-1)、[request.agent.query<sup>10+</sup>](#requestagentquery10-1)进行查询。其中，使用[request.agent.query<sup>10+</sup>](#requestagentquery10-1)进行查询时会返回空字符串。 |
-| tid | string | 是 | 任务id。 |
-| title | string | 是 | 任务标题。 |
-| description | string | 是 | 任务描述。 |
-| action | [Action](#action10) | 是 | 任务操作选项。<br/>-UPLOAD表示上传任务。<br/>-DOWNLOAD表示下载任务。 |
-| mode | [Mode](#mode10) | 是 | 指定任务模式。<br/>-FOREGROUND表示前端任务。<br/>-BACKGROUND表示后台任务。 |
-| priority<sup>11+</sup> | number | 否 | 任务配置中的优先级。前端任务的优先级比后台任务高。相同模式的任务，数字越小优先级越高。 |
-| mimeType | string | 是 | 任务配置中的mimetype。 |
-| progress | [Progress](#progress10) | 是 | 任务的过程进度。 |
-| gauge | boolean | 是 | 后台任务的进度通知策略。 |
-| ctime | number | 是 | 创建任务的Unix时间戳（毫秒），由当前设备的系统生成。<br/>说明：使用[request.agent.search<sup>10+</sup>](#requestagentsearch10-1)进行查询时，该值需处于[after,before]区间内才可正常查询到任务id，before和after信息详见[Filter](#filter10)。
-| mtime | number | 是 | 任务状态改变时的Unix时间戳（毫秒），由当前设备的系统生成。|
-| retry | boolean | 是 | 任务的重试开关，仅应用于后台任务。 |
-| tries | number | 是 | 任务的尝试次数。 |
-| faults | [Faults](#faults10) | 是 | 任务的失败原因。<br/>-OTHERS表示其他故障。<br/>-DISCONNECT表示网络断开连接。<br/>-TIMEOUT表示任务超时。<br/>-PROTOCOL表示协议错误。<br/>-FSIO表示文件系统io错误。|
-| reason | string | 是 | 等待/失败/停止/暂停任务的原因。|
-| extras | string | 否 | 任务的额外部分。|
+| 名称                     | 类型 | 必填 | 说明                                                                                                                                                                                                                                                                                                        |
+|------------------------| -------- | -------- |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| saveas                 | string | 否 | 保存下载文件的路径，包括如下两种：<br/>-相对路径，如"./xxx/yyy/zzz.html"、"xxx/yyy/zzz.html"，位于调用方的缓存路径下。<br/>-uri路径，如"datashare://bundle/xxx/yyy/zzz.html"，仅对具有访问url路径权限的应用开放。该功能暂不支持。<br/>默认为相对路径，即下载至应用当前缓存路径下。                                                                                                                |
+| url                    | string | 否 | 任务的url。<br/>- 通过[request.agent.show<sup>10+</sup>](#requestagentshow10-1)、[request.agent.touch<sup>10+</sup>](#requestagenttouch10-1)、[request.agent.query<sup>10+</sup>](js-apis-request-sys.md#requestagentquery10-1)进行查询。其中，使用[request.agent.query<sup>10+</sup>](js-apis-request-sys.md#requestagentquery10-1)进行查询时会返回空字符串。 |
+| data                   | string \| Array&lt;[FormItem](#formitem10)&gt; | 否                                                                                                                                                                                                                                                                                                         | 任务值。<br/>- 通过[request.agent.show<sup>10+</sup>](#requestagentshow10-1)、[request.agent.touch<sup>10+</sup>](#requestagenttouch10-1)、[request.agent.query<sup>10+</sup>](js-apis-request-sys.md#requestagentquery10-1)进行查询。其中，使用[request.agent.query<sup>10+</sup>](js-apis-request-sys.md#requestagentquery10-1)进行查询时会返回空字符串。 |
+| tid                    | string | 是 | 任务id。                                                                                                                                                                                                                                                                                                     |
+| title                  | string | 是 | 任务标题。                                                                                                                                                                                                                                                                                                     |
+| description            | string | 是 | 任务描述。                                                                                                                                                                                                                                                                                                     |
+| action                 | [Action](#action10) | 是 | 任务操作选项。<br/>-UPLOAD表示上传任务。<br/>-DOWNLOAD表示下载任务。                                                                                                                                                                                                                                                           |
+| mode                   | [Mode](#mode10) | 是 | 指定任务模式。<br/>-FOREGROUND表示前端任务。<br/>-BACKGROUND表示后台任务。                                                                                                                                                                                                                                                     |
+| priority<sup>11+</sup> | number | 否 | 任务配置中的优先级。前端任务的优先级比后台任务高。相同模式的任务，数字越小优先级越高。                                                                                                                                                                                                                                                               |
+| mimeType               | string | 是 | 任务配置中的mimetype。                                                                                                                                                                                                                                                                                           |
+| progress               | [Progress](#progress10) | 是 | 任务的过程进度。                                                                                                                                                                                                                                                                                                  |
+| gauge                  | boolean | 是 | 后台任务的进度通知策略。                                                                                                                                                                                                                                                                                              |
+| ctime                  | number | 是 | 创建任务的Unix时间戳（毫秒），由当前设备的系统生成。<br/>说明：使用[request.agent.search<sup>10+</sup>](#requestagentsearch10-1)进行查询时，该值需处于[after,before]区间内才可正常查询到任务id，before和after信息详见[Filter](#filter10)。                                                                                                                           
+| mtime                  | number | 是 | 任务状态改变时的Unix时间戳（毫秒），由当前设备的系统生成。                                                                                                                                                                                                                                                                           |
+| retry                  | boolean | 是 | 任务的重试开关，仅应用于后台任务。                                                                                                                                                                                                                                                                                         |
+| tries                  | number | 是 | 任务的尝试次数。                                                                                                                                                                                                                                                                                                  |
+| faults                 | [Faults](#faults10) | 是 | 任务的失败原因。<br/>-OTHERS表示其他故障。<br/>-DISCONNECT表示网络断开连接。<br/>-TIMEOUT表示任务超时。<br/>-PROTOCOL表示协议错误。<br/>-FSIO表示文件系统io错误。                                                                                                                                                                                        |
+| reason                 | string | 是 | 等待/失败/停止/暂停任务的原因。                                                                                                                                                                                                                                                                                         |
+| extras                 | string | 否 | 任务的额外部分。                                                                                                                                                                                                                                                                                                  |
 
 
 ## Task<sup>10+</sup> 
@@ -2175,7 +2172,7 @@ on(event: 'progress', callback: (progress: Progress) =&gt; void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -2246,7 +2243,7 @@ on(event: 'completed', callback: (progress: Progress) =&gt; void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -2317,7 +2314,7 @@ on(event: 'failed', callback: (progress: Progress) =&gt; void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -2388,7 +2385,7 @@ on(event: 'pause', callback: (progress: Progress) =&gt; void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
 **示例：**
 
@@ -2455,7 +2452,7 @@ on(event: 'resume', callback: (progress: Progress) =&gt; void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
 **示例：**
 
@@ -2522,7 +2519,7 @@ on(event: 'remove', callback: (progress: Progress) =&gt; void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
 **示例：**
 
@@ -2589,7 +2586,7 @@ off(event: 'progress', callback?: (progress: Progress) =&gt; void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -2668,7 +2665,7 @@ off(event: 'completed', callback?: (progress: Progress) =&gt; void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -2747,7 +2744,7 @@ off(event: 'failed', callback?: (progress: Progress) =&gt; void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -2826,7 +2823,7 @@ off(event: 'pause', callback?: (progress: Progress) =&gt; void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
 **示例：**
 
@@ -2901,7 +2898,7 @@ off(event: 'resume', callback?: (progress: Progress) =&gt; void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
 **示例：**
 
@@ -2976,7 +2973,7 @@ off(event: 'remove', callback?: (progress: Progress) =&gt; void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
 **示例：**
 
@@ -3052,7 +3049,7 @@ start(callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -3120,7 +3117,7 @@ start(): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -3184,7 +3181,7 @@ pause(callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -3251,7 +3248,7 @@ pause(): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -3318,7 +3315,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -3388,7 +3385,7 @@ resume(): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -3454,7 +3451,7 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -3517,7 +3514,7 @@ stop(): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -3582,7 +3579,7 @@ create(context: BaseContext, config: Config, callback: AsyncCallback&lt;Task&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -3663,7 +3660,7 @@ create(context: BaseContext, config: Config): Promise&lt;Task&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -3740,7 +3737,7 @@ getTask(context: BaseContext, id: string, token?: string): Promise&lt;Task&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -3774,7 +3771,7 @@ remove(id: string, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -3816,7 +3813,7 @@ remove(id: string): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -3850,7 +3847,7 @@ show(id: string, callback: AsyncCallback&lt;TaskInfo&gt;): void
   | callback | AsyncCallback&lt;[TaskInfo](#taskinfo10)&gt; | 是 | 回调函数，返回任务详细信息。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -3891,7 +3888,7 @@ show(id: string): Promise&lt;TaskInfo&gt;
 | Promise&lt;[TaskInfo](#taskinfo10)&gt; | Promise对象。返回任务详细信息的Promise对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -3926,7 +3923,7 @@ touch(id: string, token: string, callback: AsyncCallback&lt;TaskInfo&gt;): void
   | callback | AsyncCallback&lt;[TaskInfo](#taskinfo10)&gt; | 是 | 回调函数，返回任务详细信息。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -3968,7 +3965,7 @@ touch(id: string, token: string): Promise&lt;TaskInfo&gt;
 | Promise&lt;[TaskInfo](#taskinfo10)&gt; | Promise对象。返回任务详细信息的Promise对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -4000,7 +3997,7 @@ search(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
   | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是 | 回调函数，返回满足条件任务id。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -4034,7 +4031,7 @@ search(filter: Filter, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
   | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是 | 回调函数，返回满足条件任务id。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -4079,7 +4076,7 @@ search(filter?: Filter): Promise&lt;Array&lt;string&gt;&gt;
 | Promise&lt;Array&lt;string&gt;&gt; | Promise对象。返回满足条件任务id的Promise对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -4097,89 +4094,6 @@ search(filter?: Filter): Promise&lt;Array&lt;string&gt;&gt;
     console.info(`Succeeded in searching a upload task. `);
   }).catch((err: BusinessError) => {
     console.error(`Failed to search a upload task, Code: ${err.code}, message: ${err.message}`);
-  });
-  ```
-
-
-## request.agent.query<sup>10+</sup>
-
-query(id: string, callback: AsyncCallback&lt;TaskInfo&gt;): void
-
-根据任务id查询任务的详细信息。使用callback异步回调。
-
-**需要权限**：ohos.permission.DOWNLOAD_SESSION_MANAGER 或 ohos.permission.UPLOAD_SESSION_MANAGER
-
-**系统能力**: SystemCapability.Request.FileTransferAgent
-
-**系统接口**：此接口为系统接口。
-
-**参数：**
-
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | id | string | 是 | 任务id。 |
-  | callback | AsyncCallback&lt;[TaskInfo](#taskinfo10)&gt; | 是 | 回调函数，返回任务详细信息。 |
-
-**错误码：**
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
-
-  | 错误码ID | 错误信息 |
-  | -------- | -------- |
-  | 13400003 | task service ability error. |
-  | 21900006 | task not found error. |
-
-**示例：**
-
-  ```ts
-  request.agent.query("123456", (err: BusinessError, taskInfo: request.agent.TaskInfo) => {
-    if (err) {
-      console.error(`Failed to query a upload task, Code: ${err.code}, message: ${err.message}`);
-      return;
-    }
-    console.info(`Succeeded in querying a upload task. result: ${taskInfo.uid}`);
-  });
-  ```
-
-
-## request.agent.query<sup>10+</sup>
-
-query(id: string): Promise&lt;TaskInfo&gt;
-
-根据任务id查询任务的详细信息。使用Promise异步回调。
-
-**需要权限**：ohos.permission.DOWNLOAD_SESSION_MANAGER 或 ohos.permission.UPLOAD_SESSION_MANAGER
-
-**系统能力**: SystemCapability.Request.FileTransferAgent
-
-**系统接口**：此接口为系统接口。
-
-**参数：**
-
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | id | string | 是 | 任务id。 |
-
-**返回值：** 
-
-| 类型                | 说明                      |
-| ------------------- | ------------------------- |
-| Promise&lt;[TaskInfo](#taskinfo10)&gt; | Promise对象。返回任务详细信息的Promise对象。 |
-
-**错误码：**
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
-
-  | 错误码ID | 错误信息 |
-  | -------- | -------- |
-  | 13400003 | task service ability error. |
-  | 21900006 | task not found error. |
-
-**示例：**
-
-  ```ts
-  request.agent.query("123456").then((taskInfo: request.agent.TaskInfo) => {
-    console.info(`Succeeded in querying a upload task. result: ${taskInfo.uid}`);
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to query a upload task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
 

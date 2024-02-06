@@ -1,6 +1,6 @@
-# Input Kit API参考 
+# Input Kit API参考
 
-- ArkTS API 
+- ArkTS API
   - [@ohos.multimodalInput.inputConsumer (组合按键)(系统接口)](js-apis-inputconsumer-sys.md)
   - [@ohos.multimodalInput.inputDevice (输入设备)](js-apis-inputdevice.md)
   - [@ohos.multimodalInput.inputDevice (输入设备)(系统接口)](js-apis-inputdevice-sys.md)
@@ -16,9 +16,7 @@
   - [@ohos.multimodalInput.pointer (鼠标指针)(系统接口)](js-apis-pointer-sys.md)
   - [@ohos.multimodalInput.shortKey(快捷键)(系统接口)](js-apis-shortKey-sys.md)
   - [@ohos.multimodalInput.touchEvent (触摸输入事件)](js-apis-touchevent.md)
-  - 已停止维护
+  - 已停止维护的接口
     - [@ohos.multimodalInput.inputDeviceCooperate (键鼠穿越)(系统接口)](js-apis-cooperate-sys.md)
 - 错误码
-  - 已停止维护
-    - [键鼠穿越管理错误码](errorcode-multimodalinput.md)
-
+  - [键鼠穿越管理错误码](errorcode-multimodalinput.md)

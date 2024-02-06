@@ -2,7 +2,7 @@
 
 提供联系人管理能力，包括添加联系人、删除联系人、更新联系人等功能。
 
-详情请参考[@ohos.contact API](../reference/apis/js-apis-contact.md)。
+详情请参考[@ohos.contact API](../reference/apis-contacts-kit/js-apis-contact.md)。
 
 
 ## 约束与限制

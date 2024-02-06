@@ -194,7 +194,7 @@ getProcessRunningInfos(): Promise\<Array\<ProcessRunningInfo>>
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<Array\<[ProcessRunningInfo](../apis/js-apis-inner-application-processRunningInfo.md)>> | Promise对象，返回有关运行进程的信息。 |
+| Promise\<Array\<[ProcessRunningInfo](js-apis-inner-application-processRunningInfo.md)>> | Promise对象，返回有关运行进程的信息。 |
 
 **示例：**
     
@@ -225,7 +225,7 @@ getProcessRunningInfos(callback: AsyncCallback\<Array\<ProcessRunningInfo>>): vo
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback\<Array\<[ProcessRunningInfo](../apis/js-apis-inner-application-processRunningInfo.md)>> | 是 | 回调函数，返回有关运行进程的信息。 |
+| callback | AsyncCallback\<Array\<[ProcessRunningInfo](js-apis-inner-application-processRunningInfo.md)>> | 是 | 回调函数，返回有关运行进程的信息。 |
 
 **示例：**
     

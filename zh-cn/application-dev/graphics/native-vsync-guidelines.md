@@ -1,4 +1,4 @@
-# NativeVsync开发指导
+# NativeVsync开发指导 (C/C++)
 
 ## 场景介绍
 

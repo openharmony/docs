@@ -22,8 +22,8 @@ import autoFillManager from '@ohos.app.ability.autoFillManager';
 
 | 名称        | 类型                 | 必填 | 说明                                                         |
 | ----------- | -------------------- | ---- | ------------------------------------------------------------ |
-| type        | [AutoFillType](../apis/js-apis-inner-application-autoFillType.md)       | 是   | 自动填充类型。          |
-| viewData    | [ViewData](../apis/js-apis-inner-application-viewData.md)               | 是   | 页面数据。              |
+| type        | [AutoFillType](js-apis-inner-application-autoFillType-sys.md)       | 是   | 自动填充类型。          |
+| viewData    | [ViewData](js-apis-inner-application-viewData-sys.md)               | 是   | 页面数据。              |
 
 ## SaveRequest
 
@@ -33,7 +33,7 @@ import autoFillManager from '@ohos.app.ability.autoFillManager';
 
 | 名称        | 类型                 | 必填 | 说明                                                         |
 | ----------- | -------------------- | ---- | ------------------------------------------------------------ |
-| viewData    | [ViewData](../apis/js-apis-inner-application-viewData.md)               | 是   | 页面数据。              |
+| viewData    | [ViewData](js-apis-inner-application-viewData-sys.md)               | 是   | 页面数据。              |
 
 ## FillResponse
 
@@ -43,7 +43,7 @@ import autoFillManager from '@ohos.app.ability.autoFillManager';
 
 | 名称        | 类型                 | 必填 | 说明                                                         |
 | ----------- | -------------------- | ---- | ------------------------------------------------------------ |
-| viewData    | [ViewData](../apis/js-apis-inner-application-viewData.md)               | 是   | 页面数据。              |
+| viewData    | [ViewData](js-apis-inner-application-viewData-sys.md)               | 是   | 页面数据。              |
 
 ## FillRequestCallback
 

@@ -291,7 +291,7 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
 
 3. 服务端处理客户端请求
 
-   服务端被绑定的Ability在onConnect方法里返回继承自[rpc.RemoteObject](../reference/apis/js-apis-rpc.md#remoteobject)的对象，该对象需要实现[onRemoteMessageRequest](../reference/apis/js-apis-rpc.md#onremotemessagerequest9)方法，处理客户端的请求。
+   服务端被绑定的Ability在onConnect方法里返回继承自[rpc.RemoteObject](../reference/apis-ipc-kit/js-apis-rpc.md#remoteobject)的对象，该对象需要实现[onRemoteMessageRequest](../reference/apis-ipc-kit/js-apis-rpc.md#onremotemessagerequest9)方法，处理客户端的请求。
 
    ```ts
     import rpc from '@ohos.rpc';
@@ -314,7 +314,7 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
 
 4. 客户端处理服务端响应
 
-   客户端在onConnect回调里接收到代理对象，调用[sendMessageRequest](../reference/apis/js-apis-rpc.md#sendmessagerequest9-2)方法发起请求，在期约（用于表示一个异步操作的最终完成或失败及其结果值）或者回调函数里接收结果。
+   客户端在onConnect回调里接收到代理对象，调用[sendMessageRequest](../reference/apis-ipc-kit/js-apis-rpc.md#sendmessagerequest9-2)方法发起请求，在期约（用于表示一个异步操作的最终完成或失败及其结果值）或者回调函数里接收结果。
 
    ```ts
     import rpc from '@ohos.rpc';
