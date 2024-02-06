@@ -26,7 +26,7 @@ show(options?: TextPickerDialogOptions)
 
 ## TextPickerDialogOptions对象说明
 
-文本选择器弹窗的参数继承自[TextPickerOptions](ts-basic-components-textpicker.md#textpickeroptions对象说明#textpickeroptions对象说明)。
+文本选择器弹窗的参数继承自[TextPickerOptions](ts-basic-components-textpicker.md#textpickeroptions对象说明)。
 
 | 名称 | 类型 | 必填 |  描述 |
 | -------- | -------- | -------- |  -------- |
