@@ -263,13 +263,6 @@
     作为绘制组件的父组件，实现类似SVG的效果，父组件中会描述所有绘制组件均支持的通用属性。
 
 
-## 网络
-
-- [Web](../../apis-arkweb/ts-basic-components-web.md)
-
-    提供具有网页显示能力的Web组件。
-
-
 ## 其他
 
 - [ScrollBar](ts-basic-components-scrollbar.md)
