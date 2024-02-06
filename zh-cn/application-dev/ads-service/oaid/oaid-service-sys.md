@@ -14,7 +14,7 @@
 
 | 接口名 | 描述 |
 | -------- | -------- |
-| [resetOAID()](../../reference/apis/js-apis-oaid.md#identifierresetoaid):&nbsp;void | 重置OAID，此接口为系统接口。 |
+| [resetOAID()](../../reference/apis-ads-kit/js-apis-oaid-sys.md#identifierresetoaid):&nbsp;void | 重置OAID，此接口为系统接口。 |
 
 
 ### 开发步骤
