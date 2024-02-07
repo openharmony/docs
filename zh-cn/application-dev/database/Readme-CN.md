@@ -1,6 +1,6 @@
-# 数据管理
+# ArkData（方舟数据管理）
 
-- [数据管理概述](data-mgmt-overview.md)
+- [ArkData简介](data-mgmt-overview.md)
 - 标准化数据定义
   - [标准化数据定义概述](unified-data-definition-overview.md)
   - [标准化数据类型](uniform-data-type-descriptors.md)
