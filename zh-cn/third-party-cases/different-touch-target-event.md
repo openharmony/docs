@@ -210,6 +210,6 @@ export struct VideoPlayer{
 ```
 
 ## 参考
-- [Video组件指导](../application-dev/reference/arkui-ts/ts-media-components-video.md)
-- [绑定手势指导](../application-dev/reference/arkui-ts/ts-gesture-settings.md)
-- [组合手势的使用指导](../application-dev/reference/arkui-ts/ts-combined-gestures.md)
+- [Video组件指导](../application-dev/reference/apis-arkui/arkui-ts/ts-media-components-video.md)
+- [绑定手势指导](../application-dev/reference/apis-arkui/arkui-ts/ts-gesture-settings.md)
+- [组合手势的使用指导](../application-dev/reference/apis-arkui/arkui-ts/ts-combined-gestures.md)
