@@ -780,3 +780,13 @@ Nullable\<T> {
 | RIGHT | 屏障在其所有[referencedId](ts-container-relativecontainer.md#barrierstyle11)的最右侧。   |
 | TOP  | 屏障在其所有[referencedId](ts-container-relativecontainer.md#barrierstyle11)的最上方。    |
 | BOTTOM  | 屏障在其所有[referencedId](ts-container-relativecontainer.md#barrierstyle11)的最下方。 |
+
+## PixelRoundCalcPolicy<sup>11+</sup>
+
+组件边界像素级取整计算策略。
+
+| 名称     | 描述                            |
+| ------ | ----------------------------- |
+| NO_FORCE_ROUND | 不取整计算。|
+| FORCE_CEIL | 取上整计算。|
+| FORCE_FLOOR | 取下整计算。|
