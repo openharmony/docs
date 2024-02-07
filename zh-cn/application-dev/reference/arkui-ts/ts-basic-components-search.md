@@ -85,7 +85,7 @@ Search(options?: { value?: string, placeholder?: ResourceStr, icon?: string, con
 | onCut(callback: (value: string) => void)                     | 长按搜索框弹出剪切板之后，点击剪切板的剪切按钮触发该回调。<br> -value: 剪切的文本内容。 |
 | onPaste(callback: (value: string) => void)                   | 长按搜索框弹出剪切板之后，点击剪切板的粘贴按钮触发该回调。<br> -value: 粘贴的文本内容。 |
 | onTextSelectionChange(callback: (selectionStart: number, selectionEnd: number) => void)<sup>10+</sup> | 文本选择的位置发生变化时，触发该回调。<br />selectionStart：文本选择区域起始位置，文本框中文字的起始位置为0。<br />selectionEnd：文本选择区域结束位置。 |
-| onContentScroll(callback: (totalOffsetX: number, totalOffsetY: number) => void)<sup>10+</sup> | 文本内容滚动时，触发该回调。<br />totalOffsetX：文本在内容区的横坐标偏移。<br />totalOffsetY：文本在内容区的纵坐标偏移。 |
+| onContentScroll(callback: (totalOffsetX: number, totalOffsetY: number) => void)<sup>10+</sup> | 文本内容滚动时，触发该回调。<br />totalOffsetX：文本在内容区的横坐标偏移，单位px。<br />totalOffsetY：文本在内容区的纵坐标偏移，单位px。 |
 
 ## SearchController
 
@@ -133,7 +133,7 @@ getTextContentRect(): RectResult
 
 ### RectResult<sup>10+</sup>
 
-位置和大小。
+位置和大小，单位均为像素。
 
 | 参数      | 类型     | 描述 |
 | ------- | ------ | ----------------------- |
