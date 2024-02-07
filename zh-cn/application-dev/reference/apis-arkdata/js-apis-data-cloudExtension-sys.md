@@ -36,7 +36,7 @@ import cloudExtension from '@ohos.data.cloudExtension';
 | description | string                      | 否   | 错误码详细描述，默认为undefined。       |
 | value       | T                           | 否   | 返回结果的值，具体类型由参数T指定，默认为undefined。       |
 
-## CloudAsset<sup>11+</sup>
+## CloudAsset
 
 云资产的信息。
 
@@ -47,7 +47,17 @@ import cloudExtension from '@ohos.data.cloudExtension';
 | assetId | string | 是   | 资产ID。       |
 | hash    | string | 是   | 资产的哈希值。 |
 
-## ServiceInfo<sup>11+</sup>
+## CloudAssets
+
+表示[CloudAsset](#cloudasset)类型的数组。
+
+**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Server
+
+| 类型                             | 说明                                      |
+| -------------------------------- | ----------------------------------------- |
+| Array<[CloudAsset](#cloudasset)> | 表示[CloudAsset](#cloudasset)类型的数组。 |
+
+## ServiceInfo
 
 云服务信息。
 
@@ -55,13 +65,13 @@ import cloudExtension from '@ohos.data.cloudExtension';
 
 | 名称           | 类型    | 必填 | 说明                                                         |
 | -------------- | ------- | ---- | ------------------------------------------------------------ |
-| enableCloud    | boolean | 是   | 启用云服务，enableCloud的值为true时是启用云服务，为false时是未启用。 |
-| id             | string  | 是   | 使用哈希函数SHA256生成的云账户 ID。                          |
-| totalSpace     | number  | 是   | 服务器上账户的总空间（KB）。                                 |
-| remainingSpace | number  | 是   | 服务器上账户的可用空间（KB）。                               |
+| enableCloud    | boolean | 是   | 表示是否启用了云服务，为true时是启用云服务，为false时是未启用。 |
+| id             | string  | 是   | 使用哈希函数SHA256生成的云帐户ID。                           |
+| totalSpace     | number  | 是   | 服务器上帐户的总空间（KB）。                                 |
+| remainingSpace | number  | 是   | 服务器上帐户的可用空间（KB）。                               |
 | user           | number  | 是   | 设备的当前用户ID。                                           |
 
-## Flag<sup>11+</sup>
+## Flag
 
 描述数据库上执行操作的枚举。请使用枚举名而非枚举值。
 
@@ -73,7 +83,7 @@ import cloudExtension from '@ohos.data.cloudExtension';
 | UPDATE | 1    | 更新操作。 |
 | DELETE | 2    | 删除操作。 |
 
-## ExtensionValue<sup>11+</sup>
+## ExtensionValue
 
 扩展值定义。
 
@@ -84,25 +94,25 @@ import cloudExtension from '@ohos.data.cloudExtension';
 | id         | string          | 是   | 执行插入操作时生成，只读数据不可手动更改。 |
 | createTime | number          | 是   | 创建行数据的时间。只读数据不可手动更改。   |
 | modifyTime | number          | 是   | 修改行数据的时间。只读数据不可手动更改。   |
-| operation  | [Flag](#flag11) | 是   | 行数据所作的操作。                         |
+| operation  | [Flag](#flag) | 是   | 对行数据所作的操作。                         |
 
-## CloudType<sup>11+</sup>
+## CloudType
 
-云类型。
+表示允许出现的云数据字段类型，接口参数具体类型根据其功能而定。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Server
 
-| 类型                        | 说明                                         |
-| --------------------------- | -------------------------------------------- |
-| null                        | 表示为空。                                   |
-| number                      | 表示数字类型。                               |
-| string                      | 表示字符串类型。                             |
-| boolean                     | 表示布尔类型。                               |
-| Uint8Array                  | 表示 8 位无符号整型数组。                    |
-| [CloudAsset](#cloudasset11) | 表示云资产类型。                             |
-| CloudAssets                 | 表示Array&lt;[CloudAsset](#cloudasset11)&gt;类型。 |
+| 类型                      | 说明                            |
+| ------------------------- | ------------------------------- |
+| null                      | 表示值的类型为空。              |
+| number                    | 表示值的类型数字类型。          |
+| string                    | 表示值的类型字符串类型。        |
+| boolean                   | 表示值的类型布尔类型。          |
+| Uint8Array                | 表示值的类型为Uint8类型的数组。 |
+| [CloudAsset](#cloudasset) | 表示值的类型为云资产类型。      |
+| [CloudAssets](#cloudassets)            | 表示值的类型云资产数组类型。    |
 
-## CloudInfo<sup>11+</sup>
+## CloudInfo
 
 云信息。
 
@@ -110,10 +120,10 @@ import cloudExtension from '@ohos.data.cloudExtension';
 
 | 名称      | 类型                                                  | 必填 | 说明           |
 | --------- | ----------------------------------------------------- | ---- | -------------- |
-| cloudInfo | [ServiceInfo](#serviceinfo11)                         | 是   | 云信息。       |
-| apps      | Record&lt;string, [AppBriefInfo](#appbriefinfo11)&gt; | 是   | 简要应用信息。 |
+| cloudInfo | [ServiceInfo](#serviceinfo)                         | 是   | 云信息。       |
+| apps      | Record&lt;string, [AppBriefInfo](#appbriefinfo)&gt; | 是   | 简要应用信息。 |
 
-## CloudData<sup>11+</sup>
+## CloudData
 
 云数据。
 
@@ -123,9 +133,9 @@ import cloudExtension from '@ohos.data.cloudExtension';
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | nextCursor | string                                                       | 是   | 查询游标。                                                   |
 | hasMore    | boolean                                                      | 是   | 服务器是否存在更多数据可供查询。                             |
-| values     | Array&lt;Record&lt;string, [CloudType](#cloudtype11)&gt;&gt; | 是   | 需要查询数据的数组，包括data value（数据值）和[ExtensionValue](#extensionvalue11)（扩展值)。CloudType的类型可以为null、number、string、boolean、Uint8、Array、[CloudAsset](#cloudasset11)或Array&lt;[CloudAsset](#cloudasset11)&gt;。 |
+| values     | Array&lt;Record&lt;string, [CloudType](#cloudtype)&gt;&gt; | 是   | 需要查询数据的数组，包括data value（数据值）和[ExtensionValue](#extensionvalue)（扩展值)。 |
 
-## AppBriefInfo<sup>11+</sup>
+## AppBriefInfo
 
 简要应用信息。
 
@@ -133,12 +143,12 @@ import cloudExtension from '@ohos.data.cloudExtension';
 
 | 名称        | 类型    | 必填 | 说明                               |
 | ----------- | ------- | ---- | ---------------------------------- |
-| appId       | string  | 是   | 应用程序 ID。                      |
+| appId       | string  | 是   | 应用程序ID。                      |
 | bundleName  | string  | 是   | 应用包名。                         |
-| cloudSwitch | boolean | 是   | 云开关，表示应用程序是否启用了云。 |
-| instanceId  | number  | 是   | 应用分身 ID。                      |
+| cloudSwitch | boolean | 是   | 云开关，表示应用程序是否启用了云，true表示开关打开，false表示开关关闭。 |
+| instanceId  | number  | 是   | 应用分身ID。                      |
 
-## FieldType<sup>11+</sup>
+## FieldType
 
 描述数据库表中字段类型的枚举。请使用枚举名而非枚举值。
 
@@ -155,7 +165,7 @@ import cloudExtension from '@ohos.data.cloudExtension';
 | [ASSET](js-apis-data-relationalStore.md#asset10)   | 6    | 资产类型。                             |
 | [ASSETS](js-apis-data-relationalStore.md#assets10) | 7    | 资产列表类型。                         |
 
-## Field<sup>11+</sup>
+## Field
 
 数据库中的字段结构。
 
@@ -163,13 +173,13 @@ import cloudExtension from '@ohos.data.cloudExtension';
 
 | 名称     | 类型                      | 必填 | 说明                   |
 | -------- | ------------------------- | ---- | ---------------------- |
-| alias    | string                    | 是   | 服务器上字段名。       |
+| alias    | string                    | 是   | 该字段在服务器表中的别名。 |
 | colName  | string                    | 是   | 列名。                 |
-| type     | [FieldType](#fieldtype11) | 是   | 字段类型。             |
-| primary  | boolean                   | 是   | 表示当前列是否是主键。 |
-| nullable | boolean                   | 是   | 当前列是否为空值       |
+| type     | [FieldType](#fieldtype) | 是   | 字段类型。             |
+| primary  | boolean                   | 是   | 表示当前列是否是主键。true表示当前列为主键，false表示当前列不为主键。 |
+| nullable | boolean                   | 是   | 当前列是否为空值，true表示当前列为空，false表示当前列不为空。      |
 
-## Table<sup>11+</sup>
+## Table
 
 表结构信息。
 
@@ -179,9 +189,9 @@ import cloudExtension from '@ohos.data.cloudExtension';
 | ------ | ------------------------------ | ---- | ---------------- |
 | alias  | string                         | 是   | 服务器上的表名。 |
 | name   | string                         | 是   | 表名。           |
-| fields | Array&lt;[Field](#field11)&gt; | 是   | 表格中的字段。   |
+| fields | Array&lt;[Field](#field)&gt; | 是   | 表格中的字段。   |
 
-## Database<sup>11+</sup>
+## Database
 
 数据库结构信息。
 
@@ -191,9 +201,9 @@ import cloudExtension from '@ohos.data.cloudExtension';
 | ------ | ------------------------------ | ---- | -------------------------------- |
 | name   | string                         | 是   | 数据库名称。                     |
 | alias  | string                         | 是   | 服务器上数据库的名称。           |
-| tables | Array&lt;[Table](#table11)&gt; | 是   | 数据库中的表，包含数据详细信息。 |
+| tables | Array&lt;[Table](#table)&gt; | 是   | 数据库中的表，包含数据详细信息。 |
 
-## AppSchema<sup>11+</sup>
+## AppSchema
 
 应用数据库模式。
 
@@ -203,20 +213,20 @@ import cloudExtension from '@ohos.data.cloudExtension';
 | ---------- | ------------------------------------ | ---- | ------------------ |
 | bundleName | string                               | 是   | 应用包名。         |
 | version    | number                               | 是   | 数据库模式的版本。 |
-| databases  | Array&lt;[Database](#database11)&gt; | 是   | 应用的数据库信息。 |
+| databases  | Array&lt;[Database](#database)&gt; | 是   | 应用的数据库信息。 |
 
-## SubscribeId<sup>11+</sup>
+## SubscribeId
 
-订阅 ID。
+订阅ID。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Server
 
 | 名称          | 类型   | 必填 | 说明                   |
 | ------------- | ------ | ---- | ---------------------- |
 | databaseAlias | string | 是   | 服务器上数据库的名称。 |
-| id            | string | 是   | 订阅 ID。              |
+| id            | string | 是   | 订阅ID。              |
 
-## SubscribeInfo<sup>11+</sup>
+## SubscribeInfo
 
 订阅信息。
 
@@ -225,11 +235,11 @@ import cloudExtension from '@ohos.data.cloudExtension';
 | 名称           | 类型                                                         | 必填 | 说明               |
 | -------------- | ------------------------------------------------------------ | ---- | ------------------ |
 | expirationTime | number                                                       | 是   | 订阅过期时间(ms)。 |
-| subscribe      | Record&lt;string, Array&lt;[SubscribeId](#subscribeid11)&gt;&gt; | 是   | 订阅信息。         |
+| subscribe      | Record&lt;string, Array&lt;[SubscribeId](#subscribeid)&gt;&gt; | 是   | 订阅信息。         |
 
-## LockInfo<sup>11+</sup>
+## LockInfo
 
-云数据库锁信息，单位：秒（s）。
+云数据库锁信息，单位：秒。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Server
 
@@ -238,7 +248,7 @@ import cloudExtension from '@ohos.data.cloudExtension';
 | interval | number | 是   | 云数据库锁的持续时间（秒）。 |
 | lockId   | number | 是   | 锁ID。                       |
 
-## ErrorCode<sup>11+</sup>
+## ErrorCode
 
 表示端云共享过程的状态。请使用枚举名而非枚举值。
 
@@ -347,11 +357,11 @@ export default class MyCloudService implements cloudExtension.CloudService {
 }
 ```
 
-## cloudExtension.createCloudDBStub<sup>11+</sup>
+## cloudExtension.createCloudDBStub
 
 createCloudDBStub(instance: CloudDB): Promise&lt;rpc.RemoteObject&gt;
 
-根据[CloudDB](#clouddb11)类的实例创建对应的[RemoteObject]((../apis/js-apis-rpc.md#remoteobject))对象，系统内部通过该对象调用[CloudDB](#clouddb11)的实现接口，使用Promise异步回调。
+根据[CloudDB](#clouddb)类的实例创建对应的[RemoteObject]((../apis/js-apis-rpc.md#remoteobject))对象，系统内部通过该对象调用[CloudDB](#clouddb)的实现接口，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Server
 
@@ -359,13 +369,13 @@ createCloudDBStub(instance: CloudDB): Promise&lt;rpc.RemoteObject&gt;
 
 | 参数名   | 类型                  | 必填 | 说明                            |
 | -------- | --------------------- | ---- | ------------------------------- |
-| instance | [CloudDB](#clouddb11) | 是   | [CloudDB](#clouddb11)类的实例。 |
+| instance | [CloudDB](#clouddb) | 是   | [CloudDB](#clouddb)类的实例。 |
 
 **返回值：**
 
 | 类型                                                         | 说明                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| Promise&lt;[rpc.RemoteObject](../apis/js-apis-rpc.md#remoteobject)&gt; | Promise对象，返回[CloudDB](#clouddb11)的[rpc.RemoteObject](../apis/js-apis-rpc.md#remoteobject)]对象。 |
+| Promise&lt;[rpc.RemoteObject](../apis/js-apis-rpc.md#remoteobject)&gt; | Promise对象，返回[CloudDB](#clouddb)的[rpc.RemoteObject](../apis/js-apis-rpc.md#remoteobject)对象。 |
 
 ```ts
 import rpc from '@ohos.rpc';
@@ -384,17 +394,17 @@ export default class MyCloudService implements cloudExtension.CloudService {
 }
 ```
 
-## cloudExtension.createAssetLoaderStub<sup>11+</sup>
+## cloudExtension.createAssetLoaderStub
 
 createAssetLoaderStub(instance: AssetLoader): Promise&lt;rpc.RemoteObject&gt;
 
-根据[CloudDB](#clouddb11)类的实例创建对应的[RemoteObject](../apis/js-apis-rpc.md#remoteobject)对象，系统内部通过该对象调用[CloudDB](#clouddb11)的实现接口，使用Promise异步回调。
+根据[AssetLoader](#assetloader)类的实例创建对应的[RemoteObject](../apis/js-apis-rpc.md#remoteobject)对象，系统内部通过该对象调用[AssetLoader](#assetloader)的实现接口，使用Promise异步回调。
 
 **参数：**
 
 | 参数名   | 类型                          | 必填 | 说明                                              |
 | -------- | ----------------------------- | ---- | ------------------------------------------------- |
-| instance | [AssetLoader](#assetloader11) | 是   | 表示一个[AssetLoader](#assetloader11)类型的实例。 |
+| instance | [AssetLoader](#assetloader) | 是   | 表示一个[AssetLoader](#assetloader)类型的实例。 |
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Server
 
@@ -402,7 +412,7 @@ createAssetLoaderStub(instance: AssetLoader): Promise&lt;rpc.RemoteObject&gt;
 
 | 类型                                                         | 说明                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| Promise&lt;[rpc.RemoteObject](../apis/js-apis-rpc.md#remoteobject)&gt; | Promise对象，返回[AssetLoader](#assetloader11)的[rpc.RemoteObject](../apis/js-apis-rpc.md#remoteobject)对象。 |
+| Promise&lt;[rpc.RemoteObject](../apis/js-apis-rpc.md#remoteobject)&gt; | Promise对象，返回[AssetLoader](#assetloader)的[rpc.RemoteObject](../apis/js-apis-rpc.md#remoteobject)对象。 |
 
 **示例：**
 
@@ -425,15 +435,15 @@ export default class MyCloudService implements cloudExtension.CloudService {
 
 
 
-## CloudDB<sup>11+</sup>
+## CloudDB
 
 提供云数据库的操作接口的类。
 
-### generateId<sup>11+</sup>
+### generateId
 
 generateId(count: number): Promise&lt;Result&lt;Array&lt;string&gt;&gt;&gt;
 
-通过该接口生成要插入云数据行的 ID。 表中的每个ID都是唯一的。
+为插入的云数据生成ID。生成的ID具有唯一性。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Server
 
@@ -445,9 +455,9 @@ generateId(count: number): Promise&lt;Result&lt;Array&lt;string&gt;&gt;&gt;
 
 **返回值：**
 
-| 类型                                               | 说明                        |
-| -------------------------------------------------- | --------------------------- |
-| Promise&lt;[Result](#resultt)&gt;Array&lt;string&gt;&gt; | Promise对象，返回生成的ID。 |
+| 类型                                                     | 说明                        |
+| -------------------------------------------------------- | --------------------------- |
+| Promise&lt;[Result](#resultt)&lt;Array&lt;string&gt;&gt; | Promise对象，返回生成的ID。 |
 
 **示例：**
 
@@ -467,7 +477,7 @@ export default class MyCloudDB implements cloudExtension.CloudDB {
 }
 ```
 
-### update<sup>11+</sup>
+### update
 
 update(table: string, values: Array&lt;Record&lt;string, CloudType>>, extensions: Array&lt;Record&lt;string, CloudType>> ): Promise&lt;Array&lt;Result&lt;Record&lt;string, CloudType>>>>
 
@@ -479,15 +489,15 @@ update(table: string, values: Array&lt;Record&lt;string, CloudType>>, extensions
 
 | 参数名     | 类型                                                         | 必填 | 说明                   |
 | ---------- | ------------------------------------------------------------ | ---- | ---------------------- |
-| table      | string                                                       | 是   | 表示要生成 ID的 数量。 |
-| values     | Array&lt;Record&lt;string, [CloudType](#cloudtype11)&gt;&gt; | 是   | 表示要插入的数据。     |
-| extensions | Array&lt;Record&lt;string, [CloudType](#cloudtype11)&gt;&gt; | 是   | 表示扩展值。           |
+| table      | string                                                       | 是   | 表名。 |
+| values     | Array&lt;Record&lt;string, [CloudType](#cloudtype)&gt;&gt; | 是   | 表示要插入的数据。     |
+| extensions | Array&lt;Record&lt;string, [CloudType](#cloudtype)&gt;&gt; | 是   | 表示扩展值。           |
 
 **返回值：**
 
 | 类型                                                         | 说明                        |
 | ------------------------------------------------------------ | --------------------------- |
-| Promise&lt;Array&lt;[Result](#resultt)&lt;Record&lt;string,  [CloudType](#cloudtype11)&gt;&gt;&gt;&gt; | Promise对象，返回更新结果。 |
+| Promise&lt;Array&lt;[Result](#resultt)&lt;Record&lt;string,  [CloudType](#cloudtype)&gt;&gt;&gt;&gt; | Promise对象，返回更新结果。 |
 
 **示例：**
 
@@ -505,11 +515,11 @@ export default class MyCloudDB implements cloudExtension.CloudDB {
 }
 ```
 
-### insert<sup>11+</sup>
+### insert
 
 insert(table: string, values: Array<Record<string, CloudType>>, extensions: Array<Record<string, CloudType>>): Promise<Array<Result<Record<string, CloudType&gt;&gt;&gt;&gt;
 
-通过该接口将数据插入云数据库表中。
+将数据插入云数据库表中。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Server
 
@@ -518,14 +528,14 @@ insert(table: string, values: Array<Record<string, CloudType>>, extensions: Arra
 | 参数名     | 类型                                                      | 必填 | 说明               |
 | ---------- | --------------------------------------------------------- | ---- | ------------------ |
 | table      | string                                                    | 是   | 表名。             |
-| values     | Array&lt;Record&lt;string, [CloudType](#cloudtype11)&gt;&gt; | 是   | 表示要插入的数据。 |
-| extensions | Array&lt;Record&lt;string, [CloudType](#cloudtype11)&gt;&gt; | 是   | 表示扩展值。       |
+| values     | Array&lt;Record&lt;string, [CloudType](#cloudtype)&gt;&gt; | 是   | 表示要插入的数据。 |
+| extensions | Array&lt;Record&lt;string, [CloudType](#cloudtype)&gt;&gt; | 是   | 表示扩展值。       |
 
 **返回值：**
 
 | 类型                                                         | 说明                        |
 | ------------------------------------------------------------ | --------------------------- |
-| Promise&lt;Array&lt;[Result](#resultt)&lt;Record&lt;string, [CloudType](#cloudtype11)&gt;&gt;&gt;&gt; | Promise对象，返回插入结果。 |
+| Promise&lt;Array&lt;[Result](#resultt)&lt;Record&lt;string, [CloudType](#cloudtype)&gt;&gt;&gt;&gt; | Promise对象，返回插入结果。 |
 
 **示例：**
 
@@ -543,11 +553,11 @@ export default class MyCloudDB implements cloudExtension.CloudDB {
 }
 ```
 
-### delete<sup>11+</sup>
+### delete
 
 delete(table: string, extensions: Array&lt;Record&lt;string, CloudType>> ): Promise&lt;Array&lt;Result&lt;Record&lt;string, CloudType&gt;&gt;&gt;&gt;
 
-调用该接口删除数据。
+删除云数据库表中的指定数据。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Server
 
@@ -556,13 +566,13 @@ delete(table: string, extensions: Array&lt;Record&lt;string, CloudType>> ): Prom
 | 参数名     | 类型                                            | 必填 | 说明         |
 | ---------- | ----------------------------------------------- | ---- | ------------ |
 | table      | string                                          | 是   | 表名。       |
-| extensions | Array&lt;Record&lt;string,[CloudType](#cloudtype11)&gt;&gt; | 是   | 表示扩展值。 |
+| extensions | Array&lt;Record&lt;string,[CloudType](#cloudtype)&gt;&gt; | 是   | 表示扩展值。 |
 
 **返回值：**
 
 | 类型                                                         | 说明                        |
 | ------------------------------------------------------------ | --------------------------- |
-| Promise&lt;Array&lt;[Result](#resultt)&lt;Record&lt;string, [CloudType](#cloudtype11)&gt;&gt;&gt;&gt; | Promise对象，返回删除结果。 |
+| Promise&lt;Array&lt;[Result](#resultt)&lt;Record&lt;string, [CloudType](#cloudtype)&gt;&gt;&gt;&gt; | Promise对象，返回删除结果。 |
 
 **示例：**
 
@@ -580,11 +590,11 @@ export default class MyCloudDB implements cloudExtension.CloudDB {
 }
 ```
 
-### query<sup>11+</sup>
+### query
 
 query(table: string, fields: Array&lt;string&gt;, queryCount: number, queryCursor: string): Promise&lt;Result&lt;CloudData&gt;&gt;
 
-调用该接口查询数据。
+在云数据库表中查询数据。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Server
 
@@ -599,9 +609,9 @@ query(table: string, fields: Array&lt;string&gt;, queryCount: number, queryCurso
 
 **返回值：**
 
-| 类型                                          | 说明                        |
-| --------------------------------------------- | --------------------------- |
-| Promise&lt;Result&lt;[CloudData](#clouddata11)&gt;&gt; | Promise对象，返回查询结果。 |
+| 类型                                                         | 说明                        |
+| ------------------------------------------------------------ | --------------------------- |
+| Promise&lt;[Result](#resultt)&lt;[CloudData](#clouddata)&gt;&gt; | Promise对象，返回查询结果。 |
 
 **示例：**
 
@@ -626,21 +636,21 @@ export default class MyCloudDB implements cloudExtension.CloudDB {
 }
 ```
 
-###  lock<sup>11+</sup>
+###  lock
 
- lock(): Promise&lt;Result&lt;LockInfo&gt;&gt;
+lock(): Promise&lt;Result&lt;LockInfo&gt;&gt;
 
-调用该接口为云数据库加锁。
+为云数据库加锁。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Server
 
 **返回值：**
 
-| 类型                                                 | 说明                          |
-| ---------------------------------------------------- | ----------------------------- |
-| Promise&lt;Result&lt;[LockInfo](#lockinfo11)&gt;&gt; | Promise对象，返回加锁的信息。 |
+| 类型                                                         | 说明                          |
+| ------------------------------------------------------------ | ----------------------------- |
+| Promise&lt;[Result](#resultt)&lt;[LockInfo](#lockinfo)&gt;&gt; | Promise对象，返回加锁的信息。 |
 
-7**示例：**
+**示例：**
 
 ```ts
 export default class MyCloudDB implements cloudExtension.CloudDB {
@@ -664,11 +674,11 @@ export default class MyCloudDB implements cloudExtension.CloudDB {
 }
 ```
 
-### heartbeat<sup>11+</sup>
+### heartbeat
 
 heartbeat(lockId: number): Promise&lt;Result&lt;LockInfo&gt;&gt;
 
-调用该接口延长数据库的加锁时效。
+延长数据库的加锁时效。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Server
 
@@ -676,13 +686,13 @@ heartbeat(lockId: number): Promise&lt;Result&lt;LockInfo&gt;&gt;
 
 | 参数名 | 类型   | 必填 | 说明                  |
 | ------ | ------ | ---- | --------------------- |
-| lockId | number | 是   | 表示需要延时的锁 ID。 |
+| lockId | number | 是   | 表示需要延时的锁ID。 |
 
 **返回值：**
 
-| 类型                                                 | 说明                        |
-| ---------------------------------------------------- | --------------------------- |
-| Promise&lt;Result&lt;[LockInfo](#lockinfo11)&gt;&gt; | Promise对象，返回锁的信息。 |
+| 类型                                                         | 说明                        |
+| ------------------------------------------------------------ | --------------------------- |
+| Promise&lt;[Result](#resultt)&lt;[LockInfo](#lockinfo)&gt;&gt; | Promise对象，返回锁的信息。 |
 
 **示例：**
 
@@ -708,11 +718,11 @@ export default class MyCloudDB implements cloudExtension.CloudDB {
 }
 ```
 
-### unlock<sup>11+</sup>
+### unlock
 
 unlock(lockId: number): Promise&lt;Result&lt;boolean&gt;&gt;;
 
-调用该接口为云数据库解锁。
+为云数据库解锁。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Server
 
@@ -720,13 +730,13 @@ unlock(lockId: number): Promise&lt;Result&lt;boolean&gt;&gt;;
 
 | 参数名 | 类型   | 必填 | 说明          |
 | ------ | ------ | ---- | ------------- |
-| lockId | number | 是   | 表示锁的 ID。 |
+| lockId | number | 是   | 表示锁的ID。 |
 
 **返回值：**
 
-| 类型                                 | 说明                        |
-| ------------------------------------ | --------------------------- |
-| Promise&lt;Result&lt;boolean&gt;&gt; | Promise对象，返回解锁结果。 |
+| 类型                                             | 说明                        |
+| ------------------------------------------------ | --------------------------- |
+| Promise&lt;[Result](#resultt)&lt;boolean&gt;&gt; | Promise对象，返回解锁结果。 |
 
 **示例：**
 
@@ -749,13 +759,13 @@ export default class MyCloudDB implements cloudExtension.CloudDB {
 
 ## CloudService
 
-提供对接同步云服务的类。开发者需要继承此类并实现类的接口，系统内部通过该类的接口联接并使用同步云服务。
+提供对接同步云服务的类。开发者需要继承此类并实现类的接口，系统内部通过该类的接口连接并使用同步云服务。
 
-### getServiceInfo<sup>11+</sup>
+### getServiceInfo
 
 getServiceInfo(): Promise<ServiceInfo&gt;
 
-系统内部通过该接口获取服务器上的信息。使用Promise异步回调。
+获取服务器上的信息。使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Server
 
@@ -763,7 +773,7 @@ getServiceInfo(): Promise<ServiceInfo&gt;
 
 | 类型                                         | 说明                                |
 | -------------------------------------------- | ----------------------------------- |
-| Promise&lt;[ServiceInfo](#serviceinfo11)&gt; | Promise对象，返回获取的服务器信息。 |
+| Promise&lt;[ServiceInfo](#serviceinfo)&gt; | Promise对象，返回获取的服务器信息。 |
 
 **示例：**
 
@@ -790,11 +800,11 @@ export default class MyCloudService implements cloudExtension.CloudService {
 }
 ```
 
-### getAppBriefInfo<sup>11+</sup>
+### getAppBriefInfo
 
 getAppBriefInfo(): Promise<Record<string, AppBriefInfo>>
 
-系统内部通过该接口获取简要应用信息。使用Promise异步回调。
+获取简要应用信息。使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Server
 
@@ -802,7 +812,7 @@ getAppBriefInfo(): Promise<Record<string, AppBriefInfo>>
 
 | 类型                                                         | 说明                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| Promise&lt;[Record](#resultt)&lt;string, [AppBriefInfo](#AppBriefInfo11)&gt;&gt;&gt; | Promise对象，返回与bundle和 [AppBriefInfo](#AppBriefInfo11)相对应的键值对。 |
+| Promise&lt;Record&lt;string, [AppBriefInfo](#AppBriefInfo)&gt;&gt;&gt; | Promise对象，返回与bundle和 [AppBriefInfo](#AppBriefInfo)相对应的键值对。 |
 
 **示例：**
 
@@ -826,11 +836,11 @@ export default class MyCloudService implements cloudExtension.CloudService {
 }
 ```
 
-### getAppSchema<sup>11+</sup>
+### getAppSchema
 
  getAppSchema(bundleName: string): Promise&lt;Result&lt;AppSchema&gt;&gt;
 
-系统内部通过该接口获取应用Schema（数据库模式）信息。使用Promise异步回调。
+获取应用Schema（数据库模式）信息。使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Server
 
@@ -844,7 +854,7 @@ export default class MyCloudService implements cloudExtension.CloudService {
 
 | 类型                                                         | 说明                                  |
 | ------------------------------------------------------------ | ------------------------------------- |
-| Promise&lt;[Result](#resultt)&lt;[AppSchema](#appschema11)&gt;&gt; | Promise对象，返回数据库的schema信息。 |
+| Promise&lt;[Result](#resultt)&lt;[AppSchema](#appschema)&gt;&gt; | Promise对象，返回数据库的schema信息。 |
 
 **示例：**
 
@@ -869,11 +879,11 @@ export default class MyCloudService implements cloudExtension.CloudService {
 }
 ```
 
-### subscribe<sup>11+</sup>
+### subscribe
 
 subscribe(subInfo: Record&lt;string, Array&lt;Database&gt;&gt;, expirationTime: number): Promise&lt;Result&lt;SubscribeInfo&gt;&gt;
 
-系统内部通过该接口发起订阅，使用Promise异步回调。
+发起订阅，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Server
 
@@ -881,14 +891,14 @@ subscribe(subInfo: Record&lt;string, Array&lt;Database&gt;&gt;, expirationTime: 
 
 | 参数名         | 类型                                                       | 必填 | 说明                                                   |
 | -------------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------ |
-| subInfo        | Record&lt;string, Array&lt;[Database](#database11)&gt;&gt; | 是   | 需要订阅的数据，由应用包名称和数据库信息组成的键值对。 |
+| subInfo        | Record&lt;string, Array&lt;[Database](#database)&gt;&gt; | 是   | 需要订阅的数据，由应用包名称和数据库信息组成的键值对。 |
 | expirationTime | number                                                     | 是   | 表示订阅到期时间。                                     |
 
 **返回值：**
 
 | 类型                                                         | 说明                          |
 | ------------------------------------------------------------ | ----------------------------- |
-| Promise&lt;Result&lt;[SubscribeInfo](#subscribeinfo11)&gt;&gt; | Promise对象，返回订阅的结果。 |
+| Promise&lt;[Result](#resultt)&lt;[SubscribeInfo](#subscribeinfo)&gt;&gt; | Promise对象，返回订阅的结果。 |
 
 **示例：**
 
@@ -916,11 +926,11 @@ export default class MyCloudService implements cloudExtension.CloudService {
 
 
 
-### unsubscribe<sup>11+</sup>
+### unsubscribe
 
 unsubscribe(unsubscribeInfo: Record&lt;string, Array&lt;string&gt;&gt;): Promise&lt;number&gt;
 
-通过该接口取消订阅云中的数据变更。使用Promise异步回调。
+取消订阅云中的数据变更。使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Server
 
@@ -932,9 +942,9 @@ unsubscribe(unsubscribeInfo: Record&lt;string, Array&lt;string&gt;&gt;): Promise
 
 **返回值：**
 
-| 类型                   | 说明                            |
-| ---------------------- | ------------------------------- |
-| Promise<&lt;number&gt; | Promise对象，返回反订阅的结果。 |
+| 类型                  | 说明                              |
+| --------------------- | --------------------------------- |
+| Promise&lt;number&gt; | Promise对象，返回取消订阅的结果。 |
 
 ```ts
 export default class MyCloudService implements cloudExtension.CloudService {
@@ -949,11 +959,11 @@ export default class MyCloudService implements cloudExtension.CloudService {
 }
 ```
 
-### connectDB<sup>11+</sup>
+### connectDB
 
  connectDB(bundleName: string, database: Database): Promise&lt;rpc.RemoteObject&gt;
 
-通过该接口连接数据库。
+连接数据库。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Server
 
@@ -962,13 +972,13 @@ export default class MyCloudService implements cloudExtension.CloudService {
 | 参数名     | 类型                    | 必填 | 说明               |
 | ---------- | ----------------------- | ---- | ------------------ |
 | bundleName | string                  | 是   | 应用包名。         |
-| database   | [Database](#database11) | 是   | 需要连接的数据库。 |
+| database   | [Database](#database) | 是   | 需要连接的数据库。 |
 
 **返回值：**
 
 | 类型                                                         | 说明                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| Promise&lt;[rpc.RemoteObject](js-apis-rpc.md#remoteobject)&gt; | Promise对象，返回[ShareCenter](#sharecenter)的[RemoteObject](js-apis-rpc.md#remoteobject)对象。 |
+| Promise&lt;[rpc.RemoteObject](js-apis-rpc.md#remoteobject)&gt; | Promise对象，返回[CloudDB](#clouddb)的[RemoteObject](js-apis-rpc.md#remoteobject)对象。 |
 
 ```ts
 import rpc from '@ohos.rpc';
@@ -987,11 +997,11 @@ export default class MyCloudService implements cloudExtension.CloudService {
 }
 ```
 
-### connectAssetLoader<sup>11+</sup>
+### connectAssetLoader
 
 connectAssetLoader(bundleName: string, database: Database): Promise&lt;rpc.RemoteObject&gt;
 
-通过该接口连接资产加载器。
+连接资产加载器。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Server
 
@@ -1000,13 +1010,13 @@ connectAssetLoader(bundleName: string, database: Database): Promise&lt;rpc.Remot
 | 参数名     | 类型                    | 必填 | 说明               |
 | ---------- | ----------------------- | ---- | ------------------ |
 | bundleName | string                  | 是   | 应用包名。         |
-| database   | [Database](#database11) | 是   | 需要连接的数据库。 |
+| database   | [Database](#database) | 是   | 需要连接的数据库。 |
 
 **返回值：**
 
 | 类型                                                         | 说明                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| Promise&lt;[rpc.RemoteObject](js-apis-rpc.md#remoteobject)&gt; | Promise对象，返回[ShareCenter](#sharecenter)的[RemoteObject](js-apis-rpc.md#remoteobject)对象。 |
+| Promise&lt;[rpc.RemoteObject](js-apis-rpc.md#remoteobject)&gt; | Promise对象，返回[AssetLoader](#assetloader)的[RemoteObject](js-apis-rpc.md#remoteobject)对象。 |
 
 ```ts
 import rpc from '@ohos.rpc';
@@ -1042,8 +1052,8 @@ connectShareCenter(userId: number, bundleName: string): Promise&lt;rpc.RemoteObj
 
 **返回值：**
 
-| 类型                | 说明                      |
-| ------------------- | ------------------------- |
+| 类型                                                         | 说明                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
 | Promise&lt;[rpc.RemoteObject](../apis/js-apis-rpc.md#remoteobject)&gt; | Promise对象，返回[ShareCenter](#sharecenter)的[RemoteObject](../apis/js-apis-rpc.md#remoteobject)对象。 |
 
 **示例：**
@@ -1065,11 +1075,11 @@ export default class MyCloudService implements cloudExtension.CloudService {
 }
 ```
 
-## AssetLoader<sup>11+</sup>
+## AssetLoader
 
-提供资产的上传下载接口的类。实现资产的上传和下载能力。
+提供资产的上传下载接口的类。
 
-### download<sup>11+</sup>
+### download
 
 download(table: string, gid: string, prefix: string, assets: Array&lt;CloudAsset&gt;): Promise&lt;Array&lt;Result&lt;CloudAsset&gt;&gt;&gt;
 
@@ -1084,13 +1094,13 @@ download(table: string, gid: string, prefix: string, assets: Array&lt;CloudAsset
 | table  | string                                   | 是   | 表名。                               |
 | gid    | string                                   | 是   | 表示 GID。数据上云后生成的唯一标记。 |
 | prefix | string                                   | 是   | 表示前缀信息。                       |
-| assets | Array&lt;[CloudAsset](#cloudasset11)&gt; | 是   | 表示需要下载的资产。                 |
+| assets | Array&lt;[CloudAsset](#cloudasset)&gt; | 是   | 表示需要下载的资产。                 |
 
 **返回值：**
 
-| 类型                                                         | 说明                          |
-| ------------------------------------------------------------ | ----------------------------- |
-| Promise&lt;Array&lt;[Result](resultt)&lt;[CloudAsset](#cloudasset11)&gt;&gt;&gt; | Promise对象，返回资产下载结果 |
+| 类型                                                         | 说明                            |
+| ------------------------------------------------------------ | ------------------------------- |
+| Promise&lt;Array&lt;[Result](resultt)&lt;[CloudAsset](#cloudasset)&gt;&gt;&gt; | Promise对象，返回资产下载结果。 |
 
 **示例：**
 
@@ -1105,11 +1115,11 @@ export default class MyAssetLoader implements cloudExtension.AssetLoader {
 }
 ```
 
-### upload<sup>11+</sup>
+### upload
 
 upload(table: string, gid: string, assets: Array&lt;CloudAsset&gt;): Promise&lt;Array&lt;Result&lt;CloudAsset&gt;&gt;&gt;
 
-通过该接口实现资产的下载。
+通过该接口实现资产的上传。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Server
 
@@ -1119,13 +1129,13 @@ upload(table: string, gid: string, assets: Array&lt;CloudAsset&gt;): Promise&lt;
 | ------ | ---------------------------------------- | ---- | ------------------------------------ |
 | table  | string                                   | 是   | 表名。                               |
 | gid    | string                                   | 是   | 表示 GID，数据上云后生成的唯一标记。 |
-| assets | Array&lt;[CloudAsset](#cloudasset11)&gt; | 是   | 表示需要上传的资产。                 |
+| assets | Array&lt;[CloudAsset](#cloudasset)&gt; | 是   | 表示需要上传的资产。                 |
 
 **返回值：**
 
 | 类型                                                         | 说明                              |
 | ------------------------------------------------------------ | --------------------------------- |
-| Promise&lt;Array&lt;[Result](#resultt)&lt;[CloudAsset](#cloudasset11)&gt;&gt;&gt; | Promise对象，返回发起共享的结果。 |
+| Promise&lt;Array&lt;[Result](#resultt)&lt;[CloudAsset](#cloudasset)&gt;&gt;&gt; | Promise对象，返回资产上云的结果。 |
 
 **示例：**
 
@@ -1160,13 +1170,13 @@ share(userId: number, bundleName: string, sharingResource: string, participants:
 | userId          | number  | 是   | 表示用户ID。  |
 | bundleName      | string  | 是   | 应用包名。    |
 | sharingResource | string  | 是   | 端云共享资源的标识。   |
-| participants    | Array&lt;[cloudData.sharing.Participant](js-apis-data-cloudData.md#participant11)&gt;  | 是   | 端云共享参与者。   |
+| participants    | Array&lt;[cloudData.sharing.Participant](js-apis-data-cloudData.md#participant)&gt;  | 是   | 端云共享参与者。   |
 
 **返回值：**
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;[Result](#resultt)&lt;Array&lt;[Result](#resultt)&lt;[cloudData.sharing.Participant](js-apis-data-cloudData.md#participant11)&gt;&gt;&gt;&gt; | Promise对象，返回发起共享的结果。 |
+| Promise&lt;[Result](#resultt)&lt;Array&lt;[Result](#resultt)&lt;[cloudData.sharing.Participant](js-apis-data-cloudData.md#participant)&gt;&gt;&gt;&gt; | Promise对象，返回发起共享的结果。 |
 
 **示例：**
 
@@ -1215,13 +1225,13 @@ unshare(userId: number, bundleName: string, sharingResource: string, participant
 | userId          | number  | 是   | 表示用户ID。  |
 | bundleName      | string  | 是   | 应用包名。    |
 | sharingResource | string  | 是   | 端云共享资源标识。   |
-| participants    | Array&lt;[cloudData.sharing.Participant](js-apis-data-cloudData.md#participant11)&gt;  | 是   | 端云共享参与者。   |
+| participants    | Array&lt;[cloudData.sharing.Participant](js-apis-data-cloudData.md#participant)&gt;  | 是   | 端云共享参与者。   |
 
 **返回值：**
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;[Result](#resultt)&lt;Array&lt;[Result](#resultt)&lt;[cloudData.sharing.Participant](js-apis-data-cloudData.md#participant11)&gt;&gt;&gt;&gt; | Promise对象，返回取消共享的结果。 |
+| Promise&lt;[Result](#resultt)&lt;Array&lt;[Result](#resultt)&lt;[cloudData.sharing.Participant](js-apis-data-cloudData.md#participant)&gt;&gt;&gt;&gt; | Promise对象，返回取消共享的结果。 |
 
 **示例：**
 
@@ -1314,13 +1324,13 @@ changePrivilege(userId: number, bundleName: string, sharingResource: string, par
 | userId          | number  | 是   | 表示用户ID。  |
 | bundleName      | string  | 是   | 应用包名。    |
 | sharingResource | string  | 是   | 端云共享资源标识。   |
-| participants    | Array&lt;[cloudData.sharing.Participant](js-apis-data-cloudData.md#participant11)&gt;  | 是   | 端云共享参与者。   |
+| participants    | Array&lt;[cloudData.sharing.Participant](js-apis-data-cloudData.md#participant)&gt;  | 是   | 端云共享参与者。   |
 
 **返回值：**
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;[Result](#resultt)&lt;Array&lt;[Result](#resultt)&lt;[cloudData.sharing.Participant](js-apis-data-cloudData.md#participant11)&gt;&gt;&gt;&gt; | Promise对象，返回更改权限的结果。 |
+| Promise&lt;[Result](#resultt)&lt;Array&lt;[Result](#resultt)&lt;[cloudData.sharing.Participant](js-apis-data-cloudData.md#participant)&gt;&gt;&gt;&gt; | Promise对象，返回更改权限的结果。 |
 
 **示例：**
 
@@ -1374,7 +1384,7 @@ queryParticipants(userId: number, bundleName: string, sharingResource: string): 
 
 | 类型                                                         | 说明                                    |
 | ------------------------------------------------------------ | --------------------------------------- |
-| Promise&lt;[Result](#resultt)&lt;Array&lt;[cloudData.sharing.Participant](js-apis-data-cloudData.md#participant11)&gt;&gt;&gt; | Promise对象，返回查询共享参与者的结果。 |
+| Promise&lt;[Result](#resultt)&lt;Array&lt;[cloudData.sharing.Participant](js-apis-data-cloudData.md#participant)&gt;&gt;&gt; | Promise对象，返回查询共享参与者的结果。 |
 
 **示例：**
 
@@ -1448,7 +1458,7 @@ queryParticipantsByInvitation(userId: number, bundleName: string, invitationCode
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;[Result](#resultt)&lt;Array&lt;[cloudData.sharing.Participant](js-apis-data-cloudData.md#participant11)&gt;&gt;&gt; | Promise对象，返回根据邀请码查询共享参与者的结果。 |
+| Promise&lt;[Result](#resultt)&lt;Array&lt;[cloudData.sharing.Participant](js-apis-data-cloudData.md#participant)&gt;&gt;&gt; | Promise对象，返回根据邀请码查询共享参与者的结果。 |
 
 **示例：**
 
@@ -1517,7 +1527,7 @@ confirmInvitation(userId: number, bundleName: string, invitationCode: string, st
 | userId          | number  | 是   | 表示用户ID。  |
 | bundleName      | string  | 是   | 应用包名。    |
 | invitationCode  | string  | 是   | 端云共享邀请码。   |
-| state           | [cloudData.sharing.State](js-apis-data-cloudData.md#state11)  | 是   | 共享邀请的确认状态。   |
+| state           | [cloudData.sharing.State](js-apis-data-cloudData.md#state)  | 是   | 共享邀请的确认状态。   |
 
 **返回值：**
 
@@ -1563,7 +1573,7 @@ changeConfirmation(userId: number, bundleName: string, sharingResource: string, 
 | userId          | number  | 是   | 表示用户ID。  |
 | bundleName      | string  | 是   | 应用包名。    |
 | sharingResource | string  | 是   | 端云共享资源标识。   |
-| state           | [cloudData.sharing.State](js-apis-data-cloudData.md#state11)  | 是   | 共享邀请的更改状态。   |
+| state           | [cloudData.sharing.State](js-apis-data-cloudData.md#state)  | 是   | 共享邀请的更改状态。   |
 
 **返回值：**
 
