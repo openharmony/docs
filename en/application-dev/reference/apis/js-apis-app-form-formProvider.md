@@ -46,7 +46,7 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 
 ```ts
 import Base from '@ohos.base';
-import formProvider from '@ohos.application.formProvider';
+import formProvider from '@ohos.app.form.formProvider';
 
 let formId: string = '12400633174999288';
 try {
@@ -102,7 +102,7 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 
 ```ts
 import Base from '@ohos.base';
-import formProvider from '@ohos.application.formProvider';
+import formProvider from '@ohos.app.form.formProvider';
 
 let formId: string = '12400633174999288';
 try {
@@ -151,7 +151,7 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 ```ts
 import formBindingData from '@ohos.app.form.formBindingData';
 import Base from '@ohos.base';
-import formProvider from '@ohos.application.formProvider';
+import formProvider from '@ohos.app.form.formProvider';
 
 let formId: string = '12400633174999288';
 try {
@@ -212,7 +212,7 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 ```ts
 import formBindingData from '@ohos.app.form.formBindingData';
 import Base from '@ohos.base';
-import formProvider from '@ohos.application.formProvider';
+import formProvider from '@ohos.app.form.formProvider';
 
 let formId: string = '12400633174999288';
 let param: Record<string, string> = {
@@ -260,7 +260,7 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 
 ```ts
 import Base from '@ohos.base';
-import formProvider from '@ohos.application.formProvider';
+import formProvider from '@ohos.app.form.formProvider';
 
 try {
   formProvider.getFormsInfo((error, data) => {
@@ -305,7 +305,7 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 ```ts
 import Base from '@ohos.base';
 import formInfo from '@ohos.app.form.formInfo';
-import formProvider from '@ohos.application.formProvider';
+import formProvider from '@ohos.app.form.formProvider';
 
 const filter: formInfo.FormInfoFilter = {
   // get info of forms belong to module entry.
@@ -360,7 +360,7 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 ```ts
 import formInfo from '@ohos.app.form.formInfo';
 import Base from '@ohos.base';
-import formProvider from '@ohos.application.formProvider';
+import formProvider from '@ohos.app.form.formProvider';
 
 const filter: formInfo.FormInfoFilter = {
   // get info of forms belong to module entry.
@@ -413,7 +413,7 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 import formBindingData from '@ohos.app.form.formBindingData';
 import Want from '@ohos.app.ability.Want';
 import Base from '@ohos.base';
-import formProvider from '@ohos.application.formProvider';
+import formProvider from '@ohos.app.form.formProvider';
 
 let want: Want = {
   abilityName: 'FormAbility',
@@ -475,7 +475,7 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 ```ts
 import Want from '@ohos.app.ability.Want';
 import Base from '@ohos.base';
-import formProvider from '@ohos.application.formProvider';
+import formProvider from '@ohos.app.form.formProvider';
 
 let want: Want = {
   abilityName: 'FormAbility',
@@ -538,7 +538,7 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 ```ts
 import Want from '@ohos.app.ability.Want';
 import Base from '@ohos.base';
-import formProvider from '@ohos.application.formProvider';
+import formProvider from '@ohos.app.form.formProvider';
 
 let want: Want = {
   abilityName: 'FormAbility',
@@ -591,7 +591,7 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 ```ts
 import Want from '@ohos.app.ability.Want';
 import Base from '@ohos.base';
-import formProvider from '@ohos.application.formProvider';
+import formProvider from '@ohos.app.form.formProvider';
 
 try {
   formProvider.isRequestPublishFormSupported((error: Base.BusinessError, isSupported: boolean) => {
@@ -657,7 +657,7 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 ```ts
 import Want from '@ohos.app.ability.Want';
 import Base from '@ohos.base';
-import formProvider from '@ohos.application.formProvider';
+import formProvider from '@ohos.app.form.formProvider';
 
 try {
   formProvider.isRequestPublishFormSupported().then((isSupported: boolean) => {

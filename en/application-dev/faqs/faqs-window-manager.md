@@ -115,13 +115,11 @@ In effect, the **isStatusBarLightIcon** and **isNavigationBarLightIcon** attribu
 [window.SystemBarProperties](../reference/apis/js-apis-window.md#systembarproperties)
 
 
-## How do I keep the screen always on? (API version 9)
+## How do I keep the device screen always on? (API version 9)
 
 **Solution**
 
- 
-
-Obtain a **Window** instance, and call [setWindowKeepScreenOn](../reference/apis/js-apis-window.md#setwindowkeepscreenon9) to keep the screen always on.
+Obtain a **Window** instance, and call [setWindowKeepScreenOn](../reference/apis/js-apis-window.md#setwindowkeepscreenon9) to keep the device screen always on.
 
 ```
 let isKeepScreenOn = true;
@@ -158,3 +156,100 @@ try {
 **References**
 
 [window.on\("windowSizeChange"\)](../reference/apis/js-apis-window.md#onwindowsizechange7)
+
+## How do I listen for orientation status changes of the device screen? (API version 10)
+
+**Solution**
+
+Use **display.on** to listen for the orientation status changes. 
+
+**References**
+
+[Subscribing to Display Changes](../reference/apis/js-apis-display.md#displayonaddremovechange)
+
+## How do I enable the window to rotate with the device? (API version 10)
+
+**Solution**
+
+- Abilty-level configuration: Set **EntryAbility** to **orientation** in the **module.json5** file. 
+- Dynamic setting: Use **window.setPreferredOrientation** to set the window orientation.
+
+**Example**
+```ts
+import window from '@ohos.window';
+import display from '@ohos.display';
+
+const TAG = 'foo'
+const ORIENTATION: Array<string> = ['Portrait', 'Landscape','Reverse portrait','Reverse landscape']
+
+@Entry
+@Component
+struct ScreenTest {
+  @State rotation: number = 0
+  @State message: string = ORIENTATION[this.rotation]
+
+  aboutToAppear() {
+    this.setOrientation()
+
+    let callback = async () => {
+      let d = await display.getDefaultDisplaySync()
+      this.rotation = d.rotation
+      this.message = ORIENTATION[this.rotation]
+      console.info(TAG, JSON.stringify(d))
+    }
+    try {
+      display.on("change", callback); // Listen for device screen status changes.
+    } catch (exception) {
+      console.error(TAG, 'Failed to register callback. Code: ' + JSON.stringify(exception));
+    }
+  }
+
+  setOrientation() {
+    try {
+      window.getLastWindow(getContext(this), (err, data) => { // Obtain a Window instance.
+        if (err.code) {
+          console.error(TAG, 'Failed to obtain the top window. Cause: ' + JSON.stringify(err));
+          return;
+        }
+        let windowClass = data;
+        console.info(TAG, 'Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
+
+        let orientation = window.Orientation.AUTO_ROTATION; // Set the window orientation to AUTO_ROTATION.
+        try {
+          windowClass.setPreferredOrientation(orientation, (err) => {
+            if (err.code) {
+              console.error(TAG, 'Failed to set window orientation. Cause: ' + JSON.stringify(err));
+              return;
+            }
+            console.info(TAG, 'Succeeded in setting window orientation.');
+          });
+        } catch (exception) {
+          console.error(TAG, 'Failed to set window orientation. Cause: ' + JSON.stringify(exception));
+        }
+        ;
+      });
+    } catch (exception) {
+      console.error(TAG, 'Failed to obtain the top window. Cause: ' + JSON.stringify(exception));
+    }
+    ;
+  }
+
+  build() {
+    Row() {
+      Column() {
+        Text(`${this.rotation}`).fontSize(25)
+        Text(`${this.message}`).fontSize(25)
+      }
+      .width("100%")
+    }
+    .height("100%")
+  }
+}
+```
+**References**
+
+[Setting the Window Orientation](../reference/apis/js-apis-window.md#setpreferredorientation9) 
+
+[Subscribing to Display Changes](../reference/apis/js-apis-display.md#displayonaddremovechange)
+
+<!--no_check-->
