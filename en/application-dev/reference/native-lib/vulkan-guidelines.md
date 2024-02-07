@@ -12,7 +12,7 @@ A **VkSurfaceKHR** instance is obtained through an **OHNativeWindow**, which is 
 | ------------------------------------------------------------ | ---------------------- |
 | vkCreateSurfaceOHOS (VkInstance instance, const VkSurfaceCreateInfoOHOS\* pCreateInfo, const VkAllocationCallbacks\* pAllocator, VkSurfaceKHR\* pSurface) | Creates a **VkSurfaceKHR** instance.|
 
-For details about the APIs, see [Vulkan](../reference/native-lib/third_party_vulkan/vulkan-symbol.md).
+For details about the APIs, see [Vulkan](vulkan.md).
 
 ## How to Develop
 
@@ -70,7 +70,7 @@ libvulkan.so
 
 2. Obtain an **OHNativeWindow** instance.
 
-   The **OHNativeWindow** instance is obtained from the **\<XComponent>**. For details about how to use the **\<XComponent>**, see [XComponent](../ui/arkts-common-components-xcomponent.md) and [XComponent Development](xcomponent-guidelines.md).
+   The **OHNativeWindow** instance is obtained from the **\<XComponent>**. For details about how to use the **\<XComponent>**, see [XComponent](../../ui/arkts-common-components-xcomponent.md) and [XComponent Development](xcomponent-guidelines.md).
 
    1. Add an **\<XComponent>** to **ets/pages/Index.ets**.
 

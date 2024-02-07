@@ -1,9 +1,13 @@
-# Vulkan Symbols Exported
+# Vulkan Capabilities
 
-## Standard Library Interfaces
+[Vulkan](https://www.vulkan.org/) is a set of 2D and 3D rendering APIs that feature cross-platform and high-performance. OpenHarmony now supports Vulkan v1.3.231.
 
-|Type|Symbol|Remarks|
-| --- | --- | --- |
+## Supported Standard APIs
+
+The table below lists the supported APIs of Vulkan v1.3.231.
+
+|Type|Symbol|
+| --- | --- | 
 |FUNC|vkAcquireNextImage2KHR|
 |FUNC|vkAcquireNextImageKHR|
 |FUNC|vkAllocateCommandBuffers|
@@ -248,12 +252,14 @@
 |FUNC|vkWaitForFences|
 |FUNC|vkWaitSemaphores|
 
-## New Interfaces in OpenHarmony
+## Extended APIs in OpenHarmony
 
-|Type|Symbol|Remarks|
-| --- | --- | --- |
+In addition to the standard APIs, OpenHarmony provides extended APIs for creating a Vulkan surface using **OHNativeWindow** and obtaining **OH_NativeBuffer** and **OH_NativeBuffer** properties.
+
+|Type|Symbol|
+| --- | --- | 
 |FUNC|vkCreateSurfaceOHOS|
 |FUNC|vkGetNativeBufferPropertiesOHOS|
 |FUNC|vkGetMemoryNativeBufferOHOS|
 
-For details about the new interfaces, see [Vulkan](../../native-apis/_vulkan.md).
+For details about the extended APIs, see [Vulkan Module](_vulkan.md).
