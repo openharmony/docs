@@ -24,32 +24,32 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| sticky<sup>(deprecated)</sup> | [Sticky](#stickydeprecated) | Sticky effect of the list item.<br>Default value: **Sticky.None**<br>This API is deprecated since API version 9. You are advised to use **sticky** of the [\<List>](ts-container-list.md#attributes) component.|
-| editable<sup>(deprecated)</sup>  | boolean \| [EditMode](#editmode) | Whether to enter editing mode, where the list item can be deleted or moved.<br>This API is deprecated since API version 9.<br>Default value: **false**|
+| sticky<sup>(deprecated)</sup> | [Sticky](#stickydeprecated) | Sticky effect of the list item.<br>Default value: **Sticky.None**<br>This attribute is deprecated since API version 9. You are advised to use [the sticky attribute of the \<List> component](ts-container-list.md#attributes) instead.|
+| editable<sup>(deprecated)</sup>  | boolean \| [EditMode](#editmode) | Whether to enter editing mode, where the list item can be deleted or moved.<br>This API is deprecated since API version 9. There is no substitute API.<br>Default value: **false**|
 | selectable<sup>8+</sup> | boolean | Whether the current list item is selectable by mouse drag.<br>**NOTE**<br>This attribute takes effect only when mouse frame selection is enabled for the parent **\<List>** container.<br>Default value: **true**|
-| swipeAction<sup>9+</sup> | {<br>start?: CustomBuilder,<br>end?:CustomBuilder,<br>edgeEffect?: [SwipeEdgeEffect](#swipeedgeeffect9),<br>} | Component displayed when the list item is swiped out from the screen edge.<br>- **start**: component on the left of the list item when the item is swiped to the right (in vertical list layout) or component above the list item when the item is swiped down (in horizontal list layout).<br>- **end**: component on the right of the list item when the item is swiped to the left (in vertical list layout) or component below the list item when the item is swiped up (in horizontal list layout).<br>- **edgeEffect**: scroll effect.<br>**NOTE**<br>The top level of the **@builder** function corresponding to **start** and **end** must be a single component and cannot be an **if/else**, **ForEach**, or **LazyForEach** statement.|
+| swipeAction<sup>9+</sup> | {<br>start?: [CustomBuilder](ts-types.md#custombuilder8),<br>end?:[CustomBuilder](ts-types.md#custombuilder8),<br>edgeEffect?: [SwipeEdgeEffect](#swipeedgeeffect9),<br>} | Swipe action displayed when the list item is swiped out from the screen edge.<br>- **start**: swipe action displayed on the left of the list item when the item is swiped right (in vertical list layout) or above the list item when the item is swiped down (in horizontal list layout).<br>- **end**: swipe action displayed on the right of the list item when the item is swiped left (in vertical list layout) or below the list item when the item is swiped up (in horizontal list layout).<br>- **edgeEffect**: scroll effect.<br>**NOTE**<br>- The top level of the **@builder** function corresponding to **start** and **end** must be a single component and cannot be an **if/else**, **ForEach**, or **LazyForEach** statement.|
 
 ## Sticky<sup>(deprecated)</sup>
-This API is deprecated since API version 9. You are advised to use [stickyStyle](ts-container-list.md#stickystyle9) of the **\<List>** component.
-| Name| Description|
-| -------- | -------- |
-| None | The list item is not sticky.|
-| Normal | The list item is sticky with no special effects.|
-| Opacity | The list item is sticky with opacity changes.|
+This API is deprecated since API version 9. You are advised to use [the stickyStyle enum of the \<List> component](ts-container-list.md#stickystyle9) instead.
+| Name| Value| Description|
+| -------- | -------- | -------- |
+| None |  0  | The list item is not sticky.|
+| Normal |  1  | The list item is sticky with no special effects.|
+| Opacity |  2  | The list item is sticky with opacity changes.|
 
 ## EditMode
 
-| Name    | Description       |
-| ------ | --------- |
-| None   | The editing operation is not restricted.   |
-| Deletable | The list item can be deleted.|
-| Movable | The list item can be moved.|
+| Name    | Value| Description       |
+| ------ | ------ | --------- |
+| None   |  0  | The editing operation is not restricted.   |
+| Deletable |  1  | The list item can be deleted.|
+| Movable |  2  | The list item can be moved.|
 
 ## SwipeEdgeEffect<sup>9+</sup>
-| Name| Description|
-| -------- | -------- |
-| Spring | When the list item scrolls to the edge of the list, it can continue to scroll for a distance and rebound after being released.|
-| None | The list item cannot scroll beyond the edge of the list|
+| Name    | Value| Description       |
+| ------ | ------ | --------- |
+|   Spring   |    0    | When the list item scrolls to the edge of the list, it can continue to scroll for a distance.<br>If the delete area is set, the list item can continue to scroll after the scroll distance exceeds the delete threshold and,<br>after being released, rebound following the spring curve.|
+|   None   |    1    | The list item cannot scroll beyond the edge of the list.<br>If the delete area is set, the list item cannot continue to scroll after the scroll distance exceeds the delete threshold.<br>If the delete callback is set, it is triggered when the delete threshold is reached and the list item is released.|
 
 ## Events
 

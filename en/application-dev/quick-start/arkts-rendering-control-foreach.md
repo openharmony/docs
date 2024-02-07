@@ -65,7 +65,7 @@ struct Parent {
     Row() {
       Column() {
         ForEach(this.simpleList, (item: string) => {
-          ChildItem({ item: item })
+          ChildItem({ 'item': item } as Record<string, string>)
         }, (item: string) => item)
       }
       .width('100%')
@@ -107,7 +107,7 @@ When the keys generated for different data items are the same, the behavior of t
      Row() {
        Column() {
          ForEach(this.simpleList, (item: string) => {
-           ChildItem({ item: item })
+           ChildItem({ 'item': item } as Record<string, string>)
          }, (item: string) => item)
        }
        .width('100%')
@@ -303,7 +303,7 @@ struct ArticleListView {
       List() {
         ForEach(this.articleList, (item: Article) => {
           ListItem() {
-            ArticleCard({ article: item })
+            ArticleCard({ 'article': item } as Record<string, Article>)
               .margin({ top: 20 })
           }
         }, (item: Article) => item.id)
@@ -519,7 +519,7 @@ struct Parent {
       })
 
       ForEach(this.simpleList, (item: string) => {
-        ChildItem({ item: item })
+        ChildItem({ 'item': item } as Record<string, string>)
       }, (item: string, index: number) => index.toString())
     }
     .justifyContent(FlexAlign.Center)
@@ -554,9 +554,9 @@ After a new item is inserted, the data source **simpleList** changes to ['one','
 
 In the preceding example, the final key generation rule includes **index**. While the expected rendering result is ['one','new item', 'two', 'three'], the actual rendering result is ['one', 'two', 'three', 'three']. Therefore, whenever possible, avoid including **index** in final key generation rule when using **ForEach**.
 
-### Deteriorated Rendering performance
+### Deteriorated Rendering Performance
 
-In this example, the **KeyGenerator** function – the third parameter of **ForEach** – is left empty. According to the description in [Key Generation Rule](#key-generation-rule), the default key generation rule of the ArkUI framework is used. That is, the final key is the string **index + '__' + JSON.stringify(item)**. After **Insert Item After First Item** is clicked, **ForEach** recreates components for the second array item and all items after it.
+In this example, the **KeyGenerator** function – the third parameter of **ForEach** – is left empty. According to the description in [Key Generation Rules](#key-generation-rules), the default key generation rule of the ArkUI framework is used. That is, the final key is the string **index + '__' + JSON.stringify(item)**. After **Insert Item After First Item** is clicked, **ForEach** recreates components for the second array item and all items after it.
 
 ```ts
 @Entry
@@ -575,7 +575,7 @@ struct Parent {
       })
 
       ForEach(this.simpleList, (item: string) => {
-        ChildItem({ item: item })
+        ChildItem({ 'item': item } as Record<string, string>)
       })
     }
     .justifyContent(FlexAlign.Center)

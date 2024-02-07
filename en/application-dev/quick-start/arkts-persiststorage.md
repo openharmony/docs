@@ -9,12 +9,11 @@ PersistentStorage is an optional singleton object within an application. Its pur
 
 ## Overview
 
-PersistentStorage retains the selected AppStorage attributes on the device disk. The application uses the API to determine which AppStorage attributes should be persisted with PersistentStorage. The UI and business logic do not directly access attributes in PersistentStorage. All attribute access is to AppStorage. Changes in AppStorage are automatically synchronized to PersistentStorage.
+PersistentStorage retains the selected AppStorage attributes on the device. The application uses the API to determine which AppStorage attributes should be persisted with PersistentStorage. The UI and business logic do not directly access attributes in PersistentStorage. All attribute access is to AppStorage. Changes in AppStorage are automatically synchronized to PersistentStorage.
 
 PersistentStorage creates a two-way synchronization with attributes in AppStorage. A frequently used API function is to access AppStorage through PersistentStorage. Additional API functions include managing persisted attributes. The business logic always obtains or sets attributes through AppStorage.
 
-
-## Restrictions
+## Constraints
 
 PersistentStorage accepts the following types and values:
 
@@ -23,16 +22,16 @@ PersistentStorage accepts the following types and values:
 
 PersistentStorage does not accept the following types and values:
 
-- Nested objects (object arrays and object attributes), because the framework cannot detect the value changes of nested objects (including arrays) in AppStorage
-- **undefined** and **null**
+- Nested objects (object arrays and object attributes), because the framework cannot detect the value changes of nested objects (including arrays) in AppStorage.
+- **undefined** and **null**.
 
-Persistence of data is a relatively slow operation. Applications should avoid the following situations:
+Data persistence is an operation that takes time. Applications should avoid the following situations:
 
 - Persistence of large data sets
 
 - Persistence of variables that change frequently
 
-It is recommended that the persistent variables of PersistentStorage be less than 2 KB data. As PersistentStorage writes data to disks synchronously, a large amount of persistent data may result in time-consuming local data read and write operations in the UI thread, affecting UI rendering performance. If you need to store a large amount of data, consider using the database API.
+It is recommended that the persistent variables of PersistentStorage be less than 2 KB. As PersistentStorage flushes data synchronously, a large amount of persistent data may result in time-consuming local data read and write operations in the UI thread, affecting UI rendering performance. If you need to store a large amount of data, consider using the database API.
 
 PersistentStorage can be called to persist data only when used in UI pages.
 
@@ -122,4 +121,18 @@ PersistentStorage.PersistProp('aProp', 48);
 
 **AppStorage.SetOrCreate('aProp', 47)**: The **aProp** attribute is created in AppStorage, its type is number, and its value is set to the specified default value **47**. **aProp** is a persisted attribute. Therefore, it is written back to the PersistentStorage disk, and the value stored in the PersistentStorage disk from the previous run is lost.
 
-**PersistentStorage.PersistProp('aProp', 48)**: An attribute with same name **aProp** is available in PersistentStorage.
+PersistentStorage.PersistProp('aProp', 48): An attribute with the name **aProp** and value **47** – set through the API in AppStorage – is found in PersistentStorage.
+
+### Accessing an Attribute in AppStorage After PersistentStorage
+
+If you do not want to overwrite the values saved in PersistentStorage during the previous application run, make sure any access to attributes in AppStorage is made after a call to a PersistentStorage API.
+
+```ts
+PersistentStorage.PersistProp('aProp', 48);
+if (AppStorage.Get('aProp') > 50) {
+    // If the value stored in PersistentStorage exceeds 50, set the value to 47.
+    AppStorage.SetOrCreate('aProp',47);
+}
+```
+
+After reading the data stored in PersistentStorage, the sample code checks whether the value of **aProp** is greater than 50 and, if it is, sets **aProp** to **47** through an API in AppStorage.

@@ -109,7 +109,7 @@ In the **\<GridRow>**, **columns** is used to set the total number of columns in
     ForEach(this.bgColors, (item, index) => {
       GridCol() {
         Row() {
-          Text(`${index + 1}`)
+          Text(`${index}`)
         }.width('100%').height('50')
       }.backgroundColor(item)
     })
@@ -130,7 +130,7 @@ In the **\<GridRow>**, **columns** is used to set the total number of columns in
       ForEach(this.bgColors, (item, index) => {
         GridCol() {
           Row() {
-            Text(`${index + 1}`)
+            Text(`${index}`)
           }.width('100%').height('50')
         }.backgroundColor(item)
       })
@@ -149,7 +149,7 @@ In the **\<GridRow>**, **columns** is used to set the total number of columns in
       ForEach(this.bgColors, (item, index) => {
         GridCol() {
           Row() {
-            Text(`${index + 1}`)
+            Text(`${index}`)
           }.width('100%').height('50')
         }.backgroundColor(item)
       })
@@ -175,7 +175,7 @@ In the **\<GridRow>**, **columns** is used to set the total number of columns in
     ForEach(this.bgColors, (item, index) => {
       GridCol() {
         Row() {
-          Text(`${index + 1}`)
+          Text(`${index}`)
         }.width('100%').height('50')
       }.backgroundColor(item)
     })
@@ -253,7 +253,6 @@ The **\<GridCol>** component is a child component of the **\<GridRow>** componen
   ```ts
   GridCol({ offset: 2 }){}
   GridCol({ offset: { xs: 2, sm: 2, md: 2, lg: 2 } }){}
-  GridCol(){}.offset(2)
   GridCol(){}.offset({ xs: 1, sm: 2, md: 3, lg: 4 }) 
   ```
 

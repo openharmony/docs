@@ -64,13 +64,39 @@ Closes the custom dialog box. If the dialog box is closed, this API does not tak
 ```ts
 // xxx.ets
 @CustomDialog
+struct CustomDialogExampleTwo {
+  controllerTwo?: CustomDialogController
+
+  build() {
+    Column() {
+      Text('I'm the second dialog box.')
+        .fontSize(30)
+        .height(100)
+      Button ('Close Second Dialog Box')
+        .onClick(() => {
+          if (this.controllerTwo != undefined) {
+            this.controllerTwo.close()
+          }
+        })
+        .margin(20)
+    }
+  }
+}
+
+@CustomDialog
 struct CustomDialogExample {
   @Link textValue: string
   @Link inputValue: string
-  controller: CustomDialogController
-  // You can pass in multiple other controllers in the CustomDialog to open one or more other CustomDialogs in the CustomDialog. In this case, you must place the controller pointing to the self at the end.
-  cancel: () => void
-  confirm: () => void
+  dialogControllerTwo: CustomDialogController = new CustomDialogController({
+    builder: CustomDialogExampleTwo(),
+    alignment: DialogAlignment.Bottom,
+    offset: { dx: 0, dy: -25 } })
+  controller?: CustomDialogController
+  // You can pass in multiple other controllers in the CustomDialog to open one or more other CustomDialogs in the CustomDialog. In this case, you must place the controller pointing to the self behind all controllers.
+  cancel: () => void = () => {
+  }
+  confirm: () => void = () => {
+  }
 
   build() {
     Column() {
@@ -85,16 +111,26 @@ struct CustomDialogExample {
           .onClick(() => {
             this.controller.close()
             this.cancel()
+
           }).backgroundColor(0xffffff).fontColor(Color.Black)
-        Button('confirm')
+        Button('Yes')
           .onClick(() => {
-            this.inputValue = this.textValue
-            this.controller.close()
-            this.confirm()
+            if (this.controller != undefined) {
+              this.inputValue = this.textValue
+              this.controller.close()
+              this.confirm()
+            }
           }).backgroundColor(0xffffff).fontColor(Color.Red)
       }.margin({ bottom: 10 })
-    }
-    // The default value of borderRadius is 24vp. The border attribute must be used together with the borderRadius attribute.
+
+      Button ('Open Second Dialog Box')
+        .onClick(() => {
+          this.dialogControllerTwo.open()
+
+        })
+        .margin(20)
+    }.borderRadius(10)
+    // When using the border or cornerRadius attribute, use it together with the borderRadius attribute.
   }
 }
 
@@ -102,7 +138,7 @@ struct CustomDialogExample {
 @Component
 struct CustomDialogUser {
   @State textValue: string = ''
-  @State inputValue: string = 'click me'
+  @State inputValue: string = 'Click Me'
   dialogController: CustomDialogController = new CustomDialogController({
     builder: CustomDialogExample({
       cancel: this.onCancel,
@@ -110,17 +146,18 @@ struct CustomDialogUser {
       textValue: $textValue,
       inputValue: $inputValue
     }),
-    cancel: this.existApp,
+    cancel: this.exitApp,
     autoCancel: true,
     alignment: DialogAlignment.Bottom,
     offset: { dx: 0, dy: -20 },
     gridCount: 4,
-    customStyle: false
+    customStyle: false,
+    cornerRadius: 10,
   })
 
   // Set dialogController to undefined when the custom component is about to be destroyed.
   aboutToDisappear() {
-    this.dialogController = undefined // Set dialogController to undefined.
+    this.dialogController = null // Set dialogController to null.
   }
 
   onCancel() {
@@ -139,13 +176,12 @@ struct CustomDialogUser {
     Column() {
       Button(this.inputValue)
         .onClick(() => {
-          if (this.dialogController != undefined) {
-            this.dialogController.open()
-          }
+          this.dialogController.open()
+
         }).backgroundColor(0x317aff)
     }.width('100%').margin({ top: 5 })
   }
 }
 ```
 
-![en-us_image_0000001219744203](figures/en-us_image_0000001219744203.gif)
+![en-us_image_custom](figures/en-us_image_custom.gif)

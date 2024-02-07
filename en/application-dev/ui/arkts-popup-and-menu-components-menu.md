@@ -13,13 +13,13 @@ Use the **bindMenu** API to implement a menu. **bindMenu** responds to the click
 ```ts
 Button('click for Menu')
   .bindMenu([
-  {
-    value: 'Menu1',
-    action: () => {
-      console.info('handle Menu1 select')
+    {
+      value: 'Menu1',
+      action: () => {
+        console.info('handle Menu1 select')
+      }
     }
-  }       
-])
+  ])
 ```
 
 
@@ -70,7 +70,7 @@ MyMenu(){
         startIcon: $r("app.media.view_list_filled"),
         content: "Menu option",
         endIcon: $r("app.media.arrow_right_filled"),
-        builder: this.SubMenu.bind(this)
+        builder: this.SubMenu
       })
     }
     MenuItem({

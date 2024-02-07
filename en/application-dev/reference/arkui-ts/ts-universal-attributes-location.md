@@ -12,7 +12,7 @@ The location attributes set the alignment mode, layout direction, and position o
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| align | [Alignment](ts-appendix-enums.md#alignment) | Alignment mode of the component content in the drawing area.<br>Default value: **Alignment.Center**<br>Since API version 9, this API is supported in ArkTS widgets.|
+| align | [Alignment](ts-appendix-enums.md#alignment) | Alignment mode of the component content in the drawing area.<br>This attribute is available only in the following components: **\<Stack>**, **\<Button>**, **\<StepperItem>**, **\<Marquee>**, **\<Text>**, **\<TextArea>**, and **\<TextInput>**. For details about the alignment results of text-related components (the last four aforementioned components), see [textAlign](ts-basic-components-text.md#attributes).<br>Default value: **Alignment.Center**<br>Since API version 9, this API is supported in ArkTS widgets.|
 | direction | [Direction](ts-appendix-enums.md#direction) | Horizontal layout of the component.<br>Default value: **Direction.Auto**<br>Since API version 9, this API is supported in ArkTS widgets.|
 | position | [Position](ts-types.md#position8) | Offset of the component's upper left corner relative to the parent component's upper left corner. This offset is expressed using absolute values. When laying out components, this attribute does not affect the layout of the parent component. It only adjusts the component position during drawing.<br>This attribute is applicable to scenarios where the component is fixed at a position in the parent container, for example, where it is pinned to top or floating above the UI.<br>Since API version 9, this API is supported in ArkTS widgets.|
 | markAnchor | [Position](ts-types.md#position8) | Anchor point of the component for positioning. The upper left corner of the component is used as the reference point for offset. Generally, this attribute is used together with the **position** and **offset** attributes. When used independently, this attribute is similar to **offset**.<br>Default value:<br>{<br>x: 0,<br>y: 0<br>}<br>Since API version 9, this API is supported in ArkTS widgets.|
@@ -141,7 +141,7 @@ struct PositionExample2 {
           .offset({ x: 15, y: 30 })
         Text('3').size({ width: '15%', height: '50' }).backgroundColor(0xdeb887).border({ width: 1 }).fontSize(16)
           .textAlign(TextAlign.Center)
-        Text('4 offset(-10%, 20%)')
+        Text('4 offset(-5%, 20%)')
           .size({ width: 100, height: '50' })
           .backgroundColor(0xbbb2cb)
           .border({ width: 1 })

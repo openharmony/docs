@@ -497,15 +497,15 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 **Example**
 
   ```js    
-router.showAlertBeforeBackPage({
-  message: 'Message Info'
-})
-  .then(() => {
-    // success
-  })
-  .catch(err => {
-    console.error(`showAlertBeforeBackPage failed, code is ${error.code}, message is ${error.message}`);
-  })
+import { BusinessError } from '@ohos.base';
+
+try {
+  router.showAlertBeforeBackPage({
+    message: 'Message Info'
+  });
+} catch(err) {
+  console.error(`Invoke showAlertBeforeBackPage failed, code is ${err.code}, message is ${err.message}`);
+}
   ```
 ## EnableAlertOptions
 

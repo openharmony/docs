@@ -220,7 +220,8 @@ struct EntryComponent {
     Column() {
       // The parameters specified here will overwrite the default values defined locally during initial render. Not all parameters need to be initialized from the parent component.
       MyComponent({ count: 1, increaseBy: 2 })
-      MyComponent({ title: new Model('Hello, World 2'), count: 7 })
+        .width(300)
+      MyComponent({ title: new Model('Hello World 2'), count: 7 })
     }
   }
 }
@@ -234,20 +235,28 @@ struct MyComponent {
   build() {
     Column() {
       Text(`${this.title.value}`)
-      Button(`Click to change title`).onClick(() => {
-        // The update of the @State decorated variable triggers the update of the <Text> component.
-        this.title.value = this.title.value === 'Hello ArkUI' ? 'Hello World' : 'Hello ArkUI';
-      })
+        .margin(10)
+      Button(`Click to change title`)
+        .onClick(() => {
+          // The update of the @State decorated variable triggers the update of the <Text> component.
+          this.title.value = this.title.value === 'Hello ArkUI' ? 'Hello World' : 'Hello ArkUI';
+        })
+        .width(300)
+        .margin(10)
 
-      Button(`Click to increase count=${this.count}`).onClick(() => {
-        // The update of the @State decorated variable triggers the update of the <Button> component.
-        this.count += this.increaseBy;
-      })
+      Button(`Click to increase count = ${this.count}`)
+        .onClick(() => {
+          // The update of the @State decorated variable triggers the update of the <Button> component.
+          this.count += this.increaseBy;
+        })
+        .width(300)
+        .margin(10)
     }
   }
 }
 ```
 
+![Video-state](figures/Video-state.gif)
 
 From this example, we learn the initialization process of an \@State decorated variable on initial render.
 

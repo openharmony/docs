@@ -25,7 +25,9 @@ An \@BuilderParam decorated method can be initialized only by an \@Builder funct
   struct Child {
     @Builder doNothingBuilder() {};
 
+    // Use the custom builder function of the custom component for \@BuilderParam initialization.
     @BuilderParam aBuilder0: () => void = this.doNothingBuilder;
+    // Use the global custom builder function for \@BuilderParam initialization.
     @BuilderParam aBuilder1: () => void = GlobalBuilder0;
     build(){}
   }
@@ -36,6 +38,7 @@ An \@BuilderParam decorated method can be initialized only by an \@Builder funct
   ```ts
   @Component
   struct Child {
+    // Use the \@Builder decorated method in the parent component for \@BuilderParam initialization.
     @BuilderParam aBuilder0: () => void;
 
     build() {

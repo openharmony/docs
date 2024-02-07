@@ -15,7 +15,7 @@ For the \@Prop decorated variable of a child component, the change synchronizati
 
 - An \@Prop variable is allowed to be modified locally, but the change does not propagate back to its parent component.
 
-- Whenever that data source changes, the @Prop decorated variable gets updated, and any locally made changes are overwritten.
+- Whenever the data source changes, the @Prop decorated variable gets updated, and any locally made changes are overwritten.
 
 
 
@@ -38,7 +38,7 @@ For the \@Prop decorated variable of a child component, the change synchronizati
 
 | Transfer/Access    | Description                                      |
 | --------- | ---------------------------------------- |
-| Initialization from the parent component  | Optional. Initialization from the parent component or local initialization can be used. An \@Prop decorated variable can be initialized from a regular variable or an \@State, \@Link, \@Prop, \@Provide, \@Consume, \@ObjectLink, \@StorageLink, \@StorageProp, \@LocalStorageLink, or \@LocalStorageProp decorated variable in its parent component.|
+| Initialization from the parent component  | Optional if local initialization is used and mandatory otherwise. An @Prop decorated variable can be initialized from a regular variable or an @State, @Link, @Prop, @Provide, @Consume, @ObjectLink, @StorageLink, @StorageProp, @LocalStorageLink, or @LocalStorageProp decorated variable in its parent component.|
 | Child component initialization | \@Prop can be used for initialization of a regular variable or \@State, \@Link, \@Prop, or \@Provide decorated variable in the child component.|
 | Access| Private, accessible only within the component.               |
 
@@ -78,18 +78,22 @@ For synchronization between \@State and \@Prop decorated variables:
 
 ### Framework Behavior
 
-To understand the value initialization and update mechanism of the \@Prop decorated variable, it is necessary to consider the parent component and the initial render and update process of the child component that owns the \@Prop decorated variable.
+To understand the value initialization and update mechanism of the \@Prop decorated variable, it is necessary to understand the parent component and the initial render and update process of the child component that owns the \@Prop decorated variable.
 
 1. Initial render:
    1. The execution of the parent component's **build()** function creates a new instance of the child component, and the parent component provides a source for the @Prop decorated variable.
    2. The @Prop decorated variable is initialized.
 
 2. Update:
-   1. When the @Prop decorated variable is modified locally, the change remains local and does not propagate back to its parent component.
+   1. When the @Prop decorated variable is modified locally, the change does not propagate back to its parent component.
    2. When the data source of the parent component is updated, the \@Prop decorated variable in the child component is reset, and its local value changes are overwritten.
 
+> **NOTE**
+>
+> The update of an \@Prop decorated variable relies on the re-rendering of the owning custom component. As such, when the application is in the background, the \@Prop decorated variable cannot be updated. In this case, use \@Link instead.
 
-## Application Scenarios
+
+## Usage Scenarios
 
 
 ### Simple Type @Prop Synced from @State in Parent Component
@@ -196,7 +200,7 @@ struct Index {
 
         ForEach(this.arr, 
           item => {
-            Child({value: item})
+            Child({'value': item} as Record<string, number>)
           }, 
           item => item.toString()
         )

@@ -5,7 +5,7 @@ The **<Web\>** component can be used to display web pages. It can be used with t
 > **NOTE**
 >
 > - This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
-> - You can preview how this component looks on a real device. The preview is not yet available in the DevEco Studio Previewer.
+> - You can preview how this component looks on a real device, but not in the DevEco Studio Previewer.
 
 ## Required Permissions
 To use online resources, the application must have the **ohos.permission.INTERNET** permission. For details about how to apply for a permission, see [Declaring Permissions](../../security/accesstoken-guidelines.md).
