@@ -100,7 +100,7 @@ zh-cn/application-dev/device/vibrator-overview.md @hu-zhiqiong @hellohyh001 @but
 zh-cn/application-dev/device/vibrator-guidelines.md @hu-zhiqiong @hellohyh001 @butterls @star-wind-snow-and-rain
 zh-cn/application-dev/device/sample-server-overview.md @hu-zhiqiong @hughes802 @zhangzhengxue @mamba-ting
 zh-cn/application-dev/device/sample-server-guidelines.md @hu-zhiqiong @hughes802 @zhangzhengxue @mamba-ting
-zh-cn/application-dev/reference/native-lib @zengyawen @gongjunsong @liwentao_uiw @blackstone-oh
+zh-cn/application-dev/reference/native-lib @gongjunsong @liwentao_uiw @blackstone-oh
 zh-cn/application-dev/quick-start/start-overview.md @ge-yafang
 zh-cn/application-dev/quick-start/start-with-ets-stage.md @ge-yafang
 zh-cn/application-dev/quick-start/start-with-ets-fa.md @ge-yafang
@@ -791,89 +791,52 @@ zh-cn/application-dev/security/ @zengyawen
 zh-cn/application-dev/file-management/ @zengyawen
 
 [开发指南-DFX]
-zh-cn/application-dev/dfx/
+zh-cn/application-dev/dfx/ @zengyawen
 zh-cn/application-dev/dfx/errormanager-guidelines.md  @huipeizi @lixiaogang30  @Maplestorys
 zh-cn/application-dev/dfx/apprecovery-guidelines.md   @huipeizi @lixiaogang30  @Maplestorys
+
+[开发指南-帐号]
+zh-cn/application-dev/account/ @zengyawen
 
 [FAQ]
 zh-cn/application-dev/faqs/ @zengyawen
 
-[参考-安全]
-zh-cn/application-dev/reference/apis/js-apis-cert.md @zengyawen
-zh-cn/application-dev/reference/apis/js-apis-cryptoFramework.md @zengyawen
-zh-cn/application-dev/reference/apis/js-apis-huks.md @zengyawen
-zh-cn/application-dev/reference/apis/js-apis-system-cipher.md @zengyawen
-
-zh-cn/application-dev/reference/errorcodes/errorcode-huks.md @zengyawen
-zh-cn/application-dev/reference/errorcodes/errorcode-crypto-framework.md @zengyawen
-zh-cn/application-dev/reference/errorcodes/errorcode-cert.md @zengyawen
-
-[参考-用户IAM]
-zh-cn/application-dev/reference/apis/js-apis-useriam-faceauth.md @zengyawen
-zh-cn/application-dev/reference/apis/js-apis-useriam-userauth.md @zengyawen
-
-zh-cn/application-dev/reference/errorcodes/errorcode-useriam.md @zengyawen
-
-[参考-访问控制]
-zh-cn/application-dev/reference/apis/js-apis-abilityAccessCtrl.md @zengyawen
-zh-cn/application-dev/reference/apis/js-apis-dlppermission.md @zengyawen
-zh-cn/application-dev/reference/apis/js-apis-privacyManager.md @zengyawen
-zh-cn/application-dev/reference/apis/js-apis-permissionrequestresult.md @zengyawen
-
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-security*.md @zengyawen
-
-zh-cn/application-dev/reference/errorcodes/errorcode-access-token.md @zengyawen
-zh-cn/application-dev/reference/errorcodes/errorcode-dlp.md
-
-
-[参考-帐号]
-zh-cn/application-dev/reference/apis/js-apis-*Account.md @zengyawen
-zh-cn/application-dev/reference/apis/js-apis-distributed-account.md @zengyawen
-
-zh-cn/application-dev/reference/errorcodes/errorcode-account.md @zengyawen
-
-[参考-文件]
-zh-cn/application-dev/reference/apis/js-apis-application-backupExtensionAbility.md @zengyawen
-zh-cn/application-dev/reference/apis/js-apis-file*.md @zengyawen
-zh-cn/application-dev/reference/apis/js-apis-photoAccessHelper.md @zengyawen
-zh-cn/application-dev/reference/apis/js-apis-userFileManager.md @zengyawen
-
-zh-cn/application-dev/reference/apis/js-apis-document.md @zengyawen
-zh-cn/application-dev/reference/apis/js-apis-system-file.md @zengyawen
-zh-cn/application-dev/reference/apis/js-apis-statfs.md @zengyawen
-
-zh-cn/application-dev/reference/errorcodes/errorcode-filemanagement.md @zengyawen
-
 [参考-DFX]
-zh-cn/application-dev/reference/apis/js-apis-hi*.md @zengyawen
-zh-cn/application-dev/reference/apis/js-apis-faultLogger.md @zengyawen
-zh-cn/application-dev/reference/apis/js-apis-loglibrary.md
-
-zh-cn/application-dev/reference/apis/js-apis-bytrace.md @zengyawen
-
-zh-cn/application-dev/reference/errorcodes/errorcode-faultlogger.md @zengyawen
-zh-cn/application-dev/reference/errorcodes/errorcode-hi*.md @zengyawen
-zh-cn/application-dev/reference/errorcodes/errorcode-loglibrary.md
-
+zh-cn/application-dev/reference/apis-performance-analysis-kit/ @zengyawen
 
 [参考-媒体]
-zh-cn/application-dev/reference/apis/js-apis-inner-multimedia*.md @zengyawen
-zh-cn/application-dev/reference/apis/js-apis-app-ability-MediaControlExtensionAbility.md @zengyawen
-zh-cn/application-dev/reference/apis/js-apis-audio.md @zengyawen
-zh-cn/application-dev/reference/apis/js-apis-avsession.md @zengyawen
-zh-cn/application-dev/reference/apis/js-apis-camera.md @zengyawen
-zh-cn/application-dev/reference/apis/js-apis-image.md @zengyawen
-zh-cn/application-dev/reference/apis/js-apis-media.md @zengyawen
-zh-cn/application-dev/reference/apis/js-apis-systemSoundManager.md @zengyawen
-zh-cn/application-dev/reference/apis/js-apis-inner-application-MediaControlExtensionContext.md @zengyawen
+zh-cn/application-dev/reference/apis-audio-kit/ @zengyawen
+zh-cn/application-dev/reference/apis-avcodec-kit/ @zengyawen
+zh-cn/application-dev/reference/apis-avsession-kit/ @zengyawen
+zh-cn/application-dev/reference/apis-camera-kit/ @zengyawen
+zh-cn/application-dev/reference/apis-drm-kit/ @zengyawen
+zh-cn/application-dev/reference/apis-image-kit/ @zengyawen
+zh-cn/application-dev/reference/apis-media-kit/ @zengyawen
+zh-cn/application-dev/reference/apis-media-library-kit/ @zengyawen
 
-zh-cn/application-dev/reference/apis/js-apis-medialibrary.md @zengyawen
+[参考-帐号]
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-appAccount.md @zengyawen
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-distributed-account.md @zengyawen
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-osAccount.md @zengyawen
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-distributed-account-sys.md
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-osAccount-sys.md
+zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-account.md @zengyawen
 
-zh-cn/application-dev/reference/errorcodes/errorcode-audio.md @zengyawen
-zh-cn/application-dev/reference/errorcodes/errorcode-media.md @zengyawen
-zh-cn/application-dev/reference/errorcodes/errorcode-avsession.md @zengyawen
-zh-cn/application-dev/reference/errorcodes/errorcode-camera.md @zengyawen
-zh-cn/application-dev/reference/errorcodes/errorcode-image.md @zengyawen
+[参考-文件]
+zh-cn/application-dev/reference/apis-core-file-kit/ @zengyawen
+
+[参考-安全]
+zh-cn/application-dev/reference/apis-crypto-architecture-kit/ @zengyawen
+zh-cn/application-dev/reference/apis-data-loss-prevention-kit/ @zengyawen
+zh-cn/application-dev/reference/apis-device-certificate-kit/ @zengyawen
+zh-cn/application-dev/reference/apis-universal-keystore-kit/ @zengyawen
+zh-cn/application-dev/reference/apis-user-authentication-kit/ @zengyawen
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-abilityAccessCtrl.md @zengyawen
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-abilityAccessCtrl-sys.md @zengyawen
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-privacyManager-sys.md @zengyawen
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-permissionrequestresult.md @zengyawen
+zh-cn/application-dev/reference/apis-ability-kit/errorcode-access-token.md @zengyawen
+
 
 [参考-ArkUI]
 zh-cn/application-dev/reference/apis-arkui/js-apis-animator.md @HelloCrease @niulihua @tomatodevboy
