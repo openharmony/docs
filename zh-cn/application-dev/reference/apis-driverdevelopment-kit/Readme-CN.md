@@ -1,10 +1,10 @@
 # Driver Development Kit API参考
 
 - ArkTS API
-  - [@ohos.app.ability.DriverExtensionAbility (驱动程序扩展能力)](./js-apis-app-ability-driverExtensionAbility.md)
-  - [@ohos.driver.deviceManager (外设管理)](./js-apis-driver-deviceManager.md)
+  - [@ohos.app.ability.DriverExtensionAbility (驱动程序扩展能力)](js-apis-app-ability-driverExtensionAbility.md)
+  - [@ohos.driver.deviceManager (外设管理)](js-apis-driver-deviceManager.md)
   - application
-    - [DriverExtensionContext](./js-apis-inner-application-driverExtensionContext.md)
+    - [DriverExtensionContext](js-apis-inner-application-driverExtensionContext.md)
 - C API
   - 模块
     - [HidDdk](_hid_ddk.md)

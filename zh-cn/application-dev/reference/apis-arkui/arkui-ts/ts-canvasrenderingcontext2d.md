@@ -851,6 +851,7 @@ struct WidthExample {
 
 ## 方法
 
+以下方法在隐藏页面中调用会产生缓存，应避免在隐藏页面中频繁刷新Canvas。
 
 ### fillRect
 
@@ -2388,7 +2389,7 @@ createImageData(imageData: ImageData): ImageData
 
 getPixelMap(sx: number, sy: number, sw: number, sh: number): PixelMap
 
-以当前canvas指定区域内的像素创建[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)对象。
+以当前canvas指定区域内的像素创建[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)对象，该接口存在内存拷贝行为，高耗时，应避免频繁使用。
 
 **参数：**
 
@@ -2411,7 +2412,7 @@ getPixelMap(sx: number, sy: number, sw: number, sh: number): PixelMap
   // xxx.ets
   @Entry
   @Component
-  struct GetImageData {
+  struct GetPixelMap {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private img:ImageBitmap = new ImageBitmap("/images/star.png")
@@ -2440,7 +2441,7 @@ getPixelMap(sx: number, sy: number, sw: number, sh: number): PixelMap
 
 getImageData(sx: number, sy: number, sw: number, sh: number): ImageData
 
-以当前canvas指定区域内的像素创建[ImageData](ts-components-canvas-imagedata.md)对象。
+以当前canvas指定区域内的像素创建[ImageData](ts-components-canvas-imagedata.md)对象，该接口存在内存拷贝行为，高耗时，应避免频繁使用。
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 

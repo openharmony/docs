@@ -209,4 +209,4 @@ struct Type3 {
 ```
 
 ## 参考
-[窗口](../application-dev/reference/apis/js-apis-window.md)
+[窗口](../application-dev/reference/apis-as/js-apis-window.md)

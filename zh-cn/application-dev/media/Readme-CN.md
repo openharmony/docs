@@ -8,7 +8,6 @@
     - [使用AudioRenderer开发音频播放功能(ArkTS)](using-audiorenderer-for-playback.md)
     - [使用TonePlayer开发音频播放功能(仅对系统应用开放)(ArkTS)](using-toneplayer-for-playback.md)
     - [使用OHAudio开发音频播放功能(C/C++)](using-ohaudio-for-playback.md)
-    - [使用OpenSL ES开发音频播放功能(C/C++)](using-opensl-es-for-playback.md)
     - [多音频播放的并发策略(ArkTS)](audio-playback-concurrency.md)
     - [播放音量管理(ArkTS)](volume-management.md)
     - [音效管理(ArkTS)](audio-effect-management.md)
@@ -18,7 +17,6 @@
   - 音频录制
     - [音频录制开发概述](audio-recording-overview.md)
     - [使用AudioCapturer开发音频录制功能(ArkTS)](using-audiocapturer-for-recording.md)
-    - [使用OpenSL ES开发音频录制功能(C/C++)](using-opensl-es-for-recording.md)
     - [使用OHAudio开发音频录制功能(C/C++)](using-ohaudio-for-recording.md)
     - [管理麦克风(ArkTS)](mic-management.md)
     - [音频录制流管理(ArkTS)](audio-recording-stream-management.md)
@@ -26,6 +24,10 @@
   - 音频通话
     - [音频通话开发概述](audio-call-overview.md)
     - [开发音频通话功能(ArkTS)](audio-call-development.md)
+  - 不再推荐使用
+    - [从OpenSL ES切换OHAudio(C/C++)](replace-opensles-by-ohaudio.md)
+    - [使用OpenSL ES开发音频播放功能(C/C++)](using-opensl-es-for-playback.md)
+    - [使用OpenSL ES开发音频录制功能(C/C++)](using-opensl-es-for-recording.md)
 - Media Kit（媒体服务）
   - [Media Kit简介](media-kit-intro.md)
   - 音频播放和录制

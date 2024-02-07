@@ -503,14 +503,14 @@ struct Index {
 
 ## 参考
 
-[属性动画](../application-dev/reference/arkui-ts/ts-animatorproperty.md#属性动画)
+[属性动画](../application-dev/reference/apis-arkui/arkui-ts/ts-animatorproperty.md#属性动画)
 
-[Curve](../application-dev/reference/arkui-ts/ts-appendix-enums.md#curve)
+[Curve](../application-dev/reference/apis-arkui/arkui-ts/ts-appendix-enums.md#curve)
 
 [弹簧曲线动画](../application-dev/ui/arkts-spring-curve.md)
 
-[Flex布局](../application-dev/reference/arkui-ts/ts-universal-attributes-flex-layout.md)
+[Flex布局](../application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md)
 
-[Listitem](../application-dev/reference/arkui-ts/ts-container-listitem.md)
+[Listitem](../application-dev/reference/apis-arkui/arkui-ts/ts-container-listitem.md)
 
-[List](../application-dev/reference/arkui-ts/ts-container-list.md)
+[List](../application-dev/reference/apis-arkui/arkui-ts/ts-container-list.md)

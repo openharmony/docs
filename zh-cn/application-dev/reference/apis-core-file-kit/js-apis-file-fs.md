@@ -3491,7 +3491,7 @@ createWatcher(path: string, events: number, listener: WatchEventListener): Watch
   | 参数名  | 类型     | 必填   | 说明                                       |
   | ---- | ------ | ---- | ---------------------------------------- |
   | path   | string | 是    | 监听文件或目录的沙箱路径。                             |
-  | events | number | 是    | 监听变动的事件集，多个事件通过或(\|)的方式进行集合。<br/>-&nbsp;0x1: IN_ACCESS， 文件被访问。<br/>-&nbsp;0x2: IN_MODIFY，文件内容被修改。<br/>-&nbsp;0x4: IN_ATTRIB，文件元数据被修改。<br/>-&nbsp;0x8: IN_CLOSE_WRITE，文件在打开时进行了写操作，然后被关闭。<br/>-&nbsp;0x10: IN_CLOSE_NOWRITE，文件或目录在打开时未进行写操作，然后被关闭。<br/>-&nbsp;0x20: IN_OPEN，文件或目录被打开。 <br/>-&nbsp;0x40: IN_MOVED_FROM，监听目录中文件被移动走。<br/>-&nbsp;0x80: IN_MOVED_TO，监听目录中文件被移动过来。<br/>-&nbsp;0x100: IN_CREATE，监听目录中文件或子目录被创建。<br/>-&nbsp;0x200: IN_DELETE，监听目录中文件或子目录被删除。<br/>-&nbsp;0x400: IN_DELETE_SELF，监听的目录被删除，删除后监听停止。<br/>-&nbsp;0x800: IN_MOVE_SELF，监听的文化或目录被移动，移动后监听继续。<br/>-&nbsp;0xfff: IN_ALL_EVENTS，监听以上所有事件。|
+  | events | number | 是    | 监听变动的事件集，多个事件通过或(\|)的方式进行集合。<br/>-&nbsp;0x1: IN_ACCESS， 文件被访问。<br/>-&nbsp;0x2: IN_MODIFY，文件内容被修改。<br/>-&nbsp;0x4: IN_ATTRIB，文件元数据被修改。<br/>-&nbsp;0x8: IN_CLOSE_WRITE，文件在打开时进行了写操作，然后被关闭。<br/>-&nbsp;0x10: IN_CLOSE_NOWRITE，文件或目录在打开时未进行写操作，然后被关闭。<br/>-&nbsp;0x20: IN_OPEN，文件或目录被打开。 <br/>-&nbsp;0x40: IN_MOVED_FROM，监听目录中文件被移动走。<br/>-&nbsp;0x80: IN_MOVED_TO，监听目录中文件被移动过来。<br/>-&nbsp;0x100: IN_CREATE，监听目录中文件或子目录被创建。<br/>-&nbsp;0x200: IN_DELETE，监听目录中文件或子目录被删除。<br/>-&nbsp;0x400: IN_DELETE_SELF，监听的目录被删除，删除后监听停止。<br/>-&nbsp;0x800: IN_MOVE_SELF，监听的文件或目录被移动，移动后监听继续。<br/>-&nbsp;0xfff: IN_ALL_EVENTS，监听以上所有事件。|
   | listener   | [WatchEventListener](#watcheventlistener10) | 是    | 监听事件发生后的回调。监听事件每发生一次，回调一次。                             |
 
 **返回值：**
@@ -3548,7 +3548,7 @@ createWatcher(path: string, events: number, listener: WatchEventListener): Watch
 | 名称   | 类型   | 可读   | 可写   | 说明      |
 | ---- | ------ | ---- | ---- | ------- |
 | fileName | string | 是    | 否    | 发生监听事件的文件名。 |
-| event | number | 是    | 否    | 监听变动的事件集，多个事件通过或(\|)的方式进行集合。<br/>-&nbsp;0x1: IN_ACCESS， 文件被访问。<br/>-&nbsp;0x2: IN_MODIFY，文件内容被修改。<br/>-&nbsp;0x4: IN_ATTRIB，文件元数据被修改。<br/>-&nbsp;0x8: IN_CLOSE_WRITE，文件在打开时进行了写操作，然后被关闭。<br/>-&nbsp;0x10: IN_CLOSE_NOWRITE，文件或目录在打开时未进行写操作，然后被关闭。<br/>-&nbsp;0x20: IN_OPEN，文件或目录被打开。 <br/>-&nbsp;0x40: IN_MOVED_FROM，监听目录中文件被移动走。<br/>-&nbsp;0x80: IN_MOVED_TO，监听目录中文件被移动过来。<br/>-&nbsp;0x100: IN_CREATE，监听目录中文件或子目录被创建。<br/>-&nbsp;0x200: IN_DELETE，监听目录中文件或子目录被删除。<br/>-&nbsp;0x400: IN_DELETE_SELF，监听的目录被删除，删除后监听停止。<br/>-&nbsp;0x800: IN_MOVE_SELF，监听的文化或目录被移动，移动后监听继续。<br/>-&nbsp;0xfff: IN_ALL_EVENTS，监听以上所有事件。 |
+| event | number | 是    | 否    | 监听变动的事件集，多个事件通过或(\|)的方式进行集合。<br/>-&nbsp;0x1: IN_ACCESS， 文件被访问。<br/>-&nbsp;0x2: IN_MODIFY，文件内容被修改。<br/>-&nbsp;0x4: IN_ATTRIB，文件元数据被修改。<br/>-&nbsp;0x8: IN_CLOSE_WRITE，文件在打开时进行了写操作，然后被关闭。<br/>-&nbsp;0x10: IN_CLOSE_NOWRITE，文件或目录在打开时未进行写操作，然后被关闭。<br/>-&nbsp;0x20: IN_OPEN，文件或目录被打开。 <br/>-&nbsp;0x40: IN_MOVED_FROM，监听目录中文件被移动走。<br/>-&nbsp;0x80: IN_MOVED_TO，监听目录中文件被移动过来。<br/>-&nbsp;0x100: IN_CREATE，监听目录中文件或子目录被创建。<br/>-&nbsp;0x200: IN_DELETE，监听目录中文件或子目录被删除。<br/>-&nbsp;0x400: IN_DELETE_SELF，监听的目录被删除，删除后监听停止。<br/>-&nbsp;0x800: IN_MOVE_SELF，监听的文件或目录被移动，移动后监听继续。<br/>-&nbsp;0xfff: IN_ALL_EVENTS，监听以上所有事件。 |
 | cookie | number | 是    | 否    | 绑定相关事件的cookie。当前仅支持事件IN_MOVED_FROM与IN_MOVED_TO，同一个文件的移动事件IN_MOVED_FROM和IN_MOVED_TO具有相同的cookie值。 |
 
 ## Progress<sup>11+</sup>

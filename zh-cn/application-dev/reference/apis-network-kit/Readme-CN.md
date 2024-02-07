@@ -13,7 +13,6 @@
   - [VpnExtensionContext](js-apis-inner-application-VpnExtensionContext.md)
   - [@ohos.net.connection (网络连接管理)（系统接口）](js-apis-net-connection-sys.md)
   - [@ohos.net.ethernet (以太网连接管理)（系统接口）](js-apis-net-ethernet-sys.md)
-  - [@ohos.net.http (数据请求)（系统接口）](js-apis-http-sys.md)
   - [@ohos.net.policy (网络策略管理)（系统接口）](js-apis-net-policy-sys.md)
   - [@ohos.net.sharing (网络共享管理)（系统接口）](js-apis-net-sharing-sys.md)
   - [@ohos.net.statistics (流量管理)（系统接口）](js-apis-net-statistics-sys.md)

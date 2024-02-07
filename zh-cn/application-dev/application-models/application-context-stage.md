@@ -275,7 +275,7 @@ struct Page_Context {
 
 ### 创建其他应用或其他Module的Context
 
-基类Context提供创建其他应用或其他Module的Context的方法有[createBundleContext(bundleName: string)](../reference/apis-ability-kit/js-apis-inner-application-context.md#contextcreatebundlecontext)、[createModuleContext(moduleName: string)](../reference/apis-ability-kit/js-apis-inner-application-context.md#contextcreatemodulecontext)和[createModuleContext(bundleName: string, moduleName: string)](../reference/apis-ability-kit/js-apis-inner-application-context.md#contextcreatemodulecontext-1)接口，创建其他应用或者其他Module的Context，从而通过该Context获取相应的资源信息（例如获取其他Module的[获取应用文件路径](#获取应用文件路径)信息）。
+基类Context提供创建其他应用或其他Module的Context的方法有[createBundleContext(bundleName: string)](../reference/apis-ability-kit/js-apis-inner-application-context-sys.md#contextcreatebundlecontext)、[createModuleContext(moduleName: string)](../reference/apis-ability-kit/js-apis-inner-application-context.md#contextcreatemodulecontext)和[createModuleContext(bundleName: string, moduleName: string)](../reference/apis-ability-kit/js-apis-inner-application-context.md#contextcreatemodulecontext-1)接口，创建其他应用或者其他Module的Context，从而通过该Context获取相应的资源信息（例如获取其他Module的[获取应用文件路径](#获取应用文件路径)信息）。
 
 - 调用`createBundleContext(bundleName:string)`方法，创建其他应用的Context信息。
   > **说明：**
