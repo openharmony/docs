@@ -9,11 +9,11 @@
 
 ## 使用EventHub进行数据通信
 
-[EventHub](../reference/apis/js-apis-inner-application-eventHub.md)为UIAbility组件提供了事件机制，使它们能够进行订阅、取消订阅和触发事件等数据通信能力。
+[EventHub](../reference/apis-ability-kit/js-apis-inner-application-eventHub.md)为UIAbility组件提供了事件机制，使它们能够进行订阅、取消订阅和触发事件等数据通信能力。
 
 在[基类Context](application-context-stage.md)中，提供了EventHub对象，可用于在UIAbility组件实例内通信。使用EventHub实现UIAbility与UI之间的数据通信需要先获取EventHub对象，本章节将以此为例进行说明。
 
-1. 在UIAbility中调用[`eventHub.on()`](../reference/apis/js-apis-inner-application-eventHub.md#eventhubon)方法注册一个自定义事件“event1”，[`eventHub.on()`](../reference/apis/js-apis-inner-application-eventHub.md#eventhubon)有如下两种调用方式，使用其中一种即可。
+1. 在UIAbility中调用[`eventHub.on()`](../reference/apis-ability-kit/js-apis-inner-application-eventHub.md#eventhubon)方法注册一个自定义事件“event1”，[`eventHub.on()`](../reference/apis-ability-kit/js-apis-inner-application-eventHub.md#eventhubon)有如下两种调用方式，使用其中一种即可。
 
    ```ts
    import hilog from '@ohos.hilog';
@@ -50,7 +50,7 @@
    }
    ```
 
-2. 在UI中通过[eventHub.emit()](../reference/apis/js-apis-inner-application-eventHub.md#eventhubemit)方法触发该事件，在触发事件的同时，根据需要传入参数信息。
+2. 在UI中通过[eventHub.emit()](../reference/apis-ability-kit/js-apis-inner-application-eventHub.md#eventhubemit)方法触发该事件，在触发事件的同时，根据需要传入参数信息。
 
    ```ts
    import common from '@ohos.app.ability.common';
@@ -165,7 +165,7 @@
    [Example].[Entry].[EntryAbility] 1. [2,"test"]
    ```
    
-4. 在自定义事件“event1”使用完成后，可以根据需要调用[eventHub.off()](../reference/apis/js-apis-inner-application-eventHub.md#eventhuboff)方法取消该事件的订阅。
+4. 在自定义事件“event1”使用完成后，可以根据需要调用[eventHub.off()](../reference/apis-ability-kit/js-apis-inner-application-eventHub.md#eventhuboff)方法取消该事件的订阅。
 
    ```ts
    // context为UIAbility实例的AbilityContext
