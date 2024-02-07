@@ -483,3 +483,8 @@ The widget interacts with the widget provider through the **postCardAction** API
 **Reference**
 
 [Widget Development in the FA Model](../application-models/widget-development-fa.md)
+## Can I create a shortcut entry for an application on the home screen to directly open a specified page?
+
+Applicable to: OpenHarmony SDK 4.0 Release API10
+
+This feature is not supported yet.

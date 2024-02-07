@@ -1,6 +1,5 @@
 # Window Management Development
 
-
 ## How do I obtain the height of the status bar and navigation bar?
 
 Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
@@ -42,7 +41,6 @@ export default class MainAbility extends Ability {
   // Do something.
 }
 ```
-
 
 ## How do I hide the status bar on the top of an application?
 
@@ -118,7 +116,6 @@ In effect, the **isStatusBarLightIcon** and **isNavigationBarLightIcon** attribu
 
 [window.SystemBarProperties](../reference/apis/js-apis-window.md#systembarproperties)
 
-
 ## How do I keep the screen always on?
 
 Applicable to: OpenHarmony 3.2 Beta5 (API version 9) 
@@ -144,14 +141,13 @@ try {
 }
 ```
 
-
 ## How do I listen for window size changes?
 
 Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
 
 **Solution**
 
-Obtain a **Window** instance, and call **on('windowSizeChange')** to listen for window size changes.
+Obtain a **Window** instance, and call **on\('windowSizeChange'\)** to listen for window size changes.
 
 ```
 try {
@@ -166,3 +162,104 @@ try {
 **References**
 
 [window.on\("windowSizeChange"\)](../reference/apis/js-apis-window.md#onwindowsizechange7)
+
+## How do I listen for orientation status changes of the device screen?
+
+Applicable to: OpenHarmony SDK 4.0 Release API 10
+
+**Solution**
+
+Use **display.on** to listen for the orientation status changes.
+
+**References**
+
+[Subscribing to Display Changes](../reference/apis/js-apis-display.md#displayonaddremovechange)
+
+## How do I enable the window to rotate with the device?
+
+Applicable to: OpenHarmony SDK 4.0 Release API 10
+
+**Solution**
+
+- Abilty-level configuration: Set **EntryAbility** to **orientation** in the **module.json5** file. 
+- Dynamic setting: Use **window.setPreferredOrientation** to set the window orientation.
+
+**Example**
+```ts
+import window from '@ohos.window';
+import display from '@ohos.display';
+
+const TAG = 'foo'
+const ORIENTATION: Array<string> = ['Portrait', 'Landscape','Reverse portrait','Reverse landscape']
+
+@Entry
+@Component
+struct ScreenTest {
+  @State rotation: number = 0
+  @State message: string = ORIENTATION[this.rotation]
+
+  aboutToAppear() {
+    this.setOrientation()
+
+    let callback = async () => {
+      let d = await display.getDefaultDisplaySync()
+      this.rotation = d.rotation
+      this.message = ORIENTATION[this.rotation]
+      console.info(TAG, JSON.stringify(d))
+    }
+    try {
+      display.on("change", callback); // Listen for device screen status changes.
+    } catch (exception) {
+      console.error(TAG, 'Failed to register callback. Code: ' + JSON.stringify(exception));
+    }
+  }
+
+  setOrientation() {
+    try {
+      window.getLastWindow(getContext(this), (err, data) => { // Obtain a Window instance.
+        if (err.code) {
+          console.error(TAG, 'Failed to obtain the top window. Cause: ' + JSON.stringify(err));
+          return;
+        }
+        let windowClass = data;
+        console.info(TAG, 'Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
+
+        let orientation = window.Orientation.AUTO_ROTATION; // Set the window orientation to AUTO_ROTATION.
+        try {
+          windowClass.setPreferredOrientation(orientation, (err) => {
+            if (err.code) {
+              console.error(TAG, 'Failed to set window orientation. Cause: ' + JSON.stringify(err));
+              return;
+            }
+            console.info(TAG, 'Succeeded in setting window orientation.');
+          });
+        } catch (exception) {
+          console.error(TAG, 'Failed to set window orientation. Cause: ' + JSON.stringify(exception));
+        }
+        ;
+      });
+    } catch (exception) {
+      console.error(TAG, 'Failed to obtain the top window. Cause: ' + JSON.stringify(exception));
+    }
+    ;
+  }
+
+  build() {
+    Row() {
+      Column() {
+        Text(`${this.rotation}`).fontSize(25)
+        Text(`${this.message}`).fontSize(25)
+      }
+      .width("100%")
+    }
+    .height("100%")
+  }
+}
+```
+**References**
+
+[Setting the Window Orientation](../reference/apis/js-apis-window.md#setpreferredorientation9) 
+
+[Subscribing to Display Changes](../reference/apis/js-apis-display.md#displayonaddremovechange)
+
+<!--no_check-->
