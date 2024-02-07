@@ -42,10 +42,10 @@ import cloudExtension from '@ohos.data.cloudExtension';
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Server
 
-| 名称    | 类型   | 必填 | 说明           |
-| ------- | ------ | ---- | -------------- |
-| assetId | string | 是   | 资产ID。       |
-| hash    | string | 是   | 资产的哈希值。 |
+| 名称    | 类型   | 必填 | 说明                                 |
+| ------- | ------ | ---- | ------------------------------------ |
+| assetId | string | 是   | 资产ID。                             |
+| hash    | string | 是   | 资产的修改时间和大小转化成的哈希值。 |
 
 ## CloudAssets
 
@@ -85,7 +85,7 @@ import cloudExtension from '@ohos.data.cloudExtension';
 
 ## ExtensionValue
 
-扩展值定义。
+当前数据记录的扩展信息。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Server
 
@@ -455,9 +455,9 @@ generateId(count: number): Promise&lt;Result&lt;Array&lt;string&gt;&gt;&gt;
 
 **返回值：**
 
-| 类型                                                     | 说明                        |
-| -------------------------------------------------------- | --------------------------- |
-| Promise&lt;[Result](#resultt)&lt;Array&lt;string&gt;&gt; | Promise对象，返回生成的ID。 |
+| 类型                                                     | 说明                            |
+| -------------------------------------------------------- | ------------------------------- |
+| Promise&lt;[Result](#resultt)&lt;Array&lt;string&gt;&gt; | Promise对象，返回生成的ID数组。 |
 
 **示例：**
 
@@ -491,13 +491,13 @@ update(table: string, values: Array&lt;Record&lt;string, CloudType>>, extensions
 | ---------- | ------------------------------------------------------------ | ---- | ---------------------- |
 | table      | string                                                       | 是   | 表名。 |
 | values     | Array&lt;Record&lt;string, [CloudType](#cloudtype)&gt;&gt; | 是   | 表示要插入的数据。     |
-| extensions | Array&lt;Record&lt;string, [CloudType](#cloudtype)&gt;&gt; | 是   | 表示扩展值。           |
+| extensions | Array&lt;Record&lt;string, [CloudType](#cloudtype)&gt;&gt; | 是   | 表示当前数据的扩展信息。 |
 
 **返回值：**
 
-| 类型                                                         | 说明                        |
-| ------------------------------------------------------------ | --------------------------- |
-| Promise&lt;Array&lt;[Result](#resultt)&lt;Record&lt;string,  [CloudType](#cloudtype)&gt;&gt;&gt;&gt; | Promise对象，返回更新结果。 |
+| 类型                                                         | 说明                                    |
+| ------------------------------------------------------------ | --------------------------------------- |
+| Promise&lt;Array&lt;[Result](#resultt)&lt;Record&lt;string,  [CloudType](#cloudtype)&gt;&gt;&gt;&gt; | Promise对象，返回更新的数据和更新结果。 |
 
 **示例：**
 
@@ -525,17 +525,17 @@ insert(table: string, values: Array<Record<string, CloudType>>, extensions: Arra
 
 **参数：**
 
-| 参数名     | 类型                                                      | 必填 | 说明               |
-| ---------- | --------------------------------------------------------- | ---- | ------------------ |
-| table      | string                                                    | 是   | 表名。             |
-| values     | Array&lt;Record&lt;string, [CloudType](#cloudtype)&gt;&gt; | 是   | 表示要插入的数据。 |
-| extensions | Array&lt;Record&lt;string, [CloudType](#cloudtype)&gt;&gt; | 是   | 表示扩展值。       |
+| 参数名     | 类型                                                       | 必填 | 说明                     |
+| ---------- | ---------------------------------------------------------- | ---- | ------------------------ |
+| table      | string                                                     | 是   | 表名。                   |
+| values     | Array&lt;Record&lt;string, [CloudType](#cloudtype)&gt;&gt; | 是   | 表示要插入的数据。       |
+| extensions | Array&lt;Record&lt;string, [CloudType](#cloudtype)&gt;&gt; | 是   | 表示当前数据的扩展信息。 |
 
 **返回值：**
 
-| 类型                                                         | 说明                        |
-| ------------------------------------------------------------ | --------------------------- |
-| Promise&lt;Array&lt;[Result](#resultt)&lt;Record&lt;string, [CloudType](#cloudtype)&gt;&gt;&gt;&gt; | Promise对象，返回插入结果。 |
+| 类型                                                         | 说明                                  |
+| ------------------------------------------------------------ | ------------------------------------- |
+| Promise&lt;Array&lt;[Result](#resultt)&lt;Record&lt;string, [CloudType](#cloudtype)&gt;&gt;&gt;&gt; | Promise对象，返回插入数据和插入结果。 |
 
 **示例：**
 
@@ -563,16 +563,16 @@ delete(table: string, extensions: Array&lt;Record&lt;string, CloudType>> ): Prom
 
 **参数：**
 
-| 参数名     | 类型                                            | 必填 | 说明         |
-| ---------- | ----------------------------------------------- | ---- | ------------ |
-| table      | string                                          | 是   | 表名。       |
-| extensions | Array&lt;Record&lt;string,[CloudType](#cloudtype)&gt;&gt; | 是   | 表示扩展值。 |
+| 参数名     | 类型                                                      | 必填 | 说明                     |
+| ---------- | --------------------------------------------------------- | ---- | ------------------------ |
+| table      | string                                                    | 是   | 表名。                   |
+| extensions | Array&lt;Record&lt;string,[CloudType](#cloudtype)&gt;&gt; | 是   | 表示当前数据的扩展信息。 |
 
 **返回值：**
 
-| 类型                                                         | 说明                        |
-| ------------------------------------------------------------ | --------------------------- |
-| Promise&lt;Array&lt;[Result](#resultt)&lt;Record&lt;string, [CloudType](#cloudtype)&gt;&gt;&gt;&gt; | Promise对象，返回删除结果。 |
+| 类型                                                         | 说明                                      |
+| ------------------------------------------------------------ | ----------------------------------------- |
+| Promise&lt;Array&lt;[Result](#resultt)&lt;Record&lt;string, [CloudType](#cloudtype)&gt;&gt;&gt;&gt; | Promise对象，返回被删除的数据和删除结果。 |
 
 **示例：**
 
@@ -603,15 +603,15 @@ query(table: string, fields: Array&lt;string&gt;, queryCount: number, queryCurso
 | 参数名      | 类型          | 必填 | 说明                     |
 | ----------- | ------------- | ---- | ------------------------ |
 | table       | string        | 是   | 表名。                   |
-| fields      | Array&lt;string&gt; | 是   | 表示扩展值。             |
+| fields      | Array&lt;string&gt; | 是   | 表示字段名。          |
 | queryCount  | number        | 是   | 表示要查询的数据记录数。 |
 | queryCursor | string        | 是   | 表示要查询的游标。       |
 
 **返回值：**
 
-| 类型                                                         | 说明                        |
-| ------------------------------------------------------------ | --------------------------- |
-| Promise&lt;[Result](#resultt)&lt;[CloudData](#clouddata)&gt;&gt; | Promise对象，返回查询结果。 |
+| 类型                                                         | 说明                                    |
+| ------------------------------------------------------------ | --------------------------------------- |
+| Promise&lt;[Result](#resultt)&lt;[CloudData](#clouddata)&gt;&gt; | Promise对象，返回被查询数据和查询结果。 |
 
 **示例：**
 
@@ -646,9 +646,9 @@ lock(): Promise&lt;Result&lt;LockInfo&gt;&gt;
 
 **返回值：**
 
-| 类型                                                         | 说明                          |
-| ------------------------------------------------------------ | ----------------------------- |
-| Promise&lt;[Result](#resultt)&lt;[LockInfo](#lockinfo)&gt;&gt; | Promise对象，返回加锁的信息。 |
+| 类型                                                         | 说明                                                |
+| ------------------------------------------------------------ | --------------------------------------------------- |
+| Promise&lt;[Result](#resultt)&lt;[LockInfo](#lockinfo)&gt;&gt; | Promise对象，返回加锁的信息，包含加锁时长和锁的ID。 |
 
 **示例：**
 
@@ -690,9 +690,9 @@ heartbeat(lockId: number): Promise&lt;Result&lt;LockInfo&gt;&gt;
 
 **返回值：**
 
-| 类型                                                         | 说明                        |
-| ------------------------------------------------------------ | --------------------------- |
-| Promise&lt;[Result](#resultt)&lt;[LockInfo](#lockinfo)&gt;&gt; | Promise对象，返回锁的信息。 |
+| 类型                                                         | 说明                                              |
+| ------------------------------------------------------------ | ------------------------------------------------- |
+| Promise&lt;[Result](#resultt)&lt;[LockInfo](#lockinfo)&gt;&gt; | Promise对象，返回锁的信息，包含加锁时长和锁的ID。 |
 
 **示例：**
 
@@ -734,9 +734,9 @@ unlock(lockId: number): Promise&lt;Result&lt;boolean&gt;&gt;;
 
 **返回值：**
 
-| 类型                                             | 说明                        |
-| ------------------------------------------------ | --------------------------- |
-| Promise&lt;[Result](#resultt)&lt;boolean&gt;&gt; | Promise对象，返回解锁结果。 |
+| 类型                                             | 说明                                                         |
+| ------------------------------------------------ | ------------------------------------------------------------ |
+| Promise&lt;[Result](#resultt)&lt;boolean&gt;&gt; | Promise对象，返回解锁结果，true表示解锁成功，false表示解锁失败。 |
 
 **示例：**
 
@@ -896,9 +896,9 @@ subscribe(subInfo: Record&lt;string, Array&lt;Database&gt;&gt;, expirationTime: 
 
 **返回值：**
 
-| 类型                                                         | 说明                          |
-| ------------------------------------------------------------ | ----------------------------- |
-| Promise&lt;[Result](#resultt)&lt;[SubscribeInfo](#subscribeinfo)&gt;&gt; | Promise对象，返回订阅的结果。 |
+| 类型                                                         | 说明                                                        |
+| ------------------------------------------------------------ | ----------------------------------------------------------- |
+| Promise&lt;[Result](#resultt)&lt;[SubscribeInfo](#subscribeinfo)&gt;&gt; | Promise对象，返回订阅的结果，包含订阅的过期时间和订阅信息。 |
 
 **示例：**
 
@@ -942,9 +942,9 @@ unsubscribe(unsubscribeInfo: Record&lt;string, Array&lt;string&gt;&gt;): Promise
 
 **返回值：**
 
-| 类型                  | 说明                              |
-| --------------------- | --------------------------------- |
-| Promise&lt;number&gt; | Promise对象，返回取消订阅的结果。 |
+| 类型                  | 说明                                    |
+| --------------------- | --------------------------------------- |
+| Promise&lt;number&gt; | Promise对象，返回取消订阅结果的错误码。 |
 
 ```ts
 export default class MyCloudService implements cloudExtension.CloudService {
@@ -1000,8 +1000,7 @@ export default class MyCloudService implements cloudExtension.CloudService {
 ### connectAssetLoader
 
 connectAssetLoader(bundleName: string, database: Database): Promise&lt;rpc.RemoteObject&gt;
-
-连接资产加载器。
+连接进行资产上传和下载的对象。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Server
 
@@ -1089,18 +1088,18 @@ download(table: string, gid: string, prefix: string, assets: Array&lt;CloudAsset
 
 **参数：**
 
-| 参数名 | 类型                                     | 必填 | 说明                                 |
-| ------ | ---------------------------------------- | ---- | ------------------------------------ |
-| table  | string                                   | 是   | 表名。                               |
-| gid    | string                                   | 是   | 表示 GID。数据上云后生成的唯一标记。 |
-| prefix | string                                   | 是   | 表示前缀信息。                       |
-| assets | Array&lt;[CloudAsset](#cloudasset)&gt; | 是   | 表示需要下载的资产。                 |
+| 参数名 | 类型                                   | 必填 | 说明                       |
+| ------ | -------------------------------------- | ---- | -------------------------- |
+| table  | string                                 | 是   | 表名。                     |
+| gid    | string                                 | 是   | 数据上云后生成的唯一标记。 |
+| prefix | string                                 | 是   | 表示前缀信息。             |
+| assets | Array&lt;[CloudAsset](#cloudasset)&gt; | 是   | 表示需要下载的资产。       |
 
 **返回值：**
 
-| 类型                                                         | 说明                            |
-| ------------------------------------------------------------ | ------------------------------- |
-| Promise&lt;Array&lt;[Result](resultt)&lt;[CloudAsset](#cloudasset)&gt;&gt;&gt; | Promise对象，返回资产下载结果。 |
+| 类型                                                         | 说明                                                    |
+| ------------------------------------------------------------ | ------------------------------------------------------- |
+| Promise&lt;Array&lt;[Result](resultt)&lt;[CloudAsset](#cloudasset)&gt;&gt;&gt; | Promise对象，返回资产下载结果，包含资产ID和资产哈希值。 |
 
 **示例：**
 
@@ -1133,9 +1132,9 @@ upload(table: string, gid: string, assets: Array&lt;CloudAsset&gt;): Promise&lt;
 
 **返回值：**
 
-| 类型                                                         | 说明                              |
-| ------------------------------------------------------------ | --------------------------------- |
-| Promise&lt;Array&lt;[Result](#resultt)&lt;[CloudAsset](#cloudasset)&gt;&gt;&gt; | Promise对象，返回资产上云的结果。 |
+| 类型                                                         | 说明                                                      |
+| ------------------------------------------------------------ | --------------------------------------------------------- |
+| Promise&lt;Array&lt;[Result](#resultt)&lt;[CloudAsset](#cloudasset)&gt;&gt;&gt; | Promise对象，返回资产上云的结果，包含资产ID和资产哈希值。 |
 
 **示例：**
 
