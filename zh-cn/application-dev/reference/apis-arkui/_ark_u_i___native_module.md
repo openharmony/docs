@@ -15,10 +15,10 @@
 
 | 名称                                       | 描述                        |
 | ---------------------------------------- | ------------------------- |
-| [native_event.h](native__event_8h.md)    | 提供ArkUI在Native侧的事件类型定义集合。 |
-| [native_interface.h](native__interface_8h.md) | 提供NativeModule接口的统一入口函数。  |
-| [native_node.h](native__node_8h.md)      | 提供NativeNode接口的类型定义。      |
-| [native_type.h](native__type_8h.md)      | 提供NativeModule公共的类型定义。    |
+| [native_event.h](native__event_8h.md)    | 提供ArkUI在Native侧的事件类型定义集合。<br>**库：** libace_ndk.z.so |
+| [native_interface.h](native__interface_8h.md) | 提供NativeModule接口的统一入口函数。<br>**库：** libace_ndk.z.so  |
+| [native_node.h](native__node_8h.md)      | 提供NativeNode接口的类型定义。<br>**库：** libace_ndk.z.so      |
+| [native_type.h](native__type_8h.md)      | 提供NativeModule公共的类型定义。<br>**库：** libace_ndk.z.so    |
 
 
 ### 结构体
@@ -69,10 +69,10 @@
 | [ArkUI_CancelButtonStyle](#arkui_cancelbuttonstyle) { ARKUI_CANCELBUTTON_STYLE_CONSTANT = 0, ARKUI_CANCELBUTTON_STYLE_INVISIBLE, ARKUI_CANCELBUTTON_STYLE_INPUT } | 定义清除按钮样式枚举值。                           |
 | [ArkUI_XComponentType](#arkui_xcomponenttype) { ARKUI_XCOMPONENT_TYPE_SURFACE = 0, ARKUI_XCOMPONENT_TYPE_TEXTURE = 2 } | 定义XComponent类型枚举值。                     |
 | [ArkUI_ProgressType](#arkui_progresstype) {<br/>ARKUI_PROGRESS_LINEAR = 0, ARKUI_PROGRESS_RING, ARKUI_PROGRESS_ECLIPSE, ARKUI_PROGRESS_SCALERING,<br/>ARKUI_PROGRESS_CAPSULE<br/>} | 定义进度条类型枚举值。                            |
-| [ArkUI_TextDecorationType](#arkui_textdecorationtype) { ARKUI_TEXT_DECORATION_TYPE_NONE = 0, ARKUI_TEXT_DECORATION_TYPE_UNDERLINE, ARKUI_TEXT_DECORATION_TYPE_OVERLINE, ARKUI_TEXT_DECORATION_TYPE_LINE_THROUGH } |                                        |
-| [ArkUI_TextCase](#arkui_textcase) { ARKUI_TEXT_CASE_NORMAL = 0, ARKUI_TEXT_CASE_LOWER, ARKUI_TEXT_CASE_UPPER } |                                        |
-| [ArkUI_CopyOptions](#arkui_copyoptions) { ARKUI_COPY_OPTIONS_NONE = 0, ARKUI_COPY_OPTIONS_IN_APP, ARKUI_COPY_OPTIONS_LOCAL_DEVICE, ARKUI_COPY_OPTIONS_CROSS_DEVICE } |                                        |
-| [ArkUI_ShadowType](#arkui_shadowtype) { ARKUI_SHADOW_TYPE_COLOR = 0, ARKUI_SHADOW_TYPE_BLUR } |                                        |
+| [ArkUI_TextDecorationType](#arkui_textdecorationtype) { ARKUI_TEXT_DECORATION_TYPE_NONE = 0, ARKUI_TEXT_DECORATION_TYPE_UNDERLINE, ARKUI_TEXT_DECORATION_TYPE_OVERLINE, ARKUI_TEXT_DECORATION_TYPE_LINE_THROUGH } |   定义文本装饰线样式枚举值。 |                                     
+| [ArkUI_TextCase](#arkui_textcase) { ARKUI_TEXT_CASE_NORMAL = 0, ARKUI_TEXT_CASE_LOWER, ARKUI_TEXT_CASE_UPPER } |  定义文本大小写样式枚举值。       |
+| [ArkUI_CopyOptions](#arkui_copyoptions) { ARKUI_COPY_OPTIONS_NONE = 0, ARKUI_COPY_OPTIONS_IN_APP, ARKUI_COPY_OPTIONS_LOCAL_DEVICE, ARKUI_COPY_OPTIONS_CROSS_DEVICE } |          定义文本内容是否可复制粘贴枚举值。|
+| [ArkUI_ShadowType](#arkui_shadowtype) { ARKUI_SHADOW_TYPE_COLOR = 0, ARKUI_SHADOW_TYPE_BLUR } |    定义阴影类型枚举值。              |
 | [ArkUI_TextPickerRangeType](#arkui_textpickerrangetype) { ARKUI_TEXTPICKER_RANGETYPE_SINGLE = 0, ARKUI_TEXTPICKER_RANGETYPE_MULTI, ARKUI_TEXTPICKER_RANGETYPE_RANGE_C0NTENT, ARKUI_TEXTPICKER_RANGETYPE_CASCADE_RANGE_CONTENT } | 定义滑动选择文本选择器输入类型。                       |
 | [ArkUI_EdgeEffect](#arkui_edgeeffect) { ARKUI_EDGE_EFFECT_SPRING = 0, ARKUI_EDGE_EFFECT_FADE, ARKUI_EDGE_EFFECT_NONE } | 定义边缘滑动效果枚举值。                           |
 | [ArkUI_ScrollSnapAlign](#arkui_scrollsnapalign) { ARKUI_SCROLL_SNAP_ALIGN_NONE = 0, ARKUI_SCROLL_SNAP_ALIGN_START, ARKUI_SCROLL_SNAP_ALIGN_CENTER, ARKUI_SCROLL_SNAP_ALIGN_END } | 定义列表项滚动结束对齐效果枚举值。                      |
