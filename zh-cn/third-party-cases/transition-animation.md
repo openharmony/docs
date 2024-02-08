@@ -950,7 +950,7 @@ struct SharePage {
 
 - [图形变换](../application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-transformation.md)
 
-- [页面间转场](../application-dev/reference/apis-arkui/arkui-ts/ts-page-transition-animation.md）
+- [页面间转场](../application-dev/reference/apis-arkui/arkui-ts/ts-page-transition-animation.md)
 
 - [组件内转场](../application-dev/ui/arkts-shared-element-transition.md)
 
