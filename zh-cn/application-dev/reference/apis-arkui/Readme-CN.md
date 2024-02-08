@@ -297,17 +297,35 @@
     - [点击控制](arkui-ts/ts-universal-attributes-click.md)
 - C API
   - 模块
+    - [ArkUI_NativeModule](_ark_u_i___native_module.md)
     - [Native XComponent](_o_h___native_x_component.md)
-  - 头文件
-    - [native_interface_xcomponent.h](native__interface__xcomponent_8h.md)
-    - [native_xcomponent_key_event.h](native__xcomponent__key__event_8h.md)
-  - 结构体
-    - [OH_NativeXComponent_Callback](_o_h___native_x_component___callback.md)
-    - [OH_NativeXComponent_ExpectedRateRange](_o_h___native_x_component___expected_rate_range.md)
-    - [OH_NativeXComponent_MouseEvent](_o_h___native_x_component___mouse_event.md)
-    - [OH_NativeXComponent_MouseEvent_Callback](_o_h___native_x_component___mouse_event___callback.md)
-    - [OH_NativeXComponent_TouchEvent](_o_h___native_x_component___touch_event.md)
-    - [OH_NativeXComponent_TouchPoint](_o_h___native_x_component___touch_point.md)
+  - 头文件和结构体
+    - 头文件
+      - [native_event.h](native__event_8h.md)
+      - [native_interface.h](native__interface_8h.md)
+      - [native_interface_xcomponent.h](native__interface__xcomponent_8h.md)
+      - [native_node.h](native__node_8h.md)
+      - [native_type.h](native__type_8h.md)
+      - [native_xcomponent_key_event.h](native__xcomponent__key__event_8h.md)
+    - 结构体
+      - [ArkUI_AnyNativeAPI](_ark_u_i___any_native_a_p_i.md)
+      - [ArkUI_AttributeItem](_ark_u_i___attribute_item.md)
+      - [ArkUI_NativeNodeAPI_1](_ark_u_i___native_node_a_p_i__1.md)
+      - [ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)
+      - [ArkUI_NodeEvent](_ark_u_i___node_event.md)
+      - [ArkUI_NodeHistoricalTouchPoint](_ark_u_i___node_historical_touch_point.md)
+      - [ArkUI_NodeTouchEvent](_ark_u_i___node_touch_event.md)
+      - [ArkUI_NodeTouchPoint](_ark_u_i___node_touch_point.md)
+      - [ArkUI_NumberValue](union_ark_u_i___number_value.md)
+      - [ArkUI_StringAsyncEvent](_ark_u_i___string_async_event.md)
+      - [ARKUI_TextPickerCascadeRangeContent](_a_r_k_u_i___text_picker_cascade_range_content.md)
+      - [ARKUI_TextPickerRangeContent](_a_r_k_u_i___text_picker_range_content.md)
+      - [OH_NativeXComponent_Callback](_o_h___native_x_component___callback.md)
+      - [OH_NativeXComponent_ExpectedRateRange](_o_h___native_x_component___expected_rate_range.md)
+      - [OH_NativeXComponent_MouseEvent](_o_h___native_x_component___mouse_event.md)
+      - [OH_NativeXComponent_MouseEvent_Callback](_o_h___native_x_component___mouse_event___callback.md)
+      - [OH_NativeXComponent_TouchEvent](_o_h___native_x_component___touch_event.md)
+      - [OH_NativeXComponent_TouchPoint](_o_h___native_x_component___touch_point.md)
 - 错误码
   - UI界面
     - [动画错误码](errorcode-animator.md)
