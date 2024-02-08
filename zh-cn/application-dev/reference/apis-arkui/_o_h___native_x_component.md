@@ -17,7 +17,7 @@
 | 名称                                       | 描述                                       |
 | ---------------------------------------- | ---------------------------------------- |
 | [native_interface_xcomponent.h](native__interface__xcomponent_8h.md) | 声明用于访问Native&nbsp;XComponent的API。<br/>**引用文件：** &lt;ace/xcomponent/native_interface_xcomponent.h&gt;<br>**库：** libace_ndk.z.so |
-| [native_xcomponent_key_event.h](native__xcomponent__key__event_8h.md) | 声明用于访问Native&nbsp;XComponent键盘事件所使用到的枚举类型。<br/>**引用文件：** &lt;ace/xcomponent/native_xcomponent_key_event.h&gt;<br>**库：**libace_ndk.z.so |
+| [native_xcomponent_key_event.h](native__xcomponent__key__event_8h.md) | 声明用于访问Native&nbsp;XComponent键盘事件所使用到的枚举类型。<br/>**引用文件：** &lt;ace/xcomponent/native_xcomponent_key_event.h&gt;<br>**库：** libace_ndk.z.so |
 
 
 ### 结构体
@@ -82,7 +82,8 @@
 | [OH_NativeXComponent_SetExpectedFrameRateRange](#oh_nativexcomponent_setexpectedframeraterange) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, [OH_NativeXComponent_ExpectedRateRange](_o_h___native_x_component___expected_rate_range.md) \*range) | 设置期望帧率范围。                                           |
 | [OH_NativeXComponent_RegisterOnFrameCallback](#oh_nativexcomponent_registeronframecallback) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, void(\*callback)([OH_NativeXComponent](#oh_nativexcomponent) \*component, uint64_t timestamp, uint64_t targetTimestamp)) | 为此OH_NativeXComponent实例注册显示更新回调，并使能每帧回调此函数。 |
 | [OH_NativeXComponent_UnregisterOnFrameCallback](#oh_nativexcomponent_unregisteronframecallback) ([OH_NativeXComponent](#oh_nativexcomponent) \*component) | 为此OH_NativeXComponent实例取消注册回调函数，并关闭每帧回调此函数。 |
-
+| int32_t [OH_NativeXComponent_AttachNativeRootNode](#oh_nativexcomponent_attachnativerootnode) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, [ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) root) | 将通过ArkUI的native接口创建出来的UI组件挂载到当前XComponent上。  | 
+| int32_t [OH_NativeXComponent_DetachNativeRootNode](#oh_nativexcomponent_detachnativerootnode) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, [ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) root) | 将ArkUI的native组件从当前XComponent上卸载.  | 
 
 ### 变量
 
@@ -705,6 +706,56 @@ enum OH_NativeXComponent_TouchPointToolType
 
 ## 函数说明
 
+### OH_NativeXComponent_AttachNativeRootNode()
+
+```
+int32_t OH_NativeXComponent_AttachNativeRootNode (OH_NativeXComponent * component, ArkUI_NodeHandle root )
+```
+**描述：**
+
+将通过ArkUI的native接口创建出来的UI组件挂载到当前XComponent上。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| component | 表示指向OH_NativeXComponent实例的指针。  | 
+| root | 指向Native接口创建的组件实例的指针。  | 
+
+**返回：**
+
+0：成功。 
+
+401：参数异常。
+
+
+### OH_NativeXComponent_DetachNativeRootNode()
+
+```
+int32_t OH_NativeXComponent_DetachNativeRootNode (OH_NativeXComponent * component, ArkUI_NodeHandle root )
+```
+**描述：**
+
+将ArkUI的native组件从当前XComponent上卸载.
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| component | 表示指向OH_NativeXComponent实例的指针。  | 
+| root | 指向Native接口创建的组件实例的指针。  | 
+
+**返回：**
+
+0：成功。 
+
+401：参数异常。
+
+
 
 ### OH_NativeXComponent_GetKeyEvent()
 
@@ -1214,7 +1265,7 @@ int32_t OH_NativeXComponent_RegisterMouseEventCallback (OH_NativeXComponent * co
 ```
 int32_t OH_NativeXComponent_RegisterOnFrameCallback (OH_NativeXComponent* component, void (*callback)(OH_NativeXComponent *component, uint64_t timestamp, uint64_t targetTimestamp))
 ```
-**描述**
+**描述：**
 
 为此OH_NativeXComponent实例注册显示更新回调，并使能每帧回调此函数。
 
@@ -1239,7 +1290,7 @@ int32_t OH_NativeXComponent_RegisterOnFrameCallback (OH_NativeXComponent* compon
 ```
 int32_t OH_NativeXComponent_SetExpectedFrameRateRange (OH_NativeXComponent * component, OH_NativeXComponent_ExpectedRateRange * range )
 ```
-**描述**
+**描述：**
 
 设置期望帧率范围。
 
@@ -1264,7 +1315,7 @@ int32_t OH_NativeXComponent_SetExpectedFrameRateRange (OH_NativeXComponent * com
 ```
 int32_t OH_NativeXComponent_UnregisterOnFrameCallback (OH_NativeXComponent * component)
 ```
-**描述**
+**描述：**
 
 为此OH_NativeXComponent实例取消注册回调函数，并关闭每帧回调此函数。
 
