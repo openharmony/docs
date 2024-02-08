@@ -16,7 +16,7 @@ FileShare提供了支持基于URI的文件及目录授权及权限持久化、�
 | OH_FileShare_ReleasePolicyErrorResult(FileShare_PolicyErrorResult *errorResult, unsigned int resultNum) | 释放FileShare_PolicyErrorResult内存 |
 ## 开发步骤
 
-以下步骤描述了如果使用`FileShare`提供的Native API接口
+以下步骤描述了如何使用`FileShare`提供的Native API接口
 
 **添加动态链接库**
 
@@ -31,11 +31,11 @@ liboh_file_share.so
 ```c++
 #include "filemanagement/fileshare/oh_file_share.h"
 #include "filemanagement/common/errorcode.h"
+#include <iostream>
+#include <string.h>
 ```
 1. **创建FileShare_PolicyInfo实例,调用OH_FileShare_PersistPermission接口，设置URI的持久化授权**。
     ```c++
-    #include <iostream>
-    #include <string.h>
     static const uint32_t POLICY_NUM = 2;
     char strTestPath1[] = "file://com.example.fileshare/data/storage/el2/base/files/test1.txt";
     char strTestPath2[] = "file://com.example.fileshare/data/storage/el2/base/files/test2.txt";

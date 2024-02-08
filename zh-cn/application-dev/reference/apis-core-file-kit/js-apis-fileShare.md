@@ -257,6 +257,9 @@ activatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
               console.log("error code : " + JSON.stringify(err.data[i].code));
               console.log("error uri : " + JSON.stringify(err.data[i].uri));
               console.log("error reason : " + JSON.stringify(err.data[i].message));
+              if(err.data[i].code == fileshare.PolicyErrorCode.PERMISSION_NOT_PERSISTED){
+                await fileshare.persistPermission(policies);
+              }
             }
           }
       });
@@ -388,6 +391,14 @@ checkPersistentPermission(policies: Array&lt;PolicyInfo>): Promise&lt;Array&lt;b
         let result: Array<boolean> = data;
         for (let i = 0; i < result.length; i++) {
           console.log("checkPersistentPermission result: " + JSON.stringify(result[i]));
+          if(!result[i]){
+            let info: fileShare.PolicyInfo = {
+              uri: policies[i].uri, 
+              operationMode: policies[i].operationMode,
+            };
+            let policy : Array<fileShare.PolicyInfo> = [info];
+            await fileshare.persistPermission(policy);
+          }
         }
       }).catch((err: BusinessError<Array<fileShare.PolicyErrorResult>>) => {
         console.info("checkPersistentPermission failed with error message: " + err.message + ", error code: " + err.code);
