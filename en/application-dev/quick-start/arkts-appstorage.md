@@ -35,9 +35,9 @@ By decorating a variable with \@StorageProp(key), a one-way data synchronization
 | \@StorageProp Decorator| Description                                                        |
 | ----------------------- | ------------------------------------------------------------ |
 | Decorator parameters             | **key**: constant string, mandatory (the string must be quoted)                 |
-| Allowed variable types         | Object, class, string, number, Boolean, enum, and array of these types. For details about the scenarios of nested objects, see [Observed Changes and Behavior](#observed-changes-and-behavior).<br>The type must be specified. Whenever possible, use the same type as that of the corresponding attribute in AppStorage. Otherwise, implicit type conversion occurs, which may cause application behavior exceptions. **any** is not supported. The **undefined** and **null** values are not allowed.|
-| Synchronization type              | One-way: from the attribute in AppStorage to the component variable.<br>The component variable can be changed locally, but an update from AppStorage will overwrite local changes.|
-| Initial value for the decorated variable         | Mandatory. It is used as the default value for initialization if the corresponding attribute does not exist in AppStorage.|
+| Allowed variable types     | Object, class, string, number, Boolean, enum, and array of these types. For details about the scenarios of nested objects, see [Observed Changes and Behavior](#observed-changes-and-behavior).<br>The type must be specified. Whenever possible, use the same type as that of the corresponding attribute in AppStorage. Otherwise, implicit type conversion occurs, which may cause application behavior exceptions. **any** is not supported. The **undefined** and **null** values are not allowed.|
+| Synchronization type               | One-way: from the attribute in AppStorage to the component variable.<br>The component variable can be changed locally, but an update from AppStorage will overwrite local changes.|
+| Initial value for the decorated variable     | Mandatory. It is used as the default value for initialization if the corresponding attribute does not exist in AppStorage.|
 
 
 ### Variable Transfer/Access Rules
@@ -176,21 +176,25 @@ prop.get() // == 49
 ```ts
 AppStorage.setOrCreate('PropA', 47);
 let storage = new LocalStorage();
-storage.setOrCreate('PropA',48);
+storage.setOrCreate('PropA', 48);
 
 @Entry(storage)
 @Component
 struct CompA {
-  @StorageLink('PropA') storLink: number = 1;
-  @LocalStorageLink('PropA') localStorLink: number = 1;
+  @StorageLink('PropA') storageLink: number = 1;
+  @LocalStorageLink('PropA') localStorageLink: number = 1;
 
   build() {
     Column({ space: 20 }) {
-      Text(`From AppStorage ${this.storLink}`)
-        .onClick(() => this.storLink += 1)
+      Text(`From AppStorage ${this.storageLink}`)
+        .onClick(() => {
+          this.storageLink += 1
+        })
 
-      Text(`From LocalStorage ${this.localStorLink}`)
-        .onClick(() => this.localStorLink += 1)
+      Text(`From LocalStorage ${this.localStorageLink}`)
+        .onClick(() => {
+          this.localStorageLink += 1
+        })
     }
   }
 }
@@ -282,6 +286,10 @@ export struct TapImage {
 ```
 
 Compared with the use of @StorageLink, the use of **emit** implements event notification with less overhead, by allowing you to subscribe to an event and receive an event callback.
+
+> **NOTE**
+>
+> The **emit** API is not available in DevEco Studio Previewer.
 
 
 ```ts
@@ -390,7 +398,7 @@ export struct TapImage {
 
 The preceding notification logic is simple. It can be simplified into a ternary expression as follows:
 
-```
+```ts
 // xxx.ets
 class ViewData {
   title: string;
