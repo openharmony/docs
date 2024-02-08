@@ -47,7 +47,8 @@
 ```
 int32_t ArkUI_NodeTouchPoint::contactAreaHeight
 ```
-**描述**
+**描述：**
+
 触摸区域的高度。
 
 
@@ -56,7 +57,8 @@ int32_t ArkUI_NodeTouchPoint::contactAreaHeight
 ```
 int32_t ArkUI_NodeTouchPoint::contactAreaWidth
 ```
-**描述**
+**描述：**
+
 触摸区域的宽度。
 
 
@@ -65,7 +67,8 @@ int32_t ArkUI_NodeTouchPoint::contactAreaWidth
 ```
 int32_t ArkUI_NodeTouchPoint::id
 ```
-**描述**
+**描述：**
+
 触控事件标识。
 
 
@@ -74,7 +77,8 @@ int32_t ArkUI_NodeTouchPoint::id
 ```
 int32_t ArkUI_NodeTouchPoint::nodeX
 ```
-**描述**
+**描述：**
+
 触摸位置在当前触发事件组件中的X坐标。
 
 
@@ -83,7 +87,8 @@ int32_t ArkUI_NodeTouchPoint::nodeX
 ```
 int32_t ArkUI_NodeTouchPoint::nodeY
 ```
-**描述**
+**描述：**
+
 触摸位置在当前触发事件组件中的Y坐标。
 
 
@@ -92,7 +97,8 @@ int32_t ArkUI_NodeTouchPoint::nodeY
 ```
 int64_t ArkUI_NodeTouchPoint::pressedTime
 ```
-**描述**
+**描述：**
+
 手指按下的时间戳，单位为微秒（us）。
 
 
@@ -101,7 +107,8 @@ int64_t ArkUI_NodeTouchPoint::pressedTime
 ```
 double ArkUI_NodeTouchPoint::pressure
 ```
-**描述**
+**描述：**
+
 压力值，取值范围是[0.0, 1.0]，0.0表示不支持。
 
 
@@ -110,7 +117,8 @@ double ArkUI_NodeTouchPoint::pressure
 ```
 int32_t ArkUI_NodeTouchPoint::rawX
 ```
-**描述**
+**描述：**
+
 输入设备上的X坐标。
 
 
@@ -119,7 +127,8 @@ int32_t ArkUI_NodeTouchPoint::rawX
 ```
 int32_t ArkUI_NodeTouchPoint::rawY
 ```
-**描述**
+**描述：**
+
 输入设备上的Y坐标。
 
 
@@ -128,7 +137,8 @@ int32_t ArkUI_NodeTouchPoint::rawY
 ```
 int32_t ArkUI_NodeTouchPoint::screenX
 ```
-**描述**
+**描述：**
+
 触摸位置所属的屏幕X坐标。
 
 
@@ -137,7 +147,8 @@ int32_t ArkUI_NodeTouchPoint::screenX
 ```
 int32_t ArkUI_NodeTouchPoint::screenY
 ```
-**描述**
+**描述：**
+
 触摸位置所属的屏幕Y坐标。
 
 
@@ -146,7 +157,9 @@ int32_t ArkUI_NodeTouchPoint::screenY
 ```
 double ArkUI_NodeTouchPoint::tiltX
 ```
-**描述**
+
+**描述：**
+
 相对YZ平面的角度，取值范围是[-90, 90]，其中正值是向右倾斜。
 
 
@@ -155,7 +168,8 @@ double ArkUI_NodeTouchPoint::tiltX
 ```
 double ArkUI_NodeTouchPoint::tiltY
 ```
-**描述**
+**描述：**
+
 相对XZ平面的角度，取值范围是[-90, 90]，其中正值是向下倾斜。
 
 
@@ -164,7 +178,8 @@ double ArkUI_NodeTouchPoint::tiltY
 ```
 int32_t ArkUI_NodeTouchPoint::toolHeight
 ```
-**描述**
+**描述：**
+
 工具接触区域的高度。
 
 
@@ -173,7 +188,8 @@ int32_t ArkUI_NodeTouchPoint::toolHeight
 ```
 ArkUI_NodeToolType ArkUI_NodeTouchPoint::toolType
 ```
-**描述**
+**描述：**
+
 工具类型。
 
 
@@ -182,7 +198,8 @@ ArkUI_NodeToolType ArkUI_NodeTouchPoint::toolType
 ```
 int32_t ArkUI_NodeTouchPoint::toolWidth
 ```
-**描述**
+**描述：**
+
 工具接触区域的宽度。
 
 
@@ -191,7 +208,8 @@ int32_t ArkUI_NodeTouchPoint::toolWidth
 ```
 int32_t ArkUI_NodeTouchPoint::toolX
 ```
-**描述**
+**描述：**
+
 工具区域的中心点X坐标。
 
 
@@ -200,7 +218,8 @@ int32_t ArkUI_NodeTouchPoint::toolX
 ```
 int32_t ArkUI_NodeTouchPoint::toolY
 ```
-**描述**
+**描述：**
+
 工具区域的中心点Y坐标。
 
 
@@ -209,7 +228,8 @@ int32_t ArkUI_NodeTouchPoint::toolY
 ```
 int32_t ArkUI_NodeTouchPoint::windowX
 ```
-**描述**
+**描述：**
+
 触摸位置在窗口中的X坐标。
 
 
@@ -218,5 +238,6 @@ int32_t ArkUI_NodeTouchPoint::windowX
 ```
 int32_t ArkUI_NodeTouchPoint::windowY
 ```
-**描述**
+**描述：**
+
 触摸位置在窗口中的Y坐标。

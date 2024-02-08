@@ -31,7 +31,8 @@
 ```
 void* ArkUI_AttributeItem::object
 ```
-**描述**
+**描述：**
+
 对象类型。
 
 
@@ -40,7 +41,8 @@ void* ArkUI_AttributeItem::object
 ```
 int32_t ArkUI_AttributeItem::size
 ```
-**描述**
+**描述：**
+
 数字类型数组大小。
 
 
@@ -49,7 +51,8 @@ int32_t ArkUI_AttributeItem::size
 ```
 const char* ArkUI_AttributeItem::string
 ```
-**描述**
+**描述：**
+
 字符串类型。
 
 
@@ -58,5 +61,6 @@ const char* ArkUI_AttributeItem::string
 ```
 const ArkUI_NumberValue* ArkUI_AttributeItem::value
 ```
-**描述**
+**描述：**
+
 数字类型数组。

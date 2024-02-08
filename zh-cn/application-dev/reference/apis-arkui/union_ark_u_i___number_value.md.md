@@ -30,7 +30,8 @@ ArkUI在native侧的数字类型定义。
 ```
 float ArkUI_NumberValue::f32
 ```
-**描述**
+**描述：**
+
 浮点类型。
 
 
@@ -39,7 +40,8 @@ float ArkUI_NumberValue::f32
 ```
 int32_t ArkUI_NumberValue::i32
 ```
-**描述**
+**描述：**
+
 有符号整型。
 
 
@@ -48,5 +50,6 @@ int32_t ArkUI_NumberValue::i32
 ```
 uint32_t ArkUI_NumberValue::u32
 ```
-**描述**
+**描述：**
+
 无符号整型。

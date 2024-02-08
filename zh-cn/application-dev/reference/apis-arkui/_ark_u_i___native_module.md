@@ -132,7 +132,7 @@
 typedef struct ArkUI_Node* ArkUI_NodeHandle
 ```
 
-**描述**
+**描述：**
 
 定义ArkUI native组件实例对象指针定义。
 
@@ -148,7 +148,7 @@ typedef struct ArkUI_Node* ArkUI_NodeHandle
 enum ArkUI_AccessibilityLevel
 ```
 
-**描述**
+**描述：**
 
 定义无障碍重要性。
 
@@ -168,7 +168,7 @@ enum ArkUI_AccessibilityLevel
 enum ArkUI_AdaptiveColor
 ```
 
-**描述**
+**描述：**
 
 定义取色模式。
 
@@ -186,7 +186,7 @@ enum ArkUI_AdaptiveColor
 enum ArkUI_Alignment
 ```
 
-**描述**
+**描述：**
 
 定义布局对齐枚举值。
 
@@ -211,7 +211,7 @@ enum ArkUI_Alignment
 enum ArkUI_AnimationCurve
 ```
 
-**描述**
+**描述：**
 
 动画曲线枚举值。
 
@@ -240,7 +240,7 @@ enum ArkUI_AnimationCurve
 enum ArkUI_AnimationPlayMode
 ```
 
-**描述**
+**描述：**
 
 定义动画播放模式。
 
@@ -260,7 +260,7 @@ enum ArkUI_AnimationPlayMode
 enum ArkUI_Axis
 ```
 
-**描述**
+**描述：**
 
 定义滚动方向和List组件排列方向枚举值。
 
@@ -278,7 +278,7 @@ enum ArkUI_Axis
 enum ArkUI_BlendMode
 ```
 
-**描述**
+**描述：**
 
 混合模式枚举值。
 
@@ -324,7 +324,7 @@ enum ArkUI_BlendMode
 enum ArkUI_BlurStyle
 ```
 
-**描述**
+**描述：**
 
 定义背景模糊样式。
 
@@ -353,7 +353,7 @@ enum ArkUI_BlurStyle
 enum ArkUI_BorderStyle
 ```
 
-**描述**
+**描述：**
 
 边框线条样式枚举值。
 
@@ -372,7 +372,7 @@ enum ArkUI_BorderStyle
 enum ArkUI_CalendarAlignment
 ```
 
-**描述**
+**描述：**
 
 日历选择器与入口组件对齐方式。
 
@@ -391,7 +391,7 @@ enum ArkUI_CalendarAlignment
 enum ArkUI_CancelButtonStyle
 ```
 
-**描述**
+**描述：**
 
 定义清除按钮样式枚举值。
 
@@ -410,7 +410,7 @@ enum ArkUI_CancelButtonStyle
 enum ArkUI_CheckboxShape
 ```
 
-**描述**
+**描述：**
 
 定义CheckBox组件形状。
 
@@ -428,7 +428,7 @@ enum ArkUI_CheckboxShape
 enum ArkUI_ColorMode
 ```
 
-**描述**
+**描述：**
 
 定义深浅色模式。
 
@@ -447,7 +447,7 @@ enum ArkUI_ColorMode
 enum ArkUI_ColorStrategy
 ```
 
-**描述**
+**描述：**
 
 前景色枚举值。
 
@@ -480,7 +480,7 @@ enum ArkUI_CopyOptions
 enum ArkUI_Direction
 ```
 
-**描述**
+**描述：**
 
 设置容器元素内主轴方向上的布局枚举值。
 
@@ -499,7 +499,7 @@ enum ArkUI_Direction
 enum ArkUI_EdgeEffect
 ```
 
-**描述**
+**描述：**
 
 定义边缘滑动效果枚举值。
 
@@ -518,7 +518,7 @@ enum ArkUI_EdgeEffect
 enum ArkUI_EnterKeyType
 ```
 
-**描述**
+**描述：**
 
 定义单行文本输入法回车键类型枚举值。
 
@@ -541,7 +541,7 @@ enum ArkUI_EnterKeyType
 enum ArkUI_FlexAlign
 ```
 
-**描述**
+**描述：**
 
 定义垂直方向对齐方式。
 
@@ -563,7 +563,7 @@ enum ArkUI_FlexAlign
 enum ArkUI_FlexDirection
 ```
 
-**描述**
+**描述：**
 
 定义Flex容器的主轴方向。
 
@@ -583,7 +583,7 @@ enum ArkUI_FlexDirection
 enum ArkUI_FlexWrap
 ```
 
-**描述**
+**描述：**
 
 定义Flex行列布局模式模式。
 
@@ -602,7 +602,7 @@ enum ArkUI_FlexWrap
 enum ArkUI_FontStyle
 ```
 
-**描述**
+**描述：**
 
 定义字体样式枚举值。
 
@@ -620,7 +620,7 @@ enum ArkUI_FontStyle
 enum ArkUI_FontWeight
 ```
 
-**描述**
+**描述：**
 
 定义字体粗细/字重枚举值。
 
@@ -651,7 +651,7 @@ enum ArkUI_FontWeight
 enum ArkUI_HitTestMode
 ```
 
-**描述**
+**描述：**
 
 触摸测试控制枚举值。
 
@@ -671,7 +671,7 @@ enum ArkUI_HitTestMode
 enum ArkUI_HorizontalAlignment
 ```
 
-**描述**
+**描述：**
 
 定义语言方向对齐方式。
 
@@ -690,7 +690,7 @@ enum ArkUI_HorizontalAlignment
 enum ArkUI_ImageInterpolation
 ```
 
-**描述**
+**描述：**
 
 定义图片插值效果。
 
@@ -710,7 +710,7 @@ enum ArkUI_ImageInterpolation
 enum ArkUI_ImageRepeat
 ```
 
-**描述**
+**描述：**
 
 定义图片重复铺设枚举值。
 
@@ -730,7 +730,7 @@ enum ArkUI_ImageRepeat
 enum ArkUI_ImageSize
 ```
 
-**描述**
+**描述：**
 
 定义图片宽高样式。
 
@@ -749,7 +749,7 @@ enum ArkUI_ImageSize
 enum ArkUI_ImageSpanAlignment
 ```
 
-**描述**
+**描述：**
 
 定义图片基于文本的对齐方式。
 
@@ -769,7 +769,7 @@ enum ArkUI_ImageSpanAlignment
 enum ArkUI_ItemAlign
 ```
 
-**描述**
+**描述：**
 
 设置子组件在父容器交叉轴的对齐格式枚举值。
 
@@ -791,7 +791,7 @@ enum ArkUI_ItemAlign
 enum ArkUI_NativeAPIVariantKind
 ```
 
-**描述**
+**描述：**
 
 定义Native接口集合类型。
 
@@ -808,7 +808,7 @@ enum ArkUI_NativeAPIVariantKind
 enum ArkUI_NativeNodeAPIVersion
 ```
 
-**描述**
+**描述：**
 
 定义ARKUI_NATIVE_NODE类型支持的版本号信息。
 
@@ -824,7 +824,7 @@ enum ArkUI_NativeNodeAPIVersion
 enum ArkUI_NodeAttributeType
 ```
 
-**描述**
+**描述：**
 
 定义ArkUI在Native侧可以设置的属性样式集合。
 
@@ -1121,7 +1121,7 @@ enum ArkUI_NodeAttributeType
 enum ArkUI_NodeDirtyFlag
 ```
 
-**描述**
+**描述：**
 
 自定义组件调用&lt;b&gt;::markDirty是传递的藏区标识类型。
 
@@ -1140,7 +1140,7 @@ enum ArkUI_NodeDirtyFlag
 enum ArkUI_NodeEventType
 ```
 
-**描述**
+**描述：**
 
 提供NativeNode组件支持的事件类型定义。
 
@@ -1177,7 +1177,7 @@ enum ArkUI_NodeEventType
 enum ArkUI_NodeSourceType
 ```
 
-**描述**
+**描述：**
 
 产生Touch事件的来源类型定义。
 
@@ -1197,7 +1197,7 @@ enum ArkUI_NodeSourceType
 enum ArkUI_NodeToolType
 ```
 
-**描述**
+**描述：**
 
 Touch事件的工具类型定义。
 
@@ -1216,7 +1216,7 @@ Touch事件的工具类型定义。
 enum ArkUI_NodeTouchEventAction
 ```
 
-**描述**
+**描述：**
 
 定义触屏事件类型的枚举值。
 
@@ -1236,7 +1236,7 @@ enum ArkUI_NodeTouchEventAction
 enum ArkUI_NodeType
 ```
 
-**描述**
+**描述：**
 
 提供ArkUI在Native侧可创建组件类型。
 
@@ -1280,7 +1280,7 @@ enum ArkUI_NodeType
 enum ArkUI_ObjectFit
 ```
 
-**描述**
+**描述：**
 
 定义image填充效果。 ImageSpanAlignment
 
@@ -1302,7 +1302,7 @@ enum ArkUI_ObjectFit
 enum ArkUI_ProgressType
 ```
 
-**描述**
+**描述：**
 
 定义进度条类型枚举值。
 
@@ -1323,7 +1323,7 @@ enum ArkUI_ProgressType
 enum ArkUI_ScrollBarDisplayMode
 ```
 
-**描述**
+**描述：**
 
 定义滚动条状态枚举值。
 
@@ -1342,7 +1342,7 @@ enum ArkUI_ScrollBarDisplayMode
 enum ArkUI_ScrollEdge
 ```
 
-**描述**
+**描述：**
 
 定义滚动到的边缘位置。
 
@@ -1365,7 +1365,7 @@ enum ArkUI_ScrollEdge
 enum ArkUI_ScrollNestedMode
 ```
 
-**描述**
+**描述：**
 
 定义嵌套滚动选项。
 
@@ -1385,7 +1385,7 @@ enum ArkUI_ScrollNestedMode
 enum ArkUI_ScrollSnapAlign
 ```
 
-**描述**
+**描述：**
 
 定义列表项滚动结束对齐效果枚举值。
 
@@ -1405,7 +1405,7 @@ enum ArkUI_ScrollSnapAlign
 enum ArkUI_ShadowStyle
 ```
 
-**描述**
+**描述：**
 
 阴影效果枚举值。
 
@@ -1439,7 +1439,7 @@ enum ArkUI_ShadowType
 enum ArkUI_SliderBlockStyle
 ```
 
-**描述**
+**描述：**
 
 定义滑块形状。
 
@@ -1458,7 +1458,7 @@ enum ArkUI_SliderBlockStyle
 enum ArkUI_SliderDirection
 ```
 
-**描述**
+**描述：**
 
 定义滑动条滑动方向。
 
@@ -1476,7 +1476,7 @@ enum ArkUI_SliderDirection
 enum ArkUI_SliderStyle
 ```
 
-**描述**
+**描述：**
 
 定义滑块与滑轨显示样式。
 
@@ -1494,7 +1494,7 @@ enum ArkUI_SliderStyle
 enum ArkUI_StickyStyle
 ```
 
-**描述**
+**描述：**
 
 定义列表是否吸顶和吸底枚举值。
 
@@ -1514,7 +1514,7 @@ enum ArkUI_StickyStyle
 enum ArkUI_SwiperArrow
 ```
 
-**描述**
+**描述：**
 
 Swiper导航点箭头枚举值。
 
@@ -1533,7 +1533,7 @@ Swiper导航点箭头枚举值。
 enum ArkUI_TextAlignment
 ```
 
-**描述**
+**描述：**
 
 定义字体水平对齐样式枚举值。
 
@@ -1566,7 +1566,7 @@ enum ArkUI_TextCase
 enum ArkUI_TextCopyOptions
 ```
 
-**描述**
+**描述：**
 
 定义组件支持设置文本是否可复制粘贴。
 
@@ -1600,7 +1600,7 @@ enum ArkUI_TextDecorationType
 enum ArkUI_TextHeightAdaptivePolicy
 ```
 
-**描述**
+**描述：**
 
 定义文本自适应高度的方式。
 
@@ -1619,7 +1619,7 @@ enum ArkUI_TextHeightAdaptivePolicy
 enum ArkUI_TextInputType
 ```
 
-**描述**
+**描述：**
 
 定义单行文本输入法类型枚举值。
 
@@ -1645,7 +1645,7 @@ enum ArkUI_TextInputType
 enum ArkUI_TextOverflow
 ```
 
-**描述**
+**描述：**
 
 定义文本超长时的显示方式。
 
@@ -1665,7 +1665,7 @@ enum ArkUI_TextOverflow
 enum ArkUI_TextPickerRangeType
 ```
 
-**描述**
+**描述：**
 
 定义滑动选择文本选择器输入类型。
 
@@ -1685,7 +1685,7 @@ enum ArkUI_TextPickerRangeType
 enum ArkUI_VerticalAlignment
 ```
 
-**描述**
+**描述：**
 
 定义垂直对齐方式。
 
@@ -1704,7 +1704,7 @@ enum ArkUI_VerticalAlignment
 enum ArkUI_Visibility
 ```
 
-**描述**
+**描述：**
 
 控制组件的显隐枚举值。
 
@@ -1723,7 +1723,7 @@ enum ArkUI_Visibility
 enum ArkUI_XComponentType
 ```
 
-**描述**
+**描述：**
 
 定义XComponent类型枚举值。
 
@@ -1744,7 +1744,7 @@ enum ArkUI_XComponentType
 ArkUI_AnyNativeAPI* OH_ArkUI_GetNativeAPI (ArkUI_NativeAPIVariantKind type, int32_t version )
 ```
 
-**描述**
+**描述：**
 
 获取指定版本的Native接口集合。
 
@@ -1768,7 +1768,7 @@ ArkUI_AnyNativeAPI* OH_ArkUI_GetNativeAPI (ArkUI_NativeAPIVariantKind type, int3
 ArkUI_AnyNativeAPI* OH_ArkUI_QueryModuleInterface (ArkUI_NativeAPIVariantKind type, int32_t version )
 ```
 
-**描述**
+**描述：**
 
 获取指定版本的Native模块接口集合。
 

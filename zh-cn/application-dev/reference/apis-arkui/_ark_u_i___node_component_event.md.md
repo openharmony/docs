@@ -28,5 +28,6 @@
 ```
 ArkUI_NumberValue ArkUI_NodeComponentEvent::data[MAX_COMPONENT_EVENT_ARG_NUM]
 ```
-**描述**
+**描述：**
+
 数据数组对象。

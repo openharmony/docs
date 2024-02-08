@@ -28,5 +28,6 @@
 ```
 const char* ArkUI_StringAsyncEvent::pStr
 ```
-**描述**
+**描述：**
+
 字符串数据。

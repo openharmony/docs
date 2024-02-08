@@ -28,7 +28,8 @@
 ```
 int32_t ArkUI_AnyNativeAPI::version
 ```
-**描述**
+**描述：**
+
 定义Native接口集合的版本信息。
 
 不同于NDK版本，NativeNode接口的version字段标识自身结构体的版本信息。

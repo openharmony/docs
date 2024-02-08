@@ -29,7 +29,8 @@
 ```
 const char* ARKUI_TextPickerRangeContent::icon
 ```
-**描述**
+**描述：**
+
 图片资源。
 
 
@@ -38,5 +39,6 @@ const char* ARKUI_TextPickerRangeContent::icon
 ```
 const char* ARKUI_TextPickerRangeContent::text
 ```
-**描述**
+**描述：**
+
 文本信息。

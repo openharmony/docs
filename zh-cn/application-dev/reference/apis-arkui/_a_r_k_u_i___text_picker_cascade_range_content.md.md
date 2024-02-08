@@ -30,7 +30,8 @@
 ```
 const ARKUI_TextPickerRangeContent* ARKUI_TextPickerCascadeRangeContent::children
 ```
-**描述**
+**描述：**
+
 联动数据。
 
 
@@ -39,7 +40,8 @@ const ARKUI_TextPickerRangeContent* ARKUI_TextPickerCascadeRangeContent::childre
 ```
 int32_t ARKUI_TextPickerCascadeRangeContent::size
 ```
-**描述**
+**描述：**
+
 联动数据数组大小。
 
 
@@ -48,5 +50,6 @@ int32_t ARKUI_TextPickerCascadeRangeContent::size
 ```
 const char* ARKUI_TextPickerCascadeRangeContent::text
 ```
-**描述**
+**描述：**
+
 文本信息。

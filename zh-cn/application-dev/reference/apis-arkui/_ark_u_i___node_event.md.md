@@ -31,7 +31,8 @@
 ```
 ArkUI_NodeComponentEvent ArkUI_NodeEvent::componentEvent
 ```
-**描述**
+**描述：**
+
 通用组件事件使用数字类型回调参数。
 
 
@@ -40,7 +41,8 @@ ArkUI_NodeComponentEvent ArkUI_NodeEvent::componentEvent
 ```
 int32_t ArkUI_NodeEvent::eventId
 ```
-**描述**
+**描述：**
+
 事件自定义标识ID。
 
 该事件id在调用**registerNodeEvent**函数时作为参数传递进来，可应用于同一事件入口函数{**}分发逻辑。 **
@@ -51,7 +53,8 @@ int32_t ArkUI_NodeEvent::eventId
 ```
 int32_t ArkUI_NodeEvent::kind
 ```
-**描述**
+**描述：**
+
 事件类型。
 
 **参见：**
@@ -64,7 +67,8 @@ int32_t ArkUI_NodeEvent::kind
 ```
 ArkUI_NodeHandle ArkUI_NodeEvent::node
 ```
-**描述**
+**描述：**
+
 触发该组件的组件对象。
 
 
@@ -73,7 +77,8 @@ ArkUI_NodeHandle ArkUI_NodeEvent::node
 ```
 ArkUI_StringAsyncEvent ArkUI_NodeEvent::stringEvent
 ```
-**描述**
+**描述：**
+
 通用组件事件使用字符串类型回调参数。
 
 
@@ -82,5 +87,6 @@ ArkUI_StringAsyncEvent ArkUI_NodeEvent::stringEvent
 ```
 ArkUI_NodeTouchEvent ArkUI_NodeEvent::touchEvent
 ```
-**描述**
+**描述：**
+
 touch事件类型回调参数。

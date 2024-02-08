@@ -35,7 +35,8 @@
 ```
 ArkUI_NodeTouchEventAction ArkUI_NodeTouchEvent::action
 ```
-**描述**
+**描述：**
+
 触屏事件的类型。
 
 
@@ -44,7 +45,8 @@ ArkUI_NodeTouchEventAction ArkUI_NodeTouchEvent::action
 ```
 ArkUI_NodeTouchPoint ArkUI_NodeTouchEvent::actionTouch
 ```
-**描述**
+**描述：**
+
 当前触屏事件的触控点信息。
 
 
@@ -53,7 +55,8 @@ ArkUI_NodeTouchPoint ArkUI_NodeTouchEvent::actionTouch
 ```
 int32_t(* ArkUI_NodeTouchEvent::getHistoricalPoints) (ArkUI_NodeHistoricalTouchPoint **historicalPoints)
 ```
-**描述**
+**描述：**
+
 返回此事件中的历史点信息。这些是在此事件和上一个事件之间发生的运动。
 
 **参数:**
@@ -76,7 +79,8 @@ int32_t(* ArkUI_NodeTouchEvent::getHistoricalPoints) (ArkUI_NodeHistoricalTouchP
 ```
 int32_t(* ArkUI_NodeTouchEvent::getTouches) (ArkUI_NodeTouchPoint **points)
 ```
-**描述**
+**描述：**
+
 返回此事件发生时所有屏幕接触点信息。
 
 **参数:**
@@ -99,7 +103,8 @@ ArkUI会在该函数调用时创建触控点信息数组的堆内存对象并返
 ```
 bool ArkUI_NodeTouchEvent::preventDefault
 ```
-**描述**
+**描述：**
+
 阻止当前节点的默认事件处理行为，允许事件进一步向上冒泡。
 
 
@@ -108,7 +113,8 @@ bool ArkUI_NodeTouchEvent::preventDefault
 ```
 ArkUI_NodeSourceType ArkUI_NodeTouchEvent::sourceType
 ```
-**描述**
+**描述：**
+
 触发事件来源的类型。
 
 
@@ -117,7 +123,8 @@ ArkUI_NodeSourceType ArkUI_NodeTouchEvent::sourceType
 ```
 bool ArkUI_NodeTouchEvent::stopPropagation
 ```
-**描述**
+**描述：**
+
 阻止事件进一步向父节点冒泡处理。
 
 
@@ -126,5 +133,6 @@ bool ArkUI_NodeTouchEvent::stopPropagation
 ```
 int64_t ArkUI_NodeTouchEvent::timeStamp
 ```
-**描述**
+**描述：**
+
 触屏事件时间戳，单位为微秒（us）。

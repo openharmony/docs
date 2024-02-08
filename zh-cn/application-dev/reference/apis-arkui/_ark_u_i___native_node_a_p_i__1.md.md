@@ -43,7 +43,8 @@ ArkUI提供的Native侧Node类型接口集合。
 ```
 int32_t(* ArkUI_NativeNodeAPI_1::addChild) (ArkUI_NodeHandle parent, ArkUI_NodeHandle child)
 ```
-**描述**
+**描述：**
+
 将组件挂载到某个父节点之下。
 
 **参数:**
@@ -65,7 +66,8 @@ int32_t(* ArkUI_NativeNodeAPI_1::addChild) (ArkUI_NodeHandle parent, ArkUI_NodeH
 ```
 ArkUI_NodeHandle(* ArkUI_NativeNodeAPI_1::createNode) (ArkUI_NodeType type)
 ```
-**描述**
+**描述：**
+
 基于[ArkUI_NodeType](_ark_u_i___native_module.md#arkui_nodetype)生成对应的组件并返回组件对象指针。
 
 **参数:**
@@ -84,7 +86,8 @@ ArkUI_NodeHandle(* ArkUI_NativeNodeAPI_1::createNode) (ArkUI_NodeType type)
 ```
 void(* ArkUI_NativeNodeAPI_1::disposeNode) (ArkUI_NodeHandle node)
 ```
-**描述**
+**描述：**
+
 销毁组件指针指向的组件对象。
 
 **参数:**
@@ -99,7 +102,8 @@ void(* ArkUI_NativeNodeAPI_1::disposeNode) (ArkUI_NodeHandle node)
 ```
 const ArkUI_AttributeItem*(* ArkUI_NativeNodeAPI_1::getAttribute) (ArkUI_NodeHandle node, ArkUI_NodeAttributeType attribute)
 ```
-**描述**
+**描述：**
+
 属性获取函数。
 
 该接口返回的指针是ArkUI框架内部的缓冲区指针，不需要开发者主动调用delete释放内存，但是需要在该函数下一次被调用前使用，否则可能会被其他值所覆盖。
@@ -121,7 +125,8 @@ const ArkUI_AttributeItem*(* ArkUI_NativeNodeAPI_1::getAttribute) (ArkUI_NodeHan
 ```
 int32_t(* ArkUI_NativeNodeAPI_1::insertChildAfter) (ArkUI_NodeHandle parent, ArkUI_NodeHandle child, ArkUI_NodeHandle sibling)
 ```
-**描述**
+**描述：**
+
 将组件挂载到某个父节点之下，挂载位置在**sibling**节点之后。
 
 **参数:**
@@ -144,7 +149,8 @@ int32_t(* ArkUI_NativeNodeAPI_1::insertChildAfter) (ArkUI_NodeHandle parent, Ark
 ```
 int32_t(* ArkUI_NativeNodeAPI_1::insertChildAt) (ArkUI_NodeHandle parent, ArkUI_NodeHandle child, int32_t position)
 ```
-**描述**
+**描述：**
+
 将组件挂载到某个父节点之下，挂载位置由**position**指定。
 
 **参数:**
@@ -167,7 +173,8 @@ int32_t(* ArkUI_NativeNodeAPI_1::insertChildAt) (ArkUI_NodeHandle parent, ArkUI_
 ```
 int32_t(* ArkUI_NativeNodeAPI_1::insertChildBefore) (ArkUI_NodeHandle parent, ArkUI_NodeHandle child, ArkUI_NodeHandle sibling)
 ```
-**描述**
+**描述：**
+
 将组件挂载到某个父节点之下，挂载位置在**sibling**节点之前。
 
 **参数:**
@@ -190,7 +197,8 @@ int32_t(* ArkUI_NativeNodeAPI_1::insertChildBefore) (ArkUI_NodeHandle parent, Ar
 ```
 void(* ArkUI_NativeNodeAPI_1::markDirty) (ArkUI_NodeHandle node, ArkUI_NodeDirtyFlag dirtyFlag)
 ```
-**描述**
+**描述：**
+
 强制标记当前节点需要重新测算，布局或者绘制。
 
 系统属性设置更新场景下ArkUI框架会自动标记藏区并重新执行测算，布局或者绘制，不需要开发者主动调用该函数。
@@ -208,7 +216,8 @@ void(* ArkUI_NativeNodeAPI_1::markDirty) (ArkUI_NodeHandle node, ArkUI_NodeDirty
 ```
 int32_t(* ArkUI_NativeNodeAPI_1::registerNodeEvent) (ArkUI_NodeHandle node, ArkUI_NodeEventType eventType, int32_t eventId)
 ```
-**描述**
+**描述：**
+
 注册节点事件函数。
 
 **参数:**
@@ -225,7 +234,8 @@ int32_t(* ArkUI_NativeNodeAPI_1::registerNodeEvent) (ArkUI_NodeHandle node, ArkU
 ```
 void(* ArkUI_NativeNodeAPI_1::registerNodeEventReceiver) (void(*eventReceiver)(ArkUI_NodeEvent *event))
 ```
-**描述**
+**描述：**
+
 注册事件回调统一入口函数。
 
 ArkUI框架会统一收集过程中产生的组件事件并通过注册的eventReceiver函数回调给开发者。
@@ -244,7 +254,8 @@ ArkUI框架会统一收集过程中产生的组件事件并通过注册的eventR
 ```
 int32_t(* ArkUI_NativeNodeAPI_1::removeChild) (ArkUI_NodeHandle parent, ArkUI_NodeHandle child)
 ```
-**描述**
+**描述：**
+
 将组件从父节点中移除。
 
 **参数:**
@@ -266,7 +277,8 @@ int32_t(* ArkUI_NativeNodeAPI_1::removeChild) (ArkUI_NodeHandle parent, ArkUI_No
 ```
 int32_t(* ArkUI_NativeNodeAPI_1::resetAttribute) (ArkUI_NodeHandle node, ArkUI_NodeAttributeType attribute)
 ```
-**描述**
+**描述：**
+
 重置属性函数。
 
 **参数:**
@@ -290,7 +302,8 @@ int32_t(* ArkUI_NativeNodeAPI_1::resetAttribute) (ArkUI_NodeHandle node, ArkUI_N
 ```
 int32_t(* ArkUI_NativeNodeAPI_1::setAttribute) (ArkUI_NodeHandle node, ArkUI_NodeAttributeType attribute, const ArkUI_AttributeItem *item)
 ```
-**描述**
+**描述：**
+
 属性设置函数。
 
 **参数:**
@@ -315,7 +328,8 @@ int32_t(* ArkUI_NativeNodeAPI_1::setAttribute) (ArkUI_NodeHandle node, ArkUI_Nod
 ```
 void(* ArkUI_NativeNodeAPI_1::unregisterNodeEvent) (ArkUI_NodeHandle node, ArkUI_NodeEventType eventType)
 ```
-**描述**
+**描述：**
+
 反注册节点事件函数。
 
 **参数:**
@@ -331,5 +345,6 @@ void(* ArkUI_NativeNodeAPI_1::unregisterNodeEvent) (ArkUI_NodeHandle node, ArkUI
 ```
 int32_t ArkUI_NativeNodeAPI_1::version
 ```
-**描述**
+**描述：**
+
 结构体版本。

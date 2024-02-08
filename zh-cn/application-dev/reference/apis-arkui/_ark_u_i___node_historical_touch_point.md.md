@@ -31,7 +31,8 @@
 ```
 ArkUI_NodeTouchEventAction ArkUI_NodeHistoricalTouchPoint::action
 ```
-**描述**
+**描述：**
+
 触屏事件类型。
 
 
@@ -40,7 +41,8 @@ ArkUI_NodeTouchEventAction ArkUI_NodeHistoricalTouchPoint::action
 ```
 ArkUI_NodeTouchPoint ArkUI_NodeHistoricalTouchPoint::actionTouch
 ```
-**描述**
+**描述：**
+
 历史触摸事件来源类型。
 
 
@@ -49,7 +51,8 @@ ArkUI_NodeTouchPoint ArkUI_NodeHistoricalTouchPoint::actionTouch
 ```
 ArkUI_NodeSourceType ArkUI_NodeHistoricalTouchPoint::sourceType
 ```
-**描述**
+**描述：**
+
 历史触摸事件来源类型。
 
 
@@ -58,5 +61,6 @@ ArkUI_NodeSourceType ArkUI_NodeHistoricalTouchPoint::sourceType
 ```
 int64_t ArkUI_NodeHistoricalTouchPoint::timeStamp
 ```
-**描述**
+**描述：**
+
 触屏历史事件时间戳，单位为微秒（us）。

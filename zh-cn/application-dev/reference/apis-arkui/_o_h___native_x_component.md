@@ -711,7 +711,8 @@ enum OH_NativeXComponent_TouchPointToolType
 ```
 int32_t OH_NativeXComponent_AttachNativeRootNode (OH_NativeXComponent * component, ArkUI_NodeHandle root )
 ```
-**描述**
+**描述：**
+
 将通过ArkUI的native接口创建出来的UI组件挂载到当前XComponent上。
 
 **起始版本：** 12
@@ -735,7 +736,8 @@ int32_t OH_NativeXComponent_AttachNativeRootNode (OH_NativeXComponent * componen
 ```
 int32_t OH_NativeXComponent_DetachNativeRootNode (OH_NativeXComponent * component, ArkUI_NodeHandle root )
 ```
-**描述**
+**描述：**
+
 将ArkUI的native组件从当前XComponent上卸载.
 
 **起始版本：** 12
@@ -1263,7 +1265,7 @@ int32_t OH_NativeXComponent_RegisterMouseEventCallback (OH_NativeXComponent * co
 ```
 int32_t OH_NativeXComponent_RegisterOnFrameCallback (OH_NativeXComponent* component, void (*callback)(OH_NativeXComponent *component, uint64_t timestamp, uint64_t targetTimestamp))
 ```
-**描述**
+**描述：**
 
 为此OH_NativeXComponent实例注册显示更新回调，并使能每帧回调此函数。
 
@@ -1288,7 +1290,7 @@ int32_t OH_NativeXComponent_RegisterOnFrameCallback (OH_NativeXComponent* compon
 ```
 int32_t OH_NativeXComponent_SetExpectedFrameRateRange (OH_NativeXComponent * component, OH_NativeXComponent_ExpectedRateRange * range )
 ```
-**描述**
+**描述：**
 
 设置期望帧率范围。
 
@@ -1313,7 +1315,7 @@ int32_t OH_NativeXComponent_SetExpectedFrameRateRange (OH_NativeXComponent * com
 ```
 int32_t OH_NativeXComponent_UnregisterOnFrameCallback (OH_NativeXComponent * component)
 ```
-**描述**
+**描述：**
 
 为此OH_NativeXComponent实例取消注册回调函数，并关闭每帧回调此函数。
 
