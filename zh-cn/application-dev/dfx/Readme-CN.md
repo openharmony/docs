@@ -18,13 +18,14 @@
   - [使用HiTraceMeter跟踪性能（ArkTS/JS）](hitracemeter-guidelines-arkts.md)
   - [使用HiTraceMeter跟踪性能（C/C++）](hitracemeter-guidelines-ndk.md)
   - [查看HiTraceMeter日志](hitracemeter-view.md)
+- [HiTraceChain使用指导](hitracechain-guidelines.md)
 - 错误管理
   - [错误管理开发指导](errormanager-guidelines.md)
   - [应用恢复开发指导](apprecovery-guidelines.md)
 - 故障分析
-  - [分析JS Crash](js-crash.md)
-  - [分析CppCrash](cppcrash.md)
-  - [分析AppFreeze](appfreeze.md)
+  - [分析JS Crash](jscrash-guidelines.md)
+  - [分析CppCrash](cppcrash-guidelines.md)
+  - [分析AppFreeze](appfreeze-guidelines.md)
 - 命令行工具
   - [hdc](hdc.md)
   - [hilog](hilog.md)
