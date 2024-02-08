@@ -219,3 +219,61 @@ soundpool支持的格式与底层一致，支持的格式可以参考文档：[�
 **参考资料**
 
 [AudioCapturer](../reference/apis/js-apis-audio.md#audiocapturer8)
+
+## 如何实现低时延音频采集？(API 11)
+
+**解决措施**
+
+支持通过OHAudio C API接口AudioCapturer使用系统低时延采集，具体实现参考：[使用OHAudio开发音频录制功能(C/C++)](../media/using-ohaudio-for-recording.md)。
+
+**参考资料**
+
+1. [ohaudio](../reference/native-apis/_o_h_audio.md)
+2. [Audio](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.1-Beta1/code/BasicFeature/Native/Audio)
+
+## 如何实现实时视频流传输？如何实现直播场景？(API 10)
+
+**解决措施**
+
+当前版本AVPlayer支持http、https、HLS。在直播场景中，将直播地址传给Avplayer，即可进行播放对端发来的数据；当前不支持推流，即Avplayer不支持使用当前设备进行直播。
+
+**参考资料**
+
+1. [Media Kit](../media/avplayer-avrecorder-overview.md)
+2. [AVPlayer](../media/using-avplayer-for-playback.md)
+
+## 音频播放器AVPlayer如何在后台进行播放？(API 10)
+
+**解决措施**
+
+需要将APP配置为长时任务，并将媒体会话功能注册到系统内统一管理避免被强制停止播放。
+
+**参考资料**
+
+[长时任务](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.1-Beta1/code/BasicFeature/TaskManagement/ContinuousTask)
+
+## 三方应用为什么无法创建相册？(API 10)
+
+**问题描述**
+
+相册资源读写权限设置为system_basic级别权限，且创建相册的接口设置为系统接口不对外开放，这个是开发者常用场景的能力接口，这样设计的背景和原因是什么？(API 10)
+
+**解决措施**
+
+出于对用户图片视频资源的隐私保护，系统权限设计上操作媒体文件要在用户知情下操作，所以不授予三方应用的直接读写权限；系统基于图片视频保存来源生成来源相册，用户自定义相册仅支持图库创建，且支持用户拖动来源相册至用户自定义相册区域。
+
+## 如何将图片压缩至指定大小，有哪些影响因素(API 10)
+
+**问题描述**
+
+关于图片压缩API的质量参数quality与图片原始大小、压缩后大小，是什么关系？如何设置压缩后的图片大小？如果要把图片压缩在指定大小（如500k）以内，那么要怎么设置参数才能使无论多大的原始图片都被压缩至500k？
+
+**解决措施**
+
+对于有损压缩图片格式，如jpeg格式，质量参数会影响压缩后的图片大小，对于无损压缩图片格式，如png格式，质量参数不会影响压缩后的图片大小。
+对于有损压缩图片格式，压缩后的图片大小不仅取决于图片原始大小、图片压缩质量，还与图片中内容有较大关系，因此当前系统不支持设置压缩后的图片大小，如果应用想要指定压缩后图片大小，可以根据压缩结果调整质量参数，或者将pixelmap scale到更小的尺寸后再压缩。
+
+**参考资料**
+
+1. [scale](../reference/apis/js-apis-image.md#scale9)
+2. [packing](../reference/apis/js-apis-image.md#packing)
