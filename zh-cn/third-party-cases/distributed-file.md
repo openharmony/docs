@@ -478,5 +478,5 @@
 
 ## 参考
 
-- [权限列表](../application-dev/security/permission-list.md#ohospermissiondistributed_datasync)
-- [分布式数据对象](../application-dev/reference/apis/js-apis-data-distributedobject.md)
+- [权限列表](../application-dev/security/AccessToken/permissions-for-all.md)
+- [分布式数据对象](../application-dev/reference/apis-arkdata/js-apis-data-distributedobject.md)
