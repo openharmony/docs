@@ -444,7 +444,7 @@ Allows an application to use the camera.
 
 ### ohos.permission.DISTRIBUTED_DATASYNC
 
-Allows an application to exchange data with other devices.
+Allows the application data to be exchanged between devices.
 
 **Permission level**: normal
 
