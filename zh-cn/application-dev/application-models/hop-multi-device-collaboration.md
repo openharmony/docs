@@ -820,10 +820,7 @@
                    caller.onRelease((msg) => {
                      hilog.info(`remote caller onRelease is called ${msg}`);
                    })
-                   Logger.info('remote caller register OnRelease succeed');
-                   promptAction.showToast({
-                     message: $r('app.string.CallerSuccess')
-                   });
+                   hilog.info('remote caller register OnRelease succeed');
                    // 注册caller的协同场景下跨设备组件状态变化监听通知
                    try {
                      caller.onRemoteStateChange((str) => {
@@ -902,8 +899,8 @@
         import rpc from '@ohos.rpc';
 
         const MSG_SEND_METHOD: string = 'CallSendMsg';
-	let originMsg: string = '';
-	let backMsg: string = '';
+        let originMsg: string = '';
+        let backMsg: string = '';
 
         class MyParcelable {
           num: number = 0;
