@@ -21,6 +21,7 @@
         - [@ohos.enterprise.usbManager (USB管理)(系统接口)](js-apis-enterprise-usbManager-sys.md)
         - [@ohos.power (系统电源管理)(系统接口)](js-apis-power-sys.md) 
         - [@ohos.usbManager (USB管理)(系统接口)](js-apis-usbManager-sys.md)
+        - [@ohos.update (升级)(系统接口)](js-apis-update-sys.md)
     - 数据文件处理
         - [@ohos.pasteboard (剪贴板)](js-apis-pasteboard.md)
         - [@ohos.print (打印)](js-apis-print.md)
@@ -65,9 +66,10 @@
         - [@ohos.settings (设置数据项名称)](js-apis-settings.md)
         - [@ohos.wallpaper (壁纸)](js-apis-wallpaper.md)
         - [@ohos.settings (设置数据项名称)(系统接口)](js-apis-settings-sys.md)
-        - [@ohos.time (时间时区)(系统接口)](js-apis-system-date-time.md)
+        - [@ohos.time (时间时区)(系统接口)](js-apis-system-date-time-sys.md)
         - [@ohos.wallpaper (壁纸)(系统接口)](js-apis-wallpaper-sys.md)
         - [@ohos.WallpaperExtensionAbility (WallpaperExtensionAbility)(系统接口)](js-apis-WallpaperExtensionAbility-sys.md)
+        - [@ohos.systemTimer (系统定时器)(系统接口)](js-apis-system-timer-sys.md)
     - 已停止维护的接口
         - [系统公共事件定义](commonEvent-definitions.md)
         - [@ohos.commonEvent (公共事件模块)](js-apis-commonEvent.md)
@@ -92,6 +94,7 @@
     - [系统电源管理错误码](errorcode-power.md)
     - [帐号管理错误码](errorcode-account.md)
     - [企业设备管理错误码](errorcode-enterpriseDeviceManager.md)
+    - [升级错误码](errorcode-update.md)
 
 
 
