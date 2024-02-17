@@ -121,16 +121,18 @@ The procedure is as follows:
    hidumper -e
    ```
 
-10. Run the **hidumper --net** command to obtain network information.
+10. Run the **hidumper --net** command to obtain network information of the process whose PID has been specified.
      
     ```
     hidumper --net
+    hidumper --net 1024
     ```
 
-11. Run the **hidumper --storage** command to obtain storage information.
+11. Run the **hidumper --storage** command to obtain storage information of the process whose PID has been specified.
      
     ```
     hidumper --storage
+    hidumper --storage 1024
     ```
 
 12. Run the **hidumper -p** command to obtain process information, including the list and information of processes and threads.

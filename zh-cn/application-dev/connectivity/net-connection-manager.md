@@ -5,7 +5,7 @@
 网络连接管理提供管理网络一些基础能力，包括WiFi/蜂窝/Ethernet等多网络连接优先级管理、网络质量评估、订阅默认/指定网络连接状态变化、查询网络连接信息、DNS解析等功能。
 
 > **说明：**
-> 为了保证应用的运行效率，大部分API调用都是异步的，对于异步调用的API均提供了callback和Promise两种方式，以下示例均采用callback函数，更多方式可以查阅[API参考](../reference/apis/js-apis-net-connection.md)。
+> 为了保证应用的运行效率，大部分API调用都是异步的，对于异步调用的API均提供了callback和Promise两种方式，以下示例均采用callback函数，更多方式可以查阅[API参考](../reference/apis-network-kit/js-apis-net-connection.md)。
 
 ## 基本概念
 
@@ -33,7 +33,7 @@
 
 ## 接口说明
 
-完整的JS API说明以及实例代码请参考：[网络连接管理](../reference/apis/js-apis-net-connection.md)。
+完整的JS API说明以及实例代码请参考：[网络连接管理](../reference/apis-network-kit/js-apis-net-connection.md)。
 
 | 接口名 | 描述 |
 | ---- | ---- |
@@ -70,7 +70,7 @@
 ## 接收指定网络的状态变化通知
 
 1. 声明接口调用所需要的权限：ohos.permission.GET_NETWORK_INFO。
-此权限级别为system_basic，在申请权限前，请保证符合[权限使用的基本原则](../security/AccessToken/app-permission-mgmt-overview.md#权限使用的基本原则)。然后参考[访问控制-声明权限](../security/AccessToken/declare-permissions.md)声明对应权限。
+此权限级别为normal，在申请权限前，请保证符合[权限使用的基本原则](../security/AccessToken/app-permission-mgmt-overview.md#权限使用的基本原则)。然后参考[访问控制-声明权限](../security/AccessToken/declare-permissions.md)声明对应权限。
 
 1. 从@ohos.net.connection.d.ts中导入connection命名空间。
 
@@ -127,7 +127,7 @@ conn.unregister((err: BusinessError, data: void) => {
 ### 开发步骤
 
 1. 声明接口调用所需要的权限：ohos.permission.GET_NETWORK_INFO。
-此权限级别为system_basic，在申请权限前，请保证符合[权限使用的基本原则](../security/AccessToken/app-permission-mgmt-overview.md#权限使用的基本原则)。然后参考[访问控制-声明权限](../security/AccessToken/declare-permissions.md)声明对应权限。
+此权限级别为normal，在申请权限前，请保证符合[权限使用的基本原则](../security/AccessToken/app-permission-mgmt-overview.md#权限使用的基本原则)。然后参考[访问控制-声明权限](../security/AccessToken/declare-permissions.md)声明对应权限。
 
 2. 从@ohos.net.connection.d.ts中导入connection命名空间。
 
@@ -176,7 +176,7 @@ connection.getAllNets((err: BusinessError, data: connection.NetHandle[]) => {
 ### 开发步骤
 
 1. 声明接口调用所需要的权限：ohos.permission.GET_NETWORK_INFO。
-此权限级别为system_basic，在申请权限前，请保证符合[权限使用的基本原则](../security/AccessToken/app-permission-mgmt-overview.md#权限使用的基本原则)。然后参考[访问控制-声明权限](../security/AccessToken/declare-permissions.md)声明对应权限。
+此权限级别为normal，在申请权限前，请保证符合[权限使用的基本原则](../security/AccessToken/app-permission-mgmt-overview.md#权限使用的基本原则)。然后参考[访问控制-声明权限](../security/AccessToken/declare-permissions.md)声明对应权限。
 
 2. 从@ohos.net.connection.d.ts中导入connection命名空间。
 
@@ -303,7 +303,7 @@ connection.getAllNets((err: BusinessError, data: connection.NetHandle[]) => {
 ### 开发步骤
 
 1. 声明接口调用所需要的权限：ohos.permission.INTERNET
-此权限级别为system_basic，在申请权限前，请保证符合[权限使用的基本原则](../security/AccessToken/app-permission-mgmt-overview.md#权限使用的基本原则)。然后参考[访问控制-声明权限](../security/AccessToken/declare-permissions.md)声明对应权限。
+此权限级别为normal，在申请权限前，请保证符合[权限使用的基本原则](../security/AccessToken/app-permission-mgmt-overview.md#权限使用的基本原则)。然后参考[访问控制-声明权限](../security/AccessToken/declare-permissions.md)声明对应权限。
 
 2. 从@ohos.net.connection.d.ts中导入connection命名空间。
 

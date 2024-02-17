@@ -258,8 +258,8 @@ struct DetailExample {
 }
 ```
 ## 参考
-[Stack堆叠容器](../application-dev/reference/arkui-ts/ts-container-stack.md) 
+[Stack堆叠容器](../application-dev/reference/apis-arkui/arkui-ts/ts-container-stack.md) 
 
-[Toggle](../application-dev/reference/arkui-ts/ts-basic-components-toggle.md)
+[Toggle](../application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-toggle.md)
 
-[Flex](../application-dev/reference/arkui-ts/ts-container-flex.md)
+[Flex](../application-dev/reference/apis-arkui/arkui-ts/ts-container-flex.md)

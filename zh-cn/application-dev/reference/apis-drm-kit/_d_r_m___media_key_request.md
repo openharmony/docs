@@ -3,9 +3,7 @@
 
 ## 概述
 
-许可证请求类型。
-
-**系统能力：** SystemCapability.Multimedia.Drm.Core
+媒体密钥请求。
 
 **起始版本：** 11
 
@@ -19,6 +17,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [DRM_MediaKeyRequestType](_drm.md#drm_mediakeyrequesttype)[type](_drm.md#type-22) | 许可证请求类型 | 
-| [DRM_Uint8Buffer](_d_r_m___uint8_buffer.md)[data](_drm.md#data-23) | 许可证请求数据 | 
-| [DRM_CharBuffer](_d_r_m___char_buffer.md)[defaultUrl](_drm.md#defaulturl) | 许可证服务器URL | 
+| [DRM_MediaKeyRequestType](_drm.md#drm_mediakeyrequesttype) [type](_drm.md#type-22) | 媒体密钥请求类型。 | 
+| int32_t [dataLen](_drm.md#datalen-12) | 媒体密钥请求数据长度。 | 
+| uint8_t [data](_drm.md#data-12) [[MAX_MEDIA_KEY_REQUEST_DATA_LEN](_drm.md#max_media_key_request_data_len)] | 发送到媒体密钥服务器的媒体密钥请求数据。 | 
+| char [defaultUrl](_drm.md#defaulturl) [[MAX_DEFAULT_URL_LEN](_drm.md#max_default_url_len)] | 媒体密钥服务器URL。 | 

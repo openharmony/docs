@@ -1,6 +1,6 @@
-# Telephony Kit API参考 
+# Telephony Kit API参考
 
-- ArkTS API 
+- ArkTS API
   - [@ohos.telephony.call (拨打电话)](js-apis-call.md)
   - [@ohos.telephony.data (蜂窝数据)](js-apis-telephony-data.md)
   - [@ohos.telephony.observer (observer)](js-apis-observer.md)

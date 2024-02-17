@@ -1,0 +1,58 @@
+# Camera_Location
+
+
+## Overview
+
+The Camera_Location struct defines the location whether a photo is taken.
+
+**Since**: 11
+
+**Related module**: [OH_Camera](_o_h___camera.md)
+
+
+## Summary
+
+
+### Member Variables
+
+| Name| Description| 
+| -------- | -------- |
+| [latitude](#latitude) | Latitude.| 
+| [longitude](#longitude) | Longitude.| 
+| [altitude](#altitude) | Altitude, in pixels.| 
+
+
+## Member Variable Description
+
+
+### altitude
+
+```
+double Camera_Location::altitude
+```
+
+**Description**
+
+Altitude, in pixels.
+
+
+### latitude
+
+```
+double Camera_Location::latitude
+```
+
+**Description**
+
+Latitude.
+
+
+### longitude
+
+```
+double Camera_Location::longitude
+```
+
+**Description**
+
+Longitude.

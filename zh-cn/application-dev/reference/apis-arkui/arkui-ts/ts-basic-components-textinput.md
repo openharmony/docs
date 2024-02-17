@@ -104,7 +104,6 @@ TextInput(value?: TextInputOptions)
 | USER_NAME<sup>11+<sup>             | 用户名输入模式。在已启用密码保险箱的情况下，支持用户名、密码的自动保存和自动填充。                |
 | NEW_PASSWORD<sup>11+<sup>          | 新密码输入模式。在已启用密码保险箱的情况下，支持自动生成新密码。                                 |
 | NUMBER_PASSWORD<sup>11+</sup>      | 纯数字密码输入模式。密码显示小眼睛图标并且默认会将文字变成圆点。密码输入模式不支持下划线样式。 |
-| SCREEN_LOCK_PASSWORD<sup>11+</sup> | 锁屏应用密码输入模式。支持输入数字、字母、下划线、空格、特殊字符。密码显示小眼睛图标并且默认会将文字变成圆点。密码输入模式不支持下划线样式。 <br>**系统接口：** 此接口为系统接口。 |
 | NUMBER_DECIMAL<sup>11+</sup>       | 带小数点的数字输入模式。支持数字，小数点（只能存在一个小数点）。         |
 
 ## TextInputStyle<sup>9+</sup>枚举说明
@@ -135,7 +134,7 @@ TextInput(value?: TextInputOptions)
 | onCut(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)<sup>8+</sup> | 长按输入框内部区域弹出剪贴板后，点击剪切板剪切按钮，触发该回调。<br/>value：剪切的文本内容。 |
 | onPaste(callback:(value:&nbsp;string, event<sup>11+</sup>:&nbsp;[PasteEvent](ts-basic-components-richeditor.md#pasteevent11))&nbsp;=&gt;&nbsp;void) | 长按输入框内部区域弹出剪贴板后，点击剪切板粘贴按钮，触发该回调。<br/>value：粘贴的文本内容。<br/>event：用户自定义的粘贴事件。 |
 | onTextSelectionChange(callback: (selectionStart: number, selectionEnd: number) => void)<sup>10+</sup> | 文本选择的位置发生变化时，触发该回调。<br />selectionStart：文本选择区域起始位置，文本框中文字的起始位置为0。<br />selectionEnd：文本选择区域结束位置。 |
-| onContentScroll(callback: (totalOffsetX: number, totalOffsetY: number) => void)<sup>10+</sup> | 文本内容滚动时，触发该回调。<br />totalOffsetX：文本在内容区的横坐标偏移。<br />totalOffsetY：文本在内容区的纵坐标偏移。 |
+| onContentScroll(callback: (totalOffsetX: number, totalOffsetY: number) => void)<sup>10+</sup> | 文本内容滚动时，触发该回调。<br />totalOffsetX：文本在内容区的横坐标偏移，单位px。<br />totalOffsetY：文本在内容区的纵坐标偏移，单位px。 |
 
 ## TextInputController<sup>8+</sup>
 
@@ -196,7 +195,7 @@ getTextContentRect(): [RectResult](#rectresult10)
 
 ### RectResult<sup>10+</sup>
 
-位置和大小。
+位置和大小，单位均为像素。
 
 | 参数     | 类型     | 描述       |
 | ------ | ------ | -------- |
@@ -237,8 +236,8 @@ getCaretOffset(): CaretOffset
 | 参数名   | 类型     | 描述             |
 | ----- | ------ | -------------- |
 | index | number | 光标所在位置的索引值。    |
-| x     | number | 光标相对输入框的x坐标位值。 |
-| y     | number | 光标相对输入框的y坐标位值。 |
+| x     | number | 光标相对输入框的x坐标位值，单位px。 |
+| y     | number | 光标相对输入框的y坐标位值，单位px。 |
 
 ## InputCounterOptions<sup>11+</sup>对象说明
 

@@ -121,16 +121,18 @@ HiDumper可以为开发者导出系统当前基本信息，通过这些基本信
    hidumper -e
    ```
 
-10. 运行 hidumper --net 命令获取网络信息。
+10. 运行 hidumper --net [pid] 命令获取网络信息；如果指定了进程的pid，则只获取该进程的网络流量使用信息。
      
     ```
     hidumper --net
+    hidumper --net 1024
     ```
 
-11. 运行 hidumper --storage 命令获取存储相关信息。
+11. 运行 hidumper --storage [pid] 命令获取存储相关信息；如果指定了进程的pid，则只获取该进程的io信息。
      
     ```
     hidumper --storage
+    hidumper --storage 1024
     ```
 
 12. 运行 hidumper -p 命令获取进程信息，包括进程、线程的列表和信息。

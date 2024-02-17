@@ -23,9 +23,9 @@ on(type: SensorId.COLOR, callback: Callback&lt;ColorResponse&gt;, options?: Opti
 
 订阅颜色传感器数据。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
-**系统API**：此接口为系统接口
+**系统API：** 此接口为系统接口
 
 **参数：**
 
@@ -35,15 +35,15 @@ on(type: SensorId.COLOR, callback: Callback&lt;ColorResponse&gt;, options?: Opti
 | callback | Callback&lt;[ColorResponse](#colorresponse10)&gt; | 是   | 回调函数，异步上报的传感器数据固定为ColorResponse。         |
 | options  | [Options](#options)                               | 否   | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。 |
 
-**错误码**：
+**错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
 
-**示例：**
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -69,9 +69,9 @@ on(type: SensorId.SAR, callback: Callback&lt;SarResponse&gt;, options?: Options)
 
 订阅吸收比率传感器数据。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
-**系统API**：此接口为系统接口
+**系统API：** 此接口为系统接口
 
 **参数：**
 
@@ -81,15 +81,15 @@ on(type: SensorId.SAR, callback: Callback&lt;SarResponse&gt;, options?: Options)
 | callback | Callback&lt;[SarResponse](#sarresponse10)&gt; | 是   | 回调函数，异步上报的传感器数据固定为SarResponse。           |
 | options  | [Options](#options)                           | 否   | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。 |
 
-**错误码**：
+**错误码：** 
 
-以下错误码的详细介绍请参见[ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+以下错误码的详细介绍请参见[ohos.sensor(传感器)错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
 
-**示例：**
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -116,16 +116,18 @@ off(type: SensorId.COLOR, callback?: Callback&lt;ColorResponse&gt;): void
 
 取消订阅颜色传感器数据。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
-**系统API**：此接口为系统接口
+**系统API：** 此接口为系统接口
 
-**参数：**
+**参数：** 
 
 | 参数名   | 类型                                              | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).COLOR                      | 是   | 传感器类型，该值固定为SensorId.COLOR。                       |
 | callback | Callback&lt;[ColorResponse](#colorresponse10)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -158,9 +160,9 @@ off(type: SensorId.SAR, callback?: Callback&lt;SarResponse&gt;): void
 
 取消订阅吸收比率传感器数据。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
-**系统API**：此接口为系统接口
+**系统API：** 此接口为系统接口
 
 **参数：**
 
@@ -168,6 +170,8 @@ off(type: SensorId.SAR, callback?: Callback&lt;SarResponse&gt;): void
 | -------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).SAR                    | 是   | 传感器类型，该值固定为SensorId.SAR。                         |
 | callback | Callback&lt;[SarResponse](#sarresponse10)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
+
+**示例：**
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -198,7 +202,7 @@ try {
 
 表示当前支持订阅或取消订阅的传感器类型。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 | 名称                | 值   | 说明                                          |
 | ------------------- | ---- | --------------------------------------------- |
@@ -209,7 +213,7 @@ try {
 
 传感器数据的精度。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 | 名称                | 值   | 说明               |
 | ------------------- | ---- | ------------------ |
@@ -222,7 +226,7 @@ try {
 
 传感器数据的时间戳。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 | 名称                   | 类型                                              | 可读 | 可写 | 说明                         |
 | ---------------------- | ------------------------------------------------- | ---- | ---- | ---------------------------- |
@@ -233,9 +237,9 @@ try {
 
 颜色传感器数据，继承于[Response](#response)。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
-**系统API**：此接口为系统接口
+**系统API：** 此接口为系统接口
 
 
 | 名称             | 类型   | 可读 | 可写 | 说明                          |
@@ -247,9 +251,9 @@ try {
 
 吸收比率传感器数据，继承于[Response](#response)。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
-**系统API**：此接口为系统接口
+**系统API：** 此接口为系统接口
 
 
 | 名称            | 类型   | 可读 | 可写 | 说明                            |
@@ -260,7 +264,7 @@ try {
 
 设置传感器上报频率。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 | 名称     | 类型                                                     | 可读 | 可写 | 说明                                                         |
 | -------- | -------------------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |

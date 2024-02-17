@@ -24,7 +24,7 @@ import ActionExtensionAbility from '@ohos.app.ability.ActionExtensionAbility';
 
 | 名称 | 类型 | 只读 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| context | [UIExtensionContext](../apis/js-apis-inner-application-uiExtensionContext.md) | 否 | 否 | 上下文。 |
+| context | [UIExtensionContext](js-apis-inner-application-uiExtensionContext.md) | 否 | 否 | 上下文。 |
 
 ## ActionExtensionAbility.onCreate
 
@@ -50,7 +50,7 @@ onSessionCreate(want: Want, session: UIExtensionContentSession): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](../apis/js-apis-app-ability-want.md) | 是 | 当前ActionExtensionAbility的Want类型信息，包括ability名称、bundle名称等。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 当前ActionExtensionAbility的Want类型信息，包括ability名称、bundle名称等。 |
 | session | [UIExtensionContentSession](js-apis-app-ability-uiExtensionContentSession.md) | 是 | ActionExtensionAbility界面内容相关信息。 |
 
 **示例：**

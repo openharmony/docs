@@ -443,6 +443,6 @@
 
 ## 参考
 
-- [权限列表](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissiondistributed_datasync)
-- [@ohos.wifiManager](../application-dev/reference/apis/js-apis-wifiManager.md)
+- [权限列表](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissiondistributed_datasync)
+- [@ohos.wifiManager](../application-dev/reference/apis-connectivity-kit/js-apis-wifiManager.md)
 

@@ -1,4 +1,4 @@
-# ArkUI API参考 
+# ArkUI API参考
 
 - ArkTS API
   - UI界面
@@ -26,13 +26,14 @@
     - [@ohos.deviceStatus.dragInteraction (拖拽)(系统接口)](js-apis-devicestatus-draginteraction-sys.md)
     - [@ohos.pluginComponent (PluginComponentManager)(系统接口)](js-apis-plugincomponent-sys.md)
     - [@ohos.uiAppearance (用户界面外观)(系统接口)](js-apis-uiappearance-sys.md)
+    - [@ohos.uiExtensionHost (系统接口)](js-apis-uiExtensionHost-sys.md)
     - arkui
-        - [BuilderNode](js-apis-arkui-builderNode.md)
-        - [FrameNode](js-apis-arkui-frameNode.md)
-        - [Graphics](js-apis-arkui-graphics.md)
-        - [NodeController](js-apis-arkui-nodeController.md)
-        - [RenderNode](js-apis-arkui-renderNode.md)
-        - [XComponentNode](js-apis-arkui-xcomponentNode.md)
+      - [BuilderNode](js-apis-arkui-builderNode.md)
+      - [FrameNode](js-apis-arkui-frameNode.md)
+      - [Graphics](js-apis-arkui-graphics.md)
+      - [NodeController](js-apis-arkui-nodeController.md)
+      - [RenderNode](js-apis-arkui-renderNode.md)
+      - [XComponentNode](js-apis-arkui-xcomponentNode.md)
   - 图形图像
     - [@ohos.display (屏幕属性)](js-apis-display.md)
     - [@ohos.PiPWindow (画中画窗口)](js-apis-pipWindow.md)
@@ -296,11 +297,28 @@
     - [点击控制](arkui-ts/ts-universal-attributes-click.md)
 - C API
   - 模块
+    - [ArkUI_NativeModule](_ark_u_i___native_module.md)
     - [Native XComponent](_o_h___native_x_component.md)
   - 头文件
+    - [native_event.h](native__event_8h.md)
+    - [native_interface.h](native__interface_8h.md)
     - [native_interface_xcomponent.h](native__interface__xcomponent_8h.md)
+    - [native_node.h](native__node_8h.md)
+    - [native_type.h](native__type_8h.md)
     - [native_xcomponent_key_event.h](native__xcomponent__key__event_8h.md)
   - 结构体
+    - [ArkUI_AnyNativeAPI](_ark_u_i___any_native_a_p_i.md)
+    - [ArkUI_AttributeItem](_ark_u_i___attribute_item.md)
+    - [ArkUI_NativeNodeAPI_1](_ark_u_i___native_node_a_p_i__1.md)
+    - [ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)
+    - [ArkUI_NodeEvent](_ark_u_i___node_event.md)
+    - [ArkUI_NodeHistoricalTouchPoint](_ark_u_i___node_historical_touch_point.md)
+    - [ArkUI_NodeTouchEvent](_ark_u_i___node_touch_event.md)
+    - [ArkUI_NodeTouchPoint](_ark_u_i___node_touch_point.md)
+    - [ArkUI_NumberValue](union_ark_u_i___number_value.md)
+    - [ArkUI_StringAsyncEvent](_ark_u_i___string_async_event.md)
+    - [ARKUI_TextPickerCascadeRangeContent](_a_r_k_u_i___text_picker_cascade_range_content.md)
+    - [ARKUI_TextPickerRangeContent](_a_r_k_u_i___text_picker_range_content.md)
     - [OH_NativeXComponent_Callback](_o_h___native_x_component___callback.md)
     - [OH_NativeXComponent_ExpectedRateRange](_o_h___native_x_component___expected_rate_range.md)
     - [OH_NativeXComponent_MouseEvent](_o_h___native_x_component___mouse_event.md)
@@ -315,6 +333,5 @@
     - [用户界面外观服务错误码](errorcode-uiappearance.md)
     - [拖拽事件错误码](errorcode-drag-event.md)
   - 图形图像
-   - [屏幕错误码](errorcode-display.md)
-   - [窗口错误码](errorcode-window.md)
-
+    - [屏幕错误码](errorcode-display.md)
+    - [窗口错误码](errorcode-window.md)

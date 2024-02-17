@@ -31,7 +31,7 @@ NavDestination()
 | title        | string&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8)&nbsp;\|&nbsp;[NavigationCommonTitle](ts-basic-components-navigation.md#navigationcommontitle9类型说明)&nbsp;\|&nbsp;[NavigationCustomTitle](ts-basic-components-navigation.md#navigationcustomtitle9类型说明) | 页面标题。<br/>**说明：** <br/>使用NavigationCustomTitle类型设置height高度时，titleMode属性不会生效。<br/>字符串超长时，如果不设置副标题，先缩小再换行2行后以...截断。如果设置副标题，先缩小后以...截断。 |
 | hideTitleBar | boolean                                                      | 是否显示标题栏。<br/>默认值：false<br/>true:&nbsp;隐藏标题栏。<br/>false:&nbsp;显示标题栏。 |
 | mode <sup>11+</sup> | [NavDestinationMode](#navdestinationmode枚举说明-11)                                                   | NavDestination类型。<br/>默认值: NavDestinationMode.STANDARD|
-| backButtonIcon<sup>11+</sup> |   [ResourceStr](ts-types.md#resourcestr)  \|  [PixelMap](../../apis/js-apis-image.md#pixelmap7)       | 设置标题栏返回键图标。 |
+| backButtonIcon<sup>11+</sup> |   [ResourceStr](ts-types.md#resourcestr)  \|  [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)       | 设置标题栏返回键图标。 |
 
 ## NavDestinationMode枚举说明 <sup>11+</sup>
 | 名称   | 描述                                       |
@@ -49,7 +49,7 @@ NavDestination()
 | onShown(callback:&nbsp;()&nbsp;=&gt;&nbsp;void)<sup>10+</sup> | 当该NavDestination页面显示时触发此回调。 |
 | onHidden(callback:&nbsp;()&nbsp;=&gt;&nbsp;void)<sup>10+</sup> | 当该NavDestination页面隐藏时触发此回调。 |
 | onBackPressed(callback:&nbsp;()&nbsp;=&gt;&nbsp;boolean)<sup>10+</sup> | 当与Navigation绑定的页面栈中存在内容时，此回调生效。<br/>当点击返回键时，触发该回调。<br/>返回值为true时，表示重写返回键逻辑，返回值为false时，表示回退到上一个页面。<br/> |
-| onReady(callback:&nbsp;[Callback](../../apis/js-apis-base.md#callback)<[NavDestinationContext](#navdestinationcontext11类型说明)>)<sup>11+</sup> | 当NavDestination即将构建子组件之前会触发此回调。 |
+| onReady(callback:&nbsp;[Callback](../../apis-basic-services-kit/js-apis-base.md#callback)<[NavDestinationContext](#navdestinationcontext11类型说明)>)<sup>11+</sup> | 当NavDestination即将构建子组件之前会触发此回调。 |
 
 ## NavDestinationContext<sup>11+</sup>类型说明
 
