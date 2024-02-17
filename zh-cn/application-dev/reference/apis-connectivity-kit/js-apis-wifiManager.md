@@ -305,9 +305,9 @@ WLAN热点信息。
 | capabilities | string | 是 | 否 | 热点能力。 |
 | securityType | [WifiSecurityType](#wifisecuritytype9) | 是 | 否 | WLAN加密类型。 |
 | rssi | number | 是 | 否 | 热点的信号强度(dBm)。 |
-| band | number | 是 | 否 | WLAN接入点的频段。 |
+| band | number | 是 | 否 | WLAN接入点的频段，1:2.4GHZ；2:5GHZ。 |
 | frequency | number | 是 | 否 | WLAN接入点的频率。 |
-| channelWidth | number | 是 | 否 | WLAN接入点的带宽。 |
+| channelWidth | number | 是 | 否 | WLAN接入点的带宽，具体定义参见[WifiChannelWidth](#wifichannelwidth9)。 |
 | centerFrequency0 | number | 是 | 否 | 热点的中心频率。 |
 | centerFrequency1 | number | 是 | 否 | 热点的中心频率。如果热点使用两个不重叠的WLAN信道，则返回两个中心频率，分别用centerFrequency0和centerFrequency1表示。 |
 | infoElems | Array&lt;[WifiInfoElem](#wifiinfoelem9)&gt; | 是 | 否 | 信息元素。 |
@@ -334,8 +334,8 @@ wifi 设备地址（mac/bssid）类型。
 | **名称** | **值** | **说明** |
 | -------- | -------- | -------- |
 | WIFI_SEC_TYPE_INVALID | 0 | 无效加密类型。 |
-| WIFI_SEC_TYPE_OPEN | 1 | 开放加密类型。 |
-| WIFI_SEC_TYPE_WEP | 2 | Wired&nbsp;Equivalent&nbsp;Privacy&nbsp;(WEP)加密类型。 |
+| WIFI_SEC_TYPE_OPEN | 1 | 开放加密类型。候选网络配置不支持该加密类型。 |
+| WIFI_SEC_TYPE_WEP | 2 | Wired&nbsp;Equivalent&nbsp;Privacy&nbsp;(WEP)加密类型。候选网络配置不支持该加密类型。 |
 | WIFI_SEC_TYPE_PSK | 3 | Pre-shared&nbsp;key&nbsp;(PSK)加密类型。 |
 | WIFI_SEC_TYPE_SAE | 4 | Simultaneous&nbsp;Authentication&nbsp;of&nbsp;Equals&nbsp;(SAE)加密类型。 |
 | WIFI_SEC_TYPE_EAP | 5 | EAP加密类型。 |
@@ -771,7 +771,7 @@ getSignalLevel(rssi: number, band: number): number
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | rssi | number | 是 | 热点的信号强度(dBm)。 |
-  | band | number | 是 | WLAN接入点的频段。 |
+  | band | number | 是 | WLAN接入点的频段，1:2.4GHZ；2:5GHZ。 |
 
 **返回值：**
 
@@ -887,7 +887,7 @@ getLinkedInfo(callback: AsyncCallback&lt;WifiLinkedInfo&gt;): void
 | ssid | string | 是 | 否 | 热点的SSID，编码格式为UTF-8。 |
 | bssid | string | 是 | 否 | 热点的BSSID。 |
 | rssi | number | 是 | 否 | 热点的信号强度(dBm)。 |
-| band | number | 是 | 否 | WLAN接入点的频段。 |
+| band | number | 是 | 否 | WLAN接入点的频段，1:2.4GHZ；2:5GHZ。 |
 | linkSpeed | number | 是 | 否 | WLAN接入点的上行速度。 |
 | rxLinkSpeed<sup>10+</sup> | number | 是 | 否 | WLAN接入点的下行速度。 |
 | maxSupportedTxLinkSpeed<sup>10+</sup> | number | 是 | 否 | 当前支持的最大上行速率。 |
