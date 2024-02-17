@@ -16,7 +16,7 @@
 - [AVSession Kit API参考](apis-avsession-kit/Readme-CN.md)
 - [Background Tasks Kit API参考](apis-backgroundtasks-kit/Readme-CN.md)
 - [Basic Services Kit API参考](apis-basic-services-kit/Readme-CN.md)
-- [Calendar Kit API参考](apis-calendarmanager-kit/Readme-CN.md)
+- [Calendar Kit API参考](apis-calendar-kit/Readme-CN.md)
 - [Camera Kit API参考](apis-camera-kit/Readme-CN.md)
 - [Connectivity Kit API参考](apis-connectivity-kit/Readme-CN.md)
 - [Contacts Kit API参考](apis-contacts-kit/Readme-CN.md)
