@@ -475,7 +475,7 @@ js示例：
     "mode": {
       "syntax": "ets",
       "type": "pageAbility"
-    },
+    }
   }
 ]
 ```
