@@ -94,7 +94,7 @@
    }
    ```
 
-4. 设置目标组件参数，调用[`startAbility()`](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)接口，启动UIAbility或ServiceExtensionAbility。
+4. 设置目标组件参数，调用[`startAbility()`](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)接口，启动UIAbility或ServiceExtensionAbility。
 
    ```ts
    import { BusinessError } from '@ohos.base';
@@ -155,7 +155,7 @@
 
    ```
 
-5. 当设备A发起端应用不需要设备B上的ServiceExtensionAbility时，可调用[stopServiceExtensionAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstopserviceextensionability)接口退出。（该接口不支持UIAbility的退出，UIAbility由用户手动通过任务管理退出）
+5. 当设备A发起端应用不需要设备B上的ServiceExtensionAbility时，可调用[stopServiceExtensionAbility](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstopserviceextensionability)接口退出。（该接口不支持UIAbility的退出，UIAbility由用户手动通过任务管理退出）
 
    ```ts
    import Want from '@ohos.app.ability.Want';
@@ -404,7 +404,7 @@
 
 ## 通过跨设备连接ServiceExtensionAbility组件实现多端协同
 
-系统应用可以通过[connectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability)跨设备连接一个服务，实现跨设备远程调用。比如：分布式游戏场景，平板作为遥控器，智慧屏作为显示器。
+系统应用可以通过[connectServiceExtensionAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#abilitycontextconnectserviceextensionability)跨设备连接一个服务，实现跨设备远程调用。比如：分布式游戏场景，平板作为遥控器，智慧屏作为显示器。
 
 
 ### 接口说明
@@ -448,7 +448,7 @@
       let connectionId: number;
       let options: common.ConnectOptions = {
         onConnect(elementName, remote) {
-          hilog.info('onConnect callback');
+          hilog.info(DOMAIN_NUMBER, TAG, 'onConnect callback');
           if (remote === null) {
             hilog.info(DOMAIN_NUMBER, TAG, `onConnect remote is null`);
             return;
@@ -545,22 +545,22 @@
    
    let options: common.ConnectOptions = {
      onConnect(elementName, remote: rpc.IRemoteObject): void {
-       hilog.info('onConnect callback');
+       hilog.info(DOMAIN_NUMBER, TAG, 'onConnect callback');
        if (remote === null) {
-         hilog.info(`onConnect remote is null`);
+         hilog.info(DOMAIN_NUMBER, TAG, 'onConnect remote is null');
          return;
        }
        let serviceExtProxy: IdlServiceExtProxy = new IdlServiceExtProxy(remote);
        // 通过接口调用的方式进行通信，屏蔽了RPC通信的细节，简洁明了
        serviceExtProxy.processData(1, (errorCode: number, retVal: number) => {
-         hilog.info(`processData, errorCode: ${errorCode}, retVal: ${retVal}`);
+         hilog.info(DOMAIN_NUMBER, TAG, `processData, errorCode: ${errorCode}, retVal: ${retVal}`);
        });
        serviceExtProxy.insertDataToMap('theKey', 1, (errorCode: number) => {
-         hilog.info(`insertDataToMap, errorCode: ${errorCode}`);
+         hilog.info(DOMAIN_NUMBER, TAG, `insertDataToMap, errorCode: ${errorCode}`);
        })
      },
      onDisconnect(elementName): void {
-       hilog.info('onDisconnect callback');
+       hilog.info(DOMAIN_NUMBER, TAG, 'onDisconnect callback');
      },
      onFailed(code: number): void {
        hilog.info(DOMAIN_NUMBER, TAG, 'onFailed callback', JSON.stringify(code));
@@ -578,10 +578,10 @@
          .onClick(() => {
            this.context.disconnectServiceExtensionAbility(connectionId).then(() => {
              connectionId = this.context.connectServiceExtensionAbility(want, options);
-             hilog.info('disconnectServiceExtensionAbility success');
+             hilog.info(DOMAIN_NUMBER, TAG, 'disconnectServiceExtensionAbility success');
              // 成功断连后台服务
            }).catch((error: BusinessError) => {
-             hilog.error('disconnectServiceExtensionAbility failed');
+             hilog.error(DOMAIN_NUMBER, TAG, 'disconnectServiceExtensionAbility failed');
            })
          })
      }
@@ -815,23 +815,23 @@
                }).then((data) => {
                  if (data !== null) {
                    caller = data;
-                   hilog.info('get remote caller success');
+                   hilog.info(DOMAIN_NUMBER, TAG, 'get remote caller success');
                    // 注册caller的release监听
                    caller.onRelease((msg) => {
-                     hilog.info(`remote caller onRelease is called ${msg}`);
+                     hilog.info(DOMAIN_NUMBER, TAG, `remote caller onRelease is called ${msg}`);
                    })
-                   hilog.info('remote caller register OnRelease succeed');
+                   hilog.info(DOMAIN_NUMBER, TAG, 'remote caller register OnRelease succeed');
                    // 注册caller的协同场景下跨设备组件状态变化监听通知
                    try {
                      caller.onRemoteStateChange((str) => {
-                       hilog.info('Remote state changed ' + str);
+                       hilog.info(DOMAIN_NUMBER, TAG, 'Remote state changed ' + str);
                      });
                    } catch (error) {
-                     hilog.info(`Caller.onRemoteStateChange catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}`);
+                     hilog.info(DOMAIN_NUMBER, TAG, `Caller.onRemoteStateChange catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}`);
                    };
                  }
                }).catch((error: BusinessError) => {
-                 hilog.error(`get remote caller failed with ${error}`);
+                 hilog.error(DOMAIN_NUMBER, TAG, `get remote caller failed with ${error}`);
                });
              }
              )
@@ -886,7 +886,7 @@
                await this.caller.call(MSG_SEND_METHOD, msg);
              }
            } catch (error) {
-             hilog.info(`caller call failed with ${error}`);
+             hilog.info(DOMAIN_NUMBER, TAG, `caller call failed with ${error}`);
            };
          }
          // ...
@@ -937,14 +937,14 @@
               let msg: MyParcelable = new MyParcelable(1, originMsg);
               if (this.caller) {
                 const data = await this.caller.callWithResult(MSG_SEND_METHOD, msg);
-                hilog.info('caller callWithResult succeed');
+                hilog.info(DOMAIN_NUMBER, TAG, 'caller callWithResult succeed');
                 let result: MyParcelable = new MyParcelable(0, '');
                 data.readParcelable(result);
                 backMsg = result.str;
-                hilog.info(`caller result is [${result.num}, ${result.str}]`);
+                hilog.info(DOMAIN_NUMBER, TAG, `caller result is [${result.num}, ${result.str}]`);
               }
             } catch (error) {
-              hilog.info(`caller callWithResult failed with ${error}`);
+              hilog.info(DOMAIN_NUMBER, TAG, `caller callWithResult failed with ${error}`);
             };
           }
           // ...
@@ -965,9 +965,9 @@
            this.caller.release();
            this.caller = undefined;
          }
-         hilog.info('caller release succeed');
+         hilog.info(DOMAIN_NUMBER, TAG, 'caller release succeed');
        } catch (error) {
-         hilog.info(`caller release failed with ${error}`);
+         hilog.info(DOMAIN_NUMBER, TAG, `caller release failed with ${error}`);
        };
      }
    }
