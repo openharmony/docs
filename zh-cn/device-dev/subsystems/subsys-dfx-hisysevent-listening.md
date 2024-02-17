@@ -39,7 +39,7 @@ C++ HiSysEvent订阅开发能力如下：HiSysEventManager类，具体API详见�
 | -------- | -------- |
 | ListenerRule(const&nbsp;std::string&amp;&nbsp;tag,<br/>&nbsp;RuleType&nbsp;ruleType&nbsp;=&nbsp;RuleType::WHOLE_WORD) | 接口功能：订阅规则构造函数，创建事件标签订阅规则对象。<br/>输入参数：<br/>-&nbsp;tag：订阅规则中指定的系统事件标签，字符串类型，最大长度16个字符（含），有效字符包含大小写字母及数字。<br/>-&nbsp;ruleType：订阅规则的规则类型，RuleType枚举类型(参考表3)。 |
 | ListenerRule(const&nbsp;std::string&amp;&nbsp;domain,<br/>&nbsp;const&nbsp;std::string&amp;&nbsp;eventName,<br/>&nbsp;RuleType&nbsp;ruleType&nbsp;=&nbsp;RuleType::WHOLE_WORD) | 接口功能：订阅规则构造函数，创建事件领域与事件名称订阅规则对象。<br/>输入参数：<br/>-&nbsp;domain：订阅规则中指定的系统事件领域，字符串类型，最大长度16个字符（含），有效字符包含大写字母、数字及下划线。<br/>-&nbsp;eventName：订阅规则中指定的系统事件名称，字符串类型，最大长度32个字符（含），有效字符包含大写字母、数字及下划线。<br/>-&nbsp;ruleType：订阅规则的规则类型，RuleType枚举类型(参考表3)。 |
-| ListenerRule(const&nbsp;std::string&amp;&nbsp;domain,<br/>&nbsp;const&nbsp;std::string&amp;&nbsp;eventName,<br/>&nbsp;const&nbsp;std::string&amp;&nbsp;tag,<br/>&nbsp;RuleType&nbsp;ruleType&nbsp;=&nbsp;RuleType::WHOLE_WORD) | 接口功能：订阅规则构造函数，创建事件领域、事件名称，事件标签订阅规则对象。<br/>输入参数：<br/>-&nbsp;tag：订阅规则中指定的系统事件标签，字符串类型，最大长度16个字符（含），有效字符包含大小写字母及数字。<br/>-&nbsp;domain：订阅规则中指定的系统事件领域，字符串类型，最大长度16个字符（含），有效字符包含大写字母、数字及下划线。<br/>-&nbsp;eventName：订阅规则中指定的系统事件名称，字符串类型，最大长度32个字符（含），有效字符包含大写字母、数字及下划线。<br/>-&nbsp;ruleType：订阅规则的规则类型，RuleType枚举类型。 |
+| ListenerRule(const&nbsp;std::string&amp;&nbsp;domain,<br/>&nbsp;const&nbsp;std::string&amp;&nbsp;eventName,<br/>&nbsp;const&nbsp;std::string&amp;&nbsp;tag,<br/>&nbsp;RuleType&nbsp;ruleType&nbsp;=&nbsp;RuleType::WHOLE_WORD) | 接口功能：订阅规则构造函数，创建事件领域、事件名称，事件标签订阅规则对象。<br/>输入参数：<br/>-&nbsp;domain：订阅规则中指定的系统事件领域，字符串类型，最大长度16个字符（含），有效字符包含大写字母、数字及下划线。<br/>-&nbsp;eventName：订阅规则中指定的系统事件名称，字符串类型，最大长度32个字符（含），有效字符包含大写字母、数字及下划线。<br/>-&nbsp;tag：订阅规则中指定的系统事件标签，字符串类型，最大长度16个字符（含），有效字符包含大小写字母及数字。<br/>-&nbsp;ruleType：订阅规则的规则类型，RuleType枚举类型。 |
 
   **表3** HiSysEventListener订阅对象
 
@@ -153,7 +153,7 @@ C HiSysEvent订阅开发能力如下：具体API详见接口目录（/base/hivie
     sysRules.push_back(regRule);
     sysRules.push_back(domainNameRule);
     // 开始系统事件订阅
-    auto ret = HiSysEventManager::AddEventListener(testListener, sysRules);
+    auto ret = HiSysEventManager::AddListener(testListener, sysRules);
     // 订阅结束，移除订阅回调参数。
     if (ret == 0) {
        HiSysEventManager::RemoveListener(testListener);
@@ -264,7 +264,7 @@ C HiSysEvent订阅开发能力如下：具体API详见接口目录（/base/hivie
         ListenerRule domainNameRule("HIVIEWDFX", "PLUGIN_LOAD", RuleType::WHOLE_WORD);
         std::vector<ListenerRule> sysRules;
         sysRules.push_back(domainNameRule);
-        auto ret = HiSysEventManager::AddEventListener(testListener, sysRules);
+        auto ret = HiSysEventManager::AddListener(testListener, sysRules);
         if (ret == 0) {
             HiSysEventManager::RemoveListener(testListener);
         }
