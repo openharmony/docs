@@ -16,7 +16,7 @@ UIAbility的生命周期包括Create、Foreground、Background、Destroy四个�
 
 ### Create状态
 
-Create状态为在应用加载过程中，UIAbility实例创建完成时触发，系统会调用`onCreate()`回调。可以在该回调中进行应用初始化操作，例如变量定义资源加载等，用于后续的UI展示。
+Create状态为在应用加载过程中，UIAbility实例创建完成时触发，系统会调用`onCreate()`回调。可以在该回调中进行页面初始化操作，例如变量定义资源加载等，用于后续的UI展示。
 
 
 ```ts
