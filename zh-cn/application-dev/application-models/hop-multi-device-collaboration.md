@@ -578,7 +578,7 @@
          .onClick(() => {
            this.context.disconnectServiceExtensionAbility(connectionId).then(() => {
              connectionId = this.context.connectServiceExtensionAbility(want, options);
-             Logger.info('disconnectServiceExtensionAbility success');
+             hilog.info('disconnectServiceExtensionAbility success');
              // 成功断连后台服务
            }).catch((error: BusinessError) => {
              hilog.error('disconnectServiceExtensionAbility failed');
