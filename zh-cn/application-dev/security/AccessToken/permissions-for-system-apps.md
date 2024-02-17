@@ -1597,6 +1597,18 @@
 
 **起始版本**：8
 
+### ohos.permission.ACCESS_USER_AUTH_INTERNAL
+
+允许调用统一身份认证服务的系统内部接口。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：8
+
 ### ohos.permission.SUPPORT_USER_AUTH
 
 统一用户认证控件资源池访问权限。
@@ -2394,18 +2406,6 @@
 **ACL使能**：false
 
 **起始版本**：10
-
-### ohos.permission.ACCESS_USER_AUTH_INTERNAL
-
-允许调用统一身份认证服务的系统内部接口。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**ACL使能**：false
-
-**起始版本**：8
 
 ### ohos.permission.ACCESS_AUTH_RESPOOL
 
