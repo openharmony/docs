@@ -230,7 +230,7 @@ struct CompA {
 
 ### \@BuilderParam尾随闭包情况下\@Provide未定义错误
 
-在此场景下，CustomWidget执行this.builder()创建子组件CustomWidgetChild时，this指向的是HomePage。因此找不到CustomWidget的\@Provide变量，所以下面示例会报找不到\@Provide错误，和\@BuidlerParam连用的时候要谨慎this的指向。
+在此场景下，CustomWidget执行this.builder()创建子组件CustomWidgetChild时，this指向的是HomePage。因此找不到CustomWidget的\@Provide变量，所以下面示例会报找不到\@Provide错误，和\@BuilderParam连用的时候要谨慎this的指向。
 
 错误示例：
 
