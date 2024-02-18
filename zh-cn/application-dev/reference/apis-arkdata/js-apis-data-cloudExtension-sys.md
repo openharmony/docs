@@ -105,12 +105,12 @@ import cloudExtension from '@ohos.data.cloudExtension';
 | 类型                      | 说明                            |
 | ------------------------- | ------------------------------- |
 | null                      | 表示值的类型为空。              |
-| number                    | 表示值的类型数字类型。          |
-| string                    | 表示值的类型字符串类型。        |
-| boolean                   | 表示值的类型布尔类型。          |
+| number                    | 表示值的类型为数字类型。         |
+| string                    | 表示值的类型为字符串类型。       |
+| boolean                   | 表示值的类型为布尔类型。         |
 | Uint8Array                | 表示值的类型为Uint8类型的数组。 |
 | [CloudAsset](#cloudasset) | 表示值的类型为云资产类型。      |
-| [CloudAssets](#cloudassets)            | 表示值的类型云资产数组类型。    |
+| [CloudAssets](#cloudassets)            | 表示值的类型为云资产数组类型。   |
 
 ## CloudInfo
 
@@ -118,9 +118,9 @@ import cloudExtension from '@ohos.data.cloudExtension';
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Server
 
-| 名称      | 类型                                                  | 必填 | 说明           |
-| --------- | ----------------------------------------------------- | ---- | -------------- |
-| cloudInfo | [ServiceInfo](#serviceinfo)                         | 是   | 云信息。       |
+| 名称      | 类型                                                | 必填 | 说明           |
+| --------- | --------------------------------------------------- | ---- | -------------- |
+| cloudInfo | [ServiceInfo](#serviceinfo)                         | 是   | 云服务信息。   |
 | apps      | Record&lt;string, [AppBriefInfo](#appbriefinfo)&gt; | 是   | 简要应用信息。 |
 
 ## CloudData
@@ -129,10 +129,10 @@ import cloudExtension from '@ohos.data.cloudExtension';
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Server
 
-| 名称       | 类型                                                         | 必填 | 说明                                                         |
-| ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| nextCursor | string                                                       | 是   | 查询游标。                                                   |
-| hasMore    | boolean                                                      | 是   | 服务器是否存在更多数据可供查询。                             |
+| 名称       | 类型                                                       | 必填 | 说明                                                         |
+| ---------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| nextCursor | string                                                     | 是   | 查询游标。                                                   |
+| hasMore    | boolean                                                    | 是   | 服务器是否存在更多数据可供查询，true表示服务器上还有数据等待查询，false表示服务器上不存在可查询的数据。 |
 | values     | Array&lt;Record&lt;string, [CloudType](#cloudtype)&gt;&gt; | 是   | 需要查询数据的数组，包括data value（数据值）和[ExtensionValue](#extensionvalue)（扩展值)。 |
 
 ## AppBriefInfo
@@ -145,7 +145,7 @@ import cloudExtension from '@ohos.data.cloudExtension';
 | ----------- | ------- | ---- | ---------------------------------- |
 | appId       | string  | 是   | 应用程序ID。                      |
 | bundleName  | string  | 是   | 应用包名。                         |
-| cloudSwitch | boolean | 是   | 云开关，表示应用程序是否启用了云，true表示开关打开，false表示开关关闭。 |
+| cloudSwitch | boolean | 是   | 云开关，表示应用程序是否启用云，true表示启用云，false表示不启用云。 |
 | instanceId  | number  | 是   | 应用分身ID。                      |
 
 ## FieldType
@@ -185,11 +185,11 @@ import cloudExtension from '@ohos.data.cloudExtension';
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Server
 
-| 名称   | 类型                           | 必填 | 说明             |
-| ------ | ------------------------------ | ---- | ---------------- |
-| alias  | string                         | 是   | 服务器上的表名。 |
-| name   | string                         | 是   | 表名。           |
-| fields | Array&lt;[Field](#field)&gt; | 是   | 表格中的字段。   |
+| 名称   | 类型                         | 必填 | 说明                         |
+| ------ | ---------------------------- | ---- | ---------------------------- |
+| alias  | string                       | 是   | 该表在服务器数据库中的别名。 |
+| name   | string                       | 是   | 表名。                       |
+| fields | Array&lt;[Field](#field)&gt; | 是   | 数据库表中的字段结构信息。   |
 
 ## Database
 
@@ -197,10 +197,10 @@ import cloudExtension from '@ohos.data.cloudExtension';
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Server
 
-| 名称   | 类型                           | 必填 | 说明                             |
-| ------ | ------------------------------ | ---- | -------------------------------- |
-| name   | string                         | 是   | 数据库名称。                     |
-| alias  | string                         | 是   | 服务器上数据库的名称。           |
+| 名称   | 类型                         | 必填 | 说明                             |
+| ------ | ---------------------------- | ---- | -------------------------------- |
+| name   | string                       | 是   | 数据库名称。                     |
+| alias  | string                       | 是   | 该数据库在服务器中的别名。       |
 | tables | Array&lt;[Table](#table)&gt; | 是   | 数据库中的表，包含数据详细信息。 |
 
 ## AppSchema
@@ -232,21 +232,21 @@ import cloudExtension from '@ohos.data.cloudExtension';
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Server
 
-| 名称           | 类型                                                         | 必填 | 说明               |
-| -------------- | ------------------------------------------------------------ | ---- | ------------------ |
-| expirationTime | number                                                       | 是   | 订阅过期时间(ms)。 |
-| subscribe      | Record&lt;string, Array&lt;[SubscribeId](#subscribeid)&gt;&gt; | 是   | 订阅信息。         |
+| 名称           | 类型                                                         | 必填 | 说明                 |
+| -------------- | ------------------------------------------------------------ | ---- | -------------------- |
+| expirationTime | number                                                       | 是   | 订阅过期时间（ms）。 |
+| subscribe      | Record&lt;string, Array&lt;[SubscribeId](#subscribeid)&gt;&gt; | 是   | 订阅信息。           |
 
 ## LockInfo
 
-云数据库锁信息，单位：秒。
+云数据库锁信息。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Server
 
-| 名称     | 类型   | 必填 | 说明                         |
-| -------- | ------ | ---- | ---------------------------- |
-| interval | number | 是   | 云数据库锁的持续时间（秒）。 |
-| lockId   | number | 是   | 锁ID。                       |
+| 名称     | 类型   | 必填 | 说明                            |
+| -------- | ------ | ---- | ------------------------------- |
+| interval | number | 是   | 云数据库锁的持续时间，单位为s。 |
+| lockId   | number | 是   | 锁ID。                          |
 
 ## ErrorCode
 
@@ -258,7 +258,7 @@ import cloudExtension from '@ohos.data.cloudExtension';
 | --------------------- | ---- | ------------------------------------------------------------ |
 | SUCCESS               | 0    | 表示端云同步过程成功。                                       |
 | UNKNOWN_ERROR         | 1    | 表示端云同步过程中遇到未知错误。                             |
-| NETWORK_ERROR         | 2    | 表示端云同步过程中遇到网络错误                               |
+| NETWORK_ERROR         | 2    | 表示端云同步过程中遇到网络错误。                             |
 | CLOUD_DISABLED        | 3    | 表示云端不可用。                                             |
 | LOCKED_BY_OTHERS      | 4    | 表示有其他设备正在进行端云同步，本设备无法进行端云同步。请确保无其他设备占用端云资源后，在使用本设备进行端云同步任务。 |
 | RECORD_LIMIT_EXCEEDED | 5    | 表示本次端云同步需要同步的条目或大小超出最大值。由云端配置最大值。 |
@@ -268,7 +268,7 @@ import cloudExtension from '@ohos.data.cloudExtension';
 
 createCloudServiceStub(instance: CloudService): Promise&lt;rpc.RemoteObject&gt;
 
-根据[CloudService](#cloudservice)类的实例创建对应的[RemoteObject](../apis/js-apis-rpc.md#remoteobject)对象，系统内部通过该对象调用[CloudService](#cloudservice)的实现接口，使用Promise异步回调。
+根据[CloudService](#cloudservice)类的实例创建对应的[RemoteObject](../apis-ipc-kit/js-apis-rpc.md#remoteobject)对象，系统内部通过该对象调用[CloudService](#cloudservice)的实现接口，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Server
 
@@ -282,7 +282,7 @@ createCloudServiceStub(instance: CloudService): Promise&lt;rpc.RemoteObject&gt;
 
 | 类型                | 说明                      |
 | -------------------             | ------------------------- |
-| Promise&lt;[rpc.RemoteObject](../apis/js-apis-rpc.md#remoteobject)&gt; | Promise对象，返回[CloudService](#cloudservice)的[RemoteObject](../apis/js-apis-rpc.md#remoteobject)对象。 |
+| Promise&lt;[rpc.RemoteObject](../apis-ipc-kit/js-apis-rpc.md#remoteobject)&gt; | Promise对象，返回[CloudService](#cloudservice)的[RemoteObject](../apis-ipc-kit/js-apis-rpc.md#remoteobject)对象。 |
 
 **示例：**
 
@@ -322,7 +322,7 @@ export default class MyServiceExtension extends ServiceExtensionAbility {
 
 createShareServiceStub(instance: ShareCenter): Promise&lt;rpc.RemoteObject&gt;
 
-根据[ShareCenter](#sharecenter)类的实例创建对应的[RemoteObject](../apis/js-apis-rpc.md#remoteobject)对象，系统内部通过该对象调用[ShareCenter](#sharecenter)的实现接口，使用Promise异步回调。
+根据[ShareCenter](#sharecenter)类的实例创建对应的[RemoteObject](../apis-ipc-kit/js-apis-rpc.md#remoteobject)对象，系统内部通过该对象调用[ShareCenter](#sharecenter)的实现接口，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Server
 
@@ -336,7 +336,7 @@ createShareServiceStub(instance: ShareCenter): Promise&lt;rpc.RemoteObject&gt;
 
 | 类型                | 说明                      |
 | -------------------             | ------------------------- |
-| Promise&lt;[rpc.RemoteObject](../apis/js-apis-rpc.md#remoteobject)&gt; | Promise对象，返回[ShareCenter](#sharecenter)的[RemoteObject](../apis/js-apis-rpc.md#remoteobject)对象。 |
+| Promise&lt;[rpc.RemoteObject](../apis-ipc-kit/js-apis-rpc.md#remoteobject)&gt; | Promise对象，返回[ShareCenter](#sharecenter)的[RemoteObject](../apis-ipc-kit/js-apis-rpc.md#remoteobject)对象。 |
 
 **示例：**
 
@@ -361,7 +361,7 @@ export default class MyCloudService implements cloudExtension.CloudService {
 
 createCloudDBStub(instance: CloudDB): Promise&lt;rpc.RemoteObject&gt;
 
-根据[CloudDB](#clouddb)类的实例创建对应的[RemoteObject]((../apis/js-apis-rpc.md#remoteobject))对象，系统内部通过该对象调用[CloudDB](#clouddb)的实现接口，使用Promise异步回调。
+根据[CloudDB](#clouddb)类的实例创建对应的[RemoteObject](../apis-ipc-kit/js-apis-rpc.md#remoteobject)对象，系统内部通过该对象调用[CloudDB](#clouddb)的实现接口，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Server
 
@@ -375,7 +375,7 @@ createCloudDBStub(instance: CloudDB): Promise&lt;rpc.RemoteObject&gt;
 
 | 类型                                                         | 说明                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| Promise&lt;[rpc.RemoteObject](../apis/js-apis-rpc.md#remoteobject)&gt; | Promise对象，返回[CloudDB](#clouddb)的[rpc.RemoteObject](../apis/js-apis-rpc.md#remoteobject)对象。 |
+| Promise&lt;[rpc.RemoteObject](../apis-ipc-kit/js-apis-rpc.md#remoteobject)&gt; | Promise对象，返回[CloudDB](#clouddb)的[rpc.RemoteObject](../apis-ipc-kit/js-apis-rpc.md#remoteobject)对象。 |
 
 ```ts
 import rpc from '@ohos.rpc';
@@ -398,7 +398,7 @@ export default class MyCloudService implements cloudExtension.CloudService {
 
 createAssetLoaderStub(instance: AssetLoader): Promise&lt;rpc.RemoteObject&gt;
 
-根据[AssetLoader](#assetloader)类的实例创建对应的[RemoteObject](../apis/js-apis-rpc.md#remoteobject)对象，系统内部通过该对象调用[AssetLoader](#assetloader)的实现接口，使用Promise异步回调。
+根据[AssetLoader](#assetloader)类的实例创建对应的[RemoteObject](../apis-ipc-kit/js-apis-rpc.md#remoteobject)对象，系统内部通过该对象调用[AssetLoader](#assetloader)的实现接口，使用Promise异步回调。
 
 **参数：**
 
@@ -412,7 +412,7 @@ createAssetLoaderStub(instance: AssetLoader): Promise&lt;rpc.RemoteObject&gt;
 
 | 类型                                                         | 说明                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| Promise&lt;[rpc.RemoteObject](../apis/js-apis-rpc.md#remoteobject)&gt; | Promise对象，返回[AssetLoader](#assetloader)的[rpc.RemoteObject](../apis/js-apis-rpc.md#remoteobject)对象。 |
+| Promise&lt;[rpc.RemoteObject](../apis-ipc-kit/js-apis-rpc.md#remoteobject)&gt; | Promise对象，返回[AssetLoader](#assetloader)的[rpc.RemoteObject](../apis-ipc-kit/js-apis-rpc.md#remoteobject)对象。 |
 
 **示例：**
 
@@ -455,9 +455,9 @@ generateId(count: number): Promise&lt;Result&lt;Array&lt;string&gt;&gt;&gt;
 
 **返回值：**
 
-| 类型                                                     | 说明                            |
-| -------------------------------------------------------- | ------------------------------- |
-| Promise&lt;[Result](#resultt)&lt;Array&lt;string&gt;&gt; | Promise对象，返回生成的ID数组。 |
+| 类型                                                     | 说明                                                         |
+| -------------------------------------------------------- | ------------------------------------------------------------ |
+| Promise&lt;[Result](#resultt)&lt;Array&lt;string&gt;&gt; | Promise对象，以[Result](#resultt)结构将生成的ID以数组形式返回。 |
 
 **示例：**
 
@@ -963,7 +963,7 @@ export default class MyCloudService implements cloudExtension.CloudService {
 
  connectDB(bundleName: string, database: Database): Promise&lt;rpc.RemoteObject&gt;
 
-连接数据库。
+系统内部通过该接口获取[CloudDB](#clouddb)的[RemoteObject](../apis-ipc-kit/js-apis-rpc.md#remoteobject)对象，可以通过[createCloudDBStub](#cloudextensioncreateclouddbstub)接口进行创建，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Server
 
@@ -978,7 +978,7 @@ export default class MyCloudService implements cloudExtension.CloudService {
 
 | 类型                                                         | 说明                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| Promise&lt;[rpc.RemoteObject](js-apis-rpc.md#remoteobject)&gt; | Promise对象，返回[CloudDB](#clouddb)的[RemoteObject](js-apis-rpc.md#remoteobject)对象。 |
+| Promise&lt;[rpc.RemoteObject](../apis-ipc-kit/js-apis-rpc.md#remoteobject)&gt; | Promise对象，返回[CloudDB](#clouddb)的[RemoteObject](../apis-ipc-kit/js-apis-rpc.md#remoteobject)对象。 |
 
 ```ts
 import rpc from '@ohos.rpc';
@@ -1000,6 +1000,9 @@ export default class MyCloudService implements cloudExtension.CloudService {
 ### connectAssetLoader
 
 connectAssetLoader(bundleName: string, database: Database): Promise&lt;rpc.RemoteObject&gt;
+
+系统内部通过该接口获取[AssetLoader](#assetloader)的[RemoteObject](../apis-ipc-kit/js-apis-rpc.md#remoteobject)对象，可以通过[createAssetLoaderStub](#cloudextensioncreateassetloaderstub)接口进行创建，使用Promise异步回调。
+
 连接进行资产上传和下载的对象。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Server
@@ -1015,7 +1018,7 @@ connectAssetLoader(bundleName: string, database: Database): Promise&lt;rpc.Remot
 
 | 类型                                                         | 说明                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| Promise&lt;[rpc.RemoteObject](js-apis-rpc.md#remoteobject)&gt; | Promise对象，返回[AssetLoader](#assetloader)的[RemoteObject](js-apis-rpc.md#remoteobject)对象。 |
+| Promise&lt;[rpc.RemoteObject](../apis-ipc-kit/js-apis-rpc.md#remoteobject)&gt; | Promise对象，返回[AssetLoader](#assetloader)的[RemoteObject](../apis-ipc-kit/js-apis-rpc.md#remoteobject)对象。 |
 
 ```ts
 import rpc from '@ohos.rpc';
@@ -1038,7 +1041,7 @@ export default class MyCloudService implements cloudExtension.CloudService {
 
 connectShareCenter(userId: number, bundleName: string): Promise&lt;rpc.RemoteObject&gt;
 
-系统内部通过该接口获取[ShareCenter](#sharecenter)的[RemoteObject](../apis/js-apis-rpc.md#remoteobject)对象，可以通过[createShareServiceStub](#cloudextensioncreateshareservicestub)接口进行创建，使用Promise异步回调。
+系统内部通过该接口获取[ShareCenter](#sharecenter)的[RemoteObject](../apis-ipc-kit/js-apis-rpc.md#remoteobject)对象，可以通过[createShareServiceStub](#cloudextensioncreateshareservicestub)接口进行创建，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Server
 
@@ -1053,7 +1056,7 @@ connectShareCenter(userId: number, bundleName: string): Promise&lt;rpc.RemoteObj
 
 | 类型                                                         | 说明                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| Promise&lt;[rpc.RemoteObject](../apis/js-apis-rpc.md#remoteobject)&gt; | Promise对象，返回[ShareCenter](#sharecenter)的[RemoteObject](../apis/js-apis-rpc.md#remoteobject)对象。 |
+| Promise&lt;[rpc.RemoteObject](../apis-ipc-kit/js-apis-rpc.md#remoteobject)&gt; | Promise对象，返回[ShareCenter](#sharecenter)的[RemoteObject](../apis-ipc-kit/js-apis-rpc.md#remoteobject)对象。 |
 
 **示例：**
 
