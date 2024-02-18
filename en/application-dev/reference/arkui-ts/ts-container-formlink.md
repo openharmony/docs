@@ -92,6 +92,17 @@ struct FormLinkDemo {
       }) {
         Button("call event").width(120)
       }.margin(10)
+
+      // The router deeplink event is used to redirect to the specified UIAbility from the static widget.
+      FormLink({
+        action: "router",
+        uri: 'example://uri.ohos.com/link_page',
+        params: {
+          message: 'router msg for static uri deeplink' // Customize the message to send.
+        }
+      }) {
+        Button("deeplink event").width(120)
+      }.margin(10)
     }
     .justifyContent(FlexAlign.Center)
     .width('100%').height('100%')
@@ -99,4 +110,4 @@ struct FormLinkDemo {
 }
 ```
 
-![FormLink](figures/formLink.jpeg)
+![FormLink](figures/formLink.png)

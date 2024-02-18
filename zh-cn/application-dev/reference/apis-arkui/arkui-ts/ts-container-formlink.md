@@ -91,6 +91,17 @@ struct FormLinkDemo {
       }) {
         Button("call event").width(120)
       }.margin(10)
+
+      // router事件用于静态卡片deeplink跳转到对应的UIAbility
+      FormLink({
+        action: "router",
+        uri: 'example://uri.ohos.com/link_page',
+        params: {
+          message: 'router msg for static uri deeplink' // 自定义要发送的message
+        }
+      }) {
+        Button("deeplink event").width(120)
+      }.margin(10)
     }
     .justifyContent(FlexAlign.Center)
     .width('100%').height('100%')
@@ -98,4 +109,24 @@ struct FormLinkDemo {
 }
 ```
 
-![FormLink](figures/formLink.jpeg)
+![FormLink](figures/formLink.png)
+
+**待跳转应用 [module.json5](../../quick-start/module-configuration-file.md#skills标签) uris 配置示例：**
+
+```json
+"abilities": [
+  {
+    "skills": [
+      {
+        "uris": [
+          {
+            "scheme": "example",
+            "host": "uri.ohos.com",
+            "path": "link_page"
+          },
+        ]
+      }
+    ],
+  }
+]
+```
