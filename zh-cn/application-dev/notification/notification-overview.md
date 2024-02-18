@@ -31,12 +31,12 @@
 
 基于通知的开发，有以下相关实例可供参考：
 
-- [公共事件的订阅和发布（ArkTS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Notification/CustomCommonEvent)
+- [公共事件的订阅和发布（ArkTS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.1-Beta1/code/BasicFeature/Notification/CustomCommonEvent)
 
-- [自定义通知推送（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Notification/CustomNotificationPush)
+- [自定义通知推送（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.1-Beta1/code/BasicFeature/Notification/CustomNotificationPush)
 
-- [自定义通知角标（ArkTS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Notification/CustomNotificationBadge)
+- [自定义通知角标（ArkTS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.1-Beta1/code/BasicFeature/Notification/CustomNotificationBadge)
 
-- [自定义通知（ArkTS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Notification/CustomNotification)
+- [自定义通知（ArkTS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.1-Beta1/code/BasicFeature/Notification/CustomNotification)
 
-- [自定义Emitter（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Notification/CustomEmitter)
+- [自定义Emitter（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.1-Beta1/code/BasicFeature/Notification/CustomEmitter)

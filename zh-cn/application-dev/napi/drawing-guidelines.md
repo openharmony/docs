@@ -528,4 +528,4 @@ libnative_drawing.so
 ##  相关实例
 以上代码为Drawing绘制关键代码，完整代码请参考下面sample。
 
-- [Native Drawing（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkDrawing)
+- [Native Drawing（API10）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.1-Beta1/code/BasicFeature/Native/NdkDrawing)

@@ -324,4 +324,4 @@ struct Index {
 
 ## 相关实例
 
-- [购物示例应用](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Shopping/OrangeShopping)
+- [购物示例应用](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.1-Beta1/code/Solutions/Shopping/OrangeShopping)

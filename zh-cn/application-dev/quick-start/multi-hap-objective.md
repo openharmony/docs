@@ -10,4 +10,4 @@
 
 针对多HAP开发，有以下相关实例可供参考：
 
-- [多HAP（ArkTS）(API9)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Project/ApplicationHap/MultiHap)
+- [多HAP（ArkTS）(API9)](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.1-Beta1/code/Project/ApplicationHap/MultiHap)

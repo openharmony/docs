@@ -40,4 +40,4 @@
 
 针对位置服务，有以下相关实例可供参考：
 
-- [`Location`：位置信息（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DeviceManagement/Location)
+- [`Location`：位置信息（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.1-Beta1/code/BasicFeature/DeviceManagement/Location)
