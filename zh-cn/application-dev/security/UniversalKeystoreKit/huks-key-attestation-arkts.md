@@ -1,6 +1,6 @@
-# 非匿名密钥证明(仅向系统应用开放)(ArkTS)
+# 非匿名密钥证明(ArkTS)
 
-本接口有权限管控（需申请"ohos.permission.ATTEST_KEY"权限），且仅面向系统应用开放。
+在使用本功能前，需申请权限：ohos.permission.ATTEST_KEY。请开发者根据应用的APL等级，参考具体的操作路径[权限申请](../AccessToken/determine-application-mode.md)。
 
 ## 开发步骤
 
