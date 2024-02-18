@@ -46,9 +46,9 @@ import bundleManager from '@ohos.bundle.bundleManager';
 | INPUT_METHOD     | 2   | [InputMethodExtensionAbility](../apis-ime-kit/js-apis-inputmethod-extension-ability.md)：输入法扩展能力，用于开发输入法应用。 |
 | SERVICE          | 3   | [ServiceExtensionAbility](js-apis-app-ability-serviceExtensionAbility-sys.md)：后台服务扩展能力，提供后台运行并对外提供相应能力。 |
 | ACCESSIBILITY    | 4   | [AccessibilityExtensionAbility](../apis-accessibility-kit/js-apis-application-accessibilityExtensionAbility.md)：无障碍服务扩展能力，支持访问与操作前台界面。 |
-| DATA_SHARE       | 5   | [DataShareExtensionAbility](js-apis-application-dataShareExtensionAbility-sys.md)：数据共享扩展能力，用于对外提供数据读写服务。 |
+| DATA_SHARE       | 5   | [DataShareExtensionAbility](../apis-arkdata/js-apis-application-dataShareExtensionAbility-sys.md)：数据共享扩展能力，用于对外提供数据读写服务。 |
 | FILE_SHARE       | 6   | FileShareExtensionAbility：文件共享扩展能力，用于应用间的文件分享。预留能力，当前暂未支持。 |
-| STATIC_SUBSCRIBER| 7   | [StaticSubscriberExtensionAbility](js-apis-application-staticSubscriberExtensionAbility-sys.md)：静态广播扩展能力，用于处理静态事件，比如开机事件。 |
+| STATIC_SUBSCRIBER| 7   | [StaticSubscriberExtensionAbility](../apis-basic-services-kit/js-apis-application-staticSubscriberExtensionAbility-sys.md)：静态广播扩展能力，用于处理静态事件，比如开机事件。 |
 | WALLPAPER        | 8   | WallpaperExtensionAbility：壁纸扩展能力，用于实现桌面壁纸。预留能力，当前暂未支持。 |
 | BACKUP           |  9  | [BackupExtensionAbility](../apis-core-file-kit/js-apis-application-backupExtensionAbility.md)：数据备份扩展能力，提供应用数据的备份恢复能力。 |
 | WINDOW           |  10 | [WindowExtensionAbility](../apis-arkui/js-apis-application-windowExtensionAbility-sys.md)：界面组合扩展能力，允许系统应用进行跨应用的界面拉起和嵌入。 |
@@ -97,7 +97,7 @@ import bundleManager from '@ohos.bundle.bundleManager';
 |:----------------:|:---:|:---:|
 | SINGLETON        | 0   | ability的启动模式，表示单实例。 |
 | MULTITON         | 1   | ability的启动模式，表示普通多实例。 |
-| SPECIFIED        | 2   | ability的启动模式，表示该ability内部根据业务自己置顶多实例。 |
+| SPECIFIED        | 2   | ability的启动模式，表示该ability内部根据业务自己指定多实例。 |
 
 ### AbilityType
 
