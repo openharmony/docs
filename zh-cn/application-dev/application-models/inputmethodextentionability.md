@@ -405,4 +405,4 @@
 
 针对InputMethodExtensionAbility开发，有以下相关实例可供参考：
 
-- [Kika输入法](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/InputMethod/KikaInput) 
+- [Kika输入法](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.1-Beta1/code/Solutions/InputMethod/KikaInput) 

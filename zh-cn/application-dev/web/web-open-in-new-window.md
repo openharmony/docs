@@ -99,4 +99,4 @@ Web组件提供了在新窗口打开页面的能力，开发者可以通过[mult
 
 针对创建新窗口，有以下相关实例可供参考：
 
-- [浏览器（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Web/Browser)
+- [浏览器（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.1-Beta1/code/BasicFeature/Web/Browser)
