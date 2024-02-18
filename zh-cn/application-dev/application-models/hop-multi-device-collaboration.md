@@ -404,7 +404,7 @@
 
 ## 通过跨设备连接ServiceExtensionAbility组件实现多端协同
 
-系统应用可以通过[connectServiceExtensionAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#abilitycontextconnectserviceextensionability)跨设备连接一个服务，实现跨设备远程调用。比如：分布式游戏场景，平板作为遥控器，智慧屏作为显示器。
+系统应用可以通过[connectServiceExtensionAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability)跨设备连接一个服务，实现跨设备远程调用。比如：分布式游戏场景，平板作为遥控器，智慧屏作为显示器。
 
 
 ### 接口说明
@@ -440,7 +440,7 @@
       import rpc from '@ohos.rpc';
       import Want from '@ohos.app.ability.Want';
       import { BusinessError } from '@ohos.base';
-
+      
       const TAG: string = '[Page_CollaborateAbility]';
       const DOMAIN_NUMBER: number = 0xFF00;
       const REQUEST_CODE = 1;
@@ -482,7 +482,7 @@
           hilog.info(DOMAIN_NUMBER, TAG, 'onFailed callback');
         }
       };
-
+      
       function getRemoteDeviceId(): string | undefined {
         if (typeof dmClass === 'object' && dmClass !== null) {
           let list = dmClass.getAvailableDeviceListSync();
@@ -501,7 +501,7 @@
           return;
         }
       }
-
+      
       @Entry
       @Component
       struct PageName {
@@ -774,12 +774,12 @@
        import common from '@ohos.app.ability.common';
        import deviceManager from '@ohos.distributedDeviceManager';
        import hilog from '@ohos.hilog';
-	   
+	      
        const TAG: string = '[Page_CollaborateAbility]';
        const DOMAIN_NUMBER: number = 0xFF00;
        let caller: Caller | undefined;
        let dmClass: deviceManager.DeviceManager;
-	   
+	      
        function getRemoteDeviceId(): string | undefined {
          if (typeof dmClass === 'object' && dmClass !== null) {
            let list = dmClass.getAvailableDeviceListSync();
@@ -798,12 +798,12 @@
            return;
          }
        }
-	   
+	      
        @Entry
        @Component
        struct Page_CollaborateAbility {
          private context = getContext(this) as common.UIAbilityContext;
-	   
+	      
          build() {
            // ...
            Button('多端协同有返回数据')
@@ -847,35 +847,35 @@
        ```ts
        import UIAbility, { Caller } from '@ohos.app.ability.UIAbility';
        import type rpc from '@ohos.rpc';
-	   
+	      
        const MSG_SEND_METHOD: string = 'CallSendMsg';
        class MyParcelable {
          num: number = 0;
          str: string = '';
-	   
+	      
          constructor(num: number, string: string) {
            this.num = num;
            this.str = string;
          };
-	   
+	      
          mySequenceable(num: number, string: string): void {
            this.num = num;
            this.str = string;
          };
-	   
+	      
          marshalling(messageSequence: rpc.MessageSequence): boolean {
            messageSequence.writeInt(this.num);
            messageSequence.writeString(this.str);
            return true;
          };
-	   
+	      
          unmarshalling(messageSequence: rpc.MessageSequence): boolean {
            this.num = messageSequence.readInt();
            this.str = messageSequence.readString();
            return true;
          };
        };
-	   
+	      
        export default class EntryAbility extends UIAbility {
          // ...
          caller: Caller | undefined;
@@ -897,38 +897,38 @@
         ```ts
         import UIAbility, { Caller } from '@ohos.app.ability.UIAbility';
         import rpc from '@ohos.rpc';
-
+        
         const MSG_SEND_METHOD: string = 'CallSendMsg';
         let originMsg: string = '';
         let backMsg: string = '';
-
+        
         class MyParcelable {
           num: number = 0;
           str: string = '';
-
+        
           constructor(num: number, string: string) {
             this.num = num;
             this.str = string;
           };
-
+        
           mySequenceable(num: number, string: string): void {
             this.num = num;
             this.str = string;
           };
-
+        
           marshalling(messageSequence: rpc.MessageSequence): boolean {
             messageSequence.writeInt(this.num);
             messageSequence.writeString(this.str);
             return true;
           };
-
+        
           unmarshalling(messageSequence: rpc.MessageSequence): boolean {
             this.num = messageSequence.readInt();
             this.str = messageSequence.readString();
             return true;
           };
         };
-
+        
         export default class EntryAbility extends UIAbility {
           // ...
           caller: Caller | undefined;
@@ -972,4 +972,4 @@
      }
    }
    ```
-<!--no_check-->
+   <!--no_check-->
