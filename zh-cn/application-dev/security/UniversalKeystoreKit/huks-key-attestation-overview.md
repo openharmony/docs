@@ -10,7 +10,7 @@ HUKS为密钥提供合法性证明能力，主要应用于非对称密钥的公�
 | HAP应用| {appId:"xxx", bundleName:"xxx"} | bundleName为应用包名 | 
 | 系统服务| {processName:"xxx", APL:"system_basic \| system_core"} | APL为系统服务等级
 
-（注：当调用方为系统服务且APL等级为normal时，HUKS无法确定其身份的真实性，因而将processName与APL字段置空）
+（注：当调用方为系统服务且APL等级为normal时，暂不支持密钥证明，此种情况下，processName与APL字段将置空）
 
 
 密钥证明过程如下：
