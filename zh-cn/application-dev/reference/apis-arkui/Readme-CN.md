@@ -199,7 +199,6 @@
     - [ListItem](arkui-ts/ts-container-listitem.md)
     - [ListItemGroup](arkui-ts/ts-container-listitemgroup.md)
     - [Navigator](arkui-ts/ts-container-navigator.md)
-    - [Panel](arkui-ts/ts-container-panel.md)
     - [Refresh](arkui-ts/ts-container-refresh.md)
     - [RelativeContainer](arkui-ts/ts-container-relativecontainer.md)
     - [Row](arkui-ts/ts-container-row.md)
@@ -293,6 +292,7 @@
   - 已停止维护的组件
     - [AbilityComponent (系统接口)](arkui-ts/ts-container-ability-component-sys.md)
     - [GridContainer](arkui-ts/ts-container-gridcontainer.md)
+    - [Panel](arkui-ts/ts-container-panel.md)
   - 已停止维护的接口
     - [点击控制](arkui-ts/ts-universal-attributes-click.md)
 - C API
