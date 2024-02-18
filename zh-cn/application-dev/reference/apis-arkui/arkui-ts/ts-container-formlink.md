@@ -111,7 +111,7 @@ struct FormLinkDemo {
 
 ![FormLink](figures/formLink.png)
 
-**待跳转应用 [module.json5](../../quick-start/module-configuration-file.md#skills标签) uris 配置示例：**
+**待跳转应用 [module.json5](../../../quick-start/module-configuration-file.md#skills标签) uris 配置示例：**
 
 ```json
 "abilities": [
