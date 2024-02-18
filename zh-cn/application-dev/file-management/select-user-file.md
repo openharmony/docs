@@ -40,7 +40,7 @@
 
 4. 创建图库选择器实例，调用[select()](../reference/apis/js-apis-file-picker.md#select)接口拉起图库界面进行文件选择。文件选择成功后，返回[PhotoSelectResult](../reference/apis/js-apis-file-picker.md#photoselectresult)结果集。
 
-   </br>select返回的uri权限是只读权限，可以根据结果集中uri进行读取文件数据操作。注意不能在picker的回调里直接使用此uri进行打开文件操作，需要定义一个全局变量保存uri，使用类似一个按钮去触发打开文件。
+   </br>select返回的uri权限是只读权限，可以根据结果集中uri进行读取文件数据操作。建议定义一个全局变量保存uri，使用类似一个按钮去触发打开文件。
 
    </br>如有获取元数据需求，可以通过[文件管理接口](../reference/apis/js-apis-file-fs.md)和[文件URI](../reference/apis/js-apis-file-fileuri.md)根据uri获取部分文件属性信息，比如文件大小、访问时间、修改时间、文件名、文件路径等。
 
@@ -103,7 +103,7 @@
 
 3. 创建文件选择器实例。调用[select()](../reference/apis/js-apis-file-picker.md#select-3)接口拉起FilePicker应用界面进行文件选择。文件选择成功后，返回被选中文档的uri结果集。
 
-   select返回的uri权限是只读权限，开发者可以根据结果集中uri做进一步的处理。注意不能在picker的回调里直接使用此uri进行打开文件操作，需要定义一个全局变量保存uri，使用类似一个按钮去触发打开文件。
+   select返回的uri权限是只读权限，开发者可以根据结果集中uri做进一步的处理。建议定义一个全局变量保存uri，使用类似一个按钮去触发打开文件。
 
    如有获取元数据需求，可以通过[文件管理接口](../reference/apis/js-apis-file-fs.md)和[文件URI](../reference/apis/js-apis-file-fileuri.md)根据uri获取部分文件属性信息，比如文件大小、访问时间、修改时间、文件名、文件路径等。
 
@@ -166,7 +166,7 @@
 
 3. 创建音频选择器实例。调用[select()](../reference/apis/js-apis-file-picker.md#select-6)接口拉起FilePicker应用界面进行文件选择。文件选择成功后，返回被选中音频的uri结果集。
 
-   select返回的uri权限是只读权限，开发者可以根据结果集中uri做读取文件数据操作。注意不能在  picker的回调里直接使用此uri进行打开文件操作，需要定义一个全局变量保存uri，使用类似一个按钮去触发打开文件。
+   select返回的uri权限是只读权限，开发者可以根据结果集中uri做读取文件数据操作。建议定义一个全局变量保存uri，使用类似一个按钮去触发打开文件。
 
    例如通过[文件管理接口](../reference/apis/js-apis-file-fs.md)根据uri拿到音频资源的文件句柄（FD），再配合媒体服务实现音频播放的开发，具体请参考[音频播放开发指导](../media/audio-playback-overview.md)。
 
