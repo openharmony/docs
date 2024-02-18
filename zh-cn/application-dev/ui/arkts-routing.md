@@ -401,7 +401,7 @@ function onBackClick() {
 
 ## 命名路由
 
-在开发中为了跳转到[共享包中的页面](../quick-start/shared-guide.md)（即共享包中路由跳转），可以使用[router.pushNamedRoute()](../reference/apis-arkui/js-apis-router.md#routerpushnamedroute10)来实现。
+在开发中为了跳转到共享包[Har](../quick-start/har-package.md)或者[Hsp](../quick-start/in-app-hsp.md)中的页面（即共享包中路由跳转），可以使用[router.pushNamedRoute()](../reference/apis-arkui/js-apis-router.md#routerpushnamedroute10)来实现。
 
   **图4** 命名路由跳转  
 
@@ -414,7 +414,7 @@ function onBackClick() {
 import router from '@ohos.router';
 ```
 
-在想要跳转到的[共享包](../quick-start/shared-guide.md)页面里，给[@Entry修饰的自定义组件](../quick-start/arkts-create-custom-components.md#entryoptions10)命名：
+在想要跳转到的共享包[Har](../quick-start/har-package.md)或者[Hsp](../quick-start/in-app-hsp.md)页面里，给[@Entry修饰的自定义组件](../quick-start/arkts-create-custom-components.md#entryoptions10)命名：
 
 ```ts
 // library/src/main/ets/pages/Index.ets
