@@ -30,7 +30,7 @@ API 11及之后，TextClock组件构造参数timeZoneOffset设置{ 9.5, 3.5, -3.
 
 **适配指导**
 
-请查阅[TextClock组件](../../../application-dev/reference/arkui-ts/ts-basic-components-textclock.md)文档进行适配。
+请查阅[TextClock组件](../../../application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-textclock.md)文档进行适配。
 
 ## cl.arkui.2 Gauge组件的默认阴影模糊半径变更
 
@@ -121,7 +121,7 @@ API version 11变更后：大小位置返回值都以vp为单位。
 
 **变更影响**
 
-该变更为兼容性变更，变更后@Link/@ObjectLink父组件校验报错。
+该变更为非兼容性变更，变更后@Link/@ObjectLink父组件校验报错。
 
 **API Level**
 
