@@ -32,7 +32,7 @@ FormLink(value: {
 
 | Name     | Type| Mandatory| Description                                                    |
 | ----------- | -------- | ---- | ------------------------------------------------------------ |
-| action      | string   | Yes  | Action type.<br>- **"router"**: redirection to the specified UIAbility of the widget provider.<br>- **"message"**: custom message. If this type of action is triggered, the [onFormEvent()](../apis/js-apis-app-form-formExtensionAbility.md#onformevent) lifecycle callback of the provider FormExtensionAbility is called.<br>- **"call"**: launch of the widget provider in the background. If this type of action is triggered, the specified UIAbility (whose launch type must be [singleton](../../application-models/uiability-launch-type.md#singleton)) of the widget provider is started in the background, but not displayed in the foreground. This action type requires that the widget provider should have the [ohos.permission.KEEP_BACKGROUND_RUNNING](../../security/AccessToken/permissions-for-all.md#ohospermissionkeep_background_running) permission.<br>**NOTE**<br>Whenever possible, avoid using the router event to refresh the widget UI.|
+| action      | string   | Yes  | Action type.<br>- **"router"**: redirection to the specified UIAbility of the widget provider.<br>- **"message"**: custom message. If this type of action is triggered, the [onFormEvent()](../../apis/js-apis-app-form-formExtensionAbility.md#onformevent) lifecycle callback of the provider FormExtensionAbility is called.<br>- **"call"**: launch of the widget provider in the background. If this type of action is triggered, the specified UIAbility (whose launch type must be [singleton](../../../application-models/uiability-launch-type.md#singleton)) of the widget provider is started in the background, but not displayed in the foreground. This action type requires that the widget provider should have the [ohos.permission.KEEP_BACKGROUND_RUNNING](../../../../application-dev/security/AccessToken/permissions-for-all.md#ohospermissionkeep_background_running) permission.<br>**NOTE**<br>Whenever possible, avoid using the router event to refresh the widget UI.|
 | moduleName  | string   | No  | Name of the target module when **action** is **"router"** or **"call"**. |
 | bundleName  | string   | No  | Name of the target bundle when **action** is **"router"** or **"call"**.   |
 | abilityName | string   | No  | Name of the target UIAbility when **action** is **"router"** or **"call"**.|
@@ -92,6 +92,17 @@ struct FormLinkDemo {
       }) {
         Button("call event").width(120)
       }.margin(10)
+
+      // The router deeplink event is used to redirect to the specified UIAbility from the static widget.
+      FormLink({
+        action: "router",
+        uri: 'example://uri.ohos.com/link_page',
+        params: {
+          message: 'router msg for static uri deeplink' // Customize the message to send.
+        }
+      }) {
+        Button("deeplink event").width(120)
+      }.margin(10)
     }
     .justifyContent(FlexAlign.Center)
     .width('100%').height('100%')
@@ -99,4 +110,4 @@ struct FormLinkDemo {
 }
 ```
 
-![FormLink](figures/formLink.jpeg)
+![FormLink](figures/formLink.png)
