@@ -27,6 +27,8 @@ Run the **ps -ef** command to check whether the service is running.
 1. If the service is not running, restart the system.
 2. If the service is running, close the service process and wait for automatic recovery. If the issue persists, perform step 1.
 
+## 13200003 Invalid Use
+
 **Error Message**
 
 illegal use.
