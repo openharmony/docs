@@ -146,7 +146,7 @@
 | -------- | -------- |
 | [DRM_MediaKeyType](#drm_mediakeytype) [DRM_MediaKeyRequestInfo::type](#type-12) | 密钥类型 | 
 | int32_t [DRM_MediaKeyRequestInfo::initDataLen](#initdatalen) | 初始数据长度。 | 
-| uint8_t [DRM_MediaKeyRequestInfo::initData](#initdata) [[MAX_INIT_DATA_LEN](#max_init_data_len)] | base64编码后格式为PSSH的初始数据。 | 
+| uint8_t [DRM_MediaKeyRequestInfo::initData](#initdata) [[MAX_INIT_DATA_LEN](#max_init_data_len)] | base64解码后格式为PSSH的初始数据。 | 
 | char [DRM_MediaKeyRequestInfo::mimeType](#mimetype) [[MAX_MIMETYPE_LEN](#max_mimetype_len)] | 媒体上下文的mime类型。 | 
 | uint32_t [DRM_MediaKeyRequestInfo::optionsCount](#optionscount) | 选项数据计数。 | 
 | char [DRM_MediaKeyRequestInfo::optionName](#optionname) [[MAX_MEDIA_KEY_REQUEST_OPTION_COUNT](#max_media_key_request_option_count)][[MAX_MEDIA_KEY_REQUEST_OPTION_NAME_LEN](#max_media_key_request_option_name_len)] | 选项名称集合。 | 
@@ -1819,7 +1819,7 @@ uint8_t DRM_MediaKeyRequestInfo::initData[MAX_INIT_DATA_LEN]
 
 **描述**
 
-base64编码后格式为PSSH的初始数据。
+base64解码后格式为PSSH的初始数据。
 
 
 ### initDataLen
