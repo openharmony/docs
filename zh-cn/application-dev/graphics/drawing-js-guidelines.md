@@ -61,7 +61,7 @@ import common2D from '@ohos.graphics.common2D'
     class MyRenderNode extends RenderNode {
 
         async draw(context: DrawContext) {
-            ......
+            // ...
         }
     }
     ```
