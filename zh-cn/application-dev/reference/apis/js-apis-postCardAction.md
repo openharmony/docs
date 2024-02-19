@@ -28,7 +28,7 @@ action参数说明：
 | bundleName | string | 否 | action为router&nbsp;/&nbsp;call&nbsp;类型时跳转的包名。 |
 | moduleName | string | 否 | action为router&nbsp;/&nbsp;call&nbsp;类型时跳转的模块名。 |
 | abilityName | string | 否 | action为router&nbsp;/&nbsp;call&nbsp;类型时跳转的UIAbility名。 |
-| uri<sup>11+</sup> | string   | 否   | router&nbsp;/&nbsp;call&nbsp;类型时跳转的UIAbility的统一资源标识符。uri和abilityName同时存在时，abilityName优先。 |
+| uri<sup>11+</sup> | string   | 否   | action为router&nbsp;类型时跳转的UIAbility的统一资源标识符。uri和abilityName同时存在时，abilityName优先。 |
 | params | Object | 否 | 当前action携带的额外参数，内容使用JSON格式的键值对形式。 |
 
 >**说明：**
