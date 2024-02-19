@@ -531,6 +531,18 @@ getParent(): NavPathStack | null
 | ------ | ------ |
 | [NavPathStack](#navpathstack10) \| null | 如果当前NavPathStack所属Navigation的外层有另外的一层Navigation，则能够获取到外层Navigation的NavPathStack。否则获取不到NavPathStack，返回null。 |
 
+### setInterception<sup>12+</sup>
+
+setInterception(interception: NavigationInterception): void
+
+设置Navigation页面跳转拦截回调。
+
+**参数：**
+
+| 名称    | 类型     | 必填   | 描述                     |
+| ---- | ---- | --- | ---|
+|interception| [NavigationInterception](#navigationinterception12)| 是 | 设置Navigation跳转拦截对象。|
+
 ## NavPathInfo<sup>10+</sup>
 
 路由页面信息。
@@ -595,6 +607,16 @@ constructor(name: string, param: unknown)
 ### finishTransition
 
 结束本次自定义转场动画，开发者需要主动触发该方法来结束本次转场，否则系统会在timeout的时间后结束本次转场。
+
+## NavigationInterception<sup>12+</sup>
+
+Navigation跳转拦截对象。
+
+| 名称    | 类型     | 必填 | 描述    |
+| ---- | ----- | ----- | ----   |
+| willShow | (from: [NavDestinationContext](ts-basic-components-navdestination.md#navdestinationcontext11类型说明)\\|"navBar",<br> to: [NavDestinationContext](ts-basic-components-navdestination.md#navdestinationcontext11类型说明)\\|"navBar",<br> operation: [NavigationOperation](#navigationoperation11枚举说明),<br> isAnimated: boolean) =&gt;void | 否 | 页面跳转前拦截，允许操作栈，在当前跳转中生效。<br> from: 页面跳转之前的栈顶页面信息。参数值为navBar，则表示跳转前的页面为Navigation首页。<br> to: 页面跳转之后的栈顶页面信息。参数值为navBar，则标题跳转的目标页面为Navigation首页。<br> operation: 当前页面跳转类型。<br> isAnimated: 页面跳转是否有动画。 |
+| didShow | (from: [NavDestinationContext](ts-basic-components-navdestination.md#navdestinationcontext11类型说明)\\|"navBar",<br> to: [NavDestinationContext](ts-basic-components-navdestination.md#navdestinationcontext11类型说明)\\|"navBar",<br> operation: [NavigationOperation](#navigationoperation11枚举说明),<br> isAnimated: boolean) =&gt;void | 否 | 页面跳转后回调。在该回调中操作栈在下一次跳转中刷新。<br> from: 页面跳转之前的栈顶页面信息。参数值为navBar，则表示跳转前页面为Navigation首页。<br> to: 页面跳转之后的栈顶页面信息。参数值为NavBar，则表示跳转目标页为Navigation首页。<br> operation: 当前页面跳转类型。<br> isAnimated: 页面跳转是否有动画。 | 否 | 发生页面跳转后回调。|
+| modeChange | (mode: [NavigationMode](#navigationmode9枚举说明)) =&gt;void | 否 | Navigation单双栏显示状态发生变更时触发该回调。|
 
 ## NavigationMenuItem类型说明
 
@@ -813,6 +835,7 @@ import { Pages }  from './PageTwo'
 @Component
 struct NavigationExample {
   @Provide('pageInfos') pageInfos: NavPathStack = new NavPathStack()
+  isUseInterception: boolean = false;
 
   @Builder
   PageMap(name: string) {
@@ -821,6 +844,49 @@ struct NavigationExample {
     } else if (name === 'pageTwo') {
       pageTwoTmp({ names: name, values: this.pageInfos } as Pages)
     }
+  }
+
+  registerInterception() {
+    this.pageInfos.setInterception({
+      willShow: (from: NavDestinationContext | "navBar", to: NavDestinationContext | "navBar",
+                 operation: NavigationOperation, animated: boolean) => {
+        if (!this.isUseInterception) {
+          return;
+        }
+        if (typeof to === "string") {
+          console.log("target page is navigation home");
+          return;
+        }
+        // redirect target page.Change pageTwo to pageOne.
+        let target: NavDestinationContext = to as NavDestinationContext;
+        if (target.pathInfo.name === 'pageTwo') {
+          target.pathStack.pop();
+          target.pathStack.pushPathByName('pageOne', null);
+        }
+      },
+      didShow: (from: NavDestinationContext | "navBar", to: NavDestinationContext | "navBar",
+                operation: NavigationOperation, isAnimated: boolean) => {
+        if (!this.isUseInterception) {
+          return;
+        }
+        if (typeof from === "string") {
+          console.log("current transition is from navigation home");
+        } else {
+          console.log(`current transition is from  ${(from as NavDestinationContext).pathInfo.name}`)
+        }
+        if (typeof to === "string") {
+          console.log("current transition to is navBar");
+        } else {
+          console.log(`current transition is to ${(to as NavDestinationContext).pathInfo.name}`);
+        }
+      },
+      modeChange: (mode: NavigationMode) => {
+        if (!this.isUseInterception) {
+          return;
+        }
+        console.log(`current navigation mode is ${mode}`);
+      }
+    })
   }
 
   build() {
@@ -832,6 +898,18 @@ struct NavigationExample {
           .margin(20)
           .onClick(() => {
             this.pageInfos.pushPath({ name: 'pageOne' }) //将name指定的NavDestination页面信息入栈
+          })
+        Button('use interception', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            this.isUseInterception = !this.isUseInterception;
+            if (this.isUseInterception) {
+              this.registerInterception();
+            } else {
+              this.pageInfos.setInterception(undefined);
+            }
           })
       }
     }.title('NavIndex').navDestination(this.PageMap)
