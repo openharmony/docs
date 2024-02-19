@@ -146,7 +146,7 @@ import cloudExtension from '@ohos.data.cloudExtension';
 | appId       | string  | 是   | 应用程序ID。                      |
 | bundleName  | string  | 是   | 应用包名。                         |
 | cloudSwitch | boolean | 是   | 云开关，表示应用程序是否启用云，true表示启用云，false表示不启用云。 |
-| instanceId  | number  | 是   | 应用分身ID。                      |
+| instanceId  | number  | 是   | 应用分身ID，0表示应用本身，分身ID依次递增。 |
 
 ## FieldType
 
@@ -812,7 +812,7 @@ getAppBriefInfo(): Promise<Record<string, AppBriefInfo>>
 
 | 类型                                                         | 说明                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| Promise&lt;Record&lt;string, [AppBriefInfo](#AppBriefInfo)&gt;&gt;&gt; | Promise对象，返回与bundle和 [AppBriefInfo](#AppBriefInfo)相对应的键值对。 |
+| Promise&lt;Record&lt;string, [AppBriefInfo](#AppBriefInfo)&gt;&gt;&gt; | Promise对象，返回与bundleName和 [AppBriefInfo](#AppBriefInfo)相对应的键值对。 |
 
 **示例：**
 
