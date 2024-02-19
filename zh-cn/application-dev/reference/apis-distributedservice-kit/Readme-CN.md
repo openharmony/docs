@@ -4,6 +4,7 @@
   - [@ohos.distributedDeviceManager (设备管理)](js-apis-distributedDeviceManager.md)
   - [@ohos.deviceAttest (设备证明)(系统接口)](js-apis-deviceAttest-sys.md)
   - [@ohos.distributedHardware.hardwareManager (分布式硬件管理)(系统接口)](js-apis-distributedHardwareManager-sys.md)
+  - [@ohos.distributedDeviceManager (设备管理)(系统接口)](js-apis-distributedDeviceManager-sys.md)
   - [@ohos.cooperate (键鼠穿越)（系统接口）](js-apis-devicestatus-cooperate.md)
 
   - 已停止维护的接口
