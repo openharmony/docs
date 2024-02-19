@@ -8,9 +8,9 @@
 
 | 接口名                                                       | 描述                                     |
 | :----------------------------------------------------------- | :--------------------------------------- |
-| [OH_NativeBundle_ApplicationInfo OH_NativeBundle_GetCurrentApplicationInfo()](../../application-dev/reference/apis-ability-kit/native__interface__bundle.md) | 获取应用自身相关信息。          |
-| [OH_NativeBundle_GetAppId](../../application-dev/reference/apis-ability-kit/native__interface__bundle.md#oh_nativebundle_getappid) | 获取自身应用的appId信息。 |
-| [OH_NativeBundle_GetAppIdentifier](../../application-dev/reference/apis-ability-kit/native__interface__bundle.md#oh_nativebundle_getappidentifier) | 获取自身应用的appIdentifier信息。 |
+| [OH_NativeBundle_GetCurrentApplicationInfo](../reference/apis-ability-kit/native__interface__bundle.md) | 获取应用自身相关信息。          |
+| [OH_NativeBundle_GetAppId](../reference/apis-ability-kit/native__interface__bundle.md#oh_nativebundle_getappid) | 获取自身应用的appId信息。 |
+| [OH_NativeBundle_GetAppIdentifier](../reference/apis-ability-kit/native__interface__bundle.md#oh_nativebundle_getappidentifier) | 获取自身应用的appIdentifier信息。 |
 
 ## 开发步骤
 
@@ -147,4 +147,4 @@
     }
     ```
 
-关于包管理NDK开发，可参考[Bundle模块介绍](../../application-dev/reference/apis-ability-kit/_bundle.md)。
+关于包管理NDK开发，可参考[Bundle模块介绍](../reference/apis-ability-kit/_bundle.md)。
