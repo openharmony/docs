@@ -2557,7 +2557,7 @@ set24HourClock(option: boolean): boolean
 
 修改系统时间的24小时制设置。
 
-从API version 9开始不再维护，替代接口为系统接口，仅支持系统应用使用。
+从API version 9开始不再维护，替代接口仅支持系统应用使用。
 
 **需要权限**：ohos.permission.UPDATE_CONFIGURATION
 
@@ -2588,7 +2588,7 @@ addPreferredLanguage(language: string, index?: number): boolean
 
 在系统偏好语言列表中的指定位置添加偏好语言。
 
-从API version 8开始支持，从API version 9开始不再维护，替代接口为系统接口，仅支持系统应用使用。
+从API version 8开始支持，从API version 9开始不再维护，替代接口仅支持系统应用使用。
 
 **需要权限**：ohos.permission.UPDATE_CONFIGURATION
 
@@ -2622,7 +2622,7 @@ removePreferredLanguage(index: number): boolean
 
 删除系统偏好语言列表中指定位置的偏好语言。
 
-从API version 8开始支持，从API version 9开始不再维护，替代接口为系统接口，仅支持系统应用使用。
+从API version 8开始支持，从API version 9开始不再维护，替代接口仅支持系统应用使用。
 
 **需要权限**：ohos.permission.UPDATE_CONFIGURATION
 
