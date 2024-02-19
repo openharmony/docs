@@ -80,3 +80,5 @@ Represents the callback triggered when the extended VPN is destroyed.
 | Name| Type                               | Mandatory| Description       |
 | ------ | ----------------------------------- | ---- |-----------|
 | want   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Want information.|
+
+<!--no_check-->

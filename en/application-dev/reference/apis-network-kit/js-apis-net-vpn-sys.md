@@ -482,3 +482,5 @@ Defines the VPN configuration.
 | isBlocking          | boolean                                                        | No  | Whether the blocking mode is used. The default value is **false**.      |
 | trustedApplications | Array\<string\>                                                | No  | List of trusted applications, which are represented by bundle names of the string type. |
 | blockedApplications | Array\<string\>                                                | No  | List of blocked applications, which are represented by bundle names of the string type. |
+
+<!--no_check-->
