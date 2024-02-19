@@ -22,50 +22,50 @@
 
 ## 邮箱属性常量变更
 
-自定义邮箱类型，CUSTOM_LABEL的值，从原始的10000改为0
+自定义邮箱类型，CUSTOM_LABEL的值，从原始的10000改为0。
 
 ## 事件属性常量变更
 
-自定义事件类型，CUSTOM_LABEL的值，从原始的10000改为0
+自定义事件类型，CUSTOM_LABEL的值，从原始的10000改为0。
 
 ## 即时消息属性常量变更
 
-自定义即时消息类型，CUSTOM_LABEL的值，从原始的10000改为-1
+自定义即时消息类型，CUSTOM_LABEL的值，从原始的10000改为-1。
 
-AIM	即时消息类型，	IM_AIM	的值，	从原始的	1	改为	0
+AIM即时消息类型，IM_AIM的值，从原始的	1改为0。
 
-MSN	即时消息类型，	IM_MSN	的值，	从原始的	2	改为	1
+MSN即时消息类型，IM_MSN的值，从原始的2改为1。
 
-YAHOO	即时消息类型，	IM_YAHOO	的值，	从原始的	3	改为	2
+YAHOO即时消息类型，IM_YAHOO的值，从原始的3改为2。
 
-SKYPE	即时消息类型，	IM_SKYPE	的值，	从原始的	4	改为	3
+SKYPE即时消息类型，IM_SKYPE	的值，从原始的4改为3。
 
-QQ	即时消息类型，	IM_QQ	的值，	从原始的	5	改为	4
+QQ即时消息类型，IM_QQ的值，从原始的5改为4。
 
-ICQ	即时消息类型，	IM_ICQ	的值，	从原始的	7	改为	6
+ICQ即时消息类型，IM_ICQ的值，从原始的7	改为6。
 
-JABBER	即时消息类型，	IM_JABBER	的值，	从原始的	8	改为	7
+JABBER即时消息类型，IM_JABBER的值，从原始的8改为7。
 
 ## 电话号码属性常量变更
 
-自定义	电话类型，	CUSTOM_LABEL	的值，	从原始的	10000	改为	0
+自定义电话类型，CUSTOM_LABEL的值，从原始的10000改为0。
 
-家庭	电话类型，	NUM_HOME	的值，	从原始的	2	改为	1
+家庭电话类型，NUM_HOME的值，从原始的2改为1。
 
-移动	电话类型，	NUM_MOBILE	的值，	从原始的	1	改为	2
+移动电话类型，NUM_MOBILE的值，从原始的1改为2。
 
 ## 地址属性常量变更
 
-自定义	邮箱地址类型，	CUSTOM_LABEL	的值，	从原始的	10000	改为	0
+自定义邮箱地址类型，CUSTOM_LABEL的值，从原始的10000改为0。
 
 ## 关系类型属性常量变更
 
-自定义	关系类型，	CUSTOM_LABEL	的值，	从原始的	10000	改为	0
+自定义关系类型，CUSTOM_LABEL的值，从原始的10000改为0。
 
-同居同伴	关系类型，	RELATION_DOMESTIC_PARTENER	的值，	从原始的	10	改为	4
+同居同伴关系类型，RELATION_DOMESTIC_PARTENER的值，从原始的10改为4。
 
-合作伙伴	关系类型，	RELATION_PARTNER	的值，	从原始的	4	改为	10
+合作伙伴关系类型，RELATION_PARTNER的值，从原始的4改为10。
 
 ## 会话发起协议（SIP）地址属性常量变更
 
-自定义会话发起协议（SIP）	地址类型，	CUSTOM_LABEL	的值，	从原始的	10000	改为	0
+自定义会话发起协议（SIP）地址类型，CUSTOM_LABEL的值，从原始的10000改为0。
