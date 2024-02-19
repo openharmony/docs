@@ -23,8 +23,8 @@ OAID会在下述场景中发生变化：
 
 | 接口名 | 描述 |
 | -------- | -------- |
-| [getOAID()](../../reference/apis/js-apis-oaid.md#identifiergetoaid):Promise&lt;string&gt; | 获取OAID，通过Promise异步返回结果。 |
-| [getOAID(callback:&nbsp;AsyncCallback&lt;string&gt;)](../../reference/apis/js-apis-oaid.md#identifiergetoaid-1):&nbsp;void | 获取OAID，通过Callback回调返回值。 |
+| [getOAID()](../../reference/apis-ads-kit/js-apis-oaid.md#identifiergetoaid):Promise&lt;string&gt; | 获取OAID，通过Promise异步返回结果。 |
+| [getOAID(callback:&nbsp;AsyncCallback&lt;string&gt;)](../../reference/apis-ads-kit/js-apis-oaid.md#identifiergetoaid-1):&nbsp;void | 获取OAID，通过Callback回调返回值。 |
 
 
 ### 开发步骤
