@@ -21,8 +21,6 @@
 
     DevEco Studio会收集设备的故障日志并归档到FaultLog下。具体可参考[DevEco Studio使用指南-FaultLog](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-fault-log-0000001659706366)。
 
-    ![appfreeze_20230308145161](figures/appfreeze_20230308145161.png)
-
 - 方式三：通过faultlogger接口获取
 
     faultlogger对外提供了故障查询接口，可以查询各种故障信息，详见[@ohos.faultLogger (故障日志获取)](../reference/apis-performance-analysis-kit/js-apis-faultLogger.md)。

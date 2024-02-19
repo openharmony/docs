@@ -4,7 +4,7 @@ HiTrace为开发者提供业务流程调用链跟踪的维测接口。该接口�
 
 ## 接口说明
 
-性能打点跟踪接口由HiTraceMeter模块提供，详细API请参考[性能打点跟踪API参考](../reference/apis-performance-analysis-kit/hitrace.md)。
+性能打点跟踪接口由HiTraceMeter模块提供，详细API请参考[性能打点跟踪API参考](../reference/apis-performance-analysis-kit/_hitrace.md)。
 
 | 方法 | 接口描述 |
 | -------- | -------- |
@@ -37,7 +37,7 @@ HiTrace为开发者提供业务流程调用链跟踪的维测接口。该接口�
     ```
 
 3. 在需要打点的地方进行性能打点，以异步打点为例（示例代码为默认的hello.cpp的一部分，使用时只需要按照示例的使用方法将接口-参看接口说明，放在需要的地方即可）
-    
+
     ```c++
     #include "napi/native_api.h"
     #include "hitrace/trace.h"
