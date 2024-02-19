@@ -31,3 +31,4 @@
 | void [OH_Drawing_BrushSetAlpha](_drawing.md#oh_drawing_brushsetalpha) ([OH_Drawing_Brush](_drawing.md#oh_drawing_brush) \*, uint8_t alpha) | 为画刷设置透明度值。画刷在填充形状时透明通道会使用该值。 |
 | void [OH_Drawing_BrushSetShaderEffect](_drawing.md#oh_drawing_brushsetshadereffect) ([OH_Drawing_Brush](_drawing.md#oh_drawing_brush) \*, [OH_Drawing_ShaderEffect](_drawing.md#oh_drawing_shadereffect) \*) | 为画刷设置着色器效果。 |
 | void [OH_Drawing_BrushSetFilter](_drawing.md#oh_drawing_brushsetfilter) ([OH_Drawing_Brush](_drawing.md#oh_drawing_brush) \*, [OH_Drawing_Filter](_drawing.md#oh_drawing_filter) \*) | 为画刷设置滤波器[OH_Drawing_Filter](_drawing.md#oh_drawing_filter)。滤波器是一个容器，可以承载蒙版滤波器和颜色滤波器。 |
+| void [OH_Drawing_BrushSetBlendMode](_drawing.md#oh_drawing_brushsetblendmode) ([OH_Drawing_Brush](_drawing.md#oh_drawing_brush) \*, [OH_Drawing_BlendMode](_drawing.md#oh_drawing_blendmode)) | 为画刷设置一个混合器，该混合器实现了指定的混合模式枚举。 |
