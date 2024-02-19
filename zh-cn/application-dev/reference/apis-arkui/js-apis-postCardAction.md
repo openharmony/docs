@@ -66,4 +66,38 @@ Button('拉至后台')
       }
     });
   })
+
+Button('URI跳转')
+  .width('40%')
+  .height('20%')
+  .onClick(() => {
+    postCardAction(this, {
+      action: 'router',
+      uri: 'example://uri.ohos.com/link_page',
+      params: {
+        message: 'router msg for dynamic uri deeplink' // 自定义要发送的message
+      }
+    });
+  })
+
+```
+
+**待跳转应用 [module.json5](../../quick-start/module-configuration-file.md#skills标签) uris 配置示例：**
+
+```json
+"abilities": [
+  {
+    "skills": [
+      {
+        "uris": [
+          {
+            "scheme": "example",
+            "host": "uri.ohos.com",
+            "path": "link_page"
+          },
+        ]
+      }
+    ],
+  }
+]
 ```
