@@ -19,7 +19,7 @@ declare function wrapBuilder< Args extends Object[]>(builder: (...args: Args) =>
 
 ```ts
 declare class WrappedBuilder< Args extends Object[]> {
-  builder: (...args: Args): void;
+  builder: (...args: Args) => void;
 
   constructor(builder: (...args: Args) => void);
 }
@@ -47,20 +47,13 @@ wrapBuilder方法返回的WrappedBuilder对象的builder属性方法只能在str
 
 ## 使用场景1
 
-自定义组件Index使用了全局globalBuilder声明的wrapBuilder，当点击Text()组件时，globalBuilder重新赋值新的wrapBuilder，可以实现不同效果的切换。
+自定义组件Index使用了全局globalBuilder声明的wrapBuilder，当点击Text()组件时，globalBuilder重新赋值新的wrapBuilder，可以实现不同文字的切换。
 
 ```ts
 @Builder
 function MyBuilder(value: string, size: number) {
   Text(value)
     .fontSize(size)
-}
-
-@Builder
-function YourBuilder(value: string, size: number) {
-  Text(value)
-    .fontSize(size)
-    .fontColor(Color.Pink)
 }
 
 let globalBuilder: WrappedBuilder<[string, number]> = wrapBuilder(MyBuilder);
@@ -78,7 +71,6 @@ struct Index {
           .fontWeight(FontWeight.Bold)
           .onClick(() =>{
             this.message = 'Test wrapBuilder';
-            globalBuilder = wrapBuilder(YourBuilder);
           })
 
       }
