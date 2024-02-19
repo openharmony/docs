@@ -32,10 +32,10 @@ FormLink(options: FormLinkOptions)
 | 参数名      | 参数类型 | 必填 | 参数描述                                                     |
 | ----------- | -------- | ---- | ------------------------------------------------------------ |
 | action      | string   | 是   | action的类型，支持三种预定义的类型：<br/>-&nbsp;router：跳转到提供方应用的指定UIAbility。<br/>-&nbsp;message：自定义消息，触发后会调用提供方FormExtensionAbility的[onFormEvent()](../../apis-form-kit/js-apis-app-form-formExtensionAbility.md#onformevent)生命周期回调。<br/>-&nbsp;call：后台启动提供方应用。触发后会拉起提供方应用的指定UIAbility（仅支持launchType为[singleton](../../../application-models/uiability-launch-type.md#singleton启动模式)的UIAbility，即启动模式为单实例的UIAbility），但不会调度到前台。提供方应用需要具备后台运行权限([ohos.permission.KEEP_BACKGROUND_RUNNING](../../../security/AccessToken/permissions-for-all.md#ohospermissionkeep_background_running))。 <br/>**说明：** <br/>不推荐使用router事件刷新卡片UI。|
-| moduleName  | string   | 否   | router&nbsp;/&nbsp;call&nbsp;类型时跳转的模块名。  |
-| bundleName  | string   | 否   | router&nbsp;/&nbsp;call&nbsp;类型时跳转的包名。    |
-| abilityName | string   | 否   | router&nbsp;/&nbsp;call&nbsp;类型时跳转的UIAbility名。 |
-| uri<sup>11+</sup> | string   | 否   | router&nbsp;/&nbsp;call&nbsp;类型时跳转的UIAbility的统一资源标识符。uri和abilityName同时存在时，abilityName优先。 |
+| moduleName  | string   | 否   | action为router&nbsp;/&nbsp;call&nbsp;类型时跳转的模块名。  |
+| bundleName  | string   | 否   | action为router&nbsp;/&nbsp;call&nbsp;类型时跳转的包名。    |
+| abilityName | string   | 否   | action为router&nbsp;/&nbsp;call&nbsp;类型时跳转的UIAbility名。 |
+| uri<sup>11+</sup> | string   | 否   | action为router&nbsp;类型时跳转的UIAbility的统一资源标识符。uri和abilityName同时存在时，abilityName优先。 |
 | params      | Object   | 否   | 当前action携带的额外参数，内容使用JSON格式的键值对形式。call&nbsp;类型时需填入参数'method'，且类型需要为string类型，用于触发UIAbility中对应的方法。 <br/>**说明：** <br/>不推荐通过params传递卡片内部的状态变量。|
 
 ## 属性
