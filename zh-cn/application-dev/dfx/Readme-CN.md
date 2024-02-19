@@ -20,9 +20,9 @@
   - [错误管理开发指导](errormanager-guidelines.md)
   - [应用恢复开发指导](apprecovery-guidelines.md)
 - 故障分析
-  - [分析JS Crash](jscrash-guidelines.md)
-  - [分析CppCrash](cppcrash-guidelines.md)
-  - [分析AppFreeze](appfreeze-guidelines.md)
+  - [分析JS Crash（进程崩溃）](jscrash-guidelines.md)
+  - [分析CppCrash（进程崩溃）](cppcrash-guidelines.md)
+  - [分析AppFreeze（应用无响应）](appfreeze-guidelines.md)
 - 命令行工具
   - [hdc](hdc.md)
   - [hilog](hilog.md)
