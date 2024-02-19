@@ -6,7 +6,7 @@
 
 ## 接口说明
 
-@ohos.graphics.drawing常用接口如下表所示，详细的接口说明请参考[@ohos.graphics.drawing](../reference/apis-arkgraphics2d/js-apis-graphics-drawing.md)。
+@ohos.graphics.drawing常用接口如下表所示，详细的接口说明请参考[@ohos.graphics.drawing](../reference/apis/js-apis-graphics-drawing.md)。
 
 | 接口名 | 描述 | 
 | -------- | -------- |
@@ -61,7 +61,7 @@ import common2D from '@ohos.graphics.common2D'
     class MyRenderNode extends RenderNode {
 
         async draw(context: DrawContext) {
-            ......
+            // ...
         }
     }
     ```
