@@ -2883,7 +2883,7 @@
 
 ### ohos.permission.MANAGE_USER_ACCOUNT_INFO
 
-允许系统应用及系统SA调用账号inner服务。
+允许系统应用及系统SA调用账号服务。
 
 **权限级别**：system_core
 
