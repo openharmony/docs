@@ -2,7 +2,6 @@
 
 - [Performance Analysis Kit简介](performance-analysis-kit-overview.md)
 - HiLog使用指导
-  - [HiLog日志介绍](hilog-intro.md)
   - [使用HiLog打印日志（ArkTS）](hilog-guidelines-arkts.md)
   - [使用HiLog打印日志（C/C++）](hilog-guidelines-ndk.md)
 - HiAppEvent使用指导
