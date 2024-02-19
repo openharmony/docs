@@ -574,14 +574,3 @@
 
 **起始版本**：7
 
-### ohos.permission.ACCESS_NEARLINK
-
-允许应用接入星闪并使用星闪能力，例如配对、连接外围设备等。
-
-**权限级别**：normal
-
-**授权方式**：user_grant
-
-**ACL使能**：false
-
-**起始版本**：12
