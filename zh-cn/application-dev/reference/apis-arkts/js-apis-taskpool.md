@@ -231,7 +231,7 @@ taskpool.executeDelayed(1000, task).then(() => { // 1000:delayTime is 1000ms
 
 cancel(task: Task): void
 
-取消任务池中的任务。
+取消任务池中的任务。当任务在taskpool等待队列中，取消该任务后该任务将不再执行，并返回undefined作为结果；当任务已经在taskpool工作线程执行，取消该任务并不影响任务继续执行，执行结果在catch分支返回，搭配isCanceled使用可以对任务取消行为作出响应。taskpool.cancel对其之前的taskpool.execute/taskpool.executeDelayed生效。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -399,28 +399,31 @@ let taskpoolInfo: taskpool.TaskPoolInfo = taskpool.getTaskPoolInfo();
 ```ts
 @Concurrent
 function printArgs(args: number): number {
+  let t: number = Date.now();
+  while (Date.now() - t < 1000) { // 1000: delay 1s
+    continue;
+  }
   console.info("printArgs: " + args);
   return args;
 }
 
-let task: taskpool.Task = new taskpool.Task(printArgs, 100); // 100: test number
-let highCount = 0;
-let mediumCount = 0;
-let lowCount = 0;
-let allCount = 100;
-for (let i: number = 0; i < allCount; i++) {
-  taskpool.execute(task, taskpool.Priority.LOW).then((res: Object) => {
-    lowCount++;
-    console.info("taskpool lowCount is :" + lowCount);
-  });
-  taskpool.execute(task, taskpool.Priority.MEDIUM).then((res: Object) => {
-    mediumCount++;
-    console.info("taskpool mediumCount is :" + mediumCount);
-  });
-  taskpool.execute(task, taskpool.Priority.HIGH).then((res: Object) => {
-    highCount++;
-    console.info("taskpool highCount is :" + highCount);
-  });
+let allCount = 100; // 100: test number
+let taskArray: Array<taskpool.Task> = [];
+// 创建300个任务并添加至taskArray
+for (let i: number = 1; i < allCount; i++) {
+  let task1: taskpool.Task = new taskpool.Task(printArgs, i);
+  taskArray.push(task1);
+  let task2: taskpool.Task = new taskpool.Task(printArgs, i * 10); // 10: test number
+  taskArray.push(task2);
+  let task3: taskpool.Task = new taskpool.Task(printArgs, i * 100); // 100: test number
+  taskArray.push(task3);
+}
+
+// 从taskArray中获取不同的任务并给定不同优先级执行
+for (let i: number = 0; i < allCount; i+=3) { // 3: 每次执行3个任务，循环取任务时需后移3项，确保执行的是不同的任务
+  taskpool.execute(taskArray[i], taskpool.Priority.HIGH);
+  taskpool.execute(taskArray[i + 1], taskpool.Priority.LOW);
+  taskpool.execute(taskArray[i + 2], taskpool.Priority.MEDIUM);
 }
 ```
 
@@ -859,7 +862,7 @@ testFunc();
 
 addDependency(...tasks: Task[]): void
 
-为当前任务添加对其他任务的依赖。使用该方法前需要先构造Task。该任务不可以是任务组任务、串行队列任务和已执行的任务。
+为当前任务添加对其他任务的依赖。使用该方法前需要先构造Task。该任务和被依赖的任务不可以是任务组任务、串行队列任务和已执行的任务。存在依赖关系的任务（依赖其他任务的任务或被依赖的任务）执行后不可以再次执行。
 
 **系统能力：** SystemCapability.Utils.Lang
 
