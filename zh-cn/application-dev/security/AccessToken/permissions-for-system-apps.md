@@ -2885,7 +2885,7 @@
 
 允许系统应用及系统SA调用账号inner服务。
 
-**权限级别**system_core
+**权限级别**：system_core
 
 **授权方式**：system_grant
 
