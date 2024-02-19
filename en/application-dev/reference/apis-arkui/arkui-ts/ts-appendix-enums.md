@@ -434,7 +434,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name                   | Description                 |
 | --------------------- | ------------------- |
-| None                  | Extra-long text is clipped.         |
+| None                  | Extra-long text is not clipped.         |
 | Clip                  | Extra-long text is clipped.       |
 | Ellipsis              | An ellipsis (...) is used to represent text overflow.|
 | MARQUEE<sup>10+</sup> | Text continuously scrolls when text overflow occurs.    |
@@ -448,7 +448,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 | Underline   | Line under the text. |
 | LineThrough | Line through the text.|
 | Overline    | Line over the text. |
-| None        | No decorative lines.|
+| None        | No text decoration.|
 
 ## TextCase
 
@@ -667,13 +667,13 @@ Describes the grayscale blur parameters.
 | ----        |  ----   |   ---- | --------------------------  |
 | grayscale   |  [number, number]   |   Yes  |  Grayscale blur.<br>Value range: [0,127]|
 
-## BackgroundBrightnessOptions<sup>11+<sup>
-Describes the background effect parameters.
- | Name       |   Type        |   Mandatory|  Description                       |
+## BackgroundEffectOptions<sup>11+<sup>
+Describes the background effect.
+| Name       |   Type        |   Mandatory|  Description                       |
 | ----         |  ----         |   ---- | --------------------------  |
 | radius       | number        |   Yes  |   Radius of the background effect.<br>Value range: [0, +∞)<br>Default value: **0**    |
 | saturation   | number        |   No  |   Saturation of the background effect.<br>Value range: [0, +∞)<br>Default value: **0**    |
-| brightness   | number        |   No  |   Brightness of the background effect.<br>Value range: [0, +∞)<br>Default value: **0**      | 
+| brightness   | number        |   No  |   Brightness of the background effect.<br>Value range: [0, +∞)<br>Default value: **0**      |
 | color        | [Color](ts-appendix-enums.md#color)        |   No  |   Color of the background effect.<br>Default value: Transparent |
 | adaptiveColor | [AdaptiveColor](ts-appendix-enums.md#adaptivecolor10) |   No | Adaptive color mode used for the background blur effect.<br>Default value: **DEFAULT**  |
 | blurOptions  | [BlurOptions](ts-appendix-enums.md#bluroptions11) |   No  |   Grayscale blur.<br>Default value: **[0,0]** |
@@ -706,7 +706,7 @@ Since API version 11, this API is supported in ArkTS widgets.
 
 ## TextSpanType<sup>11+</sup>
 
-Provides the span type information.
+Provides the [span](ts-basic-components-span.md) type information.
 
 | Name| Description|
 | -------- | -------- |
@@ -733,7 +733,7 @@ Provides the span range information.
 
 ## SymbolEffectStrategy<sup>11+</sup>
 
-Enumerates the symbol effects.
+Enumerates the symbol effects. The setting takes effect immediately once saved.
 
 | Name    | Description                           |
 | ------ | ----------------------------- |
@@ -747,6 +747,16 @@ Enumerates the symbol rendering modes.
 
 | Name    | Description                           |
 | ------ | ----------------------------- |
-| SINGLE  | Symbols are rendered as a single layer with one color. This is the default value.|
-| MULTIPLE_COLOR  |    Symbols are rendered as multiple layers, with layer-specific colors.          |
-|  MULTIPLE_OPACITY   | Symbols are rendered as a single layer with one color and layer-specific opacity. |
+| SINGLE  | Symbols are rendered with one specified color. This is the default value.<br> The default color is black.<br> If you set multiple colors, only the first color is used.|
+| MULTIPLE_COLOR  |  Symbols are rendered with layer-specific colors.<br> A maximum of three colors can be set. If you set only one color, it is used at the first layer and the default colors at other layers are retained.<br> The sequence in which the colors are set must match the sequence of symbol layers. If the number of colors is greater than that of the layers, the extra colors do not take effect.|
+|  MULTIPLE_OPACITY   | Symbols are rendered as multiple layers with one specified color and layer-specific opacity.<br> The default color is black. If you set multiple colors, only the first color is used.<br> The opacity is 100% for the first layer, 50% for the second layer, and 20% for the third layer. |
+
+## BlendApplyType<sup>11+</sup>
+
+Defines how the specified blend mode is applied.
+
+| Name          | Description                                                            |
+| ---------------| ---------------------------------------------------------------- |
+| FAST           |   The content of the view is blended in sequence on the target image.                       |
+| OFFSCREEN      |   The content of the component and its child components are drawn on the offscreen canvas, and then blended with the existing content on the canvas.   |
+

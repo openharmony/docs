@@ -64,9 +64,9 @@ Rotates the component.
 
 **Parameters**
 
-| Name| Type                                   | Mandatory| Description                                                        |
-| ------ | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Matrix4Transit](../apis/js-apis-matrix4.md) | Yes  | Transformation matrix of the component.|
+| Name| Type                                   | Mandatory| Description                    |
+| ------ | --------------------------------------- | ---- | ------------------------ |
+| value  | [Matrix4Transit](../js-apis-matrix4.md) | Yes  | Transformation matrix of the component.|
 
 ## RotateOptions
 
