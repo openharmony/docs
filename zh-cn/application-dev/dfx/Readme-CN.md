@@ -9,11 +9,9 @@
   - [HiAppEvent介绍](hiappevent-intro.md)
   - [使用HiAppEvent记录应用事件（ArkTS/JS）](hiappevent-guidelines-arkts.md)
   - 查看HiAppEvent日志
-    - 通过订阅接口本地使用
-      - [订阅应用事件](hiappevent-watcher-app.md)
-      - [订阅系统事件（崩溃事件）](hiappevent-watcher-sys.md)
-      - [订阅系统事件（卡死事件）](hiappevent-watcher-appfreeze.md)
-    - [通过华为分析服务使用](hiappevent-analytics.md)
+    - [订阅应用事件](hiappevent-watcher-app.md)
+    - [订阅系统事件（崩溃事件）](hiappevent-watcher-sys.md)
+    - [订阅系统事件（卡死事件）](hiappevent-watcher-appfreeze.md)
 - HiTraceMeter使用指导
   - [使用HiTraceMeter跟踪性能（ArkTS/JS）](hitracemeter-guidelines-arkts.md)
   - [使用HiTraceMeter跟踪性能（C/C++）](hitracemeter-guidelines-ndk.md)
