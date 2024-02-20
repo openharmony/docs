@@ -109,7 +109,7 @@ Refreshes the tree view. You can call this API to update the information about t
 | -------- | -------- | -------- | -------- |
 | parentNodeId | number | No| Parent node.| 
 | currentNodeId | number | No| Current child node.| 
-| isFolder | boolean | No| Whether the node is a directory.<br> Default value: **false**.<br> **true**: The node is a directory.<br>**false**: The node is a not directory.| 
+| isFolder | boolean | No| Whether the node is a directory.<br> Default value: **false**.<br> **true**: The node is a directory.<br>**false**: The node is not a directory.| 
 | icon | [ResourceStr](ts-types.md#resourcestr) | No| Icon.| 
 | selectedIcon | [ResourceStr](ts-types.md#resourcestr) | No| Icon of the selected node.| 
 | editIcon | [ResourceStr](ts-types.md#resourcestr) | No| Edit icon.| 
@@ -185,7 +185,7 @@ Unregisters a listener.
 | Name| Type| Mandatory| Description| 
 | -------- | -------- | -------- | -------- |
 | type | [TreeListenType](#treelistentype) | Yes| Listening type.| 
-| callback | (callbackParam: [CallbackParam](#callbackparam)) =&gt; void | Yes| Node information.| 
+| callback | (callbackParam: [CallbackParam](#callbackparam)) =&gt; void | No| Node information.| 
 
 
 ## TreeListenType
