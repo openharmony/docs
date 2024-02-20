@@ -19,7 +19,7 @@ import common from '@ohos.app.ability.common';
 
 startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
-拉起一个卡片所属应用的Ability。使用callback异步回调。
+拉起一个应用的Ability。使用callback异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -43,7 +43,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 | 参数名 |                类型               | 必填 |              说明               |
 | ------| --------------------------------- | ---- | -------------------------------------- |
 | want| [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是  | 包含bundleName，abilityName以及用户自定参数用于拉起Ability。 |
-| callback| AsyncCallback&lt;void&gt;       | 是  | 回调函数。当拉起一个卡片所属应用的Ability成功，err为undefined，否则为错误对象。 |
+| callback| AsyncCallback&lt;void&gt;       | 是  | 回调函数。当拉起一个应用的Ability成功，err为undefined，否则为错误对象。 |
 
 **示例：**
 
@@ -79,7 +79,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 
 startAbility(want: Want): Promise&lt;void&gt;
 
-拉起一个卡片所属应用的Ability。使用Promise异步回调。
+拉起一个应用的Ability。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
