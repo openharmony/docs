@@ -26,8 +26,6 @@
 ```ts
 import media from '@ohos.multimedia.media'
 import image from '@ohos.multimedia.image'
-import type common from '@ohos.app.ability.common';
-import fileIo from '@ohos.fileio';
 
 const TAG = 'MetadataDemo'
 @Entry
