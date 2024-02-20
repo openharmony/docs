@@ -725,7 +725,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
       let err: BusinessError = error as BusinessError;
       console.error('getLocalCapabilities failed with err: ' + JSON.stringify(err));
     } finally {
-      fs.closeSync(fieldData.fd);
+      fs.closeSync(fileData.fd);
     }
   }
   ```
@@ -822,7 +822,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
       let err: BusinessError = error as BusinessError;
       console.error('getLocalCapabilities failed with err: ' + JSON.stringify(err));
     } finally {
-      fs.closeSync(fieldData.fd);
+      fs.closeSync(fileData.fd);
     }
   }
   ```
