@@ -21,7 +21,7 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| typedef enum [OH_Drawing_TileMode](_drawing.md#oh_drawing_tilemode)[OH_Drawing_TileMode](_drawing.md#oh_drawing_tilemode) | 着色器效果平铺模式的枚举。 |
+| typedef enum [OH_Drawing_TileMode](_drawing.md#oh_drawing_tilemode)  [OH_Drawing_TileMode](_drawing.md#oh_drawing_tilemode) | 着色器效果平铺模式的枚举。 |
 
 
 ### 枚举

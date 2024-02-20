@@ -28,7 +28,7 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| typedef struct [OH_Drawing_RunBuffer](_o_h___drawing___run_buffer.md)[OH_Drawing_RunBuffer](_drawing.md#oh_drawing_runbuffer) | 结构体用于描述一块内存，描述文字和位置信息。 |
+| typedef struct [OH_Drawing_RunBuffer](_o_h___drawing___run_buffer.md)  [OH_Drawing_RunBuffer](_drawing.md#oh_drawing_runbuffer) | 结构体用于描述一块内存，描述文字和位置信息。 |
 
 
 ### 函数

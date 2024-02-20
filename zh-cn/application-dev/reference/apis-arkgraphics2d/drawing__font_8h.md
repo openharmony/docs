@@ -28,7 +28,7 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| typedef struct [OH_Drawing_Font_Metrics](_o_h___drawing___font___metrics.md)[OH_Drawing_Font_Metrics](_drawing.md#oh_drawing_font_metrics) | 定义字体度量信息的结构体。 |
+| typedef struct [OH_Drawing_Font_Metrics](_o_h___drawing___font___metrics.md)  [OH_Drawing_Font_Metrics](_drawing.md#oh_drawing_font_metrics) | 定义字体度量信息的结构体。 |
 
 
 ### 函数

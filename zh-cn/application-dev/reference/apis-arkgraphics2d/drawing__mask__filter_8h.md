@@ -21,7 +21,7 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| typedef enum [OH_Drawing_BlurType](_drawing.md#oh_drawing_blurtype)[OH_Drawing_BlurType](_drawing.md#oh_drawing_blurtype) | 蒙版滤波器模糊操作类型的枚举。 |
+| typedef enum [OH_Drawing_BlurType](_drawing.md#oh_drawing_blurtype)  [OH_Drawing_BlurType](_drawing.md#oh_drawing_blurtype) | 蒙版滤波器模糊操作类型的枚举。 |
 
 
 ### 枚举

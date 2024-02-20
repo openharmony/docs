@@ -21,8 +21,8 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| typedef enum [OH_Drawing_PathDirection](_drawing.md#oh_drawing_pathdirection)[OH_Drawing_PathDirection](_drawing.md#oh_drawing_pathdirection) | 添加闭合轮廓方向枚举。 |
-| typedef enum [OH_Drawing_PathFillType](_drawing.md#oh_drawing_pathfilltype)[OH_Drawing_PathFillType](_drawing.md#oh_drawing_pathfilltype) | 定义路径的填充类型枚举。 |
+| typedef enum [OH_Drawing_PathDirection](_drawing.md#oh_drawing_pathdirection)  [OH_Drawing_PathDirection](_drawing.md#oh_drawing_pathdirection) | 添加闭合轮廓方向枚举。 |
+| typedef enum [OH_Drawing_PathFillType](_drawing.md#oh_drawing_pathfilltype)  [OH_Drawing_PathFillType](_drawing.md#oh_drawing_pathfilltype) | 定义路径的填充类型枚举。 |
 
 
 ### 枚举

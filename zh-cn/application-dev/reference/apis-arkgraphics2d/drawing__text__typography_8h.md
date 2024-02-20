@@ -28,14 +28,14 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| typedef enum [OH_Drawing_PlaceholderVerticalAlignment](_drawing.md#oh_drawing_placeholderverticalalignment)[OH_Drawing_PlaceholderVerticalAlignment](_drawing.md#oh_drawing_placeholderverticalalignment) | 占位符垂直对齐枚举 |
-| typedef struct [OH_Drawing_PlaceholderSpan](_o_h___drawing___placeholder_span.md)[OH_Drawing_PlaceholderSpan](_drawing.md#oh_drawing_placeholderspan) | 用于描述位占位符跨度的结构体 |
-| typedef enum [OH_Drawing_TextDecorationStyle](_drawing.md#oh_drawing_textdecorationstyle)[OH_Drawing_TextDecorationStyle](_drawing.md#oh_drawing_textdecorationstyle) | 文本装饰样式枚举 |
-| typedef enum [OH_Drawing_EllipsisModal](_drawing.md#oh_drawing_ellipsismodal)[OH_Drawing_EllipsisModal](_drawing.md#oh_drawing_ellipsismodal) | 省略号样式枚举 |
-| typedef enum [OH_Drawing_BreakStrategy](_drawing.md#oh_drawing_breakstrategy)[OH_Drawing_BreakStrategy](_drawing.md#oh_drawing_breakstrategy) | 文本的中断策略枚举 |
-| typedef enum [OH_Drawing_WordBreakType](_drawing.md#oh_drawing_wordbreaktype)[OH_Drawing_WordBreakType](_drawing.md#oh_drawing_wordbreaktype) | 单词的断词方式枚举 |
-| typedef enum [OH_Drawing_RectHeightStyle](_drawing.md#oh_drawing_rectheightstyle)[OH_Drawing_RectHeightStyle](_drawing.md#oh_drawing_rectheightstyle) | 矩形框高度样式枚举 |
-| typedef enum [OH_Drawing_RectWidthStyle](_drawing.md#oh_drawing_rectwidthstyle)[OH_Drawing_RectWidthStyle](_drawing.md#oh_drawing_rectwidthstyle) | 矩形框宽度样式枚举 |
+| typedef enum [OH_Drawing_PlaceholderVerticalAlignment](_drawing.md#oh_drawing_placeholderverticalalignment)  [OH_Drawing_PlaceholderVerticalAlignment](_drawing.md#oh_drawing_placeholderverticalalignment) | 占位符垂直对齐枚举 |
+| typedef struct [OH_Drawing_PlaceholderSpan](_o_h___drawing___placeholder_span.md)  [OH_Drawing_PlaceholderSpan](_drawing.md#oh_drawing_placeholderspan) | 用于描述位占位符跨度的结构体 |
+| typedef enum [OH_Drawing_TextDecorationStyle](_drawing.md#oh_drawing_textdecorationstyle)  [OH_Drawing_TextDecorationStyle](_drawing.md#oh_drawing_textdecorationstyle) | 文本装饰样式枚举 |
+| typedef enum [OH_Drawing_EllipsisModal](_drawing.md#oh_drawing_ellipsismodal)  [OH_Drawing_EllipsisModal](_drawing.md#oh_drawing_ellipsismodal) | 省略号样式枚举 |
+| typedef enum [OH_Drawing_BreakStrategy](_drawing.md#oh_drawing_breakstrategy)  [OH_Drawing_BreakStrategy](_drawing.md#oh_drawing_breakstrategy) | 文本的中断策略枚举 |
+| typedef enum [OH_Drawing_WordBreakType](_drawing.md#oh_drawing_wordbreaktype)  [OH_Drawing_WordBreakType](_drawing.md#oh_drawing_wordbreaktype) | 单词的断词方式枚举 |
+| typedef enum [OH_Drawing_RectHeightStyle](_drawing.md#oh_drawing_rectheightstyle)  [OH_Drawing_RectHeightStyle](_drawing.md#oh_drawing_rectheightstyle) | 矩形框高度样式枚举 |
+| typedef enum [OH_Drawing_RectWidthStyle](_drawing.md#oh_drawing_rectwidthstyle)  [OH_Drawing_RectWidthStyle](_drawing.md#oh_drawing_rectwidthstyle) | 矩形框宽度样式枚举 |
 
 
 ### 枚举

@@ -21,8 +21,8 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| typedef enum [OH_Drawing_FilterMode](_drawing.md#oh_drawing_filtermode)[OH_Drawing_FilterMode](_drawing.md#oh_drawing_filtermode) | 过滤模式枚举。 |
-| typedef enum [OH_Drawing_MipmapMode](_drawing.md#oh_drawing_mipmapmode)[OH_Drawing_MipmapMode](_drawing.md#oh_drawing_mipmapmode) | 多级渐远纹理模式枚举。 |
+| typedef enum [OH_Drawing_FilterMode](_drawing.md#oh_drawing_filtermode)  [OH_Drawing_FilterMode](_drawing.md#oh_drawing_filtermode) | 过滤模式枚举。 |
+| typedef enum [OH_Drawing_MipmapMode](_drawing.md#oh_drawing_mipmapmode)  [OH_Drawing_MipmapMode](_drawing.md#oh_drawing_mipmapmode) | 多级渐远纹理模式枚举。 |
 
 
 ### 枚举

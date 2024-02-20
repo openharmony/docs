@@ -21,8 +21,8 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| typedef enum [OH_Drawing_PenLineCapStyle](_drawing.md#oh_drawing_penlinecapstyle)[OH_Drawing_PenLineCapStyle](_drawing.md#oh_drawing_penlinecapstyle) | 枚举集合定义了画笔笔帽的样式，即画笔在绘制线段时，在线段头尾端点的样式。 |
-| typedef enum [OH_Drawing_PenLineJoinStyle](_drawing.md#oh_drawing_penlinejoinstyle)[OH_Drawing_PenLineJoinStyle](_drawing.md#oh_drawing_penlinejoinstyle) | 枚举集合定义了线条转角的样式，即画笔在绘制折线段时，在折线转角处的样式。 |
+| typedef enum [OH_Drawing_PenLineCapStyle](_drawing.md#oh_drawing_penlinecapstyle)  [OH_Drawing_PenLineCapStyle](_drawing.md#oh_drawing_penlinecapstyle) | 枚举集合定义了画笔笔帽的样式，即画笔在绘制线段时，在线段头尾端点的样式。 |
+| typedef enum [OH_Drawing_PenLineJoinStyle](_drawing.md#oh_drawing_penlinejoinstyle)  [OH_Drawing_PenLineJoinStyle](_drawing.md#oh_drawing_penlinejoinstyle) | 枚举集合定义了线条转角的样式，即画笔在绘制折线段时，在折线转角处的样式。 |
 
 
 ### 枚举

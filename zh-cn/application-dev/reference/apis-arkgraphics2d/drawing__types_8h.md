@@ -30,34 +30,34 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| typedef struct [OH_Drawing_Canvas](_drawing.md#oh_drawing_canvas)[OH_Drawing_Canvas](_drawing.md#oh_drawing_canvas) | 定义为一块矩形的画布，可以结合画笔和画刷在上面绘制各种形状、图片和文字。 |
-| typedef struct [OH_Drawing_Pen](_drawing.md#oh_drawing_pen)[OH_Drawing_Pen](_drawing.md#oh_drawing_pen) | 定义为画笔，画笔用于描述绘制图形轮廓的样式和颜色。 |
-| typedef struct [OH_Drawing_Brush](_drawing.md#oh_drawing_brush)[OH_Drawing_Brush](_drawing.md#oh_drawing_brush) | 定义为画刷，画刷用于描述填充图形的样式和颜色。 |
-| typedef struct [OH_Drawing_Path](_drawing.md#oh_drawing_path)[OH_Drawing_Path](_drawing.md#oh_drawing_path) | 定义为路径，路径用于自定义各种形状。 |
-| typedef struct [OH_Drawing_Bitmap](_drawing.md#oh_drawing_bitmap)[OH_Drawing_Bitmap](_drawing.md#oh_drawing_bitmap) | 定义为位图，位图是一块内存，内存中包含了描述一张图片的像素数据。 |
-| typedef struct [OH_Drawing_Point](_drawing.md#oh_drawing_point)[OH_Drawing_Point](_drawing.md#oh_drawing_point) | 定义一个点，用于描述坐标点。 |
-| typedef struct [OH_Drawing_Point2D](_o_h___drawing___point2_d.md)[OH_Drawing_Point2D](_drawing.md#oh_drawing_point2d) | 定义一个二维的坐标点。 |
-| typedef struct [OH_Drawing_Point3D](_o_h___drawing___point3_d.md)[OH_Drawing_Point3D](_drawing.md#oh_drawing_point3d) | 定义一个三维的坐标点。 |
-| typedef struct [OH_Drawing_PathEffect](_drawing.md#oh_drawing_patheffect)[OH_Drawing_PathEffect](_drawing.md#oh_drawing_patheffect) | 定义一个路径效果，用于影响描边路径。 |
-| typedef struct [OH_Drawing_Rect](_drawing.md#oh_drawing_rect)[OH_Drawing_Rect](_drawing.md#oh_drawing_rect) | 用于描述矩形。 |
-| typedef struct [OH_Drawing_RoundRect](_drawing.md#oh_drawing_roundrect)[OH_Drawing_RoundRect](_drawing.md#oh_drawing_roundrect) | 用于描述圆角矩形。 |
-| typedef struct [OH_Drawing_Matrix](_drawing.md#oh_drawing_matrix)[OH_Drawing_Matrix](_drawing.md#oh_drawing_matrix) | 定义一个矩阵，用于描述坐标变换。 |
-| typedef struct [OH_Drawing_ShaderEffect](_drawing.md#oh_drawing_shadereffect)[OH_Drawing_ShaderEffect](_drawing.md#oh_drawing_shadereffect) | 定义一个着色器，用于描述绘制内容的源颜色。 |
-| typedef struct [OH_Drawing_Filter](_drawing.md#oh_drawing_filter)[OH_Drawing_Filter](_drawing.md#oh_drawing_filter) | 定义一个滤波器，用于存储颜色滤波器和模板滤波器。 |
-| typedef struct [OH_Drawing_MaskFilter](_drawing.md#oh_drawing_maskfilter)[OH_Drawing_MaskFilter](_drawing.md#oh_drawing_maskfilter) | 定义模板滤波器，用于在绘制模板前对其进行转换。 |
-| typedef struct [OH_Drawing_ColorFilter](_drawing.md#oh_drawing_colorfilter)[OH_Drawing_ColorFilter](_drawing.md#oh_drawing_colorfilter) | 定义颜色滤波器，传入一个颜色并返回一个新的颜色。 |
-| typedef struct [OH_Drawing_Font](_drawing.md#oh_drawing_font)[OH_Drawing_Font](_drawing.md#oh_drawing_font) | 用于描述字体。 |
-| typedef struct [OH_Drawing_MemoryStream](_drawing.md#oh_drawing_memorystream)[OH_Drawing_MemoryStream](_drawing.md#oh_drawing_memorystream) | 用于描述内存流。 |
-| typedef struct [OH_Drawing_Typeface](_drawing.md#oh_drawing_typeface)[OH_Drawing_Typeface](_drawing.md#oh_drawing_typeface) | 用于描述字形。 |
-| typedef struct [OH_Drawing_TextBlob](_drawing.md#oh_drawing_textblob)[OH_Drawing_TextBlob](_drawing.md#oh_drawing_textblob) | 定义一个文本对象，表示将多个文本组合到一个不可变的容器中。 每个文本行由字形和位置组成。 |
-| typedef struct [OH_Drawing_Image](_drawing.md#oh_drawing_image)[OH_Drawing_Image](_drawing.md#oh_drawing_image) | 定义一个用于描述绘制二维像素数组的图片。 |
-| typedef struct [OH_Drawing_SamplingOptions](_drawing.md#oh_drawing_samplingoptions)[OH_Drawing_SamplingOptions](_drawing.md#oh_drawing_samplingoptions) | 定义一个采样选项，用于描述图片、位图等图像的采样方法。 |
-| typedef struct [OH_Drawing_TextBlobBuilder](_drawing.md#oh_drawing_textblobbuilder)[OH_Drawing_TextBlobBuilder](_drawing.md#oh_drawing_textblobbuilder) | 定义文本构建器，用于构建文本。 |
-| typedef enum [OH_Drawing_ColorFormat](_drawing.md#oh_drawing_colorformat)[OH_Drawing_ColorFormat](_drawing.md#oh_drawing_colorformat) | 用于描述位图像素的存储格式。 |
-| typedef enum [OH_Drawing_AlphaFormat](_drawing.md#oh_drawing_alphaformat)[OH_Drawing_AlphaFormat](_drawing.md#oh_drawing_alphaformat) | 用于描述位图像素的透明度分量。 |
-| typedef enum [OH_Drawing_BlendMode](_drawing.md#oh_drawing_blendmode)[OH_Drawing_BlendMode](_drawing.md#oh_drawing_blendmode) | 混合模式枚举。混合模式的操作会为两种颜色（源色、目标色）生成一种新的颜色。 这些操作在4个颜色通道（红、绿、蓝、透明度）上是相同的。 对于这些，我们使用透明度通道作为示例，而不是单独命名每个通道。 |
-| typedef struct [OH_Drawing_Image_Info](_o_h___drawing___image___info.md)[OH_Drawing_Image_Info](_drawing.md#oh_drawing_image_info) | 定义图片信息结构体。 |
-| typedef enum [OH_Drawing_TextEncoding](_drawing.md#oh_drawing_textencoding)[OH_Drawing_TextEncoding](_drawing.md#oh_drawing_textencoding) | 文本编码类型枚举。 |
+| typedef struct [OH_Drawing_Canvas](_drawing.md#oh_drawing_canvas)  [OH_Drawing_Canvas](_drawing.md#oh_drawing_canvas) | 定义为一块矩形的画布，可以结合画笔和画刷在上面绘制各种形状、图片和文字。 |
+| typedef struct [OH_Drawing_Pen](_drawing.md#oh_drawing_pen)  [OH_Drawing_Pen](_drawing.md#oh_drawing_pen) | 定义为画笔，画笔用于描述绘制图形轮廓的样式和颜色。 |
+| typedef struct [OH_Drawing_Brush](_drawing.md#oh_drawing_brush)  [OH_Drawing_Brush](_drawing.md#oh_drawing_brush) | 定义为画刷，画刷用于描述填充图形的样式和颜色。 |
+| typedef struct [OH_Drawing_Path](_drawing.md#oh_drawing_path)  [OH_Drawing_Path](_drawing.md#oh_drawing_path) | 定义为路径，路径用于自定义各种形状。 |
+| typedef struct [OH_Drawing_Bitmap](_drawing.md#oh_drawing_bitmap)  [OH_Drawing_Bitmap](_drawing.md#oh_drawing_bitmap) | 定义为位图，位图是一块内存，内存中包含了描述一张图片的像素数据。 |
+| typedef struct [OH_Drawing_Point](_drawing.md#oh_drawing_point)  [OH_Drawing_Point](_drawing.md#oh_drawing_point) | 定义一个点，用于描述坐标点。 |
+| typedef struct [OH_Drawing_Point2D](_o_h___drawing___point2_d.md)  [OH_Drawing_Point2D](_drawing.md#oh_drawing_point2d) | 定义一个二维的坐标点。 |
+| typedef struct [OH_Drawing_Point3D](_o_h___drawing___point3_d.md)  [OH_Drawing_Point3D](_drawing.md#oh_drawing_point3d) | 定义一个三维的坐标点。 |
+| typedef struct [OH_Drawing_PathEffect](_drawing.md#oh_drawing_patheffect)  [OH_Drawing_PathEffect](_drawing.md#oh_drawing_patheffect) | 定义一个路径效果，用于影响描边路径。 |
+| typedef struct [OH_Drawing_Rect](_drawing.md#oh_drawing_rect)  [OH_Drawing_Rect](_drawing.md#oh_drawing_rect) | 用于描述矩形。 |
+| typedef struct [OH_Drawing_RoundRect](_drawing.md#oh_drawing_roundrect)  [OH_Drawing_RoundRect](_drawing.md#oh_drawing_roundrect) | 用于描述圆角矩形。 |
+| typedef struct [OH_Drawing_Matrix](_drawing.md#oh_drawing_matrix)  [OH_Drawing_Matrix](_drawing.md#oh_drawing_matrix) | 定义一个矩阵，用于描述坐标变换。 |
+| typedef struct [OH_Drawing_ShaderEffect](_drawing.md#oh_drawing_shadereffect)  [OH_Drawing_ShaderEffect](_drawing.md#oh_drawing_shadereffect) | 定义一个着色器，用于描述绘制内容的源颜色。 |
+| typedef struct [OH_Drawing_Filter](_drawing.md#oh_drawing_filter)  [OH_Drawing_Filter](_drawing.md#oh_drawing_filter) | 定义一个滤波器，用于存储颜色滤波器和模板滤波器。 |
+| typedef struct [OH_Drawing_MaskFilter](_drawing.md#oh_drawing_maskfilter)  [OH_Drawing_MaskFilter](_drawing.md#oh_drawing_maskfilter) | 定义模板滤波器，用于在绘制模板前对其进行转换。 |
+| typedef struct [OH_Drawing_ColorFilter](_drawing.md#oh_drawing_colorfilter)  [OH_Drawing_ColorFilter](_drawing.md#oh_drawing_colorfilter) | 定义颜色滤波器，传入一个颜色并返回一个新的颜色。 |
+| typedef struct [OH_Drawing_Font](_drawing.md#oh_drawing_font)  [OH_Drawing_Font](_drawing.md#oh_drawing_font) | 用于描述字体。 |
+| typedef struct [OH_Drawing_MemoryStream](_drawing.md#oh_drawing_memorystream)  [OH_Drawing_MemoryStream](_drawing.md#oh_drawing_memorystream) | 用于描述内存流。 |
+| typedef struct [OH_Drawing_Typeface](_drawing.md#oh_drawing_typeface)  [OH_Drawing_Typeface](_drawing.md#oh_drawing_typeface) | 用于描述字形。 |
+| typedef struct [OH_Drawing_TextBlob](_drawing.md#oh_drawing_textblob)  [OH_Drawing_TextBlob](_drawing.md#oh_drawing_textblob) | 定义一个文本对象，表示将多个文本组合到一个不可变的容器中。 每个文本行由字形和位置组成。 |
+| typedef struct [OH_Drawing_Image](_drawing.md#oh_drawing_image)  [OH_Drawing_Image](_drawing.md#oh_drawing_image) | 定义一个用于描述绘制二维像素数组的图片。 |
+| typedef struct [OH_Drawing_SamplingOptions](_drawing.md#oh_drawing_samplingoptions)  [OH_Drawing_SamplingOptions](_drawing.md#oh_drawing_samplingoptions) | 定义一个采样选项，用于描述图片、位图等图像的采样方法。 |
+| typedef struct [OH_Drawing_TextBlobBuilder](_drawing.md#oh_drawing_textblobbuilder)  [OH_Drawing_TextBlobBuilder](_drawing.md#oh_drawing_textblobbuilder) | 定义文本构建器，用于构建文本。 |
+| typedef enum [OH_Drawing_ColorFormat](_drawing.md#oh_drawing_colorformat)  [OH_Drawing_ColorFormat](_drawing.md#oh_drawing_colorformat) | 用于描述位图像素的存储格式。 |
+| typedef enum [OH_Drawing_AlphaFormat](_drawing.md#oh_drawing_alphaformat)  [OH_Drawing_AlphaFormat](_drawing.md#oh_drawing_alphaformat) | 用于描述位图像素的透明度分量。 |
+| typedef enum [OH_Drawing_BlendMode](_drawing.md#oh_drawing_blendmode)  [OH_Drawing_BlendMode](_drawing.md#oh_drawing_blendmode) | 混合模式枚举。混合模式的操作会为两种颜色（源色、目标色）生成一种新的颜色。 这些操作在4个颜色通道（红、绿、蓝、透明度）上是相同的。 对于这些，我们使用透明度通道作为示例，而不是单独命名每个通道。 |
+| typedef struct [OH_Drawing_Image_Info](_o_h___drawing___image___info.md)  [OH_Drawing_Image_Info](_drawing.md#oh_drawing_image_info) | 定义图片信息结构体。 |
+| typedef enum [OH_Drawing_TextEncoding](_drawing.md#oh_drawing_textencoding)  [OH_Drawing_TextEncoding](_drawing.md#oh_drawing_textencoding) | 文本编码类型枚举。 |
 
 
 ### 枚举

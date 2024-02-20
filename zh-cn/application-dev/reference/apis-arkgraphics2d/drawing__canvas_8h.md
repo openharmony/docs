@@ -21,8 +21,8 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| typedef enum [OH_Drawing_CanvasClipOp](_drawing.md#oh_drawing_canvasclipop)[OH_Drawing_CanvasClipOp](_drawing.md#oh_drawing_canvasclipop) | 画布裁剪方式的枚举集合。 |
-| typedef enum [OH_Drawing_CanvasShadowFlags](_drawing.md#oh_drawing_canvasshadowflags)[OH_Drawing_CanvasShadowFlags](_drawing.md#oh_drawing_canvasshadowflags) | 阴影标志枚举。 |
+| typedef enum [OH_Drawing_CanvasClipOp](_drawing.md#oh_drawing_canvasclipop)  [OH_Drawing_CanvasClipOp](_drawing.md#oh_drawing_canvasclipop) | 画布裁剪方式的枚举集合。 |
+| typedef enum [OH_Drawing_CanvasShadowFlags](_drawing.md#oh_drawing_canvasshadowflags)  [OH_Drawing_CanvasShadowFlags](_drawing.md#oh_drawing_canvasshadowflags) | 阴影标志枚举。 |
 
 
 ### 枚举
