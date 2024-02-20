@@ -124,7 +124,7 @@ Web组件可以实现点击前端页面超链接跳转到其他应用。
         Web({ src: $rawfile('call.html'), controller: this.webviewController})
           .onLoadIntercept((event) => {
             if (event) {
-              let url: string = event.data.toString();
+              let url: string = event.data.getRequestUrl();
               // 判断链接是否为拨号链接
               if (url.indexOf('tel://') === 0) {
                 // 跳转拨号界面
