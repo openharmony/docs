@@ -1,6 +1,6 @@
 # DRM系统管理(C/C++)
 
-DRM系统管理（MediaKeySession）支持MediaKeySystem实例管理、设备证书申请与处理、会话创建、离线许可证管理、获取DRM度量统计信息、设备属性等。
+DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证书申请与处理、会话创建、离线许可证管理、获取DRM度量统计信息、设备属性等。
 
 ## 开发步骤
 
