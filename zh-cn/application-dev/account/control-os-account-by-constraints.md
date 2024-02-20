@@ -4,7 +4,7 @@
 
 ## 约束列表
 
-预定义的帐号约束条件，可以参考 ：[系统帐号约束列表](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#系统帐号约束列表)
+预定义的帐号约束条件，可以参考 ：[系统帐号约束列表](../reference/apis-basic-services-kit/js-apis-osAccount.md#系统帐号约束列表)
 
 ## 开发准备
 
@@ -31,7 +31,7 @@
 1. 指定系统帐号标识和待使能的约束集合。
 
    ```ts
-   let localId: number = 101;
+   let localId: number = 100;
    let constraint: string[] = [ 'constraint.wifi.set' ];
    ```
 
