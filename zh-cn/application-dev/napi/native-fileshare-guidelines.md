@@ -23,14 +23,14 @@ FileShare提供了支持基于URI的文件及目录授权及权限持久化、�
 CMakeLists.txt中添加以下lib。
 
 ```txt
-liboh_file_share.so
+libohfileshare.so
 ```
 
 **头文件**
 
 ```c++
-#include "filemanagement/fileshare/oh_file_share.h"
-#include "filemanagement/common/errorcode.h"
+#include "filemanagement/fileshare/include/oh_file_share.h"
+#include "filemanagement/fileio/include/error_code.h"
 #include <iostream>
 #include <string.h>
 ```
@@ -40,73 +40,74 @@ liboh_file_share.so
     char strTestPath1[] = "file://com.example.fileshare/data/storage/el2/base/files/test1.txt";
     char strTestPath2[] = "file://com.example.fileshare/data/storage/el2/base/files/test2.txt";
     FileShare_PolicyInfo policy[POLICY_NUM] = { 
-        {strTestPath1, strlen(strTestPath1), FileShare_OperationMode::READ_MODE},
-        {strTestPath2, strlen(strTestPath2), FileShare_OperationMode::WRITE_MODE}};
-    FileShare_PolicyErrorResult* result;
+        {strTestPath1, static_cast<unsigned int>(strlen(strTestPath1)), FileShare_OperationMode::READ_MODE},
+        {strTestPath2, static_cast<unsigned int>(strlen(strTestPath2)), FileShare_OperationMode::WRITE_MODE}};
+    FileShare_PolicyErrorResult* result = nullptr;
     uint32_t resultNum = 0;
     auto ret = OH_FileShare_PersistPermission(policy, POLICY_NUM, &result, &resultNum);
     if (ret != ERR_OK) {
-        if (ret == 13900001 && result != nullptr) {
+        if (ret == ERR_EPERM && result != nullptr) {
             for(uint32_t i = 0; i < resultNum; i++) {
                 std::cout << "error uri: " <<  result[i].uri << std::endl;
                 std::cout << "error code: " <<  result[i].code << std::endl;
                 std::cout << "error message: " << result[i].message << std::endl;
             }
         }
-        OH_FileShare_ReleasePolicyErrorResult(result, resultNum);
     }
+    OH_FileShare_ReleasePolicyErrorResult(result, resultNum);
     ```
 2. **调用OH_FileShare_ActivatePermission接口，激活启用已授权过的URI**。
     ```c++
-    int ret = OH_FileShare_ActivatePermission(policy, POLICY_NUM, &result, &resultNum);
+    auto ret = OH_FileShare_ActivatePermission(policy, POLICY_NUM, &result, &resultNum);
     if (ret != ERR_OK) {
-        if (ret == 13900001 && result != nullptr) {
+        if (ret == ERR_EPERM && result != nullptr) {
             for(uint32_t i = 0; i < resultNum; i++) {
                 std::cout << "error uri: " <<  result[i].uri << std::endl;
                 std::cout << "error code: " <<  result[i].code << std::endl;
                 std::cout << "error message: " << result[i].message << std::endl;
             }
         }
-        OH_FileShare_ReleasePolicyErrorResult(result, resultNum);
     }
+    OH_FileShare_ReleasePolicyErrorResult(result, resultNum);
     ```
 3. **调用OH_FileShare_DeactivatePermission接口，停止已启用授权过URI的访问权限**。
     ```c++
-    int ret = OH_FileShare_DeactivatePermission(policy, POLICY_NUM, &result, &resultNum);
+    auto ret = OH_FileShare_DeactivatePermission(policy, POLICY_NUM, &result, &resultNum);
     if (ret != ERR_OK) {
-        if (ret == 13900001 && result != nullptr) {
+        if (ret == ERR_EPERM && result != nullptr) {
             for(uint32_t i = 0; i < resultNum; i++) {
                 std::cout << "error uri: " <<  result[i].uri << std::endl;
                 std::cout << "error code: " <<  result[i].code << std::endl;
                 std::cout << "error message: " << result[i].message << std::endl;
             }
         }
-        OH_FileShare_ReleasePolicyErrorResult(result, resultNum);
     }
+    OH_FileShare_ReleasePolicyErrorResult(result, resultNum);
     ```
 4. **调用OH_FileShare_RevokePermission接口，撤销已经授权的URI持久化权限**。
     ```c++
-    int ret = OH_FileShare_RevokePermission(policy, POLICY_NUM, &result, &resultNum);
+    auto ret = OH_FileShare_RevokePermission(policy, POLICY_NUM, &result, &resultNum);
     if (ret != ERR_OK) {
-        if (ret == 13900001 && result != nullptr) {
+        if (ret == ERR_EPERM && result != nullptr) {
             for(uint32_t i = 0; i < resultNum; i++) {
                 std::cout << "error uri: " <<  result[i].uri << std::endl;
                 std::cout << "error code: " <<  result[i].code << std::endl;
                 std::cout << "error message: " << result[i].message << std::endl;
             }
         }
-        OH_FileShare_ReleasePolicyErrorResult(result, resultNum);
     }
+    OH_FileShare_ReleasePolicyErrorResult(result, resultNum);
     ```
 5. **调用OH_FileShare_CheckPersistentPermission接口，检查URI持久化权限**。
     ```c++
-    bool *result;
-    int ret = OH_FileShare_CheckPersistentPermission(policy, POLICY_NUM, &result, &resultNum);
-    if (ret != ERR_OK && result != nullptr) {
+    bool *result = nullptr;
+    auto ret = OH_FileShare_CheckPersistentPermission(policy, POLICY_NUM, &result, &resultNum);
+    if (result != nullptr && resultNum > 0) {
         for(uint32_t i = 0; i < resultNum && resultNum <= POLICY_NUM; i++) {
             std::cout << "uri: " <<  policy[i].uri << std::endl;
             std::cout << "result: " <<  result[i] << std::endl;
         }
     }
+    std::cout << "retCode: " <<  ret << std::endl;
     free(result);
     ```
