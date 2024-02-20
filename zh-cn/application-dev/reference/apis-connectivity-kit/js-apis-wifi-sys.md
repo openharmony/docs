@@ -371,10 +371,7 @@ try {
 | networkId | number | 是 | 否 | 网络配置ID。 <br /> **系统接口：** 此接口为系统接口。 |
 | chload | number | 是 | 否 | 连接负载，值越大表示负载约高。 <br /> **系统接口：** 此接口为系统接口。 |
 | snr | number | 是 | 否 | 信噪比。 <br /> **系统接口：** 此接口为系统接口。 |
-| macAddress | string | 是 | 否 | 设备的MAC地址。 |
-| ipAddress | number | 是 | 否 | WLAN连接的IP地址。 |
 | suppState | [SuppState](#suppstate) | 是 | 否 | 请求状态。 <br /> **系统接口：** 此接口为系统接口。 |
-| connState | [ConnState](js-apis-wifi.md#connstate) | 是 | 否 | WLAN连接状态。 |
 
 
 ## SuppState
