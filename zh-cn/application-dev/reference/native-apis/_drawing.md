@@ -197,6 +197,8 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | void [OH_Drawing_PenSetCap](#oh_drawing_pensetcap) ([OH_Drawing_Pen](#oh_drawing_pen) \*, [OH_Drawing_PenLineCapStyle](#oh_drawing_penlinecapstyle)) | 用于设置画笔笔帽样式。 |
 | [OH_Drawing_PenLineJoinStyle](#oh_drawing_penlinejoinstyle)[OH_Drawing_PenGetJoin](#oh_drawing_pengetjoin) (const [OH_Drawing_Pen](#oh_drawing_pen) \*) | 用于获取画笔绘制折线转角的样式。 |
 | void [OH_Drawing_PenSetJoin](#oh_drawing_pensetjoin) ([OH_Drawing_Pen](#oh_drawing_pen) \*, [OH_Drawing_PenLineJoinStyle](#oh_drawing_penlinejoinstyle)) | 用于设置画笔绘制转角的样式。 |
+| void [OH_Drawing_PenSetShaderEffect](#oh_drawing_pensetshadereffect) ([OH_Drawing_Pen](#oh_drawing_pen) \*, [OH_Drawing_ShaderEffect](#oh_drawing_shadereffect) \*) | 设置画笔着色器效果。 |
+| void [OH_Drawing_PenSetFilter](#oh_drawing_pensetfilter) ([OH_Drawing_Pen](#oh_drawing_pen) \*, [OH_Drawing_Filter](#oh_drawing_filter) \*) | 设置画笔滤波器。 |
 | [OH_Drawing_Point](#oh_drawing_point) \* [OH_Drawing_PointCreate](#oh_drawing_pointcreate) (float x, float y) | 用于创建一个坐标点对象。 |
 | void [OH_Drawing_PointDestroy](#oh_drawing_pointdestroy) ([OH_Drawing_Point](#oh_drawing_point) \*) | 用于销毁坐标点对象并回收该对象占有的内存。 |
 | [OH_Drawing_Rect](#oh_drawing_rect) \* [OH_Drawing_RectCreate](#oh_drawing_rectcreate) (float left, float top, float right, float bottom) | 用于创建一个矩形对象。 |
@@ -3530,6 +3532,26 @@ void OH_Drawing_PenSetColor (OH_Drawing_Pen * , uint32_t color )
 | OH_Drawing_Pen | 指向画笔对象的指针。 |
 | color | 描述颜色的32位（ARGB）变量。 |
 
+### OH_Drawing_PenSetFilter()
+
+```
+void OH_Drawing_PenSetFilter (OH_Drawing_Pen* , OH_Drawing_Filter*  )
+```
+
+**描述**
+
+设置画笔滤波器。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| OH_Drawing_Pen | 指向画笔对象[OH_Drawing_Pen](#oh_drawing_pen)的指针。 |
+| OH_Drawing_Filter | 指向滤波器[OH_Drawing_Filter](#oh_drawing_filter)的指针。 |
 
 ### OH_Drawing_PenSetJoin()
 
@@ -3574,6 +3596,26 @@ void OH_Drawing_PenSetMiterLimit (OH_Drawing_Pen * , float miter )
 | OH_Drawing_Pen | 指向画笔对象的指针。 |
 | miter | 描述尖角限制值的变量。 |
 
+### OH_Drawing_PenSetShaderEffect()
+
+```
+void OH_Drawing_PenSetShaderEffect (OH_Drawing_Pen* , OH_Drawing_ShaderEffect*  )
+```
+
+**描述**
+
+设置画笔着色器效果。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| OH_Drawing_Pen | 指向画笔对象[OH_Drawing_Pen](#oh_drawing_pen)的指针。 |
+| OH_Drawing_ShaderEffect | 指向着色器对象[OH_Drawing_ShaderEffect](#oh_drawing_shadereffect)的指针。 |
 
 ### OH_Drawing_PenSetWidth()
 
