@@ -249,7 +249,7 @@
     - [@ohos.arkui.advanced.Popup (气泡组件)](arkui-ts/ohos-arkui-advanced-Popup.md)
     - [@ohos.arkui.advanced.SegmentButton (分段按钮)](arkui-ts/ohos-arkui-advanced-SegmentButton.md)
     - [@ohos.arkui.advanced.SelectionMenu(文本选择菜单)](arkui-ts/ohos-arkui-advanced-SelectionMenu.md)
-    - [@ohos.arkui.advanced.SelectTitleBar (下拉菜单标题栏)](arkui-ts/ohos-arkui-advanced-SelectTitleBar)
+    - [@ohos.arkui.advanced.SelectTitleBar (下拉菜单标题栏)](arkui-ts/ohos-arkui-advanced-SelectTitleBar.md)
     - [@ohos.arkui.advanced.SplitLayout (上下结构布局)](arkui-ts/ohos-arkui-advanced-SplitLayout.md)
     - [@ohos.arkui.advanced.SubHeader (子标题)](arkui-ts/ohos-arkui-advanced-SubHeader.md)
     - [@ohos.arkui.advanced.SwipeRefresher (内容加载)](arkui-ts/ohos-arkui-advanced-SwipeRefresher.md)
