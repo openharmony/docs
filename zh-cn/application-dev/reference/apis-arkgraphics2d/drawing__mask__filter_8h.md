@@ -17,11 +17,18 @@
 ## 汇总
 
 
+### 类型定义
+
+| 名称 | 描述 |
+| -------- | -------- |
+| typedef enum [OH_Drawing_BlurType](_drawing.md#oh_drawing_blurtype)  [OH_Drawing_BlurType](_drawing.md#oh_drawing_blurtype) | 蒙版滤波器模糊操作类型的枚举。 |
+
+
 ### 枚举
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [OH_Drawing_BlurType](_drawing.md#oh_drawing_blurtype) {<br/>NORMAL, SOLID, OUTER, INNER<br/>} | 枚举模糊类型。 |
+| [OH_Drawing_BlurType](_drawing.md#oh_drawing_blurtype) { NORMAL, SOLID, OUTER, INNER } | 蒙版滤波器模糊操作类型的枚举。 |
 
 
 ### 函数
