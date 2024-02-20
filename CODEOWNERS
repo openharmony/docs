@@ -548,7 +548,7 @@ zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-checkbox
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-datapanel.md	@cc520bf	@yeyinglong_admin	@pangxinyu10128	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-datepicker.md	@zhangfanfan2	@zhanghaibo0	@zhangshuang-xiaohuihui	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-divider.md	@ileft2019	@crazyracing0726	@pangxinyu10128	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-formcomponent.md	@raulnaruto_admin		@zhangshuang-xiaohuihui	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-formcomponent.md	@arondave  @songzhenlei	@zhangshuang-xiaohuihui	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-gauge.md	@cc520bf	@yeyinglong_admin	@pangxinyu10128	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-image.md	@ileft2019	@crazyracing0726	@pangxinyu10128	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-imageanimator.md	@ileft2019	@crazyracing0726	@pangxinyu10128	@HelloCrease
@@ -593,7 +593,7 @@ zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-columnsplit.md	
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-counter.md	@cc520bf	@zcdqs	@zhangshuang-xiaohuihui	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-flex.md	@ileft2019	@crazyracing0726	@pangxinyu10128	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-flowitem.md	@cc520bf	@zcdqs	@pangxinyu10128	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-formlink.md	@raulnaruto_admin			@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-formlink.md	@arondave  @songzhenlei			@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-gridcol.md	@ileft2019	@crazyracing0726	@pangxinyu10128	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-gridrow.md	@ileft2019	@crazyracing0726	@pangxinyu10128	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-grid.md	@cc520bf	@zcdqs	@pangxinyu10128	@HelloCrease
@@ -861,6 +861,7 @@ zh-cn/application-dev/reference/errorcodes/errorcode-animator.md @HelloCrease
 zh-cn/application-dev/reference/errorcodes/errorcode-pasteboard.md @HelloCrease
 zh-cn/application-dev/reference/errorcodes/errorcode-promptAction.md @HelloCrease
 zh-cn/application-dev/reference/errorcodes/errorcode-router.md @HelloCrease
+zh-cn/application-dev/reference/apis-arkui/js-apis-postCardAction.md @arondave  @songzhenlei @HelloCrease
 
 [参考-ArkWeb]
 zh-cn/application-dev/reference/apis-arkweb/js-apis-webview.md @bigpumpkin @HelloCrease @litao33 @zhang-xinyue15
