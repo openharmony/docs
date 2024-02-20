@@ -810,6 +810,7 @@
       - [高效并发编程](performance/efficient-concurrent-programming.md)
       - [N-API高效开发指导](performance/develop-Native-modules-using-NAPI-safely-and-efficiently.md)
       - [多线程能力场景化](performance/multi_thread_capability.md)
+      - [利用native的方式实现跨线程调用](performance/native-threads-call-js.md)
     - 减少卡顿丢帧
       - [正确使用LazyForEach优化](performance/lazyforeach_optimization.md)
       - [组件复用使用指导](performance/component-recycle.md)
@@ -835,7 +836,6 @@
       - [性能提升的其他方法](performance/arkts-performance-improvement-recommendation.md)
       - [运行时动态加载页面提升性能](performance/performance-dynamic-import.md)
       - [合理运行后台任务](performance/reasonable-running-backgroundTask.md)
-      - [利用native的方式实现跨线程调用](performance/native-threads-call-js.md)
       - [Web组件开发性能提升指导](performance/performance-web-import.md)
     - 性能工具
       - [性能分析工具CPU Profiler](performance/application-performance-analysis.md)
