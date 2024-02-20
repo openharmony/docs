@@ -10,7 +10,6 @@
 
 ```ts
 import pluginComponentManager from '@ohos.pluginComponent'
-import Want from '@ohos.app.ability.Want';
 ```
 
 ## PluginComponentTemplate
