@@ -9,8 +9,8 @@
 | 接口名                                                       | 描述                                     |
 | :----------------------------------------------------------- | :--------------------------------------- |
 | [OH_NativeBundle_GetCurrentApplicationInfo](../reference/native-apis/native__interface__bundle.md) | 获取应用自身相关信息。          |
-| [OH_NativeBundle_GetAppId](../reference/native-apis/native__interface__bundle.md#oh_nativebundle_getappid) | 获取自身应用的appId信息。 |
-| [OH_NativeBundle_GetAppIdentifier](../reference/native-apis/native__interface__bundle.md#oh_nativebundle_getappidentifier) | 获取自身应用的appIdentifier信息。 |
+| [OH_NativeBundle_GetAppId](../reference/native-apis/native__interface__bundle.md) | 获取自身应用的appId信息。 |
+| [OH_NativeBundle_GetAppIdentifier](../reference/native-apis/native__interface__bundle.md) | 获取自身应用的appIdentifier信息。 |
 
 ## 开发步骤
 
