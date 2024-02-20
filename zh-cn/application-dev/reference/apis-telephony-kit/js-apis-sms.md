@@ -338,7 +338,26 @@ sms.getDefaultSmsSlotId().then((data: number) => {
     console.error(`getDefaultSmsSlotId failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
+## sms.hasSmsCapability<sup>7+</sup>
 
+hasSmsCapability\(\): boolean
+
+检查当前设备是否具备短信发送和接收能力，该方法是同步方法。
+
+**系统能力**：SystemCapability.Telephony.SmsMms
+
+**返回值：**
+
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| boolean | - true：设备具备短信发送和接收能力。<br/>- false：设备不具备短信发送和接收能力。 |
+
+```ts
+import sms from '@ohos.telephony.sms';
+
+let result = sms.hasSmsCapability(); 
+console.log(`hasSmsCapability: ${JSON.stringify(result)}`);
+```
 
 ## sms.getDefaultSmsSimId<sup>10+</sup>
 
@@ -397,6 +416,87 @@ getDefaultSmsSimId\(\): Promise&lt;number&gt;
 **错误码：**
 
 以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](errorcode-telephony.md)。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301001  | SIM card is not activated.                   |
+
+**示例：**
+
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+let promise = sms.getDefaultSmsSimId();
+promise.then((data: number) => {
+    console.log(`getDefaultSmsSimId success, promise: data->${JSON.stringify(data)}`);
+}).catch((err: BusinessError) => {
+    console.error(`getDefaultSmsSimId failed, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## sms.getDefaultSmsSimId<sup>10+</sup>
+
+getDefaultSmsSimId\(callback: AsyncCallback&lt;number&gt;\): void
+
+获取发送短信的默认SIM卡ID。使用callback异步回调。
+
+**系统能力**：SystemCapability.Telephony.SmsMms
+
+**参数：**
+
+| 参数名   | 类型                        | 必填 | 说明                                     |
+| -------- | --------------------------- | ---- | ---------------------------------------- |
+| callback | AsyncCallback&lt;number&gt; | 是   | 获取默认短信SIM的SIM ID的回调函数。<br/>与SIM卡绑定，从1开始递增。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301001  | SIM card is not activated.                   |
+
+**示例：**
+
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+sms.getDefaultSmsSimId((err: BusinessError, data: number) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## sms.getDefaultSmsSimId<sup>10+</sup>
+
+getDefaultSmsSimId\(\): Promise&lt;number&gt;
+
+获取发送短信的默认SIM卡ID。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Telephony.SmsMms
+
+**返回值：**
+
+| 类型            | 说明                                                         |
+| --------------- | ------------------------------------------------------------ |
+| Promise&lt;number&gt; | 以Promise形式返回发送短信的默认SIM卡ID：<br/>与SIM卡绑定，从1开始递增。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
