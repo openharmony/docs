@@ -41,7 +41,7 @@ let pixmapNew: object = pixmap.getPixelMap()
 
 当传入资源id或name为普通图片时，生成DrawableDescriptor对象。
 
-### LayeredDrawableDescriptor
+## LayeredDrawableDescriptor
 
 当传入资源id或name为包含前景和背景资源的json文件时，生成LayeredDrawableDescriptor对象。继承自[DrawableDescriptor](#drawabledescriptor)
 
