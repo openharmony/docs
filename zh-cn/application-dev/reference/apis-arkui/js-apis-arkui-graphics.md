@@ -144,7 +144,34 @@ get size(): Size
 
 | 类型          | 说明             |
 | ------------- | ---------------- |
-| [Size](#size) | 画布的宽度和高度 |
+| [Size](#size) | 画布的宽度和高度。 |
+
+### canvas
+
+get canvas(): Canvas
+
+获取用于绘制的画布。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型          | 说明             |
+| ------------- | ---------------- |
+| [Canvas](../apis-arkgraphics2d/js-apis-graphics-drawing.md#canvas) | 用于绘制的画布。 |
+
+**示例：**
+
+```ts
+class MyRenderNode extends RenderNode {
+  flag: boolean = false;
+
+  draw(context: DrawContext) {
+    const size = context.size;
+    const canvas = context.canvas;
+  }
+}
+```
 
 ## Edges<sup>12+</sup>
 
