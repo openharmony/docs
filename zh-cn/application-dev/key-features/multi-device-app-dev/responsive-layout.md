@@ -94,16 +94,6 @@
       // ...
      }
        
-     // 窗口销毁时，取消窗口尺寸变化监听
-     onWindowStageDestroy() :void{
-        try {
-          if (this.windowObj) {
-            this.windowObj.off('windowSizeChange')
-          }
-        } catch (err) {
-          console.log('show windowObj errMsg' + JSON.stringify(err))
-        }
-     }
      //...
    }
    ```
