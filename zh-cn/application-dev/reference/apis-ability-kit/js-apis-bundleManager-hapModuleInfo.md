@@ -30,6 +30,7 @@ HAP信息，三方应用可以通过[getBundleInfoForSelf](js-apis-bundleManager
 | dependencies                      | Array\<[Dependency](#dependency)>                            | 是   | 否   | 模块运行依赖的动态共享库列表。  |
 | fileContextMenuConfig<sup>11+</sup>     | string                                                       | 是   | 否   | 模块的文件菜单配置。通过调用[getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)接口，bundleFlags参数传入GET_BUNDLE_INFO_WITH_HAP_MODULE和GET_BUNDLE_INFO_WITH_MENU获取。 |
 | routerMap<sup>12+</sup>           | Array\<[RouterItem](#routeritem)>                            | 是   | 否   | [模块的路由表配置](../../quick-start/module-configuration-file.md#routermap标签)。通过调用[getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)接口，bundleFlags参数传入GET_BUNDLE_INFO_WITH_HAP_MODULE和GET_BUNDLE_INFO_WITH_ROUTER_MAP获取。 |
+| codePath                          | string                                                       | 是   | 否   | 模块的安装路径。              |
 
 ## PreloadItem
 
