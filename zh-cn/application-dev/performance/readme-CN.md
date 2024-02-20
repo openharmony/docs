@@ -30,6 +30,7 @@
     - [性能提升的其他方法](arkts-performance-improvement-recommendation.md)
     - [运行时动态加载页面提升性能](performance-dynamic-import.md)
     - [合理运行后台任务](reasonable-running-backgroundTask.md)
+    - [利用native的方式实现跨线程调用](native-threads-call-js.md)
     - [Web组件开发性能提升指导](performance-web-import.md)
   - 性能工具
     - [性能分析工具CPU Profiler](application-performance-analysis.md)
