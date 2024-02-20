@@ -17,7 +17,7 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [native_interface_bundle.h](native__interface__bundle.md) | 提供应用信息数据结构和函数。 |
+| [native_interface_bundle.h](native__interface__bundle.md) | 提供应用信息数据结构和函数。<br/>**引用文件**：&lt;bundle/native_interface_bundle.h&gt;<br/>**库**：libbundle_ndk.z.so |
 
 
 ### 结构体定义
