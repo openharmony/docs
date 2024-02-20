@@ -338,6 +338,7 @@ sms.getDefaultSmsSlotId().then((data: number) => {
     console.error(`getDefaultSmsSlotId failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
+
 ## sms.hasSmsCapability<sup>7+</sup>
 
 hasSmsCapability\(\): boolean
