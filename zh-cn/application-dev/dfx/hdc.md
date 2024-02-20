@@ -1,13 +1,10 @@
 # hdc
 
-
-hdc（OpenHarmony Device Connector）是OpenHarmony为开发人员提供的用于调试的命令行工具，通过该工具可以在windows/linux/mac系统上与真实设备进行交互。
-
+hdc（OpenHarmony Device Connector）是为开发人员提供的用于调试的命令行工具，通过该工具可以在windows/linux/mac系统上与真实设备进行交互。
 
 ## 环境准备
 
 hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下，首次使用按照如下提示配置环境变量。
-
 
 ### 配置环境变量HDC_SERVER_PORT
 
@@ -21,10 +18,10 @@ hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下，首�
 
 - macOS环境变量设置方法：
   1. 打开终端工具，执行以下命令，根据输出结果分别执行不同命令。
+
       ```
       echo $SHELL 
       ```
-
       - 如输出结果为/bin/bash，则执行以下命令，打开.bash_profile文件。
          ```
          vi ~/.bash_profile
@@ -33,6 +30,7 @@ hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下，首�
          ```
          vi ~/.zshrc
          ```
+
   2. 单击字母“i”，进入**Insert**模式。
   3. 输入以下内容，在PATH路径下添加HDC_SERVER_PORT端口信息。
       ```
@@ -51,7 +49,6 @@ hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下，首�
          source ~/.zshrc
          ```
   6. 环境变量配置完成后，关闭并重启DevEco Studio。
-
 
 ### （可选）配置全局环境变量
 
@@ -105,7 +102,6 @@ hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下，首�
       source ~/.zshrc
       ```
 
-
 ## 注意事项
 
 - 使用hdc时如出现异常，可尝试通过hdc kill -r命令杀掉异常进程并重启hdc服务。
@@ -117,19 +113,17 @@ hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下，首�
 > 
 > - 命令行中的参数若是斜体，表示在使用时该参数需替换为具体的信息，例如：file send _local remote_命令中的local和remote，使用时需替换为本地待发送和远端待接收的文件路径。
 
-
 ## 开发指导
-
 
 ### 全局option相关命令
 
-| Option | 说明 | 
+| Option | 说明 |
 | -------- | -------- |
 | -t [key] [command] | 指定连接唯一标识的目标设备。标识可通过命令hdc list targets查询。 | 
-| help/-h | 打印hdc帮助信息。 | 
-| version/-v | 打印hdc版本信息。 | 
-| -l [level] | 指定运行时日志等级，默认为LOG_INFO。 | 
-| checkserver | 获取client-server版本。 | 
+| help/-h | 打印hdc帮助信息。 |
+| version/-v | 打印hdc版本信息。 |
+| -l [level] | 指定运行时日志等级，默认为LOG_INFO。 |
+| checkserver | 获取client-server版本。 |
 
 1. 显示hdc相关的帮助信息，命令格式如下：
    ```
@@ -137,7 +131,7 @@ hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下，首�
    ```
 
    **返回值：**
-   | 返回值 | 说明 | 
+   | 返回值 | 说明 |
    | -------- | -------- |
    | OpenHarmony device connector(HDC) ...<br/>---------------------------------global commands:----------------------------------<br/>-h/help [verbose]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Print hdc help, 'verbose' for more other cmds<br/>..._（此处省略详细帮助信息）_ | hdc命令使用帮助信息 | 
 
@@ -152,9 +146,9 @@ hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下，首�
    ```
 
    **返回值：**
-   | 返回值 | 说明 | 
+   | 返回值 | 说明 |
    | -------- | -------- |
-   | Ver: X.X.Xa | hdc（SDK）的版本信息 | 
+   | Ver: X.X.Xa | hdc（SDK）的版本信息 |
 
    **使用方法：**
    ```
@@ -167,18 +161,18 @@ hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下，首�
    ```
 
    **参数：**
-   | 参数名 | 说明 | 
+   | 参数名 | 说明 |
    | -------- | -------- |
-   | key | IP地址或USB序列号。 | 
-   | command | hdc支持的命令。 | 
+   | key | IP地址或USB序列号。 |
+   | command | hdc支持的命令。 |
 
    **返回值：**
-   | 返回值 | 说明 | 
+   | 返回值 | 说明 |
    | -------- | -------- |
-   | 命令执行返回内容 | 请参考对应命令的返回值 | 
-   | [Fail]Not match target founded, check connect-key please | 连接的设备不存在 | 
-   | [Fail]ExecuteCommand need connect-key? | 连接的设备不存在 | 
-   | Unknown operation command... | 不支持的命令 | 
+   | 命令执行返回内容 | 请参考对应命令的返回值 |
+   | [Fail]Not match target founded, check connect-key please | 连接的设备不存在 |
+   | [Fail]ExecuteCommand need connect-key? | 连接的设备不存在 |
+   | Unknown operation command... | 不支持的命令 |
 
    **使用方法**：
 
@@ -198,16 +192,16 @@ hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下，首�
    ```
 
    **参数：**
-   | 参数 | 说明 | 
+   | 参数 | 说明 |
    | -------- | -------- |
    | [level] | 指定运行时日志等级<br/>0：LOG_OFF<br/>1：LOG_FATAL<br/>2：LOG_WARN<br/>3：LOG_INFO<br/>4：LOG_DEBUG<br/>5：LOG_ALL | 
-   | command | hdc支持的命令 | 
+   | command | hdc支持的命令 |
 
    **返回值：**
-   | 返回值 | 说明 | 
+   | 返回值 | 说明 |
    | -------- | -------- |
-   | 命令执行返回内容 | 请参考对应命令的返回值 | 
-   | LOG日志信息 | 对应指定的运行时等级日志打印 | 
+   | 命令执行返回内容 | 请参考对应命令的返回值 |
+   | LOG日志信息 | 对应指定的运行时等级日志打印 |
 
    **使用方法：**
    ```
@@ -220,7 +214,7 @@ hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下，首�
    ```
 
    **返回值：**
-   | 返回值 | 说明 | 
+   | 返回值 | 说明 |
    | -------- | -------- |
    | Client version: Ver: X.X.Xa, server version: Ver: X.X.Xa | client-server版本号 | 
 
@@ -232,9 +226,9 @@ hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下，首�
 
 ### 查询设备列表相关命令
 
-| 命令 | 说明 | 
+| 命令 | 说明 |
 | -------- | -------- |
-| list targets [-v] | 查询已连接的所有目标设备，添加-v选项，则会打印设备详细信息。 | 
+| list targets [-v] | 查询已连接的所有目标设备，添加-v选项，则会打印设备详细信息。 |
 
 显示所有已连接的设备列表，命令格式如下：
 ```
@@ -242,10 +236,10 @@ hdc list targets[-v]
 ```
 
 **返回值：**
-| 返回值 | 说明 | 
+| 返回值 | 说明 |
 | -------- | -------- |
-| 设备信息 | 已连接的设备列表信息 | 
-| [Empty] | 没有查询到设备信息 | 
+| 设备信息 | 已连接的设备列表信息 |
+| [Empty] | 没有查询到设备信息 |
 
 **使用方法：**
 ```
@@ -256,13 +250,13 @@ hdc list targets -v
 
 ### 服务进程相关命令
 
-| 命令 | 说明 | 
+| 命令 | 说明 |
 | -------- | -------- |
-| target mount | 读写模式挂载系统分区。（user不可用） | 
-| target boot | 重启目标设备，查看目标列表可用list targets命令。 | 
-| smode [-r] | 授予设备端hdc后台服务进程root权限， 使用-r参数取消授权。（user不可用） | 
-| kill [-r] | 终止hdc服务进程，使用-r参数触发服务进程重新启动。 | 
-| start [-r] | 启动hdc服务进程，使用-r参数触发服务进程重新启动。 | 
+| target mount | 读写模式挂载系统分区。（user不可用） |
+| target boot | 重启目标设备，查看目标列表可用list targets命令。 |
+| smode [-r] | 授予设备端hdc后台服务进程root权限， 使用-r参数取消授权。（user不可用） |
+| kill [-r] | 终止hdc服务进程，使用-r参数触发服务进程重新启动。 |
+| start [-r] | 启动hdc服务进程，使用-r参数触发服务进程重新启动。 |
 
 1. 以读写模式挂载系统分区，命令格式如下：
    ```
@@ -270,10 +264,10 @@ hdc list targets -v
    ```
 
    **返回值：**
-   | 返回值 | 说明 | 
+   | 返回值 | 说明 |
    | -------- | -------- |
-   | Mount finish | 挂载成功 | 
-   | [Fail]具体失败信息 | 挂载失败 | 
+   | Mount finish | 挂载成功 |
+   | [Fail]具体失败信息 | 挂载失败 |
 
    **使用方法：**
    ```
@@ -286,10 +280,10 @@ hdc list targets -v
    ```
 
    **返回值：**
-   | 返回值 | 说明 | 
+   | 返回值 | 说明 |
    | -------- | -------- |
-   | 无返回值 | 授予权限成功 | 
-   | [Fail]具体失败信息 | 授予权限失败 | 
+   | 无返回值 | 授予权限成功 |
+   | [Fail]具体失败信息 | 授予权限失败 |
 
    **使用方法：**
    ```
@@ -303,10 +297,10 @@ hdc list targets -v
    ```
 
    **返回值：**
-   | 返回值 | 说明 | 
+   | 返回值 | 说明 |
    | -------- | -------- |
-   | Kill server finish | 服务进程终止成功 | 
-   | [Fail]具体失败信息 | 服务进程终止失败 | 
+   | Kill server finish | 服务进程终止成功 |
+   | [Fail]具体失败信息 | 服务进程终止失败 |
 
    **使用方法：**
    ```
@@ -320,10 +314,10 @@ hdc list targets -v
    ```
 
    **返回值：**
-   | 返回值 | 说明 | 
+   | 返回值 | 说明 |
    | -------- | -------- |
-   | 无返回值 | 服务进程启动成功 | 
-   | [Fail]具体失败信息 | 服务进程启动失败 | 
+   | 无返回值 | 服务进程启动成功 |
+   | [Fail]具体失败信息 | 服务进程启动失败 |
 
    **使用方法：**
    ```
@@ -334,16 +328,16 @@ hdc list targets -v
 
 ### 网络相关命令
 
-| 命令 | 说明 | 
+| 命令 | 说明 |
 | -------- | -------- |
 | fport ls | 列出全部转发端口转发任务。 | 
-| fport _local remote_ | 设置正向端口转发任务：监听“主机端口”，接收请求并进行转发， 转发到“设备端口”。 | 
-| fport rm _local__remote_ | 删除正向端口转发任务：取消指定的“主机端口”转发。 | 
-| rport _remote local_ | 设置反向端口转发任务：监听“设备端口”，接收请求并进行转发，转发到“主机端口”。 | 
-| rport rm _remote local_ | 删除反向端口转发任务：取消指定的“设备端口”转发。 | 
-| tmode usb | 已连接设备切换为USB连接方式：设备端daemon进程重启，并首先选用USB连接方式。 | 
-| tmode port [port-number] | 已连接设备切换为网络连接方式：设备端daemon进程重启，并优先使用网络方式连接设备，如果连接设备失败，再选择USB连接。 | 
-| tconn_ host_[:port] [-remove] | 指定连接设备：通过“IP地址：端口号”来指定连接的设备，使用-remove参数断开连接。 | 
+| fport _local remote_ | 设置正向端口转发任务：监听“主机端口”，接收请求并进行转发， 转发到“设备端口”。 |
+| fport rm _local__remote_ | 删除正向端口转发任务：取消指定的“主机端口”转发。 |
+| rport _remote local_ | 设置反向端口转发任务：监听“设备端口”，接收请求并进行转发，转发到“主机端口”。 |
+| rport rm _remote local_ | 删除反向端口转发任务：取消指定的“设备端口”转发。 |
+| tmode usb | 已连接设备切换为USB连接方式：设备端daemon进程重启，并首先选用USB连接方式。 |
+| tmode port [port-number] | 已连接设备切换为网络连接方式：设备端daemon进程重启，并优先使用网络方式连接设备，如果连接设备失败，再选择USB连接。 |
+| tconn_ host_[:port] [-remove] | 指定连接设备：通过“IP地址：端口号”来指定连接的设备，使用-remove参数断开连接。 |
 
 1. 列出全部转发端口转发任务，命令格式如下：
    ```
@@ -351,10 +345,10 @@ hdc list targets -v
    ```
 
    **返回值：**
-   | 返回值 | 返回值说明 | 
+   | 返回值 | 说明 |
    | -------- | -------- |
-   | 'tcp:1234 tcp:1080' [Forward] | 正向端口转发任务。 | 
-   | 'tcp:2080 tcp:2345' [Reverse] | 反向端口转发任务。 | 
+   | 'tcp:1234 tcp:1080' [Forward] | 正向端口转发任务。 |
+   | 'tcp:2080 tcp:2345' [Reverse] | 反向端口转发任务。 |
    | [empty] | 无端口转发任务。 | 
 
    **使用方法：**
@@ -368,11 +362,11 @@ hdc list targets -v
    ```
 
    **返回值：**
-   | 返回值 | 返回值说明 | 
+   | 返回值 | 说明 |
    | -------- | -------- |
-   | Forwardport result:OK | 端口转发任务设置正常。 | 
-   | [Fail]Incorrect forward command | 端口转发任务设置失败，端口转发参数错误。 | 
-   | [Fail]TCP Port listen failed at XXXX | 端口转发任务设置失败，本地转发端口被占用。 | 
+   | Forwardport result:OK | 端口转发任务设置正常。 |
+   | [Fail]Incorrect forward command | 端口转发任务设置失败，端口转发参数错误。 |
+   | [Fail]TCP Port listen failed at XXXX | 端口转发任务设置失败，本地转发端口被占用。 |
 
    **使用方法：**
    ```
@@ -385,10 +379,10 @@ hdc list targets -v
    ```
 
    **返回值：**
-   | 返回值 | 返回值说明 | 
+   | 返回值 | 说明 |
    | -------- | -------- |
-   | Remove forward ruler success, ruler:tcp:XXXX tcp:XXXX | 端口转发任务删除正常。 | 
-   | [Fail]Remove forward ruler failed, ruler is not exist tcp:XXXX tcp:XXXX | 端口转发任务删除失败，不存在指定的转发任务。 | 
+   | Remove forward ruler success, ruler:tcp:XXXX tcp:XXXX | 端口转发任务删除正常。 |
+   | [Fail]Remove forward ruler failed, ruler is not exist tcp:XXXX tcp:XXXX | 端口转发任务删除失败，不存在指定的转发任务。 |
 
    **使用方法：**
    ```
@@ -401,11 +395,11 @@ hdc list targets -v
    ```
 
    **返回值：**
-   | 返回值 | 返回值说明 | 
+   | 返回值 | 说明 |
    | -------- | -------- |
    | Forwardport result:OK | 端口转发任务设置正常。 | 
-   | [Fail]Incorrect forward command | 端口转发任务设置失败，端口转发参数错误。 | 
-   | [Fail]TCP Port listen failed at XXXX | 端口转发任务设置失败，本地转发端口被占用。 | 
+   | [Fail]Incorrect forward command | 端口转发任务设置失败，端口转发参数错误。 |
+   | [Fail]TCP Port listen failed at XXXX | 端口转发任务设置失败，本地转发端口被占用。 |
 
    **使用方法：**
    ```
@@ -418,10 +412,10 @@ hdc list targets -v
    ```
 
    **返回值：**
-   | 返回值 | 返回值说明 | 
+   | 返回值 | 说明 |
    | -------- | -------- |
-   | Remove forward ruler success, ruler:tcp:XXXX tcp:XXXX | 端口转发任务删除正常。 | 
-   | [Fail]Remove forward ruler failed, ruler is not exist tcp:XXXX tcp:XXXX | 端口转发任务删除失败，不存在对应的转发任务。 | 
+   | Remove forward ruler success, ruler:tcp:XXXX tcp:XXXX | 端口转发任务删除正常。 |
+   | [Fail]Remove forward ruler failed, ruler is not exist tcp:XXXX tcp:XXXX | 端口转发任务删除失败，不存在对应的转发任务。 |
 
    **使用方法：**
    ```
@@ -434,10 +428,10 @@ hdc list targets -v
    ```
 
    **返回值：**
-   | 返回值 | 返回值说明 | 
+   | 返回值 | 说明 |
    | -------- | -------- |
-   | 无 | 切换成功。 | 
-   | [Fail]ExecuteCommand need connect-key | 设备列表无网络连接方式设备，无法指定设备切换连接方式。 | 
+   | 无 | 切换成功。 |
+   | [Fail]ExecuteCommand need connect-key | 设备列表无网络连接方式设备，无法指定设备切换连接方式。 |
 
    **使用方法：**
    ```
@@ -450,17 +444,16 @@ hdc list targets -v
    ```
 
    **参数：**
-   | 参数 | 参数说明 | 
+   | 参数 | 参数说明 |
    | -------- | -------- |
-   | port-number | 监听连接的网络端口号，范围:1~65536。 | 
+   | port-number | 监听连接的网络端口号，范围:1~65536。 |
 
    **返回值：**
-   | 返回值 | 返回值说明 | 
+   | 返回值 | 说明 |
    | -------- | -------- |
-   | 无 | 切换成功。 | 
-   | [Fail]ExecuteCommand need connect-key | 切换失败，设备列表无设备，无法指定设备切换连接方式。 | 
-   | [Fail]Incorrect port range | 端口号超出可设置范围（1~65536）。 | 
-
+   | 无 | 切换成功。 |
+   | [Fail]ExecuteCommand need connect-key | 切换失败，设备列表无设备，无法指定设备切换连接方式。 |
+   | [Fail]Incorrect port range | 端口号超出可设置范围（1~65536）。 |
    **使用方法：**
    ```
    hdc tmode port 1234
@@ -484,17 +477,17 @@ hdc list targets -v
    ```
 
    **参数：**
-   | 参数 | 参数说明 | 
+   | 参数 | 参数说明 |
    | -------- | -------- |
-   | host[:port] | 设备IP地址与端口号，格式按照“IP地址：端口号“。 | 
-   | -remove | 【可选】断开指定设备的连接。 | 
+   | host[:port] | 设备IP地址与端口号，格式按照“IP地址：端口号“。 |
+   | -remove | 【可选】断开指定设备的连接。 |
 
    **返回值：**
-   | 返回值 | 返回值说明 | 
+   | 返回值 | 说明 |
    | -------- | -------- |
-   | Connect OK | 连接成功。 | 
-   | [Info]Target is connected, repeat opration | 设备当前已连接。 | 
-   | [Fail]Connect failed | 连接失败。 | 
+   | Connect OK | 连接成功。 |
+   | [Info]Target is connected, repeat opration | 设备当前已连接。 |
+   | [Fail]Connect failed | 连接失败。 |
 
    **使用方法：**
    ```
@@ -505,10 +498,10 @@ hdc list targets -v
 
 ### 文件相关命令
 
-| 命令 | 说明 | 
+| 命令 | 说明 |
 | -------- | -------- |
-| file send _local remote_ | 从本地发送文件至远端设备。 | 
-| file recv _remote local_ | 从远端设备发送文件至本地。 | 
+| file send _local remote_ | 从本地发送文件至远端设备。 |
+| file recv _remote local_ | 从远端设备发送文件至本地。 |
 
 1. 从本地发送文件至远端设备，命令格式如下：
    ```
@@ -516,10 +509,10 @@ hdc list targets -v
    ```
 
    **参数：**
-   | 参数名 | 说明 | 
+   | 参数名 | 说明 |
    | -------- | -------- |
-   | local | 本地待发送的文件路径。 | 
-   | remote | 远程待接收的文件路径。 | 
+   | local | 本地待发送的文件路径。 |
+   | remote | 远程待接收的文件路径。 |
 
    **返回值：**
 
@@ -536,10 +529,10 @@ hdc list targets -v
    ```
 
    **参数：**
-   | 参数名 | 说明 | 
+   | 参数名 | 说明 |
    | -------- | -------- |
-   | local | 本地待接收的文件路径。 | 
-   | remote | 远程待发送的文件路径。 | 
+   | local | 本地待接收的文件路径。 |
+   | remote | 远程待发送的文件路径。 |
 
    **返回值：**
 
@@ -553,29 +546,29 @@ hdc list targets -v
 
 ### 应用相关命令
 
-| 命令 | 说明 | 
+| 命令 | 说明 |
 | -------- | -------- |
-| install [-r/-d/-g] _packageFile_ | 安装指定的应用package文件。 | 
-| uninstall_ packageName_ | 卸载指定的应用包package包名。 | 
+| install [-r/-d/-g] _packageFile_ | 安装指定的应用package文件。 |
+| uninstall_ packageName_ | 卸载指定的应用包package包名。 |
 
-1. 安装OpenHarmony APP package，命令格式如下：
+1. 安装APP package，命令格式如下：
    ```
    hdc install [-r/-d/-g] packageFile
    ```
 
    **参数：**
-   | 参数名 | 说明 | 
+   | 参数名 | 说明 |
    | -------- | -------- |
-   | packageFile | OpenHarmony应用安装包文件名。 | 
-   | -r | 替换已存在应用。 | 
-   | -d | 允许降级安装。 | 
-   | -g | 应用动态授权。 | 
+   | packageFile | 应用安装包文件名。 |
+   | -r | 替换已存在应用。 |
+   | -d | 允许降级安装。 |
+   | -g | 应用动态授权。 |
 
    **返回值：**
-   | 返回值 | 说明 | 
+   | 返回值 | 说明 |
    | -------- | -------- |
-   | 无 | 成功情况下无返回值。 | 
-   | 具体安装失败原因 | 失败情况下返回具体安装失败信息。 | 
+   | 无 | 成功情况下无返回值。 |
+   | 具体安装失败原因 | 失败情况下返回具体安装失败信息。 |
 
    **使用方法：**
 
@@ -584,22 +577,22 @@ hdc list targets -v
    hdc install E:\com.example.hello.hap
    ```
 
-2. 卸载OpenHarmony应用，命令格式如下：
+2. 卸载应用，命令格式如下：
    ```
    hdc uninstall [-k] packageName
    ```
 
    **参数：**
-   | 参数名 | 说明 | 
+   | 参数名 | 说明 |
    | -------- | -------- |
-   | packageName | OpenHarmony应用安装包。 | 
-   | -k | 保留/data/cache。 | 
+   | packageName | 应用安装包。 |
+   | -k | 保留/data/cache。 |
 
    **返回值：**
-   | 返回值 | 说明 | 
+   | 返回值 | 说明 |
    | -------- | -------- |
-   | 无 | 成功情况下无返回值。 | 
-   | 具体卸载失败原因 | 失败情况下返回具体卸载失败信息。 | 
+   | 无 | 成功情况下无返回值。 |
+   | 具体卸载失败原因 | 失败情况下返回具体卸载失败信息。 |
 
    **使用方法：**
 
@@ -611,11 +604,11 @@ hdc list targets -v
 
 ### 调试相关命令
 
-| 命令 | 说明 | 
+| 命令 | 说明 |
 | -------- | -------- |
 | jpid | 显示可调试应用列表。 | 
-| hilog [options] | 打印设备端的日志信息，options表示hilog支持的参数，可通过hdc hilog -h查阅支持的参数列表 。 | 
-| shell [COMMAND] | 交互命令，COMMAND表示需要执行的单次命令。不同类型或版本的系统支持的COMMAND命令有所差异，可以通过hdc shell ls /system/bin查阅支持的命令列表。 | 
+| hilog [options] | 打印设备端的日志信息，options表示hilog支持的参数，可通过hdc hilog -h查阅支持的参数列表 。 |
+| shell [COMMAND] | 交互命令，COMMAND表示需要执行的单次命令。不同类型或版本的系统支持的COMMAND命令有所差异，可以通过hdc shell ls /system/bin查阅支持的命令列表。 |
 
 1. 抓取log信息，命令格式如下：
    ```
@@ -623,14 +616,14 @@ hdc list targets -v
    ```
 
    **参数：**
-   | 参数 | 说明 | 
+   | 参数 | 说明 |
    | -------- | -------- |
-   | [options] | hilog支持的参数，可通过hdc hilog -h查阅支持的参数列表。 | 
+   | [options] | hilog支持的参数，可通过hdc hilog -h查阅支持的参数列表。 |
 
    **返回值：**
-   | 返回值 | 说明 | 
+   | 返回值 | 说明 |
    | -------- | -------- |
-   | 返回具体信息 | 抓取的日志信息。 | 
+   | 返回具体信息 | 抓取的日志信息。 |
 
    **使用方法：**
    ```
@@ -644,10 +637,10 @@ hdc list targets -v
    ```
 
    **返回值：**
-   | 返回值 | 说明 | 
+   | 返回值 | 说明 |
    | -------- | -------- |
-   | 应用名列表 | 可调试应用名列表。 | 
-   | [empty] | 无可调式应用。 | 
+   | 应用名列表 | 可调试应用名列表。 |
+   | [empty] | 无可调式应用。 |
 
    **使用方法：**
    ```
@@ -660,15 +653,15 @@ hdc list targets -v
    ```
 
    **参数：**
-   | 参数 | 说明 | 
+   | 参数 | 说明 |
    | -------- | -------- |
-   | [COMMAND] | OpenHarmony调试命令行可用命令，详细可用命令help来获取全部命令提示。 | 
+   | [COMMAND] | 调试命令行可用命令，详细可用命令help来获取全部命令提示。 |
 
    **返回值：**
-   | 返回值 | 说明 | 
+   | 返回值 | 说明 |
    | -------- | -------- |
    | 交互命令返回内容 | 返回内容详情请参见其他交互命令返回内容。 | 
-   | /bin/sh: XXX : inaccessible or not found | 不支持的交互命令。 | 
+   | /bin/sh: XXX : inaccessible or not found | 不支持的交互命令。 |
 
    **使用方法：**
    ```
@@ -685,26 +678,25 @@ hdc list targets -v
 **环境确认**
 | 确认项 | 正常 | 异常处理 | 
 | -------- | -------- | -------- |
-| USB调试选项 | 开启 | 设备的USB调试模式如无法自动开启，请尝试重启设备。 | 
-| USB数据连接线 | 使用USB数据连接线连接到调试PC的USB接口。 | 如使用低带宽、无数据通信功能的USB连接线可能导致无法识别HDC设备，建议更换官方USB数据连接线。 | 
-| USB接口 | 主板直出USB接口（台式机为后面板的USB接口，笔记本为机身的USB接口） | 如使用转接头/拓展坞/台式机前面板USB接口，存在带宽低和USB同步异常等问题，会导致频繁断连，推荐使用直连方式连接PC和设备。 | 
-| hdc环境变量 | 终端命令行输入hdc -h有回显帮助信息内容。 | 参见环境准备章节。 | 
-| 驱动 | 连接HDC设备后，设备管理器通用串行总线设备存在设备"HDC Device"或"HDC Interface" | 请安装驱动。 | 
+| USB调试选项 | 开启 | 设备的USB调试模式如无法自动开启，请尝试重启设备。 |
+| USB数据连接线 | 使用USB数据连接线连接到调试PC的USB接口。 | 如使用低带宽、无数据通信功能的USB连接线可能导致无法识别HDC设备，建议更换官方USB数据连接线。 |
+| USB接口 | 主板直出USB接口（台式机为后面板的USB接口，笔记本为机身的USB接口） | 如使用转接头/拓展坞/台式机前面板USB接口，存在带宽低和USB同步异常等问题，会导致频繁断连，推荐使用直连方式连接PC和设备。 |
+| hdc环境变量 | 终端命令行输入hdc -h有回显帮助信息内容。 | 参见环境准备章节。 |
+| 驱动 | 连接HDC设备后，设备管理器通用串行总线设备存在设备"HDC Device"或"HDC Interface" | 请安装驱动。 |
 
 **连接步骤**
 ```
 hdc shell //USB直连需要确认设备非处在tcp连接模式，直接连接即可。
 ```
 
-
 ### TCP连接场景
 
 **环境确认**
-| 确认项 | 正常 | 异常处理 | 
+| 确认项 | 正常 | 异常处理 |
 | -------- | -------- | -------- |
-| 网络连接 | PC、手机设备处于同一网络。 | 连接同一WiFi或手机开启热点。 | 
-| 网络状态 | telnet ip:port正常，网速稳定。 | 请选择稳定的网络连接方式。 | 
-| hdc环境变量 | 终端命令行输入hdc -h有回显帮助信息内容。 | 参见环境准备章节。 | 
+| 网络连接 | PC、手机设备处于同一网络。 | 连接同一WiFi或手机开启热点。 |
+| 网络状态 | telnet ip:port正常，网速稳定。 | 请选择稳定的网络连接方式。 |
+| hdc环境变量 | 终端命令行输入hdc -h有回显帮助信息内容。 | 参见环境准备章节。 |
 
 **连接步骤**
 
@@ -742,7 +734,6 @@ hdc shell //USB直连需要确认设备非处在tcp连接模式，直接连接�
    ```
 
    切换后将恢复USB模式。
-
 
 ### 远程连接场景
 
@@ -786,9 +777,9 @@ hdc -l5 start
 
 | 平台 | 路径 | 备注 | 
 | -------- | -------- | -------- |
-| Windows | %temp%\hdc.log | 实际路径参考，实际使用请替换用户名变量<br/>C:\Users\用户名\AppData\Local\Temp\hdc.log<br/>**说明：**<br/>Windows的文件路径使用反斜线“\”。 | 
-| Linux | /tmp/hdc.log | - | 
-| MacOS | $TMPDIR/hdc.log | - | 
+| Windows | %temp%\hdc.log | 实际路径参考，实际使用请替换用户名变量<br/>C:\Users\用户名\AppData\Local\Temp\hdc.log<br/>**说明：**<br/>Windows的文件路径使用反斜线“\”。 |
+| Linux | /tmp/hdc.log | - |
+| MacOS | $TMPDIR/hdc.log | - |
 
 **设备端日志**
 
