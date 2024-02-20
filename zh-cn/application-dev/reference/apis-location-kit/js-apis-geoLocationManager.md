@@ -5,6 +5,7 @@
 > **说明：**
 >
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块能力仅支持WGS-84坐标系。
 
 ## 申请权限
 
@@ -462,7 +463,7 @@ on(type: 'cachedGnssLocationsChange', request: CachedGnssLocationsRequest, callb
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。type为“cachedGnssLocationsChange”，表示GNSS缓存定位结果上报。 |
   | request |  [CachedGnssLocationsRequest](#cachedgnsslocationsrequest) | 是 | GNSS缓存功能配置参数 |
-  | callback | Callback&lt;Array&lt;Location&gt;&gt; | 是 | 接收GNSS缓存位置上报。 |
+  | callback | Callback&lt;Array&lt;[Location](#location)&gt;&gt; | 是 | 接收GNSS缓存位置上报。 |
 
 **错误码**：
 
@@ -506,7 +507,7 @@ off(type: 'cachedGnssLocationsChange', callback?: Callback&lt;Array&lt;Location&
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。type为“cachedGnssLocationsChange”，表示GNSS缓存定位结果上报。 |
-  | callback | Callback&lt;Array&lt;Location&gt;&gt; | 否 | 需要取消订阅的回调函数。若无此参数，则取消当前类型的所有订阅。 |
+  | callback | Callback&lt;Array&lt;[Location](#location)&gt;&gt; | 否 | 需要取消订阅的回调函数。若无此参数，则取消当前类型的所有订阅。 |
 
 **错误码**：
 
@@ -1031,7 +1032,7 @@ getCurrentLocation(request?: CurrentLocationRequest): Promise&lt;Location&gt;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | [Location](#location) | 返回位置信息。 |
+  | Promise&lt;[Location](#location)&gt; | 以Promise形式返回位置信息。 |
 
 **错误码**：
 
@@ -1199,7 +1200,7 @@ getAddressesFromLocation(request: ReverseGeoCodeRequest): Promise&lt;Array&lt;Ge
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Array&lt;[GeoAddress](#geoaddress)&gt; | 返回地理描述信息。 |
+  | Promise&lt;Array&lt;[GeoAddress](#geoaddress)&gt;&gt; | 以Promise形式返回地理描述信息。 |
 
 **错误码**：
 
@@ -1292,7 +1293,7 @@ getAddressesFromLocationName(request: GeoCodeRequest): Promise&lt;Array&lt;GeoAd
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Array&lt;[GeoAddress](#geoaddress)&gt; | 返回地理编码查询结果。 |
+  | Promise&lt;Array&lt;[GeoAddress](#geoaddress)&gt;&gt; | 以Promise形式返回地理编码查询结果。 |
 
 **错误码**：
 
@@ -1415,7 +1416,7 @@ getCachedGnssLocationsSize(): Promise&lt;number&gt;;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | number | 返回GNSS缓存位置的个数。 |
+  | Promise&lt;number&gt; | 以Promise形式返回GNSS缓存位置的个数。 |
 
 **错误码**：
 
@@ -1501,7 +1502,7 @@ flushCachedGnssLocations(): Promise&lt;void&gt;;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | void | 无返回值。 |
+  | Promise&lt;void&gt; | 返回Promise对象。 |
 
 **错误码**：
 
@@ -1590,7 +1591,7 @@ sendCommand(command: LocationCommand): Promise&lt;void&gt;;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | void | 无返回值。 |
+  | Promise&lt;void&gt; | 返回Promise对象。 |
 
 **错误码**：
 
@@ -1674,7 +1675,7 @@ getCountryCode(): Promise&lt;CountryCode&gt;;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | [CountryCode](#countrycode) | 用来接收国家码。 |
+  | Promise&lt;[CountryCode](#countrycode)&gt; | 以Promise形式返回国家码。 |
 
 **错误码**：
 
