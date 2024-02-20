@@ -100,7 +100,7 @@ Core模块提供用于播放框架的基础骨干能力，包含内存、错误�
 ### OH_AmbAttributeSet
 
 ```
-typedef enum OH_AmbAttributeSetOH_AmbAttributeSet
+typedef enum OH_AmbAttributeSet OH_AmbAttributeSet
 ```
 
 **描述**
@@ -117,7 +117,7 @@ typedef enum OH_AmbAttributeSetOH_AmbAttributeSet
 ### OH_AudioChannelLayout
 
 ```
-typedef enum OH_AudioChannelLayoutOH_AudioChannelLayout
+typedef enum OH_AudioChannelLayout OH_AudioChannelLayout
 ```
 
 **描述**
@@ -134,7 +134,7 @@ typedef enum OH_AudioChannelLayoutOH_AudioChannelLayout
 ### OH_AudioChannelSet
 
 ```
-typedef enum OH_AudioChannelSetOH_AudioChannelSet
+typedef enum OH_AudioChannelSet OH_AudioChannelSet
 ```
 
 **描述**
@@ -151,7 +151,7 @@ typedef enum OH_AudioChannelSetOH_AudioChannelSet
 ### OH_AVCodecBufferAttr
 
 ```
-typedef struct OH_AVCodecBufferAttrOH_AVCodecBufferAttr
+typedef struct OH_AVCodecBufferAttr OH_AVCodecBufferAttr
 ```
 
 **描述**
@@ -166,7 +166,7 @@ typedef struct OH_AVCodecBufferAttrOH_AVCodecBufferAttr
 ### OH_AVCodecBufferFlags
 
 ```
-typedef enum OH_AVCodecBufferFlagsOH_AVCodecBufferFlags
+typedef enum OH_AVCodecBufferFlags OH_AVCodecBufferFlags
 ```
 
 **描述**
@@ -181,7 +181,7 @@ typedef enum OH_AVCodecBufferFlagsOH_AVCodecBufferFlags
 ### OH_AVErrCode
 
 ```
-typedef enum OH_AVErrCodeOH_AVErrCode
+typedef enum OH_AVErrCode OH_AVErrCode
 ```
 
 **描述**
@@ -196,7 +196,7 @@ typedef enum OH_AVErrCodeOH_AVErrCode
 ### OH_AVPixelFormat
 
 ```
-typedef enum OH_AVPixelFormatOH_AVPixelFormat
+typedef enum OH_AVPixelFormat OH_AVPixelFormat
 ```
 
 **描述**
