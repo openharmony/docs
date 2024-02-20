@@ -122,10 +122,10 @@ import drm from '@ohos.multimedia.drm';
 | 名称                       | 值   | 说明            |
 | ------------------------- | ---- | ------------    |
 | CONTENT_PROTECTION_LEVEL_UNKNOWN        | 0    | 未知级别   |
-| CONTENT_PROTECTION_LEVEL_SW_CRYPTO   | 1    | 软件安全级别     |
-| CONTENT_PROTECTION_LEVEL_HW_CRYPTO    | 2    | 硬件安全级别       |
+| CONTENT_PROTECTION_LEVEL_SW_CRYPTO   | 1    | 软件内容保护级别     |
+| CONTENT_PROTECTION_LEVEL_HW_CRYPTO    | 2    | 硬件内容保护级别       |
 | CONTENT_PROTECTION_LEVEL_ENHANCED_HW  | 3    | 硬件增强级别     |
-| CONTENT_PROTECTION_LEVEL_MAX  | 4    | 最高安全级别     |
+| CONTENT_PROTECTION_LEVEL_MAX  | 4    | 最高内容保护级别     |
 
 ## ProvisionRequest
 
@@ -354,7 +354,7 @@ try {
 
 isMediaKeySystemSupported(name: string, mimeType: string, level: ContentProtectionLevel): boolean
 
-判断设备是否支持指定DRM类型、媒体类型和安全级别的DRM方案。
+判断设备是否支持指定DRM类型、媒体类型和内容保护级别的DRM方案。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -364,13 +364,13 @@ isMediaKeySystemSupported(name: string, mimeType: string, level: ContentProtecti
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
 | name  | string     | 是   | 插件类型。                   |
 | mimeType  | string     | 是   | 媒体类型，支持的媒体类型由设备上的DRM方案决定。                   |
-| level  | [ContentProtectionLevel](#contentprotectionlevel)     | 是   | 设备安全级别。                   |
+| level  | [ContentProtectionLevel](#contentprotectionlevel)     | 是   | 设备内容保护级别。                   |
 
 **返回值：**
 
 | 类型                                             | 说明                           |
 | ----------------------------------------------- | ---------------------------- |
-| [boolean]          | 返回设备是否支持指定DRM类型、媒体类型和安全级别的DRM方案。                   |
+| [boolean]          | 返回设备是否支持指定DRM类型、媒体类型和内容保护级别的DRM方案。                   |
 
 **错误码：**
 
@@ -587,7 +587,7 @@ getStatistics(): StatisticKeyValue[]
 
 | 类型                                             | 说明                           |
 | ----------------------------------------------- | ---------------------------- |
-| [StatisticKeyValue[]](#statistickeyvalue)          | 返回数组类型的配置属性值。                   |
+| [StatisticKeyValue[]](#statistickeyvalue)          | 返回数组类型的性能统计信息。                   |
 
 **错误码：**
 
@@ -619,7 +619,7 @@ try {
 
 getMaxContentProtectionLevel(): ContentProtectionLevel
 
-获取设备支持的最大安全级别。
+获取设备支持的最大内容保护级别。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -627,7 +627,7 @@ getMaxContentProtectionLevel(): ContentProtectionLevel
 
 | 类型                                             | 说明                           |
 | ----------------------------------------------- | ---------------------------- |
-| [ContentProtectionLevel](#contentprotectionlevel)          | 返回设备支持的最大安全级别。                   |
+| [ContentProtectionLevel](#contentprotectionlevel)          | 返回设备支持的最大内容保护级别。                   |
 
 **错误码：**
 
@@ -657,7 +657,7 @@ try {
 
 ### generateKeySystemRequest
 
-generateKeySystemRequest(): Promise<ProvisionRequest>
+generateKeySystemRequest(): Promise<ProvisionRequest\>
 
 生成获取mediaKeySystem设备证书的请求
 
@@ -695,7 +695,7 @@ mediaKeysystem.generateKeySystemRequest().then((ProvisionRequest: drm.ProvisionR
 
 ### processKeySystemResponse
 
-processKeySystemResponse(response: Uint8Array): Promise<void>
+processKeySystemResponse(response: Uint8Array): Promise<void\>
 
 处理应用程序获得的设备证书请求对应的响应。
 
@@ -844,7 +844,7 @@ function unregisterkeySystemRequired(mediaKeysystem: drm.MediaKeySystem): void {
 
 createMediaKeySession(level: ContentProtectionLevel): MediaKeySession
 
-根据给定的安全级别进行创建drm会话实例。
+根据给定的内容保护级别进行创建drm会话实例。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -852,7 +852,7 @@ createMediaKeySession(level: ContentProtectionLevel): MediaKeySession
 
 | 参数名     | 类型                                             | 必填 | 说明                           |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| level  | [ContentProtectionLevel](#contentprotectionlevel)     | 是   | 设备支持的安全级别。                   |
+| level  | [ContentProtectionLevel](#contentprotectionlevel)     | 是   | 设备支持的内容保护级别。                   |
 
 **返回值：**
 
@@ -891,7 +891,7 @@ try {
 
 createMediaKeySession(): MediaKeySession
 
-根据默认的软件安全级别进行创建drm会话实例。
+根据默认的软件内容保护级别进行创建drm会话实例。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -1093,7 +1093,7 @@ try {
 
 ### generateMediaKeyRequest
 
-generateMediaKeyRequest(mimeType: string, initData: Uint8Array, mediaKeyType: number, options?: OptionsData[]): Promise<MediaKeyRequest>
+generateMediaKeyRequest(mimeType: string, initData: Uint8Array, mediaKeyType: number, options?: OptionsData[]): Promise<MediaKeyRequest\>
 
 生成许可证请求。
 
@@ -1104,7 +1104,7 @@ generateMediaKeyRequest(mimeType: string, initData: Uint8Array, mediaKeyType: nu
 | 参数名     | 类型                                             | 必填 | 说明                           |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
 | mimeType  | string     | 是   | 媒体类型。                   |
-| initData  | Uint8Array     | 是   | base64之后的pssh数据。                   |
+| initData  | Uint8Array     | 是   | pssh数据（未base64编码）。                   |
 | mediaKeyType| number     | 是   | 许可证类型。                   | 0表示在线，1表示离线 |
 | OptionsData  | [OptionsData[]](#optionsdata)     | 是   | 预留的操作数据。                   |
 
@@ -1146,7 +1146,7 @@ mediaKeySession.generateMediaKeyRequest("video/mp4", uint8pssh, 0, OptionsData).
 
 ### processMediaKeyResponse
 
-processMediaKeyResponse(response: Uint8Array): Promise<Uint8Array>
+processMediaKeyResponse(response: Uint8Array): Promise<Uint8Array\>
 
 处理离线许可证响应返回。
 
@@ -1266,7 +1266,7 @@ try {
 
 ### generateOfflineReleaseRequest
 
-generateOfflineReleaseRequest(mediaKeyId: Uint8Array): Promise<Uint8Array>
+generateOfflineReleaseRequest(mediaKeyId: Uint8Array): Promise<Uint8Array\>
 
 生成离线许可证释放请求。
 
@@ -1317,7 +1317,7 @@ mediaKeySession.generateOfflineReleaseRequest(mediaKeyId).then((offlineReleaseRe
 
 ### processOfflineReleaseResponse
 
-processOfflineReleaseResponse(mediaKeyId: Uint8Array, response: Uint8Array): Promise<void>
+processOfflineReleaseResponse(mediaKeyId: Uint8Array, response: Uint8Array): Promise<void\>
 
 处理离线许可证响应。
 
@@ -1364,7 +1364,7 @@ mediaKeySession.processOfflineReleaseResponse(mediaKeyId, response).then(() => {
 
 ### restoreOfflineMediaKeys
 
-restoreOfflineMediaKeys(mediaKeyId: Uint8Array): Promise<void>
+restoreOfflineMediaKeys(mediaKeyId: Uint8Array): Promise<void\>
 
 恢复离线许可证。
 
@@ -1413,7 +1413,7 @@ mediaKeySession.restoreOfflineMediaKeys(mediaKeyId).then(() => {
 
 getContentProtectionLevel(): ContentProtectionLevel
 
-获取当前会话的安全级别。
+获取当前会话的内容保护级别。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -1421,7 +1421,7 @@ getContentProtectionLevel(): ContentProtectionLevel
 
 | 类型                                             | 说明                           |
 | ----------------------------------------------- | ---------------------------- |
-| [ContentProtectionLevel](#contentprotectionlevel)          | 返回当前会话安全级别的值。                   |
+| [ContentProtectionLevel](#contentprotectionlevel)          | 返回当前会话内容保护级别的值。                   |
 
 **错误码：**
 
@@ -1508,7 +1508,7 @@ on(type: 'keyRequired', callback: (eventInfo: EventInfo) => void): void
 
 | 参数名      | 类型                  | 必填 | 说明                                  |
 | -------- | -------------------- | ---- | ------------------------------------- |
-| type     | string               | 是   | 监听事件，固定为'keyNeeded'，MediaKeySystem实例创建成功可监听。key请求时触发该事件并返回。 |
+| type     | string               | 是   | 监听事件，固定为'keyRequired'，MediaKeySystem实例创建成功可监听。key请求时触发该事件并返回。 |
 | callback | Callback\<[EventInfo](#eventinfo)\> | 是   | 回调函数，用于获取结果。只要有该事件返回就证明在进行key请求。                 |
 
 **错误码：**
@@ -1525,7 +1525,7 @@ on(type: 'keyRequired', callback: (eventInfo: EventInfo) => void): void
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-function registerKeyNeeded(mediaKeysystem: drm.MediaKeySystem): void {
+function registerKeyRequired(mediaKeysystem: drm.MediaKeySystem): void {
     MediaKeySystem.on('keyRequired', (eventInfo: EventInfo) => {
         console.log('keyRequired' + 'extra:' + eventInfo.extraInfo + ' data:' + eventInfo.info);
     });
@@ -1544,7 +1544,7 @@ off(type: 'keyRequired', callback?: (eventInfo: EventInfo) => void): void
 
 | 参数名      | 类型                  | 必填 | 说明                                  |
 | -------- | -------------------- | ---- | ------------------------------------- |
-| type     | string               | 是   | 监听事件，固定为'keyNeeded'，MediaKeySystem实例创建成功可监听。 |
+| type     | string               | 是   | 监听事件，固定为'keyRequired'，MediaKeySystem实例创建成功可监听。 |
 | callback | Callback\<[EventInfo](#eventinfo)\> | 否   | 回调函数，可选                |
 
 **错误码：**
@@ -1561,7 +1561,7 @@ off(type: 'keyRequired', callback?: (eventInfo: EventInfo) => void): void
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-function unregisterKeyNeeded(mediaKeysystem: drm.MediaKeySystem): void {
+function unregisterKeyRequired(mediaKeysystem: drm.MediaKeySystem): void {
   mediaKeysystem.off('keyRequired');
 }
 ```

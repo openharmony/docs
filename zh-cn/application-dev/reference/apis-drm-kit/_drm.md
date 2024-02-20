@@ -123,10 +123,10 @@
 | bool [OH_MediaKeySystem_IsSupported2](#oh_mediakeysystem_issupported2) (const char \*name, const char \*mimeType) | 查询是否支持媒体密钥系统。 | 
 | bool [OH_MediaKeySystem_IsSupported3](#oh_mediakeysystem_issupported3) (const char \*name, const char \*mimeType, [DRM_ContentProtectionLevel](#drm_contentprotectionlevel) contentProtectionLevel) | 查询是否支持媒体密钥系统。 | 
 | [Drm_ErrCode](#drm_errcode) [OH_MediaKeySystem_Create](#oh_mediakeysystem_create) (const char \*name, [MediaKeySystem](#mediakeysystem) \*\*mediaKeySystem) | 根据名称创建媒体密钥系统实例。 | 
-| [Drm_ErrCode](#drm_errcode) [OH_MediaKeySystem_SetConfigurationString](#oh_mediakeysystem_setconfigurationstring) ([MediaKeySystem](#mediakeysystem) \*mediaKeySystem, const char \*configName, const char \*value) | 按名称设置媒体密钥系统配置值。 | 
-| [Drm_ErrCode](#drm_errcode) [OH_MediaKeySystem_GetConfigurationString](#oh_mediakeysystem_getconfigurationstring) ([MediaKeySystem](#mediakeysystem) \*mediaKeySystem, const char \*configName, char \*value, int32_t valueLen) | 按名称获取媒体密钥系统配置值。 | 
-| [Drm_ErrCode](#drm_errcode) [OH_MediaKeySystem_SetConfigurationByteArray](#oh_mediakeysystem_setconfigurationbytearray) ([MediaKeySystem](#mediakeysystem) \*mediaKeySystem, const char \*configName, uint8_t \*value, int32_t valueLen) | 通过配置名设置MediaKeySystem的配置值。 | 
-| [Drm_ErrCode](#drm_errcode) [OH_MediaKeySystem_GetConfigurationByteArray](#oh_mediakeysystem_getconfigurationbytearray) ([MediaKeySystem](#mediakeysystem) \*mediaKeySystem, const char \*configName, uint8_t \*value, int32_t \*valueLen) | 按名称获取媒体密钥系统配置值。 | 
+| [Drm_ErrCode](#drm_errcode) [OH_MediaKeySystem_SetConfigurationString](#oh_mediakeysystem_setconfigurationstring) ([MediaKeySystem](#mediakeysystem) \*mediaKeySystem, const char \*configName, const char \*value) | 按字符串类型名称设置媒体密钥系统配置值。 | 
+| [Drm_ErrCode](#drm_errcode) [OH_MediaKeySystem_GetConfigurationString](#oh_mediakeysystem_getconfigurationstring) ([MediaKeySystem](#mediakeysystem) \*mediaKeySystem, const char \*configName, char \*value, int32_t valueLen) | 按字符串类型名称获取媒体密钥系统配置值。 | 
+| [Drm_ErrCode](#drm_errcode) [OH_MediaKeySystem_SetConfigurationByteArray](#oh_mediakeysystem_setconfigurationbytearray) ([MediaKeySystem](#mediakeysystem) \*mediaKeySystem, const char \*configName, uint8_t \*value, int32_t valueLen) | 通过字符数组类型配置名设置MediaKeySystem的配置值。 | 
+| [Drm_ErrCode](#drm_errcode) [OH_MediaKeySystem_GetConfigurationByteArray](#oh_mediakeysystem_getconfigurationbytearray) ([MediaKeySystem](#mediakeysystem) \*mediaKeySystem, const char \*configName, uint8_t \*value, int32_t \*valueLen) | 按字符数组类型名称获取媒体密钥系统配置值。 | 
 | [Drm_ErrCode](#drm_errcode) [OH_MediaKeySystem_GetStatistics](#oh_mediakeysystem_getstatistics) ([MediaKeySystem](#mediakeysystem) \*mediaKeySystem, [DRM_Statistics](_d_r_m___statistics.md) \*statistics) | 获取媒体密钥系统度量信息。 | 
 | [Drm_ErrCode](#drm_errcode) [OH_MediaKeySystem_GetMaxContentProtectionLevel](#oh_mediakeysystem_getmaxcontentprotectionlevel) ([MediaKeySystem](#mediakeysystem) \*mediaKeySystem, [DRM_ContentProtectionLevel](#drm_contentprotectionlevel) \*contentProtectionLevel) | 获取支持的最高内容保护级别的媒体密钥系统。 | 
 | [Drm_ErrCode](#drm_errcode) [OH_MediaKeySystem_SetMediaKeySystemCallback](#oh_mediakeysystem_setmediakeysystemcallback) ([MediaKeySystem](#mediakeysystem) \*mediaKeySystem, [MediaKeySystem_Callback](#mediakeysystem_callback) callback) | 设置媒体密钥系统事件回调。 | 
@@ -793,7 +793,7 @@ typedef Drm_ErrCode(* MediaKeySystem_Callback) (DRM_EventType eventType, uint8_t
 
 **返回：**
 
-当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM-ERR_OK。
+当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM_ERR_OK。
 
 
 ## 枚举类型说明
@@ -1034,7 +1034,7 @@ Drm_ErrCode OH_MediaKeySession_Destroy (MediaKeySession * mediaKeySessoin)
 
 **返回：**
 
-当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM-ERR_OK。
+当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM_ERR_OK。
 
 
 ### OH_MediaKeySession_GenerateMediaKeyRequest()
@@ -1108,7 +1108,7 @@ Drm_ErrCode OH_MediaKeySession_GetContentProtectionLevel (MediaKeySession * medi
 
 **返回：**
 
-当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM-ERR_OK。
+当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM_ERR_OK。
 
 
 ### OH_MediaKeySession_ProcessMediaKeyResponse()
@@ -1162,7 +1162,7 @@ Drm_ErrCode OH_MediaKeySession_ProcessOfflineReleaseResponse (MediaKeySession * 
 
 **返回：**
 
-当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM-ERR_OK。
+当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM_ERR_OK。
 
 
 ### OH_MediaKeySession_RequireSecureDecoderModule()
@@ -1187,7 +1187,7 @@ Drm_ErrCode OH_MediaKeySession_RequireSecureDecoderModule (MediaKeySession * med
 
 **返回：**
 
-当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM-ERR_OK。
+当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM_ERR_OK。
 
 
 ### OH_MediaKeySession_RestoreOfflineMediaKeys()
@@ -1212,7 +1212,7 @@ Drm_ErrCode OH_MediaKeySession_RestoreOfflineMediaKeys (MediaKeySession * mediaK
 
 **返回：**
 
-当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM-ERR_OK。
+当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM_ERR_OK。
 
 
 ### OH_MediaKeySession_SetMediaKeySessionCallback()
@@ -1236,7 +1236,7 @@ Drm_ErrCode OH_MediaKeySession_SetMediaKeySessionCallback (MediaKeySession * med
 
 **返回：**
 
-当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM-ERR_OK。
+当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM_ERR_OK。
 
 
 ### OH_MediaKeySystem_ClearOfflineMediaKeys()
@@ -1261,7 +1261,7 @@ Drm_ErrCode OH_MediaKeySystem_ClearOfflineMediaKeys (MediaKeySystem * mediaKeySy
 
 **返回：**
 
-当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM-ERR_OK。
+当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM_ERR_OK。
 
 
 ### OH_MediaKeySystem_Create()
@@ -1285,7 +1285,7 @@ Drm_ErrCode OH_MediaKeySystem_Create (const char * name, MediaKeySystem ** media
 
 **返回：**
 
-当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM.ERR_OK， 当达到媒体密钥系统的最大数量时，返回DRM_ERR_MAX_SYSTEM_NUM_REACHED。
+当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM_ERR_OK， 当达到媒体密钥会话的最大数量时，返回DRM_ERR_MAX_SYSTEM_NUM_REACHED。
 
 
 ### OH_MediaKeySystem_CreateMediaKeySession()
@@ -1310,7 +1310,7 @@ Drm_ErrCode OH_MediaKeySystem_CreateMediaKeySession (MediaKeySystem * mediaKeySy
 
 **返回：**
 
-当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM.ERR_OK， 当达到媒体密钥系统的最大数量时，返回DRM_ERR_MAX_SESSION_NUM_REACHED。
+当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM_ERR_OK， 当达到媒体密钥会话的最大数量时，返回DRM_ERR_MAX_SESSION_NUM_REACHED。
 
 
 ### OH_MediaKeySystem_Destroy()
@@ -1333,7 +1333,7 @@ Destroy a 媒体密钥系统实例。
 
 **返回：**
 
-当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM-ERR_OK。
+当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM_ERR_OK。
 
 
 ### OH_MediaKeySystem_GenerateKeySystemRequest()
@@ -1360,7 +1360,7 @@ Drm_ErrCode OH_MediaKeySystem_GenerateKeySystemRequest (MediaKeySystem * mediaKe
 
 **返回：**
 
-当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM-ERR_OK。
+当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM_ERR_OK。
 
 
 ### OH_MediaKeySystem_GetCertificateStatus()
@@ -1380,11 +1380,11 @@ Drm_ErrCode OH_MediaKeySystem_GetCertificateStatus (MediaKeySystem * mediaKeySys
 | 名称 | 描述 | 
 | -------- | -------- |
 | mediaKeySystem | 媒体密钥系统实例。 | 
-| 将获得certStatus状态。 |  | 
+| certStatus | 获得的证书状态值。 | 
 
 **返回：**
 
-当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM-ERR_OK。
+当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM_ERR_OK。
 
 
 ### OH_MediaKeySystem_GetConfigurationByteArray()
@@ -1395,7 +1395,7 @@ Drm_ErrCode OH_MediaKeySystem_GetConfigurationByteArray (MediaKeySystem * mediaK
 
 **描述**
 
-按名称获取媒体密钥系统配置值。
+按字符数组类型的名称获取媒体密钥系统配置值。
 
 **起始版本：** 11
 
@@ -1410,7 +1410,7 @@ Drm_ErrCode OH_MediaKeySystem_GetConfigurationByteArray (MediaKeySystem * mediaK
 
 **返回：**
 
-当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM-ERR_OK。
+当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM_ERR_OK。
 
 
 ### OH_MediaKeySystem_GetConfigurationString()
@@ -1421,7 +1421,7 @@ Drm_ErrCode OH_MediaKeySystem_GetConfigurationString (MediaKeySystem * mediaKeyS
 
 **描述**
 
-按名称获取媒体密钥系统配置值。
+按字符串类型名称获取媒体密钥系统配置值。
 
 **起始版本：** 11
 
@@ -1436,7 +1436,7 @@ Drm_ErrCode OH_MediaKeySystem_GetConfigurationString (MediaKeySystem * mediaKeyS
 
 **返回：**
 
-当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM-ERR_OK。
+当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM_ERR_OK。
 
 
 ### OH_MediaKeySystem_GetMaxContentProtectionLevel()
@@ -1460,7 +1460,7 @@ Drm_ErrCode OH_MediaKeySystem_GetMaxContentProtectionLevel (MediaKeySystem * med
 
 **返回：**
 
-当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM-ERR_OK。
+当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM_ERR_OK。
 
 
 ### OH_MediaKeySystem_GetOfflineMediaKeyIds()
@@ -1484,7 +1484,7 @@ Drm_ErrCode OH_MediaKeySystem_GetOfflineMediaKeyIds (MediaKeySystem * mediaKeySy
 
 **返回：**
 
-当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM-ERR_OK。
+当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM_ERR_OK。
 
 
 ### OH_MediaKeySystem_GetOfflineMediaKeyStatus()
@@ -1510,7 +1510,7 @@ Drm_ErrCode OH_MediaKeySystem_GetOfflineMediaKeyStatus (MediaKeySystem * mediaKe
 
 **返回：**
 
-当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM-ERR_OK。
+当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM_ERR_OK。
 
 
 ### OH_MediaKeySystem_GetStatistics()
@@ -1534,7 +1534,7 @@ Drm_ErrCode OH_MediaKeySystem_GetStatistics (MediaKeySystem * mediaKeySystem, DR
 
 **返回：**
 
-当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM-ERR_OK。
+当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM_ERR_OK。
 
 
 ### OH_MediaKeySystem_IsSupported()
@@ -1631,7 +1631,7 @@ Drm_ErrCode OH_MediaKeySystem_ProcessKeySystemResponse (MediaKeySystem * mediaKe
 
 **返回：**
 
-当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM-ERR_OK。
+当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM_ERR_OK。
 
 
 ### OH_MediaKeySystem_SetConfigurationByteArray()
@@ -1642,7 +1642,7 @@ Drm_ErrCode OH_MediaKeySystem_SetConfigurationByteArray (MediaKeySystem * mediaK
 
 **描述**
 
-通过配置名设置MediaKeySystem的配置值。
+通过字符数组类型配置名设置MediaKeySystem的配置值。
 
 **起始版本：** 11
 
@@ -1657,7 +1657,7 @@ Drm_ErrCode OH_MediaKeySystem_SetConfigurationByteArray (MediaKeySystem * mediaK
 
 **返回：**
 
-当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM-ERR_OK。
+当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM_ERR_OK。
 
 
 ### OH_MediaKeySystem_SetConfigurationString()
@@ -1668,7 +1668,7 @@ Drm_ErrCode OH_MediaKeySystem_SetConfigurationString (MediaKeySystem * mediaKeyS
 
 **描述**
 
-按名称设置媒体密钥系统配置值。
+按字符串类型名称设置媒体密钥系统配置值。
 
 **起始版本：** 11
 
@@ -1682,7 +1682,7 @@ Drm_ErrCode OH_MediaKeySystem_SetConfigurationString (MediaKeySystem * mediaKeyS
 
 **返回：**
 
-当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM-ERR_OK。
+当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM_ERR_OK。
 
 
 ### OH_MediaKeySystem_SetMediaKeySystemCallback()
@@ -1706,7 +1706,7 @@ Drm_ErrCode OH_MediaKeySystem_SetMediaKeySystemCallback (MediaKeySystem * mediaK
 
 **返回：**
 
-当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM-ERR_OK。
+当参数检查失败时返回DRM_ERR_INVALID_VAL，当函数调用成功时返回DRM_ERR_OK。
 
 
 ## 变量说明

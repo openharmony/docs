@@ -143,7 +143,7 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
    }
    ```
 
-9. 处理设备证书响应。
+9. 获取当前会话的安全级别。
 
    调用MediaKeySession类中的getContentProtectionLevel方法，获取当前会话的安全级别。接口调用失败会返回相应错误码，错误码类型参见[DrmErrorCode](../reference/apis-drm-kit/js-apis-drm.md#drmerrorcode)。
 
@@ -161,7 +161,7 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
    }
    ```
 
-10. 获取设备证书状态。
+10. 查询安全解码模块状态。
 
    调用MediaKeySession类中的requireSecureDecoderModule方法，查询安全解码模块状态。接口调用失败会返回相应错误码，错误码类型参见[DrmErrorCode](../reference/apis-drm-kit/js-apis-drm.md#drmerrorcode)。
 
@@ -179,7 +179,7 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
    }
    ```
 
-11. 销毁MediaKeySystem实例。
+11. 销毁MediaKeySession实例。
 
    调用MediaKeySession类中的destroy方法，销毁MediaKeySession实例。接口调用失败会返回相应错误码，错误码类型参见[DrmErrorCode](../reference/apis-drm-kit/js-apis-drm.md#drmerrorcode)。
 
