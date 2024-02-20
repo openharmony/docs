@@ -151,7 +151,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 ### OH_AACProfile
 
 ```
-typedef enum OH_AACProfileOH_AACProfile
+typedef enum OH_AACProfile OH_AACProfile
 ```
 
 **描述**
@@ -166,7 +166,7 @@ AAC配置。
 ### OH_AVCodecAsyncCallback
 
 ```
-typedef struct OH_AVCodecAsyncCallbackOH_AVCodecAsyncCallback
+typedef struct OH_AVCodecAsyncCallback OH_AVCodecAsyncCallback
 ```
 
 **描述**
@@ -194,7 +194,7 @@ OH_AVCodec中所有异步回调函数指针的集合。将该结构体的实例�
 ### OH_AVCodecCallback
 
 ```
-typedef struct OH_AVCodecCallbackOH_AVCodecCallback
+typedef struct OH_AVCodecCallback OH_AVCodecCallback
 ```
 
 **描述**
@@ -369,7 +369,7 @@ typedef void(* OH_AVCodecOnStreamChanged) (OH_AVCodec *codec, OH_AVFormat *forma
 ### OH_AVCProfile
 
 ```
-typedef enum OH_AVCProfileOH_AVCProfile
+typedef enum OH_AVCProfile OH_AVCProfile
 ```
 
 **描述**
@@ -384,7 +384,7 @@ AVC配置。
 ### OH_AVOutputFormat
 
 ```
-typedef enum OH_AVOutputFormatOH_AVOutputFormat
+typedef enum OH_AVOutputFormat OH_AVOutputFormat
 ```
 
 **描述**
@@ -399,7 +399,7 @@ typedef enum OH_AVOutputFormatOH_AVOutputFormat
 ### OH_AVSeekMode
 
 ```
-typedef enum OH_AVSeekModeOH_AVSeekMode
+typedef enum OH_AVSeekMode OH_AVSeekMode
 ```
 
 **描述**
@@ -414,7 +414,7 @@ typedef enum OH_AVSeekModeOH_AVSeekMode
 ### OH_BitsPerSample
 
 ```
-typedef enum OH_BitsPerSampleOH_BitsPerSample
+typedef enum OH_BitsPerSample OH_BitsPerSample
 ```
 
 **描述**
@@ -429,7 +429,7 @@ typedef enum OH_BitsPerSampleOH_BitsPerSample
 ### OH_ColorPrimary
 
 ```
-typedef enum OH_ColorPrimaryOH_ColorPrimary
+typedef enum OH_ColorPrimary OH_ColorPrimary
 ```
 
 **描述**
@@ -444,7 +444,7 @@ typedef enum OH_ColorPrimaryOH_ColorPrimary
 ### OH_HEVCProfile
 
 ```
-typedef enum OH_HEVCProfileOH_HEVCProfile
+typedef enum OH_HEVCProfile OH_HEVCProfile
 ```
 
 **描述**
@@ -459,7 +459,7 @@ HEVC配置。
 ### OH_MatrixCoefficient
 
 ```
-typedef enum OH_MatrixCoefficientOH_MatrixCoefficient
+typedef enum OH_MatrixCoefficient OH_MatrixCoefficient
 ```
 
 **描述**
@@ -474,7 +474,7 @@ typedef enum OH_MatrixCoefficientOH_MatrixCoefficient
 ### OH_MediaType
 
 ```
-typedef enum OH_MediaTypeOH_MediaType
+typedef enum OH_MediaType OH_MediaType
 ```
 
 **描述**
@@ -489,7 +489,7 @@ typedef enum OH_MediaTypeOH_MediaType
 ### OH_ScalingMode
 
 ```
-typedef enum OH_ScalingModeOH_ScalingMode
+typedef enum OH_ScalingMode OH_ScalingMode
 ```
 
 **描述**
@@ -504,7 +504,7 @@ typedef enum OH_ScalingModeOH_ScalingMode
 ### OH_TransferCharacteristic
 
 ```
-typedef enum OH_TransferCharacteristicOH_TransferCharacteristic
+typedef enum OH_TransferCharacteristic OH_TransferCharacteristic
 ```
 
 **描述**
