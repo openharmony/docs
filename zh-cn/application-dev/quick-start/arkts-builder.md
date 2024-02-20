@@ -79,13 +79,13 @@ MyGlobalBuilderFunction()
 
 
 ```ts
-ABuilder( $$ : { paramA1: string, paramB1 : string } );
+overBuilder( $$ : { paramA1: string, paramB1 : string } );
 ```
 
 
 
 ```ts
-@Builder function ABuilder($$: { paramA1: string }) {
+@Builder function overBuilder($$: { paramA1: string }) {
   Row() {
     Text(`UseStateVarByReference: ${$$.paramA1} `)
   }
@@ -97,7 +97,7 @@ struct Parent {
   build() {
     Column() {
       // 在Parent组件中调用ABuilder的时候，将this.label引用传递给ABuilder
-      ABuilder({ paramA1: this.label })
+      overBuilder({ paramA1: this.label })
       Button('Click me').onClick(() => {
         // 点击“Click me”后，UI从“Hello”刷新为“ArkUI”
         this.label = 'ArkUI';
@@ -114,7 +114,7 @@ struct Parent {
 
 
 ```ts
-@Builder function ABuilder(paramA1: string) {
+@Builder function overBuilder(paramA1: string) {
   Row() {
     Text(`UseStateVarByValue: ${paramA1} `)
   }
@@ -125,7 +125,7 @@ struct Parent {
   @State label: string = 'Hello';
   build() {
     Column() {
-      ABuilder(this.label)
+      overBuilder(this.label)
     }
   }
 }
