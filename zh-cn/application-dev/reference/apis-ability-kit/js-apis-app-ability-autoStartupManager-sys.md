@@ -33,6 +33,14 @@ on(type: 'systemAutoStartup', callback: AutoStartupCallback): void
 | type | string | 是    | 固定取值“systemAutoStartup”，表示为系统应用所调用。 |
 | callback  | [AutoStartupCallback](js-apis-inner-application-autoStartupCallback-sys.md)   | 是    | 监听应用组件开机自启动状态变化的回调对象。      |
 
+**错误码**：
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 16000050 | Internal error.                              |
+
+请参考[元能力子系统错误码](errorcode-ability.md)。
+
 **示例**：
 
 ```ts
@@ -69,6 +77,14 @@ off(type: 'systemAutoStartup', callback?: AutoStartupCallback): void
 | --------- | ---------------------------------------- | ---- | -------------- |
 | type | string              | 是    | 固定取值“systemAutoStartup”，表示为系统应用所调用。 |
 | callback | [AutoStartupCallback](js-apis-inner-application-autoStartupCallback-sys.md)   | 否 | 监听应用组件开机自启动状态变化的回调对象。 |
+
+**错误码**：
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 16000050 | Internal error.                              |
+
+请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例**：
 

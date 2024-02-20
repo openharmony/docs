@@ -531,7 +531,7 @@ setDisplayOrientation(orientation: bundle.DisplayOrientation): Promise\<void>
 
 **参数：**
 
-| 类型                                       | 类型                                       | 必填   | 说明                                       |
+| 参数名                                       | 类型                                       | 必填   | 说明                                       |
 | ---------------------------------------- | ---------------------------------------- | ---- | ------------ |
 | orientation                              | [bundle.DisplayOrientation](js-apis-bundleManager.md#displayorientation) | 是    | 表示屏幕显示方向。                                |
 

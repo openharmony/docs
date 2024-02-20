@@ -1,13 +1,18 @@
 # MissionCallback (系统接口)
 
-作为可以[registerMissionListener](../apis/js-apis-distributedMissionManager.md#distributedmissionmanagerregistermissionlistener)的入参，表示开始同步后，建立的回调函数。
+作为可以[registerMissionListener](./js-apis-distributedMissionManager-sys.md#distributedmissionmanagerregistermissionlistener)的入参，表示开始同步后，建立的回调函数。
 
 > **说明：**
 >
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 
 > 本模块接口为系统接口。
 
 ## MissionCallback.notifyMissionsChanged
+
+notifyMissionsChanged(deviceId: string): void
+
+**需要权限:**: ohos.permission.MANAGE_MISSIONS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
@@ -44,6 +49,10 @@ distributedMissionManager.registerMissionListener(
 ```
 
 ## MissionCallback.notifySnapshot
+
+notifySnapshot(deviceId: string, mission: number): void
+
+**需要权限:**: ohos.permission.MANAGE_MISSIONS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
@@ -82,6 +91,10 @@ distributedMissionManager.registerMissionListener(
 
 ## MissionCallback.notifyNetDisconnect
 
+notifyNetDisconnect(deviceId: string, state: number): void
+
+**需要权限:**: ohos.permission.MANAGE_MISSIONS
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
 **系统接口**：该接口为系统接口。
@@ -116,5 +129,3 @@ distributedMissionManager.registerMissionListener(
     }
 );
 ```
-
-

@@ -1,6 +1,6 @@
 # MissionDeviceInfo (系统接口)
 
-可以作为[registerMissionListener](../apis/js-apis-distributedMissionManager.md#distributedmissionmanagerregistermissionlistener)的入参，表示注册监听时所需参数的枚举。
+可以作为[registerMissionListener](./js-apis-distributedMissionManager-sys.md#distributedmissionmanagerregistermissionlistener)的入参，表示注册监听时所需参数的枚举。
 
 > **说明：**
 >
@@ -17,6 +17,8 @@ import distributedMissionManager from '@ohos.distributedMissionManager';
 ## 属性
 
 **系统接口**：该接口为系统接口。
+
+**需要权限**: ohos.permission.MANAGE_MISSIONS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 

@@ -231,7 +231,7 @@ appManager.getAppMemorySize((err, data) => {
 
 getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>
 
-获取当前运行进程的有关信息。
+获取当前运行进程的有关信息。使用Promise异步回调。
 
 **需要权限**：ohos.permission.GET_RUNNING_INFO
 
@@ -267,3 +267,60 @@ appManager.getRunningProcessInformation().then((data) => {
     console.error(`error: ${JSON.stringify(error)}`);
 });
 ```
+
+## appManager.getRunningProcessInformation
+
+getRunningProcessInformation(callback: AsyncCallback<Array\<ProcessInformation>>): void
+
+获取当前运行进程的有关信息。使用callback异步回调。
+
+**需要权限**：ohos.permission.GET_RUNNING_INFO
+
+> **说明：**
+>
+> 从API version 11开始，该接口不再需要ohos.permission.GET_RUNNING_INFO权限。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 | 
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>&gt; | 是 | 以回调方式返回接口运行结果及有关运行进程的信息，可进行错误处理或其他自定义处理。 | 
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+
+**示例：**
+
+```ts
+import appManager from '@ohos.app.ability.appManager';
+import { BusinessError } from '@ohos.base';
+
+appManager.getRunningProcessInformation((err, data) => {
+    if (err) {
+        console.error(`getRunningProcessInformation fail, err: ${JSON.stringify(err)}`);
+    } else {
+        console.log(`ProcessInformation: ${JSON.stringify(data)}`);
+    }
+});
+```
+
+## ProcessState<sup>10+</sup>
+
+进程状态，该类型为枚举，可配合[ProcessData](js-apis-inner-application-processData-sys.md)返回相应的进程状态。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 名称                 | 值  | 说明                               |
+| -------------------- | --- | --------------------------------- |
+| STATE_CREATE    | 0   |      当进程在创建中的时候处于的状态。       |
+| STATE_FOREGROUND          | 1   |            当进程切换到前台的时候处于的状态。      |
+| STATE_ACTIVE  | 2   |          当进程在获焦的时候处于的状态。   |
+| STATE_BACKGROUND        | 3   |       当进程处于后台不可见时处于的状态。           |
+| STATE_DESTROY        | 4   |         当进程在销毁的时候处于的状态。         |
