@@ -468,7 +468,7 @@ notificationManager.setNotificationEnable(bundle, false).then(() => {
 
 ## notificationManager.getAllNotificationEnabledBundles<sup>12+</sup>
 
-getAllNotificationEnabledBundles(): Promise<Array<BundleNotificationStatus>>;
+getAllNotificationEnabledBundles(): Promise<Array<BundleOption>>;
 
 获取允许通知的应用程序列表。使用Promise异步回调。
 
@@ -493,9 +493,15 @@ getAllNotificationEnabledBundles(): Promise<Array<BundleNotificationStatus>>;
 ```ts
 import notificationManager from '@ohos.notificationManager';
 
-    notificationManager.getAllNotificationEnabledBundles().then((data) =>
-    {
-        console.info("Rdb Promise data is" + JSON.stringify(data));
+    notificationManager.getAllNotificationEnabledBundles().then((data) => {
+        console.info("Enable bundle data is" + JSON.stringify(data));
+        data.forEach(element => {
+        console.info("Enable status data is " + JSON.stringify(element.status));
+        console.info("Enable uid is " + JSON.stringify(element.bundleOption.uid));
+        console.info("Enable bundle is " + JSON.stringify(element.bundleOption.bundle));
+        });
+    }).catch((err:number) => {
+        console.info("getAllNotificationEnabledBundles failed, error is" + JSON.stringify(err));
     })
 ```
 
