@@ -88,6 +88,15 @@ OH_AudioStreamBuilder_Destroy(builder);
         // 从buffer中取出length长度的录音数据
         return 0;
     }
+    // 自定义音频流事件函数
+    int32_t MyOnStreamEvent(
+        OH_AudioCapturer* capturer,
+        void* userData,
+        OH_AudioStream_Event event)
+    {
+        // 根据event表示的音频流事件信息，更新播放器状态和界面
+        return 0;
+    }
     // 自定义音频中断事件函数
     int32_t MyOnInterruptEvent(
         OH_AudioCapturer* capturer,
@@ -98,15 +107,28 @@ OH_AudioStreamBuilder_Destroy(builder);
         // 根据type和hint表示的音频中断信息，更新录制器状态和界面
         return 0;
     }
+    // 自定义异常回调函数
+    int32_t MyOnError(
+        OH_AudioCapturer* capturer,
+        void* userData,
+        OH_AudioStream_Result error)
+    {
+        // 根据error表示的音频异常信息，做出相应的处理
+        return 0;
+    }
 
     OH_AudioCapturer_Callbacks callbacks;
-    // 按需配置回调函数
+    // 配置回调函数
     callbacks.OH_AudioCapturer_OnReadData = MyOnReadData;
+    callbacks.OH_AudioCapturer_OnStreamEvent = MyOnStreamEvent;
     callbacks.OH_AudioCapturer_OnInterruptEvent = MyOnInterruptEvent;
+    callbacks.OH_AudioCapturer_OnError = MyOnError;
 
     // 设置音频输入流的回调
     OH_AudioStreamBuilder_SetCapturerCallback(builder, callbacks, nullptr);
     ```
+
+    为了避免不可预期的行为，在设置音频回调函数时，请确认[OH_AudioCapturer_Callbacks](../reference/apis-audio-kit/_o_h_audio.md#oh_audiocapturer_callbacks)的每一个回调都被**自定义的回调方法**或**空指针**初始化。
 
 4. 构造录制音频流
 
