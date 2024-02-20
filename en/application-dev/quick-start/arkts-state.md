@@ -29,7 +29,7 @@ An @State decorated variable, like all other decorated variables in the declarat
 | ------------------ | ------------------------------------------------------------ |
 | Decorator parameters        | None.                                                          |
 | Synchronization type          | Does not synchronize with any type of variable in the parent component.                            |
-| Allowed variable types| Object, class, string, number, Boolean, enum, and array of these types.<br>Date type.<br>(Applicable to API version 11 or later) Map and Set types.<br>**undefined** or **null**.<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>(Applicable to API version 11 or later) Union type of the preceding types, for example, string \| number, string \| undefined or ClassA \| null. For details, see [Union Type](#union-type).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScipt type check. For example, @State a: string \| undefined = undefined is recommended; **@State a: string = undefined** is not recommended.<br>The union types defined by the AkrUI framework, including Length, ResourceStr, and ResourceColor, are supported.<br>The type must be specified.<br>**any** is not supported.|
+| Allowed variable types| Object, class, string, number, Boolean, enum, and array of these types.<br>Date type.<br>(Applicable to API version 11 or later) Map and Set types.<br>**undefined** or **null**.<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>(Applicable to API version 11 or later) Union type of the preceding types, for example, string \| number, string \| undefined or ClassA \| null. For details, see [Union Type](#union-type).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScipt type check. For example, @State a: string \| undefined = undefined is recommended; **@State a: string = undefined** is not recommended.<br>The union types defined by the ArkUI framework, including Length, ResourceStr, and ResourceColor, are supported.<br>The type must be specified.<br>**any** is not supported.|
 | Initial value for the decorated variable| Local initialization is required.                                              |
 
 
@@ -356,19 +356,19 @@ struct MapSample {
           Text(`${item[1]}`).fontSize(30)
           Divider()
         })
-        Button('init map').onClick(() =>{
+        Button('init map').onClick(() => {
           this.message = new Map([[0, "a"], [1, "b"], [3, "c"]])
         })
-        Button('set new one').onClick(() =>{
+        Button('set new one').onClick(() => {
           this.message.set(4, "d")
         })
-        Button('clear').onClick(() =>{
+        Button('clear').onClick(() => {
           this.message.clear()
         })
-        Button('replace the first one').onClick(() =>{
+        Button('replace the first one').onClick(() => {
           this.message.set(0, "aa")
         })
-        Button('delete the first one').onClick(() =>{
+        Button('delete the first one').onClick(() => {
           this.message.delete(0)
         })
       }
@@ -391,7 +391,7 @@ In this example, the **message** variable is of the Set\<number\> type. When the
 @Entry
 @Component
 struct SetSample {
-  @State message: Set<number> = new Set([0, 1, 2 ,3,4 ])
+  @State message: Set<number> = new Set([0, 1, 2, 3, 4])
 
   build() {
     Row() {
@@ -400,16 +400,16 @@ struct SetSample {
           Text(`${item[0]}`).fontSize(30)
           Divider()
         })
-        Button('init set').onClick(() =>{
-          this.message = new Set([0, 1, 2 ,3,4 ])
+        Button('init set').onClick(() => {
+          this.message = new Set([0, 1, 2, 3, 4])
         })
-        Button('set new one').onClick(() =>{
+        Button('set new one').onClick(() => {
           this.message.add(5)
         })
-        Button('clear').onClick(() =>{
+        Button('clear').onClick(() => {
           this.message.clear()
         })
-        Button('delete the first one').onClick(() =>{
+        Button('delete the first one').onClick(() => {
           this.message.delete(0)
         })
       }
@@ -428,7 +428,6 @@ struct SetSample {
 @Entry
 @Component
 struct EntryComponent {
-
   build() {
     Column() {
       MyComponent()
@@ -438,7 +437,7 @@ struct EntryComponent {
 
 @Component
 struct MyComponent {
-  @State  count: number | undefined = 0;
+  @State count: number | undefined = 0;
 
   build() {
     Column() {
@@ -450,7 +449,6 @@ struct MyComponent {
     }
   }
 }
-
 ```
 
 
@@ -559,7 +557,7 @@ struct Index {
         Text(this.viewModel.isSuccess ? 'success' : 'failed')
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
-          .onClick(()=>{
+          .onClick(() => {
             this.viewModel.query()
           })
       }.width('100%')
@@ -572,24 +570,26 @@ export class TestModel {
   model: Model
 
   constructor() {
-    this.model = new Model(()=>{
+    this.model = new Model(() => {
       this.isSuccess = true
       console.log(`this.isSuccess: ${this.isSuccess}`)
     })
   }
+
   query() {
     this.model.query()
   }
 }
 
 export class Model {
-  callback: ()=>void
+  callback: () => void
 
-  constructor(cb: ()=>void) {
+  constructor(cb: () => void) {
     this.callback = cb
   }
-  query(){
-      this.callback()
+
+  query() {
+    this.callback()
   }
 }
 ```

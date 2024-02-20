@@ -27,7 +27,7 @@ The following lifecycle callbacks are provided for a custom component decorated 
 - [aboutToDisappear](../reference/arkui-ts/ts-custom-component-lifecycle.md#abouttodisappear): Invoked when the custom component is about to be destroyed. Do not change state variables in the **aboutToDisappear** function as doing this can cause unexpected errors. For example, the modification of the **@Link** decorated variable may cause unstable application running.
 
 
-The following figure shows the lifecycle of a component (home page) decorated with \@Entry.
+The following figure shows the lifecycle of a component (page) decorated with \@Entry.
 
 
 ![en-us_image_0000001502372786](figures/en-us_image_0000001502372786.png)

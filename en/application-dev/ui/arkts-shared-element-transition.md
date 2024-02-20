@@ -1,12 +1,240 @@
 # Shared Element Transition
 
 
-Shared element transition is a type of transition achieved by animating the size and position between styles of the same or similar elements during page switching. It is typically used with the modal transition for combined effects. When used with transition and attribute animations, it can make its way into a wider range of use cases.
+Shared element transition is a type of transition achieved by animating the size and position between styles of the same or similar elements during page switching. It is typically used with the modal transition for combined effects. When used with transition and attribute animations, it can make its way into a wider range of use cases. 
 
 
-## Implementation with transition and Attribute Animation
+## Combining transition with a Property Animation
 
-This example implements a shared element transition for the scenario where, as a component is expanded, sibling components in the same container disappear or appear. Specifically, attribute animations are applied to width and height changes of a component before and after the expansion; enter/exit animations are applied to the sibling components as they disappear or disappear.
+## Using GeometryTransition to Implement Shared Element Transition
+
+This example implements shared element transition with [geometryTransition](../reference/arkui-ts/ts-transition-animation-geometrytransition.md), which is used for implicit shared element transitions during component switching.
+
+To use **geometryTransition**, you need to bind the same ID to the target components. This way, when one component enters and the other component exits, the system applies shared element transition to these two components.
+
+### Simple Use of geometryTransition
+
+Below is a simple example of using **geometryTransition** to implement shared element transition for two elements on the same page:
+
+```ts
+import curves from '@ohos.curves';
+
+@Entry
+@Component
+struct IfElseGeometryTransition {
+  @State isShow: boolean = false;
+
+  build() {
+    Stack({ alignContent: Alignment.Center }) {
+      if (this.isShow) {
+        Image($r('app.media.spring'))
+          .autoResize(false)
+          .clip(true)
+          .width(200)
+          .height(200)
+          .borderRadius(100)
+          .geometryTransition("picture")
+          .transition(TransitionEffect.OPACITY)
+          // If a new transition is triggered during the animation, ghosting occurs when id is not specified.
+          // With id specified, the new spring image reuses the previous spring image node instead of creating a new node. Therefore, ghosting does not occur.
+          // id needs to be added to the first node under if and else. If there are multiple parallel nodes, id needs to be added for all of them.
+          .id('item1')
+      } else {
+        // geometryTransition is bound to a container. Therefore, a relative layout must be configured for the child components of the container.
+        // The multiple levels of containers here are used to demonstrate passing of relative layout constraints.
+        Column() {
+          Column() {
+            Image($r('app.media.sky'))
+              .size({ width: '100%', height: '100%' })
+          }
+          .size({ width: '100%', height: '100%' })
+        }
+        .width(100)
+        .height(100)
+        // geometryTransition synchronizes rounded corner settings, but only for the bound component, which is the container in this example.
+        // In other words, rounded corner settings of the container are synchronized, and those of the child components are not.
+        .borderRadius(50)
+        .clip(true)
+        .geometryTransition("picture")
+        // transition ensures that the component is not destroyed immediately when it exits. You can customize the transition effect.
+        .transition(TransitionEffect.OPACITY)
+        .position({ x: 40, y: 40 })
+        .id('item2')
+      }
+    }
+    .onClick(() => {
+      animateTo({
+        curve: curves.springMotion()
+      }, () => {
+        this.isShow = !this.isShow;
+      })
+    })
+    .size({ width: '100%', height: '100%' })
+  }
+}
+```
+
+![en-us_image_0000001599644878](figures/en-us_image_0000001599644878.gif)
+
+### Combining geometryTransition with Modal Transition
+
+By combining **geometryTransition** with a modal transition API, you can implement a shared element transition between two elements on different pages. The following example implements a demo where clicking a profile picture displays the corresponding profile page.
+
+```ts
+class PostData {
+  avatar: Resource = $r('app.media.flower');
+  name: string = '';
+  message: string = '';
+  images: Resource[] = [];
+}
+
+@Entry
+@Component
+struct Index {
+  @State isPersonalPageShow: boolean = false;
+  @State selectedIndex: number = 0;
+  @State alphaValue: number = 1;
+
+  private allPostData: PostData[] = [
+    { avatar: $r('app.media.flower'), name: 'Alice', message: 'It's sunny.',
+      images: [$r('app.media.spring'), $r('app.media.tree')] },
+    { avatar: $r('app.media.sky'), name: 'Bob', message: 'Hello World',
+      images: [$r('app.media.island')] },
+    { avatar: $r('app.media.tree'), name: 'Carl', message: 'Everything grows.',
+      images: [$r('app.media.flower'), $r('app.media.sky'), $r('app.media.spring')] }];
+
+  private onAvatarClicked(index: number): void {
+    this.selectedIndex = index;
+    animateTo({
+      duration: 350,
+      curve: Curve.Friction
+    }, () => {
+      this.isPersonalPageShow = !this.isPersonalPageShow;
+      this.alphaValue = 0;
+    });
+  }
+
+  private onPersonalPageBack(index: number): void {
+    animateTo({
+      duration: 350,
+      curve: Curve.Friction
+    }, () => {
+      this.isPersonalPageShow = !this.isPersonalPageShow;
+      this.alphaValue = 1;
+    });
+  }
+
+  @Builder
+  PersonalPageBuilder(index: number) {
+    Column({ space: 20 }) {
+      Image(this.allPostData[index].avatar)
+        .size({ width: 200, height: 200 })
+        .borderRadius(100)
+        // Apply a shared element transition to the profile picture by its ID.
+        .geometryTransition(index.toString())
+        .clip(true)
+        .transition(TransitionEffect.opacity(0.99))
+
+      Text(this.allPostData[index].name)
+        .font({ size: 30, weight: 600 })
+        // Apply a transition effect to the text.
+        .transition(TransitionEffect.asymmetric(
+          TransitionEffect.OPACITY
+            .combine(TransitionEffect.translate({ y: 100 })),
+          TransitionEffect.OPACITY.animation({ duration: 0 })
+        ))
+
+      Text('Hello, this is' + this.allPostData[index].name)
+        // Apply a transition effect to the text.
+        .transition(TransitionEffect.asymmetric(
+          TransitionEffect.OPACITY
+            .combine(TransitionEffect.translate({ y: 100 })),
+          TransitionEffect.OPACITY.animation({ duration: 0 })
+        ))
+    }
+    .padding({ top: 20 })
+    .size({ width: 360, height: 780 })
+    .backgroundColor(Color.White)
+    .onClick(() => {
+      this.onPersonalPageBack(index);
+    })
+    .transition(TransitionEffect.asymmetric(
+      TransitionEffect.opacity(0.99),
+      TransitionEffect.OPACITY
+    ))
+  }
+
+  build() {
+    Column({ space: 20 }) {
+      ForEach(this.allPostData, (postData: PostData, index: number) => {
+        Column() {
+          Post({ data: postData, index: index, onAvatarClicked: (index: number) => { this.onAvatarClicked(index) } })
+        }
+        .width('100%')
+      }, (postData: PostData, index: number) => index.toString())
+    }
+    .size({ width: '100%', height: '100%' })
+    .backgroundColor('#40808080')
+    .bindContentCover(this.isPersonalPageShow,
+      this.PersonalPageBuilder(this.selectedIndex), { modalTransition: ModalTransition.NONE })
+    .opacity(this.alphaValue)
+  }
+}
+
+@Component
+export default struct  Post {
+  @Prop data: PostData;
+  @Prop index: number;
+
+  @State expandImageSize: number = 100;
+  @State avatarSize: number = 50;
+
+  private onAvatarClicked: (index: number) => void = (index: number) => { };
+
+  build() {
+    Column({ space: 20 }) {
+      Row({ space: 10 }) {
+        Image(this.data.avatar)
+          .size({ width: this.avatarSize, height: this.avatarSize })
+          .borderRadius(this.avatarSize / 2)
+          .clip(true)
+          .onClick(() => {
+            this.onAvatarClicked(this.index);
+          })
+          // ID of the shared element transition bound to the profile picture.
+          .geometryTransition(this.index.toString(), {follow:true})
+          .transition(TransitionEffect.OPACITY.animation({ duration: 350, curve: Curve.Friction }))
+
+        Text(this.data.name)
+      }
+      .justifyContent(FlexAlign.Start)
+
+      Text(this.data.message)
+
+      Row({ space: 15 }) {
+        ForEach(this.data.images, (imageResource: Resource, index: number) => {
+          Image(imageResource)
+            .size({ width: 100, height: 100 })
+        }, (imageResource: Resource, index: number) => index.toString())
+      }
+    }
+    .backgroundColor(Color.White)
+    .size({ width: '100%', height: 250 })
+    .alignItems(HorizontalAlign.Start)
+    .padding({ left: 10, top: 10 })
+  }
+}
+```
+
+After a profile picture on the home page is clicked, the corresponding profile page is displayed in a modal, and there is a shared element transition between the profile pictures on the two pages.
+
+![en-us_image_0000001597320327](figures/en-us_image_0000001597320327.gif)
+
+## Combining transition with a Property Animation
+
+In addition to **geometryTransition**, you can also implement a shared element transition by combining **transition** with a property animation。
+
+This example implements a shared element transition for the scenario where, as a component is expanded, sibling components in the same container disappear or appear. Specifically, property animations are applied to width and height changes of a component before and after the expansion; enter/exit animations are applied to the sibling components as they disappear or disappear. The basic procedure is as follows:
 
 1. Build the component to be expanded, and build two pages for it through state variables: one for the normal state and one for the expanded state.
 
@@ -93,9 +321,9 @@ import curves from '@ohos.curves';
 @Component
 export struct share_transition_expand {
   // Declare the isExpand variable to be synced with the parent component.
-  // Expand the component.
+  // Set isExpand.
   @State isExpand: boolean = false;
-  // Currently expanded component.
+  // Currently expanded component
   @State curIndex: number = 0;
   @State listArray: Array<number> = [1, 2, 3, 4, 5, 6];
   build() {
@@ -143,7 +371,7 @@ export struct share_transition_expand {
               .onClick(() => {
                 // Define the animation parameters for expanding and collapsing.
                 animateTo({ curve: curves.springMotion(0.6, 0.9) }, () => {
-                  if(index){
+                  if(index != undefined){
                     this.curIndex = index;
                   }
                   this.isExpand = !this.isExpand;
@@ -156,7 +384,7 @@ export struct share_transition_expand {
               .margin({ top: 15 })
               .backgroundColor(Color.White)
               .shadow({ radius: 20, color: 0x909399, offsetX: 20, offsetY: 10 })
-              // Control the appearance or disappearance of sibling components through the isExpand variable, and configure the enter/exit transition.
+              // Control the appearance or disappearance of sibling nodes through the isExpand variable, and configure the enter/exit transition.
               .transition(TransitionEffect.scale({ x: 0, y: 0 }).animation({ curve: curves.springMotion(0.3, 1.5) }))
             }
             .zIndex(this.curIndex == index ? 1 : 0)
@@ -209,7 +437,7 @@ struct ShareTransitionDemo {
 ![en-us_image_0000001600653160](figures/en-us_image_0000001600653160.gif)
 
 
-## Implementation with transition and zIndex
+## Combining transition and zIndex
 
 This example implements a shared element transition for the scenario where, as a component is expanded, it is displayed on the top of the container while sibling components in the same container stay. This is achieved with the use of **zIndex**. Specifically:
 
@@ -350,9 +578,9 @@ struct ShareZIndexDemo {
 ![en-us_image_0000001600332176](figures/en-us_image_0000001600332176.gif)
 
 
-## Implementation with geometryTransition
+## Using geometryTransition to Implement Shared Element Transition
 
-This example implements a shared element transition with [geometryTransition](../reference/arkui-ts/ts-transition-animation-geometrytransition.md), which is used for implicit shared element transitions during component switching.
+This example implements shared element transition with [geometryTransition](../reference/arkui-ts/ts-transition-animation-geometrytransition.md), which is used for implicit shared element transitions during component switching.
 
 Below is the complete sample code and effect for using **geometryTransition** and the **if/else** syntax to implement a shared element transition:
 
@@ -390,7 +618,7 @@ struct IfElseGeometryTransition {
         .borderRadius(20)
         .clip(true)
         .geometryTransition("picture")
-        // transition ensures that the component is not destructed immediately when it exits. You can customize the transition effect.
+        // transition ensures that the component is not destroyed immediately when it exits. You can customize the transition effect.
         .transition(TransitionEffect.OPACITY)
       }
     }
@@ -433,7 +661,7 @@ struct GeometryTransitionDemo {
       .width('100%')
       .aspectRatio(1)
       .margin({ bottom: 20, top: 20})
-      // New shared element, <Row, whose ID is share1.
+      // New shared element, <Row>, whose ID is share1
       .geometryTransition('share1')
 
       Column() {
@@ -519,7 +747,7 @@ struct GeometryTransitionDemo {
 
 
 
-## Implementation with Attribute Animation
+## Implementation with Property Animation
 
 
 ```ts
@@ -536,21 +764,21 @@ struct AutoAchieveShareTransitionDemo {
   @State expand: boolean = false;
   @State scrollState: boolean = true; // Scrollbar status
 
-  // Attributes related to the shared element.
-  @State rect_top: number = 0; // Position of the shared element.
+  // Attributes related to the shared element
+  @State rect_top: number = 0; // Position of the shared element
   @State rect_bottom: number = 0;
   @State rect_left: number = 0;
   @State rect_right: number = 0;
 
-  // Attributes related to the newly created element.
+  // Attributes related to the newly created element
   @State rootPosition: number = 0; // Position of the parent component
   @State item: string = ''; // Record the expanded element.
-  @State cardHeight: number = 300; // Widget height.
-  @State cardOpacity: number = 1; // Widget opacity.
-  @State layoutHeight: number = 300; // Height of the expanded page.
-  @State layoutWidth: string = '90%'; // Width of the expanded page.
-  @State layoutOffset: number = 0; // Offset of the expanded page.
-  @State layoutOpacity: number = 0; // Opacity of the expanded page.
+  @State cardHeight: number = 300; // Widget height
+  @State cardOpacity: number = 1; // Widget opacity
+  @State layoutHeight: number = 300; // Height of the expanded page
+  @State layoutWidth: string = '90%'; // Width of the expanded page
+  @State layoutOffset: number = 0; // Offset of the expanded page
+  @State layoutOpacity: number = 0; // Opacity of the expanded page
 
   // In the callback invoked when the transition is complete.
   @State count: number = 0;
@@ -562,7 +790,7 @@ struct AutoAchieveShareTransitionDemo {
           ForEach(this.items, (item:string, index?:number|undefined) => {
             Row() {
               Column() {
-                Text('Shared element ' + item)
+                Text ('Shared element ' + item)
                   .fontSize(30)
                   .fontColor(Color.Black)
                   .fontWeight(FontWeight.Bolder)
@@ -608,7 +836,11 @@ struct AutoAchieveShareTransitionDemo {
               this.count += 1;
               this.scrollState = false;
 
-              animateTo({ curve: curves.springMotion() }, () => {
+              animateTo({
+                curve: curves.springMotion(),
+                onFinish: () => {
+                  this.scrollState = true;
+                }}, () => {
                 this.layoutHeight = px2vp(2772);
                 this.layoutWidth = '100%';
                 this.layoutOffset = -px2vp(this.rect_top - this.rootPosition);
@@ -619,16 +851,15 @@ struct AutoAchieveShareTransitionDemo {
         .width('100%')
         .margin({ top: 20 })
       }
-      .enabled(this.scrollState)
       .height('100%')
 
       // Create an element that is the same as the component based on the obtained component information.
       if (this.expand) {
         Column() {
-          // Share element.
+          // Shared element
           Row() {
             Column() {
-              Text('Shared element ' + this.item)
+              Text ('Shared element ' + this.item)
                 .fontSize(30)
                 .fontColor(Color.Black)
                 .fontWeight(FontWeight.Bolder)
@@ -645,7 +876,7 @@ struct AutoAchieveShareTransitionDemo {
           .padding(20)
           .backgroundColor(Color.Pink)
 
-          // New element.
+          // New element
           Text('Expanded page\n\nExpanded page\n\nExpanded page\n\nExpanded page\n\nExpanded page\n\nExpanded page\n\nExpanded page\n\nExpanded page')
             .fontSize(20)
             .fontColor(0xcccccc)
@@ -688,6 +919,7 @@ struct AutoAchieveShareTransitionDemo {
       }
     }
     .id('root')
+    .enabled(this.scrollState)
   }
 }
 ```
