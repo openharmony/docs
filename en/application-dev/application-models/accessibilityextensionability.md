@@ -1,6 +1,6 @@
 # AccessibilityExtensionAbility
 
-The Accessibility Kit provides accessibility extension capabilities based on AccessibilityExtensionAbility in the ExtensionAbility framework. You can develop your accessibility extension services by applying the AccessibilityExtensionAbility template to enhance usability.
+Accessibility Kit provides accessibility extension capabilities based on AccessibilityExtensionAbility in the ExtensionAbility framework. You can develop your accessibility extension services by applying the AccessibilityExtensionAbility template.
 
 ## Creating an Accessibility Extension Service
 
@@ -230,7 +230,8 @@ In addition, **accessibility_config** is the specific configuration of the acces
 
 You can enable or disable a custom accessibility extension service through the device settings. 
 
-- From the device settings screen, access the list of installed extended services under accessibility. 
-If an extended service is not installed, it is grayed out, and "No service" is displayed.
-- Select the target extended service, and toggle on or off the switch to enable or disable it. 
-- If you opt to enable a service, a security reminder is displayed. Wait until the countdown ends and then select the check box indicating that you are aware of and willing to assume the listed risks.  
+1. From the device settings screen, access the list of installed extension services under accessibility. If an extension service is not installed, it is grayed out, and "No service" is displayed.
+
+2. Locate the target extension service, and toggle on or off the switch to enable or disable it.
+
+3. If you opt to enable the service, a security reminder is displayed. Wait until the countdown ends and then select the check box indicating that you are aware of and willing to assume the listed risks.  
