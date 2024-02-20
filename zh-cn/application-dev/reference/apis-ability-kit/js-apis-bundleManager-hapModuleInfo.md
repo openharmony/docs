@@ -29,7 +29,6 @@ HAP信息，三方应用可以通过[getBundleInfoForSelf](js-apis-bundleManager
 | preloads                          | Array\<[PreloadItem](#preloaditem)>                          | 是   | 否   | 元服务中模块的预加载列表。|
 | dependencies                      | Array\<[Dependency](#dependency)>                            | 是   | 否   | 模块运行依赖的动态共享库列表。  |
 | fileContextMenuConfig<sup>11+</sup>     | string                                                       | 是   | 否   | 模块的文件菜单配置。通过调用[getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)接口，bundleFlags参数传入GET_BUNDLE_INFO_WITH_HAP_MODULE和GET_BUNDLE_INFO_WITH_MENU获取。 |
-| routerMap<sup>12+</sup>           | Array\<[RouterItem](#routeritem)>                            | 是   | 否   | [模块的路由表配置](../../quick-start/module-configuration-file.md#routermap标签)。通过调用[getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)接口，bundleFlags参数传入GET_BUNDLE_INFO_WITH_HAP_MODULE和GET_BUNDLE_INFO_WITH_ROUTER_MAP获取。 |
 
 ## PreloadItem
 
@@ -52,28 +51,3 @@ HAP信息，三方应用可以通过[getBundleInfoForSelf](js-apis-bundleManager
 | bundleName  | string | 是   | 否   | 标识当前模块依赖的共享包包名。       |
 | moduleName  | string | 是   | 否   | 标识当前模块依赖的共享包模块名。 |
 | versionCode | number | 是   | 否   | 标识当前共享包的版本号。   |
-
-## RouterItem
-
-描述模块配置的路由表信息。
-
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
-
-| 名称           | 类型   | 只读 | 必填 | 说明                   |
-| ------------- | ------ | ---- | ---- | ---------------------- |
-| name          | string | 是   | 是   | 标识跳转页面的名称。       |
-| pageModule    | string | 是   | 是   | 标识页面所在的模块名称。 |
-| pageSourceFile| string | 是   | 是   | 标识页面在模块内的路径。   |
-| buildFunction | string | 是   | 是   | 标识被@Builder修饰的函数，该函数描述页面的UI。   |
-| data          | Array\<[DataItem](#dataitem)> | 是   | 是   | 标识自定义数据。   |
-
-## DataItem
-
-描述模块配置的路由表中的自定义数据。
-
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
-
-| 名称          | 类型    | 只读 | 必填 | 说明                   |
-| ------------- | ------ | ---- | ---- | ---------------------- |
-| key           | string | 是   | 是   | 标识路由表自定义数据的键。       |
-| value         | string | 是   | 是   | 标识路由表自定义数据的值。 |

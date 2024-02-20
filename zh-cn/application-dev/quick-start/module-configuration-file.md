@@ -65,8 +65,7 @@
     "querySchemes": [
       "app1Scheme",
       "app2Scheme"
-    ],
-    "routerMap": "$profile:router_map"
+    ]
   }
 }
 ```
@@ -107,7 +106,6 @@ module.json5配置文件包含以下标签。
 | libIsolation | 用于区分同应用不同HAP下的.so文件，以防止.so冲突。<br/>-&nbsp;true：当前HAP的.so文件会储存在libs目录中以Module名命名的路径下。<br/>-&nbsp;false：当前HAP的.so文件会直接储存在libs目录中。 | 布尔值 | 该标签可缺省，缺省值为false。 |
 | fileContextMenu | 标识当前HAP的右键菜单配置项。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | querySchemes | 标识允许当前应用进行跳转查询的URL schemes，只允许entry类型模块配置，最多50个。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
-| [routerMap](#routermap标签) | 标识当前模块配置的路由表路径。 | 字符串 | 该标签可缺省，缺省值为空。 |
 
 ## deviceTypes标签
 
@@ -820,74 +818,5 @@ proxyData标签示例：
       }
     ]
   }
-}
-```
-
-## routerMap标签
-
-此标签标识模块配置的路由表的路径。
-
-routerMap配置文件描述模块的路由表信息，routerMap标签值为数组类型。
-
-**表22** routerMap标签说明
-
-| 属性名称 | 含义 | 数据类型 | 是否可缺省 |
-| -------- | -------- | -------- | -------- |
-| name          | 标识跳转页面的名称。 | 字符串  | 该标签不可缺省。       |
-| pageModule    | 标识页面所在的模块名称。 | 字符串 | 该标签可缺省，缺省值为空。 |
-| pageSourceFile| 标识页面在模块内的路径。 | 字符串 | 该标签不可缺省。  |
-| buildFunction | 标识被@Builder修饰的函数，该函数描述页面的UI。 | 字符串  | 该标签不可缺省。   |
-| [data](#data标签)  | 标识自定义数据。 | 对象   | 该标签可缺省，缺省值为空。   |
-
-示例如下：
-
-1. 在开发视图的resources/base/profile下面定义配置文件，文件名可以自定义，例如：router_map.json。
-
-```json
-{
-  "routerMap": [
-    {
-      "name": "DynamicPage1",
-      "pageModule": "library1",
-      "pageSourceFile": "entry/src/index",
-      "buildFunction": "myFunction"
-    },
-    {
-      "name": "DynamicPage2",
-      "pageModule": "library2",
-      "pageSourceFile": "entry/src/index",
-      "buildFunction": "myBuilder",
-      "data": {
-        "key1": "data1",
-        "key2": "data2"
-      }
-    }
-  ]
-}
-```
-
-2. 在module.json5配置文件的module标签中定义`routerMap`字段，指向定义的路由表配置文件，例如：`"routerMap": "$profile:router_map"`。
-
-### data标签
-
-此标签用于支持在路由表中配置自定义数据。
-data对象内部，可以填入字符串类型的自定义数据。
-
-data标签示例：
-
-```json
-{
-  "routerMap": [
-    {
-      "name": "DynamicPage",
-      "pageModule": "library",
-      "pageSourceFile": "entry/src/index",
-      "buildFunction": "myBuilder",
-      "data": {
-        "key1": "data1",
-        "key2": "data2"
-      }
-    }
-  ]
 }
 ```
