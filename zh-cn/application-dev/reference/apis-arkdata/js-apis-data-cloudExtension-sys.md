@@ -1172,13 +1172,13 @@ share(userId: number, bundleName: string, sharingResource: string, participants:
 | userId          | number  | 是   | 表示用户ID。  |
 | bundleName      | string  | 是   | 应用包名。    |
 | sharingResource | string  | 是   | 端云共享资源的标识。   |
-| participants    | Array&lt;[cloudData.sharing.Participant](js-apis-data-cloudData.md#participant)&gt;  | 是   | 端云共享参与者。   |
+| participants    | Array&lt;[cloudData.sharing.Participant](js-apis-data-cloudData-sys.md#participant11)&gt;  | 是   | 端云共享参与者。   |
 
 **返回值：**
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;[Result](#resultt)&lt;Array&lt;[Result](#resultt)&lt;[cloudData.sharing.Participant](js-apis-data-cloudData.md#participant)&gt;&gt;&gt;&gt; | Promise对象，返回发起共享的结果。 |
+| Promise&lt;[Result](#resultt)&lt;Array&lt;[Result](#resultt)&lt;[cloudData.sharing.Participant](js-apis-data-cloudData-sys.md#participant11)&gt;&gt;&gt;&gt; | Promise对象，返回发起共享的结果。 |
 
 **示例：**
 
@@ -1227,13 +1227,13 @@ unshare(userId: number, bundleName: string, sharingResource: string, participant
 | userId          | number  | 是   | 表示用户ID。  |
 | bundleName      | string  | 是   | 应用包名。    |
 | sharingResource | string  | 是   | 端云共享资源标识。   |
-| participants    | Array&lt;[cloudData.sharing.Participant](js-apis-data-cloudData.md#participant)&gt;  | 是   | 端云共享参与者。   |
+| participants    | Array&lt;[cloudData.sharing.Participant](js-apis-data-cloudData-sys.md#participant11)&gt;  | 是   | 端云共享参与者。   |
 
 **返回值：**
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;[Result](#resultt)&lt;Array&lt;[Result](#resultt)&lt;[cloudData.sharing.Participant](js-apis-data-cloudData.md#participant)&gt;&gt;&gt;&gt; | Promise对象，返回取消共享的结果。 |
+| Promise&lt;[Result](#resultt)&lt;Array&lt;[Result](#resultt)&lt;[cloudData.sharing.Participant](js-apis-data-cloudData-sys.md#participant11)&gt;&gt;&gt;&gt; | Promise对象，返回取消共享的结果。 |
 
 **示例：**
 
@@ -1326,13 +1326,13 @@ changePrivilege(userId: number, bundleName: string, sharingResource: string, par
 | userId          | number  | 是   | 表示用户ID。  |
 | bundleName      | string  | 是   | 应用包名。    |
 | sharingResource | string  | 是   | 端云共享资源标识。   |
-| participants    | Array&lt;[cloudData.sharing.Participant](js-apis-data-cloudData.md#participant)&gt;  | 是   | 端云共享参与者。   |
+| participants    | Array&lt;[cloudData.sharing.Participant](js-apis-data-cloudData-sys.md#participant11)&gt;  | 是   | 端云共享参与者。   |
 
 **返回值：**
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;[Result](#resultt)&lt;Array&lt;[Result](#resultt)&lt;[cloudData.sharing.Participant](js-apis-data-cloudData.md#participant)&gt;&gt;&gt;&gt; | Promise对象，返回更改权限的结果。 |
+| Promise&lt;[Result](#resultt)&lt;Array&lt;[Result](#resultt)&lt;[cloudData.sharing.Participant](js-apis-data-cloudData-sys.md#participant11)&gt;&gt;&gt;&gt; | Promise对象，返回更改权限的结果。 |
 
 **示例：**
 
@@ -1386,7 +1386,7 @@ queryParticipants(userId: number, bundleName: string, sharingResource: string): 
 
 | 类型                                                         | 说明                                    |
 | ------------------------------------------------------------ | --------------------------------------- |
-| Promise&lt;[Result](#resultt)&lt;Array&lt;[cloudData.sharing.Participant](js-apis-data-cloudData.md#participant)&gt;&gt;&gt; | Promise对象，返回查询共享参与者的结果。 |
+| Promise&lt;[Result](#resultt)&lt;Array&lt;[cloudData.sharing.Participant](js-apis-data-cloudData-sys.md#participant11)&gt;&gt;&gt; | Promise对象，返回查询共享参与者的结果。 |
 
 **示例：**
 
@@ -1460,7 +1460,7 @@ queryParticipantsByInvitation(userId: number, bundleName: string, invitationCode
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;[Result](#resultt)&lt;Array&lt;[cloudData.sharing.Participant](js-apis-data-cloudData.md#participant)&gt;&gt;&gt; | Promise对象，返回根据邀请码查询共享参与者的结果。 |
+| Promise&lt;[Result](#resultt)&lt;Array&lt;[cloudData.sharing.Participant](js-apis-data-cloudData-sys.md#participant11)&gt;&gt;&gt; | Promise对象，返回根据邀请码查询共享参与者的结果。 |
 
 **示例：**
 
@@ -1529,7 +1529,7 @@ confirmInvitation(userId: number, bundleName: string, invitationCode: string, st
 | userId          | number  | 是   | 表示用户ID。  |
 | bundleName      | string  | 是   | 应用包名。    |
 | invitationCode  | string  | 是   | 端云共享邀请码。   |
-| state           | [cloudData.sharing.State](js-apis-data-cloudData.md#state)  | 是   | 共享邀请的确认状态。   |
+| state           | [cloudData.sharing.State](js-apis-data-cloudData-sys.md#state11)  | 是   | 共享邀请的确认状态。   |
 
 **返回值：**
 
@@ -1575,7 +1575,7 @@ changeConfirmation(userId: number, bundleName: string, sharingResource: string, 
 | userId          | number  | 是   | 表示用户ID。  |
 | bundleName      | string  | 是   | 应用包名。    |
 | sharingResource | string  | 是   | 端云共享资源标识。   |
-| state           | [cloudData.sharing.State](js-apis-data-cloudData.md#state)  | 是   | 共享邀请的更改状态。   |
+| state           | [cloudData.sharing.State](js-apis-data-cloudData-sys.md#state11)  | 是   | 共享邀请的更改状态。   |
 
 **返回值：**
 
