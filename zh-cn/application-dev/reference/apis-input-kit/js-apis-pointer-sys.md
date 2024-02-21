@@ -413,7 +413,7 @@ try {
 }
 ```
 
-## pointer.getMousePrimaryButton<sup>10+</sup>
+## pointer.getMousePrimaryButton<sup>10+</sup> 
 
 getMousePrimaryButton(): Promise&lt;PrimaryButton&gt;
 
