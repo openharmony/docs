@@ -2356,3 +2356,5 @@ Defines the SMS message segment information.
 | encodeCount          | number                                   | Yes  | Encoding count.    |
 | encodeCountRemaining | number                                   | Yes  | Remaining encoding count.|
 | scheme               | [SmsEncodingScheme](#smsencodingscheme8) | Yes  | Encoding scheme.|
+
+<!--no_check-->

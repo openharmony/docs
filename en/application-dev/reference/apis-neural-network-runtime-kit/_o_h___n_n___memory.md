@@ -48,3 +48,5 @@ const size_t OH_NN_Memory::length
 **Description**
 
 Length of the shared memory, in bytes.
+
+<!--no_check-->

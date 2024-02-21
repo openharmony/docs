@@ -82,8 +82,8 @@ Provides APIs for accelerating the Neural Network Runtime (NNRt) model inference
 | [OH_NNCompilation_SetPriority](#oh_nncompilation_setpriority) ([OH_NNCompilation](#oh_nncompilation) \*compilation, [OH_NN_Priority](#oh_nn_priority) priority) | Sets the priority for model computing.|
 | [OH_NNCompilation_EnableFloat16](#oh_nncompilation_enablefloat16) ([OH_NNCompilation](#oh_nncompilation) \*compilation, bool enableFloat16) | Enables float16 for computing.|
 | [OH_NNCompilation_Build](#oh_nncompilation_build) ([OH_NNCompilation](#oh_nncompilation) \*compilation) | Performs model building.|
-| [OH_NNCompilation_Destroy](#oh_nncompilation_destroy) ([OH_NNCompilation](#oh_nncompilation) \*\*compilation) | Destroys a model building instance of the [OH_NNCompilation](_neural_network_runtime.md#oh_nncompilation) type.|
-| \*[OH_NNTensorDesc_Create](#oh_nntensordesc_create) () | Creates an [NN_TensorDesc](_neural_network_runtime.md#nn_tensordesc) instance.|
+| [OH_NNCompilation_Destroy](#oh_nncompilation_destroy) ([OH_NNCompilation](#oh_nncompilation) \*\*compilation) | Destroys a model building instance of the [OH_NNCompilation](#oh_nncompilation) type.|
+| \*[OH_NNTensorDesc_Create](#oh_nntensordesc_create) () | Creates an [NN_TensorDesc](#nn_tensordesc) instance.|
 | [OH_NNTensorDesc_Destroy](#oh_nntensordesc_destroy) ([NN_TensorDesc](#nn_tensordesc) \*\*tensorDesc) | Releases an [NN_TensorDesc](#nn_tensordesc) instance.|
 | [OH_NNTensorDesc_SetName](#oh_nntensordesc_setname) ([NN_TensorDesc](#nn_tensordesc) \*tensorDesc, const char \*name) | Sets the name of an [NN_TensorDesc](#nn_tensordesc) instance.|
 | [OH_NNTensorDesc_GetName](#oh_nntensordesc_getname) (const [NN_TensorDesc](#nn_tensordesc) \*tensorDesc, const char \*\*name) | Obtains the name of an [NN_TensorDesc](#nn_tensordesc) instance.|
@@ -93,7 +93,7 @@ Provides APIs for accelerating the Neural Network Runtime (NNRt) model inference
 | [OH_NNTensorDesc_GetShape](#oh_nntensordesc_getshape) (const [NN_TensorDesc](#nn_tensordesc) \*tensorDesc, int32_t \*\*shape, size_t \*shapeLength) | Obtains the shape of an [NN_TensorDesc](#nn_tensordesc) instance.|
 | [OH_NNTensorDesc_SetFormat](#oh_nntensordesc_setformat) ([NN_TensorDesc](#nn_tensordesc) \*tensorDesc, [OH_NN_Format](#oh_nn_format) format) | Sets the data format of an [NN_TensorDesc](#nn_tensordesc) instance.|
 | [OH_NNTensorDesc_GetFormat](#oh_nntensordesc_getformat) (const [NN_TensorDesc](#nn_tensordesc) \*tensorDesc, [OH_NN_Format](#oh_nn_format) \*format) | Obtains the data format of an [NN_TensorDesc](#nn_tensordesc) instance.|
-| [OH_NNTensorDesc_GetElementCount](#oh_nntensordesc_getelementcount) (const [NN_TensorDesc](#nn_tensordesc) \*tensorDesc, size_t \*elementCount) | Obtains the number of elements in an [NN_TensorDesc](_neural_network_runtime.md#nn_tensordesc) instance.|
+| [OH_NNTensorDesc_GetElementCount](#oh_nntensordesc_getelementcount) (const [NN_TensorDesc](#nn_tensordesc) \*tensorDesc, size_t \*elementCount) | Obtains the number of elements in an [NN_TensorDesc](#nn_tensordesc) instance.|
 | [OH_NNTensorDesc_GetByteSize](#oh_nntensordesc_getbytesize) (const [NN_TensorDesc](#nn_tensordesc) \*tensorDesc, size_t \*byteSize) | Obtains the number of bytes occupied by the tensor data obtained through calculation based on the shape and data type of an [NN_TensorDesc](#nn_tensordesc) instance.|
 | \*[OH_NNTensor_Create](#oh_nntensor_create) (size_t deviceID, [NN_TensorDesc](#nn_tensordesc) \*tensorDesc) | Creates an [NN_Tensor](#nn_tensor) instance from [NN_TensorDesc](#nn_tensordesc).|
 | \*[OH_NNTensor_CreateWithSize](#oh_nntensor_createwithsize) (size_t deviceID, [NN_TensorDesc](#nn_tensordesc) \*tensorDesc, size_t size) | Creates an [NN_Tensor](#nn_tensor) instance based on the specified memory size and [NN_TensorDesc](#nn_tensordesc) instance.|
@@ -104,7 +104,7 @@ Provides APIs for accelerating the Neural Network Runtime (NNRt) model inference
 | [OH_NNTensor_GetFd](#oh_nntensor_getfd) (const [NN_Tensor](#nn_tensor) \*tensor, int \*fd) | Obtains the file descriptor of the shared memory where [NN_Tensor](#nn_tensor) data is stored.|
 | [OH_NNTensor_GetSize](#oh_nntensor_getsize) (const [NN_Tensor](#nn_tensor) \*tensor, size_t \*size) | Obtains the size of the shared memory where the [NN_Tensor](#nn_tensor) data is stored.|
 | [OH_NNTensor_GetOffset](#oh_nntensor_getoffset) (const [NN_Tensor](#nn_tensor) \*tensor, size_t \*offset) | Obtains the offset of [NN_Tensor](#nn_tensor) data in the shared memory.|
-| \*[OH_NNExecutor_Construct](#oh_nnexecutor_construct) ([OH_NNCompilation](#oh_nncompilation) \*compilation) | Creates an [OH_NNExecutor](_neural_network_runtime.md#oh_nnexecutor) instance.|
+| \*[OH_NNExecutor_Construct](#oh_nnexecutor_construct) ([OH_NNCompilation](#oh_nncompilation) \*compilation) | Creates an [OH_NNExecutor](#oh_nnexecutor) instance.|
 | [OH_NNExecutor_GetOutputShape](#oh_nnexecutor_getoutputshape) ([OH_NNExecutor](#oh_nnexecutor) \*executor, uint32_t outputIndex, int32_t \*\*shape, uint32_t \*shapeLength) | Obtains the dimension information about the output tensor.|
 | [OH_NNExecutor_Destroy](#oh_nnexecutor_destroy) ([OH_NNExecutor](#oh_nnexecutor) \*\*executor) | Destroys an executor instance to release the memory occupied by it.|
 | [OH_NNExecutor_GetInputCount](#oh_nnexecutor_getinputcount) (const [OH_NNExecutor](#oh_nnexecutor) \*executor, size_t \*inputCount) | Obtains the number of input tensors.|
@@ -865,7 +865,7 @@ void OH_NNCompilation_Destroy (OH_NNCompilation **compilation)
 
 **Description**
 
-Destroys a model building instance of the [OH_NNCompilation](_neural_network_runtime.md#oh_nncompilation) type.
+Destroys a model building instance of the [OH_NNCompilation](#oh_nncompilation) type.
 
 This API needs to be called to destroy the model building instances created by calling [OH_NNCompilation_Construct](#oh_nncompilation_construct), [OH_NNCompilation_ConstructWithOfflineModelFile](#oh_nncompilation_constructwithofflinemodelfile), [OH_NNCompilation_ConstructWithOfflineModelBuffer](#oh_nncompilation_constructwithofflinemodelbuffer) and [OH_NNCompilation_ConstructForCache](#oh_nncompilation_constructforcache).
 
@@ -1254,7 +1254,7 @@ OH_NNExecutor *OH_NNExecutor_Construct (OH_NNCompilation *compilation)
 
 **Description**
 
-Creates an [OH_NNExecutor](_neural_network_runtime.md#oh_nnexecutor) instance.
+Creates an [OH_NNExecutor](#oh_nnexecutor) instance.
 
 This API constructs a model inference executor for a device based on the specified [OH_NNCompilation](#oh_nncompilation) instance. Use [OH_NNExecutor_SetInput](#oh_nnexecutor_setinputdeprecated) to set the model input data. After the input data is set, call [OH_NNExecutor_Run](#oh_nnexecutor_rundeprecated) to perform inference and then call [OH_NNExecutor_SetOutput](#oh_nnexecutor_setoutputdeprecated) to obtain the computing result.
 
@@ -2541,7 +2541,7 @@ NN_TensorDesc *OH_NNTensorDesc_Create ()
 
 **Description**
 
-Creates an [NN_TensorDesc](_neural_network_runtime.md#nn_tensordesc) instance.
+Creates an [NN_TensorDesc](#nn_tensordesc) instance.
 
 [NN_TensorDesc](#nn_tensordesc) describes various tensor attributes, such as the name, data type, shape, and format.
 
@@ -2657,7 +2657,7 @@ OH_NN_ReturnCode OH_NNTensorDesc_GetElementCount (const NN_TensorDesc *tensorDes
 
 **Description**
 
-Obtains the number of elements in an [NN_TensorDesc](_neural_network_runtime.md#nn_tensordesc) instance.
+Obtains the number of elements in an [NN_TensorDesc](#nn_tensordesc) instance.
 
 You can use this API to obtain the number of elements in the specified [NN_TensorDesc](#nn_tensordesc) instance. To obtain the size of tensor data, call [OH_NNTensorDesc_GetByteSize](#oh_nntensordesc_getbytesize).
 

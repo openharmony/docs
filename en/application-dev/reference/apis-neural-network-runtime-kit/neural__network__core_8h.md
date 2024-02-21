@@ -75,3 +75,5 @@ Defines APIs for the Neural Network Core module. The AI inference framework uses
 | [OH_NNDevice_GetAllDevicesID](_neural_nework_runtime.md#oh_nndevice_getalldevicesid) (const size_t \*\*allDevicesID, uint32_t \*deviceCount) | Obtains the ID of the device connected to Neural Network Runtime.|
 | [OH_NNDevice_GetName](_neural_nework_runtime.md#oh_nndevice_getname) (size_t deviceID, const char \*\*name) | Obtains the name of the specified device.|
 | [OH_NNDevice_GetType](_neural_nework_runtime.md#oh_nndevice_gettype) (size_t deviceID, [OH_NN_DeviceType](_neural_nework_runtime.md#oh_nn_devicetype) \*deviceType) | Obtains the type of the specified device.|
+
+<!--no_check-->
