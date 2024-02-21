@@ -31,7 +31,7 @@ requestFocus(value: string): boolean
 
 | 名称 | 类型 | 必填 | 描述 |
 | ----- | ------ | ---- | ---- |
-| value | string | 是   | 目标组件使用接口key(value: string)绑定的字符串。 |
+| value | string | 是   | 目标组件使用接口key(value: string)或id(value: string)绑定的字符串。 |
 
 **返回值：**
 
@@ -218,27 +218,27 @@ struct RequestFocusExample {
       Row({space: 5}) {
         Button("id: " + this.idList[0] + " focusable(false)")
           .width(200).height(70).fontColor(Color.White)
-          .key(this.idList[0])
+          .id(this.idList[0])
           .focusable(false)
         Button("id: " + this.idList[1])
           .width(200).height(70).fontColor(Color.White)
-          .key(this.idList[1])
+          .id(this.idList[1])
       }
       Row({space: 5}) {
         Button("id: " + this.idList[2])
           .width(200).height(70).fontColor(Color.White)
-          .key(this.idList[2])
+          .id(this.idList[2])
         Button("id: " + this.idList[3])
           .width(200).height(70).fontColor(Color.White)
-          .key(this.idList[3])
+          .id(this.idList[3])
       }
       Row({space: 5}) {
         Button("id: " + this.idList[4])
           .width(200).height(70).fontColor(Color.White)
-          .key(this.idList[4])
+          .id(this.idList[4])
         Button("id: " + this.idList[5])
           .width(200).height(70).fontColor(Color.White)
-          .key(this.idList[5])
+          .id(this.idList[5])
       }
       Row({space: 5}) {
         Select([{value: this.idList[0]},
