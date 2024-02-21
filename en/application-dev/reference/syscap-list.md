@@ -1390,7 +1390,7 @@ Contacts
 | ------- | --- | --- | --- | --- | --- | ------------ | ------ |
 | Yes      | No  | Yes  | Yes  | Yes  | No  | No           | No     |
 
-## SystemCapability.Applications.settings.Core
+## SystemCapability.Applications.Settings.Core
 
 API setting
 

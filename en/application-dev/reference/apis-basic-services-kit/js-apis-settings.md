@@ -17,7 +17,7 @@ Describes the domain name.
 
 ### Attributes
 
-**System capability**: SystemCapability.Applications.settings.Core
+**System capability**: SystemCapability.Applications.Settings.Core
 
 | Name               | Type  | Readable| Writable| Description                                                        |
 | ------------------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -31,7 +31,7 @@ Provides data items for setting the time and date formats.
 
 ### Attributes
 
-**System capability**: SystemCapability.Applications.settings.Core
+**System capability**: SystemCapability.Applications.Settings.Core
 
 | Name               | Type  | Readable| Writable| Description                                                        |
 | ------------------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -46,7 +46,7 @@ Provides data items for setting the display effects.
 
 ### Attributes
 
-**System capability**: SystemCapability.Applications.settings.Core
+**System capability**: SystemCapability.Applications.Settings.Core
 
 | Name                         | Type  | Readable| Writable| Description                                                        |
 | ----------------------------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -68,7 +68,7 @@ Provides data items for setting the general information about the device.
 
 ### Attributes
 
-**System capability**: SystemCapability.Applications.settings.Core
+**System capability**: SystemCapability.Applications.Settings.Core
 
 | Name                            | Type  | Readable| Writable| Description                                                        |
 | -------------------------------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -97,7 +97,7 @@ Provides data items for setting input methods.
 
 ### Attributes
 
-**System capability**: SystemCapability.Applications.settings.Core
+**System capability**: SystemCapability.Applications.Settings.Core
 
 | Name                                | Type  | Readable| Writable| Description                                                        |
 | ------------------------------------ | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -116,7 +116,7 @@ Provides data items for setting network information.
 
 ### Attributes
 
-**System capability**: SystemCapability.Applications.settings.Core
+**System capability**: SystemCapability.Applications.Settings.Core
 
 | Name                    | Type  | Readable| Writable| Description                                                        |
 | ------------------------ | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -130,7 +130,7 @@ Provides data items for setting the modes of answering incoming and outgoing cal
 
 ### Attributes
 
-**System capability**: SystemCapability.Applications.settings.Core
+**System capability**: SystemCapability.Applications.Settings.Core
 
 | Name              | Type  | Readable| Writable| Description                                                        |
 | ------------------ | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -142,7 +142,7 @@ Provides data items for setting the sound effects.
 
 ### Attributes
 
-**System capability**: SystemCapability.Applications.settings.Core
+**System capability**: SystemCapability.Applications.Settings.Core
 
 | Name                        | Type  | Readable| Writable| Description                                                        |
 | ---------------------------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -164,7 +164,7 @@ Provides data items for setting text-to-speech (TTS) information.
 
 ### Attributes
 
-**System capability**: SystemCapability.Applications.settings.Core
+**System capability**: SystemCapability.Applications.Settings.Core
 
 | Name               | Type  | Readable| Writable| Description                                                        |
 | ------------------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -180,7 +180,7 @@ Provides data items for setting wireless network information.
 
 ### Attributes
 
-**System capability**: SystemCapability.Applications.settings.Core
+**System capability**: SystemCapability.Applications.Settings.Core
 
 | Name                             | Type  | Readable| Writable| Description                                                        |
 | --------------------------------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -207,7 +207,7 @@ Sets the value for a data item. This API uses an asynchronous callback to return
 
 **Model restriction**: This API can be used only in the stage model.
 
-**System capability**: SystemCapability.Applications.settings.Core
+**System capability**: SystemCapability.Applications.Settings.Core
 
 **Required permissions**: ohos.permission.MANAGE_SECURE_SETTINGS
 
@@ -240,7 +240,7 @@ Sets the value for a data item. This API uses a promise to return the result.
 
 **Model restriction**: This API can be used only in the stage model.
 
-**System capability**: SystemCapability.Applications.settings.Core
+**System capability**: SystemCapability.Applications.Settings.Core
 
 **Required permissions**: ohos.permission.MANAGE_SECURE_SETTINGS
 
@@ -276,7 +276,7 @@ setValue(context: Context, name: string, domainName: string): Promise\<boolean>
 
 Sets the value for a data item. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.Applications.settings.Core
+**System capability**: SystemCapability.Applications.Settings.Core
 
 **Required permissions**: ohos.permission.MANAGE_SECURE_SETTINGS
 
@@ -315,7 +315,7 @@ Obtains the value of a data item in the database. This API uses an asynchronous 
 
 **Model restriction**: This API can be used only in the stage model.
 
-**System capability**: SystemCapability.Applications.settings.Core
+**System capability**: SystemCapability.Applications.Settings.Core
 
 **Parameters**
 
@@ -347,7 +347,7 @@ Obtains the value of a data item in the database. This API uses a promise to ret
 
 **Model restriction**: This API can be used only in the stage model.
 
-**System capability**: SystemCapability.Applications.settings.Core
+**System capability**: SystemCapability.Applications.Settings.Core
 
 **Parameters**
 
@@ -380,7 +380,7 @@ Obtains the value of a data item in the database. This API uses a promise to ret
 
 **Model restriction**: This API can be used only in the stage model.
 
-**System capability**: SystemCapability.Applications.settings.Core
+**System capability**: SystemCapability.Applications.Settings.Core
 
 **Parameters**
 
@@ -417,7 +417,7 @@ Obtains the value of a data item. Unlike **getValue**, this API returns the resu
 
 **Model restriction**: This API can be used only in the stage model.
 
-**System capability**: SystemCapability.Applications.settings.Core
+**System capability**: SystemCapability.Applications.Settings.Core
 
 **Parameters**
 
@@ -451,7 +451,7 @@ Obtains the value of a data item. Unlike **getValue**, this API returns the resu
 
 **Model restriction**: This API can be used only in the stage model.
 
-**System capability**: SystemCapability.Applications.settings.Core
+**System capability**: SystemCapability.Applications.Settings.Core
 
 **Parameters**
 
@@ -489,7 +489,7 @@ If the specified data item exists in the database, the **setValueSync** method u
 
 **Model restriction**: This API can be used only in the stage model.
 
-**System capability**: SystemCapability.Applications.settings.Core
+**System capability**: SystemCapability.Applications.Settings.Core
 
 **Required permissions**: ohos.permission.MANAGE_SECURE_SETTINGS
 
@@ -527,7 +527,7 @@ If the specified data item exists in the database, the **setValueSync** method u
 
 **Model restriction**: This API can be used only in the stage model.
 
-**System capability**: SystemCapability.Applications.settings.Core
+**System capability**: SystemCapability.Applications.Settings.Core
 
 **Required permissions**: ohos.permission.MANAGE_SECURE_SETTINGS
 
@@ -564,7 +564,7 @@ Registers an observer in the specified context so that the specified data item c
 
 **Model restriction**: This API can be used only in the stage model.
 
-**System capability**: SystemCapability.Applications.settings.Core
+**System capability**: SystemCapability.Applications.Settings.Core
 
 **Parameters**
 
@@ -605,7 +605,7 @@ Unregisters the observer under the specified domain name. This API returns the r
 
 **Model restriction**: This API can be used only in the stage model.
 
-**System capability**: SystemCapability.Applications.settings.Core
+**System capability**: SystemCapability.Applications.Settings.Core
 
 | Name  | Type                  | Mandatory| Description                                                        |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
@@ -637,7 +637,7 @@ Enables or disables airplane mode. This API uses an asynchronous callback to ret
 
 This API is not supported currently.
 
-**System capability**: SystemCapability.Applications.settings.Core
+**System capability**: SystemCapability.Applications.Settings.Core
 
 **Parameters**
 
@@ -667,7 +667,7 @@ Enables or disables airplane mode. This API uses a promise to return the result.
 
 This API is not supported currently.
 
-**System capability**: SystemCapability.Applications.settings.Core
+**System capability**: SystemCapability.Applications.Settings.Core
 
 **Parameters**
 
@@ -698,7 +698,7 @@ canShowFloating(callback: AsyncCallback\<boolean>): void
 
 Checks whether the application can be displayed in a floating window. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Applications.settings.Core
+**System capability**: SystemCapability.Applications.Settings.Core
 
 **Parameters**
 
@@ -724,7 +724,7 @@ canShowFloating(): Promise\<boolean>
 
 Checks whether the application can be displayed in a floating window. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.Applications.settings.Core
+**System capability**: SystemCapability.Applications.Settings.Core
 
 **Return value**
 
@@ -746,7 +746,7 @@ getUriSync(name: string): string
 
 Obtains the URI of a data item.
 
-**System capability**: SystemCapability.Applications.settings.Core
+**System capability**: SystemCapability.Applications.Settings.Core
 
 **Parameters**
 
@@ -777,7 +777,7 @@ Obtains the URI of a data item. This API uses an asynchronous callback to return
 >
 > This API is supported since API version 7 and deprecated since API version 9. No substitute API is provided.
 
-**System capability**: SystemCapability.Applications.settings.Core
+**System capability**: SystemCapability.Applications.Settings.Core
 
 **Parameters**
 
@@ -804,7 +804,7 @@ Obtains the URI of a data item. This API uses a promise to return the result.
 >
 > This API is supported since API version 7 and deprecated since API version 9. No substitute API is provided.
 
-**System capability**: SystemCapability.Applications.settings.Core
+**System capability**: SystemCapability.Applications.Settings.Core
 
 **Parameters**
 
@@ -840,7 +840,7 @@ Obtains the value of a data item in the database. This API uses an asynchronous 
 
 **Model restriction**: This API can be used only in the FA model.
 
-**System capability**: SystemCapability.Applications.settings.Core
+**System capability**: SystemCapability.Applications.Settings.Core
 
 **Parameters**
 
@@ -878,7 +878,7 @@ Obtains the value of a data item in the database. This API uses a promise to ret
 
 **Model restriction**: This API can be used only in the FA model.
 
-**System capability**: SystemCapability.Applications.settings.Core
+**System capability**: SystemCapability.Applications.Settings.Core
 
 **Parameters**
 
@@ -917,7 +917,7 @@ Obtains the value of a data item. Unlike **getValue**, this API returns the resu
 
 **Model restriction**: This API can be used only in the FA model.
 
-**System capability**: SystemCapability.Applications.settings.Core
+**System capability**: SystemCapability.Applications.Settings.Core
 
 **Parameters**
 
@@ -960,7 +960,7 @@ If the specified data item exists in the database, the **setValueSync** method u
 
 **Required permissions**: ohos.permission.MANAGE_SECURE_SETTINGS (available only to system applications)
 
-**System capability**: SystemCapability.Applications.settings.Core
+**System capability**: SystemCapability.Applications.Settings.Core
 
 **Parameters**
 
