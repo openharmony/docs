@@ -20,7 +20,7 @@ QRCode(value: string)
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**参数:**
+**参数：** 
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
@@ -28,13 +28,53 @@ QRCode(value: string)
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性。
+除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
-| 名称 | 参数类型 | 描述 |
-| -------- | -------- | -------- |
-| color | [ResourceColor](ts-types.md#resourcecolor) | 设置二维码颜色。<br/>默认值：Color.Black <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>从API version 11开始，默认值改为'#ff182431'。|
-| backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | 设置二维码背景颜色。<br/>默认值：Color.White <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>从API version 11开始，默认值改为'#ffffffff'。 |
-| contentOpacity<sup>11+<sup> | number \| [Resource](ts-types.md#resource) | 设置二维码内容颜色的不透明度。不透明度最小值为0，最大值为1。<br/>默认值：1 |
+### color
+
+color(value: ResourceColor)
+
+设置二维码颜色。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                       | 必填 | 说明         |
+| ------ | ------------------------------------------ | ---- | ------------ |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 二维码颜色。 |
+
+### backgroundColor
+
+backgroundColor(value: ResourceColor)
+
+设置二维码背景颜色。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                       | 必填 | 说明                                                         |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 二维码背景颜色。<br/>默认值：Color.White <br/>从API version 11开始，默认值改为'#ffffffff'。 |
+
+### contentOpacity<sup>11+</sup>
+
+contentOpacity(value: number | Resource)
+
+设置二维码内容颜色的不透明度。不透明度最小值为0，最大值为1。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                 | 必填 | 说明                                     |
+| ------ | ---------------------------------------------------- | ---- | ---------------------------------------- |
+| value  | number&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 二维码内容颜色的不透明度。<br/>默认值：1 |
 
 
 ## 事件
