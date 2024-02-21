@@ -43,6 +43,8 @@
 - [如何实现流式布局](how-to-implement-fluid-layout.md)
 - [列表的多级联动](Multi-level-linkage.md)
 - [如何自定义鼠标悬停/点击组件的背景颜色](Mouse-operation.md)
+- [左右翻页](turn-the-page-left-and-right.md)
+- [组件被点击后样式动态变化实现方式](component-pressed-UI-dynamic-change.md)
 
 ### 装饰器
 - [控制页面刷新范围](overall-and-part-refresh.md)
