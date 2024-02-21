@@ -100,7 +100,7 @@ TextInput(value?: TextInputOptions)
 | Password                           | 密码输入模式。支持输入数字、字母、下划线、空格、特殊字符。密码显示小眼睛图标并且默认会将文字变成圆点。密码输入模式不支持下划线样式。在已启用密码保险箱的情况下，支持用户名、密码的自动保存和自动填充。 |
 | Email                              | 邮箱地址输入模式。支持数字，字母，下划线，小数点，以及@字符（只能存在一个@字符）。 |
 | Number                             | 纯数字输入模式。                                 |
-| PhoneNumber<sup>9+</sup>           | 电话号码输入模式。<br/>支持输入数字、+ 、-、*、#，长度不限。      |
+| PhoneNumber<sup>9+</sup>           | 电话号码输入模式。<br/>支持输入数字、空格、+ 、-、*、#、(、)，长度不限。      |
 | USER_NAME<sup>11+<sup>             | 用户名输入模式。在已启用密码保险箱的情况下，支持用户名、密码的自动保存和自动填充。                |
 | NEW_PASSWORD<sup>11+<sup>          | 新密码输入模式。在已启用密码保险箱的情况下，支持自动生成新密码。                                 |
 | NUMBER_PASSWORD<sup>11+</sup>      | 纯数字密码输入模式。密码显示小眼睛图标并且默认会将文字变成圆点。密码输入模式不支持下划线样式。 |
@@ -491,3 +491,80 @@ struct TextInputExample {
 ```
 
 ![TextInputCounter](figures/TextInputShowCounter.jpg)
+
+
+### 示例6
+本示例展示如何在TextInput上将电话号码格式化为XXX XXXX XXXX
+```ts
+@Entry
+@Component
+struct phone_example {
+  @State submitValue: string = ''
+  @State text : string = ''
+
+  public readonly NUM_TEXT_MAXSIZE_LENGTH = 14;
+
+  isEmpty(str?: string): boolean {
+    return str == 'undefined' || !str || !new RegExp("[^\\s]").test(str);
+  }
+
+  checkNeedNumberSpace(numText: string) {
+    let isSpace: RegExp = new RegExp('[\\+;,#\\*]', 'g');
+    let isRule: RegExp = new RegExp('^\\+.*');
+
+    if (isSpace.test(numText)) {
+      // 如果电话号码里有特殊字符，就不加空格
+      if (isRule.test(numText)) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  removeSpace(str: string): string {
+    if (this.isEmpty(str)) {
+      return '';
+    }
+    return str.replace(new RegExp("[\\s]", "g"), '');
+  }
+
+  build() {
+    Column() {
+        Row() {
+          TextInput({ text: `${this.text}` }).type(InputType.PhoneNumber)
+            .onChange((number: string) => {
+              let teleNumberNoSpace: string = this.removeSpace(number);
+              if (teleNumberNoSpace.length > this.NUM_TEXT_MAXSIZE_LENGTH - 2) {
+                this.text = teleNumberNoSpace;
+              } else if (this.checkNeedNumberSpace(number)) {
+                if (teleNumberNoSpace.length <= 3) {
+                  this.text = teleNumberNoSpace;
+                } else {
+                  let split1: string = teleNumberNoSpace.substring(0, 3);
+                  let split2: string = teleNumberNoSpace.substring(3);
+                  this.text = split1 + ' ' + split2;
+                  if (teleNumberNoSpace.length > 7) {
+                    split2 = teleNumberNoSpace.substring(3, 7);
+                    let split3: string = teleNumberNoSpace.substring(7);
+                    this.text = split1 + ' ' + split2 + ' ' + split3;
+                  }
+                }
+              } else if (teleNumberNoSpace.length > 8) {
+                let split4 = teleNumberNoSpace.substring(0, 8);
+                let split5 = teleNumberNoSpace.substring(8);
+                this.text = split4 + ' ' + split5;
+              } else {
+                this.text = number;
+              }
+            })
+        }
+    }
+    .width('100%')
+    .height("100%")
+  }
+}
+
+``` 
+![phone_example](figures/phone_number.jpeg)
