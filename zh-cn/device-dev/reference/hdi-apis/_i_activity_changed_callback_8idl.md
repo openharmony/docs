@@ -7,17 +7,13 @@
 
 在行为识别用户订阅行为识别数据时需要注册这个回调函数接口的实例。
 
-**Since:**
+模块包路径：ohos.hdi.activity_recognition.v1_0
 
-3.2
+引用：ohos.hdi.activity_recognition.v1_0.ActivityRecognitionTypes
 
-**Version:**
+**起始版本：** 3.2
 
-1.0
-
-**相关模块:**
-
-[HdiActivityRecognition](_hdi_activity_recognition.md)
+**相关模块：**[HdiActivityRecognition](_hdi_activity_recognition.md)
 
 
 ## 汇总
@@ -25,13 +21,6 @@
 
 ### 类
 
-  | 名称 | 描述 | 
+| 名称 | 描述 | 
 | -------- | -------- |
-| [IActivityChangedCallback](interface_i_activity_changed_callback.md) | interface<br/>定义上报行为事件的回调函数 | 
-
-
-### 关键字
-
-  | 名称 | 描述 | 
-| -------- | -------- |
-| package&nbsp;ohos.hdi.activity_recognition.v1_0 | 行为识别模块接口的包路径。 | 
+| interface&nbsp;&nbsp;[IActivityChangedCallback](interface_i_activity_changed_callback.md) | 定义上报行为事件的回调函数。  | 

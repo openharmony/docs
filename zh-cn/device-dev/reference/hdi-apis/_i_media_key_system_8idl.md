@@ -1,0 +1,32 @@
+# IMediaKeySystem.idl
+
+
+## 概述
+
+定义了DRM实例的功能接口。
+
+模块包路径：ohos.hdi.drm.v1_0
+
+引用：
+
+- ohos.hdi.drm.v1_0.MediaKeySystemTypes
+
+- ohos.hdi.drm.v1_0.IMediaKeySession
+
+- ohos.hdi.drm.v1_0.IMediaKeySystemCallback
+
+- ohos.hdi.drm.v1_0.IOemCertificate
+
+**起始版本：** 4.1
+
+**相关模块：**[HdiDrm](_hdi_drm.md)
+
+
+## 汇总
+
+
+### 类
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| interface&nbsp;&nbsp;[IMediaKeySystem](interface_i_media_key_system.md) | DRM实例功能接口，判断是否支持特定DRM方案，创建DRM实例。  | 

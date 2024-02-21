@@ -5,17 +5,17 @@
 
 声明基站轨迹数据记录模块提供的API，用于使能和去使能基站轨迹数据记录功能，主动获取基站轨迹数据。
 
-**Since:**
+模块包路径：ohos.hdi.location.lpfence.cellbatching.v1_0
 
-4.0
+引用：
 
-**Version:**
+- ohos.hdi.location.lpfence.cellbatching.v1_0.CellbatchingTypes
 
-1.0
+- ohos.hdi.location.lpfence.cellbatching.v1_0.ICellbatchingCallback
 
-**相关模块:**
+**起始版本：** 4.0
 
-[HdiLpfenceCellbatching](_hdi_lpfence_cellbatching.md)
+**相关模块：**[HdiLpfenceCellbatching](_hdi_lpfence_cellbatching.md)
 
 
 ## 汇总
@@ -23,13 +23,6 @@
 
 ### 类
 
-  | 名称 | 描述 | 
+| 名称 | 描述 | 
 | -------- | -------- |
-| [ICellbatchingInterface](interface_i_cellbatching_interface.md) | interface<br/>导入基站轨迹数据记录模块的数据类型。 | 
-
-
-### 关键字
-
-  | 名称 | 描述 | 
-| -------- | -------- |
-| package&nbsp;ohos.hdi.location.lpfence.cellbatching.v1_0 | 基站轨迹数据记录模块接口的包路径。 | 
+| interface&nbsp;&nbsp;[ICellbatchingInterface](interface_i_cellbatching_interface.md) | 定义对基站轨迹数据记录模块进行基本操作的接口。  | 
