@@ -304,6 +304,81 @@ struct Hello {
 }
 ```
 
+### hideNonSecureWindows
+
+hideNonSecureWindows(shouldHide: boolean): Promise<void>;
+
+设置是否隐藏不安全窗口。
+不安全窗口是指可能遮挡UIExtensionComponent的窗口类型，如非系统全局悬浮窗、宿主子窗口。当UIExtensionComponent组件被用来显示敏感操作提示内容时，可以选择隐藏不安全窗口，保护敏感操作提示内容不会被遮挡。当UIExtensionComponent不显示或销毁时需要让不安全窗口重新显示。
+
+**系统能力**：SystemCapability.ArkUI.ArkUI.Full
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名      | 类型                      | 必填 | 说明       |
+| ----------- | ------------------------- | ---- | ---------- |
+| shouldHide  | boolean                   | 是   | 指示是否隐藏不安全窗口，true表示隐藏，false表示不隐藏。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**示例**
+
+```ts
+import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility'
+import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession'
+import Want from '@ohos.app.ability.Want';
+const TAG: string = '[UIExtAbility]'
+export default class UIExtAbility extends UIExtensionAbility {
+
+  onCreate() {
+    console.log(TAG, `UIExtAbility onCreate`)
+  }
+
+  onForeground() {
+    console.log(TAG, `UIExtAbility onForeground`)
+  }
+
+  onBackground() {
+    console.log(TAG, `UIExtAbility onBackground`)
+  }
+
+  onDestroy() {
+    console.log(TAG, `UIExtAbility onDestroy`)
+  }
+
+  onSessionCreate(want: Want, session: UIExtensionContentSession) {
+    console.log(TAG, `UIExtAbility onSessionCreate`)
+    session.loadContent('pages/extension');
+
+    let extensionHostWindow = session.getUIExtensionHostWindowProxy();
+    let promise = extensionHostWindow.hideNonSecureWindows(true);
+    promise.then(()=> {
+      console.log(TAG, `Succeeded in hiding the non-secure windows.`);
+    }).catch((err: BusinessError)=> {
+      console.log(TAG, `Failed to hide the non-secure windows. Cause:${JSON.stringify(err)}`);
+    })
+  }
+
+  onSessionDestroy(session: UIExtensionContentSession) {
+    console.log(TAG, `UIExtAbility onSessionDestroy`)
+
+    let extensionHostWindow = session.getUIExtensionHostWindowProxy();
+    let promise = extensionHostWindow.hideNonSecureWindows(false);
+    promise.then(()=> {
+      console.log(TAG, `Succeeded in showing the non-secure windows.`);
+    }).catch((err: BusinessError)=> {
+      console.log(TAG, `Failed to show the non-secure windows. Cause:${JSON.stringify(err)}`);
+    })
+  }
+}
+```
+
 ## 示例
 
 在提供方中应用中，首先通过[UIExtensionContentSession](../apis-ability-kit/js-apis-app-ability-uiExtensionContentSession.md)接口获取到UIExtensionHostWindowProxy对象。
