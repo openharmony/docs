@@ -250,11 +250,11 @@ console.info(`result: ${stack2.length}`);
 // List
 import List from '@ohos.util.List'; // 导入List模块
 
-let list1: List<string> = new List;
+let list1: List<string> = new List();
 list1.add('a');
-let list2: List<number> = new List;
+let list2: List<number> = new List();
 list2.add(1);
-let list3: List<Array<number>> = new List;
+let list3: List<Array<number>> = new List();
 let b2 = [1, 2, 3];
 list3.add(b2); // 增加元素
 console.info(`result: ${list1[0]}`); // 访问元素
