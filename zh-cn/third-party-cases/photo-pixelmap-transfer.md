@@ -226,6 +226,6 @@ export struct MinePage {
 ## 参考
 - [选择用户图片或视频类文件](../application-dev/file-management/select-user-file.md)
 - [将图片解码为pixelmap](../application-dev/media/image-decoding.md)
-- [@ohos.file.fs (文件管理)](../application-dev/reference/apis/js-apis-file-fs.md)
+- [@ohos.file.fs (文件管理)](../application-dev/reference/apis-core-file-kit/js-apis-file-fs.md)
 - [Image](../application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-image.md)
 
