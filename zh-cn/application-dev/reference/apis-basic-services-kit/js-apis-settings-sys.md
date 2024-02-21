@@ -28,7 +28,7 @@ setValue(dataAbilityHelper: DataAbilityHelper, name: string, value: object, call
 
 **模型约束**：此接口仅可在FA模型下使用。
 
-**系统能力**：SystemCapability.Applications.settings.Core
+**系统能力**：SystemCapability.Applications.Settings.Core
 
 **参数**：
 
@@ -54,7 +54,7 @@ setValue(dataAbilityHelper: DataAbilityHelper, name: string, value: object): Pro
 
 **模型约束**：此接口仅可在FA模型下使用。
 
-**系统能力**：SystemCapability.Applications.settings.Core
+**系统能力**：SystemCapability.Applications.Settings.Core
 
 **参数**：
 
