@@ -181,9 +181,6 @@ try {
 }
 ```
 
-
-
-
 ## pointer.getPointerStyle
 
 getPointerStyle(windowId: number, callback: AsyncCallback&lt;PointerStyle&gt;): void
@@ -425,6 +422,17 @@ window.getLastWindow(getContext(), (error: BusinessError, win: window.Window) =>
   }
 });
 ```
+
+## PrimaryButton<sup>10+</sup>
+
+鼠标主键类型。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+| 名称                               | 值    | 说明     |
+| -------------------------------- | ---- | ------ |
+| LEFT                          | 0    | 鼠标左键     |
+| RIGHT                             | 1    | 鼠标右键   |
 
 ## PointerStyle
 
