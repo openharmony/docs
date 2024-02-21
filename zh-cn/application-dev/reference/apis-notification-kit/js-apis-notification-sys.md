@@ -32,7 +32,7 @@ publish(request: NotificationRequest, userId: number, callback: AsyncCallback\<v
 
 | 参数名     | 类型                                        | 必填 | 说明                                        |
 | -------- | ----------------------------------------- | ---- | ------------------------------------------- |
-| request  | [NotificationRequest](#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
+| request  | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
 | userId   | number                                      | 是   | 用户ID。                           |
 | callback | AsyncCallback\<void\>                       | 是   | 被指定的回调方法。                           |
 
@@ -83,7 +83,7 @@ publish(request: NotificationRequest, userId: number): Promise\<void\>
 
 | 参数名     |  类型                                        | 必填 | 说明                                        |
 | -------- | ----------------------------------------- | ---- | ------------------------------------------- |
-| request  | [NotificationRequest](#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
+| request  | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
 | userId   | number                                      | 是   | 用户ID。                           |
 
 **返回值：**
@@ -1231,7 +1231,7 @@ remove(hashCode: string, reason: RemoveReason, callback: AsyncCallback\<void\>):
 
 | 参数名     | 类型                  | 必填 | 说明                 |
 | -------- | --------------------- | ---- | -------------------- |
-| hashCode | string                | 是   | 通知唯一ID。可以通过[onConsume](js-apis-inner-notification-notificationSubscriber-sys.md#onconsume)回调的入参[SubscribeCallbackData](#subscribecallbackdata)获取其内部[NotificationRequest](#notificationrequest)对象中的hashCode。 |
+| hashCode | string                | 是   | 通知唯一ID。可以通过[onConsume](js-apis-inner-notification-notificationSubscriber-sys.md#onconsume)回调的入参[SubscribeCallbackData](#subscribecallbackdata)获取其内部[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)对象中的hashCode。 |
 | reason   | [RemoveReason](#removereason-deprecated) | 是   | 通知删除原因。         |
 | callback | AsyncCallback\<void\> | 是   | 删除指定通知回调函数。 |
 
@@ -1484,7 +1484,7 @@ getAllActiveNotifications(callback: AsyncCallback\<Array\<NotificationRequest>>)
 
 | 参数名     | 类型                                                         | 必填 | 说明                 |
 | -------- | ------------------------------------------------------------ | ---- | -------------------- |
-| callback | AsyncCallback\<Array\<[NotificationRequest](#notificationrequest)>> | 是   | 获取活动通知回调函数。 |
+| callback | AsyncCallback\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)>> | 是   | 获取活动通知回调函数。 |
 
 **示例：**
 
@@ -1505,7 +1505,7 @@ Notification.getAllActiveNotifications(getAllActiveNotificationsCallback);
 
 ## Notification.getAllActiveNotifications
 
-getAllActiveNotifications(): Promise\<Array\<[NotificationRequest](#notificationrequest)>>
+getAllActiveNotifications(): Promise\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)>>
 
 获取当前未删除的所有通知（Promise形式）。
 
@@ -1519,7 +1519,7 @@ getAllActiveNotifications(): Promise\<Array\<[NotificationRequest](#notification
 
 | 类型                                                        | 说明                                                         |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<Array\<[NotificationRequest](#notificationrequest)>> | 以Promise形式返回获取活动通知。 |
+| Promise\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)>> | 以Promise形式返回获取活动通知。 |
 
 **示例：**
 
@@ -2281,34 +2281,6 @@ Notification.getDeviceRemindType().then((data: Notification.DeviceRemindType) =>
 });
 ```
 
-## SubscribeCallbackData
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
-
-**系统API**：此接口为系统接口，三方应用不支持调用。
-
-| 名称            | 类型                                              | 可读 | 可写 | 说明     |
-| --------------- | ------------------------------------------------- | ---- | --- | -------- |
-| request         | [NotificationRequest](#notificationrequest)       | 是  | 否  | 通知内容。 |
-| sortingMap      | [NotificationSortingMap](#notificationsortingmap) | 是  | 否  | 通知排序信息。 |
-| reason          | number                                            | 是  | 否  | 删除原因。 |
-| sound           | string                                            | 是  | 否  | 通知声音。 |
-| vibrationValues | Array\<number\>                                   | 是  | 否  | 通知震动。 |
-
-
-## EnabledNotificationCallbackData<sup>8+</sup>
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
-
-**系统API**：此接口为系统接口，三方应用不支持调用。
-
-| 名称   | 类型    | 可读 | 可写 | 说明             |
-| ------ | ------- | ---- | --- | ---------------- |
-| bundle | string  | 是  | 否  | 应用的包名。       |
-| uid    | number  | 是  | 否  | 应用的uid。        |
-| enable | boolean | 是  | 否  | 应用通知使能状态。 |
-
-
 ## DoNotDisturbDate<sup>8+</sup> <sup>deprecated</sup>
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
@@ -2339,33 +2311,6 @@ Notification.getDeviceRemindType().then((data: Notification.DeviceRemindType) =>
 | TYPE_ONCE    | 1 | 以设置时间段(只看小时和分钟)一次执行勿扰。 |
 | TYPE_DAILY   | 2 | 以设置时间段(只看小时和分钟)每天执行勿扰。 |
 | TYPE_CLEARLY | 3 | 以设置时间段(明确年月日时分)执行勿扰。     |
-
-## NotificationFlagStatus<sup>8+</sup>
-
-描述通知标志状态。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
-
-**系统接口**：此接口为系统接口，三方应用不支持调用。
-
-| 名称           | 值  | 说明                               |
-| -------------- | --- | --------------------------------- |
-| TYPE_NONE      | 0   | 默认标志。                         |
-| TYPE_OPEN      | 1   | 通知标志打开。                     |
-| TYPE_CLOSE     | 2   | 通知标志关闭。                     |
-
-## NotificationRequest
-
-描述通知的请求。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
-
-| 名称                  | 类型                                          | 可读 | 可写 | 说明                       |
-| --------------------- | --------------------------------------------- | ---- | --- | -------------------------- |
-| classification        | string                                        | 是  | 是  | 通知分类。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。                   |
-| isRemoveAllowed<sup>8+</sup> | boolean                                | 是  | 否  | 通知是否能被移除。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。                   |
-| source<sup>8+</sup>   | number                                        | 是  | 否  | 通知源。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。                   |
-| deviceId<sup>8+</sup> | string                                        | 是  | 否  | 通知源的deviceId。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。          |
 
 ## DistributedOptions<sup>8+</sup>
 
