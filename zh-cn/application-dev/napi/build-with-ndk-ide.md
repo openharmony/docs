@@ -59,7 +59,7 @@ target_link_libraries(entry PUBLIC libace_napi.z.so)
     "cppFlags": "",
     "abiFilters": [
        "arm64-v8a",
-       "armeabi-v7a",mor
+       "armeabi-v7a",
        "x86_64"
     ],
   }
