@@ -243,7 +243,7 @@ console.info(`result: ${stack.length}`);
 // List
 import List from '@ohos.util.List'; // 导入List模块
 
-let list = new List;
+let list = new List();
 list.add('a');
 list.add(1);
 let b2 = [1, 2, 3];
