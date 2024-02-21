@@ -61,14 +61,10 @@ Called when the third-party VPN is destroyed to clear resources.
 
   ```ts
 import VpnExtensionAbility from '@ohos.app.ability.VpnExtensionAbility';
-import Want from '@ohos.app.ability.Want';
 
 class MyVpnExtAbility extends VpnExtensionAbility {
-    onDestroy(want: Want) {
+    onDestroy() {
        console.log('MyVpnExtAbility onDestroy');
     }
 }
   ```
-
-
-<!--no_check-->

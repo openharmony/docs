@@ -339,6 +339,107 @@ sms.getDefaultSmsSlotId().then((data: number) => {
 });
 ```
 
+## sms.hasSmsCapability<sup>7+</sup>
+
+hasSmsCapability\(\): boolean
+
+Checks whether the current device can send and receive SMS messages. This API works in synchronous mode.
+
+**System capability**: SystemCapability.Telephony.SmsMms
+
+**Return value**
+
+| Type   | Description                                                        |
+| ------- | ------------------------------------------------------------ |
+| boolean | - **true**: The device can send and receive SMS messages.<br>- **false**: The device cannot send or receive SMS messages.|
+
+```ts
+import sms from '@ohos.telephony.sms';
+
+let result = sms.hasSmsCapability(); 
+console.log(`hasSmsCapability: ${JSON.stringify(result)}`);
+```
+
+## sms.getDefaultSmsSimId<sup>10+</sup>
+
+getDefaultSmsSimId\(callback: AsyncCallback&lt;number&gt;\): void
+
+Obtains the default ID of the SIM card used to send SMS messages. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Telephony.SmsMms
+
+**Parameters**
+
+| Name  | Type                       | Mandatory| Description                                    |
+| -------- | --------------------------- | ---- | ---------------------------------------- |
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the result.<br>The return value is bound to the SIM card and increases from 1.|
+
+**Error codes**
+
+For details about the error codes, see[ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301001  | SIM card is not activated.                   |
+
+**Example**
+
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+sms.getDefaultSmsSimId((err: BusinessError, data: number) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## sms.getDefaultSmsSimId<sup>10+</sup>
+
+getDefaultSmsSimId\(\): Promise&lt;number&gt;
+
+Obtains the default ID of the SIM card used to send SMS messages. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Telephony.SmsMms
+
+**Return value**
+
+| Type           | Description                                                        |
+| --------------- | ------------------------------------------------------------ |
+| Promise&lt;number&gt; | Promise used to return the result.<br>The return value is bound to the SIM card and increases from 1.|
+
+**Error codes**
+
+For details about the error codes, see[ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301001  | SIM card is not activated.                   |
+
+**Example**
+
+```ts
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
+
+let promise = sms.getDefaultSmsSimId();
+promise.then((data: number) => {
+    console.log(`getDefaultSmsSimId success, promise: data->${JSON.stringify(data)}`);
+}).catch((err: BusinessError) => {
+    console.error(`getDefaultSmsSimId failed, promise: err->${JSON.stringify(err)}`);
+});
+```
 
 ## sms.getDefaultSmsSimId<sup>10+</sup>
 

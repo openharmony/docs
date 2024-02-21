@@ -153,7 +153,7 @@ Sends an MMS message. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -261,7 +261,7 @@ Downloads an MMS message. This API uses an asynchronous callback to return the r
 
 **Error codes**
 
-For details about the error codes, see [ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -382,7 +382,7 @@ Sends an MMS message. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -496,7 +496,7 @@ Sets the default slot ID of the SIM card used to send SMS messages. This API use
 
 **Error codes**
 
-For details about the error codes, see [ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -547,7 +547,7 @@ Sets the default slot ID of the SIM card used to send SMS messages. This API use
 
 **Error codes**
 
-For details about the error codes, see [ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -595,7 +595,7 @@ Sets the short message service center (SMSC) address. This API uses an asynchron
 
 **Error codes**
 
-For details about the error codes, see [ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -648,7 +648,7 @@ Sets the SMSC address. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -697,7 +697,7 @@ Obtains the SMSC address. This API uses an asynchronous callback to return the r
 
 **Error codes**
 
-For details about the error codes, see [ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -748,7 +748,7 @@ Obtains the SMSC address. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -796,7 +796,7 @@ Splits an SMS message into multiple segments. This API uses an asynchronous call
 
 **Error codes**
 
-For details about the error codes, see [ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -847,7 +847,7 @@ Splits an SMS message into multiple segments. This API uses a promise to return 
 
 **Error codes**
 
-For details about the error codes, see [ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -895,7 +895,7 @@ Adds a message to the SIM card. If the SIM card is full, an error is reported. T
 
 **Error codes**
 
-For details about the error codes, see [ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -951,7 +951,7 @@ Adds a message to the SIM card. If the SIM card is full, an error is reported. T
 
 **Error codes**
 
-For details about the error codes, see [ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -1004,7 +1004,7 @@ Deletes a message from the SIM card. If the specified **msgIndex** is invalid, a
 
 **Error codes**
 
-For details about the error codes, see [ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -1057,7 +1057,7 @@ Deletes a message from the SIM card. If the specified **msgIndex** is invalid, a
 
 **Error codes**
 
-For details about the error codes, see [ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -1106,7 +1106,7 @@ Updates a SIM message. This API uses an asynchronous callback to return the resu
 
 **Error codes**
 
-For details about the error codes, see [ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -1163,7 +1163,7 @@ Updates a SIM message. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -1217,7 +1217,7 @@ Obtains all SIM card messages. This API uses an asynchronous callback to return 
 
 **Error codes**
 
-For details about the error codes, see [ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -1268,7 +1268,7 @@ Obtains all SIM card messages. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -1316,7 +1316,7 @@ Sets the cell broadcast configuration. This API uses an asynchronous callback to
 
 **Error codes**
 
-For details about the error codes, see [ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -1373,7 +1373,7 @@ Sets the cell broadcast configuration. This API uses a promise to return the res
 
 **Error codes**
 
-For details about the error codes, see [ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -1427,7 +1427,7 @@ Obtains SMS message segment information. This API uses an asynchronous callback 
 
 **Error codes**
 
-For details about the error codes, see [ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -1477,7 +1477,7 @@ Obtains SMS message segment information. This API uses a promise to return the r
 
 **Error codes**
 
-For details about the error codes, see [ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -1522,7 +1522,7 @@ Checks whether SMS is supported on IMS. This API uses an asynchronous callback t
 
 **Error codes**
 
-For details about the error codes, see [ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -1570,7 +1570,7 @@ Checks whether SMS is supported on IMS. This API uses a promise to return the re
 
 **Error codes**
 
-For details about the error codes, see [ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -1614,7 +1614,7 @@ Obtains the SMS format supported by the IMS, for example, **3gpp**, **3gpp2**, o
 
 **Error codes**
 
-For details about the error codes, see [ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -1655,7 +1655,7 @@ Obtains the SMS format supported by the IMS, for example, **3gpp**, **3gpp2**, o
 
 **Error codes**
 
-For details about the error codes, see [ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -1696,7 +1696,7 @@ Decodes MMS messages. This API uses an asynchronous callback to return the resul
 
 **Error codes**
 
-For details about the error codes, see [ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -1749,7 +1749,7 @@ Decodes MMS messages. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -1802,7 +1802,7 @@ MMS message code. This API uses an asynchronous callback to return the result.
 
 **Error codes**
 
-For details about the error codes, see [ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -1858,7 +1858,7 @@ MMS message code. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -1888,45 +1888,6 @@ sms.encodeMms(mmsInformation).then((data: number[]) => {
     console.log(`encodeMms success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`encodeMms failed, promise: err->${JSON.stringify(err)}`);
-});
-```
-
-## sms.getDefaultSmsSimId<sup>10+</sup>
-
-getDefaultSmsSimId\(callback: AsyncCallback&lt;number&gt;\): void
-
-Obtains the default ID of the SIM card used to send SMS messages. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Telephony.SmsMms
-
-**Parameters**
-
-| Name  | Type                       | Mandatory| Description                                    |
-| -------- | --------------------------- | ---- | ---------------------------------------- |
-| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the result.<br>The return value is bound to the SIM card and increases from 1.|
-
-**Error codes**
-
-For details about the error codes, see [ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
-
-| ID|                 Error Message                    |
-| -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
-| 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
-| 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
-| 8301001  | SIM card is not activated.                   |
-
-**Example**
-
-```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
-
-sms.getDefaultSmsSimId((err: BusinessError, data: number) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -2395,5 +2356,3 @@ Defines the SMS message segment information.
 | encodeCount          | number                                   | Yes  | Encoding count.    |
 | encodeCountRemaining | number                                   | Yes  | Remaining encoding count.|
 | scheme               | [SmsEncodingScheme](#smsencodingscheme8) | Yes  | Encoding scheme.|
-
-<!--no_check-->
