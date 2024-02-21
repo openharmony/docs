@@ -1,14 +1,14 @@
 # Requesting Notification Authorization
 
 
-Your application can send notifications only after obtaining user authorization. You can call the [requestEnableNotification()](../reference/apis/js-apis-notificationManager.md#notificationmanagerrequestenablenotification) API to display a dialog box prompting the user to enable notification for your application. The dialog box is displayed only when the API is called for the first time.
+Your application can send notifications only after obtaining user authorization. You can call the [requestEnableNotification()](../reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanagerrequestenablenotification) API to display a dialog box prompting the user to enable notification for your application. The dialog box is displayed only when the API is called for the first time.
 
   **Figure 1** Dialog box prompting the user to enable notification 
 ![en-us_image_0000001416585590](figures/en-us_image_0000001416585590.png)
 
 - Touching **allow** enables notification for the application.
 
-- Touching **ban** keeps notification disabled. In this case, since another call to [requestEnableNotification()](../reference/apis/js-apis-notificationManager.md#notificationmanagerrequestenablenotification) will not display the dialog box again, the user will need to perform the following to manually enable notification.
+- Touching **ban** keeps notification disabled. In this case, since another call to [requestEnableNotification()](../reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanagerrequestenablenotification) will not display the dialog box again, the user will need to perform the following to manually enable notification.
   
   | 1. Swipe down from the upper left corner of the screen and touch the Settings icon in the upper right corner.                             | 2. Access the notification screen and find the target application.| 3. Toggle on **Allow notifications**.                                         |
   | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -17,7 +17,7 @@ Your application can send notifications only after obtaining user authorization.
 
 ## Available APIs
 
-For details about the APIs, see [@ohos.notificationManager (NotificationManager)](../reference/apis/js-apis-notificationManager.md#notificationrequestenablenotification).
+For details about the APIs, see [@ohos.notificationManager (NotificationManager)](../reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanagerrequestenablenotification).
 
 **Table 1** Notification authorization APIs
 

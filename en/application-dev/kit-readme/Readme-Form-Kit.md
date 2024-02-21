@@ -26,4 +26,3 @@
         - [Updating Widget Content by State](../application-models/arkts-ui-widget-update-by-status.md)
   - [Developing a JS Widget](../application-models/js-ui-widget-development.md)
 - [Service Widget Development in FA Model](../application-models/widget-development-fa.md)
-<!--no_check-->

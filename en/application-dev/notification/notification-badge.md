@@ -11,11 +11,11 @@ After a notification is read, the count on the badge is decremented by 1. If the
 
 1. The notification service provides two methods to increase the count on the notification badge:
 
-   - When publishing a notification, pass the **badgeNumber** parameter in [NotificationRequest](../reference/apis/js-apis-inner-notification-notificationRequest.md#notificationrequest). After the notification is received, the count on the badge is incremented.
+   - When publishing a notification, pass the **badgeNumber** parameter in [NotificationRequest](../reference/apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest). After the notification is received, the count on the badge is incremented.
 
-   - Call the [setBadgeNumber()](../reference/apis/js-apis-notificationManager.md#notificationmanagersetbadgenumber10) API to set the count on the badge.
+   - Call the [setBadgeNumber()](../reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanagersetbadgenumber10) API to set the count on the badge.
 
-2. To decrease the count on the badge, call the [setBadgeNumber()](../reference/apis/js-apis-notificationManager.md#notificationmanagersetbadgenumber10) API.
+2. To decrease the count on the badge, call the [setBadgeNumber()](../reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanagersetbadgenumber10) API.
 
   | API| Description|
   | -------- | -------- |
@@ -33,7 +33,7 @@ After a notification is read, the count on the badge is decremented by 1. If the
 
 2. Increase the count on the badge.
 
-   When publishing a notification, pass the **badgeNumber** parameter in [NotificationRequest](../reference/apis/js-apis-inner-notification-notificationRequest.md#notificationrequest). For details, see [Publishing a Basic Notification](text-notification.md).
+   When publishing a notification, pass the **badgeNumber** parameter in [NotificationRequest](../reference/apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest). For details, see [Publishing a Basic Notification](text-notification.md).
    
    In this example, the **setBadgeNumber** API is called to add a badge. This API is called after a new notification is published.
    
