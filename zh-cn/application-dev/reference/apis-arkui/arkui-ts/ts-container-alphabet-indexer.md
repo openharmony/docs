@@ -27,26 +27,264 @@ AlphabetIndexer(value: {arrayValue: Array&lt;string&gt;, selected: number})
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
-| 名称                  | 参数类型     | 描述                                                                    |
-| ----------------------- | --------------------| ------------------------------------------------------------------|
-| color                   | [ResourceColor](ts-types.md#resourcecolor)       | 设置文字颜色。<br/>默认值：0x99000000。                           |
-| selectedColor           | [ResourceColor](ts-types.md#resourcecolor)     | 设置选中项文字颜色。<br/>默认值：0xFF254FF7。                           |
-| popupColor              | [ResourceColor](ts-types.md#resourcecolor)        | 设置提示弹窗文字颜色。<br/>默认值：0xFF254FF7。                         |
-| selectedBackgroundColor | [ResourceColor](ts-types.md#resourcecolor)       | 设置选中项背景颜色。<br/>默认值：0x1F0A59F7。                           |
-| popupBackground         | [ResourceColor](ts-types.md#resourcecolor)        | 设置提示弹窗背景色。<br/>默认值：0xFFFFFFFF。                            |
-| usingPopup              | boolean                                  | 设置是否使用提示弹窗。<br/>默认值：false。                         |
-| selectedFont            | [Font](ts-types.md#font) | 设置选中项文字样式。<br/>默认值：<br/>{<br/>size:'12.0fp',<br/> style:FontStyle.Normal,<br/> weight:FontWeight.Normal,<br/> family:'HarmonyOS Sans'<br/>}                          |
-| popupFont               | [Font](ts-types.md#font) | 设置提示弹窗字体样式。<br/>默认值：<br/>{<br/>size:'24.0vp',<br/> style:FontStyle.Normal,<br/> weight:FontWeight.Normal,<br/> family:'HarmonyOS Sans'<br/>}                         |
-| font                    | [Font](ts-types.md#font) | 设置字母索引条默认字体样式。<br/>默认值：<br/>{<br/>size:'12.0fp',<br/> style:FontStyle.Normal,<br/> weight:FontWeight.Normal,<br/> family:'HarmonyOS Sans'<br/>}                      |
-| itemSize                | string&nbsp;\|&nbsp;number            | 设置字母索引条字母区域大小，字母区域为正方形，即正方形边长。不支持设置为百分比。<br/>默认值：16.0<br/>单位：vp |
-| alignStyle              | value: [IndexerAlign](#indexeralign枚举说明),<br/>offset<sup>10+</sup>?: [Length](ts-types.md#length) | value：设置字母索引条弹框的对齐样式，支持弹窗显示在索引条右侧和左侧。<br/>默认值: IndexerAlign.Right。<br/>offset：设置提示弹窗与索引条之间间距，大于等于0为有效值，在不设置或设置为小于0的情况下间距与popupPosition.x相同。与popupPosition同时设置时，水平方向上offset生效，竖直方向上popupPosition.y生效。 |
-| selected<sup>8+</sup> | number | 设置选中项索引值。<br/>默认值：0。<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
-| popupPosition<sup>8+</sup> | [Position](ts-types.md#position8) | 设置弹出窗口相对于索引器条上边框中点的位置。<br/>默认值：{x:60.0, y:48.0}。 |
-| popupSelectedColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 设置提示弹窗非字母部分选中文字色。 <br/>默认值：#FF182431 |
-| popupUnselectedColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 设置提示弹窗非字母部分未选中文字色。 <br/>默认值：#FF182431 |
-| popupItemFont<sup>10+</sup> | [Font](ts-types.md#font) | 设置提示弹窗非字母部分字体样式。 <br/>默认值：<br/>{<br/>size:24,<br/>weight:FontWeight.Medium<br/>}|
-| popupItemBackgroundColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 设置提示弹窗非字母部分背景色。 <br/>默认值：#FFFFFF |
-| autoCollapse<sup>11+</sup>             | boolean                                  | 设置是否使用自适应折叠模式。<br/>默认值：false。<br/>**说明：**<br />- 如果字符串首字符为“#”，除去首字符。<br/>当剩余字符数 $\leq$ 9时，选择全显示模式。<br/>当9 < 剩余字符数 $\leq$ 13时，根据索引条高度自适应选择全显示模式或者短折叠模式。<br/>当剩余字符数 > 13时，根据索引条高度自适应选择短折叠模式或者长折叠模式。<br />- 如果字符串首字符不为“#”。<br/>当所有字符数 $\leq$ 9时，选择全显示模式。 <br/>当9 < 所有字符数 $\leq$ 13时，根据索引条高度自适应选择全显示模式或者短折叠模式。<br/>当所有字符数 > 13时，根据索引条高度自适应选择短折叠模式或者长折叠模式。
+### color
+
+color(value: ResourceColor)
+
+设置文字颜色。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                       | 必填 | 说明                                |
+| ------ | ------------------------------------------ | ---- | ----------------------------------- |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 文字颜色。<br/>默认值：0x99000000。 |
+
+### selectedColor
+
+selectedColor(value: ResourceColor)
+
+设置选中项文字颜色。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                       | 必填 | 说明                                      |
+| ------ | ------------------------------------------ | ---- | ----------------------------------------- |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 选中项文字颜色。<br/>默认值：0xFF254FF7。 |
+
+### popupColor
+
+popupColor(value: ResourceColor)
+
+设置提示弹窗文字颜色。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                       | 必填 | 说明                                        |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------- |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 提示弹窗文字颜色。<br/>默认值：0xFF254FF7。 |
+
+### selectedBackgroundColor
+
+selectedBackgroundColor(value: ResourceColor)
+
+设置选中项背景颜色。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                       | 必填 | 说明                                      |
+| ------ | ------------------------------------------ | ---- | ----------------------------------------- |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 选中项背景颜色。<br/>默认值：0x1F0A59F7。 |
+
+### popupBackground
+
+popupBackground(value: ResourceColor)
+
+设置提示弹窗背景色。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                       | 必填 | 说明                                      |
+| ------ | ------------------------------------------ | ---- | ----------------------------------------- |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 提示弹窗背景色。<br/>默认值：0xFFFFFFFF。 |
+
+### usingPopup
+
+usingPopup(value: boolean)
+
+设置是否使用提示弹窗。
+
+**系统能力： **SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                   |
+| ------ | ------- | ---- | -------------------------------------- |
+| value  | boolean | 是   | 是否使用提示弹窗。<br/>默认值：false。 |
+
+### selectedFont
+
+selectedFont(value: Font)
+
+设置选中项文字样式。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                     | 必填 | 说明                                                         |
+| ------ | ------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [Font](ts-types.md#font) | 是   | 选中项文字样式。<br/>默认值：<br/>{<br/>size:'12.0fp',<br/> style:FontStyle.Normal,<br/> weight:FontWeight.Normal,<br/> family:'HarmonyOS Sans'<br/>} |
+
+### popupFont
+
+popupFont(value: Font)
+
+设置提示弹窗字体样式。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                     | 必填 | 说明                                                         |
+| ------ | ------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [Font](ts-types.md#font) | 是   | 提示弹窗字体样式。<br/>默认值：<br/>{<br/>size:'24.0vp',<br/> style:FontStyle.Normal,<br/> weight:FontWeight.Normal,<br/> family:'HarmonyOS Sans'<br/>} |
+
+### font
+
+font(value: Font)
+
+设置字母索引条默认字体样式。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                     | 必填 | 说明                                                         |
+| ------ | ------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [Font](ts-types.md#font) | 是   | 字母索引条默认字体样式。<br/>默认值：<br/>{<br/>size:'12.0fp',<br/> style:FontStyle.Normal,<br/> weight:FontWeight.Normal,<br/> family:'HarmonyOS Sans'<br/>} |
+
+### itemSize
+
+itemSize(value: string&nbsp;|&nbsp;number)
+
+设置字母索引条默认字体样式。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                       | 必填 | 说明                                                         |
+| ------ | -------------------------- | ---- | ------------------------------------------------------------ |
+| value  | string&nbsp;\|&nbsp;number | 是   | 字母索引条字母区域大小，字母区域为正方形，即正方形边长。不支持设置为百分比。<br/>默认值：16.0<br/>单位：vp |
+
+### alignStyle
+
+alignStyle(value: IndexerAlign, offset?: Length)
+
+设置字母索引条弹框的对齐样式。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名               | 类型                                  | 必填 | 说明                                                         |
+| -------------------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
+| value                | [IndexerAlign](#indexeralign枚举说明) | 是   | 字母索引条弹框的对齐样式，支持弹窗显示在索引条右侧和左侧。<br/>默认值: IndexerAlign.Right。 |
+| offset<sup>10+</sup> | [Length](ts-types.md#length)          | 否   | 提示弹窗与索引条之间间距，大于等于0为有效值，在不设置或设置为小于0的情况下间距与popupPosition.x相同。与popupPosition同时设置时，水平方向上offset生效，竖直方向上popupPosition.y生效。 |
+
+### selected<sup>8+</sup>
+
+selected(index: number)
+
+设置选中项索引值。
+
+从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                         |
+| ------ | ------ | ---- | ---------------------------- |
+| value  | number | 是   | 选中项索引值。<br/>默认值：0 |
+
+### popupPosition<sup>8+</sup>
+
+popupPosition(value: Position)
+
+设置弹出窗口相对于索引器条上边框中点的位置。
+
+**系统能力： **SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                              | 必填 | 说明                                                         |
+| ------ | --------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [Position](ts-types.md#position8) | 是   | 弹出窗口相对于索引器条上边框中点的位置。<br/>默认值：{x:60.0, y:48.0} |
+
+### popupSelectedColor<sup>10+</sup>
+
+popupSelectedColor(value: ResourceColor)
+
+设置提示弹窗非字母部分选中文字色。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                       | 必填 | 说明                                                  |
+| ------ | ------------------------------------------ | ---- | ----------------------------------------------------- |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 提示弹窗非字母部分选中文字色。 <br/>默认值：#FF182431 |
+
+### popupUnselectedColor<sup>10+</sup>
+
+popupUnselectedColor(value: ResourceColor)
+
+设置提示弹窗非字母部分未选中文字色。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                       | 必填 | 说明                                                    |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------------------- |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 提示弹窗非字母部分未选中文字色。 <br/>默认值：#FF182431 |
+
+### popupItemFont<sup>10+</sup>
+
+popupItemFont(value: Font)
+
+设置提示弹窗非字母部分字体样式。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                     | 必填 | 说明                                                         |
+| ------ | ------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [Font](ts-types.md#font) | 是   | 提示弹窗非字母部分字体样式。 <br/>默认值：<br/>{<br/>size:24,<br/>weight:FontWeight.Medium<br/>} |
+
+### popupItemBackgroundColor<sup>10+</sup>
+
+popupItemBackgroundColor(value: ResourceColor)
+
+设置提示弹窗非字母部分背景色。 
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                     | 必填 | 说明                                            |
+| ------ | ------------------------ | ---- | ----------------------------------------------- |
+| value  | [Font](ts-types.md#font) | 是   | 提示弹窗非字母部分背景色。 <br/>默认值：#FFFFFF |
+
+### autoCollapse<sup>11+</sup>   
+
+autoCollapse(value: boolean)
+
+设置是否使用自适应折叠模式。
+
+如果字符串首字符为“#”，除去首字符。当剩余字符数 $\leq$ 9时，选择全显示模式。当9 < 剩余字符数 $\leq$ 13时，根据索引条高度自适应选择全显示模式或者短折叠模式。当剩余字符数 > 13时，根据索引条高度自适应选择短折叠模式或者长折叠模式。
+
+如果字符串首字符不为“#”。当所有字符数 $\leq$ 9时，选择全显示模式。当9 < 所有字符数 $\leq$ 13时，根据索引条高度自适应选择全显示模式或者短折叠模式。当所有字符数 > 13时，根据索引条高度自适应选择短折叠模式或者长折叠模式。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                       |
+| ------ | ------- | ---- | ------------------------------------------ |
+| value  | boolean | 是   | 是否使用自适应折叠模式。<br/>默认值：false |
 
 ## IndexerAlign枚举说明
 
@@ -59,12 +297,63 @@ AlphabetIndexer(value: {arrayValue: Array&lt;string&gt;, selected: number})
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
 
-| 名称 | 功能描述 |
-| -------- | -------- |
-| onSelected(callback:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;void)<sup>(deprecated)</sup> | 索引条选中回调,返回值为当前选中索引。 从API Version 8开始废弃，建议使用onSelect代替。                             |
-| onSelect(callback:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;void)<sup>8+</sup> | 索引条选中回调,返回值为当前选中索引。                                 |
-| onRequestPopupData(callback:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;Array&lt;string&gt;)<sup>8+</sup> | 选中字母索引后，请求索引提示弹窗显示内容回调。<br/>返回值：索引对应的字符串数组，此字符串数组在弹窗中竖排显示，字符串列表最多显示5个，超出部分可以滑动显示。 |
-| onPopupSelect(callback:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;void)<sup>8+</sup> | 字母索引提示弹窗字符串列表选中回调。                            |
+### onSelected<sup>(deprecated)</sup>
+
+onSelected(callback:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;void)
+
+索引条选中回调，返回值为当前选中索引。 
+
+从API Version 8开始废弃，建议使用[onSelect](#onselect8)代替。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明             |
+| ------ | ------ | ---- | ---------------- |
+| index  | number | 是   | 当前选中的索引。 |
+
+### onSelect<sup>8+</sup>
+
+onSelect(callback:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;void)
+
+索引条选中回调，返回值为当前选中索引。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明             |
+| ------ | ------ | ---- | ---------------- |
+| index  | number | 是   | 当前选中的索引。 |
+
+### onRequestPopupData<sup>8+</sup>
+
+onRequestPopupData(callback:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;Array&lt;string&gt;)
+
+选中字母索引后，请求索引提示弹窗显示内容回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| index  | number | 是   | 索引对应的字符串数组，此字符串数组在弹窗中竖排显示，字符串列表最多显示5个，超出部分可以滑动显示。 |
+
+### onPopupSelect<sup>8+</sup>
+
+onPopupSelect(callback:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;void)
+
+字母索引提示弹窗字符串列表选中回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明             |
+| ------ | ------ | ---- | ---------------- |
+| index  | number | 是   | 当前选中的索引。 |
 
 
 ## 示例
