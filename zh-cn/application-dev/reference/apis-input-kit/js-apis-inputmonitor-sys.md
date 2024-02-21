@@ -241,6 +241,8 @@ try {
 
 ## TouchEventReceiver
 
+(touchEvent: TouchEvent): Boolean
+
 触摸（触屏）输入事件的回调函数。
 
 **需要权限：** ohos.permission.INPUT_MONITORING
