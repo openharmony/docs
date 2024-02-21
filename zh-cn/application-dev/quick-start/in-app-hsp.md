@@ -34,7 +34,6 @@ export struct MyTitleBar {
         .fontFamily('HarmonyHeiTi')
         .fontWeight(FontWeight.Bold)
         .fontSize(32)
-        .fontWeight(700)
         .fontColor($r('app.color.text_color'))
     }
     .width('100%')
