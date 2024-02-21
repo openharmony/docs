@@ -7,7 +7,7 @@
 ## 开发步骤
 
 1. 生成密钥，指定指纹访问控制类型及相关属性。
-   生成或导入密钥时，在密钥属性集中需指定三个参数：用户认证类型[HuksUserAuthType](../../reference/apis/js-apis-huks.md#huksuserauthtype9)、授权访问类型[HuksAuthAccessType](../../reference/apis/js-apis-huks.md#huksauthaccesstype9)、挑战值类型[HuksChallengeType](../../reference/apis/js-apis-huks.md#hukschallengetype9)。
+   生成或导入密钥时，在密钥属性集中需指定三个参数：用户认证类型[HuksUserAuthType](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksuserauthtype9)、授权访问类型[HuksAuthAccessType](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksauthaccesstype9)、挑战值类型[HuksChallengeType](../../reference/apis-universal-keystore-kit/js-apis-huks.md#hukschallengetype9)。
 
    ```ts
    import huks from '@ohos.security.huks';
@@ -15,7 +15,7 @@
    /*
     * 确定密钥别名和封装密钥属性参数集
     */
-   let keyAlias = 'dh_key_fingerprint_access';
+   let keyAlias = 'test_sm4_key_alias';
    let properties: Array<huks.HuksParam> = new Array();
    properties[0] = {
        tag: huks.HuksTag.HUKS_TAG_ALGORITHM,

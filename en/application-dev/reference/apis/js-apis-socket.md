@@ -1,4 +1,4 @@
-# @ohos.net.socket (Socket Connection) 
+# @ohos.net.socket (Socket Connection)
 
 The **socket** module implements data transfer over TCP, UDP, Web, and TLS socket connections.
 
@@ -518,7 +518,7 @@ udp.bind(bindAddr, (err: BusinessError) => {
 
 ### on('message')
 
-on(type: 'message', callback: Callback\<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
+on(type: 'message', callback: Callback\<SocketMessageInfo\>): void
 
 Subscribes to **message** events of the UDP socket connection. This API uses an asynchronous callback to return the result.
 
@@ -529,7 +529,7 @@ Subscribes to **message** events of the UDP socket connection. This API uses an 
 | Name  | Type                                                        | Mandatory| Description                                     |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | type     | string                                                       | Yes  | Event type.<br/> **message**: message receiving event.|
-| callback | Callback\<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}\> | Yes  | Callback used to return the result.                               |
+| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | Yes  | Callback used to return the result.                               |
 
 **Example**
 
@@ -557,7 +557,7 @@ udp.on('message', (value: SocketInfo) => {
 
 ### off('message')
 
-off(type: 'message', callback?: Callback\<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
+off(type: 'message', callback?: Callback\<[SocketMessageInfo]\>): void
 
 Unsubscribes from **message** events of the UDP socket connection. This API uses an asynchronous callback to return the result.
 
@@ -571,7 +571,7 @@ Unsubscribes from **message** events of the UDP socket connection. This API uses
 | Name  | Type                                                        | Mandatory| Description                                     |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | type     | string                                                       | Yes  | Event type.<br/> **message**: message receiving event.|
-| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | No  | Callback used to return the result.                               |
+| callback | Callback<[SocketMessageInfo](#socketmessageinfo11)> | No  | Callback used to return the result.                              |
 
 **Example**
 
@@ -808,7 +808,7 @@ Creates a **MulticastSocket** object.
 
 | Type                              | Description                   |
 | ----------------------------------- | ----------------------------- |
-| [MulticastSocket](#multicastsocket) | **MulticastSocket** object.|
+| [MulticastSocket](#multicastsocket11) | **MulticastSocket** object.|
 
 **Example**
 
@@ -818,7 +818,7 @@ let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance(
 ```
 ## MulticastSocket<sup>11+</sup>
 
-Defines a **MulticastSocket** connection. Before calling MulticastSocket APIs, you need to call [socket.constructMulticastSocketInstance](#socketconstructmulticastsocketinstance) to create a **MulticastSocket** object.
+Defines a **MulticastSocket** connection. Before calling MulticastSocket APIs, you need to call [socket.constructMulticastSocketInstance](#socketconstructmulticastsocketinstance11) to create a **MulticastSocket** object.
 
 ### addMembership<sup>11+</sup>
 
@@ -1070,9 +1070,9 @@ setMulticastTTL(ttl: number): Promise\<void\>;
 Sets the TTL for multicast packets. This API uses a promise to return the result.
 
 > **NOTE**
-> TTL is used to limit the maximum number of router hops for data packet transmission on a network.
+> TTL is used to limit the maximum number of router hops for packet transmission on a network.
 > The value ranges from 0 to 255. The default value is **1**.
-> If the TTL value is **1**, multicast packets can be received only by the host directly connected to the sender. If the TTL is set to a large value, multicast packets can be transmitted over a longer distance.
+> If the TTL value is **1**, multicast packets can be transmitted only to the host directly connected to the sender. If the TTL is set to a large value, multicast packets can be transmitted over a longer distance.
 > This API is effective only after [addMembership](#addmembership11) is called.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -1116,9 +1116,9 @@ getMulticastTTL(callback: AsyncCallback\<number\>): void;
 Obtains the TTL for multicast packets. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
-> TTL is used to limit the maximum number of router hops for data packet transmission on a network.
+> TTL is used to limit the maximum number of router hops for packet transmission on a network.
 > The value ranges from 0 to 255. The default value is **1**.
-> If the TTL value is **1**, multicast packets can be received only by the host directly connected to the sender. If the TTL is set to a large value, multicast packets can be transmitted over a longer distance.
+> If the TTL value is **1**, multicast packets can be transmitted only to the host directly connected to the sender. If the TTL is set to a large value, multicast packets can be transmitted over a longer distance.
 > This API is effective only after [addMembership](#addmembership11) is called.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -1157,9 +1157,9 @@ getMulticastTTL(): Promise\<number\>;
 Obtains the TTL for multicast packets. This API uses a promise to return the result.
 
 > **NOTE**
-> TTL is used to limit the maximum number of router hops for data packet transmission on a network.
+> TTL is used to limit the maximum number of router hops for packet transmission on a network.
 > The value ranges from 0 to 255. The default value is **1**.
-> If the TTL value is **1**, multicast packets can be received only by the host directly connected to the sender. If the TTL is set to a large value, multicast packets can be transmitted over a longer distance.
+> If the TTL value is **1**, multicast packets can be transmitted only to the host directly connected to the sender. If the TTL is set to a large value, multicast packets can be transmitted over a longer distance.
 > This API is effective only after [addMembership](#addmembership11) is called.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -1234,7 +1234,7 @@ multicast.setLoopbackMode(false, (err) => {
 
 setLoopbackMode(flag: boolean): Promise\<void\>;
 
-Sets the loopback mode flag in multicast communication. This API uses an asynchronous callback to return the result.
+Sets the loopback mode flag for multicast communication. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 > Use this API to enable or disable the loopback mode. By default, the loopback mode is enabled.
@@ -1278,7 +1278,7 @@ multicast.setLoopbackMode(false).then(() => {
 
 getLoopbackMode(callback: AsyncCallback\<boolean\>): void;
 
-Obtains the loopback mode flag in multicast communication. This API uses a promise to return the result.
+Obtains the loopback mode flag for multicast communication. This API uses a promise to return the result.
 
 > **NOTE**
 > Use this API to check whether the loopback mode is enabled.
@@ -1318,7 +1318,7 @@ multicast.getLoopbackMode((err, value) => {
 
 getLoopbackMode(): Promise\<boolean\>;
 
-Obtains the loopback mode flag in multicast communication. This API uses a promise to return the result.
+Obtains the loopback mode flag for multicast communication. This API uses a promise to return the result.
 
 > **NOTE**
 > Use this API to check whether the loopback mode is enabled.
@@ -1452,7 +1452,7 @@ multicast.send(sendOptions).then(() => {
 
 ### on('message')<sup>7+</sup>
 
-on(type: 'message', callback: Callback\<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
+on(type: 'message', callback: Callback\<SocketMessageInfo\>): void
 
 Subscribes to **message** events of a **MulticastSocket** object. This API uses an asynchronous callback to return the result.
 
@@ -1463,7 +1463,7 @@ Subscribes to **message** events of a **MulticastSocket** object. This API uses 
 | Name  | Type                                                                                   | Mandatory| Description                                |
 | -------- | ------------------------------------------------------------------------------------- | ---- | ----------------------------------- |
 | type     | string                                                                                | Yes  | Event type.<br/> **message**: message receiving event.|
-| callback | Callback\<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}\> | Yes  | Callback used to return the result.                           |
+| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | Yes  | Callback used to return the result.                           |
 
 **Example**
 
@@ -1484,7 +1484,7 @@ multicast.on('message', (data) => {
 
 ### off('message')<sup>7+</sup>
 
-off(type: 'message', callback?: Callback\<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
+off(type: 'message', callback?: Callback\<SocketMessageInfo\>): void
 
 Unsubscribes to **message** events of a **MulticastSocket** object. This API uses an asynchronous callback to return the result.
 
@@ -1495,7 +1495,7 @@ Unsubscribes to **message** events of a **MulticastSocket** object. This API use
 | Name  | Type                                                                                 | Mandatory| Description                                |
 | -------- | ----------------------------------------------------------------------------------- | ---- | ----------------------------------- |
 | type     | string                                                                              | Yes  | Event type.<br/> **message**: message receiving event.|
-| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | No  | Callback used to return the result.                           |
+| callback | Callback<[SocketMessageInfo](#socketmessageinfo11)> | No  | Callback used to return the result.                           |
 
 **Example**
 
@@ -2343,7 +2343,7 @@ tcp.connect(tcpconnectoptions, () => {
 
 ### on('message')
 
-on(type: 'message', callback: Callback<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
+on(type: 'message', callback: Callback<SocketMessageInfo\>): void
 
 Subscribes to **message** events of the TCP socket connection. This API uses an asynchronous callback to return the result.
 
@@ -2354,7 +2354,7 @@ Subscribes to **message** events of the TCP socket connection. This API uses an 
 | Name  | Type                                                        | Mandatory| Description                                     |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | type     | string                                                       | Yes  | Event type.<br/> **message**: message receiving event.|
-| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | Yes  | Callback used to return the result.                               |
+| callback | Callback<[SocketMessageInfo](#socketmessageinfo11)> | Yes  | Callback used to return the result.                              |
 
 **Example**
 
@@ -2381,7 +2381,7 @@ tcp.on('message', (value: SocketInfo) => {
 
 ### off('message')
 
-off(type: 'message', callback?: Callback<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
+off(type: 'message', callback?: Callback<SocketMessageInfo\>): void
 
 Unsubscribes from **message** events of the TCP socket connection. This API uses an asynchronous callback to return the result.
 
@@ -2395,7 +2395,7 @@ Unsubscribes from **message** events of the TCP socket connection. This API uses
 | Name  | Type                                                        | Mandatory| Description                                     |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | type     | string                                                       | Yes  | Event type.<br/> **message**: message receiving event.|
-| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | No  | Callback used to return the result.                               |
+| callback | Callback<[SocketMessageInfo](#socketmessageinfo11)> | No  | Callback used to return the result.                              |
 
 **Example**
 
@@ -3392,7 +3392,7 @@ tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
 
 ### on('message')<sup>10+</sup>
 
-on(type: 'message', callback: Callback<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
+on(type: 'message', callback: Callback<SocketMessageInfo\>): void
 
 Subscribes to **message** events of a **TCPSocketConnection** object. This API uses an asynchronous callback to return the result.
 
@@ -3403,7 +3403,7 @@ Subscribes to **message** events of a **TCPSocketConnection** object. This API u
 | Name  | Type                                                        | Mandatory| Description                                     |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | type     | string                                                       | Yes  | Event type.<br/> **message**: message receiving event.|
-| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | Yes  | Callback used to return the result.<br> **message**: received message.<br>**remoteInfo**: socket connection information.                               |
+| callback | Callback<[SocketMessageInfo](#socketmessageinfo11)> | Yes  | Callback used to return the result.                               |
 
 **Error codes**
 
@@ -3439,7 +3439,7 @@ tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
 
 ### off('message')<sup>10+</sup>
 
-off(type: 'message', callback?: Callback<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
+off(type: 'message', callback?: Callback<[SocketMessageInfo]\>): void
 
 Unsubscribes from **message** events of a **TCPSocketConnection** object. This API uses an asynchronous callback to return the result.
 
@@ -3453,7 +3453,7 @@ Unsubscribes from **message** events of a **TCPSocketConnection** object. This A
 | Name  | Type                                                        | Mandatory| Description                                     |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | type     | string                                                       | Yes  | Event type.<br/> **message**: message receiving event.|
-| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | No  | Callback used to return the result.<br> **message**: received message.<br>**remoteInfo**: socket connection information.                               |
+| callback | Callback<[SocketMessageInfo](#socketmessageinfo11)> | No  | Callback used to return the result.                             |
 
 **Error codes**
 
@@ -3657,7 +3657,7 @@ Creates a **LocalSocket** object.
 
 | Type                              | Description                   |
   | :--------------------------------- | :---------------------- |
-| [LocalSocket](#localsocket) | **LocalSocket** object.|
+| [LocalSocket](#localsocket11) | **LocalSocket** object.|
 
 **Example**
 
@@ -4043,7 +4043,7 @@ client.connect(connectOpt).then(() => {
 
 ### on('message')<sup>11+</sup>
 
-on(type: 'message', callback: Callback\<{LocalSocketMessageInfo}\>): void
+on(type: 'message', callback: Callback\<SocketMessageInfo\>): void
 
 Subscribes to **message** events of a **LocalSocket** object. This API uses an asynchronous callback to return the result.
 
@@ -4054,7 +4054,7 @@ Subscribes to **message** events of a **LocalSocket** object. This API uses an a
 | Name  | Type                                             | Mandatory| Description                                     |
 | -------- | ----------------------------------------------- | ---- | ----------------------------------- |
 | type     | string                                          | Yes  | Event type.<br/> **message**: message receiving event.|
-| callback | Callback\<{[LocalSocketMessageInfo](#localsocketmessageinfo11)}\> | Yes  | Callback used to return the result.|
+| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -4074,7 +4074,7 @@ client.on('message', (value: socket.LocalSocketMessageInfo) => {
 
 ### off('message')<sup>11+</sup>
 
-off(type: 'message', callback?: Callback\<{LocalSocketMessageInfo}\>): void
+off(type: 'message', callback?: Callback\<SocketMessageInfo\>): void
 
 Unsubscribes from **message** events of a **LocalSocket** object. This API uses an asynchronous callback to return the result.
 
@@ -4088,7 +4088,7 @@ Unsubscribes from **message** events of a **LocalSocket** object. This API uses 
 | Name  | Type                                              | Mandatory| Description                                |
 | -------- | ------------------------------------------------ | ---- | ----------------------------------- |
 | type     | string                                           | Yes  | Event type.<br/> **message**: message receiving event.|
-| callback | Callback\<{[LocalSocketMessageInfo](#localsocketmessageinfo11)}\> | No  | Callback passed to the **on** function.|
+| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | No  | Callback passed to the **on** function.|
 
 **Example**
 
@@ -4796,7 +4796,7 @@ server.on('connect', (connection: socket.LocalSocketConnection) => {
 
 ### on('message')<sup>11+</sup>
 
-on(type: 'message', callback: Callback\<LocalSocketMessageInfo\>): void;
+on(type: 'message', callback: Callback\<SocketMessageInfo\>): void;
 
 Subscribes to **message** events of a **LocalSocketConnection** object. This API uses an asynchronous callback to return the result.
 
@@ -4807,7 +4807,7 @@ Subscribes to **message** events of a **LocalSocketConnection** object. This API
 | Name  | Type                                             | Mandatory| Description                                    |
 | -------- | ----------------------------------------------- | ---- | --------------------------------------- |
 | type     | string                                          | Yes  | Event type.<br/> **message**: message receiving event.    |
-| callback | Callback\<{[LocalSocketMessageInfo](#localsocketmessageinfo11)}\> | Yes  | Callback used to return the result.|
+| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -4843,7 +4843,7 @@ server.on('connect', (connection: socket.LocalSocketConnection) => {
 
 ### off('message')<sup>11+</sup>
 
-off(type: 'message', callback?: Callback\<{LocalSocketMessageInfo}\>): void
+off(type: 'message', callback?: Callback\<SocketMessageInfo\>): void
 
 Unsubscribes from **message** events of a **LocalSocketConnection** object. This API uses an asynchronous callback to return the result.
 
@@ -4857,7 +4857,7 @@ Unsubscribes from **message** events of a **LocalSocketConnection** object. This
 | Name  | Type                                             | Mandatory| Description                                |
 | -------- | ----------------------------------------------- | ---- | ----------------------------------- |
 | type     | string                                          | Yes  | Event type.<br/> **message**: message receiving event.|
-| callback | Callback\<{[LocalSocketMessageInfo](#localsocketmessageinfo11)}\> | No  | Callback passed to the **on** function.|
+| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | No  | Callback passed to the **on** function.|
 
 **Error codes**
 
@@ -5374,7 +5374,7 @@ tls.setExtraOptions(tcpExtraOptions).then(() => {
 
 ### on('message')<sup>9+</sup>
 
-on(type: 'message', callback: Callback<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}>): void;
+on(type: 'message', callback: Callback\<SocketMessageInfo\>): void;
 
 Subscribes to **message** events of the TLS socket connection. This API uses an asynchronous callback to return the result.
 
@@ -5385,7 +5385,7 @@ Subscribes to **message** events of the TLS socket connection. This API uses an 
 | Name  | Type                                                        | Mandatory| Description                                     |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | type     | string                                                       | Yes  | Event type.<br/> **message**: message receiving event.|
-| callback | Callback\<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}\> | Yes  | Callback used to return the result.<br> **message**: received message.<br>**remoteInfo**: socket connection information.|
+| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -5412,7 +5412,7 @@ tls.on('message', (value: SocketInfo) => {
 
 ### off('message')<sup>9+</sup>
 
-off(type: 'message', callback?: Callback\<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
+off(type: 'message', callback?: Callback\<SocketMessageInfo\>): void
 
 Unsubscribes from **message** events of a **TLSSocket** object. This API uses an asynchronous callback to return the result.
 
@@ -5426,7 +5426,7 @@ Unsubscribes from **message** events of a **TLSSocket** object. This API uses an
 | Name  | Type                                                        | Mandatory| Description                                     |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | type     | string                                                       | Yes  | Event type.<br/> **message**: message receiving event.|
-| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | No  | Callback used to return the result.<br> **message**: received message.<br>**remoteInfo**: socket connection information.|
+| callback | Callback<[SocketMessageInfo](#socketmessageinfo11)> | No  | Callback used to return the result.|
 
 **Example**
 
@@ -5583,7 +5583,7 @@ tls.off('error', callback);
 
 connect(options: TLSConnectOptions, callback: AsyncCallback\<void\>): void
 
-Sets up a TLS socket connection, and creates and initializes a TLS session after **bind** is successfully called. During this process, a TLS/SSL handshake is performed between the application and the server to implement data transmission. This API uses an asynchronous callback to return the result.
+Sets up a TLS socket connection, and creates and initializes a TLS session after **bind** is successfully called. During this process, a TLS/SSL handshake is performed between the application and the server to implement data transmission. This API uses an asynchronous callback to return the result. Note that **ca** in **secureOptions** of the **options** parameter is mandatory. You need to enter the CA certificate of the server for certificate authentication. The certificate content starts with "-----BEGIN CERTIFICATE-----" and ends with "-----END CERTIFICATE-----".
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -5681,7 +5681,7 @@ tlsOneWay.connect(tlsOneWayConnectOptions, (err: BusinessError) => {
 
 connect(options: TLSConnectOptions): Promise\<void\>
 
-Sets up a TLS socket connection, and creates and initializes a TLS session after **bind** is successfully called. During this process, a TLS/SSL handshake is performed between the application and the server to implement data transmission. Both two-way and one-way authentication modes are supported. This API uses a promise to return the result.
+Sets up a TLS socket connection, and creates and initializes a TLS session after **bind** is successfully called. During this process, a TLS/SSL handshake is performed between the application and the server to implement data transmission. Both two-way and one-way authentication modes are supported. This API uses a promise to return the result. Note that **ca** in **secureOptions** of the **options** parameter is mandatory. You need to enter the CA certificate of the server for certificate authentication. The certificate content starts with "-----BEGIN CERTIFICATE-----" and ends with "-----END CERTIFICATE-----".
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -7429,6 +7429,17 @@ tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
 });
 ```
 
+## SocketMessageInfo<sup>11+</sup>
+
+Defines the socket connection information.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+| Name| Type  | Mandatory| Description                                 |
+| ------ | ------ | ---- | ------------------------------------- |
+| message   | ArrayBuffer | Yes  | Received **message** event.|
+| remoteInfo   | [SocketRemoteInfo](#socketremoteinfo) | Yes  | Socket connection information.|
+
 ### send<sup>10+</sup>
 
 send(data: string): Promise\<void\>
@@ -8112,7 +8123,7 @@ tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
 
 ### on('message')<sup>10+</sup>
 
-on(type: 'message', callback: Callback<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
+on(type: 'message', callback: Callback\<SocketMessageInfo\>): void
 
 Subscribes to **message** events of a **TLSSocketConnection** object. This API uses an asynchronous callback to return the result.
 
@@ -8123,7 +8134,7 @@ Subscribes to **message** events of a **TLSSocketConnection** object. This API u
 | Name  | Type                                                        | Mandatory| Description                                     |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | type     | string                                                       | Yes  | Event type.<br/> **message**: message receiving event.|
-| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | Yes  | Callback used to return the result.                               |
+| callback | Callback<[SocketMessageInfo](#socketmessageinfo11)> | Yes  | Callback used to return the result.                               |
 
 **Error codes**
 
@@ -8181,7 +8192,7 @@ tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
 
 ### off('message')<sup>10+</sup>
 
-off(type: 'message', callback?: Callback<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
+off(type: 'message', callback?: Callback\<SocketMessageInfo\>): void
 
 Unsubscribes from **message** events of a **TLSSocketConnection** object. This API uses an asynchronous callback to return the result.
 
@@ -8195,7 +8206,7 @@ Unsubscribes from **message** events of a **TLSSocketConnection** object. This A
 | Name  | Type                                                        | Mandatory| Description                                     |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | type     | string                                                       | Yes  | Event type.<br/> **message**: message receiving event.|
-| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | No  | Callback used to return the result.                               |
+| callback | Callback<[SocketMessageInfo](#socketmessageinfo11)> | No  | Callback used to return the result.                               |
 
 **Error codes**
 

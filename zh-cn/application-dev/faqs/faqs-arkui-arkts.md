@@ -386,7 +386,7 @@ listener.off('change', onPortrait) // 去注册回调
 
 **参考链接**
 
-[媒体查询](../reference/apis/js-apis-mediaquery.md)
+[媒体查询](../reference/apis-arkui/js-apis-mediaquery.md)
 
 
 ## 创建的单例换了页面后不生效问题(API 9)
@@ -462,7 +462,7 @@ stringToArray(str:string) {
 
 **参考链接**
 
-[TextEncoder](../reference/apis/js-apis-util.md#textencoder)、[TextDecoder](../reference/apis/js-apis-util.md#textdecoder)
+[TextEncoder](../reference/apis-arkts/js-apis-util.md#textencoder)、[TextDecoder](../reference/apis-arkts/js-apis-util.md#textdecoder)
 
 
 ## 如何导入和导出namespace命名空间(API 9)
@@ -505,7 +505,7 @@ stringToArray(str:string) {
 
 **参考链接**
 
-[资源访问](../quick-start/resource-categories-and-access.md)与[资源管理](../reference/apis/js-apis-resource-manager.md)
+[资源访问](../quick-start/resource-categories-and-access.md)与[资源管理](../reference/apis-localization-kit/js-apis-resource-manager.md)
 
 
 ## XML格式如何转为JSON格式(API 9)
@@ -648,7 +648,7 @@ generateRandomUUID底层使用Node.js crypto.randomUUID()接口，传递参数�
 
 **参考链接**
 
-参考文档：[util.generateRandomUUID](../reference/apis/js-apis-util.md#utilgeneraterandomuuid9)
+参考文档：[util.generateRandomUUID](../reference/apis-arkts/js-apis-util.md#utilgeneraterandomuuid9)
 
 
 ## worker线程与主线程是否运行在相同的全局上下文中(API 9)
@@ -659,7 +659,7 @@ worker线程与主线程不在同一个上下文中，它们使用数据通信�
 
 **参考链接**
 
-worker：[启动一个Worker](../reference/apis/js-apis-worker.md)
+worker：[启动一个Worker](../reference/apis-arkts/js-apis-worker.md)
 
 
 ## 应用图标一多设置(API 9)
@@ -747,7 +747,7 @@ Text组件不用设置lineHeight属性，默认就是居中的。绘制文本是
 
 **参考链接**
 
-[Text](../reference/arkui-ts/ts-basic-components-text.md#示例1)
+[Text](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#示例1)
 
 
 ## 使用什么接口进行url编码(API 9)
@@ -770,7 +770,7 @@ console.log(a) // %20
 
 **参考链接**
 
-[转换xml](../reference/apis/js-apis-convertxml.md)
+[转换xml](../reference/apis-arkts/js-apis-convertxml.md)
 
 
 ## 使用Styles装饰器，编译报错.stateStyles doesn't conform standard(API 9)
@@ -823,3 +823,62 @@ module.json5添加"metadata"配置项：
   }
 }
 ```
+
+## AppStorage是不是不支持线程间共享对象，为什么，推荐替代方案是什么(API 10)
+
+**解决措施**
+
+AppStorage是应用全局的UI状态存储，是和应用的进程绑定的，由UI框架在应用程序启动时创建，为应用程序UI状态属性提供中央存储。
+
+AppStorage支持应用的主线程内多个UIAbility实例间的状态共享。
+
+AppStorage是UI相关的数据，需要运行在UI线程，无法将对象共享到其他线程。目前暂无替代方案。
+
+**参考链接**
+
+[AppStorage：应用全局的UI状态存储](../quick-start/arkts-appstorage.md)
+
+## 自定义字体的注册方式有哪些，推荐的字体资源存放路径是哪里，如何从资源存放路径中取出字体资源(API 10)
+
+**解决措施**
+
+在工程中存放开发者自定义字体资源文件，代码中通过registerFont接口进行自定义字体注册，便可以在文本组件中使用fontFamily属性使用。
+推荐使用$rawfile方式引用自定义字体资源，资源可放在resources/rawfile目录下。
+
+**参考链接**
+
+[@ohos.font (注册自定义字体)](../reference/apis-arkui/js-apis-font.md)
+
+## Text组件如何加载Unicode字符(API 10)
+
+**解决措施**
+
+在Text组件入参content中使用字符串，在字符串中转义Unicode编码，示例代码如下：
+
+```ts
+@Entry
+@Component
+struct text {
+  build() {
+  Column(){
+    Text("\u{1F468}\u200D\u{1F468}\u200D\u{1F467}\u200D\u{1F466}")
+      .width(100)
+      .height(100)
+      .fontSize(50)
+  }
+  }
+}
+```
+
+## 类似js中的slot插槽功能在ArkTS中如何实现(API 10)
+
+**解决措施**
+
+ArkUI还提供了一种更轻量的UI元素复用机制@Builder，@Builder所装饰的函数遵循build()函数语法规则，开发者可以将重复使用的UI元素抽象成一个方法，在build方法里调用；
+另外，ArkUI引入了@BuilderParam装饰器，@BuilderParam用来装饰指向@Builder方法的变量，开发者可在初始化自定义组件时对此属性进行赋值，为自定义组件增加特定的功能。该装饰器用于声明任意UI描述的一个元素，类似slot占位符。
+参考@Builder 和@BuilderParam。
+
+**参考链接**
+
+1. [@Builder装饰器：自定义构建函数](../quick-start/arkts-builder.md)
+2. [@BuilderParam装饰器：引用@Builder函数](../quick-start/arkts-builderparam.md)

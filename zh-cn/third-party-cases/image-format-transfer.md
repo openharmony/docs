@@ -220,6 +220,6 @@ struct Index {
 ```
 
 ## 参考
-- [@ohos.multimedia.image (图片处理)](../application-dev/reference/apis/js-apis-image.md)
-- [@ohos.file.fs (文件管理)](../application-dev/reference/apis/js-apis-file-fs.md)
-- [@ohos.file.picker (选择器)](../application-dev/reference/apis/js-apis-file-picker.md)
+- [@ohos.multimedia.image (图片处理)](../application-dev/reference/apis-image-kit/js-apis-image.md)
+- [@ohos.file.fs (文件管理)](../application-dev/reference/apis-core-file-kit/js-apis-file-fs.md)
+- [@ohos.file.picker (选择器)](../application-dev/reference/apis-core-file-kit/js-apis-file-picker.md)

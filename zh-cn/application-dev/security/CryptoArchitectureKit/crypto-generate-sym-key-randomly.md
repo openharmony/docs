@@ -11,11 +11,11 @@
 
 对应的算法规格请查看[对称密钥生成和转换规格：AES](crypto-sym-key-generation-conversion-spec.md#aes)。
 
-1. 调用[cryptoFramework.createSymKeyGenerator](../../reference/apis/js-apis-cryptoFramework.md#cryptoframeworkcreatesymkeygenerator)，指定字符串参数'AES256'，创建密钥算法为AES、密钥长度为256位的对称密钥生成器（SymKeyGenerator）。
+1. 调用[cryptoFramework.createSymKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatesymkeygenerator)，指定字符串参数'AES256'，创建密钥算法为AES、密钥长度为256位的对称密钥生成器（SymKeyGenerator）。
 
-2. 调用[SymKeyGenerator.generateSymKey](../../reference/apis/js-apis-cryptoFramework.md#generatesymkey-1)，随机生成对称密钥对象（SymKey）。
+2. 调用[SymKeyGenerator.generateSymKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatesymkey-1)，随机生成对称密钥对象（SymKey）。
 
-3. 调用[SymKey.getEncoded](../../reference/apis/js-apis-cryptoFramework.md#getencoded)，获取密钥对象的二进制数据。
+3. 调用[SymKey.getEncoded](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getencoded)，获取密钥对象的二进制数据。
 
 以使用Promise方式随机生成AES密钥为例：
 
@@ -40,12 +40,12 @@ function testGenerateAesKey() {
 
 对应的算法规格请查看[对称密钥生成和转换规格：SM4](crypto-sym-key-generation-conversion-spec.md#sm4)。
 
-1. 调用[cryptoFramework.createSymKeyGenerator](../../reference/apis/js-apis-cryptoFramework.md#cryptoframeworkcreatesymkeygenerator)，指定字符串参数'SM4_128'，创建密钥算法为SM4、密钥长度为128位的对称密钥生成器（SymKeyGenerator）。
+1. 调用[cryptoFramework.createSymKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatesymkeygenerator)，指定字符串参数'SM4_128'，创建密钥算法为SM4、密钥长度为128位的对称密钥生成器（SymKeyGenerator）。
    如果开发者需要使用其他算法，请注意修改此处入参的字符串参数。
 
-2. 调用[SymKeyGenerator.generateSymKey](../../reference/apis/js-apis-cryptoFramework.md#generatesymkey-1)，随机生成对称密钥对象（SymKey）。
+2. 调用[SymKeyGenerator.generateSymKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatesymkey-1)，随机生成对称密钥对象（SymKey）。
 
-3. 调用[SymKey.getEncoded](../../reference/apis/js-apis-cryptoFramework.md#getencoded)，获取密钥对象的二进制数据。
+3. 调用[SymKey.getEncoded](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getencoded)，获取密钥对象的二进制数据。
 
 以使用Promise方式随机生成SM4密钥为例：
 

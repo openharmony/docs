@@ -38,7 +38,7 @@ Sets the media query condition. This API returns the corresponding media query l
 
 | Type              | Description                                        |
 | ------------------ | -------------------------------------------- |
-| MediaQueryListener | Media query listener, which is used to register or deregister the listening callback.|
+| [MediaQueryListener](#mediaquerylistener) | Media query listener, which is used to register or deregister the listening callback.|
 
 **Example**
 
@@ -50,7 +50,7 @@ let listener:mediaquery.MediaQueryListener = mediaquery.matchMediaSync('(orienta
 
 ## MediaQueryListener
 
-Implements the media query listener, including the first query result when the listener is applied for.
+Implements the media query listener, including the first query result when the listener is applied for. The specified media query condition, for example, **'(width <= 600vp)'**, is compared system information. If related information is not initialized during the first query, **matches** returns **false**.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -66,7 +66,7 @@ Implements the media query listener, including the first query result when the l
 
 on(type: 'change', callback: Callback&lt;MediaQueryResult&gt;): void
 
-Registers the media query listener. The callback is triggered when the media attributes change.
+Registers a media query listener. The callback is triggered when the media attributes change.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -86,7 +86,7 @@ Registers the media query listener. The callback is triggered when the media att
 
 off(type: 'change', callback?: Callback&lt;MediaQueryResult&gt;): void
 
-Deregisters the media query listener, so that no callback is triggered when the media attributes change.
+Deregisters a media query listener, so that no callback is triggered when the media attributes change.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -95,7 +95,7 @@ Deregisters the media query listener, so that no callback is triggered when the 
 | Name  | Type                            | Mandatory| Description                                                      |
 | -------- | -------------------------------- | ---- | ---------------------------------------------------------- |
 | type     | string                           | Yes  | Listener type. The value is fixed at **'change'**.                                  |
-| callback | Callback&lt;MediaQueryResult&gt; | No  | Callback to be deregistered. If the default value is used, all callbacks of the handle are deregistered.|
+| callback | Callback&lt;[MediaQueryResult](#mediaqueryresult)&gt; | No  | Callback to be deregistered. If the default value is used, all callbacks of the handle are deregistered.|
 
 **Example**
 

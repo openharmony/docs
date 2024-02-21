@@ -9,7 +9,7 @@
 
 ## 开发步骤
 
-位图操作相关API的详细介绍请参见[API参考](../reference/apis/js-apis-image.md#pixelmap7)。
+位图操作相关API的详细介绍请参见[API参考](../reference/apis-image-kit/js-apis-image.md#pixelmap7)。
 
 1. 完成[图片解码](image-decoding.md#开发步骤)，获取PixelMap位图对象。
 

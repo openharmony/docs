@@ -6,7 +6,7 @@
 
 SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音频将截取1MB大小数据进行播放。
 
-本开发指导将以SoundPool进行一次低时延播放音频的过程为例，向开发者讲解如何使用SoundPool。详细的API声明请参考[SoundPool API参考](../reference/apis/js-apis-inner-multimedia-soundPool.md)。
+本开发指导将以SoundPool进行一次低时延播放音频的过程为例，向开发者讲解如何使用SoundPool。详细的API声明请参考[SoundPool API参考](../reference/apis-media-kit/js-apis-inner-multimedia-soundPool.md)。
 
 过程包括：创建SoundPool实例，加载音频资源（包括资源的解封装与解码:解码格式参考[音频解码支持](audio-decoding.md#音频解码)），设置播放参数（循环模式/播放优先级等），播放控制（播放/停止），释放资源。
 
@@ -40,7 +40,7 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
     ```
 
 2. 调用load方法进行音频资源加载。
-    可以传入uri或fd加载资源，此处使用传入uri的方式为例，更多方法请参考[API文档](../reference/apis/js-apis-inner-multimedia-soundPool.md#load)。
+    可以传入uri或fd加载资源，此处使用传入uri的方式为例，更多方法请参考[API文档](../reference/apis-media-kit/js-apis-inner-multimedia-soundPool.md#load)。
 
     ```ts
     import { BusinessError } from '@ohos.base';
@@ -203,7 +203,7 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
     });
     ```
 
-### 完整示例
+## 完整示例
 
 下面展示了使用SoundPool进行低时延播放的完整示例代码。
   

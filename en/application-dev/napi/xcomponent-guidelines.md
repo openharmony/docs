@@ -10,7 +10,7 @@
 
 ## Available APIs
 
-| API| Description.|
+| API| Description|
 | -------- | -------- |
 |OH_NativeXComponent_GetXComponentId(OH_NativeXComponent* component, char* id, uint64_t* size)|Obtains the ID of an **\<XComponent>**.|
 |OH_NativeXComponent_GetXComponentSize(OH_NativeXComponent* component, const void* window, uint64_t* width, uint64_t* height)|Obtains the size of the surface held by an **\<XComponent>**.|

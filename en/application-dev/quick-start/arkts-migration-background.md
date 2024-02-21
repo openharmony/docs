@@ -60,7 +60,7 @@ class Person {
 let buddy = new Person()
 // Let's assume that the developer forgets to call setName:
 // buddy.setName("John")
-console.log(buddy.getName().length); // runtime exception: name is undefined
+buddy.getName().length; // runtime exception: name is undefined
 ```
 
 Since ArkTS requires explicit initialization, the code looks like this:
@@ -82,7 +82,7 @@ class Person {
 let buddy = new Person()
 // Let's assume that the developer forgets to call setName:
 // buddys.setName("John")
-console.log(buddy.getName().length); // 0, no runtime error
+buddy.getName().length; // 0, no runtime error
 ```
 
 If `name` can be `undefined`, this is also should be specified explicitly:
@@ -113,9 +113,9 @@ let buddy = new Person()
 
 // Compile-time(!) error: Compiler suspects that we
 // may possibly access something undefined and won't build the code:
-console.log(buddy.getName().length); // The code won't build and run
+buddy.getName().length; // The code won't build and run
 
-console.log(buddy.getName()?.length); // Builds ok, no runtime error
+buddy.getName()?.length; // Builds ok, no runtime error
 ```
 
 This case demonstrates how we can improve stability and correctness of our

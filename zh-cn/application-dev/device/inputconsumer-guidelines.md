@@ -12,7 +12,7 @@ import inputConsumer from '@ohos.multimodalInput.inputConsumer';
 
 ## 接口说明
 
-组合按键管理常用接口如下表所示，接口详细介绍请参考[ohos.multimodalInput.inputConsumer文档](../reference/apis/js-apis-inputconsumer.md)。
+组合按键管理常用接口如下表所示，接口详细介绍请参考[ohos.multimodalInput.inputConsumer文档](../reference/apis-input-kit/js-apis-inputconsumer-sys.md)。
 
 | 接口名称  | 描述 |
 | ------------------------------------------------------------ | -------------------------- |
@@ -23,8 +23,8 @@ import inputConsumer from '@ohos.multimodalInput.inputConsumer';
 
 ## 开发步骤
 
-使用特定组合按键的应用开启时调用[on](../reference/apis/js-apis-inputconsumer.md#inputconsumeron)方法订阅组合键，当应用
-应用关闭时再用[off](../reference/apis/js-apis-inputconsumer.md#inputconsumeroff)方法取消组合键订阅。
+使用特定组合按键的应用开启时调用[on](../reference/apis-input-kit/js-apis-inputconsumer-sys.md#inputconsumeron)方法订阅组合键，当应用
+应用关闭时再用[off](../reference/apis-input-kit/js-apis-inputconsumer-sys.md#inputconsumeroff)方法取消组合键订阅。
 
 ```js
 let leftAltKey = 2045;

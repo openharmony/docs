@@ -1,24 +1,24 @@
-# ArkGraphics2D简介
+# ArkGraphics 2D简介
 
-ArkGraphics2D（方舟2D图形服务 ）主要提供图形绘制与显示相关的能力。开发者可以基于一套统一的图形接口进行应用开发，使应用开发更简单、高效。
+ArkGraphics 2D（方舟2D图形服务 ）主要提供图形绘制与显示相关的能力。开发者可以基于一套统一的图形接口进行应用开发，使应用开发更简单、高效。
 
 ## 能力范围
 
-- 提供图像处理的一些基本能力，包括对当前图像的亮度调节、模糊化、灰度调节、智能取色等。具体可见[@ohos.effectKit (图像效果)](../reference/apis/js-apis-effectKit.md)。
+- 提供图像处理的一些基本能力，包括对当前图像的亮度调节、模糊化、灰度调节、智能取色等。具体可见[@ohos.effectKit (图像效果)](../reference/apis-arkgraphics2d/js-apis-effectKit.md)。
 
-- 提供管理抽象化色域对象的基础能力，包括色域的创建、色域基础属性的获取等。具体可见[@ohos.graphics.colorSpaceManager (色彩管理)](../reference/apis/js-apis-colorSpaceManager.md)。
+- 提供管理抽象化色域对象的基础能力，包括色域的创建、色域基础属性的获取等。具体可见[@ohos.graphics.colorSpaceManager (色彩管理)](../reference/apis-arkgraphics2d/js-apis-colorSpaceManager.md)。
 
-- 提供可针对不同形式的内容指定帧率的能力，可用于开发者自绘制UI。具体可见[@ohos.graphics.displaySync (可变帧率)](../reference/apis/js-apis-graphics-displaySync.md)。
+- 提供可针对不同形式的内容指定帧率的能力，可用于开发者自绘制内容。具体可见[可变帧率简介](displaysync-overview.md)。
 
-- 提供高动态显示的相关能力，具体可见[@ohos.graphics.hdrCapability (HDR能力)](../reference/apis/js-apis-hdrCapability.md)。
+- 提供高动态显示的相关能力，具体可见[@ohos.graphics.hdrCapability (HDR能力)](../reference/apis-arkgraphics2d/js-apis-hdrCapability.md)。
 
-- 提供自绘制的相关能力，开发者可根据需要，自定义绘制实现UI效果，可自定义绘制基础形状、文本、图片等。具体可见@ohos.graphics.drawing (2D图形绘制)。
+- 提供自绘制的相关能力，开发者可根据需要，自定义绘制实现UI效果，可自定义绘制基础形状、文本、图片等。具体可见[@ohos.graphics.drawing (绘制模块)](../reference/apis-arkgraphics2d/js-apis-graphics-drawing.md)。
 
 - 提供图形绘制与显示相关的Native能力，包括[NativeWindow](../reference/native-apis/_native_window.md)、[NativeBuffer](../reference/native-apis/_o_h___native_buffer.md)、[NativeImage](../reference/native-apis/_o_h___native_image.md)、[NativeVsync](../reference/native-apis/_native_vsync.md)、[Drawing](../reference/native-apis/_drawing.md)等模块。
 
 ## 使用场景
 
-- 图像效果处理：开发者可根据不同的UI效果需要，使用[effectKit模块](../reference/apis/js-apis-effectKit.md)实现图像的效果处理，以提升用户浏览体验。
+- 图像效果处理：开发者可根据不同的UI效果需要，使用[effectKit模块](../reference/apis-arkgraphics2d/js-apis-effectKit.md)实现图像的效果处理，以提升用户浏览体验。
 
 - 设置图像色域：开发者可根据设计需求使用图像文件并设置色域信息，实现图像广色域效果的绘制和显示。
 

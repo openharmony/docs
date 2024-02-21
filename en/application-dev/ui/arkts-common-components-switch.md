@@ -8,8 +8,6 @@ The **\<Toggle>** component provides a clickable element in the check box, butto
 
 You can create a toggle by calling the following API:
 
-
-
 ```ts
 Toggle(options: { type: ToggleType, isOn?: boolean })
 ```
@@ -23,42 +21,39 @@ The API can be called in either of the following ways:
 
 - Create a toggle that does not contain child components.
   This can be achieved by calling the API with **ToggleType** set to **Checkbox** or **Switch**.
-
-
-  ```ts
+  
+  
+    ```ts
   Toggle({ type: ToggleType.Checkbox, isOn: false })
   Toggle({ type: ToggleType.Checkbox, isOn: true })
-  ```
+    ```
 
   ![en-us_image_0000001562940485](figures/en-us_image_0000001562940485.png)
-
-
+  
   ```ts
   Toggle({ type: ToggleType.Switch, isOn: false })
   Toggle({ type: ToggleType.Switch, isOn: true })
   ```
-
-  ![en-us_image_0000001511421228](figures/en-us_image_0000001511421228.png)
-
-
+  
+    ![en-us_image_0000001511421228](figures/en-us_image_0000001511421228.png)
+  
 - Create a toggle that contains a child component.
   When **ToggleType** is set to **Button**, only one child component is allowed. If the child component has text set, the text content is displayed on the button.
-
 
   ```ts
   Toggle({ type: ToggleType.Button, isOn: false }) {
     Text('status button')
-    .fontColor('#182431')
-    .fontSize(12)
+      .fontColor('#182431')
+      .fontSize(12)
   }.width(100)
   Toggle({ type: ToggleType.Button, isOn: true }) {
     Text('status button')
-    .fontColor('#182431')
-    .fontSize(12)
+      .fontColor('#182431')
+      .fontSize(12)
   }.width(100)
   ```
 
-  ![en-us_image_0000001511900404](figures/en-us_image_0000001511900404.png)
+    ![en-us_image_0000001511900404](figures/en-us_image_0000001511900404.png)
 
 
 ## Setting Styles
@@ -109,8 +104,6 @@ Toggle({ type: ToggleType.Switch, isOn: false })
 ## Example Scenario
 
 In this example, the **\<Toggle>** component is used to enable or disable Bluetooth.
-
-
 
 ```ts
 // xxx.ets

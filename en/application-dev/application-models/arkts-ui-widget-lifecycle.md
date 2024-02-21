@@ -37,8 +37,6 @@ When creating an ArkTS widget, you need to implement the [FormExtensionAbility](
     }
 
     onCastToNormalForm(formId: string) {
-      // Called when the widget host converts the temporary widget into a normal one.
-       
       // The widget provider should do something to respond to the conversion.
       console.info(`[EntryFormAbility] onCastToNormalForm, formId: ${formId}`);
     }
@@ -57,19 +55,16 @@ When creating an ArkTS widget, you need to implement the [FormExtensionAbility](
     }
 
     onChangeFormVisibility(newStatus: Record<string, number>) {
-      // Called when the widget provider receives form events from the system.
       // The callback is triggered only when formVisibleNotify is set to true and the application is a system application.
       console.info('[EntryFormAbility] onChangeFormVisibility');
     }
 
     onFormEvent(formId: string, message: string) {
-      // Called when a specified message event defined by the widget provider is triggered.
       // If the widget supports event triggering, override this method and implement the trigger.
       console.info('[EntryFormAbility] onFormEvent');
     }
 
     onRemoveForm(formId: string) {
-      // Called to notify the widget provider that a specified widget has been destroyed.
       // The input parameter is the ID of the deleted card.
       console.info('[EntryFormAbility] onRemoveForm');
     }
@@ -81,7 +76,6 @@ When creating an ArkTS widget, you need to implement the [FormExtensionAbility](
     }
 
     onAcquireFormState(want: Want) {
-      // Called to return a FormState object
       // upon a status query request from the widget. By default, the initial widget state is returned.
       return formInfo.FormState.READY;
     }

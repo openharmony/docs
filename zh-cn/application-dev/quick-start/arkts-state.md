@@ -49,7 +49,7 @@
 
 ## 观察变化和行为表现
 
-并不是状态变量的所有更改都会引起UI的刷新，只有可以被框架观察到的修改才会引起UI刷新。该小节去介绍什么样的修改才能被观察到，以及观察到变化后，框架的是怎么引起UI刷新的，即框架的行为表现是什么。
+并不是状态变量的所有更改都会引起UI的刷新，只有可以被框架观察到的修改才会引起UI刷新。本小节将介绍什么样的修改才能被观察到，以及观察到变化后，框架的是怎么引起UI刷新的，即框架的行为表现是什么。
 
 
 ### 观察变化
@@ -357,19 +357,19 @@ struct MapSample {
           Text(`${item[1]}`).fontSize(30)
           Divider()
         })
-        Button('init map').onClick(() =>{
+        Button('init map').onClick(() => {
           this.message = new Map([[0, "a"], [1, "b"], [3, "c"]])
         })
-        Button('set new one').onClick(() =>{
+        Button('set new one').onClick(() => {
           this.message.set(4, "d")
         })
-        Button('clear').onClick(() =>{
+        Button('clear').onClick(() => {
           this.message.clear()
         })
-        Button('replace the first one').onClick(() =>{
+        Button('replace the first one').onClick(() => {
           this.message.set(0, "aa")
         })
-        Button('delete the first one').onClick(() =>{
+        Button('delete the first one').onClick(() => {
           this.message.delete(0)
         })
       }
@@ -392,7 +392,7 @@ struct MapSample {
 @Entry
 @Component
 struct SetSample {
-  @State message: Set<number> = new Set([0, 1, 2 ,3,4 ])
+  @State message: Set<number> = new Set([0, 1, 2, 3, 4])
 
   build() {
     Row() {
@@ -401,16 +401,16 @@ struct SetSample {
           Text(`${item[0]}`).fontSize(30)
           Divider()
         })
-        Button('init set').onClick(() =>{
-          this.message = new Set([0, 1, 2 ,3,4 ])
+        Button('init set').onClick(() => {
+          this.message = new Set([0, 1, 2, 3, 4])
         })
-        Button('set new one').onClick(() =>{
+        Button('set new one').onClick(() => {
           this.message.add(5)
         })
-        Button('clear').onClick(() =>{
+        Button('clear').onClick(() => {
           this.message.clear()
         })
-        Button('delete the first one').onClick(() =>{
+        Button('delete the first one').onClick(() => {
           this.message.delete(0)
         })
       }
@@ -429,7 +429,6 @@ struct SetSample {
 @Entry
 @Component
 struct EntryComponent {
-
   build() {
     Column() {
       MyComponent()
@@ -439,7 +438,7 @@ struct EntryComponent {
 
 @Component
 struct MyComponent {
-  @State  count: number | undefined = 0;
+  @State count: number | undefined = 0;
 
   build() {
     Column() {
@@ -451,7 +450,6 @@ struct MyComponent {
     }
   }
 }
-
 ```
 
 
@@ -560,7 +558,7 @@ struct Index {
         Text(this.viewModel.isSuccess ? 'success' : 'failed')
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
-          .onClick(()=>{
+          .onClick(() => {
             this.viewModel.query()
           })
       }.width('100%')
@@ -573,24 +571,26 @@ export class TestModel {
   model: Model
 
   constructor() {
-    this.model = new Model(()=>{
+    this.model = new Model(() => {
       this.isSuccess = true
       console.log(`this.isSuccess: ${this.isSuccess}`)
     })
   }
+
   query() {
     this.model.query()
   }
 }
 
 export class Model {
-  callback: ()=>void
+  callback: () => void
 
-  constructor(cb: ()=>void) {
+  constructor(cb: () => void) {
     this.callback = cb
   }
-  query(){
-      this.callback()
+
+  query() {
+    this.callback()
   }
 }
 ```

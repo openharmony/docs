@@ -4,12 +4,13 @@
 
 ## 开发步骤
 
-详细的API说明请参考[Camera API参考](../reference/native-apis/_o_h___camera.md)。
+详细的API说明请参考[Camera API参考](../reference/apis-camera-kit/_o_h___camera.md)。
 
 1. 导入NDK接口，接口中提供了相机相关的属性和方法，导入方法如下。
      
    ```c++
-    // 导入NDK接口头文件 （参考ndk demo：在camera_manager.cpp中调用）
+    // 导入NDK接口头文件
+    #include "hilog/log.h"
     #include "ohcamera/camera.h"
     #include "ohcamera/camera_input.h"
     #include "ohcamera/capture_session.h"
@@ -19,57 +20,55 @@
     #include "ohcamera/camera_manager.h"
    ```
 
-2. 在CMake脚本中链接Camera NDK动态库。
+2. 在CMake脚本中链接相关动态库。
 
    ```txt
-    target_link_libraries(PUBLIC libohcamera.so)
+    target_link_libraries(entry PUBLIC libohcamera.so libhilog_ndk.z.so)
    ```
 
-3. 创建Surface。
+3. 获取SurfaceId。
      
-    XComponent组件为预览流提供的Surface，而XComponent的能力由UI提供，相关介绍可参考[XComponent组件参考](../reference/arkui-ts/ts-basic-components-xcomponent.md)。
+    XComponent组件为预览流提供的SurfaceId，而XComponent的能力由UI提供，相关介绍可参考[XComponent组件参考](../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)。
 
-    **注**：预览流与录像输出流的分辨率的宽高比要保持一致，如示例代码中宽高比为1920:1080 = 16:9，则需要预览流中的分辨率的宽高比也为16:9，如分辨率选择640:360，或960:540，或1920:1080，以此类推
+4. 根据传入的SurfaceId，通过OH_CameraManager_GetSupportedCameraOutputCapability()方法获取当前设备支持的预览能力。通过OH_CameraManager_CreatePreviewOutput()方法创建预览输出流，其中，OH_CameraManager_CreatePreviewOutput()方法中的参数分别是cameraManager指针，previewProfiles数组中的第一项，步骤三中获取的surfaceId，以及返回的previewOutput指针。
+     
+    ```c++
+      NDKCamera::NDKCamera(char *str)
+      {
+        Camera_Manager *cameraManager = nullptr;
+        Camera_Device* cameras = nullptr;
+        Camera_OutputCapability* cameraOutputCapability = nullptr;
+        Camera_PreviewOutput* previewOutput = nullptr;
+        const Camera_Profile* previewProfile = nullptr;
+        uint32_t size = 0;
+        uint32_t cameraDeviceIndex = 0;
+        char* previewSurfaceId = str;
+        Camera_ErrorCode ret = OH_Camera_GetCameraManager(&cameraManager);
+        if (cameraManager == nullptr || ret != CAMERA_OK) {
+          OH_LOG_ERROR(LOG_APP, "OH_Camera_GetCameraManager failed.");
+        }
+        ret = OH_CameraManager_GetSupportedCameras(cameraManager, &cameras, &size);
+        if (cameras == nullptr || size < 0 || ret != CAMERA_OK) {
+          OH_LOG_ERROR(LOG_APP, "OH_CameraManager_GetSupportedCameras failed.");
+        }
+        ret = OH_CameraManager_GetSupportedCameraOutputCapability(cameraManager, &cameras[cameraDeviceIndex],
+                                                                        &cameraOutputCapability);
+        if (cameraOutputCapability == nullptr || ret != CAMERA_OK) {
+          OH_LOG_ERROR(LOG_APP, "OH_CameraManager_GetSupportedCameraOutputCapability failed.");
+        }
+        if (cameraOutputCapability->previewProfilesSize < 0) {
+          OH_LOG_ERROR(LOG_APP, "previewProfilesSize == null");
+        }
+        previewProfile = cameraOutputCapability->previewProfiles[0];
 
-   ```ts
-    // 获取 previewSurfaceId （参考ndk demo：在tableIndex.ets中调用）
-    // 创建XComponentController 
-    @Component
-    struct XComponentPage {
-      // 创建XComponentController
-      mXComponentController: XComponentController = new XComponentController;
-      previewSurfaceId: string = '';
-
-      build() {
-        Flex() {
-          // 创建XComponent
-          XComponent({
-            id: '',
-            type: 'surface',
-            libraryname: '',
-            controller: this.mXComponentController
-          })
-            .onLoad(() => {
-              // 获取Surface ID
-              this.previewSurfaceId = this.mXComponentController.getXComponentSurfaceId();
-            })
-            .width('100%')
-            .height('100%')
+        ret = OH_CameraManager_CreatePreviewOutput(cameraManager, previewProfile, previewSurfaceId, &previewOutput);
+        if (previewProfile == nullptr || previewOutput == nullptr || ret != CAMERA_OK) {
+          OH_LOG_ERROR(LOG_APP, "OH_CameraManager_CreatePreviewOutput failed.");
         }
       }
-    }
-   ```
+    ```
 
-4. 通过OH_CameraManager_GetSupportedCameraOutputCapability方法获取当前设备支持的预览能力。通过OH_CameraManager_CreatePreviewOutput方法创建预览输出流，其中，OH_CameraManager_CreatePreviewOutput方法中的参数分别是cameraManager指针，previewProfiles数组中的第一项，步骤三中获取的surfaceId，以及返回的previewOutput指针
-     
-   ```c++
-    ret = OH_CameraManager_CreatePreviewOutput(cameraManager, previewProfile, previewSurfaceId, &previewOutput);
-    if (previewProfile == nullptr || previewOutput == nullptr || ret != CAMERA_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_CameraManager_CreatePreviewOutput failed.");
-    }
-   ```
-
-5. 使能。当session完成CommitConfig后通过调用start()方法输出预览流，接口调用失败会返回相应错误码，错误码类型参见[Camera_ErrorCode]。
+5. 使能。当session完成CommitConfig后通过调用start()方法输出预览流，接口调用失败会返回相应错误码，错误码类型参见[Camera_ErrorCode](../reference/apis-camera-kit/_o_h___camera.md#camera_errorcode-1)。
      
    ```c++
     ret = OH_PreviewOutput_Start(previewOutput);
@@ -78,7 +77,7 @@
     }
    ```
 
-6. 通过stop()方法停止预览流，接口调用失败会返回相应错误码，错误码类型参见[Camera_ErrorCode]。
+6. 通过stop()方法停止预览流，接口调用失败会返回相应错误码，错误码类型参见[Camera_ErrorCode](../reference/apis-camera-kit/_o_h___camera.md#camera_errorcode-1)。
      
    ```c++
     ret = OH_PreviewOutput_Stop(previewOutput);
@@ -94,6 +93,12 @@
 - 通过注册固定的frameStart回调函数获取监听预览启动结果，previewOutput创建成功时即可监听，预览第一次曝光时触发，有该事件返回结果则认为预览流已启动。
     
   ```c++
+    ret = OH_PreviewOutput_RegisterCallback(previewOutput, GetPreviewOutputListener());
+    if (ret != CAMERA_OK) {
+        OH_LOG_ERROR(LOG_APP, "OH_PreviewOutput_RegisterCallback failed.");
+    }
+  ```
+  ```c++
     void PreviewOutputOnFrameStart(Camera_PreviewOutput* previewOutput)
     {
         OH_LOG_INFO(LOG_APP, "PreviewOutputOnFrameStart");
@@ -107,10 +112,6 @@
         };
         return &previewOutputListener;
     }
-    ret = OH_PreviewOutput_RegisterCallback(previewOutput_, GetPreviewOutputListener());
-    if (ret != CAMERA_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_PreviewOutput_RegisterCallback failed.");
-    }
   ```
 
 - 通过注册固定的frameEnd回调函数获取监听预览结束结果，previewOutput创建成功时即可监听，预览完成最后一帧时触发，有该事件返回结果则认为预览流已结束。
@@ -122,7 +123,7 @@
     }
   ```
 
-- 通过注册固定的error回调函数获取监听预览输出错误结果，callback返回预览输出接口使用错误时对应的错误码，错误码类型参见[Camera_ErrorCode]。
+- 通过注册固定的error回调函数获取监听预览输出错误结果，callback返回预览输出接口使用错误时对应的错误码，错误码类型参见[Camera_ErrorCode](../reference/apis-camera-kit/_o_h___camera.md#camera_errorcode-1)。
     
   ```c++
     void PreviewOutputOnError(Camera_PreviewOutput* previewOutput, Camera_ErrorCode errorCode)
@@ -130,8 +131,3 @@
         OH_LOG_INFO(LOG_APP, "PreviewOutput errorCode = %{public}d", errorCode);
     }
   ```
-
-## 相关实例
-
-针对预览(Native)，有以下相关实例可供参考：
-- [预览(Native)](https://gitee.com/openharmony/multimedia_camera_framework/tree/master/frameworks/native/camera/test/ndktest/camera_ndk_demo)

@@ -177,7 +177,7 @@ export default class EntryAbility extends UIAbility {
         try {
             if (listenerId !== -1) {
                 missionManager.off('mission', listenerId, (err: BusinessError) => {
-                    console.log('$(err.code)');
+                    console.log(`${err.code}`);
                 });
             }
         } catch (paramError) {
@@ -281,7 +281,7 @@ export default class EntryAbility extends UIAbility {
         try {
             if (listenerId !== -1) {
                 missionManager.off('mission', listenerId).catch((err: BusinessError) => {
-                    console.log('$(err.code)');
+                    console.log(`${err.code}`);
                 });
             }
         } catch (paramError) {
@@ -367,7 +367,7 @@ Obtains the information about a given mission. This API uses an asynchronous cal
             console.error(`error: ${code}, ${message} `);
         }
     })
-    .catch((err: BusinessError) => {console.log(`$(err.code)`);});
+    .catch((err: BusinessError) => {console.log(`${err.code}`);});
   ```
 
 ## missionManager.getMissionInfo

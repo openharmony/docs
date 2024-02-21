@@ -1,4 +1,4 @@
-# 栅格布局（GridRow/GridCol）
+# 栅格布局 (GridRow/GridCol)
 
 
 ## 概述
@@ -13,7 +13,7 @@
 
 4. 自动换行和自适应：栅格布局可以完成一对多布局的自动换行和自适应。当页面元素的数量超出了一行或一列的容量时，他们会自动换到下一行或下一列，并且在不同的设备上自适应排版，使得页面布局更加灵活和适应性强。
 
-[GridRow](../reference/arkui-ts/ts-container-gridrow.md)为栅格容器组件，需与栅格子组件[GridCol](../reference/arkui-ts/ts-container-gridcol.md)在栅格布局场景中联合使用。
+[GridRow](../reference/apis-arkui/arkui-ts/ts-container-gridrow.md)为栅格容器组件，需与栅格子组件[GridCol](../reference/apis-arkui/arkui-ts/ts-container-gridcol.md)在栅格布局场景中联合使用。
 
 
 ## 栅格容器GridRow
@@ -21,7 +21,7 @@
 
 ### 栅格系统断点
 
-栅格系统以设备的水平宽度（[屏幕密度像素值](../reference/arkui-ts/ts-pixel-units.md)，单位vp）作为断点依据，定义设备的宽度类型，形成了一套断点规则。开发者可根据需求在不同的断点区间实现不同的页面布局效果。
+栅格系统以设备的水平宽度（[屏幕密度像素值](../reference/apis-arkui/arkui-ts/ts-pixel-units.md)，单位vp）作为断点依据，定义设备的宽度类型，形成了一套断点规则。开发者可根据需求在不同的断点区间实现不同的页面布局效果。
 
 栅格系统默认断点将设备宽度分为xs、sm、md、lg四类，尺寸范围如下：
 
@@ -109,7 +109,7 @@ GridRow中通过columns设置栅格布局的总列数。
     ForEach(this.bgColors, (item:Color, index?:number|undefined) => {
       GridCol() {
         Row() {
-            Text(`${index + 1}`)
+            Text(`${index}`)
         }.width('100%').height('50')
       }.backgroundColor(item)
     })
@@ -119,7 +119,6 @@ GridRow中通过columns设置栅格布局的总列数。
   ![zh-cn_image_0000001563060709](figures/zh-cn_image_0000001563060709.png)
 
 - 当columns为自定义值，栅格布局在任何尺寸设备下都被分为columns列。下面分别设置栅格布局列数为4和8，子元素默认占一列，效果如下：
-
 
   ```ts
   class CurrTmp{
@@ -135,13 +134,11 @@ GridRow中通过columns设置栅格布局的总列数。
   Row() {
     GridRow({ columns: 4 }) {
       ForEach(this.bgColors, (item:Color, index?:number|undefined) => {
-        if(index){
-          GridCol() {
-            Row() {
-              Text(`${index.toString() + 1}`)
-            }.width('100%').height('50')
-          }.backgroundColor(item)
-        }
+        GridCol() {
+          Row() {
+            Text(`${index}`)
+          }.width('100%').height('50')
+        }.backgroundColor(item)
       })
     }
     .width('100%').height('100%')
@@ -153,17 +150,15 @@ GridRow中通过columns设置栅格布局的总列数。
   .height(160)
   .border(BorderWH)
   .width('90%')
-
+  
   Row() {
     GridRow({ columns: 8 }) {
       ForEach(this.bgColors, (item:Color, index?:number|undefined) => {
-        if(index){
           GridCol() {
             Row() {
-              Text(`${index.toString() + 1}`)
+              Text(`${index}`)
             }.width('100%').height('50')
           }.backgroundColor(item)
-        }
       })
     }
     .width('100%').height('100%')
@@ -177,29 +172,26 @@ GridRow中通过columns设置栅格布局的总列数。
   .width('90%')
   ```
 
-  ![zh-cn_image_0000001511421268](figures/zh-cn_image_0000001511421268.png)
+    ![zh-cn_image_0000001511421268](figures/zh-cn_image_0000001511421268.png)
 
 - 当columns类型为GridRowColumnOption时，支持下面六种不同尺寸（xs, sm, md, lg, xl, xxl）设备的总列数设置，各个尺寸下数值可不同。
-
 
   ```ts
   @State bgColors: Color[] = [Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.Pink, Color.Grey, Color.Blue, Color.Brown]
   GridRow({ columns: { sm: 4, md: 8 }, breakpoints: { value: ['200vp', '300vp', '400vp', '500vp', '600vp'] } }) {
     ForEach(this.bgColors, (item:Color, index?:number|undefined) => {
-      if(index){
-        GridCol() {
-          Row() {
-            Text(`${index.toString() + 1}`)
-          }.width('100%').height('50')
-        }.backgroundColor(item)
-      }
+      GridCol() {
+        Row() {
+          Text(`${index}`)
+        }.width('100%').height('50')
+      }.backgroundColor(item)
     })
   }
   ```
 
-  ![zh-cn_image_0000001563060689](figures/zh-cn_image_0000001563060689.gif)
+    ![zh-cn_image_0000001563060689](figures/zh-cn_image_0000001563060689.gif)
 
-  若只设置sm, md的栅格总列数，则较小的尺寸使用默认columns值12，较大的尺寸使用前一个尺寸的columns。这里只设置sm:4, md:8，则较小尺寸的xs:12，较大尺寸的参照md的设置，lg:8, xl:8, xxl:8
+若只设置sm, md的栅格总列数，则较小的尺寸使用默认columns值12，较大的尺寸使用前一个尺寸的columns。这里只设置sm:4, md:8，则较小尺寸的xs:12，较大尺寸的参照md的设置，lg:8, xl:8, xxl:8
 
 
 ### 排列方向
@@ -270,7 +262,6 @@ GridCol组件作为GridRow组件的子组件，通过给GridCol传参或者设�
   let Goffset:Record<string,number> = { 'xs': 1, 'sm': 2, 'md': 3, 'lg': 4 }
   GridCol({ offset: 2 }){}
   GridCol({ offset: { xs: 2, sm: 2, md: 2, lg: 2 } }){}
-  GridCol(){}.offset(2)
   GridCol(){}.offset(Goffset) 
   ```
 

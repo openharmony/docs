@@ -1,4 +1,4 @@
-# 页面路由（@ohos.router）
+# 页面路由 (@ohos.router)
 
 
 页面路由指在应用程序中实现不同页面之间的跳转和数据传递。Router模块通过不同的url地址，可以方便地进行页面路由，轻松地访问不同的页面。本文将从[页面跳转](#页面跳转)、[页面返回](#页面返回)、[页面返回前增加一个询问框](#页面返回前增加一个询问框)和[命名路由](#命名路由)几个方面介绍Router模块提供的功能。
@@ -12,18 +12,18 @@ Router适用于[模块](../quick-start/application-package-structure-stage.md)�
   **图1** 页面跳转  
 ![router-jump-to-detail](figures/router-jump-to-detail.gif)
 
-Router模块提供了两种跳转模式，分别是[router.pushUrl()](../reference/apis/js-apis-router.md#routerpushurl9)和[router.replaceUrl()](../reference/apis/js-apis-router.md#routerreplaceurl9)。这两种模式决定了目标页面是否会替换当前页。
+Router模块提供了两种跳转模式，分别是[router.pushUrl()](../reference/apis-arkui/js-apis-router.md#routerpushurl9)和[router.replaceUrl()](../reference/apis-arkui/js-apis-router.md#routerreplaceurl9)。这两种模式决定了目标页面是否会替换当前页。
 
-- router.pushUrl()：目标页面不会替换当前页，而是压入页面栈。这样可以保留当前页的状态，并且可以通过返回键或者调用[router.back()](../reference/apis/js-apis-router.md#routerback)方法返回到当前页。
+- router.pushUrl()：目标页面不会替换当前页，而是压入页面栈。这样可以保留当前页的状态，并且可以通过返回键或者调用[router.back()](../reference/apis-arkui/js-apis-router.md#routerback)方法返回到当前页。
 
 - router.replaceUrl()：目标页面会替换当前页，并销毁当前页。这样可以释放当前页的资源，并且无法返回到当前页。
 
 >**说明：** 
 >
->- 创建新页面时，请参考[构建第二个页面](../quick-start/start-with-ets-stage.md)配置第二个页面的路由。
+>- 创建新页面时，请参考[构建第二个页面](../quick-start/start-with-ets-stage.md#构建第二个页面)配置第二个页面的路由。
 >
 >
->- 页面栈的最大容量为32个页面。如果超过这个限制，可以调用[router.clear()](../reference/apis/js-apis-router.md#routerclear)方法清空历史页面栈，释放内存空间。
+>- 页面栈的最大容量为32个页面。如果超过这个限制，可以调用[router.clear()](../reference/apis-arkui/js-apis-router.md#routerclear)方法清空历史页面栈，释放内存空间。
 
 同时，Router模块提供了两种实例模式，分别是Standard和Single。这两种模式决定了目标url是否会对应多个实例。
 
@@ -163,7 +163,7 @@ function onJumpClick(): void {
 }
 ```
 
-在目标页面中，可以通过调用Router模块的[getParams()](../reference/apis/js-apis-router.md#routergetparams)方法来获取传递过来的参数。例如：
+在目标页面中，可以通过调用Router模块的[getParams()](../reference/apis-arkui/js-apis-router.md#routergetparams)方法来获取传递过来的参数。例如：
 
 
 ```ts
@@ -215,10 +215,21 @@ import router from '@ohos.router';
 - 方式二：返回到指定页面。
 
 
+  返回普通页面。
+
   ```ts
   import router from '@ohos.router';
   router.back({
     url: 'pages/Home'
+  });
+  ```
+
+  返回命名路由页面。
+
+  ```ts
+  import router from '@ohos.router';
+  router.back({
+    url: 'myPage' //myPage为返回的命名路由页面别名
   });
   ```
 
@@ -227,10 +238,24 @@ import router from '@ohos.router';
 - 方式三：返回到指定页面，并传递自定义参数信息。
 
 
+  返回到普通页面。
+
   ```ts
   import router from '@ohos.router';
   router.back({
     url: 'pages/Home',
+    params: {
+      info: '来自Home页'
+    }
+  });
+  ```
+
+  返回命名路由页面。
+
+  ```ts
+  import router from '@ohos.router';
+  router.back({
+    url: 'myPage', //myPage为返回的命名路由页面别名
     params: {
       info: '来自Home页'
     }
@@ -280,7 +305,7 @@ struct Home {
 
 ### 系统默认询问框
 
-为了实现这个功能，可以使用页面路由Router模块提供的两个方法：[router.showAlertBeforeBackPage()](../reference/apis/js-apis-router.md#routershowalertbeforebackpage9)和[router.back()](../reference/apis/js-apis-router.md#routerback)来实现这个功能。
+为了实现这个功能，可以使用页面路由Router模块提供的两个方法：[router.showAlertBeforeBackPage()](../reference/apis-arkui/js-apis-router.md#routershowalertbeforebackpage9)和[router.back()](../reference/apis-arkui/js-apis-router.md#routerback)来实现这个功能。
 
 在使用页面路由Router相关功能之前，需要在代码中先导入Router模块。
 
@@ -289,7 +314,7 @@ struct Home {
 import router from '@ohos.router';
 ```
 
-如果想要在目标界面开启页面返回询问框，需要在调用[router.back()](../reference/apis/js-apis-router.md#routerback)方法之前，通过调用[router.showAlertBeforeBackPage()](../reference/apis/js-apis-router.md#routershowalertbeforebackpage9)方法设置返回询问框的信息。例如，在支付页面中定义一个返回按钮的点击事件处理函数：
+如果想要在目标界面开启页面返回询问框，需要在调用[router.back()](../reference/apis-arkui/js-apis-router.md#routerback)方法之前，通过调用[router.showAlertBeforeBackPage()](../reference/apis-arkui/js-apis-router.md#routershowalertbeforebackpage9)方法设置返回询问框的信息。例如，在支付页面中定义一个返回按钮的点击事件处理函数：
 
 
 ```ts
@@ -323,7 +348,7 @@ message：string类型，表示询问框的内容。
 
 ### 自定义询问框
 
-自定义询问框的方式，可以使用[弹窗](../reference/apis/js-apis-promptAction.md#promptactionshowdialog)或者自定义弹窗实现。这样可以让应用界面与系统默认询问框有所区别，提高应用的用户体验度。本文以弹窗为例，介绍如何实现自定义询问框。
+自定义询问框的方式，可以使用[弹窗](../reference/apis-arkui/js-apis-promptAction.md#promptactionshowdialog)或者自定义弹窗实现。这样可以让应用界面与系统默认询问框有所区别，提高应用的用户体验度。本文以弹窗为例，介绍如何实现自定义询问框。
 
 在使用页面路由Router相关功能之前，需要在代码中先导入Router模块。
 
@@ -332,7 +357,7 @@ message：string类型，表示询问框的内容。
 import router from '@ohos.router';
 ```
 
-在事件回调中，调用弹窗的[promptAction.showDialog()](../reference/apis/js-apis-promptAction.md#promptactionshowdialog)方法：
+在事件回调中，调用弹窗的[promptAction.showDialog()](../reference/apis-arkui/js-apis-promptAction.md#promptactionshowdialog)方法：
 
 
 ```ts
@@ -376,7 +401,7 @@ function onBackClick() {
 
 ## 命名路由
 
-在开发中为了跳转到[共享包中的页面](../quick-start/shared-guide.md)（即共享包中路由跳转），可以使用[router.pushNamedRoute()](../reference/apis/js-apis-router.md#routerpushnamedroute10)来实现。
+在开发中为了跳转到[共享包中的页面](../quick-start/shared-guide.md)（即共享包中路由跳转），可以使用[router.pushNamedRoute()](../reference/apis-arkui/js-apis-router.md#routerpushnamedroute10)来实现。
 
   **图4** 命名路由跳转  
 
@@ -394,9 +419,20 @@ import router from '@ohos.router';
 ```ts
 // library/src/main/ets/pages/Index.ets
 // library为新建共享包自定义的名字
-@Entry({ routeName : 'myPage' })
+@Entry({ routeName: 'myPage' })
 @Component
 export struct MyComponent {
+  build() {
+    Row() {
+      Column() {
+        Text('Library Page')
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
 }
 ```
 
@@ -405,7 +441,7 @@ export struct MyComponent {
 ```ts
 import router from '@ohos.router';
 import { BusinessError } from '@ohos.base';
-const module = import('library/src/main/ets/pages/Index')  // 引入共享包中的命名路由页面
+const module = import('library/src/main/ets/pages/Index');  // 引入共享包中的命名路由页面
 @Entry
 @Component
 struct Index {

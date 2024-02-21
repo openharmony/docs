@@ -22,7 +22,7 @@ resourceManager.getRawFileContent('test.xml', (error, value) => {
 
 **参考链接**
 
-[资源管理](../reference/apis/js-apis-resource-manager.md)
+[资源管理](../reference/apis-localization-kit/js-apis-resource-manager.md)
 
 
 ## Stage模型下如何获取资源(API 9)
@@ -62,7 +62,7 @@ context
 
 **参考链接**
 
-[资源分类与访问](../quick-start/resource-categories-and-access.md)、[资源管理](../reference/apis/js-apis-resource-manager.md)
+[资源分类与访问](../quick-start/resource-categories-and-access.md)、[资源管理](../reference/apis-localization-kit/js-apis-resource-manager.md)
 
 
 ## 资源管理内的getPluralString方法获取value值有误(API 9)
@@ -84,7 +84,7 @@ getPluralString接口只支持英文系统，不支持中文。
 
 **参考链接**
 
-[资源管理](../reference/apis/js-apis-resource-manager.md#getstringvalue9)
+[资源管理](../reference/apis-localization-kit/js-apis-resource-manager.md#getstringvalue9)
 
 
 ## AppScope中的资源如图片，文字等如何引用(API 9)
@@ -102,7 +102,7 @@ Resource为string支持限定词目录使用this.context.resourceManager.getStri
 
 **参考链接**
 
-[ResourceManager\(资源管理\)](../reference/apis/js-apis-resource-manager.md#getstringsync9)
+[ResourceManager\(资源管理\)](../reference/apis-localization-kit/js-apis-resource-manager.md#getstringsync9)
 
 
 ## form_config.json文件中是否可以使用$引用常量(API 9)

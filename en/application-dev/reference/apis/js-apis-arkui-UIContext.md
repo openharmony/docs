@@ -1,6 +1,6 @@
 # @ohos.arkui.UIContext (UIContext)
 
-In the stage model, a window stage or window can use the **loadContent** API to load pages, create a UI instance, and render page content to the associated window. Naturally, UI instances and windows are associated on a one-by-one basis. Some global UI APIs are executed in the context of certain UI instances. When calling these APIs, you must identify the UI context, and consequently UI instance, by tracing the call chain. If these APIs are called on a non-UI page or in some asynchronous callback, the current UI context may fail to be identified, resulting in API execution errors.
+In the stage model, a window stage or window can use the [loadContent](./js-apis-window.md#loadcontent9) API to load pages, create a UI instance, and render page content to the associated window. Naturally, UI instances and windows are associated on a one-by-one basis. Some global UI APIs are executed in the context of certain UI instances. When calling these APIs, you must identify the UI context, and consequently UI instance, by tracing the call chain. If these APIs are called on a non-UI page or in some asynchronous callback, the current UI context may fail to be identified, resulting in API execution errors.
 
 **@ohos.window** adds the [getUIContext](./js-apis-window.md#getuicontext10) API in API version 10 for obtaining the **UIContext** object of a UI instance. The API provided by the **UIContext** object can be directly applied to the corresponding UI instance.
 
@@ -8,11 +8,11 @@ In the stage model, a window stage or window can use the **loadContent** API to 
 >
 > The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> You can preview how this component looks on a real device. The preview is not yet available in the DevEco Studio Previewer.
+> You can preview how this component looks on a real device, but not in DevEco Studio Previewer.
 
 ## UIContext
 
-In the following API examples, you must first use [getUIContext()](./js-apis-window.md#getuicontext10) in **@ohos.window** to obtain a **UIContext** instance, and then call the APIs using the obtained instance. In this document, the **UIContext** instance is represented by **uiContext**.
+In the following API examples, you must first use [getUIContext()](./js-apis-window.md#getuicontext10) in **@ohos.window** to obtain a **UIContext** instance, and then call the APIs using the obtained instance. Alternatively, you can obtain a **UIContext** instance through the built-in method [getUIContext()](../arkui-ts/ts-custom-component-api.md#getuicontext) of the custom component. In this document, the **UIContext** instance is represented by **uiContext**.
 
 ### getFont
 
@@ -242,7 +242,7 @@ Shows an alert dialog box.
 
 | Name    | Type                                      | Mandatory  | Description                 |
 | ------- | ---------------------------------------- | ---- | ------------------- |
-| options | [AlertDialogParamWithConfirm](../arkui-ts/ts-methods-alert-dialog-box.md#alertdialogparamwithconfirm) \| [AlertDialogParamWithButtons](../arkui-ts/ts-methods-alert-dialog-box.md#alertdialogparamwithbuttons) \| [AlertDialogParamWithOptions](../arkui-ts/ts-methods-alert-dialog-box.md#alertdialogparamwithoptions10) | Yes   | Defines and displays the **\<AlertDialog>** component.|
+| options | [AlertDialogParamWithConfirm](../arkui-ts/ts-methods-alert-dialog-box.md#alertdialogparamwithconfirm) \| [AlertDialogParamWithButtons](../arkui-ts/ts-methods-alert-dialog-box.md#alertdialogparamwithbuttons) \| [AlertDialogParamWithOptions](../arkui-ts/ts-methods-alert-dialog-box.md#alertdialogparamwithoptions10) | Yes   | Parameters of the **\<AlertDialog>** component.|
 
 
 **Example**
@@ -273,30 +273,15 @@ uiContext.showAlertDialog(
 
 showActionSheet(value: ActionSheetOptions): void
 
-Defines and shows the action sheet.
+Shows an action sheet in the given settings.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**ActionSheetOptions parameters**
+**Parameters**
 
-| Name       | Type                                      | Mandatory  | Description                                      |
-| ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| title      | [Resource](../arkui-ts/ts-types.md#resource) \| string | Yes   | Title of the dialog box.                                   |
-| message    | [Resource](../arkui-ts/ts-types.md#resource) \| string | Yes   | Content of the dialog box.                                   |
-| autoCancel | boolean                                  | No   | Whether to close the dialog box when the overlay is clicked.<br>Default value: **true**              |
-| confirm    | {<br>value: [ResourceStr](../arkui-ts/ts-types.md#resourcestr),<br>action: () =&gt; void<br>} | No   | Text content of the confirm button and callback upon button clicking.<br>Default value:<br>**value**: button text.<br>**action**: callback upon button clicking.|
-| cancel     | () =&gt; void                  | No   | Callback invoked when the dialog box is closed after the overlay is clicked.                      |
-| alignment  | [DialogAlignment](../arkui-ts/ts-methods-alert-dialog-box.md#dialogalignment) | No   | Alignment mode of the dialog box in the vertical direction.<br>Default value: **DialogAlignment.Bottom**|
-| offset     | {<br>dx: [Length](../arkui-ts/ts-types.md#length),<br>dy: [Length](../arkui-ts/ts-types.md#length)<br>} | No   | Offset of the dialog box relative to the alignment position.{<br>dx: 0,<br>dy: 0<br>} |
-| sheets     | Array&lt;SheetInfo&gt;                   | Yes   | Options in the dialog box. Each option supports the image, text, and callback.            |
-
-**SheetInfo parameters**
-
-| Name   | Type                                      | Mandatory  | Description            |
-| ------ | ---------------------------------------- | ---- | -------------- |
-| title  | [ResourceStr](../arkui-ts/ts-types.md#resourcestr) | Yes   | Text of the option.      |
-| icon   | [ResourceStr](../arkui-ts/ts-types.md#resourcestr) | No   | Sheet icon. By default, no icon is displayed.|
-| action | ()=&gt;void                              | Yes   | Callback when the sheet is selected.      |
+| Name| Type                                                        | Mandatory| Description                |
+| ------ | ------------------------------------------------------------ | ---- | -------------------- |
+| value  | [ActionSheetOptions](../arkui-ts/ts-methods-action-sheet.md#actionsheetoptions) | Yes  | Parameters of the action sheet.|
 
 **Example**
 
@@ -343,26 +328,15 @@ uiContext.showActionSheet({
 
 showDatePickerDialog(options: DatePickerDialogOptions): void
 
-Shows a date picker dialog box.
+Shows a date picker dialog box in the given settings.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**DatePickerDialogOptions parameters**
+**Parameters**
 
-| Name               | Type                                      | Mandatory  | Description                                    |
-| ------------------ | ---------------------------------------- | ---- | -------------------------------------- |
-| start              | Date                                     | No   | Start date of the picker.<br>Default value: **Date('1970-1-1')**  |
-| end                | Date                                     | No   | End date of the picker.<br>Default value: **Date('2100-12-31')**|
-| selected           | Date                                     | No   | Selected date.<br>Default value: current system date             |
-| lunar              | boolean                                  | No   | Whether to display the lunar calendar.<br>Default value: **false**              |
-| showTime           | boolean                                  | No   | Whether to display the time item.<br>Default value: **false**                |
-| useMilitaryTime    | boolean                                  | No   | Whether to display time in 24-hour format.<br>Default value: **false**           |
-| disappearTextStyle | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10) | No   | Font color, font size, and font width for the top and bottom items.        |
-| textStyle          | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10) | No   | Font color, font size, and font width of all items except the top, bottom, and selected items.    |
-| selectedTextStyle  | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10) | No   | Font color, font size, and font width of the selected item.                   |
-| onAccept           | (value: [DatePickerResult](../arkui-ts/ts-basic-components-datepicker.md#datepickerresult)) => void | No   | Callback invoked when the OK button in the dialog box is clicked.                   |
-| onCancel           | () => void                               | No   | Callback invoked when the Cancel button in the dialog box is clicked.                   |
-| onChange           | (value: [DatePickerResult](../arkui-ts/ts-basic-components-datepicker.md#datepickerresult)) => void | No   | Callback invoked when the selected item in the picker changes.            |
+| Name | Type                                                        | Mandatory| Description                          |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------ |
+| options | [DatePickerDialogOptions](../arkui-ts/ts-methods-datepicker-dialog.md#datepickerdialogoptions) | Yes  | Parameters of the date picker dialog box.|
 
 **Example**
 
@@ -390,109 +364,126 @@ uiContext.showDatePickerDialog({
 
 showTimePickerDialog(options: TimePickerDialogOptions): void
 
-Shows a time picker dialog box.
+Shows a time picker dialog box in the given settings.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**TimePickerDialogOptions parameters**
+**Parameters**
 
-| Name               | Type                                      | Mandatory  | Description                                  |
-| ------------------ | ---------------------------------------- | ---- | ------------------------------------ |
-| selected           | Date                                     | No   | Selected time.<br>Default value: current system time           |
-| useMilitaryTime    | boolean                                  | No   | Whether to display time in 24-hour format. The 12-hour format is used by default.<br>Default value: **false**|
-| disappearTextStyle | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10) | No   | Font color, font size, and font width for the top and bottom items.      |
-| textStyle          | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10) | No   | Font color, font size, and font width of all items except the top, bottom, and selected items.  |
-| selectedTextStyle  | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10) | No   | Font color, font size, and font width of the selected item.                 |
-| onAccept           | (value: [TimePickerResult](../arkui-ts/ts-basic-components-timepicker.md#timepickerresult)) => void | No   | Callback invoked when the OK button in the dialog box is clicked.                 |
-| onCancel           | () => void                               | No   | Callback invoked when the Cancel button in the dialog box is clicked.                 |
-| onChange           | (value: [TimePickerResult](../arkui-ts/ts-basic-components-timepicker.md#timepickerresult)) => void | No   | Callback invoked when the selected time changes.           |
+| Name | Type                                                        | Mandatory| Description                          |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------ |
+| options | [TimePickerDialogOptions](../arkui-ts/ts-methods-timepicker-dialog.md#timepickerdialogoptions) | Yes  | Parameters of the time picker dialog box.|
 
 **Example**
 
 ```ts
-class sethours{
+// xxx.ets
+
+class SelectTime{
   selectTime: Date = new Date('2020-12-25T08:30:00')
   hours(h:number,m:number){
     this.selectTime.setHours(h,m)
   }
 }
-uiContext.showTimePickerDialog({
-  selected: this.selectTime,
-  onAccept: (value: TimePickerResult) => {
-    // Set selectTime to the time when the OK button is clicked. In this way, when the dialog box is displayed again, the selected time is the time when the operation was confirmed last time.
-    let time = new sethours()
-    if(value.hour&&value.minute){
-      time.hours(value.hour, value.minute)
-    }
-    console.info("TimePickerDialog:onAccept()" + JSON.stringify(value))
-  },
-  onCancel: () => {
-    console.info("TimePickerDialog:onCancel()")
-  },
-  onChange: (value: TimePickerResult) => {
-    console.info("TimePickerDialog:onChange()" + JSON.stringify(value))
+
+@Entry
+@Component
+struct TimePickerDialogExample {
+  @State selectTime: Date = new Date('2023-12-25T08:30:00');
+
+  build() {
+    Column() {
+      Button('showTimePickerDialog')
+        .margin(30)
+        .onClick(() => {
+          uiContext.showTimePickerDialog({
+            selected: this.selectTime,
+            onAccept: (value: TimePickerResult) => {
+              // Set selectTime to the time when the OK button is clicked. In this way, when the dialog box is displayed again, the selected time is the time when the operation was confirmed last time.
+              let time = new SelectTime()
+              if(value.hour&&value.minute){
+                time.hours(value.hour, value.minute)
+              }
+              console.info("TimePickerDialog:onAccept()" + JSON.stringify(value))
+            },
+            onCancel: () => {
+              console.info("TimePickerDialog:onCancel()")
+            },
+            onChange: (value: TimePickerResult) => {
+              console.info("TimePickerDialog:onChange()" + JSON.stringify(value))
+            }
+          })
+        })
+    }.width('100%').margin({ top: 5 })
   }
-})
+}
 ```
 
 ### showTextPickerDialog
 
 showTextPickerDialog(options: TextPickerDialogOptions): void
 
-Shows a text picker in the given settings.
+Shows a text picker dialog box in the given settings.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**TextPickerDialogOptions parameters**
+**Parameters**
 
-| Name                    | Type                                      | Mandatory  | Description                                      |
-| ----------------------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| range                   | string[] \| [Resource](../arkui-ts/ts-types.md#resource)\|[TextPickerRangeContent](../arkui-ts/ts-basic-components-textpicker.md#textpickerrangecontent10)[] | Yes   | Data selection range of the picker. This parameter cannot be set to an empty array. If set to an empty array, it will not be displayed.   |
-| selected                | number                                   | No   | Index of the selected item.<br>Default value: **0**                     |
-| value                   | string                                   | No   | Text of the selected item. This parameter does not take effect when the **selected** parameter is set. If the value is not within the range, the first item in the range is used instead.|
-| defaultPickerItemHeight | number \| string                         | No   | Height of the picker item.                            |
-| disappearTextStyle      | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10) | No   | Font color, font size, and font width for the top and bottom items.          |
-| textStyle               | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10) | No   | Font color, font size, and font width of all items except the top, bottom, and selected items.      |
-| selectedTextStyle       | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10) | No   | Font color, font size, and font width of the selected item.                     |
-| onAccept                | (value: [TextPickerResult](../arkui-ts/ts-methods-textpicker-dialog.md#textpickerresult)) => void | No   | Callback invoked when the OK button in the dialog box is clicked.                     |
-| onCancel                | () => void                               | No   | Callback invoked when the Cancel button in the dialog box is clicked.                     |
-| onChange                | (value: [TextPickerResult](../arkui-ts/ts-methods-textpicker-dialog.md#textpickerresult)) => void | No   | Callback invoked when the selected item changes.                |
+| Name | Type                                                        | Mandatory| Description                          |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------ |
+| options | [TextPickerDialogOptions](../arkui-ts/ts-methods-textpicker-dialog.md#textpickerdialogoptions) | Yes  | Parameters of the text picker dialog box.|
 
 **Example**
 
 ```ts
-{ class setvalue{
+// xxx.ets
+
+class SelectedValue{
   select: number = 2
   set(val:number){
     this.select = val
   }
 }
-class setvaluearr{
+class SelectedArray{
   select: number[] = []
   set(val:number[]){
     this.select = val
   }
 }
-let fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4', 'banana5']
-uiContext.showTextPickerDialog({
-  range: this.fruits,
-  selected: this.select,
-  onAccept: (value: TextPickerResult) => {
-    // Set select to the index of the item selected when the OK button is touched. In this way, when the text picker dialog box is displayed again, the selected item is the one last confirmed.
-    let setv = new setvalue()
-    let setvarr = new setvaluearr()
-    if(value.index){
-      value.index instanceof Array?setvarr.set(value.index) : setv.set(value.index)
-    }
-    console.info("TextPickerDialog:onAccept()" + JSON.stringify(value))
-  },
-  onCancel: () => {
-    console.info("TextPickerDialog:onCancel()")
-  },
-  onChange: (value: TextPickerResult) => {
-    console.info("TextPickerDialog:onChange()" + JSON.stringify(value))
+@Entry
+@Component
+struct TextPickerDialogExample {
+  @State selectTime: Date = new Date('2023-12-25T08:30:00');
+  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4', 'banana5']
+  private select : number  = 0;
+  build() {
+    Column() {
+      Button('showTextPickerDialog')
+        .margin(30)
+        .onClick(() => {
+          uiContext.showTextPickerDialog({
+            range: this.fruits,
+            selected: this.select,
+            onAccept: (value: TextPickerResult) => {
+              // Set select to the index of the item selected when the OK button is touched. In this way, when the text picker dialog box is displayed again, the selected item is the one last confirmed.
+              let selectedVal = new SelectedValue()
+              let selectedArr = new SelectedArray()
+              if(value.index){
+                  value.index instanceof Array?selectedArr.set(value.index) : selectedVal.set(value.index)
+              }
+              console.info("TextPickerDialog:onAccept()" + JSON.stringify(value))
+            },
+            onCancel: () => {
+              console.info("TextPickerDialog:onCancel()")
+            },
+            onChange: (value: TextPickerResult) => {
+              console.info("TextPickerDialog:onChange()" + JSON.stringify(value))
+            }
+          })
+        })
+    }.width('100%').margin({ top: 5 })
   }
-})
+}
 ```
 
 ### createAnimator
@@ -519,17 +510,29 @@ Creates an **Animator** object.
 
 ```ts
 import { AnimatorOptions } from '@ohos.animator';
-let options:AnimatorOptions = {
-  duration: 1500,
-  easing: "friction",
-  delay: 0,
-  fill: "forwards",
-  direction: "normal",
-  iterations: 3,
-  begin: 200.0,
-  end: 400.0
-};
-uiContext.createAnimator(options);
+onWindowStageCreate(windowStage: window.WindowStage) {
+  // Main window is created, set main page for this ability
+  hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+  windowStage.loadContent('pages/Index', (err, data) => {
+    if (err.code) {
+      hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+      return;
+    }
+    hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+    let uiContext = windowStage.getMainWindowSync().getUIContext();
+    let options:AnimatorOptions = {
+      duration: 1500,
+      easing: "friction",
+      delay: 0,
+      fill: "forwards",
+      direction: "normal",
+      iterations: 3,
+      begin: 200.0,
+      end: 400.0
+    };
+    uiContext.createAnimator(options);
+  });
+}
 ```
 
 ### runScopedTask
@@ -636,9 +639,9 @@ Obtains an **AtomicServiceBar** object, which can be used to set the properties 
 
 **Return value**
 
-|Type|Description|
-|----|----|
-|Nullable<[AtomicServiceBar](#atomicservicebar)>| Returns the **AtomicServerBar** type if the service is an atomic service; returns **undefined** type otherwise.|
+| Type                                             | Description                                                        |
+| ------------------------------------------------- | ------------------------------------------------------------ |
+| Nullable<[AtomicServiceBar](#atomicservicebar11)> | Returns the **AtomicServerBar** type if the service is an atomic service; returns **undefined** type otherwise.|
 
 **Example**
 
@@ -682,7 +685,7 @@ uiContext.getDragController();
 
 ### getDragPreview<sup>11+</sup>
 
-getDragPreview(): DragPreview
+getDragPreview(): dragController.DragPreview
 
 Obtains the **DragPreview** object, which represents the preview displayed during a drag.
 
@@ -690,16 +693,11 @@ Obtains the **DragPreview** object, which represents the preview displayed durin
 
 **Return value**
 
-| Type       | Description                                           |
-| ------------| ------------------------------------------------|
-| DragPreview | **DragPreview** object. It provides the API for setting the preview style. It does not work in the **OnDrop** and **OnDragEnd** callbacks.|
+| Type                                                        | Description                                                        |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [dragController.DragPreview](js-apis-arkui-dragController.md#dragpreview11) | **DragPreview** object. It provides the API for setting the preview style. It does not work in the **OnDrop** and **OnDragEnd** callbacks.|
 
-**Error codes**
-
-| ID| Error Message     |
-| -------- | ------------- |
-| 401      | Invalid input parameter |
-| 100001   | Internal error |
+**Error codes**: For details about universal error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
 
 **Example**
 
@@ -715,7 +713,7 @@ Generates a key frame animation. For details about how to use this API, see [key
 
 **Parameters**
 
-| Name        | Type                                             | Mandatory| Description                        |
+| Name| Type                                             | Mandatory| Description                     |
 | ------------ | ---------------------------------------------------- | ------- | ---------------------------- |
 | param        | [KeyframeAnimateParam](../arkui-ts/ts-keyframeAnimateTo.md#keyframeanimateparam) | Yes     | Overall animation parameter of the keyframe animation.    |
 | keyframes    | Array&lt;[KeyframeState](../arkui-ts/ts-keyframeAnimateTo.md#keyframestate)&gt;  | Yes     | States of all keyframes.           |
@@ -788,9 +786,9 @@ Obtains information about a system font based on the font name.
 
 **Return value**
 
-| Type                                  | Description     |
-| ------------------------------------ | ------- |
-| [FontInfo](js-apis-font.md#fontinfo) | Information about the system font.|
+| Type                                     | Description          |
+| ----------------------------------------- | -------------- |
+| [font.FontInfo](js-apis-font.md#fontinfo) | Information about the system font.|
 
 **Example**
 
@@ -856,9 +854,9 @@ Creates an observer for the specified component.
 
 **Return value**
 
-| Type                                      | Description                       |
-| ---------------------------------------- | ------------------------- |
-| [ComponentObserver](js-apis-arkui-inspector.md#componentobserver) | Component observer, which is used to register or unregister listeners for completion of component layout or drawing.|
+| Type                                                        | Description                                              |
+| ------------------------------------------------------------ | -------------------------------------------------- |
+| [inspector.ComponentObserver](js-apis-arkui-inspector.md#componentobserver) | Component observer, which is used to register or unregister listeners for completion of component layout or drawing.|
 
 **Example**
 
@@ -874,7 +872,7 @@ In the following API examples, you must first use [getUIObserver()](#getuiobserv
 
 ### on('navDestinationUpdate')<sup>11+</sup>
 
-on(type: 'navDestinationUpdate', callback: Callback\<NavDestinationInfo\>): void
+on(type: 'navDestinationUpdate', callback: Callback\<observer.NavDestinationInfo\>): void
 
 Subscribes to state changes of this **\<NavDestination>** component.
 
@@ -885,7 +883,7 @@ Subscribes to state changes of this **\<NavDestination>** component.
 | Name  | Type                                                 | Mandatory| Description                                                        |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                                | Yes  | Event type. The value is fixed at **'navDestinationUpdate'**, which indicates the state change event of the **\<NavDestination>** component.|
-| callback | Callback\<[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\> | Yes  | Callback used to return the current state of the **\<NavDestination>** component.                |
+| callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\> | Yes  | Callback used to return the current state of the **\<NavDestination>** component.                |
 
 **Example**
 
@@ -899,7 +897,7 @@ observer.on('navDestinationUpdate', (info) => {
 
 ### off('navDestinationUpdate')<sup>11+</sup>
 
-off(type: 'navDestinationUpdate', callback?: Callback\<NavDestinationInfo\>): void
+off(type: 'navDestinationUpdate', callback?: Callback\<observer.NavDestinationInfo\>): void
 
 Unsubscribes from state changes of this **\<NavDestination>** component.
 
@@ -910,7 +908,7 @@ Unsubscribes from state changes of this **\<NavDestination>** component.
 | Name  | Type                                                 | Mandatory| Description                                                        |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                                | Yes  | Event type. The value is fixed at **'navDestinationUpdate'**, which indicates the state change event of the **\<NavDestination>** component.|
-| callback | Callback\<[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\> | No  | Callback used to return the current state of the **\<NavDestination>** component.                |
+| callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\> | No  | Callback used to return the current state of the **\<NavDestination>** component.                |
 
 **Example**
 
@@ -922,9 +920,9 @@ observer.off('navDestinationUpdate');
 
 ### on('navDestinationUpdate')<sup>11+</sup>
 
-on(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callback: Callback\<NavDestinationInfo>): void
+on(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callback: Callback\<observer.NavDestinationInfo\>): void
 
-Subscribes to state changes of a **\<NavDestination>** component.
+Subscribes to state changes of this **\<NavDestination>** component.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -933,8 +931,8 @@ Subscribes to state changes of a **\<NavDestination>** component.
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | Yes  | Event type. The value is fixed at **'navDestinationUpdate'**, which indicates the state change event of the **\<NavDestination>** component.|
-| options  | { navigationId: [ResourceStr](../arkui-ts/ts-types.md#resourcestr) } | Yes  | ID of the **\<Navigation>** component that contains the target **\<NavDestination>** component. |
-| callback | Callback\<[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\>        | Yes  | Callback used to return the current state of the **\<NavDestination>** component.                |
+| options  | { navigationId: [ResourceStr](../arkui-ts/ts-types.md#resourcestr) } | Yes  | ID of the target **\<NavDestination>** component.                                  |
+| callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\>        | Yes  | Callback used to return the current state of the **\<NavDestination>** component.                |
 
 **Example**
 
@@ -948,9 +946,9 @@ observer.on('navDestinationUpdate', { navigationId: "testId" }, (info) => {
 
 ### off('navDestinationUpdate')<sup>11+</sup>
 
-off(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callback?: Callback\<NavDestinationInfo>): void
+off(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callback?: Callback\<observer.NavDestinationInfo\>): void
 
-Unsubscribes from state changes of a **\<NavDestination>** component.
+Unsubscribes from state changes of this **\<NavDestination>** component.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -959,8 +957,8 @@ Unsubscribes from state changes of a **\<NavDestination>** component.
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | Yes  | Event type. The value is fixed at **'navDestinationUpdate'**, which indicates the state change event of the **\<NavDestination>** component.|
-| options  | { navigationId: [ResourceStr](../arkui-ts/ts-types.md#resourcestr) } | Yes  | ID of the **\<Navigation>** component that contains the target **\<NavDestination>** component. |
-| callback | Callback\<[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\>        | No  | Callback used to return the current state of the **\<NavDestination>** component.                |
+| options  | { navigationId: [ResourceStr](../arkui-ts/ts-types.md#resourcestr) } | Yes  | ID of the target **\<NavDestination>** component.                                  |
+| callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\>        | No  | Callback used to return the current state of the **\<NavDestination>** component.                |
 
 **Example**
 
@@ -968,6 +966,55 @@ Unsubscribes from state changes of a **\<NavDestination>** component.
 import { UIObserver } from '@ohos.arkui.UIContext';
 let observer:UIObserver = uiContext.getUIObserver();
 observer.off('navDestinationUpdate', { navigationId: "testId" });
+```
+
+### on('routerPageUpdate')<sup>11+</sup>
+
+on(type: 'routerPageUpdate', callback: Callback\<observer.RouterPageInfo\>): void
+
+Subscribes to state changes of the page in the router.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | Yes  | Event type. The value is fixed at **'routerPageUpdate'**, which indicates the state change event of the page in the router.|
+| callback | Callback\<observer.[RouterPageInfo](js-apis-arkui-observer.md#routerpageinfo)\>        | Yes  | Callback used to return the If **pageInfo** is passed, the current page state is returned.                |
+
+**Example**
+
+```ts
+import { UIObserver } from '@ohos.arkui.UIContext';
+let observer:UIObserver = uiContext.getUIObserver();
+observer.on('routerPageUpdate', (info) => {
+    console.info('RouterPage state updated, called by ' + `${info.name}`);
+});
+```
+
+### off('routerPageUpdate')<sup>11+</sup>
+
+off(type: 'routerPageUpdate', callback?: Callback\<observer.RouterPageInfo\>): void
+
+Unsubscribes to state changes of the page in the router.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | Yes  | Event type. The value is fixed at **'routerPageUpdate'**, which indicates the state change event of the page in the router.|
+| callback | Callback\<observer.[RouterPageInfo](js-apis-arkui-observer.md#routerpageinfo)\>        | No  | Callback to be unregistered.                |
+
+**Example**
+
+```ts
+import { UIObserver } from '@ohos.arkui.UIContext';
+let observer:UIObserver = uiContext.getUIObserver();
+// callBackFunc is defined and used before
+observer.off('routerPageUpdate', callBackFunc);
 ```
 
 ## MediaQuery
@@ -990,9 +1037,9 @@ Sets the media query criteria and returns the corresponding listening handle.
 
 **Return value**
 
-| Type                | Description                    |
-| ------------------ | ---------------------- |
-| MediaQueryListener | Listening handle to a media event, which is used to register or unregister the listening callback.|
+| Type                                                        | Description                                        |
+| ------------------------------------------------------------ | -------------------------------------------- |
+| [mediaQuery.MediaQueryListener](js-apis-mediaquery.md#mediaquerylistener) | Listening handle to a media event, which is used to register or unregister the listening callback.|
 
 **Example**
 
@@ -1010,7 +1057,7 @@ In the following API examples, you must first use [getRouter()](#getrouter) in *
 
 pushUrl(options: router.RouterOptions): Promise&lt;void&gt;
 
-Navigates to a specified page in the application.
+Navigates to a specified page in the application. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -1113,7 +1160,7 @@ router.pushUrl({
 
 pushUrl(options: router.RouterOptions, mode: router.RouterMode): Promise&lt;void&gt;
 
-Navigates to a specified page in the application.
+Navigates to a specified page in the application. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -1147,10 +1194,10 @@ import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } f
 import { BusinessError } from '@ohos.base';
 import router from '@ohos.router';
 let routerF:Router = uiContext.getRouter();
-class routerTmp{
+class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
 }
-let rtm:routerTmp = new routerTmp()
+let rtm:RouterTmp = new RouterTmp()
 try {
   routerF.pushUrl({
     url: 'pages/routerpage2',
@@ -1201,10 +1248,10 @@ import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } f
 import { BusinessError } from '@ohos.base';
 import router from '@ohos.router';
 let routerF:Router = uiContext.getRouter();
-class routerTmp{
+class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
 }
-let rtm:routerTmp = new routerTmp()
+let rtm:RouterTmp = new RouterTmp()
 routerF.pushUrl({
   url: 'pages/routerpage2',
   params: {
@@ -1228,7 +1275,7 @@ routerF.pushUrl({
 
 replaceUrl(options: router.RouterOptions): Promise&lt;void&gt;
 
-Replaces the current page with another one in the application and destroys the current page.
+Replaces the current page with another one in the application and destroys the current page. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -1323,7 +1370,7 @@ router.replaceUrl({
 
 replaceUrl(options: router.RouterOptions, mode: router.RouterMode): Promise&lt;void&gt;
 
-Replaces the current page with another one in the application and destroys the current page.
+Replaces the current page with another one in the application and destroys the current page. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -1356,10 +1403,10 @@ import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } f
 import { BusinessError } from '@ohos.base';
 import router from '@ohos.router';
 let routerF:Router = uiContext.getRouter();
-class routerTmp{
+class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
 }
-let rtm:routerTmp = new routerTmp()
+let rtm:RouterTmp = new RouterTmp()
 try {
   routerF.replaceUrl({
     url: 'pages/detail',
@@ -1406,10 +1453,10 @@ import { ComponentUtils, Font, PromptAction, Router, UIInspector,  MediaQuery } 
 import { BusinessError } from '@ohos.base';
 import router from '@ohos.router';
 let routerF:Router = uiContext.getRouter();
-class routerTmp{
+class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
 }
-let rtm:routerTmp = new routerTmp()
+let rtm:RouterTmp = new RouterTmp()
 routerF.replaceUrl({
   url: 'pages/detail',
   params: {
@@ -1566,10 +1613,10 @@ import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } f
 import { BusinessError } from '@ohos.base';
 import router from '@ohos.router';
 let routerF:Router = uiContext.getRouter();
-class routerTmp{
+class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
 }
-let rtm:routerTmp = new routerTmp()
+let rtm:RouterTmp = new RouterTmp()
 try {
   routerF.pushNamedRoute({
     name: 'myPage',
@@ -1620,10 +1667,10 @@ import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } f
 import { BusinessError } from '@ohos.base';
 import router from '@ohos.router';
 let routerF:Router = uiContext.getRouter();
-class routerTmp{
+class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
 }
-let rtm:routerTmp = new routerTmp()
+let rtm:RouterTmp = new RouterTmp()
 routerF.pushNamedRoute({
   name: 'myPage',
   params: {
@@ -1647,7 +1694,7 @@ routerF.pushNamedRoute({
 
 replaceNamedRoute(options: router.NamedRouterOptions): Promise&lt;void&gt;
 
-Replaces the current page with another one using the named route and destroys the current page. This API uses a promise to return the result.
+Replaces the current page with another one using the named route and destroys the current page. This API uses a promise to return an error.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -1776,10 +1823,10 @@ import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } f
 import { BusinessError } from '@ohos.base';
 import router from '@ohos.router';
 let routerF:Router = uiContext.getRouter();
-class routerTmp{
+class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
 }
-let rtm:routerTmp = new routerTmp()
+let rtm:RouterTmp = new RouterTmp()
 try {
   routerF.replaceNamedRoute({
     name: 'myPage',
@@ -1826,10 +1873,10 @@ import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } f
 import { BusinessError } from '@ohos.base';
 import router from '@ohos.router';
 let routerF:Router = uiContext.getRouter();
-class routerTmp{
+class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
 }
-let rtm:routerTmp = new routerTmp()
+let rtm:RouterTmp = new RouterTmp()
 routerF.replaceNamedRoute({
   name: 'myPage',
   params: {
@@ -2023,7 +2070,7 @@ In the following API examples, you must first use [getPromptAction()](#getprompt
 
 showToast(options: promptAction.ShowToastOptions): void
 
-Shows a toast.
+Shows a toast in the given settings.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -2063,7 +2110,7 @@ try {
 
 showDialog(options: promptAction.ShowDialogOptions, callback: AsyncCallback&lt;promptAction.ShowDialogSuccessResponse&gt;): void
 
-Shows a dialog box. This API uses an asynchronous callback to return the result.
+Shows a dialog box in the given settings. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -2087,7 +2134,7 @@ For details about the error codes, see [promptAction Error Codes](../errorcodes/
 ```ts
 import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
 import { BusinessError } from '@ohos.base';
-class buttonsMoabl {
+class ButtonsModel {
   text: string = ""
   color: string = ""
 }
@@ -2100,11 +2147,11 @@ try {
       {
         text: 'button1',
         color: '#000000'
-      } as buttonsMoabl,
+      } as ButtonsModel,
       {
         text: 'button2',
         color: '#000000'
-      } as buttonsMoabl
+      } as ButtonsModel
     ]
   }, (err, data) => {
     if (err) {
@@ -2124,7 +2171,7 @@ try {
 
 showDialog(options: promptAction.ShowDialogOptions): Promise&lt;promptAction.ShowDialogSuccessResponse&gt;
 
-Shows a dialog box. This API uses a promise to return the result synchronously.
+Shows a dialog box. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -2182,28 +2229,28 @@ try {
 };
 ```
 
-### showActionMenu
+### showActionMenu<sup>11+</sup>
 
 showActionMenu(options: promptAction.ActionMenuOptions, callback: AsyncCallback&lt;[promptAction.ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse)&gt;):void
 
-Shows an action menu. This API uses an asynchronous callback to return the result.
+Shows an action menu in the given settings. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
-| Name     | Type                                      | Mandatory  | Description       |
-| -------- | ---------------------------------------- | ---- | --------- |
-| options  | [promptAction.ActionMenuOptions](js-apis-promptAction.md#actionmenuoptions) | Yes   | Action menu options.  |
-| callback | AsyncCallback&lt;[promptAction.ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse)&gt; | Yes   | Callback used to return the action menu response result.|
+| Name  | Type                                                        | Mandatory| Description              |
+| -------- | ------------------------------------------------------------ | ---- | ------------------ |
+| options  | [promptAction.ActionMenuOptions](js-apis-promptAction.md#actionmenuoptions) | Yes  | Action menu options.    |
+| callback | AsyncCallback&lt;[promptAction.ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse)&gt; | Yes  | Callback used to return the action menu response result.|
 
 **Error codes**
 
 For details about the error codes, see [promptAction Error Codes](../errorcodes/errorcode-promptAction.md).
 
-| ID | Error Message                              |
-| ------ | ---------------------------------- |
-| 100001 | if UI execution context not found. |
+| ID| Error Message                          |
+| -------- | ---------------------------------- |
+| 100001   | if UI execution context not found. |
 
 **Example**
 
@@ -2240,11 +2287,65 @@ try {
 };
 ```
 
+### showActionMenu<sup>(deprecated)</sup>
+
+showActionMenu(options: promptAction.ActionMenuOptions, callback: [promptAction.ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse)):void
+
+Shows an action menu in the given settings. This API uses an asynchronous callback to return the result.
+
+his API is deprecated since API version 11. You are advised to use [showActionMenu](#showactionmenu11) instead.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description              |
+| -------- | ------------------------------------------------------------ | ---- | ------------------ |
+| options  | [promptAction.ActionMenuOptions](js-apis-promptAction.md#actionmenuoptions) | Yes  | Action menu options.    |
+| callback | [promptAction.ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse) | Yes  | Callback used to return the action menu response result.|
+
+**Error codes**
+
+For details about the error codes, see [promptAction Error Codes](../errorcodes/errorcode-promptAction.md).
+
+| ID | Error Message                              |
+| ------ | ---------------------------------- |
+| 100001 | if UI execution context not found. |
+
+**Example**
+
+```ts
+import { PromptAction } from '@ohos.arkui.UIContext';
+import promptAction from '@ohos.promptAction';
+import { BusinessError } from '@ohos.base';
+
+let promptActionF: PromptAction = uiContext.getPromptAction();
+try {
+  promptActionF.showActionMenu({
+    title: 'Title Info',
+    buttons: [
+      {
+        text: 'item1',
+        color: '#666666'
+      },
+      {
+        text: 'item2',
+        color: '#000000'
+      }
+    ]
+  }, { index:0 });
+} catch (error) {
+  let message = (error as BusinessError).message;
+  let code = (error as BusinessError).code;
+  console.error(`showActionMenu args error code is ${code}, message is ${message}`);
+};
+```
+
 ### showActionMenu
 
 showActionMenu(options: promptAction.ActionMenuOptions): Promise&lt;promptAction.ActionMenuSuccessResponse&gt;
 
-Shows an action menu. This API uses a promise to return the result synchronously.
+Shows an action menu. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -2315,7 +2416,7 @@ Executes dragging, by passing in the object to be dragged and the dragging infor
 
 | Name  | Type                                                        | Mandatory| Description                            |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------- |
-| custom   | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](../arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo) | Yes  | Object to be dragged.|
+| custom   | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](../arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo) | Yes  | Object to be dragged.<br> **NOTE**<br>The global builder is not supported. If the [\<Image>](../arkui-ts/ts-basic-components-image.md) component is used in the builder, enable synchronous loading, that is, set the [syncLoad](../arkui-ts/ts-basic-components-image.md#attributes) attribute of the component to **true**.|
 | dragInfo | [dragController.DragInfo](js-apis-arkui-dragController.md#draginfo)                                        | Yes  | Dragging information.                      |
 | callback | [AsyncCallback](./js-apis-base.md#asynccallback)&lt;{event: [DragEvent](../arkui-ts/ts-universal-events-drag-drop.md#dragevent), extraParams: string}&gt; | Yes  | Callback used to return the result.<br>- **event**: drag event information that includes only the drag result.<br>- **extraParams**: extra information about the drag event.         |
 
@@ -2323,8 +2424,7 @@ Executes dragging, by passing in the object to be dragged and the dragging infor
 
 | ID| Error Message     |
 | -------- | ------------- |
-| 401      | Invalid input parameter |
-| 100001   | If some internal handing failed. |
+| 100001   | if some internal handling failed. |
 
 **Example**
 
@@ -2405,8 +2505,7 @@ Executes dragging, by passing in the object to be dragged and the dragging infor
 
 | ID| Error Message     |
 | -------- | ------------- |
-| 401      | Invalid input parameter |
-| 100001   | If some internal handing failed. |
+| 100001   | if some internal handling failed. |
 
 **Example**
 
@@ -2490,13 +2589,11 @@ struct DragControllerPage {
 
 ### createDragAction
 
-createDragAction(customArray: Array&lt;CustomBuilder \| DragItemInfo&gt;, dragInfo: dragController.DragInfo): DragAction
+createDragAction(customArray: Array&lt;CustomBuilder \| DragItemInfo&gt;, dragInfo: dragController.DragInfo): dragController.DragAction
 
 Creates a **DragAction** object, by explicitly specifying one or more drag previews, drag data, and information about the dragged object. If the drag initiated by a **DragAction** object is not complete, no new **DragAction** object can be created, and calling this API will throw an exception.
 
-> **NOTE**
->
-> You are advised to control the number of drag previews. If too many previews are passed in, the drag efficiency may be affected.
+**NOTE**<br>You are advised to control the number of drag previews. If too many previews are passed in, the drag efficiency may be affected.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -2505,30 +2602,94 @@ Creates a **DragAction** object, by explicitly specifying one or more drag previ
 | Name  | Type                                                        | Mandatory| Description                            |
 | --------      | ------------------------------------------------------------ | ---- | -------------------------------- |
 | customArray  | Array&lt;[CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](../arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo)&gt; | Yes  | Object to be dragged.|
-| dragInfo | [dragController.DragInfo](js-apis-arkui-dragController.md#dragInfo)                                        | Yes  | Dragging information.                      |
+| dragInfo | [dragController.DragInfo](js-apis-arkui-dragController.md#dragInfo)                                 | Yes  | Dragging information.                      |
 
 **Return value**
 
 | Type                                                  | Description              |
 | ------------------------------------------------------ | ------------------ |
-| [DragAction](js-apis-arkui-dragController.md#dragaction11)| **DragAction** object, which is used to subscribe to drag state changes and start the drag service. |
+| [dragController.DragAction](js-apis-arkui-dragController.md#dragaction11)| **DragAction** object, which is used to subscribe to drag state change events and start the dragging service.|
 
 **Error codes**
 
 | ID| Error Message     |
 | -------- | ------------- |
-| 401      | Invalid input parameter |
-| 100001   | If some internal handing failed. |
+| 100001   | if some internal handling failed. |
 
 **Example**
+1. In the **EntryAbility.ets** file, obtain the UI context and save it to LocalStorage.
+```ts
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import hilog from '@ohos.hilog';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import Want from '@ohos.app.ability.Want';
+import window from '@ohos.window';
+import { UIContext } from '@ohos.arkui.UIContext';
 
+let uiContext: UIContext;
+let localStorage: LocalStorage = new LocalStorage('uiContext');
+
+export default class EntryAbility extends UIAbility {
+  storage: LocalStorage = localStorage;
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+  }
+
+  onDestroy(): void {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onDestroy');
+  }
+
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    // Main window is created, set main page for this ability
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+
+    windowStage.loadContent('pages/Index', (err, data) => {
+      if (err.code) {
+        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        return;
+      }
+      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+      windowStage.getMainWindow((err, data) =>
+      {
+        if (err.code) {
+          console.log('Failed to abtain the main window. Cause:' + err.message);
+          return;
+        }
+        let windowClass: window.Window = data;
+        uiContext = windowClass.getUIContext();
+        this.storage.setOrCreate<UIContext>('uiContext', uiContext);
+        // Obtain a UIContext instance.
+      })
+    });
+  }
+
+  onWindowStageDestroy(): void {
+    // Main window is destroyed, release UI related resources
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageDestroy');
+  }
+
+  onForeground(): void {
+    // Ability has brought to foreground
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onForeground');
+  }
+
+  onBackground(): void {
+    // Ability has back to background
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onBackground');
+  }
+}
+```
+2. Call **LocalStorage.getShared()** to obtain the UI context and then use the **DragController** object obtained to perform subsequent operations.
 ```ts
 import dragController from "@ohos.arkui.dragController"
 import componentSnapshot from '@ohos.arkui.componentSnapshot';
 import image from '@ohos.multimedia.image';
 import UDC from '@ohos.data.unifiedDataChannel';
+import { UIContext, DragController } from '@ohos.arkui.UIContext'
 
-@Entry
+let storages = LocalStorage.getShared();
+
+@Entry(storages)
 @Component
 struct DragControllerPage {
   @State pixmap: image.PixelMap|null = null
@@ -2568,26 +2729,27 @@ struct DragControllerPage {
               extraParams: ''
             }
             try{
-              this.dragAction = dragController.createDragAction(this.customBuilders, dragInfo)
-            if(!this.dragAction){
-              console.log("listener dragAction is null");
-              return
-            }
-            this.dragAction.on('statusChange', (dragAndDropInfo)=>{
-              if (dragAndDropInfo.status == dragController.DragStatus.STARTED) {
-                console.log("drag has start");
-              } else if (dragAndDropInfo.status == dragController.DragStatus.ENDED){
-                console.log("drag has end");
-                if (!this.dragAction) {
-                  return
-                }
-                this.customBuilders.splice(0, this.customBuilders.length)
-                this.dragAction.off('statusChange')
+              let uiContext: UIContext = storages.get<UIContext>('uiContext') as UIContext;
+              this.dragAction = uiContext.getDragController().createDragAction(this.customBuilders, dragInfo)
+              if(!this.dragAction){
+                console.log("listener dragAction is null");
+                return
               }
-            })
-            this.dragAction.startDrag().then(()=>{}).catch((err:Error)=>{
-              console.log("start drag Error:" + err.message);
-            })
+              this.dragAction.on('statusChange', (dragAndDropInfo)=>{
+                if (dragAndDropInfo.status == dragController.DragStatus.STARTED) {
+                  console.log("drag has start");
+                } else if (dragAndDropInfo.status == dragController.DragStatus.ENDED){
+                  console.log("drag has end");
+                  if (!this.dragAction) {
+                    return
+                  }
+                  this.customBuilders.splice(0, this.customBuilders.length)
+                  this.dragAction.off('statusChange')
+                }
+              })
+              this.dragAction.startDrag().then(()=>{}).catch((err:Error)=>{
+                console.log("start drag Error:" + err.message);
+              })
             } catch(err) {
               console.log("create dragAction Error:" + err.message);
             }
@@ -2601,7 +2763,7 @@ struct DragControllerPage {
 
 ## AtomicServiceBar<sup>11+</sup>
 
-In the following API examples, you must first use **getAtomicServiceBar** in **UIContext** to obtain an **AtomicServiceBar** instance, and then call the APIs using the obtained instance.
+In the following API examples, you must first use [getAtomicServiceBar](#getatomicservicebar11) in **UIContext** to obtain an **AtomicServiceBar** instance, and then call the APIs using the obtained instance.
 
 ### setVisible<sup>11+</sup>
 
@@ -2794,5 +2956,3 @@ Enumerates the avoidance modes for the virtual keyboard.
 | ------ | ---------- |
 | OFFSET | Avoid the virtual keyboard through offset.|
 | RESIZE | Avoid the virtual keyboard through resizing.|
-
- <!--no_check--> 

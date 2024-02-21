@@ -20,13 +20,13 @@
 
 HUKS基于密钥会话来操作数据，使用密钥时基于以下流程：
 
-1. （必选）初始化密钥会话[huks.initSession()](../../reference/apis/js-apis-huks.md#huksinitsession9)。
+1. （必选）初始化密钥会话[huks.initSession()](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksinitsession9)。
    传入密钥别名和密钥操作参数，初始化一个密钥会话并获取会话句柄。其中密钥操作参数中必须包含对应密码算法所必须的参数，包括密码算法、密钥大小、密钥目的、工作模式、填充模式、散列模式、IV、Nonce、AAD等。
 
-2. （可选）分段操作数据[huks.updateSession()](../../reference/apis/js-apis-huks.md#huksupdatesession9)。
+2. （可选）分段操作数据[huks.updateSession()](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksupdatesession9)。
    当使用的数据过大（超过100K）或是部分密码算法有要求时，需要对数据进行分段操作。否则可跳过此步骤。
 
-3. （必选）结束密钥会话[huks.finishSession()](../../reference/apis/js-apis-huks.md#huksfinishsession9)。
+3. （必选）结束密钥会话[huks.finishSession()](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksfinishsession9)。
    操作最后一段数据并结束密钥会话。
 
-以上任一阶段中发生错误或不需要此次密钥操作数据，均需要取消会话[huks.abortSession()](../../reference/apis/js-apis-huks.md#huksabortsession9)，终止密钥的使用。
+以上任一阶段中发生错误或不需要此次密钥操作数据，均需要取消会话[huks.abortSession()](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksabortsession9)，终止密钥的使用。

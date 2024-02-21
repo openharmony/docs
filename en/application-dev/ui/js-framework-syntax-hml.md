@@ -20,7 +20,7 @@ HML is an HTML-like language that allows you to build pages based on components 
 
 ```html
 <!-- xxx.hml -->
-<div onclick="changeText">
+<div class="container" onclick="changeText">
   <text> {{content[1]}} </text>
 </div>
 ```
@@ -137,9 +137,9 @@ Binding for event bubbling covers the following:
 - Bind an event callback, but stop the event from bubbling upwards: **grab:{event}.bubble**. **grab:{event}** is equivalent to **grab:{event}.bubble**.
   > **NOTE**
   >
-  > - Event bubbling occurs when the target element and its ancestors have registered a listener for the same event. When the event happens on the element, it first runs the event handler on it, then on its parent, and then all the way up on other ancestors. If an element triggers this event, it first triggers the callback on the element, then on its parent, and then all the way up on other ancestors.
+  > Event bubbling occurs when the target element and its ancestors have registered a listener for the same event. When the event happens on the element, it first runs the event handler on it, then on its parent, and then all the way up on other ancestors. If an element triggers this event, it first triggers the callback on the element, then on its parent, and then all the way up on other ancestors.
   >
-  > - For details about event bubbling, see [Universal Events](../reference/arkui-js/js-components-common-events.md).
+  > For details about event bubbling, see [Universal Events](../reference/arkui-js/js-components-common-events.md).
 - Example
   ```html
   <!-- xxx.hml -->
@@ -247,11 +247,7 @@ export default {
 }
 ```
 
-The **tid** attribute accelerates the **for** loop and improves the re-rendering efficiency when data in a loop changes.
-
-The **tid** attribute specifies the unique ID of each element in the array. If it is not specified, the index of each element in the array is used as the ID. For example, **tid="id"** indicates that the **id** attribute of each element is its unique ID.
-
-The **for** loop supports the following statements:
+The **tid** attribute accelerates the **for** loop and improves the re-rendering efficiency when data in a loop changes. The **tid** attribute specifies the unique ID of each element in the array. If it is not specified, the index of each element in the array is used as the ID. For example, **tid="id"** indicates that the **id** attribute of each element is its unique ID. The **for** loop supports the following statements:
 
 - for="array": **array** is an array object, whose element variable is **$item** by default.
 

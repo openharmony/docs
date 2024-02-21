@@ -32,12 +32,12 @@ AppStorage中的属性可以被双向同步，数据可以是存在于本地或�
 
 ### 装饰器使用规则说明
 
-| \@StorageProp变量装饰器 | 说明                                       |
-| ------------------ | ---------------------------------------- |
+| \@StorageProp变量装饰器 | 说明                                                         |
+| ----------------------- | ------------------------------------------------------------ |
 | 装饰器参数              | key：常量字符串，必填（字符串需要有引号）。                  |
-| 允许装饰的变量类型          | Object&nbsp;class、string、number、boolean、enum类型，以及这些类型的数组。嵌套类型的场景请参考[观察变化和行为表现](#观察变化和行为表现)。<br/>类型必须被指定，建议和AppStorage中对应属性类型相同，否则会发生类型隐式转换，从而导致应用行为异常。不支持any，不允许使用undefined和null。 |
-| 同步类型               | 单向同步：从AppStorage的对应属性到组件的状态变量。<br/>组件本地的修改是允许的，但是AppStorage中给定的属性一旦发生变化，将覆盖本地的修改。 |
-| 被装饰变量的初始值          | 必须指定，如果AppStorage实例中不存在属性，则作为初始化默认值，并存入AppStorage中。 |
+| 允许装饰的变量类型      | Object、&nbsp;class、string、number、boolean、enum类型，以及这些类型的数组。嵌套类型的场景请参考[观察变化和行为表现](#观察变化和行为表现)。<br/>类型必须被指定，建议和AppStorage中对应属性类型相同，否则会发生类型隐式转换，从而导致应用行为异常。不支持any，不允许使用undefined和null。 |
+| 同步类型                | 单向同步：从AppStorage的对应属性到组件的状态变量。<br/>组件本地的修改是允许的，但是AppStorage中给定的属性一旦发生变化，将覆盖本地的修改。 |
+| 被装饰变量的初始值      | 必须指定，如果AppStorage实例中不存在属性，则作为初始化默认值，并存入AppStorage中。 |
 
 
 ### 变量的传递/访问规则说明
@@ -176,21 +176,25 @@ prop.get() // == 49
 ```ts
 AppStorage.setOrCreate('PropA', 47);
 let storage = new LocalStorage();
-storage.setOrCreate('PropA',48);
+storage.setOrCreate('PropA', 48);
 
 @Entry(storage)
 @Component
 struct CompA {
-  @StorageLink('PropA') storLink: number = 1;
-  @LocalStorageLink('PropA') localStorLink: number = 1;
+  @StorageLink('PropA') storageLink: number = 1;
+  @LocalStorageLink('PropA') localStorageLink: number = 1;
 
   build() {
     Column({ space: 20 }) {
-      Text(`From AppStorage ${this.storLink}`)
-        .onClick(() => this.storLink += 1)
+      Text(`From AppStorage ${this.storageLink}`)
+        .onClick(() => {
+          this.storageLink += 1
+        })
 
-      Text(`From LocalStorage ${this.localStorLink}`)
-        .onClick(() => this.localStorLink += 1)
+      Text(`From LocalStorage ${this.localStorageLink}`)
+        .onClick(() => {
+          this.localStorageLink += 1
+        })
     }
   }
 }
@@ -282,6 +286,10 @@ export struct TapImage {
 ```
 
 相比借助@StorageLink的双向同步机制实现事件通知，开发者可以使用emit订阅某个事件并接收事件回调的方式来减少开销，增强代码的可读性。
+
+> **说明：**
+>
+> emit接口不支持在Previewer预览器中使用。
 
 
 ```ts
@@ -390,7 +398,7 @@ export struct TapImage {
 
 以上通知事件逻辑简单，也可以简化成三元表达式。
 
-```
+```ts
 // xxx.ets
 class ViewData {
   title: string;

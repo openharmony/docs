@@ -8,9 +8,9 @@ Stage模型下的线程主要有如下三类：
   - 分发交互事件。
   - 处理应用代码的回调，包括事件处理和生命周期管理。
   - 接收TaskPool以及Worker线程发送的消息。
-- [TaskPool Worker线程](../reference/apis/js-apis-taskpool.md)
+- [TaskPool Worker线程](../reference/apis-arkts/js-apis-taskpool.md)
   - 用于执行耗时操作，支持设置调度优先级、负载均衡等功能，推荐使用。
-- [Worker线程](../reference/apis/js-apis-worker.md)
+- [Worker线程](../reference/apis-arkts/js-apis-worker.md)
   - 用于执行耗时操作，支持线程间通信。
 TaskPool与Worker的运作机制、通信手段和使用方法可以参考[TaskPool和Worker的对比](../arkts-utils/taskpool-vs-worker.md)。
 ![thread-model-stage](figures/thread-model-stage.png)

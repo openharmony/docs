@@ -22,7 +22,7 @@
 - 通过@Builder自定义封装一个导航页签栏，并通过ForEach完成对Tabs组件的内容页和导航页签栏的动态渲染。
 - 通过TabsController的changeIndex可实现页面的跳转，传入的index是数组中对应的索引值。
 - 页签的增加通过数组的push方法，增加数组元素。
-- 删除页签通过通过删除页面对应数组的索引值处的数据完成，删除后页面跳转位置根据业务逻辑要求确定跳转页面对应的索引值。
+- 删除页签通过删除页面对应数组的索引值处的数据完成，删除后页面跳转位置根据业务逻辑要求确定跳转页面对应的索引值。
 
 ## 开发步骤
 
@@ -126,7 +126,7 @@
      this.controller.changeIndex(this.focusIndex)
      ```
 
-   - 第二种情况，当用户当前选择的不是最后一个标签，然后直接删除其他页签时，可以直接删除删除，但是需要重新计算当前选中页签在tabArray中的实时位置，到新注意需要排除用户在最后一个页签删除当前页签的情况。
+   - 第二种情况，当用户当前选择的不是最后一个标签，然后直接删除其他页签时，可以直接删除，但是需要重新计算当前选中页签在tabArray中的实时位置，到新注意需要排除用户在最后一个页签删除当前页签的情况。
 
      ```ts
      //当前选择页面的对应数组中的数据值
@@ -271,13 +271,13 @@ struct Drag {
 
 ## 参考
 
-[Tabs](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-navigation-tabs.md)
+[Tabs](../application-dev/ui/arkts-navigation-tabs.md)
 
-[@State装饰器：组件内状态](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/arkts-state.md)
+[@State装饰器：组件内状态](../application-dev/quick-start/arkts-state.md)
 
-[ForEach：循环渲染](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/arkts-rendering-control-foreach.md)
+[ForEach：循环渲染](../application-dev/quick-start/arkts-rendering-control-foreach.md)
 
-[层叠布局（Stack）](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-layout-development-stack-layout.md)
+[层叠布局（Stack）](../application-dev/ui/arkts-layout-development-stack-layout.md)
 
 
 

@@ -12,10 +12,10 @@ Environment是ArkUI框架在应用程序启动时创建的单例对象。它为A
 | 键 | 数据类型 | 描述                                      |
 | ------------------ | ------------------ | ------------------ |
 | accessibilityEnabled              | boolean                  | 获取无障碍屏幕读取是否启用。                 |
-| colorMode              | ColorMode enum                  | 色彩模型类型：选项为ColorMode.light: 浅色，ColorMode.Dark: 深色。                 |
+| colorMode              | ColorMode                  | 色彩模型类型：选项为ColorMode.LIGHT: 浅色，ColorMode.DARK: 深色。                 |
 | fontScale              | number                  | 字体大小比例，范围: [0.85, 1.45]。                 |
-| fontWeightScale              | LayoutDirection                  | 字体粗细程度，范围: [0.6, 1.6]。                |
-| layoutDirection              | boolean                  | 布局方向类型：包括LayoutDirection.LTR: 从左到右，LayoutDirection.RTL: 从右到左。                 |
+| fontWeightScale              | number                  | 字体粗细程度，范围: [0.6, 1.6]。                |
+| layoutDirection              | LayoutDirection                  | 布局方向类型：包括LayoutDirection.LTR: 从左到右，LayoutDirection.RTL: 从右到左。                 |
 | languageCode              | string                  | 当前系统语言值，取值必须为小写字母, 例如zh。                 |
 
 
@@ -85,7 +85,7 @@ if (lang.get() === 'zh') {
 ## 限制条件
 
 
-Environment和UIContext相关联，需要在[UIContext](../reference/apis/js-apis-arkui-UIContext.md#uicontext)明确的时候才可以调用。可以通过在[runScopedTask](../reference/apis/js-apis-arkui-UIContext.md#runscopedtask)里明确上下文。如果没有在UIContext明确的地方调用，将导致无法查询到设备环境数据。
+Environment和UIContext相关联，需要在[UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)明确的时候才可以调用。可以通过在[runScopedTask](../reference/apis-arkui/js-apis-arkui-UIContext.md#runscopedtask)里明确上下文。如果没有在UIContext明确的地方调用，将导致无法查询到设备环境数据。
 
 
 ```ts

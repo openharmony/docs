@@ -47,41 +47,10 @@ For the complete list of JS APIs and example code, see, see [MDNS Management](..
 ```ts
 // Import the mdns namespace from @ohos.net.mdns.
 import mdns from '@ohos.net.mdns';
-import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
 import featureAbility from '@ohos.ability.featureAbility';
-import window from '@ohos.window';
 
-// Construct a singleton object.
-export class GlobalContext {
-  private constructor() {}
-  private static instance: GlobalContext;
-  private _objects = new Map<string, Object>();
-
-  public static getContext(): GlobalContext {
-    if (!GlobalContext.instance) {
-      GlobalContext.instance = new GlobalContext();
-    }
-    return GlobalContext.instance;
-  }
-
-  getObject(value: string): Object | undefined {
-    return this._objects.get(value);
-  }
-
-  setObject(key: string, objectClass: Object): void {
-    this._objects.set(key, objectClass);
-  }
-}
-
-// Obtain the context of the stage model.
-class EntryAbility extends UIAbility {
-  value: number = 0;
-  onWindowStageCreate(windowStage: window.WindowStage): void{
-    GlobalContext.getContext().setObject("value", this.value);
-  }
-}
-let context = GlobalContext.getContext().getObject("value");
+let context = getContext(this) as Context;
 
 class ServiceAttribute {
   key: string = "111"
@@ -100,19 +69,19 @@ let localServiceInfo: mdns.LocalServiceInfo = {
 }
 
 // Call addLocalService to add a local service.
-mdns.addLocalService(context as Context, localServiceInfo, (error: BusinessError, data: mdns.LocalServiceInfo) =>  {
+mdns.addLocalService(context, localServiceInfo, (error: BusinessError, data: mdns.LocalServiceInfo) =>  {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
 
 // (Optional) Call resolveLocalService to resolve the local service.
-mdns.resolveLocalService(context as Context, localServiceInfo, (error: BusinessError, data: mdns.LocalServiceInfo) =>  {
+mdns.resolveLocalService(context, localServiceInfo, (error: BusinessError, data: mdns.LocalServiceInfo) =>  {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
 
 // Call removeLocalService to remove the local service.
-mdns.removeLocalService(context as Context, localServiceInfo, (error: BusinessError, data: mdns.LocalServiceInfo) =>  {
+mdns.removeLocalService(context, localServiceInfo, (error: BusinessError, data: mdns.LocalServiceInfo) =>  {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
@@ -170,7 +139,7 @@ let context = GlobalContext.getContext().getObject("value");
 
 // Create a **DiscoveryService** object, which is used to discover MDNS services of the specified type.
 let serviceType = "_print._tcp";
-let discoveryService = mdns.createDiscoveryService(context as Context, serviceType);
+let discoveryService = mdns.createDiscoveryService(context, serviceType);
 
 class DataServiceInfo{
   serviceInfo: mdns.LocalServiceInfo|null = null

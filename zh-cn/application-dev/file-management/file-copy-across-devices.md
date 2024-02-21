@@ -1,6 +1,6 @@
 # 跨设备文件拷贝
 
-分布式文件系统为应用提供了跨设备文件拷贝的能力，开发者在跨设备跨应用进行文件拷贝时，通过[基础文件接口](../reference/apis/js-apis-file-fs.md)，可跨设备跨应用拷贝文件。例如：多设备数据流转的场景，设备组网互联之后，设备A上的应用可在复制时，将A设备的沙箱文件，拷贝到A设备的分布式路径下，设备B在粘贴的时候，从设备B的分布式路径下，将文件拷贝到对应的沙箱文件中。
+分布式文件系统为应用提供了跨设备文件拷贝的能力，开发者在跨设备跨应用进行文件拷贝时，通过[基础文件接口](../reference/apis-core-file-kit/js-apis-file-fs.md)，可跨设备跨应用拷贝文件。例如：多设备数据流转的场景，设备组网互联之后，设备A上的应用可在复制时，将A设备的沙箱文件，拷贝到A设备的分布式路径下，设备B在粘贴的时候，从设备B的分布式路径下，将文件拷贝到对应的沙箱文件中。
 
 ## 开发步骤
 
@@ -33,20 +33,20 @@
    }
 
    // 获取待拷贝文件uri
-   let fileUri = fileUri.getUriFromPath(filePath);
+   let srcUri = fileUri.getUriFromPath(filePath);
    
    // 将待拷贝的沙箱文件，拷贝到分布式目录下
    let destUri: string = fileUri.getUriFromPath(distributedPathDir + '/src.txt');
 
    try {
     // 将沙箱路径下的文件拷贝到分布式路径下
-    fs.copy(fileUri, destUri).then(()=>{
+    fs.copy(srcUri, destUri).then(()=>{
       console.info("Succeeded in copying---. ");
-      console.info("src: " + fileUri + "dest: " + destUri);
+      console.info("src: " + srcUri + "dest: " + destUri);
     }).catch((err: BusinessError)=>{
       console.info(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
     })
-   } catch (err: BusinessError) {
+   } catch (err) {
     console.error(`Failed to getData. Code: ${err.code}, message: ${err.message}`);
    }
    ```
@@ -83,11 +83,11 @@
     // 将分布式路径下的文件拷贝到其他沙箱路径下
     fs.copy(srcUri, destUri, options).then(()=>{
       console.info("Succeeded in copying of paste. ");
-      console.info("src: " + fileUri + "dest: " + destUri); // file://com.example.myapplication/data/storage/el2/distributedfiles/src.txt
+      console.info("src: " + srcUri + "dest: " + destUri); // file://com.example.myapplication/data/storage/el2/distributedfiles/src.txt
     }).catch((err: BusinessError)=>{
       console.info(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
     })
-   } catch (err: BusinessError) {
+   } catch (err) {
     console.error(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
    }
    ```

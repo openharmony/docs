@@ -17,7 +17,7 @@
    ```
 
 2. 在应用开发过程中查询设备类型。
-   - 通过deviceInfo查询设备类型，deviceInfo中各个字段的含义请参考[设备信息](../../reference/apis/js-apis-device-info.md)。
+   - 通过deviceInfo查询设备类型，deviceInfo中各个字段的含义请参考[设备信息](../../reference/apis-basic-services-kit/js-apis-device-info.md)。
      
       ```ts
        import deviceInfo from'@ohos.deviceInfo'
@@ -158,7 +158,7 @@ hdc shell reboot
 
 实际开发过程中，开发者可能有获取页面中某个组件或某块区域的尺寸的诉求，以便通过手动计算等进行更精确的布局计算及优化。
 
-开发者可以通过[组件区域变化事件](../../reference/arkui-ts/ts-universal-component-area-change-event.md)（即组件显示的尺寸、位置等发生变化时触发的事件）来获取指定组件的尺寸。
+开发者可以通过[组件区域变化事件](../../reference/apis-arkui/arkui-ts/ts-universal-component-area-change-event.md)（即组件显示的尺寸、位置等发生变化时触发的事件）来获取指定组件的尺寸。
 
 如下所示，通过onAreaChange事件获取Row组件（页面中白色区域）的尺寸。
 

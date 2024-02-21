@@ -1,13 +1,13 @@
-# XComponent
+# 自定义绘制 (XComponent)
 
 
-[XComponent](../reference/arkui-ts/ts-basic-components-xcomponent.md)组件作为一种绘制组件，通常用于满足开发者较为复杂的自定义绘制需求，例如相机预览流的显示和游戏画面的绘制。
+[XComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)组件作为一种绘制组件，通常用于满足开发者较为复杂的自定义绘制需求，例如相机预览流的显示和游戏画面的绘制。
 
 
 其可通过指定其type字段来实现不同的功能，主要有两个“surface”和“component”字段可供选择。
 
 
-对于“surface”类型，开发者可将相关数据传入XComponent单独拥有的“[NativeWindow](../napi/native-window-guidelines.md)”来渲染画面。
+对于“surface”类型，开发者可将相关数据传入XComponent单独拥有的“[NativeWindow](../graphics/native-window-guidelines.md)”来渲染画面。
 
 
 对于“component”类型，主要用于实现动态加载显示内容的目的。
@@ -245,7 +245,7 @@ XComponent({ id: '', type: 'surface', controller: this.mXComponentController })
   })
 ```
 
-具体部件接口可参考：[AVPlayer](../reference/apis/js-apis-media.md#avplayer9)、[Camera](../reference/apis/js-apis-camera.md) 等。
+具体部件接口可参考：[AVPlayer](../reference/apis-media-kit/js-apis-media.md#avplayer9)、[Camera](../reference/apis-camera-kit/js-apis-camera.md) 等。
 
 
 ### component类型
@@ -257,9 +257,9 @@ XComponent设置为component类型时通常用于在XComponent内部执行非UI�
 >
 > type为"component"时，XComponent作为容器，子组件沿垂直方向布局：
 >
-> - 垂直方向上对齐格式：[FlexAlign](../reference/arkui-ts/ts-appendix-enums.md#flexalign).Start
+> - 垂直方向上对齐格式：[FlexAlign](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#flexalign).Start
 >
-> - 水平方向上对齐格式：[FlexAlign](../reference/arkui-ts/ts-appendix-enums.md#flexalign).Center
+> - 水平方向上对齐格式：[FlexAlign](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#flexalign).Center
 >
 > 不支持所有的事件响应。
 >

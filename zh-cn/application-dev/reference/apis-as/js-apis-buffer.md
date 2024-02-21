@@ -214,7 +214,7 @@ concat(list: Buffer[] | Uint8Array[], totalLength?: number): Buffer
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -284,7 +284,7 @@ from(arrayBuffer: ArrayBuffer | SharedArrayBuffer, byteOffset?: number, length?:
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -500,7 +500,7 @@ console.log(newBuf.toString('ascii'));
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -544,7 +544,7 @@ compare(target: Buffer | Uint8Array, targetStart?: number, targetEnd?: number, s
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -588,7 +588,7 @@ copy(target: Buffer| Uint8Array, targetStart?: number, sourceStart?: number, sou
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -623,8 +623,7 @@ entries(): IterableIterator&lt;[number,&nbsp;number]&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number |  表示迭代器的key值。 |
-| number |  表示迭代器的value值。 |
+| IterableIterator&lt;[number,&nbsp;number]&gt; |  包含key和value的迭代器，同时两者皆为number类型。 |
 
 **示例：**
 
@@ -698,7 +697,7 @@ fill(value: string | Buffer | Uint8Array | number, offset?: number, end?: number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -859,7 +858,7 @@ readBigInt64BE(offset?: number): bigint
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -900,7 +899,7 @@ readBigInt64LE(offset?: number): bigint
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -941,7 +940,7 @@ readBigUInt64BE(offset?: number): bigint
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -982,7 +981,7 @@ readBigUInt64LE(offset?: number): bigint
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -1023,7 +1022,7 @@ readDoubleBE(offset?: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -1063,7 +1062,7 @@ readDoubleLE(offset?: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -1103,7 +1102,7 @@ readFloatBE(offset?: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -1143,7 +1142,7 @@ readFloatLE(offset?: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -1183,7 +1182,7 @@ readInt8(offset?: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -1224,7 +1223,7 @@ readInt16BE(offset?: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -1264,7 +1263,7 @@ readInt16LE(offset?: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -1304,7 +1303,7 @@ readInt32BE(offset?: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -1344,7 +1343,7 @@ readInt32LE(offset?: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -1386,7 +1385,7 @@ readIntBE(offset: number, byteLength: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -1430,7 +1429,7 @@ readIntLE(offset: number, byteLength: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -1471,7 +1470,7 @@ readUInt8(offset?: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -1513,7 +1512,7 @@ readUInt16BE(offset?: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -1555,7 +1554,7 @@ readUInt16LE(offset?: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -1597,7 +1596,7 @@ readUInt32BE(offset?: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -1638,7 +1637,7 @@ readUInt32LE(offset?: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -1680,7 +1679,7 @@ readUIntBE(offset: number, byteLength: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -1722,7 +1721,7 @@ readUIntLE(offset: number, byteLength: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -1793,7 +1792,7 @@ swap16(): Buffer
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -1828,7 +1827,7 @@ swap32(): Buffer
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -1863,7 +1862,7 @@ swap64(): Buffer
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -1995,7 +1994,7 @@ write(str: string, offset?: number, length?: number, encoding?: string): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -2039,7 +2038,7 @@ writeBigInt64BE(value: bigint, offset?: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -2078,7 +2077,7 @@ writeBigInt64LE(value: bigint, offset?: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -2117,7 +2116,7 @@ writeBigUInt64BE(value: bigint, offset?: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -2156,7 +2155,7 @@ writeBigUInt64LE(value: bigint, offset?: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -2195,7 +2194,7 @@ writeDoubleBE(value: number, offset?: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -2234,7 +2233,7 @@ writeDoubleLE(value: number, offset?: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -2273,7 +2272,7 @@ writeFloatBE(value: number, offset?: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -2313,7 +2312,7 @@ writeFloatLE(value: number, offset?: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -2352,7 +2351,7 @@ writeInt8(value: number, offset?: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -2393,7 +2392,7 @@ writeInt16BE(value: number, offset?: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -2433,7 +2432,7 @@ writeInt16LE(value: number, offset?: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -2472,7 +2471,7 @@ writeInt32BE(value: number, offset?: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -2512,7 +2511,7 @@ writeInt32LE(value: number, offset?: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -2552,7 +2551,7 @@ writeIntBE(value: number, offset: number, byteLength: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -2593,7 +2592,7 @@ writeIntLE(value: number, offset: number, byteLength: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -2632,7 +2631,7 @@ writeUInt8(value: number, offset?: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -2674,7 +2673,7 @@ writeUInt16BE(value: number, offset?: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -2714,7 +2713,7 @@ writeUInt16LE(value: number, offset?: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -2754,7 +2753,7 @@ writeUInt32BE(value: number, offset?: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -2793,7 +2792,7 @@ writeUInt32LE(value: number, offset?: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -2833,7 +2832,7 @@ writeUIntBE(value: number, offset: number, byteLength: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -2873,7 +2872,7 @@ writeUIntLE(value: number, offset: number, byteLength: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |

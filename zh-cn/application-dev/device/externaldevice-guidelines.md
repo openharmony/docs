@@ -5,20 +5,20 @@
 
 扩展外设主要是指通过物理接口连入主设备的配件设备，如手写板、打印机和扫描仪等。应用通过扩展外设管理能力可以查询绑定扩展外设，从而使用扩展外设驱动提供的定制能力来使用扩展外设，如打印机的配套软件。
 
-支持PC, Tablet等可接入扩展外设的设备，暂不支持手机。
+扩展外设支持PC, Tablet等可接入扩展外设的设备，暂不支持手机。
 
 
 ## 接口说明
 
 扩展外设管理主要提供的功能有：查询扩展外设列表、绑定和解绑查询到的设备。
 
-扩展外设管理开放能力如下，具体请查阅[API参考文档](../reference/apis/js-apis-driver-deviceManager.md)。
+扩展外设管理开放能力如下，具体请查阅[API参考文档](../reference/apis-driverdevelopment-kit/js-apis-driver-deviceManager.md)。
 
 **表1** 扩展外设管理开放能力接口
 
 | 接口名                                                                                                                                                      | 描述                                                                                    |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
-| queryDevices(busType?: number): Array&lt;Readonly&lt;Device&gt;&gt;                                                                                         | 查询扩展外设列表                                                                        |
+| queryDevices(busType?: number): Array&lt;Readonly&lt;Device&gt;&gt;                                                                                         | 查询扩展外设列表。                                                                       |
 | bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;, callback: AsyncCallback&lt;{deviceId: number, remote: rpc.IRemoteObject}&gt;): void | 绑定设备，绑定成功后返回设备驱动的IRemoteObject通信对象，通过该对象与设备驱动进行交互。 |
 | bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;): Promise&lt;{deviceId: number, remote: rpc.IRemoteObject}&gt;                       | 绑定设备的Promise形式。                                                                 |
 | unbindDevice(deviceId: number, callback: AsyncCallback&lt;number&gt;): void                                                                                 | 解绑设备。                                                                              |

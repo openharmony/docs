@@ -35,13 +35,13 @@
 
 ## 开发指导
 
-详细的API说明参考[AVDemuxer](../reference/native-apis/_a_v_demuxer.md)和[AVSource](../reference/native-apis/_a_v_source.md)
+详细的API说明参考[AVDemuxer](../reference/apis-avcodec-kit/_a_v_demuxer.md)和[AVSource](../reference/apis-avcodec-kit/_a_v_source.md)
 
 > **说明**
 >
 > - 调用解封装能力解析网络播放路径，需要[声明权限](../security/AccessToken/declare-permissions.md)：ohos.permission.INTERNET
 > - 调用解封装能力解析本地文件，需要[向用户申请授权](../security/AccessToken/request-user-authorization.md)：ohos.permission.READ_MEDIA
-> - 如果使用ResourceManager.getRawFd打开HAP资源文件描述符，使用方法请参考[ResourceManager API参考](../reference/apis/js-apis-resource-manager.md#getrawfd9)
+> - 如果使用ResourceManager.getRawFd打开HAP资源文件描述符，使用方法请参考[ResourceManager API参考](../reference/apis-localization-kit/js-apis-resource-manager.md#getrawfd9)
 
 ### 在 CMake 脚本中链接动态库
 
@@ -65,7 +65,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
 
 2. 创建解封装器实例对象。
 
-   ``` c++
+   ```c++
    // 创建文件操作符 fd，打开时对文件句柄必须有读权限(filePath 为待解封装文件路径，需预置文件，保证路径指向的文件存在)
    std::string filePath = "test.mp4";
    int fd = open(filePath.c_str(), O_RDONLY);
@@ -98,7 +98,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
 
 3. 获取文件轨道数（可选，若用户已知轨道信息，可跳过此步）。
 
-   ``` c++
+   ```c++
    // 从文件 source 信息获取文件轨道数
    OH_AVFormat *sourceFormat = OH_AVSource_GetSourceFormat(source);
    if (sourceFormat == nullptr) {
@@ -112,7 +112,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
 
 4. 获取轨道index及信息（可选，若用户已知轨道信息，可跳过此步）。
 
-   ``` c++
+   ```c++
    uint32_t audioTrackIndex = 0;
    uint32_t videoTrackIndex = 0;
    int32_t w = 0;
@@ -138,7 +138,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
 
 5. 添加解封装轨道。
 
-   ``` c++
+   ```c++
    if(OH_AVDemuxer_SelectTrackByID(demuxer, audioTrackIndex) != AV_ERR_OK){
       printf("select audio track failed: %d", audioTrackIndex);
       return;
@@ -153,7 +153,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
 
 6. 调整轨道到指定时间点(可选)。
 
-   ``` c++
+   ```c++
    // 调整轨道到指定时间点，后续从该时间点进行解封装
    // 注意：
    // 1. mpegts格式文件使用OH_AVDemuxer_SeekToTime功能时，跳转到的位置可能为非关键帧。可在跳转后调用OH_AVDemuxer_ReadSampleBuffer，通过获取到的OH_AVCodecBufferAttr判断当前帧是否为关键帧。若非关键帧影响应用侧显示等功能，可在跳转后循环读取，获取到后续第一帧关键帧后，再进行解码等处理。
@@ -163,7 +163,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
 
 7. 开始解封装，循环获取帧数据(以含音频、视频两轨的文件为例)。
 
-   ``` c++
+   ```c++
    // 创建 buffer，用与保存用户解封装得到的数据
    OH_AVBuffer *buffer = OH_AVBuffer_Create(w * h * 3 >> 1);
    if (buffer == nullptr) {
@@ -205,7 +205,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
 
 8. 销毁解封装实例。
 
-   ``` c++
+   ```c++
    // 需要用户调用 OH_AVSource_Destroy 接口成功后，手动将对象置为 NULL，对同一对象重复调用 OH_AVSource_Destroy 会导致程序错误
    if (OH_AVSource_Destroy(source) != AV_ERR_OK) {
       printf("destroy source pointer error");

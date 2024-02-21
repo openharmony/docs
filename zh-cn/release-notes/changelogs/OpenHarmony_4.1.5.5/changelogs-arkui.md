@@ -495,8 +495,138 @@ API 11及以后，当开发者对ListItem和GridItem组件selectable属性设置
 
 **适配指导**
 
-默认行为变更，不涉及适配。
+该变更会导致若点击手势和拖动手势放入同一个并行手势组，会出现拖动手势和点击手势同时响应的情况
 
+适配措施：
+1.应用业务审视是否必须将点击手势和拖动手势放入同一个并行手势组内（大部分之前没有冲突的情况，是因为点击事件的20px的移动限制，自动消减了冲突），如果不是必须则可以不挂到同一个手势组
+修改前：
+```ts
+  .parallelGesture(GestureGroup(GestureMode.Parallel,
+    TapGesture({count: 1})
+      .onAction((event?: GestureEvent)=> {
+        if (event) {
+          console.info("Tapgesture")
+        }
+      }),
+    PanGesture({fingers: 1})
+      .onActionStart((event?: GestureEvent)=>{
+        console.info("Pan start")
+      })
+      .onActionUpdate((event?: GestureEvent)=>{
+        console.info("Pan update")
+      })
+      .onActionEnd((event?: GestureEvent)=>{
+        console.info("Pan end")
+      })
+  ))
+```
+修改后：
+```ts
+  .parallelGesture(GestureGroup(GestureMode.Parallel,
+    PanGesture({fingers: 1})
+      .onActionStart((event?: GestureEvent)=>{
+        console.info("Pan start")
+      })
+      .onActionUpdate((event?: GestureEvent)=>{
+        console.info("Pan update")
+      })
+      .onActionEnd((event?: GestureEvent)=>{
+        console.info("Pan end")
+      })
+  ))
+  .gesture(
+    TapGesture({count: 1})
+      .onAction((event?: GestureEvent)=> {
+        if (event) {
+          console.info("Tapgesture")
+        }
+    })
+  )
+```
+2.若点击必须与滑动放到同一个平行手势组下，则可以通过手势自定义判定能力，通过自行设置的手指移动距离判定点击手势失败：
+示例代码：
+```ts
+  .gesture(
+    TapGesture({count: 1})
+      .onAction((event?: GestureEvent)=> {
+        if (event) {
+          console.log("Tapgesture")
+        }
+      })
+  )
+  .onTouch((event?: TouchEvent)=> {
+    if (event) {
+      if (event.type === TouchType.Down) {
+        this.downX = event.touches[0].windowX
+        this.downY = event.touches[0].windowY
+      }
+    }
+  })
+  .onGestureJudgeBegin((gestureInfo: GestureInfo, event: BaseGestureEvent)=> {
+    if (gestureInfo.type == GestureControl.GestureType.TAP_GESTURE) {
+      let xGap = event.fingerList[0].globalX - this.downX
+      if (xGap > 5) {
+        return GestureJudgeResult.REJECT
+      }
+      let yGap = event.fingerList[0].globalY - this.downY
+      if (yGap > 5) {
+        return GestureJudgeResult.REJECT
+      }
+      return GestureJudgeResult.CONTINUE
+    } else {
+      return GestureJudgeResult.CONTINUE
+    }
+  })
+```
+3.若点击必须与滑动放到同一个平行手势组下，则可以通过手势自定义判定能力，通过设置组件flag进行手势互斥判断：
+```ts
+@Entry
+@Component
+struct Index {
+  @State message: string = '';
+  private hasPanActive = false;
+  build() {
+    Column() {
+      Row({ space: 20 }) {
+        Text(this.message).width(100).height(40).backgroundColor(Color.Pink)
+      }.margin(20)
+    }
+    .width('100%')
+    .height(200)
+    .borderWidth(2)
+    .parallelGesture(GestureGroup(GestureMode.Parallel,
+      TapGesture({count: 1})
+        .onAction((event?: GestureEvent)=> {
+          if (event) {
+            console.info("Tapgesture")
+          }
+        }).tag("Single-Finger-Click"),
+      PanGesture({fingers: 1})
+        .onActionStart((event?: GestureEvent)=>{
+          console.info("Pan start")
+        })
+        .onActionUpdate((event?: GestureEvent)=>{
+          console.info("Pan update")
+        })
+        .onActionEnd((event?: GestureEvent)=>{
+          console.info("Pan end")
+        }).tag("Single-Finger-Pan")
+    ))
+    .onGestureJudgeBegin((gestureInfo: GestureInfo, event: BaseGestureEvent) => {
+      // 若滑动手势被触发，则将flag置为true
+      if (gestureInfo.tag === "Single-Finger-Pan") {
+        this.hasPanActive = true
+      }
+      // 若点击手势被触发，且flag为true，则说明再此之前滑动手势已被触发，组件重置flag并拒绝点击手势。
+      if (gestureInfo.tag === "Single-Finger-Click" && this.hasPanActive) {
+        this.hasPanActive = false;
+        return GestureJudgeResult.REJECT
+      }
+      return GestureJudgeResult.CONTINUE
+    })
+  }
+}
+```
 ## cl.arkui.14  menuItem默认高度规格变更
 
 **访问级别**

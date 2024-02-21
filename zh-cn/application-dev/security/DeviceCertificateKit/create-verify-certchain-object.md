@@ -4,17 +4,17 @@
 
 ## 开发步骤
 
-1. 导入[证书算法库框架模块](../../reference/apis/js-apis-cert.md)。
+1. 导入[证书算法库框架模块](../../reference/apis-device-certificate-kit/js-apis-cert.md)。
 
    ```ts
    import certFramework from '@ohos.security.cert';
    ```
 
-2. 基于已有的证书数据，调用[cryptoCert.createX509CertChain](../../reference/apis/js-apis-cert.md#cryptocertcreatex509certchain11)创建X509证书链对象，并返回结果。
+2. 基于已有的证书数据，调用[cryptoCert.createX509CertChain](../../reference/apis-device-certificate-kit/js-apis-cert.md#cryptocertcreatex509certchain11)创建X509证书链对象，并返回结果。
 
-3. 调用[x509CertChain.getCertList](../../reference/apis/js-apis-cert.md#getcertlist11)获取证书链中的X509证书列表。
+3. 调用[x509CertChain.getCertList](../../reference/apis-device-certificate-kit/js-apis-cert.md#getcertlist11)获取证书链中的X509证书列表。
 
-4. 调用[x509CertChain.validate](../../reference/apis/js-apis-cert.md#validate11)使用校验参数校验证书链并返回结果。
+4. 调用[x509CertChain.validate](../../reference/apis-device-certificate-kit/js-apis-cert.md#validate11)使用校验参数校验证书链并返回结果。
 
 ```ts
 import certFramework from '@ohos.security.cert';

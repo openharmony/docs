@@ -10,11 +10,11 @@
 
 1. 获取3DES二进制密钥数据，封装成DataBlob对象。
 
-2. 调用[cryptoFramework.createSymKeyGenerator](../../reference/apis/js-apis-cryptoFramework.md#cryptoframeworkcreatesymkeygenerator)，指定字符串参数'3DES192'，创建密钥算法为3DES、密钥长度为192位的对称密钥生成器（SymKeyGenerator）。
+2. 调用[cryptoFramework.createSymKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatesymkeygenerator)，指定字符串参数'3DES192'，创建密钥算法为3DES、密钥长度为192位的对称密钥生成器（SymKeyGenerator）。
 
-3. 调用[SymKeyGenerator.convertKey](../../reference/apis/js-apis-cryptoFramework.md#convertkey-1)，根据指定的对称密钥二进制数据，生成对称密钥对象（SymKey）。
+3. 调用[SymKeyGenerator.convertKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkey-1)，根据指定的对称密钥二进制数据，生成对称密钥对象（SymKey）。
 
-4. 调用[SymKey.getEncoded](../../reference/apis/js-apis-cryptoFramework.md#getencoded)，获取密钥对象的二进制数据。
+4. 调用[SymKey.getEncoded](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getencoded)，获取密钥对象的二进制数据。
 
 以使用callback方式生成3DES密钥为例：
 
@@ -63,11 +63,11 @@ function testConvertSymKey() {
 
 1. 获取HMAC二进制密钥，封装成DataBlob对象。
 
-2. 调用[cryptoFramework.createSymKeyGenerator](../../reference/apis/js-apis-cryptoFramework.md#cryptoframeworkcreatesymkeygenerator)，指定字符串参数'HMAC'，创建密钥算法为HMAC、密钥长度为[1, 32768]位的对称密钥生成器（SymKeyGenerator）。
+2. 调用[cryptoFramework.createSymKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatesymkeygenerator)，指定字符串参数'HMAC'，创建密钥算法为HMAC、密钥长度为[1, 32768]位的对称密钥生成器（SymKeyGenerator）。
 
-3. 调用[SymKeyGenerator.convertKey](../../reference/apis/js-apis-cryptoFramework.md#convertkey-1)，根据指定的对称密钥二进制数据，生成对称密钥对象（SymKey）。
+3. 调用[SymKeyGenerator.convertKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkey-1)，根据指定的对称密钥二进制数据，生成对称密钥对象（SymKey）。
 
-4. 调用[SymKey.getEncoded](../../reference/apis/js-apis-cryptoFramework.md#getencoded)，获取密钥对象的二进制数据。
+4. 调用[SymKey.getEncoded](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getencoded)，获取密钥对象的二进制数据。
 
 以使用await方式生成HMAC密钥为例：
 

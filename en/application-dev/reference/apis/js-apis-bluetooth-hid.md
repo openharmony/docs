@@ -15,7 +15,7 @@ import hid from '@ohos.bluetooth.hid';
 ```
 
 
-## hid.createHidHostProfile<a name="createHidHostProfile"></a>
+## hid.createHidHostProfile
 
 createHidHostProfile(): HidHostProfile
 
@@ -47,7 +47,7 @@ try {
 Before using any API of **HidHostProfile**, you need to create an instance of this class by using **createHidHostProfile()**.
 
 
-### connect<a name="HidHost-connect"></a>
+### connect
 
 connect(deviceId: string): void
 
@@ -89,7 +89,7 @@ try {
 ```
 
 
-### disconnect<a name="HidHost-disconnect"></a>
+### disconnect
 
 disconnect(deviceId: string): void
 

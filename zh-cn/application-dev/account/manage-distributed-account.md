@@ -1,6 +1,6 @@
 # 管理分布式帐号（仅对系统应用开放）
 
-OEM厂商可以通过[分布式帐号SDK](../reference/apis/js-apis-distributed-account.md#)将自有帐号与本地系统帐号建立关联关系。
+OEM厂商可以通过[分布式帐号SDK](../reference/apis-basic-services-kit/js-apis-distributed-account.md)将自有帐号与本地系统帐号建立关联关系。
 
 ## 开发准备
 
@@ -32,7 +32,7 @@ OEM厂商可以通过[分布式帐号SDK](../reference/apis/js-apis-distributed-
    };
    ```
 
-2. 调用[setOsAccountDistributedInfo](../reference/apis/js-apis-distributed-account.md#setosaccountdistributedinfo9)接口，将当前系统帐号与指定分布式帐号绑定到一起。
+2. 调用[setOsAccountDistributedInfo](../reference/apis-basic-services-kit/js-apis-distributed-account.md#setosaccountdistributedinfo9)接口，将当前系统帐号与指定分布式帐号绑定到一起。
 
    ```ts
    distributedAccountAbility.setOsAccountDistributedInfo(distributedInfo).then(() => {
@@ -42,7 +42,7 @@ OEM厂商可以通过[分布式帐号SDK](../reference/apis/js-apis-distributed-
    });
    ```
 
-3. 在帐号绑定之后，可以调用[getOsAccountDistributedInfo](../reference/apis/js-apis-distributed-account.md#getosaccountdistributedinfo9)接口查看分布式帐号的登录信息。
+3. 在帐号绑定之后，可以调用[getOsAccountDistributedInfo](../reference/apis-basic-services-kit/js-apis-distributed-account.md#getosaccountdistributedinfo9)接口查看分布式帐号的登录信息。
 
    ```ts
    distributedAccountAbility.getOsAccountDistributedInfo().then((data: account_distributedAccount.DistributedInfo) => {
@@ -77,7 +77,7 @@ OEM厂商可以通过[分布式帐号SDK](../reference/apis/js-apis-distributed-
    });
    ```
 
-3. 在帐号绑定之后，可以调用[getOsAccountDistributedInfo](../reference/apis/js-apis-distributed-account.md#setosaccountdistributedinfobylocalid10)接口查看分布式帐号的登录信息。
+3. 在帐号绑定之后，可以调用[getOsAccountDistributedInfo](../reference/apis-basic-services-kit/js-apis-distributed-account-sys.md#setosaccountdistributedinfobylocalid10)接口查看分布式帐号的登录信息。
 
    ```ts
    distributedAccountAbility.getOsAccountDistributedInfoByLocalId(localId).then((data: account_distributedAccount.DistributedInfo) => {
@@ -101,7 +101,7 @@ OEM厂商可以通过[分布式帐号SDK](../reference/apis/js-apis-distributed-
    };
    ```
 
-2. 调用[setOsAccountDistributedInfo](../reference/apis/js-apis-distributed-account.md#setosaccountdistributedinfo9)接口，将指定的分布式帐号与当前系统帐号解绑。
+2. 调用[setOsAccountDistributedInfo](../reference/apis-basic-services-kit/js-apis-distributed-account.md#setosaccountdistributedinfo9)接口，将指定的分布式帐号与当前系统帐号解绑。
 
    ```ts
    distributedAccountAbility.setOsAccountDistributedInfo(distributedInfo).then(() => {
@@ -126,7 +126,7 @@ OEM厂商可以通过[分布式帐号SDK](../reference/apis/js-apis-distributed-
    };
    ```
 
-2. 调用[setOsAccountDistributedInfoByLocalId](../reference/apis/js-apis-distributed-account.md#setosaccountdistributedinfobylocalid10)接口，将指定的分布式帐号与目标系统帐号解绑。
+2. 调用[setOsAccountDistributedInfoByLocalId](../reference/apis-basic-services-kit/js-apis-distributed-account-sys.md#setosaccountdistributedinfobylocalid10)接口，将指定的分布式帐号与目标系统帐号解绑。
 
    ```ts
    distributedAccountAbility.setOsAccountDistributedInfoByLocalId(localId, distributedInfo).then(() => {

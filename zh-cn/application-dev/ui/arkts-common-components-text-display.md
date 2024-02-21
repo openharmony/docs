@@ -1,7 +1,7 @@
-# 文本显示（Text/Span）
+# 文本显示 (Text/Span)
 
 
-Text是文本组件，通常用于展示用户视图，如显示文章的文字。具体用法请参考[Text](../reference/arkui-ts/ts-basic-components-text.md)。
+Text是文本组件，通常用于展示用户视图，如显示文章的文字。具体用法请参考[Text](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md)。
 
 
 ## 创建文本
@@ -38,7 +38,7 @@ Text可通过以下两种方式来创建：
 
 ## 添加子组件
 
-[Span](../reference/arkui-ts/ts-basic-components-span.md)只能作为[Text](../reference/arkui-ts/ts-basic-components-text.md)和[RichEditor](../reference/arkui-ts/ts-basic-components-richeditor.md)组件的子组件显示文本内容。可以在一个Text内添加多个Span来显示一段信息，例如产品说明书、承诺书等。
+[Span](../reference/apis-arkui/arkui-ts/ts-basic-components-span.md)只能作为[Text](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md)和[RichEditor](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md)组件的子组件显示文本内容。可以在一个Text内添加多个Span来显示一段信息，例如产品说明书、承诺书等。
 
 - 创建Span。
 
@@ -137,19 +137,22 @@ Text可通过以下两种方式来创建：
     .textOverflow({ overflow: TextOverflow.None })
     .maxLines(1)
     .fontSize(12)
-    .border({ width: 1 }).padding(10)
+    .border({ width: 1 })
+    .padding(10)
   Text('我是超长文本，超出的部分显示省略号。I am an extra long text, with ellipses displayed for any excess。')
     .width(250)
     .textOverflow({ overflow: TextOverflow.Ellipsis })
     .maxLines(1)
     .fontSize(12)
-    .border({ width: 1 }).padding(10)
+    .border({ width: 1 })
+    .padding(10)
   Text('当文本溢出其尺寸时，文本将滚动显示。When the text overflows its dimensions, the text will scroll for displaying.')       
     .width(250)
     .textOverflow({ overflow: TextOverflow.MARQUEE })                 
     .maxLines(1)       
     .fontSize(12)
-    .border({ width: 1 }).padding(10)                       
+    .border({ width: 1 })
+    .padding(10)                       
   ```
 
   ![zh-cn_image_0000001563060701](figures/zh-cn_image_0000001563060701.gif)

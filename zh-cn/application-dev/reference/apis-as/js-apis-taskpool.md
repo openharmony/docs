@@ -6,7 +6,7 @@
 
 当同一时间待执行的任务数量大于任务池工作线程数量，任务池会根据负载均衡机制进行扩容，增加工作线程数量，减少整体等待时长。同样，当执行的任务数量减少，工作线程数量大于执行任务数量，部分工作线程处于空闲状态，任务池会根据负载均衡机制进行缩容，减少工作线程数量。
 
-任务池API以数字形式返回错误码。有关各个错误码的更多信息，请参阅文档[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+任务池API以数字形式返回错误码。有关各个错误码的更多信息，请参阅文档[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 taskpool使用过程中的相关注意点请查[TaskPool注意事项](../../arkts-utils/taskpool-introduction.md#taskpool注意事项)。
 
@@ -41,7 +41,7 @@ execute(func: Function, ...args: Object[]): Promise\<Object>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                      |
 | -------- | -------------------------------------------- |
@@ -67,7 +67,7 @@ taskpool.execute(printArgs, 100).then((value: Object) => { // 100: test number
 
 execute(task: Task, priority?: Priority): Promise\<Object>
 
-将创建好的任务放入taskpool内部任务队列等待，等待分发到工作线程执行。当前执行模式可尝试调用cancel进行任务取消。
+将创建好的任务放入taskpool内部任务队列等待，等待分发到工作线程执行。当前执行模式可尝试调用cancel进行任务取消。该任务不可以是任务组任务和串行队列任务。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -86,7 +86,7 @@ execute(task: Task, priority?: Priority): Promise\<Object>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                     |
 | -------- | ------------------------------------------- |
@@ -103,9 +103,17 @@ function printArgs(args: number): number {
     return args;
 }
 
-let task: taskpool.Task = new taskpool.Task(printArgs, 100); // 100: test number
-taskpool.execute(task).then((value: Object) => {
-  console.info("taskpool result: " + value);
+let task1: taskpool.Task = new taskpool.Task(printArgs, 100); // 100: test number
+let task2: taskpool.Task = new taskpool.Task(printArgs, 200); // 200: test number
+let task3: taskpool.Task = new taskpool.Task(printArgs, 300); // 300: test number
+taskpool.execute(task1, taskpool.Priority.LOW).then((value: Object) => {
+  console.info("taskpool result1: " + value);
+});
+taskpool.execute(task2, taskpool.Priority.MEDIUM).then((value: Object) => {
+  console.info("taskpool result2: " + value);
+});
+taskpool.execute(task3, taskpool.Priority.HIGH).then((value: Object) => {
+  console.info("taskpool result3: " + value);
 });
 ```
 
@@ -132,7 +140,7 @@ execute(group: TaskGroup, priority?: Priority): Promise<Object[]>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                     |
 | -------- | ------------------------------------------- |
@@ -171,7 +179,7 @@ taskpool.execute(taskGroup2).then((res: Array<Object>) => {
 
 executeDelayed(delayTime: number, task: Task, priority?: Priority): Promise\<Object>
 
-延时执行任务。
+延时执行任务。该任务不可以是任务组任务或串行队列任务。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -191,7 +199,7 @@ executeDelayed(delayTime: number, task: Task, priority?: Priority): Promise\<Obj
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID   | 错误信息                         |
 | --------- | -------------------------------- |
@@ -223,7 +231,7 @@ taskpool.executeDelayed(1000, task).then(() => { // 1000:delayTime is 1000ms
 
 cancel(task: Task): void
 
-取消任务池中的任务。
+取消任务池中的任务。当任务在taskpool等待队列中，取消该任务后该任务将不再执行，并返回undefined作为结果；当任务已经在taskpool工作线程执行，取消该任务并不影响任务继续执行，执行结果在catch分支返回，搭配isCanceled使用可以对任务取消行为作出响应。taskpool.cancel对其之前的taskpool.execute/taskpool.executeDelayed生效。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -235,7 +243,7 @@ cancel(task: Task): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                      |
 | -------- | -------------------------------------------- |
@@ -267,24 +275,32 @@ function inspectStatus(arg: number): number {
   return arg + 1;
 }
 
-let task1: taskpool.Task = new taskpool.Task(inspectStatus, 100); // 100: test number
-let task2: taskpool.Task = new taskpool.Task(inspectStatus, 200); // 200: test number
-let task3: taskpool.Task = new taskpool.Task(inspectStatus, 300); // 300: test number
-let task4: taskpool.Task = new taskpool.Task(inspectStatus, 400); // 400: test number
-let task5: taskpool.Task = new taskpool.Task(inspectStatus, 500); // 500: test number
-let task6: taskpool.Task = new taskpool.Task(inspectStatus, 600); // 600: test number
-taskpool.execute(task1).then((res: Object)=>{
-  console.info("taskpool test result: " + res);
-});
-taskpool.execute(task2);
-taskpool.execute(task3);
-taskpool.execute(task4);
-taskpool.execute(task5);
-taskpool.execute(task6);
-// 1s后取消task
-setTimeout(()=>{
-  taskpool.cancel(task1);
-}, 1000);
+function concurrntFunc() {
+  let task1: taskpool.Task = new taskpool.Task(inspectStatus, 100); // 100: test number
+  let task2: taskpool.Task = new taskpool.Task(inspectStatus, 200); // 200: test number
+  let task3: taskpool.Task = new taskpool.Task(inspectStatus, 300); // 300: test number
+  let task4: taskpool.Task = new taskpool.Task(inspectStatus, 400); // 400: test number
+  let task5: taskpool.Task = new taskpool.Task(inspectStatus, 500); // 500: test number
+  let task6: taskpool.Task = new taskpool.Task(inspectStatus, 600); // 600: test number
+  taskpool.execute(task1).then((res: Object)=>{
+    console.info("taskpool test result: " + res);
+  });
+  taskpool.execute(task2);
+  taskpool.execute(task3);
+  taskpool.execute(task4);
+  taskpool.execute(task5);
+  taskpool.execute(task6);
+  // 1s后取消task
+  setTimeout(()=>{
+    try {
+      taskpool.cancel(task1);
+    } catch (e) {
+      console.error(`taskpool: cancel error code: ${e.code}, info: ${e.message}`);
+    }
+  }, 1000);
+}
+
+concurrntFunc();
 ```
 
 ## taskpool.cancel<sup>10+</sup>
@@ -303,7 +319,7 @@ cancel(group: TaskGroup): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                                 |
 | -------- | ------------------------------------------------------- |
@@ -322,23 +338,27 @@ function printArgs(args: number): number {
   return args;
 }
 
-let taskGroup1: taskpool.TaskGroup = new taskpool.TaskGroup();
-taskGroup1.addTask(printArgs, 10); // 10: test number
-let taskGroup2: taskpool.TaskGroup = new taskpool.TaskGroup();
-taskGroup2.addTask(printArgs, 100); // 100: test number
-taskpool.execute(taskGroup1).then((res: Array<Object>)=>{
-  console.info("taskGroup1 res is:" + res);
-});
-taskpool.execute(taskGroup2).then((res: Array<Object>)=>{
-  console.info("taskGroup2 res is:" + res);
-});
-setTimeout(()=>{
-  try {
-    taskpool.cancel(taskGroup2);
-  } catch (e) {
-    console.error("taskGroup.cancel occur error:" + e);
-  }
-}, 1000);
+function concurrntFunc() {
+  let taskGroup1: taskpool.TaskGroup = new taskpool.TaskGroup();
+  taskGroup1.addTask(printArgs, 10); // 10: test number
+  let taskGroup2: taskpool.TaskGroup = new taskpool.TaskGroup();
+  taskGroup2.addTask(printArgs, 100); // 100: test number
+  taskpool.execute(taskGroup1).then((res: Array<Object>)=>{
+    console.info("taskGroup1 res is:" + res);
+  });
+  taskpool.execute(taskGroup2).then((res: Array<Object>)=>{
+    console.info("taskGroup2 res is:" + res);
+  });
+  setTimeout(()=>{
+    try {
+      taskpool.cancel(taskGroup2);
+    } catch (e) {
+      console.error(`taskpool: cancel error code: ${e.code}, info: ${e.message}`);
+    }
+  }, 1000);
+}
+
+concurrntFunc();
 ```
 
 
@@ -346,7 +366,7 @@ setTimeout(()=>{
 
 getTaskPoolInfo(): TaskPoolInfo
 
-获取任务池内部信息。
+获取任务池内部信息，包含线程信息和任务信息。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -364,7 +384,7 @@ let taskpoolInfo: taskpool.TaskPoolInfo = taskpool.getTaskPoolInfo();
 
 ## Priority
 
-表示所创建任务（Task）的优先级。
+表示所创建任务（Task）执行时的优先级。
 
 **系统能力：**  SystemCapability.Utils.Lang
 
@@ -379,28 +399,31 @@ let taskpoolInfo: taskpool.TaskPoolInfo = taskpool.getTaskPoolInfo();
 ```ts
 @Concurrent
 function printArgs(args: number): number {
+  let t: number = Date.now();
+  while (Date.now() - t < 1000) { // 1000: delay 1s
+    continue;
+  }
   console.info("printArgs: " + args);
   return args;
 }
 
-let task: taskpool.Task = new taskpool.Task(printArgs, 100); // 100: test number
-let highCount = 0;
-let mediumCount = 0;
-let lowCount = 0;
-let allCount = 100;
-for (let i: number = 0; i < allCount; i++) {
-  taskpool.execute(task, taskpool.Priority.LOW).then((res: Object) => {
-    lowCount++;
-    console.info("taskpool lowCount is :" + lowCount);
-  });
-  taskpool.execute(task, taskpool.Priority.MEDIUM).then((res: Object) => {
-    mediumCount++;
-    console.info("taskpool mediumCount is :" + mediumCount);
-  });
-  taskpool.execute(task, taskpool.Priority.HIGH).then((res: Object) => {
-    highCount++;
-    console.info("taskpool highCount is :" + highCount);
-  });
+let allCount = 100; // 100: test number
+let taskArray: Array<taskpool.Task> = [];
+// 创建300个任务并添加至taskArray
+for (let i: number = 1; i < allCount; i++) {
+  let task1: taskpool.Task = new taskpool.Task(printArgs, i);
+  taskArray.push(task1);
+  let task2: taskpool.Task = new taskpool.Task(printArgs, i * 10); // 10: test number
+  taskArray.push(task2);
+  let task3: taskpool.Task = new taskpool.Task(printArgs, i * 100); // 100: test number
+  taskArray.push(task3);
+}
+
+// 从taskArray中获取不同的任务并给定不同优先级执行
+for (let i: number = 0; i < allCount; i+=3) { // 3: 每次执行3个任务，循环取任务时需后移3项，确保执行的是不同的任务
+  taskpool.execute(taskArray[i], taskpool.Priority.HIGH);
+  taskpool.execute(taskArray[i + 1], taskpool.Priority.LOW);
+  taskpool.execute(taskArray[i + 2], taskpool.Priority.MEDIUM);
 }
 ```
 
@@ -425,7 +448,7 @@ Task的构造函数。
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | --------------------------------------- |
@@ -461,7 +484,7 @@ Task的构造函数，可以指定任务名称。
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
@@ -565,7 +588,7 @@ setTransferList(transfer?: ArrayBuffer[]): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | -------------------------------------------------------------- |
@@ -588,6 +611,9 @@ let view1: Uint8Array = new Uint8Array(buffer1);
 
 console.info("testTransfer view byteLength: " + view.byteLength);
 console.info("testTransfer view1 byteLength: " + view1.byteLength);
+// 执行结果为：
+// testTransfer view byteLength: 8
+// testTransfer view1 byteLength: 16
 
 let task: taskpool.Task = new taskpool.Task(testTransfer, view, view1);
 task.setTransferList([view.buffer, view1.buffer]);
@@ -596,8 +622,11 @@ taskpool.execute(task).then((res: Object)=>{
 }).catch((e: string)=>{
   console.error("test catch: " + e);
 })
-console.info("testTransfer view byteLength: " + view.byteLength);
-console.info("testTransfer view1 byteLength: " + view1.byteLength);
+console.info("testTransfer view2 byteLength: " + view.byteLength);
+console.info("testTransfer view3 byteLength: " + view1.byteLength);
+// 经过transfer转移之后值为0，执行结果为：
+// testTransfer view2 byteLength: 0
+// testTransfer view3 byteLength: 0
 ```
 
 
@@ -616,11 +645,11 @@ setCloneList(cloneList: Object[] | ArrayBuffer[]): void
 
 | 参数名    | 类型                      | 必填 | 说明                                          |
 | --------- | ------------------------ | ---- | --------------------------------------------- |
-| cloneList | Object[] \| ArrayBuffer[]  | 是 | - 传入数组的类型必须为[SendableClass](../../arkts-utils/arkts-sendable.md#sendableclass)或ArrayBuffer。<br/>- 所有传入cloneList的对象持有的SendableClass实例或ArrayBuffer类型对象，在线程间传输的行为都会变成拷贝，即修改传输后的对象不会对原有对象产生任何影响。 |
+| cloneList | Object[] \| ArrayBuffer[]  | 是 | - 传入数组的类型必须为[SendableClass](../../arkts-utils/arkts-sendable.md#基本概念)或ArrayBuffer。<br/>- 所有传入cloneList的对象持有的SendableClass实例或ArrayBuffer类型对象，在线程间传输的行为都会变成拷贝，即修改传输后的对象不会对原有对象产生任何影响。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | -------------------------------------------------------------- |
@@ -684,7 +713,7 @@ class DeriveClass extends BaseClass {
 
 @Concurrent
 function testFunc(arr: Array<BaseClass>, num: number): number {
-  let baseInstance1: BaseClass = arr[0];
+  let baseInstance1 = arr[0];
   console.info("sendable: str1 is: " + baseInstance1.str1);
   baseInstance1.SetNum = 100;
   console.info("sendable: num1 is: " + baseInstance1.GetNum);
@@ -765,7 +794,7 @@ static sendData(...args: Object[]): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | --------------------------------------- |
@@ -822,7 +851,7 @@ async function testFunc(): Promise<void> {
     task.onReceiveData(pringLog);
     await taskpool.execute(task);
   } catch (e) {
-    console.info(`taskpool: error code: ${e.code}, info: ${e.message}`);
+    console.error(`taskpool: error code: ${e.code}, info: ${e.message}`);
   }
 }
 
@@ -833,7 +862,7 @@ testFunc();
 
 addDependency(...tasks: Task[]): void
 
-为当前任务添加对其他任务的依赖。使用该方法前需要先构造Task。
+为当前任务添加对其他任务的依赖。使用该方法前需要先构造Task。该任务和被依赖的任务不可以是任务组任务、串行队列任务和已执行的任务。存在依赖关系的任务（依赖其他任务的任务或被依赖的任务）执行后不可以再次执行。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -845,7 +874,7 @@ addDependency(...tasks: Task[]): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------- |
@@ -866,17 +895,6 @@ function delay(args: number): number {
 let task1:taskpool.Task = new taskpool.Task(delay, 100);
 let task2:taskpool.Task = new taskpool.Task(delay, 200);
 let task3:taskpool.Task = new taskpool.Task(delay, 200);
-
-console.info("dependency: start execute first")
-taskpool.execute(task1).then(()=>{
-  console.info("dependency: first task1 success")
-})
-taskpool.execute(task2).then(()=>{
-  console.info("dependency: first task2 success")
-})
-taskpool.execute(task3).then(()=>{
-  console.info("dependency: first task3 success")
-})
 
 console.info("dependency: add dependency start");
 task1.addDependency(task2);
@@ -911,7 +929,7 @@ removeDependency(...tasks: Task[]): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
@@ -969,7 +987,7 @@ taskpool.execute(task3).then(() => {
 
 ## TaskGroup<sup>10+</sup>
 
-表示任务组。使用[constructor](#constructor10)方法构造TaskGroup。
+表示任务组，一次执行一组任务，如果所有任务正常执行，异步执行完毕后返回所有任务结果的数组，数组中元素的顺序与[addTask](#addtask10-1)的顺序相同；如果任意任务失败，则会抛出对应异常。任务组可以多次执行，但执行后不能新增任务。使用[constructor](#constructor10)方法构造TaskGroup。
 
 ### constructor<sup>10+</sup>
 
@@ -1024,7 +1042,7 @@ addTask(func: Function, ...args: Object[]): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | --------------------------------------- |
@@ -1047,7 +1065,7 @@ taskGroup.addTask(printArgs, 100); // 100: test number
 
 addTask(task: Task): void
 
-将创建好的任务添加到任务组中。使用该方法前需要先构造TaskGroup。
+将创建好的任务添加到任务组中。使用该方法前需要先构造TaskGroup。任务组不可以添加其他任务组任务、串行队列任务、有依赖关系的任务和已执行的任务。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1059,7 +1077,7 @@ addTask(task: Task): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | --------------------------------------- |
@@ -1115,7 +1133,7 @@ let runner: taskpool.SequenceRunner = new taskpool.SequenceRunner();
 
 execute(task: Task): Promise\<Object>
 
-执行串行任务。使用该方法前需要先构造SequenceRunner。
+执行串行任务。使用该方法前需要先构造SequenceRunner。串行队列不可以执行任务组任务、其他串行队列任务、有依赖关系的任务和已执行的任务。
 
 > **说明：**
 >
@@ -1138,7 +1156,7 @@ execute(task: Task): Promise\<Object>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
@@ -1250,7 +1268,7 @@ async function seqRunner()
 ## 其他说明
 
 ### 序列化支持类型
-序列化支持类型包括：All Primitive Type(不包括symbol)、Date、String、RegExp、Array、Map、Set、Object、ArrayBuffer、TypedArray。
+序列化支持类型包括：All Primitive Type(不包括symbol)、Date、String、RegExp、Array、Map、Set、Object、ArrayBuffer、TypedArray。详情可见[TaskPool和Worker支持的序列化类型](../../arkts-utils/serialization-support-types.md)。
 
 ### 简单使用
 
@@ -1396,7 +1414,12 @@ async function taskpoolCancel(): Promise<void> {
   });
   // 1s后取消task
   setTimeout(()=>{
-    taskpool.cancel(task);}, 1000);
+    try {
+      taskpool.cancel(task);
+    } catch (e) {
+      console.error(`taskpool: cancel error code: ${e.code}, info: ${e.message}`);
+    }
+  }, 1000);
 }
 
 taskpoolCancel();
@@ -1436,7 +1459,7 @@ async function taskpoolCancel(): Promise<void> {
     try {
       taskpool.cancel(task); // 任务已执行,取消失败
     } catch (e) {
-      console.error("taskpool.cancel occur error:" + e);
+      console.error(`taskpool: cancel error code: ${e.code}, info: ${e.message}`);
     }
   }, 3000); // 延时3s，确保任务已执行
 }
@@ -1481,7 +1504,11 @@ async function taskpoolGroupCancelTest(): Promise<void> {
     console.error("taskpool execute error is:" + e);
   });
 
-  taskpool.cancel(taskGroup2);
+  try {
+    taskpool.cancel(taskGroup2);
+  } catch (e) {
+    console.error(`taskpool: cancel error code: ${e.code}, info: ${e.message}`);
+  }
 }
 
 taskpoolGroupCancelTest()

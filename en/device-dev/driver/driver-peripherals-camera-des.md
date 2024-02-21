@@ -3,8 +3,7 @@
 ## Overview
 ### Function
 
-The OpenHarmony camera driver model provides the camera hardware device interface (HDI) and the camera pipeline model to manage camera devices.
-The camera driver model is divided into three layers:
+The OpenHarmony camera driver model provides the camera hardware device interface (HDI) and the camera pipeline model to manage camera devices. The camera driver model is divided into three layers:
 
 + HDI implementation layer: implements standard ohos (OpenHarmony operating system) APIs for cameras.
 + Framework layer: interacts with the HDI implementation layer to set up data channels and operate camera devices.
@@ -20,15 +19,16 @@ The camera module is used to initialize services and devices, set up data channe
 
 1. When the system starts, the camera_host process is created. The process enumerates underlying devices, creates a **DeviceManager** instance (to manage the device tree), an object for each underlying device, and a **CameraHost** instance, and registers the **CameraHost** instance with the user-mode HDF (UHDF) service. Through the UHDF service, the camera service can obtain the underlying **CameraDeviceHost** services to operate the hardware devices. The **DeviceManager** instance can also be created by using the configuration table.
 
-2. The Camera Service obtains the **CameraHost** instance through the CameraDeviceHost service. 
+2. The Camera Service obtains the **CameraHost** instance through the CameraDeviceHost service.
+   
 
-   The **CameraHost** instance can be used to obtain the underlying camera capabilities, turn on the flashlight, call **Open()** to start a camera and set up a connection with the camera, create a **DeviceManager** instance (to power on the hardware modules), and create a **CameraDevice** instance (to provide the device control interface for the upper layer). 
+The **CameraHost** instance can be used to obtain the underlying camera capabilities, turn on the flashlight, call **Open()** to start a camera and set up a connection with the camera, create a **DeviceManager** instance (to power on the hardware modules), and create a **CameraDevice** instance (to provide the device control interface for the upper layer). 
 
    When the **CameraDevice** instance is created, the PipelineCore modules will be instantiated. The StreamPipelineCore module creates pipelines, and the MetaQueueManager module reports metadata.
 
 3. The Camera Service configures stream and creates a **Stream** class through the CameraDevice module. The StreamPipelineStrategy module creates the node connection mode of the corresponding stream by using the mode issued by the upper layer and querying the configuration table. The StreamPipelineBuilder module creates a node and returns the pipeline to the StreamPipelineDispatcher module through the connection. The StreamPipelineDispatcher module dispatches pipelines.
 
-4. The Camera Service controls the stream operations through the **Stream** instance. 
+4. The Camera Service controls the stream operations through the **Stream** instance.
 
    **AttachBufferQueue()** delivers the buffer queue requested from the display module to the bottom layer. The CameraDeviceDriverModel manages the buffer. After **Capture()** is called to deliver commands, the bottom layer transfers the buffer to the upper layer. The Image Signal Processor (ISP) node obtains a specified number of buffers from the buffer queue and delivers the buffers to the bottom-layer ISP hardware. After filling the buffers, the ISP hardware transfers the buffers to the CameraDeviceDriverModel. The CameraDeviceDriverModel fills the created pipeline with the received buffers by using a loop thread. Each node processes the pipeline data and transfers the data to the upper layer in a callback. At the same time, the buffers are freed to the buffer queue for reuse.
 
@@ -53,77 +53,30 @@ The camera module encapsulates camera operations in camera preview, photographin
 
 ### Available APIs
 
-The following table describes the C++ APIs generated from the Interface Definition Language (IDL) interface description. For details about the interface declaration, see the .idl file in **/drivers/interface/camera/v1_0/**.        
+The following table describes the C++ APIs generated from the Interface Definition Language (IDL). For details about the interface declaration, see the IDL files in [https://gitee.com/openharmony/drivers_interface/tree/master/camera/v1_1/](https://gitee.com/openharmony/drivers_interface/tree/master/camera).
+
 The parameters passed in the HDI cannot exceed the capability range obtained by **GetCameraAbility**. Even if the parameters beyond the capability range can be passed in APIs such as **UpdateSettings**, **CommitStreams**, and **Capture** with no error returned, unexpected behavior may be caused.
+
 - icamera_device.h
 
-  | API                 | Description                    |
-  | ---------------------------- | ------------------------------------------------------------ |
-  | int32_t GetStreamOperator(const sptr<IStreamOperatorCallback>& callbackObj, sptr<IStreamOperator>& streamOperator) | Obtains the stream controller.                |
-  | int32_t UpdateSettings(const std::vector<uint8_t>& settings) | Updates device control parameters.            |
-  | int32_t SetResultMode(ResultCallbackMode mode) | Sets the result callback mode and function.|
-  | int32_t GetEnabledResults(std::vector<int32_t>& results) | Obtains the enabled ResultMeta.        |
-  | int32_t EnableResult(const std::vector<int32_t>& results) | Enables specific ResultMeta.        |
-  | int32_t DisableResult(const std::vector<int32_t>& results) | Disables specific ResultMeta.        |
-  | int32_t Close() | Closes the camera device.              |
-
-- icamera_device_callback.h
-
-  | API                                                          | Description                                                  |
+  | API                                                    | Description                                         |
   | ------------------------------------------------------------ | ------------------------------------------------------------ |
-  | int32_t OnError(ErrorType type, int32_t errorCode)           | Called when an error occurs on the camera device. The caller needs to implement this API. |
-  | int32_t OnResult(uint64_t timestamp, const std::vector<uint8_t>& result) | Called to report metadata related to the camera device.      |
-
+  | int32_t GetStreamOperator_V1_1(const sptr\<OHOS::HDI::Camera::V1_0::IStreamOperatorCallback\>& callbackObj,sptr\<OHOS::HDI::Camera::V1_1::IStreamOperator\>& streamOperator) | Obtains the stream controller. |
 
 - icamera_host.h
 
   | API                                                    | Description                                         |
   | ------------------------------------------------------------ | ------------------------------------------------------------ |
-  | int32_t SetCallback(const sptr<ICameraHostCallback>& callbackObj) | Sets the **ICameraHostCallback** API. |
-  | int32_t GetCameraIds(std::vector<std::string>& cameraIds) | Obtains the IDs of available camera devices. |
-  | int32_t GetCameraAbility(const std::string& cameraId, std::vector<uint8_t>& cameraAbility) | Obtains the abilities of a camera device. |
-  | int32_t OpenCamera(const std::string& cameraId, const sptr<ICameraDeviceCallback>& callbackObj, sptr<ICameraDevice>& device) | Opens a camera. |
-  | int32_t SetFlashlight(const std::string& cameraId, bool isEnable) | Turns on or off the flash. |
-
-- icamera_host_callback.h
-
-  | API                                                    | Description                                         |
-  | ------------------------------------------------------------ | ------------------------------------------------------------ |
-  | int32_t OnCameraStatus(const std::string& cameraId, CameraStatus status) | Called to report camera status changes. |
-  | int32_t OnFlashlightStatus(const std::string& cameraId, FlashlightStatus status) | Called to report the flash status changes. |
-  | int32_t OnCameraEvent(const std::string& cameraId, CameraEvent event) | Called to report a camera event. |
-
-- ioffline_stream_operator.h
-
-  | API                                         | Description                              |
-  | ----                                         | ----                              |
-  | int32_t CancelCapture(int32_t captureId)                      | Cancels a capture request. |
-  | int32_t ReleaseStreams(const std::vector<int32_t>& streamIds) | Releases streams. |
-  | int32_t Release()                                         | Releases all offline streams.            |
+  | int32_t OpenCamera_V1_1(const std::string& cameraId, const sptr\<OHOS::HDI::Camera::V1_0::ICameraDeviceCallback\>& callbackObj, sptr\<OHOS::HDI::Camera::V1_1::ICameraDevice\>& device) | Opens a camera. |
+  | int32_t PreLaunch(const PrelaunchConfig& config) | Pre-starts the camera. |
 
 - istream_operator.h
 
   | API                                                    | Description                                         |
   | ------------------------------------------------------------ | ------------------------------------------------------------ |
-  | int32_t IsStreamsSupported(OperationMode mode,<br>const std::vector<uint8_t>& modeSetting,<br>const std::vector<StreamInfo>& infos,<br> StreamSupportType& type) | Checks whether a stream can be added. |
-  | int32_t CreateStreams(const std::vector<StreamInfo>& streamInfos) | Creates streams. |
-  | int32_t ReleaseStreams(const std::vector<int32_t>& streamIds) | Releases streams. |
-  | int32_t CommitStreams(OperationMode mode, const std::vector<uint8_t>& modeSetting) | Configure streams. |
-  | int32_t GetStreamAttributes(std::vector<StreamAttribute>& attributes) | Obtain stream attributes. |
-  | int32_t AttachBufferQueue(int32_t streamId, const sptr<BufferProducerSequenceable>& bufferProducer) | Attaches a producer handle to a stream. |
-  | int32_t DetachBufferQueue(int32_t streamId)                   | Detaches a producer handle from a stream. |
-  | int32_t Capture(int32_t captureId, const CaptureInfo& info, bool isStreaming) | Captures images. |
-  | int32_t CancelCapture(int32_t captureId)                      | Cancels a capture.    |
-  | int32_t ChangeToOfflineStream(const std::vector<int32_t>& streamIds,<br>const sptr<IStreamOperatorCallback>& callbackObj,<br>sptr<IOfflineStreamOperator>& offlineOperator) | Changes a stream into an offline stream. |
+  | int32_t IsStreamsSupported_V1_1(OperationMode mode,<br>const std::vector<uint8_t>& modeSetting,<br>const std::vector<StreamInfo_V1_1>& infos,<br>StreamSupportType& type) | Checks whether a stream can be added. |
+  | int32_t CreateStreams_V1_1(const std::vector<StreamInfo_V1_1>& streamInfos) | Creates streams. |
 
-- istream_operator_callback.h
-
-  | API                                                          | Description                                     |
-  | ------------------------------------------------------------ | ----------------------------------------------- |
-  | int32_t OnCaptureStarted(int32_t captureId, const std::vector<int32_t>& streamIds) | Called when a capture starts.                   |
-  | int32_t OnCaptureEnded(int32_t captureId, const std::vector<CaptureEndedInfo>& infos) | Called when a capture ends.                     |
-  | int32_t OnCaptureError(int32_t captureId, const std::vector<CaptureErrorInfo>& infos) | Called when an error occurs during the capture. |
-  | int32_t OnFrameShutter(int32_t captureId, const std::vector<int32_t>& streamIds, uint64_t timestamp) | Called when a frame is captured.                |
 
 ### How to Develop
 The camera driver development procedure is as follows:
@@ -242,8 +195,7 @@ The camera driver development procedure is as follows:
 
 4. Open a camera device.
 
-   The **CameraHostProxy** class provides **SetCallback()**, **GetCameraIds()**, **GetCameraAbility()**, **OpenCamera()**, and **SetFlashlight()**.
-
+   The **CameraHostProxy** class provides **SetCallback()**, **GetCameraIds()**, **GetCameraAbility()**, **OpenCamera()**, and **SetFlashlight()**. The following describes **OpenCamera()**.
    Use **OpenCamera()** to call the remote **CameraHostStubOpenCamera()** through the **CMD_CAMERA_HOST_OPEN_CAMERA** to obtain an **ICameraDevice** object.
 
    ```c++
@@ -392,11 +344,11 @@ The camera driver development procedure is as follows:
    ```c++
    using StreamInfo = struct _StreamInfo {
        int streamId_; 
-       int width_;                             // Stream width
-       int height_;                            // Stream height
-       int format_;                            // Stream format, for example, PIXEL_FMT_YCRCB_420_SP
+       int width_; // Stream width
+       int height_; // Stream height
+       int format_; // Stream format, for example, PIXEL_FMT_YCRCB_420_SP
        int dataSpace_; 
-       StreamIntent intent_;                   // StreamIntent, for example, PREVIEW
+       StreamIntent intent_; // StreamIntent, for example, PREVIEW
        bool tunneledMode_;
        ufferProducerSequenceable bufferQueue_; // Use streamCustomer->CreateProducer() to create a buffer queue for streams.
        int minFrameDuration_;
@@ -460,7 +412,7 @@ The camera driver development procedure is as follows:
 
 7. Configure streams.
 
-   Use **CommitStreams()** to configure streams, including initializing and creating **PipelineCore**. **CommitStreams()** must be called after streams are created.
+   Use **CommitStreams()** to configure streams, including initializing and creating **PipelineCore**. **CommitStreams()** must be called after the streams are created.
 
    ```c++
    int32_t StreamOperator::CommitStreams(OperationMode mode, const std::vector<uint8_t>& modeSetting)
@@ -524,7 +476,7 @@ The camera driver development procedure is as follows:
 
    ```c++
    using CaptureInfo = struct _CaptureInfo {
-       int[] streamIds_;                 // IDs of the streams to capture.
+       int[] streamIds_; // IDs of the streams to capture.
        unsigned char[]  captureSetting_; // Use the camera ability obtained by GetCameraAbility() of CameraHost to fill in the settings.
        bool enableShutterCallback_;
    };
@@ -594,11 +546,11 @@ The camera driver development procedure is as follows:
            return INVALID_ARGUMENT;
        }
     
-       RetCode rc = itr->second->Cancel();    // Call Cancel() in CameraCapture to cancel the stream capture.
+       RetCode rc = itr->second->Cancel(); // Call Cancel() in CameraCapture to cancel the stream capture.
        if (rc != RC_OK) {
            return DEVICE_ERROR;
        }
-       requestMap_.erase(itr);                // Erase the CameraCapture object.
+       requestMap_.erase(itr); // Erase the CameraCapture object.
     
        DFX_LOCAL_HITRACE_END;
        return HDI::Camera::V1_0::NO_ERROR;
@@ -635,13 +587,12 @@ The camera driver development procedure is as follows:
    ```
 
 10. Close the camera device.
-
+    
     Use **Close()** in the **CameraDeviceImpl** class to close the camera device. The **PowerDown()** in **DeviceManager** is called to power off the device.    
 
-### Example
+### Development Example
 
 There is a [ohos_camera_demo](https://gitee.com/openharmony/drivers_peripheral/tree/master/camera/test/demo) in the **/drivers/peripheral/camera/hal/test/demo** directory. After the system is started, the executable file **ohos_camera_demo** is generated in the **/vendor/bin** directory. This demo implements basic camera capabilities such as preview and photographing. 
-
 The following uses the demo to describe how to use the HDI to implement **PreviewOn()** and **CaptureON()**.
 
 1. Construct a **CameraDemo** object in the **main** function. This object contains methods for initializing the camera and starting, stopping, and releasing streams. The **mainDemo->InitSensors()** function is used to initialize the **CameraHost**, and the **mainDemo->InitCameraDevice()** function is used to initialize the **CameraDevice**.
@@ -651,7 +602,7 @@ The following uses the demo to describe how to use the HDI to implement **Previe
    {
        RetCode rc = RC_OK;
        auto mainDemo = std::make_shared<CameraDemo>();
-       rc = mainDemo->InitSensors();      // Initialize the CameraHost.
+       rc = mainDemo->InitSensors(); // Initialize the CameraHost.
        if (rc == RC_ERROR) {
            CAMERA_LOGE("main test: mainDemo->InitSensors() error\n");
            return -1;
@@ -663,13 +614,13 @@ The following uses the demo to describe how to use the HDI to implement **Previe
            return -1;
        }
    
-       rc = PreviewOn(0, mainDemo);       // Configure and enable streams.
+       rc = PreviewOn(0, mainDemo); // Configure and enable streams.
        if (rc != RC_OK) {
            CAMERA_LOGE("main test: PreviewOn() error demo exit");
            return -1;
        }
    
-       ManuList(mainDemo, argc, argv);    // Print the menu to the console.
+       ManuList(mainDemo, argc, argv); // Print the menu to the console.
    
        return RC_OK;
    }
@@ -771,9 +722,7 @@ The following uses the demo to describe how to use the HDI to implement **Previe
    }   
    ```
 
-2. Implement **PreviewOn()** to configure streams, enable preview streams, and start stream capture. 
-
-   After **PreviewOn()** is called, the camera preview channel starts running. Two streams are enabled: preview stream and capture or video stream. Only the preview stream will be captured.
+2. Implement **PreviewOn()** to configure streams, enable preview streams, and start stream capture. After **PreviewOn()** is called, the camera preview channel starts running. Two streams are enabled: preview stream and capture or video stream. Only the preview stream will be captured.
 
    ```c++
    static RetCode PreviewOn(int mode, const std::shared_ptr<OhosCameraDemo>& mainDemo)
@@ -781,7 +730,7 @@ The following uses the demo to describe how to use the HDI to implement **Previe
        RetCode rc = RC_OK;
        CAMERA_LOGD("main test: PreviewOn enter");
     
-       rc = mainDemo->StartPreviewStream();     // Configure the preview stream.
+       rc = mainDemo->StartPreviewStream(); // Configure the preview stream.
        if (rc != RC_OK) {
            CAMERA_LOGE("main test: PreviewOn StartPreviewStream error");
            return RC_ERROR;
@@ -794,7 +743,7 @@ The following uses the demo to describe how to use the HDI to implement **Previe
                return RC_ERROR;
            }
        } else {
-           rc = mainDemo->StartVideoStream();   // Configure the video stream.
+           rc = mainDemo->StartVideoStream(); // Configure the video stream.
            if (rc != RC_OK) {
                CAMERA_LOGE("main test: PreviewOn StartVideoStream error");
                return RC_ERROR;
@@ -845,7 +794,7 @@ The following uses the demo to describe how to use the HDI to implement **Previe
            CAMERA_LOGE("demo test: CreateStream CreateStreams error\n");
            return RC_ERROR;
        }
-   
+
        rc = streamOperator_->CommitStreams(NORMAL, cameraAbility_);
        if (rc != HDI::Camera::V1_0::NO_ERROR) {
            CAMERA_LOGE("demo test: CreateStream CommitStreams error\n");
@@ -854,7 +803,7 @@ The following uses the demo to describe how to use the HDI to implement **Previe
            streamOperator_->ReleaseStreams(streamIds);
            return RC_ERROR;
        }
-   
+
        CAMERA_LOGD("demo test: CreateStream exit");
     
        return RC_OK;
@@ -941,7 +890,7 @@ The following uses the demo to describe how to use the HDI to implement **Previe
        while (1) {
            switch (c) {
                case 'h':
-                   c = PutMenuAndGetChr();   // Print the menu.
+                   c = PutMenuAndGetChr(); // Print the menu.
                    break;
                case 'f':
                    FlashLightTest(mainDemo); // Verify the flashlight capability.
@@ -976,7 +925,7 @@ The following uses the demo to describe how to use the HDI to implement **Previe
                    VideoTest(mainDemo);
                    c = PutMenuAndGetChr();
                    break;
-               case 'q':                    // Exit the demo.
+               case 'q': // Exit the demo.
                    PreviewOff(mainDemo);
                    mainDemo->QuitDemo();
                    return;
@@ -1027,22 +976,142 @@ The following uses the demo to describe how to use the HDI to implement **Previe
    ```
 
 4. Compile and build the **ohos_camera_demo**.        
-
-   Add **init:ohos_camera_demo** to **deps** in the **drivers/peripheral/camera/hal/BUILD.gn** file. 
-
-   The sample code is as follows:
-
+   Add **init:ohos_camera_demo** to **deps** in the **drivers/peripheral/camera/BUILD.gn** file. The sample code is as follows:
    ```
    deps = [
-       "buffer_manager:camera_buffer_manager",
-       "device_manager:camera_device_manager",
-       "hdi_impl:camera_host_service_1.0",
-       "pipeline_core:camera_pipeline_core",
-       "utils:camera_utils",
-       "init:ohos_camera_demo",
+       "vdi_base/common/buffer_manager:camera_buffer_manager",
+       "vdi_base/common/device_manager:camera_device_manager",
+       "vdi_base/common/hdi_impl:camera_host_service_1.0",
+       "vdi_base/common/pipeline_core:camera_pipeline_core",
+       "vdi_base/common/utils:camera_utils",
+       "test/common:ohos_camera_demo",
        ]
    ```
 
    The following uses RK3568 development board as an example.       
    1. Run the **./build.sh --product-name rk3568 --ccache** command to generate the executable binary file **ohos_camera_demo** in **out/rk3568/packages/phone/vendor/bin/**.       
    2. Import the executable file **ohos_camera_demo** to the development board, modify the permission, and run the file.
+
+## Reference
+
+### HCS Configuration
+
+The system provides default HCS configuration for the camera module. You can modify the HCS files as required. The HCS files of the camera module are located in **/vendor/hihope/rk3568/hdf_config/uhdf/camera**.
+
+-  **./hdi_impl/camera_host_config.hcs**: defines the camera static capabilities, including the type and position of the lens, connection type, and supported exposure mode. Configure the camera static capabilities based on the specifications of your camera.
+-  **./pipeline_core/config.hcs**: defines the pipeline connection mode. The pipeline configuration includes the supported pipeline types, nodes in each pipeline, and connections between the nodes.
+
+    After compilation, the **congfig.c** and **congfig.h** files are generated in the **/drivers/periphera/camra/vdi_base/common/pipeline_core/pipeline_impl/src/strategy/config** directory.
+-  **./pipeline_core/ipp_algo_config.hcs**: provides algorithm configuration.
+-  **./pipeline_core/params.hcs**: defines the scenarios, stream types, and stream IDs. The pipeline uses the stream ID to identify the stream type. Therefore, you need to configure the stream information here.
+
+    After compilation, the **params.c** and **params.h** files are generated in the **/drivers/periphera/camra/vdi_base/common/pipeline_core/pipeline_impl/src/strategy/config** directory.
+
+### Camera Dump
+
+#### Function Overview
+Camera dump can be used to test camera-related functions. You can enable this feature in the configuration file. Camera dump provides the following functionalities:
+* Provides buffer dump in different phases to help quickly locate image problems and the related data.
+* Dumps metadata to determine whether metadata parameters are correctly set and determine the impact of different parameters on image quality.
+
+#### Directory Structure
+
+
+```
+/drivers/peripheral/camera/vdi_base/common/dump
+├── include
+│   └── camera_dump.h    # Dump head file
+└── src
+    └── camera_dump.cpp  # Dump core code
+```
+
+
+#### Dump Configuration File
+
+You can find the dump configuration **dump.config** in the **/data/local/tmp** directory of the device.
+
+  **Table 1** Dump switch settings
+
+| **Switch**| **Value**| **Description**| **Application Scenarios**| **Output Data Format**|
+| -------- | -------- | -------- | -------- | -------- |
+| enableDQBufDump | true/false | The value **true** means to dump the data in the **DequeueBuffer** method defined in the **v4l2_buffer.cpp** file.| Preview, photo taking, and video recording| Onboard camera: YUV420<br>USB camera: YUV422|
+| enableUVCNodeBufferDump | true/false | The value **true** means to dump the data to be converted by the **YUV422To420** method defined in the **uvc_node.cpp** file.| Preview, photo taking, and video recording| USB camera: YUV422|
+| enableUVCNodeConvertedBufferDump | true/false | The value **true** means to dump the converted data returned by the **YUV422To420** method defined in the **uvc_node.cpp** file.| Preview, photo taking, and video recording| USB camera: YUV420|
+| enableExifNodeConvertedBufferDump | true/false | The value **true** means to dump the data in the **DeliverBuffer** method defined in the **exif_node.cpp** file.| Photo taking| JPEG |
+| enableFaceNodeConvertedBufferDump | true/false | The value **true** means to dump the data in the **DeliverBuffer** method defined in the **face_node.cpp** file.| Reserved for future use| NA|
+| enableForkNodeConvertedBufferDump | true/false | The value **true** means to dump the data in the **DeliverBuffer** method defined in the **fork_node.cpp** file.| Preview, photo taking, and video recording| YUV422 |
+| enableRKFaceNodeConvertedBufferDump | true/false | The value **true** means to dump the data in the **DeliverBuffer** method defined in the **rk_face_node.cpp** file.| Reserved for future use| NA|
+| enableRKExifNodeConvertedBufferDump | true/false | The value **true** means to dump the data in the **DeliverBuffer** method defined in the **rk_exif_node.cpp** file.| Photo taking| JPEG |
+| enableCodecNodeConvertedBufferDump | true/false | The value **true** means to dump the data in the **DeliverBuffer** method defined in the **codec_node.cpp** file.| Preview, photo taking, and video recording| JPEG, YUV420, RGBA8888|
+| enableRKCodecNodeConvertedBufferDump | true/false | The value **true** means to dump the data in the **DeliverBuffer** method defined in the **rk_codec_node.cpp** file.| Preview, photo taking, and video recording| JPEG, H264, RGBA8888|
+| enableSreamTunnelBufferDump | true/false | The value **true** means to dump the data in the **PutBuffer** method defined in the **stream_tunnel.cpp** file.| Preview, photo taking, and video recording| JPEG, H264, YUV420, RGBA8888|
+| enableMetadataDump | true/false | The value **true** means to enable the dump metadata feature.| Preview, photo taking, and video recording| .meta |
+
+
+You can also set the dump sampling interval, as described in the following table.
+
+  **Table 2** Dump sampling interval
+
+| Dump sampling interval| **Value**| **Description**|
+| -------- | -------- | -------- |
+| previewInterval | Integer greater than or equal to 1| Interval for dumping preview. The default value is **1**, which means to dump every frame.|
+| videoInterval | Integer greater than or equal to 1| Interval for dumping video recording. The default value is **1**, which means to dump every frame.|
+
+#### Configuration Example
+
+Create a file named **dump.config** in any location on your PC and configure the related parameters.
+
+Complete configuration:
+
+>__enableDQBufDump=true__<br>
+>enableUVCNodeBufferDump=false<br>
+>enableUVCNodeConvertedBufferDump=false<br>
+>enableExifNodeConvertedBufferDump=false<br>
+>enableFaceNodeConvertedBufferDump=false<br>
+>enableForkNodeConvertedBufferDump=false<br>
+>enableRKFaceNodeConvertedBufferDump=false<br>
+>enableRKExifNodeConvertedBufferDump=false<br>
+>enableCodecNodeConvertedBufferDump=false<br>
+>enableRKCodecNodeConvertedBufferDump=false<br>
+>enableSreamTunnelBufferDump=false<br>
+>**enableMetadataDump=true**<br>
+>**previewInterval=3**<br>
+>videoInterval=1<br>
+
+
+Example:
+
+Dump **DequeueBuffer** data and metadata with a dump sampling interval of 3.
+
+#### Enabling Dump
+1. Transfer the configuration file to the **/data/local/tmp** directory of the target device.
+
+   ```
+   hdc file send dump.config /data/local/tmp
+   ```
+
+2. Modify the permission on the dump directory.
+
+   ```
+   hdc shell mount -o rw,remount /data
+   hdc shell chmod 777 /data/ -R
+   ```
+
+3. Enable the dump feature.
+
+   ```
+   hdc shell "hidumper -s 5100 -a '-host camera_host -o'"
+   ```
+
+   * **-s 5100**: obtains all information about the ability whose ID is 5100. In this example, ability 5100 is camera.
+   * **-a '-host camera_host -o'**: exports the specified ability information.
+   * For details about how to use HiDumper, see [HiDumper](../../device-dev/subsystems/subsys-dfx-hidumper.md).
+
+
+4. Start the camera and perform operations, such as taking photos and videos, and previewing the photos and videos.
+
+#### Dumping Data
+After the dump feature is enabled, a file containing the data dumped will be generated in the **/data/local/tmp** directory of the device. You can view the file after sending it to a PC.
+```
+hdc file recv /data/local/tmp/xxxx.yuv ~/
+```

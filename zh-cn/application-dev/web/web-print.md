@@ -1,4 +1,4 @@
-# 打印能力
+# 使用Web组件打印前端页面
 
 Web组件打印html页面时可通过W3C标准协议接口和应用接口两种方式实现。开发者在使用该能力时，需配置[ohos.permission.PRINT](../security/AccessToken/declare-permissions.md)打印权限。
 
@@ -85,7 +85,7 @@ Web组件打印html页面时可通过W3C标准协议接口和应用接口两种�
   ```
 
 ## 通过调用应用侧接口拉起打印。
-应用侧通过调用[createWebPrintDocumentAdapter](../reference/apis/js-apis-webview.md#createwebprintdocumentadapter)创建打印适配器，通过将适配器传入打印的[print](../reference/apis/js-apis-print.md#print11-2)接口调起打印。
+应用侧通过调用[createWebPrintDocumentAdapter](../reference/apis-arkweb/js-apis-webview.md#createwebprintdocumentadapter)创建打印适配器，通过将适配器传入打印的print接口调起打印。
 
 ```ts
 // xxx.ets

@@ -1,7 +1,7 @@
 # Tabs
 
 
-当页面信息较多时，为了让用户能够聚焦于当前显示的内容，需要对页面内容进行分类，提高页面空间利用率。[Tabs](../reference/arkui-ts/ts-container-tabs.md)组件可以在一个页面内快速实现视图内容的切换，一方面提升查找信息的效率，另一方面精简用户单次获取到的信息量。
+当页面信息较多时，为了让用户能够聚焦于当前显示的内容，需要对页面内容进行分类，提高页面空间利用率。[Tabs](../reference/apis-arkui/arkui-ts/ts-container-tabs.md)组件可以在一个页面内快速实现视图内容的切换，一方面提升查找信息的效率，另一方面精简用户单次获取到的信息量。
 
 
 ## 基本布局
@@ -29,8 +29,6 @@ Tabs使用花括号包裹TabContent，如图2，其中TabContent显示相应的�
 
 每一个TabContent对应的内容需要有一个页签，可以通过TabContent的tabBar属性进行配置。在如下TabContent组件上设置tabBar属性，可以设置其对应页签中的内容，tabBar作为内容的页签。
 
-
-
 ```ts
  TabContent() {
    Text('首页的内容').fontSize(30)
@@ -40,8 +38,6 @@ Tabs使用花括号包裹TabContent，如图2，其中TabContent显示相应的�
 
 
 设置多个内容时，需在Tabs内按照顺序放置。
-
-
 
 ```ts
 Tabs() {
@@ -148,8 +144,6 @@ Tabs({ barPosition: BarPosition.Start }) {
 
 控制滑动切换的属性为scrollable，默认值为true，表示可以滑动，若要限制滑动切换页签则需要设置为false。
 
-
-
 ```ts
 Tabs({ barPosition: BarPosition.End }) {
   TabContent(){
@@ -183,8 +177,6 @@ Tabs({ barPosition: BarPosition.End }) {
 
 Tabs的barMode属性用于控制导航栏是否可以滚动，默认值为BarMode.Fixed。
 
-
-
 ```ts
 Tabs({ barPosition: BarPosition.End }) {
   // TabContent的内容：首页、发现、推荐、我的
@@ -205,8 +197,6 @@ Tabs({ barPosition: BarPosition.End }) {
 
 
 滚动导航栏需要设置Tabs组件的barMode属性，默认值为BarMode.Fixed表示为固定导航栏，BarMode.Scrollable表示可滚动导航栏。
-
-
 
 ```ts
 Tabs({ barPosition: BarPosition.Start }) {
@@ -230,9 +220,7 @@ Tabs({ barPosition: BarPosition.Start }) {
 系统默认情况下采用了下划线标志当前活跃的页签，而自定义导航栏需要自行实现相应的样式，用于区分当前活跃页签和未活跃页签。
 
 
-设置自定义导航栏需要使用tabBar的参数，以其支持的CustomBuilder的方式传入自定义的函数组件样式。例如这里声明TabBuilder的自定义函数组件，传入参数包括页签文字title，对应位置index，以及选中状态和未选中状态的图片资源。通过当前活跃的currentIndex和页签对应的targetIndex匹配与否，决定UI显示的样式。
-
-
+设置自定义导航栏需要使用tabBar的参数，以其支持的CustomBuilder的方式传入自定义的函数组件样式。例如这里声明tabBuilder的自定义函数组件，传入参数包括页签文字title，对应位置index，以及选中状态和未选中状态的图片资源。通过当前活跃的currentIndex和页签对应的targetIndex匹配与否，决定UI显示的样式。
 
 ```ts
 @Builder tabBuilder(title: string, targetIndex: number, selectedImg: Resource, normalImg: Resource) {
@@ -250,8 +238,6 @@ Tabs({ barPosition: BarPosition.Start }) {
 
 
 在TabContent对应tabBar属性中传入自定义函数组件，并传递相应的参数。
-
-
 
 ```ts
 TabContent() {
@@ -277,8 +263,6 @@ TabContent() {
 
 
 切换指定页签需要使用TabsController，TabsController是Tabs组件的控制器，用于控制Tabs组件进行页签切换。通过TabsController的changeIndex方法来实现跳转至指定索引值对应的TabContent内容。
-
-
 
 ```ts
 class Tmp{
@@ -311,8 +295,6 @@ private tabsController : TabsController = new TabsController()
 
 使用自定义导航栏时，在tabBar属性中传入对应的\@Builder，并传入相应的参数。
 
-
-
 ```ts
 Tabs({ barPosition: BarPosition.End, controller: this.tabsController }) {
   TabContent(){
@@ -342,48 +324,96 @@ Tabs({ barPosition: BarPosition.End, controller: this.tabsController }) {
 
   **图11** 滑动切换时页签内容不联动  
 
-![最终效果11](figures/最终效果11.gif)
+![TabsChange1](figures/TabsChange1.gif)
 
 
 此时需要使用Tabs提供的onChange事件方法，监听索引index的变化，并将当前活跃的index值传递给currentIndex，实现页签内容的切换。
 
 
-
-
 ```ts
-class Tmp{
-  currentIndex:number = 0;
-  foo(val:number){
-    this.currentIndex = val;
+//xxx.ets
+@Entry
+@Component
+struct TabsExample {
+  @State currentIndex: number = 2
+  private controller: TabsController = new TabsController()
+    
+  ...
+  
+  build() {
+    Column() {
+      Tabs({ barPosition: BarPosition.End, controller: this.controller, index: this.currentIndex }) {
+        TabContent() {
+          ...
+        }.tabBar(this.tabBuilder('首页',0))
+
+        TabContent() {
+          ...
+        }.tabBar(this.tabBuilder('发现',1))
+
+        TabContent() {
+          ...
+        }.tabBar(this.tabBuilder('推荐',2))
+
+        TabContent() {
+          ...
+        }.tabBar(this.tabBuilder('我的',3))
+      }
+      .vertical(false)
+      .barMode(BarMode.Fixed)
+      .barWidth(360)
+      .barHeight(60)
+      .animationDuration(0)
+      .onChange((index: number) => {
+        this.currentIndex = index
+      })
+      .width(360)
+      .height(600)
+      .backgroundColor('#F1F3F5')
+      .scrollable(true)
+      .onContentWillChange((currentIndex, comingIndex) => {
+        if (comingIndex == 2) {
+          return false
+        }
+        return true
+      })
+
+      Button('动态修改index').width('50%').margin({ top: 20 })
+        .onClick(()=>{
+          this.currentIndex = (this.currentIndex + 1) % 4
+        })
+
+      Button('changeIndex').width('50%').margin({ top: 20 })
+        .onClick(()=>{
+          this.currentIndex = (this.currentIndex + 1) % 4
+          this.controller.changeIndex(this.currentIndex)
+        })
+    }.width('100%')
   }
 }
-Tabs({ barPosition: BarPosition.End, controller: this.tabsController }) {
-  TabContent() {
-    ...
-  }.tabBar(this.tabBuilder('首页', 0))
-
-  TabContent() {
-    ...
-  }.tabBar(this.tabBuilder('发现', 1))
-
-  TabContent() {
-    ...
-  }.tabBar(this.tabBuilder('推荐', 2))
-
-  TabContent() {
-    ...
-  }
-  .tabBar(this.tabBuilder('我的', 3))
-}.onChange((index:number) => {
-  let cur:Tmp = new Tmp()
-  cur.foo(index)
-})
 ```
 
 
   **图12** 内容与页签联动 
 
-![最终效果](figures/最终效果.gif)
+![TabsChange2](figures/TabsChange2.gif)
+
+  **图13** 支持开发者自定义页面切换拦截事件 
+
+![TabsChange3](figures/TabsChange3.gif)
+
+开发者可以通过Tabs组件的onContentWillChange接口，设置自定义拦截回调函数。拦截回调函数在下一个页面即将展示时被调用，如果回调返回true，新页面可以展示；如果回调返回false，新页面不会展示，仍显示原来页面。
+
+```ts
+Tabs({ barPosition: BarPosition.End, controller: this.controller, index: this.currentIndex }) {...}
+.onContentWillChange((currentIndex, comingIndex) => {
+  if (comingIndex == 2) {
+    return false
+  }
+  return true
+})
+
+```
 
 ## 相关实例
 

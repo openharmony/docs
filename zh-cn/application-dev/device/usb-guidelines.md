@@ -11,13 +11,13 @@ Host模式下，可以获取到已经连接的USB设备列表，并根据需要�
 
 USB服务主要提供的功能有：查询USB设备列表、批量数据传输、控制命令传输、权限控制等。
 
-USB类开放能力如下，具体请查阅[API参考文档](../reference/apis/js-apis-usbManager.md)。
+USB类开放能力如下，具体请查阅[API参考文档](../reference/apis-basic-services-kit/js-apis-usbManager.md)。
 
 **表1** USB类的开放能力接口
 
 | 接口名                                                       | 描述                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| hasRight(deviceName: string): boolean                         | 判断是否有权访问该设备 |
+| hasRight(deviceName: string): boolean                         | 判断是否有权访问该设备。 |
 | requestRight(deviceName: string): Promise&lt;boolean&gt;       | 请求软件包的临时权限以访问设备。使用Promise异步回调。                        |
 | removeRight(deviceName: string): boolean | 移除软件包对设备的访问权限。|
 | connectDevice(device: USBDevice): Readonly&lt;USBDevicePipe&gt; | 根据`getDevices()`返回的设备信息打开USB设备。                |

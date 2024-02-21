@@ -12,7 +12,7 @@
 
 2. 初始化密钥属性集。
 
-3. 调用[generateKeyItem](../../reference/apis/js-apis-huks.md#huksgeneratekeyitem9)生成密钥，具体请参考[密钥生成](huks-key-generation-overview.md)。
+3. 调用[generateKeyItem](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksgeneratekeyitem9)生成密钥，具体请参考[密钥生成](huks-key-generation-overview.md)。
 
 除此之外，开发者也可以参考[密钥导入](huks-key-import-overview.md)，导入已有的密钥。
 
@@ -23,11 +23,11 @@
 2. 指定待签名的明文数据。
 
 3. 获取属性参数HuksOptions，包括两个字段properties和inData。
-   inData传入明文数据，properties传入[算法参数配置](../../reference/apis/js-apis-huks.md#huksparam)。
+   inData传入明文数据，properties传入[算法参数配置](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksparam)。
 
-4. 调用[initSession](../../reference/apis/js-apis-huks.md#huksinitsession9)初始化密钥会话，并获取会话的句柄handle。
+4. 调用[initSession](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksinitsession9)初始化密钥会话，并获取会话的句柄handle。
 
-5. 调用[finishSession](../../reference/apis/js-apis-huks.md#huksfinishsession9)结束密钥会话，获取签名signature。
+5. 调用[finishSession](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksfinishsession9)结束密钥会话，获取签名signature。
 
 **验签**
 
@@ -36,17 +36,17 @@
 2. 获取待验证的签名signature。
 
 3. 获取属性参数HuksOptions，包括两个字段properties和inData。
-   inData传入签名signature，properties传入[算法参数配置](../../reference/apis/js-apis-huks.md#huksparam)。
+   inData传入签名signature，properties传入[算法参数配置](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksparam)。
 
-4. 调用[initSession](../../reference/apis/js-apis-huks.md#huksinitsession9)初始化密钥会话，并获取会话的句柄handle。
+4. 调用[initSession](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksinitsession9)初始化密钥会话，并获取会话的句柄handle。
 
-5. 调用[updateSession](../../reference/apis/js-apis-huks.md#huksupdatesession9)更新密钥会话。
+5. 调用[updateSession](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksupdatesession9)更新密钥会话。
 
-6. 调用[finishSession](../../reference/apis/js-apis-huks.md#huksfinishsession9)结束密钥会话，验证签名。
+6. 调用[finishSession](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksfinishsession9)结束密钥会话，验证签名。
 
 **删除密钥**
 
-当密钥废弃不用时，需要调用[deleteKeyItem](../../reference/apis/js-apis-huks.md#huksdeletekeyitem9)删除密钥，具体请参考[密钥删除](huks-delete-key-arkts.md)。
+当密钥废弃不用时，需要调用[deleteKeyItem](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksdeletekeyitem9)删除密钥，具体请参考[密钥删除](huks-delete-key-arkts.md)。
 
 ```ts
 /*
@@ -168,11 +168,11 @@ async function Sign(keyAlias: string, plaintext: string) {
       console.error(`promise: sign failed, error: ` + JSON.stringify(err));
     })
 }
-async function Verify(keyAlias: string, signature: Uint8Array) {
+async function Verify(keyAlias: string, plaintext: string, signature: Uint8Array) {
   let verifyProperties = GetEccVerifyProperties()
   let options: huks.HuksOptions = {
     properties: verifyProperties,
-    inData: signature
+    inData: StringToUint8Array(plaintext)
   }
   await huks.initSession(keyAlias, options)
     .then((data) => {
@@ -186,6 +186,7 @@ async function Verify(keyAlias: string, signature: Uint8Array) {
     }).catch((err: BusinessError)=>{
       console.error(`promise: update verify failed, error: ` + JSON.stringify(err));
     })
+  options.inData = signature;
   await huks.finishSession(handle, options)
     .then((data) => {
       console.info(`promise: verify success, data is ` + Uint8ArrayToString(data.outData as Uint8Array));
@@ -207,7 +208,7 @@ async function DeleteEccKey(keyAlias: string) {
 async function testSignVerify() {
   await GenerateEccKey(keyAlias);
   await Sign(keyAlias, plaintext);
-  await Verify(keyAlias, signature);
+  await Verify(keyAlias, plaintext, signature);
   await DeleteEccKey(keyAlias);
 }
 ```

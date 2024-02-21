@@ -90,7 +90,7 @@ For details about the APIs, see [AudioStreamManager](../reference/apis/js-apis-a
      This API can be used to obtain the unique ID of the audio recording stream, UID of the audio recording client, audio status, and other information about the AudioCapturer.
    > **NOTE**
    > 
-   > Before listening for state changes of all audio streams, the application must request the **ohos.permission.USE_BLUETOOTH** [permission](../security/accesstoken-guidelines.md), for the device name and device address (Bluetooth related attributes) to be displayed correctly.
+   > Before listening for state changes of all audio streams, the application must [declare the ohos.permission.USE_BLUETOOTH permission](../security/AccessToken/declare-permissions.md), for the device name and device address (Bluetooth related attributes) to be displayed correctly.
 
    ```ts
    async function getCurrentAudioCapturerInfoArray(){

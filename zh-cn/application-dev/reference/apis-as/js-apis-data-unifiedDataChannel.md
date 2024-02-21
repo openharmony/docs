@@ -425,13 +425,14 @@ let unifiedData = new unifiedDataChannel.UnifiedData(appItem);
 ```js
 import image from '@ohos.multimedia.image'; // PixelMap类定义所在模块
 
-const color = new ArrayBuffer(96); // 创建pixelmap对象
 let opts: image.InitializationOptions = {
   editable: true, pixelFormat: 3, size: {
     height: 4, width: 6
   }
 }
-image.createPixelMap(color, opts, (error, pixelmap) => {
+let sourceOptions: image.SourceOptions = { sourceDensity: 120 };
+let imageSourceApi: image.ImageSource = image.createImageSource(0, sourceOptions);
+imageSourceApi.createPixelMap(opts, (error, pixelmap) => {
   if (error) {
     console.error('Failed to create pixelmap.');
   } else {

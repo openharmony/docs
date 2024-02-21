@@ -4,12 +4,13 @@
 
 ## 开发步骤
 
-详细的API说明请参考[Camera API参考](../reference/native-apis/_o_h___camera.md)。
+详细的API说明请参考[Camera API参考](../reference/apis-camera-kit/_o_h___camera.md)。
 
 1. 导入NDK接口。选择系统提供的NDK接口能力，导入NDK接口的方法如下。
 
    ```c++
-    // 导入NDK接口头文件 （参考ndk demo：在camera_manager.cpp中调用）
+    // 导入NDK接口头文件
+    #include "hilog/log.h"
     #include "ohcamera/camera.h"
     #include "ohcamera/camera_input.h"
     #include "ohcamera/capture_session.h"
@@ -19,26 +20,27 @@
     #include "ohcamera/camera_manager.h"
    ```
 
-2. 在CMake脚本中链接Camera NDK动态库。
+2. 在CMake脚本中链接相关动态库。
 
    ```txt
-    target_link_libraries(PUBLIC libohcamera/.so)
+    target_link_libraries(entry PUBLIC libohcamera.so libhilog_ndk.z.so)
    ```
 
-3. 通过OH_Camera_GetCameraMananger方法，获取cameraManager对象。
+3. 通过OH_Camera_GetCameraManager()方法，获取cameraManager对象。
 
    ```c++
    Camera_Manager *cameraManager = nullptr;
    Camera_Input* cameraInput = nullptr;
    Camera_Device* cameras = nullptr;
+   Camera_OutputCapability* cameraOutputCapability = nullptr;
    const Camera_Profile* previewProfile = nullptr;
    const Camera_Profile* photoProfile = nullptr;
    uint32_t size = 0;
    uint32_t cameraDeviceIndex = 0;
    // 创建CameraManager对象
-   Camera_ErrorCode ret = OH_Camera_GetCameraMananger(&cameraManager);
+   Camera_ErrorCode ret = OH_Camera_GetCameraManager(&cameraManager);
    if (cameraManager == nullptr || ret != CAMERA_OK) {
-         OH_LOG_ERROR(LOG_APP, "OH_Camera_GetCameraMananger failed.");
+         OH_LOG_ERROR(LOG_APP, "OH_Camera_GetCameraManager failed.");
    }
    ```
 
@@ -62,26 +64,13 @@
    }
    ```
 
-5. 通过OH_CameraManager_GetSupportedCameraOutputCapability方法，获取当前设备支持的所有输出流，如预览流、拍照流等。输出流在CameraOutputCapability中的各个profile字段中。
-     
+5. 通过OH_CameraManager_GetSupportedCameraOutputCapability()方法，获取当前设备支持的所有输出流，如预览流、拍照流等。输出流在CameraOutputCapability中的各个profile字段中。
+
    ```c++
    // 创建相机输入流
    ret = OH_CameraManager_CreateCameraInput(cameraManager, &cameras[cameraDeviceIndex], &cameraInput);
    if (cameraInput == nullptr || ret != CAMERA_OK) {
          OH_LOG_ERROR(LOG_APP, "OH_CameraManager_CreateCameraInput failed.");
-   }
-   // 监听cameraInput错误信息
-   void OnCameraInputError(const Camera_Input* cameraInput, Camera_ErrorCode errorCode)
-   {
-      OH_LOG_INFO(LOG_APP, "OnCameraInput errorCode = %{public}d", errorCode);
-   }
-
-   CameraInput_Callbacks* GetCameraInputListener(void)
-   {
-      static CameraInput_Callbacks cameraInputCallbacks = {
-         .onError = OnCameraInputError
-      };
-      return &cameraInputCallbacks;
    }
    ret = OH_CameraInput_RegisterCallback(cameraInput, GetCameraInputListener());
    if (ret != CAMERA_OK) {
@@ -100,29 +89,48 @@
    }
    
    if (cameraOutputCapability->previewProfilesSize < 0) {
-      console.error("previewProfilesSize == null");
+      OH_LOG_ERROR(LOG_APP, "previewProfilesSize == null");
    }
    previewProfile = cameraOutputCapability->previewProfiles[0];
 
    if (cameraOutputCapability->photoProfilesSize < 0) {
-      console.error("photoProfilesSize == null");
+      OH_LOG_ERROR(LOG_APP, "photoProfilesSize == null");
    }
    photoProfile = cameraOutputCapability->photoProfiles[0];
    ```
+   ```c++
+   // 监听cameraInput错误信息
+   void OnCameraInputError(const Camera_Input* cameraInput, Camera_ErrorCode errorCode)
+   {
+      OH_LOG_INFO(LOG_APP, "OnCameraInput errorCode = %{public}d", errorCode);
+   }
 
+   CameraInput_Callbacks* GetCameraInputListener(void)
+   {
+      static CameraInput_Callbacks cameraInputCallbacks = {
+         .onError = OnCameraInputError
+      };
+      return &cameraInputCallbacks;
+   }
+   ```
 
 ## 状态监听
 
 在相机应用开发过程中，可以随时监听相机状态，包括新相机的出现、相机的移除、相机的可用状态。在回调函数中，通过相机ID、相机状态这两个参数进行监听，如当有新相机出现时，可以将新相机加入到应用的备用相机中。
 
-  通过注册cameraStatus事件，通过回调返回监听结果，callback返回Camera_StatusInfo参数，参数的具体内容可参考相机管理器回调接口实例[Camera_StatusInfo]。
+  通过注册cameraStatus事件，通过回调返回监听结果，callback返回Camera_StatusInfo参数，参数的具体内容可参考相机管理器回调接口实例[Camera_StatusInfo](../reference/apis-camera-kit/_camera___status_info.md)。
   
-```c++
+   ```c++
+   ret = OH_CameraManager_RegisterCallback(cameraManager, GetCameraManagerListener());
+   if (ret != CAMERA_OK) {
+      OH_LOG_ERROR(LOG_APP, "OH_CameraManager_RegisterCallback failed.");
+   }
+   ```
+   ```c++
    void CameraManagerStatusCallback(Camera_Manager* cameraManager, Camera_StatusInfo* status)
    {
       OH_LOG_INFO(LOG_APP, "CameraManagerStatusCallback is called");
    }
-
    CameraManager_Callbacks* GetCameraManagerListener()
    {
       static CameraManager_Callbacks cameraManagerListener = {
@@ -130,13 +138,4 @@
       };
       return &cameraManagerListener;
    }
-  ret = OH_CameraManager_RegisterCallback(cameraManager, GetCameraManagerListener());
-  if (ret != CAMERA_OK) {
-      OH_LOG_ERROR(LOG_APP, "OH_CameraManager_RegisterCallback failed.");
-  }
-```
-
-## 相关实例
-
-针对设备输入，有以下相关实例可供参考：
-- [设备输入(Native)](https://gitee.com/openharmony/multimedia_camera_framework/tree/master/frameworks/native/camera/test/ndktest/camera_ndk_demo)
+   ```

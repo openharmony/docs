@@ -272,7 +272,7 @@ export default struct frameAnimation {
 ```
 
 ## 参考
-- [Timer (定时器)](../application-dev/reference/apis/js-apis-timer.md)
-- [图形变换](../application-dev/reference/arkui-ts/ts-universal-attributes-transformation.md)
-- [背景设置](../application-dev/reference/arkui-ts/ts-universal-attributes-background.md)
+- [Timer (定时器)](../application-dev/reference/common/js-apis-timer.md)
+- [图形变换](../application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-transformation.md)
+- [背景设置](../application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-background.md)
 

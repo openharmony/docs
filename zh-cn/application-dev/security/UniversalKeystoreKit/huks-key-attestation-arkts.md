@@ -1,6 +1,6 @@
-# 非匿名密钥证明(仅向系统应用开放)(ArkTS)
+# 非匿名密钥证明(ArkTS)
 
-本接口有权限管控（需申请"ohos.permission.ATTEST_KEY"权限），且仅面向系统应用开放。
+在使用本功能前，需申请权限：ohos.permission.ATTEST_KEY。请开发者根据应用的APL等级，参考具体的操作路径[权限申请](../AccessToken/determine-application-mode.md)。
 
 ## 开发步骤
 
@@ -8,11 +8,11 @@
 
 2. 初始化参数集。
 
-   [HuksOptions](../../reference/apis/js-apis-huks.md#huksoptions)中的properties字段中的参数必须包含[HUKS_TAG_ATTESTATION_ID_SEC_LEVEL_INFO](../../reference/apis/js-apis-huks.md#hukstag)，[HUKS_TAG_ATTESTATION_CHALLENGE](../../reference/apis/js-apis-huks.md#hukstag)属性,可选参数包含[HUKS_TAG_ATTESTATION_ID_VERSION_INFO](../../reference/apis/js-apis-huks.md#hukstag)，[HUKS_TAG_ATTESTATION_ID_ALIAS](../../reference/apis/js-apis-huks.md#hukstag)属性。
+   [HuksOptions](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksoptions)中的properties字段中的参数必须包含[HUKS_TAG_ATTESTATION_ID_SEC_LEVEL_INFO](../../reference/apis-universal-keystore-kit/js-apis-huks.md#hukstag)，[HUKS_TAG_ATTESTATION_CHALLENGE](../../reference/apis-universal-keystore-kit/js-apis-huks.md#hukstag)属性,可选参数包含[HUKS_TAG_ATTESTATION_ID_VERSION_INFO](../../reference/apis-universal-keystore-kit/js-apis-huks.md#hukstag)，[HUKS_TAG_ATTESTATION_ID_ALIAS](../../reference/apis-universal-keystore-kit/js-apis-huks.md#hukstag)属性。
 
 3. 生成非对称密钥，具体请参考[密钥生成](huks-key-generation-overview.md)。
 
-4. 将密钥别名与参数集作为参数传入[huks.attestKeyItem](../../reference/apis/js-apis-huks.md#huksattestkeyitem9)方法中，即可证明密钥。
+4. 将密钥别名与参数集作为参数传入[huks.attestKeyItem](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksattestkeyitem9)方法中，即可证明密钥。
 
 ```ts
 /*

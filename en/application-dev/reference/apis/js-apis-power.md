@@ -357,7 +357,7 @@ power.rebootDevice('reboot_test');
 
 isScreenOn(callback: AsyncCallback&lt;boolean&gt;): void
 
-> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [power.isActive](#powerisactive9).
+> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [power.isActive](#powerisactive9) instead.
 
 Checks the screen status of the current device. This API uses an asynchronous callback to return the result.
 
@@ -385,7 +385,7 @@ power.isScreenOn((err: Error, data: boolean) => {
 
 isScreenOn(): Promise&lt;boolean&gt;
 
-> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [power.isActive](#powerisactive9).
+> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [power.isActive](#powerisactive9) instead.
 
 Checks the screen status of the current device. This API uses a promise to return the result.
 
@@ -403,7 +403,7 @@ power.isScreenOn()
 .then((data: boolean) => {
     console.info('screen on status is ' + data);
 })
-.catch((err: { code: number, message: string }) => {
+.catch((err: Error) => {
     console.error('check screen status failed, err: ' + err);
 })
 ```

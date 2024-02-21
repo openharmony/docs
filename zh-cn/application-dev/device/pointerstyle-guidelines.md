@@ -12,7 +12,7 @@ import pointer from '@ohos.multimodalInput.pointer';
 
 ## 接口说明
 
-鼠标光标控制常用接口如下表所示，接口详细介绍请参见[ohos.multimodalInput.pointer文档](../reference/apis/js-apis-pointer.md)
+鼠标光标控制常用接口如下表所示，接口详细介绍请参见[ohos.multimodalInput.pointer文档](../reference/apis-input-kit/js-apis-pointer.md)
 
 | 接口名称                                                       | 描述                                                         |
 | ------------------------------------------ | ------------------------------------------------------- |
@@ -66,7 +66,7 @@ try {
 
 ## 设置鼠标光标样式
 
-当开发者设计取色器特性时，可以将鼠标光标样式切换为取色器样式，完成取色后，设置鼠标光标样式为默认样式，该接口设置和查询当前应用内指定窗口的光标样式，总共可设置43种光标样式，具体参考[光标样式](../reference/apis/js-apis-pointer.md#pointerstyle)。
+当开发者设计取色器特性时，可以将鼠标光标样式切换为取色器样式，完成取色后，设置鼠标光标样式为默认样式，该接口设置和查询当前应用内指定窗口的光标样式，总共可设置43种光标样式，具体参考[光标样式](../reference/apis-input-kit/js-apis-pointer.md#pointerstyle)。
 
 ### 开发步骤
 

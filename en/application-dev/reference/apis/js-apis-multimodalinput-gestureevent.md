@@ -23,7 +23,7 @@ Defines a pinch event.
 | type         | [ActionType](#actiontype)   | Yes   | No   | Pinch event type.                                  |
 | scale        | number      | Yes   | No   | Pinch scale factor. The value is greater than or equal to 0.                            |
 
-## Rotate
+## Rotate<sup>11+</sup>
 
 Defines a rotate event.
 
@@ -31,8 +31,8 @@ Defines a rotate event.
 
 | Name            | Type       | Readable  | Writable  | Description                                      |
 | -------------- | ----------- | ---- | ---- | ---------------------------------------- |
-| type         | [ActionType](#actiontype)   | Yes   | No   | Rotate event type.                                  |
-| angle        | number      | Yes   | No   | Angle of rotation.                            |
+| type | [ActionType](#actiontype)   | Yes   | No   | Rotate event type.                                  |
+| angle | number      | Yes   | No   | Angle of rotation.                            |
 
 ## ThreeFingersSwipe
 
@@ -58,14 +58,14 @@ Defines a four-finger swipe event.
 | x        | number      | Yes   | No   | X coordinate.                            |
 | y        | number      | Yes   | No   | Y coordinate.                            |
 
-## ThreeFingersTap
+## ThreeFingersTap<sup>11+</sup>
 
 Defines a three-finger tap event.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
-| Name| Type                     | Readable| Writable| Description            |
-| ---- | ------------------------- | ---- | ---- | ---------------- |
+| Name              | Type                     | Readable| Writable| Description            |
+| ------------------ | ------------------------- | ---- | ---- | ---------------- |
 | type | [ActionType](#actiontype) | Yes  | No  | Three-finger tap event type.|
 
 ## ActionType

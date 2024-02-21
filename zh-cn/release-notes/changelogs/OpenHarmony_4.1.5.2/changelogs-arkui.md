@@ -12,7 +12,9 @@
 
 **变更影响**
 
-该变更为兼容性变更。在**统一渲染模式**下，菜单背板的默认视觉效果变更为模糊材质。
+该变更为兼容性变更。
+
+在**统一渲染模式**下，菜单背板的默认视觉效果变更为模糊材质。
 
 **API Level**
 
@@ -20,50 +22,68 @@
 
 **变更发生版本**
 
-从OpenHarmony SDK 4.1.52 版本开始。
+从OpenHarmony SDK 4.1.5.2 版本开始。
 
 **变更的接口/组件**
 
 涉及到左键菜单（bindMenu）、右键菜单（bindContextMenu）、下拉选项菜单（Select）、导航组件工具栏的更多悬浮菜单（Navigation）等菜单背板的默认视觉效果：
 
-- 变更前：菜单背板显示为白色
-- 变更后：菜单背板默认显示为模糊材质
-
-bindMenu与bindContextMenu可支持开发者自定义模糊材质及背景色。
+- 变更前：菜单背景颜色显示为白色，不支持模糊材质。
+- 变更后：菜单背景颜色默认为透明和模糊材质，其中bindMenu与bindContextMenu可支持开发者配置是否模糊材质及背景色。
 
 **适配指导**
 
-去除模糊材质示例代码：
+bindMenu/bindContextMenu去除模糊材质示例代码：
 ```ts
 @Entry
 @Component
 struct Index {
+  @State message: string = '自定义菜单';
+
   @Builder
   MenuBuilder() {
-    MenuItem({ content: "item1" })
-    MenuItem({ content: "item2" })
+    Menu() {
+      MenuItem({ content: "item00" })
+      MenuItem({ content: "item11" })
+    }
+  }
+
+  @Builder
+  ContextMenuBuilder() {
+    Menu() {
+      MenuItem({ content: "item22" })
+      MenuItem({ content: "item33" })
+    }
   }
 
   build() {
-    Navigation() {
-      Column({ space: 12 }) {
-        Text("自定义菜单")
+    Row() {
+      Column() {
+        Text(this.message)
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
-          .fontColor('#FFF')
-          .bindMenu(this.MenuBuilder())
+          .fontColor('black')
+          .bindMenu(this.MenuBuilder(), { backgroundColor: Color.White, backgroundBlurStyle: BlurStyle.NONE })
+          .bindContextMenu(this.ContextMenuBuilder(), ResponseType.LongPress, {
+            backgroundColor: Color.White,
+            backgroundBlurStyle: BlurStyle.NONE
+          })
       }
+      .width('100%')
     }
+    .height('100%').backgroundColor(Color.Orange)
   }
 }
 ```
 将
 ```ts
 .bindMenu(this.MenuBuilder())
+.bindContextMenu(this.ContextMenuBuilder(), ResponseType.LongPress)
 ```
 替换为
 ```ts
 .bindMenu(this.MenuBuilder(), { backgroundColor: Color.White, backgroundBlurStyle: BlurStyle.NONE })
+.bindContextMenu(this.ContextMenuBuilder(), ResponseType.LongPress, { backgroundColor: Color.White, backgroundBlurStyle: BlurStyle.NONE })
 ```
 即手动设置背景色与背景模糊材质枚举值。
 

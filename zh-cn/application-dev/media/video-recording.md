@@ -10,7 +10,7 @@
 
 ![Recording status change](figures/video-recording-status-change.png)
 
-状态的详细说明请参考[AVRecorderState](../reference/apis/js-apis-media.md#avrecorderstate9)。
+状态的详细说明请参考[AVRecorderState](../reference/apis-media-kit/js-apis-media.md#avrecorderstate9)。
 
 ## 开发步骤及注意事项
 
@@ -18,7 +18,7 @@
 > 
 > AVRecorder只负责视频数据的处理，需要与视频数据采集模块配合才能完成视频录制。视频数据采集模块需要通过Surface将视频数据传递给AVRecorder进行数据处理。当前常用的数据采集模块为相机模块，具体请参考[相机-录像](camera-recording.md)。
 
-AVRecorder详细的API说明请参考[AVRecorder API参考](../reference/apis/js-apis-media.md#avrecorder9)。
+AVRecorder详细的API说明请参考[AVRecorder API参考](../reference/apis-media-kit/js-apis-media.md#avrecorder9)。
 
 1. 创建AVRecorder实例，实例创建完成进入idle状态。
      
@@ -62,7 +62,7 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../reference/apis/js
    > 
    > - 需要使用支持的[录制规格](media-kit-intro.md#支持的格式)，视频比特率、分辨率、帧率以实际硬件设备支持的范围为准。
    > 
-   > - 录制输出的url地址（即示例里avConfig中的url），形式为fd://xx (fd number)。需要调用基础文件操作接口（[ohos.file.fs](../reference/apis/js-apis-file-fs.md)）实现应用文件访问能力，获取方式参考[应用文件访问与管理](../file-management/app-file-access.md)。
+   > - 录制输出的url地址（即示例里avConfig中的url），形式为fd://xx (fd number)。需要调用基础文件操作接口（[ohos.file.fs](../reference/apis-core-file-kit/js-apis-file-fs.md)）实现应用文件访问能力，获取方式参考[应用文件访问与管理](../file-management/app-file-access.md)。
 
    ```ts
    import media from '@ohos.multimedia.media';

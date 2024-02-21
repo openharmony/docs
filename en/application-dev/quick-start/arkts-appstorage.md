@@ -32,8 +32,8 @@ By decorating a variable with \@StorageProp(key), a one-way data synchronization
 
 ### Rules of Use
 
-| \@StorageProp Decorator| Description                                      |
-| ------------------ | ---------------------------------------- |
+| \@StorageProp Decorator| Description                                                        |
+| ----------------------- | ------------------------------------------------------------ |
 | Decorator parameters             | **key**: constant string, mandatory (the string must be quoted)                 |
 | Allowed variable types         | Object, class, string, number, Boolean, enum, and array of these types. For details about the scenarios of nested objects, see [Observed Changes and Behavior](#observed-changes-and-behavior).<br>The type must be specified. Whenever possible, use the same type as that of the corresponding attribute in AppStorage. Otherwise, implicit type conversion occurs, which may cause application behavior exceptions. **any** is not supported. The **undefined** and **null** values are not allowed.|
 | Synchronization type              | One-way: from the attribute in AppStorage to the component variable.<br>The component variable can be changed locally, but an update from AppStorage will overwrite local changes.|
@@ -198,9 +198,11 @@ struct CompA {
 
 ### Unrecommended: Using @StorageLink to Implement Event Notification
 
-Compared with the common mechanism for event notification, the two-way synchronization mechanism of @StorageLink and AppStorage is expensive and therefore not recommended. This is because AppStorage stores UI-related data, and its changes will cause costly UI re-rendering.
+Compared with the common mechanism for event notification, the two-way synchronization mechanism of @StorageLink and AppStorage is expensive in two aspects: (1) Variables in AppStorage may be bound to components on different pages, but the event notifications may not need to be sent to all these components; (2) Any change to the @StorageLink decorated variables may cause costly UI re-rendering.
 
-In the following example, any tap event in the **TapImage** component will trigger a change of the **tapIndex** attribute. As @StorageLink establishes a two-way data synchronization with AppStorage, the local change is synchronized to AppStorage. As a result, all custom components owning the **tapIndex** attribute bound to AppStorage are notified to refresh the UI.  
+In the following example, any tap event in the **TapImage** component will trigger a change of the **tapIndex** attribute. As @StorageLink establishes a two-way data synchronization with AppStorage, the local change is synchronized to AppStorage. As a result, all custom components owning the **tapIndex** attribute bound to AppStorage are notified of the change. After @Watch observes the change to **tapIndex**, the state variable **tapColor** is updated, and the UI is re-rendered. (Because **tapIndex** is not directly bound to the UI, its change does not directly trigger UI re-rendering.)
+
+To use the preceding mechanism to implement event notification, ensure that variables in AppStorage are not directly bound to the UI and the @Watch decorated function is as simple as possible. (If the @Watch decorated function takes a long time to execute, the UI re-rendering efficiency will be affected.)
 
 
 ```ts
@@ -279,7 +281,7 @@ export struct TapImage {
 }
 ```
 
-To implement event notification with less overhead, use **emit** instead, with which you can subscribe to an event and receive an event callback.
+Compared with the use of @StorageLink, the use of **emit** implements event notification with less overhead, by allowing you to subscribe to an event and receive an event callback.
 
 
 ```ts
@@ -467,5 +469,4 @@ When using AppStorage together with [PersistentStorage](arkts-persiststorage.md)
 - After an attribute is created in AppStorage, a call to **Environment.envProp()** with the same attribute name will fail. This is because environment variables will not be written into AppStorage. Therefore, you are advised not to use the preset environment variable names in AppStorage.
 
 - Changes to the variables decorated by state decorators will cause UI re-rendering. If the changes are for message communication, rather than for UI re-rendering, the emitter mode is recommended. For the example, see [Unrecommended: Using @StorageLink to Implement Event Notification](#unrecommended-using-storagelink-to-implement-event-notification).
-
- <!--no_check--> 
+<!--no_check-->

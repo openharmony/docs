@@ -879,6 +879,26 @@ The caller is not AppGallery.
 
 Use AppGallery to call the API.
 
+## 17700054 Bundle Installation Failure Due to Permission Verification Failure
+
+**Error Message**
+
+Failed to install the HAP because the HAP requests wrong permissions.
+
+**Description**
+
+The application has applied for an incorrect permission, causing the installation to fail.
+
+**Possible Causes**
+
+1. The application is not an MDM application and has applied for the MDM permission.
+2. The ability privilege level (APL) of the application is lower than the level of the permission that the application has applied for.
+
+**Solution**
+
+1. Check whether the application has applied for the [MDM permission](../../security/AccessToken/permissions-for-mdm-apps.md), which is available only for MDM applications.
+2. Check whether the [permission level](../../security/AccessToken/permissions-for-all.md) is higher than the [application's APL](../../security/app-provision-structure.md#internal-structure-of-the-bundle-info-object). If the application uses the default APL, which is normal, it can require the system_basic or system_core permission only. Change the API in the **UnsgnedDebugProfileTemplate.json** file to **system_basic** or **system_core**, and sign and pack the application again.
+
 ## 17700201 .abc File Verification Failure
 
 **Error Message**
@@ -896,3 +916,21 @@ The .abc file is untrusted.
 **Solution**
 
 Pass in the path of a trusted .abc file.
+
+## 17700202 .abc File Deletion Failure
+
+**Error Message**
+
+Failed to delete abc.
+
+**Description**
+
+Failed to delete the .abc file.
+
+**Possible Causes**
+
+The .abc file does not exist.
+
+**Solution**
+
+Pass in a valid path of the .abc file.

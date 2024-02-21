@@ -5,12 +5,13 @@
 
 Defines the memory structure.
 
-**Since:**
-9
+**Since**: 9
 
-**Related Modules:**
+**Deprecated**: This module is deprecated since API version 11.
 
-[NeuralNeworkRuntime](_neural_nework_runtime.md)
+**Substitute**: You are advised to use [NN_Tensor](_neural_network_runtime.md#nn_tensor).
+
+**Related module**: [NeuralNetworkRuntime](_neural_network_runtime.md)
 
 
 ## Summary
@@ -18,30 +19,32 @@ Defines the memory structure.
 
 ### Member Variables
 
-| Name | Description | 
+| Name| Description|
 | -------- | -------- |
-| [data](#data) |Pointer to the shared memory. The shared memory is usually allocated by the underlying hardware driver.  | 
-| [length](#length) |Records the length of the shared memory, in bytes.  | 
+| [data](#data) | Pointer to the shared memory. The shared memory is usually applied for by the underlying hardware driver.|
+| [length](#length) | Length of the shared memory, in bytes.|
 
 
-## Member Variable Description 
+## Member Variable Description
 
 
 ### data
 
-  
 ```
 void* const OH_NN_Memory::data
 ```
-**Description**<br>
-Pointer to the shared memory. The shared memory is usually allocated by the underlying hardware driver.
+
+**Description**
+
+Pointer to the shared memory. The shared memory is usually applied for by the underlying hardware driver.
 
 
 ### length
 
-  
 ```
 const size_t OH_NN_Memory::length
 ```
-**Description**<br>
-Records the length of the shared memory, in bytes.
+
+**Description**
+
+Length of the shared memory, in bytes.

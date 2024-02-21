@@ -97,15 +97,9 @@ Worker线程自身的运行环境，GlobalScope类继承[WorkerEventTarget](#wor
 
 onerror?: (ev: ErrorEvent) =&gt; void
 
-GlobalScope的onerror属性表示Worker在执行过程中发生异常被调用的事件处理程序，处理程序在Worker线程中执行。
+回调函数。GlobalScope的onerror属性表示Worker在执行过程中发生异常被调用的事件处理程序，处理程序在Worker线程中执行。其中回调函数中ev类型为[ErrorEvent](#errorevent)，表示收到的异常数据。
 
 **系统能力：** SystemCapability.Utils.Lang
-
-**参数：**
-
-| 参数名 | 类型                      | 必填 | 说明       |
-| ------ | ------------------------- | ---- | ---------- |
-| ev     | [ErrorEvent](#errorevent) | 是   | 异常数据。 |
 
 **示例：**
 
@@ -118,11 +112,11 @@ const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts")
 
 ```ts
 // worker.ts
-import worker from '@ohos.worker';
+import worker, { ErrorEvent } from '@ohos.worker';
 
 const workerPort = worker.workerPort
-workerPort.onerror = () => {
-    console.log("worker.ts onerror")
+workerPort.onerror = (err: ErrorEvent) => {
+    console.log("worker.ts onerror" + err.message)
 }
 ```
 
@@ -142,12 +136,12 @@ Worker线程通过转移对象所有权的方式向宿主线程发送消息。
 
 | 参数名   | 类型          | 必填 | 说明                                                         |
 | -------- | ------------- | ---- | ------------------------------------------------------------ |
-| message  | Object        | 是   | 发送至宿主线程的数据，该数据对象必须是可序列化，序列化支持类型见[其他说明](#序列化支持类型)。 |
+| messageObject  | Object        | 是   | 发送至宿主线程的数据，该数据对象必须是可序列化，序列化支持类型见[其他说明](#序列化支持类型)。 |
 | transfer | ArrayBuffer[] | 是   | 表示可转移的ArrayBuffer实例对象数组，该数组中对象的所有权会被转移到宿主线程，在Worker线程中将会变为不可用，仅在宿主线程中可用，数组不可传入null。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                |
 | -------- | ----------------------------------------- |
@@ -190,12 +184,12 @@ Worker线程通过转移对象所有权或者拷贝数据的方式向宿主线�
 
 | 参数名  | 类型                                      | 必填 | 说明                                                         |
 | ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| message | Object                                    | 是   | 发送至宿主线程的数据，该数据对象必须是可序列化，序列化支持类型见[其他说明](#序列化支持类型)。 |
+| messageObject | Object                                    | 是   | 发送至宿主线程的数据，该数据对象必须是可序列化，序列化支持类型见[其他说明](#序列化支持类型)。 |
 | options | [PostMessageOptions](#postmessageoptions) | 否   | 当填入该参数时，与传入ArrayBuffer[]的作用一致，该数组中对象的所有权会被转移到宿主线程，在Worker线程中将会变为不可用，仅在宿主线程中可用。<br/>若不填入该参数，默认设置为 undefined，通过拷贝数据的方式传输信息到宿主线程。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                |
 | -------- | ----------------------------------------- |
@@ -229,20 +223,13 @@ workerPort.onmessage = (e: MessageEvents): void => {
 
 onmessage?: (this: ThreadWorkerGlobalScope, ev: MessageEvents) =&gt; void
 
-ThreadWorkerGlobalScope的onmessage属性表示Worker线程收到来自其宿主线程通过postMessage接口发送的消息时被调用的事件处理程序，处理程序在Worker线程中执行。
+回调函数。ThreadWorkerGlobalScope的onmessage属性表示Worker线程收到来自其宿主线程通过postMessage接口发送的消息时被调用的事件处理程序，处理程序在Worker线程中执行。其中this指调用者对象本身[ThreadWorkerGlobalScope](#threadworkerglobalscope9)，ev类型为[MessageEvents](#messageevents9)，表示收到的Worker消息数据。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**参数：**
-
-| 参数名 | 类型                                                 | 必填 | 说明                     |
-| ------ | ---------------------------------------------------- | ---- | ------------------------ |
-| this   | [ThreadWorkerGlobalScope](#threadworkerglobalscope9) | 是   | 指向调用者对象。         |
-| ev     | [MessageEvents](#messageevents9)                     | 是   | 收到宿主线程发送的数据。 |
-
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                   |
 | -------- | -------------------------------------------- |
@@ -273,20 +260,13 @@ workerPort.onmessage = (e: MessageEvents): void => {
 
 onmessageerror?: (this: ThreadWorkerGlobalScope, ev: MessageEvents) =&gt; void
 
-ThreadWorkerGlobalScope的onmessageerror属性表示当Worker对象接收到一条无法被反序列化的消息时被调用的事件处理程序，处理程序在Worker线程中执行。
+回调函数。ThreadWorkerGlobalScope的onmessageerror属性表示当Worker对象接收到一条无法被反序列化的消息时被调用的事件处理程序，处理程序在Worker线程中执行。其中this指调用者对象本身[ThreadWorkerGlobalScope](#threadworkerglobalscope9)，ev类型为[MessageEvents](#messageevents9)，表示收到的Worker消息数据。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**参数：**
-
-| 参数名 | 类型                             | 必填 | 说明       |
-| ------ | -------------------------------- | ---- | ---------- |
-| this   | [ThreadWorkerGlobalScope](#threadworkerglobalscope9) | 是   | 指向调用者对象。         |
-| ev     | [MessageEvents](#messageevents9) | 是   | 异常数据。 |
-
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                   |
 | -------- | -------------------------------------------- |
@@ -304,10 +284,10 @@ const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 
 ```ts
 // worker.ts
-import worker from '@ohos.worker';
+import worker, { MessageEvents } from '@ohos.worker';
 
 const workerPort = worker.workerPort;
-workerPort.onmessageerror = () => {
+workerPort.onmessageerror = (e: MessageEvents) => {
     console.log("worker.ts onmessageerror")
 }
 ```
@@ -322,7 +302,7 @@ close(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息                      |
 | -------- | ------------------------------- |
@@ -363,18 +343,12 @@ ThreadWorker构造函数。
 
 | 参数名    | 类型                            | 必填 | 说明                                                         |
 | --------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| scriptURL | string                          | 是   | Worker执行脚本的路径。<br/>DevEco Studio新建Worker工程路径分别存在以下两种情况：<br/>(a) worker脚本所在目录与pages目录同级。<br/>(b) worker脚本所在目录与pages目录不同级。 |
+| scriptURL | string                          | 是   | Worker线程文件的路径。<br/>路径规则详细参考[文件路径注意事项](../../arkts-utils/worker-introduction.md#文件路径注意事项)。 |
 | options   | [WorkerOptions](#workeroptions) | 否   | Worker构造的选项。                                           |
-
-**返回值：**
-
-| 类型         | 说明                                                         |
-| ------------ | ------------------------------------------------------------ |
-| ThreadWorker | 执行ThreadWorker构造函数生成的ThreadWorker对象，失败则返回undefined。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -383,46 +357,20 @@ ThreadWorker构造函数。
 
 **示例：**
 
+此处以在Stage模型中Ability加载Worker文件为例，使用Library加载Worker线程文件的场景参考[文件路径注意事项](../../arkts-utils/worker-introduction.md#文件路径注意事项)。
+
 ```ts
 import worker from '@ohos.worker';
 
-// worker线程创建
+// 主要说明以下两种场景：
 
-// 目录同级（entry模块下，workers目录与pages目录同级）
-const workerInstance = new worker.ThreadWorker('entry/ets/workers/worker.ts', {name:"first worker"});
-// 目录不同级（entry模块下，workers目录是pages目录的子目录）
-const workerInstance = new worker.ThreadWorker('entry/ets/pages/workers/worker.ts');
+// 场景1： worker文件所在路径："entry/src/main/ets/workers/worker.ets"
+const workerStageModel01 = new worker.ThreadWorker('entry/ets/workers/worker.ets', {name:"first worker in Stage model"});
 
-// 理解scriptURL的"entry/ets/workers/worker.ts"：
-// entry: 为module.json5文件中module的name属性对应的值，ets: 表明当前使用的语言。
-// scriptURL与worker文件所在的workers目录层级有关，与new worker所在文件无关。
+// 场景2： worker文件所在路径："phone/src/main/ets/ThreadFile/workers/worker.ets"
+const workerStageModel02 = new worker.ThreadWorker('phone/ets/ThreadFile/workers/worker.ets');
 ```
 
-同时，需在工程的模块级build-profile.json5文件的buildOption属性中添加配置信息，主要分为下面两种情况：
-
-(1) 目录同级
-
-```json
-  "buildOption": {
-    "sourceOption": {
-      "workers": [
-        "./src/main/ets/workers/worker.ts"
-      ]
-    }
-  }
-```
-
-(2) 目录不同级
-
-```json
-  "buildOption": {
-    "sourceOption": {
-      "workers": [
-        "./src/main/ets/pages/workers/worker.ts"
-      ]
-    }
-  }
-```
 
 ### postMessage<sup>9+</sup>
 
@@ -441,7 +389,7 @@ postMessage(message: Object, transfer: ArrayBuffer[]): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                |
 | -------- | ----------------------------------------- |
@@ -474,7 +422,7 @@ postMessage(message: Object, options?: PostMessageOptions): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                |
 | -------- | ----------------------------------------- |
@@ -502,7 +450,7 @@ terminate(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息                      |
 | -------- | ------------------------------- |
@@ -519,19 +467,13 @@ workerInstance.terminate();
 
 onexit?: (code: number) =&gt; void
 
-Worker对象的onexit属性表示Worker销毁时被调用的事件处理程序，处理程序在宿主线程中执行。
+回调函数。表示Worker销毁时被调用的事件处理程序，处理程序在宿主线程中执行。其中回调函数中code类型为number，表示Worker退出的代码，异常退出为1，正常退出为0。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**参数：**
-
-| 参数名 | 类型   | 必填 | 说明               |
-| ------ | ------ | ---- | ------------------ |
-| code   | number | 是   | Worker退出的code。 |
-
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                   |
 | -------- | -------------------------------------------- |
@@ -542,7 +484,7 @@ Worker对象的onexit属性表示Worker销毁时被调用的事件处理程序�
 
 ```ts
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
-workerInstance.onexit = () => {
+workerInstance.onexit = (code) => {
  console.log("onexit");
 }
 
@@ -558,19 +500,13 @@ workerInstance.terminate();
 
 onerror?: (err: ErrorEvent) =&gt; void
 
-Worker对象的onerror属性表示Worker在执行过程中发生异常被调用的事件处理程序，处理程序在宿主线程中执行。
+回调函数。表示Worker在执行过程中发生异常被调用的事件处理程序，处理程序在宿主线程中执行。其中回调函数中err类型为[ErrorEvent](#errorevent)，表示收到的异常数据。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**参数：**
-
-| 参数名 | 类型                      | 必填 | 说明       |
-| ------ | ------------------------- | ---- | ---------- |
-| err    | [ErrorEvent](#errorevent) | 是   | 异常数据。 |
-
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                   |
 | -------- | -------------------------------------------- |
@@ -580,9 +516,11 @@ Worker对象的onerror属性表示Worker在执行过程中发生异常被调用�
 **示例：**
 
 ```ts
+import worker, { ErrorEvent } from '@ohos.worker';
+
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
-workerInstance.onerror = () => {
-    console.log("onerror");
+workerInstance.onerror = (err: ErrorEvent) => {
+  console.log("onerror" + err.message);
 }
 ```
 
@@ -591,19 +529,13 @@ workerInstance.onerror = () => {
 
 onmessage?: (event: MessageEvents) =&gt; void
 
-Worker对象的onmessage属性表示宿主线程接收到来自其创建的Worker通过workerPort.postMessage接口发送的消息时被调用的事件处理程序，处理程序在宿主线程中执行。
+回调函数。表示宿主线程接收到来自其创建的Worker通过workerPort.postMessage接口发送的消息时被调用的事件处理程序，处理程序在宿主线程中执行。其中回调函数中event类型为[MessageEvents](#messageevents9)，表示收到的Worker消息数据。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**参数：**
-
-| 参数名 | 类型                             | 必填 | 说明                   |
-| ------ | -------------------------------- | ---- | ---------------------- |
-| event  | [MessageEvents](#messageevents9) | 是   | 收到的Worker消息数据。 |
-
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                   |
 | -------- | -------------------------------------------- |
@@ -627,19 +559,13 @@ workerInstance.onmessage = (e: MessageEvents): void => {
 
 onmessageerror?: (event: MessageEvents) =&gt; void
 
-Worker对象的onmessageerror属性表示当Worker对象接收到一条无法被序列化的消息时被调用的事件处理程序，处理程序在宿主线程中执行。
+回调函数。表示当Worker对象接收到一条无法被序列化的消息时被调用的事件处理程序，处理程序在宿主线程中执行。其中回调函数中event类型为[MessageEvents](#messageevents9)，表示收到的Worker消息数据。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**参数：**
-
-| 参数名 | 类型                             | 必填 | 说明       |
-| ------ | -------------------------------- | ---- | ---------- |
-| event  | [MessageEvents](#messageevents9) | 是   | 异常数据。 |
-
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                   |
 | -------- | -------------------------------------------- |
@@ -649,8 +575,10 @@ Worker对象的onmessageerror属性表示当Worker对象接收到一条无法被
 **示例：**
 
 ```ts
+import worker, { MessageEvents } from '@ohos.worker';
+
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
-workerInstance.onmessageerror= () => {
+workerInstance.onmessageerror= (e: MessageEvents) => {
     console.log("onmessageerror");
 }
 ```

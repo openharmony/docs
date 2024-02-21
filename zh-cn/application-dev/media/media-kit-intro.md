@@ -2,8 +2,7 @@
 
 Media Kit（媒体服务）提供了[AVPlayer](#avplayer)和[AVRecorder](#avrecorder)用于播放、录制音视频。
 
-在Media Kit的开发指导中，将介绍各种涉及音频、视频播放或录制功能场景的开发方式，指导开发者如何使用系统提供的音视频API实现对应功能。比如使用SoundPool
-实现简单的提示音，当设备接收到新消息时，会发出短促的“滴滴”声；使用AVPlayer实现音乐播放器，循环播放一首音乐。
+在Media Kit的开发指导中，将介绍各种涉及音频、视频播放或录制功能场景的开发方式，指导开发者如何使用系统提供的音视频API实现对应功能。比如使用SoundPool实现简单的提示音，当设备接收到新消息时，会发出短促的“滴滴”声；使用AVPlayer实现音乐播放器，循环播放一首音乐。
 
 ## 亮点/特征
 
@@ -69,7 +68,7 @@ AVPlayer提供功能完善一体化播放能力，应用只需要提供流媒体
 
 图2中，数字标注表示需要数据与外部模块的传递。
 
-1. 应用从XComponent组件获取窗口SurfaceID，获取方式参考[XComponent](../reference/arkui-ts/ts-basic-components-xcomponent.md)。
+1. 应用从XComponent组件获取窗口SurfaceID，获取方式参考[XComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)。
 
 2. 应用把媒体资源、SurfaceID传递给AVPlayer接口。
 
@@ -163,7 +162,8 @@ AVRecorder主要工作是捕获音频信号，接收视频信号，完成音视�
 
 | 音视频编码格式 | 说明 | 
 | -------- | -------- |
-| audio/mp4a-latm | 音频/mp4a-latm类型 | 
+| audio/mp4a-latm | 音频/mp4a-latm类型 |
+| video/hevc | 视频/hevc类型 | 
 | video/avc | 视频/avc类型 | 
 
 支持的输出文件格式如下：

@@ -8,19 +8,19 @@
 
 ![Recording status change](figures/recording-status-change.png)
 
-状态的详细说明请参考[AVRecorderState](../reference/apis/js-apis-media.md#avrecorderstate9)。
+状态的详细说明请参考[AVRecorderState](../reference/apis-media-kit/js-apis-media.md#avrecorderstate9)。
 
 
 ## 开发步骤及注意事项
 
-详细的API说明请参考[AVRecorder API参考](../reference/apis/js-apis-media.md#avrecorder9)。
+详细的API说明请参考[AVRecorder API参考](../reference/apis-media-kit/js-apis-media.md#avrecorder9)。
 
 1. 创建AVRecorder实例，实例创建完成进入idle状态。
 
    > **说明：**
    >
    > 需要在avRecorder完成赋值（即“avRecorder = recorder; ”运行完成）后，再进行剩余操作。
-     
+
    ```ts
    import media from '@ohos.multimedia.media';
    import { BusinessError } from '@ohos.base';
@@ -38,7 +38,7 @@
    | -------- | -------- |
    | stateChange | 必要事件，监听AVRecorder的state属性改变 | 
    | error | 必要事件，监听AVRecorder的错误信息 |
-     
+
    ```ts
    import { BusinessError } from '@ohos.base';
    
@@ -55,16 +55,15 @@
    ```
 
 3. 配置音频录制参数，调用prepare()接口，此时进入prepared状态。
+
    > **说明：**
    > 配置参数需要注意：
-   > 
+   >
    > - prepare接口的入参avConfig中仅设置音频相关的配置参数，如示例代码所示。
    >   如果只需要录制音频，请不要设置视频相关配置参数；如果需要录制视频，可以参考[视频录制开发指导](video-recording.md)进行开发。直接设置视频相关参数会导致后续步骤报错。
-   > 
    > - 需要使用支持的[录制规格](media-kit-intro.md#支持的格式)。
-   > 
-   > - 录制输出的url地址（即示例里avConfig中的url），形式为fd://xx (fd number)。需要基础文件操作接口（[ohos.file.fs](../reference/apis/js-apis-file-fs.md)）实现应用文件访问能力，获取方式参考[应用文件访问与管理](../file-management/app-file-access.md)。
- 
+   > - 录制输出的url地址（即示例里avConfig中的url），形式为fd://xx (fd number)。需要基础文件操作接口（[ohos.file.fs](../reference/apis-core-file-kit/js-apis-file-fs.md)）实现应用文件访问能力，获取方式参考[应用文件访问与管理](../file-management/app-file-access.md)。
+
    ```ts
    import media from '@ohos.multimedia.media';
    import { BusinessError } from '@ohos.base';
@@ -130,7 +129,6 @@
    avRecorder.release();
    ```
 
-
 ## 完整示例
 
   参考以下示例，完成“开始录制-暂停录制-恢复录制-停止录制”的完整流程。
@@ -171,15 +169,18 @@ export class AudioRecorderDemo {
   // 开始录制对应的流程
   async startRecordingProcess() {
     if (this.avRecorder != undefined) {
-      // 1.创建录制实例
-      this.avRecorder = await media.createAVRecorder();
-      this.setAudioRecorderCallback();
-      // 2.获取录制文件fd赋予avConfig里的url；参考FilePicker文档
-      // 3.配置录制参数完成准备工作
-      await this.avRecorder.prepare(this.avConfig);
-      // 4.开始录制
-      await this.avRecorder.start();
+      await this.avRecorder.release();
+      this.avRecorder = undefined;
     }
+    // 1.创建录制实例
+    this.avRecorder = await media.createAVRecorder();
+    this.setAudioRecorderCallback();
+    // 2.获取录制文件fd赋予avConfig里的url；参考FilePicker文档
+
+    // 3.配置录制参数完成准备工作
+    await this.avRecorder.prepare(this.avConfig);
+    // 4.开始录制
+    await this.avRecorder.start();
   }
 
   // 暂停录制对应的流程
@@ -208,6 +209,7 @@ export class AudioRecorderDemo {
       await this.avRecorder.reset();
       // 3.释放录制实例
       await this.avRecorder.release();
+      this.avRecorder = undefined;
       // 4.关闭录制文件fd
     }
   }

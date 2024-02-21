@@ -11,13 +11,13 @@
 
 对应的算法规格请查看[非对称密钥生成和转换规格：RSA](crypto-asym-key-generation-conversion-spec.md#rsa)。
 
-1. 调用[cryptoFramework.createAsyKeyGenerator](../../reference/apis/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygenerator)，指定字符串参数'RSA1024|PRIMES_2'，创建RSA密钥类型为RSA1024、素数个数为2的非对称密钥生成器（AsyKeyGenerator）。
+1. 调用[cryptoFramework.createAsyKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygenerator)，指定字符串参数'RSA1024|PRIMES_2'，创建RSA密钥类型为RSA1024、素数个数为2的非对称密钥生成器（AsyKeyGenerator）。
 
-2. 调用[AsyKeyGenerator.generateKeyPair](../../reference/apis/js-apis-cryptoFramework.md#generatekeypair-1)，随机生成非对称密钥对象（KeyPair）。
+2. 调用[AsyKeyGenerator.generateKeyPair](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatekeypair-1)，随机生成非对称密钥对象（KeyPair）。
    
    KeyPair对象中包括公钥PubKey、私钥PriKey。
 
-3. 调用[PubKey.getEncoded](../../reference/apis/js-apis-cryptoFramework.md#getencoded)和[PriKey.getEncoded](../../reference/apis/js-apis-cryptoFramework.md#getencoded)，分别获取密钥对象的二进制数据。
+3. 调用[PubKey.getEncoded](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getencoded)和[PriKey.getEncoded](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getencoded)，分别获取密钥对象的二进制数据。
 
 以使用Promise方式随机生成RSA密钥对为例：
 
@@ -46,13 +46,13 @@ function generateAsyKey() {
 
 对应的算法规格请查看[非对称密钥生成和转换规格：SM2](crypto-asym-key-generation-conversion-spec.md#sm2)。
 
-1. 调用[cryptoFramework.createAsyKeyGenerator](../../reference/apis/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygenerator)，指定字符串参数'SM2_256'，创建密钥算法为SM2、密钥长度为256位的非对称密钥生成器（AsyKeyGenerator）。
+1. 调用[cryptoFramework.createAsyKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygenerator)，指定字符串参数'SM2_256'，创建密钥算法为SM2、密钥长度为256位的非对称密钥生成器（AsyKeyGenerator）。
 
-2. 调用[AsyKeyGenerator.generateKeyPair](../../reference/apis/js-apis-cryptoFramework.md#generatekeypair-1)，随机生成非对称密钥对象（KeyPair）。
+2. 调用[AsyKeyGenerator.generateKeyPair](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatekeypair-1)，随机生成非对称密钥对象（KeyPair）。
    
    KeyPair对象中包括公钥PubKey、私钥PriKey。
 
-3. 调用[PubKey.getEncoded](../../reference/apis/js-apis-cryptoFramework.md#getencoded)和[PriKey.getEncoded](../../reference/apis/js-apis-cryptoFramework.md#getencoded)，分别获取密钥对象的二进制数据。
+3. 调用[PubKey.getEncoded](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getencoded)和[PriKey.getEncoded](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getencoded)，分别获取密钥对象的二进制数据。
 
 以使用Promise方式随机生成SM2密钥对为例：
 

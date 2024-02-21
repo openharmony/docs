@@ -1,29 +1,37 @@
-# Audio and Video Decapsulation (C/C++)
+# Audio and Video Demuxing (C/C++)
 
-You can call the native APIs provided by the **AVDemuxer** module to decapsulate audio and video, that is, to extract audio and video frame data from bit stream data.
+You can call the native APIs provided by the **AVDemuxer** module to demux audio and video, that is, to extract audio and video frame data from bit stream data.
 
 Currently, two data input types are supported: remote connection (over HTTP) and File Descriptor (FD).
 
-The following decapsulation formats are supported:
+The following demuxing formats are supported:
 
-| Media Format | Encapsulation Format                     |
-| -------- | :----------------------------|
-| Video    | MP4, MPEG TS                 |
-| Audio     | M4A, AAC, MP3, OGG, FLAC, WAV|
+| Media Format | Muxing Format                     | Stream Format                     |
+| -------- | :----------------------------| :----------------------------|
+| Audio/Video    | mp4                        |Video stream: AVC (H.264); audio stream: AAC and MPEG (MP3)|
+| Audio/Video    | mkv                        |Video stream: AVC (H.264); audio stream: AAC, MPEG (MP3), and OPUS|
+| Audio/Video    | mpeg-ts                    |Video stream: AVC (H.264); audio stream: AAC and MPEG (MP3)|
+| Audio      | m4a                        |Audio stream: AAC|
+| Audio      | aac                        |Audio stream: AAC|
+| Audio      | mp3                        |Audio stream: MPEG (MP3)|
+| Audio      | ogg                        |Audio stream: OGG|
+| Audio      | flac                        |Audio stream: FLAC|
+| Audio      | wav                        |Audio stream: PCM|
+| Audio      | amr                        |Audio stream: AMR (AMR-NB and AMR-WB)|
 
 **Usage Scenario**
 
 - Audio and video playback
   
-  Decapsulate audio and video streams, decode the frame data obtained through decapsulation, and play the decoded data.
+  Demux audio and video streams, decode the frame data obtained through demuxing, and play the decoded data.
 
 - Audio and video editing
   
-  Decapsulate audio and video streams, and edit the specified frames.
+  Demux audio and video streams, and edit the specified frames.
 
 - Media file format conversion
 
-  Decapsulate audio and video streams, and encapsulate them into a new file format.
+  Demux audio and video streams, and encapsulate them into a new file format.
 
 ## How to Develop
 
@@ -31,8 +39,8 @@ Read [AVDemuxer](../reference/native-apis/_a_v_demuxer.md) and [AVSource](../ref
 
 > **NOTE**
 >
-> - To call the decapsulation APIs to parse a network playback path, request the **ohos.permission.INTERNET** permission by following the instructions provided in [Applying for Permissions](../security/accesstoken-guidelines.md).
-> - To call the decapsulation APIs to parse a local file, request the **ohos.permission.READ_MEDIA** permission by following the instructions provided in [Applying for Permissions](../security/accesstoken-guidelines.md).
+> - To call the demuxing APIs to parse a network playback path, declare the **ohos.permission.INTERNET** permission by following the instructions provided in [Declaring Permissions](../security/AccessToken/declare-permissions.md).
+> - To call the demuxer APIs to write a local file, request the **ohos.permission.READ_MEDIA** permission by following the instructions provided in [Requesting User Authorization](../security/AccessToken/request-user-authorization.md).
 > - You can also use **ResourceManager.getRawFd** to obtain the FD of a file packed in the HAP file. For details, see [ResourceManager API Reference](../reference/apis/js-apis-resource-manager.md#getrawfd9).
 
 ### Linking the Dynamic Library in the CMake Script
@@ -40,6 +48,7 @@ Read [AVDemuxer](../reference/native-apis/_a_v_demuxer.md) and [AVSource](../ref
 ``` cmake
 target_link_libraries(sample PUBLIC libnative_media_avdemuxer.so)
 target_link_libraries(sample PUBLIC libnative_media_avsource.so)
+target_link_libraries(sample PUBLIC libnative_media_core.so)
 ```
 
 ### How to Develop
@@ -49,15 +58,15 @@ target_link_libraries(sample PUBLIC libnative_media_avsource.so)
    ```c++
    #include <multimedia/player_framework/native_avdemuxer.h>
    #include <multimedia/player_framework/native_avsource.h>
-   #include <multimedia/player_framework/native_avcapability.h>
    #include <multimedia/player_framework/native_avcodec_base.h>
    #include <multimedia/player_framework/native_avformat.h>
+   #include <multimedia/player_framework/native_avbuffer.h>
    ```
 
 2. Create a demuxer instance.
 
    ``` c++
-   // Create the FD. You must have the read permission on the file handle when opening the file. (filePath indicates the path of the file to be decapsulated. The file must exist.)
+   // Create the FD. You must have the read permission on the file handle when opening the file. (filePath indicates the path of the file to be demuxed. The file must exist.)
    std::string filePath = "test.mp4";
    int fd = open(filePath.c_str(), O_RDONLY);
    struct stat fileStatus {};
@@ -68,7 +77,7 @@ target_link_libraries(sample PUBLIC libnative_media_avsource.so)
       printf("get stat failed");
       return;
    }
-   // Create a source resource object for the FD resource file. If offset is not the start position of the file or size is not the actual file size, the data obtained may be incomplete. Consequently, the source resource object may fail to create or subsequent decapsulation may fail.
+   // Create a source resource object for the FD resource file. If offset is not the start position of the file or size is not the actual file size, the data obtained may be incomplete. Consequently, the source resource object may fail to create or subsequent demuxing may fail.
    OH_AVSource *source = OH_AVSource_CreateWithFD(fd, 0, fileSize);
    if (source == nullptr) {
       printf("create source failed");
@@ -145,18 +154,18 @@ target_link_libraries(sample PUBLIC libnative_media_avsource.so)
 6. (Optional) Seek to the specified time for the selected track.
 
    ``` c++
-   // Decapsulation is performed from this time.
+   // Demuxing is performed from this time.
    // Note:
-   // 1. If OH_AVDemuxer_SeekToTime is called for an MPEG TS file, the target position may be a non-key frame. You can then call OH_AVDemuxer_ReadSample to check whether the current frame is a key frame based on the obtained OH_AVCodecBufferAttr. If it is a non-key frame, which causes display issues on the application side, cyclically read the frames until you reach the first key frame, where you can perform processing such as decoding.
+   // 1. If OH_AVDemuxer_SeekToTime is called for an MPEG TS file, the target position may be a non-key frame. You can then call OH_AVDemuxer_ReadSampleBuffer to check whether the current frame is a key frame based on the obtained OH_AVCodecBufferAttr. If it is a non-key frame, which causes display issues on the application side, cyclically read the frames until you reach the first key frame, where you can perform processing such as decoding.
    // 2. If OH_AVDemuxer_SeekToTime is called for an OGG file, the file seeks to the start of the time interval (second) where the input parameter millisecond is located, which may cause a certain number of frame errors.
    OH_AVDemuxer_SeekToTime(demuxer, 0, OH_AVSeekMode::SEEK_MODE_CLOSEST_SYNC);
    ```
 
-7. Start decapsulation and cyclically obtain frame data. The code snippet below uses a file that contains audio and video tracks as an example.
+7. Start demuxing and cyclically obtain frame data. The code snippet below uses a file that contains audio and video tracks as an example.
 
    ``` c++
-   // Create a buffer to store the data obtained after decapsulation.
-   OH_AVMemory *buffer = OH_AVMemory_Create(w * h * 3 >> 1);
+   // Create a buffer to store the data obtained after demuxing.
+   OH_AVBuffer *buffer = OH_AVBuffer_Create(w * h * 3 >> 1);
    if (buffer == nullptr) {
       printf("build buffer failed");
       return;
@@ -166,12 +175,13 @@ target_link_libraries(sample PUBLIC libnative_media_avsource.so)
    bool audioIsEnd = false;
    int32_t ret;
    while (!audioIsEnd || !videoIsEnd) {
-      // Before calling OH_AVDemuxer_ReadSample, call OH_AVDemuxer_SelectTrackByID to select the track from which the demuxer reads data.
+      // Before calling OH_AVDemuxer_ReadSampleBuffer, call OH_AVDemuxer_SelectTrackByID to select the track from which the demuxer reads data.
       // Obtain audio frame data.
       if(!audioIsEnd) {
-         ret = OH_AVDemuxer_ReadSample(demuxer, audioTrackIndex, buffer, &info);
+         ret = OH_AVDemuxer_ReadSampleBuffer(demuxer, audioTrackIndex, buffer);
          if (ret == AV_ERR_OK) {
             // Obtain the process the audio frame data in the buffer.
+            OH_AVBuffer_GetBufferAttr(buffer, &info);
             printf("audio info.size: %d\n", info.size);
             if (info.flags == OH_AVCodecBufferFlags::AVCODEC_BUFFER_FLAGS_EOS) {
                audioIsEnd = true;
@@ -179,9 +189,10 @@ target_link_libraries(sample PUBLIC libnative_media_avsource.so)
          }
       }
       if(!videoIsEnd) {
-         ret = OH_AVDemuxer_ReadSample(demuxer, videoTrackIndex, buffer, &info);
+         ret = OH_AVDemuxer_ReadSampleBuffer(demuxer, videoTrackIndex, buffer);
          if (ret == AV_ERR_OK) {
             // Obtain the process the video frame data in the buffer.
+            OH_AVBuffer_GetBufferAttr(buffer, &info);
             printf("video info.size: %d\n", info.size);
             if (info.flags == OH_AVCodecBufferFlags::AVCODEC_BUFFER_FLAGS_EOS) {
                videoIsEnd = true;
@@ -189,7 +200,7 @@ target_link_libraries(sample PUBLIC libnative_media_avsource.so)
          }
       }
    }
-   OH_AVMemory_Destroy(buffer);
+   OH_AVBuffer_Destroy(buffer);
    ```
 
 8. Destroy the demuxer instance.

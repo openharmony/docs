@@ -3,7 +3,7 @@
 
 ## 历史记录导航
 
-在前端页面点击网页中的链接时，Web组件默认会自动打开并加载目标网址。当前端页面替换为新的加载链接时，会自动记录已经访问的网页地址。可以通过[forward()](../reference/apis/js-apis-webview.md#forward)和[backward()](../reference/apis/js-apis-webview.md#backward)接口向前/向后浏览上一个/下一个历史记录。
+在前端页面点击网页中的链接时，Web组件默认会自动打开并加载目标网址。当前端页面替换为新的加载链接时，会自动记录已经访问的网页地址。可以通过[forward()](../reference/apis-arkweb/js-apis-webview.md#forward)和[backward()](../reference/apis-arkweb/js-apis-webview.md#backward)接口向前/向后浏览上一个/下一个历史记录。
 
   在下面的示例中，点击应用的按钮来触发前端页面的后退操作。
 
@@ -30,12 +30,12 @@ struct WebComponent {
 ```
 
 
-如果存在历史记录，[accessBackward()](../reference/apis/js-apis-webview.md#accessbackward)接口会返回true。同样，您可以使用[accessForward()](../reference/apis/js-apis-webview.md#accessforward)接口检查是否存在前进的历史记录。如果您不执行检查，那么当用户浏览到历史记录的末尾时，调用[forward()](../reference/apis/js-apis-webview.md#forward)和[backward()](../reference/apis/js-apis-webview.md#backward)接口时将不执行任何操作。
+如果存在历史记录，[accessBackward()](../reference/apis-arkweb/js-apis-webview.md#accessbackward)接口会返回true。同样，您可以使用[accessForward()](../reference/apis-arkweb/js-apis-webview.md#accessforward)接口检查是否存在前进的历史记录。如果您不执行检查，那么当用户浏览到历史记录的末尾时，调用[forward()](../reference/apis-arkweb/js-apis-webview.md#forward)和[backward()](../reference/apis-arkweb/js-apis-webview.md#backward)接口时将不执行任何操作。
 
 
 ## 页面跳转
 
-当点击网页中的链接需要跳转到应用内其他页面时，可以通过使用Web组件的[onLoadIntercept()](../reference/arkui-ts/ts-basic-components-web.md#onloadintercept10)接口来实现。
+当点击网页中的链接需要跳转到应用内其他页面时，可以通过使用Web组件的[onLoadIntercept()](../reference/apis-arkweb/ts-basic-components-web.md#onloadintercept10)接口来实现。
 
 在下面的示例中，应用首页Index.ets加载前端页面route.html，在前端route.html页面点击超链接，可跳转到应用的ProfilePage.ets页面。
 
@@ -124,7 +124,7 @@ Web组件可以实现点击前端页面超链接跳转到其他应用。
         Web({ src: $rawfile('call.html'), controller: this.webviewController})
           .onLoadIntercept((event) => {
             if (event) {
-              let url: string = event.data.toString();
+              let url: string = event.data.getRequestUrl();
               // 判断链接是否为拨号链接
               if (url.indexOf('tel://') === 0) {
                 // 跳转拨号界面

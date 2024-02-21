@@ -7,7 +7,7 @@
 
 **参考链接**
 
-[自定义弹窗](../reference/arkui-ts/ts-methods-custom-dialog-box.md)
+[自定义弹窗](../reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md)
 
 
 ## 自定义弹窗中的变量如何传递给页面(API 9)
@@ -161,7 +161,7 @@
 
 **参考链接**
 
-[组件区域变化事件](../reference/arkui-ts/ts-universal-component-area-change-event.md)，[点击事件](../reference/arkui-ts/ts-universal-events-click.md)，[触摸事件](../reference/arkui-ts/ts-universal-events-touch.md)
+[组件区域变化事件](../reference/apis-arkui/arkui-ts/ts-universal-component-area-change-event.md)，[点击事件](../reference/apis-arkui/arkui-ts/ts-universal-events-click.md)，[触摸事件](../reference/apis-arkui/arkui-ts/ts-universal-events-touch.md)
 
 
 ## 如何一键清空TextInput、TextArea组件内容(API 9)
@@ -211,7 +211,7 @@ controller: TextInputController = new TextInputController()
 
 **参考链接**
 
-[自定义弹窗](../reference/arkui-ts/ts-methods-custom-dialog-box.md)
+[自定义弹窗](../reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md)
 
 
 ## 如何隐藏容器组件的溢出内容(API 9)
@@ -226,7 +226,7 @@ controller: TextInputController = new TextInputController()
 
 **参考链接**
 
-[形状裁剪](../reference/arkui-ts/ts-universal-attributes-sharp-clipping.md)
+[形状裁剪](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sharp-clipping.md)
 
 
 ## 自定义弹窗大小如何自适应内容(API 9)
@@ -243,7 +243,7 @@ controller: TextInputController = new TextInputController()
 
 **参考链接**
 
-[自定义弹窗](../reference/arkui-ts/ts-methods-custom-dialog-box.md)
+[自定义弹窗](../reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md)
 
 
 ## 如何理解自定义弹窗中的gridCount参数(API 9)
@@ -254,7 +254,7 @@ gridCount参数是指弹窗宽度占栅格列数的个数。系统把窗口宽�
 
 **参考链接**
 
-[自定义弹窗](../reference/arkui-ts/ts-methods-custom-dialog-box.md)
+[自定义弹窗](../reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md)
 
 
 ## 如何去除自定义弹窗的白色背景(API 9)
@@ -273,7 +273,7 @@ gridCount参数是指弹窗宽度占栅格列数的个数。系统把窗口宽�
 
 **参考链接**
 
-[自定义弹窗](../reference/arkui-ts/ts-methods-custom-dialog-box.md)
+[自定义弹窗](../reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md)
 
 
 ## TextInput组件密码模式下，右边的眼睛图标能否支持自定义(API 9)
@@ -288,7 +288,7 @@ TextInput组件设置type为InputType.Password时，右侧出现眼睛图标，�
 
 **参考链接**
 
-[TextInput组件](../reference/arkui-ts/ts-basic-components-textinput.md)
+[TextInput组件](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md)
 
 
 ## TextInput的onSubmit事件如何使用(API 9)
@@ -303,7 +303,7 @@ onSubmit事件在外接键盘或软键盘回车时触发该回调，回调的参
 
 **参考链接**
 
-[TextInput组件](../reference/arkui-ts/ts-basic-components-textinput.md)
+[TextInput组件](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md)
 
 
 ## TextInput在聚焦时如何使光标回到起点(API 9)
@@ -343,7 +343,7 @@ struct TextInputDemo {
 
 **参考链接**
 
-[TextInput组件](../reference/arkui-ts/ts-basic-components-textinput.md)
+[TextInput组件](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md)
 
 
 ## 如何获取可滚动组件的当前滚动偏移量(API 9)
@@ -360,7 +360,7 @@ struct TextInputDemo {
 
 **参考链接**
 
-[Scroll](../reference/arkui-ts/ts-container-scroll.md#currentoffset)
+[Scroll](../reference/apis-arkui/arkui-ts/ts-container-scroll.md#currentoffset)
 
 
 ## 如何实现文本竖向排列(API 9)
@@ -557,7 +557,7 @@ Scroll组件需要设置Scroll高度，或者使用Flex布局限制Scroll高度�
 
 **参考链接**
 
-[Video](../reference/arkui-ts/ts-media-components-video.md#start)
+[Video](../reference/apis-arkui/arkui-ts/ts-media-components-video.md#start)
 
 ## 如何设置组件不同状态下的样式(API 9)
 
@@ -617,7 +617,7 @@ struct StyleExample {
 
 **参考链接**
 
-[多态样式](../reference/arkui-ts/ts-universal-attributes-polymorphic-style.md)
+[多态样式](../reference/apis-arkui/arkui-ts/ts-universal-attributes-polymorphic-style.md)
 
 ## Scroll内Flex加宽高与滑动冲突(API 9)
 
@@ -689,7 +689,7 @@ struct MyComponent {
 
 **参考链接**
 
-焦点控制：[焦点控制](../reference/arkui-ts/ts-universal-attributes-focus.md)
+焦点控制：[焦点控制](../reference/apis-arkui/arkui-ts/ts-universal-attributes-focus.md)
 
 
 ## SideBarContainer如何设置controlButton属性(API 9)
@@ -760,7 +760,7 @@ Canvas组件最终的显示内容分两种，一种是组件通用属性的绘�
 
 **参考链接**
 
-[CanvasRenderingContext2D](../reference/arkui-ts/ts-canvasrenderingcontext2d.md)
+[CanvasRenderingContext2D](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md)
 
 ## 怎么解决列表组件List在不设置高度的情况下，会出现滑动不到底的问题(API 10)
 
@@ -774,7 +774,7 @@ List组件设置layoutWeight(1)属性，将剩余空间全部分配给List组件
 
 **参考链接**
 
-[尺寸设置](../reference/arkui-ts/ts-universal-attributes-size.md)
+[尺寸设置](../reference/apis-arkui/arkui-ts/ts-universal-attributes-size.md)
 
 ## 如何实现瀑布流滑动时，数据的无限加载和显示(API 10)
 
@@ -796,7 +796,7 @@ List组件设置layoutWeight(1)属性，将剩余空间全部分配给List组件
 
 **参考链接**
 
-[自定义弹窗](../reference/arkui-ts/ts-methods-custom-dialog-box.md)
+[自定义弹窗](../reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md)
 
 ## 当前ArkUI-X的支持进展如何，有无明确路线图(API 10)
 
@@ -809,3 +809,42 @@ List组件设置layoutWeight(1)属性，将剩余空间全部分配给List组件
 **参考链接**
 
 [ArkUI-X](https://gitee.com/arkui-x)
+
+## 应用如何在自定义组件的构建流程里跟踪组件数据或者状态(API 10)
+
+**问题现象**
+
+UI的构建build方法内无法插入日志，导致应用无法感知UI绘制流程，不利于调试UI，定位UI问题。  
+
+**解决措施**
+
+使用@Watch回调来监测状态变量的变化，如果执行回调函数，说明在下一次vysnc信号发送时，使用该状态变量的UI会刷新绘制。
+
+示例代码如下：
+
+```ts
+@Prop @Watch('onCountUpdated') count: number = 0; 
+@State total: number = 0; 
+// @Watch 回调 
+onCountUpdated(propName: string): void {
+  this.total += this.count; 
+}
+```
+
+**参考链接**
+
+[@Watch装饰器：状态变量更改通知](../quick-start/arkts-watch.md)
+
+## 自定义component不支持继承语法，针对其他框架支持的自定义组件继承及封装能力，ArkUI的解决方案是什么(API 10)
+
+**解决措施**
+
+对于声明式的自定义组件场景，不会提供继承的能力，需要使用组合的方式进行扩展，并结合后续提供的Modifier机制进行对现有组件属性的继承、复用和传递。
+
+## 组件支持的参数类型及参数单位类型区别是什么，使用场景是什么(API 10)
+
+**解决措施**
+
+屏幕像素单位px(pixel)，表示屏幕上的实际像素，1px代表手机屏幕上的一个像素点。视窗逻辑像素单位lpx，lpx单位为实际屏幕宽度与逻辑宽度（通过designWidth配置）的比值，标识页面设计基准宽度。以此为基准，根据实际设备宽度来缩放元素大小。距离使用vp(virtual pixel)，字体大小使用fp(font pixel)，虚拟像素单位vp(virtual pixel)，vp具体计算公式为：vp= px/（DPI/160）。  
+以屏幕相对像素为单位, 是一台设备针对应用而言所具有的虚拟尺寸（区别于屏幕硬件本身的像素单位）。它提供了一种灵活的方式来适应不同屏幕密度的显示效果,使用虚拟像素，使元素在不同密度的设备上具有一致的视觉体量。字体像素单位fp(font pixel)，字体像素(font pixel)大小默认情况下与vp相同，即默认情况下1fp=1vp。如果用户在设置中选择了更大的字体，字体的实际显示大小就会在vp的基础上乘以scale系数，即1fp=1vp*scale。Percentage - 需要指定以%像素单位，如'10%'。  
+Resource - 资源引用类型，引入系统资源或者应用资源中的尺寸。 

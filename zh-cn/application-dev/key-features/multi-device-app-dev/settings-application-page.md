@@ -19,7 +19,7 @@
 
 ## 如何实现单/双栏的显示效果
 
-开发者可以使用Row、Column、[RowSplit](../../reference/arkui-ts/ts-container-rowsplit.md)等基础的组件，实现分栏显示的效果，但是需要较多的开发工作量。方舟开发框架在API 9重构了[Navigation组件](../../reference/arkui-ts/ts-basic-components-navigation.md)，开发者可以通过配置Navigation组件的属性，控制其按照单栏或双栏的效果进行显示。
+开发者可以使用Row、Column、[RowSplit](../../reference/apis-arkui/arkui-ts/ts-container-rowsplit.md)等基础的组件，实现分栏显示的效果，但是需要较多的开发工作量。方舟开发框架在API 9重构了[Navigation组件](../../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md)，开发者可以通过配置Navigation组件的属性，控制其按照单栏或双栏的效果进行显示。
 
 Navigation组件由Navbar和Content两部分区域组成，Navigation组件支持Stack、Split以及Auto三种模式。Stack及Split模式下Navigation组件的表现如下图所示。
 
@@ -218,7 +218,7 @@ export struct SettingList {
 ```
 ## 如何实现点击跳转或刷新
 
-Navigation组件通常搭配[NavRouter组件](../../reference/arkui-ts/ts-basic-components-navrouter.md)以及[NavDestination组件](../../reference/arkui-ts/ts-basic-components-navdestination.md)一起使用：
+Navigation组件通常搭配[NavRouter组件](../../reference/apis-arkui/arkui-ts/ts-basic-components-navrouter.md)以及[NavDestination组件](../../reference/apis-arkui/arkui-ts/ts-basic-components-navdestination.md)一起使用：
 
 * NavRouter组件用于控制Navigation组件Content区域的显示和刷新逻辑。
 * NavDestination组件用于实际刷新Navigation组件Content区域的显示。

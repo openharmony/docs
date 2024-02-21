@@ -14,16 +14,16 @@
 
   | 输入 | 开发接口 | 触控屏 | 触控板 |  鼠标
 | -------- | -------- | -------- | -------- | -------- |
-| 悬浮 | [onHover](../../reference/arkui-ts/ts-universal-attributes-hover-effect.md) | NA | √ | √ |
-| 点击 | [onClick](../../reference/arkui-ts/ts-universal-events-click.md) | √ | √ | √ | 
-| 双击 | [TapGesture](../../reference/arkui-ts/ts-basic-gestures-tapgesture.md) | √ | √ | √ | 
-| 长按 | [LongPressGesture](../../reference/arkui-ts/ts-basic-gestures-longpressgesture.md) | √ | × | √ | 
-| 上下文菜单 | [ContentMenu](../../reference/arkui-ts/ts-universal-attributes-menu.md) | √ | √ | √ | 
-| 拖拽 | [Drag](../../reference/arkui-ts/ts-universal-attributes-drag-drop.md) | √ | √ | √ |
-| 轻扫 | [SwipeGesture](../../reference/arkui-ts/ts-basic-gestures-swipegesture.md) | √ | √ | √ | 
-| 滚动及平移 | [PanGesture](../../reference/arkui-ts/ts-basic-gestures-pangesture.md) | √ | √ | √ | 
-| 缩放 | [PinchGesture](../../reference/arkui-ts/ts-basic-gestures-pinchgesture.md) | √ | √ | √ | 
-| 旋转 | [RotationGesture](../../reference/arkui-ts/ts-basic-gestures-rotationgesture.md) | √ | √ | NA | 
+| 悬浮 | [onHover](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-hover-effect.md) | NA | √ | √ |
+| 点击 | [onClick](../../reference/apis-arkui/arkui-ts/ts-universal-events-click.md) | √ | √ | √ | 
+| 双击 | [TapGesture](../../reference/apis-arkui/arkui-ts/ts-basic-gestures-tapgesture.md) | √ | √ | √ | 
+| 长按 | [LongPressGesture](../../reference/apis-arkui/arkui-ts/ts-basic-gestures-longpressgesture.md) | √ | × | √ | 
+| 上下文菜单 | [ContentMenu](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md) | √ | √ | √ | 
+| 拖拽 | [Drag](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-drag-drop.md) | √ | √ | √ |
+| 轻扫 | [SwipeGesture](../../reference/apis-arkui/arkui-ts/ts-basic-gestures-swipegesture.md) | √ | √ | √ | 
+| 滚动及平移 | [PanGesture](../../reference/apis-arkui/arkui-ts/ts-basic-gestures-pangesture.md) | √ | √ | √ | 
+| 缩放 | [PinchGesture](../../reference/apis-arkui/arkui-ts/ts-basic-gestures-pinchgesture.md) | √ | √ | √ | 
+| 旋转 | [RotationGesture](../../reference/apis-arkui/arkui-ts/ts-basic-gestures-rotationgesture.md) | √ | √ | NA | 
 
 > **说明：**
 > - 点击事件（onClick）其实是点击手势（TapGesture）的一个特殊场景（单指单次点击）。该场景使用的非常广泛，为了方便开发者使用及符合传统开发习惯，所以专门提供了开发接口。
@@ -43,7 +43,7 @@
 
 - 也可以在未抵达组件B的中途，释放按压点击，取消拖拽。
 
-一个完整的拖拽事件，包含多个拖拽子事件，如下表所示（请访问拖拽事件了解详细用法）。当前触控屏和鼠标的拖拽事件已经实现”交互归一”，对触控屏的支持正在开发中。
+一个完整的拖拽事件，包含多个拖拽子事件，如下表所示（请访问拖拽事件了解详细用法）。当前触控屏和鼠标的拖拽事件已经实现”交互归一”，对手写笔的支持正在开发中。
 
   | 名称 | 功能描述 | 
 | -------- | -------- |

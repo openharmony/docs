@@ -9,7 +9,7 @@
 
 ## 加载网络页面
 
-开发者可以在Web组件创建时，指定默认加载的网络页面 。在默认页面加载完成后，如果开发者需要变更此Web组件显示的网络页面，可以通过调用[loadUrl()](../reference/apis/js-apis-webview.md#loadurl)接口加载指定的网页。
+开发者可以在Web组件创建时，指定默认加载的网络页面 。在默认页面加载完成后，如果开发者需要变更此Web组件显示的网络页面，可以通过调用[loadUrl()](../reference/apis-arkweb/js-apis-webview.md#loadurl)接口加载指定的网页。
 
 
 在下面的示例中，在Web组件加载完“www\.example.com”页面后，开发者可通过loadUrl接口将此Web组件显示页面变更为“www\.example1.com”。
@@ -48,7 +48,7 @@ struct WebComponent {
 
 ## 加载本地页面
 
-将本地页面文件放在应用的rawfile目录下，开发者可以在Web组件创建的时候指定默认加载的本地页面 ，并且加载完成后可通过调用[loadUrl()](../reference/apis/js-apis-webview.md#loadurl)接口变更当前Web组件的页面。
+将本地页面文件放在应用的rawfile目录下，开发者可以在Web组件创建的时候指定默认加载的本地页面 ，并且加载完成后可通过调用[loadUrl()](../reference/apis-arkweb/js-apis-webview.md#loadurl)接口变更当前Web组件的页面。
 
 
 在下面的示例中展示加载本地页面文件的方法：
@@ -108,7 +108,7 @@ struct WebComponent {
 
 ## 加载HTML格式的文本数据
 
-Web组件可以通过[loadData()](../reference/apis/js-apis-webview.md#loaddata)接口实现加载HTML格式的文本数据。当开发者不需要加载整个页面，只需要显示一些页面片段时，可通过此功能来快速加载页面。
+Web组件可以通过[loadData()](../reference/apis-arkweb/js-apis-webview.md#loaddata)接口实现加载HTML格式的文本数据。当开发者不需要加载整个页面，只需要显示一些页面片段时，可通过此功能来快速加载页面。
 
 
 
@@ -181,11 +181,11 @@ function WebBuilder(data:Data) {
 
 let wrap = wrapBuilder<Data[]>(WebBuilder);
 
-// 用于控制和反馈对应的NodeContianer上的节点的行为，需要与NodeContianer一起使用
+// 用于控制和反馈对应的NodeContainer上的节点的行为，需要与NodeContainer一起使用
 export class myNodeController extends NodeController {
   private rootnode: BuilderNode<Data[]> | null = null;
-  // 必须要重写的方法，用于构建节点数、返回节点挂载在对应NodeContianer中
-  // 在对应NodeContianer创建的时候调用、或者通过rebuild方法调用刷新
+  // 必须要重写的方法，用于构建节点数、返回节点挂载在对应NodeContainer中
+  // 在对应NodeContainer创建的时候调用、或者通过rebuild方法调用刷新
   makeNode(uiContext: UIContext): FrameNode | null {
     console.log(" uicontext is undifined : "+ (uiContext === undefined));
     if (this.rootnode != null) {

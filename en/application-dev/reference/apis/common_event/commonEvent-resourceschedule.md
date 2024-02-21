@@ -9,7 +9,7 @@ Indicates that the system idle mode has changed.
 
 When the user does not use the device for the specified period of time and the screen is turned off, the system delays the CPU and network access by background applications, and the event notification service is triggered to publish this event.
 
-APIs related to this event: **deviceStandby**.
+APIs related to this event: **power**. For details, see [@ohos.power (Power Management)](../js-apis-power.md#powerisstandby10).
 
 ## COMMON_EVENT_DEVICE_IDLE_EXEMPTION_LIST_UPDATED
 Indicates that the exemption list for resource usage restrictions has been updated in idle mode.
@@ -21,4 +21,4 @@ When the exemption list for resource usage restrictions is updated, the event no
 Resources include application network access, Timer usage, and WorkScheduler task usage.
 System applications can call JavaScript APIs to apply for removing resource usage restrictions.
 
-APIs related to this event: **deviceStandby**.
+APIs related to this event: **deviceStandby**. For details, see [@ohos.resourceschedule.deviceStandby (Device Standby)](../js-apis-resourceschedule-deviceStandby.md#devicestandbyrequestexemptionresource).

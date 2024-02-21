@@ -18,7 +18,7 @@
 
 ## 接口说明
 
-上述场景涉及的常用接口如下表所示。更多API说明请参见[API参考](../reference/apis/js-apis-window.md)。
+上述场景涉及的常用接口如下表所示。更多API说明请参见[API参考](../reference/apis-arkui/js-apis-window.md)。
 
 | 实例名         | 接口名                                                       | 描述                                                         |
 | -------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -26,7 +26,6 @@
 | window静态方法 | findWindow(name: string): Window                             | 查找`name`所对应的窗口。                                     |
 | Window         | setUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void | 根据当前工程中某个页面的路径为窗口加载具体的页面内容。<br>其中path为要加载到窗口中的页面内容的路径，在FA模型下该路径需添加到工程的config.json文件中。                                 |
 | Window         | moveWindowTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void | 移动当前窗口。                                               |
-| Window         | setWindowBackgroundColor(color: string, callback: AsyncCallback&lt;void&gt;): void | 设置窗口的背景色。                                           |
 | Window         | setWindowBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void | 设置屏幕亮度值。                                             |
 | Window         | resize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): void | 改变当前窗口大小。                                           |
 | Window         | setWindowLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void | 设置窗口布局是否为全屏布局。                                 |

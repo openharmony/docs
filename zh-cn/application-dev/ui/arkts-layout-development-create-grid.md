@@ -1,16 +1,16 @@
-# 创建网格（Grid/GridItem）
+# 创建网格 (Grid/GridItem)
 
 
 ## 概述
 
 网格布局是由“行”和“列”分割的单元格所组成，通过指定“项目”所在的单元格做出各种各样的布局。网格布局具有较强的页面均分能力，子组件占比控制能力，是一种重要自适应布局，其使用场景有九宫格图片展示、日历、计算器等。
 
-ArkUI提供了[Grid](../reference/arkui-ts/ts-container-grid.md)容器组件和子组件[GridItem](../reference/arkui-ts/ts-container-griditem.md)，用于构建网格布局。Grid用于设置网格布局相关参数，GridItem定义子组件相关特征。Grid组件支持使用条件渲染、循环渲染、[懒加载](../quick-start/arkts-rendering-control-lazyforeach.md)等方式生成子组件。
+ArkUI提供了[Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md)容器组件和子组件[GridItem](../reference/apis-arkui/arkui-ts/ts-container-griditem.md)，用于构建网格布局。Grid用于设置网格布局相关参数，GridItem定义子组件相关特征。Grid组件支持使用条件渲染、循环渲染、[懒加载](../quick-start/arkts-rendering-control-lazyforeach.md)等方式生成子组件。
 
 
 ## 布局与约束
 
-Grid组件为网格容器，其中容器内个条目对应一个GridItem组件，如下图所示。
+Grid组件为网格容器，其中容器内各条目对应一个GridItem组件，如下图所示。
 
   **图1** Grid与GridItem组件关系  
 ![zh-cn_image_0000001511900472](figures/zh-cn_image_0000001511900472.png)
@@ -62,18 +62,18 @@ Grid() {
 
 >**说明：**
 >
->当Grid组件设置了rowsTemplate或columnsTemplate时，Grid的layoutDirection、maxCount、minCount、cellLength属性不生效，属性说明可参考[Grid-属性](../reference/arkui-ts/ts-container-grid.md#属性)。
+>当Grid组件设置了rowsTemplate或columnsTemplate时，Grid的layoutDirection、maxCount、minCount、cellLength属性不生效，属性说明可参考[Grid-属性](../reference/apis-arkui/arkui-ts/ts-container-grid.md#属性)。
 
 
 ### 设置子组件所占行列数
 
-除了大小相同的等比例网格布局，由不同大小的网格组成不均匀分布的网格布局场景在实际应用中十分常见，如下图所示。在Grid组件中，通过设置GridItem的rowStart、rowEnd、columnStart和columnEnd可以实现如图所示的单个网格横跨多行或多列的场景。
+除了大小相同的等比例网格布局，由不同大小的网格组成不均匀分布的网格布局场景在实际应用中十分常见，如下图所示。在Grid组件中，通过设置GridItem的rowStart、rowEnd、columnStart和columnEnd可以实现如图所示的单个网格横跨多行或多列的场景，rowStart/rowEnd合理取值范围为0\~总行数-1，columnStart/columnEnd合理取值范围为0\~总列数-1，更多起始行号、终点行号、起始列号、终点列号的生效规则请看[GridItem](../reference/apis-arkui/arkui-ts/ts-container-griditem.md)。
 
   **图4** 不均匀网格布局 
 
 ![zh-cn_image_0000001511900480](figures/zh-cn_image_0000001511900480.png)
 
-例如计算器的按键布局就是常见的不均匀网格布局场景。如下图，计算器中的按键“0”和“=”，按键“0”横跨第一、二两列，按键“=”横跨第五、六两行。使用Grid构建的网格布局，其行列标号从1开始，依次编号。
+例如计算器的按键布局就是常见的不均匀网格布局场景。如下图，计算器中的按键“0”和“=”，按键“0”横跨第一、二两列，按键“=”横跨第五、六两行。使用Grid构建的网格布局，其行列标号从0开始，依次编号。
 
   **图5** 计算器  
 
@@ -81,7 +81,7 @@ Grid() {
 
 在单个网格单元中，rowStart和rowEnd属性表示指定当前元素起始行号和终点行号，columnStart和columnEnd属性表示指定当前元素的起始列号和终点列号。
 
-所以“0”按键横跨第一列和第二列，只要将“0”对应GridItem的columnStart和columnEnd设为1和2，将“=”对应GridItem的rowStart和rowEnd设为5和6即可。
+所以“0”按键横跨第一列和第二列，只要将“0”对应GridItem的columnStart和columnEnd设为0和1，rowStart和rowEnd设为5和5，将“=”对应GridItem的rowStart和rowEnd设为4和5，columnStart和columnEnd设为4和4即可。
 
 
 ```ts
@@ -89,11 +89,13 @@ GridItem() {
   Text(key)
     ...
 }
-.columnStart(1)
-.columnEnd(2)
+.columnStart(0)
+.columnEnd(1)
+.rowStart(5)
+.rowEnd(5)
 ```
 
-“=”按键横跨第五行和第六行，只要将将“=”对应GridItem的rowStart和rowEnd设为5和6即可。
+“=”按键横跨第五行和第六行，只要将“=”对应GridItem的rowStart和rowEnd设为4和5，columnStart和columnEnd设为4和4即可。
 
 
 ```ts
@@ -101,8 +103,10 @@ GridItem() {
   Text(key)
     ...
 }
-.rowStart(5)
-.rowEnd(6)
+.rowStart(4)
+.rowEnd(5)
+.columnStart(4)
+.columnEnd(4)    
 ```
 
 
@@ -259,7 +263,7 @@ struct Shopping {
 
 ![zh-cn_image_0000001562940549](figures/zh-cn_image_0000001562940549.gif)
 
-Grid组件初始化时，可以绑定一个[Scroller](../reference/arkui-ts/ts-container-scroll.md#scroller)对象，用于进行滚动控制，例如通过Scroller对象的[scrollPage](../reference/arkui-ts/ts-container-scroll.md#scrollpage)方法进行翻页。
+Grid组件初始化时，可以绑定一个[Scroller](../reference/apis-arkui/arkui-ts/ts-container-scroll.md#scroller)对象，用于进行滚动控制，例如通过Scroller对象的[scrollPage](../reference/apis-arkui/arkui-ts/ts-container-scroll.md#scrollpage)方法进行翻页。
 
 
 ```ts

@@ -1,9 +1,9 @@
-# 线性布局（Row/Column）
+# 线性布局 (Row/Column)
 
 
 ## 概述
 
-线性布局（LinearLayout）是开发中最常用的布局，通过线性容器[Row](../reference/arkui-ts/ts-container-row.md)和[Column](../reference/arkui-ts/ts-container-column.md)构建。线性布局是其他布局的基础，其子元素在线性方向上（水平方向和垂直方向）依次排列。线性布局的排列方向由所选容器组件决定，Column容器内子元素按照垂直方向排列，Row容器内子元素按照水平方向排列。根据不同的排列方向，开发者可选择使用Row或Column容器创建线性布局。
+线性布局（LinearLayout）是开发中最常用的布局，通过线性容器[Row](../reference/apis-arkui/arkui-ts/ts-container-row.md)和[Column](../reference/apis-arkui/arkui-ts/ts-container-column.md)构建。线性布局是其他布局的基础，其子元素在线性方向上（水平方向和垂直方向）依次排列。线性布局的排列方向由所选容器组件决定，Column容器内子元素按照垂直方向排列，Row容器内子元素按照水平方向排列。根据不同的排列方向，开发者可选择使用Row或Column容器创建线性布局。
 
 
   **图1** Column容器内子元素排列示意图  
@@ -74,7 +74,7 @@ Row({ space: 35 }) {
 
 ## 布局子元素在交叉轴上的对齐方式
 
-在布局容器内，可以通过alignItems属性设置子元素在交叉轴（排列方向的垂直方向）上的对齐方式。且在各类尺寸屏幕中，表现一致。其中，交叉轴为垂直方向时，取值为[VerticalAlign类型](../reference/arkui-ts/ts-appendix-enums.md#verticalalign)，水平方向取值为[HorizontalAlign](../reference/arkui-ts/ts-appendix-enums.md#horizontalalign)。
+在布局容器内，可以通过alignItems属性设置子元素在交叉轴（排列方向的垂直方向）上的对齐方式。且在各类尺寸屏幕中，表现一致。其中，交叉轴为垂直方向时，取值为[VerticalAlign类型](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#verticalalign)，水平方向取值为[HorizontalAlign](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#horizontalalign)。
 
 alignSelf属性用于控制单个子元素在容器交叉轴上的对齐方式，其优先级高于alignItems属性，如果设置了alignSelf属性，则在单个子元素上会覆盖alignItems属性。
 
@@ -420,7 +420,7 @@ alignSelf属性用于控制单个子元素在容器交叉轴上的对齐方式�
 
 ## 自适应拉伸
 
-在线性布局下，常用空白填充组件[Blank](../reference/arkui-ts/ts-basic-components-blank.md)，在容器主轴方向自动填充空白空间，达到自适应拉伸效果。Row和Column作为容器，只需要添加宽高为百分比，当屏幕宽高发生变化时，会产生自适应效果。
+在线性布局下，常用空白填充组件[Blank](../reference/apis-arkui/arkui-ts/ts-basic-components-blank.md)，在容器主轴方向自动填充空白空间，达到自适应拉伸效果。Row和Column作为容器，只需要添加宽高为百分比，当屏幕宽高发生变化时，会产生自适应效果。
 
 
 ```ts

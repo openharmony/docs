@@ -1,13 +1,13 @@
 # 自定义输入框
 ## 场景介绍
-输入框是一种常见的场景，开发者为了丰富其多样性，在输入框中的占位符、下划线做了相关处理。本文几位大家介绍如何开发自定义输入框。
+输入框是一种常见的场景，开发者为了丰富其多样性，在输入框中的占位符、下划线做了相关处理。本文即为大家介绍如何开发自定义输入框。
 ## 效果呈现
 效果图如下：
 
 ![](figures/custom-textinput.gif)
 
 ## 运行环境
-本例基于以下环境开发，开发者也可以给予其他适配的版本进行开发：
+本例基于以下环境开发，开发者也可以基于其他适配的版本进行开发：
 - IDE: DevEco Studio 3.2 Release
 - SDK: Ohos_sdk_public 3.2.12.5 (API Version 9 Release)
 ## 实现思路
@@ -197,6 +197,6 @@ struct InputFloatHintPage{
 ```
 
 ## 参考
-[图形变化](../application-dev/reference/arkui-ts/ts-universal-attributes-transformation.md)
+[图形变换](../application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-transformation.md)
 
-[TextInput](../application-dev/reference/arkui-ts/ts-basic-components-textinput.md)
+[TextInput](../application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md)

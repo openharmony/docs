@@ -32,49 +32,6 @@ import common from '@ohos.app.ability.common';
 | eventHub            | [EventHub](js-apis-inner-application-eventHub.md) | 否    | 是    | 事件中心，提供订阅、取消订阅、触发事件对象。                                           |
 | area                | contextConstant.[AreaMode](js-apis-app-ability-contextConstant.md) | 否    | 是    | 文件分区信息。                                                          |
 
-## Context.createBundleContext
-
-createBundleContext(bundleName: string): Context
-
-根据Bundle名称创建安装包的上下文。
-
-**需要权限**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**系统API**：该接口为系统接口，三方应用不支持调用。
-
-**参数：**
-
-| 参数名       | 类型                     | 必填   | 说明            |
-| -------- | ---------------------- | ---- | ------------- |
-| bundleName | string | 是    | Bundle名称。 |
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| Context | 安装包的上下文。 |
-
-**示例：**
-
-```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import common from '@ohos.app.ability.common';
-
-export default class EntryAbility extends UIAbility {
-  onCreate() {
-    console.log('MyAbility onCreate');
-    let bundleContext: common.Context;
-    try {
-      bundleContext = this.context.createBundleContext('com.example.test');
-    } catch (error) {
-      console.error(`createBundleContext failed, error.code: ${error.code}, error.message: ${error.message}`);
-    }
-  }
-}
-```
-
 ## Context.createModuleContext
 
 createModuleContext(moduleName: string): Context
@@ -108,7 +65,7 @@ export default class EntryAbility extends UIAbility {
     try {
       moduleContext = this.context.createModuleContext('entry');
     } catch (error) {
-      console.error('createModuleContext failed, error.code: ${error.code}, error.message: ${error.message}');
+      console.error(`createModuleContext failed, error.code: ${error.code}, error.message: ${error.message}`);
     }
   }
 }
@@ -143,7 +100,7 @@ export default class EntryAbility extends UIAbility {
     try {
       applicationContext = this.context.getApplicationContext();
     } catch (error) {
-      console.error('getApplicationContext failed, error.code: ${error.code}, error.message: ${error.message}');
+      console.error(`getApplicationContext failed, error.code: ${error.code}, error.message: ${error.message}`);
     }
   }
 }
@@ -193,7 +150,7 @@ export default class EntryAbility extends UIAbility {
         console.log("getGroupDir result:" + data);
       })
     } catch (error) {
-      console.error('getGroupDirContext failed, error.code: ${error.code}, error.message: ${error.message}');
+      console.error(`getGroupDirContext failed, error.code: ${error.code}, error.message: ${error.message}`);
     }
   }
 }

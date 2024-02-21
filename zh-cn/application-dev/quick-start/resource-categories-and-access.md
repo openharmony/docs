@@ -8,7 +8,7 @@
 
 ## 资源分类
 
-应用开发中使用的各类资源文件，需要放入特定子目录中存储管理。资源目录的示例如下所示，base目录、限定词目录、rawfile目录称为资源目录，element、media、profile称为资源组目录。
+应用开发中使用的各类资源文件，需要放入特定子目录中存储管理。资源目录的示例如下所示，base目录、限定词目录、rawfile目录、resfile目录称为资源目录，element、media、profile称为资源组目录。
 
 > **说明**
 >
@@ -46,6 +46,7 @@ resources
 |   |---profile
 |   |   |---test_profile.json
 |---rawfile // 其他类型文件，原始文件形式保存，不会被集成到resources.index文件中。文件名可自定义。
+|---resfile // 其他类型文件，原始文件形式保存，不会被集成到resources.index文件中。文件名可自定义。
 ```
 ### 资源目录
 
@@ -83,7 +84,11 @@ en_US和zh_CN是默认存在的两个限定词目录，其余限定词目录需�
 
 #### rawfile目录
 
-支持创建多层子目录，目录名称可以自定义，文件夹内可以自由放置各类资源文件。<br/>目录中的资源文件会被直接打包进应用，不经过编译，也不会被赋予资源文件ID。通过指定文件路径和文件名引用。
+支持创建多层子目录，子目录名称可以自定义，文件夹内可以自由放置各类资源文件。<br/>目录中的资源文件会被直接打包进应用，不经过编译，也不会被赋予资源文件ID。通过指定文件路径和文件名引用。
+
+#### resfile目录
+
+支持创建多层子目录，子目录名称可以自定义，文件夹内可以自由放置各类资源文件。<br/>目录中的资源文件会被直接打包进应用，不经过编译，也不会被赋予资源文件ID。应用安装后，resfile资源会被解压到应用沙箱路径，通过Context属性[resourceDir](../reference/apis-ability-kit/js-apis-inner-application-context.md#属性)获取到resfile资源目录后，可通过文件路径访问。
 
 ### 资源组目录
 
@@ -95,7 +100,7 @@ en_US和zh_CN是默认存在的两个限定词目录，其余限定词目录需�
 | --------- | ---------------------------------------- | ---------------------------------------- |
 | element | 表示元素资源，以下每一类数据都采用相应的JSON文件来表征（目录下仅支持文件类型）。<br/>-&nbsp;boolean，布尔型<br/>-&nbsp;color，颜色<br/>-&nbsp;float，浮点型<br/>-&nbsp;intarray，整型数组<br/>-&nbsp;integer，整型<br/>-&nbsp;pattern，样式<br/>-&nbsp;plural，复数形式<br/>-&nbsp;strarray，字符串数组<br/>-&nbsp;string，字符串 | element目录中的文件名称建议与下面的文件名保持一致。每个文件中只能包含同一类型的数据。<br/>-&nbsp;boolean.json<br/>-&nbsp;color.json<br/>-&nbsp;float.json<br/>-&nbsp;intarray.json<br/>-&nbsp;integer.json<br/>-&nbsp;pattern.json<br/>-&nbsp;plural.json<br/>-&nbsp;strarray.json<br/>-&nbsp;string.json |
 | media   | 表示媒体资源，包括图片、音频、视频等非文本格式的文件（目录下只支持文件类型）。<br/>图片和音视频的类型说明间表4和表5。              | 文件名可自定义，例如：icon.png。                     |
-| profile  | 表示自定义配置文件，其文件内容可[通过包管理接口](../reference/apis/js-apis-bundleManager.md#bundlemanagergetprofilebyability)获取（目录下只支持文件类型）。       | 文件名可自定义，例如：test_profile.json。           |
+| profile  | 表示自定义配置文件，其文件内容可[通过包管理接口](../reference/apis-ability-kit/js-apis-bundleManager.md#bundlemanagergetprofilebyability)获取（目录下只支持文件类型）。       | 文件名可自定义，例如：test_profile.json。           |
 
 **媒体资源类型说明**
 
@@ -114,10 +119,7 @@ en_US和zh_CN是默认存在的两个限定词目录，其余限定词目录需�
 
 | 格式                                   | 支持的文件类型         |
 | ------------------------------------ | --------------- |
-| H.263                                | .3gp <br>.mp4   |
 | H.264 AVC <br> Baseline Profile (BP) | .3gp <br>.mp4   |
-| MPEG-4 SP                            | .3gp            |
-| VP8                                  | .webm <br> .mkv |
 
 **资源文件示例**
 
@@ -234,13 +236,15 @@ plural.json文件的内容如下：
 
 - 对于rawfile目录资源，通过```"$rawfile('filename')"```形式引用。其中，filename为rawfile目录下文件的相对路径，文件名需要包含后缀，路径开头不可以以"/"开头。
 
-- 对于rawfile目录的descriptor，可通过资源管理的[getRawFd](../reference/apis/js-apis-resource-manager.md#getrawfd9)接口引用，其返回值descriptor.fd为hap包的fd。此时，访问rawfile文件需要结合{fd, offset, length}一起使用。
+- 对于rawfile目录的descriptor，可通过资源管理的[getRawFd](../reference/apis-localization-kit/js-apis-resource-manager.md#getrawfd9)接口引用，其返回值descriptor.fd为hap包的fd。此时，访问rawfile文件需要结合{fd, offset, length}一起使用。
+
+- 对于resfile目录资源，只提供资源目录获取，可直接通过资源路径操作文件。
 
 > **说明：**
 > 
 > 资源描述符不能拼接使用，仅支持普通字符串如`'app.type.name'`。
 >
-> `$r`返回值为Resource对象，可通过[getStringValue](../reference/apis/js-apis-resource-manager.md#getstringvalue9) 方法获取对应的字符串。
+> `$r`返回值为Resource对象，可通过[getStringValue](../reference/apis-localization-kit/js-apis-resource-manager.md#getstringvalue9) 方法获取对应的字符串。
 
 [资源组目录](#资源组目录)下的“资源文件示例”显示了.json文件内容，包含color.json文件、string.json文件和plural.json文件，访问应用资源时需先了解.json文件的使用规范。<br/>资源的具体使用方法如下：
 
@@ -324,13 +328,13 @@ overylay是一种资源替换机制，针对不同品牌、产品的显示风格
 
 1、对应的overlay资源包需要放在对应应用安装路径下。如应用com.example.overlay的安装路径：data/app/el1/bundle/public/com.example.overlay/。
 
-2、应用通过[addResource(path)](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-resource-manager.md#addresource10)，实现资源覆盖；通过[removeResource(path)](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-resource-manager.md#removeresource10)，实现overlay删除。overlay资源路径需经过元能力的getContext().BundleCodeDir获取此应用对应的沙箱根目录，由应用的沙箱根目录+overlay的hsp名称组成。如：let path = getContext().bundleCodeDir + "hsp名"，其对应沙箱路径为：/data/storage/el1/bundle/enter-release-signed.hsp。
+2、应用通过[addResource(path)](../reference/apis-localization-kit/js-apis-resource-manager.md#addresource10)，实现资源覆盖；通过[removeResource(path)](../reference/apis-localization-kit/js-apis-resource-manager.md#removeresource10)，实现overlay删除。overlay资源路径需经过元能力的getContext().BundleCodeDir获取此应用对应的沙箱根目录，由应用的沙箱根目录+overlay的hsp名称组成。如：let path = getContext().bundleCodeDir + "hsp名"，其对应沙箱路径为：/data/storage/el1/bundle/enter-release-signed.hsp。
 
 - 静态overlay配置方式
 
 在IDE中创建应用工程时，module的配置文件module.json5中包含targetModuleName和targetPriority字段时，该module将会在安装阶段被识别为overlay特征的module。overlay特征的module一般是为设备上存在的非overlay特征的module提供覆盖的资源文件，以便于targetModuleName指向的module在运行阶段可以使用overlay资源文件展示不同的颜色，标签，主题等等。
 
-该功能默认使能，其使能及去使能请参考[包管理接口](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-overlay.md)。
+该功能默认使能，其使能及去使能请参考[包管理接口](../reference/apis-ability-kit/js-apis-overlay.md)。
 
 ## 相关实例
 

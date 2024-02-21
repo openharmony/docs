@@ -6,8 +6,6 @@ More often than not, you may need to display images in your application, for exa
 
 To use the **\<Image>** component, call the following API:
 
-
-
 ```ts
 Image(src: PixelMap | ResourceStr | DrawableDescriptor)
 ```
@@ -197,7 +195,6 @@ A pixel map is a pixel image obtained after image decoding. For details, see [Im
        
          class imagetmp {
            image: PixelMap | undefined = undefined
-       
            set(val: PixelMap) {
              this.image = val
            }
@@ -212,10 +209,10 @@ A pixel map is a pixel image obtained after image decoding. For details, see [Im
    4. Display the image.
        ```ts
        class htp{
-        httpRequest:Function|undefined = undefined
+        httpRequest: Function | undefined = undefined
         set(){
           if(this.httpRequest){
-          this.httpRequest()
+            this.httpRequest()
           }
         }
       }
@@ -236,8 +233,9 @@ You can use the **fillColor** attribute to change the fill color of an SVG image
 
 
 ```ts
-Image($r('app.media.cloud')).width(50)
-.fillColor(Color.Blue) 
+Image($r('app.media.cloud'))
+  .width(50)
+  .fillColor(Color.Blue) 
 ```
 
   **Figure 3** Original image 
@@ -267,38 +265,60 @@ struct MyComponent {
 
   build() {
     Scroll(this.scroller) {
-      Row() {
-        Image($r('app.media.img_2')).width(200).height(150)
-          .border({ width: 1 })
-          .objectFit(ImageFit.Contain).margin(15) // The image is scaled with its aspect ratio retained to fit within the display boundaries.
-          .overlay('Contain', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-        Image($r('app.media.ic_img_2')).width(200).height(150)
-          .border({ width: 1 })
-          .objectFit(ImageFit.Cover).margin(15)
-          // The image is scaled with its aspect ratio retained for both sides to be greater than or equal to the display boundaries.
-          .overlay('Cover', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-        Image($r('app.media.img_2')).width(200).height(150)
-          .border({ width: 1 })
-            // The image is scaled automatically to fit the display area.
-          .objectFit(ImageFit.Auto).margin(15)
-          .overlay('Auto', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-      }
-      Row() {
-        Image($r('app.media.img_2')).width(200).height(150)
-          .border({ width: 1 })
-          .objectFit(ImageFit.Fill).margin(15)
-          // The image is scaled to fill the display area, and its aspect ratio is not retained.
-          .overlay('Fill', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-        Image($r('app.media.img_2')).width(200).height(150)
-          .border({ width: 1 })
-          // The image content is displayed with its aspect ratio retained. The size is smaller than or equal to the original size.
-          .objectFit(ImageFit.ScaleDown).margin(15)
-          .overlay('ScaleDown', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-        Image($r('app.media.img_2')).width(200).height(150)
-          .border({ width: 1 })
-          // The original size is retained.
-          .objectFit(ImageFit.None).margin(15)
-          .overlay('None', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
+      Column() {
+        Row() {
+          Image($r('app.media.img_2'))
+            .width(200)
+            .height(150)
+            .border({ width: 1 })
+              // The image is scaled with its aspect ratio retained for the content to be completely displayed within the display boundaries.
+            .objectFit(ImageFit.Contain)
+            .margin(15)
+            .overlay('Contain', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
+          Image($r('app.media.ic_img_2'))
+            .width(200)
+            .height(150)
+            .border({ width: 1 })
+            .objectFit(ImageFit.Cover)
+            .margin(15)
+              // The image is scaled with its aspect ratio retained for both sides to be greater than or equal to the display boundaries.
+            .overlay('Cover', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
+          Image($r('app.media.img_2'))
+            .width(200)
+            .height(150)
+            .border({ width: 1 })
+              // The image is scaled automatically to fit the display area.
+            .objectFit(ImageFit.Auto)
+            .margin(15)
+            .overlay('Auto', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
+        }
+
+        Row() {
+          Image($r('app.media.img_2'))
+            .width(200)
+            .height(150)
+            .border({ width: 1 })
+            .objectFit(ImageFit.Fill)
+            .margin(15)
+              // The image is scaled to fill the display area, and its aspect ratio is not retained.
+            .overlay('Fill', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
+          Image($r('app.media.img_2'))
+            .width(200)
+            .height(150)
+            .border({ width: 1 })
+              // The image content is displayed with its aspect ratio retained. The size is smaller than or equal to the original size.
+            .objectFit(ImageFit.ScaleDown)
+            .margin(15)
+            .overlay('ScaleDown', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
+          Image($r('app.media.img_2'))
+            .width(200)
+            .height(150)
+            .border({ width: 1 })
+              // The original size is retained.
+            .objectFit(ImageFit.None)
+            .margin(15)
+            .overlay('None', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
+        }
       }
     }
   }

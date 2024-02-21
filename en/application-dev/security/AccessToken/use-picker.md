@@ -12,7 +12,9 @@ Currently, the following Picker components are available:
 
 - [PhotoViewPicker](#photoviewpicker): allows to select or save images or videos.
 
-- [Contacts Picker](#contacts picker): allows to select a contact.
+- [Contacts Picker](#contacts-picker): allows to select a contact.
+
+- [Camera Picker](#camera-picker): allows the camera to be used to take photos and record videos.
 
 ## AudioViewPicker
 
@@ -44,4 +46,10 @@ You can use **PhotoViewPicker** if your application needs to access or save imag
 
 You can use **Contacts Picker** if your application needs to read or write Contacts data.
 
-- To enable an application to read Contacts data without requesting the ohos.permission.READ_CONTACTS permission, use **Contacts Picker**. For details, see [contact.selectContacts](../../reference/apis/js-apis-contact.md#contactselectcontacts10).
+To enable an application to read Contacts data without requesting the ohos.permission.READ_CONTACTS permission, use **Contacts Picker**. For details, see [contact.selectContacts](../../reference/apis/js-apis-contact.md#contactselectcontacts10).
+
+## Camera Picker
+
+You can use **Camera Picker** if camera needs to be used to take photos and record videos.
+
+To enable an application to use the camera without requesting the ohos.permission.CAMERA permission, use **Camera Picker**. For details, see [cameraPicker.pick](../../reference/apis/js-apis-cameraPicker.md#pick).

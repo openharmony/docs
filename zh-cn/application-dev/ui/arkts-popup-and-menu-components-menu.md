@@ -1,25 +1,23 @@
 # 菜单（Menu）
 
 
-Menu是菜单接口，一般用于鼠标右键弹窗、点击弹窗等。具体用法请参考[Menu控制](../reference/arkui-ts/ts-universal-attributes-menu.md)。
+Menu是菜单接口，一般用于鼠标右键弹窗、点击弹窗等。具体用法请参考[Menu控制](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md)。
 
 
 ## 创建默认样式的菜单
 
 菜单需要调用bindMenu接口来实现。bindMenu响应绑定组件的点击事件，绑定组件后手势点击对应组件后即可弹出。
 
-
-
 ```ts
 Button('click for Menu')
   .bindMenu([
-  {
-    value: 'Menu1',
-    action: () => {
-      console.info('handle Menu1 select')
+    {
+      value: 'Menu1',
+      action: () => {
+        console.info('handle Menu1 select')
+      }
     }
-  }       
-])
+  ])
 ```
 
 
@@ -35,58 +33,71 @@ Button('click for Menu')
 
 
 ```ts
-class Tmp{
+class Tmp {
   iconStr2: ResourceStr = $r("app.media.view_list_filled")
-  set(val:Resource){
+
+  set(val: Resource) {
     this.iconStr2 = val
   }
 }
-@State select: boolean = true
-private iconStr: ResourceStr = $r("app.media.view_list_filled")
-private iconStr2: ResourceStr = $r("app.media.view_list_filled")
-@Builder
-SubMenu() {
-  Menu() {
-    MenuItem({ content: "复制", labelInfo: "Ctrl+C" })
-    MenuItem({ content: "粘贴", labelInfo: "Ctrl+V" })
+
+@Entry
+@Component
+struct menuExample {
+  @State select: boolean = true
+  private iconStr: ResourceStr = $r("app.media.view_list_filled")
+  private iconStr2: ResourceStr = $r("app.media.view_list_filled")
+
+  @Builder
+  SubMenu() {
+    Menu() {
+      MenuItem({ content: "复制", labelInfo: "Ctrl+C" })
+      MenuItem({ content: "粘贴", labelInfo: "Ctrl+V" })
+    }
+  }
+
+  @Builder
+  MyMenu() {
+    Menu() {
+      MenuItem({ startIcon: $r("app.media.icon"), content: "菜单选项" })
+      MenuItem({ startIcon: $r("app.media.icon"), content: "菜单选项" }).enabled(false)
+      MenuItem({
+        startIcon: this.iconStr,
+        content: "菜单选项",
+        endIcon: $r("app.media.arrow_right_filled"),
+        // 当builder参数进行配置时，表示与menuItem项绑定了子菜单。鼠标hover在该菜单项时，会显示子菜单。
+        builder: this.SubMenu
+      })
+      MenuItemGroup({ header: '小标题' }) {
+        MenuItem({ content: "菜单选项" })
+          .selectIcon(true)
+          .selected(this.select)
+          .onChange((selected) => {
+            console.info("menuItem select" + selected);
+            let Str: Tmp = new Tmp()
+            Str.set($r("app.media.icon"))
+          })
+        MenuItem({
+          startIcon: $r("app.media.view_list_filled"),
+          content: "菜单选项",
+          endIcon: $r("app.media.arrow_right_filled"),
+          builder: this.SubMenu
+        })
+      }
+
+      MenuItem({
+        startIcon: this.iconStr2,
+        content: "菜单选项",
+        endIcon: $r("app.media.arrow_right_filled")
+      })
+    }
+  }
+
+  build() {
+    // ...
   }
 }
 
-@Builder
-MyMenu(){
-  Menu() {
-    MenuItem({ startIcon: $r("app.media.icon"), content: "菜单选项" })
-    MenuItem({ startIcon: $r("app.media.icon"), content: "菜单选项" }).enabled(false)
-    MenuItem({
-      startIcon: this.iconStr,
-      content: "菜单选项",
-      endIcon: $r("app.media.arrow_right_filled"),
-      // 当builder参数进行配置时，表示与menuItem项绑定了子菜单。鼠标hover在该菜单项时，会显示子菜单。
-      builder: this.SubMenu
-    })
-    MenuItemGroup({ header: '小标题' }) {
-      MenuItem({ content: "菜单选项" })
-        .selectIcon(true)
-        .selected(this.select)
-        .onChange((selected) => {
-           console.info("menuItem select" + selected);
-            let Str:Tmp = new Tmp()
-            Str.set($r("app.media.icon"))
-        })
-      MenuItem({
-        startIcon: $r("app.media.view_list_filled"),
-        content: "菜单选项",
-        endIcon: $r("app.media.arrow_right_filled"),
-        builder: this.SubMenu
-      })
-    }
-    MenuItem({
-      startIcon: this.iconStr2,
-      content: "菜单选项",
-      endIcon: $r("app.media.arrow_right_filled")
-    })
-  }
-}
 ```
 
 

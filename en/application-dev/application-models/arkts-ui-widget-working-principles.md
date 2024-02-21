@@ -50,7 +50,7 @@ Compared with JS widgets, ArkTS widgets provide more capabilities, but they are 
 
 - The native programming language cannot be used for development.
 
-- Only [partial](arkts-ui-widget-page-overview.md) components, events, animations, data management, state management, and API capabilities of the declarative paradigm are supported.
+- Only partial components, events, animations, data management, state management, and API capabilities of the [declarative paradigm](../reference/arkui-ts/ts-components-summary.md) are supported.
 
 - The event processing of the widget is independent of that of the widget host. To prevent gesture conflicts, avoid using swipers in the widget when the widget host supports left and right swipes.
 

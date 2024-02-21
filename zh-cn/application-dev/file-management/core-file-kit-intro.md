@@ -1,6 +1,6 @@
 # Core File Kit简介
 
-Core File Kit为开发者提供一套访问和管理应用文件和用户文件的能力。帮助用户更高效地管理、查找和备份各类文件，使用户能够轻松应对各种文件管理的需求。
+Core File Kit（文件基础服务）为开发者提供一套访问和管理应用文件和用户文件的能力。帮助用户更高效地管理、查找和备份各类文件，使用户能够轻松应对各种文件管理的需求。
 
 ## Core File Kit概述
 
@@ -59,7 +59,7 @@ Core File Kit常见的使用场景：
 
 ### 应用文件访问框架
 
-应用文件访问框架是通过基础文件操作接口（[ohos.file.fs](../reference/apis/js-apis-file-fs.md)）实现。开发者无需了解内部实现，基础文件操作接口功能详情请参考[接口说明](app-file-access.md#接口说明)。
+应用文件访问框架是通过基础文件操作接口（[ohos.file.fs](../reference/apis-core-file-kit/js-apis-file-fs.md)）实现。开发者无需了解内部实现，基础文件操作接口功能详情请参考[接口说明](app-file-access.md#接口说明)。
 
 ### 用户文件访问框架
 

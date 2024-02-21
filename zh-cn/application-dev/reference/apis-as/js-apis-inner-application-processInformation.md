@@ -14,7 +14,7 @@ import appManager from '@ohos.app.ability.appManager';
 
 ## 属性
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -26,7 +26,7 @@ import appManager from '@ohos.app.ability.appManager';
 
 ## 使用说明
 
-通过appManager的[getRunningProcessInformation](../apis/js-apis-app-ability-appManager.md#appmanagergetrunningprocessinformation9)来获取。
+通过appManager的[getRunningProcessInformation](../apis/js-apis-app-ability-appManager.md#appmanagergetrunningprocessinformation)来获取。
 
 **示例：**
 

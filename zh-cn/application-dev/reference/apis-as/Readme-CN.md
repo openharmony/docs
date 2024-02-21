@@ -30,10 +30,8 @@
   - 接口依赖的元素及定义
     - ability
       - [abilityResult](js-apis-inner-ability-abilityResult.md)
-      - [connectOptions](js-apis-inner-ability-connectOptions.md)  
     - app
       - [appVersionInfo](js-apis-inner-app-appVersionInfo.md)
-      - [processInfo](js-apis-inner-app-processInfo.md)          
     - application
       - [abilityDelegator](js-apis-inner-application-abilityDelegator.md)
       - [abilityDelegatorArgs](js-apis-inner-application-abilityDelegatorArgs.md)
@@ -80,6 +78,7 @@
 - ArkUI API参考
     - UI界面
       - [@ohos.animator (动画)](js-apis-animator.md)
+      - [@ohos.arkui.drawableDescriptor (DrawableDescriptor)](js-apis-arkui-drawableDescriptor.md)
       - [@ohos.arkui.UIContext (UIContext)](js-apis-arkui-UIContext.md)
       - [@ohos.arkui.componentUtils (componentUtils)](js-apis-arkui-componentUtils.md)
       - [@ohos.curves (插值计算)](js-apis-curve.md)
@@ -90,12 +89,14 @@
       - [@ohos.router (页面路由)](js-apis-router.md)
       - [getContext](js-apis-getContext.md)
       - [postCardAction](js-apis-postCardAction.md)
-      - [@ohos.router (页面路由)](js-apis-router.md)    
     - 图形图像
       - [@ohos.display (屏幕属性)](js-apis-display.md)
       - [@ohos.window (窗口)](js-apis-window.md)
 - ArkWeb API参考
-  - [@ohos.web.webview (Webview)](js-apis-webview.md)
+  - ArkTS API
+    - [@ohos.web.webview (Webview)](js-apis-webview.md)
+  - ArkTS组件
+      - [Web](ts-basic-components-web.md)
 - Basic Services Kit API参考
   - [@ohos.base (公共回调信息)](js-apis-base.md)
   - [@ohos.commonEventManager (公共事件模块)(推荐)](js-apis-commonEventManager.md)
@@ -131,6 +132,8 @@
     - [@ohos.application.formError (FormError)](js-apis-application-formError.md)
 - Image Kit API参考
   - [@ohos.multimedia.image (图片处理)](js-apis-image.md)  
+- Image Kit API参考
+  - [@ohos.multimodalInput.intentionCode (意图事件)](js-apis-intentioncode.md) 
 - Lancet Kit API参考
   - [@ohos.hilog (HiLog日志打印)](js-apis-hilog.md)
   - [@ohos.hiviewdfx.hiAppEvent (应用事件打点)](js-apis-hiviewdfx-hiappevent.md)

@@ -5,9 +5,9 @@ photoAccessHelper仅提供开发者对收藏夹、视频相册、截屏和录屏
 > **说明：**
 >
 > 在进行功能开发前，请开发者查阅[开发准备](photoAccessHelper-preparation.md)，了解如何获取相册管理模块实例和如何申请相册管理模块功能开发相关权限。
-> 文档中使用到PhotoAccessHelper的地方默认为使用相册管理模块开发概述中获取的对象，如未添加此段代码报PhotoAccessHelper未定义的错误请自行添加。
+> 文档中使用到PhotoAccessHelper的地方默认为使用开发准备中获取的对象，如未添加此段代码报PhotoAccessHelper未定义的错误请自行添加。
 
-为了保证应用的运行效率，大部分photoAccessHelper调用都是异步的，对于异步调用的API均提供了callback和Promise两种方式，以下示例均采用Promise函数，更多方式可以查阅[API参考](../reference/apis/js-apis-photoAccessHelper.md)。
+为了保证应用的运行效率，大部分photoAccessHelper调用都是异步的，对于异步调用的API均提供了callback和Promise两种方式，以下示例均采用Promise函数，更多方式可以查阅[API参考](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md)。
 如无特别说明，文档中涉及的待获取的资源均视为已经预置且在数据库中存在相应数据。如出现按照示例代码执行出现获取资源为空的情况请确认文件是否已预置，数据库中是否存在该文件的数据。
 
 ## 收藏夹
@@ -16,14 +16,14 @@ photoAccessHelper仅提供开发者对收藏夹、视频相册、截屏和录屏
 
 ### 获取收藏夹对象
 
-通过[PhotoAccessHelper.getAlbums](../reference/apis/js-apis-photoAccessHelper.md#getalbums-2)接口获取收藏夹对象。
+通过[PhotoAccessHelper.getAlbums](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getalbums-2)接口获取收藏夹对象。
 
-**前提条件：**
+**前提条件**
 
 - 获取相册管理模块photoAccessHelper实例。
 - 申请相册管理模块权限'ohos.permission.READ_IMAGEVIDEO'。
 
-**开发步骤：**
+**开发步骤**
 
 1. 设置获取收藏夹的参数为photoAccessHelper.AlbumType.SYSTEM和photoAccessHelper.AlbumSubtype.FAVORITE。
 2. 调用PhotoAccessHelper.getAlbums接口获取收藏夹对象。
@@ -45,18 +45,18 @@ async function example() {
 }
 ```
 
-### 收藏图片和视频
+### 收藏图片和视频（仅向系统应用开放）
 
-通过[PhotoAsset.setFavorite](../reference/apis/js-apis-photoAccessHelper.md#setfavorite-1)接口将图片或者视频设置收藏。
+通过[PhotoAsset.setFavorite](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#setfavorite-1)接口将图片或者视频设置收藏。
 
-**前提条件：**
+**前提条件**
 
 - 获取相册管理模块photoAccessHelper实例。
 - 申请相册管理模块权限'ohos.permission.READ_IMAGEVIDEO'和'ohos.permission.WRITE_IMAGEVIDEO'。
 
 下面将以收藏一张图片为例。
 
-**开发步骤：**
+**开发步骤**
 
 1. [获取指定媒体资源](photoAccessHelper-resource-guidelines.md#获取指定媒体资源)。
 2. favoriteState参数设置为true，表示将会设置为收藏。
@@ -90,21 +90,21 @@ async function example() {
 
 ### 获取收藏夹中的图片和视频
 
-先[获取收藏夹对象](#获取收藏夹对象)。然后调用[Album.getAssets](../reference/apis/js-apis-photoAccessHelper.md#getassets-3)接口获取收藏夹中的资源。
+先[获取收藏夹对象](#获取收藏夹对象)。然后调用[Album.getAssets](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getassets-3)接口获取收藏夹中的资源。
 
-**前提条件：**
+**前提条件**
 
 - 获取相册管理模块photoAccessHelper实例。
 - 申请相册管理模块权限'ohos.permission.READ_IMAGEVIDEO'。
 
 下面以获取收藏夹中的一张图片为例。
 
-**开发步骤：**
+**开发步骤**
 
 1. [获取收藏夹对象](#获取收藏夹对象)。
 2. 建立图片检索条件，用于获取图片。
 3. 调用Album.getAssets接口获取图片资源。
-4. 调用[FetchResult.getFirstObject](../reference/apis/js-apis-photoAccessHelper.md#getfirstobject-1)接口获取第一张图片。
+4. 调用[FetchResult.getFirstObject](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getfirstobject-1)接口获取第一张图片。
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -135,18 +135,18 @@ async function example() {
 }
 ```
 
-### 取消收藏图片或视频
+### 取消收藏图片或视频（仅向系统应用开放）
 
-通过[PhotoAsset.setFavorite](../reference/apis/js-apis-photoAccessHelper.md#setfavorite-1)接口将图片或者视频取消收藏。
+通过[PhotoAsset.setFavorite](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#setfavorite-1)接口将图片或者视频取消收藏。
 
-**前提条件：**
+**前提条件**
 
 - 获取相册管理模块photoAccessHelper实例。
 - 申请相册管理模块权限'ohos.permission.READ_IMAGEVIDEO'和'ohos.permission.WRITE_IMAGEVIDEO'。
 
 下面以将一张图片取消收藏为例。
 
-**开发步骤：**
+**开发步骤**
 
 1. [获取收藏夹中的图片和视频](#获取收藏夹中的图片和视频)。
 2. favoriteState参数设置为false。
@@ -190,14 +190,14 @@ async function example() {
 
 ### 获取视频相册对象
 
-通过[PhotoAccessHelper.getAlbums](../reference/apis/js-apis-photoAccessHelper.md#getalbums-2)接口获取视频相册对象。
+通过[PhotoAccessHelper.getAlbums](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getalbums-2)接口获取视频相册对象。
 
-**前提条件：**
+**前提条件**
 
 - 获取相册管理模块photoAccessHelper实例。
 - 申请相册管理模块权限'ohos.permission.READ_IMAGEVIDEO'。
 
-**开发步骤：**
+**开发步骤**
 
 1. 设置获取视频相册的参数为photoAccessHelper.AlbumType.SYSTEM和photoAccessHelper.AlbumSubtype.VIDEO。
 2. 调用PhotoAccessHelper.getAlbums接口获取视频相册。
@@ -221,21 +221,21 @@ async function example() {
 
 ### 获取视频相册中的视频
 
-先[获取视频相册对象](#获取视频相册对象)。然后调用[Album.getAssets](../reference/apis/js-apis-photoAccessHelper.md#getassets-3)接口获取视频相册对象中的视频资源。
+先[获取视频相册对象](#获取视频相册对象)。然后调用[Album.getAssets](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getassets-3)接口获取视频相册对象中的视频资源。
 
-**前提条件：**
+**前提条件**
 
 - 获取相册管理模块photoAccessHelper实例。
 - 申请相册管理模块权限'ohos.permission.READ_IMAGEVIDEO'。
 
 下面以获取视频相册中的一个视频为例。
 
-**开发步骤：**
+**开发步骤**
 
 1. 先[获取视频相册对象](#获取视频相册对象)。
 2. 建立视频检索条件，用于获取视频。
 3. 调用Album.getAssets接口获取视频资源。
-4. 调用[FetchResult.getFirstObject](../reference/apis/js-apis-photoAccessHelper.md#getfirstobject-1)接口获取第一个视频。
+4. 调用[FetchResult.getFirstObject](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getfirstobject-1)接口获取第一个视频。
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -266,20 +266,20 @@ async function example() {
 }
 ```
 
-## 截屏和录屏相册
+## 截屏和录屏相册（仅向系统应用开放）
 
 截屏和录屏相册属于系统相册，用户文件中属于截屏和录屏的媒体文件会自动加入到截屏和录屏相册中。
 
 ### 获取截屏和录屏相册对象
 
-通过[PhotoAccessHelper.getAlbums](../reference/apis/js-apis-photoAccessHelper.md#getalbums-2)接口获取截屏和录屏相册对象。
+通过[PhotoAccessHelper.getAlbums](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getalbums-2)接口获取截屏和录屏相册对象。
 
-**前提条件：**
+**前提条件**
 
 - 获取相册管理模块photoAccessHelper实例。
 - 申请相册管理模块权限'ohos.permission.READ_IMAGEVIDEO'。
 
-**开发步骤：**
+**开发步骤**
 
 1. 设置获取截屏和录屏相册的参数为photoAccessHelper.AlbumType.SYSTEM和photoAccessHelper.AlbumSubtype.SCREENSHOT。
 2. 调用PhotoAccessHelper.getAlbums接口获取截屏和录屏相册。
@@ -303,21 +303,21 @@ async function example() {
 
 ### 获取截屏和录屏相册中的媒体资源
 
-先[获取截屏和录屏相册对象](#获取截屏和录屏相册对象)。然后调用[Album.getAssets](../reference/apis/js-apis-photoAccessHelper.md#getassets-3)接口获取截屏和录屏相册对象中的媒体资源。
+先[获取截屏和录屏相册对象](#获取截屏和录屏相册对象)。然后调用[Album.getAssets](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getassets-3)接口获取截屏和录屏相册对象中的媒体资源。
 
-**前提条件：**
+**前提条件**
 
 - 获取相册管理模块photoAccessHelper实例。
 - 申请相册管理模块权限'ohos.permission.READ_IMAGEVIDEO'。
 
 下面以获取截屏和录屏相册中的一个媒体资源为例。
 
-**开发步骤：**
+**开发步骤**
 
 1. 先[获取截屏和录屏相册对象](#获取截屏和录屏相册对象)。
 2. 建立检索条件，用于获取媒体资源。
 3. 调用Album.getAssets接口获取媒体资源。
-4. 调用[FetchResult.getFirstObject](../reference/apis/js-apis-photoAccessHelper.md#getfirstobject-1)接口获取第一个媒体资源。
+4. 调用[FetchResult.getFirstObject](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getfirstobject-1)接口获取第一个媒体资源。
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';

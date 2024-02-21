@@ -1029,10 +1029,10 @@ UIAbility组件是系统调度的基本单元，为应用提供绘制界面的�
 
 - [UIAbility组件概述](../application-dev/application-models/uiability-overview.md)
 
-- [UIAbility组件使用指导](../application-dev/reference/apis/js-apis-app-ability-uiAbility.md)
+- [UIAbility组件使用指导](../application-dev/reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)
 
-- [UIAbilityContext使用指导](../application-dev/reference/apis/js-apis-inner-application-uiAbilityContext.md)
+- [UIAbilityContext使用指导](../application-dev/reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)
 
-- [router (页面路由)使用指导](../application-dev/reference/apis/js-apis-router.md)
+- [router (页面路由)使用指导](../application-dev/reference/apis-arkui/js-apis-router.md)
 
-- [Want使用指导](../application-dev/reference/apis/js-apis-application-want.md)
+- [Want使用指导](../application-dev/reference/apis-ability-kit/js-apis-application-want.md)

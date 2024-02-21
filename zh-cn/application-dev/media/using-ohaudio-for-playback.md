@@ -12,7 +12,7 @@ OHAudio是OpenHarmony在API version 10中引入的一套全新Native API，此AP
 target_link_libraries(sample PUBLIC libohaudio.so)
 ```
 ### 添加头文件
-开发者通过引入<[native_audiostreambuilder.h](../reference/native-apis/native__audiostreambuilder_8h.md)>和<[native_audiorenderer.h](../reference/native-apis/native__audiorenderer_8h.md)>头文件，使用音频播放相关API。
+开发者通过引入<[native_audiostreambuilder.h](../reference/apis-audio-kit/native__audiostreambuilder_8h.md)>和<[native_audiorenderer.h](../reference/apis-audio-kit/native__audiorenderer_8h.md)>头文件，使用音频播放相关API。
 
 ```cpp
 #include <ohaudio/native_audiorenderer.h>
@@ -21,21 +21,21 @@ target_link_libraries(sample PUBLIC libohaudio.so)
 
 ## 音频流构造器
 
-OHAudio提供OH_AudioStreamBuilder接口，遵循构造器设计模式，用于构建音频流。开发者需要根据业务场景，指定对应的[OH_AudioStream_Type](../reference/native-apis/_o_h_audio.md#oh_audiostream_type) 。
+OHAudio提供OH_AudioStreamBuilder接口，遵循构造器设计模式，用于构建音频流。开发者需要根据业务场景，指定对应的[OH_AudioStream_Type](../reference/apis-audio-kit/_o_h_audio.md#oh_audiostream_type) 。
 
 `OH_AudioStream_Type`包含两种类型：
 
 - AUDIOSTREAM_TYPE_RENDERER
 - AUDIOSTREAM_TYPE_CAPTURER
 
-使用[OH_AudioStreamBuilder_Create](../reference/native-apis/_o_h_audio.md#oh_audiostreambuilder_create)创建构造器示例：
+使用[OH_AudioStreamBuilder_Create](../reference/apis-audio-kit/_o_h_audio.md#oh_audiostreambuilder_create)创建构造器示例：
 
 ```
 OH_AudioStreamBuilder* builder;
 OH_AudioStreamBuilder_Create(&builder, streamType);
 ```
 
-在音频业务结束之后，开发者应该执行[OH_AudioStreamBuilder_Destroy](../reference/native-apis/_o_h_audio.md#oh_audiostreambuilder_destroy)接口来销毁构造器。
+在音频业务结束之后，开发者应该执行[OH_AudioStreamBuilder_Destroy](../reference/apis-audio-kit/_o_h_audio.md#oh_audiostreambuilder_destroy)接口来销毁构造器。
 
 ```
 OH_AudioStreamBuilder_Destroy(builder);
@@ -43,7 +43,7 @@ OH_AudioStreamBuilder_Destroy(builder);
 
 ## 开发步骤及注意事项
 
-详细的API说明请参考[OHAudio API参考](../reference/native-apis/_o_h_audio.md)。
+详细的API说明请参考[OHAudio API参考](../reference/apis-audio-kit/_o_h_audio.md)。
 
 开发者可以通过以下几个步骤来实现一个简单的播放功能。
 
@@ -59,29 +59,77 @@ OH_AudioStreamBuilder_Destroy(builder);
     创建音频播放构造器后，可以设置音频流所需要的参数，可以参考下面的案例。
 
     ```c++
-    //设置音频采样率
+    // 设置音频采样率
     OH_AudioStreamBuilder_SetSamplingRate(builder, 48000);
-    //设置音频声道
+    // 设置音频声道
     OH_AudioStreamBuilder_SetChannelCount(builder, 2);
-    //设置音频采样格式
-    OH_AudioStreamBuilder_SetSampleFormat(builder, (OH_AudioStream_SampleFormat)0);
-    //设置音频流的编码类型
-    OH_AudioStreamBuilder_SetEncodingType(builder, (OH_AudioStream_EncodingType)0);
-    //设置输出音频流的工作场景
-    OH_AudioStreamBuilder_SetRendererInfo(builder, (OH_AudioStream_Usage)1);
+    // 设置音频采样格式
+    OH_AudioStreamBuilder_SetSampleFormat(builder, AUDIOSTREAM_SAMPLE_S16LE);
+    // 设置音频流的编码类型
+    OH_AudioStreamBuilder_SetEncodingType(builder, AUDIOSTREAM_ENCODING_TYPE_RAW);
+    // 设置输出音频流的工作场景
+    OH_AudioStreamBuilder_SetRendererInfo(builder, AUDIOSTREAM_USAGE_MUSIC);
     ```
 
-    注意，播放的音频数据要通过回调接口写入，开发者要实现回调接口，使用`OH_AudioStreamBuilder_SetRendererCallback`设置回调函数。回调函数的声明请查看[OH_AudioRenderer_Callbacks](../reference/native-apis/_o_h_audio.md#oh_audiorenderer_callbacks) 。
+    注意，播放的音频数据要通过回调接口写入，开发者要实现回调接口，使用`OH_AudioStreamBuilder_SetRendererCallback`设置回调函数。回调函数的声明请查看[OH_AudioRenderer_Callbacks](../reference/apis-audio-kit/_o_h_audio.md#oh_audiorenderer_callbacks) 。
 
 
-3. 设置回调函数
+3. 设置音频回调函数
+
+    多音频并发处理可参考[多音频播放的并发策略](audio-playback-concurrency.md)，仅接口语言差异。
 
     ```c++
-    //具体实现请参考录制播放实例
+    // 自定义写入数据函数
+    int32_t MyOnWriteData(
+        OH_AudioRenderer* renderer,
+        void* userData,
+        void* buffer,
+        int32_t length)
+    {
+        // 将待播放的数据，按length长度写入buffer
+        return 0;
+    }
+    // 自定义音频流事件函数
+    int32_t MyOnStreamEvent(
+        OH_AudioRenderer* renderer,
+        void* userData,
+        OH_AudioStream_Event event)
+    {
+        // 根据event表示的音频流事件信息，更新播放器状态和界面
+        return 0;
+    }
+    // 自定义音频中断事件函数
+    int32_t MyOnInterruptEvent(
+        OH_AudioRenderer* renderer,
+        void* userData,
+        OH_AudioInterrupt_ForceType type,
+        OH_AudioInterrupt_Hint hint)
+    {
+        // 根据type和hint表示的音频中断信息，更新播放器状态和界面
+        return 0;
+    }
+    // 自定义异常回调函数
+    int32_t MyOnError(
+        OH_AudioRenderer* renderer,
+        void* userData,
+        OH_AudioStream_Result error)
+    {
+        // 根据error表示的音频异常信息，做出相应的处理
+        return 0;
+    }
+
     OH_AudioRenderer_Callbacks callbacks;
+    // 配置回调函数
+    callbacks.OH_AudioRenderer_OnWriteData = MyOnWriteData;
+    callbacks.OH_AudioRenderer_OnStreamEvent = MyOnStreamEvent;
+    callbacks.OH_AudioRenderer_OnInterruptEvent = MyOnInterruptEvent;
+    callbacks.OH_AudioRenderer_OnError = MyOnError;
+
     //设置输出音频流的回调
     OH_AudioStreamBuilder_SetRendererCallback(builder, callbacks, nullptr);
     ```
+
+    为了避免不可预期的行为，在设置音频回调函数时，请确认[OH_AudioRenderer_Callbacks](../reference/apis-audio-kit/_o_h_audio.md#oh_audiorenderer_callbacks)的每一个回调都被**自定义的回调方法**或**空指针**初始化。
 
 4. 构造播放音频流
 
@@ -114,13 +162,12 @@ OH_AudioStreamBuilder_Destroy(builder);
 
 当设备支持低时延通路时，开发者可以使用低时延模式创建播放器，获得更高质量的音频体验。
 
-开发流程与普通播放场景一致，仅需要在创建音频流构造器时，调用[OH_AudioStreamBuilder_SetLatencyMode()](../reference/native-apis/_o_h_audio.md#oh_audiostreambuilder_setlatencymode)设置低时延模式。
+开发流程与普通播放场景一致，仅需要在创建音频流构造器时，调用[OH_AudioStreamBuilder_SetLatencyMode()](../reference/apis-audio-kit/_o_h_audio.md#oh_audiostreambuilder_setlatencymode)设置低时延模式。
 
 开发示例
 
 ```C
-OH_AudioStream_LatencyMode latencyMode = AUDIOSTREAM_LATENCY_MODE_FAST;
-OH_AudioStreamBuilder_SetLatencyMode(builder, latencyMode);
+OH_AudioStreamBuilder_SetLatencyMode(builder, AUDIOSTREAM_LATENCY_MODE_FAST);
 ```
 
 ## 相关实例

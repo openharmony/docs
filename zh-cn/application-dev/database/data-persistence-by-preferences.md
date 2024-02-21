@@ -3,12 +3,12 @@
 
 ## 场景介绍
 
-用户首选项为应用提供Key-Value键值型的数据处理能力，支持应用持久化轻量级数据，并对其修改和查询。当用户希望有一个全局唯一存储的地方，可以采用用户首选项来进行存储。Preferences会将该数据缓存在内存中，当用户读取的时候，能够快速从内存中获取数据。Preferences会随着存放的数据量越多而导致应用占用的内存越大，因此，Preferences不适合存放过多的数据，适用的场景一般为应用保存用户的个性化设置（字体大小，是否开启夜间模式）等。
+用户首选项为应用提供Key-Value键值型的数据处理能力，支持应用持久化轻量级数据，并对其修改和查询。当用户希望有一个全局唯一存储的地方，可以采用用户首选项来进行存储。Preferences会将该数据缓存在内存中，当用户读取的时候，能够快速从内存中获取数据，当需要持久化时可以使用flush接口将内存中的数据写入持久化文件中。Preferences会随着存放的数据量越多而导致应用占用的内存越大，因此，Preferences不适合存放过多的数据，适用的场景一般为应用保存用户的个性化设置（字体大小，是否开启夜间模式）等。
 
 
 ## 运作机制
 
-如图所示，用户程序通过JS接口调用用户首选项读写对应的数据文件。开发者可以将用户首选项持久化文件的内容加载到Preferences实例，每个文件唯一对应到一个Preferences实例，系统会通过静态容器将该实例存储在内存中，直到主动从内存中移除该实例或者删除该文件。
+如图所示，用户程序通过ArkTS接口调用用户首选项读写对应的数据文件。开发者可以将用户首选项持久化文件的内容加载到Preferences实例，每个文件唯一对应到一个Preferences实例，系统会通过静态容器将该实例存储在内存中，直到主动从内存中移除该实例或者删除该文件。
 
 应用首选项的持久化文件保存在应用沙箱内部，可以通过context获取其路径。具体可见[获取应用文件路径](../application-models/application-context-stage.md#获取应用文件路径)。
 
@@ -28,7 +28,7 @@
 
 ## 接口说明
 
-以下是用户首选项持久化功能的相关接口，更多接口及使用方式请见[用户首选项](../reference/apis/js-apis-data-preferences.md)。
+以下是用户首选项持久化功能的相关接口，更多接口及使用方式请见[用户首选项](../reference/apis-arkdata/js-apis-data-preferences.md)。
 
 | 接口名称                                                     | 描述                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -94,38 +94,49 @@
 
    示例代码如下所示：
 
-   
    ```ts
+   import util from '@ohos.util';
    if (preferences.hasSync('startup')) {
      console.info("The key 'startup' is contained.");
    } else {
      console.info("The key 'startup' does not contain.");
      // 此处以此键值对不存在时写入数据为例
      preferences.putSync('startup', 'auto');
+     // 当字符串有特殊字符时，需要将字符串转为Uint8Array类型再存储
+     let uInt8Array = new util.TextEncoder().encodeInto("~！@#￥%……&*（）——+？");
+     preferences.putSync('uInt8', uInt8Array);
    }
    ```
 
-4. 读取数据。
+3. 读取数据。
 
-     使用getSync()方法获取数据，即指定键对应的值。如果值为null或者非默认值类型，则返回默认数据。示例代码如下所示：
-     
+   使用getSync()方法获取数据，即指定键对应的值。如果值为null或者非默认值类型，则返回默认数据。
+
+   示例代码如下所示：
+
    ```ts
+   import util from '@ohos.util';
    let val = preferences.getSync('startup', 'default');
+   console.info("The 'startup' value is " + val);
+   // 当获取的值为带有特殊字符的字符串时，需要将获取到的Uint8Array转换为字符串
+   let uInt8Array : data_preferences.ValueType = preferences.getSync('uInt8', new Uint8Array(0));
+   val = new util.TextDecoder().decode(uInt8Array as Uint8Array);
+   console.info("The 'uInt8' value is " + val);
    ```
 
-5. 删除数据。
+4. 删除数据。
 
    使用deleteSync()方法删除指定键值对，示例代码如下所示：
 
-   
+
    ```ts
    preferences.deleteSync('startup');
    ```
 
-6. 数据持久化。
+5. 数据持久化。
 
-     应用存入数据到Preferences实例后，可以使用flush()方法实现数据持久化。示例代码如下所示：
-     
+   应用存入数据到Preferences实例后，可以使用flush()方法实现数据持久化。示例代码如下所示：
+
    ```ts
    preferences.flush((err: BusinessError) => {
      if (err) {
@@ -136,10 +147,10 @@
    })
    ```
 
-7. 订阅数据变更。
+6. 订阅数据变更。
 
-     应用订阅数据变更需要指定observer作为回调方法。订阅的Key值发生变更后，当执行flush()方法时，observer被触发回调。示例代码如下所示：
-     
+   应用订阅数据变更需要指定observer作为回调方法。订阅的Key值发生变更后，当执行flush()方法时，observer被触发回调。示例代码如下所示：
+
    ```ts
    let observer = (key: string) => {
      console.info('The key' + key + 'changed.');
@@ -164,7 +175,7 @@
    })
    ```
 
-8. 删除指定文件。
+7. 删除指定文件。
 
    使用deletePreferences()方法从内存中移除指定文件对应的Preferences实例，包括内存中的数据。若该Preference存在对应的持久化文件，则同时删除该持久化文件，包括指定文件及其备份文件、损坏文件。
 
@@ -176,7 +187,7 @@
 
    示例代码如下所示：
 
-   
+
    ```ts
    let options: dataPreferences.Options = { name: 'myStore' };
      dataPreferences.deletePreferences(this.context, options, (err: BusinessError) => {

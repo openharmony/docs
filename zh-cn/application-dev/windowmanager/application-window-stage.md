@@ -28,7 +28,7 @@
 
 ## 接口说明
 
-上述场景涉及的常用接口如下表所示。更多API说明请参见[API参考](../reference/apis/js-apis-window.md)。
+上述场景涉及的常用接口如下表所示。更多API说明请参见[API参考](../reference/apis-arkui/js-apis-window.md)。
 
 | 实例名         | 接口名                                                       | 描述                                                         |
 | -------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -38,7 +38,6 @@
 | WindowStage    | on(type: 'windowStageEvent', callback: Callback&lt;WindowStageEventType&gt;): void | 开启WindowStage生命周期变化的监听。<br/>此接口仅可在`Stage`模型下使用。 |
 | window静态方法 | createWindow(config: Configuration, callback: AsyncCallback\<Window>): void | 创建系统窗口。<br/>-`config`：创建窗口时的参数。             |
 | Window         | setUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void | 根据当前工程中某个页面的路径为窗口加载具体的页面内容。<br>其中path为要加载到窗口中的页面内容的路径，在Stage模型下该路径需添加到工程的main_pages.json文件中。                                     |
-| Window         | setWindowBackgroundColor(color: string, callback: AsyncCallback&lt;void&gt;): void | 设置窗口的背景色。                                           |
 | Window         | setWindowBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void | 设置屏幕亮度值。                                             |
 | Window         | setWindowTouchable(isTouchable: boolean, callback: AsyncCallback&lt;void&gt;): void | 设置窗口是否为可触状态。                                     |
 | Window         | moveWindowTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void | 移动当前窗口位置。                                           |

@@ -8,7 +8,7 @@
 - SDK: Ohos_sdk_public 4.0.10.13 (API Version 10 Release)
 ## 实现方案
 方案一：将循环动画放到定时其中执行，通过清除定时器实现停止动画。 
-创建一个播放一次的animateTo()并通过onFinish()回调，然后通过setIntervalc重复调用animateTo()，以达到循环动画的播放，最后通过clearInterval清除定时器完成循环播放的停止。具体代码如下：
+创建一个播放一次的animateTo()并通过onFinish()回调，然后通过setInterval重复调用animateTo()，以达到循环动画的播放，最后通过clearInterval清除定时器完成循环播放的停止。具体代码如下：
 ```ts
 class A {
   x:number=0
@@ -121,7 +121,7 @@ struct AnimateToStop {
 ![](figures/play-stop2.gif)
 
 ## 参考
-[显示动画](../application-dev/reference/arkui-ts/ts-explicit-animation.md)
+[显示动画](../application-dev/reference/apis-arkui/arkui-ts/ts-explicit-animation.md)
 
-[定时器](../application-dev/reference/apis/js-apis-system-timer.md)
+[定时器](../application-dev/reference/common/js-apis-timer.md)
 

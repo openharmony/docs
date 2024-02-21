@@ -4,7 +4,7 @@
 
 > **说明：**
 >
-> - 以下权限仅对APL等级为systen_basic及以上的应用开放，不向APL等级为normal的应用开放。
+> - 以下权限仅对APL等级为system_basic及以上的应用开放，不向APL等级为normal的应用开放。
 > - 仅部分权限可通过[访问控制列表（ACL）](app-permission-mgmt-overview.md#访问控制列表acl)的方式跨级别申请。
 
 ## system_grant，允许ACL跨级申请
@@ -24,6 +24,18 @@
 **ACL使能**：true
 
 **起始版本**：7
+
+### ohos.permission.ALLOW_UPGRADE_GUIDE_ACCESS
+
+允许系统应用获取应用的升级引导数据或拉起应用的升级引导组件。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
 
 ### ohos.permission.AGENT_REQUIRE_FORM
 
@@ -2041,7 +2053,7 @@
 
 **起始版本**：11
 
-## ohos.permission.ACCESS_STATUSBAR_ICON
+### ohos.permission.ACCESS_STATUSBAR_ICON
 
 允许应用接入状态栏图标。
 
@@ -2268,6 +2280,66 @@
 **ACL使能**：true
 
 **起始版本**：11
+
+### ohos.permission.MANAGE_NEARLINK
+
+允许应用配对星闪设备，并对设备的电话簿或消息进行访问。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.GET_NEARLINK_LOCAL_MAC
+
+允许应用获取本机的星闪MAC地址。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.MANAGE_RGM
+
+允许系统服务或系统应用管理RGM。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.ACCESS_PROTOCOL_DFX_DATA
+
+允许系统应用读取通讯故障及系统统计信息等数据。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.MANAGE_USER_ACCOUNT_INFO
+
+允许系统应用及系统SA调用账号服务。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
 
 ## system_grant，不允许ACL跨级申请
 

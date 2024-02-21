@@ -136,7 +136,11 @@ TextInput设置cancelButton时不设置IconOptions.size参数可以获取正确�
 
 **变更影响**
 
-该变更为兼容性变更。变更@Prop和@BuilderParam初始化校验规格。增加当@Require装饰器和@Prop装饰器或者@BuilderParam装饰器结合使用时，@Prop装饰器或者 @BuilderParam装饰器修饰的变量值必须由父组件构造传参，如父组件未构造传参，编译报错。如果@Prop、@BuilderParam没有和@Require结合使用，不会进行构造传参初始化校验。 
+该变更为非兼容性变更。变更@Prop和@BuilderParam初始化校验规格。增加当@Require装饰器和@Prop装饰器或者@BuilderParam装饰器结合使用时，@Prop装饰器或者 @BuilderParam装饰器修饰的变量值必须由父组件构造传参，如父组件未构造传参，编译报错。如果@Prop、@BuilderParam没有和@Require结合使用，不会进行构造传参初始化校验。
+
+**API Level**
+
+11
 
 **变更发生版本**
 
@@ -479,3 +483,35 @@ API 11及以后，添加isModal属性，默认值为true。isModal属性为true�
 **适配指导**
 
 新功能实现兼容原有功能，不涉及适配。
+
+## cl.Arkui.9 Popup高级组件接口修改
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+UX能力增强
+
+**变更影响**
+
+@ohos.arkui.advanced.Popup（气泡组件）的PopupIconOptions数据结构中，image变量不可传入PixelMap与DrawableDescriptor数据类型。
+
+**API Level**
+
+11
+
+**变更发生版本**
+
+从OpenHarmony SDK 4.1.5.2 开始。
+
+**变更的接口/组件**
+
+API 11前，无。
+
+API 11及以后，@ohos.arkui.advanced.Popup（气泡组件）的PopupIconOptions数据结构中，image变量只可传入ResourceStr数据类型。
+
+**适配指导**
+
+@ohos.arkui.advanced.Popup（气泡组件）的PopupIconOptions数据结构中，image变量传入ResourceStr数据类型。

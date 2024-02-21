@@ -6,7 +6,6 @@ The **resourceManager** module provides APIs to obtain information about applica
 >
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
-
 ## Modules to Import
 
 ```js
@@ -44,7 +43,7 @@ Obtains the **ResourceManager** object of this application. This API uses an asy
 
 | Name     | Type                                      | Mandatory  | Description                           |
 | -------- | ---------------------------------------- | ---- | ----------------------------- |
-| callback | AsyncCallback&lt;[ResourceManager](#resourcemanager)&gt; | Yes   | Callback used to return the result.|
+| callback | AsyncCallback&lt;[ResourceManager](#resourcemanager)&gt; | Yes   |Callback used to return the result, which is a **ResourceManager** object.|
 
 **Example**
   ```js
@@ -64,12 +63,11 @@ Obtains the **ResourceManager** object of this application. This API uses an asy
   ```
 > **NOTE**<br>In the sample code, **0x1000000** indicates the resource ID, which can be found in the compiled **ResourceTable.txt** file.
 
-
 ## resourceManager.getResourceManager
 
 getResourceManager(bundleName: string, callback: AsyncCallback&lt;ResourceManager&gt;): void
 
-Obtains the **ResourceManager** object of an application based on the specified bundle name. This API uses an asynchronous callback to return the result.
+Obtains the **ResourceManager** object of the specified application. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -79,15 +77,15 @@ Obtains the **ResourceManager** object of an application based on the specified 
 
 | Name       | Type                                      | Mandatory  | Description                           |
 | ---------- | ---------------------------------------- | ---- | ----------------------------- |
-| bundleName | string                                   | Yes   | Bundle name of the application.                |
-| callback   | AsyncCallback&lt;[ResourceManager](#resourcemanager)&gt; | Yes   | Callback used to return the result.|
+| bundleName | string                                   | Yes   | Bundle name of an application.                |
+| callback   | AsyncCallback&lt;[ResourceManager](#resourcemanager)&gt; | Yes   | Callback used to return the result, which is a **ResourceManager** object.|
 
 **Example**
+
   ```js
   resourceManager.getResourceManager("com.example.myapplication", (error, mgr) => {
   });
   ```
-
 
 ## resourceManager.getResourceManager
 
@@ -103,7 +101,7 @@ Obtains the **ResourceManager** object of this application. This API uses a prom
 
 | Type                                      | Description               |
 | ---------------------------------------- | ----------------- |
-| Promise&lt;[ResourceManager](#resourcemanager)&gt; | Promise used to return the result.|
+| Promise&lt;[ResourceManager](#resourcemanager)&gt; | Promise used to return the result, which is a **ResourceManager** object.|
 
 **Example**
   ```js
@@ -124,12 +122,11 @@ Obtains the **ResourceManager** object of this application. This API uses a prom
   ```
 > **NOTE**<br>In the sample code, **0x1000000** indicates the resource ID, which can be found in the compiled **ResourceTable.txt** file.
 
-
 ## resourceManager.getResourceManager
 
 getResourceManager(bundleName: string): Promise&lt;ResourceManager&gt;
 
-Obtains the **ResourceManager** object of an application based on the specified bundle name. This API uses a promise to return the result.
+Obtains the **ResourceManager** object of the specified application. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -139,13 +136,13 @@ Obtains the **ResourceManager** object of an application based on the specified 
 
 | Name       | Type    | Mandatory  | Description           |
 | ---------- | ------ | ---- | ------------- |
-| bundleName | string | Yes   | Bundle name of the application.|
+| bundleName | string | Yes   | Bundle name of an application.|
 
 **Return value**
 
 | Type                                      | Description                |
 | ---------------------------------------- | ------------------ |
-| Promise&lt;[ResourceManager](#resourcemanager)&gt; | Promise used to return the result.|
+| Promise&lt;[ResourceManager](#resourcemanager)&gt; | Promise used to return the result, which is a **ResourceManager** object.|
 
 **Example**
   ```js
@@ -198,7 +195,6 @@ import { BusinessError } from '@ohos.base';
   }
   ```
 
-
 ## Direction
 
 Enumerates the screen directions.
@@ -207,8 +203,8 @@ Enumerates the screen directions.
 
 | Name                  | Value | Description  |
 | -------------------- | ---- | ---- |
-| DIRECTION_VERTICAL   | 0    | Portrait.  |
-| DIRECTION_HORIZONTAL | 1    | Landscape.  |
+| DIRECTION_VERTICAL   | 0    | Portrait  |
+| DIRECTION_HORIZONTAL | 1    | Landscape  |
 
 
 ## DeviceType
@@ -219,10 +215,10 @@ Enumerates the device types.
 
 | Name                  | Value | Description  |
 | -------------------- | ---- | ---- |
-| DEVICE_TYPE_TABLET   | 0x01 | Tablet.  |
-| DEVICE_TYPE_CAR      | 0x02 | Head unit.  |
-| DEVICE_TYPE_TV       | 0x04 | TV.  |
-| DEVICE_TYPE_WEARABLE | 0x06 | Wearable.  |
+| DEVICE_TYPE_TABLET   | 0x01 | Tablet  |
+| DEVICE_TYPE_CAR      | 0x02 | Automobile  |
+| DEVICE_TYPE_TV       | 0x04 | TV |
+| DEVICE_TYPE_WEARABLE | 0x06 | Wearable  |
 
 
 ## ScreenDensity
@@ -233,7 +229,7 @@ Enumerates the screen density types.
 
 | Name            | Value | Description        |
 | -------------- | ---- | ---------- |
-| SCREEN_SDPI    | 120  | Screen density with small-scale dots per inch (SDPI).  |
+| SCREEN_SDPI    | 120  | Screen density with small-scale dots per inch (SDPI). |
 | SCREEN_MDPI    | 160  | Screen density with medium-scale dots per inch (MDPI).  |
 | SCREEN_LDPI    | 240  | Screen density with large-scale dots per inch (LDPI).  |
 | SCREEN_XLDPI   | 320  | Screen density with extra-large-scale dots per inch (XLDPI). |
@@ -299,7 +295,6 @@ Defines the resource information of an application.
 | params     | any[] | Yes   | No| Other resource parameters, which are optional.     |
 | type       | number | Yes   | No| Resource type, which is optional.     |
 
-
 ## ResourceManager
 
 Defines the capability of accessing application resources.
@@ -310,7 +305,14 @@ Defines the capability of accessing application resources.
 >
 > - Resource files are defined in the **resources** directory of the project. You can obtain the resource ID using **$r(resource address).id**, for example, **$r('app.string.test').id**.
 >
-> - You can specify whether to access intra-package resources in an application by resource ID or resource name. To access cross-package resources, you need to specify the [resource object](#resource9) or [context](../../application-models/application-context-stage.md#creating-context-of-another-application-or-module) of the corresponding packages. The service logic is similar to access to intra-package resources. You are advised to access cross-package resources by context.
+> - You can use **.context().resourceManager** to access intra-package resources in an application by resource ID or resource name.
+>
+> - For cross-package resources within an application, two methods are available for accessing a resource:
+by way of a resource object or by creating the context of the corresponding module and accessing the resource through **.context().createModuleContext().resourceManager**.
+>
+> - For cross-application package resources, use **.context.createModuleContext(bundleName:'bundleName name',moduleName:'module name').resourceManager**. This API can be used only by system applications.
+>
+> - For details about **Context**, see [Context (Stage Model)] (../../application-models/application-context-stage.md).
 
 ### getStringSync<sup>9+</sup>
 
@@ -330,7 +332,7 @@ Obtains a string based on the specified resource ID. This API returns the result
 
 | Type    | Description         |
 | ------ | ----------- |
-| string | String obtained by the specified resource ID.|
+| string | String corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -374,7 +376,7 @@ Obtains a string based on the specified resource ID and formats the string based
 
 | Type    | Description         |
 | ------ | ---------------------------- |
-| string | Formatted string.|
+| string | Formatted string corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -420,7 +422,7 @@ Obtains a string based on the specified resource object. This API returns the re
 
 | Type    | Description              |
 | ------ | ---------------- |
-| string | String obtained by the specified resource object.|
+| string | String corresponding to the specified resource object.|
 
 **Error codes**
 
@@ -472,7 +474,7 @@ Obtains a string based on the specified resource object and formats the string b
 
 | Type    | Description         |
 | ------ | ---------------------------- |
-| string | Formatted string.|
+| string | Formatted string corresponding to the specified resource object.|
 
 **Error codes**
 
@@ -522,7 +524,7 @@ Obtains a string based on the specified resource name. This API returns the resu
 
 | Type    | Description        |
 | ------ | ---------- |
-| string | String obtained by the specified resource name.|
+| string | String corresponding to the specified resource name.|
 
 **Error codes**
 
@@ -566,7 +568,7 @@ Obtains a string based on the specified resource name and formats the string bas
 
 | Type    | Description         |
 | ------ | ---------------------------- |
-| string | Formatted string.|
+| string | Formatted string corresponding to the specified resource name.|
 
 **Error codes**
 
@@ -605,7 +607,7 @@ Obtains a string based on the specified resource ID. This API uses an asynchrono
 | Name     | Type                         | Mandatory  | Description             |
 | -------- | --------------------------- | ---- | --------------- |
 | resId    | number                      | Yes   | Resource ID.          |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result.|
+| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the string corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -654,7 +656,7 @@ Obtains a string based on the specified resource ID. This API uses a promise to 
 
 | Type                   | Description         |
 | --------------------- | ----------- |
-| Promise&lt;string&gt; | Promise used to return the result, which is the string obtained by the specified resource ID.|
+| Promise&lt;string&gt; | Promise used to return the result, which is the string corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -698,7 +700,7 @@ Obtains a string based on the specified resource object. This API uses an asynch
 | Name     | Type                         | Mandatory  | Description             |
 | -------- | --------------------------- | ---- | --------------- |
 | resource | [Resource](#resource9)      | Yes   | Resource object.           |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result.|
+| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the string corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -755,7 +757,7 @@ Obtains a string based on the specified resource object. This API uses a promise
 
 | Type                   | Description              |
 | --------------------- | ---------------- |
-| Promise&lt;string&gt; | Promise used to return the result, which is the string obtained by the specified resource object.|
+| Promise&lt;string&gt; | Promise used to return the result, which is the string corresponding to the specified resource object.|
 
 **Error codes**
 
@@ -803,7 +805,7 @@ Obtains a string based on the specified resource name. This API uses an asynchro
 | Name     | Type                         | Mandatory  | Description             |
 | -------- | --------------------------- | ---- | --------------- |
 | resName  | string                      | Yes   | Resource name.           |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result.|
+| callback | AsyncCallback&lt;string&gt; | Yes   |Callback used to return the result, which is the string corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -852,7 +854,7 @@ Obtains a string based on the specified resource name. This API uses a promise t
 
 | Type                   | Description        |
 | --------------------- | ---------- |
-| Promise&lt;string&gt; | Promise used to return the result, which is the string obtained by the specified resource name.|
+| Promise&lt;string&gt; | Promise used to return the result, which is the string corresponding to the specified resource name.|
 
 **Error codes**
 
@@ -899,7 +901,7 @@ Obtains a string array based on the specified resource ID. This API returns the 
 
 | Type                   | Description         |
 | --------------------- | ----------- |
-| Array&lt;string&gt; | String array obtained by the specified resource ID.|
+| Array&lt;string&gt; | String array corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -944,7 +946,7 @@ Obtains a string array based on the specified resource object. This API returns 
 
 | Type                   | Description         |
 | --------------------- | ----------- |
-| Array&lt;string&gt; | String array obtained by the specified resource object.|
+| Array&lt;string&gt; | String array corresponding to the specified resource object.|
 
 **Error codes**
 
@@ -993,7 +995,7 @@ Obtains a string array based on the specified resource name. This API returns th
 
 | Type                   | Description         |
 | --------------------- | ----------- |
-| Array&lt;string&gt; | String array obtained by the specified resource name.|
+| Array&lt;string&gt; | String array corresponding to the specified resource name.|
 
 **Error codes**
 
@@ -1029,7 +1031,7 @@ Obtains a string array based on the specified resource ID. This API uses an asyn
 | Name     | Type                                      | Mandatory  | Description               |
 | -------- | ---------------------------------------- | ---- | ----------------- |
 | resId    | number                                   | Yes   | Resource ID.            |
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes   | Callback used to return the result.|
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes   | Callback used to return the result, which is the string array corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -1046,7 +1048,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   import { BusinessError } from '@ohos.base';
 
   try {
-    this.context.resourceManager.getStringArrayValue($r('app.strarray.test').id, (error: BusinessError, value: string) => {
+    this.context.resourceManager.getStringArrayValue($r('app.strarray.test').id, (error: BusinessError, value: Array<string>) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -1078,7 +1080,7 @@ Obtains a string array based on the specified resource ID. This API uses a promi
 
 | Type                                | Description           |
 | ---------------------------------- | ------------- |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the result, which is the string array obtained by the specified resource ID.|
+| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the result, which is the string array corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -1121,7 +1123,7 @@ Obtains a string array based on the specified resource object. This API uses an 
 | Name     | Type                                      | Mandatory  | Description               |
 | -------- | ---------------------------------------- | ---- | ----------------- |
 | resource | [Resource](#resource9)                   | Yes   | Resource object.             |
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes   | Callback used to return the result.|
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes   | Callback used to return the result, which is the string array corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -1178,7 +1180,7 @@ Obtains a string array based on the specified resource object. This API uses a p
 
 | Type                                | Description                |
 | ---------------------------------- | ------------------ |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the result, which is the string array obtained by the specified resource object.|
+| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the result, which is the string array corresponding to the specified resource object.|
 
 **Error codes**
 
@@ -1226,7 +1228,7 @@ Obtains a string array based on the specified resource name. This API uses an as
 | Name     | Type                                      | Mandatory  | Description               |
 | -------- | ---------------------------------------- | ---- | ----------------- |
 | resName  | string                                   | Yes   | Resource name.             |
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes   | Callback used to return the result.|
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes   | Callback used to return the result, which is the string array corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -1275,7 +1277,7 @@ Obtains a string array based on the specified resource name. This API uses a pro
 
 | Type                                | Description          |
 | ---------------------------------- | ------------ |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the result.|
+| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the result, which is the string array corresponding to the specified resource name.|
 
 **Error codes**
 
@@ -1310,7 +1312,7 @@ getPluralStringValueSync(resId: number, num: number): string
 
 Obtains a singular-plural string by the specified number based on the specified resource ID. This API returns the result synchronously.
 
-**NOTE**
+>**NOTE**
 >
 > Singular and plural forms are available for English, but not Chinese.
 
@@ -1327,7 +1329,7 @@ Obtains a singular-plural string by the specified number based on the specified 
 
 | Type                   | Description         |
 | -------- | ----------- |
-| string   | Singular-plural string obtained by the specified resource ID.|
+| string   | Singular-plural string corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -1358,7 +1360,7 @@ getPluralStringValueSync(resource: Resource, num: number): string
 
 Obtains a singular-plural string by the specified number based on the specified resource object. This API returns the result synchronously. This API is used for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources.
 
-**NOTE**
+>**NOTE**
 >
 > Singular and plural forms are available for English, but not Chinese.
 
@@ -1377,7 +1379,7 @@ Obtains a singular-plural string by the specified number based on the specified 
 
 | Type                   | Description         |
 | --------------------- | ----------- |
-| string | Singular-plural string obtained by the specified resource object.|
+| string | Singular-plural string corresponding to the specified resource object.|
 
 **Error codes**
 
@@ -1414,7 +1416,7 @@ getPluralStringByNameSync(resName: string, num: number): string
 
 Obtains a singular-plural string by the specified number based on the specified resource name. This API returns the result synchronously.
 
-**NOTE**
+>**NOTE**
 >
 > Singular and plural forms are available for English, but not Chinese.
 
@@ -1431,7 +1433,7 @@ Obtains a singular-plural string by the specified number based on the specified 
 
 | Type                   | Description         |
 | --------------------- | ----------- |
-| string | Singular-plural string obtained by the specified resource name.|
+| string | Singular-plural string corresponding to the specified resource name.|
 
 **Error codes**
 
@@ -1462,7 +1464,7 @@ getPluralStringValue(resId: number, num: number, callback: AsyncCallback&lt;stri
 
 Obtains a singular-plural string by the specified number based on the specified resource ID. This API uses an asynchronous callback to return the result.
 
-**NOTE**
+>**NOTE**
 >
 > Singular and plural forms are available for English, but not Chinese.
 
@@ -1474,7 +1476,7 @@ Obtains a singular-plural string by the specified number based on the specified 
 | -------- | --------------------------- | ---- | ------------------------------- |
 | resId    | number                      | Yes   | Resource ID.                          |
 | num      | number                      | Yes   | Number.                            |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result.|
+| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the singular-plural string corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -1491,7 +1493,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   import { BusinessError } from '@ohos.base';
 
   try {
-    this.context.resourceManager.getPluralStringValue($r("app.plural.test").id, 1, error: BusinessError, value: string) => {
+    this.context.resourceManager.getPluralStringValue($r("app.plural.test").id, 1, (error: BusinessError, value: string) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -1509,9 +1511,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getPluralStringValue(resId: number, num: number): Promise&lt;string&gt;
 
-Obtains a singular-plural string by the specified number based on the specified resource ID . This API uses a promise to return the result.
+Obtains a singular-plural string by the specified number based on the specified resource ID. This API uses a promise to return the result.
 
-**NOTE**
+>**NOTE**
 >
 > Singular and plural forms are available for English, but not Chinese.
 
@@ -1522,13 +1524,13 @@ Obtains a singular-plural string by the specified number based on the specified 
 | Name  | Type    | Mandatory  | Description   |
 | ----- | ------ | ---- | ----- |
 | resId | number | Yes   | Resource ID.|
-| num   | number | Yes   | Number.  |
+| num   | number | Yes   | Number. |
 
 **Return value**
 
 | Type                   | Description                       |
 | --------------------- | ------------------------- |
-| Promise&lt;string&gt; | Promise used to return the result.|
+| Promise&lt;string&gt; | Promise used to return the result, which is the singular-plural string corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -1563,7 +1565,7 @@ getPluralStringValue(resource: Resource, num: number, callback: AsyncCallback&lt
 
 Obtains a singular-plural string by the specified number based on the specified resource object. This API uses an asynchronous callback to return the result. This API is used for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources.
 
-**NOTE**
+>**NOTE**
 >
 > Singular and plural forms are available for English, but not Chinese.
 
@@ -1577,7 +1579,7 @@ Obtains a singular-plural string by the specified number based on the specified 
 | -------- | --------------------------- | ---- | ------------------------------------ |
 | resource | [Resource](#resource9)      | Yes   | Resource object.                                |
 | num      | number                      | Yes   | Number.                                 |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result.|
+| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the singular-plural string corresponding to the specified resource object.|
 
 **Error codes**
 
@@ -1600,7 +1602,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
     id: $r('app.plural.test').id
   };
   try {
-    this.context.resourceManager.getPluralStringValue(resource, 1, error: BusinessError, value: string) => {
+    this.context.resourceManager.getPluralStringValue(resource, 1, (error: BusinessError, value: string) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -1620,7 +1622,7 @@ getPluralStringValue(resource: Resource, num: number): Promise&lt;string&gt;
 
 Obtains a singular-plural string by the specified number based on the specified resource object. This API uses a promise to return the result. This API is used for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources.
 
-**NOTE**
+>**NOTE**
 >
 > Singular and plural forms are available for English, but not Chinese.
 
@@ -1639,7 +1641,7 @@ Obtains a singular-plural string by the specified number based on the specified 
 
 | Type                   | Description                            |
 | --------------------- | ------------------------------ |
-| Promise&lt;string&gt; | Promise used to return the result.|
+| Promise&lt;string&gt; | Promise used to return the result, which is the singular-plural string corresponding to the specified resource object.|
 
 **Error codes**
 
@@ -1678,9 +1680,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getPluralStringByName(resName: string, num: number, callback: AsyncCallback&lt;string&gt;): void
 
-Obtains the plural string by the specified number based on the specified resource name. This API uses an asynchronous callback to return the result.
+Obtains a singular-plural string by the specified number based on the specified resource name. This API uses an asynchronous callback to return the result.
 
-**NOTE**
+>**NOTE**
 >
 > Singular and plural forms are available for English, but not Chinese.
 
@@ -1692,7 +1694,7 @@ Obtains the plural string by the specified number based on the specified resourc
 | -------- | --------------------------- | ---- | ----------------------------- |
 | resName  | string                      | Yes   | Resource name.                         |
 | num      | number                      | Yes   | Number.                          |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result.|
+| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the singular-plural string corresponding to the specified resource name.|
 
 **Error codes**
 
@@ -1727,9 +1729,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getPluralStringByName(resName: string, num: number): Promise&lt;string&gt;
 
-Obtains the plural string by the specified number based on the specified resource name. This API uses a promise to return the result.
+Obtains a singular-plural string by the specified number based on the specified resource name. This API uses a promise to return the result.
 
-**NOTE**
+>**NOTE**
 >
 > Singular and plural forms are available for English, but not Chinese.
 
@@ -1746,7 +1748,7 @@ Obtains the plural string by the specified number based on the specified resourc
 
 | Type                   | Description                    |
 | --------------------- | ---------------------- |
-| Promise&lt;string&gt; | Promise used to return the result.|
+| Promise&lt;string&gt; | Promise used to return the result, which is the singular-plural string corresponding to the specified resource name.|
 
 **Error codes**
 
@@ -1794,7 +1796,7 @@ Obtains the content of a media file with the default or specified screen density
 
 | Type                   | Description         |
 | -------- | ----------- |
-| Uint8Array   | Content of the media file obtained by the specified resource ID.|
+| Uint8Array   | Content of the media file corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -1847,7 +1849,7 @@ Obtains the content of a media file with the default or specified screen density
 
 | Type                   | Description         |
 | --------------------- | ----------- |
-| Uint8Array | Content of the media file obtained by the specified resource object.|
+| Uint8Array | Content of the media file corresponding to the specified resource object.|
 
 **Error codes**
 
@@ -1904,7 +1906,7 @@ Obtains the content of a media file with the default or specified screen density
 
 | Type                   | Description         |
 | --------------------- | ----------- |
-| Uint8Array | Content of the media file obtained by the specified resource name.|
+| Uint8Array | Content of the media file corresponding to the specified resource name.|
 
 **Error codes**
 
@@ -1949,7 +1951,7 @@ Obtains the content of a media file based on the specified resource ID. This API
 | Name     | Type                             | Mandatory  | Description                |
 | -------- | ------------------------------- | ---- | ------------------ |
 | resId    | number                          | Yes   | Resource ID.             |
-| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the result.|
+| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the result, which is the content of the media file corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -1965,7 +1967,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   import { BusinessError } from '@ohos.base';
 
   try {
-    this.context.resourceManager.getMediaContent($r('app.media.test').id, (error: BusinessError, value: string) => {
+    this.context.resourceManager.getMediaContent($r('app.media.test').id, (error: BusinessError, value: Uint8Array) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -1993,7 +1995,7 @@ Obtains the content of a media file with the specified screen density based on t
 | -------- | ------------------------------- | ---- | ------------------ |
 | resId    | number                          | Yes   | Resource ID.             |
 | [density](#screendensity)  | number                          | Yes   | Screen density. The value **0** indicates the default screen density.   |
-| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the result.|
+| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the result, which is the content of the media file corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -2009,7 +2011,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   import { BusinessError } from '@ohos.base';
 
   try {
-    this.context.resourceManager.getMediaContent($r('app.media.test').id, 120, (error: BusinessError, value: string) => {
+    this.context.resourceManager.getMediaContent($r('app.media.test').id, 120, (error: BusinessError, value: Uint8Array) => {
       if (error != null) {
         console.error(`callback getMediaContent failed, error code: ${error.code}, message: ${error.message}.`);
       } else {
@@ -2041,7 +2043,7 @@ Obtains the content of a media file based on the specified resource ID. This API
 
 | Type                       | Description            |
 | ------------------------- | -------------- |
-| Promise&lt;Uint8Array&gt; | Promise used to return the result.|
+| Promise&lt;Uint8Array&gt; | Promise used to return the result, which is the content of the media file corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -2088,7 +2090,7 @@ Obtains the content of a media file with the specified screen density based on t
 
 | Type                       | Description            |
 | ------------------------- | -------------- |
-| Promise&lt;Uint8Array&gt; | Promise used to return the result.|
+| Promise&lt;Uint8Array&gt; | Promise used to return the result, which is the content of the media file corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -2131,7 +2133,7 @@ Obtains the content of a media file based on the specified resource object. This
 | Name     | Type                             | Mandatory  | Description                |
 | -------- | ------------------------------- | ---- | ------------------ |
 | resource | [Resource](#resource9)          | Yes   | Resource object.              |
-| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the result.|
+| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the result, which is the content of the media file corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -2153,7 +2155,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
     id: $r('app.media.test').id
   };
   try {
-    this.context.resourceManager.getMediaContent(resource, (error: BusinessError, value: string) => {
+    this.context.resourceManager.getMediaContent(resource, (error: BusinessError, value: Uint8Array) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -2183,7 +2185,7 @@ Obtains the content of a media file with the specified screen density based on t
 | -------- | ------------------------------- | ---- | ------------------ |
 | resource | [Resource](#resource9)          | Yes   | Resource object.              |
 | [density](#screendensity)  | number        | Yes   | Screen density. The value **0** indicates the default screen density.   |
-| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the result.|
+| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the result, which is the content of the media file corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -2205,7 +2207,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
     id: $r('app.media.test').id
   };
   try {
-    this.context.resourceManager.getMediaContent(resource, 120, (error: BusinessError, value: string) => {
+    this.context.resourceManager.getMediaContent(resource, 120, (error: BusinessError, value: Uint8Array) => {
       if (error != null) {
         console.error(`callback getMediaContent failed, error code: ${error.code}, message: ${error.message}.`);
       } else {
@@ -2239,7 +2241,7 @@ Obtains the content of a media file based on the specified resource object. This
 
 | Type                       | Description                 |
 | ------------------------- | ------------------- |
-| Promise&lt;Uint8Array&gt; | Promise used to return the result, which is the content of the media file obtained by the specified resource object.|
+| Promise&lt;Uint8Array&gt; | Promise used to return the result, which is the content of the media file corresponding to the specified resource object.|
 
 **Error codes**
 
@@ -2294,7 +2296,7 @@ Obtains the content of a media file with the specified screen density based on t
 
 | Type                       | Description                 |
 | ------------------------- | ------------------- |
-| Promise&lt;Uint8Array&gt; | Promise used to return the result, which is the content of the media file obtained by the specified resource object.|
+| Promise&lt;Uint8Array&gt; | Promise used to return the result, which is the content of the media file corresponding to the specified resource object.|
 
 **Error codes**
 
@@ -2341,7 +2343,7 @@ Obtains the content of a media file based on the specified resource name. This A
 | Name     | Type                             | Mandatory  | Description                |
 | -------- | ------------------------------- | ---- | ------------------ |
 | resName  | string                          | Yes   | Resource name.              |
-| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the result.|
+| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the result, which is the content of the media file corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -2357,7 +2359,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   import { BusinessError } from '@ohos.base';
 
   try {
-    this.context.resourceManager.getMediaByName("test", (error: BusinessError, value: string) => {
+    this.context.resourceManager.getMediaByName("test", (error: BusinessError, value: Uint8Array) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -2385,7 +2387,7 @@ Obtains the content of a media file with the specified screen density based on t
 | -------- | ------------------------------- | ---- | ------------------ |
 | resName  | string                          | Yes   | Resource name.              |
 | [density](#screendensity)  | number        | Yes   | Screen density. The value **0** indicates the default screen density.   |
-| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the result.|
+| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the result, which is the content of the media file corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -2401,7 +2403,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   import { BusinessError } from '@ohos.base';
 
   try {
-    this.context.resourceManager.getMediaByName("test", 120, (error: BusinessError, value: string) => {
+    this.context.resourceManager.getMediaByName("test", 120, (error: BusinessError, value: Uint8Array) => {
       if (error != null) {
         console.error(`callback getMediaByName failed, error code: ${error.code}, message: ${error.message}.`);
       } else {
@@ -2433,7 +2435,7 @@ Obtains the content of a media file based on the specified resource name. This A
 
 | Type                       | Description           |
 | ------------------------- | ------------- |
-| Promise&lt;Uint8Array&gt; | Promise used to return the result.|
+| Promise&lt;Uint8Array&gt; | Promise used to return the result, which is the content of the media file corresponding to the specified resource name.|
 
 **Error codes**
 
@@ -2480,7 +2482,7 @@ Obtains the content of a media file with the specified screen density based on t
 
 | Type                       | Description           |
 | ------------------------- | ------------- |
-| Promise&lt;Uint8Array&gt; | Promise used to return the result.|
+| Promise&lt;Uint8Array&gt; | Promise used to return the result, which is the content of the media file corresponding to the specified resource name.|
 
 **Error codes**
 
@@ -2512,7 +2514,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getMediaContentBase64Sync(resId: number, density?: number): string
 
-Obtains the Base64 code of an image with the default or specified screen density based on the specified resource ID.
+Obtains the Base64 code of an image with the default or specified screen density based on the specified resource ID. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2527,7 +2529,7 @@ Obtains the Base64 code of an image with the default or specified screen density
 
 | Type                   | Description         |
 | -------- | ----------- |
-| string   | Base64 code of the image obtained by the specified resource ID.|
+| string   | Base64 code of the image corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -2563,7 +2565,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getMediaContentBase64Sync(resource: Resource, density?: number): string
 
-Obtains the Base64 code of an image with the default or specified screen density based on the specified resource object. This API is used for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources.
+Obtains the Base64 code of an image with the default or specified screen density based on the specified resource object. This API returns the result synchronously. This API is used for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2580,7 +2582,7 @@ Obtains the Base64 code of an image with the default or specified screen density
 
 | Type                   | Description         |
 | --------------------- | ----------- |
-| string | Base64 code of the media file obtained by the specified resource object.|
+| string | Base64 code of the image corresponding to the specified resource object.|
 
 **Error codes**
 
@@ -2622,7 +2624,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getMediaBase64ByNameSync(resName: string, density?: number): string
 
-Obtains the Base64 code of an image with the default or specified screen density based on the specified resource name.
+Obtains the Base64 code of an image with the default or specified screen density based on the specified resource name. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2637,7 +2639,7 @@ Obtains the Base64 code of an image with the default or specified screen density
 
 | Type                   | Description         |
 | --------------------- | ----------- |
-| string | Promise used to return the result.|
+| string | Base64 code of the image corresponding to the specified resource name.|
 
 **Error codes**
 
@@ -2682,7 +2684,7 @@ Obtains the Base64 code of an image based on the specified resource ID. This API
 | Name     | Type                         | Mandatory  | Description                      |
 | -------- | --------------------------- | ---- | ------------------------ |
 | resId    | number                      | Yes   | Resource ID.                   |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result.|
+| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the Base64 code of the image corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -2716,7 +2718,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getMediaContentBase64(resId: number, density: number, callback: AsyncCallback&lt;string&gt;): void
 
-Obtains the Base64 code of an image with the screen density based on the specified resource ID. This API uses an asynchronous callback to return the result.
+Obtains the Base64 code of an image with the specified screen density based on the specified resource ID. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2726,7 +2728,7 @@ Obtains the Base64 code of an image with the screen density based on the specifi
 | -------- | --------------------------- | ---- | ------------------------ |
 | resId    | number                      | Yes   | Resource ID.                   |
 | [density](#screendensity)  | number        | Yes   | Screen density. The value **0** indicates the default screen density.   |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result.|
+| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the Base64 code of the image corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -2774,7 +2776,7 @@ Obtains the Base64 code of an image based on the specified resource ID. This API
 
 | Type                   | Description                  |
 | --------------------- | -------------------- |
-| Promise&lt;string&gt; | Promise used to return the result.|
+| Promise&lt;string&gt; | Promise used to return the result, which is the Base64 code of the image corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -2806,7 +2808,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getMediaContentBase64(resId: number, density: number): Promise&lt;string&gt;
 
-Obtains the Base64 code of an image with the screen density based on the specified resource ID. This API uses a promise to return the result.
+Obtains the Base64 code of an image with the specified screen density based on the specified resource ID. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2821,7 +2823,7 @@ Obtains the Base64 code of an image with the screen density based on the specifi
 
 | Type                   | Description                  |
 | --------------------- | -------------------- |
-| Promise&lt;string&gt; | Promise used to return the result.|
+| Promise&lt;string&gt; | Promise used to return the result, which is the Base64 code of the image corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -2864,7 +2866,7 @@ Obtains the Base64 code of an image based on the specified resource object. This
 | Name     | Type                         | Mandatory  | Description                      |
 | -------- | --------------------------- | ---- | ------------------------ |
 | resource | [Resource](#resource9)      | Yes   | Resource object.                    |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result.|
+| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the Base64 code of the image corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -2904,7 +2906,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getMediaContentBase64(resource: Resource, density: number, callback: AsyncCallback&lt;string&gt;): void
 
-Obtains the Base64 code of an image with the screen density based on the specified resource object. This API uses an asynchronous callback to return the result. This API is used for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources.
+Obtains the Base64 code of an image with the specified screen density based on the specified resource object. This API uses an asynchronous callback to return the result. This API is used for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2916,7 +2918,7 @@ Obtains the Base64 code of an image with the screen density based on the specifi
 | -------- | --------------------------- | ---- | ------------------------ |
 | resource | [Resource](#resource9)      | Yes   | Resource object.                    |
 | [density](#screendensity)  | number        | Yes   | Screen density. The value **0** indicates the default screen density.   |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result.|
+| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the Base64 code of the image corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -2972,7 +2974,7 @@ Obtains the Base64 code of an image based on the specified resource object. This
 
 | Type                   | Description                       |
 | --------------------- | ------------------------- |
-| Promise&lt;string&gt; | Promise used to return the result, which is the Base64 code of the media file obtained by the specified resource object.|
+| Promise&lt;string&gt; | Promise used to return the result, which is the Base64 code of the image corresponding to the specified resource object.|
 
 **Error codes**
 
@@ -3010,7 +3012,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getMediaContentBase64(resource: Resource, density: number): Promise&lt;string&gt;
 
-Obtains the Base64 code of an image with the screen density based on the specified resource object. This API uses a promise to return the result. This API is used for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources.
+Obtains the Base64 code of an image with the specified screen density based on the specified resource object. This API uses a promise to return the result. This API is used for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -3027,7 +3029,7 @@ Obtains the Base64 code of an image with the screen density based on the specifi
 
 | Type                   | Description                       |
 | --------------------- | ------------------------- |
-| Promise&lt;string&gt; | Promise used to return the result, which is the Base64 code of the media file obtained by the specified resource object.|
+| Promise&lt;string&gt; | Promise used to return the result, which is the Base64 code of the image corresponding to the specified resource object.|
 
 **Error codes**
 
@@ -3074,7 +3076,7 @@ Obtains the Base64 code of an image based on the specified resource name. This A
 | Name     | Type                         | Mandatory  | Description                      |
 | -------- | --------------------------- | ---- | ------------------------ |
 | resName  | string                      | Yes   | Resource name.                    |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result.|
+| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the Base64 code of the image corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -3108,7 +3110,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getMediaBase64ByName(resName: string, density: number, callback: AsyncCallback&lt;string&gt;): void
 
-Obtains the Base64 code of an image with the screen density based on the specified resource name. This API uses an asynchronous callback to return the result.
+Obtains the Base64 code of an image with the specified screen density based on the specified resource name. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -3118,7 +3120,7 @@ Obtains the Base64 code of an image with the screen density based on the specifi
 | -------- | --------------------------- | ---- | ------------------------ |
 | resName  | string                      | Yes   | Resource name.                    |
 | [density](#screendensity)  | number        | Yes   | Screen density. The value **0** indicates the default screen density.   |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result.|
+| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the Base64 code of the image corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -3166,7 +3168,7 @@ Obtains the Base64 code of an image based on the specified resource name. This A
 
 | Type                   | Description                 |
 | --------------------- | ------------------- |
-| Promise&lt;string&gt; | Promise used to return the result.|
+| Promise&lt;string&gt; | Promise used to return the result, which is the Base64 code of the image corresponding to the specified resource name.|
 
 **Error codes**
 
@@ -3198,7 +3200,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getMediaBase64ByName(resName: string, density: number): Promise&lt;string&gt;
 
-Obtains the Base64 code of an image with the screen density based on the specified resource name. This API uses a promise to return the result.
+Obtains the Base64 code of an image with the specified screen density based on the specified resource name. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -3213,7 +3215,7 @@ Obtains the Base64 code of an image with the screen density based on the specifi
 
 | Type                   | Description                 |
 | --------------------- | ------------------- |
-| Promise&lt;string&gt; | Promise used to return the result.|
+| Promise&lt;string&gt; | Promise used to return the result, which is the Base64 code of the image corresponding to the specified resource name.|
 
 **Error codes**
 
@@ -3245,7 +3247,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getDrawableDescriptor(resId: number, density?: number, type?: number): DrawableDescriptor;
 
-Obtains a **DrawableDescriptor** object based on the specified resource ID. This API returns the result synchronously.
+Obtains a **DrawableDescriptor** object for icon display based on the specified resource ID. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -3261,7 +3263,7 @@ Obtains a **DrawableDescriptor** object based on the specified resource ID. This
 
 | Type    | Description        |
 | ------ | ---------- |
-| DrawableDescriptor | **DrawableDescriptor** object obtained by the specified resource ID.|
+| DrawableDescriptor | **DrawableDescriptor** object corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -3291,7 +3293,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
     console.error(`getDrawableDescriptor failed, error code: ${code}, message: ${message}.`);
   }
   try {
-    this.context.resourceManager.getDrawableDescriptor($r('app.media.icon').id, null, 1);
+    this.context.resourceManager.getDrawableDescriptor($r('app.media.icon').id, 0, 1);
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -3303,7 +3305,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getDrawableDescriptor(resource: Resource, density?: number, type?: number): DrawableDescriptor;
 
-Obtains a **DrawableDescriptor** object based on the specified resource object. This API returns the result synchronously. This API is used for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources.
+Obtains a **DrawableDescriptor** object for icon display based on the specified resource object. This API returns the result synchronously. This API is used for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -3321,7 +3323,7 @@ Obtains a **DrawableDescriptor** object based on the specified resource object. 
 
 | Type     | Description               |
 | ------- | ----------------- |
-| DrawableDescriptor | **DrawableDescriptor** object obtained by the specified resource ID.|
+| DrawableDescriptor | **DrawableDescriptor** object corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -3357,7 +3359,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
     console.error(`getDrawableDescriptor failed, error code: ${code}, message: ${message}.`);
   }
   try {
-    this.context.resourceManager.getDrawableDescriptor(resource, null, 1);
+    this.context.resourceManager.getDrawableDescriptor(resource, 0, 1);
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -3369,7 +3371,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getDrawableDescriptorByName(resName: string, density?: number, type?: number): DrawableDescriptor;
 
-Obtains a **DrawableDescriptor** object based on the specified resource name. This API returns the result synchronously.
+Obtains a **DrawableDescriptor** object for icon display based on the specified resource name. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -3385,7 +3387,7 @@ Obtains a **DrawableDescriptor** object based on the specified resource name. Th
 
 | Type    | Description       |
 | ------ | --------- |
-| DrawableDescriptor | **DrawableDescriptor** object obtained by the specified resource ID.|
+| DrawableDescriptor | **DrawableDescriptor** object corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -3415,7 +3417,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
     console.error(`getDrawableDescriptorByName failed, error code: ${code}, message: ${message}.`);
   }
   try {
-    this.context.resourceManager.getDrawableDescriptorByName('icon', null, 1);
+    this.context.resourceManager.getDrawableDescriptorByName('icon', 0, 1);
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -3441,7 +3443,7 @@ Obtains a Boolean result based on the specified resource ID. This API returns th
 
 | Type     | Description          |
 | ------- | ------------ |
-| boolean | Boolean result obtained by the specified resource ID.|
+| boolean | Boolean result corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -3485,7 +3487,7 @@ Obtains a Boolean result based on the specified resource object. This API return
 
 | Type     | Description               |
 | ------- | ----------------- |
-| boolean | Boolean result obtained by the specified resource object.|
+| boolean | Boolean result corresponding to the specified resource object.|
 
 **Error codes**
 
@@ -3534,7 +3536,7 @@ Obtains a Boolean result based on the specified resource name. This API returns 
 
 | Type     | Description         |
 | ------- | ----------- |
-| boolean | Boolean result obtained by the specified resource name.|
+| boolean | Boolean result corresponding to the specified resource name.|
 
 **Error codes**
 
@@ -3577,7 +3579,7 @@ Obtains an integer or float value based on the specified resource ID. This API r
 
 | Type    | Description        |
 | ------ | ---------- | 
-| number | Integer or float value obtained by the specified resource ID. Wherein, the integer value is the original value, and the float value is the actual pixel value. For details, see the sample code.|
+| number | Integer or float value corresponding to the specified resource ID. Wherein, the integer value is the original value, and the float value is the actual pixel value. For details, see the sample code.|
 
 **Error codes**
 
@@ -3630,7 +3632,7 @@ Obtains an integer or float value based on the specified resource object. This A
 
 | Type    | Description             |
 | ------ | --------------- |
-| number | Integer or float value obtained by the specified resource object. Wherein, the integer value is the original value, and the float value is the actual pixel value. For details, see the sample code.|
+| number | Integer or float value corresponding to the specified resource object. Wherein, the integer value is the original value, and the float value is the actual pixel value. For details, see the sample code.|
 
 **Error codes**
 
@@ -3679,7 +3681,7 @@ Obtains an integer or float value based on the specified resource name. This API
 
 | Type    | Description       |
 | ------ | --------- |
-| number | Integer or float value obtained by the specified resource name.|
+| number | Integer or float value corresponding to the specified resource name.|
 
 **Error codes**
 
@@ -3730,7 +3732,7 @@ Obtains a color value based on the specified resource ID. This API returns the r
 
 | Type    | Description         |
 | ------ | ----------- |
-| number | Color value (decimal) obtained by the specified resource ID.|
+| number | Color value (decimal) corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -3775,7 +3777,7 @@ Obtains a color value based on the specified resource object. This API returns t
 
 | Type    | Description              |
 | ------ | ---------------- |
-| number | Color value (decimal) obtained by the specified resource object.|
+| number | Color value (decimal) corresponding to the specified resource object.|
 
 **Error codes**
 
@@ -3824,7 +3826,7 @@ Obtains a color value based on the specified resource name. This API returns the
 
 | Type    | Description        |
 | ------ | ---------- |
-| number | Color value (decimal) obtained by the specified resource name.|
+| number | Color value (decimal) corresponding to the specified resource name.|
 
 **Error codes**
 
@@ -3862,7 +3864,7 @@ Obtains a color value based on the specified resource ID. This API uses an async
 | Name     | Type                         | Mandatory  | Description             |
 | -------- | --------------------------- | ---- | --------------- |
 | resId    | number                      | Yes   | Resource ID.          |
-| callback | AsyncCallback&lt;number&gt; | Yes   | Asynchronous callback used to return the result.|
+| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the result, which is the color value (decimal) corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -3879,7 +3881,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   import { BusinessError } from '@ohos.base';
 
   try {
-    this.context.resourceManager.getColor($r('app.color.test').id, (error: BusinessError, value: string) => {
+    this.context.resourceManager.getColor($r('app.color.test').id, (error: BusinessError, value: number) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -3911,7 +3913,7 @@ Obtains a color value based on the specified resource ID. This API uses a promis
 
 | Type                   | Description         |
 | --------------------- | ----------- |
-| Promise&lt;number&gt; | Promise used to return the result, which is the color value (decimal) obtained by the specified resource ID.|
+| Promise&lt;number&gt; | Promise used to return the result, which is the color value (decimal) corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -3955,7 +3957,7 @@ Obtains a color value based on the specified resource object. This API uses an a
 | Name     | Type                         | Mandatory  | Description             |
 | -------- | --------------------------- | ---- | --------------- |
 | resource | [Resource](#resource9)      | Yes   | Resource object.           |
-| callback | AsyncCallback&lt;number&gt; | Yes   | Asynchronous callback used to return the result.|
+| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the result, which is the color value (decimal) corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -3978,7 +3980,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
     id: $r('app.color.test').id
   };
   try {
-    this.context.resourceManager.getColor(resource, (error: BusinessError, value: string) => {
+    this.context.resourceManager.getColor(resource, (error: BusinessError, value: number) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -4012,7 +4014,7 @@ Obtains a color value based on the specified resource object. This API uses a pr
 
 | Type                   | Description              |
 | --------------------- | ---------------- |
-| Promise&lt;number&gt; | Promise used to return the result, which is the color value (decimal) obtained by the specified resource object.|
+| Promise&lt;number&gt; | Promise used to return the result, which is the color value (decimal) corresponding to the specified resource object.|
 
 **Error codes**
 
@@ -4060,7 +4062,7 @@ Obtains a color value based on the specified resource name. This API uses an asy
 | Name     | Type                         | Mandatory  | Description             |
 | -------- | --------------------------- | ---- | --------------- |
 | resName  | string                      | Yes   | Resource name.           |
-| callback | AsyncCallback&lt;number&gt; | Yes   | Asynchronous callback used to return the result.|
+| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the result, which is the color value (decimal) corresponding to the specified resource name.|
 
 **Error codes**
 
@@ -4077,7 +4079,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   import { BusinessError } from '@ohos.base';
 
   try {
-    this.context.resourceManager.getColorByName("test", (error: BusinessError, value: string) => {
+    this.context.resourceManager.getColorByName("test", (error: BusinessError, value: number) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -4109,7 +4111,7 @@ Obtains a color value based on the specified resource name. This API uses a prom
 
 | Type                   | Description        |
 | --------------------- | ---------- |
-| Promise&lt;number&gt; | Promise used to return the result, which is the color value (decimal) obtained by the specified resource name.|
+| Promise&lt;number&gt; | Promise used to return the result, which is the color value (decimal) corresponding to the specified resource name.|
 
 **Error codes**
 
@@ -4192,7 +4194,7 @@ Obtains the content of the raw file in the **resources/rawfile** directory. This
 | Name     | Type                             | Mandatory  | Description                     |
 | -------- | ------------------------------- | ---- | ----------------------- |
 | path     | string                          | Yes   | Path of the raw file.            |
-| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the result.|
+| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the result, which is the content of the raw file.|
 
 **Error codes**
 
@@ -4207,7 +4209,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   import { BusinessError } from '@ohos.base';
 
   try {
-    this.context.resourceManager.getRawFileContent("test.txt", (error: BusinessError, value: string) => {
+    this.context.resourceManager.getRawFileContent("test.txt", (error: BusinessError, value: Uint8Array) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -4239,7 +4241,7 @@ Obtains the content of the raw file in the **resources/rawfile** directory. This
 
 | Type                       | Description         |
 | ------------------------- | ----------- |
-| Promise&lt;Uint8Array&gt; | Promise used to return the result.|
+| Promise&lt;Uint8Array&gt; | Promise used to return the result, which is the content of the raw file.|
 
 **Error codes**
 
@@ -4268,9 +4270,13 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 ### getRawFileListSync<sup>10+</sup>
 
-getRawFileListSync(path: string): Array\<string\>
+getRawFileListSync(path: string): Array\<string>
 
-Obtains the list of files in the **resources/rawfile** directory. This API uses an asynchronous callback to return the result.
+Obtains the list of folders and files in the **resources/rawfile** directory. This API returns the result synchronously.
+
+>**NOTE**
+>
+> If there is no folder or file in the directory, no information is returned. If there are folders and files in the directory, the list of folders and files is returned.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -4278,13 +4284,13 @@ Obtains the list of files in the **resources/rawfile** directory. This API uses 
 
 | Name     | Type                             | Mandatory  | Description                     |
 | -------- | ------------------------------- | ---- | ----------------------- |
-| path     | string                          | Yes   | Path of the **rawfile** folder.            |
+| path     | string                          | Yes   | **rawfile** directory.            |
 
 **Return value**
 
 | Type                       | Description         |
 | ------------------------- | ----------- |
-| Array\<string\> | List of files in the **resources/rawfile** directory.|
+| Array\<string> | List of folders and files in the **rawfile** directory.|
 
 **Error codes**
 
@@ -4311,7 +4317,11 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getRawFileList(path: string, callback: AsyncCallback&lt;Array\<string\>&gt;): void;
 
-Obtains the list of files in the **resources/rawfile** directory. This API uses an asynchronous callback to return the result.
+Obtains the list of folders and files in the **resources/rawfile** directory. This API uses an asynchronous callback to return the result.
+
+>**NOTE**
+>
+> If there is no folder or file in the directory, no information is returned. If there are folders and files in the directory, the list of folders and files is returned.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -4319,8 +4329,8 @@ Obtains the list of files in the **resources/rawfile** directory. This API uses 
 
 | Name     | Type                             | Mandatory  | Description                     |
 | -------- | ------------------------------- | ---- | ----------------------- |
-| path     | string                          | Yes   | Path of the **rawfile** folder.            |
-| callback | AsyncCallback&lt;Array\<string\>&gt; | Yes| Callback used to return the result.|
+| path     | string                          | Yes   | **rawfile** directory.            |
+| callback | AsyncCallback&lt;Array\<string\>&gt; | Yes| Callback used to return the result, which is the list of folders and files in the **rawfile** directory.|
 
 **Error codes**
 
@@ -4335,7 +4345,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   import { BusinessError } from '@ohos.base';
 
   try { // Passing "" means to obtain the list of files in the root directory of the raw file.
-    this.context.resourceManager.getRawFileList("", (error: BusinessError, value: string) => {
+    this.context.resourceManager.getRawFileList("", (error: BusinessError, value: Array<string>) => {
       if (error != null) {
         console.error(`callback getRawFileList failed, error code: ${error.code}, message: ${error.message}.`);
       } else {
@@ -4353,7 +4363,11 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getRawFileList(path: string): Promise&lt;Array\<string\>&gt;
 
-Obtains the list of files in the **resources/rawfile** directory. This API uses a promise to return the result.
+Obtains the list of folders and files in the **resources/rawfile** directory. This API uses a promise to return the result.
+
+>**NOTE**
+>
+> If there is no folder or file in the directory, no information is returned. If there are folders and files in the directory, the list of folders and files is returned.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -4361,13 +4375,13 @@ Obtains the list of files in the **resources/rawfile** directory. This API uses 
 
 | Name | Type    | Mandatory  | Description         |
 | ---- | ------ | ---- | ----------- |
-| path | string | Yes   | Path of the **rawfile** folder.|
+| path | string | Yes   | **rawfile** directory.|
 
 **Return value**
 
 | Type                       | Description         |
 | ------------------------- | ----------- |
-| Promise&lt;Array\<string\>&gt; | Promise used to return the result.|
+| Promise&lt;Array\<string\>&gt; | Promise used to return the result, which is the list of folders and files in the **rawfile** directory.|
 
 **Error codes**
 
@@ -4406,7 +4420,7 @@ Obtains the descriptor of the raw file in the **resources/rawfile** directory.
 
 | Name     | Type                                      | Mandatory  | Description                              |
 | -------- | ---------------------------------------- | ---- | -------------------------------- |
-| path     | string                                   | Yes   | Path of the raw file.                     |
+| path     | string                                   | Yes   | Path of the raw file.                    |
 
 **Return value**
 
@@ -4448,7 +4462,7 @@ Obtains the descriptor of the raw file in the **resources/rawfile** directory. T
 | Name     | Type                                      | Mandatory  | Description                              |
 | -------- | ---------------------------------------- | ---- | -------------------------------- |
 | path     | string                                   | Yes   | Path of the raw file.                     |
-| callback | AsyncCallback&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | Yes   | Callback used to return the result.|
+| callback | AsyncCallback&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | Yes   | Callback used to return the result, which is the descriptor of the raw file.|
 
 **Error codes**
 
@@ -4461,9 +4475,10 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 **Example**
   ```ts
   import { BusinessError } from '@ohos.base';
+  import resourceManager from '@ohos.resourceManager';
 
   try {
-    this.context.resourceManager.getRawFd("test.txt", (error: BusinessError, value: string) => {
+    this.context.resourceManager.getRawFd("test.txt", (error: BusinessError, value: resourceManager.RawFileDescriptor) => {
       if (error != null) {
         console.error(`callback getRawFd failed error code: ${error.code}, message: ${error.message}.`);
       } else {
@@ -4497,7 +4512,7 @@ Obtains the descriptor of the raw file in the **resources/rawfile** directory. T
 
 | Type                                      | Description                 |
 | ---------------------------------------- | ------------------- |
-| Promise&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | Promise used to return the result.|
+| Promise&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | Promise used to return the result, which is the descriptor of the raw file.|
 
 **Error codes**
 
@@ -4510,6 +4525,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 **Example**
   ```ts
   import { BusinessError } from '@ohos.base';
+  import resourceManager from '@ohos.resourceManager';
 
   try {
     this.context.resourceManager.getRawFd("test.txt").then((value: resourceManager.RawFileDescriptor) => {
@@ -4589,7 +4605,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   import { BusinessError } from '@ohos.base';
 
   try {
-    this.context.resourceManager.closeRawFd("test.txt", (error: BusinessError, value: string) => {
+    this.context.resourceManager.closeRawFd("test.txt", (error: BusinessError) => {
       if (error != null) {
         console.error("error is " + error);
       }
@@ -4654,7 +4670,7 @@ Obtains the device configuration. This API returns the result synchronously.
 
 | Type                                      | Description              |
 | ---------------------------------------- | ---------------- |
-| [Configuration](#configuration) | Promise used to return the result.|
+| [Configuration](#configuration) | Device configuration.|
 
 **Example**
   ```ts
@@ -4679,12 +4695,14 @@ Obtains the device configuration. This API uses an asynchronous callback to retu
 
 | Name     | Type                                      | Mandatory  | Description                       |
 | -------- | ---------------------------------------- | ---- | ------------------------- |
-| callback | AsyncCallback&lt;[Configuration](#configuration)&gt; | Yes   | Callback used to return the result.|
+| callback | AsyncCallback&lt;[Configuration](#configuration)&gt; | Yes   | Callback used to return the result, which is the device configuration.|
 
 **Example**
   ```ts
+  import resourceManager from '@ohos.resourceManager';
+
   try {
-    this.context.resourceManager.getConfiguration((error: BusinessError, value: string) => {
+    this.context.resourceManager.getConfiguration((error: BusinessError, value: resourceManager.Configuration) => {
       if (error != null) {
         console.error("getConfiguration callback error is " + error);
       } else {
@@ -4709,11 +4727,12 @@ Obtains the device configuration. This API uses a promise to return the result.
 
 | Type                                      | Description              |
 | ---------------------------------------- | ---------------- |
-| Promise&lt;[Configuration](#configuration)&gt; | Promise used to return the result.|
+| Promise&lt;[Configuration](#configuration)&gt; | Promise used to return the result, which is the device configuration.|
 
 **Example**
   ```ts
   import { BusinessError } from '@ohos.base';
+  import resourceManager from '@ohos.resourceManager';
 
   try {
     this.context.resourceManager.getConfiguration().then((value: resourceManager.Configuration) => {
@@ -4739,7 +4758,7 @@ Obtains the device capability. This API returns the result synchronously.
 
 | Type                                      | Description                 |
 | ---------------------------------------- | ------------------- |
-| [DeviceCapability](#devicecapability) | Promise used to return the result.|
+| [DeviceCapability](#devicecapability) | Device capability.|
 
 **Example**
   ```ts
@@ -4764,12 +4783,14 @@ Obtains the device capability. This API uses an asynchronous callback to return 
 
 | Name     | Type                                      | Mandatory  | Description                          |
 | -------- | ---------------------------------------- | ---- | ---------------------------- |
-| callback | AsyncCallback&lt;[DeviceCapability](#devicecapability)&gt; | Yes   | Callback used to return the result.|
+| callback | AsyncCallback&lt;[DeviceCapability](#devicecapability)&gt; | Yes   | Callback used to return the result, which is the device capability.|
 
 **Example**
   ```ts
+  import resourceManager from '@ohos.resourceManager';
+
   try {
-    this.context.resourceManager.getDeviceCapability((error: BusinessError, value: string) => {
+    this.context.resourceManager.getDeviceCapability((error: BusinessError, value: resourceManager.DeviceCapability) => {
       if (error != null) {
         console.error("getDeviceCapability callback error is " + error);
       } else {
@@ -4794,11 +4815,12 @@ Obtains the device capability. This API uses a promise to return the result.
 
 | Type                                      | Description                 |
 | ---------------------------------------- | ------------------- |
-| Promise&lt;[DeviceCapability](#devicecapability)&gt; | Promise used to return the result.|
+| Promise&lt;[DeviceCapability](#devicecapability)&gt; | Promise used to return the result, which is the device capability.|
 
 **Example**
   ```ts
   import { BusinessError } from '@ohos.base';
+  import resourceManager from '@ohos.resourceManager';
 
   try {
     this.context.resourceManager.getDeviceCapability().then((value: resourceManager.DeviceCapability) => {
@@ -4831,7 +4853,7 @@ Releases a **ResourceManager** object. This API is not supported currently.
 
 ### addResource<sup>10+</sup>
 
-addResource(path: string) : void;
+addResource(path: string) : void
 
 Loads resources from the specified path.
 
@@ -4867,7 +4889,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 ### removeResource<sup>10+</sup>
 
-removeResource(path: string) : void;
+removeResource(path: string) : void
 
 Removes the resources loaded from the specified path to restore the original resources.
 
@@ -4952,6 +4974,7 @@ Obtains the language list of an application.
   ```
 
 ### getSymbol<sup>11+</sup>
+
 getSymbol(resId: number):number
 
 Obtains a symbol value based on the specified resource ID. This API returns the result synchronously.
@@ -4968,7 +4991,7 @@ Obtains a symbol value based on the specified resource ID. This API returns the 
 
 | Type    | Description         |
 | ------ | ----------- |
-| number | Symbol value (decimal) obtained by the specified resource ID.|
+| number | Symbol value (decimal) corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -5012,7 +5035,7 @@ Obtains a symbol value based on the specified resource object. This API returns 
 
 | Type    | Description         |
 | ------ | ----------- |
-| number | Symbol value (decimal) obtained by the specified resource object.|
+| number | Symbol value (decimal) corresponding to the specified resource object.|
 
 **Error codes**
 
@@ -5061,7 +5084,7 @@ Obtains a symbol value based on the specified resource name. This API returns th
 
 | Type    | Description        |
 | ------ | ---------- |
-| number | Symbol value (decimal) obtained by the specified resource name.|
+| number | Symbol value (decimal) corresponding to the specified resource name.|
 
 **Error codes**
 
@@ -5101,12 +5124,12 @@ This API is deprecated since API version 9. You are advised to use [getStringVal
 | Name     | Type                         | Mandatory  | Description             |
 | -------- | --------------------------- | ---- | --------------- |
 | resId    | number                      | Yes   | Resource ID.          |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result.|
+| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the string corresponding to the specified resource ID.|
 
 **Example**
   ```ts
   resourceManager.getResourceManager((error, mgr) => {
-      mgr.getString($r('app.string.test').id, (error: BusinessError, value: string) => {
+      mgr.getString($r('app.string.test').id, (error: Error, value: string) => {
           if (error != null) {
               console.error("error is " + error);
           } else {
@@ -5137,7 +5160,7 @@ This API is deprecated since API version 9. You are advised to use [getStringVal
 
 | Type                   | Description         |
 | --------------------- | ----------- |
-| Promise&lt;string&gt; | Promise used to return the result, which is the string obtained by the specified resource ID.|
+| Promise&lt;string&gt; | Promise used to return the result, which is the string corresponding to the specified resource ID.|
 
 **Example**
   ```ts
@@ -5168,12 +5191,12 @@ This API is deprecated since API version 9. You are advised to use [getStringArr
 | Name     | Type                                      | Mandatory  | Description               |
 | -------- | ---------------------------------------- | ---- | ----------------- |
 | resId    | number                                   | Yes   | Resource ID.            |
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes   | Callback used to return the result.|
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes   | Callback used to return the result, which is the string array corresponding to the specified resource ID.|
 
 **Example**
   ```ts
   resourceManager.getResourceManager((error, mgr) => {
-      mgr.getStringArray($r('app.strarray.test').id, (error: BusinessError, value: Array<string>) => {
+      mgr.getStringArray($r('app.strarray.test').id, (error: Error, value: Array<string>) => {
           if (error != null) {
               console.error("error is " + error);
           } else {
@@ -5204,7 +5227,7 @@ This API is deprecated since API version 9. You are advised to use [getStringArr
 
 | Type                                | Description           |
 | ---------------------------------- | ------------- |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the result, which is the string array obtained by the specified resource ID.|
+| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the result, which is the string array corresponding to the specified resource ID.|
 
 **Example**
   ```ts
@@ -5235,12 +5258,12 @@ This API is deprecated since API version 9. You are advised to use [getMediaCont
 | Name     | Type                             | Mandatory  | Description                |
 | -------- | ------------------------------- | ---- | ------------------ |
 | resId    | number                          | Yes   | Resource ID.             |
-| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the result.|
+| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the result, which is the content of the media file corresponding to the specified resource ID.|
 
 **Example**
   ```ts
   resourceManager.getResourceManager((error, mgr) => {
-      mgr.getMedia($r('app.media.test').id, (error: BusinessError, value: string) => {
+      mgr.getMedia($r('app.media.test').id, (error: Error, value: Uint8Array) => {
           if (error != null) {
               console.error("error is " + error);
           } else {
@@ -5249,7 +5272,6 @@ This API is deprecated since API version 9. You are advised to use [getMediaCont
       });
   });
   ```
-
 
 ### getMedia<sup>(deprecated)</sup>
 
@@ -5271,7 +5293,7 @@ This API is deprecated since API version 9. You are advised to use [getMediaCont
 
 | Type                       | Description            |
 | ------------------------- | -------------- |
-| Promise&lt;Uint8Array&gt; | Promise used to return the result.|
+| Promise&lt;Uint8Array&gt; | Promise used to return the result, which is the content of the media file corresponding to the specified resource ID.|
 
 **Example**
   ```ts
@@ -5302,12 +5324,12 @@ This API is deprecated since API version 9. You are advised to use [getMediaCont
 | Name     | Type                         | Mandatory  | Description                      |
 | -------- | --------------------------- | ---- | ------------------------ |
 | resId    | number                      | Yes   | Resource ID.                   |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result.|
+| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the Base64 code of the image corresponding to the specified resource ID.|
 
 **Example**
   ```ts
   resourceManager.getResourceManager((error, mgr) => {
-      mgr.getMediaBase64($r('app.media.test').id, ((error: BusinessError, value: string) => {
+      mgr.getMediaBase64($r('app.media.test').id, ((error: Error, value: string) => {
           if (error != null) {
               console.error("error is " + error);
           } else {
@@ -5338,7 +5360,7 @@ This API is deprecated since API version 9. You are advised to use [getMediaCont
 
 | Type                   | Description                  |
 | --------------------- | -------------------- |
-| Promise&lt;string&gt; | Promise used to return the result.|
+| Promise&lt;string&gt; | Promise used to return the result, which is the Base64 code of the image corresponding to the specified resource ID.|
 
 **Example**
   ```ts
@@ -5360,7 +5382,7 @@ getPluralString(resId: number, num: number): Promise&lt;string&gt;
 
 Obtains a singular-plural string by the specified number based on the specified resource ID. This API uses a promise to return the result.
 
-**NOTE**
+>**NOTE**
 >
 > Singular and plural forms are available for English, but not Chinese.
 
@@ -5379,7 +5401,7 @@ This API is deprecated since API version 9. You are advised to use [getPluralStr
 
 | Type                   | Description                       |
 | --------------------- | ------------------------- |
-| Promise&lt;string&gt; | Promise used to return the result.|
+| Promise&lt;string&gt; | Promise used to return the result, which is the singular-plural string corresponding to the specified resource ID.|
 
 **Example**
   ```ts
@@ -5401,7 +5423,7 @@ getPluralString(resId: number, num: number, callback: AsyncCallback&lt;string&gt
 
 Obtains a singular-plural string by the specified number based on the specified resource ID. This API uses an asynchronous callback to return the result.
 
-**NOTE**
+>**NOTE**
 >
 > Singular and plural forms are available for English, but not Chinese.
 
@@ -5415,12 +5437,12 @@ This API is deprecated since API version 9. You are advised to use [getPluralStr
 | -------- | --------------------------- | ---- | ------------------------------- |
 | resId    | number                      | Yes   | Resource ID.                          |
 | num      | number                      | Yes   | Number.                            |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result.|
+| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the singular-plural string corresponding to the specified resource ID.|
 
 **Example**
   ```ts
   resourceManager.getResourceManager((error, mgr) => {
-      mgr.getPluralString($r("app.plural.test").id, 1, (error: BusinessError, value: string) => {
+      mgr.getPluralString($r("app.plural.test").id, 1, (error: Error, value: string) => {
           if (error != null) {
               console.error("error is " + error);
           } else {
@@ -5446,12 +5468,12 @@ This API is deprecated since API version 9. You are advised to use [getRawFileCo
 | Name     | Type                             | Mandatory  | Description                     |
 | -------- | ------------------------------- | ---- | ----------------------- |
 | path     | string                          | Yes   | Path of the raw file.            |
-| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the result.|
+| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the result, which is the content of the raw file.|
 
 **Example**
   ```ts
   resourceManager.getResourceManager((error, mgr) => {
-      mgr.getRawFile("test.txt", (error: BusinessError, value: string) => {
+      mgr.getRawFile("test.txt", (error: Error, value: Uint8Array) => {
           if (error != null) {
               console.error("error is " + error);
           } else {
@@ -5482,7 +5504,7 @@ This API is deprecated since API version 9. You are advised to use [getRawFileCo
 
 | Type                       | Description         |
 | ------------------------- | ----------- |
-| Promise&lt;Uint8Array&gt; | Promise used to return the result.|
+| Promise&lt;Uint8Array&gt; | Promise used to return the result, which is the content of the raw file.|
 
 **Example**
   ```ts
@@ -5513,12 +5535,14 @@ This API is deprecated since API version 9. You are advised to use [getRawFd](#g
 | Name     | Type                                      | Mandatory  | Description                              |
 | -------- | ---------------------------------------- | ---- | -------------------------------- |
 | path     | string                                   | Yes   | Path of the raw file.                     |
-| callback | AsyncCallback&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | Yes   | Callback used to return the result.|
+| callback | AsyncCallback&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | Yes   | Callback used to return the result, which is the descriptor of the raw file.|
 
 **Example**
   ```ts
+  import resourceManager from '@ohos.resourceManager';
+
   resourceManager.getResourceManager((error, mgr) => {
-      mgr.getRawFileDescriptor("test.txt", (error: BusinessError, value: string) => {
+      mgr.getRawFileDescriptor("test.txt", (error: Error, value: resourceManager.RawFileDescriptor) => {
           if (error != null) {
               console.error("error is " + error);
           } else {
@@ -5550,7 +5574,7 @@ This API is deprecated since API version 9. You are advised to use [getRawFd](#g
 
 | Type                                      | Description                 |
 | ---------------------------------------- | ------------------- |
-| Promise&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | Promise used to return the result.|
+| Promise&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | Promise used to return the result, which is the descriptor of the raw file.|
 
 **Example**
   ```ts
@@ -5579,6 +5603,8 @@ This API is deprecated since API version 9. You are advised to use [closeRawFd](
 
 **Parameters**
 
+
+
 | Name     | Type                       | Mandatory  | Description         |
 | -------- | ------------------------- | ---- | ----------- |
 | path     | string                    | Yes   | Path of the raw file.|
@@ -5587,7 +5613,7 @@ This API is deprecated since API version 9. You are advised to use [closeRawFd](
 **Example**
   ```ts
   resourceManager.getResourceManager((error, mgr) => {
-      mgr.closeRawFileDescriptor("test.txt", (error: BusinessError, value: string) => {
+      mgr.closeRawFileDescriptor("test.txt", (error: Error) => {
           if (error != null) {
               console.error("error is " + error);
           }

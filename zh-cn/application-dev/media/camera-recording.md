@@ -4,9 +4,9 @@
 
 ## 开发步骤
 
-详细的API说明请参考[Camera API参考](../reference/apis/js-apis-camera.md)。
+详细的API说明请参考[Camera API参考](../reference/apis-camera-kit/js-apis-camera.md)。
 
-1. 导入media模块。创建拍照输出流的SurfaceId以及拍照输出的数据，都需要用到系统提供的[media接口](../reference/apis/js-apis-media.md)能力，导入media接口的方法如下。
+1. 导入media模块。创建拍照输出流的SurfaceId以及拍照输出的数据，都需要用到系统提供的[media接口](../reference/apis-media-kit/js-apis-media.md)能力，导入media接口的方法如下。
      
    ```ts
    import { BusinessError } from '@ohos.base';
@@ -15,7 +15,7 @@
 
 2. 创建Surface。
    
-   系统提供的media接口可以创建一个录像AVRecorder实例，通过该实例的getInputSurface方法获取SurfaceId，与录像输出流做关联，处理录像输出流输出的数据。
+   系统提供的media接口可以创建一个录像AVRecorder实例，通过该实例的[getInputSurface](../reference/apis-media-kit/js-apis-media.md#getinputsurface9)方法获取SurfaceId，与录像输出流做关联，处理录像输出流输出的数据。
 
    ```ts
    async function getVideoSurfaceId(aVRecorderConfig: media.AVRecorderConfig): Promise<string | undefined> {  // aVRecorderConfig可参考下一章节
@@ -43,9 +43,10 @@
 
 3. 创建录像输出流。
 
-   通过CameraOutputCapability类中的videoProfiles，可获取当前设备支持的录像输出流。然后，定义创建录像的参数，通过createVideoOutput方法创建录像输出流。
+   通过[CameraOutputCapability](../reference/apis-camera-kit/js-apis-camera.md#cameraoutputcapability)类中的videoProfiles属性，可获取当前设备支持的录像输出流。然后，定义创建录像的参数，通过[createVideoOutput](../reference/apis-camera-kit/js-apis-camera.md#createvideooutput)方法创建录像输出流。
 
-   **注**：预览流与录像输出流的分辨率的宽高比要保持一致，如示例代码中宽高比为640:480 = 4:3，则需要预览流中的分辨率的宽高比也为4:3，如分辨率选择640:480，或960:720，或1440:1080，以此类推
+   > **说明：**
+   > 预览流与录像输出流的分辨率的宽高比要保持一致，如示例代码中宽高比为640:480 = 4:3，则需要预览流中的分辨率的宽高比也为4:3，如分辨率选择640:480，或960:720，或1440:1080，以此类推
 
    ```ts
    async function getVideoOutput(cameraManager: camera.CameraManager, videoSurfaceId: string, cameraOutputCapability: camera.CameraOutputCapability): Promise<camera.VideoOutput | undefined> {
@@ -85,8 +86,16 @@
      avRecorder.prepare(aVRecorderConfig);
      // 创建VideoOutput对象
      let videoOutput: camera.VideoOutput | undefined = undefined;
+     // createVideoOutput传入的videoProfile对象的宽高需要和aVRecorderProfile保持一致。
+     let videoProfile: undefined | camera.VideoProfile = videoProfilesArray.find((profile: camera.VideoProfile) => {
+       return profile.size.width === aVRecorderProfile.videoFrameWidth && profile.size.height === aVRecorderProfile.videoFrameHeight;
+     });
+     if (!videoProfile) {
+       console.error('videoProfile is not found');
+       return;
+     }
      try {
-       videoOutput = cameraManager.createVideoOutput(videoProfilesArray[0], videoSurfaceId);
+       videoOutput = cameraManager.createVideoOutput(videoProfile, videoSurfaceId);
      } catch (error) {
        let err = error as BusinessError;
        console.error('Failed to create the videoOutput instance. errorCode = ' + err.code);
@@ -97,7 +106,7 @@
 
 4. 开始录像。
    
-   先通过videoOutput的start方法启动录像输出流，再通过avRecorder的start方法开始录像。
+   先通过videoOutput的[start](../reference/apis-camera-kit/js-apis-camera.md#start-1)方法启动录像输出流，再通过avRecorder的[start](../reference/apis-media-kit/js-apis-media.md#start9)方法开始录像。
 
    ```ts
    async function startVideo(videoOutput: camera.VideoOutput, avRecorder: media.AVRecorder): Promise<void> {
@@ -118,8 +127,8 @@
    ```
 
 5. 停止录像。
-     
-   先通过avRecorder的stop方法停止录像，再通过videoOutput的stop方法停止录像输出流。
+
+   先通过avRecorder的[stop](../reference/apis-media-kit/js-apis-media.md#stop9-3)方法停止录像，再通过videoOutput的[stop](../reference/apis-camera-kit/js-apis-camera.md#stop-1)方法停止录像输出流。
      
    ```ts
    async function stopVideo(videoOutput: camera.VideoOutput, avRecorder: media.AVRecorder): Promise<void> {
@@ -164,7 +173,7 @@
   }
   ```
 
-- 通过注册固定的error回调函数获取监听录像输出错误结果，callback返回预览输出接口使用错误时对应的错误码，错误码类型参见[CameraErrorCode](../reference/apis/js-apis-camera.md#cameraerrorcode)。
+- 通过注册固定的error回调函数获取监听录像输出错误结果，callback返回预览输出接口使用错误时对应的错误码，错误码类型参见[CameraErrorCode](../reference/apis-camera-kit/js-apis-camera.md#cameraerrorcode)。
     
   ```ts
   function onVideoOutputError(videoOutput: camera.VideoOutput): void {

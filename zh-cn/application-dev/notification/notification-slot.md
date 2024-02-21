@@ -18,14 +18,13 @@
 
 | **接口名** | **描述** |
 | ---------- | -------- |
-| [addSlot](../reference/apis/js-apis-notificationManager.md#notificationmanageraddslot-2)(type: SlotType, callback: AsyncCallback\<void\>): void <br> [addSlot](../reference/apis/js-apis-notificationManager.md#notificationmanageraddslot-3)(type: SlotType): Promise\<void\> | 创建指定类型的通知渠道。          |
-| [getSlot](../reference/apis/js-apis-notificationManager.md#notificationmanagergetslot)(slotType: SlotType, callback: AsyncCallback\<NotificationSlot\>): void <br>[getSlot](../reference/apis/js-apis-notificationManager.md#notificationmanagergetslot-1)(slotType: SlotType): Promise\<NotificationSlot\> | 获取一个指定类型的通知渠道。  |
-| [getSlots](../reference/apis/js-apis-notificationManager.md#notificationmanagergetslots)(callback: AsyncCallback\<Array\<NotificationSlot>>): void <br> [getSlots](../reference/apis/js-apis-notificationManager.md#notificationmanagergetslots-1)(): Promise\<Array\<NotificationSlot>>  | 获取此应用程序的所有通知渠道。     |
-| [removeSlot](../reference/apis/js-apis-notificationManager.md#notificationmanagerremoveslot)(slotType: SlotType, callback: AsyncCallback\<void\>): void  <br> [removeSlot](../reference/apis/js-apis-notificationManager.md#notificationmanagerremoveslot-1)(slotType: SlotType): Promise\<void\>  | 删除此应用程序指定类型的通知渠道。  |
-| [removeAllSlots](../reference/apis/js-apis-notificationManager.md#notificationmanagerremoveallslots)(callback: AsyncCallback\<void\>): void <br> [removeAllSlots](../reference/apis/js-apis-notificationManager.md#notificationmanagerremoveallslots-1)(): Promise\<void\>   | 删除此应用程序所有通知渠道。       |
+| [addSlot](../reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanageraddslot-1)(type: SlotType, callback: AsyncCallback\<void\>): void <br> [addSlot](../reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanageraddslot-3)(type: SlotType): Promise\<void\> | 创建指定类型的通知渠道。          |
+| [getSlot](../reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanagergetslot)(slotType: SlotType, callback: AsyncCallback\<NotificationSlot\>): void <br>[getSlot](../reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanagergetslot-1)(slotType: SlotType): Promise\<NotificationSlot\> | 获取一个指定类型的通知渠道。  |
+| [getSlots](../reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanagergetslots)(callback: AsyncCallback\<Array\<NotificationSlot>>): void <br> [getSlots](../reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanagergetslots-1)(): Promise\<Array\<NotificationSlot>>  | 获取此应用程序的所有通知渠道。     |
+| [removeSlot](../reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanagerremoveslot)(slotType: SlotType, callback: AsyncCallback\<void\>): void  <br> [removeSlot](../reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanagerremoveslot-1)(slotType: SlotType): Promise\<void\>  | 删除此应用程序指定类型的通知渠道。  |
+| [removeAllSlots](../reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanagerremoveallslots)(callback: AsyncCallback\<void\>): void <br> [removeAllSlots](../reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanagerremoveallslots-1)(): Promise\<void\>   | 删除此应用程序所有通知渠道。       |
 
-除了可以使用`addslot()`创建通知渠道，还可以在发布通知的[NotificationRequest](../reference/apis/js-apis-inner-notification-notificationRequest.md#notificationrequest)中携带notificationSlotType字段，如果对应渠道不存在，会自动创建
-。
+除了可以使用`addslot()`创建通知渠道，还可以在发布通知的[NotificationRequest](../reference/apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest)中携带notificationSlotType字段，如果对应渠道不存在，会自动创建。
 
 ## 开发步骤
 

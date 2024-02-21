@@ -67,7 +67,7 @@ Creates a **FormComponent** instance to display the provided widget.
 ## Attributes
 | Name       | Type                                                                                             | Mandatory| Description                                                                   |
 | ----------- | ----------------------------------------------------------------------------------------------------- | ---- | ----------------------------------------------------------------------- |
-| size        | {<br>width?: [Length](ts-types.md#length),<br>height?: [Length](ts-types.md#length)<br>} | Yes  | Size of the widget.                                                         |
+| size        | {<br>width?: number,<br>height?: number<br>}                                             | Yes  | Size of the widget.                                                         |
 | moduleName  | string                                                                                                | Yes  | Module name of the widget.                                                         |
 | dimension   | [FormDimension](#formdimension)                                                                       | No  | Dimensions of the widget. The widgets in the 2 x 2, 4 x 4, and 4 x 2 dimensions are supported.<br>Default value: **Dimension_2_2**|
 | allowUpdate | boolean                                                                                               | No  | Whether to allow the widget to update.<br>Default value: **true**                                  |

@@ -8,7 +8,6 @@
     - [使用AudioRenderer开发音频播放功能(ArkTS)](using-audiorenderer-for-playback.md)
     - [使用TonePlayer开发音频播放功能(仅对系统应用开放)(ArkTS)](using-toneplayer-for-playback.md)
     - [使用OHAudio开发音频播放功能(C/C++)](using-ohaudio-for-playback.md)
-    - [使用OpenSL ES开发音频播放功能(C/C++)](using-opensl-es-for-playback.md)
     - [多音频播放的并发策略(ArkTS)](audio-playback-concurrency.md)
     - [播放音量管理(ArkTS)](volume-management.md)
     - [音效管理(ArkTS)](audio-effect-management.md)
@@ -18,7 +17,6 @@
   - 音频录制
     - [音频录制开发概述](audio-recording-overview.md)
     - [使用AudioCapturer开发音频录制功能(ArkTS)](using-audiocapturer-for-recording.md)
-    - [使用OpenSL ES开发音频录制功能(C/C++)](using-opensl-es-for-recording.md)
     - [使用OHAudio开发音频录制功能(C/C++)](using-ohaudio-for-recording.md)
     - [管理麦克风(ArkTS)](mic-management.md)
     - [音频录制流管理(ArkTS)](audio-recording-stream-management.md)
@@ -26,6 +24,10 @@
   - 音频通话
     - [音频通话开发概述](audio-call-overview.md)
     - [开发音频通话功能(ArkTS)](audio-call-development.md)
+  - 不再推荐使用
+    - [从OpenSL ES切换OHAudio(C/C++)](replace-opensles-by-ohaudio.md)
+    - [使用OpenSL ES开发音频播放功能(C/C++)](using-opensl-es-for-playback.md)
+    - [使用OpenSL ES开发音频录制功能(C/C++)](using-opensl-es-for-recording.md)
 - Media Kit（媒体服务）
   - [Media Kit简介](media-kit-intro.md)
   - 音频播放和录制
@@ -70,11 +72,13 @@
     - [拍照(ArkTS)](camera-shooting.md)
     - [录像(ArkTS)](camera-recording.md)
     - [元数据(ArkTS)](camera-metadata.md)
+    - [高性能拍照(仅对系统应用开放)(ArkTS)](camera-deferred-photo.md)
   - 相机最佳实践(ArkTS)
     - [拍照实现方案(ArkTS)](camera-shooting-case.md)
     - [录像实现方案(ArkTS)](camera-recording-case.md)
     - [双路预览(ArkTS)](camera-dual-channel-preview.md)
     - [性能提升方案(仅对系统应用开放)(ArkTS)](camera-performance-improvement.md)
+    - [高性能拍照实现方案(仅对系统应用开放)(ArkTS)](camera-deferred-photo-case.md)
   - 相机开发指导(C/C++)
     - [设备输入(C/C++)](native-camera-device-input.md)
     - [会话管理(C/C++)](native-camera-session-management.md)
@@ -100,6 +104,8 @@
 - Image Kit（图片处理服务）
   - [Image Kit简介](image-overview.md)
   - [图片解码(ArkTS)](image-decoding.md)
+  - [图片解码(C/C++)](image-decoding-native.md)
+  - [图片接收器(C/C++)](image-receiver-native.md)
   - 图片处理
     - [图像变换(ArkTS)](image-transformation.md)
     - [图像变换(C/C++)](image-transformation-native.md)
