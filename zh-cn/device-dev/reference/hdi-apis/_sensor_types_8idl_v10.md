@@ -1,0 +1,32 @@
+# SensorTypes.idl
+
+
+## 概述
+
+定义传感器模块所使用的传感器类型，传感器信息，传感器数据结构等数据类型。
+
+模块包路径：ohos.hdi.sensor.v1_0
+
+**起始版本：** 2.2
+
+**相关模块：**[Sensor](_hdi_sensor_v10.md)
+
+
+## 汇总
+
+
+### 类
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| struct&nbsp;&nbsp;[HdfSensorInformation](_hdf_sensor_information_v10.md) | 定义传感器的基本信息。 | 
+| struct&nbsp;&nbsp;[HdfSensorEvents](_hdf_sensor_events_v10.md) | 定义传感器上报的数据。 | 
+
+
+### 枚举
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| [HdfSensorTypeTag](_hdi_sensor_v10.md#hdfsensortypetag) {<br/>HDF_SENSOR_TYPE_NONE = 0, HDF_SENSOR_TYPE_ACCELEROMETER = 1, HDF_SENSOR_TYPE_GYROSCOPE = 2, HDF_SENSOR_TYPE_PHOTOPLETHYSMOGRAPH = 3,&nbsp;&nbsp;&nbsp;HDF_SENSOR_TYPE_ELECTROCARDIOGRAPH = 4, HDF_SENSOR_TYPE_AMBIENT_LIGHT = 5, HDF_SENSOR_TYPE_MAGNETIC_FIELD = 6, HDF_SENSOR_TYPE_CAPACITIVE = 7,&nbsp;&nbsp;&nbsp;HDF_SENSOR_TYPE_BAROMETER = 8, HDF_SENSOR_TYPE_TEMPERATURE = 9, HDF_SENSOR_TYPE_HALL = 10, HDF_SENSOR_TYPE_GESTURE = 11,&nbsp;&nbsp;&nbsp;HDF_SENSOR_TYPE_PROXIMITY = 12, HDF_SENSOR_TYPE_HUMIDITY = 13, HDF_SENSOR_TYPE_MEDICAL_BEGIN = 128, HDF_SENSOR_TYPE_MEDICAL_END = 160,&nbsp;&nbsp;&nbsp;HDF_SENSOR_TYPE_PHYSICAL_MAX = 255, HDF_SENSOR_TYPE_ORIENTATION = 256, HDF_SENSOR_TYPE_GRAVITY = 257, HDF_SENSOR_TYPE_LINEAR_ACCELERATION = 258,&nbsp;&nbsp;&nbsp;HDF_SENSOR_TYPE_ROTATION_VECTOR = 259, HDF_SENSOR_TYPE_AMBIENT_TEMPERATURE = 260, HDF_SENSOR_TYPE_MAGNETIC_FIELD_UNCALIBRATED = 261, HDF_SENSOR_TYPE_GAME_ROTATION_VECTOR = 262,&nbsp;&nbsp;&nbsp;HDF_SENSOR_TYPE_GYROSCOPE_UNCALIBRATED = 263, HDF_SENSOR_TYPE_SIGNIFICANT_MOTION = 264, HDF_SENSOR_TYPE_PEDOMETER_DETECTION = 265, HDF_SENSOR_TYPE_PEDOMETER = 266,&nbsp;&nbsp;&nbsp;HDF_SENSOR_TYPE_GEOMAGNETIC_ROTATION_VECTOR = 277, HDF_SENSOR_TYPE_HEART_RATE = 278, HDF_SENSOR_TYPE_DEVICE_ORIENTATION = 279, HDF_SENSOR_TYPE_WEAR_DETECTION = 280,&nbsp;&nbsp;&nbsp;HDF_SENSOR_TYPE_ACCELEROMETER_UNCALIBRATED = 281, HDF_SENSOR_TYPE_MAX<br/>} | 定义传感器类型标识。 | 
+| [HdfSensorGroupType](_hdi_sensor_v10.md#hdfsensorgrouptype) { HDF_TRADITIONAL_SENSOR_TYPE = 0, HDF_MEDICAL_SENSOR_TYPE = 1, HDF_SENSOR_GROUP_TYPE_MAX } | 枚举传感器的硬件服务组。 | 
+| [HdfSensorModeType](_hdi_sensor_v10.md#hdfsensormodetype) { SENSOR_MODE_DEFAULT = 0, SENSOR_MODE_REALTIME = 1, SENSOR_MODE_ON_CHANGE = 2, SENSOR_MODE_ONE_SHOT = 3,&nbsp;&nbsp;&nbsp;SENSOR_MODE_FIFO_MODE = 4, SENSOR_MODE_MAX } | 传感器的工作模式。 | 
