@@ -225,7 +225,7 @@ export default function abilityTest() {
 | --bundleName  | -b           | 应用Bundle名称                         | - b com.test.example               |
 | --packageName | -p           | 应用模块名，适用于FA模型应用           | - p com.test.example.entry         |
 | --moduleName  | -m           | 应用模块名，适用于STAGE模型应用        | -m entry                           |
-| NA            | -s           | 特定参数，以<key, value>键值对方式传入 | - s unittest OpenHarmonyTestRunner |
+| NA            | -s           | 特定参数，以<key, value>键值对方式传入 | - s unittest /ets/testrunner/OpenHarmonyTestRunner |
 
 框架当前支持多种用例执行方式，通过上表中的-s参数后的配置键值对参数传入触发，如下表所示。
 
