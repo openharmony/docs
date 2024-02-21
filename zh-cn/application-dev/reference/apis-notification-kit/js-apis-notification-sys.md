@@ -306,7 +306,7 @@ subscribe(subscriber: NotificationSubscriber, info: NotificationSubscribeInfo, c
 | 参数名       | 类型                      | 必填 | 说明             |
 | ---------- | ------------------------- | ---- | ---------------- |
 | subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber-sys.md#notificationsubscriber)    | 是   | 通知订阅对象。     |
-| info       | [NotificationSubscribeInfo](#notificationsubscribeinfo) | 是   | 通知订阅信息。 |
+| info       | [NotificationSubscribeInfo](js-apis-inner-notification-notificationSubscribeInfo-sys.md#notificationsubscribeinfo) | 是   | 通知订阅信息。 |
 | callback   | AsyncCallback\<void\>     | 是   | 订阅动作回调函数。 |
 
 **示例：**
@@ -393,7 +393,7 @@ subscribe(subscriber: NotificationSubscriber, info?: NotificationSubscribeInfo):
 | 参数名       | 类型                      | 必填 | 说明         |
 | ---------- | ------------------------- | ---- | ------------ |
 | subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber-sys.md#notificationsubscriber)    | 是   | 通知订阅对象。 |
-| info       | [NotificationSubscribeInfo](#notificationsubscribeinfo) | 否   | 通知订阅信息，默认为空。   |
+| info       | [NotificationSubscribeInfo](js-apis-inner-notification-notificationSubscribeInfo-sys.md#notificationsubscribeinfo) | 否   | 通知订阅信息，默认为空。   |
 
 **返回值：**
 
@@ -2311,58 +2311,6 @@ Notification.getDeviceRemindType().then((data: Notification.DeviceRemindType) =>
 | TYPE_ONCE    | 1 | 以设置时间段(只看小时和分钟)一次执行勿扰。 |
 | TYPE_DAILY   | 2 | 以设置时间段(只看小时和分钟)每天执行勿扰。 |
 | TYPE_CLEARLY | 3 | 以设置时间段(明确年月日时分)执行勿扰。     |
-
-## DistributedOptions<sup>8+</sup>
-
-描述分布式选项。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
-
-| 名称                   | 类型            | 可读 | 可写 | 说明                               |
-| ---------------------- | -------------- | ---- | ---- | ---------------------------------- |
-| remindType             | number         | 是   | 否   | 通知的提醒方式。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。                    |
-
-## NotificationSorting
-
-提供有关活动通知的排序信息。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
-| 名称     | 类型                                  | 可读 | 可写 | 说明         |
-| -------- | ------------------------------------- | ---- | --- | ------------ |
-| slot     | [NotificationSlot](./js-apis-notification.md#notificationslot) | 是  | 否  | 通知通道内容。 |
-| hashCode | string                                | 是  | 否  | 通知唯一标识。 |
-| ranking  | number                                | 是  | 否  | 通知排序序号。 |
-
-
-## NotificationSortingMap
-
-提供关于已订阅的所有通知中活动通知的排序信息
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
-
-**系统API**：此接口为系统接口，三方应用不支持调用。
-
-| 名称           | 类型                                                         | 可读 | 可写 | 说明             |
-| -------------- | ------------------------------------------------------------ | ---- | --- | ---------------- |
-| sortings       | {[key: string]: [NotificationSorting](#notificationsorting)} | 是  | 否  | 通知排序信息数组。 |
-| sortedHashCode | Array\<string\>                                              | 是  | 否  | 通知唯一标识数组。 |
-
-
-## NotificationSubscribeInfo
-
-设置订阅所需通知的发布者的信息。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
-| 名称                                                | 类型            | 可读 | 可写 | 说明                                                                                           |
-|---------------------------------------------------| --------------- | --- | ---- |----------------------------------------------------------------------------------------------|
-| bundleNames                                       | Array\<string\> | 是  | 是  | 指定订阅哪些包名的APP发来的通知。                                                                           |
-| userId | number          | 是  | 是  | 指定订阅哪个用户下发来的通知。 |
 
 ## DeviceRemindType<sup>8+</sup> <sup>deprecated</sup>
 
