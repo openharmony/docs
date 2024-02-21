@@ -700,7 +700,7 @@ zh-cn/application-dev/reference/apis/js-apis-uiappearance.md	@huaweimaxuchu	@lus
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-ability-component.md	@seaside_wu	@keerecles	@zhangshuang-xiaohuihui	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-gridcontainer.md	@ileft2019	@crazyracing0726	@pangxinyu10128	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-click.md	@jiangtao92	@zhaojian2021	@zhangshuang-xiaohuihui	@HelloCrease
-
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-nodecontainer.md @sunfei2021 @pangxinyu10128	@HelloCrease
 
 
 
@@ -887,6 +887,13 @@ zh-cn/application-dev/reference/errorcodes/errorcode-pasteboard.md @HelloCrease
 zh-cn/application-dev/reference/errorcodes/errorcode-promptAction.md @HelloCrease
 zh-cn/application-dev/reference/errorcodes/errorcode-router.md @HelloCrease
 zh-cn/application-dev/reference/apis-arkui/js-apis-postCardAction.md @arondave  @songzhenlei @HelloCrease
+zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-builderNode.md @pangxinyu10128	@HelloCrease @lightningHo
+zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-frameNode.md @sunfei2021 @pangxinyu10128	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-graphics.md @sunfei2021 @pangxinyu10128	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-nodeController.md @sunfei2021 @pangxinyu10128	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-renderNode.md @sunfei2021 @pangxinyu10128	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-xcomponentNode.md @keerecles	@zhangshuang-xiaohuihui
+zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-node.md @sunfei2021 @pangxinyu10128	@HelloCrease
 
 [参考-ArkWeb]
 zh-cn/application-dev/reference/apis-arkweb/js-apis-webview.md @bigpumpkin @HelloCrease @litao33 @zhang-xinyue15
