@@ -81,7 +81,7 @@ queryBundleStateInfos(begin: number, end: number): Promise&lt;BundleActiveInfoRe
 
 | 类型                                       | 说明                                     |
 | ---------------------------------------- | -------------------------------------- |
-| Promise&lt;[BundleActiveInfoResponse](#bundleactiveinforesponse)&gt; | 指定的Promise回调方法。返回指定起始和结束时间内应用使用时长统计信息。 |
+| Promise&lt;[BundleActiveInfoResponse](js-apis-deviceUsageStatistics.md#bundleactiveinforesponse)&gt; | 指定的Promise回调方法。返回指定起始和结束时间内应用使用时长统计信息。 |
 
 **示例**：
 
@@ -112,10 +112,10 @@ queryBundleStateInfoByInterval(byInterval: IntervalType, begin: number, end: num
 
 | 参数名        | 类型                                       | 必填   | 说明                                       |
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| byInterval | [IntervalType](#intervaltype)            | 是    | 查询类型。                                    |
+| byInterval | [IntervalType](js-apis-deviceUsageStatistics.md#intervaltype)            | 是    | 查询类型。                                    |
 | begin      | number                                   | 是    | 起始时间，单位毫秒。                                    |
 | end        | number                                   | 是    | 结束时间，单位毫秒。                                    |
-| callback   | AsyncCallback&lt;Array&lt;[BundleStateInfo](#bundlestateinfo)&gt;&gt; | 是    | 指定的callback回调方法。返回指定时间段间隔（天、周、月、年）查询应用使用时长统计信息。 |
+| callback   | AsyncCallback&lt;Array&lt;[BundleStateInfo](js-apis-deviceUsageStatistics.md#bundlestateinfo)&gt;&gt; | 是    | 指定的callback回调方法。返回指定时间段间隔（天、周、月、年）查询应用使用时长统计信息。 |
 
 **示例**：
 
@@ -151,7 +151,7 @@ queryBundleStateInfoByInterval(byInterval: IntervalType, begin: number, end: num
 
 | 参数名        | 类型                            | 必填   | 说明    |
 | ---------- | ----------------------------- | ---- | ----- |
-| byInterval | [IntervalType](#intervaltype) | 是    | 查询类型。 |
+| byInterval | [IntervalType](js-apis-deviceUsageStatistics.md#intervaltype) | 是    | 查询类型。 |
 | begin      | number                        | 是    | 起始时间，单位毫秒。 |
 | end        | number                        | 是    | 结束时间，单位毫秒。 |
 
@@ -159,7 +159,7 @@ queryBundleStateInfoByInterval(byInterval: IntervalType, begin: number, end: num
 
 | 类型                                       | 说明                                       |
 | ---------------------------------------- | ---------------------------------------- |
-| Promise&lt;Array&lt;[BundleStateInfo](#bundlestateinfo)&gt;&gt; | 指定的Promise回调方法。返回指定时间段间隔（天、周、月、年）查询应用使用时长统计信息。 |
+| Promise&lt;Array&lt;[BundleStateInfo](js-apis-deviceUsageStatistics.md#bundlestateinfo)&gt;&gt; | 指定的Promise回调方法。返回指定时间段间隔（天、周、月、年）查询应用使用时长统计信息。 |
 
 **示例**：
 
@@ -195,7 +195,7 @@ queryBundleActiveStates(begin: number, end: number, callback: AsyncCallback&lt;A
 | -------- | ---------------------------------------- | ---- | --------------------------------------- |
 | begin    | number                                   | 是    | 起始时间，单位毫秒。                                   |
 | end      | number                                   | 是    | 结束时间，单位毫秒。                                   |
-| callback | AsyncCallback&lt;Array&lt;[BundleActiveState](#bundleactivestate)&gt;&gt; | 是    | 指定的callback回调方法。返回指定起始和结束时间查询所有应用的事件集合。 |
+| callback | AsyncCallback&lt;Array&lt;[BundleActiveState](js-apis-deviceUsageStatistics.md#bundleactivestate)&gt;&gt; | 是    | 指定的callback回调方法。返回指定起始和结束时间查询所有应用的事件集合。 |
 
 **示例**：
 
@@ -238,7 +238,7 @@ queryBundleActiveStates(begin: number, end: number): Promise&lt;Array&lt;BundleA
 
 | 类型                                       | 说明                                     |
 | ---------------------------------------- | -------------------------------------- |
-| Promise&lt;Array&lt;[BundleActiveState](#bundleactivestate)&gt;&gt; | 指定的Promise回调方法。返回指定起始和结束时间查询所有应用的事件集合。 |
+| Promise&lt;Array&lt;[BundleActiveState](js-apis-deviceUsageStatistics.md#bundleactivestate)&gt;&gt; | 指定的Promise回调方法。返回指定起始和结束时间查询所有应用的事件集合。 |
 
 **示例**：
 
