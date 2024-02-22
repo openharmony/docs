@@ -51,6 +51,7 @@ Rect(value?: {width?: string | number,height?: string | number,radius?: string |
 | antiAlias | boolean | true | 是否开启抗锯齿效果。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**  <br/>异常值按照默认值处理。 |
 
 ## 示例
+### 示例1
 
 ```ts
 // xxx.ets
@@ -96,3 +97,40 @@ struct RectExample {
 ```
 
 ![zh-cn_image_0000001174264386](figures/zh-cn_image_0000001174264386.png)
+
+### 示例2
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct RectExample {
+  build() {
+    Column({ space: 10 }) {
+      Column()
+        .width(100)
+        .height(100)
+        .linearGradient({
+          direction: GradientDirection.Right,
+          colors: [[0xff0000, 0.0], [0x0000ff, 0.3], [0xffff00, 1.0]]
+        })
+        .clip(new Rect({ width: 100, height: 100, radius: 40 }))
+      Rect()
+        .width(100)
+        .height(100)
+        // 设置矩形填充，如果需要显示背景的渐变色，请设置区域透明度.fillOpacity(0.0)
+        .fill(Color.Pink)
+        // 设置倒角为40
+        .radius(40)
+        .stroke(Color.Black)
+        // 设置渐变色，仅100*100的矩形区域生效，渐变色的边界不包含倒角
+        .linearGradient({
+          direction: GradientDirection.Right,
+          colors: [[0xff0000, 0.0], [0x0000ff, 0.3], [0xffff00, 1.0]]
+        })
+    }
+  }
+}
+```
+
+![zh-cn_image_0000001174264386](figures/zh-cn_image_0000001174264387.jpeg)
