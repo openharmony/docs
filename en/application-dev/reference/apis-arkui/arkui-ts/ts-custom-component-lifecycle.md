@@ -77,9 +77,7 @@ struct IndexComponent {
   }
 }
 ```
-
-![en-us_image_0000001563060749](figures/en-us_image_0000001563060749.png)
-
+![en-us_image_lifecycle](figures/en-us_image_lifecycle.gif)
 
 ## onLayout<sup>(deprecated)</sup>
 
@@ -195,6 +193,7 @@ struct Child {
   @State message: Message = new Message('AboutToReuse');
 
   aboutToReuse(params: Record<string, ESObject>) {
+    console.info("Recycle Child")
     this.message = params.message as Message
   }
 
@@ -363,9 +362,10 @@ Since API version 10, this API is supported in ArkTS widgets.
 >
 >- The custom layout does not support the LazyForEach syntax.
 >- When a custom layout is created in builder mode, only **this.builder()** is allowed in the **build()** method of a custom component, as shown in the recommended example below.
->- The layout and size information set for the child component is at a lower priority than the information set by **onMeasureSize** and **onPlaceChildren**.
+>- The size configuration of the child component, except **aspectRatio**, is at a lower priority than that specified by **onMeasureSize**.
+>- The position configuration of the child component, except **offset** and **position**, is at a lower priority than that specified by **onPlaceChildren**.
 >- Regarding use of the custom layout method, if the measure and layout methods of child components are not called, the layout will not be displayed.
->- After **onPlaceChildren** is called, some universal attributes that affect the layout of child components, such as **margin** and **align**, become ineffective.
+>- After **onPlaceChildren** is called, some universal attributes that affect the layout of child components, such as **align**, become ineffective.
 
 ```
 // xxx.ets

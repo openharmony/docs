@@ -1,7 +1,7 @@
 # @ohos.arkui.advanced.TabTitleBar (Tab Title Bar)
 
 
-The tab title bar is used to switch between tabs pages It is applicable only to level-1 pages.
+The tab title bar is used to switch between tabs pages. It is applicable only to level-1 pages.
 
 
 > **NOTE**

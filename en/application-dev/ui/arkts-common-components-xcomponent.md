@@ -1,13 +1,13 @@
-# XComponent
+# CustomDraw (XComponent)
 
 
-As a drawing component, the \<[XComponent](../reference/arkui-ts/ts-basic-components-xcomponent.md)> is usually used to meet relatively complex drawing customization requirements, for example, display of a camera preview stream and drawing of a game image.
+As a drawing component, the \<[XComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)> is usually used to meet relatively complex drawing customization requirements, for example, display of a camera preview stream and drawing of a game image.
 
 
 You can specify the **type** parameter to implement different features. Two options are mainly available for this parameter: **surface** and **component**.
 
 
-With the **\<XComponent>** of the **surface** type, you can pass data to the [NativeWindow](../napi/native-window-guidelines.md) object independently owned by it to render the image.
+With the **\<XComponent>** of the **surface** type, you can pass data to the [NativeWindow](../graphics/native-window-guidelines.md) object independently owned by it to render the image.
 
 
 With the **\<XComponent>** of the **component** type, you can dynamically load the displayed content.
@@ -145,8 +145,8 @@ Based on the NativeXComponent pointer obtained by [parsing the NativeXComponent 
     // Parse the NativeXComponent instance.
 
     OH_NativeXComponent_Callback callback;
-    callback->OnSurfaceCreated = OnSurfaceCreatedCB; // Invoked when a surface is successfully created. You can obtain the handle to the NativeWindow instance from this event.
-    callback->OnSurfaceChanged = OnSurfaceChangedCB; // Invoked when the surface changes. You can obtain the NativeWindow handle and XComponent change information from this event.
+    callback->OnSurfaceCreated = OnSurfaceCreatedCB; // Invoked when a surface is successfully created. You can obtain the handle to the native window from this event.
+    callback->OnSurfaceChanged = OnSurfaceChangedCB; // Invoked when the surface changes. You can obtain the native window handle and XComponent change information from this event.
     callback->OnSurfaceDestroyed = OnSurfaceDestroyedCB; // Invoked when the surface is destroyed. You can release resources in this event.
     callback->DispatchTouchEvent = DispatchTouchEventCB; // Invoked when a touch event occurs. You can obtain the touch event information from this event.
 
@@ -246,7 +246,7 @@ XComponent({ id: '', type: 'surface', controller: this.mXComponentController })
   })
 ```
 
-For details about component APIs, see [AVPlayer](../reference/apis/js-apis-media.md#avplayer9) and [Camera](../reference/apis/js-apis-camera.md).
+For details about component APIs, see [AVPlayer](../reference/apis-media-kit/js-apis-media.md#avplayer9) and [Camera](../reference/apis-camera-kit/js-apis-camera.md).
 
 
 ### component Type
@@ -258,9 +258,9 @@ When the **\<XComponent>** is set to the **component** type, you can execute non
 >
 > When **type** is set to **component**, the **\<XComponent>** functions as a container, where child components are laid out vertically.
 >
-> - Vertical alignment: [FlexAlign](../reference/arkui-ts/ts-appendix-enums.md#flexalign).Start
+> - Vertical alignment: [FlexAlign](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#flexalign).Start
 >
-> - Horizontal alignment: [FlexAlign](../reference/arkui-ts/ts-appendix-enums.md#flexalign).Center
+> - Horizontal alignment: [FlexAlign](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#flexalign).Center
 >
 > The component does not respond to any events.
 >

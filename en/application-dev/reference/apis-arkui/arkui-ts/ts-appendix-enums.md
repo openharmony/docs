@@ -596,7 +596,7 @@ This API is supported in ArkTS widgets.
 | FOLD_STATUS_UNKNOWN     | The folding status of the device is unknown.|
 | FOLD_STATUS_EXPANDED    | The device is fully open.  |
 | FOLD_STATUS_FOLDED      | The device is folded (completely closed).  |
-| FOLD_STATUS_HALF_FOLDED | The device is half-folded, somehow between fully open and completely closed.|
+| FOLD_STATUS_HALF_FOLDED | The device is half-folded, somewhere between fully open and completely closed.|
 
 ## TextContentStyle<sup>10+</sup>
 
@@ -760,3 +760,33 @@ Defines how the specified blend mode is applied.
 | FAST           |   The content of the view is blended in sequence on the target image.                       |
 | OFFSCREEN      |   The content of the component and its child components are drawn on the offscreen canvas, and then blended with the existing content on the canvas.   |
 
+## ChainStyle<sup>11+</sup>
+
+Defines the chain style.
+
+| Name    | Description                           |
+| ------ | ----------------------------- |
+| SPREAD | Child components are evenly distributed among constraint anchors.|
+| SPREAD_INSIDE | All child components except the first and last ones are evenly distributed among constraint anchors.                |
+| PACKED  | There is no gap between child components in the chain.                     |
+
+## BarrierDirection<sup>11+</sup>
+
+Defines the barrier direction.
+
+| Name    | Description                           |
+| ------ | ----------------------------- |
+| LEFT | The barrier is on the left side of all the referenced components specified by [referencedId](ts-container-relativecontainer.md#barrierstyle11).   |
+| RIGHT | The barrier is on the right side of all the referenced components specified by [referencedId](ts-container-relativecontainer.md#barrierstyle11).  |
+| TOP  | The barrier is at the top of all the referenced components specified by [referencedId](ts-container-relativecontainer.md#barrierstyle11).   |
+| BOTTOM  | The barrier is at the bottom of all the referenced components specified by [referencedId](ts-container-relativecontainer.md#barrierstyle11).|
+
+## PixelRoundCalcPolicy<sup>11+</sup>
+
+Defines the pixel-level rounding policy for component boundaries.
+
+| Name    | Description                           |
+| ------ | ----------------------------- |
+| NO_FORCE_ROUND | The value is not rounded off.|
+| FORCE_CEIL | The value is rounded up to the nearest integer.|
+| FORCE_FLOOR | The value is rounded down to the nearest integer.|

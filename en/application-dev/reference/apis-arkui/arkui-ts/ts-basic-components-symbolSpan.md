@@ -4,7 +4,9 @@ As a child component of the **\<Text>** component, the  **\<SymbolSpan>** compon
 
 >  **NOTE**
 >
->  This component is supported since API version 11. It can inherit attribute settings from its parent component **\<Text>**. This means that, if an attribute is not set in this component, it takes the value (if any) of the attribute from its parent component. Updates will be marked with a superscript to indicate their earliest API version.
+> - This component is supported since API version 11. Updates will be marked with a superscript to indicate their earliest API version.
+>
+> - This component can inherit attribute settings from its parent component **\<Text>**. This means that, if an attribute is not set in this component, it takes the value of the attribute (if set) from its parent component.
 
 ## Child Components
 
@@ -18,7 +20,7 @@ SymbolSpan(value: Resource)
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | [Resource](../arkui-ts/ts-types.md#resource)| Yes| Resource of the **\<SymbolSpan>** component, for example, **$r('sys.symbol.ohos_wifi')**.|
+| value | [Resource](ts-types.md#resource)| Yes| Resource of the **\<SymbolSpan>** component, for example, **$r('sys.symbol.ohos_wifi')**.|
 
 >  **NOTE**
 >
@@ -31,7 +33,7 @@ The [universal attributes](ts-universal-attributes-size.md) are not supported. O
 | Name| Type| Mandatory| Description                              |
 | ------ | -------- | ---- | -------------------------------------- |
 | fontColor | Array\<[ResourceColor](ts-types.md#resourcecolor)\> | No| Color of the symbol span.<br> Default value: depending on the rendering strategy.|
-| fontSize | number \| string \| [Resource](../arkui-ts/ts-types.md#resource) | No| Size of the symbol span.<br>Default value: system default value|
+| fontSize | number \| string \| [Resource](ts-types.md#resource) | No| Size of the symbol span.<br>Default value: system default value|
 | fontWeight | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | No| Weight of symbol span.<br>For the number type, the value ranges from 100 to 900, at an interval of 100. A larger value indicates a heavier font weight. The default value is **400**.<br>For the string type, only strings of the number type are supported, for example, **"400"**, **"bold"**, **"bolder"**, **"lighter"**, **"regular"**, and **"medium"**, which correspond to the enumerated values in **FontWeight**.<br>Default value: **FontWeight.Normal**|
 | renderingStrategy | [SymbolRenderingStrategy](ts-appendix-enums.md#symbolrenderingstrategy11)	| No| Rendering strategy of symbol span.<br>Default value: **SymbolRenderingStrategy.SINGLE**<br>**NOTE**<br>For the resources referenced in **$r('sys.symbol.ohos_*')**, only **ohos_trash_circle**, **ohos_folder_badge_plus**, and **ohos_lungs** support the **MULTIPLE_COLOR** modes.|
 | effectStrategy | [SymbolEffectStrategy](ts-appendix-enums.md#symboleffectstrategy11)	| No| Symbol effect of symbol span.<br>Default value: **SymbolEffectStrategy.NONE**<br>**NOTE**<br>For the resources referenced in **$r('sys.symbol.ohos_*')**, only **ohos_wifi** supports the hierarchical effect.|

@@ -6,14 +6,12 @@ The **\<RelativeContainer>** component is used for element alignment in complex 
 >
 > This component is supported since API version 9. Updates will be marked with a superscript to indicate their earliest API version.
 
+## Rules
 
-
-## Rules 
-
- * Components in a container are aligned horizontally or vertically. 
+ * Components in a container are aligned horizontally or vertically.
    * Alignment modes in the horizontal direction can be left, middle, or right, achieved by the **HorizontalAlign.Start**, **HorizontalAlign.Center**, and **HorizontalAlign.End** attributes of the container, respectively.
    * Alignment modes in the vertical direction can be top, center, or bottom, achieved by the **VerticalAlign.Top**, **VerticalAlign.Center**, and **VerticalAlign.Bottom** attributes of the container, respectively.
- * A child component can set the container or another child component as the anchor. 
+ * A child component can set the container or another child component as the anchor.
    * To show in the **\<RelativeContainer>**, child components must have an ID. The container ID is fixed at **__container__**.
    * A child component can specify anchors for three positions in one direction (left, middle, and right in the horizontal direction and top, center, and bottom in the vertical direction). These anchors can be positions in the container or other child components in the same direction: **horizontalAlign.Start**, **HorizontalAlign.Center**, and **HorizontalAlign.End** in the horizontal direction and **verticalAlign.Top**, **VerticalAlign.Center**, and **VerticalAlign.Bottom** in the vertical direction. If more than two anchors are set in the same direction, **Start** and **Center** in the horizontal direction are preferred, and **Top** and **Center** in the vertical direction are preferred. For example, when the left, middle, and right positions of a component in the horizontal direction use **HorizontalAlign.Start**, **HorizontalAlign.Center**, and **HorizontalAlign.End** of the container as the anchors, respectively, then: if the widths of the component and its container cannot meet these rules at the same time, the rules for Start and Center are followed.
    * If both the child component size and relative layout rules are set:<br>In API versions earlier than 11, the child component size is bound by the relative layout rules.<br> Since API version 11, the child component size set from frontend pages is used.
@@ -35,6 +33,51 @@ Multiple child components are supported.
 RelativeContainer()
 
 Since API version 9, this API is supported in ArkTS widgets.
+
+## Attributes
+
+In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+
+| Name      | Type     |  Mandatory  | Description                  |
+| -------- | ------- |  ---- | -------------------- |
+| guideLine<sup>11+</sup> | Array<[GuideLineStyle](#guidelinestyle11)> | No   | Guidelines in the **\<RelativeContainer>** component. The value is an array, each element of which is a guideline.|
+| barrier<sup>11+</sup> | Array<[BarrierStyle](#barrierstyle11)> | No   | Barriers in the **\<RelativeContainer>** component. The value is an array, each element of which is a barrier.|
+
+
+## GuideLineStyle<sup>11+</sup>
+
+Defines the ID, direction, and position of a guideline.
+
+**Parameters**
+
+| Name   | Type     | Mandatory  | Description                   |
+| ----- | ------- | ---- | --------------------- |
+| id  | string  | Yes   | ID of the guideline, which must be unique and cannot be the same as the name of any component in the container.  |
+| direction | [Axis](ts-appendix-enums.md#Axis) | Yes   | Direction of the guideline.|
+| position | [GuideLinePosition](#guidelineposition11) | Yes   | Position of the guideline.|
+
+## GuideLinePosition<sup>11+</sup>
+
+Defines the position of a guideline.
+
+**Parameters**
+
+| Name   | Type     | Mandatory  | Description                   |
+| ----- | ------- | ---- | --------------------- |
+| start  | [Dimension](ts-types.md#dimension10)  | No   | Distance between the guideline and the left or top of the container.  |
+| end | [Dimension](ts-types.md#dimension10) | No   | Distance between the guideline and the right or bottom of the container.|
+
+## BarrierStyle<sup>11+</sup>
+
+Defines the ID, direction, and referenced components of a barrier.
+
+**Parameters**
+
+| Name   | Type     | Mandatory  | Description                   |
+| ----- | ------- | ---- | --------------------- |
+| id  | string  | Yes   | ID of the barrier, which must be unique and cannot be the same as the name of any component in the container.  |
+| direction | [BarrierDirection](ts-appendix-enums.md#barrierdirection11) | Yes   | Direction of the barrier.|
+| referencedId | Array\<string> | Yes   | Referenced components of the barrier.|
 
 ## Example
 

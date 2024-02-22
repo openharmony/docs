@@ -6,9 +6,9 @@ A text picker dialog box is a dialog box that allows users to select text from t
 >
 > The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 >
-> The functionality of this module depends on UI context. This means that the APIs of this module cannot be used where the UI context is unclear. For details, see [UIContext](../apis/js-apis-arkui-UIContext.md#uicontext).
+> The functionality of this module depends on UI context. This means that the APIs of this module cannot be used where the UI context is unclear. For details, see [UIContext](../js-apis-arkui-UIContext.md#uicontext).
 >
-> Since API version 10, you can use the [showTextPickerDialog](../apis/js-apis-arkui-UIContext.md#showtextpickerdialog) API in [UIContext](../apis/js-apis-arkui-UIContext.md#uicontext) to obtain the UI context.
+> Since API version 10, you can use the [showTextPickerDialog](../js-apis-arkui-UIContext.md#showtextpickerdialog) API in [UIContext](../js-apis-arkui-UIContext.md#uicontext) to obtain the UI context.
 
 ## TextPickerDialog.show
 
@@ -26,7 +26,7 @@ Shows a text picker in the given settings.
 
 ## TextPickerDialogOptions
 
-This API is extended from [TextPickerOptions](ts-basic-components-textpicker.md#textpickeroptions).
+Inherited from [TextPickerOptions](ts-basic-components-textpicker.md#textpickeroptions).
 
 | Name| Type| Mandatory|  Description|
 | -------- | -------- | -------- |  -------- |
