@@ -59,20 +59,19 @@ typedef enum QoS_Level {
 ```
 
 ## 功能效果
-### 对时间的影响（修改，增加）
-
- ![avatar](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/napi/figures/ffrtfigure2.png)
-
-
+### 对时间的影响
 QoS等级更高的任务在系统中能获得更多的运行时间。
+
+### 对优先级的影响
+QoS等级更高的任务在系统中能获得更优先的执行权。
 
 ## 接口说明（没有返回值，参数）
 
 | 接口名                                                       | 描述                                                         | 参数                                                         | 返回值                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | OH_QoS_SetThreadQoS(QoS_Level level) | 设置当前线程的QoS等级。 | QoS_Level level | 0或-1 |
-| OH_QoS_GetThreadQoS(QoS_Level *level) | 获取当前线程的QoS等级。 | QoS_Level *level。 | 0或-1 |
 | OH_QoS_ResetThreadQoS() | 取消当前线程设置的QoS等级。 | 无 | 0或-1 |
+| OH_QoS_GetThreadQoS(QoS_Level *level) | 获取当前线程的QoS等级。 | QoS_Level *level。 | 0或-1 |
 
 ### 使用限制
 * QoS接口只能设置本任务的QoS等级。
@@ -98,7 +97,7 @@ QoS_Level level
 
 #### 样例
 ```
-#include "qos.h"
+#include "qos/qos.h"
 
 int main()
 {
@@ -109,42 +108,6 @@ int main()
         printf("set QoS Success.");
     } else { // ret不等于0说明设置失败
         printf("set QoS failed.");
-    }
-
-    return 0;
-}
-```
-### OH_QoS_GetThreadQoS
-
-#### 声明
-```{.c}
-int OH_QoS_GetThreadQoS(QoS_Level *level);
-```
-
-#### 参数
-QoS_Level *level
-* 该参数用于存储任务已经设置的QoS等级。
-
-#### 返回值
-* 若成功则返回0，失败则返回-1。
-
-#### 描述
-获取某个任务之前最近一次设置的QoS等级；如果之前未设置任何QoS等级，则为默认QOS_DEFAULT。
-
-#### 样例
-```
-#include "qos.h"
-
-int main()
-{
-    // 获取当前线程的QoS等级
-
-    QoS_Level level = QoS_Level::QOS_DEFAULT;
-    ret = OH_QoS_GetThreadQoS(&level);
-    if (!ret) { // ret等于0说明获取成功
-        printf("get QoS level %d Success.", level);
-    } else { // ret不等于0说明获取失败
-        printf("get QoS level failed.");
     }
 
     return 0;
@@ -169,7 +132,7 @@ int OH_QoS_ResetThreadQoS();
 
 #### 样例
 ```
-#include "qos.h"
+#include "qos/qos.h"
 
 int main()
 {
@@ -186,6 +149,43 @@ int main()
 }
 ```
 
+### OH_QoS_GetThreadQoS
+
+#### 声明
+```{.c}
+int OH_QoS_GetThreadQoS(QoS_Level *level);
+```
+
+#### 参数
+QoS_Level *level
+* 该参数用于存储任务已经设置的QoS等级。
+
+#### 返回值
+* 若成功则返回0，失败则返回-1。
+
+#### 描述
+获取某个任务之前最近一次设置的QoS等级；如果之前未设置任何QoS等级，则为默认QOS_DEFAULT。
+
+#### 样例
+```
+#include "qos/qos.h"
+
+int main()
+{
+    // 获取当前线程的QoS等级
+
+    QoS_Level level = QoS_Level::QOS_DEFAULT;
+    ret = OH_QoS_GetThreadQoS(&level);
+    if (!ret) { // ret等于0说明获取成功
+        printf("get QoS level %d Success.", level);
+    } else { // ret不等于0说明获取失败
+        printf("get QoS level failed.");
+    }
+
+    return 0;
+}
+```
+
 ## 开发步骤
 以下步骤描述了如何使用QoS提供的Native API接口，调整或查询任务的QoS等级。
 
@@ -193,7 +193,7 @@ int main()
 
 CMakeLists.txt中添加以下lib：
 ```txt
-libqos_ndk.z.so
+libqos.so
 ```
 
 **头文件**
