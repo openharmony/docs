@@ -13,8 +13,10 @@
     - [WorkSchedulerExtensionContext](js-apis-inner-application-WorkSchedulerExtensionContext.md)
   - 已停止维护
     - [@ohos.backgroundTaskManager (后台任务管理)](js-apis-backgroundTaskManager.md)
+    - [@ohos.bundleState (设备使用信息统计)](js-apis-deviceUsageStatistics.md)
     - [@ohos.reminderAgent (后台代理提醒)](js-apis-reminderAgent.md)
     - [@ohos.backgroundTaskManager (后台任务管理)(系统接口)](js-apis-backgroundTaskManager-sys.md)
+    - [@ohos.backgroundTaskManager (后台任务管理)(系统接口)](js-apis-deviceUsageStatistics-sys.md)
 - 错误码
   - [backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)
   - [DeviceUsageStatistics错误码](errorcode-DeviceUsageStatistics.md)
