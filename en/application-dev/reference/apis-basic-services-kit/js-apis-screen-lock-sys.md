@@ -5,6 +5,8 @@ The **screenlock** module is a system module in OpenHarmony. It provides APIs fo
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
+>This topic describes only system APIs provided by the module. For details about its public APIs, see [@ohos.screenLock (Screen Lock)](js-apis-screen-lock.md).
 
 ## Modules to Import
 

@@ -251,7 +251,7 @@ try {
     systemTimer.startTimer(timerId, triggerTime);
     systemTimer.stopTimer(timerId, (error: BusinessError) => {
       if (error) {
-        console.info(`Failed to stop the timer. Message: ${error.message}, code: ${error.code}`);
+        console.info(`Failed to stop timer. message: ${error.message}, code: ${error.code}`);
         return;
       }
     console.info(`Succeeded in stopping the timer.`);

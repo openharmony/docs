@@ -474,7 +474,7 @@ Obtains the value of a data item. Unlike **getValue**, this API returns the resu
 ```js
 import settings from '@ohos.settings';
 
-// Update the value of 'settings.screen.brightness' (this data item already exists in the database).
+// Update the value of SCREEN_BRIGHTNESS_STATUS (this data item already exists in the database).
 const context: Context =  getContext(this);
 let value = settings.getValueSync(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100',  settings.domainName.DEVICE_SHARED);
 ```
@@ -986,4 +986,3 @@ let uri:string = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
 let helper = featureAbility.acquireDataAbilityHelper(uri);
 let ret:string = settings.setValueSync(helper, settings.display.SCREEN_BRIGHTNESS_STATUS, '100');
 ```
-<!--no_check-->

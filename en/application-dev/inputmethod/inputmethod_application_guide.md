@@ -1,14 +1,4 @@
-# InputMethodExtensionAbility
-
-## When to Use
-[InputMethodExtensionAbility](../reference/apis-ime-kit/js-apis-inputmethod-extension-ability.md), inherited from [ExtensionAbility](extensionability-overview.md), is used for developing input method applications.
-
-The entire lifecycle of the [InputMethodExtensionAbility](../reference/apis-ime-kit/js-apis-inputmethod-extension-ability.md) instance and the owning ExtensionAbility process is scheduled and managed by the input method framework. The input method framework provides the [InputMethodExtensionAbility](../reference/apis-ime-kit/js-apis-inputmethod-extension-ability.md) base class. Derive this base class to implement initialization and resource clearing.
-
-[InputMethodExtensionAbility](../reference/apis-ime-kit/js-apis-inputmethod-extension-ability.md) provides related capabilities through [InputMethodExtensionContext](../reference/apis-ime-kit/js-apis-inputmethod-extension-context.md).
-
-
-## Implementing an Input Method Application
+# Implementing an Input Method Application
 
 [InputMethodExtensionAbility](../reference/apis-ime-kit/js-apis-inputmethod-extension-ability.md) provides the **onCreate()** and **onDestroy()** callbacks, as described below. Override them as required.  
 
@@ -33,7 +23,7 @@ To implement an input method application, manually create an InputMethodExtensio
 
 2. Right-click the **InputMethodExtensionAbility** directory, choose **New** > **File**, and create four files: **KeyboardController.ts**, **InputMethodService.ts**, **Index.ets**, and **KeyboardKeyData.ts**. The file directory is as follows:
 
-```
+``` 
 /src/main/
 ├── ets/InputMethodExtensionAbility
 │   └──model/KeyboardController.ts			# Shows the keyboard.
@@ -41,7 +31,7 @@ To implement an input method application, manually create an InputMethodExtensio
 │   └──pages
 │      └── Index.ets						# Draws the keyboard and adds the input and deletion features.
 │      └── KeyboardKeyData.ts			    # Defines keyboard attributes.
-├── resources/base/profile/main_pages.json   
+├── resources/base/profile/main_pages.json  
 ```
 
 ## File Introduction
@@ -52,8 +42,8 @@ To implement an input method application, manually create an InputMethodExtensio
 
    ```ts
    import Want from '@ohos.app.ability.Want';
-   import InputMethodExtensionAbility from '@ohos.InputMethodExtensionAbility';
-   import keyboardController from './model/KeyboardController'
+   import keyboardController from './model/KeyboardController';
+   import { InputMethodExtensionAbility } from '@kit.IMEKit';
    
    export default class InputDemoService extends InputMethodExtensionAbility {
    
@@ -73,8 +63,7 @@ To implement an input method application, manually create an InputMethodExtensio
    ```ts
    import common from '@ohos.app.ability.common';
    import display from '@ohos.display';
-   import inputMethodEngine from '@ohos.inputMethodEngine';
-   import InputMethodExtensionContext from '@ohos.InputMethodExtensionContext';
+   import { inputMethodEngine, InputMethodExtensionContext } from '@kit.IMEKit';
    
    // Call the getInputMethodAbility API to obtain an instance, and then call the other APIs of the input method framework based on the instance.
    const inputMethodAbility: inputMethodEngine.InputMethodAbility = inputMethodEngine.getInputMethodAbility();
@@ -367,44 +356,6 @@ To protect the InputMethodExtensionAbility against abuse, the invoking of APIs i
 >   - Users who deny the recording permission should still be allowed to use the non-voice-input features of the input method application.
 >   - Recording-related services are allowed only when the InputMethodExtensionAbility is in the foreground. For example, perform recording only when the soft keyboard is in the foreground and the user is proactively using the voice input method; stop recording when the application is switched to the background.
 >   - Applications will be subject to increasingly stringent measures against violations with the preceding rules, and any violation may result in service exceptions.
+> - Strictly comply with the functional constraints of the basic access mode. In this mode, you should provide only basic typing features, not interaction with online services in any form. The system will gradually introduce measures for compliance with the basic access mode, including but not limited to running the Extension process as an independent process and in sandbox mode, preventing the Extension process from creating subprocesses, and restricting inter-process communication and network access. Violations may result in service exceptions.
 
-**Module list:**
 
-- [@ohos.ability.featureAbility (FeatureAbility)](../reference/apis-ability-kit/js-apis-ability-featureAbility.md)
-- [@ohos.ability.particleAbility (ParticleAbility)](../reference/apis-ability-kit/js-apis-ability-particleAbility.md)
-- [@ohos.account.distributedAccount (Distributed Account Management)](../reference/apis-basic-services-kit/js-apis-distributed-account.md)
-- [@ohos.backgroundTaskManager (Background Task Management)](../reference/apis-backgroundtasks-kit/js-apis-backgroundTaskManager.md)
-- [@ohos.bluetooth (Bluetooth)](../reference/apis-connectivity-kit/js-apis-bluetooth.md)
-- [@ohos.bluetoothManager (Bluetooth)](../reference/apis-connectivity-kit/js-apis-bluetoothManager.md)
-- [@ohos.connectedTag (Active Tags)](../reference/apis-connectivity-kit/js-apis-connectedTag.md)
-- [@ohos.geolocation (Geolocation)](../reference/apis-location-kit/js-apis-geolocation.md)
-- [@ohos.geoLocationManager (Geolocation Manager)](../reference/apis-location-kit/js-apis-geoLocationManager.md)
-- [@ohos.nfc.cardEmulation (Standard NFC Card Emulation)](../reference/apis-connectivity-kit/js-apis-cardEmulation.md)
-- [@ohos.nfc.controller (Standard NFC)](../reference/apis-connectivity-kit/js-apis-nfcController.md)
-- [@ohos.nfc.tag (Standard NFC Tags)](../reference/apis-connectivity-kit/js-apis-nfcTag.md)
-- [@ohos.reminderAgent (reminderAgent)](../reference/apis-backgroundtasks-kit/js-apis-reminderAgent.md)
-- [@ohos.reminderAgentManager (Agent-Powered Reminders)](../reference/apis-backgroundtasks-kit/js-apis-reminderAgentManager.md)
-- [@ohos.sensor (Sensor)](../reference/apis-sensor-service-kit/js-apis-sensor.md)
-- [@ohos.telephony.call (Call)](../reference/apis-telephony-kit/js-apis-call.md)
-- [@ohos.telephony.data (Cellular Data)](../reference/apis-telephony-kit/js-apis-telephony-data.md)
-- [@ohos.telephony.observer (observer)](../reference/apis-telephony-kit/js-apis-observer.md)
-- [@ohos.telephony.radio (Network Search)](../reference/apis-telephony-kit/js-apis-radio.md)
-- [@ohos.telephony.sim (SIM Management)](../reference/apis-telephony-kit/js-apis-sim.md)
-- [@ohos.telephony.sms (SMS)](../reference/apis-telephony-kit/js-apis-sms.md)
-- [@ohos.telephony.call (Call) (System API)](../reference/apis-telephony-kit/js-apis-call-sys.md)
-- [@ohos.telephony.data (Cellular Data) (System API)](../reference/apis-telephony-kit/js-apis-telephony-data-sys.md)
-- [@ohos.telephony.observer (Observer) (System API)](../reference/apis-telephony-kit/js-apis-observer-sys.md)
-- [@ohos.telephony.radio (Radio) (System API)](../reference/apis-telephony-kit/js-apis-radio-sys.md)
-- [@ohos.telephony.sim (SIM Management) (System API)](../reference/apis-telephony-kit/js-apis-sim-sys.md)
-- [@ohos.telephony.sms (SMS) (System API)](../reference/apis-telephony-kit/js-apis-sms-sys.md)
-- [@ohos.wallpaper (Wallpaper)](../reference/apis-basic-services-kit/js-apis-wallpaper.md)
-- [@ohos.wifiext (WLAN Extension)](../reference/apis-connectivity-kit/js-apis-wifiext.md)
-- [@ohos.wifiManager (WLAN)](../reference/apis-connectivity-kit/js-apis-wifiManager.md)
-- [@ohos.wifiManagerExt (WLAN Extension)](../reference/apis-connectivity-kit/js-apis-wifiManagerExt.md)
-- [@system.geolocation (Geolocation)](../reference/apis-location-kit/js-apis-system-location.md)
-- [nfctech (Standard NFC Technologies)](../reference/apis-connectivity-kit/js-apis-nfctech.md)
-- [tagSession (Standard NFC Tag Session)](../reference/apis-connectivity-kit/js-apis-tagSession.md)
-
-<!--no_check-->
-
-  
