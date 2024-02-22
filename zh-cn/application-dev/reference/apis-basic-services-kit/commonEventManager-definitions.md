@@ -741,16 +741,16 @@ Wi-Fi P2P群组信息已更改。
 指示撤销快速修复的动作。
 
 * [COMMON_EVENT_DISTRIBUTED_ACCOUNT_LOGIN](./common_event/commonEvent-account.md#common_event_distributed_account_login)
-（预留事件，暂未支持）表示分布式帐号登录成功的动作。
+表示分布式帐号登录成功的动作。
 
 * [COMMON_EVENT_DISTRIBUTED_ACCOUNT_LOGOUT](./common_event/commonEvent-account.md#common_event_distributed_account_logout)
-（预留事件，暂未支持）表示分布式帐号登出成功的动作。
+表示分布式帐号登出成功的动作。
 
 * [COMMON_EVENT_DISTRIBUTED_ACCOUNT_TOKEN_INVALID](./common_event/commonEvent-account.md#common_event_distributed_account_token_invalid)
-（预留事件，暂未支持）表示分布式帐号token令牌无效的动作。
+表示分布式帐号token令牌无效的动作。
 
 * [COMMON_EVENT_DISTRIBUTED_ACCOUNT_LOGOFF](./common_event/commonEvent-account.md#common_event_distributed_account_logoff)
-（预留事件，暂未支持）表示分布式帐号注销的动作。
+表示分布式帐号注销的动作。
 
 * [COMMON_EVENT_USER_INFO_UPDATED<sup>9+</sup> ](./common_event/commonEvent-account.md#common_event_user_info_updated9)
 表示用户信息已更新。
