@@ -45,7 +45,8 @@ Refresh(value: RefreshOptions)
 | ---------------------------------------- | -------------------------------------- |
 | onStateChange(callback: (state: [RefreshStatus](#refreshstatus枚举说明)) => void) | 当前刷新状态变更时，触发回调。<br/>-&nbsp;state：刷新状态。 |
 | onRefreshing(callback: () => void)       | 进入刷新状态时触发回调。                           |
-
+| refreshOffset(value: number)<sup>12+</sup>                   | 触发刷新的下拉偏移量。<br/>-&nbsp;value：下拉偏移量，单位vp。      |
+| pullToRefresh(value: boolean)<sup>12+</sup>                  | 设置当下拉距离超过refreshOffset时是否触发刷新。<br/>-&nbsp;value：是否触发刷新。 |
 ## RefreshStatus枚举说明
 
 | 名称       | 具体值       | 描述                   |
@@ -99,6 +100,8 @@ struct RefreshExample {
         console.log('onRefreshing test')
       })
       .backgroundColor(0x89CFF0)
+      .refreshOffset(64)
+      .pullToRefresh(true)
     }
   }
 }
@@ -161,6 +164,8 @@ struct RefreshExample {
         console.log('onRefreshing test')
       })
       .backgroundColor(0x89CFF0)
+      .refreshOffset(64)
+      .pullToRefresh(true)
     }
   }
 }
