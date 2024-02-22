@@ -133,8 +133,8 @@ chainMode(direction: Axis, style: ChainStyle)
 
 | 参数名 | 类型                                        | 必填 | 说明                     |
 | ------ | ------------------------------------------- | ---- | ------------------------ |
-| direction  | [Axis](ts-appendix-enums.md#Axis) | 是   | 链的方向。 |
-| style  | [ChainStyle](ts-appendix-enums.md#ChainStyle) | 是   | 链的样式。 |
+| direction  | [Axis](ts-appendix-enums.md#axis) | 是   | 链的方向。 |
+| style  | [ChainStyle](ts-appendix-enums.md#chainstyle11) | 是   | 链的样式。 |
 
 ## 示例
 ### 示例1
