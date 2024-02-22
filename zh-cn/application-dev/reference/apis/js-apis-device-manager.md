@@ -873,7 +873,7 @@ authenticateDevice(deviceInfo: DeviceInfo, authParam: AuthParam, callback: Async
   | 参数名         | 类型                                     | 必填   | 说明      |
   | ---------- | ---------------------------------------- | ---- | ------- |
   | deviceInfo | [DeviceInfo](#deviceinfo)                | 是    | 设备信息。   |
-  | authParam  | [AuthParam](#authparam10)                  | 是    | 认证参数。   |
+  | authParam  | [AuthParam](#authparam)                  | 是    | 认证参数。   |
   | callback   | AsyncCallback&lt;{deviceId:&nbsp;string,&nbsp;pinToken&nbsp;?:&nbsp;number}&gt; | 是    | 认证结果回调。 |
 
 **示例：**
