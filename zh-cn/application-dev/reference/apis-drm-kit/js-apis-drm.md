@@ -45,22 +45,6 @@ import drm from '@ohos.multimedia.drm';
 | CONFIG_SESSION_MAX         | 'maxSessionNum'    | 设备支持的最大会话数     |
 | CONFIG_SESSION_CURRENT   | 'currentSessionNum'    | 当前会话数量     |
 
-## ListenerType
-
-枚举，监听事件类型。
-
-**系统能力：** SystemCapability.Multimedia.Drm.Core
-
-| 名称                       | 值   | 说明            |
-| ------------------------- | ---- | ------------    |
-| LISTENER_DRM_EVENT        | 200    | DRM基础事件   |
-| LISTENER_PROVISION_REQUIRED    | 201    | 设备证书请求事件     |
-| LISTENER_KEY_REQUIRED     | 202    | 密钥请求事件     |
-| LISTENER_KEY_EXPIRED      | 203    | 密钥过期事件       |
-| LISTENER_VENDOR_DEFINED   | 204    | 第三方定义事件     |
-| LISTENER_EXPIRATION_UPDATE    | 206    | 密钥过期更新事件     |
-| LISTENER_KEY_CHANGE    | 207    | 密钥变化事件     |
-
 ## MediaKeyType
 
 枚举，许可证类型。
