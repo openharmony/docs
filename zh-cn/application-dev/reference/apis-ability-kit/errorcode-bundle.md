@@ -729,6 +729,34 @@ Failed to install the HAP because the HAP requests wrong permissions.
 1. 排查是否申请了[MDM类型的权限](../../security/AccessToken/permissions-for-mdm-apps.md)，MDM类型的权限仅针对应用类型为MDM的应用开放。
 2. 排查申请的权限的[权限级别](../../security/AccessToken/permissions-for-all.md)是否比[应用的权限级别](../../security/app-provision-structure.md#bundle-info对象内部结构)高。由于默认应用等级为normal，只能使用normal等级的权限，如果使用了system_basic或system_core等级的权限，将导致报错。在UnsgnedDebugProfileTemplate.json文件中修改apl等级，调整成system_basic或system_core等级，重新签名打包即可。
 
+## 17700055 指定的link无效
+
+**错误信息**<br/>
+The specified link is invalid.
+
+**错误描述**<br/>
+调用bundleManager模块中的canOpenLink接口时，指定的link无效。
+
+**可能原因**<br/>
+输入的link格式有误。
+
+**处理步骤**<br/>
+检查link格式是否正确。
+
+## 17700056 指定link的scheme未在querySchemes字段下配置
+
+**错误信息**<br/>
+The scheme of the specified link is not in the querySchemes.
+
+**错误描述**<br/>
+调用bundleManager模块中的canOpenLink接口时，指定link的scheme未在querySchemes字段下配置。
+
+**可能原因**<br/>
+未在querySchemes字段下配置指定link的scheme。
+
+**处理步骤**<br/>
+检查是否在querySchemes字段下配置了相应的URL scheme。
+
 ## 17700201 abc文件校验失败
 **错误信息**<br/>
 Failed to verify abc.
