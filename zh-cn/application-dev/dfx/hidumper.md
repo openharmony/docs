@@ -1,8 +1,6 @@
 # hidumper
 
-
 HiDumper为开发、测试人员提供统一的系统信息获取工具，可帮助使用者分析，定位问题。
-
 
 ## 前置条件
 
@@ -10,69 +8,73 @@ HiDumper为开发、测试人员提供统一的系统信息获取工具，可帮
 
 - 正常连接设备。
 
-
 ## 命令行说明
 
-| 选项 | 说明 | 
+| 选项 | 说明 |
 | -------- | -------- |
-| -lc | 系统信息集群列表。 | 
-| -ls | 系统能力列表。 | 
-| -c | 所有系统信息集群。 | 
-| -s | 所有系统能力。 | 
-| -e | 崩溃历史记录的故障日志。 | 
-| --net | 导出网络信息。 | 
-| --storage | 导出存储信息。 | 
-| -p | 进程信息，包括进程和线程的列表和信息。 | 
-| --cpuusage [pid] | 按进程和类别转储CPU使用率；如果指定pid，则转储指定pid的类别使用率。 | 
-| --cpufreq | dump每个核的真实CPU频率。 | 
-| --mem [pid] | dump总内存占用率；如果指定pid，则dump指定pid的内存占用率。 | 
-| --mem-smaps pid [-v] | 在/proc/pid/smaps中显示统计信息，使用-v指定更多详细信息。 | 
-| --zip | 将输出压缩到/data/log/hidumper。 | 
-
+| -h  | 帮助命令。 |
+| -lc | 系统信息集群列表。 |
+| -ls | 系统能力列表。 |
+| -c | 所有系统信息集群。 |
+| -s | 所有系统能力。 |
+| -e | 崩溃历史记录的故障日志。 |
+| --net | 导出网络信息。 |
+| --storage | 导出存储信息。 |
+| -p | 进程信息，包括进程和线程的列表和信息。 |
+| --cpuusage [pid] | 按进程和类别转储CPU使用率；如果指定pid，则转储指定pid的类别使用率。 |
+| --cpufreq | dump每个核的真实CPU频率。 |
+| --mem [pid] | dump总内存占用率；如果指定pid，则dump指定pid的内存占用率。 |
+| --mem-smaps pid [-v] | 在/proc/pid/smaps中显示统计信息，使用-v指定更多详细信息。 |
+| --zip | 将输出压缩到/data/log/hidumper。 |
 
 ## 常用命令
 
 1. 查看设备中指定pid的内存信息，命令格式如下：
+
    ```
    hidumper --mem pid
    ```
 
    **使用样例：**
 
-   ![zh-cn_image_0000001704905114](figures/zh-cn_image_0000001704905114.png)
+   ![](figures/hidumper-mem-pid.png)
 
 2. 查看设备中所有pid的内存信息，命令格式如下：
+
    ```
    hidumper --mem
    ```
 
    **使用样例：**
 
-   ![zh-cn_image_0000001704907994](figures/zh-cn_image_0000001704907994.png)
+   ![](figures/hidumper-mem.png)
 
 3. 按进程和类别转储CPU使用率，命令格式如下：
+
    ```
    hidumper --cpuusage
    ```
 
    **使用样例：**
 
-   ![zh-cn_image_0000001705067934](figures/zh-cn_image_0000001705067934.png)
+   ![](figures/hidumper-cpuusage.png)
 
 4. 转储指定pid的类别使用率，命令格式如下：
+
    ```
    hidumper --cpuusage pid
    ```
 
    **使用样例：**
 
-   ![zh-cn_image_0000001752868205](figures/zh-cn_image_0000001752868205.png)
+   ![](figures/hidumper-cpuusage-pid.png)
 
 5. 获取id为3301的元能力的帮助，命令格式如下：
+
    ```
    hidumper -s 3301 -a "-h" 
    ```
 
    **使用样例：**
 
-   ![zh-cn_image_0000001704909298](figures/zh-cn_image_0000001704909298.png)
+   ![](figures/hidumper-s-3301.png)
