@@ -60,7 +60,7 @@ guideLine参数，用于定义一条guideline的id、方向和位置。
 | 名称    | 类型      | 必填   | 描述                    |
 | ----- | ------- | ---- | --------------------- |
 | id  | string  | 是    | guideline的id，必须是唯一的并且不可与容器内组件重名。   |
-| direction | [Axis](ts-appendix-enums.md#Axis) | 是    | 指定guideline的方向。 |
+| direction | [Axis](ts-appendix-enums.md#axis) | 是    | 指定guideline的方向。 |
 | position | [GuideLinePosition](#guidelineposition11) | 是    | 指定guideline的位置。 |
 
 ## GuideLinePosition<sup>11+</sup>
