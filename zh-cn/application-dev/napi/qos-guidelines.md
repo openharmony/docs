@@ -71,7 +71,7 @@ QoS等级更高的任务在系统中能获得更优先的执行权。
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | OH_QoS_SetThreadQoS(QoS_Level level) | 设置当前线程的QoS等级。 | QoS_Level level | 0或-1 |
 | OH_QoS_ResetThreadQoS() | 取消当前线程设置的QoS等级。 | 无 | 0或-1 |
-| OH_QoS_GetThreadQoS(QoS_Level *level) | 获取当前线程的QoS等级。 | QoS_Level *level。 | 0或-1 |
+| OH_QoS_GetThreadQoS(QoS_Level *level) | 获取当前线程的QoS等级。 | QoS_Level *level | 0或-1 |
 
 ### 使用限制
 * QoS接口只能设置本任务的QoS等级。
@@ -164,7 +164,7 @@ QoS_Level *level
 * 若成功则返回0，失败则返回-1。
 
 #### 描述
-获取某个任务之前最近一次设置的QoS等级；如果之前未设置任何QoS等级，则为默认QOS_DEFAULT。
+获取某个任务之前最近一次设置的QoS等级；如果之前未设置任何QoS等级，则返回-1。
 
 #### 样例
 ```
@@ -173,9 +173,9 @@ QoS_Level *level
 int main()
 {
     // 获取当前线程的QoS等级
-
     QoS_Level level = QoS_Level::QOS_DEFAULT;
     ret = OH_QoS_GetThreadQoS(&level);
+
     if (!ret) { // ret等于0说明获取成功
         printf("get QoS level %d Success.", level);
     } else { // ret不等于0说明获取失败
@@ -194,6 +194,21 @@ int main()
 CMakeLists.txt中添加以下lib：
 ```txt
 libqos.so
+```
+
+#### 示例
+```txt
+# the minimum version of CMake.
+cmake_minimum_required(VERSION 3.4.1)
+project(qos)
+
+set(NATIVERENDER_ROOT_PATH ${CMAKE_CURRENT_SOURCE_DIR})
+
+include_directories(${NATIVERENDER_ROOT_PATH}
+                    ${NATIVERENDER_ROOT_PATH}/include)
+
+add_library(entry SHARED hello.cpp)
+target_link_libraries(entry PUBLIC libqos.so)
 ```
 
 **头文件**
