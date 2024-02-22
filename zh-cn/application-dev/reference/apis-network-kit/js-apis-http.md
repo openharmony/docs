@@ -1296,13 +1296,13 @@ httpRequest.request("EXAMPLE_URL", (err: BusinessError, data: http.HttpResponse)
   if (!err) {
     httpResponseCache.flush((err: BusinessError) => {
       if (err) {
-        console.info('flush fail');
+        console.error('flush fail');
       }
       console.info('flush success');
     });
     httpRequest.destroy();
   } else {
-    console.info('error:' + JSON.stringify(err));
+    console.error('error:' + JSON.stringify(err));
     // 当该请求使用完毕时，开发者务必调用destroy方法主动销毁该JavaScript Object。
     httpRequest.destroy();
   }
@@ -1335,12 +1335,12 @@ let promise = httpRequest.request("EXAMPLE_URL");
 
 promise.then((data: http.HttpResponse) => {
   httpResponseCache.flush().then(() => {
-    console.info('flush success');
+    console.error('flush success');
   }).catch((err: BusinessError) => {
     console.info('flush fail');
   });
 }).catch((err: Error) => {
-  console.info('error:' + JSON.stringify(err));
+  console.error('error:' + JSON.stringify(err));
 });
 ```
 
@@ -1370,17 +1370,17 @@ httpRequest.request("EXAMPLE_URL").then(data => {
   httpResponseCache.delete(err => {
     try {
       if (err) {
-        console.info('fail: ' + err);
+        console.error('fail: ' + err);
       } else {
         console.info('success');
       }
     } catch (err) {
-      console.info('error: ' + err);
+      console.error('error: ' + err);
     }
   });
   httpRequest.destroy();
 }).catch(error => {
-  console.info("errocode" + JSON.stringify(error));
+  console.error("errocode" + JSON.stringify(error));
 });
 ```
 
@@ -1410,11 +1410,11 @@ httpRequest.request("EXAMPLE_URL").then(data => {
   httpResponseCache.delete().then(() => {
     console.log("success");
   }).catch(err => {
-    console.log("fail");
+    console.error("fail");
   });
   httpRequest.destroy();
 }).catch(error => {
-  console.info("errocode" + JSON.stringify(error));
+  console.error("errocode" + JSON.stringify(error));
 });
 ```
 
