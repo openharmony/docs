@@ -84,7 +84,7 @@
         - [@system.request (上传下载)](js-apis-system-request.md)
         - [@ohos.commonEvent (公共事件模块)(系统接口)](js-apis-commonEvent-sys.md)
         - [@ohos.usb (USB管理)(系统接口)](js-apis-usb-deprecated-sys.md)
-        - [@ohos.systemParameter (系统参数)(系统接口)](js-apis-system-parameter-sys.md)
+        - [@ohos.systemParameter (系统属性)(系统接口)](js-apis-system-parameter-sys.md)
 - 错误码
     - [USB服务错误码](errorcode-usb.md)
     - [RunningLock锁错误码](errorcode-runninglock.md)
