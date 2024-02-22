@@ -40,7 +40,7 @@ queryBundleStateInfos(begin: number, end: number, callback: AsyncCallback&lt;Bun
 | -------- | ---------------------------------------- | ---- | --------------------------------------- |
 | begin    | number                                   | 是    | 起始时间，单位毫秒。                                   |
 | end      | number                                   | 是    | 结束时间，单位毫秒。                                   |
-| callback | AsyncCallback&lt;[BundleActiveInfoResponse](#bundleactiveinforesponse)&gt; | 是    | 指定的callback回调方法。返回指定起始和结束时间内应用使用时长统计信息。 |
+| callback | AsyncCallback&lt;[BundleActiveInfoResponse](js-apis-deviceUsageStatistics.md#bundleactiveinforesponse)&gt; | 是    | 指定的callback回调方法。返回指定起始和结束时间内应用使用时长统计信息。 |
 
 **示例**：
 
