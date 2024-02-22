@@ -223,7 +223,7 @@ console.info(`result: ${vector.getFirstElement()}`); // 访问元素
 // Deque
 import Deque from '@ohos.util.Deque'; // 导入Deque模块
 
-let deque = new Deque;
+let deque = new Deque();
 deque.insertFront('a');
 deque.insertFront(1); // 增加元素
 console.info(`result: ${deque[0]}`); // 访问元素
