@@ -236,7 +236,7 @@ deleteKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<v
 | 参数名   | 类型                        | 必填 | 说明                                          |
 | -------- | --------------------------- | ---- | --------------------------------------------- |
 | keyAlias | string                      | 是   | 密钥别名，应为生成key时传入的别名。           |
-| options  | [HuksOptions](#huksoptions) | 是   | 用于删除时指定密钥的属性TAG。                      |
+| options  | [HuksOptions](#huksoptions) | 是   | 用于删除时指定密钥的属性TAG，如使用[HuksAuthStorageLevel](#huksauthstoragelevel11)指定需删除密钥的安全级别，可传空，传空时默认DE。                      |
 | callback | AsyncCallback\<void>        | 是   | 回调函数。不返回err值时表示接口使用成功，其他时为错误。 |
 
 **错误码：**
@@ -288,7 +288,7 @@ deleteKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>
 | 参数名   | 类型                        | 必填 | 说明                                |
 | -------- | --------------------------- | ---- | ----------------------------------- |
 | keyAlias | string                      | 是   | 密钥别名，应为生成key时传入的别名。 |
-| options  | [HuksOptions](#huksoptions) | 是   | 用于删除时指定密钥的属性TAG。            |
+| options  | [HuksOptions](#huksoptions) | 是   | 用于删除时指定密钥的属性TAG，如使用[HuksAuthStorageLevel](#huksauthstoragelevel11)指定需删除密钥的安全级别，可传空，传空时默认DE。。            |
 
 **错误码：**
 
@@ -1657,7 +1657,7 @@ isKeyItemExist(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<
 | 参数名   | 类型                        | 必填 | 说明                                                     |
 | -------- | --------------------------- | ---- |--------------------------------------------------------|
 | keyAlias | string                      | 是   | 所需查找的密钥的别名。                                            |
-| options  | [HuksOptions](#huksoptions) | 是   | 用于查询时指定密钥的属性TAG。     |
+| options  | [HuksOptions](#huksoptions) | 是   | 用于查询时指定密钥的属性TAG，如使用[HuksAuthStorageLevel](#huksauthstoragelevel11)指定需查询密钥的安全级别，可传空，传空时默认DE。     |
 | callback | AsyncCallback\<boolean>     | 是   | 回调函数。若密钥存在，data为true，若密钥不存在，则error中会输出密钥不存在的error code。 |
 
 **错误码：**
@@ -1714,7 +1714,7 @@ isKeyItemExist(keyAlias: string, options: HuksOptions) : Promise\<boolean>
 | 参数名   | 类型                        | 必填 | 说明                     |
 | -------- | --------------------------- | ---- | ------------------------ |
 | keyAlias | string                      | 是   | 所需查找的密钥的别名。   |
-| options  | [HuksOptions](#huksoptions) | 是   | 用于查询时指定密钥的属性TAG。 |
+| options  | [HuksOptions](#huksoptions) | 是   | 用于查询时指定密钥的属性TAG，如使用[HuksAuthStorageLevel](#huksauthstoragelevel11)指定需查询密钥的安全级别，可传空，传空时默认DE。 |
 
 **返回值：**
 
@@ -1776,7 +1776,7 @@ hasKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<bool
 | 参数名   | 类型                        | 必填 | 说明                                                     |
 | -------- | --------------------------- | ---- |--------------------------------------------------------|
 | keyAlias | string                      | 是   | 所需查找的密钥的别名。                                            |
-| options  | [HuksOptions](#huksoptions) | 是   | 用于查询时指定密钥的属性TAG，如使用HuksAuthStorageLevel指定查询密钥的存储安全等级。可传空     |
+| options  | [HuksOptions](#huksoptions) | 是   | 用于查询时指定密钥的属性TAG，如使用[HuksAuthStorageLevel](#huksauthstoragelevel11)指定需查询密钥的安全级别，可传空，传空时默认DE。     |
 | callback | AsyncCallback\<boolean>     | 是   | 回调函数。若密钥存在，data为true，若密钥不存在，data为false。 |
 
 **错误码：**
@@ -1838,7 +1838,7 @@ hasKeyItem(keyAlias: string, options: HuksOptions) : Promise\<boolean>
 | 参数名   | 类型                        | 必填 | 说明                     |
 | -------- | --------------------------- | ---- | ------------------------ |
 | keyAlias | string                      | 是   | 所需查找的密钥的别名。   |
-| options  | [HuksOptions](#huksoptions) | 是   | 用于查询时指定密钥的属性TAG，如使用HuksAuthStorageLevel指定查询密钥的存储安全等级。可传空     |
+| options  | [HuksOptions](#huksoptions) | 是   | 用于查询时指定密钥的属性TAG，如使用[HuksAuthStorageLevel](#huksauthstoragelevel11)指定需查询密钥的安全级别，可传空，传空时默认DE。     |
 
 **返回值：**
 
