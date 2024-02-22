@@ -378,16 +378,16 @@ zh-cn/application-dev/reference/apis-arkts/js-apis-taskpool.md @gongjunsong @ge-
 zh-cn/application-dev/windowmanager/ @ge-yafang @zhangqiang183 @zhouyaoying @zxg-gitee @nobuggers
 zh-cn/application-dev/reference/apis-arkui/js-apis-window.md @zhangqiang183  @ge-yafang @zhouyaoying @zxg-gitee @nobuggers
 zh-cn/application-dev/reference/apis-arkui/js-apis-window-sys.md @zhangqiang183  @ge-yafang @zhouyaoying @zxg-gitee @nobuggers
-zh-cn/application-dev/reference/apis-arkui/js-apis-display.md @hjoksky @zhangqiang183 @ge-yafang @zhouyaoying @zxg-gitee @nobuggers
-zh-cn/application-dev/reference/apis-arkui/js-apis-display-sys.md @hjoksky @zhangqiang183 @ge-yafang @zhouyaoying @zxg-gitee @nobuggers
+zh-cn/application-dev/reference/apis-arkui/js-apis-display.md @hjoksky @achao @zhangqiang183 @ge-yafang @zhouyaoying @zxg-gitee @nobuggers
+zh-cn/application-dev/reference/apis-arkui/js-apis-display-sys.md @hjoksky @achao @zhangqiang183 @ge-yafang @zhouyaoying @zxg-gitee @nobuggers
 zh-cn/application-dev/reference/apis-arkui/js-apis-pipWindow.md @zhangqiang183 @ge-yafang @zhouyaoying @zxg-gitee @nobuggers
-zh-cn/application-dev/reference/apis-arkui/js-apis-screen-sys.md @hjoksky @zhangqiang183 @ge-yafang @zhouyaoying @zxg-gitee @nobuggers
-zh-cn/application-dev/reference/apis-arkui/js-apis-screenshot-sys.md @hjoksky @zhangqiang183 @ge-yafang @zhouyaoying @zxg-gitee @nobuggers
+zh-cn/application-dev/reference/apis-arkui/js-apis-screen-sys.md @hjoksky @achao @zhangqiang183 @ge-yafang @zhouyaoying @zxg-gitee @nobuggers
+zh-cn/application-dev/reference/apis-arkui/js-apis-screenshot-sys.md @hjoksky @achao @zhangqiang183 @ge-yafang @zhouyaoying @zxg-gitee @nobuggers
 zh-cn/application-dev/reference/apis-arkui/js-apis-windowAnimationManager-sys.md @zhangqiang183 @ge-yafang @liuchao92 @zxg-gitee
 zh-cn/application-dev/reference/apis-arkui/js-apis-application-WindowExtensionAbility-sys.md @zhangqiang183 @ge-yafang @zhouyaoying @zxg-gitee @nobuggers
 zh-cn/application-dev/reference/apis-arkui/js-apis-inner-application-windowExtensionContext-sys.md @ge-yafang @zhouyaoying @zxg-gitee @nobuggers
 zh-cn/application-dev/reference/apis-arkui/errorcode-window.md @ge-yafang @zhouyaoying @zxg-gitee @nobuggers  
-zh-cn/application-dev/reference/apis-arkui/errorcode-display.md @ge-yafang @zhouyaoying @zxg-gitee @nobuggers
+zh-cn/application-dev/reference/apis-arkui/errorcode-display.md @ge-yafang @achao @zhouyaoying @zxg-gitee @nobuggers
 zh-cn/application-dev/webgl/ @ge-yafang @zhangqiang183  @wind_zj @zxg-gitee
 
 [ArkData开发指南]
