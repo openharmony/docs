@@ -93,7 +93,7 @@ import window from '@ohos.window';
 | AUTO_ROTATION_LANDSCAPE               | 7    | 表示传感器自动横向旋转模式。 |
 | AUTO_ROTATION_RESTRICTED              | 8    | 表示受开关控制的自动旋转模式。 |
 | AUTO_ROTATION_PORTRAIT_RESTRICTED     | 9    | 表示受开关控制的自动竖向旋转模式。 |
-| AUTO_ROTATION_LANDSCAPE_RESTRICTED    | 10   | 表述受开关控制的自动横向旋转模式。 |
+| AUTO_ROTATION_LANDSCAPE_RESTRICTED    | 10   | 表示受开关控制的自动横向旋转模式。 |
 | LOCKED                                | 11   | 表示锁定模式。 |
 
 
