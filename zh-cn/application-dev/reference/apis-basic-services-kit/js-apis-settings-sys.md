@@ -13,6 +13,18 @@
 import settings from '@ohos.settings';
 ```
 
+## domainName
+
+提供查询的域名
+
+### 属性
+
+**系统能力：** SystemCapability.Applications.Settings.Core
+
+| 名称                | 类型   | 可读 | 可写 | 说明                                                         |
+| ------------------- | ------ | ---- | ---- | ------------------------------------------------------------ |
+| USER_SECURITY<sup>11+</sup>      | string | 是   | 是   | 用户安全属性域                                          |
+
 
 ## settings.setValue<sup>(deprecated)</sup>
 
