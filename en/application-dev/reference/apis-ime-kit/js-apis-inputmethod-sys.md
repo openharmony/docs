@@ -1,0 +1,237 @@
+# @ohos.inputMethod (Input Method Framework) (System API)
+
+The **inputMethod** module is oriented to common foreground applications (third-party applications and system applications such as Notes, Messaging, and Settings). It provides input method control and management capabilities, including displaying or hiding the soft keyboard, switching between input methods, and obtaining the list of all input methods.
+
+> **NOTE**
+>
+> The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+
+
+## Modules to Import
+
+```ts
+import inputMethod from '@ohos.inputMethod';
+```
+
+## inputMethod.switchInputMethod<sup>11+</sup>
+switchInputMethod(bundleName: string, subtypeId?: string): Promise&lt;void&gt;
+
+Switches to another input method. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.CONNECT_IME_ABILITY
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**System API**: This is a system API.
+
+**Parameters**
+
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  |bundleName |  string| Yes| Bundle name of the target input method.|
+  |subtypeId |  string| No| Input method subtype.|
+
+**Return value**
+
+  | Type          | Description                    |
+  | -------------- | ----------------------- |
+  | Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
+
+| ID| Error Message                            |
+| -------- | -------------------------------------- |
+| 12800005 | configuration persisting error.        |
+| 12800008 | input method manager service error. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let currentIme = inputMethod.getCurrentInputMethod();
+try {
+  inputMethod.switchInputMethod(currentIme.name).then(() => {
+    console.log('Succeeded in switching inputmethod.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to switchInputMethod: ${JSON.stringify(err)}`);
+  })
+} catch (err) {
+  console.error(`Failed to switchInputMethod: ${JSON.stringify(err)}`);
+}
+let currentImeSubType = inputMethod.getCurrentInputMethodSubtype();
+try {
+  inputMethod.switchInputMethod(currentIme.name, currentImeSubType.id).then(() => {
+    console.log('Succeeded in switching inputmethod.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to switchInputMethod: ${JSON.stringify(err)}`);
+  })
+} catch (err) {
+  console.error(`Failed to switchInputMethod: ${JSON.stringify(err)}`);
+}
+```
+
+## InputMethodSetting<sup>8+</sup>
+
+In the following API examples, you must first use [getSetting](./js-apis-inputmethod.md#inputmethodgetsetting9) to obtain an **InputMethodSetting** instance, and then call the APIs using the obtained instance.
+
+### on('imeShow')<sup>10+</sup>
+
+on(type: 'imeShow', callback: (info: Array\<InputWindowInfo>) => void): void
+
+Enables listening for the show event of the soft keyboard. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type| Mandatory| Description|
+| -------- | ---- | ---- | ---- |
+| type     | string | Yes| Listening type. The value is fixed at **'imeShow'**.|
+| callback | (info: Array\<InputWindowInfo>) => void | Yes| Callback used to return the information about the soft keyboard of the input method.|
+
+**Example**
+
+```ts
+try {
+  inputMethodSetting.on('imeShow', (info: Array<inputMethod.InputWindowInfo>) => {
+    console.info('Succeeded in subscribing imeShow event.');
+  });
+} catch(err) {
+  console.error(`Failed to unsubscribing imeShow. err: ${JSON.stringify(err)}`);
+}
+```
+
+### on('imeHide')<sup>10+</sup>
+
+on(type: 'imeHide', callback: (info: Array\<InputWindowInfo>) => void): void
+
+Enables listening for the hide event of the soft keyboard. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type| Mandatory| Description|
+| -------- | ---- | ---- | ---- |
+| type     | string | Yes| Listening type. The value is fixed at **'imeHide'**.|
+| callback | (info: Array\<InputWindowInfo>) => void | Yes| Callback used to return the information about the soft keyboard of the input method.|
+
+**Example**
+
+```ts
+try {
+  inputMethodSetting.on('imeHide', (info: Array<inputMethod.InputWindowInfo>) => {
+    console.info('Succeeded in subscribing imeHide event.');
+  });
+} catch(err) {
+  console.error(`Failed to unsubscribing imeHide. err: ${JSON.stringify(err)}`);
+}
+```
+
+### off('imeShow')<sup>10+</sup>
+
+off(type: 'imeShow', callback?: (info: Array\<InputWindowInfo>) => void): void
+
+Disables listening for the show event of the soft keyboard.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type| Mandatory| Description  |
+| -------- | ---- | ---- | ------ |
+| type     | string | Yes| Listening type. The value is fixed at **'imeShow'**.|
+| callback | (info: Array\<InputWindowInfo>) => void  | No| Callback used for disable listening.<br>If this parameter is not specified, listening will be disabled for all callbacks corresponding to the specified type.|
+
+**Example**
+
+```ts
+try {
+  inputMethodSetting.off('imeShow');
+} catch(err) {
+  console.error(`Failed to unsubscribing imeShow. err: ${JSON.stringify(err)}`);
+}
+```
+
+### off('imeHide')<sup>10+</sup>
+
+off(type: 'imeHide', callback?: (info: Array\<InputWindowInfo>) => void): void
+
+Disables listening for the hide event of the soft keyboard.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type| Mandatory| Description  |
+| -------- | ---- | ---- | ------ |
+| type     | string | Yes| Listening type. The value is fixed at **'imeHide'**.|
+| callback | (info: Array\<InputWindowInfo>) => void  | No| Callback used for disable listening.<br>If this parameter is not specified, listening will be disabled for all callbacks corresponding to the specified type.|
+
+**Example**
+
+```ts
+try {
+  inputMethodSetting.off('imeHide');
+} catch(err) {
+  console.error(`Failed to unsubscribing imeHide. err: ${JSON.stringify(err)}`);
+}
+```
+
+### isPanelShown<sup>11+</sup>
+
+isPanelShown(panelInfo: PanelInfo): boolean
+
+Checks whether the input method panel of a specified type is shown.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name   | Type                                                 | Mandatory| Description              |
+| --------- | ----------------------------------------------------- | ---- | ------------------ |
+| panelInfo | [PanelInfo](./js-apis-inputmethod-panel.md#panelinfo) | Yes  | Information about the input method panel.|
+
+**Return value**
+
+| Type   | Description                                                        |
+| ------- | ------------------------------------------------------------ |
+| boolean | Whether the input method panel is shown.<br>- The value **true** means that the input method panel is shown.<br>- The value **false** means that the input method panel is hidden.|
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 12800008 | input method manager service error. |
+
+**Example**
+
+```ts
+import { PanelInfo, PanelType, PanelFlag } from '@ohos.inputMethod.Panel';
+
+let info: PanelInfo = {
+  type: PanelType.SOFT_KEYBOARD,
+  flag: PanelFlag.FLAG_FIXED
+}
+try {
+  let result = inputMethodSetting.isPanelShown(info);
+  console.log('Succeeded in querying isPanelShown, result: ' + result);
+} catch (err) {
+  console.error(`Failed to query isPanelShown: ${JSON.stringify(err)}`);
+}
+```

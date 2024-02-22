@@ -2473,6 +2473,8 @@ recoverForms(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 
 恢复被回收的卡片，并将它的状态更新为不可回收，如果卡片未被回收则只更新状态为不可回收。使用Promise异步回调。
 
+**模型约束**: 此接口仅可在Stage模型下使用。
+
 **需要权限**：ohos.permission.REQUIRE_FORM
 
 **系统能力**：SystemCapability.Ability.Form

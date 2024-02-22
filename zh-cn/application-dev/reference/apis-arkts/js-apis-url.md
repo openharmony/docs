@@ -32,11 +32,18 @@ URLParams的构造函数。
 **示例：**
 
 ```ts
+// 通过string[][]方式构造URLParams对象：
 let objectParams = new Url.URLParams([ ['user1', 'abc1'], ['query2', 'first2'], ['query3', 'second3'] ]);
+// 通过Record<string, string>方式构造URLParams对象：
 let objectParams1 = new Url.URLParams({"fod" : '1' , "bard" : '2'});
+// 通过string方式构造URLParams对象：
 let objectParams2 = new Url.URLParams('?fod=1&bard=2');
+// 通过Url对象的search属性构造URLParams对象：
 let urlObject = Url.URL.parseURL('https://developer.mozilla.org/?fod=1&bard=2');
-let params = new Url.URLParams(urlObject.search);
+let objectParams3 = new Url.URLParams(urlObject.search);
+// 通过Url对象的params属性获取URLParams对象：
+let urlObject1 = Url.URL.parseURL('https://developer.mozilla.org/?fod=1&bard=2');
+let objectParams4 = urlObject1.params;
 ```
 
 
@@ -456,7 +463,7 @@ URL静态成员函数。
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | url | string | 是 | 入参对象。 |
-| base | string | URL | 否 | 入参字符串或者对象。<br/>- string：字符串<br/>- URL：字符串或对象<br/>- 默认值是空字符串或空对象。 |
+| base | string \| URL | 否 | 入参字符串或者对象。<br/>- string：字符串<br/>- URL：字符串或对象<br/>- 默认值是空字符串或空对象。 |
 
 **错误码：**
 

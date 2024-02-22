@@ -195,7 +195,7 @@ import common from '@ohos.app.ability.common';
 import Want from '@ohos.app.ability.Want';
 
 export default class MyVpnExtAbility extends VpnExtensionAbility {
-  private VpnConnection: vpnExt.VpnConnectionExt;
+  private VpnConnection: vpnExt.VpnConnection;
   onCreate(want: Want) {
     this.VpnConnection = vpnExt.createVpnConnection(this.context);
     console.info("vpn createVpnConnection: " + JSON.stringify(this.VpnConnection));
@@ -249,7 +249,7 @@ import vpn_client from 'libvpn_client.so';
 import hilog from '@ohos.hilog';
 
 export default class MyVpnExtAbility extends VpnExtensionAbility {
-  private VpnConnection: vpnExt.VpnConnectionExt;
+  private VpnConnection: vpnExt.VpnConnection;
   private tunIp: string = '10.0.0.5';
   private blockedAppName: string = 'com.example.myvpndemo';
   onCreate(want: Want) {
@@ -353,7 +353,7 @@ import hilog from '@ohos.hilog';
 
 let g_tunnelFd = -1;
 export default class MyVpnExtAbility extends VpnExtensionAbility {
-  private VpnConnection: vpnExt.VpnConnectionExt;
+  private VpnConnection: vpnExt.VpnConnection;
   private vpnServerIp: string = '192.168.31.13';
   onCreate(want: Want) {
     this.VpnConnection = vpnExt.createVpnConnection(this.context);
@@ -406,7 +406,7 @@ import Want from '@ohos.app.ability.Want';
 import VpnExtensionAbility from '@ohos.app.ability.VpnExtensionAbility';
 
 export default class MyVpnExtAbility extends VpnExtensionAbility {
-  private VpnConnection: vpnExt.VpnConnectionExt;
+  private VpnConnection: vpnExt.VpnConnection;
   onCreate(want: Want) {
     this.VpnConnection = vpnExt.createVpnConnection(this.context);
     console.info("vpn createVpnConnection: " + JSON.stringify(this.VpnConnection));

@@ -30,7 +30,6 @@ import audio from '@ohos.multimedia.audio';
 | leftVolume  | number | 否  | 设置左声道音量，设置范围（0.0~1.0）。                                    |
 | rightVolume | number  | 否  | 设置右声道音量。（当前不支持左右分别设置，将以左声道音量为准）。 |
 | priority  | number  | 否  | 音频流播放的优先级，0为最低优先级，数值越大优先级越高，通过相互比较大小确定播放优先级。      |
-| parallelPlayFlag | boolean | 否   | 是否和其它正在播放的音频并行播放的标识，true:不抢占音频焦点和其它正在播放的音频并行播放，false:抢占焦点打断其它正在播放的音频。<br/>此接口为系统接口。|
 
 ## SoundPool
 

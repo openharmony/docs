@@ -115,3 +115,23 @@ MyGlobalBuilderFunction()
 1. [自定义弹窗（CustomDialog）](../reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md)
 2. [Popup控制](../reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md)
 3. [@Builder装饰器：自定义构建函数](../quick-start/arkts-builder.md)
+
+## 为什么两个紧挨着的相同颜色的控件之间会有白线、暗线。如何解决(API 11)
+
+**解决措施**
+
+白线、暗线通常是因为相邻的同色控件边界落在了浮点数坐标上，图形层做了抗锯齿处理，视觉上产生了一条白线或暗线。可以通过pixelRound通用属性设置，
+使产生白线、暗线两侧的组件边界对齐到整数像素坐标上。
+
+使用方法：
+```ts
+Flex(){
+    Column().height('30%').width('30%').backgroundColor(Color.Blue)
+        .pixelRound({end: PixelRoundCalcPolicy.FORCE_CEIL})
+    Column().height('30%').width('30%').backgroundColor(Color.Blue)
+    Column().height('30%').width('30%').backgroundColor(Color.Blue)
+}
+```
+
+**参考链接**
+[布局约束](../reference/apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md)
