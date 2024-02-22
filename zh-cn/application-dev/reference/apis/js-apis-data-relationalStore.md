@@ -1677,7 +1677,7 @@ if(store != undefined) {
 
 insert(table: string, values: ValuesBucket, callback: AsyncCallback&lt;number&gt;):void
 
-向目标表中插入一行数据，使用callback异步回调。
+向目标表中插入一行数据，使用callback异步回调。由于共享内存大小限制为2Mb，因此单条数据的大小需小于2Mb，否则会查询失败。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1732,7 +1732,7 @@ if(store != undefined) {
 
 insert(table: string, values: ValuesBucket,  conflict: ConflictResolution, callback: AsyncCallback&lt;number&gt;):void
 
-向目标表中插入一行数据，使用callback异步回调。
+向目标表中插入一行数据，使用callback异步回调。由于共享内存大小限制为2Mb，因此单条数据的大小需小于2Mb，否则会查询失败。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1789,7 +1789,7 @@ if(store != undefined) {
 
 insert(table: string, values: ValuesBucket):Promise&lt;number&gt;
 
-向目标表中插入一行数据，使用Promise异步回调。
+向目标表中插入一行数据，使用Promise异步回调。由于共享内存大小限制为2Mb，因此单条数据的大小需小于2Mb，否则会查询失败。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1848,7 +1848,7 @@ if(store != undefined) {
 
 insert(table: string, values: ValuesBucket,  conflict: ConflictResolution):Promise&lt;number&gt;
 
-向目标表中插入一行数据，使用Promise异步回调。
+向目标表中插入一行数据，使用Promise异步回调。由于共享内存大小限制为2Mb，因此单条数据的大小需小于2Mb，否则会查询失败。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2066,7 +2066,7 @@ if(store != undefined) {
 
 update(values: ValuesBucket, predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void
 
-根据RdbPredicates的指定实例对象更新数据库中的数据，使用callback异步回调。
+根据RdbPredicates的指定实例对象更新数据库中的数据，使用callback异步回调。由于共享内存大小限制为2Mb，因此单条数据的大小需小于2Mb，否则会查询失败。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2123,7 +2123,7 @@ if(store != undefined) {
 
 update(values: ValuesBucket, predicates: RdbPredicates, conflict: ConflictResolution, callback: AsyncCallback&lt;number&gt;):void
 
-根据RdbPredicates的指定实例对象更新数据库中的数据，使用callback异步回调。
+根据RdbPredicates的指定实例对象更新数据库中的数据，使用callback异步回调。由于共享内存大小限制为2Mb，因此单条数据的大小需小于2Mb，否则会查询失败。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2181,7 +2181,7 @@ if(store != undefined) {
 
 update(values: ValuesBucket, predicates: RdbPredicates):Promise&lt;number&gt;
 
-根据RdbPredicates的指定实例对象更新数据库中的数据，使用Promise异步回调。
+根据RdbPredicates的指定实例对象更新数据库中的数据，使用Promise异步回调。由于共享内存大小限制为2Mb，因此单条数据的大小需小于2Mb，否则会查询失败。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2242,7 +2242,7 @@ if(store != undefined) {
 
 update(values: ValuesBucket, predicates: RdbPredicates, conflict: ConflictResolution):Promise&lt;number&gt;
 
-根据RdbPredicates的指定实例对象更新数据库中的数据，使用Promise异步回调。
+根据RdbPredicates的指定实例对象更新数据库中的数据，使用Promise异步回调。由于共享内存大小限制为2Mb，因此单条数据的大小需小于2Mb，否则会查询失败。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2304,7 +2304,7 @@ if(store != undefined) {
 
 update(table: string, values: ValuesBucket, predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallback&lt;number&gt;):void
 
-根据DataSharePredicates的指定实例对象更新数据库中的数据，使用callback异步回调。
+根据DataSharePredicates的指定实例对象更新数据库中的数据，使用callback异步回调。由于共享内存大小限制为2Mb，因此单条数据的大小需小于2Mb，否则会查询失败。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2367,7 +2367,7 @@ if(store != undefined) {
 
 update(table: string, values: ValuesBucket, predicates: dataSharePredicates.DataSharePredicates):Promise&lt;number&gt;
 
-根据DataSharePredicates的指定实例对象更新数据库中的数据，使用Promise异步回调。
+根据DataSharePredicates的指定实例对象更新数据库中的数据，使用Promise异步回调。由于共享内存大小限制为2Mb，因此单条数据的大小需小于2Mb，否则会查询失败。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2617,7 +2617,7 @@ if(store != undefined) {
 
 query(predicates: RdbPredicates, callback: AsyncCallback&lt;ResultSet&gt;):void
 
-根据指定条件查询数据库中的数据，使用callback异步回调。
+根据指定条件查询数据库中的数据，使用callback异步回调。由于共享内存大小限制为2Mb，因此单条数据的大小需小于2Mb，否则会查询失败。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2666,7 +2666,7 @@ if(store != undefined) {
 
 query(predicates: RdbPredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;ResultSet&gt;):void
 
-根据指定条件查询数据库中的数据，使用callback异步回调。
+根据指定条件查询数据库中的数据，使用callback异步回调。由于共享内存大小限制为2Mb，因此单条数据的大小需小于2Mb，否则会查询失败。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2716,7 +2716,7 @@ if(store != undefined) {
 
 query(predicates: RdbPredicates, columns?: Array&lt;string&gt;):Promise&lt;ResultSet&gt;
 
-根据指定条件查询数据库中的数据，使用Promise异步回调。
+根据指定条件查询数据库中的数据，使用Promise异步回调。由于共享内存大小限制为2Mb，因此单条数据的大小需小于2Mb，否则会查询失败。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2771,7 +2771,7 @@ if(store != undefined) {
 
 query(table: string, predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallback&lt;ResultSet&gt;):void
 
-根据指定条件查询数据库中的数据，使用callback异步回调。
+根据指定条件查询数据库中的数据，使用callback异步回调。由于共享内存大小限制为2Mb，因此单条数据的大小需小于2Mb，否则会查询失败。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2827,7 +2827,7 @@ if(store != undefined) {
 
 query(table: string, predicates: dataSharePredicates.DataSharePredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;ResultSet&gt;):void
 
-根据指定条件查询数据库中的数据，使用callback异步回调。
+根据指定条件查询数据库中的数据，使用callback异步回调。由于共享内存大小限制为2Mb，因此单条数据的大小需小于2Mb，否则会查询失败。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2884,7 +2884,7 @@ if(store != undefined) {
 
 query(table: string, predicates: dataSharePredicates.DataSharePredicates, columns?: Array&lt;string&gt;):Promise&lt;ResultSet&gt;
 
-根据指定条件查询数据库中的数据，使用Promise异步回调。
+根据指定条件查询数据库中的数据，使用Promise异步回调。由于共享内存大小限制为2Mb，因此单条数据的大小需小于2Mb，否则会查询失败。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
