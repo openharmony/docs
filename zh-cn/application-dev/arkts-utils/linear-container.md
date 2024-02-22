@@ -228,9 +228,9 @@ console.info(`result: ${vector2.getFirstElement()}`); // 访问元素
 // Deque
 import Deque from '@ohos.util.Deque'; // 导入Deque模块
 
-let deque1: Deque<string> = new Deque;
+let deque1: Deque<string> = new Deque();
 deque1.insertFront('a');
-let deque2: Deque<number> = new Deque;
+let deque2: Deque<number> = new Deque();
 deque2.insertFront(1); // 增加元素
 console.info(`result: ${deque1[0]}`); // 访问元素
 deque1[0] = 'one'; // 修改元素
