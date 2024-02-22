@@ -338,10 +338,10 @@ resizable(value: ResizableOptions)
 
 | 名称 | 类型 | 必填 | 说明 |
 | --------- |-----------|-----------|-----------|
-|  top    |  number  |  否  | 图片顶部拉伸时保持不变距离。<br>默认值：0。<br>单位：vp。 |
-|  right  |  number  |  否  | 图片右部拉伸时保持不变距离。<br>默认值：0。<br>单位：vp。 |
-|  bottom |  number  |  否  | 图片底部拉伸时保持不变距离。<br>默认值：0。<br>单位：vp。 |
-|  left   |  number  |  否  | 图片左部拉伸时保持不变距离。<br>默认值：0。<br>单位：vp。 |
+|  top    |  number  |  否  | 图片顶部拉伸时保持不变距离。<br>默认值：0<br>单位：vp |
+|  right  |  number  |  否  | 图片右部拉伸时保持不变距离。<br>默认值：0<br>单位：vp |
+|  bottom |  number  |  否  | 图片底部拉伸时保持不变距离。<br>默认值：0<br>单位：vp |
+|  left   |  number  |  否  | 图片左部拉伸时保持不变距离。<br>默认值：0<br>单位：vp |
 
 ## 事件
 
