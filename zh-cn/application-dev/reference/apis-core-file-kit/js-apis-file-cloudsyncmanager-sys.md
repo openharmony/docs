@@ -338,7 +338,7 @@ enableCloud(accountId: string, switches: Record<string, boolean>): Promise&lt;vo
 
 ## cloudSyncManager.enableCloud
 
-enableCloud(accountId: string, switches: switches: Record<string, boolean>, callback: AsyncCallback&lt;void&gt;): void
+enableCloud(accountId: string, switches: Record<string, boolean>, callback: AsyncCallback&lt;void&gt;): void
 
 异步方法使能端云协同能力，以callback形式返回结果。
 
