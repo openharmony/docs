@@ -55,7 +55,7 @@ struct WebComponent {
         Web({ src: $rawfile('route.html'), controller: this.webviewController })
           .onUrlLoadIntercept((event) => {
             if (event) {
-              let url: string = event.data as string;
+              let url: string = event.data.getRequestUrl();
               if (url.indexOf('native://') === 0) {
                 // 跳转其他界面
                 router.pushUrl({ url:url.substring(9) })
