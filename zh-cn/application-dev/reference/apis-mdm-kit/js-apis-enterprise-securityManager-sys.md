@@ -44,7 +44,7 @@ getSecurityPatchTag(admin: Want): string
 
 **错误码**：
 
-以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)
 
 | 错误码ID | 错误信息                                                                     |          
 | ------- | ---------------------------------------------------------------------------- |
@@ -94,7 +94,7 @@ getDeviceEncryptionStatus(admin: Want): DeviceEncryptionStatus
 
 **错误码**：
 
-以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)
 
 | 错误码ID | 错误信息                                                                       |          
 | ------- | ---------------------------------------------------------------------------- |
