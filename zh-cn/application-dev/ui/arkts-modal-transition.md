@@ -17,7 +17,7 @@
 
 ## 使用bindContentCover构建全屏模态转场效果
 
-[bindContentCover](../reference/arkui-ts/ts-universal-attributes-modal-transition.md)接口用于为组件绑定全屏模态页面，在组件插入和删除时可通过设置转场参数ModalTransition显示过渡动效。
+[bindContentCover](../reference/arkui-ts/ts-universal-attributes-modal-transition.md)接口用于为组件绑定全屏模态页面，在组件出现和消失时可通过设置转场参数ModalTransition添加过渡动效。
 
 1. 定义全屏模态转场效果[bindContentCover](../reference/arkui-ts/ts-universal-attributes-modal-transition.md)。
 
@@ -30,19 +30,13 @@
        Text('my model view')
      }
      // 通过转场动画实现出现消失转场动画效果，transition需要加在builder下的第一个组件 
-     .transition(TransitionEffect.translate(y:300).animation({ curve: curves.springMotion(0.6, 0.8) }))
+     .transition(TransitionEffect.translate({ y: 1000 }).animation({ curve: curves.springMotion(0.6, 0.8) }))
    }
    ```
 
 3. 通过模态接口调起模态展示界面，通过转场动画或者共享元素动画去实现对应的动画效果。
 
    ```ts
-    class PresentTmp{
-      isPresent: boolean = false;
-      set(){
-        this.isPresent = !this.isPresent;
-      }
-    }
    // 模态转场控制变量
    @State isPresent: boolean = false;
 
@@ -51,8 +45,7 @@
      .bindContentCover(this.isPresent, this.MyBuilder, ModalTransition.NONE)
      .onClick(() => {
        // 改变状态变量，显示模态界面
-       let setPre:PresentTmp = new PresentTmp()
-       setPre.set()
+       this.isPresent = !this.isPresent;
      })
    ```
 
@@ -64,9 +57,21 @@
 ```ts
 import curves from '@ohos.curves';
 
+interface PersonList {
+  name: string,
+  cardnum: string
+}
+
 @Entry
 @Component
 struct BindContentCoverDemo {
+  private personList: Array<PersonList> = [
+    { name: '王**', cardnum: '1234***********789' },
+    { name: '宋*', cardnum: '2345***********789' },
+    { name: '许**', cardnum: '3456***********789' },
+    { name: '唐*', cardnum: '4567***********789' }
+  ];
+
   // 第一步：定义全屏模态转场效果bindContentCover
   // 模态转场控制变量
   @State isPresent: boolean = false;
@@ -75,61 +80,145 @@ struct BindContentCoverDemo {
   // 通过@Builder构建模态展示界面
   @Builder MyBuilder() {
     Column() {
+      Row() {
+        Text('选择乘车人')
+          .fontSize(20)
+          .fontColor(Color.White)
+          .width('100%')
+          .textAlign(TextAlign.Center)
+          .padding({ top: 30, bottom: 15 })
+      }
+      .backgroundColor(0x007dfe)
+
+      Row() {
+        Text('+ 添加乘车人')
+          .fontSize(16)
+          .fontColor(0x333333)
+          .margin({ top: 10 })
+          .padding({ top: 20, bottom: 20 })
+          .width('92%')
+          .borderRadius(10)
+          .textAlign(TextAlign.Center)
+          .backgroundColor(Color.White)
+      }
+
       Column() {
-        Column() {
-          Text('back')
-            .fontSize(24)
-            .fontColor(Color.White)
-        }
-        .justifyContent(FlexAlign.Center)
-        .width(100)
-        .height(100)
-        .borderRadius(5)
-        .backgroundColor(0xf56c6c)
-        .onClick(() => {
-          this.isPresent = false;
+        ForEach(this.personList, (item: PersonList, index: number) => {
+          Row() {
+            Column() {
+              if (index % 2 == 0) {
+                Column()
+                  .width(20)
+                  .height(20)
+                  .border({ width: 1, color: 0x007dfe })
+                  .backgroundColor(0x007dfe)
+              } else {
+                Column()
+                  .width(20)
+                  .height(20)
+                  .border({ width: 1, color: 0x007dfe })
+              }
+            }
+            .width('20%')
+            Column() {
+              Text(item.name)
+                .fontColor(0x333333)
+                .fontSize(18)
+              Text(item.cardnum)
+                .fontColor(0x666666)
+                .fontSize(14)
+            }
+            .width('60%')
+            .alignItems(HorizontalAlign.Start)
+            Column() {
+              Text('编辑')
+                .fontColor(0x007dfe)
+                .fontSize(16)
+            }
+            .width('20%')
+          }
+          .padding({ top: 10, bottom: 10 })
+          .border({ width: { bottom: 1 }, color: 0xf1f1f1 })
+          .width('92%')
+          .backgroundColor(Color.White)
         })
       }
-      .height('100%')
-      .width('100%')
-      .backgroundColor(0x909399)
-      .justifyContent(FlexAlign.Center)
-      .border({
-        radius: {
-          topLeft: 15,
-          topRight: 15,
-        }
-      })
+      .padding({ top: 20, bottom: 20 })
+
+      Text('确认')
+        .width('90%')
+        .height(40)
+        .textAlign(TextAlign.Center)
+        .borderRadius(10)
+        .fontColor(Color.White)
+        .backgroundColor(0x007dfe)
+        .onClick(() => {
+          this.isPresent = !this.isPresent;
+        })
     }
-    .height('100%')
-    .justifyContent(FlexAlign.End)
+    .size({ width: '100%', height: '100%' })
+    .backgroundColor(0xf5f5f5)
     // 通过转场动画实现出现消失转场动画效果
     .transition(TransitionEffect.translate({ y: 1000 }).animation({ curve: curves.springMotion(0.6, 0.8) }))
   }
 
   build() {
     Column() {
-      Column() {
-        Text('Click Me')
-          .fontSize(24)
+      Row() {
+        Text('确认订单')
+          .fontSize(20)
           .fontColor(Color.White)
+          .width('100%')
+          .textAlign(TextAlign.Center)
+          .padding({ top: 30, bottom: 60 })
       }
-      // 第三步：通过模态接口调起模态展示界面，通过转场动画或者共享元素动画去实现对应的动画效果
-      .onClick(() => {
-        // 改变状态变量，显示模态界面
-        this.isPresent = !this.isPresent;
-      })
-      // 通过选定的模态接口，绑定模态展示界面，ModalTransition是内置的ContentCover转场动画类型，这里选择DEFAULT代表设置上下切换动画效果。
-      .bindContentCover(this.isPresent, this.MyBuilder(), ModalTransition.DEFAULT)
-      .justifyContent(FlexAlign.Center)
-      .backgroundColor(0XF56C6C)
-      .width(100)
-      .height(100)
-      .borderRadius(5)
+      .backgroundColor(0x007dfe)
+
+      Column() {
+        Row() {
+          Column() {
+            Text('00:25')
+            Text('始发站')
+          }
+          .width('30%')
+          Column() {
+            Text('G1234')
+            Text('8时1分')
+          }
+          .width('30%')
+          Column() {
+            Text('08:26')
+            Text('终点站')
+          }
+          .width('30%')
+        }
+      }
+      .width('92%')
+      .padding(15)
+      .margin({ top: -30 })
+      .backgroundColor(Color.White)
+      .shadow({ radius: 30, color: '#aaaaaa' })
+      .borderRadius(10)
+
+      Column() {
+        Text('+ 选择乘车人')
+          .fontSize(18)
+          .fontColor(Color.Orange)
+          .fontWeight(FontWeight.Bold)
+          .padding({ top: 10, bottom: 10 })
+          .width('60%')
+          .textAlign(TextAlign.Center)
+          .borderRadius(15)
+            // 通过选定的模态接口，绑定模态展示界面，ModalTransition是内置的ContentCover转场动画类型，这里选择DEFAULT代表设置上下切换动画效果。
+          .bindContentCover(this.isPresent, this.MyBuilder(), ModalTransition.DEFAULT)
+          .onClick(() => {
+            // 第三步：通过模态接口调起模态展示界面，通过转场动画或者共享元素动画去实现对应的动画效果
+            // 改变状态变量，显示模态界面
+            this.isPresent = !this.isPresent;
+          })
+      }
+      .padding({ top: 60 })
     }
-    .justifyContent(FlexAlign.Center)
-    .width('100%')
-    .height('100%')
   }
 }
 ```
@@ -142,7 +231,7 @@ struct BindContentCoverDemo {
 
 ## 使用bindSheet构建半模态转场效果
 
-[bindSheet](../reference/arkui-ts/ts-universal-attributes-sheet-transition.md)属性可为组件绑定半模态页面，在组件插入时可通过设置自定义或默认的内置高度确定半模态大小。构建半模态转场动效的步骤基本与使用bindContentCover构建全屏模态转场动效相同。
+[bindSheet](../reference/arkui-ts/ts-universal-attributes-sheet-transition.md)属性可为组件绑定半模态页面，在组件出现时可通过设置自定义或默认的内置高度确定半模态大小。构建半模态转场动效的步骤基本与使用bindContentCover构建全屏模态转场动效相同。
 
 完整示例和效果如下。
 
@@ -151,66 +240,83 @@ struct BindContentCoverDemo {
 @Entry
 @Component
 struct BindSheetDemo {
-
-  // 半模态转场高度控制变量
-  @State sheetHeight: number|SheetSize|null|undefined = 300;
-  // 半模态转场控制条控制变量
-  @State showDragBar: boolean = true;
-
+  // 半模态转场显示隐藏控制
+  @State isShowSheet: boolean = false;
+  private menuList: string[] = ['不要辣', '少放辣', '多放辣', '不要香菜', '不要香葱', '不要一次性餐具', '需要一次性餐具'];
   // 通过@Builder构建半模态展示界面
-  @Builder myBuilder() {
+  @Builder mySheet() {
     Column() {
-      Button("change height")
-        .margin(10)
-        .fontSize(20)
-        .onClick(() => {
-          this.sheetHeight = 500;
+      Flex({ direction: FlexDirection.Row, wrap: FlexWrap.Wrap }) {
+        ForEach(this.menuList, (item: string) => {
+          Text(item)
+            .fontSize(16)
+            .fontColor(0x333333)
+            .backgroundColor(0xf1f1f1)
+            .borderRadius(8)
+            .margin(10)
+            .padding(10)
         })
-
-      Button("Set Illegal height")
-        .margin(10)
-        .fontSize(20)
-        .onClick(() => {
-          this.sheetHeight = -1;
-        })
-
-      Button("close dragbar")
-        .margin(10)
-        .fontSize(20)
-        .onClick(() => {
-          this.showDragBar = !this.showDragBar;
-        })
-      Button("close modal 1")
-        .margin(10)
-        .fontSize(20)
-        .onClick(() => {
-          this.isPresent = false;
-        })
+      }
+      .padding({top: 18})
     }
     .width('100%')
     .height('100%')
+    .backgroundColor(Color.White)
   }
-
-  // 半模态转场控制变量
-  @State isPresent: boolean = false;
 
   build() {
     Column() {
-      if(this.sheetHeight){
-        Button("Click to present sheet view")
-        .onClick(() => {
-          // 改变状态变量，让模态界面显示
-          this.isPresent = !this.isPresent;
+      Text('口味与餐具')
+        .fontSize(28)
+        .padding({ top: 30, bottom: 30 })
+      Column() {
+        Row() {
+          Row()
+          .width(10)
+          .height(10)
+          .backgroundColor('#a8a8a8')
+          .margin({ right: 12 })
+          .borderRadius(20)
+
+          Column() {
+            Text('选择点餐口味和餐具')
+              .fontSize(16)
+              .fontWeight(FontWeight.Medium)
+          }
+          .alignItems(HorizontalAlign.Start)
+
+          Blank()
+
+          Row()
+            .width(12)
+            .height(12)
+            .margin({ right: 15 })
+            .border({
+              width: { top: 2, right: 2 },
+              color: 0xcccccc
+            })
+            .rotate({ angle: 45 })
+        }
+        .borderRadius(15)
+        .shadow({ radius: 100, color: '#ededed' })
+        .width('90%')
+        .alignItems(VerticalAlign.Center)
+        .padding({ left: 15, top: 15, bottom: 15 })
+        .backgroundColor(Color.White)
+        // 通过选定的半模态接口，绑定模态展示界面，style中包含两个参数，一个是设置半模态的高度，不设置时默认高度是Large，一个是是否显示控制条DragBar，默认是true显示控制条
+        .bindSheet(this.isShowSheet, this.mySheet(), {
+          height: 300,
+          dragBar: false
         })
-        .fontSize(20)
-        .margin(10)
-          // 通过选定的半模态接口，绑定模态展示界面，style中包含两个参数，一个是设置半模态的高度，不设置时默认高度是Large,一个是是否显示控制条DragBar,默认是true显示控制条
-        .bindSheet(this.isPresent, this.myBuilder(), { height: this.sheetHeight, dragBar: this.showDragBar })
+        .onClick(() => {
+          this.isShowSheet = !this.isShowSheet;
+        })
       }
+      .width('100%')
     }
-    .justifyContent(FlexAlign.Center)
     .width('100%')
     .height('100%')
+    .backgroundColor(0xf1f1f1)
   }
 }
 ```
@@ -277,48 +383,54 @@ struct BindMenuDemo {
 @Entry
 @Component
 struct BindContextMenuDemo {
-  private num: number[] = [1, 2, 3, 4];
-  private colors: Color[] = [0x67C23A, 0xE6A23C, 0xf56c6c, 0x909399];
+  private menu: string[] = ['保存图片', '收藏', '搜一搜'];
+  private pics: Resource[] = [$r('app.media.icon_1'), $r('app.media.icon_2')];
+
   // 通过@Builder构建自定义菜单项
-  @Builder MyMenu() {
-    Row() {
-      Column() {
-        ForEach(this.num, (item: number, index: number = 0) => {
-          Row() {
-              Text(item.toString())
-                .fontSize(20)
-                .fontColor(Color.White)
-            }
-            .backgroundColor(this.colors[index])
+  @Builder myMenu() {
+    Column() {
+      ForEach(this.menu, (item: string) => {
+        Row() {
+          Text(item)
+            .fontSize(18)
             .width('100%')
-            .aspectRatio(2)
-            .justifyContent(FlexAlign.Center)
-        })
-      }
-      .width('100%')
+            .textAlign(TextAlign.Center)
+        }
+        .padding(15)
+        .border({ width: { bottom: 1 }, color: 0xcccccc })
+      })
     }
-    .width(150)
-    .justifyContent(FlexAlign.Center)
-    .padding(5)
+    .width(140)
+    .borderRadius(15)
+    .shadow({ radius: 15, color: 0xf1f1f1 })
+    .backgroundColor(0xf1f1f1)
   }
 
   build() {
     Column() {
-      Column() {
-        Text('longPress')
+      Row() {
+        Text('查看图片')
           .fontSize(20)
           .fontColor(Color.White)
+          .width('100%')
+          .textAlign(TextAlign.Center)
+          .padding({ top: 20, bottom: 20 })
       }
-      .justifyContent(FlexAlign.Center)
-      .width(170)
-      .height(50)
-      .bindContextMenu(this.MyMenu, ResponseType.LongPress)
-      .backgroundColor(0xf56c6c)
-      .borderRadius(5)
+      .backgroundColor(0x007dfe)
+
+      Column() {
+        ForEach(this.pics, (item: Resource) => {
+          Row(){
+            Image(item)
+              .width('100%')
+          }
+          .padding({ top: 20, bottom: 20, left: 10, right: 10 })
+          .bindContextMenu(this.myMenu, ResponseType.LongPress)
+        })
+      }
     }
-    .justifyContent(FlexAlign.Center)
     .width('100%')
-    .height(437)
+    .alignItems(HorizontalAlign.Center)
   }
 }
 ```
@@ -402,73 +514,180 @@ struct BindPopupDemo {
 ```ts
 @Entry
 @Component
-struct ModalTransition1 {
-
+struct ModalTransitionWithIf {
+  private listArr: string[] = ['WLAN', '蓝牙', '个人热点', '连接与共享'];
+  private shareArr: string[] = ['投屏', '打印', 'VPN', '私人DNS', 'NFC'];
   // 第一步：定义状态变量控制页面显示
-  @State isShow: boolean = false;
+  @State isShowShare: boolean = false;
+  private shareFunc(): void {
+    animateTo({ duration: 500 }, () => {
+      this.isShowShare = !this.isShowShare;
+    })
+  }
 
-  build() {
+  build(){
     // 第二步：定义Stack布局显示当前页面和模态页面
     Stack() {
       Column() {
-        Text('Page1')
-          .fontSize(40)
-          .fontColor(Color.White)
-          .fontWeight(FontWeight.Bolder)
+        Column() {
+          Text('设置')
+            .fontSize(28)
+            .fontColor(0x333333)
+        }
+        .width('90%')
+        .padding({ top: 30, bottom: 15 })
+        .alignItems(HorizontalAlign.Start)
 
-        Text('Click to transition')
-          .fontSize(15)
-          .fontColor(Color.White)
+        TextInput({ placeholder: '输入关键字搜索' })
+          .width('90%')
+          .height(40)
+          .margin({ bottom: 10 })
+          .focusable(false)
+
+        List({ space: 12, initialIndex: 0 }) {
+          ForEach(this.listArr, (item: string, index: number) => {
+            ListItem() {
+              Row() {
+                Row() {
+                  Text(`${item.slice(0, 1)}`)
+                    .fontColor(Color.White)
+                    .fontSize(14)
+                    .fontWeight(FontWeight.Bold)
+                }
+                .width(30)
+                .height(30)
+                .backgroundColor('#a8a8a8')
+                .margin({ right: 12 })
+                .borderRadius(20)
+                .justifyContent(FlexAlign.Center)
+
+                Column() {
+                  Text(item)
+                    .fontSize(16)
+                    .fontWeight(FontWeight.Medium)
+                }
+                .alignItems(HorizontalAlign.Start)
+
+                Blank()
+
+                Row()
+                  .width(12)
+                  .height(12)
+                  .margin({ right: 15 })
+                  .border({
+                    width: { top: 2, right: 2 },
+                    color: 0xcccccc
+                  })
+                  .rotate({ angle: 45 })
+              }
+              .borderRadius(15)
+              .shadow({ radius: 100, color: '#ededed' })
+              .width('90%')
+              .alignItems(VerticalAlign.Center)
+              .padding({ left: 15, top: 15, bottom: 15 })
+              .backgroundColor(Color.White)
+            }
+            .width('100%')
+            .onClick(() => {
+              // 第五步：改变状态变量，显示模态页面
+              if(item.slice(-2) === '共享'){
+                this.shareFunc();
+              }
+            })
+          }, (item: string): string => item)
+        }
+        .width('100%')
       }
-      .justifyContent(FlexAlign.Center)
       .width('100%')
       .height('100%')
-      .linearGradient({
-        colors: [
-          [0xf56c6c, 0.0],
-          [0xffffff, 1.0]
-        ]
-      })
-      // 第五步：改变状态变量，显示模态页面
-      .onClick(() => {
-        animateTo({ duration: 500 }, () => {
-          this.isShow = !this.isShow;
-        })
-      })
+      .backgroundColor(0xfefefe)
 
       // 第三步：在if中定义模态页面，显示在最上层，通过if控制模态页面出现消失
-      if (this.isShow) {
+      if(this.isShowShare){
         Column() {
-          Text('Page2')
-            .fontSize(40)
-            .fontColor(Color.Gray)
-            .fontWeight(FontWeight.Bolder)
+          Column() {
+            Row() {
+              Row() {
+                Row()
+                  .width(16)
+                  .height(16)
+                  .border({
+                    width: { left: 2, top: 2 },
+                    color: 0x333333
+                  })
+                  .rotate({ angle: -45 })
+              }
+              .padding({ left: 15, right: 10 })
+              .onClick(() => {
+                this.shareFunc();
+              })
+              Text('连接与共享')
+                .fontSize(28)
+                .fontColor(0x333333)
+            }
+            .padding({ top: 30 })
+          }
+          .width('90%')
+          .padding({bottom: 15})
+          .alignItems(HorizontalAlign.Start)
 
-          Text('Click to transition')
-            .fontSize(15)
-            .fontColor(Color.Gray)
+          List({ space: 12, initialIndex: 0 }) {
+            ForEach(this.shareArr, (item: string) => {
+              ListItem() {
+                Row() {
+                  Row() {
+                    Text(`${item.slice(0, 1)}`)
+                      .fontColor(Color.White)
+                      .fontSize(14)
+                      .fontWeight(FontWeight.Bold)
+                  }
+                  .width(30)
+                  .height(30)
+                  .backgroundColor('#a8a8a8')
+                  .margin({ right: 12 })
+                  .borderRadius(20)
+                  .justifyContent(FlexAlign.Center)
+
+                  Column() {
+                    Text(item)
+                      .fontSize(16)
+                      .fontWeight(FontWeight.Medium)
+                  }
+                  .alignItems(HorizontalAlign.Start)
+
+                  Blank()
+
+                  Row()
+                    .width(12)
+                    .height(12)
+                    .margin({ right: 15 })
+                    .border({
+                      width: { top: 2, right: 2 },
+                      color: 0xcccccc
+                    })
+                    .rotate({ angle: 45 })
+                }
+                .borderRadius(15)
+                .shadow({ radius: 100, color: '#ededed' })
+                .width('90%')
+                .alignItems(VerticalAlign.Center)
+                .padding({ left: 15, top: 15, bottom: 15 })
+                .backgroundColor(Color.White)
+              }
+              .width('100%')
+            }, (item: string): string => item)
+          }
+          .width('100%')
         }
-        .justifyContent(FlexAlign.Start)
         .width('100%')
         .height('100%')
-        .linearGradient({
-          colors: [
-            [0xffffff, 0.0],
-            [0x409eff, 1.0]
-          ]
-        })
+        .backgroundColor(0xffffff)
         // 第四步：定义模态页面出现消失转场方式
-        .transition(TransitionEffect.OPACITY.combine(TransitionEffect.rotate({ angle: 90, y: 1 })))
-        .onClick(() => {
-          animateTo({ duration: 500 }, () => {
-            this.isShow = !this.isShow;
-          })
-        })
+        .transition(TransitionEffect.OPACITY
+          .combine(TransitionEffect.translate({ x: '100%' }))
+          .combine(TransitionEffect.scale({ x: 0.95, y: 0.95 })))
       }
-
     }
-    .width('100%')
-    .height('100%')
   }
 }
 ```
