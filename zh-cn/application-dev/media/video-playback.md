@@ -35,7 +35,7 @@
    | bitrateDone | 响应API调用，用于HLS协议流，监听setBitrate()请求完成情况。<br/>当使用setBitrate()指定播放比特率后，如果setBitrate操作成功，将上报该事件。 |
    | availableBitrates | 用于HLS协议流，监听HLS资源的可选bitrates，用于setBitrate()。 |
    | bufferingUpdate | 用于网络播放，监听网络播放缓冲信息。 |
-   | startRenderFrame | 用于视频播放，监听视频播放首帧渲染时间。 |
+   | startRenderFrame | 用于视频播放，监听视频播放首帧渲染时间。<br/>当AVPlayer首次起播进入playing状态后，等到首帧视频画面被渲染到显示画面时，将上报该事件。应用通常可以利用此事件上报，进行视频封面移除，达成封面与视频画面的顺利衔接。 |
    | videoSizeChange | 用于视频播放，监听视频播放的宽高信息，可用于调整窗口大小、比例。 |
    | audioInterrupt | 监听音频焦点切换信息，搭配属性audioInterruptMode使用。<br/>如果当前设备存在多个媒体正在播放，音频焦点被切换（即播放其他媒体如通话等）时将上报该事件，应用可以及时处理。 |
 
@@ -80,6 +80,10 @@ export class AVPlayerDemo {
   private fd: number = 0;
   // 注册avplayer回调函数
   setAVPlayerCallback(avPlayer: media.AVPlayer) {
+    // startRenderFrame首帧渲染回调函数
+    avPlayer.on('startRenderFrame', () => {
+      console.info(`AVPlayer start render frame`);
+    })
     // seek操作结果回调函数
     avPlayer.on('seekDone', (seekDoneTime: number) => {
       console.info(`AVPlayer seek succeeded, seek time is ${seekDoneTime}`);
