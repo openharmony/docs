@@ -4,7 +4,7 @@
 
 > **说明：**
 >
-> - 从API Version 9 开始，该模块接口不再维护，推荐使用新模块接口[@ohos.systemDateTime (系统时间、时区)](js-apis-system-date-time.md)
+> - 从API Version 9 开始，该模块接口不再维护，推荐使用新模块接口[@ohos.systemDateTime (系统时间、时区)](js-apis-date-time.md)
 > - 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
@@ -13,7 +13,7 @@
 import systemTime from '@ohos.systemTime';
 ```
 
-## systemTime.getCurrentTime
+## systemTime.getCurrentTime<sup>8+</sup>
 
 getCurrentTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 
@@ -55,7 +55,7 @@ try {
 }
 ```
 
-## systemTime.getCurrentTime
+## systemTime.getCurrentTime<sup>8+</sup>
 
 getCurrentTime(callback: AsyncCallback&lt;number&gt;): void
 
@@ -96,7 +96,7 @@ try {
 }
 ```
 
-## systemTime.getCurrentTime
+## systemTime.getCurrentTime<sup>8+</sup>
 
 getCurrentTime(isNano?: boolean): Promise&lt;number&gt;
 
@@ -141,7 +141,7 @@ try {
 }
 ```
 
-## systemTime.getRealActiveTime
+## systemTime.getRealActiveTime<sup>8+<sup>
 
 getRealActiveTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 
@@ -183,7 +183,7 @@ try {
 }
 ```
 
-## systemTime.getRealActiveTime
+## systemTime.getRealActiveTime<sup>8+<sup>
 
 getRealActiveTime(callback: AsyncCallback&lt;number&gt;): void
 
@@ -224,7 +224,7 @@ try {
 }
 ```
 
-## systemTime.getRealActiveTime
+## systemTime.getRealActiveTime<sup>8+<sup>
 
 getRealActiveTime(isNano?: boolean): Promise&lt;number&gt;
 
@@ -269,7 +269,7 @@ try {
 }
 ```
 
-## systemTime.getRealTime
+## systemTime.getRealTime<sup>8+<sup>
 
 getRealTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 
@@ -311,7 +311,7 @@ try {
 }
 ```
 
-## systemTime.getRealTime
+## systemTime.getRealTime<sup>8+<sup>
 
 getRealTime(callback: AsyncCallback&lt;number&gt;): void
 
@@ -352,7 +352,7 @@ try {
 }
 ```
 
-## systemTime.getRealTime
+## systemTime.getRealTime<sup>8+<sup>
 
 getRealTime(isNano?: boolean): Promise&lt;number&gt;
 
@@ -397,7 +397,7 @@ try {
 }
 ```
 
-## systemTime.getDate
+## systemTime.getDate<sup>8+<sup>
 
 getDate(callback: AsyncCallback&lt;Date&gt;): void
 
@@ -438,7 +438,7 @@ try {
 }
 ```
 
-## systemTime.getDate
+## systemTime.getDate<sup>8+<sup>
 
 getDate(): Promise&lt;Date&gt;
 
@@ -477,7 +477,7 @@ try {
 }
 ```
 
-## systemTime.getTimezone
+## systemTime.getTimezone<sup>8+<sup>
 
 getTimezone(callback: AsyncCallback&lt;string&gt;): void
 
@@ -518,7 +518,7 @@ try {
 }
 ```
 
-## systemTime.getTimezone
+## systemTime.getTimezone<sup>8+<sup>
 
 getTimezone(): Promise&lt;string&gt;
 
