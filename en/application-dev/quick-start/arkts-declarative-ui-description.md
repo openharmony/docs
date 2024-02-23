@@ -116,7 +116,7 @@ Use chainable event methods to configure events supported by built-in components
     })
   ```
 
-- Example of using an anonymous function expression to configure the event of a component (use **() => {...}** to ensure that the function is bound to the component and complies with the ArkTS syntax specifications):
+- Example of using an anonymous function expression to configure the event of a component (**() => {...}** must be used to ensure that the function is bound to the component and complies with the ArkTS syntax specifications):
 
   ```ts
   Button('add counter')
@@ -125,7 +125,7 @@ Use chainable event methods to configure events supported by built-in components
     })
   ```
 
-- Example of using a component's member function to configure the event of the component:
+- Example of using a component's member function to configure the event of the component, where **this** binding is not needed:
 
   ```ts
   myClickHandler(): void {
@@ -136,7 +136,7 @@ Use chainable event methods to configure events supported by built-in components
     .onClick(this.myClickHandler)
   ```
 
-- Example of using an arrow function expression for a declaration, which can be used without **this** binding:
+- Example of using an arrow function expression for a declaration, where **this** binding is not needed:
 
   ```ts
   fn = () => {
@@ -148,6 +148,9 @@ Use chainable event methods to configure events supported by built-in components
     .onClick(this.fn)
   ```
 
+> **NOTE**
+>
+> In arrow functions, **this** inherits its value from the surrounding (lexical) scope in which they are defined. This means that, in anonymous functions, **this** may present an unclear reference and is therefore not allowed in ArkTS.
 
 
 ## Configuring Child Components

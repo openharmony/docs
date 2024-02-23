@@ -12,10 +12,10 @@ Environment is a singleton object created by the ArkUI framework at application 
 | Key| Data Type| Description                                     |
 | ------------------ | ------------------ | ------------------ |
 | accessibilityEnabled              | boolean                  | Whether to enable accessibility.                |
-| colorMode              | ColorMode enum                  | Color mode. The options are as follows:<br>- **ColorMode.LIGHT**: light mode.<br>- **ColorMode.Dark**: dark mode.                |
+| colorMode              | ColorMode                  | Color mode. The options are as follows:<br>- **ColorMode.LIGHT**: light mode.<br>- **ColorMode.DARK**: dark mode.                |
 | fontScale              | number                  | Font scale. Range: [0.85, 1.45].                |
-| fontWeightScale              | LayoutDirection                  | Font weight scale. Range: [0.6, 1.6].               |
-| layoutDirection              | boolean                  | Layout direction. The options are as follows:<br>- **LayoutDirection.LTR**: from left to right.<br>- **LayoutDirection.RTL**: from right to left.                |
+| fontWeightScale              | number                  | Font weight scale. Range: [0.6, 1.6].               |
+| layoutDirection              | LayoutDirection                  | Layout direction. The options are as follows:<br>- **LayoutDirection.LTR**: from left to right.<br>- **LayoutDirection.RTL**: from right to left.                |
 | languageCode              | string                  | Current system language. The value is in lowercase, for example, **zh**.                |
 
 
@@ -85,7 +85,7 @@ if (lang.get() === 'en') {
 ## Restrictions
 
 
-Environment can be called only when the [UIContext](../reference/apis/js-apis-arkui-UIContext.md#uicontext) is specified. The UIContext is specified when [runScopedTask](../reference/apis/js-apis-arkui-UIContext.md#runscopedtask) is called. If Environment is called otherwise, no device environment data can be obtained.
+Environment can be called only when the [UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext) is specified. The UIContext is specified when [runScopedTask](../reference/apis-arkui/js-apis-arkui-UIContext.md#runscopedtask) is called. If Environment is called otherwise, no device environment data can be obtained.
 
 
 ```ts
