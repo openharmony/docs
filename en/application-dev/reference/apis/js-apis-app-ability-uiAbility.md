@@ -20,12 +20,12 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read-only| Mandatory| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| context | [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md) | Yes| No| Context of the UIAbility.|
-| launchWant | [Want](js-apis-app-ability-want.md) | Yes| No| Parameters for starting the UIAbility.|
-| lastRequestWant | [Want](js-apis-app-ability-want.md) | Yes| No| Parameters used when the UIAbility was started last time.|
-| callee | [Callee](#callee) | Yes| No| Object that invokes the stub service.|
+| context | [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md) | No| Yes| Context of the UIAbility.|
+| launchWant | [Want](js-apis-app-ability-want.md) | No| Yes| Parameters for starting the UIAbility.|
+| lastRequestWant | [Want](js-apis-app-ability-want.md) | No| Yes| Parameters used when the UIAbility was started last time.|
+| callee | [Callee](#callee) | No| Yes| Object that invokes the stub service.|
 
 ## UIAbility.onCreate
 
@@ -138,9 +138,15 @@ Called when the **WindowStage** is restored during the migration of this UIAbili
 
 onDestroy(): void | Promise&lt;void&gt;
 
-Called when this UIAbility is destroyed to clear resources.
+Called when this UIAbility is destroyed to clear resources. This API returns the result synchronously or uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| void&nbsp;\|&nbsp;Promise&lt;void&gt; | No return value or a Promise object that returns no result.|
 
 **Example**
 
@@ -289,6 +295,12 @@ Called to dump the client information. This API can be used to dump non-sensitiv
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | params | Array\<string> | Yes| Parameters in the form of a command.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Array\<string> | Dumped information array.|
 
 **Example**
 
@@ -448,11 +460,11 @@ Called when an operation of going back to a previous page is triggered on this U
 
 Implements sending of sequenceable data to the target ability when the CallerAbility invokes the target ability (CalleeAbility).
 
-## Caller.call
+### Caller.call
 
-call(method: string, data: rpc.Parcelable): Promise&lt;void&gt;;
+call(method: string, data: rpc.Parcelable): Promise&lt;void&gt;
 
-Sends sequenceable data to the target ability.
+Sends sequenceable data to the target ability. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -467,7 +479,7 @@ Sends sequenceable data to the target ability.
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return a response.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -535,11 +547,11 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
   ```
 
 
-## Caller.callWithResult
+### Caller.callWithResult
 
 callWithResult(method: string, data: rpc.Parcelable): Promise&lt;rpc.MessageSequence&gt;
 
-Sends sequenceable data to the target ability and obtains the sequenceable data returned by the target ability.
+Sends sequenceable data to the target ability and obtains the sequenceable data returned by the target ability. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -624,7 +636,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
   ```
 
 
-## Caller.release
+### Caller.release
 
 release(): void
 
@@ -670,13 +682,19 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
   }
   ```
 
-## Caller.onRelease
+### Caller.onRelease
 
  onRelease(callback: OnReleaseCallback): void
 
-Called when the stub on the target ability is disconnected.
+Called when the stub on the target ability is disconnected. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | [OnReleaseCallback](#onreleasecallback) | Yes| Callback used to return the result.|
 
 **Error codes**
 
@@ -685,12 +703,6 @@ Called when the stub on the target ability is disconnected.
 | 16200001 | Caller released. The caller has been released. |
 
 For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | [OnReleaseCallback](#onreleasecallback) | Yes| Callback used to return the result.|
 
 **Example**
 
@@ -723,11 +735,11 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
   }
   ```
 
-## Caller.onRemoteStateChange<sup>10+</sup>
+### Caller.onRemoteStateChange<sup>10+</sup>
 
 onRemoteStateChange(callback: OnRemoteStateChangeCallback): void
 
-Called when the remote ability state changes in the collaboration scenario.
+Called when the remote ability state changes in the collaboration scenario. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -777,11 +789,11 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
   }
   ```
 
-## Caller.on
+### Caller.on
 
 on(type: 'release', callback: OnReleaseCallback): void
 
-Called when the stub on the target ability is disconnected.
+Called when the stub on the target ability is disconnected. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -831,11 +843,11 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
   }
   ```
 
-## Caller.off
+### Caller.off
 
 off(type: 'release', callback: OnReleaseCallback): void
 
-Deregisters a callback that is invoked when the stub on the target ability is disconnected. This capability is reserved.
+Deregisters a callback that is invoked when the stub on the target ability is disconnected. This capability is reserved. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -879,7 +891,7 @@ Deregisters a callback that is invoked when the stub on the target ability is di
   }
   ```
 
-## Caller.off
+### Caller.off
 
 off(type: 'release'): void
 
@@ -930,7 +942,7 @@ Deregisters a callback that is invoked when the stub on the target ability is di
 
 Implements callbacks for caller notification registration and deregistration.
 
-## Callee.on
+### Callee.on
 
 on(method: string, callback: CalleeCallback): void
 
@@ -1002,7 +1014,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
   }
   ```
 
-## Callee.off
+### Callee.off
 
 off(method: string): void
 
@@ -1049,37 +1061,49 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 ## OnReleaseCallback
 
 
-(msg: string): void
-
 Defines the callback that is invoked when the stub on the target UIAbility is disconnected.
 
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-| Name| Readable| Writable| Type| Description|
-| -------- | -------- | -------- | -------- | -------- |
-| (msg: string) | Yes| No| function | Prototype of the listener function registered by the caller.|
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| --- | ----- | --- | -------- |
+| msg | string | Yes| Message used for disconnection.| 
+
 
 ## OnRemoteStateChangeCallback<sup>10+</sup>
 
-(msg: string): void
 
 Defines the callback that is invoked when the remote ability state changes in the collaboration scenario.
 
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-| Name| Readable| Writable| Type| Description|
-| -------- | -------- | -------- | -------- | -------- |
-| (msg: string) | Yes| No| function | Prototype of the ability state change listener function registered by the caller in the collaboration scenario.|
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| --- | ----- | --- | -------- |
+| msg | string | Yes| Message used for disconnection.| 
+
 
 ## CalleeCallback
 
-(indata: rpc.MessageSequence): rpc.Parcelable;
 
 Defines the callback of the registration message notification of the UIAbility.
 
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-| Name| Readable| Writable| Type| Description|
-| -------- | -------- | -------- | -------- | -------- |
-| (indata: [rpc.MessageSequence](js-apis-rpc.md#messagesequence9)) | Yes| No| [rpc.Parcelable](js-apis-rpc.md#parcelable9) | Prototype of the listener function registered by the callee.|
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| --- | ----- | --- | -------- |
+| indata | [rpc.MessageSequence](js-apis-rpc.md#messagesequence9) | Yes| Data to be transferred.|
+
+**Return value**
+
+| Type  | Description                                 |
+| ------------ | ------------------------------------- |
+| [rpc.Parcelable](js-apis-rpc.md#parcelable9) | Returned data object.|

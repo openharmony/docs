@@ -87,7 +87,7 @@ appManager.isRunningInStabilityTest().then((flag) => {
 
 ## appManager.isRamConstrainedDevice
 
-isRamConstrainedDevice(): Promise\<boolean>;
+isRamConstrainedDevice(): Promise\<boolean>
 
 Checks whether this application is running on a RAM constrained device. This API uses a promise to return the result.
 
@@ -122,7 +122,7 @@ appManager.isRamConstrainedDevice().then((data) => {
 
 ## appManager.isRamConstrainedDevice
 
-isRamConstrainedDevice(callback: AsyncCallback\<boolean>): void;
+isRamConstrainedDevice(callback: AsyncCallback\<boolean>): void
 
 Checks whether this application is running on a RAM constrained device. This API uses an asynchronous callback to return the result.
 
@@ -158,7 +158,7 @@ appManager.isRamConstrainedDevice((err, data) => {
 
 ## appManager.getAppMemorySize
 
-getAppMemorySize(): Promise\<number>;
+getAppMemorySize(): Promise\<number>
 
 Obtains the memory size of this application. This API uses a promise to return the result.
 
@@ -193,7 +193,7 @@ appManager.getAppMemorySize().then((data) => {
 
 ## appManager.getAppMemorySize
 
-getAppMemorySize(callback: AsyncCallback\<number>): void;
+getAppMemorySize(callback: AsyncCallback\<number>): void
 
 Obtains the memory size of this application. This API uses an asynchronous callback to return the result.
 
@@ -229,7 +229,7 @@ appManager.getAppMemorySize((err, data) => {
 
 ## appManager.getRunningProcessInformation
 
-getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>;
+getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>
 
 Obtains information about the running processes. This API uses a promise to return the result. If you have requested the **ohos.permission.GET_RUNNING_INFO** permission, you can obtain information about all running processes; otherwise, you can obtain only information about the current running processes.
 
@@ -266,7 +266,7 @@ appManager.getRunningProcessInformation().then((data) => {
 
 ## appManager.getRunningProcessInformation
 
-getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>>): void;
+getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>>): void
 
 Obtains information about the running processes. This API uses an asynchronous callback to return the result. If you have requested the **ohos.permission.GET_RUNNING_INFO** permission, you can obtain information about all running processes; otherwise, you can obtain only information about the current running processes.
 
@@ -304,7 +304,7 @@ appManager.getRunningProcessInformation((err, data) => {
 
 ## appManager.isSharedBundleRunning<sup>10+</sup>
 
-isSharedBundleRunning(bundleName: string, versionCode: number): Promise\<boolean>;
+isSharedBundleRunning(bundleName: string, versionCode: number): Promise\<boolean>
 
 Checks whether the shared library is in use. This API uses a promise to return the result.
 
@@ -352,7 +352,7 @@ appManager.isSharedBundleRunning(bundleName, versionCode).then((data) => {
 
 ## appManager.isSharedBundleRunning<sup>10+</sup>
 
-isSharedBundleRunning(bundleName: string, versionCode: number, callback: AsyncCallback\<boolean>): void;
+isSharedBundleRunning(bundleName: string, versionCode: number, callback: AsyncCallback\<boolean>): void
 
 Checks whether the shared library is in use. This API uses an asynchronous callback to return the result.
 
@@ -396,7 +396,7 @@ appManager.isSharedBundleRunning(bundleName, versionCode, (err, data) => {
 
 ## appManager.on
 
-on(type: 'applicationState', observer: ApplicationStateObserver): number;
+on(type: 'applicationState', observer: ApplicationStateObserver): number
 
 Registers an observer to listen for the state changes of all applications.
 
@@ -462,7 +462,7 @@ try {
 
 ## appManager.on
 
-on(type: 'applicationState', observer: ApplicationStateObserver, bundleNameList: Array\<string>): number;
+on(type: 'applicationState', observer: ApplicationStateObserver, bundleNameList: Array\<string>): number
 
 Registers an observer to listen for the state changes of a specified application.
 
@@ -577,7 +577,7 @@ try {
 
 ## appManager.off
 
-off(type: 'applicationState', observerId: number,  callback: AsyncCallback\<void>): void;
+off(type: 'applicationState', observerId: number,  callback: AsyncCallback\<void>): void
 
 Deregisters the application state observer. This API uses an asynchronous callback to return the result.
 
@@ -658,7 +658,7 @@ try {
 
 ## appManager.off
 
-off(type: 'applicationState', observerId: number): Promise\<void>;
+off(type: 'applicationState', observerId: number): Promise\<void>
 
 Deregisters the application state observer. This API uses an asynchronous callback to return the result.
 
@@ -799,7 +799,7 @@ try {
 
 ## appManager.getForegroundApplications
 
-getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void;
+getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void
 
 Obtains applications that are running in the foreground. This API uses an asynchronous callback to return the result. The application information is defined by [AppStateData](js-apis-inner-application-appStateData.md).
 
@@ -847,7 +847,7 @@ try {
 
 ## appManager.getForegroundApplications
 
-getForegroundApplications(): Promise\<Array\<AppStateData>>;
+getForegroundApplications(): Promise\<Array\<AppStateData>>
 
 Obtains applications that are running in the foreground. This API uses a promise to return the result. The application information is defined by [AppStateData](js-apis-inner-application-appStateData.md).
 
@@ -989,7 +989,7 @@ appManager.killProcessWithAccount(bundleName, accountId, killProcessWithAccountC
 
 ## appManager.killProcessesByBundleName
 
-killProcessesByBundleName(bundleName: string, callback: AsyncCallback\<void>);
+killProcessesByBundleName(bundleName: string, callback: AsyncCallback\<void>)
 
 Kills a process by bundle name. This API uses an asynchronous callback to return the result.
 
@@ -1039,7 +1039,7 @@ try {
 
 ## appManager.killProcessesByBundleName
 
-killProcessesByBundleName(bundleName: string): Promise\<void>;
+killProcessesByBundleName(bundleName: string): Promise\<void>
 
 Kills a process by bundle name. This API uses a promise to return the result.
 
@@ -1091,7 +1091,7 @@ try {
 
 ## appManager.clearUpApplicationData
 
-clearUpApplicationData(bundleName: string, callback: AsyncCallback\<void>);
+clearUpApplicationData(bundleName: string, callback: AsyncCallback\<void>)
 
 Clears application data by bundle name. This API uses an asynchronous callback to return the result.
 
@@ -1141,7 +1141,7 @@ try {
 
 ## appManager.clearUpApplicationData
 
-clearUpApplicationData(bundleName: string): Promise\<void>;
+clearUpApplicationData(bundleName: string): Promise\<void>
 
 Clears application data by bundle name. This API uses a promise to return the result.
 
@@ -1193,7 +1193,7 @@ try {
 
 ## appManager.getProcessMemoryByPid<sup>10+</sup>
 
-getProcessMemoryByPid(pid: number, callback: AsyncCallback\<number>): void;
+getProcessMemoryByPid(pid: number, callback: AsyncCallback\<number>): void
 
 Obtains the memory size of a process. This API uses an asynchronous callback to return the result.
 
@@ -1241,7 +1241,7 @@ try {
 
 ## appManager.getProcessMemoryByPid<sup>10+</sup>
 
-getProcessMemoryByPid(pid: number): Promise\<number>;
+getProcessMemoryByPid(pid: number): Promise\<number>
 
 Obtains the memory size of a process. This API uses a promise to return the result.
 
@@ -1291,7 +1291,7 @@ try {
 
 ## appManager.getRunningProcessInfoByBundleName<sup>10+</sup>
 
-getRunningProcessInfoByBundleName(bundleName: string, callback: AsyncCallback\<Array\<ProcessInformation>>): void;
+getRunningProcessInfoByBundleName(bundleName: string, callback: AsyncCallback\<Array\<ProcessInformation>>): void
 
 Obtains information about the running processes by bundle name. This API uses an asynchronous callback to return the result.
 
@@ -1339,7 +1339,7 @@ try {
 
 ## appManager.getRunningProcessInfoByBundleName<sup>10+</sup>
 
-getRunningProcessInfoByBundleName(bundleName: string): Promise\<Array\<ProcessInformation>>;
+getRunningProcessInfoByBundleName(bundleName: string): Promise\<Array\<ProcessInformation>>
 
 Obtains information about the running processes by bundle name. This API uses a promise to return the result.
 
@@ -1389,7 +1389,7 @@ try {
 
 ## appManager.getRunningProcessInfoByBundleName<sup>10+</sup>
 
-getRunningProcessInfoByBundleName(bundleName: string, userId: number, callback: AsyncCallback\<Array\<ProcessInformation>>): void;
+getRunningProcessInfoByBundleName(bundleName: string, userId: number, callback: AsyncCallback\<Array\<ProcessInformation>>): void
 
 Obtains information about the running processes by bundle name and user ID. This API uses an asynchronous callback to return the result.
 
@@ -1439,7 +1439,7 @@ try {
 
 ## appManager.getRunningProcessInfoByBundleName<sup>10+</sup>
 
-getRunningProcessInfoByBundleName(bundleName: string, userId: number): Promise\<Array\<ProcessInformation>>;
+getRunningProcessInfoByBundleName(bundleName: string, userId: number): Promise\<Array\<ProcessInformation>>
 
 Obtains information about the running processes by bundle name and user ID. This API uses a promise to return the result.
 

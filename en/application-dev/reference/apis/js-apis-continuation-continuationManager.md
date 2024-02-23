@@ -1124,7 +1124,6 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
 
   ```ts
   import continuationManager from '@ohos.continuation.continuationManager';
-  import { BusinessError } from '@ohos.base';
 
   let token: number = 1;
   try {

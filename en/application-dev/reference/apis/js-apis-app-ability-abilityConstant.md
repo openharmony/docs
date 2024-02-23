@@ -1,6 +1,6 @@
 # @ohos.app.ability.AbilityConstant (AbilityConstant)
 
-The **AbilityConstant** module defines the ability-related enums, including the initial launch reasons, reasons for the last exit, ability continuation results, and window modes.
+The **AbilityConstant** module defines the UIAbility-related enums, including the initial launch reasons, reasons for the last exit, ability continuation results, and window modes.
 
 > **NOTE**
 > 

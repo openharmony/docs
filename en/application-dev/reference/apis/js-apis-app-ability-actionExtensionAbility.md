@@ -5,6 +5,7 @@ The **ActionExtensionAbility** module, inherited from [UIExtensionAbility](js-ap
 > **NOTE**
 > 
 > The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
 > The APIs of this module can be used only in the stage model.
 
 ## When to Use
@@ -21,9 +22,9 @@ import ActionExtensionAbility from '@ohos.app.ability.ActionExtensionAbility';
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read-only| Mandatory| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| context | [UIExtensionContext](js-apis-inner-application-uiExtensionContext.md) | Yes| No| Context.|
+| context | [UIExtensionContext](js-apis-inner-application-uiExtensionContext.md) | No| No| Context.|
 
 ## ActionExtensionAbility.onCreate
 
@@ -32,6 +33,10 @@ onCreate(): void
 Called to initialize the service logic when an ActionExtensionAbility is being created.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**Example**
+
+See [Creating an ActionExtensionAbility](#creating-an-actionextensionability).
 
 ## ActionExtensionAbility.onSessionCreate
 
@@ -48,6 +53,34 @@ Called when a **UIExtensionContentSession** instance is created for this ActionE
 | want | [Want](js-apis-app-ability-want.md) | Yes| Want information related to the ActionExtensionAbility, including the ability name and bundle name.|
 | session | [UIExtensionContentSession](js-apis-app-ability-uiExtensionContentSession.md) | Yes| UI content information related to the ActionExtensionAbility.|
 
+**Example**
+
+See [Creating an ActionExtensionAbility](#creating-an-actionextensionability).
+
+## ActionExtensionAbility.onForeground
+
+onForeground(): void
+
+Called when this ActionExtensionAbility is switched from the background to the foreground.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**Example**
+
+See [Creating an ActionExtensionAbility](#creating-an-actionextensionability).
+
+## ActionExtensionAbility.onBackground
+
+onBackground(): void
+
+Called when this ActionExtensionAbility is switched from the foreground to the background.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**Example**
+
+See [Creating an ActionExtensionAbility](#creating-an-actionextensionability).
+
 ## ActionExtensionAbility.onSessionDestroy
 
 onSessionDestroy(session: UIExtensionContentSession): void
@@ -62,30 +95,29 @@ Called when a **UIExtensionContentSession** instance is destroyed for this Actio
 | -------- | -------- | -------- | -------- |
 | session | [UIExtensionContentSession](js-apis-app-ability-uiExtensionContentSession.md) | Yes| UI content information related to the ActionExtensionAbility.|
 
-## ActionExtensionAbility.onForeground
+**Example**
 
-onForeground(): void;
-
-Called when this ActionExtensionAbility is switched from the background to the foreground.
-
-**System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
-
-## ActionExtensionAbility.onBackground
-
-onBackground(): void;
-
-Called when this ActionExtensionAbility is switched from the foreground to the background.
-
-**System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+See [Creating an ActionExtensionAbility](#creating-an-actionextensionability).
 
 ## ActionExtensionAbility.onDestroy
 
-onDestroy(): void | Promise&lt;void&gt;;
+onDestroy(): void | Promise&lt;void&gt;
 
 Called when this ActionExtensionAbility is destroyed to clear resources.
+
 After the **onDestroy()** lifecycle callback is executed, the application may exit. Consequently, the asynchronous function (for example, asynchronously writing data to the database) in **onDestroy()** may fail to be executed. You can use the asynchronous lifecycle to ensure that the subsequent lifecycle continues only after the asynchronous function in **onDestroy()** finishes the execution.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**Returns**
+
+| Type                                 | Description                           |
+| ------------------------------------- | ------------------------------- |
+| void&nbsp;\|&nbsp;Promise&lt;void&gt; | No return value or a Promise object that returns no result.|
+
+**Example**
+
+See [Creating an ActionExtensionAbility](#creating-an-actionextensionability).
 
 ## Creating an ActionExtensionAbility
 
@@ -93,59 +125,58 @@ To manually create an ActionExtensionAbility in the DevEco Studio project, perfo
 
 1. In the **ets** directory of a module in the project, right-click and choose **New > Directory** to create a directory named **ActionExtAbility**.
 
-2. In the **ActionExtAbility** directory, right-click and choose **New > ArkTS File** to create a file named **ActionExtAbility.ets**.
+2. In the **actionextability** directory, right-click and choose **New > ArkTS File** to create a file named **ActionExtAbility.ets**.
 
     ```text
     ├── ets
-    │ ├── ActionExtAbility
+    │ ├── actionextability
     │ │   ├── ActionExtAbility.ets
     └
     ```
 
 3. In the **ActionExtAbility.ets** file, import the ActionExtensionAbility module. Customize a class that inherits from ActionExtensionAbility and implement the lifecycle callbacks.
 
-   ```ts
-   import ActionExtensionAbility from '@ohos.app.ability.ActionExtensionAbility';
-   import Want from '@ohos.app.ability.Want';
-   import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+    ```ts
+    import ActionExtensionAbility from '@ohos.app.ability.ActionExtensionAbility';
+    import Want from '@ohos.app.ability.Want';
+    import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
 
-   const TAG: string = "[ActionExtAbility]";
+    const TAG: string = "[ActionExtAbility]";
 
-   export default class ActionExtAbility extends ActionExtensionAbility {
-     storage: LocalStorage;
-     message: string;
-     onCreate() {
-       console.info(TAG, `onCreate`);
-     }
+    export default class ActionExtAbility extends ActionExtensionAbility {
+      onCreate() {
+        console.info(TAG, `onCreate`);
+      }
 
-     onForeground() {
-       console.info(TAG, `ononForeground`);
-     }
+      onSessionCreate(want: Want, session: UIExtensionContentSession) {
+        console.info(TAG, `onSessionCreate, want: ${want.abilityName}`);
+        if (want.parameters) {
+          let obj: Record<string, UIExtensionContentSession | object> = {
+            'session': session,
+            'messages': want.parameters.shareMessages
+          }
+          let storage: LocalStorage = new LocalStorage(obj);
+          session.loadContent('pages/Index', storage);
+        }
+      }
 
-     onBackground() {
-       console.info(TAG, `onBackground`);
-     }
+      onForeground() {
+        console.info(TAG, `ononForeground`);
+      }
 
-     onSessionCreate(want: Want, session: UIExtensionContentSession) {
-       console.info(TAG, `onSessionCreate, want: ${want.abilityName}`);
-       this.message = want.parameters.shareMessages.toString();
-       let localStorageData: Record<string, UIExtensionContentSession | string> = {
-         'session': session,
-         'messages': this.message
-       };
-       this.storage = new LocalStorage(localStorageData);
-       session.loadContent('pages/Index', this.storage);
-     }
+      onBackground() {
+        console.info(TAG, `onBackground`);
+      }
 
-     onSessionDestroy(session: UIExtensionContentSession) {
-       console.info(TAG, `onSessionDestroy`);
-     }
+      onSessionDestroy(session: UIExtensionContentSession) {
+        console.info(TAG, `onSessionDestroy`);
+      }
 
-     onDestroy() {
-       console.info(TAG, `onDestroy`);
-     }
-   }
-   ```
+      onDestroy() {
+        console.info(TAG, `onDestroy`);
+      }
+    }
+    ```
 
 4. Register the ActionExtensionAbility in the [**module.json5** file](../../quick-start/module-configuration-file.md) of the module in the project. Set **type** to **action** and **srcEntry** to the code path of the ActionExtensionAbility component.
 
@@ -160,7 +191,7 @@ To manually create an ActionExtensionAbility in the DevEco Studio project, perfo
            "description": "action",
            "type": "action",
            "exported": true,
-           "srcEntry": "./ets/ActionExtAbility/ActionExtAbility.ets"
+           "srcEntry": "./ets/actionextability/ActionExtAbility.ets"
          }
        ]
      }

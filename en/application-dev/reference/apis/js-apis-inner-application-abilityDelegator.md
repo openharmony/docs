@@ -14,7 +14,7 @@ import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry
 
 ## Usage
 
-An **AbilityDelegator** object is obtained by calling [getAbilityDelegator](js-apis-app-ability-abilityDelegatorRegistry.md#abilitydelegatorregistrygetabilitydelegator) in **AbilityDelegatorRegistry**. This API can be used only in the test environment.
+An **AbilityDelegator** object is obtained by calling [getAbilityDelegator](js-apis-app-ability-abilityDelegatorRegistry.md#abilitydelegatorregistrygetabilitydelegator) in **AbilityDelegatorRegistry**. The APIs can be used only in the test environment.
 ```ts
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 ```
@@ -820,7 +820,7 @@ Schedules the lifecycle state of an ability to **Background**. This API uses an 
 | Name  | Type                   | Mandatory| Description                                                   |
 | -------- | ----------------------- | ---- | ------------------------------------------------------- |
 | ability  | UIAbility                 | Yes  | Target ability.                                        |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.<br>\- **true**: The operation is successful.<br>\- **false**: The operation failed.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the ability lifecycle state is changed to **Background**, **err** is undefined; otherwise, **err** is an error object. |
 
 **Error codes**
 
@@ -868,7 +868,7 @@ Schedules the lifecycle state of an ability to **Background**. This API uses a p
 
 | Type             | Description                                                        |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<boolean> | Promise used to return the result.<br>\- **true**: The operation is successful.<br>\- **false**: The operation failed.|
+| Promise\<void> | Promise that returns no value.                           |
 
 **Error codes**
 

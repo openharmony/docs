@@ -6,7 +6,8 @@
 
 > **NOTE**
 > 
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
 > The APIs of this module can be used only in the stage model.
 
 ## Modules to Import
@@ -88,7 +89,7 @@ Called when the UIAbility is started in the specified process.
 
 | Type| Description| 
 | -------- | -------- |
-| string | Process ID. If the process with this ID has been created, the ability runs in the process. Otherwise, a new process is created and the ability runs in it.| 
+| string | Custom process identifier. If the process with this identifier has been created, the ability runs in the process. Otherwise, a new process is created and the ability runs in it.| 
 
 **Example**
     
@@ -127,7 +128,7 @@ import { Configuration } from '@ohos.app.ability.Configuration';
 
 class MyAbilityStage extends AbilityStage {
     onConfigurationUpdate(config: Configuration) {
-        console.log('onConfigurationUpdate, language: ${config.language}');
+        console.log(`onConfigurationUpdate, language: ${config.language}`);
     }
 }
 ```

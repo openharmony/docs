@@ -101,7 +101,7 @@ Enumerates the types of ExtensionAbilities.
 | Name| Value| Description|
 |:----------------:|:---:|-----|
 | FORM             | 0   | [FormExtensionAbility](js-apis-app-form-formExtensionAbility.md): provides APIs for widget development.|
-| WORK_SCHEDULER   | 1   | provides APIs for widget development.: enables applications to execute non-real-time tasks when the system is idle.|
+| WORK_SCHEDULER   | 1   | [WorkSchedulerExtensionAbility](../apis-backgroundtasks-kit/js-apis-WorkSchedulerExtensionAbility.md): enables applications to execute non-real-time tasks when the system is idle.|
 | INPUT_METHOD     | 2   | [InputMethodExtensionAbility](js-apis-inputmethod-extension-ability.md): provides APIs for developing input method applications.|
 | SERVICE          | 3   | [ServiceExtensionAbility](js-apis-app-ability-serviceExtensionAbility.md): enables applications to run in the background and provide services.|
 | ACCESSIBILITY    | 4   | [AccessibilityExtensionAbility](js-apis-application-accessibilityExtensionAbility.md): provides accessibility for access to and operations on the UI.|
@@ -168,8 +168,8 @@ Enumerates the types of abilities.
 
 |  Name  | Value  |                            Description                           |
 | :-----: | ---- | :--------------------------------------------------------: |
-|  PAGE   | 1    |     FA developed using the Page template to provide the capability of interacting with users.    |
-| SERVICE | 2    |  PA developed using the Service template to provide the capability of running tasks in the background.  |
+| PAGE    | 1    | Ability that has the UI. FA developed using the Page template to provide the capability of interacting with users.       |
+| SERVICE | 2    | Ability of the background service type, without the UI. PA developed using the Service template to provide the capability of running tasks in the background. |
 |  DATA   | 3    | PA developed using the Data template to provide unified data access for external systems.|
 
 ### DisplayOrientation
@@ -2898,7 +2898,7 @@ try {
 
 getProfileByAbility(moduleName: string, abilityName: string, metadataName: string, callback: AsyncCallback\<Array\<string\>\>): void
 
-Obtains the JSON strings of the profile based on the given module name, ability name, and metadata name. This API uses an asynchronous callback to return the result.
+Obtains the JSON string array of the current application's configuration file in the [metadata](../../quick-start/module-configuration-file.md#metadata) based on a given module name, ability name, and metadata name. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 > 
@@ -2911,8 +2911,8 @@ Obtains the JSON strings of the profile based on the given module name, ability 
 | Name      | Type                         | Mandatory| Description                                                        |
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
 | moduleName   | string                        | Yes  | Module name.                                    |
-| abilityName  | string                        | Yes  | Ability name.                                   |
-| metadataName | string                        | Yes  | Metadata name.                                 |
+| abilityName  | string                        | Yes  | Name of the UIAbility component.                                   |
+| metadataName | string                        | Yes  | Metadata name of the UIAbility component, that is, **name** of the **metadata** tag under **abilities** in the **module.json5** file.                                 |
 | callback     | AsyncCallback<Array\<string>> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the array of JSON strings obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -2935,7 +2935,7 @@ import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let moduleName = 'entry';
 let abilityName = 'EntryAbility';
-let metadataName = 'com.example.myapplication.metadata';
+let metadataName = 'ability_metadata';
 
 try {
     bundleManager.getProfileByAbility(moduleName, abilityName, metadataName, (err, data) => {
@@ -2955,7 +2955,7 @@ try {
 
 getProfileByAbility(moduleName: string, abilityName: string, metadataName?: string): Promise\<Array\<string\>\>
 
-Obtains the JSON strings of the profile based on the given module name, ability name, and metadata name. This API uses a promise to return the result.
+Obtains the JSON string array of the current application's configuration file in the [metadata](../../quick-start/module-configuration-file.md#metadata) based on a given module name, ability name, and metadata name. This API uses a promise to return the result.
 
 > **NOTE**
 > 
@@ -2968,8 +2968,8 @@ Obtains the JSON strings of the profile based on the given module name, ability 
 | Name      | Type  | Mandatory| Description                      |
 | ------------ | ------ | ---- | -------------------------- |
 | moduleName   | string | Yes  | Module name.  |
-| abilityName  | string | Yes  | Ability name. |
-| metadataName | string | No  | Metadata name. By default, no value is passed.|
+| abilityName  | string | Yes  | Name of the UIAbility component. |
+| metadataName | string | No  | Metadata name of the UIAbility component, that is, **name** of the **metadata** tag under **abilities** in the **module.json5** file. The default value is null.|
 
 **Return value**
 
@@ -3016,7 +3016,7 @@ import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let moduleName = 'entry';
 let abilityName = 'EntryAbility';
-let metadataName = 'com.example.myapplication.metadata';
+let metadataName = 'ability_metadata';
 try {
     bundleManager.getProfileByAbility(moduleName, abilityName, metadataName).then((data) => {
         hilog.info(0x0000, 'testTag', 'getProfileByAbility successfully. Data: %{public}s', JSON.stringify(data));
@@ -3033,7 +3033,7 @@ try {
 
 getProfileByAbilitySync(moduleName: string, abilityName: string, metadataName?: string): Array\<string\>
 
-Obtains the JSON strings of the profile based on the given module name, ability name, and metadata name. This API returns the result synchronously.
+Obtains the JSON string array of the current application's configuration file in the [metadata](../../quick-start/module-configuration-file.md#metadata) based on a given module name, ability name, and metadata name. This API returns the result synchronously. The result value is a string array.
 
 > **NOTE**
 > 
@@ -3046,8 +3046,8 @@ Obtains the JSON strings of the profile based on the given module name, ability 
 | Name      | Type  | Mandatory| Description                      |
 | ------------ | ------ | ---- | -------------------------- |
 | moduleName   | string | Yes  | Module name.  |
-| abilityName  | string | Yes  | Ability name. |
-| metadataName | string | No  | Metadata name. By default, no value is passed.|
+| abilityName  | string | Yes  | Name of the UIAbility component. |
+| metadataName | string | No  | Metadata name of the UIAbility component, that is, **name** of the **metadata** tag under **abilities** in the **module.json5** file. The default value is null.|
 
 **Return value**
 
@@ -3091,7 +3091,7 @@ import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let moduleName: string = 'entry';
 let abilityName: string = 'EntryAbility';
-let metadataName: string = 'com.example.myapplication.metadata';
+let metadataName: string = 'ability_metadata';
 try {
     let data = bundleManager.getProfileByAbilitySync(moduleName, abilityName, metadataName);
     hilog.info(0x0000, 'testTag', 'getProfileByAbilitySync successfully. Data: %{public}s', JSON.stringify(data));
@@ -3105,7 +3105,7 @@ try {
 
 getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, metadataName: string, callback: AsyncCallback\<Array\<string\>\>): void
 
-Obtains the JSON strings of the profile based on the given module name, ExtensionAbility name, and metadata name. This API uses an asynchronous callback to return the result.
+Obtains the JSON string array of the current application's configuration file in the [metadata](../../quick-start/module-configuration-file.md#metadata) based on a given module name, ExtensionAbility name, and metadata name. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 > 
@@ -3118,8 +3118,8 @@ Obtains the JSON strings of the profile based on the given module name, Extensio
 | Name                | Type                         | Mandatory| Description                                                        |
 | -------------------- | ----------------------------- | ---- | ------------------------------------------------------------ |
 | moduleName           | string                        | Yes  | Module name.                                  |
-| extensionAbilityName | string                        | Yes  | ExtensionAbility name.                        |
-| metadataName         | string                        | Yes  | Metadata name.                                |
+| extensionAbilityName | string                        | Yes  | Name of the ExtensionAbility component.                        |
+| metadataName         | string                        | Yes  |  Metadata name of the ExtensionAbility component, that is, **name** of the **metadata** tag under **extensionAbilities** in the **module.json5** file.                                |
 | callback             | AsyncCallback<Array\<string>> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the array of JSON strings obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -3141,7 +3141,7 @@ import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let moduleName = 'entry';
 let extensionAbilityName = 'com.example.myapplication.extension';
-let metadataName = 'com.example.myapplication.metadata';
+let metadataName = 'ability_metadata';
 
 try {
     bundleManager.getProfileByExtensionAbility(moduleName, extensionAbilityName, metadataName, (err, data) => {
@@ -3161,7 +3161,7 @@ try {
 
 getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, metadataName?: string): Promise\<Array\<string\>\>
 
-Obtains the JSON strings of the profile based on the given module name, ExtensionAbility name, and metadata name. This API uses a promise to return the result.
+Obtains the JSON string array of the current application's configuration file in the [metadata](../../quick-start/module-configuration-file.md#metadata) based on a given module name, ExtensionAbility name, and metadata name. This API uses a promise to return the result.
 
 > **NOTE**
 > 
@@ -3174,8 +3174,8 @@ Obtains the JSON strings of the profile based on the given module name, Extensio
 | Name                | Type  | Mandatory| Description                              |
 | -------------------- | ------ | ---- | ---------------------------------- |
 | moduleName           | string | Yes  | Module name.          |
-| extensionAbilityName | string | Yes  | ExtensionAbility name.|
-| metadataName         | string | No  | Metadata name. By default, no value is passed.        |
+| extensionAbilityName | string | Yes  | Name of the ExtensionAbility component.|
+| metadataName         | string | No  |  Metadata name of the ExtensionAbility component, that is, **name** of the **metadata** tag under **extensionAbilities** in the **module.json5** file. The default value is null.        |
 
 **Return value**
 
@@ -3202,7 +3202,7 @@ import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let moduleName = 'entry';
 let extensionAbilityName = 'com.example.myapplication.extension';
-let metadataName = 'com.example.myapplication.metadata';
+let metadataName = 'ability_metadata';
 
 try {
     bundleManager.getProfileByExtensionAbility(moduleName, extensionAbilityName).then((data) => {
@@ -3231,7 +3231,7 @@ try {
 
 getProfileByExtensionAbilitySync(moduleName: string, extensionAbilityName: string, metadataName?: string): Array\<string\>
 
-Obtains the JSON strings of the profile based on the given module name, ExtensionAbility name, and metadata name. This API returns the result synchronously.
+Obtains the JSON string array of the current application's configuration file in the [metadata](../../quick-start/module-configuration-file.md#metadata) based on a given module name, ExtensionAbility name, and metadata name. This API returns the result synchronously. The result value is a string array.
 
 > **NOTE**
 > 
@@ -3244,8 +3244,8 @@ Obtains the JSON strings of the profile based on the given module name, Extensio
 | Name                | Type  | Mandatory| Description                              |
 | -------------------- | ------ | ---- | ---------------------------------- |
 | moduleName           | string | Yes  | Module name.          |
-| extensionAbilityName | string | Yes  | ExtensionAbility name.|
-| metadataName         | string | No  | Metadata name. By default, no value is passed.        |
+| extensionAbilityName | string | Yes  | Name of the ExtensionAbility component.|
+| metadataName         | string | No  |  Metadata name of the ExtensionAbility component, that is, **name** of the **metadata** tag under **extensionAbilities** in the **module.json5** file. The default value is null.        |
 
 **Return value**
 
@@ -3272,7 +3272,7 @@ import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let moduleName = 'entry';
 let extensionAbilityName = 'com.example.myapplication.extension';
-let metadataName = 'com.example.myapplication.metadata';
+let metadataName = 'ability_metadata';
 
 try {
     let data = bundleManager.getProfileByExtensionAbilitySync(moduleName, extensionAbilityName);
@@ -3456,7 +3456,7 @@ Obtains the ability label based on the given bundle name, module name, and abili
 | ----------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | bundleName  | string                 | Yes  | Bundle name.                                    |
 | moduleName  | string                 | Yes  | Module name.                                    |
-| abilityName | string                 | Yes  | Ability name.                                   |
+| abilityName | string                 | Yes  | Name of the UIAbility component.                                   |
 | callback    | AsyncCallback\<string> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the label obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -3513,7 +3513,7 @@ Obtains the ability label based on the given bundle name, module name, and abili
 | ----------- | ------ | ---- | ------------------------- |
 | bundleName  | string | Yes  | Bundle name. |
 | moduleName  | string | Yes  | Module name. |
-| abilityName | string | Yes  | Ability name.|
+| abilityName | string | Yes  | Name of the UIAbility component.|
 
 **Return value**
 
@@ -3573,7 +3573,7 @@ Obtains the ability label based on the given bundle name, module name, and abili
 | ----------- | ------ | ---- | ------------------------- |
 | bundleName  | string | Yes  | Bundle name. |
 | moduleName  | string | Yes  | Module name. |
-| abilityName | string | Yes  | Ability name.|
+| abilityName | string | Yes  | Name of the UIAbility component.|
 
 **Return value**
 
@@ -4337,7 +4337,7 @@ try {
 
 getBundleInfoForSelfSync(bundleFlags: number): BundleInfo
 
-Obtains the bundle information of this bundle based on the given bundle flags in synchronous mode.
+Obtains the bundle information of this bundle based on the given bundle flags. This API returns the result synchronously.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 

@@ -4,7 +4,7 @@ The **childProcessManager** module provides the child process management capabil
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
 >
 > The APIs of this module can be used only in the stage model.
 
@@ -27,9 +27,9 @@ Enumerates the child process start modes.
 
 ## childProcessManager.startChildProcess
 
-startChildProcess(srcEntry: string, startMode: StartMode): Promise&lt;number&gt;;
+startChildProcess(srcEntry: string, startMode: StartMode): Promise&lt;number&gt;
 
-Creates a child process and invokes the entrypoint method of the child process. This API uses a promise to return the result. A PID is returned once the child process is created. However, this does not mean that the child process is started. It is started only when the entrypoint method of the child process is successfully invoked. This API cannot be called by a child process to create its child process.
+Creates a child process and invokes the entrypoint method of the child process. A PID is returned once the child process is created. However, this does not mean that the child process is started. It is started only when the entrypoint method of the child process is successfully invoked. This API cannot be called by a child process to create its child process. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -37,7 +37,7 @@ Creates a child process and invokes the entrypoint method of the child process. 
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | srcEntry | string | Yes| Relative path of the source file of the child process. (The source file must be stored in **src/main**. For details, see the sample code below.) Currently, source files can be stored only in modules of the entry type.|
+  | srcEntry | string | Yes| Path of the source file of the child process. (The source file must be stored in **src/main**. For details, see the sample code below.) Currently, source files can be stored only in modules of the entry type.|
   | startMode | [StartMode](#childprocessmanagerstartmode) | Yes| Start mode of the child process.|
 
 **Return value**
@@ -90,9 +90,9 @@ try {
 
 ## childProcessManager.startChildProcess
 
-startChildProcess(srcEntry: string, startMode: StartMode, callback: AsyncCallback&lt;number&gt;): void;
+startChildProcess(srcEntry: string, startMode: StartMode, callback: AsyncCallback&lt;number&gt;): void
 
-Creates a child process and invokes the entrypoint method of the child process. This API uses an asynchronous callback to return the result. A PID is returned once the child process is created. However, this does not mean that the child process is started. It is started only when the entrypoint method of the child process is successfully invoked. This API cannot be called by a child process to create its child process.
+Creates a child process and invokes the entrypoint method of the child process. A PID is returned once the child process is created. However, this does not mean that the child process is started. It is started only when the entrypoint method of the child process is successfully invoked. This API cannot be called by a child process to create its child process. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -100,9 +100,9 @@ Creates a child process and invokes the entrypoint method of the child process. 
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | srcEntry | string | Yes| Relative path of the source file of the child process. (The source file must be stored in **src/main**. For details, see the sample code below.) Currently, source files can be stored only in modules of the entry type.|
+  | srcEntry | string | Yes| Path of the source file of the child process. (The source file must be stored in **src/main**. For details, see the sample code below.) Currently, source files can be stored only in modules of the entry type.|
   | startMode | [StartMode](#childprocessmanagerstartmode) | Yes| Start mode of the child process.|
-  | callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the PID of the child process.|
+  | callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the result. If the subprocess is started, **err** is **undefined** and **data** is the PID of the child process. Otherwise, **data** is an error object.|
 
 **Error codes**
 

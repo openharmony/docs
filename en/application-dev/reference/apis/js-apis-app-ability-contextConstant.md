@@ -16,7 +16,7 @@ import contextConstant from '@ohos.app.ability.contextConstant';
 
 ## ContextConstant.AreaMode
 
-Enumerates the data encryption levels. You can obtain the value of this constant by calling the **ContextConstant.AreaMode** API.
+Enumerates the data encryption levels.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
