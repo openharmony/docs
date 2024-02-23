@@ -491,13 +491,15 @@ getAllNotificationEnabledBundles(): Promise<Array<BundleOption>>;
 **示例：**
 
 ```ts
-notificationManager.getAllNotificationEnabledBundles().then((data) => {
+import Base from '@ohos.base';
+
+notificationManager.getAllNotificationEnabledBundles().then((data: Array<BundleOption>) => {
     console.info("Enable bundle data is" + JSON.stringify(data));
     data.forEach(element => {
         console.info("Enable uid is " + JSON.stringify(element.uid));
         console.info("Enable bundle is " + JSON.stringify(element.bundle));
     });
-}).catch((err:number) => {
+}).catch((err: Base.BusinessError) => {
     console.info("getAllNotificationEnabledBundles failed, error is" + JSON.stringify(err));
 })
 ```
