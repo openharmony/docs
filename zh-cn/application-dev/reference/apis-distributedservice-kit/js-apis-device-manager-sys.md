@@ -1143,7 +1143,7 @@ setUserOperation(operateAction: number, params: string): void;
 
 设置用户ui操作行为。
 
-> 从API version 11 开始废弃。建议使用[replyUiAction](js-apis-distributedDeviceManager.md#replyuiaction)替代。
+> 从API version 11 开始废弃。建议使用[replyUiAction](js-apis-distributedDeviceManager-sys.md#replyuiaction)替代。
 
 **需要权限**：ohos.permission.ACCESS_SERVICE_DM
 
@@ -1379,7 +1379,7 @@ on(type: 'uiStateChange', callback: Callback&lt;{ param: string}&gt;): void;
 
 ui状态变更回调。
 
-> 从API version 11 开始废弃。建议使用[on('replyResult')](js-apis-distributedDeviceManager.md#onreplyresult)替代。
+> 从API version 11 开始废弃。建议使用[on('replyResult')](js-apis-distributedDeviceManager-sys.md#onreplyresult)替代。
 
 **需要权限**：ohos.permission.ACCESS_SERVICE_DM
 
@@ -1425,7 +1425,7 @@ off(type: 'uiStateChange', callback?: Callback&lt;{ param: string}&gt;): void;
 
 取消ui状态变更回调。
 
-> 从API version 11 开始废弃。建议使用[off('replyResult')](js-apis-distributedDeviceManager.md#offreplyresult)替代。
+> 从API version 11 开始废弃。建议使用[off('replyResult')](js-apis-distributedDeviceManager-sys.md#offreplyresult)替代。
 
 **需要权限**：ohos.permission.ACCESS_SERVICE_DM
 
