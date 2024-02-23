@@ -291,3 +291,23 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
   }
 };
 ```
+
+## onStop
+
+onStop?(): void
+
+卡片ability停止时的回调接口。当此ability断开最后一个链接时调用，通知提供方进程即将停止。
+  
+**系统能力** SystemCapability.Ability.Form
+
+**示例：**
+
+```ts
+import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+
+export default class MyFormExtensionAbility extends FormExtensionAbility {
+  onStop() {
+    console.log(`FormExtensionAbility onStop`);
+  }
+}
+```
