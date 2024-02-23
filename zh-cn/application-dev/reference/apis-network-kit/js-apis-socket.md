@@ -771,10 +771,10 @@ socket连接信息
 
 **系统能力**：SystemCapability.Communication.NetStack
 
-| 参数名 | 类型   | 必填 | 说明                                  |
-| ------ | ------ | ---- | ------------------------------------- |
-| message   | ArrayBuffer | 是   | 接收的事件消息。 |
-| remoteInfo   | [SocketRemoteInfo](#socketremoteinfo) | 是   | socket连接信息。 |
+| 名称        | 类型   | 必填 | 说明                                  |
+| ---------- | ------ | ---- | ------------------------------------- |
+| message    | ArrayBuffer | 是   | 接收的事件消息。 |
+| remoteInfo | [SocketRemoteInfo](#socketremoteinfo) | 是   | socket连接信息。 |
 
 ## SocketStateBase
 
@@ -4060,7 +4060,7 @@ client.connect(connectOpt).then(() => {
 
 ### on('message')<sup>11+</sup>
 
-on(type: 'message', callback: Callback\<SocketMessageInfo\>): void
+on(type: 'message', callback: Callback\<LocalSocketMessageInfo\>): void
 
 订阅LocalSocket连接的接收消息事件。使用callback方式作为异步方法。
 
@@ -4091,7 +4091,7 @@ client.on('message', (value: socket.LocalSocketMessageInfo) => {
 
 ### off('message')<sup>11+</sup>
 
-off(type: 'message', callback?: Callback\<SocketMessageInfo\>): void
+off(type: 'message', callback?: Callback\<LocalSocketMessageInfo\>): void
 
 取消订阅LocalSocket连接的接收消息事件。使用callback方式作为异步方法。
 
@@ -4411,7 +4411,7 @@ listen(address: LocalAddress): Promise\<void\>
 | 2303109  | Bad file number.            |
 | 2301013  | Insufficient permissions.   |
 | 2301022  | Invalid argument.           |
-| 2303098  | Address already in use.     |
+| 2301098  | Address already in use.     |
 
 **示例：**
 
