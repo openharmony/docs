@@ -68,7 +68,7 @@ XComponent(value: {id: string, type: XComponentType, libraryname?: string, contr
 
   > **说明：**
   >
-  > 从API version 12开始，type为SURFACE("surface")时支持[背景颜色设置](ts-universal-attributes-background.md#backgroundcolor)。
+  > 从API version 11开始，type为SURFACE("surface")时支持[背景颜色设置](ts-universal-attributes-background.md#backgroundcolor)。
 
 - type为COMPONENT("component")时仅支持[图像效果](ts-universal-attributes-image-effect.md)中的shadow属性，建议使用挂载子组件的方式进行设置相关内容。
 
