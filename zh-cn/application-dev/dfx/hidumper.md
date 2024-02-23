@@ -78,3 +78,23 @@ HiDumper为开发、测试人员提供统一的系统信息获取工具，可帮
    **使用样例：**
 
    ![](figures/hidumper-s-3301.png)
+
+6. 获取RenderService的使用帮助，命令格式如下：
+
+   ```
+   hidumper -s RenderService -a "h" 
+   ```
+
+   **使用样例：**
+
+   ![](figures/hidumper-renderservice-h.png)
+
+7. 获取对应surface的刷新帧率，可以使用以下命令，返回值为surface刷新帧对应的时间戳。
+
+   ```
+   hidumper -s RenderService -a "surface_name fps" 
+   ```
+
+   **使用样例：**
+
+   ![](figures/hidumper-renderservice-fps.png)
