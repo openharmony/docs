@@ -2578,6 +2578,74 @@ notificationManager.publishAsBundle(request, representativeBundle, userId).then(
 });
 ```
 
+## notificationManager.publishAsBundle<sup>12+</sup>
+
+publishAsBundle(representativeBundle: BundleOption, request: NotificationRequest): Promise\<void\>
+
+发布代理通知。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER，ohos.permission.NOTIFICATION_AGENT_CONTROLLER
+
+**系统接口**: 此接口为系统接口。
+
+**参数：**
+
+
+| 参数名               | 类型                                        | 必填 | 说明                                          |
+| representativeBundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)  | 是   | 被代理应用的包信息。                            |
+| request              | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
+
+**返回值：**
+
+| 类型              | 说明        | 
+|-----------------|-----------|
+| Promise\<void\> | 无返回结果的Promise对象。 | 
+
+**错误码：**
+
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 1600001  | Internal error.                           |
+| 1600002  | Marshalling or unmarshalling error.       |
+| 1600003  | Failed to connect service.                |
+| 1600004  | Notification is not enabled.              |
+| 1600005  | Notification slot is not enabled.         |
+| 1600008  | The user is not exist.                    |
+| 1600009  | Over max number notifications per second. |
+| 1600012  | No memory space.                          |
+
+**示例：**
+
+```ts
+import Base from '@ohos.base';
+
+// 被代理应用的包信息
+let representativeBundle: notificationManager.BundleOption = {
+  bundle: "bundleName1",
+};
+// NotificationRequest对象
+let request: notificationManager.NotificationRequest = {
+    id: 1,
+    content: {
+        notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+        normal: {
+            title: "test_title",
+            text: "test_text",
+            additionalText: "test_additionalText"
+        }
+    }
+};
+notificationManager.publishAsBundle(representativeBundle, request).then(() => {
+	console.info("publishAsBundle success");
+}).catch((err: Base.BusinessError) => {
+    console.error(`publishAsBundle fail: ${JSON.stringify(err)}`);
+});
+```
+
 ## notificationManager.cancelAsBundle
 
 cancelAsBundle(id: number, representativeBundle: string, userId: number, callback: AsyncCallback\<void\>): void
@@ -2679,6 +2747,62 @@ let representativeBundle: string = "com.example.demo";
 // 用户ID
 let userId: number = 100;
 notificationManager.cancelAsBundle(0, representativeBundle, userId).then(() => {
+	console.info("cancelAsBundle success");
+}).catch((err: Base.BusinessError) => {
+    console.error(`cancelAsBundle fail: ${JSON.stringify(err)}`);
+});
+```
+
+
+## notificationManager.cancelAsBundle<sup>12+</sup>
+
+cancelAsBundle(representativeBundle: BundleOption, id: number): Promise\<void\>
+
+取消代理通知。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER，ohos.permission.NOTIFICATION_AGENT_CONTROLLER
+
+**系统接口**: 此接口为系统接口。
+
+**参数：**
+
+
+| 参数名               | 类型                                        | 必填 | 说明                                          |
+| -------------------- | ------------------------------------------- | ---- | --------------------------------------------- |
+| representativeBundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)  |是   | 被代理应用的包信息。 |
+| id                   | number                                     | 是   | 通知ID。           |
+
+**返回值：**
+
+| 类型              | 说明        | 
+|-----------------|-----------|
+| Promise\<void\> | 无返回结果的Promise对象。 | 
+
+**错误码：**
+
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 1600001  | Internal error.                           |
+| 1600002  | Marshalling or unmarshalling error.       |
+| 1600003  | Failed to connect service.                |
+| 1600007  | The notification is not exist.            |
+| 1600008  | The user is not exist.                    |
+| 1600009  | Over max number notifications per second. |
+| 1600012  | No memory space.                          |
+
+**示例：**
+
+```ts
+import Base from '@ohos.base';
+
+let representativeBundle: notificationManager.BundleOption = {
+  bundle: "bundleName1",
+};
+notificationManager.cancelAsBundle(representativeBundle, 1).then(() => {
 	console.info("cancelAsBundle success");
 }).catch((err: Base.BusinessError) => {
     console.error(`cancelAsBundle fail: ${JSON.stringify(err)}`);
