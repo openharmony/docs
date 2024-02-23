@@ -3967,7 +3967,7 @@ setExtraOptions(options: ExtraOptionsBase): Promise\<void\>
 
 | 参数名  | 类型                                      | 必填 | 说明                                                         |
 | ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [ExtraOptionsBase](#extraoptionsbase10) | 是   | LocalSocket连接的其他属性，参考[ExtraOptionsBase](#extraoptionsbase10)。 |
+| options | [ExtraOptionsBase](#extraoptionsbase7) | 是   | LocalSocket连接的其他属性，参考[ExtraOptionsBase](#extraoptionsbase7)。 |
 
 **返回值：**
 
@@ -4026,7 +4026,7 @@ getExtraOptions(): Promise\<ExtraOptionsBase\>;
 
 | 类型                         | 说明                                      |
 | :-------------------------- | :---------------------------------------- |
-| Promise\<[ExtraOptionsBase](#extraoptionsbase10)\> | 以Promise形式返回设置LocalSocket套接字的属性。 |
+| Promise\<[ExtraOptionsBase](#extraoptionsbase7)\> | 以Promise形式返回设置LocalSocket套接字的属性。 |
 
 **错误码：**
 
@@ -4482,7 +4482,7 @@ setExtraOptions(options: ExtraOptionsBase): Promise\<void\>
 
 | 参数名  | 类型                                      | 必填 | 说明                            |
 | ------- | --------------------------------------- | ---- | ------------------------------ |
-| options | [ExtraOptionsBase](#extraoptionsbase10) | 是   | LocalSocketServer连接的其他属性。 |
+| options | [ExtraOptionsBase](#extraoptionsbase7) | 是   | LocalSocketServer连接的其他属性。 |
 
 **返回值：**
 
@@ -4539,7 +4539,7 @@ getExtraOptions(): Promise\<ExtraOptionsBase\>;
 
 | 类型                         | 说明                        |
 | :-------------------------- | :-------------------------- |
-| Promise\<[ExtraOptionsBase](#extraoptionsbase10)\> | 以Promise形式返回套接字的属性。 |
+| Promise\<[ExtraOptionsBase](#extraoptionsbase7)\> | 以Promise形式返回套接字的属性。 |
 
 **错误码：**
 
