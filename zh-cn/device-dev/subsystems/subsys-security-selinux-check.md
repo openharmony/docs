@@ -259,7 +259,7 @@ developer_only(`
 
 ### 删除冗余的基线
 
-当整改了不合理的基线策略后，删除了不合理的策略，但是未同时删除基线时，也会触发编译报错，关键报错信息`remove the following unnecessary whitelists in rule 'xxx' part 'user'`，这里的xxx表示被拦截的检查项name，报错如下：
+当整改了不合理的基线策略后，删除了不合理的策略，但是未同时删除基线时，也会触发编译报错，关键报错信息`check 'xxx' baseline in user mode failed`，xxx表示高危进程标签，报错如下：
 ```
         check 'sh' baseline in user mode failed
                 expect rule: (allow sh rootfs (dir (search))); actual rule: (allow sh rootfs (dir ()))
