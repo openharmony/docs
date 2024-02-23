@@ -121,6 +121,21 @@ Since API version 9, this API is supported in ArkTS widgets.
 | ----- | ---------------------------------------- | ---- | ---------------------------------------- |
 | Bias  | { horizontal?: number, vertical?: number } | No| Offset of the component under the anchor constraints.<br>- **horizontal**: bias value in the horizontal direction.<br>- **vertical**: bias value in the vertical direction.<br>This parameter takes effect when:<br>The width of the child component can be determined and there are two horizontal anchors.<br><br>-The height of the child component can be determined and there are two vertical anchors.<br>Default value: {<br>horizontal: 0.5,<br>vertical: 0.5<br>}|
 
+## chainMode<sup>11+</sup>
+
+chainMode(direction: Axis, style: ChainStyle)
+
+Sets the parameters of the chain in which the component is the head. This parameter has effect only when the parent container is [\<RelativeContainer>](ts-container-relativecontainer.md).
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                       | Mandatory| Description                    |
+| ------ | ------------------------------------------- | ---- | ------------------------ |
+| direction  | [Axis](ts-appendix-enums.md#Axis) | Yes  | Direction of the chain.|
+| style  | [ChainStyle](ts-appendix-enums.md#chainstyle11) | Yes  | Style of the chain.|
+
 ## Example
 ### Example 1
 ```ts

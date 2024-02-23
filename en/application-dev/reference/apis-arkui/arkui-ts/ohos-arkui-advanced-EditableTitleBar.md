@@ -39,8 +39,8 @@ EditableTitleBar({leftIconType: EditableLeftIconType, title: ResourceStr, menuIt
 | leftIconStyle | [EditableLeftIconType](#editablelefticontype) | Yes| Type of the icon on the left.| 
 | title | [ResourceStr](ts-types.md#resourcestr) | Yes| Title.| 
 | menuItems | Array&lt;[EditableTitleBarMenuItem](#editabletitlebarmenuitem)&gt; | No| List of menu items on the right.| 
-| onSave | ()&nbsp;=&gt;&nbsp;void | No| Callback invoked when the Save icon is clicked.| 
-| onCancel | ()&nbsp;=&gt;&nbsp;void | No| Callback invoked when the left icon is clicked to cancel the operation.| 
+| onSave | () =&gt; void | No| Callback invoked when the Save icon is clicked.| 
+| onCancel | () =&gt; void | No| Callback invoked when the left icon is clicked to cancel the operation.| 
 
 
 ## EditableLeftIconType
@@ -57,7 +57,7 @@ EditableTitleBar({leftIconType: EditableLeftIconType, title: ResourceStr, menuIt
 | -------- | -------- | -------- | -------- |
 | value | [ResourceStr](ts-types.md#resourcestr) | Yes| Icon.| 
 | isEnabled | boolean | No| Whether to enable the item.<br>Default value: **false**<br> **true**: The item is enabled.<br> **false**: The item is disabled.| 
-| action | ()&nbsp;=&gt;&nbsp;void | No| Action to perform.| 
+| action | () =&gt; void | No| Action to perform.| 
 
 ## Events
 The [universal events](ts-universal-events-click.md) are not supported.

@@ -74,7 +74,7 @@ Defines the common icon attributes of the chip.
 > **NOTE**
 >
 > **fillColor** takes effect only when the icon format is **svg**.
-
+>
 
 ## PrefixIconOptions
 

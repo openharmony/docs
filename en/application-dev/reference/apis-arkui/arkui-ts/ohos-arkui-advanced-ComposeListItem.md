@@ -48,9 +48,9 @@ ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 | -------- | -------- | -------- | -------- |
 | iconStyle | [IconType](#icontype) | No| Icon style of the element on the left.| 
 | icon | [ResourceStr](ts-types.md#resourcestr) | No| Icon resource of the element on the left.| 
-| primaryText | [ResourceStr](ts-types.md#resourcestr) | No| Title of the element in the center. If the length limit is reached, an ellipsis (...) is displayed to represent clipped text.| 
-| secondaryText | [ResourceStr](ts-types.md#resourcestr) | No| Subtitle of the element in the center. If the length limit is reached, an ellipsis (...) is displayed to represent clipped text.| 
-| description | [ResourceStr](ts-types.md#resourcestr) | No| Description of the element in the center. If the length limit is reached, an ellipsis (...) is displayed to represent clipped text.| 
+| primaryText | [ResourceStr](ts-types.md#resourcestr) | No| Title of the element in the center. If the length limit is reached, an ellipsis (…) is displayed to represent clipped text.| 
+| secondaryText | [ResourceStr](ts-types.md#resourcestr) | No| Subtitle of the element in the center. If the length limit is reached, an ellipsis (…) is displayed to represent clipped text.| 
+| description | [ResourceStr](ts-types.md#resourcestr) | No| Description of the element in the center. If the length limit is reached, an ellipsis (…) is displayed to represent clipped text.| 
 
 
 ## IconType

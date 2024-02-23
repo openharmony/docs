@@ -36,7 +36,7 @@ Adds a mask of the specified shape to the component.
 
 | Name| Type                                                        | Mandatory| Description                            |
 | ------ | ------------------------------------------------------------ | ---- | -------------------------------- |
-| value  | [ProgressMask](##progressmask10)<sup>10+</sup> \| [CircleAttribute](ts-drawing-components-circle.md) \| [EllipseAttribute](ts-drawing-components-ellipse.md) \| [PathAttribute](ts-drawing-components-path.md) \| [RectAttribute](ts-drawing-components-rect.md) | Yes  | Mask of the specified shape to add to the component.|
+| value  | [ProgressMask](#progressmask10)<sup>10+</sup> \| [CircleAttribute](ts-drawing-components-circle.md) \| [EllipseAttribute](ts-drawing-components-ellipse.md) \| [PathAttribute](ts-drawing-components-path.md) \| [RectAttribute](ts-drawing-components-rect.md) | Yes  | Mask of the specified shape to add to the component.|
 
 ## ProgressMask<sup>10+</sup>
 
