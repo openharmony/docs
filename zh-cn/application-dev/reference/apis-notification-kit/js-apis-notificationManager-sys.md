@@ -491,18 +491,15 @@ getAllNotificationEnabledBundles(): Promise<Array<BundleOption>>;
 **示例：**
 
 ```ts
-import notificationManager from '@ohos.notificationManager';
-
-    notificationManager.getAllNotificationEnabledBundles().then((data) => {
-        console.info("Enable bundle data is" + JSON.stringify(data));
-        data.forEach(element => {
-        console.info("Enable status data is " + JSON.stringify(element.status));
-        console.info("Enable uid is " + JSON.stringify(element.bundleOption.uid));
-        console.info("Enable bundle is " + JSON.stringify(element.bundleOption.bundle));
-        });
-    }).catch((err:number) => {
-        console.info("getAllNotificationEnabledBundles failed, error is" + JSON.stringify(err));
-    })
+notificationManager.getAllNotificationEnabledBundles().then((data) => {
+    console.info("Enable bundle data is" + JSON.stringify(data));
+    data.forEach(element => {
+        console.info("Enable uid is " + JSON.stringify(element.uid));
+        console.info("Enable bundle is " + JSON.stringify(element.bundle));
+    });
+}).catch((err:number) => {
+    console.info("getAllNotificationEnabledBundles failed, error is" + JSON.stringify(err));
+})
 ```
 
 ## notificationManager.isNotificationEnabled
