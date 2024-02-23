@@ -288,7 +288,7 @@ deleteKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>
 | 参数名   | 类型                        | 必填 | 说明                                |
 | -------- | --------------------------- | ---- | ----------------------------------- |
 | keyAlias | string                      | 是   | 密钥别名，应为生成key时传入的别名。 |
-| options  | [HuksOptions](#huksoptions) | 是   | 用于删除时指定密钥的属性TAG，如使用[HuksAuthStorageLevel](#huksauthstoragelevel11)指定需删除密钥的安全级别，可传空，传空时默认DE。。            |
+| options  | [HuksOptions](#huksoptions) | 是   | 用于删除时指定密钥的属性TAG，如使用[HuksAuthStorageLevel](#huksauthstoragelevel11)指定需删除密钥的安全级别，可传空，传空时默认DE。            |
 
 **错误码：**
 
