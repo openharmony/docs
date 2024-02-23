@@ -95,7 +95,7 @@ struct FancyUse {
     Column({ space: 10 }) {
       // 使用全局的@Styles封装的样式
       Text('FancyA')
-        .globalFancy ()
+        .globalFancy()
         .fontSize(30)
       // 使用组件内的@Styles封装的样式
       Text('FancyB')
