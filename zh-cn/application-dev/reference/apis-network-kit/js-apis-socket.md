@@ -557,7 +557,7 @@ udp.on('message', (value: SocketInfo) => {
 
 ### off('message')
 
-off(type: 'message', callback?: Callback\<[SocketMessageInfo]\>): void
+off(type: 'message', callback?: Callback\<SocketMessageInfo\>): void
 
 取消订阅UDPSocket连接的接收消息事件。使用callback方式作为异步方法。
 
@@ -764,6 +764,17 @@ UDPSocket连接的其他属性。
 | sendBufferSize    | number  | 否   | 发送缓冲区大小（单位：Byte），默认为0。   |
 | reuseAddress      | boolean | 否   | 是否重用地址。默认为false。      |
 | socketTimeout     | number  | 否   | 套接字超时时间，单位毫秒（ms），默认为0。 |
+
+## SocketMessageInfo<sup>11+</sup>
+
+socket连接信息
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+| 参数名 | 类型   | 必填 | 说明                                  |
+| ------ | ------ | ---- | ------------------------------------- |
+| message   | ArrayBuffer | 是   | 接收的事件消息。 |
+| remoteInfo   | [SocketRemoteInfo](#socketremoteinfo) | 是   | socket连接信息。 |
 
 ## SocketStateBase
 
@@ -3439,7 +3450,7 @@ tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
 
 ### off('message')<sup>10+</sup>
 
-off(type: 'message', callback?: Callback<[SocketMessageInfo]\>): void
+off(type: 'message', callback?: Callback<SocketMessageInfo\>): void
 
 取消订阅TCPSocketConnection连接的接收消息事件。使用callback方式作为异步方法。
 
@@ -3703,8 +3714,9 @@ bind(address: LocalAddress): Promise\<void\>;
 import socket from "@ohos.net.socket";
 
 let client = socket.constructLocalSocketInstance()
+let sandboxPath: string = getContext(this).filesDir + '/testSocket'
 let address : socket.LocalAddress = {
-  address: '/tmp/testSocket'
+  address: sandboxPath
 }
 client.bind(address).then(() => {
   console.log('bind success')
@@ -3752,9 +3764,10 @@ connect(options: LocalConnectOptions): Promise\<void\>
 import socket from "@ohos.net.socket";
 
 let client = socket.constructLocalSocketInstance();
+let sandboxPath: string = getContext(this).filesDir + '/testSocket'
 let connectOpt: socket.LocalConnectOptions = {
   address: {
-    address: '/tmp/testSocket'
+    address: sandboxPath
   },
   timeout: 6000
 }
@@ -3801,9 +3814,10 @@ send(options: LocalSendOptions): Promise\<void\>
 import socket from "@ohos.net.socket"
 
 let client: socket.LocalSocket = socket.constructLocalSocketInstance()
+let sandboxPath: string = getContext(this).filesDir + '/testSocket'
 let connectOpt: socket.LocalConnectOptions = {
   address: {
-    address: '/tmp/testSocket'
+    address: sandboxPath
   },
   timeout: 6000
 }
@@ -3877,10 +3891,10 @@ getState(): Promise\<SocketStateBase\>
 ```ts
 import socket from "@ohos.net.socket";
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
-
+let sandboxPath: string = getContext(this).filesDir + '/testSocket'
 let connectOpt: socket.LocalConnectOptions = {
   address: {
-    address: '/tmp/testSocket'
+    address: sandboxPath
   },
   timeout: 6000
 }
@@ -3919,9 +3933,10 @@ getSocketFd(): Promise\<number\>
 ```ts
 import socket from "@ohos.net.socket";
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
+let sandboxPath: string = getContext(this).filesDir + '/testSocket'
 let connectOpt: socket.LocalConnectOptions = {
   address: {
-    address: '/tmp/testSocket'
+    address: sandboxPath
   },
   timeout: 6000
 }
@@ -3965,16 +3980,17 @@ setExtraOptions(options: ExtraOptionsBase): Promise\<void\>
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
 | 401     | Parameter error.        |
-| 201     | Permission denied.      |
+| 2301009 | Bad file descriptor.    |
 
 **示例：**
 
 ```ts
 import socket from "@ohos.net.socket";
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
+let sandboxPath: string = getContext(this).filesDir + '/testSocket'
 let connectOpt: socket.LocalConnectOptions = {
   address: {
-    address: '/tmp/testSocket'
+    address: sandboxPath
   },
   timeout: 6000
 }
@@ -4023,9 +4039,10 @@ getExtraOptions(): Promise\<ExtraOptionsBase\>;
 ```ts
 import socket from "@ohos.net.socket";
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
+let sandboxPath: string = getContext(this).filesDir + '/testSocket'
 let connectOpt: socket.LocalConnectOptions = {
   address: {
-    address: '/tmp/testSocket'
+    address: sandboxPath
   },
   timeout: 6000
 }
@@ -4054,7 +4071,7 @@ on(type: 'message', callback: Callback\<SocketMessageInfo\>): void
 | 参数名   | 类型                                              | 必填 | 说明                                      |
 | -------- | ----------------------------------------------- | ---- | ----------------------------------- |
 | type     | string                                          | 是   | 订阅的事件类型。'message'：接收消息事件。 |
-| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | 是   | 以callback的形式异步返回接收的消息。|
+| callback | Callback\<[LocalSocketMessageInfo](#localsocketmessageinfo11)\> | 是   | 以callback的形式异步返回接收的消息。|
 
 **示例：**
 
@@ -4088,11 +4105,11 @@ off(type: 'message', callback?: Callback\<SocketMessageInfo\>): void
 | 参数名   | 类型                                               | 必填 | 说明                                 |
 | -------- | ------------------------------------------------ | ---- | ----------------------------------- |
 | type     | string                                           | 是   | 订阅的事件类型。'message'：接收消息事件。 |
-| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | 否   | 指定传入on中的callback取消一个订阅。|
+| callback | Callback\<[LocalSocketMessageInfo](#localsocketmessageinfo11)\> | 否   | 指定传入on中的callback取消一个订阅。|
 
 **示例：**
 
-```ts
+```tsSocketMessageInfo
 import socket from "@ohos.net.socket";
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
 let messageView = '';
@@ -4147,7 +4164,7 @@ off(type: 'connect', callback?: Callback\<void\>): void;
 | 参数名   | 类型             | 必填 | 说明                                                         |
 | -------- | ---------------- | ---- | --------------------------------------------------------- |
 | type     | string           | 是   | 订阅的事件类型。                                             |
-| callback | Callback\<void\> | 是   | 指定传入on中的callback取消一个订阅。                           |
+| callback | Callback\<void\> | 否   | 指定传入on中的callback取消一个订阅。                           |
 
 **示例：**
 
@@ -4179,7 +4196,7 @@ on(type: 'close', callback: Callback\<void\>): void;
 | 参数名   | 类型             | 必填 | 说明                        |
 | -------- | ---------------- | ---- | ------------------------ |
 | type     | string           | 是   | 订阅LocalSocket的关闭事件。 |
-| callback | Callback\<void\> | 否   | 以callback的形式异步返回关闭localsocket的结果。|
+| callback | Callback\<void\> | 是   | 以callback的形式异步返回关闭localsocket的结果。|
 
 **示例：**
 
@@ -4370,7 +4387,7 @@ listen(address: LocalAddress): Promise\<void\>
 绑定本地套接字文件，监听并接受与此套接字建立的LocalSocket连接。该接口使用多线程并发处理客户端的数据。使用Promise方法作为异步方法。
 
 > **说明：**
-> 服务端使用该方法完成bind，listen，accept操作。
+> 服务端使用该方法完成bind，listen，accept操作，传入套接字文件路径，调用此接口后会自动生成本地套接字文件。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -4394,15 +4411,16 @@ listen(address: LocalAddress): Promise\<void\>
 | 2303109  | Bad file number.            |
 | 2301013  | Insufficient permissions.   |
 | 2301022  | Invalid argument.           |
-| 2303198  | Address already in use.     |
+| 2303098  | Address already in use.     |
 
 **示例：**
 
 ```ts
 import socket from "@ohos.net.socket";
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
+let sandboxPath: string = getContext(this).filesDir + '/testSocket'
 let addr: socket.LocalAddress = {
-  address:  '/tmp/testSocket'
+  address: sandboxPath
 }
 server.listen(addr).then(() => {
   console.log('listen success');
@@ -4433,8 +4451,9 @@ getState(): Promise\<SocketStateBase\>
 ```ts
 import socket from "@ohos.net.socket";
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
+let sandboxPath: string = getContext(this).filesDir + '/testSocket'
 let listenAddr: socket.LocalAddress = {
-  address:  '/tmp/testSocket'
+  address: sandboxPath
 }
 server.listen(listenAddr).then(() => {
   console.log("listen success");
@@ -4483,8 +4502,9 @@ setExtraOptions(options: ExtraOptionsBase): Promise\<void\>
 ```ts
 import socket from "@ohos.net.socket";
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
+let sandboxPath: string = getContext(this).filesDir + '/testSocket'
 let listenAddr: socket.NetAddress = {
-  address:  '/tmp/testSocket'
+  address: sandboxPath
 }
 server.listen(listenAddr).then(() => {
   console.log("listen success");
@@ -4525,15 +4545,16 @@ getExtraOptions(): Promise\<ExtraOptionsBase\>;
 
 | 错误码ID | 错误信息               |
 | -------- | -------------------- |
-| 2301009  | Bad file descriptor. |
+| 401     | Parameter error. |
 
 **示例：**
 
 ```ts
 import socket from "@ohos.net.socket";
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
-let listenAddr: socket.NetAddress = {
-  address:  '/tmp/testSocket'
+let sandboxPath: string = getContext(this).filesDir + '/testSocket'
+let listenAddr: socket.LocalAddress = {
+  address: sandboxPath
 }
 server.listen(listenAddr).then(() => {
   console.log("listen success");
@@ -4807,7 +4828,7 @@ on(type: 'message', callback: Callback\<SocketMessageInfo\>): void;
 | 参数名   | 类型                                              | 必填 | 说明                                     |
 | -------- | ----------------------------------------------- | ---- | --------------------------------------- |
 | type     | string                                          | 是   | 订阅的事件类型。'message'：接收消息事件。     |
-| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | 是   | 以callback的形式异步返回接收到的来自客户端的消息。 |
+| callback | Callback\<[LocalSocketMessageInfo](#localsocketmessageinfo11)\> | 是   | 以callback的形式异步返回接收到的来自客户端的消息。 |
 
 **错误码：**
 
@@ -4820,8 +4841,9 @@ on(type: 'message', callback: Callback\<SocketMessageInfo\>): void;
 ```ts
 import socket from "@ohos.net.socket";
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
+let sandboxPath: string = getContext(this).filesDir + '/testSocket'
 let listenAddr: socket.LocalAddress = {
-  address: '/tmp/testSocket'
+  address: sandboxPath
 }
 server.listen(listenAddr).then(() => {
   console.log("listen success");
@@ -4857,7 +4879,7 @@ off(type: 'message', callback?: Callback\<SocketMessageInfo\>): void
 | 参数名   | 类型                                              | 必填 | 说明                                 |
 | -------- | ----------------------------------------------- | ---- | ----------------------------------- |
 | type     | string                                          | 是   | 订阅的事件类型。'message'：接收消息事件。 |
-| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | 否   | 指定传入on的一个callback取消注册。 |
+| callback | Callback\<[LocalSocketMessageInfo](#localsocketmessageinfo11)\> | 否   | 指定传入on的一个callback取消注册。 |
 
 **错误码：**
 
@@ -7428,17 +7450,6 @@ tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   });
 });
 ```
-
-## SocketMessageInfo<sup>11+</sup>
-
-socket连接信息
-
-**系统能力**：SystemCapability.Communication.NetStack
-
-| 参数名 | 类型   | 必填 | 说明                                  |
-| ------ | ------ | ---- | ------------------------------------- |
-| message   | ArrayBuffer | 是   | 接收的事件消息。 |
-| remoteInfo   | [SocketRemoteInfo](#socketremoteinfo) | 是   | socket连接信息。 |
 
 ### send<sup>10+</sup>
 
