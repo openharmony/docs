@@ -5,16 +5,16 @@
 
 If complex services are involved in cross-application data access, you can use **DataShareExtensionAbility** to start the application of the data provider to implement data access.
 
-You need to implement flexible service logics via callbacks of the service provider.  
+You need to implement flexible service logics via callbacks of the service provider.
 
 
 ## Working Principles
 
 There are two roles in **DataShare**:
 
-- Data provider: implements operations, such as adding, deleting, modifying, and querying data, and opening a file, using [DataShareExtensionAbility](../reference/apis/js-apis-application-dataShareExtensionAbility.md).
+- Data provider: implements operations, such as adding, deleting, modifying, and querying data, and opening a file, using [DataShareExtensionAbility](../reference/apis-arkdata/js-apis-application-dataShareExtensionAbility-sys.md).
 
-- Data consumer: accesses the data provided by the provider using [createDataShareHelper()](../reference/apis/js-apis-data-dataShare.md#datasharecreatedatasharehelper).
+- Data consumer: accesses the data provided by the provider using [createDataShareHelper()](../reference/apis-arkdata/js-apis-data-dataShare-sys.md#datasharecreatedatasharehelper).
 
 **Figure 1** Data sharing mechanism
 
@@ -34,7 +34,7 @@ There are two roles in **DataShare**:
 
 ### Data Provider Application Development (Only for System Applications)
 
-[DataShareExtensionAbility](../reference/apis/js-apis-application-dataShareExtensionAbility.md) provides the following APIs. You can override these APIs as required.
+The [DataShareExtensionAbility](../reference/apis-arkdata/js-apis-application-dataShareExtensionAbility-sys.md) provides the following APIs. Rewrite the corresponding callback methods as required.
 
 - **onCreate**: called by the server to initialize service logic when the DataShare client connects to the DataShareExtensionAbility server.
 
@@ -159,7 +159,7 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
    | Field           | Description                                                    | Mandatory|
    | ------------------- | ------------------------------------------------------------ | ---- |
    | tableConfig         | Label configuration.                                                  | Yes  |
-   | uri                 | Range for which the configuration takes effect. The URI supports the following formats in descending order by priority:<br>- *: indicates all databases and tables.<br>- **datashare:///{bundleName}/{moduleName}/{storeName}**: specifies a database.<br>- **datashare:///{bundleName}/{moduleName}/{storeName}/{tableName}**: specifies a table.<br>If URIs of different formats are configured, only the URI with higher priority takes effect. | Yes  |
+   | uri                 | Range for which the configuration takes effect. The URI supports the following formats in descending order by priority:<br>- *: indicates all databases and tables.<br>- **datashare:///{bundleName}/{moduleName}/{storeName}**: specifies a database.<br>- **datashare:///{bundleName}/{moduleName}/{storeName}/{tableName}**: specifies a table.<br>If URIs of different formats are configured, only the URI with higher priority takes effect.| Yes  |
    | crossUserMode       | Whether data is shared by multiple users.<br>The value **1** means to share data between multiple users, and the value **2** means the opposite.| Yes  |
    | isSilentProxyEnable | Whether silent access is disabled for the ExtensionAbility.<br>The value **false** means to disable silent access; the value **true** means the opposite. The default value is **true**.<br>If the application has multiple ExtensionAbilities and this field is set to **false** for one of them, silent access is disabled for the application.<br>If the data provider has called **enableSilentProxy** or **disableSilentProxy**, silent access is enabled or disabled based on the API settings. Otherwise, the setting here takes effect. | No  |
    
