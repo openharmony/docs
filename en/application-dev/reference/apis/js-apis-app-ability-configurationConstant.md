@@ -47,9 +47,9 @@ You can obtain the value of this constant by calling the **ConfigurationConstant
 | Name| Value| Description| 
 | -------- | -------- | -------- |
 | SCREEN_DENSITY_NOT_SET | 0 | The screen pixel density is not set.| 
-| SCREEN_DENSITY_SDPI | 120 | The pixel density of the screen is 'sdpi'.| 
-| SCREEN_DENSITY_MDPI | 160 | The pixel density of the screen is 'mdpi'.| 
-| SCREEN_DENSITY_LDPI | 240 | The pixel density of the screen is 'ldpi'.| 
-| SCREEN_DENSITY_XLDPI | 320 | The pixel density of the screen is 'xldpi'.| 
-| SCREEN_DENSITY_XXLDPI | 480 | The pixel density of the screen is 'xxldpi'.| 
-| SCREEN_DENSITY_XXXLDPI | 640 | The pixel density of the screen is 'xxxldpi'.| 
+| SCREEN_DENSITY_SDPI | 120 | The pixel density of the screen is 'SDPI'.| 
+| SCREEN_DENSITY_MDPI | 160 | The pixel density of the screen is 'MDPI'.| 
+| SCREEN_DENSITY_LDPI | 240 | The pixel density of the screen is 'LDPI'.| 
+| SCREEN_DENSITY_XLDPI | 320 | The pixel density of the screen is 'XLDPI'.| 
+| SCREEN_DENSITY_XXLDPI | 480 | The pixel density of the screen is 'XXLDPI'.| 
+| SCREEN_DENSITY_XXXLDPI | 640 | The pixel density of the screen is 'XXXLDPI'.| 

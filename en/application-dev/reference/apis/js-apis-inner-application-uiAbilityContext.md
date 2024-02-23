@@ -166,7 +166,7 @@ export default class EntryAbility extends UIAbility {
       abilityName: 'EntryAbility'
     };
     let options: StartOptions = {
-      windowMode: 0
+      displayId: 0
     };
 
     try {
@@ -253,7 +253,7 @@ export default class EntryAbility extends UIAbility {
       abilityName: 'EntryAbility'
     };
     let options: StartOptions = {
-      windowMode: 0,
+      displayId: 0,
     };
 
     try {
@@ -422,7 +422,7 @@ export default class EntryAbility extends UIAbility {
       abilityName: 'EntryAbility'
     };
     let options: StartOptions = {
-      windowMode: 0,
+      displayId: 0,
     };
 
     try {
@@ -515,7 +515,7 @@ export default class EntryAbility extends UIAbility {
       abilityName: 'EntryAbility'
     };
     let options: StartOptions = {
-      windowMode: 0,
+      displayId: 0,
     };
 
     try {
@@ -700,7 +700,7 @@ export default class EntryAbility extends UIAbility {
     };
     let accountId = 100;
     let options: StartOptions = {
-      windowMode: 0
+      displayId: 0
     };
 
     try {
@@ -800,7 +800,7 @@ export default class EntryAbility extends UIAbility {
     };
     let accountId = 100;
     let options: StartOptions = {
-      windowMode: 0
+      displayId: 0
     };
 
     try {
@@ -1988,7 +1988,7 @@ Observe the following when using this API:
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;Caller&gt; | Promise used to return the caller object to communicate with.|
+| Promise&lt;[Caller](js-apis-app-ability-uiAbility.md#caller)&gt; | Promise used to return the caller object to communicate with.|
 
 **Error codes**
 
@@ -2254,7 +2254,7 @@ export default class EntryAbility extends UIAbility {
     };
     let accountId = 100;
     let options: StartOptions = {
-      windowMode: 0
+      displayId: 0
     };
 
     try {
@@ -2347,7 +2347,7 @@ export default class EntryAbility extends UIAbility {
     };
     let accountId = 100;
     let options: StartOptions = {
-      windowMode: 0
+      displayId: 0
     };
 
     try {
@@ -2718,7 +2718,7 @@ Checks whether this UIAbility is in the terminating state.
 
 | Type| Description|
 | -------- | -------- |
-| boolean| The value **true** means that the UIAbility is in the terminating state, and **false** means the opposite.|
+| boolean | The value **true** means that the UIAbility is in the terminating state, and **false** means the opposite.|
 
 **Error codes**
 
@@ -3043,7 +3043,7 @@ export default class EntryAbility extends UIAbility {
       abilityName: 'EntryAbility'
     };
     let options: StartOptions = {
-      windowMode: 0
+      displayId: 0
     };
 
     try {
@@ -3126,7 +3126,7 @@ export default class EntryAbility extends UIAbility {
       abilityName: 'EntryAbility'
     };
     let options: StartOptions = {
-      windowMode: 0,
+      displayId: 0,
     };
 
     try {

@@ -4,7 +4,8 @@ The **ShareExtensionAbility** module, inherited from [UIExtensionAbility](js-api
 
 > **NOTE**
 > 
-> The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
+> The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
 > The APIs of this module can be used only in the stage model.
 
 ## When to Use
@@ -21,9 +22,9 @@ import ShareExtensionAbility from '@ohos.app.ability.ShareExtensionAbility';
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read-only| Mandatory| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| context | [UIExtensionContext](js-apis-inner-application-uiExtensionContext.md) | Yes| No| Context.|
+| context | [UIExtensionContext](js-apis-inner-application-uiExtensionContext.md) | No| No| Context.|
 
 ## ShareExtensionAbility.onCreate
 
@@ -32,6 +33,10 @@ onCreate(): void
 Called to initialize the service logic when a ShareExtensionAbility is being created.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**Example**
+
+See [Creating a ShareExtensionAbility](#creating-a-shareextensionability).
 
 ## ShareExtensionAbility.onSessionCreate
 
@@ -48,6 +53,34 @@ Called when a **UIExtensionContentSession** instance is created for this ShareEx
 | want | [Want](js-apis-app-ability-want.md) | Yes| Want information related to the ShareExtensionAbility, including the ability name and bundle name.|
 | session | [UIExtensionContentSession](js-apis-app-ability-uiExtensionContentSession.md) | Yes| UI content information related to the ShareExtensionAbility.|
 
+**Example**
+
+See [Creating a ShareExtensionAbility](#creating-a-shareextensionability).
+
+## ShareExtensionAbility.onForeground
+
+onForeground(): void
+
+Called when this ShareExtensionAbility is switched from the background to the foreground.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**Example**
+
+See [Creating a ShareExtensionAbility](#creating-a-shareextensionability).
+
+## ShareExtensionAbility.onBackground
+
+onBackground(): void
+
+Called when this ShareExtensionAbility is switched from the foreground to the background.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**Example**
+
+See [Creating a ShareExtensionAbility](#creating-a-shareextensionability).
+
 ## ShareExtensionAbility.onSessionDestroy
 
 onSessionDestroy(session: UIExtensionContentSession): void
@@ -62,30 +95,28 @@ Called when a **UIExtensionContentSession** instance is destroyed for this Share
 | -------- | -------- | -------- | -------- |
 | session | [UIExtensionContentSession](js-apis-app-ability-uiExtensionContentSession.md) | Yes| UI content information related to the ShareExtensionAbility.|
 
-## ShareExtensionAbility.onForeground
+**Example**
 
-onForeground(): void;
-
-Called when this ShareExtensionAbility is switched from the background to the foreground.
-
-**System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
-
-## ShareExtensionAbility.onBackground
-
-onBackground(): void;
-
-Called when this ShareExtensionAbility is switched from the foreground to the background.
-
-**System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+See [Creating a ShareExtensionAbility](#creating-a-shareextensionability).
 
 ## ShareExtensionAbility.onDestroy
 
-onDestroy(): void | Promise&lt;void&gt;;
+onDestroy(): void | Promise&lt;void&gt;
 
 Called when this ShareExtensionAbility is destroyed to clear resources.
 After the **onDestroy()** lifecycle callback is executed, the application may exit. Consequently, the asynchronous function (for example, asynchronously writing data to the database) in **onDestroy()** may fail to be executed. You can use the asynchronous lifecycle to ensure that the subsequent lifecycle continues only after the asynchronous function in **onDestroy()** finishes the execution.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**Returns**
+
+| Type                                 | Description                           |
+| ------------------------------------- | ------------------------------- |
+| void&nbsp;\|&nbsp;Promise&lt;void&gt; | No return value or a Promise object that returns no result.|
+
+**Example**
+
+See [Creating a ShareExtensionAbility](#creating-a-shareextensionability).
 
 ## Creating a ShareExtensionAbility
 
@@ -95,7 +126,7 @@ To manually create a ShareExtensionAbility in the DevEco Studio project, perform
 
 2. In the **ShareExtAbility** directory, right-click and choose **New > ArkTS File** to create a file named **ShareExtAbility.ets**.
 
-    ```
+    ```text
     ├── ets
     │ ├── ShareExtAbility
     │ │   ├── ShareExtAbility.ets
@@ -116,14 +147,6 @@ To manually create a ShareExtensionAbility in the DevEco Studio project, perform
       console.info(TAG, `onCreate`);
     }
 
-    onForeground() {
-      console.info(TAG, `ononForeground`);
-    }
-
-    onBackground() {
-      console.info(TAG, `onBackground`);
-    }
-
     onSessionCreate(want: Want, session: UIExtensionContentSession) {
       console.info(TAG, `onSessionCreate, want: ${want.abilityName}`);
       if (want.parameters) {
@@ -133,11 +156,18 @@ To manually create a ShareExtensionAbility in the DevEco Studio project, perform
         }
         let storage: LocalStorage = new LocalStorage(obj);
         session.loadContent('pages/Index', storage);
-        session.loadContent('pages/Index', storage);
       }
     }
 
-    onSessionDestroy() {
+    onForeground() {
+      console.info(TAG, `ononForeground`);
+    }
+
+    onBackground() {
+      console.info(TAG, `onBackground`);
+    }
+
+    onSessionDestroy(session: UIExtensionContentSession) {
       console.info(TAG, `onSessionDestroy`);
     }
 
