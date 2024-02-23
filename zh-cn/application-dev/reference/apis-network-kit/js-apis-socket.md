@@ -4342,7 +4342,7 @@ LocalSocket发送请求的参数。
 | address | string     | 是   | 指定的本地套接字路径。 |
 | timeout | encoding   | 否   | 字符编码。           |
 
-## ExtraOptionsBase<sup>10+</sup>
+## ExtraOptionsBase<sup>7+</sup>
 
 Socket套接字的基础属性。
 
