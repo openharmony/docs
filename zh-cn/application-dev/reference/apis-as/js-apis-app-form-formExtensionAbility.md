@@ -296,7 +296,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 
 onStop?(): void
 
-卡片ability停止时的回调接口。当此ability断开最后一个链接时调用，通知提供方进程即将停止。
+当卡片提供方进程停止时，触发该回调。开发者可以在该回调中清理资源
   
 **系统能力** SystemCapability.Ability.Form
 
