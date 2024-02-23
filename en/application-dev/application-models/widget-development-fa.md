@@ -71,7 +71,7 @@ The **FormAbility** has the following APIs.
 | onShare?(formId: string): {[key: string]: any} | Called by the widget provider to receive shared widget data.|
 | onShareForm?(formId:&nbsp;string):&nbsp;Record&lt;string,&nbsp;Object&gt; | Called by the widget provider to receive shared widget data. You are advised to use this API, instead of **onShare()**. If this API is implemented, **onShare()** will not be triggered.|
 
-The **FormProvider** class has the following APIs. For details, see [FormProvider](../reference/apis/js-apis-app-form-formProvider.md).
+The **FormProvider** class has the following APIs. For details, see [FormProvider](../reference/apis-form-kit/js-apis-app-form-formProvider.md).
 
 
 | API| Description|
@@ -82,7 +82,7 @@ The **FormProvider** class has the following APIs. For details, see [FormProvide
 | updateForm(formId: string, formBindingData: FormBindingData): Promise&lt;void&gt;; | Updates a widget. This API uses a promise to return the result.|
 
 
-The **FormBindingData** class has the following APIs. For details, see [FormBindingData](../reference/apis/js-apis-app-form-formBindingData.md).
+The **FormBindingData** class has the following APIs. For details, see [FormBindingData](../reference/apis-form-kit//js-apis-app-form-formBindingData.md).
 
 
 | API| Description|
