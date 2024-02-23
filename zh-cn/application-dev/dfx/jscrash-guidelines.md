@@ -12,11 +12,11 @@
 
     进程崩溃后，JSCrash文件会生成在“设备/data/log/faultlog/faultlogger/”路径下，故障日志文件名格式为“jscrash-进程名-进程UID-秒级时间”，包含设备名、系统版本、进程崩溃调用栈等信息。
 
-    ![zh-cn_image_0000001754647629](figures/zh-cn_image_0000001754647629.png)
+    ![](figures/jscrash.png)
 
 - 方式二：通过DevEco Studio获取日志
 
-    DevEco Studio会收集“设备/data/log/faultlog/faultlogger/”路径下的进程崩溃故障日志并归档在FaultLog下，获取日志的方法可参考[DevEco Studio使用指南-FaultLog](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-fault-log-0000001659706366)。
+    DevEco Studio会收集“设备/data/log/faultlog/faultlogger/”路径下的进程崩溃故障日志并归档在FaultLog下，获取日志的方法可参考[DevEco Studio使用指南-FaultLog](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V2/ide-debug-hilog-0000001172459337-V2#section974519209435)。
 
 - 方式三：通过faultlogger接口获取
 
@@ -50,30 +50,12 @@ Stacktrace:
 
 日志分析会有如下两种情况：
 
-情况一：**可跳转至引起错误的代码行**
+- **情况一：可跳转至引起错误的代码行**
 
-如果FaultLog的堆栈信息中的链接或偏移地址指向的是当前工程中的某行代码，该段信息将被转换为超链接形式，点击后跳转至对应代码行。
+  如果FaultLog的堆栈信息中的链接或偏移地址指向的是当前工程中的某行代码，该段信息将被转换为超链接形式，在DevEco Studio中点击后跳转至对应代码行。
 
-![zh-cn_image_0000001707218610](figures/zh-cn_image_0000001707218610.png)
+- **情况二：不可跳转至引起错误的代码行或者跳转代码位置不存在**
 
-**情况二：不可跳转至引起错误的代码行或者跳转代码位置不存在**
+  如出现`Cannot get Source Map info, dump raw stack`信息代表js栈转换ets行列号失败，在DevEco Studio中点击链接会跳转到不正确的代码位置或不存在的代码行位置。
 
-如下图信息代表js栈转换ets行列号失败，点击链接会跳转到不正确的代码位置或不存在的代码行位置。
-
-![zh-cn_image_0000001755261661](figures/zh-cn_image_0000001755261661.png)
-
-应用代码运行出错时，会打印错误栈信息。如果ts栈转换ets行列号失败时错误栈的后缀任显示为ets，开发者需要在build目录下编译中间产物以生成ts代码，在js代码中定位对应错误代码行。
-
-| 应用源码 | 编译后的代码 | 错误栈 | 
-| -------- | -------- | -------- |
-| ![zh-cn_image_0000001707453934](figures/zh-cn_image_0000001707453934.png) | ![zh-cn_image_0000001755173229](figures/zh-cn_image_0000001755173229.png) | ![zh-cn_image_0000001755173381](figures/zh-cn_image_0000001755173381.png) | 
-
-## 如何定位错误栈对应代码行位置
-
-如果是流水线稳定性压测或镜像本身自带应用发生崩溃，开发者则需要下载镜像包对应节点应用的代码，然后编译debug模式的安装包以生成build目录，再到build目录下编译中间产物生成的js代码中定位对应错误代码位置行号，如果可以稳定复现应用出现的错误崩溃，可通过DevEco Studio安装debug模式的安装包复现问题定位对应错误代码行号。
-
-1. 以下是选择debug模式编译示例。
-   ![zh-cn_image_0000001707614234](figures/zh-cn_image_0000001707614234.png)
-
-2. 错误栈代码行正确的位置。
-   ![zh-cn_image_0000001707455890](figures/zh-cn_image_0000001707455890.png)
+  应用代码运行出错时，会打印错误栈信息。如果ts栈转换ets行列号失败时错误栈的后缀任显示为ets，开发者需要在build目录下编译中间产物以生成ts代码，在js代码中定位对应错误代码行。可参考：[应用堆栈解析](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V2/release-app-stack-analysis-0000001421224074-V2)。

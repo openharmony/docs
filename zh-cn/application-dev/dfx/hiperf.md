@@ -1,15 +1,12 @@
 # hiperf
 
-
 hiperf为开发人员提供用于调试的命令行工具，用于抓取特定程序或者系统的性能数据，类似内核的perf工具，该工具支持在 Windows/Linux/Mac 等操作系统上运行。
-
 
 ## 前置条件
 
 - 根据hdc命令行工具指导，完成[环境准备](hdc.md#环境准备)。
 
 - 正常连接设备。
-
 
 ## 命令格式
 
@@ -28,7 +25,6 @@ hiperf [options] COMMAND [args for command]
 - [args for command]
   - 子功能的参数
 
-
 ## 命令帮助
 
 可用 --help 查看帮助。
@@ -37,14 +33,13 @@ hiperf [options] COMMAND [args for command]
 hiperf --help
 ```
 
-![zh-cn_image_0000001754681737](figures/zh-cn_image_0000001754681737.png)
+![](figures/hipref-help.png)
 
 使用如下命令查看子功能的帮助信息。
 
 ```
 hiperf [command] --help
 ```
-
 
 ## list命令
 
@@ -60,7 +55,7 @@ Usage: hiperf list [event type name]
 hiperf list --help
 ```
 
-![zh-cn_image_0000001754515293](figures/zh-cn_image_0000001754515293.png)
+![](figures/hipref-list-help.png)
 
 下面列出了设备支持的HW事件，并且会提示哪些事件此设备不支持。
 
@@ -68,8 +63,7 @@ hiperf list --help
 hiperf list hw
 ```
 
-![zh-cn_image_0000001754671337](figures/zh-cn_image_0000001754671337.png)
-
+![](figures/hipref-list-hw.png)
 
 ## record命令
 
@@ -85,20 +79,19 @@ Usage: hiperf record [options] [command [command-args]]
 hiperf record -d 3 -a --verbose
 ```
 
-对指定的PID为2349的进程采样10秒，并且使用dwarf回栈。
+对指定的PID为267的进程采样10秒，并且使用dwarf回栈。
 
 ```
-hiperf record -p 2349 -d 10 -s dwarf
+hiperf record -p 267 -d 10 -s dwarf
 ```
 
-![zh-cn_image_0000001706615120](figures/zh-cn_image_0000001706615120.png)
+![](figures/hipref-record-pid.png)
 
 更多详细信息请参考命令帮助。
 
 ```
 hiperf record --help
 ```
-
 
 ## stat命令
 
@@ -120,7 +113,6 @@ hiperf stat -p 2349 -d 3 -c 0
 hiperf stat --help
 ```
 
-
 ## dump命令
 
 此命令主要以不加以处理的方式直接读取perf.data的数据，开发和测试人员可核对其中原始采样数据的正确性。
@@ -135,14 +127,13 @@ Usage: hiperf dump [option] \<filename\>
 hiperf dump -i /data/local/tmp/perf.data -o /data/local/tmp/perf.dump
 ```
 
-![zh-cn_image_0000001754588145](figures/zh-cn_image_0000001754588145.png)
+![](figures/hipref-dump.png)
 
 更多详细信息请参考命令帮助。
 
 ```
 hiperf dump --help
 ```
-
 
 ## report命令
 
@@ -164,12 +155,12 @@ hiperf report --limit-percent 1
 hiperf report --help
 ```
 
-
 ## 脚本
 
 一般用户用脚本执行采样操作，可生成可视化的火焰图。
 
-1. 采样
+1. 采样。
+
    由 command_script.py 完成，它是 report 命令的包装脚本。
 
    ```
@@ -191,7 +182,8 @@ hiperf report --help
    python command_script.py -lp hdcd
    ```
 
-2. 收集符号表
+2. 收集符号表。
+
    由 recv_binary_cache.py 完成，它主要根据 perf.data 里面记录的相关文件和库以及它们的 buildid， 在用户指定的路径中去寻找对应的 ELF 作为符号表文件用于回栈或者打印函数名等。
 
    ```
@@ -206,7 +198,8 @@ hiperf report --help
 
    对应的符号表文件会复制到 binary_cache 文件夹，优先检查用户给出的符号表位置，如果没有则复制设备中的文件。
 
-3. 生成火焰图
+3. 生成火焰图。
+
    由 make_report.py 完成，将采样后的数据导出为HTML展示页面。
 
    ```

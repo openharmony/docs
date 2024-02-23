@@ -29,7 +29,17 @@ HiDumper为开发、测试人员提供统一的系统信息获取工具，可帮
 
 ## 常用命令
 
-1. 查看设备中指定pid的内存信息，命令格式如下：
+1. 查看帮助命令。
+
+   ```
+   hidumper -h
+   ```
+
+   **使用样例：**
+
+   ![](figures/hidumper-h.png)
+
+2. 查看设备中指定pid的内存信息，命令格式如下：
 
    ```
    hidumper --mem pid
@@ -39,7 +49,7 @@ HiDumper为开发、测试人员提供统一的系统信息获取工具，可帮
 
    ![](figures/hidumper-mem-pid.png)
 
-2. 查看设备中所有pid的内存信息，命令格式如下：
+3. 查看设备中所有pid的内存信息，命令格式如下：
 
    ```
    hidumper --mem
@@ -49,7 +59,7 @@ HiDumper为开发、测试人员提供统一的系统信息获取工具，可帮
 
    ![](figures/hidumper-mem.png)
 
-3. 按进程和类别转储CPU使用率，命令格式如下：
+4. 按进程和类别转储CPU使用率，命令格式如下：
 
    ```
    hidumper --cpuusage
@@ -59,7 +69,7 @@ HiDumper为开发、测试人员提供统一的系统信息获取工具，可帮
 
    ![](figures/hidumper-cpuusage.png)
 
-4. 转储指定pid的类别使用率，命令格式如下：
+5. 转储指定pid的类别使用率，命令格式如下：
 
    ```
    hidumper --cpuusage pid
@@ -69,7 +79,7 @@ HiDumper为开发、测试人员提供统一的系统信息获取工具，可帮
 
    ![](figures/hidumper-cpuusage-pid.png)
 
-5. 获取id为3301的元能力的帮助，命令格式如下：
+6. 获取id为3301的元能力的帮助，命令格式如下：
 
    ```
    hidumper -s 3301 -a "-h" 
@@ -78,3 +88,23 @@ HiDumper为开发、测试人员提供统一的系统信息获取工具，可帮
    **使用样例：**
 
    ![](figures/hidumper-s-3301.png)
+
+7. 获取RenderService的使用帮助，命令格式如下：
+
+   ```
+   hidumper -s RenderService -a "h" 
+   ```
+
+   **使用样例：**
+
+   ![](figures/hidumper-renderservice-h.png)
+
+8. 获取对应surface的刷新帧率，可以使用以下命令，返回值为surface刷新帧对应的时间戳。
+
+   ```
+   hidumper -s RenderService -a "surface_name fps" 
+   ```
+
+   **使用样例：**
+
+   ![](figures/hidumper-renderservice-fps.png)
