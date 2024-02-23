@@ -493,7 +493,7 @@ getAllNotificationEnabledBundles(): Promise<Array<BundleOption>>;
 ```ts
 import Base from '@ohos.base';
 
-notificationManager.getAllNotificationEnabledBundles().then((data: Array<BundleOption>) => {
+notificationManager.getAllNotificationEnabledBundles().then((data: Array<notificationManager.BundleOption>) => {
     console.info("Enable bundle data is" + JSON.stringify(data));
     data.forEach(element => {
         console.info("Enable uid is " + JSON.stringify(element.uid));
