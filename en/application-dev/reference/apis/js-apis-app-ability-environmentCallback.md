@@ -4,7 +4,8 @@ The **EnvironmentCallback** module provides the **onConfigurationUpdated** API f
 
 > **NOTE**
 > 
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
 > The APIs of this module can be used only in the stage model.
 
 
@@ -41,7 +42,7 @@ Called when the system memory level changes.
 
   | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
-  | level | [AbilityConstant.MemoryLevel](js-apis-app-ability-abilityConstant.md#abilityconstantmemorylevel) | Yes| Memory level that indicates the memory usage status. When the specified memory level is reached, a callback will be invoked and the system will start adjustment.| 
+  | level | [AbilityConstant.MemoryLevel](js-apis-app-ability-abilityConstant.md#abilityconstantmemorylevel) | Yes| Memory level that indicates the memory usage status. When the specified memory level is reached, a callback will be invoked and the system will start adjustment.|
 
 **Example**
     
@@ -60,7 +61,7 @@ export default class MyAbility extends UIAbility {
             },
 
             onMemoryLevel(level){
-                console.log('onMemoryLevel level: ${JSON.stringify(level)}');
+                console.log(`onMemoryLevel level: ${JSON.stringify(level)}`);
             }
         };
         // 1. Obtain an applicationContext object.

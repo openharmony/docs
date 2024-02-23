@@ -45,7 +45,7 @@ Called to initialize the service logic when an ability is created.
 **Example**
 
   ```ts
-  class myAbility extends Ability {
+  class MyUIAbility extends UIAbility {
       onCreate(want, param) {
           console.log('onCreate, want:' + want.abilityName);
       }
@@ -70,7 +70,7 @@ Called when a **WindowStage** is created for this UIAbility.
 **Example**
     
   ```ts
-  class myAbility extends Ability {
+  class MyUIAbility extends UIAbility {
       onWindowStageCreate(windowStage) {
           console.log('onWindowStageCreate');
       }
@@ -89,7 +89,7 @@ Called when the **WindowStage** is destroyed for this UIAbility.
 **Example**
     
   ```ts
-  class myAbility extends Ability {
+  class MyUIAbility extends UIAbility {
       onWindowStageDestroy() {
           console.log('onWindowStageDestroy');
       }
@@ -114,7 +114,7 @@ Called when the **WindowStage** is restored during the migration of this UIAbili
 **Example**
     
   ```ts
-  class myAbility extends Ability {
+  class MyUIAbility extends UIAbility {
       onWindowStageRestore(windowStage) {
           console.log('onWindowStageRestore');
       }
@@ -133,7 +133,7 @@ Called when this ability is destroyed to clear resources.
 **Example**
     
   ```ts
-  class myAbility extends Ability {
+  class MyUIAbility extends UIAbility {
       onDestroy() {
           console.log('onDestroy');
       }
@@ -152,7 +152,7 @@ Called when this ability is switched from the background to the foreground.
 **Example**
     
   ```ts
-  class myAbility extends Ability {
+  class MyUIAbility extends UIAbility {
       onForeground() {
           console.log('onForeground');
       }
@@ -171,7 +171,7 @@ Called when this ability is switched from the foreground to the background.
 **Example**
     
   ```ts
-  class myAbility extends Ability {
+  class MyUIAbility extends UIAbility {
       onBackground() {
           console.log('onBackground');
       }
@@ -256,7 +256,7 @@ Dumps client information.
 **Example**
     
   ```ts
-  class myAbility extends Ability {
+  class MyUIAbility extends UIAbility {
       onDump(params) {
           console.log('dump, params:' + JSON.stringify(params));
           return ['params'];

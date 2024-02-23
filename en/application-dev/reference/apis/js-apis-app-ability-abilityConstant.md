@@ -1,6 +1,6 @@
 # @ohos.app.ability.AbilityConstant (AbilityConstant)
 
-The **AbilityConstant** module defines the ability-related enums, including the initial launch reasons, reasons for the last exit, ability continuation results, and window modes.
+The **AbilityConstant** module defines the UIAbility-related enums, including the initial launch reasons, reasons for the last exit, ability continuation results, and window modes.
 
 > **NOTE**
 > 
@@ -13,18 +13,16 @@ The **AbilityConstant** module defines the ability-related enums, including the 
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 ```
 
-## Attributes
-
 ## AbilityConstant.LaunchParam
 
 Defines the parameters for starting an ability.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read-only| Mandatory| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| launchReason | [LaunchReason](#abilityconstantlaunchreason)| Yes| Yes| Ability launch reason, which is an enumerated type.|
-| lastExitReason | [LastExitReason](#abilityconstantlastexitreason) | Yes| Yes| Reason for the last exit, which is an enumerated type.|
+| launchReason | [LaunchReason](#abilityconstantlaunchreason)| No| Yes| Ability launch reason, which is an enumerated type.|
+| lastExitReason | [LastExitReason](#abilityconstantlastexitreason) | No| Yes| Reason for the last exit, which is an enumerated type.|
 
 ## AbilityConstant.LaunchReason
 
@@ -44,6 +42,7 @@ Enumerates the initial ability launch reasons. You can use it together with [onC
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 class MyAbility extends UIAbility {
     onCreate(want, launchParam) {
@@ -70,6 +69,7 @@ Enumerates the reasons for the last exit. You can use it together with [onCreate
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 class MyAbility extends UIAbility {
     onCreate(want, launchParam) {
@@ -96,6 +96,7 @@ Enumerates the ability continuation results. You can use it together with [onCon
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 class MyAbility extends UIAbility {
     onContinue(wantParam) {
@@ -123,6 +124,8 @@ Enumerates the window modes in which an ability can be displayed at startup. It 
 **Example**
 
 ```ts
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+
 let want = {
     bundleName: 'com.example.myapplication',
     abilityName: 'EntryAbility'
@@ -155,6 +158,7 @@ Enumerates the memory levels. You can use it in [onMemoryLevel(level)](js-apis-a
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 class MyAbility extends UIAbility {
     onMemoryLevel(level) {
@@ -184,6 +188,7 @@ Enumerates the result types for the operation of saving application data. You ca
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 class MyAbility extends UIAbility {
     onSaveState(reason, wantParam) {
@@ -207,6 +212,7 @@ Enumerates the scenarios for saving application data. You can use it in [onSaveS
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 class MyAbility extends UIAbility {
     onSaveState(reason, wantParam) {
