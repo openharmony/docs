@@ -277,8 +277,8 @@ struct WebComponent {
           try {
             console.log("In ArkTS side send true start");
             if (this.nativePort) {
+              this.message.setType(1);
               this.message.setString("helloFromEts");
-              this.message.setType(2);
               this.nativePort.postMessageEventExt(this.message);
             }
           }
@@ -296,6 +296,7 @@ struct WebComponent {
           try {
             console.log("In ArkTS side send true start");
             if (this.nativePort) {
+              this.message.setType(2);
               this.message.setNumber(12345);
               this.nativePort.postMessageEventExt(this.message);
             }
@@ -313,6 +314,7 @@ struct WebComponent {
           try {
             console.log("In ArkTS side send true start");
             if (this.nativePort) {
+              this.message.setType(3);
               this.message.setBoolean(true);
               this.nativePort.postMessageEventExt(this.message);
             }
@@ -330,6 +332,7 @@ struct WebComponent {
           try {
             console.log("In ArkTS side send true start");
             if (this.nativePort) {
+              this.message.setType(4);
               this.message.setArrayBuffer(this.testObjtest.test("Name=test&Password=test"));
               this.nativePort.postMessageEventExt(this.message);
             }
@@ -348,6 +351,7 @@ struct WebComponent {
           try {
             console.log("In ArkTS side send true start");
             if (this.nativePort) {
+              this.message.setType(5);
               this.message.setArray([1,2,3]);
               this.nativePort.postMessageEventExt(this.message);
             }
@@ -369,6 +373,7 @@ struct WebComponent {
           }
           catch (error) {
             if (this.nativePort) {
+              this.message.setType(6);
               this.message.setError(error);
               this.nativePort.postMessageEventExt(this.message);
             }
