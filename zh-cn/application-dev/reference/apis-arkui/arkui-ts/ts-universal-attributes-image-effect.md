@@ -563,7 +563,8 @@ struct Index {
 
 ### 示例6
 
-blendMode搭配backgroundEffect实现文字图形异形渐变效果。
+blendMode搭配backgroundEffect实现文字异形模糊效果。<br/>
+如果出现漏线问题，开发者应首先确保两个blendMode所在组件大小严格相同。如果确认相同，可能是组件边界落在浮点数坐标上导致，可尝试设置[pixelRound](ts-universal-attributes-layout-constraints.md#pixelRound11)通用属性，使产生的白线、暗线两侧的组件边界对齐到整数像素坐标上。
 
 ```ts
 // xxx.ets
@@ -623,6 +624,12 @@ struct Index {
             }
           }
           .blendMode(BlendMode.DST_IN, BlendApplyType.OFFSCREEN)
+          .pixelRound({
+            start: PixelRoundCalcPolicy.FORCE_FLOOR ,
+            top: PixelRoundCalcPolicy.FORCE_FLOOR ,
+            end: PixelRoundCalcPolicy.FORCE_CEIL,
+            bottom: PixelRoundCalcPolicy.FORCE_CEIL
+          })
         }
         .blendMode(BlendMode.SRC_OVER, BlendApplyType.OFFSCREEN)
         .backgroundEffect({
@@ -632,6 +639,12 @@ struct Index {
           color: this.getVolumeDialogWindowColor()
         })
         .justifyContent(FlexAlign.Center)
+        .pixelRound({
+          start: PixelRoundCalcPolicy.FORCE_FLOOR ,
+          top: PixelRoundCalcPolicy.FORCE_FLOOR ,
+          end: PixelRoundCalcPolicy.FORCE_CEIL,
+          bottom: PixelRoundCalcPolicy.FORCE_CEIL
+        })
       }
     }
   }
