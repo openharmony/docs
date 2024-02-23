@@ -24,7 +24,7 @@ QoS(quality-of-service)，即服务质量，在OpenHarmony中QoS特性主要指�
 | QOS_DEFAULT | 默认。 | 任务完成需要几秒钟。 |
 | QOS_USER_INITIATED | 用户触发并且可见进展的任务，例如打开文档。 | 任务在几秒钟之内完成。 |
 | QOS_DEADLINE_REQUEST | 越快越好的关键任务，如页面加载。 | 任务几乎是瞬间完成的。 |
-| QOS_USER_INTERACTIVE	 | 用户交互任务（UI线程任务、刷新界面、动效）。 | 任务是即时的。 |
+| QOS_USER_INTERACTIVE	 | 用户交互任务（UI线程、刷新界面、动效）。 | 任务是即时的。 |
 
 QoS等级定义为枚举类型QoS_level，如上表所示；枚举值定义如下。
 ### QoS_Level声明
@@ -69,9 +69,9 @@ QoS等级更高的任务在系统中能获得更优先的执行权。
 
 | 接口名                                                       | 描述                                                         | 参数                                                         | 返回值                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| OH_QoS_SetThreadQoS(QoS_Level level) | 设置当前线程的QoS等级。 | QoS_Level level | 0或-1 |
-| OH_QoS_ResetThreadQoS() | 取消当前线程设置的QoS等级。 | 无 | 0或-1 |
-| OH_QoS_GetThreadQoS(QoS_Level *level) | 获取当前线程的QoS等级。 | QoS_Level *level | 0或-1 |
+| OH_QoS_SetThreadQoS(QoS_Level level) | 设置当前任务的QoS等级。 | QoS_Level level | 0或-1 |
+| OH_QoS_ResetThreadQoS() | 取消当前任务设置的QoS等级。 | 无 | 0或-1 |
+| OH_QoS_GetThreadQoS(QoS_Level *level) | 获取当前任务的QoS等级。 | QoS_Level *level | 0或-1 |
 
 ### 使用限制
 * QoS接口只能设置本任务的QoS等级。
@@ -101,7 +101,7 @@ QoS_Level level
 
 int main()
 {
-    // 设置当前线程的QoS等级为QOS_USER_INITIATED
+    // 设置当前任务的QoS等级为QOS_USER_INITIATED
     int ret = OH_QoS_SetThreadQoS(QoS_Level::QOS_USER_INITIATED);
     
     if (!ret) { // ret等于0说明设置成功
@@ -136,7 +136,7 @@ int OH_QoS_ResetThreadQoS();
 
 int main()
 {
-    // 重置当前线程的QoS等级
+    // 重置当前任务的QoS等级
     int ret = OH_QoS_ResetThreadQoS();
     
     if (!ret) { // ret等于0说明重置成功
@@ -172,7 +172,7 @@ QoS_Level *level
 
 int main()
 {
-    // 获取当前线程的QoS等级
+    // 获取当前任务的QoS等级
     QoS_Level level = QoS_Level::QOS_DEFAULT;
     int ret = OH_QoS_GetThreadQoS(&level);
 
