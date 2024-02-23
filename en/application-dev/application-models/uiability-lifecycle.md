@@ -17,7 +17,7 @@ The lifecycle of UIAbility has four states: **Create**, **Foreground**, **Backgr
 
 ### Create
 
-The **Create** state is triggered when the UIAbility instance is created during application loading. It corresponds to the **onCreate()** callback. In this callback, you can perform application initialization operations, for example, defining variables or loading resources.
+The **Create** state is triggered when the UIAbility instance is created during application loading. It corresponds to the **onCreate()** callback. In this callback, you can perform page initialization operations, for example, defining variables or loading resources.
 
 
 ```ts
@@ -27,7 +27,7 @@ import Want from '@ohos.app.ability.Want';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-    // Initialize the application.
+    // Initialize the page.
   }
   // ...
 }
