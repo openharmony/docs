@@ -4109,7 +4109,7 @@ off(type: 'message', callback?: Callback\<LocalSocketMessageInfo\>): void
 
 **示例：**
 
-```tsSocketMessageInfo
+```ts
 import socket from "@ohos.net.socket";
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
 let messageView = '';
