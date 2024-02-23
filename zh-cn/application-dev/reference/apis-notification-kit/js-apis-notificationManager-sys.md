@@ -480,7 +480,7 @@ getAllNotificationEnabledBundles(): Promise<Array<BundleOption>>;
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
