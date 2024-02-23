@@ -15,8 +15,8 @@
 | on(type: "error", observer: ErrorObserver): number       | 注册错误监听接口，当系统监测到应用异常时会回调该监听。该接口为同步接口，返回值为注册的监听对象对应的序号。 |
 | off(type: "error", observerId: number,  callback: AsyncCallback\<void\>): void | 以callback的形式解除注册监听，传入的number为之前注册监听时返回的序号。  |
 | off(type: "error", observerId: number): Promise\<void\> | 以Promise的形式解除注册监听，传入的number为之前注册监听时返回的序号。  |
-| on(type: 'loopObserver', timeout: number, observer: LoopObserver): void | 注册主线程消息处理耗时监听器，当系统监测到应用主线程事件处理超时时会回调该监听。只能在主线程调用，多次注册后，后一次的注册会覆盖前一次的。  |
-| off(type: 'loopObserver', observer?: LoopObserver): void | 解除应用主线程消息处理耗时监听。  |
+| on(type: 'loopObserver', timeout: number, observer: LoopObserver): void<sup>12+</sup> | 注册主线程消息处理耗时监听器，当系统监测到应用主线程事件处理超时时会回调该监听。只能在主线程调用，多次注册后，后一次的注册会覆盖前一次的。  |
+| off(type: 'loopObserver', observer?: LoopObserver): void<sup>12+</sup> | 解除应用主线程消息处理耗时监听。  |
 
 当采用callback作为异步回调时，可以在callback中进行下一步处理。当采用Promise对象返回时，可以在Promise对象中类似地处理接口返回值。具体结果码说明见[解除注册结果码](#解除注册结果码)。
 
@@ -33,7 +33,7 @@
 
 | 接口名称                         | 说明                                                         |
 | ------------------------------ | ------------------------------------------------------------ |
-| onLoopTimeOut?(timeout: number): void | 系统回调接口，应用注册后，当应用主线程处理事件超时的回调。 |
+| onLoopTimeOut?(timeout: number): void<sup>12+</sup> | 系统回调接口，应用注册后，当应用主线程处理事件超时的回调。 |
 
 
 ### 解除注册结果码
