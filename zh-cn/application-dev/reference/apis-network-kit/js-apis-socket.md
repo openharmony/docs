@@ -4339,8 +4339,8 @@ LocalSocket发送请求的参数。
 
 | 名称     | 类型       | 必填 | 说明                 |
 | ------- | ---------- | --- | ------------------- |
-| address | string     | 是   | 指定的本地套接字路径。 |
-| timeout | encoding   | 否   | 字符编码。           |
+| data    | string \| ArrayBuffer | 是   | 需要发送的数据。 |
+| encoding | string   | 否   | 字符编码。  |
 
 ## ExtraOptionsBase<sup>7+</sup>
 
@@ -4817,7 +4817,7 @@ server.on('connect', (connection: socket.LocalSocketConnection) => {
 
 ### on('message')<sup>11+</sup>
 
-on(type: 'message', callback: Callback\<SocketMessageInfo\>): void;
+on(type: 'message', callback: Callback\<LocalSocketMessageInfo\>): void;
 
 订阅LocalSocketConnection连接的接收消息事件。使用callback方式作为异步方法。
 
@@ -4865,7 +4865,7 @@ server.on('connect', (connection: socket.LocalSocketConnection) => {
 
 ### off('message')<sup>11+</sup>
 
-off(type: 'message', callback?: Callback\<SocketMessageInfo\>): void
+off(type: 'message', callback?: Callback\<LocalSocketMessageInfo\>): void
 
 取消订阅LocalSocketConnection连接的接收消息事件。使用callback方式作为异步方法。
 
