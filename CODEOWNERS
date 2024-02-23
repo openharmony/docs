@@ -193,7 +193,6 @@ zh-cn/application-dev/reference/apis/js-apis-system-parameter.md @mupceet @zhang
 zh-cn/application-dev/reference/apis/js-apis-telephony-data.md @jiayanhong-hw @zhang_yixin13 @dingxiaochen @zhaodengqi
 zh-cn/application-dev/reference/apis/js-apis-testRunner.md @inter515 @littlejerry1 @RayShih @inter515 @jiyong
 zh-cn/application-dev/reference/apis/js-apis-thermal.md  @warehouse12  @alien0208
-zh-cn/application-dev/reference/common/js-apis-timer.md @gongjunsong @ge-yafang @flyingwolf @blackstone-oh
 zh-cn/application-dev/reference/common/js-apis-logs.md @gongjunsong @ge-yafang @flyingwolf @blackstone-oh
 zh-cn/application-dev/reference/apis/js-apis-touchevent.md @yuanxinying @ningningW @houchengyu
 zh-cn/application-dev/reference/apis/js-apis-shortKey.md @yuanxinying @ningningW @houchengyu
@@ -901,32 +900,7 @@ zh-cn/application-dev/reference/apis-arkweb/arkui-ts/ts-basic-components-web.md 
 zh-cn/application-dev/reference/apis-arkweb/native_interface_arkweb.md @bigpumpkin @HelloCrease @litao33 @zhang-xinyue15
 zh-cn/application-dev/reference/apis-arkweb/errorcode-webview.md @bigpumpkin @HelloCrease @litao33 @zhang-xinyue15
 
-zh-cn/application-dev/device/stationary-guidelines.md @mayunteng_1 @hu-zhiqiong @cococoler @alien0208
-zh-cn/application-dev/device/sample-server-overview.md @hu-zhiqiong @hughes802 @zhangzhengxue @mamba-ting
-zh-cn/application-dev/device/sample-server-guidelines.md @hu-zhiqiong @hughes802 @zhangzhengxue @mamba-ting
-zh-cn/application-dev/reference/apis/js-apis-calendarManager.md @hu-zhiqiong @jt_123456 @edollar
-zh-cn/application-dev/reference/errorcodes/errorcode-update.md @hu-zhiqiong
-zh-cn/application-dev/reference/errorcodes/errorcode-screenlock.md @hu-zhiqiong 
-zh-cn/application-dev/reference/errorcodes/errorcode-request.md @hu-zhiqiong
-zh-cn/application-dev/reference/apis/js-apis-inputmethod-extension-ability.md @illybyy @murphy1984 @feng-aiwen  @hu-zhiqiong @SuperShrimp @murphy1984
-zh-cn/application-dev/reference/apis/js-apis-inputmethod-extension-context.md @illybyy @murphy1984 @feng-aiwen  @hu-zhiqiong @SuperShrimp @murphy1984
-zh-cn/application-dev/reference/apis/js-apis-inputmethod.md @feng-aiwen @illybyy @murphy1984 @hu-zhiqiong @SuperShrimp @murphy1984
-zh-cn/application-dev/reference/apis/js-apis-inputmethodengine.md @illybyy @murphy1984 @feng-aiwen @hu-zhiqiong @SuperShrimp @murphy1984
-zh-cn/application-dev/reference/apis/js-apis-request.md @hu-zhiqiong @hanruofei @murphy1984 
-zh-cn/application-dev/reference/apis/js-apis-settings.md @xue-seu @hu-zhiqiong
-zh-cn/application-dev/reference/apis/js-apis-system-date-time.md @hu-zhiqiong @illybyy @murphy1984 @feng-aiwen @illybyy @murphy1984
-zh-cn/application-dev/reference/apis/js-apis-system-request.md @hu-zhiqiong @hanruofei @murphy1984
-zh-cn/application-dev/reference/apis/js-apis-system-time.md @hu-zhiqiong @illybyy @murphy1984 @feng-aiwen @illybyy @murphy1984
-zh-cn/application-dev/reference/apis/js-apis-system-timer.md @hu-zhiqiong @illybyy @murphy1984 @feng-aiwen @illybyy @murphy1984
-zh-cn/application-dev/reference/apis/js-apis-devicestatus-cooperate.md @mayunteng_1 @liuhaonan2 @hu-zhiqiong @cococoler @alien0208
-zh-cn/application-dev/reference/apis/js-apis-deviceStatus-dragInteraction.md @mayunteng_1 @liuhaonan2 @hu-zhiqiong @cococoler @alien0208
-zh-cn/application-dev/reference/apis/js-apis-update.md @hughes802 @hu-zhiqiong @zhangzhengxue @mamba-ting
-zh-cn/application-dev/reference/apis/js-apis-wallpaper.md @hu-zhiqiong @illybyy @murphy1984 @feng-aiwen @wangzhangjun 
-zh-cn/application-dev/reference/apis/js-apis-WallpaperExtensionAbility.md @hu-zhiqiong @illybyy @murphy1984 @feng-aiwen @wangzhangjun
-zh-cn/application-dev/reference/apis/js-apis-screen-lock.md @hu-zhiqiong @feng-aiwen @illybyy @murphy1984 @wangzhangjun 
-zh-cn/application-dev/reference/apis/js-apis-inputmethod-subtype.md @hu-zhiqiong @illybyy @murphy1984 @feng-aiwen @SuperShrimp @murphy1984
-zh-cn/application-dev/reference/apis/js-apis-stationary.md @mayunteng_1 @hu-zhiqiong @cococoler @alien0208
-zh-cn/application-dev/reference/errorcodes/errorcode-inputmethod-framework.md @hu-zhiqiong
+
 
 [sensor-service-kit]
 zh-cn/application-dev/device/sensor-overview.md @hu-zhiqiong @hellohyh001 @butterls @star-wind-snow-and-rain
@@ -953,3 +927,94 @@ zh-cn/application-dev/reference/apis-sensor-service-kit/_vibrator_attribute.md @
 zh-cn/application-dev/reference/apis-sensor-service-kit/_vibrator_file_description.md @hu-zhiqiong @hellohyh001 @butterls @star-wind-snow-and-rain
 zh-cn/application-dev/reference/apis-sensor-service-kit/errorcode-sensor.md @hu-zhiqiong @hellohyh001 @butterls @star-wind-snow-and-rain
 zh-cn/application-dev/reference/apis-sensor-service-kit/errorcode-vibrator.md @hu-zhiqiong @hellohyh001 @butterls @star-wind-snow-and-rain
+
+
+[apis-basic-services-kit]
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-system-timer-sys.md @hu-zhiqiong @illybyy @murphy1984 @feng-aiwen @illybyy @murphy1984
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-system-time.md @hu-zhiqiong @illybyy @murphy1984 @feng-aiwen @illybyy @murphy1984
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-system-date-time-sys.md @hu-zhiqiong @illybyy @murphy1984 @feng-aiwen @illybyy @murphy1984
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-nonsys-time.md @hu-zhiqiong @illybyy @murphy1984 @feng-aiwen @illybyy @murphy1984
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-nonsys-date-time.md @hu-zhiqiong @illybyy @murphy1984 @feng-aiwen @illybyy @murphy1984
+zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-time.md @hu-zhiqiong @illybyy @murphy1984 @feng-aiwen @illybyy @murphy1984
+zh-cn/application-dev/reference/common/js-apis-timer.md @hu-zhiqiong @illybyy @murphy1984 @feng-aiwen @illybyy @murphy1984
+zh-cn/application-dev/reference/apis/js-apis-system-date-time.md @hu-zhiqiong @illybyy @murphy1984 @feng-aiwen @illybyy @murphy1984
+zh-cn/application-dev/reference/apis/js-apis-system-time.md @hu-zhiqiong @illybyy @murphy1984 @feng-aiwen @illybyy @murphy1984
+zh-cn/application-dev/reference/apis/js-apis-system-timer.md @hu-zhiqiong @illybyy @murphy1984 @feng-aiwen @illybyy @murphy1984
+
+zh-cn/application-dev/reference/apis-basic-services-kit/commonEvent-screenlock.md @hu-zhiqiong
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-request-sys.md @hu-zhiqiong @hanruofei @murphy1984
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-request.md @hu-zhiqiong @hanruofei @murphy1984
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-update-sys.md @hughes802 @hu-zhiqiong @zhangzhengxue @mamba-ting
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-screen-lock-sys.md @hu-zhiqiong @feng-aiwen @illybyy @murphy1984 @wangzhangjun 
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-screen-lock.md @hu-zhiqiong @feng-aiwen @illybyy @murphy1984 @wangzhangjun 
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-wallpaper.md @hu-zhiqiong @illybyy @murphy1984 @feng-aiwen @wangzhangjun
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-settings.md @xue-seu @hu-zhiqiong
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-settings-sys.md @xue-seu @hu-zhiqiong
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-wallpaper-sys.md @hu-zhiqiong @illybyy @murphy1984 @feng-aiwen @wangzhangjun
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-system-request.md @hu-zhiqiong @hanruofei @murphy1984
+zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-request.md @hu-zhiqiong @hanruofei @murphy1984
+zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-update.md @hughes802 @hu-zhiqiong @zhangzhengxue @mamba-ting
+zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-screenlock.md @hu-zhiqiong @feng-aiwen @illybyy @murphy1984 @wangzhangjun 
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-WallpaperExtensionAbility-sys.md @hu-zhiqiong @illybyy @murphy1984 @feng-aiwen @wangzhangjun
+
+
+
+zh-cn/application-dev/reference/errorcodes/errorcode-screenlock.md @hu-zhiqiong 
+zh-cn/application-dev/device/stationary-guidelines.md @mayunteng_1 @hu-zhiqiong @cococoler @alien0208
+zh-cn/application-dev/device/sample-server-overview.md @hu-zhiqiong @hughes802 @zhangzhengxue @mamba-ting
+zh-cn/application-dev/device/sample-server-guidelines.md @hu-zhiqiong @hughes802 @zhangzhengxue @mamba-ting
+zh-cn/application-dev/reference/errorcodes/errorcode-update.md @hughes802 @hu-zhiqiong @zhangzhengxue @mamba-ting
+zh-cn/application-dev/reference/errorcodes/errorcode-request.md @hu-zhiqiong
+zh-cn/application-dev/reference/apis/js-apis-inputmethod-extension-ability.md @illybyy @murphy1984 @feng-aiwen  @hu-zhiqiong @SuperShrimp @murphy1984
+zh-cn/application-dev/reference/apis/js-apis-inputmethod-extension-context.md @illybyy @murphy1984 @feng-aiwen  @hu-zhiqiong @SuperShrimp @murphy1984
+zh-cn/application-dev/reference/apis/js-apis-inputmethod.md @feng-aiwen @illybyy @murphy1984 @hu-zhiqiong @SuperShrimp @murphy1984
+zh-cn/application-dev/reference/apis/js-apis-inputmethodengine.md @illybyy @murphy1984 @feng-aiwen @hu-zhiqiong @SuperShrimp @murphy1984
+zh-cn/application-dev/reference/apis/js-apis-request.md @hu-zhiqiong @hanruofei @murphy1984 
+zh-cn/application-dev/reference/apis/js-apis-settings.md @xue-seu @hu-zhiqiong
+zh-cn/application-dev/reference/apis/js-apis-system-request.md @hu-zhiqiong @hanruofei @murphy1984
+
+zh-cn/application-dev/reference/apis/js-apis-devicestatus-cooperate.md @mayunteng_1 @liuhaonan2 @hu-zhiqiong @cococoler @alien0208
+zh-cn/application-dev/reference/apis/js-apis-deviceStatus-dragInteraction.md @mayunteng_1 @liuhaonan2 @hu-zhiqiong @cococoler @alien0208
+zh-cn/application-dev/reference/apis/js-apis-update.md @hughes802 @hu-zhiqiong @zhangzhengxue @mamba-ting
+zh-cn/application-dev/reference/apis/js-apis-wallpaper.md @hu-zhiqiong @illybyy @murphy1984 @feng-aiwen @wangzhangjun 
+zh-cn/application-dev/reference/apis/js-apis-WallpaperExtensionAbility.md @hu-zhiqiong @illybyy @murphy1984 @feng-aiwen @wangzhangjun
+zh-cn/application-dev/reference/apis/js-apis-screen-lock.md @hu-zhiqiong @feng-aiwen @illybyy @murphy1984 @wangzhangjun 
+zh-cn/application-dev/reference/apis/js-apis-inputmethod-subtype.md @hu-zhiqiong @illybyy @murphy1984 @feng-aiwen @SuperShrimp @murphy1984
+zh-cn/application-dev/reference/apis/js-apis-stationary.md @mayunteng_1 @hu-zhiqiong @cococoler @alien0208
+zh-cn/application-dev/reference/errorcodes/errorcode-inputmethod-framework.md @hu-zhiqiong
+
+
+[IME kit]
+zh-cn/application-dev/reference/apis-ime-kit/errorcode-inputmethod-framework.md @illybyy @murphy1984 @feng-aiwen  @hu-zhiqiong @SuperShrimp @murphy1984
+zh-cn/application-dev/reference/apis-ime-kit/js-apis-inputmethod-extension-ability.md @illybyy @murphy1984 @feng-aiwen  @hu-zhiqiong @SuperShrimp @murphy1984
+zh-cn/application-dev/reference/apis-ime-kit/js-apis-inputmethod-extension-context.md @illybyy @murphy1984 @feng-aiwen  @hu-zhiqiong @SuperShrimp @murphy1984
+zh-cn/application-dev/reference/apis-ime-kit/js-apis-inputmethod-panel.md @illybyy @murphy1984 @feng-aiwen  @hu-zhiqiong @SuperShrimp @murphy1984
+zh-cn/application-dev/reference/apis-ime-kit/js-apis-inputmethod-subtype.md @illybyy @murphy1984 @feng-aiwen  @hu-zhiqiong @SuperShrimp @murphy1984
+zh-cn/application-dev/reference/apis-ime-kit/js-apis-inputmethod-sys.md @illybyy @murphy1984 @feng-aiwen  @hu-zhiqiong @SuperShrimp @murphy1984
+zh-cn/application-dev/reference/apis-ime-kit/js-apis-inputmethod.md @illybyy @murphy1984 @feng-aiwen  @hu-zhiqiong @SuperShrimp @murphy1984
+zh-cn/application-dev/reference/apis-ime-kit/js-apis-inputmethodengine.md @illybyy @murphy1984 @feng-aiwen  @hu-zhiqiong @SuperShrimp @murphy1984
+zh-cn/application-dev/reference/apis-ime-kit/js-apis-inputmethodlist.md @illybyy @murphy1984 @feng-aiwen  @hu-zhiqiong @SuperShrimp @murphy1984
+zh-cn/application-dev/reference/apis-ime-kit/Readme-CN.md @illybyy @murphy1984 @feng-aiwen  @hu-zhiqiong @SuperShrimp @murphy1984
+zh-cn/application-dev/inputmethod/custom_input_box_guide.md @illybyy @murphy1984 @feng-aiwen  @hu-zhiqiong @SuperShrimp @murphy1984
+zh-cn/application-dev/inputmethod/ime-kit-intro.md @illybyy @murphy1984 @feng-aiwen  @hu-zhiqiong @SuperShrimp @murphy1984
+zh-cn/application-dev/inputmethod/input_method_subtype_guide.md @illybyy @murphy1984 @feng-aiwen  @hu-zhiqiong @SuperShrimp @murphy1984
+zh-cn/application-dev/inputmethod/inputmethod_application_guide.md @illybyy @murphy1984 @feng-aiwen  @hu-zhiqiong @SuperShrimp @murphy1984
+zh-cn/application-dev/inputmethod/switch_inputmehod_guide.md @illybyy @murphy1984 @feng-aiwen  @hu-zhiqiong @SuperShrimp @murphy1984
+zh-cn/application-dev/kit-readme/Readme-IME-Kit.md @illybyy @murphy1984 @feng-aiwen  @hu-zhiqiong @SuperShrimp @murphy1984
+
+[CalendarManager-Kit]
+zh-cn/application-dev/kit-readme/Readme-CalendarManager-Kit.md @hu-zhiqiong @jt_123456 @edollar
+zh-cn/application-dev/calendarmanager/calendarmanager-overview.md @hu-zhiqiong @jt_123456 @edollar
+zh-cn/application-dev/calendarmanager/calendarmanager-guidelines.md @hu-zhiqiong @jt_123456 @edollar
+zh-cn/application-dev/reference/apis-calendar-kit/Readme-CN.md @hu-zhiqiong @jt_123456 @edollar
+zh-cn/application-dev/reference/apis-calendar-kit/js-apis-calendarManager.md @hu-zhiqiong @jt_123456 @edollar
+zh-cn/application-dev/reference/apis-calendar-kit/errorcode-calendarManager.md @hu-zhiqiong @jt_123456 @edollar
+zh-cn/application-dev/reference/apis/js-apis-calendarManager.md @hu-zhiqiong @jt_123456 @edollar
+
+[Multimodal Awareness Kit]
+zh-cn/application-dev/kit-readme/Readme-MultimodalAwareness-Kit.md @mayunteng_1 @hu-zhiqiong @cococoler @alien0208
+zh-cn/application-dev/device/multimodalawareness-kit-intro.md @mayunteng_1 @hu-zhiqiong @cococoler @alien0208
+zh-cn/application-dev/device/stationary-guidelines.md @mayunteng_1 @hu-zhiqiong @cococoler @alien0208
+zh-cn/application-dev/reference/apis-multimodalawareness-kit/Readme-CN.md @mayunteng_1 @hu-zhiqiong @cococoler @alien0208
+zh-cn/application-dev/reference/apis-multimodalawareness-kit/js-apis-stationary.md @mayunteng_1 @hu-zhiqiong @cococoler @alien0208
+

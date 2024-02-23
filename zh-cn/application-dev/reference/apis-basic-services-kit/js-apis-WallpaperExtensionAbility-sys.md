@@ -1,4 +1,4 @@
-# @ohos.WallpaperExtensionAbility (WallpaperExtensionAbility)
+# @ohos.WallpaperExtensionAbility (WallpaperExtensionAbility)（系统接口）
 
 WallpaperExtensionAbility为壁纸拓展模块，提供应用生命周期回调和监听壁纸变化的能力。
 
