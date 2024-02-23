@@ -4151,7 +4151,7 @@ export default class EntryAbility extends UIAbility {
       }
       console.info('Succeeded in loading the content.');
       // 获取应用主窗口。
-      let mainWindow: window.Window = window.findWindow("test");
+      let mainWindow: window.Window | undefined = undefined;
       windowStage.getMainWindow((err: BusinessError, data) => {
         let errCode: number = err.code;
         if (errCode) {
