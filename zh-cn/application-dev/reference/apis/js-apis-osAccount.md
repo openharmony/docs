@@ -4916,12 +4916,12 @@ registerInputer(inputer: IInputer): void;
   let pinAuth: account_osAccount.PINAuth = new account_osAccount.PINAuth();
   let password = new Uint8Array([0, 0, 0, 0, 0]);
   try {
-    let result = pinAuth.registerInputer({
+    pinAuth.registerInputer({
         onGetData: (authSubType: account_osAccount.AuthSubType, callback: account_osAccount.IInputData) => {
           callback.onSetData(authSubType, password);
         }
     });
-    console.log('registerInputer result = ' + result);
+    console.log('registerInputer result success.');
   } catch (e) {
     console.log('registerInputer exception = ' + JSON.stringify(e));
   }
