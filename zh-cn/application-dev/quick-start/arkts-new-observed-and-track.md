@@ -1,10 +1,8 @@
+
+
 # \@observed装饰器和\@track装饰器：类属性变化观测
 
 为了增强现有状态管理框架对类对象中属性的观测能力，开发者可以使用\@observed装饰器和\@track装饰器装饰类以及类中的属性。
-
->**说明：**
->
->@observed与@track装饰器从API12开始支持
 
 ## 概述
 
@@ -260,9 +258,6 @@ class User {
 @Component
 struct Comp {
   @track message: string = "Hello World"; // 错误用法
-
-  build() {
-  }
 }
 ```
 
@@ -271,16 +266,11 @@ struct Comp {
 ```ts
 @Observed
 class User {
-  @track name: string = "Tom"; // 错误用法，编译时报错
+  @track name: string = "Tom"; // 错误用法
 }
-```
-
-以下写法没有深度观测的能力，@observed装饰器不会生效。
-
-```ts
 @observed
 class Person {
-  @Track name: string = "Jack"; // 无深度观测能力
+  @Track name: string = "Jack"; // 错误用法
 }
 ```
 
