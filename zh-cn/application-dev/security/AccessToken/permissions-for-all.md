@@ -458,7 +458,6 @@
 
 允许应用在后台运行时获取设备位置信息。
 
-**申请条件**：需要先申请前台位置权限[ohos.permission.LOCATION](#ohospermissionlocation)和[ohos.permission.APPROXIMATELY_LOCATION](#ohospermissionapproximately_location)后，才可申请此权限。
 由于安全隐私要求，应用不能通过弹窗的形式被授予后台位置权限，应用如果需要使用后台位置权限，需要引导用户到设置界面手动授予。
 
 **申请流程**：

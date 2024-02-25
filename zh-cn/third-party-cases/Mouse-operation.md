@@ -206,8 +206,8 @@ struct Index{
 
 ## 参考
 
-[TextInput](../application-dev/reference/arkui-ts/ts-basic-components-textinput.md)
+[TextInput](../application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md)
 
-[鼠标事件](../application-dev/reference/arkui-ts/ts-universal-mouse-key.md)
+[鼠标事件](../application-dev/reference/apis-arkui/arkui-ts/ts-universal-mouse-key.md)
 
-[定时器](../application-dev/reference/apis/js-apis-timer.md)
+[定时器](../application-dev/reference/common/js-apis-timer.md)

@@ -3,14 +3,11 @@
 
 ## Overview
 
-This structure is used to store a 32-bit unsigned integer array.
+Defines the structure for storing 32-bit unsigned integer arrays.
 
-**Since:**
-9
+**Since**: 9
 
-**Related Modules:**
-
-[NeuralNeworkRuntime](_neural_nework_runtime.md)
+**Related module**: [NeuralNetworkRuntime](_neural_network_runtime.md)
 
 
 ## Summary
@@ -18,30 +15,32 @@ This structure is used to store a 32-bit unsigned integer array.
 
 ### Member Variables
 
-| Name | Description | 
+| Name| Description|
 | -------- | -------- |
-| [data](#data) | Pointer to the unsigned integer array  | 
-| [size](#size) | Array length  | 
+| [data](#data) | Pointer to the unsigned integer array.|
+| [size](#size) | Array length.|
 
 
-## Member Variable Description 
+## Member Variable Description
 
 
 ### data
 
-  
 ```
 uint32_t* OH_NN_UInt32Array::data
 ```
-**Description**<br>
-Pointer to the unsigned integer array
+
+**Description**
+
+Pointer to the unsigned integer array.
 
 
 ### size
 
-  
 ```
 uint32_t OH_NN_UInt32Array::size
 ```
-**Description**<br>
-Array length
+
+**Description**
+
+Array length.

@@ -17,8 +17,9 @@
   - Appendix
     - [Comparison Between the Actor and Memory Sharing Models](actor-model-development-samples.md)
     - [Serialization Types Supported by TaskPool and Worker](serialization-support-types.md)
-    - [\@Concurrent Decorator: Verifying Concurrent Functions](arkts-concurrent.md)
     - [Precautions for Multithread Safe](multi-thread-safety.md)
+    - [\@Concurrent Decorator: Declaring and Verifying Concurrent Functions](arkts-concurrent.md)
+    - [\@Sendable Decorator: Declaring and Verifying the Sendable Class](arkts-sendable.md)
 - Container
   - [Container Overview](container-overview.md)
   - [Linear Containers](linear-container.md)

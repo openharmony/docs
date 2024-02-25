@@ -44,16 +44,16 @@ ArkUI: IME Kit在输入法软键盘和自绘编辑框时使用ArkUI提供的部�
 
 # IME Kit API参考
 
-- [inputMethodEngine](../reference/apis/js-apis-inputmethodengine.md)
+- [inputMethodEngine](../reference/apis-ime-kit/js-apis-inputmethodengine.md)
 
-- [inputMethod](../reference/apis/js-apis-inputmethod.md)
+- [inputMethod](../reference/apis-ime-kit/js-apis-inputmethod.md)
 
-- [InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod-extension-ability.md)
+- [InputMethodExtensionAbility](../reference/apis-ime-kit/js-apis-inputmethod-extension-ability.md)
 
-- [InputMethodExtensionContext](../reference/apis/js-apis-inputmethod-extension-context.md)
+- [InputMethodExtensionContext](../reference/apis-ime-kit/js-apis-inputmethod-extension-context.md)
 
-- [inputMethodList](../reference/apis/js-apis-inputmethodlist.md)
+- [inputMethodList](../reference/apis-ime-kit/js-apis-inputmethodlist.md)
 
-- [InputMethodSubtype](../reference/apis/js-apis-inputmethod-subtype.md)
+- [InputMethodSubtype](../reference/apis-ime-kit/js-apis-inputmethod-subtype.md)
 
-- [inputMethod.Pane](../reference/apis/js-apis-inputmethod-panel.md)
+- [inputMethod.Pane](../reference/apis-ime-kit/js-apis-inputmethod-panel.md)

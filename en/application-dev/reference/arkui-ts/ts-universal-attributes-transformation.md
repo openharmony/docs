@@ -72,26 +72,26 @@ Rotates the component.
 
 Since API version 9, this API is supported in ArkTS widgets.
 
-| Name                     | Type                      | Description                                                        |
-| ------------------------- | -------------------------- | ------------------------------------------------------------ |
-| x                         | number                     | X coordinate of the rotation axis vector.                                           |
-| y                         | number                     | Y coordinate of the rotation axis vector.                                           |
-| z                         | number                     | Z coordinate of the rotation axis vector.                                           |
-| angle                     | number                     | Angle to rotate. A positive angle indicates a clockwise rotation, and a negative angle indicates a counterclockwise rotation. The value can be of the string type, for example, **'90deg'**.|
-| centerX                   | number \| string | X coordinate of the center point.                                         |
-| centerY                   | number \| string | Y coordinate of the center point.                                         |
-| centerZ<sup>10+</sup>     | number                     | Z-axis anchor, that is, the z-component of the 3D rotation center point.                          |
-| perspective<sup>10+</sup> | number                     | Distance from the user to the z=0 plane.<br>The axis and center of rotation are set based on the coordinate system, which remains where it is when the component is moved.|
+| Name                     | Type                      | Mandatory| Description                                                        |
+| ------------------------- | -------------------------- | ---- | ------------------------------------------------------------ |
+| x                         | number                     | No  | X coordinate of the rotation axis vector.                                           |
+| y                         | number                     | No  | Y coordinate of the rotation axis vector.                                           |
+| z                         | number                     | No  | Z coordinate of the rotation axis vector.                                           |
+| angle                     | number \| string | Yes  | Angle to rotate. A positive angle indicates a clockwise rotation, and a negative angle indicates a counterclockwise rotation. The value can be of the string type, for example, **'90deg'**.|
+| centerX                   | number \| string | No  | X coordinate of the center point.                                         |
+| centerY                   | number \| string | No  | Y coordinate of the center point.                                         |
+| centerZ<sup>10+</sup>     | number                     | No  | Z-axis anchor, that is, the z-component of the 3D rotation center point.                          |
+| perspective<sup>10+</sup> | number                     | No  | Distance from the user to the z=0 plane.<br>The axis and center of rotation are set based on the coordinate system, which remains where it is when the component is moved.|
 
 ## TranslateOptions
 
 Since API version 9, this API is supported in ArkTS widgets.
 
-| Name| Type                      | Description           |
-| ---- | -------------------------- | --------------- |
-| x    | number \| string | Translation distance along the x-axis.|
-| y    | number \| string | Translation distance along the y-axis.|
-| z    | number \| string | Translation distance along the z-axis.|
+| Name| Type                      | Mandatory| Description           |
+| ---- | -------------------------- | ---- | --------------- |
+| x    | number \| string | No  | Translation distance along the x-axis.|
+| y    | number \| string | No  | Translation distance along the y-axis.|
+| z    | number \| string | No  | Translation distance along the z-axis.|
 
 ## ScaleOptions
 
@@ -103,11 +103,11 @@ Since API version 9, this API is supported in ArkTS widgets.
 | y       | number                     | No  | Scale ratio along the y-axis. y > 1: The component is scaled up along the y-axis.<br>0 < y < 1: The component is scaled down along the y-axis.<br>y < 0: The component is scaled in the reverse direction of the y-axis.|
 | z       | number                     | No  | Scale ratio along the z-axis. z > 1: The component is scaled up along the z-axis.<br>0 < z < 1: The component is scaled down along the z-axis.<br>z < 0: The component is scaled in the reverse direction of the z-axis.|
 | centerX | number \| string | No  | X coordinate of the center point.                                         |
-| centerY | number \|string       | No  | Y coordinate of the center point.                                         |
+| centerY | number \| string | No  | Y coordinate of the center point.                                         |
 
 > **NOTE**
 >
-> If both the **rotate** and **scale** attributes are set for a component, the values of **centerX** and **centerY** conflict. In this case, the one that is set later in time prevails.
+> If the **rotate** and **scale** attributes are both set for a component, the values of **centerX** and **centerY** conflict. In this case, the one that is set later in time prevails.
 
 ## Example
 

@@ -14,7 +14,7 @@
 
 ## 装饰器使用说明
 
-- 当前\@Styles仅支持[通用属性](../reference/arkui-ts/ts-universal-attributes-size.md)和[通用事件](../reference/arkui-ts/ts-universal-events-click.md)。
+- 当前\@Styles仅支持[通用属性](../reference/apis-arkui/arkui-ts/ts-universal-attributes-size.md)和[通用事件](../reference/apis-arkui/arkui-ts/ts-universal-events-click.md)。
 
 - \@Styles方法不支持参数，反例如下。
 
@@ -26,6 +26,9 @@
   ```
 
 - \@Styles可以定义在组件内或全局，在全局定义时需在方法名前面添加function关键字，组件内定义时则不需要添加function关键字。
+
+> **说明：**
+> 只能在当前文件内使用，不支持export
 
   ```ts
   // 全局
@@ -92,7 +95,7 @@ struct FancyUse {
     Column({ space: 10 }) {
       // 使用全局的@Styles封装的样式
       Text('FancyA')
-        .globalFancy ()
+        .globalFancy()
         .fontSize(30)
       // 使用组件内的@Styles封装的样式
       Text('FancyB')

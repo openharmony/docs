@@ -206,6 +206,10 @@ For a class that extends **Set**, the value changes of the **Set** instance can 
 
 The following is the data structure of a nested class object.
 
+> **NOTE**
+>
+> **NextID** is used to generate a unique and persistent key for each array item during [ForEach rendering](./arkts-rendering-control-foreach.md), so as to identify the corresponding component.
+
 
 ```ts
 // objectLinkNestedObjects.ets

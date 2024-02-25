@@ -21,7 +21,7 @@
 
 ## 接口说明
 
-外置存储设备管理相关API的详细介绍请参见[API参考](../reference/apis/js-apis-file-volumemanager.md)。
+外置存储设备管理相关API的详细介绍请参见[API参考](../reference/apis-core-file-kit/js-apis-file-volumemanager-sys.md)。
 
 各类广播传递的相关参数，请见下表。
 

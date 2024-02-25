@@ -68,7 +68,7 @@ The following table provides only a brief description of related APIs. For detai
 
 The following example illustrates how to log and subscribe to button touch events of users.
 
-1. Create an ArkTS application project. In the displayed **Project** window, choose **entry** > **src** > **main** > **ets** > **entryability** > **EntryAbility.ts**, and double-click **EntryAbility.ts**. Then, add an event watcher to **onCreate** to subscribe to button touch events. The complete sample code is as follows: 
+1. Create an ArkTS application project. In the displayed **Project** window, choose **entry** > **src** > **main** > **ets** > **entryability** > **EntryAbility.ts**, and double-click **EntryAbility.ets**. Then, add an event watcher to **onCreate** to subscribe to button touch events. The complete sample code is as follows: 
 
    ```ts
    import AbilityConstant from '@ohos.app.ability.AbilityConstant';
@@ -215,7 +215,7 @@ The following describes the attributes in the crash event.
 
 The following describes how to subscribe to the crash event generated when a user clicks the button to trigger an application crash.
 
-1. In the **Project** window, choose **entry** > **src** > **main** > **ets** > **entryability** > **EntryAbility.ts**, and double-click **EntryAbility.ts**. Then, add an event watcher to **onCreate** to subscribe to system events. The complete sample code is as follows: 
+1. In the **Project** window, choose **entry** > **src** > **main** > **ets** > **entryability** > **EntryAbility.ets**, and double-click **EntryAbility.ts**. Then, add an event watcher to **onCreate** to subscribe to system events. The complete sample code is as follows: 
 
    ```ts
     hiAppEvent.addWatcher({
@@ -357,7 +357,7 @@ The following describes the attributes in the freeze event.
 
 The following describes how to subscribe to the freeze event generated when a user clicks the button to trigger an application freeze.
 
-1. In the **Project** window, choose **entry** > **src** > **main** > **ets** > **entryability** > **EntryAbility.ts**, and double-click **EntryAbility.ts**. Then, add an event watcher to **onCreate** to subscribe to system events. The complete sample code is as follows: 
+1. In the **Project** window, choose **entry** > **src** > **main** > **ets** > **entryability** > **EntryAbility.ets**, and double-click **EntryAbility.ts**. Then, add an event watcher to **onCreate** to subscribe to system events. The complete sample code is as follows: 
 
    ```ts
     hiAppEvent.addWatcher({

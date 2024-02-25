@@ -2719,7 +2719,7 @@ the system reports a **postDialDelay** event when the call is connected. The app
 | -------- | ------------------------- | ---- | -------------------------------------------------------------- |
 | callId   | number                    | Yes  | Call ID.                                                      |
 | proceed  | boolean                   | Yes  | Whether to send DTMF tones.|
-| callback | AsyncCallback&lt;void&gt; | Yes  | The result of continuing the call is returned in callback function mode.                   |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                   |
 
 **Error codes**
 
@@ -5611,8 +5611,9 @@ Enumerates audio devices.
 
 |                Name              |                  Type                | Mandatory |        Description     |
 | --------------------------------- | ------------------------------------- | ---- | ---------------- |
-| deviceType <sup>10+</sup>         | [AudioDeviceType](#audiodevicetype10) | Yes  | Audio device type.    |
-| address <sup>10+</sup>            | string                                | No  | Audio device address.    |
+| deviceType <sup>10+</sup>         | [AudioDeviceType](#audiodevicetype10) | Yes  | Audio device type.   |
+| address <sup>10+</sup>            | string                                | No  | Audio device address.   |
+| deviceName <sup>11+</sup>         | string                                | No  | Audio device name.   |
 
 ## AudioDeviceType<sup>10+</sup>
 
@@ -5628,6 +5629,7 @@ Enumerates audio device types.
 | DEVICE_SPEAKER       | 1    | Speaker device.  |
 | DEVICE_WIRED_HEADSET | 2    | Wired headset device.|
 | DEVICE_BLUETOOTH_SCO | 3    | Bluetooth SCO device. |
+| DEVICE_DISTRIBUTED_AUTOMOTIVE<sup>11+</sup> | 4    | Distributed head unit.|
 
 ## AudioDeviceCallbackInfo<sup>10+</sup>
 
@@ -5731,7 +5733,9 @@ Defines the call attribute options.
 | callId          | number                                   | Yes  | Call ID.        |
 | callState       | [DetailedCallState](#detailedcallstate7) | Yes  | Detailed call state.  |
 | conferenceState | [ConferenceState](#conferencestate7)     | Yes  | Conference state.      |
-| voipCallAttribute | [VoipCallAttribute](#voipcallattribute11)     | No  | VoIP call information.      |
+| voipCallAttribute<sup>11+</sup> | [VoipCallAttribute](#voipcallattribute11)     | No  | VoIP call information.      |
+| crsType<sup>11+</sup> | number                             | Yes  | Video RBT type.|
+| originalCallType<sup>11+</sup> | number                    | Yes  | Original call type of the Video RBT service.|
 
 ## VoipCallAttribute<sup>11+</sup>
 
@@ -5795,6 +5799,7 @@ Video state type.
 | TYPE_VIDEO_SEND_ONLY<sup>11+</sup>    | 1    | Data sending only during a video call.|
 | TYPE_VIDEO_RECEIVE_ONLY<sup>11+</sup> | 2    | Data receiving only during a video call.|
 | TYPE_VIDEO                            | 3    | Video state.|
+| TYPE_VIDEO_BIDIRECTIONAL<sup>11+</sup>| 4    | Data receiving/sending status during a video call.|
 
 ## DetailedCallState<sup>7+</sup>
 
@@ -6757,6 +6762,7 @@ Enumerates video call upgrade or downgrade request types.
 | TYPE_REQUEST_INVALID                       | 2      | Invalid request.|
 | TYPE_REQUEST_TIMED_OUT                     | 3      | Request timeout.|
 | TYPE_REQUEST_REJECTED_BY_REMOTE            | 4      | Request denied.|
+| TYPE_REQUEST_UPGRADE_CANCELED              | 5      | Upgrade request canceled.|
 | TYPE_DOWNGRADE_RTP_OR_RTCP_TIMEOUT         | 100    | RTP or RTCP downgrade timeout.|
 | TYPE_DOWNGRADE_RTP_AND_RTCP_TIMEOUT        | 101    | RTP and RTCP downgrade timeout.|
 

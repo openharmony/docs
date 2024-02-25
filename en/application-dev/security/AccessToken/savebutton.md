@@ -1,8 +1,8 @@
 # Using \<SaveButton>
 
-The \<**SaveButton**> component comes with the privilege for saving data, which allows an application to temporarily save data without any authorization information.
+The \<**SaveButton**> component comes with the privilege for saving data, which allows an application to temporarily save data without any authorization.
 
-When it is tapped, the application obtains one-time permission to access the **mediaLibrary** APIs within 10 seconds. You can use this component when your application needs to save image or videos to the media library.
+When it is tapped, the application obtains one-time permission to access the **mediaLibrary** APIs within 10 seconds. You can use this component when your application needs to save images or videos to the media library.
 
 This component allows for simpler operations than Pickers, which have to start a system application and have the user select a directory for saving the image or video.
 

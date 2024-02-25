@@ -1,9 +1,9 @@
-# 弹性布局（Flex）
+# 弹性布局 (Flex)
 
 
 ## 概述
 
-弹性布局（[Flex](../reference/arkui-ts/ts-container-flex.md)）提供更加有效的方式对容器中的子元素进行排列、对齐和分配剩余空间。常用于页面头部导航栏的均匀分布、页面框架的搭建、多行数据的排列等。
+弹性布局（[Flex](../reference/apis-arkui/arkui-ts/ts-container-flex.md)）提供更加有效的方式对容器中的子元素进行排列、对齐和分配剩余空间。常用于页面头部导航栏的均匀分布、页面框架的搭建、多行数据的排列等。
 
 容器默认存在主轴与交叉轴，子元素默认沿主轴排列，子元素在主轴方向的尺寸称为主轴尺寸，在交叉轴方向的尺寸称为交叉轴尺寸。
 
@@ -376,7 +376,7 @@
 
 ### 子元素设置交叉轴对齐
 
-子元素的[alignSelf](../reference/arkui-ts/ts-universal-attributes-flex-layout.md#属性)属性也可以设置子元素在父容器交叉轴的对齐格式，且会覆盖Flex布局容器中alignItems配置。如下例所示：
+子元素的[alignSelf](../reference/apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#属性)属性也可以设置子元素在父容器交叉轴的对齐格式，且会覆盖Flex布局容器中alignItems配置。如下例所示：
 
 ```ts
 Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) { // 容器组件设置子元素居中
@@ -408,7 +408,7 @@ Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) { // 容器
 
 ### 内容对齐
 
-可以通过[alignContent](../reference/arkui-ts/ts-container-flex.md#接口)参数设置子元素各行在交叉轴剩余空间内的对齐方式，只在多行的Flex布局中生效，可选值有：
+可以通过[alignContent](../reference/apis-arkui/arkui-ts/ts-container-flex.md#接口)参数设置子元素各行在交叉轴剩余空间内的对齐方式，只在多行的Flex布局中生效，可选值有：
 
 - FlexAlign.Start：子元素各行与交叉轴起点对齐。
 

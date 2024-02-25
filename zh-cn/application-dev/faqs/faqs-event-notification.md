@@ -109,7 +109,7 @@ struct Faq10_1 {
 
 **参考链接**
 
-[公共事件模块](../reference/apis/js-apis-commonEventManager.md)
+[公共事件模块](../reference/apis-basic-services-kit/js-apis-commonEventManager.md)
 
 ## 如何让事件只在一个UIAbility实例中传递(API 9)
 
@@ -189,7 +189,7 @@ async function publishNotification() {
 
 **参考链接**
 
-[Notification](../reference/apis/js-apis-notificationManager.md)、[WantAgent](../reference/apis/js-apis-app-ability-wantAgent.md)
+[Notification](../reference/apis-notification-kit/js-apis-notificationManager.md)、[WantAgent](../reference/apis-ability-kit/js-apis-app-ability-wantAgent.md)
 
 
 ## 调用notificationManager.publish发布通知失败(API 9)

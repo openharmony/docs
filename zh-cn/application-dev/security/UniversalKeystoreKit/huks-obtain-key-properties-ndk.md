@@ -7,11 +7,11 @@ HUKS提供了接口供业务获取指定密钥的相关属性。在获取指定�
 ## 开发步骤
 
 1. 构造对应参数。
-   - keyAlias：密钥别名，封装成[OH_Huks_Blob](../../reference/native-apis/_o_h___huks___blob.md)结构，密钥别名最大长度为64字节。
+   - keyAlias：密钥别名，封装成[OH_Huks_Blob](../../reference/apis-universal-keystore-kit/_o_h___huks___blob.md)结构，密钥别名最大长度为64字节。
    - paramSetIn：预留参数，暂不需要处理，传空即可。
-   - paramSetOut：用于放置获取到的参数集结果，为[OH_Huks_ParamSet](../../reference/native-apis/_o_h___huks___param_set.md)类型对象，需要业务提前申请好内存，需申请足够容纳获取到的密钥属性集的内存大小。
+   - paramSetOut：用于放置获取到的参数集结果，为[OH_Huks_ParamSet](../../reference/apis-universal-keystore-kit/_o_h___huks___param_set.md)类型对象，需要业务提前申请好内存，需申请足够容纳获取到的密钥属性集的内存大小。
 
-2. 调用接口[OH_Huks_GetKeyItemParamSet](../../reference/native-apis/_huks_key_api.md#oh_huks_getkeyitemparamset)，传入上述参数。
+2. 调用接口[OH_Huks_GetKeyItemParamSet](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_getkeyitemparamset)，传入上述参数。
 
 3. 返回值为成功码/错误码，获取成功后，从参数集中读取需要的参数。
 

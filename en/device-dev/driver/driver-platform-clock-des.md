@@ -1,72 +1,68 @@
-# CLOCK
+# Clock
 
 ## Overview
 
 ### Function
 
-CLOCK，The clock serves as the cornerstone of all components in a system. Taking the CPU clock as an example, the CPU clock refers to the internal clock generator within the CPU. It operates in the form of frequency to synchronize and control the various operations within the CPU.
+The clock regulates the timing and speed of all functions in a device. For example, the CPU clock is an internal time generator of the CPU. It operates in frequency and used to synchronize and control the operations within the CPU.
 
-The CLOCK interface delineates a compendium of universal methodologies to accomplish -  - CLOCK operations, encompassing:
+The **Clock** module provides APIs for clock operations, including:
 
--  CLOCK device administration: enabling the initiation or cessation of CLOCK devices.
-
--  CLOCK rate modulation: extracting or configuring CLOCK speeds.
-
--  CLOCK gating: facilitating or disabling CLOCK functionality.
-
--  CLOCK parent-clock supervision: acquiring or configuring the parent clock.
+-  Clock device management: enabling or disabling a clock device.
+-  Clock rate modulation: obtaining or setting the clock speed.
+-  Clock gating: enabling or disabling a clock.
+-  Parent-clock management: obtaining or setting the parent clock.
 
 ### Basic Concepts
 
-The clock signal of a device refers to a signal used to synchronize and control the operations of various modules or components within electronic devices. It serves as a fundamental signal source within the device, ensuring the proper functioning and accurate data transmission.
+The clock signal is used to synchronize and control the operations of the modules or components of an electronic device. It serves as a fundamental signal reference source to ensure proper functioning and accurate data transmission.
 
 ### Working Principles
 
-In the Hardware Driver Foundation (HDF), the CLOCK module uses the unified service mode for API adaptation. In this mode, a service is used as the CLOCK manager to handle external access requests in a unified manner. The unified service mode applies when the system has multiple device objects of the same type. If the independent service mode is used in this case, more device nodes need to be configured and more memory resources will be consumed.
+In the Hardware Driver Foundation (HDF), the **Clock** module uses the unified service mode for API adaptation. In this mode, a service is used as the clock manager to handle external access requests in a unified manner. The unified service mode applies when the system has multiple device objects of the same type. If the independent service mode is used in this case, more device nodes need to be configured and more memory resources will be consumed. The **Clock** module uses the unified service mode.
 
 ## Usage Guidelines
 
 ### When to Use
 
-CLOCK provides chip-level clock management: The clock functionality can be utilized to regulate internal clock division, clock multiplication, clock source selection, and clock gating within the chip. By implementing a prudent clock management strategy, chip efficiency can be enhanced while ensuring proper coordination and synergy among all functional components.
+The **Clock** module provides chip-level clock management, including frequency division, frequency multiplication, clock source selection, and clock gating within the chip. Proper clock management can enhance chip efficiency while streamlining coordination and synergy among all functional components.
 
 ### Available APIs
 
-The following table describes the APIs of the CLOCK module. For more information, see **//drivers/hdf_core/framework/include/platform/clock_if.h**.
+The following table describes the common APIs of the **Clock** module. For more information, see **//drivers/hdf_core/framework/include/platform/clock_if.h**.
 
-**Table 1** APIs of the CLOCK driver
+**Table 1** APIs of the Clock driver
 
-| API | Description  | Return value description                          | Special case description                            |
+| API | Description  | Return Value                          | Remarks                     |
 | ---------------------------------------------------------- | ------------- | ----------------------------------- | --------------------------------------- |
-| DevHandle ClockOpen(uint32_t number);                      | Opens an CLOCK device. | NULL：Fail，Other：Success |                                         |
-| int32_t ClockClose(DevHandle handle);                      | Closes an CLOCK device. | Zero：Success，Other：Fail |                                         |
-| int32_t ClockEnable(DevHandle handle);                     | Enable Clock.     | Zero：Success，Other：Fail |                                         |
-| int32_t ClockDisable(DevHandle handle);                    | Disable Clock.   | Zero：Success，Other：Fail |                                         |
-| int32_t ClockSetRate(DevHandle handle, uint32_t rate);     | Set Clock rate.  | Zero：Success，Other：Fail | If it fails, check whether the Clock corresponding to the passed rate is supported. |
-| int32_t ClockGetRate(DevHandle handle, uint32_t *rate);    | Get Clock rate.   | Zero：Success，Other：Fail |                                         |
-| int32_t ClockSetParent(DevHandle child, DevHandle parent); | Set Clock parent.    | Zero：Success，Other：Fail | When the parent clock is set repeatedly, it does not report an error and returns success directly. |
-| DevHandle ClockGetParent(DevHandle handle);                | Get Clock parent.    | Zero：Success，Other：Fail |                                         |
+| DevHandle ClockOpen(uint32_t number);                      | Opens a clock device. | NULL: The operation fails.<br/>Device handle: The operation is successful. |                                         |
+| int32_t ClockClose(DevHandle handle);                      | Closes a clock device. | **0**: The operation is successful.<br>Other value: The operation fails. |                                         |
+| int32_t ClockEnable(DevHandle handle);                     | Enables clock.    | **0**: The operation is successful.<br>Other value: The operation fails. |                                         |
+| int32_t ClockDisable(DevHandle handle);                    | Disables clock.  | **0**: The operation is successful.<br>Other value: The operation fails. |                                         |
+| int32_t ClockSetRate(DevHandle handle, uint32_t rate);     | Sets the clock rate. | **0**: The operation is successful.<br>Other value: The operation fails. | If the operation fails, check whether the specified clock rate is supported. |
+| int32_t ClockGetRate(DevHandle handle, uint32_t *rate);    | Obtains the clock rate. | **0**: The operation is successful.<br>Other value: The operation fails. |                                         |
+| int32_t ClockSetParent(DevHandle child, DevHandle parent); | Sets the parent clock. | **0**: The operation is successful.<br>Other value: The operation fails. | When the parent clock is set repeatedly, no error will be returned. |
+| DevHandle ClockGetParent(DevHandle handle);                | Obtains the parent clock. | **0**: The operation is successful.<br>Other value: The operation fails. |                                         |
 
 ### How to Develop
 
-The following figure illustrates how to use CLOCK APIs.
+The following figure illustrates how to use the APIs provided by the **Clock** module.
 
-**Figure 2** Process of using CLOCK APIs
-![Process of using CLOCK APIs](figures/using-CLOCK-process.png) 
+**Figure 2** Process of using Clock APIs
+
+![Process of using Clock APIs](figures/using-CLOCK-process.png) 
 
 ### Example
 
-The intention at hand is to perform a simple reading operation on the CLOCK device of the RK3568 development board. Here are the fundamental hardware details:
+The following example shows how to implement read operations on a clock device of the RK3568 development board. The hardware information is as follows:
 
--   SOC：RK3568
-
-This program performs a test on various interfaces.
+-   SOC: RK3568
 
 Example:
 
 ```c
-#include "clock_if.h"          // Header file for CLOCK APIs
-#include "hdf_log.h"           // Header file for log APIs
+#include "clock_if.h"          // Header file of clock APIs
+#include "hdf_log.h"           // Header file of log APIs
 #define CLOCK_NUM 1
 
 static int32_t TestCaseClock(void)

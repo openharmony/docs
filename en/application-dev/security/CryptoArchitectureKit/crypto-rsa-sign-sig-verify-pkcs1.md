@@ -17,7 +17,7 @@ For details about the algorithm specifications, see [RSA](crypto-sign-sig-verify
 
 4. Use [Sign.update](../../reference/apis/js-apis-cryptoFramework.md#update-3) to pass in the data to be signed.
    
-   Currently, the data to be passed in by a single **update()** is not size-bound. You can determine how to pass in data based on the data volume.
+   Currently, the data to be passed in by a single **update()** is not size bound. You can determine how to pass in data based on the data volume.
 
    - If the data to be signed is short, call **sign()** immediately after **init()**.
    - If the data to be signed is considerably long, call **update()** multiple times to [pass in data by segment](crypto-rsa-sign-sig-verify-pkcs1-by-segment.md).
@@ -33,7 +33,7 @@ For details about the algorithm specifications, see [RSA](crypto-sign-sig-verify
 2. Use [Verify.init](../../reference/apis/js-apis-cryptoFramework.md#init-5) to initialize the **Verify** instance using the public key (**PubKey**).
 
 3. Use [Verify.update](../../reference/apis/js-apis-cryptoFramework.md#update-5) to pass in the data to be verified.
-   Currently, the data to be passed in by a single **update()** is not size-bound. You can determine how to pass in data based on the data volume.
+   Currently, the data to be passed in by a single **update()** is not size bound. You can determine how to pass in data based on the data volume.
 
    - If the data to be verified is short, call **verify()** immediately after **init()**.
    - If the data to be verified is considerably long, call **update()** multiple times to [pass in data by segment](crypto-rsa-sign-sig-verify-pkcs1-by-segment.md).

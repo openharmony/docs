@@ -3,7 +3,7 @@
 
 ## Overview
 
-Defines the setup data for control transfer, which corresponds to <b>Setup Data</b> in the USB protocol.
+Setup data for control transfer. It corresponds to <b>Setup Data</b> in the USB protocol.
 
 **Since**
 
@@ -52,7 +52,7 @@ uint16_t UsbControlRequestSetup::wLength
 
 **Description**
 
-Data length corresponding to **wLength** in the USB protocol. If data is transferred, this field indicates the number of transferred bytes.
+Data length, corresponding to **wLength** in the USB protocol. If data is transferred, this field indicates the number of transferred bytes.
 
 
 ### bRequest

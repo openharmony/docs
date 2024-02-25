@@ -83,7 +83,7 @@ As shown above, the **module.json5** file contains several tags.
 | mainElement | Name of the entry UIAbility or ExtensionAbility of the module. The value is a string with a maximum of 255 bytes.| String| Yes (initial value: left empty)|
 | [deviceTypes](#devicetypes) | Types of the devices on which the module can run.| String array| No|
 | deliveryWithInstall | Whether the HAP of the module is installed together with the application. This tag only applies to atomic services.<br>- **true**: The HAP of the module is installed together with the application.<br>- **false**: The HAP of the module is not installed together with the application.| Boolean| No|
-| installationFree | Whether the module supports the installation-free feature.<br>- **true**: The module supports the installation-free feature and meets installation-free constraints.<br>- **false**: The module does not support the installation-free feature.<br>**NOTE**<br>- If this tag is set to **true** for the entry-type module of an application, it must also be set to **true** for feature-type modules of the same application. <br>- If this tag is set to **false** for the entry-type module of an application, it can be set to **true** or **false** for feature-type modules of the same application based on service requirements.| Boolean| No|
+| installationFree | Whether the module supports the installation-free feature.<br>- **true**: The module supports the installation-free feature and meets installation-free constraints.<br>- **false**: The module does not support the installation-free feature.<br>**NOTE**<br>If [bundleType](./app-configuration-file.md#tags-in-the-configuration-file) is set to **atomicService**, set this tag to **true**. Otherwise, set this tag to <b class="+ topic/ph hi-d/b " id="b1842016483597">false</b>.| Boolean| No|
 | virtualMachine | Type of the target virtual machine (VM) where the module can run. It is used for cloud distribution, such as distribution by the application market and distribution center. If the target VM type is ArkTS engine, the value is **ark**+*version number*.| String| Yes (initial value: automatically inserted when DevEco Studio builds the HAP file)|
 | [pages](#pages)| Profile that represents information about each page in the module. The value is a string with a maximum of 255 bytes.| String| No in the UIAbility scenario|
 | [metadata](#metadata)| Custom metadata of the module. You can configure [distributionFilter](#distributionfilter) and [shortcuts](#shortcuts) by referencing resources. The setting is effective only for the current module, UIAbility, and ExtensionAbility.| Object array| Yes (initial value: left empty)|
@@ -240,7 +240,7 @@ The **abilities** tag represents the UIAbility configuration of the module, whic
 | name | Name of the UIAbility. This name must be unique in the entire application. The value is a string with a maximum of 127 bytes.| String| No|
 | srcEntry | Code path of the entry UIAbility. The value is a string with a maximum of 127 bytes.| String| No|
 | [launchType](../application-models/uiability-launch-type.md) | Launch type of the UIAbility. The options are as follows:<br>- **multiton**: A UIAbility instance is created each time the UIAbility is started.<br>- **singleton**: A UIAbility instance is created only when the UIAbility is started for the first time.<br>- **specified**: You can determine whether to create a UIAbility instance when the application is running.| String| Yes (initial value: **"singleton"**)|
-| description | Description of the UIAbility. The value is a string with a maximum of 31 bytes. It must be a resource index to support multiple languages.| String| Yes (initial value: left empty)|
+| description | Description of the UIAbility. The value is a string with a maximum of 255 bytes. It must be a resource index to support multiple languages.| String| Yes (initial value: left empty)|
 | icon | Icon of the UIAbility. The value is the index of the icon resource file.| String| Yes (initial value: left empty)<br>If **UIAbility** is set to **MainElement**, this attribute is mandatory.|
 | label | Name of the UIAbility displayed to users. The value must be a resource index to support multiple languages.| String| Yes (initial value: left empty)<br>If **UIAbility** is set to **MainElement**, this attribute is mandatory.|
 | permissions | Permissions required for another application to access the UIAbility.<br>The value is generally in the reverse domain name notation and contains a maximum of 255 bytes. It is an array of predefined permission names.| String array| Yes (initial value: left empty)|
@@ -325,8 +325,8 @@ The **skills** tag represents the feature set of [wants](../application-models/w
 
 | Name| Description| Data Type| Initial Value Allowed|
 | -------- | -------- | -------- | -------- |
-| actions | [Actions](../application-models/actions-entities.md) of wants that can be received, which can be predefined or customized.| String array| Yes (initial value: left empty)|
-| entities | [Entities](../application-models/actions-entities.md) of wants that can be received.| String array| Yes (initial value: left empty)|
+| actions | Actions of wants that can be received, which can be predefined or customized.| String array| Yes (initial value: left empty)|
+| entities | Entities of wants that can be received.| String array| Yes (initial value: left empty)|
 | uris | URIs that match the wants.| Object array| Yes (initial value: left empty)|
 
 

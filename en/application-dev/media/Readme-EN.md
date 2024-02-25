@@ -8,7 +8,6 @@
     - [Using AudioRenderer for Audio Playback (ArkTS)](using-audiorenderer-for-playback.md)
     - [Using TonePlayer for Audio Playback (for System Applications Only) (ArkTS)](using-toneplayer-for-playback.md)
     - [Using OHAudio for Audio Playback (C/C++)](using-ohaudio-for-playback.md)
-    - [Using OpenSL ES for Audio Playback (C/C++)](using-opensl-es-for-playback.md)
     - [Audio Playback Concurrency Policy (ArkTS)](audio-playback-concurrency.md)
     - [Volume Management (ArkTS)](volume-management.md)
     - [Audio Effect Management (ArkTS)](audio-effect-management.md)
@@ -18,7 +17,6 @@
   - Audio Recording
     - [Audio Recording Overview](audio-recording-overview.md)
     - [Using AudioCapturer for Audio Recording (ArkTS)](using-audiocapturer-for-recording.md)
-    - [Using OpenSL ES for Audio Recording (C/C++)](using-opensl-es-for-recording.md)
     - [Using OHAudio for Audio Recording (C/C++)](using-ohaudio-for-recording.md)
     - [Microphone Management (ArkTS)](mic-management.md)
     - [Audio Recording Stream Management (ArkTS)](audio-recording-stream-management.md)
@@ -26,6 +24,9 @@
   - Audio Call
     - [Audio Call Overview](audio-call-overview.md)
     - [Developing Audio Call (ArkTS)](audio-call-development.md)
+  - Not Recommended
+    - [Using OpenSL ES for Audio Playback (C/C++)](using-opensl-es-for-playback.md)
+    - [Using OpenSL ES for Audio Recording (C/C++)](using-opensl-es-for-recording.md)
 - Media Kit
   - [Introduction to Media Kit](media-kit-intro.md)
   - Audio Playback and Recording
@@ -61,6 +62,7 @@
     - [Audio and Video Muxing (C/C++)](audio-video-muxer.md)
     - [Audio and Video Demuxing (C/C++)](audio-video-demuxer.md)
 - Camera Kit
+  - [Introduction to Camera Kit](camera-overview.md)
   - [Camera Development Preparations](camera-preparation.md)
   - Camera Development (ArkTS)
     - [Device Input Management (ArkTS)](camera-device-input.md)
@@ -70,8 +72,8 @@
     - [Camera Recording (ArkTS)](camera-recording.md)
     - [Camera Metadata (ArkTS)](camera-metadata.md)
   - Camera Best Practices (ArkTS)
-    - [Sample Implementation of Camera Photographing (ArkTS)](camera-shooting-case.md)
-    - [Sample Implementation of Camera Recording (ArkTS)](camera-recording-case.md)
+    - [Camera Photographing Sample (ArkTS)](camera-shooting-case.md)
+    - [Camera Recording Sample (ArkTS)](camera-recording-case.md)
     - [Dual-Channel Preview (ArkTS)](camera-dual-channel-preview.md)
     - [Using Performance Improvement Features (for System Applications Only) (ArkTS)](camera-performance-improvement.md)
   - Camera Development (C/C++)
@@ -84,9 +86,18 @@
     - [Secondary Processing of Video Streams (C/C++)](native-camera-recording-imageReceiver.md)
     - [Camera Metadata (C/C++)](native-camera-metadata.md)
   - Camera Best Practices (C/C++)
-    - [Sample Implementation of Camera Photographing (C/C++)](native-camera-shooting-case.md)
-    - [Sample Implementation of Camera Recording (C/C++)](native-camera-recording-case.md)
-    - [Sample Implementation of Secondary Processing of Recording Streams (C/C++)](native-camera-recording-case-imageReceiver.md)
+    - [Camera Photographing Sample (C/C++)](native-camera-shooting-case.md)
+    - [Camera Recording Sample (C/C++)](native-camera-recording-case.md)
+    - [Sample of Secondary Processing of Recording Streams (C/C++)](native-camera-recording-case-imageReceiver.md)
+- DRM Kit
+  - [Introduction to DRM Kit](drm-overview.md)
+  - DRM Development (ArkTS)
+    - [DRM Plug-in Management (ArkTS)](drm-plugin-management.md)
+    - [DRM System Management (ArkTS)](drm-mediakeysystem-management.md)
+    - [DRM Session Management (ArkTS)](drm-mediakeysession-management.md)
+  - DRM Development (C/C++)
+    - [DRM System Management (C/C++)](native-drm-mediakeysystem-management.md)
+    - [DRM Session Management (C/C++)](native-drm-mediakeysession-management.md)
 - Image Kit
   - [Introduction to Image Kit](image-overview.md)
   - [Image Decoding (ArkTS)](image-decoding.md)

@@ -84,9 +84,9 @@ result = object->RemoveDeathRecipient(deathRecipient); // 移除消亡通知
 
 | 接口名                                                       | 返回值类型 | 功能描述                                                     |
 | ------------------------------------------------------------ | ---------- | ------------------------------------------------------------ |
-| [registerDeathRecipient](../reference/apis/js-apis-rpc.md#registerdeathrecipient9-1) | void       | 注册用于接收远程对象消亡通知的回调，增加 proxy 对象上的消亡通知。 |
-| [unregisterDeathRecipient](../reference/apis/js-apis-rpc.md#unregisterdeathrecipient9-1) | void       | 注销用于接收远程对象消亡通知的回调。                         |
-| [onRemoteDied](../reference/apis/js-apis-rpc.md#onremotedied) | void       | 在成功添加死亡通知订阅后，当远端对象死亡时，将自动调用本方法。 |
+| [registerDeathRecipient](../reference/apis-ipc-kit/js-apis-rpc.md#registerdeathrecipient9-1) | void       | 注册用于接收远程对象消亡通知的回调，增加 proxy 对象上的消亡通知。 |
+| [unregisterDeathRecipient](../reference/apis-ipc-kit/js-apis-rpc.md#unregisterdeathrecipient9-1) | void       | 注销用于接收远程对象消亡通知的回调。                         |
+| [onRemoteDied](../reference/apis-ipc-kit/js-apis-rpc.md#onremotedied) | void       | 在成功添加死亡通知订阅后，当远端对象死亡时，将自动调用本方法。 |
 
 ### 获取context
 
@@ -159,7 +159,7 @@ let want: Want = {
 this.context.connectServiceExtensionAbility(want, connect);
 ```
 
-上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的[unregisterDeathRecipient](../reference/apis/js-apis-rpc.md#unregisterdeathrecipient9-1)接口方法注销死亡回调
+上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的[unregisterDeathRecipient](../reference/apis-ipc-kit/js-apis-rpc.md#unregisterdeathrecipient9-1)接口方法注销死亡回调
 
 ```ts
 import rpc from '@ohos.rpc';

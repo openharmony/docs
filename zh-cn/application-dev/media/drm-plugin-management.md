@@ -6,7 +6,7 @@
 
 ## 开发步骤
 
-详细的API说明请参考[DRM API参考](../reference/apis/js-apis-drm.md)。
+详细的API说明请参考[DRM API参考](../reference/apis-drm-kit/js-apis-drm.md)。
 
 1. 导入drm接口，接口中提供了drm相关的属性和方法。
 
@@ -16,33 +16,20 @@
 
 2. 通过isMediaKeySystemSupported方法，查询设备是否支持对应的插件类型。
 
-   其中参数mimeType和level是可选参数。
-
    > **说明：**
    >
    > 如果查询为false，说明该设备不支持对应的DRM方案。
 
    ```ts
    function isMediaKeySystemSupported(name: string, mimeType: string, level: ContentProtectionLevel): boolean {
-     let isSupported = drm.isMediaKeySystemSupported(name, mimeType, level);
+     let isSupported = drm.isMediaKeySystemSupported(name);
+     isSupported = drm.isMediaKeySystemSupported(name, mimeType);
+     isSupported = drm.isMediaKeySystemSupported(name, mimeType, level);
      return isSupported;
    }
    ```
 
-3. 通过getMediaKeySystemName()方法，查询设备是否支持对应的插件类型；其中参数mimeType和level是可选的。
-
-   > **说明：**
-   >
-   > 如果获取失败或者结果为空，说明该设备不支持DRM能力。
-
-   ```ts
-   function getMediaKeySystemName(): string[] {
-     let keySystemName = drm.getMediaKeySystemName();
-     return keySystemName;
-   }
-   ```
-
-4. 通过drm的createMediaKeySystem(name: string)方法，创建MediaKeySystem实例，同步返回结果，创建失败，不可继续后续操作。
+3. 通过drm的createMediaKeySystem(name: string)方法，创建MediaKeySystem实例，同步返回结果，创建失败，不可继续后续操作。
 
    > **说明：**
    >

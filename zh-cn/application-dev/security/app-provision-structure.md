@@ -77,18 +77,18 @@ HarmonyAppProvision文件示例：
 
 
 ### acls对象内部结构
-acls对象包含已授权的[ACL权限](AccessToken/access-token-overview.md)。需要指出的是，开发者仍然需要在[应用包配置文件](../quick-start/module-configuration-file.md#requestpermissions标签)将acls权限信息填写到requestPermissions属性中。
+acls对象包含已授权的[ACL权限](AccessToken/permissions-for-system-apps.md)。需要指出的是，开发者仍然需要在[应用包配置文件](../quick-start/module-configuration-file.md#requestpermissions标签)将acls权限信息填写到requestPermissions属性中。
 
 | 属性名称                  | 含义                            | 数据类型 | 是否必选 | 是否可缺省 |
 | ------------------------ | ------------------------------- | ------- | ------- | --------- |
-| allowed-acls | 表示已授权的[ACL权限](AccessToken/access-token-overview.md)列表。 | 字符串数组    | 可选 | 不可缺省   |
+| allowed-acls | 表示已授权的[ACL权限](AccessToken/permissions-for-system-apps.md)列表。 | 字符串数组    | 可选 | 不可缺省   |
 
 ### permissions对象内部结构
 permissions对象包含允许使用的受限敏感权限。不同于acls对象，permissions对象中的权限仅代表应用允许使用该敏感权限，权限最终由用户运行时授权。需要指出的是，开发者仍然需要在[应用包配置文件](../quick-start/module-configuration-file.md#requestpermissions标签)将permissions权限信息填写到requestPermissions属性中。
 
 | 属性名称                  | 含义                            | 数据类型 | 是否必选 | 是否可缺省 |
 | ------------------------ | ------------------------------- | ------- | ------- | --------- |
-| restricted-permissions | 表示允许使用的[受限敏感权限](AccessToken/access-token-overview.md)。 | 字符串数组    | 可选 | 不可缺省   |
+| restricted-permissions | 表示允许使用的[受限敏感权限](AccessToken/permissions-for-all.md#user_grant用户授权权限列表)。 | 字符串数组    | 可选 | 不可缺省   |
 
 ### debug-info对象内部结构
 debug-info对象包含应用调试场景下的信息，主要是设备管控的信息。
@@ -108,7 +108,9 @@ debug-info对象包含应用调试场景下的信息，主要是设备管控的�
 开发者可以参考以下步骤，修改HarmonyAppProvision配置文件。
 
 1. 打开OpenHarmony SDK所在目录（可通过DevEco Studio菜单栏中单击File > Settings > OpenHarmony SDK界面查看 ）。
-2. 在SDK目录下，进入Toolchains > {Version} > lib文件夹，打开“UnsgnedReleasedProfileTemplate.json”文件。
+2. 在SDK目录下，进入Toolchains > {Version} > lib文件夹，打开“UnsignedReleasedProfileTemplate.json”文件。
 3. 根据实际需求，修改对应的字段。
 
 完成配置文件修改后，开发者可以参考[Hap包签名工具使用指导](hapsigntool-overview.md)进行应用签名。
+
+<!--no_check--> 

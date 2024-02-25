@@ -10,9 +10,9 @@ The directories displayed in the hdc shell in the debugging process are differen
 
 ## Mappings Between Application Sandbox Paths and Physical Paths
 
-The read and write operations performed based on the application sandbox paths via APIs are performed on the files in the physical directories after address conversion. The following table lists their mappings.
+The read and write operations performed on an application sandbox directory are eventually performed on the files in the physical directory after address conversion. The following table lists their mappings.
 
-**Table 1** Mappings between application sandbox paths and physical paths
+<USERID> has a fixed value of **100**.
 
 | Application Sandbox Path| Physical Path in hdc| Description|
 | -------- | -------- | -------- |
@@ -40,6 +40,7 @@ hdc shell ps -ef | grep com.ohos.example
 ```
 
 Run the following command to set **user_id** and **group_id** of the file based on **user_id** of the application process:
+```
 hdc shell chown ${user_id}:${user_id} ${ file_path}
 ```
 

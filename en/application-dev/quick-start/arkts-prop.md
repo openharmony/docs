@@ -68,7 +68,7 @@ For the \@Prop decorated variable of a child component, the change synchronizati
   // The value change can be observed.
   this.count = 1;
   // Complex type
-  @Prop count: Model;
+  @Prop title: Model;
   // The value change can be observed.
   this.title = new Model('Hi');
   ```

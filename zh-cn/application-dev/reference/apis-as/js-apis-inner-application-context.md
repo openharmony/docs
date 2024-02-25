@@ -65,7 +65,7 @@ export default class EntryAbility extends UIAbility {
     try {
       moduleContext = this.context.createModuleContext('entry');
     } catch (error) {
-      console.error('createModuleContext failed, error.code: ${error.code}, error.message: ${error.message}');
+      console.error(`createModuleContext failed, error.code: ${error.code}, error.message: ${error.message}`);
     }
   }
 }
@@ -100,7 +100,7 @@ export default class EntryAbility extends UIAbility {
     try {
       applicationContext = this.context.getApplicationContext();
     } catch (error) {
-      console.error('getApplicationContext failed, error.code: ${error.code}, error.message: ${error.message}');
+      console.error(`getApplicationContext failed, error.code: ${error.code}, error.message: ${error.message}`);
     }
   }
 }
@@ -150,7 +150,7 @@ export default class EntryAbility extends UIAbility {
         console.log("getGroupDir result:" + data);
       })
     } catch (error) {
-      console.error('getGroupDirContext failed, error.code: ${error.code}, error.message: ${error.message}');
+      console.error(`getGroupDirContext failed, error.code: ${error.code}, error.message: ${error.message}`);
     }
   }
 }

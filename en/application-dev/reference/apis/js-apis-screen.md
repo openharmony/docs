@@ -976,9 +976,9 @@ Defines virtual screen parameters.
 | Name     | Type| Readable| Writable| Description                      |
 | --------- | -------- | ---- | ---- |--------------------------|
 | name      | string   | Yes  | Yes  | Name of a virtual screen.              |
-| width     | number   | Yes  | Yes  | Width of the virtual screen, in pixels. The value must be an integer.|
-| height    | number   | Yes  | Yes  | Height of the virtual screen, in pixels. The value must be an integer.|
-| density   | number   | Yes  | Yes  | Density of the virtual screen. The value must be a floating point number.      |
+| width     | number   | Yes  | Yes  | Width of the virtual screen, in px. The value must be an integer.|
+| height    | number   | Yes  | Yes  | Height of the virtual screen, in px. The value must be an integer.|
+| density   | number   | Yes  | Yes  | Density of the virtual screen, in px. The value must be a floating point number.|
 | surfaceId | string   | Yes  | Yes  | Surface ID of the virtual screen.       |
 
 ## Screen
@@ -1420,6 +1420,6 @@ Defines the screen mode information.
 | Name       | Type| Readable| Writable| Description                                              |
 | ----------- | -------- | ---- | ---- | -------------------------------------------------- |
 | id          | number   | Yes  | Yes  | Mode ID. The supported mode is determined by the device resolution and refresh rate. The value must be an integer.| 
-| width       | number   | Yes  | Yes  | Width of the screen, in pixels. The value must be an integer.                               |
-| height      | number   | Yes  | Yes  | Height of the screen, in pixels. The value must be an integer.                               |
-| refreshRate | number   | Yes  | Yes  | Refresh rate of the screen. The value must be an integer.                                    |
+| width       | number   | Yes  | Yes  | Width of the screen, in px. The value must be an integer.                               |
+| height      | number   | Yes  | Yes  | Height of the screen, in px. The value must be an integer.                               |
+| refreshRate | number   | Yes  | Yes  | Refresh rate of the screen, in hz. The value must be an integer.                                    |

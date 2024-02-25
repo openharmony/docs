@@ -14,11 +14,11 @@
 
 ![Playback status change](figures/video-playback-status-change.png)
 
-状态的详细说明请参考[AVPlayerState](../reference/apis/js-apis-media.md#avplayerstate9)。当播放处于prepared / playing / paused / completed状态时，播放引擎处于工作状态，这需要占用系统较多的运行内存。当客户端暂时不使用播放器时，调用reset()或release()回收内存资源，做好资源利用。
+状态的详细说明请参考[AVPlayerState](../reference/apis-media-kit/js-apis-media.md#avplayerstate9)。当播放处于prepared / playing / paused / completed状态时，播放引擎处于工作状态，这需要占用系统较多的运行内存。当客户端暂时不使用播放器时，调用reset()或release()回收内存资源，做好资源利用。
 
 ## 开发步骤及注意事项
 
-详细的API说明请参考[AVPlayer API参考](../reference/apis/js-apis-media.md#avplayer9)。
+详细的API说明请参考[AVPlayer API参考](../reference/apis-media-kit/js-apis-media.md#avplayer9)。
 
 1. 调用createAVPlayer()创建AVPlayer实例，初始化进入idle状态。
 
@@ -35,7 +35,7 @@
    | bitrateDone | 响应API调用，用于HLS协议流，监听setBitrate()请求完成情况。<br/>当使用setBitrate()指定播放比特率后，如果setBitrate操作成功，将上报该事件。 |
    | availableBitrates | 用于HLS协议流，监听HLS资源的可选bitrates，用于setBitrate()。 |
    | bufferingUpdate | 用于网络播放，监听网络播放缓冲信息。 |
-   | startRenderFrame | 用于视频播放，监听视频播放首帧渲染时间。 |
+   | startRenderFrame | 用于视频播放，监听视频播放首帧渲染时间。<br/>当AVPlayer首次起播进入playing状态后，等到首帧视频画面被渲染到显示画面时，将上报该事件。应用通常可以利用此事件上报，进行视频封面移除，达成封面与视频画面的顺利衔接。 |
    | videoSizeChange | 用于视频播放，监听视频播放的宽高信息，可用于调整窗口大小、比例。 |
    | audioInterrupt | 监听音频焦点切换信息，搭配属性audioInterruptMode使用。<br/>如果当前设备存在多个媒体正在播放，音频焦点被切换（即播放其他媒体如通话等）时将上报该事件，应用可以及时处理。 |
 
@@ -48,12 +48,12 @@
    > 
    > - 如果使用网络播放路径，需[声明权限](../security/AccessToken/declare-permissions.md)：ohos.permission.INTERNET。
    > 
-   > - 如果使用ResourceManager.getRawFd打开HAP资源文件描述符，使用方法可参考[ResourceManager API参考](../reference/apis/js-apis-resource-manager.md#getrawfd9)。
+   > - 如果使用ResourceManager.getRawFd打开HAP资源文件描述符，使用方法可参考[ResourceManager API参考](../reference/apis-localization-kit/js-apis-resource-manager.md#getrawfd9)。
    > 
    > - 需要使用[支持的播放格式与协议](media-kit-intro.md#支持的格式与协议)。
 
 4. 设置窗口：获取并设置属性SurfaceID，用于设置显示画面。
-   应用需要从XComponent组件获取surfaceID，获取方式请参考[XComponent](../reference/arkui-ts/ts-basic-components-xcomponent.md)。
+   应用需要从XComponent组件获取surfaceID，获取方式请参考[XComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)。
 
 5. 准备播放：调用prepare()，AVPlayer进入prepared状态，此时可以获取duration，设置缩放模式、音量等。
 
@@ -80,6 +80,10 @@ export class AVPlayerDemo {
   private fd: number = 0;
   // 注册avplayer回调函数
   setAVPlayerCallback(avPlayer: media.AVPlayer) {
+    // startRenderFrame首帧渲染回调函数
+    avPlayer.on('startRenderFrame', () => {
+      console.info(`AVPlayer start render frame`);
+    })
     // seek操作结果回调函数
     avPlayer.on('seekDone', (seekDoneTime: number) => {
       console.info(`AVPlayer seek succeeded, seek time is ${seekDoneTime}`);

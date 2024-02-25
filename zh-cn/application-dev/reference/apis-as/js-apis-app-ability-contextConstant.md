@@ -15,9 +15,9 @@ import contextConstant from '@ohos.app.ability.contextConstant';
 
 ## ContextConstant.AreaMode
 
-数据加密等级。使用时通过ContextConstant.AreaMode获取。
+数据加密等级。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称  | 值 | 说明                                                                                                                   |
 |-----| -------- |----------------------------------------------------------------------------------------------------------------------|

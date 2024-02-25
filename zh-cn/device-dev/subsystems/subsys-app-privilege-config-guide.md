@@ -61,7 +61,7 @@ OpenHarmony提供通用的应用特权和可由设备厂商针对不同设备单
 | associatedWakeUp      | bool     | false  | 是否允许FA模型应用被关联唤醒。                     |
 | runningResourcesApply | bool     | false  | 是否允许应用运行资源申请（CPU、事件通知、蓝牙等）。 |
 | allowAppDataNotCleared | bool | false|是否允许应用数据被删除。 |
-| allowAppMultiProcess | bool | false| 是否允许应用多进程。 |
+| allowAppMultiProcess | bool | false| 是否允许应用多实例。 |
 | allowAppDesktopIconHide | bool | false| 是否允许隐藏桌面图标。 |
 | allowAbilityPriorityQueried | bool | false| 是否允许Ability配置查询优先级。    |
 | allowAbilityExcludeFromMissions | bool | false| 是否允许Ability不在任务栈中显示。 |
@@ -90,7 +90,7 @@ OpenHarmony提供通用的应用特权和可由设备厂商针对不同设备单
             "app_signature" : ["****"], // 当配置的证书指纹和hap的证书指纹一致才生效
             "allowCommonEvent": [“usual.event.SCREEN_ON”, “usual.event.THERMAL_LEVEL_CHANGED”],
             "allowAppDataNotCleared": true, // 不允许应用数据被删除
-            "allowAppMultiProcess": true, //允许应用多进程
+            "allowAppMultiProcess": true, //允许应用多实例
             "allowAppDesktopIconHide": true, //允许隐藏桌面图标
             "allowAbilityPriorityQueried": true, //允许Ability配置查询优先级
             "allowAbilityExcludeFromMissions": true, // 允许Ability不在任务栈中显示

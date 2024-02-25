@@ -87,7 +87,7 @@ predicates.notEqualTo("NAME", "Rose")
 
 beginWrap(): DataSharePredicates
 
-Adds a left parenthesis to this **DataSharePredicates**.
+Adds a left parenthesis to this **DataSharePredicates**. This API is similar to "(" in SQL statement and must be used with **endWrap**.
 
 Currently, only the RDB supports this **DataSharePredicates** object.
 
@@ -453,7 +453,7 @@ predicates.glob("NAME", "?h*g")
 
 between(field: string, low: ValueType, high: ValueType): DataSharePredicates
 
-Sets a **DataSharePredicates** object to match the data that is within the specified range, including the start and end values.
+Sets a **DataSharePredicates** object to match the data that is within the specified range, including the start and end values. The data type must be int.
 
 Currently, only the RDB supports this **DataSharePredicates** object.
 
@@ -486,7 +486,7 @@ predicates.between("AGE", 10, 50)
 
 notBetween(field: string, low: ValueType, high: ValueType): DataSharePredicates
 
-Sets a **DataSharePredicates** object to match the data that is out of the specified range, excluding the start and end values.
+Sets a **DataSharePredicates** object to match the data that is out of the specified range, excluding the start and end values. The data type must be int.
 
 Currently, only the RDB supports this **DataSharePredicates** object.
 
@@ -791,7 +791,7 @@ predicates.groupBy(["AGE", "NAME"])
 
 indexedBy(field: string): DataSharePredicates
 
-Sets a **DataSharePredicates** object to list data by the specified index.
+Sets a **DataSharePredicates** object to list data by the specified index. Before using this API, ensure that the index column exists.
 
 Currently, only the RDB supports this **DataSharePredicates** object.
 
@@ -927,7 +927,7 @@ Currently, only the KVDB supports this **DataSharePredicates** object.
 
 | Name| Type         | Mandatory| Description              |
 | ------ | ------------- | ---- | ------------------ |
-| inKeys | Array&lt;string&gt; | Yes  | Array of the keys to match.|
+| keys | Array&lt;string&gt; | Yes  | Array of the keys to match.|
 
 **Return value**
 

@@ -283,6 +283,7 @@ Node-API接口在Node.js提供的原生模块基础上扩展，目前支持部�
 | napi_create_external_buffer | 创建并获取一个指定大小的JS Buffer，并以给定数据进行初始化，该接口可为Buffer附带额外数据。 | 
 | napi_get_buffer_info | 获取JS Buffer底层data及其长度。 | 
 | napi_is_buffer | 判断给定JS value是否为Buffer对象。 | 
+| napi_create_external_arraybuffer | 分配一个附加有外部数据的JS ArrayBuffer。 | 
 
 
 ### string相关

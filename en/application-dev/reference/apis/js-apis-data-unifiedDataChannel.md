@@ -114,7 +114,7 @@ Defines the summary of a **UnifiedData object**, including the data types and si
 
 | Name     | Type                     | Readable| Writable| Description                                                                               |
 | --------- | ------------------------- | ---- | ---- |-----------------------------------------------------------------------------------|
-| summary   | { [key: string]: number } | Yes  | No  | Dictionary type object, where the key indicates the data type (see [UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype)), and the value indicates the total size (in bytes) of this type of records in the **UnifiedData** object.|
+| summary   | Record<string, number> | Yes  | No  | Dictionary type object, where the key indicates the data type (see [UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype)), and the value indicates the total size (in bytes) of this type of records in the **UnifiedData** object.|
 | totalSize | number                    | Yes  | No  | Total size of all the records in the **UnifiedData** object, in bytes.                                                                    |
 
 ## UnifiedRecord
@@ -161,7 +161,7 @@ Represents the text data. It is a child class of [UnifiedRecord](#unifiedrecord)
 
 | Name   | Type                     | Readable| Writable| Description                                                                                                                                                 |
 | ------- | ------------------------- | ---- | ---- |-----------------------------------------------------------------------------------------------------------------------------------------------------|
-| details | { [key: string]: string } | Yes  | Yes  | A dictionary type object, where both the key and value are of the string type and are used to describe the text content. For example, a data object with the following content can be created to describe a text file:<br>{<br>"title":"Title",<br>"content":"Content"<br>}<br>This parameter is optional. The default value is an empty dictionary object.|
+| details | Record<string, string> | Yes  | Yes  | A dictionary type object, where both the key and value are of the string type and are used to describe the text content. For example, a data object with the following content can be created to describe a text file:<br>{<br>"title":"Title",<br>"content":"Content"<br>}<br>This parameter is optional. The default value is an empty dictionary object. |
 
 **Example**
 
@@ -239,7 +239,7 @@ Represents the file data. It is a child class of [UnifiedRecord](#unifiedrecord)
 
 | Name     | Type                       | Readable| Writable| Description                                                                                                                                                  |
 |---------|---------------------------| ---- | ---- |------------------------------------------------------------------------------------------------------------------------------------------------------|
-| details | { [key: string]: string } | Yes  | Yes  | A dictionary type object, where both the key and value are of the string type and are used to describe file information. For example, a data object with the following content can be created to describe a file:<br>{<br>"name":"File name",<br>"type":"File type"<br>}<br>This parameter is optional. The default value is an empty dictionary object.|
+| details | Record<string, string> | Yes  | Yes  | A dictionary type object, where both the key and value are of the string type and are used to describe file information. For example, a data object with the following content can be created to describe a file:<br>{<br>"name":"File name",<br>"type":"File type"<br>}<br>This parameter is optional. The default value is an empty dictionary object. |
 | uri     | string                    | Yes  | Yes  | URI of the file data.                                                                                                                                            |
 
 **Example**
@@ -327,9 +327,9 @@ Represents specific data types defined by OpenHarmony. It is a child class of [U
 
 **System capability**: SystemCapability.DistributedDataManager.UDMF.Core
 
-| Name   | Type                      | Readable| Writable| Description                                                        |
-| ------- |--------------------------| ---- | ---- | ------------------------------------------------------------ |
-| details | { [key: string]: number \| string \| Uint8Array } | Yes  | Yes  | A dictionary type object, where the key is of the string type, and the value can be a number, a string, or a Uint8Array.<br/>This parameter is optional. The default value is an empty dictionary object.|
+| Name   | Type                    | Readable      | Writable| Description                                                        |
+| ------- |------------------------|----------| ---- | ------------------------------------------------------------ |
+| details | Record<string, number \| string \| Uint8Array> | Yes  | Yes  | A dictionary type object, where the key is of the string type, and the value can be a number, a string, or a Uint8Array.<br/>This parameter is optional. The default value is an empty dictionary object.|
 
 **Example**
 

@@ -1,13 +1,13 @@
-# XComponent
+# CustomDraw (XComponent)
 
 
-As a drawing component, the \<[XComponent](../reference/arkui-ts/ts-basic-components-xcomponent.md)> is usually used to meet relatively complex drawing customization requirements, for example, display of a camera preview stream and drawing of a game image.
+As a drawing component, the \<[XComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)> is usually used to meet relatively complex drawing customization requirements, for example, display of a camera preview stream and drawing of a game image.
 
 
 You can specify the **type** parameter to implement different features. Two options are mainly available for this parameter: **surface** and **component**.
 
 
-With the **\<XComponent>** of the **surface** type, you can pass data to the [NativeWindow](../napi/native-window-guidelines.md) object independently owned by it to render the image.
+With the **\<XComponent>** of the **surface** type, you can pass data to the [NativeWindow](../graphics/native-window-guidelines.md) object independently owned by it to render the image.
 
 
 With the **\<XComponent>** of the **component** type, you can dynamically load the displayed content.
@@ -190,18 +190,19 @@ XComponent({ id: 'xcomponentId1', type: 'surface', libraryname: 'nativerender' }
 
 - **libraryname**: name of the loaded module, which must be the same as the value of **nm_modname** used when the Napi module is registered on the native side.
 
-  > **NOTE**
+  >**NOTE**
   >
-  > An application loads modules to implement cross-language invoking in either of the following modes:
+  >An application loads modules to implement cross-language invoking in either of the following modes:
   >
-  > 1. Use the **import** mode of the NAPI.
+  >- Use the **import** mode of the NAPI.
   >
-  > ```ts
-  > import nativerender from "libnativerender.so"
-  > ```
+  >   ```ts
+  >   import nativerender from "libnativerender.so"
+  >   ```
   >
-  > 2. Use the **\<XComponent>**.
-  >    While this mode also uses the NAPI mechanism as the **import** mode, it enables you to use the NDK APIs of the **\<XComponent>**, by having the **NativeXComponent** instance of the **\<XComponent>** exposed to the native layer of the application when the dynamic library is loaded.
+  >- Use the **\<XComponent>**.
+  >
+  >   While this mode also uses the NAPI mechanism as the **import** mode, it enables you to use the NDK APIs of the **\<XComponent>**, by having the **NativeXComponent** instance of the **\<XComponent>** exposed to the native layer of the application when the dynamic library is loaded.
 
 - **onLoad** event
   - Trigger time: when the surface of the **\<XComponent>** is ready.
@@ -245,7 +246,7 @@ XComponent({ id: '', type: 'surface', controller: this.mXComponentController })
   })
 ```
 
-For details about component APIs, see [AVPlayer](../reference/apis/js-apis-media.md#avplayer9) and [Camera](../reference/apis/js-apis-camera.md).
+For details about component APIs, see [AVPlayer](../reference/apis-media-kit/js-apis-media.md#avplayer9) and [Camera](../reference/apis-camera-kit/js-apis-camera.md).
 
 
 ### component Type
@@ -257,9 +258,9 @@ When the **\<XComponent>** is set to the **component** type, you can execute non
 >
 > When **type** is set to **component**, the **\<XComponent>** functions as a container, where child components are laid out vertically.
 >
-> - Vertical alignment: [FlexAlign](../reference/arkui-ts/ts-appendix-enums.md#flexalign).Start
+> - Vertical alignment: [FlexAlign](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#flexalign).Start
 >
-> - Horizontal alignment: [FlexAlign](../reference/arkui-ts/ts-appendix-enums.md#flexalign).Center
+> - Horizontal alignment: [FlexAlign](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#flexalign).Center
 >
 > The component does not respond to any events.
 >

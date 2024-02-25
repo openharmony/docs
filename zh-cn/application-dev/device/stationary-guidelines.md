@@ -5,7 +5,7 @@
 
 当应用需要获取当前设备状态时，可以调用Stationary模块，例如：需要判断当前设备处于绝对静止状态或者相对静止状态。
 
-详细的接口介绍请参考[Stationary接口](../reference/apis/js-apis-stationary.md)。
+详细的接口介绍请参考[Stationary接口](../reference/apis-multimodalawareness-kit/js-apis-stationary.md)。
 
 ## 设备状态类型参数说明
 
@@ -40,7 +40,7 @@
 ## 约束与限制
 
 设备需要支持加速度传感器。
-目前只提供了算法框架，api接口测试结果返回如下:data={"type":3,"value":-1};
+目前只提供了算法框架，api接口测试框架的调用返回结果为:data={"type":3,"value":-1};
 如需相对静止和绝对静止能力，则具体算法需要开发者自己在device_status/libs/src/algorithm实现，可参考案例如下：
 
    ```ts

@@ -13,7 +13,7 @@
 
 **参考链接**
 
-[焦点控制](../reference/arkui-ts/ts-universal-attributes-focus.md)
+[焦点控制](../reference/apis-arkui/arkui-ts/ts-universal-attributes-focus.md)
 
 
 ## scroll里面套一个grid，如何禁用grid的滑动事件(API 9)
@@ -22,12 +22,12 @@
 
 **参考链接**
 
-[容器嵌套滚动样例](../reference/arkui-ts/ts-container-scroll.md#示例2)
+[容器嵌套滚动样例](../reference/apis-arkui/arkui-ts/ts-container-scroll.md#示例2)
 
 
 ## 如何实现一个组件不停地旋转(API 9)
 
-可以通过[属性动画](../reference/arkui-ts/ts-animatorproperty.md)的方式实现。
+可以通过[属性动画](../reference/apis-arkui/arkui-ts/ts-animatorproperty.md)的方式实现。
 
 
 ## 列表目前无法键盘上下滑动，是否能力不支持(API 9)
@@ -53,7 +53,7 @@
 
 ## 使用router或Navigator实现页面跳转时，如何关闭页面间转场动效(API 9)
 
-1. 参考[页面间转场示例](../reference/arkui-ts/ts-page-transition-animation.md#示例)在当前页面和目标页面中定义pageTransition方法。
+1. 参考[页面间转场示例](../reference/apis-arkui/arkui-ts/ts-page-transition-animation.md#示例)在当前页面和目标页面中定义pageTransition方法。
 
 2. 将页面入场组件PageTransitionEnter和页面退场组件PageTransitionExit的动效参数duration都设置为0。
 
@@ -64,7 +64,7 @@ PanGesture用于触发拖动手势事件，滑动的最小距离distance默认�
 
 **参考链接**
 
-[PanGesture](../reference/arkui-ts/ts-basic-gestures-pangesture.md)
+[PanGesture](../reference/apis-arkui/arkui-ts/ts-basic-gestures-pangesture.md)
 
 
 ## 是否支持使用fontFamily属性设置不同的字体(API 9)
@@ -184,7 +184,7 @@ struct PageTransition2 {
 
 **参考链接**
 
-[页面间转场](../reference/arkui-ts/ts-page-transition-animation.md)
+[页面间转场](../reference/apis-arkui/arkui-ts/ts-page-transition-animation.md)
 
 ## 自定义组件间如何实现从底部滑入滑出的效果(API 9)
 
@@ -286,11 +286,11 @@ struct ComponentChild2 {
 
 **参考链接**
 
-1.[hitTestBehavior](../reference/arkui-ts/ts-universal-attributes-hit-test-behavior.md)
+1.[hitTestBehavior](../reference/apis-arkui/arkui-ts/ts-universal-attributes-hit-test-behavior.md)
 
-2.[自定义事件分发](../reference/arkui-ts/ts-universal-attributes-on-child-touch-test.md)
+2.[自定义事件分发](../reference/apis-arkui/arkui-ts/ts-universal-attributes-on-child-touch-test.md)
 
-3.[自定义手势判定](../reference/arkui-ts/ts-gesture-customize-judge.md)
+3.[自定义手势判定](../reference/apis-arkui/arkui-ts/ts-gesture-customize-judge.md)
 
 ## 如何实现对列表的列表项进行拖动时，其他列表项自动补位和动态排列的效果(API 10)
  

@@ -20,7 +20,7 @@ Sets the alignment mode of the component content in the drawing area.
 
 | Name| Type                                       | Mandatory| Description                                                        |
 | ------ | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Alignment](ts-appendix-enums.md#alignment) | Yes  | Alignment mode of the component content in the drawing area.<br>This attribute is available only in the following components: **\<Stack>**, **\<Button>**, **\<StepperItem>**, **\<Marquee>**, **\<text>**, **\<TextArea>**, and **\<TextInput>**. For details about the alignment results of text-related components (the last four aforementioned components), see [textAlign](ts-basic-components-text.md#attributes).<br>If the component does not support the **textAlign** attribute, horizontal text alignment cannot be set.<br>Default value: **Alignment.Center**|
+| value  | [Alignment](ts-appendix-enums.md#alignment) | Yes  | Alignment mode of the component content in the drawing area.<br>This attribute is available only in the following components: **\<Stack>**, **\<Button>**, **\<StepperItem>**,**\<FolderStack>**, **\<Marquee>**, **\<Text>**, **\<TextArea>**, and **\<TextInput>**. For details about the alignment results of text-related components (the last four aforementioned components), see [textAlign](ts-basic-components-text.md#attributes).<br>If the component does not support the **textAlign** attribute, horizontal text alignment cannot be set.<br>Default value: **Alignment.Center**|
 
 ## direction
 
@@ -74,7 +74,7 @@ Sets the anchor for locating the component.
 
 offset(value: Position)
 
-Sets the relative position of the component, which defines the offset of the component relative to itself.
+Sets the offset of the component relative to itself.
 
 **Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
 
@@ -114,8 +114,12 @@ Since API version 9, this API is supported in ArkTS widgets.
 | top    | { anchor: string, align: [VerticalAlign](ts-appendix-enums.md#verticalalign) } | Top alignment.<br>- **anchor**: ID of the component that functions as the anchor point.<br>- **align**: alignment mode relative to the anchor component.|
 | bottom | { anchor: string, align: [VerticalAlign](ts-appendix-enums.md#verticalalign) } | Bottom alignment.<br>- **anchor**: ID of the component that functions as the anchor point.<br>- **align**: alignment mode relative to the anchor component.|
 | center | { anchor: string, align: [VerticalAlign](ts-appendix-enums.md#verticalalign) } | Vertical center alignment.                                |
-| bias   | { horizontal: number, vertical: number }                     | Offset of the component under the anchor constraints. The value is the ratio of the distance to the left/upper anchor to the total distance between anchors.<br>- **horizontal**: bias value in the horizontal direction.<br>- **vertical**: bias value in the vertical direction.|
+| bias   | [Bias](#bias) | Offset of the component under the anchor constraints. The value is the ratio of the distance to the left/upper anchor to the total distance between anchors.|
 
+## Bias
+| Name  | Type                                      | Mandatory  | Description                                      |
+| ----- | ---------------------------------------- | ---- | ---------------------------------------- |
+| Bias  | { horizontal?: number, vertical?: number } | No| Offset of the component under the anchor constraints.<br>- **horizontal**: bias value in the horizontal direction.<br>- **vertical**: bias value in the vertical direction.<br>This parameter takes effect when:<br>The width of the child component can be determined and there are two horizontal anchors.<br><br>-The height of the child component can be determined and there are two vertical anchors.<br>Default value: {<br>horizontal: 0.5,<br>vertical: 0.5<br>}|
 
 ## Example
 ### Example 1
@@ -238,7 +242,7 @@ struct PositionExample2 {
           .offset({ x: 15, y: 30 })
         Text('3').size({ width: '15%', height: '50' }).backgroundColor(0xdeb887).border({ width: 1 }).fontSize(16)
           .textAlign(TextAlign.Center)
-        Text('4 offset(-10%, 20%)')
+        Text('4 offset(-5%, 20%)')
           .size({ width: 100, height: '50' })
           .backgroundColor(0xbbb2cb)
           .border({ width: 1 })

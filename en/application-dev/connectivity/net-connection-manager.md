@@ -16,7 +16,7 @@ The Network Connection Management module provides basic network management capab
 
 ## **Constraints**
 
-- Programming language: C++ and JS
+- Programming language: JS
 - System: Linux kernel
 - The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 

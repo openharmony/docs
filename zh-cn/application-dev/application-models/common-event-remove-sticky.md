@@ -7,7 +7,7 @@
 
 ## 接口说明
 
-参考[接口文档](../reference/apis/js-apis-commonEventManager.md)。
+参考[接口文档](../reference/apis-basic-services-kit/js-apis-commonEventManager.md)。
 
 | 接口名 | 接口描述 |
 | -------- | -------- |
@@ -23,12 +23,11 @@
    ```ts
    import Base from '@ohos.base';
    import commonEventManager from '@ohos.commonEventManager';
-   import Logger from '../utils/Logger';
 
    const TAG: string = 'ProcessModel';
    ```
 
-3. 调用[`removeStickyCommonEvent()`](../reference/apis/js-apis-commonEventManager.md#commoneventmanagerremovestickycommonevent10)方法移除对应的粘性公共事件。
+3. 调用[`removeStickyCommonEvent()`](../reference/apis-basic-services-kit/js-apis-commonEventManager-sys.md#commoneventmanagerremovestickycommonevent10)方法移除对应的粘性公共事件。
 
    > **说明：**
    >
@@ -38,11 +37,11 @@
    commonEventManager.removeStickyCommonEvent('usual.event.SCREEN_OFF', (err: Base.BusinessError) => {
      // sticky_event粘性公共事件名
      if (err) {
-       Logger.error(TAG, `Failed to remove sticky common event. Code is ${err.code}, message is ${err.message}`);
+       console.error(TAG, `Failed to remove sticky common event. Code is ${err.code}, message is ${err.message}`);
        return;
      }
      ...
-     Logger.info(TAG, `Succeeded in removeing sticky event.`);
+     console.info(TAG, `Succeeded in removeing sticky event.`);
    });
    ```
 

@@ -3,6 +3,7 @@
 - 快速入门
   - [开发准备](start-overview.md)
   - [构建第一个ArkTS应用（Stage模型）](start-with-ets-stage.md)
+
 - 开发基础知识
   - 应用程序包基础知识
     - [应用程序包概述](application-package-overview.md)
@@ -26,14 +27,19 @@
     - [app对象内部结构](app-structure.md)
     - [deviceConfig内部结构](deviceconfig-structure.md)
     - [module对象内部结构](module-structure.md)
+
 - [资源分类与访问](resource-categories-and-access.md)
+
 - 学习ArkTS语言
   - [初识ArkTS语言](arkts-get-started.md)
+
   - [ArkTS语言介绍](introduction-to-arkts.md)
+
   - 从TypeScript到ArkTS的适配指导
     - [ArkTS语法适配背景](arkts-migration-background.md)
     - [从TypeScript到ArkTS的适配规则](typescript-to-arkts-migration-guide.md)
     - [适配指导案例](arkts-more-cases.md)
+
   - UI范式
     - 基本语法
       - [基本语法概述](arkts-basic-syntax-overview.md)
@@ -50,6 +56,7 @@
       - [stateStyles：多态样式](arkts-statestyles.md)
       - [@AnimatableExtend装饰器：定义可动画属性](arkts-animatable-extend.md)
       - [@Require装饰器：校验构造传参](arkts-require.md)
+
     - 状态管理
       - [状态管理概述](arkts-state-management-overview.md)
       - 管理组件拥有的状态
@@ -72,6 +79,12 @@
       - [MVVM模式](arkts-mvvm.md)
       - [状态管理优秀实践](arkts-state-management-best-practices.md)
       - [状态管理合理使用开发指导](properly-use-state-management-to-develope.md)
+
+    - 状态管理（推荐）
+      - [状态管理（推荐）概述](arkts-new-state-management-overview.md)
+      - 状态管理（推荐）所属装饰器
+        - [\@observed装饰器和\@track装饰器：类属性变化观测](arkts-new-observed-and-track.md)
+
     - 渲染控制
       - [渲染控制概述](arkts-rendering-control-overview.md)
       - [if/else：条件渲染](arkts-rendering-control-ifelse.md)

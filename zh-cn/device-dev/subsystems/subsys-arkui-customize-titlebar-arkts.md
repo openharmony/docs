@@ -17,8 +17,6 @@
 
 1. 使用ArkTS语言编写定制的窗口标题栏。
     ```ts
-    import { LayeredDrawableDescriptor } from '@ohos.arkui.drawableDescriptor';
-    import { BusinessError } from '@ohos.base';
     import image from '@ohos.multimedia.image';
 
     const TITLE_ICON_SIZE: string = '20vp'
@@ -33,31 +31,9 @@
     struct Index {
       @State appLabel: string = '';
       @State appLabelColor: Color = 0xff000000;
-      @State appIcon: LayeredDrawableDescriptor = new LayeredDrawableDescriptor();
-      @State pixelMap: PixelMap = undefined;
+      @State appIcon: PixelMap | undefined = undefined;
 
-      aboutToAppear() {
-        const context = getContext(this);
-        let resourceManager = context.resourceManager;
-        try {
-          // 1、根据labelId获取应用名称
-          this.appLabel = resourceManager.getStringSync(context.applicationInfo.labelId);
-        } catch (error) {
-          let code = (error as BusinessError).code;
-          let message = (error as BusinessError).message;
-          console.error(`get appLabel failed, error code: ${code}, message: ${message}.`);
-        }
-        try {
-          // 2、根据iconId获取应用图标
-          this.appIcon = (resourceManager.getDrawableDescriptor(context.applicationInfo.iconId) as LayeredDrawableDescriptor);
-        } catch (error) {
-          let code = (error as BusinessError).code;
-          let message = (error as BusinessError).message;
-          console.error(`get appIcon failed, error code: ${code}, message: ${message}.`);
-        }
-    }
-
-      // 3、重写失焦和获焦函数，用于改变字体颜色
+      // 1、重写失焦和获焦函数，用于改变字体颜色
       onWindowFocused() {
         this.appLabelColor = 0xff000000;
       }
@@ -66,25 +42,26 @@
         this.appLabelColor = 0x66000000;
       }
 
+      // 2、重写标题栏设置应用图标和名称的方法
       setAppTitle(content: string ) {
         this.appLabel = content;
       }
 
       setAppIcon(pixelMap: image.PixelMap) {
-        this.pixelMap = pixelMap;
+        this.appIcon = pixelMap;
       }
 
       build() {
         Row() {
-          // 4、Image组件用于显示应用图标
-          Image(this.pixelMap ? this.pixelMap : this.appIcon)
+          // 3、Image组件用于显示应用图标
+          Image(this.appIcon)
             .id("enhanceAppIcon")
             .height(TITLE_ICON_SIZE)
             .width(TITLE_ICON_SIZE)
             .interpolation(ImageInterpolation.Medium)
             .focusable(false)
             .margin({ left: TITLE_PADDING_START, right: TITLE_ELEMENT_MARGIN_HORIZONTAL })
-          // 5、Text组件用于显示应用名称
+          // 4、Text组件用于显示应用名称
           Text(this.appLabel)
             .id("enhanceAppLabel")
             .fontSize(TITLE_TEXT_FONT_SIZE)
@@ -105,8 +82,6 @@
     ```
 2. 将ets文件编译成js文件。
     ```js
-    // 需要将导入的'@ohos.arkui.drawableDescriptor'更改为使用requireNapi
-    const LayeredDrawableDescriptor = requireNapi('arkui.drawableDescriptor').LayeredDrawableDescriptor;
     const TITLE_ICON_SIZE = '20vp';
     const TITLE_PADDING_START = '20vp';
     const TITLE_ELEMENT_MARGIN_HORIZONTAL = '12vp';
@@ -118,8 +93,7 @@
             super(parent, __localStorage, elmtId);
             this.__appLabel = new ObservedPropertySimplePU('', this, "appLabel");
             this.__textColor = new ObservedPropertySimplePU(0xff000000, this, "textColor");
-            this.__appIcon = new ObservedPropertyObjectPU(new LayeredDrawableDescriptor(), this, "appIcon");
-            this.__pixelMap = new ObservedPropertyObjectPU(undefined, this, "pixelMap");
+            this.__pixelMap = new ObservedPropertyObjectPU(undefined, this, "appIcon");
             this.setInitiallyProvidedValue(params);
         }
         setInitiallyProvidedValue(params) {
@@ -132,9 +106,6 @@
             if (params.appIcon !== undefined) {
                 this.appIcon = params.appIcon;
             }
-            if (params.pixelMap !== undefined) {
-                this.pixelMap = params.pixelMap;
-            }
         }
         updateStateVars(params) {
         }
@@ -142,13 +113,11 @@
             this.__textColor.purgeDependencyOnElmtId(rmElmtId);
             this.__appLabel.purgeDependencyOnElmtId(rmElmtId);
             this.__appIcon.purgeDependencyOnElmtId(rmElmtId);
-            this.__pixelMap.purgeDependencyOnElmtId(rmElmtId);
         }
         aboutToBeDeleted() {
             this.__textColor.aboutToBeDeleted();
             this.__appLabel.aboutToBeDeleted();
             this.__appIcon.aboutToBeDeleted();
-            this.__pixelMap.aboutToBeDeleted();
             SubscriberManager.Get().delete(this.id__());
             this.aboutToBeDeletedInternal();
         }
@@ -170,32 +139,6 @@
         set appIcon(newValue) {
             this.__appIcon.set(newValue);
         }
-        get pixelMap() {
-            return this.__pixelMap.get();
-        }
-        set pixelMap(newValue) {
-            this.__pixelMap.set(newValue);
-        }
-        aboutToAppear() {
-            const context = getContext(this);
-            let resourceManager = context.resourceManager;
-            try {
-                this.appLabel = resourceManager.getStringSync(context.applicationInfo.labelId);
-            }
-            catch (error) {
-                let code = error.code;
-                let message = error.message;
-                console.error(`get appLabel failed, error code: ${code}, message: ${message}.`);
-            }
-            try {
-                this.appIcon = resourceManager.getDrawableDescriptor(context.applicationInfo.iconId);
-            }
-            catch (error) {
-                let code = error.code;
-                let message = error.message;
-                console.error(`get appIcon failed, error code: ${code}, message: ${message}.`);
-            }
-        }
         onWindowFocused() {
             this.textColor = 0xff000000;
         }
@@ -206,7 +149,7 @@
             this.appLabel = content;
         }
         setAppIcon(pixelMap) {
-            this.pixelMap = pixelMap;
+            this.appIcon = pixelMap;
         }
         initialRender() {
             this.observeComponentCreation((elmtId, isInitialRender) => {
@@ -224,7 +167,7 @@
             });
             this.observeComponentCreation((elmtId, isInitialRender) => {
                 ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
-                Image.create(this.pixelMap ? this.pixelMap : this.appIcon);
+                Image.create(this.appIcon);
                 Image.id("enhanceAppIcon");
                 Image.height(TITLE_ICON_SIZE);
                 Image.width(TITLE_ICON_SIZE);
@@ -266,11 +209,7 @@
     ```
     - DevEco Studio编译生成的js文件或ts文件一般在工程的如下目录下：build/default/cache/default/default@CompileArkTS/esmodule/debug/entry/src/main/ets/pages/
     - 处理ts文件，使其符合js语法规范。
-    - 在处理js文件时，将导入的'@ohos.arkui.drawableDescriptor'更改为使用requireNapi导入，参考如下：
-        ```js
-        const LayeredDrawableDescriptor = requireNapi('arkui.drawableDescriptor').LayeredDrawableDescriptor;
-        ```
-   - js文件中的loadDocument或registerNameRouter方法需要更改使用loadCustomTitleBar方法。
+    - js文件中的loadDocument或registerNameRouter方法需要更改使用loadCustomTitleBar方法。
         ```js
         loadCustomTitleBar(new Index(undefined, {}));
         ```

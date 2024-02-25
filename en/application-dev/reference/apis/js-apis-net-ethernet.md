@@ -151,7 +151,7 @@ Obtains the configuration of a network interface. This API uses an asynchronous 
 | Name  | Type                                           | Mandatory | Description        |
 | -------- | ----------------------------------------------- | ----- | ------------ |
 | iface    | string                                          | Yes   | Interface name.|
-| callback | AsyncCallback\<[InterfaceConfiguration](#interfaceconfiguration)> | Yes   | Callback used to return the result.  |
+| callback | AsyncCallback\<[InterfaceConfiguration](#interfaceconfiguration9)> | Yes   | Callback used to return the result.  |
 
 **Error codes**
 
@@ -207,7 +207,7 @@ Obtains the configuration of a network interface. This API uses a promise to ret
 
 | Type                             | Description                              |
 | --------------------------------- | ---------------------------------- |
-| Promise\<[InterfaceConfiguration](#interfaceconfiguration)>   | Promise used to return the result.       |
+| Promise\<[InterfaceConfiguration](#interfaceconfiguration9)>   | Promise used to return the result.       |
 
 **Error codes**
 
@@ -424,7 +424,7 @@ ethernet.getAllActiveIfaces().then((data: string[]) => {
 
 ## ethernet.on('interfaceStateChange')<sup>10+</sup>
 
-on(type: 'interfaceStateChange', callback: Callback\<{ iface: string, active: boolean }\>): void
+on(type: 'interfaceStateChange', callback: Callback\<InterfaceStateInfo>): void
 
 Registers an observer for NIC hot swap events. This API uses an asynchronous callback to return the result.
 
@@ -439,7 +439,7 @@ Registers an observer for NIC hot swap events. This API uses an asynchronous cal
 | Name  | Type                                   | Mandatory| Description      |
 | -------- | --------------------------------------- | ---- | ---------- |
 | type     | string                  | Yes  | Event type. The value is **interfaceStateChange**.|
-| callback | AsyncCallback\<{ iface: string, active: boolean }\> | Yes  | Callback used to return the result.<br>**iface**: NIC name.<br>**active**: whether the NIC is active. The value **true** indicates that the NIC is active, and the value **false** indicates the opposite.|
+| callback | AsyncCallback\<[InterfaceStateInfo](#interfacestateinfo11)> | Yes  | Callback used to return the result.  |
 
 **Error codes**
 
@@ -461,7 +461,7 @@ ethernet.on('interfaceStateChange', (data: object) => {
 
 ## ethernet.off('interfaceStateChange')<sup>10+</sup>
 
-off(type: 'interfaceStateChange', callback?: Callback\<{ iface: string, active: boolean }\>): void
+off(type: 'interfaceStateChange', callback?: Callback\<InterfaceStateInfo\>): void
 
 Unregisters the observer for NIC hot swap events. This API uses an asynchronous callback to return the result.
 
@@ -476,7 +476,7 @@ Unregisters the observer for NIC hot swap events. This API uses an asynchronous 
 | Name  | Type                                   | Mandatory| Description      |
 | -------- | --------------------------------------- | ---- | ---------- |
 | type     | string                  | Yes  | Event type. The value is **interfaceStateChange**.|
-| callback | AsyncCallback\<{ iface: string, active: boolean }> | No  | Callback used to return the result.<br>**iface**: NIC name.<br>**active**: whether the NIC is active. The value **true** indicates that the NIC is active, and the value **false** indicates the opposite.|
+| callback | AsyncCallback\<[InterfaceStateInfo](#interfacestateinfo11)> | No  | Callback used to return the result.  |
 
 **Error codes**
 
@@ -504,13 +504,26 @@ Defines the network configuration for the Ethernet connection.
 
 | Name         | Type                   | Mandatory| Description                                                        |
 | ------------ | ----------------------- | ---|------------------------------------------------------------ |
-| mode         | [IPSetMode](#ipsetmode) | Yes| Configuration mode of the Ethernet connection.|
+| mode         | [IPSetMode](#ipsetmode9)| Yes| Configuration mode of the Ethernet connection.|
 | ipAddr       | string                  | Yes| Static IP address of the Ethernet connection. The value must be an IPv4 address, which is a 32-bit number displayed in dotted decimal notation and each 8-bit field ranges from 0 to 255. This parameter does not need to be configured in Dynamic Host Configuration Protocol (DHCP) mode.|
 | route        | string                  | Yes| Route of the Ethernet connection. The value must be an IPv4 address, which is a 32-bit number displayed in dotted decimal notation and each 8-bit field ranges from 0 to 255. This parameter does not need to be configured in DHCP mode.|
 | gateway      | string                  | Yes| Gateway of the Ethernet connection. The value must be an IPv4 address, which is a 32-bit number displayed in dotted decimal notation and each 8-bit field ranges from 0 to 255. This parameter does not need to be configured in DHCP mode.|
 | netMask      | string                  | Yes| Subnet mask of the Ethernet connection. The value must be an IPv4 address, which is a 32-bit number displayed in dotted decimal notation and each 8-bit field ranges from 0 to 255. This parameter does not need to be configured in DHCP mode.|
 | dnsServers   | string                  | Yes| DNS server addresses of the Ethernet connection. The value must be an IPv4 address, which is a 32-bit number displayed in dotted decimal notation and each 8-bit field ranges from 0 to 255. This parameter does not need to be configured in DHCP mode. Multiple addresses are separated by commas (,).|
 | httpProxy<sup>10+</sup> | [HttpProxy](js-apis-net-connection.md#httpproxy10) | No| HTTP proxy of the Ethernet connection. By default, no proxy is configured.|
+
+## InterfaceStateInfo<sup>11+</sup>
+
+Listens for status changes of an Ethernet NIC.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Communication.NetManager.Ethernet
+
+| Name        | Type                   | Mandatory| Description                                                |
+| ------------ | ----------------------- | --- | ---------------------------------------------------- |
+| iface        | string                  |  Yes| Name of the Ethernet NIC.                                       |
+| active       | boolean                 |  Yes| Whether the Ethernet NIC is activated. The value **true** indicates the NIC is activated, and the value **false** indicates the opposite.|
 
 ## IPSetMode<sup>9+</sup>
 

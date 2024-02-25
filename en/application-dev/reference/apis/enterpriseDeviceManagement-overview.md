@@ -19,11 +19,11 @@ Enterprise Device Management APIs provide support for enterprise APIs. You can u
 
 1. Use DevEco Studio to create a project and replace the full SDK.
 
-2. In the [HarmonyAppProvision file](../../security/accesstoken-overview.md#application-apls), set the **app-feature** field to **hos_system_app**.
+2. In the HarmonyAppProvision file, set the **app-feature** field to **hos_system_app**, which indicates an [system_basic or system_core](../../security/AccessToken/app-permission-mgmt-overview.md#application-apl) application.
 
 3. Create [EnterpriseAdminExtensionAbility](../../application-models/enterprise-extensionAbility.md).
 
-4. Declare the permissions required. Before requesting permissions, ensure that the [basic principles for permission management](../../security/accesstoken-overview.md#basic-principles-for-permission-management) are met. Then, [declare the permissions](../../security/accesstoken-guidelines.md#acl).
+4. Declare the permissions required. Before requesting permissions, ensure that the [basic principles for using permissions](../../security/AccessToken/app-permission-mgmt-overview.md#basic-principles-for-using-permissions) are met. Then, declare the required permission in the [ACL](../../security/AccessToken/declare-permissions-in-acl.md).
 
 ### API Reference
 

@@ -10,7 +10,7 @@ You can apply foreground blur effects to a component.
 
 foregroundBlurStyle(value: BlurStyle, options?: ForegroundBlurStyleOptions)
 
-Foreground blur style applied to the component.
+Applies a foreground blur style to the component.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -22,6 +22,9 @@ Foreground blur style applied to the component.
 | options | [ForegroundBlurStyleOptions](#foregroundblurstyleoptions) | No  | Foreground blur options.                                    |
 
 ## ForegroundBlurStyleOptions
+Inherited from [BlurStyleOptions](#blurstyleoptions).
+
+## BlurStyleOptions
 
 | Name                       | Type                                               | Mandatory| Description                                                        |
 | --------------------------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
@@ -29,6 +32,9 @@ Foreground blur style applied to the component.
 | adaptiveColor | [AdaptiveColor](ts-appendix-enums.md#adaptivecolor10)   | No  | Adaptive color mode.<br>Default value: **AdaptiveColor.Default**|
 | scale | number   | No  | Foreground blur scale. This API is a system API.<br>Default value: **1.0**<br>Value range: [0.0, 1.0]<br>|
 | blurOptions<sup>11+</sup> | [BlurOptions](ts-appendix-enums.md#bluroptions11)         | No   | Grayscale blur parameters.          |
+
+
+
 
 ## Example
 

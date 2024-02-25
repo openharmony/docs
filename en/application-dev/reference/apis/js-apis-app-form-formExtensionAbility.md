@@ -51,7 +51,7 @@ import Want from '@ohos.app.ability.Want';
 export default class MyFormExtensionAbility extends FormExtensionAbility {
   onAddForm(want: Want) {
     console.log(`FormExtensionAbility onAddForm, want: ${want.abilityName}`);
-    let dataObj1 = new Record<string, string> = {
+    let dataObj1: Record<string, string> = {
       'temperature': '11c',
       'time': '11:00'
     };
@@ -127,60 +127,6 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 };
 ```
 
-## onChangeFormVisibility
-
-onChangeFormVisibility(newStatus: Record\<string, number>): void
-
-Called to notify the widget provider that the widget visibility status is being changed.
-
-This API is valid only for system applications when **formVisibleNotify** is set to **true**.
-
-**System capability**: SystemCapability.Ability.Form
-
-**Parameters**
-
-| Name   | Type                     | Mandatory| Description                        |
-| --------- | ------------------------- | ---- | ---------------------------- |
-| newStatus | Record\<string, number> | Yes  | ID and visibility status of the widget to be changed.|
-
-**Example**
-
-```ts
-import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-import formBindingData from '@ohos.app.form.formBindingData';
-import formProvider from '@ohos.app.form.formProvider';
-import Base from '@ohos.base';
-
-// There is no Object.keys in ArkTS, and the for..in... syntax cannot be used.
-// If an error is reported, extract this API to a .ts file and expose it. Then import the API to the required .ets file.
-function getObjKeys(obj: Object): string[] {
-  let keys = Object.keys(obj);
-  return keys;
-}
-
-export default class MyFormExtensionAbility extends FormExtensionAbility {
-  onChangeFormVisibility(newStatus: Record<string, number>) {
-    console.log(`FormExtensionAbility onChangeFormVisibility, newStatus: ${newStatus}`);
-    let param: Record<string, string> = {
-      'temperature': '22c',
-      'time': '22:00'
-    }
-    let obj2: formBindingData.FormBindingData = formBindingData.createFormBindingData(param);
-
-    let keys: string[] = getObjKeys(newStatus);
-
-    for (let i: number = 0; i < keys.length; i++) {
-      console.log(`FormExtensionAbility onChangeFormVisibility, key: ${keys[i]}, value= ${newStatus[keys[i]]}`);
-      formProvider.updateForm(keys[i], obj2).then(() => {
-        console.log(`FormExtensionAbility context updateForm`);
-      }).catch((error: Base.BusinessError) => {
-        console.error(`Operation updateForm failed. Cause: ${JSON.stringify(error)}`);
-      });
-    }
-  }
-};
-```
-
 ## onFormEvent
 
 onFormEvent(formId: string, message: string): void
@@ -238,8 +184,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 
 onConfigurationUpdate(newConfig: Configuration): void
 
-Called when the configuration of the environment where the FormExtensionAbility is running is updated.
-
+Called when the configuration of the environment where the FormExtensionAbility is running is updated. 
 This lifecycle callback is triggered only when the configuration is updated while the FormExtensionAbility is alive. If no operation is performed within 5 seconds after a **FormExtensionAbility** instance is created, the instance will be deleted.
 
 **System capability**: SystemCapability.Ability.Form
@@ -290,84 +235,6 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
   onAcquireFormState(want: Want) {
     console.log(`FormExtensionAbility onAcquireFormState, want: ${want}`);
     return formInfo.FormState.UNKNOWN;
-  }
-};
-```
-
-## onShareForm
-
-onShareForm?(formId: string): Record\<string, Object>
-
-Called to notify the widget provider that the widget host is sharing the widget data.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.Ability.Form
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| formId | string | Yes  | Widget ID.|
-
-**Return value**
-
-| Type                                                        | Description                                                       |
-| ------------------------------------------------------------ | ----------------------------------------------------------- |
-| Record\<string, Object> | Data to be shared by the widget, in the form of key-value pairs.|
-
-**Example**
-
-```ts
-import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-
-export default class MyFormExtensionAbility extends FormExtensionAbility {
-  onShareForm(formId: string) {
-    console.log(`FormExtensionAbility onShareForm, formId: ${formId}`);
-    let wantParams: Record<string, Object> = {
-      'temperature': '20',
-      'time': '2022-8-8 09:59',
-    };
-    return wantParams;
-  }
-};
-```
-
-## onAcquireFormData<sup>10+</sup>
-
-onAcquireFormData?(formId: string): Record\<string, Object>
-
-Called to notify the widget provider that the widget host is requesting the custom data.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.Ability.Form
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| formId | string | Yes  | Widget ID.|
-
-**Return value**
-
-| Type                                                        | Description                                                       |
-| ------------------------------------------------------------ | ----------------------------------------------------------- |
-| Record\<string, Object> | Custom data of the widget, in the form of key-value pairs.|
-
-**Example**
-
-```ts
-import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-
-export default class MyFormExtensionAbility extends FormExtensionAbility {
-  onAcquireFormData(formId: string) {
-    console.log(`FormExtensionAbility onAcquireFormData, formId: ${formId}`);
-    let wantParams: Record<string, Object> = {
-      'temperature': '20',
-      'time': '2022-8-8 09:59',
-    };
-    return wantParams;
   }
 };
 ```

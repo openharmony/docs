@@ -4,7 +4,7 @@ This topic describes how to enable an application to view, create, read, write, 
 
 ## Available APIs
 
-You can use [ohos.file.fs](../reference/apis/js-apis-file-fs.md) to implement access to application files. The following table describes the common APIs.
+You can use [ohos.file.fs](../reference/apis/js-apis-file-fs.md) to implement access to application files. The following table describes the commonly used APIs.
 
 **Table 1** APIs for basic application file operations
 
@@ -44,7 +44,7 @@ The following example demonstrates how to create a file, read data from it, and 
 
 ```ts
 // pages/xxx.ets
-import fs from '@ohos.file.fs';
+import fs, { ReadOptions } from '@ohos.file.fs';
 import common from '@ohos.app.ability.common';
 import buffer from '@ohos.buffer';
 
@@ -60,13 +60,11 @@ function createFile(): void {
   console.info("The length of str is: " + writeLen);
   // Read data from the file.
   let arrayBuffer = new ArrayBuffer(1024);
-  class Option {
-    public offset: number = 0;
-    public length: number = 0;
-  }
-  let option = new Option();
-  option.length = arrayBuffer.byteLength;
-  let readLen = fs.readSync(file.fd, arrayBuffer, option);
+  let readOptions: ReadOptions = {
+    offset: 0,
+    length: arrayBuffer.byteLength
+  };
+  let readLen = fs.readSync(file.fd, arrayBuffer, readOptions);
   let buf = buffer.from(arrayBuffer, 0, readLen);
   console.info("the content of file: " + buf.toString());
   // Close the file.
@@ -80,7 +78,7 @@ The following example demonstrates how to read data from a file and copy it to a
 
 ```ts
 // pages/xxx.ets
-import fs from '@ohos.file.fs';
+import fs, { ReadOptions } from '@ohos.file.fs';
 import common from '@ohos.app.ability.common';
 
 // Obtain the application file path.
@@ -95,18 +93,16 @@ function readWriteFile(): void {
   let bufSize = 4096;
   let readSize = 0;
   let buf = new ArrayBuffer(bufSize);
-  class Option {
-    public offset: number = 0;
-    public length: number = bufSize;
-  }
-  let option = new Option();
-  option.offset = readSize;
-  let readLen = fs.readSync(srcFile.fd, buf, option);
+  let readOptions: ReadOptions = {
+    offset: readSize,
+    length: bufSize
+  };
+  let readLen = fs.readSync(srcFile.fd, buf, readOptions);
   while (readLen > 0) {
     readSize += readLen;
     fs.writeSync(destFile.fd, buf);
-    option.offset = readSize;
-    readLen = fs.readSync(srcFile.fd, buf, option);
+    readOptions.offset = readSize;
+    readLen = fs.readSync(srcFile.fd, buf, readOptions);
   }
   // Close the files.
   fs.closeSync(srcFile);
@@ -124,7 +120,7 @@ The following example demonstrates how to read and write file data using a strea
 
 ```ts
 // pages/xxx.ets
-import fs from '@ohos.file.fs';
+import fs, { ReadOptions } from '@ohos.file.fs';
 import common from '@ohos.app.ability.common';
 
 // Obtain the application file path.
@@ -139,18 +135,16 @@ async function readWriteFileWithStream(): Promise<void> {
   let bufSize = 4096;
   let readSize = 0;
   let buf = new ArrayBuffer(bufSize);
-  class Option {
-    public offset: number = 0;
-    public length: number = bufSize;
-  }
-  let option = new Option();
-  option.offset = readSize;
-  let readLen = await inputStream.read(buf, option);
+  let readOptions: ReadOptions = {
+    offset: readSize,
+    length: bufSize
+  };
+  let readLen = await inputStream.read(buf, readOptions);
   readSize += readLen;
   while (readLen > 0) {
     await outputStream.write(buf);
-    option.offset = readSize;
-    readLen = await inputStream.read(buf, option);
+    readOptions.offset = readSize;
+    readLen = await inputStream.read(buf, readOptions);
     readSize += readLen;
   }
   // Close the streams.
@@ -161,7 +155,7 @@ async function readWriteFileWithStream(): Promise<void> {
 
 > **NOTE**
 >
-> - Close the stream once it is not required.
+> - Close the stream once it is not required. 
 > - Comply with the programming specifications for **Stream** APIs in asynchronous mode and avoid mixed use of the APIs in synchronous mode and asynchronous mode.
 > - The **Stream** APIs do not support concurrent read and write operations.
 
@@ -170,7 +164,7 @@ async function readWriteFileWithStream(): Promise<void> {
 The following example demonstrates how to list files that meet the specified conditions.
 
 ```ts
-import fs, { Filter } from '@ohos.file.fs';
+import fs, { Filter, ListFileOptions } from '@ohos.file.fs';
 import common from '@ohos.app.ability.common';
 
 // Obtain the application file path.
@@ -179,17 +173,16 @@ let filesDir = context.filesDir;
 
 // List files that meet the specified conditions.
 function getListFile(): void {
-  class ListFileOption {
-    public recursion: boolean = false;
-    public listNum: number = 0;
-    public filter: Filter = {};
-  }
-  let option = new ListFileOption();
-  option.filter.suffix = ['.png', '.jpg', '.txt'];          // The file name extension can be '.png', '.jpg', or '.txt'.
-  option.filter.displayName = ['test%'];                    // The file name starts with 'test'.
-  option.filter.fileSizeOver = 0;                           // The file size is greater than or equal to 0.
-  option.filter.lastModifiedAfter = new Date(0).getTime();  // The latest modification time of the file is later than January 1, 1970.
-  let files = fs.listFileSync(filesDir, option);
+  let listFileOption: ListFileOptions = {
+    recursion: false,
+    listNum: 0,
+    filter: {}
+  };
+  listFileOption.filter.suffix = ['.png', '.jpg', '.txt'];         // The file name extension can be '.png', '.jpg', or '.txt'.
+  listFileOption.filter.displayName = ['test*'];                   // The file name starts with 'test'.
+  listFileOption.filter.fileSizeOver = 0;                          // The file size is greater than or equal to 0.
+  listFileOption.filter.lastModifiedAfter = new Date(0).getTime(); // The latest modification time of the file is later than January 1, 1970.
+  let files = fs.listFileSync(filesDir, listFileOption);
   for (let i = 0; i < files.length; i++) {
     console.info(`The name of file: ${files[i]}`);
   }

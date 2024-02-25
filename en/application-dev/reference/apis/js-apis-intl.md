@@ -835,7 +835,7 @@ Represents the properties of a **RelativeTimeFormat** object.
 **System capability**: SystemCapability.Global.I18n
 
 | Name             | Type    | Mandatory  |Description                                      |
-| --------------- | ------ | ---- | ---- | ---------------------------------------- |
+| --------------- | ------ | ---- | ---------------------------------------- |
 | locale          | string | Yes   | A string containing locale information, including the language, optional script, and region.            |
 | numeric         | string | Yes   | Format of the output message. The value can be **always** or **auto**.     |
 | style           | string | Yes   | Length of an internationalized message. The value can be **long**, **short**, or **narrow**.|

@@ -16,6 +16,8 @@ With **TaskPool**, you can encapsulate tasks in the main thread and throw the ta
 
 - A task function must be decorated with [\@Concurrent](arkts-concurrent.md) and can be used only in .ets files.
 
+- Since API version 11, if a function that implements a task needs to use a class method, the class must be decorated with [\@Sendable](arkts-sendable.md) and used only in .ets files.
+
 - A task function in the **TaskPool** worker thread must finish the execution within 3 minutes (excluding the time used for Promise or async/await asynchronous call, for example, the duration of I/O tasks such as network download and file read/write). Otherwise, it forcibly exits.
 
 - Input parameter types in a task function must be those supported by serialization. For details, see [Serialization Types Supported by TaskPool and Worker](serialization-support-types.md).

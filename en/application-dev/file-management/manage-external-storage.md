@@ -38,9 +38,8 @@ The following table describes the broadcast related parameters.
 
 You can subscribe to broadcast events to observe the insertion and removal of external storage devices, and query or manage volumes based on the volume information obtained from the broadcast.
 
-1. Apply for permissions.<br>
-   Apply for the **ohos.permission.STORAGE_MANAGER** permission for subscribing to volume broadcast events. For details, see [Declaring Permissions in the Configuration File](../security/accesstoken-guidelines.md#declaring-permissions-in-the-configuration-file).
-
+1. Apply for permissions.<br>Apply for the ohos.permission.STORAGE_MANAGER permission if your application needs to subscribe to volume broadcast events. For details, see [Requesting Permissions for system_basic Applications](../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
+   
 2. Subscribe to broadcast events.<br>
    You can subscribe to the following events:
 

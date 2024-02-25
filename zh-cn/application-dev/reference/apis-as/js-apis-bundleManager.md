@@ -75,7 +75,7 @@ import bundleManager from '@ohos.bundle.bundleManager';
 |:----------------:|:---:|:---:|
 | SINGLETON        | 0   | ability的启动模式，表示单实例。 |
 | MULTITON         | 1   | ability的启动模式，表示普通多实例。 |
-| SPECIFIED        | 2   | ability的启动模式，表示该ability内部根据业务自己置顶多实例。 |
+| SPECIFIED        | 2   | ability的启动模式，表示该ability内部根据业务自己指定多实例。 |
 
 ### DisplayOrientation
 
@@ -231,7 +231,7 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName: strin
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+以下错误码的详细介绍请参见[ohos.bundle错误码](../apis-ability-kit/errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -291,7 +291,7 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName?: stri
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+以下错误码的详细介绍请参见[ohos.bundle错误码](../apis-ability-kit/errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -367,7 +367,7 @@ getProfileByAbilitySync(moduleName: string, abilityName: string, metadataName?: 
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+以下错误码的详细介绍请参见[ohos.bundle错误码](../apis-ability-kit/errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -432,7 +432,7 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+以下错误码的详细介绍请参见[ohos.bundle错误码](../apis-ability-kit/errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -491,7 +491,7 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+以下错误码的详细介绍请参见[ohos.bundle错误码](../apis-ability-kit/errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -559,7 +559,7 @@ getProfileByExtensionAbilitySync(moduleName: string, extensionAbilityName: strin
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+以下错误码的详细介绍请参见[ohos.bundle错误码](../apis-ability-kit/errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -628,5 +628,50 @@ try {
 } catch (err) {
     let message = (err as BusinessError).message;
     hilog.error(0x0000, 'testTag', 'getBundleInfoForSelfSync failed: %{public}s', message);
+}
+```
+
+### bundleManager.canOpenLink<sup>12+</sup>
+
+canOpenLink(link: string): boolean
+
+查询给定的链接是否可以打开。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明                |
+| ----------- | ------ | ---- | --------------------- |
+| link | string | 是   | 表示需要查询的链接。 |
+
+**返回值：**
+
+| 类型                                              | 说明                 |
+| ------------------------------------------------- | -------------------- |
+| boolean | 返回true表示给定的链接可以打开，返回false表示给定的链接不能打开。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../apis-ability-kit/errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17700055 | The specified link is invalid.                      |
+| 17700056 | The scheme of the specified link is not in the querySchemes.        |
+
+**示例：**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
+try {
+    let link = 'welink://';
+    let data = bundleManager.canOpenLink(link);
+    hilog.info(0x0000, 'testTag', 'canOpenLink successfully: %{public}s', JSON.stringify(data));
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'canOpenLink failed: %{public}s', message);
 }
 ```

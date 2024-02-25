@@ -15,7 +15,7 @@ import pbap from '@ohos.bluetooth.pbap';
 ```
 
 
-## pbap.createPbapServerProfile<a name="createPbapServerProfile"></a>
+## pbap.createPbapServerProfile
 
 createPbapServerProfile(): PbapServerProfile
 
@@ -47,7 +47,7 @@ try {
 Provides APIs for accessing the phone book of a device. Before using any API of **PbapServerProfile**, you need to create an instance of this class by using **createPbapServerProfile()**.
 
 
-### disconnect<a name="PbapServerProfile-disconnect"></a>
+### disconnect
 
 disconnect(deviceId: string): void
 
@@ -88,7 +88,7 @@ try {
 }
 ```
 
-### setShareType<a name="PbapServerProfile-setShareType"></a>
+### setShareType
 
 setShareType(deviceId: string, type: ShareType, callback: AsyncCallback&lt;void&gt;): void
 
@@ -105,7 +105,7 @@ Sets the share type of the phone book information for a device. This API uses an
 | Name     | Type    | Mandatory  | Description                                 |
 | -------- | ------ | ---- | ----------------------------------- |
 | deviceId | string | Yes   | Address of the remote device, for example, XX:XX:XX:XX:XX:XX.|
-| type | [ShareType](#ShareType) | Yes   | Share type to set.|
+| type | [ShareType](#sharetype) | Yes   | Share type to set.|
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked to return the result.<br> If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.  |
 
 **Error codes**
@@ -134,7 +134,7 @@ try {
 ```
 
 
-### setShareType<a name="PbapServerProfile-setShareType"></a>
+### setShareType
 
 setShareType(deviceId: string, type: ShareType): Promise&lt;void&gt;
 
@@ -151,7 +151,7 @@ Sets the share type of the phone book information for a device. This API uses a 
 | Name     | Type    | Mandatory  | Description                                 |
 | -------- | ------ | ---- | ----------------------------------- |
 | deviceId | string | Yes   | Address of the remote device, for example, XX:XX:XX:XX:XX:XX.|
-| type | [ShareType](#ShareType) | Yes   | Share type to set.|
+| type | [ShareType](#sharetype) | Yes   | Share type to set.|
 
 **Return value**
 
@@ -184,7 +184,7 @@ try {
 }
 ```
 
-### getShareType<a name="PbapServerProfile-getShareType"></a>
+### getShareType
 
 getShareType(deviceId: string, callback: AsyncCallback&lt;ShareType&gt;): void
 
@@ -201,7 +201,7 @@ Obtains the phone book share type of a device. This API uses an asynchronous cal
 | Name     | Type    | Mandatory  | Description                                 |
 | -------- | ------ | ---- | ----------------------------------- |
 | deviceId | string | Yes   | Address of the remote device, for example, XX:XX:XX:XX:XX:XX.|
-| callback | AsyncCallback&lt;[ShareType](#ShareType)&gt; | Yes   | Callback invoked to return the result.<br> If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.  |
+| callback | AsyncCallback&lt;[ShareType](#sharetype)&gt; | Yes   | Callback invoked to return the result.<br> If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.  |
 
 **Error codes**
 
@@ -228,7 +228,7 @@ try {
 }
 ```
 
-### getShareType<a name="PbapServerProfile-getShareType"></a>
+### getShareType
 
 getShareType(deviceId: string): Promise&lt;ShareType&gt;
 
@@ -250,7 +250,7 @@ Obtains the phone book share type of a device. This API uses a promise to return
 
 | Type                                             | Description               |
 | ------------------------------------------------- | ------------------- |
-| Promise&lt;[ShareType](#ShareType)&gt; | Promise used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| Promise&lt;[ShareType](#sharetype)&gt; | Promise used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -277,7 +277,7 @@ try {
 }
 ```
 
-### setPhoneBookAccessAuthorization<a name="PbapServerProfile-setPhoneBookAccessAuthorization"></a>
+### setPhoneBookAccessAuthorization
 
 setPhoneBookAccessAuthorization(deviceId: string, authorization: AccessAuthorization, callback: AsyncCallback&lt;void&gt;): void
 
@@ -323,7 +323,7 @@ try {
 ```
 
 
-### setPhoneBookAccessAuthorization<a name="PbapServerProfile-setPhoneBookAccessAuthorization"></a>
+### setPhoneBookAccessAuthorization
 
 setPhoneBookAccessAuthorization(deviceId: string, authorization: AccessAuthorization): Promise&lt;void&gt;
 
@@ -373,7 +373,7 @@ try {
 }
 ```
 
-### getPhoneBookAccessAuthorization<a name="PbapServerProfile-getPhoneBookAccessAuthorization"></a>
+### getPhoneBookAccessAuthorization
 
 getPhoneBookAccessAuthorization(deviceId: string, callback: AsyncCallback&lt;AccessAuthorization&gt;): void
 
@@ -417,7 +417,7 @@ try {
 }
 ```
 
-### getPhoneBookAccessAuthorization<a name="PbapServerProfile-getPhoneBookAccessAuthorization"></a>
+### getPhoneBookAccessAuthorization
 
 getPhoneBookAccessAuthorization(deviceId: string): Promise&lt;AccessAuthorization&gt;
 
@@ -466,7 +466,7 @@ try {
 }
 ```
 
-## ShareType<a name="ShareType"></a>
+## ShareType
 
 Enumerates the phone book share types.
 

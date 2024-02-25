@@ -1,0 +1,19 @@
+# NotificationActionButton
+
+The **NotificationActionButton** module provides APIs for defining the button displayed in the notification.
+
+> **NOTE**
+>
+> The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+
+## Attributes
+
+**System capability**: SystemCapability.Notification.Notification
+
+| Name     | Type                                           | Read-only| Mandatory| Description                     |
+| --------- | ----------------------------------------------- | --- | ---- | ------------------------- |
+| title     | string                                          | No | Yes | Button title.                 |
+| wantAgent | [WantAgent](../apis-ability-kit/js-apis-wantAgent.md)   | No | Yes | **WantAgent** of the button.|
+| extras    | { [key: string]: any }                          | No | No | Extra information of the button.             |
+| userInput<sup>8+</sup> | [NotificationUserInput](js-apis-inner-notification-notificationUserInput.md) | No | No | User input object.         |
+<!--no_check-->

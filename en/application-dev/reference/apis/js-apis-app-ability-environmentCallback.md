@@ -1,6 +1,6 @@
 # @ohos.app.ability.EnvironmentCallback (EnvironmentCallback)
 
-The **EnvironmentCallback** module provides the **onConfigurationUpdated** API for the application context to listen for system environment changes.
+The **EnvironmentCallback** module provides APIs for the application context to listen for system environment changes.
 
 > **NOTE**
 > 
@@ -60,7 +60,7 @@ export default class MyAbility extends UIAbility {
             },
 
             onMemoryLevel(level){
-                console.log('onMemoryLevel level: ${JSON.stringify(level)}');
+                console.log(`onMemoryLevel level: ${JSON.stringify(level)}`);
             }
         };
         // 1. Obtain an applicationContext object.

@@ -28,7 +28,6 @@
   | AppOperateType | Application operation type. The value **0** means to obtain the default status, and the value **1** means to obtain the rendering termination status.|
 
 ### Constraints
-
 The appspawn module is used only for the standard system.
 
 ## Development Guidelines
@@ -36,6 +35,8 @@ The appspawn module is used only for the standard system.
 ### Use Cases
 
 - Application security control based on SELinux tags
+
+   
 
   Example code:
     ```c++
@@ -62,9 +63,10 @@ The appspawn module is used only for the standard system.
     ```
 
 - Support for cold start of applications by using the aa command
+
    
     ```
-    param set startup.appspawn.cold.boot 1 // Enable cold start.
+    param set startup.appspawn.cold.boot 1 // Enable the cold start function.
     aa start -d 12345 -a $name -b $package -C
     Reference command:
     aa start -d 12345 -a ohos.acts.startup.sysparam.function.MainAbility -b ohos.acts.startup.sysparam.function -C
@@ -76,7 +78,7 @@ The appspawn module is used only for the standard system.
 
 ### Available APIs
 
-The API definitions are provided in **/base/startup/appspawn/interfaces/innerkits/include/client_socket.h**. Table 2 is a list of available APIs.
+  The API definitions are provided in **/base/startup/appspawn/interfaces/innerkits/include/client_socket.h**. Table 2 is a list of available APIs.
 
   **Table 2**  API description
   | API| Description|
@@ -167,5 +169,5 @@ The following is the sample code for adding product-specific configuration for t
    <br>Applications fail to be started by running the cold start command.
 
    **Solution**
-    <br>1. Enable cold start by setting **param set startup.appspawn.cold.boot 1**.
-    <br>2. Make sure that the cold start command is correct.
+    <br>&emsp;&emsp;1. Set **param set startup.appspawn.cold.boot 1** for cold start to take effect.
+    <br>&emsp;&emsp;2. Make sure that the cold start command is correct.

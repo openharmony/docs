@@ -14,12 +14,12 @@ import pointer from '@ohos.multimodalInput.pointer';
 
 The following table lists the common APIs for mouse pointer management. For details about the APIs, see [ohos.multimodalInput.pointer](../reference/apis/js-apis-pointer.md).
 
-| Instance | API                                                      | Description                                                        |
-| ------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| pointer | function isPointerVisible(callback: AsyncCallback\<boolean>): void; | Checks the visible status of the mouse pointer.                                |
-| pointer | function setPointerVisible(visible: boolean, callback: AsyncCallback\<void>): void; | Sets the visible status of the mouse pointer. This setting takes effect for the mouse pointer globally.|
-| pointer | function setPointerStyle(windowId: number, pointerStyle: PointerStyle, callback: AsyncCallback\<void>): void; | Sets the mouse pointer style. This setting takes effect for the mouse pointer style of a specified window.        |
-| pointer | function getPointerStyle(windowId: number, callback: AsyncCallback\<PointerStyle>): void; | Obtains the mouse pointer style.                                          |
+| API                                                      | Description                                                        |
+| ------------------------------------------ | ------------------------------------------------------- |
+| isPointerVisible(callback: AsyncCallback\<boolean>): void | Checks the visible status of the mouse pointer.                                |
+| setPointerVisible(visible: boolean, callback: AsyncCallback\<void>): void | Sets the visible status of the mouse pointer. This setting takes effect for the mouse pointer globally.|
+| setPointerStyle(windowId: number, pointerStyle: PointerStyle, callback: AsyncCallback\<void>): void | Sets the mouse pointer style. This setting takes effect for the mouse pointer style of a specified window.        |
+| getPointerStyle(windowId: number, callback: AsyncCallback\<PointerStyle>): void | Obtains the mouse pointer style.                                          |
 
 ## Hiding the Mouse Pointer
 
@@ -66,7 +66,7 @@ try {
 
 ## Setting the Mouse Pointer Style
 
-When designing a color picker, you can have the mouse pointer switched to the color picker style during color pickup and then switched to the default style on completion of color pickup. This setting takes effect for the pointer style of a specified window in the current application. A total of 43 pointer styles can be set. For details, see [Pointer Style](../reference/apis/js-apis-pointer.md#pointerstyle9).
+When designing a color picker, you can have the mouse pointer switched to the color picker style during color pickup and then switched to the default style on completion of color pickup. This setting takes effect for the pointer style of a specified window in the current application. A total of 43 pointer styles can be set. For details, see [Pointer Style](../reference/apis/js-apis-pointer.md#pointerstyle).
 
 ### How to Develop
 

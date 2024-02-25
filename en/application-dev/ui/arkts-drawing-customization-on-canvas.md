@@ -114,7 +114,7 @@ Canvas(this.context)
 
 ## Canvas Component Drawing Modes
 
-Two modes are available for drawing with the **Canvas** component:  
+Two modes are available for drawing with the **Canvas** component: Alternatively, you can separately define the **Path2d** object to build an ideal path without the **Canvas** component and **onReady()** lifecycle callback, and then use the **Canvas** component for drawing after **onReady()** is invoked.
 
 - After the **onReady()** callback of the **Canvas** component is invoked, use the **CanvasRenderingContext2D** and **OffscreenCanvasRenderingContext2D** objects to call related APIs for drawing.
 

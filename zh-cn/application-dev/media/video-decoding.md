@@ -12,7 +12,7 @@
 
 ## 开发指导
 
-详细的API说明请参考[API文档](../reference/native-apis/_video_decoder.md)。
+详细的API说明请参考[API文档](../reference/apis-avcodec-kit/_video_decoder.md)。
 如下为视频解码调用关系图：
 ![Invoking relationship of video decode stream](figures/video-decode.png)
 
@@ -152,7 +152,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     OH_AVFormat_Destroy(format);
    ```
 
-5. （如需使用Surface送显，必须设置）设置Surface。应用需要从XComponent组件获取nativeWindow，获取方式请参考 [XComponent](../reference/arkui-ts/ts-basic-components-xcomponent.md)。
+5. （如需使用Surface送显，必须设置）设置Surface。应用需要从XComponent组件获取nativeWindow，获取方式请参考 [XComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)。
 
    ```c++
     // 配置送显窗口参数

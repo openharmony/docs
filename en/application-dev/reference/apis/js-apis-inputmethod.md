@@ -3050,7 +3050,7 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 12800001 | package manager error.              |
+| 12800001 | bundle manager error.               |
 | 12800008 | input method manager service error. |
 
 **Example**
@@ -3103,7 +3103,7 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 12800001 | package manager error.              |
+| 12800001 | bundle manager error.               |
 | 12800008 | input method manager service error. |
 
 **Example**
@@ -3154,7 +3154,7 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800001 | package manager error.                 |
+| 12800001 | bundle manager error.                 |
 | 12800008 |input method manager service error. |
 
 **Example**
@@ -3187,7 +3187,7 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 12800001 | package manager error.              |
+| 12800001 | bundle manager error.               |
 | 12800008 | input method manager service error. |
 
 **Example**

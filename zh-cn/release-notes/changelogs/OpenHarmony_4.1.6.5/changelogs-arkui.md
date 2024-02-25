@@ -30,7 +30,7 @@ API 11及之后，TextClock组件构造参数timeZoneOffset设置{ 9.5, 3.5, -3.
 
 **适配指导**
 
-请查阅[TextClock组件](../../../application-dev/reference/arkui-ts/ts-basic-components-textclock.md)文档进行适配。
+请查阅[TextClock组件](../../../application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-textclock.md)文档进行适配。
 
 ## cl.arkui.2 Gauge组件的默认阴影模糊半径变更
 
@@ -66,7 +66,7 @@ OpenHarmony SDK 4.1.6.5及以后，Gauge组件的默认阴影模糊半径为20vp
 
 **适配指导**
 
-默认阴影效果变更，不涉及适配。
+默认效果变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则应自定义修改效果控制变量以达到预期。
 
 ## cl.arkui.3 getItemRect, getItemRectInGroup接口返回值单位变更
 
@@ -109,3 +109,320 @@ API version 11变更后：大小位置返回值都以vp为单位。
 **适配指导**
 
 滚动组件（List、Grid、WaterFlow、Scroll）getItemRect接口、List组件getItemRectInGroup接口的返回值单位由原来的px变更为vp。如果需要使用px单位类型，可用vp2px接口做单位转换。
+## cl.arkui.4  自定义组件构造传参赋值中装饰器变量@Link/@ObjectLink校验日志级别变更 
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+装饰器@Link/@ObjectLink父组件校验由WARN 变成ERROR。
+
+**变更影响**
+
+该变更为非兼容性变更，变更后@Link/@ObjectLink父组件校验报错。
+
+**API Level**
+
+11
+
+**变更发生版本**
+
+从OpenHarmony SDK 4.1.6.5 版本开始。
+
+**示例：**
+
+```
+let NextID: number = 1;
+
+@Observed
+class ClassA {
+  public id: number;
+  public c: number;
+
+  constructor(c: number) {
+    this.id = NextID++;
+    this.c = c;
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  @State message: string = 'Hello';
+
+  build() {
+    Column() {
+      // ERROR: Property 'message' in the custom component 'Child' is missing (mandatory to specify).
+      // ERROR: Property 'message1' in the custom component 'Child' is missing (mandatory to specify).
+      Child();
+    }
+  }
+}
+
+@Component
+struct Child {
+  @Link message: string;
+  @ObjectLink message1: ClassA;
+
+  build() {
+    Row() {
+    }
+  }
+}
+```
+
+**变更的接口/组件**
+
+不涉及
+
+**适配指导**
+
+子组件使用了装饰器@Link/@ObjectLink，父组件使用带有装饰器@Link/@ObjectLink的自定义组件时，父组件必须给@Link/@ObjectLink修饰的变量传值。
+## cl.arkui.5  bindmenu使用isShow时点击事件变更 
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+在bindMenu使用isShow时，只允许isShow控制menu的开启。
+
+**变更影响**
+
+该变更为非兼容性变更，变更后在bindMenu使用isShow的情况下，点击父组件不会弹出menu。
+
+**API Level**
+
+11
+
+**变更发生版本**
+
+从OpenHarmony SDK 4.1.6.5 版本开始。
+**示例：**
+
+```
+@Entry
+@Component
+struct MenuExample {
+  @State listData: number[] = [0, 0, 0]
+  @State isShow: boolean = false
+
+  @Builder MenuBuilder() {
+    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+      ForEach(this.listData, (item:number, index) => {
+        Column() {
+          Row() {
+            Image($r("app.media.icon")).width(20).height(20).margin({ right: 5 })
+            Text(`Menu${index as number + 1}`).fontSize(20)
+          }
+          .width('100%')
+          .height(30)
+          .justifyContent(FlexAlign.Center)
+          .align(Alignment.Center)
+          .onClick(() => {
+            console.info(`Menu${index as number + 1} Clicked!`)
+          })
+
+          if (index != this.listData.length - 1) {
+            Divider().height(10).width('80%').color('#ccc')
+          }
+        }.padding(5).height(40)
+      })
+    }.width(100)
+  }
+
+  build() {
+    Column() {
+      Text('click for menu')
+        .fontSize(20)
+        .margin({ top: 20 })
+        .onClick(()=>{
+          this.isShow = true
+        })
+        .bindMenu(this.isShow, this.MenuBuilder,
+          {
+            onDisappear: ()=>{
+              this.isShow = false
+            }
+          }
+        )
+    }
+    .height('100%')
+    .width('100%')
+    .backgroundColor('#f0f0f0')
+  }
+}
+```
+
+**变更的接口/组件**
+
+bindMenu
+
+**适配指导**
+
+使用isShow后，需要在其他事件中将isShow从false改成true，menu才会弹出，例如点击事件、手势事件以及hover等，如果出现修改isShow的值后，菜单无法弹出，可以在isShow修改前后加上日志打印该值，判断isShow是否有变化, 如果没有变化，需要检查是不是在menu消失的时候没有在onDisappear里更新isShow的值为false，或者初始情况下将isShow设置为了true。
+
+## cl.arkui.6 OffscreenCanvas类声明式继承错误删除
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+OffscreenCanvas类声明时父类关系继承错误会导致DevEco Studio错误联想出非OffscreenCanvas本身的方法和属性。
+
+**变更影响**
+
+该变更为兼容性变更，变更后OffscreenCanvas类的方法和属性在DevEco studio中可正确联想，先前因OffscreenCanvas类声明时父类继承错误导致的非OffscreenCanvas本身的方法和属性不再被联想出来。
+
+**API Level**
+
+11
+
+**变更发生版本**
+
+从OpenHarmony SDK 4.1.6.5 版本开始。
+
+**变更的接口/组件**
+
+OffscreenCanvas
+
+**适配指导**
+
+DevEco Studio中OffscreenCanvas代码编辑联想功能，不涉及适配。
+
+## cl.arkui.7 layoutWeight支持float类型变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+layoutWeight需要更精细的设置。
+
+**变更影响**
+
+该变更为兼容性变更，变更后layoutWeight参数支持float类型。
+
+**API Level**
+
+9
+
+**变更发生版本**
+
+从OpenHarmony SDK 4.1.6.5开始。
+
+**变更的接口/组件**
+
+涉及到layoutWeight接口
+
+API 12前，参数为float类型，小数点后不生效。
+
+API 12及以后，参数为float类型，小数点后生效。
+
+**适配指导**
+
+接口参数类型变更，不涉及适配。
+
+## cl.arkui.8 GridRow组件高度自适应变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+用户需要自定义GridRow组件高度。
+
+**变更影响**
+
+该变更为非兼容性变更。改变了GridRow组件的高度设置，可按照用户设置的高度进行绘制。
+
+**API Level**
+
+9
+
+**变更发生版本**
+
+从OpenHarmony SDK 4.1.6.5开始。
+
+**变更的接口/组件**
+
+涉及到GridRow组件
+
+API 11前，GridRow组件高度会自适应子组件高度。
+
+API 11及以后，GridRow组件设置了高度后不再自适应子组件高度，而是按用户设置高度进行绘制。
+
+**适配指导**
+
+组件高度自适应变更，不涉及适配。
+
+## cl.arkui.9  surface类型XComponent组件backgroundColor属性行为变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+surface类型的XComponent组件需支持设置背景色。
+
+**变更影响**
+
+该变更为非兼容性变更，场景为给surface类型的XComponent组件设置backgroundColor属性，具体行为如下：
+
+API version 11变更前：无论设置何种属性，背景色均为默认黑色背景色。
+
+API version 11变更后：组件背景色会生效所设置的颜色。
+
+**API Level**
+
+11
+
+**变更发生版本**
+
+从OpenHarmony SDK 4.1.6.5 版本开始。
+
+**示例：**
+
+```
+@Entry
+@Component
+struct XComponentBKColor {
+  private surfaceId: string = ''
+  private xComponentContext: Record<string, () => void> = {}
+  xComponentController: XComponentController = new XComponentController()
+
+  build() {
+    Row() {
+      XComponent({
+        id: 'xcomponentid',
+        type: XComponentType.SURFACE,
+        controller: this.xComponentController
+      })
+        .onLoad(() => {
+          this.xComponentController.setXComponentSurfaceSize({ surfaceWidth: 1920, surfaceHeight: 1080 })
+          this.surfaceId = this.xComponentController.getXComponentSurfaceId()
+          this.xComponentContext = this.xComponentController.getXComponentContext() as Record<string, () => void>
+        })
+        .width('640px')
+        .height('480px')
+        .backgroundColor(Color.White)
+    }
+  }
+}
+```
+
+**变更的接口/组件**
+
+XComponent
+
+**适配指导**
+
+给surface类型的XComponent组件设置backgroundColor属性后，确认是应用的场景所需要的背景色。

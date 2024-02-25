@@ -10,7 +10,7 @@ The **shortKey** module provides APIs to set the delay for starting an ability u
 
 ##  Modules to Import
 
-```
+```js
 import shortKey from '@ohos.multimodalInput.shortKey';
 ```
 
@@ -32,7 +32,7 @@ Sets the delay for starting an ability using shortcut keys. This API uses an asy
 
 **Example**
 
-```
+```js
 import shortKey from '@ohos.multimodalInput.shortKey';
 try {
   shortKey.setKeyDownDuration("screenshot", 500, (error) => {
@@ -70,7 +70,7 @@ Sets the delay for starting an ability using shortcut keys. This API uses a prom
 
 **Example**
 
-```
+```js
 import shortKey from '@ohos.multimodalInput.shortKey';
 try {
   shortKey.setKeyDownDuration("screenshot", 500).then(() => {

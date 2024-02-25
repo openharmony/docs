@@ -6,7 +6,7 @@
 
 ## 接口说明
 
-具体参数、返回值、错误码等描述，请参考对应的[API文档](../../reference/apis/js-apis-useriam-userauth.md#cancel10)。
+具体参数、返回值、错误码等描述，请参考对应的[API文档](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#cancel10)。
 
 此处仅展示了取消认证操作的接口，在取消认证前，需要先发起认证，发起认证的接口列表、详细说明可参考[发起认证](start-authentication.md)章节和API文档。
 
@@ -19,10 +19,10 @@
 
 1. [申请权限](prerequisites.md#申请权限)：ohos.permission.ACCESS_BIOMETRIC。
 
-2. 指定用户认证相关参数[AuthParam](../../reference/apis/js-apis-useriam-userauth.md#authparam10)（包括挑战值、认证类型[UserAuthType](../../reference/apis/js-apis-useriam-userauth.md#userauthtype8)列表和认证等级[AuthTrustLevel](../../reference/apis/js-apis-useriam-userauth.md#authtrustlevel8)），获取认证对象[UserAuthInstance](../../reference/apis/js-apis-useriam-userauth.md#userauthinstance10)，并调用[UserAuthInstance.start](../../reference/apis/js-apis-useriam-userauth.md#start10)发起认证。
+2. 指定用户认证相关参数[AuthParam](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#authparam10)（包括挑战值、认证类型[UserAuthType](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#userauthtype8)列表和认证等级[AuthTrustLevel](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#authtrustlevel8)），获取认证对象[UserAuthInstance](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#userauthinstance10)，并调用[UserAuthInstance.start](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#start10)发起认证。
    此步骤详细说明可参考[发起认证](start-authentication.md)。
 
-3. 通过使用已经成功发起认证的UserAuthInstance对象调用[UserAuthInstance.cancel](../../reference/apis/js-apis-useriam-userauth.md#cancel10)接口取消本次认证。
+3. 通过使用已经成功发起认证的UserAuthInstance对象调用[UserAuthInstance.cancel](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#cancel10)接口取消本次认证。
 
 示例代码为发起认证可信等级≥ATL3的人脸+锁屏密码认证后，取消认证请求：
 

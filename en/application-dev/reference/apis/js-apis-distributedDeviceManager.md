@@ -13,7 +13,7 @@ Applications can call the APIs to:
 
 > **NOTE**
 >
-> - The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 ## Modules to Import
@@ -102,9 +102,11 @@ Represents the basic information about a distributed device.
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
+**Parameters**
+
 | Name                    | Type                       | Mandatory  | Description      |
 | ---------------------- | ------------------------- | ---- | -------- |
-| deviceId               | string                    | Yes   | Unique ID of the device. The value is the udid-hash (hash value of the UDID) and appid encrypted using SHA-256.|
+| deviceId               | string                    | Yes   | Unique ID of the device. The value is the udid-hash (hash value of the UDID) and **appid** encrypted using SHA-256.|
 | deviceName             | string                    | Yes   | Device name.   |
 | deviceType             | string                    | Yes   | Device type.   |
 | networkId              | string                    | No   | Network ID of the device. |
@@ -114,6 +116,8 @@ Represents the basic information about a distributed device.
 Enumerates the device states.
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
+
+**Parameters**
 
 | Name        | Value | Description             |
 | ----------- | ---- | --------------- |
@@ -513,7 +517,7 @@ Starts to discover devices nearby. The discovery process automatically stops whe
 | Name           | Type                       | Mandatory  | Description   |
 | ------------- | ------------------------------- | ---- | -----  |
 | discoverParam  | {[key:&nbsp;string]:&nbsp;Object}      | Yes  | Identifier of the device to discover. It specifies the type of the target to discover.<br>**discoverTargetType**: The default discovery target is device. The value is **1**.|
-| filterOptions | {[key:&nbsp;string]:&nbsp;Object}          | No  | Options for filtering the devices to discover. The default value is **undefined**, which means to discover offline devices. The options include the following:<br>- **availableStatus(0-1)**: status of the device to discover.<br>The value **0** means the device is offline. The client needs to call **bindTarget** to bind the device.<br>The value **1** means the device is online and can be connected.<br>- **discoverDistance(0-100)**: distance of the device to discover, in cm.<br>- **authenticationStatus(0-1)**: authentication status of the device to discover.<br>The value **0** means the device is not authenticated.<br>The value **1** means the device has been authenticated.<br>- **authorizationType(0-2)**: authorization type of the device to discover.<br>The value **0** means the device is authenticated by a temporarily agreed session key.<br>The value **1** means the device is authenticated by a key of the same account.<br>The value **2** means the device is authenticated by a credential key of different accounts. |
+| filterOptions | {[key:&nbsp;string]:&nbsp;Object}          | No  | Options for filtering the devices to discover. The default value is **undefined**, which means to discover offline devices. The options include the following:<br>**availableStatus(0-1)**: status of the device to discover. The value **0** means the device is untrusted.<br>- **0**: The device is offline. The client needs to call **bindTarget** to bind the device.<br>- **1**: The device is online and can be connected.<br>**discoverDistance(0-100)**: distance of the device to discover, in cm.<br>**authenticationStatus(0-1)**: authentication status of the device to discover.<br>- **0**: The device is not authenticated.<br>The value **1** means the device has been authenticated.<br>**authorizationType(0-2)**: authorization type of the device to discover.<br>- **0**: The device is authenticated by a temporarily agreed session key.<br>- **1**: The device is authenticated by a key of the same account.<br>- **2**: The device is authenticated by a credential key of different accounts. |
 
 **Error codes**
 
@@ -604,7 +608,7 @@ Binds a device.
 | Name    | Type                                               | Mandatory | Description        |
 | ---------- | --------------------------------------------------- | ----- | ------------ |
 | deviceId   | string                                              | Yes   | ID of the device to bind. |
-| bindParam  | {[key:&nbsp;string]:&nbsp;Object}                             | Yes   | Authentication parameters. You can determine the key-value pairs to be passed in. By default, this parameter contains the following keys:<br>**bindType**: binding type, which is mandatory.<br>- **1**: PIN.<br>- **2**: QR code.<br>- **3**: NFC.<br>- **4**: No interaction.<br>**targetPkgName**: bundle name of the device to bind.<br>**appName**: application that attempts to bind the device.<br>**appOperation**: reason for the application to bind the device.<br>**customDescription**: detailed description of the operation. |
+| bindParam  | {[key:&nbsp;string]:&nbsp;Object}                             | Yes   | Authentication parameters. You can determine the key-value pairs to be passed in. By default, the following keys are carried:<br>**bindType**: binding type, which is mandatory.<br>- **1**: PIN.<br>- **2**: QR code.<br>- **3**: NFC.<br>- **4**: No interaction.<br>**targetPkgName**: bundle name of the device to bind.<br>**appName**: application that attempts to bind the device.<br>**appOperation**: reason for the application to bind the device.<br>**customDescription**: detailed description of the operation.  |
 | callback   | AsyncCallback&lt;{deviceId:&nbsp;string,&nbsp;}&gt; | Yes   | Callback invoked to return the authentication result.|
 
 **Error codes**
@@ -664,7 +668,7 @@ Unbinds a device.
 
 | Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| deviceId | string                    | Yes  | ID of the device to unbind. |
+| deviceId | string                    | Yes  | Device ID.|
 
 **Error codes**
 
@@ -987,7 +991,7 @@ Unsubscribes from the **'discoverSuccess'** event.
 
 on(type: 'deviceNameChange', callback: Callback&lt;{ deviceName: string }&gt;): void;
 
-Subscribes to the device name changes. The application will be notified when the name of a device is changed.
+Subscribes to device name changes. The application will be notified when the name of a device is changed.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 

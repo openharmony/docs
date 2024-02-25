@@ -20,7 +20,7 @@ import uriPermissionManager from '@ohos.application.uriPermissionManager';
 
 grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: string, callback: AsyncCallback&lt;number&gt;): void
 
-Grants permission on the file of the specified URI to an application. This API uses an asynchronous callback to return the result.
+Grants the permission on a URI to an application. This API uses an asynchronous callback to return the result.
 
 By default, an application can authorize its own URIs to another application. If the application has the **ohos.permission.PROXY_AUTHORIZATION_URI** permission, there is no such restriction.
 **System API**: This is a system API and cannot be called by third-party applications.
@@ -77,7 +77,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: string): Promise&lt;number&gt;
 
-Grants permission on the file of the specified URI to an application. This API uses a promise to return the result.
+Grants the permission on a URI to an application. This API uses a promise to return the result.
 
 By default, an application can authorize its own URIs to another application. If the application has the **ohos.permission.PROXY_AUTHORIZATION_URI** permission, there is no such restriction.
 **System API**: This is a system API and cannot be called by third-party applications.
@@ -142,7 +142,7 @@ By default, an application can authorize its own URIs to another application. If
 
 revokeUriPermission(uri: string, targetBundleName: string, callback: AsyncCallback&lt;number&gt;): void
 
-Revokes the permission on the file of the specified URI from an application. This API uses an asynchronous callback to return the result.
+Revokes the URI permission from an application. This API uses an asynchronous callback to return the result.
 
 By default, only the URIs obtained by the application itself or the URIs authorized by the application to other applications can be revoked. If the application has the **ohos.permission.PROXY_AUTHORIZATION_URI** permission, there is no such restriction.
 **System API**: This is a system API and cannot be called by third-party applications.
@@ -185,7 +185,7 @@ By default, only the URIs obtained by the application itself or the URIs authori
 
 revokeUriPermission(uri: string, targetBundleName: string): Promise&lt;number&gt;
 
-Revokes the permission on the file of the specified URI from an application. This API uses a promise to return the result.
+Revokes the URI permission from an application. This API uses a promise to return the result.
 
 
 By default, only the URIs obtained by the application itself or the URIs authorized by the application to other applications can be revoked. If the application has the **ohos.permission.PROXY_AUTHORIZATION_URI** permission, there is no such restriction.

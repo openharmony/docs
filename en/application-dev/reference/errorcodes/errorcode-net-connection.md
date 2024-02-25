@@ -14,11 +14,11 @@ Invalid parameter value.
 
 This error code is reported if the parameter value is invalid.
 
-**Cause**
+**Possible Causes**
 
 The input parameter value is not within the valid value range.
 
-**Procedure**
+**Solution**
 
 Check whether the input parameter value is within the valid value range.
 
@@ -32,11 +32,11 @@ Operation failed. Cannot connect to service.
 
 This error code is reported if a service connection failure occurs.
 
-**Cause**
+**Possible Causes**
 
 The service is abnormal.
 
-**Procedure**
+**Solution**
 
 Check whether system services are running properly.
 
@@ -48,15 +48,15 @@ System internal error.
 
 **Description**
 
-This error code is reported if a system internal error occurs.
+This error code is reported if an internal system error occurs.
 
-**Cause**
+**Possible Causes**
 
 1. The memory is abnormal.
 
 2. A null pointer is present.
 
-**Procedure**
+**Solution**
 
 1. Check whether the memory space is sufficient. If not, clear the memory and try again.
 
@@ -72,11 +72,11 @@ The same callback exists.
 
 This error code is reported if the same callback already exists.
 
-**Cause**
+**Possible Causes**
 
 The **callback** object has been registered for activating a network or listening to network status changes.
 
-**Procedure**
+**Solution**
 
 1. Check whether the **callback** object has been registered.
 2. If the **callback** object has been registered, use the registered **callback** object.
@@ -91,11 +91,11 @@ The callback is not exists.
 
 This error code is reported if a **callback** object to be unregistered does not exist.
 
-**Cause**
+**Possible Causes**
 
 The **callback** object has not been registered for activating a network or listening to network status changes.
 
-**Procedure**
+**Solution**
 
 Before unregistering a **callback** object, make sure that it has been registered for activating a network or listening to network status changes.
 
@@ -109,10 +109,10 @@ The number of requests exceeded the maximum.
 
 This error code is reported if the number of network requests exceeds the maximum.
 
-**Cause**
+**Possible Causes**
 
 The number of requests for activating a network or listening to network status changes has reached the maximum value.
 
-**Procedure**
+**Solution**
 
 Locate the fault based on the "Over the max request number" log record.

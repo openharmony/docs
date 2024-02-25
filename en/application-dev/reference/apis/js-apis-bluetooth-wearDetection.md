@@ -15,7 +15,7 @@ import wearDetection from '@ohos.bluetooth.wearDetection';
 ```
 
 
-## wearDetection.enableWearDetection<sup>11+</sup><a name="enableWearDetection"></a>
+## wearDetection.enableWearDetection<sup>11+</sup>
 
 enableWearDetection(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -58,7 +58,7 @@ try {
 }
 ```
 
-## wearDetection.enableWearDetection<sup>11+</sup><a name="enableWearDetection"></a>
+## wearDetection.enableWearDetection<sup>11+</sup>
 
 enableWearDetection(deviceId: string): Promise&lt;void&gt;
 
@@ -104,7 +104,7 @@ try {
 }
 ```
 
-## wearDetection.disableWearDetection<sup>11+</sup><a name="disableWearDetection"></a>
+## wearDetection.disableWearDetection<sup>11+</sup>
 
 disableWearDetection(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -147,7 +147,7 @@ try {
 }
 ```
 
-## wearDetection.disableWearDetection<sup>11+</sup><a name="disableWearDetection"></a>
+## wearDetection.disableWearDetection<sup>11+</sup>
 
 disableWearDetection(deviceId: string): Promise&lt;void&gt;
 
@@ -193,7 +193,7 @@ try {
 }
 ```
 
-## wearDetection.isWearDetectionSupported<sup>11+</sup><a name="isWearDetectionSupported"></a>
+## wearDetection.isWearDetectionSupported<sup>11+</sup>
 
 isWearDetectionSupported(deviceId: string, callback: AsyncCallback&lt;boolean&gt;): void
 
@@ -234,7 +234,7 @@ try {
 }
 ```
 
-## wearDetection.isWearDetectionSupported<sup>11+</sup><a name="isWearDetectionSupported"></a>
+## wearDetection.isWearDetectionSupported<sup>11+</sup>
 
 isWearDetectionSupported(deviceId: string): Promise&lt;boolean&gt;
 
@@ -280,7 +280,7 @@ try {
 }
 ```
 
-## wearDetection.isWearDetectionEnabled<sup>11+</sup><a name="isWearDetectionEnabled"></a>
+## wearDetection.isWearDetectionEnabled<sup>11+</sup>
 
 isWearDetectionEnabled(deviceId: string, callback: AsyncCallback&lt;boolean&gt;): void
 
@@ -321,7 +321,7 @@ try {
 }
 ```
 
-## wearDetection.isWearDetectionEnabled<sup>11+</sup><a name="isWearDetectionEnabled"></a>
+## wearDetection.isWearDetectionEnabled<sup>11+</sup>
 
 isWearDetectionEnabled(deviceId: string): Promise&lt;boolean&gt;
 

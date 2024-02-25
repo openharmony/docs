@@ -18,7 +18,7 @@ Not supported
 
 ## CounterComponent
 
-CounterComponent({options:CounterOptions} )
+CounterComponent({ options: CounterOptions } )
 
 Defines a counter.
 
@@ -49,10 +49,10 @@ A counter type must go with parameters of the matching counter style. Below is a
 
 | Counter Type            | Counter Style       |
 | ----------------------- | ------------------ |
-| CounterTyle.LIST        | NumberStyleOptions |
-| CounterTyle.COMPACT     | NumberStyleOptions |
-| CounterTyle.INLINE      | InlineStyleOptions |
-| CounterTyle.INLINE_DATE | DateStyleOptions   |
+| CounterType.LIST        | NumberStyleOptions |
+| CounterType.COMPACT     | NumberStyleOptions |
+| CounterType.INLINE      | InlineStyleOptions |
+| CounterType.INLINE_DATE | DateStyleOptions   |
 
 ## CounterType
 
@@ -134,12 +134,12 @@ Defines common date attributes and methods.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name      | Type  | Mandatory| Default Value| Description                        |
-| ---------- | ------ | ---- | ------ | ---------------------------- |
-| year       | number | Yes  | 1      | Initial year of the counter.    |
-| month      | number | Yes  | 1      | Initial month of the counter.    |
-| day        | number | Yes  | 1      | Initial day of the counter.      |
-| toString() | string | Yes  | -      | Current date.|
+| Name      | Type  | Description                        |
+| ---------- | ------ | ---------------------------- |
+| year       | number | Initial year of the counter.    |
+| month      | number | Initial month of the counter.    |
+| day        | number | Initial day of the counter.      |
+| toString() | string | Current date.|
 
 ## Example  
 

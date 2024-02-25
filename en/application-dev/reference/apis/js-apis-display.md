@@ -87,10 +87,10 @@ Describes a rectangle on the display.
 
 | Name  | Type| Readable| Writable| Description              |
 | ------ | -------- | ---- | ---- | ------------------ |
-| left   | number   | Yes  | Yes  | Left boundary of the rectangle, in pixels. The value must be an integer.|
-| top    | number   | Yes  | Yes  | Top boundary of the rectangle, in pixels. The value must be an integer.|
-| width  | number   | Yes  | Yes  | Width of the rectangle, in pixels. The value must be an integer.  |
-| height | number   | Yes  | Yes  | Height of the rectangle, in pixels. The value must be an integer.  |
+| left   | number   | Yes  | Yes  | Left boundary of the rectangle, in px. The value must be an integer.|
+| top    | number   | Yes  | Yes  | Top boundary of the rectangle, in px. The value must be an integer.|
+| width  | number   | Yes  | Yes  | Width of the rectangle, in px. The value must be an integer.  |
+| height | number   | Yes  | Yes  | Height of the rectangle, in px. The value must be an integer.  |
 
 ## WaterfallDisplayAreaRects<sup>9+</sup>
 
@@ -874,11 +874,11 @@ Before calling any API in **Display**, you must use [getAllDisplays()](#displayg
 | name | string | Yes| No| Name of the display.                                                                                                     |
 | alive | boolean | Yes| No| Whether the display is alive.                                                                                                    |
 | state | [DisplayState](#displaystate) | Yes| No| State of the display.                                                                                                     |
-| refreshRate | number | Yes| No| Refresh rate of the display. The value must be an integer.                                                                                            |
+| refreshRate | number | Yes| No| Refresh rate of the display, in hz. The value must be an integer.                                                                                            |
 | rotation | number | Yes| No| Clockwise rotation angle of the screen of the display.<br>The value **0** indicates that the screen of the display rotates clockwise by 0°.<br>The value **1** indicates that the screen of the display rotates clockwise by 90°.<br>The value **2** indicates that the screen of the display rotates clockwise by 180°.<br>The value **3** indicates that the screen of the display rotates clockwise by 270°.|
-| width | number | Yes| No| Width of the display, in pixels. The value must be an integer.                                                                                       |
-| height | number | Yes| No| Height of the display, in pixels. The value must be an integer.                                                                                       |
-| densityDPI | number | Yes| No| Screen density of the display, that is, the number of dots per inch. The value must be a floating point number. Generally, the value is **160.0** or **480.0**.                                                                  |
+| width | number | Yes| No| Width of the display, in px. The value must be an integer.                                                                                       |
+| height | number | Yes| No| Height of the display, in px. The value must be an integer.                                                                                       |
+| densityDPI | number | Yes| No| Screen density of the display, that is, the number of dots per inch. The value must be a floating point number, in px. Generally, the value is **160.0** or **480.0**.                                                                  |
 | orientation<sup>10+</sup> | [Orientation](#orientation10) | Yes| No| Orientation of the display.                                                                                                 |
 | densityPixels | number | Yes| No| Logical density of the display, which is a scaling coefficient independent of the pixel unit. The value must be a floating point number. Generally, the value is **1.0** or **3.0**.                                                                 |
 | scaledDensity | number | Yes| No| Scaling factor for fonts displayed on the display. The value must be a floating point number. Generally, the value is the same as that of **densityPixels**.                                                                   |
@@ -1110,7 +1110,7 @@ try {
 ```
 
 
-### on('availableArea')<sup>11+</sup>
+### on('availableAreaChange')<sup>11+</sup>
 
 on(type: 'availableAreaChange', callback: Callback&lt;Rect&gt;): void
 

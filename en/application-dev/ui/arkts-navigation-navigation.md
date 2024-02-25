@@ -163,6 +163,18 @@ Navigation() {
   TooTmp])
 ```
 
+You can also reference images in the **resources** folder.
+
+```ts
+let TooTmp: NavigationMenuItem = {'value': "", 'icon': "resources/base/media/ic_public_highlights.svg", 'action': ()=> {}}
+Navigation() {
+  ...
+}
+.menus([TooTmp,
+  TooTmp,
+  TooTmp])
+```
+
 **Figure 6** Menu bar with four icons 
 
 ![menu-bar](figures/menu-bar.jpg)

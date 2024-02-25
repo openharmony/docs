@@ -1,6 +1,8 @@
 # @ohos.data.cloudExtension (Device-Cloud Sharing Extension)
 
-The **cloudExtension** module provides APIs for third-party vendors to implement the device-cloud sharing service. You can use these APIs to share the device data to the server and implement device-cloud data sharing, including sharing and unsharing data, exiting a share, changing the privilege (operation permissions) on the shared data, querying participants by data identifier or invitation code, and confirming or changing a sharing invitation. Before you get started, it is helpful to understand the following concepts:
+The **cloudExtension** module provides APIs for third-party vendors to implement the device-cloud sharing service. You can use these APIs to share the device data to the server and implement device-cloud data sharing, including sharing and unsharing data, exiting a share, changing the privilege (operation permissions) on the shared data, querying participants by data identifier or invitation code, and confirming or changing a sharing invitation. 
+
+Before you get started, it is helpful to understand the following concepts:
 
 - **sharingResource**: an identifier of the string type generated for each data record shared by an application when device-cloud sync is performed. It uniquely identifies the data record being shared.
 - **Participant**: all participants involved in a share, including the inviter and invitees.
@@ -81,7 +83,7 @@ export default class MyServiceExtension extends ServiceExtensionAbility {
     console.info(`onDisconnect: ${want}`);
   }
   onDestroy() {
-    console.info(`onDestroy`);   
+    console.info('onDestroy');
   }
 }
 ```
@@ -188,13 +190,13 @@ Shares data. This API uses a promise to return the result. The application that 
 | userId          | number  | Yes  | User ID. |
 | bundleName      | string  | Yes  | Bundle name of the application.   |
 | sharingResource | string  | Yes  | Shared resource ID.  |
-| participants    | Array&lt;[cloudData.sharing.Participant](#js-apis-data-cloudData.md#participant11)&gt;  | Yes  | Participants of the share.  |
+| participants    | Array&lt;[cloudData.sharing.Participant](js-apis-data-cloudData.md#participant11)&gt;  | Yes  | Participants of the share.  |
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;[Result](#resultt)&lt;Array&lt;[Result](#resultt)&lt;[cloudData.sharing.Participant](#js-apis-data-cloudData.md#participant11)&gt;&gt;&gt;&gt; | Promise used to return the result.|
+| Promise&lt;[Result](#resultt)&lt;Array&lt;[Result](#resultt)&lt;[cloudData.sharing.Participant](js-apis-data-cloudData.md#participant11)&gt;&gt;&gt;&gt; | Promise used to return the result.|
 
 **Example**
 
@@ -214,12 +216,12 @@ export default class MyShareCenter implements cloudExtension.ShareCenter {
     let result: Array<cloudExtension.Result<Participant>> = [];
     participants.forEach((item => {
       result.push({
-        code: cloudData.sharing.sharingCode.SUCCESS,
+        code: cloudData.sharing.SharingCode.SUCCESS,
         description: 'share succeeded'    
       })
     }))
     return {
-      code: cloudData.sharing.sharingCode.SUCCESS,
+      code: cloudData.sharing.SharingCode.SUCCESS,
       description: 'share succeeded',
       value: result
     }
@@ -243,13 +245,13 @@ Unshares data. This API uses a promise to return the result. The application, sh
 | userId          | number  | Yes  | User ID. |
 | bundleName      | string  | Yes  | Bundle name of the application.   |
 | sharingResource | string  | Yes  | Shared resource ID.  |
-| participants    | Array&lt;[cloudData.sharing.Participant](#js-apis-data-cloudData.md#participant11)&gt;  | Yes  | Participants of the share.  |
+| participants    | Array&lt;[cloudData.sharing.Participant](js-apis-data-cloudData.md#participant11)&gt;  | Yes  | Participants of the share.  |
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;[Result](#resultt)&lt;Array&lt;[Result](#resultt)&lt;[cloudData.sharing.Participant](#js-apis-data-cloudData.md#participant11)&gt;&gt;&gt;&gt; | Promise used to return the result.|
+| Promise&lt;[Result](#resultt)&lt;Array&lt;[Result](#resultt)&lt;[cloudData.sharing.Participant](js-apis-data-cloudData.md#participant11)&gt;&gt;&gt;&gt; | Promise used to return the result.|
 
 **Example**
 
@@ -269,12 +271,12 @@ export default class MyShareCenter implements cloudExtension.ShareCenter {
     let result: Array<cloudExtension.Result<Participant>> = [];
     participants.forEach((item => {
       result.push({
-        code: cloudData.sharing.sharingCode.SUCCESS,
+        code: cloudData.sharing.SharingCode.SUCCESS,
         description: 'unshare succeeded'    
       })
     }))
     return {
-      code: cloudData.sharing.sharingCode.SUCCESS,
+      code: cloudData.sharing.SharingCode.SUCCESS,
       description: 'unshare succeeded',
       value: result
     }
@@ -319,7 +321,7 @@ export default class MyShareCenter implements cloudExtension.ShareCenter {
     // ...
     // Return the result obtained from ShareCenter.
     return {
-      code: cloudData.sharing.sharingCode.SUCCESS,
+      code: cloudData.sharing.SharingCode.SUCCESS,
       description: 'exit share succeeded'
     }
   }
@@ -342,13 +344,13 @@ Changes the privilege (operation permissions) on the shared data. This API uses 
 | userId          | number  | Yes  | User ID. |
 | bundleName      | string  | Yes  | Bundle name of the application.   |
 | sharingResource | string  | Yes  | Shared resource ID.  |
-| participants    | Array&lt;[cloudData.sharing.Participant](#js-apis-data-cloudData.md#participant11)&gt;  | Yes  | Participants with new privilege.  |
+| participants    | Array&lt;[cloudData.sharing.Participant](js-apis-data-cloudData.md#participant11)&gt;  | Yes  | Participants with new privilege.  |
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;[Result](#resultt)&lt;Array&lt;[Result](#resultt)&lt;[cloudData.sharing.Participant](#js-apis-data-cloudData.md#participant11)&gt;&gt;&gt;&gt; | Promise used to return the result.|
+| Promise&lt;[Result](#resultt)&lt;Array&lt;[Result](#resultt)&lt;[cloudData.sharing.Participant](js-apis-data-cloudData.md#participant11)&gt;&gt;&gt;&gt; | Promise used to return the result.|
 
 **Example**
 
@@ -368,12 +370,12 @@ export default class MyShareCenter implements cloudExtension.ShareCenter {
     let result: Array<cloudExtension.Result<Participant>> = [];
     participants.forEach((item => {
       result.push({
-        code: cloudData.sharing.sharingCode.SUCCESS,
+        code: cloudData.sharing.SharingCode.SUCCESS,
         description: 'change privilege succeeded'    
       })
     }))
     return {
-      code: cloudData.sharing.sharingCode.SUCCESS,
+      code: cloudData.sharing.SharingCode.SUCCESS,
       description: 'change privilege succeeded',
       value: result
     }
@@ -400,9 +402,9 @@ Queries the participants of a share. This API uses a promise to return the resul
 
 **Return value**
 
-| Type               | Description                     |
-| ------------------- | ------------------------- |
-| Promise&lt;[Result](#resultt)&lt;Array&lt;[cloudData.sharing.Participant](#js-apis-data-cloudData.md#participant11)&gt;&gt;&gt; | Promise used to return the participants obtained.|
+| Type                                                        | Description                                   |
+| ------------------------------------------------------------ | --------------------------------------- |
+| Promise&lt;[Result](#resultt)&lt;Array&lt;[cloudData.sharing.Participant](js-apis-data-cloudData.md#participant11)&gt;&gt;&gt; | Promise used to return the participants obtained.|
 
 **Example**
 
@@ -419,30 +421,35 @@ export default class MyShareCenter implements cloudExtension.ShareCenter {
     // Connect to ShareCenter and obtain the return value of the query operation.
     // ...
     // Return the result obtained from ShareCenter.
-    let privilege = {
-      writable: false,
-      readable: true,
-      creatable: false,
-      deletable: false,
-      shareable: false
-    }
-    let participants = new Array();
+    let participants = new Array<cloudData.sharing.Participant>();
     participants.push({
       identity: '000000000',
       role: cloudData.sharing.Role.ROLE_INVITEE,
       state: cloudData.sharing.State.STATE_ACCEPTED,
-      privilege: privilege,
+      privilege: {
+        writable: false,
+        readable: true,
+        creatable: false,
+        deletable: false,
+        shareable: false
+      },
       attachInfo: ''
     })
     participants.push({
       identity: '111111111',
       role: cloudData.sharing.Role.ROLE_INVITEE,
       state: cloudData.sharing.State.STATE_ACCEPTED,
-      privilege: privilege,
+      privilege: {
+        writable: false,
+        readable: true,
+        creatable: false,
+        deletable: false,
+        shareable: false
+      },
       attachInfo: ''
     })
     return {
-      code: cloudData.sharing.sharingCode.SUCCESS,
+      code: cloudData.sharing.SharingCode.SUCCESS,
       description: 'query participants succeeded',
       value: participants
     }
@@ -471,7 +478,7 @@ Queries the participants of a share based on the invitation code. This API uses 
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;[Result](#resultt)&lt;Array&lt;[cloudData.sharing.Participant](#js-apis-data-cloudData.md#participant11)&gt;&gt;&gt; | Promise used to return the participants obtained.|
+| Promise&lt;[Result](#resultt)&lt;Array&lt;[cloudData.sharing.Participant](js-apis-data-cloudData.md#participant11)&gt;&gt;&gt; | Promise used to return the participants obtained.|
 
 **Example**
 
@@ -488,30 +495,35 @@ export default class MyShareCenter implements cloudExtension.ShareCenter {
     // Connect to ShareCenter and obtain the return value of the query operation.
     // ...
     // Return the result obtained from ShareCenter.
-    let privilege = {
-      writable: false,
-      readable: true,
-      creatable: false,
-      deletable: false,
-      shareable: false
-    }
-    let participants = new Array();
+    let participants = new Array<cloudData.sharing.Participant>();
     participants.push({
       identity: '000000000',
       role: cloudData.sharing.Role.ROLE_INVITEE,
       state: cloudData.sharing.State.STATE_ACCEPTED,
-      privilege: privilege,
+      privilege: {
+        writable: false,
+        readable: true,
+        creatable: false,
+        deletable: false,
+        shareable: false
+      },
       attachInfo: ''
     })
     participants.push({
       identity: '111111111',
       role: cloudData.sharing.Role.ROLE_INVITEE,
       state: cloudData.sharing.State.STATE_ACCEPTED,
-      privilege: privilege,
+      privilege: {
+        writable: false,
+        readable: true,
+        creatable: false,
+        deletable: false,
+        shareable: false
+      },
       attachInfo: ''
     })
     return {
-      code: cloudData.sharing.sharingCode.SUCCESS,
+      code: cloudData.sharing.SharingCode.SUCCESS,
       description: 'query participants by invitation succeeded',
       value: participants
     }
@@ -535,7 +547,7 @@ Confirms the invitation for a share. This API uses a promise to return the resul
 | userId          | number  | Yes  | User ID. |
 | bundleName      | string  | Yes  | Bundle name of the application.   |
 | invitationCode  | string  | Yes  | Invitation code for the share.  |
-| state           | [cloudData.sharing.State](#js-apis-data-cloudData.md#state11)  | Yes  | Confirmation state of the invitation.  |
+| state           | [cloudData.sharing.State](js-apis-data-cloudData.md#state11)  | Yes  | Confirmation state of the invitation.  |
 
 **Return value**
 
@@ -557,7 +569,7 @@ export default class MyShareCenter implements cloudExtension.ShareCenter {
     // ...
     // Return the result obtained from ShareCenter.
     return {
-      code: cloudData.sharing.sharingCode.SUCCESS,
+      code: cloudData.sharing.SharingCode.SUCCESS,
       description: 'confirm invitation succeeded',
       value: 'sharing_resource_test'
     }
@@ -581,7 +593,7 @@ Changes the confirmation state of a share invitation. This API uses a promise to
 | userId          | number  | Yes  | User ID. |
 | bundleName      | string  | Yes  | Bundle name of the application.   |
 | sharingResource | string  | Yes  | Shared resource ID.  |
-| state           | [cloudData.sharing.State](#js-apis-data-cloudData.md#state11)  | Yes  | New confirmation state.  |
+| state           | [cloudData.sharing.State](js-apis-data-cloudData.md#state11)  | Yes  | New confirmation state.  |
 
 **Return value**
 
@@ -603,12 +615,239 @@ export default class MyShareCenter implements cloudExtension.ShareCenter {
     // ...
     // Return the result obtained from ShareCenter.
     return {
-      code: cloudData.sharing.sharingCode.SUCCESS,
+      code: cloudData.sharing.SharingCode.SUCCESS,
       description: 'change confirm succeeded'
     }
   }
   // ...
 }
 ```
+## Complete Sample Code
 
- <!--no_check--> 
+The classes in the preceding examples are implemented using **implements**, and the sample code cannot be executed independently until all the methods in the parent classes are implemented. The following provides complete sample code for your reference.
+
+```ts
+import cloudExtension from '@ohos.data.cloudExtension';
+import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
+import Want from '@ohos.app.ability.Want';
+import rpc from '@ohos.rpc';
+import cloudData from '@ohos.data.cloudData';
+
+type Participant = cloudData.sharing.Participant;
+
+class MyShareCenter implements cloudExtension.ShareCenter {
+  constructor() {
+  }
+
+  async share(userId: number, bundleName: string, sharingResource: string, participants: Array<Participant>):
+    Promise<cloudExtension.Result<Array<cloudExtension.Result<Participant>>>> {
+    console.info(`share, bundle: ${bundleName}`);
+    // Connect to ShareCenter and obtain the return value.
+    // ...
+    // Return the result obtained from ShareCenter.
+    let result: Array<cloudExtension.Result<Participant>> = [];
+    participants.forEach((item => {
+      result.push({
+        code: cloudData.sharing.SharingCode.SUCCESS,
+        description: 'share succeeded'
+      })
+    }))
+    return {
+      code: cloudData.sharing.SharingCode.SUCCESS,
+      description: 'share succeeded',
+      value: result
+    }
+  }
+
+  async unshare(userId: number, bundleName: string, sharingResource: string, participants: Array<Participant>):
+    Promise<cloudExtension.Result<Array<cloudExtension.Result<Participant>>>> {
+    console.info(`unshare, bundle: ${bundleName}`);
+    //Connect to ShareCenter and obtain the return value of the unshare operation.
+    // ...
+    // Return the result obtained from ShareCenter.
+    let result: Array<cloudExtension.Result<Participant>> = [];
+    participants.forEach((item => {
+      result.push({
+        code: cloudData.sharing.SharingCode.SUCCESS,
+        description: 'unshare succeeded'
+      })
+    }))
+    return {
+      code: cloudData.sharing.SharingCode.SUCCESS,
+      description: 'unshare succeeded',
+      value: result
+    }
+  }
+
+  async exit(userId: number, bundleName: string, sharingResource: string):
+    Promise<cloudExtension.Result<void>> {
+    console.info(`exit share, bundle: ${bundleName}`);
+    // Connect to ShareCenter and obtain the return value of the exit operation.
+    // ...
+    // Return the result obtained from ShareCenter.
+    return {
+      code: cloudData.sharing.SharingCode.SUCCESS,
+      description: 'exit share succeeded'
+    }
+  }
+
+  async changePrivilege(userId: number, bundleName: string, sharingResource: string, participants: Array<Participant>):
+    Promise<cloudExtension.Result<Array<cloudExtension.Result<Participant>>>> {
+    console.info(`change privilege, bundle: ${bundleName}`);
+    // Connect to ShareCenter and obtain the return value of the privilege change operation.
+    // ...
+    // Return the result obtained from ShareCenter.
+    let result: Array<cloudExtension.Result<Participant>> = [];
+    participants.forEach((item => {
+      result.push({
+        code: cloudData.sharing.SharingCode.SUCCESS,
+        description: 'change privilege succeeded'
+      })
+    }))
+    return {
+      code: cloudData.sharing.SharingCode.SUCCESS,
+      description: 'change privilege succeeded',
+      value: result
+    }
+  }
+
+  async queryParticipants(userId: number, bundleName: string, sharingResource: string):
+    Promise<cloudExtension.Result<Array<Participant>>> {
+    console.info(`query participants, bundle: ${bundleName}`);
+    // Connect to ShareCenter and obtain the return value of the query operation.
+    // ...
+    // Return the result obtained from ShareCenter.
+    let participants = new Array<cloudData.sharing.Participant>();
+    participants.push({
+      identity: '000000000',
+      role: cloudData.sharing.Role.ROLE_INVITEE,
+      state: cloudData.sharing.State.STATE_ACCEPTED,
+      privilege: {
+        writable: false,
+        readable: true,
+        creatable: false,
+        deletable: false,
+        shareable: false
+      },
+      attachInfo: ''
+    })
+    participants.push({
+      identity: '111111111',
+      role: cloudData.sharing.Role.ROLE_INVITEE,
+      state: cloudData.sharing.State.STATE_ACCEPTED,
+      privilege: {
+        writable: false,
+        readable: true,
+        creatable: false,
+        deletable: false,
+        shareable: false
+      },
+      attachInfo: ''
+    })
+    return {
+      code: cloudData.sharing.SharingCode.SUCCESS,
+      description: 'query participants succeeded',
+      value: participants
+    }
+  }
+
+  async queryParticipantsByInvitation(userId: number, bundleName: string, invitationCode: string):
+    Promise<cloudExtension.Result<Array<Participant>>> {
+    console.info(`query participants by invitation, bundle: ${bundleName}`);
+    // Connect to ShareCenter and obtain the return value of the query operation.
+    // ...
+    // Return the result obtained from ShareCenter.
+    let participants = new Array<cloudData.sharing.Participant>();
+    participants.push({
+      identity: '000000000',
+      role: cloudData.sharing.Role.ROLE_INVITEE,
+      state: cloudData.sharing.State.STATE_ACCEPTED,
+      privilege: {
+        writable: false,
+        readable: true,
+        creatable: false,
+        deletable: false,
+        shareable: false
+      },
+      attachInfo: ''
+    })
+    participants.push({
+      identity: '111111111',
+      role: cloudData.sharing.Role.ROLE_INVITEE,
+      state: cloudData.sharing.State.STATE_ACCEPTED,
+      privilege: {
+        writable: false,
+        readable: true,
+        creatable: false,
+        deletable: false,
+        shareable: false
+      },
+      attachInfo: ''
+    })
+    return {
+      code: cloudData.sharing.SharingCode.SUCCESS,
+      description: 'query participants by invitation succeeded',
+      value: participants
+    }
+  }
+
+  async confirmInvitation(userId: number, bundleName: string, invitationCode: string, state: cloudData.sharing.State):
+    Promise<cloudExtension.Result<string>> {
+    console.info(`confirm invitation, bundle: ${bundleName}`);
+    // Connect to ShareCenter and obtain the return value of the invitation confirmation operation.
+    // ...
+    // Return the result obtained from ShareCenter.
+    return {
+      code: cloudData.sharing.SharingCode.SUCCESS,
+      description: 'confirm invitation succeeded',
+      value: 'sharing_resource_test'
+    }
+  }
+
+  async changeConfirmation(userId: number, bundleName: string, sharingResource: string, state: cloudData.sharing.State):
+    Promise<cloudExtension.Result<void>> {
+    console.info(`change confirm, bundle: ${bundleName}`);
+    // Connect to ShareCenter and obtain the return value of the state change operation.
+    // ...
+    // Return the result obtained from ShareCenter.
+    return {
+      code: cloudData.sharing.SharingCode.SUCCESS,
+      description: 'change confirm succeeded'
+    }
+  }
+}
+
+class MyCloudService implements cloudExtension.CloudService {
+  constructor() {
+  }
+
+  async connectShareCenter(userId: number, bundleName: string): Promise<rpc.RemoteObject> {
+    console.info(`connect share center, bundle: ${bundleName}`);
+    return cloudExtension.createShareServiceStub(new MyShareCenter());
+  }
+}
+
+export default class MyServiceExtension extends ServiceExtensionAbility {
+  onCreate(want: Want) {
+    console.info(`onCreate: ${want}`);
+  }
+
+  onRequest(want: Want, startId: number) {
+    console.info(`onRequest: ${want} ${startId}`);
+  }
+
+  onConnect(want: Want): rpc.RemoteObject | Promise<rpc.RemoteObject> {
+    console.info(`onConnect: ${want}`);
+    return cloudExtension.createCloudServiceStub(new MyCloudService());
+  }
+
+  onDisconnect(want: Want) {
+    console.info(`onDisconnect: ${want}`);
+  }
+
+  onDestroy() {
+    console.info('onDestroy');
+  }
+}
+```
+<!--no_check-->

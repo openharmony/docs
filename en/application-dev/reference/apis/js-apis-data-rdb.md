@@ -46,7 +46,8 @@ import relationalStore from '@ohos.data.relationalStore';
 import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
 
-data_rdb.getRdbStore(this.context, "RdbTest.db", 1, (err, rdbStore) => {
+const STORE_CONFIG: data_rdb.StoreConfig = { name: "RdbTest.db"}
+data_rdb.getRdbStore(this.context, STORE_CONFIG, 1, (err, rdbStore) => {
   if (err) {
     console.info("Failed to get RdbStore, err: " + err)
     return
@@ -62,9 +63,10 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from "@ohos.base";
 import window from '@ohos.window';
 
+const STORE_CONFIG: data_rdb.StoreConfig = { name: "RdbTest.db"}
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage){
-    data_rdb.getRdbStore(this.context, "RdbTest.db", 1, (err: BusinessError, rdbStore: data_rdb.RdbStore) => {
+    data_rdb.getRdbStore(this.context, STORE_CONFIG, 1, (err: BusinessError, rdbStore: data_rdb.RdbStore) => {
       if (err) {
         console.info("Failed to get RdbStore, err: " + err)
         return
@@ -95,7 +97,7 @@ Obtains an RDB store. This API uses a promise to return the result. You can set 
 
 | Type                                | Description                           |
 | ------------------------------------ | ------------------------------- |
-| Promise&lt;[RdbStore](#rdbstore)&gt; | Promise used to return the RDB store obtained.|
+| Promise&lt;[RdbStore](#rdbstore)&gt; | Promise used to return the **RdbStore** object.|
 
 **Example**
 
@@ -104,7 +106,8 @@ FA model:
 ```js
 import featureAbility from '@ohos.ability.featureAbility';
 
-let promise = data_rdb.getRdbStore(this.context, "RdbTest.db", 1);
+const STORE_CONFIG: data_rdb.StoreConfig = { name: "RdbTest.db"}
+let promise = data_rdb.getRdbStore(this.context, STORE_CONFIG, 1);
 promise.then(async (rdbStore) => {
   console.log("Got RdbStore successfully.")
 }).catch((err: BusinessError) => {
@@ -119,6 +122,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from "@ohos.base";
 import window from '@ohos.window';
 
+const STORE_CONFIG: data_rdb.StoreConfig = { name: "RdbTest.db"}
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage){
     context = this.context
@@ -126,7 +130,7 @@ class EntryAbility extends UIAbility {
 }
 
 // Call getRdbStore.
-let promise = data_rdb.getRdbStore(this.context, "RdbTest.db", 1);
+let promise = data_rdb.getRdbStore(this.context, STORE_CONFIG, 1);
 promise.then(async (rdbStore: data_rdb.RdbStore) => {
   console.log("Got RdbStore successfully.")
 }).catch((err: BusinessError) => {
@@ -1162,7 +1166,7 @@ predicates.notIn("NAME", ["Lisa", "Rose"])
 
 Provides methods to manage an RDB store.
 
-Before using the APIs of this class, use [executeSql](#executesql) to initialize the database table structure and related data.
+Before using the APIs of this class, use [executeSql](#executesql8) to initialize the database table structure and related data.
 
 ### insert
 

@@ -193,7 +193,7 @@ Represents the cloud data change information.
 | Name    | Type  | Mandatory| Description|
 | ---------- | ------ | ---- | ---- |
 | eventId | string | Yes  | Change event ID.|
-| extraData | string | Yes  | Change of the cloud data.|
+| extraData | ExtraData | Yes  | Change of the cloud data.|
 
 
 ## cloudSyncManager.notifyDataChange<sup>11+</sup> 
@@ -210,8 +210,8 @@ Notifies the cloud sync service of the application data change in the cloud. Thi
 
 | Name    | Type  | Mandatory| Description|
 | ---------- | ------ | ---- | ---- |
-| userId | number | Yes  | User ID. |
-| extraData | string | Yes  | Change of the cloud data.|
+| userId | number | Yes  | Account ID.|
+| extraData | ExtraData | Yes  | Change of the cloud data.|
 
 **Return value**
 
@@ -235,7 +235,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
   ```ts
   import { BusinessError } from '@ohos.base';
   let userId: number = 100;
-  let extraData: ExtraData = {eventId: "eventId", extraData: "data"};
+  let extraData: cloudSyncManager.ExtraData = {eventId: "eventId", extraData: "data"};
   cloudSyncManager.notifyDataChange(userId, extraData).then(() => {
     console.info("notifyDataChange successfully");
   }).catch((err: BusinessError) => {
@@ -258,7 +258,7 @@ Notifies the cloud sync service of the application data change in the cloud. Thi
 | Name    | Type  | Mandatory| Description|
 | ---------- | ------ | ---- | ---- |
 | userId | number | Yes  | User ID.|
-| extraData | string | Yes  | Change of the cloud data.|
+| extraData | ExtraData | Yes  | Change of the cloud data.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the application data change in the cloud.|
 
 **Error codes**
@@ -277,7 +277,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
   ```ts
   import { BusinessError } from '@ohos.base';
   let userId: number = 100;
-  let extraData: ExtraData = {eventId: "eventId", extraData: "data"};
+  let extraData: cloudSyncManager.ExtraData = {eventId: "eventId", extraData: "data"};
   cloudSyncManager.notifyDataChange(userId, extraData, (err: BusinessError) => {
     if (err) {
       console.info("notifyDataChange failed with error message: " + err.message + ", error code: " + err.code);
@@ -289,7 +289,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 ## cloudSyncManager.enableCloud
 
-enableCloud(accountId: string, switches: { [bundleName: string]: boolean }): Promise&lt;void&gt;
+enableCloud(accountId: string, switches: Record<string, boolean>): Promise&lt;void&gt;
 
 Enables device-cloud synergy. This API uses a promise to return the result.
 
@@ -302,7 +302,7 @@ Enables device-cloud synergy. This API uses a promise to return the result.
 | Name    | Type  | Mandatory| Description|
 | ---------- | ------ | ---- | ---- |
 | accountId | string | Yes  | Account ID.|
-| switches | object | Yes  | Whether to enable the device-cloud synergy feature. **bundleName** indicates the application bundle name. The switch status is a Boolean value.|
+| switches | object | Yes  | Whether to enable the device-cloud synergy feature. **bundleName** is a string indicating the application bundle name. The switch status is a Boolean value.|
 
 **Return value**
 
@@ -338,7 +338,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 ## cloudSyncManager.enableCloud
 
-enableCloud(accountId: string, switches: { [bundleName: string]: boolean }, callback: AsyncCallback&lt;void&gt;): void
+enableCloud(accountId: string, switches: switches: Record<string, boolean>, callback: AsyncCallback&lt;void&gt;): void
 
 Enables device-cloud synergy. This API uses an asynchronous callback to return the result.
 
@@ -351,7 +351,7 @@ Enables device-cloud synergy. This API uses an asynchronous callback to return t
 | Name    | Type  | Mandatory| Description|
 | ---------- | ------ | ---- | ---- |
 | accountId | string | Yes  | Account ID.|
-| switches | object | Yes  | Whether to enable the device-cloud synergy feature. **bundleName** indicates the application bundle name. The switch status is a Boolean value.|
+| switches | object | Yes  | Whether to enable the device-cloud synergy feature. **bundleName** is a string indicating the application bundle name. The switch status is a Boolean value.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.|
 
 **Error codes**
@@ -482,7 +482,7 @@ Enumerates the actions that can be taken to clear local cloud data.
 
 ## cloudSyncManager.clean
 
-clean(accountId: string, appActions: { [bundleName: string]: Action }): Promise&lt;void&gt;
+clean(accountId: string, appActions: Record<string, Action>): Promise&lt;void&gt;
 
 Clears the cloud data locally. This API uses a promise to return the result.
 
@@ -495,7 +495,7 @@ Clears the cloud data locally. This API uses a promise to return the result.
 | Name    | Type  | Mandatory| Description|
 | ---------- | ------ | ---- | ---- |
 | accountId | string | Yes  | Account ID.|
-| appActions | object | Yes  | Action to take. **bundleName** indicates the application bundle to clear, and [Action](#action) indicates the action to take.|
+| appActions | object | Yes  | Action to perform. **bundleName** is a string indicating the application whose data is to be cleared.[Action](#action) specifies the action to perform.|
 
 **Return value**
 
@@ -531,7 +531,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 ## cloudSyncManager.clean
 
-clean(accountId: string, appActions: { [bundleName: string]: Action }, callback: AsyncCallback&lt;void&gt;): void
+clean(accountId: string, appActions: Record<string, Action>, callback: AsyncCallback&lt;void&gt;): void
 
 Clears the cloud data locally. This API uses an asynchronous callback to return the result.
 
@@ -544,7 +544,7 @@ Clears the cloud data locally. This API uses an asynchronous callback to return 
 | Name    | Type  | Mandatory| Description|
 | ---------- | ------ | ---- | ---- |
 | accountId | string | Yes  | Account ID.|
-| appActions | object | Yes  | Action to take. **bundleName** indicates the application bundle to clear, and [Action](#action) indicates the action to take.|
+| appActions | object | Yes  | Action to perform. **bundleName** is a string indicating the application whose data is to be cleared.[Action](#action) specifies the action to perform.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to clear the cloud data locally.|
 
 **Error codes**

@@ -1,17 +1,17 @@
 # 在新窗口中打开页面
 
 
-Web组件提供了在新窗口打开页面的能力，开发者可以通过[multiWindowAccess()](../reference/arkui-ts/ts-basic-components-web.md#multiwindowaccess9)接口来设置是否允许网页在新窗口打开。当有新窗口打开时，应用侧会在[onWindowNew()](../reference/arkui-ts/ts-basic-components-web.md#onwindownew9)接口中收到Web组件新窗口事件，开发者需要在此接口事件中，新建窗口来处理Web组件窗口请求。
+Web组件提供了在新窗口打开页面的能力，开发者可以通过[multiWindowAccess()](../reference/apis-arkweb/ts-basic-components-web.md#multiwindowaccess9)接口来设置是否允许网页在新窗口打开。当有新窗口打开时，应用侧会在[onWindowNew()](../reference/apis-arkweb/ts-basic-components-web.md#onwindownew9)接口中收到Web组件新窗口事件，开发者需要在此接口事件中，新建窗口来处理Web组件窗口请求。
 
 
 > **说明：**
 >
-> - [allowWindowOpenMethod()](../reference/arkui-ts/ts-basic-components-web.md#allowwindowopenmethod10)接口设置为true时，前端页面通过JavaScript函数调用的方式打开新窗口。
+> - [allowWindowOpenMethod()](../reference/apis-arkweb/ts-basic-components-web.md#allowwindowopenmethod10)接口设置为true时，前端页面通过JavaScript函数调用的方式打开新窗口。
 >
-> - 如果开发者在[onWindowNew()](../reference/arkui-ts/ts-basic-components-web.md#onwindownew9)接口通知中不需要打开新窗口，需要将[ControllerHandler.setWebController()](../reference/arkui-ts/ts-basic-components-web.md#setwebcontroller9)接口返回值设置成null。
+> - 如果开发者在[onWindowNew()](../reference/apis-arkweb/ts-basic-components-web.md#onwindownew9)接口通知中不需要打开新窗口，需要将[ControllerHandler.setWebController()](../reference/apis-arkweb/ts-basic-components-web.md#setwebcontroller9)接口返回值设置成null。
 
 
-如下面的本地示例，当用户点击“新窗口中打开网页”按钮时，应用侧会在[onWindowNew()](../reference/arkui-ts/ts-basic-components-web.md#onwindownew9)接口中收到Web组件新窗口事件。
+如下面的本地示例，当用户点击“新窗口中打开网页”按钮时，应用侧会在[onWindowNew()](../reference/apis-arkweb/ts-basic-components-web.md#onwindownew9)接口中收到Web组件新窗口事件。
 
 
 - 应用侧代码。

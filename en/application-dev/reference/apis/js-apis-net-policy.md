@@ -1464,7 +1464,7 @@ Represents the handle to a network policy.
 
 ### on('netUidPolicyChange')<sup>10+</sup>
 
-on(type: "netUidPolicyChange", callback: Callback\<{ uid: number, policy: NetUidPolicy }>): void
+on(type: "netUidPolicyChange", callback: Callback\<NetUidPolicyInfo\>): void
 
 Subscribes to policy changes. This API uses an asynchronous callback to return the result.
 
@@ -1479,7 +1479,7 @@ Subscribes to policy changes. This API uses an asynchronous callback to return t
 | Name  | Type                                                               | Mandatory| Description                                  |
 | -------- | ------------------------------------------------------------------- | ---- | -------------------------------------- |
 | type     | string                                                              | Yes  | Event type. The value **netUidPolicyChange** indicates a policy change event.                 |
-| callback | Callback\<{ uid: number, policy: [NetUidPolicy](#netuidpolicy10) }> | Yes  | Callback used to return the result. It is called when the registered network policy changes.|
+| callback | Callback\<[NetUidPolicyInfo](#netuidpolicyinfo11)> | Yes  | Callback used to return the result. It is called when the network policy changes.|
 
 **Error codes**
 
@@ -1507,7 +1507,7 @@ policy.on('netUidPolicyChange', (data: Data) => {
 
 ### off('netUidPolicyChange')<sup>10+</sup>
 
-off(type: "netUidPolicyChange", callback?: Callback<{ uid: number, policy: NetUidPolicy }>): void
+off(type: "netUidPolicyChange", callback?: Callback\<NetUidPolicyInfo\>): void
 
 Unsubscribes from policy changes. This API uses an asynchronous callback to return the result.
 
@@ -1522,7 +1522,7 @@ Unsubscribes from policy changes. This API uses an asynchronous callback to retu
 | Name  | Type                                                               | Mandatory| Description                                  |
 | -------- | ------------------------------------------------------------------- | ---- | -------------------------------------- |
 | type     | string                                                              | Yes  | Event type. The value **netUidPolicyChange** indicates a policy change event.                 |
-| callback | Callback\<{ uid: number, policy: [NetUidPolicy](#netuidpolicy10) }> | No  | Callback used to return the result. It is called when the registered network policy changes.|
+| callback | Callback\<[NetUidPolicyInfo](#netuidpolicyinfo11)> | No  | Callback used to return the result. It is called when the network policy changes.|
 
 **Error codes**
 
@@ -1547,7 +1547,7 @@ policy.off('netUidPolicyChange', callback);
 
 ### on('netUidRuleChange')<sup>10+</sup>
 
-on(type: "netUidRuleChange", callback: Callback\<{ uid: number, rule: NetUidRule }>): void
+on(type: "netUidRuleChange", callback: Callback\<NetUidRuleInfo\>): void
 
 Subscribes to rule changes. This API uses an asynchronous callback to return the result.
 
@@ -1562,7 +1562,7 @@ Subscribes to rule changes. This API uses an asynchronous callback to return the
 | Name  | Type                                                         | Mandatory| Description                                  |
 | -------- | ------------------------------------------------------------- | ---- | -------------------------------------- |
 | type     | string                                                        | Yes  | Event type. The value **netUidRuleChange** indicates a rule change event.                   |
-| callback | Callback\<{ uid: number, rule: [NetUidRule](#netuidrule10) }> | Yes  | Callback used to return the result. It is called when the registered rule changes.|
+| callback | Callback\<[NetUidRuleInfo](#netuidruleinfo11)> | Yes  | Callback used to return the result. It is called when the rule changes.|
 
 **Error codes**
 
@@ -1585,7 +1585,7 @@ policy.on('netUidRuleChange', (data: object) => {
 
 ### off('netUidRuleChange')<sup>10+</sup>
 
-off(type: "netUidRuleChange", callback?: Callback<{ uid: number, rule: NetUidRule }>): void
+off(type: "netUidRuleChange", callback?: Callback\<NetUidRuleInfo\>): void
 
 Unsubscribes from rule changes. This API uses an asynchronous callback to return the result.
 
@@ -1600,7 +1600,7 @@ Unsubscribes from rule changes. This API uses an asynchronous callback to return
 | Name  | Type                                                         | Mandatory| Description                                  |
 | -------- | ------------------------------------------------------------- | ---- | -------------------------------------- |
 | type     | string                                                        | Yes  | Event type. The value **netUidRuleChange** indicates a rule change event.                   |
-| callback | Callback\<{ uid: number, rule: [NetUidRule](#netuidrule10) }> | No  | Callback used to return the result. It is called when the registered rule changes.|
+| callback | Callback\<[NetUidRuleInfo](#netuidruleinfo11)> | No  | Callback used to return the result. It is called when the rule changes.|
 
 **Error codes**
 
@@ -1948,6 +1948,32 @@ Enumerates the metered network rules.
 | NET_RULE_REJECT_METERED           | 1 << 2 | Applications are not allowed to access a metered network.    |
 | NET_RULE_ALLOW_ALL                | 1 << 5 | Applications are allowed to access all networks (metered or non-metered).    |
 | NET_RULE_REJECT_ALL               | 1 << 6 | Applications are not allowed to access any networks (metered or non-metered).    |
+
+## NetUidRuleInfo<sup>11+</sup>
+
+Defines a unique network ID.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+| Name             | Type                          | Mandatory| Description                                     |
+| ----------------- | ----------------------------- | ---- | ----------------------------------------- |
+| uid               | number                        | Yes  | Traffic alarm threshold. The default value is **DATA_USAGE_UNKNOWN**.|
+| rule              | [NetUidRule](#netuidrule10)   | Yes  | Rule that specifies whether the application specified by a given UID is allowed to access a metered or non-metered network.    |
+
+## NetUidPolicyInfo<sup>11+</sup>
+
+Defines the network policy information for an application.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+| Name             | Type                           | Mandatory| Description                                   |
+| ----------------- | ------------------------------- | ---- | -------------------------------------- |
+| uid               | number                          | Yes  | Traffic alarm threshold. The default value is **DATA_USAGE_UNKNOWN**.|
+| policy            | [NetUidPolicy](#netuidpolicy10) | Yes  | Policy that specifies whether the application specified by a given UID is allowed to access the network when running in the background.   |
 
 ## RemindType<sup>10+</sup>
 

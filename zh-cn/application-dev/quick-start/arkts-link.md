@@ -104,7 +104,7 @@ struct ParentComponent {
         selected: this.parentSelectedDate
       })
 
-      DateComponent({selectedDate:this.parentSelectedDate})
+      DateComponent({ selectedDate:this.parentSelectedDate })
     }
   }
 }
@@ -271,7 +271,7 @@ struct Parent {
       Child({ items: $arr })
         .margin(12)
       ForEach(this.arr,
-        (item: void) => {
+        (item: number) => {
           Button(`${item}`)
             .margin(12)
             .width(312)
@@ -304,25 +304,25 @@ struct Child {
   @Link value: Map<number, string>
 
   build() {
-    Column(){
+    Column() {
       ForEach(Array.from(this.value.entries()), (item: [number, string]) => {
         Text(`${item[0]}`).fontSize(30)
         Text(`${item[1]}`).fontSize(30)
         Divider()
       })
-      Button('child init map').onClick(() =>{
+      Button('child init map').onClick(() => {
         this.value = new Map([[0, "a"], [1, "b"], [3, "c"]])
       })
-      Button('child set new one').onClick(() =>{
+      Button('child set new one').onClick(() => {
         this.value.set(4, "d")
       })
-      Button('child clear').onClick(() =>{
+      Button('child clear').onClick(() => {
         this.value.clear()
       })
-      Button('child replace the first one').onClick(() =>{
+      Button('child replace the first one').onClick(() => {
         this.value.set(0, "aa")
       })
-      Button('child delete the first one').onClick(() =>{
+      Button('child delete the first one').onClick(() => {
         this.value.delete(0)
       })
     }
@@ -338,7 +338,7 @@ struct MapSample2 {
   build() {
     Row() {
       Column() {
-        Child({value:this.message})
+        Child({ value: this.message })
       }
       .width('100%')
     }
@@ -366,16 +366,16 @@ struct Child {
         Text(`${item[0]}`).fontSize(30)
         Divider()
       })
-      Button('init set').onClick(() =>{
-        this.message = new Set([0, 1, 2 ,3,4 ])
+      Button('init set').onClick(() => {
+        this.message = new Set([0, 1, 2, 3, 4])
       })
-      Button('set new one').onClick(() =>{
+      Button('set new one').onClick(() => {
         this.message.add(5)
       })
-      Button('clear').onClick(() =>{
+      Button('clear').onClick(() => {
         this.message.clear()
       })
-      Button('delete the first one').onClick(() =>{
+      Button('delete the first one').onClick(() => {
         this.message.delete(0)
       })
     }
@@ -387,12 +387,12 @@ struct Child {
 @Entry
 @Component
 struct SetSample1 {
-  @State message: Set<number> = new Set([0, 1, 2 ,3,4 ])
+  @State message: Set<number> = new Set([0, 1, 2, 3, 4])
 
   build() {
     Row() {
       Column() {
-        Child({message:this.message})
+        Child({ message: this.message })
       }
       .width('100%')
     }
@@ -406,7 +406,6 @@ struct SetSample1 {
 @Link支持联合类型和undefined和null，在下面的示例中，name类型为string | undefined，点击父组件Index中的Button改变name的属性或者类型，Child中也会对应刷新。
 
 ```ts
-
 @Component
 struct Child {
   @Link name: string | undefined
@@ -431,13 +430,13 @@ struct Child {
 @Entry
 @Component
 struct Index {
-  @State name: string | undefined  = "mary"
+  @State name: string | undefined = "mary"
 
   build() {
     Column() {
       Text(`The name is  ${this.name}`).fontSize(30)
 
-      Child({name: this.name})
+      Child({ name: this.name })
 
       Button('Parents change name to Peter')
         .onClick(() => {

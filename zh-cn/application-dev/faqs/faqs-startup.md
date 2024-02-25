@@ -5,7 +5,7 @@
 
 **解决措施**
 
-可通过[deviceInfo](../reference/apis/js-apis-device-info.md)对象的osFullName属性获取设备系统版本。
+可通过[deviceInfo](../reference/apis-basic-services-kit/js-apis-device-info.md)对象的osFullName属性获取设备系统版本。
 
 **代码示例**
 
@@ -21,7 +21,7 @@ let v = deviceInfo.osFullName
 
 - 方式一：通过命令行（hdc shell bm get --udid）查询。
 
-- 方式二：在代码中获得，请参考文档[udid](../reference/apis/js-apis-device-info.md)。
+- 方式二：在代码中获得，请参考文档[udid](../reference/apis-basic-services-kit/js-apis-device-info.md)。
 
 
 ## 如何获取设备信息(API 9)
@@ -30,7 +30,7 @@ let v = deviceInfo.osFullName
 
 **参考链接**
 
-[设备信息](../reference/apis/js-apis-device-info.md)
+[设备信息](../reference/apis-basic-services-kit/js-apis-device-info.md)
 
 
 ## 开发中如何实现App不被屏保中断(API 9)

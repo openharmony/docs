@@ -30,8 +30,7 @@ module.json5中配置所需申请的权限
 
 代码中手动申请权限
 ```typescript
-import { Permissions } from '@kit.SafetyDetectKit';
-import { abilityAccessCtrl, PermissionRequestResult } from '@kit.AbilityKit';
+import { abilityAccessCtrl, PermissionRequestResult, Permissions } from '@kit.AbilityKit';
 import { mContext } from '../entryability/EntryAbility'; // 获取的上下文，需自己定义
 
 const permissions: Permissions[] = ["ohos.permission.READ_CALENDAR", "ohos.permission.WRITE_CALENDAR"];
@@ -51,4 +50,4 @@ let calendarMgr: calendarManager.CalendarManager = calendarManager.getCalendarMa
 
 ### Calendar Kit API文档参考
 
-- [API文档参考](../reference/apis/js-apis-calendarManager.md)
+- [API文档参考](../reference/apis-calendar-kit/js-apis-calendarManager.md)

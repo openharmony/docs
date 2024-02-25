@@ -24,6 +24,20 @@ Describes the state of the **\<NavDestination>** component.
 | ON_SHOWN  | 0   | The **\<NavDestination>** component is displayed.|
 | ON_HIDDEN | 1   | The **\<NavDestination>** component is hidden.|
 
+## RouterPageState
+
+Enumerates the states of a page during routing.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name             | Value | Description                   |
+| ----------------- | --- | ----------------------- |
+| ABOUT_TO_APPEAR       | 0   | The page is about to be displayed.           |
+| ABOUT_TO_DISAPPEAR    | 1   | The page is about to be destroyed.           |
+| ON_PAGE_SHOW          | 2   | The page is displayed.               |
+| ON_PAGE_HIDE          | 3   | The page is hidden.               |
+| ON_BACK_PRESS         | 4   | The page is returned.             |
+
 ## NavDestinationInfo
 
 Provides information about the **\<NavDestination>** component.
@@ -36,6 +50,20 @@ Provides information about the **\<NavDestination>** component.
 | name         | [ResourceStr](../arkui-ts/ts-types.md#resourcestr) | Yes  | Name of the **\<NavDestination>** component.                  |
 | state        | [NavDestinationState](#navdestinationstate)        | Yes  | State of the **\<NavDestination>** component.                  |
 
+## RouterPageInfo
+
+Provides the information about a page during routing.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name        | Type                                              | Mandatory| Description                                         |
+| ------------ | -------------------------------------------------- | ---- | -------------------------------------------- |
+| context      | [UIAbilityContext](./js-apis-inner-application-uiAbilityContext.md) / [UIContext](./js-apis-arkui-UIContext.md) | Yes  | Context of the page that invokes the lifecycle callback.|
+| index        | number                                             | Yes  | Position of the page that invokes the lifecycle callback, in the navigation stack.        |
+| name         | string                                             | Yes  | Name of the page that invokes the lifecycle callback.          |
+| path         | string                                             | Yes  | Path of the page that invokes the lifecycle callback.          |
+| state        | [RouterPageState](#routerpagestate)                | Yes  | State of the page that invokes the lifecycle callback.            |
+
 ## observer.on('navDestinationUpdate')
 
 on(type: 'navDestinationUpdate', callback: Callback\<NavDestinationInfo\>): void
@@ -46,7 +74,7 @@ Subscribes to status changes of the **\<NavDestination>** component.
 
 **Parameters**
 
-| Name    | Type                                                 | Mandatory| Description                                                                    |
+| Name  | Type                                                 | Mandatory| Description                                                                    |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------------------ |
 | type     | string                                                | Yes  | Event type. The value is fixed at **'navDestinationUpdate'**, which indicates the status change event of the **\<NavDestination>** component.|
 | callback | Callback\<[NavDestinationInfo](#navdestinationinfo)\> | Yes  | Callback used to return the current state of the **\<NavDestination>** component.                            |
@@ -69,7 +97,7 @@ Unsubscribes from status changes of the **\<NavDestination>** component.
 
 **Parameters**
 
-| Name    | Type                                                 | Mandatory| Description                                                                    |
+| Name  | Type                                                 | Mandatory| Description                                                                    |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------------------ |
 | type     | string                                                | Yes  | Event type. The value is fixed at **'navDestinationUpdate'**, which indicates the status change event of the **\<NavDestination>** component.|
 | callback | Callback\<[NavDestinationInfo](#navdestinationinfo)\> | No  | Callback used to return the current state of the **\<NavDestination>** component.                            |
@@ -90,7 +118,7 @@ Subscribes to status changes of the **\<NavDestination>** component.
 
 **Parameters**
 
-| Name    | Type                                                                | Mandatory| Description                                                                    |
+| Name  | Type                                                                | Mandatory| Description                                                                    |
 | -------- | -------------------------------------------------------------------- | ---- | ------------------------------------------------------------------------ |
 | type     | string                                                               | Yes  | Event type. The value is fixed at **'navDestinationUpdate'**, which indicates the status change event of the **\<NavDestination>** component.|
 | options  | { navigationId: [ResourceStr](../arkui-ts/ts-types.md#resourcestr) } | Yes  | ID of the **\<Navigation>** component that contains the target **\<NavDestination>** component.                                              |
@@ -114,7 +142,7 @@ Unsubscribes from status changes of the **\<NavDestination>** component.
 
 **Parameters**
 
-| Name    | Type                                                                | Mandatory| Description                                                                    |
+| Name  | Type                                                                | Mandatory| Description                                                                    |
 | -------- | -------------------------------------------------------------------- | ---- | ------------------------------------------------------------------------ |
 | type     | string                                                               | Yes  | Event type. The value is fixed at **'navDestinationUpdate'**, which indicates the status change event of the **\<NavDestination>** component.|
 | options  | { navigationId: [ResourceStr](../arkui-ts/ts-types.md#resourcestr) } | Yes  | ID of the **\<Navigation>** component that contains the target **\<NavDestination>** component.                                              |
@@ -124,4 +152,58 @@ Unsubscribes from status changes of the **\<NavDestination>** component.
 
 ```ts
 observer.off('navDestinationUpdate', { navigationId: "testId" });
+```
+
+## observer.on('routerPageUpdate')<sup>11+</sup>
+
+on(type: 'routerPageUpdate', context: UIAbilityContext | UIContext, callback: Callback\<observer.RouterPageInfo\>): void
+
+Subscribes to state changes of the page during routing.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | Yes  | Event type. The value is fixed at **'routerPageUpdate'**, which indicates the state change event of the page during routing.|
+| context  | [UIAbilityContext](./js-apis-inner-application-uiAbilityContext.md) / [UIContext](./js-apis-arkui-UIContext.md) | Yes  | Context information, which is used to specify the scope of the page to be listened for.|
+| callback | Callback\<[RouterPageInfo](#routerpageinfo)\>        | Yes  | Callback used to return the If **pageInfo** is passed, the current page state is returned.                |
+
+**Example**
+
+```ts
+// used in UIAbility
+import observer from '@ohos.arkui.observer';
+// callBackFunc is user defined function
+observer.on('routerPageUpdate', this.context, callBackFunc);
+// uiContext could be got by window's function: getUIContext()
+observer.on('routerPageUpdate', this.uiContext, callBackFunc);
+```
+
+## observer.off('routerPageUpdate')<sup>11+</sup>
+
+off(type: 'routerPageUpdate', context: UIAbilityContext | UIContext, callback?: Callback\<observer.RouterPageInfo\>): void
+
+Unsubscribes to state changes of the page during routing.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | Yes  | Event type. The value is fixed at **'routerPageUpdate'**, which indicates the state change event of the page during routing.|
+| context  | [UIAbilityContext](./js-apis-inner-application-uiAbilityContext.md) / [UIContext](./js-apis-arkui-UIContext.md) | Yes  | Context information, which is used to specify the scope of the page to be listened for.|
+| callback | Callback\<[RouterPageInfo](#routerpageinfo)\>        | No  | Callback to be unregistered.                |
+
+**Example**
+
+```ts
+// used in UIAbility
+import observer from '@ohos.arkui.observer';
+// callBackFunc is user defined function
+observer.off('routerPageUpdate', this.context, callBackFunc);
+// uiContext could be got by window's function: getUIContext()
+observer.off('routerPageUpdate', this.uiContext, callBackFunc);
 ```

@@ -554,9 +554,9 @@ After a new item is inserted, the data source **simpleList** changes to ['one','
 
 In the preceding example, the final key generation rule includes **index**. While the expected rendering result is ['one','new item', 'two', 'three'], the actual rendering result is ['one', 'two', 'three', 'three']. Therefore, whenever possible, avoid including **index** in final key generation rule when using **ForEach**.
 
-### Deteriorated Rendering performance
+### Deteriorated Rendering Performance
 
-In this example, the **KeyGenerator** function – the third parameter of **ForEach** – is left empty. According to the description in [Key Generation Rule](#key-generation-rule), the default key generation rule of the ArkUI framework is used. That is, the final key is the string **index + '__' + JSON.stringify(item)**. After **Insert Item After First Item** is clicked, **ForEach** recreates components for the second array item and all items after it.
+In this example, the **KeyGenerator** function – the third parameter of **ForEach** – is left empty. According to the description in [Key Generation Rules](#key-generation-rules), the default key generation rule of the ArkUI framework is used. That is, the final key is the string **index + '__' + JSON.stringify(item)**. After **Insert Item After First Item** is clicked, **ForEach** recreates components for the second array item and all items after it.
 
 ```ts
 @Entry

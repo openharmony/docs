@@ -5,7 +5,7 @@
 
 If complex services are involved in cross-application data access, you can use **DataShareExtensionAbility** to start the application of the data provider to implement data access.
 
-You need to implement flexible service logics via callbacks of the service provider.
+You need to implement flexible service logics via callbacks of the service provider.  
 
 
 ## Working Principles
@@ -32,7 +32,7 @@ There are two roles in **DataShare**:
 ## How to Develop
 
 
-### Data Provider Application (Only for System Applications)
+### Data Provider Application Development (Only for System Applications)
 
 [DataShareExtensionAbility](../reference/apis/js-apis-application-dataShareExtensionAbility.md) provides the following APIs. You can override these APIs as required.
 
@@ -56,9 +56,9 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
 
 1. In the **ets** directory of the **Module** project, right-click and choose **New > Directory** to create a directory named **DataShareExtAbility**.
 
-2. Right-click the **DataShareAbility** directory, and choose **New > TypeScript File** to create a file named **DataShareExtAbility.ts**.
+2. Right-click the **DataShareAbility** directory, and choose **New > ArkTS File** to create a file named **DataShareExtAbility.ets**.
 
-3. Import **@ohos.application.DataShareExtensionAbility** and other dependencies to the **DataShareExtAbility.ts** file, and override the service implementation as required. For example, if the data provider provides only the data insertion, deletion, and query services, you can override only these APIs.
+3. In the **DataShareExtAbility.ets** file, import the **@ohos.application.DataShareExtensionAbility** module. You can override the service implementation as required. For example, if the data provider provides only the data insertion, deletion, and query services, you can override only these APIs.
 
    ```ts
    import Extension from '@ohos.application.DataShareExtensionAbility';
@@ -67,9 +67,9 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
    import Want from '@ohos.app.ability.Want';
    import { BusinessError } from '@ohos.base'
    ```
-
+   
 4. Implement the data provider services. For example, implement data storage of the data provider by using a database, reading and writing files, or accessing the network.
-
+   
    ```ts
    const DB_NAME = 'DB00.db';
    const TBL_NAME = 'TBL00';
@@ -126,7 +126,7 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
 5. Define **DataShareExtensionAbility** in **module.json5**.
 
      **Table 1** Fields in module.json5
-
+   
    | Field| Description| Mandatory|
    | -------- | -------- | -------- |
    | name | Ability name, corresponding to the **ExtensionAbility** class name derived from **Ability**.| Yes|
@@ -135,14 +135,14 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
    | exported | Whether it is visible to other applications. Data sharing is allowed only when the value is **true**.| Yes|
    | readPermission | Permission required for accessing data. If this parameter is not set, the read permission is not verified by default.| No|
    | writePermission | Permission required for modifying data. If this parameter is not set, write permission verification is not performed by default.| No|
-   | metadata   | Configuration for silent access, including the **name** and **resource** fields.<br>The **name** field identifies the configuration, which has a fixed value of **ohos.extension.dataShare**.<br>The **resource** field has a fixed value of **$profile:data_share_config**, which indicates that the profile name is **data_share_config.json**. | **metadata** is mandatory when the ability launch type is **singleton**. For details about the ability launch type, see **launchType** in the [Internal Structure of the abilities Attribute](../quick-start/module-structure.md#internal-structure-of-the-abilities-attribute).|
+   | metadata   | Configuration for silent access, including the **name** and **resource** fields.<br>The **name** field identifies the configuration, which has a fixed value of **ohos.extension.dataShare**.<br>The **resource** field has a fixed value of **$profile:data_share_config**, which indicates that the profile name is **data_share_config.json**.| **metadata** is mandatory when the ability launch type is **singleton**. For details about the ability launch type, see **launchType** in the [Internal Structure of the abilities Attribute](../quick-start/module-structure.md#internal-structure-of-the-abilities-attribute).|
 
    **module.json5 example**
-
+   
    ```json
    "extensionAbilities": [
      {
-       "srcEntry": "./ets/DataShareExtAbility/DataShareExtAbility.ts",
+       "srcEntry": "./ets/DataShareExtAbility/DataShareExtAbility.ets",
        "name": "DataShareExtAbility",
        "icon": "$media:icon",
        "description": "$string:description_datashareextability",
@@ -153,39 +153,43 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
      }
    ]
    ```
-
+   
    **Table 2** Fields in the data_share_config.json file
 
-   | Field         | Description                                    | Mandatory  |
-   | ------------- | ---------------------------------------- | ---- |
-   | tableConfig   | Label configuration.                                   | Yes   |
-   | uri           | Range for which the configuration takes effect. The URI supports the following formats in descending order by priority:<br>- *****: indicates all databases and tables.<br>- **datashare:///{bundleName}/{moduleName}/{storeName}**: specifies a database.<br>- **datashare:///{bundleName}/{moduleName}/{storeName}/{tableName}**: specifies a table.<br>If URIs of different formats are configured, only the URI with higher priority takes effect. | Yes   |
-   | crossUserMode | Whether data is shared by multiple users.<br>The value **1** means to share data between multiple users, and the value **2** means the opposite. | Yes   |
-
+   | Field           | Description                                                    | Mandatory|
+   | ------------------- | ------------------------------------------------------------ | ---- |
+   | tableConfig         | Label configuration.                                                  | Yes  |
+   | uri                 | Range for which the configuration takes effect. The URI supports the following formats in descending order by priority:<br>- *: indicates all databases and tables.<br>- **datashare:///{bundleName}/{moduleName}/{storeName}**: specifies a database.<br>- **datashare:///{bundleName}/{moduleName}/{storeName}/{tableName}**: specifies a table.<br>If URIs of different formats are configured, only the URI with higher priority takes effect. | Yes  |
+   | crossUserMode       | Whether data is shared by multiple users.<br>The value **1** means to share data between multiple users, and the value **2** means the opposite.| Yes  |
+   | isSilentProxyEnable | Whether silent access is disabled for the ExtensionAbility.<br>The value **false** means to disable silent access; the value **true** means the opposite. The default value is **true**.<br>If the application has multiple ExtensionAbilities and this field is set to **false** for one of them, silent access is disabled for the application.<br>If the data provider has called **enableSilentProxy** or **disableSilentProxy**, silent access is enabled or disabled based on the API settings. Otherwise, the setting here takes effect. | No  |
+   
    **data_share_config.json Example**
 
    ```json
-   "tableConfig": [
-    {
-      "uri": "*",
-      "crossUserMode": 1
-    },
-    {
-      "uri": "datashare:///com.acts.datasharetest/entry/DB00",
-      "crossUserMode": 1
-    },
-    {
-      "uri": "datashare:///com.acts.datasharetest/entry/DB00/TBL00",
-      "crossUserMode": 2
-    }
-   ]
+   {
+       "tableConfig":[
+           {
+               "uri":"*",
+               "crossUserMode":1
+           },
+           {
+               "uri":"datashare:///com.acts.datasharetest/entry/DB00",
+               "crossUserMode":1
+           },
+           {
+               "uri":"datashare:///com.acts.datasharetest/entry/DB00/TBL00",
+               "crossUserMode":2
+           }
+       ],
+       "isSilentProxyEnable":true
+   }
    ```
 
 
-### Data Consumer Application
+### Data Consumer Application Development
 
 1. Import the dependencies.
-
+   
    ```ts
    import UIAbility from '@ohos.app.ability.UIAbility';
    import dataShare from '@ohos.data.dataShare';
@@ -195,14 +199,14 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
    ```
 
 2. Define the URI string for communicating with the data provider.
-
+   
    ```ts
    // Different from the URI defined in the module.json5 file, the URI passed in the parameter has an extra slash (/), because there is a DeviceID parameter between the second and the third slash (/).
    let dseUri = ('datashare:///com.samples.datasharetest.DataShare');
    ```
 
 3. Create a **DataShareHelper** instance.
-
+   
    ```ts
    let dsHelper: dataShare.DataShareHelper | undefined = undefined;
    let abilityContext: Context;
@@ -218,7 +222,7 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
    ```
 
 4. Use the APIs provided by **DataShareHelper** to access the services provided by the provider, for example, adding, deleting, modifying, and querying data.
-
+   
    ```ts
    // Construct a piece of data.
    let key1 = 'name';

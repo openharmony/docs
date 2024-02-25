@@ -10,10 +10,10 @@
    - 密钥别名的最大长度为64字节。
    - 对于不同业务间生成的密钥，HUKS将基于业务身份信息进行存储路径隔离，不会因为和其他业务密钥同名导致冲突。
 
-2. 初始化密钥属性集。通过[HuksParam](../../reference/apis/js-apis-huks.md#huksparam)封装密钥属性，搭配Array组成密钥属性集，并赋值给[HuksOptions](../../reference/apis/js-apis-huks.md#huksoptions)中的properties字段。
-   密钥属性集中必须包含[HuksKeyAlg](../../reference/apis/js-apis-huks.md#hukskeyalg)，[HuksKeySize](../../reference/apis/js-apis-huks.md#hukskeysize)，[HuksKeyPurpose](../../reference/apis/js-apis-huks.md#hukskeypurpose)属性，即必传TAG，HUKS_TAG_ALGORITHM、HUKS_TAG_PURPOSE、HUKS_TAG_KEY_SIZE。
+2. 初始化密钥属性集。通过[HuksParam](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksparam)封装密钥属性，搭配Array组成密钥属性集，并赋值给[HuksOptions](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksoptions)中的properties字段。
+   密钥属性集中必须包含[HuksKeyAlg](../../reference/apis-universal-keystore-kit/js-apis-huks.md#hukskeyalg)，[HuksKeySize](../../reference/apis-universal-keystore-kit/js-apis-huks.md#hukskeysize)，[HuksKeyPurpose](../../reference/apis-universal-keystore-kit/js-apis-huks.md#hukskeypurpose)属性，即必传TAG，HUKS_TAG_ALGORITHM、HUKS_TAG_PURPOSE、HUKS_TAG_KEY_SIZE。
 
-3. 调用[huks.generateKeyItem](../../reference/apis/js-apis-huks.md#huksgeneratekeyitem9)，传入密钥别名和密钥属性集，生成密钥。
+3. 调用[huks.generateKeyItem](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksgeneratekeyitem9)，传入密钥别名和密钥属性集，生成密钥。
 
 > **说明：**
 > 如果业务再次使用相同别名调用HUKS生成密钥，HUKS将生成新密钥并直接覆盖历史的密钥文件。

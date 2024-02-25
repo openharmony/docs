@@ -1,9 +1,9 @@
-# 层叠布局（Stack）
+# 层叠布局 (Stack)
 
 
 ## 概述
 
-层叠布局（StackLayout）用于在屏幕上预留一块区域来显示组件中的元素，提供元素可以重叠的布局。层叠布局通过[Stack](../reference/arkui-ts/ts-container-stack.md)容器组件实现位置的固定定位与层叠，容器中的子元素依次入栈，后一个子元素覆盖前一个子元素，子元素可以叠加，也可以设置位置。
+层叠布局（StackLayout）用于在屏幕上预留一块区域来显示组件中的元素，提供元素可以重叠的布局。层叠布局通过[Stack](../reference/apis-arkui/arkui-ts/ts-container-stack.md)容器组件实现位置的固定定位与层叠，容器中的子元素依次入栈，后一个子元素覆盖前一个子元素，子元素可以叠加，也可以设置位置。
 
 层叠布局具有较强的页面层叠、位置定位能力，其使用场景有广告、卡片层叠效果等。
 
@@ -38,7 +38,7 @@ Column(){
 
 ## 对齐方式
 
-Stack组件通过[alignContent参数](../reference/arkui-ts/ts-appendix-enums.md#alignment)实现位置的相对移动。如图2所示，支持九种对齐方式。
+Stack组件通过[alignContent参数](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#alignment)实现位置的相对移动。如图2所示，支持九种对齐方式。
 
   **图2** Stack容器内元素的对齐方式  
 
@@ -61,7 +61,7 @@ struct StackExample {
 
 ## Z序控制
 
-Stack容器中兄弟组件显示层级关系可以通过[Z序控制](../reference/arkui-ts/ts-universal-attributes-z-order.md)的zIndex属性改变。zIndex值越大，显示层级越高，即zIndex值大的组件会覆盖在zIndex值小的组件上方。
+Stack容器中兄弟组件显示层级关系可以通过[Z序控制](../reference/apis-arkui/arkui-ts/ts-universal-attributes-z-order.md)的zIndex属性改变。zIndex值越大，显示层级越高，即zIndex值大的组件会覆盖在zIndex值小的组件上方。
 
   在层叠布局中，如果后面子元素尺寸大于前面子元素尺寸，则前面子元素完全隐藏。
 

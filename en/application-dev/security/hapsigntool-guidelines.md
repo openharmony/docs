@@ -24,7 +24,7 @@
 
 ### When to Use
 
-The OpenHarmony system has a built-in KeyStore (KS) file named **OpenHarmony.p12**, which contains the root CA certificate, intermediate CA certificate, and end-entity certificate information. The hapsigner tool signs the OpenHarmony applications based on this KS file.
+The OpenHarmony system has a built-in KeyStore (KS) file named **OpenHarmony.p12**. This file contains the root CA certificate, intermediate CA certificate, and end-entity certificate information. The hapsigner tool signs the OpenHarmony applications based on this KS file.
 
 The usage of hapsigner varies depending on whether an application signing certificate is available. 
 
@@ -184,8 +184,8 @@ The usage of hapsigner varies depending on whether an application signing certif
 
      ```
      verify-profile: Verify the profile signature.
-         ├── -inFile       # Signed profile in p7b format. This parameter is mandatory.
-         ├── -outFile      # Verification result file (including the verification result and profile content), in json format. It is optional. The file is output to the console if this parameter is not specified.
+         ├── -inFile        # Signed profile in p7b format. This parameter is mandatory.
+         ├── -outFile       # Verification result file (including the verification result and profile content), in json format. It is optional. The file is output to the console if this parameter is not specified.
      ```
 
 11. Sign a HAP and a debugging tool.
@@ -204,13 +204,13 @@ The usage of hapsigner varies depending on whether an application signing certif
           ├── -keystoreFile  # KS file, in JKS or P12 format. It is mandatory if the signing mode is localSign.
           ├── -keystorePwd   # KS password. It is optional.
           ├── -outFile       # Signed HAP file to generate. It is mandatory.
-          ├── -signcode      # Whether to enable code signing. The value 1 means to enable code signing; the value 0 means the opposite. The default value is 1. This parameter is optional.
+          ├── -signCode      # Whether to enable code signing. The value 1 means to enable code signing; the value 0 means the opposite. The default value is 1. This parameter is optional.
       ```
 
 12. Verify the signature of a HAP and debugging tool.
 
       ```
-      verify-app: verify the signature of a HAP and debugging tool.
+      verify-app: Verify the signature of a HAP and debugging tool.
           ├── -inFile          # Signed application file, in HAP or bin format. It is mandatory.
           ├── -outCertchain    # Signed certificate chain file. It is mandatory.
           ├── -outProfile      # Profile of the application. It is mandatory.
@@ -229,7 +229,7 @@ The process of signing a HAP is as follows:
 > **NOTE**
 >
 > - For security purposes, use ECC to generate the key pair in step 1. Avoid using RSA.
-> - You are advised to place the HAP to be signed, profile, **OpenHarmony.p12**, root CA certificate, intermediate CA certificate, and hapsigner in the same directory for easy operation. The following files exist in [**developtools_hapsigner/autosign/result**](https://gitee.com/openharmony/developtools_hapsigner/tree/master/autosign/result):<br>- **OpenHarmony.p12** (OpenHarmony keystore file)<br>- **rootCA.cer** (root CA certificate)<br>- **subCA.cer** (intermediate CA certificate)<br>- **OpenHarmonyProfileRelease.pem** (profile signature certificate)
+> - You are advised to place the HAP to be signed, profile, **OpenHarmony.p12**, root CA certificate, intermediate CA certificate, and hapsigner in the same directory for easy operation. The following files exist in [**developtools_hapsigner/autosign/result**](https://gitee.com/openharmony/developtools_hapsigner/tree/master/autosign/result):<br>- **OpenHarmony.p12** (OpenHarmony keystore file)<br>- **rootCA.cer** (root CA certificate)<br>- **subCA.cer** (intermediate CA certificate)<br>- **OpenHarmonyProfileRelease.pem** (profile signing certificate)
 
 1. **Generate a key pair for the application signing certificate.**
 
@@ -363,7 +363,7 @@ The process of signing a HAP is as follows:
    
      Check and correct the value of **outFile**, and ensure the hyphen (-) in **-outFile** is an English character.
 
-2. Failed to sign the profile.
+2. Failed to sign a profile.
 
    - **Symptom**
 
@@ -404,3 +404,17 @@ The process of signing a HAP is as follows:
    - **Solution**
 
      Use ECC to generate a key pair for the application or profile signing certificate. Use SHA256withECDSA or SHA384withECDSA as the HAP signing algorithm.
+
+4. A HAP fails to be signed, and a message is displayed indicating that the CN field of the certificate is empty.
+
+   - **Symptom**
+
+     The message "error: Common name of certificate is empty!" is displayed.
+
+   - **Possible Causes**
+
+     The HAP signing certificate used does not contain the CN field.
+
+   - **Solution**
+
+     The CN field of the HAP signing certificate cannot be empty. Generate a certificate in correct format.

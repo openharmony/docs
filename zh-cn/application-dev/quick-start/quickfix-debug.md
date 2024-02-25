@@ -28,7 +28,7 @@
 
 ## 生成快速修复文件
 ### 快速修复ArkTS文件的代码
-* 在DevEco Studio中修改ArkTS文件后，编译HAP，可以在工程目录下找到对应的abc文件，如`build\default\cache\default\LegacyCompileETS\jsbundle\temporary\pages\index.abc`。
+* 在DevEco Studio中修改ArkTS文件后，编译HAP，可以在工程目录下找到对应的abc文件，如`build\default\intermediates\loader_out\default\ets\modules.abc`。
 
 ### 快速修复C++中的代码
 

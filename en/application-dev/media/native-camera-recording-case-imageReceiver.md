@@ -1,4 +1,4 @@
-# Sample Implementation of Secondary Processing of Recording Streams (C/C++)
+# Sample of Secondary Processing of Recording Streams (C/C++)
 
 ## Development Process
 

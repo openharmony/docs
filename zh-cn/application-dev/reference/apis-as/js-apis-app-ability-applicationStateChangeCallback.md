@@ -1,6 +1,6 @@
 # @ohos.app.ability.ApplicationStateChangeCallback (ApplicationStateChangeCallback)
 
-ApplicationStateChangeCallback模块提供应用上下文ApplicationContext对当前应用前后台变化监听回调的能力，包括onApplicationForeground、onApplicationBackground方法。
+ApplicationStateChangeCallback模块提供应用上下文ApplicationContext对当前应用前后台变化监听回调的能力。
 
 > **说明：**
 >
@@ -15,7 +15,7 @@ import ApplicationStateChangeCallback from '@ohos.app.ability.ApplicationStateCh
 
 ## ApplicationStateChangeCallback.onApplicationForeground
 
-onApplicationForeground(): void;
+onApplicationForeground(): void
 
 注册当前应用前后台变化的监听后，在当前应用从后台切换到前台时触发回调。
 
@@ -23,42 +23,11 @@ onApplicationForeground(): void;
 
 **示例：**
 
-```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import ApplicationStateChangeCallback from '@ohos.app.ability.ApplicationStateChangeCallback';
-
-let applicationStateChangeCallback: ApplicationStateChangeCallback = {
-    onApplicationForeground() {
-        console.info('applicationStateChangeCallback onApplicationForeground');
-    },
-    onApplicationBackground() {
-        console.info('applicationStateChangeCallback onApplicationBackground');
-    }
-}
-
-export default class MyAbility extends UIAbility {
-    onCreate() {
-        console.log('MyAbility onCreate');
-        // 1.获取applicationContext
-        let applicationContext = this.context.getApplicationContext();
-        // 2.通过applicationContext注册应用前后台状态监听
-        if (applicationContext != undefined) {
-            applicationContext.on('applicationStateChange', applicationStateChangeCallback);
-        }
-    }
-    onDestroy() {
-        let applicationContext = this.context.getApplicationContext();
-        // 1.通过applicationContext解除注册应用前后台状态监听
-        if (applicationContext != undefined) {
-            applicationContext.off('applicationStateChange', applicationStateChangeCallback);
-        }
-    }
-}
-```
+参见[onApplicationBackground](#applicationstatechangecallbackonapplicationbackground)。
 
 ## ApplicationStateChangeCallback.onApplicationBackground
 
-onApplicationBackground(): void;
+onApplicationBackground(): void
 
 注册当前应用前后台变化的监听后，在当前应用从前台切换到后台时触发回调。
 

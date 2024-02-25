@@ -91,7 +91,7 @@
 
 - 基础区域1-8之间的布局在不同设备上有较大差异，可以使用响应式布局中的[栅格布局](responsive-layout.md#栅格布局)能力实现组件间的布局效果。
 
-- 展开和隐藏侧边栏的功能可以通过[侧边栏组件](../../reference/arkui-ts/ts-container-sidebarcontainer.md)来实现。侧边栏是大设备上独有的，借助响应式布局中的[媒体查询](responsive-layout.md#媒体查询)能力，控制仅在大设备上展示侧边栏即可。
+- 展开和隐藏侧边栏的功能可以通过[侧边栏组件](../../reference/apis-arkui/arkui-ts/ts-container-sidebarcontainer.md)来实现。侧边栏是大设备上独有的，借助响应式布局中的[媒体查询](responsive-layout.md#媒体查询)能力，控制仅在大设备上展示侧边栏即可。
 
 
 ### 主页基础区域

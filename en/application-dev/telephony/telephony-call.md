@@ -46,7 +46,7 @@ The **observer** module provides the functions of subscribing to and unsubscribi
 ### Making a Call by Using the dialCall API (Only for System Applications)
 
 1. Declare the required permission: **ohos.permission.PLACE_CALL**.
-This permission is of the **system\_basic** level. Before applying for the permission, ensure that the [basic principles for permission management](../security/accesstoken-overview.md#basic-principles-for-permission-management) are met. Then, declare the corresponding permission by following instructions in [Declaring Permissions in the Configuration File](../security/accesstoken-guidelines.md#declaring-permissions-in-the-configuration-file).
+This permission is of the **system\_basic** level. Before applying for the permission, ensure that the [basic principles for permission management](../security/AccessToken/app-permission-mgmt-overview.md#basic-principles-for-using-permissions) are met. Then, declare the requried permission by referring to [Requesting Application Permissions](../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
 2. Import the **call** and **observer** modules.
 3. Invoke the **hasVoiceCapability** API to check whether the device supports the voice call function.
 4. Invoke the **dialCall** API to make a call.
@@ -114,3 +114,4 @@ This permission is of the **system\_basic** level. Before applying for the permi
         });
     }
    ```
+

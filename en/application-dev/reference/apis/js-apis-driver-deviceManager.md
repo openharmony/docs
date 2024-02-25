@@ -114,6 +114,56 @@ try {
 }
 ```
 
+## deviceManager.bindDeviceDriver<sup>11+</sup>
+bindDeviceDriver(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;,
+  callback: AsyncCallback&lt;RemoteDeviceDriver&gt;): void;
+
+Binds a peripheral device based on the device information returned by **queryDevices()**. This API uses an asynchronous callback to return the result.
+
+You need to use [deviceManager.queryDevices](#devicemanagerquerydevices) to obtain the peripheral device information first.
+
+**Required permissions**: ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER
+
+**System capability**: SystemCapability.Driver.ExternalDevice
+
+**Parameters**
+
+| Name      | Type                       | Mandatory| Description                        |
+| ------------ | --------------------------- | ---- | ---------------------------- |
+| deviceId     | number                      | Yes  | ID of the device to bind. It can be obtained by **queryDevices()**.|
+| onDisconnect | AsyncCallback&lt;number&gt; | Yes  | Callback to be invoked when the bound peripheral device is disconnected.          |
+| callback     | AsyncCallback&lt;RemoteDeviceDriver&gt;| Yes| Binding result, including the device ID and remote object.|
+
+**Error codes**
+
+| ID| Error Message                                |
+| -------- | ---------------------------------------- |
+| 401      | The parameter check failed.              |
+| 22900001 | ExternalDeviceManager service exception. |
+
+**Example**
+
+```ts
+import deviceManager from "@ohos.driver.deviceManager";
+import { BusinessError } from '@ohos.base';
+import type rpc from '@ohos.rpc';
+
+try {
+  // For example, deviceId is 12345678. You can use queryDevices() to obtain the deviceId.
+  deviceManager.bindDeviceDriver(12345678, (error : BusinessError, data : number) => {
+    console.error(`Device is disconnected`);
+  }, (error : BusinessError, data : deviceManager.RemoteDeviceDriver) => {
+    if (error) {
+      console.error(`bindDeviceDriver async fail. Code is ${error.code}, message is ${error.message}`);
+      return;
+    }
+    console.info(`bindDeviceDriver success`);
+  });
+} catch (error) {
+  console.error(`bindDeviceDriver fail. Code is ${error.code}, message is ${error.message}`);
+}
+```
+
 ## deviceManager.bindDevice
 
 bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;): Promise&lt;{deviceId: number,
@@ -165,6 +215,58 @@ try {
   });
 } catch (error) {
   console.error(`bindDevice fail. Code is ${error.code}, message is ${error.message}`);
+}
+```
+## deviceManager.bindDeviceDriver<sup>11+</sup>
+
+bindDeviceDriver(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;): Promise&lt;RemoteDeviceDriver&gt;;
+
+Binds a peripheral device based on the device information returned by **queryDevices()**. This API uses a promise to return the result.
+
+You need to use [deviceManager.queryDevices](#devicemanagerquerydevices) to obtain the peripheral device information first.
+
+**Required permissions**: ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER
+
+**System capability**: SystemCapability.Driver.ExternalDevice
+
+**Parameters**
+
+| Name      | Type                       | Mandatory| Description                        |
+| ------------ | --------------------------- | ---- | ---------------------------- |
+| deviceId     | number                      | Yes  | ID of the device to bind. It can be obtained by **queryDevices()**.|
+| onDisconnect | AsyncCallback&lt;number&gt; | Yes  | Callback to be invoked when the bound peripheral device is disconnected.          |
+
+**Return value**
+
+| Type                             | Description                                     |
+| --------------------------------- | -----------------------------------------|
+| Promise&lt;RemoteDeviceDriver&gt; | Promise used to return a **RemoteDeviceDriver** object.|
+
+**Error codes**
+
+| ID| Error Message                                |
+| -------- | ---------------------------------------- |
+| 401      | The parameter check failed.              |
+| 22900001 | ExternalDeviceManager service exception. |
+
+**Example**
+
+```ts
+import deviceManager from "@ohos.driver.deviceManager";
+import { BusinessError } from '@ohos.base';
+
+try {
+  // For example, deviceId is 12345678. You can use queryDevices() to obtain the deviceId.
+  deviceManager.bindDeviceDriver(12345678, (error : BusinessError, data : number) => {
+    console.error(`Device is disconnected`);
+  }).then((data: deviceManager.RemoteDeviceDriver) => {
+    console.info(`bindDeviceDriver success, Device_Id is ${data.deviceId}.
+    remote is ${data.remote != null ? data.remote.getDescriptor() : "null"}`);
+  }, (error: BusinessError) => {
+    console.error(`bindDeviceDriver async fail. Code is ${error.code}, message is ${error.message}`);
+  });
+} catch (error) {
+  console.error(`bindDeviceDriver fail. Code is ${error.code}, message is ${error.message}`);
 }
 ```
 
@@ -289,3 +391,14 @@ Enumerates the device bus types.
 | Name| Value | Description         |
 | ---- | --- | ------------- |
 | USB  | 1   | USB bus.|
+
+## RemoteDeviceDriver<sup>11+</sup>
+
+Represents information about a remote device driver.
+
+**System capability**: SystemCapability.Driver.ExternalDevice
+
+| Name     | Type  | Mandatory| Description               |
+| --------- | ------ | ---- | ------------------- |
+| deviceId<sup>11+</sup>  | number | Yes  | ID of the peripheral device. |
+| remote<sup>11+</sup> | [rpc.IRemoteObject](./js-apis-rpc.md#iremoteobject) | Yes  | Remote driver object.|

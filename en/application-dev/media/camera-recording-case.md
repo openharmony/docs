@@ -1,4 +1,4 @@
-# Sample Implementation of Camera Recording (ArkTS)
+# Camera Recording Sample (ArkTS)
 
 This topic provides sample code that covers the complete recording process to help you understand the complete API calling sequence.
 

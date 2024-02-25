@@ -21,7 +21,7 @@ hiTraceMeter为开发者提供系统性能打点接口。开发者通过在自�
 
 ## 接口说明
 
-性能打点跟踪接口由hiTraceMeter模块提供，详细API请参考[性能打点跟踪API参考](../reference/apis/js-apis-hitracemeter.md)。
+性能打点跟踪接口由hiTraceMeter模块提供，详细API请参考[性能打点跟踪API参考](../reference/apis-performance-analysis-kit/js-apis-hitracemeter.md)。
 
 **性能打点跟踪接口功能介绍：**
 

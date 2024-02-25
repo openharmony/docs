@@ -4,7 +4,7 @@
 
 > **说明：**
 >
-> 本文主要介绍动态卡片的事件开发。对于静态卡片，请参见[FormLink](../reference/arkui-ts/ts-container-formlink.md)。
+> 本文主要介绍动态卡片的事件开发。对于静态卡片，请参见[FormLink](../reference/apis-arkui/arkui-ts/ts-container-formlink.md)。
 
 - 在卡片页面通过注册Button的onClick点击事件回调，并在回调中调用**postCardAction**接口触发message事件拉起FormExtensionAbility。卡片页面中使用[LocalStorageProp](../quick-start/arkts-localstorage.md#localstorageprop)装饰需要刷新的卡片数据。
   
@@ -62,7 +62,7 @@
   }
   ```
   
-- 在FormExtensionAbility的onFormEvent生命周期中调用[updateForm](../reference/apis/js-apis-app-form-formProvider.md#updateform)接口刷新卡片。
+- 在FormExtensionAbility的onFormEvent生命周期中调用[updateForm](../reference/apis-form-kit/js-apis-app-form-formProvider.md#updateform)接口刷新卡片。
   
   ```ts
   import type Base from '@ohos.base';

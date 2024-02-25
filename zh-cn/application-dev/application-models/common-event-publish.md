@@ -28,7 +28,6 @@
    ```ts
    import Base from '@ohos.base';
    import commonEventManager from '@ohos.commonEventManager';
-   import Logger from '../utils/Logger';
 
    const TAG: string = 'ProcessModel';
    ```
@@ -57,7 +56,6 @@
    ```ts
    import Base from '@ohos.base';
    import commonEventManager from '@ohos.commonEventManager';
-   import Logger from '../utils/Logger';
 
    const TAG: string = 'ProcessModel';
    ```

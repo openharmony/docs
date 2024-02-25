@@ -1390,7 +1390,7 @@ FA模型
 | ------- | --- | --- | --- | --- | --- | ------------ | ------ |
 | 是       | 否   | 是   | 是   | 是   | 否   | 否            | 否      |
 
-## SystemCapability.Applications.settings.Core
+## SystemCapability.Applications.Settings.Core
 
 设置API
 

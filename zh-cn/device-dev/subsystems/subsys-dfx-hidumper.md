@@ -50,8 +50,8 @@ HiDumper是OpenHarmony为开发、测试人员、IDE工具提供的系统信息�
 | -s&nbsp;[SA0&nbsp;SA1] | 导出SA0、SA1等元能力id对应的元能力信息。 | 
 | -s&nbsp;[SA]&nbsp;-a&nbsp;['-h'] | 以-h为参数导出SA指定的系统元能力信息。 | 
 | -e | 导出Faultlog模块生成的崩溃日志。 | 
-| --net | 导出网络信息。 | 
-| --storage | 导出存储信息。 | 
+| --net&nbsp;[pid] | 导出网络信息。如果指定了进程的pid，则只获取该进程的网络流量使用信息。 | 
+| --storage&nbsp;[pid] | 导出存储信息。如果指定了进程的pid，则只获取该进程的io信息。| 
 | -p | 导出进程列表及全部进程信息。 | 
 | -p&nbsp;[pid] | 导出指定进程号的进程全部信息。 | 
 | --cpuusage&nbsp;[pid] | 导出CPU使用信息。如果指定pid则导出该进程的CPU使用信息。 | 
@@ -121,16 +121,18 @@ HiDumper可以为开发者导出系统当前基本信息，通过这些基本信
    hidumper -e
    ```
 
-10. 运行 hidumper --net 命令获取网络信息。
+10. 运行 hidumper --net [pid] 命令获取网络信息；如果指定了进程的pid，则只获取该进程的网络流量使用信息。
      
     ```
     hidumper --net
+    hidumper --net 1024
     ```
 
-11. 运行 hidumper --storage 命令获取存储相关信息。
+11. 运行 hidumper --storage [pid] 命令获取存储相关信息；如果指定了进程的pid，则只获取该进程的io信息。
      
     ```
     hidumper --storage
+    hidumper --storage 1024
     ```
 
 12. 运行 hidumper -p 命令获取进程信息，包括进程、线程的列表和信息。

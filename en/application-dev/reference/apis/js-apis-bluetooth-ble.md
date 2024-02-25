@@ -111,7 +111,7 @@ try {
 
 startBLEScan(filters: Array&lt;ScanFilter&gt;, options?: ScanOptions): void
 
-Starts a BLE scan.
+Starts BLE scanning.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
@@ -164,7 +164,7 @@ try {
 
 stopBLEScan(): void
 
-Stops the BLE scan.
+Stops BLE scanning.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
@@ -314,7 +314,7 @@ Starts BLE advertising.
 
 | Name              | Type                                   | Mandatory | Description                            |
 | ------------------- | --------------------------------------- | ----- | ------------------------------- |
-| advertisingParams   | [AdvertisingParams](#advertisingparams) | Yes   | Parameters for starting BLE advertising.          |
+| advertisingParams   | [AdvertisingParams](#advertisingparams11) | Yes   | Parameters for starting BLE advertising.          |
 | callback            | AsyncCallback&lt;number&gt;             | Yes   | Callback invoked to return the advertisement ID.|
 
 **Error codes**
@@ -406,7 +406,7 @@ Starts BLE advertising.
 
 | Name              | Type                                  | Mandatory | Description                   |
 | ------------------- | -------------------------------------- | ----- | ----------------------- |
-| advertisingParams   | [AdvertisingParams](#advertisingparams) | Yes   | Parameters for starting BLE advertising. |
+| advertisingParams   | [AdvertisingParams](#advertisingparams11) | Yes   | Parameters for starting BLE advertising. |
 
 **Return value**
 
@@ -499,7 +499,7 @@ Temporarily enables BLE advertising.
 
 | Name                   | Type                                                | Mandatory | Description                            |
 | ------------------------- | --------------------------------------------------- | ----- | ------------------------------- |
-| advertisingEnableParams   | [AdvertisingEnableParams](#advertisingenableparams) | Yes   | Parameters for temporarily enabling BLE advertising.       |
+| advertisingEnableParams   | [AdvertisingEnableParams](#advertisingenableparams11) | Yes   | Parameters for temporarily enabling BLE advertising.       |
 | callback                  | AsyncCallback&lt;void&gt;                           | Yes   | Callback invoked to return the result.                       |
 
 **Error codes**
@@ -603,7 +603,7 @@ Temporarily enables BLE advertising.
 
 | Name                   | Type                                                | Mandatory | Description                            |
 | ------------------------- | --------------------------------------------------- | ----- | ------------------------------- |
-| advertisingEnableParams   | [AdvertisingEnableParams](#advertisingenableparams) | Yes   | Parameters for temporarily enabling BLE advertising.       |
+| advertisingEnableParams   | [AdvertisingEnableParams](#advertisingenableparams11) | Yes   | Parameters for temporarily enabling BLE advertising.       |
 
 **Return value**
 
@@ -701,7 +701,7 @@ try {
 
 disableAdvertising(advertisingDisableParams: AdvertisingDisableParams, callback: AsyncCallback&lt;void&gt;): void
 
-Temporarily disables BLE advertising.
+Disables BLE advertising temporarily.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
@@ -711,7 +711,7 @@ Temporarily disables BLE advertising.
 
 | Name                   | Type                                                  | Mandatory | Description                            |
 | ------------------------- | ----------------------------------------------------- | ----- | ------------------------------- |
-| advertisingDisableParams  | [AdvertisingDisableParams](#advertisingdisableparams) | Yes   | Parameters for temporarily disabling BLE advertising.       |
+| advertisingDisableParams  | [AdvertisingDisableParams](#advertisingdisableparams11) | Yes   | Parameters for temporarily disabling BLE advertising.       |
 | callback                  | AsyncCallback&lt;void&gt;                             | Yes   | Callback invoked to return the result.                       |
 
 **Error codes**
@@ -802,7 +802,7 @@ try {
 
 disableAdvertising(advertisingDisableParams: AdvertisingDisableParams): Promise&lt;void&gt;
 
-Temporarily disables BLE advertising.
+Disables BLE advertising temporarily.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
@@ -812,7 +812,7 @@ Temporarily disables BLE advertising.
 
 | Name                   | Type                                                  | Mandatory | Description                            |
 | ------------------------- | ----------------------------------------------------- | ----- | ------------------------------- |
-| advertisingDisableParams  | [AdvertisingDisableParams](#advertisingdisableparams) | Yes   | Parameters for temporarily disabling BLE advertising.       |
+| advertisingDisableParams  | [AdvertisingDisableParams](#advertisingdisableparams11) | Yes   | Parameters for temporarily disabling BLE advertising.       |
 
 **Return value**
 
@@ -1117,7 +1117,7 @@ Subscribes to BLE advertising status.
 | Name     | Type                                                                   | Mandatory  | Description                                                     |
 | -------- | ------------------------------------------------------------------------- | ----- | ---------------------------------------------------------- |
 | type     | string                                                                    | Yes   | Event type. The value is **advertisingStateChange**, which indicates the advertising status change.       |
-| callback | Callback&lt;[AdvertisingStateChangeInfo](#advertisingstatechangeinfo)&gt; | Yes   | Callback invoked to return the advertising status. You need to implement this callback.|
+| callback | Callback&lt;[AdvertisingStateChangeInfo](#advertisingstatechangeinfo11)&gt; | Yes   | Callback invoked to return the advertising status. You need to implement this callback.|
 
 **Error codes**
 
@@ -1160,7 +1160,7 @@ Unsubscribes from BLE advertising status.
 | Name     | Type                                                                   | Mandatory  | Description                                                     |
 | -------- | ------------------------------------------------------------------------- | ----- | ---------------------------------------------------------- |
 | type     | string                                                                    | Yes   | Event type. The value is **advertisingStateChange**, which indicates the advertising status change.       |
-| callback | Callback&lt;[AdvertisingStateChangeInfo](#advertisingstatechangeinfo)&gt; | No   | Callback for the advertising status change. If this parameter is not set, this API unsubscribes from all callbacks corresponding to **type**.|
+| callback | Callback&lt;[AdvertisingStateChangeInfo](#advertisingstatechangeinfo11)&gt; | No   | Callback for the advertising status change. If this parameter is not set, this API unsubscribes from all callbacks corresponding to **type**.|
 
 **Error codes**
 
@@ -1883,7 +1883,7 @@ Subscribes to BLE connection state changes.
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | Yes   | Event type. The value is **connectionStateChange**, which indicates BLE connection state changes. |
+| type     | string                                   | Yes   | Event type. The value is **connectionStateChange**, which indicates BLE connection state changes.|
 | callback | Callback&lt;[BLEConnectionChangeState](#bleconnectionchangestate)&gt; | Yes   | Callback invoked to return the BLE connection state.                         |
 
 **Example**
@@ -1918,7 +1918,7 @@ Unsubscribes from BLE connection state changes.
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | Yes   | Event type. The value is **connectionStateChange**, which indicates BLE connection state changes. |
+| type     | string                                   | Yes   | Event type. The value is **connectionStateChange**, which indicates BLE connection state changes.|
 | callback | Callback&lt;[BLEConnectionChangeState](#bleconnectionchangestate)&gt; | No   | Callback for the BLE connection state change. If this parameter is not set, this API unsubscribes from all callbacks corresponding to **type**. |
 
 **Example**
@@ -1948,7 +1948,7 @@ Subscribes to MTU status changes for the server.
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | Yes   | Event type. The value is **BLEMtuChange**, which indicates MTU status changes. If this parameter is not set correctly, the callback cannot be registered. |
+| type     | string                                   | Yes   | Event type. The value is **BLEMtuChange**, which indicates MTU status changes. If this parameter is not set correctly, the callback cannot be registered.|
 | callback | Callback&lt;number&gt; | Yes   | Callback invoked to return the number of MTU bytes.|
 
 **Example**
@@ -2736,7 +2736,9 @@ let descriptor: ble.BLEDescriptor = {
 };
 try {
     let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
-    device.writeDescriptorValue(descriptor);
+    device.writeDescriptorValue(descriptor).then(() => {
+        console.info('writeDescriptorValue promise success');
+    });
 } catch (err) {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
@@ -2867,7 +2869,7 @@ try {
 
 setCharacteristicChangeNotification(characteristic: BLECharacteristic, enable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-Sets the function of notifying the GATT client when the characteristic value of the remote BLE device changes.
+Sets notification for the change of a characteristic. The GATT client that subscribes to the change will be notified when the characteristic changes.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
@@ -2878,7 +2880,7 @@ Sets the function of notifying the GATT client when the characteristic value of 
 | Name           | Type                                     | Mandatory  | Description                           |
 | -------------- | --------------------------------------- | ---- | ----------------------------- |
 | characteristic | [BLECharacteristic](#blecharacteristic) | Yes   | BLE characteristic to listen for.                     |
-| enable         | boolean                                 | Yes   | Whether to enable the notify function. The value **true** means to enable the notify function, and the value **false** means the opposite.|
+| enable         | boolean                                 | Yes   | Whether to notify the client of the characteristic change. The value **true** means to notify the client, and the value **false** means the opposite. |
 | callback   | AsyncCallback&lt;void&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -2920,7 +2922,7 @@ try {
 
 setCharacteristicChangeNotification(characteristic: BLECharacteristic, enable: boolean): Promise&lt;void&gt;
 
-Sets the function of notifying the GATT client when the characteristic value of the remote BLE device changes.
+Sets notification for the change of a characteristic. The GATT client that subscribes to the change will be notified when the characteristic changes.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
@@ -2978,7 +2980,7 @@ try {
 
 setCharacteristicChangeIndication(characteristic: BLECharacteristic, enable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-Sets the function of notifying the GATT client when the characteristic value of the remote BLE device changes.
+Sets indication for the change of a characteristic. The GATT client will be indicated when the specified characteristic value changes.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
@@ -2989,7 +2991,7 @@ Sets the function of notifying the GATT client when the characteristic value of 
 | Name           | Type                                     | Mandatory  | Description                           |
 | -------------- | --------------------------------------- | ---- | ----------------------------- |
 | characteristic | [BLECharacteristic](#blecharacteristic) | Yes   | BLE characteristic to listen for.                     |
-| enable         | boolean                                 | Yes   | Whether to enable the notify function. The value **true** means to enable the notify function, and the value **false** means the opposite.|
+| enable         | boolean                                 | Yes   | Whether to indicate the client of the characteristic change. The value **true** means to indicate the client, and the value **false** means the opposite. |
 | callback   | AsyncCallback&lt;void&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -3031,7 +3033,7 @@ try {
 
 setCharacteristicChangeIndication(characteristic: BLECharacteristic, enable: boolean): Promise&lt;void&gt;
 
-Sets the function of notifying the GATT client when the characteristic value of the remote BLE device changes.
+Sets indication for the change of a characteristic. The GATT client will be indicated when the specified characteristic value changes.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
@@ -3042,7 +3044,7 @@ Sets the function of notifying the GATT client when the characteristic value of 
 | Name           | Type                                     | Mandatory  | Description                           |
 | -------------- | --------------------------------------- | ---- | ----------------------------- |
 | characteristic | [BLECharacteristic](#blecharacteristic) | Yes   | BLE characteristic to listen for.                     |
-| enable         | boolean                                 | Yes   | Whether to enable the notify function. The value **true** means to enable the notify function, and the value **false** means the opposite.|
+| enable         | boolean                                 | Yes   | Whether to indicate the client of the characteristic change. The value **true** means to indicate the client, and the value **false** means the opposite. |
 
 **Return value**
 

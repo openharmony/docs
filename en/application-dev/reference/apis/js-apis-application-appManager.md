@@ -184,7 +184,7 @@ getProcessRunningInfos(): Promise\<Array\<ProcessRunningInfo>>
 
 Obtains information about the running processes. This API uses a promise to return the result.
 
-> This API is deprecated since API version 9. You are advised to use [appManager.getRunningProcessInformation<sup>9+</sup>](js-apis-app-ability-appManager.md#appmanagergetrunningprocessinformation) instead.
+> This API is deprecated since API version 9. You are advised to use [appManager.getRunningProcessInformation](js-apis-app-ability-appManager.md#appmanagergetrunningprocessinformation) instead.
 
 **Required permissions**: ohos.permission.GET_RUNNING_INFO
 
@@ -215,7 +215,7 @@ getProcessRunningInfos(callback: AsyncCallback\<Array\<ProcessRunningInfo>>): vo
 
 Obtains information about the running processes. This API uses an asynchronous callback to return the result.
 
-> This API is deprecated since API version 9. You are advised to use [appManager.getRunningProcessInformation<sup>9+</sup>](js-apis-app-ability-appManager.md#appmanagergetrunningprocessinformation9) instead.
+> This API is deprecated since API version 9. You are advised to use [appManager.getRunningProcessInformation](js-apis-app-ability-appManager.md#appmanagergetrunningprocessinformation) instead.
 
 **Required permissions**: ohos.permission.GET_RUNNING_INFO
 

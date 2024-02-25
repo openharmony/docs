@@ -12,7 +12,7 @@ target_link_libraries(sample PUBLIC libnative_media_codecbase.so)
 
 ## 开发步骤
 
-详细的API说明请参考[API文档](../reference/native-apis/_a_v_capability.md)。
+详细的API说明请参考[API文档](../reference/apis-avcodec-kit/_a_v_capability.md)。
 
 1. 添加头文件。
 

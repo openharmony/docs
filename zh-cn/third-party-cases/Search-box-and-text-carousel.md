@@ -184,6 +184,6 @@ struct SearchExample {
 
 
 ## 参考
-[Search](../application-dev/reference/arkui-ts/ts-basic-components-search.md)
+[Search](../application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-search.md)
 
-[Swiper](../application-dev/reference/arkui-ts/ts-container-swiper.md)
+[Swiper](../application-dev/reference/apis-arkui/arkui-ts/ts-container-swiper.md)

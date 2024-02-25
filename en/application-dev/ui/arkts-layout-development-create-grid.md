@@ -70,21 +70,21 @@ Grid() {
 
 ### Setting the Number of Rows and Columns Occupied by a Child Component
 
-In real-world applications, an uneven grid layout, where grid cells span a varying number of cells and rows, is as common as its even counterpart. To implement an uneven grid layout, as shown below, you can set **rowStart**, **rowEnd**, **columnStart**, and **columnEnd** of **\<GridItem>**.
+In real-world applications, an uneven grid layout, where grid cells span a varying number of cells and rows, is as common as its even counterpart. To implement an uneven grid layout, as shown below, you can set **rowStart**, **rowEnd**, **columnStart**, and **columnEnd** of **\<GridItem>**. The valid value range of **rowStart** and **rowEnd** is 0 to the total number of rows minus 1. The valid value range of **columnStart** and **columnEnd** is 0 to the total number of columns minus 1. For details, see [GridItem](../reference/arkui-ts/ts-container-griditem.md).
 
 **Figure 4** Uneven grid layout
 
 ![en-us_image_0000001511900480](figures/en-us_image_0000001511900480.png)
 
-A common application with an uneven grid layout is the calculator. As shown in the following figure, the **0** key spans the first and second columns, and the **=** key spans the fifth and sixth rows. For a grid layout created using the **\<Grid>** component, the row and column numbers start from 1 and increase continuously.
+A common application with an uneven grid layout is the calculator. As shown in the following figure, the **0** key spans the first and second columns, and the **=** key spans the fifth and sixth rows. For a grid layout created using the **\<Grid>** component, the row and column numbers start from 0 and increase incrementally.
 
 **Figure 5** Calculator 
 
 ![en-us_image_0000001511421292](figures/en-us_image_0000001511421292.png)
 
-For a single grid cell, the **rowStart** and** rowEnd** attributes indicate the start and end row numbers of the current element, and the **columnStart** and **columnEnd** attributes indicate the start and end column numbers of the current element.
+For a single grid cell, the **rowStart** and **rowEnd** attributes indicate the start and end row numbers of the current element, and the **columnStart** and **columnEnd** attributes indicate the start and end column numbers of the current element.
 
-Therefore, for the **0** key to span the first and second columns, just set **columnStart** and **columnEnd** of the corresponding **\<GridItem>** component to **1** and **2**.
+Therefore, for the **0** key to span the first and second columns, just set the **\<GridItem>** component of the key as follows: **columnStart** to **1**, **columnEnd** to **2**, **rowStart** and **rowEnd** to **5**.
 
 
 ```ts
@@ -92,11 +92,13 @@ GridItem() {
   Text(key)
     ...
 }
-.columnStart(1)
-.columnEnd(2)
+.columnStart(0)
+.columnEnd(1)
+.rowStart(5)
+.rowEnd(5)
 ```
 
-For the **=** key to span the fifth and sixth rows, set **rowStart** and **rowEnd** of the corresponding **\<GridItem>** component to **5** and **6**
+For the **=** key to span the fifth and sixth rows, just set the **\<GridItem>** component of the key as follows: **rowStart** to **4**, **rowEnd** to **5**, **columnStart** and **columnStart** to **4**.
 
 
 ```ts
@@ -104,8 +106,10 @@ GridItem() {
   Text(key)
     ...
 }
-.rowStart(5)
-.rowEnd(6)
+.rowStart(4)
+.rowEnd(5)
+.columnStart(4)
+.columnEnd(4)    
 ```
 
 
@@ -113,11 +117,11 @@ GridItem() {
 
 When neither the number nor proportion is set for rows and columns in a grid layout, you can use the **layoutDirection** attribute to set the main axis direction and thereby specify the arrangement mode of child components. In addition, you can use the **minCount** and **maxCount** attributes to restrict the number of grid cells along the main axis.
 
-**Figure 6** Main axis direction
+**Figure 6** Main axis direction 
 
 ![en-us_image_0000001562700469](figures/en-us_image_0000001562700469.png)
 
-When **layoutDirection** is set to **Row**, child components are arranged from left to right. When a row is full, a new row will be added. When **layoutDirection** is set to **Column**, child components are arranged from top to bottom. When a column is full, a new column will be added. In this example, the **maxCount** attribute is set to **3**, indicating that the maximum number of grid cells displayed along the main axis is 3.
+When **layoutDirection** is set to **Row**, child components are arranged from left to right. When a row is full, a new row is added. When **layoutDirection** is set to **Column**, child components are arranged from top to bottom. When a column is full, a new column is added. In this example, the **maxCount** attribute is set to **3**, indicating that the maximum number of grid cells displayed along the main axis is 3.
 
 
 ```ts
@@ -317,7 +321,7 @@ Grid() {
 .cachedCount(3)
 ```
 
-> **NOTE**
-> 
-> A greater **cachedCount** value may result in higher CPU and memory overhead of the UI. Adjust the value by taking into account both the comprehensive performance and user experience.
+>**NOTE**
+>
+>A greater **cachedCount** value may result in higher CPU and memory overhead of the UI. Adjust the value by taking into account both the comprehensive performance and user experience.
 

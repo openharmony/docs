@@ -15,7 +15,7 @@ import baseProfile from '@ohos.bluetooth.baseProfile';
 ```
 
 
-## ConnectionStrategy<a name="ConnectionStrategy"></a>
+## ConnectionStrategy
 
 Enumerates the profile connection strategies.
 
@@ -30,7 +30,7 @@ Enumerates the profile connection strategies.
 | CONNECTION_STRATEGY_FORBIDDEN  | 2 | Connection strategy to use when the device is not allowed to accept or initiate pairing.<br>This is a system API. |
 
 
-## StateChangeParam<a name="StateChangeParam"></a>
+## StateChangeParam
 
 Represents the profile state change parameters.
 
@@ -42,7 +42,7 @@ Represents the profile state change parameters.
 | state    | ProfileConnectionState        | Yes  | No  | Profile connection state of the device.|
 
 
-## baseProfile.setConnectionStrategy<a name="setConnectionStrategy"></a>
+## baseProfile.setConnectionStrategy
 
 setConnectionStrategy(deviceId: string, strategy: ConnectionStrategy, callback: AsyncCallback&lt;void&gt;): void
 
@@ -88,7 +88,7 @@ try {
 }
 ```
 
-## baseProfile.setConnectionStrategy<a name="setConnectionStrategy"></a>
+## baseProfile.setConnectionStrategy
 
 setConnectionStrategy(deviceId: string, strategy: ConnectionStrategy): Promise&lt;void&gt;
 
@@ -141,7 +141,7 @@ try {
 }
 ```
 
-## baseProfile.getConnectionStrategy<a name="getConnectionStrategy"></a>
+## baseProfile.getConnectionStrategy
 
 getConnectionStrategy(deviceId: string, callback: AsyncCallback&lt;ConnectionStrategy&gt;): void
 
@@ -186,7 +186,7 @@ try {
 }
 ```
 
-## baseProfile.getConnectionStrategy<a name="getConnectionStrategy"></a>
+## baseProfile.getConnectionStrategy
 
 getConnectionStrategy(deviceId: string): Promise&lt;ConnectionStrategy&gt;
 
@@ -239,7 +239,7 @@ try {
 ```
 
 
-## baseProfile.getConnectedDevices<a name="getConnectedDevices"></a>
+## baseProfile.getConnectedDevices
 
 getConnectedDevices(): Array&lt;string&gt;
 
@@ -280,7 +280,7 @@ try {
 ```
 
 
-## baseProfile.getConnectionState<a name="getConnectionState"></a>
+## baseProfile.getConnectionState
 
 getConnectionState(deviceId: string): ProfileConnectionState
 
@@ -363,7 +363,7 @@ try {
 
 ## baseProfile.off('connectionStateChange')
 
-off(type: 'connectionStateChange', callback?: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
+off(type: 'connectionStateChange', callback?: Callback&lt;[StateChangeParam](#statechangeparam)&gt;): void
 
 Unsubscribes from profile connection state changes.
 
@@ -376,7 +376,7 @@ Unsubscribes from profile connection state changes.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value is **connectionStateChange**, which indicates a profile connection state change event.|
-| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | No   | Callback for the profile connection state change.                              |
+| callback | Callback&lt;[StateChangeParam](#statechangeparam)&gt; | No   | Callback for the profile connection state change.                              |
 
 **Example**
 
