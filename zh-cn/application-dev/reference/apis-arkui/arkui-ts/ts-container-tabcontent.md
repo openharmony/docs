@@ -161,6 +161,21 @@ BottomTabBarStyle的静态构造函数。
 | VERTICAL    | 页签内容上下排布。 |
 | HORIZONAL   | 页签内容左右排布。 |
 
+## 事件
+
+除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
+
+### onWillShow<sup>12+</sup>
+
+onWillShow(event: [VoidCallback](ts-types.md#voidcallback12))
+
+逻辑回调，TabContent将要显示的时候触发该回调。场景包括TabContent首次显示，TabContent切换，页面切换，窗口前后台切换。
+
+### onWillHide<sup>12+</sup>
+
+onWillHide(event: [VoidCallback](ts-types.md#voidcallback12))
+
+逻辑回调，TabContent将要隐藏的时候触发该回调。场景包括TabContent切换，页面切换，窗口前后台切换。
 
 ## 示例
 

@@ -411,3 +411,7 @@ Tabs自定义切换动画执行过程中，返回给开发者的proxy对象。�
 | top | [PixelRoundCalcPolicy](ts-appendix-enums.md##PixelRoundCalcPolicy) | 否 | 组件上部边界取整对齐。 |
 | end | [PixelRoundCalcPolicy](ts-appendix-enums.md##PixelRoundCalcPolicy) | 否 | 组件尾部边界取整对齐。 |
 | bottom | [PixelRoundCalcPolicy](ts-appendix-enums.md##PixelRoundCalcPolicy) | 否 | 组件底部边界取整对齐。 |
+
+## VoidCallback<sup>12+</sup>
+
+函数回调：() => void
