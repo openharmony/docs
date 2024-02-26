@@ -588,7 +588,6 @@ getAppMemoryLimit() : MemoryLimit
 
 ## tags<sup>12+</sup>
 
-描述trace的tag类型常量
 **系统能力:** 以下各项对应的系统能力均为SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 | 名称                     | 类型    |  说明                                |
