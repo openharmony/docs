@@ -4,7 +4,7 @@
 
 接口文档链接：
 
-[int32_t OH_Asset_Add(const Asset_Attr *attributes, uint32_t attrCnt)](../../reference/apis-asset-store-kit/_asset_api.md#ohassetadd())
+[int32_t OH_Asset_Add(const Asset_Attr *attributes, uint32_t attrCnt)](../../reference/apis-asset-store-kit/_asset_api.md#oh_asset_add)
 
 参数列表：
 
@@ -12,10 +12,10 @@
 | ------------------------------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
 | ASSET_TAG_SECRET                | 类型为uint8[]，长度为1-1024字节                              | 必选     | 关键资产明文                                                 |
 | ASSET_TAG_ALIAS                 | 类型为uint8[]，长度为1-256字节                               | 必选     | 关键资产别名，每条关键资产的唯一索引                         |
-| ASSET_TAG_ACCESSIBILITY         | 类型为uint32_t，取值范围详见[Asset_Accessibility](../../reference/apis-asset-store-kit/_asset_type.md#assetaccessibility) | 可选     | 基于锁屏状态的访问控制                                                 |
+| ASSET_TAG_ACCESSIBILITY         | 类型为uint32_t，取值范围详见[Asset_Accessibility](../../reference/apis-asset-store-kit/_asset_type.md#asset_accessibility) | 可选     | 基于锁屏状态的访问控制                                                 |
 | ASSET_TAG_REQUIRE_PASSWORD_SET  | 类型为bool                                                   | 可选     | 是否仅在设置了锁屏密码的情况下，可访问关键资产                 |
-| ASSET_TAG_AUTH_TYPE             | 类型为uint32_t，取值范围详见[Asset_AuthType](../../reference/apis-asset-store-kit/_asset_type.md#assetauthtype) | 可选     | 访问关键资产所需的用户认证类型                               |
-| ASSET_TAG_SYNC_TYPE             | 类型为uint32_t，取值范围详见[Asset_SyncType](../../reference/apis-asset-store-kit/_asset_type.md#assetsynctype) | 可选     | 关键资产支持的同步类型                                       |
+| ASSET_TAG_AUTH_TYPE             | 类型为uint32_t，取值范围详见[Asset_AuthType](../../reference/apis-asset-store-kit/_asset_type.md#asset_authtype) | 可选     | 访问关键资产所需的用户认证类型                               |
+| ASSET_TAG_SYNC_TYPE             | 类型为uint32_t，取值范围详见[Asset_SyncType](../../reference/apis-asset-store-kit/_asset_type.md#asset_synctype) | 可选     | 关键资产支持的同步类型                                       |
 | ASSET_TAG_IS_PERSISTENT         | 类型为bool                                                   | 可选     | 在应用卸载时是否需要保留关键资产<br>**需要权限：** ohos.permission.STORE_PERSISTENT_DATA |
 | ASSET_TAG_DATA_LABEL_CRITICAL_1 | 类型为uint8[]，长度为1-512字节                               | 可选     | 关键资产附属信息，内容由业务自定义且有完整性保护             |
 | ASSET_TAG_DATA_LABEL_CRITICAL_2 | 类型为uint8[]，长度为1-512字节                               | 可选     | 关键资产附属信息，内容由业务自定义且有完整性保护             |
@@ -25,7 +25,7 @@
 | ASSET_TAG_DATA_LABEL_NORMAL_2   | 类型为uint8[]，长度为1-512字节                               | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护             |
 | ASSET_TAG_DATA_LABEL_NORMAL_3   | 类型为uint8[]，长度为1-512字节                               | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护             |
 | ASSET_TAG_DATA_LABEL_NORMAL_4   | 类型为uint8[]，长度为1-512字节                               | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护             |
-| ASSET_TAG_CONFLICT_RESOLUTION   | 类型为uint32_t，取值范围详见[Asset_ConflictResolution](../../reference/apis-asset-store-kit/_asset_type.md#assetconflictresolution) | 可选     | 新增关键资产时的冲突（如：别名相同）处理策略                             |
+| ASSET_TAG_CONFLICT_RESOLUTION   | 类型为uint32_t，取值范围详见[Asset_ConflictResolution](../../reference/apis-asset-store-kit/_asset_type.md#asset_conflictresolution) | 可选     | 新增关键资产时的冲突（如：别名相同）处理策略                             |
 
 ## 代码示例
 
