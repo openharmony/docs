@@ -210,8 +210,9 @@ struct GridExample {
       .friction(0.6)
       .edgeEffect(EdgeEffect.Spring)
       .scrollBar(BarState.On)
-      .onScrollIndex((first: number) => {
+      .onScrollIndex((first: number, last: number) => {
         console.info(first.toString())
+        console.info(last.toString())
       })
       .width('90%')
       .backgroundColor(0xFAEEE0)
@@ -284,7 +285,7 @@ struct GridExample {
       .columnsTemplate('1fr 1fr 1fr')
       .columnsGap(10)
       .rowsGap(10)
-      .onScrollIndex((first: number) => {
+      .onScrollIndex((first: number, last: number) => {
         console.info(first.toString())
       })
       .width('90%')
