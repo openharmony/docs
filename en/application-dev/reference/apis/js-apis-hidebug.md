@@ -628,9 +628,9 @@ For example, if the CPU usage is **50%**, **0.5** is returned.
   ```
 
 
-## hidebug.getAppNativeMemory<sup>12+<sup>
+## hidebug.getAppNativeMemInfo<sup>12+<sup>
 
-getAppNativeMemory(): NativeMemInfo
+getAppNativeMemInfo(): NativeMemInfo
 
 Obtains the application process native meminfo
 
@@ -645,7 +645,7 @@ Obtains the application process native meminfo
 **Example**
 
   ```ts
-let nativeMemInfo: NativeMemInfo = hidebug.getAppNativeMemory();
+let nativeMemInfo: NativeMemInfo = hidebug.getAppNativeMemInfo();
 
 hilog.info(0x0000, 'testTag', "pss = %{public}d", nativeMemInfo.pss);
 
@@ -677,9 +677,9 @@ Size of the memory actually used by the application process
 | sharedClean    | bigint |  Yes  | the size of the shared clean memory, in KB     |
 | privateClean   | bigint |  Yes  | the size of the private clean memory, in KB     |
 
-## hidebug.getSysMemory<sup>12+<sup>
+## hidebug.SystemMemInfo<sup>12+<sup>
 
-getSysMemory(): SysMemInfo
+getSystemMemInfo(): SystemMemInfo
 
 Obtains the memory info of system
 
@@ -689,20 +689,20 @@ Obtains the memory info of system
 
 | Type  | Description                      |
 | ------ | -------------------------- |
-| [SysMemInfo](#sysMemInfo) | Size of system memory |
+| [SystemMemInfo](#systemMemInfo) | size of system memory |
 
 **Example**
 
   ```ts
-let sysMemInfo: SysMemInfo = hidebug.getSysMemory();
+let sysMemInfo: SysMemInfo = hidebug.getSystemMemInfo();
 
-hilog.info(0x0000, 'testTag', "memTotal = %{public}d", sysMemInfo.memTotal);
+hilog.info(0x0000, 'testTag', "totalMem = %{public}d", sysMemInfo.totalMem);
 
-hilog.info(0x0000, 'testTag', "memFree = %{public}d", sysMemInfo.memFree);
+hilog.info(0x0000, 'testTag', "freeMem = %{public}d", sysMemInfo.freeMem);
 
-hilog.info(0x0000, 'testTag', "memAvailable = %{public}d", sysMemInfo.memAvailable);
+hilog.info(0x0000, 'testTag', "availableMem = %{public}d", sysMemInfo.availableMem);
   ```
-## SysMemInfo
+## SystemMemInfo
 
 Size of the memory actually used by the application process
 
@@ -710,6 +710,6 @@ Size of the memory actually used by the application process
 
 | Name      | Type   | Mandatory | Description         |
 | --------- | ------ | ---- | ------------ |
-| memTotal    | bigint |  Yes  | memory total, in kibibytes     |
-| memFree    | bigint |  Yes  | memory free, in kibibytes     |
-| memAvailable    | bigint |  Yes  | memory available, in kibibytes    |
+| totalMem    | bigint |  Yes  | total memory, in kibibytes     |
+| freeMem    | bigint |  Yes  | free memory, in kibibytes     |
+| availableMem    | bigint |  Yes  | available memory, in kibibytes    |
