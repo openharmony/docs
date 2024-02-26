@@ -46,7 +46,9 @@
   - 结构体
     - [OH_Drawing_BitmapFormat](_o_h___drawing___bitmap_format.md)
     - [OH_Drawing_Font_Metrics](_o_h___drawing___font___metrics.md)
+    - [OH_Drawing_FontDescriptor](_o_h___drawing___font_descriptor.md)
     - [OH_Drawing_Image_Info](_o_h___drawing___image___info.md)
+    - [OH_Drawing_LineMetrics](_o_h___drawing___line_metrics.md)
     - [OH_Drawing_PlaceholderSpan](_o_h___drawing___placeholder_span.md)
     - [OH_Drawing_Point2D](_o_h___drawing___point2_d.md)
     - [OH_Drawing_Point3D](_o_h___drawing___point3_d.md)
