@@ -1,8 +1,10 @@
-
-
 # \@observed装饰器和\@track装饰器：类属性变化观测
 
 为了增强现有状态管理框架对类对象中属性的观测能力，开发者可以使用\@observed装饰器和\@track装饰器装饰类以及类中的属性。
+
+>**说明：**
+>
+>@observed与@track装饰器从API version 12开始支持。
 
 ## 概述
 
@@ -258,6 +260,9 @@ class User {
 @Component
 struct Comp {
   @track message: string = "Hello World"; // 错误用法
+
+  build() {
+  }
 }
 ```
 
@@ -266,13 +271,72 @@ struct Comp {
 ```ts
 @Observed
 class User {
-  @track name: string = "Tom"; // 错误用法
-}
-@observed
-class Person {
-  @Track name: string = "Jack"; // 错误用法
+  @track name: string = "Tom"; // 错误用法，编译时报错
 }
 ```
+
+以下写法没有深度观测的能力，@observed装饰器不会生效。
+
+```ts
+@observed
+class Person {
+  @Track name: string = "Jack"; // 无深度观测能力
+}
+```
+
+- 使用\@observed与\@track装饰的类不能和[\@State](arkts-state.md)以及现有框架的装饰器混合使用。
+
+```ts
+// 以@State装饰器为例
+@observed
+class Job {
+  @track jobName: string = "Teacher";
+}
+@observed
+class Info {
+  @track name: string = "Tom";
+  @track age: number = 25;
+  job: Job = new Job();
+}
+@Entry
+@Component
+struct Index {
+  @State info: Info = new Info();
+  isRender(index: number): number {
+      console.log(`${index} is rendered`);
+      return 1;
+  }
+
+  build() {
+    Column() {
+      Text(`name: ${this.info.name}`)
+        .opacity(this.isRender(1))
+      Text(`age: ${this.info.age}`)
+        .opacity(this.isRender(2))
+      Text(`jobName: ${this.info.job.jobName}`)
+        .opacity(this.isRender(3))
+      Button("change age")
+        .onClick(() => {
+          this.info.age++;
+      })
+      Button("Change job")
+        .onClick(() => {
+          this.info.job.jobName = "Doctor";
+      })
+    }
+  }
+}
+```
+
+上述示例代码使用\@observed与\@track装饰Info类，并用\@State创建Info类的实例。当点击按钮"change age"时，输出以下日志：
+
+```ts
+1 is rendered
+2 is rendered
+3 is rendered
+```
+
+尽管只改变了age的值，但是日志反映出三个Text组件都进行了刷新。这说明被\@observed与\@track装饰的Info类失去了属性级更新的能力，而是使用了\@State的观测能力，因此出现了冗余更新的问题。所以，不能将\@observed与\@track装饰的类和\@State混合使用。
 
 ## 使用场景
 
