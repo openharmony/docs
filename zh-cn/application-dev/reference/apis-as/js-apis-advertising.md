@@ -65,7 +65,7 @@ loadAd(adParam: AdRequestParams, adOptions: AdOptions, listener: AdLoadListener)
 
 **错误码：**
 
-以下错误码的详细介绍请参见[广告服务框架错误码参考](errorcode-ads.md)。
+以下错误码的详细介绍请参见[广告服务框架错误码参考](../apis-ads-kit/errorcode-ads.md)。
 
 | 错误码ID | 错误信息 | 
 | -------- | -------- |
@@ -134,7 +134,7 @@ loadAdWithMultiSlots(adParams: AdRequestParams[], adOptions: AdOptions, listener
 
 **错误码：**
 
-以下错误码的详细介绍请参见[广告服务框架错误码参考](errorcode-ads.md)。
+以下错误码的详细介绍请参见[广告服务框架错误码参考](../apis-ads-kit/errorcode-ads.md)。
 
 | 错误码ID | 错误信息 | 
 | -------- | -------- |
@@ -214,7 +214,7 @@ showAd(ad: Advertisement, options: AdDisplayOptions, context?: common.UIAbilityC
 **错误码：**
 
 
-以下错误码的详细介绍请参见[广告服务框架错误码参考](errorcode-ads.md)。
+以下错误码的详细介绍请参见[广告服务框架错误码参考](../apis-ads-kit/errorcode-ads.md)。
 
 
 | 错误码ID | 错误信息 | 
