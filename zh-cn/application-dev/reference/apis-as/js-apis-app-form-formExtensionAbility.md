@@ -296,7 +296,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 
 onStop?(): void
 
-当卡片提供方的卡片进程退出或销毁时，触发该回调。
+当卡片提供方的卡片进程退出时，触发该回调。
   
 **系统能力** SystemCapability.Ability.Form
 
