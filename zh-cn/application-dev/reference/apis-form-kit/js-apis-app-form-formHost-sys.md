@@ -2560,7 +2560,6 @@ recycleForms(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 ```ts
 import formHost from '@ohos.app.form.formHost';
 import Base from '@ohos.base';
-import Want from '@ohos.app.ability.Want';
 
 try {
   let formIds: string[] = [ '12400633174999288' ];
@@ -2569,8 +2568,8 @@ try {
   }).catch((err: Base.BusinessError) => {
     console.error(`formHost recycle forms error, code: ${err.code}, message: ${err.message}`);
   });
-} catch (e: Base.BusinessError) {
-  console.info(`catch error, code: ${e.code}, message: ${e.message}`);
+} catch (e) {
+  console.error(`catch error, code: ${e.code}, message: ${e.message}`);
 }
 ```
 ## 
