@@ -4,7 +4,7 @@
 
 接口文档链接：
 
-[add(attributes: AssetMap): Promise\<void>](../../reference/apis-asset-store-kit/js-apis-asset.md#asset.add)
+[add(attributes: AssetMap): Promise\<void>](../../reference/apis-asset-store-kit/js-apis-asset.md#assetadd)
 
 参数列表：
 

@@ -4,7 +4,7 @@
 
 接口文档链接：
 
-[update(query: AssetMap, attributesToUpdate: AssetMap): Promise\<void>](../../reference/apis-asset-store-kit/js-apis-asset.md#asset.update)
+[update(query: AssetMap, attributesToUpdate: AssetMap): Promise\<void>](../../reference/apis-asset-store-kit/js-apis-asset.md#assetupdate)
 
 query的参数列表：
 

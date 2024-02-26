@@ -4,7 +4,7 @@
 
 接口文档链接：
 
-[remove(query: AssetMap): Promise\<void>](../../reference/apis-asset-store-kit/js-apis-asset.md#asset.remove)
+[remove(query: AssetMap): Promise\<void>](../../reference/apis-asset-store-kit/js-apis-asset.md#assetremove)
 
 参数列表：
 
