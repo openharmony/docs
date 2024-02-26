@@ -4,7 +4,7 @@
 
 接口文档链接：
 
-[add(attributes: AssetMap): Promise\<void>](../reference/apis/js-apis-asset.md#asset.add)
+[add(attributes: AssetMap): Promise\<void>](../../reference/apis-asset-store-kit/js-apis-asset.md#asset.add)
 
 参数列表：
 
@@ -12,10 +12,10 @@
 | --------------------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
 | SECRET                | 类型为Uint8Array，长度为1-1024字节                           | 必选     | 关键资产明文                                              |
 | ALIAS                 | 类型为Uint8Array，长度为1-256字节                            | 必选     | 关键资产别名，每条关键资产的唯一索引                        |
-| ACCESSIBILITY         | 类型为number，取值范围详见[Accessibility](../reference/apis/js-apis-asset.md#accessibility) | 可选     | 基于锁屏状态的访问控制      |
+| ACCESSIBILITY         | 类型为number，取值范围详见[Accessibility](../../reference/apis-asset-store-kit/js-apis-asset.md#accessibility) | 可选     | 基于锁屏状态的访问控制      |
 | REQUIRE_PASSWORD_SET  | 类型为bool                                                   | 可选     | 是否仅在设置了锁屏密码的情况下，可访问关键资产              |
-| AUTH_TYPE             | 类型为number，取值范围详见[AuthType](../reference/apis/js-apis-asset.md#authtype) | 可选     | 访问关键资产所需的用户认证类型         |
-| SYNC_TYPE             | 类型为number，取值范围详见[SyncType](../reference/apis/js-apis-asset.md#synctype) | 可选     | 关键资产支持的同步类型                |
+| AUTH_TYPE             | 类型为number，取值范围详见[AuthType](../../reference/apis-asset-store-kit/js-apis-asset.md#authtype) | 可选     | 访问关键资产所需的用户认证类型         |
+| SYNC_TYPE             | 类型为number，取值范围详见[SyncType](../../reference/apis-asset-store-kit/js-apis-asset.md#synctype) | 可选     | 关键资产支持的同步类型                |
 | IS_PERSISTENT         | 类型为bool                                                   | 可选     | 在应用卸载时是否需要保留关键资产<br>**需要权限：** ohos.permission.STORE_PERSISTENT_DATA |
 | DATA_LABEL_CRITICAL_1 | 类型为Uint8Array，长度为1-512字节                            | 可选     | 关键资产附属信息，内容由业务自定义且有完整性保护             |
 | DATA_LABEL_CRITICAL_2 | 类型为Uint8Array，长度为1-512字节                            | 可选     | 关键资产附属信息，内容由业务自定义且有完整性保护             |
@@ -25,7 +25,7 @@
 | DATA_LABEL_NORMAL_2   | 类型为Uint8Array，长度为1-512字节                            | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护             |
 | DATA_LABEL_NORMAL_3   | 类型为Uint8Array，长度为1-512字节                            | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护             |
 | DATA_LABEL_NORMAL_4   | 类型为Uint8Array，长度为1-512字节                            | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护             |
-| CONFLICT_RESOLUTION   | 类型为number，取值范围详见[ConflictResolution](../reference/apis/js-apis-asset.md#conflictresolution) | 可选     | 新增关键资产时的冲突（如：别名相同）处理策略                             |
+| CONFLICT_RESOLUTION   | 类型为number，取值范围详见[ConflictResolution](../../reference/apis-asset-store-kit/js-apis-asset.md#conflictresolution) | 可选     | 新增关键资产时的冲突（如：别名相同）处理策略                             |
 
 ## 代码示例
 
