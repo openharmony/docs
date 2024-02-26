@@ -3572,6 +3572,7 @@ try {
 | interval  | number                  | 是    | 是    | 表示扫描结果上报延迟时间，默认值为0。                    |
 | dutyMode  | [ScanDuty](#scanduty)   | 是    | 是    | 表示扫描模式，默认值为SCAN_MODE_LOW_POWER。        |
 | matchMode | [MatchMode](#matchmode) | 是    | 是    | 表示硬件的过滤匹配模式，默认值为MATCH_MODE_AGGRESSIVE。 |
+| phyType<sup>12+</sup> | [PhyType](#phytype12) | 是    | 是    | 表示扫描中使用的PHY类型。 |
 
 
 ## GattProperties<a name="GattProperties"></a>
@@ -3637,3 +3638,14 @@ try {
 | ENABLED<sup>11+</sup>   | 2    | 表示临时启动广播后的状态。       |
 | DISABLED<sup>11+</sup>  | 3    | 表示临时停止广播后的状态。       |
 | STOPPED<sup>11+</sup>    | 4    | 表示完全停止广播后的状态。       |
+
+## PhyType<sup>12+</sup>
+
+枚举，扫描中使用的PHY类型。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+| 名称      | 值    | 说明                           |
+| --------  | ---- | ------------------------------ |
+| PHY_LE_1M<sup>12+</sup>   | 1    | 表示扫描中使用1M PHY。       |
+| PHY_LE_ALL_SUPPORTED<sup>12+</sup>   | 255    | 表示扫描中使用蓝牙协议支持的PHY模式。    |
