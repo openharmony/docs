@@ -65,7 +65,7 @@ hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下，首�
 
 ![编辑环境变量](figures/hdc_image_003.PNG)
 
-**macOS环境变量设置方法**
+**Linux/macOS环境变量设置方法**
 1. 打开终端工具，执行以下命令，根据输出结果分别执行不同命令。
    ```
    echo $SHELL 
@@ -86,7 +86,7 @@ hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下，首�
    以下内容以本地SDK的toolchains完整路径_/User/username/sdk/openharmony/10/toolchains_为例：
    ```
    HDC_SDK_PATH=/User/username/sdk/openharmony/10/toolchains
-   launchctl setenv HDC_SDK_PATH $HDC_SDK_PATH
+   launchctl setenv HDC_SDK_PATH $HDC_SDK_PATH # 仅MacOS需要在此执行，Linux无须执行
    export PATH=$PATH:$HDC_SDK_PATH
    ```
 
@@ -101,6 +101,27 @@ hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下，首�
       ```
       source ~/.zshrc
       ```
+**（Linux可选）开启非root用户USB设备操作权限**
+   - （临时权限）设置USB设备操作权限最大化
+      ```
+      sudo chmod -R 777 /dev/bus/usb/
+      ```
+   - （永久权限）永久修改USB设备权限
+      （1）使用lsusb找出USB设备的vendorID和productID
+      （2）创建一个新的udev规则
+         编辑udev加载规则，用设备的“idVendor”和“idProduct”来替换默认值。
+         MODE="0666"来表示USB设备的权限GROUP；
+         GROUP代表用户组，要确保此时登录的系统用户在该用户组中：
+      ```
+      sudo vim /etc/udev/rules.d/90-myusb.rules
+      SUBSYSTEMS=="usb", ATTRS{idVendor}=="067b", ATTRS{idProduct}=="2303", GROUP="users", MODE="0666"
+      ```
+      （3）重启电脑或重新加载udev规则：
+      ```
+      sudo udevadm control --reload
+      ```
+> **注意：**
+> **开启非root用户USB设备操作权限**可以解决Linux环境，在非root权限下使用hdc无法找到设备的情况，但权限最大化**可能存在潜在安全问题**，请开发者根据使用场景自行评估是否开启。
 
 ## 注意事项
 
