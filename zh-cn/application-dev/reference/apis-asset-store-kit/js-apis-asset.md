@@ -208,7 +208,7 @@ try {
 
 preQuery(query: AssetMap): Promise\<Uint8Array>
 
-查询的预处理，用于需要用户认证的关键资产。在用户认证成功后，应当随后调用[asset.query](#asset.query)、[asset.postQuery](#asset.postquery)。使用Promist方式异步返回结果。
+查询的预处理，用于需要用户认证的关键资产。在用户认证成功后，应当随后调用[asset.query](#assetquery)、[asset.postQuery](#assetpostquery)。使用Promist方式异步返回结果。
 
 **系统能力：** SystemCapability.Security.Asset
 
@@ -271,7 +271,7 @@ try {
 
 query(query: AssetMap): Promise\<Array\<AssetMap>>
 
-查询一条或多条符合条件的关键资产。若查询需要用户认证的关键资产，则需要在本函数前调用[asset.preQuery](#asset.prequery)，在本函数后调用[asset.postQuery](#asset.postquery)，开发步骤请参考[开发指导](../../security/AssetStoreKit/asset-js-query-auth.md)。使用Promise回调异步返回结果。
+查询一条或多条符合条件的关键资产。若查询需要用户认证的关键资产，则需要在本函数前调用[asset.preQuery](#assetprequery)，在本函数后调用[asset.postQuery](#assetpostquery)，开发步骤请参考[开发指导](../../security/AssetStoreKit/asset-js-query-auth.md)。使用Promise回调异步返回结果。
 
 **系统能力：** SystemCapability.Security.Asset
 
@@ -338,13 +338,13 @@ try {
 
 postQuery(handle: AssetMap): Promise\<void>
 
-查询的后置处理，用于需要用户认证的关键资产。需与[asset.preQuery](#asset.prequery)函数成对出现。使用Promise方式异步返回结果。
+查询的后置处理，用于需要用户认证的关键资产。需与[asset.preQuery](#assetprequery)函数成对出现。使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Security.Asset
 
 | 参数名 | 类型     | 必填 | 说明                                                         |
 | ------ | -------- | ---- | ------------------------------------------------------------ |
-| handle | [AssetMap](#assetmap) | 是   | 待处理的查询句柄，当前包含[asset.preQuery](#asset.prequery)执行成功返回的挑战值。 |
+| handle | [AssetMap](#assetmap) | 是   | 待处理的查询句柄，当前包含[asset.preQuery](#assetprequery)执行成功返回的挑战值。 |
 
 **返回值：**
 
@@ -414,7 +414,7 @@ try {
 | AUTH_CHALLENGE            | TagType.BYTES &#124; 0x07     | 用户认证的挑战值                                         |
 | AUTH_TOKEN                | TagType.BYTES &#124; 0x08    | 用户认证通过的授权令牌                                           |
 | SYNC_TYPE                 | TagType.NUMBER &#124; 0x10 | 关键资产支持的同步类型                                       |
-| IS_PERSISTENT             | TagType.BOOL &#124; 0x11                         | 在应用卸载时是否需要保留关键资产<br>**需要权限：** ohos.permission.STORE_PERSISTENT_DATA<br/>**备注：** 仅在调用[asset.add](#asset.add)函数并传入该属性时需要校验权限 |
+| IS_PERSISTENT             | TagType.BOOL &#124; 0x11                         | 在应用卸载时是否需要保留关键资产<br>**需要权限：** ohos.permission.STORE_PERSISTENT_DATA<br/>**备注：** 仅在调用[asset.add](#assetadd)函数并传入该属性时需要校验权限 |
 | DATA_LABEL_CRITICAL_1     | TagType.BYTES &#124; 0x20 | 关键资产附属信息，内容由业务自定义且**有完整性保护**             |
 | DATA_LABEL_CRITICAL_2 | TagType.BYTES &#124; 0x21 | 关键资产附属信息，内容由业务自定义且**有完整性保护** |
 | DATA_LABEL_CRITICAL_3 | TagType.BYTES &#124; 0x22 | 关键资产附属信息，内容由业务自定义且**有完整性保护** |
