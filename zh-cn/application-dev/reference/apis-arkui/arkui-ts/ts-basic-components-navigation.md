@@ -39,25 +39,257 @@ Navigation(pathInfos: NavPathStack)
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
-| 名称                                 | 参数类型                                     | 描述                                       |
-| ---------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| title                              | value: [ResourceStr](ts-types.md#resourcestr)<sup>10+</sup> \| [CustomBuilder](ts-types.md#custombuilder8) \| [NavigationCommonTitle](#navigationcommontitle9类型说明)<sup>9+</sup> \| [NavigationCustomTitle](#navigationcustomtitle9类型说明)<sup>9+</sup>, options?: [NavigationTitleOptions](#navigationtitleoptions11类型说明)<sup>11+</sup> | **value:**<br/>必选参数，页面标题，使用NavigationCustomTitle类型设置height高度时，titleMode属性不会生效。<br/>字符串超长时，如果不设置副标题，先缩小再换行（2行）最后...截断。如果设置副标题，先缩小最后...截断。<br/>**options:**<br/>可选参数，标题选项。 |
-| subTitle<sup>(deprecated)</sup>    | string                                   | 页面副标题。不设置时不显示副标题。从API Version 9开始废弃，建议使用title代替。 |
-| menus                              | Array<[NavigationMenuItem](#navigationmenuitem类型说明)&gt; \| [CustomBuilder](ts-types.md#custombuilder8) | 页面右上角菜单。不设置时不显示菜单项。使用Array<[NavigationMenuItem](#navigationmenuitem类型说明)&gt; 写法时，竖屏最多支持显示3个图标，横屏最多支持显示5个图标，多余的图标会被放入自动生成的更多图标。 |
-| titleMode                          | [NavigationTitleMode](#navigationtitlemode枚举说明) | 页面标题栏显示模式。<br/>默认值：NavigationTitleMode.Free |
-| toolBar<sup>(deprecated)</sup>     | [object](#object类型说明) \| [CustomBuilder](ts-types.md#custombuilder8) | 设置工具栏内容。不设置时不显示工具栏。<br/>items: 工具栏所有项。<br/>**说明：** <br/>items均分底部工具栏，在每个均分内容区布局文本和图标，文本超长时，逐级缩小，缩小之后换行，最后...截断。<br/>从API version 10开始，该接口不再维护，推荐使用toolbarConfiguration代替。 |
-| toolbarConfiguration<sup>10+</sup> | value:&nbsp;Array&lt;[ToolbarItem](#toolbaritem10类型说明)&gt; \| [CustomBuilder](ts-types.md#custombuilder8) , options?: [NavigationToolbarOptions](#navigationtoolbaroptions11类型说明)<sup>11+</sup> | 设置工具栏内容。不设置时不显示工具栏。<br/>**value:**<br/>必选参数，使用Array&lt;[ToolbarItem](#toolbaritem10类型说明)&gt;写法设置的工具栏有如下特性：<br/>工具栏所有选项均分底部工具栏，在每个均分内容区布局文本和图标。<br/>文本超长时，若工具栏选项个数小于5个，优先拓展选项的宽度，最大宽度与屏幕等宽，其次逐级缩小，缩小之后换行，最后...截断。<br/>竖屏最多支持显示5个图标，多余的图标会被放入自动生成的更多图标。横屏下必须配合menus属性的Array&lt;[NavigationMenuItem](#navigationmenuitem类型说明)&gt;使用，底部工具栏会自动隐藏，同时底部工具栏所有选项移动至页面右上角菜单。<br/>使用[CustomBuilder](ts-types.md#custombuilder8)写法为用户自定义工具栏选项，除均分底部工具栏外不具备以上功能。<br/>**options:**<br/>可选参数，工具栏选项。 |
-| hideToolBar                        | boolean                                  | 隐藏工具栏。<br/>默认值：false<br/>true: 隐藏工具栏。<br/>false: 显示工具栏。 |
-| hideTitleBar                       | boolean                                  | 隐藏标题栏。<br/>默认值：false<br/>true: 隐藏标题栏。<br/>false: 显示标题栏。 |
-| hideBackButton                     | boolean                                  | 隐藏标题栏中的返回键。 不支持隐藏NavDestination组件标题栏中的返回键<br/>默认值：false<br/>true: 隐藏返回键。<br/>false: 显示返回键。<br/>**说明：** <br/>返回键仅针对titleMode为NavigationTitleMode.Mini时才生效。 |
-| navBarWidth<sup>9+</sup>           | [Length](ts-types.md#length)             | 导航栏宽度。<br/>默认值：240<br/>单位：vp<br/>**说明：** <br/>仅在Navigation组件分栏时生效。 |
-| navBarPosition<sup>9+</sup>        | [NavBarPosition](#navbarposition9枚举说明)    | 导航栏位置。<br/>默认值：NavBarPosition.Start<br/>**说明：** <br/>仅在Navigation组件分栏时生效。 |
-| mode<sup>9+</sup>                  | [NavigationMode](#navigationmode9枚举说明)    | 导航栏的显示模式。<br/>默认值：NavigationMode.Auto<br/>自适应：基于组件宽度自适应单栏和双栏。<br/>**说明：** <br/>支持Stack、Split与Auto模式。 |
-| backButtonIcon<sup>9+</sup>        | string \| [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) \| [Resource](ts-types.md#resource) | 设置标题栏中返回键图标。 |
-| hideNavBar<sup>9+</sup>            | boolean                                  | 是否隐藏导航栏。设置为true时，隐藏Navigation的导航栏，包括标题栏、内容区和工具栏。如果此时路由栈中存在NavDestination页面，则直接显示栈顶NavDestination页面，反之显示空白。从API Version 9开始到API Version 10仅在双栏模式下生效。从API Version 11开始在单栏、双栏与自适应模式均生效。<br/>默认值：false |
-| navDestination<sup>10+</sup>       | builder: (name: string, param: unknown) => void | 创建NavDestination组件。<br/>**说明：** <br/>使用builder函数，基于name和param构造NavDestination组件。builder中允许在NavDestination组件外包含一层自定义组件， 但自定义组件不允许设置属性和事件，否则仅显示空白。 |
-| navBarWidthRange<sup>10+</sup>     | [[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)] | 导航栏最小和最大宽度（双栏模式下生效）。<br/>默认值：最小默认值 240，最大默认值为组件宽度的40% ，且不大于 432，如果只设置一个值，则未设置的值按照默认值计算。<br/>单位：vp<br/>规则：优先级规则详见说明。|
-| minContentWidth<sup>10+</sup>      | [Dimension](ts-types.md#dimension10)     | 导航栏内容区最小宽度（双栏模式下生效）。<br/>默认值：360<br/>单位：vp<br/>规则：优先级规则详见说明。<br/>Auto模式断点计算：默认600vp，minNavBarWidth(240vp) + minContentWidth (360vp) |
+### title
+
+title(value: ResourceStr | CustomBuilder | NavigationCommonTitle | NavigationCustomTitle, options?: NavigationTitleOptions)
+
+设置页面标题。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名  | 类型                                                         | 必填 | 说明                                                         |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value   | [ResourceStr](ts-types.md#resourcestr)<sup>10+</sup>&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8)&nbsp;\|&nbsp;[NavigationCommonTitle](#navigationcommontitle9类型说明)<sup>9+</sup>&nbsp;\|&nbsp;[NavigationCustomTitle](#navigationcustomtitle9类型说明)<sup>9+</sup> | 是   | 页面标题，使用NavigationCustomTitle类型设置height高度时，[titleMode](#titlemode)属性不会生效。字符串超长时，如果不设置副标题，先缩小再换行（2行）最后...截断。如果设置副标题，先缩小最后...截断。 |
+| options | [NavigationTitleOptions](#navigationtitleoptions11类型说明)<sup>11+</sup> | 否   | 标题样式。                                                   |
+
+### subTitle<sup>(deprecated)</sup>
+
+subTitle(value: string)
+
+设置页面副标题。
+
+从API Version 9开始废弃，建议使用[title](#title)代替。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明         |
+| ------ | ------ | ---- | ------------ |
+| value  | string | 是   | 页面副标题。 |
+
+### menus
+
+menus(value: Array&lt;NavigationMenuItem&gt; | CustomBuilder)
+
+设置页面右上角菜单。不设置时不显示菜单项。使用Array<[NavigationMenuItem](#navigationmenuitem类型说明)&gt; 写法时，竖屏最多支持显示3个图标，横屏最多支持显示5个图标，多余的图标会被放入自动生成的更多图标。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明             |
+| ------ | ------------------------------------------------------------ | ---- | ---------------- |
+| value  | Array<[NavigationMenuItem](#navigationmenuitem类型说明)&gt;&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 是   | 页面右上角菜单。 |
+
+### titleMode
+
+titleMode(value: NavigationTitleMode)
+
+设置页面标题栏显示模式。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                | 必填 | 说明                                                      |
+| ------ | --------------------------------------------------- | ---- | --------------------------------------------------------- |
+| value  | [NavigationTitleMode](#navigationtitlemode枚举说明) | 是   | 页面标题栏显示模式。<br/>默认值：NavigationTitleMode.Free |
+
+### toolBar<sup>(deprecated)</sup>
+
+toolBar(value: object | CustomBuilder)
+
+设置工具栏内容。不设置时不显示工具栏。items均分底部工具栏，在每个均分内容区布局文本和图标，文本超长时，逐级缩小，缩小之后换行，最后...截断。
+
+从API version 10开始，该接口不再维护，推荐使用[toolbarConfiguration](#toolbarconfiguration10)代替。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明         |
+| ------ | ------------------------------------------------------------ | ---- | ------------ |
+| value  | [object](#object类型说明)&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 是   | 工具栏内容。 |
+
+### toolbarConfiguration<sup>10+</sup>
+
+toolbarConfiguration(value: Array&lt;ToolbarItem&gt; | CustomBuilder, options?: NavigationToolbarOptions)
+
+设置工具栏内容。不设置时不显示工具栏。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名  | 类型                                                         | 必填 | 说明                                                         |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value   | &nbsp;Array&lt;[ToolbarItem](#toolbaritem10类型说明)&gt; &nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 是   | 工具栏内容，使用Array&lt;[ToolbarItem](#toolbaritem10类型说明)&gt;写法设置的工具栏有如下特性：<br/>工具栏所有选项均分底部工具栏，在每个均分内容区布局文本和图标。<br/>文本超长时，若工具栏选项个数小于5个，优先拓展选项的宽度，最大宽度与屏幕等宽，其次逐级缩小，缩小之后换行，最后...截断。<br/>竖屏最多支持显示5个图标，多余的图标会被放入自动生成的更多图标。横屏下必须配合menus属性的Array&lt;[NavigationMenuItem](#navigationmenuitem类型说明)&gt;使用，底部工具栏会自动隐藏，同时底部工具栏所有选项移动至页面右上角菜单。<br/>使用[CustomBuilder](ts-types.md#custombuilder8)写法为用户自定义工具栏选项，除均分底部工具栏外不具备以上功能。 |
+| options | [NavigationToolbarOptions](#navigationtoolbaroptions11类型说明)<sup>11+</sup> | 否   | 工具栏选项。                                                 |
+
+### hideToolBar
+
+hideToolBar(value: boolean)
+
+设置是否隐藏工具栏。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| value  | boolean | 是   | 是否隐藏工具栏。<br/>默认值：false<br/>true: 隐藏工具栏。<br/>false: 显示工具栏。 |
+
+### hideTitleBar
+
+hideTitleBar(value: boolean)
+
+设置是否隐藏标题栏。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| value  | boolean | 是   | 是否隐藏标题栏。<br/>默认值：false<br/>true: 隐藏标题栏。<br/>false: 显示标题栏。 |
+
+### hideBackButton
+
+hideBackButton(value: boolean)
+
+设置是否隐藏标题栏中的返回键。返回键仅针对[titleMode](#titlemode)为NavigationTitleMode.Mini时才生效。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| value  | boolean | 是   | 是否隐藏标题栏中的返回键。 <br/>默认值：false<br/>true: 隐藏返回键。<br/>false: 显示返回键。 |
+
+### navBarWidth<sup>9+</sup>
+
+navBarWidth(value: Length)
+
+设置导航栏宽度。仅在Navigation组件分栏时生效。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                         | 必填 | 说明                                      |
+| ------ | ---------------------------- | ---- | ----------------------------------------- |
+| value  | [Length](ts-types.md#length) | 是   | 导航栏宽度。<br/>默认值：240<br/>单位：vp |
+
+### navBarPosition<sup>9+</sup>
+
+navBarPosition(value: NavBarPosition)
+
+设置导航栏位置。仅在Navigation组件分栏时生效。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                       | 必填 | 说明                                          |
+| ------ | ------------------------------------------ | ---- | --------------------------------------------- |
+| value  | [NavBarPosition](#navbarposition9枚举说明) | 是   | 导航栏位置。<br/>默认值：NavBarPosition.Start |
+
+### mode<sup>9+</sup>
+
+mode(value: NavigationMode)
+
+设置导航栏的显示模式。支持Stack、Split与Auto模式。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                       | 必填 | 说明                                                         |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [NavigationMode](#navigationmode9枚举说明) | 是   | 导航栏的显示模式。<br/>默认值：NavigationMode.Auto<br/>自适应：基于组件宽度自适应单栏和双栏。 |
+
+### backButtonIcon<sup>9+</sup>
+
+backButtonIcon(value: string | PixelMap | Resource)
+
+设置标题栏中返回键图标。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                 |
+| ------ | ------------------------------------------------------------ | ---- | -------------------- |
+| value  | string&nbsp;\|&nbsp;[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 标题栏中返回键图标。 |
+
+### hideNavBar<sup>9+</sup>
+
+hideNavBar(value: boolean)
+
+设置是否隐藏导航栏。设置为true时，隐藏Navigation的导航栏，包括标题栏、内容区和工具栏。如果此时路由栈中存在NavDestination页面，则直接显示栈顶NavDestination页面，反之显示空白。
+
+从API Version 9开始到API Version 10仅在双栏模式下生效。从API Version 11开始在单栏、双栏与自适应模式均生效。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                               |
+| ------ | ------- | ---- | ---------------------------------- |
+| value  | boolean | 是   | 是否隐藏导航栏。<br/>默认值：false |
+
+### navDestination<sup>10+</sup>
+
+navDestination(builder: (name: string, param: unknown) => void)
+
+创建NavDestination组件。使用builder函数，基于name和param构造NavDestination组件。builder中允许在NavDestination组件外包含一层自定义组件， 但自定义组件不允许设置属性和事件，否则仅显示空白。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名  | 类型                                   | 必填 | 说明                     |
+| ------- | -------------------------------------- | ---- | ------------------------ |
+| builder | (name: string, param: unknown) => void | 是   | 创建NavDestination组件。 |
+
+### navBarWidthRange<sup>10+</sup>
+
+navBarWidthRange(value: [Dimension, Dimension])
+
+设置导航栏最小和最大宽度（双栏模式下生效）。
+
+**规则：** 优先级规则详见说明。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名  | 类型                                                         | 必填 | 说明                                                         |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| builder | [[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)] | 是   | 导航栏最小和最大宽度。<br/>默认值：最小默认值 240，最大默认值为组件宽度的40% ，且不大于 432，如果只设置一个值，则未设置的值按照默认值计算。<br/>单位：vp |
+
+### minContentWidth<sup>10+</sup>
+
+minContentWidth(value: Dimension)
+
+设置导航栏内容区最小宽度（双栏模式下生效）。
+
+**规则：** 优先级规则详见说明。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名  | 类型                                 | 必填 | 说明                                                         |
+| ------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
+| builder | [Dimension](ts-types.md#dimension10) | 是   | 导航栏内容区最小宽度。<br/>默认值：360<br/>单位：vp<br/>Auto模式断点计算：默认600vp，minNavBarWidth(240vp) + minContentWidth (360vp) |
 
 >  **说明：**
 >
@@ -67,15 +299,57 @@ Navigation(pathInfos: NavPathStack)
 >
 >  3. Navigation显示范围缩小：a. 缩小内容区大小。如果不设置minContentWidth属性，则可以缩小内容区至0， 否则最小缩小至minContentWidth。b. 缩小导航栏大小，缩小时需要满足导航栏宽度大于navBarRange的下限。c. 对显示内容进行裁切。
 
-
 ## 事件
 
-| 名称                                       | 功能描述                                     |
-| ---------------------------------------- | ---------------------------------------- |
-| onTitleModeChange(callback: (titleMode: NavigationTitleMode) =&gt; void) | 当titleMode为NavigationTitleMode.Free时，随着可滚动组件的滑动标题栏模式发生变化时触发此回调。 |
-| onNavBarStateChange(callback: (isVisible: boolean) =&gt; void) <sup>9+</sup> | 导航栏显示状态切换时触发该回调。返回值isVisible为true时表示显示，为false时表示隐藏。 |
-| onNavigationModeChange(callback: (mode: NavigationMode) =&gt; void) <sup>11+</sup>| 当Navigation首次显示或者单双栏状态发生变化时触发该回调。<br>NavigationMode.Split: 当前Navigation显示为双栏;<br>NavigationMode.Stack: 当前Navigation显示为单栏。|
-| customNavContentTransition(delegate(from: [NavContentInfo](#navcontentinfo11), to: [NavContentInfo](#navcontentinfo11), operation: [NavigationOperation](#navigationoperation11枚举说明)): [NavigationAnimatedTransition](#navigationanimatedtransition11) \| undefined <sup>11+</sup> | 自定义转场动画回调。<br>from: 退场Destination的页面参数; <br> to: 进场Destination的页面参数; <br> operation: 转场类型; <br> undefined: 返回未定义，执行默认转场动效。|
+### onTitleModeChange
+
+onTitleModeChange(callback: (titleMode: NavigationTitleMode) =&gt; void)
+
+当[titleMode](#titlemode)为NavigationTitleMode.Free时，随着可滚动组件的滑动标题栏模式发生变化时触发此回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名    | 类型                                                | 必填 | 说明       |
+| --------- | --------------------------------------------------- | ---- | ---------- |
+| titleMode | [NavigationTitleMode](#navigationtitlemode枚举说明) | 是   | 标题模式。 |
+
+### onNavBarStateChange<sup>9+</sup>
+
+onNavBarStateChange(callback: (isVisible: boolean) =&gt; void) 
+
+导航栏显示状态切换时触发该回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名    | 类型    | 必填 | 说明                                           |
+| --------- | ------- | ---- | ---------------------------------------------- |
+| isVisible | boolean | 是   | isVisible为true时表示显示，为false时表示隐藏。 |
+
+### customNavContentTransition<sup>11+</sup>
+
+customNavContentTransition(delegate(from: NavContentInfo, to: NavContentInfo, operation: NavigationOperation) => NavigationAnimatedTransition | undefined)
+
+自定义转场动画回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名    | 类型                                                  | 必填 | 说明                    |
+| --------- | ----------------------------------------------------- | ---- | ----------------------- |
+| from      | [NavContentInfo](#navcontentinfo11)                   | 是   | 退场Destination的页面。 |
+| to        | [NavContentInfo](#navcontentinfo11)                   | 是   | 进场Destination的页面。 |
+| operation | [NavigationOperation](#navigationoperation11枚举说明) | 是   | 转场类型。              |
+
+**返回值：** 
+
+| 类型                                                         | 说明                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [NavigationAnimatedTransition](#navigationanimatedtransition11)&nbsp;\|&nbsp;undefined | 自定义转场动画协议。<br/>undefined: 返回未定义，执行默认转场动效。 |
 
 ## NavPathStack<sup>10+</sup>
 
