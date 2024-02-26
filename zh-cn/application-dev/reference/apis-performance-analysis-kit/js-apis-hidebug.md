@@ -733,3 +733,12 @@ hilog.info(0x0000, 'testTag', "availableMem = %{public}d", systemMemInfo.availab
 | freeMem   | bigint |  是  | 系统空闲的内存，以KB为单位       |
 | availableMem  | bigint |  是  | 系统可用的内存，以KB为单位      |
 
+## TraceFlag<sup>12+</sup>
+
+**系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+| 名称      | 说明         |
+| --------- | ------------ |
+| MAIN_THREAD  | Only capture main thread trace     |
+| ALL_THREADS |  Capture all thread trace       |
+
