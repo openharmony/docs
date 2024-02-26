@@ -194,7 +194,7 @@ hilog.info(0x0000, 'testTag', 'memAvailable = %{public}d', sysMemInfo.memAvailab
 | --------- | ------ | ---- | ------------ |
 | memTotal  | bigint |  是  | 系统总的内存，以KB为单位     |
 | memFree   | bigint |  是  | 系统空闲的内存，以KB为单位       |
-| memAvailable  | bigint |  是  | 系统可用的内存，以KB为单位）      |
+| memAvailable  | bigint |  是  | 系统可用的内存，以KB为单位      |
 
 ## hidebug.getSharedDirty
 
