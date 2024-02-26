@@ -291,3 +291,24 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
   }
 };
 ```
+
+
+## onStop
+
+onStop?(): void
+
+当卡片提供方的卡片进程退出时，触发该回调。
+  
+**系统能力** SystemCapability.Ability.Form
+
+**示例：**
+
+```ts
+import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+
+export default class MyFormExtensionAbility extends FormExtensionAbility {
+  onStop() {
+    console.log(`FormExtensionAbility onStop`);
+  }
+}
+```
