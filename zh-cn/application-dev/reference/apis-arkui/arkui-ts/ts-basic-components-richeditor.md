@@ -34,29 +34,226 @@ RichEditor(value: RichEditorOptions)
 >  其中clip属性默认值为true。
 >  align属性只支持上方丶中间和下方位置的对齐方式。
 
-| 名称                               | 参数类型                                     | 描述                                       |
-| -------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| customKeyboard                   | [CustomBuilder](ts-types.md#custombuilder8) | 设置自定义键盘。<br/>**说明：**<br/>当设置自定义键盘时，输入框激活后不会打开系统输入法，而是加载指定的自定义组件。<br/>自定义键盘的高度可以通过自定义组件根节点的height属性设置，宽度不可设置，使用系统默认值。<br/>自定义键盘采用覆盖原始界面的方式呈现，不会对应用原始界面产生压缩或者上提。<br/>自定义键盘无法获取焦点，但是会拦截手势事件。<br/>默认在输入控件失去焦点时，关闭自定义键盘。<br/>如果设备支持拍摄输入，设置自定义键盘后，该输入框会不支持拍摄输入。 |
-| bindSelectionMenu                | {<br/>spantype:&nbsp;[RichEditorSpanType](#richeditorspantype),<br/>content:&nbsp;[CustomBuilder](ts-types.md#custombuilder8),<br/>responseType:&nbsp;[ResponseType](ts-appendix-enums.md#responsetype8)&nbsp;\| [RichEditorResponseType<sup>11+</sup>](ts-appendix-enums.md#richeditorresponsetype11),<br/>options?:&nbsp;[SelectionMenuOptions](#selectionmenuoptions11)<br/>} | 设置自定义选择菜单。<br/> 默认值：{<br/>  spanType:&nbsp;RichEditorSpanType.TEXT<br/>responseType:&nbsp;ResponseType.LongPress<br/>其他：空<br/>}<br/>自定义菜单超长时，建议内部嵌套[Scroll](./ts-container-scroll.md)组件使用，避免键盘被遮挡。 |
-| copyOptions                      | [CopyOptions](ts-appendix-enums.md#copyoptions9) | 组件支持设置文本内容是否可复制粘贴。<br />默认值：CopyOptions.LocalDevice <br/>**说明：** <br/>copyOptions不为CopyOptions.None时，长按组件内容，会弹出文本选择弹框。如果通过bindSelectionMenu等方式自定义文本选择菜单，则会弹出自定义的菜单。<br/>设置copyOptions为CopyOptions.None，复制、剪切功能不生效。 |
-| enableDataDetector<sup>11+</sup> | boolean                                  | 使能文本识别。<br/>默认值： false<br/>**说明：**<br/>所识别实体的`fontColor`和`decoration`会被更改为如下样式：<br/>fontColor：Color.Blue<br/>decoration:&nbsp;{<br/>type:&nbsp;TextDecorationType.Underline,<br/>color:&nbsp;Color.Blue<br/>}<br/>该接口依赖设备底层应具有文本识别能力，否则设置不会生效。<br/>当`enableDataDetector`设置为true，同时不设置`dataDetectorConfig`属性时，默认识别所有类型的实体。<br/>当`copyOptions`设置为CopyOptions.None时，该功能不会生效。<br/>对`addBuilderSpan`的节点文本，该功能不会生效。 |
-| dataDetectorConfig<sup>11+</sup> | [TextDataDetectorConfig](#textdatadetectorconfig11) | 文本识别配置。 <br/>默认值：{<br/>types:&nbsp;[ ],<br/>onDetectResultUpdate:&nbsp;null<br/>} <br />**说明：**<br/>需配合`enableDataDetector`一起使用，设置`enableDataDetector`为true时，`dataDetectorConfig`的配置才能生效。<br/> |
-| placeholder<sup>12+</sup> | {<br/>value:&nbsp;[ResourceStr](ts-types.md#resourcestr),<br/>style?:&nbsp;[PlaceholderStyle](#placeholderstyle)<br/>}| 设置无输入时的提示文本。<br />**说明：**<br/>value为必须设置的提示文本，style缺省时默认跟随主题<br/> |
+### customKeyboard
+
+customKeyboard(value: CustomBuilder)
+
+设置自定义键盘。
+
+当设置自定义键盘时，输入框激活后不会打开系统输入法，而是加载指定的自定义组件。
+
+自定义键盘的高度可以通过自定义组件根节点的height属性设置，宽度不可设置，使用系统默认值。
+
+自定义键盘采用覆盖原始界面的方式呈现，不会对应用原始界面产生压缩或者上提。
+
+自定义键盘无法获取焦点，但是会拦截手势事件。
+
+默认在输入控件失去焦点时，关闭自定义键盘。
+
+如果设备支持拍摄输入，设置自定义键盘后，该输入框会不支持拍摄输入。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                        | 必填 | 说明         |
+| ------ | ------------------------------------------- | ---- | ------------ |
+| value  | [CustomBuilder](ts-types.md#custombuilder8) | 是   | 自定义键盘。 |
+
+### bindSelectionMenu
+
+bindSelectionMenu(spanType: RichEditorSpanType, content: CustomBuilder, responseType: ResponseType | RichEditorResponseType,
+    options?: SelectionMenuOptions)
+
+设置自定义选择菜单。自定义菜单超长时，建议内部嵌套[Scroll](./ts-container-scroll.md)组件使用，避免键盘被遮挡。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名       | 类型                                                         | 必填 | 说明                                                      |
+| ------------ | ------------------------------------------------------------ | ---- | --------------------------------------------------------- |
+| spanType     | [RichEditorSpanType](#richeditorspantype)                    | 是   | 菜单的类型。<br/> 默认值：<br/>RichEditorSpanType.TEXT    |
+| content      | [CustomBuilder](ts-types.md#custombuilder8)                  | 是   | 菜单的内容。                                              |
+| responseType | &nbsp;[ResponseType](ts-appendix-enums.md#responsetype8)&nbsp;\|&nbsp;[RichEditorResponseType<sup>11+</sup>](ts-appendix-enums.md#richeditorresponsetype11) | 是   | 菜单的响应类型。<br/> 默认值：<br/>ResponseType.LongPress |
+| options      | [SelectionMenuOptions](#selectionmenuoptions11)              | 否   | 菜单的选项。                                              |
+
+### copyOptions
+
+copyOptions(value: CopyOptions)
+
+设置组件是否支持文本内容可复制粘贴。
+
+copyOptions不为CopyOptions.None时，长按组件内容，会弹出文本选择弹框。如果通过bindSelectionMenu等方式自定义文本选择菜单，则会弹出自定义的菜单。
+
+设置copyOptions为CopyOptions.None，复制、剪切功能不生效。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                             | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [CopyOptions](ts-appendix-enums.md#copyoptions9) | 是   | 组件支持文本内容是否可复制粘贴。<br />默认值：CopyOptions.LocalDevice |
+
+### enableDataDetector<sup>11+</sup>
+
+enableDataDetector(enable: boolean)
+
+设置使能文本识别。
+
+所识别实体的fontColor和decoration会被更改为如下样式：<br/>fontColor：Color.Blue<br/>decoration:&nbsp;{<br/>type:&nbsp;TextDecorationType.Underline,<br/>color:&nbsp;Color.Blue<br/>}
+
+该接口依赖设备底层应具有文本识别能力，否则设置不会生效。
+
+当enableDataDetector设置为true，同时不设置dataDetectorConfig属性时，默认识别所有类型的实体。
+
+当copyOptions设置为CopyOptions.None时，该功能不会生效。
+
+对addBuilderSpan的节点文本，该功能不会生效。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                              |
+| ------ | ------- | ---- | --------------------------------- |
+| value  | boolean | 是   | 使能文本识别。<br/>默认值： false |
+
+### dataDetectorConfig<sup>11+</sup>
+
+dataDetectorConfig(config: TextDataDetectorConfig)
+
+设置文本识别配置。需配合[enableDataDetector](#enabledatadetector11)一起使用，设置enableDataDetector为true时，dataDetectorConfig的配置才能生效。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                | 必填 | 说明                                                         |
+| ------ | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| config | [TextDataDetectorConfig](#textdatadetectorconfig11) | 是   | 文本识别配置。 <br/>默认值：{<br/>types:&nbsp;[ ],<br/>onDetectResultUpdate:&nbsp;null<br/>} |
+
+### placeholder<sup>12+</sup>
+
+placeholder(value: ResourceStr, style?: PlaceholderStyle)
+
+设置无输入时的提示文本。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                    | 必填 | 说明                                                    |
+| ------ | --------------------------------------- | ---- | ------------------------------------------------------- |
+| value  | [ResourceStr](ts-types.md#resourcestr)  | 是   | 无输入时的提示文本。                                    |
+| style  | [PlaceholderStyle](#placeholderstyle12) | 否   | 添加提示文本的字体样式。<br />style缺省时默认跟随主题。 |
 
 ## 事件
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
 
-| 名称                                       | 功能描述                                     |
-| ---------------------------------------- | ---------------------------------------- |
-| onReady(callback:&nbsp;()&nbsp;=&gt;&nbsp;void) | 富文本组件初始化完成后，触发回调。                        |
-| onSelect(callback:&nbsp;(value:&nbsp;[RichEditorSelection](#richeditorselection))&nbsp;=&gt;&nbsp;void) | 鼠标左键按下选择，松开左键后触发回调。<br />用手指选择时，松开手指触发回调。 <br />- value：选中的所有span信息。 |
-| aboutToIMEInput(callback:&nbsp;(value:&nbsp;[RichEditorInsertValue](#richeditorinsertvalue))&nbsp;=&gt;&nbsp;boolean) | 输入法输入内容前，触发回调。<br />- value：输入法将要输入内容信息。 |
-| onIMEInputComplete(callback:&nbsp;(value:&nbsp;[RichEditorTextSpanResult](#richeditortextspanresult))&nbsp;=&gt;&nbsp;void) | 输入法完成输入后，触发回调。<br />- value：输入法完成输入后的文本Span信息。 |
-| aboutToDelete(callback:&nbsp;(value:&nbsp;[RichEditorDeleteValue](#richeditordeletevalue))&nbsp;=&gt;&nbsp;boolean) | 输入法删除内容前，触发回调。 <br />- value：准备删除的内容所在的文本Span信息。 |
-| onDeleteComplete(callback:&nbsp;()&nbsp;=&gt;&nbsp;void) | 输入法完成删除后，触发回调。                           |
-| onPaste<sup>11+</sup>(callback: (event?: [PasteEvent](#pasteevent11)) => void) | 完成粘贴前，触发回调。 <br/>**说明：** <br/>系统的默认粘贴和拖拽行为，只支持纯文本的粘贴。<br/>开发者可以通过该方法，覆盖系统默认行为，实现图文的粘贴。 |
-| onSelectionChange<sup>12+</sup>(callback:&nbsp;(value:&nbsp;[RichEditorRange](#richeditorrange)) => void) | 文本选择区域发生变化或编辑状态下光标位置发生变化时触发该回调。<br />- value：文本选择区域起始和终止位置。<br />**说明：**<br/>光标位置发生变化回调时，选择区域的起始位置等于终止位置。|
+### onReady
+
+onReady(callback:&nbsp;()&nbsp;=&gt;&nbsp;void)
+
+富文本组件初始化完成后，触发回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### onSelect
+
+onSelect(callback:&nbsp;(value:&nbsp;RichEditorSelection&nbsp;=&gt;&nbsp;void)
+
+鼠标左键按下选择，松开左键后触发回调。
+
+用手指选择时，松开手指触发回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                        | 必填 | 说明                 |
+| ------ | ------------------------------------------- | ---- | -------------------- |
+| value  | [RichEditorSelection](#richeditorselection) | 是   | 选中的所有span信息。 |
+
+### aboutToIMEInput
+
+aboutToIMEInput(callback:&nbsp;(value:&nbsp;RichEditorInsertValue)&nbsp;=&gt;&nbsp;boolean)
+
+输入法输入内容前，触发回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                            | 必填 | 说明                     |
+| ------ | ----------------------------------------------- | ---- | ------------------------ |
+| value  | [RichEditorInsertValue](#richeditorinsertvalue) | 是   | 输入法将要输入内容信息。 |
+
+### onIMEInputComplete
+
+onIMEInputComplete(callback:&nbsp;(value:&nbsp;RichEditorTextSpanResult)&nbsp;=&gt;&nbsp;void)
+
+输入法完成输入后，触发回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                  | 必填 | 说明                             |
+| ------ | ----------------------------------------------------- | ---- | -------------------------------- |
+| value  | [RichEditorTextSpanResult](#richeditortextspanresult) | 是   | 输入法完成输入后的文本Span信息。 |
+
+### aboutToDelete
+
+aboutToDelete(callback:&nbsp;(value:&nbsp;RichEditorDeleteValue)&nbsp;=&gt;&nbsp;boolean)
+
+输入法删除内容前，触发回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                            | 必填 | 说明                               |
+| ------ | ----------------------------------------------- | ---- | ---------------------------------- |
+| value  | [RichEditorDeleteValue](#richeditordeletevalue) | 是   | 准备删除的内容所在的文本Span信息。 |
+
+### onDeleteComplete
+
+onDeleteComplete(callback:&nbsp;()&nbsp;=&gt;&nbsp;void)
+
+输入法完成删除后，触发回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### onPaste<sup>11+</sup>
+
+onPaste(callback: (event?: PasteEvent) => void)
+
+完成粘贴前，触发回调。系统的默认粘贴和拖拽行为，只支持纯文本的粘贴。开发者可以通过该方法，覆盖系统默认行为，实现图文的粘贴。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                        | 必填 | 说明               |
+| ------ | --------------------------- | ---- | ------------------ |
+| event  | [PasteEvent](#pasteevent11) | 否   | 定义用户粘贴事件。 |
+
+### onSelectionChange<sup>12+</sup>
+
+onSelectionChange(callback:&nbsp;(value:&nbsp;RichEditorRange) => void)
+
+文本选择区域发生变化或编辑状态下光标位置发生变化时触发该回调。光标位置发生变化回调时，选择区域的起始位置等于终止位置。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                | 必填 | 说明                         |
+| ------ | ----------------------------------- | ---- | ---------------------------- |
+| event  | [RichEditorRange](#richeditorrange) | 否   | 文本选择区域起始和终止位置。 |
 
 ## RichEditorInsertValue
 
@@ -423,6 +620,8 @@ selectionStart和selectionEnd均为-1时表示全选。
 接口调用前无菜单弹出，则调用后也无菜单弹出。
 
 未获焦时调用该接口不产生选中效果。
+
+使用[示例](ohos-arkui-advanced-SelectionMenu.md#示例)。
 
 **参数：**
 
