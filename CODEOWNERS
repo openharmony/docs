@@ -983,6 +983,20 @@ zh-cn/application-dev/reference/apis/js-apis-inputmethod-subtype.md @hu-zhiqiong
 zh-cn/application-dev/reference/apis/js-apis-stationary.md @mayunteng_1 @hu-zhiqiong @cococoler @alien0208
 zh-cn/application-dev/reference/errorcodes/errorcode-inputmethod-framework.md @hu-zhiqiong
 
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-battery-info.md @warehouse12  @alien0208
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-power.md @warehouse12  @alien0208
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-runninglock.md @warehouse12  @alien0208
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-thermal.md @warehouse12  @alien0208
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-usbManager.md @warehouse12 @Kevin-Lau @liuhonggang123
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-battery-info-sys.md @warehouse12  @alien0208
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-batteryStatistics-sys.md @warehouse12  @alien0208
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-brightness-sys.md @warehouse12  @alien0208
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-charger-sys.md @warehouse12  @alien0208
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-enterprise-usbManager-sys.md @liuzuming @ningningW @yangqing3 @caiminggang @warehouse12
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-power-sys.md @warehouse12  @alien0208
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-usbManager-sys.md @warehouse12 @Kevin-Lau @liuhonggang123
+
+
 
 [IME kit]
 zh-cn/application-dev/reference/apis-ime-kit/errorcode-inputmethod-framework.md @illybyy @murphy1984 @feng-aiwen  @hu-zhiqiong @SuperShrimp @murphy1984
@@ -1018,3 +1032,20 @@ zh-cn/application-dev/device/stationary-guidelines.md @mayunteng_1 @hu-zhiqiong 
 zh-cn/application-dev/reference/apis-multimodalawareness-kit/Readme-CN.md @mayunteng_1 @hu-zhiqiong @cococoler @alien0208
 zh-cn/application-dev/reference/apis-multimodalawareness-kit/js-apis-stationary.md @mayunteng_1 @hu-zhiqiong @cococoler @alien0208
 
+[distributedservice kit]
+zh-cn/application-dev/reference/apis-distributedservice-kit/js-apis-distributedDeviceManager.md @warehouse12
+zh-cn/application-dev/reference/apis-distributedservice-kit/js-apis-distributedDeviceManager-sys.md @warehouse12
+zh-cn/application-dev/reference/apis-distributedservice-kit/js-apis-distributedHardwareManager-sys.md @warehouse12
+
+[accessibility kit]
+zh-cn/application-dev/reference/apis-accessibility-kit/js-apis-accessibility.md @mupceet @RayShih @mupceet @gaoxi785 @warehouse12
+zh-cn/application-dev/reference/apis-accessibility-kit/js-apis-accessibility-GesturePath.md @mupceet @RayShih @mupceet @gaoxi785 @warehouse12
+zh-cn/application-dev/reference/apis-accessibility-kit/js-apis-application-accessibilityExtensionAbility.md @mupceet @RayShih @mupceet @chengxingzhen @warehouse12
+zh-cn/application-dev/reference/apis-accessibility-kit/js-apis-inner-application-accessibilityExtensionContext.md @mupceet @RayShih @mupceet @chengxingzhen @warehouse12
+zh-cn/application-dev/reference/apis-accessibility-kit/js-apis-accessibility-config-sys.md @mupceet @RayShih @mupceet @gaoxi785 @warehouse12
+zh-cn/application-dev/reference/apis-accessibility-kit/errorcode-accessibility.md @RayShih @warehouse12
+
+[driverdevelopment kit]
+zh-cn/application-dev/reference/apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md @warehouse12
+zh-cn/application-dev/reference/apis-driverdevelopment-kit/js-apis-driver-deviceManager.md @warehouse12
+zh-cn/application-dev/reference/apis-driverdevelopment-kit/js-apis-inner-application-driverExtensionContext.md @warehouse12
