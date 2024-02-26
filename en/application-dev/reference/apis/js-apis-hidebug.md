@@ -404,3 +404,172 @@ Exports the heap data.
 ```ts
 hidebug.dumpHeapData("heap-20220216");
 ```
+
+## hidebug.getAppVMMemoryInfo<sup>12+<sup>
+
+getAppVMMemoryInfo(): VMMemoryInfo
+
+Obtains the memory info of application virutal machine.
+
+**System capability** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**Return value**
+
+| Type         | Description                                 |
+| -------------| ---------------------------------------     |
+| VMMemoryInfo | For details.see VMMemoryInfo                |
+
+**Example**
+
+  ```ts
+let vmMemory: VMMemoryInfo = hidebug.getAppVMMemoryInfo();
+hilog.info(0x0000, "example", "totalHeap = %{public}d", vmMemory.totalHeap);
+hilog.info(0x0000, "example", "heapUsed = %{public}d", vmMemory.heapUsed);
+hilog.info(0x0000, "example", "allArraySize = %{public}d", vmMemory.allArraySize);
+  ```
+
+## hidebug.getAppThreadCpuUsage<sup>12+<sup>
+
+getAppThreadCpuUsage(): ThreadCpuUsage[]
+
+Obtain CPU usage of application threads
+
+**System capability** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**Return value**
+
+| Type             | Description                                                       |
+| -----------------| ------------------------------------------------------------------|
+| ThreadCpuUsage[] | An array containing ThreadCpuUsage,For details.see ThreadCpuUsage |
+
+**Example**
+
+  ```ts
+let appThreadCpuUsage = hidebug.getAppThreadCpuUsage();
+for (let ii = 0; ii < appThreadCpuUsage.length; ii++) {
+    hilog.info(0x0000, "example", "threadId=%{public}d, cpuUsage=%{public}f", appThreadCpuUsage[ii].threadId,
+    appThreadCpuUsage[ii].cpuUsage);
+}
+  ```
+
+## hidebug.startAppTraceCapture<sup>12+</sup>
+
+startAppTraceCapture(tags : string[], flag: TraceFlag, limitSize: number) : string
+
+Start application trace collection, startAppTraceCapture() method needs to correspond one-to-one with the call
+to the stopCaptureAppTrace() method,Open first and then close. It is strictly prohibited to use sequences
+such as' start ->start ->stop ',' start ->stop ->stop ',' start ->start ->stop ->stop '
+
+**System capability** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**Parameters**
+
+| Name     | Type     | Mandatory | Description                                                                        |
+| -------- | ------   | --------- | -----------------------------------------------------------------------------------|
+| tags     | number[] | Yes       | The tag type of trace, specific tag types can be found below                       |
+| flag     |TraceFlag | Yes       | Flag type of trace, MAIN_THREAD only collects trace from the main thread, ALL_THREAD collects all thread traces |
+| limitSize| number   | Yes       | Enable trace file size limit in Bytes                                              |
+
+**Return value**
+
+| Type             | Description                                                       |
+| -----------------| ------------------------------------------------------------------|
+| string           | Return trace file name path                                       |
+
+**Example**
+
+```ts
+let tags = [hidebug.tags.ABILITY_MANAGER, hidebug.tags.ACE];
+let flag = hidebug.TraceFlag.MAIN_THREAD;
+let limitSize = 1024 * 1024;
+let fileName = hidebug.startAppTraceCapture(tags, flag, limitSize);
+// code block
+// ...
+// code block
+hidebug.stopAppTraceCapture();
+```
+
+## hidebug.stopAppTraceCapture<sup>12+</sup>
+
+stopAppTraceCapture() : void
+
+Stop application trace collection, startAppTraceCapture() method needs to correspond one-to-one with the call
+to the stopAppTraceCapture() method,Open first and then close. It is strictly prohibited to use sequences
+such as' start ->start ->stop ',' start ->stop ->stop ',' start ->start ->stop ->stop '
+
+**System capability:** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**Example**
+
+```ts
+let tags = [hidebug.tags.ABILITY_MANAGER, hidebug.tags.ACE];
+let flag = hidebug.TraceFlag.MAIN_THREAD;
+let limitSize = 1024 * 1024;
+let fileName = hidebug.startAppTraceCapture(tags, flag, limitSize);
+// code block
+// ...
+// code block
+hidebug.stopAppTraceCapture();
+```
+
+## VMMemoryInfo
+
+the memory info of application virtual machine
+
+**System capability** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+| name               | Type    | Readable | Writable | Description                                        |
+| -------------------| ------- | ---------| -------- | ---------------------------------------------------|
+| totalHeap          | bigint  | Yes      | No       | heap total size of current virutal machine         |
+| heapUsed           | bigint  | Yes      | No       | heap used size of current virutal machine          |
+| allArraySize          | bigint  | Yes      | No       | all array object size of current virutal machine   |
+
+## ThreadCpuUsage
+
+Describe thread CPU usage
+
+**System capability:** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+| Name               | Type    | Readable | Writable | Description                         |
+| -------------------| ------- | -------- | -------- | ----------------------------------- |
+| threadId           | number  | Yes      | No       | thread ID                           |
+| cpuUsage           | number  | Yes      | No       | Thread CPU usage rate               |
+
+## tags
+
+Tag type constant describing trace
+
+| Name                     | Type    |  Description                              |
+| -------------------------| ------- |  ---------------------------------------- |
+| ABILITY_MANAGER          | number  |  Ability Manager tag                      |
+| ACE                      | number  |  ACE development framework tag            |
+| ARK                      | number  |  ARK tag                                  |
+| BLUETOOTH                | number  |  Bluetooth tag                            |
+| COMMON_LIBRARY           | number  |  Common library subsystem tag             |
+| DISTRIBUTED_HARDWARE_DEVICE_MANAGER           | number  |  Distributed hardware devicemanager tag   |
+| DISTRIBUTED_AUDIO        | number  |  Distributed audio tag                    |
+| DISTRIBUTED_CAMERA       | number  |  Distributed camera tag                   |
+| DISTRIBUTED_DATA         | number  |  Distributed data manager module tag      |
+| DISTRIBUTED_HARDWARE_FRAMEWORK | number  |  Distributed hardware fwk tag             |
+| DISTRIBUTED_INPUT        | number  |  Distributed input tag                    |
+| DISTRIBUTED_SCREEN       | number  |  Distributed screen tag                   |
+| DISTRIBUTED_SCHEDULE     | number  |  Distributed schedule tag                 |
+| FFRT                     | number  |  Ffrt tasks                               |
+| FILE_MANAGEMENT          | number  |  File management tag                      |
+| GLOBAL_RESOURCE_MANAGER  | number  |  Global resource manager tag              |
+| GRAPHICS                 | number  |  Graphic module tag                       |
+| HDF                      | number  |  HDF subsystem tag                        |
+| MISC                     | number  |  MISC module tag                          |
+| MUTIMODAL_INPUT          | number  |  Multimodal module tag                    |
+| NET                      | number  |  Net tag                                  |
+| NOTIFICATION             | number  |  Notification module tag                  |
+| NWEB                     | number  |  NWeb tag                                 |
+| OHOS                     | number  |  OHOS generic tag                         |
+| POWER                    | number  |  Power manager tag                        |
+| RPC                      | number  |  RPC and IPC tag                          |
+| SAMGR                    | number  |  SA tag                                   |
+| WINDOW_MANAGER           | number  |  Window manager tag                       |
+| AUDIO                    | number  |  Audio module tag                         |
+| CAMERA                   | number  |  Camera module tag                        |
+| IMAGE                    | number  |  Image module tag                         |
+| MEDIA                    | number  |  Media module tag                         |
