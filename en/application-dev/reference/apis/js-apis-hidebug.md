@@ -512,6 +512,37 @@ let fileName = hidebug.startAppTraceCapture(tags, flag, limitSize);
 hidebug.stopAppTraceCapture();
 ```
 
+## hidebug.getAppMemoryLimit<sup>12+</sup>
+
+getAppMemoryLimit() : MemoryLimit
+
+Get application process memory limit
+
+**System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**Return value**
+
+| Type  | Description                      |
+| ------ | -------------------------- |
+| [MemoryLimit](#memorylimit) | application process memory limit|
+
+**Example**
+
+```ts
+ let appMemoryLimit:hidebug.MemoryLimit = hidebug.getAppMemoryLimit();
+```
+## MemoryLimit
+
+application process memory limit
+
+**System capability**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+| Name      | Type   | Mandatory | Description         |
+| --------- | ------ | ---- | ------------ |
+| rssLimit    | bigint |  Yes  | the limit of the application process’s resident set, in bytes     |
+| vssLimit  | bigint |  Yes  | the limit of the process’s virtual memory, in bytes       |
+| vmHeapLimit | bigint |  Yes  | the limit of the js vm heap size of current thread, in bytes       |
+
 ## VMMemoryInfo
 
 the memory info of application virtual machine
