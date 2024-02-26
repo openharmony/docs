@@ -111,7 +111,7 @@
    /*
     * 确定密钥别名和封装密钥属性参数集
     */
-   let srcKeyAlias = 'sm4_key_fingerprint_access';
+   let srcKeyAlias = 'test_sm4_key_alias';
    let handle : number;
    let challenge : Uint8Array;
    let fingerAuthToken : Uint8Array;
@@ -125,7 +125,7 @@
    }
    properties[1] = {
        tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-       value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT | huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT,
+       value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT,
    }
    properties[2] = {
        tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
@@ -138,6 +138,10 @@
    properties[4] = {
        tag: huks.HuksTag.HUKS_TAG_PADDING,
        value: huks.HuksKeyPadding.HUKS_PADDING_NONE,
+   }
+   properties[5] = {
+       tag: huks.HuksTag.HUKS_TAG_IV,
+       value: StringToUint8Arry(IV),
    }
    let huksOptions : huks.HuksOptions = {
        properties: properties,
@@ -240,9 +244,8 @@
    import huks from '@ohos.security.huks';
    import { BusinessError } from '@ohos.base';
    /*
-   * 确定密钥别名和封装密钥属性参数集
+   * 确定封装密钥属性参数集
    */
-   let srcKeyAlias = 'sm4_key_fingerprint_access';
    let IV = '1234567890123456';
    let cipherInData = 'Hks_SM4_Cipher_Test_101010101010101010110_string';
    let handle: number;
@@ -369,7 +372,6 @@
        encryptOptions.inData = StringToUint8Array(cipherInData);
        /* 传入认证令牌 */
        await publicUpdateFunc(handle, fingerAuthToken, encryptOptions);
-       encryptOptions.inData = new Uint8Array(new Array());
        /* 传入认证令牌 */
        await publicFinishFunc(handle, fingerAuthToken, encryptOptions);
        if (finishOutData === StringToUint8Array(cipherInData)) {
