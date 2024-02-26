@@ -404,3 +404,170 @@ dumpHeapData(filename : string) : void
 ```ts
 hidebug.dumpHeapData("heap-20220216");
 ```
+
+## hidebug.getAppVMMemoryInfo<sup>12+<sup>
+
+getAppVMMemoryInfo(): VMMemoryInfo
+
+获取VM内存相关信息。
+
+**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**返回值：**
+
+| 类型         | 说明                                    |
+| -------------| --------------------------------------- |
+| VMMemoryInfo | 详情见 VMMemoryInfo 介绍                |
+
+**示例：**
+
+  ```ts
+let vmMemory: VMMemoryInfo = hidebug.getAppVMMemoryInfo();
+hilog.info(0x0000, "example", "totalHeap = %{public}d", vmMemory.totalHeap);
+hilog.info(0x0000, "example", "heapUsed = %{public}d", vmMemory.heapUsed);
+hilog.info(0x0000, "example", "allArraySize = %{public}d", vmMemory.allArraySize);
+  ```
+
+## hidebug.getAppThreadCpuUsage<sup>12+<sup>
+
+getAppThreadCpuUsage(): ThreadCpuUsage[]
+
+获取应用线程CPU使用情况
+
+**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**返回值：**
+
+| 类型             | 说明                                                        |
+| -----------------| ------------------------------------------------------------|
+| ThreadCpuUsage[] | 一个数组,数组里包含的是ThreadCpuUsage,ThreadCpuUsage见下描述 |
+
+**示例：**
+
+  ```ts
+let appThreadCpuUsage = hidebug.getAppThreadCpuUsage();
+for (let ii = 0; ii < appThreadCpuUsage.length; ii++) {
+    hilog.info(0x0000, "example", "threadId=%{public}d, cpuUsage=%{public}f", appThreadCpuUsage[ii].threadId,
+    appThreadCpuUsage[ii].cpuUsage);
+}
+  ```
+
+## hidebug.startAppTraceCapture<sup>12+</sup>
+
+startAppTraceCapture(tags : number[], flag: TraceFlag, limitSize: number) : string
+
+启动应用trace采集,'startAppTraceCapture()'方法的调用需要与'stopAppTraceCapture()'方法的调用一一对应，
+先开启后关闭，严禁使用'start->start->stop'，'start->stop->stop'，'start->start->stop->stop'等类似的顺序调用。
+
+**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                                                                  |
+| -------- | ------   | ---- | ------------------------------------------------------------------------------------- |
+| tags     | number[] | 是   | trace的tag类型,具体tag类型见下方                                                       |
+| flag     | TraceFlag| 是   | trace的flag类型,MAIN_THREAD为只采集主线程trace, ALL_THREADS为采集所有线程trace         |
+| limitSize| number   | 是   | 开启trace文件大小限制,单位为Byte                                                       |
+
+**返回值：**
+
+| 类型             | 说明                                           |
+| -----------------| -----------------------------------------------|
+| string           | 返回trace文件名路径                            |
+
+**示例：**
+
+```ts
+let tags = [hidebug.tags.ABILITY_MANAGER, hidebug.tags.ACE];
+let flag = hidebug.TraceFlag.MAIN_THREAD;
+let limitSize = 1024 * 1024;
+let fileName = hidebug.startAppTraceCapture(tags, flag, limitSize);
+// code block
+// ...
+// code block
+hidebug.stopAppTraceCapture();
+```
+
+## hidebug.stopAppTraceCapture<sup>12+</sup>
+
+stopCaptureMainThreadTrace() : void
+
+停止应用trace采集,'startAppTraceCapture()'方法的调用需要与'stopAppTraceCapture()'方法的调用一一对应，
+先开启后关闭，严禁使用'start->start->stop'，'start->stop->stop'，'start->start->stop->stop'等类似的顺序调用。
+
+**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**示例：**
+
+```ts
+let tags = [hidebug.tags.ABILITY_MANAGER, hidebug.tags.ACE];
+let flag = hidebug.TraceFlag.MAIN_THREAD;
+let limitSize = 1024 * 1024;
+let fileName = hidebug.startAppTraceCapture(tags, flag, limitSize);
+// code block
+// ...
+// code block
+hidebug.stopAppTraceCapture();
+```
+
+## VMMemoryInfo
+
+描述VM内存信息。
+
+**系统能力:** 以下各项对应的系统能力均为SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+| 名称               | 类型    | 可读 | 可写 | 说明                                |
+| -------------------| ------- | ---- | ---- | ---------------------------------- |
+| totalHeap          | bigint  | 是   | 否   | 表示当前虚拟机的堆总大小            |
+| heapUsed           | bigint  | 是   | 否   | 表示当前虚拟机使用的堆大小          |
+| allArraySize       | bigint  | 是   | 否   | 表示当前虚拟机的所有数组对象大小    |
+
+## ThreadCpuUsage
+
+描述线程CPU使用情况
+
+**系统能力:** 以下各项对应的系统能力均为SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+| 名称               | 类型    | 可读 | 可写 | 说明                                |
+| -------------------| ------- | ---- | ---- | ----------------------------------- |
+| threadId           | number  | 是   | 否   | cpu线程Id                           |
+| cpuUsage           | number  | 是   | 否   | cpu线程使用率                       |
+
+## tags
+
+描述trace的tag类型常量
+
+| 名称                     | 类型    |  说明                                |
+| -------------------------| ------- |  ----------------------------------- |
+| ABILITY_MANAGER          | number  |  能力管理tag                         |
+| ACE                      | number  |  ACE开发框架tag                      |
+| ARK                      | number  |  ARKtag                              |
+| BLUETOOTH                | number  |  蓝牙tag                             |
+| COMMON_LIBRARY           | number  |  公共库子系统ta                      |
+| DISTRIBUTED_HARDWARE_DEVICE_MANAGER | number  |  分布式硬件tag                       |
+| DISTRIBUTED_AUDIO        | number  |  分布式音频tag                       |
+| DISTRIBUTED_CAMERA       | number  |  分布式相机tag                       |
+| DISTRIBUTED_DATA         | number  |  分布式数据管理模块tag               |
+| DISTRIBUTED_HARDWARE_FRAMEWORK | number  |  分布式硬件fkwtag                    |
+| DISTRIBUTED_INPUT        | number  |  分布式输入tag                       |
+| DISTRIBUTED_SCREEN       | number  |  分布式屏幕tag                       |
+| DISTRIBUTED_SCHEDULER    | number  |  分布式计划tag                       |
+| FFRT                     | number  |  FFrt 任务tag                        |
+| FILE_MANAGEMENT          | number  |  文件管理tag                         |
+| GLOBAL_RESOURCE_MANAGER  | number  |  全局资源管理tag                     |
+| GRAPHICS                 | number  |  图形模块tag                         |
+| HDF                      | number  |  HDF子系统tag                        |
+| MISC                     | number  |  MISC模块tag                         |
+| MUTIMODAL_INPUT          | number  |  多模组件tag                         |
+| NET                      | number  |  网络tag                             |
+| NOTIFICATION             | number  |  通知组件tag                         |
+| NWEB                     | number  |  nwebtag                             |
+| OHOS                     | number  |  OHOS 普通tag                        |
+| POWER                    | number  |  电池管理tag                         |
+| RPC                      | number  |  RPC和IPCtag                         |
+| SAMGR                    | number  |  系统能力tag                         |
+| WINDOW_MANAGER           | number  |  窗口管理tag                         |
+| AUDIO                    | number  |  音频模块tag                         |
+| CAMERA                   | number  |  相机模块tag                         |
+| IMAGE                    | number  |  图像模块tag                         |
+| MEDIA                    | number  |  媒体模块tag                         |
