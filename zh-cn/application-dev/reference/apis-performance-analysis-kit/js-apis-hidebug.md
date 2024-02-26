@@ -442,6 +442,8 @@ getAppThreadCpuUsage(): ThreadCpuUsage[]
 | -----------------| ------------------------------------------------------------|
 | ThreadCpuUsage[] | 一个数组,数组里包含的是ThreadCpuUsage,ThreadCpuUsage见下描述 |
 
+
+
 **示例：**
 
   ```ts
@@ -475,6 +477,17 @@ startAppTraceCapture(tags : number[], flag: TraceFlag, limitSize: number) : stri
 | -----------------| -----------------------------------------------|
 | string           | 返回trace文件名路径                            |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[Hidebug错误码](errorcode-hiviewdfx-hidebug.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------------------------------------------------- |
+| 401 | the parameter check failed                                            |
+| 11400102 | Have already capture trace                                          |
+| 11400103 | Without write permission on the file                                |
+| 11400104 | The status of the trace is abnormal                                 |
+
 **示例：**
 
 ```ts
@@ -490,12 +503,21 @@ hidebug.stopAppTraceCapture();
 
 ## hidebug.stopAppTraceCapture<sup>12+</sup>
 
-stopCaptureMainThreadTrace() : void
+stopAppTraceCapture() : void
 
 停止应用trace采集,'startAppTraceCapture()'方法的调用需要与'stopAppTraceCapture()'方法的调用一一对应，
 先开启后关闭，严禁使用'start->start->stop'，'start->stop->stop'，'start->start->stop->stop'等类似的顺序调用。
 
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Hidebug错误码](errorcode-hiviewdfx-hidebug.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------------------------------------------------- |
+| 11400104 | The status of the trace is abnormal                                |
+| 11400105 |   No capture trace running                                       |
 
 **示例：**
 
