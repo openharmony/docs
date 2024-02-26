@@ -563,7 +563,7 @@ getAppMemoryLimit() : MemoryLimit
 | vssLimit  | bigint |  是  | 进程的虚拟内存限制（以字节为单位）       |
 | vmHeapLimit | bigint |  是  | 当前线程的 JS VM 堆大小限制（以字节为单位）      |
 
-## VMMemoryInfo
+## VMMemoryInfo<sup>12+<sup>
 
 描述VM内存信息。
 
