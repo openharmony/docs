@@ -123,7 +123,7 @@ Obtains the application process native meminfo
 
 | Type  | Description                                    |
 | ------ | ---------------------------------------- |
-| [NativeMemInfo](#nativeMemInfo) | Size of the memory actually used by the application process|
+| [NativeMemInfo](#NativeMemInfo) | Size of the memory actually used by the application process|
 
 **Example**
 
