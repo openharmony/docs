@@ -153,7 +153,7 @@ hilog.info(0x0000, 'testTag', 'privateClean = %{public}d', nativeMemInfo.private
 | --------- | ------ | ---- | ------------ |
 | pss  | bigint |  是  | 实际上占用的物理内存的大小(比例分配共享库占用的内存)，以KB为单位     |
 | vss  | bigint |  是  | 占用的虚拟内存的大小(包括共享库所占用的内存)，以KB为单位       |
-| rss | bigint |  是  | 实际上占用的物理内存的大小(包括共享库占用)（以KB为单位）      |
+| rss  | bigint |  是  | 实际上占用的物理内存的大小(包括共享库占用), 以KB为单位         |
 | sharedDirty | bigint |  是  | 共享脏内存的大小，以KB为单位      |
 | privateDirty | bigint |  是  | 专用脏内存的大小，以KB为单位      |
 | sharedClean | bigint |  是  | 共享干净内存的大小，以KB为单位      |
