@@ -364,7 +364,7 @@ struct CustomLayout {
 >- 使用builder形式的自定义布局创建，自定义组件的build()方法内只允许存在this.builder()，即示例的推荐用法。
 >- 子组件设置的尺寸信息，除aspectRatio之外，优先级小于onMeasureSize设置的尺寸信息。
 >- 子组件设置的位置信息，除offset、position之外，优先级小于onPlaceChildren设置的位置信息。
->- 使用自定义布局方法时，如未调用子组件的measure和layout方法，将不显示布局。
+>- 使用自定义布局方法时，需要同时调用onMeasureSize和onPlaceChildren方法，否则可能出现布局异常。
 >- 调用onPlaceChildren后，影响子组件布局位置的部分通用属性将失效，如align等。
 
 ```

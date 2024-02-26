@@ -343,6 +343,8 @@ resizable(value: ResizableOptions)
 |  bottom |  number  |  否  | 图片底部拉伸时保持不变距离。<br>默认值：0<br>单位：vp |
 |  left   |  number  |  否  | 图片左部拉伸时保持不变距离。<br>默认值：0<br>单位：vp |
 
+![edgewidths](figures/edgewidths.png)
+
 ## 事件
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
