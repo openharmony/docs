@@ -309,6 +309,7 @@
   - 结构体
     - [ArkUI_AnyNativeAPI](_ark_u_i___any_native_a_p_i.md)
     - [ArkUI_AttributeItem](_ark_u_i___attribute_item.md)
+    - [ArkUI_ColorStop](_ark_u_i___color_stop.md)
     - [ArkUI_NativeNodeAPI_1](_ark_u_i___native_node_a_p_i__1.md)
     - [ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)
     - [ArkUI_NodeEvent](_ark_u_i___node_event.md)

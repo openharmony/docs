@@ -15,28 +15,28 @@
 
 ### 成员变量
 
-| 名称 | 描述 |
+| 名称 | 描述 | 
 | -------- | -------- |
-| int32_t [id](#id) | 触控事件标识。  |
-| int64_t [pressedTime](#pressedtime) | 手指按下的时间戳，单位为微秒（us）。  |
-| int32_t [screenX](#screenx) | 触摸位置所属的屏幕X坐标。  |
-| int32_t [screenY](#screeny) | 触摸位置所属的屏幕Y坐标。  |
-| int32_t [windowX](#windowx) | 触摸位置在窗口中的X坐标。  |
-| int32_t [windowY](#windowy) | 触摸位置在窗口中的Y坐标。  |
-| int32_t [nodeX](#nodex) | 触摸位置在当前触发事件组件中的X坐标。  |
-| int32_t [nodeY](#nodey) | 触摸位置在当前触发事件组件中的Y坐标。  |
-| double [pressure](#pressure) | 压力值，取值范围是[0.0, 1.0]，0.0表示不支持。  |
-| int32_t [contactAreaWidth](#contactareawidth) | 触摸区域的宽度。  |
-| int32_t [contactAreaHeight](#contactareaheight) | 触摸区域的高度。  |
-| double [tiltX](#tiltx) | 相对YZ平面的角度，取值范围是[-90, 90]，其中正值是向右倾斜。  |
-| double [tiltY](#tilty) | 相对XZ平面的角度，取值范围是[-90, 90]，其中正值是向下倾斜。  |
-| int32_t [toolX](#toolx) | 工具区域的中心点X坐标。  |
-| int32_t [toolY](#tooly) | 工具区域的中心点Y坐标。  |
-| int32_t [toolWidth](#toolwidth) | 工具接触区域的宽度。  |
-| int32_t [toolHeight](#toolheight) | 工具接触区域的高度。  |
-| int32_t [rawX](#rawx) | 输入设备上的X坐标。  |
-| int32_t [rawY](#rawy) | 输入设备上的Y坐标。  |
-| [ArkUI_NodeToolType](_ark_u_i___native_module.md#arkui_nodetooltype)[toolType](#tooltype) | 工具类型。  |
+| int32_t [id](#id) | 触控事件标识。  | 
+| int64_t [pressedTime](#pressedtime) | 手指按下的时间戳，单位为微秒（us）。  | 
+| int32_t [screenX](#screenx) | 触摸位置所属的屏幕X坐标。  | 
+| int32_t [screenY](#screeny) | 触摸位置所属的屏幕Y坐标。  | 
+| int32_t [windowX](#windowx) | 触摸位置在窗口中的X坐标。  | 
+| int32_t [windowY](#windowy) | 触摸位置在窗口中的Y坐标。  | 
+| int32_t [nodeX](#nodex) | 触摸位置在当前触发事件组件中的X坐标。  | 
+| int32_t [nodeY](#nodey) | 触摸位置在当前触发事件组件中的Y坐标。  | 
+| double [pressure](#pressure) | 压力值，取值范围是[0.0, 1.0]，0.0表示不支持。  | 
+| int32_t [contactAreaWidth](#contactareawidth) | 触摸区域的宽度。  | 
+| int32_t [contactAreaHeight](#contactareaheight) | 触摸区域的高度。  | 
+| double [tiltX](#tiltx) | 相对YZ平面的角度，取值范围是[-90, 90]，其中正值是向右倾斜。  | 
+| double [tiltY](#tilty) | 相对XZ平面的角度，取值范围是[-90, 90]，其中正值是向下倾斜。  | 
+| int32_t [toolX](#toolx) | 工具区域的中心点X坐标。  | 
+| int32_t [toolY](#tooly) | 工具区域的中心点Y坐标。  | 
+| int32_t [toolWidth](#toolwidth) | 工具接触区域的宽度。  | 
+| int32_t [toolHeight](#toolheight) | 工具接触区域的高度。  | 
+| int32_t [rawX](#rawx) | 输入设备上的X坐标。  | 
+| int32_t [rawY](#rawy) | 输入设备上的Y坐标。  | 
+| [ArkUI_NodeToolType](_ark_u_i___native_module.md#arkui_nodetooltype) [toolType](#tooltype) | 工具类型。  | 
 
 
 ## 结构体成员变量说明
@@ -157,7 +157,6 @@ int32_t ArkUI_NodeTouchPoint::screenY
 ```
 double ArkUI_NodeTouchPoint::tiltX
 ```
-
 **描述：**
 
 相对YZ平面的角度，取值范围是[-90, 90]，其中正值是向右倾斜。
