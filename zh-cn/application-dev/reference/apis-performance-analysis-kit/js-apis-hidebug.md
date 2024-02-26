@@ -592,38 +592,38 @@ getAppMemoryLimit() : MemoryLimit
 
 | 名称                     | 类型    |  说明                                |
 | -------------------------| ------- |  ----------------------------------- |
-| ABILITY_MANAGER          | number  |  能力管理tag                         |
-| ACE                      | number  |  ACE开发框架tag                      |
-| ARK                      | number  |  ARKtag                              |
-| BLUETOOTH                | number  |  蓝牙tag                             |
-| COMMON_LIBRARY           | number  |  公共库子系统ta                      |
-| DISTRIBUTED_HARDWARE_DEVICE_MANAGER | number  |  分布式硬件tag                       |
-| DISTRIBUTED_AUDIO        | number  |  分布式音频tag                       |
-| DISTRIBUTED_CAMERA       | number  |  分布式相机tag                       |
-| DISTRIBUTED_DATA         | number  |  分布式数据管理模块tag               |
-| DISTRIBUTED_HARDWARE_FRAMEWORK | number  |  分布式硬件fkwtag                    |
-| DISTRIBUTED_INPUT        | number  |  分布式输入tag                       |
-| DISTRIBUTED_SCREEN       | number  |  分布式屏幕tag                       |
-| DISTRIBUTED_SCHEDULER    | number  |  分布式计划tag                       |
-| FFRT                     | number  |  FFrt 任务tag                        |
-| FILE_MANAGEMENT          | number  |  文件管理tag                         |
-| GLOBAL_RESOURCE_MANAGER  | number  |  全局资源管理tag                     |
-| GRAPHICS                 | number  |  图形模块tag                         |
-| HDF                      | number  |  HDF子系统tag                        |
-| MISC                     | number  |  MISC模块tag                         |
-| MUTIMODAL_INPUT          | number  |  多模组件tag                         |
-| NET                      | number  |  网络tag                             |
-| NOTIFICATION             | number  |  通知组件tag                         |
-| NWEB                     | number  |  nwebtag                             |
-| OHOS                     | number  |  OHOS 普通tag                        |
-| POWER                    | number  |  电池管理tag                         |
-| RPC                      | number  |  RPC和IPCtag                         |
-| SAMGR                    | number  |  系统能力tag                         |
-| WINDOW_MANAGER           | number  |  窗口管理tag                         |
-| AUDIO                    | number  |  音频模块tag                         |
-| CAMERA                   | number  |  相机模块tag                         |
-| IMAGE                    | number  |  图像模块tag                         |
-| MEDIA                    | number  |  媒体模块tag                         |
+| ABILITY_MANAGER          | number  |  Ability Manager tag.                |
+| ACE                      | number  |  ACE development framework tag.      |
+| ARK                      | number  |  ARK tag.                            |
+| BLUETOOTH                | number  |  Bluetooth tag.                      |
+| COMMON_LIBRARY           | number  |  Common library subsystem tag.       |
+| DISTRIBUTED_HARDWARE_DEVICE_MANAGER | number  |  Distributed hardware device manager tag.     |
+| DISTRIBUTED_AUDIO        | number  |  Distributed audio tag.              |
+| DISTRIBUTED_CAMERA       | number  |  Distributed camera tag.           |
+| DISTRIBUTED_DATA         | number  |  Distributed data manager module tag.        |
+| DISTRIBUTED_HARDWARE_FRAMEWORK | number  |  Distributed hardware framework tag.   |
+| DISTRIBUTED_INPUT        | number  |  Distributed input tag.             |
+| DISTRIBUTED_SCREEN       | number  |  Distributed screen tag.            |
+| DISTRIBUTED_SCHEDULER    | number  |  Distributed scheduler tag.          |
+| FFRT                     | number  |  FFRT tasks.                        |
+| FILE_MANAGEMENT          | number  |  File management tag.                |
+| GLOBAL_RESOURCE_MANAGER  | number  |  Global resource manager tag.        |
+| GRAPHICS                 | number  |  Graphics module tag.                |
+| HDF                      | number  |  HDF subsystem tag.                 |
+| MISC                     | number  |  MISC module tag.                    |
+| MUTIMODAL_INPUT          | number  |  Multimodal input module tag.        |
+| NET                      | number  |  Net tag.                            |
+| NOTIFICATION             | number  |  Notification module tag.            |
+| NWEB                     | number  |  NWeb tag.                           |
+| OHOS                     | number  |  OHOS generic tag.                   |
+| POWER_MANAGER            | number  |  Power manager tag.                   |
+| RPC                      | number  |  RPC tag.                            |
+| SAMGR                    | number  |  SA tag.                            |
+| WINDOW_MANAGER           | number  |  Window manager tag.                |
+| AUDIO                    | number  |  Audio module tag.                  |
+| CAMERA                   | number  |  Camera module tag.                 |
+| IMAGE                    | number  |  Image module tag.                  |
+| MEDIA                    | number  |  Media module tag.                  |
 
 ## hidebug.getSystemCpuUsage<sup>12+</sup>
 
