@@ -55,6 +55,7 @@ import deviceInfo from '@ohos.deviceInfo';
 | distributionOSVersion<sup>10+</sup> | String | 是 | 否 | 发行版系统版本号。 |
 | distributionOSApiVersion<sup>10+</sup> | number| 是 | 否 | 发行版系统api版本。 |
 | distributionOSReleaseType<sup>10+</sup> | String | 是 | 否 | 发行版系统类型。 |
+| ODID<sup>12+</sup> | String | 是 | 否 | 开发者匿名设备标识符。 |
 
 **示例**
 
@@ -162,5 +163,8 @@ import deviceInfo from '@ohos.deviceInfo';
 
     let distributionOSReleaseType: string = deviceinfo.distributionOSReleaseType
     console.info('the value of the deviceinfo distributionOSReleaseType is :' + distributionOSReleaseType);
+
+    let odid: string = deviceinfo.ODID;
+    console.info('the value of the deviceinfo odid is :' + odid);
 
 ```
