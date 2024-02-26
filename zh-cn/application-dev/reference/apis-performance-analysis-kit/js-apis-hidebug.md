@@ -647,9 +647,9 @@ getSystemCpuUsage() : number
   let cpuUsage: number = hidebug.getSystemCpuUsage();
   ```
 
-## hidebug.getAppNativeMemory<sup>12+<sup>
+## hidebug.getAppNativeMemInfo<sup>12+<sup>
 
-getAppNativeMemory(): NativeMemInfo
+getAppNativeMemInfo(): NativeMemInfo
 
 获取应用进程耗用内存大小
 
@@ -664,7 +664,7 @@ getAppNativeMemory(): NativeMemInfo
 **示例：**
 
   ```ts
-let nativeMemInfo: NativeMemInfo = hidebug.getAppNativeMemory();
+let nativeMemInfo: NativeMemInfo = hidebug.getAppNativeMemInfo();
 
 hilog.info(0x0000, 'testTag', "pss = %{public}d", nativeMemInfo.pss);
 
@@ -696,9 +696,9 @@ hilog.info(0x0000, 'testTag', "privateClean = %{public}d", nativeMemInfo.private
 | sharedClean | bigint |  是  | 共享干净内存的大小，以KB为单位      |
 | privateClean | bigint |  是  | 专用干净内存的大小，以KB为单位      |
 
-## hidebug.getSysMemory<sup>12+<sup>
+## hidebug.getSystemMemInfo<sup>12+<sup>
 
-getSysMemory(): SysMemInfo
+getSystemMemInfo(): SystemMemInfo
 
 获取系统耗用内存大小
 
@@ -708,20 +708,20 @@ getSysMemory(): SysMemInfo
 
 | 类型   | 说明                                     |
 | ------ | ---------------------------------------- |
-| [SysMemInfo](#sysMemInfo) | 系统耗用内存大小|
+| [SystemMemInfo](#systemMemInfo) | 系统耗用内存大小|
 
 **示例：**
 
   ```ts
-let sysMemInfo: SysMemInfo = hidebug.getSysMemory();
+let systemMemInfo: SystemMemInfo = hidebug.getSystemMemInfo();
 
-hilog.info(0x0000, 'testTag', "memTotal = %{public}d", sysMemInfo.memTotal);
+hilog.info(0x0000, 'testTag', "totalMem = %{public}d", systemMemInfo.totalMem);
 
-hilog.info(0x0000, 'testTag', "memFree = %{public}d", sysMemInfo.memFree);
+hilog.info(0x0000, 'testTag', "freeMem = %{public}d", systemMemInfo.freeMem);
 
-hilog.info(0x0000, 'testTag', "memAvailable = %{public}d", sysMemInfo.memAvailable);
+hilog.info(0x0000, 'testTag', "availableMem = %{public}d", systemMemInfo.availableMem);
   ```
-## SysMemInfo
+## SystemMemInfo
 
 系统耗用内存大小
 
@@ -729,19 +729,7 @@ hilog.info(0x0000, 'testTag', "memAvailable = %{public}d", sysMemInfo.memAvailab
 
 | 名称      | 类型   | 必填 | 说明         |
 | --------- | ------ | ---- | ------------ |
-| memTotal  | bigint |  是  | 系统总的内存，以KB为单位     |
-| memFree   | bigint |  是  | 系统空闲的内存，以KB为单位       |
-| memAvailable  | bigint |  是  | 系统可用的内存，以KB为单位      |
-
-
-## TraceFlag<sup>12+<sup>
-
-TraceFlag类型
-
-**系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
-
-| 名称      | 类型    | 说明         |
-| --------- | ------ | ------------ |
-| MAIN_THREAD  | bigint | 采集当前主线程    |
-| ALL_THREADS  | bigint | 采集所有线程    |
+| totalMem  | bigint |  是  | 系统总的内存，以KB为单位     |
+| freeMem   | bigint |  是  | 系统空闲的内存，以KB为单位       |
+| availableMem  | bigint |  是  | 系统可用的内存，以KB为单位      |
 
