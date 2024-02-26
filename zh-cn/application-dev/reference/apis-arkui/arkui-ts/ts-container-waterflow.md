@@ -86,11 +86,58 @@ layoutDirection优先级高于rowsTemplate和columnsTemplate。根据layoutDirec
 | onReachStart(event: () => void) | 瀑布流组件到达起始位置时触发。 |
 | onReachEnd(event: () => void)   | 瀑布流组件到底末尾位置时触发。 |
 | onScrollFrameBegin<sup>10+</sup>(event: (offset: number, state:  [ScrollState](ts-container-list.md#scrollstate枚举说明) => { offsetRemain：number }) | 瀑布流开始滑动时触发，事件参数传入即将发生的滑动量，事件处理函数中可根据应用场景计算实际需要的滑动量并作为事件处理函数的返回值返回，瀑布流将按照返回值的实际滑动量进行滑动。<br/>\- offset：即将发生的滑动量，单位vp。<br/>\- state：当前滑动状态。<br/>- offsetRemain：实际滑动量，单位vp。<br/>触发该事件的条件：手指拖动WaterFlow、WaterFlow惯性划动时每帧开始时触发；WaterFlow超出边缘回弹、使用滚动控制器和拖动滚动条的滚动不会触发。|
-| onScroll<sup>11+</sup>(event: (scrollOffset: number, scrollState: [ScrollState](ts-container-list.md#scrollstate枚举说明)) => void) | 瀑布流滑动时触发。<br/>- scrollOffset: 每帧滚动的偏移量，瀑布流的内容向上滚动时偏移量为正，向下滚动时偏移量为负，单位vp。<br/>- scrollState: 当前滑动状态。 |
 | onScrollIndex<sup>11+</sup>(event: (first: number, last: number) => void) | 当前瀑布流显示的起始位置/终止位置的子组件发生变化时触发。瀑布流初始化时会触发一次。<br/>- first: 当前显示的WaterFlow起始位置的索引值。<br/>- last: 当前显示的瀑布流终止位置的索引值。<br/>瀑布流显示区域上第一个子组件/最后一个组件的索引值有变化就会触发。 |
 | onScrollStart<sup>11+</sup>(event: () => void) | 瀑布流滑动开始时触发。手指拖动瀑布流或瀑布流的滚动条触发的滑动开始时，会触发该事件。使用[Scroller](ts-container-scroll.md#scroller)滑动控制器触发的带动画的滑动，动画开始时会触发该事件。 |
 | onScrollStop<sup>11+</sup>(event: () => void)          | 瀑布流滑动停止时触发。手指拖动瀑布流或瀑布流的滚动条触发的滑动，手指离开屏幕并且滑动停止时会触发该事件；使用[Scroller](ts-container-scroll.md#scroller)滑动控制器触发的带动画的滑动，动画停止会触发该事件。 |
 
+### onScroll<sup>(deprecated)</sup>
+onScroll(event: (scrollOffset: number, scrollState: [ScrollState](ts-container-list.md#scrollstate枚举说明)) => void) 
+
+瀑布流滑动时触发。
+
+从API version11开始使用。
+
+从API version12开始废弃不再使用，建议使用[onDidScroll](#ondidscroll12)替代。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ------ | ------ | ------|
+| scrollOffset | number | 是 | 每帧滚动的偏移量，Grid的内容向上滚动时偏移量为正，向下滚动时偏移量为负。<br/>单位vp。 |
+| scrollState | [ScrollState](ts-container-list.md#scrollstate枚举说明) | 是 | 当前滑动状态。 |
+
+### onWillScroll<sup>12+</sup>
+onWillScroll(handler: OnScrollCallback)
+
+瀑布流滑动前触发，返回当前帧将要滑动的偏移量和当前滑动状态。返回的偏移量为计算得到的将要滑动的偏移量值，并非最终实际滑动偏移。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ------ | ------ | ------|
+| handler | [OnScrollCallback](ts-container-list.md#onscrollcallback对象说明) | 是 | 瀑布流滑动时触发的回调。 |
+
+> **说明：** 
+> 
+> 调用ScrollEdge和不带动画的ScrollToIndex时,不触发onWillScroll。
+
+
+### onDidScroll<sup>12+</sup> 
+onDidScroll(handler: OnScrollCallback)
+
+瀑布流滑动时触发，返回当前帧滑动的偏移量和当前滑动状态。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ------ | ------ | ------|
+| handler | [OnScrollCallback](ts-container-list.md#onscrollcallback对象说明) | 是 | 瀑布流滑动时触发的回调。 |
 
 ## 示例
 

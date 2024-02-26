@@ -62,13 +62,93 @@ Scroll(scroller?: Scroller)
 | 名称                                                         | 功能描述                                                     |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | onScrollFrameBegin<sup>9+</sup>(event: (offset: number, state: [ScrollState](ts-container-list.md#scrollstate枚举说明)) => { offsetRemain: number; }) | 每帧开始滚动时触发，事件参数传入即将发生的滚动量，事件处理函数中可根据应用场景计算实际需要的滚动量并作为事件处理函数的返回值返回，Scroll将按照返回值的实际滚动量进行滚动。<br/>\- offset：即将发生的滚动量，单位vp。<br/>\- state：当前滚动状态。<br/>- offsetRemain：实际滚动量，单位vp。<br/>触发该事件的条件 ：<br/>1、滚动组件触发滚动时触发，包括键鼠操作等其他触发滚动的输入设置。<br/>2、调用控制器接口时不触发。<br/>3、越界回弹不触发。<br/>4、拖动滚动条不触发。<br/>**说明：** <br/>支持offsetRemain为负值。<br/>若通过onScrollFrameBegin事件和scrollBy方法实现容器嵌套滚动，需设置子滚动节点的EdgeEffect为None。如Scroll嵌套List滚动时，List组件的edgeEffect属性需设置为EdgeEffect.None。 |
-| onScroll(event: (xOffset: number, yOffset: number) => void)  | 滚动事件回调,&nbsp;返回滚动时水平、竖直方向偏移量，单位vp。<br/>触发该事件的条件 ：<br/>1、滚动组件触发滚动时触发，支持键鼠操作等其他触发滚动的输入设置。<br/>2、通过滚动控制器API接口调用。<br/>3、越界回弹。 |
 | onScrollEdge(event: (side: Edge) => void)                    | 滚动到边缘事件回调。<br/>触发该事件的条件 ：<br/>1、滚动组件滚动到边缘时触发，支持键鼠操作等其他触发滚动的输入设置。<br/>2、通过滚动控制器API接口调用。<br/>3、越界回弹。 |
 | onScrollEnd<sup>(deprecated) </sup>(event: () => void)       | 滚动停止事件回调。<br>该事件从API version 9开始废弃，使用onScrollStop事件替代。<br/>触发该事件的条件 ：<br/>1、滚动组件触发滚动后停止，支持键鼠操作等其他触发滚动的输入设置。<br/>2、通过滚动控制器API接口调用后停止，带过渡动效。 |
 | onScrollStart<sup>9+</sup>(event: () => void)                | 滚动开始时触发。手指拖动Scroll或拖动Scroll的滚动条触发的滚动开始时，会触发该事件。使用[Scroller](#scroller)滚动控制器触发的带动画的滚动，动画开始时会触发该事件。<br/>触发该事件的条件 ：<br/>1、滚动组件开始滚动时触发，支持键鼠操作等其他触发滚动的输入设置。<br/>2、通过滚动控制器API接口调用后开始，带过渡动效。 |
 | onScrollStop<sup>9+</sup>(event: () => void)                 | 滚动停止时触发。手拖动Scroll或拖动Scroll的滚动条触发的滚动，手离开屏幕并且滚动停止时会触发该事件。使用[Scroller](#scroller)滚动控制器触发的带动画的滚动，动画停止时会触发该事件。<br/>触发该事件的条件 ：<br/>1、滚动组件触发滚动后停止，支持键鼠操作等其他触发滚动的输入设置。<br/>2、通过滚动控制器API接口调用后开始，带过渡动效。 |
 | onReachStart<sup>11+</sup>(event: () => void)          | Scroll到达起始位置时触发。<br/>**说明：** <br>Scroll初始化时会触发一次，滚动到起始位置时触发一次。Scroll边缘效果为弹簧效果时，划动经过起始位置时触发一次，回弹回起始位置时再触发一次。 |
 | onReachEnd<sup>11+</sup>(event: () => void)            | Scroll到达末尾位置时触发。<br/>**说明：** <br/>Scroll边缘效果为弹簧效果时，划动经过末尾位置时触发一次，回弹回末尾位置时再触发一次。 |
+
+### onScroll<sup>(deprecated)</sup>
+
+onScroll(event: (xOffset: number, yOffset: number) => void)
+
+滚动事件回调，返回滚动时水平、竖直方向偏移量，单位vp。
+
+触发该事件的条件 ：
+
+1、滚动组件触发滚动时触发，支持键鼠操作等其他触发滚动的输入设置。
+
+2、通过滚动控制器API接口调用。
+
+3、越界回弹。
+
+从API version12开始废弃不再使用，推荐使用[onWillScroll](#onwillscroll12)事件替代。
+
+**参数：**
+
+| 参数名  | 类型                                                      | 必填 | 说明                   |
+| ------- | --------------------------------------------------------- | ---- | ---------------------- |
+| xOffset     | number                                                  | 是   | 每帧滚动时竖直方向的偏移量，Scroll的内容向上滚动时偏移量为正，向下滚动时偏移量为负。<br/>单位vp。 |
+| yOffset     | number                                                  | 是   | 每帧滚动时水平方向的偏移量，Scroll的内容向左滚动时偏移量为正，向右滚动时偏移量为负。<br/>单位vp。 |   
+
+### onWillScroll<sup>12+</sup>
+
+onWillScroll(handler: [ScrollOnScrollCallback](#scrollonscrollcallback对象说明) )
+
+滚动事件回调，Scroll滚动前触发。
+
+返回当前帧将要滚动的偏移量和当前滚动状态。返回的偏移量为计算得到的将要滚动的偏移量值，并非最终实际滚动偏移。
+
+触发该事件的条件 ：
+
+1、滚动组件触发滚动时触发，支持键鼠操作等其他触发滚动的输入设置。
+
+2、通过滚动控制器API接口调用。
+
+3、越界回弹。 
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                                      | 必填 | 说明                   |
+| ------- | --------------------------------------------------------- | ---- | ---------------------- |
+| handler | [ScrollOnScrollCallback](#scrollonscrollcallback对象说明) | 是   | Scroll滚动时触发的回调。 |
+
+### onDidScroll<sup>12+</sup>
+
+onDidScroll(handler: [ScrollOnScrollCallback](#scrollonscrollcallback对象说明) )
+
+滚动事件回调，Scroll滚动时触发。
+
+返回当前帧滚动的偏移量和当前滚动状态。
+
+触发该事件的条件 ：
+
+1、滚动组件触发滚动时触发，支持键鼠操作等其他触发滚动的输入设置。
+
+2、通过滚动控制器API接口调用。
+
+3、越界回弹。 
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                                      | 必填 | 说明                   |
+| ------- | --------------------------------------------------------- | ---- | ---------------------- |
+| handler | [ScrollOnScrollCallback](#scrollonscrollcallback对象说明) | 是   | Scroll滚动时触发的回调 |
+
+## ScrollOnScrollCallback对象说明
+
+Scroll滚动时触发的回调  
+
+| 参数名      | 类型                                                    | 必填 | 说明                                                         |
+| ----------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| xOffset     | number                                                  | 是   | 每帧滚动时竖直方向的偏移量，Scroll中的内容向上滚动时偏移量为正，向下滚动时偏移量为负。<br/>单位vp。 |
+| yOffset     | number                                                  | 是   | 每帧滚动时水平方向的偏移量，Scroll中的内容向左滚动时偏移量为正，向右滚动时偏移量为负。<br/>单位vp。 |
+| scrollState | [ScrollState](ts-container-list.md#scrollstate枚举说明) | 是  | 当前滚动状态。                                               |
 
 >  **说明：**
 >
