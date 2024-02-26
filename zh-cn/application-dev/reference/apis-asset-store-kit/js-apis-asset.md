@@ -32,7 +32,7 @@ add(attributes: AssetMap): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[关键资产存储服务错误码](../errorcodes/errorcode-asset.md)
+以下错误码的详细介绍请参见[关键资产存储服务错误码](errorcode-asset.md)
 
 | 错误码ID | 错误信息                                                   |
 | -------- | ---------------------------------------------------------- |
@@ -99,7 +99,7 @@ remove(query: AssetMap): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[关键资产存储服务错误码](../errorcodes/errorcode-asset.md)
+以下错误码的详细介绍请参见[关键资产存储服务错误码](errorcode-asset.md)
 
 | 错误码ID | 错误信息                                                   |
 | -------- | ---------------------------------------------------------- |
@@ -160,7 +160,7 @@ update(query: AssetMap, attributesToUpdate: AssetMap): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[关键资产存储服务错误码](../errorcodes/errorcode-asset.md)
+以下错误码的详细介绍请参见[关键资产存储服务错误码](errorcode-asset.md)
 
 | 错误码ID | 错误信息                                                   |
 | -------- | ---------------------------------------------------------- |
@@ -224,7 +224,7 @@ preQuery(query: AssetMap): Promise\<Uint8Array>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[关键资产存储服务错误码](../errorcodes/errorcode-asset.md)
+以下错误码的详细介绍请参见[关键资产存储服务错误码](errorcode-asset.md)
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -271,7 +271,7 @@ try {
 
 query(query: AssetMap): Promise\<Array\<AssetMap>>
 
-查询一条或多条符合条件的关键资产。若查询需要用户认证的关键资产，则需要在本函数前调用[asset.preQuery](#asset.prequery)，在本函数后调用[asset.postQuery](#asset.postquery)，开发步骤请参考[开发指导](../../security/asset-js-query-auth.md)。使用Promise回调异步返回结果。
+查询一条或多条符合条件的关键资产。若查询需要用户认证的关键资产，则需要在本函数前调用[asset.preQuery](#asset.prequery)，在本函数后调用[asset.postQuery](#asset.postquery)，开发步骤请参考[开发指导](../../security/AssetStoreKit/asset-js-query-auth.md)。使用Promise回调异步返回结果。
 
 **系统能力：** SystemCapability.Security.Asset
 
@@ -287,7 +287,7 @@ query(query: AssetMap): Promise\<Array\<AssetMap>>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[关键资产存储服务错误码](../errorcodes/errorcode-asset.md)
+以下错误码的详细介绍请参见[关键资产存储服务错误码](errorcode-asset.md)
 
 | 错误码ID | 错误信息                                                   |
 | -------- | ---------------------------------------------------------- |
@@ -354,7 +354,7 @@ postQuery(handle: AssetMap): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[关键资产存储服务错误码](../errorcodes/errorcode-asset.md)
+以下错误码的详细介绍请参见[关键资产存储服务错误码](errorcode-asset.md)
 
 | 错误码ID | 错误信息                                                   |
 | -------- | ---------------------------------------------------------- |
