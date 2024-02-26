@@ -4,7 +4,7 @@
 
 接口文档链接：
 
-[query(query: AssetMap): Promise\<Array\<AssetMap>>](../../reference/apis-asset-store-kit/js-apis-asset.md#asset.query)
+[query(query: AssetMap): Promise\<Array\<AssetMap>>](../../reference/apis-asset-store-kit/js-apis-asset.md#assetquery)
 
 参数列表：
 

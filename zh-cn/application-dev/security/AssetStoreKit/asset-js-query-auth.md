@@ -4,11 +4,11 @@
 
 接口文档链接：
 
-[preQuery(query: AssetMap): Promise\<Uint8Array>](../../reference/apis-asset-store-kit/js-apis-asset.md#asset.prequery)
+[preQuery(query: AssetMap): Promise\<Uint8Array>](../../reference/apis-asset-store-kit/js-apis-asset.md#assetprequery)
 
-[query(query: AssetMap): Promise\<Array\<AssetMap>>](../../reference/apis-asset-store-kit/js-apis-asset.md#asset.query)
+[query(query: AssetMap): Promise\<Array\<AssetMap>>](../../reference/apis-asset-store-kit/js-apis-asset.md#assetquery)
 
-[postQuery(handle: AssetMap): Promise\<void>](../../reference/apis-asset-store-kit/js-apis-asset.md#asset.postquery)
+[postQuery(handle: AssetMap): Promise\<void>](../../reference/apis-asset-store-kit/js-apis-asset.md#assetpostquery)
 
 preQuery参数列表
 
