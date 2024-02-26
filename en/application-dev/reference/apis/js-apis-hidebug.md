@@ -110,93 +110,6 @@ Obtains the virtual set size used by the application process.
 let vss: bigint = hidebug.getVss();
   ```
 
-## hidebug.getAppNativeMemory<sup>12<sup>
-
-getAppNativeMemory(): NativeMemInfo
-
-Obtains the application process native meminfo
-
-
-**System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
-
-**Return value**
-
-| Type  | Description                      |
-| ------ | -------------------------- |
-| [NativeMemInfo](#nativeMemInfo) | size of the memory actually used by the application process|
-
-**Example**
-
-  ```ts
-let nativeMemInfo: NativeMemInfo = hidebug.getAppNativeMemory();
-
-hilog.info(0x0000, 'testTag', 'pss = %{public}d', nativeMemInfo.pss);
-
-hilog.info(0x0000, 'testTag', 'vss = %{public}d', nativeMemInfo.vss);
-
-hilog.info(0x0000, 'testTag', 'rss = %{public}d', nativeMemInfo.rss);
-
-hilog.info(0x0000, 'testTag', 'sharedDirty = %{public}d', nativeMemInfo.sharedDirty);
-
-hilog.info(0x0000, 'testTag', 'privateDirty = %{public}d', nativeMemInfo.privateDirty);
-
-hilog.info(0x0000, 'testTag', 'sharedClean = %{public}d', nativeMemInfo.sharedClean);
-
-hilog.info(0x0000, 'testTag', 'privateClean = %{public}d', nativeMemInfo.privateClean);
-  ```
-## NativeMemInfo
-
-Size of the memory actually used by the application process
-
-**System capability**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
-
-| Name      | Type   | Mandatory | Description         |
-| --------- | ------ | ---- | ------------ |
-| pss    | bigint |  Yes  | process proportional set size memory, in KB     |
-| vss    | bigint |  Yes  | virtual set size memory, in KB     |
-| rss    | bigint |  Yes  | resident set size, in KB     |
-| sharedDirty    | bigint |  Yes  | the size of the shared dirty memory, in KB     |
-| privateDirty   | bigint |  Yes  | the size of the private dirty memory, in KB     |
-| sharedClean    | bigint |  Yes  | the size of the shared clean memory, in KB     |
-| privateClean   | bigint |  Yes  | the size of the private clean memory, in KB     |
-
-## hidebug.getSysMemory<sup>12<sup>
-
-getSysMemory(): SysMemInfo
-
-Obtains the memory info of system
-
-**System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
-
-**Return value**
-
-| Type  | Description                      |
-| ------ | -------------------------- |
-| [SysMemInfo](#sysMemInfo) | Size of system memory |
-
-**Example**
-
-  ```ts
-let sysMemInfo: SysMemInfo = hidebug.getSysMemory();
-
-hilog.info(0x0000, 'testTag', 'memTotal = %{public}d', sysMemInfo.memTotal);
-
-hilog.info(0x0000, 'testTag', 'memFree = %{public}d', sysMemInfo.memFree);
-
-hilog.info(0x0000, 'testTag', 'memAvailable = %{public}d', sysMemInfo.memAvailable);
-  ```
-## SysMemInfo
-
-Size of the memory actually used by the application process
-
-**System capability**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
-
-| Name      | Type   | Mandatory | Description         |
-| --------- | ------ | ---- | ------------ |
-| memTotal    | bigint |  Yes  | memory total, in kibibytes     |
-| memFree    | bigint |  Yes  | memory free, in kibibytes     |
-| memAvailable    | bigint |  Yes  | memory available, in kibibytes    |
-
 ## hidebug.getSharedDirty
 
 getSharedDirty(): bigint
@@ -713,3 +626,90 @@ For example, if the CPU usage is **50%**, **0.5** is returned.
   ```ts
   let cpuUsage: number = hidebug.getSystemCpuUsage();
   ```
+
+
+## hidebug.getAppNativeMemory<sup>12+<sup>
+
+getAppNativeMemory(): NativeMemInfo
+
+Obtains the application process native meminfo
+
+**System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**Return value**
+
+| Type  | Description                      |
+| ------ | -------------------------- |
+| [NativeMemInfo](#nativeMemInfo) | size of the memory actually used by the application process|
+
+**Example**
+
+  ```ts
+let nativeMemInfo: NativeMemInfo = hidebug.getAppNativeMemory();
+
+hilog.info(0x0000, 'testTag', 'pss = %{public}d', nativeMemInfo.pss);
+
+hilog.info(0x0000, 'testTag', 'vss = %{public}d', nativeMemInfo.vss);
+
+hilog.info(0x0000, 'testTag', 'rss = %{public}d', nativeMemInfo.rss);
+
+hilog.info(0x0000, 'testTag', 'sharedDirty = %{public}d', nativeMemInfo.sharedDirty);
+
+hilog.info(0x0000, 'testTag', 'privateDirty = %{public}d', nativeMemInfo.privateDirty);
+
+hilog.info(0x0000, 'testTag', 'sharedClean = %{public}d', nativeMemInfo.sharedClean);
+
+hilog.info(0x0000, 'testTag', 'privateClean = %{public}d', nativeMemInfo.privateClean);
+  ```
+## NativeMemInfo
+
+Size of the memory actually used by the application process
+
+**System capability**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+| Name      | Type   | Mandatory | Description         |
+| --------- | ------ | ---- | ------------ |
+| pss    | bigint |  Yes  | process proportional set size memory, in KB     |
+| vss    | bigint |  Yes  | virtual set size memory, in KB     |
+| rss    | bigint |  Yes  | resident set size, in KB     |
+| sharedDirty    | bigint |  Yes  | the size of the shared dirty memory, in KB     |
+| privateDirty   | bigint |  Yes  | the size of the private dirty memory, in KB     |
+| sharedClean    | bigint |  Yes  | the size of the shared clean memory, in KB     |
+| privateClean   | bigint |  Yes  | the size of the private clean memory, in KB     |
+
+## hidebug.getSysMemory<sup>12+<sup>
+
+getSysMemory(): SysMemInfo
+
+Obtains the memory info of system
+
+**System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**Return value**
+
+| Type  | Description                      |
+| ------ | -------------------------- |
+| [SysMemInfo](#sysMemInfo) | Size of system memory |
+
+**Example**
+
+  ```ts
+let sysMemInfo: SysMemInfo = hidebug.getSysMemory();
+
+hilog.info(0x0000, 'testTag', 'memTotal = %{public}d', sysMemInfo.memTotal);
+
+hilog.info(0x0000, 'testTag', 'memFree = %{public}d', sysMemInfo.memFree);
+
+hilog.info(0x0000, 'testTag', 'memAvailable = %{public}d', sysMemInfo.memAvailable);
+  ```
+## SysMemInfo
+
+Size of the memory actually used by the application process
+
+**System capability**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+| Name      | Type   | Mandatory | Description         |
+| --------- | ------ | ---- | ------------ |
+| memTotal    | bigint |  Yes  | memory total, in kibibytes     |
+| memFree    | bigint |  Yes  | memory free, in kibibytes     |
+| memAvailable    | bigint |  Yes  | memory available, in kibibytes    |
