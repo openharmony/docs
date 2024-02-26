@@ -28,13 +28,6 @@
 | struct&nbsp;&nbsp;[ArkUI_NativeNodeAPI_1](_ark_u_i___native_node_a_p_i__1.md) | ArkUI提供的Native侧Node类型接口集合。  | 
 
 
-### 宏定义
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| **MAX_NODE_SCOPE_NUM**&nbsp;&nbsp;&nbsp;1000 |  | 
-| **MAX_COMPONENT_EVENT_ARG_NUM**&nbsp;&nbsp;&nbsp;12 |  | 
-
 
 ### 枚举
 
