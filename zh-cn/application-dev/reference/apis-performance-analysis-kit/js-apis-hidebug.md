@@ -733,3 +733,15 @@ hilog.info(0x0000, 'testTag', "memAvailable = %{public}d", sysMemInfo.memAvailab
 | memFree   | bigint |  是  | 系统空闲的内存，以KB为单位       |
 | memAvailable  | bigint |  是  | 系统可用的内存，以KB为单位      |
 
+
+## TraceFlag<sup>12+<sup>
+
+TraceFlag类型
+
+**系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+| 名称      | 类型    | 说明         |
+| --------- | ------ | ------------ |
+| MAIN_THREAD  | bigint | 采集当前主线程    |
+| ALL_THREADS  | bigint | 采集所有线程    |
+
