@@ -621,6 +621,13 @@ For example, if the CPU usage is **50%**, **0.5** is returned.
 | ------ | -------------------------- |
 | number | CPU usage of the system.|
 
+**Error codes**
+
+For details about the error codes, see [HiDebug CpuUsage Error Codes](../errorcodes/errorcode-hiviewdfx-hidebug-cpuusage.md).
+
+| ID| Error Message|
+| ------- | ----------------------------------------------------------------- |
+| 11400104 | The status of the system cpu usage is abnormal                                         |
 
 **Example**
   ```ts

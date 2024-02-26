@@ -641,6 +641,13 @@ getSystemCpuUsage() : number
 |--------|--------------|
 | number | 系统Cpu资源占用情况. |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[Hidebug-CpuUsage错误码](errorcode-hiviewdfx-hidebug-cpuusage.md)。
+
+| 错误码ID | 错误信息                                           |
+| ------- |------------------------------------------------|
+| 11400104 | The status of the system cpu usage is abnormal |
 
 **示例**
   ```ts
