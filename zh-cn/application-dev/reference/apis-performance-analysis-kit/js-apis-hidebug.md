@@ -110,6 +110,98 @@ getVss(): bigint
 let vss: bigint = hidebug.getVss();
   ```
 
+## hidebug.getAppNativeMemory<sup>12<sup>
+
+getAppNativeMemory(): NativeMemInfo
+
+获取应用进程耗用内存大小
+
+**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**返回值：**
+
+| 类型   | 说明                                     |
+| ------ | ---------------------------------------- |
+| [NativeMemInfo](#nativeMemInfo) | 应用进程耗用内存大小|
+
+**示例：**
+
+  ```ts
+let nativeMemInfo: NativeMemInfo = hidebug.getAppNativeMemory();
+
+hilog.info(0x0000, 'testTag', 'pss = %{public}d', nativeMemInfo.pss);
+
+hilog.info(0x0000, 'testTag', 'vss = %{public}d', nativeMemInfo.vss);
+
+hilog.info(0x0000, 'testTag', 'rss = %{public}d', nativeMemInfo.rss);
+
+hilog.info(0x0000, 'testTag', 'sharedDirty = %{public}d', nativeMemInfo.sharedDirty);
+
+hilog.info(0x0000, 'testTag', 'privateDirty = %{public}d', nativeMemInfo.privateDirty);
+
+hilog.info(0x0000, 'testTag', 'sharedClean = %{public}d', nativeMemInfo.sharedClean);
+
+hilog.info(0x0000, 'testTag', 'privateClean = %{public}d', nativeMemInfo.privateClean);
+  ```
+## NativeMemInfo
+
+应用进程耗用内存大小
+
+**系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+| 名称      | 类型   | 必填 | 说明         |
+| --------- | ------ | ---- | ------------ |
+| pss  | bigint |  是  | 实际上占用的物理内存的大小(比例分配共享库占用的内存)，以KB为单位     |
+| vss  | bigint |  是  | 占用的虚拟内存的大小(包括共享库所占用的内存)，以KB为单位       |
+| rss | bigint |  是  | 实际上占用的物理内存的大小(包括共享库占用)（以KB为单位）      |
+| sharedDirty | bigint |  是  | 共享脏内存的大小，以KB为单位      |
+| privateDirty | bigint |  是  | 专用脏内存的大小，以KB为单位      |
+| sharedClean | bigint |  是  | 共享干净内存的大小，以KB为单位      |
+| privateClean | bigint |  是  | 专用干净内存的大小，以KB为单位      |
+
+## hidebug.getSysMemory<sup>12<sup>
+
+getSysMemory(): SysMemInfo
+
+获取系统耗用内存大小,包括：
+
+memTotal: 总内存， 单位为kB
+
+memFree: 释放的内存， 单位为kB
+
+memAvailable: 可用的内存， 单位为kB
+
+**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**返回值：**
+
+| 类型   | 说明                                     |
+| ------ | ---------------------------------------- |
+| [SysMemInfo](#sysMemInfo) | 系统耗用内存大小|
+
+**示例：**
+
+  ```ts
+let sysMemInfo: SysMemInfo = hidebug.getSysMemory();
+
+hilog.info(0x0000, 'testTag', 'memTotal = %{public}d', sysMemInfo.memTotal);
+
+hilog.info(0x0000, 'testTag', 'memFree = %{public}d', sysMemInfo.memFree);
+
+hilog.info(0x0000, 'testTag', 'memAvailable = %{public}d', sysMemInfo.memAvailable);
+  ```
+## SysMemInfo
+
+系统耗用内存大小
+
+**系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+| 名称      | 类型   | 必填 | 说明         |
+| --------- | ------ | ---- | ------------ |
+| memTotal  | bigint |  是  | 系统总的内存，以KB为单位     |
+| memFree   | bigint |  是  | 系统空闲的内存，以KB为单位       |
+| memAvailable  | bigint |  是  | 系统可用的内存（以KB为单位）      |
+
 ## hidebug.getSharedDirty
 
 getSharedDirty(): bigint
