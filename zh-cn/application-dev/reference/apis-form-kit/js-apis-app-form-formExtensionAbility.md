@@ -297,7 +297,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 
 onStop?(): void
 
-当卡片提供方进程停止时，触发该回调。开发者可以在该回调中清理资源
+当卡片提供方的卡片进程停止时，触发该回调。开发者可以在该回调中清理资源
   
 **系统能力** SystemCapability.Ability.Form
 
