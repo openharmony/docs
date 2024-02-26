@@ -285,16 +285,17 @@ struct GridExample {
       .width('90%')
       .backgroundColor(0xFAEEE0)
       .height(300)
-      .onScrollIndex((first: number) => {
+      .onScrollIndex((first: number, last: number) => {
         console.info(first.toString())
+        console.info(last.toString())
       })
       .onScrollBarUpdate((index: number, offset: number) => {
         console.info("XXX" + 'Grid onScrollBarUpdate,index : ' + index.toString() + ",offset" + offset.toString())
         return { totalOffset: (index / 5) * (80 + 10) - offset, totalLength: 80 * 5 + 10 * 4 }
       })  //只适用于当前示例代码数据源，如果数据源有变化，则需要修改该部分代码，或者删掉此属性
-      .onScroll((first: number, last: number) => {
-        console.info(first.toString())
-        console.info(last.toString())
+      .onScroll((scrollOffset: number, scrollState: ScrollState) => {
+        console.info(scrollOffset.toString())
+        console.info(scrollState.toString())
       })
       .onScrollStart(() => {
         console.info("XXX" + "Grid onScrollStart")
@@ -639,9 +640,6 @@ struct GridExample {
       .columnsTemplate('1fr 1fr 1fr')
       .columnsGap(10)
       .rowsGap(10)
-      .onScrollIndex((first: number) => {
-        console.info(first.toString())
-      })
       .width('90%')
       .backgroundColor(0xFAEEE0)
       .height(300)
