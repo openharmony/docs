@@ -589,6 +589,7 @@ getAppMemoryLimit() : MemoryLimit
 ## tags<sup>12+</sup>
 
 描述trace的tag类型常量
+**系统能力:** 以下各项对应的系统能力均为SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 | 名称                     | 类型    |  说明                                |
 | -------------------------| ------- |  ----------------------------------- |
@@ -611,7 +612,7 @@ getAppMemoryLimit() : MemoryLimit
 | GRAPHICS                 | number  |  Graphics module tag.                |
 | HDF                      | number  |  HDF subsystem tag.                 |
 | MISC                     | number  |  MISC module tag.                    |
-| MUTIMODAL_INPUT          | number  |  Multimodal input module tag.        |
+| MULTIMODAL_INPUT         | number  |  Multimodal input module tag.        |
 | NET                      | number  |  Net tag.                            |
 | NOTIFICATION             | number  |  Notification module tag.            |
 | NWEB                     | number  |  NWeb tag.                           |
