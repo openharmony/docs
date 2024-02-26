@@ -632,7 +632,7 @@ For example, if the CPU usage is **50%**, **0.5** is returned.
 
 getAppNativeMemInfo(): NativeMemInfo
 
-Obtains the application process native meminfo
+Obtains the application process native memory info
 
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -694,13 +694,13 @@ Obtains the memory info of system
 **Example**
 
   ```ts
-let sysMemInfo: SysMemInfo = hidebug.getSystemMemInfo();
+let systemMemInfo: SystemMemInfo = hidebug.getSystemMemInfo();
 
-hilog.info(0x0000, 'testTag', "totalMem = %{public}d", sysMemInfo.totalMem);
+hilog.info(0x0000, 'testTag', "totalMem = %{public}d", systemMemInfo.totalMem);
 
-hilog.info(0x0000, 'testTag', "freeMem = %{public}d", sysMemInfo.freeMem);
+hilog.info(0x0000, 'testTag', "freeMem = %{public}d", systemMemInfo.freeMem);
 
-hilog.info(0x0000, 'testTag', "availableMem = %{public}d", sysMemInfo.availableMem);
+hilog.info(0x0000, 'testTag', "availableMem = %{public}d", systemMemInfo.availableMem);
   ```
 ## SystemMemInfo
 
@@ -710,6 +710,6 @@ Size of the memory actually used by the application process
 
 | Name      | Type   | Mandatory | Description         |
 | --------- | ------ | ---- | ------------ |
-| totalMem    | bigint |  Yes  | total memory, in kibibytes     |
-| freeMem    | bigint |  Yes  | free memory, in kibibytes     |
-| availableMem    | bigint |  Yes  | available memory, in kibibytes    |
+| totalMem    | bigint |  Yes  | total memory, in KB     |
+| freeMem    | bigint |  Yes  | free memory, in KB     |
+| availableMem    | bigint |  Yes  | available memory, in KB    |
