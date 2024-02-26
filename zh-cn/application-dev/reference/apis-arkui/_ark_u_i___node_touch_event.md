@@ -15,16 +15,16 @@
 
 ### 成员变量
 
-| 名称 | 描述 |
+| 名称 | 描述 | 
 | -------- | -------- |
-| [ArkUI_NodeTouchEventAction](_ark_u_i___native_module.md#arkui_nodetoucheventaction)[action](#action) | 触屏事件的类型。  |
-| int64_t [timeStamp](#timestamp) | 触屏事件时间戳，单位为微秒（us）。  |
-| [ArkUI_NodeTouchPoint](_ark_u_i___node_touch_point.md)[actionTouch](#actiontouch) | 当前触屏事件的触控点信息。  |
-| int32_t(\* [getTouches](#gettouches) )([ArkUI_NodeTouchPoint](_ark_u_i___node_touch_point.md) \*\*points) | 返回此事件发生时所有屏幕接触点信息。  |
-| int32_t(\* [getHistoricalPoints](#gethistoricalpoints) )([ArkUI_NodeHistoricalTouchPoint](_ark_u_i___node_historical_touch_point.md) \*\*historicalPoints) | 返回此事件中的历史点信息。这些是在此事件和上一个事件之间发生的运动。  |
-| [ArkUI_NodeSourceType](_ark_u_i___native_module.md#arkui_nodesourcetype)[sourceType](#sourcetype) | 触发事件来源的类型。  |
-| bool [stopPropagation](#stoppropagation) | 阻止事件进一步向父节点冒泡处理。  |
-| bool [preventDefault](#preventdefault) | 阻止当前节点的默认事件处理行为，允许事件进一步向上冒泡。  |
+| [ArkUI_NodeTouchEventAction](_ark_u_i___native_module.md#arkui_nodetoucheventaction) [action](#action) | 触屏事件的类型。  | 
+| int64_t [timeStamp](#timestamp) | 触屏事件时间戳，单位为微秒（us）。  | 
+| [ArkUI_NodeTouchPoint](_ark_u_i___node_touch_point.md) [actionTouch](#actiontouch) | 当前触屏事件的触控点信息。  | 
+| int32_t(\* [getTouches](#gettouches) )([ArkUI_NodeTouchPoint](_ark_u_i___node_touch_point.md) \*\*points) | 返回此事件发生时所有屏幕接触点信息。  | 
+| int32_t(\* [getHistoricalPoints](#gethistoricalpoints) )([ArkUI_NodeHistoricalTouchPoint](_ark_u_i___node_historical_touch_point.md) \*\*historicalPoints) | 返回此事件中的历史点信息。这些是在此事件和上一个事件之间发生的运动。  | 
+| [ArkUI_NodeSourceType](_ark_u_i___native_module.md#arkui_nodesourcetype) [sourceType](#sourcetype) | 触发事件来源的类型。  | 
+| bool [stopPropagation](#stoppropagation) | 阻止事件进一步向父节点冒泡处理。  | 
+| bool [preventDefault](#preventdefault) | 阻止当前节点的默认事件处理行为，允许事件进一步向上冒泡。  | 
 
 
 ## 结构体成员变量说明
@@ -61,9 +61,9 @@ int32_t(* ArkUI_NodeTouchEvent::getHistoricalPoints) (ArkUI_NodeHistoricalTouchP
 
 **参数:**
 
-| 名称 | 描述 |
+| 名称 | 描述 | 
 | -------- | -------- |
-| historicalPoints | 用来接受数据的指针对象。  |
+| historicalPoints | 用来接受数据的指针对象。  | 
 
 **返回：**
 
@@ -85,9 +85,9 @@ int32_t(* ArkUI_NodeTouchEvent::getTouches) (ArkUI_NodeTouchPoint **points)
 
 **参数:**
 
-| 名称 | 描述 |
+| 名称 | 描述 | 
 | -------- | -------- |
-| points | 用来接受数据的指针对象。  |
+| points | 用来接受数据的指针对象。  | 
 
 **返回：**
 
@@ -104,7 +104,6 @@ ArkUI会在该函数调用时创建触控点信息数组的堆内存对象并返
 bool ArkUI_NodeTouchEvent::preventDefault
 ```
 **描述：**
-
 阻止当前节点的默认事件处理行为，允许事件进一步向上冒泡。
 
 

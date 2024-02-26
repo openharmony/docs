@@ -15,12 +15,12 @@
 
 ### 成员变量
 
-| 名称 | 描述 |
+| 名称 | 描述 | 
 | -------- | -------- |
-| [ArkUI_NodeTouchEventAction](_ark_u_i___native_module.md#arkui_nodetoucheventaction) [action](#action) | 触屏事件类型。  |
-| int64_t [timeStamp](#timestamp) | 触屏历史事件时间戳，单位为微秒（us）。  |
-| [ArkUI_NodeTouchPoint](_ark_u_i___node_touch_point.md) [actionTouch](#actiontouch) | 历史触摸事件来源类型。  |
-| [ArkUI_NodeSourceType](_ark_u_i___native_module.md#arkui_nodesourcetype) [sourceType](#sourcetype) | 历史触摸事件来源类型。  |
+| [ArkUI_NodeTouchEventAction](_ark_u_i___native_module.md#arkui_nodetoucheventaction) [action](#action) | 触屏事件类型。  | 
+| int64_t [timeStamp](#timestamp) | 触屏历史事件时间戳，单位为微秒（us）。  | 
+| [ArkUI_NodeTouchPoint](_ark_u_i___node_touch_point.md) [actionTouch](#actiontouch) | 历史触摸事件来源类型。  | 
+| [ArkUI_NodeSourceType](_ark_u_i___native_module.md#arkui_nodesourcetype) [sourceType](#sourcetype) | 历史触摸事件来源类型。  | 
 
 
 ## 结构体成员变量说明
