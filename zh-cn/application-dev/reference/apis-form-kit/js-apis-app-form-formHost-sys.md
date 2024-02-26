@@ -2520,4 +2520,56 @@ try {
   console.info(`catch error, code: ${e.code}, message: ${e.message}`);
 }
 ```
+## recycleForms<sup>12+</sup>
+
+recycleForms(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
+
+立即回收卡片内存。使用Promise异步回调。
+
+**模型约束**: 此接口仅可在Stage模型下使用。
+
+**需要权限**：ohos.permission.REQUIRE_FORM
+
+**系统能力**：SystemCapability.Ability.Form
+
+**参数：**
+
+| 参数名  | 类型                | 必填 | 说明           |
+| ------- | ------------------- | ---- | -------------- |
+| formIds | Array&lt;string&gt; | 是   | 卡片标识数组。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+
+**错误码：**
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 16500050 | An IPC connection error happened.                            |
+| 16500060 | A service connection error happened, please try again later. |
+| 16501000 | An internal functional error occurred.                       |
+
+以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
+
+**参数：**
+
+```ts
+import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
+
+try {
+  let formIds: string[] = [ '12400633174999288' ];
+  formHost.recycleForms(formIds).then(() => {
+    console.info('recycle forms success');
+  }).catch((err: Base.BusinessError) => {
+    console.error(`formHost recycle forms error, code: ${err.code}, message: ${err.message}`);
+  });
+} catch (e) {
+  console.error(`catch error, code: ${e.code}, message: ${e.message}`);
+}
+```
 ## 
