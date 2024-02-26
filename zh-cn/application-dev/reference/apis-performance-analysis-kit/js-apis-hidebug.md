@@ -130,10 +130,7 @@ getAppNativeMemory(): NativeMemInfo
 let nativeMemInfo: NativeMemInfo = hidebug.getAppNativeMemory();
 
 hilog.info(0x0000, 'testTag', 'pss = %{public}d', nativeMemInfo.pss);
-  ```
-## NativeMemInfo
 
-应用进程耗用内存大小
 hilog.info(0x0000, 'testTag', 'vss = %{public}d', nativeMemInfo.vss);
 
 hilog.info(0x0000, 'testTag', 'rss = %{public}d', nativeMemInfo.rss);
@@ -145,6 +142,10 @@ hilog.info(0x0000, 'testTag', 'privateDirty = %{public}d', nativeMemInfo.private
 hilog.info(0x0000, 'testTag', 'sharedClean = %{public}d', nativeMemInfo.sharedClean);
 
 hilog.info(0x0000, 'testTag', 'privateClean = %{public}d', nativeMemInfo.privateClean);
+  ```
+## NativeMemInfo
+
+应用进程耗用内存大小
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -193,7 +194,7 @@ hilog.info(0x0000, 'testTag', 'memAvailable = %{public}d', sysMemInfo.memAvailab
 | --------- | ------ | ---- | ------------ |
 | memTotal  | bigint |  是  | 系统总的内存，以KB为单位     |
 | memFree   | bigint |  是  | 系统空闲的内存，以KB为单位       |
-| memAvailable  | bigint |  是  | 系统可用的内存（以KB为单位）      |
+| memAvailable  | bigint |  是  | 系统可用的内存，以KB为单位）      |
 
 ## hidebug.getSharedDirty
 
