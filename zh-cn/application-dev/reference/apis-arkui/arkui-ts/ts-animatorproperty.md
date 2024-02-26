@@ -17,18 +17,6 @@ animation(value:AnimateParam)
 | ----- | --------------------------------- | ---- | ------------------------------------- |
 | value | [AnimateParam](ts-explicit-animation.md#animateparam对象说明) | 是    | 设置动画效果相关参数。                           |
 
-## ExpectedFrameRateRange<sup>11+</sup>
-| 名称  | 类型     | 说明      |
-|-----|--------|---------|
-| min | number | 期望的最小帧率。 |
-| max | number | 期望的最大帧率。 |
-| expected | number | 期望的最优帧率。 |
-
-> **PlayMode说明：**
-> - PlayMode推荐使用PlayMode.Normal和PlayMode.Alternate，此场景下动画的第一轮是正向播放的。如使用PlayMode.Reverse和PlayMode.AlternateReverse，则动画的第一轮是逆向播放的，在动画刚开始时会跳变到终止状态，然后逆向播放动画。
-> - 使用PlayMode.Alternate或PlayMode.AlternateReverse时，开发者应保证动画最终状态和状态变量的取值一致，即应保证动画的最后一轮是正向播放的。使用PlayMode.Alternate时，iterations应为奇数。使用PlayMode.AlternateReverse时，iterations应为偶数。
-> - 不推荐使用PlayMode.Reverse，此场景下不仅会导致动画刚开始就跳变到终止状态，也会导致动画最终状态和状态变量的取值不同。
-
 ## 示例
 ```ts
 // xxx.ets
