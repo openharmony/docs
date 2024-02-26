@@ -647,19 +647,19 @@ Obtains the application process native meminfo
   ```ts
 let nativeMemInfo: NativeMemInfo = hidebug.getAppNativeMemory();
 
-hilog.info(0x0000, 'testTag', 'pss = %{public}d', nativeMemInfo.pss);
+hilog.info(0x0000, 'testTag', "pss = %{public}d", nativeMemInfo.pss);
 
-hilog.info(0x0000, 'testTag', 'vss = %{public}d', nativeMemInfo.vss);
+hilog.info(0x0000, 'testTag', "vss = %{public}d", nativeMemInfo.vss);
 
-hilog.info(0x0000, 'testTag', 'rss = %{public}d', nativeMemInfo.rss);
+hilog.info(0x0000, 'testTag', "rss = %{public}d", nativeMemInfo.rss);
 
-hilog.info(0x0000, 'testTag', 'sharedDirty = %{public}d', nativeMemInfo.sharedDirty);
+hilog.info(0x0000, 'testTag', "sharedDirty = %{public}d", nativeMemInfo.sharedDirty);
 
-hilog.info(0x0000, 'testTag', 'privateDirty = %{public}d', nativeMemInfo.privateDirty);
+hilog.info(0x0000, 'testTag', "privateDirty = %{public}d", nativeMemInfo.privateDirty);
 
-hilog.info(0x0000, 'testTag', 'sharedClean = %{public}d', nativeMemInfo.sharedClean);
+hilog.info(0x0000, 'testTag', "sharedClean = %{public}d", nativeMemInfo.sharedClean);
 
-hilog.info(0x0000, 'testTag', 'privateClean = %{public}d', nativeMemInfo.privateClean);
+hilog.info(0x0000, 'testTag', "privateClean = %{public}d", nativeMemInfo.privateClean);
   ```
 ## NativeMemInfo
 
@@ -696,11 +696,11 @@ Obtains the memory info of system
   ```ts
 let sysMemInfo: SysMemInfo = hidebug.getSysMemory();
 
-hilog.info(0x0000, 'testTag', 'memTotal = %{public}d', sysMemInfo.memTotal);
+hilog.info(0x0000, 'testTag', "memTotal = %{public}d", sysMemInfo.memTotal);
 
-hilog.info(0x0000, 'testTag', 'memFree = %{public}d', sysMemInfo.memFree);
+hilog.info(0x0000, 'testTag', "memFree = %{public}d", sysMemInfo.memFree);
 
-hilog.info(0x0000, 'testTag', 'memAvailable = %{public}d', sysMemInfo.memAvailable);
+hilog.info(0x0000, 'testTag', "memAvailable = %{public}d", sysMemInfo.memAvailable);
   ```
 ## SysMemInfo
 
