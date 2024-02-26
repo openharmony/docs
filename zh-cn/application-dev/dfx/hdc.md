@@ -814,26 +814,32 @@ hdc file recv /data/log/hilog                         // 获取hilog已落盘日
 
 ## 常见问题FAQ
 ### 1、设备无法识别
-现象描述：命令行执行`hdc list targets`命令后，返回结果为`[empty]`
+现象描述：命令行执行`hdc list targets`命令后，返回结果为`[empty]`。
 
 问题排查：
 #### （1）查看设备管理是否显示HDC设备
-##### a.Windows环境
-在`设备管理器`>`通用串行总线设备`中是否显示`HDC Device`（单一端口设备）或`HDC Interface`（复合端口设备）
 
-##### b.linux环境
-在命令行执行`lsusb`,在返回的内容中查看是否有`HDC Device`（单一端口设备）或`HDC Interface`（复合端口设备）
-##### c.MacOS环境
+**a.Windows环境**
+
+在`设备管理器`>`通用串行总线设备`中是否显示`HDC Device`（单一端口设备）或`HDC Interface`（复合端口设备）。
+
+**b.linux环境**
+
+在命令行执行`lsusb`,在返回的内容中查看是否有`HDC Device`（单一端口设备）或`HDC Interface`（复合端口设备）。
+
+**c.MacOS环境**
+
 使用`系统信息`或`系统概述`来查看USB设备，步骤如下：
- 1) 按住键盘上的Option键，点按菜单。
+ 1) 按住键盘上的Option键，点按菜单；
 
- 2) 选取`系统信息`或`系统概述`
+ 2) 选取`系统信息`或`系统概述`；
 
- 3) 在随后出现的窗口中，选择左边的`USB`
+ 3) 在随后出现的窗口中，选择左边的`USB`；
 
- 4) 在随后显示的设备树查看是否有`HDC Device`（单一端口设备）或`HDC Interface`（复合端口设备）
+ 4) 在随后显示的设备树查看是否有`HDC Device`（单一端口设备）或`HDC Interface`（复合端口设备）。
 
-##### 可采取的解决方法
+**可采取的解决方法**
+
 以上环境如没有显示HDC设备，则说明无法识别设备，可以根据实际场景尝试以下方法：
  - 使用其他USB物理接口；
  - 更换USB数据连接线；
@@ -845,7 +851,8 @@ hdc file recv /data/log/hilog                         // 获取hilog已落盘日
 
 #### （2）存在USB设备，但是驱动损坏，显示"HDC Device"⚠警告图标
 该问题常见于Windows环境，现象为`设备管理器`>`通用串行总线设备`中，`HDC Device`显示为黄标警告，且描述信息为该设备无法正常工作。可尝试重新安装驱动解决，如重新安装驱动无法解决，可以尝试更换USB连接数据线/拓展坞/USB接口。
-##### 重新安装驱动方法：
+
+**重新安装驱动方法**：
  1) 打开`设备管理器`，右键点击有警告图标的`HDC Device`；
 
  2) 出现的菜单中点击`更新驱动程序`；
@@ -856,11 +863,11 @@ hdc file recv /data/log/hilog                         // 获取hilog已落盘日
 
  5) 出现的提示窗口（第3/3个）中，取消勾选`显示兼容硬件`，选取`通用串行总线设备`>`WinUSB设备`后点击`下一步`按钮。
 
-#### (3)连接设备时出现[Fail]Failed to communicate with daemon
+#### （3）连接设备时出现[Fail]Failed to communicate with daemon
 可能存在以下原因，可参考排查：
 - hdc SDK与设备不匹配:
 
-如果设备更新到最新版本，可更新hdc（SDK）工具至最新版本
+如果设备更新到最新版本，可更新hdc（SDK）工具至最新版本。
 - 端口被占用：
 
 常见于hdc和hdc_std使用同一端口，同时运行时会端口互相冲突，注意只运行其中一个。其他软件占用8710端口也会导致该问题发生。
@@ -884,11 +891,17 @@ Windows:
 ```
 netstat -an |findstr 8710
 ```
-如存在抢占的软件，可以关闭该软件进程或者更换OHOS_HDC_SERVER_PORT环境变量为其他端口号
+如存在抢占的软件，可以关闭该软件进程或者更换OHOS_HDC_SERVER_PORT环境变量为其他端口号。
 
 3) 排查未关闭的其他版本hdc server
-Windows：使用`任务管理器`>`详细信息`查询hdc.exe进程,右键打开文件所在位置，核对位置是否为配置的环境变量中的hdc文件位置，如果不一致，可尝试结束hdc.exe进程(hdc kill或者任务管理器直接结束进程)并重新执行hdc命令（关闭hdc server后执行hdc命令会重新启动hdc server）
-Unix：使用`ps -ef |grep hdc`查询hdc后台server进程，核对进程启动位置是否为配置的环境变量中的hdc文件位置，如果不一致，可尝试结束hdc进程(hdc kill或者kill -9 hdc进程的PID)并重新执行hdc命令（关闭hdc server后执行hdc命令会重新启动hdc server）
+
+**Windows**：
+
+使用`任务管理器`>`详细信息`查询hdc.exe进程,右键打开文件所在位置，核对位置是否为配置的环境变量中的hdc文件位置，如果不一致，可尝试结束hdc.exe进程(hdc kill或者任务管理器直接结束进程)并重新执行hdc命令。（关闭hdc server后执行hdc命令会重新启动hdc server）
+
+**Unix**：
+
+使用`ps -ef |grep hdc`查询hdc后台server进程，核对进程启动位置是否为配置的环境变量中的hdc文件位置，如果不一致，可尝试结束hdc进程(hdc kill或者kill -9 hdc进程的PID)并重新执行hdc命令。（关闭hdc server后执行hdc命令会重新启动hdc server）
 
 - **注册表污染**
 
