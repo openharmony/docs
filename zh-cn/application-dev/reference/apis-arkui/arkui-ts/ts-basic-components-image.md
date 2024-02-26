@@ -353,9 +353,9 @@ onComplete(callback: (event?: { width: number, height: number, componentWidth: n
 
 图片数据加载成功和解码成功时均触发该回调，返回成功加载的图片尺寸。
 
-**卡片能力：**从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**系统能力：**SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -378,9 +378,9 @@ onError(callback: ImageErrorCallback)
 
 图片加载异常时触发该回调。
 
-**卡片能力：**从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**系统能力：**SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -396,9 +396,9 @@ onFinish(event: () =&gt; void)
 
 仅支持svg格式的图片。
 
-**卡片能力：**从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**系统能力：**SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ## ImageErrorCallback<sup>9+</sup>
 
