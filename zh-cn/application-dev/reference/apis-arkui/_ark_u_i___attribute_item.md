@@ -15,12 +15,12 @@
 
 ### 成员变量
 
-| 名称 | 描述 |
+| 名称 | 描述 | 
 | -------- | -------- |
-| const [ArkUI_NumberValue](union_ark_u_i___number_value.md) \* [value](#value) | 数字类型数组。  |
-| int32_t [size](#size) | 数字类型数组大小。  |
-| const char \* [string](#string) | 字符串类型。  |
-| void \* [object](#object) | 对象类型。  |
+| const [ArkUI_NumberValue](union_ark_u_i___number_value.md) \* [value](#value) | 数字类型数组。  | 
+| int32_t [size](#size) | 数字类型数组大小。  | 
+| const char \* [string](#string) | 字符串类型。  | 
+| void \* [object](#object) | 对象类型。  | 
 
 
 ## 结构体成员变量说明

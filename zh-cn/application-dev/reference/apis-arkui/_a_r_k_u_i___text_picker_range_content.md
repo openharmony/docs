@@ -15,10 +15,10 @@
 
 ### 成员变量
 
-| 名称 | 描述 |
+| 名称 | 描述 | 
 | -------- | -------- |
-| const char \* [icon](#icon) | 图片资源。  |
-| const char \* [text](#text) | 文本信息。  |
+| const char \* [icon](#icon) | 图片资源。  | 
+| const char \* [text](#text) | 文本信息。  | 
 
 
 ## 结构体成员变量说明
