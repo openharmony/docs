@@ -1,10 +1,10 @@
-# @ohos.systemTime (系统时间、时区)
+# @ohos.systemTime (系统时间、时区)(系统接口)
 
 本模块主要由系统时间和系统时区功能组成。开发者可以设置、获取系统时间及系统时区。
 
 > **说明：**
 >
-> - 从API Version 9 开始，该模块接口不再维护，推荐使用新模块接口[@ohos.systemDateTime (系统时间、时区)](js-apis-system-date-time.md)
+> - 从API Version 9 开始，该模块接口不再维护，推荐使用新模块接口[@ohos.systemDateTime (系统时间、时区)](js-apis-system-date-time-sys.md)
 > - 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块

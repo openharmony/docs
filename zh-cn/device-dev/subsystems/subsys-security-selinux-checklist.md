@@ -14,7 +14,7 @@
 | system_basic | system_basic_hap_attr | system_basic_hap_data_file_attr |
 | system_core | system_core_hap_attr | system_core_hap_data_file_attr |
 
-APL说明参考[权限等级说明](../../application-dev/security/accesstoken-overview.md#权限等级说明)。
+APL说明参考[权限等级说明](../../application-dev/security/AccessToken/app-permission-mgmt-overview.md#权限apl等级)。
 
 另外还有一个attribute表示所有应用进程，为hap_domain。
 

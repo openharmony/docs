@@ -17,13 +17,12 @@ import settings from '@ohos.settings';
 
 ### 属性
 
-**系统能力：**SystemCapability.Applications.Settings.Core
+**系统能力：** SystemCapability.Applications.Settings.Core
 
 | 名称                | 类型   | 可读 | 可写 | 说明                                                         |
 | ------------------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| DEVICE_SHARED       | string | 是   | 是   | 设备属性共享域                                          |
-| USER_PROPERTY       | string | 是   | 是   | 为用户属性域                                           |
-| USER_SECURITY       | string | 是   | 是   | 为用户安全属性域                                        |
+| DEVICE_SHARED<sup>11+</sup>      | string | 是   | 是   | 设备属性共享域                                          |
+| USER_PROPERTY<sup>11+</sup>      | string | 是   | 是   | 为用户属性域                                           |
 
 ## date
 
@@ -272,9 +271,11 @@ settings.setValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100').the
 
 ## setting.setValue<sup>11+</sup>
 
-setValue(context: Context, name: string, domainName: string): Promise\<boolean>
+setValue(context: Context, name: string, value: string, domainName: string): Promise\<boolean>
 
 将数据项名称及数据项的值保存到数据库中。使用 Promise异步回调。
+
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **系统能力**：SystemCapability.Applications.Settings.Core
 
@@ -445,7 +446,7 @@ let value = settings.getValueSync(context, settings.display.SCREEN_BRIGHTNESS_ST
 
 ## settings.getValueSync<sup>11+</sup>
 
-getValueSync(context: Context, name: string, defvalue: string, domainName: string): boolean;
+getValueSync(context: Context, name: string, defvalue: string, domainName: string): string;
 
 获取数据项的值。此方法相较getValue为同步方法。
 
@@ -519,7 +520,7 @@ let ret = settings.setValueSync(context, settings.display.SCREEN_BRIGHTNESS_STAT
 
 ## settings.setValueSync<sup>11+</sup>
 
-setValueSync(context: Context, name: string, value: string): boolean
+setValueSync(context: Context, name: string, value: string, domainName: string): boolean
 
 设置数据项的值。此方法相较setValue为同步方法。
 

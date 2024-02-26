@@ -206,6 +206,36 @@ struct OnAreaChangeSample {
   }
 }
 ```
+## 如何解决顶部单张大图问题
+
+**解决方案**
+
+顶部背景图被拉伸时，可以通过设置背景图片的[backgroundImageSize](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-background.md#backgroundimagesize)属性，使得图片大小能够合理显示，达到适配效果。
+
+**布局效果**
+
+| sm | md |
+| ----------- | ----------- |
+| ![backgroundImage_sm](figures/backgroundImage_sm.png) | ![backgroundImage_sm](figures/backgroundImage_md.png)  |
+
+**参考代码**
+
+```ts
+@Entry
+@Component
+struct ImageClip {
+  build() {
+    // 设置背景图片的backgroundImageSize属性，使得图片大小能够合理显示
+    Column()
+      .width('100%')
+      .height(300)
+      .backgroundColor('#ccc')
+      .backgroundImage($r('app.media.ImageOne'))
+      .backgroundImageSize(ImageSize.Cover)
+      .backgroundImagePosition(Alignment.Center)
+  }
+}
+```
 
 ## 如何解决Item内容过大
 
@@ -302,6 +332,46 @@ struct SwiperLayout {
       .height("60%")
       .borderWidth(2)
     }
+  }
+}
+```
+
+## 如何解决信息流图片过大
+
+**解决方案**
+
+针对信息流单张图片过大的情况，设置[aspectRatio](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md#aspectratio)和[constrainSize](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-size.md#constraintsize)属性，可以通过对图片的布局和尺寸进行约束，达到适配效果。
+
+**布局效果**
+
+| sm | md |
+| -------- | -------- |
+| ![backgroundImage_sm](figures/image_sm.png) | ![backgroundImage_sm](figures/image_md.png)  |
+
+**参考代码**
+
+```ts
+@Entry
+@Component
+struct ImageConstrainSize {
+  @State breakPoint: string = 'sm'
+  build() {
+    GridRow(){
+      GridCol({ span: { sm: 12, md: 12, lg: 12 } }){
+        Column(){
+          Text('一次开发，多端部署，让开发者可以基于一种设计，高效构建多端可运行的应用。一次开发，多端部署，让开发者可以基于一种设计，高效构建多端可运行的应用。')
+          // 设置aspectRatio和constrainSize属性，可以对图片的布局和尺寸进行约束
+          Image($r('app.media.ImageTwo'))
+            .width('30%')
+            .aspectRatio(0.5)
+            .constraintSize({ maxWidth: 240, minWidth: 180 })
+          Text('一次开发，多端部署，让开发者可以基于一种设计，高效构建多端可运行的应用。一次开发，多端部署，让开发者可以基于一种设计，高效构建多端可运行的应用。')
+        }.alignItems(HorizontalAlign.Start)
+
+      }
+    }.onBreakpointChange((breakpoint: string) => {
+      this.breakPoint = breakpoint
+    })
   }
 }
 ```

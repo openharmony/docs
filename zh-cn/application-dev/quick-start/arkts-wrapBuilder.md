@@ -47,7 +47,7 @@ wrapBuilder方法返回的WrappedBuilder对象的builder属性方法只能在str
 
 ## 使用场景1
 
-自定义组件Index使用了全局globalBuilder声明的wrapBuilder，当点击Text()组件时，globalBuilder重新赋值新的wrapBuilder，可以实现不同文字的切换。
+将wrapBuilder赋值给globalBuilder，且把MyBuilder作为wrapBuilder参数，用来替代MyBuilder不能直接赋值给globalBuilder。
 
 ```ts
 @Builder
@@ -57,6 +57,7 @@ function MyBuilder(value: string, size: number) {
 }
 
 let globalBuilder: WrappedBuilder<[string, number]> = wrapBuilder(MyBuilder);
+
 @Entry
 @Component
 struct Index {
@@ -66,13 +67,6 @@ struct Index {
     Row() {
       Column() {
         globalBuilder.builder(this.message, 50)
-        Text(this.message)
-          .fontSize(50)
-          .fontWeight(FontWeight.Bold)
-          .onClick(() =>{
-            this.message = 'Test wrapBuilder';
-          })
-
       }
       .width('100%')
     }

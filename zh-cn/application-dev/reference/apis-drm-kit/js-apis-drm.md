@@ -281,7 +281,7 @@ import drm from '@ohos.multimedia.drm';
 import { BusinessError } from '@ohos.base';
 
 try {
-  bool Supported = drm.isMediaKeySystemSupported("com.clearplay.drm");
+  let Supported = drm.isMediaKeySystemSupported("com.clearplay.drm");
 } catch (err) {
   let error = err as BusinessError;
   console.error(`isMediaKeySystemSupported ERROR: ${error}`);  
@@ -327,10 +327,10 @@ import drm from '@ohos.multimedia.drm';
 import { BusinessError } from '@ohos.base';
 
 try {
-  bool Supported = drm.isMediaKeySystemSupported2("com.clearplay.drm", "video/mp4");
+  let Supported = drm.isMediaKeySystemSupported("com.clearplay.drm", "video/mp4");
 } catch (err) {
   let error = err as BusinessError;
-  console.error(`isMediaKeySystemSupported2 ERROR: ${error}`);  
+  console.error(`isMediaKeySystemSupported ERROR: ${error}`);
 }
 ```
 
@@ -373,10 +373,10 @@ import drm from '@ohos.multimedia.drm';
 import { BusinessError } from '@ohos.base';
 
 try {
-  bool Supported = drm.isMediaKeySystemSupported3("com.clearplay.drm", "video/mp4", drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
+  let Supported = drm.isMediaKeySystemSupported("com.clearplay.drm", "video/mp4", drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
 } catch (err) {
   let error = err as BusinessError;
-  console.error(`isMediaKeySystemSupported3 ERROR: ${error}`);
+  console.error(`isMediaKeySystemSupported ERROR: ${error}`);
 }
 
 ```
@@ -589,7 +589,7 @@ getStatistics(): StatisticKeyValue[]
 import drm from '@ohos.multimedia.drm';
 import { BusinessError } from '@ohos.base';
 
-let mediaKeysystem: drm.StatisticKeyValue[] = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 try {
   let statisticKeyValue: StatisticKeyValue[] = mediaKeysystem.getStatistics();
 } catch (err) {
@@ -629,7 +629,7 @@ getMaxContentProtectionLevel(): ContentProtectionLevel
 import drm from '@ohos.multimedia.drm';
 import { BusinessError } from '@ohos.base';
 
-let mediaKeysystem: drm.mediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 try {
   let maxLevel: drm.ContentProtectionLevel = mediaKeysystem.getMaxContentProtectionLevel();
 } catch (err) {
@@ -786,7 +786,7 @@ on(type: 'keySystemRequired', callback: (eventInfo: EventInfo) => void): void
 import drm from '@ohos.multimedia.drm';
 
 function registerkeySystemRequired(mediaKeysystem: drm.MediaKeySystem): void {
-  mediaKeysystem.on('keySystemRequired', (eventInfo: EventInfo) => {
+  mediaKeysystem.on('keySystemRequired', (eventInfo: drm.EventInfo) => {
     console.log('keySystemRequired' + 'extra:' + eventInfo.extraInfo + ' data:' + eventInfo.info);
   });
 }
@@ -866,7 +866,7 @@ try {
   let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
 } catch (err) {
   let error = err as BusinessError;
-  console.error(`getCertificateStatus ERROR: ${error}`);
+  console.error(`createMediaKeySession ERROR: ${error}`);
 }
 
 ```
@@ -1292,6 +1292,7 @@ mediaKeySession.processMediaKeyResponse(Request).then((mediaKeyId: Uint8Array) =
 }).catch((err: BusinessError) => {
   console.error(`processMediaKeyResponse: ERROR: ${err}`);
 });
+var mediaKeyId = new Uint8Array([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
 mediaKeySession.generateOfflineReleaseRequest(mediaKeyId).then((offlineReleaseRequest: Uint8Array) => {
   console.log('generateOfflineReleaseRequest:' + offlineReleaseRequest);
 }).catch((err: BusinessError) => {
@@ -1338,6 +1339,7 @@ mediaKeySession.processMediaKeyResponse(offlineReleaseRequest).then((mediaKeyId:
 }).catch((err: BusinessError) => {
   console.error(`processMediaKeyResponse: ERROR: ${err}`);
 });
+var mediaKeyId = new Uint8Array([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
 var response = new Uint8Array([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
 mediaKeySession.processOfflineReleaseResponse(mediaKeyId, response).then(() => {
   console.log('processOfflineReleaseResponse');
@@ -1428,7 +1430,7 @@ try {
   let contentProtectionLevel: drm.ContentProtectionLevel = mediaKeySession.getContentProtectionLevel();
 } catch (err) {
   let error = err as BusinessError;
-  console.error(`clearMediaKeys ERROR: ${error}`);
+  console.error(`getContentProtectionLevel ERROR: ${error}`);
 }
 
 ```
@@ -1475,7 +1477,7 @@ try {
   let status: boolean = mediaKeySession.requireSecureDecoderModule("mimeType");
 } catch (err) {
   let error = err as BusinessError;
-  console.error(`clearMediaKeys ERROR: ${error}`);
+  console.error(`requireSecureDecoderModule ERROR: ${error}`);
 }
 
 ```
@@ -1509,8 +1511,8 @@ on(type: 'keyRequired', callback: (eventInfo: EventInfo) => void): void
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-function registerKeyRequired(mediaKeysystem: drm.MediaKeySystem): void {
-    MediaKeySystem.on('keyRequired', (eventInfo: EventInfo) => {
+function registerKeyRequired(mediaKeysession: drm.MediaKeySession): void {
+    mediaKeysession.on('keyRequired', (eventInfo: drm.EventInfo) => {
         console.log('keyRequired' + 'extra:' + eventInfo.extraInfo + ' data:' + eventInfo.info);
     });
 }
@@ -1545,8 +1547,8 @@ off(type: 'keyRequired', callback?: (eventInfo: EventInfo) => void): void
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-function unregisterKeyRequired(mediaKeysystem: drm.MediaKeySystem): void {
-  mediaKeysystem.off('keyRequired');
+function unregisterKeyRequired(mediaKeysession: drm.MediaKeySession): void {
+  mediaKeysession.off('keyRequired');
 }
 ```
 
@@ -1579,8 +1581,8 @@ on(type: 'keyExpired', callback: (eventInfo: EventInfo) => void): void
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-function registerKeyExpired(mediaKeysystem: drm.MediaKeySystem): void {
-    mediaKeysystem.on('keyExpired', (eventInfo: EventInfo) => {
+function registerKeyExpired(mediaKeysession: drm.MediaKeySession): void {
+    mediaKeysession.on('keyExpired', (eventInfo: drm.EventInfo) => {
         console.log('keyExpired' + 'extra:' + eventInfo.extraInfo + ' data:' + eventInfo.info);
     });
 }
@@ -1615,8 +1617,8 @@ off(type: 'keyExpired', callback?: (eventInfo: EventInfo) => void): void
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-function unregisterKeyExpired(mediaKeysystem: drm.MediaKeySystem): void {
-  mediaKeysystem.off('keyExpired');
+function unregisterKeyExpired(mediaKeysession: drm.MediaKeySession): void {
+  mediaKeysession.off('keyExpired');
 }
 ```
 
@@ -1649,8 +1651,8 @@ on(type: 'vendorDefined', callback: (eventInfo: EventInfo) => void): void
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-function registerVendorDefinedt(mediaKeysystem: drm.MediaKeySystem): void {
-    mediaKeysystem.on('vendorDefined', (eventInfo: EventInfo) => {
+function registerVendorDefinedt(mediaKeysession: drm.MediaKeySession): void {
+    mediaKeysession.on('vendorDefined', (eventInfo: drm.EventInfo) => {
         console.log('vendorDefined' + 'extra:' + eventInfo.extraInfo + ' data:' + eventInfo.info);
     });
 }
@@ -1685,14 +1687,14 @@ off(type: 'vendorDefined', callback?: (eventInfo: EventInfo) => void): void
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-function unregisterVendorDefined(mediaKeysystem: drm.MediaKeySystem): void {
-  mediaKeysystem.off('vendorDefined');
+function unregisterVendorDefined(mediaKeysession: drm.MediaKeySession): void {
+  mediaKeysession.off('vendorDefined');
 }
 ```
 
 ### on('expirationUpdated')
 
-on(type: 'expirationUpdate', callback: (eventInfo: EventInfo) => void): void
+on(type: 'expirationUpdate', callback: (eventInfo: drm.EventInfo) => void): void
 
 监听过期更新事件，通过注册回调函数获取结果。
 
@@ -1719,8 +1721,8 @@ on(type: 'expirationUpdate', callback: (eventInfo: EventInfo) => void): void
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-function registerExpirationUpdated(mediaKeysystem: drm.MediaKeySystem): void {
-    mediaKeysystem.on('expirationUpdated', (eventInfo: EventInfo) => {
+function registerExpirationUpdated(mediaKeysession: drm.MediaKeySession): void {
+    mediaKeysession.on('expirationUpdated', (eventInfo: drm.EventInfo) => {
         console.log('expirationUpdated' + 'extra:' + eventInfo.extraInfo + ' data:' + eventInfo.info);
     });
 }
@@ -1755,8 +1757,8 @@ off(type: 'expirationUpdate', callback?: (eventInfo: EventInfo) => void): void
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-function unregisterExpirationUpdated(mediaKeysystem: drm.MediaKeySystem): void {
-    mediaKeysystem.off('expirationUpdated');
+function unregisterExpirationUpdated(mediaKeysession: drm.MediaKeySession): void {
+    mediaKeysession.off('expirationUpdated');
 }
 ```
 
@@ -1789,8 +1791,8 @@ on(type: 'keysChange', callback: (keyInfo: KeysInfo[], newKeyAvailable: boolean)
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-function registerkeysChange(mediaKeysystem: drm.MediaKeySystem): void {
-    mediaKeysystem.on('keysChange', (eventInfo: EventInfo) => {
+function registerkeysChange(mediaKeysession: drm.MediaKeySession): void {
+    mediaKeysession.on('keysChange', (eventInfo: drm.EventInfo) => {
         console.log('keysChange' + 'extra:' + eventInfo.extraInfo + ' data:' + eventInfo.info);
     });
 }
@@ -1825,8 +1827,8 @@ off(type: 'keysChange', callback?: (keyInfo: KeysInfo[], newKeyAvailable: boolea
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-function unregisterkeyChange(mediaKeysystem: drm.MediaKeySystem): void {
-    mediaKeysystem.off('keysChange');
+function unregisterkeyChange(mediaKeysession: drm.MediaKeySession): void {
+    mediaKeysession.off('keysChange');
 }
 ```
 
