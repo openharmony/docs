@@ -998,3 +998,21 @@ The application has a apply quick fix task that is being processed.
 **处理步骤**
 
 等待快速修复任务处理完成。
+
+## 16300004 指定的observer不存在
+
+**错误信息**
+
+observer not found.
+
+**错误描述**
+
+当监听器不存在时，方法将返回该错误码。
+
+**可能原因**
+
+当前监听器不存在或者已注销。
+
+**处理步骤**
+
+请检查是否有重复注销监听器。
