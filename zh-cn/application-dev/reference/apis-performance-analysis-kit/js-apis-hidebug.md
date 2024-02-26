@@ -575,7 +575,7 @@ getAppMemoryLimit() : MemoryLimit
 | heapUsed           | bigint  | 是   | 否   | 表示当前虚拟机使用的堆大小          |
 | allArraySize       | bigint  | 是   | 否   | 表示当前虚拟机的所有数组对象大小    |
 
-## ThreadCpuUsage
+## ThreadCpuUsage<sup>12+</sup>
 
 描述线程CPU使用情况
 
@@ -586,7 +586,7 @@ getAppMemoryLimit() : MemoryLimit
 | threadId           | number  | 是   | 否   | cpu线程Id                           |
 | cpuUsage           | number  | 是   | 否   | cpu线程使用率                       |
 
-## tags
+## tags<sup>12+</sup>
 
 描述trace的tag类型常量
 
