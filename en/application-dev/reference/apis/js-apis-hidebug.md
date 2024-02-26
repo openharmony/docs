@@ -121,9 +121,9 @@ Obtains the application process native meminfo
 
 **Return value**
 
-| Type  | Description                                    |
-| ------ | ---------------------------------------- |
-| [NativeMemInfo](#NativeMemInfo) | Size of the memory actually used by the application process|
+| Type  | Description                      |
+| ------ | -------------------------- |
+| [NativeMemInfo](#nativeMemInfo) | size of the memory actually used by the application process|
 
 **Example**
 
@@ -170,8 +170,8 @@ Obtains the memory info of system
 
 **Return value**
 
-| Type  | Description                                    |
-| ------ | ---------------------------------------- |
+| Type  | Description                      |
+| ------ | -------------------------- |
 | [SysMemInfo](#sysMemInfo) | Size of system memory |
 
 **Example**
