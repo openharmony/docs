@@ -24,7 +24,6 @@ uinput可模拟用户操作设备，用于稳定性等压力测试。
 
 ## 常用命令
 
-1. 输入uinput -K -d 18 -u 18，按下并弹起电源键。参考：[键值定义说明](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-keycode.md)。
-   ![zh-cn_image_0000001733877146](figures/zh-cn_image_0000001733877146.png)
+1. 输入uinput -K -d 18 -u 18，按下并弹起电源键。参考：[键值定义说明](../reference/apis-input-kit/js-apis-keycode.md)。
 
 2. 输入uinput -T -m 100 200 500 800 1000，手指从100 200 移动到 500 800 耗时1秒。![zh-cn_image_0000001780757421](figures/zh-cn_image_0000001780757421.png)

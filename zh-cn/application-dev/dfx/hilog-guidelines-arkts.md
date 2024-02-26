@@ -32,7 +32,7 @@ HiLog中定义了DEBUG、INFO、WARN、ERROR、FATAL五种日志级别，并提�
 
 - **tag**：用于指定日志标识，可以为任意字符串，建议标识调用所在的类或者业务行为。
 
-- **level**：用于指定日志级别。取值见[LogLevel](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-hilog.md#loglevel)。
+- **level**：用于指定日志级别。取值见[LogLevel](../reference/apis-performance-analysis-kit/js-apis-hilog.md#loglevel)。
 
 - **format**：格式字符串，用于日志的格式化输出。日志打印的格式化参数需按照“%{private flag}specifier”的格式打印。
   | 隐私标识符（private flag） | 说明 |
