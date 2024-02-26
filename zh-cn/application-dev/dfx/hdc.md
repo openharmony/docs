@@ -811,3 +811,114 @@ hdc shell hilog -w start                              // 开启hilog日志落盘
 hdc shell ls /data/log/hilog                          // 查看已落盘hilog日志
 hdc file recv /data/log/hilog                         // 获取hilog已落盘日志（包含内核日志）
 ```
+
+## 常见问题FAQ
+### 1、设备无法识别
+现象描述：命令行执行`hdc list targets`命令后，返回结果为`[empty]`
+
+问题排查：
+#### （1）查看设备管理是否显示HDC设备
+##### a.Windows环境
+在`设备管理器`>`通用串行总线设备`中是否显示`HDC Device`（单一端口设备）或`HDC Interface`（复合端口设备）
+
+##### b.linux环境
+在命令行执行`lsusb`,在返回的内容中查看是否有`HDC Device`（单一端口设备）或`HDC Interface`（复合端口设备）
+##### c.MacOS环境
+使用`系统信息`或`系统概述`来查看USB设备，步骤如下：
+ 1) 按住键盘上的Option键，点按菜单。
+
+ 2) 选取`系统信息`或`系统概述`
+
+ 3) 在随后出现的窗口中，选择左边的`USB`
+
+ 4) 在随后显示的设备树查看是否有`HDC Device`（单一端口设备）或`HDC Interface`（复合端口设备）
+
+##### 可采取的解决方法
+以上环境如没有显示HDC设备，则说明无法识别设备，可以根据实际场景尝试以下方法：
+ - 使用其他USB物理接口；
+ - 更换USB数据连接线；
+ - 使用其他计算机调试；
+ - 设备开启USB调试模式；
+ - 设备出现弹窗点击允许调试；
+ - 如可通过TCP模式连接，可执行`hdc tmode usb`命令恢复USB连接；
+ - 设备恢复出厂设备；
+
+#### （2）存在USB设备，但是驱动损坏，显示"HDC Device"⚠警告图标
+该问题常见于Windows环境，现象为`设备管理器`>`通用串行总线设备`中，`HDC Device`显示为黄标警告，且描述信息为该设备无法正常工作。可尝试重新安装驱动解决，如重新安装驱动无法解决，可以尝试更换USB连接数据线/拓展坞/USB接口。
+##### 重新安装驱动方法：
+ 1) 打开`设备管理器`，右键点击有警告图标的`HDC Device`；
+
+ 2) 出现的菜单中点击`更新驱动程序`；
+
+ 3) 出现的提示窗口（第1/3个）中，选取`浏览我的电脑以查找驱动程序`；
+
+ 4) 出现的提示窗口（第2/3个）中，选取`让我从计算机上的可用驱动程序列表中选取`；
+
+ 5) 出现的提示窗口（第3/3个）中，取消勾选`显示兼容硬件`，选取`通用串行总线设备`>`WinUSB设备`后点击`下一步`按钮。
+
+#### (3)连接设备时出现[Fail]Failed to communicate with daemon
+可能存在以下原因，可参考排查：
+- hdc SDK与设备不匹配:
+
+如果设备更新到最新版本，可更新hdc（SDK）工具至最新版本
+- 端口被占用：
+
+常见于hdc和hdc_std使用同一端口，同时运行时会端口互相冲突，注意只运行其中一个。其他软件占用8710端口也会导致该问题发生。
+
+#### （4）连接设备时出现Connect server failed
+出现该现象，可能有如下原因：
+- **端口抢占**
+
+解决方法如下：
+1) 排查自带hdc的软件进程
+
+包括自带hdc的软件（DevEco Studio、DevEco Testing），如存在请关闭这些软件后再执行hdc相关命令。
+
+2) 查询8710端口情况
+
+Unix
+```
+netstat -an |grep 8710
+```
+Windows:
+```
+netstat -an |findstr 8710
+```
+如存在抢占的软件，可以关闭该软件进程或者更换OHOS_HDC_SERVER_PORT环境变量为其他端口号
+
+3) 排查未关闭的其他版本hdc server
+Windows：使用`任务管理器`>`详细信息`查询hdc.exe进程,右键打开文件所在位置，核对位置是否为配置的环境变量中的hdc文件位置，如果不一致，可尝试结束hdc.exe进程(hdc kill或者任务管理器直接结束进程)并重新执行hdc命令（关闭hdc server后执行hdc命令会重新启动hdc server）
+Unix：使用`ps -ef |grep hdc`查询hdc后台server进程，核对进程启动位置是否为配置的环境变量中的hdc文件位置，如果不一致，可尝试结束hdc进程(hdc kill或者kill -9 hdc进程的PID)并重新执行hdc命令（关闭hdc server后执行hdc命令会重新启动hdc server）
+
+- **注册表污染**
+
+解决方法：清理注册表，步骤如下：
+1) 同时按下`Win`+`R`键，启动运行工具，输入栏输入`regedit`打开注册表；
+2) 注册表地址栏输入：
+```
+计算机\HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Class\{88bae032-5a81-49f0-bc3d-a4ff138216d6}
+```
+进入WinUSB设备的注册表；
+
+3) 找到`UpperFilters`键，右键`修改`编辑，**备份**并清空其中数值数据内容（如清空无效请依照备份恢复改内容）；
+4) 刷新设备管理器/插拔USB接口/重启计算机。
+
+### 2、hdc运行不了 
+
+现象描述：使用命令行执行hdc.exe/hdc 二进制文件无法运行。
+可能原因&解决方法：
+- 运行环境异常
+
+Linux运行环境：建议使用Ubuntu18.04及以上64版本，如发送libc++.so引用错误请使用ldd/readelf等命令检查库引用。
+
+MacOS运行环境：建议使用MacOS 11及以上版本。
+
+Windows运行环境：建议使用Windows10/Windows11 64位版本，如低版本确实WinUSB库/驱动，请使用Zadig工具更新。对于符合设备，需要使用Zadig工具安装libusb-win32驱动。[Zadig链接](https://github.com/pbatard/libwdi/releases)
+
+- 运行方式不当：请使用`命令行`依照正确命令运行hdc工具，**而非**`鼠标双击`可执行文件执行。
+
+### 3、其他问题排查常用步骤
+1) 命令行执行`hdc list targets`查看返回值；
+2) 查看`设备管理`是否有`HDC Device`；
+3) 执行`hdc kill`关闭server后，执行`hdc -l5 start`收集日志（hdc.log位于执行端TEMP目录，不同平台目录位置存在差异，可参考**日志获取场景**章节）；
+4) 通过hdc.log日志定位相关问题。
