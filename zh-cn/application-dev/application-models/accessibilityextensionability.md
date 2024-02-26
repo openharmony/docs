@@ -72,9 +72,9 @@ export default AccessibilityExtAbility;
 
 | 接口 | 描述 |
 | ---- | ---- |
-| onConnect(): void | 当扩展服务连接时回调 |
-| onDisconnect(): void | 当扩展服务断开时回调 |
-| onAccessibilityEvent(event: AccessibilityEvent): void | 当无障碍事件发生时回调 |
+| onConnect(): void | 当扩展服务连接时回调。 |
+| onDisconnect(): void | 当扩展服务断开时回调。 |
+| onAccessibilityEvent(event: AccessibilityEvent): void | 当无障碍事件发生时回调。 |
 
 ## 如何处理一个无障碍事件
 
