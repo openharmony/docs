@@ -2393,7 +2393,7 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 | linkUpBandwidthKbps   | number                             |  否 |  上行（设备到网络）带宽，0表示无法评估当前网络带宽。  |
 | linkDownBandwidthKbps | number                             |  否 |  下行（网络到设备）带宽，0表示无法评估当前网络带宽。   |
 | networkCap            | Array\<[NetCap](#netcap)>           |  否 |  网络具体能力。           |
-| bearerTypes           | Array\<[NetBearType](#netbeartype)> |  是 |  网络类型。               |
+| bearerTypes           | Array\<[NetBearType](#netbeartype)> |  是 |  网络类型。数组里面只包含了一种具体的网络类型。      |
 
 ## NetConnectionPropertyInfo<sup>11+</sup>
 
