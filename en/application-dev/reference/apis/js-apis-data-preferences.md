@@ -1219,6 +1219,8 @@ Obtains the value of a key from this **Preferences** instance. This API uses an 
 **Example**
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 try {
     preferences.get('startup', 'default', (err: BusinessError, val: dataPreferences.ValueType) => {
         if (err) {
@@ -1259,6 +1261,8 @@ Obtains the value of a key from this **Preferences** instance. This API uses a p
 **Example**
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 try {
     let promise = preferences.get('startup', 'default');
     promise.then((data: dataPreferences.ValueType) => {
@@ -1324,6 +1328,8 @@ Obtains all KV pairs from this **Preferences** instance. This API uses an asynch
 **Example**
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 // There is no Object.keys in ArkTS, and the for..in... syntax cannot be used.
 // If an error is reported, extract this API to a .ts file and expose it. Then import the API to the .ets file when required.
 function getObjKeys(obj: Object): string[] {
@@ -1366,6 +1372,8 @@ Obtains all KV pairs from this **Preferences** instance. This API uses a promise
 **Example**
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 // There is no Object.keys in ArkTS, and the for..in... syntax cannot be used.
 // If an error is reported, extract this API to a .ts file and expose it. Then import the API to the .ets file when required.
 function getObjKeys(obj: Object): string[] {
@@ -1444,6 +1452,8 @@ Writes data to this **Preferences** instance. This API uses an asynchronous call
 **Example**
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 try {
     preferences.put('startup', 'auto', (err: BusinessError) => {
         if (err) {
@@ -1484,6 +1494,8 @@ Writes data to this **Preferences** instance. This API uses a promise to return 
 **Example**
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 try {
     let promise = preferences.put('startup', 'auto');
     promise.then(() => {
@@ -1545,6 +1557,8 @@ Checks whether this **Preferences** instance contains the KV pair of the given k
 **Example**
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 try {
     preferences.has('startup', (err: BusinessError, val: boolean) => {
         if (err) {
@@ -1588,6 +1602,8 @@ Checks whether this **Preferences** instance contains the KV pair of the given k
 **Example**
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 try {
     let promise = preferences.has('startup');
     promise.then((val: boolean) => {
@@ -1663,6 +1679,8 @@ Deletes a KV pair from this **Preferences** instance. This API uses an asynchron
 **Example**
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 try {
     preferences.delete('startup', (err: BusinessError) => {
         if (err) {
@@ -1702,6 +1720,8 @@ Deletes a KV pair from this **Preferences** instance. This API uses a promise to
 **Example**
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 try {
     let promise = preferences.delete('startup');
     promise.then(() => {
@@ -1761,6 +1781,8 @@ Flushes the data in this **Preferences** instance to the persistent file. This A
 **Example**
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 try {
     preferences.flush((err: BusinessError) => {
         if (err) {
@@ -1794,6 +1816,8 @@ Flushes the data in this **Preferences** instance to the persistent file. This A
 **Example**
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 try {
     let promise = preferences.flush();
     promise.then(() => {
@@ -1826,6 +1850,8 @@ Clears this **Preferences** instance. This API uses an asynchronous callback to 
 **Example**
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 try {
     preferences.clear((err: BusinessError) =>{
         if (err) {
@@ -1859,6 +1885,8 @@ Clears this **Preferences** instance. This API uses a promise to return the resu
 **Example**
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 try {
     let promise = preferences.clear();
     promise.then(() => {
@@ -1908,42 +1936,25 @@ Subscribes to data changes. A callback will be triggered to return the new value
 | Name  | Type    | Mandatory| Description                                    |
 | -------- | -------- | ---- | ---------------------------------------- |
 | type     | string   | Yes  | Event type. The value **change** indicates data changes.|
-| callback | Function | Yes  | Callback invoked to return the result.<br>**key** is the key whose value is changed.    |
+| callback | Function | Yes  | Callback invoked to return data changes.<br>**key** is the key whose value is changed.    |
 
 **Example**
 
 ```ts
-let observer = (key: string) => {
-    console.info("The key " + key + " changed.");
-}
-try {
-    dataPreferences.getPreferences(this.context, 'myStore', (err: BusinessError, preferences: dataPreferences.Preferences) => {
-        if (err) {
-            console.error("Failed to get preferences.");
-            return;
-        }
-        preferences.on('change', observer);
-        preferences.put('startup', 'manual', (err: BusinessError) => {
-            if (err) {
-            console.error("Failed to put the value of 'startup'. Cause: " + err);
-            return;
-            }
-            console.info("Successfully put the value of 'startup'.");
+import {BusinessError} from '@ohos.base';
 
-            preferences.flush((err: BusinessError) => {
-            if (err) {
-                console.error("Failed to flush. Cause: " + err);
-                return;
-            }
-            console.info("Successfully flushed data.");
-            })
-        })
-    })
-} catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.error("Failed to flush. code =" + code + ", message =" + message);
+let observer = (key: string) => {
+  console.info("The key " + key + " changed.");
 }
+preferences.on('change', observer);
+preferences.putSync('startup', 'manual');
+preferences.flush((err: BusinessError) => {
+  if (err) {
+    console.error("Failed to flush. Cause: " + err);
+    return;
+  }
+  console.info("Successfully flushed data.");
+})
 ```
 
 ### on('multiProcessChange')<sup>10+</sup>
@@ -1952,8 +1963,6 @@ on(type: 'multiProcessChange', callback: ( key : string ) => void): void
 
 Subscribes to inter-process data changes. For the multiple processes holding the same preference file, if the value of the subscribed key changes in any process, the callback in this API will be invoked after [flush()](#flush) is executed.
 
-This API can be used with [removePreferencesFromCache](#datapreferencesremovepreferencesfromcache) to update the **Preferences** instance in the callback when detecting that a process updates a file. For details, see example 2.
-
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
@@ -1961,7 +1970,7 @@ This API can be used with [removePreferencesFromCache](#datapreferencesremovepre
 | Name  | Type    | Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | Yes  | Event type. The value is **multiProcessChange**, which indicates data changes between multiple processes.|
-| callback | Function | Yes  | Callback invoked to return the result.<br>**key** is the key whose value is changed.                        |
+| callback | Function | Yes  | Callback invoked to return inter-process data changes.<br>**key** is the key whose value is changed.                        |
 
 **Error codes**
 
@@ -1971,109 +1980,23 @@ For details about the error codes, see [User Preference Error Codes](../errorcod
 | -------- | -------------------------------------- |
 | 15500019 | Failed to obtain subscription service. |
 
-**Example 1**
+**Example**
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 let observer = (key: string) => {
-    console.info("The key " + key + " changed.");
+  console.info("The key " + key + " changed.");
 }
-try {
-    let options: dataPreferences.Options = { name: 'myStore', dataGroupId:'myId' };
-    dataPreferences.getPreferences(this.context, options, (err: BusinessError, preferences: dataPreferences.Preferences) => {
-        if (err) {
-            console.error("Failed to get preferences.");
-            return;
-        }
-        preferences.on('multiProcessChange', observer);
-        preferences.put('startup', 'manual', (err: BusinessError) => {
-            if (err) {
-                console.error("Failed to put the value of 'startup'. Cause: " + err);
-                return;
-            }
-            console.info("Successfully put the value of 'startup'.");
-            preferences.flush((err: BusinessError) => {
-                if (err) {
-                    console.error("Failed to flush. Cause: " + err);
-                    return;
-                }
-                console.info("Successfully flushed data.");
-            })
-        })
-    })
-} catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.error("Failed to flush. code =" + code + ", message =" + message);
-}
-```
-
-**Example 2**
-
-```ts
-let options: dataPreferences.Options = { name: 'myStore' };
-let observer = (key: string) => {
-    console.info("The key " + key + " changed.");
-    try {
-        dataPreferences.removePreferencesFromCache(this.context, options, (err: BusinessError) => {
-            if (err) {
-                console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
-                return;
-            }
-            preferences = null;
-            console.info("Succeeded in removing preferences.");
-        })
-    } catch (err) {
-        let code = (err as BusinessError).code;
-        let message = (err as BusinessError).message;
-        console.error("Failed to remove preferences. code =" + code + ", message =" + message);
-    }
-
-    try {
-        dataPreferences.getPreferences(this.context, options, (err: BusinessError, val: dataPreferences.Preferences) => {
-            if (err) {
-                console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
-                return;
-            }
-            preferences = val;
-            console.info("Succeeded in getting preferences.");
-        })
-    } catch (err) {
-        let code = (err as BusinessError).code;
-        let message = (err as BusinessError).message;
-        console.error("Failed to get preferences. code =" + code + ", message =" + message);
-    }
-}
-try {
-    dataPreferences.getPreferences(this.context, options, (err: BusinessError, val: dataPreferences.Preferences) => {
-        if (err) {
-            console.error("Failed to get preferences.");
-            return;
-        }
-        preferences = val;
-        preferences.on('multiProcessChange', observer);
-        preferences.put('startup', 'manual', (err: BusinessError) => {
-            if (err) {
-                console.error("Failed to put the value of 'startup'. Cause: " + err);
-                return;
-            }
-            console.info("Successfully put the value of 'startup'.");
-
-            if (preferences != null) {
-                preferences.flush((err: BusinessError) => {
-                    if (err) {
-                        console.error("Failed to flush. Cause: " + err);
-                        return;
-                    }
-                    console.info("Successfully flushed data.");
-                })
-            }
-        })
-    })
-} catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.error("Failed to flush. code =" + code + ", message =" + message);
-}
+preferences.on('multiProcessChange', observer);
+preferences.putSync('startup', 'manual');
+preferences.flush((err: BusinessError) => {
+  if (err) {
+    console.error("Failed to flush. Cause: " + err);
+    return;
+  }
+  console.info("Successfully flushed data.");
+})
 ```
 
 ### off('change')
@@ -2094,38 +2017,21 @@ Unsubscribes from data changes.
 **Example**
 
 ```ts
-let observer = (key: string) => {
-    console.info("The key " + key + " changed.");
-}
-try {
-    dataPreferences.getPreferences(this.context, 'myStore', (err: BusinessError, preferences: dataPreferences.Preferences) => {
-        if (err) {
-            console.error("Failed to get preferences.");
-            return;
-        }
-        preferences.on('change', observer);
-        preferences.put('startup', 'auto', (err: BusinessError) => {
-            if (err) {
-                console.error("Failed to put the value of 'startup'. Cause: " + err);
-                return;
-            }
-            console.info("Successfully put the value of 'startup'.");
+import {BusinessError} from '@ohos.base';
 
-            preferences.flush((err: BusinessError) =>{
-                if (err) {
-                    console.error("Failed to flush. Cause: " + err);
-                    return;
-                }
-                console.info("Successfully flushed data.");
-            })
-            preferences.off('change', observer);
-        })
-    })
-} catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.error("Failed to flush. code =" + code + ", message =" + message);
+let observer = (key: string) => {
+  console.info("The key " + key + " changed.");
 }
+preferences.on('change', observer);
+preferences.putSync('startup', 'auto');
+preferences.flush((err: BusinessError) => {
+  if (err) {
+    console.error("Failed to flush. Cause: " + err);
+    return;
+  }
+  console.info("Successfully flushed data.");
+})
+preferences.off('change', observer);
 ```
 
 ### off('multiProcessChange')<sup>10+</sup>
@@ -2141,44 +2047,26 @@ Unsubscribes from inter-process data changes.
 | Name  | Type    | Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | Yes  | Event type. The value is **multiProcessChange**, which indicates data changes between multiple processes.|
-| callback | Function | No  | Callback to unregister. If this parameter is left blank, all callbacks for inter-process data changes will be unregistered.<br>**key** is the key whose value is changed. |
+| callback | Function | No  | Callback to unregister. If this parameter is left blank, all callbacks for inter-process data changes will be unregistered.<br>**key** is the key whose value is changed.|
 
 **Example**
 
 ```ts
-let observer = (key: string) => {
-    console.info("The key " + key + " changed.");
-}
-try {
-    let options: dataPreferences.Options = { name: 'myStore', dataGroupId:'myId' };
-    dataPreferences.getPreferences(this.context, options, (err: BusinessError, preferences: dataPreferences.Preferences) => {
-        if (err) {
-            console.error("Failed to get preferences.");
-            return;
-        }
-        preferences.on('multiProcessChange', observer);
-        preferences.put('startup', 'auto', (err: BusinessError) => {
-            if (err) {
-                console.error("Failed to put the value of 'startup'. Cause: " + err);
-                return;
-            }
-            console.info("Successfully put the value of 'startup'.");
+import {BusinessError} from '@ohos.base';
 
-            preferences.flush((err: BusinessError) => {
-                if (err) {
-                    console.error("Failed to flush. Cause: " + err);
-                    return;
-                }
-                console.info("Successfully flushed data.");
-            })
-            preferences.off('multiProcessChange', observer);
-        })
-    })
-} catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.error("Failed to flush. code =" + code + ", message =" + message);
+let observer = (key: string) => {
+  console.info("The key " + key + " changed.");
 }
+preferences.on('multiProcessChange', observer);
+preferences.putSync('startup', 'auto');
+preferences.flush((err: BusinessError) => {
+  if (err) {
+    console.error("Failed to flush. Cause: " + err);
+    return;
+  }
+  console.info("Successfully flushed data.");
+})
+preferences.off('multiProcessChange', observer);
 ```
 ## ValueType
 
