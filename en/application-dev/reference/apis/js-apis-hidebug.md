@@ -531,7 +531,7 @@ Get application process memory limit
 ```ts
  let appMemoryLimit:hidebug.MemoryLimit = hidebug.getAppMemoryLimit();
 ```
-## MemoryLimit<sup>12+<sup>
+## MemoryLimit
 
 application process memory limit
 
@@ -669,13 +669,13 @@ Size of the memory actually used by the application process
 
 | Name      | Type   | Mandatory | Description         |
 | --------- | ------ | ---- | ------------ |
-| pss    | bigint |  Yes  | process proportional set size memory, in KB     |
-| vss    | bigint |  Yes  | virtual set size memory, in KB     |
-| rss    | bigint |  Yes  | resident set size, in KB     |
-| sharedDirty    | bigint |  Yes  | the size of the shared dirty memory, in KB     |
-| privateDirty   | bigint |  Yes  | the size of the private dirty memory, in KB     |
-| sharedClean    | bigint |  Yes  | the size of the shared clean memory, in KB     |
-| privateClean   | bigint |  Yes  | the size of the private clean memory, in KB     |
+| pss<sup>12+<sup>    | bigint |  Yes  | process proportional set size memory, in KB     |
+| vss<sup>12+<sup>    | bigint |  Yes  | virtual set size memory, in KB     |
+| rss<sup>12+<sup>    | bigint |  Yes  | resident set size, in KB     |
+| sharedDirty<sup>12+<sup>    | bigint |  Yes  | the size of the shared dirty memory, in KB     |
+| privateDirty<sup>12+<sup>    | bigint |  Yes  | the size of the private dirty memory, in KB     |
+| sharedClean<sup>12+<sup>    | bigint |  Yes  | the size of the shared clean memory, in KB     |
+| privateClean<sup>12+<sup>    | bigint |  Yes  | the size of the private clean memory, in KB     |
 
 ## hidebug.SystemMemInfo<sup>12+<sup>
 
@@ -710,6 +710,6 @@ Size of the memory actually used by the application process
 
 | Name      | Type   | Mandatory | Description         |
 | --------- | ------ | ---- | ------------ |
-| totalMem    | bigint |  Yes  | total memory, in KB     |
-| freeMem    | bigint |  Yes  | free memory, in KB     |
-| availableMem    | bigint |  Yes  | available memory, in KB    |
+| totalMem<sup>12+<sup>    | bigint |  Yes  | total memory, in KB     |
+| freeMem<sup>12+<sup>    | bigint |  Yes  | free memory, in KB     |
+| availableMem<sup>12+<sup>    | bigint |  Yes  | available memory, in KB    |
