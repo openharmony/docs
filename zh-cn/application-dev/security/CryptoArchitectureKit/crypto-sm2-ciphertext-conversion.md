@@ -26,7 +26,7 @@ function testGenCipherTextBySpec() {
       cipherTextData: new Uint8Array([100, 227, 78, 195, 249, 179, 43, 70, 242, 69, 169, 10, 65, 123]),
       hashData: new Uint8Array([87, 167, 167, 247, 88, 146, 203, 234, 83, 126, 117, 129, 52, 142, 82, 54, 152, 226, 201, 111, 143, 115, 169, 125, 128, 42, 157, 31, 114, 198, 109, 244]),
   }
-  // 此处的data可直接使用cryptoFramework进行sm2解密
+  // 此处的data可直接使用cryptoFramework进行SM2解密
   let data = cryptoFramework.SM2CryptoUtil.genCipherTextBySpec(spec, 'C1C3C2');
   console.info('genCipherTextBySpec success');
 }
