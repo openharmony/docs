@@ -29,5 +29,6 @@
   - [Faultlogger错误码](errorcode-faultlogger.md)
   - [应用事件打点错误码](errorcode-hiappevent.md)
   - [Hidebug错误码](errorcode-hiviewdfx-hidebug.md)
+  - [Hidebug CpuUsage错误码](errorcode-hiviewdfx-hidebug-cpuusage.md)
   - [系统事件错误码](errorcode-hisysevent-sys.md)
   - [维测日志错误码](errorcode-loglibrary-sys.md)

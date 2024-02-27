@@ -1,4 +1,4 @@
-# Hidebug cpuUsage错误码
+# Hidebug CpuUsage错误码
 
 > **说明：**
 >
