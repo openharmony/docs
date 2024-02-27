@@ -28,12 +28,12 @@ The table below describes the matching rules of implicit [Want](../reference/api
 | ----------- | ------------------------------ | ------ | ---- | ------------------------------------------------------------ |
 | deviceId    | string                         | Yes    | No  | Implicit invoking is not supported across devices.                                  |
 | abilityName | string                         | No    | No  | To use implicit Want, this field must be left unspecified.                                |
-| bundleName  | string                         | Yes    | No  | - When only **bundleName** is specified, matching is limited to that application.<br>- When both **bundleName** and **moduleName** are specified, matching is limited to that module in that application.<br>- When only **moduleName** is specified, the setting is invalid.<br> <br>These fields will be used for implicit matching.|
-| moduleName  | string                         | Yes    | No  |                                                              |
-| uri         | string                         | Yes    | No  |                                                              |
-| type        | string                         | Yes    | No  |                                                              |
-| action      | string                         | Yes    | No  |                                                              |
-| entities    | Array&lt;string&gt;            | Yes    | No  |                                                              |
+| bundleName  | string                         | Yes    | No  | This field is used to match the target application component in the given bundle.                             |
+| moduleName  | string                         | Yes    | No  | This field is used to match the target application component in the given module.                             |
+| uri         | string                         | Yes    | No  | For details, see [Matching Rules of uri and type in the want Parameter](#matching-rules-of-uri-and-type-in-the-want-parameter).                                                            |
+| type        | string                         | Yes    | No  | For details, see [Matching Rules of uri and type in the want Parameter](#matching-rules-of-uri-and-type-in-the-want-parameter).                                                            |
+| action      | string                         | Yes    | No  | For details, see [Matching Rules of action in the want Parameter](#matching-rules-of-action-in-the-want-parameter).                                                            |
+| entities    | Array&lt;string&gt;            | Yes    | No  | For details, see [Matching Rules of entities in the want Parameter](#matching-rules-of-entities-in-the-want-parameter).                                                            |
 | flags       | number                         | No    | No  | This field is not used for matching and is directly transferred to the system for processing. It is generally used to set runtime information, such as URI data authorization.|
 | parameters  | {[key:&nbsp;string]:&nbsp;Object} | No    | No  | This field is not used for matching. It is passed to the target application component as a parameter.        |
 
