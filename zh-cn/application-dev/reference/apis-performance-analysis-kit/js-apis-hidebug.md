@@ -709,17 +709,17 @@ getSystemMemInfo(): SystemMemInfo
 
 获取系统耗用内存大小
 
-**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+**系统能力**： SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 **返回值**
 
 | 类型  | 说明                      |
 | ------ | -------------------------- |
-| [SystemMemInfo](js-apis-hidebug.md#SystemMemInfo) | 系统耗用内存大小|
+| [SystemMemInfo](systemMemInfo) | 系统耗用内存大小|
 
 **示例**
 
-  ```ts
+```ts
 let systemMemInfo: SystemMemInfo = hidebug.getSystemMemInfo();
 
 hilog.info(0x0000, 'testTag', "totalMem = %{public}d", systemMemInfo.totalMem);
@@ -727,7 +727,7 @@ hilog.info(0x0000, 'testTag', "totalMem = %{public}d", systemMemInfo.totalMem);
 hilog.info(0x0000, 'testTag', "freeMem = %{public}d", systemMemInfo.freeMem);
 
 hilog.info(0x0000, 'testTag', "availableMem = %{public}d", systemMemInfo.availableMem);
-  ```
+```ts
 ## SystemMemInfo
 
 系统耗用内存大小
