@@ -1,4 +1,4 @@
-# OHWebJSBridge
+# Web
 
 
 ## 概述
@@ -7,51 +7,102 @@
 
 **起始版本：** 11
 
-**相关模块：**[OHWebJSBridge](native_interface_arkweb.md)
-
 
 ## 汇总
 
+
 ### 文件
 
-| 名称 | 描述 |
+| 名称 | 描述 | 
 | -------- | -------- |
-| [native_interface_arkweb.h](native_interface_arkweb.md) | 该文件主要提供Web组件下runJavaScript和registerJavaScirptProxy的NDK接口。 |
+| [native_interface_arkweb.h](native__interface__arkweb_8h.md) | 该文件主要提供Web组件下runJavaScript和registerJavaScirptProxy的NDK接口。<br>**库：** libohweb.so  | 
 
 
 ### 类型定义
 
-| 名称 | 描述 |
+| 名称 | 描述 | 
 | -------- | -------- |
-| NativeArkWeb_OnJavaScriptCallback | runJavaScript接口的结果回调函数类型。当H5侧执行完后返回结果时通过该接口通知开发者。 |
-| NativeArkWeb_OnJavaScriptProxyCallback | registerJavaScirptProxy接口的回调函数类型。当H5侧主动调用注册的对象下的函数时通过该接口通知开发者。 |
-| NativeArkWeb_OnValidCallback | Web组件可注册对象时的回调函数类型。 |
-| NativeArkWeb_OnDestroyCallback | Web组件销毁时的回调函数类型。 |
+| typedef void(\* [NativeArkWeb_OnJavaScriptCallback](#nativearkweb_onjavascriptcallback)) (const char \*) | runJavaScript接口的结果回调函数类型。当H5侧执行完后返回结果时通过该接口通知开发者。  | 
+| typedef char \*(\* [NativeArkWeb_OnJavaScriptProxyCallback](#nativearkweb_onjavascriptproxycallback)) (const char \*\*argv, int32_t argc) | registerJavaScirptProxy接口的回调函数类型。当H5侧主动调用注册的对象下的函数时通过该接口通知开发者。  | 
+| typedef void(\* [NativeArkWeb_OnValidCallback](#nativearkweb_onvalidcallback)) (const char \*) | Web组件可注册对象时的回调函数类型。  | 
+| typedef void(\* [NativeArkWeb_OnDestroyCallback](#nativearkweb_ondestroycallback)) (const char \*) | Web组件销毁时的回调函数类型。  | 
+
 
 ### 函数
 
-| 名称 | 描述 |
+| 名称 | 描述 | 
 | -------- | -------- |
-|OH_NativeArkWeb_RunJavaScript(const char* webTag, const char* jsCode, NativeArkWeb_OnJavaScriptCallback callback)|加载一段JS脚本，并通过回调返回脚本的执行结果。 |
-|OH_NativeArkWeb_RegisterJavaScriptProxy(const char* webTag, const char* objName, const char** methodList, NativeArkWeb_OnJavaScriptProxyCallback* callback, int32_t size, bool needRefresh)|注册应用侧的对象及回调函数。 |
-|OH_NativeArkWeb_UnregisterJavaScriptProxy(const char* webTag, const char* objName)|删除已注册的对象及回调函数。 |
-|OH_NativeArkWeb_SetJavaScriptProxyValidCallback(const char* webTag, NativeArkWeb_OnValidCallback callback)|设置对象可注册的回调函数。 |
-|NativeArkWeb_OnValidCallback OH_NativeArkWeb_GetJavaScriptProxyValidCallback(const char* webTag)|获取对象可注册的回调函数。 |
-|OH_NativeArkWeb_SetDestroyCallback(const char* webTag, NativeArkWeb_OnDestroyCallback callback)|设置组件销毁的回调函数。 |
-|NativeArkWeb_OnDestroyCallback OH_NativeArkWeb_GetDestroyCallback(const char* webTag)|获取组件销毁的回调函数。 |
+| void [OH_NativeArkWeb_RunJavaScript](#oh_nativearkweb_runjavascript) (const char \*webTag, const char \*jsCode, [NativeArkWeb_OnJavaScriptCallback](#nativearkweb_onjavascriptcallback) callback) | 加载一段JS脚本，并通过回调返回脚本的执行结果。  | 
+| void [OH_NativeArkWeb_RegisterJavaScriptProxy](#oh_nativearkweb_registerjavascriptproxy) (const char \*webTag, const char \*objName, const char \*\*methodList, [NativeArkWeb_OnJavaScriptProxyCallback](#nativearkweb_onjavascriptproxycallback) \*callback, int32_t size, bool needRefresh) | 注册应用侧的对象及回调函数。  | 
+| void [OH_NativeArkWeb_UnregisterJavaScriptProxy](#oh_nativearkweb_unregisterjavascriptproxy) (const char \*webTag, const char \*objName) | 删除已注册的对象及回调函数。  | 
+| void [OH_NativeArkWeb_SetJavaScriptProxyValidCallback](#oh_nativearkweb_setjavascriptproxyvalidcallback) (const char \*webTag, [NativeArkWeb_OnValidCallback](#nativearkweb_onvalidcallback) callback) | 设置对象可注册的回调函数。  | 
+| [NativeArkWeb_OnValidCallback](#nativearkweb_onvalidcallback)[OH_NativeArkWeb_GetJavaScriptProxyValidCallback](#oh_nativearkweb_getjavascriptproxyvalidcallback) (const char \*webTag) | 获取对象可注册的回调函数。  | 
+| void [OH_NativeArkWeb_SetDestroyCallback](#oh_nativearkweb_setdestroycallback) (const char \*webTag, [NativeArkWeb_OnDestroyCallback](#nativearkweb_ondestroycallback) callback) | 设置组件销毁的回调函数。 | 
+| [NativeArkWeb_OnDestroyCallback](#nativearkweb_ondestroycallback)[OH_NativeArkWeb_GetDestroyCallback](#oh_nativearkweb_getdestroycallback) (const char \*webTag) | 获取组件销毁的回调函数。  | 
+
+
+## 类型定义说明
+
+
+### NativeArkWeb_OnDestroyCallback
+
+```
+typedef void(* NativeArkWeb_OnDestroyCallback) (const char *)
+```
+**描述：**
+
+定义Web组件销毁时的回调函数的类型。
+
+**起始版本：** 11
+
+
+### NativeArkWeb_OnJavaScriptCallback
+
+```
+typedef void(* NativeArkWeb_OnJavaScriptCallback) (const char *)
+```
+**描述：**
+
+定义执行JavaScript代码后返回结果的回调函数的类型。
+
+**起始版本：** 11
+
+
+### NativeArkWeb_OnJavaScriptProxyCallback
+
+```
+typedef char*(* NativeArkWeb_OnJavaScriptProxyCallback) (const char **argv, int32_t argc)
+```
+**描述：**
+
+定义注入对象的回调函数的类型。
+
+**起始版本：** 11
+
+
+### NativeArkWeb_OnValidCallback
+
+```
+typedef void(* NativeArkWeb_OnValidCallback) (const char *)
+```
+**描述：**
+
+定义Web组件可用时的回调函数的类型。
+
+**起始版本：** 11
+
 
 ## 函数说明
 
 
-### OH_NativeArkWeb_RunJavaScript
+### OH_NativeArkWeb_GetDestroyCallback()
 
 ```
-OH_NativeArkWeb_RunJavaScript(const char* webTag, const char* jsCode, NativeArkWeb_OnJavaScriptCallback callback)
+NativeArkWeb_OnDestroyCallback OH_NativeArkWeb_GetDestroyCallback (const char * webTag)
 ```
+**描述：**
 
-**描述**
-
-加载一段JS脚本，并通过回调返回脚本的执行结果。
+获取已注册的组件销毁时的回调函数。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -59,113 +110,23 @@ OH_NativeArkWeb_RunJavaScript(const char* webTag, const char* jsCode, NativeArkW
 
 **参数:**
 
-| 名称 | 描述 |
+| 名称 | 描述 | 
 | -------- | -------- |
-| webTag | Web组件的标签名称，用于标识某个唯一组件，由开发者来保证名称唯一性。 |
-| jsCode | 一段JavaScript脚本代码，其会被发送到H5侧执行，并返回执行结果。 |
-| callback | 开发者注册的结果回调函数，当JavaScript脚本代码执行完毕后通过该回调函数返回执行的结果。 |
-
-### OH_NativeArkWeb_RegisterJavaScriptProxy
-
-```
-OH_NativeArkWeb_RegisterJavaScriptProxy(const char* webTag, const char* objName, const char** methodList, NativeArkWeb_OnJavaScriptProxyCallback* callback, int32_t size, bool needRefresh)
-```
-
-**描述**
-
-注册应用侧的对象及回调函数。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-**起始版本：** 11
-
-**参数:**
-
-| 名称 | 描述 |
-| -------- | -------- |
-| webTag | Web组件的标签名称，用于标识某个唯一组件，由开发者来保证名称唯一性。 |
-| objName | 注入对象的名称，该对象会注册到H5侧window对象下面。 |
-| methodList | 注入对象下函数的名称列表。 |
-| callback | 注入对象下的回调函数，与medhotList函数名称保持一致即可。 |
-| size | 注入对象下函数名称列表的个数。 |
-| needRefresh | 注入对象后是否需要刷新。 |
-
-### OH_NativeArkWeb_UnregisterJavaScriptProxy
-
-```
-OH_NativeArkWeb_UnregisterJavaScriptProxy(const char* webTag, const char* objName)
-```
-
-**描述**
-
-删除已注册的对象及回调函数。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-**起始版本：** 11
-
-**参数:**
-
-| 名称 | 描述 |
-| -------- | -------- |
-| webTag | Web组件的标签名称，用于标识某个唯一组件，由开发者来保证名称唯一性。 |
-| objName | 注入对象的名称，该对象会注册到H5侧window对象下面。 |
-
-### OH_NativeArkWeb_SetJavaScriptProxyValidCallback
-
-```
-OH_NativeArkWeb_SetJavaScriptProxyValidCallback(const char* webTag, NativeArkWeb_OnValidCallback callback);
-```
-
-**描述**
-
-设置对象可注册的回调函数。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-**起始版本：** 11
-
-**参数:**
-
-| 名称 | 描述 |
-| -------- | -------- |
-| webTag | Web组件的标签名称，用于标识某个唯一组件，由开发者来保证名称唯一性。 |
-| callback | 对象可注册时的回调函数，当Web组件创建后对象可注册时 通过该回调通知开发者去注册对象。 |
-
-### OH_NativeArkWeb_GetJavaScriptProxyValidCallback
-
-```
-NativeArkWeb_OnValidCallback OH_NativeArkWeb_GetJavaScriptProxyValidCallback(const char* webTag)
-```
-
-**描述**
-
-根据标签名称获取对象可注册的回调函数。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-**起始版本：** 11
-
-**参数:**
-
-| 名称 | 描述 |
-| -------- | -------- |
-| webTag | Web组件的标签名称，用于标识某个唯一组件，由开发者来保证名称唯一性。 |
-| callback | 对象可注册时的回调函数，当Web组件创建后对象可注册时 通过该回调通知开发者去注册对象。 |
+| webTag | Web组件的名称。  | 
 
 **返回：**
 
-根据标签名称返回已注册的回调函数。
+已注册的组件销毁时的回调函数。
 
-### OH_NativeArkWeb_SetDestroyCallback
+
+### OH_NativeArkWeb_GetJavaScriptProxyValidCallback()
 
 ```
-OH_NativeArkWeb_SetDestroyCallback(const char* webTag, NativeArkWeb_OnDestroyCallback callback)
+NativeArkWeb_OnValidCallback OH_NativeArkWeb_GetJavaScriptProxyValidCallback (const char * webTag)
 ```
+**描述：**
 
-**描述**
-
-设置组件销毁的回调函数。
+获取已注册的对象可注册时的回调函数。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -173,34 +134,123 @@ OH_NativeArkWeb_SetDestroyCallback(const char* webTag, NativeArkWeb_OnDestroyCal
 
 **参数:**
 
-| 名称 | 描述 |
+| 名称 | 描述 | 
 | -------- | -------- |
-| webTag | Web组件的标签名称，用于标识某个唯一组件，由开发者来保证名称唯一性。 |
-| callback | 对象销毁时的回调函数，当Web组件销毁时 通过该回调通知开发者。 |
-
-### OH_NativeArkWeb_GetDestroyCallback
-
-```
-NativeArkWeb_OnDestroyCallback OH_NativeArkWeb_GetDestroyCallback(const char* webTag)
-```
-
-**描述**
-
-根据标签名称获取组件销毁的回调函数。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-**起始版本：** 11
-
-**参数:**
-
-| 名称 | 描述 |
-| -------- | -------- |
-| webTag | Web组件的标签名称，用于标识某个唯一组件，由开发者来保证名称唯一性。 |
+| webTag | Web组件的名称。  | 
 
 **返回：**
 
-根据标签名称返回已注册的回调函数。
+已注册的对象可注册时的回调函数。
+
+
+### OH_NativeArkWeb_RegisterJavaScriptProxy()
+
+```
+void OH_NativeArkWeb_RegisterJavaScriptProxy (const char * webTag, const char * objName, const char ** methodList, NativeArkWeb_OnJavaScriptProxyCallback * callback, int32_t size, bool needRefresh )
+```
+**描述：**
+
+注册对象及函数名称列表。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| webTag | Web组件的名称。  | 
+| objName | 注入对象的名称。  | 
+| methodList | 注入函数列表的名称。  | 
+| callback | 注入的回调函数。  | 
+| size | 注入的回调函数的个数。  | 
+| needRefresh | 是否需要刷新页面。 | 
+
+
+### OH_NativeArkWeb_RunJavaScript()
+
+```
+void OH_NativeArkWeb_RunJavaScript (const char * webTag, const char * jsCode, NativeArkWeb_OnJavaScriptCallback callback )
+```
+**描述：**
+
+在当前显示页面的环境下，加载并执行一段JavaScript代码。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| webTag | Web组件的名称。  | 
+| jsCode | 一段JavaScript的代码脚本。  | 
+| callback | 代码执行完后通知开发者结果的回调函数。 | 
+
+
+### OH_NativeArkWeb_SetDestroyCallback()
+
+```
+void OH_NativeArkWeb_SetDestroyCallback (const char * webTag, NativeArkWeb_OnDestroyCallback callback )
+```
+**描述：**
+
+设置组件销毁时的回调函数。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| webTag | Web组件的名称。  | 
+| callback | 组件销毁时的回调函数。 | 
+
+
+### OH_NativeArkWeb_SetJavaScriptProxyValidCallback()
+
+```
+void OH_NativeArkWeb_SetJavaScriptProxyValidCallback (const char * webTag, NativeArkWeb_OnValidCallback callback )
+```
+**描述：**
+
+设置对象可注册时的回调函数。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| webTag | Web组件的名称。  | 
+| callback | 对象可注册时的回调函数。 | 
+
+
+### OH_NativeArkWeb_UnregisterJavaScriptProxy()
+
+```
+void OH_NativeArkWeb_UnregisterJavaScriptProxy (const char * webTag, const char * objName )
+```
+**描述：**
+
+删除已注册的对象及其下的回调函数。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| webTag | Web组件的名称。  | 
+| objName | 注入对象的名称。 | 
 
 ## 示例代码
 
