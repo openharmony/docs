@@ -56,7 +56,7 @@ add(attributes: AssetMap): Promise\<void>
 
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
@@ -119,7 +119,7 @@ remove(query: AssetMap): Promise\<void>
 
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
@@ -182,7 +182,7 @@ update(query: AssetMap, attributesToUpdate: AssetMap): Promise\<void>
 
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
@@ -247,7 +247,7 @@ preQuery(query: AssetMap): Promise\<Uint8Array>
 
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
@@ -310,7 +310,7 @@ query(query: AssetMap): Promise\<Array\<AssetMap>>
 
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
