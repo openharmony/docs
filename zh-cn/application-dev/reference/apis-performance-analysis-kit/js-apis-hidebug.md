@@ -458,7 +458,7 @@ for (let ii = 0; ii < appThreadCpuUsage.length; ii++) {
 
 startAppTraceCapture(tags : number[], flag: TraceFlag, limitSize: number) : string
 
-启动应用trace采集，'startAppTraceCapture()'方法的调用需要与'[stopAppTraceCapture()](#stopapptraceapture12)'方法的调用一一对应。
+启动应用trace采集，'startAppTraceCapture()'方法的调用需要与'[stopAppTraceCapture()](#hidebug.stopAppTraceCapture12)'方法的调用一一对应。
 
 先开启后关闭，严禁使用'start->start->stop'，'start->stop->stop'，'start->start->stop->stop'等类似的顺序调用。
 
