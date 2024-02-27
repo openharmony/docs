@@ -532,9 +532,9 @@ let fileName = hidebug.startAppTraceCapture(tags, flag, limitSize);
 hidebug.stopAppTraceCapture();
 ```
 
-## hidebug.getAppMemoryLimit
+## hidebug.getAppMemoryLimit<sup>12+</sup>
 
-getAppMemoryLimit() : MemoryLimit<sup>12+</sup>
+getAppMemoryLimit() : MemoryLimit
 
 获取应用程序进程内存限制
 
