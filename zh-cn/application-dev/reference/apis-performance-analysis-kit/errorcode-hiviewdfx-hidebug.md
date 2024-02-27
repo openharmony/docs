@@ -49,11 +49,11 @@ Without write permission on the file.
 
 **可能原因**
 
-当前目录可能不存在或者被误删
+当前目录可能不存在或者被误删。
 
 **处理步骤**
 
-重新运行采集接口，再次生成正确目录文件
+重新运行采集接口，再次生成正确目录文件。
 
 ## 11400104 trace采集异常
 
@@ -62,7 +62,7 @@ Without write permission on the file.
 The status of the trace is abnormal.
 
 **错误描述**
-当前trace采集的状态是非正常的
+当前trace采集的状态是非正常的。
 
 **可能原因**
 
@@ -70,16 +70,16 @@ The status of the trace is abnormal.
 
 **处理步骤**
 
-建议开发者重启应用或者重启系统
+建议开发者重启应用或者重启系统。
 
 ## 11400105 没有开启trace
 
 **错误信息**
 
-No capture trace running。
+No capture trace running.
 
 **错误描述**
-当前没有trace正在采集
+当前没有trace正在采集。
 
 **可能原因**
 
