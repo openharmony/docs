@@ -64,7 +64,7 @@ postQuery参数列表
 
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS';
 import userAuth from '@ohos.userIAM.userAuth';
 
 function stringToArray(str: string): Uint8Array {
