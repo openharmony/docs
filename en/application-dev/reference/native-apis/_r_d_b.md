@@ -17,12 +17,12 @@ The relational database (RDB) store manages data based on relational models. The
 
 | Name| Description|
 | -------- | -------- |
-| [oh_cursor.h](oh__cursor_8h.md) | Provides APIs to access the result set obtained by querying the RDB store.|
-| [oh_predicates.h](oh__predicates_8h.md) | Defines the predicates for RDB stores.|
-| [oh_value_object.h](oh__value__object_8h.md) | Provides type conversion methods.|
-| [oh_values_bucket.h](oh__values__bucket_8h.md) | Defines the types of the key and value in a key-value (KV) pair.|
-| [relational_store.h](relational__store_8h.md) | Provides APIs to manage an RDB store.|
-| [relational_store_error_code.h](relational__store__error__code_8h.md) | Defines the error codes used for RDB stores.|
+| [oh_cursor.h](oh__cursor_8h.md) | Defines the APIs for accessing the result set obtained by querying the RDB store.<br>File to include: <database/rdb/oh_cursor.h><br>Library: libnative_rdb_ndk.z.so<br>|
+| [oh_predicates.h](oh__predicates_8h.md) | Defines the predicates for RDB stores.<br>File to include: <database/rdb/oh_predicates.h><br>Library: libnative_rdb_ndk.z.so<br>|
+| [oh_value_object.h](oh__value__object_8h.md) | Provides type conversion methods.<br>File to include: <database/rdb/oh_value_object.h><br>Library: libnative_rdb_ndk.z.so<br>|
+| [oh_values_bucket.h](oh__values__bucket_8h.md) | Defines the types of the key and value in a key-value (KV) pair.<br>File to include: <database/rdb/oh_values_bucket.h><br>Library: libnative_rdb_ndk.z.so<br>|
+| [relational_store.h](relational__store_8h.md) | Defines the APIs for managing an RDB store.<br>File to include: <database/rdb/relational_store.h><br>Library: libnative_rdb_ndk.z.so<br>|
+| [relational_store_error_code.h](relational__store__error__code_8h.md) | Defines the error codes used for RDB stores.<br>File to include: <database/rdb/relational_store_error_code.h><br>Library: libnative_rdb_ndk.z.so|
 
 
 ### Structs
@@ -40,8 +40,8 @@ The relational database (RDB) store manages data based on relational models. The
 | [Rdb_KeyInfo::Rdb_KeyData](union_rdb___key_info_1_1_rdb___key_data.md) | Defines the changed data.|
 | [Rdb_ChangeInfo](_rdb___change_info.md) | Defines the details about the device-cloud synchronization process.|
 | [Rdb_Statistic](_rdb___statistic.md) | Defines the device-cloud synchronization statistics of a database table.|
-| [Rdb_TableDetails](_rdb___table_details.md) | Defines the statistics of device-cloud upload and download tasks of a database table. |
-| [Rdb_ProgressDetails](_rdb___progress_details.md) | Defines the statistics of the overall device-cloud synchronization (upload and download) tasks.|
+| [Rdb_TableDetails](_rdb___table_details.md) | Defines the statistics of device-cloud upload and download tasks of a database table.|
+| [Rdb_ProgressDetails](_rdb___progress_details.md) | Defines the statistics of the overall device-cloud synchronization (upload and download) tasks of an RDB store.|
 
 
 ### Macros
@@ -72,11 +72,11 @@ The relational database (RDB) store manages data based on relational models. The
 | [Rdb_ChangeInfo](#rdb_changeinfo) | Defines a struct for the details about the device-cloud synchronization process.|
 | [Rdb_SubscribeType](#rdb_subscribetype) | Defines an enum for subscription types.|
 | [Rdb_SyncMode](#rdb_syncmode) | Defines an enum for RDB synchronization modes.|
-| [Rdb_Statistic](#rdb_statistic) | Defines a struct for the device-cloud synchronization statistics of a database table. |
-| [Rdb_TableDetails](#rdb_tabledetails) | Defines a struct for statistics of device-cloud upload and download tasks of a database table. |
-| [Rdb_Progress](#rdb_progress) | Defines an enum for device-cloud synchronization progresses. |
+| [Rdb_Statistic](#rdb_statistic) | Defines a struct for the device-cloud synchronization statistics of a database table.|
+| [Rdb_TableDetails](#rdb_tabledetails) | Defines a struct for statistics of device-cloud upload and download tasks of a database table.|
+| [Rdb_Progress](#rdb_progress) | Defines an enum for device-cloud synchronization progresses.|
 | [Rdb_ProgressCode](#rdb_progresscode) | Defines an enum for device-cloud synchronization states.|
-| [Rdb_ProgressDetails](#rdb_progressdetails) | Defines a struct for statistics of the overall device-cloud synchronization (upload and download) tasks of an RDB store. |
+| [Rdb_ProgressDetails](#rdb_progressdetails) | Defines a struct for statistics of the overall device-cloud synchronization (upload and download) tasks of an RDB store.|
 | [Rdb_SyncCallback](#rdb_synccallback) | Defines a callback for device-cloud synchronization.|
 | [OH_Rdb_ErrCode](#oh_rdb_errcode) | Defines an enum for error codes.|
 
@@ -85,17 +85,17 @@ The relational database (RDB) store manages data based on relational models. The
 
 | Name| Description|
 | -------- | -------- |
-| [OH_ColumnType](#oh_columntype) {<br>TYPE_NULL = 0, TYPE_INT64, TYPE_REAL, TYPE_TEXT,<br>TYPE_BLOB, TYPE_ASSET, TYPE_ASSETS<br>} | Enumerates the types of the fields in an RDB store.|
-| [OH_OrderType](#oh_ordertype) { ASC = 0, DESC = 1 } | Enumerates the sorting types.|
-| [OH_Rdb_SecurityLevel](#oh_rdb_securitylevel) { S1 = 1, S2, S3, S4 } | Enumerates the RDB store security levels.|
-| [Rdb_SecurityArea](#rdb_securityarea) { RDB_SECURITY_AREA_EL1 = 1, RDB_SECURITY_AREA_EL2, RDB_SECURITY_AREA_EL3, RDB_SECURITY_AREA_EL4 } | Enumerates the security area levels of an RDB store.|
-| [Rdb_DistributedType](#rdb_distributedtype) { RDB_DISTRIBUTED_CLOUD } | Enumerates the distributed types.|
-| [Rdb_ChangeType](#rdb_changetype) { RDB_DATA_CHANGE, RDB_ASSET_CHANGE } | Enumerates the data change types.|
-| [Rdb_SubscribeType](#rdb_subscribetype) { RDB_SUBSCRIBE_TYPE_CLOUD, RDB_SUBSCRIBE_TYPE_CLOUD_DETAILS } | Enumerates the subscription types.|
-| [Rdb_SyncMode](#rdb_syncmode) { RDB_SYNC_MODE_TIME_FIRST, RDB_SYNC_MODE_NATIVE_FIRST, RDB_SYNC_MODE_CLOUD_FIRST } | Enumerates the RDB synchronization modes.|
-| [Rdb_Progress](#rdb_progress) { RDB_SYNC_BEGIN, RDB_SYNC_IN_PROGRESS, RDB_SYNC_FINISH } | Enumerates the device-cloud synchronization progresses. |
-| [Rdb_ProgressCode](#rdb_progresscode) {<br>RDB_SUCCESS, RDB_UNKNOWN_ERROR, RDB_NETWORK_ERROR, RDB_CLOUD_DISABLED,<br>RDB_LOCKED_BY_OTHERS, RDB_RECORD_LIMIT_EXCEEDED, RDB_NO_SPACE_FOR_ASSET<br>} | Enumerates the device-cloud synchronization states.|
-| [OH_Rdb_ErrCode](#oh_rdb_errcode) {<br>RDB_ERR = -1, RDB_OK = 0, E_BASE = 14800000, RDB_E_NOT_SUPPORTED = 801,<br>RDB_E_ERROR = E_BASE, RDB_E_INVALID_ARGS = (E_BASE + 1), RDB_E_CANNOT_UPDATE_READONLY = (E_BASE + 2), RDB_E_REMOVE_FILE = (E_BASE + 3),<br>RDB_E_EMPTY_TABLE_NAME = (E_BASE + 5), RDB_E_EMPTY_VALUES_BUCKET = (E_BASE + 6), RDB_E_EXECUTE_IN_STEP_QUERY = (E_BASE + 7), RDB_E_INVALID_COLUMN_INDEX = (E_BASE + 8),<br>RDB_E_INVALID_COLUMN_TYPE = (E_BASE + 9), RDB_E_EMPTY_FILE_NAME = (E_BASE + 10), RDB_E_INVALID_FILE_PATH = (E_BASE + 11), RDB_E_TRANSACTION_IN_EXECUTE = (E_BASE + 12),<br>RDB_E_INVALID_STATEMENT = (E_BASE + 13), RDB_E_EXECUTE_WRITE_IN_READ_CONNECTION = (E_BASE + 14), RDB_E_BEGIN_TRANSACTION_IN_READ_CONNECTION = (E_BASE + 15), RDB_E_NO_TRANSACTION_IN_SESSION = (E_BASE + 16),<br>RDB_E_MORE_STEP_QUERY_IN_ONE_SESSION = (E_BASE + 17), RDB_E_NO_ROW_IN_QUERY = (E_BASE + 18), RDB_E_INVALID_BIND_ARGS_COUNT = (E_BASE + 19), RDB_E_INVALID_OBJECT_TYPE = (E_BASE + 20),<br>RDB_E_INVALID_CONFLICT_FLAG = (E_BASE + 21), RDB_E_HAVING_CLAUSE_NOT_IN_GROUP_BY = (E_BASE + 22), RDB_E_NOT_SUPPORTED_BY_STEP_RESULT_SET = (E_BASE + 23), RDB_E_STEP_RESULT_SET_CROSS_THREADS = (E_BASE + 24),<br>RDB_E_STEP_RESULT_QUERY_NOT_EXECUTED = (E_BASE + 25), RDB_E_STEP_RESULT_IS_AFTER_LAST = (E_BASE + 26), RDB_E_STEP_RESULT_QUERY_EXCEEDED = (E_BASE + 27), RDB_E_STATEMENT_NOT_PREPARED = (E_BASE + 28),<br>RDB_E_EXECUTE_RESULT_INCORRECT = (E_BASE + 29), RDB_E_STEP_RESULT_CLOSED = (E_BASE + 30), RDB_E_RELATIVE_PATH = (E_BASE + 31), RDB_E_EMPTY_NEW_ENCRYPT_KEY = (E_BASE + 32),<br>RDB_E_CHANGE_UNENCRYPTED_TO_ENCRYPTED = (E_BASE + 33), RDB_E_CHANGE_ENCRYPT_KEY_IN_BUSY = (E_BASE + 34), RDB_E_STEP_STATEMENT_NOT_INIT = (E_BASE + 35), RDB_E_NOT_SUPPORTED_ATTACH_IN_WAL_MODE = (E_BASE + 36),<br>RDB_E_CREATE_FOLDER_FAIL = (E_BASE + 37), RDB_E_SQLITE_SQL_BUILDER_NORMALIZE_FAIL = (E_BASE + 38), RDB_E_STORE_SESSION_NOT_GIVE_CONNECTION_TEMPORARILY = (E_BASE + 39), RDB_E_STORE_SESSION_NO_CURRENT_TRANSACTION = (E_BASE + 40),<br>RDB_E_NOT_SUPPORT = (E_BASE + 41), RDB_E_INVALID_PARCEL = (E_BASE + 42), RDB_E_QUERY_IN_EXECUTE = (E_BASE + 43), RDB_E_SET_PERSIST_WAL = (E_BASE + 44),<br>RDB_E_DB_NOT_EXIST = (E_BASE + 45), RDB_E_ARGS_READ_CON_OVERLOAD = (E_BASE + 46), RDB_E_WAL_SIZE_OVER_LIMIT = (E_BASE + 47), RDB_E_CON_OVER_LIMIT = (E_BASE + 48)<br>} | Enumerates the RDB store error codes.|
+| [OH_ColumnType](#oh_columntype-1) {<br>TYPE_NULL = 0, TYPE_INT64, TYPE_REAL, TYPE_TEXT,<br>TYPE_BLOB, TYPE_ASSET, TYPE_ASSETS<br>} | Enumerates the types of the fields in an RDB store.|
+| [OH_OrderType](#oh_ordertype-1) { ASC = 0, DESC = 1 } | Enumerates the sorting types.|
+| [OH_Rdb_SecurityLevel](#oh_rdb_securitylevel-1) { S1 = 1, S2, S3, S4 } | Enumerates the RDB store security levels.|
+| [Rdb_SecurityArea](#rdb_securityarea-1) { RDB_SECURITY_AREA_EL1 = 1, RDB_SECURITY_AREA_EL2, RDB_SECURITY_AREA_EL3, RDB_SECURITY_AREA_EL4 } | Defines an enum for security area levels of an RDB store.|
+| [Rdb_DistributedType](#rdb_distributedtype-1) { RDB_DISTRIBUTED_CLOUD } | Enumerates the distributed types.|
+| [Rdb_ChangeType](#rdb_changetype-1) { RDB_DATA_CHANGE, RDB_ASSET_CHANGE } | Enumerates ther data change types.|
+| [Rdb_SubscribeType](#rdb_subscribetype-1) { RDB_SUBSCRIBE_TYPE_CLOUD, RDB_SUBSCRIBE_TYPE_CLOUD_DETAILS } | Enumerates the subscription types.|
+| [Rdb_SyncMode](#rdb_syncmode-1) { RDB_SYNC_MODE_TIME_FIRST, RDB_SYNC_MODE_NATIVE_FIRST, RDB_SYNC_MODE_CLOUD_FIRST } | Enumerates the RDB synchronization modes.|
+| [Rdb_Progress](#rdb_progress-1) { RDB_SYNC_BEGIN, RDB_SYNC_IN_PROGRESS, RDB_SYNC_FINISH } | Enumerates the device-cloud synchronization progresses.|
+| [Rdb_ProgressCode](#rdb_progresscode-1) {<br>RDB_SUCCESS, RDB_UNKNOWN_ERROR, RDB_NETWORK_ERROR, RDB_CLOUD_DISABLED,<br>RDB_LOCKED_BY_OTHERS, RDB_RECORD_LIMIT_EXCEEDED, RDB_NO_SPACE_FOR_ASSET<br>} | Defines an enum for device-cloud synchronization states.|
+| [OH_Rdb_ErrCode](#oh_rdb_errcode-1) {<br>RDB_ERR = -1, RDB_OK = 0, E_BASE = 14800000, RDB_E_NOT_SUPPORTED = 801,<br>RDB_E_ERROR = E_BASE, RDB_E_INVALID_ARGS = (E_BASE + 1), RDB_E_CANNOT_UPDATE_READONLY = (E_BASE + 2), RDB_E_REMOVE_FILE = (E_BASE + 3),<br>RDB_E_EMPTY_TABLE_NAME = (E_BASE + 5), RDB_E_EMPTY_VALUES_BUCKET = (E_BASE + 6), RDB_E_EXECUTE_IN_STEP_QUERY = (E_BASE + 7), RDB_E_INVALID_COLUMN_INDEX = (E_BASE + 8),<br>RDB_E_INVALID_COLUMN_TYPE = (E_BASE + 9), RDB_E_EMPTY_FILE_NAME = (E_BASE + 10), RDB_E_INVALID_FILE_PATH = (E_BASE + 11), RDB_E_TRANSACTION_IN_EXECUTE = (E_BASE + 12),<br>RDB_E_INVALID_STATEMENT = (E_BASE + 13), RDB_E_EXECUTE_WRITE_IN_READ_CONNECTION = (E_BASE + 14), RDB_E_BEGIN_TRANSACTION_IN_READ_CONNECTION = (E_BASE + 15), RDB_E_NO_TRANSACTION_IN_SESSION = (E_BASE + 16),<br>RDB_E_MORE_STEP_QUERY_IN_ONE_SESSION = (E_BASE + 17), RDB_E_NO_ROW_IN_QUERY = (E_BASE + 18), RDB_E_INVALID_BIND_ARGS_COUNT = (E_BASE + 19), RDB_E_INVALID_OBJECT_TYPE = (E_BASE + 20),<br>RDB_E_INVALID_CONFLICT_FLAG = (E_BASE + 21), RDB_E_HAVING_CLAUSE_NOT_IN_GROUP_BY = (E_BASE + 22), RDB_E_NOT_SUPPORTED_BY_STEP_RESULT_SET = (E_BASE + 23), RDB_E_STEP_RESULT_SET_CROSS_THREADS = (E_BASE + 24),<br>RDB_E_STEP_RESULT_QUERY_NOT_EXECUTED = (E_BASE + 25), RDB_E_STEP_RESULT_IS_AFTER_LAST = (E_BASE + 26), RDB_E_STEP_RESULT_QUERY_EXCEEDED = (E_BASE + 27), RDB_E_STATEMENT_NOT_PREPARED = (E_BASE + 28),<br>RDB_E_EXECUTE_RESULT_INCORRECT = (E_BASE + 29), RDB_E_STEP_RESULT_CLOSED = (E_BASE + 30), RDB_E_RELATIVE_PATH = (E_BASE + 31), RDB_E_EMPTY_NEW_ENCRYPT_KEY = (E_BASE + 32),<br>RDB_E_CHANGE_UNENCRYPTED_TO_ENCRYPTED = (E_BASE + 33), RDB_E_CHANGE_ENCRYPT_KEY_IN_BUSY = (E_BASE + 34), RDB_E_STEP_STATEMENT_NOT_INIT = (E_BASE + 35), RDB_E_NOT_SUPPORTED_ATTACH_IN_WAL_MODE = (E_BASE + 36),<br>RDB_E_CREATE_FOLDER_FAIL = (E_BASE + 37), RDB_E_SQLITE_SQL_BUILDER_NORMALIZE_FAIL = (E_BASE + 38), RDB_E_STORE_SESSION_NOT_GIVE_CONNECTION_TEMPORARILY = (E_BASE + 39), RDB_E_STORE_SESSION_NO_CURRENT_TRANSACTION = (E_BASE + 40),<br>RDB_E_NOT_SUPPORT = (E_BASE + 41), RDB_E_INVALID_PARCEL = (E_BASE + 42), RDB_E_QUERY_IN_EXECUTE = (E_BASE + 43), RDB_E_SET_PERSIST_WAL = (E_BASE + 44),<br>RDB_E_DB_NOT_EXIST = (E_BASE + 45), RDB_E_ARGS_READ_CON_OVERLOAD = (E_BASE + 46), RDB_E_WAL_SIZE_OVER_LIMIT = (E_BASE + 47), RDB_E_CON_OVER_LIMIT = (E_BASE + 48)<br>} | Enumerates the RDB store error codes.|
 
 
 ### Functions
@@ -108,7 +108,7 @@ The relational database (RDB) store manages data based on relational models. The
 | [OH_Rdb_CreateValuesBucket](#oh_rdb_createvaluesbucket) (void) | Creates an [OH_VBucket](_o_h___v_bucket.md) instance.|
 | [OH_Rdb_CreatePredicates](#oh_rdb_createpredicates) (const char \*table) | Creates an [OH_Predicates](_o_h___predicates.md) instance.|
 | [OH_Rdb_GetOrOpen](#oh_rdb_getoropen) (const [OH_Rdb_Config](_o_h___rdb___config.md) \*config, int \*errCode) | Obtains an [OH_Rdb_Store](_o_h___rdb___store.md) instance for RDB store operations.|
-| [OH_Rdb_CloseStore](#oh_rdb_closestore) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store) | Destroys an [OH_Rdb_Store](_o_h___rdb___store.md) object to reclaim the memory occupied. |
+| [OH_Rdb_CloseStore](#oh_rdb_closestore) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store) | Destroys an [OH_Rdb_Store](_o_h___rdb___store.md) object to reclaim the memory occupied.|
 | [OH_Rdb_DeleteStore](#oh_rdb_deletestore) (const [OH_Rdb_Config](_o_h___rdb___config.md) \*config) | Deletes an RDB store with the specified database file configuration.|
 | [OH_Rdb_Insert](#oh_rdb_insert) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const char \*table, [OH_VBucket](_o_h___v_bucket.md) \*valuesBucket) | Inserts a row of data into a table.|
 | [OH_Rdb_Update](#oh_rdb_update) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [OH_VBucket](_o_h___v_bucket.md) \*valuesBucket, [OH_Predicates](_o_h___predicates.md) \*predicates) | Updates data in an RDB store based on specified conditions.|
@@ -133,7 +133,7 @@ The relational database (RDB) store manages data based on relational models. The
 
 | Name| Description|
 | -------- | -------- |
-| OH_Cursor::id | Unique identifier of the **OH_Cursor** struct.|
+| [OH_Cursor::id](#id-15) | Unique identifier of the **OH_Cursor** struct.|
 | [OH_Cursor::getColumnCount](#getcolumncount) | Pointer to the function used to obtain the number of columns in the result set.|
 | [OH_Cursor::getColumnType](#getcolumntype) | Pointer to the function used to obtain the column type based on the specified column index.|
 | [OH_Cursor::getColumnIndex](#getcolumnindex) | Pointer to the function used to obtain the column index based on the specified column name.|
@@ -141,15 +141,15 @@ The relational database (RDB) store manages data based on relational models. The
 | [OH_Cursor::getRowCount](#getrowcount) | Pointer to the function used to obtain the number of rows in the result set.|
 | [OH_Cursor::goToNextRow](#gotonextrow) | Pointer to the function used to go to the next row of the result set.|
 | [OH_Cursor::getSize](#getsize) | Pointer to the function used to obtain information about the memory required when the column data type in the result set is **BLOB** or **TEXT**.|
-| [OH_Cursor::getText](#gettext) | Pointer to the function used to obtain the value of the string type based on the specified column and the current row. |
+| [OH_Cursor::getText](#gettext) | Pointer to the function used to obtain the value of the string type based on the specified column and the current row.|
 | [OH_Cursor::getInt64](#getint64) | Pointer to the function used to obtain the value of the int64_t type based on the specified column and the current row.|
 | [OH_Cursor::getReal](#getreal) | Pointer to the function used to obtain the value of the double type based on the specified column and the current row.|
-| [OH_Cursor::getBlob](#getblob) | Pointer to the function used to obtain the values in the form of a byte array based on the specified column and the current row. |
+| [OH_Cursor::getBlob](#getblob) | Pointer to the function used to obtain the values in the form of a byte array based on the specified column and the current row.|
 | [OH_Cursor::isNull](#isnull-12) | Pointer to the function used to check whether the value in the specified column is null.|
-| [OH_Cursor::destroy](#destroy-14) | Pointer to the function used to destroy a result set. |
-| [OH_Cursor::getAsset](#getasset) | Pointer to the function used to obtain the value of the asset type based on the specified column and the current row. |
-| [OH_Cursor::getAssets](#getassets) | Pointer to the function used to obtain the values in the form of an asset array based on the specified column and the current row. |
-| [OH_Predicates::id](#id-14) | Unique identifier of the **OH_Predicates** struct.|
+| [OH_Cursor::destroy](#destroy-14) | Pointer to the function used to destroy a result set.|
+| [OH_Cursor::getAsset](#getasset) | Pointer to the function used to obtain the value of the asset type based on the specified column and the current row.|
+| [OH_Cursor::getAssets](#getassets) | Pointer to the function used to obtain the values in the form of an asset array based on the specified column and the current row.|
+| [OH_Predicates::id](#id-25) | Unique identifier of the **OH_Predicates** struct.|
 | [OH_Predicates::equalTo](#equalto) | Pointer to the function used to set a predicates object to match the field whose value is equal to the specified value.|
 | [OH_Predicates::notEqualTo](#notequalto) | Pointer to the function used to set a predicates object to match the field whose value is not equal to the specified value.|
 | [OH_Predicates::beginWrap](#beginwrap) | Pointer to the function used to add a left parenthesis to the predicates.|
@@ -174,13 +174,13 @@ The relational database (RDB) store manages data based on relational models. The
 | [OH_Predicates::notIn](#notin) | Pointer to the function used to set a predicates object to match the field with the value out of the specified range.|
 | [OH_Predicates::clear](#clear-12) | Pointer to the function used to clear a predicates instance.|
 | [OH_Predicates::destroy](#destroy-24) | Pointer to the function used to destroy an [OH_Predicates](_o_h___predicates.md) object to reclaim the memory occupied.|
-| [OH_VObject::id](#id-24) | Unique identifier of the **OH_VObject** struct.|
+| [OH_VObject::id](#id-35) | Unique identifier of the **OH_VObject** struct.|
 | [OH_VObject::putInt64](#putint64-22) | Pointer to the function used to convert a single parameter or an array of the int64 type into a value of the [OH_VObject](_o_h___v_object.md) type.|
 | [OH_VObject::putDouble](#putdouble) | Pointer to the function used to convert a single parameter or an array of the double type into a value of the [OH_VObject](_o_h___v_object.md) type.|
 | [OH_VObject::putText](#puttext-22) | Pointer to the function used to convert a character array of the char type to a value of the [OH_VObject](_o_h___v_object.md) type.|
 | [OH_VObject::putTexts](#puttexts) | Pointer to the function used to convert a string array of the char type to a value of the [OH_VObject](_o_h___v_object.md) type.|
 | [OH_VObject::destroy](#destroy-44) | Pointer to the function used to destroy an [OH_VObject](_o_h___v_object.md) object to reclaim the memory occupied.|
-| [OH_VBucket::id](#id-34) | Unique identifier of the **OH_VBucket** struct.|
+| [OH_VBucket::id](#id-45) | Unique identifier of the **OH_VBucket** struct.|
 | [OH_VBucket::capability](#capability) | Number of the KV pairs in the struct.|
 | [OH_VBucket::putText](#puttext-12) | Pointer to the function used to put a char value into the [OH_VBucket](_o_h___v_bucket.md) object in the given column.|
 | [OH_VBucket::putInt64](#putint64-12) | Pointer to the function used to put an int64_t value into the [OH_VBucket](_o_h___v_bucket.md) object in the given column.|
@@ -188,16 +188,16 @@ The relational database (RDB) store manages data based on relational models. The
 | [OH_VBucket::putBlob](#putblob) | Pointer to the function used to put a const uint8_t value into the [OH_VBucket](_o_h___v_bucket.md) object in the given column.|
 | [OH_VBucket::putNull](#putnull) | Pointer to the function used to put a null value into the [OH_VBucket](_o_h___v_bucket.md) object in the given column.|
 | [OH_VBucket::clear](#clear-22) | Pointer to the function used to clear an [OH_VBucket](_o_h___v_bucket.md) object.|
-| [OH_VBucket::destroy](#destroy-34) | Pointer to the function used to destroy an [OH_VBucket](_o_h___v_bucket.md) object to reclaim the memory occupied. |
+| [OH_VBucket::destroy](#destroy-34) | Pointer to the function used to destroy an [OH_VBucket](_o_h___v_bucket.md) object to reclaim the memory occupied.|
 | [OH_Rdb_Config::selfSize](#selfsize) | Size of the struct.|
 | [OH_Rdb_Config::dataBaseDir](#databasedir) | Path of the database file.|
 | [OH_Rdb_Config::storeName](#storename) | Name of the RDB store.|
 | [OH_Rdb_Config::bundleName](#bundlename) | Bundle name.|
 | [OH_Rdb_Config::moduleName](#modulename) | Module name. |
 | [OH_Rdb_Config::isEncrypt](#isencrypt) | Whether to encrypt the RDB store.|
-| [OH_Rdb_Config::securityLevel](#securitylevel) | RDB store security level. For details, see [OH_Rdb_SecurityLevel](#oh_rdb_securitylevel). |
-| [OH_Rdb_Config::area](#area) | Security area level. For details, see [Rdb_SecurityArea](#rdb_securityarea). |
-| [OH_Rdb_Store::id](#id-44) | Unique identifier of the **OH_Rdb_Store** struct.|
+| [OH_Rdb_Config::securityLevel](#securitylevel) | Pointer to the function used to set the RDB store security level [OH_Rdb_SecurityLevel](#oh_rdb_securitylevel).|
+| [OH_Rdb_Config::area](#area) | Security area level. For details, see [Rdb_SecurityArea](#rdb_securityarea).|
+| [OH_Rdb_Store::id](#id-55) | Unique identifier of the **OH_Rdb_Store** struct.|
 | [Rdb_DistributedConfig::version](#version-13) | Version of the **Rdb_DistributedConfig** struct.|
 | [Rdb_DistributedConfig::isAutoSync](#isautosync) | Whether the table supports automatic synchronization.|
 | [Rdb_KeyInfo::count](#count) | Number of the changed primary keys or row numbers.|
@@ -209,7 +209,7 @@ The relational database (RDB) store manages data based on relational models. The
 | [Rdb_ChangeInfo::version](#version-23) | Version of the **Rdb_DistributedConfig** struct.|
 | [Rdb_ChangeInfo::tableName](#tablename) | Name of the table with data changes.|
 | [Rdb_ChangeInfo::ChangeType](#changetype) | Type of the data changed, which can be data or asset.|
-| [Rdb_ChangeInfo::inserted](#inserted) | Location where data is inserted. If the primary key of the table is of the string type, the value is the value of the primary key. Otherwise, the value is the row number of the inserted data. |
+| [Rdb_ChangeInfo::inserted](#inserted) | Location where data is inserted. If the primary key of the table is of the string type, the value is the value of the primary key. Otherwise, the value is the row number of the inserted data.|
 | [Rdb_ChangeInfo::updated](#updated) | Location where data is updated. If the primary key of the table is of the string type, the value is the value of the primary key. Otherwise, the value is the row number of the updated data.|
 | [Rdb_ChangeInfo::deleted](#deleted) | Location where data is deleted. If the primary key of the table is of the string type, the value is the value of the primary key. Otherwise, the value is the row number of the deleted data.|
 | [Rdb_Statistic::total](#total) | Total number of rows to be synchronized between the device and cloud in the database table.|
@@ -301,7 +301,7 @@ APIs are provided to access the result set obtained by querying the RDB store.
 ### OH_OrderType
 
 ```
-typedef enum OH_OrderTypeOH_OrderType
+typedef enum OH_OrderType OH_OrderType
 ```
 
 **Description**
@@ -314,7 +314,7 @@ Defines an enum for sorting types.
 ### OH_Predicates
 
 ```
-typedef struct OH_PredicatesOH_Predicates
+typedef struct OH_Predicates OH_Predicates
 ```
 
 **Description**
@@ -327,7 +327,7 @@ Defines a **predicates** object.
 ### OH_Rdb_ErrCode
 
 ```
-typedef enum OH_Rdb_ErrCodeOH_Rdb_ErrCode
+typedef enum OH_Rdb_ErrCode OH_Rdb_ErrCode
 ```
 
 **Description**
@@ -340,7 +340,7 @@ Defines an enum for error codes.
 ### OH_Rdb_SecurityLevel
 
 ```
-typedef enum OH_Rdb_SecurityLevelOH_Rdb_SecurityLevel
+typedef enum OH_Rdb_SecurityLevel OH_Rdb_SecurityLevel
 ```
 
 **Description**
@@ -353,7 +353,7 @@ Defines an enum for RDB store security levels.
 ### OH_VBucket
 
 ```
-typedef struct OH_VBucketOH_VBucket
+typedef struct OH_VBucket OH_VBucket
 ```
 
 **Description**
@@ -366,7 +366,7 @@ Defines a struct for the types of the key and value in a KV pair.
 ### OH_VObject
 
 ```
-typedef struct OH_VObjectOH_VObject
+typedef struct OH_VObject OH_VObject
 ```
 
 **Description**
@@ -379,7 +379,7 @@ Defines a struct for allowed data field types.
 ### Rdb_ChangeInfo
 
 ```
-typedef struct Rdb_ChangeInfoRdb_ChangeInfo
+typedef struct Rdb_ChangeInfo Rdb_ChangeInfo
 ```
 
 **Description**
@@ -392,7 +392,7 @@ Defines a struct for the details about the device-cloud synchronization process.
 ### Rdb_ChangeType
 
 ```
-typedef enum Rdb_ChangeTypeRdb_ChangeType
+typedef enum Rdb_ChangeType Rdb_ChangeType
 ```
 
 **Description**
@@ -405,7 +405,7 @@ Defines an enum for data change types.
 ### Rdb_DistributedConfig
 
 ```
-typedef struct Rdb_DistributedConfigRdb_DistributedConfig
+typedef struct Rdb_DistributedConfig Rdb_DistributedConfig
 ```
 
 **Description**
@@ -418,7 +418,7 @@ Defines a struct for distributed configuration of a table.
 ### Rdb_DistributedType
 
 ```
-typedef enum Rdb_DistributedTypeRdb_DistributedType
+typedef enum Rdb_DistributedType Rdb_DistributedType
 ```
 
 **Description**
@@ -431,7 +431,7 @@ Defines an enum for distributed types.
 ### Rdb_KeyInfo
 
 ```
-typedef struct Rdb_KeyInfoRdb_KeyInfo
+typedef struct Rdb_KeyInfo Rdb_KeyInfo
 ```
 
 **Description**
@@ -444,7 +444,7 @@ Defines a struct for the primary key or row number of the row that changes.
 ### Rdb_Progress
 
 ```
-typedef enum Rdb_ProgressRdb_Progress
+typedef enum Rdb_Progress Rdb_Progress
 ```
 
 **Description**
@@ -457,7 +457,7 @@ Defines an enum for device-cloud synchronization progresses.
 ### Rdb_ProgressCode
 
 ```
-typedef enum Rdb_ProgressCodeRdb_ProgressCode
+typedef enum Rdb_ProgressCode Rdb_ProgressCode
 ```
 
 **Description**
@@ -470,7 +470,7 @@ Defines an enum for device-cloud synchronization states.
 ### Rdb_ProgressDetails
 
 ```
-typedef struct Rdb_ProgressDetailsRdb_ProgressDetails
+typedef struct Rdb_ProgressDetails Rdb_ProgressDetails
 ```
 
 **Description**
@@ -483,7 +483,7 @@ Defines a struct for statistics of the overall device-cloud synchronization (upl
 ### Rdb_SecurityArea
 
 ```
-typedef enum Rdb_SecurityAreaRdb_SecurityArea
+typedef enum Rdb_SecurityArea Rdb_SecurityArea
 ```
 
 **Description**
@@ -496,7 +496,7 @@ Defines an enum for security area levels of an RDB store.
 ### Rdb_Statistic
 
 ```
-typedef struct Rdb_StatisticRdb_Statistic
+typedef struct Rdb_Statistic Rdb_Statistic
 ```
 
 **Description**
@@ -509,7 +509,7 @@ Defines a struct for the device-cloud synchronization statistics of a database t
 ### Rdb_SubscribeType
 
 ```
-typedef enum Rdb_SubscribeTypeRdb_SubscribeType
+typedef enum Rdb_SubscribeType Rdb_SubscribeType
 ```
 
 **Description**
@@ -545,7 +545,7 @@ Defines a callback for device-cloud synchronization.
 ### Rdb_SyncMode
 
 ```
-typedef enum Rdb_SyncModeRdb_SyncMode
+typedef enum Rdb_SyncMode Rdb_SyncMode
 ```
 
 **Description**
@@ -558,7 +558,7 @@ Defines an enum for RDB synchronization modes.
 ### Rdb_TableDetails
 
 ```
-typedef struct Rdb_TableDetailsRdb_TableDetails
+typedef struct Rdb_TableDetails Rdb_TableDetails
 ```
 
 **Description**
@@ -839,7 +839,7 @@ Enumerates the RDB synchronization modes.
 ### OH_Rdb_Backup()
 
 ```
-int OH_Rdb_Backup (OH_Rdb_Store * store, const char * databasePath )
+int OH_Rdb_Backup (OH_Rdb_Store *store, const char *databasePath )
 ```
 
 **Description**
@@ -867,7 +867,7 @@ Returns **RDB_OK** if the operation is successful; returns an error code otherwi
 ### OH_Rdb_BeginTransaction()
 
 ```
-int OH_Rdb_BeginTransaction (OH_Rdb_Store * store)
+int OH_Rdb_BeginTransaction (OH_Rdb_Store *store)
 ```
 
 **Description**
@@ -894,14 +894,12 @@ Returns **RDB_OK** if the operation is successful; returns an error code otherwi
 ### OH_Rdb_CloseStore()
 
 ```
-int OH_Rdb_CloseStore (OH_Rdb_Store * store)
+int OH_Rdb_CloseStore (OH_Rdb_Store *store)
 ```
 
 **Description**
 
-Destroys an [OH_Rdb_Store](_o_h___rdb___store.md) object to reclaim the memory occupied.
-
-**Since**: 10
+Closes an [OH_Rdb_Store](_o_h___rdb___store.md) object to reclaim the memory occupied.
 
 **Parameters**
 
@@ -921,7 +919,7 @@ Returns **RDB_OK** if the operation is successful; returns an error code otherwi
 ### OH_Rdb_CloudSync()
 
 ```
-int OH_Rdb_CloudSync (OH_Rdb_Store * store, Rdb_SyncMode mode, const char * tables, int count, Rdb_SyncCallback * progress )
+int OH_Rdb_CloudSync (OH_Rdb_Store *store, Rdb_SyncMode mode, const char *tables, int count, Rdb_SyncCallback *progress )
 ```
 
 **Description**
@@ -948,7 +946,7 @@ Performs device-cloud synchronization.
 ### OH_Rdb_Commit()
 
 ```
-int OH_Rdb_Commit (OH_Rdb_Store * store)
+int OH_Rdb_Commit (OH_Rdb_Store *store)
 ```
 
 **Description**
@@ -975,7 +973,7 @@ Returns **RDB_OK** if the operation is successful; returns an error code otherwi
 ### OH_Rdb_CreatePredicates()
 
 ```
-OH_Predicates* OH_Rdb_CreatePredicates (const char * table)
+OH_Predicates* OH_Rdb_CreatePredicates (const char *table)
 ```
 
 **Description**
@@ -1002,7 +1000,7 @@ Returns the pointer to the [OH_Predicates](_o_h___predicates.md) instance create
 ### OH_Rdb_CreateValueObject()
 
 ```
-OH_VObject* OH_Rdb_CreateValueObject (void )
+OH_VObject* OH_Rdb_CreateValueObject ()
 ```
 
 **Description**
@@ -1023,7 +1021,7 @@ Returns the pointer to the [OH_VObject](_o_h___v_object.md) instance created if 
 ### OH_Rdb_CreateValuesBucket()
 
 ```
-OH_VBucket* OH_Rdb_CreateValuesBucket (void )
+OH_VBucket* OH_Rdb_CreateValuesBucket ()
 ```
 
 **Description**
@@ -1044,7 +1042,7 @@ Returns the pointer to the [OH_VBucket](_o_h___v_bucket.md) instance created if 
 ### OH_Rdb_Delete()
 
 ```
-int OH_Rdb_Delete (OH_Rdb_Store * store, OH_Predicates * predicates )
+int OH_Rdb_Delete (OH_Rdb_Store *store, OH_Predicates *predicates )
 ```
 
 **Description**
@@ -1072,7 +1070,7 @@ Returns the number of affected rows if the operation is successful; returns an e
 ### OH_Rdb_DeleteStore()
 
 ```
-int OH_Rdb_DeleteStore (const OH_Rdb_Config * config)
+int OH_Rdb_DeleteStore (const OH_Rdb_Config *config)
 ```
 
 **Description**
@@ -1085,7 +1083,7 @@ Deletes an RDB store with the specified database file configuration.
 
 | Name| Description|
 | -------- | -------- |
-| path | Pointer to the database path.|
+| config | Pointer to the configuration of the database.|
 
 **Returns**
 
@@ -1095,7 +1093,7 @@ Returns **RDB_OK** if the operation is successful; returns an error code otherwi
 ### OH_Rdb_Execute()
 
 ```
-int OH_Rdb_Execute (OH_Rdb_Store * store, const char * sql )
+int OH_Rdb_Execute (OH_Rdb_Store *store, const char *sql )
 ```
 
 **Description**
@@ -1123,7 +1121,7 @@ Returns **RDB_OK** if the operation is successful; returns an error code otherwi
 ### OH_Rdb_ExecuteQuery()
 
 ```
-OH_Cursor* OH_Rdb_ExecuteQuery (OH_Rdb_Store * store, const char * sql )
+OH_Cursor* OH_Rdb_ExecuteQuery (OH_Rdb_Store *store, const char *sql )
 ```
 
 **Description**
@@ -1151,7 +1149,7 @@ Returns the pointer to the [OH_Cursor](_o_h___cursor.md) instance if the operati
 ### OH_Rdb_FindModifyTime()
 
 ```
-OH_Cursor* OH_Rdb_FindModifyTime (OH_Rdb_Store * store, const char * tableName, const char * columnName, OH_VObject * values )
+OH_Cursor* OH_Rdb_FindModifyTime (OH_Rdb_Store *store, const char *tableName, const char *columnName, OH_VObject *values )
 ```
 
 **Description**
@@ -1181,7 +1179,7 @@ Returns **RDB_OK** if the operation is successful; returns an error code otherwi
 ### OH_Rdb_GetOrOpen()
 
 ```
-OH_Rdb_Store* OH_Rdb_GetOrOpen (const OH_Rdb_Config * config, int * errCode )
+OH_Rdb_Store* OH_Rdb_GetOrOpen (const OH_Rdb_Config *config, int *errCode )
 ```
 
 **Description**
@@ -1209,7 +1207,7 @@ Returns the pointer to the [OH_Rdb_Store](_o_h___rdb___store.md) instance create
 ### OH_Rdb_GetTableDetails()
 
 ```
-Rdb_TableDetails* OH_Rdb_GetTableDetails (Rdb_ProgressDetails * progress, int32_t version )
+Rdb_TableDetails* OH_Rdb_GetTableDetails (Rdb_ProgressDetails *progress, int32_t version )
 ```
 
 **Description**
@@ -1239,7 +1237,7 @@ Returns a pointer to [Rdb_TableDetails](_rdb___table_details.md) if the operatio
 ### OH_Rdb_GetVersion()
 
 ```
-int OH_Rdb_GetVersion (OH_Rdb_Store * store, int * version )
+int OH_Rdb_GetVersion (OH_Rdb_Store *store, int *version )
 ```
 
 **Description**
@@ -1253,7 +1251,7 @@ Obtains the RDB store version.
 | Name| Description|
 | -------- | -------- |
 | store | Pointer to the [OH_Rdb_Store](_o_h___rdb___store.md) instance.|
-| version | Pointer to the version number.|
+| version | Pointer to the version obtained.|
 
 **Returns**
 
@@ -1267,7 +1265,7 @@ Returns **RDB_OK** if the operation is successful; returns an error code otherwi
 ### OH_Rdb_Insert()
 
 ```
-int OH_Rdb_Insert (OH_Rdb_Store * store, const char * table, OH_VBucket * valuesBucket )
+int OH_Rdb_Insert (OH_Rdb_Store *store, const char *table, OH_VBucket *valuesBucket )
 ```
 
 **Description**
@@ -1296,7 +1294,7 @@ Returns the row ID if the operation is successful; returns an error code otherwi
 ### OH_Rdb_Query()
 
 ```
-OH_Cursor* OH_Rdb_Query (OH_Rdb_Store * store, OH_Predicates * predicates, const char *const * columnNames, int length )
+OH_Cursor* OH_Rdb_Query (OH_Rdb_Store *store, OH_Predicates *predicates, const char *const *columnNames, int length )
 ```
 
 **Description**
@@ -1326,7 +1324,7 @@ Returns the pointer to the [OH_Cursor](_o_h___cursor.md) instance if the operati
 ### OH_Rdb_Restore()
 
 ```
-int OH_Rdb_Restore (OH_Rdb_Store * store, const char * databasePath )
+int OH_Rdb_Restore (OH_Rdb_Store *store, const char *databasePath )
 ```
 
 **Description**
@@ -1354,7 +1352,7 @@ Returns **RDB_OK** if the operation is successful; returns an error code otherwi
 ### OH_Rdb_RollBack()
 
 ```
-int OH_Rdb_RollBack (OH_Rdb_Store * store)
+int OH_Rdb_RollBack (OH_Rdb_Store *store)
 ```
 
 **Description**
@@ -1381,7 +1379,7 @@ Returns **RDB_OK** if the operation is successful; returns an error code otherwi
 ### OH_Rdb_SetDistributedTables()
 
 ```
-int OH_Rdb_SetDistributedTables (OH_Rdb_Store * store, const char * tables[], uint32_t count, Rdb_DistributedType type, const Rdb_DistributedConfig * config )
+int OH_Rdb_SetDistributedTables (OH_Rdb_Store *store, const char *tables[], uint32_t count, Rdb_DistributedType type, const Rdb_DistributedConfig * config )
 ```
 
 **Description**
@@ -1412,7 +1410,7 @@ Returns **RDB_OK** if the operation is successful; returns an error code otherwi
 ### OH_Rdb_SetVersion()
 
 ```
-int OH_Rdb_SetVersion (OH_Rdb_Store * store, int version )
+int OH_Rdb_SetVersion (OH_Rdb_Store *store, int version )
 ```
 
 **Description**
@@ -1440,7 +1438,7 @@ Returns **RDB_OK** if the operation is successful; returns an error code otherwi
 ### OH_Rdb_Update()
 
 ```
-int OH_Rdb_Update (OH_Rdb_Store * store, OH_VBucket * valuesBucket, OH_Predicates * predicates )
+int OH_Rdb_Update (OH_Rdb_Store *store, OH_VBucket *valuesBucket, OH_Predicates *predicates )
 ```
 
 **Description**
@@ -1463,13 +1461,13 @@ Returns the number of affected rows if the operation is successful; returns an e
 
 **See**
 
-[OH_Rdb_Store](_o_h___rdb___store.md), OH_Bucket, [OH_Predicates](_o_h___predicates.md).
+[OH_Rdb_Store](_o_h___rdb___store.md), [OH_Bucket](_o_h___v_bucket.md), [OH_Predicates](_o_h___predicates.md).
 
 
 ### OH_VBucket_PutAsset()
 
 ```
-int OH_VBucket_PutAsset (OH_VBucket * bucket, const char * field, OH_Asset * value )
+int OH_VBucket_PutAsset (OH_VBucket *bucket, const char *field, OH_Asset *value )
 ```
 
 **Description**
@@ -1498,7 +1496,7 @@ Returns **RDB_OK** if the operation is successful; returns an error code otherwi
 ### OH_VBucket_PutAssets()
 
 ```
-int OH_VBucket_PutAssets (OH_VBucket * bucket, const char * field, OH_Asset ** value, int count )
+int OH_VBucket_PutAssets (OH_VBucket *bucket, const char *field, OH_Asset **value, int count )
 ```
 
 **Description**
@@ -1530,7 +1528,7 @@ Returns **RDB_OK** if the operation is successful; returns an error code otherwi
 ### andOperate
 
 ```
-OH_Predicates*(* OH_Predicates::andOperate) (OH_Predicates *predicates)
+OH_Predicates *(*andOperate) (OH_Predicates *predicates)
 ```
 
 **Description**
@@ -1572,7 +1570,7 @@ Pointer to the function used to set [Rdb_SecurityArea](#rdb_securityarea).
 ### beginWrap
 
 ```
-OH_Predicates*(* OH_Predicates::beginWrap) (OH_Predicates *predicates)
+OH_Predicates *(*beginWrap) (OH_Predicates *predicates)
 ```
 
 **Description**
@@ -1601,7 +1599,7 @@ Returns the predicates with a left parenthesis.
 ### between
 
 ```
-OH_Predicates*(* OH_Predicates::between) (OH_Predicates *predicates, const char *field, OH_VObject *valueObject)
+OH_Predicates *(*between) (OH_Predicates *predicates, const char *field, OH_VObject *valueObject)
 ```
 
 **Description**
@@ -1648,7 +1646,7 @@ uint16_t OH_VBucket::capability
 
 **Description**
 
-Number of KV pairs in the struct.
+Number of the KV pairs in the struct.
 
 
 ### ChangeType
@@ -1665,7 +1663,7 @@ Type of the data changed, which can be data or asset.
 ### clear [1/2]
 
 ```
-OH_Predicates*(* OH_Predicates::clear) (OH_Predicates *predicates)
+OH_Predicates *(*clear) (OH_Predicates *predicates)
 ```
 
 **Description**
@@ -1692,14 +1690,12 @@ Returns the cleared predicates.
 ### clear [2/2]
 
 ```
-int(* OH_VBucket::clear) (OH_VBucket *bucket)
+int(*clear) (OH_VBucket *bucket)
 ```
 
 **Description**
 
-Clears an [OH_VBucket](_o_h___v_bucket.md) object.
-
-**Since**: 10
+Pointer to the function used to clear an [OH_VBucket](_o_h___v_bucket.md) object.
 
 **Parameters**
 
@@ -1763,7 +1759,7 @@ Location where data is deleted. If the primary key of the table is of the string
 ### destroy [1/4]
 
 ```
-int(* OH_Cursor::destroy) (OH_Cursor *cursor)
+int(*destroy) (OH_Cursor *cursor)
 ```
 
 **Description**
@@ -1790,14 +1786,12 @@ Returns **RDB_OK** if the operation is successful; returns an error code otherwi
 ### destroy [2/4]
 
 ```
-int(* OH_Predicates::destroy) (OH_Predicates *predicates)
+int(*destroy) (OH_Predicates *predicates)
 ```
 
 **Description**
 
-Destroys an [OH_Predicates](_o_h___predicates.md) object to reclaim the memory occupied.
-
-**Since**: 10
+Pointer to the function used to destroy an [OH_Predicates](_o_h___predicates.md) object to reclaim the memory occupied.
 
 **Parameters**
 
@@ -1817,14 +1811,12 @@ Returns **RDB_OK** if the operation is successful; returns an error code otherwi
 ### destroy [3/4]
 
 ```
-int(* OH_VBucket::destroy) (OH_VBucket *bucket)
+int(*destroy) (OH_VBucket *bucket)
 ```
 
 **Description**
 
-Destroys an [OH_VBucket](_o_h___v_bucket.md) object to reclaim the memory occupied.
-
-**Since**: 10
+Pointer to the function used to destroy an [OH_VBucket](_o_h___v_bucket.md) object to reclaim the memory occupied.
 
 **Parameters**
 
@@ -1844,14 +1836,12 @@ Returns **RDB_OK** if the operation is successful; returns an error code otherwi
 ### destroy [4/4]
 
 ```
-int(* OH_VObject::destroy) (OH_VObject *valueObject)
+int(*destroy) (OH_VObject *valueObject)
 ```
 
 **Description**
 
-Destroys an [OH_VObject](_o_h___v_object.md) object to reclaim the memory occupied.
-
-**Since**: 10
+Pointer to the function used to destroy an [OH_VObject](_o_h___v_object.md) object to reclaim the memory occupied.
 
 **Parameters**
 
@@ -1871,7 +1861,7 @@ Returns **RDB_OK** if the operation is successful; returns an error code otherwi
 ### distinct
 
 ```
-OH_Predicates*(* OH_Predicates::distinct) (OH_Predicates *predicates)
+OH_Predicates *(*distinct) (OH_Predicates *predicates)
 ```
 
 **Description**
@@ -1911,7 +1901,7 @@ Statistics of the device-cloud download tasks.
 ### endWrap
 
 ```
-OH_Predicates*(* OH_Predicates::endWrap) (OH_Predicates *predicates)
+OH_Predicates *(*endWrap) (OH_Predicates *predicates)
 ```
 
 **Description**
@@ -1940,7 +1930,7 @@ Returns the predicates object with a right parenthesis.
 ### equalTo
 
 ```
-OH_Predicates*(* OH_Predicates::equalTo) (OH_Predicates *predicates, const char *field, OH_VObject *valueObject)
+OH_Predicates *(*equalTo) (OH_Predicates *predicates, const char *field, OH_VObject *valueObject)
 ```
 
 **Description**
@@ -1982,7 +1972,7 @@ Number of rows that failed to be synchronized between the device and cloud in th
 ### getAsset
 
 ```
-int(* OH_Cursor::getAsset) (OH_Cursor *cursor, int32_t columnIndex, Data_Asset *value)
+int(*getAsset) (OH_Cursor *cursor, int32_t columnIndex, Data_Asset *value)
 ```
 
 **Description**
@@ -1996,7 +1986,7 @@ Pointer to the function used to obtain the value of the asset type based on the 
 | Name| Description|
 | -------- | -------- |
 | cursor | Pointer to the [OH_Cursor](_o_h___cursor.md) instance.|
-| columnIndex | Column index.|
+| columnIndex | Index of the column. The index value starts from **0**.|
 | value | Pointer to the value obtained.|
 
 **Returns**
@@ -2011,7 +2001,7 @@ Returns **RDB_OK** if the operation is successful; returns an error code otherwi
 ### getAssets
 
 ```
-int(* OH_Cursor::getAssets) (OH_Cursor *cursor, int32_t columnIndex, Data_Asset **value, uint32_t length)
+int(*getAssets) (OH_Cursor *cursor, int32_t columnIndex, Data_Asset **value, uint32_t length)
 ```
 
 **Description**
@@ -2025,7 +2015,7 @@ Pointer to the function used to obtain the values in the form of an asset array 
 | Name| Description|
 | -------- | -------- |
 | cursor | Pointer to the [OH_Cursor](_o_h___cursor.md) instance.|
-| columnIndex | Column index.|
+| columnIndex | Index of the column. The index value starts from **0**.|
 | value | Pointer to the value obtained.|
 | length | Length of an asset array.|
 
@@ -2041,7 +2031,7 @@ Returns **RDB_OK** if the operation is successful; returns an error code otherwi
 ### getBlob
 
 ```
-int(* OH_Cursor::getBlob) (OH_Cursor *cursor, int32_t columnIndex, unsigned char *value, int length)
+int(*getBlob) (OH_Cursor *cursor, int32_t columnIndex, unsigned char *value, int length)
 ```
 
 **Description**
@@ -2055,7 +2045,7 @@ Pointer to the function used to obtain the values in the form of a byte array ba
 | Name| Description|
 | -------- | -------- |
 | cursor | Pointer to the [OH_Cursor](_o_h___cursor.md) instance.|
-| columnIndex | Column index.|
+| columnIndex | Index of the column. The index value starts from **0**.|
 | value | Pointer to the values in the form of a byte array obtained.|
 | length | Length of the value, which can be obtained by **getSize()**.|
 
@@ -2071,7 +2061,7 @@ Returns **RDB_OK** if the operation is successful; returns an error code otherwi
 ### getColumnCount
 
 ```
-int(* OH_Cursor::getColumnCount) (OH_Cursor *cursor, int *count)
+int(*getColumnCount) (OH_Cursor *cursor, int *count)
 ```
 
 **Description**
@@ -2099,7 +2089,7 @@ Returns **RDB_OK** if the operation is successful; returns an error code otherwi
 ### getColumnIndex
 
 ```
-int(* OH_Cursor::getColumnIndex) (OH_Cursor *cursor, const char *name, int *columnIndex)
+int(*getColumnIndex) (OH_Cursor *cursor, const char *name, int *columnIndex)
 ```
 
 **Description**
@@ -2128,7 +2118,7 @@ Returns **RDB_OK** if the operation is successful; returns an error code otherwi
 ### getColumnName
 
 ```
-int(* OH_Cursor::getColumnName) (OH_Cursor *cursor, int32_t columnIndex, char *name, int length)
+int(*getColumnName) (OH_Cursor *cursor, int32_t columnIndex, char *name, int length)
 ```
 
 **Description**
@@ -2142,7 +2132,7 @@ Pointer to the function used to obtain the column name based on the specified co
 | Name| Description|
 | -------- | -------- |
 | cursor | Pointer to the [OH_Cursor](_o_h___cursor.md) instance.|
-| columnIndex | Column index.|
+| columnIndex | Index of the column. The index value starts from **0**.|
 | name | Pointer to the column name obtained.|
 | length | Length of a column name.|
 
@@ -2158,7 +2148,7 @@ Returns **RDB_OK** if the operation is successful; returns an error code otherwi
 ### getColumnType
 
 ```
-int(* OH_Cursor::getColumnType) (OH_Cursor *cursor, int32_t columnIndex, OH_ColumnType *columnType)
+int(*getColumnType) (OH_Cursor *cursor, int32_t columnIndex, OH_ColumnType *columnType)
 ```
 
 **Description**
@@ -2172,7 +2162,7 @@ Pointer to the function used to obtain the column type based on the specified co
 | Name| Description|
 | -------- | -------- |
 | cursor | Pointer to the [OH_Cursor](_o_h___cursor.md) instance.|
-| columnIndex | Column index.|
+| columnIndex | Index of the column. The index value starts from **0**.|
 | columnType | Pointer to the [OH_ColumnType](#oh_columntype) obtained.|
 
 **Returns**
@@ -2187,7 +2177,7 @@ Returns **RDB_OK** if the operation is successful; returns an error code otherwi
 ### getInt64
 
 ```
-int(* OH_Cursor::getInt64) (OH_Cursor *cursor, int32_t columnIndex, int64_t *value)
+int(*getInt64) (OH_Cursor *cursor, int32_t columnIndex, int64_t *value)
 ```
 
 **Description**
@@ -2201,7 +2191,7 @@ Pointer to the function used to obtain the value of the int64_t type based on th
 | Name| Description|
 | -------- | -------- |
 | cursor | Pointer to the [OH_Cursor](_o_h___cursor.md) instance.|
-| columnIndex | Column index.|
+| columnIndex | Index of the column. The index value starts from **0**.|
 | value | Pointer to the value obtained.|
 
 **Returns**
@@ -2216,7 +2206,7 @@ Returns **RDB_OK** if the operation is successful; returns an error code otherwi
 ### getReal
 
 ```
-int(* OH_Cursor::getReal) (OH_Cursor *cursor, int32_t columnIndex, double *value)
+int(*getReal) (OH_Cursor *cursor, int32_t columnIndex, double *value)
 ```
 
 **Description**
@@ -2230,7 +2220,7 @@ Pointer to the function used to obtain the value of the double type based on the
 | Name| Description|
 | -------- | -------- |
 | cursor | Pointer to the [OH_Cursor](_o_h___cursor.md) instance.|
-| columnIndex | Column index.|
+| columnIndex | Index of the column. The index value starts from **0**.|
 | value | Pointer to the value obtained.|
 
 **Returns**
@@ -2245,7 +2235,7 @@ Returns **RDB_OK** if the operation is successful; returns an error code otherwi
 ### getRowCount
 
 ```
-int(* OH_Cursor::getRowCount) (OH_Cursor *cursor, int *count)
+int(*getRowCount) (OH_Cursor *cursor, int *count)
 ```
 
 **Description**
@@ -2273,7 +2263,7 @@ Returns **RDB_OK** if the operation is successful; returns an error code otherwi
 ### getSize
 
 ```
-int(* OH_Cursor::getSize) (OH_Cursor *cursor, int32_t columnIndex, size_t *size)
+int(*getSize) (OH_Cursor *cursor, int32_t columnIndex, size_t *size)
 ```
 
 **Description**
@@ -2287,7 +2277,7 @@ Pointer to the function used to obtain information about the memory required whe
 | Name| Description|
 | -------- | -------- |
 | cursor | Pointer to the [OH_Cursor](_o_h___cursor.md) instance.|
-| columnIndex | Column index.|
+| columnIndex | Index of the column. The index value starts from **0**.|
 | size | Pointer to the memory size obtained.|
 
 **Returns**
@@ -2302,7 +2292,7 @@ Returns **RDB_OK** if the operation is successful; returns an error code otherwi
 ### getText
 
 ```
-int(* OH_Cursor::getText) (OH_Cursor *cursor, int32_t columnIndex, char *value, int length)
+int(*getText) (OH_Cursor *cursor, int32_t columnIndex, char *value, int length)
 ```
 
 **Description**
@@ -2316,7 +2306,7 @@ Pointer to the function used to obtain the value of the string type based on the
 | Name| Description|
 | -------- | -------- |
 | cursor | Pointer to the [OH_Cursor](_o_h___cursor.md) instance.|
-| columnIndex | Column index.|
+| columnIndex | Index of the column. The index value starts from **0**.|
 | value | Pointer to the value of the string type obtained.|
 | length | Length of the value, which can be obtained by **getSize()**.|
 
@@ -2332,7 +2322,7 @@ Returns **RDB_OK** if the operation is successful; returns an error code otherwi
 ### goToNextRow
 
 ```
-int(* OH_Cursor::goToNextRow) (OH_Cursor *cursor)
+int(*goToNextRow) (OH_Cursor *cursor)
 ```
 
 **Description**
@@ -2359,7 +2349,7 @@ Returns **RDB_OK** if the operation is successful; returns an error code otherwi
 ### greaterThan
 
 ```
-OH_Predicates*(* OH_Predicates::greaterThan) (OH_Predicates *predicates, const char *field, OH_VObject *valueObject)
+OH_Predicates *(*greaterThan) (OH_Predicates *predicates, const char *field, OH_VObject *valueObject)
 ```
 
 **Description**
@@ -2390,7 +2380,7 @@ Returns the predicates created.
 ### greaterThanOrEqualTo
 
 ```
-OH_Predicates*(* OH_Predicates::greaterThanOrEqualTo) (OH_Predicates *predicates, const char *field, OH_VObject *valueObject)
+OH_Predicates *(*greaterThanOrEqualTo) (OH_Predicates *predicates, const char *field, OH_VObject *valueObject)
 ```
 
 **Description**
@@ -2421,7 +2411,7 @@ Returns the predicates created.
 ### groupBy
 
 ```
-OH_Predicates*(* OH_Predicates::groupBy) (OH_Predicates *predicates, char const *const *fields, int length)
+OH_Predicates *(*groupBy) (OH_Predicates *predicates, char const *const *fields, int length)
 ```
 
 **Description**
@@ -2449,7 +2439,18 @@ Returns the predicates created.
 [OH_Predicates](_o_h___predicates.md).
 
 
-### id [1/4]
+### id [1/5]
+
+```
+int64_t OH_Cursor::id
+```
+
+**Description**
+
+Unique identifier of the **OH_Cursor** struct.
+
+
+### id [2/5]
 
 ```
 int64_t OH_Predicates::id
@@ -2460,7 +2461,7 @@ int64_t OH_Predicates::id
 Unique identifier of the **OH_Predicates** struct.
 
 
-### id [2/4]
+### id [3/5]
 
 ```
 int64_t OH_VObject::id
@@ -2471,7 +2472,7 @@ int64_t OH_VObject::id
 Unique identifier of the **OH_VObject** struct.
 
 
-### id [3/4]
+### id [4/5]
 
 ```
 int64_t OH_VBucket::id
@@ -2482,7 +2483,7 @@ int64_t OH_VBucket::id
 Unique identifier of the **OH_VBucket** struct.
 
 
-### id [4/4]
+### id [5/5]
 
 ```
 int64_t OH_Rdb_Store::id
@@ -2496,7 +2497,7 @@ Unique identifier of the **OH_Rdb_Store** struct.
 ### in
 
 ```
-OH_Predicates*(* OH_Predicates::in) (OH_Predicates *predicates, const char *field, OH_VObject *valueObject)
+OH_Predicates *(*in) (OH_Predicates *predicates, const char *field, OH_VObject *valueObject)
 ```
 
 **Description**
@@ -2571,7 +2572,7 @@ Whether to encrypt the RDB store.
 ### isNotNull
 
 ```
-OH_Predicates*(* OH_Predicates::isNotNull) (OH_Predicates *predicates, const char *field)
+OH_Predicates *(*isNotNull) (OH_Predicates *predicates, const char *field)
 ```
 
 **Description**
@@ -2601,7 +2602,7 @@ Returns the predicates created.
 ### isNull [1/2]
 
 ```
-int(* OH_Cursor::isNull) (OH_Cursor *cursor, int32_t columnIndex, bool *isNull)
+int(*isNull) (OH_Cursor *cursor, int32_t columnIndex, bool *isNull)
 ```
 
 **Description**
@@ -2615,7 +2616,7 @@ Pointer to the function used to check whether the value in the specified column 
 | Name| Description|
 | -------- | -------- |
 | cursor | Pointer to the [OH_Cursor](_o_h___cursor.md) instance.|
-| columnIndex | Column index.|
+| columnIndex | Index of the column. The index value starts from **0**.|
 | isNull | Pointer to the value returned. The value **true** means the value is null; the value **false** means the opposite.|
 
 **Returns**
@@ -2630,7 +2631,7 @@ Returns **RDB_OK** if the operation is successful; returns an error code otherwi
 ### isNull [2/2]
 
 ```
-OH_Predicates*(* OH_Predicates::isNull) (OH_Predicates *predicates, const char *field)
+OH_Predicates *(*isNull) (OH_Predicates *predicates, const char *field)
 ```
 
 **Description**
@@ -2660,7 +2661,7 @@ Returns the predicates created.
 ### lessThan
 
 ```
-OH_Predicates*(* OH_Predicates::lessThan) (OH_Predicates *predicates, const char *field, OH_VObject *valueObject)
+OH_Predicates *(*lessThan) (OH_Predicates *predicates, const char *field, OH_VObject *valueObject)
 ```
 
 **Description**
@@ -2691,7 +2692,7 @@ Returns the predicates created.
 ### lessThanOrEqualTo
 
 ```
-OH_Predicates*(* OH_Predicates::lessThanOrEqualTo) (OH_Predicates *predicates, const char *field, OH_VObject *valueObject)
+OH_Predicates *(*lessThanOrEqualTo) (OH_Predicates *predicates, const char *field, OH_VObject *valueObject)
 ```
 
 **Description**
@@ -2722,7 +2723,7 @@ Returns the predicates created.
 ### like
 
 ```
-OH_Predicates*(* OH_Predicates::like) (OH_Predicates *predicates, const char *field, OH_VObject *valueObject)
+OH_Predicates *(*like) (OH_Predicates *predicates, const char *field, OH_VObject *valueObject)
 ```
 
 **Description**
@@ -2753,7 +2754,7 @@ Returns the predicates created.
 ### limit
 
 ```
-OH_Predicates*(* OH_Predicates::limit) (OH_Predicates *predicates, unsigned int value)
+OH_Predicates *(*limit) (OH_Predicates *predicates, unsigned int value)
 ```
 
 **Description**
@@ -2794,7 +2795,7 @@ Module name.
 ### notBetween
 
 ```
-OH_Predicates*(* OH_Predicates::notBetween) (OH_Predicates *predicates, const char *field, OH_VObject *valueObject)
+OH_Predicates *(*notBetween) (OH_Predicates *predicates, const char *field, OH_VObject *valueObject)
 ```
 
 **Description**
@@ -2825,7 +2826,7 @@ Returns the predicates created.
 ### notEqualTo
 
 ```
-OH_Predicates*(* OH_Predicates::notEqualTo) (OH_Predicates *predicates, const char *field, OH_VObject *valueObject)
+OH_Predicates *(*notEqualTo) (OH_Predicates *predicates, const char *field, OH_VObject *valueObject)
 ```
 
 **Description**
@@ -2856,7 +2857,7 @@ Returns the predicates created.
 ### notIn
 
 ```
-OH_Predicates*(* OH_Predicates::notIn) (OH_Predicates *predicates, const char *field, OH_VObject *valueObject)
+OH_Predicates *(*notIn) (OH_Predicates *predicates, const char *field, OH_VObject *valueObject)
 ```
 
 **Description**
@@ -2887,7 +2888,7 @@ Returns the predicates created.
 ### offset
 
 ```
-OH_Predicates*(* OH_Predicates::offset) (OH_Predicates *predicates, unsigned int rowOffset)
+OH_Predicates *(*offset) (OH_Predicates *predicates, unsigned int rowOffset)
 ```
 
 **Description**
@@ -2917,7 +2918,7 @@ Returns the predicates created.
 ### orderBy
 
 ```
-OH_Predicates*(* OH_Predicates::orderBy) (OH_Predicates *predicates, const char *field, OH_OrderType type)
+OH_Predicates *(*orderBy) (OH_Predicates *predicates, const char *field, OH_OrderType type)
 ```
 
 **Description**
@@ -2948,7 +2949,7 @@ Returns the predicates created.
 ### orOperate
 
 ```
-OH_Predicates*(* OH_Predicates::orOperate) (OH_Predicates *predicates)
+OH_Predicates *(*orOperate) (OH_Predicates *predicates)
 ```
 
 **Description**
@@ -2977,14 +2978,12 @@ Returns the predicates with the OR operator.
 ### putBlob
 
 ```
-int(* OH_VBucket::putBlob) (OH_VBucket *bucket, const char *field, const uint8_t *value, uint32_t size)
+int(*putBlob) (OH_VBucket *bucket, const char *field, const uint8_t *value, uint32_t size)
 ```
 
 **Description**
 
-Puts a const uint8_t value into the [OH_VBucket](_o_h___v_bucket.md) object in the given column.
-
-**Since**: 10
+Pointer to the function used to put a const uint8_t value into the [OH_VBucket](_o_h___v_bucket.md) object in the given column.
 
 **Parameters**
 
@@ -3007,14 +3006,12 @@ Returns **RDB_OK** if the operation is successful; returns an error code otherwi
 ### putDouble
 
 ```
-int(* OH_VObject::putDouble) (OH_VObject *valueObject, double *value, uint32_t count)
+int(*putDouble) (OH_VObject *valueObject, double *value, uint32_t count)
 ```
 
 **Description**
 
-Converts a single parameter or an array of the double type into a value of the [OH_VObject](_o_h___v_object.md) type.
-
-**Since**: 10
+Pointer to the function used to convert a single parameter or an array of the double type into a value of the [OH_VObject](_o_h___v_object.md) type.
 
 **Parameters**
 
@@ -3036,12 +3033,12 @@ Returns **RDB_OK** if the operation is successful; returns an error code otherwi
 ### putInt64 [1/2]
 
 ```
-int(* OH_VBucket::putInt64) (OH_VBucket *bucket, const char *field, int64_t value)
+int(*putInt64) (OH_VBucket *bucket, const char *field, int64_t value)
 ```
 
 **Description**
 
-Puts an int64_t value into the [OH_VBucket](_o_h___v_bucket.md) object in the given column.
+Pointer to the function used to put an int64_t value into the [OH_VBucket](_o_h___v_bucket.md) object in the given column.
 
 **Since**: 10
 
@@ -3051,7 +3048,7 @@ Puts an int64_t value into the [OH_VBucket](_o_h___v_bucket.md) object in the gi
 | -------- | -------- |
 | bucket | Pointer to the [OH_VBucket](_o_h___v_bucket.md) instance.|
 | field | Pointer to the column name in the database table.|
-| value | Pointer to the value to put.|
+| value | Value to put.|
 
 **Returns**
 
@@ -3065,14 +3062,12 @@ Returns **RDB_OK** if the operation is successful; returns an error code otherwi
 ### putInt64 [2/2]
 
 ```
-int(* OH_VObject::putInt64) (OH_VObject *valueObject, int64_t *value, uint32_t count)
+int(*putInt64) (OH_VObject *valueObject, int64_t *value, uint32_t count)
 ```
 
 **Description**
 
-Converts a single parameter or an array of the int64 type into a value of the [OH_VObject](_o_h___v_object.md) type.
-
-**Since**: 10
+Pointer to the function used to convert a single parameter or an array of the int64 type into a value of the [OH_VObject](_o_h___v_object.md) type.
 
 **Parameters**
 
@@ -3094,14 +3089,12 @@ Returns **RDB_OK** if the operation is successful; returns an error code otherwi
 ### putNull
 
 ```
-int(* OH_VBucket::putNull) (OH_VBucket *bucket, const char *field)
+int(*putNull) (OH_VBucket *bucket, const char *field)
 ```
 
 **Description**
 
-Puts a null value into the [OH_VBucket](_o_h___v_bucket.md) object in the given column.
-
-**Since**: 10
+Pointer to the function used to put a null value into the [OH_VBucket](_o_h___v_bucket.md) object in the given column.
 
 **Parameters**
 
@@ -3122,12 +3115,12 @@ Returns **RDB_OK** if the operation is successful; returns an error code otherwi
 ### putReal
 
 ```
-int(* OH_VBucket::putReal) (OH_VBucket *bucket, const char *field, double value)
+int(*putReal) (OH_VBucket *bucket, const char *field, double value)
 ```
 
 **Description**
 
-Puts a double value into the [OH_VBucket](_o_h___v_bucket.md) object in the given column.
+Pointer to the function used to put a double value into the [OH_VBucket](_o_h___v_bucket.md) object in the given column.
 
 **Since**: 10
 
@@ -3137,7 +3130,7 @@ Puts a double value into the [OH_VBucket](_o_h___v_bucket.md) object in the give
 | -------- | -------- |
 | bucket | Pointer to the [OH_VBucket](_o_h___v_bucket.md) instance.|
 | field | Pointer to the column name in the database table.|
-| value | Pointer to the value to put.|
+| value | Value to put.|
 
 **Returns**
 
@@ -3151,14 +3144,12 @@ Returns **RDB_OK** if the operation is successful; returns an error code otherwi
 ### putText [1/2]
 
 ```
-int(* OH_VBucket::putText) (OH_VBucket *bucket, const char *field, const char *value)
+int(*putText) (OH_VBucket *bucket, const char *field, const char *value)
 ```
 
 **Description**
 
-Puts a char value into the [OH_VBucket](_o_h___v_bucket.md) object in the given column.
-
-**Since**: 10
+Pointer to the function used to put a char value into the [OH_VBucket](_o_h___v_bucket.md) object in the given column.
 
 **Parameters**
 
@@ -3180,14 +3171,12 @@ Returns **RDB_OK** if the operation is successful; returns an error code otherwi
 ### putText [2/2]
 
 ```
-int(* OH_VObject::putText) (OH_VObject *valueObject, const char *value)
+int(*putText) (OH_VObject *valueObject, const char *value)
 ```
 
 **Description**
 
-Converts a character array of the char type to a value of the [OH_VObject](_o_h___v_object.md) type.
-
-**Since**: 10
+Pointer to the function used to convert a character array of the char type to a value of the [OH_VObject](_o_h___v_object.md) type.
 
 **Parameters**
 
@@ -3208,14 +3197,12 @@ Returns **RDB_OK** if the operation is successful; returns an error code otherwi
 ### putTexts
 
 ```
-int(* OH_VObject::putTexts) (OH_VObject *valueObject, const char **value, uint32_t count)
+int(*putTexts) (OH_VObject *valueObject, const char **value, uint32_t count)
 ```
 
 **Description**
 
-Converts a string array of the char type to a value of the [OH_VObject](_o_h___v_object.md) type.
-
-**Since**: 10
+Pointer to the function used to convert a string array of the char type to a value of the [OH_VObject](_o_h___v_object.md) type.
 
 **Parameters**
 
@@ -3275,7 +3262,7 @@ int OH_Rdb_Config::securityLevel
 
 **Description**
 
-RDB store security level. For details, see [OH_Rdb_SecurityLevel](#oh_rdb_securitylevel).
+RDB store security level [OH_Rdb_SecurityLevel](#oh_rdb_securitylevel).
 
 
 ### selfSize
