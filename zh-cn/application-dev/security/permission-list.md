@@ -690,6 +690,20 @@
 
 **起始版本**：9
 
+### ohos.permission.START_ABILIIES_FROM_BACKGROUND
+
+允许应用在后台启动FA。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：7
+
+**废弃版本**：9
+
 ## ohos.permission.BUNDLE_ACTIVE_INFO
 
 允许系统应用查询其他应用在前台或后台的运行时间。
