@@ -532,7 +532,7 @@ let fileName = hidebug.startAppTraceCapture(tags, flag, limitSize);
 hidebug.stopAppTraceCapture();
 ```
 
-## hidebug.getAppMemoryLimit<sup>12+</sup>
+## hidebug.getAppMemoryLimit
 
 getAppMemoryLimit() : MemoryLimit
 
@@ -559,9 +559,9 @@ getAppMemoryLimit() : MemoryLimit
 
 | 名称      | 类型   | 必填 | 说明         |
 | --------- | ------ | ---- | ------------ |
-| rssLimit    | bigint |  是  | 应用程序进程的驻留集的限制（以字节为单位）     |
-| vssLimit  | bigint |  是  | 进程的虚拟内存限制（以字节为单位）       |
-| vmHeapLimit | bigint |  是  | 当前线程的 JS VM 堆大小限制（以字节为单位）      |
+| rssLimit<sup>12+</sup>    | bigint |  是  | 应用程序进程的驻留集的限制（以字节为单位）     |
+| vssLimit<sup>12+</sup>  | bigint |  是  | 进程的虚拟内存限制（以字节为单位）       |
+| vmHeapLimit<sup>12+</sup> | bigint |  是  | 当前线程的 JS VM 堆大小限制（以字节为单位）      |
 
 ## VMMemoryInfo<sup>12+<sup>
 
