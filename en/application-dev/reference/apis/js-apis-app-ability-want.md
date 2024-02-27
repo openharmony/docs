@@ -89,7 +89,7 @@ import Want from '@ohos.app.ability.Want';
           },
         };
 
-        context.startAbility(want: BusinessError, (err) => {
+        context.startAbility(want: Want, (err) => {
           console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
         });
         ```
@@ -226,13 +226,13 @@ import Want from '@ohos.app.ability.Want';
     In the preceding example, when the ServiceExtensionAbility starts UIAbility2, **"ability.params.backToOtherMissionStack": true** is carried, indicating that redirection back across mission stacks is supported. Therefore, when you press **Back** on the page of UIAbility2, the page of UIAbility1 page is displayed. However, if **ability.params.backToOtherMissionStack** is not carried or if **"ability.params.backToOtherMissionStack": false** is carried, the page of UIAbility1 is not displayed when you press **Back** on the page of UIAbility2.
 
       * **parameter** carries customized parameters. It is transferred by UIAbilityA to UIAbilityB and obtained from UIAbilityB.
-    
+
       ```ts
         //(1) UIAbilityA calls startAbility to start UIAbilityB.
         import common from '@ohos.app.ability.common';
-    import Want from '@ohos.app.ability.Want';
+        import Want from '@ohos.app.ability.Want';
         import { BusinessError } from '@ohos.base';
-    
+
         let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
         let want: Want = {
           bundleName: 'com.example.myapplication',
@@ -243,15 +243,15 @@ import Want from '@ohos.app.ability.Want';
         };
         context.startAbility(want, (err: BusinessError) => {
           console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
-    });
+        });
       ```
-    
+
       ```ts
         // (2) If the UIAbilityB instance is started for the first time, it enters the onCreate lifecycle.
         import UIAbility from '@ohos.app.ability.UIAbility';
-    import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+        import AbilityConstant from '@ohos.app.ability.AbilityConstant';
         import Want from '@ohos.app.ability.Want';
-    
+
         class UIAbilityB extends UIAbility {
             onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
                 console.log(`onCreate, want parameters: ${want.parameters?.developerParameters}`);
