@@ -670,7 +670,7 @@ getAppNativeMemInfo(): NativeMemInfo
 
 | 类型  | 说明                      |
 | ------ | -------------------------- |
-| [NativeMemInfo](#nativememinfo) | 应用进程内存信息|
+| [NativeMemInfo](#nativememinfo12) | 应用进程内存信息|
 
 **示例**
 
@@ -719,7 +719,7 @@ getSystemMemInfo(): SystemMemInfo
 
 | 类型  | 说明                      |
 | ------ | -------------------------- |
-| [SystemMemInfo](#systemmeminfo) | 系统内存信息|
+| [SystemMemInfo](#systemmeminfo12) | 系统内存信息|
 
 **示例**
 
