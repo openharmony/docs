@@ -531,7 +531,7 @@ Get application process memory limit
 ```ts
  let appMemoryLimit:hidebug.MemoryLimit = hidebug.getAppMemoryLimit();
 ```
-## MemoryLimit
+## MemoryLimit<sup>12+<sup>
 
 application process memory limit
 
