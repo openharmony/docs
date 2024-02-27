@@ -658,7 +658,7 @@ getSystemCpuUsage() : number
 
 getAppNativeMemInfo(): NativeMemInfo
 
-获取应用进程内存信息
+获取应用进程内存信息。
 
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -695,19 +695,19 @@ hilog.info(0x0000, 'testTag', "privateClean = %{public}d", nativeMemInfo.private
 
 | 名称      | 类型   | 必填 | 说明         |
 | --------- | ------ | ---- | ------------ |
-| pss<sup>12+</sup>  | bigint |  是  | 实际占用的物理内存的大小(比例分配共享库占用的内存)，以KB为单位     |
-| vss<sup>12+</sup>  | bigint |  是  | 占用虚拟内存大小(包括共享库所占用的内存)，以KB为单位       |
-| rss<sup>12+</sup>  | bigint |  是  | 实际占用的物理内存的大小(包括共享库占用), 以KB为单位         |
-| sharedDirty<sup>12+</sup>  | bigint |  是  | 共享脏内存的大小，以KB为单位      |
-| privateDirty<sup>12+</sup>  | bigint |  是  | 专用脏内存的大小，以KB为单位      |
-| sharedClean<sup>12+</sup>  | bigint |  是  | 共享干净内存的大小，以KB为单位      |
-| privateClean<sup>12+</sup>  | bigint |  是  | 专用干净内存的大小，以KB为单位      |
+| pss<sup>12+</sup>  | bigint |  是  | 实际占用的物理内存的大小(比例分配共享库占用的内存)，以KB为单位。     |
+| vss<sup>12+</sup>  | bigint |  是  | 占用虚拟内存大小(包括共享库所占用的内存)，以KB为单位。       |
+| rss<sup>12+</sup>  | bigint |  是  | 实际占用的物理内存的大小(包括共享库占用), 以KB为单位。         |
+| sharedDirty<sup>12+</sup>  | bigint |  是  | 共享脏内存的大小，以KB为单位。      |
+| privateDirty<sup>12+</sup>  | bigint |  是  | 专用脏内存的大小，以KB为单位。      |
+| sharedClean<sup>12+</sup>  | bigint |  是  | 共享干净内存的大小，以KB为单位。      |
+| privateClean<sup>12+</sup>  | bigint |  是  | 专用干净内存的大小，以KB为单位。      |
 
 ## hidebug.getSystemMemInfo<sup>12+</sup>
 
 getSystemMemInfo(): SystemMemInfo
 
-获取系统内存信息
+获取系统内存信息。
 
 **系统能力**： SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -736,9 +736,9 @@ hilog.info(0x0000, 'testTag', "availableMem = %{public}d", systemMemInfo.availab
 
 | 名称      | 类型   | 必填 | 说明         |
 | --------- | ------ | ---- | ------------ |
-| totalMem<sup>12+</sup>  | bigint |  是  | 系统总的内存，以KB为单位     |
-| freeMem<sup>12+</sup>  | bigint |  是  | 系统空闲的内存，以KB为单位       |
-| availableMem<sup>12+</sup>  | bigint |  是  | 系统可用的内存，以KB为单位      |
+| totalMem<sup>12+</sup>  | bigint |  是  | 系统总的内存，以KB为单位。     |
+| freeMem<sup>12+</sup>  | bigint |  是  | 系统空闲的内存，以KB为单位。       |
+| availableMem<sup>12+</sup>  | bigint |  是  | 系统可用的内存，以KB为单位。      |
 
 ## TraceFlag<sup>12+</sup>
 
