@@ -662,10 +662,10 @@ getAppNativeMemInfo(): NativeMemInfo
 
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-**返回值：**
+**返回值**
 
-| 类型   | 说明                                     |
-| ------ | ---------------------------------------- |
+| 类型  | 说明                      |
+| ------ | -------------------------- |
 | [NativeMemInfo](#nativeMemInfo) | 应用进程耗用内存大小|
 
 **示例**
@@ -711,10 +711,10 @@ getSystemMemInfo(): SystemMemInfo
 
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-**返回值：**
+**返回值**
 
-| 类型   | 说明                                     |
-| ------ | ---------------------------------------- |
+| 类型  | 说明                      |
+| ------ | -------------------------- |
 | [SystemMemInfo](#systemMemInfo) | 系统耗用内存大小|
 
 **示例**
