@@ -5,6 +5,10 @@
 
 Provides type conversion methods.
 
+**File to include**: <database/rdb/oh_value_object.h>
+
+**Library**: libnative_rdb_ndk.z.so
+
 **Since**
 
 10
@@ -29,4 +33,3 @@ Provides type conversion methods.
 | Name| Description|
 | -------- | -------- |
 | [OH_VObject](_r_d_b.md#oh_vobject) | Indicates the allowed data field types. |
-
