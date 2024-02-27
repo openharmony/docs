@@ -666,11 +666,11 @@ getAppNativeMemInfo(): NativeMemInfo
 
 | 类型  | 说明                      |
 | ------ | -------------------------- |
-| [NativeMemInfo](#nativeMemInfo) | 应用进程耗用内存大小|
+| [NativeMemInfo](#nativememinfo) | 应用进程耗用内存大小|
 
 **示例**
 
-  ```ts
+```ts
 let nativeMemInfo: NativeMemInfo = hidebug.getAppNativeMemInfo();
 
 hilog.info(0x0000, 'testTag', "pss = %{public}d", nativeMemInfo.pss);
@@ -686,7 +686,7 @@ hilog.info(0x0000, 'testTag', "privateDirty = %{public}d", nativeMemInfo.private
 hilog.info(0x0000, 'testTag', "sharedClean = %{public}d", nativeMemInfo.sharedClean);
 
 hilog.info(0x0000, 'testTag', "privateClean = %{public}d", nativeMemInfo.privateClean);
-  ```
+```
 ## NativeMemInfo
 
 应用进程耗用内存大小
@@ -715,7 +715,7 @@ getSystemMemInfo(): SystemMemInfo
 
 | 类型  | 说明                      |
 | ------ | -------------------------- |
-| [SystemMemInfo](systemMemInfo) | 系统耗用内存大小|
+| [SystemMemInfo](systemmeminfo) | 系统耗用内存大小|
 
 **示例**
 
