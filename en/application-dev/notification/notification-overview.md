@@ -29,19 +29,19 @@ The notification service process involves the notification subsystem, notificati
 - Easy management of published notifications, for example, canceling published notifications and querying all published notifications
 - Requesting notification authorization and checking notification authorization status
 - Notification badge management
-- Management of wants for notification touches, such as redirecting the user to a UIAbility or publishing a custom common event.
+- Management of wants for touches on notifications, such as redirecting the user to a UIAbility or publishing a custom common event.
 
 
 ## Relationship with Related Kits
 
 - Notifications created by Notification Kit are displayed in the notification panel in real time. To publish scheduled notifications when your application is in the background or is not running, you can use BackGroundTask Kit. For example, you can use it to publish a flash sale reminder for your shopping application. Currently, the notification reminder feature is available for countdown, calendar, and alarm events.
 - You can use Push Kit to push remote notifications to the local device.
-- You can use Ability Kit to set wants for notification touches.
+- You can use Ability Kit to set wants for touches on notifications.
 
 
 ## Constraints
 
 - There is a limit on the number of notifications per application in the system windows. The current limit is 24.
 - A basic notification cannot exceed 200 KB (due to cross-process serialization).
-- The total number of notifications published by all system applications cannot exceed 10 per second.
+- The total number of notifications published by all system applications cannot exceed 10 per second, and that of notifications updated cannot exceed 20 per second.
 
