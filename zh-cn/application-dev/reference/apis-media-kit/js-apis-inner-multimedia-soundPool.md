@@ -174,6 +174,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 load(fd: number, offset: number, length: number, callback: AsyncCallback\<number>): void
 
 加载音频资源。使用callback方式异步获取资源ID，入参可手动传入资源信息或通过读取应用内置资源自动获取。
+该方法不支持加载rawfile目录资源，需要通过load(fd: number, offset: number, length: number, callback: AsyncCallback\<number>): void或者load(fd: number, offset: number, length: number): Promise\<number>实现。
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
