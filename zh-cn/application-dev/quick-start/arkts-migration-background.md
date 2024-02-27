@@ -137,3 +137,15 @@ TS通过打开编译选项`strictNullChecks`来实现此特性。但是TS是被�
 
   - compatibleSdkVersion >= 10 为标准模式。在该模式下，对.ets文件，违反ArkTS语法规则的代码会导致工程编译失败，需要完全适配ArkTS语法后方可编译成功。
   - compatibleSdkVersion < 10 为兼容模式。在该模式下，对.ets文件，以warning形式提示违反ArkTS语法规则的所有代码。尽管违反ArkTS语法规则的工程在兼容模式下仍可编译成功，但是需要完全适配ArkTS语法后方可在标准模式下编译成功。
+
+
+## 兼容TS/JS的约束
+
+在API version 11上，OpenHarmony SDK中的TypeScript版本为4.9.5，target字段为es2017。开发者可以使用ECMA2017+的语法进行应用开发。
+
+应用环境限制
+
+1. 强制使用严格模式（use strict）
+2. 禁止使用`eval()`
+3. 禁止使用`with() {}`
+4. 禁止以字符串为代码创建函数
