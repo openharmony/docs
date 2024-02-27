@@ -367,7 +367,6 @@ struct Index3 { // 路径为：`library/src/main/ets/pages/Back.ets
           .fontFamily('HarmonyHeiTi')
           .fontWeight(FontWeight.Bold)
           .fontSize(32)
-          .fontWeight(700)
           .fontColor($r('app.color.text_color'))
           .margin({ top: '32px' })
           .width('624px')
