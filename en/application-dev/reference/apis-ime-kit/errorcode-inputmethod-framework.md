@@ -12,7 +12,7 @@ Package manager error.
 
 **Description**
 
-This error code is reported when an API of the package manager, such as **getInputMethods** and **listCurrentInputMethodSubtype**, fails to be invoked to obtain information.
+This error code is reported when an API of the package manager, such as **getInputMethods** and **listCurrentInputMethodSubtype**, fails to be called to obtain information.
 
 **Possible Causes**
 
@@ -30,7 +30,7 @@ Input method engine error.
 
 **Description**
 
-This error code is reported when an input method API fails to be invoked.
+This error code is reported when an input method API fails to be called.
 
 **Possible Causes**
 
@@ -38,7 +38,7 @@ The input method process is suspended.
 
 **Solution**
 
-Check whether the input method process is running properly. For example, click the input text box in an application and check whether the input keyboard is displayed.
+Check whether the input method process is running properly. For example, click the text input box in an application to check whether the input keyboard is displayed.
 
 ## 12800003 Input Method Client Error
 
@@ -48,7 +48,7 @@ Input method client error.
 
 **Description**
 
-This error code is reported when the API for showing or hiding the keyboard fails to be invoked by a third-party application.
+This error code is reported when the API for showing or hiding the keyboard fails to be called by a third-party application.
 
 **Possible Causes**
 
@@ -56,9 +56,9 @@ The input method is disconnected from the third-party application due to a servi
 
 **Solution**
 
-Bind the input method to the third-party application again: Close the background process of the third-party application, start the application again, and touch an input text box. If the keyboard is displayed properly, the issue is resolved.
+Bind the input method to the third-party application again: Close the background process of the third-party application, start the application again, and touch a text input box. If the keyboard is displayed properly, the issue is resolved.
 
-## 12800004 Not an Input Method.
+## 12800004 Not an Input Method
 
 **Error Message**
 
@@ -138,7 +138,7 @@ Input method manager service error.
 
 **Description**
 
-This error code is reported when an API of the [input method framework](../apis/js-apis-inputmethod.md) fails to be invoked.
+This error code is reported when an API of the [input method framework](js-apis-inputmethod.md) fails to be called.
 
 **Possible Causes**
 
@@ -178,7 +178,7 @@ This error code is reported when the invoking application is not the preconfigur
 
 **Possible Causes**
 
-The API is called by an application that is not the preconfigured default input method.
+The API is called by an application other than the preconfigured default input method.
 
 **Solution**
 

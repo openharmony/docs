@@ -17,7 +17,7 @@ import inputMethodL from '@ohos.inputMethodList';
 Not supported
 
 ## Attributes
-The [universal attributes](../arkui-ts/ts-universal-attributes-size.md) are not supported.
+The [universal attributes](../apis-arkui/arkui-ts/ts-universal-attributes-size.md) are not supported.
 
 ## InputMethodListDialog
 
@@ -33,7 +33,7 @@ Implements a dialog box showing the input method list.
 
 | Name| Type| Mandatory| Decorator| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| controller | [CustomDialogController](../arkui-ts/ts-methods-custom-dialog-box.md) | Yes| - | Controller for the dialog box showing the input method list.|
+| controller | [CustomDialogController](../apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md) | Yes| - | Controller for the dialog box showing the input method list.|
 | patternOptions | [PatternOptions](#patternoptions) | No| - | Input method pattern options (for the default input method only).|
 
 ## PatternOptions
@@ -52,12 +52,12 @@ Implements a dialog box showing the input method list.
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| icon<sup>11+</sup>  | [Resource](../arkui-ts/ts-types.md#resource) | Yes| Yes| Mandatory. Default icon.|
-| selectedIcon<sup>11+</sup>    | [Resource](../arkui-ts/ts-types.md#resource) | Yes| Yes| Mandatory. Icon for the selected option.|
+| icon<sup>11+</sup>  | [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) | Yes| Yes| Mandatory. Default icon.|
+| selectedIcon<sup>11+</sup>    | [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) | Yes| Yes| Mandatory. Icon for the selected option.|
 
 ##  Events
 
-The [universal events](../arkui-ts/ts-universal-events-click.md) are not supported.
+The [universal events](../apis-arkui/arkui-ts/ts-universal-events-click.md) are not supported.
 
 ##  Example
 
