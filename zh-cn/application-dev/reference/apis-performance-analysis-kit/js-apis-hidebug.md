@@ -405,7 +405,7 @@ dumpHeapData(filename : string) : void
 hidebug.dumpHeapData("heap-20220216");
 ```
 
-## hidebug.getAppVMMemoryInfo<sup>12+<sup>
+## hidebug.getAppVMMemoryInfo<sup>12+</sup>
 
 getAppVMMemoryInfo(): VMMemoryInfo
 
@@ -428,7 +428,7 @@ hilog.info(0x0000, "example", "heapUsed = %{public}d", vmMemory.heapUsed);
 hilog.info(0x0000, "example", "allArraySize = %{public}d", vmMemory.allArraySize);
   ```
 
-## hidebug.getAppThreadCpuUsage<sup>12+<sup>
+## hidebug.getAppThreadCpuUsage<sup>12+</sup>
 
 getAppThreadCpuUsage(): ThreadCpuUsage[]
 
@@ -565,7 +565,7 @@ getAppMemoryLimit() : MemoryLimit
 | vssLimit  | bigint |  是  | 进程的虚拟内存限制（以字节为单位）       |
 | vmHeapLimit | bigint |  是  | 当前线程的 JS VM 堆大小限制（以字节为单位）      |
 
-## VMMemoryInfo<sup>12+<sup>
+## VMMemoryInfo<sup>12+</sup>
 
 描述VM内存信息。
 
