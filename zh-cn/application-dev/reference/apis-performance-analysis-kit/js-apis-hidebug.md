@@ -506,7 +506,7 @@ hidebug.stopAppTraceCapture();
 
 stopAppTraceCapture() : void
 
-停止应用trace采集，在停止采集前，需要通过'[startAppTraceCapture()](#startapptracecapture)'方法开始采集。
+停止应用trace采集，在停止采集前，需要通过'[hidebug.startAppTraceCapture()](#hidebug.startapptracecapture)'方法开始采集。
 
 先开启后关闭，严禁使用'start->start->stop'，'start->stop->stop'，'start->start->stop->stop'等类似的顺序调用。
 
