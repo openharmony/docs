@@ -727,7 +727,7 @@ hilog.info(0x0000, 'testTag', "totalMem = %{public}d", systemMemInfo.totalMem);
 hilog.info(0x0000, 'testTag', "freeMem = %{public}d", systemMemInfo.freeMem);
 
 hilog.info(0x0000, 'testTag', "availableMem = %{public}d", systemMemInfo.availableMem);
-```ts
+```
 ## SystemMemInfo
 
 系统耗用内存大小
