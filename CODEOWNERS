@@ -995,6 +995,8 @@ zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-charger-sys.md @
 zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-enterprise-usbManager-sys.md @liuzuming @ningningW @yangqing3 @caiminggang @warehouse12
 zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-power-sys.md @warehouse12  @alien0208
 zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-usbManager-sys.md @warehouse12 @Kevin-Lau @liuhonggang123
+zh-cn/application-dev/device/usb-overview.md @warehouse12
+zh-cn/application-dev/device/usb-guidelines.md @warehouse12
 
 
 
@@ -1046,6 +1048,8 @@ zh-cn/application-dev/reference/apis-accessibility-kit/js-apis-accessibility-con
 zh-cn/application-dev/reference/apis-accessibility-kit/errorcode-accessibility.md @RayShih @warehouse12
 
 [driverdevelopment kit]
+zh-cn/application-dev/application-models/driverextensionability.md @warehouse12
+zh-cn/application-dev/device/externaldevice-guidelines.md @warehouse12
 zh-cn/application-dev/reference/apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md @warehouse12
 zh-cn/application-dev/reference/apis-driverdevelopment-kit/js-apis-driver-deviceManager.md @warehouse12
 zh-cn/application-dev/reference/apis-driverdevelopment-kit/js-apis-inner-application-driverExtensionContext.md @warehouse12
