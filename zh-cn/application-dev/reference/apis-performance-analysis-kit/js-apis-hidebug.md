@@ -590,7 +590,7 @@ getAppMemoryLimit() : MemoryLimit
 
 ## tags<sup>12+</sup>
 
-描述各种场景标签。
+描述支持/使用场景标签。
 
 **系统能力:** 以下各项对应的系统能力均为SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
