@@ -3,14 +3,14 @@
 
 ## When to Use
 
-The **Preferences** module provides APIs for processing data in the form of key-value (KV) pairs, and supports persistence of the KV pairs when required, as well as modification and query of the data. You can use **Preferences** when you want a unique storage for global data. **Preferences** caches data in the memory, which allows fast access when the data is required. **Preferences** is recommended for storing small amount of data, such as personalized settings (font size and whether to enable the night mode) of applications.
+The **Preferences** module provides APIs for processing data in the form of key-value (KV) pairs, including querying, modifying, and persisting KV pairs. You can use **Preferences** when you want a unique storage for global data. <br>**Preferences** caches data in the memory, which allows fast access when the data is required. If you want to persist data, you can use **flush()** to save the data to a file. **Preferences** is recommended for storing small amount of data, such as personalized settings (font size and whether to enable the night mode) of applications.
 
 
 ## Working Principles
 
-User applications call **Preference** through the JS interface to read and write data files. You can load the data of a **Preferences** persistence file to a **Preferences** instance. Each file uniquely corresponds to an instance. The system stores the instance in memory through a static container until the instance is removed from the memory or the file is deleted. The following figure illustrates how **Preference** works.
+User applications call **Preference** through the ArkTS interface to read and write data files. You can load the data of a **Preferences** persistence file to a **Preferences** instance. Each file uniquely corresponds to an instance. The system stores the instance in memory through a static container until the instance is removed from the memory or the file is deleted. The following figure illustrates how **Preference** works.
 
-The preference persistent file of an application is stored in the application sandbox. You can use **context** to obtain the file path. For details, see [Obtaining Application File Paths](../application-models/application-context-stage.md# obtaining-application-file-paths).
+The preference persistent file of an application is stored in the application sandbox. You can use **context** to obtain the file path. For details, see [Obtaining Application File Paths](../application-models/application-context-stage.md#obtaining-application-file-paths).
 
 **Figure 1** Preferences working mechanism 
 
@@ -30,23 +30,23 @@ The preference persistent file of an application is stored in the application sa
 
 The following table lists the APIs used for preferences data persistence. Most of the APIs are executed asynchronously in callback or promise mode. The following table uses the callback-based APIs as an example. For more information about the APIs, see [User Preferences](../reference/apis/js-apis-data-preferences.md).
 
-| API| Description|
+  | API| Description| 
 | -------- | -------- |
-| getPreferences(context: Context, name: string, callback: AsyncCallback&lt;Preferences&gt;): void | Obtain a **Preferences** instance.|
-| put(key: string, value: ValueType, callback: AsyncCallback&lt;void&gt;): void | Writes data to the Preferences instance. You can use **flush()** to persist the **Preferences** instance data.|
-| has(key: string, callback: AsyncCallback&lt;boolean&gt;): void | Checks whether the **Preferences** instance contains a KV pair with the given key. The key cannot be empty.|
-| get(key: string, defValue: ValueType, callback: AsyncCallback&lt;ValueType&gt;): void | Obtains the value of the specified key. If the value is null or not of the default value type, **defValue** is returned.|
-| delete(key: string, callback: AsyncCallback&lt;void&gt;): void | Deletes the KV pair with the given key from the **Preferences** instance.|
-| flush(callback: AsyncCallback&lt;void&gt;): void | Flushes the data of this **Preferences** instance to a file for data persistence.|
-| on(type: 'change', callback: Callback&lt;{ key : string }&gt;): void | Subscribes to data changes of the specified key. When the value of the specified key is changed and saved by **flush()**, a callback will be invoked to return the new data.|
-| off(type: 'change', callback?: Callback&lt;{ key : string }&gt;): void | Unsubscribes from data changes.|
-| deletePreferences(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void | Deletes a **Preferences** instance from memory. If the **Preferences** instance has a persistent file, this API also deletes the persistent file.|
+| getPreferences(context: Context, name: string, callback: AsyncCallback&lt;Preferences&gt;): void | Obtain a **Preferences** instance.| 
+| put(key: string, value: ValueType, callback: AsyncCallback&lt;void&gt;): void | Writes data to the **Preferences** instance. You can use **flush()** to persist the **Preferences** instance data.| 
+| has(key: string, callback: AsyncCallback&lt;boolean&gt;): void | Checks whether the **Preferences** instance contains a KV pair with the given key. The key cannot be empty.| 
+| get(key: string, defValue: ValueType, callback: AsyncCallback&lt;ValueType&gt;): void | Obtains the value of the specified key. If the value is null or not of the default value type, **defValue** is returned.| 
+| delete(key: string, callback: AsyncCallback&lt;void&gt;): void | Deletes the KV pair with the given key from the **Preferences** instance.| 
+| flush(callback: AsyncCallback&lt;void&gt;): void | Flushes the data of this **Preferences** instance to a file for data persistence.| 
+| on(type: 'change', callback: Callback&lt;{ key : string }&gt;): void | Subscribes to data changes of the specified key. When the value of the specified key is changed and saved by **flush()**, a callback will be invoked to return the new data.| 
+| off(type: 'change', callback?: Callback&lt;{ key : string }&gt;): void | Unsubscribes from data changes.| 
+| deletePreferences(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void | Deletes a **Preferences** instance from memory. If the **Preferences** instance has a persistent file, this API also deletes the persistent file.| 
 
 
 ## How to Develop
 
 1. Import the **@ohos.data.preferences** module.
-   
+     
    ```js
    import dataPreferences from '@ohos.data.preferences';
    ```
@@ -55,7 +55,7 @@ The following table lists the APIs used for preferences data persistence. Most o
 
    Stage model:
 
-   
+     
    ```js
    import UIAbility from '@ohos.app.ability.UIAbility';
    
@@ -79,7 +79,7 @@ The following table lists the APIs used for preferences data persistence. Most o
 
    FA model:
 
-   
+     
    ```js
    import featureAbility from '@ohos.ability.featureAbility';
    
@@ -110,7 +110,7 @@ The following table lists the APIs used for preferences data persistence. Most o
 
    Example:
 
-   
+     
    ```js
    try {
      preferences.has('startup', function (err, val) {
@@ -143,10 +143,8 @@ The following table lists the APIs used for preferences data persistence. Most o
 
 4. Read data.
 
-   Use **get()** to obtain the value of the specified key. If the value is null or is not of the default value type, the default data is returned.
-
-   Example:
-
+     Use **get()** to obtain the value of the specified key. If the value is null or is not of the default value type, the default data is returned.<br>Example:
+     
    ```js
    try {
      preferences.get('startup', 'default', (err, val) => {
@@ -165,7 +163,7 @@ The following table lists the APIs used for preferences data persistence. Most o
 
    Use delete() to delete a KV pair.<br>Example:
 
-   
+     
    ```js
    try {
      preferences.delete('startup', (err) => {
@@ -182,10 +180,8 @@ The following table lists the APIs used for preferences data persistence. Most o
 
 6. Persist data.
 
-   You can use **flush()** to persist the data held in a **Preferences** instance to a file.
-
-   Example:
-
+     You can use **flush()** to persist the data held in a **Preferences** instance to a file.<br>Example:
+     
    ```js
    try {
      preferences.flush((err) => {
@@ -202,10 +198,8 @@ The following table lists the APIs used for preferences data persistence. Most o
 
 7. Subscribe to data changes.
 
-   Specify an observer as the callback to return the data changes for an application. When the value of the subscribed key is changed and saved by **flush()**, the observer callback will be invoked to return the new data.
-
-   Example:
-
+     Specify an observer as the callback to return the data changes for an application. When the value of the subscribed key is changed and saved by **flush()**, the observer callback will be invoked to return the new data.<br>Example:
+     
    ```js
    let observer = function (key) {
      console.info('The key' + key + 'changed.');
@@ -240,7 +234,7 @@ The following table lists the APIs used for preferences data persistence. Most o
 
    Example:
 
-   
+     
    ```js
    try {
      dataPreferences.deletePreferences(this.context, 'mystore', (err, val) => {
