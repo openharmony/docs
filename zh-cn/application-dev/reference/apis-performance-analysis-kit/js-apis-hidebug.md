@@ -629,9 +629,9 @@ getAppMemoryLimit() : MemoryLimit
 
 getSystemCpuUsage() : number
 
-获取系统的CPU资源占用情况.
+获取系统的CPU资源占用情况。
 
-例如, 当系统资源CPU占用为 **50%**, 将返回**0.5**.
+例如, 当系统资源CPU占用为 **50%**, 将返回**0.5**。
 
 **系统能力**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -639,7 +639,7 @@ getSystemCpuUsage() : number
 
 | 类型     | 说明           |
 |--------|--------------|
-| number | 系统Cpu资源占用情况. |
+| number | 系统CPU资源占用情况. |
 
 **错误码：**
 
@@ -647,7 +647,7 @@ getSystemCpuUsage() : number
 
 | 错误码ID | 错误信息                                           |
 | ------- |------------------------------------------------|
-| 11400104 | The status of the system cpu usage is abnormal |
+| 11400104 | The status of the system CPU usage is abnormal |
 
 **示例**
   ```ts
