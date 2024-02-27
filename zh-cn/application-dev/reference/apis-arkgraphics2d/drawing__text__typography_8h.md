@@ -143,7 +143,7 @@
 | bool [OH_Drawing_TypographyIsLineUnlimited](_drawing.md#oh_drawing_typographyislineunlimited) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*style) | 获取文本是否有最大行数限制。 | 
 | bool [OH_Drawing_TypographyIsEllipsized](_drawing.md#oh_drawing_typographyisellipsized) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*style) | 获取文本是否有省略号。 | 
 | void [OH_Drawing_SetTypographyTextLocale](_drawing.md#oh_drawing_settypographytextlocale) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*style, const char \*locale) | 设置文本位置。 | 
-| bool [OH_Drawing_TextStyleGetFontMetrics](_drawing.md#oh_drawing_textstylegetfontmetrics) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, [OH_Drawing_Typography](_drawing.md#oh_drawing_typography) \*, [OH_Drawing_Font_Metrics](_o_h___drawing___font___metrics.md) \*) | 获取文本字体属性。 | 
+| bool [OH_Drawing_TextStyleGetFontMetrics](_drawing.md#oh_drawing_textstylegetfontmetrics) ([OH_Drawing_Typography](_drawing.md#oh_drawing_typography) \*, [OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, [OH_Drawing_Font_Metrics](_o_h___drawing___font___metrics.md) \*) | 获取文本字体属性。 | 
 | void [OH_Drawing_SetTypographyTextStyle](_drawing.md#oh_drawing_settypographytextstyle) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*, [OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*) | 设置文本类型。 | 
 | [OH_Drawing_FontDescriptor](_o_h___drawing___font_descriptor.md) \* [OH_Drawing_CreateFontDescriptor](_drawing.md#oh_drawing_createfontdescriptor) (void) | 构造字体描述对象，用于描述系统字体详细信息。 | 
 | void [OH_Drawing_DestroyFontDescriptor](_drawing.md#oh_drawing_destroyfontdescriptor) ([OH_Drawing_FontDescriptor](_o_h___drawing___font_descriptor.md) \*) | 释放字体描述对象占用的内存。 | 
@@ -176,7 +176,7 @@
 | void [OH_Drawing_DestroyTextShadow](_drawing.md#oh_drawing_destroytextshadow) ([OH_Drawing_TextShadow](_drawing.md#oh_drawing_textshadow) \*) | 释放被字体阴影对象占据的内存。 | 
 | [OH_Drawing_TextShadow](_drawing.md#oh_drawing_textshadow) \* [OH_Drawing_TextStyleGetShadows](_drawing.md#oh_drawing_textstylegetshadows) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*) | 获取字体阴影容器。 | 
 | int [OH_Drawing_TextStyleGetShadowCount](_drawing.md#oh_drawing_textstylegetshadowcount) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*) | 获取字体阴影容器的大小。 | 
-| void [OH_Drawing_TextStyleAddShadow](_drawing.md#oh_drawing_textstyleaddshadow) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, [OH_Drawing_TextShadow](_drawing.md#oh_drawing_textshadow) \*) | 字体阴影容器中添加字体阴影元素。 | 
+| void [OH_Drawing_TextStyleAddShadow](_drawing.md#oh_drawing_textstyleaddshadow) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, const [OH_Drawing_TextShadow](_drawing.md#oh_drawing_textshadow) \*) | 字体阴影容器中添加字体阴影元素。 | 
 | void [OH_Drawing_TextStyleClearShadows](_drawing.md#oh_drawing_textstyleclearshadows) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*) | 清除字体阴影容器中的所有元素。 | 
 | [OH_Drawing_TextShadow](_drawing.md#oh_drawing_textshadow) \* [OH_Drawing_TextStyleGetShadowWithIndex](_drawing.md#oh_drawing_textstylegetshadowwithindex) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, int) | 根据下标获取字体阴影容器中的元素。 | 
 | void [OH_Drawing_TypographySetIndents](_drawing.md#oh_drawing_typographysetindents) ([OH_Drawing_Typography](_drawing.md#oh_drawing_typography) \*, int, const float indents[]) | 设置文本的排版缩进。 | 
