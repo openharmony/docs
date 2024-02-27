@@ -24,6 +24,12 @@ onDragStart(event: (event: DragEvent, extraParams?: string) => CustomBuilder | D
 
 第一次拖拽此事件绑定的组件时，长按时间 >= 500ms，然后手指移动距离 >= 10vp，触发回调。
 
+针对默认支持拖出能力的组件，如果开发者设置了onDragStart，优先执行开发者的onDragStart，并根据执行情况决定是否使用系统默认的拖出能力，具体为：
+- 如果开发者返回了自定义背板图，则不再使用系统默认的拖拽背板图；
+- 如果开发者设置了拖拽数据，则不再使用系统默认填充的拖拽数据。
+
+文本类组件Text、Search、TextInput、TextArea对选中的文本内容进行拖拽时，不支持背板图的自定义。
+
 **事件优先级：** 长按触发时间 < 500ms，长按事件优先拖拽事件响应，长按触发时间 >= 500ms，拖拽事件优先长按事件响应。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
