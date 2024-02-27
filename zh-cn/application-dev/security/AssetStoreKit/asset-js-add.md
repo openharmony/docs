@@ -33,7 +33,7 @@
 
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
