@@ -12,15 +12,13 @@ The distributed data object (**distributedDataObject**) module implements global
 
 ## Basic Concepts
 
-- Distributed in-memory database
-  
+- Distributed in-memory database<br>
   The distributed in-memory database caches data in the memory so that applications can quickly access data without persisting data. If the database is closed, the data is not retained.
-  
-- Distributed data object
 
+- Distributed data object<br>
   A distributed data object is an encapsulation of the JS object type. Each distributed data object instance creates a data table in the in-memory database. The in-memory databases created for different applications are isolated from each other. Reading and writing a distributed data object are mapped to the **get** and **put** operations in the corresponding database, respectively.
 
-The distributed data object has the following states in its lifecycle:
+  The distributed data object has the following states in its lifecycle:
 
   - **Uninitialized**: The distributed data object is not instantiated or is destroyed.
   - **Local**: A data table is created, but the data cannot be synchronized.
@@ -46,9 +44,9 @@ The distributed data objects are encapsulated JS objects in distributed in-memor
 
 **Table 1** Correspondence between a distributed data object and a distributed database
 
-| Distributed Data Object Instance| Object Instance| Property Name| Property Value|
+| Distributed Data Object Instance| Object Instance| Property Name| Property Value| 
 | -------- | -------- | -------- | -------- |
-| Distributed in-memory database| Database identified by **sessionID**| Key of a record in the database| Value of a record in the database|
+| Distributed in-memory database| Database identified by **sessionID**| Key of a record in the database| Value of a record in the database| 
 
 
 ### Cross-Device Synchronization and Data Change Notification
@@ -57,7 +55,7 @@ One of the most important functions of distributed data objects is to implement 
 
 As shown in the following figure, distributed data object 1 of device A and distributed data object 1 of device B are set with the same session ID **session1**, and synchronization relationship of session 1 is established between the two objects.
 
-**Figure 2** Object synchronization relationship 
+  **Figure 2** Object synchronization relationship 
 
 ![distributedObject_sync](figures/distributedObject_sync.jpg)
 
@@ -74,7 +72,7 @@ After the synchronization relationship is established, each session has a copy o
 
 ### Minimum Synchronization Unit
 
-Property is the minimum unit to synchronize in distributed data objects. For example, object 1 in the following figure has three properties: name, age, and parents. If one of the properties is changed, only the changed attribute needs to be synchronized.
+Property is the minimum unit to synchronize in distributed data objects. For example, object 1 in the following figure has three properties: name, age, and parents. If one of the properties is changed, only the changed property needs to be synchronized.
 
 **Figure 3** Synchronization of distributed data objects
 
@@ -144,10 +142,10 @@ The following example demonstrates how to implement synchronization of distribut
    import distributedDataObject from '@ohos.data.distributedDataObject';
    ```
 
-2. Apply for required permissions.
+2. Apply for permissions.
 
-   1. Apply for the **ohos.permission.DISTRIBUTED_DATASYNC** permission. For details, see [Declaring Permissions in the Configuration File](../security/accesstoken-guidelines.md#declaring-permissions-in-the-configuration-file).
-   2. Display a dialog box to ask authorization from the user when the application is started for the first time. For details, see [Requesting User Authorization](../security/accesstoken-guidelines.md#requesting-user-authorization).
+   1. Request the **ohos.permission.DISTRIBUTED_DATASYNC** permission. For details, see [Declaring Permissions in the Configuration File](../security/accesstoken-guidelines.md#declaring-permissions-in-the-configuration-file).
+   2. Display a dialog box to ask for user authorization when the application is started for the first time. For details, see [Requesting User Authorization](../security/accesstoken-guidelines.md#requesting-user-authorization).
 
 3. Create a distributed data object instance.
 
@@ -186,7 +184,7 @@ The following example demonstrates how to implement synchronization of distribut
    class EntryAbility extends UIAbility {
      onWindowStageCreate(windowStage: window.WindowStage) {
        let parentSource: ParentObject = new ParentObject('jack mom', 'jack Dad');
-       let source: SourceObject = new SourceObject("amy", 18, false, parentSource);
+       let source: SourceObject = new SourceObject("jack", 18, false, parentSource);
        let localObject: distributedDataObject.DataObject = distributedDataObject.create(this.context, source);
      }
    }
@@ -221,7 +219,7 @@ The following example demonstrates how to implement synchronization of distribut
      }
    }
    let parentSource: ParentObject = new ParentObject('jack mom', 'jack Dad');
-   let source: SourceObject = new SourceObject("amy", 18, false, parentSource);
+   let source: SourceObject = new SourceObject("jack", 18, false, parentSource);
    // Create a distributed data object, which has properties of the string, number, boolean, and object types.
    let localObject: distributedDataObject.DataObject = distributedDataObject.create(context, source);
    ```
@@ -239,7 +237,7 @@ The following example demonstrates how to implement synchronization of distribut
    // Create a distributed data object, which has properties of the string, number, boolean, and object types.
    let remoteSource: SourceObject = new SourceObject(undefined, undefined, undefined, undefined);
    let remoteObject: distributedDataObject.DataObject = distributedDataObject.create(this.context, remoteSource);
-   // After learning that the device goes online, the remote object synchronizes data. That is, name is changed to jack and age to 18.
+   // After receiving the message indicating the device goes online, the remote object synchronizes data. That is, name is changed to jack and age is changed to 18.
    remoteObject.setSessionId(sessionId);
    ```
 
@@ -319,7 +317,7 @@ The following example demonstrates how to implement synchronization of distribut
     }).catch((err: BusinessError) => {
       console.error(`Failed to save. Code:${err.code},message:${err.message}`);
     });
-      
+   
     // Revoke the data saved.
     localObject.revokeSave().then((result: distributedDataObject.RevokeSaveSuccessResponse) => {
       console.info(`Succeeded in revokeSaving. Session:${result.sessionId}`);
