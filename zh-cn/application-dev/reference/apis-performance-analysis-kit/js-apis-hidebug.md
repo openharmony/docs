@@ -715,7 +715,7 @@ getSystemMemInfo(): SystemMemInfo
 
 | 类型  | 说明                      |
 | ------ | -------------------------- |
-| [SystemMemInfo](systemmeminfo) | 系统耗用内存大小|
+| [SystemMemInfo](#systemmeminfo) | 系统耗用内存大小|
 
 **示例**
 
@@ -732,7 +732,7 @@ hilog.info(0x0000, 'testTag', "availableMem = %{public}d", systemMemInfo.availab
 
 系统耗用内存大小
 
-**系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
+**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 | 名称      | 类型   | 必填 | 说明         |
 | --------- | ------ | ---- | ------------ |
