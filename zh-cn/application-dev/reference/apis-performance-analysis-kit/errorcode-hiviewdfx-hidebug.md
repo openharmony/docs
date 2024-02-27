@@ -21,7 +21,7 @@ ServiceId is invalid, systemAbility is not exist.
 
 传入正确的系统服务id。
 
-## 11400102 trace重复采集
+## 11400102 重复采集
 
 **错误信息**
 
@@ -55,14 +55,14 @@ Without write permission on the file.
 
 重新运行采集接口，再次生成正确目录文件。
 
-## 11400104 trace采集异常
+## 11400104 内部异常
 
 **错误信息**
 
-The status of the trace is abnormal.
+The status is abnormal.
 
 **错误描述**
-当前trace采集的状态是非正常的。
+当前系统内部的状态是异常。
 
 **可能原因**
 
