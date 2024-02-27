@@ -658,7 +658,7 @@ getSystemCpuUsage() : number
 
 getAppNativeMemInfo(): NativeMemInfo
 
-获取应用进程耗用内存大小
+获取应用进程内存信息
 
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -666,7 +666,7 @@ getAppNativeMemInfo(): NativeMemInfo
 
 | 类型  | 说明                      |
 | ------ | -------------------------- |
-| [NativeMemInfo](#nativememinfo) | 应用进程耗用内存大小|
+| [NativeMemInfo](#nativememinfo) | 应用进程内存信息|
 
 **示例**
 
@@ -687,9 +687,9 @@ hilog.info(0x0000, 'testTag', "sharedClean = %{public}d", nativeMemInfo.sharedCl
 
 hilog.info(0x0000, 'testTag', "privateClean = %{public}d", nativeMemInfo.privateClean);
 ```
-## NativeMemInfo
+## NativeMemInfo<sup>12+</sup>
 
-应用进程耗用内存大小
+应用进程内存信息
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -707,7 +707,7 @@ hilog.info(0x0000, 'testTag', "privateClean = %{public}d", nativeMemInfo.private
 
 getSystemMemInfo(): SystemMemInfo
 
-获取系统耗用内存大小
+获取系统内存信息
 
 **系统能力**： SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -715,7 +715,7 @@ getSystemMemInfo(): SystemMemInfo
 
 | 类型  | 说明                      |
 | ------ | -------------------------- |
-| [SystemMemInfo](#systemmeminfo) | 系统耗用内存大小|
+| [SystemMemInfo](#systemmeminfo) | 系统内存信息|
 
 **示例**
 
@@ -728,9 +728,9 @@ hilog.info(0x0000, 'testTag', "freeMem = %{public}d", systemMemInfo.freeMem);
 
 hilog.info(0x0000, 'testTag', "availableMem = %{public}d", systemMemInfo.availableMem);
 ```
-## SystemMemInfo
+## SystemMemInfo<sup>12+</sup>
 
-系统耗用内存大小
+系统内存信息
 
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
