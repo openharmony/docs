@@ -39,7 +39,9 @@
 | int32_t [OH_ArkUI_UIInputEvent_GetType](#oh_arkui_uiinputevent_gettype) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event) | 获取UI输入事件的类型。  | 
 | int64_t [OH_ArkUI_UIInputEvent_GetEventTime](#oh_arkui_uiinputevent_geteventtime) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event) | 获取UI输入事件发生的时间。 | 
 | double [OH_ArkUI_AxisEvent_GetVerticalAxisValue](#oh_arkui_axisevent_getverticalaxisvalue) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event) | 获取当前轴事件的垂直滚动轴的值。  | 
-| double [OH_ArkUI_AxisEvent_GetHorizontalAxisValue](#oh_arkui_axisevent_gethorizontalaxisvalue) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event) | 获取当前轴事件的水平滚动轴的值。  | 
+| double [OH_ArkUI_AxisEvent_GetHorizontalAxisValue](#oh_arkui_axisevent_gethorizontalaxisvalue) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event) | 获取当前轴事件的水平滚动轴的值。  |
+| float [OH_ArkUI_AxisEvent_GetX](#oh_arkui_axisevent_getx) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event) | 获取当前轴事件的相对于当前组件左上角的X坐标。  |  
+| float [OH_ArkUI_AxisEvent_GetY](#oh_arkui_axisevent_gety) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event) | 获取当前轴事件的相对于当前组件左上角的Y坐标。  | 
 | float [OH_ArkUI_AxisEvent_GetWindowX](#oh_arkui_axisevent_getwindowx) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event) | 获取当前轴事件的相对于窗口的X坐标。  | 
 | float [OH_ArkUI_AxisEvent_GetWindowY](#oh_arkui_axisevent_getwindowy) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event) | 获取当前轴事件的相对于窗口的Y坐标。  | 
 | float [OH_ArkUI_AxisEvent_GetDisplayX](#oh_arkui_axisevent_getdisplayx) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event) | 获取当前轴事件的相对于屏幕的X坐标。  | 
@@ -209,6 +211,49 @@ float OH_ArkUI_AxisEvent_GetWindowY (const ArkUI_UIInputEvent * event)
 **返回：**
 
 返回当前轴事件的相对于窗口的Y坐标。
+
+### OH_ArkUI_AxisEvent_GetX()
+
+```
+float OH_ArkUI_AxisEvent_GetX (const ArkUI_UIInputEvent * event)
+```
+**描述：**
+
+获取当前轴事件的相对于当前组件左上角的X坐标。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 表示指向当前UI输入事件的指针。  | 
+
+**返回：**
+
+返回当前轴事件的相对于当前组件左上角的X坐标。
+
+
+### OH_ArkUI_AxisEvent_GetY()
+
+```
+float OH_ArkUI_AxisEvent_GetY (const ArkUI_UIInputEvent * event)
+```
+**描述：**
+
+获取当前轴事件的相对于当前组件左上角的Y坐标。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 表示指向当前UI输入事件的指针。  | 
+
+**返回：**
+
+返回当前轴事件的相对于当前组件左上角的Y坐标。
 
 ### OH_ArkUI_UIInputEvent_GetEventTime()
 
