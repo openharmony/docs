@@ -305,6 +305,7 @@
 - Data Management
   - [@ohos.data.cloudData (Device-Cloud Synergy)](js-apis-data-cloudData.md)
   - [@ohos.data.cloudExtension (Device-Cloud Sharing Extension)](js-apis-data-cloudExtension.md)
+  - [@ohos.data.commonType (数据通用类型)](js-apis-data-commonType.md)
   - [@ohos.data.dataAbility (DataAbility Predicates)](js-apis-data-ability.md)
   - [@ohos.data.dataShare (DataShare)](js-apis-data-dataShare.md)
   - [@ohos.data.dataSharePredicates (DataShare Predicates)](js-apis-data-dataSharePredicates.md)

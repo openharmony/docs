@@ -54,20 +54,14 @@ import { BusinessError } from '@ohos.base';
 let context = featureAbility.getContext();
 let preferences: dataPreferences.Preferences | null = null;
 
-try {
-    dataPreferences.getPreferences(context, 'myStore', (err: BusinessError, val: dataPreferences.Preferences) => {
-        if (err) {
-            console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
-            return;
-        }
-        preferences = val;
-        console.info("Succeeded in getting preferences.");
-    })
-} catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.error("Failed to get preferences. code =" + code + ", message =" + message);
-}
+dataPreferences.getPreferences(context, 'myStore', (err: BusinessError, val: dataPreferences.Preferences) => {
+    if (err) {
+        console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
+        return;
+    }
+    preferences = val;
+    console.info("Succeeded in getting preferences.");
+})
 ```
 
 Stage model:
@@ -81,20 +75,14 @@ let preferences: dataPreferences.Preferences | null = null;
 
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
-        try {
-            dataPreferences.getPreferences(this.context, 'myStore', (err: BusinessError, val: dataPreferences.Preferences) => {
-                if (err) {
+        dataPreferences.getPreferences(this.context, 'myStore', (err: BusinessError, val: dataPreferences.Preferences) => {
+            if (err) {
                 console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
                 return;
-                }
-                preferences = val;
-                console.info("Succeeded in getting preferences.");
-            })
-        } catch (err) {
-            let code = (err as BusinessError).code;
-            let message = (err as BusinessError).message;
-            console.error("Failed to get preferences. code =" + code + ", message =" + message);
-        }
+            }
+            preferences = val;
+            console.info("Succeeded in getting preferences.");
+        })
     }
 }
 ```
@@ -132,19 +120,13 @@ import { BusinessError } from '@ohos.base'
 let context = featureAbility.getContext();
 
 let preferences: dataPreferences.Preferences | null = null;
-try {
-    let promise = dataPreferences.getPreferences(context, 'myStore');
-    promise.then((object: dataPreferences.Preferences) => {
-        preferences = object;
-        console.info("Succeeded in getting preferences.");
-    }).catch((err: BusinessError) => {
-        console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
-    })
-} catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.error("Failed to get preferences. code =" + code + ", message =" + message);
-}
+let promise = dataPreferences.getPreferences(context, 'myStore');
+promise.then((object: dataPreferences.Preferences) => {
+    preferences = object;
+    console.info("Succeeded in getting preferences.");
+}).catch((err: BusinessError) => {
+    console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
+})
 ```
 
 Stage model:
@@ -158,19 +140,13 @@ let preferences: dataPreferences.Preferences | null = null;
 
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
-        try {
-            let promise = dataPreferences.getPreferences(this.context, 'myStore');
-            promise.then((object: dataPreferences.Preferences) => {
-                preferences = object;
-                console.info("Succeeded in getting preferences.");
-            }).catch((err: BusinessError) => {
-                console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
-            })
-        } catch (err) {
-            let code = (err as BusinessError).code;
-            let message = (err as BusinessError).message;
-            console.error("Failed to get preferences. code =" + code + ", message =" + message);
-        }
+        let promise = dataPreferences.getPreferences(this.context, 'myStore');
+        promise.then((object: dataPreferences.Preferences) => {
+            preferences = object;
+            console.info("Succeeded in getting preferences.");
+        }).catch((err: BusinessError) => {
+            console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
+        })
     }
 }
 ```
@@ -212,21 +188,15 @@ import { BusinessError } from '@ohos.base'
 let context = featureAbility.getContext();
 let preferences: dataPreferences.Preferences | null = null;
 
-try {
-    let options: dataPreferences.Options = { name: 'myStore' };
-    dataPreferences.getPreferences(context, options, (err: BusinessError, val: dataPreferences.Preferences) => {
-        if (err) {
-            console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
-            return;
-        }
-        preferences = val;
-        console.info("Succeeded in getting preferences.");
-    })
-} catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.error("Failed to get preferences. code =" + code + ", message =" + message);
-}
+let options: dataPreferences.Options = { name: 'myStore' };
+dataPreferences.getPreferences(context, options, (err: BusinessError, val: dataPreferences.Preferences) => {
+    if (err) {
+        console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
+        return;
+    }
+    preferences = val;
+    console.info("Succeeded in getting preferences.");
+})
 ```
 
 
@@ -241,21 +211,15 @@ let preferences: dataPreferences.Preferences | null = null;
 
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
-        try {
-            let options: dataPreferences.Options = { name: 'myStore', dataGroupId:'myId' };
-            dataPreferences.getPreferences(this.context, options, (err: BusinessError, val: dataPreferences.Preferences) => {
-                if (err) {
-                    console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
-                    return;
-                }
-                preferences = val;
-                console.info("Succeeded in getting preferences.");
-            })
-        } catch (err) {
-            let code = (err as BusinessError).code;
-            let message = (err as BusinessError).message;
-            console.error("Failed to get preferences. code =" + code + ", message =" + message);
-        }
+        let options: dataPreferences.Options = { name: 'myStore', dataGroupId:'myId' };
+        dataPreferences.getPreferences(this.context, options, (err: BusinessError, val: dataPreferences.Preferences) => {
+            if (err) {
+                console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
+                return;
+            }
+            preferences = val;
+            console.info("Succeeded in getting preferences.");
+        })
     }
 }
 ```
@@ -301,20 +265,14 @@ import { BusinessError } from '@ohos.base'
 let context = featureAbility.getContext();
 
 let preferences: dataPreferences.Preferences | null = null;
-try {
-    let options: dataPreferences.Options =  { name: 'myStore' };
-    let promise = dataPreferences.getPreferences(context, options);
-    promise.then((object: dataPreferences.Preferences) => {
-        preferences = object;
-        console.info("Succeeded in getting preferences.");
-    }).catch((err: BusinessError) => {
-        console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
-    })
-} catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.error("Failed to get preferences. code =" + code + ", message =" + message);
-}
+let options: dataPreferences.Options =  { name: 'myStore' };
+let promise = dataPreferences.getPreferences(context, options);
+promise.then((object: dataPreferences.Preferences) => {
+    preferences = object;
+    console.info("Succeeded in getting preferences.");
+}).catch((err: BusinessError) => {
+    console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
+})
 ```
 
 Stage model:
@@ -328,20 +286,14 @@ let preferences: dataPreferences.Preferences | null = null;
 
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
-        try {
-            let options: dataPreferences.Options =  { name: 'myStore', dataGroupId:'myId' };
-            let promise = dataPreferences.getPreferences(this.context, options);
-            promise.then((object: dataPreferences.Preferences) => {
-                preferences = object;
-                console.info("Succeeded in getting preferences.");
-            }).catch((err: BusinessError) => {
-                console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
-            })
-        } catch (err) {
-            let code = (err as BusinessError).code;
-            let message = (err as BusinessError).message;
-            console.error("Failed to get preferences. code =" + code + ", message =" + message);
-        }
+        let options: dataPreferences.Options =  { name: 'myStore', dataGroupId:'myId' };
+        let promise = dataPreferences.getPreferences(this.context, options);
+        promise.then((object: dataPreferences.Preferences) => {
+            preferences = object;
+            console.info("Succeeded in getting preferences.");
+        }).catch((err: BusinessError) => {
+            console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
+        })
     }
 }
 ```
@@ -383,40 +335,26 @@ FA model:
 ```ts
 // Obtain the context.
 import featureAbility from '@ohos.ability.featureAbility';
-import { BusinessError } from '@ohos.base'
 
 let context = featureAbility.getContext();
 let preferences: dataPreferences.Preferences | null = null;
 
-try {
-    let options: dataPreferences.Options =  { name: 'myStore' };
-    preferences = dataPreferences.getPreferencesSync(context, options);
-} catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.error("Failed to get preferences. code =" + code + ", message =" + message);
-}
+let options: dataPreferences.Options =  { name: 'myStore' };
+preferences = dataPreferences.getPreferencesSync(context, options);
 ```
 
 Stage model:
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base'
 import window from '@ohos.window';
 
 let preferences: dataPreferences.Preferences | null = null;
 
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
-        try {
-            let options: dataPreferences.Options = { name: 'myStore', dataGroupId:'myId' };
-            preferences = dataPreferences.getPreferencesSync(this.context, options);
-        } catch (err) {
-            let code = (err as BusinessError).code;
-            let message = (err as BusinessError).message;
-            console.error("Failed to get preferences. code =" + code + ", message =" + message);
-        }
+        let options: dataPreferences.Options = { name: 'myStore', dataGroupId:'myId' };
+        preferences = dataPreferences.getPreferencesSync(this.context, options);
     }
 }
 ```
@@ -458,19 +396,13 @@ import { BusinessError } from '@ohos.base'
 
 let context = featureAbility.getContext();
 
-try {
-    dataPreferences.deletePreferences(context, 'myStore', (err: BusinessError) => {
-        if (err) {
-            console.error("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
-            return;
-        }
-        console.info("Succeeded in deleting preferences." );
-    })
-} catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.error("Failed to delete preferences. code =" + code + ", message =" + message);
-}
+dataPreferences.deletePreferences(context, 'myStore', (err: BusinessError) => {
+    if (err) {
+        console.error("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
+        return;
+    }
+    console.info("Succeeded in deleting preferences." );
+})
 ```
 
 Stage model:
@@ -482,19 +414,13 @@ import window from '@ohos.window';
 
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
-        try {
-            dataPreferences.deletePreferences(this.context, 'myStore', (err: BusinessError) => {
-                if (err) {
-                    console.error("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
-                    return;
-                }
-                console.info("Succeeded in deleting preferences." );
-            })
-        } catch (err) {
-            let code = (err as BusinessError).code;
-            let message = (err as BusinessError).message;
-            console.error("Failed to delete preferences. code =" + code + ", message =" + message);
-        }
+        dataPreferences.deletePreferences(this.context, 'myStore', (err: BusinessError) => {
+            if (err) {
+                console.error("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
+                return;
+            }
+            console.info("Succeeded in deleting preferences." );
+        })
     }
 }
 ```
@@ -541,18 +467,12 @@ import { BusinessError } from '@ohos.base'
 
 let context = featureAbility.getContext();
 
-try {
-    let promise = dataPreferences.deletePreferences(context, 'myStore');
-    promise.then(() => {
-        console.info("Succeeded in deleting preferences.");
-    }).catch((err: BusinessError) => {
-        console.error("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
-    })
-} catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.error("Failed to delete preferences. code =" + code + ", message =" + message);
-}
+let promise = dataPreferences.deletePreferences(context, 'myStore');
+promise.then(() => {
+    console.info("Succeeded in deleting preferences.");
+}).catch((err: BusinessError) => {
+    console.error("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
+})
 ```
 
 Stage model:
@@ -564,18 +484,12 @@ import window from '@ohos.window';
 
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
-        try{
-            let promise = dataPreferences.deletePreferences(this.context, 'myStore');
-            promise.then(() => {
-                console.info("Succeeded in deleting preferences.");
-            }).catch((err: BusinessError) => {
-                console.error("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
-            })
-        } catch (err) {
-            let code = (err as BusinessError).code;
-            let message = (err as BusinessError).message;
-            console.error("Failed to delete preferences. code =" + code + ", message =" + message);
-        }
+        let promise = dataPreferences.deletePreferences(this.context, 'myStore');
+        promise.then(() => {
+            console.info("Succeeded in deleting preferences.");
+        }).catch((err: BusinessError) => {
+            console.error("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
+        })
     }
 }
 ```
@@ -619,20 +533,14 @@ import { BusinessError } from '@ohos.base'
 
 let context = featureAbility.getContext();
 
-try {
-    let options: dataPreferences.Options = { name: 'myStore' };
-    dataPreferences.deletePreferences(context, options, (err: BusinessError) => {
-        if (err) {
-            console.error("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
-            return;
-        }
-        console.info("Succeeded in deleting preferences." );
-    })
-} catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.error("Failed to delete preferences. code =" + code + ", message =" + message);
-}
+let options: dataPreferences.Options = { name: 'myStore' };
+dataPreferences.deletePreferences(context, options, (err: BusinessError) => {
+    if (err) {
+        console.error("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
+        return;
+    }
+    console.info("Succeeded in deleting preferences." );
+})
 ```
 
 Stage model:
@@ -644,20 +552,14 @@ import window from '@ohos.window';
 
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
-        try {
-            let options: dataPreferences.Options = { name: 'myStore', dataGroupId:'myId' };
-            dataPreferences.deletePreferences(this.context, options, (err: BusinessError) => {
-                if (err) {
-                    console.error("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
-                    return;
-                }
-                console.info("Succeeded in deleting preferences." );
-            })
-        } catch (err) {
-            let code = (err as BusinessError).code;
-            let message = (err as BusinessError).message;
-            console.error("Failed to delete preferences. code =" + code + ", message =" + message);
-        }
+        let options: dataPreferences.Options = { name: 'myStore', dataGroupId:'myId' };
+        dataPreferences.deletePreferences(this.context, options, (err: BusinessError) => {
+            if (err) {
+                console.error("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
+                return;
+            }
+            console.info("Succeeded in deleting preferences." );
+        })
     }
 }
 ```
@@ -707,19 +609,13 @@ import { BusinessError } from '@ohos.base'
 
 let context = featureAbility.getContext();
 
-try {
-    let options: dataPreferences.Options = { name: 'myStore' };
-    let promise = dataPreferences.deletePreferences(context, options);
-    promise.then(() => {
-        console.info("Succeeded in deleting preferences.");
-    }).catch((err: BusinessError) => {
-        console.error("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
-    })
-} catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.error("Failed to delete preferences. code =" + code + ", message =" + message);
-}
+let options: dataPreferences.Options = { name: 'myStore' };
+let promise = dataPreferences.deletePreferences(context, options);
+promise.then(() => {
+    console.info("Succeeded in deleting preferences.");
+}).catch((err: BusinessError) => {
+    console.error("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
+})
 ```
 
 Stage model:
@@ -731,19 +627,13 @@ import window from '@ohos.window';
 
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
-        try{
-            let options: dataPreferences.Options = { name: 'myStore', dataGroupId:'myId' };
-            let promise = dataPreferences.deletePreferences(this.context, options);
-            promise.then(() => {
-                console.info("Succeeded in deleting preferences.");
-            }).catch((err: BusinessError) => {
-                console.error("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
-            })
-        } catch (err) {
-            let code = (err as BusinessError).code;
-            let message = (err as BusinessError).message;
-            console.error("Failed to delete preferences. code =" + code + ", message =" + message);
-        }
+        let options: dataPreferences.Options = { name: 'myStore', dataGroupId:'myId' };
+        let promise = dataPreferences.deletePreferences(this.context, options);
+        promise.then(() => {
+            console.info("Succeeded in deleting preferences.");
+        }).catch((err: BusinessError) => {
+            console.error("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
+        })
     }
 }
 ```
@@ -779,19 +669,13 @@ import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from '@ohos.base'
 
 let context = featureAbility.getContext();
-try {
-    dataPreferences.removePreferencesFromCache(context, 'myStore', (err: BusinessError) => {
-        if (err) {
-            console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
-            return;
-        }
-        console.info("Succeeded in removing preferences.");
-    })
-} catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.error("Failed to remove preferences. code =" + code + ", message =" + message);
-}
+dataPreferences.removePreferencesFromCache(context, 'myStore', (err: BusinessError) => {
+    if (err) {
+        console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
+        return;
+    }
+    console.info("Succeeded in removing preferences.");
+})
 ```
 
 Stage model:
@@ -803,19 +687,13 @@ import window from '@ohos.window';
 
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
-        try {
-            dataPreferences.removePreferencesFromCache(this.context, 'myStore', (err: BusinessError) => {
-                if (err) {
-                    console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
-                    return;
-                }
-                console.info("Succeeded in removing preferences.");
-            })
-        } catch (err) {
-            let code = (err as BusinessError).code;
-            let message = (err as BusinessError).message;
-            console.error("Failed to remove preferences. code =" + code + ", message =" + message);
-        }
+        dataPreferences.removePreferencesFromCache(this.context, 'myStore', (err: BusinessError) => {
+            if (err) {
+                console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
+                return;
+            }
+            console.info("Succeeded in removing preferences.");
+        })
     }
 }
 ```
@@ -855,18 +733,12 @@ import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from '@ohos.base'
 
 let context = featureAbility.getContext();
-try {
-    let promise = dataPreferences.removePreferencesFromCache(context, 'myStore');
-    promise.then(() => {
-        console.info("Succeeded in removing preferences.");
-    }).catch((err: BusinessError) => {
-        console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
-    })
-} catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.error("Failed to remove preferences. code =" + code + ", message =" + message);
-}
+let promise = dataPreferences.removePreferencesFromCache(context, 'myStore');
+promise.then(() => {
+    console.info("Succeeded in removing preferences.");
+}).catch((err: BusinessError) => {
+    console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
+})
 ```
 
 Stage model:
@@ -878,18 +750,12 @@ import window from '@ohos.window';
 
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
-        try {
-            let promise = dataPreferences.removePreferencesFromCache(this.context, 'myStore');
-            promise.then(() => {
-                console.info("Succeeded in removing preferences.");
-            }).catch((err: BusinessError) => {
-                console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
-            })
-        } catch (err) {
-            let code = (err as BusinessError).code;
-            let message = (err as BusinessError).message;
-            console.error("Failed to remove preferences. code =" + code + ", message =" + message);
-        }
+        let promise = dataPreferences.removePreferencesFromCache(this.context, 'myStore');
+        promise.then(() => {
+            console.info("Succeeded in removing preferences.");
+        }).catch((err: BusinessError) => {
+            console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
+        })
     }
 }
 ```
@@ -920,33 +786,19 @@ FA model:
 ```ts
 // Obtain the context.
 import featureAbility from '@ohos.ability.featureAbility';
-import { BusinessError } from '@ohos.base'
 let context = featureAbility.getContext();
-try {
-    dataPreferences.removePreferencesFromCacheSync(context, 'myStore');
-} catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.error("Failed to remove preferences. code =" + code + ", message =" + message);
-}
+dataPreferences.removePreferencesFromCacheSync(context, 'myStore');
 ```
 
 Stage model:
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base'
 import window from '@ohos.window';
 
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
-        try {
-            dataPreferences.removePreferencesFromCacheSync(this.context, 'myStore');
-        } catch (err) {
-            let code = (err as BusinessError).code;
-            let message = (err as BusinessError).message;
-            console.error("Failed to remove preferences. code =" + code + ", message =" + message);
-        }
+        dataPreferences.removePreferencesFromCacheSync(this.context, 'myStore');
     }
 }
 ```
@@ -989,20 +841,14 @@ FA model:
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from '@ohos.base'
 let context = featureAbility.getContext();
-try {
-    let options: dataPreferences.Options = { name: 'myStore' };
-    dataPreferences.removePreferencesFromCache(context, options, (err: BusinessError) => {
-        if (err) {
-            console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
-            return;
-        }
-        console.info("Succeeded in removing preferences.");
-    })
-} catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.error("Failed to remove preferences. code =" + code + ", message =" + message);
-}
+let options: dataPreferences.Options = { name: 'myStore' };
+dataPreferences.removePreferencesFromCache(context, options, (err: BusinessError) => {
+    if (err) {
+        console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
+        return;
+    }
+    console.info("Succeeded in removing preferences.");
+})
 ```
 
 Stage model:
@@ -1014,20 +860,14 @@ import window from '@ohos.window';
 
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
-        try {
-            let options: dataPreferences.Options = { name: 'myStore', dataGroupId:'myId' };
-            dataPreferences.removePreferencesFromCache(this.context, options, (err: BusinessError) => {
-                if (err) {
-                    console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
-                    return;
-                }
-                console.info("Succeeded in removing preferences.");
-            })
-        } catch (err) {
-            let code = (err as BusinessError).code;
-            let message = (err as BusinessError).message;
-            console.error("Failed to remove preferences. code =" + code + ", message =" + message);
-        }
+        let options: dataPreferences.Options = { name: 'myStore', dataGroupId:'myId' };
+        dataPreferences.removePreferencesFromCache(this.context, options, (err: BusinessError) => {
+            if (err) {
+                console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
+                return;
+            }
+            console.info("Succeeded in removing preferences.");
+        })
     }
 }
 ```
@@ -1075,19 +915,13 @@ FA model:
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from '@ohos.base'
 let context = featureAbility.getContext();
-try {
-    let options: dataPreferences.Options = { name: 'myStore' };
-    let promise = dataPreferences.removePreferencesFromCache(context, options);
-    promise.then(() => {
-        console.info("Succeeded in removing preferences.");
-    }).catch((err: BusinessError) => {
-        console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
-    })
-} catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.error("Failed to remove preferences. code =" + code + ", message =" + message);
-}
+let options: dataPreferences.Options = { name: 'myStore' };
+let promise = dataPreferences.removePreferencesFromCache(context, options);
+promise.then(() => {
+    console.info("Succeeded in removing preferences.");
+}).catch((err: BusinessError) => {
+    console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
+})
 ```
 
 Stage model:
@@ -1099,19 +933,13 @@ import window from '@ohos.window';
 
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
-        try {
-            let options: dataPreferences.Options = { name: 'myStore', dataGroupId:'myId' };
-            let promise = dataPreferences.removePreferencesFromCache(this.context, options);
-            promise.then(() => {
-                console.info("Succeeded in removing preferences.");
-            }).catch((err: BusinessError) => {
-                console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
-            })
-        } catch (err) {
-            let code = (err as BusinessError).code;
-            let message = (err as BusinessError).message;
-            console.error("Failed to remove preferences. code =" + code + ", message =" + message);
-        }
+        let options: dataPreferences.Options = { name: 'myStore', dataGroupId:'myId' };
+        let promise = dataPreferences.removePreferencesFromCache(this.context, options);
+        promise.then(() => {
+            console.info("Succeeded in removing preferences.");
+        }).catch((err: BusinessError) => {
+            console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
+        })
     }
 }
 ```
@@ -1152,14 +980,8 @@ FA model:
 // Obtain the context.
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
-try {
-    let options: dataPreferences.Options = { name: 'myStore' };
-    dataPreferences.removePreferencesFromCacheSync(context, options);
-} catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.error("Failed to remove preferences. code =" + code + ", message =" + message);
-}
+let options: dataPreferences.Options = { name: 'myStore' };
+dataPreferences.removePreferencesFromCacheSync(context, options);
 ```
 
 Stage model:
@@ -1170,14 +992,8 @@ import window from '@ohos.window';
 
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
-        try {
-            let options: dataPreferences.Options = { name: 'myStore', dataGroupId:'myId' };
-            dataPreferences.removePreferencesFromCacheSync(this.context, options);
-        } catch (err) {
-            let code = (err as BusinessError).code;
-            let message = (err as BusinessError).message;
-            console.error("Failed to remove preferences. code =" + code + ", message =" + message);
-        }
+        let options: dataPreferences.Options = { name: 'myStore', dataGroupId:'myId' };
+        dataPreferences.removePreferencesFromCacheSync(this.context, options);
     }
 }
 ```
@@ -1219,19 +1035,15 @@ Obtains the value of a key from this **Preferences** instance. This API uses an 
 **Example**
 
 ```ts
-try {
-    preferences.get('startup', 'default', (err: BusinessError, val: dataPreferences.ValueType) => {
-        if (err) {
-            console.error("Failed to get value of 'startup'. code =" + err.code + ", message =" + err.message);
-            return;
-        }
-        console.info("Obtained the value of 'startup' successfully. val: " + val);
-    })
-} catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.error("Failed to get value of 'startup'. code =" + code + ", message =" + message);
-}
+import {BusinessError} from '@ohos.base';
+
+preferences.get('startup', 'default', (err: BusinessError, val: dataPreferences.ValueType) => {
+    if (err) {
+        console.error("Failed to get value of 'startup'. code =" + err.code + ", message =" + err.message);
+        return;
+    }
+    console.info("Obtained the value of 'startup' successfully. val: " + val);
+})
 ```
 
 
@@ -1259,18 +1071,14 @@ Obtains the value of a key from this **Preferences** instance. This API uses a p
 **Example**
 
 ```ts
-try {
-    let promise = preferences.get('startup', 'default');
-    promise.then((data: dataPreferences.ValueType) => {
-        console.info("Got the value of 'startup'. Data: " + data);
-    }).catch((err: BusinessError) => {
-        console.error("Failed to get value of 'startup'. code =" + err.code + ", message =" + err.message);
-    })
-} catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.error("Failed to get value of 'startup'. code =" + code + ", message =" + message);
-}
+import {BusinessError} from '@ohos.base';
+
+let promise = preferences.get('startup', 'default');
+promise.then((data: dataPreferences.ValueType) => {
+    console.info("Got the value of 'startup'. Data: " + data);
+}).catch((err: BusinessError) => {
+    console.error("Failed to get value of 'startup'. code =" + err.code + ", message =" + err.message);
+})
 ```
 
 ### getSync<sup>10+</sup>
@@ -1297,14 +1105,7 @@ Obtains the value of a key from this **Preferences** instance. This API returns 
 **Example**
 
 ```ts
-try {
-    let value: dataPreferences.ValueType = preferences.getSync('startup', 'default');
-    console.info("Succeeded in getting value of 'startup'. Data: " + value);
-} catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.error("Failed to get value of 'startup'. code =" + code + ", message =" + message);
-}
+let value: dataPreferences.ValueType = preferences.getSync('startup', 'default');
 ```
 
 ### getAll
@@ -1324,6 +1125,8 @@ Obtains all KV pairs from this **Preferences** instance. This API uses an asynch
 **Example**
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 // There is no Object.keys in ArkTS, and the for..in... syntax cannot be used.
 // If an error is reported, extract this API to a .ts file and expose it. Then import the API to the .ets file when required.
 function getObjKeys(obj: Object): string[] {
@@ -1331,21 +1134,15 @@ function getObjKeys(obj: Object): string[] {
   return keys;
 }
 
-try {
-    preferences.getAll((err: BusinessError, value: Object) => {
-        if (err) {
-            console.error("Failed to get all key-values. code =" + err.code + ", message =" + err.message);
-            return;
-        }
-        let allKeys = getObjKeys(value);
-        console.info("getAll keys = " + allKeys);
-        console.info("getAll object = " + JSON.stringify(value));
-    })
-} catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.error("Failed to get all key-values. code =" + code + ", message =" + message);
-}
+preferences.getAll((err: BusinessError, value: Object) => {
+    if (err) {
+        console.error("Failed to get all key-values. code =" + err.code + ", message =" + err.message);
+        return;
+    }
+    let allKeys = getObjKeys(value);
+    console.info("getAll keys = " + allKeys);
+    console.info("getAll object = " + JSON.stringify(value));
+})
 ```
 
 
@@ -1366,6 +1163,8 @@ Obtains all KV pairs from this **Preferences** instance. This API uses a promise
 **Example**
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 // There is no Object.keys in ArkTS, and the for..in... syntax cannot be used.
 // If an error is reported, extract this API to a .ts file and expose it. Then import the API to the .ets file when required.
 function getObjKeys(obj: Object): string[] {
@@ -1373,20 +1172,14 @@ function getObjKeys(obj: Object): string[] {
   return keys;
 }
 
-try {
-    let promise = preferences.getAll();
-    promise.then((value: Object) => {
-        let allKeys = getObjKeys(value);
-        console.info('getAll keys = ' + allKeys);
-        console.info("getAll object = " + JSON.stringify(value));
-    }).catch((err: BusinessError) => {
-        console.error("Failed to get all key-values. code =" + err.code + ", message =" + err.message);
-    })
-} catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.error("Failed to get all key-values. code =" + code + ", message =" + message);
-}
+let promise = preferences.getAll();
+promise.then((value: Object) => {
+    let allKeys = getObjKeys(value);
+    console.info('getAll keys = ' + allKeys);
+    console.info("getAll object = " + JSON.stringify(value));
+}).catch((err: BusinessError) => {
+    console.error("Failed to get all key-values. code =" + err.code + ", message =" + err.message);
+})
 ```
 
 ### getAllSync<sup>10+</sup>
@@ -1413,16 +1206,10 @@ function getObjKeys(obj: Object): string[] {
   return keys;
 }
 
-try {
-    let value = preferences.getAllSync();
-    let allKeys = getObjKeys(value);
-    console.info('getAll keys = ' + allKeys);
-    console.info("getAll object = " + JSON.stringify(value));
-} catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.error("Failed to get all key-values. code =" + code + ", message =" + message);
-}
+let value = preferences.getAllSync();
+let allKeys = getObjKeys(value);
+console.info('getAll keys = ' + allKeys);
+console.info("getAll object = " + JSON.stringify(value));
 ```
 
 ### put
@@ -1444,19 +1231,15 @@ Writes data to this **Preferences** instance. This API uses an asynchronous call
 **Example**
 
 ```ts
-try {
-    preferences.put('startup', 'auto', (err: BusinessError) => {
-        if (err) {
-            console.error("Failed to put value of 'startup'. code =" + err.code + ", message =" + err.message);
-            return;
-        }
-        console.info("Successfully put the value of 'startup'.");
-    })
-} catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.error("Failed to put value of 'startup'. code =" + code + ", message =" + message);
-}
+import {BusinessError} from '@ohos.base';
+
+preferences.put('startup', 'auto', (err: BusinessError) => {
+    if (err) {
+        console.error("Failed to put value of 'startup'. code =" + err.code + ", message =" + err.message);
+        return;
+    }
+    console.info("Successfully put the value of 'startup'.");
+})
 ```
 
 
@@ -1484,18 +1267,14 @@ Writes data to this **Preferences** instance. This API uses a promise to return 
 **Example**
 
 ```ts
-try {
-    let promise = preferences.put('startup', 'auto');
-    promise.then(() => {
-        console.info("Successfully put the value of 'startup'.");
-    }).catch((err: BusinessError) => {
-        console.error("Failed to put value of 'startup'. code =" + err.code +", message =" + err.message);
-    })
-} catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.error("Failed to put value of 'startup'. code =" + code +", message =" + message);
-}
+import {BusinessError} from '@ohos.base';
+
+let promise = preferences.put('startup', 'auto');
+promise.then(() => {
+    console.info("Successfully put the value of 'startup'.");
+}).catch((err: BusinessError) => {
+    console.error("Failed to put value of 'startup'. code =" + err.code +", message =" + err.message);
+})
 ```
 
 
@@ -1517,13 +1296,7 @@ Writes data to this **Preferences** instance. This API returns the result synchr
 **Example**
 
 ```ts
-try {
-    preferences.putSync('startup', 'auto');
-} catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.error("Failed to put value of 'startup'. code =" + code +", message =" + message);
-}
+preferences.putSync('startup', 'auto');
 ```
 
 
@@ -1545,23 +1318,19 @@ Checks whether this **Preferences** instance contains the KV pair of the given k
 **Example**
 
 ```ts
-try {
-    preferences.has('startup', (err: BusinessError, val: boolean) => {
-        if (err) {
-            console.error("Failed to check the key 'startup'. code =" + err.code + ", message =" + err.message);
-            return;
-        }
-        if (val) {
-            console.info("The key 'startup' is contained.");
-        } else {
-            console.info("The key 'startup' is not contained.");
-        }
-    })
-} catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.error("Failed to check the key 'startup'. code =" + code + ", message =" + message);
-}
+import {BusinessError} from '@ohos.base';
+
+preferences.has('startup', (err: BusinessError, val: boolean) => {
+    if (err) {
+        console.error("Failed to check the key 'startup'. code =" + err.code + ", message =" + err.message);
+        return;
+    }
+    if (val) {
+        console.info("The key 'startup' is contained.");
+    } else {
+        console.info("The key 'startup' is not contained.");
+    }
+})
 ```
 
 
@@ -1588,22 +1357,18 @@ Checks whether this **Preferences** instance contains the KV pair of the given k
 **Example**
 
 ```ts
-try {
-    let promise = preferences.has('startup');
-    promise.then((val: boolean) => {
-        if (val) {
-            console.info("The key 'startup' is contained.");
-        } else {
-            console.info("The key 'startup' is not contained.");
-        }
-    }).catch((err: BusinessError) => {
-        console.error("Failed to check the key 'startup'. code =" + err.code + ", message =" + err.message);
-    })
-} catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.error("Failed to check the key 'startup'. code =" + code + ", message =" + message);
-}
+import {BusinessError} from '@ohos.base';
+
+let promise = preferences.has('startup');
+promise.then((val: boolean) => {
+    if (val) {
+        console.info("The key 'startup' is contained.");
+    } else {
+        console.info("The key 'startup' is not contained.");
+    }
+}).catch((err: BusinessError) => {
+    console.error("Failed to check the key 'startup'. code =" + err.code + ", message =" + err.message);
+})
 ```
 
 
@@ -1630,17 +1395,11 @@ Checks whether this **Preferences** instance contains the KV pair of the given k
 **Example**
 
 ```ts
-try {
-    let isExist: boolean = preferences.hasSync('startup');
-    if (isExist) {
-        console.info("The key 'startup' is contained.");
-    } else {
-        console.info("The key 'startup' is not contained.");
-    }
-} catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.error("Failed to check the key 'startup'. code =" + code + ", message =" + message);
+let isExist: boolean = preferences.hasSync('startup');
+if (isExist) {
+    console.info("The key 'startup' is contained.");
+} else {
+    console.info("The key 'startup' is not contained.");
 }
 ```
 
@@ -1663,19 +1422,15 @@ Deletes a KV pair from this **Preferences** instance. This API uses an asynchron
 **Example**
 
 ```ts
-try {
-    preferences.delete('startup', (err: BusinessError) => {
-        if (err) {
-            console.error("Failed to delete the key 'startup'. code =" + err.code + ", message =" + err.message);
-            return;
-        }
-        console.info("Deleted the key 'startup'.");
-    })
-} catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.error("Failed to delete the key 'startup'. code =" + code + ", message =" + message);
-}
+import {BusinessError} from '@ohos.base';
+
+preferences.delete('startup', (err: BusinessError) => {
+    if (err) {
+        console.error("Failed to delete the key 'startup'. code =" + err.code + ", message =" + err.message);
+        return;
+    }
+    console.info("Deleted the key 'startup'.");
+})
 ```
 
 
@@ -1702,18 +1457,14 @@ Deletes a KV pair from this **Preferences** instance. This API uses a promise to
 **Example**
 
 ```ts
-try {
-    let promise = preferences.delete('startup');
-    promise.then(() => {
-        console.info("Deleted the key 'startup'.");
-    }).catch((err: BusinessError) => {
-        console.error("Failed to delete the key 'startup'. code =" + err.code +", message =" + err.message);
-    })
-} catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.error("Failed to delete the key 'startup'. code =" + code +", message =" + message);
-}
+import {BusinessError} from '@ohos.base';
+
+let promise = preferences.delete('startup');
+promise.then(() => {
+    console.info("Deleted the key 'startup'.");
+}).catch((err: BusinessError) => {
+    console.error("Failed to delete the key 'startup'. code =" + err.code +", message =" + err.message);
+})
 ```
 
 
@@ -1734,13 +1485,7 @@ Deletes a KV pair from this **Preferences** instance. This API returns the resul
 **Example**
 
 ```ts
-try {
-    preferences.deleteSync('startup');
-} catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.error("Failed to delete the key 'startup'. code =" + code +", message =" + message);
-}
+preferences.deleteSync('startup');
 ```
 
 
@@ -1761,19 +1506,15 @@ Flushes the data in this **Preferences** instance to the persistent file. This A
 **Example**
 
 ```ts
-try {
-    preferences.flush((err: BusinessError) => {
-        if (err) {
-            console.error("Failed to flush. code =" + err.code + ", message =" + err.message);
-            return;
-        }
-        console.info("Successfully flushed data.");
-    })
-} catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.error("Failed to flush. code =" + code + ", message =" + message);
-}
+import {BusinessError} from '@ohos.base';
+
+preferences.flush((err: BusinessError) => {
+    if (err) {
+        console.error("Failed to flush. code =" + err.code + ", message =" + err.message);
+        return;
+    }
+    console.info("Successfully flushed data.");
+})
 ```
 
 
@@ -1794,18 +1535,14 @@ Flushes the data in this **Preferences** instance to the persistent file. This A
 **Example**
 
 ```ts
-try {
-    let promise = preferences.flush();
-    promise.then(() => {
-        console.info("Successfully flushed data.");
-    }).catch((err: BusinessError) => {
-        console.error("Failed to flush. code =" + err.code + ", message =" + err.message);
-    })
-} catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.error("Failed to flush. code =" + code + ", message =" + message);
-}
+import {BusinessError} from '@ohos.base';
+
+let promise = preferences.flush();
+promise.then(() => {
+    console.info("Successfully flushed data.");
+}).catch((err: BusinessError) => {
+    console.error("Failed to flush. code =" + err.code + ", message =" + err.message);
+})
 ```
 
 
@@ -1826,19 +1563,15 @@ Clears this **Preferences** instance. This API uses an asynchronous callback to 
 **Example**
 
 ```ts
-try {
-    preferences.clear((err: BusinessError) =>{
-        if (err) {
-            console.error("Failed to clear. code =" + err.code + ", message =" + err.message);
-            return;
-        }
-        console.info("Successfully cleared data.");
-    })
-} catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.error("Failed to clear. code =" + code + ", message =" + message);
-}
+import {BusinessError} from '@ohos.base';
+
+preferences.clear((err: BusinessError) =>{
+    if (err) {
+        console.error("Failed to clear. code =" + err.code + ", message =" + err.message);
+        return;
+    }
+    console.info("Successfully cleared data.");
+})
 ```
 
 
@@ -1859,18 +1592,14 @@ Clears this **Preferences** instance. This API uses a promise to return the resu
 **Example**
 
 ```ts
-try {
-    let promise = preferences.clear();
-    promise.then(() => {
-        console.info("Successfully cleared data.");
-    }).catch((err: BusinessError) => {
-        console.error("Failed to clear. code =" + err.code + ", message =" + err.message);
-    })
-} catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.error("Failed to clear. code =" + code + ", message =" + message);
-}
+import {BusinessError} from '@ohos.base';
+
+let promise = preferences.clear();
+promise.then(() => {
+    console.info("Successfully cleared data.");
+}).catch((err: BusinessError) => {
+    console.error("Failed to clear. code =" + err.code + ", message =" + err.message);
+})
 ```
 
 
@@ -1885,13 +1614,7 @@ Clears this **Preferences** instance. This API returns the result synchronously.
 **Example**
 
 ```ts
-try {
-    preferences.clearSync();
-} catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.error("Failed to clear. code =" + code + ", message =" + message);
-}
+preferences.clearSync();
 ```
 
 
@@ -1913,37 +1636,20 @@ Subscribes to data changes. A callback will be triggered to return the new value
 **Example**
 
 ```ts
-let observer = (key: string) => {
-    console.info("The key " + key + " changed.");
-}
-try {
-    dataPreferences.getPreferences(this.context, 'myStore', (err: BusinessError, preferences: dataPreferences.Preferences) => {
-        if (err) {
-            console.error("Failed to get preferences.");
-            return;
-        }
-        preferences.on('change', observer);
-        preferences.put('startup', 'manual', (err: BusinessError) => {
-            if (err) {
-            console.error("Failed to put the value of 'startup'. Cause: " + err);
-            return;
-            }
-            console.info("Successfully put the value of 'startup'.");
+import {BusinessError} from '@ohos.base';
 
-            preferences.flush((err: BusinessError) => {
-            if (err) {
-                console.error("Failed to flush. Cause: " + err);
-                return;
-            }
-            console.info("Successfully flushed data.");
-            })
-        })
-    })
-} catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.error("Failed to flush. code =" + code + ", message =" + message);
+let observer = (key: string) => {
+  console.info("The key " + key + " changed.");
 }
+preferences.on('change', observer);
+preferences.putSync('startup', 'manual');
+preferences.flush((err: BusinessError) => {
+  if (err) {
+    console.error("Failed to flush. Cause: " + err);
+    return;
+  }
+  console.info("Successfully flushed data.");
+})
 ```
 
 ### on('multiProcessChange')<sup>10+</sup>
@@ -1951,8 +1657,6 @@ try {
 on(type: 'multiProcessChange', callback: Callback&lt;string&gt;): void
 
 Subscribes to inter-process data changes. For the multiple processes holding the same preference file, if the value of the subscribed key changes in any process, the callback in this API will be invoked after [flush()](#flush) is executed.
-
-This API can be used with [removePreferencesFromCache](#datapreferencesremovepreferencesfromcache) to update the **Preferences** instance in the callback when detecting that a process updates a file. For details, see example 2.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1971,109 +1675,23 @@ For details about the error codes, see [User Preference Error Codes](../errorcod
 | -------- | -------------------------------------- |
 | 15500019 | Failed to obtain subscription service. |
 
-**Example 1**
+**Example**
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 let observer = (key: string) => {
-    console.info("The key " + key + " changed.");
+  console.info("The key " + key + " changed.");
 }
-try {
-    let options: dataPreferences.Options = { name: 'myStore', dataGroupId:'myId' };
-    dataPreferences.getPreferences(this.context, options, (err: BusinessError, preferences: dataPreferences.Preferences) => {
-        if (err) {
-            console.error("Failed to get preferences.");
-            return;
-        }
-        preferences.on('multiProcessChange', observer);
-        preferences.put('startup', 'manual', (err: BusinessError) => {
-            if (err) {
-                console.error("Failed to put the value of 'startup'. Cause: " + err);
-                return;
-            }
-            console.info("Successfully put the value of 'startup'.");
-            preferences.flush((err: BusinessError) => {
-                if (err) {
-                    console.error("Failed to flush. Cause: " + err);
-                    return;
-                }
-                console.info("Successfully flushed data.");
-            })
-        })
-    })
-} catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.error("Failed to flush. code =" + code + ", message =" + message);
-}
-```
-
-**Example 2**
-
-```ts
-let options: dataPreferences.Options = { name: 'myStore' };
-let observer = (key: string) => {
-    console.info("The key " + key + " changed.");
-    try {
-        dataPreferences.removePreferencesFromCache(this.context, options, (err: BusinessError) => {
-            if (err) {
-                console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
-                return;
-            }
-            preferences = null;
-            console.info("Succeeded in removing preferences.");
-        })
-    } catch (err) {
-        let code = (err as BusinessError).code;
-        let message = (err as BusinessError).message;
-        console.error("Failed to remove preferences. code =" + code + ", message =" + message);
-    }
-
-    try {
-        dataPreferences.getPreferences(this.context, options, (err: BusinessError, val: dataPreferences.Preferences) => {
-            if (err) {
-                console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
-                return;
-            }
-            preferences = val;
-            console.info("Succeeded in getting preferences.");
-        })
-    } catch (err) {
-        let code = (err as BusinessError).code;
-        let message = (err as BusinessError).message;
-        console.error("Failed to get preferences. code =" + code + ", message =" + message);
-    }
-}
-try {
-    dataPreferences.getPreferences(this.context, options, (err: BusinessError, val: dataPreferences.Preferences) => {
-        if (err) {
-            console.error("Failed to get preferences.");
-            return;
-        }
-        preferences = val;
-        preferences.on('multiProcessChange', observer);
-        preferences.put('startup', 'manual', (err: BusinessError) => {
-            if (err) {
-                console.error("Failed to put the value of 'startup'. Cause: " + err);
-                return;
-            }
-            console.info("Successfully put the value of 'startup'.");
-
-            if (preferences != null) {
-                preferences.flush((err: BusinessError) => {
-                    if (err) {
-                        console.error("Failed to flush. Cause: " + err);
-                        return;
-                    }
-                    console.info("Successfully flushed data.");
-                })
-            }
-        })
-    })
-} catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.error("Failed to flush. code =" + code + ", message =" + message);
-}
+preferences.on('multiProcessChange', observer);
+preferences.putSync('startup', 'manual');
+preferences.flush((err: BusinessError) => {
+  if (err) {
+    console.error("Failed to flush. Cause: " + err);
+    return;
+  }
+  console.info("Successfully flushed data.");
+})
 ```
 
 ### off('change')
@@ -2094,38 +1712,21 @@ Unsubscribes from data changes.
 **Example**
 
 ```ts
-let observer = (key: string) => {
-    console.info("The key " + key + " changed.");
-}
-try {
-    dataPreferences.getPreferences(this.context, 'myStore', (err: BusinessError, preferences: dataPreferences.Preferences) => {
-        if (err) {
-            console.error("Failed to get preferences.");
-            return;
-        }
-        preferences.on('change', observer);
-        preferences.put('startup', 'auto', (err: BusinessError) => {
-            if (err) {
-                console.error("Failed to put the value of 'startup'. Cause: " + err);
-                return;
-            }
-            console.info("Successfully put the value of 'startup'.");
+import {BusinessError} from '@ohos.base';
 
-            preferences.flush((err: BusinessError) =>{
-                if (err) {
-                    console.error("Failed to flush. Cause: " + err);
-                    return;
-                }
-                console.info("Successfully flushed data.");
-            })
-            preferences.off('change', observer);
-        })
-    })
-} catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.error("Failed to flush. code =" + code + ", message =" + message);
+let observer = (key: string) => {
+  console.info("The key " + key + " changed.");
 }
+preferences.on('change', observer);
+preferences.putSync('startup', 'auto');
+preferences.flush((err: BusinessError) => {
+  if (err) {
+    console.error("Failed to flush. Cause: " + err);
+    return;
+  }
+  console.info("Successfully flushed data.");
+})
+preferences.off('change', observer);
 ```
 
 ### off('multiProcessChange')<sup>10+</sup>
@@ -2146,39 +1747,21 @@ Unsubscribes from inter-process data changes.
 **Example**
 
 ```ts
-let observer = (key: string) => {
-    console.info("The key " + key + " changed.");
-}
-try {
-    let options: dataPreferences.Options = { name: 'myStore', dataGroupId:'myId' };
-    dataPreferences.getPreferences(this.context, options, (err: BusinessError, preferences: dataPreferences.Preferences) => {
-        if (err) {
-            console.error("Failed to get preferences.");
-            return;
-        }
-        preferences.on('multiProcessChange', observer);
-        preferences.put('startup', 'auto', (err: BusinessError) => {
-            if (err) {
-                console.error("Failed to put the value of 'startup'. Cause: " + err);
-                return;
-            }
-            console.info("Successfully put the value of 'startup'.");
+import {BusinessError} from '@ohos.base';
 
-            preferences.flush((err: BusinessError) => {
-                if (err) {
-                    console.error("Failed to flush. Cause: " + err);
-                    return;
-                }
-                console.info("Successfully flushed data.");
-            })
-            preferences.off('multiProcessChange', observer);
-        })
-    })
-} catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.error("Failed to flush. code =" + code + ", message =" + message);
+let observer = (key: string) => {
+  console.info("The key " + key + " changed.");
 }
+preferences.on('multiProcessChange', observer);
+preferences.putSync('startup', 'auto');
+preferences.flush((err: BusinessError) => {
+  if (err) {
+    console.error("Failed to flush. Cause: " + err);
+    return;
+  }
+  console.info("Successfully flushed data.");
+})
+preferences.off('multiProcessChange', observer);
 ```
 ## ValueType
 
