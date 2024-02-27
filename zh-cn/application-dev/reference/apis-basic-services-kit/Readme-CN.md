@@ -83,6 +83,7 @@
         - [@ohos.usb (USB管理)](js-apis-usb-deprecated.md)
         - [@system.brightness (屏幕亮度)](js-apis-system-brightness.md)
         - [@system.battery (电量信息)](js-apis-system-battery.md)
+        - [@system.device (设备信息)](js-apis-system-device.md)
         - [@system.request (上传下载)](js-apis-system-request.md)
         - [@ohos.commonEvent (公共事件模块)(系统接口)](js-apis-commonEvent-sys.md)
         - [@ohos.usb (USB管理)(系统接口)](js-apis-usb-deprecated-sys.md)
