@@ -1,10 +1,11 @@
 # @ohos.app.ability.EnvironmentCallback (EnvironmentCallback)
 
-The **EnvironmentCallback** module provides the **onConfigurationUpdated** API for the application context to listen for system environment changes.
+The **EnvironmentCallback** module provides APIs for the application context to listen for system environment changes.
 
 > **NOTE**
 > 
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
 > The APIs of this module can be used only in the stage model.
 
 
@@ -17,7 +18,7 @@ import EnvironmentCallback from '@ohos.app.ability.EnvironmentCallback';
 
 ## EnvironmentCallback.onConfigurationUpdated
 
-onConfigurationUpdated(config: Configuration): void;
+onConfigurationUpdated(config: Configuration): void
 
 Called when the system environment changes.
 
@@ -29,9 +30,13 @@ Called when the system environment changes.
   | -------- | -------- | -------- | -------- |
   | config | [Configuration](js-apis-app-ability-configuration.md) | Yes| **Configuration** object after the change.|
 
+**Example**
+
+See [Usage of EnvironmentCallback](#usage-of-environmentcallback).
+
 ## EnvironmentCallback.onMemoryLevel
 
-onMemoryLevel(level: AbilityConstant.MemoryLevel): void;
+onMemoryLevel(level: AbilityConstant.MemoryLevel): void
 
 Called when the system memory level changes.
 
@@ -41,10 +46,16 @@ Called when the system memory level changes.
 
   | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
-  | level | [AbilityConstant.MemoryLevel](js-apis-app-ability-abilityConstant.md#abilityconstantmemorylevel) | Yes| Memory level that indicates the memory usage status. When the specified memory level is reached, a callback will be invoked and the system will start adjustment.| 
+  | level | [AbilityConstant.MemoryLevel](js-apis-app-ability-abilityConstant.md#abilityconstantmemorylevel) | Yes| Memory level that indicates the memory usage status. When the specified memory level is reached, a callback will be invoked and the system will start adjustment.|
 
 **Example**
-    
+
+See [Usage of EnvironmentCallback](#usage-of-environmentcallback).
+
+## Usage of EnvironmentCallback
+
+**Example**
+
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import EnvironmentCallback from '@ohos.app.ability.EnvironmentCallback';
@@ -60,7 +71,7 @@ export default class MyAbility extends UIAbility {
             },
 
             onMemoryLevel(level){
-                console.log('onMemoryLevel level: ${JSON.stringify(level)}');
+                console.log(`onMemoryLevel level: ${JSON.stringify(level)}`);
             }
         };
         // 1. Obtain an applicationContext object.
@@ -69,6 +80,7 @@ export default class MyAbility extends UIAbility {
         callbackId = applicationContext.on('environment', environmentCallback);
         console.log(`registerEnvironmentCallback number: ${JSON.stringify(callbackId)}`);
     }
+
     onDestroy() {
         let applicationContext = this.context.getApplicationContext();
         applicationContext.off('environment', callbackId, (error, data) => {

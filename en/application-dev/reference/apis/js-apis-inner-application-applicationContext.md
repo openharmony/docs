@@ -19,7 +19,7 @@ Before calling any APIs in **ApplicationContext**, obtain an **ApplicationContex
 
 ## ApplicationContext.on(type: 'abilityLifecycle', callback: AbilityLifecycleCallback)
 
-on(type: 'abilityLifecycle', callback: AbilityLifecycleCallback): **number**
+on(type: 'abilityLifecycle', callback: AbilityLifecycleCallback): number
 
 Registers a listener to monitor the ability lifecycle of the application.
 
@@ -93,7 +93,7 @@ export default class EntryAbility extends UIAbility {
 
 ## ApplicationContext.off(type: 'abilityLifecycle', callbackId: number, callback: AsyncCallback\<void>)
 
-off(type: 'abilityLifecycle', callbackId: **number**,  callback: AsyncCallback\<void>): void
+off(type: 'abilityLifecycle', callbackId: number,  callback: AsyncCallback\<void>): void
 
 Deregisters the listener that monitors the ability lifecycle of the application.
 
@@ -144,6 +144,12 @@ Deregisters the listener that monitors the ability lifecycle of the application.
 | type | 'abilityLifecycle' | Yes  | Event type.|
 | callbackId    | number   | Yes  | ID of the listener to deregister.|
 
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise\<void> | Promise that returns no value.|
+
 **Example**
 
 ```ts
@@ -162,7 +168,7 @@ export default class MyAbility extends Ability {
 
 ## ApplicationContext.on(type: 'environment', callback: EnvironmentCallback)
 
-on(type: 'environment', callback: EnvironmentCallback): **number**
+on(type: 'environment', callback: EnvironmentCallback): number
 
 Registers a listener for system environment changes. This API uses an asynchronous callback to return the result.
 
@@ -211,7 +217,7 @@ export default class EntryAbility extends UIAbility {
 
 ## ApplicationContext.off(type: 'environment', callbackId: number, callback: AsyncCallback\<void>)
 
-off(type: 'environment', callbackId: **number**,  callback: AsyncCallback\<void>): void
+off(type: 'environment', callbackId: number,  callback: AsyncCallback\<void>): void
 
 Deregisters the listener for system environment changes. This API uses an asynchronous callback to return the result.
 
@@ -248,7 +254,7 @@ export default class EntryAbility extends UIAbility {
 
 ## ApplicationContext.off(type: 'environment', callbackId: number)
 
-off(type: 'environment', callbackId: **number**): Promise\<void\>
+off(type: 'environment', callbackId: number): Promise\<void\>
 
 Deregisters the listener for system environment changes.
 
@@ -260,6 +266,12 @@ Deregisters the listener for system environment changes.
 | ------------- | -------- | ---- | -------------------------- |
 | type | 'environment' | Yes  | Event type.|
 | callbackId    | number   | Yes  | ID of the listener to deregister.  |
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise\<void> | Promise that returns no value.|
 
 **Example**
 
@@ -288,7 +300,7 @@ Registers a listener for application foreground/background state changes. This A
 
 | Name  | Type                                                        | Mandatory| Description            |
 | -------- | ------------------------------------------------------------ | ---- | ---------------- |
-| type     | string                                     | Yes  | Event type. The value is fixed at **'applicationStateChange'**, indicating that the application switches from the foreground to the background or vice versa.|
+| type     | 'applicationStateChange'                                     | Yes  | Event type.|
 | callback | [ApplicationStateChangeCallback](js-apis-app-ability-applicationStateChangeCallback.md) | Yes  | Callback used to return the result.      |
 
 **Example**
@@ -330,7 +342,7 @@ Deregisters all the listeners for application foreground/background state change
 
 | Name| Type         | Mandatory| Description                |
 | ------ | ------------- | ---- | -------------------- |
-| type   | string | Yes  | Event type. The value is fixed at **'applicationStateChange'**, indicating that the application switches from the foreground to the background or vice versa.|
+| type   | 'applicationStateChange' | Yes  | Event type.|
 | callback | [ApplicationStateChangeCallback](js-apis-app-ability-applicationStateChangeCallback.md) | No  | Callback used to return the result.      |
 
 **Example**
@@ -661,7 +673,7 @@ Subscribes to auto-startup status change events of an application component, whi
 
 | Name  | Type               | Mandatory| Description                                           |
 | -------- | ------------------- | ---- | ----------------------------------------------- |
-| type     | string              | Yes  | Event type. The value is fixed at **abilityAutoStartup**.|
+| type     | 'abilityAutoStartup'              | Yes  | Event type.|
 | callback | [AutoStartupCallback](js-apis-inner-application-autoStartupCallback.md) | Yes  | Callback used for the subscription.|
 
 **Example**
@@ -701,7 +713,7 @@ Unsubscribes from auto-startup status change events of an application component,
 
 | Name  | Type               | Mandatory| Description                                           |
 | -------- | ------------------- | ---- | ----------------------------------------------- |
-| type     | string              | Yes  | Event type. The value is fixed at **abilityAutoStartup**.|
+| type     | 'abilityAutoStartup'              | Yes  | Event type.|
 | callback | [AutoStartupCallback](js-apis-inner-application-autoStartupCallback.md) | No  | Callback that has been registered to listen for auto-startup status changes.|
 
 **Example**

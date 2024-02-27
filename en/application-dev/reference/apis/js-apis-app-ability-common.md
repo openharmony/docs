@@ -32,10 +32,11 @@ import common from '@ohos.app.ability.common';
 | AbilityStartCallback<sup>11+<sup>   | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md)               | Level-2 module **AbilityStartCallback**.|
 | ConnectOptions   | [ConnectOptions](js-apis-inner-ability-connectOptions.md)               | Level-2 module **ConnectOptions**.|
 | AutoFillExtensionContext   | [AutoFillExtensionContext](js-apis-inner-application-autoFillExtensionContext.md)               | Level-2 module **AutoFillExtensionContext**.|
-| AutoStartupInfo   | [AutoStartupInfo](js-apis-inner-application-autoStartupInfo.md)               | Level-2 module **AutoStartupInfo**.|
-| AutoStartupCallback   | [AutoStartupCallback](js-apis-inner-application-autoStartupCallback.md)               | Level-2 module **AutoStartupCallback**.|
+| AutoStartupInfo<sup>11+<sup>   | [AutoStartupInfo](js-apis-inner-application-autoStartupInfo.md)               | Level-2 module **AutoStartupInfo**.<br>**System API**: This is a system API.|
+| AutoStartupCallback<sup>11+<sup>   | [AutoStartupCallback](js-apis-inner-application-autoStartupCallback.md)               | Level-2 module **AutoStartupCallback**.<br>**System API**: This is a system API.|
 
 **Example**
+
 ```ts
 import common from '@ohos.app.ability.common';
 
@@ -52,6 +53,4 @@ let abilityResult: common.AbilityResult;
 let abilityStartCallback: common.AbilityStartCallback;
 let connectOptions: common.ConnectOptions;
 let autoFillExtensionContext: common.AutoFillExtensionContext;
-let autoStartupInfo: common.AutoStartupInfo;
-let autoStartupCallback: common.AutoStartupCallback;
 ```

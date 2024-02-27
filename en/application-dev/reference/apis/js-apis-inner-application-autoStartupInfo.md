@@ -3,10 +3,10 @@
 The **AutoStartupInfo** module defines information about the application component that automatically starts upon system boot.
 
 > **NOTE**
->
+> 
 > The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version.
->
 > The APIs of this module can be used only in the stage model.
+> The APIs provided by this module are system APIs.
 
 ## Attributes
 
@@ -22,18 +22,15 @@ The **AutoStartupInfo** module defines information about the application compone
 **Example**
 
 ```ts
+import autoStartupManager from '@ohos.app.ability.autoStartupManager';
+import common from '@ohos.app.ability.common';
 
-let applicationContext = this.context.getApplicationContext();
-try {
-  applicationContext.setAutoStartup({
-    bundleName: 'com.example.autostartupapp',
-    moduleName: 'entry',
-    abilityName: 'EntryAbility',
-    abilityTypeName: 'ServiceExtension'
-  }, (err, data) => {
-    console.info('====> err: ' + JSON.stringify(err) + ' data: ' + JSON.stringify(data));
-  });
-} catch (err) {
-  console.info('===> autostartupmanager setAutoStartup throw err: ' + JSON.stringify(err));
-}
+autoStartupManager.setApplicationAutoStartup({
+  bundleName: 'com.example.autostartupapp',
+  moduleName: 'entry',
+  abilityName: 'EntryAbility',
+  abilityTypeName: 'ServiceExtension'
+} as common.AutoStartupInfo , (err, data) => {
+  console.info('====> err: ' + JSON.stringify(err) + ' data: ' + JSON.stringify(data));
+});
 ```

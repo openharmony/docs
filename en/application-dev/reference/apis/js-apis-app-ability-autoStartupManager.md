@@ -4,11 +4,9 @@ The **autoStartupManager** module provides APIs for listening for auto-startup s
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version.
->
-> The APIs of this module are system APIs and cannot be called by third-party applications.
->
+> The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
 > The APIs of this module can be used only in the stage model.
+> The APIs provided by this module are system APIs.
 
 ## Modules to Import
 
@@ -28,8 +26,8 @@ Subscribes to auto-startup status change events of an application component.
 
 | Name       | Type                                      | Mandatory  | Description            |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| type | string | Yes   | Event type. The value is fixed at **systemAutoStartup**, which can be called only by system applications. |
-| callback  | [AutoStartupCallback](js-apis-inner-application-autoStartupCallback.md)   | Yes   | Callback used for the subscription.     |
+| type | string | Yes   | Event type. The value is fixed at **systemAutoStartup**, which can be called only by system applications.|
+| callback  | [AutoStartupCallback](js-apis-inner-application-autoStartupCallback.md)   | Yes   | Callback used for subscription.     |
 
 **Example**
 
@@ -64,8 +62,8 @@ Unsubscribes from auto-startup status change events of an application component.
 
 | Name       | Type                                      | Mandatory  | Description            |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| type | string              | Yes   | Event type. The value is fixed at **systemAutoStartup**, which can be called only by system applications. |
-| callback | [AutoStartupCallback](js-apis-inner-application-autoStartupCallback.md)   | No| Callback that has been registered to listen for auto-startup status changes.|
+| type | string              | Yes   | Event type. The value is fixed at **systemAutoStartup**, which can be called only by system applications.|
+| callback | [AutoStartupCallback](js-apis-inner-application-autoStartupCallback.md)   | No| Callback used for unsubscription.|
 
 **Example**
 

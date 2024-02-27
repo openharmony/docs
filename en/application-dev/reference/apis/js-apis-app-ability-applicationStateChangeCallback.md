@@ -4,7 +4,8 @@ The **ApplicationStateChangeCallback** module provides callbacks for the applica
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
+> The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
 > The APIs of this module can be used only in the stage model.
 
 ## Modules to Import
@@ -15,7 +16,7 @@ import ApplicationStateChangeCallback from '@ohos.app.ability.ApplicationStateCh
 
 ## ApplicationStateChangeCallback.onApplicationForeground
 
-onApplicationForeground(): void;
+onApplicationForeground(): void
 
 Called when the application is switched from the background to the foreground.
 
@@ -23,42 +24,11 @@ Called when the application is switched from the background to the foreground.
 
 **Example**
 
-```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import ApplicationStateChangeCallback from '@ohos.app.ability.ApplicationStateChangeCallback';
-
-let applicationStateChangeCallback: ApplicationStateChangeCallback = {
-    onApplicationForeground() {
-        console.info('applicationStateChangeCallback onApplicationForeground');
-    },
-    onApplicationBackground() {
-        console.info('applicationStateChangeCallback onApplicationBackground');
-    }
-}
-
-export default class MyAbility extends UIAbility {
-    onCreate() {
-        console.log('MyAbility onCreate');
-        // 1. Obtain an applicationContext object.
-        let applicationContext = this.context.getApplicationContext();
-        // 2. Use applicationContext.on() to subscribe to the 'applicationStateChange' event.
-        if (applicationContext != undefined) {
-            applicationContext.on('applicationStateChange', applicationStateChangeCallback);
-        }
-    }
-    onDestroy() {
-        let applicationContext = this.context.getApplicationContext();
-        // 1. Use applicationContext.off() to unsubscribe from the 'applicationStateChange' event.
-        if (applicationContext != undefined) {
-            applicationContext.off('applicationStateChange', applicationStateChangeCallback);
-        }
-    }
-}
-```
+For details, see [onApplicationBackground](#applicationstatechangecallbackonapplicationbackground).
 
 ## ApplicationStateChangeCallback.onApplicationBackground
 
-onApplicationBackground(): void;
+onApplicationBackground(): void
 
 Called when the application is switched from the foreground to the background.
 

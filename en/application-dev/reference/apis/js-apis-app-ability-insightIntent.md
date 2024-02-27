@@ -25,7 +25,7 @@ Enumerates the InsightIntent call execution modes.
 | UI_ABILITY_FOREGROUND | 0 | Display a UIAbility in the foreground.|
 | UI_ABILITY_BACKGROUND | 1 | Start a UIAbility in the background.|
 | UI_EXTENSION_ABILITY | 2 | Start a UIExtensionAbility.|
-| SERVICE_EXTENSION_ABILITY | 3 | Start a ServiceExtensionAbility.<br>**System API**: This is a system API.|
+| SERVICE_EXTENSION_ABILITY | 3 | Start a ServiceExtensionAbility.<br/>**System API**: This is a system API.|
 
 ## ExecuteResult
 
@@ -33,7 +33,7 @@ Defines the InsightIntent call execution result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| code | number | Yes| Error code returned.|
-| result | Record<string, Object> | Yes| Execution result returned.|
+| Name| Type| Read-only| Mandatory| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| code | number | No| Yes| Error code returned.|
+| result | Record<string, Object> | No| No| Execution result returned.|

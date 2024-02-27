@@ -5,6 +5,8 @@ The **InsightIntentExecutor** module provides the base class for InsightIntent c
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
+> The APIs of this module can be used only in the stage model.
 
 ## Modules to Import
 
@@ -18,9 +20,9 @@ import InsightIntentExecutor from '@ohos.app.ability.InsightIntentExecutor';
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read-only| Mandatory| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| context | [InsightIntentContext](js-apis-app-ability-insightIntentContext.md) | Yes| No| InsightIntent call execution context.|
+| context | [InsightIntentContext](js-apis-app-ability-insightIntentContext.md) | No| Yes| InsightIntent call execution context.|
 
 ## InsightIntentExecutor.onExecuteInUIAbilityForegroundMode
 

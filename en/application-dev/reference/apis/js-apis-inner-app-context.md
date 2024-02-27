@@ -108,9 +108,10 @@ Verifies whether a specific PID and UID have the given permission. This API uses
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 import bundle from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 
 let context: featureAbility.Context = featureAbility.getContext();
-bundle.getBundleInfo('com.context.test', 1, (err, datainfo) =>{
+bundle.getBundleInfo('com.context.test', 1, (err: BusinessError, datainfo: bundle.BundleInfo) =>{
     context.verifyPermission('com.example.permission', {uid:datainfo.appInfo.uid}, (error, data) =>{
         if (error && error.code !== 0) {
             console.error(`verifyPermission fail, error: ${JSON.stringify(error)}`);
@@ -167,7 +168,7 @@ Verifies whether a specific PID and UID have the given permission. This API uses
 | Name        | Type                                     | Mandatory  | Description      |
 | ---------- | --------------------------------------- | ---- | -------- |
 | permission | string                                  | Yes   | Name of the permission to verify.|
-| options    | [PermissionOptions](#permissionoptions) | No   | Permission options.   |
+| options    | [PermissionOptions](#permissionoptions7) | No   | Permission options.   |
 
 **Return value**
 
@@ -190,7 +191,7 @@ context.verifyPermission('com.context.permission', {pid:1}).then((data) => {
 
 ## Context.requestPermissionsFromUser<sup>7+</sup>
 
-requestPermissionsFromUser(permissions: Array\<string>, requestCode: number, resultCallback: AsyncCallback<[PermissionRequestResult](#permissionrequestresult)>): void
+requestPermissionsFromUser(permissions: Array\<string>, requestCode: number, resultCallback: AsyncCallback<[PermissionRequestResult](#permissionrequestresult7)>): void
 
 Requests certain permissions from the system. This API uses an asynchronous callback to return the result.
 
@@ -529,12 +530,17 @@ Sets the display orientation for this ability. This API uses a promise to return
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
+**Parameters**
+
+| Type                                      | Type                                      | Mandatory  | Description                                      |
+| ---------------------------------------- | ---------------------------------------- | ---- | ------------ |
+| orientation                              | [bundle.DisplayOrientation](js-apis-bundleManager.md#displayorientation) | Yes   | Callback used to return the display orientation.                               |
+
 **Return value**
 
-| Type                                      | Description                                      |
-| ---------------------------------------- | ---------------------------------------- |
-| orientation                              | [bundle.DisplayOrientation](js-apis-bundleManager.md#displayorientation) |
-| Promise\<void> | Promise used to return the display orientation.                               |
+| Type            | Description              |
+| -------------- | ---------------- |
+| Promise\<void> | Promise that returns no value.|
 
 **Example**
 
@@ -554,7 +560,7 @@ context.setDisplayOrientation(orientation).then((data) => {
 setShowOnLockScreen(show: boolean, callback: AsyncCallback\<void>): void
 
 Sets whether to show this feature at the top of the lock screen so that the feature remains activated. This API uses an asynchronous callback to return the result.
-> This API is deprecated since API version 9. You are advised to use [window.setShowOnLockScreen](js-apis-window.md#setshowonlockscreen9).
+> This API is deprecated since API version 9. You are advised to use [window.setShowOnLockScreen](js-apis-window.md#setshowonlockscreen9) instead.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -582,7 +588,7 @@ context.setShowOnLockScreen(show, (error) => {
 setShowOnLockScreen(show: boolean): Promise\<void>
 
 Sets whether to show this feature at the top of the lock screen so that the feature remains activated. This API uses a promise to return the result.
-> This API is deprecated since API version 9. You are advised to use [window.setShowOnLockScreen](js-apis-window.md#setshowonlockscreen9).
+> This API is deprecated since API version 9. You are advised to use [window.setShowOnLockScreen](js-apis-window.md#setshowonlockscreen9) instead.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 

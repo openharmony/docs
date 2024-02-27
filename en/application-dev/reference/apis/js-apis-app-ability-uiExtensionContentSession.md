@@ -41,7 +41,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 setReceiveDataCallback(callback: (data: Record\<string, Object>) => void): void
 
-Sets a callback to receive data from the UIExtensionComponent.
+Sets a callback to receive data from the UIExtensionComponent. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -51,7 +51,7 @@ Sets a callback to receive data from the UIExtensionComponent.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | (data: Record\<string, Object>) => void | Yes| Callback used to receive data.|
+| callback | (data: Record\<string, Object>) => void | Yes| Callback used to return the received data.|
 
 **Error codes**
 
@@ -65,7 +65,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 setReceiveDataForResultCallback(callback: (data: { [key: string]: Object }) => { [key: string]: Object }): void
 
-Sets a callback with a return value to receive data from the UIExtensionComponent.
+Sets a callback with a return value to receive data from the UIExtensionComponent. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -76,7 +76,7 @@ Sets a callback with a return value to receive data from the UIExtensionComponen
 
 | Name| Type| Mandatory| Description            |
 | -------- | -------- | -------- |----------------|
-| callback | (data: { [key: string]: Object }) => { [key: string]: Object } | Yes| Callback with a return value used to receive data.|
+| callback | (data: { [key: string]: Object }) => { [key: string]: Object } | Yes| Callback used to return the received data with a return value.|
 
 **Error codes**
 
@@ -88,7 +88,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ## UIExtensionContentSession.loadContent
 
-loadContent(path: string, storage?: LocalStorage): void;
+loadContent(path: string, storage?: LocalStorage): void
 
 Loads content from a page associated with a local storage to the window corresponding to the current UIExtensionComponent.
 
@@ -111,7 +111,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ## UIExtensionContentSession.startAbility
 
-startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
+startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
 Starts an ability. This API uses an asynchronous callback to return the result.
 
@@ -130,7 +130,7 @@ Observe the following when using this API:
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the ability is started, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -156,7 +156,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ## UIExtensionContentSession.startAbility
 
-startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void;
+startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void
 
 Starts an ability with **options** specified. This API uses an asynchronous callback to return the result.
 
@@ -176,7 +176,7 @@ Observe the following when using this API:
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md)  | Yes| Want information about the target ability.|
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | Yes| Parameters used for starting the ability.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the ability is started, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -200,7 +200,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ## UIExtensionContentSession.startAbility
 
-startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;;
+startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 
 Starts an ability. This API uses a promise to return the result.
 
@@ -225,7 +225,7 @@ Observe the following when using this API:
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -251,9 +251,11 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ## UIExtensionContentSession.startAbilityForResult
 
-startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;): void;
+startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;): void
 
-Starts an ability. This API uses an asynchronous callback to return the result to the caller after the ability is terminated. An ability can be terminated in the following ways:
+Starts an ability and returns the result to the caller after the ability is terminated. This API uses an asynchronous callback to return the result.
+
+An ability can be terminated in the following ways:
  - Normally, you can call [terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult) to terminate the ability. The result is returned to the caller.
  - If an exception occurs, for example, the ability is killed, an error message, in which **resultCode** is **-1**, is returned to the caller.
  - If different applications call this API to start an ability that uses the singleton mode and then call [terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult) to terminate the ability, the normal result is returned to the last caller, and an exception message, in which **resultCode** is **-1**, is returned to others.
@@ -273,7 +275,7 @@ Observe the following when using this API:
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want |[Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
-| callback | AsyncCallback&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | Yes| Callback used to return the result.|
+| callback | AsyncCallback&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | Yes| Callback used to return the result. If the ability is started and terminated, **err** is **undefined** and **data** is the obtained result code and data; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -299,9 +301,11 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ## UIExtensionContentSession.startAbilityForResult
 
-startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback&lt;AbilityResult&gt;): void;
+startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback&lt;AbilityResult&gt;): void
 
-Starts an ability with **options** specified. This API uses an asynchronous callback to return the result to the caller after the ability is terminated. An ability can be terminated in the following ways:
+Starts an ability with **options** specified and returns the result to the caller after the ability is terminated. This API uses an asynchronous callback to return the result.
+
+An ability can be terminated in the following ways:
  - Normally, you can call [terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult) to terminate the ability. The result is returned to the caller.
  - If an exception occurs, for example, the ability is killed, an error message, in which **resultCode** is **-1**, is returned to the caller.
  - If different applications call this API to start an ability that uses the singleton mode and then call [terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult) to terminate the ability, the normal result is returned to the last caller, and an exception message, in which **resultCode** is **-1**, is returned to others.
@@ -322,7 +326,7 @@ Observe the following when using this API:
 | -------- | -------- | -------- | -------- |
 | want |[Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | Yes| Parameters used for starting the ability.|
-| callback | AsyncCallback&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | Yes| Callback used to return the result.|
+| callback | AsyncCallback&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | Yes| Callback used to return the result. If the ability is started and terminated, **err** is **undefined** and **data** is the obtained result code and data; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -346,9 +350,11 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ## UIExtensionContentSession.startAbilityForResult
 
-startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityResult&gt;;
+startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityResult&gt;
 
-Starts an ability. This API uses a promise to return the result to the caller after the ability is terminated. An ability can be terminated in the following ways:
+Starts an ability and returns the result to the caller after the ability is terminated. This API uses a promise to return the result.
+
+An ability can be terminated in the following ways:
  - Normally, you can call [terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult) to terminate the ability. The result is returned to the caller.
  - If an exception occurs, for example, the ability is killed, an error message, in which **resultCode** is **-1**, is returned to the caller.
  - If different applications call this API to start an ability that uses the singleton mode and then call [terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult) to terminate the ability, the normal result is returned to the last caller, and an exception message, in which **resultCode** is **-1**, is returned to others.
@@ -375,7 +381,7 @@ Observe the following when using this API:
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | Promise used to return the result.|
+| Promise&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | Promise used to return the result code and data.|
 
 **Error codes**
 
@@ -401,7 +407,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ## UIExtensionContentSession.terminateSelf
 
-terminateSelf(callback: AsyncCallback&lt;void&gt;): void;
+terminateSelf(callback: AsyncCallback&lt;void&gt;): void
 
 Stops the window object corresponding to this **UIExtensionContentSession** instance. This API uses an asynchronous callback to return the result.
 
@@ -411,11 +417,11 @@ Stops the window object corresponding to this **UIExtensionContentSession** inst
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the window object is stopped, **err** is **undefined**; otherwise, **err** is an error object.|
 
 ## UIExtensionContentSession.terminateSelf
 
-terminateSelf(): Promise&lt;void&gt;;
+terminateSelf(): Promise&lt;void&gt;
 
 Stops the window object corresponding to this **UIExtensionContentSession** instance. This API uses a promise to return the result.
 
@@ -425,11 +431,11 @@ Stops the window object corresponding to this **UIExtensionContentSession** inst
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 ## UIExtensionContentSession.terminateSelfWithResult
 
-terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;void&gt;): void;
+terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;void&gt;): void
 
 Stops the window object corresponding to this **UIExtensionContentSession** instance and returns the result to the UIExtensionComponent. This API uses an asynchronous callback to return the result.
 
@@ -440,11 +446,11 @@ Stops the window object corresponding to this **UIExtensionContentSession** inst
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | Yes| Result returned to the UIExtensionComponent.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the window object is stopped, **err** is **undefined**; otherwise, **err** is an error object.|
 
 ## UIExtensionContentSession.terminateSelfWithResult
 
-terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;;
+terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;
 
 Stops the window object corresponding to this **UIExtensionContentSession** instance and returns the result to the UIExtensionComponent. This API uses a promise to return the result.
 
@@ -460,7 +466,7 @@ Stops the window object corresponding to this **UIExtensionContentSession** inst
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 ## UIExtensionContentSession.setWindowBackgroundColor
 
@@ -490,7 +496,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 setWindowPrivacyMode(isPrivacyMode: boolean): Promise&lt;void&gt;
 
-Sets whether the window is in privacy mode. This API uses a promise to return the result. A window in privacy mode cannot be captured or recorded.
+Sets whether the window is in privacy mode. A window in privacy mode cannot be captured or recorded. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -512,7 +518,7 @@ Sets whether the window is in privacy mode. This API uses a promise to return th
 
 setWindowPrivacyMode(isPrivacyMode: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-Sets whether the window is in privacy mode. This API uses an asynchronous callback to return the result. A window in privacy mode cannot be captured or recorded.
+Sets whether the window is in privacy mode. A window in privacy mode cannot be captured or recorded. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -523,7 +529,7 @@ Sets whether the window is in privacy mode. This API uses an asynchronous callba
 | Name| Type| Mandatory| Description|
 | ------------- | ------------------------- | -- | ------------------------------------------------------ |
 | isPrivacyMode | boolean                   | Yes| Whether the window is in privacy mode. The value **true** means that the window is in privacy mode, and **false** means the opposite. |
-| callback      | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.                                             |
+| callback      | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the setting is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 ## UIExtensionContentSession.startAbilityByType<sup>11+</sup>
 
@@ -540,8 +546,8 @@ Implicitly starts a given type of UIExtensionAbility. This API uses an asynchron
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Type of the UIExtensionAbility to start.|
 | wantParam | {[key: string]: any} | Yes| Extended parameter.|
-| abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | Yes| Callback to be invoked when the startup fails.|
-| callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
+| abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | Yes| Callback used to return the detailed error information if the startup fails.|
+| callback | AsyncCallback\<void> | Yes|Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -570,7 +576,7 @@ Implicitly starts a given type of UIExtensionAbility. This API uses a promise to
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Type of the UIExtensionAbility to start.|
 | wantParam | {[key: string]: Object} | Yes| Extended parameter.|
-| abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | Yes| Callback to be invoked when the startup fails.|
+| abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | Yes| Callback used to return the detailed error information if the startup fails.|
 
 **Return value**
 
@@ -594,9 +600,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 startAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void
 
-Starts an ability as the caller. This API uses an asynchronous callback to return the result.
-
-The initial ability places its caller information (such as the bundle name and ability name) in the **want** parameter and transfers the information to an **ExtensionAbility** at the middle layer. When the ExtensionAbility starts another ability by calling this API, the started ability can obtain the caller information of the initial ability from the **onCreate** lifecycle.
+Starts an ability as the caller. The initial ability places its caller information (such as the bundle name and ability name) in the **want** parameter and transfers the information to an **ExtensionAbility** at the middle layer. When the ExtensionAbility starts another ability by calling this API, the started ability can obtain the caller information of the initial ability from the **onCreate** lifecycle. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -636,9 +640,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback\<void>): void
 
-Starts an ability as the caller, with **options** specified. This API uses an asynchronous callback to return the result.
-
-The initial ability places its caller information (such as the bundle name and ability name) in the **want** parameter and transfers the information to an **ExtensionAbility** at the middle layer. When the ExtensionAbility starts another ability by calling this API, the started ability can obtain the caller information of the initial ability from the **onCreate** lifecycle.
+Starts an ability as the caller, with **options** specified. The initial ability places its caller information (such as the bundle name and ability name) in the **want** parameter and transfers the information to an **ExtensionAbility** at the middle layer. When the ExtensionAbility starts another ability by calling this API, the started ability can obtain the caller information of the initial ability from the **onCreate** lifecycle. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -677,9 +679,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>
 
-Starts an ability as the caller. This API uses a promise to return the result.
-
-The initial ability places its caller information (such as the bundle name and ability name) in the **want** parameter and transfers the information to an **ExtensionAbility** at the middle layer. When the ExtensionAbility starts another ability by calling this API, the started ability can obtain the caller information of the initial ability from the **onCreate** lifecycle.
+Starts an ability as the caller. The initial ability places its caller information (such as the bundle name and ability name) in the **want** parameter and transfers the information to an **ExtensionAbility** at the middle layer. When the ExtensionAbility starts another ability by calling this API, the started ability can obtain the caller information of the initial ability from the **onCreate** lifecycle. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
