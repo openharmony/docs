@@ -161,6 +161,7 @@
 | void [OH_Drawing_SetTypographyTextFontStyle](_drawing.md#oh_drawing_settypographytextfontstyle) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*, int) | 设置字体风格。 | 
 | void [OH_Drawing_SetTypographyTextFontFamily](_drawing.md#oh_drawing_settypographytextfontfamily) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*, const char \*) | 设置字体家族的名称。 | 
 | void [OH_Drawing_SetTypographyTextFontSize](_drawing.md#oh_drawing_settypographytextfontsize) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*, double) | 设置文本排版字号。 | 
+| void [OH_Drawing_SetTypographyTextLineStyleFontSize](_drawing.md#oh_drawing_settypographytextlinestylefontsize) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*, double) | 设置文本排版行样式字号。 | 
 | void [OH_Drawing_SetTypographyTextFontHeight](_drawing.md#oh_drawing_settypographytextfontheight) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*, double) | 设置文本排版字体高度。 | 
 | void [OH_Drawing_SetTypographyTextHalfLeading](_drawing.md#oh_drawing_settypographytexthalfleading) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*, bool) | 设置文本排版是否为一半行间距。 | 
 | void [OH_Drawing_SetTypographyTextUseLineStyle](_drawing.md#oh_drawing_settypographytextuselinestyle) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*, bool) | 设置文本排版是否启用行样式。 | 
