@@ -34,7 +34,7 @@ import fileShare from '@ohos.fileshare';
 | PERSISTENCE_FORBIDDEN  | 1   | URI禁止被持久化 |
 | INVALID_MODE  | 2   | 无效的模式     |
 | INVALID_PATH  | 3   | 无效的路径     |
-| PERMISSION_NOT_PERSISTED<sup>12+</sup>  | 4   | 没有持久化能力 |
+| PERMISSION_NOT_PERSISTED<sup>12+</sup>  | 4   | 权限没有被持久化 |
 
 ## PolicyErrorResult<sup>11+</sup>
 
@@ -362,7 +362,7 @@ checkPersistentPermission(policies: Array&lt;PolicyInfo>): Promise&lt;Array&lt;b
 
 **错误码：**
 
-以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
+以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。
 
 | 错误码ID    | 错误信息       |
 |----------| --------- |
@@ -379,9 +379,9 @@ checkPersistentPermission(policies: Array&lt;PolicyInfo>): Promise&lt;Array&lt;b
   
   async function checkPersistentPermissionExample() {
     try {
-      let DocumentSelectOptions = new picker.DocumentSelectOptions();
+      let documentSelectOptions = new picker.DocumentSelectOptions();
       let documentPicker = new picker.DocumentViewPicker();
-      let uris = await documentPicker.select(DocumentSelectOptions);
+      let uris = await documentPicker.select(documentSelectOptions);
       let policyInfo: fileShare.PolicyInfo = {
         uri: uris[0], 
         operationMode: fileShare.OperationMode.READ_MODE,
@@ -397,7 +397,7 @@ checkPersistentPermission(policies: Array&lt;PolicyInfo>): Promise&lt;Array&lt;b
               operationMode: policies[i].operationMode,
             };
             let policy : Array<fileShare.PolicyInfo> = [info];
-            await fileshare.persistPermission(policy);
+            await fileShare.persistPermission(policy);
           }
         }
       }).catch((err: BusinessError<Array<fileShare.PolicyErrorResult>>) => {

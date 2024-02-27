@@ -1,4 +1,4 @@
-# FileShare开发指导
+# FileShare开发指导(C/C++)
 
 ## 场景介绍
 
@@ -14,6 +14,11 @@ FileShare提供了支持基于URI的文件及目录授权及权限持久化、�
 | OH_FileShare_DeactivatePermission(const FileShare_PolicyInfo *policies, unsigned int policyNum, FileShare_PolicyErrorResult **result, unsigned int *resultNum) | 取消使能授权过的多个文件或目录URI |
 | OH_FileShare_CheckPersistentPermission(const FileShare_PolicyInfo *policies, unsigned int policyNum, bool **result, unsigned int *resultNum) | 校验所选择的多个文件或目录URI的持久化权限结果 |
 | OH_FileShare_ReleasePolicyErrorResult(FileShare_PolicyErrorResult *errorResult, unsigned int resultNum) | 释放FileShare_PolicyErrorResult内存 |
+
+## 函数说明
+
+文件分享相关CAPI的详细介绍请参见[CAPI参考](oh_file_share.h)。
+
 ## 开发步骤
 
 以下步骤描述了如何使用`FileShare`提供的Native API接口
@@ -23,14 +28,14 @@ FileShare提供了支持基于URI的文件及目录授权及权限持久化、�
 CMakeLists.txt中添加以下lib。
 
 ```txt
-libohfileshare.so
+target_link_libraries(sample PUBLIC libohfileshare.so)
 ```
 
 **头文件**
 
 ```c++
-#include "filemanagement/fileshare/include/oh_file_share.h"
-#include "filemanagement/fileio/include/error_code.h"
+#include <filemanagement/fileshare/include/oh_file_share.h>
+#include <filemanagement/fileio/include/error_code.h>
 #include <iostream>
 #include <string.h>
 ```
