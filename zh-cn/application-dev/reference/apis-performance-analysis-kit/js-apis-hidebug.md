@@ -538,7 +538,7 @@ hidebug.stopAppTraceCapture();
 
 getAppMemoryLimit() : MemoryLimit
 
-获取应用程序进程内存限制
+获取应用程序进程内存限制。
 
 **系统能力**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -555,7 +555,7 @@ getAppMemoryLimit() : MemoryLimit
 ```
 ## MemoryLimit<sup>12+</sup>
 
-应用程序进程内存限制
+应用程序进程内存限制。
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
