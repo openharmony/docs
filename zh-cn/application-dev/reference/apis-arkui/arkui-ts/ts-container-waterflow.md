@@ -37,7 +37,128 @@ WaterFlow(options?:  WaterFlowOptions)
 | ---------- | ----------------------------------------------- | ------ | -------------------------------------------- |
 | footer |  [CustomBuilder](ts-types.md#custombuilder8) | 否   | 设置WaterFlow尾部组件。  |
 | scroller | [Scroller](ts-container-scroll.md#scroller) | 否   | 可滚动组件的控制器，与可滚动组件绑定。<br/>**说明：** <br/>不允许和其他滚动类组件，如：[List](ts-container-list.md)、[Grid](ts-container-grid.md)、[Scroll](ts-container-scroll.md)等绑定同一个滚动控制对象。 |
+| sections<sup>12+</sup> |  [WaterFlowSections](#waterflowsections12) | 否   | 设置FlowItem分组，实现同一个瀑布流组件内部各分组使用不同列数混合布局。<br/>**说明：** <br/>1. 使用分组混合布局时会忽略columnsTemplate和rowsTemplate属性。<br/>2. 使用分组混合布局时不支持单独设置footer，可以使用最后一个分组作为尾部组件。  |
 
+
+## WaterFlowSections<sup>12+</sup>
+
+瀑布流分组信息。
+
+### splice<sup>12+</sup>
+
+splice(start: number, deleteCount?: number, sections?: Array\<SectionOptions\>): boolean
+
+移除或者替换已存在的分组和/或添加新分组。
+
+**参数：**
+
+| 名称   | 类型                            | 必填   | 描述                   |
+| ---- | ----------------------------- | ---- | -------------------- |
+| start | number | 是    | 从0开始计算的索引，会转换为整数，表示要开始改变分组的位置。<br/>**说明：** <br/>1. 如果索引是负数，则从末尾开始计算，使用`start + WaterFlowSections.length()`。<br/>2. 如果 `start < -WaterFlowSections.length()`，则使用0。<br/>3. 如果 `start >= WaterFlowSections.length()`，则在最后添加新分组。 |
+| deleteCount | number | 否    | 表示要从start开始删除的分组数量。<br/>**说明：** <br/>1. 如果省略了deleteCount，或者其值大于或等于由start指定的位置到WaterFlowSections末尾的分组数量，那么从start到WaterFlowSections末尾的所有分组将被删除。<br/>2. 如果deleteCount是0或者负数，则不会删除任何分组。 |
+| sections | Array<[SectionOptions](#sectionoptions12)> | 否    | 表示要从start开始加入的分组。如果不指定，`splice()`将只从瀑布流中删除分组。 |
+
+**返回值：** 
+
+| 类型                                                         | 说明                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| boolean | 分组是否修改成功，要加入的分组中有任意分组的itemsCount不是正整数时返回false。 |
+
+
+### push<sup>12+</sup>
+
+push(section: SectionOptions): boolean
+
+将指定分组添加到瀑布流末尾。
+
+**参数：**
+
+| 名称   | 类型                            | 必填   | 描述                   |
+| ---- | ----------------------------- | ---- | -------------------- |
+| section | [SectionOptions](#sectionoptions12) | 是    | 添加到瀑布流末尾的分组。 |
+
+**返回值：** 
+
+| 类型                                                         | 说明                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| boolean | 分组是否添加成功，新分组的itemsCount不是正整数时返回false。 |
+
+### update<sup>12+</sup>
+
+update(sectionIndex:number, section: SectionOptions): boolean
+
+修改指定索引分组的配置信息。
+
+**参数：**
+
+| 名称   | 类型                            | 必填   | 描述                   |
+| ---- | ----------------------------- | ---- | -------------------- |
+| sectionIndex | number | 是    | 从0开始计算的索引，会转换为整数，表示要修改的分组的位置。<br/>**说明：** <br/>1. 如果索引是负数，则从末尾开始计算，使用`sectionIndex + WaterFlowSections.length()`。<br/>2. 如果`sectionIndex < -WaterFlowSections.length()`，则使用0。<br/>3. 如果`sectionIndex >= WaterFlowSections.length()`，则在最后添加新分组。 |
+| section | [SectionOptions](#sectionoptions12) | 是    | 新的分组信息。 |
+
+**返回值：** 
+
+| 类型                                                         | 说明                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| boolean | 分组是否更新成功，新分组的itemsCount不是正整数时返回false。 |
+
+### values<sup>12+</sup>
+
+values(): Array\<SectionOptions\>
+
+获取瀑布流中所有分组配置信息。
+
+**返回值：** 
+
+| 类型                                                         | 说明                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Array<[SectionOptions](#sectionoptions12)> | 瀑布流中所有分组配置信息。 |
+
+### length<sup>12+</sup>
+
+length(): number
+
+获取瀑布流中分组数量。
+
+**返回值：** 
+
+| 类型                                                         | 说明                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| number | 瀑布流中分组数量。 |
+
+## SectionOptions<sup>12+</sup>
+
+FlowItem分组配置信息。
+
+**参数：**
+
+| 名称 | 类型 | 必填 | 描述 |
+|------|-----|-----|-----|
+| itemsCount | number | 是 | 分组中FlowItem数量，必须是正整数。 |
+| crossCount | number | 否 | 纵向布局时为列数，横向布局时为行数，默认值：1。 |
+| columnsGap | [Dimension](ts-types.md#dimension10) | 否 | 该分组的列间距，不设置时使用瀑布流的columnsGap，设置非法值时使用0vp。 |
+| rowsGap | [Dimension](ts-types.md#dimension10) | 否 | 该分组的行间距，不设置时使用瀑布流的rowsGap，设置非法值时使用0vp。 |
+| margin | [Margin](ts-types.md#margin) \| [Dimension](ts-types.md#dimension10) | 否 | 该分组的外边距参数为Length类型时，四个方向外边距同时生效。<br>默认值：0<br>单位：vp<br>margin设置百分比时，上下左右外边距均以瀑布流的width作为基础值。 |
+| onGetItemMainSizeByIndex | [GetItemMainSizeByIndex](#getitemmainsizebyindex12) | 否 | 瀑布流组件布局过程中获取指定index的FlowItem的主轴大小，纵向瀑布流时为高度，横向瀑布流时为宽度，单位vp。<br/>**说明：** <br/>1. 同时使用onGetItemMainSizeByIndex和FlowItem的宽高属性时，主轴大小以onGetItemMainSizeByIndex返回结果为准。<br/>2. 使用onGetItemMainSizeByIndex可以提高瀑布流跳转到指定位置或index时的效率，避免混用设置onGetItemMainSizeByIndex和未设置的分组，会导致布局异常。<br/>3. onGetItemMainSizeByIndex返回负数时FlowItem高度为0。 |
+
+
+## GetItemMainSizeByIndex<sup>12+</sup>
+
+type GetItemMainSizeByIndex = (index: number) => number
+
+根据index获取指定Item的主轴大小。
+
+**参数：**
+
+| 名称   | 类型                            | 必填   | 描述                   |
+| ---- | ----------------------------- | ---- | -------------------- |
+| index | number | 是    | FlowItem在WaterFlow中的索引。 |
+
+**返回值：** 
+
+| 类型                                                         | 说明                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| number | 指定index的FlowItem的主轴大小，纵向瀑布流时为高度，横向瀑布流时为宽度，单位vp。 |
 
 ## 属性
 
@@ -206,6 +327,12 @@ export class WaterFlowDataSource implements IDataSource {
     this.notifyDataDelete(this.dataArray.length)
   }
 
+  // 在指定索引位置删除一个元素
+  public deleteItem(index: number): void {
+    this.dataArray.splice(index, 1)
+    this.notifyDataDelete(index)
+  }
+
   // 重新加载数据
   public reload(): void {
     this.dataArray.splice(1, 1)
@@ -362,3 +489,214 @@ struct WaterFlowDemo {
 ```
 
 ![waterflow_auto-fill.png](figures/waterflow_auto-fill.png)
+
+
+### 示例3
+WaterFlowSections的使用。
+```ts
+// Index.ets
+import { WaterFlowDataSource } from './WaterFlowDataSource'
+
+@Reusable
+@Component
+struct ReusableFlowItem {
+  @State item: number = 0
+
+  // 从复用缓存中加入到组件树之前调用，可在此处更新组件的状态变量以展示正确的内容
+  aboutToReuse(params: Record<string, number>) {
+    this.item = params.item;
+    console.info('Reuse item:' + this.item)
+  }
+
+  aboutToAppear() {
+    console.info('new item:' + this.item)
+  }
+
+  build() {
+    Text("N" + this.item).fontSize(16).height('100%')
+  }
+}
+
+@Entry
+@Component
+struct WaterFlowDemo {
+  minSize: number = 80
+  maxSize: number = 180
+  fontSize: number = 24
+  colors: number[] = [0xFFC0CB, 0xDA70D6, 0x6B8E23, 0x6A5ACD, 0x00FFFF, 0x00FF7F]
+  scroller: Scroller = new Scroller()
+  dataSource: WaterFlowDataSource = new WaterFlowDataSource()
+  dataCount: number = this.dataSource.totalCount()
+  private itemHeightArray: number[] = []
+  @State sections: WaterFlowSections = new WaterFlowSections()
+  sectionMargin: Margin = { top: 10, left: 5, bottom: 10, right: 5 }
+  oneColumnSection: SectionOptions = {
+    itemsCount: 4,
+    crossCount: 1,
+    columnsGap: '5vp',
+    rowsGap: 10,
+    margin: this.sectionMargin,
+    onGetItemMainSizeByIndex: (index: number) => {
+      return this.itemHeightArray[index % 100]
+    }
+  }
+  twoColumnSection: SectionOptions = {
+    itemsCount: 2,
+    crossCount: 2,
+    onGetItemMainSizeByIndex: (index: number) => {
+      return 100
+    }
+  }
+  lastSection: SectionOptions = {
+    itemsCount: 20,
+    crossCount: 2,
+    onGetItemMainSizeByIndex: (index: number) => {
+      return this.itemHeightArray[index % 100]
+    }
+  }
+
+  // 计算FlowItem高度
+  getSize() {
+    let ret = Math.floor(Math.random() * this.maxSize)
+    return (ret > this.minSize ? ret : this.minSize)
+  }
+
+  // 设置FlowItem的高度数组
+  setItemSizeArray() {
+    for (let i = 0; i < 100; i++) {
+      this.itemHeightArray.push(this.getSize())
+    }
+  }
+
+  aboutToAppear() {
+    this.setItemSizeArray()
+    // 初始化瀑布流分组信息
+    let sectionOptions: SectionOptions[] = []
+    let count = 0
+    let oneOrTwo = 0
+    while (count < this.dataCount) {
+      if (this.dataCount - count < 20) {
+        this.lastSection.itemsCount = this.dataCount - count
+        sectionOptions.push(this.lastSection)
+        break;
+      }
+      if (oneOrTwo++ % 2 == 0) {
+        sectionOptions.push(this.oneColumnSection)
+        count += this.oneColumnSection.itemsCount
+      } else {
+        sectionOptions.push(this.twoColumnSection)
+        count += this.twoColumnSection.itemsCount
+      }
+    }
+    this.sections.splice(0, 0, sectionOptions)
+  }
+
+  build() {
+    Column({ space: 2 }) {
+      Row() {
+        Button('splice')
+          .height('5%')
+          .onClick(() => {
+            // 将所有分组替换成一个新分组，注意保证LazyForEach中数据数量和新分组itemsCount保持一致
+            let totalCount: number = this.dataSource.totalCount()
+            let newSection: SectionOptions = {
+              itemsCount: totalCount,
+              crossCount: 2,
+              onGetItemMainSizeByIndex: (index: number) => {
+                return this.itemHeightArray[index % 100]
+              }
+            }
+            let oldLength: number = this.sections.length()
+            this.sections.splice(0, oldLength, [newSection])
+          })
+          .margin({ top: 10, left: 20 })
+        Button('update')
+          .height('5%')
+          .onClick(() => {
+            // 在第二个分组增加4个FlowItem，注意保证LazyForEach中数据数量和所有分组itemsCount的和保持一致
+            let newSection: SectionOptions = {
+              itemsCount: 6,
+              crossCount: 3,
+              columnsGap: 5,
+              rowsGap: 10,
+              margin: this.sectionMargin,
+              onGetItemMainSizeByIndex: (index: number) => {
+                return this.itemHeightArray[index % 100]
+              }
+            }
+            this.dataSource.addItem(this.oneColumnSection.itemsCount)
+            this.dataSource.addItem(this.oneColumnSection.itemsCount + 1)
+            this.dataSource.addItem(this.oneColumnSection.itemsCount + 2)
+            this.dataSource.addItem(this.oneColumnSection.itemsCount + 3)
+            const result: boolean = this.sections.update(1, newSection)
+            console.info('update:' + result)
+          })
+          .margin({ top: 10, left: 20 })
+        Button('delete')
+          .height('5%')
+          .onClick(() => {
+            // 先点击update再点击delete
+            let newSection: SectionOptions = {
+              itemsCount: 2,
+              crossCount: 2,
+              columnsGap: 5,
+              rowsGap: 10,
+              margin: this.sectionMargin,
+              onGetItemMainSizeByIndex: (index: number) => {
+                return this.itemHeightArray[index % 100]
+              }
+            }
+            this.dataSource.deleteItem(this.oneColumnSection.itemsCount)
+            this.dataSource.deleteItem(this.oneColumnSection.itemsCount)
+            this.dataSource.deleteItem(this.oneColumnSection.itemsCount)
+            this.dataSource.deleteItem(this.oneColumnSection.itemsCount)
+            this.sections.update(1, newSection)
+          })
+          .margin({ top: 10, left: 20 })
+        Button('values')
+          .height('5%')
+          .onClick(() => {
+            const sections: Array<SectionOptions> = this.sections.values();
+            for (const value of sections) {
+              console.log(JSON.stringify(value));
+            }
+            console.info('count:' + this.sections.length())
+          })
+          .margin({ top: 10, left: 20 })
+      }.margin({ bottom: 20 })
+
+      WaterFlow({ scroller: this.scroller, sections: this.sections }) {
+        LazyForEach(this.dataSource, (item: number) => {
+          FlowItem() {
+            ReusableFlowItem({ item: item })
+          }
+          .width('100%')
+          // 以onGetItemMainSizeByIndex为准
+          // .height(this.itemHeightArray[item % 100])
+          .backgroundColor(this.colors[item % 5])
+        }, (item: string) => item)
+      }
+      .columnsTemplate('1fr 1fr') // 瀑布流使用sections参数时该属性无效
+      .columnsGap(10)
+      .rowsGap(5)
+      .backgroundColor(0xFAEEE0)
+      .width('100%')
+      .height('100%')
+      .layoutWeight(1)
+      .onScrollIndex((first: number, last: number) => {
+        // 即将触底时提前增加数据
+        if (last + 20 >= this.dataSource.totalCount()) {
+          for (let i = 0; i < 100; i++) {
+            this.dataSource.addLastItem()
+          }
+          // 更新数据源后同步更新sections，修改最后一个section的FlowItem数量
+          this.lastSection.itemsCount += 100
+          this.sections.update(-1, this.lastSection);
+        }
+      })
+    }
+  }
+}
+```
+
+![waterflowSections.png](figures/waterflowSections.png)
