@@ -539,9 +539,9 @@ application process memory limit
 
 | Name      | Type   | Mandatory | Description         |
 | --------- | ------ | ---- | ------------ |
-| rssLimit    | bigint |  Yes  | the limit of the application process’s resident set, in bytes     |
-| vssLimit  | bigint |  Yes  | the limit of the process’s virtual memory, in bytes       |
-| vmHeapLimit | bigint |  Yes  | the limit of the js vm heap size of current thread, in bytes       |
+| rssLimit<sup>12+<sup>    | bigint |  Yes  | the limit of the application process’s resident set, in bytes     |
+| vssLimit<sup>12+<sup>  | bigint |  Yes  | the limit of the process’s virtual memory, in bytes       |
+| vmHeapLimit<sup>12+<sup> | bigint |  Yes  | the limit of the js vm heap size of current thread, in bytes       |
 
 ## VMMemoryInfo
 
