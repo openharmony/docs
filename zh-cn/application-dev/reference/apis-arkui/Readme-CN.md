@@ -297,6 +297,7 @@
     - [点击控制](arkui-ts/ts-universal-attributes-click.md)
 - C API
   - 模块
+    - [ArkUI_EventModule](_ark_u_i___event_module.md)
     - [ArkUI_NativeModule](_ark_u_i___native_module.md)
     - [Native XComponent](_o_h___native_x_component.md)
   - 头文件
@@ -306,6 +307,7 @@
     - [native_node.h](native__node_8h.md)
     - [native_type.h](native__type_8h.md)
     - [native_xcomponent_key_event.h](native__xcomponent__key__event_8h.md)
+    - [ui_input_event.h](ui__input__event_8h.md)
   - 结构体
     - [ArkUI_AnyNativeAPI](_ark_u_i___any_native_a_p_i.md)
     - [ArkUI_AttributeItem](_ark_u_i___attribute_item.md)
