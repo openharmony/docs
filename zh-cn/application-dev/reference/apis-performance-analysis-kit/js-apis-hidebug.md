@@ -544,14 +544,14 @@ getAppMemoryLimit() : MemoryLimit
 
 | 类型  | 说明                      |
 | ------ | -------------------------- |
-| [MemoryLimit](#memorylimit) | 应用程序进程内存限制|
+| [MemoryLimit](#memorylimit12) | 应用程序进程内存限制|
 
 **示例**
 
 ```ts
  let appMemoryLimit:hidebug.MemoryLimit = hidebug.getAppMemoryLimit();
 ```
-## MemoryLimit
+## MemoryLimit<sup>12+</sup>
 
 应用程序进程内存限制
 
@@ -559,9 +559,9 @@ getAppMemoryLimit() : MemoryLimit
 
 | 名称      | 类型   | 必填 | 说明         |
 | --------- | ------ | ---- | ------------ |
-| rssLimit<sup>12+</sup>    | bigint |  是  | 应用程序进程的驻留集的限制（以字节为单位）     |
-| vssLimit<sup>12+</sup>  | bigint |  是  | 进程的虚拟内存限制（以字节为单位）       |
-| vmHeapLimit<sup>12+</sup> | bigint |  是  | 当前线程的 JS VM 堆大小限制（以字节为单位）      |
+| rssLimit    | bigint |  是  | 应用程序进程的驻留集的限制（以字节为单位）     |
+| vssLimit  | bigint |  是  | 进程的虚拟内存限制（以字节为单位）       |
+| vmHeapLimit | bigint |  是  | 当前线程的 JS VM 堆大小限制（以字节为单位）      |
 
 ## VMMemoryInfo<sup>12+<sup>
 
