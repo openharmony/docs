@@ -1130,14 +1130,12 @@ isDLPFeatureProvided(): Promise&lt;boolean&gt;
 import dlpPermission from '@ohos.dlpPermission';
 import { BusinessError } from '@ohos.base';
 
-async getSandboxAppConfig() {
-  try {
-    dlpPermission.isDLPFeatureProvided().then((res) => {
-      console.info('res', JSON.stringify(res))
-    }); // 查询当前系统是否提供DLP特性
-  } catch (err) {
+async checkIsDLPFeatureProvided() {
+  dlpPermission.isDLPFeatureProvided().then((res) => {git
+    console.info('res', JSON.stringify(res));
+  }).catch((err: BusinessError) => {
     console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
-  }
+  });
 }
 ```
 

@@ -165,7 +165,7 @@ try {
 }
 ```
 
-## ErrorManager.on
+## ErrorManager.on<sup>12+</sup>
 
 on(type: 'loopObserver', timeout: number, observer: LoopObserver): void
 
@@ -178,7 +178,7 @@ on(type: 'loopObserver', timeout: number, observer: LoopObserver): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 填写'loopObserver'，表示注册主线程消息处理耗时监听器。 |
-| timeout | number | 是 |  表示事件执行阈值。 |
+| timeout | number | 是 |  表示事件执行阈值。 阈值必须大于0|
 | observer | [LoopObserver](js-apis-inner-application-loopObserver.md) | 是 | 注册主线程消息处理耗时监听器。 |
 
 **错误码**：
@@ -202,7 +202,7 @@ let observer: errorManager.LoopObserver = {
 errorManager.on("loopObserver", 1, observer);
 ```
 
-## ErrorManager.off
+## ErrorManager.off<sup>12+</sup>
 
 function off(type: 'loopObserver', observer?: LoopObserver): void
 

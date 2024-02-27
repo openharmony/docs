@@ -146,7 +146,7 @@
    try {
      if(store != undefined) {
        (store as relationalStore.RdbStore).off('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, (storeObserver)=>{
-       }
+       });
      }
    } catch (err) {
      console.error('Failed to register observer. Code:${err.code},message:${err.message}');

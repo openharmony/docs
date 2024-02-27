@@ -72,6 +72,8 @@
         - [@ohos.wallpaper (壁纸)](js-apis-wallpaper.md)
         - [@ohos.settings (设置数据项名称)(系统接口)](js-apis-settings-sys.md)
         - [@ohos.time (时间时区)(系统接口)](js-apis-system-date-time-sys.md)
+        - [@ohos.time (时间时区)(系统接口)](js-apis-system-time.md)
+        - [@ohos.time (时间时区)](js-apis-date-time.md)
         - [@ohos.wallpaper (壁纸)(系统接口)](js-apis-wallpaper-sys.md)
         - [@ohos.WallpaperExtensionAbility (WallpaperExtensionAbility)(系统接口)](js-apis-WallpaperExtensionAbility-sys.md)
         - [@ohos.systemTimer (系统定时器)(系统接口)](js-apis-system-timer-sys.md)
@@ -84,6 +86,7 @@
         - [@system.request (上传下载)](js-apis-system-request.md)
         - [@ohos.commonEvent (公共事件模块)(系统接口)](js-apis-commonEvent-sys.md)
         - [@ohos.usb (USB管理)(系统接口)](js-apis-usb-deprecated-sys.md)
+        - [@ohos.systemParameter (系统属性)(系统接口)](js-apis-system-parameter-sys.md)
 - 错误码
     - [USB服务错误码](errorcode-usb.md)
     - [RunningLock锁错误码](errorcode-runninglock.md)
@@ -94,12 +97,14 @@
     - [屏幕亮度错误码](errorcode-brightness.md)
     - [热管理错误码](errorcode-thermal.md)
     - [上传下载错误码](errorcode-request.md)
+    - [时间时区错误码](errorcode-time.md)
     - [事件错误码](errorcode-CommonEventService.md)
     - [系统参数错误码](errorcode-system-parameterV9.md)
     - [系统电源管理错误码](errorcode-power.md)
     - [帐号管理错误码](errorcode-account.md)
     - [企业设备管理错误码](errorcode-enterpriseDeviceManager.md)
     - [升级错误码](errorcode-update.md)
+    - [锁屏服务错误码](errorcode-screenlock.md)
 
 
 

@@ -1597,6 +1597,18 @@
 
 **起始版本**：8
 
+### ohos.permission.ACCESS_USER_AUTH_INTERNAL
+
+允许调用统一身份认证服务的系统内部接口。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：8
+
 ### ohos.permission.SUPPORT_USER_AUTH
 
 统一用户认证控件资源池访问权限。
@@ -2341,6 +2353,30 @@
 
 **起始版本**：12
 
+### ohos.permission.ACCESS_AI_ABILITY
+
+允许应用和系统SA调用语音视觉服务的接口。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.READ_HEALTH_MOTION
+
+允许系统应用读取步数及运动三环信息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ## system_grant，不允许ACL跨级申请
 
 以下权限的授权方式均为system_grant（系统授权），但不允许通过ACL的方式申请。
@@ -2406,18 +2442,6 @@
 **ACL使能**：false
 
 **起始版本**：10
-
-### ohos.permission.ACCESS_USER_AUTH_INTERNAL
-
-允许调用统一身份认证服务的系统内部接口。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**ACL使能**：false
-
-**起始版本**：8
 
 ### ohos.permission.ACCESS_AUTH_RESPOOL
 

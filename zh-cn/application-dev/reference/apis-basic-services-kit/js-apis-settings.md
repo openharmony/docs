@@ -17,7 +17,7 @@ import settings from '@ohos.settings';
 
 ### 属性
 
-**系统能力：**SystemCapability.Applications.settings.Core
+**系统能力：**SystemCapability.Applications.Settings.Core
 
 | 名称                | 类型   | 可读 | 可写 | 说明                                                         |
 | ------------------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -31,7 +31,7 @@ import settings from '@ohos.settings';
 
 ### 属性
 
-**系统能力：** SystemCapability.Applications.settings.Core
+**系统能力：** SystemCapability.Applications.Settings.Core
 
 | 名称                | 类型   | 可读 | 可写 | 说明                                                         |
 | ------------------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -46,7 +46,7 @@ import settings from '@ohos.settings';
 
 ### 属性
 
-**系统能力：** SystemCapability.Applications.settings.Core
+**系统能力：** SystemCapability.Applications.Settings.Core
 
 | 名称                          | 类型   | 可读 | 可写 | 说明                                                         |
 | ----------------------------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -68,7 +68,7 @@ import settings from '@ohos.settings';
 
 ### 属性
 
-**系统能力：** SystemCapability.Applications.settings.Core
+**系统能力：** SystemCapability.Applications.Settings.Core
 
 | 名称                             | 类型   | 可读 | 可写 | 说明                                                         |
 | -------------------------------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -97,7 +97,7 @@ import settings from '@ohos.settings';
 
 ### 属性
 
-**系统能力：** SystemCapability.Applications.settings.Core
+**系统能力：** SystemCapability.Applications.Settings.Core
 
 | 名称                                 | 类型   | 可读 | 可写 | 说明                                                         |
 | ------------------------------------ | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -116,7 +116,7 @@ import settings from '@ohos.settings';
 
 ### 属性
 
-**系统能力：** SystemCapability.Applications.settings.Core
+**系统能力：** SystemCapability.Applications.Settings.Core
 
 | 名称                     | 类型   | 可读 | 可写 | 说明                                                         |
 | ------------------------ | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -130,7 +130,7 @@ import settings from '@ohos.settings';
 
 ### 属性
 
-**系统能力：** SystemCapability.Applications.settings.Core
+**系统能力：** SystemCapability.Applications.Settings.Core
 
 | 名称               | 类型   | 可读 | 可写 | 说明                                                         |
 | ------------------ | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -142,7 +142,7 @@ import settings from '@ohos.settings';
 
 ### 属性
 
-**系统能力：** SystemCapability.Applications.settings.Core
+**系统能力：** SystemCapability.Applications.Settings.Core
 
 | 名称                         | 类型   | 可读 | 可写 | 说明                                                         |
 | ---------------------------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -164,7 +164,7 @@ import settings from '@ohos.settings';
 
 ### 属性
 
-**系统能力：** SystemCapability.Applications.settings.Core
+**系统能力：** SystemCapability.Applications.Settings.Core
 
 | 名称                | 类型   | 可读 | 可写 | 说明                                                         |
 | ------------------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -180,7 +180,7 @@ import settings from '@ohos.settings';
 
 ### 属性
 
-**系统能力：** SystemCapability.Applications.settings.Core
+**系统能力：** SystemCapability.Applications.Settings.Core
 
 | 名称                              | 类型   | 可读 | 可写 | 说明                                                         |
 | --------------------------------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -207,7 +207,7 @@ setValue(context: Context, name: string, value: string, callback: AsyncCallback\
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
-**系统能力**：SystemCapability.Applications.settings.Core
+**系统能力**：SystemCapability.Applications.Settings.Core
 
 **需要权限**： ohos.permission.MANAGE_SECURE_SETTINGS
 
@@ -240,7 +240,7 @@ setValue(context: Context, name: string, value: string): Promise\<boolean>
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
-**系统能力**：SystemCapability.Applications.settings.Core
+**系统能力**：SystemCapability.Applications.Settings.Core
 
 **需要权限**： ohos.permission.MANAGE_SECURE_SETTINGS
 
@@ -276,7 +276,7 @@ setValue(context: Context, name: string, domainName: string): Promise\<boolean>
 
 将数据项名称及数据项的值保存到数据库中。使用 Promise异步回调。
 
-**系统能力**：SystemCapability.Applications.settings.Core
+**系统能力**：SystemCapability.Applications.Settings.Core
 
 **需要权限**：ohos.permission.MANAGE_SECURE_SETTINGS
 
@@ -315,7 +315,7 @@ getValue(context: Context, name: string, callback: AsyncCallback\<string>): void
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
-**系统能力**：SystemCapability.Applications.settings.Core
+**系统能力**：SystemCapability.Applications.Settings.Core
 
 **参数**：
 
@@ -347,7 +347,7 @@ getValue(context: Context, name: string): Promise\<string>
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
-**系统能力**：SystemCapability.Applications.settings.Core
+**系统能力**：SystemCapability.Applications.Settings.Core
 
 **参数**：
 
@@ -380,7 +380,7 @@ getValue(context: Context, name: string, domainName: string): Promise\<string>;
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
-**系统能力**：SystemCapability.Applications.settings.Core
+**系统能力**：SystemCapability.Applications.Settings.Core
 
 **参数**：
 
@@ -417,7 +417,7 @@ getValueSync(context: Context, name: string, defValue: string): string;
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
-**系统能力**：SystemCapability.Applications.settings.Core
+**系统能力**：SystemCapability.Applications.Settings.Core
 
 **参数**：
 
@@ -451,7 +451,7 @@ getValueSync(context: Context, name: string, defvalue: string, domainName: strin
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
-**系统能力**：SystemCapability.Applications.settings.Core
+**系统能力**：SystemCapability.Applications.Settings.Core
 
 **参数**：
 
@@ -489,7 +489,7 @@ setValueSync(context: Context, name: string, value: string): boolean
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
-**系统能力**：SystemCapability.Applications.settings.Core
+**系统能力**：SystemCapability.Applications.Settings.Core
 
 **需要权限**： ohos.permission.MANAGE_SECURE_SETTINGS
 
@@ -527,7 +527,7 @@ setValueSync(context: Context, name: string, value: string): boolean
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
-**系统能力**：SystemCapability.Applications.settings.Core
+**系统能力**：SystemCapability.Applications.Settings.Core
 
 **需要权限**： ohos.permission.MANAGE_SECURE_SETTINGS
 
@@ -564,7 +564,7 @@ registerKeyObserver(context: Context, name: string, domainName: string, observer
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
-**系统能力**：SystemCapability.Applications.settings.Core
+**系统能力**：SystemCapability.Applications.Settings.Core
 
 **参数**：
 
@@ -605,7 +605,7 @@ unregisterKeyObserver(context: Context, name: string, domainName: string): boole
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
-**系统能力**：SystemCapability.Applications.settings.Core
+**系统能力**：SystemCapability.Applications.Settings.Core
 
 | 参数名   | 类型                   | 必填 | 说明                                                         |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
@@ -637,7 +637,7 @@ enableAirplaneMode(enable: boolean, callback: AsyncCallback\<void>): void
 
 此接口暂不支持。
 
-**系统能力**：SystemCapability.Applications.settings.Core
+**系统能力**：SystemCapability.Applications.Settings.Core
 
 **参数**：
 
@@ -667,7 +667,7 @@ enableAirplaneMode(enable: boolean): Promise\<void>
 
 此接口暂不支持。
 
-**系统能力**：SystemCapability.Applications.settings.Core
+**系统能力**：SystemCapability.Applications.Settings.Core
 
 **参数**：
 
@@ -698,7 +698,7 @@ canShowFloating(callback: AsyncCallback\<boolean>): void
 
 检查应用是否能够以悬浮窗形式显示。使用callback异步回调。
 
-**系统能力**：SystemCapability.Applications.settings.Core
+**系统能力**：SystemCapability.Applications.Settings.Core
 
 **参数**：
 
@@ -724,7 +724,7 @@ canShowFloating(): Promise\<boolean>
 
 检查应用是否能够以悬浮窗形式显示。使用Promise异步回调。
 
-**系统能力**：SystemCapability.Applications.settings.Core
+**系统能力**：SystemCapability.Applications.Settings.Core
 
 **返回值**：
 
@@ -746,7 +746,7 @@ getUriSync(name: string): string
 
 获取数据项的URI。
 
-**系统能力**：SystemCapability.Applications.settings.Core
+**系统能力**：SystemCapability.Applications.Settings.Core
 
 **参数**：
 
@@ -777,7 +777,7 @@ getURI(name: string, callback: AsyncCallback\<object>): void
 >
 > 从 API version 7开始支持，从API version 9开始废弃，此接口不再提供代替接口。
 
-**系统能力**：SystemCapability.Applications.settings.Core
+**系统能力**：SystemCapability.Applications.Settings.Core
 
 **参数**：
 
@@ -804,7 +804,7 @@ getURI(name: string): Promise\<object>
 >
 > 从 API version 7开始支持，从API version 9开始废弃，此接口不再提供代替接口。
 
-**系统能力**：SystemCapability.Applications.settings.Core
+**系统能力**：SystemCapability.Applications.Settings.Core
 
 **参数**：
 
@@ -840,7 +840,7 @@ getValue(dataAbilityHelper: DataAbilityHelper, name: string, callback: AsyncCall
 
 **模型约束**：此接口仅可在FA模型下使用。
 
-**系统能力**：SystemCapability.Applications.settings.Core
+**系统能力**：SystemCapability.Applications.Settings.Core
 
 **参数**：
 
@@ -878,7 +878,7 @@ getValue(dataAbilityHelper: DataAbilityHelper, name: string): Promise\<object>
 
 **模型约束**：此接口仅可在FA模型下使用。
 
-**系统能力**：SystemCapability.Applications.settings.Core
+**系统能力**：SystemCapability.Applications.Settings.Core
 
 **参数**：
 
@@ -917,7 +917,7 @@ getValueSync(dataAbilityHelper: DataAbilityHelper, name: string, defValue: strin
 
 **模型约束**：此接口仅可在FA模型下使用。
 
-**系统能力**：SystemCapability.Applications.settings.Core
+**系统能力**：SystemCapability.Applications.Settings.Core
 
 **参数**：
 
@@ -960,7 +960,7 @@ setValueSync(dataAbilityHelper: DataAbilityHelper, name: string, value: string):
 
 **需要权限**：ohos.permission.MANAGE_SECURE_SETTINGS，仅系统应用可用。
 
-**系统能力**：SystemCapability.Applications.settings.Core
+**系统能力**：SystemCapability.Applications.Settings.Core
 
 **参数**：
 

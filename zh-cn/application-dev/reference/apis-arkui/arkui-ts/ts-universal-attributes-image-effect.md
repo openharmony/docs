@@ -102,7 +102,7 @@ saturate(value: number)
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | 是   | 为当前组件添加饱和度效果，饱和度为颜色中的含色成分和消色成分(灰)的比例，入参为1时，显示原图像，大于1时含色成分越大，饱和度越大，小于1时消色成分越大，饱和度越小。（百分比）<br/>默认值：1.0<br/>取值范围：[0, 50)<br/>**说明：**<br/>设置小于0的值时，按值为0处理。 |
+| value  | number | 是   | 为当前组件添加饱和度效果，饱和度为颜色中的含色成分和消色成分(灰)的比例，入参为1时，显示原图像，大于1时含色成分越大，饱和度越大，小于1时消色成分越大，饱和度越小。（百分比）<br/>默认值：1.0<br/>推荐取值范围：[0, 50)<br/>**说明：**<br/>设置小于0的值时，按值为0处理。 |
 
 ## contrast
 
@@ -118,7 +118,7 @@ contrast(value: number)
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | 是   | 为当前组件添加对比度效果，入参为对比度的值。值为1时，显示原图，大于1时，值越大对比度越高，图像越清晰醒目，小于1时，值越小对比度越低，当对比度为0时，图像变为全灰。（百分比）<br/>默认值：1.0<br/>取值范围：[0, 10)<br/>**说明：**<br/>设置小于0的值时，按值为0处理。 |
+| value  | number | 是   | 为当前组件添加对比度效果，入参为对比度的值。值为1时，显示原图，大于1时，值越大对比度越高，图像越清晰醒目，小于1时，值越小对比度越低，当对比度为0时，图像变为全灰。（百分比）<br/>默认值：1.0<br/>推荐取值范围：[0, 10)<br/>**说明：**<br/>设置小于0的值时，按值为0处理。 |
 
 ## invert
 
@@ -563,7 +563,8 @@ struct Index {
 
 ### 示例6
 
-blendMode搭配backgroundEffect实现文字图形异形渐变效果。
+blendMode搭配backgroundEffect实现文字异形模糊效果。<br/>
+如果出现漏线问题，开发者应首先确保两个blendMode所在组件大小严格相同。如果确认相同，可能是组件边界落在浮点数坐标上导致，可尝试设置[pixelRound](ts-universal-attributes-layout-constraints.md#pixelRound11)通用属性，使产生的白线、暗线两侧的组件边界对齐到整数像素坐标上。
 
 ```ts
 // xxx.ets
@@ -623,6 +624,12 @@ struct Index {
             }
           }
           .blendMode(BlendMode.DST_IN, BlendApplyType.OFFSCREEN)
+          .pixelRound({
+            start: PixelRoundCalcPolicy.FORCE_FLOOR ,
+            top: PixelRoundCalcPolicy.FORCE_FLOOR ,
+            end: PixelRoundCalcPolicy.FORCE_CEIL,
+            bottom: PixelRoundCalcPolicy.FORCE_CEIL
+          })
         }
         .blendMode(BlendMode.SRC_OVER, BlendApplyType.OFFSCREEN)
         .backgroundEffect({
@@ -632,6 +639,12 @@ struct Index {
           color: this.getVolumeDialogWindowColor()
         })
         .justifyContent(FlexAlign.Center)
+        .pixelRound({
+          start: PixelRoundCalcPolicy.FORCE_FLOOR ,
+          top: PixelRoundCalcPolicy.FORCE_FLOOR ,
+          end: PixelRoundCalcPolicy.FORCE_CEIL,
+          bottom: PixelRoundCalcPolicy.FORCE_CEIL
+        })
       }
     }
   }

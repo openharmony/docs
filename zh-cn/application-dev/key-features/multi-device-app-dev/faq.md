@@ -206,4 +206,262 @@ struct OnAreaChangeSample {
   }
 }
 ```
+## 如何解决顶部单张大图问题
 
+**解决方案**
+
+顶部背景图被拉伸时，可以通过设置背景图片的[backgroundImageSize](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-background.md#backgroundimagesize)属性，使得图片大小能够合理显示，达到适配效果。
+
+**布局效果**
+
+| sm | md |
+| ----------- | ----------- |
+| ![backgroundImage_sm](figures/backgroundImage_sm.png) | ![backgroundImage_sm](figures/backgroundImage_md.png)  |
+
+**参考代码**
+
+```ts
+@Entry
+@Component
+struct ImageClip {
+  build() {
+    // 设置背景图片的backgroundImageSize属性，使得图片大小能够合理显示
+    Column()
+      .width('100%')
+      .height(300)
+      .backgroundColor('#ccc')
+      .backgroundImage($r('app.media.ImageOne'))
+      .backgroundImageSize(ImageSize.Cover)
+      .backgroundImagePosition(Alignment.Center)
+  }
+}
+```
+
+## 如何解决Item内容过大
+
+**解决方案**
+
+在大屏上，Listitem内容会过大，页面整体浏览内容减少。可通过以下两种方法解决：
+- 设置List列的最小宽度和最大宽度，使List组件根据宽度自适应决定列数。
+- 借助栅格行组件[GridRow](../../reference/apis-arkui/arkui-ts/ts-container-gridrow.md)，调整不同的断点下List组件的宽度。
+
+**布局效果**
+
+| sm | md | 
+| -------- | -------- |
+|  展示1列 |  展示2列  |
+|  ![item内容过大sm](figures/listlayout_sm.png) | ![item内容过大md](figures/listlayout_md.png)|
+
+**参考代码**
+
+```ts
+@Entry
+@Component
+struct ListLayout {
+  @State data: Resource[] = new Array(5).fill($r("app.media.image"))
+  @State breakPoint: string = 'sm'
+
+  build() {
+    GridRow() {
+      GridCol({ span: { sm: 12, md: 12, lg: 12 } }) {
+        List({ space: 24 }) {
+          ForEach(this.data, (item: Resource) => {
+            ListItem() {
+              Image(item).margin({ left: 12, right: 12 })
+            }
+          })
+        }
+        // 设置列最小宽度和最大宽度
+        .lanes({ minLength: 300, maxLength: 360 }).padding(12)
+      }
+    }.onBreakpointChange((breakpoint: string) => {
+      this.breakPoint = breakpoint
+    })
+  }
+}
+```
+
+```ts
+List() {
+    // ...
+}
+// 根据断点设置List列数
+.lanes(this.breakPoint === 'sm' ? 1 : 2)
+```
+
+## 如何解决Banner图片过大
+
+**解决方案**
+
+在大屏上，Swiper图片显示内容过大，可以通过增加Swiper展示图片数来调整图片显示大小。外层可以使用栅格组件[GridRow](../../reference/apis-arkui/arkui-ts/ts-container-gridrow.md)，通过调用OnBreakpointChange事件，调整不同的断点下Swiper的前后边距，实现在不同屏幕尺寸上的显示不同Swiper图片数。
+
+**布局效果**
+
+| sm | md | 
+| -------- | -------- |
+| 展示一个内容项 | 展示一个完整的内容项 + 左右相邻的部分内容项 |
+| ![Banner图片过大sm](figures/swiper_sm.png) | ![Banner图片过大md](figures/swiper_md.png) |
+
+**参考代码**
+
+```ts
+@Entry
+@Component
+struct SwiperLayout {
+  @State data: Resource[] = new Array(5).fill($r("app.media.sky"))
+  @State breakPoint: string = 'sm'
+
+  build() {
+    Row() {
+      GridRow() {
+        GridCol({ span: { sm: 12, md: 12, lg: 12 } }) {
+          Swiper() {
+            ForEach(this.data, (item: Resource) => {
+              Image(item).width('100%').height(180)
+            })
+          }
+          .width('100%')
+          .itemSpace(24)
+          // 根据断点设置Swiper前后边距
+          .prevMargin(this.breakPoint === 'sm' ? 0 : 100)
+          .nextMargin(this.breakPoint === 'sm' ? 0 : 100)
+        }
+      }.onBreakpointChange((breakpoint: string) => {
+        this.breakPoint = breakpoint
+      })
+      .height("60%")
+      .borderWidth(2)
+    }
+  }
+}
+```
+
+## 如何解决信息流图片过大
+
+**解决方案**
+
+针对信息流单张图片过大的情况，设置[aspectRatio](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md#aspectratio)和[constrainSize](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-size.md#constraintsize)属性，可以通过对图片的布局和尺寸进行约束，达到适配效果。
+
+**布局效果**
+
+| sm | md |
+| -------- | -------- |
+| ![backgroundImage_sm](figures/image_sm.png) | ![backgroundImage_sm](figures/image_md.png)  |
+
+**参考代码**
+
+```ts
+@Entry
+@Component
+struct ImageConstrainSize {
+  @State breakPoint: string = 'sm'
+  build() {
+    GridRow(){
+      GridCol({ span: { sm: 12, md: 12, lg: 12 } }){
+        Column(){
+          Text('一次开发，多端部署，让开发者可以基于一种设计，高效构建多端可运行的应用。一次开发，多端部署，让开发者可以基于一种设计，高效构建多端可运行的应用。')
+          // 设置aspectRatio和constrainSize属性，可以对图片的布局和尺寸进行约束
+          Image($r('app.media.ImageTwo'))
+            .width('30%')
+            .aspectRatio(0.5)
+            .constraintSize({ maxWidth: 240, minWidth: 180 })
+          Text('一次开发，多端部署，让开发者可以基于一种设计，高效构建多端可运行的应用。一次开发，多端部署，让开发者可以基于一种设计，高效构建多端可运行的应用。')
+        }.alignItems(HorizontalAlign.Start)
+
+      }
+    }.onBreakpointChange((breakpoint: string) => {
+      this.breakPoint = breakpoint
+    })
+  }
+}
+```
+
+## 如何解决信息流_4宫格图片过大
+
+**解决方案**
+
+在大屏上，Grid组件里的4宫格图片大小过大，页面浏览区域变少。可以借助栅格行组件[GridRow](../../reference/apis-arkui/arkui-ts/ts-container-gridrow.md)来调整不同的断点下Grid的宽度，解决大屏上Grid组件4宫格图片过大的问题。
+
+**布局效果**
+
+| sm | md | 
+| -------- | -------- |
+| 宽度占满屏幕 | 宽度占屏幕的60% |
+| ![4宫格图片过大sm](figures/gridlayout_sm.png) | ![4宫格图片过大md](figures/gridlayout_md.png) |
+
+**参考代码**
+
+```ts
+@Entry
+@Component
+struct GridLayout {
+  @State data: Resource[] = new Array(4).fill($r("app.media.image"))
+  @State breakPoint: string = 'sm'
+
+  build() {
+    GridRow() {
+      GridCol({ span: { sm: 12, md: 12, lg: 12 } }) {
+        Column() {
+          Text('一次开发，多端部署，让开发者可以基于一种设计，高效构建多端可运行的应用。')
+          Grid() {
+            ForEach(this.data, (item: Resource) => {
+              GridItem() {
+                Image(item).width('100%').aspectRatio(1)
+              }
+            })
+          }.columnsTemplate('1fr 1fr')
+          .columnsGap(24)
+          .rowsGap(24)
+          // 根据断点设置Grid宽度
+          .width(this.breakPoint === 'md' ? '60%' : '100%')
+        }.width('100%').alignItems(HorizontalAlign.Start)
+      }
+    }.onBreakpointChange((breakpoint: string) => {
+      this.breakPoint = breakpoint
+    })
+  }
+}
+```
+## 如何解决信息流_9宫格图片过大
+
+**解决方案**
+
+在大屏上，Grid组件里的9宫格图片大小过大，页面整体浏览内容减少，可以设置Grid组件宽度和宽高比，使Grid组件保持固定大小，不会随着屏幕尺寸变化而变化。
+
+**布局效果**
+
+| sm | md | 
+| -------- | -------- |
+| 图片宽高不变 | 图片宽高不变 |
+| ![9宫格图片过大sm](figures/gridwidth_sm.png) | ![9宫格图片过大md](figures/gridwidth_md.png) |
+
+**参考代码**
+
+```ts
+@Entry
+@Component
+struct GridWidth {
+  @State data: Resource[] = new Array(9).fill($r("app.media.sky"))
+
+  build() {
+    Column() {
+      Text('一次开发，多端部署，让开发者可以基于一种设计，高效构建多端可运行的应用。')
+      Grid() {
+        ForEach(this.data, (item: Resource) => {
+          GridItem() {
+            Image(item).width('100%').aspectRatio(1)
+          }
+        })
+      }
+      .columnsTemplate('1fr 1fr 1fr')
+      .columnsGap(12)
+      .rowsGap(12)
+      // 设置固定宽度和宽高比
+      .width(360)
+      .aspectRatio(1)
+      .padding(12)
+    }
+    .alignItems(HorizontalAlign.Start)
+  }
+}
+```

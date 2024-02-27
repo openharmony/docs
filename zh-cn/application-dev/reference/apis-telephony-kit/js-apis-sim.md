@@ -1077,6 +1077,28 @@ sim.getActiveSimAccountInfoList((err: BusinessError, data: Array<sim.IccAccountI
 });
 ```
 
+## sim.getMaxSimCount<sup>7+</sup>
+
+getMaxSimCount\(\): number
+
+获取卡槽数量。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**返回值：**
+
+| 类型              | 说明                                                         |
+| ----------------- | ------------------------------------------------------------ |
+| number | 卡槽数量。 |
+
+**示例：**
+
+```ts
+import sim from '@ohos.telephony.sim';
+
+console.log("Result: "+ sim.getMaxSimCount());
+```
+
 
 ## sim.getActiveSimAccountInfoList<sup>10+</sup>
 

@@ -15,12 +15,13 @@
 
 ### 成员变量
 
-| 名称 | 描述 |
+| 名称 | 描述 | 
 | -------- | -------- |
-| int32_t [kind](#kind) | 事件类型。  |
-| int32_t [eventId](#eventid) | 事件自定义标识ID。  |
+| int32_t [kind](#kind) | 事件类型。  | 
+| int32_t [eventId](#eventid) | 事件自定义标识ID。  | 
 | [ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) [node](#node) | 触发该组件的组件对象。  |
 | union {<br/>  [ArkUI_NodeTouchEvent](_ark_u_i___node_touch_event.md)  [touchEvent](#touchevent)<br>  [ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md) [componentEvent](#componentevent)<br>  [ArkUI_StringAsyncEvent](_ark_u_i___string_async_event.md) [stringEvent](#stringevent)<br>} | touchEvent：touch事件类型回调参数。<br>componentEvent：通用组件事件使用数字类型回调参数。<br>stringEvent：通用组件事件使用字符串类型回调参数。 |
+| void \* [extraParam](#extraparam) | 事件自定义参数。  | 
 
 
 ## 结构体成员变量说明
@@ -46,6 +47,18 @@ int32_t ArkUI_NodeEvent::eventId
 事件自定义标识ID。
 
 该事件id在调用**registerNodeEvent**函数时作为参数传递进来，可应用于同一事件入口函数{**}分发逻辑。 **
+
+
+### extraParam
+
+```
+void* ArkUI_NodeEvent::extraParam
+```
+**描述：**
+
+事件自定义参数。
+
+该自定义参数在调用**registerNodeEvent**函数时作为参数传递进来，可应用于事件触发时的业务逻辑处理。
 
 
 ### kind

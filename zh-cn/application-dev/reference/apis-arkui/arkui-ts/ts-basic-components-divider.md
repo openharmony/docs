@@ -16,18 +16,77 @@
 
 Divider()
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ## 属性
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
-| 名称      | 参数类型         | 描述        |
-| ----------- | ---------- | ------------------ |
-| vertical    | boolean | 使用水平分割线还是垂直分割线。false：水平分割线；true：垂直分割线。<br/>默认值：false<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| color       | [ResourceColor](ts-types.md#resourcecolor) | 分割线颜色。<br/>默认值：'\#33182431'<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| strokeWidth | number&nbsp;\|&nbsp;string | 分割线宽度。<br/>默认值：1px<br/>单位：vp<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br>分割线的宽度不支持百分比设置。优先级低于[通用属性height](ts-universal-attributes-size.md#height)，超过通用属性设置大小时，按照通用属性进行裁切。 |
-| lineCap     | [LineCapStyle](ts-appendix-enums.md#linecapstyle) | 分割线的端点样式。<br/>默认值：LineCapStyle.Butt<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+### vertical
+
+vertical(value: boolean)
+
+设置分割线的方向。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| value  | boolean | 是   | 使用水平分割线还是垂直分割线。<br/>false：水平分割线；true：垂直分割线。<br/>默认值：false |
+
+### color
+
+color(value: ResourceColor)
+
+设置分割线的颜色。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                       | 必填 | 说明                                  |
+| ------ | ------------------------------------------ | ---- | ------------------------------------- |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 分割线颜色。<br/>默认值：'\#33182431' |
+
+### strokeWidth
+
+strokeWidth(value: number | string)
+
+设置分割线的宽度。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                       | 必填 | 说明                                                         |
+| ------ | -------------------------- | ---- | ------------------------------------------------------------ |
+| value  | number&nbsp;\|&nbsp;string | 是   | 分割线宽度。<br/>默认值：1px<br/>单位：vp<br/>**说明：**  <br>分割线的宽度不支持百分比设置。优先级低于[通用属性height](ts-universal-attributes-size.md#height)，超过通用属性设置大小时，按照通用属性进行裁切。 |
+
+### lineCap
+
+lineCap(value: LineCapStyle)
+
+设置分割线的端点样式。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                              | 必填 | 说明                                             |
+| ------ | ------------------------------------------------- | ---- | ------------------------------------------------ |
+| value  | [LineCapStyle](ts-appendix-enums.md#linecapstyle) | 是   | 分割线的端点样式。<br/>默认值：LineCapStyle.Butt |
 
 
 ## 示例

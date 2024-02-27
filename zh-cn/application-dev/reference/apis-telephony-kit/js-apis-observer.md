@@ -873,7 +873,7 @@ SIM卡类型和状态。
 
 |     名称            |                 类型                    | 必填 | 说明     |
 | ------------------- | -------------------------------------- | ---- | -------- |
-| callState           | [CallState](js-apis-call.md#callstate) | 是   | 通话类型。 |
+| state               | [CallState](js-apis-call.md#callstate) | 是   | 通话类型。 |
 | number              | string                                 | 是   | 电话号码。 |
 
 

@@ -31,6 +31,7 @@
   - [签名验签介绍及算法规格](crypto-sign-sig-verify-overview.md)
   - 签名验签开发指导
     - [使用RSA密钥对（PKCS1模式）签名验签](crypto-rsa-sign-sig-verify-pkcs1.md)
+    - [使用RSA密钥对（PKCS1模式）签名及签名恢复](crypto-rsa-sign-sig-verify-recover-pkcs1.md)
     - [使用RSA密钥对分段签名验签（PKCS1模式）](crypto-rsa-sign-sig-verify-pkcs1-by-segment.md)
     - [使用RSA密钥对签名验签（PSS模式）](crypto-rsa-sign-sig-verify-pss.md)
     - [使用ECDSA密钥对签名验签](crypto-ecdsa-sign-sig-verify.md)

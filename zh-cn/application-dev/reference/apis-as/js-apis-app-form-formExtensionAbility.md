@@ -246,7 +246,7 @@ onConfigurationUpdate(newConfig: Configuration): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| newConfig | [Configuration](../apis/js-apis-application-configuration.md) | 是 | 表示需要更新的配置信息。 |
+| newConfig | [Configuration](../apis-ability-kit/js-apis-application-configuration.md) | 是 | 表示需要更新的配置信息。 |
 
 **示例：**
 
@@ -290,4 +290,24 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
     return formInfo.FormState.UNKNOWN;
   }
 };
+```
+
+## onStop
+
+onStop?(): void
+
+当卡片提供方的卡片进程退出时，触发该回调。
+  
+**系统能力** SystemCapability.Ability.Form
+
+**示例：**
+
+```ts
+import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+
+export default class MyFormExtensionAbility extends FormExtensionAbility {
+  onStop() {
+    console.log(`FormExtensionAbility onStop`);
+  }
+}
 ```

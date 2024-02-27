@@ -130,6 +130,11 @@ OH_AudioStreamBuilder_Destroy(builder);
 
     为了避免不可预期的行为，在设置音频回调函数时，请确认[OH_AudioCapturer_Callbacks](../reference/apis-audio-kit/_o_h_audio.md#oh_audiocapturer_callbacks)的每一个回调都被**自定义的回调方法**或**空指针**初始化。
 
+    ```c++
+    // （可选）使用空指针初始化OnError回调
+    callbacks.OH_AudioCapturer_OnError = nullptr;
+    ```
+
 4. 构造录制音频流
 
     ```c++
