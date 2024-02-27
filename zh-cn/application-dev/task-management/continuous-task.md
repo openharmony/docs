@@ -361,7 +361,7 @@
    import rpc from "@ohos.rpc";
    ```
 
-4. 申请和取消长时任务。在 ServiceAbility 中，调用 startBackgroundRunning() 接口和 startBackgroundRunning() 接口实现长时任务的申请和取消。
+4. 申请和取消长时任务。在 ServiceAbility 中，调用 startBackgroundRunning() 接口和 stopBackgroundRunning() 接口实现长时任务的申请和取消。
    
    ```js
    function startContinuousTask() {
