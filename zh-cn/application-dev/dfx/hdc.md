@@ -847,13 +847,13 @@ hdc file recv /data/log/hilog                         // 获取hilog已落盘日
  - 设备开启USB调试模式；
  - 设备出现弹窗点击允许调试；
  - 如可通过TCP模式连接，可执行`hdc tmode usb`命令恢复USB连接；
- - 设备恢复出厂设备；
+ - 设备恢复出厂设备。
 
 #### （2）存在USB设备，但是驱动损坏，显示"HDC Device"⚠警告图标
-该问题常见于Windows环境，现象为`设备管理器`>`通用串行总线设备`中，`HDC Device`显示为黄标警告，且描述信息为该设备无法正常工作。可尝试重新安装驱动解决，如重新安装驱动无法解决，可以尝试更换USB连接数据线/拓展坞/USB接口。
+现象描述：该问题常见于Windows环境，现象为`设备管理器`>`通用串行总线设备`中，`HDC Device`显示为黄标警告，且描述信息为该设备无法正常工作。可尝试重新安装驱动解决，如重新安装驱动无法解决，可以尝试更换USB连接数据线/拓展坞/USB接口。
 
 **重新安装驱动方法**：
- 1) 打开`设备管理器`，右键点击有警告图标的`HDC Device`；
+ 1) 打开`设备管理器`，右键点击存在警告图标的`HDC Device`；
 
  2) 出现的菜单中点击`更新驱动程序`；
 
@@ -861,16 +861,18 @@ hdc file recv /data/log/hilog                         // 获取hilog已落盘日
 
  4) 出现的提示窗口（第2/3个）中，选取`让我从计算机上的可用驱动程序列表中选取`；
 
- 5) 出现的提示窗口（第3/3个）中，取消勾选`显示兼容硬件`，选取`通用串行总线设备`>`WinUSB设备`后点击`下一步`按钮。
+ 5) 出现的提示窗口（第3/3个）中，取消勾选`显示兼容硬件`，选择厂商：`WinUSB设备`，选择型号：`WinUSB设备`，选择完成后点击`下一步`按钮。
 
 #### （3）连接设备时出现[Fail]Failed to communicate with daemon
+现象描述：命令行执行hdc相关命令，执行失败返回`[Fail]Failed to communicate with daemon`。
+
 可能存在以下原因，可参考排查：
 - hdc SDK与设备不匹配:
 
 如果设备更新到最新版本，可更新hdc（SDK）工具至最新版本。
 - 端口被占用：
 
-常见于hdc和hdc_std使用同一端口，同时运行时会端口互相冲突，注意只运行其中一个。其他软件占用8710端口也会导致该问题发生。
+常见于hdc和hdc_std使用同一端口，同时运行时HDC_SERVER_PORT设置的端口互相冲突（未设置则使用默认端口8710，仍然会冲突），注意只运行其中一个。其他软件占用hdc默认端口也会导致该问题发生。
 
 #### （4）连接设备时出现Connect server failed
 出现该现象，可能有如下原因：
@@ -881,7 +883,8 @@ hdc file recv /data/log/hilog                         // 获取hilog已落盘日
 
 包括自带hdc的软件（DevEco Studio、DevEco Testing），如存在请关闭这些软件后再执行hdc相关命令。
 
-2) 查询8710端口情况
+2) 查询HDC端口情况
+以设置的HDC_SERVER_PORT为8710端口为例，在不同平台查询命令如下
 
 Unix
 ```
@@ -891,7 +894,7 @@ Windows:
 ```
 netstat -an |findstr 8710
 ```
-如存在抢占的软件，可以关闭该软件进程或者更换OHOS_HDC_SERVER_PORT环境变量为其他端口号。
+如存在抢占的软件，可以关闭该软件进程或者更换HDC_SERVER_PORT环境变量为其他端口号。
 
 3) 排查未关闭的其他版本hdc server
 
@@ -903,17 +906,16 @@ netstat -an |findstr 8710
 
 使用`ps -ef |grep hdc`查询hdc后台server进程，核对进程启动位置是否为配置的环境变量中的hdc文件位置，如果不一致，可尝试结束hdc进程(hdc kill或者kill -9 hdc进程的PID)并重新执行hdc命令。（关闭hdc server后执行hdc命令会重新启动hdc server）
 
-- **注册表污染**
+- **注册表异常**
 
 解决方法：清理注册表，步骤如下：
 1) 同时按下`Win`+`R`键，启动运行工具，输入栏输入`regedit`打开注册表；
-2) 注册表地址栏输入：
+2) 注册表地址栏输入以下内容并按下`回车`，即可进入USB类设备驱动程序的注册表；：
 ```
 计算机\HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Class\{88bae032-5a81-49f0-bc3d-a4ff138216d6}
 ```
-进入WinUSB设备的注册表；
 
-3) 找到`UpperFilters`键，右键`修改`编辑，**备份**并清空其中数值数据内容（如清空无效请依照备份恢复改内容）；
+3) 找到`UpperFilters`键，右键`修改`编辑，**备份**并清空其中数值数据内容（如清空后无法解决问题可依照备份恢复）；
 4) 刷新设备管理器/插拔USB接口/重启计算机。
 
 ### 2、hdc运行不了 
@@ -926,9 +928,9 @@ Linux运行环境：建议使用Ubuntu18.04及以上64版本，如发送libc++.s
 
 MacOS运行环境：建议使用MacOS 11及以上版本。
 
-Windows运行环境：建议使用Windows10/Windows11 64位版本，如低版本确实WinUSB库/驱动，请使用Zadig工具更新。对于符合设备，需要使用Zadig工具安装libusb-win32驱动。[Zadig链接](https://github.com/pbatard/libwdi/releases)
+Windows运行环境：建议使用Windows10/Windows11 64位版本，如低版本缺失WinUSB库/驱动，请使用Zadig工具更新。对于符合设备，需要使用Zadig工具安装libusb-win32驱动。[Zadig链接](https://github.com/pbatard/libwdi/releases)
 
-- 运行方式不当：请使用`命令行`依照正确命令运行hdc工具，**而非**`鼠标双击`可执行文件执行。
+- 运行方式不当：请使用命令行依照正确命令运行hdc工具，而非鼠标双击文件。
 
 ### 3、其他问题排查常用步骤
 1) 命令行执行`hdc list targets`查看返回值；
