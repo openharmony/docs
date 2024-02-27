@@ -417,7 +417,7 @@ getAppVMMemoryInfo(): VMMemoryInfo
 
 | 类型         | 说明                                    |
 | -------------| --------------------------------------- |
-| [VMMemoryInfo](#vmmemoryinfo12) |  返回VM内存信息。  |
+| [VMMemoryInfo](#vmmemoryinfo12) |  返回VM内存信息  |
 
 **示例：**
 
@@ -440,7 +440,7 @@ getAppThreadCpuUsage(): ThreadCpuUsage[]
 
 | 类型             | 说明                                                        |
 | -----------------| ------------------------------------------------------------|
-| [ThreadCpuUsage](#threadcpuusage12)[] | 返回当前应用进程下所有ThreadCpuUsage数组。 |
+| [ThreadCpuUsage](#threadcpuusage12)[] | 返回当前应用进程下所有ThreadCpuUsage数组 |
 
 
 
@@ -468,8 +468,8 @@ startAppTraceCapture(tags : number[], flag: TraceFlag, limitSize: number) : stri
 
 | 参数名   | 类型     | 必填 | 说明                                                                                  |
 | -------- | ------   | ---- | ------------------------------------------------------------------------------------- |
-| tags     | number[] | 是   | trace的tag类型，具体tag类型见下方                                                       |
-| flag     | TraceFlag| 是   | trace的flag类型,MAIN_THREAD为只采集主线程trace, ALL_THREADS为采集所有线程trace         |
+| tags     | number[] | 是   | 详情请见[tags](#tags12)                                                      |
+| flag     | TraceFlag| 是   | 详情请见[TraceFlag](#traceflag12)          |
 | limitSize| number   | 是   | 开启trace文件大小限制，单位为Byte                                                       |
 
 **返回值：**
@@ -585,8 +585,8 @@ getAppMemoryLimit() : MemoryLimit
 
 | 名称               | 类型    | 可读 | 可写 | 说明                                |
 | -------------------| ------- | ---- | ---- | ----------------------------------- |
-| threadId           | number  | 是   | 否   | cpu线程Id                           |
-| cpuUsage           | number  | 是   | 否   | cpu线程使用率                       |
+| threadId           | number  | 是   | 否   | 线程号                           |
+| cpuUsage           | number  | 是   | 否   | 线程CPU使用率                       |
 
 ## tags<sup>12+</sup>
 
@@ -745,6 +745,8 @@ hilog.info(0x0000, 'testTag', "availableMem = %{public}d", systemMemInfo.availab
 | availableMem  | bigint |  是  | 系统可用的内存，以KB为单位      |
 
 ## TraceFlag<sup>12+</sup>
+
+描述采集trace线程的类型。
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
