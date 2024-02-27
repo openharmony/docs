@@ -180,7 +180,7 @@ import {Grid1} from './Grid'
 
 @CustomDialog
 struct CustomDialogExample{
-  controller?:CustomDialogController
+  controller:CustomDialogController
   @Link tabBarArray:Array<string>
   build(){
     Column(){
