@@ -715,7 +715,7 @@ getSystemMemInfo(): SystemMemInfo
 
 | 类型  | 说明                      |
 | ------ | -------------------------- |
-| [SystemMemInfo](#systemMemInfo) | 系统耗用内存大小|
+| [SystemMemInfo](js-apis-hidebug.md#SystemMemInfo) | 系统耗用内存大小|
 
 **示例**
 
