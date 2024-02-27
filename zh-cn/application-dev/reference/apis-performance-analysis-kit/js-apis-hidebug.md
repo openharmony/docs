@@ -551,7 +551,7 @@ getAppMemoryLimit() : MemoryLimit
 ```ts
  let appMemoryLimit:hidebug.MemoryLimit = hidebug.getAppMemoryLimit();
 ```
-## MemoryLimit
+## MemoryLimit<sup>12+</sup>
 
 应用程序进程内存限制
 
