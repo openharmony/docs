@@ -178,6 +178,7 @@
     - [Component3D (系统接口)](arkui-ts/ts-basic-components-component3d-sys.md)
     - [FormComponent (系统接口)](arkui-ts/ts-basic-components-formcomponent-sys.md)
     - [Image (系统接口)](arkui-ts/ts-basic-components-image-sys.md)
+    - [MediaCachedImage (系统接口)](arkui-ts/ts-basic-components-mediacachedimage-sys.md)
     - [PluginComponent (系统接口)](arkui-ts/ts-basic-components-plugincomponent-sys.md)
     - [RemoteWindow (系统接口)](arkui-ts/ts-basic-components-remotewindow-sys.md)
     - [TextInput (系统接口)](arkui-ts/ts-basic-components-textinput-sys.md)
