@@ -11,12 +11,13 @@
 The status of the system cpu usage is abnormal.
 
 **错误描述**
-当前cpuUsage的状态是异常的
+
+当前cpuUsage的状态是异常的。
 
 **可能原因**
 
-可能由多种原因导致。
+hiview服务进程未正常启动。
 
 **处理步骤**
 
-重启系统。
+检查hiview进程运行状态，重启hiview服务或者重启系统。
