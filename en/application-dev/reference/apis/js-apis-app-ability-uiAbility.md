@@ -146,7 +146,7 @@ Called when this UIAbility is destroyed to clear resources. This API returns the
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| void&nbsp;\|&nbsp;Promise&lt;void&gt; | No return value or a Promise object that returns no result.|
 
 **Example**
 
@@ -1061,37 +1061,49 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 ## OnReleaseCallback
 
 
-(msg: string): void
-
 Defines the callback that is invoked when the stub on the target UIAbility is disconnected.
 
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-| Name| Read-only| Mandatory| Type| Description|
-| -------- | -------- | -------- | -------- | -------- |
-| (msg: string) | No| Yes| function | Prototype of the listener function registered by the caller.|
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| --- | ----- | --- | -------- |
+| msg | string | Yes| Message used for disconnection.| 
+
 
 ## OnRemoteStateChangeCallback<sup>10+</sup>
 
-(msg: string): void
 
 Defines the callback that is invoked when the remote ability state changes in the collaboration scenario.
 
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-| Name| Read-only| Mandatory| Type| Description|
-| -------- | -------- | -------- | -------- | -------- |
-| (msg: string) | No| Yes| function | Prototype of the ability state change listener function registered by the caller in the collaboration scenario.|
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| --- | ----- | --- | -------- |
+| msg | string | Yes| Message used for disconnection.| 
+
 
 ## CalleeCallback
 
-(indata: rpc.MessageSequence): rpc.Parcelable;
 
 Defines the callback of the registration message notification of the UIAbility.
 
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-| Name| Read-only| Mandatory| Type| Description|
-| -------- | -------- | -------- | -------- | -------- |
-| (indata: [rpc.MessageSequence](js-apis-rpc.md#messagesequence9)) | No| Yes| [rpc.Parcelable](js-apis-rpc.md#parcelable9) | Prototype of the listener function registered by the callee.|
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| --- | ----- | --- | -------- |
+| indata | [rpc.MessageSequence](js-apis-rpc.md#messagesequence9) | Yes| Data to be transferred.|
+
+**Return value**
+
+| Type  | Description                                 |
+| ------------ | ------------------------------------- |
+| [rpc.Parcelable](js-apis-rpc.md#parcelable9) | Returned data object.|

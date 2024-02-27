@@ -48,7 +48,7 @@ Enumerates the application state saving modes. This enum is used as an input par
 
 ## appRecovery.enableAppRecovery
 
-enableAppRecovery(restart?: [RestartFlag](#apprecoveryrestartflag), saveOccasion?: [SaveOccasionFlag](#apprecoverysaveoccasionflag), saveMode?: [SaveModeFlag](#apprecoverysavemodeflag)) : void;
+enableAppRecovery(restart?: [RestartFlag](#apprecoveryrestartflag), saveOccasion?: [SaveOccasionFlag](#apprecoverysaveoccasionflag), saveMode?: [SaveModeFlag](#apprecoverysavemodeflag)) : void
 
 Enables application recovery. After this API is called, the first ability that is displayed when the application is started from the initiator can be restored.
 
@@ -83,11 +83,11 @@ export default class MyAbilityStage extends AbilityStage {
 
 ## appRecovery.restartApp
 
-restartApp(): void;
+restartApp(): void
 
 Restarts the current process and starts the first ability that is displayed when the application is started. If the state of this ability is saved, the saved state data is passed into the **wantParam** attribute in the **want** parameter of the **onCreate** lifecycle callback of the ability.
 
-In API version 10, the ability specified by [setRestartWant](#apprecoverysetrestartwant) is started. If no ability is specified, the following rules are used:
+In API version 10, the ability specified by [setRestartWant](#apprecoverysetrestartwant10) is started. If no ability is specified, the following rules are used:
 - If the ability of the current application running in the foreground supports recovery, that ability is started.
 - If multiple abilities that support recovery is running in the foreground, only the last ability is started.
 - If no ability is running in the foreground, none of them is started.
@@ -121,7 +121,7 @@ try {
 
 ## appRecovery.saveAppState
 
-saveAppState(): boolean;
+saveAppState(): boolean
 
 Saves the application state. This API can be used together with the APIs of [errorManager](js-apis-app-ability-errorManager.md).
 
@@ -157,7 +157,7 @@ try {
 
 ## appRecovery.saveAppState<sup>10+</sup>
 
-saveAppState(context?: UIAbilityContext): boolean;
+saveAppState(context?: UIAbilityContext): boolean
 
 Saves the ability state, which will be used for recovery. This API can be used together with the APIs of [errorManager](js-apis-app-ability-errorManager.md).
 
@@ -199,7 +199,7 @@ try {
 
 ## appRecovery.setRestartWant<sup>10+</sup>
 
-setRestartWant(want: Want): void;
+setRestartWant(want: Want): void
 
 Sets an ability that will be recovered. The ability must be a UIAbility in the current bundle.
 

@@ -6,7 +6,8 @@
 
 > **NOTE**
 > 
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
 > The APIs of this module can be used only in the stage model.
 
 ## Modules to Import
@@ -93,7 +94,7 @@ import { Configuration } from '@ohos.app.ability.Configuration';
 
 class MyAbilityStage extends AbilityStage {
     onConfigurationUpdate(config: Configuration) {
-        console.log('onConfigurationUpdate, language: ${config.language}');
+        console.log(`onConfigurationUpdate, language: ${config.language}`);
     }
 }
 ```

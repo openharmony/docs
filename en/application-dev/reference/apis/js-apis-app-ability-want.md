@@ -93,7 +93,7 @@ import Want from '@ohos.app.ability.Want';
           },
         };
 
-        context.startAbility(want: Want, (err) => {
+        context.startAbility(wan, (err) => {
           console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
         });
         ```

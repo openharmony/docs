@@ -18,9 +18,9 @@ import common from '@ohos.app.ability.common';
 
 |    Name     | Type      | Mandatory  | Description                       |
 | ------------ | -------- | ---- | ------------------------- |
-| onConnect<sup>7+</sup>    | function | Yes   | Callback invoked when a connection is set up.     |
-| onDisconnect<sup>7+</sup> | function | Yes   | Callback invoked when a connection is interrupted.          |
-| onFailed<sup>7+</sup>     | function | Yes   | Callback invoked when a connection fails.|
+| onConnect    | function | Yes   | Callback invoked when a connection is set up.     |
+| onDisconnect | function | Yes   | Callback invoked when a connection is interrupted.          |
+| onFailed     | function | Yes   | Callback invoked when a connection fails.|
 
 **Example**
 

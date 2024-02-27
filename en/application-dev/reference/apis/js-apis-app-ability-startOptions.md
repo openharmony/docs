@@ -17,15 +17,15 @@ import StartOptions from '@ohos.app.ability.StartOptions';
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| [windowMode](js-apis-app-ability-abilityConstant.md#abilityconstantwindowmode) | number | No| Window mode.<br>**System API**: This is a system API and cannot be called by third-party applications.|
-| displayId | number | No| Display ID mode. The default value is **0**, indicating the current display.|
-| withAnimation<sup>11+</sup> | boolean | No| Whether the ability has the animation effect.|
-| windowLeft<sup>11+</sup> | number | No| Left position of the window.|
-| windowTop<sup>11+</sup> | number | No| Top position of the window.|
-| windowWidth<sup>11+</sup> | number | No| Width of the window.|
-| windowHeight<sup>11+</sup> | number | No| Height of the window.|
+| Name| Type| Read-only| Mandatory| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| [windowMode](js-apis-app-ability-abilityConstant.md#abilityconstantwindowmode) | number | No| No| Window mode.<br>**System API**: This is a system API and cannot be called by third-party applications.|
+| displayId | number | No| No| Display ID mode. The default value is **0**, indicating the current display.|
+| withAnimation<sup>11+</sup> | boolean | No| No| Whether the ability has the animation effect.|
+| windowLeft<sup>11+</sup> | number | No| No| Left position of the window.|
+| windowTop<sup>11+</sup> | number | No| No| Top position of the window.|
+| windowWidth<sup>11+</sup> | number | No| No| Width of the window.|
+| windowHeight<sup>11+</sup> | number | No| No| Height of the window.|
 
 **Example**
 
@@ -44,7 +44,7 @@ import StartOptions from '@ohos.app.ability.StartOptions';
         abilityName: 'EntryAbility'
       };
       let options: StartOptions = {
-        windowMode: 0
+        displayId: 0
       };
 
       try {

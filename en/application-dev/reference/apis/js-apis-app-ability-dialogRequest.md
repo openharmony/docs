@@ -102,10 +102,10 @@ Defines the location attributes of a modal dialog box.
 
 | Name| Type  | Mandatory| Description                       |
 | ---- | ------ | ---- | --------------------------- |
-| left  | number | Yes | X-coordinate of the upper left corner of the dialog box.|
-| top  | number | Yes | Y-coordinate of the upper left corner of the dialog box.|
-| width  | number | Yes | Width of the dialog box.|
-| height  | number | Yes | Height of the dialog box.|
+| left  | number | Yes  | X-coordinate of the upper left corner of the dialog box.|
+| top  | number | Yes  | Y-coordinate of the upper left corner of the dialog box.|
+| width  | number | Yes  | Width of the dialog box.|
+| height  | number | Yes  | Height of the dialog box.|
 
 ## RequestInfo
 
@@ -159,10 +159,10 @@ Defines the result of the request for the modal dialog box. It contains **Result
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name| Type| Read-only | Mandatory | Description|
+| Name| Type| Read-only| Mandatory| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| result | [ResultCode](#resultcode) | No | Yes| Result code of the request.|
-| want<sup>10+</sup> | [ResultWant](js-apis-app-ability-want.md)  | No | No | Want information, such as the ability name and bundle name.|
+| result | [ResultCode](#resultcode) | No| Yes| Result code of the request.|
+| want<sup>10+</sup> | [ResultWant](js-apis-app-ability-want.md)  | No| No| Want information, such as the ability name and bundle name.|
 
 ## RequestCallback
 
