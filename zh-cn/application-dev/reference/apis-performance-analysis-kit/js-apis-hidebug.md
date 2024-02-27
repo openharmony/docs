@@ -417,7 +417,7 @@ getAppVMMemoryInfo(): VMMemoryInfo
 
 | 类型         | 说明                                    |
 | -------------| --------------------------------------- |
-| VMMemoryInfo | 详情见 VMMemoryInfo 介绍                |
+| [VMMemoryInfo](#vmmemoryinfo12) |  返回VM内存信息。  |
 
 **示例：**
 
@@ -432,7 +432,7 @@ hilog.info(0x0000, "example", "allArraySize = %{public}d", vmMemory.allArraySize
 
 getAppThreadCpuUsage(): ThreadCpuUsage[]
 
-获取应用线程CPU使用情况
+获取应用线程CPU使用情况。
 
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -440,7 +440,7 @@ getAppThreadCpuUsage(): ThreadCpuUsage[]
 
 | 类型             | 说明                                                        |
 | -----------------| ------------------------------------------------------------|
-| ThreadCpuUsage[] | 一个数组,数组里包含的是ThreadCpuUsage,ThreadCpuUsage见下描述 |
+| [ThreadCpuUsage](#threadcpuusage12)[] | 返回当前应用进程下所有ThreadCpuUsage数组。 |
 
 
 
@@ -458,7 +458,8 @@ for (let ii = 0; ii < appThreadCpuUsage.length; ii++) {
 
 startAppTraceCapture(tags : number[], flag: TraceFlag, limitSize: number) : string
 
-启动应用trace采集,'startAppTraceCapture()'方法的调用需要与'stopAppTraceCapture()'方法的调用一一对应，
+启动应用trace采集，'startAppTraceCapture()'方法的调用需要与'[stopAppTraceCapture()](#stopapptraceapture12)'方法的调用一一对应。
+
 先开启后关闭，严禁使用'start->start->stop'，'start->stop->stop'，'start->start->stop->stop'等类似的顺序调用。
 
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
@@ -467,9 +468,9 @@ startAppTraceCapture(tags : number[], flag: TraceFlag, limitSize: number) : stri
 
 | 参数名   | 类型     | 必填 | 说明                                                                                  |
 | -------- | ------   | ---- | ------------------------------------------------------------------------------------- |
-| tags     | number[] | 是   | trace的tag类型,具体tag类型见下方                                                       |
+| tags     | number[] | 是   | trace的tag类型，具体tag类型见下方                                                       |
 | flag     | TraceFlag| 是   | trace的flag类型,MAIN_THREAD为只采集主线程trace, ALL_THREADS为采集所有线程trace         |
-| limitSize| number   | 是   | 开启trace文件大小限制,单位为Byte                                                       |
+| limitSize| number   | 是   | 开启trace文件大小限制，单位为Byte                                                       |
 
 **返回值：**
 
@@ -505,7 +506,8 @@ hidebug.stopAppTraceCapture();
 
 stopAppTraceCapture() : void
 
-停止应用trace采集,'startAppTraceCapture()'方法的调用需要与'stopAppTraceCapture()'方法的调用一一对应，
+停止应用trace采集，在停止采集前，需要通过'[startAppTraceCapture()](#startapptracecapture)'方法开始采集。
+
 先开启后关闭，严禁使用'start->start->stop'，'start->stop->stop'，'start->start->stop->stop'等类似的顺序调用。
 
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
@@ -571,13 +573,13 @@ getAppMemoryLimit() : MemoryLimit
 
 | 名称               | 类型    | 可读 | 可写 | 说明                                |
 | -------------------| ------- | ---- | ---- | ---------------------------------- |
-| totalHeap          | bigint  | 是   | 否   | 表示当前虚拟机的堆总大小            |
-| heapUsed           | bigint  | 是   | 否   | 表示当前虚拟机使用的堆大小          |
-| allArraySize       | bigint  | 是   | 否   | 表示当前虚拟机的所有数组对象大小    |
+| totalHeap          | bigint  | 是   | 否   | 表示当前虚拟机的堆总大小  （以字节为单位）    |
+| heapUsed           | bigint  | 是   | 否   | 表示当前虚拟机使用的堆大小  （以字节为单位）  |
+| allArraySize       | bigint  | 是   | 否   | 表示当前虚拟机的所有数组对象大小 （以字节为单位） |
 
 ## ThreadCpuUsage<sup>12+</sup>
 
-描述线程CPU使用情况
+描述线程CPU使用情况。
 
 **系统能力:** 以下各项对应的系统能力均为SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -587,6 +589,8 @@ getAppMemoryLimit() : MemoryLimit
 | cpuUsage           | number  | 是   | 否   | cpu线程使用率                       |
 
 ## tags<sup>12+</sup>
+
+描述各种场景标签。
 
 **系统能力:** 以下各项对应的系统能力均为SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -666,7 +670,7 @@ getAppNativeMemInfo(): NativeMemInfo
 
 | 类型  | 说明                      |
 | ------ | -------------------------- |
-| [NativeMemInfo](#nativememinfo12) | 应用进程内存信息|
+| [NativeMemInfo](#nativememinfo) | 应用进程内存信息|
 
 **示例**
 
@@ -715,7 +719,7 @@ getSystemMemInfo(): SystemMemInfo
 
 | 类型  | 说明                      |
 | ------ | -------------------------- |
-| [SystemMemInfo](#systemmeminfo12) | 系统内存信息|
+| [SystemMemInfo](#systemmeminfo) | 系统内存信息|
 
 **示例**
 
