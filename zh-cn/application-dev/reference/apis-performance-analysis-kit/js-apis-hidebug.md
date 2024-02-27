@@ -534,7 +534,7 @@ hidebug.stopAppTraceCapture();
 
 ## hidebug.getAppMemoryLimit
 
-getAppMemoryLimit() : MemoryLimit
+getAppMemoryLimit() : MemoryLimit<sup>12+</sup>
 
 获取应用程序进程内存限制
 
@@ -551,7 +551,7 @@ getAppMemoryLimit() : MemoryLimit
 ```ts
  let appMemoryLimit:hidebug.MemoryLimit = hidebug.getAppMemoryLimit();
 ```
-## MemoryLimit<sup>12+</sup>
+## MemoryLimit
 
 应用程序进程内存限制
 
