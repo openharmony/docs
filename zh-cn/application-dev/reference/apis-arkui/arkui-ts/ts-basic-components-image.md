@@ -187,7 +187,13 @@ fillColor(value: ResourceColor)
 
 autoResize(value: boolean)
 
-设置图片解码过程中是否对图源自动缩放。降采样解码时图片的部分信息丢失，因此可能会导致图片质量的下降（如：出现锯齿），这时可以选择把autoResize设为false，按原图尺寸解码，提升显示效果。
+设置图片解码过程中是否对图源自动缩放。降采样解码时图片的部分信息丢失，因此可能会导致图片质量的下降（如：出现锯齿），这时可以选择把autoResize设为false，按原图尺寸解码，提升显示效果，但会增加内存占用。
+
+原图尺寸和显示尺寸不匹配时，图片都会出现些许的失真、模糊。最佳清晰度配置建议：
+
+图片缩小显示时：.autoResize(false) + .interpolation(.Medium)
+
+图片放大显示时：.interpolation(.High)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
