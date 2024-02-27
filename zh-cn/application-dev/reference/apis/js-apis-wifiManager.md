@@ -1503,10 +1503,24 @@ isFeatureSupported(featureId: number): boolean
 
 **参数：**
 
-
   | **参数名** | **类型** | 必填 | **说明** |
   | -------- | -------- | -------- | -------- |
   | featureId | number | 是 | 特性ID值。 |
+
+**特性ID值枚举：**
+
+| 枚举值 | 说明 |
+| -------- | -------- |
+| 0x0001 | 基础结构模式特性。 |
+| 0x0002 | 5&nbsp;GHz带宽特性。 |
+| 0x0004 | GAS/ANQP特性。 |
+| 0x0008 | Wifi-Direct特性。 |
+| 0x0010 | Soft&nbsp;AP特性。 |
+| 0x0040 | Wi-Fi&nbsp;AWare组网特性。 |
+| 0x8000 | AP&nbsp;STA共存特性。 |
+| 0x8000000 | WPA3-Personal&nbsp;SAE特性。 |
+| 0x10000000 | WPA3-Enterprise&nbsp;Suite-B |
+| 0x20000000 | 增强开放特性。 | 
 
 **返回值：**
 
@@ -1626,14 +1640,14 @@ IP信息。
 | primaryDns | number | 是 | 否 | 主DNS服务器IP地址。 |
 | secondDns | number | 是 | 否 | 备DNS服务器IP地址。 |
 | serverIp | number | 是 | 否 | DHCP服务端IP地址。 |
-| leaseDuration | number | 是 | 否 | IP地址租用时长。 |
+| leaseDuration | number | 是 | 否 | IP地址租用时长，单位：秒。 |
 
 
 ## wifiManager.getIpv6Info<sup>10+</sup>
 
 getIpv6Info(): Ipv6Info
 
-获取IP信息。
+获取IPV6信息。
 
 **需要权限：** ohos.permission.GET_WIFI_INFO
 
@@ -2641,6 +2655,8 @@ getP2pLinkedInfo(): Promise&lt;WifiP2pLinkedInfo&gt;
 
 **需要权限：** ohos.permission.GET_WIFI_INFO
 
+获取 groupOwnerAddr 还需申请ohos.permission.GET_WIFI_LOCAL_MAC权限，无该权限时，groupOwnerAddr 返回全零地址。
+
 **系统能力：** SystemCapability.Communication.WiFi.P2P
 
 **返回值：**
@@ -2665,6 +2681,8 @@ getP2pLinkedInfo(callback: AsyncCallback&lt;WifiP2pLinkedInfo&gt;): void
 获取P2P连接信息，使用callback异步回调。
 
 **需要权限：** ohos.permission.GET_WIFI_INFO
+
+获取 groupOwnerAddr 还需申请ohos.permission.GET_WIFI_LOCAL_MAC权限，无该权限时，groupOwnerAddr 返回全零地址。
 
 **系统能力：** SystemCapability.Communication.WiFi.P2P
 
@@ -2710,7 +2728,7 @@ getP2pLinkedInfo(callback: AsyncCallback&lt;WifiP2pLinkedInfo&gt;): void
 | -------- | -------- | -------- | -------- | -------- |
 | connectState | [P2pConnectState](#p2pconnectstate9) | 是 | 否 | P2P连接状态。 |
 | isGroupOwner | boolean | 是 | 否 | 是否是群主。 |
-| groupOwnerAddr | string | 是 | 否 | 群组MAC地址。 
+| groupOwnerAddr | string | 是 | 否 | 群组IP地址。 
 
 
 ## P2pConnectState<sup>9+</sup>
