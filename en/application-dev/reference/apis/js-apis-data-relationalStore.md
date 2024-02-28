@@ -313,7 +313,7 @@ Defines the RDB store configuration.
 
 | Name       | Type         | Mandatory| Description                                                     |
 | ------------- | ------------- | ---- | --------------------------------------------------------- |
-| name          | string        | Yes  | Database file name.                                           |
+| name          | string        | Yes  |  Database file name, which is the unique identifier of the database.|
 | securityLevel | [SecurityLevel](#securitylevel) | Yes  | Security level of the RDB store.                                       |
 | encrypt       | boolean       | No  | Whether to encrypt the RDB store.<br>The value **true** means to encrypt the RDB store; the value **false** (default) means the opposite.|
 
@@ -411,7 +411,7 @@ Sets an **RdbPredicates** to specify the remote devices to connect on the networ
 
 > **NOTE**
 >
-> The value of **devices** is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
+> The value of **devices** can be obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -847,8 +847,8 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 | Name| Type                   | Mandatory| Description                      |
 | ------ | ----------------------- | ---- | -------------------------- |
 | field  | string                  | Yes  | Column name in the database table.        |
-| low    | [ValueType](#valuetype) | Yes  | Minimum value to match.  |
-| high   | [ValueType](#valuetype) | Yes  | Maximum value to match.|
+| low    | [ValueType](#valuetype) | Yes  | Minimum value to match the **RdbPredicates**.  |
+| high   | [ValueType](#valuetype) | Yes  | Maximum value to match the **RdbPredicates**.|
 
 **Return value**
 
@@ -877,8 +877,8 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 | Name| Type                   | Mandatory| Description                      |
 | ------ | ----------------------- | ---- | -------------------------- |
 | field  | string                  | Yes  | Column name in the database table.        |
-| low    | [ValueType](#valuetype) | Yes  | Minimum value to match.  |
-| high   | [ValueType](#valuetype) | Yes  | Maximum value to match.|
+| low    | [ValueType](#valuetype) | Yes  | Minimum value to match the **RdbPredicates**.  |
+| high   | [ValueType](#valuetype) | Yes  | Maximum value to match the **RdbPredicates**.|
 
 **Return value**
 
