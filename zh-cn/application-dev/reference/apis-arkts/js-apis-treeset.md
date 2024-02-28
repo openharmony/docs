@@ -69,6 +69,22 @@ for (let item of numbers) {
   console.log("TreeSet:" + item);
 }
 ```
+```ts
+//当插入自定义类型时，则必须要提供比较函数。
+class TestEntry{
+  public id: number = 0;
+}
+let ts1: TreeSet<TestEntry> = new TreeSet<TestEntry>((t1: TestEntry, t2: TestEntry): boolean => {return t1.id > t2.id;});
+let entry1: TestEntry = {
+  id: 0
+};
+let entry2: TestEntry = {
+  id: 1
+}
+ts1.add(entry1);
+ts1.add(entry2);
+console.log("treeSet: ", ts1.length);
+```
 
 
 ### isEmpty
