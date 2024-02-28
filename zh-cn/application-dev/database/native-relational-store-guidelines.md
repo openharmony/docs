@@ -28,7 +28,7 @@ RelationalStore提供了一套完整的对本地数据库进行管理的机制�
 
 ## 接口说明
 
-详细的接口说明请参考[RDB](../reference/native-apis/_r_d_b.md)。
+详细的接口说明请参考[RDB](../reference/apis-arkdata/_r_d_b.md)。
 
 | 接口名称 | 描述 |
 | -------- | -------- |
@@ -68,10 +68,6 @@ RelationalStore提供了一套完整的对本地数据库进行管理的机制�
 | int OH_Rdb_UnsubscribeAutoSyncProgress(OH_Rdb_Store *store, const Rdb_ProgressObserver *observer) | 取消订阅RDB存储的自动同步进程。 |
 
 
-
-
-
-
 ## 开发步骤
 
 **添加动态链接库**
@@ -94,7 +90,7 @@ libnative_rdb_ndk.z.so
 #include <database/rdb/relational_store_error_code.h>
 ```
 
-1. 获取OH_Rdb_Store实例，创建数据库文件。其中dataBaseDir变量为应用沙箱路径，Stage模式下建议使用数据库目录，参考[Context](../reference/apis/js-apis-inner-application-context.md)的databaseDir属性。FA模式下，由于没有接口获取数据库沙箱路径，可使用应用程序的文件目录，可参考[Context](../reference/apis/js-apis-inner-app-context.md)的getFilesDir接口。area为数据库文件存放的安全区域，详见[contextConstant](../reference/apis/js-apis-app-ability-contextConstant.md)，开发时需要实现由AreaMode枚举值对Rdb_SecurityArea枚举值的转换。示例代码如下所示：
+1. 获取OH_Rdb_Store实例，创建数据库文件。其中dataBaseDir变量为应用沙箱路径，Stage模式下建议使用数据库目录，参考[Context](../reference/apis-ability-kit/js-apis-inner-application-context.md)的databaseDir属性。FA模式下，由于没有接口获取数据库沙箱路径，可使用应用程序的文件目录，可参考[Context](../reference/apis-ability-kit/js-apis-inner-app-context.md)的getFilesDir接口。area为数据库文件存放的安全区域，详见[contextConstant](../reference/apis-ability-kit/js-apis-app-ability-contextConstant.md)，开发时需要实现由AreaMode枚举值对Rdb_SecurityArea枚举值的转换。示例代码如下所示：
 
    ```c
    // 创建OH_Rdb_Config对象
@@ -320,8 +316,8 @@ libnative_rdb_ndk.z.so
    ```
 
 9. 对分布式表手动执行端云同步。调用OH_Rdb_SetDistributedTables创建分布式表之后，可以对该表进行手动端云同步。使用该接口需要实现云服务功能。示例代码如下所示：
-
-   ```c
+   
+    ```c
    // 定义回调函数
    void CloudSyncObserverCallback(void *context, Rdb_ProgressDetails *progressDetails)
    {
@@ -332,63 +328,63 @@ libnative_rdb_ndk.z.so
    ```
 
 10. 将数据观察者注册到指定的存储对象(store)上，并订阅指定类型(type)的事件。在数据发生变化时，系统会调用相应的回调函数来处理进度观察。调用OH_Rdb_Subscribe接口订阅数据变化事件。使用该接口需要实现云服务功能。示例代码如下所示：
-
-   ```c
-   // 定义回调函数
-   void RdbSubscribeBriefCallback(void *context, const char *values[], uint32_t count)
-   {
+    
+    ```c
+    // 定义回调函数
+    void RdbSubscribeBriefCallback(void *context, const char *values[], uint32_t count)
+    {
     // do something
-   }
-   Rdb_BriefObserver briefObserver;
-   const Rdb_BriefObserver briefObserver = { .context = nullptr, .callback = RdbSubscribeBriefCallback };
-   OH_Rdb_Subscribe(storeTestRdbStore_, Rdb_SubscribeType::RDB_SUBSCRIBE_TYPE_CLOUD, &briefObserver);
-   ```
+    }
+    Rdb_BriefObserver briefObserver;
+    const Rdb_BriefObserver briefObserver = { .context = nullptr, .callback = RdbSubscribeBriefCallback };
+    OH_Rdb_Subscribe(storeTestRdbStore_, Rdb_SubscribeType::RDB_SUBSCRIBE_TYPE_CLOUD, &briefObserver);
+    ```
 
 11. 从指定的存储对象(store)中取消对指定类型(type)的事件的订阅。取消后，系统将不再调用相应的回调函数来处理进度观察。调用OH_Rdb_Unsubscribe接口取消订阅数据变化事件。使用该接口需要实现云服务功能。示例代码如下所示：
-
-   ```c
-   // 定义回调函数
-   void RdbSubscribeBriefCallback(void *context, const char *values[], uint32_t count)
-   {
+    
+    ```c
+    // 定义回调函数
+    void RdbSubscribeBriefCallback(void *context, const char *values[], uint32_t count)
+    {
     // do something
-   }
-   Rdb_BriefObserver briefObserver = RdbSubscribeBriefCallback;
-   const Rdb_DataObserver briefObs = { .context = nullptr, .callback.briefObserver = briefObserver };
-   OH_Rdb_Unsubscribe(storeTestRdbStore_, Rdb_SubscribeType::RDB_SUBSCRIBE_TYPE_CLOUD, &briefObs);
-   ```
+    }
+    Rdb_BriefObserver briefObserver = RdbSubscribeBriefCallback;
+    const Rdb_DataObserver briefObs = { .context = nullptr, .callback.briefObserver = briefObserver };
+    OH_Rdb_Unsubscribe(storeTestRdbStore_, Rdb_SubscribeType::RDB_SUBSCRIBE_TYPE_CLOUD, &briefObs);
+    ```
 
 12. 将进度观察者注册到指定的存储对象(store)上，以便订阅自动同步进度的事件。当存储对象进行自动同步时，系统会调用相应的回调函数处理进度观察。调用OH_Rdb_SubscribeAutoSyncProgress接口订阅自动同步进度事件。使用该接口需要实现云服务功能。示例代码如下所示：
-
-   ```c
-   // 定义回调函数
-   void RdbProgressObserverCallback(void *context, Rdb_ProgressDetails *progressDetails)
-   {
+    
+    ```c
+    // 定义回调函数
+    void RdbProgressObserverCallback(void *context, Rdb_ProgressDetails *progressDetails)
+    {
     // do something
-   }
-   const Rdb_ProgressObserver observer = { .context = nullptr, .callback = RdbProgressObserverCallback };
-   OH_Rdb_SubscribeAutoSyncProgress(storeTestRdbStore_, &observer);
-   ```
+    }
+    const Rdb_ProgressObserver observer = { .context = nullptr, .callback = RdbProgressObserverCallback };
+    OH_Rdb_SubscribeAutoSyncProgress(storeTestRdbStore_, &observer);
+    ```
 
 13. 从指定的存储对象(store)中取消订阅自动同步进度的事件。取消后，系统将不再调用相应的回调函数来处理进度观察。调用OH_Rdb_UnsubscribeAutoSyncProgress接口取消订阅自动同步进度事件。使用该接口需要实现云服务功能。示例代码如下所示：
-
-   ```c
+    
+    ```c
     // 定义回调函数
-   void RdbProgressObserverCallback(void *context, Rdb_ProgressDetails *progressDetails)
-   {
+    void RdbProgressObserverCallback(void *context, Rdb_ProgressDetails *progressDetails)
+    {
     // do something
-   }
-   const Rdb_ProgressObserver observer = { .context = nullptr, .callback = RdbProgressObserverCallback };
-   OH_Rdb_UnsubscribeAutoSyncProgress(storeTestRdbStore_, &observer);
-   ```
+    }
+    const Rdb_ProgressObserver observer = { .context = nullptr, .callback = RdbProgressObserverCallback };
+    OH_Rdb_UnsubscribeAutoSyncProgress(storeTestRdbStore_, &observer);
+    ```
 
 14. 删除数据库。调用OH_Rdb_DeleteStore方法，删除数据库及数据库相关文件。示例代码如下：
-
-      ```c
-      // 释放数据库实例
-      OH_Rdb_CloseStore(store_);
-      // 删除数据库文件
-      OH_Rdb_DeleteStore(&config);
-      ```
+    
+    ```c
+    // 释放数据库实例
+    OH_Rdb_CloseStore(store_);
+    // 删除数据库文件
+    OH_Rdb_DeleteStore(&config);
+    ```
 
     
 
