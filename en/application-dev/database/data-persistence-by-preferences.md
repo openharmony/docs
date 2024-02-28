@@ -8,7 +8,7 @@ The **Preferences** module provides APIs for processing data in the form of key-
 
 ## Working Principles
 
-User applications call **Preference** through the JS interface to read and write data files. You can load the data of a **Preferences** persistence file to a **Preferences** instance. Each file uniquely corresponds to an instance. The system stores the instance in memory through a static container until the instance is removed from the memory or the file is deleted. The following figure illustrates how **Preference** works.
+Applications call **Preference** APIs through the ArkTS interface to read and write data files. You can load the data of a **Preferences** persistence file to a **Preferences** instance. Each file uniquely corresponds to an instance. The system stores the instance in memory through a static container until the instance is removed from the memory or the file is deleted. The following figure illustrates how **Preference** works.
 
 The preference persistent file of an application is stored in the application sandbox. You can use **context** to obtain the file path. For details, see [Obtaining Application File Paths](../application-models/application-context-stage.md#obtaining-application-file-paths).
 
@@ -32,11 +32,11 @@ The following table lists the APIs used for persisting user preference data. For
 
 | API                                                    | Description                                                        |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| getPreferencesSync(context: Context, options: Options): Preferences | Obtains a **Preferences** instance. This API returns the result synchronously.<br>An asynchronous API is also provided.                   |
+| getPreferencesSync(context: Context, options: Options): Preferences | Obtains a **Preferences** instance. This API returns the result synchronously.<br/>An asynchronous API is also provided.                   |
 | putSync(key: string, value: ValueType): void                 | Writes data to the **Preferences** instance. This API returns the result synchronously. An asynchronous API is also provided.<br/>You can use **flush()** to persist the **Preferences** instance data. |
-| hasSync(key: string): void                                   | Checks whether the **Preferences** instance contains a KV pair with the given key. The key cannot be empty. This API returns the result synchronously.<br>An asynchronous API is also provided.|
-| getSync(key: string, defValue: ValueType): void              | Obtains the value of the specified key. If the value is null or not of the default value type, **defValue** is returned. This API returns the result synchronously.<br>An asynchronous API is also provided.|
-| deleteSync(key: string): void                                | Deletes a KV pair with the given key from the **Preferences** instance. This API returns the result synchronously.<br>An asynchronous API is also provided.|
+| hasSync(key: string): void                                   | Checks whether the **Preferences** instance contains a KV pair with the given key. The key cannot be empty. This API returns the result synchronously.<br/>An asynchronous API is also provided.|
+| getSync(key: string, defValue: ValueType): void              | Obtains the value of the specified key. If the value is null or not of the default value type, **defValue** is returned. This API returns the result synchronously.<br/>An asynchronous API is also provided.|
+| deleteSync(key: string): void                                | Deletes the KV pair with the given key from the **Preferences** instance. This API returns the result synchronously.<br/>An asynchronous API is also provided.|
 | flush(callback: AsyncCallback&lt;void&gt;): void             | Flushes the data of this **Preferences** instance to a file for data persistence.|
 | on(type: 'change', callback: ( key : string ) => void): void | Subscribes to data changes of the specified key. When the value of the specified key is changed and saved by **flush()**, a callback will be invoked to return the new data.|
 | off(type: 'change', callback?: ( key : string ) => void): void | Unsubscribes from data changes.                                          |
