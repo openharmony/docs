@@ -126,8 +126,11 @@ struct Faq10_1 {
 ```
 import UIAbility from '@ohos.app.ability.UIAbility';
  export default class EntryAbility extends UIAbility {
-    onForeground() {
+    onCreate() {
         this.context.eventHub.on('myEvent', this.eventFunc);
+    }
+
+    onDestroy() {
         // 结果：
         // eventFunc is called,undefined,undefined
         this.context.eventHub.emit('myEvent');
@@ -138,6 +141,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
         // eventFunc is called,1,2
         this.context.eventHub.emit('myEvent', 1, 2);
     }
+
      eventFunc(argOne, argTwo) {
         console.log('eventFunc is called, ${argOne}, ${argTwo}');
     }}
