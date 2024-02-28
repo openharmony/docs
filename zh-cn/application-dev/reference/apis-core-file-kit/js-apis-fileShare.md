@@ -358,7 +358,7 @@ checkPersistentPermission(policies: Array&lt;PolicyInfo>): Promise&lt;Array&lt;b
 
 |              类型                   |               说明                    |
 | ----------------------------------- | ------------------------------------- |
-| Promise&lt;Array&lt;boolean&gt;&gt; | 返回结果为boolean类型数组的Promise对象。 |
+| Promise&lt;Array&lt;boolean&gt;&gt; | Promise对象，返回true表示有持久化授权。 |
 
 **错误码：**
 
