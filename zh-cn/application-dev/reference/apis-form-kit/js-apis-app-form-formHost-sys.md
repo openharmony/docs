@@ -1146,7 +1146,7 @@ try {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     } else {
-      console.log('formHost getFormsInfo, data: ${JSON.stringify(data)}');
+      console.log(`formHost getFormsInfo, data: ${JSON.stringify(data)}`);
     }
   });
 } catch(error) {
