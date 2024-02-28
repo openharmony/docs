@@ -27,9 +27,12 @@
 | [Rdb_KeyInfo](_rdb___key_info.md) | 描述发生变化的行的主键或者行号。 |
 | [Rdb_KeyInfo::Rdb_KeyData](union_rdb___key_info_1_1_rdb___key_data.md) | 存放变化的具体数据 |
 | [Rdb_ChangeInfo](_rdb___change_info.md) | 记录端云同步过程详情。 |
+| [Rdb_SubscribeCallback](union_rdb___subscribe_callback.md) | 表示回调函数。 | 
+| [Rdb_DataObserver](_rdb___data_observer.md) | 表示数据观察者。 | 
 | [Rdb_Statistic](_rdb___statistic.md) | 描述数据库表的端云同步过程的统计信息。 |
 | [Rdb_TableDetails](_rdb___table_details.md) | 描述数据库表执行端云同步任务上传和下载的统计信息。 |
 | [Rdb_ProgressDetails](_rdb___progress_details.md) | 描述数据库整体执行端云同步任务上传和下载的统计信息。 |
+| [Rdb_ProgressObserver](_rdb___progress_observer.md) | 端云同步进度观察者。 | 
 
 
 ### 宏定义
@@ -53,13 +56,19 @@
 | [Rdb_KeyInfo](_r_d_b.md#rdb_keyinfo) | 描述发生变化的行的主键或者行号。 |
 | [Rdb_ChangeInfo](_r_d_b.md#rdb_changeinfo) | 记录端云同步过程详情。 |
 | [Rdb_SubscribeType](_r_d_b.md#rdb_subscribetype) | 描述订阅类型。 |
+| [Rdb_BriefObserver](_r_d_b.md#rdb_briefobserver) | 端云数据更改事件的回调函数。 | 
+| [Rdb_DetailsObserver](_r_d_b.md#rdb_detailsobserver) | 端云数据更改事件的细节的回调函数。 | 
+| [Rdb_SubscribeCallback](union_rdb___subscribe_callback.md) | 表示回调函数。 | 
+| [Rdb_DataObserver](_rdb___data_observer.md) | 表示数据观察者。 | 
 | [Rdb_SyncMode](_r_d_b.md#rdb_syncmode) | 表示数据库的同步模式 |
 | [Rdb_Statistic](_r_d_b.md#rdb_statistic) | 描述数据库表的端云同步过程的统计信息。 |
 | [Rdb_TableDetails](_r_d_b.md#rdb_tabledetails) | 描述数据库表执行端云同步任务上传和下载的统计信息。 |
 | [Rdb_Progress](_r_d_b.md#rdb_progress) | 描述端云同步过程。 |
 | [Rdb_ProgressCode](_r_d_b.md#rdb_progresscode) | 表示端云同步过程的状态。 |
 | [Rdb_ProgressDetails](_r_d_b.md#rdb_progressdetails) | 描述数据库整体执行端云同步任务上传和下载的统计信息。 |
+| [Rdb_ProgressCallback](_r_d_b.md#rdb_progresscallback) | 端云同步进度的回调函数。 | 
 | [Rdb_SyncCallback](_r_d_b.md#rdb_synccallback) | 数据库端云同步的回调函数。 |
+| [Rdb_ProgressObserver](_r_d_b.md#rdb_progressobserver) | 端云同步进度观察者。 | 
 
 
 ### 枚举
@@ -101,5 +110,9 @@
 | [OH_Rdb_SetVersion](_r_d_b.md#oh_rdb_setversion) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, int version) | 设置数据库版本。 |
 | [OH_Rdb_SetDistributedTables](_r_d_b.md#oh_rdb_setdistributedtables) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const char \*tables[], uint32_t count, [Rdb_DistributedType](_r_d_b.md#rdb_distributedtype) type, const [Rdb_DistributedConfig](_rdb___distributed_config.md) \*config) | 设置分布式数据库表。 |
 | [OH_Rdb_FindModifyTime](_r_d_b.md#oh_rdb_findmodifytime) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const char \*tableName, const char \*columnName, [OH_VObject](_o_h___v_object.md) \*values) | 获取数据库表中数据的最后修改时间。 |
+| [OH_Rdb_Subscribe](_r_d_b.md#oh_rdb_subscribe) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [Rdb_SubscribeType](_r_d_b.md#rdb_subscribetype) type, const [Rdb_DataObserver](_rdb___data_observer.md) \*observer) | 为数据库注册观察者。当分布式数据库中的数据发生更改时，将调用回调。 | 
+| [OH_Rdb_Unsubscribe](_r_d_b.md#oh_rdb_unsubscribe) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [Rdb_SubscribeType](_r_d_b.md#rdb_subscribetype) type, const [Rdb_DataObserver](_rdb___data_observer.md) \*observer) | 从数据库中删除指定类型的指定观察者。 | 
 | [OH_Rdb_GetTableDetails](_r_d_b.md#oh_rdb_gettabledetails) ([Rdb_ProgressDetails](_rdb___progress_details.md) \*progress, int32_t version) | 从端云同步任务的统计信息中获取数据库表的统计信息。 |
-| [OH_Rdb_CloudSync](_r_d_b.md#oh_rdb_cloudsync) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [Rdb_SyncMode](_r_d_b.md#rdb_syncmode) mode, const char \*tables, int count, [Rdb_SyncCallback](_r_d_b.md#rdb_synccallback) \*progress) | 进行端云同步。 |
+| [OH_Rdb_CloudSync](_r_d_b.md#oh_rdb_cloudsync) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [Rdb_SyncMode](_r_d_b.md#rdb_syncmode) mode, const char \*tables, int count, const [Rdb_ProgressObserver](_rdb___progress_observer.md) \*observer) | 进行端云同步。 | 
+| [OH_Rdb_SubscribeAutoSyncProgress](_r_d_b.md#oh_rdb_subscribeautosyncprogress) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const [Rdb_ProgressObserver](_rdb___progress_observer.md) \*observer) | 订阅RDB存储的自动同步进度。 当收到自动同步进度的通知时，将调用回调。 | 
+| [OH_Rdb_UnsubscribeAutoSyncProgress](_r_d_b.md#oh_rdb_unsubscribeautosyncprogress) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const [Rdb_ProgressObserver](_rdb___progress_observer.md) \*observer) | 取消订阅RDB存储的自动同步进程。 | 
