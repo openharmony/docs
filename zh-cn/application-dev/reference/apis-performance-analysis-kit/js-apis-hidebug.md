@@ -635,7 +635,7 @@ getSystemCpuUsage() : number
 
 获取系统的CPU资源占用情况。
 
-例如, 当系统资源CPU占用为 **50%**, 将返回**0.5**。
+例如，当系统资源CPU占用为 **50%**，将返回**0.5**。
 
 **系统能力**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
