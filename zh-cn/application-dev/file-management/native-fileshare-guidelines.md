@@ -2,7 +2,7 @@
 
 ## 场景介绍
 
-FileShare提供了支持基于URI的文件及目录授权及权限持久化、权限激活、权限查询等接口。
+FileShare提供了支持基于URI的文件及目录授于持久化权限、权限激活、权限查询等方法。
 
 ## 接口说明
 
@@ -19,9 +19,11 @@ FileShare提供了支持基于URI的文件及目录授权及权限持久化、�
 
 ## 约束与限制
 
-在调用文件分享的相关接口前，需要申请权限"ohos.permission.FILE_ACCESS_PERSIST"，申请方式请参考[访问控制-申请应用权限](../security/AccessToken/determine-application-mode.md)。
+在调用文件分享的相关接口前，需要申请权限："ohos.permission.FILE_ACCESS_PERSIST"，申请方式请参考[访问控制-申请应用权限](../security/AccessToken/determine-application-mode.md)。
 
 该权限APL等级为system_basic，APL等级为normal的应用需要通过ACL的方式跨级别申请。
+
+接口入参policyNum最大上限为500
 
 ## 开发步骤
 
