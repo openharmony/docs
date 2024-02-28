@@ -598,7 +598,7 @@ getAppMemoryLimit() : MemoryLimit
 | -------------------------| ------- |  ----------------------------------- |
 | ABILITY_MANAGER          | number  |  能力管理标签                         |
 | ARKUI                    | number  |  ArkUI开发框架标签                    |
-| ARK                      | number  |  ARK标签                             |
+| ARK                      | number  |  JSVM虚拟机标签                       |
 | BLUETOOTH                | number  |  蓝牙标签                            |
 | COMMON_LIBRARY           | number  |  公共库子系统标签                     |
 | DISTRIBUTED_HARDWARE_DEVICE_MANAGER | number  |  分布式硬件设备管理标签     |
