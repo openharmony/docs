@@ -59,10 +59,10 @@ Without write permission on the file.
 
 **错误信息**
 
-The status is abnormal.
+The status of the trace is abnormal
 
 **错误描述**
-当前系统内部的状态是异常。
+当前trace采集内部状态异常。
 
 **可能原因**
 
