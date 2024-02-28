@@ -1,33 +1,33 @@
 # Video Encoding (C/C++)
 
-You can call the native APIs provided by the **VideoEncoder** module to encode a video, that is, to compress audio and video data into an audio and video stream.
+You can call the native APIs provided by the **VideoEncoder** module to encode a video, that is, to compress video data into a video stream.
 
 Currently, the following encoding capabilities are supported:
 
-| Container Specification| Video Encoding Type                | Audio Encoding Type    |
-| -------- | ---------------------------- | ---------------- |
-| mp4      | HEVC (H.265), AVC (H.264)| AAC, MPEG (MP3)|
-| m4a      | HEVC (H.265), AVC (H.264)| AAC              |
+| Container Specification| Video Encoding Type                |
+| -------- | ---------------------------- |
+| mp4      | HEVC (H.265), AVC (H.264)|
+| m4a      | HEVC (H.265), AVC (H.264)|
 
 Currently, only hardware encoding is supported. When an encoder is created based on the MIME type, H.264 (OH_AVCODEC_MIMETYPE_VIDEO_AVC) and H.265 (OH_AVCODEC_MIMETYPE_VIDEO_HEVC) are supported.
 ## Surface Input and Buffer Input
 
 Surface input and buffer input differ in data sources.
 
-Surface input contains information such as pixel data and pixel format, for example, a recorded video stream directly transferred by the camera module. It is more applicable to scenarios such as real-time video capture.
+Surface input indicates that the OHNativeWindow is used to transfer passed-in data. It supports connection with other modules, such as the camera module.
 
-Buffer input refers to a memory space, which is generally a byte array or a pointer to the memory. It is more applicable to scenarios such as reading audio and video data from files or real-time streaming transmission.
+Buffer input refers to a pre-allocated memory area. The caller needs to copy original data to this memory area. It is more applicable to scenarios such as reading video data from files.
 
 The two also differ slightly in the API calling modes:
 
-- In buffer input mode, an application calls **OH_VideoEncoder_PushInputBuffer()** to input data. In surface input mode, an application, before the encoder starts, calls **OH_VideoEncoder_GetSurface()** to obtain the surface for video data transmission.
+- In buffer input mode, an application calls **OH_VideoEncoder_PushInputBuffer()** to input data. In surface input mode, an application, before the encoder starts, calls **OH_VideoEncoder_GetSurface()** to obtain the OHNativeWindow for video data transmission.
 - In buffer input mode, an application calls **OH_VideoEncoder_PushInputBuffer()** to pass in the End of Stream (EOS) flag, and the encoder stops when it reads the last frame. In surface input mode, an application calls **OH_VideoEncoder_NotifyEndOfStream()** to notify the encoder of EOS.
 
 For details about the development procedure, see [Buffer Input](#buffer-input) and [Surface Input](#surface-input).
 
 ## How to Develop
 
-Read [VideoEncoder](../reference/native-apis/_video_encoder.md) for the API reference.
+Read [VideoEncoder](../reference/apis-avcodec-kit/_video_encoder.md) for the API reference.
 
 The figure below shows the call relationship of video encoding.
 
@@ -86,8 +86,8 @@ Currently, the **VideoEncoder** module supports only data transferring in asynch
    Register the **OH_AVCodecCallback** struct that defines the following callback function pointers:
 
    - **OH_AVCodecOnError**, a callback used to report a codec operation error
-   - **OH_AVCodecOnStreamChanged**, a callback used to report a codec stream change, for example, audio channel change
-   - **OH_AVCodecOnNeedInputData**, a callback used to report input data required, which means that the encoder is ready for receiving PCM data
+   - **OH_AVCodecOnStreamChanged**, a callback used to report a codec stream change, for example, format change
+   - **OH_AVCodecOnNeedInputData**, a callback used to report input data required, which means that the encoder is ready for receiving YUV/RGB data
    - **OH_AVCodecOnNewOutputData**, a callback used to report output data generated, which means that encoding is complete
 
    You need to process the callback functions to ensure that the encoder runs properly.
@@ -153,11 +153,43 @@ Currently, the **VideoEncoder** module supports only data transferring in asynch
    constexpr uint32_t DEFAULT_HEIGHT = 240;
    // (Mandatory) Configure the video pixel format.
    constexpr OH_AVPixelFormat DEFAULT_PIXELFORMAT = AV_PIXEL_FORMAT_YUVI420;
+   // Configure the video frame rate.
+   double frameRate = 30.0;
+   // Configure the video YUV range flag.
+   bool rangeFlag = false;
+   // Configure the video primary color.
+   int32_t primary = static_cast<int32_t>(OH_ColorPrimary::COLOR_PRIMARY_BT709);
+   // Configure the transfer features.
+   int32_t transfer = static_cast<int32_t>(OH_TransferCharacteristic::TRANSFER_CHARACTERISTIC_BT709);
+   // Configure the maximum matrix coefficient.
+   int32_t matrix = static_cast<int32_t>(OH_MatrixCoefficient::MATRIX_COEFFICIENT_IDENTITY);
+   // Configure the encoding profile.
+   int32_t profile = static_cast<int32_t>(OH_AVCProfile::AVC_PROFILE_BASELINE);
+   // Configure the encoding bit rate mode.
+   int32_t rateMode = static_cast<int32_t>(OH_VideoEncodeBitrateMode::CBR);
+   // Configure the key frame interval, in milliseconds.
+   int32_t iFrameInterval = 23000;
+   // Configure the required encoding quality. Only an encoder in constant quality mode supports this configuration.
+   int32_t quality = 0;
+   // Configure the bit rate.
+   int64_t bitRate = 3000000;
+   
    OH_AVFormat *format = OH_AVFormat_Create();
    // Set the format.
    OH_AVFormat_SetIntValue(format, OH_MD_KEY_WIDTH, DEFAULT_WIDTH);
    OH_AVFormat_SetIntValue(format, OH_MD_KEY_HEIGHT, DEFAULT_HEIGHT);
    OH_AVFormat_SetIntValue(format, OH_MD_KEY_PIXEL_FORMAT, DEFAULT_PIXELFORMAT);
+   OH_AVFormat_SetDoubleValue(format, OH_MD_KEY_FRAME_RATE, frameRate);
+   OH_AVFormat_SetIntValue(format, OH_MD_KEY_RANGE_FLAG, rangeFlag);
+   OH_AVFormat_SetIntValue(format, OH_MD_KEY_COLOR_PRIMARIES, primary);
+   OH_AVFormat_SetIntValue(format, OH_MD_KEY_TRANSFER_CHARACTERISTICS, transfer);
+   OH_AVFormat_SetIntValue(format, OH_MD_KEY_MATRIX_COEFFICIENTS, matrix);
+
+   OH_AVFormat_SetIntValue(format, OH_MD_KEY_I_FRAME_INTERVAL, iFrameInterval);
+   OH_AVFormat_SetIntValue(format, OH_MD_KEY_PROFILE, profile);
+   OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE, rateMode);
+   OH_AVFormat_SetLongValue(format, OH_MD_KEY_BITRATE, bitRate);
+   OH_AVFormat_SetIntValue(format, OH_MD_KEY_QUALITY, quality);
    // Configure the encoder.
    int32_t ret = OH_VideoEncoder_Configure(videoEnc, format);
    if (ret != AV_ERR_OK) {
@@ -195,43 +227,11 @@ Currently, the **VideoEncoder** module supports only data transferring in asynch
    }
    ```
 
-7. (Optional) Dynamically configure the encoder instance.
+7. (Optional) Dynamically configure encoder parameters during running.
 
    ```c++
    OH_AVFormat *format = OH_AVFormat_Create();
-   // Configure the video frame rate.
-   double frameRate = 30.0;
-   // Configure the video YUV range flag.
-   bool rangeFlag = false;
-   // Configure the video primary color.
-   int32_t primary = static_cast<int32_t>(OH_ColorPrimary::COLOR_PRIMARY_BT709);
-   // Configure the transfer features.
-   int32_t transfer = static_cast<int32_t>(OH_TransferCharacteristic::TRANSFER_CHARACTERISTIC_BT709);
-   // Configure the maximum matrix coefficient.
-   int32_t matrix = static_cast<int32_t>(OH_MatrixCoefficient::MATRIX_COEFFICIENT_IDENTITY);
-   // Configure the encoding profile.
-   int32_t profile = static_cast<int32_t>(OH_AVCProfile::AVC_PROFILE_BASELINE);
-   // Configure the encoding bit rate mode.
-   int32_t rateMode = static_cast<int32_t>(OH_VideoEncodeBitrateMode::CBR);
-   // Configure the key frame interval, in milliseconds.
-   int32_t iFrameInterval = 23000;
-   // Configure the required encoding quality. Only an encoder in constant quality mode supports this configuration.
-   int32_t quality = 0;
-   // Configure the bit rate.
-   int64_t bitRate = 3000000;
-   // Set the format.
-   OH_AVFormat_SetDoubleValue(format, OH_MD_KEY_FRAME_RATE, frameRate);
-   OH_AVFormat_SetIntValue(format, OH_MD_KEY_RANGE_FLAG, rangeFlag);
-   OH_AVFormat_SetIntValue(format, OH_MD_KEY_COLOR_PRIMARIES, primary);
-   OH_AVFormat_SetIntValue(format, OH_MD_KEY_TRANSFER_CHARACTERISTICS, transfer);
-   OH_AVFormat_SetIntValue(format, OH_MD_KEY_MATRIX_COEFFICIENTS, matrix);
-
-   OH_AVFormat_SetIntValue(format, OH_MD_KEY_I_FRAME_INTERVAL, iFrameInterval);
-   OH_AVFormat_SetIntValue(format, OH_MD_KEY_PROFILE, profile);
-   OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE, rateMode);
-   OH_AVFormat_SetLongValue(format, OH_MD_KEY_BITRATE, bitRate);
-   OH_AVFormat_SetIntValue(format, OH_MD_KEY_QUALITY, quality);
-
+   OH_AVFormat_SetIntValue(format, OH_MD_KEY_REQUEST_I_FRAME, true); // Currently, dynamically requesting for IDR frames is supported only.
    int32_t ret = OH_VideoEncoder_SetParameter(videoEnc, format);
    if (ret != AV_ERR_OK) {
        // Exception handling.
@@ -461,10 +461,19 @@ Currently, the **VideoEncoder** module supports only data transferring in asynch
 
 4. Call **OH_VideoEncoder_Configure()** to configure the encoder.
 
-   In surface mode, information such as the video frame width, video frame height, and video pixel format is carried in the structured information in the surface buffer and does not need to be configured. To perform H.265 encoding on 10-bit image data, set the profile information **HEVC_PROFILE_MAIN10**.
+   This mode is the same as the buffer mode and is not described here.
    ```c++
+   // (Mandatory) Configure the video frame width.
+   constexpr uint32_t DEFAULT_WIDTH = 320; 
+   // (Mandatory) Configure the video frame height.
+   constexpr uint32_t DEFAULT_HEIGHT = 240;
+   // (Mandatory) Configure the video pixel format.
+   constexpr OH_AVPixelFormat DEFAULT_PIXELFORMAT = AV_PIXEL_FORMAT_YUVI420;
+
    OH_AVFormat *format = OH_AVFormat_Create();
-   OH_AVFormat_SetIntValue(format, OH_MD_KEY_PROFILE, HEVC_PROFILE_MAIN_10);
+   OH_AVFormat_SetIntValue(format, OH_MD_KEY_WIDTH, DEFAULT_WIDTH);
+   OH_AVFormat_SetIntValue(format, OH_MD_KEY_HEIGHT, DEFAULT_HEIGHT);
+   OH_AVFormat_SetIntValue(format, OH_MD_KEY_PIXEL_FORMAT, DEFAULT_PIXELFORMAT);
    int32_t ret = OH_VideoEncoder_Configure(videoEnc, format);
    if (ret != AV_ERR_OK) {
        // Exception handling.
@@ -498,7 +507,7 @@ Currently, the **VideoEncoder** module supports only data transferring in asynch
    // Configure the surface of the input data through the OHNativeWindow* variable type.
    ```
 
-   For details about how to use the **OHNativeWindow*** variable type, see [OHNativeWindow](../reference/native-apis/_native_window.md#ohnativewindow).
+   For details about how to use the **OHNativeWindow*** variable type, see [OHNativeWindow](../reference/apis-arkgraphics2d/_native_window.md#ohnativewindow).
 7. Call **OH_VideoEncoder_Start()** to start the encoder.
 
    ```c++
@@ -510,43 +519,11 @@ Currently, the **VideoEncoder** module supports only data transferring in asynch
    }
    ```
 
-8. (Optional) Dynamically configure the encoder instance.
+8. (Optional) Dynamically configure encoder parameters during running.
 
    ```c++
    OH_AVFormat *format = OH_AVFormat_Create();
-   // Configure the video frame rate.
-   double frameRate = 30.0;
-   // Configure the video YUV range flag.
-   bool rangeFlag = false;
-   // Configure the video primary color.
-   int32_t primary = static_cast<int32_t>(OH_ColorPrimary::COLOR_PRIMARY_BT709);
-   // Configure the transfer features.
-   int32_t transfer = static_cast<int32_t>(OH_TransferCharacteristic::TRANSFER_CHARACTERISTIC_BT709);
-   // Configure the maximum matrix coefficient.
-   int32_t matrix = static_cast<int32_t>(OH_MatrixCoefficient::MATRIX_COEFFICIENT_IDENTITY);
-   // Configure the encoding profile.
-   int32_t profile = static_cast<int32_t>(OH_AVCProfile::AVC_PROFILE_BASELINE);
-   // Configure the encoding bit rate mode.
-   int32_t rateMode = static_cast<int32_t>(OH_VideoEncodeBitrateMode::CBR);
-   // Configure the key frame interval, in milliseconds.
-   int32_t iFrameInterval = 23000;
-   // Configure the required encoding quality. Only an encoder in constant quality mode supports this configuration.
-   int32_t quality = 0;
-   // Configure the bit rate.
-   int64_t bitRate = 3000000;
-   // Set the format.
-   OH_AVFormat_SetDoubleValue(format, OH_MD_KEY_FRAME_RATE, frameRate);
-   OH_AVFormat_SetIntValue(format, OH_MD_KEY_RANGE_FLAG, rangeFlag);
-   OH_AVFormat_SetIntValue(format, OH_MD_KEY_COLOR_PRIMARIES, primary);
-   OH_AVFormat_SetIntValue(format, OH_MD_KEY_TRANSFER_CHARACTERISTICS, transfer);
-   OH_AVFormat_SetIntValue(format, OH_MD_KEY_MATRIX_COEFFICIENTS, matrix);
-
-   OH_AVFormat_SetIntValue(format, OH_MD_KEY_I_FRAME_INTERVAL, iFrameInterval);
-   OH_AVFormat_SetIntValue(format, OH_MD_KEY_PROFILE, profile);
-   OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE, rateMode);
-   OH_AVFormat_SetLongValue(format, OH_MD_KEY_BITRATE, bitRate);
-   OH_AVFormat_SetIntValue(format, OH_MD_KEY_QUALITY, quality);
-
+   OH_AVFormat_SetIntValue(format, OH_MD_KEY_REQUEST_I_FRAME, true); // Currently, dynamic request for IDR frames is supported only.
    int32_t ret = OH_VideoEncoder_SetParameter(videoEnc, format);
    if (ret != AV_ERR_OK) {
        // Exception handling.

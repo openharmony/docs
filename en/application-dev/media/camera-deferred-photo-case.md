@@ -1,14 +1,14 @@
-# Camera Photographing Sample (ArkTS)
+# High-Performance Camera Photographing Sample (for System Applications Only) (ArkTS)
 
-This topic provides sample code that covers the complete photographing process to help you understand the complete API calling sequence.
+This topic provides sample code that covers the complete high-performance photographing process to help you understand the complete API calling sequence.
 
-Before referring to the sample code, you are advised to read [Device Input Management](camera-device-input.md), [Camera Session Management](camera-session-management.md), [Camera Photographing](camera-shooting.md), and other related topics in [Camera Development (ArkTS)](camera-preparation.md).
+Before referring to the sample code, you are advised to read [High-Performance Camera Photographing (for System Applications Only) (ArkTS)] (camera-deferred-photo.md), [Device Input Management](camera-device-input.md), [Camera Session Management](camera-session-management.md), and [Camera Photographing](camera-shooting.md).
 
 ## Development Process
 
 After obtaining the output stream capabilities supported by the camera, create a photo stream. The development process is as follows:
 
-![Photographing Development Process](figures/photographing-development-process.png)
+![deferred-photo-development-process](figures/deferred-photo-development-process.png)
 
 ## Sample Code
 
@@ -24,49 +24,52 @@ import PhotoAccessHelper from '@ohos.file.photoAccessHelper';
 
 let context = getContext(this);
 
-async function savePicture(buffer: ArrayBuffer, img: image.Image): Promise<void> {
-  let photoAccessHelper: PhotoAccessHelper.PhotoAccessHelper = PhotoAccessHelper.getPhotoAccessHelper(context);
-  let options: PhotoAccessHelper.CreateOptions = {
-    title: Date.now().toString()
-  };
-  let photoUri: string = await photoAccessHelper.createAsset(PhotoAccessHelper.PhotoType.IMAGE, 'jpg', options);
+// Flush the original image in write-file mode.
+async function savePicture(photoObj: camera.Photo): Promise<void> {
+  let photoAccessHelper = PhotoAccessHelper.getPhotoAccessHelper(context);
+  let testFileName = 'testFile' + Date.now() + '.jpg';
   // To call createAsset(), the application must have the ohos.permission.READ_IMAGEVIDEO and ohos.permission.WRITE_IMAGEVIDEO permissions.
-  let file: fs.File = fs.openSync(photoUri, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-  await fs.write(file.fd, buffer);
-  fs.closeSync(file);
-  img.release(); 
-}
-
-function setPhotoOutputCb(photoOutput: camera.PhotoOutput): void {
-  // After the callback is set, call capture() of photoOutput to transfer the photo buffer back to the callback.
-  photoOutput.on('photoAvailable', (errCode: BusinessError, photo: camera.Photo): void => {
-    console.info('getPhoto start');
-    console.info(`err: ${JSON.stringify(errCode)}`);
-    if (errCode || photo === undefined) {
-      console.error('getPhoto failed');
+  let photoAsset = await photoAccessHelper.createAsset(testFileName);
+  const fd = await photoAsset.open('rw');
+  let buffer: ArrayBuffer | undefined = undefined;
+  photoObj.main.getComponent(image.ComponentType.JPEG, (errCode: BusinessError, component: image.Component): void => {
+    if (errCode || component === undefined) {
+      console.error('getComponent failed');
       return;
     }
-    let imageObj = photo.main;
-    imageObj.getComponent(image.ComponentType.JPEG, (errCode: BusinessError, component: image.Component): void => {
-      console.info('getComponent start');
-      if (errCode || component === undefined) {
-        console.error('getComponent failed');
-        return;
-      }
-      let buffer: ArrayBuffer;
-      if (component.byteBuffer) {
-        buffer = component.byteBuffer;
-      } else {
-        console.error('byteBuffer is null');
-        return;
-      }
-      savePicture(buffer, imageObj);
-    });
+    if (component.byteBuffer) {
+      buffer = component.byteBuffer;
+    } else {
+      console.error('byteBuffer is null');
+      return;
+    }
   });
+  if (buffer) {
+    await fs.write(fd, buffer);
+  }
+  await photoAsset.close(fd);
+  await photoObj.release(); 
 }
 
-async function cameraShootingCase(baseContext: common.BaseContext, surfaceId: string): Promise<void> {
-  // Create a CameraManager instance.
+// Flush the thumbnail by calling the mediaLibrary API.
+async function saveDeferredPhoto(proxyObj: camera.DeferredPhotoProxy): Promise<void> {    
+  try {
+    // Create a photoAsset.
+    let photoAccessHelper = PhotoAccessHelper.getPhotoAccessHelper(context);
+    let testFileName = 'testFile' + Date.now() + '.jpg';
+    let photoAsset = await photoAccessHelper.createAsset(testFileName);
+    // Pass the thumbnail proxy class object to the mediaLibrary.
+    let mediaRequest: PhotoAccessHelper.MediaAssetChangeRequest = new PhotoAccessHelper.MediaAssetChangeRequest(photoAsset);
+    mediaRequest.addResource(PhotoAccessHelper.ResourceType.PHOTO_PROXY, proxyObj);
+    let res = await photoAccessHelper.applyChanges(mediaRequest);
+    console.info('saveDeferredPhoto success.');
+  } catch (err) {
+    console.error(`Failed to saveDeferredPhoto. error: ${JSON.stringify(err)}`);
+  }
+}
+
+async function deferredPhotoCase(baseContext: common.BaseContext, surfaceId: string): Promise<void> {
+  // Create a CameraManager object.
   let cameraManager: camera.CameraManager = camera.getCameraManager(baseContext);
   if (!cameraManager) {
     console.error("camera.getCameraManager error");
@@ -110,7 +113,7 @@ async function cameraShootingCase(baseContext: common.BaseContext, surfaceId: st
     console.error(`Camera input error code: ${error.code}`);
   })
 
-  // Open the camera.
+  // Open a camera.
   await cameraInput.open();
 
   // Obtain the supported modes.
@@ -120,7 +123,7 @@ async function cameraShootingCase(baseContext: common.BaseContext, surfaceId: st
     console.error('photo mode not support');
     return;
   }
-  // Obtain the output stream capabilities supported by the camera.
+  // Obtain the output streams supported by the camera.
   let cameraOutputCap: camera.CameraOutputCapability = cameraManager.getSupportedOutputCapability(cameraArray[0], camera.SceneMode.NORMAL_PHOTO);
   if (!cameraOutputCap) {
     console.error("cameraManager.getSupportedOutputCapability error");
@@ -153,7 +156,6 @@ async function cameraShootingCase(baseContext: common.BaseContext, surfaceId: st
   previewOutput.on('error', (error: BusinessError) => {
     console.error(`Preview output error code: ${error.code}`);
   });
-
   // Create a photo output stream.
   let photoOutput: camera.PhotoOutput | undefined = undefined;
   try {
@@ -165,17 +167,13 @@ async function cameraShootingCase(baseContext: common.BaseContext, surfaceId: st
   if (photoOutput === undefined) {
     return;
   }
-
-    // Call the preceding callback to save the image.
-  setPhotoOutputCb(photoOutput);
-
   // Create a session.
   let photoSession: camera.PhotoSession | undefined = undefined;
   try {
     photoSession = cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO) as camera.PhotoSession;
   } catch (error) {
     let err = error as BusinessError;
-    console.error('Failed to create the session instance. errorCode = ' + err.code);
+    console.error('Failed to create the photoSession instance. errorCode = ' + err.code);
   }
   if (photoSession === undefined) {
     return;
@@ -215,6 +213,47 @@ async function cameraShootingCase(baseContext: common.BaseContext, surfaceId: st
   } catch (error) {
     let err = error as BusinessError;
     console.error('Failed to addOutput(photoOutput). errorCode = ' + err.code);
+  }
+
+  // Register a callback to listen for original images.
+  photoOutput.on('photoAvailable', (err: BusinessError, photoObj: camera.Photo): void => {
+    if (err) {
+      console.info(`photoAvailable error: ${JSON.stringify(err)}.`);
+      return;
+    }
+    savePicture(photoObj).then(() => {
+      // Release the photo object after the flushing is complete.
+      photoObj.release();
+    });
+  });
+
+  // Register a callback to listen for thumbnail proxies.
+  photoOutput.on('deferredPhotoProxyAvailable', (err: BusinessError, proxyObj: camera.DeferredPhotoProxy): void => {
+    if (err) {
+      console.info(`deferredPhotoProxyAvailable error: ${JSON.stringify(err)}.`);
+      return;
+    }
+    console.info('photoOutPutCallBack deferredPhotoProxyAvailable');
+    // Obtain the pixel map of a thumbnail.
+    proxyObj.getThumbnail().then((thumbnail: image.PixelMap) => {
+      AppStorage.setOrCreate('proxyThumbnail', thumbnail); 
+    });
+    // Call the mediaLibrary API to flush the thumbnail.
+    saveDeferredPhoto(proxyObj).then(() => {
+      // Release the thumbnail proxy class object after the flushing is complete.
+      proxyObj.release();
+    });
+  });
+    
+  // Check whether deferred delivery is supported.
+  let isSupportDeferred: boolean = photoOutput.isDeferredImageDeliverySupported(camera.DeferredDeliveryImageType.PHOTO);
+  console.info('isDeferredImageDeliverySupported res:' + isSupportDeferred);
+  if (isSupportDeferred) {
+    // Enable deferred delivery.
+	photoOutput.deferImageDelivery(camera.DeferredDeliveryImageType.PHOTO);
+    // Check whether deferred delivery is enabled.
+    let isSupportEnabled: boolean = photoOutput.isDeferredImageDeliveryEnabled(camera.DeferredDeliveryImageType.PHOTO);
+    console.info('isDeferredImageDeliveryEnabled res:' + isSupportEnabled);
   }
 
   // Commit the session configuration.
@@ -324,3 +363,5 @@ async function cameraShootingCase(baseContext: common.BaseContext, surfaceId: st
   photoSession = undefined;
 }
 ```
+
+ <!--no_check--> 

@@ -12,7 +12,7 @@ An audio and video application needs to access the AVSession service as a provid
 
 The table below lists the key APIs used by the provider. The APIs use either a callback or promise to return the result. The APIs listed below use a callback. They provide the same functions as their counterparts that use a promise.
 
-For details, see [AVSession Management](../reference/apis/js-apis-avsession.md).
+For details, see [AVSession Management](../reference/apis-avsession-kit/js-apis-avsession.md).
 
 | API| Description| 
 | -------- | -------- |
@@ -132,7 +132,7 @@ To enable an audio and video application to access the AVSession service as a pr
 
 3. Set the UIAbility to be started by the controller. The UIAbility configured here is started when a user operates the UI of the controller, for example, clicking a widget in Media Controller.
    
-   The UIAbility is set through the **WantAgent** API. For details, see [WantAgent](../reference/apis/js-apis-app-ability-wantAgent.md).
+   The UIAbility is set through the **WantAgent** API. For details, see [WantAgent](../reference/apis-ability-kit/js-apis-app-ability-wantAgent.md).
  
    ```ts
    import wantAgent from "@ohos.app.ability.wantAgent";
@@ -223,7 +223,7 @@ To enable an audio and video application to access the AVSession service as a pr
    >
    > After the provider registers a listener for fixed playback control commands, the commands will be reflected in **getValidCommands()** of the controller. In other words, the controller determines that the command is valid and triggers the corresponding event as required. To ensure that the playback control commands delivered by the controller can be executed normally, the provider should not use a null implementation for listening.
 
-   Fixed playback control commands on the session side include basic operation commands such as play, pause, previous, and next. For details, see [AVControlCommand](../reference/apis/js-apis-avsession.md).
+   Fixed playback control commands on the session side include basic operation commands such as play, pause, previous, and next. For details, see [AVControlCommand](../reference/apis-avsession-kit/js-apis-avsession.md).
      
    ```ts
    import AVSessionManager from '@ohos.multimedia.avsession';

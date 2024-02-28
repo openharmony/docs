@@ -20,7 +20,7 @@ When obtaining the device list on the network, you can specify **DeviceFlag** to
 | DISTRIBUTED_INPUT_DEVICES_FLAG<sup>9+</sup> | Remote input device. This is a system API.| 
 | ALL_DISTRIBUTED_DEVICES_FLAG<sup>9+</sup> | Remote input and output device. This is a system API.| 
 
-For details about the API reference, see [AudioRoutingManager](../reference/apis/js-apis-audio.md#audioroutingmanager9).
+For details about the API reference, see [AudioRoutingManager](../reference/apis-audio-kit/js-apis-audio.md#audioroutingmanager9).
 
 ### Continuing the Playing of All Audio Streams
 

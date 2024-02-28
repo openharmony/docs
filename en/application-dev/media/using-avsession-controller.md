@@ -13,12 +13,13 @@ You can develop a system application (for example, a new playback control center
 ## Available APIs
 
 The key APIs used by the controller are classified into the following types:
+
 1. APIs called by the **AVSessionManager** object, which is obtained by means of import. An example API is **AVSessionManager.createController(sessionId)**.
 2. APIs called by the **AVSessionController** object. An example API is **controller.getAVPlaybackState()**.
 
 Asynchronous JavaScript APIs use either a callback or promise to return the result. The APIs listed below use a callback. They provide the same functions as their counterparts that use a promise.
 
-For details, see [AVSession Management](../reference/apis/js-apis-avsession.md).
+For details, see [AVSession Management](../reference/apis-avsession-kit/js-apis-avsession.md).
 
 ### APIs Called by the AVSessionManager Object
 

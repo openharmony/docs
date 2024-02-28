@@ -1,4 +1,4 @@
-# systemTonePlayer (System Alert Tone Player)
+# systemTonePlayer (System Alert Tone Player) (System API)
 
 The systemTonePlayer module provides APIs for playing and configuring SMS alert tones and notification alert tones and obtaining related information.
 
@@ -6,9 +6,8 @@ This module must work with [@ohos.multimedia.systemSoundManager](js-apis-systemS
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version.
->
-> The APIs provided by this module are system APIs.
+> - The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The APIs provided by this module are system APIs.
 
 ## Modules to Import
 
@@ -51,7 +50,7 @@ Obtains the title of a system alert tone. This API uses a promise to return the 
 
 **Error codes**
 
-For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
+For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
 
 | ID| Error Message             |
 | ------- | --------------------- |
@@ -87,7 +86,7 @@ Prepares to play a system alert tone. This API uses a promise to return the resu
 
 **Error codes**
 
-For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
+For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
 
 | ID| Error Message             |
 | ------- | --------------------- |
@@ -132,7 +131,7 @@ Starts playing a system alert tone. This API uses a promise to return the result
 
 **Error codes**
 
-For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
+For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
 
 | ID| Error Message             |
 | ------- | --------------------- |
@@ -180,7 +179,7 @@ Stops playing a system alert tone. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
+For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
 
 | ID| Error Message             |
 | ------- | --------------------- |

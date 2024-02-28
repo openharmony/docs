@@ -4,7 +4,7 @@ Image encoding refers to the process of encoding a pixel map into an archived im
 
 ## How to Develop
 
-Read [Image API Reference](../reference/apis/js-apis-image.md#imagepacker) for APIs related to image encoding.
+Read [Image API Reference](../reference/apis-image-kit/js-apis-image.md#imagepacker) for APIs related to image encoding.
 
 ### Encoding Images into File Streams
 
@@ -69,9 +69,9 @@ Method 1: Use **PixelMap** to encode the image and pack it into a file.
      console.error('Failed to pack the image. And the error is: ' + error); 
    })
    ```
-
+   
 Method 2: Use **ImageSource** to encode the image and pack it into a file.
-
+   
    ```ts
    import {BusinessError} from '@ohos.base'
    import fs from '@ohos.file.fs'

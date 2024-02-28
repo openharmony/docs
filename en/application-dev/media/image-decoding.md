@@ -4,7 +4,7 @@ Image decoding refers to the process of decoding an archived image in a supporte
 
 ## How to Develop
 
-Read [Image](../reference/apis/js-apis-image.md#imagesource) for APIs related to image decoding.
+Read [Image](../reference/apis-image-kit/js-apis-image.md#imagesource) for APIs related to image decoding.
 
 1. Import the image module.
      
@@ -28,7 +28,7 @@ Read [Image](../reference/apis/js-apis-image.md#imagesource) for APIs related to
       const context = featureAbility.getContext();
       const filePath = context.getCacheDir() + "/test.jpg";
       ```
-   - Method 2: Obtain the file descriptor of the image through the sandbox path. For details, see [file.fs API Reference] (../reference/apis/js-apis-file-fs.md).
+   - Method 2: Obtain the file descriptor of the image through the sandbox path. For details, see [file.fs API Reference] (../reference/apis-core-file-kit/js-apis-file-fs.md).
       To use this method, you must import the \@ohos.file.fs module first.
 
       ```ts
@@ -54,7 +54,7 @@ Read [Image](../reference/apis/js-apis-image.md#imagesource) for APIs related to
       const file : fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE);
       const fd : number = file?.fd;
       ```
-   - Method 3: Obtain the array buffer of the resource file through the resource manager. For details, see [ResourceManager API Reference](../reference/apis/js-apis-resource-manager.md#getrawfilecontent9-1).
+   - Method 3: Obtain the array buffer of the resource file through the resource manager. For details, see [ResourceManager API Reference](../reference/apis-localization-kit/js-apis-resource-manager.md#getrawfilecontent9-1).
         
       ```ts
       // Code on the stage model
@@ -87,7 +87,7 @@ Read [Image](../reference/apis/js-apis-image.md#imagesource) for APIs related to
       });
       
       ```
-   - Method 4: Obtain the raw file descriptor of the resource file through the resource manager. For details, see [ResourceManager API Reference](../reference/apis/js-apis-resource-manager.md#getrawfd9-1).
+   - Method 4: Obtain the raw file descriptor of the resource file through the resource manager. For details, see [ResourceManager API Reference](../reference/apis-localization-kit/js-apis-resource-manager.md#getrawfd9-1).
         
       ```ts
       // Code on the stage model

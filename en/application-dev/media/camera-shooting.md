@@ -4,7 +4,7 @@ Photographing is an important function of the camera application. Based on the c
 
 ## How to Develop
 
-Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
+Read [Camera](../reference/apis-camera-kit/js-apis-camera.md) for the API reference.
 
 1. Import the image module. The APIs provided by this module are used to obtain the surface ID and create a photo output stream.
 
@@ -18,7 +18,7 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
 
 2. Create a photo output stream.
 
-   Obtain the photo output streams supported by the current device from **photoProfiles** in the [CameraOutputCapability](../reference/apis/js-apis-camera.md#cameraoutputcapability) class, and then call [createPhotoOutput](../reference/apis/js-apis-camera.md#createphotooutput11) to pass in a supported output stream and the surface ID obtained in step 1 to create a photo output stream.
+   Obtain the photo output streams supported by the current device from **photoProfiles** in the [CameraOutputCapability](../reference/apis-camera-kit/js-apis-camera.md#cameraoutputcapability) class, and then call [createPhotoOutput](../reference/apis-camera-kit/js-apis-camera.md#createphotooutput11) to pass in a supported output stream and the surface ID obtained in step 1 to create a photo output stream.
 
    ```ts
    function getPhotoOutput(cameraManager: camera.CameraManager, cameraOutputCapability: camera.CameraOutputCapability): camera.PhotoOutput | undefined {
@@ -45,13 +45,15 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
    let context = getContext(this);
 
    async function savePicture(buffer: ArrayBuffer, img: image.Image) {
-     let photoAccessHelper: PhotoAccessHelper = PhotoAccessHelper.getPhotoAccessHelper(context);
-     let testFileName: string = 'testFile' + Date.now() + '.jpg';
-     let photoAsset: PhotoAsset = await photoAccessHelper.createAsset(testFileName);
+     let photoAccessHelper: PhotoAccessHelper.PhotoAccessHelper = PhotoAccessHelper.getPhotoAccessHelper(context);
+     let options: PhotoAccessHelper.CreateOptions = {
+       title: Date.now().toString()
+     };
+     let photoUri: string = await photoAccessHelper.createAsset(PhotoAccessHelper.PhotoType.IMAGE, 'jpg', options);
      // To call createAsset(), the application must have the ohos.permission.READ_IMAGEVIDEO and ohos.permission.WRITE_IMAGEVIDEO permissions.
-     const fd = await photoAsset.open('rw');
-     fs.write(fd, buffer);
-     await photoAsset.close(fd);
+     let file: fs.File = fs.openSync(photoUri, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+     await fs.write(file.fd, buffer);
+     fs.closeSync(file);
      img.release(); 
    }
 
@@ -160,7 +162,7 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
 
 5. Trigger photographing.
 
-   Call [capture](../reference/apis/js-apis-camera.md#capture) in the **PhotoOutput** class to capture a photo. In this API, the first parameter specifies the settings (for example, photo quality and rotation angle) for photographing, and the second parameter is a callback function.
+   Call [capture](../reference/apis-camera-kit/js-apis-camera.md#capture-2) in the **PhotoOutput** class to capture a photo. In this API, the first parameter specifies the settings (for example, photo quality and rotation angle) for photographing, and the second parameter is a callback function.
 
    ```ts
    function capture(captureLocation: camera.Location, photoOutput: camera.PhotoOutput): void {
@@ -188,13 +190,13 @@ During camera application development, you can listen for the status of the phot
 
   ```ts
   function onPhotoOutputCaptureStart(photoOutput: camera.PhotoOutput): void {
-    photoOutput.on('captureStartWithInfo', (err: BusinessError, captureId: number) => {
-      console.info(`photo capture started, captureId : ${captureId}`);
+    photoOutput.on('captureStartWithInfo', (err: BusinessError, captureStartInfo: camera.CaptureStartInfo) => {
+      console.info(`photo capture started, captureId : ${captureStartInfo.captureId}`);
     });
   }
   ```
 
-- Register the **'captureEnd'** event to listen for photographing end events. This event can be registered when a **PhotoOutput** instance is created and is triggered when the photographing is complete. [CaptureEndInfo](../reference/apis/js-apis-camera.md#captureendinfo) is returned.
+- Register the **'captureEnd'** event to listen for photographing end events. This event can be registered when a **PhotoOutput** instance is created and is triggered when the photographing is complete. [CaptureEndInfo](../reference/apis-camera-kit/js-apis-camera.md#captureendinfo) is returned.
 
   ```ts
   function onPhotoOutputCaptureEnd(photoOutput: camera.PhotoOutput): void {
@@ -205,7 +207,7 @@ During camera application development, you can listen for the status of the phot
   }
   ```
 
-- Register the **'error'** event to listen for photo output errors. The callback function returns an error code when an API is incorrectly used. For details about the error code types, see [Camera Error Codes](../reference/apis/js-apis-camera.md#cameraerrorcode).
+- Register the **'error'** event to listen for photo output errors. The callback function returns an error code when an API is incorrectly used. For details about the error code types, see [CameraErrorCode](../reference/apis-camera-kit/js-apis-camera.md#cameraerrorcode).
 
   ```ts
   function onPhotoOutputError(photoOutput: camera.PhotoOutput): void {

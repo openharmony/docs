@@ -25,7 +25,7 @@ Currently, the following muxer capabilities are supported:
 
 ## How to Develop
 
-Read [AVMuxer](../reference/native-apis/_a_v_muxer.md) for the API reference.
+Read [AVMuxer](../reference/apis-avcodec-kit/_a_v_muxer.md) for the API reference.
 
 > **NOTE**
 >
@@ -53,7 +53,7 @@ The following walks you through how to implement the entire process of audio and
 
 2. Call **OH_AVMuxer_Create()** to create an **OH_AVMuxer** instance.
 
-   ``` c++
+   ```c++
    // Set the muxing format to MP4.
    OH_AVOutputFormat format = AV_OUTPUT_FORMAT_MPEG_4;
    // Create a File Descriptor (FD) in read/write mode.
@@ -63,7 +63,7 @@ The following walks you through how to implement the entire process of audio and
 
 3. (Optional) Call **OH_AVMuxer_SetRotation()** to set the rotation angle.
 
-   ``` c++
+   ```c++
    // Set the rotation angle when a video image needs to be rotated.
    OH_AVMuxer_SetRotation(muxer, 0);
    ```
@@ -72,7 +72,7 @@ The following walks you through how to implement the entire process of audio and
 
    **Method 1: Use OH_AVFormat_Create to create the format.**
 
-   ``` c++
+   ```c++
    int audioTrackId = -1;
    uint8_t *buffer = ...; // Encoding configuration data. If there is no configuration data, leave the parameter unspecified.
    size_t size =...; // Length of the encoding configuration data. Set this parameter based on project requirements.
@@ -92,7 +92,7 @@ The following walks you through how to implement the entire process of audio and
 
    **Method 2: Use OH_AVFormat_CreateAudioFormat to create the format.**
 
-   ``` c++
+   ```c++
    int audioTrackId = -1;
    uint8_t *buffer = ...; // Encoding configuration data. If there is no configuration data, leave the parameter unspecified.
    size_t size =...; // Length of the encoding configuration data. Set this parameter based on project requirements.
@@ -111,7 +111,7 @@ The following walks you through how to implement the entire process of audio and
 
    **Method 1: Use OH_AVFormat_Create to create the format.**
 
-   ``` c++
+   ```c++
    int videoTrackId = -1;
    uint8_t *buffer = ...; // Encoding configuration data. If there is no configuration data, leave the parameter unspecified.
    size_t size =...; // Length of the encoding configuration data. Set this parameter based on project requirements.
@@ -130,7 +130,7 @@ The following walks you through how to implement the entire process of audio and
 
    **Method 2: Use OH_AVFormat_CreateVideoFormat to create the format.**
 
-   ``` c++
+   ```c++
    int videoTrackId = -1;
    uint8_t *buffer = ...; // Encoding configuration data. If there is no configuration data, leave the parameter unspecified.
    size_t size =...; // Length of the encoding configuration data. Set this parameter based on project requirements.
@@ -148,7 +148,7 @@ The following walks you through how to implement the entire process of audio and
 
    **Method 1: Use OH_AVFormat_Create to create the format.**
 
-   ``` c++
+   ```c++
    int coverTrackId = -1;
    OH_AVFormat *formatCover = OH_AVFormat_Create();
    OH_AVFormat_SetStringValue(formatCover, OH_MD_KEY_CODEC_MIME, OH_AVCODEC_MIMETYPE_IMAGE_JPG);
@@ -164,7 +164,7 @@ The following walks you through how to implement the entire process of audio and
 
    **Method 2: Use OH_AVFormat_CreateVideoFormat to create the format.**
 
-   ``` c++
+   ```c++
    int coverTrackId = -1;
    OH_AVFormat *formatCover = OH_AVFormat_CreateVideoFormat(OH_AVCODEC_MIMETYPE_IMAGE_JPG, 1280, 720);
    
@@ -177,7 +177,7 @@ The following walks you through how to implement the entire process of audio and
 
 7. Call **OH_AVMuxer_Start()** to start muxing.
 
-   ``` c++
+   ```c++
    // Call Start() to write the file header. After this API is called, you cannot set media parameters or add tracks.
    if (OH_AVMuxer_Start(muxer) != AV_ERR_OK) {
        // Exception handling.
@@ -188,7 +188,7 @@ The following walks you through how to implement the entire process of audio and
 
    including video, audio, and cover data.
 
-   ``` c++
+   ```c++
    // Data can be written only after Start() is called.
    int size = ...;
    OH_AVBuffer *sample = OH_AVBuffer_Create (size); // Create an AVBuffer instance.
@@ -213,7 +213,7 @@ The following walks you through how to implement the entire process of audio and
 
 9. Call **OH_AVMuxer_Stop()** to stop muxing.
 
-   ``` c++
+   ```c++
    // Call Stop() to write the file trailer. After this API is called, you cannot write media data.
    if (OH_AVMuxer_Stop(muxer) != AV_ERR_OK) {
        // Exception handling.
@@ -222,7 +222,7 @@ The following walks you through how to implement the entire process of audio and
 
 10. Call **OH_AVMuxer_Destroy()** to release the instance.
 
-    ``` c++
+    ```c++
     if (OH_AVMuxer_Destroy(muxer) != AV_ERR_OK) {
         // Exception handling.
     }

@@ -17,8 +17,8 @@ The **Camera_Size** struct defines the parameters that describe the size.
 
 | Name| Description| 
 | -------- | -------- |
-| [width](#width) | Width, in pixels.| 
-| [height](#height) | Height, in pixels.| 
+| uint32_t [width](#width) | Width, in pixels. | 
+| uint32_t [height](#height) | Height, in pixels. | 
 
 
 ## Member Variable Description
@@ -29,7 +29,6 @@ The **Camera_Size** struct defines the parameters that describe the size.
 ```
 uint32_t Camera_Size::height
 ```
-
 **Description**
 
 Height, in pixels.
@@ -40,7 +39,6 @@ Height, in pixels.
 ```
 uint32_t Camera_Size::width
 ```
-
 **Description**
 
 Width, in pixels.
