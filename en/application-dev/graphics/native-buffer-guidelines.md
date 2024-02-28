@@ -1,4 +1,4 @@
-# Native Buffer Development
+# Native Buffer Development (C/C++)
 
 ## When to Use
 
@@ -10,17 +10,17 @@ Use the native buffer APIs to create an **OH_NativeBuffer** instance, obtain mem
 
 ## Available APIs
 
-| API| Description|
+| API| Description| 
 | -------- | -------- |
-| OH_NativeBuffer_Alloc (const OH_NativeBuffer_Config \*config) | Creates an **OH_NativeBuffer** instance based on an **OH_NativeBuffer_Config** struct. A new **OH_NativeBuffer** instance is created each time this function is called.|
-| OH_NativeBuffer_Reference (OH_NativeBuffer \*buffer) | Increases the reference count of an **OH_NativeBuffer** instance by 1.|
-| OH_NativeBuffer_Unreference (OH_NativeBuffer \*buffer) | Decreases the reference count of an **OH_NativeBuffer** instance by 1 and, when the reference count reaches 0, destroys the instance.|
-| OH_NativeBuffer_GetConfig (OH_NativeBuffer \*buffer, OH_NativeBuffer_Config \*config) | Obtains the properties of an **OH_NativeBuffer** instance.|
-| OH_NativeBuffer_Map (OH_NativeBuffer \*buffer, void \*\*virAddr) | Maps the ION memory allocated to an **OH_NativeBuffer** instance to the process address space.|
-| OH_NativeBuffer_Unmap (OH_NativeBuffer \*buffer) | Unmaps the ION memory allocated to an **OH_NativeBuffer** instance from the process address space.|
-| OH_NativeBuffer_GetSeqNum (OH_NativeBuffer \*buffer) | Obtains the sequence number of an **OH_NativeBuffer** instance.|
+| OH_NativeBuffer_Alloc (const OH_NativeBuffer_Config \*config) | Creates an **OH_NativeBuffer** instance based on an **OH_NativeBuffer_Config** struct. A new **OH_NativeBuffer** instance is created each time this function is called.| 
+| OH_NativeBuffer_Reference (OH_NativeBuffer \*buffer) | Increases the reference count of an **OH_NativeBuffer** instance by 1.| 
+| OH_NativeBuffer_Unreference (OH_NativeBuffer \*buffer) | Decreases the reference count of an **OH_NativeBuffer** instance by 1 and, when the reference count reaches 0, destroys the instance.| 
+| OH_NativeBuffer_GetConfig (OH_NativeBuffer \*buffer, OH_NativeBuffer_Config \*config) | Obtains the properties of an **OH_NativeBuffer** instance.| 
+| OH_NativeBuffer_Map (OH_NativeBuffer \*buffer, void \*\*virAddr) | Maps the ION memory allocated to an **OH_NativeBuffer** instance to the process address space.| 
+| OH_NativeBuffer_Unmap (OH_NativeBuffer \*buffer) | Unmaps the ION memory allocated to an **OH_NativeBuffer** instance from the process address space.| 
+| OH_NativeBuffer_GetSeqNum (OH_NativeBuffer \*buffer) | Obtains the sequence number of an **OH_NativeBuffer** instance.| 
 
-For details about the APIs, see [native_buffer](../reference/native-apis/_o_h___native_buffer.md).
+For details about the APIs, see [native_buffer](../reference/apis-arkgraphics2d/_o_h___native_buffer.md).
 
 ## How to Develop
 
@@ -60,14 +60,14 @@ libnative_buffer.so
     if (ret != 0) {
         std::cout << "OH_NativeBuffer_Map Failed" << std::endl;
     }
-    
-// Unmap the ION memory from the process address space when it is no longer needed.
+
+    // Unmap the ION memory from the process address space when it is no longer needed.
     ret = OH_NativeBuffer_Unmap(buffer);
     if (ret != 0) {
         std::cout << "OH_NativeBuffer_Unmap Failed" << std::endl;
     }
     ```
-    
+
 3. Obtain the memory properties.
     ```c++
     // Obtain the properties of the OH_NativeBuffer instance.

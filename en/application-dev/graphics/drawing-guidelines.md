@@ -1,14 +1,14 @@
-# Using Drawing to Draw and Display Graphics
+# Using Drawing to Draw and Display Graphics (C/C++)
 
 ## When to Use
 
 The native drawing module provides APIs for drawing 2D graphics and text.
 
-The graphics and text drawn by using the APIs cannot be directly displayed on the screen. To display the drawn graphics and text, you'll need the capabilities provided by the **\<XComponent>** and native Window module.
+The graphics and text drawn by using the APIs cannot be directly displayed on the screen. To display the drawn graphics and text, you'll need the capabilities provided by the **\<XComponent>** and native window module.
 
 ## Available APIs
 
-The table below lists the common native drawing APIs. For details about all the APIs, see [Drawing](../reference/native-apis/_drawing.md).
+The table below lists the common native drawing APIs. For details about all the APIs, see [Drawing](../reference/apis-arkgraphics2d/_drawing.md).
 
 | API| Description|
 | -------- | -------- |
@@ -16,8 +16,8 @@ The table below lists the common native drawing APIs. For details about all the 
 | OH_Drawing_BitmapBuild (OH_Drawing_Bitmap *, const uint32_t width, const uint32_t height, const OH_Drawing_BitmapFormat *) | Initializes the width and height of a bitmap and sets the pixel format for the bitmap.|
 | OH_Drawing_CanvasCreate (void) | Creates a canvas object.|
 | OH_Drawing_CanvasBind (OH_Drawing_Canvas *, OH_Drawing_Bitmap *) | Binds a bitmap to a canvas so that the content drawn on the canvas is output to the bitmap. (This process is called CPU rendering.)|
-| OH_Drawing_CanvasAttachBrush (OH_Drawing_Canvas *, const OH_Drawing_Brush *) | Attaches a brush to a canvas so that the canvas will use the style and color of the brush to fill in a shape.|
-| OH_Drawing_CanvasAttachPen (OH_Drawing_Canvas *, const OH_Drawing_Pen *) | Attaches a pen to a canvas so that the canvas will use the style and color of the pen to outline a shape.|
+| OH_Drawing_CanvasAttachBrush (OH_Drawing_Canvas *, const OH_Drawing_Brush *) | Attaches a brush to a canvas so that the canvas can use the style and color of the brush to fill in a shape.|
+| OH_Drawing_CanvasAttachPen (OH_Drawing_Canvas *, const OH_Drawing_Pen *) | Attaches a pen to a canvas so that the canvas can use the style and color of the pen to outline a shape.|
 | OH_Drawing_CanvasDrawPath (OH_Drawing_Canvas *, const OH_Drawing_Path *) | Draws a path.|
 | OH_Drawing_PathCreate (void) | Creates a path object.|
 | OH_Drawing_PathMoveTo (OH_Drawing_Path *, float x, float y) | Sets the start point of a path.|
@@ -37,9 +37,9 @@ The table below lists the common native drawing APIs. For details about all the 
 
 ### Development Process
 
-First, use the canvas and brush of the native drawing module to draw a basic 2D graphic, write the graphics content to the buffer provided by the native Window module, and flush the buffer to the graphics queue. Then use the **\<XComponent>** to connect the C++ code layer to the ArkTS layer. In this way, the drawing and display logic of the C++ code is called at the ArkTS layer, and the graphic is displayed on the screen.
+First, use the canvas and pen of the native drawing module to draw a basic 2D graphic, write the graphics content to the buffer provided by the native window module, and flush the buffer to the graphics queue. Then use the **\<XComponent>** to connect the C++ code layer to the ArkTS layer. In this way, the drawing and display logic of the C++ code is called at the ArkTS layer, and the graphic is displayed on the screen.
 
-The following walks you through on how to draw and display 2D graphics and texts.
+The following walks you through on how to draw and display 2D graphics and text.
 ### Adding Dependencies
 
 **Adding Dynamic Link Libraries**
@@ -236,7 +236,7 @@ Now, the drawing environment is set up. You can use the native drawing APIs to d
 
 ### Drawing a 2D Graphic
 
-Follow the steps below to draw a 2D graphic by using the canvas and brush of the native drawing module.
+Follow the steps below to draw a 2D graphic by using the canvas and pen of the native drawing module.
 
 1. **Create a bitmap object.**
 
@@ -289,7 +289,7 @@ Follow the steps below to draw a 2D graphic by using the canvas and brush of the
 
 3. **Construct a shape.**
 
-    Use the APIs provided in **drawing_path.h** to draw a pentagram **cPath**.
+    Use the APIs provided in **drawing_path.h** to construct a pentagram, named **cPath**.
 
     ```c++
     int len = height_ / 4;
@@ -304,7 +304,7 @@ Follow the steps below to draw a 2D graphic by using the canvas and brush of the
     float eX = aX - (len / 2.0);
     float eY = bY;
 
-    // Create a path object and use the APIs to draw a pentagram.
+    // Create a path object and use the APIs to construct a pentagram.
     cPath_ = OH_Drawing_PathCreate();
     // Specify the start point of the path.
     OH_Drawing_PathMoveTo(cPath_, aX, aY);
@@ -317,9 +317,9 @@ Follow the steps below to draw a 2D graphic by using the canvas and brush of the
     OH_Drawing_PathClose(cPath_);
     ```
 
-4. **Set the brush and pen styles.**
+4. **Set the pen and brush styles.**
 
-    Use **OH_Drawing_PenCreate** in **drawing_pen.h** to create a pen object (named **cPen** in this example), and set the attributes such as the anti-aliasing, color, and thickness. The pen is used to outline a shape.
+    Use **OH_Drawing_PenCreate** in **drawing_pen.h** to create a pen object (named **cPen** in this example), and set the attributes such as anti-aliasing, color, and thickness. The pen is used to outline a shape.
 
     Use **OH_Drawing_BrushCreate** in **drawing_brush.h** to create a brush object (named **cBrush** in this example), and set the brush color. The brush is used to fill in a shape.
 
@@ -343,12 +343,12 @@ Follow the steps below to draw a 2D graphic by using the canvas and brush of the
     OH_Drawing_CanvasAttachBrush(cCanvas_, cBrush_);
     ```
 
-5. **Draw a shape.**
+5. **Draw the pentagram.**
 
-    Use **OH_Drawing_CanvasDrawPath** in **drawing_canvas.h** to draw a pentagon on the canvas.
+    Use **OH_Drawing_CanvasDrawPath** in **drawing_canvas.h** to draw the pentagram on the canvas.
 
     ```c++
-    // Draw a pentagon on the canvas. The outline of the pentagon is drawn by the pen, and the color is filled in by the brush.
+    // Draw a pentagram on the canvas. The outline of the pentagram is drawn by the pen, and the color is filled in by the brush.
     OH_Drawing_CanvasDrawPath(cCanvas_, cPath_);
     ```
 
@@ -575,8 +575,9 @@ The preceding code is the C++ code at the native layer. To call the code, use th
         }
     }
     ```
-3. The following figure shows the drawing and display effect.
-
+    
+    The following figure shows the drawing and display effect.
+    
     | Home page                                | Pentagon drawn                                        | Text drawn                                           |
     | ------------------------------------ |-----------------------------------------------| --------------------------------------------------- |
     | ![main](./figures/drawIndex.jpg) | ![Draw Path](./figures/drawPath.jpg) | ![Draw Text](./figures/drawText.jpg) |
