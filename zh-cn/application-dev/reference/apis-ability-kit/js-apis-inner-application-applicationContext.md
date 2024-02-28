@@ -660,3 +660,47 @@ export default class MyAbility extends UIAbility {
     }
 }
 ```
+
+## ApplicationContext.restartApp<sup>12+</sup>
+
+restartApp(want: Want): void
+
+应用重启并拉起自身指定UIAbility。重启时不会收到onDestroy回调。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+| 参数名        | 类型     | 必填 | 说明                       |
+| ------------- | -------- | ---- | -------------------------- |
+| want | [Want](js-apis-app-ability-want.md) | 是 | Want类型参数，传入需要启动的UIAbility的信息，Bundle名称不做校验。 |
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000050 | Internal error. |
+| 16000063 | The target to restart does not belong to the current app or is not a UIAbility. |
+| 16000064 | Restart too frequently. Try again at least 10s later. |
+
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+
+**示例：**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import Want from '@ohos.app.ability.Want';
+export default class MyAbility extends UIAbility {
+  onBackground() {
+    let applicationContext = this.context.getApplicationContext();
+    let want : Want = {
+      bundleName: 'com.example.myapp',
+      abilityName: 'EntryAbility'
+    };
+    try {
+      applicationContext.restartApp(want);
+    } catch (error) {
+      console.error(`restartApp fail, error: ${JSON.stringify(error)}`);
+    }
+  }
+}
+```

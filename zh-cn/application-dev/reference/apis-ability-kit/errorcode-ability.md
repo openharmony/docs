@@ -502,6 +502,42 @@ The number of child process exceeds upper bound.
 
 确认创建的子进程数量是否已经达到上限。子进程数量上限为128个。
 
+## 16000063 重启应用指定组件无效
+
+**错误信息**
+
+The target to restart does not belong to the current app or is not a UIAbility.
+
+**错误描述**
+
+当重启应用拉起指定组件时，指定组件名称或类型无效，返回该错误码。
+
+**可能原因**
+
+指定组件名称或类型无效。
+
+**处理步骤**
+
+确认指定组件名称为当前应用组件，且类型为UIAbility。
+
+## 16000064 重启应用频繁
+
+**错误信息**
+
+Restart too frequently. Try again at least 10s later.
+
+**错误描述**
+
+当重启应用拉起指定组件时，10s内再次调用，返回该错误码。
+
+**可能原因**
+
+调用接口频繁。
+
+**处理步骤**
+
+间隔10s后再次调用。
+
 ## 16000067 Ability启动参数校验失败
 
 **错误信息**
