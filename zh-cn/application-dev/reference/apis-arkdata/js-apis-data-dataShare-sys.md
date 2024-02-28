@@ -196,10 +196,10 @@ enableSilentProxy(context: Context, uri?: string): Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名  | 类型                                                    | 必填 | 说明                                                         |
-| ------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| context | [Context](../apis-ability-kit/js-apis-inner-application-context.md#context) | 是   | 应用的上下文环境。                                           |
-| uri     | string                                                  | 否   | 要开启的数据提供方的数据路径。<br />1、uri不填，默认开启该服务提供方下所有的uri的静默访问。并且会清空掉之前设置的具体的uri的开关状态。<br />2、uri填写固定的值，开启该uri对应的静默访问。<br />在调用datashareHelper相关接口时，优先校验传入的uri精准匹配的开关情况，如果匹配不到会继续校验是否调用过enableSilentProxy并且不传递uri的开关情况。<br />uri格式：datashare:///{bundleName}/{moduleName}/{storeName}/{tableName} |
+| 参数名  | 类型                                                    | 必填 | 说明                                                                                                                                                                                                                                                                               |
+| ------- | ------------------------------------------------------- | ---- |----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| context | [Context](../apis-ability-kit/js-apis-inner-application-context.md#context) | 是   | 应用的上下文环境。                                                                                                                                                                                                                                                                        |
+| uri     | string                                                  | 否   | 要开启的数据提供方的数据路径。<br />1、全局开关状态：入参不带uri、uri为undefined、uri为null，会清空掉之前设置的所有uri开关状态，开启数据提供方静默访问。<br />2、精准开关状态：uri的入参为固定的值，仅开启该uri对应的静默访问。<br />在调用datashareHelper相关接口时，优先精准匹配uri的开关状态。如果匹配不到，继续匹配全局的开关状态。<br />uri格式：datashare:///{bundleName}/{moduleName}/{storeName}/{tableName} |
 
 **返回值：**
 
@@ -245,11 +245,10 @@ disableSilentProxy(context: Context, uri?: string): Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名  | 类型                                                    | 必填 | 说明                                                         |
-| ------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| context | [Context](../apis-ability-kit/js-apis-inner-application-context.md#context) | 是   | 应用的上下文环境。                                           |
-| uri     | string                                                  | 否   | 要关闭的数据提供方的应用路径。<br />1、uri不填，默认关闭该服务提供方下所有的uri的静默访问。并且会清空掉之前设置的具体的uri的开关状态。<br />2、uri填写固定的值，关闭该uri对应的静默访问。<br />在调用datashareHelper相关接口时，优先校验传入的uri精准匹配的开关情况，如果匹配不到会继续校验是否调用过disableSilentProxy并且不传递uri的开关情况。<br />uri格式：datashare:///{bundleName}/{moduleName}/{storeName}/{tableName} |
-
+| 参数名  | 类型                                                    | 必填 | 说明                                                                                                                                                                                                                                                                             |
+| ------- | ------------------------------------------------------- | ---- |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| context | [Context](../apis-ability-kit/js-apis-inner-application-context.md#context) | 是   | 应用的上下文环境。                                                                                                                                                                                                                                                                      |
+| uri     | string                                                  | 否   | 要关闭的数据提供方的数据路径。<br />1、全局开关状态：入参不带uri、uri为undefined、uri为null，会清空掉之前设置的uri开关状态，关闭数据提供方静默访问。<br />2、精准开关状态：uri的入参为固定的值，仅关闭该uri对应的静默访问。<br />在调用datashareHelper相关接口时，优先精准匹配uri的开关状态。如果匹配不到，继续匹配全局的开关状态。<br />uri格式：datashare:///{bundleName}/{moduleName}/{storeName}/{tableName} |
 **返回值：**
 
 | 类型                                               | 说明                                   |
