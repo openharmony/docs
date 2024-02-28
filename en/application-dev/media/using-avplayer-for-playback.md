@@ -160,6 +160,7 @@ export class AVPlayerDemo {
     let fileDescriptor = await context.resourceManager.getRawFd('01.mp3');
     // Assign a value to fdSrc to trigger the reporting of the initialized state.
     this.avPlayer.fdSrc = fileDescriptor;
+    this.isSeek = false; // The seek operation is not supported.
   }
 }
 ```
