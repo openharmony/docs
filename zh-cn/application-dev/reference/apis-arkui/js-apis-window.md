@@ -183,7 +183,7 @@ import window from '@ohos.window';
 
 ## WindowLimits<sup>11+</sup>
 
-窗口尺寸限制参数。
+窗口尺寸限制参数。可以通过[setWindowLimits](#setwindowlimits11)设置窗口尺寸限制，并且可以通过[getWindowLimits](#getwindowlimits11)获得当前的窗口尺寸限制。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -3704,7 +3704,7 @@ setAspectRatio(ratio: number): Promise&lt;void&gt;
 
 | 参数名             | 类型    | 必填 | 说明                                        |
 | ------------------ | ------- | ---- |-------------------------------------------|
-| ratio | number | 是   | 除边框装饰之外的窗口内容布局的宽高比。该参数为浮点数，取值范围为(0.0, +∞)。 |
+| ratio | number | 是   | 除边框装饰之外的窗口内容布局的宽高比。该参数为浮点数，受窗口最大最小尺寸限制，比例值下限为最小宽度/最大高度，上限为最大宽度/最大高度。窗口最大最小尺寸由[WindowLimits](#windowlimits11)和系统限制的交集决定，系统限制优先级高于[WindowLimits](#windowlimits11)。 |
 
 **返回值：**
 
