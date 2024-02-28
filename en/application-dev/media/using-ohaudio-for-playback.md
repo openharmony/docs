@@ -19,7 +19,7 @@ Specifically, to use APIs for audio playback, import <[native_audiostreambuilder
 #include <ohaudio/native_audiostreambuilder.h>
 ```
 
-## Audio Stream Builder
+## Building Audio Streams
 
 **OHAudio** provides the **OH_AudioStreamBuilder** class, which complies with the builder design pattern and is used to build audio streams. You need to specify [OH_AudioStream_Type](../reference/native-apis/_o_h_audio.md#oh_audiostream_type) based on your service scenarios.
 
@@ -77,7 +77,6 @@ The following walks you through how to implement simple playback:
 3. Set the callback functions.
 
     ```c++
-    // For details about the implementation, see the recording and playback instance.
     OH_AudioRenderer_Callbacks callbacks;
     // Set callbacks for the audio renderer.
     OH_AudioStreamBuilder_SetRendererCallback(builder, callbacks, nullptr);

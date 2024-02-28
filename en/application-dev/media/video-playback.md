@@ -10,7 +10,7 @@ In this topic, you will learn how to use the AVPlayer to develop a video playbac
 
 ## Development Guidelines
 
-The full playback process includes creating an **AVPlayer** instance, setting the media asset to play and the window to display the video, setting playback parameters (volume, speed, and scale type), controlling playback (play, pause, seek, and stop), resetting the playback configuration, and releasing the instance. During application development, you can use the **state** attribute of the AVPlayer to obtain the AVPlayer state or call **on('stateChange')** to listen for state changes. If the application performs an operation when the AudioPlayer is not in the given state, the system may throw an exception or generate other undefined behavior.
+The full playback process includes creating an **AVPlayer** instance, setting the media asset to play and the window to display the video, setting playback parameters (volume, speed, and scale type), controlling playback (play, pause, seek, and stop), resetting the playback configuration, and releasing the instance. During application development, you can use the **state** attribute of the AVPlayer to obtain the AVPlayer state or call **on('stateChange')** to listen for state changes. If the application performs an operation when the AVPlayer is not in the given state, the system may throw an exception or generate other undefined behavior.
 
 **Figure 1** Playback state transition 
 
@@ -48,7 +48,7 @@ Read [AVPlayer](../reference/apis/js-apis-media.md#avplayer9) for the API refere
    > 
    > - If local files are used for playback, ensure that the files are available and the application sandbox path is used for access. For details about how to obtain the application sandbox path, see [Obtaining Application File Paths](../application-models/application-context-stage.md#obtaining-application-file-paths). For details about the application sandbox and how to push files to the application sandbox, see [File Management](../file-management/app-sandbox-directory.md).
    > 
-   > - If a network playback path is used, you must request the ohos.permission.INTERNET [permission](../security/accesstoken-guidelines.md).
+   > - If a network playback path is used, you must [declare the ohos.permission.INTERNET permission](../security/AccessToken/declare-permissions.md).
    > 
    > - You can also use **ResourceManager.getRawFd** to obtain the file descriptor of a file packed in the HAP file. For details, see [ResourceManager API Reference](../reference/apis/js-apis-resource-manager.md#getrawfd9).
    > 

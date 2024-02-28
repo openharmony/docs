@@ -192,6 +192,8 @@ createPlayer(id: number, options?: AudioHapticPlayerOptions): Promise&lt;AudioHa
 
 Creates an audio-haptic player. This API uses a promise to return the result.
 
+**Required permissions**: ohos.permission.VIBRATE
+
 If the audio-haptic player needs to trigger vibration, check whether the application has the permission.
 
 **System capability**: SystemCapability.Multimedia.AudioHaptic.Core
@@ -225,10 +227,14 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 import { BusinessError } from '@ohos.base';
 
 let options: audioHaptic.AudioHapticPlayerOptions = {muteAudio: false, muteHaptics: false};
+let audioHapticPlayerInstance: audioHaptic.AudioHapticPlayer | undefined = undefined;
 
-let audioHapticPlayerInstance: audioHaptic.AudioHapticPlayer =
-  await audioHapticManagerInstance.createPlayer(id, options);
-console.info(`Create the audio haptic player successfully.`);
+audioHapticManagerInstance.createPlayer(id, options).then((value: audioHaptic.AudioHapticPlayer) => {
+  audioHapticPlayerInstance = value;
+  console.info(`Create the audio haptic player successfully.`);
+}).catch ((err: BusinessError) => {
+  console.error(`Failed to create the audio haptic player. ${err}`);
+});
 ```
 
 ## AudioHapticType

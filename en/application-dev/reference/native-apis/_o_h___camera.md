@@ -17,14 +17,14 @@ The **OH_Camera** module provides C APIs for the camera service.
 
 | Name| Description|
 | -------- | -------- |
-| [camera.h](camera_8h.md) | Declares the basic concepts of the camera.<br>**Library**: libohcamera.so<br>**File to include**: &lt;multimedia/camera_framework/camera.h&gt; |
-| [camera_input.h](camera__input_8h.md) | Declares the camera input concepts.<br>**Library**: libohcamera.so<br>**File to include**: &lt;multimedia/camera_framework/camera_input.h&gt;|
-| [camera_manager.h](camera__manager_8h.md) | Declares the camera manager concepts.<br>**Library**: libohcamera.so<br>**File to include**: &lt;multimedia/camera_framework/camera_manager.h&gt;|
-| [capture_session.h](capture__session_8h.md) | Declares the session capture concepts.<br>**Library**: libohcamera.so<br>**File to include**: &lt;multimedia/camera_framework/capture_session.h&gt;|
-| [metadata_output.h](metadata__output_8h.md) | Declares the metadata output concepts.<br>**Library**: libohcamera.so<br>**File to include**: &lt;multimedia/camera_framework/metadata_output.h&gt;|
-| [photo_output.h](photo__output_8h.md) | Declares the photo output concepts.<br>**Library**: libohcamera.so<br>**File to include**: &lt;multimedia/camera_framework/photo_output.h&gt;|
-| [preview_output.h](preview__output_8h.md) | Declares the preview output concepts.<br>**Library**: libohcamera.so<br>**File to include**: &lt;multimedia/camera_framework/preview_output.h&gt;|
-| [video_output.h](video__output_8h.md) | Declares the video output concepts.<br>**Library**: libohcamera.so<br>**File to include**: &lt;multimedia/camera_framework/video_output.h&gt;|
+| [camera.h](camera_8h.md) | Declares the basic concepts of the camera.<br>**Library**: libohcamera.so<br>**File to include**: &lt;ohcamera/camera.h&gt; |
+| [camera_input.h](camera__input_8h.md) | Declares the camera input concepts.<br>**Library**: libohcamera.so<br>**File to include**: &lt;ohcamera/camera_input.h&gt;|
+| [camera_manager.h](camera__manager_8h.md) | Declares the camera manager concepts.<br>**Library**: libohcamera.so<br>**File to include**: &lt;ohcamera/camera_manager.h&gt; |
+| [capture_session.h](capture__session_8h.md) | Declares the session capture concepts.<br>**Library**: libohcamera.so<br>**File to include**: &lt;ohcamera/capture_session.h&gt; |
+| [metadata_output.h](metadata__output_8h.md) | Declares the metadata output concepts.<br>**Library**: libohcamera.so<br>**File to include**: &lt;ohcamera/metadata_output.h&gt; |
+| [photo_output.h](photo__output_8h.md) | Declares the photo output concepts.<br>**Library**: libohcamera.so<br>**File to include**: &lt;ohcamera/photo_output.h&gt; |
+| [preview_output.h](preview__output_8h.md) | Declares the preview output concepts.<br>**Library**: libohcamera.so<br>**File to include**: &lt;ohcamera/preview_output.h&gt; |
+| [video_output.h](video__output_8h.md) | Declares the video output concepts.<br>**Library**: libohcamera.so<br>**File to include**: &lt;ohcamera/video_output.h&gt; |
 
 
 ### Structs
@@ -122,20 +122,20 @@ The **OH_Camera** module provides C APIs for the camera service.
 
 | Name| Description|
 | -------- | -------- |
-| [Camera_ErrorCode](#camera_errorcode) {<br>CAMERA_OK = 0, CAMERA_INVALID_ARGUMENT = 7400101, CAMERA_OPERATION_NOT_ALLOWED = 7400102, CAMERA_SESSION_NOT_CONFIG = 7400103,<br>CAMERA_SESSION_NOT_RUNNING = 7400104, CAMERA_SESSION_CONFIG_LOCKED = 7400105, CAMERA_DEVICE_SETTING_LOCKED = 7400106, CAMERA_CONFLICT_CAMERA = 7400107,<br>CAMERA_DEVICE_DISABLED = 7400108, CAMERA_DEVICE_PREEMPTED = 7400109, CAMERA_SERVICE_FATAL_ERROR = 7400201<br>} | Enumerates the camera error codes.|
-| [Camera_Status](#camera_status) { CAMERA_STATUS_APPEAR = 0, CAMERA_STATUS_DISAPPEAR = 1, CAMERA_STATUS_AVAILABLE = 2, CAMERA_STATUS_UNAVAILABLE = 3 } | Enumerates the camera statuses.|
-| [Camera_Position](#camera_position) { CAMERA_POSITION_UNSPECIFIED = 0, CAMERA_POSITION_BACK = 1, CAMERA_POSITION_FRONT = 2 } | Enumerates the camera positions.|
-| [Camera_Type](#camera_type) {<br>CAMERA_TYPE_DEFAULT = 0, CAMERA_TYPE_WIDE_ANGLE = 1, CAMERA_TYPE_ULTRA_WIDE = 2, CAMERA_TYPE_TELEPHOTO = 3,<br>CAMERA_TYPE_TRUE_DEPTH = 4<br>} | Enumerates the camera types.|
-| [Camera_Connection](#camera_connection) { CAMERA_CONNECTION_BUILT_IN = 0, CAMERA_CONNECTION_USB_PLUGIN = 1, CAMERA_CONNECTION_REMOTE = 2 } | Enumerates the camera connection types.|
-| [Camera_Format](#camera_format) { CAMERA_FORMAT_RGBA_8888 = 3, CAMERA_FORMAT_YUV_420_SP = 1003, CAMERA_FORMAT_JPEG = 2000 } | Enumerates the camera output formats.|
-| [Camera_FlashMode](#camera_flashmode) { FLASH_MODE_CLOSE = 0, FLASH_MODE_OPEN = 1, FLASH_MODE_AUTO = 2, FLASH_MODE_ALWAYS_OPEN = 3 } | Enumerates the flash modes.|
-| [Camera_ExposureMode](#camera_exposuremode) { EXPOSURE_MODE_LOCKED = 0, EXPOSURE_MODE_AUTO = 1, EXPOSURE_MODE_CONTINUOUS_AUTO = 2 } | Enumerates the exposure modes.|
-| [Camera_FocusMode](#camera_focusmode) { FOCUS_MODE_MANUAL = 0, FOCUS_MODE_CONTINUOUS_AUTO = 1, FOCUS_MODE_AUTO = 2, FOCUS_MODE_LOCKED = 3 } | Enumerates the focus modes.|
-| [Camera_FocusState](#camera_focusstate) { FOCUS_STATE_SCAN = 0, FOCUS_STATE_FOCUSED = 1, FOCUS_STATE_UNFOCUSED = 2 } | Enumerates the focus states.|
-| [Camera_VideoStabilizationMode](#camera_videostabilizationmode) {<br>STABILIZATION_MODE_OFF = 0, STABILIZATION_MODE_LOW = 1, STABILIZATION_MODE_MIDDLE = 2, STABILIZATION_MODE_HIGH = 3,<br>STABILIZATION_MODE_AUTO = 4<br>} | Enumerates the video stabilization modes.|
-| [Camera_ImageRotation](#camera_imagerotation) { IAMGE_ROTATION_0 = 0, IAMGE_ROTATION_90 = 90, IAMGE_ROTATION_180 = 180, IAMGE_ROTATION_270 = 270 } | Enumerates the image rotation angles.|
-| [Camera_QualityLevel](#camera_qualitylevel) { QUALITY_LEVEL_HIGH = 0, QUALITY_LEVEL_MEDIUM = 1, QUALITY_LEVEL_LOW = 2 } | Enumerates the image quality levels.|
-| [Camera_MetadataObjectType](#camera_metadataobjecttype) { FACE_DETECTION = 0 } | Enumerates the metadata object types.|
+| [Camera_ErrorCode](#camera_errorcode) {<br>CAMERA_OK = 0, CAMERA_INVALID_ARGUMENT = 7400101, CAMERA_OPERATION_NOT_ALLOWED = 7400102, CAMERA_SESSION_NOT_CONFIG = 7400103,<br>CAMERA_SESSION_NOT_RUNNING = 7400104, CAMERA_SESSION_CONFIG_LOCKED = 7400105, CAMERA_DEVICE_SETTING_LOCKED = 7400106, CAMERA_CONFLICT_CAMERA = 7400107,<br>CAMERA_DEVICE_DISABLED = 7400108, CAMERA_DEVICE_PREEMPTED = 7400109, CAMERA_SERVICE_FATAL_ERROR = 7400201<br>} | Enumerates the camera error codes. |
+| [Camera_Status](#camera_status) { CAMERA_STATUS_APPEAR = 0, CAMERA_STATUS_DISAPPEAR = 1, CAMERA_STATUS_AVAILABLE = 2, CAMERA_STATUS_UNAVAILABLE = 3 } | Enumerates the camera statuses. |
+| [Camera_Position](#camera_position) { CAMERA_POSITION_UNSPECIFIED = 0, CAMERA_POSITION_BACK = 1, CAMERA_POSITION_FRONT = 2 } | Enumerates the camera positions. |
+| [Camera_Type](#camera_type) {<br>CAMERA_TYPE_DEFAULT = 0, CAMERA_TYPE_WIDE_ANGLE = 1, CAMERA_TYPE_ULTRA_WIDE = 2, CAMERA_TYPE_TELEPHOTO = 3,<br>CAMERA_TYPE_TRUE_DEPTH = 4<br>} | Enumerates the camera types. |
+| [Camera_Connection](#camera_connection) { CAMERA_CONNECTION_BUILT_IN = 0, CAMERA_CONNECTION_USB_PLUGIN = 1, CAMERA_CONNECTION_REMOTE = 2 } | Enumerates the camera connection types. |
+| [Camera_Format](#camera_format) { CAMERA_FORMAT_RGBA_8888 = 3, CAMERA_FORMAT_YUV_420_SP = 1003, CAMERA_FORMAT_JPEG = 2000 } | Enumerates the camera output formats. |
+| [Camera_FlashMode](#camera_flashmode) { FLASH_MODE_CLOSE = 0, FLASH_MODE_OPEN = 1, FLASH_MODE_AUTO = 2, FLASH_MODE_ALWAYS_OPEN = 3 } | Enumerates the flash modes. |
+| [Camera_ExposureMode](#camera_exposuremode) { EXPOSURE_MODE_LOCKED = 0, EXPOSURE_MODE_AUTO = 1, EXPOSURE_MODE_CONTINUOUS_AUTO = 2 } | Enumerates the exposure modes. |
+| [Camera_FocusMode](#camera_focusmode) { FOCUS_MODE_MANUAL = 0, FOCUS_MODE_CONTINUOUS_AUTO = 1, FOCUS_MODE_AUTO = 2, FOCUS_MODE_LOCKED = 3 } | Enumerates the focus modes. |
+| [Camera_FocusState](#camera_focusstate) { FOCUS_STATE_SCAN = 0, FOCUS_STATE_FOCUSED = 1, FOCUS_STATE_UNFOCUSED = 2 } | Enumerates the focus states. |
+| [Camera_VideoStabilizationMode](#camera_videostabilizationmode) {<br>STABILIZATION_MODE_OFF = 0, STABILIZATION_MODE_LOW = 1, STABILIZATION_MODE_MIDDLE = 2, STABILIZATION_MODE_HIGH = 3,<br>STABILIZATION_MODE_AUTO = 4<br>} | Enumerates the video stabilization modes. |
+| [Camera_ImageRotation](#camera_imagerotation) { IAMGE_ROTATION_0 = 0, IAMGE_ROTATION_90 = 90, IAMGE_ROTATION_180 = 180, IAMGE_ROTATION_270 = 270 } | Enumerates the image rotation angles. |
+| [Camera_QualityLevel](#camera_qualitylevel) { QUALITY_LEVEL_HIGH = 0, QUALITY_LEVEL_MEDIUM = 1, QUALITY_LEVEL_LOW = 2 } | Enumerates the image quality levels. |
+| [Camera_MetadataObjectType](#camera_metadataobjecttype) { FACE_DETECTION = 0 } | Enumerates the metadata object types. |
 
 
 ### Functions
@@ -199,7 +199,7 @@ The **OH_Camera** module provides C APIs for the camera service.
 | [OH_CaptureSession_SetFocusPoint](#oh_capturesession_setfocuspoint) ([Camera_CaptureSession](#camera_capturesession) \*session, [Camera_Point](_camera___point.md) focusPoint) | Sets a focal point for the device.|
 | [OH_CaptureSession_GetZoomRatioRange](#oh_capturesession_getzoomratiorange) ([Camera_CaptureSession](#camera_capturesession) \*session, float \*minZoom, float \*maxZoom) | Obtains the supported zoom ratio range.|
 | [OH_CaptureSession_GetZoomRatio](#oh_capturesession_getzoomratio) ([Camera_CaptureSession](#camera_capturesession) \*session, float \*zoom) | Obtains the zoom ratio in use.|
-| [OH_CaptureSession_SetZoomRatio](#oh_capturesession_setzoomratio) ([Camera_CaptureSession](#camera_capturesession) \*session, float zoom) | Sets a zoom ratio for the device. |
+| [OH_CaptureSession_SetZoomRatio](#oh_capturesession_setzoomratio) ([Camera_CaptureSession](#camera_capturesession) \*session, float zoom) | Sets a zoom ratio for the device.|
 | [OH_CaptureSession_IsVideoStabilizationModeSupported](#oh_capturesession_isvideostabilizationmodesupported) ([Camera_CaptureSession](#camera_capturesession) \*session, [Camera_VideoStabilizationMode](#camera_videostabilizationmode) mode, bool \*isSupported) | Checks whether a video stabilization mode is supported. |
 | [OH_CaptureSession_GetVideoStabilizationMode](#oh_capturesession_getvideostabilizationmode) ([Camera_CaptureSession](#camera_capturesession) \*session, [Camera_VideoStabilizationMode](#camera_videostabilizationmode) \*mode) | Obtains the video stabilization mode in use.|
 | [OH_CaptureSession_SetVideoStabilizationMode](#oh_capturesession_setvideostabilizationmode) ([Camera_CaptureSession](#camera_capturesession) \*session, [Camera_VideoStabilizationMode](#camera_videostabilizationmode) mode) | Sets a video stabilization mode for the device.|

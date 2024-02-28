@@ -10,13 +10,13 @@ Read [Camera](../reference/native-apis/_o_h___camera.md) for the API reference.
      
    ```c++
     // Include the NDK header files in camera_manager.cpp.
-    #include "multimedia/camera_framework/camera.h"
-    #include "multimedia/camera_framework/camera_input.h"
-    #include "multimedia/camera_framework/capture_session.h"
-    #include "multimedia/camera_framework/photo_output.h"
-    #include "multimedia/camera_framework/preview_output.h"
-    #include "multimedia/camera_framework/video_output.h"
-    #include "multimedia/camera_framework/camera_manager.h"
+    #include "ohcamera/camera.h"
+    #include "ohcamera/camera_input.h"
+    #include "ohcamera/capture_session.h"
+    #include "ohcamera/photo_output.h"
+    #include "ohcamera/preview_output.h"
+    #include "ohcamera/video_output.h"
+    #include "ohcamera/camera_manager.h"
    ```
 
 2. Link the camera NDK dynamic library in the CMake script.
@@ -26,7 +26,7 @@ Read [Camera](../reference/native-apis/_o_h___camera.md) for the API reference.
    ```
 
 3. Create a surface.
-   
+     
     The **\<XComponent>**, the capabilities of which are provided by the UI, offers the surface for preview streams. For details, see [XComponent](../reference/arkui-ts/ts-basic-components-xcomponent.md).
 
     **NOTE**: The preview stream and video output stream must have the same aspect ratio of the resolution. For example, the aspect ratio in the code snippet below is 1920:1080 (which is equal to 16:9), then the aspect ratio of the resolution of the preview stream must also be 16:9. This means that the resolution can be 640:360, 960:540, 1920:1080, or the like.

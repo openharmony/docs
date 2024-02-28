@@ -14,12 +14,14 @@ The figure below illustrates the working process of the camera module. The worki
 
 - During output management, you can configure an output stream, which can be a preview stream, photo stream, or video stream.
 
-**Figure 1** Camera working process 
+**Figure 1** Camera working process
+
 ![Camera Workflow](figures/camera-workflow.png)
 
 For better application development, you are also advised understanding the camera development model.
 
-**Figure 2** Camera development model 
+**Figure 2** Camera development model
+
 ![Camera Development Model](figures/camera-development-model.png)
 
 The camera application controls the camera hardware to implement basic operations such as image display (preview), photo saving (photographing), and video recording. During the implementation, the camera service controls the camera hardware to collect and output data, and transmits the data to a specific module for processing through a BufferQueue at the bottom camera device hardware interface (HDI) layer. You can ignore the BufferQueue during application development. It is used to send the data processed by the bottom layer to the upper layer for image display.
