@@ -1,8 +1,8 @@
 # @ohos.distributedHardware.deviceManager (Device Management)
 
-The APIs of this module are deprecated. You are advised to use [@ohos.distributedDeviceManager](js-apis-distributedDeviceManager.md).
+The APIs of this module are deprecated. Use [@ohos.distributedDeviceManager](js-apis-distributedDeviceManager.md) instead.
 
-The **distributedHardware.deviceManager** module provides APIs for distributed device management.
+The **deviceManager** module provides APIs for distributed device management.
 
 System applications can call the APIs to do the following:
 
@@ -32,7 +32,7 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 
 Creates a **DeviceManager** instance.
 
-> **NOTE**<br>This API is deprecated since API version 11. You are advised to use [deviceManager.createDeviceManager](js-apis-distributedDeviceManager.md#devicemanagercreatedevicemanager).
+> **NOTE**<br>This API is deprecated since API version 11. Use [deviceManager.createDeviceManager](js-apis-distributedDeviceManager.md#devicemanagercreatedevicemanager) instead.
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
@@ -69,7 +69,7 @@ Creates a **DeviceManager** instance.
 
 Defines device information.
 
-> **NOTE**<br>This API is deprecated since API version 11. You are advised to use [DeviceBasicInfo](js-apis-distributedDeviceManager.md#devicebasicinfo).
+> **NOTE**<br>This API is deprecated since API version 11. Use [DeviceBasicInfo](js-apis-distributedDeviceManager.md#devicebasicinfo) instead.
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
@@ -119,7 +119,7 @@ Enumerates the device authentication types.
 
 Enumerates the device states.
 
-> **NOTE**<br>This API is deprecated since API version 11. You are advised to use [DeviceStateChange](js-apis-distributedDeviceManager.md#devicestatechange).
+> **NOTE**<br>This API is deprecated since API version 11. Use [DeviceStateChange](js-apis-distributedDeviceManager.md#devicestatechange) instead.
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
@@ -219,7 +219,7 @@ Defines the authentication parameters.
 | Name       | Type                  | Mandatory  | Description        |
 | --------- | -------------------- | ---- | ---------- |
 | authType  | number               | Yes   | Authentication type.     |
-| extraInfo | {[key:string]&nbsp;:&nbsp;any} | No   | Extended field. Optional. The default value is **undefined**.|
+| extraInfo | {[key:string]&nbsp;:&nbsp;any} | No   | Extended field. The default value is **undefined**.|
 
 ## AuthInfo
 
@@ -233,7 +233,7 @@ Defines authentication information.
 | --------- | -------------------- | ---- | ---------- |
 | authType  | number               | Yes   | Authentication type.     |
 | token     | number               | Yes   | Authentication token.  |
-| extraInfo | {[key:string]&nbsp;:&nbsp;any} | No   | Extended field. Optional. The default value is **undefined**.|
+| extraInfo | {[key:string]&nbsp;:&nbsp;any} | No   | Extended field. The default value is **undefined**.|
 
 ## PublishInfo<sup>9+</sup>
 
@@ -260,7 +260,7 @@ release(): void
 
 Releases this **DeviceManager** instance when it is no longer used.
 
-> **NOTE**<br>This API is deprecated since API version 11. You are advised to use [deviceManager.releaseDeviceManager](js-apis-distributedDeviceManager.md#devicemanagerreleasedevicemanager).
+> **NOTE**<br>This API is deprecated since API version 11. Use [deviceManager.releaseDeviceManager](js-apis-distributedDeviceManager.md#devicemanagerreleasedevicemanager) instead.
 
 **Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
@@ -294,7 +294,7 @@ getTrustedDeviceListSync(): Array&lt;DeviceInfo&gt;
 
 Obtains all trusted devices synchronously.
 
-> **NOTE**<br>This API is deprecated since API version 11. You are advised to use [getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
+> **NOTE**<br>This API is deprecated since API version 11. Use [getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync) instead.
 
 **Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
@@ -302,9 +302,9 @@ Obtains all trusted devices synchronously.
 
 **Return value**
 
-| Name                                    | Description       |
-| -------------------------------------- | --------- |
-| Array&lt;[DeviceInfo](#deviceinfo)&gt; | List of trusted devices obtained.|
+  | Name                                    | Description       |
+  | -------------------------------------- | --------- |
+  | Array&lt;[DeviceInfo](#deviceinfo)&gt; | List of trusted devices obtained.|
 
 **Error codes**
 
@@ -382,7 +382,7 @@ getTrustedDeviceList(callback:AsyncCallback&lt;Array&lt;DeviceInfo&gt;&gt;): voi
 
 Obtains all trusted devices. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>This API is deprecated since API version 11. You are advised to use [getAvailableDeviceList](js-apis-distributedDeviceManager.md#getavailabledevicelist).
+> **NOTE**<br>This API is deprecated since API version 11. Use [getAvailableDeviceList](js-apis-distributedDeviceManager.md#getavailabledevicelist) instead.
 
 **Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
@@ -390,9 +390,9 @@ Obtains all trusted devices. This API uses an asynchronous callback to return th
 
 **Parameters**
 
-| Name      | Type                                    | Mandatory  | Description                   |
-| -------- | ---------------------------------------- | ---- | --------------------- |
-| callback | AsyncCallback&lt;Array&lt;[DeviceInfo](#deviceinfo)&gt;&gt; | Yes   | Callback invoked to return the list of trusted devices.|
+  | Name      | Type                                    | Mandatory  | Description                   |
+  | -------- | ---------------------------------------- | ---- | --------------------- |
+  | callback | AsyncCallback&lt;Array&lt;[DeviceInfo](#deviceinfo)&gt;&gt; | Yes   | Callback invoked to return the list of trusted devices.|
 
 **Example**
 
@@ -421,7 +421,7 @@ getTrustedDeviceList(): Promise&lt;Array&lt;DeviceInfo&gt;&gt;
 
 Obtains all trusted devices. This API uses a promise to return the result.
 
-> **NOTE**<br>This API is deprecated since API version 11. You are advised to use [getAvailableDeviceList](js-apis-distributedDeviceManager.md#getavailabledevicelist-1).
+> **NOTE**<br>This API is deprecated since API version 11. Use [getAvailableDeviceList](js-apis-distributedDeviceManager.md#getavailabledevicelist-1) instead.
 
 **Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
@@ -429,9 +429,9 @@ Obtains all trusted devices. This API uses a promise to return the result.
 
 **Return value**
 
-| Type                                      | Description                   |
-| ---------------------------------------- | --------------------- |
-| Promise&lt;Array&lt;[DeviceInfo](#deviceinfo)&gt;&gt; | Promise used to return the result.|
+  | Type                                      | Description                   |
+  | ---------------------------------------- | --------------------- |
+  | Promise&lt;Array&lt;[DeviceInfo](#deviceinfo)&gt;&gt; | Promise used to return the result.|
 
 **Example**
 
@@ -453,7 +453,7 @@ getLocalDeviceInfoSync(): [DeviceInfo](#deviceinfo)
 
 Obtains local device information synchronously.
 
-> **NOTE**<br>This API is deprecated since API version 11. You are advised to use [getLocalDeviceNetworkId](js-apis-distributedDeviceManager.md#getlocaldevicenetworkid), [getLocalDeviceName](js-apis-distributedDeviceManager.md#getlocaldevicename), [getLocalDeviceType](js-apis-distributedDeviceManager.md#getlocaldevicetype), or [getLocalDeviceId](js-apis-distributedDeviceManager.md#getlocaldeviceid).
+> **NOTE**<br>This API is deprecated since API version 11. Use [getLocalDeviceNetworkId](js-apis-distributedDeviceManager.md#getlocaldevicenetworkid), [getLocalDeviceName](js-apis-distributedDeviceManager.md#getlocaldevicename), [getLocalDeviceType](js-apis-distributedDeviceManager.md#getlocaldevicetype), or [getLocalDeviceId](js-apis-distributedDeviceManager.md#getlocaldeviceid) instead.
 
 **Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
@@ -461,9 +461,9 @@ Obtains local device information synchronously.
 
 **Return value**
 
-| Name                     | Description             |
-| ------------------------- | ---------------- |
-| [DeviceInfo](#deviceinfo) | List of local devices obtained.|
+  | Name                     | Description             |
+  | ------------------------- | ---------------- |
+  | [DeviceInfo](#deviceinfo) | List of local devices obtained.|
 
 **Error codes**
 
@@ -494,7 +494,7 @@ getLocalDeviceInfo(callback:AsyncCallback&lt;DeviceInfo&gt;): void
 
 Obtains local device information. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>This API is deprecated since API version 11. You are advised to use [getLocalDeviceNetworkId](js-apis-distributedDeviceManager.md#getlocaldevicenetworkid), [getLocalDeviceName](js-apis-distributedDeviceManager.md#getlocaldevicename), [getLocalDeviceType](js-apis-distributedDeviceManager.md#getlocaldevicetype), or [getLocalDeviceId](js-apis-distributedDeviceManager.md#getlocaldeviceid).
+> **NOTE**<br>This API is deprecated since API version 11. Use [getLocalDeviceNetworkId](js-apis-distributedDeviceManager.md#getlocaldevicenetworkid), [getLocalDeviceName](js-apis-distributedDeviceManager.md#getlocaldevicename), [getLocalDeviceType](js-apis-distributedDeviceManager.md#getlocaldevicetype), or [getLocalDeviceId](js-apis-distributedDeviceManager.md#getlocaldeviceid) instead.
 
 **Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
@@ -502,9 +502,9 @@ Obtains local device information. This API uses an asynchronous callback to retu
 
 **Parameters**
 
-| Name      | Type                                    | Mandatory  | Description       |
-| -------- | ---------------------------------------- | ---- | --------- |
-| callback | AsyncCallback&lt;[DeviceInfo](#deviceinfo)&gt; | Yes   | Callback invoked to return the local device information.|
+  | Name      | Type                                    | Mandatory  | Description       |
+  | -------- | ---------------------------------------- | ---- | --------- |
+  | callback | AsyncCallback&lt;[DeviceInfo](#deviceinfo)&gt; | Yes   | Callback invoked to return the local device information.|
 
 **Example**
 
@@ -534,7 +534,7 @@ getLocalDeviceInfo(): Promise&lt;DeviceInfo&gt;
 
 Obtains local device information. This API uses a promise to return the result.
 
-> **NOTE**<br>This API is deprecated since API version 11. You are advised to use [getLocalDeviceNetworkId](js-apis-distributedDeviceManager.md#getlocaldevicenetworkid), [getLocalDeviceName](js-apis-distributedDeviceManager.md#getlocaldevicename), [getLocalDeviceType](js-apis-distributedDeviceManager.md#getlocaldevicetype), or [getLocalDeviceId](js-apis-distributedDeviceManager.md#getlocaldeviceid).
+> **NOTE**<br>This API is deprecated since API version 11. Use [getLocalDeviceNetworkId](js-apis-distributedDeviceManager.md#getlocaldevicenetworkid), [getLocalDeviceName](js-apis-distributedDeviceManager.md#getlocaldevicename), [getLocalDeviceType](js-apis-distributedDeviceManager.md#getlocaldevicetype), or [getLocalDeviceId](js-apis-distributedDeviceManager.md#getlocaldeviceid) instead.
 
 **Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
@@ -542,9 +542,9 @@ Obtains local device information. This API uses a promise to return the result.
 
 **Return value**
 
-| Type                                      | Description                   |
-| ---------------------------------------- | --------------------- |
-| Promise&lt;[DeviceInfo](#deviceinfo)&gt; | Promise used to return the result.|
+  | Type                                      | Description                   |
+  | ---------------------------------------- | --------------------- |
+  | Promise&lt;[DeviceInfo](#deviceinfo)&gt; | Promise used to return the result.|
 
 **Example**
 
@@ -566,7 +566,7 @@ getDeviceInfo(networkId: string, callback:AsyncCallback&lt;DeviceInfo&gt;): void
 
 Obtains the information about a specific device based on the network ID. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>This API is deprecated since API version 11. You are advised to use [getDeviceName](js-apis-distributedDeviceManager.md#getdevicename),[getDeviceType](js-apis-distributedDeviceManager.md#getdevicetype).
+> **NOTE**<br>This API is deprecated since API version 11. Use [getDeviceName](js-apis-distributedDeviceManager.md#getdevicename) or [getDeviceType](js-apis-distributedDeviceManager.md#getdevicetype) instead.
 
 **Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
@@ -574,10 +574,10 @@ Obtains the information about a specific device based on the network ID. This AP
 
 **Parameters**
 
-| Name      | Type                                    | Mandatory  | Description       |
-| -------- | ---------------------------------------- | ---- | --------- |
-| networkId| string                                   | Yes  | Network ID of the device.|
-| callback | AsyncCallback&lt;[DeviceInfo](#deviceinfo)&gt; | Yes   | Callback invoked to return the information about the specified device.|
+  | Name      | Type                                    | Mandatory  | Description       |
+  | -------- | ---------------------------------------- | ---- | --------- |
+  | networkId| string                                   | Yes  | Network ID of the device.|
+  | callback | AsyncCallback&lt;[DeviceInfo](#deviceinfo)&gt; | Yes   | Callback invoked to return the information about the specified device.|
 
 **Example**
 
@@ -608,7 +608,7 @@ getDeviceInfo(networkId: string): Promise&lt;DeviceInfo&gt;
 
 Obtains the information about a specific device based on the network ID. This API uses a promise to return the result.
 
-> **NOTE**<br>This API is deprecated since API version 11. You are advised to use [getDeviceName](js-apis-distributedDeviceManager.md#getdevicename) or [getDeviceType](js-apis-distributedDeviceManager.md#getdevicetype).
+> **NOTE**<br>This API is deprecated since API version 11. Use [getDeviceName](js-apis-distributedDeviceManager.md#getdevicename) or [getDeviceType](js-apis-distributedDeviceManager.md#getdevicetype) instead.
 
 **Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
@@ -616,15 +616,15 @@ Obtains the information about a specific device based on the network ID. This AP
 
 **Parameters**
 
-| Name  | Type                                    | Mandatory| Description       |
-| -------- | ---------------------------------------- | ---- | --------- |
-| networkId| string                                   | Yes  | Network ID of the device.|
-
+  | Name  | Type                                    | Mandatory| Description       |
+  | -------- | ---------------------------------------- | ---- | --------- |
+  | networkId| string                                   | Yes  | Network ID of the device.|
+  
 **Return value**
 
-| Type                                      | Description                   |
-| ---------------------------------------- | --------------------- |
-| Promise&lt;[DeviceInfo](#deviceinfo)&gt; | Promise used to return the result.|
+  | Type                                      | Description                   |
+  | ---------------------------------------- | --------------------- |
+  | Promise&lt;[DeviceInfo](#deviceinfo)&gt; | Promise used to return the result.|
 
 **Example**
 
@@ -646,9 +646,9 @@ For details about how to initialize **dmInstance** in the example, see [deviceMa
 
 startDeviceDiscovery(subscribeInfo: SubscribeInfo): void
 
-Starts to discover peripheral devices. The discovery process automatically stops when 2 minutes have elapsed. A maximum of 99 devices can be discovered.
+Starts to discover peripheral devices. The discovery process lasts 2 minutes. A maximum of 99 devices can be discovered.
 
-> **NOTE**<br>This API is deprecated since API version 11. You are advised to use [startDiscovering](js-apis-distributedDeviceManager.md#startdiscovering).
+> **NOTE**<br>This API is deprecated since API version 11. Use [startDiscovering](js-apis-distributedDeviceManager.md#startdiscovering) instead.
 
 **Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
@@ -656,9 +656,9 @@ Starts to discover peripheral devices. The discovery process automatically stops
 
 **Parameters**
 
-| Name           | Type                      | Mandatory| Description   |
-| ------------- | ------------------------------- | ---- | ----- |
-| subscribeInfo | [SubscribeInfo](#subscribeinfo) | Yes  | Subscription information.|
+  | Name           | Type                      | Mandatory| Description   |
+  | ------------- | ------------------------------- | ---- | ----- |
+  | subscribeInfo | [SubscribeInfo](#subscribeinfo) | Yes  | Subscription information.|
 
 **Error codes**
 
@@ -708,9 +708,9 @@ For details about how to initialize **dmInstance** in the example, see [deviceMa
 
 startDeviceDiscovery(subscribeInfo: SubscribeInfo, filterOptions?: string): void
 
-Starts to discover peripheral devices and filters discovered devices. The discovery process automatically stops when 2 minutes have elapsed. A maximum of 99 devices can be discovered.
+Starts to discover peripheral devices and filters discovered devices. The discovery process lasts 2 minutes. A maximum of 99 devices can be discovered.
 
-> **NOTE**<br>This API is deprecated since API version 11. You are advised to use [startDiscovering](js-apis-distributedDeviceManager.md#startdiscovering).
+> **NOTE**<br>This API is deprecated since API version 11. Use [startDiscovering](js-apis-distributedDeviceManager.md#startdiscovering) instead.
 
 **Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
@@ -718,10 +718,10 @@ Starts to discover peripheral devices and filters discovered devices. The discov
 
 **Parameters**
 
-| Name           | Type                      | Mandatory  | Description   |
-| ------------- | ------------------------------- | ---- | -----  |
-| subscribeInfo | [SubscribeInfo](#subscribeinfo) | Yes  | Subscription information.|
-| filterOptions | string                          | No  | Options for filtering discovered devices. Optional. The default value is **undefined**, which indicates discovery of offline devices.|
+  | Name           | Type                      | Mandatory  | Description   |
+  | ------------- | ------------------------------- | ---- | -----  |
+  | subscribeInfo | [SubscribeInfo](#subscribeinfo) | Yes  | Subscription information.|
+  | filterOptions | string                          | No  | Options for filtering discovered devices. The default value is **undefined**, which indicate discovery of offline devices.|
 
 **Error codes**
 
@@ -795,7 +795,7 @@ stopDeviceDiscovery(subscribeId: number): void
 
 Stops device discovery.
 
-> **NOTE**<br>This API is deprecated since API version 11. You are advised to use [stopDiscovering](js-apis-distributedDeviceManager.md#stopdiscovering).
+> **NOTE**<br>This API is deprecated since API version 11. Use [stopDiscovering](js-apis-distributedDeviceManager.md#stopdiscovering) instead.
 
 **Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
@@ -803,9 +803,9 @@ Stops device discovery.
 
 **Parameters**
 
-| Name         | Type  | Mandatory  | Description   |
-| ----------- | ------ | ---- | ----- |
-| subscribeId | number | Yes   | Subscription ID.|
+  | Name         | Type  | Mandatory  | Description   |
+  | ----------- | ------ | ---- | ----- |
+  | subscribeId | number | Yes   | Subscription ID.|
 
 **Error codes**
 
@@ -835,7 +835,7 @@ For details about how to initialize **dmInstance** in the example, see [deviceMa
 
 publishDeviceDiscovery(publishInfo: PublishInfo): void
 
-Publishes device information for discovery purposes. The publish process automatically stops when 2 minutes have elapsed.
+Publishes device information for discovery purposes. The publish process lasts 2 minutes.
 
 > **NOTE**<br>This API is deprecated since API version 11. There is no substitute API.
 
@@ -845,9 +845,9 @@ Publishes device information for discovery purposes. The publish process automat
 
 **Parameters**
 
-| Name         | Type                       | Mandatory| Description   |
-| ------------- | ------------------------------- | ---- | ----- |
-| publishInfo   | [PublishInfo](#publishinfo)     | Yes  | Device information to publish.|
+  | Name         | Type                       | Mandatory| Description   |
+  | ------------- | ------------------------------- | ---- | ----- |
+  | publishInfo   | [PublishInfo](#publishinfo)     | Yes  | Device information to publish.|
 
 **Error codes**
 
@@ -902,9 +902,9 @@ Stops publishing device information.
 
 **Parameters**
 
-| Name       | Type| Mandatory| Description |
-| ----------- | -------- | ---- | ----- |
-| publishId   | number   | Yes  | Publish ID.|
+  | Name       | Type| Mandatory| Description |
+  | ----------- | -------- | ---- | ----- |
+  | publishId   | number   | Yes  | Publish ID.|
 
 **Error codes**
 
@@ -936,7 +936,7 @@ authenticateDevice(deviceInfo: DeviceInfo, authParam: AuthParam, callback: Async
 
 Authenticates a device.
 
-> **NOTE**<br>This API is deprecated since API version 11. You are advised to use [bindTarget](js-apis-distributedDeviceManager.md#bindtarget).
+> **NOTE**<br>This API is deprecated since API version 11. Use [bindTarget](js-apis-distributedDeviceManager.md#bindtarget) instead.
 
 **Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
@@ -944,11 +944,11 @@ Authenticates a device.
 
 **Parameters**
 
-| Name        | Type                                    | Mandatory  | Description     |
-| ---------- | ---------------------------------------- | ---- | ------- |
-| deviceInfo | [DeviceInfo](#deviceinfo)                | Yes   | Device information.  |
-| authParam  | [AuthParam](#authparam)                  | Yes   | Authentication parameter.  |
-| callback   | AsyncCallback&lt;{deviceId:&nbsp;string,&nbsp;pinToken&nbsp;?:&nbsp;number}&gt; | Yes   | Callback invoked to return the authentication result.|
+  | Name        | Type                                    | Mandatory  | Description     |
+  | ---------- | ---------------------------------------- | ---- | ------- |
+  | deviceInfo | [DeviceInfo](#deviceinfo)                | Yes   | Device information.  |
+  | authParam  | [AuthParam](#authparam)                  | Yes   | Authentication parameter.  |
+  | callback   | AsyncCallback&lt;{deviceId:&nbsp;string,&nbsp;pinToken&nbsp;?:&nbsp;number}&gt; | Yes   | Callback invoked to return the authentication result.|
 
 **Example**
 
@@ -977,7 +977,7 @@ For details about how to initialize **dmInstance** in the example, see [deviceMa
   }
 
   interface AuthParam {
-    authType: number,// Authentication type. The value 1 means PIN authentication.
+    authType: number,//Authentication type. The value 1 means PIN authentication.
     extraInfo: ExtraInfo;
   }
 
@@ -1022,7 +1022,7 @@ unAuthenticateDevice(deviceInfo: DeviceInfo): void
 
 Deauthenticates a device.
 
-> **NOTE**<br>This API is deprecated since API version 11. You are advised to use [unbindTarget](js-apis-distributedDeviceManager.md#unbindtarget).
+> **NOTE**<br>This API is deprecated since API version 11. Use [unbindTarget](js-apis-distributedDeviceManager.md#unbindtarget) instead.
 
 **Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
@@ -1030,9 +1030,9 @@ Deauthenticates a device.
 
 **Parameters**
 
-| Name        | Type                     | Mandatory  | Description   |
-| ---------- | ------------------------- | ---- | ----- |
-| deviceInfo | [DeviceInfo](#deviceinfo) | Yes   | Device information.|
+  | Name        | Type                     | Mandatory  | Description   |
+  | ---------- | ------------------------- | ---- | ----- |
+  | deviceInfo | [DeviceInfo](#deviceinfo) | Yes   | Device information.|
 
 **Error codes**
 
@@ -1086,10 +1086,10 @@ Verifies authentication information.
 
 **Parameters**
 
-| Name      | Type                                    | Mandatory  | Description     |
-| -------- | ---------------------------------------- | ---- | ------- |
-| authInfo | [AuthInfo](#authinfo)                    | Yes   | Authentication information.  |
-| callback | AsyncCallback&lt;{deviceId:&nbsp;string,&nbsp;level:&nbsp;number}&gt; | Yes   | Callback invoked to return the verification result.|
+  | Name      | Type                                    | Mandatory  | Description     |
+  | -------- | ---------------------------------------- | ---- | ------- |
+  | authInfo | [AuthInfo](#authinfo)                    | Yes   | Authentication information.  |
+  | callback | AsyncCallback&lt;{deviceId:&nbsp;string,&nbsp;level:&nbsp;number}&gt; | Yes   | Callback invoked to return the verification result.|
 
 **Example**
 
@@ -1099,13 +1099,13 @@ For details about how to initialize **dmInstance** in the example, see [deviceMa
 
   interface ExtraInfo {
     authType: number;
-    token: numbe;
+    token: number;
   }
 
   interface AuthInfo {
     authType: number;
     token: number;
-    extraInfo: ExtraInf;
+    extraInfo: ExtraInfo;
   }
 
   class Data {
@@ -1143,7 +1143,7 @@ setUserOperation(operateAction: number, params: string): void;
 
 Sets a user operation.
 
-> **NOTE**<br>This API is deprecated since API version 11. You are advised to use [replyUiAction](js-apis-distributedDeviceManager.md#replyuiaction).
+> **NOTE**<br>This API is deprecated since API version 11. Use [replyUiAction](js-apis-distributedDeviceManager.md#replyuiaction) instead.
 
 **Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
@@ -1151,10 +1151,10 @@ Sets a user operation.
 
 **Parameters**
 
-| Name      | Type           | Mandatory | Description               |
-| ------------- | --------------- | ---- | ------------------- |
-| operateAction | number          | Yes   | User operation.      |
-| params        | string          | Yes   | Input parameters of the user.|
+  | Name      | Type           | Mandatory | Description               |
+  | ------------- | --------------- | ---- | ------------------- |
+  | operateAction | number          | Yes   | User operation.      |
+  | params        | string          | Yes   | Input parameters of the user.|
 
 **Example**
 
@@ -1193,10 +1193,10 @@ Obtains the registration information of the credential.
 
 **Parameters**
 
-| Name      | Type           | Mandatory | Description               |
-| ------------- | --------------- | ---- | ------------------- |
-| requestInfo   | string          | Yes   | Request credential information.      |
-| callback      | AsyncCallback<{registerInfo: string}>         | Yes   | Callback invoked to return the credential registration information.|
+  | Name      | Type           | Mandatory | Description               |
+  | ------------- | --------------- | ---- | ------------------- |
+  | requestInfo   | string          | Yes   | Request credential information.      |
+  | callback      | AsyncCallback<{registerInfo: string}>         | Yes   | Callback invoked to return the credential registration information.|
 
 **Example**
 
@@ -1246,10 +1246,10 @@ Imports credential information.
 
 **Parameters**
 
-| Name      | Type           | Mandatory | Description               |
-| ------------- | --------------- | ---- | ------------------- |
-| credentialInfo| string          | Yes   | Credential information to import.      |
-| callback      | AsyncCallback<{resultInfo: string}>           | Yes   | Callback invoked to return the result.|
+  | Name      | Type           | Mandatory | Description               |
+  | ------------- | --------------- | ---- | ------------------- |
+  | credentialInfo| string          | Yes   | Credential information to import.      |
+  | callback      | AsyncCallback<{resultInfo: string}>           | Yes   | Callback invoked to return the result.|
 
 **Example**
 
@@ -1331,10 +1331,10 @@ Deletes credential information.
 
 **Parameters**
 
-| Name      | Type           | Mandatory | Description               |
-| ------------- | --------------- | ---- | ------------------- |
-| queryInfo     | string          | Yes   | Credential information to delete.      |
-| callback      | AsyncCallback<{resultInfo: string}>           | Yes   | Callback invoked to return the result.|
+  | Name      | Type           | Mandatory | Description               |
+  | ------------- | --------------- | ---- | ------------------- |
+  | queryInfo     | string          | Yes   | Credential information to delete.      |
+  | callback      | AsyncCallback<{resultInfo: string}>           | Yes   | Callback invoked to return the result.|
 
 **Example**
 
@@ -1377,9 +1377,9 @@ For details about how to initialize **dmInstance** in the example, see [deviceMa
 
 on(type: 'uiStateChange', callback: Callback&lt;{ param: string}&gt;): void;
 
-Subscribes to UI state changes.
+Subscribes to UI status changes.
 
-> **NOTE**<br>This API is deprecated since API version 11. You are advised to use [on('replyResult')](js-apis-distributedDeviceManager.md#onreplyresult).
+> **NOTE**<br>This API is deprecated since API version 11. Use [on('replyResult')](js-apis-distributedDeviceManager.md#onreplyresult) instead.
 
 **Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
@@ -1387,10 +1387,10 @@ Subscribes to UI state changes.
 
 **Parameters**
 
-| Name     | Type                            | Mandatory| Description                           |
-| -------- | ------------------------------------ | ---- | ------------------------------ |
-| type     | string                                | Yes | Event type. The value **'uiStateChange'** indicates UI state changes. |
-| callback | Callback&lt;{&nbsp;param:&nbsp;string}&gt; | Yes | Callback invoked to return the UI state.       |
+  | Name     | Type                            | Mandatory| Description                           |
+  | -------- | ------------------------------------ | ---- | ------------------------------ |
+| type     | string                                | Yes | Event type. The value is **'uiStateChange'**, which indicates UI status changes.|
+  | callback | Callback&lt;{&nbsp;param:&nbsp;string}&gt; | Yes | Callback invoked to return the UI status change.       |
 
 **Example**
 
@@ -1423,9 +1423,9 @@ For details about how to initialize **dmInstance** in the example, see [deviceMa
 
 off(type: 'uiStateChange', callback?: Callback&lt;{ param: string}&gt;): void;
 
-Unsubscribes from UI state changes.
+Unsubscribes from UI status changes.
 
-> **NOTE**<br>This API is deprecated since API version 11. You are advised to use [off('replyResult')](js-apis-distributedDeviceManager.md#offreplyresult).
+> **NOTE**<br>This API is deprecated since API version 11. Use [off('replyResult')](js-apis-distributedDeviceManager.md#offreplyresult) instead.
 
 **Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
@@ -1433,10 +1433,10 @@ Unsubscribes from UI state changes.
 
 **Parameters**
 
-| Name     | Type                             | Mandatory| Description                           |
-| -------- | ------------------------------------- | ---- | ------------------------------ |
-| type     | string                                | Yes  | Event type. The value **'uiStateChange'** indicates UI state changes. |
-| callback | Callback&lt;{&nbsp;param:&nbsp;string}&gt; | No  | Callback to unregister. |
+  | Name     | Type                             | Mandatory| Description                           |
+  | -------- | ------------------------------------- | ---- | ------------------------------ |
+| type     | string                                | Yes  | Event type. The value is **'uiStateChange'**, which indicates UI status changes.|
+  | callback | Callback&lt;{&nbsp;param:&nbsp;string}&gt; | No  | Callback to unregister.|
 
 **Example**
 
@@ -1458,7 +1458,7 @@ on(type: 'deviceStateChange',  callback: Callback&lt;{ action: DeviceStateChange
 
 Subscribes to device state changes.
 
-> **NOTE**<br>This API is deprecated since API version 11. You are advised to use [on('deviceStateChange')](js-apis-distributedDeviceManager.md#ondevicestatechange).
+> **NOTE**<br>This API is deprecated since API version 11. Use [on('deviceStateChange')](js-apis-distributedDeviceManager.md#ondevicestatechange) instead.
 
 **Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
@@ -1466,10 +1466,10 @@ Subscribes to device state changes.
 
 **Parameters**
 
-| Name      | Type                                    | Mandatory  | Description                            |
-| -------- | ---------------------------------------- | ---- | ------------------------------ |
-| type     | string                                   | Yes   | Event type. The value **'deviceStateChange'** indicates device state changes. |
-| callback | Callback&lt;{&nbsp;action:&nbsp;[DeviceStateChangeAction](#devicestatechangeaction),&nbsp;device:&nbsp;[DeviceInfo](#deviceinfo)&nbsp;}&gt; | Yes   | Callback invoked to return the device information and state.     |
+  | Name      | Type                                    | Mandatory  | Description                            |
+  | -------- | ---------------------------------------- | ---- | ------------------------------ |
+  | type     | string                                   | Yes   | Event type. The value is **deviceStateChange**, which indicates device state changes.|
+  | callback | Callback&lt;{&nbsp;action:&nbsp;[DeviceStateChangeAction](#devicestatechangeaction),&nbsp;device:&nbsp;[DeviceInfo](#deviceinfo)&nbsp;}&gt; | Yes   | Callback invoked to return the device state change.     |
 
 **Example**
 
@@ -1506,7 +1506,7 @@ off(type: 'deviceStateChange', callback?: Callback&lt;{ action: DeviceStateChang
 
 Unsubscribes from device state changes.
 
-> **NOTE**<br>This API is deprecated since API version 11. You are advised to use [off('deviceStateChange')](js-apis-distributedDeviceManager.md#offdevicestatechange).
+> **NOTE**<br>This API is deprecated since API version 11. Use [off('deviceStateChange')](js-apis-distributedDeviceManager.md#offdevicestatechange) instead.
 
 **Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
@@ -1514,10 +1514,10 @@ Unsubscribes from device state changes.
 
 **Parameters**
 
-| Name      | Type                                    | Mandatory  | Description                         |
-| -------- | ---------------------------------------- | ---- | --------------------------- |
-| type     | string                                   | Yes   | Event type. The value **'deviceStateChange'** indicates device state changes.      |
-| callback | Callback&lt;{&nbsp;action:&nbsp;[DeviceStateChangeAction](#devicestatechangeaction),&nbsp;device:&nbsp;[DeviceInfo](#deviceinfo)&nbsp;}&gt; | No   | Callback to unregister. |
+  | Name      | Type                                    | Mandatory  | Description                         |
+  | -------- | ---------------------------------------- | ---- | --------------------------- |
+| type     | string                                   | Yes   | Event type. The value is **'deviceStateChange'**, which indicates device state changes.       |
+  | callback | Callback&lt;{&nbsp;action:&nbsp;[DeviceStateChangeAction](#devicestatechangeaction),&nbsp;device:&nbsp;[DeviceInfo](#deviceinfo)&nbsp;}&gt; | No   | Callback to unregister.|
 
 **Example**
 
@@ -1554,7 +1554,7 @@ on(type: 'deviceFound', callback: Callback&lt;{ subscribeId: number, device: Dev
 
 Subscribes to device discovery events.
 
-> **NOTE**<br>This API is deprecated since API version 11. You are advised to use [on('discoverSuccess')](js-apis-distributedDeviceManager.md#ondiscoversuccess).
+> **NOTE**<br>This API is deprecated since API version 11. Use [on('discoverSuccess')](js-apis-distributedDeviceManager.md#ondiscoversuccess) instead.
 
 **Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
@@ -1562,10 +1562,10 @@ Subscribes to device discovery events.
 
 **Parameters**
 
-| Name      | Type                                    | Mandatory  | Description                        |
-| -------- | ---------------------------------------- | ---- | -------------------------- |
-| type     | string                                   | Yes   | Event type. The value **'deviceFound'** indicates that a device is discovered. |
-| callback | Callback&lt;{&nbsp;subscribeId:&nbsp;number,&nbsp;device:&nbsp;[DeviceInfo](#deviceinfo)&nbsp;}&gt; | Yes   | Callback invoked when a device is discovered. |
+  | Name      | Type                                    | Mandatory  | Description                        |
+  | -------- | ---------------------------------------- | ---- | -------------------------- |
+| type     | string                                   | Yes   | Event type. The value is **'deviceFound'**, which indicates discovery of a device.|
+  | callback | Callback&lt;{&nbsp;subscribeId:&nbsp;number,&nbsp;device:&nbsp;[DeviceInfo](#deviceinfo)&nbsp;}&gt; | Yes   | Callback invoked to return the discovery of a device.              |
 
 **Example**
 
@@ -1602,7 +1602,7 @@ off(type: 'deviceFound', callback?: Callback&lt;{ subscribeId: number, device: D
 
 Unsubscribes from device discovery events.
 
-> **NOTE**<br>This API is deprecated since API version 11. You are advised to use [off('discoverSuccess')](js-apis-distributedDeviceManager.md#offdiscoversuccess).
+> **NOTE**<br>This API is deprecated since API version 11. Use [off('discoverSuccess')](js-apis-distributedDeviceManager.md#offdiscoversuccess) instead.
 
 **Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
@@ -1610,10 +1610,10 @@ Unsubscribes from device discovery events.
 
 **Parameters**
 
-| Name      | Type                                    | Mandatory  | Description                         |
-| -------- | ---------------------------------------- | ---- | --------------------------- |
-| type     | string                                   | Yes   | Event type. The value **'deviceFound'** indicates that a device is discovered. |
-| callback | Callback&lt;{&nbsp;subscribeId:&nbsp;number,&nbsp;device:&nbsp;[DeviceInfo](#deviceinfo)&nbsp;}&gt; | No   | Callback to unregister. |
+  | Name      | Type                                    | Mandatory  | Description                         |
+  | -------- | ---------------------------------------- | ---- | --------------------------- |
+| type     | string                                   | Yes   | Event type. The value is **'deviceFound'**, which indicates discovery of a device.                |
+  | callback | Callback&lt;{&nbsp;subscribeId:&nbsp;number,&nbsp;device:&nbsp;[DeviceInfo](#deviceinfo)&nbsp;}&gt; | No   | Callback to unregister.|
 
 **Example**
 
@@ -1650,7 +1650,7 @@ on(type: 'discoverFail', callback: Callback&lt;{ subscribeId: number, reason: nu
 
 Subscribes to device discovery failures.
 
-> **NOTE**<br>This API is deprecated since API version 11. You are advised to use [on('discoverFailure')](js-apis-distributedDeviceManager.md#ondiscoverfailure).
+> **NOTE**<br>This API is deprecated since API version 11. Use [on('discoverFailure')](js-apis-distributedDeviceManager.md#ondiscoverfailure) instead.
 
 **Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
@@ -1658,10 +1658,10 @@ Subscribes to device discovery failures.
 
 **Parameters**
 
-| Name      | Type                                    | Mandatory  | Description                            |
-| -------- | ---------------------------------------- | ---- | ------------------------------ |
-| type     | string                                   | Yes   | Event type. The value **'discoverFail'** indicates a failure in discovering devices. |
-| callback | Callback&lt;{&nbsp;subscribeId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | Yes   | Callback invoked when a device fails to be discovered. |
+  | Name      | Type                                    | Mandatory  | Description                            |
+  | -------- | ---------------------------------------- | ---- | ------------------------------ |
+| type     | string                                   | Yes   | Event type. The value is **'discoverFail'**, which indicates a failure in discovering devices.|
+  | callback | Callback&lt;{&nbsp;subscribeId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | Yes   | Callback invoked to return a device discovery failure.                |
 
 **Example**
 
@@ -1690,7 +1690,7 @@ off(type: 'discoverFail', callback?: Callback&lt;{ subscribeId: number, reason: 
 
 Unsubscribes from device discovery failures.
 
-> **NOTE**<br>This API is deprecated since API version 11. You are advised to use [off('discoverFailure')](js-apis-distributedDeviceManager.md#offdiscoverfailure).
+> **NOTE**<br>This API is deprecated since API version 11. Use [off('discoverFailure')](js-apis-distributedDeviceManager.md#offdiscoverfailure) instead.
 
 **Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
@@ -1698,10 +1698,10 @@ Unsubscribes from device discovery failures.
 
 **Parameters**
 
-| Name      | Type                                    | Mandatory  | Description               |
-| -------- | ---------------------------------------- | ---- | ----------------- |
-| type     | string                                   | Yes   | Event type. The value **'discoverFail'** indicates a failure in discovering devices. |
-| callback | Callback&lt;{&nbsp;subscribeId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | No   | Callback to unregister. |
+  | Name      | Type                                    | Mandatory  | Description               |
+  | -------- | ---------------------------------------- | ---- | ----------------- |
+| type     | string                                   | Yes   | Event type. The value is **'discoverFail'**, which indicates a failure in discovering devices.    |
+  | callback | Callback&lt;{&nbsp;subscribeId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | No   | Callback to unregister.|
 
 **Example**
 
@@ -1728,7 +1728,7 @@ For details about how to initialize **dmInstance** in the example, see [deviceMa
 
 on(type: 'publishSuccess', callback: Callback&lt;{ publishId: number }&gt;): void
 
-Subscribes to the **'publishSuccess'** event. The application will be notified when the information of a device is published.
+Subscribes to device information publication success events.
 
 > **NOTE**<br>This API is deprecated since API version 11. There is no substitute API.
 
@@ -1738,10 +1738,10 @@ Subscribes to the **'publishSuccess'** event. The application will be notified w
 
 **Parameters**
 
-| Name    | Type                                | Mandatory| Description                      |
-| -------- | ---------------------------------------- | ---- | -------------------------- |
-| type     | string                                   | Yes  | Event type. The value **'publishSuccess'** indicates that the information of a device is published |
-| callback | Callback&lt;{&nbsp;publishId:&nbsp;number&nbsp;}&gt;    | Yes  | Callback invoked to return the publish ID.              |
+  | Name    | Type                                | Mandatory| Description                      |
+  | -------- | ---------------------------------------- | ---- | -------------------------- |
+| type     | string                                   | Yes  | Event type. The value is **'publishSuccess'**, which indicates an event of the success in publishing device information.|
+  | callback | Callback&lt;{&nbsp;publishId:&nbsp;number&nbsp;}&gt;    | Yes  | Callback invoked to return the publish ID.              |
 
 
 **Example**
@@ -1768,7 +1768,7 @@ For details about how to initialize **dmInstance** in the example, see [deviceMa
 
 off(type: 'publishSuccess', callback?: Callback&lt;{ publishId: number }&gt;): void
 
-Unsubscribes from the **'publishSuccess'** event.
+Unsubscribes from device information publication success events.
 
 > **NOTE**<br>This API is deprecated since API version 11. There is no substitute API.
 
@@ -1778,10 +1778,10 @@ Unsubscribes from the **'publishSuccess'** event.
 
 **Parameters**
 
-| Name    | Type                                | Mandatory| Description                         |
-| -------- | ---------------------------------------- | ---- | --------------------------- |
-| type     | string                                   | Yes  | Event type. The value **'publishSuccess'** indicates that the information of a device is published |
-| callback | Callback&lt;{&nbsp;publishId:&nbsp;number&nbsp;}&gt;    | No  | Callback to unregister. |
+  | Name    | Type                                | Mandatory| Description                         |
+  | -------- | ---------------------------------------- | ---- | --------------------------- |
+| type     | string                                   | Yes  | Event type. The value is **'publishSuccess'**, which indicates an event of the success in publishing device information.                |
+  | callback | Callback&lt;{&nbsp;publishId:&nbsp;number&nbsp;}&gt;    | No  | Callback to unregister.|
 
 **Example**
 
@@ -1807,7 +1807,7 @@ For details about how to initialize **dmInstance** in the example, see [deviceMa
 
 on(type: 'publishFail', callback: Callback&lt;{ publishId: number, reason: number }&gt;): void
 
-Subscribes to the **'publishFail'** event. The application will be notified when the information of a device fails to be published.
+Subscribes to device information publication failures.
 
 > **NOTE**<br>This API is deprecated since API version 11. There is no substitute API.
 
@@ -1817,10 +1817,10 @@ Subscribes to the **'publishFail'** event. The application will be notified when
 
 **Parameters**
 
-| Name    | Type                                             | Mandatory| Description                            |
-| -------- | ----------------------------------------------------- | ---- | ------------------------------ |
-| type     | string                                                | Yes  | Event type. The value **'publishFail'** indicates that the information of a device fails to be published. |
-| callback | Callback&lt;{&nbsp;publishId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | Yes  | Callback invoked when the information of a device fails to be published. |
+  | Name    | Type                                             | Mandatory| Description                            |
+  | -------- | ----------------------------------------------------- | ---- | ------------------------------ |
+| type     | string                                                | Yes  | Event type. The value is **'publishFail'**, which indicates a failure in publishing device information.|
+  | callback | Callback&lt;{&nbsp;publishId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | Yes  | Callback invoked to return a failure in publishing device information.                |
 
 **Example**
 
@@ -1847,7 +1847,7 @@ For details about how to initialize **dmInstance** in the example, see [deviceMa
 
 off(type: 'publishFail', callback?: Callback&lt;{ publishId: number, reason: number }&gt;): void
 
-Unsubscribes from the **'publishFail'** event.
+Unsubscribes from device information publication failures.
 
 > **NOTE**<br>This API is deprecated since API version 11. There is no substitute API.
 
@@ -1857,10 +1857,10 @@ Unsubscribes from the **'publishFail'** event.
 
 **Parameters**
 
-| Name    | Type                                             | Mandatory| Description               |
-| -------- | ----------------------------------------------------- | ---- | ----------------- |
-| type     | string                                                | Yes  | Event type. The value **'publishFail'** indicates that the information of a device fails to be published. |
-| callback | Callback&lt;{&nbsp;publishId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | No  | Callback to unregister. |
+  | Name    | Type                                             | Mandatory| Description               |
+  | -------- | ----------------------------------------------------- | ---- | ----------------- |
+| type     | string                                                | Yes  | Event type. The value is **'publishFail'**, which indicates a failure in publishing device information.    |
+  | callback | Callback&lt;{&nbsp;publishId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | No  | Callback to unregister.|
 
 **Example**
 
@@ -1887,9 +1887,9 @@ For details about how to initialize **dmInstance** in the example, see [deviceMa
 
 on(type: 'serviceDie', callback: () =&gt; void): void
 
-Subscribes to dead events of the **DeviceManager** service. The application will be notified when the **DeviceManager** service is terminated unexpectedly.
+Subscribes to dead events of the **DeviceManager** service.
 
-> **NOTE**<br>This API is deprecated since API version 11. You are advised to use [on('serviceDie')](js-apis-distributedDeviceManager.md#onservicedie).
+> **NOTE**<br>This API is deprecated since API version 11. Use [on('serviceDie')](js-apis-distributedDeviceManager.md#onservicedie) instead.
 
 **Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
@@ -1897,10 +1897,10 @@ Subscribes to dead events of the **DeviceManager** service. The application will
 
 **Parameters**
 
-| Name      | Type                   | Mandatory  | Description                                      |
-| -------- | ----------------------- | ---- | ---------------------------------------- |
-| type     | string                  | Yes   | Event type. The value **'serviceDie'** indicates that the **DeviceManager** service is terminated unexpectedly. |
-| callback | ()&nbsp;=&gt;&nbsp;void | Yes   | Callback invoked when the **DeviceManager** service is terminated unexpectedly. |
+  | Name      | Type                   | Mandatory  | Description                                      |
+  | -------- | ----------------------- | ---- | ---------------------------------------- |
+| type     | string                  | Yes   | Event type. The value is **'serviceDie'**, which indicates unexpected termination of the **DeviceManager** service.|
+  | callback | ()&nbsp;=&gt;&nbsp;void | Yes   | Callback invoked when the **DeviceManager** service is unexpectedly terminated.                      |
 
 **Example**
 
@@ -1924,7 +1924,7 @@ off(type: 'serviceDie', callback?: () =&gt; void): void
 
 Unsubscribes from dead events of the **DeviceManager** service.
 
-> **NOTE**<br>This API is deprecated since API version 11. You are advised to use [off('serviceDie')](js-apis-distributedDeviceManager.md#offservicedie).
+> **NOTE**<br>This API is deprecated since API version 11. Use [off('serviceDie')](js-apis-distributedDeviceManager.md#offservicedie) instead.
 
 **Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
@@ -1932,10 +1932,10 @@ Unsubscribes from dead events of the **DeviceManager** service.
 
 **Parameters**
 
-| Name      | Type                   | Mandatory  | Description                                      |
-| -------- | ----------------------- | ---- | ---------------------------------------- |
-| type     | string                  | Yes   | Event type. The value **'serviceDie'** indicates that the **DeviceManager** service is terminated unexpectedly. |
-| callback | ()&nbsp;=&gt;&nbsp;void | No   | Callback to unregister.     |
+  | Name      | Type                   | Mandatory  | Description                                      |
+  | -------- | ----------------------- | ---- | ---------------------------------------- |
+| type     | string                  | Yes   | Event type. The value is **'serviceDie'**, which indicates unexpected termination of the **DeviceManager** service.|
+  | callback | ()&nbsp;=&gt;&nbsp;void | No   | Callback to unregister.                    |
 
 **Example**
 
