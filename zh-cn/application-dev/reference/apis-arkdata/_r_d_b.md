@@ -17,31 +17,34 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [oh_cursor.h](oh__cursor_8h.md) | 提供通过查询数据库生成的数据库结果集的访问方法。<br/>引用文件: <database/rdb/oh_cursor.h><br/>库: libnative_rdb_ndk.z.so<br/> |
-| [oh_predicates.h](oh__predicates_8h.md) | 表示关系型数据库（RDB）的谓词。<br/>引用文件: <database/rdb/oh_predicates.h><br/>库: libnative_rdb_ndk.z.so<br/> |
-| [oh_value_object.h](oh__value__object_8h.md) | 提供类型转换方法。<br/>引用文件: <database/rdb/oh_value_object.h><br/>库: libnative_rdb_ndk.z.so<br/> |
-| [oh_values_bucket.h](oh__values__bucket_8h.md) | 用于存储键值对的类型。<br/>引用文件: <database/rdb/oh_values_bucket.h><br/>库: libnative_rdb_ndk.z.so<br/> |
-| [relational_store.h](relational__store_8h.md) | 提供管理关系数据库（RDB）方法的接口。<br/>引用文件: <database/rdb/relational_store.h><br/>库: libnative_rdb_ndk.z.so<br/> |
-| [relational_store_error_code.h](relational__store__error__code_8h.md) | 声明关系型数据库（RDB）的错误码信息。<br/>引用文件: <database/rdb/relational_store_error_code.h><br/>库: libnative_rdb_ndk.z.so |
+| [oh_cursor.h](oh__cursor_8h.md) | 提供通过查询数据库生成的数据库结果集的访问方法。<br/>**引用文件：** <database/rdb/oh_cursor.h><br/>**库:** libnative_rdb_ndk.z.so<br/> |
+| [oh_predicates.h](oh__predicates_8h.md) | 表示关系型数据库（RDB）的谓词。<br/>**引用文件：** <database/rdb/oh_predicates.h><br/>**库:** libnative_rdb_ndk.z.so<br/> |
+| [oh_value_object.h](oh__value__object_8h.md) | 提供类型转换方法。<br/>**引用文件：** <database/rdb/oh_value_object.h><br/>**库:** libnative_rdb_ndk.z.so<br/> |
+| [oh_values_bucket.h](oh__values__bucket_8h.md) | 用于存储键值对的类型。<br/>**引用文件：** <database/rdb/oh_values_bucket.h><br/>**库:** libnative_rdb_ndk.z.so<br/> |
+| [relational_store.h](relational__store_8h.md) | 提供管理关系数据库（RDB）方法的接口。<br/>**引用文件：** <database/rdb/relational_store.h><br/>**库:** libnative_rdb_ndk.z.so<br/> |
+| [relational_store_error_code.h](relational__store__error__code_8h.md) | 声明关系型数据库（RDB）的错误码信息。<br/>**引用文件：** <database/rdb/relational_store_error_code.h><br/>**库:** libnative_rdb_ndk.z.so |
 
 
 ### 结构体
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [OH_Cursor](_o_h___cursor.md) | 表示结果集。 |
-| [OH_Predicates](_o_h___predicates.md) | 表示谓词。 |
-| [OH_VObject](_o_h___v_object.md) | 表示允许的数据字段类型。 |
-| [OH_VBucket](_o_h___v_bucket.md) | 用于存储键值对的类型。 |
-| [OH_Rdb_Config](_o_h___rdb___config.md) | 管理关系数据库配置。 |
-| [OH_Rdb_Store](_o_h___rdb___store.md) | 表示数据库类型。 |
-| [Rdb_DistributedConfig](_rdb___distributed_config.md) | 记录表的分布式配置信息。 |
-| [Rdb_KeyInfo](_rdb___key_info.md) | 描述发生变化的行的主键或者行号。 |
-| [Rdb_KeyInfo::Rdb_KeyData](union_rdb___key_info_1_1_rdb___key_data.md) | 存放变化的具体数据 |
-| [Rdb_ChangeInfo](_rdb___change_info.md) | 记录端云同步过程详情。 |
-| [Rdb_Statistic](_rdb___statistic.md) | 描述数据库表的端云同步过程的统计信息。 |
-| [Rdb_TableDetails](_rdb___table_details.md) | 描述数据库表执行端云同步任务上传和下载的统计信息。 |
-| [Rdb_ProgressDetails](_rdb___progress_details.md) | 描述数据库整体执行端云同步任务上传和下载的统计信息。 |
+| [OH_Cursor](_o_h___cursor.md) | 表示结果集。 | 
+| [OH_Predicates](_o_h___predicates.md) | 表示谓词。 | 
+| [OH_VObject](_o_h___v_object.md) | 表示允许的数据字段类型。 | 
+| [OH_VBucket](_o_h___v_bucket.md) | 用于存储键值对的类型。 | 
+| [OH_Rdb_Config](_o_h___rdb___config.md) | 管理关系数据库配置。 | 
+| [OH_Rdb_Store](_o_h___rdb___store.md) | 表示数据库类型。 | 
+| [Rdb_DistributedConfig](_rdb___distributed_config.md) | 记录表的分布式配置信息。 | 
+| [Rdb_KeyInfo](_rdb___key_info.md) | 描述发生变化的行的主键或者行号。 | 
+| [Rdb_KeyInfo::Rdb_KeyData](union_rdb___key_info_1_1_rdb___key_data.md) | 存放变化的具体数据。 | 
+| [Rdb_ChangeInfo](_rdb___change_info.md) | 记录端云同步过程详情。 | 
+| [Rdb_SubscribeCallback](union_rdb___subscribe_callback.md) | 表示回调函数。 | 
+| [Rdb_DataObserver](_rdb___data_observer.md) | 表示数据观察者。 | 
+| [Rdb_Statistic](_rdb___statistic.md) | 描述数据库表的端云同步过程的统计信息。 | 
+| [Rdb_TableDetails](_rdb___table_details.md) | 描述数据库表执行端云同步任务上传和下载的统计信息。 | 
+| [Rdb_ProgressDetails](_rdb___progress_details.md) | 描述数据库整体执行端云同步任务上传和下载的统计信息。 | 
+| [Rdb_ProgressObserver](_rdb___progress_observer.md) | 端云同步进度观察者。 | 
 
 
 ### 宏定义
@@ -57,28 +60,34 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [OH_ColumnType](#oh_columntype) | 数据库字段类型. |
-| [OH_Cursor](#oh_cursor) | 表示结果集。 |
-| [OH_OrderType](#oh_ordertype) | 排序方式。 |
-| [OH_Predicates](#oh_predicates) | 表示谓词。 |
-| [OH_VObject](#oh_vobject) | 表示允许的数据字段类型。 |
-| [OH_VBucket](#oh_vbucket) | 用于存储键值对的类型。 |
-| [OH_Rdb_SecurityLevel](#oh_rdb_securitylevel) | 数据库的安全级别枚举。 |
-| [Rdb_SecurityArea](#rdb_securityarea) | 描述数据库的安全区域等级。 |
-| [Rdb_DistributedType](#rdb_distributedtype) | 描述表的分布式类型的枚举。 |
-| [Rdb_DistributedConfig](#rdb_distributedconfig) | 记录表的分布式配置信息。 |
-| [Rdb_ChangeType](#rdb_changetype) | 描述数据变更类型。 |
-| [Rdb_KeyInfo](#rdb_keyinfo) | 描述发生变化的行的主键或者行号。 |
-| [Rdb_ChangeInfo](#rdb_changeinfo) | 记录端云同步过程详情。 |
-| [Rdb_SubscribeType](#rdb_subscribetype) | 描述订阅类型。 |
-| [Rdb_SyncMode](#rdb_syncmode) | 表示数据库的同步模式 |
-| [Rdb_Statistic](#rdb_statistic) | 描述数据库表的端云同步过程的统计信息。 |
-| [Rdb_TableDetails](#rdb_tabledetails) | 描述数据库表执行端云同步任务上传和下载的统计信息。 |
-| [Rdb_Progress](#rdb_progress) | 描述端云同步过程。 |
-| [Rdb_ProgressCode](#rdb_progresscode) | 表示端云同步过程的状态。 |
-| [Rdb_ProgressDetails](#rdb_progressdetails) | 描述数据库整体执行端云同步任务上传和下载的统计信息。 |
-| [Rdb_SyncCallback](#rdb_synccallback) | 数据库端云同步的回调函数。 |
-| [OH_Rdb_ErrCode](#oh_rdb_errcode) | 表示错误码信息。 |
+| [OH_ColumnType](#oh_columntype) | 数据库字段类型。 | 
+| [OH_Cursor](#oh_cursor) | 表示结果集。 | 
+| [OH_OrderType](#oh_ordertype) | 排序方式。 | 
+| [OH_Predicates](#oh_predicates) | 表示谓词。 | 
+| [OH_VObject](#oh_vobject) | 表示允许的数据字段类型。 | 
+| [OH_VBucket](#oh_vbucket) | 用于存储键值对的类型。 | 
+| [OH_Rdb_SecurityLevel](#oh_rdb_securitylevel) | 数据库的安全级别枚举。 | 
+| [Rdb_SecurityArea](#rdb_securityarea) | 描述数据库的安全区域等级。 | 
+| [Rdb_DistributedType](#rdb_distributedtype) | 描述表的分布式类型的枚举。 | 
+| [Rdb_DistributedConfig](#rdb_distributedconfig) | 记录表的分布式配置信息。 | 
+| [Rdb_ChangeType](#rdb_changetype) | 描述数据变更类型。 | 
+| [Rdb_KeyInfo](#rdb_keyinfo) | 描述发生变化的行的主键或者行号。 | 
+| [Rdb_ChangeInfo](#rdb_changeinfo) | 记录端云同步过程详情。 | 
+| [Rdb_SubscribeType](#rdb_subscribetype) | 描述订阅类型。 | 
+| [Rdb_BriefObserver](#rdb_briefobserver) | 端云数据更改事件的回调函数。 | 
+| [Rdb_DetailsObserver](#rdb_detailsobserver) | 端云数据更改事件的细节的回调函数。 | 
+| [Rdb_SubscribeCallback](#rdb_subscribecallback) | 表示回调函数。 | 
+| [Rdb_DataObserver](#rdb_dataobserver) | 表示数据观察者。 | 
+| [Rdb_SyncMode](#rdb_syncmode) | 表示数据库的同步模式。 | 
+| [Rdb_Statistic](#rdb_statistic) | 描述数据库表的端云同步过程的统计信息。 | 
+| [Rdb_TableDetails](#rdb_tabledetails) | 描述数据库表执行端云同步任务上传和下载的统计信息。 | 
+| [Rdb_Progress](#rdb_progress) | 描述端云同步过程。 | 
+| [Rdb_ProgressCode](#rdb_progresscode) | 表示端云同步过程的状态。 | 
+| [Rdb_ProgressDetails](#rdb_progressdetails) | 描述数据库整体执行端云同步任务上传和下载的统计信息。 | 
+| [Rdb_ProgressCallback](#rdb_progresscallback) | 端云同步进度的回调函数。 | 
+| [Rdb_SyncCallback](#rdb_synccallback) | 数据库端云同步的回调函数。 | 
+| [Rdb_ProgressObserver](#rdb_progressobserver) | 端云同步进度观察者。 | 
+| [OH_Rdb_ErrCode](#oh_rdb_errcode) | 表示错误码信息。 | 
 
 
 ### 枚举
@@ -102,127 +111,137 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [OH_VBucket_PutAsset](#oh_vbucket_putasset) ([OH_VBucket](_o_h___v_bucket.md) \*bucket, const char \*field, OH_Asset \*value) | 将**OH_Asset** 类型的对象放入给定列名的[OH_VBucket](_o_h___v_bucket.md)对象中。 |
-| [OH_VBucket_PutAssets](#oh_vbucket_putassets) ([OH_VBucket](_o_h___v_bucket.md) \*bucket, const char \*field, OH_Asset \*\*value, int count) | 将**OH_Asset** 类型的对象数组放入给定列名的[OH_VBucket](_o_h___v_bucket.md)对象中。 |
-| [OH_Rdb_CreateValueObject](#oh_rdb_createvalueobject) (void) | 创建[OH_VObject](_o_h___v_object.md)实例。 |
-| [OH_Rdb_CreateValuesBucket](#oh_rdb_createvaluesbucket) (void) | 创建[OH_VBucket](_o_h___v_bucket.md)实例。 |
-| [OH_Rdb_CreatePredicates](#oh_rdb_createpredicates) (const char \*table) | 创建[OH_Predicates](_o_h___predicates.md)实例。 |
-| [OH_Rdb_GetOrOpen](#oh_rdb_getoropen) (const [OH_Rdb_Config](_o_h___rdb___config.md) \*config, int \*errCode) | 获得一个相关的[OH_Rdb_Store](_o_h___rdb___store.md)实例，操作关系型数据库。 |
-| [OH_Rdb_CloseStore](#oh_rdb_closestore) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store) | 销毁[OH_Rdb_Store](_o_h___rdb___store.md)对象，并回收该对象占用的内存。 |
-| [OH_Rdb_DeleteStore](#oh_rdb_deletestore) (const [OH_Rdb_Config](_o_h___rdb___config.md) \*config) | 使用指定的数据库文件配置删除数据库。 |
-| [OH_Rdb_Insert](#oh_rdb_insert) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const char \*table, [OH_VBucket](_o_h___v_bucket.md) \*valuesBucket) | 向目标表中插入一行数据。 |
-| [OH_Rdb_Update](#oh_rdb_update) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [OH_VBucket](_o_h___v_bucket.md) \*valuesBucket, [OH_Predicates](_o_h___predicates.md) \*predicates) | 根据指定的条件更新数据库中的数据。 |
-| [OH_Rdb_Delete](#oh_rdb_delete) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [OH_Predicates](_o_h___predicates.md) \*predicates) | 根据指定的条件删除数据库中的数据。 |
-| [OH_Rdb_Query](#oh_rdb_query) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [OH_Predicates](_o_h___predicates.md) \*predicates, const char \*const \*columnNames, int length) | 根据指定条件查询数据库中的数据 |
-| [OH_Rdb_Execute](#oh_rdb_execute) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const char \*sql) | 执行无返回值的SQL语句。 |
-| [OH_Rdb_ExecuteQuery](#oh_rdb_executequery) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const char \*sql) | 根据指定SQL语句查询数据库中的数据。 |
-| [OH_Rdb_BeginTransaction](#oh_rdb_begintransaction) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store) | 在开始执行SQL语句之前，开始事务。 |
-| [OH_Rdb_RollBack](#oh_rdb_rollback) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store) | 回滚已经执行的SQL语句。 |
-| [OH_Rdb_Commit](#oh_rdb_commit) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store) | 提交已执行的SQL语句 |
-| [OH_Rdb_Backup](#oh_rdb_backup) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const char \*databasePath) | 以指定路径备份数据库。 |
-| [OH_Rdb_Restore](#oh_rdb_restore) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const char \*databasePath) | 从指定的数据库备份文件恢复数据库。 |
-| [OH_Rdb_GetVersion](#oh_rdb_getversion) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, int \*version) | 获取数据库版本。 |
-| [OH_Rdb_SetVersion](#oh_rdb_setversion) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, int version) | 设置数据库版本。 |
-| [OH_Rdb_SetDistributedTables](#oh_rdb_setdistributedtables) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const char \*tables[], uint32_t count, [Rdb_DistributedType](#rdb_distributedtype) type, const [Rdb_DistributedConfig](_rdb___distributed_config.md) \*config) | 设置分布式数据库表。 |
-| [OH_Rdb_FindModifyTime](#oh_rdb_findmodifytime) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const char \*tableName, const char \*columnName, [OH_VObject](_o_h___v_object.md) \*values) | 获取数据库表中数据的最后修改时间。 |
-| [OH_Rdb_GetTableDetails](#oh_rdb_gettabledetails) ([Rdb_ProgressDetails](_rdb___progress_details.md) \*progress, int32_t version) | 从端云同步任务的统计信息中获取数据库表的统计信息。 |
-| [OH_Rdb_CloudSync](#oh_rdb_cloudsync) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [Rdb_SyncMode](#rdb_syncmode) mode, const char \*tables, int count, [Rdb_SyncCallback](#rdb_synccallback) \*progress) | 进行端云同步。 |
+| [OH_VBucket_PutAsset](#oh_vbucket_putasset) ([OH_VBucket](_o_h___v_bucket.md) \*bucket, const char \*field, OH_Asset \*value) | 将**OH_Asset**类型的对象放入给定列名的[OH_VBucket](_o_h___v_bucket.md)对象中。 | 
+| [OH_VBucket_PutAssets](#oh_vbucket_putassets) ([OH_VBucket](_o_h___v_bucket.md) \*bucket, const char \*field, OH_Asset \*\*value, int count) | 将**OH_Asset**类型的对象数组放入给定列名的[OH_VBucket](_o_h___v_bucket.md)对象中。 | 
+| [OH_Rdb_CreateValueObject](#oh_rdb_createvalueobject) () | 创建[OH_VObject](_o_h___v_object.md)实例。 | 
+| [OH_Rdb_CreateValuesBucket](#oh_rdb_createvaluesbucket) () | 创建[OH_VBucket](_o_h___v_bucket.md)实例。 | 
+| [OH_Rdb_CreatePredicates](#oh_rdb_createpredicates) (const char \*table) | 创建[OH_Predicates](_o_h___predicates.md)实例。 | 
+| [OH_Rdb_GetOrOpen](#oh_rdb_getoropen) (const [OH_Rdb_Config](_o_h___rdb___config.md) \*config, int \*errCode) | 获得一个相关的[OH_Rdb_Store](_o_h___rdb___store.md)实例，操作关系型数据库。 | 
+| [OH_Rdb_CloseStore](#oh_rdb_closestore) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store) | 销毁[OH_Rdb_Store](_o_h___rdb___store.md)对象，并回收该对象占用的内存。 | 
+| [OH_Rdb_DeleteStore](#oh_rdb_deletestore) (const [OH_Rdb_Config](_o_h___rdb___config.md) \*config) | 使用指定的数据库文件配置删除数据库。 | 
+| [OH_Rdb_Insert](#oh_rdb_insert) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const char \*table, [OH_VBucket](_o_h___v_bucket.md) \*valuesBucket) | 向目标表中插入一行数据。 | 
+| [OH_Rdb_Update](#oh_rdb_update) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [OH_VBucket](_o_h___v_bucket.md) \*valuesBucket, [OH_Predicates](_o_h___predicates.md) \*predicates) | 根据指定的条件更新数据库中的数据。 | 
+| [OH_Rdb_Delete](#oh_rdb_delete) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [OH_Predicates](_o_h___predicates.md) \*predicates) | 根据指定的条件删除数据库中的数据。 | 
+| [OH_Rdb_Query](#oh_rdb_query) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [OH_Predicates](_o_h___predicates.md) \*predicates, const char \*const \*columnNames, int length) | 根据指定条件查询数据库中的数据。 | 
+| [OH_Rdb_Execute](#oh_rdb_execute) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const char \*sql) | 执行无返回值的SQL语句。 | 
+| [OH_Rdb_ExecuteQuery](#oh_rdb_executequery) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const char \*sql) | 根据指定SQL语句查询数据库中的数据。 | 
+| [OH_Rdb_BeginTransaction](#oh_rdb_begintransaction) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store) | 在开始执行SQL语句之前，开始事务。 | 
+| [OH_Rdb_RollBack](#oh_rdb_rollback) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store) | 回滚已经执行的SQL语句。 | 
+| [OH_Rdb_Commit](#oh_rdb_commit) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store) | 提交已执行的SQL语句。 | 
+| [OH_Rdb_Backup](#oh_rdb_backup) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const char \*databasePath) | 以指定路径备份数据库。 | 
+| [OH_Rdb_Restore](#oh_rdb_restore) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const char \*databasePath) | 从指定的数据库备份文件恢复数据库。 | 
+| [OH_Rdb_GetVersion](#oh_rdb_getversion) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, int \*version) | 获取数据库版本。 | 
+| [OH_Rdb_SetVersion](#oh_rdb_setversion) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, int version) | 设置数据库版本。 | 
+| [OH_Rdb_SetDistributedTables](#oh_rdb_setdistributedtables) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const char \*tables[], uint32_t count, [Rdb_DistributedType](#rdb_distributedtype) type, const [Rdb_DistributedConfig](_rdb___distributed_config.md) \*config) | 设置分布式数据库表。 | 
+| [OH_Rdb_FindModifyTime](#oh_rdb_findmodifytime) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const char \*tableName, const char \*columnName, [OH_VObject](_o_h___v_object.md) \*values) | 获取数据库表中数据的最后修改时间。 | 
+| [OH_Rdb_Subscribe](#oh_rdb_subscribe) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [Rdb_SubscribeType](#rdb_subscribetype) type, const [Rdb_DataObserver](_rdb___data_observer.md) \*observer) | 为数据库注册观察者。当分布式数据库中的数据发生更改时，将调用回调。 | 
+| [OH_Rdb_Unsubscribe](#oh_rdb_unsubscribe) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [Rdb_SubscribeType](#rdb_subscribetype) type, const [Rdb_DataObserver](_rdb___data_observer.md) \*observer) | 从数据库中删除指定类型的指定观察者。 | 
+| [OH_Rdb_GetTableDetails](#oh_rdb_gettabledetails) ([Rdb_ProgressDetails](_rdb___progress_details.md) \*progress, int32_t version) | 从端云同步任务的统计信息中获取数据库表的统计信息。 | 
+| [OH_Rdb_CloudSync](#oh_rdb_cloudsync) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [Rdb_SyncMode](#rdb_syncmode) mode, const char \*tables, int count, const [Rdb_ProgressObserver](_rdb___progress_observer.md) \*observer) | 进行端云同步。 | 
+| [OH_Rdb_SubscribeAutoSyncProgress](#oh_rdb_subscribeautosyncprogress) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const [Rdb_ProgressObserver](_rdb___progress_observer.md) \*observer) | 订阅RDB存储的自动同步进度。 当收到自动同步进度的通知时，将调用回调。 | 
+| [OH_Rdb_UnsubscribeAutoSyncProgress](#oh_rdb_unsubscribeautosyncprogress) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const [Rdb_ProgressObserver](_rdb___progress_observer.md) \*observer) | 取消订阅RDB存储的自动同步进程。 | 
 
 
 ### 变量
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [OH_Cursor::id](#id-15) | OH_Cursor结构体的唯一标识符。 |
-| [OH_Cursor::getColumnCount](#getcolumncount) | 函数指针，获取结果集中的列数。 |
-| [OH_Cursor::getColumnType](#getcolumntype) | 函数指针，根据指定的列索引获取列类型。 |
-| [OH_Cursor::getColumnIndex](#getcolumnindex) | 函数指针，根据指定的列名获取列索引。 |
-| [OH_Cursor::getColumnName](#getcolumnname) | 函数指针，根据指定的列索引获取列名。 |
-| [OH_Cursor::getRowCount](#getrowcount) | 函数指针，获取结果集中的行数。 |
-| [OH_Cursor::goToNextRow](#gotonextrow) | 函数指针，转到结果集的下一行。 |
-| [OH_Cursor::getSize](#getsize) | 函数指针，当结果集中列的数据类型是BLOB或者TEXT时，获取其值所需的内存。 |
-| [OH_Cursor::getText](#gettext) | 函数指针，以字符串形式获取当前行中指定列的值。 |
-| [OH_Cursor::getInt64](#getint64) | 函数指针，以int64_t形式获取当前行中指定列的值。 |
-| [OH_Cursor::getReal](#getreal) | 函数指针，以double形式获取当前行中指定列的值。 |
-| [OH_Cursor::getBlob](#getblob) | 函数指针，以字节数组的形式获取当前行中指定列的值。 |
-| [OH_Cursor::isNull](#isnull-12) | 函数指针，检查当前行中指定列的值是否为null。 |
-| [OH_Cursor::destroy](#destroy-14) | 函数指针，关闭结果集。 |
-| [OH_Cursor::getAsset](#getasset) | 函数指针，以资产的形式获取当前行中指定列的值。 |
-| [OH_Cursor::getAssets](#getassets) | 函数指针，以资产数组的形式获取当前行中指定列的值。 |
-| [OH_Predicates::id](#id-25) | OH_Predicates结构体的唯一标识符。 |
-| [OH_Predicates::equalTo](#equalto) | 函数指针，配置谓词以匹配数据字段等于指定值的字段。 |
-| [OH_Predicates::notEqualTo](#notequalto) | 函数指针，配置谓词以匹配数据字段不等于指定值的字段。 |
-| [OH_Predicates::beginWrap](#beginwrap) | 函数指针，向谓词添加左括号。 |
-| [OH_Predicates::endWrap](#endwrap) | 函数指针，向谓词添加右括号。 |
-| [OH_Predicates::orOperate](#oroperate) | 函数指针，将或条件添加到谓词中。 |
-| [OH_Predicates::andOperate](#andoperate) | 函数指针，向谓词添加和条件。 |
-| [OH_Predicates::isNull](#isnull-22) | 函数指针，配置谓词以匹配值为null的字段。 |
-| [OH_Predicates::isNotNull](#isnotnull) | 函数指针，配置谓词以匹配值不为null的指定字段。 |
-| [OH_Predicates::like](#like) | 函数指针，配置谓词以匹配数据字段为field且值类似于指定字符串的字段。 |
-| [OH_Predicates::between](#between) | 函数指针，将谓词配置为匹配数据字段为field且其值在给定范围内的指定字段。 |
-| [OH_Predicates::notBetween](#notbetween) | 函数指针，将谓词配置为匹配数据字段为field且其值超出给定范围内的指定字段。 |
-| [OH_Predicates::greaterThan](#greaterthan) | 函数指针，配置谓词以匹配数据字段为field且值大于指定值valueObject的字段。 |
-| [OH_Predicates::lessThan](#lessthan) | 函数指针，配置谓词以匹配数据字段为field且值小于指定值valueObject的字段 |
-| [OH_Predicates::greaterThanOrEqualTo](#greaterthanorequalto) | 函数指针，配置谓词以匹配数据字段为field且值大于或等于指定值valueObject的字段 |
-| [OH_Predicates::lessThanOrEqualTo](#lessthanorequalto) | 函数指针，配置谓词以匹配数据字段为field且值小于或等于指定值valueObject的字段 |
-| [OH_Predicates::orderBy](#orderby) | 函数指针，配置谓词以匹配其值按升序或降序排序的列。 |
-| [OH_Predicates::distinct](#distinct) | 函数指针，配置谓词以过滤重复记录并仅保留其中一个。 |
-| [OH_Predicates::limit](#limit) | 函数指针，设置最大数据记录数的谓词。 |
-| [OH_Predicates::offset](#offset) | 函数指针，配置谓词以指定返回结果的起始位置。 |
-| [OH_Predicates::groupBy](#groupby) | 函数指针，配置R谓词按指定列分组查询结果。 |
-| [OH_Predicates::in](#in) | 函数指针，配置谓词以匹配数据字段为field且值在给定范围内的指定字段。 |
-| [OH_Predicates::notIn](#notin) | 函数指针，配置谓词以匹配数据字段为field且值超出给定范围内的指定字段。 |
-| [OH_Predicates::clear](#clear-12) | 函数指针，清空谓词。 |
-| [OH_Predicates::destroy](#destroy-24) | 销毁[OH_Predicates](_o_h___predicates.md)对象，并回收该对象占用的内存。 |
-| [OH_VObject::id](#id-35) | OH_VObject结构体的唯一标识符。 |
-| [OH_VObject::putInt64](#putint64-22) | 将int64类型的单个参数或者数组转换为[OH_VObject](_o_h___v_object.md)类型的值。 |
-| [OH_VObject::putDouble](#putdouble) | 将double类型的单个参数或者数组转换为[OH_VObject](_o_h___v_object.md)类型的值。 |
-| [OH_VObject::putText](#puttext-22) | 将char \*类型的字符数组转换为[OH_VObject](_o_h___v_object.md)类型的值。 |
-| [OH_VObject::putTexts](#puttexts) | 将char \*类型的字符串数组转换为[OH_VObject](_o_h___v_object.md)类型的值。 |
-| [OH_VObject::destroy](#destroy-44) | 销毁[OH_VObject](_o_h___v_object.md)对象，并回收该对象占用的内存。 |
-| [OH_VBucket::id](#id-45) | OH_VBucket结构体的唯一标识符。 |
-| [OH_VBucket::capability](#capability) | 表示结构体的存储键值对的数量 |
-| [OH_VBucket::putText](#puttext-12) | 将char\*值放入给定列名的[OH_VBucket](_o_h___v_bucket.md)对象中。 |
-| [OH_VBucket::putInt64](#putint64-12) | 将int64_t值放入给定列名的[OH_VBucket](_o_h___v_bucket.md)对象中。 |
-| [OH_VBucket::putReal](#putreal) | 将double值放入给定列名的[OH_VBucket](_o_h___v_bucket.md)对象中**。** |
-| [OH_VBucket::putBlob](#putblob) | 将const uint8_t \*值放入给定列名的[OH_VBucket](_o_h___v_bucket.md)对象中。 |
-| [OH_VBucket::putNull](#putnull) | 将NULL值放入给定列名的[OH_VBucket](_o_h___v_bucket.md)对象中。 |
-| [OH_VBucket::clear](#clear-22) | 清空[OH_VBucket](_o_h___v_bucket.md)对象。 |
-| [OH_VBucket::destroy](#destroy-34) | 销毁[OH_VBucket](_o_h___v_bucket.md)对象，并回收该对象占用的内存。 |
-| [OH_Rdb_Config::selfSize](#selfsize) | 该结构体的大小。 |
-| [OH_Rdb_Config::dataBaseDir](#databasedir) | 数据库文件路径。 |
-| [OH_Rdb_Config::storeName](#storename) | 数据库名称。 |
-| [OH_Rdb_Config::bundleName](#bundlename) | 应用包名。 |
-| [OH_Rdb_Config::moduleName](#modulename) | 应用模块名。 |
-| [OH_Rdb_Config::isEncrypt](#isencrypt) | 指定数据库是否加密。 |
-| [OH_Rdb_Config::securityLevel](#securitylevel) | 设置数据库安全级别[OH_Rdb_SecurityLevel](#oh_rdb_securitylevel)。 |
-| [OH_Rdb_Config::area](#area) | 设置数据库安全区域等级[Rdb_SecurityArea](#rdb_securityarea)。 |
-| [OH_Rdb_Store::id](#id-55) | OH_Rdb_Store结构体的唯一标识符。 |
-| [Rdb_DistributedConfig::version](#version-13) | 用于唯一标识Rdb_DistributedConfig结构的版本。 |
-| [Rdb_DistributedConfig::isAutoSync](#isautosync) | 表示该表是否支持自动同步。 |
-| [Rdb_KeyInfo::count](#count) | 表示发生变化的主键或者行号的数量。 |
-| [Rdb_KeyInfo::type](#type) | 表示主键的类型[OH_ColumnType](#oh_columntype)。 |
-| [Rdb_KeyInfo::Rdb_KeyData::integer](#integer) | 存放uint64_t类型的数据。 |
-| [Rdb_KeyInfo::Rdb_KeyData::real](#real) | 存放double类型的数据。 |
-| [Rdb_KeyInfo::Rdb_KeyData::text](#text) | 存放char \*类型的数据。 |
-| [Rdb_KeyInfo::Rdb_KeyData](union_rdb___key_info_1_1_rdb___key_data.md) | 存放变化的具体数据。 |
-| [Rdb_ChangeInfo::version](#version-23) | 用于唯一标识Rdb_DistributedConfig结构的版本。 |
-| [Rdb_ChangeInfo::tableName](#tablename) | 表示发生变化的表的名称。 |
-| [Rdb_ChangeInfo::ChangeType](#changetype) | 表示发生变化的数据的类型，数据或者资产附件发生变化。 |
-| [Rdb_ChangeInfo::inserted](#inserted) | 记录插入数据的位置，如果该表的主键是string类型，该值是主键的值，否则该值表示插入数据的行号。 |
-| [Rdb_ChangeInfo::updated](#updated) | 记录更新数据的位置，如果该表的主键是string类型，该值是主键的值，否则该值表示更新数据的行号。 |
-| [Rdb_ChangeInfo::deleted](#deleted) | 记录删除数据的位置，如果该表的主键是string类型，该值是主键的值，否则该值表示删除数据的行号。 |
-| [Rdb_Statistic::total](#total) | 表示数据库表中需要端云同步的总行数。 |
-| [Rdb_Statistic::successful](#successful) | 表示数据库表中端云同步成功的行数。 |
-| [Rdb_Statistic::failed](#failed) | 表示数据库表中端云同步失败的行数。 |
-| [Rdb_Statistic::remained](#remained) | 表示数据库表中端云同步剩余未执行的行数。 |
-| [Rdb_TableDetails::table](#table) | 数据库表名。 |
-| [Rdb_TableDetails::upload](#upload) | 表示数据库表中端云同步上传过程的统计信息。 |
-| [Rdb_TableDetails::download](#download) | 表示数据库表中端云同步下载过程的统计信息。 |
-| [Rdb_ProgressDetails::version](#version-33) | 用于唯一标识OH_TableDetails结构的版本。 |
-| [Rdb_ProgressDetails::schedule](#schedule) | 表示端云同步过程。 |
-| [Rdb_ProgressDetails::code](#code) | 表示端云同步过程的状态。 |
-| [Rdb_ProgressDetails::tableLength](#tablelength) | 表示端云同步的表的数量。 |
+| [OH_Cursor::id](#id-15) | OH_Cursor结构体的唯一标识符。 | 
+| [OH_Cursor::getColumnCount](#getcolumncount) | 函数指针，获取结果集中的列数。 | 
+| [OH_Cursor::getColumnType](#getcolumntype) | 函数指针，根据指定的列索引获取列类型。 | 
+| [OH_Cursor::getColumnIndex](#getcolumnindex) | 函数指针，根据指定的列名获取列索引。 | 
+| [OH_Cursor::getColumnName](#getcolumnname) | 函数指针，根据指定的列索引获取列名。 | 
+| [OH_Cursor::getRowCount](#getrowcount) | 函数指针，获取结果集中的行数。 | 
+| [OH_Cursor::goToNextRow](#gotonextrow) | 函数指针，转到结果集的下一行。 | 
+| [OH_Cursor::getSize](#getsize) | 函数指针，当结果集中列的数据类型是BLOB或者TEXT时，获取其值所需的内存。 | 
+| [OH_Cursor::getText](#gettext) | 函数指针，以字符串形式获取当前行中指定列的值。 | 
+| [OH_Cursor::getInt64](#getint64) | 函数指针，以int64_t形式获取当前行中指定列的值。 | 
+| [OH_Cursor::getReal](#getreal) | 函数指针，以double形式获取当前行中指定列的值。 | 
+| [OH_Cursor::getBlob](#getblob) | 函数指针，以字节数组的形式获取当前行中指定列的值。 | 
+| [OH_Cursor::isNull](#isnull-12) | 函数指针，检查当前行中指定列的值是否为null。 | 
+| [OH_Cursor::destroy](#destroy-14) | 函数指针，关闭结果集。 | 
+| [OH_Cursor::getAsset](#getasset) | 函数指针，以资产的形式获取当前行中指定列的值。 | 
+| [OH_Cursor::getAssets](#getassets) | 函数指针，以资产数组的形式获取当前行中指定列的值。 | 
+| [OH_Predicates::id](#id-25) | OH_Predicates结构体的唯一标识符。 | 
+| [OH_Predicates::equalTo](#equalto) | 函数指针，配置谓词以匹配数据字段等于指定值的字段。 | 
+| [OH_Predicates::notEqualTo](#notequalto) | 函数指针，配置谓词以匹配数据字段不等于指定值的字段。 | 
+| [OH_Predicates::beginWrap](#beginwrap) | 函数指针，向谓词添加左括号。 | 
+| [OH_Predicates::endWrap](#endwrap) | 函数指针，向谓词添加右括号。 | 
+| [OH_Predicates::orOperate](#oroperate) | 函数指针，将或条件添加到谓词中。 | 
+| [OH_Predicates::andOperate](#andoperate) | 函数指针，向谓词添加和条件。 | 
+| [OH_Predicates::isNull](#isnull-22) | 函数指针，配置谓词以匹配值为null的字段。 | 
+| [OH_Predicates::isNotNull](#isnotnull) | 函数指针，配置谓词以匹配值不为null的指定字段。 | 
+| [OH_Predicates::like](#like) | 函数指针，配置谓词以匹配数据字段为field且值类似于指定字符串的字段。 | 
+| [OH_Predicates::between](#between) | 函数指针，将谓词配置为匹配数据字段为field且其值在给定范围内的指定字段。 | 
+| [OH_Predicates::notBetween](#notbetween) | 函数指针，将谓词配置为匹配数据字段为field且其值超出给定范围内的指定字段。 | 
+| [OH_Predicates::greaterThan](#greaterthan) | 函数指针，配置谓词以匹配数据字段为field且值大于指定值valueObject的字段。 | 
+| [OH_Predicates::lessThan](#lessthan) | 函数指针，配置谓词以匹配数据字段为field且值小于指定值valueObject的字段 | 
+| [OH_Predicates::greaterThanOrEqualTo](#greaterthanorequalto) | 函数指针，配置谓词以匹配数据字段为field且值大于或等于指定值valueObject的字段 | 
+| [OH_Predicates::lessThanOrEqualTo](#lessthanorequalto) | 函数指针，配置谓词以匹配数据字段为field且值小于或等于指定值valueObject的字段 | 
+| [OH_Predicates::orderBy](#orderby) | 函数指针，配置谓词以匹配其值按升序或降序排序的列。 | 
+| [OH_Predicates::distinct](#distinct) | 函数指针，配置谓词以过滤重复记录并仅保留其中一个。 | 
+| [OH_Predicates::limit](#limit) | 函数指针，设置最大数据记录数的谓词。 | 
+| [OH_Predicates::offset](#offset) | 函数指针，配置谓词以指定返回结果的起始位置。 | 
+| [OH_Predicates::groupBy](#groupby) | 函数指针，配置R谓词按指定列分组查询结果。 | 
+| [OH_Predicates::in](#in) | 函数指针，配置谓词以匹配数据字段为field且值在给定范围内的指定字段。 | 
+| [OH_Predicates::notIn](#notin) | 函数指针，配置谓词以匹配数据字段为field且值超出给定范围内的指定字段。 | 
+| [OH_Predicates::clear](#clear-12) | 函数指针，清空谓词。 | 
+| [OH_Predicates::destroy](#destroy-24) | 销毁[OH_Predicates](_o_h___predicates.md)对象，并回收该对象占用的内存。 | 
+| [OH_VObject::id](#id-35) | OH_VObject结构体的唯一标识符。 | 
+| [OH_VObject::putInt64](#putint64-22) | 将int64类型的单个参数或者数组转换为[OH_VObject](_o_h___v_object.md)类型的值。 | 
+| [OH_VObject::putDouble](#putdouble) | 将double类型的单个参数或者数组转换为[OH_VObject](_o_h___v_object.md)类型的值。 | 
+| [OH_VObject::putText](#puttext-22) | 将char \*类型的字符数组转换为[OH_VObject](_o_h___v_object.md)类型的值。 | 
+| [OH_VObject::putTexts](#puttexts) | 将char \*类型的字符串数组转换为[OH_VObject](_o_h___v_object.md)类型的值。 | 
+| [OH_VObject::destroy](#destroy-44) | 销毁[OH_VObject](_o_h___v_object.md)对象，并回收该对象占用的内存。 | 
+| [OH_VBucket::id](#id-45) | OH_VBucket结构体的唯一标识符。 | 
+| [OH_VBucket::capability](#capability) | 表示结构体的存储键值对的数量 | 
+| [OH_VBucket::putText](#puttext-12) | 将char\*值放入给定列名的[OH_VBucket](_o_h___v_bucket.md)对象中。 | 
+| [OH_VBucket::putInt64](#putint64-12) | 将int64_t值放入给定列名的[OH_VBucket](_o_h___v_bucket.md)对象中。 | 
+| [OH_VBucket::putReal](#putreal) | 将double值放入给定列名的｛**OH_VBucket｝对象中。** | 
+| [OH_VBucket::putBlob](#putblob) | 将const uint8_t \*值放入给定列名的[OH_VBucket](_o_h___v_bucket.md)对象中。 | 
+| [OH_VBucket::putNull](#putnull) | 将NULL值放入给定列名的[OH_VBucket](_o_h___v_bucket.md)对象中。 | 
+| [OH_VBucket::clear](#clear-22) | 清空[OH_VBucket](_o_h___v_bucket.md)对象。 | 
+| [OH_VBucket::destroy](#destroy-34) | 销毁[OH_VBucket](_o_h___v_bucket.md)对象，并回收该对象占用的内存。 | 
+| [OH_Rdb_Config::selfSize](#selfsize) | 该结构体的大小。 | 
+| [OH_Rdb_Config::dataBaseDir](#databasedir) | 数据库文件路径。 | 
+| [OH_Rdb_Config::storeName](#storename) | 数据库名称。 | 
+| [OH_Rdb_Config::bundleName](#bundlename) | 应用包名。 | 
+| [OH_Rdb_Config::moduleName](#modulename) | 应用模块名。 | 
+| [OH_Rdb_Config::isEncrypt](#isencrypt) | 指定数据库是否加密。 | 
+| [OH_Rdb_Config::securityLevel](#securitylevel) | 设置数据库安全级别[OH_Rdb_SecurityLevel](#oh_rdb_securitylevel)。 | 
+| [OH_Rdb_Config::area](#area) | 设置数据库安全区域等级[Rdb_SecurityArea](#rdb_securityarea)。 | 
+| [OH_Rdb_Store::id](#id-55) | OH_Rdb_Store结构体的唯一标识符。 | 
+| [Rdb_DistributedConfig::version](#version-13) | 用于唯一标识Rdb_DistributedConfig结构的版本。 | 
+| [Rdb_DistributedConfig::isAutoSync](#isautosync) | 表示该表是否支持自动同步。 | 
+| [Rdb_KeyInfo::count](#count) | 表示发生变化的主键或者行号的数量。 | 
+| [Rdb_KeyInfo::type](#type) | 表示主键的类型[OH_ColumnType](#oh_columntype)。 | 
+| [Rdb_KeyInfo::Rdb_KeyData::integer](#integer) | 存放uint64_t类型的数据。 | 
+| [Rdb_KeyInfo::Rdb_KeyData::real](#real) | 存放double类型的数据。 | 
+| [Rdb_KeyInfo::Rdb_KeyData::text](#text) | 存放char \*类型的数据。 | 
+| [Rdb_KeyInfo::data](_rdb___key_info.md#成员变量) | 存放变化的具体数据。 | 
+| [Rdb_ChangeInfo::version](#version-23) | 用于唯一标识Rdb_DistributedConfig结构的版本。 | 
+| [Rdb_ChangeInfo::tableName](#tablename) | 表示发生变化的表的名称。 | 
+| [Rdb_ChangeInfo::ChangeType](#changetype) | 表示发生变化的数据的类型，数据或者资产附件发生变化。 | 
+| [Rdb_ChangeInfo::inserted](#inserted) | 记录插入数据的位置，如果该表的主键是string类型，该值是主键的值，否则该值表示插入数据的行号。 | 
+| [Rdb_ChangeInfo::updated](#updated) | 记录更新数据的位置，如果该表的主键是string类型，该值是主键的值，否则该值表示更新数据的行号。 | 
+| [Rdb_ChangeInfo::deleted](#deleted) | 记录删除数据的位置，如果该表的主键是string类型，该值是主键的值，否则该值表示删除数据的行号。 | 
+| [Rdb_SubscribeCallback::detailsObserver](#detailsobserver) | 端云数据更改事件的细节的回调函数。 | 
+| [Rdb_SubscribeCallback::briefObserver](#briefobserver) | 端云数据更改事件的回调函数。 | 
+| [Rdb_DataObserver::context](#context-12) | 表示数据观察者的上下文。 | 
+| [Rdb_DataObserver::callback](#callback-12) | 数据观察者的回调。 | 
+| [Rdb_Statistic::total](#total) | 表示数据库表中需要端云同步的总行数。 | 
+| [Rdb_Statistic::successful](#successful) | 表示数据库表中端云同步成功的行数。 | 
+| [Rdb_Statistic::failed](#failed) | 表示数据库表中端云同步失败的行数。 | 
+| [Rdb_Statistic::remained](#remained) | 表示数据库表中端云同步剩余未执行的行数。 | 
+| [Rdb_TableDetails::table](#table) | 数据库表名。 | 
+| [Rdb_TableDetails::upload](#upload) | 表示数据库表中端云同步上传过程的统计信息。 | 
+| [Rdb_TableDetails::download](#download) | 表示数据库表中端云同步下载过程的统计信息。 | 
+| [Rdb_ProgressDetails::version](#version-33) | 用于唯一标识OH_TableDetails结构的版本。 | 
+| [Rdb_ProgressDetails::schedule](#schedule) | 表示端云同步过程。 | 
+| [Rdb_ProgressDetails::code](#code) | 表示端云同步过程的状态。 | 
+| [Rdb_ProgressDetails::tableLength](#tablelength) | 表示端云同步的表的数量 | 
+| [Rdb_ProgressObserver::context](#context-22) | 端云同步进度观察者的上下文。 | 
+| [Rdb_ProgressObserver::callback](#callback-22) | 端云同步进度观察者的回调函数。 | 
 
 
 ## 宏定义说明
@@ -376,6 +395,27 @@ typedef struct OH_VObject OH_VObject
 **起始版本：** 10
 
 
+### Rdb_BriefObserver
+
+```
+typedef void(* Rdb_BriefObserver) (void *context, const char *values[], uint32_t count)
+```
+
+**描述**
+
+端云数据更改事件的回调函数。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| context | 表示数据观察者的上下文。 | 
+| values | 表示更改的端云帐户。 | 
+| count | 表示更改的端云帐户数量。 | 
+
+
 ### Rdb_ChangeInfo
 
 ```
@@ -400,6 +440,44 @@ typedef enum Rdb_ChangeType Rdb_ChangeType
 描述数据变更类型。
 
 **起始版本：** 11
+
+
+### Rdb_DataObserver
+
+```
+typedef struct Rdb_DataObserver Rdb_DataObserver
+```
+
+**描述**
+
+表示数据观察者。
+
+**起始版本：** 11
+
+
+### Rdb_DetailsObserver
+
+```
+typedef void(* Rdb_DetailsObserver) (void *context, const Rdb_ChangeInfo **changeInfo, uint32_t count)
+```
+
+**描述**
+
+端云数据更改事件的细节的回调函数。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| context | 表示数据观察者的上下文。 | 
+| changeInfo | 表示已更改表的信息[Rdb_ChangeInfo](_rdb___change_info.md)。 | 
+| count | 表示更改的表的数量。 | 
+
+**参见：**
+
+[Rdb_ChangeInfo](_rdb___change_info.md).
 
 
 ### Rdb_DistributedConfig
@@ -454,6 +532,29 @@ typedef enum Rdb_Progress Rdb_Progress
 **起始版本：** 11
 
 
+### Rdb_ProgressCallback
+
+```
+typedef void(* Rdb_ProgressCallback) (void *context, Rdb_ProgressDetails *progressDetails)
+```
+
+**描述**
+
+端云同步进度的回调函数。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| progressDetails | 端云同步进度的详细信息。 | 
+
+**参见：**
+
+[Rdb_ProgressDetails](_rdb___progress_details.md).
+
+
 ### Rdb_ProgressCode
 
 ```
@@ -480,6 +581,19 @@ typedef struct Rdb_ProgressDetails Rdb_ProgressDetails
 **起始版本：** 11
 
 
+### Rdb_ProgressObserver
+
+```
+typedef struct Rdb_ProgressObserver Rdb_ProgressObserver
+```
+
+**描述**
+
+端云同步进度观察者。
+
+**起始版本：** 11
+
+
 ### Rdb_SecurityArea
 
 ```
@@ -502,6 +616,19 @@ typedef struct Rdb_Statistic Rdb_Statistic
 **描述**
 
 描述数据库表的端云同步过程的统计信息。
+
+**起始版本：** 11
+
+
+### Rdb_SubscribeCallback
+
+```
+typedef union Rdb_SubscribeCallback Rdb_SubscribeCallback
+```
+
+**描述**
+
+表示回调函数。
 
 **起始版本：** 11
 
@@ -921,7 +1048,7 @@ int OH_Rdb_CloseStore (OH_Rdb_Store *store)
 ### OH_Rdb_CloudSync()
 
 ```
-int OH_Rdb_CloudSync (OH_Rdb_Store *store, Rdb_SyncMode mode, const char *tables, int count, Rdb_SyncCallback *progress )
+int OH_Rdb_CloudSync (OH_Rdb_Store *store, Rdb_SyncMode mode, const char *tables, int count, const Rdb_ProgressObserver *observer )
 ```
 
 **描述**
@@ -934,11 +1061,15 @@ int OH_Rdb_CloudSync (OH_Rdb_Store *store, Rdb_SyncMode mode, const char *tables
 
 | 名称 | 描述 |
 | -------- | -------- |
-| store | 表示指向[OH_Rdb_Store](_o_h___rdb___store.md)实例的指针。 |
-| mode | 表示同步过程的类型[Rdb_SyncMode](#rdb_syncmode). |
-| tables | 表示需要同步的表名。 |
-| count | 同步的表的数量，如果传入的值为0，同步数据库的所有表。 |
-| progress | 数据库端云同步的回调函数。 |
+| store | 表示指向[OH_Rdb_Store](_o_h___rdb___store.md)实例的指针。 | 
+| mode | 表示同步过程的类型[Rdb_SyncMode](#rdb_syncmode). | 
+| tables | 表示需要同步的表名。 | 
+| count | 同步的表的数量，如果传入的值为0，同步数据库的所有表。 | 
+| observer | 端云同步进度的观察者[Rdb_ProgressObserver](_rdb___progress_observer.md)。 | 
+
+**返回：**
+
+返回操作是否成功，出错时返回对应的错误码。
 
 **参见：**
 
@@ -1437,6 +1568,128 @@ int OH_Rdb_SetVersion (OH_Rdb_Store *store, int version )
 [OH_Rdb_Store](_o_h___rdb___store.md).
 
 
+### OH_Rdb_Subscribe()
+
+```
+int OH_Rdb_Subscribe (OH_Rdb_Store *store, Rdb_SubscribeType type, const Rdb_DataObserver *observer )
+```
+
+**描述**
+
+为数据库注册观察者。当分布式数据库中的数据发生更改时，将调用回调。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| store | 表示指向[OH_Rdb_Store](_o_h___rdb___store.md)实例的指针。 | 
+| type | 表示在[Rdb_SubscribeType](#rdb_subscribetype)中定义的订阅类型。 | 
+| observer | 数据库中更改事件的观察者[Rdb_DataObserver](_rdb___data_observer.md)。 | 
+
+**返回：**
+
+返回操作是否成功，出错时返回对应的错误码。
+
+**参见：**
+
+[OH_Rdb_Store](_o_h___rdb___store.md).
+
+[Rdb_DataObserver](_rdb___data_observer.md).
+
+
+### OH_Rdb_SubscribeAutoSyncProgress()
+
+```
+int OH_Rdb_SubscribeAutoSyncProgress (OH_Rdb_Store *store, const Rdb_ProgressObserver *observer )
+```
+
+**描述**
+
+订阅RDB存储的自动同步进度。 当收到自动同步进度的通知时，将调用回调。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| store | 表示指向目标[OH_Rdb_Store](_o_h___rdb___store.md)实例的指针。 | 
+| observer | 用于自动同步进度的观察者[Rdb_ProgressObserver](_rdb___progress_observer.md)。表示调用返回自动同步进度的回调。 | 
+
+**返回：**
+
+返回操作是否成功，出错时返回对应的错误码。
+
+**参见：**
+
+[OH_Rdb_Store](_o_h___rdb___store.md).
+
+[Rdb_ProgressObserver](_rdb___progress_observer.md).
+
+
+### OH_Rdb_Unsubscribe()
+
+```
+int OH_Rdb_Unsubscribe (OH_Rdb_Store *store, Rdb_SubscribeType type, const Rdb_DataObserver *observer )
+```
+
+**描述**
+
+从数据库中删除指定类型的指定观察者。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| store | 表示指向[OH_Rdb_Store](_o_h___rdb___store.md)实例的指针. | 
+| type | 表示在[Rdb_SubscribeType](#rdb_subscribetype)中定义的订阅类型。 | 
+| observer | 数据库中更改事件的观察者[Rdb_DataObserver](_rdb___data_observer.md)。如果这是nullptr，表示删除该类型的所有观察者。 | 
+
+**返回：**
+
+返回操作是否成功，出错时返回对应的错误码。
+
+**参见：**
+
+[OH_Rdb_Store](_o_h___rdb___store.md).
+
+[Rdb_DataObserver](_rdb___data_observer.md).
+
+
+### OH_Rdb_UnsubscribeAutoSyncProgress()
+
+```
+int OH_Rdb_UnsubscribeAutoSyncProgress (OH_Rdb_Store *store, const Rdb_ProgressObserver *observer )
+```
+
+**描述**
+
+取消订阅RDB存储的自动同步进程。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| store | 表示指向目标[OH_Rdb_Store](_o_h___rdb___store.md)实例的指针。 | 
+| observer | 表示自动同步进度的观察者[Rdb_ProgressObserver](_rdb___progress_observer.md)。如果是空指针，则自动同步进程的所有回调都将被取消注册。 | 
+
+**返回：**
+
+返回操作是否成功，出错时返回对应的错误码。
+
+**参见：**
+
+[OH_Rdb_Store](_o_h___rdb___store.md).
+
+[Rdb_ProgressObserver](_rdb___progress_observer.md).
+
+
 ### OH_Rdb_Update()
 
 ```
@@ -1629,6 +1882,17 @@ OH_Predicates *(*between) (OH_Predicates *predicates, const char *field, OH_VObj
 [OH_Predicates](_o_h___predicates.md), [OH_VObject](_o_h___v_object.md).
 
 
+### briefObserver
+
+```
+Rdb_BriefObserver Rdb_SubscribeCallback::briefObserver
+```
+
+**描述**
+
+端云数据更改事件的回调函数。
+
+
 ### bundleName
 
 ```
@@ -1638,6 +1902,28 @@ const char* OH_Rdb_Config::bundleName
 **描述**
 
 应用包名。
+
+
+### callback [1/2]
+
+```
+Rdb_SubscribeCallback Rdb_DataObserver::callback
+```
+
+**描述**
+
+数据观察者的回调。
+
+
+### callback [2/2]
+
+```
+Rdb_ProgressCallback Rdb_ProgressObserver::callback
+```
+
+**描述**
+
+端云同步进度观察者的回调函数。
 
 
 ### capability
@@ -1725,6 +2011,28 @@ int Rdb_ProgressDetails::code
 **描述**
 
 表示端云同步过程的状态。
+
+
+### context [1/2]
+
+```
+void* Rdb_DataObserver::context
+```
+
+**描述**
+
+表示数据观察者的上下文。
+
+
+### context [2/2]
+
+```
+void* Rdb_ProgressObserver::context
+```
+
+**描述**
+
+端云同步进度观察者的上下文。
 
 
 ### count
@@ -1866,6 +2174,17 @@ int(*destroy) (OH_VObject *valueObject)
 **参见：**
 
 [OH_VObject](_o_h___v_object.md).
+
+
+### detailsObserver
+
+```
+Rdb_DetailsObserver Rdb_SubscribeCallback::detailsObserver
+```
+
+**描述**
+
+端云数据更改事件的细节的回调函数。
 
 
 ### distinct
