@@ -597,7 +597,7 @@ getAppMemoryLimit() : MemoryLimit
 | 名称                     | 类型    |  说明                                |
 | -------------------------| ------- |  ----------------------------------- |
 | ABILITY_MANAGER          | number  |  能力管理标签                         |
-| ACE                      | number  |  ACE开发框架标签                      |
+| ARK_UI                   | number  |  ArkUI开发框架标签                      |
 | ARK                      | number  |  ARK标签                             |
 | BLUETOOTH                | number  |  蓝牙标签                            |
 | COMMON_LIBRARY           | number  |  公共库子系统标签                     |
