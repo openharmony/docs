@@ -968,6 +968,104 @@ let observer:UIObserver = uiContext.getUIObserver();
 observer.off('navDestinationUpdate', { navigationId: "testId" });
 ```
 
+### on('scrollEvent')<sup>12+</sup>
+
+on(type: 'scrollEvent', callback: Callback\<observer.ScrollEventInfo\>): void
+
+监听滚动事件的开始和结束。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                  | 必填 | 说明                                                         |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                | 是   | 监听事件，固定为'scrollEvent'，即滚动事件的开始和结束。      |
+| callback | Callback\<observer.[ScrollEventInfo](js-apis-arkui-observer.md#ScrollEventInfo)\> | 是   | 回调函数。返回滚动事件的信息。   |
+
+**示例：**
+
+```ts
+import { UIObserver } from '@ohos.arkui.UIContext';
+let observer:UIObserver = uiContext.getUIObserver();
+observer.on('scrollEvent', (info) => {
+    console.info('scrollEvent ', JSON.stringify(info));
+});
+```
+
+### off('scrollEvent')<sup>12+</sup>
+
+off(type: 'scrollEvent', callback?: Callback\<observer.ScrollEventInfo\>): void
+
+取消监听滚动事件的开始和结束。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                  | 必填 | 说明                                                         |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                | 是   | 监听事件，固定为'scrollEvent'，即滚动事件的开始和结束。      |
+| callback | Callback\<observer.[ScrollEventInfo](js-apis-arkui-observer.md#ScrollEventInfo)\> | 是   | 回调函数。返回滚动事件的信息。   |
+
+**示例：**
+
+```ts
+import { UIObserver } from '@ohos.arkui.UIContext';
+let observer:UIObserver = uiContext.getUIObserver();
+observer.off('scrollEvent');
+```
+
+### on('scrollEvent')<sup>12+</sup>
+
+on(type: 'scrollEvent', options: { id: string }, callback: Callback\<observer.ScrollEventInfo\>): void
+
+监听滚动事件的开始和结束。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'scrollEvent'，即滚动事件的开始和结束。 |
+| options  | { id: string } | 是   | 指定监听的滚动组件的id。                                   |
+| callback | Callback\<observer.[ScrollEventInfo](js-apis-arkui-observer.md#ScrollEventInfo)\>        | 是   | 回调函数。返回滚动事件的信息。                 |
+
+**示例：**
+
+```ts
+import { UIObserver } from '@ohos.arkui.UIContext';
+let observer:UIObserver = uiContext.getUIObserver();
+observer.on('scrollEvent', { id: "testId" }, (info) => {
+    console.info('scrollEvent ', JSON.stringify(info));
+});
+```
+
+### off('scrollEvent')<sup>12+</sup>
+
+off(type: 'scrollEvent', options: { id: string }, callback?: Callback\<observer.ScrollEventInfo\>): void
+
+取消监听滚动事件的开始和结束。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'scrollEvent'，即滚动事件的开始和结束。 |
+| options  | { id: string } | 是   | 指定监听的滚动组件的id。                                   |
+| callback | Callback\<observer.[ScrollEventInfo](js-apis-arkui-observer.md#ScrollEventInfo)\>        | 否   | 回调函数。返回滚动事件的信息。                 |
+
+**示例：**
+
+```ts
+import { UIObserver } from '@ohos.arkui.UIContext';
+let observer:UIObserver = uiContext.getUIObserver();
+observer.off('scrollEvent', { id: "testId" });
+```
+
 ### on('routerPageUpdate')<sup>11+</sup>
 
 on(type: 'routerPageUpdate', callback: Callback\<observer.RouterPageInfo\>): void

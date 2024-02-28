@@ -24,6 +24,17 @@ NavDestination组件状态。
 | ON_SHOWN  | 0   | NavDestination组件显示。 |
 | ON_HIDDEN | 1   | NavDestination组件隐藏。 |
 
+## ScrollEventType
+
+滚动事件的类型。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称      | 值  | 说明                     |
+| --------- | --- | ------------------------ |
+| SCROLL_START  | 0   | 滚动事件开始。 |
+| SCROLL_STOP   | 1   | 滚动事件结束。 |
+
 ## RouterPageState
 
 routerPage生命周期触发时对应的状态
@@ -49,6 +60,18 @@ NavDestination组件信息。
 | navigationId | [ResourceStr](arkui-ts/ts-types.md#resourcestr) | 是   | 包含NavDestination组件的Navigation组件的id。 |
 | name         | [ResourceStr](arkui-ts/ts-types.md#resourcestr) | 是   | NavDestination组件的名称。                   |
 | state        | [NavDestinationState](#navdestinationstate)        | 是   | NavDestination组件的状态。                   |
+
+## ScrollEventInfo
+
+ScrollEvent滚动信息。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称         | 类型                                               | 必填 | 说明                                         |
+| ------------ | -------------------------------------------------- | ---- | -------------------------------------------- |
+| id           | string                                             | 是   | 滚动组件的id。                               |
+| eventType    | [ScrollEventType](#ScrollEventType)                | 是   | 滚动事件的类型。                             |
+| offset       | number                                             | 是   | 滚动组件的当前偏移量。                        |
 
 ## RouterPageInfo
 
@@ -152,6 +175,96 @@ off(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callba
 
 ```ts
 observer.off('navDestinationUpdate', { navigationId: "testId" });
+```
+
+## observer.on('scrollEvent')
+
+on(type: 'scrollEvent', callback: Callback\<ScrollEventInfo\>): void
+
+监听滚动事件的开始和结束。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                  | 必填 | 说明                                                                     |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------------------ |
+| type     | string                                                | 是   | 监听事件，固定为'scrollEvent'，即滚动事件的开始和结束。                   |
+| callback | Callback\<[ScrollEventInfo](#ScrollEventInfo)\>       | 否   | 回调函数。返回滚动事件的信息。                                           |
+
+**示例：**
+
+```ts
+observer.on('scrollEvent', (info) => {
+    console.info('scrollEvent ', JSON.stringify(info));
+});
+```
+
+## observer.off('scrollEvent')
+
+off(type: 'scrollEvent', callback?: Callback\<ScrollEventInfo\>): void
+
+取消监听滚动事件的开始和结束。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                  | 必填 | 说明                                                                     |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------------------ |
+| type     | string                                                | 是   | 监听事件，固定为'scrollEvent'，即滚动事件的开始和结束。                   |
+| callback | Callback\<[ScrollEventInfo](#ScrollEventInfo)\>       | 否   | 回调函数。返回滚动事件的信息。                                           |
+
+**示例：**
+
+```ts
+observer.off('scrollEvent');
+```
+
+## observer.on('scrollEvent')
+
+on(type: 'scrollEvent', options: { id: string }, callback: Callback\<ScrollEventInfo\>): void
+
+监听滚动事件的开始和结束。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                                 | 必填 | 说明                                                                     |
+| -------- | -------------------------------------------------------------------- | ---- | ------------------------------------------------------------------------ |
+| type     | string                                                               | 是   | 监听事件，固定为'scrollEvent'，即滚动事件的开始和结束。                   |
+| options  | { id: string }                                                       | 是   | 指定监听的滚动组件的id。                                                 |
+| callback | Callback\<[ScrollEventInfo](#ScrollEventInfo)\>                      | 否   | 回调函数。返回滚动事件的信息。                                            |
+
+**示例：**
+
+```ts
+observer.on('scrollEvent', { id: "testId" }, (info) => {
+    console.info('scrollEvent ', JSON.stringify(info));
+});
+```
+
+## observer.off('scrollEvent')
+
+off(type: 'scrollEvent', options: { id: string }, callback?: Callback\<ScrollEventInfo\>): void
+
+取消监听滚动事件的开始和结束。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                                 | 必填 | 说明                                                                     |
+| -------- | -------------------------------------------------------------------- | ---- | ------------------------------------------------------------------------ |
+| type     | string                                                               | 是   | 监听事件，固定为'scrollEvent'，即滚动事件的开始和结束。                   |
+| options  | { id: string }                                                       | 是   | 指定监听的滚动组件的id。                                                 |
+| callback | Callback\<[ScrollEventInfo](#ScrollEventInfo)\>                      | 否   | 回调函数。返回滚动事件的信息。                                            |
+
+**示例：**
+
+```ts
+observer.off('scrollEvent', { id: "testId" });
 ```
 
 ## observer.on('routerPageUpdate')<sup>11+</sup>
