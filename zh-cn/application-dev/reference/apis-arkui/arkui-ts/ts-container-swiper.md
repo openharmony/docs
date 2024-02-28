@@ -99,6 +99,19 @@ showPrevious(): void
 
 翻至上一页。翻页带动效切换过程，时长通过duration指定。
 
+### changeIndex<sup>12+</sup>
+
+changeIndex(index: number, useAnimation?: boolean): void
+
+翻至指定页面。
+
+**参数：**
+
+| 参数名      | 参数类型       | 必填项  | 参数描述     |
+| -------- | ---------- | ---- | -------- |
+| index| number | 是    | 指定页面在Swiper中的索引值。 |
+| useAnimation| boolean | 否    | 设置翻至指定页面时是否有动效，true表示有动效，false表示没有动效。<br/>默认值：false。 |
+
 ### finishAnimation
 
 finishAnimation(callback?: () => void): void
