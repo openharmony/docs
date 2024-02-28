@@ -1,9 +1,10 @@
-# Data Management Overview
+# Introduction to ArkData
 
 
 ## Function
 
-Data management provides data storage, management, and synchronization capabilities. For example, you can store the Contacts application data in database for secure management and shared access, and synchronize the Contacts information with a smart watch.
+ArkData provides data storage, management, and synchronization capabilities. For example, you can store the Contacts application data in database for secure management and shared access, and synchronize the contacts information with a smart watch.
+- Unified data definition: OpenHarmony provides unified data definitions, including the data types and structs, for different applications and devices.
 
 - Data storage: provides data persistence capabilities, which can be classified into user preferences, key-value (KV) stores, and relational database (RDB) stores by data characteristics.
 
@@ -31,9 +32,8 @@ The data management module includes preferences, KV data management (KV-Store), 
 
 - **DataObject**: independently provides distributed capabilities for the data of object structs. For the object data that is still required after the restart of an application (either the cross-device application or local device application), the **DatamgrService** implements temporary storage of the object data.
 
-- **DataShare**: provides the data provider-consumer mode to implement addition, deletion, modification, and query of cross-application data on a device, and notification subscription. **DataShare** is not bound to any database and can interact with RDB and KV stores. You can also encapsulate your own databases for C/C++ applications.<br> In addition to the provider-consumer mode, **DataShare** provides silent access, which allows direct access to the provider's data via the DatamgrService proxy instead of starting the provider. Currently, only the RDB stores support silent access.
+- **DataShare**: provides the data provider-consumer mode to implement addition, deletion, modification, and query of cross-application data on a device, and notification subscription. **DataShare** is not bound to any database and can interact with RDB and KV stores. You can also encapsulate your own databases for C/C++ applications.<br>In addition to the provider-consumer mode, **DataShare** provides silent access, which allows direct access to the provider's data via the DatamgrService proxy instead of starting the provider. Currently, only the RDB stores support silent access.
 
 - **UDMF**: defines the data language and standards for cross-application and cross-device data interaction, improving data interaction efficiency. The UDMF provides secure and standard data transmission channels and supports different levels of data access permissions and lifecycle management policies. It helps implement efficient data sharing across applications and devices.
 
 - **DatamgrService**: implements synchronization and cross-application sharing for other components, including cross-device synchronization of **RelationalStore** and **KV-Store**, silent access to provider data of **DataShare**, and temporary storage of **DataObject** synchronization object data.
-
