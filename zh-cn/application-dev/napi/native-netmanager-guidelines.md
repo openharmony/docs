@@ -61,18 +61,18 @@ static napi_value CodeNumber(napi_env env, napi_callback_info info)
     size_t argc = 1;
     napi_value args[1] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-    int32_t codeNumber;
-    napi_get_value_int32(env, args[0], &codeNumber);
+    int32_t param;
+    napi_get_value_int32(env, args[0], &param);
 
     NetConn_NetHandle netHandle;
-    if (codeNumber == 0) {
-        codeNumber = OH_NetConn_GetDefaultNet(NULL);
+    if (param== 0) {
+        param= OH_NetConn_GetDefaultNet(NULL);
     } else {
-        codeNumber = OH_NetConn_GetDefaultNet(&netHandle);
+        param= OH_NetConn_GetDefaultNet(&netHandle);
     }
     
     napi_value result;
-    napi_create_int32(env, codeNumber, &result);
+    napi_create_int32(env, param, &result);
     return result;
 }
 
@@ -91,7 +91,7 @@ static napi_value NetId(napi_env env, napi_callback_info info) {
 }
 ```
 
-简要说明：这两个函数是用于获取系统默认网络连接的相关信息的。其中，CodeNumber函数用于获取默认网络连接的句柄，如果返回值为0，则表示获取失败；而NetId函数则用于获取默认网络连接的ID。这些信息可以用于进一步的网络操作。
+简要说明：这两个函数是用于获取系统默认网络连接的相关信息的。其中，CodeNumber是接收ArkTs端传入的测试参数，返回调用接口后对应的返回值，param可以自行调整；如果返回值为0，则会返回参数错误；而NetId函数则用于获取默认网络连接的ID。这些信息可以用于进一步的网络操作。
 
 
 2、将通过napi封装好的`napi_value`类型对象初始化导出，通过外部函数接口，将以上两个函数暴露给JavaScript使用。
