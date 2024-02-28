@@ -134,7 +134,7 @@ avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSe
 | ----- | ------ | ---- |
 | audio | string | 音频 |
 | video | string | 视频 |
-| voice_call | string | 通话 |
+| voice_call<sup>11+<sup> | string | 通话 |
 
 ## AVSession<sup>10+</sup>
 
