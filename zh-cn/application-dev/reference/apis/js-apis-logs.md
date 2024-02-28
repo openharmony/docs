@@ -4,7 +4,11 @@
 
 > **说明：**
 >
-> 本模块首批接口从API version 3开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本模块首批接口从API version 3开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> - Stage模型下，不支持Console格式化输出，仅支持打印字符串。
+>
+> - Stage模型下，Console支持打印的单个参数最大不超过1024字节，超出限制的参数将不会被打印。
 
 ## console.debug
 
@@ -29,6 +33,7 @@ debug(message: string, ...arguments: any[]): void
 const number = 5;
 console.debug('count: %d', number);  // 格式化输出替换message中的文本。
 // count: 5 
+
 console.debug('count:', number);  // 打印message以及其余信息
 // count: 5 
 console.debug('count:'); // 仅打印message
@@ -58,6 +63,7 @@ log(message: string, ...arguments: any[]): void
 const number = 5;
 console.log('count: %d', number);  // 格式化输出替换message中的文本。
 // count: 5 
+// Stage模型不支持格式化输出，打印结果为：count: %d 5
 console.log('count:', number);  // 打印message以及其余信息
 // count: 5 
 console.log('count:'); // 仅打印message
@@ -87,6 +93,7 @@ info(message: string, ...arguments: any[]): void
 const number = 5;
 console.info('count: %d', number);  // 格式化输出替换message中的文本。
 // count: 5 
+// Stage模型不支持格式化输出，打印结果为：count: %d 5
 console.info('count:', number);  // 打印message以及其余信息
 // count: 5 
 console.info('count:'); // 仅打印message
@@ -116,6 +123,7 @@ warn(message: string, ...arguments: any[]): void
 const str = "name should be string";
 console.warn('warn: %d', str);  // 格式化输出替换message中的文本。
 // warn: name should be string
+// Stage模型不支持格式化输出，打印结果为：warn: %d name should be string
 console.warn('warn:', str);  // 打印message以及其余信息
 // warn: name should be string
 console.warn('warn:'); // 仅打印message
@@ -146,6 +154,7 @@ error(message: string, ...arguments: any[]): void
 const str = "value is not defined";
 console.error('error: %d', str);  // 格式化输出替换message中的文本。
 // error: value is not defined
+// Stage模型不支持格式化输出，打印结果为：error: %d value is not defined
 console.error('error:', str);  // 打印message以及其余信息
 // error: value is not defined
 console.error('error:'); // 仅打印message
