@@ -135,13 +135,13 @@ zh-cn/application-dev/reference/apis/js-apis-eventhub.md @jayleehw @huipeizi @li
 zh-cn/application-dev/reference/apis/js-apis-extension-context.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
 zh-cn/application-dev/reference/apis/js-apis-extensionrunninginfo.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
 zh-cn/application-dev/reference/apis/js-apis-featureAbility.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
-zh-cn/application-dev/reference/apis/js-apis-formbindingdata.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
-zh-cn/application-dev/reference/apis/js-apis-formerror.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
-zh-cn/application-dev/reference/apis/js-apis-formextension.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
-zh-cn/application-dev/reference/apis/js-apis-formextensioncontext.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
-zh-cn/application-dev/reference/apis/js-apis-formhost.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
-zh-cn/application-dev/reference/apis/js-apis-formInfo.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
-zh-cn/application-dev/reference/apis/js-apis-formprovider.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
+zh-cn/application-dev/reference/apis-as/js-apis-app-form-formBindingData.md @arondave @songzhenlei @nezha-father
+zh-cn/application-dev/reference/apis-as/js-apis-application-formError.md @arondave @songzhenlei @nezha-father
+zh-cn/application-dev/reference/apis-as/js-apis-app-form-formExtensionAbility.md @arondave @songzhenlei @nezha-father
+zh-cn/application-dev/reference/apis-as/js-apis-inner-application-formExtensionContext.md @arondave @songzhenlei @nezha-father
+zh-cn/application-dev/reference/apis-as/js-apis-app-form-formInfo.md @arondave @songzhenlei @nezha-father
+zh-cn/application-dev/reference/apis-as/js-apis-app-form-formProvider.md @arondave @songzhenlei @nezha-father
+zh-cn/application-dev/reference/apis-form-kit/ @arondave @songzhenlei @nezha-father
 zh-cn/application-dev/reference/apis/js-apis-geolocation.md @cheng_guohong @RayShih @cheng_guohong @xiangkejin123
 zh-cn/application-dev/reference/apis/js-apis-http.md @jiayanhong-hw @zhang_yixin13 @rain_myf @ustblx
 zh-cn/application-dev/reference/apis/js-apis-i18n.md @Buda-Liu @ningningW @mengjingzhimo @yangqing3
@@ -718,7 +718,7 @@ zh-cn/application-dev/quick-start/quickfix*.md @huipeizi  @changzheng6  @hou-xia
 [开发-应用模型]
 zh-cn/application-dev/application-models/ @huipeizi  @ccllee  @lxfycode  @lixiaogang30
 zh-cn/application-dev/application-models/uiability*.md @huipeizi  @li-weifeng2  @lxfycode  @lixiaogang30
-zh-cn/application-dev/application-models/*widget*.md @huipeizi  @li-weifeng2  @lxfycode  @lixiaogang30
+zh-cn/application-dev/application-models/*widget*.md @arondave @songzhenlei @nezha-father
 zh-cn/application-dev/application-models/thread*.md @huipeizi  @li-weifeng2  @lxfycode  @lixiaogang30
 zh-cn/application-dev/application-models/itc*.md @huipeizi  @li-weifeng2  @lxfycode  @lixiaogang30
 zh-cn/application-dev/application-models/common-event*.md @huipeizi  @idanny  @suzhenxuan  @lixiaogang30
@@ -787,7 +787,7 @@ zh-cn/application-dev/reference/apis/common_event/commonEvent-bundleManager.md @
 [错误码-Ability]
 zh-cn/application-dev/reference/errorcodes/errorcode-ability.md @huipeizi  @ccllee  @lxfycode  @lixiaogang30
 zh-cn/application-dev/reference/errorcodes/errorcode-DistributedSchedule.md @huipeizi  @ccllee  @lxfycode  @lixiaogang30
-zh-cn/application-dev/reference/errorcodes/errorcode-form.md @huipeizi  @ccllee  @lxfycode  @lixiaogang30
+zh-cn/application-dev/reference/errorcodes/errorcode-form.md @arondave  @songzhenlei  @nezha-father
 
 [错误码-包管理]
 zh-cn/application-dev/reference/errorcodes/errorcode-bundle.md @huipeizi  @changzheng6  @hou-xiangyu1029  @lixiaogang30
