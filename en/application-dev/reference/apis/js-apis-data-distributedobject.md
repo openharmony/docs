@@ -5,7 +5,6 @@ The **distributedDataObject** module provides basic data object management, incl
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
->
 
 
 ## Modules to Import
@@ -58,7 +57,7 @@ class SourceObject {
     }
 }
 
-let source: SourceObject = new SourceObject("amy", 18, false);
+let source: SourceObject = new SourceObject("jack", 18, false);
 let g_object: distributedObject.DataObject = distributedObject.create(context, source);
 ```
 
@@ -86,7 +85,7 @@ class SourceObject {
 
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
-        let source: SourceObject = new SourceObject("amy", 18, false);
+        let source: SourceObject = new SourceObject("jack", 18, false);
         g_object = distributedObject.create(this.context, source);
     }
 }
@@ -134,6 +133,22 @@ Represents the information returned by the callback of [revokeSave](#revokesave9
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | sessionId | string | Yes| Unique ID for multi-device collaboration.|
+
+## BindInfo<sup>11+</sup>
+
+Represents the information about the joint asset in the RDB store to bind. Currently, only the RDB stores are supported.
+
+**System capability**: SystemCapability.DistributedDataManager.DataObject.DistributedObject
+
+**Parameters**
+
+  | Name      | Type                                                                | Mandatory| Description                                |
+  | ---------- | -------------------------------------------------------------------- | ---- | ------------------------------------ |
+  | storeName  | string                                                               | Yes  | RDB store to which the target asset (asset to bind) belongs.  |
+  | tableName  | string                                                               | Yes  | Table to which the target asset is located in the RDB store.  |
+  | primaryKey | [CommonType.ValuesBucket](./js-apis-data-commonType.md#valuesbucket) | Yes  | Primary key of the target asset in the RDB store.  |
+  | field      | string                                                               | Yes  | Column in which the target asset is located in the RDB store.  |
+  | assetName  | string                                                               | Yes  | Name of the target asset in the RDB store.|
 
 ## DataObject
 
@@ -191,7 +206,7 @@ Exits all sessions. This API uses an asynchronous callback to return the result.
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked when the distributed data object exits all sessions. |
+  | callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked when the distributed data object exits all sessions.|
 
 **Error codes**
 
@@ -281,7 +296,7 @@ Subscribes to data changes of this distributed data object.
 ```ts
 g_object.on("change", (sessionId: string, fields: Array<string>) => {
     console.info("change" + sessionId);
-    if (fields != null && fields != undefined) {
+    if (g_object != null && fields != null && fields != undefined) {
         for (let index: number = 0; index < fields.length; index++) {
             console.info("changed !" + fields[index] + " " + g_object[fields[index]]);
         }
@@ -311,7 +326,7 @@ Unsubscribes from the data changes of this distributed data object.
 // Unregister the specified data change callback.
 g_object.off("change", (sessionId: string, fields: Array<string>) => {
     console.info("change" + sessionId);
-    if (fields != null && fields != undefined) {
+    if (g_object != null && fields != null && fields != undefined) {
         for (let index: number = 0; index < fields.length; index++) {
             console.info("changed !" + fields[index] + " " + g_object[fields[index]]);
         }
@@ -431,7 +446,7 @@ The saved data will be released in the following cases:
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-| deviceId | string | Yes| ID of the device where the data is saved. The default value is **local**, which indicates the local device. |
+  | deviceId | string | Yes| ID of the device where the data is saved. The default value is **local**, which indicates the local device. |
 
 **Return value**
 
@@ -540,6 +555,158 @@ g_object.revokeSave().then((result: distributedObject.RevokeSaveSuccessResponse)
 });
 ```
 
+### bindAssetStore<sup>11+</sup>
+
+bindAssetStore(assetKey: string, bindInfo: BindInfo, callback: AsyncCallback&lt;void&gt;): void
+
+Binds joint assets. Currently, only the binding between an asset in a distributed data object and an asset in an RDB store is supported. This API uses an asynchronous callback to return the result.
+
+When an asset in a distributed object and an asset in an RDB store point to the same entity asset file, that is, the URIs of the two assets are the same, a conflict occurs. Such assets are called joint assets. To resolve the conflict, bind the joint assets. The binding is automatically released when the application exits the session.
+
+**System capability**: SystemCapability.DistributedDataManager.DataObject.DistributedObject
+
+**Parameters**
+
+  | Name  | Type                     | Mandatory| Description                                                                              |
+  | -------- | ------------------------- | ---- | ---------------------------------------------------------------------------------- |
+  | assetKey | string                    | Yes  | Key of the joint asset in the distributed data object.                                            |
+  | bindInfo | [BindInfo](#bindinfo11)   | Yes  | Information about the joint asset in the RDB store, including the RDB store name, table name, primary key, column name, and asset name in the RDB store.|
+  | callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.                                                                |
+
+**Example**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import type window from '@ohos.window';
+import distributedObject from '@ohos.data.distributedDataObject';
+import commonType from '@ohos.data.commonType';
+import type { BusinessError } from '@ohos.base';
+
+class Note {
+  title: string | undefined
+  text: string | undefined
+  attachment: commonType.Asset | undefined
+
+  constructor(title: string | undefined, text: string | undefined, attachment: commonType.Asset | undefined) {
+    this.title = title;
+    this.text = text;
+    this.attachment = attachment;
+  }
+}
+
+class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    let attachment: commonType.Asset = {
+      name: 'test_img.jpg',
+      uri: 'file://com.example.myapplication/data/storage/el2/distributedfiles/dir/test_img.jpg',
+      path: '/dir/test_img.jpg',
+      createTime: '2024-01-02 10:00:00',
+      modifyTime: '2024-01-02 10:00:00',
+      size: '5',
+      status: commonType.AssetStatus.ASSET_NORMAL
+    }
+    let note: Note = new Note('test', 'test', attachment);
+    let g_object: distributedObject.DataObject = distributedObject.create(this.context, note);
+    g_object.setSessionId('123456');
+
+    const bindInfo: distributedObject.BindInfo = {
+      storeName: 'notepad',
+      tableName: 'note_t',
+      primaryKey: {
+        'uuid': '00000000-0000-0000-0000-000000000000'
+      },
+      field: 'attachment',
+      assetName: attachment.name
+    }
+
+    g_object.bindAssetStore('attachment', bindInfo, (err: BusinessError) => {
+      if (err) {
+        console.error('bindAssetStore failed.');
+      }
+      console.info('bindAssetStore success.');
+    });
+  }
+}
+```
+
+### bindAssetStore<sup>11+</sup>
+
+bindAssetStore(assetKey: string, bindInfo: BindInfo): Promise&lt;void&gt;
+
+Binds joint assets. Currently, only the binding between an asset in a distributed data object and an asset in an RDB store is supported. This API uses a promise to return the result.
+
+When an asset in a distributed object and an asset in an RDB store point to the same entity asset file, that is, the URIs of the two assets are the same, a conflict occurs. Such assets are called joint assets. To resolve the conflict, bind the joint assets. The binding is automatically released when the application exits the session.
+
+**System capability**: SystemCapability.DistributedDataManager.DataObject.DistributedObject
+
+**Parameters**
+
+  | Name  | Type                   | Mandatory| Description                                                                              |
+  | -------- | ----------------------- | ---- | ---------------------------------------------------------------------------------- |
+  | assetKey | string                  | Yes  | Key of the joint asset in the distributed data object.                                            |
+  | bindInfo | [BindInfo](#bindinfo11) | Yes  | Information about the joint asset in the RDB store, including the RDB store name, table name, primary key, column name, and asset name in the RDB store.|
+
+**Return value**
+
+  | Type               | Description         |
+  | ------------------- | ------------- |
+  | Promise&lt;void&gt; | Promise that returns no value.|
+
+**Example**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import type window from '@ohos.window';
+import distributedObject from '@ohos.data.distributedDataObject';
+import commonType from '@ohos.data.commonType';
+import type { BusinessError } from '@ohos.base';
+
+class Note {
+  title: string | undefined
+  text: string | undefined
+  attachment: commonType.Asset | undefined
+
+  constructor(title: string | undefined, text: string | undefined, attachment: commonType.Asset | undefined) {
+    this.title = title;
+    this.text = text;
+    this.attachment = attachment;
+  }
+}
+
+class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    let attachment: commonType.Asset = {
+      name: 'test_img.jpg',
+      uri: 'file://com.example.myapplication/data/storage/el2/distributedfiles/dir/test_img.jpg',
+      path: '/dir/test_img.jpg',
+      createTime: '2024-01-02 10:00:00',
+      modifyTime: '2024-01-02 10:00:00',
+      size: '5',
+      status: commonType.AssetStatus.ASSET_NORMAL
+    }
+    let note: Note = new Note('test', 'test', attachment);
+    let g_object: distributedObject.DataObject = distributedObject.create(this.context, note);
+    g_object.setSessionId('123456');
+
+    const bindInfo: distributedObject.BindInfo = {
+      storeName: 'notepad',
+      tableName: 'note_t',
+      primaryKey: {
+        'uuid': '00000000-0000-0000-0000-000000000000'
+      },
+      field: 'attachment',
+      assetName: attachment.name
+    }
+
+    g_object.bindAssetStore("attachment", bindInfo).then(() => {
+      console.info('bindAssetStore success.');
+    }).catch((err: BusinessError) => {
+      console.error("bindAssetStore failed, error code = " + err.code);
+    });
+  }
+}
+```
+
 ## distributedObject.createDistributedObject<sup>(deprecated)</sup>
 
 createDistributedObject(source: object): DistributedObject
@@ -581,7 +748,7 @@ class SourceObject {
     }
 }
 
-let source: SourceObject = new SourceObject("amy", 18, false);
+let source: SourceObject = new SourceObject("jack", 18, false);
 let g_object: distributedObject.DistributedObject = distributedObject.createDistributedObject(source);
 ```
 
@@ -631,7 +798,7 @@ class SourceObject {
     }
 }
 
-let source: SourceObject = new SourceObject("amy", 18, false);
+let source: SourceObject = new SourceObject("jack", 18, false);
 let g_object: distributedObject.DistributedObject = distributedObject.createDistributedObject(source);
 // Add g_object to the distributed network.
 g_object.setSessionId(distributedObject.genSessionId());
@@ -674,7 +841,7 @@ class SourceObject {
     }
 }
 
-let source: SourceObject = new SourceObject("amy", 18, false);
+let source: SourceObject = new SourceObject("jack", 18, false);
 let g_object: distributedObject.DistributedObject = distributedObject.createDistributedObject(source);
 g_object.on("change", (sessionId: string, fields: Array<string>) => {
     console.info("change" + sessionId);
@@ -721,7 +888,7 @@ class SourceObject {
     }
 }
 
-let source: SourceObject = new SourceObject("amy", 18, false);
+let source: SourceObject = new SourceObject("jack", 18, false);
 let g_object: distributedObject.DistributedObject = distributedObject.createDistributedObject(source);
 // Unregister the specified data change callback.
 g_object.off("change", (sessionId: string, fields: Array<string>) => {
@@ -771,7 +938,7 @@ class SourceObject {
     }
 }
 
-let source: SourceObject = new SourceObject("amy", 18, false);
+let source: SourceObject = new SourceObject("jack", 18, false);
 let g_object: distributedObject.DistributedObject = distributedObject.createDistributedObject(source);
 
 g_object.on("status", (sessionId: string, networkId: string, status: 'online' | 'offline') => {
@@ -815,7 +982,7 @@ class SourceObject {
     }
 }
 
-let source: SourceObject = new SourceObject("amy", 18, false);
+let source: SourceObject = new SourceObject("jack", 18, false);
 let g_object: distributedObject.DistributedObject = distributedObject.createDistributedObject(source);
 // Unregister the specified status change callback.
 g_object.off("status", (sessionId: string, networkId: string, status: 'online' | 'offline') => {
