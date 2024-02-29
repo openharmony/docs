@@ -31,7 +31,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [FileManagement_ErrCode](#filemanagement_errcode-1) {<br/>ERR_OK = 0,<br/>ERR_PERMISSION_ERROR = 201,<br/>ERR_DEVICE_NOT_SUPPORTED = 801,<br/>ERR_EPERM = 13900001,<br/>ERR_ENOENT = 13900002,<br/>ERR_ENOMEM = 139000011,<br/>ERR_UNKNOWN = 13900042<br/>} | 文件管理模块错误码。 | 
+| [FileManagement_ErrCode](#filemanagement_errcode-1) {<br/>ERR_OK = 0,<br/>ERR_PERMISSION_ERROR = 201,<br/>ERR_INVALID_PARAMETER = 401,<br/>ERR_DEVICE_NOT_SUPPORTED = 801,<br/>ERR_EPERM = 13900001,<br/>ERR_ENOENT = 13900002,<br/>ERR_ENOMEM = 13900011,<br/>ERR_UNKNOWN = 13900042<br/>} | 文件管理模块错误码。 | 
 | [FileIO_FileLocation](#fileio_filelocation-1) {<br/>LOCAL = 1,<br/>CLOUD = 2,<br/>LOCAL_AND_CLOUD = 3<br/>} | 文件存储位置枚举值。 | 
 
 
@@ -109,6 +109,7 @@ enum FileManagement_ErrCode
 | -------- | -------- |
 | ERR_OK | 接口调用成功。 | 
 | ERR_PERMISSION_ERROR | 接口权限校验失败。 | 
+| ERR_INVALID_PARAMETER | 无效入参。 | 
 | ERR_DEVICE_NOT_SUPPORTED | 当前设备不支持此接口。 | 
 | ERR_EPERM | 操作不被允许。 | 
 | ERR_ENOENT | 不存在此文件或文件夹。 | 
