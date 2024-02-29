@@ -303,7 +303,7 @@ import { BusinessError } from '@ohos.base';
 >
 > - 资源文件在工程的resources目录中定义，id可通过$r(资源地址).id的方式获取，例如$r('app.string.test').id。
 >
-> - 应用资源的访问，具体请参考[资源分类与访问](../quick-start/resource-categories-and-access.md)。
+> - 应用资源的访问，具体请参考[资源分类与访问](../../quick-start/resource-categories-and-access.md)。
 
 ### getStringSync<sup>9+</sup>
 
