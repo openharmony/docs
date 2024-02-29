@@ -106,6 +106,11 @@
   - 值：usual.event.PACKAGE_ADDED
   - 订阅者所需权限：无
 
+* COMMON_EVENT_PACKAGE_INSTALLATION_STARTED
+提示设备上开始安装应用程序包。
+  - 值：usual.event.PACKAGE_INSTALLATION_STARTED
+  - 订阅者所需权限：无
+
 
 * COMMON_EVENT_PACKAGE_REPLACED
 （预留事件，暂未支持）提示设备上已安装的旧版本应用程序已被新版本所替换。

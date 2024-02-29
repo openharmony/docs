@@ -75,6 +75,11 @@
   - 值：usual.event.PACKAGE_REPLACED
   - 订阅者所需权限：无
 
+* [COMMON_EVENT_PACKAGE_INSTALLATION_STARTED](./common_event/commonEvent-bundleManager.md#common_event_package_installation_started)
+设备上开始安装应用包的公共事件的动作。
+  - 值：usual.event.PACKAGE_INSTALLATION_STARTED
+  - 订阅者所需权限：无
+
 * COMMON_EVENT_MY_PACKAGE_REPLACED
 （预留事件，暂未支持）表示应用程序包的新版本已取代前一个版本的公共事件的操作。
   - 值：usual.event.MY_PACKAGE_REPLACED
