@@ -277,22 +277,30 @@ SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单�
   #
   ```
 
-  5.7 采集2次整机和指定应用进程内存
+  5.7 采集1次整机和指定应用进程内存
 
   ```
-  # SP_daemon -N 2 -PKG ohos.samples.ecg -r
+  # SP_daemon -N 1 -PKG ohos.samples.ecg -r
 
-  order:0 timestamp=1705041668525
-  order:1 memAvailable=7350856
-  order:2 memFree=7166896
-  order:3 memTotal=11641840
-  order:4 pss=107232
-
-  order:0 timestamp=1705041669527
-  order:1 memAvailable=7350852
-  order:2 memFree=7166896
-  order:3 memTotal=11641840
-  order:4 pss=107232
+  order:0 timestamp=1708565148849
+  order:1 arktsHeapPss=21159
+  order:2 gpuPss=4414
+  order:3 graphPss=56180
+  order:4 heapAlloc=63942
+  order:5 heapFree=6598
+  order:6 heapSize=68276
+  order:7 memAvailable=8028640
+  order:8 memFree=7360324
+  order:9 memTotal=11769892
+  order:10 nativeHeapPss=58188
+  order:11 privateClean=121336
+  order:12 privateDirty=71018
+  order:13 pss=204889
+  order:14 sharedClean=85888
+  order:15 sharedDirty=12700
+  order:16 stackPss=1289
+  order:17 swap=0
+  order:18 swapPss=0
 
   command exec finished!
   #
