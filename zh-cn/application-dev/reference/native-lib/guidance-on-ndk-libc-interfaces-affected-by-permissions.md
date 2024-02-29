@@ -37,7 +37,7 @@ Seccomp常见报错
     </tr>
     <tr>
         <td rowspan="39">Seccomp机制</td>
-        <td rowspan="2">fsuid.h</td>
+        <td rowspan="2">sys/fsuid.h</td>
         <td>setfsgid</td>
     </tr>
     <tr>
@@ -75,24 +75,25 @@ Seccomp常见报错
         <td>acct</td>
     </tr>
     <tr>
-        <td>xattr.h</td>
+        <td>sys/xattr.h</td>
         <td>setxattr</td>
     </tr>
     <tr>
-        <td rowspan="4">time.h</td>
+        <td rowspan="2">time.h</td>
         <td>clock_settime</td>
-    </tr>
-    <tr>
-        <td>adjtime</td>
     </tr>
     <tr>
         <td>settimeofday</td>
     </tr>
     <tr>
+        <td rowspan="2"> </td>
+        <td>adjtime</td>
+    </tr>
+    <tr>
         <td>stime</td>
     </tr>
     <tr>
-        <td rowspan="3">stat.h</td>
+        <td rowspan="3">sys/stat.h</td>
         <td>mknod</td>
     </tr>
     <tr>
@@ -109,8 +110,8 @@ Seccomp常见报错
         <td>open_by_handle_at</td>
     </tr>
     <tr>
-        <td>klog.h</td>
-        <td>name_to_handle_at</td>
+        <td>sys/klog.h</td>
+        <td>klogctl</td>
     </tr>
     <tr>
         <td rowspan="2">sys/swap.h</td>
@@ -120,7 +121,7 @@ Seccomp常见报错
         <td>swapoff</td>
     </tr>
     <tr>
-        <td rowspan="3">sem.h</td>
+        <td rowspan="3">sys/sem.h</td>
         <td>semctl</td>
     </tr>
     <tr>
@@ -130,21 +131,17 @@ Seccomp常见报错
         <td>semtimedop</td>
     </tr>
     <tr>
-        <td>klog.h</td>
-        <td>semtimedop</td>
-    </tr>
-    <tr>
-        <td rowspan="3">mount.h</td>
+        <td rowspan="3">sys/mount.h</td>
         <td>mount</td>
     </tr>
     <tr>
-        <td>mount2</td>
+        <td>umount2</td>
     </tr>
     <tr>
-        <td>unmount</td>
+        <td>umount</td>
     </tr>
     <tr>
-        <td rowspan="4">msg.h</td>
+        <td rowspan="4">sys/msg.h</td>
         <td>msgctl</td>
     </tr>
     <tr>
@@ -165,19 +162,29 @@ Seccomp常见报错
         <td>init_module</td>
     </tr>
     <tr>
-        <td>sched.h</td>
+        <td rowspan="2">sched.h</td>
         <td>unshare</td>
     </tr>
     <tr>
-        <td rowspan="2">内核相关接口未对外开放能力导致接口不可用</td>
-        <td rowspan="2">fanotify.h</td>
+        <td>setns</td>
+    </tr>
+    <tr>
+        <td rowspan="4">内核相关接口未对外开放能力导致接口不可用</td>
+        <td rowspan="2">sys/fanotify.h</td>
         <td>fanotify_init</td>
     </tr>
     <tr>
         <td>fanotify_mark</td>
     </tr>
     <tr>
-        <td rowspan="11">SELinux的限制</td>
+        <td rowspan="2">syslog.h</td>
+        <td>syslog</td>
+    </tr>
+    <tr>
+        <td>vsyslog</td>
+    </tr>
+    <tr>
+        <td rowspan="31">SELinux的限制</td>
         <td rowspan="2">pty.h</td>
         <td>forkpty</td>
     </tr>
@@ -198,7 +205,7 @@ Seccomp常见报错
         <td>unlockpt</td>
     </tr>
     <tr>
-        <td rowspan="4">stdlib.h</td>
+        <td rowspan="4">sys/shm.h</td>
         <td>shmget</td>
     </tr>
     <tr>
@@ -211,16 +218,88 @@ Seccomp常见报错
         <td>shmctl</td>
     </tr>
     <tr>
-        <td>sem.h</td>
+        <td>sys/sem.h</td>
         <td>semget</td>
     </tr>
     <tr>
-        <td rowspan="2">沙箱机制</td>
+        <td rowspan="2">stdio.h</td>
+        <td>popen</td>
+    </tr>
+    <tr>
+        <td>pclose</td>
+    </tr>
+    <tr>
+        <td rowspan="8">unistd.h</td>
+        <td>tcgetpgrp</td>
+    </tr>
+    <tr>
+        <td>tcsetpgrp</td>
+    </tr>
+    <tr>
+        <td>link</td>
+    </tr>
+    <tr>
+        <td>linkat</td>
+    </tr>
+    <tr>
+        <td>readlinkat</td>
+    </tr>
+    <tr>
+        <td>readlink</td>
+    </tr>
+    <tr>
+        <td>symlink</td>
+    </tr>
+    <tr>
+        <td>symlinkat</td>
+    </tr>
+    <tr>
+        <td>sys/stat.h</td>
+        <td>mkfifoat</td>
+    </tr>
+    <tr>
+        <td rowspan="7">termios.h</td>
+        <td>tcgetattr</td>
+    </tr>
+    <tr>
+        <td>tcsetattr</td>
+    </tr>
+    <tr>
+        <td>tcsendbreak</td>
+    </tr>
+    <tr>
+        <td>tcdrain</td>
+    </tr>
+    <tr>
+        <td>tcflush</td>
+    </tr>
+    <tr>
+        <td>tcflow</td>
+    </tr>
+    <tr>
+        <td>tcgetsid</td>
+    </tr>
+    <tr>
+        <td rowspan="2">net/if.h</td>
+        <td>if_indextoname</td>
+    </tr>
+    <tr>
+        <td>if_nametoindex</td>
+    </tr>
+    <tr>
+        <td rowspan="4">沙箱机制</td>
         <td rowspan="2">stdio.h</td>
         <td>tmpfile</td>
     </tr>
     <tr>
         <td>tmpfile64</td>
+    </tr>
+    <tr>
+        <td rowspan="2">nl_type.h</td>
+        <td>catgets</td>
+    </tr>
+    <tr>
+        <td>catclose</td>
     </tr>
     <tr>
         <td rowspan="8">空实现或默认失败</td>
