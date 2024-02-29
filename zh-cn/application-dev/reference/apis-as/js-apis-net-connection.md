@@ -611,4 +611,4 @@ netCon.unregister((error: BusinessError) => {
 | 名称                  | 类型                                | 必填 | 说明                     |
 | --------------------- | ---------------------------------- | --- | ------------------------ |
 | networkCap            | Array\<[NetCap](#netcap)>           |  否 |  网络具体能力。           |
-| bearerTypes           | Array\<[NetBearType](#netbeartype)> |  是 |  网络类型。               |
+| bearerTypes           | Array\<[NetBearType](#netbeartype)> |  是 |  网络类型。 数组里面只包含了一种具体的网络类型。 |
