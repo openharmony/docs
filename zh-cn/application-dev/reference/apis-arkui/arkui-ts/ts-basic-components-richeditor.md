@@ -41,6 +41,7 @@ RichEditor(value: RichEditorOptions)
 | copyOptions                      | [CopyOptions](ts-appendix-enums.md#copyoptions9) | 组件支持设置文本内容是否可复制粘贴。<br />默认值：CopyOptions.LocalDevice <br/>**说明：** <br/>copyOptions不为CopyOptions.None时，长按组件内容，会弹出文本选择弹框。如果通过bindSelectionMenu等方式自定义文本选择菜单，则会弹出自定义的菜单。<br/>设置copyOptions为CopyOptions.None，复制、剪切功能不生效。 |
 | enableDataDetector<sup>11+</sup> | boolean                                  | 使能文本识别。<br/>默认值： false<br/>**说明：**<br/>所识别实体的`fontColor`和`decoration`会被更改为如下样式：<br/>fontColor：Color.Blue<br/>decoration:&nbsp;{<br/>type:&nbsp;TextDecorationType.Underline,<br/>color:&nbsp;Color.Blue<br/>}<br/>该接口依赖设备底层应具有文本识别能力，否则设置不会生效。<br/>当`enableDataDetector`设置为true，同时不设置`dataDetectorConfig`属性时，默认识别所有类型的实体。<br/>当`copyOptions`设置为CopyOptions.None时，该功能不会生效。<br/>对`addBuilderSpan`的节点文本，该功能不会生效。 |
 | dataDetectorConfig<sup>11+</sup> | [TextDataDetectorConfig](#textdatadetectorconfig11) | 文本识别配置。 <br/>默认值：{<br/>types:&nbsp;[ ],<br/>onDetectResultUpdate:&nbsp;null<br/>} <br />**说明：**<br/>需配合`enableDataDetector`一起使用，设置`enableDataDetector`为true时，`dataDetectorConfig`的配置才能生效。<br/> |
+| placeholder<sup>12+</sup> | {<br/>value:&nbsp;[ResourceStr](ts-types.md#resourcestr),<br/>style?:&nbsp;[PlaceholderStyle](#placeholderstyle)<br/>}| 设置无输入时的提示文本。<br />**说明：**<br/>value为必须设置的提示文本，style缺省时默认跟随主题<br/> |
 
 ## 事件
 
@@ -423,8 +424,6 @@ selectionStart和selectionEnd均为-1时表示全选。
 
 未获焦时调用该接口不产生选中效果。
 
-使用[示例](ts-composite-components-selectionmenu.md#示例)。
-
 **参数：**
 
 | 参数名            | 参数类型   | 必填   | 参数描述    |
@@ -437,8 +436,6 @@ selectionStart和selectionEnd均为-1时表示全选。
 getSelection(): RichEditorSelection
 
 获取选中文本内容。
-
-使用[示例](ts-composite-components-selectionmenu.md#示例)。
 
 **返回值：**
 
@@ -564,6 +561,14 @@ SymbolSpan样式选项。
 | decoration               | {<br/>type:&nbsp;[TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br/>color?:&nbsp;[ResourceColor](ts-types.md#resourcecolor)<br/>} | 否    | 设置文本装饰线样式及其颜色。<br />默认值：{<br/>type:&nbsp;TextDecorationType.None,<br/>color：Color.Black<br/>}。 |
 | textShadow<sup>11+</sup> | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;Array&lt;[ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)> | 是    | 设置文字阴影效果。该接口支持以数组形式入参，实现多重文字阴影。<br/>**说明：**<br/>不支持fill字段, 不支持智能取色模式。 |
 
+## PlaceholderStyle<sup>12+</sup>
+
+添加提示文本的字体样式。
+
+| 名称                           | 类型                                       | 必填   | 描述                         |
+| ---------------------------- | ---------------------------------------- | ---- | -------------------------- |
+| font                         | [Font](ts-types.md#font)                    | 否    | 设置placeholder文本样式。<br/>默认值跟随主题。|
+| fontColor                    | [ResourceColor](ts-types.md#resourcecolor)  | 否    | 设置placeholder文本颜色。<br/>默认值跟随主题。|
 
 ## RichEditorImageSpanOptions
 
