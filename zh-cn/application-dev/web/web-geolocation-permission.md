@@ -37,6 +37,34 @@ Web组件提供位置权限管理能力。开发者可以通过[onGeolocationSho
   ```ts
   // xxx.ets
   import web_webview from '@ohos.web.webview';
+  import { abilityAccessCtrl, common }from '@kit.AbilityKit';
+  import {geoLocationManager} from '@kit.LocationKit';
+
+  let context = getContext(this) as common.UIAbilityContext;
+  let atManager = abilityAccessCtrl.createAtManager();
+
+  try{
+    atManager.requestPermissionsFromUser(context, ["ohos.permission.APPROXIMATELY_LOCATION"], (err, data) => {
+      let requestInfo: geoLocationManager.LocationRequest = {
+        'priority': 0x203,
+        'scenario': 0x300,
+        'maxAccuracy': 0
+      };
+      let locationChange = (location: geoLocationManager.Location):void => {
+        if(location){
+          console.log('locationChanger: location=' + JSON.stringify(location));
+        }
+      };
+      try{
+        geoLocationManager.on('locationChange', requestInfo, locationChange);
+        geoLocationManager.off('locationChange', locationChange);
+      } catch (err) {
+        console.error("errCode:" + err.code + ", errMessage:" + err.message);
+      }
+    })
+  } catch (err) {
+    console.error("err:", err);
+  }
 
   @Entry
   @Component
@@ -53,17 +81,23 @@ Web组件提供位置权限管理能力。开发者可以通过[onGeolocationSho
               primaryButton: {
                 value: 'cancel',
                 action: () => {
+                  if(event){
                   event.geolocation.invoke(event.origin, false, false);   // 不允许此站点地理位置权限请求
+                  }
                 }
               },
               secondaryButton: {
                 value: 'ok',
                 action: () => {
+                  if(event){
                   event.geolocation.invoke(event.origin, true, false);    // 允许此站点地理位置权限请求
+                  }                
                 }
               },
               cancel: () => {
+                if(event){
                 event.geolocation.invoke(event.origin, false, false);   // 不允许此站点地理位置权限请求
+                }
               }
             })
           })
