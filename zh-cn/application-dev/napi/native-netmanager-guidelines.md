@@ -6,7 +6,7 @@ NetConnection模块提供了常用网络信息查询的能力。
 
 ## 接口说明
 
-NetConnection常用接口如下表所示，详细的接口说明请参考[NetConnection](../reference/native-apis/_net_connection.md)
+NetConnection常用接口如下表所示，详细的接口说明请参考[NetConnection](../reference/apis-network-kit/_net_connection.md)
 
 
 | 接口名 | 描述 |
@@ -56,7 +56,7 @@ libnet_connection.so
 
 ```C
 // Get the execution results of the default network connection.
-static napi_value CodeNumber(napi_env env, napi_callback_info info)
+static napi_value GetDefaultNet(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
     napi_value args[1] = {nullptr};
@@ -91,7 +91,7 @@ static napi_value NetId(napi_env env, napi_callback_info info) {
 }
 ```
 
-简要说明：这两个函数是用于获取系统默认网络连接的相关信息的。其中，CodeNumber是接收ArkTs端传入的测试参数，返回调用接口后对应的返回值，param可以自行调整；如果返回值为0，则会返回参数错误；而NetId函数则用于获取默认网络连接的ID。这些信息可以用于进一步的网络操作。
+简要说明：这两个函数是用于获取系统默认网络连接的相关信息的。其中，GetDefaultNet是接收ArkTs端传入的测试参数，返回调用接口后对应的返回值，param可以自行调整；如果返回值为0，代表获取成功，401代表参数错误，201代表没有权限；而NetId函数则用于获取默认网络连接的ID。这些信息可以用于进一步的网络操作。
 
 
 2、将通过napi封装好的`napi_value`类型对象初始化导出，通过外部函数接口，将以上两个函数暴露给JavaScript使用。
@@ -100,9 +100,9 @@ static napi_value NetId(napi_env env, napi_callback_info info) {
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {
-    // Information used to describe an exported attribute. Two properties are defined here: `CodeNumber` and `NetId`.
+    // Information used to describe an exported attribute. Two properties are defined here: `GetDefaultNet` and `NetId`.
     napi_property_descriptor desc[] = {
-        {"CodeNumber", nullptr, CodeNumber, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"GetDefaultNet", nullptr, GetDefaultNet, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"NetId", nullptr, NetId, nullptr, nullptr, nullptr, napi_default, nullptr}};
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;
@@ -131,11 +131,11 @@ extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
 
 4、在工程的index.d.ts文件中定义两个函数的类型。
 
-- CodeNumber 函数接受一个数字参数 code，返回一个数字类型的值。
+- GetDefaultNet 函数接受一个数字参数 code，返回一个数字类型的值。
 - NetId 函数不接受参数，返回一个数字类型的值。
 
 ```ts
-export const CodeNumber: (code: number) => number;
+export const GetDefaultNet: (code: number) => number;
 export const NetId: () => number;
 ```
 
@@ -174,7 +174,7 @@ struct Index {
 
   CodeNumber() {
     let testParam = 0;
-    let codeNumber = testNetManager.CodeNumber(testParam);
+    let codeNumber = testNetManager.GetDefaultNet(testParam);
     if (codeNumber === 0) {
       console.log("Test success. [" + codeNumber + "]");
     } else if (codeNumber === 201) {
