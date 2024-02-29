@@ -671,10 +671,10 @@ Nullable\<T> {
 背景效果参数。
 | 名称        |   类型         |   必填 |  说明                        |
 | ----         |  ----         |   ---- | --------------------------  |
-| radius       | number        |   是   |   背景光源半径，取值范围：[0, +∞)，默认为0。     |
-| saturation   | number        |   否   |   背景光源饱和度，取值范围：[0, +∞)，默认为0。     |
-| brightness   | number        |   否   |   背景光源亮度，取值范围：[0, +∞)，默认为0。       |
-| color        | [Color](ts-appendix-enums.md#color)        |   否   |   背景光源颜色，默认透明色。  |
+| radius       | number        |   是   |   模糊半径，取值范围：[0, +∞)，默认为0。     |
+| saturation   | number        |   否   |   饱和度，取值范围：[0, +∞)，默认为0。     |
+| brightness   | number        |   否   |   亮度，取值范围：[0, +∞)，默认为0。       |
+| color        | [Color](ts-appendix-enums.md#color)        |   否   |   颜色，默认透明色。  |
 | adaptiveColor | [AdaptiveColor](ts-appendix-enums.md#adaptivecolor10) |   否  | 背景模糊效果使用的取色模式,默认为DEFAULT。   |
 | blurOptions  | [BlurOptions](ts-appendix-enums.md#bluroptions11) |   否   |   灰阶模糊参数，默认为[0,0]。  |
 ## EllipsisMode<sup>11+</sup>
