@@ -30,8 +30,8 @@ $$运算符为系统内置组件提供TS变量的引用，使得TS变量和系�
 @Entry
 @Component
 struct RefreshExample {
-  @State isRefreshing: boolean = false
-  @State counter: number = 0
+  @State isRefreshing: boolean = false;
+  @State counter: number = 0;
 
   build() {
     Column() {
@@ -46,6 +46,12 @@ struct RefreshExample {
       }
       .onStateChange((refreshStatus: RefreshStatus) => {
         console.info('Refresh onStatueChange state is ' + refreshStatus)
+      })
+      .onRefreshing(() => {
+        setTimeout(() => {
+          this.isRefreshing = false;
+          this.counter++;
+        }, 2000)
       })
     }
   }
