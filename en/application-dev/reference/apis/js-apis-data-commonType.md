@@ -75,7 +75,7 @@ Defines the types of the key and value in a KV pair. This type is not multi-thre
 
 **System capability**: SystemCapability.DistributedDataManager.CommonType
 
-| Key Type| Value Type                  |
-| ------ | ------------------------ |
+| Key Type| Value Type                |
+| ------ | -----------------------|
 | number | The primary key is a number.|
 | string | The primary key is a string.|
