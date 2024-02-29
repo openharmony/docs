@@ -1,6 +1,6 @@
 # @ohos.distributedDeviceManager (Device Management)
 
-The **deviceManager** module provides APIs for distributed device management.
+The **distributedDeviceManager** module provides APIs for distributed device management.
 
 Applications can call the APIs to:
 
@@ -13,7 +13,7 @@ Applications can call the APIs to:
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 ## Modules to Import
@@ -39,9 +39,9 @@ Creates a **DeviceManager** instance. The **DeviceManager** instance is the entr
 
 **Return value**
 
-| Name                                       | Description       |
-| ------------------------------------------- | --------- |
-| [DeviceManager](#devicemanager) | **DeviceManager** instance created.|
+  | Name                                       | Description       |
+  | ------------------------------------------- | --------- |
+  | [DeviceManager](#devicemanager) | **DeviceManager** instance created.|
 
 **Example**
 
@@ -104,7 +104,7 @@ Represents the basic information about a distributed device.
 
 | Name                    | Type                       | Mandatory  | Description      |
 | ---------------------- | ------------------------- | ---- | -------- |
-| deviceId               | string                    | Yes   | Unique ID of the device. The value is the udid-hash (hash value of the UDID) and appid encrypted using SHA-256.|
+| deviceId               | string                    | Yes   | Unique ID of the device. The value is the udid-hash (hash value of the UDID) and **appid** encrypted using SHA-256.|
 | deviceName             | string                    | Yes   | Device name.   |
 | deviceType             | string                    | Yes   | Device type.   |
 | networkId              | string                    | No   | Network ID of the device. |
@@ -138,9 +138,9 @@ Obtains all trusted devices synchronously.
 
 **Return value**
 
-| Name                                       | Description       |
-| ------------------------------------------- | --------- |
-| Array&lt;[DeviceBasicInfo](#devicebasicinfo)&gt; | List of trusted devices obtained.|
+  | Name                                       | Description       |
+  | ------------------------------------------- | --------- |
+  | Array&lt;[DeviceBasicInfo](#devicebasicinfo)&gt; | List of trusted devices obtained.|
 
 **Error codes**
 
@@ -176,9 +176,9 @@ Obtains all trusted devices. This API uses an asynchronous callback to return th
 
 **Parameters**
 
-| Name      | Type                                    | Mandatory  | Description                   |
-| -------- | ---------------------------------------- | ---- | --------------------- |
-| callback | AsyncCallback&lt;Array&lt;[DeviceBasicInfo](#devicebasicinfo)&gt;&gt; | Yes   | Callback invoked to return the list of trusted devices.|
+  | Name      | Type                                    | Mandatory  | Description                   |
+  | -------- | ---------------------------------------- | ---- | --------------------- |
+  | callback | AsyncCallback&lt;Array&lt;[DeviceBasicInfo](#devicebasicinfo)&gt;&gt; | Yes   | Callback invoked to return the list of trusted devices.|
 
 **Error codes**
 
@@ -220,9 +220,9 @@ Obtains all trusted devices. This API uses a promise to return the result.
 
 **Return value**
 
-| Type                                                      | Description                              |
-| ---------------------------------------------------------- | ---------------------------------- |
-| Promise&lt;Array&lt;[DeviceBasicInfo](#devicebasicinfo)&gt;&gt; | Promise used to return the result.|
+  | Type                                                      | Description                              |
+  | ---------------------------------------------------------- | ---------------------------------- |
+  | Promise&lt;Array&lt;[DeviceBasicInfo](#devicebasicinfo)&gt;&gt; | Promise used to return the result.|
 
 **Error codes**
 
@@ -257,9 +257,9 @@ Obtains the network ID of the local device.
 
 **Return value**
 
-| Name                     | Description             |
-| ------------------------- | ---------------- |
-| string | Network ID of the local device obtained.|
+  | Name                     | Description             |
+  | ------------------------- | ---------------- |
+  | string | Network ID of the local device obtained.|
 
 **Error codes**
 
@@ -295,9 +295,9 @@ Obtains the local device name.
 
 **Return value**
 
-| Name                     | Description             |
-| ------------------------- | ---------------- |
-| string                    | Name of the local device obtained.|
+  | Name                     | Description             |
+  | ------------------------- | ---------------- |
+  | string                    | Name of the local device obtained.|
 
 **Error codes**
 
@@ -333,9 +333,9 @@ Obtains the local device type.
 
 **Return value**
 
-| Name                     | Description             |
-| ------------------------- | ---------------- |
-| number                    | Local device type obtained.|
+  | Name                     | Description             |
+  | ------------------------- | ---------------- |
+  | number                    | Local device type obtained.|
 
 **Error codes**
 
@@ -371,9 +371,9 @@ Obtains the local device ID.
 
 **Return value**
 
-| Name                     | Description             |
-| ------------------------- | ---------------- |
-| string                    | Local device ID obtained.|
+  | Name                     | Description             |
+  | ------------------------- | ---------------- |
+  | string                    | Local device ID obtained.|
 
 **Error codes**
 
@@ -409,15 +409,15 @@ Obtains the device name based on the network ID of the specified device.
 
 **Parameters**
 
-| Name      | Type                                    | Mandatory  | Description       |
-| -------- | ---------------------------------------- | ---- | --------- |
-| networkId| string                                   | Yes  | Network ID of the device.|
+  | Name      | Type                                    | Mandatory  | Description       |
+  | -------- | ---------------------------------------- | ---- | --------- |
+  | networkId| string                                   | Yes  | Network ID of the device.|
 
 **Return value**
 
-| Name                     | Description             |
-| ------------------------- | ---------------- |
-| string                    | Device name obtained.|
+  | Name                     | Description             |
+  | ------------------------- | ---------------- |
+  | string                    | Device name obtained.|
 
 **Error codes**
 
@@ -455,15 +455,15 @@ Obtains the device type based on the network ID of the specified device.
 
 **Parameters**
 
-| Name      | Type                                    | Mandatory  | Description       |
-| -------- | ---------------------------------------- | ---- | --------- |
-| networkId| string                                   | Yes  | Network ID of the device.|
+  | Name      | Type                                    | Mandatory  | Description       |
+  | -------- | ---------------------------------------- | ---- | --------- |
+  | networkId| string                                   | Yes  | Network ID of the device.|
 
 **Return value**
 
-| Name                     | Description             |
-| ------------------------- | ---------------- |
-| number                    | Device type obtained.|
+  | Name                     | Description             |
+  | ------------------------- | ---------------- |
+  | number                    | Device type obtained.|
 
 **Error codes**
 
@@ -493,7 +493,7 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
 startDiscovering(discoverParam: {[key:&nbsp;string]:&nbsp;Object} , filterOptions?: {[key:&nbsp;string]:&nbsp;Object} ): void;
 
-Starts to discover devices nearby. The discovery process automatically stops when 2 minutes have elapsed. A maximum of 99 devices can be discovered.
+Starts to discover devices nearby. The discovery process lasts 2 minutes. A maximum of 99 devices can be discovered. In Wi-Fi scenarios, only the devices in the same LAN can be discovered.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -501,10 +501,10 @@ Starts to discover devices nearby. The discovery process automatically stops whe
 
 **Parameters**
 
-| Name           | Type                       | Mandatory  | Description   |
-| ------------- | ------------------------------- | ---- | -----  |
-| discoverParam  | {[key:&nbsp;string]:&nbsp;Object}      | Yes  | Identifier of the device to discover. It specifies the type of the target to discover.<br>**discoverTargetType**: The default discovery target is device. The value is **1**.|
-| filterOptions | {[key:&nbsp;string]:&nbsp;Object}          | No  | Options for filtering discovered devices. The default value is **undefined**, which means to discover offline devices. The following **key** values are carried:<br>**availableStatus(0-1)**: Discover trusted devices only. The value **0** indicates that the device is untrusted.<br>- **0**: The device is offline. The client needs to call **bindTarget** to bind the device.<br>- **1**: The device is online and can be connected.<br>**discoverDistance(0-100)**: Discover devices within a certain distance (in cm) from the local device.<br>**authenticationStatus(0-1)**: Discover devices based on the authentication status.<br>- **0**: The device is not authenticated.<br>- **1**: The device has been authenticated.<br>**authorizationType(0-2)**: Discover devices based on the authorization type.<br>- **0**: device authenticated by a temporarily agreed session key.<br>- **1**: device authenticated by a key of the same account.<br>- **2**: devices authenticated by a credential key of different accounts.|
+  | Name           | Type                       | Mandatory  | Description   |
+  | ------------- | ------------------------------- | ---- | -----  |
+  | discoverParam  | {[key:&nbsp;string]:&nbsp;Object}      | Yes  | Identifier of the device to discover. It specifies the type of the target to discover.<br>**discoverTargetType**: The default discovery target is device. The value is **1**.|
+  | filterOptions | {[key:&nbsp;string]:&nbsp;Object}          | No  | Options for filtering the devices to discover. The default value is **undefined**, which means to discover offline devices. The options include the following:<br>**availableStatus(0-1)**: status of the device to discover.<br>- **0**: The device is offline. The client needs to call **bindTarget** to bind the device.<br>- **1**: The device is online and can be connected.<br>**discoverDistance(0-100)**: distance of the device to discover, in cm. This parameter is not used in Wi-Fi scenarios.<br>**authenticationStatus(0-1)**: authentication status of the device to discover.<br>- **0**: The device is not authenticated.<br>- **1**: The device has been authenticated.<br>**authorizationType(0-2)**: authorization type of the device to discover.<br>- **0**: The device is authenticated by a temporarily agreed session key.<br>- **1**: The device is authenticated by a key of the same account.<br>- **2**: The device is authenticated by a credential key of different accounts.|
 
 **Error codes**
 
@@ -590,11 +590,11 @@ Binds a device.
 
 **Parameters**
 
-| Name    | Type                                               | Mandatory | Description        |
-| ---------- | --------------------------------------------------- | ----- | ------------ |
-| deviceId   | string                                              | Yes   | Device ID.  |
-| bindParam  | {[key:&nbsp;string]:&nbsp;Object}                             | Yes   | Authentication parameters. You can determine the key-value pair to be passed in. By default, the following **key** values are carried:<br>**bindType**: binding type.<br>- **1**: PIN.<br>- **2**: QR code.<br>- 3: NFC.<br>- 4: No interaction.<br>**targetPkgName**: bundle name of the target to bind.<br>**appName**: application that attempts to bind the target.<br>**appOperation**: reason for the application to bind the target.<br>**customDescription**: detailed description of the operation.  |
-| callback   | AsyncCallback&lt;{deviceId:&nbsp;string,&nbsp;}&gt; | Yes   | Callback invoked to return the authentication result.|
+  | Name    | Type                                               | Mandatory | Description        |
+  | ---------- | --------------------------------------------------- | ----- | ------------ |
+  | deviceId   | string                                              | Yes   | Device ID.  |
+  | bindParam  | {[key:&nbsp;string]:&nbsp;Object}                             | Yes   | Authentication parameters. You can determine the key-value pair to be passed in. By default, the following **key** values are carried:<br>**bindType**: binding type.<br>- **1**: PIN.<br>- **2**: QR code.<br>- **3**: NFC.<br>- **4**: No interaction.<br>**targetPkgName**: bundle name of the target to bind.<br>**appName**: application that attempts to bind the target.<br>**appOperation**: reason for the application to bind the target.<br>**customDescription**: detailed description of the operation.  |
+  | callback   | AsyncCallback&lt;{deviceId:&nbsp;string,&nbsp;}&gt; | Yes   | Callback invoked to return the authentication result.|
 
 **Error codes**
 
@@ -617,18 +617,18 @@ For details about the error codes, see [Device Management Error Codes](../errorc
   // Information about the device to authenticate. The information can be obtained from the device discovery result.
   let deviceId = "XXXXXXXX";
   let bindParam: Record<string, string | number> = {
-    'authType': 1, // Authentication type. The value 1 means PIN authentication.
-    targetPkgName: 'xxxx',
-    appName: 'xxxx',
-    appOperation: 'xxxx',
-    customDescription: 'xxxx'
-  }
+    'bindType': 1, // Authentication type. The value 1 means PIN authentication.
+    'targetPkgName': 'xxxx',
+    'appName': 'xxxx',
+    'appOperation': 'xxxx',
+    'customDescription': 'xxxx'
+  };
 
   try {
     dmInstance.bindTarget(deviceId, bindParam, (err: BusinessError, data: Data) => {
       if (err) {
-          console.error("bindTarget errCode:" + err.code + ",errMessage:" + err.message);
-          return;
+        console.error('bindTarget errCode:' + err.code + ',errMessage:' + err.message);
+        return;
       }
       console.info("bindTarget result:" + JSON.stringify(data));
     });
@@ -650,9 +650,9 @@ Unbinds a device.
 
 **Parameters**
 
-| Name  | Type                     | Mandatory| Description      |
-| -------- | ------------------------- | ---- | ---------- |
-| deviceId | string                    | Yes  | Device ID.|
+  | Name  | Type                     | Mandatory| Description      |
+  | -------- | ------------------------- | ---- | ---------- |
+  | deviceId | string                    | Yes  | Device ID.|
 
 **Error codes**
 
@@ -690,10 +690,10 @@ Replies to the user's UI operation. This API can be used only by the PIN HAP of 
 
 **Parameters**
 
-| Name      | Type           | Mandatory | Description               |
-| ------------- | --------------- | ---- | ------------------- |
-| action        | number          | Yes   | User operation.      |
-| actionResult        | string          | Yes   | Operation result.|
+  | Name      | Type           | Mandatory | Description               |
+  | ------------- | --------------- | ---- | ------------------- |
+  | action        | number          | Yes   | User operation.      |
+  | actionResult        | string          | Yes   | Operation result.|
 
 **Example**
 
@@ -721,7 +721,7 @@ Replies to the user's UI operation. This API can be used only by the PIN HAP of 
 
 on(type: 'replyResult', callback: Callback&lt;{ param: string}&gt;): void;
 
-Subscribes to the UI operation reply result.
+Subscribes to the reply to the UI operation result.
 
 **Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
@@ -731,10 +731,10 @@ Subscribes to the UI operation reply result.
 
 **Parameters**
 
-| Name     | Type                            | Mandatory| Description                           |
-| -------- | ------------------------------------ | ---- | ------------------------------ |
-| type     | string                                | Yes | Event type to subscribe to. The value **replyResult** indicates the reply result of the UI operation.|
-| callback | Callback&lt;{&nbsp;param:&nbsp;string}&gt; | Yes | Callback invoked to return the UI status.       |
+  | Name     | Type                            | Mandatory| Description                           |
+  | -------- | ------------------------------------ | ---- | ------------------------------ |
+  | type     | string                                | Yes | Event type. The value **'replyResult'** indicates the reply to the UI operation result.|
+  | callback | Callback&lt;{&nbsp;param:&nbsp;string}&gt; | Yes | Callback invoked to return the UI status.       |
 
 **Example**
 
@@ -766,7 +766,7 @@ Subscribes to the UI operation reply result.
 
 off(type: 'replyResult', callback?: Callback&lt;{ param: string}&gt;): void;
 
-Unsubscribes from the UI operation reply result.
+Unsubscribes from the reply to the UI operation result.
 
 **Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
@@ -776,10 +776,10 @@ Unsubscribes from the UI operation reply result.
 
 **Parameters**
 
-| Name     | Type                             | Mandatory| Description                           |
-| -------- | ------------------------------------- | ---- | ------------------------------ |
-| type     | string                                | Yes  | Event type to unsubscribe from. The value **replyResult** indicates the reply result of the UI operation.|
-| callback | Callback&lt;{&nbsp;param:&nbsp;string}&gt; | No  | Callback for the UI status.|
+  | Name     | Type                             | Mandatory| Description                           |
+  | -------- | ------------------------------------- | ---- | ------------------------------ |
+  | type     | string                                | Yes  | Event type. The value **'replyResult'** indicates the reply to the UI operation result.|
+  | callback | Callback&lt;{&nbsp;param:&nbsp;string}&gt; | No  | Callback to unregister.|
 
 **Example**
 
@@ -798,7 +798,7 @@ Unsubscribes from the UI operation reply result.
 
 on(type: 'deviceStateChange', callback: Callback&lt;{ action: DeviceStateChange, device: DeviceBasicInfo }&gt;): void;
 
-Subscribes to changes in the device state.
+Subscribes to device state changes.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -806,10 +806,10 @@ Subscribes to changes in the device state.
 
 **Parameters**
 
-| Name      | Type                                    | Mandatory  | Description                            |
-| -------- | ---------------------------------------- | ---- | ------------------------------ |
-| type     | string                                   | Yes   | Event type. The value **'deviceStateChange'** indicates a device state change event.|
-| callback | Callback&lt;{&nbsp;action:&nbsp;[DeviceStateChange](#devicestatechange),&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo)&nbsp;}&gt; | Yes   | Callback invoked to return the device information and state.     |
+  | Name      | Type                                    | Mandatory  | Description                            |
+  | -------- | ---------------------------------------- | ---- | ------------------------------ |
+  | type     | string                                   | Yes   | Event type. The value **'deviceStateChange'** indicates device state changes.|
+  | callback | Callback&lt;{&nbsp;action:&nbsp;[DeviceStateChange](#devicestatechange),&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo)&nbsp;}&gt; | Yes   | Callback invoked to return the device information and state.     |
 
 **Example**
 
@@ -841,7 +841,7 @@ Subscribes to changes in the device state.
 
 off(type: 'deviceStateChange', callback?: Callback&lt;{ action: DeviceStateChange, device: DeviceBasicInfo }&gt;): void;
 
-Unsubscribes from changes in the device state.
+Unsubscribes from the device state changes.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -849,10 +849,10 @@ Unsubscribes from changes in the device state.
 
 **Parameters**
 
-| Name      | Type                                    | Mandatory  | Description                         |
-| -------- | ---------------------------------------- | ---- | --------------------------- |
-| type     | string                                   | Yes   | Event type. The value **'deviceStateChange'** indicates a device state change event.       |
-| callback | Callback&lt;{&nbsp;action:&nbsp;[deviceStateChange](#devicestatechange),&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo)&nbsp;}&gt; | No   | Callback for the device information and state.|
+  | Name      | Type                                    | Mandatory  | Description                         |
+  | -------- | ---------------------------------------- | ---- | --------------------------- |
+  | type     | string                                   | Yes   | Event type. The value **'deviceStateChange'** indicates device state changes.       |
+  | callback | Callback&lt;{&nbsp;action:&nbsp;[deviceStateChange](#devicestatechange),&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo)&nbsp;}&gt; | No   | Callback to unregister.|
 
 **Example**
 
@@ -884,7 +884,7 @@ Unsubscribes from changes in the device state.
 
 on(type: 'discoverSuccess', callback: Callback&lt;{ device: DeviceBasicInfo }&gt;): void;
 
-Subscribes to device discovery events.
+Subscribes to the **'discoverSuccess'** event. The application will be notified when a device is successfully discovered.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -892,10 +892,10 @@ Subscribes to device discovery events.
 
 **Parameters**
 
-| Name      | Type                                    | Mandatory  | Description                        |
-| -------- | ---------------------------------------- | ---- | -------------------------- |
-| type     | string                                   | Yes   | Event type. The value **'discoverSuccess'** indicates an event of successful device discovery.|
-| callback | Callback&lt;{&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo)&nbsp;}&gt; | Yes   | Callback invoked to return a device discovery event.              |
+  | Name      | Type                                    | Mandatory  | Description                        |
+  | -------- | ---------------------------------------- | ---- | -------------------------- |
+  | type     | string                                   | Yes   | Event type. The value **'discoverSuccess'** indicates discovery of a device.|
+  | callback | Callback&lt;{&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo)&nbsp;}&gt; | Yes   | Callback invoked when a device is successfully discovered.              |
 
 **Example**
 
@@ -926,7 +926,7 @@ Subscribes to device discovery events.
 
 off(type: 'discoverSuccess', callback?: Callback&lt;{ device: DeviceBasicInfo }&gt;): void;
 
-Unsubscribes from device discovery events.
+Unsubscribes from the **'discoverSuccess'** event.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -934,10 +934,10 @@ Unsubscribes from device discovery events.
 
 **Parameters**
 
-| Name      | Type                                    | Mandatory  | Description                         |
-| -------- | ---------------------------------------- | ---- | --------------------------- |
-| type     | string                                   | Yes   | Event type. The value **'discoverSuccess'** indicates a device discovery event.                |
-| callback | Callback&lt;{&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo)&nbsp;}&gt; | No   | Callback for the device discovery event.|
+  | Name      | Type                                    | Mandatory  | Description                         |
+  | -------- | ---------------------------------------- | ---- | --------------------------- |
+  | type     | string                                   | Yes   | Event type. The value **'discoverSuccess'** indicates discovery of a device.                |
+  | callback | Callback&lt;{&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo)&nbsp;}&gt; | No   | Callback to unregister.|
 
 **Example**
 
@@ -976,10 +976,10 @@ Subscribes to device name changes.
 
 **Parameters**
 
-| Name      | Type                                    | Mandatory  | Description                            |
-| -------- | ---------------------------------------- | ---- | ------------------------------ |
-| type     | string                                   | Yes   | Event type. The value **'deviceNameChange'** indicates a device name change event.|
-| callback | Callback&lt;{&nbsp;deviceName:&nbsp;string}&gt; | Yes   | Callback invoked to return the device name change.                |
+  | Name      | Type                                    | Mandatory  | Description                            |
+  | -------- | ---------------------------------------- | ---- | ------------------------------ |
+  | type     | string                                   | Yes   | Event type. The value **'deviceNameChange'** indicates device name changes.|
+  | callback | Callback&lt;{&nbsp;deviceName:&nbsp;string}&gt; | Yes   | Callback invoked to return the device name change.                |
 
 **Example**
 
@@ -1004,7 +1004,7 @@ Subscribes to device name changes.
 
 off(type: 'deviceNameChange', callback?: Callback&lt;{ deviceName: string }&gt;): void;
 
-Unsubscribes from device name changes.
+Unsubscribes from the device name changes.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -1012,10 +1012,10 @@ Unsubscribes from device name changes.
 
 **Parameters**
 
-| Name      | Type                                    | Mandatory  | Description                            |
-| -------- | ---------------------------------------- | ---- | ------------------------------ |
-| type     | string                                   | Yes   | Event type. The value **'deviceNameChange'** indicates a device name change event.|
-| callback | Callback&lt;{&nbsp;deviceName:&nbsp;string}&gt; | No   | Callback for the device name change.                |
+  | Name      | Type                                    | Mandatory  | Description                            |
+  | -------- | ---------------------------------------- | ---- | ------------------------------ |
+  | type     | string                                   | Yes   | Event type. The value **'deviceNameChange'** indicates device name changes.|
+  | callback | Callback&lt;{&nbsp;deviceName:&nbsp;string}&gt; | No   | Callback to unregister.                |
 
 **Example**
 
@@ -1040,7 +1040,7 @@ Unsubscribes from device name changes.
 
 on(type: 'discoverFailure', callback: Callback&lt;{ reason: number }&gt;): void;
 
-Subscribes to device discovery failures.
+Subscribes to the **'discoverFailure'** event. The application will be notified when a device fails to be discovered. 
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -1048,10 +1048,10 @@ Subscribes to device discovery failures.
 
 **Parameters**
 
-| Name      | Type                                    | Mandatory  | Description                            |
-| -------- | ---------------------------------------- | ---- | ------------------------------ |
-| type     | string                                   | Yes   | Event type. The value **'discoverFailure'** indicates an event reported when device discovery fails.|
-| callback | Callback&lt;{&nbsp;reason:&nbsp;number&nbsp;}&gt; | Yes   | Callback invoked to return a device discovery failure.                |
+  | Name      | Type                                    | Mandatory  | Description                            |
+  | -------- | ---------------------------------------- | ---- | ------------------------------ |
+  | type     | string                                   | Yes   | Event type. The value **'discoverFail'** indicates a failure in discovering devices.|
+  | callback | Callback&lt;{&nbsp;reason:&nbsp;number&nbsp;}&gt; | Yes   | Callback invoked when a device fails to be discovered.                |
 
 **Example**
 
@@ -1076,7 +1076,7 @@ Subscribes to device discovery failures.
 
 off(type: 'discoverFailure', callback?: Callback&lt;{ reason: number }&gt;): void;
 
-Unsubscribes from device discovery failures.
+Unsubscribes from the **'discoverFailure'** event.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -1084,10 +1084,10 @@ Unsubscribes from device discovery failures.
 
 **Parameters**
 
-| Name      | Type                                    | Mandatory  | Description               |
-| -------- | ---------------------------------------- | ---- | ----------------- |
-| type     | string                                   | Yes   | Event type. The value **'discoverFailure'** indicates an event reported when device discovery fails.    |
-| callback | Callback&lt;{&nbsp;reason:&nbsp;number&nbsp;}&gt; | No   | Callback for the device discovery failure.|
+  | Name      | Type                                    | Mandatory  | Description               |
+  | -------- | ---------------------------------------- | ---- | ----------------- |
+  | type     | string                                   | Yes   | Event type. The value **'discoverFailure'** indicates a failure in discovering devices.    |
+  | callback | Callback&lt;{&nbsp;reason:&nbsp;number&nbsp;}&gt; | No   | Callback to unregister.|
 
 **Example**
 
@@ -1120,10 +1120,10 @@ Subscribes to dead events of the **DeviceManager** service.
 
 **Parameters**
 
-| Name      | Type                   | Mandatory  | Description                                      |
-| -------- | ----------------------- | ---- | ---------------------------------------- |
-| type     | string                  | Yes   | Event type. The value **'serviceDie'** indicates an event reported when the **DeviceManager** service is terminated unexpectedly.|
-| callback | Callback&lt;{}&gt; | No   | Callback invoked when a dead event of the **DeviceManager** service occurs.                      |
+  | Name      | Type                   | Mandatory  | Description                                      |
+  | -------- | ----------------------- | ---- | ---------------------------------------- |
+  | type     | string                  | Yes   | Event type. The value **'serviceDie'** indicates unexpected termination of the **DeviceManager** service.|
+  | callback | Callback&lt;{}&gt; | No   | Callback invoked when the **DeviceManager** service is terminated unexpectedly.                       |
 
 **Example**
 
@@ -1152,10 +1152,10 @@ Unsubscribes from dead events of the **DeviceManager** service.
 
 **Parameters**
 
-| Name      | Type                   | Mandatory  | Description                                      |
-| -------- | ----------------------- | ---- | ---------------------------------------- |
-| type     | string                  | Yes   | Event type. The value **'serviceDie'** indicates an event reported when the **DeviceManager** service is terminated unexpectedly.|
-| callback | Callback&lt;{}&gt; | No   | Callback for the dead event of the **DeviceManager** service.                    |
+  | Name      | Type                   | Mandatory  | Description                                      |
+  | -------- | ----------------------- | ---- | ---------------------------------------- |
+  | type     | string                  | Yes   | Event type. The value **'serviceDie'** indicates unexpected termination of the **DeviceManager** service.|
+  | callback | Callback&lt;{}&gt; | No   | Callback to unregister.                    |
 
 **Example**
 
@@ -1171,3 +1171,4 @@ Unsubscribes from dead events of the **DeviceManager** service.
     console.error("serviceDie errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
+  
