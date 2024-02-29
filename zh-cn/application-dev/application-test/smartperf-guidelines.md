@@ -599,5 +599,19 @@ SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单�
     | memAvailable      | 整机可用内存         |单位B|
     | memFree           | 整机空闲内存         |单位B|
     | memTotal          | 整机总内存           |单位B|
-    | pss               | 进程内存             |单位B|
+    | pss               | 进程实际使用内存      |单位B|
     | timeStamp         | 当前时间戳           |对应采集时间| 
+    | sharedClean       | 共享的未改写页面      |单位B|
+    | sharedDirty       | 共享的已改写页面      |单位B|
+    | priviateClean     | 私有的未改写页面      |单位B|
+    | privateDirty      | 私有的已改写页面      |单位B|
+    | swapTotal         | 总的交换内存          |单位B|
+    | swapPss           | 交换的pss内存        |单位B|
+    | HeapSize          | 堆内存大小           |单位B|
+    | HeapAlloc         | 可分配的堆内存大小    |单位B|
+    | HeapFree          | 剩余的堆内存大小      |单位B|
+    | gpuPss            | 使用的gpu内存大小     |单位B|
+    | graphicPss        | 使用的图形内存大小     |单位B|
+    | arktsHeapPss      | 使用的arkts内存大小    |单位B|
+    | nativeHeapPss     | 使用的native内存大小   |单位B|
+    | stackPss          | 使用的栈内存大小       |单位B|
