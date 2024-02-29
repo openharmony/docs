@@ -80,7 +80,7 @@ struct WebComponent {
       Web({ src: 'https://www.example.com/index.html', controller: this.webviewController})
         .onPageEnd(() => {
             // 预加载https://www.example.com/page2/.
-            web_webview.WebviewController.prefetchPage('https://www.example.com/page2/');
+            this.webviewController.prefetchPage('https://www.example.com/page2/');
         })
     }
   }
