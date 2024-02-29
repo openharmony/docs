@@ -34,17 +34,17 @@ OpenHarmony的DFX子系统提供了为应用框架以及系统底座核心模块
 
 ![UI后端引擎渲染Trace泳道图](figures/trace-ui-engine.png)
 
-| 序号 | **Trace**                               | **参数说明**                     | **描述**                                                     |
-| :--- | --------------------------------------- | -------------------------------- | ------------------------------------------------------------ |
-| 1    | OnVsyncEvent now:%" PRIu64 "            | 当前时间戳--纳秒级               | 收到Vsync信号，渲染流程开始                                  |
-| 2    | FlushVsync                              |                                  | 刷新视图同步事件，包括记录帧信息、刷新任务、绘制渲染上下文、处理用户输入 |
-| 3    | UITaskScheduler::FlushTask              |                                  | 刷新UI界面，包括布局、渲染和动画等                           |
-| 4    | FlushMessages                           |                                  | 发送消息通知图形侧进行渲染                                   |
-| 5    | FlushLayoutTask                         |                                  | 执行布局任务                                                 |
-| 6    | FlushRenderTask %zu                     | 当前页面上的需要渲染的节点的数量 | 总渲染任务执行                                               |
-| 7    | Layout                                  |                                  | 节点布局                                                     |
-| 8    | FrameNode::RenderTask                   |                                  | 单个渲染任务执行                                             |
-| 9    | ListLayoutAlgorithm::MeasureListItem:%d | 当前列表项索引                   | 计算列表项的布局尺寸                                         |
+| 序号  | **Trace**                               | **参数说明**         | **描述**                               |
+|:--- | --------------------------------------- | ---------------- | ------------------------------------ |
+| 1   | OnVsyncEvent now:%" PRIu64 "            | 当前时间戳--纳秒级       | 收到Vsync信号，渲染流程开始                     |
+| 2   | FlushVsync                              |                  | 刷新视图同步事件，包括记录帧信息、刷新任务、绘制渲染上下文、处理用户输入 |
+| 3   | UITaskScheduler::FlushTask              |                  | 刷新UI界面，包括布局、渲染和动画等                   |
+| 4   | FlushMessages                           |                  | 发送消息通知图形侧进行渲染                        |
+| 5   | FlushLayoutTask                         |                  | 执行布局任务                               |
+| 6   | FlushRenderTask %zu                     | 当前页面上的需要渲染的节点的数量 | 总渲染任务执行                              |
+| 7   | Layout                                  |                  | 节点布局                                 |
+| 8   | FrameNode::RenderTask                   |                  | 单个渲染任务执行                             |
+| 9   | ListLayoutAlgorithm::MeasureListItem:%d | 当前列表项索引          | 计算列表项的布局尺寸                           |
 
 图形图像子系统中的Render Service，是负责界面内容绘制的部件，处理由各个应用提交的统一渲染任务，将不同应用渲染的图层进行合并、送显。在收到每个Vsync周期信号时，首先处理应用提交的指令，包括应用渲染树节点的新增、删除、修改，然后进行动画计算和遮挡计算，以上是为了对统一渲染树进行更新。接下来开始对渲染树执行绘制，首先预处理每个节点，计算绝对位置和脏区信息，然后针对脏区进行绘制，优先使用硬件合成器进行绘制，当遇到无法合成绘制的，交由GPU执行重绘，绘制的所有结果都将存入屏幕缓冲区，最后将绘制结果提交送显、上屏展示。
 
@@ -54,19 +54,19 @@ OpenHarmony的DFX子系统提供了为应用框架以及系统底座核心模块
 
 ![RS侧渲染Trace泳道图](figures/trace-rs.png)
 
-| 序号 | Trace                        | 描述                     |
-| :--- | ---------------------------- | ------------------------ |
-| 1    | RSMainThread::DoComposition  | 合成渲染树上各节点图层   |
-| 2    | RSMainThread::ProcessCommand | 处理client端指令         |
-| 3    | Animate                      | 动画处理                 |
-| 4    | RSMainThread::CalcOcclusion  | 遮挡计算                 |
-| 5    | ProcessDisplayRenderNode[x]  | 单个显示器画面的绘制流程 |
-| 6    | ProcessSurfaceNode:x         | 单个节点的合成器处理     |
-| 7    | Repaint                      | 硬件合成器合成绘制       |
-| 8    | Redraw                       | 无法进行合成，则执行重绘 |
-| 9    | RenderFrame                  | GPU执行绘制              |
-| 10   | SwapBuffers                  | 刷新屏幕缓冲区           |
-| 11   | Commit                       | 绘制结果提交上屏         |
+| 序号  | Trace                        | 描述           |
+|:--- | ---------------------------- | ------------ |
+| 1   | RSMainThread::DoComposition  | 合成渲染树上各节点图层  |
+| 2   | RSMainThread::ProcessCommand | 处理client端指令  |
+| 3   | Animate                      | 动画处理         |
+| 4   | RSMainThread::CalcOcclusion  | 遮挡计算         |
+| 5   | ProcessDisplayRenderNode[x]  | 单个显示器画面的绘制流程 |
+| 6   | ProcessSurfaceNode:x         | 单个节点的合成器处理   |
+| 7   | Repaint                      | 硬件合成器合成绘制    |
+| 8   | Redraw                       | 无法进行合成，则执行重绘 |
+| 9   | RenderFrame                  | GPU执行绘制      |
+| 10  | SwapBuffers                  | 刷新屏幕缓冲区      |
+| 11  | Commit                       | 绘制结果提交上屏     |
 
 ### 懒加载
 
@@ -76,16 +76,16 @@ OpenHarmony的DFX子系统提供了为应用框架以及系统底座核心模块
 
 ![懒加载Trace泳道图](figures/trace-lazyforeach.png)
 
-| **序号** | **Trace**                      | **参数说明**                                                 | **描述**                                                     |
-| :------- | ------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| 1        | OnIdle, targettime:%" PRId64 " | 时间戳，在这个时间之前完成该任务                             | idle事件循环中检查是否有新的事件需要处理，如果有，则将任务调度器加入UI线程中并执行预测任务 |
-| 2        | expiringItem_ count:[%zu]      | 懒加载Item的个数                                             | 预构建，包含处理所有懒加载项                                 |
-| 3        | List predict                   |                                                              | 添加预测布局任务                                             |
-| 4        | Builder:BuildLazyItem [%d]     | 需创建的项目索引                                             | 在需要时创建项，并进行缓存                                   |
-| 5        | Layout[%s][self:%d][parent:%d] | tag标签，当前节点在UINode树中的索引，父节点在UINode树中的索引 | 当前帧节点布局                                               |
-| 6        | Build[%s][self:%d][parent:%d]  | tag标签，当前节点在UINode树中的索引，父节点在UINode树中的索引 | 当前帧节点构建                                               |
-| 7        | CustomNode:BuildRecycle %s     | JS视图名称                                                   | 触发复用渲染                                                 |
-| 8        | ExecuteJS                      |                                                              | 执行JS代码                                                   |
+| **序号** | **Trace**                      | **参数说明**                               | **描述**                                           |
+|:------ | ------------------------------ | -------------------------------------- | ------------------------------------------------ |
+| 1      | OnIdle, targettime:%" PRId64 " | 时间戳，在这个时间之前完成该任务                       | idle事件循环中检查是否有新的事件需要处理，如果有，则将任务调度器加入UI线程中并执行预测任务 |
+| 2      | expiringItem_ count:[%zu]      | 懒加载Item的个数                             | 预构建，包含处理所有懒加载项                                   |
+| 3      | List predict                   |                                        | 添加预测布局任务                                         |
+| 4      | Builder:BuildLazyItem [%d]     | 需创建的项目索引                               | 在需要时创建项，并进行缓存                                    |
+| 5      | Layout[%s][self:%d][parent:%d] | tag标签，当前节点在UINode树中的索引，父节点在UINode树中的索引 | 当前帧节点布局                                          |
+| 6      | Build[%s][self:%d][parent:%d]  | tag标签，当前节点在UINode树中的索引，父节点在UINode树中的索引 | 当前帧节点构建                                          |
+| 7      | CustomNode:BuildRecycle %s     | JS视图名称                                 | 触发复用渲染                                           |
+| 8      | ExecuteJS                      |                                        | 执行JS代码                                           |
 
 ### 页面加载
 
@@ -95,24 +95,24 @@ OpenHarmony的DFX子系统提供了为应用框架以及系统底座核心模块
 
 ![页面加载帧Trace泳道图](figures/trace-load-frame-rate.png)
 
-| **序号** | **Trace**                                                    | **参数说明**                                                 | **描述**                                    |
-| :------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------- |
-| 1        | PageRouterManager::RunPage                                   |                                                              | 页面路由预处理及加载页面                    |
-| 2        | PageRouterManager::LoadPage                                  |                                                              | 加载页面并路由                              |
-| 3        | JsiDeclarativeEngine::LoadPageSource                         |                                                              | 加载一个JavaScript文件并将其解析为ABC字节码 |
-| 4        | JsiDeclarativeEngine::LoadJsWithModule Execute Page code : %s | 页面url地址                                                  | 执行页面代码                                |
-| 5        | Build[%s][self:%d][parent:%d]                                | tag标签，当前节点在UINode树中的索引，父节点在UINode树中的索引 | 当前帧节点构建                              |
-| 6        | CustomNode:BuildItem %s                                      | JS视图名称                                                   | 渲染子节点然后将其挂载到父节点上            |
-| 7        | ViewChangeCallback(%d, %d)                                   | 视图宽，视图高                                               | 视图变化回调                                |
+| **序号** | **Trace**                                                     | **参数说明**                               | **描述**                       |
+|:------ | ------------------------------------------------------------- | -------------------------------------- | ---------------------------- |
+| 1      | PageRouterManager::RunPage                                    |                                        | 页面路由预处理及加载页面                 |
+| 2      | PageRouterManager::LoadPage                                   |                                        | 加载页面并路由                      |
+| 3      | JsiDeclarativeEngine::LoadPageSource                          |                                        | 加载一个JavaScript文件并将其解析为ABC字节码 |
+| 4      | JsiDeclarativeEngine::LoadJsWithModule Execute Page code : %s | 页面url地址                                | 执行页面代码                       |
+| 5      | Build[%s][self:%d][parent:%d]                                 | tag标签，当前节点在UINode树中的索引，父节点在UINode树中的索引 | 当前帧节点构建                      |
+| 6      | CustomNode:BuildItem %s                                       | JS视图名称                                 | 渲染子节点然后将其挂载到父节点上             |
+| 7      | ViewChangeCallback(%d, %d)                                    | 视图宽，视图高                                | 视图变化回调                       |
 
 ## Trace实践
 
 以下示例采用`LazyForEach`的方式遍历列表，并借助[SmartPerf-Host调试工具](../../device-dev/device-test/smartperf-host.md)追踪代码执行流程。
-在代码示例中，使用一个List容器组件，通过懒加载方式来创建出120个IconView自定义组件。在IconView组件中，使用了Flex容器组件包含Image和Text子组件，形成了图文混合列表。
+在[代码示例](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Performance/PerformanceLibrary/feature/trace)中，使用一个List容器组件，通过懒加载方式来创建出120个IconView自定义组件。在IconView组件中，使用了Flex容器组件包含Image和Text子组件，形成了图文混合列表。
 
-[代码链接](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Performance/PerformanceLibrary/feature/trace/src/main/ets/pages/LazyForEachPage.ets)
 ```ts
-// index.ets
+// src/main/ets/pages/LazyForEachPage.ets
+
 @Entry
 @Component
 struct LazyForEachPage {
@@ -149,9 +149,9 @@ struct LazyForEachPage {
 }
 ```
 
-[代码链接](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Performance/PerformanceLibrary/feature/trace/src/main/ets/view/IconView.ets)
 ```ts
-// IconView.ets
+// src/main/ets/view/IconView.ets
+
 @Component
 export struct IconItem {
   image: string | Resource = '';
@@ -275,6 +275,8 @@ ArkUI框架子系统应用hiTraceMeter的例子，来源于[ArkUI开发框架](h
 以下代码对hiTraceMeter进行接口封装，其原理与HITRACE_METER等相同，依赖方法内局部变量的生命周期实现快速打点。
 
 ```cpp
+// frameworks/base/log/ace_trace.h
+
 #define ACE_SCOPED_TRACE(fmt, ...) AceScopedTrace aceScopedTrace(fmt, ##__VA_ARGS__)
 #define ACE_FUNCTION_TRACE() ACE_SCOPED_TRACE(__func__)
 
@@ -293,6 +295,8 @@ private:
 以下代码是刷新视图同步事件，包括记录帧信息、刷新任务、绘制渲染上下文、处理用户输入。在方法开头调用宏定义ACE_FUNCTION_TRACE，将函数名FlushVsync作为Trace名称记录下来，并记录函数开始时间，在函数结束时记录函数结束时间，得出执行耗时。
 
 ```cpp
+// frameworks/core/pipeline/pipeline_context.cpp
+
 void PipelineContext::FlushVsync(uint64_t nanoTimestamp, uint32_t frameCount)
 {
     ACE_FUNCTION_TRACE();
@@ -308,6 +312,8 @@ void PipelineContext::FlushVsync(uint64_t nanoTimestamp, uint32_t frameCount)
 以下代码对hiTraceMeter进行接口封装。
 
 ```cpp
+// utils/log/rs_trace.h
+
 #include "hitrace_meter.h"
 #define ROSEN_TRACE_BEGIN(tag, name) StartTrace(tag, name)
 #define RS_TRACE_BEGIN(name) ROSEN_TRACE_BEGIN(HITRACE_TAG_GRAPHIC_AGP, name)
@@ -324,6 +330,8 @@ void PipelineContext::FlushVsync(uint64_t nanoTimestamp, uint32_t frameCount)
 以下代码在显示器画面绘制方法。在方法开头调用宏定义RS_TRACE_NAME，将函数名ProcessDisplayRenderNode与对应的显示器id组合后，作为Trace名称记录下来，同时由于其本质是使用了快速打点单个方法的宏定义HITRACE_METER_NAME，于是只需要调用一次，即可收集到ProcessDisplayRenderNode函数的执行起终点时间，得出执行耗时。
 
 ```cpp
+// rosen/modules/render_service/core/pipeline/rs_surface_capture_task.cpp
+
 void RSSurfaceCaptureVisitor::ProcessDisplayRenderNode(RSDisplayRenderNode &node)
 {
     RS_TRACE_NAME("RSSurfaceCaptureVisitor::ProcessDisplayRenderNode:" +
@@ -333,5 +341,3 @@ void RSSurfaceCaptureVisitor::ProcessDisplayRenderNode(RSDisplayRenderNode &node
     // ...
 }
 ```
-## 参考资料
-[示例代码](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Performance/PerformanceLibrary)
