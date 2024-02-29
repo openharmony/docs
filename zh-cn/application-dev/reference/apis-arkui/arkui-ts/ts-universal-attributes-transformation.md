@@ -58,7 +58,7 @@ scale(value: ScaleOptions)
 
 transform(value: Matrix4Transit)
 
-设置组件旋转。
+设置组件的变换矩阵。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
