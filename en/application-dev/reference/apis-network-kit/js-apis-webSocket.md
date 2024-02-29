@@ -58,7 +58,19 @@ ws.on('close', (err: BusinessError, value: webSocket.CloseResult) => {
 ws.on('error', (err: BusinessError) => {
   console.log("on error, error:" + JSON.stringify(err));
 });
-ws.connect(defaultIpAddress, (err: BusinessError, value: boolean) => {
+ws.connect(defaultIpAddress, {
+  header:{
+      name1: 'value1',
+      name2: 'value2',
+      name2: 'value3'
+  },
+  proxy: {
+      host: '192.168.0.150',
+      port: 8888,
+      excludeList: []
+  },
+  protocol: 'my-protocol',
+  }, (err: BusinessError, value: boolean) => {
   if (!err) {
     console.log("connect success");
   } else {
@@ -759,6 +771,8 @@ Defines the optional parameters carried in the request for establishing a WebSoc
 | header | Object | No  | Header carrying optional parameters in the request for establishing a WebSocket connection. You can customize the parameter or leave it unspecified.|
 | caPath<sup>11+</sup> | string | No  | Path of CA certificates. If a path is set, the system uses the CA certificates in this path. If a path is not set, the system uses the preset CA certificate, namely, **/etc/ssl/certs/cacert.pem**. This path is the sandbox mapping path, which can be obtained through **Global.getContext().filesDir**. Currently, only text certificates in PEM format are supported.|
 | clientCert<sup>11+</sup> | [ClientCert](#clientcert11) | No  | Client certificate.|
+| proxy<sup>12+</sup> | ProxyConfiguration | No| Proxy configuration. By default, the system network proxy is used.|
+| protocol<sup>12+</sup> | string | No| Custom **Sec-WebSocket-Protocol** field. The default value is "".             |
 
 ## ClientCert<sup>11+</sup>
 
@@ -771,6 +785,18 @@ Defines the client certificate type.
 | certPath   | string  | Yes  | Path of the certificate file.|
 | keyPath | string | Yes  | Path of the certificate key file.|
 | keyPassword | string | No  | Password of the certificate key file.|
+
+## ProxyConfiguration<sup>12+</sup>
+
+Represents the HTTP proxy configuration.
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+| Name   | Type  | Mandatory| Description                     |
+| ------ | ------ | --- |------------------------- |
+| 'system' | string | No |  The default network proxy is used.|
+| 'no-proxy' | string | No |  No network proxy is used.|
+| HttpProxy | Object | No | The specified network proxy is used.|
 
 ## WebSocketCloseOptions
 

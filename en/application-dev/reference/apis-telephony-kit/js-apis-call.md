@@ -771,6 +771,7 @@ Enumerates call states.
 | CALL_STATE_IDLE    | 0    | No call is in progress.                                    |
 | CALL_STATE_RINGING | 1    | The call is in the ringing or waiting state.                                    |
 | CALL_STATE_OFFHOOK | 2    | At least one call is in dialing, active, or on hold, and no new incoming call is ringing or waiting.|
+| CALL_STATE_ANSWERED<sup>11+</sup> | 3    | The incoming call is answered.|
 
 ## EmergencyNumberOptions<sup>7+</sup>
 

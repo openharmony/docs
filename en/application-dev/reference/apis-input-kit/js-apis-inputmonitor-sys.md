@@ -6,9 +6,9 @@ The **inputMonitor** module implements listening for events of input devices, in
 >
 >- The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
->- The APIs provided by this module are system APIs.
->
 >- In this document, **global** indicates the entire touchscreen or touchpad. For example, listening for global touch events means to listen for touch events of the entire touchpad when a user touches at any position on the touchpad.
+>
+>- The APIs provided by this module are system APIs.
 
 ## Modules to Import
 
@@ -240,6 +240,8 @@ try {
 ```
 
 ## TouchEventReceiver
+
+(touchEvent: TouchEvent): Boolean
 
 Defines the callback for touch (touchscreen) events.
 

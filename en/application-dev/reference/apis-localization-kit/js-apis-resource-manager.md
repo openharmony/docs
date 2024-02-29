@@ -52,7 +52,7 @@ Obtains the **ResourceManager** object of this application. This API uses an asy
       console.error("error is " + error);
       return;
     }
-    mgr.getStringValue(0x1000000, (error: BusinessError, value: string) => {
+    mgr.getStringValue($r('app.string.text').id, (error: BusinessError, value: string) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -61,7 +61,6 @@ Obtains the **ResourceManager** object of this application. This API uses an asy
     });
   });
   ```
-> **NOTE**<br>In the sample code, **0x1000000** indicates the resource ID, which can be found in the compiled **ResourceTable.txt** file.
 
 ## resourceManager.getResourceManager
 
@@ -109,7 +108,7 @@ Obtains the **ResourceManager** object of this application. This API uses a prom
   import { BusinessError } from '@ohos.base';
 
   resourceManager.getResourceManager().then((mgr: resourceManager.ResourceManager) => {
-    mgr.getStringValue(0x1000000, (error: BusinessError, value: string) => {
+    mgr.getStringValue($r('app.string.text').id, (error: BusinessError, value: string) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -120,7 +119,6 @@ Obtains the **ResourceManager** object of this application. This API uses a prom
     console.error("error is " + error);
   });
   ```
-> **NOTE**<br>In the sample code, **0x1000000** indicates the resource ID, which can be found in the compiled **ResourceTable.txt** file.
 
 ## resourceManager.getResourceManager
 

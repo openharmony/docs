@@ -181,9 +181,6 @@ try {
 }
 ```
 
-
-
-
 ## pointer.getPointerStyle
 
 getPointerStyle(windowId: number, callback: AsyncCallback&lt;PointerStyle&gt;): void
@@ -425,6 +422,29 @@ window.getLastWindow(getContext(), (error: BusinessError, win: window.Window) =>
   }
 });
 ```
+
+## PrimaryButton<sup>10+</sup>
+
+Type of the primary mouse button.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+| Name                              | Value   | Description    |
+| -------------------------------- | ---- | ------ |
+| LEFT                          | 0    | Left mouse button.    |
+| RIGHT                             | 1    | Right mouse button.  |
+
+## RightClickType<sup>10+</sup>
+
+Enumerates shortcut menu triggering modes.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+| Name                              | Value   | Description    |
+| -------------------------------- | ---- | ------ |
+| TOUCHPAD_RIGHT_BUTTON            | 1    |Tapping the right-button area of the touchpad.|
+| TOUCHPAD_LEFT_BUTTON            | 2    |Tapping the left-button area of the touchpad.|
+| TOUCHPAD_TWO_FINGER_TAP         | 3    |Tapping or pressing the touchpad with two fingers.|
 
 ## PointerStyle
 

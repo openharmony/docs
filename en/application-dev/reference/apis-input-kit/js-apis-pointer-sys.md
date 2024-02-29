@@ -332,7 +332,7 @@ Sets the primary button of the mouse. This API uses an asynchronous callback to 
 
 | Name   | Type                     | Mandatory | Description                                   |
 | -------- | ------------------------- | ----  | ------------------------------------- |
-| primary  | [PrimaryButton](#primarybutton10)   | Yes   | ID of the primary mouse button.  |
+| primary  | [PrimaryButton](js-apis-pointer.md#primarybutton10)   | Yes   | ID of the primary mouse button.  |
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.|
 
 **Example**
@@ -365,7 +365,7 @@ Sets the primary button of the mouse. This API uses a promise to return the resu
 
 | Name   | Type    | Mandatory  | Description                                 |
 | ----- | ------ | ---- | ----------------------------------- |
-| primary | [PrimaryButton](#primarybutton10) | Yes   | ID of the primary mouse button.|
+| primary | [PrimaryButton](js-apis-pointer.md#primarybutton10) | Yes   | ID of the primary mouse button.|
 
 **Return value**
 
@@ -399,7 +399,7 @@ Obtains the primary button of the mouse. This API uses an asynchronous callback 
 
 | Name      | Type                         | Mandatory  | Description            |
 | -------- | --------------------------- | ---- | -------------- |
-| callback | AsyncCallback&lt;[PrimaryButton](#primarybutton10)&gt; | Yes   | Callback used to return the result.|
+| callback | AsyncCallback&lt;[PrimaryButton](js-apis-pointer.md#primarybutton10)&gt; | Yes   | Callback used to return the result.|
 
 **Example**
 
@@ -427,7 +427,7 @@ Obtains the primary button of the mouse. This API uses a promise to return the r
 
 | Name                   | Description                 |
 | --------------------- | ------------------- |
-| Promise&lt;[PrimaryButton](#primarybutton10)&gt; | Promise used to return the result.|
+| Promise&lt;[PrimaryButton](js-apis-pointer.md#primarybutton10)&gt; | Promise used to return the result.|
 
 **Example**
 
@@ -440,17 +440,6 @@ try {
   console.log(`Get mouse primary button failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
-
-## PrimaryButton<sup>10+</sup>
-
-Type of the primary mouse button.
-
-**System capability**: SystemCapability.MultimodalInput.Input.Pointer
-
-| Name                              | Value   | Description    |
-| -------------------------------- | ---- | ------ |
-| LEFT                          | 0    | Left mouse button.    |
-| RIGHT                             | 1    | Right mouse button.  |
 
 ## pointer.setMouseScrollRows<sup>10+</sup>
 
@@ -1313,18 +1302,6 @@ try {
 }
 ```
 
-## RightClickType<sup>10+</sup>
-
-Enumerates shortcut menu triggering modes.
-
-**System capability**: SystemCapability.MultimodalInput.Input.Pointer
-
-| Name                              | Value   | Description    |
-| -------------------------------- | ---- | ------ |
-| TOUCHPAD_RIGHT_BUTTON            | 1    |Tapping the right-button area of the touchpad.|
-| TOUCHPAD_LEFT_BUTTON            | 2    |Tapping the left-button area of the touchpad.|
-| TOUCHPAD_TWO_FINGER_TAP         | 3    |Tapping or pressing the touchpad with two fingers.|
-
 ## pointer.setTouchpadRightClickType<sup>10+</sup>
 
 setTouchpadRightClickType(type: RightClickType, callback: AsyncCallback\<void>): void
@@ -1339,7 +1316,7 @@ Sets the shortcut menu type of the touchpad. This API uses an asynchronous callb
 
 | Name      | Type                       | Mandatory  | Description                                   |
 | -------- | ------------------------- | ---- | ------------------------------------- |
-| type| [RightClickType](#rightclicktype10)| Yes   |Shortcut menu type of the touchpad.<br>- TOUCHPAD_RIGHT_BUTTON: tapping the right-button area of the touchpad.<br>- TOUCHPAD_LEFT_BUTTON: tapping the left-button area of the touchpad.<br>- TOUCHPAD_TWO_FINGER_TAP: tapping or pressing the touchpad with two fingers.<br>The default value is **TOUCHPAD_RIGHT_BUTTON**. |
+| type| [RightClickType](js-apis-pointer.md#rightclicktype10)| Yes   |Shortcut menu type of the touchpad.<br>- TOUCHPAD_RIGHT_BUTTON: tapping the right-button area of the touchpad.<br>- TOUCHPAD_LEFT_BUTTON: tapping the left-button area of the touchpad.<br>- TOUCHPAD_TWO_FINGER_TAP: tapping or pressing the touchpad with two fingers.<br>The default value is **TOUCHPAD_RIGHT_BUTTON**. |
 | callback | AsyncCallback\<void> | Yes   | Callback used to return the result.|
 
 **Example**
@@ -1372,7 +1349,7 @@ Sets the shortcut menu type of the touchpad. This API uses a promise to return t
 
 | Name   | Type    | Mandatory  | Description                                 |
 | ----- | ------ | ---- | ----------------------------------- |
-| type| [RightClickType](#rightclicktype10)| Yes   | Shortcut menu type of the touchpad.<br>- TOUCHPAD_RIGHT_BUTTON: tapping the right-button area of the touchpad.<br>- TOUCHPAD_LEFT_BUTTON: tapping the left-button area of the touchpad.<br>- TOUCHPAD_TWO_FINGER_TAP: tapping or pressing the touchpad with two fingers.<br>The default value is **TOUCHPAD_RIGHT_BUTTON**.|
+| type| [RightClickType](js-apis-pointer.md#rightclicktype10)| Yes   | Shortcut menu type of the touchpad.<br>- TOUCHPAD_RIGHT_BUTTON: tapping the right-button area of the touchpad.<br>- TOUCHPAD_LEFT_BUTTON: tapping the left-button area of the touchpad.<br>- TOUCHPAD_TWO_FINGER_TAP: tapping or pressing the touchpad with two fingers.<br>The default value is **TOUCHPAD_RIGHT_BUTTON**.|
 
 **Return value**
 
@@ -1406,7 +1383,7 @@ Obtains the shortcut menu type of the touchpad. This API uses an asynchronous ca
 
 | Name      | Type                         | Mandatory  | Description            |
 | -------- | --------------------------- | ---- | -------------- |
-| callback | AsyncCallback\<[RightClickType](#rightclicktype10)> | Yes   | Callback used to return the result.|
+| callback | AsyncCallback\<[RightClickType](js-apis-pointer.md#rightclicktype10)> | Yes   | Callback used to return the result.|
 
 **Example**
 
@@ -1434,7 +1411,7 @@ Obtains the shortcut menu type of the touchpad. This API uses a promise to retur
 
 | Name                   | Description                 |
 | --------------------- | ------------------- |
-| Promise\<[RightClickType](#rightclicktype10) > | Promise used to return the result.|
+| Promise\<[RightClickType](js-apis-pointer.md#rightclicktype10) > | Promise used to return the result.|
 
 **Example**
 

@@ -3,7 +3,7 @@
 
 ## Overview
 
-Provides the function of operating rawfile directories and rawfiles. You can use the APIs to traverse, open, search for, read, and close raw files.
+Provides the function of operating rawfile directories and rawfiles. You can use the APIs to traverse, open, search for, read, and close raw files. The **rawfile** APIs are non-thread-safe, and the **close** and **open** APIs are thread-safe.
 
 **Since**: 8
 

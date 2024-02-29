@@ -404,3 +404,353 @@ Exports the heap data.
 ```ts
 hidebug.dumpHeapData("heap-20220216");
 ```
+
+## hidebug.getAppVMMemoryInfo<sup>12+</sup>
+
+getAppVMMemoryInfo(): VMMemoryInfo
+
+Obtains VM memory information.
+
+**System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**Return value**
+
+| Type        | Description                                   |
+| -------------| --------------------------------------- |
+| [VMMemoryInfo](#vmmemoryinfo12) |  VM memory information. |
+
+**Example**
+
+  ```ts
+let vmMemory: VMMemoryInfo = hidebug.getAppVMMemoryInfo();
+hilog.info(0x0000, "example", "totalHeap = %{public}d", vmMemory.totalHeap);
+hilog.info(0x0000, "example", "heapUsed = %{public}d", vmMemory.heapUsed);
+hilog.info(0x0000, "example", "allArraySize = %{public}d", vmMemory.allArraySize);
+  ```
+
+## hidebug.getAppThreadCpuUsage<sup>12+</sup>
+
+getAppThreadCpuUsage(): ThreadCpuUsage[]
+
+Obtains the CPU usage of application threads.
+
+**System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**Return value**
+
+| Type            | Description                                                       |
+| -----------------| ------------------------------------------------------------|
+| [ThreadCpuUsage](#threadcpuusage12)[] | CPU usage of all threads of the current application process.|
+
+
+
+**Example**
+
+  ```ts
+let appThreadCpuUsage = hidebug.getAppThreadCpuUsage();
+for (let ii = 0; ii < appThreadCpuUsage.length; ii++) {
+    hilog.info(0x0000, "example", "threadId=%{public}d, cpuUsage=%{public}f", appThreadCpuUsage[ii].threadId,
+    appThreadCpuUsage[ii].cpuUsage);
+}
+  ```
+
+## hidebug.startAppTraceCapture<sup>12+</sup>
+
+startAppTraceCapture(tags : number[], flag: TraceFlag, limitSize: number) : string
+
+Starts application trace. **startAppTraceCapture()** and **[stopAppTraceCapture()](#hidebugstopapptracecapture12)** must be called in pairs.
+
+**startAppTraceCapture()** always occurs before **stopAppTraceCapture()**; that is, calling the APIs in the sequence similar to the following is prohibited: start -> start -> stop, start -> stop -> stop, and start -> start -> stop -> stop.
+
+**System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**Parameters**
+
+| Name  | Type    | Mandatory| Description                                                                                 |
+| -------- | ------   | ---- | ------------------------------------------------------------------------------------- |
+| tags     | number[] | Yes  | For details, see [tags](#tags12).                                                     |
+| flag     | TraceFlag| Yes  | For details, see [TraceFlag](#traceflag12).         |
+| limitSize| number   | Yes  | Limit on the size of the trace file, in bytes.                                                      |
+
+**Return value**
+
+| Type            | Description                                          |
+| -----------------| -----------------------------------------------|
+| string           | Path of the trace file.                           |
+
+**Error codes**
+
+For details about the error codes, see [HiDebug Error Codes](errorcode-hiviewdfx-hidebug.md).
+
+| ID| Error Message|
+| ------- | ----------------------------------------------------------------- |
+| 401 | the parameter check failed                                            |
+| 11400102 | Have already capture trace                                          |
+| 11400103 | Without write permission on the file                                |
+| 11400104 | The status of the trace is abnormal                                 |
+
+**Example**
+
+```ts
+let tags = [hidebug.tags.ABILITY_MANAGER, hidebug.tags.ACE];
+let flag = hidebug.TraceFlag.MAIN_THREAD;
+let limitSize = 1024 * 1024;
+let fileName = hidebug.startAppTraceCapture(tags, flag, limitSize);
+// code block
+// ...
+// code block
+hidebug.stopAppTraceCapture();
+```
+
+## hidebug.stopAppTraceCapture<sup>12+</sup>
+
+stopAppTraceCapture() : void
+
+Stops application trace. **startAppTraceCapture()** and **[stopAppTraceCapture()](#hidebugstopapptracecapture12)** must be called in pairs.
+
+**startAppTraceCapture()** always occurs before **stopAppTraceCapture()**; that is, calling the APIs in the sequence similar to the following is prohibited: start -> start -> stop, start -> stop -> stop, and start -> start -> stop -> stop.
+
+**System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**Error codes**
+
+For details about the error codes, see [HiDebug Error Codes](errorcode-hiviewdfx-hidebug.md).
+
+| ID| Error Message|
+| ------- | ----------------------------------------------------------------- |
+| 11400104 | The status of the trace is abnormal                                |
+| 11400105 |   No capture trace running                                       |
+
+**Example**
+
+```ts
+let tags = [hidebug.tags.ABILITY_MANAGER, hidebug.tags.ACE];
+let flag = hidebug.TraceFlag.MAIN_THREAD;
+let limitSize = 1024 * 1024;
+let fileName = hidebug.startAppTraceCapture(tags, flag, limitSize);
+// code block
+// ...
+// code block
+hidebug.stopAppTraceCapture();
+```
+
+## hidebug.getAppMemoryLimit<sup>12+</sup>
+
+getAppMemoryLimit() : MemoryLimit
+
+Obtains the memory limit of the application process.
+
+**System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**Return value**
+
+| Type | Description                     |
+| ------ | -------------------------- |
+| [MemoryLimit](#memorylimit12) | Memory limit of the application process.|
+
+**Example**
+
+```ts
+ let appMemoryLimit:hidebug.MemoryLimit = hidebug.getAppMemoryLimit();
+```
+## MemoryLimit<sup>12+</sup>
+
+Defines the memory limit of the application process.
+
+**System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+| Name     | Type  | Mandatory| Description        |
+| --------- | ------ | ---- | ------------ |
+| rssLimit    | bigint |  Yes | Limit on the resident set of the application process, in bytes    |
+| vssLimit  | bigint |  Yes | Limit on the Virtual memory of the application process, in bytes.      |
+| vmHeapLimit | bigint |  Yes | Limit on the JS VM heap size of the calling thread, in bytes.     |
+
+## VMMemoryInfo<sup>12+</sup>
+
+Describes the VM memory information.
+
+**System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+| Name              | Type   | Readable| Writable| Description                               |
+| -------------------| ------- | ---- | ---- | ---------------------------------- |
+| totalHeap          | bigint  | Yes  | No  | Total heap size of the current VM, in bytes.   |
+| heapUsed           | bigint  | Yes  | No  | Heap size used by the current VM, in bytes. |
+| allArraySize       | bigint  | Yes  | No  | Size of all array objects of the current VM, in bytes.|
+
+## ThreadCpuUsage<sup>12+</sup>
+
+Describes the CPU usage of a thread.
+
+**System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+| Name              | Type   | Readable| Writable| Description                               |
+| -------------------| ------- | ---- | ---- | ----------------------------------- |
+| threadId           | number  | Yes  | No  | Thread ID.                          |
+| cpuUsage           | number  | Yes  | No  | CPU usage of the thread.                      |
+
+## tags<sup>12+</sup>
+
+Enumerates scenario tags.
+
+**System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+| Name                    | Type   |  Description                               |
+| -------------------------| ------- |  ----------------------------------- |
+| ABILITY_MANAGER          | number  |  Capability management.                        |
+| ARKUI                    | number  |  ArkUI development framework.                   |
+| ARK                      | number  |  JSVM VM.                      |
+| BLUETOOTH                | number  |  Bluetooth.                           |
+| COMMON_LIBRARY           | number  |  Common library subsystem.                    |
+| DISTRIBUTED_HARDWARE_DEVICE_MANAGER | number  |  Distributed hardware device management.    |
+| DISTRIBUTED_AUDIO        | number  |        Distributed audio.                |
+| DISTRIBUTED_CAMERA       | number  |  Distributed camera.                      |
+| DISTRIBUTED_DATA         | number  |  Distributed data management.               |
+| DISTRIBUTED_HARDWARE_FRAMEWORK | number  |  Distributed hardware framework.             |
+| DISTRIBUTED_INPUT        | number  |  Distributed input.                      |
+| DISTRIBUTED_SCREEN       | number  |  Distributed screen.                      |
+| DISTRIBUTED_SCHEDULER    | number  |  Distributed scheduler.                    |
+| FFRT                     | number  |  FFRT task.                       |
+| FILE_MANAGEMENT          | number  |  File management system.                    |
+| GLOBAL_RESOURCE_MANAGER  | number  |  Global resource management.                    |
+| GRAPHICS                 | number  |  Graphics module.                       |
+| HDF                      | number  |  HDF subsystem.                      |
+| MISC                     | number  |  MISC module.                       |
+| MULTIMODAL_INPUT         | number  |  Multimodal input module.                  |
+| NET                      | number  |  Network.                            |
+| NOTIFICATION             | number  |  Notification module.                        |
+| NWEB                     | number  |  Nweb.                           |
+| OHOS                     | number  |  OHOS.                        |
+| POWER_MANAGER            | number  |  Power management.                        |
+| RPC                      | number  |  RPC.                            |
+| SAMGR                    | number  |  System capability management.                    |
+| WINDOW_MANAGER           | number  |  Window management.                        |
+| AUDIO                    | number  |  Audio module.                       |
+| CAMERA                   | number  |  Camera module.                       |
+| IMAGE                    | number  |  Image module.                       |
+| MEDIA                    | number  |  Media module.                       |
+
+## hidebug.getSystemCpuUsage<sup>12+</sup>
+
+getSystemCpuUsage() : number
+
+Obtains the CPU usage of the system.
+
+For example, if the CPU usage of system resources is **50%**, **0.5** is returned.
+
+**System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**Return value**
+
+| Type    | Description         |
+|--------|-------------|
+| number | CPU usage of the system.|
+
+**Error codes**
+
+For details about the error codes, see [HiDebug CPU Usage Error Codes](errorcode-hiviewdfx-hidebug-cpuusage.md).
+
+| ID| Error Message                                           |
+| ------- |-------------------------------------------------|
+| 11400104 | The status of the system cpu usage is abnormal. |
+
+**Example**
+  ```ts
+  let cpuUsage: number = hidebug.getSystemCpuUsage();
+  ```
+
+## hidebug.getAppNativeMemInfo<sup>12+</sup>
+
+getAppNativeMemInfo(): NativeMemInfo
+
+Obtains the memory information of the application process.
+
+**System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**Return value**
+
+| Type | Description                     |
+| ------ | -------------------------- |
+| [NativeMemInfo](#nativememinfo12) | Memory information of the application process.|
+
+**Example**
+
+```ts
+let nativeMemInfo: NativeMemInfo = hidebug.getAppNativeMemInfo();
+
+hilog.info(0x0000, 'testTag', "pss = %{public}d", nativeMemInfo.pss);
+
+hilog.info(0x0000, 'testTag', "vss = %{public}d", nativeMemInfo.vss);
+
+hilog.info(0x0000, 'testTag', "rss = %{public}d", nativeMemInfo.rss);
+
+hilog.info(0x0000, 'testTag', "sharedDirty = %{public}d", nativeMemInfo.sharedDirty);
+
+hilog.info(0x0000, 'testTag', "privateDirty = %{public}d", nativeMemInfo.privateDirty);
+
+hilog.info(0x0000, 'testTag', "sharedClean = %{public}d", nativeMemInfo.sharedClean);
+
+hilog.info(0x0000, 'testTag', "privateClean = %{public}d", nativeMemInfo.privateClean);
+```
+## NativeMemInfo<sup>12+</sup>
+
+Describes memory information of the application process.
+
+**System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+| Name     | Type  | Mandatory| Description        |
+| --------- | ------ | ---- | ------------ |
+| pss  | bigint |  Yes | Size of the occupied physical memory (including the proportionally allocated memory occupied by the shared library), in KB.    |
+| vss  | bigint |  Yes | Size of the occupied virtual memory (including the memory occupied by the shared library), in KB.      |
+| rss  | bigint |  Yes | Size of the occupied physical memory (including the memory occupied by the shared library), in KB.        |
+| sharedDirty  | bigint |  Yes | Size of the shared dirty memory, in KB.     |
+| privateDirty  | bigint |  Yes | Size of the private dirty memory, in KB.     |
+| sharedClean  | bigint |  Yes | Size of the shared clean memory, in KB.     |
+| privateClean  | bigint |  Yes | Size of the private clean memory, in KB.     |
+
+## hidebug.getSystemMemInfo<sup>12+</sup>
+
+getSystemMemInfo(): SystemMemInfo
+
+Obtains system memory information.
+
+**System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**Return value**
+
+| Type | Description                     |
+| ------ | -------------------------- |
+| [SystemMemInfo](#systemmeminfo12) | System memory iInformation.|
+
+**Example**
+
+```ts
+let systemMemInfo: SystemMemInfo = hidebug.getSystemMemInfo();
+
+hilog.info(0x0000, 'testTag', "totalMem = %{public}d", systemMemInfo.totalMem);
+
+hilog.info(0x0000, 'testTag', "freeMem = %{public}d", systemMemInfo.freeMem);
+
+hilog.info(0x0000, 'testTag', "availableMem = %{public}d", systemMemInfo.availableMem);
+```
+## SystemMemInfo<sup>12+</sup>
+
+Describes the system memory information.
+
+**System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+| Name     | Type  | Mandatory| Description        |
+| --------- | ------ | ---- | ------------ |
+| totalMem  | bigint |  Yes | Total memory of the system, in KB.    |
+| freeMem  | bigint |  Yes | Free memory of the system, in KB.      |
+| availableMem  | bigint |  Yes | Available memory of the system, in KB.     |
+
+## TraceFlag<sup>12+</sup>
+
+Defines the type of the trace thread.
+
+**System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+| Name     | Description        |
+| --------- | ------------ |
+| MAIN_THREAD  | Only the main thread of the current application.    |
+| ALL_THREADS |  All threads of the current application.  |

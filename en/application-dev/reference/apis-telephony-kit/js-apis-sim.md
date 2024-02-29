@@ -1077,6 +1077,28 @@ sim.getActiveSimAccountInfoList((err: BusinessError, data: Array<sim.IccAccountI
 });
 ```
 
+## sim.getMaxSimCount<sup>7+</sup>
+
+getMaxSimCount\(\): number
+
+Obtains the number of card slots.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Return value**
+
+| Type             | Description                                                        |
+| ----------------- | ------------------------------------------------------------ |
+| number | Number of card slots.|
+
+**Example**
+
+```ts
+import sim from '@ohos.telephony.sim';
+
+console.log("Result: "+ sim.getMaxSimCount());
+```
+
 
 ## sim.getActiveSimAccountInfoList<sup>10+</sup>
 
