@@ -28,7 +28,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [ArkUI_UIInputEvent_Type](_ark_u_i___event_module.md#arkui_uiinputevent_type) { **ArkUI_UIINPUTEVENT_TYPE_UNKNOWN** = 0, **ArkUI_UIINPUTEVENT_TYPE_TOUCH** = 1, **ArkUI_UIINPUTEVENT_TYPE_AXIS** = 2 } | UI输入事件类型定义。  | 
+| [ArkUI_UIInputEvent_Type](_ark_u_i___event_module.md#arkui_uiinputevent_type) { ArkUI_UIINPUTEVENT_TYPE_UNKNOWN = 0, ArkUI_UIINPUTEVENT_TYPE_TOUCH = 1, ArkUI_UIINPUTEVENT_TYPE_AXIS = 2 } | UI输入事件类型定义。  | 
 
 
 ### 函数
