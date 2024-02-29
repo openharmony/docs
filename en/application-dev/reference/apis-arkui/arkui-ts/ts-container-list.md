@@ -141,7 +141,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name    |  Value | Description                                      |
 | ------ | ------ | ---------------------------------------- |
-| Idle   |  0  | Idle. The list enters this state when an API in the controller is used to scroll the list or when the scrollbar is dragged.<br>**NOTE**<br> Since API version 10, the list enters this state when it is not scrolling,<br>but not when an API in the controller that does not apply an animation is called.|
+| Idle   |  0  | Idle. The list enters this state when an API in the controller is used to scroll the list or when the scrollbar is dragged.<br>**NOTE**<br> Since API version 10, the list enters this state when it is not scrolling, but not when an API in the controller that does not apply an animation is called.|
 | Scroll |  1  | Scrolling. The list enters this state when the user drags the list to scroll.<br>**NOTE**<br> Since API version 10, the list also enters this state when the user drags the scrollbar or the mouse wheel to scroll the list.|
 | Fling  |  2  | Inertial scrolling. The list enters this state when inertial scrolling occurs or when the list bounces back after being released from a fling.<br>**NOTE**<br> Since API version 10, the list enters this state when: Inertial scrolling occurs after a fling.<br>The list bounces back after being released from a fling.<br>Inertial scrolling occurs after quick dragging of the built-in scrollbar.<br>Scrolling occurs after an API in the controller that applies an animation is called.|
 

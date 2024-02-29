@@ -364,7 +364,7 @@ Since API version 10, this API is supported in ArkTS widgets.
 >- When a custom layout is created in builder mode, only **this.builder()** is allowed in the **build()** method of a custom component, as shown in the recommended example below.
 >- The size configuration of the child component, except **aspectRatio**, is at a lower priority than that specified by **onMeasureSize**.
 >- The position configuration of the child component, except **offset** and **position**, is at a lower priority than that specified by **onPlaceChildren**.
->- Regarding use of the custom layout method, if the measure and layout methods of child components are not called, the layout will not be displayed.
+>- When using the custom layout method, you must call **onMeasureSize** and **onPlaceChildren** at the same time for the layout to display properly.
 >- After **onPlaceChildren** is called, some universal attributes that affect the layout of child components, such as **align**, become ineffective.
 
 ```

@@ -104,7 +104,7 @@ Defines the user submission event.
 | Password                           | Password input mode. This mode accepts only digits, letters, underscores (_), spaces, and special characters. An eye icon is used to show or hide the password, and the password is hidden behind dots by default. The password input mode does not support underlines. If Password Vault is enabled, autofill is available for the username and password.|
 | Email                              | Email address input mode. This mode accepts only digits, letters, underscores (_), dots (.), and one at sign (@).|
 | Number                             | Digit input mode.                                |
-| PhoneNumber<sup>9+</sup>           | Phone number input mode.<br>This mode accepts only digits, plus signs (+), hyphens (-), asterisks (*), and number signs (#). The length is not limited.     |
+| PhoneNumber<sup>9+</sup>           | Phone number input mode.<br>In this mode, the following are allowed: digits, spaces, plus signs (+), hyphens (-), asterisks (*), and number signs (#); the length is not limited.     |
 | USER_NAME<sup>11+<sup>             | Username input mode. If Password Vault is enabled, autofill is available for the username and password.               |
 | NEW_PASSWORD<sup>11+<sup>          | New password input mode. If Password Vault is enabled, a new password can be automatically generated.                                |
 | NUMBER_PASSWORD<sup>11+</sup>      | Numeric password input mode. An eye icon is used to show or hide the password, and the password is hidden behind dots by default. The password input mode does not support underlines.|
@@ -495,3 +495,80 @@ struct TextInputExample {
 ```
 
 ![TextInputCounter](figures/TextInputShowCounter.jpg)
+
+
+### Example 6
+This example shows how to format a phone number to XXX XXXX XXXX in the **\<TextInput>** component.
+```ts
+@Entry
+@Component
+struct phone_example {
+  @State submitValue: string = ''
+  @State text : string = ''
+
+  public readonly NUM_TEXT_MAXSIZE_LENGTH = 14;
+
+  isEmpty(str?: string): boolean {
+    return str == 'undefined' || !str || !new RegExp("[^\\s]").test(str);
+  }
+
+  checkNeedNumberSpace(numText: string) {
+    let isSpace: RegExp = new RegExp('[\\+;,#\\*]', 'g');
+    let isRule: RegExp = new RegExp('^\\+.*');
+
+    if (isSpace.test(numText)) {
+      // If the phone number contains special characters, no space is added.
+      if (isRule.test(numText)) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  removeSpace(str: string): string {
+    if (this.isEmpty(str)) {
+      return '';
+    }
+    return str.replace(new RegExp("[\\s]", "g"), '');
+  }
+
+  build() {
+    Column() {
+        Row() {
+          TextInput({ text: `${this.text}` }).type(InputType.PhoneNumber)
+            .onChange((number: string) => {
+              let teleNumberNoSpace: string = this.removeSpace(number);
+              if (teleNumberNoSpace.length > this.NUM_TEXT_MAXSIZE_LENGTH - 2) {
+                this.text = teleNumberNoSpace;
+              } else if (this.checkNeedNumberSpace(number)) {
+                if (teleNumberNoSpace.length <= 3) {
+                  this.text = teleNumberNoSpace;
+                } else {
+                  let split1: string = teleNumberNoSpace.substring(0, 3);
+                  let split2: string = teleNumberNoSpace.substring(3);
+                  this.text = split1 + ' ' + split2;
+                  if (teleNumberNoSpace.length > 7) {
+                    split2 = teleNumberNoSpace.substring(3, 7);
+                    let split3: string = teleNumberNoSpace.substring(7);
+                    this.text = split1 + ' ' + split2 + ' ' + split3;
+                  }
+                }
+              } else if (teleNumberNoSpace.length > 8) {
+                let split4 = teleNumberNoSpace.substring(0, 8);
+                let split5 = teleNumberNoSpace.substring(8);
+                this.text = split4 + ' ' + split5;
+              } else {
+                this.text = number;
+              }
+            })
+        }
+    }
+    .width('100%')
+    .height("100%")
+  }
+}
+
+``` 
+![phone_example](figures/phone_number.jpeg)

@@ -13,7 +13,7 @@ This component supports only one child component.
 
 >  **NOTE**
 >
->  Built-in components and custom components are allowed, with support for ([if/else](../../quick-start/arkts-rendering-control-ifelse.md), [ForEach](../../quick-start/arkts-rendering-control-foreach.md), and [LazyForEach](../../quick-start/arkts-rendering-control-lazyforeach.md)) rendering control.
+>  Supported types of child components: built-in components and custom components, with support for ([if/else](../../../quick-start/arkts-rendering-control-ifelse.md), [ForEach](../../../quick-start/arkts-rendering-control-foreach.md), and [LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)) rendering control.
 
 
 ## APIs
@@ -32,16 +32,6 @@ Since API version 9, this API is supported in ArkTS widgets.
 | -------- | -------- | -------- | -------- |
 | value |  [BadgeParamWithNumber](#badgeparamwithnumber)| Yes| Parameter of the numbered badge.|
 
-
-## BadgeParamWithNumber
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| count | number | Yes| Number of notifications.<br>**NOTE**<br>If the value is less than or equal to 0, no badge is displayed.<br>Value range: [-2147483648, 2147483647]<br>If the value is out of the range, 4294967296 is added or subtracted so that the value is within the range. If the value is not an integer, it is rounded off to the nearest integer. For example, 5.5 is rounded off to 5.|
-| position | [BadgePosition](#badgeposition)\|[Position<sup>10+</sup>](ts-types.md#position8) | No| Position to display the badge relative to the parent component.<br>Default value: **BadgePosition.RightTop**<br>**NOTE**<br> This parameter cannot be set in percentage. If it is set to an invalid value, the default value **(0,0)** will be used.|
-| maxCount | number | No| Maximum number of notifications. When the maximum number is reached, only **maxCount+** is displayed.<br>Default value: **99**<br>Value range: [-2147483648, 2147483647]<br>If the value is out of the range, 4294967296 is added or subtracted so that the value is within the range. If the value is not an integer, it is rounded off to the nearest integer. For example, 5.5 is rounded off to 5.|
-| style | [BadgeStyle](#badgestyle) | Yes| Style of the badge, including the font color, font size, badge color, and badge size.|
-
 ### Badge
 
 Badge(value: BadgeParamWithString)
@@ -56,6 +46,15 @@ Since API version 9, this API is supported in ArkTS widgets.
 | ------ | ----------------------------------------------------- | ---- | -------------------- |
 | value  | [BadgeParamWithString](#badgeparamwithstring) | Yes  | Parameter of the string-type badge.|
 
+
+## BadgeParamWithNumber
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| count | number | Yes| Number of notifications.<br>**NOTE**<br>If the value is less than or equal to 0, no badge is displayed.<br>Value range: [-2147483648, 2147483647]<br>If the value is out of the range, 4294967296 is added or subtracted so that the value is within the range. If the value is not an integer, it is rounded off to the nearest integer. For example, 5.5 is rounded off to 5.|
+| position | [BadgePosition](#badgeposition)\|[Position<sup>10+</sup>](ts-types.md#position8) | No| Position to display the badge relative to the parent component.<br>Default value: **BadgePosition.RightTop**<br>**NOTE**<br> This parameter cannot be set in percentage. If it is set to an invalid value, the default value **(0,0)** will be used.|
+| maxCount | number | No| Maximum number of notifications. When the maximum number is reached, only **maxCount+** is displayed.<br>Default value: **99**<br>Value range: [-2147483648, 2147483647]<br>If the value is out of the range, 4294967296 is added or subtracted so that the value is within the range. If the value is not an integer, it is rounded off to the nearest integer. For example, 5.5 is rounded off to 5.|
+| style | [BadgeStyle](#badgestyle) | Yes| Style of the badge, including the font color, font size, badge color, and badge size.|
 
 ## BadgeParamWithString
 

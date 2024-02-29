@@ -52,7 +52,7 @@ Sets the absolute position of the component, which defines the offset of the com
 
 | Name| Type                             | Mandatory| Description                                                        |
 | ------ | --------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Position](ts-types.md#position8) | Yes  | Absolute position of the component, which defines the offset of the component's upper left corner relative to the parent component's. With this attribute set, the component does not participate in the layout of the parent component. That is, it is relocated during drawing based on the settings, but does not take up space in the parent component.<br>This attribute is applicable to scenarios where the component is fixed at a position in the parent container, for example, where it is pinned to top or floating above the UI.|
+| value  | [Position](ts-types.md#position8) | Yes  | Absolute position of the component, which defines the offset of the component's upper left corner relative to the parent component's. With this attribute set, the component does not participate in the layout of the parent component. That is, it is relocated during drawing based on the settings, but does not take up space in the parent component.<br>This attribute is applicable to scenarios where the component's position in the parent container is fixed, for example, where it is pinned to top or floating above the UI.<br>This attribute is not available for a layout container whose width and height are zero.|
 
 ## markAnchor
 

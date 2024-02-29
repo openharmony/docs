@@ -18,7 +18,7 @@ Search(options?: { value?: string, placeholder?: ResourceStr, icon?: string, con
 
 | Name     | Type                                            | Mandatory| Description                                                    |
 | ----------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value       | string                                               | No  | Text input in the search text box.<br>Since API version 10, this parameter supports two-way binding through [$$](../../quick-start/arkts-two-way-sync.md).|
+| value       | string                                               | No  | Text input in the search text box.<br>Since API version 10, this parameter supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).|
 | placeholder | [ResourceStr](ts-types.md#resourcestr)<sup>10+</sup> | No  | Text displayed when there is no input.                                    |
 | icon        | string                                               | No  | Path to the search icon. By default, the system search icon is used.<br>**NOTE**<br>The icon data source can be a local or online image.<br>- The supported formats include PNG, JPG, BMP, SVG, GIF, and pixelmap.<br>- The Base64 string is supported in the following format: data:image/[png\|jpeg\|bmp\|webp];base64,[base64 data], where [base64 data] is a Base64 string.<br>If this attribute and the **searchIcon** attribute are both set, the **searchIcon** attribute takes precedence.|
 | controller  | [SearchController](#searchcontroller) | No  | Controller of the **\<Search>** component.                                      |
@@ -82,7 +82,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | NORMAL   | Normal input mode.<br>In this mode, the following are allowed: digits, letters, underscores (_), spaces, and special characters.|
 | EMAIL    | Email address input mode. In this mode, the following are allowed: digits, letters, underscores (_), and at signs (@); only one at sign (@) can exist.|
 | NUMBER   | Digit input mode.     |
-| PHONE_NUMBER | Phone number input mode.<br>In this mode, the following are allowed: digits, plus signs (+), hyphens (-), asterisks (*), and number signs (#); the length is not limited.|
+| PHONE_NUMBER | Phone number input mode.<br>In this mode, the following are allowed: digits, spaces, plus signs (+), hyphens (-), asterisks (*), and number signs (#); the length is not limited.|
 
 ## Events
 
@@ -96,7 +96,7 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 | onCut(callback: (value: string) => void)                     | Triggered when data is cut from the pasteboard, which is displayed when the search text box is long pressed.<br> - **value**: text cut.|
 | onPaste(callback: (value: string, event<sup>11+</sup>: [PasteEvent](ts-basic-components-richeditor.md#pasteevent11)) => void) | Triggered when data is pasted from the pasteboard, which is displayed when the search text box is long pressed.<br> - **value**: text pasted.<br> - **event**: custom paste event.|
 | onTextSelectionChange(callback: (selectionStart: number, selectionEnd: number) => void)<sup>10+</sup> | Triggered when the text selection position changes.<br>**selectionStart**: start position of the text selection area. The start position of text in the text box is **0**.<br>**selectionEnd**: end position of the text selection area.|
-| onContentScroll(callback: (totalOffsetX: number, totalOffsetY: number) => void)<sup>10+</sup> | Triggered when the text content is scrolled.<br>**totalOffsetX**: X coordinate offset of the text in the content area.<br>**totalOffsetY**: Y coordinate offset of the text in the content area.|
+| onContentScroll(callback: (totalOffsetX: number, totalOffsetY: number) => void)<sup>10+</sup> | Triggered when the text content is scrolled.<br>**totalOffsetX**: offset in the X coordinate of the text in the content area, in px.<br>**totalOffsetY**: offset in the Y coordinate of the text in the content area, in px.|
 
 ## SearchController
 
@@ -141,10 +141,9 @@ Obtains the position of the edited text area relative to the component and its s
 > - The returned position information is the offset of the first character relative to the search icon in the **\<Search>** component.
 > - If no text is entered, the return value contains the position information, but the size is 0.
 
-
 ### RectResult<sup>10+</sup>
 
-Describes the position and size.
+Sets the position and size, in pixels.
 
 | Parameter     | Type    | Description|
 | ------- | ------ | ----------------------- |
@@ -241,12 +240,13 @@ struct SearchExample {
 @Entry
 @Component
 struct SearchExample {
+  @State changeValue: string = ''
   @State submitValue: string = ''
 
   build() {
     Column() {
       Text('onSubmit:' + this.submitValue).fontSize(18).margin(15)
-      Search({ placeholder: 'Type to search...' })
+      Search({ value: this.changeValue, placeholder: 'Type to search...' })
         .searchButton('SEARCH')
         .searchIcon({
           src: $r('app.media.search')
@@ -266,6 +266,9 @@ struct SearchExample {
         .textFont({ size: 14, weight: 400 })
         .onSubmit((value: string) => {
           this.submitValue = value
+        })
+        .onChange((value: string) => {
+          this.changeValue = value
         })
         .margin(20)
     }.width('100%')
