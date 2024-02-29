@@ -4,12 +4,13 @@
 
 An Open Anonymous Device Identifier (OAID) is a non-permanent device identifier. The OAID service is useful for media application developers, ad platforms, and tracking platforms alike. Specifically, it provides personalized ads for users while protecting their personal data privacy, and also interact with third-party tracking platforms to provide conversion attribution analysis for advertisers.
 
+
+
 ## Available APIs
 
 | API| Description|
 | -------- | -------- |
-| [getOAID()](../../reference/apis/js-apis-oaid.md#identifiergetoaid):Promise&lt;string&gt; | Obtains an OAID. This API uses a promise to return the result.|
-| [getOAID(callback:&nbsp;AsyncCallback&lt;string&gt;)](../../reference/apis/js-apis-oaid.md#identifiergetoaid-1):&nbsp;void | Obtains an OAID. This API uses an asynchronous callback to return the result.|
+| [resetOAID()](../../reference/apis/js-apis-oaid.md#identifierresetoaid):&nbsp;void | Resets an OAID. This is a system API.|
 
 
 ## How to Develop
@@ -53,22 +54,15 @@ An Open Anonymous Device Identifier (OAID) is a non-permanent device identifier.
     }
    ```
    
-3. Call **getOAID()** to obtain OAID information. The sample code is as follows:
+3. Call **resetOAID()** (a system API) to reset the OAID. The sample code is as follows:
    ```
    import identifier from '@ohos.identifier.oaid';
    import hilog from '@ohos.hilog'; 
-   import { BusinessError } from '@ohos.base';
-    
+   
+   // Reset the OAID.
    try {
-     identifier.getOAID((err: BusinessError, data: string) => {
-       if (err.code) {
-         hilog.error(0x0000, 'testTag', '%{public}s', `get oaid failed, error: ${err.code} ${err.message}`);
-       } else {
-         const oaid: string = data;
-         hilog.info(0x0000, 'testTag', '%{public}s', `get oaid by callback success, oaid: ${oaid}`);
-       }
-      });
+     identifier.resetOAID();
    } catch (err) {
-     hilog.error(0x0000, 'testTag', '%{public}s', `get oaid catch error: ${err.code} ${err.message}`);
+     hilog.error(0x0000, 'testTag', '%{public}s', `reset oaid catch error: ${err.code} ${err.message}`);
    }
    ```
