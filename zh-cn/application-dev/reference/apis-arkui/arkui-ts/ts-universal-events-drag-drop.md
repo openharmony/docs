@@ -28,7 +28,7 @@ onDragStart(event: (event: DragEvent, extraParams?: string) => CustomBuilder | D
 - 如果开发者返回了自定义背板图，则不再使用系统默认的拖拽背板图；
 - 如果开发者设置了拖拽数据，则不再使用系统默认填充的拖拽数据。
 
-文本类组件Text、Search、TextInput、TextArea对选中的文本内容进行拖拽时，不支持背板图的自定义。
+文本类组件Text、Search、TextInput、TextArea、RichEditor对选中的文本内容进行拖拽时，不支持背板图的自定义。
 
 **事件优先级：** 长按触发时间 < 500ms，长按事件优先拖拽事件响应，长按触发时间 >= 500ms，拖拽事件优先长按事件响应。
 
