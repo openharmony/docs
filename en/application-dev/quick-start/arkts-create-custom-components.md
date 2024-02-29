@@ -176,17 +176,13 @@ To fully understand the preceding example, a knowledge of the following concepts
 In addition to the mandatory **build()** function, a custom component may implement other member functions with the following restrictions:
 
 
-- Static functions are not supported.
-
-- Access to the member functions is private.
+- Access to the member functions is private. Avoid declaring the member functions as static functions.
 
 
 A custom component can also implement member variables with the following restrictions:
 
 
-- Static member variables are not supported.
-
-- Access to the member variables is private. The access rules of member variables are the same as those of member functions.
+- Access to the member variables is private. Avoid declaring the member variables as static variables.
 
 - Local initialization is optional for some member variables and mandatory for others. For details about whether local initialization or initialization from the parent component is required, see [State Management](arkts-state-management-overview.md).
 
