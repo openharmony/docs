@@ -17,11 +17,11 @@ The relational database (RDB) store manages data based on relational models. The
 
 | Name| Description|
 | -------- | -------- |
-| [oh_cursor.h](oh__cursor_8h.md) | Provides APIs to access the result set obtained by querying the RDB store.<br>File to include: <database/rdb/oh_cursor.h><br>Library: libnative_rdb_ndk.z.so<br>|
+| [oh_cursor.h](oh__cursor_8h.md) | Defines the APIs for accessing the result set obtained by querying the RDB store.<br>File to include: <database/rdb/oh_cursor.h><br>Library: libnative_rdb_ndk.z.so<br>|
 | [oh_predicates.h](oh__predicates_8h.md) | Defines the predicates for RDB stores.<br>File to include: <database/rdb/oh_predicates.h><br>Library: libnative_rdb_ndk.z.so<br>|
 | [oh_value_object.h](oh__value__object_8h.md) | Provides type conversion methods.<br>File to include: <database/rdb/oh_value_object.h><br>Library: libnative_rdb_ndk.z.so<br>|
 | [oh_values_bucket.h](oh__values__bucket_8h.md) | Defines the types of the key and value in a key-value (KV) pair.<br>File to include: <database/rdb/oh_values_bucket.h><br>Library: libnative_rdb_ndk.z.so<br>|
-| [relational_store.h](relational__store_8h.md) | Provides APIs to manage an RDB store.<br>File to include: <database/rdb/relational_store.h><br>Library: libnative_rdb_ndk.z.so<br>|
+| [relational_store.h](relational__store_8h.md) | Defines the APIs for managing an RDB store.<br>File to include: <database/rdb/relational_store.h><br>Library: libnative_rdb_ndk.z.so<br>|
 | [relational_store_error_code.h](relational__store__error__code_8h.md) | Defines the error codes used for RDB stores.<br>File to include: <database/rdb/relational_store_error_code.h><br>Library: libnative_rdb_ndk.z.so|
 
 
@@ -195,7 +195,7 @@ The relational database (RDB) store manages data based on relational models. The
 | [OH_Rdb_Config::bundleName](#bundlename) | Bundle name.|
 | [OH_Rdb_Config::moduleName](#modulename) | Module name. |
 | [OH_Rdb_Config::isEncrypt](#isencrypt) | Whether to encrypt the RDB store.|
-| [OH_Rdb_Config::securityLevel](#securitylevel) | RDB store security level. For details, see [OH_Rdb_SecurityLevel](#oh_rdb_securitylevel).|
+| [OH_Rdb_Config::securityLevel](#securitylevel) | Pointer to the function used to set the RDB store security level [OH_Rdb_SecurityLevel](#oh_rdb_securitylevel).|
 | [OH_Rdb_Config::area](#area) | Security area level. For details, see [Rdb_SecurityArea](#rdb_securityarea).|
 | [OH_Rdb_Store::id](#id-55) | Unique identifier of the **OH_Rdb_Store** struct.|
 | [Rdb_DistributedConfig::version](#version-13) | Version of the **Rdb_DistributedConfig** struct.|
@@ -899,9 +899,7 @@ int OH_Rdb_CloseStore (OH_Rdb_Store *store)
 
 **Description**
 
-Destroys an [OH_Rdb_Store](_o_h___rdb___store.md) object to reclaim the memory occupied.
-
-**Since**: 10
+Closes an [OH_Rdb_Store](_o_h___rdb___store.md) object to reclaim the memory occupied.
 
 **Parameters**
 
@@ -1648,7 +1646,7 @@ uint16_t OH_VBucket::capability
 
 **Description**
 
-Number of KV pairs in the struct.
+Number of the KV pairs in the struct.
 
 
 ### ChangeType
@@ -1697,9 +1695,7 @@ int(*clear) (OH_VBucket *bucket)
 
 **Description**
 
-Clears an [OH_VBucket](_o_h___v_bucket.md) object.
-
-**Since**: 10
+Pointer to the function used to clear an [OH_VBucket](_o_h___v_bucket.md) object.
 
 **Parameters**
 
@@ -1795,9 +1791,7 @@ int(*destroy) (OH_Predicates *predicates)
 
 **Description**
 
-Destroys an [OH_Predicates](_o_h___predicates.md) object to reclaim the memory occupied.
-
-**Since**: 10
+Pointer to the function used to destroy an [OH_Predicates](_o_h___predicates.md) object to reclaim the memory occupied.
 
 **Parameters**
 
@@ -1822,9 +1816,7 @@ int(*destroy) (OH_VBucket *bucket)
 
 **Description**
 
-Destroys an [OH_VBucket](_o_h___v_bucket.md) object to reclaim the memory occupied.
-
-**Since**: 10
+Pointer to the function used to destroy an [OH_VBucket](_o_h___v_bucket.md) object to reclaim the memory occupied.
 
 **Parameters**
 
@@ -1849,9 +1841,7 @@ int(*destroy) (OH_VObject *valueObject)
 
 **Description**
 
-Destroys an [OH_VObject](_o_h___v_object.md) object to reclaim the memory occupied.
-
-**Since**: 10
+Pointer to the function used to destroy an [OH_VObject](_o_h___v_object.md) object to reclaim the memory occupied.
 
 **Parameters**
 
@@ -2993,9 +2983,7 @@ int(*putBlob) (OH_VBucket *bucket, const char *field, const uint8_t *value, uint
 
 **Description**
 
-Puts a const uint8_t value into the [OH_VBucket](_o_h___v_bucket.md) object in the given column.
-
-**Since**: 10
+Pointer to the function used to put a const uint8_t value into the [OH_VBucket](_o_h___v_bucket.md) object in the given column.
 
 **Parameters**
 
@@ -3023,9 +3011,7 @@ int(*putDouble) (OH_VObject *valueObject, double *value, uint32_t count)
 
 **Description**
 
-Converts a single parameter or an array of the double type into a value of the [OH_VObject](_o_h___v_object.md) type.
-
-**Since**: 10
+Pointer to the function used to convert a single parameter or an array of the double type into a value of the [OH_VObject](_o_h___v_object.md) type.
 
 **Parameters**
 
@@ -3052,7 +3038,7 @@ int(*putInt64) (OH_VBucket *bucket, const char *field, int64_t value)
 
 **Description**
 
-Puts an int64_t value into the [OH_VBucket](_o_h___v_bucket.md) object in the given column.
+Pointer to the function used to put an int64_t value into the [OH_VBucket](_o_h___v_bucket.md) object in the given column.
 
 **Since**: 10
 
@@ -3062,7 +3048,7 @@ Puts an int64_t value into the [OH_VBucket](_o_h___v_bucket.md) object in the gi
 | -------- | -------- |
 | bucket | Pointer to the [OH_VBucket](_o_h___v_bucket.md) instance.|
 | field | Pointer to the column name in the database table.|
-| value | Pointer to the value to put.|
+| value | Value to put.|
 
 **Returns**
 
@@ -3081,9 +3067,7 @@ int(*putInt64) (OH_VObject *valueObject, int64_t *value, uint32_t count)
 
 **Description**
 
-Converts a single parameter or an array of the int64 type into a value of the [OH_VObject](_o_h___v_object.md) type.
-
-**Since**: 10
+Pointer to the function used to convert a single parameter or an array of the int64 type into a value of the [OH_VObject](_o_h___v_object.md) type.
 
 **Parameters**
 
@@ -3110,9 +3094,7 @@ int(*putNull) (OH_VBucket *bucket, const char *field)
 
 **Description**
 
-Puts a null value into the [OH_VBucket](_o_h___v_bucket.md) object in the given column.
-
-**Since**: 10
+Pointer to the function used to put a null value into the [OH_VBucket](_o_h___v_bucket.md) object in the given column.
 
 **Parameters**
 
@@ -3138,7 +3120,7 @@ int(*putReal) (OH_VBucket *bucket, const char *field, double value)
 
 **Description**
 
-Puts a double value into the [OH_VBucket](_o_h___v_bucket.md) object in the given column.
+Pointer to the function used to put a double value into the [OH_VBucket](_o_h___v_bucket.md) object in the given column.
 
 **Since**: 10
 
@@ -3148,7 +3130,7 @@ Puts a double value into the [OH_VBucket](_o_h___v_bucket.md) object in the give
 | -------- | -------- |
 | bucket | Pointer to the [OH_VBucket](_o_h___v_bucket.md) instance.|
 | field | Pointer to the column name in the database table.|
-| value | Pointer to the value to put.|
+| value | Value to put.|
 
 **Returns**
 
@@ -3167,9 +3149,7 @@ int(*putText) (OH_VBucket *bucket, const char *field, const char *value)
 
 **Description**
 
-Puts a char value into the [OH_VBucket](_o_h___v_bucket.md) object in the given column.
-
-**Since**: 10
+Pointer to the function used to put a char value into the [OH_VBucket](_o_h___v_bucket.md) object in the given column.
 
 **Parameters**
 
@@ -3196,9 +3176,7 @@ int(*putText) (OH_VObject *valueObject, const char *value)
 
 **Description**
 
-Converts a character array of the char type to a value of the [OH_VObject](_o_h___v_object.md) type.
-
-**Since**: 10
+Pointer to the function used to convert a character array of the char type to a value of the [OH_VObject](_o_h___v_object.md) type.
 
 **Parameters**
 
@@ -3224,9 +3202,7 @@ int(*putTexts) (OH_VObject *valueObject, const char **value, uint32_t count)
 
 **Description**
 
-Converts a string array of the char type to a value of the [OH_VObject](_o_h___v_object.md) type.
-
-**Since**: 10
+Pointer to the function used to convert a string array of the char type to a value of the [OH_VObject](_o_h___v_object.md) type.
 
 **Parameters**
 
@@ -3286,7 +3262,7 @@ int OH_Rdb_Config::securityLevel
 
 **Description**
 
-RDB store security level. For details, see [OH_Rdb_SecurityLevel](#oh_rdb_securitylevel).
+RDB store security level [OH_Rdb_SecurityLevel](#oh_rdb_securitylevel).
 
 
 ### selfSize
