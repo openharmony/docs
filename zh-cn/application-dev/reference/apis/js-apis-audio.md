@@ -1028,7 +1028,7 @@ setAudioParameter(key: string, value: string, callback: AsyncCallback&lt;void&gt
 
 音频参数设置，使用callback方式异步返回结果。
 
-本接口的使用场景为根据硬件设备支持能力扩展音频配置。在不同的设备平台上，所支持的音频参数会存在差异。示例代码内使用样例参数，实际支持的音频配置参数见具体设备平台的资料描述。
+接口用于为根据硬件设备支持能力扩展音频配置。支持的参数与产品、设备强相关，非通用参数，示例代码内使用样例参数。
 
 **需要权限：** ohos.permission.MODIFY_AUDIO_SETTINGS
 
@@ -1062,7 +1062,7 @@ setAudioParameter(key: string, value: string): Promise&lt;void&gt;
 
 音频参数设置，使用Promise方式异步返回结果。
 
-本接口的使用场景为根据硬件设备支持能力扩展音频配置。在不同的设备平台上，所支持的音频参数会存在差异。示例代码内使用样例参数，实际支持的音频配置参数见具体设备平台的资料描述。
+接口用于为根据硬件设备支持能力扩展音频配置。支持的参数与产品、设备强相关，非通用参数，示例代码内使用样例参数。
 
 **需要权限：** ohos.permission.MODIFY_AUDIO_SETTINGS
 
