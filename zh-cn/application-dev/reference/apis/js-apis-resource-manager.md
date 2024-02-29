@@ -4410,7 +4410,7 @@ getRawFileList(path: string): Promise&lt;Array\<string\>&gt;
 
 getRawFdSync(path: string): RawFileDescriptor
 
-用户获取resources/rawfile目录下对应rawfile文件的descriptor。
+用户获取resources/rawfile目录下对应rawfile文件所在hap的descriptor信息。
 
 **系统能力：** SystemCapability.Global.ResourceManager
 
@@ -4424,7 +4424,7 @@ getRawFdSync(path: string): RawFileDescriptor
 
 | 类型                        | 说明          |
 | ------------------------- | ----------- |
-| [RawFileDescriptor](#rawfiledescriptor8) | rawfile文件的descriptor。 |
+| [RawFileDescriptor](#rawfiledescriptor8) | rawfile文件所在hap的descriptor信息。 |
 
 **错误码：**
 
@@ -4451,7 +4451,7 @@ getRawFdSync(path: string): RawFileDescriptor
 
 getRawFd(path: string, callback: AsyncCallback&lt;RawFileDescriptor&gt;): void
 
-用户获取resources/rawfile目录下对应rawfile文件的descriptor，使用callback异步回调。
+用户获取resources/rawfile目录下对应rawfile文件所在hap的descriptor信息，使用callback异步回调。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -4460,7 +4460,7 @@ getRawFd(path: string, callback: AsyncCallback&lt;RawFileDescriptor&gt;): void
 | 参数名      | 类型                                       | 必填   | 说明                               |
 | -------- | ---------------------------------------- | ---- | -------------------------------- |
 | path     | string                                   | 是    | rawfile文件路径。                      |
-| callback | AsyncCallback&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | 是    | 返回获取的rawfile文件的descriptor。 |
+| callback | AsyncCallback&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | 是    | 返回获取的rawfile文件所在hap的descriptor信息。 |
 
 **错误码：**
 
@@ -4496,7 +4496,7 @@ getRawFd(path: string, callback: AsyncCallback&lt;RawFileDescriptor&gt;): void
 
 getRawFd(path: string): Promise&lt;RawFileDescriptor&gt;
 
-用户获取resources/rawfile目录下对应rawfile文件的descriptor，使用Promise异步回调。
+用户获取resources/rawfile目录下对应rawfile文件所在hap的descriptor信息，使用Promise异步回调。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -4510,7 +4510,7 @@ getRawFd(path: string): Promise&lt;RawFileDescriptor&gt;
 
 | 类型                                       | 说明                  |
 | ---------------------------------------- | ------------------- |
-| Promise&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | rawfile文件descriptor。 |
+| Promise&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | rawfile文件所在hap的descriptor信息。 |
 
 **错误码：**
 
@@ -4544,7 +4544,7 @@ getRawFd(path: string): Promise&lt;RawFileDescriptor&gt;
 
 closeRawFdSync(path: string): void
 
-用户关闭resources/rawfile目录下rawfile文件的descriptor。
+用户关闭resources/rawfile目录下rawfile文件所在hap的descriptor信息。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -4579,7 +4579,7 @@ closeRawFdSync(path: string): void
 
 closeRawFd(path: string, callback: AsyncCallback&lt;void&gt;): void
 
-用户关闭resources/rawfile目录下rawfile文件的descriptor，使用callback异步回调。
+用户关闭resources/rawfile目录下rawfile文件所在hap的descriptor信息，使用callback异步回调。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -4619,7 +4619,7 @@ closeRawFd(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 closeRawFd(path: string): Promise&lt;void&gt;
 
-用户关闭resources/rawfile目录下rawfile文件的descriptor，使用Promise异步回调。
+用户关闭resources/rawfile目录下rawfile文件所在hap的descriptor信息，使用Promise异步回调。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
