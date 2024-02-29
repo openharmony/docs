@@ -588,8 +588,8 @@ SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单�
     | voltageNow        | 当前读到的电压值       |单位μV(微伏)| 
     | fps               | 屏幕刷新帧率          |单位fps|
     | fpsJitters        | 每一帧绘制间隔        |单位ns|
-    | networkDown       | 下行速率              |单位B|
-    | networkUp         | 上行速率              |单位B|
+    | networkDown       | 下行速率              |byte/s|
+    | networkUp         | 上行速率              |byte/s|
     | shell_front       | 前壳温度              |单位℃|
     | shell_frame       | 边框温度              |单位℃|
     | shell_back        | 后壳温度              |单位℃|
@@ -600,7 +600,6 @@ SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单�
     | memFree           | 整机空闲内存         |单位B|
     | memTotal          | 整机总内存           |单位B|
     | pss               | 进程实际使用内存      |单位B|
-    | timeStamp         | 当前时间戳           |对应采集时间| 
     | sharedClean       | 共享的未改写页面      |单位B|
     | sharedDirty       | 共享的已改写页面      |单位B|
     | priviateClean     | 私有的未改写页面      |单位B|
@@ -615,3 +614,4 @@ SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单�
     | arktsHeapPss      | 使用的arkts内存大小    |单位B|
     | nativeHeapPss     | 使用的native内存大小   |单位B|
     | stackPss          | 使用的栈内存大小       |单位B|
+    | timeStamp         | 当前时间戳            |对应采集时间| 
