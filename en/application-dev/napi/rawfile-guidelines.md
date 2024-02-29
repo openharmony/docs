@@ -400,5 +400,3 @@ After a project is created, the **cpp** directory is created under the project. 
         }
     }
     ```
-
-- [获取Rawfile资源（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkRawfile)

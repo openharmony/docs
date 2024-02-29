@@ -1453,3 +1453,5 @@ Enumerates certificate types.
 | PEM | PEM certificate.|
 | DER | DER certificate.|
 | P12 | P12 certificate.|
+
+<!--no_check-->

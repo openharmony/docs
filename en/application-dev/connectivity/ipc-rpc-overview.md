@@ -25,3 +25,5 @@ IPC and RPC usually use the client-server model, where the client (service reque
 - Subscription to death notifications of anonymous stub objects (not registered with SAMgr) is prohibited in RPC.
 
 - During cross-process communication across processes, a proxy object cannot be passed back to the device that hosts the stub object pointed by the proxy object. That is, the proxy object pointing to the stub object of the remote device cannot be passed across processes twice on the local device.
+
+<!--no_check-->
