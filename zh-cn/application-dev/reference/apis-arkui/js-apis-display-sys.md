@@ -299,7 +299,7 @@ let promise = displayClass.hasImmersiveWindow();
 promise.then((data) => {
   console.info('Succeeded in checking whether there is immersive window. data: ' + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-  console.error('Failed to check whether there is immersive window. Code: ' + JSON.stringify(exception));
+  console.error('Failed to check whether there is immersive window. Code: ' + JSON.stringify(err));
 })
 ```
 
