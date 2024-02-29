@@ -1591,6 +1591,8 @@ export function Distance(p1: Point, p2: Point): number {
 
 ### 导入
 
+#### 静态导入
+
 导入声明用于导入从其他模块导出的实体，并在当前模块中提供其绑定。导入声明由两部分组成：
 
 * 导入路径，用于指定导入的模块；
@@ -1624,6 +1626,44 @@ Z // 表示来自Utils的X
 Y // 表示来自Utils的Y
 X // 编译时错误：'X'不可见
 ```
+
+#### 动态导入
+应用开发的有些场景中，如果希望根据条件导入模块或者按需导入模块，可以使用动态导入代替静态导入。
+import()语法通常称为动态导入dynamic import，是一种类似函数的表达式，用来动态导入模块。以这种方式调用，将返回一个promise。
+如下例所示，import(modulePath)可以加载模块并返回一个promise，该promise resolve为一个包含其所有导出的模块对象。该表达式可以在代码中的任意位置调用。
+
+```typescript
+let modulePath = prompt("Which module to load?");
+import(modulePath)
+.then(obj => <module object>)
+.catch(err => <loading error, e.g. if no such module>)
+```
+
+如果在异步函数中，可以使用let module = await import(modulePath)。
+
+```typescript
+// say.ts
+export function hi() {
+  console.log('Hello');
+}
+export function bye() {
+  console.log('Bye');
+}
+```
+
+那么，可以像下面这样进行动态导入：
+
+```typescript
+async function test() {
+  let ns = await import('./say');
+  let hi = ns.hi;
+  let bye = ns.bye;
+  hi();
+  bye();
+}
+```
+
+更多的使用动态import的业务场景和使用实例见[动态import](arkts-dynamic-import.md)
 
 ### 顶层语句
 
