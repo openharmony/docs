@@ -18,7 +18,7 @@ This component can contain only one child component.
 
 Button(options: ButtonOptions)
 
-Creates a button that contains a single child component.
+Creates a button that can contain a single child component.
 
 **Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
 
@@ -28,7 +28,7 @@ Creates a button that contains a single child component.
 
 | Name        | Type      | Mandatory       | Description                             |
 | ----------- | ---------- | ------| --------------------------------- |
-| options        | [ButtonOptions](#buttonoptions) | Yes   | Button type.                          |
+| options        | [ButtonOptions](#buttonoptions) | Yes   | Button settings.                          |
 
 ### Button
 
@@ -45,7 +45,7 @@ Creates a button component based on text content. In this case, the component ca
 | Name    | Type                               | Mandatory  | Description         |
 | ------- | ----------------------------------- | ---- | ------------- |
 | label   | [ResourceStr](ts-types.md#resourcestr) | No   | Button text.|
-| options | [ButtonOptions](#buttonoptions)   | No   | For details, see [Button](#button-1).|
+| options | [ButtonOptions](#buttonoptions)   | No   | Button settings.|
 
 ## ButtonOptions
 

@@ -22,14 +22,20 @@ You can bind a sheet to a component through the **bindSheet** attribute. You can
 > To synchronize the value of **isShow** with the actual state of the sheet, it is recommended that you use the [$$](../../quick-start/arkts-two-way-sync.md) to set up two-way binding for **isShow**.
 ## SheetOptions
 
+Inherited from [BindOptions](#bindoptions).
+
 | Name             | Type                                      | Mandatory  | Description             |
 | --------------- | ---------------------------------------- | ---- | --------------- |
 | height          | [SheetSize](#sheetsize) \| [Length](ts-types.md#length) | No   | Height of the sheet.<br>Default value: **LARGE**|
 | dragBar         | boolean                                  | No   | Whether to display the drag bar. By default, the drag bar is displayed .  |
-| backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | No   | Background color of the sheet.    |
 | maskColor | [ResourceColor](ts-types.md#resourcecolor) | No| Mask color of the sheet.|
-| onAppear        | () => void                               | No   | Callback invoked when the sheet is displayed.   |
-| onDisappear     | () => void                               | No   | Callback invoked when the sheet is hidden.   |
+
+## BindOptions
+| Name           | Type                                      | Mandatory| Description                    |
+| --------------- | ------------------------------------------ | ---- | ------------------------ |
+| backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | No  | Background color of the sheet.  |
+| onAppear        | () => void                                 | No  | Callback invoked when the sheet is displayed.|
+| onDisappear     | () => void                                 | No  | Callback invoked when the sheet is hidden.|
 
 ## SheetSize
 

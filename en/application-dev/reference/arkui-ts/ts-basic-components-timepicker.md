@@ -14,15 +14,23 @@ Not supported
 
 ## APIs
 
-TimePicker(options?: {selected?: Date})
+TimePicker(options?: TimePickerOptions)
 
 Creates a time picker, which is in 24-hour format by default.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
-| Name  | Type| Mandatory| Description                                                    |
-| -------- | -------- | ---- | ------------------------------------------------------------ |
-| selected | Date     | No  | Time of the selected item.<br>Default value: current system time<br>Since API version 10, this parameter supports [$$](../../quick-start/arkts-two-way-sync.md) for two-way binding of variables.|
+| Name | Type                                           | Mandatory| Description                    |
+| ------- | ----------------------------------------------- | ---- | ------------------------ |
+| options | [TimePickerOptions](#timepickeroptions) | No  | Parameters of the time picker.|
+
+## TimePickerOptions
+
+| Name                | Type                                         | Mandatory| Description                                                        |
+| -------------------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
+| selected             | Date                                          | No  | Time of the selected item.<br>Default value: current system time<br>Since API version 10, this parameter supports [$$](../../quick-start/arkts-two-way-sync.md) for two-way binding of variables.|
 
 ## Attributes
 
@@ -66,7 +74,7 @@ struct TimePickerExample {
   build() {
     Column() {
       Button ('Switch Time Format')
-        .margin({ top: 30 })
+        .margin(30)
         .onClick(() => {
           this.isMilitaryTime = !this.isMilitaryTime
         })

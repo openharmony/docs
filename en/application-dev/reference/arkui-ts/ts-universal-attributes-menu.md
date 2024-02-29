@@ -135,7 +135,7 @@ struct MenuExample {
 
 ### Example 3
 
-Context Menu (Displayed Upon Right-Click)
+Context Menu Displayed Upon Long-Pressing
 
 ```ts
 // xxx.ets
@@ -160,18 +160,20 @@ struct ContextMenuExample {
   
   build() {
     Column() {
-      Text('rightclick for menu')
+      Text('LongPress for menu')
     }
     .width('100%')
     .margin({ top: 5 })
-    .bindContextMenu(this.MenuBuilder, ResponseType.RightClick)
+    .bindContextMenu(this.MenuBuilder, ResponseType.LongPress)
   }
 }
 ```
 
+![longMenu](figures/longMenu.gif)
+
 ### Example 4
 
-Directive Menu (Displayed Upon Right-Click)
+Directive Menu Displayed Upon Right-Click
 
 ```ts
 // xxx.ets

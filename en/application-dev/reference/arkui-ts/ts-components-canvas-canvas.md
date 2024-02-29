@@ -30,9 +30,9 @@ The [universal attributes](ts-universal-attributes-size.md) are supported.
 
 In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
 
-| Name                           | Parameter  | Description                  |
-| ----------------------------- | ---- | -------------------- |
-| onReady(event: () => void) | -   | Triggered when a canvas is ready or its size changes. When this event is triggered, the canvas is cleared. The width and height of the canvas can then be obtained, and you can use the canvas APIs to draw images. If the canvas is merely relocated, the **onAreaChange** event is triggered, but the **onReady** event is not.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| Name                        | Description                                      |
+| -------------------------- | ---------------------------------------- |
+| onReady(event: () => void) | Triggered when a canvas is ready or its size changes. When this event is triggered, the canvas is cleared. The width and height of the canvas can then be obtained, and you can use the canvas APIs to draw images. If the canvas is merely relocated, the **onAreaChange** event is triggered, but the **onReady** event is not.<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 **Example**
 

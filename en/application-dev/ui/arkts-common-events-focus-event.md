@@ -57,7 +57,7 @@ Focus navigation follows the set rules regardless of whether it is active or pas
   >
   > - After a component is deleted or set to be unfocusable, the linear navigation rule is followed. The focus automatically moves to the sibling component in front of the deleted or unfocusable component. If that component cannot receive focus, the focus is then moved to the sibling component on the rear.
 
-- **tabIndex**-based navigation: Focus navigation with the Tab/Shift+Tab keys becomes sequential when the [tabIndex](../reference/arkui-ts/ts-universal-attributes-focus.md) attribute is set for the components.
+- **tabIndex**-based navigation: Focus navigation with the Tab/Shift+Tab keys becomes sequential when the [tabIndex](../reference/arkui-ts/ts-universal-attributes-focus.md#tabindex9) attribute is set for the components.
 
 - Area-based focus: You can define the order of sequential focus navigation and the default focused component, by setting the **tabIndex** attribute for a container component and the [groupDefaultFocus](#groupdefaultfocus) attribute.
 
@@ -382,7 +382,7 @@ The preceding example includes two parts: default focus and active navigation.
 **Active navigation:**
 
 
-Pressing **F** on the keyboard triggers **onKeyEvent**, which sets **focusable** to **false** and makes the **\<Text>** component **unfocusable**. In this case, the focus automatically shifts. According to the description in passive focus, the system automatically searches for the immediate focusable component above the **\<Text>** component. Because the component immediately above is an unfocusable **\<Text>** component, the system searches for the next focusable component, which is the **\<Row>** container in this example. The system calculates the positions of **Button1** and **Button2** based on the [rule for focusing on a container component](#rules-of-focus-navigation). Because **Button2** is larger than Button1, the focus automatically moves to **Button2**.
+Pressing **F** on the keyboard triggers **onKeyEvent**, which sets **focusable** to **false** and makes the **\<Text>** component **unfocusable**. In this case, the focus automatically shifts. According to the description in passive focus, the system automatically searches for the immediate focusable component above the **\<Text>** component. Because the component immediately above is an unfocusable **\<Text>** component, the system searches for the next focusable component, which is the **\<Row>** container in this example. According to the [rule for focusing on a container component](#rules-of-focus-navigation), the sequential Tab navigation follows the Z-shaped pattern; as such, the focus automatically moves to **Button1**.
 
 
 ## Setting Default Focus
@@ -402,7 +402,6 @@ The following is the sample code for implementing the application layout, and **
 
 
 ```ts
-// xxx.ets
 // xxx.ets
 import promptAction from '@ohos.promptAction';
 
@@ -993,8 +992,6 @@ The sample code is as follows:
 
 ```ts
 // requestFocus.ets
-import promptAction from '@ohos.promptAction';
-
 @Entry
 @Component
 struct RequestFocusExample {
@@ -1004,13 +1001,17 @@ struct RequestFocusExample {
     Column({ space:20 }){
       Button("id: " + this.idList[0] + " focusOnTouch(true) + focusable(false)")
         .width(400).height(70).fontColor(Color.White).focusOnTouch(true)
+        .hoverEffect(HoverEffect.Scale)
         .focusable(false)
       Button("id: " + this.idList[1] + " default")
         .width(400).height(70).fontColor(Color.White)
+        .hoverEffect(HoverEffect.Scale)
       Button("id: " + this.idList[2] + " focusOnTouch(false)")
         .width(400).height(70).fontColor(Color.White).focusOnTouch(false)
+        .hoverEffect(HoverEffect.Scale)
       Button("id: " + this.idList[3] + " focusOnTouch(true)")
         .width(400).height(70).fontColor(Color.White).focusOnTouch(true)
+        .hoverEffect(HoverEffect.Scale)
     }.width('100%').margin({ top:20 })
   }
 }

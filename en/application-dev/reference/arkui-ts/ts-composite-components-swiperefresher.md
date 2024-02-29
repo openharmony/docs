@@ -27,7 +27,7 @@ The [universal attributes](ts-universal-attributes-size.md) are supported.
 
 ## SwipeRefresher
 
-SwipeRefresher ({content: string, isLoading: boolean})
+SwipeRefresher ({content?: string, isLoading: boolean})
 
 **Decorator**: @Component
 
@@ -38,7 +38,7 @@ SwipeRefresher ({content: string, isLoading: boolean})
 | Name| Type| Mandatory| Decorator| Description| 
 | -------- | -------- | -------- | -------- | -------- |
 | content | string | No| \@Prop | Text displayed when the content is loaded.| 
-| isLoading | boolean | If yes, | \@Prop | Whether content is being loaded.| 
+| isLoading | boolean | If yes, | \@Prop | Whether content is being loaded.<br> The value **true** means that content is being loaded, and **false** means the opposite.| 
 
 ## Events
 The [universal events](ts-universal-events-click.md) are supported.
@@ -54,13 +54,16 @@ struct Index {
     Column() {
       SwipeRefresher({
         content: 'Loading',
-        isLoading: true })
+        isLoading: true
+      })
       SwipeRefresher({
         content: '',
-        isLoading: true })
+        isLoading: true
+      })
       SwipeRefresher({
         content: 'Loading',
-        isLoading: false })
+        isLoading: false
+      })
     }
   }
 }

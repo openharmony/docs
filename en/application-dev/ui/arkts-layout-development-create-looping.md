@@ -22,21 +22,21 @@ When **loop** is set to **true**, the user can switch to the previous or next pa
 private swiperController: SwiperController = new SwiperController()
 ...
 Swiper(this.swiperController) {
-  Text("0")
+  Text('0')
     .width('90%')
     .height('100%')
     .backgroundColor(Color.Gray)
     .textAlign(TextAlign.Center)
     .fontSize(30)
 
-  Text("1")
+  Text('1')
     .width('90%')
     .height('100%')
     .backgroundColor(Color.Green)
     .textAlign(TextAlign.Center)
     .fontSize(30)
 
-  Text("2")
+  Text('2')
     .width('90%')
     .height('100%')
     .backgroundColor(Color.Blue)
@@ -52,24 +52,24 @@ Swiper(this.swiperController) {
 
 ```ts
 Swiper(this.swiperController) {
-  Text("0")
+  Text('0')
     .width('90%')
     .height('100%')
     .backgroundColor(Color.Gray)
     .textAlign(TextAlign.Center)
     .fontSize(30)
 
-  Text("1")
+  Text('1')
     .width('90%')
     .height('100%')
     .backgroundColor(Color.Green)
     .textAlign(TextAlign.Center)
     .fontSize(30)
 
-  Text("2")
+  Text('2')
     .width('90%')
     .height('100%')
-    .backgroundColor(Color.Blue)
+    .backgroundColor(Color.Pink)
     .textAlign(TextAlign.Center)
     .fontSize(30)
 }
@@ -87,21 +87,21 @@ When **autoPlay** is set to **true**, automatic playback is enabled for child co
 
 ```ts
 Swiper(this.swiperController) {
-  Text("0")
+  Text('0')
     .width('90%')
     .height('100%')
     .backgroundColor(Color.Gray)
     .textAlign(TextAlign.Center)
     .fontSize(30)
 
-  Text("1")
+  Text('1')
     .width('90%')
     .height('100%')
     .backgroundColor(Color.Green)
     .textAlign(TextAlign.Center)
     .fontSize(30)
 
-  Text("2")
+  Text('2')
     .width('90%')
     .height('100%')
     .backgroundColor(Color.Pink)
@@ -126,21 +126,21 @@ With the **indicatorStyle** attribute, you can set the position of the navigatio
 
 ```ts
 Swiper(this.swiperController) {
-  Text("0")
+  Text('0')
     .width('90%')
     .height('100%')
     .backgroundColor(Color.Gray)
     .textAlign(TextAlign.Center)
     .fontSize(30)
 
-  Text("1")
+  Text('1')
     .width('90%')
     .height('100%')
     .backgroundColor(Color.Green)
     .textAlign(TextAlign.Center)
     .fontSize(30)
 
-  Text("2")
+  Text('2')
     .width('90%')
     .height('100%')
     .backgroundColor(Color.Pink)
@@ -158,21 +158,21 @@ Swiper(this.swiperController) {
 ```ts
 let swco:Record<string, number | Color> = {'size':30,'left':0,'color':Color.Red}
 Swiper(this.swiperController) {
-  Text("0")
+  Text('0')
     .width('90%')
     .height('100%')
     .backgroundColor(Color.Gray)
     .textAlign(TextAlign.Center)
     .fontSize(30)
 
-  Text("1")
+  Text('1')
     .width('90%')
     .height('100%')
     .backgroundColor(Color.Green)
     .textAlign(TextAlign.Center)
     .fontSize(30)
 
-  Text("2")
+  Text('2')
     .width('90%')
     .height('100%')
     .backgroundColor(Color.Pink)
@@ -207,19 +207,19 @@ struct SwiperDemo {
   build() {
     Column({ space: 5 }) {
       Swiper(this.swiperController) {
-        Text("0")
+        Text('0')
           .width(250)
           .height(250)
           .backgroundColor(Color.Gray)
           .textAlign(TextAlign.Center)
           .fontSize(30)
-        Text("1")
+        Text('1')
           .width(250)
           .height(250)
           .backgroundColor(Color.Green)
           .textAlign(TextAlign.Center)
           .fontSize(30)
-        Text("2")
+        Text('2')
           .width(250)
           .height(250)
           .backgroundColor(Color.Pink)
@@ -288,25 +288,25 @@ You can set the number of child components per page for the **\<Swiper>** compon
 
 ```ts
 Swiper(this.swiperController) {
-  Text("0")
+  Text('0')
     .width(250)
     .height(250)
     .backgroundColor(Color.Gray)
     .textAlign(TextAlign.Center)
     .fontSize(30)
-  Text("1")
+  Text('1')
     .width(250)
     .height(250)
     .backgroundColor(Color.Green)
     .textAlign(TextAlign.Center)
     .fontSize(30)
-  Text("2")
+  Text('2')
     .width(250)
     .height(250)
     .backgroundColor(Color.Pink)
     .textAlign(TextAlign.Center)
     .fontSize(30)
-  Text("3")
+  Text('3')
     .width(250)
     .height(250)
     .backgroundColor(Color.Blue)

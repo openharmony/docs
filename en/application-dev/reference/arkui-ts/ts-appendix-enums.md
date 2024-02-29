@@ -425,7 +425,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name                   | Description                 |
 | --------------------- | ------------------- |
-| None                  | Extra-long text is clipped.         |
+| None                  | Extra-long text is not clipped.         |
 | Clip                  | Extra-long text is clipped.       |
 | Ellipsis              | An ellipsis (...) is used to represent text overflow.|
 | MARQUEE<sup>10+</sup> | Text continuously scrolls when text overflow occurs.    |
@@ -439,7 +439,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 | Underline   | Line under the text. |
 | LineThrough | Line through the text.|
 | Overline    | Line over the text. |
-| None        | No decorative lines.|
+| None        | No text decoration.|
 
 ## TextCase
 

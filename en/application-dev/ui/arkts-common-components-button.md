@@ -142,7 +142,7 @@ Use the **type** parameter to set the button type to **Capsule**, **Circle**, or
   ```ts
   let MarLeft:Record<string,number> = {'left':20}
   Button({ type: ButtonType.Circle, stateEffect: true }) {
-  Image($r('app.media.ic_public_delete_filled')).width(30).height(30) 
+    Image($r('app.media.ic_public_delete_filled')).width(30).height(30) 
   }.width(55).height(55).margin(MarLeft).backgroundColor(0xF55A42)
   ```
 

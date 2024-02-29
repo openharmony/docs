@@ -7,6 +7,12 @@ There may be cases you want to provide in a widget access to features available 
 >
 > This topic describes development for dynamic widgets. For static widgets, see [FormLink](../reference/arkui-ts/ts-container-formlink.md).
 
+## Constraints
+
+-This action type requires that the widget provider should have the [ohos.permission.KEEP_BACKGROUND_RUNNING](../security/permission-list.md#ohospermissionkeep_background_running) permission.
+
+## How to Develop
+
 Typically, the call event is triggered for touching of buttons. Below is an example.
 
 

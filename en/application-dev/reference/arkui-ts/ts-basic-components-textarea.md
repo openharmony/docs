@@ -64,7 +64,7 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 | onCut<sup>8+</sup>(callback:(value: string) =&gt; void) | Triggered when the cut button on the pasteboard, which displays when the text box is long pressed, is clicked.<br>- **value**: text to be cut.|
 | onPaste<sup>8+</sup>(callback:(value: string) =&gt; void) | Triggered when the paste button on the pasteboard, which displays when the text box is long pressed, is clicked.<br>- **value**: text to be pasted.|
 | onTextSelectionChange(callback: (selectionStart: number, selectionEnd: number) => void)<sup>10+</sup> | Triggered when the text selection position changes.<br>**selectionStart**: start position of the text selection area. The start position of text in the text box is **0**.<br>**selectionEnd**: end position of the text selection area.|
-| onContentScroll(callback: (totalOffsetX: number, totalOffsetY: number) => void)<sup>10+</sup> | Triggered when the text content is scrolled.<br>**totalOffsetX**: X coordinate offset of the text in the content area.<br>**totalOffsetY**: Y coordinate offset of the text in the content area.|
+| onContentScroll(callback: (totalOffsetX: number, totalOffsetY: number) => void)<sup>10+</sup> | Triggered when the text content is scrolled.<br>**totalOffsetX**: offset in the X coordinate of the text in the content area, in px.<br>**totalOffsetY**: offset in the Y coordinate of the text in the content area, in px.|
 
 ## TextAreaController<sup>8+</sup>
 
@@ -127,7 +127,7 @@ Obtains the position of the edited text area relative to the component and its s
 
 ### RectResult<sup>10+</sup>
 
-Describes the position and size.
+Sets the position and size, in pixels.
 
 | Parameter     | Type    | Description|
 | ------- | ------ | ----------------------- |
