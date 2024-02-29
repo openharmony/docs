@@ -75,8 +75,7 @@ target(value: string)
 | ------ | ------ | ---- | ------------------ |
 | value  | object | 是   | 转目标页面的路径。 |
 
-### .type
-
+### type
 type(value: NavigationType)
 
 设置路由跳转方式。
