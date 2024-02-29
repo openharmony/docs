@@ -5578,7 +5578,7 @@ struct WebComponent {
                 console.log("fetchCookie cookie = " + cookie);
               })
               .catch((error:business_error.BusinessError) => {
-                console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
               })
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
