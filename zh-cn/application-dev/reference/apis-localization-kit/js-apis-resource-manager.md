@@ -265,7 +265,7 @@ import { BusinessError } from '@ohos.base';
 
 ## RawFileDescriptor<sup>8+</sup>
 
-表示rawfile的descriptor信息。
+表示rawfile文件所在hap的的descriptor信息。
 
 **系统能力：** SystemCapability.Global.ResourceManager
 
@@ -273,9 +273,9 @@ import { BusinessError } from '@ohos.base';
 
 | 名称     | 类型    | 可读   | 可写  | 说明           |
 | ------ | ------  | ---- | ---- | ------------------ |
-| fd     | number  | 是    | 否 | rawfile所在hap的文件描述符。 |
-| offset | number  | 是    | 否 | rawfile的起始偏移量。      |
-| length | number  | 是    | 否 | rawfile的文件长度。       |
+| fd     | number  | 是    | 否 | 文件描述符。 |
+| offset | number  | 是    | 否 | 起始偏移量。      |
+| length | number  | 是    | 否 | 文件长度。       |
 
 ## Resource<sup>9+</sup>
 
@@ -301,16 +301,9 @@ import { BusinessError } from '@ohos.base';
 >
 > - ResourceManager涉及到的方法，仅限基于TS扩展的声明式开发范式使用。
 >
-> - 资源文件在工程的resources目录中定义，id可通过$r(资源地址).id的方式获取，例如$r('app.string.test').id。
+> - 资源文件在工程的resources目录中定义，id可通过'''$r(资源地址).id'''的方式获取，例如$r('app.string.test').id。
 >
-> - 对于本应用包资源，通过.context().resourceManager 的方法获取特定资源ID或资源名称的资源。
->
-> - 对于应用内跨包资源有两种访问
-方式，第一种是通过resource对象；第二种是创建对应module的context，通过 .context().createModuleContext().resourceManager 方式获取。
->
-> - 对于跨应用包，通过.context.createModuleContext(bundleName:'bundleName name',moduleName:'module name').resourceManager方法获取，该方法仅支持系统应用使用。
->
-> - Context的更多使用信息请参考[应用上下文Context](../../application-models/application-context-stage.md)。
+> - 应用资源的访问，具体请参考[资源分类与访问](../../quick-start/resource-categories-and-access.md)。
 
 ### getStringSync<sup>9+</sup>
 
@@ -4410,7 +4403,7 @@ getRawFileList(path: string): Promise&lt;Array\<string\>&gt;
 
 getRawFdSync(path: string): RawFileDescriptor
 
-用户获取resources/rawfile目录下对应rawfile文件的descriptor。
+用户获取resources/rawfile目录下rawfile文件所在hap的descriptor信息。
 
 **系统能力：** SystemCapability.Global.ResourceManager
 
@@ -4424,7 +4417,7 @@ getRawFdSync(path: string): RawFileDescriptor
 
 | 类型                        | 说明          |
 | ------------------------- | ----------- |
-| [RawFileDescriptor](#rawfiledescriptor8) | rawfile文件的descriptor。 |
+| [RawFileDescriptor](#rawfiledescriptor8) | rawfile文件所在hap的descriptor信息。 |
 
 **错误码：**
 
@@ -4451,7 +4444,7 @@ getRawFdSync(path: string): RawFileDescriptor
 
 getRawFd(path: string, callback: AsyncCallback&lt;RawFileDescriptor&gt;): void
 
-用户获取resources/rawfile目录下对应rawfile文件的descriptor，使用callback异步回调。
+用户获取resources/rawfile目录下对应rawfile文件所在hap的descriptor信息，使用callback异步回调。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -4460,7 +4453,7 @@ getRawFd(path: string, callback: AsyncCallback&lt;RawFileDescriptor&gt;): void
 | 参数名      | 类型                                       | 必填   | 说明                               |
 | -------- | ---------------------------------------- | ---- | -------------------------------- |
 | path     | string                                   | 是    | rawfile文件路径。                      |
-| callback | AsyncCallback&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | 是    | 返回获取的rawfile文件的descriptor。 |
+| callback | AsyncCallback&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | 是    | 返回获取的rawfile文件所在hap的descriptor信息。 |
 
 **错误码：**
 
@@ -4496,7 +4489,7 @@ getRawFd(path: string, callback: AsyncCallback&lt;RawFileDescriptor&gt;): void
 
 getRawFd(path: string): Promise&lt;RawFileDescriptor&gt;
 
-用户获取resources/rawfile目录下对应rawfile文件的descriptor，使用Promise异步回调。
+用户获取resources/rawfile目录下rawfile文件所在hap的descriptor信息，使用Promise异步回调。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -4510,7 +4503,7 @@ getRawFd(path: string): Promise&lt;RawFileDescriptor&gt;
 
 | 类型                                       | 说明                  |
 | ---------------------------------------- | ------------------- |
-| Promise&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | rawfile文件descriptor。 |
+| Promise&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | rawfile文件所在hap的descriptor信息。 |
 
 **错误码：**
 
@@ -4544,7 +4537,7 @@ getRawFd(path: string): Promise&lt;RawFileDescriptor&gt;
 
 closeRawFdSync(path: string): void
 
-用户关闭resources/rawfile目录下rawfile文件的descriptor。
+用户关闭resources/rawfile目录下rawfile文件所在hap的descriptor信息。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -4579,7 +4572,7 @@ closeRawFdSync(path: string): void
 
 closeRawFd(path: string, callback: AsyncCallback&lt;void&gt;): void
 
-用户关闭resources/rawfile目录下rawfile文件的descriptor，使用callback异步回调。
+用户关闭resources/rawfile目录下rawfile文件所在hap的descriptor信息，使用callback异步回调。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -4619,7 +4612,7 @@ closeRawFd(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 closeRawFd(path: string): Promise&lt;void&gt;
 
-用户关闭resources/rawfile目录下rawfile文件的descriptor，使用Promise异步回调。
+用户关闭resources/rawfile目录下rawfile文件所在hap的descriptor信息，使用Promise异步回调。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
