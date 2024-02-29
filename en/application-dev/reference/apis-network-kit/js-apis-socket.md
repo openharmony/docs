@@ -557,7 +557,7 @@ udp.on('message', (value: SocketInfo) => {
 
 ### off('message')
 
-off(type: 'message', callback?: Callback\<[SocketMessageInfo]\>): void
+off(type: 'message', callback?: Callback\<SocketMessageInfo\>): void
 
 Unsubscribes from **message** events of the UDP socket connection. This API uses an asynchronous callback to return the result.
 
@@ -764,6 +764,17 @@ Defines other properties of the UDP socket connection.
 | sendBufferSize    | number  | No  | Size of the send buffer, in bytes. The default value is **0**.  |
 | reuseAddress      | boolean | No  | Whether to reuse addresses. The default value is **false**.     |
 | socketTimeout     | number  | No  | Timeout duration of the UDP socket connection, in ms. The default value is **0**.|
+
+## SocketMessageInfo<sup>11+</sup>
+
+Defines the socket connection information.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+| Name       | Type  | Mandatory| Description                                 |
+| ---------- | ------ | ---- | ------------------------------------- |
+| message    | ArrayBuffer | Yes  | Received **message** event.|
+| remoteInfo | [SocketRemoteInfo](#socketremoteinfo) | Yes  | Socket connection information.|
 
 ## SocketStateBase
 
@@ -3439,7 +3450,7 @@ tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
 
 ### off('message')<sup>10+</sup>
 
-off(type: 'message', callback?: Callback<[SocketMessageInfo]\>): void
+off(type: 'message', callback?: Callback<SocketMessageInfo\>): void
 
 Unsubscribes from **message** events of a **TCPSocketConnection** object. This API uses an asynchronous callback to return the result.
 
@@ -3703,8 +3714,9 @@ Binds the address of a local socket file. This API uses a promise to return the 
 import socket from "@ohos.net.socket";
 
 let client = socket.constructLocalSocketInstance()
+let sandboxPath: string = getContext(this).filesDir + '/testSocket'
 let address : socket.LocalAddress = {
-  address: '/tmp/testSocket'
+  address: sandboxPath
 }
 client.bind(address).then(() => {
   console.log('bind success')
@@ -3752,9 +3764,10 @@ Connects to the specified socket file. This API uses a promise to return the res
 import socket from "@ohos.net.socket";
 
 let client = socket.constructLocalSocketInstance();
+let sandboxPath: string = getContext(this).filesDir + '/testSocket'
 let connectOpt: socket.LocalConnectOptions = {
   address: {
-    address: '/tmp/testSocket'
+    address: sandboxPath
   },
   timeout: 6000
 }
@@ -3801,9 +3814,10 @@ Sends data over a local socket connection. This API uses a promise to return the
 import socket from "@ohos.net.socket"
 
 let client: socket.LocalSocket = socket.constructLocalSocketInstance()
+let sandboxPath: string = getContext(this).filesDir + '/testSocket'
 let connectOpt: socket.LocalConnectOptions = {
   address: {
-    address: '/tmp/testSocket'
+    address: sandboxPath
   },
   timeout: 6000
 }
@@ -3877,10 +3891,10 @@ Obtains the local socket connection status. This API uses a promise to return th
 ```ts
 import socket from "@ohos.net.socket";
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
-
+let sandboxPath: string = getContext(this).filesDir + '/testSocket'
 let connectOpt: socket.LocalConnectOptions = {
   address: {
-    address: '/tmp/testSocket'
+    address: sandboxPath
   },
   timeout: 6000
 }
@@ -3919,9 +3933,10 @@ Obtains the file descriptor of the **LocalSocket** object. This API uses a promi
 ```ts
 import socket from "@ohos.net.socket";
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
+let sandboxPath: string = getContext(this).filesDir + '/testSocket'
 let connectOpt: socket.LocalConnectOptions = {
   address: {
-    address: '/tmp/testSocket'
+    address: sandboxPath
   },
   timeout: 6000
 }
@@ -3952,7 +3967,7 @@ Sets other properties of the local socket connection. This API uses a promise to
 
 | Name | Type                                     | Mandatory| Description                                                        |
 | ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [ExtraOptionsBase](#extraoptionsbase10) | Yes  | Other properties of the local socket connection. For details, see [ExtraOptionsBase](#extraoptionsbase10).|
+| options | [ExtraOptionsBase](#extraoptionsbase7) | Yes  | Other properties of the local socket connection. For details, see [ExtraOptionsBase](#extraoptionsbase7).|
 
 **Return value**
 
@@ -3965,16 +3980,17 @@ Sets other properties of the local socket connection. This API uses a promise to
 | ID| Error Message                |
 | ------- | ----------------------- |
 | 401     | Parameter error.        |
-| 201     | Permission denied.      |
+| 2301009 | Bad file descriptor.    |
 
 **Example**
 
 ```ts
 import socket from "@ohos.net.socket";
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
+let sandboxPath: string = getContext(this).filesDir + '/testSocket'
 let connectOpt: socket.LocalConnectOptions = {
   address: {
-    address: '/tmp/testSocket'
+    address: sandboxPath
   },
   timeout: 6000
 }
@@ -4010,7 +4026,7 @@ Obtains other properties of the local socket connection. This API uses a promise
 
 | Type                        | Description                                     |
 | :-------------------------- | :---------------------------------------- |
-| Promise\<[ExtraOptionsBase](#extraoptionsbase10)\> | Promise used to return the result.|
+| Promise\<[ExtraOptionsBase](#extraoptionsbase7)\> | Promise used to return the result.|
 
 **Error codes**
 
@@ -4023,9 +4039,10 @@ Obtains other properties of the local socket connection. This API uses a promise
 ```ts
 import socket from "@ohos.net.socket";
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
+let sandboxPath: string = getContext(this).filesDir + '/testSocket'
 let connectOpt: socket.LocalConnectOptions = {
   address: {
-    address: '/tmp/testSocket'
+    address: sandboxPath
   },
   timeout: 6000
 }
@@ -4043,7 +4060,7 @@ client.connect(connectOpt).then(() => {
 
 ### on('message')<sup>11+</sup>
 
-on(type: 'message', callback: Callback\<SocketMessageInfo\>): void
+on(type: 'message', callback: Callback\<LocalSocketMessageInfo\>): void
 
 Subscribes to **message** events of a **LocalSocket** object. This API uses an asynchronous callback to return the result.
 
@@ -4054,7 +4071,7 @@ Subscribes to **message** events of a **LocalSocket** object. This API uses an a
 | Name  | Type                                             | Mandatory| Description                                     |
 | -------- | ----------------------------------------------- | ---- | ----------------------------------- |
 | type     | string                                          | Yes  | Event type.<br/> **message**: message receiving event.|
-| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | Yes  | Callback used to return the result.|
+| callback | Callback\<[LocalSocketMessageInfo](#localsocketmessageinfo11)\> | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -4074,7 +4091,7 @@ client.on('message', (value: socket.LocalSocketMessageInfo) => {
 
 ### off('message')<sup>11+</sup>
 
-off(type: 'message', callback?: Callback\<SocketMessageInfo\>): void
+off(type: 'message', callback?: Callback\<LocalSocketMessageInfo\>): void
 
 Unsubscribes from **message** events of a **LocalSocket** object. This API uses an asynchronous callback to return the result.
 
@@ -4088,7 +4105,7 @@ Unsubscribes from **message** events of a **LocalSocket** object. This API uses 
 | Name  | Type                                              | Mandatory| Description                                |
 | -------- | ------------------------------------------------ | ---- | ----------------------------------- |
 | type     | string                                           | Yes  | Event type.<br/> **message**: message receiving event.|
-| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | No  | Callback passed to the **on** function.|
+| callback | Callback\<[LocalSocketMessageInfo](#localsocketmessageinfo11)\> | No  | Callback passed to the **on** function.|
 
 **Example**
 
@@ -4147,7 +4164,7 @@ Unsubscribes from **connect** events of a **LocalSocket** object. This API uses 
 | Name  | Type            | Mandatory| Description                                                        |
 | -------- | ---------------- | ---- | --------------------------------------------------------- |
 | type     | string           | Yes  | Event type.<br/>                                            |
-| callback | Callback\<void\> | Yes  | Callback passed to the **on** function.                          |
+| callback | Callback\<void\> | No  | Callback passed to the **on** function.                          |
 
 **Example**
 
@@ -4179,7 +4196,7 @@ Subscribes to **close** events of a **LocalSocket** object. This API uses an asy
 | Name  | Type            | Mandatory| Description                       |
 | -------- | ---------------- | ---- | ------------------------ |
 | type     | string           | Yes  | Event type.|
-| callback | Callback\<void\> | No  | Callback used to return the result.|
+| callback | Callback\<void\> | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -4322,10 +4339,10 @@ Defines the parameters for sending data over a local socket connection.
 
 | Name    | Type      | Mandatory| Description                |
 | ------- | ---------- | --- | ------------------- |
-| address | string     | Yes  | Address of the local socket file.|
-| timeout | encoding   | No  | Encoding format of the string.          |
+| data    | string \| ArrayBuffer | Yes  | Data to be transmitted.|
+| encoding | string   | No  | Encoding format of the string. |
 
-## ExtraOptionsBase<sup>10+</sup>
+## ExtraOptionsBase<sup>7+</sup>
 
 Defines other properties of the local socket connection.
 
@@ -4370,7 +4387,7 @@ listen(address: LocalAddress): Promise\<void\>
 Binds the address of the local socket file. The server listens to and accepts local socket connections established over the socket. Multiple threads are used to process client data concurrently. This API uses a promise to return the result.
 
 > **NOTE**
-> The server uses this API to perform the **bind**, **listen**, and **accept** operations.
+> The server uses this API to complete the **bind**, **listen**, and **accept** operations. If the address of the local socket file is passed for binding, a socket file is automatically created when this API is called.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -4394,15 +4411,16 @@ Binds the address of the local socket file. The server listens to and accepts lo
 | 2303109  | Bad file number.            |
 | 2301013  | Insufficient permissions.   |
 | 2301022  | Invalid argument.           |
-| 2303198  | Address already in use.     |
+| 2301098  | Address already in use.     |
 
 **Example**
 
 ```ts
 import socket from "@ohos.net.socket";
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
+let sandboxPath: string = getContext(this).filesDir + '/testSocket'
 let addr: socket.LocalAddress = {
-  address:  '/tmp/testSocket'
+  address: sandboxPath
 }
 server.listen(addr).then(() => {
   console.log('listen success');
@@ -4433,8 +4451,9 @@ Obtains the status of a local socket server connection. This API uses a promise 
 ```ts
 import socket from "@ohos.net.socket";
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
+let sandboxPath: string = getContext(this).filesDir + '/testSocket'
 let listenAddr: socket.LocalAddress = {
-  address:  '/tmp/testSocket'
+  address: sandboxPath
 }
 server.listen(listenAddr).then(() => {
   console.log("listen success");
@@ -4463,7 +4482,7 @@ Sets other properties of the local socket server connection. This API uses a pro
 
 | Name | Type                                     | Mandatory| Description                           |
 | ------- | --------------------------------------- | ---- | ------------------------------ |
-| options | [ExtraOptionsBase](#extraoptionsbase10) | Yes  | Other properties of a local socket server connection.|
+| options | [ExtraOptionsBase](#extraoptionsbase7) | Yes  | Other properties of a local socket server connection.|
 
 **Return value**
 
@@ -4483,8 +4502,9 @@ Sets other properties of the local socket server connection. This API uses a pro
 ```ts
 import socket from "@ohos.net.socket";
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
+let sandboxPath: string = getContext(this).filesDir + '/testSocket'
 let listenAddr: socket.NetAddress = {
-  address:  '/tmp/testSocket'
+  address: sandboxPath
 }
 server.listen(listenAddr).then(() => {
   console.log("listen success");
@@ -4519,21 +4539,22 @@ Obtains other properties of a local socket server connection. This API uses a pr
 
 | Type                        | Description                       |
 | :-------------------------- | :-------------------------- |
-| Promise\<[ExtraOptionsBase](#extraoptionsbase10)\> | Promise used to return the result.|
+| Promise\<[ExtraOptionsBase](#extraoptionsbase7)\> | Promise used to return the result.|
 
 **Error codes**
 
 | ID| Error Message              |
 | -------- | -------------------- |
-| 2301009  | Bad file descriptor. |
+| 401     | Parameter error. |
 
 **Example**
 
 ```ts
 import socket from "@ohos.net.socket";
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
-let listenAddr: socket.NetAddress = {
-  address:  '/tmp/testSocket'
+let sandboxPath: string = getContext(this).filesDir + '/testSocket'
+let listenAddr: socket.LocalAddress = {
+  address: sandboxPath
 }
 server.listen(listenAddr).then(() => {
   console.log("listen success");
@@ -4796,7 +4817,7 @@ server.on('connect', (connection: socket.LocalSocketConnection) => {
 
 ### on('message')<sup>11+</sup>
 
-on(type: 'message', callback: Callback\<SocketMessageInfo\>): void;
+on(type: 'message', callback: Callback\<LocalSocketMessageInfo\>): void;
 
 Subscribes to **message** events of a **LocalSocketConnection** object. This API uses an asynchronous callback to return the result.
 
@@ -4807,7 +4828,7 @@ Subscribes to **message** events of a **LocalSocketConnection** object. This API
 | Name  | Type                                             | Mandatory| Description                                    |
 | -------- | ----------------------------------------------- | ---- | --------------------------------------- |
 | type     | string                                          | Yes  | Event type.<br/> **message**: message receiving event.    |
-| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | Yes  | Callback used to return the result.|
+| callback | Callback\<[LocalSocketMessageInfo](#localsocketmessageinfo11)\> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -4820,8 +4841,9 @@ Subscribes to **message** events of a **LocalSocketConnection** object. This API
 ```ts
 import socket from "@ohos.net.socket";
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
+let sandboxPath: string = getContext(this).filesDir + '/testSocket'
 let listenAddr: socket.LocalAddress = {
-  address: '/tmp/testSocket'
+  address: sandboxPath
 }
 server.listen(listenAddr).then(() => {
   console.log("listen success");
@@ -4843,7 +4865,7 @@ server.on('connect', (connection: socket.LocalSocketConnection) => {
 
 ### off('message')<sup>11+</sup>
 
-off(type: 'message', callback?: Callback\<SocketMessageInfo\>): void
+off(type: 'message', callback?: Callback\<LocalSocketMessageInfo\>): void
 
 Unsubscribes from **message** events of a **LocalSocketConnection** object. This API uses an asynchronous callback to return the result.
 
@@ -4857,7 +4879,7 @@ Unsubscribes from **message** events of a **LocalSocketConnection** object. This
 | Name  | Type                                             | Mandatory| Description                                |
 | -------- | ----------------------------------------------- | ---- | ----------------------------------- |
 | type     | string                                          | Yes  | Event type.<br/> **message**: message receiving event.|
-| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | No  | Callback passed to the **on** function.|
+| callback | Callback\<[LocalSocketMessageInfo](#localsocketmessageinfo11)\> | No  | Callback passed to the **on** function.|
 
 **Error codes**
 
@@ -6218,7 +6240,7 @@ tls.getSignatureAlgorithms().then((data: Array<string>) => {
 
 ### send<sup>9+</sup>
 
-send(data: string, callback: AsyncCallback\<void\>): void
+send(data: string \| ArrayBuffer, callback: AsyncCallback\<void\>): void
 
 Sends a message to the server after a TLS socket connection is established. This API uses an asynchronous callback to return the result.
 
@@ -6228,7 +6250,7 @@ Sends a message to the server after a TLS socket connection is established. This
 
 | Name   | Type                         | Mandatory| Description           |
 | -------- | -----------------------------| ---- | ---------------|
-|   data   | string                       | Yes  | Data content of the message to send.  |
+|   data   | string \| ArrayBuffer                      | Yes  | Data content of the message to send.  |
 | callback | AsyncCallback\<void\>         | Yes  | Callback used to return the result. If the operation fails, an error message is returned.|
 
 **Error codes**
@@ -6259,7 +6281,7 @@ tls.send("xxxx", (err: BusinessError) => {
 
 ### send<sup>9+</sup>
 
-send(data: string): Promise\<void\>
+send(data: string \| ArrayBuffer): Promise\<void\>
 
 Sends a message to the server after a TLS socket connection is established. This API uses a promise to return the result.
 
@@ -6269,7 +6291,7 @@ Sends a message to the server after a TLS socket connection is established. This
 
 | Name   | Type                         | Mandatory| Description           |
 | -------- | -----------------------------| ---- | ---------------|
-|   data   | string                       | Yes  | Data content of the message to send.  |
+|   data   | string \| ArrayBuffer                       | Yes  | Data content of the message to send.  |
 
 **Error codes**
 
@@ -6397,7 +6419,7 @@ Defines TLS security options. The CA certificate is mandatory, and other paramet
 
 | Name                | Type                                                   | Mandatory| Description                               |
 | --------------------- | ------------------------------------------------------ | --- |----------------------------------- |
-| ca                    | string \| Array\<string\>                               | Yes| CA certificate of the server, which is used to authenticate the digital certificate of the server.|
+| ca                    | string \| Array\<string\> | No| CA certificate of the server, which is used to authenticate the digital certificate of the server. The default value is the preset CA certificate<sup>12+</sup>.|
 | cert                  | string                                                  | No| Digital certificate of the local client.                |
 | key                   | string                                                  | No| Private key of the local digital certificate.                  |
 | password                | string                                                  | No| Password for reading the private key.                     |
@@ -7365,7 +7387,7 @@ Defines a **TLSSocketConnection** object, that is, the connection between the TL
 
 ### send<sup>10+</sup>
 
-send(data: string, callback: AsyncCallback\<void\>): void
+send(data: string \| ArrayBuffer, callback: AsyncCallback\<void\>): void
 
 Sends a message to the client after a TLS socket server connection is established. This API uses an asynchronous callback to return the result.
 
@@ -7375,7 +7397,7 @@ Sends a message to the client after a TLS socket server connection is establishe
 
 | Name  | Type                 | Mandatory| Description                                            |
 | -------- | --------------------- | ---- | ------------------------------------------------ |
-| data     | string                | Yes  | Parameters for sending data over a TLS socket server connection.           |
+| data     | string \| ArrayBuffer                | Yes  | Parameters for sending data over a TLS socket server connection.           |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. If the operation is successful, no value is returned. If the operation fails, an error message is returned.|
 
 **Error codes**
@@ -7429,20 +7451,9 @@ tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
 });
 ```
 
-## SocketMessageInfo<sup>11+</sup>
-
-Defines the socket connection information.
-
-**System capability**: SystemCapability.Communication.NetStack
-
-| Name| Type  | Mandatory| Description                                 |
-| ------ | ------ | ---- | ------------------------------------- |
-| message   | ArrayBuffer | Yes  | Received **message** event.|
-| remoteInfo   | [SocketRemoteInfo](#socketremoteinfo) | Yes  | Socket connection information.|
-
 ### send<sup>10+</sup>
 
-send(data: string): Promise\<void\>
+send(data: string \| ArrayBuffer): Promise\<void\>
 
 Sends a message to the server after a TLS socket server connection is established. This API uses a promise to return the result.
 
@@ -7452,7 +7463,7 @@ Sends a message to the server after a TLS socket server connection is establishe
 
 | Name| Type  | Mandatory| Description                                 |
 | ------ | ------ | ---- | ------------------------------------- |
-| data   | string | Yes  | Parameters for sending data over a TLS socket server connection.|
+| data   | string \| ArrayBuffer | Yes  | Parameters for sending data over a TLS socket server connection.|
 
 **Return value**
 

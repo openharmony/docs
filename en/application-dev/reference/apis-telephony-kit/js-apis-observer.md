@@ -873,7 +873,7 @@ Defines information about the call status.
 
 |     Name           |                 Type                   | Mandatory| Description    |
 | ------------------- | -------------------------------------- | ---- | -------- |
-| callState           | [CallState](js-apis-call.md#callstate) | Yes  | Call type.|
+| state               | [CallState](js-apis-call.md#callstate) | Yes  | Call type.|
 | number              | string                                 | Yes  | Phone number.|
 
 

@@ -2394,7 +2394,7 @@ Defines the network capability set.
 | linkUpBandwidthKbps   | number                             |  No|  Uplink (device-to-network) bandwidth. The value **0** indicates that the current network bandwidth cannot be evaluated. |
 | linkDownBandwidthKbps | number                             |  No|  Downlink (network-to-device) bandwidth. The value **0** indicates that the current network bandwidth cannot be evaluated.  |
 | networkCap            | Array\<[NetCap](#netcap)>           |  No|  Network capability.          |
-| bearerTypes           | Array\<[NetBearType](#netbeartype)> |  Yes|  Network type.              |
+| bearerTypes           | Array\<[NetBearType](#netbeartype)> |  Yes|  Network type. The array contains only one specific network type.     |
 
 ## NetConnectionPropertyInfo<sup>11+</sup>
 
