@@ -277,22 +277,30 @@ SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单�
   #
   ```
 
-  5.7 采集2次整机和指定应用进程内存
+  5.7 采集1次整机和指定应用进程内存
 
   ```
-  # SP_daemon -N 2 -PKG ohos.samples.ecg -r
+  # SP_daemon -N 1 -PKG ohos.samples.ecg -r
 
-  order:0 timestamp=1705041668525
-  order:1 memAvailable=7350856
-  order:2 memFree=7166896
-  order:3 memTotal=11641840
-  order:4 pss=107232
-
-  order:0 timestamp=1705041669527
-  order:1 memAvailable=7350852
-  order:2 memFree=7166896
-  order:3 memTotal=11641840
-  order:4 pss=107232
+  order:0 timestamp=1708565148849
+  order:1 arktsHeapPss=21159
+  order:2 gpuPss=4414
+  order:3 graphPss=56180
+  order:4 heapAlloc=63942
+  order:5 heapFree=6598
+  order:6 heapSize=68276
+  order:7 memAvailable=8028640
+  order:8 memFree=7360324
+  order:9 memTotal=11769892
+  order:10 nativeHeapPss=58188
+  order:11 privateClean=121336
+  order:12 privateDirty=71018
+  order:13 pss=204889
+  order:14 sharedClean=85888
+  order:15 sharedDirty=12700
+  order:16 stackPss=1289
+  order:17 swap=0
+  order:18 swapPss=0
 
   command exec finished!
   #
@@ -580,16 +588,30 @@ SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单�
     | voltageNow        | 当前读到的电压值       |单位μV(微伏)| 
     | fps               | 屏幕刷新帧率          |单位fps|
     | fpsJitters        | 每一帧绘制间隔        |单位ns|
-    | networkDown       | 下行速率              |单位B|
-    | networkUp         | 上行速率              |单位B|
+    | networkDown       | 下行速率              |byte/s|
+    | networkUp         | 上行速率              |byte/s|
     | shell_front       | 前壳温度              |单位℃|
     | shell_frame       | 边框温度              |单位℃|
     | shell_back        | 后壳温度              |单位℃|
     | soc_thermal       | 系统芯片温度          |单位°C|
     | system_h          | 系统温度             |单位°C|
     | Battery           | 电池温度             |单位°C|
-    | memAvailable      | 整机可用内存         |单位B|
-    | memFree           | 整机空闲内存         |单位B|
-    | memTotal          | 整机总内存           |单位B|
-    | pss               | 进程内存             |单位B|
-    | timeStamp         | 当前时间戳           |对应采集时间| 
+    | memAvailable      | 整机可用内存         |单位kB|
+    | memFree           | 整机空闲内存         |单位kB|
+    | memTotal          | 整机总内存           |单位kB|
+    | pss               | 进程实际使用内存      |单位kB|
+    | sharedClean       | 共享的未改写页面      |单位kB|
+    | sharedDirty       | 共享的已改写页面      |单位kB|
+    | priviateClean     | 私有的未改写页面      |单位kB|
+    | privateDirty      | 私有的已改写页面      |单位kB|
+    | swapTotal         | 总的交换内存          |单位kB|
+    | swapPss           | 交换的pss内存        |单位kB|
+    | HeapSize          | 堆内存大小           |单位kB|
+    | HeapAlloc         | 可分配的堆内存大小    |单位kB|
+    | HeapFree          | 剩余的堆内存大小      |单位kB|
+    | gpuPss            | 使用的gpu内存大小     |单位kB|
+    | graphicPss        | 使用的图形内存大小     |单位kB|
+    | arktsHeapPss      | 使用的arkts内存大小    |单位kB|
+    | nativeHeapPss     | 使用的native内存大小   |单位kB|
+    | stackPss          | 使用的栈内存大小       |单位kB|
+    | timeStamp         | 当前时间戳            |对应采集时间| 
