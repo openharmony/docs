@@ -181,8 +181,47 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     int32_t ret = OH_VideoDecoder_SetParameter(videoDec, format);
     OH_AVFormat_Destroy(format);
     ```
+7. （可选）OH_VideoDecoder_SetDecryptionConfig设置解密配置。当获取到DRM信息(参考[音视频解封装](audio-video-demuxer.md)开发步骤第3步)后，通过此接口进行解密配置。DRM相关接口详见[DRM使用指导](../reference/apis-drm-kit)。此接口需在Prepare前调用。
 
-7. 调用OH_VideoDecoder_Prepare()解码器就绪。
+    添加头文件
+
+    ```c++
+    #include <multimedia/drm_framework/native_mediakeysystem.h>
+    #include <multimedia/drm_framework/native_mediakeysession.h>
+    #include <multimedia/drm_framework/native_drm_err.h>
+    #include <multimedia/drm_framework/native_drm_common.h>
+    ```
+    在 CMake 脚本中链接动态库
+
+    ``` cmake
+    target_link_libraries(sample PUBLIC libnative_drm.so)
+    ```
+
+    使用示例
+    ```c++
+    // 根据DRM信息创建指定的DRM系统, 以创建"com.clearplay.drm"为例
+    MediaKeySystem *system = nullptr;
+    int32_t ret = OH_MediaKeySystem_Create("com.clearplay.drm", &system);
+    if (system == nullptr) {
+        printf("create media key system failed");
+        return;
+    }
+    // 进行Provision认证
+    // 创建解密会话
+    MediaKeySession *session = nullptr;
+    DRM_ContentProtectionLevel contentProtectionLevel = CONTENT_PROTECTION_LEVEL_SW_CRYPTO;
+    ret = OH_MediaKeySystem_CreateMediaKeySession(system, &contentProtectionLevel, &session);
+    if (session == nullptr) {
+        printf("create media key session failed");
+        return;
+    }
+    // 获取许可证请求、设置许可证响应等
+    // 设置解密配置, 即将解密会话、安全视频通路标志设置到解码器中。
+    bool secureVideoPath = false;
+    ret = OH_VideoDecoder_SetDecryptionConfig(videoDec, session, secureVideoPath);
+    ```
+
+8. 调用OH_VideoDecoder_Prepare()解码器就绪。
 
     该接口将在解码器运行前进行一些数据的准备工作。
 
@@ -193,7 +232,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     }
     ```
 
-8. 调用OH_VideoDecoder_Start()启动解码器。
+9. 调用OH_VideoDecoder_Start()启动解码器。
 
     ```c++
     std::string_view inputFilePath = "/*yourpath*.h264";
@@ -206,7 +245,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     }
     ```
 
-9. 调用OH_VideoDecoder_PushInputBuffer()写入解码码流。
+10. 调用OH_VideoDecoder_PushInputBuffer()写入解码码流。
 
     送入输入队列进行解码，以下示例中：
 
@@ -234,7 +273,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     }
     ```
 
-10. 调用OH_VideoDecoder_RenderOutputBuffer()显示并释放解码帧，或调用OH_VideoDecoder_FreeOutputBuffer()释放解码帧。
+11. 调用OH_VideoDecoder_RenderOutputBuffer()显示并释放解码帧，或调用OH_VideoDecoder_FreeOutputBuffer()释放解码帧。
     以下示例中：
 
     - index：回调函数OnNewOutputBuffer传入的参数，数据队列的索引。
@@ -260,7 +299,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     }
     ```
 
-11. （可选）调用OH_VideoDecoder_Flush()刷新解码器。
+12. （可选）调用OH_VideoDecoder_Flush()刷新解码器。
 
     > **注意：**
     >
@@ -285,7 +324,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     }
     ```
 
-12. （可选）调用OH_VideoDecoder_Reset()重置解码器。
+13. （可选）调用OH_VideoDecoder_Reset()重置解码器。
 
     调用OH_VideoDecoder_Reset()后，解码器回到初始化的状态，需要调用OH_VideoDecoder_Configure()、OH_VideoDecoder_SetSurface()重新配置。
 
@@ -308,7 +347,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
      }
     ```
 
-13. （可选）调用OH_VideoDecoder_Stop()停止解码器。
+14. （可选）调用OH_VideoDecoder_Stop()停止解码器。
 
     ```c++
      int32_t ret;
@@ -319,7 +358,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
      }
     ```
 
-14. 调用OH_VideoDecoder_Destroy()销毁解码器实例，释放资源。
+15. 调用OH_VideoDecoder_Destroy()销毁解码器实例，释放资源。
 
     > **说明：**
     >
