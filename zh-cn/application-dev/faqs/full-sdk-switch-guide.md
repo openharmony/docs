@@ -84,9 +84,9 @@ full-SDK需要手动下载。请参考[版本说明书](../../release-notes/Open
 
    修改`oh-uni-package.json`配置文件的version字段为当前SDK版本号
 
-   
+   在`.x.x.x\build-tools\ets-loader`目录中打开cmd/powerShell窗口，输入命令`npm install`下载**node_modules**依赖包
 
-   在`3.x.x.x\build-tools\ets-loader`目录中打开cmd/powerShell窗口，输入命令`npm install`下载**node_modules**依赖包
+   这里需要确认替换的SDK版本，API10（4.x.x.x）以上的SDK里面自带node_modules依赖，所以无需执行npm install操作
 
    ![image-20220613171111405](figures/zh-cn_image_0000001655129333.png)
 
