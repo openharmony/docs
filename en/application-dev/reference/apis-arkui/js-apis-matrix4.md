@@ -320,7 +320,7 @@ struct Test {
 scale(options: ScaleOption): Matrix4Transit
 
 
-Scales this matrix object along the x, y, and z axes. The original matrix that calls this API will be changed.
+Scales this matrix object along the x, y, and z axes. The matrix that calls this API will be changed.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -359,12 +359,57 @@ struct Test {
 ![en-us_image_0000001219864131](figures/en-us_image_0000001219864131.png)
 
 
+### skew<sup>12+</sup>
+
+skew(x: number, y: number): Matrix4Transit
+
+
+Skews this matrix object along the x and y axes. The matrix that calls this API will be changed.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                       | Mandatory| Description          |
+| ------ | --------------------------- | ---- | -------------- |
+| x | number | Yes  | Amount of skewing on the x-axis.|
+| y | number | Yes  | Amount of skewing on the y-axis.|
+
+**Return value**
+
+| Type                             | Description                        |
+| --------------------------------- | ---------------------------- |
+| [Matrix4Transit](#matrix4transit) | Matrix object after the skewing.|
+
+**Example**
+
+```ts
+// xxx.ets
+import matrix4 from '@ohos.matrix4'
+@Entry
+@Component
+struct Test {
+  private matrix1 = matrix4.identity().skew(2, 3)
+
+  build() {
+    Column() { 
+      Image($r("app.media.bg1")).transform(this.matrix1)
+        .width("40%")
+        .height(100)
+    }
+  }
+}
+```
+
+![en-us_image_0000001219864132](figures/en-us_image_0000001219864132.jpeg)
+
+
 ### rotate
 
 rotate(options: RotateOption): Matrix4Transit
 
 
-Rotates this matrix object along the x, y, and z axes. The original matrix that calls this API will be changed.
+Rotates this matrix object along the x, y, and z axes. The matrix that calls this API will be changed.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 

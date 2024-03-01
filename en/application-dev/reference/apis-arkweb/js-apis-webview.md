@@ -277,14 +277,14 @@ struct WebComponent {
           try {
             console.log("In ArkTS side send true start");
             if (this.nativePort) {
+              this.message.setType(1);
               this.message.setString("helloFromEts");
-              this.message.setType(2);
               this.nativePort.postMessageEventExt(this.message);
             }
           }
           catch (error) {
             let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.log("In ArkTS side send message catch error:" + e.code + ", msg:" + e.message);
+            console.error(`In ArkTS side send message catch error, ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
         Button('SendToH5 setNumber').margin({
@@ -296,13 +296,14 @@ struct WebComponent {
           try {
             console.log("In ArkTS side send true start");
             if (this.nativePort) {
+              this.message.setType(2);
               this.message.setNumber(12345);
               this.nativePort.postMessageEventExt(this.message);
             }
           }
           catch (error) {
             let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.log("In ArkTS side send message catch error:" + e.code + ", msg:" + e.message);
+            console.error(`In ArkTS side send message catch error, ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
         Button('SendToH5 setBoolean').margin({
@@ -313,13 +314,14 @@ struct WebComponent {
           try {
             console.log("In ArkTS side send true start");
             if (this.nativePort) {
+              this.message.setType(3);
               this.message.setBoolean(true);
               this.nativePort.postMessageEventExt(this.message);
             }
           }
           catch (error) {
             let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.log("In ArkTS side send message catch error:" + e.code + ", msg:" + e.message);
+            console.error(`In ArkTS side send message catch error, ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
         Button('SendToH5 setArrayBuffer').margin({
@@ -330,13 +332,14 @@ struct WebComponent {
           try {
             console.log("In ArkTS side send true start");
             if (this.nativePort) {
+              this.message.setType(4);
               this.message.setArrayBuffer(this.testObjtest.test("Name=test&Password=test"));
               this.nativePort.postMessageEventExt(this.message);
             }
           }
           catch (error) {
             let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.log("In ArkTS side send message catch error:" + e.code + ", msg:" + e.message);
+            console.error(`In ArkTS side send message catch error, ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
         Button('SendToH5 setArray').margin({
@@ -348,13 +351,14 @@ struct WebComponent {
           try {
             console.log("In ArkTS side send true start");
             if (this.nativePort) {
+              this.message.setType(5);
               this.message.setArray([1,2,3]);
               this.nativePort.postMessageEventExt(this.message);
             }
           }
           catch (error) {
             let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.log("In ArkTS side send message catch error:" + e.code + ", msg:" + e.message);
+            console.error(`In ArkTS side send message catch error, ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
         Button('SendToH5 setError').margin({
@@ -369,11 +373,12 @@ struct WebComponent {
           }
           catch (error) {
             if (this.nativePort) {
+              this.message.setType(6);
               this.message.setError(error);
               this.nativePort.postMessageEventExt(this.message);
             }
             let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.log("In ArkTS side send message catch error:" + e.code + ", msg:" + e.message);
+            console.error(`In ArkTS side send message catch error, ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
 
@@ -1778,7 +1783,8 @@ struct WebComponent {
               'test()',
               (error, result) => {
                 if (error) {
-                  console.info(`run JavaScript error: ` + JSON.stringify(error))
+                  let e: business_error.BusinessError = error as business_error.BusinessError;
+                  console.error(`run JavaScript error, ErrorCode: ${e.code},  Message: ${e.message}`)
                   return;
                 }
                 if (result) {
@@ -3083,7 +3089,8 @@ struct WebComponent {
           try {
             this.controller.storeWebArchive("/data/storage/el2/base/", true, (error, filename) => {
               if (error) {
-                console.info(`save web archive error: ` + JSON.stringify(error))
+                let e: business_error.BusinessError = error as business_error.BusinessError;
+                console.error(`save web archive error, ErrorCode: ${e.code},  Message: ${e.message}`);
                 return;
               }
               if (filename != null) {
@@ -3091,7 +3098,7 @@ struct WebComponent {
               }
             });
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
+            let e: business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
@@ -3155,7 +3162,7 @@ struct WebComponent {
                 }
               })
               .catch((error:business_error.BusinessError) => {
-                console.log('error: ' + JSON.stringify(error));
+                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
               })
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
@@ -3763,7 +3770,8 @@ struct WebComponent {
           try {
             this.controller.hasImage((error, data) => {
               if (error) {
-                console.info(`hasImage error: ` + JSON.stringify(error))
+                let e: business_error.BusinessError = error as business_error.BusinessError;
+                console.error(`hasImage error, ErrorCode: ${e.code},  Message: ${e.message}`);
                 return;
               }
               console.info("hasImage: " + data);
@@ -4718,12 +4726,12 @@ import Want from '@ohos.app.ability.Want';
 
 export default class EntryAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-        console.log("EntryAbility onCreate")
-        web_webview.WebviewController.initializeWebEngine()
+        console.log("EntryAbility onCreate");
+        web_webview.WebviewController.initializeWebEngine();
         // Replace 'https://www.example.com' with a real URL for the API to work.
         web_webview.WebviewController.prepareForPageLoad("https://www.example.com", true, 2);
-        AppStorage.setOrCreate("abilityWant", want)
-        console.log("EntryAbility onCreate done")
+        AppStorage.setOrCreate("abilityWant", want);
+        console.log("EntryAbility onCreate done");
     }
 }
 ```
@@ -4998,8 +5006,6 @@ struct WebComponent {
 }
 ```
 
-
-
 ### enableSafeBrowsing<sup>11+</sup>
 
 enableSafeBrowsing(enable: boolean): void
@@ -5039,7 +5045,7 @@ struct WebComponent {
       Button('enableSafeBrowsing')
         .onClick(() => {
           try {
-            web_webview.WebviewController.enableSafeBrowsing(true);
+            this.controller.enableSafeBrowsing(true);
             console.log("enableSafeBrowsing: true");
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
@@ -5081,7 +5087,7 @@ struct WebComponent {
     Column() {
       Button('isSafeBrowsingEnabled')
         .onClick(() => {
-          let result = web_webview.WebviewController.isSafeBrowsingEnabled();
+          let result = this.controller.isSafeBrowsingEnabled();
           console.log("result: " + result);
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -5322,10 +5328,6 @@ struct WebComponent {
 ## WebCookieManager
 
 Implements a **WebCookieManager** instance to manage behavior of cookies in **\<Web>** components. All **\<Web>** components in an application share a **WebCookieManager** instance.
-
-> **NOTE**
->
-> You must load the **\<Web>** component before calling APIs in **WebCookieManager**.
 
 ### getCookie<sup>(deprecated)</sup>
 
@@ -6220,7 +6222,8 @@ struct WebComponent {
           try {
             web_webview.WebCookieManager.clearAllCookies((error) => {
               if (error) {
-                console.log("error: " + error);
+                let e: business_error.BusinessError = error as business_error.BusinessError;
+                console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
               }
             })
           } catch (error) {
@@ -6382,7 +6385,8 @@ struct WebComponent {
           try {
             web_webview.WebCookieManager.clearSessionCookie((error) => {
               if (error) {
-                console.log("error: " + error);
+                let e: business_error.BusinessError = error as business_error.BusinessError;
+                console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
               }
             })
           } catch (error) {
@@ -6549,7 +6553,7 @@ HTML file to be loaded:
   <div id="status" name="status">Status</div>
   </body>
   </html>
- ```
+  ```
 
 ### getOrigins
 
