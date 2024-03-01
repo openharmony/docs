@@ -18,6 +18,5 @@
 | 权限名                           | 说明                                   |
 | -------------------------------- | -------------------------------------- |
 | ohos.permission.GET_NETWORK_INFO | 获取网络连接信息。                     |
-| ohos.permission.SET_NETWORK_INFO | 修改网络连接状态。                     |
 | ohos.permission.INTERNET         | 允许程序打开网络套接字，进行网络连接。 |
 
