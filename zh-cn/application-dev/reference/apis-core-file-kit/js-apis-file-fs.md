@@ -1199,7 +1199,7 @@ read(fd: number, buffer: ArrayBuffer, options?: ReadOptions): Promise&lt;number&
 
   | 类型                                 | 说明     |
   | ---------------------------------- | ------ |
-  | Promise&lt;number&gt; | Promise对象。返回读取的实际数据长度。 |
+  | Promise&lt;number&gt; | Promise对象。返回实际读取的数据长度，单位字节。 |
 
 **错误码：**
 
@@ -1239,7 +1239,7 @@ read(fd: number, buffer: ArrayBuffer, options?: ReadOptions, callback: AsyncCall
   | fd       | number                                   | 是    | 已打开的文件描述符。                             |
   | buffer   | ArrayBuffer                              | 是    | 用于保存读取到的文件数据的缓冲区。                        |
   | options | [ReadOptions](#readoptions11)      | 否   | 支持如下选项：<br/>-&nbsp;offset，number类型，表示期望读取文件的位置。可选，默认从当前位置开始读。<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认缓冲区长度。|
-  | callback | AsyncCallback&lt;number&gt; | 是    | 异步读取数据之后的回调。返回读取的实际数据长度。                             |
+  | callback | AsyncCallback&lt;number&gt; | 是    | 异步读取数据之后的回调。返回实际读取的数据长度，单位字节。                             |
 
 **错误码：**
 
@@ -1285,7 +1285,7 @@ readSync(fd: number, buffer: ArrayBuffer, options?: ReadOptions): number
 
   | 类型     | 说明       |
   | ------ | -------- |
-  | number | 返回实际读取的长度。 |
+  | number | 返回实际读取的数据长度，单位字节。 |
 
 **错误码：**
 
@@ -1611,7 +1611,7 @@ writeSync(fd: number, buffer: ArrayBuffer | string, options?: WriteOptions): num
 
 truncate(file: string | number, len?: number): Promise&lt;void&gt;
 
-截断文件，使用Promise异步返回。
+截断文件内容，使用Promise异步返回。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1649,7 +1649,7 @@ truncate(file: string | number, len?: number): Promise&lt;void&gt;
 
 truncate(file: string | number, len?: number, callback: AsyncCallback&lt;void&gt;): void
 
-截断文件，使用callback异步回调。
+截断文件内容，使用callback异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1684,7 +1684,7 @@ truncate(file: string | number, len?: number, callback: AsyncCallback&lt;void&gt
 
 truncateSync(file: string | number, len?: number): void
 
-以同步方法截断文件。
+以同步方法截断文件内容。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
