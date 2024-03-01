@@ -27,7 +27,8 @@
 示例代码为发起认证可信等级≥ATL3的人脸+锁屏密码认证后，取消认证请求：
 
 ```ts
-import userIAM_userAuth from '@ohos.userIAM.userAuth'; 
+import type {BusinessError} from '@ohos.base';
+import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
 const authParam: userIAM_userAuth.AuthParam = {
   challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
@@ -49,6 +50,6 @@ try {
   console.log('auth cancel success');
 } catch (error) {
   const err: BusinessError = error as BusinessError;
-  console.log('auth catch error. Code is ${err.code}, message is ${err.message}`);
+  console.log(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
 }
 ```

@@ -74,7 +74,8 @@
 示例代码为发起用户认证，采用认证可信等级≥ATL3的人脸+锁屏密码认证，获取认证结果：
 
 ```ts
-import userIAM_userAuth from '@ohos.userIAM.userAuth'; 
+import type {BusinessError} from '@ohos.base';
+import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
 // 设置认证参数
 const authParam: userIAM_userAuth.AuthParam = {
@@ -103,6 +104,6 @@ try {
   console.log('auth start success');
 } catch (error) {
   const err: BusinessError = error as BusinessError;
-  console.log('auth catch error. Code is ${err.code}, message is ${err.message}`);
+  console.log(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
 }
 ```
