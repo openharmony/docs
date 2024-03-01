@@ -343,7 +343,7 @@ libnative_drawing.so
 Native Drawing模块关于文本绘制提供两类API接口：
 
 - 一类是具有定制排版能力的接口：如OH_Drawing_Typography，OH_Drawing_TypographyStyle，OH_Drawing_TextStyle等类型。支撑用户设置排版风格和文本风格，可调用OH_Drawing_TypographyHandlerAddText添加文本并调用OH_Drawing_TypographyLayout和OH_Drawing_TypographyPaint对文本进行排版和绘制。
-- 另一类是不具有定制排版能力的接口：如OH_Drawing_Font，OH_Drawing_TextBlob，OH_Drawing_RunBuffer等类型。如果应用具备排版能力，支撑用户将排版结果构造为OH_Drawing_TextBlob；如果应用使用默认的排版能力，支撑用户直接调用OH_Drawing_CreateFromText构造OH_Drawing_TextBlob。最后调用OH_Drawing_CanvasDrawTextBlob绘制OH_Drawing_TextBlob描述的文本块。
+- 另一类是不具有定制排版能力的接口：如OH_Drawing_Font，OH_Drawing_TextBlob，OH_Drawing_RunBuffer等类型。如果应用具备排版能力，支撑用户将排版结果构造为OH_Drawing_TextBlob；如果应用使用默认的排版能力，支撑用户直接调用OH_Drawing_TextBlobCreateFromText构造OH_Drawing_TextBlob。最后调用OH_Drawing_CanvasDrawTextBlob绘制OH_Drawing_TextBlob描述的文本块。
 
 以下分别提供了如何使用这两类API接口以实现文本绘制的具体步骤。
 
@@ -445,6 +445,8 @@ Native Drawing模块关于文本绘制提供两类API接口：
     }
     // 通过文本构造器创建文本
     OH_Drawing_TextBlob* textBlob = OH_Drawing_TextBlobBuilderMake(builder);
+    // 释放内存
+    OH_Drawing_TextBlobBuilderDestroy(builder);
     ```
 
 3. **面向应用使用默认排版能力的文本绘制场景**。
