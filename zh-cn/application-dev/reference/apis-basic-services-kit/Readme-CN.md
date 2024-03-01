@@ -72,7 +72,6 @@
         - [@ohos.wallpaper (壁纸)](js-apis-wallpaper.md)
         - [@ohos.settings (设置数据项名称)(系统接口)](js-apis-settings-sys.md)
         - [@ohos.systemDateTime (系统时间、时区)(系统接口)](js-apis-system-date-time-sys.md)
-        - [@ohos.systemTime (系统时间、时区)](js-apis-system-time.md)
         - [@ohos.systemDateTime (系统时间、时区)](js-apis-date-time.md)
         - [@ohos.wallpaper (壁纸)(系统接口)](js-apis-wallpaper-sys.md)
         - [@ohos.WallpaperExtensionAbility (WallpaperExtensionAbility)(系统接口)](js-apis-WallpaperExtensionAbility-sys.md)
