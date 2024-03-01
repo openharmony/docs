@@ -9,4 +9,5 @@
   - [@ohos.inputMethod (输入法框架)](js-apis-inputmethod.md)
   - [@ohos.inputMethodEngine (输入法服务)](js-apis-inputmethodengine.md)
   - [@ohos.inputMethodList (输入法切换列表控件)](js-apis-inputmethodlist.md)
-  
+- 错误码
+  - [输入法框架错误码](errorcode-inputmethod-framework.md)
