@@ -403,13 +403,13 @@ windowStage.loadContent('pages/Index', this.storage);
 >
 > LocalStorage.GetShared()只在模拟器或者实机上才有效，在Previewer预览器中使用不生效。
 
-在下面的用例中，Index页面中的propA通过getShared()方法获取到共享的LocalStorage实例。点击Button跳转到Page页面，点击Change propA改变propA的值，back回Index页面后，页面中propA的值也同步修改。
+在所属UIAbility中创建LocalStorage实例后，下面的用例中，通过GetShared方法获取到共享的LocalStorage实例，并用该实例storage初始化Index组件。Index组件中被@LocalStorageLink装饰的变量propA获取到了LocalStorage中属性"PropA"的值。点击Button跳转到Page页面，点击Change propA改变propA的值，back回Index页面后，页面中propA的值也同步修改。
 
 ```ts
 // index.ets
 import router from '@ohos.router';
 
-// 通过getShared接口获取stage共享的LocalStorage实例
+// 通过GetShared接口获取stage共享的LocalStorage实例
 let storage = LocalStorage.GetShared()
 @Entry(storage)
 @Component
