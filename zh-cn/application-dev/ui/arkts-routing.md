@@ -476,6 +476,17 @@ struct Index {
 }
 ```
 
+>**说明：**
+>
+>使用命名路由方式跳转时，需要在当前应用包的oh-package.json5文件中配置依赖。例如：
+>
+>```ts
+>"dependencies": {
+>    "@ohos/library": "file:../library",
+>    ...
+> }
+>```
+
 ## 相关实例
 
 针对页面路由开发，有以下相关实例可供参考：
