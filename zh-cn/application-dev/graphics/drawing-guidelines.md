@@ -343,7 +343,7 @@ libnative_drawing.so
 Native Drawing模块关于文本绘制提供两类API接口：
 
 - 一类是具有定制排版能力的接口：如OH_Drawing_Typography，OH_Drawing_TypographyStyle，OH_Drawing_TextStyle等类型。支撑用户设置排版风格和文本风格，可调用OH_Drawing_TypographyHandlerAddText添加文本并调用OH_Drawing_TypographyLayout和OH_Drawing_TypographyPaint对文本进行排版和绘制。
-- 另一类是不具有定制排版能力的接口：如OH_Drawing_Font，OH_Drawing_TextBlob，OH_Drawing_RunBuffer等类型。如果应用具备排版能力，支撑用户将排版结果构造为OH_Drawing_TextBlob；如果应用使用默认的排版能力，支撑用户直接调用OH_Drawing_CreateFromText构造OH_Drawing_TextBlob。最后调用OH_Drawing_CanvasDrawTextBlob绘制OH_Drawing_TextBlob描述的文本块。
+- 另一类是不具有定制排版能力的接口：如OH_Drawing_Font，OH_Drawing_TextBlob，OH_Drawing_RunBuffer等类型。支撑具备自排版能力的用户将排版结果构造为OH_Drawing_TextBlob并调用OH_Drawing_CanvasDrawTextBlob绘制OH_Drawing_TextBlob描述的文本块。
 
 以下分别提供了如何使用这两类API接口以实现文本绘制的具体步骤。
 
@@ -427,7 +427,7 @@ Native Drawing模块关于文本绘制提供两类API接口：
     OH_Drawing_CanvasClear(cCanvas_, OH_Drawing_ColorSetArgb(0xFF, 0xFF, 0xFF, 0xFF));
     ```
 
-2. **面向应用具备自排版能力的文本绘制场景**。
+2. **应用具备自排版能力的文本绘制**。
 
     ```c++
     // 创建字体，并设置文字大小
@@ -445,22 +445,11 @@ Native Drawing模块关于文本绘制提供两类API接口：
     }
     // 通过文本构造器创建文本
     OH_Drawing_TextBlob* textBlob = OH_Drawing_TextBlobBuilderMake(builder);
+    // 释放内存
+    OH_Drawing_TextBlobBuilderDestroy(builder);
     ```
 
-3. **面向应用使用默认排版能力的文本绘制场景**。
-
-    ```c++
-    // 创建字体，并设置文字大小
-    OH_Drawing_Font* font = OH_Drawing_FontCreate();
-    OH_Drawing_FontSetTextSize(font, 20);
-    // 创建要显示的字符
-    size_t size = 6;
-    const char16_t* buffer = u"你好，NDK";
-    // 通过字符和对应的编码格式创建默认排版的文本
-    OH_Drawing_TextBlob* textBlob = OH_Drawing_TextBlobCreateFromText(buffer, size, font, OH_Drawing_TextEncoding::TEXT_ENCODING_UTF16);
-    ```
-
-4. **生成最终文本显示效果**。
+3. **生成最终文本显示效果**。
 
     ```c++
     // 设置文本在画布上绘制的起始位置
