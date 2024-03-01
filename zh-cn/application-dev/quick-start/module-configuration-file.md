@@ -66,7 +66,13 @@
       "app1Scheme",
       "app2Scheme"
     ],
-    "routerMap": "$profile:router_map"
+    "routerMap": "$profile:router_map",
+    "appEnvironments": [
+      {
+        "name": "name1",
+        "value": "value1"
+      }
+    ]
   }
 }
 ```
@@ -108,6 +114,7 @@ module.json5配置文件包含以下标签。
 | fileContextMenu | 标识当前HAP的右键菜单配置项。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | querySchemes | 标识允许当前应用进行跳转查询的URL schemes，只允许entry类型模块配置，最多50个。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
 | [routerMap](#routermap标签) | 标识当前模块配置的路由表路径。 | 字符串 | 该标签可缺省，缺省值为空。 |
+| [appEnvironments](#appenvironments标签) | 标识当前模块配置的应用环境变量。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 
 ## deviceTypes标签
 
@@ -893,5 +900,31 @@ data标签示例：
       }
     }
   ]
+}
+```
+
+## appEnvironments标签
+
+此标签标识模块配置的应用环境变量。
+
+**表23** appEnvironments标签说明
+
+| 属性名称 | 含义 | 数据类型 | 是否可缺省 |
+| -------- | -------- | -------- | -------- |
+| name          | 标识环境变量的变量名称。 | 字符串  | 该标签不可缺省。       |
+| value         | 标识环境变量的值。       | 字符串 | 该标签不可缺省。 |
+
+appEnvironments标签示例：
+
+```json
+{
+  "module": {
+    "appEnvironments": [
+      {
+        "name":"name1",
+        "value": "value1"
+      }
+    ]
+  }
 }
 ```
