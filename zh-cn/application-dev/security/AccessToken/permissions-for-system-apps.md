@@ -2383,7 +2383,7 @@
 
 ### ohos.permission.hsdr.REQUEST_HSDR
 
-允许应用和系统SA调用hsdr实时查询功能的接口。
+允许系统应用访问安全检测响应框架实时查询功能。
 
 **权限级别**：system_basic
 
@@ -2391,7 +2391,7 @@
 
 **ACL使能**：true
 
-**起始版本**：12
+**起始版本**：11
 
 ## system_grant，不允许ACL跨级申请
 
