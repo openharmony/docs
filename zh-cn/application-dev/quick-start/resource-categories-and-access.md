@@ -231,13 +231,14 @@ plural.json文件的内容如下：
 
 #### 单HAP包资源
 
-- 通过$r或$rawfile引用资源。<br/>对于“color”、“float”、“string”、“plural”、“media”、“profile”等类型的资源，通过```"$r('app.type.name')"```形式引用。其中，app为resources目录中定义的资源；type为资源类型或资源的存放位置；name为资源名，开发者定义资源时确定。<br/>对于rawfile目录资源，通过```"$rawfile('filename')"```形式引用。其中，filename为rawfile目录下文件的相对路径，文件名需要包含后缀，路径开头不可以"/"开头。
+ - 通过$r或$rawfile引用资源。<br/>对于“color”、“float”、“string”、“plural”、“media”、“profile”等类型的资源，通过```"$r('app.type.name')"```形式引用。其中，app为resources目录中定义的资源；type为资源类型或资源的存放位置；name为资源名，开发者定义资源时确定。<br/>对于rawfile目录资源，通过```"$rawfile('filename')"```形式引用。其中，filename为rawfile目录下文件的相对路径，文件名需要包含后缀，路径开头不可以"/"开头。
 
-> **说明：**
->
-> rawfile的native的访问方式请参考[Rawfile开发指导](../napi/rawfile-guidelines.md)。
+  > **说明：**
+  >
+  > rawfile的native的访问方式请参考[Rawfile开发指导](../napi/rawfile-guidelines.md)。
 
-[资源组目录](#资源组目录)下的“资源文件示例”显示了.json文件内容，包含color.json文件、string.json文件和plural.json文件，访问应用资源时需先了解.json文件的使用规范。<br/>资源的具体使用方法如下：
+  [资源组目录](#资源组目录)下的“资源文件示例”显示了.json文件内容，包含color.json文件、string.json文件和plural.json文件，访问应用资源时需先了解.json文件的使用规范。<br/>资源的具体使用方法如下：
+
 ```ts
 Text('Hello')
   .fontColor($r('sys.color.ohos_id_color_emphasize'))
