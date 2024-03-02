@@ -6,9 +6,9 @@
 >
 > 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
-> 本模块功能依赖UI的执行上下文，不可在UI上下文不明确的地方使用，参见[UIContext](../../apis/js-apis-arkui-UIContext.md#uicontext)说明。
+> 本模块功能依赖UI的执行上下文，不可在UI上下文不明确的地方使用，参见[UIContext](../js-apis-arkui-UIContext.md#uicontext)说明。
 >
-> 从API version 10开始，可以通过使用[UIContext](../../apis/js-apis-arkui-UIContext.md#uicontext)中的[showAlertDialog](../../apis/js-apis-arkui-UIContext.md#showalertdialog)来明确UI的执行上下文。
+> 从API version 10开始，可以通过使用[UIContext](../js-apis-arkui-UIContext.md#uicontext)中的[showAlertDialog](../js-apis-arkui-UIContext.md#showalertdialog)来明确UI的执行上下文。
 
 ## 属性
 
@@ -33,6 +33,7 @@
 | isModal<sup>11+</sup> | boolean | 否 | 弹窗是否为模态窗口，模态窗口有蒙层，非模态窗口无蒙层。<br/>默认值：true，此时弹窗有蒙层。 |
 | backgroundColor<sup>11+</sup> | [ResourceColor](ts-types.md#resourcecolor)  | 否 | 弹窗背板颜色。<br/>默认值：Color.Transparent |
 | backgroundBlurStyle<sup>11+</sup> | [BlurStyle](ts-appendix-enums.md#blurstyle9) | 否 | 弹窗背板模糊材质。<br/>默认值：BlurStyle.COMPONENT_ULTRA_THICK |
+| onWillDismiss<sup>12+</sup> | (dismissDialog:&nbsp;[DismissDialog](#dismissdialog12类型说明)) => void | 否 | 交互式关闭回调函数。<br/>**说明：**<br/>1.当注册该回调函数后，点击、左滑/右滑、三键back或键盘ESC，不会立刻关闭。在回调函数中可以通过reason得到阻拦关闭弹窗的操作类型，从而根据原因选择是否能关闭弹窗。<br/>2.在onWillDismiss回调中，不能再做onWillDismiss拦截。 |
 
 ## AlertDialogParamWithButtons对象说明
 | 参数名             | 参数类型                | 必填     | 参数描述                     |
@@ -145,6 +146,21 @@ Rectangle是各种Dialog中maskRect参数的类型。
 | DEFAULT   | 白底蓝字（深色主题：白底=黑底）。 |
 | HIGHLIGHT | 蓝底白字。                        |
 
+## DismissDialog<sup>12+</sup>类型说明
+
+| 名称     | 类型                                 | 必填 | 描述                                                           |
+|----------|-------------------------------------|------|----------------------------------------------------------------|
+| dismiss  | function                            |  是  | Dialog关闭回调函数。开发者需要退出时调用，不需要退出时无需调用。    |
+| reason   | [DismissReason](#dismissreason12枚举说明) |  是  | Dialog无法关闭原因。根据开发者需要选择不同操作下，Dialog是否需要关闭。 |
+
+## DismissReason<sup>12+</sup>枚举说明
+
+| 名称             | 描述                             |
+| --------------- | -------------------------------- |
+| PRESS_BACK      | 点击三键back、左滑/右滑、键盘ESC。  |
+| TOUCH_OUTSIDE   | 点击遮障层时。                     |
+| CLOSE_BUTTON    | 点击关闭按钮。                     |
+
 ## 示例
 
 ### 示例1
@@ -174,6 +190,16 @@ struct AlertDialogExample {
               },
               cancel: () => {
                 console.info('Closed callbacks')
+              },
+              onWillDismiss:(dismissDialog: DismissDialog)=> {
+                console.info("reason=" + JSON.stringify(dismissDialog.reason))
+                console.log("dialog onWillDismiss")
+                if (dismissDialog.reason == DismissReason.PRESS_BACK) {
+                  dismissDialog.dismiss()
+                }
+                if (dismissDialog.reason == DismissReason.TOUCH_OUTSIDE) {
+                  dismissDialog.dismiss()
+                }
               }
             }
           )
@@ -207,7 +233,17 @@ struct AlertDialogExample {
               },
               cancel: () => {
                 console.info('Closed callbacks')
-              }
+              },
+              onWillDismiss:(dismissDialog: DismissDialog)=> {
+                console.info("reason=" + JSON.stringify(dismissDialog.reason))
+                console.log("dialog onWillDismiss")
+                if (dismissDialog.reason == DismissReason.PRESS_BACK) {
+                  dismissDialog.dismiss()
+                }
+                if (dismissDialog.reason == DismissReason.TOUCH_OUTSIDE) {
+                  dismissDialog.dismiss()
+                }
+              } 
             }
           )
         }).backgroundColor(0x317aff)
@@ -248,6 +284,16 @@ struct AlertDialogExample {
               ],
               cancel: () => {
                 console.info('Closed callbacks')
+              },
+              onWillDismiss:(dismissDialog: DismissDialog)=> {
+                console.info("reason=" + JSON.stringify(dismissDialog.reason))
+                console.log("dialog onWillDismiss")
+                if (dismissDialog.reason == DismissReason.PRESS_BACK) {
+                  dismissDialog.dismiss()
+                }
+                if (dismissDialog.reason == DismissReason.TOUCH_OUTSIDE) {
+                  dismissDialog.dismiss()
+                }
               }
             }
           )
@@ -307,7 +353,16 @@ struct AlertDialogExample {
               ],
               cancel: () => {
                 console.info('Closed callbacks')
-              }
+              },
+              onWillDismiss:(dismissDialog: DismissDialog)=> {
+                console.info("reason=" + JSON.stringify(dismissDialog.reason))
+                console.log("dialog onWillDismiss")
+                if (dismissDialog.reason == DismissReason.PRESS_BACK) {
+                  dismissDialog.dismiss()
+                }
+                if (dismissDialog.reason == DismissReason.TOUCH_OUTSIDE) {
+                  dismissDialog.dismiss()
+                }
             }
           )
         }).backgroundColor(0x317aff)

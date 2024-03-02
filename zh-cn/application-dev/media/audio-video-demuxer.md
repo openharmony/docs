@@ -35,13 +35,13 @@
 
 ## 开发指导
 
-详细的API说明参考[AVDemuxer](../reference/native-apis/_a_v_demuxer.md)和[AVSource](../reference/native-apis/_a_v_source.md)
+详细的API说明参考[AVDemuxer](../reference/apis-avcodec-kit/_a_v_demuxer.md)和[AVSource](../reference/apis-avcodec-kit/_a_v_source.md)
 
 > **说明**
 >
 > - 调用解封装能力解析网络播放路径，需要[声明权限](../security/AccessToken/declare-permissions.md)：ohos.permission.INTERNET
 > - 调用解封装能力解析本地文件，需要[向用户申请授权](../security/AccessToken/request-user-authorization.md)：ohos.permission.READ_MEDIA
-> - 如果使用ResourceManager.getRawFd打开HAP资源文件描述符，使用方法请参考[ResourceManager API参考](../reference/apis/js-apis-resource-manager.md#getrawfd9)
+> - 如果使用ResourceManager.getRawFd打开HAP资源文件描述符，使用方法请参考[ResourceManager API参考](../reference/apis-localization-kit/js-apis-resource-manager.md#getrawfd9)
 
 ### 在 CMake 脚本中链接动态库
 
@@ -95,8 +95,36 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
       return;
    }
    ```
+3. 注册[DRM信息监听函数](../reference/apis-drm-kit/_drm.md#drm_mediakeysysteminfocallback)（可选，若非DRM码流或已获得[DRM信息](../reference/apis-drm-kit/_drm.md#drm_mediakeysysteminfo)，可跳过此步）。
 
-3. 获取文件轨道数（可选，若用户已知轨道信息，可跳过此步）。
+   加入头文件
+   ```c++
+   #include <multimedia/drm_framework/native_drm_common.h>
+   ```
+   在 CMake 脚本中链接动态库
+
+   ``` cmake
+   target_link_libraries(sample PUBLIC libnative_drm.so)
+   ```
+
+   使用示例
+   ```c++
+   // DRM信息监听回调OnDrmInfoChanged实现
+   static void OnDrmInfoChanged(DRM_MediaKeySystemInfo *drmInfo)
+   {
+      // 解析DRM信息，包括数量、DRM类型及对应pssh
+   }
+
+   // 设置异步回调
+   DRM_MediaKeySystemInfoCallback callback = &OnDrmInfoChanged;
+   int32_t ret = OH_AVDemuxer_SetMediaKeySystemInfoCallback(demuxer, callback);
+
+   // 在监听到DRM信息后，也可主动调用获取DRM信息接口
+   DRM_MediaKeySystemInfo mediaKeySystemInfo;
+   OH_AVDemuxer_GetMediaKeySystemInfo(demuxer, &mediaKeySystemInfo);
+   ```
+
+4. 获取文件轨道数（可选，若用户已知轨道信息，可跳过此步）。
 
    ```c++
    // 从文件 source 信息获取文件轨道数
@@ -110,7 +138,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    OH_AVFormat_Destroy(sourceFormat);
    ```
 
-4. 获取轨道index及信息（可选，若用户已知轨道信息，可跳过此步）。
+5. 获取轨道index及信息（可选，若用户已知轨道信息，可跳过此步）。
 
    ```c++
    uint32_t audioTrackIndex = 0;
@@ -136,7 +164,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    }
    ```
 
-5. 添加解封装轨道。
+6. 添加解封装轨道。
 
    ```c++
    if(OH_AVDemuxer_SelectTrackByID(demuxer, audioTrackIndex) != AV_ERR_OK){
@@ -151,7 +179,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    // OH_AVDemuxer_UnselectTrackByID(demuxer, audioTrackIndex);
    ```
 
-6. 调整轨道到指定时间点(可选)。
+7. 调整轨道到指定时间点(可选)。
 
    ```c++
    // 调整轨道到指定时间点，后续从该时间点进行解封装
@@ -161,7 +189,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    OH_AVDemuxer_SeekToTime(demuxer, 0, OH_AVSeekMode::SEEK_MODE_CLOSEST_SYNC);
    ```
 
-7. 开始解封装，循环获取帧数据(以含音频、视频两轨的文件为例)。
+8. 开始解封装，循环获取帧数据(以含音频、视频两轨的文件为例)。
 
    ```c++
    // 创建 buffer，用与保存用户解封装得到的数据
@@ -203,7 +231,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    OH_AVBuffer_Destroy(buffer);
    ```
 
-8. 销毁解封装实例。
+9. 销毁解封装实例。
 
    ```c++
    // 需要用户调用 OH_AVSource_Destroy 接口成功后，手动将对象置为 NULL，对同一对象重复调用 OH_AVSource_Destroy 会导致程序错误

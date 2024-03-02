@@ -29,7 +29,7 @@
    }
    ```
    
-2. 子类型配置文件格式如下，字段释义参照[inputmethodsubtype](../reference/apis/js-apis-inputmethod-subtype.md#inputmethodsubtype)，开发者需要严格按照配置文件格式及字段进行子类型信息配置, locale字段的配置参照[Language Tags (BCP 47)](https://tools.ietf.org/html/bcp47).
+2. 子类型配置文件格式如下，字段释义参照[inputmethodsubtype](../reference/apis-ime-kit/js-apis-inputmethod-subtype.md#inputmethodsubtype)，开发者需要严格按照配置文件格式及字段进行子类型信息配置, locale字段的配置参照[Language Tags (BCP 47)](https://tools.ietf.org/html/bcp47).
    ```
    {
      "subtypes": [
@@ -54,11 +54,11 @@
 3. 输入法应用中监听子类型事件，根据不同的子类型，可以加载不同的软键盘界面，或者使用状态变量控制界面中的软键盘显示。
 
    ```ts
-   import { InputMethodSubtype，inputMethodEngine } from '@kit.IMEKit';
+   import { InputMethodSubtype, inputMethodEngine } from '@kit.IMEKit';
    
    let inputMethodAbility: inputMethodEngine.InputMethodAbility = inputMethodEngine.getInputMethodAbility();
    inputMethodAbility.on('setSubtype', (inputMethodSubtype: InputMethodSubtype) => {
-     this.subType = inputMethodSubtype; // 保存当前输入法子类型, 此处也可以改变状态变量的值，布局中判断状态变量，不同的子类型显示不同的布局控件
+     let subType = inputMethodSubtype; // 保存当前输入法子类型, 此处也可以改变状态变量的值，布局中判断状态变量，不同的子类型显示不同的布局控件
      if (inputMethodSubtype.id == 'InputMethodExtAbility') { // 根据不同的子类型，可以加载不同的软键盘界面
        this.panel.setUiContent('pages/Index'); 
      }
@@ -70,15 +70,15 @@
 
 ## 输入法子类型相关信息的获取
 
-1. 开发者可以通过调用[getCurrentInputMethodSubtype](../reference/apis/js-apis-inputmethod.md#inputmethodgetcurrentinputmethodsubtype9)获取当前输入法应用的当前子类型。
+1. 开发者可以通过调用[getCurrentInputMethodSubtype](../reference/apis-ime-kit/js-apis-inputmethod.md#inputmethodgetcurrentinputmethodsubtype9)获取当前输入法应用的当前子类型。
 
-2. 开发者可以通过调用[listCurrentInputMethodSubtype](../reference/apis/js-apis-inputmethod.md#listcurrentinputmethodsubtype9)获取当前输入法应用的所有子类型。
+2. 开发者可以通过调用[listCurrentInputMethodSubtype](../reference/apis-ime-kit/js-apis-inputmethod.md#listcurrentinputmethodsubtype9)获取当前输入法应用的所有子类型。
 
-3. 开发者可以通过调用[listInputMethodSubtype](../reference/apis/js-apis-inputmethod.md#listinputmethodsubtype9)获取指定输入法应用的所有子类型。
+3. 开发者可以通过调用[listInputMethodSubtype](../reference/apis-ime-kit/js-apis-inputmethod.md#listinputmethodsubtype9)获取指定输入法应用的所有子类型。
 
 
 ## 输入法子类型的切换
 
-1. 开发者可以通过调用[switchCurrentInputMethodSubtype](../reference/apis/js-apis-inputmethod.md#inputmethodswitchcurrentinputmethodsubtype9)切换当前输入法应用的子类型。
+1. 开发者可以通过调用[switchCurrentInputMethodSubtype](../reference/apis-ime-kit/js-apis-inputmethod.md#inputmethodswitchcurrentinputmethodsubtype9)切换当前输入法应用的子类型。
 
-2. 开发者可以通过调用[switchCurrentInputMethodAndSubtype](../reference/apis/js-apis-inputmethod.md#inputmethodswitchcurrentinputmethodandsubtype9)切换至指定输入法应用的指定子类型。
+2. 开发者可以通过调用[switchCurrentInputMethodAndSubtype](../reference/apis-ime-kit/js-apis-inputmethod.md#inputmethodswitchcurrentinputmethodandsubtype9)切换至指定输入法应用的指定子类型。

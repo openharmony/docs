@@ -36,7 +36,7 @@
 
    应用申明安全控件的接口时，分为传参和不传参两种，不传参默认创建图标+文字+背景的按钮，传参根据传入的参数创建，不包含没有配置的元素。
 
-   当前示例使用默认参数。具体请参见[PasteButton控件](../../reference/arkui-ts/ts-security-components-pastebutton.md)。此外，所有安全控件都继承[安全控件通用属性](../../reference/arkui-ts/ts-securitycomponent-attributes.md)，可用于定制样式。
+   当前示例使用默认参数。具体请参见[PasteButton控件](../../reference/apis-arkui/arkui-ts/ts-security-components-pastebutton.md)。此外，所有安全控件都继承[安全控件通用属性](../../reference/apis-arkui/arkui-ts/ts-securitycomponent-attributes.md)，可用于定制样式。
    
    ```ts
    import pasteboard from '@ohos.pasteboard';

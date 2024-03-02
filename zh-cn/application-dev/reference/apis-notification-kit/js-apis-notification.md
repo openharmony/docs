@@ -995,7 +995,7 @@ Notification.isDistributedEnabled().then((data: boolean) => {
 | 名称      | 类型                                            | 可读 | 可写 | 说明                      |
 | --------- | ----------------------------------------------- | --- | ---- | ------------------------- |
 | title     | string                                          | 是  | 是  | 按钮标题。                  |
-| wantAgent | [WantAgent](../apis/js-apis-app-ability-wantAgent.md)   | 是  | 是  | 点击按钮时触发的WantAgent。 |
+| wantAgent | [WantAgent](../apis-ability-kit/js-apis-wantAgent.md)   | 是  | 是  | 点击按钮时触发的WantAgent。 |
 | extras    | { [key: string]: any }                          | 是  | 是  | 按钮扩展信息。              |
 | userInput<sup>8+</sup> | [NotificationUserInput](#notificationuserinput8) | 是  | 是  | 用户输入对象实例。          |
 
@@ -1058,7 +1058,7 @@ Notification.isDistributedEnabled().then((data: boolean) => {
 | additionalText | string         | 是  | 是  | 通知附加内容，是对通知内容的补充。 |
 | briefText      | string         | 是  | 是  | 通知概要内容，是对通知内容的总结。 |
 | expandedTitle  | string         | 是  | 是  | 通知展开时的标题。                 |
-| picture        | [image.PixelMap](../apis/js-apis-image.md#pixelmap7) | 是  | 是  | 通知的图片内容。                   |
+| picture        | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是  | 是  | 通知的图片内容。                   |
 
 
 ## NotificationContent
@@ -1119,7 +1119,7 @@ Notification.isDistributedEnabled().then((data: boolean) => {
 | deliveryTime          | number                                        | 是  | 是  | 通知发送时间。               |
 | tapDismissed          | boolean                                       | 是  | 是  | 通知是否自动清除。           |
 | autoDeletedTime       | number                                        | 是  | 是  | 自动清除的时间。             |
-| wantAgent             | [WantAgent](../apis/js-apis-app-ability-wantAgent.md) | 是  | 是  | WantAgent封装了应用的行为意图，点击通知时触发该行为。 |
+| wantAgent             | [WantAgent](../apis-ability-kit/js-apis-wantAgent.md) | 是  | 是  | WantAgent封装了应用的行为意图，点击通知时触发该行为。 |
 | extraInfo             | {[key: string]: any}                          | 是  | 是  | 扩展参数。                   |
 | color                 | number                                        | 是  | 是  | 通知背景颜色。预留能力，暂未支持。 |
 | colorEnabled          | boolean                                       | 是  | 是  | 通知背景颜色是否使能。预留能力，暂未支持。 |
@@ -1131,8 +1131,8 @@ Notification.isDistributedEnabled().then((data: boolean) => {
 | badgeIconStyle        | number                                        | 是  | 是  | 通知角标类型。               |
 | showDeliveryTime      | boolean                                       | 是  | 是  | 是否显示分发时间。           |
 | actionButtons         | Array\<[NotificationActionButton](#notificationactionbutton)\>             | 是  | 是  | 通知按钮，最多两个按钮。     |
-| smallIcon             | [image.PixelMap](../apis/js-apis-image.md#pixelmap7) | 是  | 是  | 通知小图标。可选字段，大小不超过30KB。 |
-| largeIcon             | [image.PixelMap](../apis/js-apis-image.md#pixelmap7) | 是  | 是  | 通知大图标。可选字段，大小不超过30KB。 |
+| smallIcon             | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是  | 是  | 通知小图标。可选字段，大小不超过30KB。 |
+| largeIcon             | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是  | 是  | 通知大图标。可选字段，大小不超过30KB。 |
 | creatorBundleName     | string                                        | 是  | 否  | 创建通知的包名。             |
 | creatorUid            | number                                        | 是  | 否  | 创建通知的UID。              |
 | creatorPid            | number                                        | 是  | 否  | 创建通知的PID。              |
@@ -1142,7 +1142,7 @@ Notification.isDistributedEnabled().then((data: boolean) => {
 | template<sup>8+</sup> | [NotificationTemplate](#notificationtemplate8) | 是  | 是  | 通知模板。                   |
 | distributedOption<sup>8+</sup>   | [DistributedOptions](#distributedoptions8)                 | 是  | 是  | 分布式通知的选项。          |
 | notificationFlags<sup>8+</sup> | [NotificationFlags](#notificationflags8)                    | 是  | 否  | 获取NotificationFlags。          |
-| removalWantAgent<sup>9+</sup> | [WantAgent](../apis/js-apis-app-ability-wantAgent.md) | 是  | 是  | 当移除通知时，通知将被重定向到的WantAgent实例。          |
+| removalWantAgent<sup>9+</sup> | [WantAgent](../apis-ability-kit/js-apis-wantAgent.md) | 是  | 是  | 当移除通知时，通知将被重定向到的WantAgent实例。          |
 | badgeNumber<sup>9+</sup> | number                    | 是  | 是  | 应用程序图标上显示的通知数。          |
 
 ## DistributedOptions<sup>8+</sup>

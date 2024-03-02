@@ -439,7 +439,7 @@ addDeferredSurface(surfaceId: string): void
 
 | 参数名     | 类型         | 必填 | 说明                       |
 | -------- | --------------| ---- | ------------------------ |
-| surfaceId | string | 是 | 从[XComponent](../arkui-ts/ts-basic-components-xcomponent.md)组件获取的surfaceId。|
+| surfaceId | string | 是 | 从[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)组件获取的surfaceId。|
 
 **错误码：**
 
@@ -588,7 +588,7 @@ attachSketchSurface(surfaceId: string): void
 
 | 参数名     | 类型         | 必填 | 说明                       |
 | -------- | --------------| ---- | ------------------------ |
-| surfaceId | string | 是 | 从[XComponent](../arkui-ts/ts-basic-components-xcomponent.md)组件获取的surfaceId。|
+| surfaceId | string | 是 | 从[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)组件获取的surfaceId。|
 
 **错误码：**
 
@@ -1775,7 +1775,7 @@ getSupportedColorSpaces(): Array\<colorSpaceManager.ColorSpace\>
 
 | 类型                                             | 说明                           |
 | ----------------------------------------------- | ---------------------------- |
-| Array<[colorSpaceManager.ColorSpace](../apis/js-apis-colorSpaceManager.md#colorspace)>| 支持的色彩空间列表。     |
+| Array<[colorSpaceManager.ColorSpace](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspace)>| 支持的色彩空间列表。     |
 
 **错误码：**
 
@@ -1811,7 +1811,7 @@ setColorSpace(colorSpace: colorSpaceManager.ColorSpace): void
 
 | 参数名         | 类型                 | 必填 | 说明                      |
 | ------------ |---------------------- | -- | -------------------------- |
-| colorSpace | [colorSpaceManager.ColorSpace](../apis/js-apis-colorSpaceManager.md#colorspace)  | 是 | 色彩空间，通过[getSupportedColorSpaces](#getsupportedcolorspaces11)接口获取。   |
+| colorSpace | [colorSpaceManager.ColorSpace](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspace)  | 是 | 色彩空间，通过[getSupportedColorSpaces](#getsupportedcolorspaces11)接口获取。   |
 
 **错误码：**
 
@@ -1856,7 +1856,7 @@ getActiveColorSpace(): colorSpaceManager.ColorSpace
 
 | 类型                                             | 说明                           |
 | ----------------------------------------------- | ---------------------------- |
-| [colorSpaceManager.ColorSpace](../apis/js-apis-colorSpaceManager.md#colorspace)               | 当前设置的色彩空间。                |
+| [colorSpaceManager.ColorSpace](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspace)               | 当前设置的色彩空间。                |
 
 **错误码：**
 
@@ -2407,7 +2407,7 @@ function getBeauty(captureSession: camera.CaptureSession): number {
 
 PhotoSessionForSys extends PhotoSession, Beauty, ColorEffect, ColorManagement, Macro
 
-提供给系统应用的VideoSession，普通拍照模式会话类，继承自[Session](js-apis-camera.md#session11)，用于设置普通拍照模式的参数以及保存所需要的所有资源[CameraInput](js-apis-camera.md#camerainput)、[CameraOutput](js-apis-camera.md#cameraoutput)。
+提供给系统应用的PhotoSession，普通拍照模式会话类，继承自[Session](js-apis-camera.md#session11)，用于设置普通拍照模式的参数以及保存所需要的所有资源[CameraInput](js-apis-camera.md#camerainput)、[CameraOutput](js-apis-camera.md#cameraoutput)。
 
 **系统接口：** 此接口为系统接口。
 

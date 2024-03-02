@@ -4,7 +4,7 @@
 
 ## 获取相册管理模块实例
 
-应用需要使用应用上下文Context通过接口[getPhotoAccessHelper](../reference/apis/js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper)，获取相册管理模块实例，用于访问和修改相册中媒体数据信息（如图片、视频）。
+应用需要使用应用上下文Context通过接口[getPhotoAccessHelper](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper)，获取相册管理模块实例，用于访问和修改相册中媒体数据信息（如图片、视频）。
 
 **开发步骤**
 
@@ -29,7 +29,7 @@ let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 | ohos.permission.READ_IMAGEVIDEO     | 允许应用读取媒体库的图片和视频媒体文件信息。 | user_grant |
 | ohos.permission.WRITE_IMAGEVIDEO    | 允许应用读写媒体库的图片和视频媒体文件信息。 | user_grant |
 
-以上权限的授权方式均为user_grant（用户授权），即开发者在module.json5文件中配置对应的权限后，需要使用接口[abilityAccessCtrl.requestPermissionsFromUser](../reference/apis/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)去校验当前用户是否已授权。如果是，应用可以直接访问/操作目标对象；否则需要弹框向用户申请授权。
+以上权限的授权方式均为user_grant（用户授权），即开发者在module.json5文件中配置对应的权限后，需要使用接口[abilityAccessCtrl.requestPermissionsFromUser](../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)去校验当前用户是否已授权。如果是，应用可以直接访问/操作目标对象；否则需要弹框向用户申请授权。
 
 **开发步骤**
 

@@ -5,7 +5,7 @@
 
 网格布局是由“行”和“列”分割的单元格所组成，通过指定“项目”所在的单元格做出各种各样的布局。网格布局具有较强的页面均分能力，子组件占比控制能力，是一种重要自适应布局，其使用场景有九宫格图片展示、日历、计算器等。
 
-ArkUI提供了[Grid](../reference/arkui-ts/ts-container-grid.md)容器组件和子组件[GridItem](../reference/arkui-ts/ts-container-griditem.md)，用于构建网格布局。Grid用于设置网格布局相关参数，GridItem定义子组件相关特征。Grid组件支持使用条件渲染、循环渲染、[懒加载](../quick-start/arkts-rendering-control-lazyforeach.md)等方式生成子组件。
+ArkUI提供了[Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md)容器组件和子组件[GridItem](../reference/apis-arkui/arkui-ts/ts-container-griditem.md)，用于构建网格布局。Grid用于设置网格布局相关参数，GridItem定义子组件相关特征。Grid组件支持使用条件渲染、循环渲染、[懒加载](../quick-start/arkts-rendering-control-lazyforeach.md)等方式生成子组件。
 
 
 ## 布局与约束
@@ -62,12 +62,12 @@ Grid() {
 
 >**说明：**
 >
->当Grid组件设置了rowsTemplate或columnsTemplate时，Grid的layoutDirection、maxCount、minCount、cellLength属性不生效，属性说明可参考[Grid-属性](../reference/arkui-ts/ts-container-grid.md#属性)。
+>当Grid组件设置了rowsTemplate或columnsTemplate时，Grid的layoutDirection、maxCount、minCount、cellLength属性不生效，属性说明可参考[Grid-属性](../reference/apis-arkui/arkui-ts/ts-container-grid.md#属性)。
 
 
 ### 设置子组件所占行列数
 
-除了大小相同的等比例网格布局，由不同大小的网格组成不均匀分布的网格布局场景在实际应用中十分常见，如下图所示。在Grid组件中，通过设置GridItem的rowStart、rowEnd、columnStart和columnEnd可以实现如图所示的单个网格横跨多行或多列的场景，rowStart/rowEnd合理取值范围为0\~总行数-1，columnStart/columnEnd合理取值范围为0\~总列数-1，更多起始行号、终点行号、起始列号、终点列号的生效规则请看[GridItem](../reference/arkui-ts/ts-container-griditem.md)。
+除了大小相同的等比例网格布局，由不同大小的网格组成不均匀分布的网格布局场景在实际应用中十分常见，如下图所示。在Grid组件中，通过设置GridItem的rowStart、rowEnd、columnStart和columnEnd可以实现如图所示的单个网格横跨多行或多列的场景，rowStart/rowEnd合理取值范围为0\~总行数-1，columnStart/columnEnd合理取值范围为0\~总列数-1，更多起始行号、终点行号、起始列号、终点列号的生效规则请看[GridItem](../reference/apis-arkui/arkui-ts/ts-container-griditem.md)。
 
   **图4** 不均匀网格布局 
 
@@ -263,7 +263,7 @@ struct Shopping {
 
 ![zh-cn_image_0000001562940549](figures/zh-cn_image_0000001562940549.gif)
 
-Grid组件初始化时，可以绑定一个[Scroller](../reference/arkui-ts/ts-container-scroll.md#scroller)对象，用于进行滚动控制，例如通过Scroller对象的[scrollPage](../reference/arkui-ts/ts-container-scroll.md#scrollpage)方法进行翻页。
+Grid组件初始化时，可以绑定一个[Scroller](../reference/apis-arkui/arkui-ts/ts-container-scroll.md#scroller)对象，用于进行滚动控制，例如通过Scroller对象的[scrollPage](../reference/apis-arkui/arkui-ts/ts-container-scroll.md#scrollpage)方法进行翻页。
 
 
 ```ts

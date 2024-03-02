@@ -34,7 +34,7 @@ setUsbPolicy(admin: Want, usbPolicy: UsbPolicy, callback: AsyncCallback\<void>):
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
 | usbPolicy  | [UsbPolicy](#usbpolicy) | 是 | USB读写策略（此接口只支持READ_WRITE和READ_ONLY）。 |
 | callback | AsyncCallback\<void> | 是 | 回调函数。当接口调用成功，err为null，否则为错误对象。 |
 
@@ -82,7 +82,7 @@ setUsbPolicy(admin: Want, usbPolicy: UsbPolicy): Promise\<void>
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
 | usbPolicy  | [UsbPolicy](#usbpolicy) | 是 | USB读写策略（此接口只支持READ_WRITE和READ_ONLY）。 |
 
 **返回值：**
@@ -161,7 +161,7 @@ disableUsb(admin: Want, disable: boolean): void
 
 | 参数名  | 类型                                | 必填 | 说明                                             |
 | ------- | ----------------------------------- | ---- | ------------------------------------------------ |
-| admin   | [Want](../apis/js-apis-app-ability-want.md) | 是   | 设备管理应用。                                   |
+| admin   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。                                   |
 | disable | boolean                             | 是   | 是否禁用USB设备，true表示禁用，false表示不禁用。 |
 
 **错误码**：
@@ -206,7 +206,7 @@ isUsbDisabled(admin: Want): boolean
 
 | 参数名 | 类型                                | 必填 | 说明           |
 | ------ | ----------------------------------- | ---- | -------------- |
-| admin  | [Want](../apis/js-apis-app-ability-want.md) | 是   | 设备管理应用。 |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。 |
 
 **返回值：**
 
@@ -255,7 +255,7 @@ addAllowedUsbDevices(admin: Want, usbDeviceIds: Array\<UsbDeviceId>): void
 
 | 参数名       | 类型                                 | 必填 | 说明                                        |
 | ------------ | ------------------------------------ | ---- | ------------------------------------------- |
-| admin        | [Want](../apis/js-apis-app-ability-want.md)  | 是   | 设备管理应用。                              |
+| admin        | [Want](../apis-ability-kit/js-apis-app-ability-want.md)  | 是   | 设备管理应用。                              |
 | usbDeviceIds | Array<[UsbDeviceId](#usbdeviceid11)> | 是   | USB设备ID数组。添加后的数组长度上限为1000。 |
 
 **错误码**：
@@ -304,7 +304,7 @@ removeAllowedUsbDevices(admin: Want, usbDeviceIds: Array\<UsbDeviceId>): void
 
 | 参数名       | 类型                                 | 必填 | 说明            |
 | ------------ | ------------------------------------ | ---- | --------------- |
-| admin        | [Want](../apis/js-apis-app-ability-want.md)  | 是   | 设备管理应用。  |
+| admin        | [Want](../apis-ability-kit/js-apis-app-ability-want.md)  | 是   | 设备管理应用。  |
 | usbDeviceIds | Array<[UsbDeviceId](#usbdeviceid11)> | 是   | USB设备ID数组。 |
 
 **错误码**：
@@ -352,7 +352,7 @@ getAllowedUsbDevices(admin: Want): Array\<UsbDeviceId>
 
 | 参数名 | 类型                                | 必填 | 说明           |
 | ------ | ----------------------------------- | ---- | -------------- |
-| admin  | [Want](../apis/js-apis-app-ability-want.md) | 是   | 设备管理应用。 |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。 |
 
 **返回值：**
 
@@ -401,7 +401,7 @@ setUsbStorageDeviceAccessPolicy(admin: Want, usbPolicy: UsbPolicy): void
 
 | 参数名    | 类型                                | 必填 | 说明                  |
 | --------- | ----------------------------------- | ---- | --------------------- |
-| admin     | [Want](../apis/js-apis-app-ability-want.md) | 是   | 设备管理应用。        |
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。        |
 | usbPolicy | [UsbPolicy](#usbpolicy)             | 是   | USB存储设备访问策略。 |
 
 **错误码**：
@@ -447,7 +447,7 @@ getUsbStorageDeviceAccessPolicy(admin: Want): UsbPolicy
 
 | 参数名 | 类型                                | 必填 | 说明           |
 | ------ | ----------------------------------- | ---- | -------------- |
-| admin  | [Want](../apis/js-apis-app-ability-want.md) | 是   | 设备管理应用。 |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。 |
 
 **返回值：**
 

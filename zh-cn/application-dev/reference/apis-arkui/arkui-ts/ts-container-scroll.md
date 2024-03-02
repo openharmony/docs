@@ -52,7 +52,7 @@ Scroll(scroller?: Scroller)
 ## ScrollSnapOptions<sup>10+</sup>
 | 名称       | 参数类型    | 必填   | 描述       |
 | ---------- | --------------------|-------------------- | -------- |
-| snapAlign  | [ScrollSnapAlign](ts-container-list.md#scrollsnapalign10枚举说明)   | 是 | 设置Scroll组件限位滚动时的对其方式。<br/>**说明：** <br/>1.该属性默认值为ScrollSnapAlign.NONE。<br/>2.该接口仅当snapPagination属性为Dimension时生效，不支持Array\<Dimension\>。 |
+| snapAlign  | [ScrollSnapAlign](ts-container-list.md#scrollsnapalign10枚举说明)   | 是 | 设置Scroll组件限位滚动时的对齐方式。<br/>**说明：** <br/>1.该属性默认值为ScrollSnapAlign.NONE。<br/>2.该接口仅当snapPagination属性为Dimension时生效，不支持Array\<Dimension\>。 |
 | snapPagination | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;Array\<Dimension\> | 否 | 设置Scroll组件限位滚动时的限位点，限位点即为Scroll组件能滑动停靠的偏移量。<br/>**说明：** <br/>1.当属性为Dimension时，表示每页的大小，系统会按照该大小来自动计算每个限位点的位置：如当Dimension为500时，实际的限位点即为[0,500,1000,1500,...]。<br/>2.当属性为Array\<Dimension\>时，每个Dimension代表限位点的位置。每个Dimension的范围为[0,可滑动距离]，0和可滑动距离的底部自动成为限位点。<br/>3.当该属性不填或者Dimension为小于等于0的输入时，按异常值，无限位滚动处理。当该属性值为Array\<Dimension\>数组时，数组中的数值必须为单调递增。<br/>4.当输入为百分比时，实际的大小为Scroll组件的视口与百分比数值之积。 |
 | enableSnapToStart | boolean   | 否 | 在Scroll组件限位滚动模式下，该属性设置为false后，运行Scroll在开头和第一个限位点间自由滑动。<br/>**说明：** <br/>1.该属性值默认为true。<br/>2.该属性仅当snapPagination属性为Array\<Dimension\>时生效，不支持Dimension。 |
 | enableSnapToEnd | boolean   | 否 | 在Scroll组件限位滚动模式下，该属性设置为false后，运行Scroll在最后一个限位点和末尾间自由滑动。<br/>**说明：** <br/>1.该属性值默认为true。<br/>2.该属性仅当snapPagination属性为Array\<Dimension\>时生效，不支持Dimension。 |
@@ -99,7 +99,7 @@ scrollTo(value: { xOffset: number | string, yOffset: number | string, animation?
 | --------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | xOffset   | number&nbsp;\|&nbsp;string                                   | 是   | 水平滑动偏移。<br/>**说明：** <br/>该参数值不支持设置百分比。<br/>当值小于0时，不带动画的滚动，按0处理。带动画的滚动，滚动到起始位置后停止。<br/>仅滚动轴为x轴时生效。 |
 | yOffset   | number&nbsp;\|&nbsp;string                                   | 是   | 垂直滑动偏移。<br/>**说明：** <br/>该参数值不支持设置百分比。<br/>当值小于0时，不带动画的滚动，按0处理。带动画的滚动，滚动到起始位置后停止。<br/>仅滚动轴为y轴时生效。 |
-| animation | {duration?:&nbsp;number, curve?:&nbsp;[Curve](ts-appendix-enums.md#curve)&nbsp;\|&nbsp;[ICurve](../js-apis-curve.md#icurve)<sup>10+ </sup>}&nbsp;\|&nbsp;boolean<sup>10+ </sup> | 否   | 动画配置：<br/>-&nbsp;duration:&nbsp;滚动时长设置。<br/>-&nbsp;curve:&nbsp;滚动曲线设置。<br/>- boolean:&nbsp;使能默认弹簧动效。<br/>默认值： <br/>{<br/>duration:&nbsp;1000,<br/>curve:&nbsp;Curve.Ease<br/>}<br/>boolean:&nbsp;false<br/>**说明：** <br/>设置为小于0的值时，按默认值显示。<br/>当前List、Scroll、Grid、WaterFlow均支持boolean类型和ICurve曲线。 |
+| animation | [ScrollAnimationOptions](#scrollanimationoptions12)<sup>12+</sup>&nbsp;\|&nbsp;boolean<sup>10+ </sup> | 否   | 动画配置。<br/>- ScrollAnimationOptions:&nbsp; 自定义滚动动效。 <br/>- boolean:&nbsp;使能默认弹簧动效。<br/>默认值：<br/>ScrollAnimationOptions: { duration: 1000, curve: Curve.Ease, canOverScroll: false } <br/>boolean:&nbsp;false<br/>**说明：** <br/>当前List、Scroll、Grid、WaterFlow均支持boolean类型和ICurve曲线。<br/>于API12将原来的 {duration?:&nbsp;number, curve?:&nbsp;[Curve](ts-appendix-enums.md#curve)&nbsp;\|&nbsp;[ICurve](../js-apis-curve.md#icurve)<sup>10+ </sup>}&nbsp;抽象为了ScrollAnimationOptions接口，并在其中添加了一个参数canOverScroll。 |
 
 
 ### scrollEdge
@@ -237,6 +237,14 @@ getItemRect(index: number): RectResult
 | --------------|-------------------------------------------- | ------------------------------------------------------------ |
 | xOffset | number | 水平滑动偏移;<br/>返回值单位为vp。 |
 | yOffset | number | 竖直滑动偏移。<br/>返回值单位为vp。 |
+
+## ScrollAnimationOptions<sup>12+</sup>
+
+| 参数名   | 参数类型   | 必填   | 参数描述              |
+| ----- | ------ | ------ | ----------------- |
+| duration | number | 否 | 设置滚动时长。<br/>默认值：1000。<br/>**说明：** <br/>设置为小于0的值时，按默认值显示。 |
+| curve | [Curve](ts-appendix-enums.md#curve) \| [ICurve](../js-apis-curve.md#icurve)<sup>10+ </sup> | 否 | 设置滚动曲线。<br/>默认值：Curve.Ease。 |
+| canOverScroll | boolean | 否 | 设置滚动是否可越界。<br/>默认值：false。 |
 
 ## ScrollAlign<sup>10+</sup>枚举说明
 

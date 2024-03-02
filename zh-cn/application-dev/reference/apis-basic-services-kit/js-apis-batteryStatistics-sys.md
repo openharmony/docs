@@ -32,7 +32,7 @@ getBatteryStats(): Promise<Array&lt;BatteryStatsInfo&gt;>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[耗电统计错误码](../errorcodes/errorcode-batteryStatistics.md)。
+以下错误码的详细介绍请参见[耗电统计错误码](errorcode-batteryStatistics.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
@@ -68,7 +68,7 @@ getBatteryStats(callback: AsyncCallback<Array&lt;BatteryStatsInfo&gt;>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[耗电统计错误码](../errorcodes/errorcode-batteryStatistics.md)。
+以下错误码的详细介绍请参见[耗电统计错误码](errorcode-batteryStatistics.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
@@ -110,7 +110,7 @@ getAppPowerValue(uid: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[耗电统计错误码](../errorcodes/errorcode-batteryStatistics.md)。
+以下错误码的详细介绍请参见[耗电统计错误码](errorcode-batteryStatistics.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
@@ -151,7 +151,7 @@ getAppPowerPercent(uid: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[耗电统计错误码](../errorcodes/errorcode-batteryStatistics.md)。
+以下错误码的详细介绍请参见[耗电统计错误码](errorcode-batteryStatistics.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
@@ -192,7 +192,7 @@ getHardwareUnitPowerValue(type: ConsumptionType): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[耗电统计错误码](../errorcodes/errorcode-batteryStatistics.md)。
+以下错误码的详细介绍请参见[耗电统计错误码](errorcode-batteryStatistics.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
@@ -233,7 +233,7 @@ getHardwareUnitPowerPercent(type: ConsumptionType): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[耗电统计错误码](../errorcodes/errorcode-batteryStatistics.md)。
+以下错误码的详细介绍请参见[耗电统计错误码](errorcode-batteryStatistics.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|

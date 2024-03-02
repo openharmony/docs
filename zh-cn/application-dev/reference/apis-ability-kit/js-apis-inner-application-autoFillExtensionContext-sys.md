@@ -1,6 +1,6 @@
 # AutoFillExtensionContext (系统接口) 
 
-AutoFillExtensionContext模块是AutoFillExtensionAbility的上下文环境，继承自[ExtensionContext](../apis/js-apis-inner-application-extensionContext.md)。
+AutoFillExtensionContext模块是AutoFillExtensionAbility的上下文环境，继承自[ExtensionContext](js-apis-inner-application-extensionContext.md)。
 
 > **说明：**
 > 

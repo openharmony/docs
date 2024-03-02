@@ -3,7 +3,7 @@
 本模块提供管理基本数据对象的相关能力，包括创建、查询、删除、修改、订阅等；同时支持相同应用多设备间的分布式数据对象协同能力。
 
 > **说明：**
->
+> 
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
@@ -25,7 +25,7 @@ create(context: Context, source: object): DataObject
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | context | Context | 是 | 应用的上下文。 <br>FA模型的应用Context定义见[Context](../apis/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis/js-apis-inner-application-uiAbilityContext.md)。 |
+  | context | Context | 是 | 应用的上下文。 <br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)。 |
   | source | object | 是 | 设置分布式数据对象的属性。 |
 
 **返回值：**

@@ -29,7 +29,7 @@ Currently, the UDMF provides the public data channel for cross-application data 
 
 ## Available APIs
 
-The following table lists the UDMF APIs. All of them are executed asynchronously in callback or promise mode. In the following table, callback-based APIs are used as an example. For more information about the APIs, see [Unified Data Channel](../reference/apis/js-apis-data-unifiedDataChannel.md) and [Standard Data Definition and Description](../reference/apis/js-apis-data-uniformTypeDescriptor.md).
+The following table lists the UDMF APIs. All of them are executed asynchronously in callback or promise mode. In the following table, callback-based APIs are used as an example. For details about more APIs and their usage, see [Unified Data Channel](../reference/apis-arkdata/js-apis-data-unifiedDataChannel.md) and [Standard Data Definition and Description](../reference/apis-arkdata/js-apis-data-uniformTypeDescriptor.md).
 
 | API                                                                                   | Description                                         | 
 |-----------------------------------------------------------------------------------------|---------------------------------------------|

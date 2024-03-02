@@ -28,7 +28,7 @@ registerThermalLevelCallback(callback: Callback&lt;ThermalLevel&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[热管理错误码](../errorcodes/errorcode-thermal.md)。
+以下错误码的详细介绍请参见[热管理错误码](errorcode-thermal.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
@@ -63,7 +63,7 @@ unregisterThermalLevelCallback(callback?: Callback\<void>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[热管理错误码](../errorcodes/errorcode-thermal.md)。
+以下错误码的详细介绍请参见[热管理错误码](errorcode-thermal.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
@@ -98,7 +98,7 @@ getLevel(): ThermalLevel
 
 **错误码：**
 
-以下错误码的详细介绍请参见[热管理错误码](../errorcodes/errorcode-thermal.md)。
+以下错误码的详细介绍请参见[热管理错误码](errorcode-thermal.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|

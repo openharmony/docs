@@ -96,7 +96,7 @@ createPixelMapFromParcel(sequence: rpc.MessageSequence): PixelMap
 
 | 参数名                 | 类型                                                  | 必填 | 说明                                     |
 | ---------------------- | ----------------------------------------------------- | ---- | ---------------------------------------- |
-| sequence               | [rpc.MessageSequence](../apis/js-apis-rpc.md#messagesequence9) | 是   | 保存有PixelMap信息的MessageSequence。      |
+| sequence               | [rpc.MessageSequence](../apis-ipc-kit/js-apis-rpc.md#messagesequence9) | 是   | 保存有PixelMap信息的MessageSequence。      |
 
 **返回值：**
 
@@ -191,7 +191,7 @@ createPixelMapFromSurface(surfaceId: string, region: Region): Promise\<PixelMap>
 
 | 参数名                 | 类型                 | 必填 | 说明                                     |
 | ---------------------- | -------------       | ---- | ---------------------------------------- |
-| surfaceId              | string              | 是   | 从[XComponent](../arkui-ts/ts-basic-components-xcomponent.md)组件获取的surfaceId。|
+| surfaceId              | string              | 是   | 从[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)组件获取的surfaceId。|
 | region                 | [Region](#region7)  | 是   | 裁剪的尺寸                         |
 
 **返回值：**
@@ -228,7 +228,7 @@ async function Demo(surfaceId: string) {
 
 图像像素类，用于读取或写入图像数据以及获取图像信息。在调用PixelMap的方法前，需要先通过[createPixelMap](#imagecreatepixelmap8)创建一个PixelMap实例。目前pixelmap序列化大小最大128MB，超过会送显失败。大小计算方式为(宽\*高\*每像素占用字节数)。
 
-从API version 11开始，PixelMap支持通过worker跨线程调用。当PixelMap通过[Worker](../apis/js-apis-worker.md)跨线程后，原线程的PixelMap的所有接口均不能调用，否则将报错501 服务器不具备完成请求的功能。  
+从API version 11开始，PixelMap支持通过worker跨线程调用。当PixelMap通过[Worker](../apis-arkts/js-apis-worker.md)跨线程后，原线程的PixelMap的所有接口均不能调用，否则将报错501 服务器不具备完成请求的功能。  
 
 在调用PixelMap的方法前，需要先通过[image.createPixelMap](#imagecreatepixelmap8)构建一个PixelMap对象。
 
@@ -1162,7 +1162,7 @@ getColorSpace(): colorSpaceManager.ColorSpaceManager
 
 | 类型                                | 说明             |
 | ----------------------------------- | ---------------- |
-| [colorSpaceManager.ColorSpaceManager](../apis/js-apis-colorSpaceManager.md#colorspacemanager) | 图像广色域信息。 |
+| [colorSpaceManager.ColorSpaceManager](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspacemanager) | 图像广色域信息。 |
 
 **错误码：**
 
@@ -1194,7 +1194,7 @@ setColorSpace(colorSpace: colorSpaceManager.ColorSpaceManager): void
 
 | 参数名     | 类型                                | 必填 | 说明            |
 | ---------- | ----------------------------------- | ---- | --------------- |
-| colorSpace | [colorSpaceManager.ColorSpaceManager](../apis/js-apis-colorSpaceManager.md#colorspacemanager) | 是   | 图像广色域信息。|
+| colorSpace | [colorSpaceManager.ColorSpaceManager](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspacemanager) | 是   | 图像广色域信息。|
 
 **错误码：**
 
@@ -1228,7 +1228,7 @@ applyColorSpace(targetColorSpace: colorSpaceManager.ColorSpaceManager, callback:
 
 | 参数名   | 类型                 | 必填 | 说明                          |
 | -------- | -------------------- | ---- | ----------------------------- |
-| targetColorSpace | [colorSpaceManager.ColorSpaceManager](../apis/js-apis-colorSpaceManager.md#colorspacemanager) | 是   | 目标色彩空间，支持SRGB、DCI_P3、DISPLAY_P3、ADOBE_RGB_1998。|
+| targetColorSpace | [colorSpaceManager.ColorSpaceManager](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspacemanager) | 是   | 目标色彩空间，支持SRGB、DCI_P3、DISPLAY_P3、ADOBE_RGB_1998。|
 | callback | AsyncCallback\<void> | 是   | 获取回调，失败时返回错误信息。|
 
 **错误码：**
@@ -1274,7 +1274,7 @@ applyColorSpace(targetColorSpace: colorSpaceManager.ColorSpaceManager): Promise\
 
 | 参数名 | 类型               | 必填 | 说明        |
 | ------ | ------------------ | ---- | ----------- |
-| targetColorSpace | [colorSpaceManager.ColorSpaceManager](../apis/js-apis-colorSpaceManager.md#colorspacemanager) | 是   | 目标色彩空间，支持SRGB、DCI_P3、DISPLAY_P3、ADOBE_RGB_1998。|
+| targetColorSpace | [colorSpaceManager.ColorSpaceManager](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspacemanager) | 是   | 目标色彩空间，支持SRGB、DCI_P3、DISPLAY_P3、ADOBE_RGB_1998。|
 
 **返回值：**
 
@@ -1322,7 +1322,7 @@ marshalling(sequence: rpc.MessageSequence): void
 
 | 参数名                 | 类型                                                  | 必填 | 说明                                     |
 | ---------------------- | ------------------------------------------------------ | ---- | ---------------------------------------- |
-| sequence               | [rpc.MessageSequence](../apis/js-apis-rpc.md#messagesequence9)  | 是   | 新创建的MessageSequence。                 |
+| sequence               | [rpc.MessageSequence](../apis-ipc-kit/js-apis-rpc.md#messagesequence9)  | 是   | 新创建的MessageSequence。                 |
 
 **错误码：**
 
@@ -1403,7 +1403,7 @@ unmarshalling(sequence: rpc.MessageSequence): Promise\<PixelMap>
 
 | 参数名                 | 类型                                                  | 必填 | 说明                                     |
 | ---------------------- | ----------------------------------------------------- | ---- | ---------------------------------------- |
-| sequence               | [rpc.MessageSequence](../apis/js-apis-rpc.md#messagesequence9) | 是   | 保存有PixelMap信息的MessageSequence。      |
+| sequence               | [rpc.MessageSequence](../apis-ipc-kit/js-apis-rpc.md#messagesequence9) | 是   | 保存有PixelMap信息的MessageSequence。      |
 
 **返回值：**
 
@@ -1717,7 +1717,7 @@ createImageSource(rawfile: resourceManager.RawFileDescriptor, options?: SourceOp
 
 | 参数名 | 类型                             | 必填 | 说明                                 |
 | ------ | -------------------------------- | ---- | ------------------------------------ |
-| rawfile | [resourceManager.RawFileDescriptor](../apis/js-apis-resource-manager.md#rawfiledescriptor8) | 是 | 图像资源文件的RawFileDescriptor。 |
+| rawfile | [resourceManager.RawFileDescriptor](../apis-localization-kit/js-apis-resource-manager.md#rawfiledescriptor8) | 是 | 图像资源文件的RawFileDescriptor。 |
 | options | [SourceOptions](#sourceoptions9) | 否 | 图片属性，包括图片序号与默认属性值。 |
 
 **返回值：**
@@ -3807,7 +3807,7 @@ creator.release().then(() => {
 | -------- | ------------------ | ---- | ---- | -------------------------------------------------- |
 | clipRect | [Region](#region7) | 是   | 是   | 要裁剪的图像区域。                                 |
 | size     | [Size](#size)      | 是   | 否   | 图像大小。                                         |
-| format   | number             | 是   | 否   | 图像格式，参考[OH_NativeBuffer_Format](../native-apis/_o_h___native_buffer.md#oh_nativebuffer_format)。 |
+| format   | number             | 是   | 否   | 图像格式，参考[OH_NativeBuffer_Format](../apis-arkgraphics2d/_o_h___native_buffer.md#oh_nativebuffer_format)。 |
 
 ### getComponent<sup>9+</sup>
 
@@ -4049,7 +4049,7 @@ PixelMap的初始化选项。
 | desiredPixelFormat | [PixelMapFormat](#pixelmapformat7) | 是   | 是   | 解码的像素格式。 |
 | index              | number                             | 是   | 是   | 解码图片序号。   |
 | fitDensity<sup>9+</sup> | number                        | 是   | 是   | 图像像素密度，单位为ppi。   |
-| desiredColorSpace<sup>11+</sup> | [colorSpaceManager.ColorSpaceManager](../apis/js-apis-colorSpaceManager.md#colorspacemanager) | 是   | 是   | 目标色彩空间。 |
+| desiredColorSpace<sup>11+</sup> | [colorSpaceManager.ColorSpaceManager](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspacemanager) | 是   | 是   | 目标色彩空间。 |
 
 ## Region<sup>7+</sup>
 

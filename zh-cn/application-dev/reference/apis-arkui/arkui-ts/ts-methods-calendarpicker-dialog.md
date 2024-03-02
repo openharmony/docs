@@ -6,7 +6,7 @@
 >
 > 该组件从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
-> 本模块功能依赖UI的执行上下文，不可在UI上下文不明确的地方使用，参见[UIContext](../../apis/js-apis-arkui-UIContext.md#uicontext)说明。
+> 本模块功能依赖UI的执行上下文，不可在UI上下文不明确的地方使用，参见[UIContext](../js-apis-arkui-UIContext.md#uicontext)说明。
 
 ## CalendarPickerDialog.show
 
@@ -33,6 +33,10 @@ show(options?: CalendarDialogOptions)
 | onChange   | (value: Date) => void                           | 否   | 选择弹窗中日期使当前选中项改变时触发该回调。<br/>value：选中的日期值。 |
 | backgroundColor<sup>11+</sup> | [ResourceColor](ts-types.md#resourcecolor)  | 否 | 弹窗背板颜色。<br/>默认值：Color.Transparent。 |
 | backgroundBlurStyle<sup>11+</sup> | [BlurStyle](ts-appendix-enums.md#blurstyle9) | 否 | 弹窗背板模糊材质。<br/>默认值：BlurStyle.COMPONENT_ULTRA_THICK。 |
+| onDidAppear<sup>12+</sup> | () => void | 否 | 对话框弹出时的事件回调。 |
+| OnDidDisappear<sup>12+</sup> | () => void | 否 | 对话框消失时的事件回调。 |
+| OnWillAppear<sup>12+</sup> | () => void | 否 | 对话框显示动效前的事件回调。 |
+| OnWillDisappear<sup>12+</sup> | () => void | 否 | 对话框退出动效前的事件回调。 |
 
 ## 示例
 
@@ -58,6 +62,18 @@ struct CalendarPickerDialogExample {
             },
             onChange: (value) => {
               console.info("calendar onChange:" + JSON.stringify(value))
+            },
+            onDidAppear: () => {
+              console.info("calendar onDidAppear")
+            },
+            onDidDisappear: () => {
+              console.info("calendar onDidDisappear")
+            },
+            onWillAppear: () => {
+              console.info("calendar onWillAppear")
+            },
+            onWillDisappear: () => {
+              console.info("calendar onWillDisappear")
             }
           })
         })

@@ -180,7 +180,7 @@ import {Grid1} from './Grid'
 
 @CustomDialog
 struct CustomDialogExample{
-  controller?:CustomDialogController
+  controller:CustomDialogController
   @Link tabBarArray:Array<string>
   build(){
     Column(){
@@ -355,10 +355,10 @@ export struct Grid1{
 }
 ```
 ## 参考
-[Tabs](../application-dev/reference/arkui-ts/ts-container-tabs.md)
+[Tabs](../application-dev/reference/apis-arkui/arkui-ts/ts-container-tabs.md)
 
-[Grid](../application-dev/reference/arkui-ts/ts-container-grid.md)
+[Grid](../application-dev/reference/apis-arkui/arkui-ts/ts-container-grid.md)
 
-[自定义弹窗](../application-dev/reference/arkui-ts/ts-methods-custom-dialog-box.md)
+[自定义弹窗](../application-dev/reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md)
 
 [@Link装饰器：父子双向同步](../application-dev/quick-start/arkts-link.md)

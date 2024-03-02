@@ -34,7 +34,7 @@ on(type: 'netStatsChange', callback: Callback\<NetStatsChangeInfo\>): void
 
 **错误码：**
 
-以下错误码的详细介绍参见[statistics 错误码](../errorcodes/errorcode-net-statistics.md)。
+以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
 
 | 错误码 ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
@@ -79,7 +79,7 @@ off(type: 'netStatsChange', callback?: Callback\<NetStatsChangeInfo>): void;
 
 **错误码：**
 
-以下错误码的详细介绍参见[statistics 错误码](../errorcodes/errorcode-net-statistics.md)。
+以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
 
 | 错误码 ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
@@ -128,7 +128,7 @@ getTrafficStatsByIface(ifaceInfo: IfaceInfo, callback: AsyncCallback\<NetStatsIn
 
 **错误码：**
 
-以下错误码的详细介绍参见[statistics 错误码](../errorcodes/errorcode-net-statistics.md)。
+以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
 
 | 错误码 ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
@@ -193,7 +193,7 @@ getTrafficStatsByIface(ifaceInfo: IfaceInfo): Promise\<NetStatsInfo>;
 
 **错误码：**
 
-以下错误码的详细介绍参见[statistics 错误码](../errorcodes/errorcode-net-statistics.md)。
+以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
 
 | 错误码 ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
@@ -254,7 +254,7 @@ getTrafficStatsByUid(uidInfo: UidInfo, callback: AsyncCallback\<NetStatsInfo>): 
 
 **错误码：**
 
-以下错误码的详细介绍参见[statistics 错误码](../errorcodes/errorcode-net-statistics.md)。
+以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
 
 | 错误码 ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
@@ -325,7 +325,7 @@ getTrafficStatsByUid(uidInfo: UidInfo): Promise\<NetStatsInfo>;
 
 **错误码：**
 
-以下错误码的详细介绍参见[statistics 错误码](../errorcodes/errorcode-net-statistics.md)。
+以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
 
 | 错误码 ID | 错误信息                                     |
 | --------- | -------------------------------------------- |

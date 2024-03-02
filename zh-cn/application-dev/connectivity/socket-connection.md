@@ -27,7 +27,7 @@ Socket 连接主要是通过 Socket 进行数据传输，支持 TCP/UDP/Multicas
 
 ## 接口说明
 
-完整的 JS API 说明以及实例代码请参考：[Socket 连接](../reference/apis/js-apis-socket.md)。
+完整的 JS API 说明以及实例代码请参考：[Socket 连接](../reference/apis-network-kit/js-apis-socket.md)。
 
 Socket 连接主要由 socket 模块提供。具体接口说明如下表。
 
@@ -386,9 +386,10 @@ client.on('close', () => {
 });
 
 // 传入指定的本地套接字路径，连接服务端。
+let sandboxPath: string = getContext(this).filesDir + '/testSocket'
 let connectOpt: socket.LocalConnectOptions = {
   address: {
-    address: '/tmp/testSocket'
+    address: sandboxPath
   },
   timeout: 6000
 }
@@ -445,9 +446,10 @@ client.close().then(() => {
 import socket from '@ohos.net.socket';
 // 创建一个LocalSocketServer连接，返回一个LocalSocketServer对象。
 let server = socket.constructLocalSocketServerInstance();
-// 绑定本地IP地址和端口，进行监听
+// 创建并绑定本地套接字文件testSocket，进行监听
+let sandboxPath: string = getContext(this).filesDir + '/testSocket'
 let listenAddr: socket.LocalAddress = {
-  address: '/tmp/testSocket'
+  address: sandboxPath
 }
 server.listen(listenAddr).then(() => {
   console.log("listen success");

@@ -17,7 +17,7 @@
 
 ## 属性
 
-除支持[通用属性](../arkui-js/js-components-common-attributes.md)外，还支持如下属性：
+除支持[通用属性](js-components-common-attributes.md)外，还支持如下属性：
 
 | 名称    | 类型     | 默认值  | 必填   | 描述                                       |
 | ----- | ------ | ---- | ---- | ---------------------------------------- |
@@ -27,7 +27,7 @@
 
 ## 样式
 
-除支持[通用样式](../arkui-js/js-components-common-styles.md)外，还支持如下样式：
+除支持[通用样式](js-components-common-styles.md)外，还支持如下样式：
 
 | 名称               | 类型            | 默认值      | 必填   | 描述       |
 | ---------------- | ------------- | -------- | ---- | -------- |
@@ -44,11 +44,11 @@
 
 ## 事件
 
-支持[通用事件](../arkui-js/js-components-common-events.md)。
+支持[通用事件](js-components-common-events.md)。
 
 ## 方法
 
-支持[通用方法](../arkui-js/js-components-common-methods.md)。
+支持[通用方法](js-components-common-methods.md)。
 
 
 ## 示例

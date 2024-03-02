@@ -24,7 +24,7 @@ on(type: 'error', observer: ErrorObserver): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 填写'error'，表示错误观察器。 |
-| observer | [ErrorObserver](../apis/js-apis-inner-application-errorObserver.md) | 是 | 错误观察器。 |
+| observer | [ErrorObserver](js-apis-inner-application-errorObserver.md) | 是 | 错误观察器。 |
 
 **返回值：**
 
@@ -38,7 +38,7 @@ on(type: 'error', observer: ErrorObserver): number
 | ------- | -------- |
 | 16000003 | Id does not exist. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
     
@@ -90,7 +90,7 @@ off(type: 'error', observerId: number,  callback: AsyncCallback\<void>): void
 | ------- | -------- |
 | 16000003 | Id does not exist. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
     
@@ -141,7 +141,7 @@ off(type: 'error', observerId: number): Promise\<void>
 | ------- | -------- |
 | 16000003 | Id does not exist. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
     
@@ -163,5 +163,64 @@ try {
     let message = (paramError as BusinessError).message;
     console.error(`error: ${code}, ${message}`);
 }
+```
 
+## ErrorManager.on<sup>12+</sup>
+
+on(type: 'loopObserver', timeout: number, observer: LoopObserver): void
+
+注册主线程消息处理耗时监听器。注册后可以捕获到应用主线程处理消息的具体执行时间。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+ 
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 填写'loopObserver'，表示注册主线程消息处理耗时监听器。 |
+| timeout | number | 是 |  表示事件执行阈值。 阈值必须大于0|
+| observer | [LoopObserver](js-apis-inner-application-loopObserver.md) | 是 | 注册主线程消息处理耗时监听器。 |
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16200001 | Invalid caller. |
+
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+
+**示例：**
+    
+```ts
+import errorManager from '@ohos.app.ability.errorManager';
+
+let observer: errorManager.LoopObserver = {
+    onLoopTimeOut(timeout: number) {
+        console.log('Duration timeout: ' + timeout);
+    }
+};
+errorManager.on("loopObserver", 1, observer);
+```
+
+## ErrorManager.off<sup>12+</sup>
+
+function off(type: 'loopObserver', observer?: LoopObserver): void
+
+注销主线程消息处理监听器。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+ 
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 填写'loopObserver'，表示应用主线程观察器。 |
+| observer | LoopObserver | 否 | 应用主线程观察器标志。 |
+
+**示例：**
+    
+```ts
+import errorManager from '@ohos.app.ability.errorManager';
+
+errorManager.off("loopObserver");
 ```

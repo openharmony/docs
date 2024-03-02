@@ -449,7 +449,7 @@ getRunningFormInfos(callback: AsyncCallback&lt;Array&lt;formInfo.RunningFormInfo
 | hostBundleName | string | 否 |  指定要查询的卡片使用方名称，指定后会仅返回该卡片使用方下正在运行的非临时卡片信息。 <br> 缺省时，返回设备上所有正在运行的非临时卡片信息。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+以下错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -495,7 +495,7 @@ getRunningFormInfos(callback: AsyncCallback&lt;Array&lt;formInfo.RunningFormInfo
 | hostBundleName | string | 否 |  指定要查询的卡片使用方名称，指定后会仅返回该卡片使用方下正在运行的非临时卡片信息。 <br> 缺省时，返回设备上所有正在运行的非临时卡片信息。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+以下错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -545,7 +545,7 @@ getRunningFormInfos(hostBundleName?: string):  Promise&lt;Array&lt;formInfo.Runn
 | Promise&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt;&gt; | Promise对象。返回设备上正在运行的所有非临时卡片信息。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+以下错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -594,7 +594,7 @@ getRunningFormInfos(isUnusedIncluded: boolean, hostBundleName?: string):  Promis
 | Promise&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt;&gt; | Promise对象。返回设备上正在运行的所有非临时卡片信息。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+以下错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -645,7 +645,7 @@ getRunningFormInfosByFilter(formProviderFilter: formInfo.FormProviderFilter): Pr
 
 **错误码：**
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+以下错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -700,7 +700,7 @@ getRunningFormInfosByFilter(formProviderFilter: formInfo.FormProviderFilter, cal
 
 **错误码：**
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+以下错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -763,7 +763,7 @@ getRunningFormInfoById(formId: string): Promise&lt;formInfo.RunningFormInfo&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+以下错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -820,7 +820,7 @@ getRunningFormInfoById(formId: string, isUnusedIncluded: boolean): Promise&lt;fo
 
 **错误码：**
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+以下错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -868,7 +868,7 @@ getRunningFormInfoById(formId: string, callback: AsyncCallback&lt;formInfo.Runni
 
 **错误码：**
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+以下错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -922,7 +922,7 @@ getRunningFormInfoById(formId: string, isUnusedIncluded: boolean, callback: Asyn
 
 **错误码：**
 
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+以下错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |

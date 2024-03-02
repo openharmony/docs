@@ -27,7 +27,7 @@
 
 ### 证书链校验不包含对时间有效性的校验
 
-由于端侧系统时间不可信，证书链校验不包含对证书有效时间的校验。如果需要检查证书的时间有效性，可使用X509证书的[checkValidityWithDate()](../../reference/apis/js-apis-cert.md#checkvaliditywithdate)方法进行检查。
+由于端侧系统时间不可信，证书链校验不包含对证书有效时间的校验。如果需要检查证书的时间有效性，可使用X509证书的[checkValidityWithDate()](../../reference/apis-device-certificate-kit/js-apis-cert.md#checkvaliditywithdate)方法进行检查。
 
 
 ### 证书格式
@@ -73,9 +73,9 @@
 
 | 名称 | 类 | 功能 |
 | -------- | -------- | -------- |
-| X509证书 | [X509Cert](../../reference/apis/js-apis-cert.md#x509cert) | 提供X509证书的解析、序列化、X509证书签名验证、证书相关的信息查询等功能 |
-| 证书扩展域段 | [CertExtension](../../reference/apis/js-apis-cert.md#certextension10) | 提供X509证书中扩展域段的获取，如是否CA，CRL分发点等字段 |
-| X509证书吊销列表 | [X509CRL](../../reference/apis/js-apis-cert.md#x509crl11) | 提供X509证书吊销列表的解析、序列化、信息查询等功能 |
-| 证书链校验器 | [CertChainValidator](../../reference/apis/js-apis-cert.md#certchainvalidator) | 提供证书链校验（不包括证书有效期的校验）、证书链算法名称查询的功能 |
-| 证书和证书吊销列表集合 | [CertCRLCollection](../../reference/apis/js-apis-cert.md#certcrlcollection11) | 提供证书和证书吊销列表集合的查询功能 |
-| X509证书链 | [X509CertChain](../../reference/apis/js-apis-cert.md#x509certchain11) | 提供证书链校验、证书列表获取的功能 |
+| X509证书 | [X509Cert](../../reference/apis-device-certificate-kit/js-apis-cert.md#x509cert) | 提供X509证书的解析、序列化、X509证书签名验证、证书相关的信息查询等功能 |
+| 证书扩展域段 | [CertExtension](../../reference/apis-device-certificate-kit/js-apis-cert.md#certextension10) | 提供X509证书中扩展域段的获取，如是否CA，CRL分发点等字段 |
+| X509证书吊销列表 | [X509CRL](../../reference/apis-device-certificate-kit/js-apis-cert.md#x509crl11) | 提供X509证书吊销列表的解析、序列化、信息查询等功能 |
+| 证书链校验器 | [CertChainValidator](../../reference/apis-device-certificate-kit/js-apis-cert.md#certchainvalidator) | 提供证书链校验（不包括证书有效期的校验）、证书链算法名称查询的功能 |
+| 证书和证书吊销列表集合 | [CertCRLCollection](../../reference/apis-device-certificate-kit/js-apis-cert.md#certcrlcollection11) | 提供证书和证书吊销列表集合的查询功能 |
+| X509证书链 | [X509CertChain](../../reference/apis-device-certificate-kit/js-apis-cert.md#x509certchain11) | 提供证书链校验、证书列表获取的功能 |

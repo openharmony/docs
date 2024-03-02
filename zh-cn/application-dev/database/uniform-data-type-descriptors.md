@@ -23,7 +23,7 @@
 
 ### 标准化数据类型的分类原则
 
-UTD中定义的标准化数据类型在设计原则上按物理和逻辑分为两类。图中涉及的标准化数据类型可见[UniformDataType](../reference/apis/js-apis-data-uniformTypeDescriptor.md#uniformdatatype)。
+UTD中定义的标准化数据类型在设计原则上按物理和逻辑分为两类。图中涉及的标准化数据类型可见[UniformDataType](../reference/apis-arkdata/js-apis-data-uniformTypeDescriptor.md#uniformdatatype)。
 
 - **按物理分类**的根节点为general.entity，用于描述类型的物理属性，比如文件、目录等，具体可见图1。
 
@@ -53,7 +53,7 @@ UTD中定义的标准化数据类型在设计原则上按物理和逻辑分为�
 
 ## 预置数据类型
 
-基于常用的数据类型，预先定义了一部分标准数据类型描述符，即预置数据类型。如用于描述音频文件的“general.audio”，描述视频文件的“general.video”，更多预置数据类型参考[ UniformDataType](../reference/apis/js-apis-data-uniformTypeDescriptor.md#uniformdatatype)。
+基于常用的数据类型，预先定义了一部分标准数据类型描述符，即预置数据类型。如用于描述音频文件的“general.audio”，描述视频文件的“general.video”，更多预置数据类型参考[ UniformDataType](../reference/apis-arkdata/js-apis-data-uniformTypeDescriptor.md#uniformdatatype)。
 
 
 ## 应用自定义数据类型
@@ -92,9 +92,9 @@ UTD中定义的标准化数据类型在设计原则上按物理和逻辑分为�
 
 下面以新增媒体类文件类型场景为例，说明如何自定义UTD标准化数据类型。
 
-1. 当前应用在entry\src\main\resources\rawfile\arkdata\utd\目录下新增utd_adt.json文件。
+1. 当前应用在entry\src\main\resources\rawfile\arkdata\utd\目录下新增utd.json5文件。
 
-2. 在当前应用的utd_adt.json配置文件内新增所需的自定义数据类型。
+2. 在当前应用的utd.json5配置文件内新增所需的自定义数据类型。
    ```json
    {
         "UniformDataTypeDeclarations": [
@@ -126,9 +126,9 @@ UTD中定义的标准化数据类型在设计原则上按物理和逻辑分为�
    }
    ```
 
-3. 如果其他应用要直接使用当前应用内的自定义数据类型，需要在其应用的entry\src\main\resources\rawfile\arkdata\utd\目录下新增utd_adt.json文件。
+3. 如果其他应用要直接使用当前应用内的自定义数据类型，需要在其应用的entry\src\main\resources\rawfile\arkdata\utd\目录下新增utd.json5文件。
 
-   然后在utd_adt.json配置文件中进行以下声明：
+   然后在utd.json5配置文件中进行以下声明：
 
    ```json
    {
@@ -145,7 +145,7 @@ UTD中定义的标准化数据类型在设计原则上按物理和逻辑分为�
    }
    ```
 
-4. 其他应用也可以在引用当前应用内的自定义数据类型之后，基于已引用的自定义数据类型进行自定义。utd_adt.json配置文件示例如下：
+4. 其他应用也可以在引用当前应用内的自定义数据类型之后，基于已引用的自定义数据类型进行自定义。utd.json5配置文件示例如下：
 
    ```json
    {
@@ -164,7 +164,7 @@ UTD中定义的标准化数据类型在设计原则上按物理和逻辑分为�
 
 ## 接口说明
 
-以下是UTD常用接口说明，对于预置数据类型和应用自定义数据类型同样适用，更多接口和详细说明，请见[ @ohos.data.uniformTypeDescriptor (标准化数据定义与描述)](../reference/apis/js-apis-data-uniformTypeDescriptor.md)。
+以下是UTD常用接口说明，对于预置数据类型和应用自定义数据类型同样适用，更多接口和详细说明，请见[ @ohos.data.uniformTypeDescriptor (标准化数据定义与描述)](../reference/apis-arkdata/js-apis-data-uniformTypeDescriptor.md)。
 
 | 接口名称                                                     | 描述                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |

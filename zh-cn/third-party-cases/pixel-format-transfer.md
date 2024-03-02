@@ -803,12 +803,12 @@
 
  ##  参考
 
-[像素单位](../application-dev/reference/arkui-ts/ts-pixel-units.md)
+[像素单位](../application-dev/reference/apis-arkui/arkui-ts/ts-pixel-units.md)
 
-[List](../application-dev/reference/arkui-ts/ts-container-list.md)
+[List](../application-dev/reference/apis-arkui/arkui-ts/ts-container-list.md)
 
-[Column](../application-dev/reference/arkui-ts/ts-container-column.md)
+[Column](../application-dev/reference/apis-arkui/arkui-ts/ts-container-column.md)
 
-[Text](../application-dev/reference/arkui-ts/ts-basic-components-text.md)
+[Text](../application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-text.md)
 
-[Navigation](../application-dev/reference/arkui-ts/ts-basic-components-navigation.md)
+[Navigation](../application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md)

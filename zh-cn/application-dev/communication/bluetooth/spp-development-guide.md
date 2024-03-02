@@ -11,7 +11,7 @@ SPP是Serial Port Profile（串口协议）的缩写，是一种蓝牙协议，�
 
 ## 接口说明
 
-完整的 JS API 说明以及实例代码请参考：[SPP 接口](../../reference/apis/js-apis-bluetooth-socket.md)。
+完整的 JS API 说明以及实例代码请参考：[SPP 接口](../../reference/apis-connectivity-kit/js-apis-bluetooth-socket.md)。
 
 具体接口说明如下表。
 
@@ -110,7 +110,7 @@ console.info('sppCloseServerSocket success');
 socket.sppCloseClientSocket(clientNumber);
 console.info('sppCloseClientSocket success');
 ```
-11. 错误码请参见[蓝牙服务子系统错误码](../../reference/errorcodes/errorcode-bluetoothManager.md)。
+11. 错误码请参见[蓝牙服务子系统错误码](../../reference/apis-connectivity-kit/errorcode-bluetoothManager.md)。
 
 ### 通过socket连接对端设备
 1. import需要的socket模块。
@@ -139,4 +139,4 @@ socket.sppConnect(deviceId, {
   console.info('sppConnect success, socketId = ' + socketID);
 })
 ```
-7. 错误码请参见[蓝牙服务子系统错误码](../../reference/errorcodes/errorcode-bluetoothManager.md)。
+7. 错误码请参见[蓝牙服务子系统错误码](../../reference/apis-connectivity-kit/errorcode-bluetoothManager.md)。

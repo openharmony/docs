@@ -23,7 +23,7 @@ OEM厂商可以采用插件方式定制化域帐号管理能力，系统提供�
 
 ## 注册插件
 
-域插件原型为[DomainPlugin](../reference/apis/js-apis-osAccount.md#domainplugin9)，域插件开发者需要继承并实现插件原型中定义的接口。开发者可以使用[registerPlugin](../reference/apis/js-apis-osAccount.md#registerplugin9)接口完成插件注册操作。
+域插件原型为[DomainPlugin](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#domainplugin9)，域插件开发者需要继承并实现插件原型中定义的接口。开发者可以使用[registerPlugin](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#registerplugin9)接口完成插件注册操作。
 
 具体开发实例如下：
 
@@ -145,7 +145,7 @@ OEM厂商可以采用插件方式定制化域帐号管理能力，系统提供�
    }
    ```
 
-2. 调用[registerPlugin](../reference/apis/js-apis-osAccount.md#registerplugin9)注册插件。
+2. 调用[registerPlugin](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#registerplugin9)注册插件。
 
    ```ts
    try {
@@ -158,7 +158,7 @@ OEM厂商可以采用插件方式定制化域帐号管理能力，系统提供�
 
 ## 注销插件
 
-当插件不再使用时，开发者可以使用[unregisterPlugin](../reference/apis/js-apis-osAccount.md#unregisterplugin9)接口注销插件。
+当插件不再使用时，开发者可以使用[unregisterPlugin](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#unregisterplugin9)接口注销插件。
 
 具体开发实例如下：
 

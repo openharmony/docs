@@ -26,7 +26,7 @@ createVpnConnection(context: AbilityContext): VpnConnection
 
 | 参数名  | 类型                                                                             | 必填 | 说明         |
 | ------- | -------------------------------------------------------------------------------- | ---- | ------------ |
-| context | [AbilityContext](../apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontext) | 是   | 指定 context |
+| context | [AbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontext) | 是   | 指定 context |
 
 **返回值：**
 
@@ -36,7 +36,7 @@ createVpnConnection(context: AbilityContext): VpnConnection
 
 **错误码：**
 
-以下错误码的详细介绍参见[VPN 错误码](../errorcodes/errorcode-net-vpn.md)。
+以下错误码的详细介绍参见[VPN 错误码](errorcode-net-vpn.md)。
 
 | 错误码 ID | 错误信息         |
 | --------- | ---------------- |
@@ -88,7 +88,7 @@ setUp(config: VpnConfig, callback: AsyncCallback\<number\>): void
 
 **错误码：**
 
-以下错误码的详细介绍参见[VPN 错误码](../errorcodes/errorcode-net-vpn.md)。
+以下错误码的详细介绍参见[VPN 错误码](errorcode-net-vpn.md)。
 
 | 错误码 ID | 错误信息                                         |
 | --------- | ------------------------------------------------ |
@@ -160,7 +160,7 @@ setUp(config: VpnConfig): Promise\<number\>
 
 **错误码：**
 
-以下错误码的详细介绍参见[VPN 错误码](../errorcodes/errorcode-net-vpn.md)。
+以下错误码的详细介绍参见[VPN 错误码](errorcode-net-vpn.md)。
 
 | 错误码 ID | 错误信息                                         |
 | --------- | ------------------------------------------------ |
@@ -223,12 +223,12 @@ protect(socketFd: number, callback: AsyncCallback\<void\>): void
 
 | 参数名   | 类型                  | 必填 | 说明                                                                                      |
 | -------- | --------------------- | ---- | ----------------------------------------------------------------------------------------- |
-| socketFd | number                | 是   | 指定保护的 socketfd, 该文件描述符通过[getSocketFd](../apis/js-apis-socket.md#getsocketfd10)获取。 |
+| socketFd | number                | 是   | 指定保护的 socketfd, 该文件描述符通过[getSocketFd](js-apis-socket.md#getsocketfd10)获取。 |
 | callback | AsyncCallback\<void\> | 是   | 回调函数，成功时，error 为 undefined，失败返回错误码错误信息。                            |
 
 **错误码：**
 
-以下错误码的详细介绍参见[VPN 错误码](../errorcodes/errorcode-net-vpn.md)。
+以下错误码的详细介绍参见[VPN 错误码](errorcode-net-vpn.md)。
 
 | 错误码 ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
@@ -295,7 +295,7 @@ protect(socketFd: number): Promise\<void\>
 
 | 参数名   | 类型   | 必填 | 说明                                                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------------------------------------- |
-| socketFd | number | 是   | 指定保护的 socketfd, 该文件描述符通过[getSocketFd](../apis/js-apis-socket.md#getsocketfd10-1)获取。 |
+| socketFd | number | 是   | 指定保护的 socketfd, 该文件描述符通过[getSocketFd](js-apis-socket.md#getsocketfd10-1)获取。 |
 
 **返回值：**
 
@@ -378,7 +378,7 @@ destroy(callback: AsyncCallback\<void\>): void
 
 **错误码：**
 
-以下错误码的详细介绍参见[VPN 错误码](../errorcodes/errorcode-net-vpn.md)。
+以下错误码的详细介绍参见[VPN 错误码](errorcode-net-vpn.md)。
 
 | 错误码 ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
@@ -429,7 +429,7 @@ destroy(): Promise\<void\>
 
 **错误码：**
 
-以下错误码的详细介绍参见[VPN 错误码](../errorcodes/errorcode-net-vpn.md)。
+以下错误码的详细介绍参见[VPN 错误码](errorcode-net-vpn.md)。
 
 | 错误码 ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
@@ -471,8 +471,8 @@ VPN 配置参数。
 
 | 名称                | 类型                                                           | 必填 | 说明                                |
 | ------------------- | -------------------------------------------------------------- | ---- | ----------------------------------- |
-| addresses           | Array\<[LinkAddress](../apis/js-apis-net-connection.md#linkaddress)\> | 是   | VPN 虚拟网卡的 IP 地址。            |
-| routes              | Array\<[RouteInfo](../apis/js-apis-net-connection.md#routeinfo)\>     | 否   | VPN 虚拟网卡的路由信息。            |
+| addresses           | Array\<[LinkAddress](js-apis-net-connection.md#linkaddress)\> | 是   | VPN 虚拟网卡的 IP 地址。            |
+| routes              | Array\<[RouteInfo](js-apis-net-connection.md#routeinfo)\>     | 否   | VPN 虚拟网卡的路由信息。            |
 | dnsAddresses        | Array\<string\>                                                | 否   | DNS 服务器地址信息。                |
 | searchDomains       | Array\<string\>                                                | 否   | DNS 的搜索域列表。                  |
 | mtu                 | number                                                         | 否   | 最大传输单元 MTU 值(单位:字节)。     |

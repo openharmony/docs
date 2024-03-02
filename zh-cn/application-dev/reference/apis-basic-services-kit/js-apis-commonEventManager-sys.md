@@ -40,7 +40,7 @@ publishAsUser(event: string, userId: number, callback: AsyncCallback\<void>): vo
 
 **错误码：**
 
-错误码介绍请参考[@ohos.commonEventManager(事件)](../errorcodes/errorcode-CommonEventService.md)
+错误码介绍请参考[@ohos.commonEventManager(事件)](./errorcode-CommonEventService.md)
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -96,7 +96,7 @@ publishAsUser(event: string, userId: number, options: CommonEventPublishData, ca
 
 **错误码：**
 
-错误码介绍请参考[@ohos.commonEventManager(事件)](../errorcodes/errorcode-CommonEventService.md)
+错误码介绍请参考[@ohos.commonEventManager(事件)](./errorcode-CommonEventService.md)
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -159,7 +159,7 @@ removeStickyCommonEvent(event: string, callback: AsyncCallback\<void>): void
 
 **错误码：**
 
-错误码介绍请参考[@ohos.commonEventManager(事件)](../errorcodes/errorcode-CommonEventService.md)
+错误码介绍请参考[@ohos.commonEventManager(事件)](./errorcode-CommonEventService.md)
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -208,7 +208,7 @@ removeStickyCommonEvent(event: string): Promise\<void>
 
 **错误码：**
 
-错误码介绍请参考[@ohos.commonEventManager(事件)](../errorcodes/errorcode-CommonEventService.md)
+错误码介绍请参考[@ohos.commonEventManager(事件)](./errorcode-CommonEventService.md)
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -250,7 +250,7 @@ setStaticSubscriberState(enable: boolean, callback: AsyncCallback\<void>): void;
 
 **错误码：**
 
-错误码介绍请参考[@ohos.commonEventManager(事件)](../errorcodes/errorcode-CommonEventService.md)
+错误码介绍请参考[@ohos.commonEventManager(事件)](./errorcode-CommonEventService.md)
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -302,7 +302,7 @@ setStaticSubscriberState(enable: boolean): Promise\<void>;
 
 **错误码：**
 
-错误码介绍请参考[@ohos.commonEventManager(事件)](../errorcodes/errorcode-CommonEventService.md)
+错误码介绍请参考[@ohos.commonEventManager(事件)](./errorcode-CommonEventService.md)
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |

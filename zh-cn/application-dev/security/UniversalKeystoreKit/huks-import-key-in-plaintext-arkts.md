@@ -10,10 +10,10 @@
    密钥别名的最大长度为64字节。
 
 2. 封装密钥属性集和密钥材料。
-   - 密钥属性集同样与密钥生成中指定的密钥属性一致，须包含[HuksKeyAlg](../../reference/apis/js-apis-huks.md#hukskeyalg)、[HuksKeySize](../../reference/apis/js-apis-huks.md#hukskeysize)、[HuksKeyPurpose](../../reference/apis/js-apis-huks.md#hukskeypurpose)属性。
-   - 密钥材料须符合[HUKS密钥材料格式](huks-concepts.md#密钥材料格式)，并以Uint8Array形式赋值给[HuksOptions](../../reference/apis/js-apis-huks.md#huksoptions)的inData字段。
+   - 密钥属性集同样与密钥生成中指定的密钥属性一致，须包含[HuksKeyAlg](../../reference/apis-universal-keystore-kit/js-apis-huks.md#hukskeyalg)、[HuksKeySize](../../reference/apis-universal-keystore-kit/js-apis-huks.md#hukskeysize)、[HuksKeyPurpose](../../reference/apis-universal-keystore-kit/js-apis-huks.md#hukskeypurpose)属性。
+   - 密钥材料须符合[HUKS密钥材料格式](huks-concepts.md#密钥材料格式)，并以Uint8Array形式赋值给[HuksOptions](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksoptions)的inData字段。
 
-3. 调用[huks.importKeyItem](../../reference/apis/js-apis-huks.md#huksimportkeyitem9)，传入密钥别名和密钥属性集，即可导入密钥。
+3. 调用[huks.importKeyItem](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksimportkeyitem9)，传入密钥别名和密钥属性集，即可导入密钥。
 
 ```ts
 /* 以下以导入AES256密钥的Callback操作使用为例 */
@@ -65,7 +65,7 @@ try {
 
 ## 调测验证
 
-调用[huks.isKeyItemExist](../../reference/apis/js-apis-huks.md#huksiskeyitemexist9)验证密钥是否存在，如密钥存在即表示密钥导入成功。
+调用[huks.isKeyItemExist](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksiskeyitemexist9)验证密钥是否存在，如密钥存在即表示密钥导入成功。
 
 ```ts
 import huks from '@ohos.security.huks';

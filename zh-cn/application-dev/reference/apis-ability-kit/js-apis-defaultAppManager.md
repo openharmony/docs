@@ -28,6 +28,7 @@ import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 | WORD     | "Word Viewer" | 默认WORD文档查看器。                     |
 | EXCEL    | "Excel Viewer" | 默认EXCEL文档查看器。                    |
 | PPT      | "PPT Viewer" | 默认PPT文档查看器。                      |
+| EMAIL<sup>12+</sup>    | "Email" | 默认邮件。                      |
 
 ## defaultAppMgr.isDefaultApplication
 

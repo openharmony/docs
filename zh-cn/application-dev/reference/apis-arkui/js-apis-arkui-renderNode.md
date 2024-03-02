@@ -118,9 +118,9 @@ insertChildAfter(child: RenderNode, sibling: RenderNode | null): void
 
 **参数：**
 
-| 参数名  | 类型                                        | 必填 | 说明                                                         |
-| ------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| child   | [RenderNode](#rendernode)                   | 是   | 需要添加的子节点。                                           |
+| 参数名  | 类型                                        | 必填 | 说明                                                                         |
+| ------- | ------------------------------------------- | ---- | ---------------------------------------------------------------------------- |
+| child   | [RenderNode](#rendernode)                   | 是   | 需要添加的子节点。                                                           |
 | sibling | [RenderNode](#rendernode)&nbsp;\|&nbsp;null | 是   | 新节点将插入到该节点之后。若该参数设置为空，则新节点将插入到首个子节点之前。 |
 
 **示例：**
@@ -1034,8 +1034,8 @@ get frame(): Frame
 
 **返回值：**
 
-| 类型            | 说明                                                         |
-| --------------- | ------------------------------------------------------------ |
+| 类型            | 说明                                                                          |
+| --------------- | ----------------------------------------------------------------------------- |
 | [Frame](#frame) | 获取当前RenderNode的大小和位置，默认值为{ x: 0, y: 0, width: 0, height: 0 }。 |
 
 **示例：**
@@ -1128,8 +1128,8 @@ get pivot(): Pivot
 
 **返回值：**
 
-| 类型                                       | 说明                                                      |
-| ------------------------------------------ | --------------------------------------------------------- |
+| 类型                                       | 说明                                                  |
+| ------------------------------------------ | ----------------------------------------------------- |
 | [Pivot](./js-apis-arkui-graphics.md#pivot) | 获取当前RenderNode的轴心，默认值为{ x: 0.5, y: 0.5}。 |
 
 **示例：**
@@ -2258,3 +2258,346 @@ struct Index {
 ```
 
 `libentry.so`的构建方式见draw方法的示例。
+
+### borderStyle<sup>12+</sup>
+
+set borderStyle(style: Edges\<BorderStyle>)
+
+设置当前RenderNode的边框样式。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                                                                   | 必填 | 说明                   |
+| ------ | ------------------------------------------------------------------------------------------------------ | ---- | ---------------------- |
+| style  | [Edges](./js-apis-arkui-graphics.md#edges12)<[BorderStyle](./arkui-ts/ts-appendix-enums.md#borderstyle)> | 是   | RenderNode的边框样式。 |
+
+get borderStyle(): Edges\<BorderStyle>
+
+获取当前RenderNode的边框样式。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                                                                                                   | 说明                   |
+| ------------------------------------------------------------------------------------------------------ | ---------------------- |
+| [Edges](./js-apis-arkui-graphics.md#edges12)<[BorderStyle](./arkui-ts/ts-appendix-enums.md#borderstyle)> | RenderNode的边框样式。 |
+
+**示例：**
+```ts
+import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node";
+
+const renderNode = new RenderNode();
+renderNode.frame = { x: 0, y: 0, width: 150, height: 150 };
+renderNode.backgroundColor = 0XFF00FF00;
+renderNode.borderWidth = { left: 8, top: 8, right: 8, bottom: 8 };
+renderNode.borderStyle = {
+  left: BorderStyle.Solid,
+  top: BorderStyle.Dotted,
+  right: BorderStyle.Dashed,
+  bottom: BorderStyle.Solid
+}
+const borderStyle = renderNode.borderStyle;
+
+
+class MyNodeController extends NodeController {
+  private rootNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+
+    const rootRenderNode = this.rootNode.getRenderNode();
+    if (rootRenderNode !== null) {
+      rootRenderNode.appendChild(renderNode);
+    }
+
+    return this.rootNode;
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private myNodeController: MyNodeController = new MyNodeController();
+
+  build() {
+    Row() {
+      NodeContainer(this.myNodeController)
+    }
+  }
+}
+```
+
+### borderWidth<sup>12+</sup>
+
+set borderWidth(width: Edges\<number>)
+
+设置当前RenderNode的边框宽度。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                | 必填 | 说明                   |
+| ------ | --------------------------------------------------- | ---- | ---------------------- |
+| width  | [Edges\<number>](./js-apis-arkui-graphics.md#edges12) | 是   | RenderNode的边框宽度。 |
+
+get borderWidth(): Edges\<number>
+
+获取当前RenderNode的边框宽度。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                                                | 说明                   |
+| --------------------------------------------------- | ---------------------- |
+| [Edges\<number>](./js-apis-arkui-graphics.md#edges12) | RenderNode的边框宽度。 |
+
+**示例：**
+
+```ts
+import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node";
+
+const renderNode = new RenderNode();
+renderNode.frame = { x: 0, y: 0, width: 150, height: 150 };
+renderNode.backgroundColor = 0XFF00FF00;
+renderNode.borderWidth = { left: 8, top: 8, right: 8, bottom: 8 };
+const borderWidth = renderNode.borderWidth;
+
+
+class MyNodeController extends NodeController {
+  private rootNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+
+    const rootRenderNode = this.rootNode.getRenderNode();
+    if (rootRenderNode !== null) {
+      rootRenderNode.appendChild(renderNode);
+    }
+
+    return this.rootNode;
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private myNodeController: MyNodeController = new MyNodeController();
+
+  build() {
+    Row() {
+      NodeContainer(this.myNodeController)
+    }
+  }
+}
+```
+
+### borderColor<sup>12+</sup>
+
+set borderColor(color: Edges\<number>)
+
+设置当前RenderNode的边框颜色。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                | 必填 | 说明                   |
+| ------ | --------------------------------------------------- | ---- | ---------------------- |
+| color  | [Edges\<number>](./js-apis-arkui-graphics.md#edges12) | 是   | RenderNode的边框颜色。 |
+
+get borderColor(): Edges\<number>
+
+获取当前RenderNode的边框颜色。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                                                | 说明                   |
+| --------------------------------------------------- | ---------------------- |
+| [Edges\<number>](./js-apis-arkui-graphics.md#edges12) | RenderNode的边框颜色。 |
+
+**示例：**
+
+```ts
+import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node";
+
+const renderNode = new RenderNode();
+renderNode.frame = { x: 0, y: 0, width: 150, height: 150 };
+renderNode.backgroundColor = 0XFF00FF00;
+renderNode.borderWidth = { left: 8, top: 8, right: 8, bottom: 8 };
+renderNode.borderColor = { left: 0xFF0000FF, top: 0xFF0000FF, right: 0xFF0000FF, bottom: 0xFF0000FF };
+const borderColor = renderNode.borderColor;
+
+
+class MyNodeController extends NodeController {
+  private rootNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+
+    const rootRenderNode = this.rootNode.getRenderNode();
+    if (rootRenderNode !== null) {
+      rootRenderNode.appendChild(renderNode);
+    }
+
+    return this.rootNode;
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private myNodeController: MyNodeController = new MyNodeController();
+
+  build() {
+    Row() {
+      NodeContainer(this.myNodeController)
+    }
+  }
+}
+```
+
+### borderRadius<sup>12+</sup>
+
+set borderRadius(radius: BorderRadiuses)
+
+设置当前RenderNode的边框圆角。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明                   |
+| ------ | ------------------------------------------------------------ | ---- | ---------------------- |
+| radius | [BorderRadiuses](./js-apis-arkui-graphics.md#borderradiuses) | 是   | RenderNode的边框圆角。 |
+
+
+get borderRadius(): BorderRadiuses
+
+获取当前RenderNode的边框圆角。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                                                         | 说明                   |
+| ------------------------------------------------------------ | ---------------------- |
+| [BorderRadiuses](./js-apis-arkui-graphics.md#borderradiuses) | RenderNode的边框圆角。 |
+
+**示例：**
+
+```ts
+import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node";
+
+const renderNode = new RenderNode();
+renderNode.frame = { x: 0, y: 0, width: 150, height: 150 };
+renderNode.backgroundColor = 0XFF00FF00;
+renderNode.borderRadius = { topLeft: 32, topRight: 32, bottomLeft: 32, bottomRight: 32 };
+const borderRadius = renderNode.borderRadius;
+
+
+class MyNodeController extends NodeController {
+  private rootNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+
+    const rootRenderNode = this.rootNode.getRenderNode();
+    if (rootRenderNode !== null) {
+      rootRenderNode.appendChild(renderNode);
+    }
+
+    return this.rootNode;
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private myNodeController: MyNodeController = new MyNodeController();
+
+  build() {
+    Row() {
+      NodeContainer(this.myNodeController)
+    }
+  }
+}
+```
+
+### shapeMask<sup>12+</sup>
+
+set shapeMask(shapeMask: ShapeMask)
+
+设置当前RenderNode的遮罩。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名    | 类型                                               | 必填 | 说明               |
+| --------- | -------------------------------------------------- | ---- | ------------------ |
+| shapeMask | [ShapeMask](./js-apis-arkui-graphics.md#shapemask12) | 是   | RenderNode的遮罩。 |
+
+get shapeMask(): ShapeMask
+
+获取当前RenderNode的遮罩。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                                               | 说明                   |
+| -------------------------------------------------- | ---------------------- |
+| [ShapeMask](./js-apis-arkui-graphics.md#shapemask12) | RenderNode的边框遮罩。 |
+
+**示例：**
+
+```ts
+import { RenderNode, ShapeMask, FrameNode, NodeController } from "@ohos.arkui.node";
+
+const mask = new ShapeMask();
+mask.setRectShape({ left: 0, right: 150, top: 0, bottom: 150 });
+mask.fillColor = 0X55FF0000;
+mask.strokeColor = 0XFFFF0000;
+mask.strokeWidth = 24;
+
+const renderNode = new RenderNode();
+renderNode.frame = { x: 0, y: 0, width: 150, height: 150 };
+renderNode.backgroundColor = 0XFF00FF00;
+renderNode.shapeMask = mask;
+const shapeMask = renderNode.shapeMask;
+
+
+class MyNodeController extends NodeController {
+  private rootNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+
+    const rootRenderNode = this.rootNode.getRenderNode();
+    if (rootRenderNode !== null) {
+      rootRenderNode.appendChild(renderNode);
+    }
+
+    return this.rootNode;
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private myNodeController: MyNodeController = new MyNodeController();
+
+  build() {
+    Row() {
+      NodeContainer(this.myNodeController)
+    }
+  }
+}
+```

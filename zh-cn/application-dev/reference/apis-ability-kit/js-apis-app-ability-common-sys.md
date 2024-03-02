@@ -21,10 +21,10 @@ import common from '@ohos.app.ability.common';
 
 | 名称        | 类型                 | 说明                                                         |
 | ----------- | -------------------- | ------------------------------------------------------------ |
-| ServiceExtensionContext | [ServiceExtensionContext](../apis/js-apis-inner-application-serviceExtensionContext.md) | ServiceExtensionContext二级模块。<br>**系统接口**：此接口为系统接口。|
-| AutoFillExtensionContext<sup>11+<sup>   | [AutoFillExtensionContext](../apis/js-apis-inner-application-autoFillExtensionContext.md)               | AutoFillExtensionContext二级模块。<br>**系统接口**：此接口为系统接口。 |
-| AutoStartupInfo<sup>11+<sup>   | [AutoStartupInfo](../apis/js-apis-inner-application-autoStartupInfo.md)               | AutoStartupInfo二级模块。<br>**系统接口**：此接口为系统接口。 |
-| AutoStartupCallback<sup>11+<sup>   | [AutoStartupCallback](../apis/js-apis-inner-application-autoStartupCallback.md)               | AutoStartupCallback二级模块。<br>**系统接口**：此接口为系统接口。 |
+| ServiceExtensionContext | [ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext-sys.md) | ServiceExtensionContext二级模块。<br>**系统接口**：此接口为系统接口。|
+| AutoFillExtensionContext<sup>11+<sup>   | [AutoFillExtensionContext](js-apis-inner-application-autoFillExtensionContext-sys.md)               | AutoFillExtensionContext二级模块。<br>**系统接口**：此接口为系统接口。 |
+| AutoStartupInfo<sup>11+<sup>   | [AutoStartupInfo](js-apis-inner-application-autoStartupInfo-sys.md)               | AutoStartupInfo二级模块。<br>**系统接口**：此接口为系统接口。 |
+| AutoStartupCallback<sup>11+<sup>   | [AutoStartupCallback](js-apis-inner-application-autoStartupCallback-sys.md)               | AutoStartupCallback二级模块。<br>**系统接口**：此接口为系统接口。 |
 
 **示例：**
 

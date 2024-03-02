@@ -1,6 +1,6 @@
 # @ohos.multimedia.avCastPickerParam (投播组件参数)
 
-avCastPickerParam提供了[@ohos.multimedia.avCastPicker](../arkui-ts/ohos-multimedia-avcastpicker.md)窗口状态枚举值。
+avCastPickerParam提供了[@ohos.multimedia.avCastPicker](ohos-multimedia-avcastpicker.md)窗口状态枚举值。
 
 > **说明：**
 >

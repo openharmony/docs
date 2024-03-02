@@ -41,9 +41,19 @@ NavRouter(value: RouteInfo)
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
-| 名称                            | 参数类型                                     | 描述                                       |
-| ----------------------------- | ---------------------------------------- | ---------------------------------------- |
-| mode                  | [NavRouteMode](#navroutemode枚举类型说明)                                  | 指定点击NavRouter跳转到NavDestination页面时，使用的路由模式。<br/>默认值：NavRouteMode.PUSH_WITH_RECREATE<br/> |
+### mode
+
+mode(mode: NavRouteMode)
+
+设置指定点击NavRouter跳转到NavDestination页面时，使用的路由模式。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名                           | 类型                                     | 必填                                   | 描述                                       |
+| ----------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| mode                  | [NavRouteMode](#navroutemode枚举类型说明)                                  | 是                                 | 指定点击NavRouter跳转到NavDestination页面时，使用的路由模式。<br/>默认值：NavRouteMode.PUSH_WITH_RECREATE |
 
 ## RouteInfo<sup>10+</sup>对象说明
 
@@ -62,9 +72,19 @@ NavRouter(value: RouteInfo)
 
 ## 事件
 
-| 名称                                                    | 功能描述                                                     |
-| ------------------------------------------------------- | ------------------------------------------------------------ |
-| onStateChange(callback: (isActivated: boolean) => void) | 组件激活状态切换时触发该回调。返回值isActivated为true时表示激活，为false时表示未激活。<br/> **说明：** <br/>开发者点击激活NavRouter，加载对应的NavDestination子组件时，回调onStateChange(true)。NavRouter对应的NavDestination子组件不再显示时，回调onStateChange(false)。 |
+### onStateChange
+
+onStateChange(callback: (isActivated: boolean) => void)
+
+组件激活状态切换时触发该回调。开发者点击激活NavRouter，加载对应的NavDestination子组件时，回调onStateChange(true)。NavRouter对应的NavDestination子组件不再显示时，回调onStateChange(false)。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名      | 类型    | 必填 | 描述                                    |
+| ----------- | ------- | ---- | --------------------------------------- |
+| isActivated | boolean | 是   | 为true时表示激活，为false时表示未激活。 |
 
 ## 示例
 

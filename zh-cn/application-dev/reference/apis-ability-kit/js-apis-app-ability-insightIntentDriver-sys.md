@@ -34,6 +34,7 @@ import insightIntentDriver from '@ohos.app.ability.insightIntentDriver';
 | insightIntentName | string | 是 | 意图调用名称。 |
 | insightIntentParam | string | 是 | 意图调用参数。 |
 | executeMode | [insightIntent.ExecuteMode](js-apis-app-ability-insightIntent.md#executemode) | 是 | 意图调用执行模式。 |
+| displayId<sup>12+</sup> | number | 否 | 意图调用时指定的物理屏幕id，该参数应为整数，仅在executeMode为UI_ABILITY_FOREGROUND时生效。 |
 
 ## insightIntentDriver.execute
 
@@ -75,7 +76,7 @@ execute(param: ExecuteParam, callback: AsyncCallback<insightIntent.ExecuteResult
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -157,7 +158,7 @@ execute(param: ExecuteParam): Promise<insightIntent.ExecuteResult>
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 

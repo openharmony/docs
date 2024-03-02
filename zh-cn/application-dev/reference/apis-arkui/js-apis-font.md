@@ -36,8 +36,8 @@ registerFont(options: FontOptions): void
 
 | 名称         | 类型     | 必填   | 说明           |
 | ---------- | ------ | ---- | ------------ |
-| familyName | string\| [Resource](../arkui-ts/ts-types.md#resource)<sup>10+</sup> | 是    | 设置注册的字体名称。   |
-| familySrc  | string\| [Resource](../arkui-ts/ts-types.md#resource)<sup>10+</sup> | 是    | 设置注册字体文件的路径。 |
+| familyName | string\| [Resource](arkui-ts/ts-types.md#resource)<sup>10+</sup> | 是    | 设置注册的字体名称。   |
+| familySrc  | string\| [Resource](arkui-ts/ts-types.md#resource)<sup>10+</sup> | 是    | 设置注册字体文件的路径。 |
 
 **示例：**
 
@@ -168,8 +168,8 @@ getFontByName(fontName: string): FontInfo
 | fullName       | string  | 是 | 系统字体的名称。           |
 | family         | string  | 是 | 系统字体的字体家族。       |
 | subfamily      | string  | 是 | 系统字体的子字体家族。      |
-| weight         | number  | 是 | 系统字体的粗细程度。        |
-| width          | number  | 是 | 系统字体的宽窄风格属性。    |
+| weight         | number  | 是 | 系统字体的粗细程度，单位px。        |
+| width          | number  | 是 | 系统字体的宽窄风格属性，单位px。    |
 | italic         | boolean | 是 | 系统字体是否倾斜。          |
 | monoSpace      | boolean | 是 | 系统字体是否紧凑。         |
 | symbolic       | boolean | 是 | 系统字体是否支持符号字体。  |

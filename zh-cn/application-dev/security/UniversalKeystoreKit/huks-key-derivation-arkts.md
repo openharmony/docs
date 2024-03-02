@@ -14,7 +14,7 @@
    - HUKS_STORAGE_ONLY_USED_IN_HUKS：表示由该密钥派生出的密钥存储于HUKS中，由HUKS进行托管。
    - HUKS_STORAGE_KEY_EXPORT_ALLOWED(默认)：表示由该密钥派生出的密钥直接导出给业务方，HUKS不对其进行托管服务。
 
-3. 调用[generateKeyItem](../../reference/apis/js-apis-huks.md#huksgeneratekeyitem9)生成密钥，具体请参考[密钥生成](huks-key-generation-overview.md)。
+3. 调用[generateKeyItem](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksgeneratekeyitem9)生成密钥，具体请参考[密钥生成](huks-key-generation-overview.md)。
 
 除此之外，开发者也可以参考[密钥导入](huks-key-import-overview.md)，导入已有的密钥。
 
@@ -22,15 +22,15 @@
 
 1. 获取密钥别名、指定对应的属性参数HuksOptions。
 
-2. 调用[initSession](../../reference/apis/js-apis-huks.md#huksinitsession9)初始化密钥会话，并获取会话的句柄handle。
+2. 调用[initSession](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksinitsession9)初始化密钥会话，并获取会话的句柄handle。
 
-3. 调用[updateSession](../../reference/apis/js-apis-huks.md#huksupdatesession9)更新密钥会话。
+3. 调用[updateSession](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksupdatesession9)更新密钥会话。
 
-4. 调用[finishSession](../../reference/apis/js-apis-huks.md#huksfinishsession9)结束密钥会话，完成派生。
+4. 调用[finishSession](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksfinishsession9)结束密钥会话，完成派生。
 
 **删除密钥**
 
-当密钥废弃不用时，需要调用[deleteKeyItem](../../reference/apis/js-apis-huks.md#huksdeletekeyitem9)删除密钥，具体请参考[密钥删除](huks-delete-key-arkts.md)。
+当密钥废弃不用时，需要调用[deleteKeyItem](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksdeletekeyitem9)删除密钥，具体请参考[密钥删除](huks-delete-key-arkts.md)。
 
 ```ts
 /*

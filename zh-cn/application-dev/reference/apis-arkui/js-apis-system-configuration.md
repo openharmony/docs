@@ -1,7 +1,7 @@
 # @system.configuration (应用配置)
 
 > **说明：**
-> - 从API Version 7 开始，该接口不再维护，推荐使用新接口[`@ohos.i18n`](../apis/js-apis-i18n.md)和[`@ohos.intl`](../apis/js-apis-intl.md)。
+> - 从API Version 7 开始，该接口不再维护，推荐使用新接口[`@ohos.i18n`](../apis-localization-kit/js-apis-i18n.md)和[`@ohos.intl`](../apis-localization-kit/js-apis-intl.md)。
 >
 > 
 > - 本模块首批接口从API version 3开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。

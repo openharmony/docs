@@ -24,7 +24,7 @@ import AutoFillExtensionAbility from '@ohos.app.ability.AutoFillExtensionAbility
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| context | [AutoFillExtensionContext](../apis/js-apis-inner-application-autoFillExtensionContext.md)  | 是 | 否 | AutoFillExtension的上下文环境，继承自ExtensionContext。 |
+| context | [AutoFillExtensionContext](js-apis-inner-application-autoFillExtensionContext-sys.md)  | 是 | 否 | AutoFillExtension的上下文环境，继承自ExtensionContext。 |
 
 
 ## AutoFillExtensionAbility.onCreate
@@ -61,8 +61,8 @@ onFillRequest(session: UIExtensionContentSession, request: FillRequest, callback
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | session | [UIExtensionContentSession](js-apis-app-ability-uiExtensionContentSession.md)  | 是 | AutoFillExtensionAbility界面内容相关信息。 |
-| request | [FillRequest](../apis/js-apis-inner-application-autoFillRequest.md#fillrequest)  | 是 | 自动填充数据。 |
-| callback | [FillRequestCallback](../apis/js-apis-inner-application-autoFillRequest.md#fillrequestcallback)  | 是 | 自动填充请求回调。 |
+| request | [FillRequest](js-apis-inner-application-autoFillRequest-sys.md#fillrequest)  | 是 | 自动填充数据。 |
+| callback | [FillRequestCallback](js-apis-inner-application-autoFillRequest-sys.md#fillrequestcallback)  | 是 | 自动填充请求回调。 |
 
 **示例：**
 
@@ -115,8 +115,8 @@ onSaveRequest(session: UIExtensionContentSession, request: SaveRequest, callback
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | session | [UIExtensionContentSession](js-apis-app-ability-uiExtensionContentSession.md)  | 是 | AutoFillExtensionAbility界面内容相关信息。 |
-| request | [SaveRequest](../apis/js-apis-inner-application-autoFillRequest.md#saverequest)  | 是 | 保存请求数据。 |
-| callback | [SaveRequestCallback](../apis/js-apis-inner-application-autoFillRequest.md#saverequestcallback)  | 是 | 保存请求回调。 |
+| request | [SaveRequest](js-apis-inner-application-autoFillRequest-sys.md#saverequest)  | 是 | 保存请求数据。 |
+| callback | [SaveRequestCallback](js-apis-inner-application-autoFillRequest-sys.md#saverequestcallback)  | 是 | 保存请求回调。 |
 
 **示例：**
 

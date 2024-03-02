@@ -527,7 +527,7 @@ createVirtualScreen(options:VirtualScreenOption, callback: AsyncCallback&lt;Scre
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**需要权限**：ohos.permission.CAPTURE_SCREEN，如果VirtualScreenOption.surfaceId有效，此权限是必需的。仅系统应用可用。
+**需要权限**：ohos.permission.CAPTURE_SCREEN
 
 **参数：**
 
@@ -588,7 +588,7 @@ createVirtualScreen(options:VirtualScreenOption): Promise&lt;Screen&gt;
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**需要权限**：ohos.permission.CAPTURE_SCREEN，如果VirtualScreenOption.surfaceId有效，此权限是必需的。仅系统应用可用。
+**需要权限**：ohos.permission.CAPTURE_SCREEN
 
 **参数：** 
 

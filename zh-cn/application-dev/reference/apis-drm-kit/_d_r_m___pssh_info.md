@@ -3,9 +3,7 @@
 
 ## 概述
 
-DRM Pssh信息。
-
-**系统能力：** SystemCapability.Multimedia.Drm.Core
+uuid的PSSH信息。
 
 **起始版本：** 11
 
@@ -19,6 +17,6 @@ DRM Pssh信息。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| char [uuid](_drm.md#uuid) [[DRM_UUID_LEN](_drm.md#drm_uuid_len)] | DRM插件类型名。 | 
-| uint32_t [dataLen](_drm.md#datalen) | PSSH数据长度 | 
-| unsigned char \* [data](_drm.md#data-33) | PSSH数据 | 
+| uint8_t [uuid](_drm.md#uuid) [[DRM_UUID_LEN](_drm.md#drm_uuid_len)] | uuid的PSSH信息。 | 
+| int32_t [dataLen](_drm.md#datalen-22) | PSSH数据长度。 | 
+| uint8_t [data](_drm.md#data-22) [[MAX_PSSH_DATA_LEN](_drm.md#max_pssh_data_len)] | PSSH数据。 | 

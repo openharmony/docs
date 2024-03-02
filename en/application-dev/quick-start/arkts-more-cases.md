@@ -920,22 +920,6 @@ function test(str: string, obj: Record<string, Object>) {
 }
 ```
 
-### Checking the Array Key
-
-**Before adaptation**
-
-```typescript
-let arr = [10, 20, 30, 40];
-let isIn = 5 in arr;
-```
-
-**After adaptation**
-
-```typescript
-let arr = [10, 20, 30, 40];
-let isIn = 5 < arr.length;
-```
-
 ## arkts-no-destruct-assignment
 
 **Before adaptation**

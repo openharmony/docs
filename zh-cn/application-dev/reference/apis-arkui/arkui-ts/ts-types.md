@@ -165,12 +165,12 @@
 
 设置文本样式。
 
-| 名称     | 类型                                       | 必填   | 说明                                       |
-| ------ | ---------------------------------------- | ---- | ---------------------------------------- |
-| size   | [Length](#length)                        | 否    | 设置文本尺寸，Length为number类型时，使用fp单位。不支持设置百分比字符串。<br>默认值：16.0  |
-| weight | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | 否    | 设置文本的字体粗细，number类型取值[100, 900]，取值间隔为100，取值越大，字体越粗。<br>默认值：400 \| FontWeight.Normal |
-| family | string \| [Resource](#resource)          | 否    | 设置文本的字体列表。使用多个字体，使用','进行分割，优先级按顺序生效。例如：'Arial, HarmonyOS Sans'。当前支持'HarmonyOS Sans'字体和[注册自定义字体](../../apis/js-apis-font.md)。 |
-| style  | [FontStyle](ts-appendix-enums.md#fontstyle) | 否    | 设置文本的字体样式。<br>默认值：FontStyle.Normal                               |
+| 名称   | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| size   | [Length](#length)                                            | 否   | 设置文本尺寸，Length为number类型时，使用fp单位。不支持设置百分比字符串。<br>默认值：16.0 |
+| weight | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | 否   | 设置文本的字体粗细，number类型取值[100, 900]，取值间隔为100，取值越大，字体越粗。<br>默认值：400 \| FontWeight.Normal |
+| family | string \| [Resource](#resource)                              | 否   | 设置文本的字体列表。使用多个字体，使用','进行分割，优先级按顺序生效。例如：'Arial, HarmonyOS Sans'。当前支持'HarmonyOS Sans'字体和[注册自定义字体](../js-apis-font.md)。 |
+| style  | [FontStyle](ts-appendix-enums.md#fontstyle)                  | 否   | 设置文本的字体样式。<br>默认值：FontStyle.Normal             |
 
 ## Area<sup>8+</sup>
 
@@ -400,3 +400,18 @@ Tabs自定义切换动画执行过程中，返回给开发者的proxy对象。�
 | from | number | 是 | 自定义动画起始页面对应的index值。|
 | to | number | 是 | 自定义动画目标页面对应的index值。|
 | finishTransition() | void | 是 | 通知Tabs组件，此次自定义动画已结束。|
+
+## PixelRoundPolicy<sup>11+</sup>
+
+组件像素级取整对齐策略。
+
+| 名称     | 类型                | 必填   | 说明                   |
+| ------ | ----------------- | ---- | -------------------- |
+| start | [PixelRoundCalcPolicy](ts-appendix-enums.md##PixelRoundCalcPolicy) | 否 | 组件前部边界取整对齐。 |
+| top | [PixelRoundCalcPolicy](ts-appendix-enums.md##PixelRoundCalcPolicy) | 否 | 组件上部边界取整对齐。 |
+| end | [PixelRoundCalcPolicy](ts-appendix-enums.md##PixelRoundCalcPolicy) | 否 | 组件尾部边界取整对齐。 |
+| bottom | [PixelRoundCalcPolicy](ts-appendix-enums.md##PixelRoundCalcPolicy) | 否 | 组件底部边界取整对齐。 |
+
+## VoidCallback<sup>12+</sup>
+
+函数回调：() => void

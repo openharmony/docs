@@ -1,6 +1,6 @@
 # 音频输入设备管理(ArkTS)
 
-有时设备同时连接多个音频输入设备，需要指定音频输入设备进行音频录制，此时需要使用AudioRoutingManager接口进行输入设备的管理，API说明可以参考[AudioRoutingManager API文档](../reference/apis/js-apis-audio.md#audioroutingmanager9)。
+有时设备同时连接多个音频输入设备，需要指定音频输入设备进行音频录制，此时需要使用AudioRoutingManager接口进行输入设备的管理，API说明可以参考[AudioRoutingManager API文档](../reference/apis-audio-kit/js-apis-audio.md#audioroutingmanager9)。
 
 ## 创建AudioRoutingManager实例
 
@@ -59,7 +59,7 @@ audioRoutingManager.off('deviceChange', (deviceChanged: audio.DeviceChangeAction
 
 ## 选择音频输入设备（仅对系统应用开放）
 
-选择音频输入设备，当前只能选择一个输入设备，以设备id作为唯一标识。AudioDeviceDescriptors的具体信息可以参考[AudioDeviceDescriptors](../reference/apis/js-apis-audio.md#audiodevicedescriptors)。
+选择音频输入设备，当前只能选择一个输入设备，以设备id作为唯一标识。AudioDeviceDescriptors的具体信息可以参考[AudioDeviceDescriptors](../reference/apis-audio-kit/js-apis-audio.md#audiodevicedescriptors)。
 
 > **说明：**
 > 

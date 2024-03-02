@@ -47,7 +47,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 
 | 参数名   | 类型                                | 必填 | 说明                       |
 | -------- | ----------------------------------- | ---- | -------------------------- |
-| want     | [Want](../apis/js-apis-app-ability-want.md) | 是   | 启动Ability的want信息。    |
+| want     | [Want](../apis-ability-kit/js-apis-wantAgent.md) | 是   | 启动Ability的want信息。    |
 | callback | AsyncCallback&lt;void&gt;           | 是   | callback形式返回启动结果。 |
 
 **错误码：**
@@ -68,7 +68,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 | 16200001 | The caller has been released.                                |
 | 16300003 | The target application is not self application.              |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -128,7 +128,7 @@ startAbility(want: Want): Promise&lt;void&gt;;
 
 | 参数名 | 类型                                | 必填 | 说明                    |
 | ------ | ----------------------------------- | ---- | ----------------------- |
-| want   | [Want](../apis/js-apis-app-ability-want.md) | 是   | 启动Ability的want信息。 |
+| want   | [Want](../apis-ability-kit/js-apis-wantAgent.md) | 是   | 启动Ability的want信息。 |
 
 **返回值：**
 
@@ -154,7 +154,7 @@ startAbility(want: Want): Promise&lt;void&gt;;
 | 16200001 | The caller has been released.                                |
 | 16300003 | The target application is not self application.              |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 

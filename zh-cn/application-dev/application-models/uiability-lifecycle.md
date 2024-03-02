@@ -16,7 +16,7 @@ UIAbility的生命周期包括Create、Foreground、Background、Destroy四个�
 
 ### Create状态
 
-Create状态为在应用加载过程中，UIAbility实例创建完成时触发，系统会调用`onCreate()`回调。可以在该回调中进行应用初始化操作，例如变量定义资源加载等，用于后续的UI展示。
+Create状态为在应用加载过程中，UIAbility实例创建完成时触发，系统会调用`onCreate()`回调。可以在该回调中进行页面初始化操作，例如变量定义资源加载等，用于后续的UI展示。
 
 
 ```ts
@@ -26,7 +26,7 @@ import type Want from '@ohos.app.ability.Want';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-    // 应用初始化
+    // 页面初始化
   }
   // ...
 }
@@ -34,7 +34,7 @@ export default class EntryAbility extends UIAbility {
 
 > **说明**：
 >
-> [Want](../reference/apis/js-apis-app-ability-want.md)是对象间信息传递的载体，可以用于应用组件间的信息传递。Want的详细介绍请参见[信息传递载体Want](want-overview.md)。
+> [Want](../reference/apis-ability-kit/js-apis-app-ability-want.md)是对象间信息传递的载体，可以用于应用组件间的信息传递。Want的详细介绍请参见[信息传递载体Want](want-overview.md)。
 
 ### WindowStageCreate和WindowStageDestroy状态
 
@@ -43,7 +43,7 @@ UIAbility实例创建完成之后，在进入Foreground之前，系统会创建�
 **图2** WindowStageCreate和WindowStageDestroy状态  
 ![Ability-Life-Cycle-WindowStage](figures/Ability-Life-Cycle-WindowStage.png)  
 
-在onWindowStageCreate()回调中通过[`loadContent()`](../reference/apis/js-apis-window.md#loadcontent9-2)方法设置应用要加载的页面，并根据需要调用[`on('windowStageEvent')`](../reference/apis/js-apis-window.md#onwindowstageevent9)方法订阅WindowStage的[事件](../reference/apis/js-apis-window.md#windowstageeventtype9)（获焦/失焦、可见/不可见）。
+在onWindowStageCreate()回调中通过[`loadContent()`](../reference/apis-arkui/js-apis-window.md#loadcontent9-2)方法设置应用要加载的页面，并根据需要调用[`on('windowStageEvent')`](../reference/apis-arkui/js-apis-window.md#onwindowstageevent9)方法订阅WindowStage的[事件](../reference/apis-arkui/js-apis-window.md#windowstageeventtype9)（获焦/失焦、可见/不可见）。
 
 ```ts
 import Logger from '../utils/Logger';

@@ -5,7 +5,7 @@
 
 > **说明：**
 >
-> 本文主要介绍动态卡片的事件开发。对于静态卡片，请参见[FormLink](../reference/arkui-ts/ts-container-formlink.md)。
+> 本文主要介绍动态卡片的事件开发。对于静态卡片，请参见[FormLink](../reference/apis-arkui/arkui-ts/ts-container-formlink.md)。
 
 ## 约束限制
 
@@ -88,7 +88,7 @@
   }
   ```
   
-- 在UIAbility中接收call事件并获取参数，根据传递的method不同，执行不同的方法。其余数据可以通过[readString](../reference/apis/js-apis-rpc.md#readstring)方法获取。需要注意的是，UIAbility需要onCreate生命周期中监听所需的方法。
+- 在UIAbility中接收call事件并获取参数，根据传递的method不同，执行不同的方法。其余数据可以通过[readString](../reference/apis-ipc-kit/js-apis-rpc.md#readstring)方法获取。需要注意的是，UIAbility需要onCreate生命周期中监听所需的方法。
   
   ```ts
   import type AbilityConstant from '@ohos.app.ability.AbilityConstant';

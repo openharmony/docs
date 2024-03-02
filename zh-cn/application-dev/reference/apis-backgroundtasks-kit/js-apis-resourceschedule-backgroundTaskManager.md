@@ -21,7 +21,7 @@ requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspen
 
 >  **说明：**
 > 
-> 短时任务的申请时间最长为3分钟，[低电量](../apis/js-apis-battery-info.md)时最长为1分钟。
+> 短时任务的申请时间最长为3分钟，[低电量](../apis-basic-services-kit/js-apis-battery-info.md)时最长为1分钟。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
@@ -75,7 +75,7 @@ try {
 
 getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;): void
 
-获取本次短时任务的剩余时间。使用callback异步回调。
+获取本次短时任务的剩余时间，使用callback异步回调。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
@@ -120,7 +120,7 @@ backgroundTaskManager.getRemainingDelayTime(id, (error: BusinessError, res: numb
 
 getRemainingDelayTime(requestId: number): Promise&lt;number&gt;
 
-获取本次短时任务的剩余时间。使用promise异步回调。
+获取本次短时任务的剩余时间，使用promise异步回调。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
@@ -207,7 +207,7 @@ cancelSuspendDelay(requestId: number): void
 
 startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent, callback: AsyncCallback&lt;void&gt;): void
 
-申请长时任务。使用callback异步回调。
+申请长时任务，使用callback异步回调。
 
 **需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -217,9 +217,9 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 
 | 参数名       | 类型                                 | 必填   | 说明                                       |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
-| context   | Context                            | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](../apis/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis/js-apis-inner-application-context.md)。 |
+| context   | Context                            | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | bgMode    | [BackgroundMode](#backgroundmode) | 是    | 长时任务模式。                              |
-| wantAgent | [WantAgent](../apis/js-apis-app-ability-wantAgent.md) | 是    | 通知参数，用于指定点击长时任务通知后跳转的界面。           |
+| wantAgent | [WantAgent](../apis-ability-kit/js-apis-app-ability-wantAgent.md) | 是    | 通知参数，用于指定点击长时任务通知后跳转的界面。           |
 | callback  | AsyncCallback&lt;void&gt;          | 是    | 回调函数，申请长时任务成功时，err为undefined，否则为错误对象。    |
 
 **错误码**：
@@ -303,9 +303,9 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 
 | 参数名       | 类型                                 | 必填   | 说明                                       |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
-| context   | Context                            | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](../apis/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
+| context   | Context                            | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | bgMode    | [BackgroundMode](#backgroundmode) | 是    | 长时任务模式。                              |
-| wantAgent | [WantAgent](../apis/js-apis-app-ability-wantAgent.md) | 是    | 通知参数，用于指定点击长时任务通知后跳转的界面。                 |
+| wantAgent | [WantAgent](../apis-ability-kit/js-apis-app-ability-wantAgent.md) | 是    | 通知参数，用于指定点击长时任务通知后跳转的界面。                 |
 
 **返回值**：
 
@@ -380,7 +380,7 @@ export default class EntryAbility extends UIAbility {
 
 stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): void
 
-取消长时任务。使用callback异步回调。
+取消长时任务，使用callback异步回调。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
@@ -388,7 +388,7 @@ stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): vo
 
 | 参数名      | 类型                        | 必填   | 说明                                       |
 | -------- | ------------------------- | ---- | ---------------------------------------- |
-| context  | Context                   | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](../apis/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis/js-apis-inner-application-context.md)。 |
+| context  | Context                   | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | callback | AsyncCallback&lt;void&gt; | 是    | 回调函数，取消长时任务成功时，err为undefined，否则为错误对象。|
 
 **错误码**：
@@ -445,7 +445,7 @@ stopBackgroundRunning(context: Context): Promise&lt;void&gt;
 
 | 参数名     | 类型      | 必填   | 说明                                       |
 | ------- | ------- | ---- | ---------------------------------------- |
-| context | Context | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](../apis/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis/js-apis-inner-application-context.md)。 |
+| context | Context | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 
 **返回值**：
 
@@ -500,7 +500,7 @@ export default class EntryAbility extends UIAbility {
 | 名称             | 类型     | 必填   | 说明                                       |
 | --------------- | ------ | ---- | ---------------------------------------- |
 | requestId       | number | 是    | 短时任务的请求ID。                               |
-| actualDelayTime | number | 是    | 应用实际申请的短时任务时间，单位为毫秒。<br/>短时任务申请时间最长为3分钟，[低电量](../apis/js-apis-battery-info.md)时最长为1分钟。 |
+| actualDelayTime | number | 是    | 应用实际申请的短时任务时间，单位为毫秒。<br/>短时任务申请时间最长为3分钟，[低电量](../apis-basic-services-kit/js-apis-battery-info.md)时最长为1分钟。 |
 
 ## BackgroundMode
 

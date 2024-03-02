@@ -74,7 +74,7 @@ getDialogSessionInfo(dialogSessionId: string): [DialogSessionInfo](#dialogsessio
 | 16000006  | Cross-user operations are not allowed. |
 | 16000050  | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -116,7 +116,7 @@ sendDialogResult(dialogSessionId: string, targetWant: Want, isAllowed: boolean, 
 | 16000006  | Cross-user operations are not allowed. |
 | 16000050  | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -183,7 +183,7 @@ sendDialogResult(dialogSessionId: string, targetWant: Want, isAllowed: boolean):
 | 16000006  | Cross-user operations are not allowed. |
 | 16000050  | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 

@@ -671,10 +671,10 @@ Nullable\<T> {
 背景效果参数。
 | 名称        |   类型         |   必填 |  说明                        |
 | ----         |  ----         |   ---- | --------------------------  |
-| radius       | number        |   是   |   背景光源半径，取值范围：[0, +∞)，默认为0。     |
-| saturation   | number        |   否   |   背景光源饱和度，取值范围：[0, +∞)，默认为0。     |
-| brightness   | number        |   否   |   背景光源亮度，取值范围：[0, +∞)，默认为0。       |
-| color        | [Color](ts-appendix-enums.md#color)        |   否   |   背景光源颜色，默认透明色。  |
+| radius       | number        |   是   |   模糊半径，取值范围：[0, +∞)，默认为0。     |
+| saturation   | number        |   否   |   饱和度，取值范围：[0, +∞)，默认为0。     |
+| brightness   | number        |   否   |   亮度，取值范围：[0, +∞)，默认为0。       |
+| color        | [Color](ts-appendix-enums.md#color)        |   否   |   颜色，默认透明色。  |
 | adaptiveColor | [AdaptiveColor](ts-appendix-enums.md#adaptivecolor10) |   否  | 背景模糊效果使用的取色模式,默认为DEFAULT。   |
 | blurOptions  | [BlurOptions](ts-appendix-enums.md#bluroptions11) |   否   |   灰阶模糊参数，默认为[0,0]。  |
 ## EllipsisMode<sup>11+</sup>
@@ -766,9 +766,9 @@ Nullable\<T> {
 
 | 名称     | 描述                            |
 | ------ | ----------------------------- |
-| SPREAD | 组件在约束锚点间均匀分布。 |
-| SPREAD_INSIDE | 除首尾2个子组件的其他组件在约束锚点间均匀分布。                 |
-| PACKED  | 链内子组件无间隙。                      |
+| SPREAD | 组件在约束锚点间均匀分布。详细用法请参考[RelativeContainer示例7](ts-container-relativecontainer.md#示例7)。 |
+| SPREAD_INSIDE | 除首尾2个子组件的其他组件在约束锚点间均匀分布。详细用法请参考[RelativeContainer示例8](ts-container-relativecontainer.md#示例8)。                 |
+| PACKED  | 链内子组件无间隙。详细用法请参考[RelativeContainer示例9](ts-container-relativecontainer.md#示例9)。                      |
 
 ## BarrierDirection<sup>11+</sup>
 
@@ -780,3 +780,13 @@ Nullable\<T> {
 | RIGHT | 屏障在其所有[referencedId](ts-container-relativecontainer.md#barrierstyle11)的最右侧。   |
 | TOP  | 屏障在其所有[referencedId](ts-container-relativecontainer.md#barrierstyle11)的最上方。    |
 | BOTTOM  | 屏障在其所有[referencedId](ts-container-relativecontainer.md#barrierstyle11)的最下方。 |
+
+## PixelRoundCalcPolicy<sup>11+</sup>
+
+组件边界像素级取整计算策略。
+
+| 名称     | 描述                            |
+| ------ | ----------------------------- |
+| NO_FORCE_ROUND | 不取整计算。|
+| FORCE_CEIL | 取上整计算。|
+| FORCE_FLOOR | 取下整计算。|

@@ -34,6 +34,7 @@
     - [@ohos.app.form.FormExtensionAbility (FormExtensionAbility)](js-apis-app-form-formExtensionAbility.md)
     - [@ohos.application.DataShareExtensionAbility (DataShareExtensionAbility)](js-apis-application-dataShareExtensionAbility.md)
     - [@ohos.application.StaticSubscriberExtensionAbility (StaticSubscriberExtensionAbility)](js-apis-application-staticSubscriberExtensionAbility.md)
+    - [@ohos.app.ability.VpnExtensionAbility (VPN Extension)](js-apis-VpnExtensionAbility.md)
   - FA Model
     - [@ohos.ability.ability (Ability)](js-apis-ability-ability.md)
     - [@ohos.ability.featureAbility (FeatureAbility)](js-apis-ability-featureAbility.md)
@@ -136,6 +137,7 @@
       - [shellCmdResult](js-apis-inner-application-shellCmdResult.md)
       - [ViewData](js-apis-inner-application-viewData.md)
       - [WindowExtensionContext](js-apis-inner-application-windowExtensionContext.md)
+      - [VpnExtensionContext](js-apis-inner-application-VpnExtensionContext.md)
     - wantAgent
       - [triggerInfo](js-apis-inner-wantAgent-triggerInfo.md)
       - [wantAgentInfo](js-apis-inner-wantAgent-wantAgentInfo.md)
@@ -363,6 +365,7 @@
   - [@ohos.net.socket (Socket Connection)](js-apis-socket.md)
   - [@ohos.net.statistics (Traffic Management)](js-apis-net-statistics.md)
   - [@ohos.net.vpn (VPN Management)](js-apis-net-vpn.md)
+  - [@ohos.net.vpnExtension (Enhanced VPN Management)](js-apis-net-vpnExtension.md)
   - [@ohos.net.webSocket (WebSocket Connection)](js-apis-webSocket.md)
   - [@ohos.request (Upload and Download)](js-apis-request.md)
   

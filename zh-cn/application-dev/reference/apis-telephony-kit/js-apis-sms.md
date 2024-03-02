@@ -30,7 +30,7 @@ createMessage\(pdu: Array&lt;number&gt;, specification: string, callback: AsyncC
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                     |
 | -------- | -------------------------------------------- |
@@ -78,7 +78,7 @@ createMessage\(pdu: Array&lt;number&gt;, specification: string\): Promise\<Short
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                     |
 | -------- | -------------------------------------------- |
@@ -126,7 +126,7 @@ sendMessage\(options: SendMessageOptions\): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](errorcode-telephony.md)。
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
@@ -181,7 +181,7 @@ sendShortMessage\(options: SendMessageOptions, callback: AsyncCallback&lt;void&g
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](errorcode-telephony.md)。
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
@@ -243,7 +243,7 @@ sendShortMessage\(options: SendMessageOptions\): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](errorcode-telephony.md)。
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
@@ -339,6 +339,26 @@ sms.getDefaultSmsSlotId().then((data: number) => {
 });
 ```
 
+## sms.hasSmsCapability<sup>7+</sup>
+
+hasSmsCapability\(\): boolean
+
+检查当前设备是否具备短信发送和接收能力，该方法是同步方法。
+
+**系统能力**：SystemCapability.Telephony.SmsMms
+
+**返回值：**
+
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| boolean | - true：设备具备短信发送和接收能力。<br/>- false：设备不具备短信发送和接收能力。 |
+
+```ts
+import sms from '@ohos.telephony.sms';
+
+let result = sms.hasSmsCapability(); 
+console.log(`hasSmsCapability: ${JSON.stringify(result)}`);
+```
 
 ## sms.getDefaultSmsSimId<sup>10+</sup>
 
@@ -356,7 +376,7 @@ getDefaultSmsSimId\(callback: AsyncCallback&lt;number&gt;\): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](errorcode-telephony.md)。
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
@@ -396,7 +416,7 @@ getDefaultSmsSimId\(\): Promise&lt;number&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](errorcode-telephony.md)。
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
@@ -420,6 +440,7 @@ promise.then((data: number) => {
     console.error(`getDefaultSmsSimId failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
+
 
 ## ShortMessage
 

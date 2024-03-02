@@ -11,12 +11,12 @@
 
 数据管理服务仅支持数据库的基本访问或数据托管，如果有业务处理，需要将业务处理封装成接口，给数据访问方调用。
 
-如果业务过于复杂，无法放到数据访问方，建议通过[DataShareExtensionAbility](../reference/apis/js-apis-application-dataShareExtensionAbility.md)拉起数据提供方实现功能。
+如果业务过于复杂，无法放到数据访问方，建议通过[DataShareExtensionAbility](../reference/apis-arkdata/js-apis-application-dataShareExtensionAbility-sys.md)拉起数据提供方实现功能。
 
 
 ## 运作机制
 
-可以通过数据管理服务进行代理访问的数据分为以下两种：
+可以通过数据管理服务进行代理访问的数据分为以下三种：
 
 - 持久化数据：归属于数据提供方的数据库，这类数据存储于数据提供方的沙箱，可以在数据提供方中通过声明的方式进行共享，按表为粒度配置为可以被其他应用访问的数据表。
 
@@ -59,7 +59,7 @@
 
 ## 接口说明
 
-以下是静默数据访问的相关接口，大部分为异步接口。异步接口均有callback和Promise两种返回形式，下表均以callback形式为例，更多接口及使用方式请见[数据共享](../reference/apis/js-apis-data-dataShare.md)。
+以下是静默数据访问的相关接口，大部分为异步接口。异步接口均有callback和Promise两种返回形式，下表均以callback形式为例，更多接口及使用方式请见[数据共享](../reference/apis-arkdata/js-apis-data-dataShare-sys.md)。
 
 ### 通用接口
 

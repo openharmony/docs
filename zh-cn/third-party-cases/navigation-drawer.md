@@ -150,10 +150,10 @@ struct SideBarContainerExample {
 
 ## 总结
 
-[Tabs组件](../application-dev/reference/arkui-ts/ts-container-tabs.md)： 适用于导航栏固定在页面上下左右侧，入口分类数目不多，可以控制在5个以内，且用户需要频繁切换每一个页签的应用，比如微信、QQ等。
+[Tabs组件](../application-dev/reference/apis-arkui/arkui-ts/ts-container-tabs.md)： 适用于导航栏固定在页面上下左右侧，入口分类数目不多，可以控制在5个以内，且用户需要频繁切换每一个页签的应用，比如微信、QQ等。
 
-[Navigation组件](../application-dev/reference/arkui-ts/ts-basic-components-navigation.md)： 同样可以实现Tabs组件中导航栏位于底部的场景，根据需要显示隐藏导航栏，提供标题，菜单，返回等选项，使用户是使用时更加灵活。
+[Navigation组件](../application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md)： 同样可以实现Tabs组件中导航栏位于底部的场景，根据需要显示隐藏导航栏，提供标题，菜单，返回等选项，使用户是使用时更加灵活。
 
-[sideBarContainer组件](../application-dev/reference/arkui-ts/ts-container-sidebarcontainer.md)：主要的功能和内容都在一个页面里面，只是一些低频操作内容需要显示在其他页面里，可以把这些辅助功能放在抽屉栏里。屏幕较小时导航栏不占用空间。比如QQ，开发指导文档等。
+[sideBarContainer组件](../application-dev/reference/apis-arkui/arkui-ts/ts-container-sidebarcontainer.md)：主要的功能和内容都在一个页面里面，只是一些低频操作内容需要显示在其他页面里，可以把这些辅助功能放在抽屉栏里。屏幕较小时导航栏不占用空间。比如QQ，开发指导文档等。
 
 

@@ -1,6 +1,6 @@
 # MissionInfo (系统接口)
 
-表示任务的详细信息，可以通过[getMissionInfo](../apis/js-apis-app-ability-missionManager.md#missionmanagergetmissioninfo)获取。
+表示任务的详细信息，可以通过[getMissionInfo](js-apis-app-ability-missionManager-sys.md#missionmanagergetmissioninfo)获取。
 
 > **说明：**
 > 
@@ -25,7 +25,7 @@ import missionManager from '@ohos.app.ability.missionManager';
 | runningState | number | 是 | 是 | 表示运行状态。 |
 | lockedState | boolean | 是 | 是 | 表示锁定状态。 |
 | timestamp | string | 是 | 是 | 表示任务的最近创建或更新时间。 |
-| want | [Want](../apis/js-apis-app-ability-want.md) | 是 | 是 | 表示任务的Want信息。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 是 | 表示任务的Want信息。 |
 | label | string | 是 | 是 | 表示任务的标签。 |
 | iconPath | string | 是 | 是 | 表示任务的图标路径。 |
 | continuable | boolean | 是 | 是 | 表示任务是否可以迁移。 |

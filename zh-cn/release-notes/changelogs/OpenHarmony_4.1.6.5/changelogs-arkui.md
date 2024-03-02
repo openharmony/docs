@@ -30,7 +30,7 @@ API 11及之后，TextClock组件构造参数timeZoneOffset设置{ 9.5, 3.5, -3.
 
 **适配指导**
 
-请查阅[TextClock组件](../../../application-dev/reference/arkui-ts/ts-basic-components-textclock.md)文档进行适配。
+请查阅[TextClock组件](../../../application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-textclock.md)文档进行适配。
 
 ## cl.arkui.2 Gauge组件的默认阴影模糊半径变更
 
@@ -121,7 +121,7 @@ API version 11变更后：大小位置返回值都以vp为单位。
 
 **变更影响**
 
-该变更为兼容性变更，变更后@Link/@ObjectLink父组件校验报错。
+该变更为非兼容性变更，变更后@Link/@ObjectLink父组件校验报错。
 
 **API Level**
 
@@ -294,3 +294,135 @@ OffscreenCanvas
 **适配指导**
 
 DevEco Studio中OffscreenCanvas代码编辑联想功能，不涉及适配。
+
+## cl.arkui.7 layoutWeight支持float类型变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+layoutWeight需要更精细的设置。
+
+**变更影响**
+
+该变更为兼容性变更，变更后layoutWeight参数支持float类型。
+
+**API Level**
+
+9
+
+**变更发生版本**
+
+从OpenHarmony SDK 4.1.6.5开始。
+
+**变更的接口/组件**
+
+涉及到layoutWeight接口
+
+API 12前，参数为float类型，小数点后不生效。
+
+API 12及以后，参数为float类型，小数点后生效。
+
+**适配指导**
+
+接口参数类型变更，不涉及适配。
+
+## cl.arkui.8 GridRow组件高度自适应变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+用户需要自定义GridRow组件高度。
+
+**变更影响**
+
+该变更为非兼容性变更。改变了GridRow组件的高度设置，可按照用户设置的高度进行绘制。
+
+**API Level**
+
+9
+
+**变更发生版本**
+
+从OpenHarmony SDK 4.1.6.5开始。
+
+**变更的接口/组件**
+
+涉及到GridRow组件
+
+API 11前，GridRow组件高度会自适应子组件高度。
+
+API 11及以后，GridRow组件设置了高度后不再自适应子组件高度，而是按用户设置高度进行绘制。
+
+**适配指导**
+
+组件高度自适应变更，不涉及适配。
+
+## cl.arkui.9  surface类型XComponent组件backgroundColor属性行为变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+surface类型的XComponent组件需支持设置背景色。
+
+**变更影响**
+
+该变更为非兼容性变更，场景为给surface类型的XComponent组件设置backgroundColor属性，具体行为如下：
+
+API version 11变更前：无论设置何种属性，背景色均为默认黑色背景色。
+
+API version 11变更后：组件背景色会生效所设置的颜色。
+
+**API Level**
+
+11
+
+**变更发生版本**
+
+从OpenHarmony SDK 4.1.6.5 版本开始。
+
+**示例：**
+
+```
+@Entry
+@Component
+struct XComponentBKColor {
+  private surfaceId: string = ''
+  private xComponentContext: Record<string, () => void> = {}
+  xComponentController: XComponentController = new XComponentController()
+
+  build() {
+    Row() {
+      XComponent({
+        id: 'xcomponentid',
+        type: XComponentType.SURFACE,
+        controller: this.xComponentController
+      })
+        .onLoad(() => {
+          this.xComponentController.setXComponentSurfaceSize({ surfaceWidth: 1920, surfaceHeight: 1080 })
+          this.surfaceId = this.xComponentController.getXComponentSurfaceId()
+          this.xComponentContext = this.xComponentController.getXComponentContext() as Record<string, () => void>
+        })
+        .width('640px')
+        .height('480px')
+        .backgroundColor(Color.White)
+    }
+  }
+}
+```
+
+**变更的接口/组件**
+
+XComponent
+
+**适配指导**
+
+给surface类型的XComponent组件设置backgroundColor属性后，确认是应用的场景所需要的背景色。

@@ -15,7 +15,7 @@
 
 1. 定义并发函数，内部调用同步方法。
 
-2. 创建任务[Task](../reference/apis/js-apis-taskpool.md#task)，通过[execute()](../reference/apis/js-apis-taskpool.md#taskpoolexecute-1)接口执行该任务，并对任务返回的结果进行操作。
+2. 创建任务[Task](../reference/apis-arkts/js-apis-taskpool.md#task)，通过[execute()](../reference/apis-arkts/js-apis-taskpool.md#taskpoolexecute-1)接口执行该任务，并对任务返回的结果进行操作。
 
 3. 执行并发操作。
 

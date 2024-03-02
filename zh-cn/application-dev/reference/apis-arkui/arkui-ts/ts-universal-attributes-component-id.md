@@ -23,7 +23,7 @@ getInspectorByKey(id: string): string
 
 获取指定id的组件的所有属性，不包括子组件信息。
 
-此接口仅用于对应用的测试。
+此接口仅用于对应用的测试。由于耗时长，不建议使用。
 
 **参数:**
 
@@ -35,7 +35,7 @@ getInspectorByKey(id: string): string
 
 | 类型        | 描述             |
 | -------| -------------- |
-| string | 组件属性列表的JSON字符串。 |
+| string | 组件属性列表的JSON字符串。<br />**说明**：<br /> 字符串信息包含组件的tag、id、位置信息(相对于窗口左上角的坐标)以及用于测试检查的组件所包含的相关属性信息。 |
 
 ### getInspectorTree<sup>9+</sup>
 
@@ -43,7 +43,7 @@ getInspectorTree(): Object
 
 获取组件树及组件属性。
 
-此接口仅用于对应用的测试。
+此接口仅用于对应用的测试。由于耗时长，不建议使用。
 
 **返回值:**
 
@@ -57,7 +57,7 @@ sendEventByKey(id: string, action: number, params: string): boolean
 
 给指定id的组件发送事件。
 
-此接口仅用于对应用的测试。
+此接口仅用于对应用的测试。由于耗时长，不建议使用。
 
 **参数:**
 
@@ -79,7 +79,7 @@ sendTouchEvent(event: TouchObject): boolean
 
 发送触摸事件。
 
-此接口仅用于对应用的测试。
+此接口仅用于对应用的测试。由于耗时长，不建议使用。
 
 **参数:**
 
@@ -99,7 +99,7 @@ sendKeyEvent(event: KeyEvent): boolean
 
 发送按键事件。
 
-此接口仅用于对应用的测试。
+此接口仅用于对应用的测试。由于耗时长，不建议使用。
 
 **参数:**
 
@@ -119,7 +119,7 @@ sendMouseEvent(event: MouseEvent): boolean
 
 发送鼠标事件。
 
-此接口仅用于对应用的测试。
+此接口仅用于对应用的测试。由于耗时长，不建议使用。
 
 **参数：**
 

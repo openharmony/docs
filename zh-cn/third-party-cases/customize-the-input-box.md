@@ -197,6 +197,6 @@ struct InputFloatHintPage{
 ```
 
 ## 参考
-[图形变化](../application-dev/reference/arkui-ts/ts-universal-attributes-transformation.md)
+[图形变换](../application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-transformation.md)
 
-[TextInput](../application-dev/reference/arkui-ts/ts-basic-components-textinput.md)
+[TextInput](../application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md)

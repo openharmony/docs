@@ -19,20 +19,22 @@ The **WrappedBuilder** object is also a template class.
 
 ```ts
 declare class WrappedBuilder< Args extends Object[]> {
-  builder: (...args: Args): void;
+  builder: (...args: Args) => void;
 
   constructor(builder: (...args: Args) => void);
 }
 ```
 
 
->**NOTE**<br>The template parameter **Args extends Object[]** is a parameter list of the builder function to be wrapped.
+>**NOTE**
+>
+>The template parameter **Args extends Object[]** is a parameter list of the builder function to be wrapped.
 
 Example
 
 ```ts
 let builderVar: WrappedBuilder<[string, number]> = wrapBuilder(MyBuilder)
-let builderArr: WrappedBuilder<[string, number]>[] = [wrapBuilder(MyBuilder)] // An array can be placed.
+let builderArr: WrappedBuilder<[string, number]>[] = [wrapBuilder(MyBuilder)] // An array is acceptable.
 ```
 
 
@@ -56,13 +58,6 @@ function MyBuilder(value: string, size: number) {
     .fontSize(size)
 }
 
-@Builder
-function YourBuilder(value: string, size: number) {
-  Text(value)
-    .fontSize(size)
-    .fontColor(Color.Pink)
-}
-
 let globalBuilder: WrappedBuilder<[string, number]> = wrapBuilder(MyBuilder);
 @Entry
 @Component
@@ -78,7 +73,6 @@ struct Index {
           .fontWeight(FontWeight.Bold)
           .onClick(() =>{
             this.message = 'Test wrapBuilder';
-            globalBuilder = wrapBuilder(YourBuilder);
           })
 
       }

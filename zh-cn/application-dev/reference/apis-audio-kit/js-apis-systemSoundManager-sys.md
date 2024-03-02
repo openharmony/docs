@@ -338,7 +338,7 @@ setRingtoneUri(context: BaseContext, uri: string, type: RingtoneType): Promise&l
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体服务错误码](../errorcodes/errorcode-media.md)。
+以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
 
 | 错误码ID | 错误信息              |
 | ------- | --------------------- |
@@ -386,7 +386,7 @@ getRingtoneUri(context: BaseContext, type: RingtoneType): Promise&lt;string&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体服务错误码](../errorcodes/errorcode-media.md)。
+以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | --------------------- |
@@ -475,7 +475,7 @@ setSystemToneUri(context: BaseContext, uri: string, type: SystemToneType): Promi
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体服务错误码](../errorcodes/errorcode-media.md)。
+以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
 
 | 错误码ID | 错误信息              |
 | ------- | --------------------- |
@@ -523,7 +523,7 @@ getSystemToneUri(context: BaseContext, type: SystemToneType): Promise&lt;string&
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体服务错误码](../errorcodes/errorcode-media.md)。
+以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
 
 | 错误码ID | 错误信息              |
 | ------- | --------------------- |

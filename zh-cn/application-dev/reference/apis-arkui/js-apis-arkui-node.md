@@ -4,9 +4,9 @@ Node将自定义节点的二级模块API组织在一起，方便开发者进行�
 
 * [BuilderNode](./js-apis-arkui-builderNode.md#buildernode)模块：提供能够挂载原生组件的自定义节点BuilderNode。不建议将BuilderNode作为子节点挂载到其他自定义节点上。
 
-* [FrameNode](./js-apis-arkui-frameNode.md#framenode)模块：提供自定义节点FrameNode，表示组件树的实体节点。[NodeController](./js-apis-arkui-nodeController.md#nodecontroller)可通过[BuilderNode](./js-apis-arkui-builderNode.md#buildernode)持有的FrameNode将其挂载到[NodeContainer](../arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)上，也可通过FrameNode获取[RenderNode](./js-apis-arkui-renderNode.md#rendernode)，挂载到其他FrameNode上。
+* [FrameNode](./js-apis-arkui-frameNode.md#framenode)模块：提供自定义节点FrameNode，表示组件树的实体节点。[NodeController](./js-apis-arkui-nodeController.md#nodecontroller)可通过[BuilderNode](./js-apis-arkui-builderNode.md#buildernode)持有的FrameNode将其挂载到[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)上，也可通过FrameNode获取[RenderNode](./js-apis-arkui-renderNode.md#rendernode)，挂载到其他FrameNode上。
 
-* [NodeController](./js-apis-arkui-nodeController.md#nodecontroller)模块：提供NodeController用于实现自定义节点的创建、显示、更新等操作，并负责将自定义节点挂载到[NodeContainer](../arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)上。
+* [NodeController](./js-apis-arkui-nodeController.md#nodecontroller)模块：提供NodeController用于实现自定义节点的创建、显示、更新等操作，并负责将自定义节点挂载到[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)上。
 
 * [Graphics](./js-apis-arkui-graphics.md#graphics)模块：提供自定义节点相关属性设置的定义。
 
@@ -23,7 +23,7 @@ Node将自定义节点的二级模块API组织在一起，方便开发者进行�
 ## UIContext获取方法
 1.使用ohos.window中的[getUIContext()](./js-apis-window.md#getuicontext10)方法获取UIContext实例。
 
-2.可以通过自定义组件内置方法[getUIContext()](../arkui-ts/ts-custom-component-api.md#getuicontext)获取。
+2.可以通过自定义组件内置方法[getUIContext()](arkui-ts/ts-custom-component-api.md#getuicontext)获取。
 
 3.可以在[NodeController](./js-apis-arkui-nodeController.md#nodecontroller)的[makeNode](./js-apis-arkui-nodeController.md#makenode)回调方法中获取。
 

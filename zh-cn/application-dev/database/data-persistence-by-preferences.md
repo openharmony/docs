@@ -28,7 +28,7 @@
 
 ## 接口说明
 
-以下是用户首选项持久化功能的相关接口，更多接口及使用方式请见[用户首选项](../reference/apis/js-apis-data-preferences.md)。
+以下是用户首选项持久化功能的相关接口，更多接口及使用方式请见[用户首选项](../reference/apis-arkdata/js-apis-data-preferences.md)。
 
 | 接口名称                                                     | 描述                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -119,8 +119,9 @@
    let val = preferences.getSync('startup', 'default');
    console.info("The 'startup' value is " + val);
    // 当获取的值为带有特殊字符的字符串时，需要将获取到的Uint8Array转换为字符串
-   let uInt8Array : data_preferences.ValueType = preferences.getSync('uInt8', new Uint8Array(0));
-   val = new util.TextDecoder().decode(uInt8Array as Uint8Array);
+   let uInt8Array : dataPreferences.ValueType = preferences.getSync('uInt8', new Uint8Array(0));
+   let textDecoder = util.TextDecoder.create('utf-8');
+   val = textDecoder.decodeWithStream(uInt8Array as Uint8Array);
    console.info("The 'uInt8' value is " + val);
    ```
 

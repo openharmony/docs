@@ -34,7 +34,7 @@ shutdown(reason: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[系统电源管理错误码](../errorcodes/errorcode-power.md)。
+以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
@@ -70,7 +70,7 @@ reboot(reason: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[系统电源管理错误码](../errorcodes/errorcode-power.md)。
+以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
@@ -104,7 +104,7 @@ wakeup(detail: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[系统电源管理错误码](../errorcodes/errorcode-power.md)。
+以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
@@ -139,7 +139,7 @@ suspend(isImmediate?: boolean): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[系统电源管理错误码](../errorcodes/errorcode-power.md)。
+以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
@@ -176,7 +176,7 @@ setPowerMode(mode: DevicePowerMode, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[系统电源管理错误码](../errorcodes/errorcode-power.md)。
+以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
@@ -220,7 +220,7 @@ setPowerMode(mode: DevicePowerMode): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[系统电源管理错误码](../errorcodes/errorcode-power.md)。
+以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|

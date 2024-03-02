@@ -24,7 +24,7 @@ import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry
 
 ## 使用说明
 
-通过abilityDelegator中的[executeShellCommand](../apis/js-apis-inner-application-abilityDelegator.md#executeshellcommand)方法来获取。
+通过abilityDelegator中的[executeShellCommand](js-apis-inner-application-abilityDelegator.md#executeshellcommand)方法来获取。
 
 **示例：**
 ```ts

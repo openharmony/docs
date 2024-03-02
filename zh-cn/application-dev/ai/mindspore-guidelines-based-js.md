@@ -13,7 +13,7 @@
 **Float16推理模式**：  Float16又称半精度，它使用16比特表示一个数。Float16推理模式表示推理的时候用半精度进行推理。 
 
 ## 接口说明
-这里给出MindSpore Lite推理的通用开发流程中涉及的一些接口，具体请见下列表格。更多接口及详细内容，请见[@ohos.ai.mindSporeLite (推理能力)](../reference/apis/js-apis-mindSporeLite.md)。
+这里给出MindSpore Lite推理的通用开发流程中涉及的一些接口，具体请见下列表格。更多接口及详细内容，请见[@ohos.ai.mindSporeLite (推理能力)](../reference/apis-mindspore-lite-kit/js-apis-mindSporeLite.md)。
 
 | 接口名        | 描述        |
 | ------------------ | ----------------- |

@@ -9,7 +9,7 @@
 > 本模块接口仅可在Stage模型下使用。
 >
 > 本模块接口仅对[设备管理应用](enterpriseDeviceManagement-overview.md#基本概念)开放，需将[设备管理应用激活](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin)后调用，实现相应功能。
-> 
+>
 > 本模块接口均为系统接口。
 
 ## 导入模块
@@ -28,13 +28,13 @@ getSecurityPatchTag(admin: Want): string
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
+**系统API：** 此接口为系统接口。
 
 **参数：**
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
 
 **返回值：**
 
@@ -78,13 +78,13 @@ getDeviceEncryptionStatus(admin: Want): DeviceEncryptionStatus
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
+**系统API：** 此接口为系统接口。
 
 **参数：**
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
 
 **返回值：**
 

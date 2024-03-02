@@ -32,7 +32,7 @@ setValue(value: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕亮度错误码](../errorcodes/errorcode-brightness.md)。
+以下错误码的详细介绍请参见[屏幕亮度错误码](errorcode-brightness.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
@@ -67,7 +67,7 @@ setValue(value: number, continuous: boolean): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕亮度错误码](../errorcodes/errorcode-brightness.md)。
+以下错误码的详细介绍请参见[屏幕亮度错误码](errorcode-brightness.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|

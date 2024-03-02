@@ -42,6 +42,7 @@
         - [创建自定义组件](arkts-create-custom-components.md)
         - [页面和自定义组件生命周期](arkts-page-custom-components-lifecycle.md)
         - [自定义组件冻结功能](arkts-custom-components-freeze.md)
+        - [自定义组件成员属性访问限定符使用限制](arkts-custom-components-access-restrictions.md)
       - [\@Builder装饰器：自定义构建函数](arkts-builder.md)
       - [\@BuilderParam装饰器：引用\@Builder函数](arkts-builderparam.md)
       - [wrapBuilder：封装全局@Builder](arkts-wrapBuilder.md)
@@ -72,6 +73,10 @@
       - [MVVM模式](arkts-mvvm.md)
       - [状态管理优秀实践](arkts-state-management-best-practices.md)
       - [状态管理合理使用开发指导](properly-use-state-management-to-develope.md)
+    - 状态管理（推荐）
+      - [状态管理（推荐）概述](arkts-new-state-management-overview.md)
+      - 状态管理（推荐）所属装饰器
+        - [\@observed装饰器和\@track装饰器：类属性变化观测](arkts-new-observed-and-track.md)
     - 渲染控制
       - [渲染控制概述](arkts-rendering-control-overview.md)
       - [if/else：条件渲染](arkts-rendering-control-ifelse.md)

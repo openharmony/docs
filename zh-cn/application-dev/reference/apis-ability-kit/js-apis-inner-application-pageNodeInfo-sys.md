@@ -16,7 +16,7 @@
 | ----------- | -------------------- | ---- | ------------------------------------------------------------ |
 | id    | number               | 是   | 页面节点的ID。                               |
 | depth    | number              | 是   | 页面节点的深度。                               |
-| autoFillType    | [AutoFillType](../apis/js-apis-inner-application-autoFillType.md)        | 是   | 页面节点的自动填充类型。    |
+| autoFillType    | [AutoFillType](js-apis-inner-application-autoFillType-sys.md)        | 是   | 页面节点的自动填充类型。    |
 | tag    | string              | 是   | 页面节点的标签。                               |
 | value    | string              | 是   | 页面节点的值。                               |
 | placeholder    | string              | 否   | 页面节点的占位符。                               |

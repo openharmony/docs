@@ -1,6 +1,6 @@
 # FormExtensionContext (系统接口)
 
-FormExtensionContext模块是[FormExtensionAbility](js-apis-app-form-formExtensionAbility.md)的上下文环境，继承自[ExtensionContext](../apis/js-apis-inner-application-extensionContext.md)。
+FormExtensionContext模块是[FormExtensionAbility](js-apis-app-form-formExtensionAbility.md)的上下文环境，继承自[ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md)。
 
 FormExtensionContext模块提供FormExtensionAbility具有的接口和能力。
 
@@ -19,7 +19,7 @@ import common from '@ohos.app.ability.common';
 
 startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
-拉起一个卡片所属应用的Ability。使用callback异步回调。
+拉起一个应用的Ability。使用callback异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -36,14 +36,14 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 | 16500101 | The application is not a system application. |
 | 16501000 | An internal functional error occurred. |
 
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **参数：**
 
 | 参数名 |                类型               | 必填 |              说明               |
 | ------| --------------------------------- | ---- | -------------------------------------- |
-| want| [Want](../apis/js-apis-app-ability-want.md) | 是  | 包含bundleName，abilityName以及用户自定参数用于拉起Ability。 |
-| callback| AsyncCallback&lt;void&gt;       | 是  | 回调函数。当拉起一个卡片所属应用的Ability成功，err为undefined，否则为错误对象。 |
+| want| [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是  | 包含bundleName，abilityName以及用户自定参数用于拉起Ability。 |
+| callback| AsyncCallback&lt;void&gt;       | 是  | 回调函数。当拉起一个应用的Ability成功，err为undefined，否则为错误对象。 |
 
 **示例：**
 
@@ -79,7 +79,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 
 startAbility(want: Want): Promise&lt;void&gt;
 
-拉起一个卡片所属应用的Ability。使用Promise异步回调。
+拉起一个应用的Ability。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -89,7 +89,7 @@ startAbility(want: Want): Promise&lt;void&gt;
 
 | 参数名 |                类型               | 必填 |              说明               |
 | ------| --------------------------------- | ---- | -------------------------------------- |
-| want| [Want](../apis/js-apis-app-ability-want.md) | 是  | 包含bundleName，abilityName以及用户自定参数用于拉起Ability。 |
+| want| [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是  | 包含bundleName，abilityName以及用户自定参数用于拉起Ability。 |
 
 **返回值：**
 
@@ -108,7 +108,7 @@ startAbility(want: Want): Promise&lt;void&gt;
 | 16500101 | The application is not a system application. |
 | 16501000 | An internal functional error occurred. |
 
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
@@ -132,7 +132,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
     this.context.startAbility(want).then(() => {
       console.info('StartAbility Success');
     }).catch((error: Base.BusinessError) => {
-      console.error('StartAbility failed, error.code: ${error.code}, error.message: ${error.message}');
+      console.error(`StartAbility failed, error.code: ${error.code}, error.message: ${error.message}`);
     });
   }
 };
@@ -152,8 +152,8 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](../apis/js-apis-app-ability-want.md)  | 是 | Want类型参数，传入需要启动的ability的信息，如Ability名称，Bundle名称等。 |
-| options | [ConnectOptions](../apis/js-apis-inner-ability-connectOptions.md) | 是 | ConnectOptions类型的回调函数，返回服务连接成功、断开或连接失败后的信息。 |
+| want | [Want](../apis-ability-kit/js-apis-app-ability-want.md)  | 是 | Want类型参数，传入需要启动的ability的信息，如Ability名称，Bundle名称等。 |
+| options | [ConnectOptions](../apis-ability-kit/js-apis-inner-ability-connectOptions.md) | 是 | ConnectOptions类型的回调函数，返回服务连接成功、断开或连接失败后的信息。 |
 
 **返回值：**
 
@@ -176,7 +176,7 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -243,7 +243,7 @@ disconnectServiceExtensionAbility(connection: number, callback: AsyncCallback&lt
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -308,7 +308,7 @@ disconnectServiceExtensionAbility(connection: number): Promise&lt;void&gt;
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 

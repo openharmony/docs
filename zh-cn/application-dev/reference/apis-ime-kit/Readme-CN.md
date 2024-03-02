@@ -1,23 +1,14 @@
-# IME Kit API参考 
+# IME Kit API参考
 
-- ArkTS API 
-    - [@ohos.InputMethodExtensionAbility (InputMethodExtensionAbility)](js-apis-inputmethod-extension-ability.md)
-    - [@ohos.InputMethodExtensionContext (InputMethodExtensionContext)](js-apis-inputmethod-extension-context.md)
-    - [@ohos.inputMethod.Panel (输入法面板)](js-apis-inputmethod-panel.md)
-    - [@ohos.InputMethodSubtype (输入法子类型)](js-apis-inputmethod-subtype.md)
-    - [@ohos.inputMethod (输入法框架)(系统接口)](js-apis-inputmethod-sys.md)
-    - [@ohos.inputMethod (输入法框架)](js-apis-inputmethod.md)
-    - [@ohos.inputMethodEngine (输入法服务)](js-apis-inputmethodengine.md)
-    - [@ohos.inputMethodList (输入法切换列表控件)](js-apis-inputmethodlist.md)
-    - 已停止维护的接口
-        - [@ohos.inputMethodEngine#getInputMethodEngine (获取输入法应用客户端实例)](js-apis-inputmethodengine.md)
-        - [@ohos.inputMethodEngine#createKeyboardDelegate (获取客户端编辑事件监听代理实例)](js-apis-inputmethodengine.md)
-        - [@ohos.inputMethodEngine.KeyboardController#hideKeyboard (隐藏输入法)](js-apis-inputmethodengine.md)
-        - [@ohos.inputMethodEngine#TextInputClient (编辑框客户端)](js-apis-inputmethodengine.md)
-        - [@ohos.inputMethod#getInputMethodSetting (获取客户端设置实例)](js-apis-inputmethod.md)
-        - [@ohos.inputMethod#getInputMethodController (获取客户端实例)](js-apis-inputmethod.md)
-        - [@ohos.inputMethod.InputMethodSetting#listInputMethod (查询已安装的输入法列表)](js-apis-inputmethod.md)
-        - [@ohos.inputMethod.InputMethodSetting#displayOptionalInputMethod (显示输入法选择对话框)](js-apis-inputmethod.md)
-        - [@ohos.inputMethod.InputMethodController#stopInput (结束输入会话)](js-apis-inputmethod.md)
-        - [@ohos.inputMethod.InputMethodProperty#packageName (输入法包名)](js-apis-inputmethod.md)
-        - [@ohos.inputMethod.InputMethodProperty#methodId (输入法唯一标识)](js-apis-inputmethod.md)
+- ArkTS API
+  - [@ohos.InputMethodExtensionAbility (InputMethodExtensionAbility)](js-apis-inputmethod-extension-ability.md)
+  - [@ohos.InputMethodExtensionContext (InputMethodExtensionContext)](js-apis-inputmethod-extension-context.md)
+  - [@ohos.inputMethod.Panel (输入法面板)](js-apis-inputmethod-panel.md)
+  - [@ohos.InputMethodSubtype (输入法子类型)](js-apis-inputmethod-subtype.md)
+  - [@ohos.inputMethod (输入法框架)(系统接口)](js-apis-inputmethod-sys.md)
+  - [@ohos.inputMethod (输入法框架)](js-apis-inputmethod.md)
+  - [@ohos.inputMethodEngine (输入法服务)](js-apis-inputmethodengine.md)
+  - [@ohos.inputMethodList (输入法切换列表控件)](js-apis-inputmethodlist.md)
+- 错误码
+  - [输入法框架错误码](errorcode-inputmethod-framework.md)
+  

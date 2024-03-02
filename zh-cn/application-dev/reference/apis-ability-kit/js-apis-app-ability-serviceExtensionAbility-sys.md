@@ -28,7 +28,7 @@ import ServiceExtension from '@ohos.app.ability.ServiceExtensionAbility';
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| context | [ServiceExtensionContext](../apis/js-apis-inner-application-serviceExtensionContext.md)  | 是 | 否 | ServiceExtension的上下文环境，继承自ExtensionContext。 |
+| context | [ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext-sys.md)  | 是 | 否 | ServiceExtension的上下文环境，继承自ExtensionContext。 |
 
 
 ## ServiceExtensionAbility.onCreate
@@ -45,7 +45,7 @@ Extension生命周期回调，在创建时回调，执行初始化业务逻辑�
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want |  [Want](../apis/js-apis-app-ability-want.md) | 是 | 当前Extension相关的Want类型信息，包括ability名称、bundle名称等。 |
+| want |  [Want](js-apis-app-ability-want.md) | 是 | 当前Extension相关的Want类型信息，包括ability名称、bundle名称等。 |
 
 **示例：**
 
@@ -98,7 +98,7 @@ Extension生命周期回调，如果是startAbility或者startServiceExtensionAb
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want |  [Want](../apis/js-apis-app-ability-want.md) | 是 | 当前Extension相关的Want类型信息，包括ability名称、bundle名称等。 |
+| want |  [Want](js-apis-app-ability-want.md) | 是 | 当前Extension相关的Want类型信息，包括ability名称、bundle名称等。 |
 | startId | number | 是 | 返回拉起次数。首次拉起初始值返回1，多次之后自动递增。 |
 
 **示例：**
@@ -129,7 +129,7 @@ Extension生命周期回调，如果是connectAbility拉起的服务，会在onC
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want |  [Want](../apis/js-apis-app-ability-want.md)| 是 | 当前Extension相关的Want类型信息，包括ability名称、bundle名称等。 |
+| want |  [Want](js-apis-app-ability-want.md)| 是 | 当前Extension相关的Want类型信息，包括ability名称、bundle名称等。 |
 
 **返回值：**
 
@@ -200,7 +200,7 @@ Extension的生命周期回调，客户端执行断开连接服务时回调。
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want |[Want](../apis/js-apis-app-ability-want.md)| 是 | 当前Extension相关的Want类型信息，包括ability名称、bundle名称等。 |
+| want |[Want](js-apis-app-ability-want.md)| 是 | 当前Extension相关的Want类型信息，包括ability名称、bundle名称等。 |
 
 **示例：**
 
@@ -243,7 +243,7 @@ Extension的生命周期回调，当所有以前的客户端都断开连接之�
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want |[Want](../apis/js-apis-app-ability-want.md)| 是 | 当前Extension相关的Want类型信息，包括ability名称、bundle名称等。 |
+| want |[Want](js-apis-app-ability-want.md)| 是 | 当前Extension相关的Want类型信息，包括ability名称、bundle名称等。 |
 
 **示例：**
 
@@ -272,7 +272,7 @@ onConfigurationUpdate(newConfig: Configuration): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| newConfig | [Configuration](../apis/js-apis-app-ability-configuration.md) | 是 | 表示需要更新的配置信息。 |
+| newConfig | [Configuration](js-apis-app-ability-configuration.md) | 是 | 表示需要更新的配置信息。 |
 
 **示例：**
     

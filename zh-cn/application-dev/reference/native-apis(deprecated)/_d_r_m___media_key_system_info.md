@@ -1,0 +1,23 @@
+# DRM_MediaKeySystemInfo
+
+
+## 概述
+
+从媒体源获取的DRM信息。
+
+**系统能力：** SystemCapability.Multimedia.Drm.Core
+
+**起始版本：** 11
+
+**相关模块：**[Drm](_drm.md)
+
+
+## 汇总
+
+
+### 成员变量
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| uint32_t [psshCount](_drm.md#psshcount) | PSSH信息数组长度 | 
+| [DRM_PsshInfo](_d_r_m___pssh_info.md)[psshInfo](_drm.md#psshinfo) [0] | PSSH信息数组 | 

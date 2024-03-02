@@ -5,13 +5,14 @@
 
 Peripheral devices (or simply peripherals) are auxiliary devices connected to a device through physical ports, such as handwriting tablets, printers, and scanners. Applications can query and bind peripherals by using the peripheral management capabilities, so that the device can use the customized capabilities provided by the peripheral drivers, such as the printer software.
 
-Currently, devices such as PCs and tablets are supported, but mobile phones are not supported.
+Currently, devices such as PCs and tablets are supported. Smartphones are not supported.
 
 
 ## Available APIs
 
+The following table describes the commonly used APIs for peripheral management.
 
-The following table lists the open capabilities of peripheral management. For more information, see [Peripheral Management](../reference/apis/js-apis-driver-deviceManager.md).
+For more information, see [Peripheral Management](../reference/apis-driverdevelopment-kit/js-apis-driver-deviceManager.md).
 
 **Table 1** Open APIs for peripheral management
 

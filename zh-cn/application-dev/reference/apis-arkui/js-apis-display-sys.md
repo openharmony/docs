@@ -167,6 +167,42 @@ try {
 }
 ```
 
+## display.setFoldStatusLocked<sup>11+</sup>
+setFoldStatusLocked(locked: boolean): void
+
+设置可折叠设备当前折叠状态的锁定状态。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                                       | 必填 | 说明                                                    |
+| -------- |------------------------------------------| ---- | ------------------------------------------------------- |
+| locked     | boolean    | 是   | 可折叠设备的折叠状态是否锁定。true表示锁定，false表示不锁定。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 1400003 | This display manager service works abnormally. |
+
+**示例：**
+
+```ts
+import display from '@ohos.display';
+
+try {
+  let locked: boolean = false;
+  display.setFoldStatusLocked(locked);
+} catch (exception) {
+  console.error('Failed to change the fold status locked mode. Code: ' + JSON.stringify(exception));
+}
+```
+
 ## Display
 屏幕实例。描述display对象的属性和方法。
 
@@ -263,7 +299,7 @@ let promise = displayClass.hasImmersiveWindow();
 promise.then((data) => {
   console.info('Succeeded in checking whether there is immersive window. data: ' + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-  console.error('Failed to check whether there is immersive window. Code: ' + JSON.stringify(exception));
+  console.error('Failed to check whether there is immersive window. Code: ' + JSON.stringify(err));
 })
 ```
 

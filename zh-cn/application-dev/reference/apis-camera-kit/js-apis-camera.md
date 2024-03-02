@@ -24,7 +24,7 @@ getCameraManager(context: Context): CameraManager
 
 | 参数名     | 类型                                             | 必填 | 说明                           |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| context  | [Context](../apis/js-apis-inner-application-baseContext.md)      | 是   | 应用上下文。                   |
+| context  | [Context](../apis-ability-kit/js-apis-inner-application-baseContext.md)      | 是   | 应用上下文。                   |
 
 **返回值：**
 
@@ -481,7 +481,7 @@ createPreviewOutput(profile: Profile, surfaceId: string): PreviewOutput
 | 参数名     | 类型                                             | 必填 | 说明                              |
 | -------- | ----------------------------------------------- | ---- | ------------------------------- |
 | profile  | [Profile](#profile)                             | 是   | 支持的预览配置信息，通过[getSupportedOutputCapability](#getsupportedoutputcapability11)接口获取。|
-| surfaceId| string | 是   | 从[XComponent](../arkui-ts/ts-basic-components-xcomponent.md)或者[ImageReceiver](../apis-image-kit/js-apis-image.md#imagereceiver9)组件获取的surfaceId。|
+| surfaceId| string | 是   | 从[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)或者[ImageReceiver](../apis-image-kit/js-apis-image.md#imagereceiver9)组件获取的surfaceId。|
 
 **返回值：**
 

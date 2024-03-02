@@ -34,7 +34,7 @@ getBluetoothInfo(admin: Want): BluetoothInfo;
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
 
 **返回值：**
 
@@ -82,8 +82,8 @@ try {
 | 名称         | 类型     | 必填 | 说明                            |
 | ----------- | --------| ---- | ------------------------------- |
 | name        | string   | 是   | 表示设备的蓝牙名称。 |
-| state |[access.BluetoothState](../apis/js-apis-bluetooth-access.md#bluetoothstate)  | 是   | 表示设备的蓝牙状态。 |
-| connectionState | [constant.ProfileConnectionState](../apis/js-apis-bluetooth-constant.md#profileconnectionstate)  | 是   | 表示设备的蓝牙连接状态。 |
+| state |[access.BluetoothState](../apis-connectivity-kit/js-apis-bluetooth-access.md#bluetoothstate)  | 是   | 表示设备的蓝牙状态。 |
+| connectionState | [constant.ProfileConnectionState](../apis-connectivity-kit/js-apis-bluetooth-constant.md#profileconnectionstate)  | 是   | 表示设备的蓝牙连接状态。 |
 
 ## bluetoothManager.isBluetoothDisabled
 
@@ -101,7 +101,7 @@ isBluetoothDisabled(admin: Want): boolean
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
 
 **返回值：**
 
@@ -152,7 +152,7 @@ setBluetoothDisabled(admin: Want, disabled: boolean): void
 
 | 参数名     | 类型                                | 必填 | 说明                                      |
 | ---------- | ----------------------------------- | ---- | ----------------------------------------- |
-| admin      | [Want](../apis/js-apis-app-ability-want.md) | 是   | 设备管理应用。                            |
+| admin      | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。                            |
 | disabled   | boolean                             | 是   | true表示禁用蓝牙，false表示解除蓝牙禁用。 |
 
 **错误码：**

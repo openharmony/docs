@@ -6,9 +6,9 @@
 >
 > 该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
-> 本模块功能依赖UI的执行上下文，不可在UI上下文不明确的地方使用，参见[UIContext](../../apis/js-apis-arkui-UIContext.md#uicontext)说明。
+> 本模块功能依赖UI的执行上下文，不可在UI上下文不明确的地方使用，参见[UIContext](../js-apis-arkui-UIContext.md#uicontext)说明。
 >
-> 从API version 10开始，可以通过使用[UIContext](../../apis/js-apis-arkui-UIContext.md#uicontext)中的[showTextPickerDialog](../../apis/js-apis-arkui-UIContext.md#showtextpickerdialog)来明确UI的执行上下文。
+> 从API version 10开始，可以通过使用[UIContext](../js-apis-arkui-UIContext.md#uicontext)中的[showTextPickerDialog](../js-apis-arkui-UIContext.md#showtextpickerdialog)来明确UI的执行上下文。
 
 ## TextPickerDialog.show
 
@@ -26,7 +26,7 @@ show(options?: TextPickerDialogOptions)
 
 ## TextPickerDialogOptions对象说明
 
-文本选择器弹窗的参数继承自[TextPickerOptions](ts-basic-components-textpicker.md#textpickeroptions对象说明#textpickeroptions对象说明)。
+文本选择器弹窗的参数继承自[TextPickerOptions](ts-basic-components-textpicker.md#textpickeroptions对象说明)。
 
 | 名称 | 类型 | 必填 |  描述 |
 | -------- | -------- | -------- |  -------- |
@@ -43,6 +43,10 @@ show(options?: TextPickerDialogOptions)
 | onChange | (value: [TextPickerResult](#textpickerresult对象说明)) => void | 否 |  滑动弹窗中的选择器使当前选中项改变时触发该回调。 |
 | backgroundColor<sup>11+</sup> | [ResourceColor](ts-types.md#resourcecolor)  | 否 | 弹窗背板颜色。<br/>默认值：Color.Transparent。 |
 | backgroundBlurStyle<sup>11+</sup> | [BlurStyle](ts-appendix-enums.md#blurstyle9) | 否 | 弹窗背板模糊材质。<br/>默认值：BlurStyle.COMPONENT_ULTRA_THICK。 |
+| onDidAppear<sup>12+</sup> | () => void | 否 | 对话框弹出时的事件回调。 |
+| OnDidDisappear<sup>12+</sup> | () => void | 否 | 对话框消失时的事件回调。 |
+| OnWillAppear<sup>12+</sup> | () => void | 否 | 对话框显示动效前的事件回调。 |
+| OnWillDisappear<sup>12+</sup> | () => void | 否 | 对话框退出动效前的事件回调。 |
 
 ## TextPickerResult对象说明
 
@@ -87,6 +91,18 @@ struct TextPickerDialogExample {
               },
               onChange: (value: TextPickerResult) => {
                 console.info("TextPickerDialog:onChange()" + JSON.stringify(value))
+              },
+              onDidAppear: () => {
+                console.info("TextPickerDialog:onDidAppear()")
+              },
+              onDidDisappear: () => {
+                console.info("TextPickerDialog:onDidDisappear()")
+              },
+              onWillAppear: () => {
+                console.info("TextPickerDialog:onWillAppear()")
+              },
+              onWillDisappear: () => {
+                console.info("TextPickerDialog:onWillDisappear()")
               }
             })
           })

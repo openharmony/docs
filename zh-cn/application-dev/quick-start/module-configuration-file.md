@@ -65,8 +65,14 @@
     "querySchemes": [
       "app1Scheme",
       "app2Scheme"
+    ],
+    "routerMap": "$profile:router_map",
+    "appEnvironments": [
+      {
+        "name": "name1",
+        "value": "value1"
+      }
     ]
-    "routerMap": "$profile:router_map"
   }
 }
 ```
@@ -80,7 +86,7 @@ module.json5配置文件包含以下标签。
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
-| name | 标识当前Module的名称，确保该名称在整个应用中唯一。取值为长度不超过31字节的字符串，不支持中文。<br/>应用升级时允许修改该名称，但需要应用适配Module相关数据目录的迁移，详见[文件管理接口](../reference/apis/js-apis-file-fs.md#fscopydir10)。 | 字符串 | 该标签不可缺省。 |
+| name | 标识当前Module的名称，确保该名称在整个应用中唯一。取值为长度不超过31字节的字符串，不支持中文。<br/>应用升级时允许修改该名称，但需要应用适配Module相关数据目录的迁移，详见[文件管理接口](../reference/apis-core-file-kit/js-apis-file-fs.md#fscopydir10)。 | 字符串 | 该标签不可缺省。 |
 | type | 标识当前Module的类型。支持的取值如下：<br/>-&nbsp;entry：应用的主模块。<br/>-&nbsp;feature：应用的动态特性模块。<br/>-&nbsp;har：静态共享包模块。<br/>-&nbsp;shared：动态共享包模块。 | 字符串 | 该标签不可缺省。 |
 | srcEntry | 标识当前Module所对应的代码路径，取值为长度不超过127字节的字符串。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | description | 标识当前Module的描述信息，取值为长度不超过255字节的字符串，可以采用字符串资源索引格式。 | 字符串 | 该标签可缺省，缺省值为空。 |
@@ -108,6 +114,7 @@ module.json5配置文件包含以下标签。
 | fileContextMenu | 标识当前HAP的右键菜单配置项。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | querySchemes | 标识允许当前应用进行跳转查询的URL schemes，只允许entry类型模块配置，最多50个。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
 | [routerMap](#routermap标签) | 标识当前模块配置的路由表路径。 | 字符串 | 该标签可缺省，缺省值为空。 |
+| [appEnvironments](#appenvironments标签) | 标识当前模块配置的应用环境变量。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 
 ## deviceTypes标签
 
@@ -157,7 +164,7 @@ deviceTypes示例：
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
-| src | 标识当前Module中所有页面的路由信息，包括页面路径和页面名称。取值为一个字符串数组，其中每个元素表示一个页面。 | 字符串数组 | 该标签不可缺省。 |
+| src | 标识当前Module中所有页面的路由信息，包括页面路径和页面名称。其中，页面路径是以当前Module的src/main/ets为基准。该标签取值为一个字符串数组，其中每个元素表示一个页面。 | 字符串数组 | 该标签不可缺省。 |
 | window | 标识用于定义与显示窗口相关的配置。	 | 对象 | 该标签可缺省，缺省值为空。 |
 
 
@@ -196,7 +203,7 @@ deviceTypes示例：
 | value | 标识数据项的值，取值为长度不超过255字节的字符串。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | resource | 标识定义用户自定义数据格式，取值为长度不超过255字节的字符串，内容为标识该数据的资源索引。| 字符串 | 该标签可缺省，缺省值为空。 |
 
-resource属性值使用“$profile:文件名”的方式指定文件所在位置，$profile表示资源的路径为工程中的/resource/base/profile目录下。例如$profile:shortcuts_config指定了/resource/base/profile/shortcuts_config.json文件。
+resource属性值使用“$profile:文件名”的方式指定文件所在位置，$profile表示资源的路径为工程中的/resources/base/profile目录下。例如$profile:shortcuts_config指定了/resources/base/profile/shortcuts_config.json文件。
 
 ```json
 {
@@ -273,6 +280,7 @@ abilities标签描述UIAbility组件的配置信息，标签值为数组类型�
 | recoverable | 标识当前UIAbility组件是否支持在检测到应用故障后，恢复到应用原界面。<br/>-&nbsp;true：支持检测到出现故障后，恢复到原界面。<br/>-&nbsp;false：不支持检测到出现故障后，恢复到原界面。 | 布尔值 | 该标签可缺省，缺省值为false。 |
 | unclearableMission | 标识当前UIAbility组件是否支持从最近任务列表中移除。<br/>-&nbsp;true：表示在任务列表中不可移除。<br/>-&nbsp;false：表示在任务列表中可以移除。<br/>**说明：**<br/>单独配置该字段不可生效，需要申请对应的[AllowMissionNotCleared](../../device-dev/subsystems/subsys-app-privilege-config-guide.md)特权之后，该字段才能生效。 | 布尔值 | 该标签可缺省，缺省值为false。 |
 | isolationProcess | 标识组件能否运行在独立的进程中。<br/>-&nbsp;true：表示能运行在独立的进程中。<br/>-&nbsp;false：表示不能运行在独立的进程中。 | 布尔值 | 该标签可缺省，缺省值为false。 |
+| excludeFromDock | 标识当前UIAbility组件是否支持从dock区域隐藏图标。<br/>-&nbsp;true：表示在dock区域隐藏。<br/>-&nbsp;false：表示不能在dock区域隐藏。 | 布尔值 | 该标签可缺省，缺省值为false。 |
 
 abilities示例：
 
@@ -319,6 +327,7 @@ abilities示例：
     "minWindowHeight": 200,
     "excludeFromMissions": false,
     "unclearableMission": false,
+    "excludeFromDock": false,
     "isolationProcess": false
   }]
 }
@@ -343,12 +352,13 @@ abilities示例：
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
 | scheme | 标识URI的协议名部分，常见的有http、https、file、ftp等。 | 字符串 | uris中仅配置type时可以缺省，缺省值为空，否则不可缺省。 |
-| host | 标识URI的主机地址部分，该字段在schema存在时才有意义。常见的方式：<br/>-&nbsp;域名方式，如example.com。<br/>-&nbsp;IP地址方式，如10.10.10.1。 | 字符串 | 该标签可缺省，缺省值为空。 |
-| port | 标识URI的端口部分。如http默认端口为80，https默认端口是443，ftp默认端口是21。该字段在schema和host都存在时才有意义。 | 字符串 | 该标签可缺省，缺省值为空。 |
-| path&nbsp;\|&nbsp;pathStartWith&nbsp;\|&nbsp;pathRegex | 标识URI的路径部分，path、pathStartWith和pathRegex配置时三选一。path标识URI与want中的路径部分全匹配，pathStartWith标识URI与want中的路径部分允许前缀匹配，pathRegex标识URI与want中的路径部分允许正则匹配。该字段在schema和host都存在时才有意义。 | 字符串 | 该标签可缺省，缺省值为空。 |
-| type | 标识与Want相匹配的数据类型，使用MIME（Multipurpose&nbsp;Internet&nbsp;Mail&nbsp;Extensions）类型规范。可与schema同时配置，也可以单独配置。 | 字符串 | 该标签可缺省，缺省值为空。 |
-| utd | 标识与Want相匹配的[标准化数据类型](../reference/apis/js-apis-data-uniformTypeDescriptor.md)，适用于分享等场景。 | 字符串 | 该标签可缺省，缺省值为空。 |
+| host | 标识URI的主机地址部分，该字段在scheme存在时才有意义。常见的方式：<br/>-&nbsp;域名方式，如example.com。<br/>-&nbsp;IP地址方式，如10.10.10.1。 | 字符串 | 该标签可缺省，缺省值为空。 |
+| port | 标识URI的端口部分。如http默认端口为80，https默认端口是443，ftp默认端口是21。该字段在scheme和host都存在时才有意义。 | 字符串 | 该标签可缺省，缺省值为空。 |
+| path&nbsp;\|&nbsp;pathStartWith&nbsp;\|&nbsp;pathRegex | 标识URI的路径部分，path、pathStartWith和pathRegex配置时三选一。path标识URI与want中的路径部分全匹配，pathStartWith标识URI与want中的路径部分允许前缀匹配，pathRegex标识URI与want中的路径部分允许正则匹配。该字段在scheme和host都存在时才有意义。 | 字符串 | 该标签可缺省，缺省值为空。 |
+| type | 标识与Want相匹配的数据类型，使用MIME（Multipurpose&nbsp;Internet&nbsp;Mail&nbsp;Extensions）类型规范。可与scheme同时配置，也可以单独配置。 | 字符串 | 该标签可缺省，缺省值为空。 |
+| utd | 标识与Want相匹配的[标准化数据类型](../reference/apis-arkdata/js-apis-data-uniformTypeDescriptor.md)，适用于分享等场景。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | maxFileSupported | 对于指定类型的文件，标识一次能接收或打开的最大数量，适用于分享等场景，需要与utd配合使用。| 整数 | 该标签可缺省，缺省值为0。|
+| linkFeature | 标识URI提供的功能类型（如文件打开、分享、导航等），用于实现应用间跳转。取值为长度不超过127字节的字符串，不支持中文。 | 字符串 | 该标签可缺省，缺省值为空。|
 
 skills示例：
 
@@ -371,7 +381,8 @@ skills示例：
               "host":"example.com",
               "port":"80",
               "path":"path",
-              "type": "text/*"
+              "type": "text/*",
+              "linkFeature": "login"
             }
           ]
         }
@@ -396,6 +407,8 @@ skills示例：
 | label | 标识当前ExtensionAbility组件对用户显示的名称，取值为该名称的资源索引，以支持多语言。如果ExtensionAbility被配置当前Module的mainElement时，该标签必须配置，且要确保应用内唯一。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | type | 标识当前ExtensionAbility组件的类型，支持的取值如下：<br/>-&nbsp;form：卡片的ExtensionAbility。<br/>-&nbsp;workScheduler：延时任务的ExtensionAbility。<br/>-&nbsp;inputMethod：输入法的ExtensionAbility。<br/>-&nbsp;service：后台运行的service组件。<br/>-&nbsp;accessibility：辅助能力的ExtensionAbility。<br/>-&nbsp;fileAccess：公共数据访问的ExtensionAbility，允许应用程序提供文件和文件夹给文件管理类应用展示。<br/>-&nbsp;dataShare：数据共享的ExtensionAbility。<br/>-&nbsp;staticSubscriber：静态广播的ExtensionAbility。<br/>-&nbsp;wallpaper：壁纸的ExtensionAbility。<br/>-&nbsp;backup：数据备份的ExtensionAbility。<br/>-&nbsp;window：该ExtensionAbility会在启动过程中创建一个window，为开发者提供界面开发。开发者开发出来的界面将通过UIExtensionComponent控件组合到其他应用的窗口中。<br/>-&nbsp;thumbnail：获取文件缩略图的ExtensionAbility，开发者可以对自定义文件类型的文件提供缩略。<br/>-&nbsp;preview：该ExtensionAbility会将文件解析后在一个窗口中显示，开发者可以通过将此窗口组合到其他应用窗口中。<br/>-&nbsp;print：打印框架的ExtensionAbility。<br/>-&nbsp;push：推送的ExtensionAbility。<br/>-&nbsp;driver：驱动框架的ExtensionAbility。<br/>-&nbsp;remoteNotification：远程通知的ExtensionAbility。<br/>-&nbsp;remoteLocation：远程定位的ExtensionAbility。<br/>-&nbsp;voip：网络音视频通话的ExtensionAbility。<br/>**说明：**<br/>其中service、fileAccess和dataShare类型，仅支持系统应用配置，三方应用配置不生效。 | 字符串 | 该标签不可缺省。 |
 | permissions | 标识当前ExtensionAbility组件自定义的权限信息。当其他应用访问该ExtensionAbility时，需要申请相应的权限信息。<br/>一个数组元素为一个权限名称。通常采用反向域名格式（最大255字节），取值为[系统预定义的权限](../security/AccessToken/permissions-for-all.md)。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
+| readPermission | 标识读取当前ExtensionAbility组件数据所需的权限，取值为长度不超过255字节的字符串。仅当ExtensionAbility组件的type为dataShare时支持配置该标签。 | 字符串 | 该标签可缺省，缺省值为空。 |
+| writePermission | 标识向当前ExtensionAbility组件写数据所需的权限，取值为长度不超过255字节的字符串。仅当ExtensionAbility组件的type为dataShare时支持配置该标签。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | uri | 标识当前ExtensionAbility组件提供的数据URI，取值为长度不超过255字节的字符数组，用反向域名的格式表示。<br/>**说明：**<br/>该标签在type为dataShare类型的ExtensionAbility时，不可缺省。 | 字符串 | 该标签可缺省，缺省值为空。 |
 |skills | 标识当前ExtensionAbility组件能够接收的[Want](../application-models/want-overview.md)的特征集。<br/>配置规则：entry包可以配置多个具有入口能力的skills标签（配置了ohos.want.action.home和entity.system.home）的ExtensionAbility，其中第一个配置了skills标签的ExtensionAbility中的label和icon作为服务或应用的label和icon。<br/>**说明：**<br/>服务的Feature包不能配置具有入口能力的skills标签。<br/>应用的Feature包可以配置具有入口能力的skills标签。 | 数组 | 该标签可缺省，缺省值为空。 |
 | [metadata](#metadata标签) | 标识当前ExtensionAbility组件的元信息。 | 对象 | 该标签可缺省，缺省值为空。 |
@@ -498,7 +511,7 @@ metadata中指定shortcut信息，其中：
 | [wants](../application-models/want-overview.md) | 标识快捷方式内定义的目标wants信息集合，每个wants可配置bundleName、moduleName和abilityName三个子标签，并且支持配置其中的一个或多个标签。<br/>- bundleName：表示快捷方式的目标Bundle名称，字符串类型。<br/>- moduleName：表示快捷方式的目标Module名，字符串类型。<br/>- abilityName：表示快捷方式的目标组件名，字符串类型。 | 对象 | 该标签可缺省，缺省为空。 |
 
 
-1. 在/resource/base/profile/目录下配置shortcuts_config.json配置文件。
+1. 在/resources/base/profile/目录下配置shortcuts_config.json配置文件。
 
    ```json
    {
@@ -596,7 +609,7 @@ metadata中指定shortcut信息，其中：
   * 如果一个Entry中配置了任意一个或多个属性，则其他Entry也必须包含相同的属性。
   * screenShape和screenWindow属性仅用于轻量级智能穿戴设备。
 
-- **配置方式：** 该标签需要配置在/resource/profile资源目录下，并在metadata的resource字段中引用。
+- **配置方式：** 该标签需要配置在/resources/base/profile资源目录下，并在metadata的resource字段中引用。
 
 
 **表12** distributionFilter标签配置说明
@@ -887,5 +900,31 @@ data标签示例：
       }
     }
   ]
+}
+```
+
+## appEnvironments标签
+
+此标签标识模块配置的应用环境变量。
+
+**表23** appEnvironments标签说明
+
+| 属性名称 | 含义 | 数据类型 | 是否可缺省 |
+| -------- | -------- | -------- | -------- |
+| name          | 标识环境变量的变量名称。 | 字符串  | 该标签不可缺省。       |
+| value         | 标识环境变量的值。       | 字符串 | 该标签不可缺省。 |
+
+appEnvironments标签示例：
+
+```json
+{
+  "module": {
+    "appEnvironments": [
+      {
+        "name":"name1",
+        "value": "value1"
+      }
+    ]
+  }
 }
 ```

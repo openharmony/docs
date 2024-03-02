@@ -12,11 +12,11 @@ tab页签容器。
 
 ## 子组件
 
-仅支持&lt;[tab-bar](../arkui-js/js-components-container-tab-bar.md)&gt;和&lt;[tab-content](../arkui-js/js-components-container-tab-content.md)&gt;。
+仅支持&lt;[tab-bar](js-components-container-tab-bar.md)&gt;和&lt;[tab-content](js-components-container-tab-content.md)&gt;。
 
 ## 属性
 
-除支持[通用属性](../arkui-js/js-components-common-attributes.md)外，还支持如下属性：
+除支持[通用属性](js-components-common-attributes.md)外，还支持如下属性：
 
 | 名称       | 类型      | 默认值   | 必填   | 描述                                       |
 | -------- | ------- | ----- | ---- | ---------------------------------------- |
@@ -26,12 +26,12 @@ tab页签容器。
 
 ## 样式
 
-支持[通用样式](../arkui-js/js-components-common-styles.md)。
+支持[通用样式](js-components-common-styles.md)。
 
 
 ## 事件
 
-除支持[通用事件](../arkui-js/js-components-common-events.md)外，还支持如下事件：
+除支持[通用事件](js-components-common-events.md)外，还支持如下事件：
 
 | 名称     | 参数                                   | 描述                            |
 | ------ | ------------------------------------ | ----------------------------- |

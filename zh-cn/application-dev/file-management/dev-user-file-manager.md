@@ -3,7 +3,7 @@
 OpenHarmony预置了FileManager文件管理器。系统应用开发者也可以根据需要，按以下指导自行开发文件管理器。
 
 ## 开发步骤
-开发用户文件管理器的相关API详细介绍请参见[API参考](../reference/apis/js-apis-fileAccess.md)。
+开发用户文件管理器的相关API详细介绍请参见[API参考](../reference/apis-core-file-kit/js-apis-fileAccess-sys.md)。
 
 1. 权限配置和导入模块。
    申请ohos.permission.FILE_ACCESS_MANAGER和ohos.permission.GET_BUNDLE_INFO_PRIVILEGED权限，配置方式请参见[申请应用权限](../security/AccessToken/determine-application-mode.md#system_basic等级的应用申请权限)。
@@ -130,7 +130,7 @@ OpenHarmony预置了FileManager文件管理器。系统应用开发者也可以�
    ```
 
 5. 操作文件或目录。
-   开发者可以集成文件访问框架的接口，完成一些用户行为，比如删除文件（目录）、重命名文件（目录）、新建文件（目录）、移动文件（目录）等。以下示例展示了如何创建一个文件，其他接口请参见[API参考](../reference/apis/js-apis-fileAccess.md)。
+   开发者可以集成文件访问框架的接口，完成一些用户行为，比如删除文件（目录）、重命名文件（目录）、新建文件（目录）、移动文件（目录）等。以下示例展示了如何创建一个文件，其他接口请参见[API参考](../reference/apis-core-file-kit/js-apis-fileAccess-sys.md)。
 
    ```ts
    import { BusinessError } from '@ohos.base';
@@ -159,7 +159,7 @@ OpenHarmony预置了FileManager文件管理器。系统应用开发者也可以�
 
 ## 监听设备上下线
 
-开发设备上下线的相关API详细介绍请参见[API参考](../reference/apis/js-apis-fileAccess.md)。
+开发设备上下线的相关API详细介绍请参见[API参考](../reference/apis-core-file-kit/js-apis-fileAccess-sys.md)。
 
 notify接口不仅可以用来监听目录的变化，还能监听设备上线，下线功能。
 
@@ -197,7 +197,7 @@ notify接口不仅可以用来监听目录的变化，还能监听设备上线�
 
 4. 注册监听设备
 
-  开发者可以根据提供的[DEVICES_URI](../reference/apis/js-apis-fileAccess.md#常量),传入方法中，就能监听设备上线，下线状态。
+  开发者可以根据提供的[DEVICES_URI](../reference/apis-core-file-kit/js-apis-fileAccess-sys.md#常量),传入方法中，就能监听设备上线，下线状态。
 
    ```ts
    import { BusinessError } from '@ohos.base';
@@ -213,7 +213,7 @@ notify接口不仅可以用来监听目录的变化，还能监听设备上线�
    ```
 5. 取消设备监听
 
-  开发者可以根据提供的[DEVICES_URI](../reference/apis/js-apis-fileAccess.md#常量),传入方法中，就能取消设备上线，下线状态。
+  开发者可以根据提供的[DEVICES_URI](../reference/apis-core-file-kit/js-apis-fileAccess-sys.md#常量),传入方法中，就能取消设备上线，下线状态。
 
    ```ts
    import { BusinessError } from '@ohos.base';

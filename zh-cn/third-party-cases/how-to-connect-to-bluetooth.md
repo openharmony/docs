@@ -1,7 +1,7 @@
 # 如何进行蓝牙连接
 
 ## 场景说明
-蓝牙技术是一种无线数据和语音通信开放的全球规范，它是基于低成本的近距离无线连接，为固定和移动设备建立通信环境的一种特殊的连接。本示例通过[@ohos.bluetoothManager](../application-dev/reference/apis/js-apis-bluetoothManager.md)接口实现蓝牙设备发现、配对、取消配对功能。
+蓝牙技术是一种无线数据和语音通信开放的全球规范，它是基于低成本的近距离无线连接，为固定和移动设备建立通信环境的一种特殊的连接。本示例通过[@ohos.bluetoothManager](../application-dev/reference/apis-connectivity-kit/js-apis-bluetoothManager.md)接口实现蓝牙设备发现、配对、取消配对功能。
 
 ## 效果呈现
 
@@ -407,7 +407,7 @@
 
 
 ## 参考
-- [权限申请指导](../application-dev/security/accesstoken-guidelines.md)
-- [@ohos.bluetooth](../application-dev/reference/apis/js-apis-bluetooth.md)
+- [权限申请指导](../application-dev/security/AccessToken/declare-permissions.md)
+- [@ohos.bluetooth](../application-dev/reference/apis-connectivity-kit/js-apis-bluetooth.md)
 
 ​	

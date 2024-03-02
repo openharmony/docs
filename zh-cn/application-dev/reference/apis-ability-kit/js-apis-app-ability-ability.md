@@ -26,7 +26,7 @@ onConfigurationUpdate(newConfig: Configuration): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| newConfig | [Configuration](../apis/js-apis-app-ability-configuration.md) | 是 | 表示需要更新的配置信息。 |
+| newConfig | [Configuration](js-apis-app-ability-configuration.md) | 是 | 表示需要更新的配置信息。 |
 
 **示例：**
   ```ts
@@ -53,7 +53,7 @@ onMemoryLevel(level: AbilityConstant.MemoryLevel): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| level | [AbilityConstant.MemoryLevel](../apis/js-apis-app-ability-abilityConstant.md#abilityconstantmemorylevel) | 是 | 当前内存使用级别。|
+| level | [AbilityConstant.MemoryLevel](js-apis-app-ability-abilityConstant.md#abilityconstantmemorylevel) | 是 | 当前内存使用级别。|
 
 **示例：**
 

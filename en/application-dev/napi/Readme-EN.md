@@ -25,7 +25,6 @@
         - [Native Image Development](native-image-guidelines.md)
         - [Native Vsync Development](native-vsync-guidelines.md)
         - [Native Window Development](native-window-guidelines.md)
-        - [Vulkan Development](vulkan-guidelines.md)
     - Resource Management
         - [Raw File Development](rawfile-guidelines.md)
     - Resource Scheduling

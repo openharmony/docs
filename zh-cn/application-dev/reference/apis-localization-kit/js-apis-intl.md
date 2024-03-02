@@ -335,7 +335,7 @@ resolvedOptions(): DateTimeOptions
 
 ## DateTimeOptions
 
-表示时间日期格式化选项。
+表示时间日期格式化选项，参数取值和实现效果请参考[时间日期国际化](../../internationalization/i18n-time-date.md)。
 
 从API9开始，DateTimeOptions中的属性改为可选。
 从API version 11开始，该类型支持在ArkTS卡片中使用。

@@ -11,7 +11,7 @@
 
 ## 接口说明
 
-完整的 JS API 说明以及实例代码请参考：[GATT 接口](../../reference/apis/js-apis-bluetooth-ble.md)。
+完整的 JS API 说明以及实例代码请参考：[GATT 接口](../../reference/apis-connectivity-kit/js-apis-bluetooth-ble.md)。
 
 具体接口说明如下表。
 
@@ -216,7 +216,7 @@ console.info('disconnect success')
 clientDevice.close();
 console.info('close gattClientDevice success');
 ```
-9. 错误码请参见[蓝牙服务子系统错误码](../../reference/errorcodes/errorcode-bluetoothManager.md)。
+9. 错误码请参见[蓝牙服务子系统错误码](../../reference/apis-connectivity-kit/errorcode-bluetoothManager.md)。
 
 
 ### server端操作services和通知客户端信息
@@ -325,4 +325,4 @@ console.info('removeService success')
 gattServerInstance.close();
 console.info('close gattServerInstance success');
 ```
-8. 错误码请参见[蓝牙服务子系统错误码](../../reference/errorcodes/errorcode-bluetoothManager.md)。
+8. 错误码请参见[蓝牙服务子系统错误码](../../reference/apis-connectivity-kit/errorcode-bluetoothManager.md)。

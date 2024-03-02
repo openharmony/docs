@@ -4,7 +4,7 @@
 
 ## 接口说明
 
-API详细介绍请参见[ohos.file.securityLabel](../reference/apis/js-apis-file-securityLabel.md)。
+API详细介绍请参见[ohos.file.securityLabel](../reference/apis-core-file-kit/js-apis-file-securityLabel.md)。
 
 **表1** 设置文件数据等级
 

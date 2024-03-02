@@ -34,7 +34,7 @@ disallowAddLocalAccount(admin: Want, disallow: boolean, callback: AsyncCallback&
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
 | disallow    | boolean     | 是    | 是否禁止创建本地用户，true表示禁止创建，false表示允许创建。                  |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数。当接口调用成功，err为null，否则为错误对象。       |
 
@@ -81,7 +81,7 @@ disallowAddLocalAccount(admin: Want, disallow: boolean): Promise&lt;void&gt;
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
 | disallow    | boolean     | 是    | 是否禁止创建本地用户，true表示禁止创建，false表示允许创建。                  |
 
 **返回值：**
@@ -132,7 +132,7 @@ disallowAddOsAccountByUser(admin: Want, userId: number, disallow: boolean): void
 
 | 参数名   | 类型                                | 必填 | 说明                                                        |
 | -------- | ----------------------------------- | ---- | ----------------------------------------------------------- |
-| admin    | [Want](../apis/js-apis-app-ability-want.md) | 是   | 设备管理应用。                                              |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。                                              |
 | userId   | number                              | 是   | 用户ID，指定具体用户，取值范围：大于等于0。                 |
 | disallow | boolean                             | 是   | 是否禁止用户添加账号，true表示禁止添加，false表示允许添加。 |
 
@@ -178,7 +178,7 @@ isAddOsAccountByUserDisallowed(admin: Want, userId: number): boolean
 
 | 参数名 | 类型                                | 必填 | 说明                                        |
 | ------ | ----------------------------------- | ---- | ------------------------------------------- |
-| admin  | [Want](../apis/js-apis-app-ability-want.md) | 是   | 设备管理应用。                              |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。                              |
 | userId | number                              | 是   | 用户ID，指定具体用户，取值范围：大于等于0。 |
 
 **返回值：**
@@ -229,15 +229,15 @@ addOsAccount(admin: Want, name: string, type: osAccount.OsAccountType): osAccoun
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| admin  | [Want](../apis/js-apis-app-ability-want.md)                          | 是   | 设备管理应用。                                               |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md)                          | 是   | 设备管理应用。                                               |
 | name   | string                                                       | 是   | 用户ID，指定具体用户，取值范围：大于等于0。                  |
-| type   | [osAccount.OsAccountType](../apis/js-apis-osAccount.md#osaccounttype) | 是   | 要添加的账号的类型。<br/>取值范围：ADMIN、NORMAL、GUEST。<br/>· ADMIN：管理员帐号。<br/>· NORMAL：普通账号。<br/>· GUEST：访客账号。 |
+| type   | [osAccount.OsAccountType](../apis-basic-services-kit/js-apis-osAccount.md#osaccounttype) | 是   | 要添加的账号的类型。<br/>取值范围：ADMIN、NORMAL、GUEST。<br/>· ADMIN：管理员帐号。<br/>· NORMAL：普通账号。<br/>· GUEST：访客账号。 |
 
 **返回值：**
 
 | 类型                                                         | 说明                 |
 | ------------------------------------------------------------ | -------------------- |
-| [osAccount.OsAccountInfo](../apis/js-apis-osAccount.md#osaccountinfo) | 返回添加的账号信息。 |
+| [osAccount.OsAccountInfo](../apis-basic-services-kit/js-apis-osAccount.md#osaccounttype) | 返回添加的账号信息。 |
 
 **错误码**：
 

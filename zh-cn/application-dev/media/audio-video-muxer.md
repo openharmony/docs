@@ -25,7 +25,7 @@
 
 ## 开发指导
 
-详细的API说明请参考[API文档](../reference/native-apis/_a_v_muxer.md)。
+详细的API说明请参考[API文档](../reference/apis-avcodec-kit/_a_v_muxer.md)。
 
 > **说明：**
 >

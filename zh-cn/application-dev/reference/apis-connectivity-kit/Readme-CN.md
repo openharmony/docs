@@ -36,7 +36,7 @@
   - [@ohos.nfc.cardEmulation (标准NFC-cardEmulation)(系统接口)](js-apis-cardEmulation-sys.md)
   - [@ohos.nfc.tag (标准NFC-Tag)(系统接口)](js-apis-nfcTag-sys.md)
   - [@ohos.wifiManager (WLAN)(推荐)(系统接口)](js-apis-wifiManager-sys.md)
-   tag
+  - tag
     - [nfctech (标准NFC-Tag Nfc 技术)](js-apis-nfctech.md)
     - [tagSession (标准NFC-Tag TagSession)](js-apis-tagSession.md)
 - 错误码

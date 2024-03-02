@@ -124,7 +124,7 @@ setCurrentFunctions(funcs: FunctionType): Promise\<void\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[USB服务错误码](../errorcodes/errorcode-usb.md)。
+以下错误码的详细介绍请参见[USB服务错误码](errorcode-usb.md)。
 
 | 错误码ID | 错误信息                                           |
 | -------- | ---------------------------------------------------- |

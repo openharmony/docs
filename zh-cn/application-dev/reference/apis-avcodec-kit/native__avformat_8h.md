@@ -21,14 +21,14 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| typedef enum [OH_AVPixelFormat](_core.md#oh_avpixelformat)[OH_AVPixelFormat](_core.md#oh_avpixelformat) | 视频像素格式的枚举类。 | 
+| typedef enum [OH_AVPixelFormat](_core.md#oh_avpixelformat-1) [OH_AVPixelFormat](_core.md#oh_avpixelformat) | 视频像素格式的枚举类。 | 
 
 
 ### 枚举
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OH_AVPixelFormat](_core.md#oh_avpixelformat) {<br/>AV_PIXEL_FORMAT_YUVI420 = 1,<br/>AV_PIXEL_FORMAT_NV12 = 2,<br/>AV_PIXEL_FORMAT_NV21 = 3,<br/>AV_PIXEL_FORMAT_SURFACE_FORMAT = 4,<br/>AV_PIXEL_FORMAT_RGBA = 5<br/>} | 视频像素格式的枚举类 | 
+| [OH_AVPixelFormat](_core.md#oh_avpixelformat-1) {<br/>AV_PIXEL_FORMAT_YUVI420 = 1,<br/>AV_PIXEL_FORMAT_NV12 = 2,<br/>AV_PIXEL_FORMAT_NV21 = 3,<br/>AV_PIXEL_FORMAT_SURFACE_FORMAT = 4,<br/>AV_PIXEL_FORMAT_RGBA = 5<br/>} | 视频像素格式的枚举类 | 
 
 
 ### 函数

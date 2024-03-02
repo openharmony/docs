@@ -30,7 +30,7 @@ class Person {
 
 let buddy = new Person()
 // 假设代码中没有对name的赋值，例如没有调用"buddy.setName('John')"
-console.log(buddy.getName().length); // 运行时异常：name is undefined
+buddy.getName().length; // 运行时异常：name is undefined
 ```
 
 由于ArkTS要求属性显式初始化，代码应该像下面这样写。
@@ -51,7 +51,7 @@ class Person {
 
 let buddy = new Person()
 // 假设代码中没有对name的赋值，例如没有调用"buddy.setName('John')"
-console.log(buddy.getName().length); // 0, 没有运行时异常
+buddy.getName().length; // 0, 没有运行时异常
 ```
 
 如果`name`可以是`undefined`，那么它的类型应该在代码中被精确地标注。
@@ -78,9 +78,9 @@ let buddy = new Person()
 // 假设代码中没有对name的赋值，例如没有调用"buddy.setName('John')"
 
 // 编译时错误：编译器认为下一行代码有可能访问"undefined"的属性，报错
-console.log(buddy.getName().length);  // 编译失败
+buddy.getName().length;  // 编译失败
 
-console.log(buddy.getName()?.length); // 编译成功，没有运行时错误
+buddy.getName()?.length; // 编译成功，没有运行时错误
 ```
 
 ## 程序性能

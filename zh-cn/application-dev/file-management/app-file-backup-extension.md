@@ -14,7 +14,7 @@ BackupExtensionAbility，是[Stage模型](../application-models/stage-model-deve
 | application | BackupExtensionAbility | onRestore(bundleVersion: BundleVersion): void | 由Extension机制提供的，应由应用开发者扩展实现的触发恢复后的回调。 |
 | application | BackupExtensionAbility | context: ExtensionContext                     | BackupExtensionAbility的上下文环境，继承自Context。               |
 
-备份恢复扩展能力API的使用指导请参见[API参考](../reference/apis/js-apis-application-backupExtensionAbility.md#backupextensionability)。
+备份恢复扩展能力API的使用指导请参见[API参考](../reference/apis-core-file-kit/js-apis-application-backupExtensionAbility.md#backupextensionability)。
 
 ## 约束与限制
 
@@ -26,7 +26,7 @@ BackupExtensionAbility，是[Stage模型](../application-models/stage-model-deve
 
 1. 在应用配置文件`module.json5`中注册`extensionAbilities`相关配置
 
-   新增`"extensionAbilities"`字段，其中注册类型`"type"`设置为`"backup"`，元数据信息["metadata"](../reference/apis/js-apis-bundleManager-metadata.md)新增一个`"name"`为`"ohos.  extension. backup"`的条目。
+   新增`"extensionAbilities"`字段，其中注册类型`"type"`设置为`"backup"`，元数据信息["metadata"](../reference/apis-ability-kit/js-apis-bundleManager-metadata.md)新增一个`"name"`为`"ohos.  extension. backup"`的条目。
 
    BackupExtensionAbility配置文件示例：
 

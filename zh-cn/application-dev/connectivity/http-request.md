@@ -12,7 +12,7 @@ HTTP数据请求功能主要由http模块提供。
 
 权限申请请参考[声明权限](../security/AccessToken/declare-permissions.md)。
 
-涉及的接口如下表，具体的接口说明请参考[API文档](../reference/apis/js-apis-http.md)。
+涉及的接口如下表，具体的接口说明请参考[API文档](../reference/apis-network-kit/js-apis-http.md)。
 
 | 接口名                                    | 描述                                |
 | ----------------------------------------- | ----------------------------------- |
@@ -121,7 +121,7 @@ httpRequest.request(
 3. 调用该对象的on()方法，可以根据业务需要订阅HTTP响应头事件、HTTP流式响应数据接收事件、HTTP流式响应数据接收进度事件和HTTP流式响应数据接收完毕事件。
 4. 调用该对象的requestInStream()方法，传入http请求的url地址和可选参数，发起网络请求。
 5. 按照实际业务需要，可以解析返回的响应码。
-6. 调用该对象的off()方法，取消订阅相应事件。
+6. 调用该对象的off()方法，取消订阅响应事件。
 7. 当该请求使用完毕时，调用destroy()方法主动销毁。
 
 ```ts

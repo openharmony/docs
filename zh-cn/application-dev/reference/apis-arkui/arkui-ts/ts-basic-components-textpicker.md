@@ -52,24 +52,135 @@ TextPicker(options?: TextPickerOptions)
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
-| 名称 | 参数类型 | 描述 |
-| -------- | -------- | -------- |
-| defaultPickerItemHeight | number \| string | 设置Picker各选择项的高度。 |
-| disappearTextStyle<sup>10+</sup> | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 设置所有选项中最上和最下两个选项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br>size: '14fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
-| textStyle<sup>10+</sup> | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 设置所有选项中除了最上、最下及选中项以外的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '16fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
-| selectedTextStyle<sup>10+</sup> | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 设置选中项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff007dff',<br/>font: {<br/>size: '20vp', <br/>weight: FontWeight.Medium<br/>}<br/>} |
-| selectedIndex<sup>10+</sup> | number&nbsp;\|&nbsp;number[] | 设置默认选中项在数组中的索引值，优先级高于options中的选中值。 <br/>**说明**：单列数据选择器使用number类型。多列、多列联动数据选择器使用number[]类型。 |
-| canLoop<sup>10+</sup> | boolean | 设置是否可循环滚动，true：可循环，false：不可循环，默认值：true。 |
+### defaultPickerItemHeight
+
+defaultPickerItemHeight(value: number | string)
+
+设置Picker各选择项的高度。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                       | 必填 | 说明                   |
+| ------ | -------------------------- | ---- | ---------------------- |
+| value  | number&nbsp;\|&nbsp;string | 是   | Picker各选择项的高度。 |
+
+### disappearTextStyle<sup>10+</sup>
+
+disappearTextStyle(value: PickerTextStyle)
+
+设置所有选项中最上和最下两个选项的文本颜色、字号、字体粗细。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 是   | 所有选项中最上和最下两个选项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '14fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
+
+### textStyle<sup>10+</sup>
+
+textStyle(value: PickerTextStyle)
+
+设置所有选项中除了最上、最下及选中项以外的文本颜色、字号、字体粗细。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 是   | 所有选项中除了最上、最下及选中项以外的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '16fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
+
+### selectedTextStyle<sup>10+</sup>
+
+selectedTextStyle(value: PickerTextStyle)
+
+设置选中项的文本颜色、字号、字体粗细。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 是   | 选中项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff007dff',<br/>font: {<br/>size: '20vp', <br/>weight: FontWeight.Medium<br/>}<br/>} |
+
+### selectedIndex<sup>10+</sup>
+
+selectedIndex(value: number | number[])
+
+设置默认选中项在数组中的索引值，优先级高于options中的选中值。单列数据选择器使用number类型。多列、多列联动数据选择器使用number[]类型。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                         | 必填 | 说明                         |
+| ------ | ---------------------------- | ---- | ---------------------------- |
+| value  | number&nbsp;\|&nbsp;number[] | 是   | 默认选中项在数组中的索引值。 |
+
+### canLoop<sup>10+</sup>
+
+canLoop(value: boolean)
+
+设置是否可循环滚动。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| value  | boolean | 是   | 是否可循环滚动。<br/>true：可循环，false：不可循环。<br/>默认值：true |
 
 ## 事件
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
 
-| 名称 | 描述 |
-| -------- | -------- |
-| onAccept(callback: (value: string, index: number) => void)<sup>(deprecated) </sup>  | 点击弹窗中的“确定”按钮时触发该回调。<br/>-&nbsp;value:&nbsp;当前选中项的文本。<br/>-&nbsp;index:&nbsp;当前选中项的索引值。<br/> 从API version 10开始废弃。 <br/>**说明：** <br/>该事件仅在[文本滑动选择器弹窗](ts-methods-textpicker-dialog.md)中生效。|
-| onCancel(callback: () => void)<sup>(deprecated) </sup>  | 点击弹窗中的“取消”按钮时触发该回调。<br/> 从API version 10开始废弃。<br/>**说明：** <br/>该事件仅在[文本滑动选择器弹窗](ts-methods-textpicker-dialog.md)中生效。 |
-| onChange(callback:&nbsp;(value:&nbsp;string&nbsp;\|&nbsp;string[]<sup>10+</sup>,&nbsp;index:&nbsp;number&nbsp;\|&nbsp;number[]<sup>10+</sup>)&nbsp;=&gt;&nbsp;void) | 滑动选中TextPicker文本内容后，触发该回调。<br/>-&nbsp;value:&nbsp;当前选中项的文本。（多列的情况，value为数组类型。）<br/>-&nbsp;index:&nbsp;当前选中项的索引值。（多列的情况，index为数组类型。）<br/>**说明**：当显示文本或图片加文本列表时，value值为选中项中的文本值，当显示图片列表时，value值为空。 |
+### onAccept<sup>(deprecated) </sup>
+
+onAccept(callback: (value: string, index: number) => void)
+
+点击弹窗中的“确定”按钮时触发该回调。该事件仅在[文本滑动选择器弹窗](ts-methods-textpicker-dialog.md)中生效。
+
+从API version 10开始废弃。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                 |
+| ------ | ------- | ---- | -------------------- |
+| value  | boolean | 是   | 当前选中项的文本。   |
+| index  | number  | 是   | 当前选中项的索引值。 |
+
+## onCancel<sup>(deprecated) </sup>
+
+onCancel(callback: () => void)
+
+点击弹窗中的“取消”按钮时触发该回调。该事件仅在[文本滑动选择器弹窗](ts-methods-textpicker-dialog.md)中生效。
+
+从API version 10开始废弃。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### onChange
+
+onChange(callback:&nbsp;(value:&nbsp;string&nbsp;\|&nbsp;string[],&nbsp;index:&nbsp;number&nbsp;\|&nbsp;number[])&nbsp;=&gt;&nbsp;void)
+
+滑动选中TextPicker文本内容后，触发该回调。当显示文本或图片加文本列表时，value值为选中项中的文本值，当显示图片列表时，value值为空。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                       | 必填 | 说明                                              |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------------- |
+| value  | string&nbsp;\|&nbsp;string[]<sup>10+</sup> | 是   | 当前选中项的文本。多列的情况，value为数组类型。   |
+| index  | number&nbsp;\|&nbsp;number[]<sup>10+</sup> | 是   | 当前选中项的索引值。多列的情况，index为数组类型。 |
 
 
 ## 示例

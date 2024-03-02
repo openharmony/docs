@@ -52,7 +52,7 @@ bind(address: NetAddress, callback: AsyncCallback\<void\>): void
 | 参数名   | 类型                               | 必填 | 说明                                                   |
 | -------- | ---------------------------------- | ---- | ------------------------------------------------------ |
 | address  | [NetAddress](#netaddress) | 是   | 目标地址信息，参考[NetAddress](#netaddress)。 |
-| callback | AsyncCallback\<void\>              | 是   | 回调函数。                                             |
+| callback | AsyncCallback\<void\>              | 是   | 回调函数。成功返回空，失败返回错误码、错误信息。        |
 
 **错误码：**
 
@@ -145,7 +145,7 @@ send(options: UDPSendOptions, callback: AsyncCallback\<void\>): void
 | 参数名   | 类型                                     | 必填 | 说明                                                         |
 | -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
 | options  | [UDPSendOptions](#udpsendoptions) | 是   | UDPSocket发送参数，参考[UDPSendOptions](#udpsendoptions)。 |
-| callback | AsyncCallback\<void\>                    | 是   | 回调函数。                                                   |
+| callback | AsyncCallback\<void\>                    | 是   | 回调函数。成功返回空，失败返回错误码、错误信息。                                                  |
 
 **错误码：**
 
@@ -245,7 +245,7 @@ close(callback: AsyncCallback\<void\>): void
 
 | 参数名   | 类型                  | 必填 | 说明       |
 | -------- | --------------------- | ---- | ---------- |
-| callback | AsyncCallback\<void\> | 是   | 回调函数。 |
+| callback | AsyncCallback\<void\> | 是   | 回调函数。关闭UDPSocket连接后触发回调函数。 |
 
 **示例：**
 
@@ -310,7 +310,7 @@ getState(callback: AsyncCallback\<SocketStateBase\>): void
 
 | 参数名   | 类型                                                   | 必填 | 说明       |
 | -------- | ------------------------------------------------------ | ---- | ---------- |
-| callback | AsyncCallback<[SocketStateBase](#socketstatebase)> | 是   | 回调函数。 |
+| callback | AsyncCallback\<[SocketStateBase](#socketstatebase)\> | 是   | 回调函数。成功返回UDPSocket状态信息，失败返回错误码、错误信息。 |
 
 **错误码：**
 
@@ -407,7 +407,7 @@ setExtraOptions(options: UDPExtraOptions, callback: AsyncCallback\<void\>): void
 | 参数名   | 类型                                     | 必填 | 说明                                                         |
 | -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
 | options  | [UDPExtraOptions](#udpextraoptions) | 是   | UDPSocket连接的其他属性，参考[UDPExtraOptions](#udpextraoptions)。 |
-| callback | AsyncCallback\<void\>                    | 是   | 回调函数。                                                   |
+| callback | AsyncCallback\<void\>                    | 是   | 回调函数。成功返回空，失败返回错误码、错误信息。                    |
 
 **错误码：**
 
@@ -529,7 +529,7 @@ on(type: 'message', callback: Callback\<SocketMessageInfo\>): void
 | 参数名   | 类型                                                         | 必填 | 说明                                      |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | type     | string                                                       | 是   | 订阅的事件类型。'message'：接收消息事件。 |
-| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | 是   | 回调函数。                                |
+| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | 是   | 回调函数。返回订阅某类事件后UDPSocket连接成功的状态信息。       |
 
 **示例：**
 
@@ -557,7 +557,7 @@ udp.on('message', (value: SocketInfo) => {
 
 ### off('message')
 
-off(type: 'message', callback?: Callback\<[SocketMessageInfo]\>): void
+off(type: 'message', callback?: Callback\<SocketMessageInfo\>): void
 
 取消订阅UDPSocket连接的接收消息事件。使用callback方式作为异步方法。
 
@@ -571,7 +571,7 @@ off(type: 'message', callback?: Callback\<[SocketMessageInfo]\>): void
 | 参数名   | 类型                                                         | 必填 | 说明                                      |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | type     | string                                                       | 是   | 订阅的事件类型。'message'：接收消息事件。 |
-| callback | Callback<[SocketMessageInfo](#socketmessageinfo11)> | 否   | 回调函数。                               |
+| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | 否   | 回调函数。返回取消订阅某类事件后UDPSocket连接的状态信息。                              |
 
 **示例：**
 
@@ -613,7 +613,7 @@ on(type: 'listening' | 'close', callback: Callback\<void\>): void
 | 参数名   | 类型             | 必填 | 说明                                                         |
 | -------- | ---------------- | ---- | ------------------------------------------------------------ |
 | type     | string           | 是   | 订阅的事件类型。<br />- 'listening'：数据包消息事件。<br />- 'close'：关闭事件。 |
-| callback | Callback\<void\> | 是   | 回调函数。                                                   |
+| callback | Callback\<void\> | 是   | 回调函数。UDPSocket连接的某类数据包消息事件或关闭事件发生变化后触发回调函数。           |
 
 **示例：**
 
@@ -645,7 +645,7 @@ off(type: 'listening' | 'close', callback?: Callback\<void\>): void
 | 参数名   | 类型             | 必填 | 说明                                                         |
 | -------- | ---------------- | ---- | ------------------------------------------------------------ |
 | type     | string           | 是   | 订阅事件类型。<br />- 'listening'：数据包消息事件。<br />- 'close'：关闭事件。 |
-| callback | Callback\<void\> | 否   | 回调函数。                                                   |
+| callback | Callback\<void\> | 否   | 回调函数。取消订阅UDPSocket连接的数据包消息事件或关闭事件后触发回调函数。     |
 
 **示例：**
 
@@ -682,7 +682,7 @@ on(type: 'error', callback: ErrorCallback): void
 | 参数名   | 类型          | 必填 | 说明                                 |
 | -------- | ------------- | ---- | ------------------------------------ |
 | type     | string        | 是   | 订阅的事件类型。'error'：error事件。 |
-| callback | ErrorCallback | 是   | 回调函数。                           |
+| callback | ErrorCallback | 是   | 回调函数。UDPSocket连接发生error事件后触发回调函数。                      |
 
 **示例：**
 
@@ -711,7 +711,7 @@ off(type: 'error', callback?: ErrorCallback): void
 | 参数名   | 类型          | 必填 | 说明                                 |
 | -------- | ------------- | ---- | ------------------------------------ |
 | type     | string        | 是   | 订阅的事件类型。'error'：error事件。 |
-| callback | ErrorCallback | 否   | 回调函数。                           |
+| callback | ErrorCallback | 否   | 回调函数。UDPSocket连接发生error事件后。      |
 
 **示例：**
 
@@ -765,6 +765,17 @@ UDPSocket连接的其他属性。
 | reuseAddress      | boolean | 否   | 是否重用地址。默认为false。      |
 | socketTimeout     | number  | 否   | 套接字超时时间，单位毫秒（ms），默认为0。 |
 
+## SocketMessageInfo<sup>11+</sup>
+
+socket连接信息
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+| 名称        | 类型   | 必填 | 说明                                  |
+| ---------- | ------ | ---- | ------------------------------------- |
+| message    | ArrayBuffer | 是   | 接收的事件消息。 |
+| remoteInfo | [SocketRemoteInfo](#socketremoteinfo) | 是   | socket连接信息。 |
+
 ## SocketStateBase
 
 Socket的状态信息。
@@ -794,7 +805,7 @@ Socket的连接信息。
 
 UDP 其余错误码映射形式为：2301000 + Linux内核错误码。
 
-错误码的详细介绍参见[Socket错误码](../errorcodes/errorcode-net-socket.md)
+错误码的详细介绍参见[Socket错误码](errorcode-net-socket.md)
 
 ## socket.constructMulticastSocketInstance<sup>11+</sup>
 
@@ -839,7 +850,7 @@ addMembership(multicastAddress: NetAddress, callback: AsyncCallback\<void\>): vo
 | 参数名             | 类型                           | 必填 | 说明                                       |
 | ----------------- | ----------------------------- | ---- | ----------------------------------------- |
 | multicastAddress  | [NetAddress](#netaddress)     |  是  | 目标地址信息，参考[NetAddress](#netaddress)。 |
-| callback          | AsyncCallback\<void\>         |  是  | 回调函数。                                  |
+| callback          | AsyncCallback\<void\>         |  是  | 回调函数。失败返回错误码、错误信息。                                 |
 
 **错误码：**
 
@@ -939,7 +950,7 @@ dropMembership(multicastAddress: NetAddress, callback: AsyncCallback\<void\>): v
 | 参数名             | 类型                           | 必填 | 说明                                         |
 | ----------------- | ----------------------------- | ---- | ------------------------------------------- |
 | multicastAddress  | [NetAddress](#netaddress)     |  是  | 目标地址信息，参考[NetAddress](#netaddress)。   |
-| callback          | AsyncCallback\<void\>         |  是  | 回调函数。                                    |
+| callback          | AsyncCallback\<void\>         |  是  | 回调函数。失败返回错误码、错误信息。|
 
 **错误码：**
 
@@ -1038,7 +1049,7 @@ setMulticastTTL(ttl: number, callback: AsyncCallback\<void\>): void;
 | 参数名         | 类型                   | 必填 | 说明                         |
 | ------------- | --------------------- | ---- | ----------------------------- |
 | ttl           | number                |  是  | ttl设置数值，类型为数字number。 |
-| callback      | AsyncCallback\<void\> |  是  | 回调函数。                     |
+| callback      | AsyncCallback\<void\> |  是  | 回调函数。失败返回错误码、错误信息。    |
 
 **错误码：**
 
@@ -1127,7 +1138,7 @@ getMulticastTTL(callback: AsyncCallback\<number\>): void;
 
 | 参数名         | 类型                     | 必填 | 说明                         |
 | ------------- | ----------------------- | ---- | --------------------------- |
-| callback      | AsyncCallback\<number\> |  是  | 回调函数。                    |
+| callback      | AsyncCallback\<number\> |  是  | 回调函数。失败返回错误码、错误信息。  |
 
 **错误码：**
 
@@ -1207,7 +1218,7 @@ setLoopbackMode(flag: boolean, callback: AsyncCallback\<void\>): void;
 | 参数名         | 类型                  | 必填 | 说明                         |
 | ------------- | --------------------- | ---- | ---------------------------- |
 | flag          | boolean               |  是  | ttl设置数值，类型为boolen 。  |
-| callback      | AsyncCallback\<void\> |  是  | 回调函数。                    |
+| callback      | AsyncCallback\<void\> |  是  | 回调函数。失败返回错误码、错误信息。    |
 
 **错误码：**
 
@@ -1291,7 +1302,7 @@ getLoopbackMode(callback: AsyncCallback\<boolean\>): void;
 
 | 参数名         | 类型                     | 必填 | 说明                         |
 | ------------- | ----------------------- | ---- | --------------------------- |
-| callback      | AsyncCallback\<number\> |  是  | 回调函数。                    |
+| callback      | AsyncCallback\<number\> |  是  | 回调函数。失败返回错误码、错误信息。  |
 
 **错误码：**
 
@@ -1370,7 +1381,7 @@ send(options: UDPSendOptions, callback: AsyncCallback\<void\>): void
 | 参数名   | 类型                                | 必填 | 说明                                                         |
 | -------- | --------------------------------- | ---- | ------------------------------------------------------------ |
 | options  | [UDPSendOptions](#udpsendoptions) | 是   | UDPSocket发送参数，参考[UDPSendOptions](#udpsendoptions)。 |
-| callback | AsyncCallback\<void\>             | 是   | 回调函数。                                                   |
+| callback | AsyncCallback\<void\>             | 是   | 回调函数。失败返回错误码、错误信息。|
 
 **错误码：**
 
@@ -1463,7 +1474,7 @@ on(type: 'message', callback: Callback\<SocketMessageInfo\>): void
 | 参数名   | 类型                                                                                    | 必填 | 说明                                 |
 | -------- | ------------------------------------------------------------------------------------- | ---- | ----------------------------------- |
 | type     | string                                                                                | 是   | 订阅的事件类型。'message'：接收消息事件。 |
-| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | 是   | 回调函数。                            |
+| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | 是   | 回调函数。返回MulticastSocket订阅后状态信息。                          |
 
 **示例：**
 
@@ -1495,8 +1506,7 @@ off(type: 'message', callback?: Callback\<SocketMessageInfo\>): void
 | 参数名   | 类型                                                                                  | 必填 | 说明                                 |
 | -------- | ----------------------------------------------------------------------------------- | ---- | ----------------------------------- |
 | type     | string                                                                              | 是   | 订阅的事件类型。'message'：接收消息事件。 |
-| callback | Callback<[SocketMessageInfo](#socketmessageinfo11)> | 否   | 回调函数。                            |
-
+| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | 否   | 回调函数。返回MulticastSocket取消订阅后状态信息。|
 **示例：**
 
 ```ts
@@ -1560,7 +1570,7 @@ bind(address: NetAddress, callback: AsyncCallback\<void\>): void
 | 参数名   | 类型                               | 必填 | 说明                                                   |
 | -------- | ---------------------------------- | ---- | ------------------------------------------------------ |
 | address  | [NetAddress](#netaddress) | 是   | 目标地址信息，参考[NetAddress](#netaddress)。 |
-| callback | AsyncCallback\<void\>              | 是   | 回调函数。                                             |
+| callback | AsyncCallback\<void\>              | 是   | 回调函数。失败返回错误、错误信息。                   |
 
 **错误码：**
 
@@ -1657,7 +1667,7 @@ connect(options: TCPConnectOptions, callback: AsyncCallback\<void\>): void
 | 参数名   | 类型                                     | 必填 | 说明                                                         |
 | -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
 | options  | [TCPConnectOptions](#tcpconnectoptions) | 是   | TCPSocket连接的参数，参考[TCPConnectOptions](#tcpconnectoptions)。 |
-| callback | AsyncCallback\<void\>                    | 是   | 回调函数。                                                   |
+| callback | AsyncCallback\<void\>                    | 是   | 回调函数。失败返回错误码、错误信息。                      |
 
 **错误码：**
 
@@ -1760,7 +1770,7 @@ send(options: TCPSendOptions, callback: AsyncCallback\<void\>): void
 | 参数名   | 类型                                    | 必填 | 说明                                                         |
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
 | options  | [TCPSendOptions](#tcpsendoptions) | 是   | TCPSocket发送请求的参数，参考[TCPSendOptions](#tcpsendoptions)。 |
-| callback | AsyncCallback\<void\>                   | 是   | 回调函数。                                                   |
+| callback | AsyncCallback\<void\>                   | 是   | 回调函数。失败返回错误码、错误信息。                           |
 
 **错误码：**
 
@@ -1871,7 +1881,7 @@ close(callback: AsyncCallback\<void\>): void
 
 | 参数名   | 类型                  | 必填 | 说明       |
 | -------- | --------------------- | ---- | ---------- |
-| callback | AsyncCallback\<void\> | 是   | 回调函数。 |
+| callback | AsyncCallback\<void\> | 是   | 回调函数。失败返回错误码、错误信息。 |
 
 **错误码：**
 
@@ -1947,7 +1957,7 @@ getRemoteAddress(callback: AsyncCallback\<NetAddress\>): void
 
 | 参数名   | 类型                                              | 必填 | 说明       |
 | -------- | ------------------------------------------------- | ---- | ---------- |
-| callback | AsyncCallback<[NetAddress](#netaddress)> | 是   | 回调函数。 |
+| callback | AsyncCallback\<[NetAddress](#netaddress)\> | 是   | 回调函数。成功时返回对端Socket地址，失败时返回错误码、错误信息。 |
 
 **错误码：**
 
@@ -2049,7 +2059,7 @@ getState(callback: AsyncCallback\<SocketStateBase\>): void
 
 | 参数名   | 类型                                                   | 必填 | 说明       |
 | -------- | ------------------------------------------------------ | ---- | ---------- |
-| callback | AsyncCallback<[SocketStateBase](#socketstatebase)> | 是   | 回调函数。 |
+| callback | AsyncCallback\<[SocketStateBase](#socketstatebase)\> | 是   | 回调函数。成功时获取TCPSocket状态，失败时返回错误码、错误信息。 |
 
 **错误码：**
 
@@ -2232,7 +2242,7 @@ setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
 | 参数名   | 类型                                      | 必填 | 说明                                                         |
 | -------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | options  | [TCPExtraOptions](#tcpextraoptions) | 是   | TCPSocket连接的其他属性，参考[TCPExtraOptions](#tcpextraoptions)。 |
-| callback | AsyncCallback\<void\>                     | 是   | 回调函数。                                                   |
+| callback | AsyncCallback\<void\>                     | 是   | 回调函数。失败时返回错误码、错误信息。               |
 
 **错误码：**
 
@@ -2354,7 +2364,7 @@ on(type: 'message', callback: Callback<SocketMessageInfo\>): void
 | 参数名   | 类型                                                         | 必填 | 说明                                      |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | type     | string                                                       | 是   | 订阅的事件类型。'message'：接收消息事件。 |
-| callback | Callback<[SocketMessageInfo](#socketmessageinfo11)> | 是   | 回调函数。                               |
+| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | 是   | 回调函数。返回TCPSocket连接信息。                          |
 
 **示例：**
 
@@ -2395,7 +2405,7 @@ off(type: 'message', callback?: Callback<SocketMessageInfo\>): void
 | 参数名   | 类型                                                         | 必填 | 说明                                      |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | type     | string                                                       | 是   | 订阅的事件类型。'message'：接收消息事件。 |
-| callback | Callback<[SocketMessageInfo](#socketmessageinfo11)> | 否   | 回调函数。                               |
+| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | 否   | 回调函数。取消订阅TCPSocket连接的接收消息事件时触发回调函数。                             |
 
 **示例：**
 
@@ -2437,7 +2447,7 @@ on(type: 'connect' | 'close', callback: Callback\<void\>): void
 | 参数名   | 类型             | 必填 | 说明                                                         |
 | -------- | ---------------- | ---- | ------------------------------------------------------------ |
 | type     | string           | 是   | 订阅的事件类型。<br />- 'connect'：连接事件。<br />- 'close'：关闭事件。 |
-| callback | Callback\<void\> | 是   | 回调函数。                                                   |
+| callback | Callback\<void\> | 是   | 回调函数。TCPSocket的连接事件或关闭事件触发时调用回调函数。            |
 
 **示例：**
 
@@ -2469,7 +2479,7 @@ off(type: 'connect' | 'close', callback?: Callback\<void\>): void
 | 参数名   | 类型             | 必填 | 说明                                                         |
 | -------- | ---------------- | ---- | ------------------------------------------------------------ |
 | type     | string           | 是   | 订阅的事件类型。<br />- 'connect'：连接事件。<br />- 'close'：关闭事件。 |
-| callback | Callback\<void\> | 否   | 回调函数。                                                   |
+| callback | Callback\<void\> | 否   | 回调函数。TCPSocket的连接事件或关闭事件触发时调用回调函数。                        |
 
 **示例：**
 
@@ -2506,7 +2516,7 @@ on(type: 'error', callback: ErrorCallback): void
 | 参数名   | 类型          | 必填 | 说明                                 |
 | -------- | ------------- | ---- | ------------------------------------ |
 | type     | string        | 是   | 订阅的事件类型。'error'：error事件。 |
-| callback | ErrorCallback | 是   | 回调函数。                           |
+| callback | ErrorCallback | 是   | 回调函数。TCPSocket连接订阅的某类error事件触发时调用回调函数。                           |
 
 **示例：**
 
@@ -2535,7 +2545,7 @@ off(type: 'error', callback?: ErrorCallback): void
 | 参数名   | 类型          | 必填 | 说明                                 |
 | -------- | ------------- | ---- | ------------------------------------ |
 | type     | string        | 是   | 订阅的事件类型。'error'：error事件。 |
-| callback | ErrorCallback | 否   | 回调函数。                           |
+| callback | ErrorCallback | 否   | 回调函数。TCPSocket连接取消订阅的某类error事件触发时调用回调函数。                           |
 
 **示例：**
 
@@ -2634,7 +2644,7 @@ listen(address: NetAddress, callback: AsyncCallback\<void\>): void
 | 参数名   | 类型                      | 必填 | 说明                                          |
 | -------- | ------------------------- | ---- | --------------------------------------------- |
 | address  | [NetAddress](#netaddress) | 是   | 目标地址信息。 |
-| callback | AsyncCallback\<void\>     | 是   | 回调函数。                                    |
+| callback | AsyncCallback\<void\>     | 是   | 回调函数。失败时返回错误码、错误信息。    |
 
 **错误码：**
 
@@ -2740,7 +2750,7 @@ getState(callback: AsyncCallback\<SocketStateBase\>): void
 
 | 参数名   | 类型                                               | 必填 | 说明       |
 | -------- | -------------------------------------------------- | ---- | ---------- |
-| callback | AsyncCallback<[SocketStateBase](#socketstatebase)> | 是   | 回调函数。 |
+| callback | AsyncCallback\<[SocketStateBase](#socketstatebase)\> | 是   | 回调函数。失败时返回错误码、错误信息。 |
 
 **错误码：**
 
@@ -2848,7 +2858,7 @@ setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
 | 参数名   | 类型                                | 必填 | 说明                                                         |
 | -------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
 | options  | [TCPExtraOptions](#tcpextraoptions) | 是   | TCPSocketServer连接的其他属性。 |
-| callback | AsyncCallback\<void\>               | 是   | 回调函数。                                                   |
+| callback | AsyncCallback\<void\>               | 是   | 回调函数。失败时返回错误码、错误信息。                |
 
 **错误码：**
 
@@ -2983,7 +2993,7 @@ on(type: 'connect', callback: Callback\<TCPSocketConnection\>): void
 | 参数名   | 类型                            | 必填 | 说明                                  |
 | -------- | ------------------------------- | ---- | ------------------------------------- |
 | type     | string                          | 是   | 订阅的事件类型。'connect'：连接事件。 |
-| callback | Callback<[TCPSocketConnection](#tcpsocketconnection10)> | 是   | 回调函数。                            |
+| callback | Callback\<[TCPSocketConnection](#tcpsocketconnection10)\> | 是   | 回调函数。失败时返回错误码、错误信息。       |
 
 **错误码：**
 
@@ -3017,7 +3027,7 @@ off(type: 'connect', callback?: Callback\<TCPSocketConnection\>): void
 | 参数名   | 类型                            | 必填 | 说明                                  |
 | -------- | ------------------------------- | ---- | ------------------------------------- |
 | type     | string                          | 是   | 订阅的事件类型。'connect'：连接事件。 |
-| callback | Callback<[TCPSocketConnection](#tcpsocketconnection10)> | 否   | 回调函数。                            |
+| callback | Callback\<[TCPSocketConnection](#tcpsocketconnection10)\> | 否   | 回调函数。失败时返回错误码、错误信息。 |
 
 **错误码：**
 
@@ -3055,7 +3065,7 @@ on(type: 'error', callback: ErrorCallback): void
 | 参数名   | 类型          | 必填 | 说明                                 |
 | -------- | ------------- | ---- | ------------------------------------ |
 | type     | string        | 是   | 订阅的事件类型。'error'：error事件。 |
-| callback | ErrorCallback | 是   | 回调函数。                           |
+| callback | ErrorCallback | 是   | 回调函数。失败时返回错误码、错误信息。|
 
 **错误码：**
 
@@ -3090,7 +3100,7 @@ off(type: 'error', callback?: ErrorCallback): void
 | 参数名   | 类型          | 必填 | 说明                                 |
 | -------- | ------------- | ---- | ------------------------------------ |
 | type     | string        | 是   | 订阅的事件类型。'error'：error事件。 |
-| callback | ErrorCallback | 否   | 回调函数。                           |
+| callback | ErrorCallback | 否   | 回调函数。失败时返回错误码、错误信息。                           |
 
 **错误码：**
 
@@ -3146,7 +3156,7 @@ send(options: TCPSendOptions, callback: AsyncCallback\<void\>): void
 | 参数名   | 类型                              | 必填 | 说明                                                         |
 | -------- | --------------------------------- | ---- | ------------------------------------------------------------ |
 | options  | [TCPSendOptions](#tcpsendoptions) | 是   | TCPSocketConnection发送请求的参数。 |
-| callback | AsyncCallback\<void\>             | 是   | 回调函数。                                                   |
+| callback | AsyncCallback\<void\>             | 是   | 回调函数。失败时返回错误码、错误信息。             |
 
 **错误码：**
 
@@ -3238,7 +3248,7 @@ close(callback: AsyncCallback\<void\>): void
 
 | 参数名   | 类型                  | 必填 | 说明       |
 | -------- | --------------------- | ---- | ---------- |
-| callback | AsyncCallback\<void\> | 是   | 回调函数。 |
+| callback | AsyncCallback\<void\> | 是   | 回调函数。失败时返回错误码、错误信息。 |
 
 **错误码：**
 
@@ -3320,7 +3330,7 @@ getRemoteAddress(callback: AsyncCallback\<NetAddress\>): void
 
 | 参数名   | 类型                                     | 必填 | 说明       |
 | -------- | ---------------------------------------- | ---- | ---------- |
-| callback | AsyncCallback<[NetAddress](#netaddress)> | 是   | 回调函数。 |
+| callback | AsyncCallback\<[NetAddress](#netaddress)\> | 是   | 回调函数。失败时返回错误码、错误信息。 |
 
 **错误码：**
 
@@ -3403,7 +3413,7 @@ on(type: 'message', callback: Callback<SocketMessageInfo\>): void
 | 参数名   | 类型                                                         | 必填 | 说明                                      |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | type     | string                                                       | 是   | 订阅的事件类型。'message'：接收消息事件。 |
-| callback | Callback<[SocketMessageInfo](#socketmessageinfo11)> | 是   | 回调函数。                                |
+| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | 是   | 回调函数。失败时返回错误码、错误信息。         |
 
 **错误码：**
 
@@ -3439,7 +3449,7 @@ tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
 
 ### off('message')<sup>10+</sup>
 
-off(type: 'message', callback?: Callback<[SocketMessageInfo]\>): void
+off(type: 'message', callback?: Callback<SocketMessageInfo\>): void
 
 取消订阅TCPSocketConnection连接的接收消息事件。使用callback方式作为异步方法。
 
@@ -3453,7 +3463,7 @@ off(type: 'message', callback?: Callback<[SocketMessageInfo]\>): void
 | 参数名   | 类型                                                         | 必填 | 说明                                      |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | type     | string                                                       | 是   | 订阅的事件类型。'message'：接收消息事件。 |
-| callback | Callback<[SocketMessageInfo](#socketmessageinfo11)> | 否   | 回调函数。                              |
+| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | 否   | 回调函数。失败时返回错误码、错误信息。        |
 
 **错误码：**
 
@@ -3503,7 +3513,7 @@ on(type: 'close', callback: Callback\<void\>): void
 | 参数名   | 类型             | 必填 | 说明                                |
 | -------- | ---------------- | ---- | ----------------------------------- |
 | type     | string           | 是   | 订阅的事件类型。'close'：关闭事件。 |
-| callback | Callback\<void\> | 是   | 回调函数。                          |
+| callback | Callback\<void\> | 是   | 回调函数。失败时返回错误码、错误信息。        |
 
 **错误码：**
 
@@ -3540,7 +3550,7 @@ off(type: 'close', callback?: Callback\<void\>): void
 | 参数名   | 类型             | 必填 | 说明                                |
 | -------- | ---------------- | ---- | ----------------------------------- |
 | type     | string           | 是   | 订阅的事件类型。'close'：关闭事件。 |
-| callback | Callback\<void\> | 否   | 回调函数。                          |
+| callback | Callback\<void\> | 否   | 回调函数。失败时返回错误码、错误信息。    |
 
 **错误码：**
 
@@ -3577,7 +3587,7 @@ on(type: 'error', callback: ErrorCallback): void
 | 参数名   | 类型          | 必填 | 说明                                 |
 | -------- | ------------- | ---- | ------------------------------------ |
 | type     | string        | 是   | 订阅的事件类型。'error'：error事件。 |
-| callback | ErrorCallback | 是   | 回调函数。                           |
+| callback | ErrorCallback | 是   | 回调函数。失败时返回错误码、错误信息。    |
 
 **错误码：**
 
@@ -3614,7 +3624,7 @@ off(type: 'error', callback?: ErrorCallback): void
 | 参数名   | 类型          | 必填 | 说明                                 |
 | -------- | ------------- | ---- | ------------------------------------ |
 | type     | string        | 是   | 订阅的事件类型。'error'：error事件。 |
-| callback | ErrorCallback | 否   | 回调函数。                           |
+| callback | ErrorCallback | 否   | 回调函数。失败时返回错误码、错误信息。  |
 
 **错误码：**
 
@@ -3643,7 +3653,7 @@ tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
 
 TCP 其余错误码映射形式为：2301000 + Linux内核错误码。
 
-错误码的详细介绍参见[Socket错误码](../errorcodes/errorcode-net-socket.md)
+错误码的详细介绍参见[Socket错误码](errorcode-net-socket.md)
 
 ## socket.constructLocalSocketInstance<sup>11+</sup>
 
@@ -3703,8 +3713,9 @@ bind(address: LocalAddress): Promise\<void\>;
 import socket from "@ohos.net.socket";
 
 let client = socket.constructLocalSocketInstance()
+let sandboxPath: string = getContext(this).filesDir + '/testSocket'
 let address : socket.LocalAddress = {
-  address: '/tmp/testSocket'
+  address: sandboxPath
 }
 client.bind(address).then(() => {
   console.log('bind success')
@@ -3752,9 +3763,10 @@ connect(options: LocalConnectOptions): Promise\<void\>
 import socket from "@ohos.net.socket";
 
 let client = socket.constructLocalSocketInstance();
+let sandboxPath: string = getContext(this).filesDir + '/testSocket'
 let connectOpt: socket.LocalConnectOptions = {
   address: {
-    address: '/tmp/testSocket'
+    address: sandboxPath
   },
   timeout: 6000
 }
@@ -3801,9 +3813,10 @@ send(options: LocalSendOptions): Promise\<void\>
 import socket from "@ohos.net.socket"
 
 let client: socket.LocalSocket = socket.constructLocalSocketInstance()
+let sandboxPath: string = getContext(this).filesDir + '/testSocket'
 let connectOpt: socket.LocalConnectOptions = {
   address: {
-    address: '/tmp/testSocket'
+    address: sandboxPath
   },
   timeout: 6000
 }
@@ -3877,10 +3890,10 @@ getState(): Promise\<SocketStateBase\>
 ```ts
 import socket from "@ohos.net.socket";
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
-
+let sandboxPath: string = getContext(this).filesDir + '/testSocket'
 let connectOpt: socket.LocalConnectOptions = {
   address: {
-    address: '/tmp/testSocket'
+    address: sandboxPath
   },
   timeout: 6000
 }
@@ -3919,9 +3932,10 @@ getSocketFd(): Promise\<number\>
 ```ts
 import socket from "@ohos.net.socket";
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
+let sandboxPath: string = getContext(this).filesDir + '/testSocket'
 let connectOpt: socket.LocalConnectOptions = {
   address: {
-    address: '/tmp/testSocket'
+    address: sandboxPath
   },
   timeout: 6000
 }
@@ -3952,7 +3966,7 @@ setExtraOptions(options: ExtraOptionsBase): Promise\<void\>
 
 | 参数名  | 类型                                      | 必填 | 说明                                                         |
 | ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [ExtraOptionsBase](#extraoptionsbase10) | 是   | LocalSocket连接的其他属性，参考[ExtraOptionsBase](#extraoptionsbase10)。 |
+| options | [ExtraOptionsBase](#extraoptionsbase7) | 是   | LocalSocket连接的其他属性，参考[ExtraOptionsBase](#extraoptionsbase7)。 |
 
 **返回值：**
 
@@ -3965,16 +3979,17 @@ setExtraOptions(options: ExtraOptionsBase): Promise\<void\>
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
 | 401     | Parameter error.        |
-| 201     | Permission denied.      |
+| 2301009 | Bad file descriptor.    |
 
 **示例：**
 
 ```ts
 import socket from "@ohos.net.socket";
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
+let sandboxPath: string = getContext(this).filesDir + '/testSocket'
 let connectOpt: socket.LocalConnectOptions = {
   address: {
-    address: '/tmp/testSocket'
+    address: sandboxPath
   },
   timeout: 6000
 }
@@ -4010,7 +4025,7 @@ getExtraOptions(): Promise\<ExtraOptionsBase\>;
 
 | 类型                         | 说明                                      |
 | :-------------------------- | :---------------------------------------- |
-| Promise\<[ExtraOptionsBase](#extraoptionsbase10)\> | 以Promise形式返回设置LocalSocket套接字的属性。 |
+| Promise\<[ExtraOptionsBase](#extraoptionsbase7)\> | 以Promise形式返回设置LocalSocket套接字的属性。 |
 
 **错误码：**
 
@@ -4023,9 +4038,10 @@ getExtraOptions(): Promise\<ExtraOptionsBase\>;
 ```ts
 import socket from "@ohos.net.socket";
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
+let sandboxPath: string = getContext(this).filesDir + '/testSocket'
 let connectOpt: socket.LocalConnectOptions = {
   address: {
-    address: '/tmp/testSocket'
+    address: sandboxPath
   },
   timeout: 6000
 }
@@ -4043,7 +4059,7 @@ client.connect(connectOpt).then(() => {
 
 ### on('message')<sup>11+</sup>
 
-on(type: 'message', callback: Callback\<SocketMessageInfo\>): void
+on(type: 'message', callback: Callback\<LocalSocketMessageInfo\>): void
 
 订阅LocalSocket连接的接收消息事件。使用callback方式作为异步方法。
 
@@ -4054,7 +4070,7 @@ on(type: 'message', callback: Callback\<SocketMessageInfo\>): void
 | 参数名   | 类型                                              | 必填 | 说明                                      |
 | -------- | ----------------------------------------------- | ---- | ----------------------------------- |
 | type     | string                                          | 是   | 订阅的事件类型。'message'：接收消息事件。 |
-| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | 是   | 以callback的形式异步返回接收的消息。|
+| callback | Callback\<[LocalSocketMessageInfo](#localsocketmessageinfo11)\> | 是   | 以callback的形式异步返回接收的消息。|
 
 **示例：**
 
@@ -4074,7 +4090,7 @@ client.on('message', (value: socket.LocalSocketMessageInfo) => {
 
 ### off('message')<sup>11+</sup>
 
-off(type: 'message', callback?: Callback\<SocketMessageInfo\>): void
+off(type: 'message', callback?: Callback\<LocalSocketMessageInfo\>): void
 
 取消订阅LocalSocket连接的接收消息事件。使用callback方式作为异步方法。
 
@@ -4088,7 +4104,7 @@ off(type: 'message', callback?: Callback\<SocketMessageInfo\>): void
 | 参数名   | 类型                                               | 必填 | 说明                                 |
 | -------- | ------------------------------------------------ | ---- | ----------------------------------- |
 | type     | string                                           | 是   | 订阅的事件类型。'message'：接收消息事件。 |
-| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | 否   | 指定传入on中的callback取消一个订阅。|
+| callback | Callback\<[LocalSocketMessageInfo](#localsocketmessageinfo11)\> | 否   | 指定传入on中的callback取消一个订阅。|
 
 **示例：**
 
@@ -4147,7 +4163,7 @@ off(type: 'connect', callback?: Callback\<void\>): void;
 | 参数名   | 类型             | 必填 | 说明                                                         |
 | -------- | ---------------- | ---- | --------------------------------------------------------- |
 | type     | string           | 是   | 订阅的事件类型。                                             |
-| callback | Callback\<void\> | 是   | 指定传入on中的callback取消一个订阅。                           |
+| callback | Callback\<void\> | 否   | 指定传入on中的callback取消一个订阅。                           |
 
 **示例：**
 
@@ -4179,7 +4195,7 @@ on(type: 'close', callback: Callback\<void\>): void;
 | 参数名   | 类型             | 必填 | 说明                        |
 | -------- | ---------------- | ---- | ------------------------ |
 | type     | string           | 是   | 订阅LocalSocket的关闭事件。 |
-| callback | Callback\<void\> | 否   | 以callback的形式异步返回关闭localsocket的结果。|
+| callback | Callback\<void\> | 是   | 以callback的形式异步返回关闭localsocket的结果。|
 
 **示例：**
 
@@ -4322,10 +4338,10 @@ LocalSocket发送请求的参数。
 
 | 名称     | 类型       | 必填 | 说明                 |
 | ------- | ---------- | --- | ------------------- |
-| address | string     | 是   | 指定的本地套接字路径。 |
-| timeout | encoding   | 否   | 字符编码。           |
+| data    | string \| ArrayBuffer | 是   | 需要发送的数据。 |
+| encoding | string   | 否   | 字符编码。  |
 
-## ExtraOptionsBase<sup>10+</sup>
+## ExtraOptionsBase<sup>7+</sup>
 
 Socket套接字的基础属性。
 
@@ -4370,7 +4386,7 @@ listen(address: LocalAddress): Promise\<void\>
 绑定本地套接字文件，监听并接受与此套接字建立的LocalSocket连接。该接口使用多线程并发处理客户端的数据。使用Promise方法作为异步方法。
 
 > **说明：**
-> 服务端使用该方法完成bind，listen，accept操作。
+> 服务端使用该方法完成bind，listen，accept操作，传入套接字文件路径，调用此接口后会自动生成本地套接字文件。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -4394,15 +4410,16 @@ listen(address: LocalAddress): Promise\<void\>
 | 2303109  | Bad file number.            |
 | 2301013  | Insufficient permissions.   |
 | 2301022  | Invalid argument.           |
-| 2303198  | Address already in use.     |
+| 2301098  | Address already in use.     |
 
 **示例：**
 
 ```ts
 import socket from "@ohos.net.socket";
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
+let sandboxPath: string = getContext(this).filesDir + '/testSocket'
 let addr: socket.LocalAddress = {
-  address:  '/tmp/testSocket'
+  address: sandboxPath
 }
 server.listen(addr).then(() => {
   console.log('listen success');
@@ -4433,8 +4450,9 @@ getState(): Promise\<SocketStateBase\>
 ```ts
 import socket from "@ohos.net.socket";
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
+let sandboxPath: string = getContext(this).filesDir + '/testSocket'
 let listenAddr: socket.LocalAddress = {
-  address:  '/tmp/testSocket'
+  address: sandboxPath
 }
 server.listen(listenAddr).then(() => {
   console.log("listen success");
@@ -4463,7 +4481,7 @@ setExtraOptions(options: ExtraOptionsBase): Promise\<void\>
 
 | 参数名  | 类型                                      | 必填 | 说明                            |
 | ------- | --------------------------------------- | ---- | ------------------------------ |
-| options | [ExtraOptionsBase](#extraoptionsbase10) | 是   | LocalSocketServer连接的其他属性。 |
+| options | [ExtraOptionsBase](#extraoptionsbase7) | 是   | LocalSocketServer连接的其他属性。 |
 
 **返回值：**
 
@@ -4483,8 +4501,9 @@ setExtraOptions(options: ExtraOptionsBase): Promise\<void\>
 ```ts
 import socket from "@ohos.net.socket";
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
+let sandboxPath: string = getContext(this).filesDir + '/testSocket'
 let listenAddr: socket.NetAddress = {
-  address:  '/tmp/testSocket'
+  address: sandboxPath
 }
 server.listen(listenAddr).then(() => {
   console.log("listen success");
@@ -4519,21 +4538,22 @@ getExtraOptions(): Promise\<ExtraOptionsBase\>;
 
 | 类型                         | 说明                        |
 | :-------------------------- | :-------------------------- |
-| Promise\<[ExtraOptionsBase](#extraoptionsbase10)\> | 以Promise形式返回套接字的属性。 |
+| Promise\<[ExtraOptionsBase](#extraoptionsbase7)\> | 以Promise形式返回套接字的属性。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息               |
 | -------- | -------------------- |
-| 2301009  | Bad file descriptor. |
+| 401     | Parameter error. |
 
 **示例：**
 
 ```ts
 import socket from "@ohos.net.socket";
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
-let listenAddr: socket.NetAddress = {
-  address:  '/tmp/testSocket'
+let sandboxPath: string = getContext(this).filesDir + '/testSocket'
+let listenAddr: socket.LocalAddress = {
+  address: sandboxPath
 }
 server.listen(listenAddr).then(() => {
   console.log("listen success");
@@ -4796,7 +4816,7 @@ server.on('connect', (connection: socket.LocalSocketConnection) => {
 
 ### on('message')<sup>11+</sup>
 
-on(type: 'message', callback: Callback\<SocketMessageInfo\>): void;
+on(type: 'message', callback: Callback\<LocalSocketMessageInfo\>): void;
 
 订阅LocalSocketConnection连接的接收消息事件。使用callback方式作为异步方法。
 
@@ -4807,7 +4827,7 @@ on(type: 'message', callback: Callback\<SocketMessageInfo\>): void;
 | 参数名   | 类型                                              | 必填 | 说明                                     |
 | -------- | ----------------------------------------------- | ---- | --------------------------------------- |
 | type     | string                                          | 是   | 订阅的事件类型。'message'：接收消息事件。     |
-| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | 是   | 以callback的形式异步返回接收到的来自客户端的消息。 |
+| callback | Callback\<[LocalSocketMessageInfo](#localsocketmessageinfo11)\> | 是   | 以callback的形式异步返回接收到的来自客户端的消息。 |
 
 **错误码：**
 
@@ -4820,8 +4840,9 @@ on(type: 'message', callback: Callback\<SocketMessageInfo\>): void;
 ```ts
 import socket from "@ohos.net.socket";
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
+let sandboxPath: string = getContext(this).filesDir + '/testSocket'
 let listenAddr: socket.LocalAddress = {
-  address: '/tmp/testSocket'
+  address: sandboxPath
 }
 server.listen(listenAddr).then(() => {
   console.log("listen success");
@@ -4843,7 +4864,7 @@ server.on('connect', (connection: socket.LocalSocketConnection) => {
 
 ### off('message')<sup>11+</sup>
 
-off(type: 'message', callback?: Callback\<SocketMessageInfo\>): void
+off(type: 'message', callback?: Callback\<LocalSocketMessageInfo\>): void
 
 取消订阅LocalSocketConnection连接的接收消息事件。使用callback方式作为异步方法。
 
@@ -4857,7 +4878,7 @@ off(type: 'message', callback?: Callback\<SocketMessageInfo\>): void
 | 参数名   | 类型                                              | 必填 | 说明                                 |
 | -------- | ----------------------------------------------- | ---- | ----------------------------------- |
 | type     | string                                          | 是   | 订阅的事件类型。'message'：接收消息事件。 |
-| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | 否   | 指定传入on的一个callback取消注册。 |
+| callback | Callback\<[LocalSocketMessageInfo](#localsocketmessageinfo11)\> | 否   | 指定传入on的一个callback取消注册。 |
 
 **错误码：**
 
@@ -5037,7 +5058,7 @@ server.on('connect', (connection: socket.LocalSocketConnection) => {
 
 LocalSocket 错误码映射形式为：2301000 + Linux内核错误码。
 
-错误码的详细介绍参见[Socket错误码](../errorcodes/errorcode-net-socket.md)
+错误码的详细介绍参见[Socket错误码](errorcode-net-socket.md)
 
 ## socket.constructTLSSocketInstance<sup>9+</sup>
 
@@ -5079,7 +5100,7 @@ bind(address: NetAddress, callback: AsyncCallback\<void\>): void
 | 参数名   | 类型                               | 必填 | 说明                                                   |
 | -------- | ---------------------------------- | ---- | ------------------------------------------------------ |
 | address  | [NetAddress](#netaddress) | 是   | 目标地址信息，参考[NetAddress](#netaddress)。 |
-| callback | AsyncCallback\<void\>              | 是   | 回调函数。成功返回TLSSocket绑定本机的IP地址和端口的结果。 失败返回错误码，错误信息。|
+| callback | AsyncCallback\<void\>              | 是   | 回调函数。成功返回TLSSocket绑定本机的IP地址和端口的结果。失败返回错误码、错误信息。|
 
 **错误码：**
 
@@ -5169,7 +5190,7 @@ getState(callback: AsyncCallback\<SocketStateBase\>): void
 
 | 参数名   | 类型                                                   | 必填 | 说明       |
 | -------- | ------------------------------------------------------ | ---- | ---------- |
-| callback | AsyncCallback\<[SocketStateBase](#socketstatebase)> | 是   | 回调函数。成功返回TLSSocket状态，失败返回错误码,错误信息。 |
+| callback | AsyncCallback\<[SocketStateBase](#socketstatebase)\> | 是   | 回调函数。成功返回TLSSocket状态，失败返回错误码、错误信息。 |
 
 **错误码：**
 
@@ -5262,7 +5283,7 @@ setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
 | 参数名   | 类型                                      | 必填 | 说明                                                         |
 | -------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | options  | [TCPExtraOptions](#tcpextraoptions) | 是   | TCPSocket连接的其他属性，参考[TCPExtraOptions](#tcpextraoptions)。 |
-| callback | AsyncCallback\<void\>                     | 是   | 回调函数。成功返回设置TCPSocket连接的其他属性的结果，失败返回错误码，错误信息。|
+| callback | AsyncCallback\<void\>                     | 是   | 回调函数。成功返回设置TCPSocket连接的其他属性的结果，失败返回错误码、错误信息。|
 
 **错误码：**
 
@@ -5385,7 +5406,7 @@ on(type: 'message', callback: Callback\<SocketMessageInfo\>): void;
 | 参数名   | 类型                                                         | 必填 | 说明                                      |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | type     | string                                                       | 是   | 订阅的事件类型。'message'：接收消息事件。 |
-| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | 是   | 回调函数。 |
+| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | 是   | 回调函数。TLSSocket连接订阅某类接受消息事件触发的调用函数，返回TLSSocket连接信息。 |
 
 **示例：**
 
@@ -5426,7 +5447,7 @@ off(type: 'message', callback?: Callback\<SocketMessageInfo\>): void
 | 参数名   | 类型                                                         | 必填 | 说明                                      |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | type     | string                                                       | 是   | 订阅的事件类型。'message'：接收消息事件。 |
-| callback | Callback<[SocketMessageInfo](#socketmessageinfo11)> | 否   | 回调函数。 |
+| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | 否   | 回调函数。TLSSocket连接取消订阅某类接受消息事件触发的调用函数，返回TLSSocket连接信息。 |
 
 **示例：**
 
@@ -5466,7 +5487,7 @@ on(type: 'connect' | 'close', callback: Callback\<void\>): void
 | 参数名   | 类型             | 必填 | 说明                                                         |
 | -------- | ---------------- | ---- | ------------------------------------------------------------ |
 | type     | string           | 是   | 订阅的事件类型。<br />- 'connect'：连接事件。<br />- 'close'：关闭事件。 |
-| callback | Callback\<void\> | 是   | 回调函数。                                                   |
+| callback | Callback\<void\> | 是   | 回调函数。TLSSocket连接订阅某类事件触发的调用函数。                                                   |
 
 **示例：**
 
@@ -5498,7 +5519,7 @@ off(type: 'connect' | 'close', callback?: Callback\<void\>): void
 | 参数名   | 类型             | 必填 | 说明                                                         |
 | -------- | ---------------- | ---- | ------------------------------------------------------------ |
 | type     | string           | 是   | 订阅的事件类型。<br />- 'connect'：连接事件。<br />- 'close'：关闭事件。 |
-| callback | Callback\<void\> | 否   | 回调函数。                                                   |
+| callback | Callback\<void\> | 否   | 回调函数。TLSSocket连接订阅某类事件触发的调用函数。          |
 
 **示例：**
 
@@ -5534,7 +5555,7 @@ on(type: 'error', callback: ErrorCallback): void
 | 参数名   | 类型          | 必填 | 说明                                 |
 | -------- | ------------- | ---- | ------------------------------------ |
 | type     | string        | 是   | 订阅的事件类型。'error'：error事件。 |
-| callback | ErrorCallback | 是   | 回调函数。                           |
+| callback | ErrorCallback | 是   | 回调函数。TLSSocket连接订阅某类error事件触发的调用函数。        |
 
 **示例：**
 
@@ -5563,7 +5584,7 @@ off(type: 'error', callback?: ErrorCallback): void
 | 参数名   | 类型          | 必填 | 说明                                 |
 | -------- | ------------- | ---- | ------------------------------------ |
 | type     | string        | 是   | 订阅的事件类型。'error'：error事件。 |
-| callback | ErrorCallback | 否   | 回调函数。                           |
+| callback | ErrorCallback | 否   | 回调函数。TLSSocket连接取消订阅某类error事件触发的调用函数。                           |
 
 **示例：**
 
@@ -5592,7 +5613,7 @@ connect(options: TLSConnectOptions, callback: AsyncCallback\<void\>): void
 | 参数名   | 类型                                   | 必填 | 说明 |
 | -------- | ---------------------------------------| ----| --------------- |
 | options  | [TLSConnectOptions](#tlsconnectoptions9) | 是   | TLSSocket连接所需要的参数。|
-| callback | AsyncCallback\<void\>                  | 是   | 回调函数，成功无返回，失败返回错误码，错误信息。|
+| callback | AsyncCallback\<void\>                  | 是   | 回调函数，成功无返回，失败返回错误码、错误信息。|
 
 **错误码：**
 
@@ -5796,7 +5817,7 @@ getRemoteAddress(callback: AsyncCallback\<NetAddress\>): void
 
 | 参数名   | 类型                                              | 必填 | 说明       |
 | -------- | ------------------------------------------------- | ---- | ---------- |
-| callback | AsyncCallback\<[NetAddress](#netaddress)\> | 是   | 回调函数。成功返回对端的socket地址，失败返回错误码，错误信息。 |
+| callback | AsyncCallback\<[NetAddress](#netaddress)\> | 是   | 回调函数。成功返回对端的socket地址，失败返回错误码、错误信息。 |
 
 **错误码：**
 
@@ -5866,7 +5887,7 @@ getCertificate(callback: AsyncCallback\<[X509CertRawData](#x509certrawdata9)\>):
 
 | 参数名   | 类型                                   | 必填 | 说明 |
 | -------- | ----------------------------------------| ---- | ---------------|
-| callback | AsyncCallback\<[X509CertRawData](#x509certrawdata9)\>    | 是   | 回调函数，成功返回本地的证书，失败返回错误码，错误信息。|
+| callback | AsyncCallback\<[X509CertRawData](#x509certrawdata9)\>    | 是   | 回调函数，成功返回本地的证书，失败返回错误码、错误信息。|
 
 **错误码：**
 
@@ -5942,7 +5963,7 @@ getRemoteCertificate(callback: AsyncCallback\<[X509CertRawData](#x509certrawdata
 
 | 参数名    | 类型                                    | 必填  | 说明           |
 | -------- | ----------------------------------------| ---- | ---------------|
-| callback | AsyncCallback\<[X509CertRawData](#x509certrawdata9)\>  | 是   | 回调函数，返回服务端的证书。失败返回错误码，错误信息。 |
+| callback | AsyncCallback\<[X509CertRawData](#x509certrawdata9)\>  | 是   | 回调函数，返回服务端的证书。失败返回错误码、错误信息。 |
 
 **错误码：**
 
@@ -6012,7 +6033,7 @@ getProtocol(callback: AsyncCallback\<string\>): void
 
 | 参数名   | 类型                                       | 必填 | 说明           |
 | -------- | ----------------------------------------| ---- | ---------------|
-| callback | AsyncCallback\<string\>                  | 是   | 回调函数，返回通信的协议。失败返回错误码，错误信息。|
+| callback | AsyncCallback\<string\>                  | 是   | 回调函数，返回通信的协议。失败返回错误码、错误信息。|
 
 **错误码：**
 
@@ -6084,7 +6105,7 @@ getCipherSuite(callback: AsyncCallback\<Array\<string\>\>): void
 
 | 参数名   | 类型                                     | 必填 | 说明 |
 | -------- | ----------------------------------------| ---- | ---------------|
-| callback | AsyncCallback\<Array\<string\>\>          | 是   | 回调函数，返回通信双方支持的加密套件。 失败返回错误码，错误信息。 |
+| callback | AsyncCallback\<Array\<string\>\>          | 是   | 回调函数，返回通信双方支持的加密套件。失败返回错误码、错误信息。 |
 
 **错误码：**
 
@@ -6218,7 +6239,7 @@ tls.getSignatureAlgorithms().then((data: Array<string>) => {
 
 ### send<sup>9+</sup>
 
-send(data: string, callback: AsyncCallback\<void\>): void
+send(data: string \| ArrayBuffer, callback: AsyncCallback\<void\>): void
 
 在TLSSocket通信连接成功之后，向服务端发送消息，使用callback方式作为异步方法。
 
@@ -6228,8 +6249,8 @@ send(data: string, callback: AsyncCallback\<void\>): void
 
 | 参数名    | 类型                          | 必填 | 说明            |
 | -------- | -----------------------------| ---- | ---------------|
-|   data   | string                       | 是   | 发送的数据内容。   |
-| callback | AsyncCallback\<void\>         | 是   | 回调函数,返回TLSSocket发送数据的结果。失败返回错误码，错误信息。 |
+|   data   | string \| ArrayBuffer                      | 是   | 发送的数据内容。   |
+| callback | AsyncCallback\<void\>         | 是   | 回调函数,返回TLSSocket发送数据的结果。失败返回错误码、错误信息。 |
 
 **错误码：**
 
@@ -6259,7 +6280,7 @@ tls.send("xxxx", (err: BusinessError) => {
 
 ### send<sup>9+</sup>
 
-send(data: string): Promise\<void\>
+send(data: string \| ArrayBuffer): Promise\<void\>
 
 在TLSSocket通信连接成功之后，向服务端发送消息，使用Promise方式作为异步方法。
 
@@ -6269,7 +6290,7 @@ send(data: string): Promise\<void\>
 
 | 参数名    | 类型                          | 必填 | 说明            |
 | -------- | -----------------------------| ---- | ---------------|
-|   data   | string                       | 是   | 发送的数据内容。   |
+|   data   | string \| ArrayBuffer                       | 是   | 发送的数据内容。   |
 
 **错误码：**
 
@@ -6313,7 +6334,7 @@ close(callback: AsyncCallback\<void\>): void
 
 | 参数名    | 类型                          | 必填 | 说明            |
 | -------- | -----------------------------| ---- | ---------------|
-| callback | AsyncCallback\<void\>         | 是   | 回调函数,成功返回TLSSocket关闭连接的结果。 失败返回错误码，错误信息。 |
+| callback | AsyncCallback\<void\>         | 是   | 回调函数,成功返回TLSSocket关闭连接的结果。失败返回错误码、错误信息。 |
 
 **错误码：**
 
@@ -6397,7 +6418,7 @@ TLS安全相关操作，其中ca证书为必选参数，其他参数为可选参
 
 | 名称                 | 类型                                                    | 必填 | 说明                                |
 | --------------------- | ------------------------------------------------------ | --- |----------------------------------- |
-| ca                    | string \| Array\<string\>                               | 是 | 服务端的ca证书，用于认证校验服务端的数字证书。|
+| ca                    | string \| Array\<string\> | 否 | 服务端的ca证书，用于认证校验服务端的数字证书。默认为系统预置CA证书<sup>12+</sup>。 |
 | cert                  | string                                                  | 否 | 本地客户端的数字证书。                 |
 | key                   | string                                                  | 否 | 本地数字证书的私钥。                   |
 | password                | string                                                  | 否 | 读取私钥的密码。                      |
@@ -6464,7 +6485,7 @@ listen(options: TLSConnectOptions, callback: AsyncCallback\<void\>): void
 | 参数名   | 类型                                     | 必填 | 说明                                             |
 | -------- | ---------------------------------------- | ---- | ------------------------------------------------ |
 | options  | [TLSConnectOptions](#tlsconnectoptions9) | 是   | TLSSocketServer连接所需要的参数。                |
-| callback | AsyncCallback\<void\>                     | 是   | 回调函数，成功返回空，失败返回错误码，错误信息。 |
+| callback | AsyncCallback\<void\>                     | 是   | 回调函数，成功返回空，失败返回错误码、错误信息。 |
 
 **错误码：**
 
@@ -6597,7 +6618,7 @@ getState(callback: AsyncCallback\<SocketStateBase\>): void
 
 | 参数名   | 类型                                                 | 必填 | 说明                                                         |
 | -------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<[SocketStateBase](#socketstatebase)> | 是   | 回调函数。成功返回TLSSocketServer状态，失败返回错误码，错误信息。 |
+| callback | AsyncCallback\<[SocketStateBase](#socketstatebase)\> | 是   | 回调函数。成功返回TLSSocketServer状态，失败返回错误码、错误信息。 |
 
 **错误码：**
 
@@ -6719,7 +6740,7 @@ setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
 | 参数名   | 类型                                 | 必填 | 说明                                             |
 | -------- | ------------------------------------ | ---- | ------------------------------------------------ |
 | options  | [TCPExtraOptions](#tcpextraoptions) | 是   | TLSSocketServer连接的其他属性。                  |
-| callback | AsyncCallback\<void\>                | 是   | 回调函数。成功返回空，失败返回错误码，错误信息。 |
+| callback | AsyncCallback\<void\>                | 是   | 回调函数。成功返回空，失败返回错误码、错误信息。 |
 
 **错误码：**
 
@@ -6869,7 +6890,7 @@ getCertificate(callback: AsyncCallback\<[X509CertRawData](#x509certrawdata9)\>):
 
 | 参数名   | 类型                                                  | 必填 | 说明                                                     |
 | -------- | ----------------------------------------------------- | ---- | -------------------------------------------------------- |
-| callback | AsyncCallback\<[X509CertRawData](#x509certrawdata9)\> | 是   | 回调函数，成功返回本地的证书，失败返回错误码，错误信息。 |
+| callback | AsyncCallback\<[X509CertRawData](#x509certrawdata9)\> | 是   | 回调函数，成功返回本地的证书，失败返回错误码、错误信息。 |
 
 **错误码：**
 
@@ -7000,7 +7021,7 @@ getProtocol(callback: AsyncCallback\<string\>): void
 
 | 参数名   | 类型                    | 必填 | 说明                                                 |
 | -------- | ----------------------- | ---- | ---------------------------------------------------- |
-| callback | AsyncCallback\<string\> | 是   | 回调函数，返回通信的协议。失败返回错误码，错误信息。 |
+| callback | AsyncCallback\<string\> | 是   | 回调函数，返回通信的协议。失败返回错误码、错误信息。 |
 
 **错误码：**
 
@@ -7124,7 +7145,7 @@ on(type: 'connect', callback: Callback\<TLSSocketConnection\>): void
 | 参数名   | 类型                                                    | 必填 | 说明                                  |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------- |
 | type     | string                                                  | 是   | 订阅的事件类型。'connect'：连接事件。 |
-| callback | Callback<[TLSSocketConnection](#tlssocketconnection10)> | 是   | 回调函数。                            |
+| callback | Callback\<[TLSSocketConnection](#tlssocketconnection10)\> | 是   | 回调函数。失败时返回错误码、错误信息。    |
 
 **错误码：**
 
@@ -7182,7 +7203,7 @@ off(type: 'connect', callback?: Callback\<TLSSocketConnection\>): void
 | 参数名   | 类型                                                    | 必填 | 说明                                  |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------- |
 | type     | string                                                  | 是   | 订阅的事件类型。'connect'：连接事件。 |
-| callback | Callback<[TLSSocketConnection](#tlssocketconnection10)> | 否   | 回调函数。                            |
+| callback | Callback\<[TLSSocketConnection](#tlssocketconnection10)\> | 否   | 回调函数。失败时返回错误码、错误信息。      |
 
 **错误码：**
 
@@ -7244,7 +7265,7 @@ on(type: 'error', callback: ErrorCallback): void
 | 参数名   | 类型          | 必填 | 说明                                 |
 | -------- | ------------- | ---- | ------------------------------------ |
 | type     | string        | 是   | 订阅的事件类型。'error'：error事件。 |
-| callback | ErrorCallback | 是   | 回调函数。                           |
+| callback | ErrorCallback | 是   | 回调函数。失败时返回错误码、错误信息。     |
 
 **错误码：**
 
@@ -7302,7 +7323,7 @@ off(type: 'error', callback?: ErrorCallback): void
 | 参数名   | 类型          | 必填 | 说明                                 |
 | -------- | ------------- | ---- | ------------------------------------ |
 | type     | string        | 是   | 订阅的事件类型。'error'：error事件。 |
-| callback | ErrorCallback | 否   | 回调函数。                           |
+| callback | ErrorCallback | 否   | 回调函数。失败时返回错误码、错误信息。     |
 
 **错误码：**
 
@@ -7365,7 +7386,7 @@ TLSSocketConnection连接，即TLSSocket客户端与服务端的连接。在调�
 
 ### send<sup>10+</sup>
 
-send(data: string, callback: AsyncCallback\<void\>): void
+send(data: string \| ArrayBuffer, callback: AsyncCallback\<void\>): void
 
 在TLSSocketServer通信连接成功之后，向客户端发送消息，使用callback方式作为异步方法。
 
@@ -7375,8 +7396,8 @@ send(data: string, callback: AsyncCallback\<void\>): void
 
 | 参数名   | 类型                  | 必填 | 说明                                             |
 | -------- | --------------------- | ---- | ------------------------------------------------ |
-| data     | string                | 是   | TLSSocketServer发送数据所需要的参数。            |
-| callback | AsyncCallback\<void\> | 是   | 回调函数，成功返回空，失败返回错误码，错误信息。 |
+| data     | string \| ArrayBuffer                | 是   | TLSSocketServer发送数据所需要的参数。            |
+| callback | AsyncCallback\<void\> | 是   | 回调函数，成功返回空，失败返回错误码、错误信息。 |
 
 **错误码：**
 
@@ -7429,20 +7450,9 @@ tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
 });
 ```
 
-## SocketMessageInfo<sup>11+</sup>
-
-socket连接信息
-
-**系统能力**：SystemCapability.Communication.NetStack
-
-| 参数名 | 类型   | 必填 | 说明                                  |
-| ------ | ------ | ---- | ------------------------------------- |
-| message   | ArrayBuffer | 是   | 接收的事件消息。 |
-| remoteInfo   | [SocketRemoteInfo](#socketremoteinfo) | 是   | socket连接信息。 |
-
 ### send<sup>10+</sup>
 
-send(data: string): Promise\<void\>
+send(data: string \| ArrayBuffer): Promise\<void\>
 
 在TLSSocketServer通信连接成功之后，向服务端发送消息，使用Promise方式作为异步方法。
 
@@ -7452,7 +7462,7 @@ send(data: string): Promise\<void\>
 
 | 参数名 | 类型   | 必填 | 说明                                  |
 | ------ | ------ | ---- | ------------------------------------- |
-| data   | string | 是   | TLSSocketServer发送数据所需要的参数。 |
+| data   | string \| ArrayBuffer | 是   | TLSSocketServer发送数据所需要的参数。 |
 
 **返回值：**
 
@@ -7521,7 +7531,7 @@ close(callback: AsyncCallback\<void\>): void
 
 | 参数名   | 类型                  | 必填 | 说明                                             |
 | -------- | --------------------- | ---- | ------------------------------------------------ |
-| callback | AsyncCallback\<void\> | 是   | 回调函数，成功返回空，失败返回错误码，错误信息。 |
+| callback | AsyncCallback\<void\> | 是   | 回调函数，成功返回空，失败返回错误码、错误信息。 |
 
 **错误码：**
 
@@ -7645,7 +7655,7 @@ getRemoteAddress(callback: AsyncCallback\<NetAddress\>): void
 
 | 参数名   | 类型                                        | 必填 | 说明                                                         |
 | -------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<[NetAddress](#netaddress)\> | 是   | 回调函数。成功返回对端的socket地址，失败返回错误码，错误信息。 |
+| callback | AsyncCallback\<[NetAddress](#netaddress)\> | 是   | 回调函数。成功返回对端的socket地址，失败返回错误码、错误信息。 |
 
 **错误码：**
 
@@ -7764,7 +7774,7 @@ getRemoteCertificate(callback: AsyncCallback\<[X509CertRawData](#x509certrawdata
 
 | 参数名   | 类型                                                  | 必填 | 说明                                                 |
 | -------- | ----------------------------------------------------- | ---- | ---------------------------------------------------- |
-| callback | AsyncCallback\<[X509CertRawData](#x509certrawdata9)\> | 是   | 回调函数，返回对端的证书。失败返回错误码，错误信息。 |
+| callback | AsyncCallback\<[X509CertRawData](#x509certrawdata9)\> | 是   | 回调函数，返回对端的证书。失败返回错误码、错误信息。 |
 
 **错误码：**
 
@@ -7891,7 +7901,7 @@ getCipherSuite(callback: AsyncCallback\<Array\<string\>\>): void
 
 | 参数名   | 类型                             | 必填 | 说明                                                         |
 | -------- | -------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<Array\<string\>\> | 是   | 回调函数，返回通信双方支持的加密套件。 失败返回错误码，错误信息。 |
+| callback | AsyncCallback\<Array\<string\>\> | 是   | 回调函数，返回通信双方支持的加密套件。失败返回错误码、错误信息。 |
 
 **错误码：**
 
@@ -8134,7 +8144,7 @@ on(type: 'message', callback: Callback\<SocketMessageInfo\>): void
 | 参数名   | 类型                                                         | 必填 | 说明                                      |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | type     | string                                                       | 是   | 订阅的事件类型。'message'：接收消息事件。 |
-| callback | Callback<[SocketMessageInfo](#socketmessageinfo11)> | 是   | 回调函数。                                |
+| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | 是   | 回调函数。成功时返回TLSSocketConnection连接信息，失败时返回错误码、错误信息。                               |
 
 **错误码：**
 
@@ -8206,7 +8216,7 @@ off(type: 'message', callback?: Callback\<SocketMessageInfo\>): void
 | 参数名   | 类型                                                         | 必填 | 说明                                      |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | type     | string                                                       | 是   | 订阅的事件类型。'message'：接收消息事件。 |
-| callback | Callback<[SocketMessageInfo](#socketmessageinfo11)> | 否   | 回调函数。                                |
+| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | 否   | 回调函数。成功时返回TLSSocketConnection连接信息，失败时返回错误码、错误信息。  |
 
 **错误码：**
 
@@ -8279,7 +8289,7 @@ on(type: 'close', callback: Callback\<void\>): void
 | 参数名   | 类型             | 必填 | 说明                                |
 | -------- | ---------------- | ---- | ----------------------------------- |
 | type     | string           | 是   | 订阅的事件类型。'close'：关闭事件。 |
-| callback | Callback\<void\> | 是   | 回调函数。                          |
+| callback | Callback\<void\> | 是   | 回调函数。成功时返回空，失败时返回错误码、错误信息。    |
 
 **错误码：**
 
@@ -8338,7 +8348,7 @@ off(type: 'close', callback?: Callback\<void\>): void
 | 参数名   | 类型             | 必填 | 说明                                |
 | -------- | ---------------- | ---- | ----------------------------------- |
 | type     | string           | 是   | 订阅的事件类型。'close'：关闭事件。 |
-| callback | Callback\<void\> | 否   | 回调函数。                          |
+| callback | Callback\<void\> | 否   | 回调函数。成功时返回空，失败时返回错误码、错误信息。                         |
 
 **错误码：**
 
@@ -8399,7 +8409,7 @@ on(type: 'error', callback: ErrorCallback): void
 | 参数名   | 类型          | 必填 | 说明                                 |
 | -------- | ------------- | ---- | ------------------------------------ |
 | type     | string        | 是   | 订阅的事件类型。'error'：error事件。 |
-| callback | ErrorCallback | 是   | 回调函数。                           |
+| callback | ErrorCallback | 是   | 回调函数。成功时返回空，失败时返回错误码、错误信息。                        |
 
 **错误码：**
 
@@ -8459,7 +8469,7 @@ off(type: 'error', callback?: ErrorCallback): void
 | 参数名   | 类型          | 必填 | 说明                                 |
 | -------- | ------------- | ---- | ------------------------------------ |
 | type     | string        | 是   | 订阅的事件类型。'error'：error事件。 |
-| callback | ErrorCallback | 否   | 回调函数。                           |
+| callback | ErrorCallback | 否   | 回调函数。成功时返回空，失败时返回错误码、错误信息。                        |
 
 **错误码：**
 

@@ -9,6 +9,8 @@
 > 本模块接口仅可在Stage模型下使用。
 >
 > 本模块接口仅对[设备管理应用](enterpriseDeviceManagement-overview.md#基本概念)开放，需将[设备管理应用激活](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin)后调用，实现相应功能。
+>
+> 本模块接口均为系统接口。
 
 ## 导入模块
 
@@ -32,7 +34,7 @@ isWifiActive(admin: Want, callback: AsyncCallback&lt;boolean&gt;): void
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
 | callback | AsyncCallback&lt;boolean&gt;            | 是    | 回调函数，当接口调用成功，err为null，data为boolean值，true表示wifi开启，false表示wifi关闭，否则err为错误对象。       |
 
 **错误码**：
@@ -78,7 +80,7 @@ isWifiActive(admin: Want): Promise&lt;boolean&gt;
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
 
 **返回值：**
 
@@ -128,7 +130,7 @@ setWifiProfile(admin: Want, profile: WifiProfile, callback: AsyncCallback&lt;voi
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
 | profile    | [WifiProfile](#wifiprofile)     | 是    | WLAN配置信息。                  |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数，当接口调用成功，err为null，否则为错误对象。      |
 
@@ -180,7 +182,7 @@ setWifiProfile(admin: Want, profile: WifiProfile): Promise&lt;void&gt;
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
 | profile    | [WifiProfile](#wifiprofile)     | 是    | WLAN配置信息。                  |
 
 **返回值：**
@@ -377,7 +379,7 @@ isWifiDisabled(admin: Want): boolean
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
 
 **返回值：**
 
@@ -426,7 +428,7 @@ setWifiDisabled(admin: Want, disabled: boolean): void
 
 | 参数名     | 类型                                | 必填 | 说明                                      |
 | ---------- | ----------------------------------- | ---- | ----------------------------------------- |
-| admin      | [Want](../apis/js-apis-app-ability-want.md) | 是   | 设备管理应用。                            |
+| admin      | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。                            |
 | disabled   | boolean                             | 是   | true表示禁用wifi，false表示解除wifi禁用。 |
 
 **错误码：**

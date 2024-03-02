@@ -36,7 +36,7 @@ publish(request: NotificationRequest, userId: number, callback: AsyncCallback\<v
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                              |
 | -------- | ---------------------------------------------------- |
@@ -111,7 +111,7 @@ publish(request: NotificationRequest, userId: number): Promise\<void\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                              |
 | -------- | ---------------------------------------------------- |
@@ -176,7 +176,7 @@ addSlot(slot: NotificationSlot, callback: AsyncCallback\<void\>): void
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -231,7 +231,7 @@ addSlot(slot: NotificationSlot): Promise\<void\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -277,7 +277,7 @@ addSlots(slots: Array\<NotificationSlot\>, callback: AsyncCallback\<void\>): voi
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -336,7 +336,7 @@ addSlots(slots: Array\<NotificationSlot\>): Promise\<void\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -388,7 +388,7 @@ setNotificationEnable(bundle: BundleOption, enable: boolean, callback: AsyncCall
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -442,7 +442,7 @@ setNotificationEnable(bundle: BundleOption, enable: boolean): Promise\<void\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -466,6 +466,44 @@ notificationManager.setNotificationEnable(bundle, false).then(() => {
 });
 ```
 
+## notificationManager.getAllNotificationEnabledBundles<sup>12+</sup>
+
+getAllNotificationEnabledBundles(): Promise<Array<BundleOption>>;
+
+获取允许通知的应用程序列表。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**系统接口**: 此接口为系统接口。
+
+**错误码：**
+
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+
+**示例：**
+
+```ts
+import Base from '@ohos.base';
+
+notificationManager.getAllNotificationEnabledBundles().then((data: Array<notificationManager.BundleOption>) => {
+    console.info("Enable bundle data is" + JSON.stringify(data));
+    data.forEach(element => {
+        console.info("Enable uid is " + JSON.stringify(element.uid));
+        console.info("Enable bundle is " + JSON.stringify(element.bundle));
+    });
+}).catch((err: Base.BusinessError) => {
+    console.info("getAllNotificationEnabledBundles failed, error is" + JSON.stringify(err));
+})
+```
+
 ## notificationManager.isNotificationEnabled
 
 isNotificationEnabled(bundle: BundleOption, callback: AsyncCallback\<boolean\>): void
@@ -487,7 +525,7 @@ isNotificationEnabled(bundle: BundleOption, callback: AsyncCallback\<boolean\>):
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -542,7 +580,7 @@ isNotificationEnabled(bundle: BundleOption): Promise\<boolean\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -587,7 +625,7 @@ isNotificationEnabled(userId: number, callback: AsyncCallback\<boolean\>): void
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -640,7 +678,7 @@ isNotificationEnabled(userId: number): Promise\<boolean\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -685,7 +723,7 @@ displayBadge(bundle: BundleOption, enable: boolean, callback: AsyncCallback\<voi
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -739,7 +777,7 @@ displayBadge(bundle: BundleOption, enable: boolean): Promise\<void\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -784,7 +822,7 @@ isBadgeDisplayed(bundle: BundleOption, callback: AsyncCallback\<boolean\>): void
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -837,7 +875,7 @@ isBadgeDisplayed(bundle: BundleOption): Promise\<boolean\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -889,7 +927,7 @@ setSlotFlagsByBundle(bundle: BundleOption, slotFlags: number): Promise\<void\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -938,7 +976,7 @@ setSlotByBundle(bundle: BundleOption, slot: NotificationSlot, callback: AsyncCal
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -995,7 +1033,7 @@ setSlotByBundle(bundle: BundleOption, slot: NotificationSlot): Promise\<void\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -1050,7 +1088,7 @@ getSlotFlagsByBundle(bundle: BundleOption): Promise\<number\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -1095,7 +1133,7 @@ getSlotsByBundle(bundle: BundleOption, callback: AsyncCallback\<Array\<Notificat
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -1148,7 +1186,7 @@ getSlotsByBundle(bundle: BundleOption): Promise\<Array\<NotificationSlot>>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -1194,7 +1232,7 @@ getSlotNumByBundle(bundle: BundleOption, callback: AsyncCallback\<number\>): voi
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -1249,7 +1287,7 @@ getSlotNumByBundle(bundle: BundleOption): Promise\<number\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -1295,7 +1333,7 @@ getAllActiveNotifications(callback: AsyncCallback\<Array\<NotificationRequest>>)
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -1339,7 +1377,7 @@ getAllActiveNotifications(): Promise\<Array\<[NotificationRequest](js-apis-inner
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -1381,7 +1419,7 @@ getActiveNotificationByFilter(filter: NotificationFilter, callback: AsyncCallbac
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                  |
 | -------- | ---------------------------------------- |
@@ -1443,7 +1481,7 @@ getActiveNotificationByFilter(filter: NotificationFilter): Promise\<Notification
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                  |
 | -------- | ---------------------------------------- |
@@ -1497,7 +1535,7 @@ removeGroupByBundle(bundle: BundleOption, groupName: string, callback: AsyncCall
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -1552,7 +1590,7 @@ removeGroupByBundle(bundle: BundleOption, groupName: string): Promise\<void\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -1597,7 +1635,7 @@ setDoNotDisturbDate(date: DoNotDisturbDate, callback: AsyncCallback\<void\>): vo
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -1655,7 +1693,7 @@ setDoNotDisturbDate(date: DoNotDisturbDate): Promise\<void\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -1704,7 +1742,7 @@ setDoNotDisturbDate(date: DoNotDisturbDate, userId: number, callback: AsyncCallb
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -1765,7 +1803,7 @@ setDoNotDisturbDate(date: DoNotDisturbDate, userId: number): Promise\<void\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -1816,7 +1854,7 @@ getDoNotDisturbDate(callback: AsyncCallback\<DoNotDisturbDate\>): void
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -1861,7 +1899,7 @@ getDoNotDisturbDate(): Promise\<DoNotDisturbDate\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -1904,7 +1942,7 @@ getDoNotDisturbDate(userId: number, callback: AsyncCallback\<DoNotDisturbDate\>)
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -1958,7 +1996,7 @@ getDoNotDisturbDate(userId: number): Promise\<DoNotDisturbDate\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -2003,7 +2041,7 @@ notificationManager.getDoNotDisturbDate(userId).then((data: notificationManager.
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | ----------------------------------- |
@@ -2047,7 +2085,7 @@ isSupportDoNotDisturbMode(): Promise\<boolean\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -2088,7 +2126,7 @@ setDistributedEnable(enable: boolean, callback: AsyncCallback\<void\>): void
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -2133,7 +2171,7 @@ setDistributedEnable(enable: boolean): Promise\<void>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -2177,7 +2215,7 @@ setDistributedEnableByBundle(bundle: BundleOption, enable: boolean, callback: As
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -2229,7 +2267,7 @@ setDistributedEnableByBundle(bundle: BundleOption, enable: boolean): Promise\<vo
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -2276,7 +2314,7 @@ isDistributedEnabledByBundle(bundle: BundleOption, callback: AsyncCallback\<bool
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -2330,7 +2368,7 @@ isDistributedEnabledByBundle(bundle: BundleOption): Promise\<boolean>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -2376,7 +2414,7 @@ getDeviceRemindType(callback: AsyncCallback\<DeviceRemindType\>): void
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -2419,7 +2457,7 @@ getDeviceRemindType(): Promise\<DeviceRemindType\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -2463,7 +2501,7 @@ publishAsBundle(request: NotificationRequest, representativeBundle: string, user
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
@@ -2537,7 +2575,7 @@ publishAsBundle(request: NotificationRequest, representativeBundle: string, user
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
@@ -2578,6 +2616,74 @@ notificationManager.publishAsBundle(request, representativeBundle, userId).then(
 });
 ```
 
+## notificationManager.publishAsBundle<sup>12+</sup>
+
+publishAsBundle(representativeBundle: BundleOption, request: NotificationRequest): Promise\<void\>
+
+发布代理通知。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER，ohos.permission.NOTIFICATION_AGENT_CONTROLLER
+
+**系统接口**: 此接口为系统接口。
+
+**参数：**
+
+
+| 参数名               | 类型                                        | 必填 | 说明                                          |
+| representativeBundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)  | 是   | 被代理应用的包信息。                            |
+| request              | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
+
+**返回值：**
+
+| 类型              | 说明        | 
+|-----------------|-----------|
+| Promise\<void\> | 无返回结果的Promise对象。 | 
+
+**错误码：**
+
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 1600001  | Internal error.                           |
+| 1600002  | Marshalling or unmarshalling error.       |
+| 1600003  | Failed to connect service.                |
+| 1600004  | Notification is not enabled.              |
+| 1600005  | Notification slot is not enabled.         |
+| 1600008  | The user is not exist.                    |
+| 1600009  | Over max number notifications per second. |
+| 1600012  | No memory space.                          |
+
+**示例：**
+
+```ts
+import Base from '@ohos.base';
+
+// 被代理应用的包信息
+let representativeBundle: notificationManager.BundleOption = {
+  bundle: "bundleName1",
+};
+// NotificationRequest对象
+let request: notificationManager.NotificationRequest = {
+    id: 1,
+    content: {
+        notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+        normal: {
+            title: "test_title",
+            text: "test_text",
+            additionalText: "test_additionalText"
+        }
+    }
+};
+notificationManager.publishAsBundle(representativeBundle, request).then(() => {
+	console.info("publishAsBundle success");
+}).catch((err: Base.BusinessError) => {
+    console.error(`publishAsBundle fail: ${JSON.stringify(err)}`);
+});
+```
+
 ## notificationManager.cancelAsBundle
 
 cancelAsBundle(id: number, representativeBundle: string, userId: number, callback: AsyncCallback\<void\>): void
@@ -2601,7 +2707,7 @@ cancelAsBundle(id: number, representativeBundle: string, userId: number, callbac
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -2659,7 +2765,7 @@ cancelAsBundle(id: number, representativeBundle: string, userId: number): Promis
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -2679,6 +2785,62 @@ let representativeBundle: string = "com.example.demo";
 // 用户ID
 let userId: number = 100;
 notificationManager.cancelAsBundle(0, representativeBundle, userId).then(() => {
+	console.info("cancelAsBundle success");
+}).catch((err: Base.BusinessError) => {
+    console.error(`cancelAsBundle fail: ${JSON.stringify(err)}`);
+});
+```
+
+
+## notificationManager.cancelAsBundle<sup>12+</sup>
+
+cancelAsBundle(representativeBundle: BundleOption, id: number): Promise\<void\>
+
+取消代理通知。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER，ohos.permission.NOTIFICATION_AGENT_CONTROLLER
+
+**系统接口**: 此接口为系统接口。
+
+**参数：**
+
+
+| 参数名               | 类型                                        | 必填 | 说明                                          |
+| -------------------- | ------------------------------------------- | ---- | --------------------------------------------- |
+| representativeBundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)  |是   | 被代理应用的包信息。 |
+| id                   | number                                     | 是   | 通知ID。           |
+
+**返回值：**
+
+| 类型              | 说明        | 
+|-----------------|-----------|
+| Promise\<void\> | 无返回结果的Promise对象。 | 
+
+**错误码：**
+
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 1600001  | Internal error.                           |
+| 1600002  | Marshalling or unmarshalling error.       |
+| 1600003  | Failed to connect service.                |
+| 1600007  | The notification is not exist.            |
+| 1600008  | The user is not exist.                    |
+| 1600009  | Over max number notifications per second. |
+| 1600012  | No memory space.                          |
+
+**示例：**
+
+```ts
+import Base from '@ohos.base';
+
+let representativeBundle: notificationManager.BundleOption = {
+  bundle: "bundleName1",
+};
+notificationManager.cancelAsBundle(representativeBundle, 1).then(() => {
 	console.info("cancelAsBundle success");
 }).catch((err: Base.BusinessError) => {
     console.error(`cancelAsBundle fail: ${JSON.stringify(err)}`);
@@ -2759,7 +2921,7 @@ setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean,
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -2813,7 +2975,7 @@ setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean,
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -2867,7 +3029,7 @@ setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean,
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -2915,7 +3077,7 @@ isNotificationSlotEnabled(bundle: BundleOption, type: SlotType, callback: AsyncC
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -2971,7 +3133,7 @@ isNotificationSlotEnabled(bundle: BundleOption, type: SlotType): Promise\<boolea
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -3017,7 +3179,7 @@ setSyncNotificationEnabledWithoutApp(userId: number, enable: boolean, callback: 
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -3071,7 +3233,7 @@ setSyncNotificationEnabledWithoutApp(userId: number, enable: boolean): Promise\<
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -3116,7 +3278,7 @@ getSyncNotificationEnabledWithoutApp(userId: number, callback: AsyncCallback\<bo
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -3168,7 +3330,7 @@ getSyncNotificationEnabledWithoutApp(userId: number): Promise\<boolean>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -3211,7 +3373,7 @@ on(type: 'checkNotification', callback: (checkInfo: NotificationCheckInfo) => No
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -3261,7 +3423,7 @@ on(type: 'checkNotification', checkRequest: NotificationCheckRequest, callback: 
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -3309,7 +3471,7 @@ off(type: 'checkNotification', callback?: (checkInfo: NotificationCheckInfo) => 
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -3355,7 +3517,7 @@ triggerSystemLiveView(bundle: BundleOption, notificationId: number, buttonOption
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -3412,7 +3574,7 @@ subscribeSystemLiveView(subscriber: SystemLiveViewSubscriber): Promise\<void>;
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |

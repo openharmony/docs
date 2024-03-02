@@ -8,12 +8,12 @@
 - [OpenGL ES](opengles.md)
 - [EGL](egl.md)
 - [Zlib](zlib.md)
-- [Vulkan](vulkan.md)
-  - 模块
-    - [Vulkan](_vulkan.md)
-  - 头文件
+- Vulkan
+  - [Vulkan开发指导](vulkan-guidelines.md)
+  - [Vulkan支持能力](vulkan.md)
+  - Vulkan扩展能力
+    - [Vulkan模块](_vulkan.md)
     - [vulkan_ohos.h](vulkan__ohos_8h.md)
-  - 结构体
     - [VkExternalFormatOHOS](_vk_external_format_o_h_o_s.md)
     - [VkImportNativeBufferInfoOHOS](_vk_import_native_buffer_info_o_h_o_s.md)
     - [VkMemoryGetNativeBufferInfoOHOS](_vk_memory_get_native_buffer_info_o_h_o_s.md)
@@ -26,4 +26,3 @@
   - [libc中由于权限管控可能调用失败的符号列表](musl-permission-control-symbol.md)
   - [Native api中导出的EGL符号列表](egl-symbol.md)
   - [Native api中导出的OpenGL ES 3.2符号列表](openglesv3-symbol.md)
-  - [Native api中支持的Vulkan接口列表](vulkan-symbol.md)

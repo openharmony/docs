@@ -27,7 +27,7 @@ getUserFileMgr(context: Context): UserFileManager
 
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
-| context | [Context](../apis/js-apis-inner-app-context.md) | 是   | 传入Ability实例的Context。 |
+| context | [Context](../apis-ability-kit/js-apis-inner-app-context.md) | 是   | 传入Ability实例的Context。 |
 
 **返回值：**
 
@@ -1416,7 +1416,7 @@ getPhotoIndex(photoUri: string, albumUri: string, options: FetchOptions, callbac
 
 **错误码：**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1489,7 +1489,7 @@ getPhotoIndex(photoUri: string, albumUri: string, options: FetchOptions): Promis
 
 **错误码：**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -2409,7 +2409,7 @@ setHidden(hiddenState: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-接口抛出错误码的详细介绍请参见[文件管理错误码](errorcode-filemanagement.md)和[通用错误码](../errorcodes/errorcode-universal.md)。
+接口抛出错误码的详细介绍请参见[文件管理错误码](errorcode-filemanagement.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -2466,7 +2466,7 @@ setHidden(hiddenState: boolean): Promise&lt;void&gt;
 
 **错误码：**
 
-接口抛出错误码的详细介绍请参见[文件管理错误码](errorcode-filemanagement.md)和[通用错误码](../errorcodes/errorcode-universal.md)。
+接口抛出错误码的详细介绍请参见[文件管理错误码](errorcode-filemanagement.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -4441,7 +4441,7 @@ async function example() {
 | 名称                   | 类型                | 可读 | 可写 | 说明                                              |
 | ---------------------- | ------------------- | ---- |---- | ------------------------------------------------ |
 | fetchColumns           | Array&lt;string&gt; | 是   | 是   | 检索条件，指定列名查询，如果该参数为空时默认查询uri、name、fileType（具体字段名称以检索对象定义为准）且使用[get](#get)接口去获取当前对象的其他属性时将会报错。示例：<br />fetchColumns: ['uri', 'title']。 |
-| predicates           | [dataSharePredicates.DataSharePredicates](../apis/js-apis-data-dataSharePredicates.md) | 是   | 是   | 谓词查询，显示过滤条件。 |
+| predicates           | [dataSharePredicates.DataSharePredicates](../apis-arkdata/js-apis-data-dataSharePredicates-sys.md) | 是   | 是   | 谓词查询，显示过滤条件。 |
 
 ## AlbumFetchOptions
 
@@ -4451,7 +4451,7 @@ async function example() {
 
 | 名称                   | 类型                | 可读 | 可写 | 说明                                              |
 | ---------------------- | ------------------- | ---- |---- | ------------------------------------------------ |
-| predicates           | [dataSharePredicates.DataSharePredicates](../apis/js-apis-data-dataSharePredicates.md) | 是   | 是   | 谓词查询，显示过滤条件。 |
+| predicates           | [dataSharePredicates.DataSharePredicates](../apis-arkdata/js-apis-data-dataSharePredicates-sys.md) | 是   | 是   | 谓词查询，显示过滤条件。 |
 
 ## ChangeData<sup>10+</sup>
 

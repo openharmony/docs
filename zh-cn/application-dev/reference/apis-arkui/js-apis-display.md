@@ -723,16 +723,16 @@ promise.then((data: Array<display.Display>) => {
 | state | [DisplayState](#displaystate) | 是 | 否 | 显示设备的状态。                                                                                                      |
 | refreshRate | number | 是 | 否 | 显示设备的刷新率，该参数应为整数，单位为hz。                                                                                             |
 | rotation | number | 是 | 否 | 显示设备的屏幕顺时针旋转角度。<br>值为0时，表示显示设备屏幕顺时针旋转为0°；<br>值为1时，表示显示设备屏幕顺时针旋转为90°；<br>值为2时，表示显示设备屏幕顺时针旋转为180°；<br>值为3时，表示显示设备屏幕顺时针旋转为270°。 |
-| width | number | 是 | 否 | 显示设备的宽度，单位为px，该参数应为整数。                                                                                        |
-| height | number | 是 | 否 | 显示设备的高度，单位为px，该参数应为整数。                                                                                        |
+| width | number | 是 | 否 | 显示设备的屏幕宽度，单位为px，该参数应为整数。                                                                                        |
+| height | number | 是 | 否 | 显示设备的屏幕高度，单位为px，该参数应为整数。                                                                                        |
 | densityDPI | number | 是 | 否 | 显示设备的屏幕密度，表示每英寸点数。该参数为浮点数，单位为px，一般取值160.0、480.0等。                                                                   |
 | orientation<sup>10+</sup> | [Orientation](#orientation10) | 是 | 否 | 表示屏幕当前显示的方向。                                                                                                  |
 | densityPixels | number | 是 | 否 | 显示设备的逻辑密度，是像素单位无关的缩放系数。该参数为浮点数，一般取值1.0、3.0等。                                                                  |
 | scaledDensity | number | 是 | 否 | 显示设备的显示字体的缩放因子。该参数为浮点数，通常与densityPixels相同。                                                                    |
 | xDPI | number | 是 | 否 | x方向中每英寸屏幕的确切物理像素值，该参数为浮点数。                                                                                    |
 | yDPI | number | 是 | 否 | y方向中每英寸屏幕的确切物理像素值，该参数为浮点数。                                                                                    |
-| colorSpaces<sup>11+</sup> | Array<[colorSpaceManager.ColorSpace](../apis/js-apis-colorSpaceManager.md)> | 是 | 否 | 显示设备支持的所有色域类型。                                                                                                |
-| hdrFormats<sup>11+</sup> | Array<[hdrCapability.HDRFormat](../apis/js-apis-hdrCapability.md)> | 是 | 否 | 显示设备支持的所有HDR格式。                                                                                               |
+| colorSpaces<sup>11+</sup> | Array<[colorSpaceManager.ColorSpace](../apis-arkgraphics2d/js-apis-colorSpaceManager.md)> | 是 | 否 | 显示设备支持的所有色域类型。                                                                                                |
+| hdrFormats<sup>11+</sup> | Array<[hdrCapability.HDRFormat](../apis-arkgraphics2d/js-apis-hdrCapability.md)> | 是 | 否 | 显示设备支持的所有HDR格式。                                                                                               |
 
 ### getCutoutInfo<sup>9+</sup>
 getCutoutInfo(callback: AsyncCallback&lt;CutoutInfo&gt;): void

@@ -1,7 +1,7 @@
 # rating开发指导
 
 
-rating为评分条组件，表示用户使用感受的衡量标准条。具体用法请参考[rating](../reference/arkui-js/js-components-basic-rating.md)。
+rating为评分条组件，表示用户使用感受的衡量标准条。具体用法请参考[rating](../reference/apis-arkui/arkui-js/js-components-basic-rating.md)。
 
 
 ## 创建rating组件

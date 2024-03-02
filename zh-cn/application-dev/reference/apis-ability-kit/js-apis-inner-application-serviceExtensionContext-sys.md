@@ -49,7 +49,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](../apis/js-apis-app-ability-want.md)  | 是 | Want类型参数，传入需要启动的ability的信息，如Ability名称，Bundle名称等。 |
+| want | [Want](js-apis-app-ability-want.md)  | 是 | Want类型参数，传入需要启动的ability的信息，如Ability名称，Bundle名称等。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，返回接口调用是否成功的结果。 |
 
 **错误码：**
@@ -72,7 +72,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -120,8 +120,8 @@ startAbility(want: Want, options?: StartOptions): Promise\<void>;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](../apis/js-apis-app-ability-want.md)  | 是 | Want类型参数，传入需要启动的ability的信息，如Ability名称，Bundle名称等。 |
-| options | [StartOptions](../apis/js-apis-app-ability-startOptions.md) | 否 | 启动Ability所携带的参数。 |
+| want | [Want](js-apis-app-ability-want.md)  | 是 | Want类型参数，传入需要启动的ability的信息，如Ability名称，Bundle名称等。 |
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | 否 | 启动Ability所携带的参数。 |
 
 **返回值：**
 
@@ -149,7 +149,7 @@ startAbility(want: Want, options?: StartOptions): Promise\<void>;
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -201,8 +201,8 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](../apis/js-apis-app-ability-want.md)  | 是 | 启动Ability的want信息。 |
-| options | [StartOptions](../apis/js-apis-app-ability-startOptions.md) | 是 | 启动Ability所携带的参数。 |
+| want | [Want](js-apis-app-ability-want.md)  | 是 | 启动Ability的want信息。 |
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | 是 | 启动Ability所携带的参数。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动结果。 |
 
 **错误码：**
@@ -225,7 +225,7 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -273,7 +273,7 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
 使用规则：
  - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
  - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
- - 组件启动规则详见：[组件启动规则（Stage模型）](../apis/../../application-models/component-startup-rules.md)
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
 
 **需要权限**：ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -285,8 +285,8 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](../apis/js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
-| accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](../apis/js-apis-osAccount.md#getcreatedosaccountscountdeprecated)。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
+| accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getcreatedosaccountscountdeprecated)。 |
 | callback | AsyncCallback\<void\> | 是 | 启动Ability的回调函数。 |
 
 **错误码：**
@@ -309,7 +309,7 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -354,7 +354,7 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
 使用规则：
  - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
  - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
- - 组件启动规则详见：[组件启动规则（Stage模型）](../apis/../../application-models/component-startup-rules.md)
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
 
 **需要权限**：ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -366,9 +366,9 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](../apis/js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
-| accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](../apis/js-apis-osAccount.md#getcreatedosaccountscountdeprecated)。 |
-| options | [StartOptions](../apis/js-apis-app-ability-startOptions.md) | 是 | 启动Ability所携带的参数。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
+| accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getcreatedosaccountscountdeprecated)。 |
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | 是 | 启动Ability所携带的参数。 |
 | callback | AsyncCallback\<void\> | 是 | 启动Ability的回调函数。 |
 
 **错误码：**
@@ -391,7 +391,7 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -441,7 +441,7 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
 使用规则：
  - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
  - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
- - 组件启动规则详见：[组件启动规则（Stage模型）](../apis/../../application-models/component-startup-rules.md)
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
 
 **需要权限**：ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -453,9 +453,9 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](../apis/js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
-| accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](../apis/js-apis-osAccount.md#getcreatedosaccountscountdeprecated-1)。 |
-| options | [StartOptions](../apis/js-apis-app-ability-startOptions.md) | 否 | 启动Ability所携带的参数。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
+| accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getcreatedosaccountscountdeprecated-1)。 |
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | 否 | 启动Ability所携带的参数。 |
 
 **返回值：**
 
@@ -483,7 +483,7 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -537,7 +537,7 @@ startServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](../apis/js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
 | callback | AsyncCallback\<void\> | 是 | 启动Ability的回调函数。 |
 
 **错误码：**
@@ -556,7 +556,7 @@ startServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -605,7 +605,7 @@ startServiceExtensionAbility(want: Want): Promise\<void>;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](../apis/js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
 
 **返回值：**
 
@@ -629,7 +629,7 @@ startServiceExtensionAbility(want: Want): Promise\<void>;
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -684,8 +684,8 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback:
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](../apis/js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
-| accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](../apis/js-apis-osAccount.md#getcreatedosaccountscountdeprecated)。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
+| accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getcreatedosaccountscountdeprecated)。 |
 | callback | AsyncCallback\<void\> | 是 | 启动Ability的回调函数。 |
 
 **错误码：**
@@ -704,7 +704,7 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback:
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 
 **示例：**
@@ -761,8 +761,8 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](../apis/js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
-| accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](../apis/js-apis-osAccount.md#getcreatedosaccountscountdeprecated-1)。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
+| accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getcreatedosaccountscountdeprecated-1)。 |
 
 **返回值：**
 
@@ -786,7 +786,7 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -831,7 +831,7 @@ startAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void;
 使用规则：
  - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
  - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
- - 组件启动规则详见：[组件启动规则（Stage模型）](../apis/../../application-models/component-startup-rules.md)
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -841,7 +841,7 @@ startAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](../apis/js-apis-app-ability-want.md)  | 是 | 启动Ability的want信息。 |
+| want | [Want](js-apis-app-ability-want.md)  | 是 | 启动Ability的want信息。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当启动Ability成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
@@ -864,7 +864,7 @@ startAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void;
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -902,7 +902,7 @@ startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback\
 使用规则：
  - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
  - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
- - 组件启动规则详见：[组件启动规则（Stage模型）](../apis/../../application-models/component-startup-rules.md)
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -912,8 +912,8 @@ startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback\
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](../apis/js-apis-app-ability-want.md)  | 是 | 启动Ability的want信息。 |
-| options | [StartOptions](../apis/js-apis-app-ability-startOptions.md) | 是 | 启动Ability所携带的参数。 |
+| want | [Want](js-apis-app-ability-want.md)  | 是 | 启动Ability的want信息。 |
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | 是 | 启动Ability所携带的参数。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当启动Ability成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
@@ -934,7 +934,7 @@ startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback\
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -977,7 +977,7 @@ startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>;
 使用规则：
  - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
  - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
- - 组件启动规则详见：[组件启动规则（Stage模型）](../apis/../../application-models/component-startup-rules.md)
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -987,8 +987,8 @@ startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](../apis/js-apis-app-ability-want.md)  | 是 | 启动Ability的want信息。 |
-| options | [StartOptions](../apis/js-apis-app-ability-startOptions.md) | 否 | 启动Ability所携带的参数。 |
+| want | [Want](js-apis-app-ability-want.md)  | 是 | 启动Ability的want信息。 |
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | 否 | 启动Ability所携带的参数。 |
 
 **返回值：**
 
@@ -1016,7 +1016,7 @@ startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>;
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1065,7 +1065,7 @@ stopServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](../apis/js-apis-app-ability-want.md) | 是 | 停止Ability的want信息。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 停止Ability的want信息。 |
 | callback | AsyncCallback\<void\> | 是 | 停止Ability的回调函数。 |
 
 **错误码：**
@@ -1081,7 +1081,7 @@ stopServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1130,7 +1130,7 @@ stopServiceExtensionAbility(want: Want): Promise\<void>;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](../apis/js-apis-app-ability-want.md) | 是 | 停止Ability的want信息。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 停止Ability的want信息。 |
 
 **返回值：**
 
@@ -1151,7 +1151,7 @@ stopServiceExtensionAbility(want: Want): Promise\<void>;
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1206,8 +1206,8 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: 
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](../apis/js-apis-app-ability-want.md) | 是 | 停止Ability的want信息。 |
-| accountId | number | 是 | 需要停止的系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](../apis/js-apis-osAccount.md#getcreatedosaccountscountdeprecated)。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 停止Ability的want信息。 |
+| accountId | number | 是 | 需要停止的系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getcreatedosaccountscountdeprecated)。 |
 | callback | AsyncCallback\<void\> | 是 | 停止Ability的回调函数。 |
 
 **错误码：**
@@ -1223,7 +1223,7 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: 
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1279,8 +1279,8 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](../apis/js-apis-app-ability-want.md) | 是 | 停止Ability的want信息。 |
-| accountId | number | 是 | 需要停止的系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](../apis/js-apis-osAccount.md#getcreatedosaccountscountdeprecated-1)。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 停止Ability的want信息。 |
+| accountId | number | 是 | 需要停止的系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getcreatedosaccountscountdeprecated-1)。 |
 
 **返回值：**
 
@@ -1301,7 +1301,7 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1364,7 +1364,7 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void;
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1414,7 +1414,7 @@ terminateSelf(): Promise&lt;void&gt;;
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1449,8 +1449,8 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](../apis/js-apis-app-ability-want.md)  | 是 | Want类型参数，传入需要启动的ability的信息，如Ability名称，Bundle名称等。 |
-| options | [ConnectOptions](../apis/js-apis-inner-ability-connectOptions.md) | 是 | ConnectOptions类型的回调函数，返回服务连接成功、断开或连接失败后的信息。 |
+| want | [Want](js-apis-app-ability-want.md)  | 是 | Want类型参数，传入需要启动的ability的信息，如Ability名称，Bundle名称等。 |
+| options | [ConnectOptions](js-apis-inner-ability-connectOptions.md) | 是 | ConnectOptions类型的回调函数，返回服务连接成功、断开或连接失败后的信息。 |
 
 **返回值：**
 
@@ -1473,7 +1473,7 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1526,8 +1526,8 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](../apis/js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
-| accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](../apis/js-apis-osAccount.md#getcreatedosaccountscountdeprecated)。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
+| accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getcreatedosaccountscountdeprecated)。 |
 | options | ConnectOptions | 是 | 远端对象实例。 |
 
 **返回值：**
@@ -1551,7 +1551,7 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1614,7 +1614,7 @@ disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback&lt;
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1677,7 +1677,7 @@ disconnectServiceExtensionAbility(connection: number): Promise&lt;void&gt;;
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1721,7 +1721,7 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
 使用规则：
  - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
  - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
- - 同设备与跨设备场景下，该接口的使用规则存在差异，详见：[组件启动规则（Stage模型）](../apis/../../application-models/component-startup-rules.md)
+ - 同设备与跨设备场景下，该接口的使用规则存在差异，详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
 
 **需要权限**: ohos.permission.ABILITY_BACKGROUND_COMMUNICATION
 
@@ -1733,7 +1733,7 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](../apis/js-apis-app-ability-want.md) | 是 | 传入需要启动的Ability的信息，包含abilityName、moduleName、bundleName、deviceId(可选)、parameters(可选)，其中deviceId缺省或为空表示启动本地Ability，parameters缺省或为空表示后台启动Ability。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 传入需要启动的Ability的信息，包含abilityName、moduleName、bundleName、deviceId(可选)、parameters(可选)，其中deviceId缺省或为空表示启动本地Ability，parameters缺省或为空表示后台启动Ability。 |
 
 **返回值：**
 
@@ -1755,7 +1755,7 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released.        |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1846,7 +1846,7 @@ startRecentAbility(want: Want, callback: AsyncCallback\<void>): void;
 使用规则：
  - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
  - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
- - 组件启动规则详见：[组件启动规则（Stage模型）](../apis/../../application-models/component-startup-rules.md)
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1856,12 +1856,12 @@ startRecentAbility(want: Want, callback: AsyncCallback\<void>): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](../apis/js-apis-app-ability-want.md) | 是 | 需要启动Ability的want信息。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 需要启动Ability的want信息。 |
 | callback | AsyncCallback\<void> | 是 | 指定的回调函数的结果。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+以下错误码的详细介绍请参见[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -1922,7 +1922,7 @@ startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback\<v
 使用规则：
  - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
  - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
- - 组件启动规则详见：[组件启动规则（Stage模型）](../apis/../../application-models/component-startup-rules.md)
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1932,13 +1932,13 @@ startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback\<v
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](../apis/js-apis-app-ability-want.md) | 是 | 需要启动Ability的want信息。 |
-| options | [StartOptions](../apis/js-apis-app-ability-startOptions.md) | 是 | 启动Ability所携带的参数。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 需要启动Ability的want信息。 |
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | 是 | 启动Ability所携带的参数。 |
 | callback | AsyncCallback\<void> | 是 | 指定的回调函数的结果。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+以下错误码的详细介绍请参见[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -2004,7 +2004,7 @@ startRecentAbility(want: Want, options?: StartOptions): Promise\<void>;
 使用规则：
  - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
  - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
- - 组件启动规则详见：[组件启动规则（Stage模型）](../apis/../../application-models/component-startup-rules.md)
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -2014,12 +2014,12 @@ startRecentAbility(want: Want, options?: StartOptions): Promise\<void>;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](../apis/js-apis-app-ability-want.md) | 是 | 需要启动Ability的want信息。 |
-| options | [StartOptions](../apis/js-apis-app-ability-startOptions.md) | 否 | 启动Ability所携带的参数。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 需要启动Ability的want信息。 |
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | 否 | 启动Ability所携带的参数。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+以下错误码的详细介绍请参见[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -2085,7 +2085,7 @@ startAbilityByCallWithAccount(want: Want, accountId: number): Promise&lt;Caller&
  - 跨用户场景下，Call调用目标Ability时，调用方应用需同时申请`ohos.permission.ABILITY_BACKGROUND_COMMUNICATION`与`ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS`权限
  - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
  - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
- - 同设备与跨设备场景下，该接口的使用规则存在差异，详见：[组件启动规则（Stage模型）](../apis/../../application-models/component-startup-rules.md)
+ - 同设备与跨设备场景下，该接口的使用规则存在差异，详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
 
 **需要权限**: ohos.permission.ABILITY_BACKGROUND_COMMUNICATION, ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -2097,8 +2097,8 @@ startAbilityByCallWithAccount(want: Want, accountId: number): Promise&lt;Caller&
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](../apis/js-apis-app-ability-want.md) | 是 | 传入需要启动的Ability的信息，包含abilityName、moduleName、bundleName、deviceId(可选)、parameters(可选)，其中deviceId缺省或为空表示启动本地Ability，parameters缺省或为空表示后台启动Ability。 |
-| accountId | number | 是 | 系统帐号的帐号ID，-1表示当前活动用户，详情参考[getCreatedOsAccountsCount](../apis/js-apis-osAccount.md#getcreatedosaccountscountdeprecated-1)。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 传入需要启动的Ability的信息，包含abilityName、moduleName、bundleName、deviceId(可选)、parameters(可选)，其中deviceId缺省或为空表示启动本地Ability，parameters缺省或为空表示后台启动Ability。 |
+| accountId | number | 是 | 系统帐号的帐号ID，-1表示当前活动用户，详情参考[getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getcreatedosaccountscountdeprecated-1)。 |
 
 **返回值：**
 
@@ -2122,7 +2122,7 @@ startAbilityByCallWithAccount(want: Want, accountId: number): Promise&lt;Caller&
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released.        |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -2179,7 +2179,7 @@ requestModalUIExtension(pickerWant: Want): Promise\<void>
 
 使用规则：
 - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限。
-- 组件启动规则详见：[组件启动规则（Stage模型）](../apis/../../application-models/component-startup-rules.md)。
+- 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -2189,7 +2189,7 @@ requestModalUIExtension(pickerWant: Want): Promise\<void>
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| pickerWant | [Want](../apis/js-apis-app-ability-want.md)  | 是 | 拉起UIExtension的want信息。 |
+| pickerWant | [Want](js-apis-app-ability-want.md)  | 是 | 拉起UIExtension的want信息。 |
 
 **返回值：**
 
@@ -2206,7 +2206,7 @@ requestModalUIExtension(pickerWant: Want): Promise\<void>
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
 
-错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -2258,7 +2258,7 @@ requestModalUIExtension(pickerWant: Want, callback: AsyncCallback\<void>): void
 
 使用规则：
 - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限。
-- 组件启动规则详见：[组件启动规则（Stage模型）](../apis/../../application-models/component-startup-rules.md)。
+- 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
  
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -2268,7 +2268,7 @@ requestModalUIExtension(pickerWant: Want, callback: AsyncCallback\<void>): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| pickerWant | [Want](../apis/js-apis-app-ability-want.md)  | 是 | 拉起UIExtension的want信息。 |
+| pickerWant | [Want](js-apis-app-ability-want.md)  | 是 | 拉起UIExtension的want信息。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当拉起UIExtension成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
@@ -2280,7 +2280,7 @@ requestModalUIExtension(pickerWant: Want, callback: AsyncCallback\<void>): void
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
 
-错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 

@@ -8,10 +8,10 @@ There are three types of threads in the stage model:
   - Distributes interaction events.
   - Processes application code callbacks (event processing and lifecycle management).
   - Receives messages sent by the **TaskPool** and **Worker** threads.
-- [TaskPool Worker Thread](../reference/apis/js-apis-taskpool.md)
+- [TaskPool Worker Thread](../reference/apis-arkts/js-apis-taskpool.md)
 
   Used for time-consuming operations and provides APIs for setting the scheduling priority and load balancing. It is recommended.
-- [Worker Thread](../reference/apis/js-apis-worker.md)
+- [Worker Thread](../reference/apis-arkts/js-apis-worker.md)
 
   Used for time-consuming operations and supports inter-thread communication.
 For details about the operation mechanism, communication method, and usage of **TaskPool** and **Worker**, see [Comparison Between TaskPool and Worker](../arkts-utils/taskpool-vs-worker.md).

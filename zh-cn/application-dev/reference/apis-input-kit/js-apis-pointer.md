@@ -181,9 +181,6 @@ try {
 }
 ```
 
-
-
-
 ## pointer.getPointerStyle
 
 getPointerStyle(windowId: number, callback: AsyncCallback&lt;PointerStyle&gt;): void
@@ -426,6 +423,29 @@ window.getLastWindow(getContext(), (error: BusinessError, win: window.Window) =>
 });
 ```
 
+## PrimaryButton<sup>10+</sup>
+
+鼠标主键类型。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+| 名称                               | 值    | 说明     |
+| -------------------------------- | ---- | ------ |
+| LEFT                          | 0    | 鼠标左键     |
+| RIGHT                             | 1    | 鼠标右键   |
+
+## RightClickType<sup>10+</sup>
+
+右键菜单触发方式。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+| 名称                               | 值    | 说明     |
+| -------------------------------- | ---- | ------ |
+| TOUCHPAD_RIGHT_BUTTON            | 1    |触控板右键区域。 |
+| TOUCHPAD_LEFT_BUTTON            | 2    |触控板左键区域。 |
+| TOUCHPAD_TWO_FINGER_TAP         | 3    |双指轻击或按压触控板。|
+
 ## PointerStyle
 
 鼠标样式类型。
@@ -492,7 +512,7 @@ setCustomCursor(windowId: number, pixelMap: image.PixelMap, focusX?: number, foc
 | 参数名    | 类型     | 必填   | 说明                                  |
 | ----- | ------ | ---- | ----------------------------------- |
 | windowId  | number  | 是    | 窗口id。                          |
-| pixelMap  | [image.PixelMap](../apis/js-apis-image.md#pixelmap7) | 是    | 自定义光标资源。 |
+| pixelMap  | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是    | 自定义光标资源。 |
 | focusX  | number | 否    | 自定义光标焦点x, 取值范围：大于等于0，默认为0。 |
 | focusY  | number | 否    | 自定义光标焦点y，取值范围：大于等于0，默认为0。 |
 
@@ -539,7 +559,7 @@ setCustomCursorSync(windowId: number, pixelMap: image.PixelMap, focusX?: number,
 | 参数名    | 类型     | 必填   | 说明                                  |
 | ----- | ------ | ---- | ----------------------------------- |
 | windowId  | number  | 是    | 窗口id。                          |
-| pixelMap  | [image.PixelMap](../apis/js-apis-image.md#pixelmap7) | 是    | 自定义光标资源。 |
+| pixelMap  | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是    | 自定义光标资源。 |
 | focusX  | number | 否    | 自定义光标焦点x, 取值范围：大于等于0，默认为0。 |
 | focusY  | number | 否    | 自定义光标焦点y，取值范围：大于等于0，默认为0。 |
 

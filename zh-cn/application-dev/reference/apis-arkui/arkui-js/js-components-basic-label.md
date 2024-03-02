@@ -17,7 +17,7 @@
 
 ## 属性
 
-除支持[通用属性](../arkui-js/js-components-common-attributes.md)外，还支持如下属性：
+除支持[通用属性](js-components-common-attributes.md)外，还支持如下属性：
 
 | 名称     | 类型     | 默认值  | 必填   | 描述          |
 | ------ | ------ | ---- | ---- | ----------- |
@@ -26,7 +26,7 @@
 
 ## 样式
 
-除支持[通用样式](../arkui-js/js-components-common-styles.md)外，还支持如下样式：
+除支持[通用样式](js-components-common-styles.md)外，还支持如下样式：
 
 | 名称                | 类型                         | 默认值        | 必填   | 描述                                       |
 | ----------------- | -------------------------- | ---------- | ---- | ---------------------------------------- |
@@ -40,7 +40,7 @@
 | text-align        | string                     | start<br/> | 否    | 设置文本的文本对齐方式，可选值为：<br/>-&nbsp;left：文本左对齐；<br/>-&nbsp;center：文本居中对齐；<br/>-&nbsp;right：文本右对齐；<br/>-&nbsp;start：根据文字书写相同的方向对齐；<br/>-&nbsp;end：根据文字书写相反的方向对齐。<br/>如文本宽度未指定大小，文本的宽度和父容器的宽度大小相等的情况下，对齐效果可能会不明显。 |
 | line-height       | &lt;length&gt;             | 0px        | 否    | 设置文本的文本行高，设置为0px时，不限制文本行高，自适应字体大小。       |
 | text-overflow     | string                     | clip       | 否    | 在设置了最大行数的情况下生效，可选值为：<br/>-&nbsp;clip：将文本根据父容器大小进行裁剪显示；<br/>-&nbsp;ellipsis：根据父容器大小显示，显示不下的文本用省略号代替。需配合max-lines使用。 |
-| font-family       | string                     | sans-serif | 否    | 设置文本的字体列表，用逗号分隔，每个字体用字体名或者字体族名设置。列表中第一个系统中存在的或者通过[自定义字体](../arkui-js/js-components-common-customizing-font.md)指定的字体，会被选中作为文本的字体。 |
+| font-family       | string                     | sans-serif | 否    | 设置文本的字体列表，用逗号分隔，每个字体用字体名或者字体族名设置。列表中第一个系统中存在的或者通过[自定义字体](js-components-common-customizing-font.md)指定的字体，会被选中作为文本的字体。 |
 | max-lines         | number                     | -          | 否    | 设置文本的最大行数。                               |
 | min-font-size     | &lt;length&gt;             | -          | 否    | 文本最小字号，需要和文本最大字号同时设置，支持文本字号动态变化。设置最大最小字体样式后，font-size不生效。 |
 | max-font-size     | &lt;length&gt;             | -          | 否    | 文本最大字号，需要和文本最小字号同时设置，支持文本字号动态变化。设置最大最小字体样式后，font-size不生效。 |

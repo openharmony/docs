@@ -1,6 +1,6 @@
 # PluginComponent (系统接口)
 
-提供外部应用组件嵌入式显示功能，即外部应用提供的UI可在本应用内显示。如需通过跨进程通信实现更新，请参考[@ohos.pluginComponent](../../apis/js-apis-plugincomponent.md)。
+提供外部应用组件嵌入式显示功能，即外部应用提供的UI可在本应用内显示。如需通过跨进程通信实现更新，请参考[@ohos.pluginComponent](../js-apis-plugincomponent.md)。
 
 
 >  **说明：**
@@ -22,9 +22,9 @@ PluginComponent(value: { template: PluginComponentTemplate, data: KVObject})
 
 **参数：**
 
-| 参数名 | 参数类型                                                                                                                                                        | 必填 | 参数描述                                                                                                  |
-| ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---- | --------------------------------------------------------------------------------------------------------- |
-| value  | {<br/>template:&nbsp; [PluginComponentTemplate](#plugincomponenttemplate类型说明),<br/>data:&nbsp;[KVObject](../../apis/js-apis-plugincomponent.md#kvobject)<br/>} | 是   | template:&nbsp;&nbsp;组件模板，用于跟提供者定义的组件绑定。<br/>data:&nbsp;传给插件组件提供者使用的数据。 |
+| 参数名 | 参数类型                                                     | 必填 | 参数描述                                                     |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | {<br/>template:&nbsp; [PluginComponentTemplate](#plugincomponenttemplate类型说明),<br/>data:&nbsp;[KVObject](../js-apis-plugincomponent.md#kvobject)<br/>} | 是   | template:&nbsp;&nbsp;组件模板，用于跟提供者定义的组件绑定。<br/>data:&nbsp;传给插件组件提供者使用的数据。 |
 
 ## PluginComponentTemplate类型说明
 

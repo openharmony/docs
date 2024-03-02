@@ -796,6 +796,7 @@ createOsAccount(localName: string, type: OsAccountType, callback: AsyncCallback&
 | -------- | ------------------------- |
 | 12300001 | System service exception. |
 | 12300002 | Invalid localName or type. |
+| 12300004 | Local name already exists. |
 | 12300005 | Multi-user not supported. |
 | 12300006 | Unsupported account type. |
 | 12300007 | The number of accounts reaches the upper limit. |
@@ -818,7 +819,7 @@ createOsAccount(localName: string, type: OsAccountType, callback: AsyncCallback&
 
 ### createOsAccount
 
-createOsAccount(localName: string, type: OsAccountType): Promise&lt;OsAccountInfo&gt;
+createOsAccount(localName: string, type: OsAccountType, options?: CreateOsAccountOptions): Promise&lt;OsAccountInfo&gt;
 
 创建一个系统帐号。使用Promise异步回调。
 
@@ -834,6 +835,7 @@ createOsAccount(localName: string, type: OsAccountType): Promise&lt;OsAccountInf
 | --------- | ------------------------------- | ---- | ---------------------- |
 | localName | string                          | 是   | 创建的系统帐号的名称。 |
 | type      | [OsAccountType](js-apis-osAccount.md#osaccounttype) | 是   | 创建的系统帐号的类型。 |
+| options      | [CreateOsAccountOptions](js-apis-osAccount-sys.md#createosaccountoptions12) | 否   | 创建系统帐号的选项。 <br/>从API version 12开始支持该可选参数。|
 
 **返回值：**
 
@@ -846,18 +848,22 @@ createOsAccount(localName: string, type: OsAccountType): Promise&lt;OsAccountInf
 | 错误码ID  | 错误信息                   |
 | -------- | ------------------------- |
 | 12300001 | System service exception. |
-| 12300002 | Invalid localName or type. |
+| 12300002 | Invalid localName, type or options. |
+| 12300004 | Local name already exists. |
 | 12300005 | Multi-user not supported. |
 | 12300006 | Unsupported account type. |
 | 12300007 | The number of accounts reaches the upper limit. |
+| 12300015 | Short name already exists. |
 
 **示例：**
 
   ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let options: account_osAccount.CreateOsAccountOptions;
+  options.shortName = 'myShortName';
   try {
-    accountManager.createOsAccount('testAccountName', account_osAccount.OsAccountType.NORMAL).then(
+    accountManager.createOsAccount('testAccountName', account_osAccount.OsAccountType.NORMAL, options).then(
       (accountInfo: account_osAccount.OsAccountInfo) => {
       console.log('createOsAccount, accountInfo: ' + JSON.stringify(accountInfo));
     }).catch((err: BusinessError) => {
@@ -2190,12 +2196,12 @@ registerInputer(inputer: IInputer): void;
   let pinAuth: account_osAccount.PINAuth = new account_osAccount.PINAuth();
   let password = new Uint8Array([0, 0, 0, 0, 0]);
   try {
-    let result = pinAuth.registerInputer({
+    pinAuth.registerInputer({
         onGetData: (authSubType: account_osAccount.AuthSubType, callback: account_osAccount.IInputData) => {
           callback.onSetData(authSubType, password);
         }
     });
-    console.log('registerInputer result = ' + result);
+    console.log('registerInputer success.');
   } catch (e) {
     console.log('registerInputer exception = ' + JSON.stringify(e));
   }
@@ -4389,6 +4395,16 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 | FINGERPRINT_TIP_FINGER_DOWN<sup>10+</sup>   | 6     | 表示手指落下。                  |
 | FINGERPRINT_TIP_FINGER_UP<sup>10+</sup>     | 7     | 表示手指抬起。                |
 
+## OsAccountInfo
+
+表示系统帐号信息。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount。
+
+| 名称      | 类型   | 必填 | 说明       |
+| ----------- | ------ | ---- | ---------- |
+| shortName<sup>12+</sup> | string | 否   | 系统帐号的短名称。<br>**系统接口：** 此接口为系统接口，默认为空。 |
+
 ## DomainAccountInfo<sup>8+</sup>
 
 表示域帐号信息。
@@ -4480,3 +4496,15 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
 | callerUid | number | 是   | 调用方唯一标识符 |
+
+## CreateOsAccountOptions<sup>12+</sup>
+
+表示创建系统帐号的选项。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount。
+
+| 名称      | 类型   | 必填 | 说明       |
+| ----------- | ------ | ---- | ---------- |
+| shortName | string | 是   | 表示帐号短名称（用作个人文件夹目录） <br/>**约束：** <br>1）不允许出现的字符：\< \> \| : " * ? / \\<br>2）不允许独立出现的字符串：.或..<br>3）长度不超过255个字符|

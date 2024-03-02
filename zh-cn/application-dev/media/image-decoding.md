@@ -4,7 +4,7 @@
 
 ## 开发步骤
 
-图片解码相关API的详细介绍请参见：[图片解码接口说明](../reference/apis/js-apis-image.md#imagesource)。
+图片解码相关API的详细介绍请参见：[图片解码接口说明](../reference/apis-image-kit/js-apis-image.md#imagesource)。
 
 1. 全局导入Image模块。
      
@@ -28,7 +28,7 @@
       const context = featureAbility.getContext();
       const filePath = context.getCacheDir() + "/test.jpg";
       ```
-   - 方法二：通过沙箱路径获取图片的文件描述符。具体请参考[file.fs API参考文档](../reference/apis/js-apis-file-fs.md)。
+   - 方法二：通过沙箱路径获取图片的文件描述符。具体请参考[file.fs API参考文档](../reference/apis-core-file-kit/js-apis-file-fs.md)。
       该方法需要先导入\@ohos.file.fs模块。
 
       ```ts
@@ -54,7 +54,7 @@
       const file : fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE);
       const fd : number = file?.fd;
       ```
-   - 方法三：通过资源管理器获取资源文件的ArrayBuffer。具体请参考[ResourceManager API参考文档](../reference/apis/js-apis-resource-manager.md#getrawfilecontent9-1)。
+   - 方法三：通过资源管理器获取资源文件的ArrayBuffer。具体请参考[ResourceManager API参考文档](../reference/apis-localization-kit/js-apis-resource-manager.md#getrawfilecontent9-1)。
         
       ```ts
       // Stage模型
@@ -87,7 +87,7 @@
       });
       
       ```
-   - 方法四：通过资源管理器获取资源文件的RawFileDescriptor。具体请参考[ResourceManager API参考文档](../reference/apis/js-apis-resource-manager.md#getrawfd9-1)。
+   - 方法四：通过资源管理器获取资源文件的RawFileDescriptor。具体请参考[ResourceManager API参考文档](../reference/apis-localization-kit/js-apis-resource-manager.md#getrawfd9-1)。
         
       ```ts
       // Stage模型

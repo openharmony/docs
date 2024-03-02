@@ -17,7 +17,7 @@
 
 ## 开发步骤
 
-详细的API说明请参考[Camera API参考](../reference/apis/js-apis-camera.md)。
+详细的API说明请参考[Camera API参考](../reference/apis-camera-kit/js-apis-camera.md)。
 
 1. 导入依赖，需要导入相机框架、媒体库、图片相关领域依赖。
 
@@ -32,7 +32,7 @@
 
 2. 确定拍照输出流。
 
-   通过[CameraOutputCapability](../reference/apis/js-apis-camera.md#cameraoutputcapability)类中的photoProfiles属性，可获取当前设备支持的拍照输出流，通过[createPhotoOutput](../reference/apis/js-apis-camera.md#createphotooutput11)方法创建拍照输出流。
+   通过[CameraOutputCapability](../reference/apis-camera-kit/js-apis-camera.md#cameraoutputcapability)类中的photoProfiles属性，可获取当前设备支持的拍照输出流，通过[createPhotoOutput](../reference/apis-camera-kit/js-apis-camera.md#createphotooutput11)方法创建拍照输出流。
 
    ```ts
    function getPhotoOutput(cameraManager: camera.CameraManager, 

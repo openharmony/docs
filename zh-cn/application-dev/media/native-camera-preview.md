@@ -4,7 +4,7 @@
 
 ## 开发步骤
 
-详细的API说明请参考[Camera API参考](../reference/native-apis/_o_h___camera.md)。
+详细的API说明请参考[Camera API参考](../reference/apis-camera-kit/_o_h___camera.md)。
 
 1. 导入NDK接口，接口中提供了相机相关的属性和方法，导入方法如下。
      
@@ -28,7 +28,7 @@
 
 3. 获取SurfaceId。
      
-    XComponent组件为预览流提供的SurfaceId，而XComponent的能力由UI提供，相关介绍可参考[XComponent组件参考](../reference/arkui-ts/ts-basic-components-xcomponent.md)。
+    XComponent组件为预览流提供的SurfaceId，而XComponent的能力由UI提供，相关介绍可参考[XComponent组件参考](../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)。
 
 4. 根据传入的SurfaceId，通过OH_CameraManager_GetSupportedCameraOutputCapability()方法获取当前设备支持的预览能力。通过OH_CameraManager_CreatePreviewOutput()方法创建预览输出流，其中，OH_CameraManager_CreatePreviewOutput()方法中的参数分别是cameraManager指针，previewProfiles数组中的第一项，步骤三中获取的surfaceId，以及返回的previewOutput指针。
      
@@ -68,7 +68,7 @@
       }
     ```
 
-5. 使能。当session完成CommitConfig后通过调用start()方法输出预览流，接口调用失败会返回相应错误码，错误码类型参见[Camera_ErrorCode](../reference/native-apis/_o_h___camera.md#camera_errorcode-1)。
+5. 使能。当session完成CommitConfig后通过调用start()方法输出预览流，接口调用失败会返回相应错误码，错误码类型参见[Camera_ErrorCode](../reference/apis-camera-kit/_o_h___camera.md#camera_errorcode-1)。
      
    ```c++
     ret = OH_PreviewOutput_Start(previewOutput);
@@ -77,7 +77,7 @@
     }
    ```
 
-6. 通过stop()方法停止预览流，接口调用失败会返回相应错误码，错误码类型参见[Camera_ErrorCode](../reference/native-apis/_o_h___camera.md#camera_errorcode-1)。
+6. 通过stop()方法停止预览流，接口调用失败会返回相应错误码，错误码类型参见[Camera_ErrorCode](../reference/apis-camera-kit/_o_h___camera.md#camera_errorcode-1)。
      
    ```c++
     ret = OH_PreviewOutput_Stop(previewOutput);
@@ -123,7 +123,7 @@
     }
   ```
 
-- 通过注册固定的error回调函数获取监听预览输出错误结果，callback返回预览输出接口使用错误时对应的错误码，错误码类型参见[Camera_ErrorCode](../reference/native-apis/_o_h___camera.md#camera_errorcode-1)。
+- 通过注册固定的error回调函数获取监听预览输出错误结果，callback返回预览输出接口使用错误时对应的错误码，错误码类型参见[Camera_ErrorCode](../reference/apis-camera-kit/_o_h___camera.md#camera_errorcode-1)。
     
   ```c++
     void PreviewOutputOnError(Camera_PreviewOutput* previewOutput, Camera_ErrorCode errorCode)

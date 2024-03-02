@@ -3,7 +3,7 @@
 
 ## 概述
 
-MediaKeySession回调结构体, 用来监听密钥过期、密钥变化等事件。
+MediaKeySession_Callback结构体，用于监听密钥过期、密钥更改等事件。
 
 **起始版本：** 11
 
@@ -17,5 +17,5 @@ MediaKeySession回调结构体, 用来监听密钥过期、密钥变化等事件
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [MediaKeySession_EventCallback](_drm.md#mediakeysession_eventcallback)[eventCallback](_drm.md#eventcallback) | KeySession回调事件，如许可证过期。 | 
-| [MediaKeySession_KeyChangeCallback](_drm.md#mediakeysession_keychangecallback)[keyChangeCallback](_drm.md#keychangecallback) | 密钥变化事件触发的keyChange事件。 | 
+| [MediaKeySession_EventCallback](_drm.md#mediakeysession_eventcallback) [eventCallback](_drm.md#eventcallback) | 正常事件回调，如密钥过期等。 | 
+| [MediaKeySession_KeyChangeCallback](_drm.md#mediakeysession_keychangecallback) [keyChangeCallback](_drm.md#keychangecallback) | 密钥更改事件的密钥更改回调。 | 

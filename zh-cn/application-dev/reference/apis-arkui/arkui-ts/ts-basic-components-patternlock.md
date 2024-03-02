@@ -14,7 +14,7 @@
 
 PatternLock(controller?: PatternLockController)
 
-**参数:**
+**参数：** 
 
 | 参数名     | 参数类型                                        | 必填 | 描述                                                         |
 | ---------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
@@ -24,25 +24,145 @@ PatternLock(controller?: PatternLockController)
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
-| 名称            | 参数类型                              | 描述                                                         |
-| --------------- | ------------------------------------- | ------------------------------------------------------------ |
-| sideLength      | [Length](ts-types.md#length)        | 设置组件的宽度和高度（宽高相同）。设置为0或负数时组件不显示。<br/>默认值：288vp |
-| circleRadius    | [Length](ts-types.md#length)        | 设置宫格中圆点的半径。设置为0或负数时取默认值。<br/>默认值：6vp                        |
-| regularColor    | [ResourceColor](ts-types.md#resourcecolor) | 设置宫格圆点在“未选中”状态的填充颜色。<br/>默认值：'#ff182431' |
-| selectedColor   | [ResourceColor](ts-types.md#resourcecolor) | 设置宫格圆点在“选中”状态的填充颜色。<br/>默认值：'#ff182431' |
-| activeColor     | [ResourceColor](ts-types.md#resourcecolor) | 设置宫格圆点在“激活”状态的填充颜色（“激活”状态为手指经过圆点但还未选中的状态）。<br/>默认值：'#ff182431' |
-| pathColor       | [ResourceColor](ts-types.md#resourcecolor) | 设置连线的颜色。<br/>默认值：'#33182431'           |
-| pathStrokeWidth | number&nbsp;\|&nbsp;string            | 设置连线的宽度。设置为0或负数时连线不显示。<br/>默认值：12vp           |
-| autoReset       | boolean                               | 设置在完成密码输入后再次在组件区域按下时是否重置组件状态。设置为true，完成密码输入后再次在组件区域按下时会重置组件状态（即清除之前输入的密码）；反之若设置为false，则不会重置组件状态。<br/>默认值：true |
+### sideLength
+
+sideLength(value: Length)
+
+设置组件的宽度和高度（宽高相同）。设置为0或负数时组件不显示。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                         | 必填 | 说明               |
+| ------ | ---------------------------- | ---- | ------------------ |
+| value  | [Length](ts-types.md#length) | 是   | 组件的宽度和高度。 |
+
+### circleRadius
+
+circleRadius(value: Length)
+
+设置宫格中圆点的半径。设置为0或负数时取默认值。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                         | 必填 | 说明                               |
+| ------ | ---------------------------- | ---- | ---------------------------------- |
+| value  | [Length](ts-types.md#length) | 是   | 宫格中圆点的半径。<br/>默认值：6vp |
+
+### regularColor
+
+regularColor(value: ResourceColor)
+
+设置宫格圆点在“未选中”状态的填充颜色。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                       | 必填 | 说明                                                       |
+| ------ | ------------------------------------------ | ---- | ---------------------------------------------------------- |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 宫格圆点在“未选中”状态的填充颜色。<br/>默认值：'#ff182431' |
+
+### selectedColor
+
+selectedColor(value: ResourceColor)
+
+设置宫格圆点在“选中“状态的填充颜色。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                       | 必填 | 说明                                                     |
+| ------ | ------------------------------------------ | ---- | -------------------------------------------------------- |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 宫格圆点在“选中”状态的填充颜色。<br/>默认值：'#ff182431' |
+
+### activeColor
+
+activeColor(value: ResourceColor)
+
+设置宫格圆点在“激活”状态的填充颜色，“激活”状态为手指经过圆点但还未选中的状态。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                       | 必填 | 说明                                                     |
+| ------ | ------------------------------------------ | ---- | -------------------------------------------------------- |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 宫格圆点在“激活”状态的填充颜色。<br/>默认值：'#ff182431' |
+
+### pathColor
+
+pathColor(value: ResourceColor)
+
+设置连线的颜色。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                       | 必填 | 说明                                 |
+| ------ | ------------------------------------------ | ---- | ------------------------------------ |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 连线的颜色。<br/>默认值：'#33182431' |
+
+### pathStrokeWidth
+
+pathStrokeWidth(value: number | string)
+
+设置连线的宽度。设置为0或负数时连线不显示。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                       | 必填 | 说明                          |
+| ------ | -------------------------- | ---- | ----------------------------- |
+| value  | number&nbsp;\|&nbsp;string | 是   | 连线的宽度。<br/>默认值：12vp |
+
+### autoReset
+
+autoReset(value: boolean)
+
+设置在完成密码输入后再次在组件区域按下时是否重置组件状态。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| value  | boolean | 是   | 在完成密码输入后再次在组件区域按下时是否重置组件状态。<br/>为true时，完成密码输入后再次在组件区域按下时会重置组件状态（即清除之前输入的密码）；为false时，不会重置组件状态。<br/>默认值：true |
 
 ## 事件
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
 
-| 名称                                                         | 描述                                                         |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| onPatternComplete(callback: (input: Array\<number\>) => void) | 密码输入结束时触发该回调。<br />input: 与选中宫格圆点顺序一致的数字数组，数字为选中宫格圆点的索引值（第一行圆点从左往右依次为0、1、2，第二行圆点依次为3、4、5，第三行圆点依次为6、7、8）。 |
-| onDotConnect(callback: [CallBack](../../apis/js-apis-base.md#callback)\<number\>)<sup>11+</sup>     | 密码输入选中宫格圆点时触发该回调。<br />**说明：**<br />回调参数为选中宫格圆点顺序的数字，数字为选中宫格圆点的索引值（第一行圆点从左往右依次为0、1、2，第二行圆点依次为3、4、5，第三行圆点依次为6、7、8）。 |
+### onPatternComplete
+
+onPatternComplete(callback: (input: Array\<number\>) => void)
+
+密码输入结束时触发该回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型            | 必填 | 说明                                                         |
+| ------ | --------------- | ---- | ------------------------------------------------------------ |
+| input  | Array\<number\> | 是   | 与选中宫格圆点顺序一致的数字数组，数字为选中宫格圆点的索引值（第一行圆点从左往右依次为0、1、2，第二行圆点依次为3、4、5，第三行圆点依次为6、7、8）。 |
+
+### onDotConnect<sup>11+</sup>
+
+onDotConnect(callback: [CallBack](../../apis-basic-services-kit/js-apis-base.md#callback)\<number\>)
+
+密码输入选中宫格圆点时触发该回调。
+
+回调参数为选中宫格圆点顺序的数字，数字为选中宫格圆点的索引值（第一行圆点从左往右依次为0、1、2，第二行圆点依次为3、4、5，第三行圆点依次为6、7、8）。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ## PatternLockController
 
