@@ -692,22 +692,21 @@ let sum2 = (x: number, y: number) => x + y
 
 ### 闭包
 
-箭头函数通常在另一个函数中定义。作为内部函数，它可以访问外部函数中定义的所有变量和函数。
+闭包是由函数及声明该函数的环境组合而成的。该环境包含了这个闭包创建时作用域内的任何局部变量。
 
-为了捕获上下文，内部函数将其环境组合成闭包，以允许内部函数在自身环境之外的访问。
+在下例中，`z`是执行`f`时创建的`g`箭头函数实例的引用。`g`的实例维持了对它的环境的引用（变量`count`存在其中）。因此，当`z`被调用时，变量`count`仍可用。
 
 ```typescript
 function f(): () => number {
   let count = 0;
-  return (): number => { count++; return count; }
+  let g = (): number => { count++; return count; };
+  return g;
 }
 
 let z = f();
 z(); // 返回：1
 z(); // 返回：2
 ```
-
-在以上示例中，箭头函数闭包捕获`count`变量。
 
 ### 函数重载
 
@@ -1035,7 +1034,7 @@ class FilledRectangle extends RectangleSize {
     this.color = c;
   }
 
-  override draw() {
+  draw() {
     super.draw(); // 父类方法的调用
     // super.height -可在此处使用
     /* 填充矩形 */
@@ -1045,7 +1044,7 @@ class FilledRectangle extends RectangleSize {
 
 #### 方法重写
 
-子类可以重写其父类中定义的方法的实现。重写的方法可以用关键字`override`标记，以提高可读性。重写的方法必须具有与原始方法相同的参数类型和相同或派生的返回类型。
+子类可以重写其父类中定义的方法的实现。重写的方法必须具有与原始方法相同的参数类型和相同或派生的返回类型。
 
 ```typescript
 class RectangleSize {
@@ -1057,7 +1056,7 @@ class RectangleSize {
 }
 class Square extends RectangleSize {
   private side: number = 0
-  override area(): number {
+  area(): number {
     return this.side * this.side;
   }
 }
