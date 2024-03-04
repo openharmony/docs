@@ -25,7 +25,7 @@ export default class EntryAbility extends UIAbility {
         console.log('eventFunc is called');
     }
 
-    onForeground() {
+    onCreate() {
         this.context.eventHub.on('myEvent', this.eventFunc);
     }
 }
@@ -58,12 +58,15 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 export default class EntryAbility extends UIAbility {
     value: number = 12;
 
-    onForeground() {
+    onCreate() {
         this.context.eventHub.on('myEvent', this.eventFunc);
         // Anonymous functions can be used to subscribe to events.
         this.context.eventHub.on('myEvent', () => {
             console.log(`anonymous eventFunc is called, value: ${this.value}`);
         });
+    }
+
+    onForeground() {
         // Result
         // eventFunc is called, value: undefined
         // anonymous eventFunc is called, value: 12
@@ -99,7 +102,7 @@ Unsubscribes from an event.
 import UIAbility from '@ohos.app.ability.UIAbility';
 
 export default class EntryAbility extends UIAbility {
-    onForeground() {
+    onCreate() {
         this.context.eventHub.on('myEvent', this.eventFunc1);
         this.context.eventHub.off('myEvent', this.eventFunc1); // Unsubscribe from the myEvent event with the callback eventFunc1.
         this.context.eventHub.on('myEvent', this.eventFunc1);
@@ -138,8 +141,11 @@ Triggers an event.
 import UIAbility from '@ohos.app.ability.UIAbility';
 
 export default class EntryAbility extends UIAbility {
-    onForeground() {
+    onCreate() {
         this.context.eventHub.on('myEvent', this.eventFunc);
+    }
+
+    onDestroy() {
         // Result
         // eventFunc is called,undefined,undefined
         this.context.eventHub.emit('myEvent');
