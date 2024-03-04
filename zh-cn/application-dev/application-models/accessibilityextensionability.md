@@ -180,7 +180,7 @@ export default class AccessibilityManager {
 
 ## 如何处理一个无障碍事件
 
-相关无障碍事件可以在`onAccessibilityEvent()`方法中进行业务逻辑处理，具体事件可参考[AccessibilityEvent](../reference/apis/js-apis-application-accessibilityExtensionAbility.md#accessibilityevent)。此处以手势事件`rightThenDown`为例：
+相关无障碍事件可以在`onAccessibilityEvent()`方法中进行业务逻辑处理，具体事件可参考[AccessibilityEvent](../reference/apis-accessibility-kit/js-apis-application-accessibilityExtensionAbility.md#accessibilityevent)。此处以手势事件`rightThenDown`为例：
 
 ```ts
 onAccessibilityEvent(accessibilityEvent: AccessibilityEvent) {
@@ -191,9 +191,9 @@ onAccessibilityEvent(accessibilityEvent: AccessibilityEvent) {
     }
 }
 ```
-在相应的无障碍事件中，可以使用[辅助功能扩展上下文（AccessibilityExtensionContext）](../reference/apis/js-apis-inner-application-accessibilityExtensionContext.md)提供的接口进行扩展开发，包括允许配置辅助应用关注信息类型、查询节点信息、手势注入等。
+在相应的无障碍事件中，可以使用[辅助功能扩展上下文（AccessibilityExtensionContext）](../reference/apis-accessibility-kit/js-apis-inner-application-accessibilityExtensionContext.md)提供的接口进行扩展开发，包括允许配置辅助应用关注信息类型、查询节点信息、手势注入等。
 
-此外，还可在无障碍扩展服务中对物理按键事件进行处理，具体可参考[onKeyEvent](../reference/apis/js-apis-application-accessibilityExtensionAbility.md#accessibilityextensionabilityonkeyevent)。
+此外，还可在无障碍扩展服务中对物理按键事件进行处理，具体可参考[onKeyEvent](../reference/apis-accessibility-kit/js-apis-application-accessibilityExtensionAbility.md#accessibilityextensionabilityonkeyevent)。
 
 ## 如何声明无障碍扩展服务具备的能力
 
@@ -216,7 +216,7 @@ onAccessibilityEvent(accessibilityEvent: AccessibilityEvent) {
   }
 ]
 ```
-另外，配置信息中的`accessibility_config`为无障碍扩展服务的具体配置，需要在`resources/base/profile/`下新建`accessibility_config.json`文件，在该文件中声明此无障碍扩展服务具备的[能力类型](../reference/apis/js-apis-accessibility.md#capability)，根据业务功能合理声明能力类型，本案例中，需要如下声明:
+另外，配置信息中的`accessibility_config`为无障碍扩展服务的具体配置，需要在`resources/base/profile/`下新建`accessibility_config.json`文件，在该文件中声明此无障碍扩展服务具备的[能力类型](../reference/apis-accessibility-kit/js-apis-accessibility.md#capability)，根据业务功能合理声明能力类型，本案例中，需要如下声明:
 ```json
 {
   "accessibilityCapabilities": [
