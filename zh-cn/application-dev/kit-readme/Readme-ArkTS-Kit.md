@@ -16,8 +16,9 @@
   - 附录
     - [Actor并发模型对比内存共享并发模型](../arkts-utils/actor-model-development-samples.md)
     - [TaskPool和Worker支持的序列化类型](../arkts-utils/serialization-support-types.md)
-    - [\@Concurrent装饰器：校验并发函数](../arkts-utils/arkts-concurrent.md)
     - [多线程安全注意事项](../arkts-utils/multi-thread-safety.md)
+    - [\@Concurrent装饰器：声明并校验并发函数](../arkts-utils/arkts-concurrent.md)
+    - [\@Sendable装饰器：声明并校验Sendable类](../arkts-utils/arkts-sendable.md)
 - 容器类库
   - [容器类库概述](../arkts-utils/container-overview.md)
   - [线性容器](../arkts-utils/linear-container.md)
