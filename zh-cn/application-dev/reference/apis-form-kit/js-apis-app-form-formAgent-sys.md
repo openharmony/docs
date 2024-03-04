@@ -1,4 +1,4 @@
-# @ohos.app.form.formAgent (FormAgent)
+# @ohos.app.form.formAgent (FormAgent)(系统接口)
 
 FormAgent模块提供了卡片代理相关接口的能力，目前仅包括请求发布卡片。
 

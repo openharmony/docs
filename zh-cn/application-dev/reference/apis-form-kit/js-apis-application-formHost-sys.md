@@ -1,4 +1,4 @@
-# @ohos.application.formHost (formHost)
+# @ohos.application.formHost (formHost)(系统接口)
 
 formHost模块提供了卡片使用方相关接口的能力，包括对使用方同一用户下安装的卡片进行删除、释放、请求更新，获取信息、状态等操作。
 
@@ -866,7 +866,7 @@ acquireFormState(want: Want, callback: AsyncCallback&lt;formInfo.FormStateInfo&g
 
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
-| want | [Want](../apis-ability-kit/js-apis-application-want.md) | 是   | 查询卡片状态时携带的want信息。需要包含bundle名、ability名、module名、卡片名、卡片规格等。 |
+| want | [want](../apis/js-apis-application-want.md) | 是   | 查询卡片状态时携带的want信息。需要包含bundle名、ability名、module名、卡片名、卡片规格等。 |
 | callback | AsyncCallback&lt;[formInfo.FormStateInfo](js-apis-application-formInfo.md#formstateinfo)&gt; | 是 | 回调函数。当获取卡片状态成功，error为undefined，data为获取到的卡片状态；否则为错误对象。 |
 
 **示例：**
@@ -909,7 +909,7 @@ acquireFormState(want: Want): Promise&lt;formInfo.FormStateInfo&gt;
 
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
-| want   | [Want](../apis-ability-kit/js-apis-application-want.md) | 是   | 查询卡片状态时携带的want信息。 |
+| want   | [want](../apis/js-apis-application-want.md) | 是   | 查询卡片状态时携带的want信息。 |
 
 **返回值：**
 
