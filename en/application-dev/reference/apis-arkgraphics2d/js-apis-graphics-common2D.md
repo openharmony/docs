@@ -33,7 +33,7 @@ Describes a rectangle, which can be defined by two coordinate points: upper left
 
 | Name  | Type  | Readable| Writable| Description                          |
 | ------ | ------ | ---- | ---- | ------------------------------ |
-| left   | number | Yes  | Yes  | X coordinate of the upper left corner of the rectangle. The value is a floating point number. |
-| top    | number | Yes  | Yes  | Y coordinate of the upper left corner of the rectangle. The value is a floating point number. |
-| right  | number | Yes  | Yes  | X coordinate of the lower right corner of the rectangle. The value is a floating point number. |
-| bottom | number | Yes  | Yes  | Y coordinate of the lower right corner of the rectangle. The value is a floating point number. |
+| left   | number | Yes  | Yes  | X coordinate of the upper left corner of the rectangle. The value is a floating point number.|
+| top    | number | Yes  | Yes  | Y coordinate of the upper left corner of the rectangle. The value is a floating point number.|
+| right  | number | Yes  | Yes  | X coordinate of the lower right corner of the rectangle. The value is a floating point number.|
+| bottom | number | Yes  | Yes  | Y coordinate of the lower right corner of the rectangle. The value is a floating point number.|

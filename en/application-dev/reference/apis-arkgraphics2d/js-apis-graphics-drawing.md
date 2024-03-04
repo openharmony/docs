@@ -4,7 +4,9 @@ The Drawing module provides basic drawing capabilities, such as drawing rectangl
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
+> - This module does not provide the pixel unit. The pixel unit to use is consistent with the application context environment. In the ArkUI development environment, the default pixel unit vp is used. For details about the pixel unit, see [Pixel Units](../apis-arkui/arkui-ts/ts-pixel-units.md).
 
 ## Modules to Import
 
@@ -195,7 +197,7 @@ path.cubicTo(10, 10, 10, 10, 15, 15);
 
 close(): void
 
-Closes a path by drawing a line segment from the current point to the start point of the path.
+Draws a line segment from the current point to the start point of a path.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -272,7 +274,7 @@ Draws a rectangle. By default, black is used for filling.
 
 > **NOTE**
 >
-> If the coordinates of the upper left corner point are greater than those of the lower right corner point, a rectangle is drawn. If the upper left corner and lower right corner are on the same x-axis or y-axis, a line segment is drawn. If the coordinates of the upper left corner point are the same as those of the lower right corner point, a point is drawn.
+> If the coordinates of the upper left corner point are greater than those of the lower right corner point, a rectangle is drawn. If the upper left corner and lower right corner are on the same x-axis or y-axis, a line segment is drawn. If the coordinates of the upper left corner point are the same as those of the lower right corner point, nothing is drawn.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -548,7 +550,7 @@ class DrawingRenderNode extends RenderNode {
 
 attachPen(pen: Pen): void
 
-Attaches a pen to a canvas so that the canvas will use the style and color of the pen to outline a shape.
+Attaches a pen to a canvas so that the canvas can use the style and color of the pen to outline a shape.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -678,9 +680,9 @@ Enumerates the text encoding types.
 
 | Name                  | Value  | Description                          |
 | ---------------------- | ---- | ------------------------------ |
-| TEXT_ENCODING_UTF8     | 0    | One byte is used to indicate UTF-8 or ASCII. |
-| TEXT_ENCODING_UTF16    | 1    | Two bytes are used to indicate most Unicodes.|
-| TEXT_ENCODING_UTF32    | 2    | Four bytes are used to indicate all Unicodes.  |
+| TEXT_ENCODING_UTF8     | 0    | One byte is used to indicate UTF-8 or ASCII characters. |
+| TEXT_ENCODING_UTF16    | 1    | Two bytes are used to indicate most Unicode characters.|
+| TEXT_ENCODING_UTF32    | 2    | Four bytes are used to indicate all Unicode characters.  |
 | TEXT_ENCODING_GLYPH_ID | 3    | Two bytes are used to indicate the glyph index.  |
 
 ## TextBlob
@@ -1015,6 +1017,10 @@ let metrics = font.getMetrics();
 measureText(text: string, encoding: TextEncoding): number
 
 Measures the text width.
+
+> **NOTE**
+>
+> This API is used to measure the text width of the original string. To measure the text width after typesetting, call [measure.measureText](../apis-arkui/js-apis-measure.md#measuremeasuretext).
 
 **System capability**: SystemCapability.Graphics.Drawing
 
