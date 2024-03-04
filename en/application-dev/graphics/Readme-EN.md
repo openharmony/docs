@@ -6,6 +6,7 @@
   - [Requesting Frame Rates for Animations](displaysync-animation.md)
   - [Requesting Frame Rates for UI Components](displaysync-ui.md)
   - [Requesting Frame Rates for Custom Content](displaysync-xcomponent.md)
+- [Using Drawing to Draw and Display Graphics](drawing-js-guidelines.md)
 - [Using Drawing to Draw and Display Graphics (C/C++)](drawing-guidelines.md)
 - [Native Buffer Development (C/C++)](native-buffer-guidelines.md)
 - [Native Image Development (C/C++)](native-image-guidelines.md)
