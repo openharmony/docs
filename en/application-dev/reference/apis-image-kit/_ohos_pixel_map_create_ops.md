@@ -3,7 +3,7 @@
 
 ## Overview
 
-The **OhosPixelMapCreateOps** struct defines the options used for creating a pixel map.
+The **OhosPixelMapCreateOps** struct defines the options used for creating a pixel map. The parameters need to be initialized.
 
 **System capability**: SystemCapability.Multimedia.Image
 

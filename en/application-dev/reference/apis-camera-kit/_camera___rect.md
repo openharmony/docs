@@ -3,7 +3,7 @@
 
 ## Overview
 
-The **Camera_Rect** struct defines the rectangle.
+The **Camera_Rect** struct defines a rectangle.
 
 **Since**: 11
 
@@ -15,12 +15,12 @@ The **Camera_Rect** struct defines the rectangle.
 
 ### Member Variables
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| [topLeftX](#topleftx) | X coordinate at the upper left corner.|
-| [topLeftY](#toplefty) | Y coordinate at the upper left corner.|
-| [width](#width) | Width of the rectangle, in pixels.|
-| [height](#height) | Height of the rectangle, in pixels.|
+| int32_t [topLeftX](#topleftx) | X coordinate at the upper left corner. | 
+| int32_t [topLeftY](#toplefty) | Y coordinate at the upper left corner. | 
+| int32_t [width](#width) | Width of the rectangle, in pixels. | 
+| int32_t [height](#height) | Height of the rectangle, in pixels. | 
 
 
 ## Member Variable Description
@@ -31,7 +31,6 @@ The **Camera_Rect** struct defines the rectangle.
 ```
 int32_t Camera_Rect::height
 ```
-
 **Description**
 
 Height of the rectangle, in pixels.
@@ -42,7 +41,6 @@ Height of the rectangle, in pixels.
 ```
 int32_t Camera_Rect::topLeftX
 ```
-
 **Description**
 
 X coordinate at the upper left corner.
@@ -53,7 +51,6 @@ X coordinate at the upper left corner.
 ```
 int32_t Camera_Rect::topLeftY
 ```
-
 **Description**
 
 Y coordinate at the upper left corner.
@@ -64,7 +61,6 @@ Y coordinate at the upper left corner.
 ```
 int32_t Camera_Rect::width
 ```
-
 **Description**
 
 Width of the rectangle, in pixels.

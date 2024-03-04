@@ -65,4 +65,4 @@ async function createController() {
 }
 ```
 
-For more information about AVSessionManager APIs, see [API Reference](../reference/apis/js-apis-avsession.md).
+For more information about AVSessionManager APIs, see [API Reference](../reference/apis-avsession-kit/js-apis-avsession.md).

@@ -12,7 +12,7 @@ target_link_libraries(sample PUBLIC libnative_media_codecbase.so)
 
 ## How to Develop
 
-Read [AVCapability](../reference/native-apis/_a_v_capability.md) for the API reference.
+Read [AVCapability](../reference/apis-avcodec-kit/_a_v_capability.md) for the API reference.
 
 1. Add the header files.
 

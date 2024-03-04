@@ -8,19 +8,19 @@ During application development, you can use the **state** attribute of the AVRec
 
 ![Recording state change](figures/recording-status-change.png)
 
-For details about the state, see [AVRecorderState](../reference/apis/js-apis-media.md#avrecorderstate9).
+For details about the state, see [AVRecorderState](../reference/apis-media-kit/js-apis-media.md#avrecorderstate9).
 
 
 ## How to Develop
 
-Read [AVRecorder](../reference/apis/js-apis-media.md#avrecorder9) for the API reference.
+Read [AVRecorder](../reference/apis-media-kit/js-apis-media.md#avrecorder9) for the API reference.
 
 1. Create an **AVRecorder** instance. The AVRecorder is the **idle** state.
 
    > **NOTE**
    >
    > Perform the subsequent operations after the AVRecorder completes value assignment, that is, after **avRecorder = recorder;** is executed.
-     
+
    ```ts
    import media from '@ohos.multimedia.media';
    import { BusinessError } from '@ohos.base';
@@ -38,7 +38,7 @@ Read [AVRecorder](../reference/apis/js-apis-media.md#avrecorder9) for the API re
    | -------- | -------- |
    | stateChange | Mandatory; used to listen for changes of the **state** attribute of the AVRecorder.| 
    | error | Mandatory; used to listen for AVRecorder errors.|
-     
+
    ```ts
    import { BusinessError } from '@ohos.base';
    
@@ -55,16 +55,17 @@ Read [AVRecorder](../reference/apis/js-apis-media.md#avrecorder9) for the API re
    ```
 
 3. Set audio recording parameters and call **prepare()**. The AVRecorder enters the **prepared** state.
+
    > **NOTE**
    > Pay attention to the following when configuring parameters:
-   > 
+   >
    > - In pure audio recording scenarios, set only audio-related parameters in **avConfig** of **prepare()**.
-   > - If video-related parameters are configured, an error will be reported in subsequent steps. If video recording is required, follow the instructions provided in [Video Recording Development](video-recording.md).
+   >   If video-related parameters are configured, an error will be reported in subsequent steps. If video recording is required, follow the instructions provided in [Video Recording Development](video-recording.md).
    > 
    > - The [recording formats](media-kit-intro.md#supported-formats) in use must be those supported by the system.
    > 
-   > - The recording output URL (URL in **avConfig** in the sample code) must be in the format of fd://xx (where xx indicates a file descriptor). You must call [ohos.file.fs](../reference/apis/js-apis-file-fs.md) to implement access to the application file. For details, see [Application File Access and Management](../file-management/app-file-access.md).
- 
+   > - The recording output URL (URL in **avConfig** in the sample code) must be in the format of fd://xx (where xx indicates a file descriptor). You must call [ohos.file.fs](../reference/apis-core-file-kit/js-apis-file-fs.md) to implement access to the application file. For details, see [Application File Access and Management](../file-management/app-file-access.md).
+
    ```ts
    import media from '@ohos.multimedia.media';
    import { BusinessError } from '@ohos.base';
@@ -130,7 +131,6 @@ Read [AVRecorder](../reference/apis/js-apis-media.md#avrecorder9) for the API re
    avRecorder.release();
    ```
 
-
 ## Sample Code
 
 Refer to the sample code below to complete the process of starting, pausing, resuming, and stopping recording.
@@ -171,15 +171,18 @@ export class AudioRecorderDemo {
   // Process of starting recording.
   async startRecordingProcess() {
     if (this.avRecorder != undefined) {
-      // 1. Create an AVRecorder instance.
-      this.avRecorder = await media.createAVRecorder();
-      this.setAudioRecorderCallback();
-      // 2. Obtain the file descriptor of the recording file and assign it to the URL in avConfig. For details, see FilePicker.
-      // 3. Set recording parameters to complete the preparations.
-      await this.avRecorder.prepare(this.avConfig);
-      // 4. Start recording.
-      await this.avRecorder.start();
+      await this.avRecorder.release();
+      this.avRecorder = undefined;
     }
+    // 1. Create an AVRecorder instance.
+    this.avRecorder = await media.createAVRecorder();
+    this.setAudioRecorderCallback();
+    // 2. Obtain the file descriptor of the recording file and assign it to the URL in avConfig. For details, see FilePicker.
+
+    // 3. Set recording parameters to complete the preparations.
+    await this.avRecorder.prepare(this.avConfig);
+    // 4. Start recording.
+    await this.avRecorder.start();
   }
 
   // Process of pausing recording.
@@ -208,6 +211,7 @@ export class AudioRecorderDemo {
       await this.avRecorder.reset();
       // 3. Release the AVRecorder instance.
       await this.avRecorder.release();
+      this.avRecorder = undefined;
       // 4. Close the file descriptor of the recording file.
     }
   }

@@ -3,7 +3,7 @@
 
 > **NOTE**
 >
-> This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+> This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 ## 62980096 Operation Failed
 
@@ -440,6 +440,34 @@ The image property does not exist.
 **Solution**
 
 Use another image.
+
+## 62980133 Image Attribute Value Out of Range
+
+**Error Message**
+
+The EXIF data is out of range.
+
+**Possible Cause**
+
+The value of the image attribute is out of range.
+
+**Solution**
+
+Change the image or check the length of the image attribute value.
+
+## 62980135 Invalid Image Attribute Value
+
+**Error Message**
+
+The EXIF value is invalid.
+
+**Possible Cause**
+
+The image attribute is missing.
+
+**Solution**
+
+Correct the image data or use another image.
 
 ## 62980246 Failure in Reading the Pixel Map
 

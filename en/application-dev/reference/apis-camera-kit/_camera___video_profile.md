@@ -15,11 +15,11 @@ The **Camera_VideoProfile** struct defines the video profile.
 
 ### Member Variables
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| [format](#format) | Camera format.|
-| [size](#size) | Image size.|
-| [range](#range) | Frame rate, in frames per second (FPS).|
+| [Camera_Format](_o_h___camera.md#camera_format) [format](#format) | Camera format. | 
+| [Camera_Size](_camera___size.md) [size](#size) | Image size. | 
+| [Camera_FrameRateRange](_camera___frame_rate_range.md) [range](#range) | Frame rate, in frames per second (FPS). | 
 
 
 ## Member Variable Description
@@ -30,7 +30,6 @@ The **Camera_VideoProfile** struct defines the video profile.
 ```
 Camera_Format Camera_VideoProfile::format
 ```
-
 **Description**
 
 Camera format.
@@ -41,7 +40,6 @@ Camera format.
 ```
 Camera_FrameRateRange Camera_VideoProfile::range
 ```
-
 **Description**
 
 Frame rate, in FPS.
@@ -52,7 +50,6 @@ Frame rate, in FPS.
 ```
 Camera_Size Camera_VideoProfile::size
 ```
-
 **Description**
 
 Image size.

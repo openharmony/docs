@@ -19,10 +19,12 @@ import camera from '@ohos.multimedia.camera';
 import { BusinessError } from '@ohos.base';
 import media from '@ohos.multimedia.media';
 import common from '@ohos.app.ability.common';
+import PhotoAccessHelper from '@ohos.file.photoAccessHelper';
+import fs from '@ohos.file.fs';
 
-async function videoRecording(baseContext: common.BaseContext, surfaceId: string): Promise<void> {
+async function videoRecording(context: common.Context, surfaceId: string): Promise<void> {
   // Create a CameraManager instance.
-  let cameraManager: camera.CameraManager = camera.getCameraManager(baseContext);
+  let cameraManager: camera.CameraManager = camera.getCameraManager(context);
   if (!cameraManager) {
     console.error("camera.getCameraManager error");
     return;
@@ -78,12 +80,18 @@ async function videoRecording(baseContext: common.BaseContext, surfaceId: string
   if (!videoProfilesArray) {
     console.error("createOutput videoProfilesArray == null || undefined");
   }
-
-  let metadataObjectTypesArray: Array<camera.MetadataObjectType> = cameraOutputCap.supportedMetadataObjectTypes;
-  if (!metadataObjectTypesArray) {
-    console.error("createOutput metadataObjectTypesArray == null || undefined");
+  // The width and height of videoProfile must be the same as those of AVRecorderProfile.
+  let videoSize: camera.Size = {
+    width: 640,
+    height: 480
   }
-
+  let videoProfile: undefined | camera.VideoProfile = videoProfilesArray.find((profile: camera.VideoProfile) => {
+    return profile.size.width === videoSize.width && profile.size.height === videoSize.height;
+  });
+  if (!videoProfile) {
+    console.error('videoProfile is not found');
+    return;
+  }
   // Configure the parameters based on those supported by the hardware device.
   let aVRecorderProfile: media.AVRecorderProfile = {
     audioBitrate: 48000,
@@ -93,15 +101,21 @@ async function videoRecording(baseContext: common.BaseContext, surfaceId: string
     fileFormat: media.ContainerFormatType.CFT_MPEG_4,
     videoBitrate: 2000000,
     videoCodec: media.CodecMimeType.VIDEO_AVC,
-    videoFrameWidth: 640,
-    videoFrameHeight: 480,
+    videoFrameWidth: videoSize.width,
+    videoFrameHeight: videoSize.height,
     videoFrameRate: 30
   };
+  let options: PhotoAccessHelper.CreateOptions = {
+    title: Date.now().toString()
+  };
+  let photoAccessHelper: PhotoAccessHelper.PhotoAccessHelper = PhotoAccessHelper.getPhotoAccessHelper(context);
+  let videoUri: string = await photoAccessHelper.createAsset(PhotoAccessHelper.PhotoType.VIDEO, 'mp4', options);
+  let file: fs.File = fs.openSync(videoUri, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   let aVRecorderConfig: media.AVRecorderConfig = {
     audioSourceType: media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
     videoSourceType: media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
     profile: aVRecorderProfile,
-    url: 'fd://', // Before passing in a file descriptor to this parameter, the file must be created by the caller and granted with the read and write permissions. Example value: fd://45--file:///data/media/01.mp4.
+    url: `fd://${file.fd.toString()}`, // Before passing in a file descriptor to this parameter, the file must be created by the caller and granted with the read and write permissions. Example value: fd://45--file:///data/media/01.mp4.
     rotation: 0, // The value can be 0, 90, 180, or 270. If any other value is used, prepare() reports an error.
     location: { latitude: 30, longitude: 130 }
   };
@@ -138,7 +152,7 @@ async function videoRecording(baseContext: common.BaseContext, surfaceId: string
   // Create a VideoOutput instance.
   let videoOutput: camera.VideoOutput | undefined = undefined;
   try {
-    videoOutput = cameraManager.createVideoOutput(videoProfilesArray[0], videoSurfaceId);
+    videoOutput = cameraManager.createVideoOutput(videoProfile, videoSurfaceId);
   } catch (error) {
     let err = error as BusinessError;
     console.error(`Failed to create the videoOutput instance. error: ${JSON.stringify(err)}`);
@@ -152,12 +166,12 @@ async function videoRecording(baseContext: common.BaseContext, surfaceId: string
   });
 
   // Create a session.
-  let videoSession: camera.VideoSession | undefined = undefined;
+  let videoSession: camera.CaptureSession | undefined = undefined;
   try {
-    videoSession = cameraManager.createSession(camera.SceneMode.NORMAL_VIDEO);
+    videoSession = cameraManager.createSession(camera.SceneMode.NORMAL_VIDEO) as camera.VideoSession;
   } catch (error) {
     let err = error as BusinessError;
-    console.error(`Failed to create the VideoSession instance. error: ${JSON.stringify(err)}`);
+    console.error(`Failed to create the session instance. error: ${JSON.stringify(err)}`);
   }
   if (videoSession === undefined) {
     return;
@@ -288,6 +302,9 @@ async function videoRecording(baseContext: common.BaseContext, surfaceId: string
 
   // Stop the session.
   videoSession.stop();
+
+  // Close the files.
+  fs.closeSync(file);
 
   // Release the camera input stream.
   cameraInput.close();

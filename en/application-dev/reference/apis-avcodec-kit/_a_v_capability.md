@@ -3,9 +3,9 @@
 
 ## Overview
 
-The **AVCapability** module provides functions for querying the codec capability.
+The **AVCapability** module provides the functions for querying the codec capability.
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**System capability**: SystemCapability.Multimedia.Media.CodecBase
 
 **Since**
 
@@ -26,64 +26,55 @@ The **AVCapability** module provides functions for querying the codec capability
 
 | Name| Description| 
 | -------- | -------- |
-| [OH_AVRange](_o_h___a_v_range.md) | Defines the value range, which contains the minimum value and maximum value.| 
+| struct&nbsp;&nbsp;[OH_AVRange](_o_h___a_v_range.md) | Defines the value range, which contains the minimum value and maximum value.| 
 
 
 ### Types
 
 | Name| Description| 
 | -------- | -------- |
-| [OH_BitrateMode](#oh_bitratemode) | Defines an enum that enumerates the bit rate modes of an encoder.| 
-| [OH_AVRange](#oh_avrange) | Defines a struct for the value range, which contains the minimum value and maximum value.| 
-| [OH_AVCodecCategory](#oh_avcodeccategory) | Defines an enum that enumerates the codec categories.| 
+| typedef struct [OH_BitrateMode](#oh_bitratemode-1) [OH_BitrateMode](#oh_bitratemode) | Defines an enum that enumerates the bit rate modes of an encoder.| 
+| typedef struct [OH_AVRange](#oh_avrange-1) [OH_AVRange](#oh_avrange) | Defines the value range, which contains the minimum value and maximum value.| 
+| typedef enum [OH_AVCodecCategory](#oh_avcodeccategory-1) [OH_AVCodecCategory](#oh_avcodeccategory) | Defines an enum that enumerates the codec categories.| 
 
 
 ### Enums
 
 | Name| Description| 
 | -------- | -------- |
-| [OH_BitrateMode](#oh_bitratemode) { **BITRATE_MODE_CBR** = 0, **BITRATE_MODE_VBR** = 1, **BITRATE_MODE_CQ** = 2 } | Enumerates the bit rate modes of an encoder.| 
-| [OH_AVCodecCategory](#oh_avcodeccategory) { **HARDWARE** = 0, **SOFTWARE** } | Enumerates the codec categories.| 
+| [OH_BitrateMode](#oh_bitratemode-1) {<br>&nbsp;&nbsp;&nbsp;&nbsp;BITRATE_MODE_CBR = 0,<br>&nbsp;&nbsp;&nbsp;&nbsp;BITRATE_MODE_VBR = 1,<br>&nbsp;&nbsp;&nbsp;&nbsp;BITRATE_MODE_CQ = 2<br>} | Enumerates the bit rate modes of an encoder.| 
+| [OH_AVCodecCategory](#oh_avcodeccategory-1) {<br>&nbsp;&nbsp;&nbsp;&nbsp;HARDWARE = 0,<br>&nbsp;&nbsp;&nbsp;&nbsp;SOFTWARE<br>} | Enumerates the codec categories.| 
 
 
 ### Functions
 
 | Name| Description| 
 | -------- | -------- |
-| \*[OH_AVCodec_GetCapability](#oh_avcodec_getcapability) (const char \*mime, bool isEncoder) | Obtains the codec capability recommended by the system.| 
-| \*[OH_AVCodec_GetCapabilityByCategory](#oh_avcodec_getcapabilitybycategory) (const char \*mime, bool isEncoder, [OH_AVCodecCategory](#oh_avcodeccategory) category) | Obtains the codec capability by category, which can be a hardware codec or software codec.| 
-| [OH_AVCapability_IsHardware](#oh_avcapability_ishardware) (OH_AVCapability \*capability) | Checks whether a codec capability instance describes a hardware codec.| 
-| \*[OH_AVCapability_GetName](#oh_avcapability_getname) (OH_AVCapability \*capability) | Obtains the codec name.| 
-| [OH_AVCapability_GetMaxSupportedInstances](#oh_avcapability_getmaxsupportedinstances) (OH_AVCapability \*capability) | Obtains the maximum number of codec instances supported by a codec.| 
-| [OH_AVCapability_GetEncoderBitrateRange](#oh_avcapability_getencoderbitraterange) (OH_AVCapability \*capability, [OH_AVRange](_o_h___a_v_range.md) \*bitrateRange) | Obtains the bit rate range supported by an encoder.| 
-| [OH_AVCapability_IsEncoderBitrateModeSupported](#oh_avcapability_isencoderbitratemodesupported) (OH_AVCapability \*capability, [OH_BitrateMode](#oh_bitratemode) bitrateMode) | Checks whether an encoder supports a specific bit rate mode.| 
-| [OH_AVCapability_GetEncoderQualityRange](#oh_avcapability_getencoderqualityrange) (OH_AVCapability \*capability, [OH_AVRange](_o_h___a_v_range.md) \*qualityRange) | Obtains the quality range supported by an encoder.| 
-| [OH_AVCapability_GetEncoderComplexityRange](#oh_avcapability_getencodercomplexityrange) (OH_AVCapability \*capability, [OH_AVRange](_o_h___a_v_range.md) \*complexityRange) | Obtains the complexity range supported by an encoder.| 
-| [OH_AVCapability_GetAudioSupportedSampleRates](#oh_avcapability_getaudiosupportedsamplerates) (OH_AVCapability \*capability, const int32_t \*\*sampleRates, uint32_t \*sampleRateNum) | Obtains the sampling rates supported by an audio codec.| 
-| [OH_AVCapability_GetAudioChannelCountRange](#oh_avcapability_getaudiochannelcountrange) (OH_AVCapability \*capability, [OH_AVRange](_o_h___a_v_range.md) \*channelCountRange) | Obtains the count range of audio channels supported by an audio codec.| 
-| [OH_AVCapability_GetVideoWidthAlignment](#oh_avcapability_getvideowidthalignment) (OH_AVCapability \*capability, int32_t \*widthAlignment) | Obtains the video width alignment supported by a video codec.| 
-| [OH_AVCapability_GetVideoHeightAlignment](#oh_avcapability_getvideoheightalignment) (OH_AVCapability \*capability, int32_t \*heightAlignment) | Obtains the video height alignment supported by a video codec.| 
-| [OH_AVCapability_GetVideoWidthRangeForHeight](#oh_avcapability_getvideowidthrangeforheight) (OH_AVCapability \*capability, int32_t height, [OH_AVRange](_o_h___a_v_range.md) \*widthRange) | Obtains the video width range supported by a video codec based on a given height.| 
-| [OH_AVCapability_GetVideoHeightRangeForWidth](#oh_avcapability_getvideoheightrangeforwidth) (OH_AVCapability \*capability, int32_t width, [OH_AVRange](_o_h___a_v_range.md) \*heightRange) | Obtains the video height range supported by a video codec based on a given width.| 
-| [OH_AVCapability_GetVideoWidthRange](#oh_avcapability_getvideowidthrange) (OH_AVCapability \*capability, [OH_AVRange](_o_h___a_v_range.md) \*widthRange) | Obtains the video width range supported by a video codec.| 
-| [OH_AVCapability_GetVideoHeightRange](#oh_avcapability_getvideoheightrange) (OH_AVCapability \*capability, [OH_AVRange](_o_h___a_v_range.md) \*heightRange) | Obtains the video height range supported by a video codec.| 
-| [OH_AVCapability_IsVideoSizeSupported](#oh_avcapability_isvideosizesupported) (OH_AVCapability \*capability, int32_t width, int32_t height) | Checks whether a video codec supports a specific video size.| 
-| [OH_AVCapability_GetVideoFrameRateRange](#oh_avcapability_getvideoframeraterange) (OH_AVCapability \*capability, [OH_AVRange](_o_h___a_v_range.md) \*frameRateRange) | Obtains the video frame rate range supported by a video codec.| 
-| [OH_AVCapability_GetVideoFrameRateRangeForSize](#oh_avcapability_getvideoframeraterangeforsize) (OH_AVCapability \*capability, int32_t width, int32_t height, [OH_AVRange](_o_h___a_v_range.md) \*frameRateRange) | Obtains the video frame rate range supported by a video codec based on a given video size.| 
-| [OH_AVCapability_AreVideoSizeAndFrameRateSupported](#oh_avcapability_arevideosizeandframeratesupported) (OH_AVCapability \*capability, int32_t width, int32_t height, int32_t frameRate) | Checks whether a video codec supports the combination of a video size and frame rate.| 
-| [OH_AVCapability_GetVideoSupportedPixelFormats](#oh_avcapability_getvideosupportedpixelformats) (OH_AVCapability \*capability, const int32_t \*\*pixelFormats, uint32_t \*pixelFormatNum) | Obtains the video pixel formats supported by a video codec.| 
-| [OH_AVCapability_GetSupportedProfiles](#oh_avcapability_getsupportedprofiles) (OH_AVCapability \*capability, const int32_t \*\*profiles, uint32_t \*profileNum) | Obtains the profiles supported by a codec.| 
-| [OH_AVCapability_GetSupportedLevelsForProfile](#oh_avcapability_getsupportedlevelsforprofile) (OH_AVCapability \*capability, int32_t profile, const int32_t \*\*levels, uint32_t \*levelNum) | Obtains the codec levels supported by a profile.| 
-| [OH_AVCapability_AreProfileAndLevelSupported](#oh_avcapability_areprofileandlevelsupported) (OH_AVCapability \*capability, int32_t profile, int32_t level) | Checks whether a codec supports the combination of a profile and level.| 
-
-
-### Variables
-
-| Name| Description| 
-| -------- | -------- |
-| **OH_AVRange::minVal** | Defines the minimum value.| 
-| **OH_AVRange::maxVal** | Defines the maximum value.| 
-
+| OH_AVCapability \*[OH_AVCodec_GetCapability](#oh_avcodec_getcapability) (const char \*mime, bool isEncoder) | Obtains the codec capability recommended by the system.| 
+| OH_AVCapability \*[OH_AVCodec_GetCapabilityByCategory](#oh_avcodec_getcapabilitybycategory) (const char \*mime, bool isEncoder, [OH_AVCodecCategory](#oh_avcodeccategory) category) | Obtains the codec capability by category, which can be a hardware codec or software codec.| 
+| bool [OH_AVCapability_IsHardware](#oh_avcapability_ishardware) (OH_AVCapability \*capability) | Checks whether a codec capability instance describes a hardware codec.| 
+| const char \*[OH_AVCapability_GetName](#oh_avcapability_getname) (OH_AVCapability \*capability) | Obtains the codec name.| 
+| int32_t [OH_AVCapability_GetMaxSupportedInstances](#oh_avcapability_getmaxsupportedinstances) (OH_AVCapability \*capability) | Obtains the maximum number of codec instances supported by a codec.| 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetEncoderBitrateRange](#oh_avcapability_getencoderbitraterange) (OH_AVCapability \*capability, [OH_AVRange](_o_h___a_v_range.md) \*bitrateRange) | Obtains the bit rate range supported by an encoder.| 
+| bool [OH_AVCapability_IsEncoderBitrateModeSupported](#oh_avcapability_isencoderbitratemodesupported) (OH_AVCapability \*capability, [OH_BitrateMode](#oh_bitratemode) bitrateMode) | Checks whether an encoder supports a specific bit rate mode.| 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetEncoderQualityRange](#oh_avcapability_getencoderqualityrange) (OH_AVCapability \*capability, [OH_AVRange](_o_h___a_v_range.md) \*qualityRange) | Obtains the quality range supported by an encoder.| 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetEncoderComplexityRange](#oh_avcapability_getencodercomplexityrange) (OH_AVCapability \*capability, [OH_AVRange](_o_h___a_v_range.md) \*complexityRange) | Obtains the complexity range supported by an encoder.| 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetAudioSupportedSampleRates](#oh_avcapability_getaudiosupportedsamplerates) (OH_AVCapability \*capability, const int32_t \*\*sampleRates, uint32_t \*sampleRateNum) | Obtains the sampling rates supported by an audio codec.| 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetAudioChannelCountRange](#oh_avcapability_getaudiochannelcountrange) (OH_AVCapability \*capability, [OH_AVRange](_o_h___a_v_range.md) \*channelCountRange) | Obtains the count range of audio channels supported by an audio codec.| 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetVideoWidthAlignment](#oh_avcapability_getvideowidthalignment) (OH_AVCapability \*capability, int32_t \*widthAlignment) | Obtains the video width alignment supported by a video codec.| 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetVideoHeightAlignment](#oh_avcapability_getvideoheightalignment) (OH_AVCapability \*capability, int32_t \*heightAlignment) | Obtains the video height alignment supported by a video codec.| 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetVideoWidthRangeForHeight](#oh_avcapability_getvideowidthrangeforheight) (OH_AVCapability \*capability, int32_t height, [OH_AVRange](_o_h___a_v_range.md) \*widthRange) | Obtains the video width range supported by a video codec based on a given height.| 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetVideoHeightRangeForWidth](#oh_avcapability_getvideoheightrangeforwidth) (OH_AVCapability \*capability, int32_t width, [OH_AVRange](_o_h___a_v_range.md) \*heightRange) | Obtains the video height range supported by a video codec based on a given width.| 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetVideoWidthRange](#oh_avcapability_getvideowidthrange) (OH_AVCapability \*capability, [OH_AVRange](_o_h___a_v_range.md) \*widthRange) | Obtains the video width range supported by a video codec.| 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetVideoHeightRange](#oh_avcapability_getvideoheightrange) (OH_AVCapability \*capability, [OH_AVRange](_o_h___a_v_range.md) \*heightRange) | Obtains the video height range supported by a video codec.| 
+| bool [OH_AVCapability_IsVideoSizeSupported](#oh_avcapability_isvideosizesupported) (OH_AVCapability \*capability, int32_t width, int32_t height) | Checks whether a video codec supports a specific video size.| 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetVideoFrameRateRange](#oh_avcapability_getvideoframeraterange) (OH_AVCapability \*capability, [OH_AVRange](_o_h___a_v_range.md) \*frameRateRange) | Obtains the video frame rate range supported by a video codec.| 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetVideoFrameRateRangeForSize](#oh_avcapability_getvideoframeraterangeforsize) (OH_AVCapability \*capability, int32_t width, int32_t height, [OH_AVRange](_o_h___a_v_range.md) \*frameRateRange) | Obtains the video frame rate range supported by a video codec based on a given video size.| 
+| bool [OH_AVCapability_AreVideoSizeAndFrameRateSupported](#oh_avcapability_arevideosizeandframeratesupported) (OH_AVCapability \*capability, int32_t width, int32_t height, int32_t frameRate) | Checks whether a video codec supports the combination of a video size and frame rate.| 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetVideoSupportedPixelFormats](#oh_avcapability_getvideosupportedpixelformats) (OH_AVCapability \*capability, const int32_t \*\*pixelFormats, uint32_t \*pixelFormatNum) | Obtains the video pixel formats supported by a video codec.| 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetSupportedProfiles](#oh_avcapability_getsupportedprofiles) (OH_AVCapability \*capability, const int32_t \*\*profiles, uint32_t \*profileNum) | Obtains the profiles supported by a codec.| 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetSupportedLevelsForProfile](#oh_avcapability_getsupportedlevelsforprofile) (OH_AVCapability \*capability, int32_t profile, const int32_t \*\*levels, uint32_t \*levelNum) | Obtains the codec levels supported by a profile.| 
+| bool [OH_AVCapability_AreProfileAndLevelSupported](#oh_avcapability_areprofileandlevelsupported) (OH_AVCapability \*capability, int32_t profile, int32_t level) | Checks whether a codec supports the combination of a profile and level.| 
 
 ## Type Description
 
@@ -99,7 +90,7 @@ typedef enum OH_AVCodecCategory OH_AVCodecCategory
 
 Defines an enum that enumerates the codec categories.
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**System capability**: SystemCapability.Multimedia.Media.CodecBase
 
 **Since**
 
@@ -117,7 +108,7 @@ typedef struct OH_AVRange OH_AVRange
 
 Defines a struct for the value range, which contains the minimum value and maximum value.
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**System capability**: SystemCapability.Multimedia.Media.CodecBase
 
 **Since**
 
@@ -135,7 +126,7 @@ typedef enum OH_BitrateMode OH_BitrateMode
 
 Defines an enum that enumerates the bit rate modes of an encoder.
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**System capability**: SystemCapability.Multimedia.Media.CodecBase
 
 **Since**
 
@@ -156,7 +147,7 @@ enum OH_AVCodecCategory
 
 Defines an enum that enumerates the codec categories.
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**System capability**: SystemCapability.Multimedia.Media.CodecBase
 
 **Since**
 
@@ -179,7 +170,7 @@ enum OH_BitrateMode
 
 Defines an enum that enumerates the bit rate modes of an encoder.
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**System capability**: SystemCapability.Multimedia.Media.CodecBase
 
 **Since**
 
@@ -206,7 +197,7 @@ bool OH_AVCapability_AreProfileAndLevelSupported (OH_AVCapability *capability, i
 
 Checks whether a codec supports the combination of a profile and level.
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**System capability**: SystemCapability.Multimedia.Media.CodecBase
 
 **Parameters**
 
@@ -236,7 +227,7 @@ bool OH_AVCapability_AreVideoSizeAndFrameRateSupported (OH_AVCapability *capabil
 
 Checks whether a video codec supports the combination of a video size and frame rate.
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**System capability**: SystemCapability.Multimedia.Media.CodecBase
 
 **Parameters**
 
@@ -267,7 +258,7 @@ OH_AVErrCode OH_AVCapability_GetAudioChannelCountRange (OH_AVCapability *capabil
 
 Obtains the count range of audio channels supported by an audio codec.
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**System capability**: SystemCapability.Multimedia.Media.CodecBase
 
 **Parameters**
 
@@ -296,7 +287,7 @@ OH_AVErrCode OH_AVCapability_GetAudioSupportedSampleRates (OH_AVCapability *capa
 
 Obtains the sampling rates supported by an audio codec.
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**System capability**: SystemCapability.Multimedia.Media.CodecBase
 
 **Parameters**
 
@@ -326,7 +317,7 @@ OH_AVErrCode OH_AVCapability_GetEncoderBitrateRange (OH_AVCapability *capability
 
 Obtains the bit rate range supported by an encoder.
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**System capability**: SystemCapability.Multimedia.Media.CodecBase
 
 **Parameters**
 
@@ -355,7 +346,7 @@ OH_AVErrCode OH_AVCapability_GetEncoderComplexityRange (OH_AVCapability *capabil
 
 Obtains the complexity range supported by an encoder.
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**System capability**: SystemCapability.Multimedia.Media.CodecBase
 
 **Parameters**
 
@@ -384,7 +375,7 @@ OH_AVErrCode OH_AVCapability_GetEncoderQualityRange (OH_AVCapability *capability
 
 Obtains the quality range supported by an encoder.
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**System capability**: SystemCapability.Multimedia.Media.CodecBase
 
 **Parameters**
 
@@ -413,7 +404,7 @@ int32_t OH_AVCapability_GetMaxSupportedInstances (OH_AVCapability *capability)
 
 Obtains the maximum number of codec instances supported by a codec.
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**System capability**: SystemCapability.Multimedia.Media.CodecBase
 
 **Parameters**
 
@@ -441,7 +432,7 @@ const char* OH_AVCapability_GetName (OH_AVCapability *capability)
 
 Obtains the codec name.
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**System capability**: SystemCapability.Multimedia.Media.CodecBase
 
 **Parameters**
 
@@ -469,7 +460,7 @@ OH_AVErrCode OH_AVCapability_GetSupportedLevelsForProfile (OH_AVCapability *capa
 
 Obtains the codec levels supported by a profile.
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**System capability**: SystemCapability.Multimedia.Media.CodecBase
 
 **Parameters**
 
@@ -500,7 +491,7 @@ OH_AVErrCode OH_AVCapability_GetSupportedProfiles (OH_AVCapability *capability, 
 
 Obtains the profiles supported by a codec.
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**System capability**: SystemCapability.Multimedia.Media.CodecBase
 
 **Parameters**
 
@@ -530,7 +521,7 @@ OH_AVErrCode OH_AVCapability_GetVideoFrameRateRange (OH_AVCapability *capability
 
 Obtains the video frame rate range supported by a video codec.
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**System capability**: SystemCapability.Multimedia.Media.CodecBase
 
 **Parameters**
 
@@ -559,7 +550,7 @@ OH_AVErrCode OH_AVCapability_GetVideoFrameRateRangeForSize (OH_AVCapability *cap
 
 Obtains the video frame rate range supported by a video codec based on a given video size.
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**System capability**: SystemCapability.Multimedia.Media.CodecBase
 
 **Parameters**
 
@@ -590,7 +581,7 @@ OH_AVErrCode OH_AVCapability_GetVideoHeightAlignment (OH_AVCapability *capabilit
 
 Obtains the video height alignment supported by a video codec.
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**System capability**: SystemCapability.Multimedia.Media.CodecBase
 
 **Parameters**
 
@@ -619,7 +610,7 @@ OH_AVErrCode OH_AVCapability_GetVideoHeightRange (OH_AVCapability *capability, O
 
 Obtains the video height range supported by a video codec.
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**System capability**: SystemCapability.Multimedia.Media.CodecBase
 
 **Parameters**
 
@@ -648,7 +639,7 @@ OH_AVErrCode OH_AVCapability_GetVideoHeightRangeForWidth (OH_AVCapability *capab
 
 Obtains the video height range supported by a video codec based on a given width.
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**System capability**: SystemCapability.Multimedia.Media.CodecBase
 
 **Parameters**
 
@@ -678,7 +669,7 @@ OH_AVErrCode OH_AVCapability_GetVideoSupportedPixelFormats (OH_AVCapability *cap
 
 Obtains the video pixel formats supported by a video codec.
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**System capability**: SystemCapability.Multimedia.Media.CodecBase
 
 **Parameters**
 
@@ -708,7 +699,7 @@ OH_AVErrCode OH_AVCapability_GetVideoWidthAlignment (OH_AVCapability *capability
 
 Obtains the video width alignment supported by a video codec.
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**System capability**: SystemCapability.Multimedia.Media.CodecBase
 
 **Parameters**
 
@@ -737,7 +728,7 @@ OH_AVErrCode OH_AVCapability_GetVideoWidthRange (OH_AVCapability *capability, OH
 
 Obtains the video width range supported by a video codec.
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**System capability**: SystemCapability.Multimedia.Media.CodecBase
 
 **Parameters**
 
@@ -766,7 +757,7 @@ OH_AVErrCode OH_AVCapability_GetVideoWidthRangeForHeight (OH_AVCapability *capab
 
 Obtains the video width range supported by a video codec based on a given height.
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**System capability**: SystemCapability.Multimedia.Media.CodecBase
 
 **Parameters**
 
@@ -796,7 +787,7 @@ bool OH_AVCapability_IsEncoderBitrateModeSupported (OH_AVCapability *capability,
 
 Checks whether an encoder supports a specific bit rate mode.
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**System capability**: SystemCapability.Multimedia.Media.CodecBase
 
 **Parameters**
 
@@ -825,7 +816,7 @@ bool OH_AVCapability_IsHardware (OH_AVCapability *capability)
 
 Checks whether a codec capability instance describes a hardware codec.
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**System capability**: SystemCapability.Multimedia.Media.CodecBase
 
 **Parameters**
 
@@ -853,7 +844,7 @@ bool OH_AVCapability_IsVideoSizeSupported (OH_AVCapability *capability, int32_t 
 
 Checks whether a video codec supports a specific video size.
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**System capability**: SystemCapability.Multimedia.Media.CodecBase
 
 **Parameters**
 
@@ -883,7 +874,7 @@ OH_AVCapability* OH_AVCodec_GetCapability (const char *mime, bool isEncoder)
 
 Obtains the codec capability recommended by the system.
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**System capability**: SystemCapability.Multimedia.Media.CodecBase
 
 **Parameters**
 
@@ -914,7 +905,7 @@ Obtains the codec capability by category,
 
 which can be a hardware codec or software codec.
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**System capability**: SystemCapability.Multimedia.Media.CodecBase
 
 **Parameters**
 

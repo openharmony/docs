@@ -30,7 +30,6 @@ These parameters are used to control the playback volume, number of loops, and p
 | leftVolume  | number | No | Volume of the left channel. The value ranges from 0.0 to 1.0.                                   |
 | rightVolume | number  | No | Volume of the right channel. (Currently, the volume cannot be set separately for the left and right channels. The volume set for the left channel is used.)|
 | priority  | number  | No | Playback priority. The value **0** means the lowest priority. A larger value indicates a higher priority.     |
-| parallelPlayFlag | boolean | No  | Whether the sound can be played in parallel with other active audio streams. The value **true** means that the sound can be played in parallel with other active audio streams, without preempting the audio focus, and **false** means the opposite.<br>This is a system API.|
 
 ## SoundPool
 
