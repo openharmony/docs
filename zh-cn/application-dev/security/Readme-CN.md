@@ -10,3 +10,4 @@
   - [应用包签名工具概述](hapsigntool-overview.md)
   - [应用包签名工具指导](hapsigntool-guidelines.md)
   - [HarmonyAppProvision配置文件](app-provision-structure.md)
+- [关键资产存储服务](AssetStoreKit/Readme-CN.md)
