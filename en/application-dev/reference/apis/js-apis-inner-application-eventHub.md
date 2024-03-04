@@ -30,12 +30,16 @@ export default class EntryAbility extends UIAbility {
     }
 }
 ```
+EventHub is not a global event center. Different context objects have different EventHub objects. Event subscription, unsubscription, and triggering are performed on a specific EventHub object. Therefore, EventHub cannot be used for event transmission between VMs or processes.
 
 ## EventHub.on
 
 on(event: string, callback: Function): void;
 
 Subscribes to an event.
+> **NOTE**
+>
+>  When the callback is triggered by **emit**, the invoker is the **EventHub** object. To change the direction of **this** in **callback**, use an arrow function.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -52,20 +56,22 @@ Subscribes to an event.
 import UIAbility from '@ohos.app.ability.UIAbility';
 
 export default class EntryAbility extends UIAbility {
+    value: number = 12;
+
     onForeground() {
         this.context.eventHub.on('myEvent', this.eventFunc);
         // Anonymous functions can be used to subscribe to events.
         this.context.eventHub.on('myEvent', () => {
-            console.log('call anonymous eventFunc');
+            console.log(`anonymous eventFunc is called, value: ${this.value}`);
         });
         // Result
-        // eventFunc is called
-        // call anonymous eventFunc
-        this.context.eventHub.emit('myEvent'); 
+        // eventFunc is called, value: undefined
+        // anonymous eventFunc is called, value: 12
+        this.context.eventHub.emit('myEvent');
     }
 
     eventFunc() {
-        console.log('eventFunc is called');
+        console.log(`eventFunc is called, value: ${this.value}`);
     }
 }
 ```
