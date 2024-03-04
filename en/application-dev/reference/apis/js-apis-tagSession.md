@@ -1,4 +1,4 @@
-# tagSession (Standard NFC Tag Session) 
+# tagSession (Standard NFC Tag Session)
 
 The **tagSession** module provides common APIs for establishing connections and transferring data.
 
@@ -27,7 +27,7 @@ getTagInfo(): tag.TagInfo
 Obtains the **tagInfo** object provided by the NFC service when the tag is dispatched.
 
 > **NOTE**
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [tag.getTagInfo](js-apis-nfcTag.md#taggettaginfo9).
+> This API is supported since API version 7 and deprecated since API version 9. Use [tag.getTagInfo](js-apis-nfcTag.md#taggettaginfo9) instead.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
@@ -58,7 +58,7 @@ connectTag(): boolean;
 Connects to this tag. Call this API to set up a connection before reading data from or writing data to a tag.
 
 > **NOTE**
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [tagSession.connect](#tagsessionconnect9).
+> This API is supported since API version 7 and deprecated since API version 9. Use [tagSession.connect](#tagsessionconnect9) instead.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
@@ -123,7 +123,7 @@ reset(): void
 Resets the connection to this tag.
 
 > **NOTE**
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [tagSession.resetConnection](#tagsessionresetconnection9).
+> This API is supported since API version 7 and deprecated since API version 9. Use [tagSession.resetConnection](#tagsessionresetconnection9) instead.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
@@ -181,7 +181,7 @@ isTagConnected(): boolean
 Checks whether the tag is connected.
 
 > **NOTE**
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [tagSession.isConnected](#tagsessionisconnected9).
+> This API is supported since API version 7 and deprecated since API version 9. Use [tagSession.isConnected](#tagsessionisconnected9) instead.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
@@ -240,7 +240,7 @@ getMaxSendLength(): number
 Obtains the maximum length of the data that can be sent to this tag.
 
 > **NOTE**
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [tagSession.getMaxTransmitSize](#tagsessiongetmaxtransmitsize9).
+> This API is supported since API version 7 and deprecated since API version 9. Use [tagSession.getMaxTransmitSize](#tagsessiongetmaxtransmitsize9) instead.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
@@ -309,7 +309,7 @@ getSendDataTimeout(): number
 Obtains the timeout period for sending data to this tag, in milliseconds.
 
 > **NOTE**
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [tagSession.getTimeout](#tagsessiongettimeout9).
+> This API is supported since API version 7 and deprecated since API version 9. Use [tagSession.getTimeout](#tagsessiongettimeout9) instead.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
@@ -377,10 +377,10 @@ try {
 
 setSendDataTimeout(timeout: number): boolean
 
-Sets the timeout period for sending data to this tag, in milliseconds.
+Sets the maximum time allowed for sending data to this tag, in ms.
 
 > **NOTE**
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [tagSession.setTimeout](#tagsessionsettimeout9).
+> This API is supported since API version 7 and deprecated since API version 9. Use [tagSession.setTimeout](#tagsessionsettimeout9) instead.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
@@ -415,7 +415,7 @@ console.log("tag setSendDataTimeout setStatus: " + setStatus);
 
 setTimeout(timeout: number): void
 
-Sets the timeout period for sending data to this tag, in milliseconds.
+Sets the maximum time allowed for sending data to this tag, in ms.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
@@ -459,7 +459,7 @@ sendData(data: number[]): Promise<number[]>
 Sends data to this tag. This API uses a promise to return the result.
 
 > **NOTE**
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [tagSession.transmit](#tagsessiontransmit9).
+> This API is supported since API version 7 and deprecated since API version 9. Use [tagSession.transmit](#tagsessiontransmit9) instead.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
@@ -509,7 +509,7 @@ sendData(data: number[], callback: AsyncCallback<number[]>): void
 Sends data to this tag. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
-> This parameter is supported since API version 7 and discarded since API version 9. You are advised to use [tagSession.transmit](#tagsessiontransmit9-1).
+> This parameter is supported since API version 7 and discarded since API version 9. Use [tagSession.transmit](#tagsessiontransmit9-1) instead.
 
 **Required permissions**: ohos.permission.NFC_TAG
 

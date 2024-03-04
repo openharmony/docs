@@ -1,14 +1,14 @@
 # @ohos.secureElement (SE Management)
 
-The **secureElement** module provides APIs for operating and managing the SecureElement (SE). The SE service mentioned in this document is an **SEService** instance. For details, see [newSEService](#secureelementnewseservice).
+The **secureElement** module provides APIs for managing secure elements (SEs). SEs include the Embedded SE (eSE) and SIM on a device. The SE service mentioned in this topic is an **SEService** instance. For details, see [newSEService](#secureelementnewseservice).
 
-The instances of the following classes are involved in this document.
+The instances of the following types are mentioned in this topic:
 
-| Class   | Description                                          |
+| Type   | Description                                          |
 | ------- | ---------------------------------------------- |
-| Session | A **Session** instance represents a session for connecting to an available SE on the device.|
-| Reader  | A **Reader** instance represents an SE reader supported by the device.         |
-| Channel | A **Channel** instance represents an ISO/IEC 7816-4 channel opened to the SE.  |
+| Reader  | SE supported by the device. If eSE and SIM are supported, two instances will be returned.|
+| Session | Session created on an SE **Reader** instance.|
+| Channel | Channel set up by a **Session** instance. The channel can be a basic channel or a logical channel.  |
 
 > **NOTE**
 >
@@ -22,7 +22,7 @@ import secureElement from '@ohos.secureElement';
 
 ## secureElement.ServiceState
 
-Defines the SE service status values.
+Enumerates the SE service stats.
 
 **System capability**: SystemCapability.Communication.SecureElement
 
@@ -37,7 +37,7 @@ newSEService(type: 'serviceState', callback: Callback<[ServiceState](#secureelem
 
 Creates an **SEService** instance for connecting to all available SEs in the system. The connection is time-consuming. Therefore, this API supports only the asynchronous mode.
 
-The returned **SEService** object is available only when **true** is returned by the specified callback or [isConnected](#seserviceisconnected).
+The returned **SEService** instance is available only when **true** is returned by the specified callback or [isConnected](#seserviceisconnected).
 
 **System capability**: SystemCapability.Communication.SecureElement
 
@@ -45,14 +45,14 @@ The returned **SEService** object is available only when **true** is returned by
 
 | **Name**| **Type**                                            | **Mandatory**| **Description**            |
 | ---------- | ---------------------------------------------------- | ------ | -------------------- |
-| type       | string                                               | Yes     | 'serviceState'       |
-| callback   | Callback<[ServiceState](#secureelementservicestate)> | Yes     | Callback invoked to return the SE service status.|
+| type       | string                                               | Yes     | Type of the SE service to create. It has a fixed value of **'serviceState'**.     |
+| callback   | Callback<[ServiceState](#secureelementservicestate)> | Yes     | Callback invoked to return the SE service state.|
 
 **Return value**
 
 | **Type** | **Description**  |
 | :-------- | :--------- |
-| SEService | Returns the **SEService** instance created.|
+| SEService | **SEService** instance created.|
 
 **Example**
 
@@ -69,7 +69,7 @@ try {
         }
     });
 } catch (e) {
-    console.log("newSEService occurs " + "exception: ${(e : BusinessError).message}");
+    console.error("newSEService occurs " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
@@ -77,7 +77,7 @@ try {
 
 getReaders(): Reader[]
 
-Obtains the available SE readers. The returned array cannot contain duplicate objects. Even if no card is inserted, all available readers should be listed.
+Obtains available SE readers, which include all the SEs on the device.
 
 **System capability**: SystemCapability.Communication.SecureElement
 
@@ -85,7 +85,7 @@ Obtains the available SE readers. The returned array cannot contain duplicate ob
 
 | **Type**| **Description**              |
 | :------- | :--------------------- |
-| Reader[] | Returns an array of available **Reader** objects.|
+| Reader[] | Available readers obtained.|
 
 **Example**
 
@@ -106,20 +106,20 @@ try {
         }
     });
 } catch (e) {
-    console.log("newSEService " + "excpetion: ${(e : BusinessError).message}");
+    console.error("newSEService " + "excpetion: ${(e : BusinessError).message}");
 }
 
 try {
-    if(nfcSEService != null) {
+    if (nfcSEService != null) {
         nfcOmaReaderList = nfcSEService.getReaders();
     }
     if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
         console.log("get reader successfully");
     } else {
-        console.log("get reader failed");
+        console.error("get reader failed");
     }
 } catch (e) {
-    console.log("getReaders " + "exception: ${(e : BusinessError).message}");
+    console.error("getReaders " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
@@ -155,12 +155,12 @@ try {
         }
     });
 } catch (e) {
-    console.log("newSEService" + "exception: ${(e : BusinessError).message}");
+    console.error("newSEService" + "exception: ${(e : BusinessError).message}");
 }
 
 try {
     let ret: boolean = false;
-    // Refer to newSEService for this.nfcSEService.
+    // Refer to newSEService for this.nfcSEService. 
     if (nfcSEService != null) {
         ret = nfcSEService.isConnected();
     }
@@ -170,7 +170,7 @@ try {
         console.log("get state: not connected");
     }
 } catch (e) {
-        console.log("isConnected " + "exception: ${(e : BusinessError).message}");
+    console.error("isConnected " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
@@ -178,7 +178,7 @@ try {
 
 shutdown(): void
 
-Releases all SE resources allocated to this service. After that, [isConnected](#seserviceisconnected) returns **false**.
+Releases all SE resources allocated to this SE service. After that, [isConnected](#seserviceisconnected) returns **false**.
 
 **System capability**: SystemCapability.Communication.SecureElement
 
@@ -200,17 +200,17 @@ try {
         }
     });
 } catch (e) {
-    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
+    console.error("newSEService " + "exception: ${(e : BusinessError).message}");
 }
 
 try {
-    // Refer to newSEService for this.nfcSEService.
+    // Refer to newSEService for this.nfcSEService. 
     if (nfcSEService != null) {
         nfcSEService.shutdown();
     }
     console.log("shutdown successfully");
 } catch (e) {
-    console.log("shutdown exception:" + "exception: ${(e : BusinessError).message}");
+    console.error("shutdown exception:" + "exception: ${(e : BusinessError).message}");
 }
 ```
 
@@ -218,7 +218,7 @@ try {
 
 getVersion(): string
 
-Obtains the version of the Open Mobile API Specification used for the implementation.
+Obtains the version of the Open Mobile API (OMAPI) specification used.
 
 **System capability**: SystemCapability.Communication.SecureElement
 
@@ -226,7 +226,7 @@ Obtains the version of the Open Mobile API Specification used for the implementa
 
 | **Type**| **Description**                                          |
 | -------- | -------------------------------------------------- |
-| string   | Returns the OMA version. For example, **3.3** indicates Open Mobile API Specification v3.3.|
+| string   | OMAPI version obtained. For example, **3.3** indicates Open Mobile API Specification v3.3.|
 
 **Example**
 
@@ -246,16 +246,16 @@ try {
         }
     });
 } catch (e) {
-    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
+    console.error("newSEService " + "exception: ${(e : BusinessError).message}");
 }
 
 try {
-    // Refer to newSEService for this.nfcSEService.
+    // Refer to newSEService for this.nfcSEService. 
     if (nfcSEService != null) {
         console.log("version: " + nfcSEService.getVersion());
     }
 } catch (e) {
-    console.log("getVersion " + "exception: ${(e : BusinessError).message}");
+    console.error("getVersion " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
@@ -263,7 +263,7 @@ try {
 
 getName(): string
 
-Obtains the reader name. If the card reader is a SIM reader, its name must be in **SIM[Slot]** format. If the card reader is an embedded SE reader, its name must be in **eSE[slot]** format.
+Obtains the name of this reader. The name is **SIM[*Slot*]** for a SIM reader and **eSE** for an eSE.
 
 **System capability**: SystemCapability.Communication.SecureElement
 
@@ -271,7 +271,7 @@ Obtains the reader name. If the card reader is a SIM reader, its name must be in
 
 | **Type**| **Description**  |
 | -------- | ---------- |
-| string   | Returns the reader name obtained.|
+| string   | Reader name obtained.|
 
 **Example**
 
@@ -292,20 +292,20 @@ try {
         }
     });
 } catch (e) {
-    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
+    console.error("newSEService " + "exception: ${(e : BusinessError).message}");
 }
 
 try {
-    if(nfcSEService != null) {
+    if (nfcSEService != null) {
         nfcOmaReaderList = nfcSEService.getReaders();
     }
     if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
         console.log(nfcOmaReaderList[0].getName());
     } else {
-        console.log("getName failed");
+        console.error("getName failed");
     }
 } catch (e) {
-    console.log("getName " + "exception: ${(e : BusinessError).message}");
+    console.error("getName " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
@@ -351,11 +351,11 @@ try {
         }
     });
 } catch (e) {
-    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
+    console.error("newSEService " + "exception: ${(e : BusinessError).message}");
 }
 
 try {
-    if(nfcSEService != null) {
+    if (nfcSEService != null) {
         nfcOmaReaderList = nfcSEService.getReaders();
     }
     if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
@@ -365,10 +365,10 @@ try {
             console.log("isSecureElementPresent failed");
         }
     } else {
-        console.log("isSecureElementPresent failed");
+        console.error("isSecureElementPresent failed");
     }
 } catch (e) {
-    console.log("isSecureElementPresent " + "exception: ${(e : BusinessError).message}");
+    console.error("isSecureElementPresent " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
@@ -376,7 +376,7 @@ try {
 
  openSession(): Session
 
-Connects to the SE of this reader. This API initializes the SE for communication before returning the session object. Multiple sessions may be opened on a reader at the same time.
+Opens a session to connect to an SE in this reader. Multiple sessions can be opened on a reader at the same time.
 
 **System capability**: SystemCapability.Communication.SecureElement
 
@@ -384,7 +384,7 @@ Connects to the SE of this reader. This API initializes the SE for communication
 
 | **Type**| **Description**                      |
 | -------- | ------------------------------ |
-| Session  | Returns the **Session** object used to create a channel.|
+| Session  | Session instance opened.|
 
 **Error codes**
 
@@ -414,11 +414,11 @@ try {
         }
     });
 } catch (e) {
-    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
+    console.error("newSEService " + "exception: ${(e : BusinessError).message}");
 }
 
 try {
-    if(nfcSEService != null) {
+    if (nfcSEService != null) {
         nfcOmaReaderList = nfcSEService.getReaders();
     }
     if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
@@ -428,10 +428,10 @@ try {
             console.log("get session failed");
         }
     } else {
-        console.log("OpenSession failed");
+        console.error("OpenSession failed");
     }
 } catch (e) {
-    console.log("OpenSession " + "exception: ${(e : BusinessError).message}");
+    console.error("OpenSession " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
@@ -439,7 +439,7 @@ try {
 
  closeSessions(): void
 
-Closes all sessions opened on this reader. This API closes all channels opened by these sessions.
+Closes all sessions opened on this reader. All channels opened by these sessions will be closed.
 
 **System capability**: SystemCapability.Communication.SecureElement
 
@@ -470,24 +470,21 @@ try {
         }
     });
 } catch (e) {
-    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
+    console.error("newSEService " + "exception: ${(e : BusinessError).message}");
 }
 
 try {
-    if(nfcSEService != null) {
+    if (nfcSEService != null) {
         nfcOmaReaderList = nfcSEService.getReaders();
     }
     if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
-        if (nfcOmaReaderList[0].closeSessions()) {
-            console.log("closeSessions successfully");
-        } else {
-            console.log("closeSessions failed");
-        }
+        nfcOmaReaderList[0].closeSessions();
+        console.log("closeSessions successfully");
     } else {
-        console.log("closeSessions failed");
+        console.error("closeSessions failed");
     }
 } catch (e) {
-  console.log("closeSessions " + "exception: ${(e : BusinessError).message}");
+    console.error("closeSessions " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
@@ -503,7 +500,7 @@ Obtains the reader that provides this session.
 
 | **Type**| **Description**                   |
 | -------- | --------------------------- |
-| Reader   | Returns the **Reader** object obtained.|
+| Reader   | Reader instance obtained.|
 
 **Example**
 
@@ -525,11 +522,11 @@ try {
         }
     });
 } catch (e) {
-    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
+    console.error("newSEService " + "exception: ${(e : BusinessError).message}");
 }
 
 try {
-    if(nfcSEService != null) {
+    if (nfcSEService != null) {
         nfcOmaReaderList = nfcSEService.getReaders();
     }
     if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
@@ -537,13 +534,13 @@ try {
         if (omaSession.getReader() != null) {
             console.log("get reader successfully");
         } else {
-            console.log("get reader failed");
+            console.error("get reader failed");
         }
     } else {
-        console.log("getReader failed");
+        console.error("getReader failed");
     }
 } catch (e) {
-    console.log("getReader " + "exception: ${(e : BusinessError).message}");
+    console.error("getReader " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
@@ -551,7 +548,7 @@ try {
 
 getATR(): number[]
 
-Obtains the ATR of this SE. If the ATR of this SE is not available, an empty array will be returned.
+Obtains the Answer to Reset (ATR) of this SE. If the ATR of this SE is not available, an empty array will be returned.
 
 **System capability**: SystemCapability.Communication.SecureElement
 
@@ -591,11 +588,11 @@ try {
         }
     });
 } catch (e) {
-    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
+    console.error("newSEService " + "exception: ${(e : BusinessError).message}");
 }
 
 try {
-    if(nfcSEService != null) {
+    if (nfcSEService != null) {
         nfcOmaReaderList = nfcSEService.getReaders();
     }
     if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
@@ -603,22 +600,22 @@ try {
         if (omaSession != null) {
             omaATR = omaSession.getATR();
         } else {
-            console.log("getATR failed");
+            console.error("getATR failed");
         }
     }
     if (omaATR != null && omaATR.length > 0) {
         str = 'getATR result:[';
         for (let i = 0; i < omaATR.length; ++i) {
             str += omaATR[i];
-            tr += ' ';
+            str += ' ';
         }
         str += ']';
         console.log(str);
     } else {
-        console.log("getATR failed");
+        console.error("getATR failed");
     }
 } catch (e) {
-    console.log("getATR " + "exception: ${(e : BusinessError).message}");
+    console.error("getATR " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
@@ -626,7 +623,7 @@ try {
 
 close(): void
 
-Closes the connection with this SE. This API closes all channels opened between this application and the SE.
+Closes the session with the SE. All channels opened by this session will be closed.
 
 **System capability**: SystemCapability.Communication.SecureElement
 
@@ -658,11 +655,11 @@ try {
         }
     });
 } catch (e) {
-    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
+    console.error("newSEService " + "exception: ${(e : BusinessError).message}");
 }
 
 try {
-    if(nfcSEService != null) {
+    if (nfcSEService != null) {
         nfcOmaReaderList = nfcSEService.getReaders();
     }
     if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
@@ -670,11 +667,11 @@ try {
         if (omaSession != null) {
             omaSession.close();
         } else {
-            console.log("close failed");
+            console.error("close failed");
         }
     }
 } catch (e) {
-    console.log("close " + "exception: ${(e : BusinessError).message}");
+    console.error("close " + "exception: ${(e : BusinessError).message}");
 }
 
 ```
@@ -683,7 +680,7 @@ try {
 
 isClosed(): boolean
 
-Checks whether the session is closed.
+Checks whether this session is closed.
 
 **System capability**: SystemCapability.Communication.SecureElement
 
@@ -717,23 +714,26 @@ try {
         }
     });
 } catch (e) {
-    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
+    console.error("newSEService " + "exception: ${(e : BusinessError).message}");
 }
 
 try {
-    if(nfcSEService != null) {
+    if (nfcSEService != null) {
       nfcOmaReaderList = nfcSEService.getReaders();
     }
     if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
         omaSession = nfcOmaReaderList[0].openSession();
-        if (omaSession != null &&  omaSession.isClosed()) {
-           console.log("isClosed success");
+        if (omaSession != null) {
+            console.log("openSession success");
+            if (omaSession.isClosed()) {
+                console.log("session is closed");
+            }
         } else {
-            console.log("isClosed failed");
+            console.error("openSession failed");
         }
     }
 } catch (e) {
-    console.log("isClosed " + "exception: ${(e : BusinessError).message}");
+    console.error("isClosed " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
@@ -741,7 +741,7 @@ try {
 
 closeChannels(): void
 
-Closes all channels opened in this session.
+Closes all channels opened on this session.
 
 **System capability**: SystemCapability.Communication.SecureElement
 
@@ -773,11 +773,11 @@ try {
         }
     });
 } catch (e) {
-    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
+    console.error("newSEService " + "exception: ${(e : BusinessError).message}");
 }
 
 try {
-    if(nfcSEService != null) {
+    if (nfcSEService != null) {
       nfcOmaReaderList = nfcSEService.getReaders();
     }
     if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
@@ -786,11 +786,11 @@ try {
             omaSession.closeChannels();
             console.log("closeChannels success");
         } else {
-            console.log("closeChannels failed");
+            console.error("closeChannels failed");
         }
     }
 } catch (e) {
-    console.log("closeChannels " + "exception: ${(e : BusinessError).message}");
+    console.error("closeChannels " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
@@ -798,7 +798,7 @@ try {
 
 openBasicChannel(aid: number[]): Promise\<Channel>
 
-Opens a basic channel. This API uses a promise to return the result.
+Opens a basic channel, as defined in ISO/IEC 7816-4. This API uses a promise to return the result. If the SE cannot provide the basic channel or the application does not have the permission to access the SE, null is returned.
 
 **System capability**: SystemCapability.Communication.SecureElement
 
@@ -806,13 +806,13 @@ Opens a basic channel. This API uses a promise to return the result.
 
 | **Name**| **Type**| **Mandatory**| **Description**                                                    |
 | ---------- | -------- | ------ | ------------------------------------------------------------ |
-| aid        | number[] | Yes     |AIDs of the applets selected on this channel or null if no applet is selected.|
+| aid        | number[] | Yes     |AID of the Applet to be selected on this channel as a byte array, or an empty array if no Applet is to be selected.|
 
 **Return value**
 
 | **Type**| **Description**             |
 | -------- | --------------------- |
-| Channel  | Returns the **Channel** instance opened. If the SE cannot provide a new basic channel or cannot obtain the access control rule due to lack of available basic channels, null will be returned.|
+| Channel  | Promise used to return the basic channel instance obtained.|
 
 **Error codes**
 
@@ -847,11 +847,11 @@ try {
         }
     });
 } catch (e) {
-    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
+    console.error("newSEService " + "exception: ${(e : BusinessError).message}");
 }
 
 try {
-    if(nfcSEService != null) {
+    if (nfcSEService != null) {
       nfcOmaReaderList = nfcSEService.getReaders();
     }
     if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
@@ -859,14 +859,14 @@ try {
         if (omaSession != null) {
             getPromise = omaSession.openBasicChannel(aidArray);
         } else {
-            console.log("openBasicChannel1 failed");
+            console.error("openBasicChannel1 failed");
         }
     }
     if (getPromise != null) {
         console.log("openBasicChannel1 get channel successfully");
     }
 } catch (e) {
-    console.log("openBasicChannel1 " + "exception: ${(e : BusinessError).message}");
+    console.error("openBasicChannel1 " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
@@ -874,7 +874,7 @@ try {
 
  openBasicChannel(aid: number[], callback: AsyncCallback\<Channel>): void
 
-Opens a basic channel. This API uses an asynchronous callback to return the result.
+Opens a basic channel, as defined in ISO/IEC 7816-4. This API uses an asynchronous callback to return the result. If the SE cannot provide the basic channel or the application does not have the permission to access the SE, null is returned.
 
 **System capability**: SystemCapability.Communication.SecureElement
 
@@ -882,8 +882,8 @@ Opens a basic channel. This API uses an asynchronous callback to return the resu
 
 | **Name**| **Type**              | **Mandatory**| **Description**                                                    |
 | ---------- | ---------------------- | ------ | ------------------------------------------------------------ |
-| aid        | number[]               | Yes     | AIDs of the applets selected on this channel or null if no applet is selected.|
-| callback   | AsyncCallback\<Channel> | Yes     | Callback invoked to return the **Channel** instance opened. If the SE cannot provide a new basic channel or cannot obtain the access control rule due to lack of available basic channels, null will be returned.                           |
+| aid        | number[]               | Yes     | AID of the Applet to be selected on this channel as a byte array, or an empty array if no Applet is to be selected.|
+| callback   | AsyncCallback\<Channel> | Yes     | Callback invoked to return the basic channel instance obtained.                           |
 
 **Error codes**
 
@@ -917,11 +917,11 @@ try {
         }
     });
 } catch (e) {
-    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
+    console.error("newSEService " + "exception: ${(e : BusinessError).message}");
 }
 
 try {
-    if(nfcSEService != null) {
+    if (nfcSEService != null) {
       nfcOmaReaderList = nfcSEService.getReaders();
     }
     if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
@@ -929,7 +929,7 @@ try {
         if (omaSession != null) {
             omaSession.openBasicChannel(aidArray, (error, data) => {
                 if (error) {
-                    console.log("openBasicChannel2 failed:" + JSON.stringify(error));
+                    console.error("openBasicChannel2 failed:" + JSON.stringify(error));
                     return;
                 }
                 console.log("openBasicChannel2 get channel successfully");
@@ -937,7 +937,7 @@ try {
         }
     }
 } catch (e) {
-    console.log("openBasicChannel2 " + "exception: ${(e : BusinessError).message}");
+    console.error("openBasicChannel2 " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
@@ -945,7 +945,7 @@ try {
 
 openBasicChannel(aid: number[], p2: number): Promise\<Channel>
 
-Opens a basic channel. This API uses a promise to return the result.
+Opens a basic channel, as defined in ISO/IEC 7816-4. This API uses a promise to return the result. If the SE cannot provide the basic channel or the application does not have the permission to access the SE, null is returned.
 
 **System capability**: SystemCapability.Communication.SecureElement
 
@@ -953,14 +953,14 @@ Opens a basic channel. This API uses a promise to return the result.
 
 | **Name**| **Type**| **Mandatory**| **Description**                                                    |
 | ---------- | -------- | ------ | ------------------------------------------------------------ |
-| aid        | number[] | Yes      | AIDs of the applets selected on this channel or null if no applet is selected.|
-| p2         | number   | Yes      |P2 parameter of the **SELECT APDU** command executed on the channel.                    |
+| aid        | number[] | Yes      | AID of the Applet to be selected on this channel as a byte array, or an empty array if no Applet is to be selected.|
+| p2         | number   | Yes      |P2 parameter of the **SELECT APDU** command executed on this channel.                    |
 
 **Return value**
 
 | **Type**| **Description**             |
 | -------- | --------------------- |
-| Channel  | Returns the **Channel** instance opened. If the SE cannot provide a new basic channel or cannot obtain the access control rule due to lack of available basic channels, null will be returned.|
+| Channel  | Promise used to return the basic channel instance obtained.|
 
 **Error codes**
 
@@ -997,11 +997,11 @@ try {
         }
     });
 } catch (e) {
-    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
+    console.error("newSEService " + "exception: ${(e : BusinessError).message}");
 }
 
 try {
-    if(nfcSEService != null) {
+    if (nfcSEService != null) {
       nfcOmaReaderList = nfcSEService.getReaders();
     }
     if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
@@ -1015,7 +1015,7 @@ try {
         })
     }
 } catch (e) {
-    console.log("openBasicChannel3 " + "exception: ${(e : BusinessError).message}");
+    console.error("openBasicChannel3 " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
@@ -1023,7 +1023,7 @@ try {
 
 openBasicChannel(aid: number[], p2:number, callback: AsyncCallback\<Channel>): void
 
-Opens a basic channel. This API uses an asynchronous callback to return the result.
+Opens a basic channel, as defined in ISO/IEC 7816-4. This API uses an asynchronous callback to return the result. If the SE cannot provide the basic channel or the application does not have the permission to access the SE, null is returned.
 
 **System capability**: SystemCapability.Communication.SecureElement
 
@@ -1031,9 +1031,9 @@ Opens a basic channel. This API uses an asynchronous callback to return the resu
 
 | **Name**| **Type**              | **Mandatory**| **Description**                                                    |
 | ---------- | ---------------------- | ------ | ------------------------------------------------------------ |
-| aid        | number[]               | Yes     | AIDs of the applets selected on this channel or null if no applet is selected.|
-| p2         | number                 | Yes     | P2 parameter of the **SELECT APDU** command executed on the channel.                    |
-| callback   | AsyncCallback\<Channel> | Yes     | Callback invoked to return the **Channel** instance opened. If the SE cannot provide a new basic channel or cannot obtain the access control rule due to lack of available basic channels, null will be returned.                           |
+| aid        | number[]               | Yes     | AID of the Applet to be selected on this channel as a byte array, or an empty array if no Applet is to be selected.|
+| p2         | number                 | Yes     | P2 parameter of the **SELECT APDU** command executed on this channel.                    |
+| callback   | AsyncCallback\<Channel> | Yes     | Callback invoked to return the basic channel instance obtained.                           |
 
 **Error codes**
 
@@ -1069,28 +1069,28 @@ try {
         }
     });
 } catch (e) {
-    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
+    console.error("newSEService " + "exception: ${(e : BusinessError).message}");
 }
 
 try {
-  if(nfcSEService != null) {
-    nfcOmaReaderList = nfcSEService.getReaders();
-  }
-  if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
-    omaSession = nfcOmaReaderList[0].openSession();
-  }
-  if (omaSession != null) {
-    omaSession.openBasicChannel(aidArray, p2, (error , data) => {
-      if (error) {
-        console.log("openBasicChannel4 failed:" + JSON.stringify(error));
-        return;
-      }
-      nfcOmaChannel = data;
-      console.log("openBasicChannel4 get channel successfully");
-    });
-  }
+    if (nfcSEService != null) {
+        nfcOmaReaderList = nfcSEService.getReaders();
+    }
+    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
+        omaSession = nfcOmaReaderList[0].openSession();
+    }
+    if (omaSession != null) {
+        omaSession.openBasicChannel(aidArray, p2, (error , data) => {
+            if (error) {
+                console.error("openBasicChannel4 failed:" + JSON.stringify(error));
+                return;
+            }
+            nfcOmaChannel = data;
+            console.log("openBasicChannel4 get channel successfully");
+        });
+    }
 } catch (e) {
-  console.log("openBasicChannel4 " + "exception: ${(e : BusinessError).message}");
+    console.error("openBasicChannel4 " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
@@ -1098,7 +1098,7 @@ try {
 
 openLogicalChannel(aid: number[]): Promise\<Channel>
 
-Opens a logical channel. This API uses a promise to return the result.
+Opens a logical channel, as defined in ISO/IEC 7816-4. This API uses a promise to return the result. If the SE cannot provide the logical channel or the application does not have the permission to access the SE, null is returned.
 
 **System capability**: SystemCapability.Communication.SecureElement
 
@@ -1106,13 +1106,13 @@ Opens a logical channel. This API uses a promise to return the result.
 
 | **Name**| **Type**| **Mandatory**| **Description**                               |
 | ---------- | -------- | ------ | --------------------------------------- |
-| aid        | number[] | Yes     | AIDs of the applets selected on the **Channel** instance.|
+| aid        | number[] | Yes     | AID of the Applet to be selected on this channel as a byte array, or an empty array if no Applet is to be selected.|
 
 **Return value**
 
 | **Type**| **Description**                                                    |
 | -------- | ------------------------------------------------------------ |
-| Channel  | Returns the **Channel** instance opened. If the SE cannot provide a new **Channel** instance or cannot obtain access control rules due to lack of available logical **Channel** instances, null will be returned.|
+| Channel  | Promise used to return the logical channel instance obtained.|
 
 **Error codes**
 
@@ -1147,11 +1147,11 @@ try {
         }
     });
 } catch (e) {
-    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
+    console.error("newSEService " + "exception: ${(e : BusinessError).message}");
 }
 
 try {
-    if(nfcSEService != null) {
+    if (nfcSEService != null) {
       nfcOmaReaderList = nfcSEService.getReaders();
     }
     if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
@@ -1159,22 +1159,22 @@ try {
         if (omaSession != null) {
             getPromise = omaSession.openLogicalChannel(aidArray);
         } else {
-            console.log("openLogicalChannel1 failed");
+            console.error("openLogicalChannel1 failed");
         }
     }
     if (getPromise != null) {
         console.log("openLogicalChannel1 get channel successfully");
     }
 } catch (e) {
-    console.log("openLogicalChannel1 " + "exception: ${(e : BusinessError).message}");
+    console.error("openLogicalChannel1 " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
 ## Session.openLogicalChannel
 
- openLogicalChannel(aid:number[], callback: AsyncCallback\<Channel>): void
+ openLogicalChannel(aid: number[], callback: AsyncCallback\<Channel>): void
 
-Opens a logical channel. This API uses an asynchronous callback to return the result.
+Opens a logical channel, as defined in ISO/IEC 7816-4. This API uses an asynchronous callback to return the result. If the SE cannot provide the logical channel or the application does not have the permission to access the SE, null is returned.
 
 **System capability**: SystemCapability.Communication.SecureElement
 
@@ -1182,8 +1182,8 @@ Opens a logical channel. This API uses an asynchronous callback to return the re
 
 | **Name**| **Type**              | **Mandatory**| **Description**                                                    |
 | ---------- | ---------------------- | ------ | ------------------------------------------------------------ |
-| aid        | number[]               | Yes     | AIDs of the applets selected on the **Channel** instance.                   |
-| callback   | AsyncCallback\<Channel> | Yes     | Callback invoked to return the **Channel** instance opened. If the SE cannot provide a new **Channel** instance or cannot obtain access control rules due to lack of available logical **Channel** instances, null will be returned.|
+| aid        | number[]               | Yes     | AID of the Applet to be selected on this channel as a byte array, or an empty array if no Applet is to be selected.|
+| callback   | AsyncCallback\<Channel> | Yes     | Callback invoked to return the logical channel instance obtained.|
 
 **Error codes**
 
@@ -1217,11 +1217,11 @@ try {
         }
     });
 } catch (e) {
-    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
+    console.error("newSEService " + "exception: ${(e : BusinessError).message}");
 }
 
 try {
-    if(nfcSEService != null) {
+    if (nfcSEService != null) {
       nfcOmaReaderList = nfcSEService.getReaders();
     }
     if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
@@ -1230,14 +1230,14 @@ try {
     if (omaSession != null) {
         omaSession.openLogicalChannel(aidArray, (error, data) => {
             if (error) {
-                console.log("openLogicalChannel2 failed:" + JSON.stringify(error));
+                console.error("openLogicalChannel2 failed:" + JSON.stringify(error));
                 return;
             }
             console.log("openLogicalChannel2 get channel successfully");
         });
     }
 } catch (e) {
-    console.log("openLogicalChannel2 " + "exception: ${(e : BusinessError).message}");
+    console.error("openLogicalChannel2 " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
@@ -1245,13 +1245,7 @@ try {
 
 openLogicalChannel(aid: number[], p2: number): Promise\<Channel>
 
-Opens a logical channel with the applet represented by the given AID (the AID is not null and the length is not 0).
-
-If the AID length is 0, this API sends a **select** command with the AID length of 0 (as per [GPCS]) to select the Issuer Security Domain of the SE.
-
-If the AID is null, this API sends the **MANAGE CHANNEL Open** only. In this case, the default applet associated with the logical channel is selected.
-
-**P2** is usually **0x00**. The device shall allow any value of **P2** and the following values: **0x00**, **0x04**, **0x08**, **0x0C** as defined in [ISO 7816-4](https://www.iso.org/standard/77180.html).
+Opens a logical channel, as defined in ISO/IEC 7816-4. This API uses a promise to return the result. If the SE cannot provide the logical channel or the application does not have the permission to access the SE, null is returned.
 
 **System capability**: SystemCapability.Communication.SecureElement
 
@@ -1259,8 +1253,14 @@ If the AID is null, this API sends the **MANAGE CHANNEL Open** only. In this cas
 
 | **Name**| **Type**| **Mandatory**| **Description**                                 |
 | ---------- | -------- | ------ | ----------------------------------------- |
-| aid        | number[] | Yes     | AIDs of the applets selected on the **Channel** instance.|
-| p2         | number   | Yes     | P2 parameter of the **SELECT APDU** command executed on the channel. |
+| aid        | number[] | Yes     | AID of the Applet to be selected on this channel as a byte array, or an empty array if no Applet is to be selected.|
+| p2         | number   | Yes     | P2 parameter of the **SELECT APDU** command executed on this channel. |
+
+**Return value**
+
+| **Type**| **Description**      |
+| -------- | -------------- |
+| Channel | Promise used to return the logical channel instance obtained.|
 
 **Error codes**
 
@@ -1297,11 +1297,11 @@ try {
         }
     });
 } catch (e) {
-    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
+    console.error("newSEService " + "exception: ${(e : BusinessError).message}");
 }
 
 try {
-    if(nfcSEService != null) {
+    if (nfcSEService != null) {
       nfcOmaReaderList = nfcSEService.getReaders();
     }
     if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
@@ -1315,7 +1315,7 @@ try {
         })
     }
 } catch (e) {
-    console.log("openLogicalChannel3 " + "exception: ${(e : BusinessError).message}");
+    console.error("openLogicalChannel3 " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
@@ -1323,13 +1323,7 @@ try {
 
 openLogicalChannel(aid: number[], p2: number, callback: AsyncCallback\<Channel>):void
 
-Opens a logical channel with the applet represented by the given AID (the AID is not null and the length is not 0).
-
-If the AID length is 0, this API sends a **select** command with the AID length of 0 (as per [GPCS]) to select the Issuer Security Domain of the SE.
-
-If the AID is null, this API sends the **MANAGE CHANNEL Open** only. In this case, the default applet associated with the logical channel is selected.
-
-**P2** is usually **0x00**. The device shall allow any value of **P2** and the following values: **0x00**, **0x04**, **0x08**, **0x0C** as defined in [ISO 7816-4](https://www.iso.org/standard/77180.html).
+Opens a logical channel, as defined in ISO/IEC 7816-4. This API uses an asynchronous callback to return the result. If the SE cannot provide the logical channel or the application does not have the permission to access the SE, null is returned.
 
 **System capability**: SystemCapability.Communication.SecureElement
 
@@ -1337,9 +1331,9 @@ If the AID is null, this API sends the **MANAGE CHANNEL Open** only. In this cas
 
 | **Name**| **Type**              | **Mandatory**| **Description**                                                    |
 | ---------- | ---------------------- | ------ | ------------------------------------------------------------ |
-| aid        | number[]               | Yes     | AIDs of the applets selected on the **Channel** instance.                   |
-| p2         | number                 | Yes     | P2 parameter of the **SELECT APDU** command executed on the channel.                    |
-| callback   | AsyncCallback\<Channel> | Yes     | Callback invoked to return the **Channel** instance opened. If the SE cannot provide a new **Channel** instance or cannot obtain access control rules due to lack of available logical **Channel** instances, null will be returned.|
+| aid        | number[]               | Yes     | AID of the Applet to be selected on this channel as a byte array, or an empty array if no Applet is to be selected.|
+| p2         | number                 | Yes     | P2 parameter of the **SELECT APDU** command executed on this channel.|
+| callback   | AsyncCallback\<Channel> | Yes     | Callback invoked to return the logical channel instance obtained.|
 
 **Error codes**
 
@@ -1375,28 +1369,28 @@ try {
         }
     });
 } catch (e) {
-    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
+    console.error("newSEService " + "exception: ${(e : BusinessError).message}");
 }
 
 try {
-  if(nfcSEService != null) {
-    nfcOmaReaderList = nfcSEService.getReaders();
-  }
-  if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
-    omaSession = nfcOmaReaderList[0].openSession();
-  }
-  if (omaSession != null) {
-    omaSession.openLogicalChannel(aidArray, p2, (error, data) => {
-      if (error) {
-        console.log("openLogicalChannel4 failed:" + JSON.stringify(error));
-        return;
-      }
-      nfcOmaChannel = data;
-      console.log("openLogicalChannel4 get channel successfully");
-    });
-  }
+    if (nfcSEService != null) {
+        nfcOmaReaderList = nfcSEService.getReaders();
+    }
+    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
+        omaSession = nfcOmaReaderList[0].openSession();
+    }
+    if (omaSession != null) {
+        omaSession.openLogicalChannel(aidArray, p2, (error, data) => {
+            if (error) {
+                console.error("openLogicalChannel4 failed:" + JSON.stringify(error));
+                return;
+            }
+            nfcOmaChannel = data;
+            console.log("openLogicalChannel4 get channel successfully");
+        });
+    }
 } catch (e) {
-  console.log("openLogicalChannel4 " + "exception: ${(e : BusinessError).message}");
+    console.error("openLogicalChannel4 " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
@@ -1404,7 +1398,7 @@ try {
 
  getSession(): Session
 
-Obtains the session that opens this channel.
+Obtains the session used to open this channel.
 
 **System capability**: SystemCapability.Communication.SecureElement
 
@@ -1412,7 +1406,7 @@ Obtains the session that opens this channel.
 
 | **Type**| **Description**                     |
 | -------- | ----------------------------- |
-| Session  | Returns the session obtained.|
+| Session  | Session instance obtained.|
 
 **Example**
 
@@ -1438,12 +1432,12 @@ try {
         }
     });
 } catch (e) {
-    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
+    console.error("newSEService " + "exception: ${(e : BusinessError).message}");
 }
 
 try {
-    if(nfcSEService != null) {
-      nfcOmaReaderList = nfcSEService.getReaders();
+    if (nfcSEService != null) {
+        nfcOmaReaderList = nfcSEService.getReaders();
     }
     if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
         omaSession = nfcOmaReaderList[0].openSession();
@@ -1458,10 +1452,10 @@ try {
     if (mySession != null) {
         console.log("get session successfully");
     } else {
-        console.log("get session failed");
+        console.error("get session failed");
     }
 } catch (e) {
-    console.log("get session " + "exception: ${(e : BusinessError).message}");
+    console.error("get session " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
@@ -1469,7 +1463,7 @@ try {
 
 close(): void
 
-Closes the channel of the SE.
+Closes this channel.
 
 **System capability**: SystemCapability.Communication.SecureElement
 
@@ -1496,12 +1490,12 @@ try {
         }
     });
 } catch (e) {
-    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
+    console.error("newSEService " + "exception: ${(e : BusinessError).message}");
 }
 
 try {
-    if(nfcSEService != null) {
-      nfcOmaReaderList = nfcSEService.getReaders();
+    if (nfcSEService != null) {
+        nfcOmaReaderList = nfcSEService.getReaders();
     }
     if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
         omaSession = nfcOmaReaderList[0].openSession();
@@ -1514,7 +1508,7 @@ try {
         })
     }
 } catch (e) {
-    console.log("channel close " + "exception: ${(e : BusinessError).message}");
+    console.error("channel close " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
@@ -1556,12 +1550,12 @@ try {
         }
     });
 } catch (e) {
-    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
+    console.error("newSEService " + "exception: ${(e : BusinessError).message}");
 }
 
 try {
-    if(nfcSEService != null) {
-      nfcOmaReaderList = nfcSEService.getReaders();
+    if (nfcSEService != null) {
+        nfcOmaReaderList = nfcSEService.getReaders();
     }
     if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
         omaSession = nfcOmaReaderList[0].openSession();
@@ -1578,7 +1572,7 @@ try {
         console.log("isBasicChannel FALSE");
     }
 } catch (e) {
-    console.log("isBasicChannel " + "exception: ${(e : BusinessError).message}");
+    console.error("isBasicChannel " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
@@ -1594,7 +1588,7 @@ Checks whether this channel is closed.
 
 | **Type**| **Description**                                     |
 | -------- | --------------------------------------------- |
-| boolean  | Returns **true** if this channel is closed; returns **false** otherwise.|
+| boolean  | Returns **true** if the channel is closed; returns **false** otherwise.|
 
 **Example**
 
@@ -1620,11 +1614,11 @@ try {
         }
     });
 } catch (e) {
-    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
+    console.error("newSEService " + "exception: ${(e : BusinessError).message}");
 }
 
 try {
-    if(nfcSEService != null) {
+    if (nfcSEService != null) {
       nfcOmaReaderList = nfcSEService.getReaders();
     }
     if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
@@ -1642,7 +1636,7 @@ try {
         console.log("channel isClosed False");
     }
 } catch (e) {
-    console.log("isBasicChannel " + "exception: ${(e : BusinessError).message}");
+    console.error("isBasicChannel " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
@@ -1650,7 +1644,7 @@ try {
 
 getSelectResponse():number[]
 
-Obtains the data as received from the application **select** command, including the status word received when the applet is selected.
+Obtains the response data including the status word of **SELECT Applet**.
 
 **System capability**: SystemCapability.Communication.SecureElement
 
@@ -1658,7 +1652,7 @@ Obtains the data as received from the application **select** command, including 
 
 | **Type**| **Description**                                                    |
 | -------- | ------------------------------------------------------------ |
-| number[] | Returns the data obtained.|
+| number[] | Response data including the status word obtained.|
 
 **Error codes**
 
@@ -1689,12 +1683,12 @@ try {
         }
     });
 } catch (e) {
-    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
+    console.error("newSEService " + "exception: ${(e : BusinessError).message}");
 }
 
 try {
-    if(nfcSEService != null) {
-      nfcOmaReaderList = nfcSEService.getReaders();
+    if (nfcSEService != null) {
+        nfcOmaReaderList = nfcSEService.getReaders();
     }
     if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
         omaSession = nfcOmaReaderList[0].openSession();
@@ -1714,18 +1708,18 @@ try {
         str += ']';
         console.log(str);
     } else {
-        console.log("getSelectResponse result is null");
+        console.error("getSelectResponse result is null");
     }
 } catch (e) {
-    console.log("isBasicChannel " + "exception: ${(e : BusinessError).message}");
+    console.error("isBasicChannel " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
 ## Channel. transmit
 
-transmit(command: number[]): Promise<number[]>
+transmit(command: number[]): Promise\<number[]>
 
-Transmits the **APDU** command to the SE (according to ISO/IEC 7816). This API uses a promise to return the result.
+Transmits APDU data (as per ISO/IEC 7816) to the SE.
 
 **System capability**: SystemCapability.Communication.SecureElement
 
@@ -1733,13 +1727,13 @@ Transmits the **APDU** command to the SE (according to ISO/IEC 7816). This API u
 
 | **Name**| **Type**| **Mandatory**| **Description**                             |
 | ---------- | -------- | ------ | ------------------------------------- |
-| command    | number[] | Yes     | AIDs of the applets selected on the channel.|
+| command    | number[] | Yes     | APDU data to send.|
 
 **Return value**
 
 | **Type**| **Description**      |
 | -------- | -------------- |
-| number[] | Returns the response obtained.|
+| number[] | Promise used to return the response received, in a number array.|
 
 **Error codes**
 
@@ -1775,12 +1769,12 @@ try {
         }
     });
 } catch (e) {
-    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
+    console.error("newSEService " + "exception: ${(e : BusinessError).message}");
 }
 
 try {
-    if(nfcSEService != null) {
-      nfcOmaReaderList = nfcSEService.getReaders();
+    if (nfcSEService != null) {
+        nfcOmaReaderList = nfcSEService.getReaders();
     }
     if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
         omaSession = nfcOmaReaderList[0].openSession();
@@ -1796,18 +1790,18 @@ try {
     if (responseArray != null) {
         console.log("transmit1 success");
     } else {
-        console.log("transmit1 failed");
+        console.error("transmit1 failed");
     }
 } catch (e) {
-    console.log("transmit1 " + "exception: ${(e : BusinessError).message}");
+    console.error("transmit1 " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
 ## Channel. transmit
 
-transmit(command: number[], callback: AsyncCallback<number[]>): void
+transmit(command: number[], callback: AsyncCallback\<number[]>): void
 
-Transmits the **APDU** command to the SE (according to ISO/IEC 7816). This API uses an asynchronous callback to return the result.
+Transmits APDU data (as per ISO/IEC 7816) to the SE.
 
 **System capability**: SystemCapability.Communication.SecureElement
 
@@ -1815,8 +1809,8 @@ Transmits the **APDU** command to the SE (according to ISO/IEC 7816). This API u
 
 | **Name**| **Type**               | **Mandatory**| **Description**                             |
 | ---------- | ----------------------- | ------ | ------------------------------------- |
-| command    | number[]                | Yes     | AIDs of the applets selected on the channel.|
-| callback   | AsyncCallback<number[]> | Yes     | Callback invoked to return the result. |
+| command    | number[]                | Yes     | APDU data to send.|
+| callback   | AsyncCallback\<number[]> | Yes     | Callback invoked to return the response received, in a number array. |
 
 **Error codes**
 
@@ -1852,12 +1846,12 @@ try {
         }
     });
 } catch (e) {
-    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
+    console.error("newSEService " + "exception: ${(e : BusinessError).message}");
 }
 
 try {
-    if(nfcSEService != null) {
-      nfcOmaReaderList = nfcSEService.getReaders();
+    if (nfcSEService != null) {
+        nfcOmaReaderList = nfcSEService.getReaders();
     }
     if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
         omaSession = nfcOmaReaderList[0].openSession();
@@ -1869,7 +1863,7 @@ try {
             // Refer to Session.openBasicChannel for this.nfcOmaChannel.
             channel.transmit(command, (error, data) => {
                 if (error) {
-                    console.log("transmit2 exception:" + JSON.stringify(error));
+                    console.error("transmit2 exception:" + JSON.stringify(error));
                     return;
                 }
                 str = "transmit2 result:[";
@@ -1883,6 +1877,6 @@ try {
         })
     }
 } catch (e) {
-    console.log("transmit2 " + "exception: ${(e : BusinessError).message}");
+    console.error("transmit2 " + "exception: ${(e : BusinessError).message}");
 }
 ```
