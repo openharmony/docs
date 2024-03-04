@@ -219,7 +219,7 @@ UIAbility生命周期回调，当应用从前台转到后台时触发。同步�
 
 ## UIAbility.onContinue
 
-onContinue(wantParam: Record&lt;string, Object&gt;): AbilityConstant.OnContinueResult
+onContinue(wantParam: Record&lt;string, Object&gt;): AbilityConstant.OnContinueResult | Promise&lt;AbilityConstant.OnContinueResult&gt;
 
 当Ability准备迁移时触发，保存数据。
 
@@ -235,7 +235,7 @@ onContinue(wantParam: Record&lt;string, Object&gt;): AbilityConstant.OnContinueR
 
 | 类型 | 说明 |
 | -------- | -------- |
-| [AbilityConstant.OnContinueResult](js-apis-app-ability-abilityConstant.md#abilityconstantoncontinueresult) | 继续的结果。 |
+| [AbilityConstant.OnContinueResult](js-apis-app-ability-abilityConstant.md#abilityconstantoncontinueresult)&nbsp;\|&nbsp;Promise&lt;AbilityConstant.OnContinueResult&gt;  | 接续的结果或带接续结果的Promise对象。 |
 
 **示例：**
 
@@ -249,6 +249,29 @@ onContinue(wantParam: Record&lt;string, Object&gt;): AbilityConstant.OnContinueR
           wantParams['myData'] = 'my1234567';
           return AbilityConstant.OnContinueResult.AGREE;
       }
+  }
+  ```
+
+支持应用在迁移时，使用异步接口进行数据保存。
+
+  ```ts
+  import UIAbility from '@ohos.app.ability.UIAbility';
+
+  class MyUIAbility extends UIAbility {
+    async setWant(wantParams: Record<string, Object>) {
+      console.log('setWant start');
+      for (let time = 0; time < 1000; ++time) {
+        wantParams[time] = time;
+      }
+      console.log('setWant end');
+    }
+
+    async onContinue(wantParams: Record<string, Object>) {
+        console.log('onContinue');
+        return this.setWant(wantParams).then(()=>{
+          return AbilityConstant.OnContinueResult.AGREE;
+        });
+    }
   }
   ```
 
