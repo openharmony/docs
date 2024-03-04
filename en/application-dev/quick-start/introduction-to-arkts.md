@@ -1071,7 +1071,7 @@ class FilledRectangle extends RectangleSize {
     this.color = c
   }
 
-  override draw() {
+  draw() {
     super.draw() // call of super methods
     // super.height - can be used here
     /* fill rectangle */
@@ -1082,7 +1082,6 @@ class FilledRectangle extends RectangleSize {
 #### Override Methods
 
 A subclass can override implementation of a method defined in its superclass.
-An overridden method can be marked with the keyword `override` to improve readability.
 An overridden method must have the same types of parameters, and same or derived return type as the original method.
 
 ```typescript
@@ -1095,8 +1094,8 @@ class RectangleSize {
 }
 class Square extends RectangleSize {
   private side: number = 0
-  override area(): number {
-    return this.side * this.side
+  area(): number {
+    return this.side * this.side;
   }
 }
 ```
