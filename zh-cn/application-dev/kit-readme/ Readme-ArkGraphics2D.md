@@ -6,6 +6,7 @@
   - [请求动画绘制帧率](../graphics/displaysync-animation.md)
   - [请求UI绘制帧率](../graphics/displaysync-ui.md)
   - [请求自绘制内容绘制帧率](../graphics/displaysync-xcomponent.md)
+- [使用Drawing实现图形绘制与显示](../graphics/drawing-js-guidelines.md)
 - [使用Drawing实现图形绘制与显示 (C/C++)](../graphics/drawing-guidelines.md)
 - [NativeBuffer开发指导 (C/C++)](../graphics/native-buffer-guidelines.md)
 - [NativeImage开发指导 (C/C++)](../graphics/native-image-guidelines.md)
