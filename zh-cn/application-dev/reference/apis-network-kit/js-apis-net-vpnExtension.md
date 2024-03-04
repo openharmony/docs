@@ -245,7 +245,6 @@ import vpnExt from '@ohos.net.vpnExtension';
 import Want from '@ohos.app.ability.Want';
 import common from '@ohos.app.ability.common';
 import VpnExtensionAbility from '@ohos.app.ability.VpnExtensionAbility';
-import vpn_client from 'libvpn_client.so';
 import hilog from '@ohos.hilog';
 
 export default class MyVpnExtAbility extends VpnExtensionAbility {
@@ -348,7 +347,6 @@ protect(socketFd: number): Promise\<void\>
 import vpnExt from '@ohos.net.vpnExtension';
 import Want from '@ohos.app.ability.Want';
 import VpnExtensionAbility from '@ohos.app.ability.VpnExtensionAbility';
-import vpn_client from 'libvpn_client.so';
 import hilog from '@ohos.hilog';
 
 let g_tunnelFd = -1;
@@ -362,7 +360,7 @@ export default class MyVpnExtAbility extends VpnExtensionAbility {
     this.Protect();
   }
   CreateTunnel() {
-      g_tunnelFd = vpn_client.tcpConnect(this.vpnServerIp, 8888);
+      g_tunnelFd = 8888;
   }
   Protect() {
         hilog.info(0x0000, 'developTag', '%{public}s', 'vpn Protect');
