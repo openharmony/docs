@@ -2,6 +2,8 @@
 
 - [Image Kit简介](../media/image-overview.md)
 - [图片解码(ArkTS)](../media/image-decoding.md)
+- [图片解码(C/C++)](../media/image-decoding-native.md)
+- [图片接收器(C/C++)](../media/image-receiver-native.md)
 - 图片处理
   - [图像变换(ArkTS)](../media/image-transformation.md)
   - [图像变换(C/C++)](../media/image-transformation-native.md)
