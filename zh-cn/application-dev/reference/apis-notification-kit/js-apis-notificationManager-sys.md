@@ -3550,6 +3550,216 @@ notificationManager.subscribeSystemLiveView(subscriber).then(() => {
 });
 ```
 
+## notificationManager.setDistributedEnableByBundle<sup>12+</sup>
+
+setDistributedEnabledByBundle(bundle: BundleOption, deviceType: string, enable: boolean): Promise<void>
+
+设置指定应用是否支持跨设备协同。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**系统接口**: 此接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型                     | 必填 | 说明                       |
+| -------- | ------------------------ | ---- | -------------------------- |
+| bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)             | 是   | 应用的包信息。                   |
+| deviceType | string | 是   | 设备类型|
+| enable   | boolean                  | 是   | 指定应用是否支持跨设备协同（true：支持，false：不支持）。|
+
+**返回值：**
+
+| 类型 | 说明 |
+| ---- | ----|
+| Promise\<void> | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+
+| 错误码ID | 错误信息                                 |
+| -------- | ---------------------------------------- |
+| 1600001  | Internal error.                          |
+| 1600002  | Marshalling or unmarshalling error.      |
+| 1600003  | Failed to connect service.               |
+| 1600010  | Distributed operation failed.            |
+| 17700001 | The specified bundle name was not found. |
+
+**示例：**
+
+```ts
+import Base from '@ohos.base';
+
+let bundle: notificationManager.BundleOption = {
+    bundle: "bundleName1",
+    uid: 1
+};
+let enable: boolean = true;
+let deviceType: string = "phone";
+notificationManager.setDistributedEnabledByBundle(bundle, deviceType, enable).then(() => {
+    console.info("setDistributedEnabledByBundle success");
+}).catch((err: Base.BusinessError) => {
+    console.error(`setDistributedEnabledByBundle fail: ${JSON.stringify(err)}`);
+});
+```
+
+## notificationManager.isDistributedEnabledByBundle<sup>12+</sup>
+
+isDistributedEnabledByBundle(bundle: BundleOption, deviceType: string): Promise<boolean>
+
+获取指定应用是否支持跨设备协同。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**系统接口**: 此接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型                     | 必填 | 说明                       |
+| -------- | ------------------------ | ---- | -------------------------- |
+| bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)             | 是   | 应用的包信息。                   |
+| deviceType | string | 是   | 设备类型 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| ---- | ----|
+| Promise\<boolean\> | 以Promise形式返回指定应用是否支持跨设备协同的开关是否开启的结果（true：开启，false：未开启）。 |
+
+**错误码：**
+
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+
+| 错误码ID | 错误信息                                 |
+| -------- | ---------------------------------------- |
+| 1600001  | Internal error.                          |
+| 1600002  | Marshalling or unmarshalling error.      |
+| 1600003  | Failed to connect service.               |
+| 1600010  | Distributed operation failed.            |
+| 17700001 | The specified bundle name was not found. |
+
+**示例：**
+
+```ts
+import Base from '@ohos.base';
+
+let bundle: notificationManager.BundleOption = {
+    bundle: "bundleName1",
+    uid: 1
+};
+let deviceType: string = "phone";
+notificationManager.isDistributedEnabledByBundle(bundle, deviceType).then((data: boolean) => {
+    console.info("isDistributedEnabledByBundle success, data:" + data);
+}).catch((err: Base.BusinessError) => {
+    console.error(`isDistributedEnabledByBundle fail: ${JSON.stringify(err)}`);
+});
+```
+
+## notificationManager.setSmartReminderEnabled<sup>12+</sup>
+
+setSmartReminderEnabled(deviceType: string, enable: boolean): Promise<void>
+
+设置设备是否与其他设备协同智能提醒。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**系统接口**: 此接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型                     | 必填 | 说明                       |
+| -------- | ------------------------ | ---- | -------------------------- |
+| deviceType | string | 是   | 设备类型 |
+| enable   | boolean                  | 是   | 指定应用是否支持设备是否与其他设备协同智能提醒（true：支持，false：不支持）。|
+
+**返回值：**
+
+| 类型 | 说明 |
+| ---- | ----|
+| Promise\<void> | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+
+| 错误码ID | 错误信息                                 |
+| -------- | ---------------------------------------- |
+| 1600001  | Internal error.                          |
+| 1600002  | Marshalling or unmarshalling error.      |
+| 1600003  | Failed to connect service.               |
+| 1600010  | Distributed operation failed.            |
+| 17700001 | The specified bundle name was not found. |
+
+**示例：**
+
+```ts
+import Base from '@ohos.base';
+
+let deviceType: string = "phone";
+let enable: boolean = true;
+notificationManager.setSmartReminderEnabled(deviceType, enable).then(() => {
+    console.info("setSmartReminderEnabled success");
+}).catch((err: Base.BusinessError) => {
+    console.error(`setSmartReminderEnabled fail: ${JSON.stringify(err)}`);
+});
+```
+
+## notificationManager.isSmartReminderEnabled<sup>12+</sup>
+
+isSmartReminderEnabled(deviceType: string): Promise<boolean>
+
+获取设备是否与其他设备协同智能提醒。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**系统接口**: 此接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型                     | 必填 | 说明                       |
+| -------- | ------------------------ | ---- | -------------------------- |
+| deviceType | string | 是   | 设备类型 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| ---- | ----|
+| Promise\<boolean\> | 以Promise形式返回设备与其他设备协同智能提醒的开关是否开启的结果（true：开启，false：未开启）。 |
+
+**错误码：**
+
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+
+| 错误码ID | 错误信息                                 |
+| -------- | ---------------------------------------- |
+| 1600001  | Internal error.                          |
+| 1600002  | Marshalling or unmarshalling error.      |
+| 1600003  | Failed to connect service.               |
+| 1600010  | Distributed operation failed.            |
+| 17700001 | The specified bundle name was not found. |
+
+**示例：**
+
+```ts
+import Base from '@ohos.base';
+
+let deviceType: string = "phone";
+notificationManager.isSmartReminderEnabled(deviceType).then((data: boolean) => {
+    console.info("isSmartReminderEnabled success， data:" + data);
+}).catch((err: Base.BusinessError) => {
+    console.error(`isSmartReminderEnabled fail: ${JSON.stringify(err)}`);
+});
+```
+
 ## DoNotDisturbDate
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
@@ -3661,4 +3871,3 @@ notificationManager.subscribeSystemLiveView(subscriber).then(() => {
 | 名称    | 类型                                  | 必填 | 说明                   |
 | ------- | ------------------------------------ | ---- | ---------------------- |
 | onResponse    | (notificationId: number, buttonOptions: ButtonOptions) => void;                         | 否   | 点击按钮的回调。 |
-
