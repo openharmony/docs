@@ -1,4 +1,4 @@
-## ArkData
+## ArkData（方舟数据管理）
 
 - [ArkData简介](../database/data-mgmt-overview.md)
 - 标准化数据定义
@@ -27,3 +27,4 @@
     - [通过数据管理服务实现数据共享静默访问](../database/share-data-by-silent-access.md)
   - 多对多跨应用数据共享 
     - [通过标准化数据通路实现数据共享](../database/unified-data-channels.md)
+- [RelationalStore开发指导 (C/C++)](../database/native-relational-store-guidelines.md)
