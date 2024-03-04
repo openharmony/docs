@@ -45,47 +45,6 @@ struct ComA {
 
 ```
 
-
-
-## cl.arkui.2 @Watch删除key值只能为字符串校验
-
-**访问级别**
-
-公开接口。
-
-**变更原因**
-
-该变更为非兼容性变更。
-
-**变更影响**
-
-@Watch key值不是字符串时，不再校验。
-
-**变更发生版本**
-
-从OpenHarmony SDK 5.0.0.13 开始。
-
-**示例：**
-
-```
-let watchString: string = 'onWatch';
-@Entry
-@Component
-struct ComA {
-  @State @Watch(watchString) watch: number = 0;
-  onWatch() {
-
-  }
-  build() {
-
-  }
-}
-```
-
-**变更的接口/组件**
-
-不涉及。
-
 **适配指导**
 
- @Watch key值可以传入定义字符串key值变量或字符串，当传入自定义字符串key值变量时，需保证变量定义的字符串名称和监听函数名称一致，否则编译阶段不报错。
+ @LocalStorageLink,@LocalStorageProp,@StorageProp(),@StorageLink,@Provide,@Consume,@Watch key值需要准确定义。
