@@ -12,7 +12,6 @@ The **PluginComponentManager** module provides APIs for the **PluginComponent** 
 
 ```ts
 import pluginComponentManager from '@ohos.pluginComponent'
-import Want from '@ohos.app.ability.Want';
 ```
 
 ### PushParameterForStage
@@ -157,4 +156,3 @@ The **external.json** file is created by developers. It stores component names a
 }
 
 ```
-<!--no_check-->

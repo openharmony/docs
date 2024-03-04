@@ -5,7 +5,7 @@ The **dragController** module provides APIs for initiating drag actions. When re
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> The functionality of this module depends on UI context. This means that the APIs of this module cannot be used where the UI context is unclear. For details, see [UIContext](./js-apis-arkui-UIContext.md#uicontext).
+> The functionality of this module depends on UI context. This means that the APIs of this module cannot be used where the UI context is unclear. For details, see [UIContext](js-apis-arkui-UIContext.md#uicontext).
 > Since API version 10, you can use the [getDragController](js-apis-arkui-UIContext.md#getdragcontroller11) API in **UIContext** to obtain the **DragController** object associated with the current UI context.
 > You can preview how this component looks on a real device, but not in DevEco Studio Previewer.
 
@@ -27,7 +27,7 @@ Initiates a drag action, with the object to be dragged and the drag information 
 
 | Name  | Type                                                        | Mandatory| Description                            |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------- |
-| custom   | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo) | Yes  | Object to be dragged.<br>**NOTE**<br>The global builder is not supported. If the [\<Image>](../arkui-ts/ts-basic-components-image.md) component is used in the builder, enable synchronous loading, that is, set the [syncLoad](../arkui-ts/ts-basic-components-image.md#attributes) attribute of the component to **true**.|
+| custom   | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo) | Yes  | Object to be dragged.<br>**NOTE**<br>The global builder is not supported. If the [\<Image>](arkui-ts/ts-basic-components-image.md) component is used in the builder, enable synchronous loading, that is, set the [syncLoad](arkui-ts/ts-basic-components-image.md#attributes) attribute of the component to **true**. The builder is used only to generate the image displayed during the current dragging. Changes to the builder, if any, apply to the next dragging, but not to the current dragging.|
 | dragInfo | [DragInfo](#draginfo)                                        | Yes  | Drag information.                      |
 | callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;{event: [DragEvent](arkui-ts/ts-universal-events-drag-drop.md#dragevent), extraParams: string}&gt; | Yes  | Callback used to return the result.<br>- **event**: drag event information that includes only the drag result.<br>- **extraParams**: extra information about the drag event.         |
 
@@ -104,7 +104,7 @@ Initiates a drag action, with the object to be dragged and the drag information 
 
 | Name  | Type                                                        | Mandatory| Description                            |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------- |
-| custom   | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](../arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo) | Yes  | Object to be dragged.|
+| custom   | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo) | Yes  | Object to be dragged.|
 | dragInfo | [DragInfo](#draginfo)                                        | Yes  | Drag information.                      |
 
 **Return value**
@@ -209,7 +209,7 @@ Defines the attributes required for initiating a drag action and information car
 | Name       | Type                                                  | Mandatory| Description                                    |
 | ----------- | ------------------------------------------------------ | ---- | ---------------------------------------- |
 | pointerId   | number                                                 | Yes  | ID of the touch point on the screen when dragging is started.        |
-| data        | [unifiedDataChannel.UnifiedData](../apis/js-apis-data-unifiedDataChannel.md#unifieddata) | No  | Data carried in the dragging process.              |
+| data        | [unifiedDataChannel.UnifiedData](../apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata) | No  | Data carried in the dragging process.              |
 | extraParams | string                                                 | No  | Additional information about the drag action. Not supported currently.|
 | touchPoint<sup>11+</sup>    | [TouchPoint](arkui-ts/ts-types.md#touchpoint11)  | No  | Coordinates of the touch point. If this parameter is not set, the touch point is centered.     |
 | previewOptions<sup>11+</sup>| [DragPreviewOptions](arkui-ts/ts-universal-attributes-drag-drop.md#dragpreviewoptions11)                                | No  | Custom configuration of the drag preview.|
@@ -519,7 +519,7 @@ Sets the mask color of the drag preview. This API does not work in the **OnDrop*
 
 | Name  | Type                            | Mandatory| Description                    |
 | -------- | -------------------------------- | ---- | ------------------------ |
-| color    | [ResourceColor](../arkui-ts/ts-types.md#resourcecolor) | Yes  |      Mask color of the drag preview.                   |
+| color    | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | Yes  |      Mask color of the drag preview.                   |
 
 **Example**
 
