@@ -407,7 +407,7 @@ Tabs自定义切换动画执行过程中，返回给开发者的proxy对象。�
 
 | 名称     | 类型                | 必填   | 说明                   |
 | ------ | ----------------- | ---- | -------------------- |
-| start | [PixelRoundCalcPolicy](ts-appendix-enums.md##PixelRoundCalcPolicy) | 否 | 组件前部边界取整对齐。 |
-| top | [PixelRoundCalcPolicy](ts-appendix-enums.md##PixelRoundCalcPolicy) | 否 | 组件上部边界取整对齐。 |
-| end | [PixelRoundCalcPolicy](ts-appendix-enums.md##PixelRoundCalcPolicy) | 否 | 组件尾部边界取整对齐。 |
-| bottom | [PixelRoundCalcPolicy](ts-appendix-enums.md##PixelRoundCalcPolicy) | 否 | 组件底部边界取整对齐。 |
+| start | [PixelRoundCalcPolicy](ts-appendix-enums.md#pixelroundcalcpolicy11) | 否 | 组件前部边界取整对齐。 |
+| top | [PixelRoundCalcPolicy](ts-appendix-enums.md#pixelroundcalcpolicy11) | 否 | 组件上部边界取整对齐。 |
+| end | [PixelRoundCalcPolicy](ts-appendix-enums.md#pixelroundcalcpolicy11) | 否 | 组件尾部边界取整对齐。 |
+| bottom | [PixelRoundCalcPolicy](ts-appendix-enums.md#pixelroundcalcpolicy11) | 否 | 组件底部边界取整对齐。 |
