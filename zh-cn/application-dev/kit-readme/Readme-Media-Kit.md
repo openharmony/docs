@@ -10,5 +10,3 @@
 - 视频播放和录制
   - [视频播放(ArkTS)](../media/video-playback.md)
   - [视频录制(ArkTS)](../media/video-recording.md)
-  - [屏幕录制(仅对系统应用开放)(C/C++)](../media/avscreen-capture.md)
-  - [获取视频缩略图(ArkTS)](../media/avimagegenerator.md)
