@@ -22,7 +22,7 @@ import reminderAgent from'@ohos.reminderAgent';
 
 publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback\<number>): void
 
-发布一个后台代理提醒，使用回调的方式实现异步调用，该方法需要申请通知弹窗权限[Notification.requestEnableNotification](../apis/js-apis-notification.md#notificationrequestenablenotification8)后才能调用。
+发布一个后台代理提醒，使用回调的方式实现异步调用，该方法需要申请通知弹窗权限[Notification.requestEnableNotification](../apis-notification-kit/js-apis-notification.md#notificationrequestenablenotification8)后才能调用。
 
 > **说明：**
 > 从 API version 7开始支持，从API version 9开始废弃。建议使用[reminderAgentManager.publishReminder](js-apis-reminderAgentManager.md#reminderagentmanagerpublishreminder)替代。
@@ -57,7 +57,7 @@ reminderAgent.publishReminder(timer, (err: BusinessError, reminderId: number) =>
 
 publishReminder(reminderReq: ReminderRequest): Promise\<number>
 
-发布一个后台代理提醒，使用Promise方式实现异步调用，该方法需要申请通知弹窗权限[Notification.requestEnableNotification](../apis/js-apis-notification.md#notificationrequestenablenotification8)后才能调用。
+发布一个后台代理提醒，使用Promise方式实现异步调用，该方法需要申请通知弹窗权限[Notification.requestEnableNotification](../apis-notification-kit/js-apis-notification.md#notificationrequestenablenotification8)后才能调用。
 
 > **说明：**
 > 从 API version 7开始支持，从API version 9开始废弃。建议使用[reminderAgentManager.publishReminder](js-apis-reminderAgentManager.md#reminderagentmanagerpublishreminder-1)替代。
@@ -316,7 +316,7 @@ addNotificationSlot(slot: NotificationSlot, callback: AsyncCallback\<void>): voi
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| slot | [NotificationSlot](../apis/js-apis-notification.md#notificationslot) | 是 | notification\.slot实例，仅支持设置其type属性。 |
+| slot | [NotificationSlot](../apis-notification-kit/js-apis-notification.md#notificationslot) | 是 | notification\.slot实例，仅支持设置其type属性。 |
 | callback | AsyncCallback\<void> | 是 | 异步回调。 |
 
 **示例**：
@@ -349,7 +349,7 @@ addNotificationSlot(slot: NotificationSlot): Promise\<void>
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| slot | [NotificationSlot](../apis/js-apis-notification.md#notificationslot) | 是 | notification\.slot实例，仅支持设置其type属性。 |
+| slot | [NotificationSlot](../apis-notification-kit/js-apis-notification.md#notificationslot) | 是 | notification\.slot实例，仅支持设置其type属性。 |
 
 **返回值**：
 
@@ -386,7 +386,7 @@ removeNotificationSlot(slotType: notification.SlotType, callback: AsyncCallback\
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| slotType | [notification.SlotType](../apis/js-apis-notification.md#slottype) | 是 | 目标notification\.slot的类型。 |
+| slotType | [notification.SlotType](../apis-notification-kit/js-apis-notification.md#slottype) | 是 | 目标notification\.slot的类型。 |
 | callback | AsyncCallback\<void> | 是 | 异步回调。 |
 
 **示例**：
@@ -416,7 +416,7 @@ removeNotificationSlot(slotType: notification.SlotType): Promise\<void>
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| slotType | [notification.SlotType](../apis/js-apis-notification.md#slottype) | 是 | 目标notification\.slot的类型。 |
+| slotType | [notification.SlotType](../apis-notification-kit/js-apis-notification.md#slottype) | 是 | 目标notification\.slot的类型。 |
 
 **返回值**：
 
@@ -534,7 +534,7 @@ reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION).
 | expiredContent | string | 否 | 指明提醒过期后需要显示的内容。 |
 | snoozeContent | string | 否 | 指明延迟提醒时需要显示的内容。 |
 | notificationId | number | 否 | 指明提醒使用的通知的id号，相同id号的提醒会覆盖。 |
-| slotType | [notification.SlotType](../apis/js-apis-notification.md#slottype) | 否 | 指明提醒的slot类型。 |
+| slotType | [notification.SlotType](../apis-notification-kit/js-apis-notification.md#slottype) | 否 | 指明提醒的slot类型。 |
 
 
 ## ReminderRequestCalendar<sup>(deprecated)</sup>
