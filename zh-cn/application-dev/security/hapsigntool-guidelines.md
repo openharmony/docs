@@ -193,7 +193,7 @@ OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含
           ├── -appCertFile   # 应用签名证书文件（证书链，顺序为实体证书-中间CA证书-根证书），必填项
           ├── -profileFile   # 签名后的Provision Profile文件名，profileSigned为1时为p7b格式，profileSigned为0时为json格式，应用包签名必填项，二进制工具签名选填
           ├── -profileSigned # 指示profile文件是否带有签名，1表示有签名，0表示没有签名，默认为1。可选项
-          ├── -inForm        # 输入的原始文件的格式，枚举值：zip、elf或bin；zip和elf支持代码签名，应用包对应zip，二进制工具对应elf，其他为bin，默认zip；可选项
+          ├── -inForm        # 输入的原始文件的格式，枚举值：zip、elf或bin；zip和elf支持代码签名，应用包对应zip，二进制工具对应elf，其它为bin，默认zip；可选项
           ├── -inFile        # 输入的原始文件，应用包、elf或bin文件，必填项
           ├── -signAlg       # 签名算法，必填项，包括SHA256withECDSA / SHA384withECDSA
           ├── -keystoreFile  # 密钥库文件，localSign模式时为必填项，JKS或P12格式
@@ -210,7 +210,7 @@ OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含
          ├── -inFile          # 已签名的文件，应用包、elf或bin文件，必填项
          ├── -outCertChain    # 签名的证书链文件，必填项
          ├── -outProfile      # 应用包中的profile文件，必填项
-         ├── -inForm          # 输入的原始文件的格式，枚举值：zip、elf或bin；应用包对应zip，二进制工具对应elf，其他为bin，默认zip；可选项
+         ├── -inForm          # 输入的原始文件的格式，枚举值：zip、elf或bin；应用包对应zip，二进制工具对应elf，其它为bin，默认zip；可选项
       ```
 
 ### 签名步骤
