@@ -134,12 +134,60 @@ Grid组件根据rowsTemplate、columnsTemplate属性的设置情况，可分为�
 | onItemDragLeave<sup>8+</sup>(event: (event: ItemDragInfo, itemIndex: number) => void) | 拖拽离开网格元素时触发。<br/>- event: 见[ItemDragInfo对象说明](#itemdraginfo对象说明)。<br/>- itemIndex: 拖拽离开的网格元素索引值。 |
 | onItemDrop<sup>8+</sup>(event: (event: ItemDragInfo, itemIndex: number, insertIndex: number, isSuccess: boolean) => void) | 绑定该事件的网格元素可作为拖拽释放目标，当在网格元素内停止拖拽时触发。<br/>- event: 见[ItemDragInfo对象说明](#itemdraginfo对象说明)。<br/>- itemIndex: 拖拽起始位置。<br/>- insertIndex: 拖拽插入位置。<br/>- isSuccess: 是否成功释放。 |
 | onScrollBarUpdate<sup>10+</sup>(event: (index: number, offset: number) => ComputedBarAttribute) | 当前网格显示的起始位置item发生变化时触发，可通过该回调设置滚动条的位置及长度。<br/>- index: 当前显示的网格起始位置的索引值。<br/>- offset: 当前显示的网格起始位置元素相对网格显示起始位置的偏移，单位vp。<br/>- ComputedBarAttribute: 见[ComputedBarAttribute对象说明](#computedbarattribute对象说明)。  |
-| onScroll<sup>10+</sup>(event: (scrollOffset: number, scrollState: [ScrollState](ts-container-list.md#scrollstate枚举说明)) => void) | 网格滑动时触发。<br/>- scrollOffset: 每帧滚动的偏移量，Grid的内容向上滚动时偏移量为正，向下滚动时偏移量为负，单位vp。<br/>- scrollState: 当前滑动状态。 |
 | onReachStart<sup>10+</sup>(event: () => void)          | 网格到达起始位置时触发。<br/>**说明：** <br>Grid初始化时会触发一次，Grid滚动到起始位置时触发一次。Grid边缘效果为弹簧效果时，划动经过起始位置时触发一次，回弹回起始位置时再触发一次。 |
 | onReachEnd<sup>10+</sup>(event: () => void)            | 网格到达末尾位置时触发。<br/>**说明：** <br/>Grid边缘效果为弹簧效果时，划动经过末尾位置时触发一次，回弹回末尾位置时再触发一次。 |
 | onScrollFrameBegin<sup>10+</sup>(event: (offset: number, state:  [ScrollState](ts-container-list.md#scrollstate枚举说明) => { offsetRemain: number }) | 网格开始滑动时触发，事件参数传入即将发生的滑动量，事件处理函数中可根据应用场景计算实际需要的滑动量并作为事件处理函数的返回值返回，网格将按照返回值的实际滑动量进行滑动。<br/>\- offset：即将发生的滑动量，单位vp。<br/>\- state：当前滑动状态。<br/>- offsetRemain：实际滑动量，单位vp。<br/>触发该事件的条件：手指拖动Grid、Grid惯性划动时每帧开始时触发；Grid超出边缘回弹、使用滚动控制器和拖动滚动条的滚动不会触发。<br/>**说明：** <br/>当gridDirection的值为Axis.Vertical时，返回垂直方向滑动量，当gridDirection的值为Axis.Horizontal时，返回水平方向滑动量。 |
 | onScrollStart<sup>10+</sup>(event: () => void) | 网格滑动开始时触发。手指拖动网格或网格的滚动条触发的滑动开始时，会触发该事件。使用[Scroller](ts-container-scroll.md#scroller)滑动控制器触发的带动画的滑动，动画开始时会触发该事件。 |
 | onScrollStop<sup>10+</sup>(event: () => void)          | 网格滑动停止时触发。手指拖动网格或网格的滚动条触发的滑动，手指离开屏幕并且滑动停止时会触发该事件；使用[Scroller](ts-container-scroll.md#scroller)滑动控制器触发的带动画的滑动，动画停止会触发该事件。 |
+
+### onScroll<sup>(deprecated)</sup>
+onScroll(event: (scrollOffset: number, scrollState: [ScrollState](ts-container-list.md#scrollstate枚举说明)) => void) 
+
+网格滑动时触发。
+
+从API version 10开始使用。
+
+从API version 12开始废弃不再使用，建议使用[onDidScroll](#ondidscroll12)替代。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ------ | ------ | ------|
+| scrollOffset | number | 是 | 每帧滚动的偏移量，Grid的内容向上滚动时偏移量为正，向下滚动时偏移量为负。<br/>单位vp。 |
+| scrollState | [ScrollState](ts-container-list.md#scrollstate枚举说明) | 是 | 当前滑动状态。 |
+
+### onWillScroll<sup>12+</sup> 
+onWillScroll(handler: OnScrollCallback)
+
+网格滑动前触发，返回当前帧将要滑动的偏移量和当前滑动状态。返回的偏移量为计算得到的将要滑动的偏移量值，并非最终实际滑动偏移。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ------ | ------ | ------|
+| handler | [OnScrollCallback](ts-container-list.md#onscrollcallback对象说明) | 是 | 网格滑动时触发的回调。 |
+
+> **说明：** 
+> 
+> 调用ScrollEdge和不带动画的ScrollToIndex时,不触发onWillScroll。
+
+
+### onDidScroll<sup>12+</sup> 
+onDidScroll(handler: OnScrollCallback)
+
+网格滑动时触发，返回当前帧滑动的偏移量和当前滑动状态。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ------ | ------ | ------|
+| handler | [OnScrollCallback](ts-container-list.md#onscrollcallback对象说明) | 是 | 网格滑动时触发的回调。 |
 
 ## ItemDragInfo对象说明
 
