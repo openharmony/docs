@@ -3,19 +3,13 @@
 
 ## Overview
 
-The **OHExtDataHandle** module defines the extended data handle.
+The **OHExtDataHandle** struct describes the extended data handle.
 
-**Since**
+**Since**: 9
 
-9
+**Deprecated**: This struct is deprecated since API version 10. No substitute is provided.
 
-**Deprecated**
-
-This module is deprecated since API version 10. No substitute module is provided.
-
-**Related Modules**
-
-[NativeWindow](_native_window.md)
+**Related module**: [NativeWindow](_native_window.md)
 
 
 ## Summary
@@ -23,18 +17,17 @@ This module is deprecated since API version 10. No substitute module is provided
 
 ### Member Variables
 
-| Name| Description:|
+| Name| Description| 
 | -------- | -------- |
-| [fd](#fd) | File descriptor handle. The value **-1** indicates that the handle is not supported.|
-| [reserveInts](#reserveints) | Number of reserved arrays.|
-| [reserve](#reserve) [0] | Reserved array.|
+| int32_t [fd](#fd) | File descriptor handle. The value **-1** indicates that the handle is not supported.| 
+| uint32_t [reserveInts](#reserveints) | Number of reserved arrays.| 
+| int32_t [reserve](#reserve) [0] | Reserved array.| 
 
 
 ## Member Variable Description
 
 
 ### fd
-
 
 ```
 int32_t OHExtDataHandle::fd
@@ -47,7 +40,6 @@ File descriptor handle. The value **-1** indicates that the handle is not suppor
 
 ### reserve
 
-
 ```
 int32_t OHExtDataHandle::reserve[0]
 ```
@@ -58,7 +50,6 @@ Reserved array.
 
 
 ### reserveInts
-
 
 ```
 uint32_t OHExtDataHandle::reserveInts

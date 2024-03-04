@@ -3,7 +3,7 @@
 
 ## Overview
 
-Provides the capabilities of **NativeImage**. Functioning as a data consumer, it is used to associate data with the OpenGL texture. It is used in the OpenGL environment.
+The **OH_NativeImage** module provides the capabilities of **NativeImage**. Functioning as a data consumer, it is used to associate data with the OpenGL texture. It is used in the OpenGL environment.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeImage
 
