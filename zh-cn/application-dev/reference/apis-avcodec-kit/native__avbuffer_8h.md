@@ -17,6 +17,14 @@
 ## 汇总
 
 
+### 类型定义
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| typedef struct [OH_AVBuffer](_core.md#oh_avbuffer) [OH_AVBuffer](_core.md#oh_avbuffer) | 为媒体内存接口定义native层对象。  | 
+| typedef struct [OH_NativeBuffer](_core.md#oh_nativebuffer) [OH_NativeBuffer](_core.md#oh_nativebuffer) | 为图形内存接口定义native层对象。  | 
+
+
 ### 函数
 
 | 名称 | 描述 | 
