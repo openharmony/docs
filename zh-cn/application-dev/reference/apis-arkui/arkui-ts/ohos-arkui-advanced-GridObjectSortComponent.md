@@ -59,7 +59,7 @@ GridObjectSortComponent({options: GridObjectSortComponentOptions, dataList: Arra
 
 | 名称     | 类型   | 值           | 说明           |
 | -------- | ------ | ------------ | -------------- |
-| IMAGE_TE | string | 'image_text' | 图片文字类型。 |
+| IMAGE_TEXT | string | 'image_text' | 图片文字类型。 |
 | TEXT     | string | 'text'       | 文字类型。     |
 
 
