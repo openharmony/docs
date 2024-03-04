@@ -70,7 +70,7 @@
 
 - 需注意this指向正确。
 
-  以下示例中，Parent组件在调用this.componentBuilder()时，this指向其所属组件，即“Parent”。\@Builder componentBuilder()传给子组件\@BuilderParam customChangeThisBuilderParam，在Child组件中调用this.customChangeThisBuilderParam()时，this指向在Child的label，即“Child”。
+  以下示例中，Parent组件在调用this.componentBuilder()时，this指向其所属组件，即“Parent”。@Builder componentBuilder()通过this.componentBuilder的形式传给子组件@BuilderParam customBuilderParam，this指向在Child的label，即“Child”。@Builder componentBuilder()通过():void=>{this.componentBuilder()}的形式传给子组件@BuilderParam customChangeThisBuilderParam，因为箭头函数的this指向的是宿主对象，所以label的值为“Parent”。
 
 
   ```ts
