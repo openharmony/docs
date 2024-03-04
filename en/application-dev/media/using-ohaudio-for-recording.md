@@ -76,8 +76,8 @@ The following walks you through how to implement simple recording:
 3. Set the callback functions.
 
     ```c++
-    // For details about the implementation, see the recording and playback instance.
     OH_AudioCapturer_Callbacks callbacks;
+    // Set callbacks for the audio renderer.
     OH_AudioStreamBuilder_SetCapturerCallback(builder, callbacks, nullptr);
     ```
 
@@ -107,7 +107,7 @@ The following walks you through how to implement simple recording:
     ```c++
     OH_AudioStreamBuilder_Destroy(builder);
     ```
-## Example
+## Sample Code
 
 ```cpp
 #include <iostream>
