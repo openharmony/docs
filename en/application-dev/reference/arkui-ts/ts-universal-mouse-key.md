@@ -16,8 +16,8 @@ If a mouse action triggers multiple events, the order of these events is fixed. 
 
 | Name                                      | Bubbling Supported| Description                                      |
 | ---------------------------------------- | ---- | ---------------------------------------- |
-| onHover(event: (isHover?: boolean, event<sup>10+</sup>?: HoverEvent) =&gt; void) | Yes   | Triggered when the mouse pointer enters or leaves the component.<br>**isHover**: whether the mouse pointer hovers over the component. The value **true** means that the mouse pointer enters the component, and the value **false** means that the mouse pointer leaves the component.<br>**event**: bubbling blocking of the event.|
-| onMouse(event: (event?: MouseEvent) =&gt; void) | Yes   | Triggered when the component is clicked by a mouse button or the mouse pointer moves on the component. The **event** parameter indicates the timestamp, mouse button, action, coordinates of the clicked point on the entire screen, and coordinates of the clicked point relative to the component when the event is triggered.|
+| onHover(event: (isHover: boolean, event<sup>10+</sup>: HoverEvent) =&gt; void) | Yes   | Triggered when the mouse pointer enters or leaves the component.<br>**isHover**: whether the mouse pointer hovers over the component. The value **true** means that the mouse pointer enters the component, and the value **false** means that the mouse pointer leaves the component.<br>**event**: bubbling blocking of the event.|
+| onMouse(event: (event: MouseEvent) =&gt; void) | Yes   | Triggered when the component is clicked by a mouse button or the mouse pointer moves on the component. The **event** parameter indicates the timestamp, mouse button, action, coordinates of the clicked point on the entire screen, and coordinates of the clicked point relative to the component when the event is triggered.|
 
 
 ## MouseEvent
@@ -29,9 +29,9 @@ If a mouse action triggers multiple events, the order of these events is fixed. 
 | button                 | [MouseButton](ts-appendix-enums.md#mousebutton) | Mouse button.                       |
 | action                 | [MouseAction](ts-appendix-enums.md#mouseaction) | Mouse action.                       |
 | stopPropagation        | () => void                               | Stops the event from bubbling upwards or downwards.                     |
-| timestamp<sup>8+</sup> | number                                   | Timestamp of the event. It is interval between the time when the event is triggered and the time when the system starts, in nanoseconds.|
-| target<sup>8+</sup>    | [EventTarget](ts-universal-events-click.md#eventtarget8) | Display area of the component that triggers the event.              |
-| source<sup>8+</sup>    | [SourceType](ts-gesture-settings.md#sourcetype)| Event input device.                     |
+| timestamp | number                                   | Timestamp of the event. It is interval between the time when the event is triggered and the time when the system starts, in nanoseconds.|
+| target    | [EventTarget](ts-universal-events-click.md#eventtarget8) | Display area of the component that triggers the event.              |
+| source    | [SourceType](ts-gesture-settings.md#sourcetype)| Event input device.                     |
 | windowX<sup>10+</sup> | number                          | X coordinate of the mouse pointer relative to the upper left corner of the application window.|
 | windowY<sup>10+</sup> | number                          | Y coordinate of the mouse pointer relative to the upper left corner of the application window.|
 | displayX<sup>10+</sup> | number                         | X coordinate of the mouse pointer relative to the upper left corner of the application screen.|

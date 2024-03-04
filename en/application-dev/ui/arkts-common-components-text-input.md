@@ -45,7 +45,7 @@ TextArea(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Tex
 
 ## Setting the Input Box Type
 
-The **\<TextInput>** component comes in five types. You can specify its type by setting the **type** parameter to any of the following: **Normal**, **Password**, **Email**, **Number**, and **PhoneNumber**.  
+The **\<TextInput>** component comes in nine types. You can specify its type by setting the **type** parameter to any of the following: **Normal**, **Password**, **Email**, **Number**, **PhoneNumber**, **USER_NAME**, **NEW_PASSWORD**, **NUMBER_PASSWORD**, **SCREEN_LOCK_PASSWORD**, and **NUMBER_DECIMAL**.  
 
 
 - Normal type (default type)

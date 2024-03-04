@@ -16,14 +16,22 @@ This component can contain the [\<FlowItem>](ts-container-flowitem.md) child com
 
 >  **NOTE**
 >
->  If the **visibility** attribute of a **\<FlowItem>** is set to **None**, the component is not displayed in the container, but the gaps around the component are still effective.
+>  When its **visibility** attribute is set to **None**, a **\<FlowItem>** is not displayed in the container, but its **columnsGap**, **rowsGap**, and **margin** settings are still effective.
 
 ## APIs
 
 
-WaterFlow(options?: {footer?: CustomBuilder, scroller?: Scroller})
+WaterFlow(options?:  WaterFlowOptions)
 
 **Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| options |  [WaterFlowOptions](#waterflowoptions)| Yes| Parameters of the **\<WaterFlow>** component.|
+
+
+## WaterFlowOptions
+
 
 | Name    | Type                                       | Mandatory| Description                                    |
 | ---------- | ----------------------------------------------- | ------ | -------------------------------------------- |
@@ -38,8 +46,8 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| columnsTemplate | string | Number of columns in the layout. If this attribute is not set, one column is used by default.<br>For example, **'1fr 1fr 2fr'** indicates three columns, with the first column taking up 1/4 of the parent component's full width, the second column 1/4, and the third column 2/4.<br>You can use **columnsTemplate('repeat(auto-fill,track-size)')** to automatically calculate the number of columns based on the specified column width **track-size**. **repeat** and **auto-fill** are keywords. The units for **track-size** can be px, vp, %, or a valid number. For details, see Example 2.<br>Default value: **'1fr'**|
-| rowsTemplate | string | Number of rows in the layout. If this attribute is not set, one row is used by default.<br>For example, **'1fr 1fr 2fr'** indicates three rows, with the first row taking up 1/4 of the parent component's full height, the second row 1/4, and the third row 2/4.<br>You can use **rowsTemplate('repeat(auto-fill,track-size)')** to automatically calculate the number of rows based on the specified row height **track-size**. **repeat** and **auto-fill** are keywords. The units for **track-size** can be px, vp, %, or a valid number.<br>Default value: **'1fr'**|
+| columnsTemplate | string | Number of columns in the layout. If this attribute is not set, one column is used by default.<br>For example, **'1fr 1fr 2fr'** indicates three columns, with the first column taking up 1/4 of the parent component's full width, the second column 1/4, and the third column 2/4.<br>You can use **columnsTemplate('repeat(auto-fill,track-size)')** to automatically calculate the number of columns based on the specified column width **track-size**. **repeat** and **auto-fill** are keywords. The units for **track-size** can be px, vp (default), %, or a valid number. For details, see Example 2.<br>Default value: **'1fr'**|
+| rowsTemplate | string | Number of rows in the layout. If this attribute is not set, one row is used by default.<br>For example, **'1fr 1fr 2fr'** indicates three rows, with the first row taking up 1/4 of the parent component's full height, the second row 1/4, and the third row 2/4.<br>You can use **rowsTemplate('repeat(auto-fill,track-size)')** to automatically calculate the number of rows based on the specified row height **track-size**. **repeat** and **auto-fill** are keywords. The units for **track-size** can be px, vp (default), %, or a valid number.<br>Default value: **'1fr'**|
 | itemConstraintSize | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) | Size constraints of the child components during layout.              |
 | columnsGap | [Length](ts-types.md#length) |Gap between columns.<br>Default value: **0**|
 | rowsGap | [Length](ts-types.md#length) |Gap between rows.<br> Default value: **0**|
@@ -72,7 +80,7 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 | -------- | -------- |
 | onReachStart(event: () => void) | Triggered when the component reaches the start.|
 | onReachEnd(event: () => void)   | Triggered when the component reaches the end position.|
-| onScrollFrameBegin<sup>10+</sup>(event: (offset: number, state: ScrollState) => { offsetRemain }) | Triggered when the component starts to scroll. The input parameters indicate the amount by which the component will scroll. The event handler then works out the amount by which the component needs to scroll based on the real-world situation and returns the result.<br>\- **offset**: amount to scroll by, in vp.<br>\- **state**: current scrolling state.<br>- **offsetRemain**: actual amount by which the component scrolls, in vp.<br>This event is triggered when the user starts dragging the component or the component starts inertial scrolling. It is not triggered when the component rebounds, the scrolling controller is used, or the scrollbar is dragged.|
+| onScrollFrameBegin<sup>10+</sup>(event: (offset: number, state:  [ScrollState](ts-container-list.md#scrollstate) => { offsetRemain: number }) | Triggered when the component starts to scroll. The input parameters indicate the amount by which the component will scroll. The event handler then works out the amount by which the component needs to scroll based on the real-world situation and returns the result.<br>\- **offset**: amount to scroll by, in vp.<br>\- **state**: current scrolling state.<br>- **offsetRemain**: actual amount by which the component scrolls, in vp.<br>This event is triggered when the user starts dragging the component or the component starts inertial scrolling. It is not triggered when the component rebounds, the scrolling controller is used, or the scrollbar is dragged.|
 
 
 ## Example
@@ -214,14 +222,14 @@ struct WaterFlowDemo {
   private itemWidthArray: number[] = []
   private itemHeightArray: number[] = []
 
-  // Calculate the width and height of a flow item.
+  // Calculate the width and height of a <FlowItem>.
   getSize() {
     let ret = Math.floor(Math.random() * this.maxSize)
     return (ret > this.minSize ? ret : this.minSize)
   }
 
-  // Save the width and height of the flow item.
-  getItemSizeArray() {
+  // Set the width and height array of the <FlowItem>.
+  setItemSizeArray() {
     for (let i = 0; i < 100; i++) {
       this.itemWidthArray.push(this.getSize())
       this.itemHeightArray.push(this.getSize())
@@ -229,7 +237,7 @@ struct WaterFlowDemo {
   }
 
   aboutToAppear() {
-    this.getItemSizeArray()
+    this.setItemSizeArray()
   }
 
   @Builder
@@ -282,7 +290,7 @@ struct WaterFlowDemo {
 }
 ```
 
-![en-us_image_WaterFlow.gif](figures/waterflow-perf-demo.gif)
+![zh-cn_image_WaterFlow.gif](figures/waterflow-perf-demo.gif)
 
 ### Example 2
 Example of using **auto-fill**:
@@ -300,14 +308,14 @@ struct WaterFlowDemo {
   private itemWidthArray: number[] = []
   private itemHeightArray: number[] = []
 
-  // Calculate the width and height of a flow item.
+  // Calculate the width and height of a <FlowItem>.
   getSize() {
     let ret = Math.floor(Math.random() * this.maxSize)
     return (ret > this.minSize ? ret : this.minSize)
   }
 
-  // Save the width and height of the flow item.
-  getItemSizeArray() {
+  // Set the width and height array of the <FlowItem>.
+  setItemSizeArray() {
     for (let i = 0; i < 100; i++) {
       this.itemWidthArray.push(this.getSize())
       this.itemHeightArray.push(this.getSize())
@@ -315,7 +323,7 @@ struct WaterFlowDemo {
   }
 
   aboutToAppear() {
-    this.getItemSizeArray()
+    this.setItemSizeArray()
   }
 
   build() {

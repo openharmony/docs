@@ -14,10 +14,12 @@ Focus control attributes set whether a component is focusable and how it partici
 | focusable            | boolean  | Whether the current component is focusable.<br>**NOTE**<br>Components that have default interaction logic, such as **\<Button>** and **\<TextInput>**, are focusable by default. Other components, such as **\<Text>** and **\<Image>**, are not focusable by default. Only focusable components can trigger a [focus event](ts-universal-focus-event.md).|
 | tabIndex<sup>9+<sup> | number   | Tab order of the component in sequential focus navigation with the **Tab** key. When components with positive **tabIndex** values are present, only these components are reachable through sequential focus navigation, and they are navigated cyclically in ascending order based on the **tabIndex** value. When components with positive **tabIndex** values are not present, those components with a **tabIndex** value of **0** are navigated based on the preset focus navigation rule.<br>- **tabIndex** >= 0: The component is focusable and can be reached through sequential keyboard navigation.<br>- **tabIndex** < 0 (usually **tabIndex** = -1): The component is focusable, but cannot be reached through sequential keyboard navigation.<br>Default value: **0**|
 | defaultFocus<sup>9+<sup> | boolean  | Whether to set the component as the default focus of the page. This attribute takes effect only when the page is new and accessed for the first time.<br>Default value: **false**|
-| groupDefaultFocus<sup>9+<sup> | boolean  | Whether to set the component as the default focus of the parent container. This attribute takes effect only when the container is new and obtains focus for the first time.<br>Default value: **false**<br>**NOTE**<br>This attribute must be used together with **tabIndex**. When **tabIndex** is set for a container and **groupDefaultFocus** is set for a component in the container, the focus is automatically shifted to that component when the container obtains focus for the first time.<br>|
+| groupDefaultFocus<sup>9+<sup> | boolean  | Whether to set the component as the default focus of the parent container. This parameter takes effect only when the container is new and obtains focus for the first time.<br>Default value: **false**<br>**NOTE**<br><br>This parameter must be used together with **tabIndex**. When **tabIndex** is set for a container and **groupDefaultFocus(true)** is set for a child in the container or for the container itself, then when the container obtains focus for the first time through sequential Tab navigation, the focus automatically moves to the specified component. If **groupDefaultFocus(true)** is set for multiple components in the container (including the container itself), the first component found in the component tree in-depth traversal receives the focus.|
 | focusOnTouch<sup>9+<sup> | boolean | Whether the component is focusable on touch.<br>Default value: **false**<br>**NOTE**<br>The component can obtain focus only when it is touchable or clickable.|
 
 ## focusControl<sup>9+</sup>
+
+Implements focus control.
 
 ### requestFocus<sup>9+</sup>
 
@@ -29,7 +31,7 @@ Requests the focus to move to the specified component. This API can be used in g
 
 | Name| Type| Mandatory| Description|
 | ----- | ------ | ---- | ---- |
-| value | string | Yes  | String bound to the target component using the **key(value: string)**.|
+| value | string | Yes  | String bound to the target component using **key(value: string)** or **id(value: string)**.|
 
 **Return value**
 
@@ -215,27 +217,27 @@ struct RequestFocusExample {
       Row({space: 5}) {
         Button("id: " + this.idList[0] + " focusable(false)")
           .width(200).height(70).fontColor(Color.White)
-          .key(this.idList[0])
+          .id(this.idList[0])
           .focusable(false)
         Button("id: " + this.idList[1])
           .width(200).height(70).fontColor(Color.White)
-          .key(this.idList[1])
+          .id(this.idList[1])
       }
       Row({space: 5}) {
         Button("id: " + this.idList[2])
           .width(200).height(70).fontColor(Color.White)
-          .key(this.idList[2])
+          .id(this.idList[2])
         Button("id: " + this.idList[3])
           .width(200).height(70).fontColor(Color.White)
-          .key(this.idList[3])
+          .id(this.idList[3])
       }
       Row({space: 5}) {
         Button("id: " + this.idList[4])
           .width(200).height(70).fontColor(Color.White)
-          .key(this.idList[4])
+          .id(this.idList[4])
         Button("id: " + this.idList[5])
           .width(200).height(70).fontColor(Color.White)
-          .key(this.idList[5])
+          .id(this.idList[5])
       }
       Row({space: 5}) {
         Select([{value: this.idList[0]},

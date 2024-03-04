@@ -12,7 +12,7 @@ A key event is triggered when a focusable component, such as **\<Button>**, inte
 
 | Name                                      | Bubbling Supported| Description                                    |
 | ---------------------------------------- | ---- | ---------------------------------------- |
-| onKeyEvent(event: (event?: KeyEvent) =&gt; void) | Yes   | Triggered when a key event occurs. For details about **event**, see [KeyEvent](#keyevent).|
+| onKeyEvent(event: (event: KeyEvent) =&gt; void) | Yes   | Triggered when a key event occurs. For details about **event**, see [KeyEvent](#keyevent).|
 
 
 ## KeyEvent

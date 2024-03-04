@@ -4,7 +4,7 @@
 >
 >  This component is supported since API version 4. Updates will be marked with a superscript to indicate their earliest API version.
 
-The **ImageData** object is an object that stores pixel data rendered on a canvas.
+The **ImageData** object is an object that stores pixel data rendered on a [canvas](js-components-canvas-canvas.md).
 
 
 ## Attributes

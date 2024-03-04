@@ -85,7 +85,7 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 | onCut(callback: (value: string) => void)                     | Triggered when data is cut from the pasteboard, which is displayed when the search text box is long pressed.<br> - **value**: text cut.|
 | onPaste(callback: (value: string) => void)                   | Triggered when data is pasted from the pasteboard, which is displayed when the search text box is long pressed.<br> -**value**: text pasted.|
 | onTextSelectionChange(callback: (selectionStart: number, selectionEnd: number) => void)<sup>10+</sup> | Triggered when the text selection position changes.<br>**selectionStart**: start position of the text selection area. The start position of text in the text box is **0**.<br>**selectionEnd**: end position of the text selection area.|
-| onContentScroll(callback: (totalOffsetX: number, totalOffsetY: number) => void)<sup>10+</sup> | Triggered when the text content is scrolled.<br>**totalOffsetX**: X coordinate offset of the text in the content area.<br>**totalOffsetY**: Y coordinate offset of the text in the content area.|
+| onContentScroll(callback: (totalOffsetX: number, totalOffsetY: number) => void)<sup>10+</sup> | Triggered when the text content is scrolled.<br>**totalOffsetX**: offset in the X coordinate of the text in the content area, in px.<br>**totalOffsetY**: offset in the Y coordinate of the text in the content area, in px.|
 
 ## SearchController
 
@@ -132,7 +132,7 @@ Obtains the position of the edited text area relative to the component and its s
 
 ### RectResult<sup>10+</sup>
 
-Describes the position and size.
+Sets the position and size, in pixels.
 
 | Parameter     | Type    | Description|
 | ------- | ------ | ----------------------- |
@@ -205,12 +205,13 @@ struct SearchExample {
 @Entry
 @Component
 struct SearchExample {
+  @State changeValue: string = ''
   @State submitValue: string = ''
 
   build() {
     Column() {
       Text('onSubmit:' + this.submitValue).fontSize(18).margin(15)
-      Search({ placeholder: 'Type to search...' })
+      Search({ value: this.changeValue, placeholder: 'Type to search...' })
         .searchButton('SEARCH')
         .searchIcon({
           src: $r('app.media.search')
@@ -229,6 +230,9 @@ struct SearchExample {
         .textFont({ size: 14, weight: 400 })
         .onSubmit((value: string) => {
           this.submitValue = value
+        })
+        .onChange((value: string) => {
+          this.changeValue = value
         })
         .margin(20)
     }.width('100%')

@@ -42,8 +42,8 @@ Registers a one-time callback for web events of the specified type.
 import web_webview from '@ohos.web.webview'
 
 web_webview.once("webInited", () => {
-  console.log("setCookie")
-  web_webview.WebCookieManager.setCookie("https://www.example.com", "a=b")
+  console.log("configCookieSync")
+  web_webview.WebCookieManager.configCookieSync("https://www.example.com", "a=b")
 })
 
 @Entry
