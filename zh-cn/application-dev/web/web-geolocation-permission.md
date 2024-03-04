@@ -37,8 +37,9 @@ Web组件提供位置权限管理能力。开发者可以通过[onGeolocationSho
   ```ts
   // xxx.ets
   import web_webview from '@ohos.web.webview';
-  import { abilityAccessCtrl, common }from '@kit.AbilityKit';
-  import {geoLocationManager} from '@kit.LocationKit';
+  import common from '@ohos.app.ability.common';
+  import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
+  import geoLocationManager from '@ohos.geoLocationManager';
 
   let context = getContext(this) as common.UIAbilityContext;
   let atManager = abilityAccessCtrl.createAtManager();
