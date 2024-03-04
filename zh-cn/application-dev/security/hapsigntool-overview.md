@@ -30,11 +30,11 @@
 
  - HSP：
 
-   HSP（Harmony Shared Package）是动态共享包，按照使用场景可以分为应用内HSP和应用间HSP。
+   HSP（OpenHarmony Shared Package）是动态共享包，按照使用场景可以分为应用内HSP和应用间HSP。
 
  - HQF：
 
-   HQF（Harmony Ability Package Quick Fix）是修复HAP中问题的快速修复包，用于安装到设备上的快速修复单元。
+   HQF（OpenHarmony Ability Package Quick Fix）是修复HAP中问题的快速修复包，用于安装到设备上的快速修复单元。
 
  - 调试工具
 
