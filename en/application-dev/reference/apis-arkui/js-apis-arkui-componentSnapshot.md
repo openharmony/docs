@@ -170,7 +170,7 @@ Renders a custom component in the application background and outputs its snapsho
 
 | Name     | Type                                      | Mandatory  | Description        |
 | -------- | ---------------------------------------- | ---- | ---------- |
-| builder  | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) | Yes   | Builder of the custom component.<br>**NOTE**<br>The global builder is not supported.|
+| builder  | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) | Yes   | Builder of the custom component.<br>**NOTE**<br>The global builder is not supported.|
 | callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt;      | Yes   | Callback used to return the result. The coordinates and size of the offscreen component's drawing area can be obtained through the callback.|
 
 **Error codes**

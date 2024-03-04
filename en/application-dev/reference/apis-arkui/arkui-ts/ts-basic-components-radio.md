@@ -39,18 +39,59 @@ Creates a radio button.
 
 In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
 
-| Name| Type| Description|
-| -------- | -------- | -------- |
-| checked | boolean | Whether the radio button is selected.<br>Default value: **false**<br>Since API version 9, this API is supported in ArkTS widgets.<br>Since API version 10, this attribute supports [$$](../../quick-start/arkts-two-way-sync.md) for two-way binding of variables.|
-| radioStyle<sup>10+</sup> | [RadioStyle](#radiostyle10) | Style of the radio button in selected or deselected state.<br>Since API version 10, this API is supported in ArkTS widgets.|
+### checked
+
+checked(value: boolean)
+
+Specifies whether the radio button is selected.
+
+Since API version 10, this attribute supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).
+
+**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description                                |
+| ------ | ------- | ---- | ------------------------------------ |
+| value  | boolean | Yes  | Whether the radio button is selected.<br>Default value: **false**|
+
+### radioStyle<sup>10+</sup>
+
+radioStyle(value?: RadioStyle)
+
+Sets the style of the radio button in selected or deselected state.
+
+Since API version 10, this API is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description                              |
+| ------ | ------- | ---- | ---------------------------------- |
+| value  | boolean | Yes  | Style of the radio button in selected or deselected state.|
 
 ## Events
 
 In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
 
-| Name| Description|
-| -------- | -------- |
-| onChange(callback: (isChecked: boolean) => void) | Triggered when the selected state of the radio button changes.<br> - If **isChecked** is **true**, it indicates that the radio button changes from unselected to selected.<br> - If **isChecked** is **false**, it indicates that the radio button changes from selected to unselected.<br>Since API version 9, this API is supported in ArkTS widgets.|
+### onChange
+
+onChange(callback: (isChecked: boolean) => void)
+
+Triggered when the selected state of the radio button changes.
+
+**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name   | Type   | Mandatory| Description                                                        |
+| --------- | ------- | ---- | ------------------------------------------------------------ |
+| isChecked | boolean | Yes  | Selected state of the radio button.<br>The value **true** means that the radio button changes from unselected to selected, and **false** means that the radio button changes from selected to unselected.|
 
 ## RadioStyle<sup>10+</sup>
 

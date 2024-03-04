@@ -4,7 +4,7 @@ With the attribute modifier, you can dynamically set component attributes, compl
 
 >  **NOTE**
 >
->  This feature is supported since API version 11. Updates will be marked with a superscript to indicate their earliest API version.
+>  This feature is supported since API Version 11. Updates will be marked with a superscript to indicate their earliest API version.
 
 ## attributeModifier
 
@@ -18,7 +18,7 @@ Creates an attribute modifier.
 
 | Name  | Type                 | Mandatory| Description                                                        |
 | -------- | --------------------- | ---- | ------------------------------------------------------------ |
-| modifier | AttributeModifier\<T> | Yes  | Modifier for dynamically setting attributes on the current component. The **if/else** syntax is supported.<br>**modifier**: attribute modifier. You need to customize classes to implement the **AttributeModifier** API.<br> Currently, this API only works with the **backgroundColor** attribute of the **\<Button>** component.|
+| modifier | AttributeModifier\<T> | Yes  | Modifier for dynamically setting attributes on the current component. The **if/else** syntax is supported.<br>**modifier**: attribute modifier. You need to customize classes to implement the **AttributeModifier** API.|
 
 ## AttributeModifier\<T>
 
@@ -63,7 +63,7 @@ AlphabetIndexerAttribute, BadgeAttribute, BlankAttribute, ButtonAttribute, Calen
 
 **Supported attributes**
 
-Attributes whose input parameters are [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) or Lambda expressions are not supported, and events are not supported.
+Attributes whose input parameters are [CustomBuilder](ts-types.md#custombuilder8) or Lambda expressions are not supported. Events and gestures are not supported.
 
 ## Example
 

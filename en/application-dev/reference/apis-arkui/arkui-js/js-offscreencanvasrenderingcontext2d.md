@@ -5,12 +5,12 @@
 >  The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
-Use **OffscreenCanvasRenderingContext2D** to draw rectangles, images, and texts on an **OffscreenCanvas**.
+Use **OffscreenCanvasRenderingContext2D** to draw rectangles, images, and texts on an [OffscreenCanvas](js-components-canvas-offscreencanvas.md) object.
 
 
 ## Attributes
 
-In addition to the attributes that are supported by **CanvasRenderingContext2D**, the following attributes are supported.
+In addition to the attributes that are supported by [CanvasRenderingContext2D](js-components-canvas-canvasrenderingcontext2d.md), the following attributes are supported.
 
 | Name    | Type    | Description                                      |
 | ------ | ------ | ---------------------------------------- |
