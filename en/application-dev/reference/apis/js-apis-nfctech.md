@@ -1094,7 +1094,7 @@ Reads a block (16 bytes) on this tag. This API uses an asynchronous callback to 
 | Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | blockIndex | number | Yes  | Index of the block to read. The block indexes start from **0**.|
-| callback | AsyncCallback\<number[]> | Yes  | Callback invoked to return the data read.|
+| callback | AsyncCallback\<number[]> | Yes  |Callback invoked to return the block data read.|
 
 **Error codes**
 
