@@ -210,18 +210,6 @@
 
 **起始版本**：7
 
-### ohos.permission.SET_NETWORK_INFO
-
-允许应用配置数据网络。
-
-**权限级别**：normal
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：8
-
 ### ohos.permission.SET_WIFI_INFO
 
 允许应用配置Wi-Fi设备。
