@@ -14,17 +14,17 @@ To prevent the UI thread from being blocked, most **AudioRenderer** calls are as
 
 ![AudioRenderer state transition](figures/audiorenderer-status-change.png)
 
-During application development, you are advised to use **on('stateChange')** to subscribe to state changes of the AudioRenderer. This is because some operations can be performed only when the AudioRenderer is in a given state. If the application performs an operation when the AudioRenderer is not in the given state, the system may throw an exception or generate other undefined behavior.
+During application development, you are advised to use [on('stateChange')](../reference/apis/js-apis-audio.md#onstatechange-8) to subscribe to state changes of the AudioRenderer. This is because some operations can be performed only when the AudioRenderer is in a given state. If the application performs an operation when the AudioRenderer is not in the given state, the system may throw an exception or generate other undefined behavior.
 
-- **prepared**: The AudioRenderer enters this state by calling **createAudioRenderer()**.
+- **prepared**: The AudioRenderer enters this state by calling [createAudioRenderer()](../reference/apis/js-apis-audio.md#audiocreateaudiorenderer8).
 
-- **running**: The AudioRenderer enters this state by calling **start()** when it is in the **prepared**, **paused**, or **stopped** state.
+- **running**: The AudioRenderer enters this state by calling [start()](../reference/apis/js-apis-audio.md#start8) when it is in the **prepared**, **paused**, or **stopped** state.
 
-- **paused**: The AudioRenderer enters this state by calling **pause()** when it is in the **running** state. When the audio playback is paused, it can call **start()** to resume the playback.
+- **paused**: The AudioRenderer enters this state by calling [pause()](../reference/apis/js-apis-audio.md#pause8) when it is in the **running** state. When the audio playback is paused, it can call [start()](../reference/apis/js-apis-audio.md#start8) to resume the playback.
 
-- **stopped**: The AudioRenderer enters this state by calling **stop()** when it is in the **paused** or **running** state
+- **stopped**: The AudioRenderer enters this state by calling [stop()](../reference/apis/js-apis-audio.md#stop8) when it is in the **paused** or **running** state.
 
-- **released**: The AudioRenderer enters this state by calling **release()** when it is in the **prepared**, **paused**, or **stopped** state. In this state, the AudioRenderer releases all occupied hardware and software resources and will not transit to any other state.
+- **released**: The AudioRenderer enters this state by calling [release()](../reference/apis/js-apis-audio.md#release8) when it is in the **prepared**, **paused**, or **stopped** state. In this state, the AudioRenderer releases all occupied hardware and software resources and will not transit to any other state.
 
 ### How to Develop
 
@@ -52,11 +52,11 @@ During application development, you are advised to use **on('stateChange')** to 
 
     audio.createAudioRenderer(audioRendererOptions, (err, data) => {
       if (err) {
-      console.error(`Invoke createAudioRenderer failed, code is ${err.code}, message is ${err.message}`);
-      return;
+        console.error(`Invoke createAudioRenderer failed, code is ${err.code}, message is ${err.message}`);
+        return;
       } else {
-      console.info('Invoke createAudioRenderer succeeded.');
-      let audioRenderer = data;
+        console.info('Invoke createAudioRenderer succeeded.');
+        let audioRenderer = data;
       }
     });
     ```
