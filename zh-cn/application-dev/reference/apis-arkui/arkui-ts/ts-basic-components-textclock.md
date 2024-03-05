@@ -90,7 +90,7 @@ y：年（yyyy表示完整年份，yy表示年份后两位）<br />M：月（若
 | hh:mm:ss aa             | 5:00:04 上午        |
 | HH                      | 17                  |
 
-## textShadow<sup>11+</sup>
+### textShadow<sup>11+</sup>
 
 textShadow(value: ShadowOptions | Array&lt;ShadowOptions&gt;)
 
