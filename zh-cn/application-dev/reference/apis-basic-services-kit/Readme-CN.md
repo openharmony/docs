@@ -71,8 +71,8 @@
         - [@ohos.settings (设置数据项名称)](js-apis-settings.md)
         - [@ohos.wallpaper (壁纸)](js-apis-wallpaper.md)
         - [@ohos.settings (设置数据项名称)(系统接口)](js-apis-settings-sys.md)
-        - [@ohos.time (时间时区)(系统接口)](js-apis-system-date-time-sys.md)
-        - [@ohos.time (时间时区)](js-apis-date-time.md)
+        - [@ohos.systemDateTime (系统时间、时区)(系统接口)](js-apis-system-date-time-sys.md)
+        - [@ohos.systemDateTime (系统时间、时区)](js-apis-date-time.md)
         - [@ohos.wallpaper (壁纸)(系统接口)](js-apis-wallpaper-sys.md)
         - [@ohos.WallpaperExtensionAbility (WallpaperExtensionAbility)(系统接口)](js-apis-WallpaperExtensionAbility-sys.md)
         - [@ohos.systemTimer (系统定时器)(系统接口)](js-apis-system-timer-sys.md)
@@ -87,8 +87,8 @@
         - [@ohos.commonEvent (公共事件模块)(系统接口)](js-apis-commonEvent-sys.md)
         - [@ohos.usb (USB管理)(系统接口)](js-apis-usb-deprecated-sys.md)
         - [@ohos.systemParameter (系统属性)(系统接口)](js-apis-system-parameter-sys.md)
-        - [@ohos.systemTime (系统时间、时区)](js-apis-system-time.md)
-        - [@ohos.time (时间时区)](js-apis-system-time.md)
+        - [@ohos.systemTime (系统时间、时区)(系统接口)](js-apis-system-time-sys.md)
+        
 - 错误码
     - [USB服务错误码](errorcode-usb.md)
     - [RunningLock锁错误码](errorcode-runninglock.md)
