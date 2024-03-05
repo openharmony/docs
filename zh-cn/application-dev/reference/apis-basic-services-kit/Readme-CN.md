@@ -61,7 +61,7 @@
             - [Wifi子系统公共事件定义](common_event/commonEvent-wifi.md)
             - [USB子系统公共事件定义](common_event/commonEvent-usb.md)
             - [文件管理子系统公共事件定义](common_event/commonEvent-filemanagement.md)
-            - [主题框架子系统-锁屏管理公共事件定义](common_event/commonEvent-screenlock.md)
+            - [主题框架子系统-锁屏管理公共事件定义](commonEvent-screenlock.md)
             - [时间时区子系统公共事件定义](common_event/commonEvent-time.md)
             - [帐号子系统公共事件定义](common_event/commonEvent-account.md)
             - [语言子系统公共事件定义](common_event/commonEvent-locale.md)
@@ -71,8 +71,8 @@
         - [@ohos.settings (设置数据项名称)](js-apis-settings.md)
         - [@ohos.wallpaper (壁纸)](js-apis-wallpaper.md)
         - [@ohos.settings (设置数据项名称)(系统接口)](js-apis-settings-sys.md)
-        - [@ohos.systemDateTime (系统时间、时区)(系统接口)](js-apis-system-date-time-sys.md)
-        - [@ohos.systemDateTime (系统时间、时区)](js-apis-date-time.md)
+        - [@ohos.time (时间时区)(系统接口)](js-apis-system-date-time-sys.md)
+        - [@ohos.time (时间时区)](js-apis-date-time.md)
         - [@ohos.wallpaper (壁纸)(系统接口)](js-apis-wallpaper-sys.md)
         - [@ohos.WallpaperExtensionAbility (WallpaperExtensionAbility)(系统接口)](js-apis-WallpaperExtensionAbility-sys.md)
         - [@ohos.systemTimer (系统定时器)(系统接口)](js-apis-system-timer-sys.md)
@@ -87,6 +87,8 @@
         - [@ohos.commonEvent (公共事件模块)(系统接口)](js-apis-commonEvent-sys.md)
         - [@ohos.usb (USB管理)(系统接口)](js-apis-usb-deprecated-sys.md)
         - [@ohos.systemParameter (系统属性)(系统接口)](js-apis-system-parameter-sys.md)
+        - [@ohos.systemTime (系统时间、时区)](js-apis-system-time.md)
+        - [@ohos.time (时间时区)](js-apis-system-time.md)
 - 错误码
     - [USB服务错误码](errorcode-usb.md)
     - [RunningLock锁错误码](errorcode-runninglock.md)
@@ -104,7 +106,6 @@
     - [帐号管理错误码](errorcode-account.md)
     - [企业设备管理错误码](errorcode-enterpriseDeviceManager.md)
     - [升级错误码](errorcode-update.md)
-    - [锁屏服务错误码](errorcode-screenlock.md)
 
 
 
