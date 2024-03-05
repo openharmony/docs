@@ -32,111 +32,111 @@
 
 1. 查询设备列表。
 
-  ```ts
-  import deviceManager from '@ohos.driver.deviceManager';
-  import { BusinessError } from '@ohos.base';
+    ```ts
+    import deviceManager from '@ohos.driver.deviceManager';
+    import { BusinessError } from '@ohos.base';
 
-  let matchDevice: deviceManager.USBDevice | null = null;
-  try {
-    let devices: Array<deviceManager.Device> = deviceManager.queryDevices(deviceManager.BusType.USB);
-    for (let item of devices) {
-      let device: deviceManager.USBDevice = item as deviceManager.USBDevice;
-      // 通过productId和vendorId来匹配要使用的USB设备
-      if (device.productId == 1234 && device.vendorId === 2345) {
-        matchDevice = device;
-        break;
+    let matchDevice: deviceManager.USBDevice | null = null;
+    try {
+      let devices: Array<deviceManager.Device> = deviceManager.queryDevices(deviceManager.BusType.USB);
+      for (let item of devices) {
+        let device: deviceManager.USBDevice = item as deviceManager.USBDevice;
+        // 通过productId和vendorId来匹配要使用的USB设备
+        if (device.productId == 1234 && device.vendorId === 2345) {
+          matchDevice = device;
+          break;
+        }
       }
+    } catch (error) {
+      let errCode = (error as BusinessError).code;
+      let message = (error as BusinessError).message;
+      console.error(`Failed to query device. Code is ${errCode}, message is ${message}`);
     }
-  } catch (error) {
-    let errCode = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`Failed to query device. Code is ${errCode}, message is ${message}`);
-  }
-  if (!matchDevice) {
-    console.error('No match device');
-  }
-  ```
+    if (!matchDevice) {
+      console.error('No match device');
+    }
+    ```
 
 2. 绑定相应的设备。
 
-  ```ts
-  import deviceManager from '@ohos.driver.deviceManager';
-  import { BusinessError } from '@ohos.base';
-  import rpc from '@ohos.rpc';
+    ```ts
+    import deviceManager from '@ohos.driver.deviceManager';
+    import { BusinessError } from '@ohos.base';
+    import rpc from '@ohos.rpc';
 
-  interface DataType {
-    deviceId : number;
-    remote : rpc.IRemoteObject;
-  }
+    interface DataType {
+      deviceId : number;
+      remote : rpc.IRemoteObject;
+    }
 
-  let remoteObject : rpc.IRemoteObject | null = null;
-  try {
-    // 12345678为示例deviceId，应用开发时可以通过queryDevices查询到相应设备的deviceId作为入参
-    deviceManager.bindDevice(12345678, (error : BusinessError, data : number) => {
-      console.error('Device is disconnected');
-    }, (error : BusinessError, data : DataType) => {
-      if (error) {
-        console.error(`bindDevice async fail. Code is ${error.code}, message is ${error.message}`);
-        return;
-      }
-    console.info('bindDevice success');
-    remoteObject = data.remote;
-  });
-  } catch (error) {
-    let errCode = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`bindDevice fail. Code is ${errCode}, message is ${message}`);
-  }
-  if (!remoteObject) {
-    console.error('Bind device failed');
-  }
-  ```
+    let remoteObject : rpc.IRemoteObject | null = null;
+    try {
+      // 12345678为示例deviceId，应用开发时可以通过queryDevices查询到相应设备的deviceId作为入参
+      deviceManager.bindDevice(12345678, (error : BusinessError, data : number) => {
+        console.error('Device is disconnected');
+      }, (error : BusinessError, data : DataType) => {
+        if (error) {
+          console.error(`bindDevice async fail. Code is ${error.code}, message is ${error.message}`);
+          return;
+        }
+      console.info('bindDevice success');
+      remoteObject = data.remote;
+    });
+    } catch (error) {
+      let errCode = (error as BusinessError).code;
+      let message = (error as BusinessError).message;
+      console.error(`bindDevice fail. Code is ${errCode}, message is ${message}`);
+    }
+    if (!remoteObject) {
+      console.error('Bind device failed');
+    }
+    ```
 
 3. 绑定成功后使用设备驱动能力。
 
-  ```ts
-  import { BusinessError } from '@ohos.base';
-  import rpc from '@ohos.rpc';
+    ```ts
+    import { BusinessError } from '@ohos.base';
+    import rpc from '@ohos.rpc';
 
-  let option: rpc.MessageOption = new rpc.MessageOption();
-  let data: rpc.MessageSequence = rpc.MessageSequence.create();
-  let reply: rpc.MessageSequence = rpc.MessageSequence.create();
-  data.writeString('hello');
-  let code = 1;
-  // remoteObject应用可以通过绑定设备获取到
-  let remoteObject : rpc.IRemoteObject | null = null;
-  // code和data内容取决于驱动提供的接口
-  if (remoteObject != null) {
-    (remoteObject as rpc.IRemoteObject).sendMessageRequest(code, data, reply, option)
-      .then(() => {
-        console.info('sendMessageRequest finish.');
-      }).catch((error : BusinessError) => {
-        let errCode = (error as BusinessError).code;
-        console.error('sendMessageRequest fail. code:' + errCode);
-      });
-  }
-  ```
+    let option: rpc.MessageOption = new rpc.MessageOption();
+    let data: rpc.MessageSequence = rpc.MessageSequence.create();
+    let reply: rpc.MessageSequence = rpc.MessageSequence.create();
+    data.writeString('hello');
+    let code = 1;
+    // remoteObject应用可以通过绑定设备获取到
+    let remoteObject : rpc.IRemoteObject | null = null;
+    // code和data内容取决于驱动提供的接口
+    if (remoteObject != null) {
+      (remoteObject as rpc.IRemoteObject).sendMessageRequest(code, data, reply, option)
+        .then(() => {
+          console.info('sendMessageRequest finish.');
+        }).catch((error : BusinessError) => {
+          let errCode = (error as BusinessError).code;
+          console.error('sendMessageRequest fail. code:' + errCode);
+        });
+    }
+    ```
 
 4. 设备使用完成，解绑设备。
 
-  ```ts
-  import deviceManager from '@ohos.driver.deviceManager';
-  import { BusinessError } from '@ohos.base';
+    ```ts
+    import deviceManager from '@ohos.driver.deviceManager';
+    import { BusinessError } from '@ohos.base';
 
-  try {
-    // 12345678为示例deviceId，应用开发时可以通过queryDevices查询到相应设备的deviceId作为入参
-    deviceManager.unbindDevice(12345678, (error : BusinessError, data : number) => {
-      if (error) {
-        let errCode = (error as BusinessError).code;
-        let message = (error as BusinessError).message;
-        console.error(`unbindDevice async fail. Code is ${errCode}, message is ${message}`);
-        return;
-      }
-      console.info(`unbindDevice success`);
-  });
-  } catch (error) {
-    let errCode = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`unbindDevice fail. Code is ${errCode}, message is ${message}`);
-  }
-  ```
+    try {
+      // 12345678为示例deviceId，应用开发时可以通过queryDevices查询到相应设备的deviceId作为入参
+      deviceManager.unbindDevice(12345678, (error : BusinessError, data : number) => {
+        if (error) {
+          let errCode = (error as BusinessError).code;
+          let message = (error as BusinessError).message;
+          console.error(`unbindDevice async fail. Code is ${errCode}, message is ${message}`);
+          return;
+        }
+        console.info(`unbindDevice success`);
+    });
+    } catch (error) {
+      let errCode = (error as BusinessError).code;
+      let message = (error as BusinessError).message;
+      console.error(`unbindDevice fail. Code is ${errCode}, message is ${message}`);
+    }
+    ```
