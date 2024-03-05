@@ -503,7 +503,7 @@ import drm from '@ohos.multimedia.drm';
 import { BusinessError } from '@ohos.base';
 
 let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
-var configValue = new Uint8Array([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
+let configValue = new Uint8Array([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
 try {
   mediaKeysystem.setConfigurationByteArray("configName", configValue);
 } catch (err) {
@@ -708,7 +708,7 @@ import drm from '@ohos.multimedia.drm';
 import { BusinessError } from '@ohos.base';
 
 let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
-var keySystemResponse = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
+let keySystemResponse = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
 mediaKeysystem.processKeySystemResponse(keySystemResponse).then(() => {
   console.log("processKeySystemResponse");
 }).catch((err: BusinessError) => {
@@ -988,7 +988,7 @@ import drm from '@ohos.multimedia.drm';
 import { BusinessError } from '@ohos.base';
 
 let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
-var mediaKeyIdString = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
+let mediaKeyIdString = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
 try {
   let configValue: drm.OfflineMediaKeyStatus = mediaKeysystem.getOfflineMediaKeyStatus(mediaKeyIdString);
 } catch (err) {
@@ -1029,7 +1029,7 @@ import drm from '@ohos.multimedia.drm';
 import { BusinessError } from '@ohos.base';
 
 let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
-var mediaKeyIdString = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
+let mediaKeyIdString = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
 try {
   mediaKeysystem.clearOfflineMediaKeys(mediaKeyIdString);
 } catch (err) {
@@ -1116,11 +1116,11 @@ import { BusinessError } from '@ohos.base';
 
 let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
-var OptionsData = [
+let OptionsData = [
     {name : "optionalsDataNameA", value : "optionalsDataValueA"},
     {name : "optionalsDataNameB", value : "optionalsDataValueB"},
 ];
-var uint8pssh = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
+let uint8pssh = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
 mediaKeySession.generateMediaKeyRequest("video/mp4", uint8pssh, 0, OptionsData).then((mediaKeyRequest: drm.MediaKeyRequest) =>{
   console.log('generateMediaKeyRequest' + mediaKeyRequest);
 }).catch((err: BusinessError) => {
@@ -1166,7 +1166,7 @@ import { BusinessError } from '@ohos.base';
 
 let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
-var mediaKeyResponse = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
+let mediaKeyResponse = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
 mediaKeySession.processMediaKeyResponse(mediaKeyResponse).then((mediaKeyId: Uint8Array) => {
   console.log('processMediaKeyResponse:' + mediaKeyId);
 }).catch((err: BusinessError) => {
@@ -1286,13 +1286,13 @@ import { BusinessError } from '@ohos.base';
 
 let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
-var Request = new Uint8Array([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
+let Request = new Uint8Array([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
 mediaKeySession.processMediaKeyResponse(Request).then((mediaKeyId: Uint8Array) => {
   console.log('processMediaKeyResponse:' + mediaKeyId);
 }).catch((err: BusinessError) => {
   console.error(`processMediaKeyResponse: ERROR: ${err}`);
 });
-var mediaKeyId = new Uint8Array([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
+let mediaKeyId = new Uint8Array([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
 mediaKeySession.generateOfflineReleaseRequest(mediaKeyId).then((offlineReleaseRequest: Uint8Array) => {
   console.log('generateOfflineReleaseRequest:' + offlineReleaseRequest);
 }).catch((err: BusinessError) => {
@@ -1333,14 +1333,14 @@ import { BusinessError } from '@ohos.base';
 
 let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
-var offlineReleaseRequest = new Uint8Array([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
+let offlineReleaseRequest = new Uint8Array([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
 mediaKeySession.processMediaKeyResponse(offlineReleaseRequest).then((mediaKeyId: Uint8Array) => {
   console.log('processMediaKeyResponse:' + mediaKeyId);
 }).catch((err: BusinessError) => {
   console.error(`processMediaKeyResponse: ERROR: ${err}`);
 });
-var mediaKeyId = new Uint8Array([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
-var response = new Uint8Array([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
+let mediaKeyId = new Uint8Array([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
+let response = new Uint8Array([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
 mediaKeySession.processOfflineReleaseResponse(mediaKeyId, response).then(() => {
   console.log('processOfflineReleaseResponse');
 }).catch((err: BusinessError) => {
@@ -1381,8 +1381,8 @@ import { BusinessError } from '@ohos.base';
 
 let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
-var response = new Uint8Array ([0x00,0x00]);
-var mediaKeyId = new Uint8Array ([0x00,0x00]);
+let response = new Uint8Array ([0x00,0x00]);
+let mediaKeyId = new Uint8Array ([0x00,0x00]);
 mediaKeySession.processOfflineReleaseResponse(mediaKeyId, response).then(() => {
   console.log('processOfflineReleaseResponse');
 }).catch((err: BusinessError) => {
