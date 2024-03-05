@@ -538,13 +538,15 @@ getAllValidReminders(): Promise\<Array\<ReminderInfo>>
 >
 > 当代理提醒类型是闹钟时，若设置每天提醒，无论是否点击关闭/CLOSE按钮，代理提醒都是有效的。
 
+**需要权限**： ohos.permission.PUBLISH_AGENT_REMINDER
+
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
 **返回值**：
 
-| 类型                                            | 说明                                                |
-| ----------------------------------------------- | --------------------------------------------------- |
-| Promise\<Array\<[ReminderInfo](#ReminderInfo)>> | Promise对象，返回当前应用设置的所有有效的代理提醒。 |
+| 类型                                              | 说明                                                |
+| ------------------------------------------------- | --------------------------------------------------- |
+| Promise\<Array\<[ReminderInfo](#reminderinfo12)>> | Promise对象，返回当前应用设置的所有有效的代理提醒。 |
 
 **错误码：**
 
@@ -636,7 +638,7 @@ reminderAgentManager.getAllValidReminders().then((reminders: Array<reminderAgent
 | -------- | -------- | -------- | -------- |
 | pkgName | string | 是 | 指明跳转目标的包名。 |
 | abilityName | string | 是 | 指明跳转目标的ability名称。 |
-| parameters<sup>12+</sup> | Record<string, Object> | 否 | 需要传递到目标的参数 |
+| parameters<sup>12+</sup> | Record<string, Object> | 否 | 需要传递到目标的参数。 |
 
 
 ## MaxScreenWantAgent
@@ -737,14 +739,14 @@ ReminderRequestTimer extends ReminderRequest
 | minute | number | 是 | 分，取值范围是[0, 59]。 |
 | second | number | 否 | 秒，取值范围是[0, 59]。 |
 
-# ReminderInfo<sup>12+</sup>
+## ReminderInfo<sup>12+</sup>
 
-代理提醒对象，包含 ReminderRequest 和 reminderId。
+代理提醒信息，包含 ReminderRequest 和 ReminderId。
 
 **系统能力**：SystemCapability.Notification.ReminderAgent
 
-| 名称        | 类型                                | 必填 | 说明                |
-| ----------- | ----------------------------------- | ---- | ------------------- |
-| reminderId  | number                              | 否   | 发布提醒后返回的 Id |
-| reminderReq | [ReminderRequest](#ReminderRequest) | 否   | 代理提醒对象        |
+| 名称        | 类型                                | 必填 | 说明                  |
+| ----------- | ----------------------------------- | ---- | --------------------- |
+| reminderId  | number                              | 否   | 发布提醒后返回的 Id。 |
+| reminderReq | [ReminderRequest](#ReminderRequest) | 否   | 代理提醒对象。        |
 

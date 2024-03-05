@@ -530,7 +530,7 @@ reminderAgentManager.removeNotificationSlot(notification.SlotType.CONTENT_INFORM
 
 getAllValidReminders(): Promise\<Array\<ReminderInfo>>
 
-Obtains all valid (not yet expired) reminderInfos set by the current application, include reminder id. This API uses an asynchronous callback to return the result.
+Obtains all valid (not yet expired) reminders set by the current application, include reminder id. This API uses a promise to return the result.
 
 > **NOTE**
 >
@@ -538,13 +538,15 @@ Obtains all valid (not yet expired) reminderInfos set by the current application
 >
 > For an alarm reminder that repeats every day, the reminder is valid regardless of whether the user touches the CLOSE button.
 
+**Required permissions**: ohos.permission.PUBLISH_AGENT_REMINDER
+
 **System capability**: SystemCapability.Notification.ReminderAgent
 
 **Return value**
 
-| Type                                                  | Description                                     |
-| ----------------------------------------------------- | ----------------------------------------------- |
-| Promise\<Array\<[ReminderRequest](#reminderrequest)>> | Promise used to return all the valid reminders. |
+| Type                                              | Description                                     |
+| ------------------------------------------------- | ----------------------------------------------- |
+| Promise\<Array\<[ReminderInfo](#reminderinfo12)>> | Promise used to return all the valid reminders. |
 
 **Error codes**
 
@@ -737,14 +739,14 @@ Sets the time information for a calendar reminder.
 | minute | number | Yes| Minute. The value ranges from 0 to 59.|
 | second | number | No| Second. The value ranges from 0 to 59.|
 
-# ReminderInfo<sup>12+</sup>
+## ReminderInfo<sup>12+</sup>
 
 reminder info, include reminder request and reminder id。
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
-| Name        | Type                                | Mandatory | Description      |
-| ----------- | ----------------------------------- | --------- | ---------------- |
-| reminderId  | number                              | No        | reminder id      |
-| reminderReq | [ReminderRequest](#ReminderRequest) | No        | reminder request |
+| Name        | Type                                | Mandatory | Description       |
+| ----------- | ----------------------------------- | --------- | ----------------- |
+| reminderId  | number                              | No        | reminder id.      |
+| reminderReq | [ReminderRequest](#ReminderRequest) | No        | reminder request. |
 
