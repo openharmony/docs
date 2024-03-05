@@ -3055,7 +3055,7 @@ async function example() {
 
 getExif(callback: AsyncCallback&lt;string&gt;): void
 
-返回jpg格式图片Exif标签组成的json格式的字符串，该方法使用Promise方式返回结果。
+返回jpg格式图片Exif标签组成的json格式的字符串，该方法使用callback形式来返回结果。
 
 此接口中获取的Exif标签信息是由[image](js-apis-image.md)模块提供。Exif标签详细信息请参考[image.PropertyKey](js-apis-image.md#propertykey7)。
 
