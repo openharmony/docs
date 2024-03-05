@@ -16,7 +16,7 @@ import dlpPermission from '@ohos.dlpPermission';
 
 isDLPFile(fd: number): Promise&lt;boolean&gt;
 
-根据文件的fd，查询该文件是否是DLP文件，使用Promise方式异步返回结果。
+根据文件的fd，查询该文件是否是DLP文件。使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
@@ -64,7 +64,7 @@ fs.closeSync(file);
 
 isDLPFile(fd: number, callback: AsyncCallback&lt;boolean&gt;): void
 
-根据文件的fd，查询该文件是否是DLP文件，使用callback方式异步返回结果。
+根据文件的fd，查询该文件是否是DLP文件。使用callback方式异步返回结果。
 
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
