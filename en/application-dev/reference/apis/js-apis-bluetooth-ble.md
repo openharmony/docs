@@ -111,7 +111,7 @@ try {
 
 startBLEScan(filters: Array&lt;ScanFilter&gt;, options?: ScanOptions): void
 
-Starts a BLE scan.
+Starts BLE scanning.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
@@ -164,7 +164,7 @@ try {
 
 stopBLEScan(): void
 
-Stops the BLE scan.
+Stops BLE scanning.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
@@ -355,7 +355,7 @@ Unsubscribes from the BLE device discovery events.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value is **BLEDeviceFind**, which indicates an event of discovering a BLE device.       |
-| callback | Callback&lt;Array&lt;[ScanResult](#scanresult)&gt;&gt; | No   | Callback for the **BLEDeviceFind** event. If this parameter is not set, this API unsubscribes from all callbacks corresponding to **type**.|
+| callback | Callback&lt;Array&lt;[ScanResult](#scanresult)&gt;&gt; | No   | Callback for the **BLEDeviceFind** event. If this parameter is not set, this API unregisters all callbacks corresponding to **type**.|
 
 **Error codes**
 
@@ -739,7 +739,7 @@ Unsubscribes from characteristic read request events.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value is **characteristicRead**, which indicates a characteristic read request event.   |
-| callback | Callback&lt;[CharacteristicReadRequest](#characteristicreadrequest)&gt; | No   | Callback for the characteristic read request event. If this parameter is not set, this API unsubscribes from all callbacks corresponding to **type**.|
+| callback | Callback&lt;[CharacteristicReadRequest](#characteristicreadrequest)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks corresponding to **type**. |
 
 **Example**
 
@@ -815,7 +815,7 @@ Unsubscribes from characteristic write request events.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value is **characteristicWrite**, which indicates a characteristic write request event.  |
-| callback | Callback&lt;[CharacteristicWriteRequest](#characteristicwriterequest)&gt; | No   | Callback for the characteristic write request event. If this parameter is not set, this API unsubscribes from all callbacks corresponding to **type**.|
+| callback | Callback&lt;[CharacteristicWriteRequest](#characteristicwriterequest)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks corresponding to **type**. |
 
 **Example**
 
@@ -888,7 +888,7 @@ Unsubscribes from descriptor read request events.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value is **descriptorRead**, which indicates a descriptor read request event.       |
-| callback | Callback&lt;[DescriptorReadRequest](#descriptorreadrequest)&gt; | No   | Callback for the descriptor read request event. If this parameter is not set, this API unsubscribes from all callbacks corresponding to **type**.|
+| callback | Callback&lt;[DescriptorReadRequest](#descriptorreadrequest)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks corresponding to **type**. |
 
 **Example**
 
@@ -964,7 +964,7 @@ Unsubscribes from descriptor write request events.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value is **descriptorWrite**, which indicates a descriptor write request event.      |
-| callback | Callback&lt;[DescriptorWriteRequest](#descriptorwriterequest)&gt; | No   | Callback for the descriptor write request event. If this parameter is not set, this API unsubscribes from all callbacks corresponding to **type**.|
+| callback | Callback&lt;[DescriptorWriteRequest](#descriptorwriterequest)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks corresponding to **type**. |
 
 **Example**
 
@@ -993,7 +993,7 @@ Subscribes to BLE connection state changes.
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | Yes   | Event type. The value is **connectionStateChange**, which indicates BLE connection state changes. |
+| type     | string                                   | Yes   | Event type. The value is **connectionStateChange**, which indicates BLE connection state changes.|
 | callback | Callback&lt;[BLEConnectionChangeState](#bleconnectionchangestate)&gt; | Yes   | Callback invoked to return the BLE connection state.                         |
 
 **Example**
@@ -1028,8 +1028,8 @@ Unsubscribes from BLE connection state changes.
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | Yes   | Event type. The value is **connectionStateChange**, which indicates BLE connection state changes. |
-| callback | Callback&lt;[BLEConnectionChangeState](#bleconnectionchangestate)&gt; | No   | Callback for the BLE connection state change. If this parameter is not set, this API unsubscribes from all callbacks corresponding to **type**. |
+| type     | string                                   | Yes   | Event type. The value is **connectionStateChange**, which indicates BLE connection state changes.|
+| callback | Callback&lt;[BLEConnectionChangeState](#bleconnectionchangestate)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks corresponding to **type**. |
 
 **Example**
 
@@ -1058,7 +1058,7 @@ Subscribes to MTU status changes for the server.
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | Yes   | Event type. The value is **BLEMtuChange**, which indicates MTU status changes. If this parameter is not set correctly, the callback cannot be registered. |
+| type     | string                                   | Yes   | Event type. The value is **BLEMtuChange**, which indicates MTU status changes. If this parameter is not set correctly, the callback cannot be registered.|
 | callback | Callback&lt;number&gt; | Yes   | Callback invoked to return the number of MTU bytes.|
 
 **Example**
@@ -1091,7 +1091,7 @@ Unsubscribes from MTU status changes for the server.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value is **BLEMtuChange**, which indicates MTU status changes. If this parameter is not set correctly, the callback cannot be unregistered. |
-| callback | Callback&lt;number&gt; | No   | Callback for the MTU status changes. If this parameter is not set, this API unsubscribes from all callbacks corresponding to **type**.|
+| callback | Callback&lt;number&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks corresponding to **type**. |
 
 **Example**
 
@@ -1846,7 +1846,9 @@ let descriptor: ble.BLEDescriptor = {
 };
 try {
     let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
-    device.writeDescriptorValue(descriptor);
+    device.writeDescriptorValue(descriptor).then(() => {
+        console.info('writeDescriptorValue promise success');
+    });
 } catch (err) {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
@@ -1977,7 +1979,7 @@ try {
 
 setCharacteristicChangeNotification(characteristic: BLECharacteristic, enable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-Sets the function of notifying the GATT client when the characteristic value of the remote BLE device changes.
+Sets notification for the change of a characteristic. The GATT client that subscribes to the change will be notified when the characteristic changes.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
@@ -1988,7 +1990,7 @@ Sets the function of notifying the GATT client when the characteristic value of 
 | Name           | Type                                     | Mandatory  | Description                           |
 | -------------- | --------------------------------------- | ---- | ----------------------------- |
 | characteristic | [BLECharacteristic](#blecharacteristic) | Yes   | BLE characteristic to listen for.                     |
-| enable         | boolean                                 | Yes   | Whether to enable the notify function. The value **true** means to enable the notify function, and the value **false** means the opposite.|
+| enable         | boolean                                 | Yes   | Whether to notify the client of the characteristic change. The value **true** means to notify the client, and the value **false** means the opposite.|
 | callback   | AsyncCallback&lt;void&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -2030,7 +2032,7 @@ try {
 
 setCharacteristicChangeNotification(characteristic: BLECharacteristic, enable: boolean): Promise&lt;void&gt;
 
-Sets the function of notifying the GATT client when the characteristic value of the remote BLE device changes.
+Sets notification for the change of a characteristic. The GATT client that subscribes to the change will be notified when the characteristic changes.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
@@ -2041,7 +2043,7 @@ Sets the function of notifying the GATT client when the characteristic value of 
 | Name           | Type                                     | Mandatory  | Description                           |
 | -------------- | --------------------------------------- | ---- | ----------------------------- |
 | characteristic | [BLECharacteristic](#blecharacteristic) | Yes   | BLE characteristic to listen for.                     |
-| enable         | boolean                                 | Yes   | Whether to enable the notify function. The value **true** means to enable the notify function, and the value **false** means the opposite.|
+| enable         | boolean                                 | Yes   | Whether to notify the client of the characteristic change. The value **true** means to notify the client, and the value **false** means the opposite.|
 
 **Return value**
 
@@ -2088,7 +2090,7 @@ try {
 
 setCharacteristicChangeIndication(characteristic: BLECharacteristic, enable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-Sets the function of notifying the GATT client when the characteristic value of the remote BLE device changes.
+Sets indication for the change of a characteristic. The GATT client will be indicated when the specified characteristic value changes.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
@@ -2099,7 +2101,7 @@ Sets the function of notifying the GATT client when the characteristic value of 
 | Name           | Type                                     | Mandatory  | Description                           |
 | -------------- | --------------------------------------- | ---- | ----------------------------- |
 | characteristic | [BLECharacteristic](#blecharacteristic) | Yes   | BLE characteristic to listen for.                     |
-| enable         | boolean                                 | Yes   | Whether to enable the notify function. The value **true** means to enable the notify function, and the value **false** means the opposite.|
+| enable         | boolean                                 | Yes   | Whether to indicate the client of the characteristic change. The value **true** means to indicate the client, and the value **false** means the opposite. |
 | callback   | AsyncCallback&lt;void&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Return value**
@@ -2147,7 +2149,7 @@ try {
 
 setCharacteristicChangeIndication(characteristic: BLECharacteristic, enable: boolean): Promise&lt;void&gt;
 
-Sets the function of notifying the GATT client when the characteristic value of the remote BLE device changes.
+Sets indication for the change of a characteristic. The GATT client will be indicated when the specified characteristic value changes.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
@@ -2158,7 +2160,7 @@ Sets the function of notifying the GATT client when the characteristic value of 
 | Name           | Type                                     | Mandatory  | Description                           |
 | -------------- | --------------------------------------- | ---- | ----------------------------- |
 | characteristic | [BLECharacteristic](#blecharacteristic) | Yes   | BLE characteristic to listen for.                     |
-| enable         | boolean                                 | Yes   | Whether to enable the notify function. The value **true** means to enable the notify function, and the value **false** means the opposite.|
+| enable         | boolean                                 | Yes   | Whether to indicate the client of the characteristic change. The value **true** means to indicate the client, and the value **false** means the opposite. |
 
 **Return value**
 
@@ -2251,7 +2253,7 @@ Unsubscribes from BLE characteristic changes.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value is **BLECharacteristicChange**, which indicates characteristic value changes. |
-| callback | Callback&lt;[BLECharacteristic](#blecharacteristic)&gt; | No   | Callback for the characteristic value change. If this parameter is not set, this API unsubscribes from all callbacks corresponding to **type**. |
+| callback | Callback&lt;[BLECharacteristic](#blecharacteristic)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks corresponding to **type**. |
 
 **Example**
 
@@ -2315,7 +2317,7 @@ Unsubscribes from BLE connection state changes.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value is **BLEConnectionStateChange**, which indicates BLE connection state changes. |
-| callback | Callback&lt;[BLEConnectionChangeState](#bleconnectionchangestate)&gt; | No   | Callback for the BLE connection state change. If this parameter is not set, this API unsubscribes from all callbacks corresponding to **type**. |
+| callback | Callback&lt;[BLEConnectionChangeState](#bleconnectionchangestate)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks corresponding to **type**. |
 
 **Example**
 
@@ -2377,7 +2379,7 @@ Unsubscribes from MTU status changes for the client.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value is **BLEMtuChange**, which indicates MTU status changes. If this parameter is not set correctly, the callback cannot be unregistered. |
-| callback | Callback&lt;number&gt; | No   | Callback for the MTU status changes. If this parameter is not set, this API unsubscribes from all callbacks corresponding to **type**.|
+| callback | Callback&lt;number&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks corresponding to **type**. |
 
 **Example**
 
@@ -2574,7 +2576,7 @@ Defines the BLE advertising parameters.
 
 ## AdvertiseData
 
-Defines the content of a BLE advertisement packet.
+Represents the content of a BLE advertisement packet.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
