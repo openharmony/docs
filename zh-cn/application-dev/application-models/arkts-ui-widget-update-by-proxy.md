@@ -32,7 +32,7 @@
 1. 数据提供方以`key + subscriberId`作为数据的标识，将数据存储到数据库。
 2. 数据管理服务感知到数据库变化，将新的数据发布给当前注册的所有订阅实例。
 3. 卡片管理服务从订阅实例中解析出数据，发送给卡片渲染服务。
-4. 卡片渲染服务运行卡片页面代码widgets.abc，widgets.abc按新数据进行渲染，并将渲染后的数据发送至卡片使用方对应的[卡片组件](../reference/apis-arkui/arkui-ts/ts-basic-components-formcomponent-sys.md)。
+4. 卡片渲染服务运行卡片页面代码widgets.abc，widgets.abc按新数据进行渲染，并将渲染后的数据发送至卡片使用方对应的卡片组件。
 
 数据提供方提供的共享数据有两种类型：
 
@@ -44,7 +44,7 @@
 
 ## 数据提供方开发步骤
 
-参考[数据管理](../database/share-data-by-silent-access.md)开发指南。
+参考数据管理开发指南。
 
 ## 卡片提供方开发步骤（过程数据）
 
@@ -160,7 +160,7 @@
   }
   ```
 
-- 在[onAddForm](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md#onaddform)回调中添加订阅模板[addTemplate](../reference/apis-arkdata/js-apis-data-dataShare-sys.md#addtemplate10)，通过模板谓词告诉数据库订阅的数据条件。然后配置订阅信息[proxyData](../reference/apis-form-kit/js-apis-app-form-formBindingData.md#proxydata10)，并通过[formBinding](../reference/apis-form-kit/js-apis-app-form-formBindingData.md#formbindingdata)返回给卡片管理服务。示例中将谓词设置为`"list" : "select type from TBL00 limit 0,1"`，表示从TBL00数据库中获取type列的第一条数据，数据将会以`{"list":[{"type":"value0"}]}`格式返回到卡片页面代码widgets.abc中。当订阅的持久化数据更新时，系统会自动更新卡片数据。
+- 在[onAddForm](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md#onaddform)回调中添加订阅模板addTemplate，通过模板谓词告诉数据库订阅的数据条件。然后配置订阅信息[proxyData](../reference/apis-form-kit/js-apis-app-form-formBindingData.md#proxydata10)，并通过[formBinding](../reference/apis-form-kit/js-apis-app-form-formBindingData.md#formbindingdata)返回给卡片管理服务。示例中将谓词设置为`"list" : "select type from TBL00 limit 0,1"`，表示从TBL00数据库中获取type列的第一条数据，数据将会以`{"list":[{"type":"value0"}]}`格式返回到卡片页面代码widgets.abc中。当订阅的持久化数据更新时，系统会自动更新卡片数据。
 
   > **说明：**
   >
