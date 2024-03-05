@@ -218,7 +218,7 @@
         OH_LOG_ERROR(LOG_APP, "OH_CameraManager_CreatePreviewOutput failed.");
         }
 
-        // 向会话中添加预览输入流
+        // 向会话中添加预览输出流
         ret = OH_CaptureSession_AddPreviewOutput(captureSession, previewOutput);
         if (ret != CAMERA_OK) {
         OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_AddPreviewOutput failed.");
