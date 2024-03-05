@@ -234,7 +234,7 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
   if (previewOutput === undefined) {
     return;
   }
-  // 向会话中添加预览输入流
+  // 向会话中添加预览输出流
   try {
     videoSession.addOutput(previewOutput);
   } catch (error) {
