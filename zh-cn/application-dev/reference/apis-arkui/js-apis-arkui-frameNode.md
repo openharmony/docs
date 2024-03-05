@@ -107,7 +107,7 @@ appendChild(node: FrameNode): void
 
 | 参数名 | 类型                    | 必填 | 说明                  |
 | ------ | ----------------------- | ---- | --------------------- |
-| node   | [FrameNode](#framenode) | 是   | 需要添加的FrameNode。<br/>**说明：**<br/> node的节点不可以为声明式创建的节点，即不可修改的FrameNode。仅有从BuilderNode中获取的声明式节点可以作为子节点。若子节点不符合规格，则抛出异常信息。<br/> node节点不可以拥有父节点，否则抛出异常信息。|
+| node   | [FrameNode](#framenode) | 是   | 需要添加的FrameNode。<br/>**说明：**<br/> node节点不可以为声明式创建的节点，即不可修改的FrameNode。仅有从BuilderNode中获取的声明式节点可以作为子节点。若子节点不符合规格，则抛出异常信息。<br/> node节点不可以拥有父节点，否则抛出异常信息。|
 
 **错误码：**
 
@@ -131,7 +131,7 @@ insertChildAfter(child: FrameNode, sibling: FrameNode | null): void
 
 | 参数名  | 类型                                      | 必填 | 说明                                                                         |
 | ------- | ----------------------------------------- | ---- | ---------------------------------------------------------------------------- |
-| child   | [FrameNode](#framenode)                   | 是   | 需要添加的子节点。<br/>**说明：**<br/> node的节点不可以为声明式创建的节点，即不可修改的FrameNode。仅有从BuilderNode中获取的声明式节点可以作为子节点。若子节点不符合规格，则抛出异常信息。<br/> node节点不可以拥有父节点，否则抛出异常信息。                                                           |
+| child   | [FrameNode](#framenode)                   | 是   | 需要添加的子节点。<br/>**说明：**<br/> child节点不可以为声明式创建的节点，即不可修改的FrameNode。仅有从BuilderNode中获取的声明式节点可以作为子节点。若子节点不符合规格，则抛出异常信息。<br/> child节点不可以拥有父节点，否则抛出异常信息。                                                           |
 | sibling | [FrameNode](#framenode)&nbsp;\|&nbsp;null | 是   | 新节点将插入到该节点之后。若该参数设置为空，则新节点将插入到首个子节点之前。 |
 
 **错误码：**
@@ -304,13 +304,13 @@ getParent(): FrameNode | null;
 ```ts
 import { FrameNode, NodeController } from "@ohos.arkui.node"
 import { BusinessError } from '@ohos.base';
-
+const TEST_TAG : string = "FrameNode"
 class MyNodeController extends NodeController {
-  private rootNode: FrameNode | null = null;
-  private uiContext : UIContext | null = null;
-  private  childrenCount : number = 0;
   public frameNode: FrameNode | null = null;
-  public childList = new Array<FrameNode>();
+  public childList:Array<FrameNode> = new Array<FrameNode>();
+  private rootNode: FrameNode | null = null;
+  private uiContext: UIContext | null = null;
+  private childrenCount: number = 0;
   makeNode(uiContext: UIContext): FrameNode | null {
     this.rootNode = new FrameNode(uiContext);
     this.childrenCount = this.childrenCount + 1;
@@ -342,7 +342,7 @@ class MyNodeController extends NodeController {
     let childNode = this.rootNode!.getChild(index);
     if(childNode == null)
     {
-      console.log(`getchild at index {${index}} : fail`);
+      console.log(`${TEST_TAG} getchild at index {${index}} : fail`);
       return;
     }
     this.rootNode!.removeChild(childNode);
@@ -350,8 +350,8 @@ class MyNodeController extends NodeController {
   }
   getChildNumber()
   {
-    console.log("getChildNumber " + this.rootNode!.getChildrenCount())
-    console.log("children count is " + this.childrenCount);
+    console.log(TEST_TAG + " getChildNumber " + this.rootNode!.getChildrenCount())
+    console.log(TEST_TAG + " children count is " + this.childrenCount);
 
   }
   clearChildren()
@@ -362,35 +362,35 @@ class MyNodeController extends NodeController {
   {
     if(this.rootNode!.getFirstChild() === null)
     {
-      console.log("the rootNode does not have child node.")
+      console.log(TEST_TAG + " the rootNode does not have child node.")
     }
     if(this.rootNode!.getFirstChild() === this.frameNode) {
-      console.log("getFirstChild  result: success.");
+      console.log(TEST_TAG + " getFirstChild  result: success. The first child of the rootNode is equals to frameNode.");
     } else {
-      console.log("getFirstChild  result: fail.");
+      console.log(TEST_TAG + " getFirstChild  result: fail. The first child of the rootNode is not equals to frameNode.");
     }
     if(this.frameNode!.getChild(5) === this.frameNode!.getChild(4)!.getNextSibling()) {
-      console.log("getNextSibling  result: success.");
+      console.log(TEST_TAG + " getNextSibling  result: success.");
     } else {
-      console.log("getNextSibling  result: fail.");
+      console.log(TEST_TAG + " getNextSibling  result: fail.");
     }
     if(this.frameNode!.getChild(3) === this.frameNode!.getChild(4)!.getPreviousSibling()) {
-      console.log("getPreviousSibling  result: success.");
+      console.log(TEST_TAG + " getPreviousSibling  result: success.");
     } else {
-      console.log("getPreviousSibling  result: fail.");
+      console.log(TEST_TAG + " getPreviousSibling  result: fail.");
     }
     if(this.rootNode!.getFirstChild() !== null && this.rootNode!.getFirstChild()!.getParent() === this.rootNode) {
-      console.log("getParent  result: success.");
+      console.log(TEST_TAG + " getParent  result: success.");
     } else {
-      console.log("getParent  result: fail.");
+      console.log(TEST_TAG + " getParent  result: fail.");
     }
     if(this.rootNode!.getParent() !== undefined || this.rootNode!.getParent() !== null)
     {
-      console.log("get ArkTsNode success.")
-      console.log("check rootNode whether is modifiable " + this.rootNode!.isModifiable())
-      console.log("check getParent whether is modifiable " + this.rootNode!.getParent()!.isModifiable())
+      console.log(TEST_TAG + " get ArkTsNode success.")
+      console.log(TEST_TAG + " check rootNode whether is modifiable " + this.rootNode!.isModifiable())
+      console.log(TEST_TAG + " check getParent whether is modifiable " + this.rootNode!.getParent()!.isModifiable())
     } else {
-      console.log("get ArkTsNode fail.");
+      console.log(TEST_TAG + " get ArkTsNode fail.");
     }
   }
 
@@ -399,17 +399,17 @@ class MyNodeController extends NodeController {
     try{
       this.rootNode!.getParent()!.clearChildren();
     } catch (err) {
-      console.log((err as BusinessError).code + " : " +(err as BusinessError).message);
+      console.log(TEST_TAG + " " + (err as BusinessError).code + " : " +(err as BusinessError).message);
     }
     try{
       this.rootNode!.getParent()!.appendChild(new FrameNode(this.uiContext));
     } catch (err) {
-      console.log((err as BusinessError).code + " : " +(err as BusinessError).message);
+      console.log(TEST_TAG + " " + (err as BusinessError).code + " : " +(err as BusinessError).message);
     }
     try{
       this.rootNode!.getParent()!.removeChild(this.rootNode!.getParent()!.getChild(0));
     } catch (err) {
-      console.log((err as BusinessError).code + " : " +(err as BusinessError).message);
+      console.log(TEST_TAG + " " + (err as BusinessError).code + " : " +(err as BusinessError).message);
     }
   }
 }
@@ -420,17 +420,19 @@ struct Index {
   private myNodeController: MyNodeController = new MyNodeController();
   @State index : number = 0;
   build() {
-    Column() {
-      Row()
-      {
-        Button("ADD")
-          .onClick(()=>{this.index++;})
-        Button("DEC")
-          .onClick(()=>{this.index--;})
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
+      Column(){
+        Row()
+        {
+          Button("ADD")
+            .onClick(()=>{this.index++;})
+          Button("DEC")
+            .onClick(()=>{this.index--;})
+        }
+        Text("Current index is " + this.index)
+          .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
+          .width('100%').fontSize(16)
       }
-      Text("Current index is " + this.index)
-        .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
-        .width('100%').fontSize(16)
       Button("appendChild")
         .width(300)
         .onClick(()=>{
@@ -466,11 +468,19 @@ struct Index {
         .onClick(()=>{
           this.myNodeController.throwError();
         })
-      NodeContainer(this.myNodeController)
-        .borderWidth(1)
-        .width(300)
-        .height(100)
-    }.width("100%")
+      Column(){
+        Text("This is a NodeContainer.")
+          .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
+          .width('100%').fontSize(16)
+        NodeContainer(this.myNodeController)
+          .borderWidth(1)
+          .width(300)
+          .height(100)
+      }
+    }
+    .padding({ left: 35, right: 35, top: 35, bottom: 35 })
+    .width("100%")
+    .height("100%")
   }
 }
 ```
