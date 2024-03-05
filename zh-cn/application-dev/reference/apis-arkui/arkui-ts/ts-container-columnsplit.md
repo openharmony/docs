@@ -16,13 +16,35 @@ ColumnSplit通过分割线限制子组件的高度。初始化时，分割线位
 
 ColumnSplit()
 
-
 ## 属性
 
-| 名称                   | 参数类型                                                              | 描述                             | 
-|-----------------------|-------------------------------------------------------------------|---------------------------------|
-| resizeable            | boolean                                                           | 分割线是否可拖拽，默认为false。    | 
-| divider<sup>10+</sup> | [ColumnSplitDividerStyle](#columnsplitdividerstyle10对象说明) \| null | 设置分割线的margin。<br/>- DividerStyle：设置分割线与上下子节点的距离。<br/>- 默认为null：分割线上下margin为0。 | 
+### resizeable
+
+resizeable(value: boolean)
+
+设置分割线是否可拖拽。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                 |
+| ------ | ------- | ---- | ------------------------------------ |
+| value  | boolean | 是   | 分割线是否可拖拽。<br/>默认值：false |
+
+### divider<sup>10+</sup>
+
+divider(value: ColumnSplitDividerStyle | null)
+
+设置分割线的margin。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [ColumnSplitDividerStyle](#columnsplitdividerstyle10对象说明)&nbsp;\|&nbsp;null | 是   | 分割线的margin。<br/>默认值：null，分割线上下margin为0。ColumnSplitDividerStyle设置分割线与上下子节点的距离。 |
 
 ## ColumnSplitDividerStyle<sup>10+</sup>对象说明
 

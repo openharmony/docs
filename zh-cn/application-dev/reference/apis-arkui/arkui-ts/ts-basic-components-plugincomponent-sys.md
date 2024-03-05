@@ -54,10 +54,31 @@ PluginComponent(value: { template: PluginComponentTemplate, data: KVObject})
 
 除支持[通用事件](ts-universal-events-click.md)，还支持以下事件：
 
-| 名称                                                                                                                | 功能描述                                                               |
-| ------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| onComplete(callback:&nbsp;()&nbsp;=&gt;&nbsp;void)                                                                  | 组件加载完成回调。                                                     |
-| onError(callback:&nbsp;(info:&nbsp;{&nbsp;errcode:&nbsp;number,&nbsp;msg:&nbsp;string&nbsp;})&nbsp;=&gt;&nbsp;void) | 组件加载错误回调。<br/>errcode:&nbsp;错误码。<br/>msg:&nbsp;错误信息。 |
+### onComplete
+
+onComplete(callback:&nbsp;()&nbsp;=&gt;&nbsp;void)
+
+组件加载完成回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### onError
+
+onError(callback:&nbsp;(info:&nbsp;{&nbsp;errcode:&nbsp;number,&nbsp;msg:&nbsp;string&nbsp;})&nbsp;=&gt;&nbsp;void)
+
+组件加载错误回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                                            |
+| ------ | ------------------------------------------------------------ | ---- | ----------------------------------------------- |
+| info   | &nbsp;{&nbsp;errcode:&nbsp;number,&nbsp;msg:&nbsp;string&nbsp;} | 是   | errcode:&nbsp;错误码。<br/>msg:&nbsp;错误信息。 |
 
 ## 示例
 

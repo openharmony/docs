@@ -39,18 +39,57 @@ Toggle(options: { type: ToggleType, isOn?: boolean })
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
-| 名称                | 参数                           | 参数描述                  |
-| ---------------- | --------------------------- | ---------------------- |
-| selectedColor    | [ResourceColor](ts-types.md#resourcecolor)  | 设置组件打开状态的背景颜色。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
-| switchPointColor | [ResourceColor](ts-types.md#resourcecolor)  | 设置Switch类型的圆形滑块颜色。<br/>**说明：**<br/>仅对type为ToggleType.Switch生效。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+### selectedColor
+
+selectedColor(value: ResourceColor)
+
+设置组件打开状态的背景颜色。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                       | 必填 | 说明                     |
+| ------ | ------------------------------------------ | ---- | ------------------------ |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 组件打开状态的背景颜色。 |
+
+### switchPointColor
+
+switchPointColor(color: ResourceColor)
+
+设置Switch类型的圆形滑块颜色。仅对type为ToggleType.Switch生效。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                       | 必填 | 说明                       |
+| ------ | ------------------------------------------ | ---- | -------------------------- |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | Switch类型的圆形滑块颜色。 |
 
 ## 事件
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
 
-| 名称 | 功能描述 |
-| -------- | -------- |
-| onChange(callback:&nbsp;(isOn:&nbsp;boolean)&nbsp;=&gt;&nbsp;void) | 开关状态切换时触发该事件。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>isOn为true时，代表状态从关切换为开。isOn为false时，代表状态从开切换为关。 |
+### onChange
+
+onChange(callback:&nbsp;(isOn:&nbsp;boolean)&nbsp;=&gt;&nbsp;void)
+
+开关状态切换时触发该事件。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| isOn   | boolean | 是   | 为true时，代表状态从关切换为开。false时，代表状态从开切换为关。 |
 
 
 ## 示例

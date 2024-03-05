@@ -21,15 +21,15 @@ The **oh_sensor_type.h** file declares the common sensor attributes.
 
 | Name| Description|
 | -------- | -------- |
-| [Sensor_Type](_sensor.md#sensor_type) | Defines an enum that enumerates the sensor types. |
-| [Sensor_Result](_sensor.md#sensor_result)                    | Defines an enum that enumerates the sensor result codes.                |
-| [Sensor_Accuracy](_sensor.md#sensor_accuracy) | Defines an enum that enumerates the accuracy levels of data reported by a sensor. |
-| [Sensor_Info](_sensor.md#sensor_info) | Defines the sensor information. |
-| [Sensor_Event](_sensor.md#sensor_event) | Defines the sensor data information. |
-| [Sensor_SubscriptionId](_sensor.md#sensor_subscriptionid) | Defines the sensor subscription ID, which uniquely identifies a sensor. |
-| [Sensor_SubscriptionAttribute](_sensor.md#sensor_subscriptionattribute) | Defines the sensor subscription attribute. |
+| [Sensor_Type](_sensor.md#sensor_type) | Defines an enum for sensor types. |
+| [Sensor_Result](_sensor.md#sensor_result)                    | Defines an enum for sensor result codes.                |
+| [Sensor_Accuracy](_sensor.md#sensor_accuracy) | Defines an enum for accuracy levels of data reported by a sensor. |
+| [Sensor_Info](_sensor.md#sensor_info) | Defines a struct for the sensor information. |
+| [Sensor_Event](_sensor.md#sensor_event) | Defines a struct for the sensor data information. |
+| [Sensor_SubscriptionId](_sensor.md#sensor_subscriptionid) | Defines a struct for the sensor subscription ID, which uniquely identifies a sensor. |
+| [Sensor_SubscriptionAttribute](_sensor.md#sensor_subscriptionattribute) | Defines a struct for the sensor subscription attribute. |
 | void ([Sensor_EventCallback](_sensor.md#sensor_eventcallback)) ([Sensor_Event](_sensor.md#sensor_event) \*event) | Defines the callback function used to report sensor data. |
-| [Sensor_Subscriber](_sensor.md#sensor_subscriber) | Defines the sensor subscriber information. |
+| [Sensor_Subscriber](_sensor.md#sensor_subscriber) | Defines a struct for the sensor subscriber information. |
 
 
 ### Enums
@@ -65,7 +65,7 @@ The **oh_sensor_type.h** file declares the common sensor attributes.
 | [OH_Sensor_DestroySubscriptionAttribute](_sensor.md#oh_sensor_destroysubscriptionattribute) ([Sensor_SubscriptionAttribute](_sensor.md#sensor_subscriptionattribute) \*attribute) | Destroys a [Sensor_SubscriptionAttribute](_sensor.md#sensor_subscriptionattribute) instance and reclaims memory. |
 | [OH_SensorSubscriptionAttribute_SetSamplingInterval](_sensor.md#oh_sensorsubscriptionattribute_setsamplinginterval) ([Sensor_SubscriptionAttribute](_sensor.md#sensor_subscriptionattribute) \*attribute, const int64_t samplingInterval) | Sets the sensor data reporting interval. |
 | [OH_SensorSubscriptionAttribute_GetSamplingInterval](_sensor.md#oh_sensorsubscriptionattribute_getsamplinginterval) ([Sensor_SubscriptionAttribute](_sensor.md#sensor_subscriptionattribute) \*attribute, int64_t \*samplingInterval) | Obtains the sensor data reporting interval. |
-|                                                              | Creates a [Sensor_Subscriber](_sensor.md#sensor_subscriber) instance.|
+| [OH_Sensor_CreateSubscriber](_sensor.md#oh_sensor_createsubscriber) (void) | Creates a [Sensor_Subscriber](_sensor.md#sensor_subscriber) instance.|
 | [OH_Sensor_DestroySubscriber](_sensor.md#oh_sensor_destroysubscriber) ([Sensor_Subscriber](_sensor.md#sensor_subscriber) \*subscriber) | Destroys a [Sensor_Subscriber](_sensor.md#sensor_subscriber) instance and reclaims memory. |
 | [OH_SensorSubscriber_SetCallback](_sensor.md#oh_sensorsubscriber_setcallback) ([Sensor_Subscriber](_sensor.md#sensor_subscriber) \*subscriber, const [Sensor_EventCallback](_sensor.md#sensor_eventcallback) callback) | Sets a callback function to report sensor data. |
 | [OH_SensorSubscriber_GetCallback](_sensor.md#oh_sensorsubscriber_getcallback) ([Sensor_Subscriber](_sensor.md#sensor_subscriber) \*subscriber, [Sensor_EventCallback](_sensor.md#sensor_eventcallback) \*callback) | Obtains the callback function used to report sensor data.                          |

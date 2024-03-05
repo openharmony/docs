@@ -2321,6 +2321,18 @@
 
 **起始版本**：12
 
+### ohos.permission.GET_NEARLINK_PEER_MAC
+
+允许应用获取对端设备的星闪MAC地址。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.MANAGE_RGM
 
 允许系统服务或系统应用管理RGM。

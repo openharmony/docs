@@ -5,7 +5,7 @@
 
 You can set different vibration effects as needed, for example, customizing the vibration intensity, frequency, and duration for button touches, alarm clocks, and incoming calls.
 
-For details about the APIs, see [Vibrator](../reference/apis/js-apis-vibrator.md).
+For details about the APIs, see [Vibrator](../reference/apis-sensor-service-kit/js-apis-vibrator.md).
 
 
 ## Available APIs
@@ -28,15 +28,15 @@ Currently, three types of vibration effects are supported.
 
 ### Fixed-Duration Vibration
 
-Only a fixed duration is passed in, and the device vibrates based on the default intensity and frequency. For details about the vibration effect, see [VibrateTime](../reference/apis/js-apis-vibrator.md#vibratetime9).
+Only a fixed duration is passed in, and the device vibrates based on the default intensity and frequency. For details about the vibration effect, see [VibrateTime](../reference/apis-sensor-service-kit/js-apis-vibrator.md#vibratetime9).
 
 ### Preset Vibration
 
-Certain [vibration effects are preset](../reference/apis/js-apis-vibrator.md#effectid) for fixed scenes. For example, the effect "haptic.clock.timer" is preset to provide feedback when a user adjusts the timer. For details about the vibration effect, see [VibratePreset](../reference/apis/js-apis-vibrator.md#vibratepreset9).
+Certain [vibration effects are preset](../reference/apis-sensor-service-kit/js-apis-vibrator.md#effectid) for fixed scenes. For example, the effect "haptic.clock.timer" is preset to provide feedback when a user adjusts the timer. For details about the vibration effect, see [VibratePreset](../reference/apis-sensor-service-kit/js-apis-vibrator.md#vibratepreset9).
 
 ### Custom Vibration
 
-Custom vibration enables you to design vibration effects by customizing a vibration configuration file and orchestrating vibration forms based on the corresponding rules. For details about the vibration effect, see [VibrateFromFile](../reference/apis/js-apis-vibrator.md#vibratefromfile10).
+Custom vibration enables you to design vibration effects by customizing a vibration configuration file and orchestrating vibration forms based on the corresponding rules. For details about the vibration effect, see [VibrateFromFile](../reference/apis-sensor-service-kit/js-apis-vibrator.md#vibratefromfile10).
 
 The custom vibration configuration file is in JSON format. An example file is as follows:
 
@@ -119,14 +119,14 @@ This JSON file contains two attributes: **MetaData** and **Channels**.
      | ---------- | ------ | ------------------------------------------------------------ |
      | Parameters | Yes    | Channel parameters. Among them, **Index** indicates the channel ID. The value **0** indicates both channels, **1** indicates the left channel, and **2** indicates the right channel.|
      | Pattern    | No    | Vibration sequence.                                              |
-     
+
      **Pattern** is a JSON array that holds the vibration events. Under it, **Event** indicates a vibration event, which can be either of the following types:
 
      | Vibration Type  | Description                                          |
      | ---------- | ---------------------------------------------- |
      | transient  | Short vibration.                        |
      | continuous | Long vibration.|
-     
+
      A vibration event contains the following attributes:
 
      | Name     | Mandatory| Description                                                        |
