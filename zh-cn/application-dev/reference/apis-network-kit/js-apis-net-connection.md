@@ -81,10 +81,10 @@ import { BusinessError } from '@ohos.base';
 
 connection.getDefaultNet((error: BusinessError, data: connection.NetHandle) => {
   if (error) {
-    console.log(JSON.stringify(error));
+    console.error(`Failed to get default net. Code:${error.code}, message:${error.message}`);
     return;
   }
-  console.log(JSON.stringify(data));
+  console.info("Succeeded to get data " + JSON.stringify(data));
 });
 ```
 
@@ -118,7 +118,7 @@ getDefaultNet(): Promise\<NetHandle>
 ```ts
 import connection from '@ohos.net.connection';
 connection.getDefaultNet().then((data: connection.NetHandle) => {
-  console.log(JSON.stringify(data));
+  console.info("Succeeded to get data: " + JSON.stringify(data));
 });
 ```
 
@@ -348,10 +348,10 @@ import { BusinessError } from '@ohos.base';
 
 connection.getDefaultHttpProxy((error: BusinessError, data: connection.HttpProxy) => {
   if (error) {
-    console.log(JSON.stringify(error));
+    console.error(`Failed to get default http proxy. Code:${error.code}, message:${error.message}`);
     return;
   }
-  console.log(JSON.stringify(data));
+  console.log("Succeeded to get data" + JSON.stringify(data));
 });
 ```
 
@@ -421,10 +421,10 @@ import { BusinessError } from '@ohos.base';
 
 connection.getAppNet((error: BusinessError, data: connection.NetHandle) => {
   if (error) {
-    console.log(JSON.stringify(error));
+    console.error(`Failed to get app net. Code:${error.code}, message:${error.message}`);
     return;
   }
-  console.log(JSON.stringify(data));
+  console.info("Succeeded to get data: " + JSON.stringify(data));
 })
 ```
 
@@ -529,10 +529,10 @@ import { BusinessError } from '@ohos.base';
 connection.getDefaultNet((error: BusinessError, netHandle: connection.NetHandle) => {
   connection.setAppNet(netHandle, (error: BusinessError, data: void) => {
     if (error) {
-      console.log(JSON.stringify(error));
+      console.error(`Failed to get default net. Code:${error.code}, message:${error.message}`);
       return;
     }
-    console.log(JSON.stringify(data));
+    console.info("Succeeded to get data: " + JSON.stringify(data));
   });
 });
 ```
@@ -617,10 +617,10 @@ import { BusinessError } from '@ohos.base';
 
 connection.getAllNets((error: BusinessError, data: connection.NetHandle[]) => {
   if (error) {
-    console.log(JSON.stringify(error));
+    console.error(`Failed to get all nets. Code:${error.code}, message:${error.message}`);
     return;
   }
-  console.log(JSON.stringify(data));
+  console.info("Succeeded to get data: " + JSON.stringify(data));
 }); 
 ```
 
@@ -655,7 +655,7 @@ getAllNets(): Promise&lt;Array&lt;NetHandle&gt;&gt;
 import connection from '@ohos.net.connection';
 
 connection.getAllNets().then((data: connection.NetHandle[]) => {
-  console.log(JSON.stringify(data));
+  console.info("Succeeded to get data: " + JSON.stringify(data));
 });
 ```
 
@@ -728,10 +728,10 @@ import { BusinessError } from '@ohos.base';
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   connection.getConnectionProperties(netHandle, (error: BusinessError, data: connection.ConnectionProperties) => {
     if (error) {
-      console.log(JSON.stringify(error));
+      console.error(`Failed to get connection properties. Code:${error.code}, message:${error.message}`);
       return;
     }
-    console.log(JSON.stringify(data));
+    console.info("Succeeded to get data: " + JSON.stringify(data));
   })
 });
 ```
@@ -775,7 +775,7 @@ import connection from '@ohos.net.connection';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   connection.getConnectionProperties(netHandle).then((data: connection.ConnectionProperties) => {
-    console.log(JSON.stringify(data));
+    console.info("Succeeded to get data: " + JSON.stringify(data));
   })
 });
 ```
@@ -857,10 +857,10 @@ import { BusinessError } from '@ohos.base';
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   connection.getNetCapabilities(netHandle, (error: BusinessError, data: connection.NetCapabilities) => {
     if (error) {
-      console.log(JSON.stringify(error));
+      console.error(`Failed to get net capabilities. Code:${error.code}, message:${error.message}`);
       return;
     }
-    console.log(JSON.stringify(data));
+    console.info("Succeeded to get data: " + JSON.stringify(data));
   })
 });
 ```
@@ -904,7 +904,7 @@ import connection from '@ohos.net.connection';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   connection.getNetCapabilities(netHandle).then((data: connection.NetCapabilities) => {
-    console.log(JSON.stringify(data));
+    console.info("Succeeded to get data: " + JSON.stringify(data));
   })
 });
 ```
@@ -1356,10 +1356,10 @@ import connection from '@ohos.net.connection';
 import { BusinessError } from "@ohos.base";
 connection.getAddressesByName("xxxx", (error: BusinessError, data: connection.NetAddress[]) => {
   if (error) {
-    console.log(JSON.stringify(error));
+    console.error(`Failed to get addresses. Code:${error.code}, message:${error.message}`);
     return;
   }
-  console.log(JSON.stringify(data));
+  console.info("Succeeded to get data: " + JSON.stringify(data));
 });
 ```
 
@@ -1400,7 +1400,7 @@ getAddressesByName(host: string): Promise\<Array\<NetAddress>>
 ```ts
 import connection from '@ohos.net.connection';
 connection.getAddressesByName("xxxx").then((data: connection.NetAddress[]) => {
-  console.log(JSON.stringify(data));
+  console.info("Succeeded to get data: " + JSON.stringify(data));
 });
 ```
 
@@ -1439,10 +1439,10 @@ import connection from '@ohos.net.connection';
 import { BusinessError } from '@ohos.base';
 connection.addCustomDnsRule("xxxx", ["xx.xx.xx.xx","xx.xx.xx.xx"], (error: BusinessError, data: void) => {
   if (error) {
-    console.log(JSON.stringify(error));
+    console.error(`Failed to get add custom dns rule. Code:${error.code}, message:${error.message}`);
     return;
   }
-  console.log(JSON.stringify(data));
+  console.info("Succeeded to get data: " + JSON.stringify(data));
 })
 ```
 
@@ -1525,10 +1525,10 @@ import connection from '@ohos.net.connection';
 import { BusinessError } from '@ohos.base';
 connection.removeCustomDnsRule("xxxx", (error: BusinessError, data: void) => {
   if (error) {
-    console.log(JSON.stringify(error));
+    console.error(`Failed to remove custom dns rule. Code:${error.code}, message:${error.message}`);
     return;
   }
-  console.log(JSON.stringify(data));
+  console.info("Succeeded to get data: " + JSON.stringify(data));
 })
 ```
 
@@ -1609,10 +1609,10 @@ import connection from '@ohos.net.connection';
 import { BusinessError } from '@ohos.base';
 connection.clearCustomDnsRules((error: BusinessError, data: void) => {
   if (error) {
-    console.log(JSON.stringify(error));
+    console.error(`Failed to clear custom dns rules. Code:${error.code}, message:${error.message}`);
     return;
   }
-  console.log(JSON.stringify(data));
+  console.info("Succeeded to get data: " + JSON.stringify(data));
 })
 ```
 
@@ -1770,7 +1770,7 @@ netCon.register((error: BusinessError) => {
 
 // 订阅网络可用事件。调用register后，才能接收到此事件通知
 netCon.on('netAvailable', (data: connection.NetHandle) => {
-  console.log(JSON.stringify(data));
+  console.info("Succeeded to get data: " + JSON.stringify(data));
 });
 
 // 使用unregister接口取消订阅
@@ -1816,7 +1816,7 @@ class Value {
     blocked: boolean = false
 }
 netCon.on('netBlockStatusChange', (data: Value) => {
-  console.log(JSON.stringify(data));
+  console.info("Succeeded to get data: " + JSON.stringify(data));
 });
 
 // 使用unregister接口取消订阅
@@ -1858,7 +1858,7 @@ netCon.register((error: BusinessError) => {
 
 // 订阅网络能力变化事件。调用register后，才能接收到此事件通知
 netCon.on('netCapabilitiesChange', (data: connection.NetCapabilityInfo) => {
-  console.log(JSON.stringify(data));
+  console.info("Succeeded to get data: " + JSON.stringify(data));
 });
 
 // 使用unregister接口取消订阅
@@ -1905,7 +1905,7 @@ class Value {
 
 // 订阅网络可用事件。调用register后，才能接收到此事件通知
 netCon.on('netConnectionPropertiesChange', (data: Value) => {
-  console.log(JSON.stringify(data));
+  console.info("Succeeded to get data: " + JSON.stringify(data));
 });
 
 // 使用unregister接口取消订阅
@@ -1947,7 +1947,7 @@ netCon.register((error: BusinessError) => {
 
 // 订阅网络可用事件。调用register后，才能接收到此事件通知
 netCon.on('netLost', (data: connection.NetHandle) => {
-  console.log(JSON.stringify(data));
+  console.info("Succeeded to get data: " + JSON.stringify(data));
 });
 
 // 使用unregister接口取消订阅
@@ -1989,7 +1989,7 @@ netCon.register((error: BusinessError) => {
 
 // 订阅网络不可用事件。调用register后，才能接收到此事件通知
 netCon.on('netUnavailable', () => {
-  console.log(JSON.stringify(data));
+  console.info("Succeeded to get data: " + JSON.stringify(data));
 });
 
 // 使用unregister接口取消订阅
@@ -2062,9 +2062,9 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
       }
       netHandle.bindSocket(tcp, (error: BusinessError, data: void) => {
         if (error) {
-          console.log(JSON.stringify(error));
+          cconsole.error(`Failed to bind socket. Code:${error.code}, message:${error.message}`);
         } else {
-          console.log(JSON.stringify(data));
+          console.info(JSON.stringify(data));
         }
       });
     });
@@ -2076,17 +2076,17 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
               port:8080,
               family:1} as socket.NetAddress, (error: BusinessError) => {
       if (error) {
-        console.log('bind fail');
+        console.error(`Failed to bind. Code:${error.code}, message:${error.message}`);
         return;
       }
       udp.on('message', (data: Data) => {
-        console.log(JSON.stringify(data));
+        console.info("Succeeded to get data: " + JSON.stringify(data));
       });
       netHandle.bindSocket(udp, (error: BusinessError, data: void) => {
         if (error) {
-          console.log(JSON.stringify(error));
+          console.error(`Failed to bind socket. Code:${error.code}, message:${error.message}`);
         } else {
-          console.log(JSON.stringify(data));
+          console.info(JSON.stringify(data));
         }
       });
     });
@@ -2148,9 +2148,9 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
       }
       netHandle.bindSocket(tcp, (error: BusinessError, data: void) => {
         if (error) {
-          console.log(JSON.stringify(error));
+          console.error(`Failed to bind socket. Code:${error.code}, message:${error.message}`);
         } else {
-          console.log(JSON.stringify(data));
+          console.info(JSON.stringify(data));
         }
       });
     });
@@ -2162,17 +2162,17 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
               port:8080,
               family:1} as socket.NetAddress, (error: BusinessError) => {
     if (error) {
-      console.log('bind fail');
+      console.error(`Failed to bind. Code:${error.code}, message:${error.message}`);
       return;
     }
     udp.on('message', (data: Data) => {
-      console.log(JSON.stringify(data));
+      console.info("Succeeded to get data: " + JSON.stringify(data));
     });
     netHandle.bindSocket(udp, (error: BusinessError, data: void) => {
       if (error) {
-        console.log(JSON.stringify(error));
+        console.error(`Failed to bind socket. Code:${error.code}, message:${error.message}`);;
       } else {
-        console.log(JSON.stringify(data));
+        console.info(JSON.stringify(data));
       }
     });
   });
@@ -2217,10 +2217,10 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   let host = "xxxx";
   netHandle.getAddressesByName(host, (error: BusinessError, data: connection.NetAddress[]) => {
     if (error) {
-      console.log(JSON.stringify(error));
+      console.error(`Failed to get addresses. Code:${error.code}, message:${error.message}`);
       return;
     }
-    console.log(JSON.stringify(data));
+    console.info("Succeeded to get data: " + JSON.stringify(data));
   });
 });
 ```
@@ -2265,7 +2265,7 @@ import connection from '@ohos.net.connection';
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   let host = "xxxx";
   netHandle.getAddressesByName(host).then((data: connection.NetAddress[]) => {
-    console.log(JSON.stringify(data));
+    console.info("Succeeded to get data: " + JSON.stringify(data));
   });
 });
 ```
@@ -2307,10 +2307,10 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   let host = "xxxx";
   netHandle.getAddressByName(host, (error: BusinessError, data: connection.NetAddress) => {
     if (error) {
-      console.log(JSON.stringify(error));
+      console.error(`Failed to get address. Code:${error.code}, message:${error.message}`);
       return;
     }
-    console.log(JSON.stringify(data));
+    console.info("Succeeded to get data: " + JSON.stringify(data));
   });
 });
 ```
@@ -2355,7 +2355,7 @@ import connection from '@ohos.net.connection';
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   let host = "xxxx";
   netHandle.getAddressByName(host).then((data: connection.NetAddress) => {
-    console.log(JSON.stringify(data));
+    console.info("Succeeded to get data: " + JSON.stringify(data));
   });
 });
 ```
