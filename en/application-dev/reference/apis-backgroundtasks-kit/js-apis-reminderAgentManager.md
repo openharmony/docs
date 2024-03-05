@@ -748,5 +748,5 @@ reminder info, include reminder request and reminder id。
 | Name        | Type                                | Mandatory | Description       |
 | ----------- | ----------------------------------- | --------- | ----------------- |
 | reminderId  | number                              | No        | reminder id.      |
-| reminderReq | [ReminderRequest](#ReminderRequest) | No        | reminder request. |
+| reminderReq | [ReminderRequest](#reminderrequest) | No        | reminder request. |
 

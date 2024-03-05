@@ -748,5 +748,5 @@ ReminderRequestTimer extends ReminderRequest
 | 名称        | 类型                                | 必填 | 说明                  |
 | ----------- | ----------------------------------- | ---- | --------------------- |
 | reminderId  | number                              | 否   | 发布提醒后返回的 Id。 |
-| reminderReq | [ReminderRequest](#ReminderRequest) | 否   | 代理提醒对象。        |
+| reminderReq | [ReminderRequest](#reminderrequest) | 否   | 代理提醒对象。        |
 

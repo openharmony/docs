@@ -71,4 +71,4 @@ ReminderRequestCalendar extends ReminderRequest
 
 | 名称                         | 类型                    | 必填 | 说明                                               |
 | ---------------------------- | ----------------------- | ---- | -------------------------------------------------- |
-| rruleWantAgent<sup>12+</sup> | [WantAgent](#WantAgent) | 否   | 自定义重复日程，指明需要拉起的 Service Extension。 |
+| rruleWantAgent<sup>12+</sup> | [WantAgent](#wantagent) | 否   | 自定义重复日程，指明需要拉起的 Service Extension。 |

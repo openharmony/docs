@@ -72,4 +72,4 @@ Defines a reminder for a calendar event.
 
 | Name                         | Type                    | Mandatory | Description                                                  |
 | ---------------------------- | ----------------------- | --------- | ------------------------------------------------------------ |
-| rruleWantAgent<sup>12+</sup> | [WantAgent](#WantAgent) | No        | For custom repeat calendar(RRule), the service extension will pull up when param set and the notification arrived. |
+| rruleWantAgent<sup>12+</sup> | [WantAgent](#wantagent) | No        | For custom repeat calendar(RRule), the service extension will pull up when param set and the notification arrived. |
