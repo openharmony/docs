@@ -60,3 +60,15 @@ import reminderAgentManager from '@ohos.reminderAgentManager';
 | uri | string | 是 | 数据使用的URI，是跨应用数据访问的唯一标识。 |
 | equalTo | Record<string, number \| string \| boolean> | 是 | 指示筛选条件，当前仅支持通过等于筛选。|
 | value | [ValueBucket](../apis-arkdata/js-apis-data-valuesBucket.md#valuesbucket) | 是 | 指示要更新的数据。 |
+
+## ReminderRequestCalendar
+
+ReminderRequestCalendar extends ReminderRequest
+
+日历实例对象，用于设置提醒的时间。
+
+**系统能力**：SystemCapability.Notification.ReminderAgent
+
+| 名称                         | 类型                    | 必填 | 说明                                               |
+| ---------------------------- | ----------------------- | ---- | -------------------------------------------------- |
+| rruleWantAgent<sup>12+</sup> | [WantAgent](#WantAgent) | 否   | 自定义重复日程，指明需要拉起的 Service Extension。 |

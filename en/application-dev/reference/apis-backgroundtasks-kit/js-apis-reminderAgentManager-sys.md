@@ -61,3 +61,15 @@ The data provider needs to set the ID, read/write permissions, and basic informa
 | uri | string | Yes| URI of the data, which is the unique identifier for cross-application data access.|
 | equalTo | Record<string, number \| string \| boolean> | Yes| Filter criteria. Currently, only equal to is supported.|
 | value | [ValueBucket](../apis/js-apis-data-valuesBucket.md#valuesbucket) | Yes| New data.|
+
+## ReminderRequestCalendar
+
+ReminderRequestCalendar extends ReminderRequest
+
+Defines a reminder for a calendar event.
+
+**System capability**: SystemCapability.Notification.ReminderAgent
+
+| Name                         | Type                    | Mandatory | Description                                                  |
+| ---------------------------- | ----------------------- | --------- | ------------------------------------------------------------ |
+| rruleWantAgent<sup>12+</sup> | [WantAgent](#WantAgent) | No        | For custom repeat calendar(RRule), the service extension will pull up when param set and the notification arrived. |
