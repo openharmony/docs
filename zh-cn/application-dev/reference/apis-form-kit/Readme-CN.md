@@ -2,7 +2,6 @@
 
 - ArkTS API
   - [@ohos.app.form.formAgent (FormAgent)(系统接口)](js-apis-app-form-formAgent-sys.md)
-  - [@ohos.app.form.formAgent (FormAgent)](js-apis-app-form-formAgent.md)
   - [@ohos.app.form.formBindingData (卡片数据绑定类)](js-apis-app-form-formBindingData.md)
   - [@ohos.app.form.FormExtensionAbility (FormExtensionAbility)(系统接口)](js-apis-app-form-formExtensionAbility-sys.md)
   - [@ohos.app.form.FormExtensionAbility (FormExtensionAbility)](js-apis-app-form-formExtensionAbility.md)
