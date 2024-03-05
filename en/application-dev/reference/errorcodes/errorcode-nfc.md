@@ -48,6 +48,38 @@ An error occurs when the NFC service executes the tag service logic.
 4. Touch and read the card again.
 5. Exit the app and read the card again.
 
+## 3100202
+
+**Error Message**
+
+The element state is invalid.
+
+**Description**
+
+When the API is called, the application of the tag reading page is not running in the foreground.
+
+**Possible Causes**
+1. The tag reading page is not in the foreground.
+
+**Solution**
+1. The API can be called only by the page in the foreground.
+
+## 3100203
+
+**Error Message**
+
+The off() can be called only when the on() has been called.
+
+**Description**
+
+The off() API can be called only after on() is called.
+
+**Possible Causes**
+1. The foreground page of the application calls **off()** without invoking **on()**.
+
+**Solution**
+1. Call **on()** first, and call **off()** before the page exits.
+
 ## 3200101
 
 **Error Message**
@@ -59,7 +91,7 @@ Connected NFC tag running state is abnormal in service.
 An error occurs when the service logic of the active NFC tag is executed.
 
 **Possible Causes**
-1. The parameter values of the active NFC tag does not match the API called.
+1. The parameter values of the active NFC tag do not match the API called.
 2. The active NFC tag chip does not respond within the specified time or returns an error state.
 
 **Solution**

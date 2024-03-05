@@ -1,14 +1,17 @@
 # @ohos.nfc.tag (Standard NFC Tags)
 
-The **nfcTag** module provides APIs for managing Near-Field Communication (NFC) tags.
+The **tag** module provides APIs for operating and managing NFC tags. The following tag read modes are available:
+
+- Background mode: The device reads the tag by using NFC without starting any application, and then searches for applications based on the tag type. If only one application is matched, the card reading page of that application will be started. If multiple applications are matched, an application selector will be started, asking the user to select an application.
+- Foreground mode: A foreground application has priority to read the NFC tag discovered.
 
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
-## **Declaration**
+## Declaring the NFC Tag Background Mode
 
-Before developing applications related to tag read and write, you must declare NFC-related attributes in the attribute configuration file of the applications. For example, declare the following attributes in the **module.json5** file:
+To enable NFC tages to be read without starting an application, declare NFC-related attributes in the **module.json5** file.
 ```json
 {
     "module": {
@@ -49,10 +52,9 @@ Before developing applications related to tag read and write, you must declare N
 ```
 > **NOTE**
 >
-> - The **actions** field is mandatory. It must be **ohos.nfc.tag.action.TAG_FOUND** and cannot be changed.
+> - The **actions** field must contain **ohos.nfc.tag.action.TAG_FOUND** and cannot be changed.
 > - The **type** field under **uris** must start with **tag-tech/**, followed by NfcA, NfcB, NfcF, NfcV, IsoDep, Ndef, MifareClassic, MifareUL, or NdefFormatable. If there are multiple types, enter them in different lines. Incorrect settings of this field will cause a parsing failure.
 > - The **name** field under **requestPermissions** is mandatory. It must be **ohos.permission.NFC_TAG** and cannot be changed.
-
 
 ## **Modules to Import**
 
@@ -132,7 +134,7 @@ getNfcATag(tagInfo: [TagInfo](#taginfo)): [NfcATag](js-apis-nfctech.md#nfcatag)
 Obtains an **NfcATag** object, which allows access to the tags that use the NFC-A technology.
 
 > **NOTE**
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [tag.getNfcA](#taggetnfca9).
+> This API is supported since API version 7 and deprecated since API version 9. Use [tag.getNfcA](#taggetnfca9) instead.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
@@ -140,7 +142,7 @@ Obtains an **NfcATag** object, which allows access to the tags that use the NFC-
 
 | Name | Type               | Mandatory| Description                                                         |
 | ------- | ------------------- | ---- | ------------------------------------------------------------- |
-| tagInfo | [TagInfo](#tagInfo) | Yes  | Tag information including the technology type and related parameters, which are obtained from **tag.getTagInfo(want: Want)**.|
+| tagInfo | [TagInfo](#tagInfo) | Yes  | Tag information, including the tag technology type and related parameters, obtained from [tag.getTagInfo(want: Want)](#taggettaginfo9).|
 
 **Return value**
 
@@ -160,7 +162,7 @@ Obtains an **NfcATag** object, which allows access to the tags that use the NFC-
 
 | Name | Type               | Mandatory| Description                                                         |
 | ------- | ------------------- | ---- | ------------------------------------------------------------- |
-| tagInfo | [TagInfo](#taginfo) | Yes  | Tag information including the technology type and related parameters, which are obtained from **tag.getTagInfo(want: Want)**.|
+| tagInfo | [TagInfo](#taginfo) | Yes  | Tag information, including the tag technology type and related parameters, obtained from [tag.getTagInfo(want: Want)](#taggettaginfo9).|
 
 **Return value**
 
@@ -183,7 +185,7 @@ getNfcBTag(tagInfo: [TagInfo](#taginfo)): [NfcBTag](js-apis-nfctech.md#nfcbtag)
 Obtains an **NfcBTag** object, which allows access to the tags that use the NFC-B technology.
 
 > **NOTE**
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [tag.getNfcB](#taggetnfcb9).
+> This API is supported since API version 7 and deprecated since API version 9. Use [tag.getNfcB](#taggetnfcb9) instead.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
@@ -191,7 +193,7 @@ Obtains an **NfcBTag** object, which allows access to the tags that use the NFC-
 
 | Name | Type               | Mandatory| Description                                                         |
 | ------- | ------------------- | ---- | ------------------------------------------------------------- |
-| tagInfo | [TagInfo](#taginfo) | Yes  | Tag information including the technology type and related parameters, which are obtained from **tag.getTagInfo(want: Want)**.|
+| tagInfo | [TagInfo](#taginfo) | Yes  | Tag information, including the tag technology type and related parameters, obtained from [tag.getTagInfo(want: Want)](#taggettaginfo9).|
 
 **Return value**
 
@@ -211,7 +213,7 @@ Obtains an **NfcBTag** object, which allows access to the tags that use the NFC-
 
 | Name | Type               | Mandatory| Description                                                         |
 | ------- | ------------------- | ---- | ------------------------------------------------------------- |
-| tagInfo | [TagInfo](#taginfo) | Yes  | Tag information including the technology type and related parameters, which are obtained from **tag.getTagInfo(want: Want)**.|
+| tagInfo | [TagInfo](#taginfo) | Yes  | Tag information, including the tag technology type and related parameters, obtained from [tag.getTagInfo(want: Want)](#taggettaginfo9).|
 
 **Return value**
 
@@ -234,7 +236,7 @@ getNfcFTag(tagInfo: [TagInfo](#taginfo)): [NfcFTag](js-apis-nfctech.md#nfcftag)
 Obtains an **NfcFTag** object, which allows access to the tags that use the NFC-F technology.
 
 > **NOTE**
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [tag.getNfcF](#taggetnfcf9).
+> This API is supported since API version 7 and deprecated since API version 9. Use [tag.getNfcF](#taggetnfcf9) instead.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
@@ -242,7 +244,7 @@ Obtains an **NfcFTag** object, which allows access to the tags that use the NFC-
 
 | Name | Type               | Mandatory| Description                                                         |
 | ------- | ------------------- | ---- | ------------------------------------------------------------- |
-| tagInfo | [TagInfo](#taginfo) | Yes  | Tag information including the technology type and related parameters, which are obtained from **tag.getTagInfo(want: Want)**.|
+| tagInfo | [TagInfo](#taginfo) | Yes  | Tag information, including the tag technology type and related parameters, obtained from [tag.getTagInfo(want: Want)](#taggettaginfo9).|
 
 **Return value**
 
@@ -262,7 +264,7 @@ Obtains an **NfcFTag** object, which allows access to the tags that use the NFC-
 
 | Name | Type               | Mandatory| Description                                                         |
 | ------- | ------------------- | ---- | ------------------------------------------------------------- |
-| tagInfo | [TagInfo](#taginfo) | Yes  | Tag information including the technology type and related parameters, which are obtained from **tag.getTagInfo(want: Want)**.|
+| tagInfo | [TagInfo](#taginfo) | Yes  | Tag information, including the tag technology type and related parameters, obtained from [tag.getTagInfo(want: Want)](#taggettaginfo9).|
 
 **Return value**
 
@@ -285,7 +287,7 @@ getNfcVTag(tagInfo: [TagInfo](#taginfo)): [NfcVTag](js-apis-nfctech.md#nfcvtag)
 Obtains an **NfcVTag** object, which allows access to the tags that use the NFC-V technology.
 
 > **NOTE**
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [tag.getNfcV](#taggetnfcv9).
+> This API is supported since API version 7 and deprecated since API version 9. Use [tag.getNfcV](#taggetnfcv9) instead.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
@@ -293,7 +295,7 @@ Obtains an **NfcVTag** object, which allows access to the tags that use the NFC-
 
 | Name | Type               | Mandatory| Description                                                         |
 | ------- | ------------------- | ---- | ------------------------------------------------------------- |
-| tagInfo | [TagInfo](#taginfo) | Yes  | Tag information including the technology type and related parameters, which are obtained from **tag.getTagInfo(want: Want)**.|
+| tagInfo | [TagInfo](#taginfo) | Yes  | Tag information, including the tag technology type and related parameters, obtained from [tag.getTagInfo(want: Want)](#taggettaginfo9).|
 
 **Return value**
 
@@ -313,7 +315,7 @@ Obtains an **NfcVTag** object, which allows access to the tags that use the NFC-
 
 | Name | Type               | Mandatory| Description                                                         |
 | ------- | ------------------- | ---- | ------------------------------------------------------------- |
-| tagInfo | [TagInfo](#taginfo) | Yes  | Tag information including the technology type and related parameters, which are obtained from **tag.getTagInfo(want: Want)**.|
+| tagInfo | [TagInfo](#taginfo) | Yes  | Tag information, including the tag technology type and related parameters, obtained from [tag.getTagInfo(want: Want)](#taggettaginfo9).|
 
 **Return value**
 
@@ -341,7 +343,7 @@ Obtains an **IsoDepTag** object, which allows access to the tags that use the IS
 
 | Name | Type               | Mandatory| Description                                                         |
 | ------- | ------------------- | ---- | ------------------------------------------------------------- |
-| tagInfo | [TagInfo](#taginfo) | Yes  | Tag information including the technology type and related parameters, which are obtained from **tag.getTagInfo(want: Want)**.|
+| tagInfo | [TagInfo](#taginfo) | Yes  | Tag information, including the tag technology type and related parameters, obtained from [tag.getTagInfo(want: Want)](#taggettaginfo9).|
 
 **Return value**
 
@@ -369,7 +371,7 @@ Obtains an **NdefTag** object, which allows access to the tags in the NFC Data E
 
 | Name | Type               | Mandatory| Description                                                         |
 | ------- | ------------------- | ---- | ------------------------------------------------------------- |
-| tagInfo | [TagInfo](#taginfo) | Yes  | Tag information including the technology type and related parameters, which are obtained from **tag.getTagInfo(want: Want)**.|
+| tagInfo | [TagInfo](#taginfo) | Yes  | Tag information, including the tag technology type and related parameters, obtained from [tag.getTagInfo(want: Want)](#taggettaginfo9).|
 
 **Return value**
 
@@ -397,7 +399,7 @@ Obtains a **MifareClassicTag** object, which allows access to the tags that use 
 
 | Name | Type               | Mandatory| Description                                                         |
 | ------- | ------------------- | ---- | ------------------------------------------------------------- |
-| tagInfo | [TagInfo](#taginfo) | Yes  | Tag information including the technology type and related parameters, which are obtained from **tag.getTagInfo(want: Want)**.|
+| tagInfo | [TagInfo](#taginfo) | Yes  | Tag information, including the tag technology type and related parameters, obtained from [tag.getTagInfo(want: Want)](#taggettaginfo9).|
 
 **Return value**
 
@@ -424,7 +426,7 @@ Obtains a **MifareUltralightTag** object, which allows access to the tags that u
 **Parameters**
 | Name | Type               | Mandatory| Description                                                         |
 | ------- | ------------------- | ---- | ------------------------------------------------------------- |
-| tagInfo | [TagInfo](#taginfo) | Yes  | Tag information including the technology type and related parameters, which are obtained from **tag.getTagInfo(want: Want)**.|
+| tagInfo | [TagInfo](#taginfo) | Yes  | Tag information, including the tag technology type and related parameters, obtained from [tag.getTagInfo(want: Want)](#taggettaginfo9).|
 
 **Return value**
 
@@ -486,7 +488,7 @@ Obtains **TagInfo** from **Want**, which is initialized by the NFC service and c
 
 registerForegroundDispatch(elementName: [ElementName](js-apis-bundleManager-elementName.md), discTech: number[], callback: AsyncCallback&lt;[TagInfo](#taginfo)&gt;): void
 
-Registers listening for the card reading events of an NFC tag foreground application. You can set the supported tag technologies in **discTech**, and obtain the [TagInfo](#taginfo) read in a callback. <br>This API must be used with [tag.unregisterForegroundDispatch](#tagunregisterforegrounddispatch10) in pairs. The registered event listening must be unregistered before the page exits the foreground or the page is destroyed.
+Registers a listener for the NFC tag read event so that the tag can be preferentially dispatched to a foreground application. You can set the supported NFC tag technologies in **discTech**. The callback returns [TagInfo](#taginfo) read. This API must be used with [tag.unregisterForegroundDispatch](#tagunregisterforegrounddispatch10) in pairs. The registered callback must be unregistered before the tag reading page exits the foreground or is destroyed.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
@@ -496,9 +498,9 @@ Registers listening for the card reading events of an NFC tag foreground applica
 
 | Name      | Type    | Mandatory| Description                                                   |
 | ------------ | -------- | ---- | ------------------------------------------------------- |
-| elementName   |  [ElementName](js-apis-bundleManager-elementName.md)   | Yes  | Information about the application page, which must contain at least the bundle name and ability name.         |
-| discTech         |  number[]   | Yes  | Technologies supported by the foreground dispatch system. Each number indicates the constant value of the supported technology. Based on the value of **number**, the system sets tag technologies ([NFC_A](#technology-type-definition), [NFC_B](#technology-type-definition), and [NFC_F](#technology-type-definition), and [NFC_V](#technology-type-definition)) for NFC card read polling and disable card emulation. If the **number** length is 0, both card read polling and card emulation will be disabled.|
-| callback | AsyncCallback&lt;[TagInfo](#taginfo)&gt; | Yes  | Callback invoked to return the card read event in the foreground.|
+| elementName   |  [ElementName](js-apis-bundleManager-elementName.md)   | Yes  | Information about the tag reading page of the application. It cannot be empty and must contain at least **bundleName** and **abilityName**.         |
+| discTech         |  number[]   | Yes  | NFC tag technologies supported by the foreground application. It cannot be empty. At least one NFC tag technology must be specified. Each number indicates the constant value of an NFC tag technology. The tag technologies are polled based on the specified value, which contains one or more of [NFC_A] (#technology-type-definition), [NFC_B] (#technology-type-definition), [NFC_F](#technology-type-definition), and [NFC_V](#technology-type-definition) only.|
+| callback | AsyncCallback&lt;[TagInfo](#taginfo)&gt; | Yes  | Callback invoked to return the tag information read. It cannot be empty.|
 
 **Example**
 
@@ -508,7 +510,7 @@ See the example of [tag.unregisterForegroundDispatch](#tagunregisterforegrounddi
 
 unregisterForegroundDispatch(elementName: [ElementName](js-apis-bundleManager-elementName.md)): void
 
-Unregisters the listening for card reading events of an NFC tag foreground application. The registered event listening must be unregistered before the page exits the foreground or the page is destroyed.
+Unregisters the listener for the NFC tag read event. If the listener is unregistered, the NFC tage discovered will not be dispatched to foreground applications. The registered callback must be unregistered before the tag reading page exits the foreground or is destroyed.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
@@ -518,7 +520,7 @@ Unregisters the listening for card reading events of an NFC tag foreground appli
 
 | Name      | Type    | Mandatory| Description                                                   |
 | ------------ | -------- | ---- | ------------------------------------------------------- |
-| elementName   |  [ElementName](js-apis-bundleManager-elementName.md)   | Yes  | Information about the application page, which must contain at least the bundle name and ability name.         |
+| elementName   |  [ElementName](js-apis-bundleManager-elementName.md)   | Yes  | Information about the tag reading page of the application. It cannot be empty and must contain at least **bundleName** and **abilityName**.          |
 
 **Example**
 
@@ -589,7 +591,7 @@ export default class MainAbility extends UIAbility {
 
 on(type: 'readerMode', elementName: [ElementName](js-apis-bundleManager-elementName.md), discTech: number[], callback: AsyncCallback&lt;[TagInfo](#taginfo)&gt;): void
 
-Sets the NFC card reader mode and subscribes to card reading events when the application page is in the foreground. The **discTech** parameter specifies the supported tag technology types, and the callback returns the [TagInfo](#taginfo) obtained. This API must be used with [tag.off](#tagoff11) in pairs. If the NFC card reader mode is set by [tag.on](#tagon11), you must use call **tag.off** to exit the mode when the application page exits the foreground or the page is destroyed.
+Subscribes to the NFC tag read event to implement dispatch of the tag to a foreground application preferentially. The device enters the reader mode and disables card simulation. You can set the supported NFC tag technologies in **discTech**. The callback returns [TagInfo](#taginfo) read. This API must be used with [tag.off](#tagoff11) in pairs. If the NFC reader mode is enabled by [tag.on](#tagon11), **tag.off** must be called when the application page exits the foreground or is destroyed.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
@@ -599,10 +601,10 @@ Sets the NFC card reader mode and subscribes to card reading events when the app
 
 | Name      | Type    | Mandatory| Description                                                   |
 | ------------ | -------- | ---- | ------------------------------------------------------- |
-| type    | string  | Yes  | Type of the callback to register.|
-| elementName   |  [ElementName](js-apis-bundleManager-elementName.md)   | Yes  | Element name of the application, which must contain at least the bundle name and ability name.         |
-| discTech         |  number[]   | Yes  | Technologies supported by the card reader mode. Each number indicates the constant value of the supported technology. Based on the value of **number**, the system sets tag technologies ([NFC_A](#technology-type-definition), [NFC_B](#technology-type-definition), and [NFC_F](#technology-type-definition), and [NFC_V](#technology-type-definition)) for NFC card read polling and disable card emulation. If the **number** length is 0, both card read polling and card emulation will be disabled.|
-| callback | AsyncCallback&lt;[TagInfo](#taginfo)&gt; | Yes  | Callback used to listen for the card reader mode, which returns the tag information read.|
+| type    | string  | Yes  | Event type, which has a fixed value of **readerMode**.|
+| elementName   |  [ElementName](js-apis-bundleManager-elementName.md)   | Yes  | Information about the tag reading page of the application. It cannot be empty and must contain at least **bundleName** and **abilityName**.         |
+| discTech         |  number[]   | Yes  | NFC tag technologies supported by the foreground application. It cannot be empty. At least one NFC tag technology must be specified. Each number indicates the constant value of an NFC tag technology. The tag technologies are polled based on the specified value, which contains one or more of [NFC_A] (#technology-type-definition), [NFC_B] (#technology-type-definition), [NFC_F](#technology-type-definition), and [NFC_V](#technology-type-definition) only.|
+| callback | AsyncCallback&lt;[TagInfo](#taginfo)&gt; | Yes  | Callback invoked to return the tag information read. It cannot be empty.|
 
 **Error codes**
 
@@ -610,7 +612,7 @@ For details about the error codes, see [NFC Error Codes](../errorcodes/errorcode
 
 | ID| Error Message                                 |
 | -------- | ----------------------------------------- |
-| 3100202  | Invalid element status.|
+| 3100202  | The element state is invalid. |
 
 **Example**
 
@@ -620,7 +622,7 @@ See the example of [tag.off](#tagoff11).
 
 off(type: 'readerMode', elementName: [ElementName](js-apis-bundleManager-elementName.md), callback?: AsyncCallback&lt;[TagInfo](#taginfo)&gt;): void
 
-Exits the NFC card reader mode and unsubscribes from the card reading events. If the NFC card reader mode is set by [tag.on](#tagon11), you must use this API to exit the mode when the application page exits the foreground or the page is destroyed.
+Unsubscribes from the NFC tag card read event. The device exits the reader mode and resumes card simulation. If the NFC reader mode is enabled by [tag.on](#tagon11), this API must be used when the application page exits the foreground or is destroyed.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
@@ -630,9 +632,9 @@ Exits the NFC card reader mode and unsubscribes from the card reading events. If
 
 | Name      | Type    | Mandatory| Description                                                   |
 | ------------ | -------- | ---- | ------------------------------------------------------- |
-| type    | string  | Yes  | Type of the callback to unregister.|
-| elementName   |  [ElementName](js-apis-bundleManager-elementName.md)   | Yes  | Element name of the application, which must contain at least the bundle name and ability name.         |
-| callback | AsyncCallback&lt;[TagInfo](#taginfo)&gt; | No  | Callback for listening for the card reading in the foreground.|
+| type    | string  | Yes  | Event type, which has a fixed value of **readerMode**.|
+| elementName   |  [ElementName](js-apis-bundleManager-elementName.md)   | Yes  | Information about the tag reading page of the application. It cannot be empty and must contain at least **bundleName** and **abilityName**.         |
+| callback | AsyncCallback&lt;[TagInfo](#taginfo)&gt; | No  | Callback to unregister.|
 
 **Error codes**
 
@@ -640,7 +642,7 @@ For details about the error codes, see [NFC Error Codes](../errorcodes/errorcode
 
 | ID| Error Message                                 |
 | -------- | ----------------------------------------- |
-| 3100203  | off() must be used with on() in pairs.|
+| 3100203  | The off() can be called only when the on() has been called. |
 
 **Example**
 
@@ -704,7 +706,7 @@ export default class MainAbility extends UIAbility {
         }
     }
 
-  // override other lifecycle functions
+  // Override other lifecycle functions.
 }
 ```
 
@@ -734,7 +736,7 @@ Creates an NDEF record based on the specified URI.
 import tag from '@ohos.nfc.tag';
 
 try {
-    let uri = "https://gitee.com/openharmony"; // change it to be correct.
+    let uri = "https://gitee.com/openharmony"; // Change it to match your case.
     let ndefRecord = tag.ndef.makeUriRecord(uri);
     if (ndefRecord != undefined) {
         console.log("ndefMessage makeUriRecord rtdType: " + ndefRecord.rtdType);
