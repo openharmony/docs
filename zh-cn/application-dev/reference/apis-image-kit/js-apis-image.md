@@ -224,6 +224,47 @@ async function Demo(surfaceId: string) {
 } 
 ```
 
+## image.createPixelMapSync<sup>12+</sup>
+
+createPixelMapSync(colors: ArrayBuffer, options: InitializationOptions): PixelMap
+
+通过属性创建PixelMap，同步返回PixelMap结果。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名  | 类型                                             | 必填 | 说明                                                             |
+| ------- | ------------------------------------------------ | ---- | ---------------------------------------------------------------- |
+| colors  | ArrayBuffer                                      | 是   | BGRA_8888格式的颜色数组。                                        |
+| options | [InitializationOptions](#initializationoptions8) | 是   | 创建像素的属性，包括透明度，尺寸，缩略值，像素格式和是否可编辑。 |
+
+**返回值：**
+| 类型                             | 说明                  |
+| -------------------------------- | --------------------- |
+| [PixelMap](#pixelmap7) | 成功同步返回PixelMap对象，失败抛出异常。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+|  401    | Invalid input parameter|
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function Demo() {
+    const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
+    let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+    let pixelMap : image.PixelMap = image.createPixelMapSync(color, opts);
+    return pixelMap;
+}
+```
+
 ## PixelMap<sup>7+</sup>
 
 图像像素类，用于读取或写入图像数据以及获取图像信息。在调用PixelMap的方法前，需要先通过[createPixelMap](#imagecreatepixelmap8)创建一个PixelMap实例。目前pixelmap序列化大小最大128MB，超过会送显失败。大小计算方式为(宽\*高\*每像素占用字节数)。
@@ -306,6 +347,40 @@ async function Demo() {
             console.info('Succeeded in reading image pixel data.');  //符合条件则进入
         }
     })
+}
+```
+
+### readPixelsToBufferSync<sup>12+</sup>
+
+readPixelsToBufferSync(dst: ArrayBuffer): void
+
+以同步方法读取PixelMap到Buffer里。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                                                                                                  |
+| -------- | -------------------- | ---- | ----------------------------------------------------------------------------------------------------- |
+| dst      | ArrayBuffer          | 是   | 缓冲区，函数执行结束后获取的图像像素数据写入到该内存区域内。缓冲区大小由[getPixelBytesNumber](#getpixelbytesnumber7)接口获取。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+|  401    | Invalid input parameter |
+|  501    | Resource Unavailable |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function Demo() {
+    const readBuffer: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
+    pixelMap.readPixelsToBufferSync(readBuffer);
 }
 ```
 
@@ -472,6 +547,49 @@ async function Demo() {
 }
 ```
 
+ ### writePixelsSync<sup>12+</sup>
+
+writePixelsSync(area: PositionArea): void
+
+以同步方法将PixelMap写入指定区域内。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名 | 类型                           | 必填 | 说明                 |
+| ------ | ------------------------------ | ---- | -------------------- |
+| area   | [PositionArea](#positionarea7) | 是   | 区域，根据区域写入。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+|  401    | Invalid input parameter |
+|  501    | Resource Unavailable |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function Demo() {
+    const area: image.PositionArea = {
+        pixels: new ArrayBuffer(8),
+        offset: 0,
+        stride: 8,
+        region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
+    };
+    let bufferArr: Uint8Array = new Uint8Array(area.pixels);
+    for (let i = 0; i < bufferArr.length; i++) {
+        bufferArr[i] = i + 1;
+    }
+    pixelMap.writePixelsSync(area);
+}
+```
+
 ### writeBufferToPixels<sup>7+</sup>
 
 writeBufferToPixels(src: ArrayBuffer): Promise\<void>
@@ -608,6 +726,31 @@ async function Demo() {
             console.info("Succeeded in obtaining the image pixel map information.");
         }
     })
+}
+```
+
+### getImageInfoSync<sup>12+</sup>
+
+getImageInfoSync(): ImageInfo
+
+以同步方法获取图像像素信息。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**返回值：**
+
+| 类型                              | 说明                                                        |
+| --------------------------------- | ----------------------------------------------------------- |
+| [ImageInfo](#imageinfo)           | 图像像素信息                                                |
+
+**示例：**
+ 
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function Demo() {
+    let imageInfo : image.PixelMap = pixelMap.getImageInfoSync();
+    return imageInfo;
 }
 ```
 
@@ -867,6 +1010,42 @@ async function Demo() {
     }).catch((err: BusinessError) => {
         console.error('Failed to scale pixelmap.');
     })
+}
+```
+
+### scaleSync<sup>12+</sup>
+
+scaleSync(x: number, y: number): void
+
+以同步方法根据输入的宽高对图片进行缩放。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                            |
+| ------ | ------ | ---- | ------------------------------- |
+| x      | number | 是   | 宽度的缩放倍数。|
+| y      | number | 是   | 高度的缩放倍数。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+|  401    | Invalid input parameter |
+|  501    | Resource Unavailable |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function Demo() {
+    let scaleX: number = 2.0;
+    let scaleY: number = 1.0;
+    pixelMap.scaleSync(scaleX, scaleY);
 }
 ```
 
