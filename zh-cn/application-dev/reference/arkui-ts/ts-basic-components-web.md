@@ -3219,7 +3219,7 @@ onPermissionRequest(callback: (event?: { request: PermissionRequest }) => void)
         audio: true
       };
       //获取video摄像头区域
-      let video = document.getElementByld("video");
+      let video = document.getElementById("video");
       //返回的Promise对象
       let promise = navigator.mediaDevices.getUserMedia(constraints);
       //then()异步，调用MediaStream对象作为参数
@@ -5356,11 +5356,11 @@ invoke(origin: string, allow: boolean, retain: boolean): void
 
 | 名称    | 值 | 描述    |
 | ----- | -- | ---- |
-| Debug | 0 | 调试级别。 |
-| Error | 1 | 错误级别。 |
+| Debug | 1 | 调试级别。 |
+| Error | 4 | 错误级别。 |
 | Info  | 2 | 消息级别。 |
-| Log   | 3 | 日志级别。 |
-| Warn  | 4 | 警告级别。 |
+| Log   | 5 | 日志级别。 |
+| Warn  | 3 | 警告级别。 |
 
 ## RenderExitReason<sup>9+</sup>枚举说明
 
@@ -5378,7 +5378,7 @@ onRenderExited接口返回的渲染进程退出的具体原因。
 
 | 名称        | 值 | 描述                                 |
 | ---------- | -- | ---------------------------------- |
-| All        | 0 | 允许加载HTTP和HTTPS混合内容。所有不安全的内容都可以被加载。 |
+| All        | undefined | 允许加载HTTP和HTTPS混合内容。所有不安全的内容都可以被加载。 |
 | Compatible | 1 | 混合内容兼容性模式，部分不安全的内容可能被加载。           |
 | None       | 2 | 不允许加载HTTP和HTTPS混合内容。               |
 
@@ -5440,8 +5440,8 @@ onSslErrorEventReceive接口返回的SSL错误的具体原因。
 | 名称                          | 值 | 描述            | 备注                         |
 | --------------------------- | --------------- | ------------- | -------------------------- |
 | MidiSysex                   | TYPE_MIDI_SYSEX | MIDI SYSEX资源。 | 目前仅支持权限事件上报，MIDI设备的使用还未支持。 |
-| VIDEO_CAPTURE<sup>10+</sup> | TYPE_VIDEO_CAPTURE | 视频捕获资源，例如相机。  |                            |
-| AUDIO_CAPTURE<sup>10+</sup> | TYPE_AUDIO_CAPTURE | 音频捕获资源，例如麦克风。 |                            |
+| VIDEO_CAPTURE<sup>10+</sup> | undefined | 视频捕获资源，例如相机。  |                            |
+| AUDIO_CAPTURE<sup>10+</sup> | undefined | 音频捕获资源，例如麦克风。 |                            |
 
 ## WebDarkMode<sup>9+</sup>枚举说明
 
