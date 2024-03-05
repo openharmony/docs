@@ -445,6 +445,8 @@ showCounter(value: boolean, options?: InputCounterOptions)
 
 当输入字符数大于最大字符数乘百分比值时，显示字符计数器。如果用户设置计数器时不设置InputCounterOptions，那么当前输入字符数达到最大字符数时，边框和计数器下标将变为红色。用户同时设置参数value为true和InputCounterOptions，当thresholdPercentage数值在有效区间内，且输入字符数超过最大字符数时，边框和计数器下标将变为红色，框体抖动。highlightBorder设置为false，则不显示红色边框，计数器默认显示红色边框。内联模式和密码模式下字符计数器不显示。
 
+TextInput组件显示边框需要设置为下划线模式，内联模式和密码模式下字符计数器不显示。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
