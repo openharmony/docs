@@ -39,9 +39,28 @@ ListItemGroup(options?: ListItemGroupOptions)
 
 ## 属性
 
-| 名称 | 参数类型 |  描述 |
-| -------- | -------- | -------- |
-| divider | {<br/>strokeWidth:&nbsp;[Length](ts-types.md#length),<br/>color?:&nbsp;[ResourceColor](ts-types.md#resourcecolor),<br/>startMargin?:&nbsp;[Length](ts-types.md#length),<br/>endMargin?:&nbsp;[Length](ts-types.md#length)<br/>}&nbsp;\|&nbsp;null | 用于设置ListItem分割线样式，默认无分割线。<br/>strokeWidth:&nbsp;分割线的线宽。<br/>color:&nbsp;分割线的颜色。<br/>startMargin：&nbsp;分割线距离列表侧边起始端的距离。<br/>endMargin:&nbsp;分割线距离列表侧边结束端的距离。<br/>strokeWidth, startMargin和endMargin不支持设置百分比。 |
+### divider
+
+divider(<br/>
+    value: {<br/>
+      strokeWidth: Length;<br/>
+      color?: ResourceColor;<br/>
+      startMargin?: Length;<br/>
+      endMargin?: Length;<br/>
+    } | null,<br/>
+  )
+
+设置ListItem分割线样式，默认无分割线。
+
+strokeWidth, startMargin和endMargin不支持设置百分比。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | {<br/>strokeWidth:&nbsp;[Length](ts-types.md#length),<br/>color?:[ResourceColor](ts-types.md#resourcecolor),<br/>startMargin?:&nbsp;[Length](ts-types.md#length),<br/>endMargin?:&nbsp;[Length](ts-types.md#length)<br/>}&nbsp;\|&nbsp;null | 是   | ListItem分割线样式。<br/>- strokeWidth:&nbsp;分割线的线宽。<br/>- color:&nbsp;分割线的颜色。<br/>- startMargin:&nbsp;分割线与列表侧边起始端的距离。<br/>- endMargin:&nbsp;分割线与列表侧边结束端的距离。 |
 
 ## ListItemGroupStyle<sup>10+</sup>枚举说明
 

@@ -14,11 +14,9 @@
 
 ## 接口
 
-### GridItem
-
 GridItem(value?: GridItemOptions)
 
-**参数：**
+**参数：** 
 
 | 参数名 | 参数类型                                      | 必填 | 参数描述                                                     |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
@@ -26,15 +24,109 @@ GridItem(value?: GridItemOptions)
 
 ## 属性
 
-| 名称 | 参数类型 | 描述 |
-| -------- | -------- | -------- |
-| rowStart | number | 指定当前元素起始行号。 |
-| rowEnd | number | 指定当前元素终点行号。 |
-| columnStart | number | 指定当前元素起始列号。 |
-| columnEnd | number | 指定当前元素终点列号。 |
-| forceRebuild<sup>(deprecated)</sup> | boolean | 设置在触发组件build时是否重新创建此节点。<br/>从API version9开始废弃。GridItem会根据自身属性和子组件变化自行决定是否需要重新创建，无需设置。<br/>默认值：false |
-| selectable<sup>8+</sup> | boolean | 当前GridItem元素是否可以被鼠标框选。<br/>>&nbsp;&nbsp;**说明：**<br/>>&nbsp;外层Grid容器的鼠标框选开启时，GridItem的框选才生效。<br/>默认值：true |
-| selected<sup>10+</sup> | boolean | 设置当前GridItem选中状态。该属性支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。<br/>**说明：**<br/>该属性需要在设置[选中态样式](./ts-universal-attributes-polymorphic-style.md#statestyles接口说明)前使用才能生效选中态样式。<br/>默认值：false|
+### rowStart
+
+rowStart(value: number)
+
+设置当前元素起始行号。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明               |
+| ------ | ------ | ---- | ------------------ |
+| value  | number | 是   | 当前元素起始行号。 |
+
+### rowEnd
+
+rowEnd(value: number)
+
+设置当前元素终点行号。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明               |
+| ------ | ------ | ---- | ------------------ |
+| value  | number | 是   | 当前元素终点行号。 |
+
+### columnStart
+
+columnStart(value: number)
+
+设置当前元素起始列号。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明               |
+| ------ | ------ | ---- | ------------------ |
+| value  | number | 是   | 当前元素起始列号。 |
+
+### columnEnd
+
+columnEnd(value: number)
+
+设置当前元素终点列号。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明               |
+| ------ | ------ | ---- | ------------------ |
+| value  | number | 是   | 当前元素终点列号。 |
+
+### forceRebuild<sup>(deprecated)</sup>
+
+forceRebuild(value: boolean)
+
+设置在触发组件build时是否重新创建此节点。GridItem会根据自身属性和子组件变化自行决定是否需要重新创建，无需设置。
+
+从API version9开始废弃。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                                    |
+| ------ | ------- | ---- | ------------------------------------------------------- |
+| value  | boolean | 是   | 在触发组件build时是否重新创建此节点。<br/>默认值：false |
+
+### selectable<sup>8+</sup>
+
+selectable(value: boolean)
+
+设置当前GridItem元素是否可以被鼠标框选。外层Grid容器的鼠标框选开启时，GridItem的框选才生效。
+
+该属性需要在设置[选中态样式](./ts-universal-attributes-polymorphic-style.md#statestyles接口说明)前使用才能生效选中态样式。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                                  |
+| ------ | ------- | ---- | ----------------------------------------------------- |
+| value  | boolean | 是   | 当前GridItem元素是否可以被鼠标框选。<br/>默认值：true |
+
+### selected<sup>10+</sup>
+
+selected(value: boolean)
+
+设置当前GridItem选中状态。该属性支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。
+
+该属性需要在设置[选中态样式](./ts-universal-attributes-polymorphic-style.md#statestyles接口说明)前使用才能生效选中态样式。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                     |
+| ------ | ------- | ---- | ---------------------------------------- |
+| value  | boolean | 是   | 当前GridItem选中状态。<br/>默认值：false |
 
 >  **说明：**
 >
@@ -73,12 +165,21 @@ GridItem(value?: GridItemOptions)
 >
 > GridItem焦点态样式设置：Grid组件需要设置4vp规格以上的内边距，用于显示GridItem的焦点框。
 
-
 ## 事件
 
-| 名称 | 功能描述 |
-| -------- | -------- |
-| onSelect(event:&nbsp;(isSelected:&nbsp;boolean)&nbsp;=&gt;&nbsp;void)<sup>8+</sup> | GridItem元素被鼠标框选的状态改变时触发回调。<br/>isSelected：进入鼠标框选范围即被选中返回true，&nbsp;移出鼠标框选范围即未被选中返回false。 |
+### onSelect<sup>8+</sup>
+
+onSelect(event:&nbsp;(isSelected:&nbsp;boolean)&nbsp;=&gt;&nbsp;void)
+
+GridItem元素被鼠标框选的状态改变时触发回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名     | 类型    | 必填 | 说明                                                         |
+| ---------- | ------- | ---- | ------------------------------------------------------------ |
+| isSelected | boolean | 是   | 进入鼠标框选范围即被选中返回true，&nbsp;移出鼠标框选范围即未被选中返回false。 |
 
 ## 示例
 
