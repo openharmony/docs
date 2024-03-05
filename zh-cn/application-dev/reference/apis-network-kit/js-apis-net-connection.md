@@ -80,7 +80,10 @@ import connection from '@ohos.net.connection';
 import { BusinessError } from '@ohos.base';
 
 connection.getDefaultNet((error: BusinessError, data: connection.NetHandle) => {
-  console.log(JSON.stringify(error));
+  if (error) {
+    console.log(JSON.stringify(error));
+    return;
+  }
   console.log(JSON.stringify(data));
 });
 ```
@@ -344,8 +347,11 @@ import connection from '@ohos.net.connection';
 import { BusinessError } from '@ohos.base';
 
 connection.getDefaultHttpProxy((error: BusinessError, data: connection.HttpProxy) => {
-  console.info(JSON.stringify(error));
-  console.info(JSON.stringify(data));
+  if (error) {
+    console.log(JSON.stringify(error));
+    return;
+  }
+  console.log(JSON.stringify(data));
 });
 ```
 
@@ -414,7 +420,10 @@ import connection from '@ohos.net.connection';
 import { BusinessError } from '@ohos.base';
 
 connection.getAppNet((error: BusinessError, data: connection.NetHandle) => {
-  console.log(JSON.stringify(error));
+  if (error) {
+    console.log(JSON.stringify(error));
+    return;
+  }
   console.log(JSON.stringify(data));
 })
 ```
@@ -519,7 +528,10 @@ import { BusinessError } from '@ohos.base';
 
 connection.getDefaultNet((error: BusinessError, netHandle: connection.NetHandle) => {
   connection.setAppNet(netHandle, (error: BusinessError, data: void) => {
-    console.log(JSON.stringify(error));
+    if (error) {
+      console.log(JSON.stringify(error));
+      return;
+    }
     console.log(JSON.stringify(data));
   });
 });
@@ -604,7 +616,10 @@ import connection from '@ohos.net.connection';
 import { BusinessError } from '@ohos.base';
 
 connection.getAllNets((error: BusinessError, data: connection.NetHandle[]) => {
-  console.log(JSON.stringify(error));
+  if (error) {
+    console.log(JSON.stringify(error));
+    return;
+  }
   console.log(JSON.stringify(data));
 }); 
 ```
@@ -712,7 +727,10 @@ import { BusinessError } from '@ohos.base';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   connection.getConnectionProperties(netHandle, (error: BusinessError, data: connection.ConnectionProperties) => {
-    console.log(JSON.stringify(error));
+    if (error) {
+      console.log(JSON.stringify(error));
+      return;
+    }
     console.log(JSON.stringify(data));
   })
 });
@@ -838,7 +856,10 @@ import { BusinessError } from '@ohos.base';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   connection.getNetCapabilities(netHandle, (error: BusinessError, data: connection.NetCapabilities) => {
-    console.log(JSON.stringify(error));
+    if (error) {
+      console.log(JSON.stringify(error));
+      return;
+    }
     console.log(JSON.stringify(data));
   })
 });
@@ -1334,7 +1355,10 @@ getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): 
 import connection from '@ohos.net.connection';
 import { BusinessError } from "@ohos.base";
 connection.getAddressesByName("xxxx", (error: BusinessError, data: connection.NetAddress[]) => {
-  console.log(JSON.stringify(error));
+  if (error) {
+    console.log(JSON.stringify(error));
+    return;
+  }
   console.log(JSON.stringify(data));
 });
 ```
@@ -1414,8 +1438,11 @@ addCustomDnsRule(host: string, ip: Array\<string\>, callback: AsyncCallback\<voi
 import connection from '@ohos.net.connection';
 import { BusinessError } from '@ohos.base';
 connection.addCustomDnsRule("xxxx", ["xx.xx.xx.xx","xx.xx.xx.xx"], (error: BusinessError, data: void) => {
+  if (error) {
     console.log(JSON.stringify(error));
-    console.log(JSON.stringify(data));
+    return;
+  }
+  console.log(JSON.stringify(data));
 })
 ```
 
@@ -1497,8 +1524,11 @@ removeCustomDnsRule(host: string, callback: AsyncCallback\<void\>): void
 import connection from '@ohos.net.connection';
 import { BusinessError } from '@ohos.base';
 connection.removeCustomDnsRule("xxxx", (error: BusinessError, data: void) => {
+  if (error) {
     console.log(JSON.stringify(error));
-    console.log(JSON.stringify(data));
+    return;
+  }
+  console.log(JSON.stringify(data));
 })
 ```
 
@@ -1578,8 +1608,11 @@ clearCustomDnsRules(callback: AsyncCallback\<void\>): void
 import connection from '@ohos.net.connection';
 import { BusinessError } from '@ohos.base';
 connection.clearCustomDnsRules((error: BusinessError, data: void) => {
+  if (error) {
     console.log(JSON.stringify(error));
-    console.log(JSON.stringify(data));
+    return;
+  }
+  console.log(JSON.stringify(data));
 })
 ```
 
@@ -2183,7 +2216,10 @@ import { BusinessError } from "@ohos.base";
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   let host = "xxxx";
   netHandle.getAddressesByName(host, (error: BusinessError, data: connection.NetAddress[]) => {
-    console.log(JSON.stringify(error));
+    if (error) {
+      console.log(JSON.stringify(error));
+      return;
+    }
     console.log(JSON.stringify(data));
   });
 });
@@ -2270,7 +2306,10 @@ import { BusinessError } from "@ohos.base";
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   let host = "xxxx";
   netHandle.getAddressByName(host, (error: BusinessError, data: connection.NetAddress) => {
-    console.log(JSON.stringify(error));
+    if (error) {
+      console.log(JSON.stringify(error));
+      return;
+    }
     console.log(JSON.stringify(data));
   });
 });
