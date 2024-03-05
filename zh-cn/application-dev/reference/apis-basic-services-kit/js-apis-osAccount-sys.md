@@ -835,7 +835,7 @@ createOsAccount(localName: string, type: OsAccountType, options?: CreateOsAccoun
 | --------- | ------------------------------- | ---- | ---------------------- |
 | localName | string                          | 是   | 创建的系统帐号的名称。 |
 | type      | [OsAccountType](js-apis-osAccount.md#osaccounttype) | 是   | 创建的系统帐号的类型。 |
-| options      | [CreateOsAccountOptions](js-apis-osAccount-sys.md#createosaccountoptions12) | 否   | 创建系统帐号的选项。 <br/>从API version 12开始支持该可选参数。|
+| options      | [CreateOsAccountOptions](js-apis-osAccount-sys.md#createosaccountoptions12) | 否   | 创建系统帐号的选项，默认为空。 <br/>从API version 12开始支持该可选参数。|
 
 **返回值：**
 
