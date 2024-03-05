@@ -1518,9 +1518,10 @@ Describes the audio renderer change event.
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
-| Name               | Type                                       | Readable | Writable | Description                          |
-| clientUid          | number                                    | Yes   | No   | UID of the audio renderer client.<br>This is a system API. |
-| rendererState      | [AudioState](js-apis-audio.md#audiostate8)                 | Yes   | No   | Audio state.<br>This is a system API.|
+| Name              | Type                                      | Readable| Writable| Description                         |
+| -------------------| ----------------------------------------- | ---- | ---- | ---------------------------- |
+| clientUid          | number                                    | Yes  | No  | UID of the audio renderer client.<br>This is a system API.|
+| rendererState      | [AudioState](js-apis-audio.md#audiostate8)                 | Yes  | No  | Audio state.<br>This is a system API.|
 
 ## AudioCapturerChangeInfo<sup>9+</sup>
 

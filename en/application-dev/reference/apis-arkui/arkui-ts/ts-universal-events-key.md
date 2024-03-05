@@ -26,14 +26,14 @@ Triggered when a key event occurs.
 | Name                                   | Type                                      | Description                        |
 | ------------------------------------- | ---------------------------------------- | -------------------------- |
 | type                                  | [KeyType](ts-appendix-enums.md#keytype)  | Key type.                    |
-| [keyCode](../apis/js-apis-keycode.md#keycode) | number                                   | Key code.                    |
+| [keyCode](../../apis-input-kit/js-apis-keycode.md#keycode) | number                                   | Key code.                    |
 | keyText                               | string                                   | Key value.                    |
 | keySource                             | [KeySource](ts-appendix-enums.md#keysource) | Type of the input device that triggers the key event.            |
 | deviceId                              | number                                   | ID of the input device that triggers the key event.            |
 | metaKey                               | number                                   | State of the metakey (that is, the **WIN** key on the Windows keyboard or the **Command** key on the Mac keyboard) when the key is pressed. The value **1** indicates the pressed state, and **0** indicates the unpressed state.|
 | timestamp                             | number                                   | Timestamp of the event. It is the interval between the time when the event is triggered and the time when the system starts, in nanoseconds.|
 | stopPropagation                       | () => void                               | Stops the event from bubbling upwards or downwards.                 |
-| intentionCode<sup>10+</sup>           | [IntentionCode](../apis/js-apis-intentioncode.md) | Intention corresponding to the key.       |
+| intentionCode<sup>10+</sup>           | [IntentionCode](../../apis-input-kit/js-apis-intentioncode.md) | Intention corresponding to the key.       |
 
 
 ## Example

@@ -12,7 +12,7 @@ During application development, you can use the callback function of the AVPlaye
 **Figure 1** Playback state transition 
 ![Playback status change](figures/playback-status-change-ndk.png)
 
-For details about the states, see [AVPlayerState](../reference/native-apis/_a_v_player.md#avplayerstate-1). When the AVPlayer is in the **prepared**, **playing**, **paused**, or **completed** state, the playback engine is working and a large amount of RAM is occupied. If your application does not need to use the AVPlayer, call **OH_AVPlayer_Reset()** or **OH_AVPlayer_Release()** to release the instance.
+For details about the states, see [AVPlayerState](../reference/apis-media-kit/_a_v_player.md#avplayerstate-1). When the AVPlayer is in the **prepared**, **playing**, **paused**, or **completed** state, the playback engine is working and a large amount of RAM is occupied. If your application does not need to use the AVPlayer, call **OH_AVPlayer_Reset()** or **OH_AVPlayer_Release()** to release the instance.
 
 ## How to Develop
 Link the dynamic library in the CMake script.
@@ -20,8 +20,8 @@ Link the dynamic library in the CMake script.
 target_link_libraries(sample PUBLIC libavplayer.so)
 ```
 
-You can use C/C++ APIs related to audio playback by including the header files [avplayer.h](../reference/native-apis/avplayer__base_8h.md), [avpalyer_base.h](../reference/native-apis/avplayer__base_8h.md), and [native_averrors.h](../reference/native-apis/native__averrors_8h.md).
-Read [AVPlayer](../reference/native-apis/_a_v_player.md) for the API reference.
+You can use C/C++ APIs related to audio playback by including the header files [avplayer.h](../reference/apis-media-kit/avplayer__base_8h.md), [avpalyer_base.h](../reference/apis-media-kit/avplayer__base_8h.md), and [native_averrors.h](../reference/apis-avcodec-kit/native__averrors_8h.md).
+Read [AVPlayer](../reference/apis-media-kit/_a_v_player.md) for the API reference.
 
 1. Call **OH_AVPlayer_Create()** to create an **AVPlayer** instance. The AVPlayer is the **idle** state.
 
@@ -41,7 +41,7 @@ Read [AVPlayer](../reference/native-apis/_a_v_player.md) for the API reference.
 
 7. Call **OH_AVPlayer_Release()** to switch the AVPlayer to the **released** state. Now your application exits the playback.
 
-## Example
+## Sample Code
 
 ```c
 #include "napi/native_api.h"

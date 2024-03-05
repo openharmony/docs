@@ -5,9 +5,7 @@
 
 The **CameraManager_Callbacks** struct defines the callbacks used to listen for camera status change events.
 
-**See**
-
-[OH_CameraManager_RegisterCallback](_o_h___camera.md#oh_cameramanager_registercallback)
+For details, see [OH_CameraManager_RegisterCallback](_o_h___camera.md#oh_cameramanager_registercallback).
 
 **Since**: 11
 
@@ -19,9 +17,9 @@ The **CameraManager_Callbacks** struct defines the callbacks used to listen for 
 
 ### Member Variables
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| [onCameraStatus](#oncamerastatus) | Camera status change event.|
+| [OH_CameraManager_StatusCallback](_o_h___camera.md#oh_cameramanager_statuscallback) [onCameraStatus](#oncamerastatus) | Camera status change event.| 
 
 
 ## Member Variable Description

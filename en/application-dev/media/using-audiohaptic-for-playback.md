@@ -4,11 +4,11 @@ AudioHaptic<sup>11+</sup> provides APIs for audio-haptic playback and management
 
 ## Development Guidelines
 
-The entire process of audio-haptic development involves management of audio and haptic sources, configuration of an audio latency mode and audio stream usage, and creation and management of an audio-haptic player. This topic uses the process of one-time audio-haptic playback as an example to describe how to use **AudioHaptic**. Before the development, read [AudioHaptic](../reference/apis/js-apis-audioHaptic.md#audiohapticmanager) for better understanding.
+The entire process of audio-haptic development involves management of audio and haptic sources, configuration of an audio latency mode and audio stream usage, and creation and management of an audio-haptic player. This topic uses the process of one-time audio-haptic playback as an example to describe how to use **AudioHaptic**. Before the development, read [AudioHaptic](../reference/apis-audio-kit/js-apis-audioHaptic.md#audiohapticmanager) for better understanding.
 
 ### How to Develop
 
-1. Obtain an **AudioHapticManager** instance, and register the audio and haptic sources. For details about the sources supported, see [AudioHapticManager](../reference/apis/js-apis-audioHaptic.md#audiohapticmanager).
+1. Obtain an **AudioHapticManager** instance, and register the audio and haptic sources. For details about the sources supported, see [AudioHapticManager](../reference/apis-audio-kit/js-apis-audioHaptic.md#audiohapticmanager).
 
    ```ts
    import audio from '@ohos.multimedia.audio';
@@ -29,7 +29,7 @@ The entire process of audio-haptic development involves management of audio and 
    });
    ```
 
-2. Set the parameters of an audio-haptic player. For details, see [AudioHapticManager](../reference/apis/js-apis-audioHaptic.md#audiohapticmanager).
+2. Set the parameters of an audio-haptic player. For details, see [AudioHapticManager](../reference/apis-audio-kit/js-apis-audioHaptic.md#audiohapticmanager).
 
    ```ts
    let latencyMode: audioHaptic.AudioLatencyMode = audioHaptic.AudioLatencyMode.AUDIO_LATENCY_MODE_FAST;

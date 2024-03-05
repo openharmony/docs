@@ -18,12 +18,12 @@ After optimization: Stream configuration does not depend on the **Surface** obje
 
 ### Available APIs
 
-Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
+Read [Camera](../reference/apis-camera-kit/js-apis-camera.md) for the API reference.
 
 | API| Description|
 | ---- | ---- |
 | createDeferredPreviewOutput(profile: Profile): Promise\<PreviewOutput> | Creates a deferred **PreviewOutput** instance and adds it, instead of a common **PreviewOutput** instance, to the data stream during stream configuration.|
-| addDeferredSurface(surfaceId: string): Promise\<void> | Adds a surface for delayed preview. This API can run after [session.commitConfig](../reference/apis/js-apis-camera.md#commitconfig) or [session.start](../reference/apis/js-apis-camera.md#start-4)) is called.|
+| addDeferredSurface(surfaceId: string): Promise\<void> | Adds a surface for delayed preview. This API can run after [session.commitConfig](../reference/apis-camera-kit/js-apis-camera.md#commitconfig11) or [session.start](../reference/apis-camera-kit/js-apis-camera.md#start11) is called.|
 
 ### Development Example
 
@@ -37,12 +37,12 @@ For details about how to obtain the context, see [Obtaining the Context of UIAbi
 import camera from '@ohos.multimedia.camera';
 import common from '@ohos.app.ability.common';
 
-async function preview(baseContext: common.BaseContext, cameraInfo: camera.CameraDevice, previewProfile: camera.Profile, photoProfile: camera.Profile, photoSurfaceId: string, previewSurfaceId: string): Promise<void> {
+async function preview(baseContext: common.BaseContext, cameraInfo: camera.CameraDevice, previewProfile: camera.Profile, photoProfile: camera.Profile, previewSurfaceId: string): Promise<void> {
   const cameraManager: camera.CameraManager = camera.getCameraManager(baseContext);
   const cameraInput: camera.CameraInput = cameraManager.createCameraInput(cameraInfo);
   const previewOutput: camera.PreviewOutput = cameraManager.createDeferredPreviewOutput(previewProfile);
-  const photoOutput: camera.PhotoOutput = cameraManager.createPhotoOutput(photoProfile, photoSurfaceId);
-  const session: camera.PhotoSession = cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO);
+  const photoOutput: camera.PhotoOutput = cameraManager.createPhotoOutput(photoProfile);
+  const session: camera.PhotoSession = cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO) as camera.PhotoSession;
   session.beginConfig();
   session.addInput(cameraInput);
   session.addOutput(previewOutput);
@@ -63,7 +63,7 @@ In this way, the photographing process is optimized, which fulfills the processi
 
 ### Available APIs
 
-Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
+Read [Camera](../reference/apis-camera-kit/js-apis-camera.md) for the API reference.
 
 | API| Description|
 | ---- | ---- |
@@ -73,7 +73,7 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
 
 > **NOTE**
 >
-> - [isQuickThumbnailSupported](../reference/apis/js-apis-camera.md#isquickthumbnailsupported) and [enableQuickThumbnail](../reference/apis/js-apis-camera.md#enablequickthumbnail) must be called after [addOutput](../reference/apis/js-apis-camera.md#addoutput) and [addInput](../reference/apis/js-apis-camera.md#addinput) but before [commitConfig](../reference/apis/js-apis-camera.md#commitconfig).
+> - [isQuickThumbnailSupported](../reference/apis-camera-kit/js-apis-camera-sys.md#isquickthumbnailsupported) and [enableQuickThumbnail](../reference/apis-camera-kit/js-apis-camera-sys.md#enablequickthumbnail) must be called after [addOutput](../reference/apis-camera-kit/js-apis-camera.md#addoutput11) and [addInput](../reference/apis-camera-kit/js-apis-camera.md#addinput11) but before [commitConfig](../reference/apis-camera-kit/js-apis-camera.md#commitconfig11).
 > - **on()** takes effect after **enableQuickThumbnail(true)** is called.
 
 ### Development Example
@@ -89,11 +89,11 @@ import { BusinessError } from '@ohos.base';
 import image from '@ohos.multimedia.image';
 import common from '@ohos.app.ability.common';
 
-async function enableQuickThumbnail(baseContext: common.BaseContext, surfaceId: string, photoProfile: camera.Profile): Promise<void> {
+async function enableQuickThumbnail(baseContext: common.BaseContext, photoProfile: camera.Profile): Promise<void> {
   let cameraManager: camera.CameraManager = camera.getCameraManager(baseContext);
   let cameras: Array<camera.CameraDevice> = cameraManager.getSupportedCameras();
   // Create a PhotoSession instance.
-  let photoSession: camera.PhotoSession = cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO);
+  let photoSession: camera.PhotoSession = cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO) as camera.PhotoSession;
   // Start configuration for the session.
   photoSession.beginConfig();
   // Add a CameraInput instance to the session.
@@ -101,7 +101,7 @@ async function enableQuickThumbnail(baseContext: common.BaseContext, surfaceId: 
   cameraInput.open();
   photoSession.addInput(cameraInput);
   // Add a PhotoOutput instance to the session.
-  let photoOutPut: camera.PhotoOutput = cameraManager.createPhotoOutput(photoProfile, surfaceId);
+  let photoOutPut: camera.PhotoOutput = cameraManager.createPhotoOutput(photoProfile);
   photoSession.addOutput(photoOutPut);
   let isSupported: boolean = photoOutPut.isQuickThumbnailSupported();
   if (isSupported) {
@@ -133,7 +133,7 @@ Generally, the startup of the camera application is triggered when the user touc
 
 ### Available APIs
 
-Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
+Read [Camera](../reference/apis-camera-kit/js-apis-camera.md) for the API reference.
 
 | API| Description|
 | ---- | ---- |

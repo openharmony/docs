@@ -3,7 +3,7 @@
 
 ## Overview
 
-The Camera_Location struct defines the location whether a photo is taken.
+The Camera_Location struct defines the location where a photo is taken.
 
 **Since**: 11
 
@@ -17,9 +17,9 @@ The Camera_Location struct defines the location whether a photo is taken.
 
 | Name| Description| 
 | -------- | -------- |
-| [latitude](#latitude) | Latitude.| 
-| [longitude](#longitude) | Longitude.| 
-| [altitude](#altitude) | Altitude, in pixels.| 
+| double [latitude](#latitude) | Latitude. | 
+| double [longitude](#longitude) | Longitude. | 
+| double [altitude](#altitude) | Altitude, in pixels. | 
 
 
 ## Member Variable Description
@@ -30,7 +30,6 @@ The Camera_Location struct defines the location whether a photo is taken.
 ```
 double Camera_Location::altitude
 ```
-
 **Description**
 
 Altitude, in pixels.
@@ -41,7 +40,6 @@ Altitude, in pixels.
 ```
 double Camera_Location::latitude
 ```
-
 **Description**
 
 Latitude.
@@ -52,7 +50,6 @@ Latitude.
 ```
 double Camera_Location::longitude
 ```
-
 **Description**
 
 Longitude.

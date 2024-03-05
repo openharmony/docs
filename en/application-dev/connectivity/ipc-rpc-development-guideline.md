@@ -291,7 +291,7 @@ Table 1 Native IPC APIs
 
 3. Process requests sent from the client.
 
-   Call the **onConnect** API to return a proxy object inherited from [rpc.RemoteObject](../reference/apis/js-apis-rpc.md#remoteobject) after the ability is successfully bound. Implement the [onRemoteMessageRequest](../reference/apis/js-apis-rpc.md#onremotemessagerequest9) API for the proxy object to process requests sent from the client.
+   Call the **onConnect** API to return a proxy object inherited from [rpc.RemoteObject](../reference/apis-ipc-kit/js-apis-rpc.md#remoteobject) after the ability is successfully bound. Implement the [onRemoteMessageRequest](../reference/apis-ipc-kit/js-apis-rpc.md#onremotemessagerequest9) API for the proxy object to process requests sent from the client.
 
    ```ts
     import rpc from '@ohos.rpc';
@@ -314,7 +314,7 @@ Table 1 Native IPC APIs
 
 4. Process responses sent from the server.
 
-   Receive the proxy object in the **onConnect** callback, call [sendMessageRequest](../reference/apis/js-apis-rpc.md#sendmessagerequest9-2) to send a request, and receive the response using a callback or a promise (an object representing the eventual completion or failure of an asynchronous operation and its result value).
+   Receive the proxy object in the **onConnect** callback, call [sendMessageRequest](../reference/apis-ipc-kit/js-apis-rpc.md#sendmessagerequest9-2) to send a request, and receive the response using a callback or a promise (an object representing the eventual completion or failure of an asynchronous operation and its result value).
 
    ```ts
     import rpc from '@ohos.rpc';
@@ -410,3 +410,5 @@ Table 1 Native IPC APIs
 
     this.context.disconnectServiceExtensionAbility(connectId);
    ```
+
+<!--no_check-->

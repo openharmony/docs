@@ -57,7 +57,7 @@ Focus navigation follows the set rules regardless of whether it is active or pas
   >
   > - After a component is deleted or set to be unfocusable, the linear navigation rule is followed. The focus automatically moves to the sibling component in front of the deleted or unfocusable component. If that component cannot receive focus, the focus is then moved to the sibling component on the rear.
 
-- **tabIndex**-based navigation: Focus navigation with the Tab/Shift+Tab keys becomes sequential when the [tabIndex](../reference/arkui-ts/ts-universal-attributes-focus.md) attribute is set for the components.
+- **tabIndex**-based navigation: Focus navigation with the Tab/Shift+Tab keys becomes sequential when the [tabIndex](../reference/apis-arkui/arkui-ts/ts-universal-attributes-focus.md#tabindex9) attribute is set for the components.
 
 - Area-based focus: You can define the order of sequential focus navigation and the default focused component, by setting the **tabIndex** attribute for a container component and the [groupDefaultFocus](#groupdefaultfocus) attribute.
 
@@ -196,7 +196,7 @@ Components can be classified into the following types based on their focusabilit
 
 
 >**NOTE**
-> - If **focusable** is set to **false**, the component is unfocusable. The universal attribute [enabled](../reference/arkui-ts/ts-universal-attributes-enable.md) can also be used to make the component unfocusable.
+> - If **focusable** is set to **false**, the component is unfocusable. The universal attribute [enabled](../reference/apis-arkui/arkui-ts/ts-universal-attributes-enable.md) can also be used to make the component unfocusable.
 >
 > - When a component is in the focused state, if its **focusable** or **enabled** attribute is set to **false**, the component automatically loses focus. Then, the focus moves to other components based on the [rules of focus navigation](#rules-of-focus-navigation).
 >
@@ -207,93 +207,93 @@ Components can be classified into the following types based on their focusabilit
 
 | Basic Component                                    | Can Be Focused| Default Value of focusable| Rules of Focus Navigation    |
 | ---------------------------------------- | ------- | ------------ | -------- |
-| [AlphabetIndexer](../reference/arkui-ts/ts-container-alphabet-indexer.md) | Yes      | true         | Linear navigation    |
-| [Blank](../reference/arkui-ts/ts-basic-components-blank.md) | No      | false        | /        |
-| [Button](../reference/arkui-ts/ts-basic-components-button.md) | Yes      | true         | /        |
-| [Checkbox](../reference/arkui-ts/ts-basic-components-checkbox.md) | Yes      | true         | /        |
-| [CheckboxGroup](../reference/arkui-ts/ts-basic-components-checkboxgroup.md) | Yes      | true         | /        |
-| [DataPanel](../reference/arkui-ts/ts-basic-components-datapanel.md) | No      | false        | /        |
-| [DatePicker](../reference/arkui-ts/ts-basic-components-datepicker.md) | Yes      | true         | Linear navigation    |
-| [Divider](../reference/arkui-ts/ts-basic-components-divider.md) | No      | false        | /        |
-| [Formcomponent](../reference/arkui-ts/ts-basic-components-formcomponent.md) | No      | false        | /        |
-| [Gauge](../reference/arkui-ts/ts-basic-components-gauge.md) | No      | false        | /        |
-| [Image](../reference/arkui-ts/ts-basic-components-image.md) | Yes      | false        | /        |
-| [ImageAnimator](../reference/arkui-ts/ts-basic-components-imageanimator.md) | Yes      | false        | /        |
-| [LoadingProgress](../reference/arkui-ts/ts-basic-components-loadingprogress.md) | No      | false        | /        |
-| [Marquee](../reference/arkui-ts/ts-basic-components-marquee.md) | No      | false        | /        |
-| [Menu](../reference/arkui-ts/ts-basic-components-menu.md) | Yes      | true         | Linear navigation    |
-| [MenuItem](../reference/arkui-ts/ts-basic-components-menuitem.md) | Yes      | true         | /        |
-| [MenuItemGroup](../reference/arkui-ts/ts-basic-components-menuitemgroup.md) | Yes      | true         | Linear navigation    |
-| [Navigation](../reference/arkui-ts/ts-basic-components-navigation.md) | No      | false        | Customized   |
-| [NavRouter](../reference/arkui-ts/ts-basic-components-navrouter.md) | No      | false        | Follows the child container   |
-| [NavDestination](../reference/arkui-ts/ts-basic-components-navdestination.md) | No      | false        | Linear navigation    |
-| [PatternLock](../reference/arkui-ts/ts-basic-components-patternlock.md) | No      | false        | /        |
-| [PluginComponent](../reference/arkui-ts/ts-basic-components-plugincomponent.md) | No      | false        | /        |
-| [Progress](../reference/arkui-ts/ts-basic-components-progress.md) | No      | false        | /        |
-| [QRCode](../reference/arkui-ts/ts-basic-components-qrcode.md) | No      | false        | /        |
-| [Radio](../reference/arkui-ts/ts-basic-components-radio.md) | Yes      | true         | /        |
-| [Rating](../reference/arkui-ts/ts-basic-components-rating.md) | Yes      | true         | /        |
-| [RemoteWindow](../reference/arkui-ts/ts-basic-components-remotewindow.md) | No      | false        | /        |
-| [RichText](../reference/arkui-ts/ts-basic-components-richtext.md) | No      | false        | /        |
-| [ScrollBar](../reference/arkui-ts/ts-basic-components-scrollbar.md) | No      | false        | /        |
-| [Search](../reference/arkui-ts/ts-basic-components-search.md) | Yes      | true         | /        |
-| [Select](../reference/arkui-ts/ts-basic-components-select.md) | Yes      | true         | Linear navigation    |
-| [Slider](../reference/arkui-ts/ts-basic-components-slider.md) | Yes      | true         | /        |
-| [Span](../reference/arkui-ts/ts-basic-components-span.md) | No      | false        | /        |
-| [Stepper](../reference/arkui-ts/ts-basic-components-stepper.md) | Yes      | true         | /        |
-| [StepperItem](../reference/arkui-ts/ts-basic-components-stepperitem.md) | Yes      | true         | /        |
-| [Text](../reference/arkui-ts/ts-basic-components-text.md) | Yes      | false        | /        |
-| [TextArea](../reference/arkui-ts/ts-basic-components-textarea.md) | Yes      | true         | /        |
-| [TextClock](../reference/arkui-ts/ts-basic-components-textclock.md) | No      | false        | /        |
-| [TextInput](../reference/arkui-ts/ts-basic-components-textinput.md) | Yes      | true         | /        |
-| [TextPicker](../reference/arkui-ts/ts-basic-components-textpicker.md) | Yes      | true         | Linear navigation    |
-| [TextTimer](../reference/arkui-ts/ts-basic-components-texttimer.md) | No      | false        | /        |
-| [TimePicker](../reference/arkui-ts/ts-basic-components-timepicker.md) | Yes      | true         | Linear navigation    |
-| [Toggle](../reference/arkui-ts/ts-basic-components-toggle.md) | Yes      | true         | /        |
-| [Web](../reference/arkui-ts/ts-basic-components-web.md) | Yes      | true         | Customized|
-| [XComponent](../reference/arkui-ts/ts-basic-components-xcomponent.md) | No      | false        | /        |
+| [AlphabetIndexer](../reference/apis-arkui/arkui-ts/ts-container-alphabet-indexer.md) | Yes      | true         | Linear navigation    |
+| [Blank](../reference/apis-arkui/arkui-ts/ts-basic-components-blank.md) | No      | false        | /        |
+| [Button](../reference/apis-arkui/arkui-ts/ts-basic-components-button.md) | Yes      | true         | /        |
+| [Checkbox](../reference/apis-arkui/arkui-ts/ts-basic-components-checkbox.md) | Yes      | true         | /        |
+| [CheckboxGroup](../reference/apis-arkui/arkui-ts/ts-basic-components-checkboxgroup.md) | Yes      | true         | /        |
+| [DataPanel](../reference/apis-arkui/arkui-ts/ts-basic-components-datapanel.md) | No      | false        | /        |
+| [DatePicker](../reference/apis-arkui/arkui-ts/ts-basic-components-datepicker.md) | Yes      | true         | Linear navigation    |
+| [Divider](../reference/apis-arkui/arkui-ts/ts-basic-components-divider.md) | No      | false        | /        |
+| [Formcomponent](../reference/apis-arkui/arkui-ts/ts-basic-components-formcomponent-sys.md) | No      | false        | /        |
+| [Gauge](../reference/apis-arkui/arkui-ts/ts-basic-components-gauge.md) | No      | false        | /        |
+| [Image](../reference/apis-arkui/arkui-ts/ts-basic-components-image.md) | Yes      | false        | /        |
+| [ImageAnimator](../reference/apis-arkui/arkui-ts/ts-basic-components-imageanimator.md) | Yes      | false        | /        |
+| [LoadingProgress](../reference/apis-arkui/arkui-ts/ts-basic-components-loadingprogress.md) | No      | false        | /        |
+| [Marquee](../reference/apis-arkui/arkui-ts/ts-basic-components-marquee.md) | No      | false        | /        |
+| [Menu](../reference/apis-arkui/arkui-ts/ts-basic-components-menu.md) | Yes      | true         | Linear navigation    |
+| [MenuItem](../reference/apis-arkui/arkui-ts/ts-basic-components-menuitem.md) | Yes      | true         | /        |
+| [MenuItemGroup](../reference/apis-arkui/arkui-ts/ts-basic-components-menuitemgroup.md) | Yes      | true         | Linear navigation    |
+| [Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md) | No      | false        | Customized   |
+| [NavRouter](../reference/apis-arkui/arkui-ts/ts-basic-components-navrouter.md) | No      | false        | Follows the child container   |
+| [NavDestination](../reference/apis-arkui/arkui-ts/ts-basic-components-navdestination.md) | No      | false        | Linear navigation    |
+| [PatternLock](../reference/apis-arkui/arkui-ts/ts-basic-components-patternlock.md) | No      | false        | /        |
+| [PluginComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-plugincomponent-sys.md) | No      | false        | /        |
+| [Progress](../reference/apis-arkui/arkui-ts/ts-basic-components-progress.md) | No      | false        | /        |
+| [QRCode](../reference/apis-arkui/arkui-ts/ts-basic-components-qrcode.md) | No      | false        | /        |
+| [Radio](../reference/apis-arkui/arkui-ts/ts-basic-components-radio.md) | Yes      | true         | /        |
+| [Rating](../reference/apis-arkui/arkui-ts/ts-basic-components-rating.md) | Yes      | true         | /        |
+| [RemoteWindow](../reference/apis-arkui/arkui-ts/ts-basic-components-remotewindow-sys.md) | No      | false        | /        |
+| [RichText](../reference/apis-arkui/arkui-ts/ts-basic-components-richtext.md) | No      | false        | /        |
+| [ScrollBar](../reference/apis-arkui/arkui-ts/ts-basic-components-scrollbar.md) | No      | false        | /        |
+| [Search](../reference/apis-arkui/arkui-ts/ts-basic-components-search.md) | Yes      | true         | /        |
+| [Select](../reference/apis-arkui/arkui-ts/ts-basic-components-select.md) | Yes      | true         | Linear navigation    |
+| [Slider](../reference/apis-arkui/arkui-ts/ts-basic-components-slider.md) | Yes      | true         | /        |
+| [Span](../reference/apis-arkui/arkui-ts/ts-basic-components-span.md) | No      | false        | /        |
+| [Stepper](../reference/apis-arkui/arkui-ts/ts-basic-components-stepper.md) | Yes      | true         | /        |
+| [StepperItem](../reference/apis-arkui/arkui-ts/ts-basic-components-stepperitem.md) | Yes      | true         | /        |
+| [Text](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md) | Yes      | false        | /        |
+| [TextArea](../reference/apis-arkui/arkui-ts/ts-basic-components-textarea.md) | Yes      | true         | /        |
+| [TextClock](../reference/apis-arkui/arkui-ts/ts-basic-components-textclock.md) | No      | false        | /        |
+| [TextInput](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md) | Yes      | true         | /        |
+| [TextPicker](../reference/apis-arkui/arkui-ts/ts-basic-components-textpicker.md) | Yes      | true         | Linear navigation    |
+| [TextTimer](../reference/apis-arkui/arkui-ts/ts-basic-components-texttimer.md) | No      | false        | /        |
+| [TimePicker](../reference/apis-arkui/arkui-ts/ts-basic-components-timepicker.md) | Yes      | true         | Linear navigation    |
+| [Toggle](../reference/apis-arkui/arkui-ts/ts-basic-components-toggle.md) | Yes      | true         | /        |
+| [Web](../reference/apis-arkweb/ts-basic-components-web.md) | Yes      | true         | Customized|
+| [XComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md) | No      | false        | /        |
 
   **Table 2** Focusability of container components
 
 | Container Component                                    | Focusable| Default Value of focusable| Rules of Focus Navigation    |
 | ---------------------------------------- | ----- | ------------ | -------- |
-| [AbilityComponent](../reference/arkui-ts/ts-container-ability-component.md) | No    | false        | /        |
-| [Badge](../reference/arkui-ts/ts-container-badge.md) | No    | false        | /        |
-| [Column](../reference/arkui-ts/ts-container-column.md) | Yes    | true         | Linear navigation    |
-| [ColumnSplit](../reference/arkui-ts/ts-container-columnsplit.md) | Yes    | true         | /        |
-| [Counter](../reference/arkui-ts/ts-container-counter.md) | Yes    | true         | Linear navigation    |
-| [Flex](../reference/arkui-ts/ts-container-flex.md) | Yes    | true         | Linear navigation    |
-| [GridCol](../reference/arkui-ts/ts-container-gridcol.md) | Yes    | true         | Customized |
-| [GridRow](../reference/arkui-ts/ts-container-gridrow.md) | Yes    | true         | Customized |
-| [Grid](../reference/arkui-ts/ts-container-grid.md) | Yes    | true         | Customized |
-| [GridItem](../reference/arkui-ts/ts-container-griditem.md) | Yes    | true         | Follows the child component   |
-| [List](../reference/arkui-ts/ts-container-list.md) | Yes    | true         | Linear navigation    |
-| [ListItem](../reference/arkui-ts/ts-container-listitem.md) | Yes    | true         | Follows the child component   |
-| [ListItemGroup](../reference/arkui-ts/ts-container-listitemgroup.md) | Yes    | true         | Follows the **\<List>** component|
-| [Navigator](../reference/arkui-ts/ts-container-navigator.md) | No    | true         | Customized |
-| [Panel](../reference/arkui-ts/ts-container-panel.md) | No    | true         | Follows the child component   |
-| [Refresh](../reference/arkui-ts/ts-container-refresh.md) | No    | false        | /        |
-| [RelativeContainer](../reference/arkui-ts/ts-container-relativecontainer.md) | No    | true         | Customized |
-| [Row](../reference/arkui-ts/ts-container-row.md) | Yes    | true         | Linear navigation    |
-| [RowSplit](../reference/arkui-ts/ts-container-rowsplit.md) | Yes    | true         | /        |
-| [Scroll](../reference/arkui-ts/ts-container-scroll.md) | Yes    | true         | Linear navigation    |
-| [SideBarContainer](../reference/arkui-ts/ts-container-sidebarcontainer.md) | Yes    | true         | Linear navigation    |
-| [Stack](../reference/arkui-ts/ts-container-stack.md) | Yes    | true         | Linear navigation    |
-| [Swiper](../reference/arkui-ts/ts-container-swiper.md) | Yes    | true         | Customized |
-| [Tabs](../reference/arkui-ts/ts-container-tabs.md) | Yes    | true         | Customized |
-| [TabContent](../reference/arkui-ts/ts-container-tabcontent.md) | Yes    | true         | Follows the child component   |
+| [AbilityComponent](../reference/apis-arkui/arkui-ts/ts-container-ability-component-sys.md) | No    | false        | /        |
+| [Badge](../reference/apis-arkui/arkui-ts/ts-container-badge.md) | No    | false        | /        |
+| [Column](../reference/apis-arkui/arkui-ts/ts-container-column.md) | Yes    | true         | Linear navigation    |
+| [ColumnSplit](../reference/apis-arkui/arkui-ts/ts-container-columnsplit.md) | Yes    | true         | /        |
+| [Counter](../reference/apis-arkui/arkui-ts/ts-container-counter.md) | Yes    | true         | Linear navigation    |
+| [Flex](../reference/apis-arkui/arkui-ts/ts-container-flex.md) | Yes    | true         | Linear navigation    |
+| [GridCol](../reference/apis-arkui/arkui-ts/ts-container-gridcol.md) | Yes    | true         | Customized |
+| [GridRow](../reference/apis-arkui/arkui-ts/ts-container-gridrow.md) | Yes    | true         | Customized |
+| [Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md) | Yes    | true         | Customized |
+| [GridItem](../reference/apis-arkui/arkui-ts/ts-container-griditem.md) | Yes    | true         | Follows the child component   |
+| [List](../reference/apis-arkui/arkui-ts/ts-container-list.md) | Yes    | true         | Linear navigation    |
+| [ListItem](../reference/apis-arkui/arkui-ts/ts-container-listitem.md) | Yes    | true         | Follows the child component   |
+| [ListItemGroup](../reference/apis-arkui/arkui-ts/ts-container-listitemgroup.md) | Yes    | true         | Follows the **\<List>** component|
+| [Navigator](../reference/apis-arkui/arkui-ts/ts-container-navigator.md) | No    | true         | Customized |
+| [Panel](../reference/apis-arkui/arkui-ts/ts-container-panel.md) | No    | true         | Follows the child component   |
+| [Refresh](../reference/apis-arkui/arkui-ts/ts-container-refresh.md) | No    | false        | /        |
+| [RelativeContainer](../reference/apis-arkui/arkui-ts/ts-container-relativecontainer.md) | No    | true         | Customized |
+| [Row](../reference/apis-arkui/arkui-ts/ts-container-row.md) | Yes    | true         | Linear navigation    |
+| [RowSplit](../reference/apis-arkui/arkui-ts/ts-container-rowsplit.md) | Yes    | true         | /        |
+| [Scroll](../reference/apis-arkui/arkui-ts/ts-container-scroll.md) | Yes    | true         | Linear navigation    |
+| [SideBarContainer](../reference/apis-arkui/arkui-ts/ts-container-sidebarcontainer.md) | Yes    | true         | Linear navigation    |
+| [Stack](../reference/apis-arkui/arkui-ts/ts-container-stack.md) | Yes    | true         | Linear navigation    |
+| [Swiper](../reference/apis-arkui/arkui-ts/ts-container-swiper.md) | Yes    | true         | Customized |
+| [Tabs](../reference/apis-arkui/arkui-ts/ts-container-tabs.md) | Yes    | true         | Customized |
+| [TabContent](../reference/apis-arkui/arkui-ts/ts-container-tabcontent.md) | Yes    | true         | Follows the child component   |
 
   **Table 3** Focusability of media components
 
 | Media Component                                    | Focusable| Default Value of focusable| Rules of Focus Navigation|
 | ---------------------------------------- | ----- | ------------ | ---- |
-| [Video](../reference/arkui-ts/ts-media-components-video.md) | Yes    | true         | /    |
+| [Video](../reference/apis-arkui/arkui-ts/ts-media-components-video.md) | Yes    | true         | /    |
 
   **Table 4** Focusability of canvas components
 
 | Canvas Component                                    | Focusable| Default Value of focusable| Rules of Focus Navigation|
 | ---------------------------------------- | ----- | ------------ | ---- |
-| [Canvas](../reference/arkui-ts/ts-components-canvas-canvas.md) | No    | false        | /    |
+| [Canvas](../reference/apis-arkui/arkui-ts/ts-components-canvas-canvas.md) | No    | false        | /    |
 
 
 The following example shows how to use the **focusable** API:
@@ -386,7 +386,7 @@ The preceding example includes two parts: default focus and active navigation.
 **Active navigation:**
 
 
-Pressing **F** on the keyboard triggers **onKeyEvent**, which sets **focusable** to **false** and makes the **\<Text>** component **unfocusable**. In this case, the focus automatically shifts. According to the description in passive focus, the system automatically searches for the immediate focusable component above the **\<Text>** component. Because the component immediately above is an unfocusable **\<Text>** component, the system searches for the next focusable component, which is the **\<Row>** container in this example. The system calculates the positions of **Button1** and **Button2** based on the [rule for focusing on a container component](#rules-of-focus-navigation). Because **Button2** is larger than Button1, the focus automatically moves to **Button2**.
+Pressing **F** on the keyboard triggers **onKeyEvent**, which sets **focusable** to **false** and makes the **\<Text>** component **unfocusable**. In this case, the focus automatically shifts. According to the description in passive focus, the system automatically searches for the immediate focusable component above the **\<Text>** component. Because the component immediately above is an unfocusable **\<Text>** component, the system searches for the next focusable component, which is the **\<Row>** container in this example. According to the [rule for focusing on a container component](#rules-of-focus-navigation), the sequential Tab navigation follows the Z-shaped pattern; as such, the focus automatically moves to **Button1**.
 
 
 ## Setting Default Focus
@@ -406,7 +406,6 @@ The following is the sample code for implementing the application layout, and **
 
 
 ```ts
-// xxx.ets
 // xxx.ets
 import promptAction from '@ohos.promptAction';
 
@@ -997,8 +996,6 @@ The sample code is as follows:
 
 ```ts
 // requestFocus.ets
-import promptAction from '@ohos.promptAction';
-
 @Entry
 @Component
 struct RequestFocusExample {
@@ -1008,13 +1005,17 @@ struct RequestFocusExample {
     Column({ space:20 }){
       Button("id: " + this.idList[0] + " focusOnTouch(true) + focusable(false)")
         .width(400).height(70).fontColor(Color.White).focusOnTouch(true)
+        .hoverEffect(HoverEffect.Scale)
         .focusable(false)
       Button("id: " + this.idList[1] + " default")
         .width(400).height(70).fontColor(Color.White)
+        .hoverEffect(HoverEffect.Scale)
       Button("id: " + this.idList[2] + " focusOnTouch(false)")
         .width(400).height(70).fontColor(Color.White).focusOnTouch(false)
+        .hoverEffect(HoverEffect.Scale)
       Button("id: " + this.idList[3] + " focusOnTouch(true)")
         .width(400).height(70).fontColor(Color.White).focusOnTouch(true)
+        .hoverEffect(HoverEffect.Scale)
     }.width('100%').margin({ top:20 })
   }
 }

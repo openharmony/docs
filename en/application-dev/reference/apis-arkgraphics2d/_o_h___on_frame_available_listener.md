@@ -3,7 +3,7 @@
 
 ## Overview
 
-The **OH_OnFrameAvailableListener** struct defines an **OH_NativeImage** listener, which is registered through **OH_NativeImage_SetOnFrameAvailableListener**. The listener triggers a callback when a frame is available.
+The **OH_OnFrameAvailableListener** struct describes an **OH_NativeImage** listener, which is registered through **OH_NativeImage_SetOnFrameAvailableListener**. The listener triggers a callback when a frame is available.
 
 **Since**: 11
 
@@ -32,7 +32,7 @@ void* OH_OnFrameAvailableListener::context
 
 **Description**
 
-Defines user-defined context information, which is returned when the callback is triggered.
+User-defined context information, which is returned when the callback is triggered.
 
 
 ### onFrameAvailable
@@ -43,4 +43,4 @@ OH_OnFrameAvailable OH_OnFrameAvailableListener::onFrameAvailable
 
 **Description**
 
-Defines the callback function triggered when a frame is available.
+Callback function triggered when a frame is available.

@@ -2667,7 +2667,7 @@ int32_t OH_PixelMap_CreatePixelMap (napi_env env, OhosPixelMapCreateOps info, vo
 
 **Description**
 
-Creates a **PixelMap** object.
+Creates a **PixelMap** object. Currently, only BGRA input streams are supported.
 
 **Since**: 10
 

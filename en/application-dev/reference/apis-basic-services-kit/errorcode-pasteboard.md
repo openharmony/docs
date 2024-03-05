@@ -58,7 +58,7 @@ The copy and paste APIs are both asynchronous APIs. If the data to be copied or 
 **Solution**
 
 1. Before copying or pasting data, check the status of the last copy or paste operation.
-2. Perform subsequent operations only after the previous copy/paste operation is completed.
+2. Wait until the last copy or paste operation has finished, and then copy or paste data again.
 
 ## 12900004 Copy Prohibited
 
@@ -72,7 +72,7 @@ This error code is reported when an attempt is made to copy data that cannot be 
 
 **Possible Causes**
 
-The target data cannot be copied, such as read-only data.
+The data is read-only and cannot be copied.
 
 **Solution**
 

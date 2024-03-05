@@ -4,47 +4,13 @@ Photographing is an important function of the camera application. Based on the c
 
 ## How to Develop
 
-Read [Camera](../reference/native-apis/_o_h___camera.md) for the API reference.
+Read [Camera](../reference/apis-camera-kit/_o_h___camera.md) for the API reference.
 
-1. Import the image module. The APIs provided by this module are used to obtain the surface ID and create a photo output stream.
-   
-   ```ts
-   // Import the image module on the TS side. The surface ID for the photo output stream is obtained through ImageReceiver.
-   import image from '@ohos.multimedia.image';
-   private mReceiver: image.ImageReceiver = undefined
-   ```
-
-2. Obtain the surface ID.
-   
-   Call **createImageReceiver()** of the image module to create an **ImageReceiver** instance, and use **getReceivingSurfaceId()** of the instance to obtain the surface ID, which is associated with the photo output stream to process the stream data.
-
-   ```ts
-   // Obtain the surface ID for the photo output stream. (Call the APIs in modeSwitchPage.ets.)
-    async getPhotoSurfaceID() {
-        if(this.mReceiver) {
-        Logger.info(this.tag, 'imageReceiver has been created')
-        } else {
-        this.createImageReceiver()
-        }
-        this.photoSurfaceId = await this.mReceiver.getReceivingSurfaceId()
-        if(this.photoSurfaceId) {
-        Logger.info(this.tag, `createImageReceiver photoSurfaceId: ${this.photoSurfaceId} `)
-        } else {
-        Logger.info(this.tag, `Get photoSurfaceId failed `)
-        }
-    }
-   ```
-
-3. Link the camera NDK dynamic library in the CMake script.
-   ```txt
-    target_link_libraries(PUBLIC libcamera_ndk.so)
-   ```
-
-
-4. Import the NDK. The NDK is used for creating photo output data, setting camera parameters, and triggering photographing.
-
+1. Import the NDK, which provides camera-related attributes and methods.
+     
    ```c++
-    // Include the NDK header files in camera_manager.cpp.
+    // Include the NDK header files.
+    #include "hilog/log.h"
     #include "ohcamera/camera.h"
     #include "ohcamera/camera_input.h"
     #include "ohcamera/capture_session.h"
@@ -54,38 +20,56 @@ Read [Camera](../reference/native-apis/_o_h___camera.md) for the API reference.
     #include "ohcamera/camera_manager.h"
    ```
 
-5. Create a photo output stream.
+2. Link the dynamic library in the CMake script.
+
+   ```txt
+    target_link_libraries(entry PUBLIC libohcamera.so libhilog_ndk.z.so)
+   ```
+
+3. Obtain the surface ID.
    
-   Call **OH_CameraManager_GetSupportedCameraOutputCapability** to obtain the photo output streams supported by the current device, and then call **OH_CameraManager_CreatePhotoOutput** to pass in a supported output stream and the surface ID obtained in step 2 to create a photo output stream.
+    Call **createImageReceiver()** of the image module to create an **ImageReceiver** instance, and call **getReceivingSurfaceId()** of the instance to obtain the surface ID.
+
+4. Create a photo output stream.
+   
+   Based on the surface ID passed in, call **OH_CameraManager_GetSupportedCameraOutputCapability()** to obtain the photo output streams supported by the current device, and then call **OH_CameraManager_CreatePhotoOutput()** to pass in a supported output stream and the surface ID obtained in step 3 to create a photo output stream.
 
    ```c++
-    Camera_Manager* cameraManager = nullptr;
-    Camera_Device* cameras = nullptr;
-    Camera_CaptureSession* captureSession = nullptr;
-    Camera_OutputCapability* cameraOutputCapability = nullptr;
-    const Camera_Profile* previewProfile = nullptr;
-    const Camera_Profile* photoProfile = nullptr;
-    Camera_PreviewOutput* previewOutput = nullptr;
-    Camera_PhotoOutput* photoOutput = nullptr;
-    Camera_Input* cameraInput = nullptr;
-    uint32_t size = 0;
-    uint32_t cameraDeviceIndex = 0;
-
-    Camera_ErrorCode ret = OH_CameraManager_GetSupportedCameraOutputCapability(cameraManager, &cameras[cameraDeviceIndex], &cameraOutputCapability);
-    if (cameraOutputCapability == nullptr || ret != CAMERA_OK) {
-        OH_LOG_ERROR(LOG_APP, "GetSupportedCameraOutputCapability failed.");
-    }
-    photoProfile = cameraOutputCapability->photoProfiles[0];
-    if (photoProfile == nullptr) {
-        OH_LOG_ERROR(LOG_APP, "Get photoProfiles failed.");
-    }
-    ret = OH_CameraManager_CreatePhotoOutput(cameraManager, photoProfile, photoSurfaceId, &photoOutput);
-    if (photoOutput == nullptr || ret != CAMERA_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_CameraManager_CreatePhotoOutput failed.");
+    NDKCamera::NDKCamera(char *str)
+    {
+        Camera_Manager* cameraManager = nullptr;
+        Camera_Device* cameras = nullptr;
+        Camera_OutputCapability* cameraOutputCapability = nullptr;
+        Camera_PhotoOutput* photoOutput = nullptr;
+        Camera_CaptureSession* captureSession = nullptr;
+        const Camera_Profile* photoProfile = nullptr;
+        uint32_t size = 0;
+        uint32_t cameraDeviceIndex = 0;
+        char* photoSurfaceId = str;
+        Camera_ErrorCode ret = OH_Camera_GetCameraManager(&cameraManager);
+        if (cameraManager == nullptr || ret != CAMERA_OK) {
+            OH_LOG_ERROR(LOG_APP, "OH_Camera_GetCameraManager failed.");
+        }
+        ret = OH_CameraManager_GetSupportedCameras(cameraManager, &cameras, &size);
+        if (cameras == nullptr || size < 0 || ret != CAMERA_OK) {
+            OH_LOG_ERROR(LOG_APP, "OH_CameraManager_GetSupportedCameras failed.");
+        }
+        ret = OH_CameraManager_GetSupportedCameraOutputCapability(cameraManager, &cameras[cameraDeviceIndex], &cameraOutputCapability);
+        if (cameraOutputCapability == nullptr || ret != CAMERA_OK) {
+            OH_LOG_ERROR(LOG_APP, "GetSupportedCameraOutputCapability failed.");
+        }
+        photoProfile = cameraOutputCapability->photoProfiles[0];
+        if (photoProfile == nullptr) {
+            OH_LOG_ERROR(LOG_APP, "Get photoProfiles failed.");
+        }
+        ret = OH_CameraManager_CreatePhotoOutput(cameraManager, photoProfile, photoSurfaceId, &photoOutput);
+        if (photoOutput == nullptr || ret != CAMERA_OK) {
+            OH_LOG_ERROR(LOG_APP, "OH_CameraManager_CreatePhotoOutput failed.");
+        }
     }
    ```
 
-6. Set camera parameters.
+5. Set camera parameters.
 
    You can set camera parameters to adjust photographing functions, including the flash, zoom ratio, and focal length.
 
@@ -93,6 +77,10 @@ Read [Camera](../reference/native-apis/_o_h___camera.md) for the API reference.
     // Check whether the camera has flash.
     Camera_FlashMode flashMode = FLASH_MODE_AUTO;
     bool hasFlash = false;
+    ret = OH_CameraManager_CreateCaptureSession(cameraManager, &captureSession);
+    if (captureSession == nullptr || ret != CAMERA_OK) {
+        OH_LOG_ERROR(LOG_APP, "OH_CameraManager_CreateCaptureSession failed.");
+    }
     ret = OH_CaptureSession_HasFlash(captureSession, &hasFlash);
     if (ret != CAMERA_OK) {
         OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_HasFlash failed.");
@@ -177,32 +165,16 @@ Read [Camera](../reference/native-apis/_o_h___camera.md) for the API reference.
     }
    ```
 
-7. Trigger photographing.
+6. Trigger photographing.
 
-   - Call **OH_PhotoOutput_Capture**. In this API, the input parameter is the **photoOutput** instance created by using **createPhotoOutput()**.
+    Call **OH_PhotoOutput_Capture()**.
 
      ```c++
-      Camera_ErrorCode ret = OH_PhotoOutput_Capture(photoOutput);
+      ret = OH_PhotoOutput_Capture(photoOutput);
       if (ret == CAMERA_OK) {
           OH_LOG_INFO(LOG_APP, "OH_PhotoOutput_Capture success ");
       } else {
           OH_LOG_ERROR(LOG_APP, "OH_PhotoOutput_Capture failed. %d ", ret);
-      }
-     ```
-
-   - Call **OH_PhotoOutput_Capture_WithCaptureSetting**. In this API, the first parameter specifies the settings (for example, photo quality and rotation angle) for photographing, and the second parameter is a callback function.
-
-     ```c++
-      Camera_PhotoCaptureSetting* photoSetting = nullptr;
-      photoSetting->quality = QUALITY_LEVEL_HIGH; // Set the photo quality to high.
-      photoSetting->rotation = IMAGE_ROTATION_0; // Set the rotation angle of the photo to 0.
-  
-      // Use the current photographing settings to take photos.
-      ret = OH_PhotoOutput_Capture_WithCaptureSetting(photoOutput, photoSetting);
-      if (ret == CAMERA_OK) {
-          OH_LOG_INFO(LOG_APP, "OH_PhotoOutput_Capture_WithCaptureSetting success ");
-      } else {
-          OH_LOG_ERROR(LOG_APP, "OH_PhotoOutput_Capture_WithCaptureSetting failed. %d ", ret);
       }
      ```
 
@@ -211,11 +183,21 @@ Read [Camera](../reference/native-apis/_o_h___camera.md) for the API reference.
 During camera application development, you can listen for the status of the photo output stream, including the start of the photo stream, the start and end of the photo frame, and the errors of the photo output stream.
 
 - Register the **'onFrameStart'** event to listen for photographing start events. This event can be registered when a **PhotoOutput** instance is created and is triggered when the bottom layer starts exposure for photographing for the first time. The capture ID is returned.
-  
+    
+  ```c++
+    ret = OH_PhotoOutput_RegisterCallback(photoOutput, GetPhotoOutputListener());
+    if (ret != CAMERA_OK) {
+        OH_LOG_ERROR(LOG_APP, "OH_PhotoOutput_RegisterCallback failed.");
+    }
+  ```
   ```c++
     void PhotoOutputOnFrameStart(Camera_PhotoOutput* photoOutput)
     {
         OH_LOG_INFO(LOG_APP, "PhotoOutputOnFrameStart");
+    }
+    void PhotoOutputOnFrameShutter(Camera_PhotoOutput* photoOutput, Camera_FrameShutterInfo* info)
+    {
+        OH_LOG_INFO(LOG_APP, "PhotoOutputOnFrameShutter");
     }
     PhotoOutput_Callbacks* GetPhotoOutputListener()
     {
@@ -227,14 +209,10 @@ During camera application development, you can listen for the status of the phot
         };
         return &photoOutputListener;
     }
-    Camera_ErrorCode ret = OH_PhotoOutput_RegisterCallback(photoOutput, GetPhotoOutputListener());
-    if (ret != CAMERA_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_PhotoOutput_RegisterCallback failed.");
-    }
   ```
 
-- Register the **'onFrameEnd'** event to listen for photographing end events. This event can be registered when a **PhotoOutput** instance is created and is triggered when the photographing is complete. [CaptureEndInfo](../reference/apis/js-apis-camera.md#captureendinfo) is returned.
-  
+- Register the **'onFrameEnd'** event to listen for photographing end events. This event can be registered when a **PhotoOutput** instance is created.
+    
   ```c++
     void PhotoOutputOnFrameEnd(Camera_PhotoOutput* photoOutput, int32_t frameCount)
     {
@@ -242,12 +220,11 @@ During camera application development, you can listen for the status of the phot
     }
   ```
 
-- Register the **'onError'** event to listen for photo output errors. The callback function returns an error code when an API is incorrectly used. For details about the error code types, see [Camera Error Codes](../reference/apis/js-apis-camera.md#cameraerrorcode).
-  
+- Register the **'onError'** event to listen for photo output errors. The callback function returns an error code when an API is incorrectly used. For details about the error code types, see [Camera_ErrorCode](../reference/apis-camera-kit/_o_h___camera.md#camera_errorcode-1).
+    
   ```c++
     void PhotoOutputOnError(Camera_PhotoOutput* photoOutput, Camera_ErrorCode errorCode)
     {
         OH_LOG_INFO(LOG_APP, "PhotoOutput errorCode = %{public}d", errorCode);
     }
   ```
-

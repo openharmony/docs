@@ -26,20 +26,20 @@ Sets the state-specific styles for the component.
 
 ## StateStyles
 
-Since API version 9, this API is supported in ArkTS widgets.
+Since API version 9, this API is supported in ArkTS widgets. Only the [universal attributes](ts-universal-attributes-size.md) are supported.
 
-| State| Type| Mandatory| Description|
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | normal | ()=&gt;void | No| Style of the component when being stateless.|
 | pressed | ()=&gt;void | No| Style of the component in the pressed state.|
 | disabled | ()=&gt;void | No| Style of the component in the disabled state.|
 | focused | ()=&gt;void | No| Style of the component in the focused state.|
 | clicked | ()=&gt;void | No| Style of the component in the clicked state.|
-| selected<sup>10+</sup> | ()=&gt;void | No| Style of the component in the selected state.<br>|
+| selected<sup>10+</sup> | ()=&gt;void | No| Style of the component in the selected state.|
 
 **Notes about the selected state:**
 
-- The selected state style depends on the value of the component's selected attribute. You can change the attribute value through [onClick](ts-universal-events-click.md) or [$$](../../quick-start/arkts-two-way-sync.md).
+- The selected state style depends on the value of the component's selected attribute. You can change the attribute value through [onClick](ts-universal-events-click.md) or [$$](../../../quick-start/arkts-two-way-sync.md).
 
 - The table below lists the components that support the selected state style and their selected attributes or parameters.
 
@@ -159,9 +159,9 @@ struct StyleExample {
 // xxx.ets
 @Entry
 @Component
-@Observed
 struct Index {
   @State value: boolean = false
+  @State value2: boolean = false
 
   @Styles
   normalStyles(): void{
@@ -178,6 +178,7 @@ struct Index {
     Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
       Column() {
         Text('Radio1')
+          .fontSize(25)
         Radio({ value: 'Radio1', group: 'radioGroup1' })
           .checked(this.value)
           .height(50)
@@ -192,24 +193,26 @@ struct Index {
             selected: this.selectStyles,
           })
       }
+      .margin(30)
 
       Column() {
         Text('Radio2')
+          .fontSize(25)
         Radio({ value: 'Radio2', group: 'radioGroup2' })
-          .checked($$this.value)
+          .checked($$this.value2)
           .height(50)
           .width(50)
           .borderWidth(0)
           .borderRadius(30)
-          .onClick(() => {
-            this.value = !this.value
-          })
           .stateStyles({
             normal: this.normalStyles,
             selected: this.selectStyles,
           })
       }
+      .margin(30)
     }.padding({ top: 30 })
   }
 }
 ```
+
+![selected](figures/selected.gif)

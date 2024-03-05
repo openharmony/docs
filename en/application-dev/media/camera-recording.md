@@ -4,9 +4,9 @@ As another important function of the camera application, video recording is the 
 
 ## How to Develop
 
-Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
+Read [Camera](../reference/apis-camera-kit/js-apis-camera.md) for the API reference.
 
-1. Import the media module. The [APIs](../reference/apis/js-apis-media.md) provided by this module are used to obtain the surface ID and create a photo output stream.
+1. Import the media module. The [APIs](../reference/apis-media-kit/js-apis-media.md) provided by this module are used to obtain the surface ID and create a photo output stream.
      
    ```ts
    import { BusinessError } from '@ohos.base';
@@ -15,7 +15,7 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
 
 2. Create a surface.
    
-   Call **createAVRecorder()** of the media module to create an **AVRecorder** instance, and call [getInputSurface](../reference/apis/js-apis-media.md#getinputsurface9) of the instance to obtain the surface ID, which is associated with the video output stream to process the stream data.
+   Call **createAVRecorder()** of the media module to create an **AVRecorder** instance, and call [getInputSurface](../reference/apis-media-kit/js-apis-media.md#getinputsurface9) of the instance to obtain the surface ID, which is associated with the video output stream to process the stream data.
 
    ```ts
    async function getVideoSurfaceId(aVRecorderConfig: media.AVRecorderConfig): Promise<string | undefined> {  // For details about aVRecorderConfig, see the next section.
@@ -43,9 +43,11 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
 
 3. Create a video output stream.
 
-   Obtain the video output streams supported by the current device from **videoProfiles** in the [CameraOutputCapability](../reference/apis/js-apis-camera.md#cameraoutputcapability) class. Then, define video recording parameters and use [createVideoOutput](../reference/apis/js-apis-camera.md#createvideooutput) to create a video output stream.
+   Obtain the video output streams supported by the current device from **videoProfiles** in the [CameraOutputCapability](../reference/apis-camera-kit/js-apis-camera.md#cameraoutputcapability) class. Then, define video recording parameters and use [createVideoOutput](../reference/apis-camera-kit/js-apis-camera.md#createvideooutput) to create a video output stream.
 
-   **NOTE**: The preview stream and video output stream must have the same aspect ratio of the resolution. For example, the aspect ratio in the code snippet below is 640:480 (which is equal to 4:3), then the aspect ratio of the resolution of the preview stream must also be 4:3. This means that the resolution can be 640:480, 960:720, 1440:1080, or the like.
+   > **NOTE**
+   >
+   > The preview stream and video output stream must have the same aspect ratio of the resolution. For example, the aspect ratio in the code snippet below is 640:480 (which is equal to 4:3), then the aspect ratio of the resolution of the preview stream must also be 4:3. This means that the resolution can be 640:480, 960:720, 1440:1080, or the like.
 
    ```ts
    async function getVideoOutput(cameraManager: camera.CameraManager, videoSurfaceId: string, cameraOutputCapability: camera.CameraOutputCapability): Promise<camera.VideoOutput | undefined> {
@@ -85,8 +87,16 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
      avRecorder.prepare(aVRecorderConfig);
      // Create a VideoOutput instance.
      let videoOutput: camera.VideoOutput | undefined = undefined;
+     // The width and height of the videoProfile object passed in by createVideoOutput must be the same as those of aVRecorderProfile.
+     let videoProfile: undefined | camera.VideoProfile = videoProfilesArray.find((profile: camera.VideoProfile) => {
+       return profile.size.width === aVRecorderProfile.videoFrameWidth && profile.size.height === aVRecorderProfile.videoFrameHeight;
+     });
+     if (!videoProfile) {
+       console.error('videoProfile is not found');
+       return;
+     }
      try {
-       videoOutput = cameraManager.createVideoOutput(videoProfilesArray[0], videoSurfaceId);
+       videoOutput = cameraManager.createVideoOutput(videoProfile, videoSurfaceId);
      } catch (error) {
        let err = error as BusinessError;
        console.error('Failed to create the videoOutput instance. errorCode = ' + err.code);
@@ -97,7 +107,7 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
 
 4. Start video recording.
    
-   Call [start](../reference/apis/js-apis-camera.md#start-1) of the **VideoOutput** instance to start the video output stream, and then call [start](../reference/apis/js-apis-media.md#start9) of the **AVRecorder** instance to start recording.
+   Call [start](../reference/apis-camera-kit/js-apis-camera.md#start-1) of the **VideoOutput** instance to start the video output stream, and then call [start](../reference/apis-media-kit/js-apis-media.md#start9) of the **AVRecorder** instance to start recording.
 
    ```ts
    async function startVideo(videoOutput: camera.VideoOutput, avRecorder: media.AVRecorder): Promise<void> {
@@ -119,7 +129,7 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
 
 5. Stop video recording.
 
-   Call [stop](../reference/apis/js-apis-media.md#stop9) of the **AVRecorder** instance to stop recording, and then call [stop](../reference/apis/js-apis-camera.md#stop-1) of the **VideoOutput** instance to stop the video output stream.
+   Call [stop](../reference/apis-media-kit/js-apis-media.md#stop9-3) of the **AVRecorder** instance to stop recording, and then call [stop](../reference/apis-camera-kit/js-apis-camera.md#stop-1) of the **VideoOutput** instance to stop the video output stream.
      
    ```ts
    async function stopVideo(videoOutput: camera.VideoOutput, avRecorder: media.AVRecorder): Promise<void> {
@@ -164,7 +174,7 @@ During camera application development, you can listen for the status of the vide
   }
   ```
 
-- Register the **'error'** event to listen for video output errors. The callback function returns an error code when an API is incorrectly used. For details about the error code types, see [Camera Error Codes](../reference/apis/js-apis-camera.md#cameraerrorcode).
+- Register the **'error'** event to listen for video output errors. The callback function returns an error code when an API is incorrectly used. For details about the error code types, see [CameraErrorCode](../reference/apis-camera-kit/js-apis-camera.md#cameraerrorcode).
     
   ```ts
   function onVideoOutputError(videoOutput: camera.VideoOutput): void {

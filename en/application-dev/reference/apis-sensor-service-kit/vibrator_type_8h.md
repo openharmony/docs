@@ -21,18 +21,18 @@ The **vibrator_type.h** file declares the APIs for starting or stopping vibratio
 
 | Name| Description|
 | -------- | -------- |
-| [Vibrator_Attribute](_vibrator_attribute.md) | Defines the vibrator attribute. |
-| [Vibrator_FileDescription](_vibrator_file_description.md) | Defines the vibration file description. |
+| [Vibrator_Attribute](_vibrator_attribute.md) | Describes the vibrator attribute. |
+| [Vibrator_FileDescription](_vibrator_file_description.md) | Describes the vibration file description. |
 
 
 ### Types
 
 | Name| Description|
 | -------- | -------- |
-| [Vibrator_ErrorCode](_vibrator.md#vibrator_errorcode) | Defines an enum that enumerates the vibrator error codes. |
-| [Vibrator_Usage](_vibrator.md#vibrator_usage) | Defines an enum that enumerates the vibration scenarios. |
-| [Vibrator_Attribute](_vibrator.md#vibrator_attribute) | Defines the vibrator attribute. |
-| [Vibrator_FileDescription](_vibrator.md#vibrator_filedescription) | Defines the vibration file description. |
+| [Vibrator_ErrorCode](_vibrator.md#vibrator_errorcode) | Defines an enum for vibrator error codes. |
+| [Vibrator_Usage](_vibrator.md#vibrator_usage) | Defines an enum for vibration scenarios. |
+| [Vibrator_Attribute](_vibrator.md#vibrator_attribute) | Defines a struct for the vibrator attribute. |
+| [Vibrator_FileDescription](_vibrator.md#vibrator_filedescription) | Defines a struct for the vibration file description. |
 
 
 ### Enums

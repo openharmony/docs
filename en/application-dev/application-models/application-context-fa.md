@@ -22,7 +22,7 @@ import featureAbility from "@ohos.ability.featureAbility";
 let context = featureAbility.getContext()
 ```
 
-For details about the APIs, see [API Reference](../reference/apis/js-apis-inner-app-context.md).
+For details about the APIs, see [API Reference](../reference/apis-ability-kit/js-apis-inner-app-context.md).
 
 
 ## How to Develop

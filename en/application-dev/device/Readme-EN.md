@@ -14,6 +14,10 @@
 - Multimodal Input
   - [Input Device Development](inputdevice-guidelines.md)
   - [Mouse Pointer Development](pointerstyle-guidelines.md)
+  - [Input Monitor Development](inputmonitor-guidelines.md)
+  - [Event Injection Development](inputeventclient-guidelines.md)
+  - [Combination Key Development](inputconsumer-guidelines.md)
+  - [Shortcut Key Development](shortkey-guidelines.md)
 - Update Service
   - [Sample Server Overview](sample-server-overview.md)
   - [Sample Server Development](sample-server-guidelines.md)

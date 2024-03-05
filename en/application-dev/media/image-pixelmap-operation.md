@@ -10,7 +10,7 @@ As shown in the figure below, the pixel data of a rectangle in an image is read,
 
 ## How to Develop
 
-Read [Image](../reference/apis/js-apis-image.md#pixelmap7) for APIs related to PixelMap operations.
+Read [Image](../reference/apis-image-kit/js-apis-image.md#pixelmap7) for APIs related to PixelMap operations.
 
 1. Complete [image decoding](image-decoding.md#how-to-develop) and obtain a **PixelMap** object.
 
