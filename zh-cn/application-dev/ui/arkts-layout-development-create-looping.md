@@ -1,7 +1,7 @@
-# 创建轮播（Swiper）
+# 创建轮播 (Swiper)
 
 
-[Swiper](../reference/arkui-ts/ts-container-swiper.md)组件提供滑动轮播显示的能力。Swiper本身是一个容器组件，当设置了多个子组件后，可以对这些子组件进行轮播显示。通常，在一些应用首页显示推荐的内容时，需要用到轮播显示的能力。
+[Swiper](../reference/apis-arkui/arkui-ts/ts-container-swiper.md)组件提供滑动轮播显示的能力。Swiper本身是一个容器组件，当设置了多个子组件后，可以对这些子组件进行轮播显示。通常，在一些应用首页显示推荐的内容时，需要用到轮播显示的能力。
 
 针对复杂页面场景，可以使用 Swiper 组件的预加载机制，利用主线程的空闲时间来提前构建和布局绘制组件，优化滑动体验。详细指导见[Swiper高性能开发指导](../performance/swiper_optimization.md)。
 
@@ -24,21 +24,21 @@ Swiper作为一个容器组件，如果设置了自身尺寸属性，则在轮�
 private swiperController: SwiperController = new SwiperController()
 ...
 Swiper(this.swiperController) {
-  Text("0")
+  Text('0')
     .width('90%')
     .height('100%')
     .backgroundColor(Color.Gray)
     .textAlign(TextAlign.Center)
     .fontSize(30)
 
-  Text("1")
+  Text('1')
     .width('90%')
     .height('100%')
     .backgroundColor(Color.Green)
     .textAlign(TextAlign.Center)
     .fontSize(30)
 
-  Text("2")
+  Text('2')
     .width('90%')
     .height('100%')
     .backgroundColor(Color.Pink)
@@ -54,24 +54,24 @@ Swiper(this.swiperController) {
 
 ```ts
 Swiper(this.swiperController) {
-  Text("0")
+  Text('0')
     .width('90%')
     .height('100%')
     .backgroundColor(Color.Gray)
     .textAlign(TextAlign.Center)
     .fontSize(30)
 
-  Text("1")
+  Text('1')
     .width('90%')
     .height('100%')
     .backgroundColor(Color.Green)
     .textAlign(TextAlign.Center)
     .fontSize(30)
 
-  Text("2")
+  Text('2')
     .width('90%')
     .height('100%')
-    .backgroundColor(Color.Blue)
+    .backgroundColor(Color.Pink)
     .textAlign(TextAlign.Center)
     .fontSize(30)
 }
@@ -89,21 +89,21 @@ autoPlay为true时，会自动切换播放子组件，子组件与子组件之�
 
 ```ts
 Swiper(this.swiperController) {
-  Text("0")
+  Text('0')
     .width('90%')
     .height('100%')
     .backgroundColor(Color.Gray)
     .textAlign(TextAlign.Center)
     .fontSize(30)
 
-  Text("1")
+  Text('1')
     .width('90%')
     .height('100%')
     .backgroundColor(Color.Green)
     .textAlign(TextAlign.Center)
     .fontSize(30)
 
-  Text("2")
+  Text('2')
     .width('90%')
     .height('100%')
     .backgroundColor(Color.Pink)
@@ -128,21 +128,21 @@ Swiper提供了默认的导航点样式，导航点默认显示在Swiper下方�
 
 ```ts
 Swiper(this.swiperController) {
-  Text("0")
+  Text('0')
     .width('90%')
     .height('100%')
     .backgroundColor(Color.Gray)
     .textAlign(TextAlign.Center)
     .fontSize(30)
 
-  Text("1")
+  Text('1')
     .width('90%')
     .height('100%')
     .backgroundColor(Color.Green)
     .textAlign(TextAlign.Center)
     .fontSize(30)
 
-  Text("2")
+  Text('2')
     .width('90%')
     .height('100%')
     .backgroundColor(Color.Pink)
@@ -160,21 +160,21 @@ Swiper(this.swiperController) {
 ```ts
 let swco:Record<string, number | Color> = {'size':30,'left':0,'color':Color.Red}
 Swiper(this.swiperController) {
-  Text("0")
+  Text('0')
     .width('90%')
     .height('100%')
     .backgroundColor(Color.Gray)
     .textAlign(TextAlign.Center)
     .fontSize(30)
 
-  Text("1")
+  Text('1')
     .width('90%')
     .height('100%')
     .backgroundColor(Color.Green)
     .textAlign(TextAlign.Center)
     .fontSize(30)
 
-  Text("2")
+  Text('2')
     .width('90%')
     .height('100%')
     .backgroundColor(Color.Pink)
@@ -209,19 +209,19 @@ struct SwiperDemo {
   build() {
     Column({ space: 5 }) {
       Swiper(this.swiperController) {
-        Text("0")
+        Text('0')
           .width(250)
           .height(250)
           .backgroundColor(Color.Gray)
           .textAlign(TextAlign.Center)
           .fontSize(30)
-        Text("1")
+        Text('1')
           .width(250)
           .height(250)
           .backgroundColor(Color.Green)
           .textAlign(TextAlign.Center)
           .fontSize(30)
-        Text("2")
+        Text('2')
           .width(250)
           .height(250)
           .backgroundColor(Color.Pink)
@@ -286,29 +286,29 @@ Swiper(this.swiperController) {
 
 ## 每页显示多个子页面
 
-Swiper支持在一个页面内同时显示多个子组件，通过[displayCount](../reference/arkui-ts/ts-container-swiper.md#属性)属性设置。
+Swiper支持在一个页面内同时显示多个子组件，通过[displayCount](../reference/apis-arkui/arkui-ts/ts-container-swiper.md#属性)属性设置。
 
 ```ts
 Swiper(this.swiperController) {
-  Text("0")
+  Text('0')
     .width(250)
     .height(250)
     .backgroundColor(Color.Gray)
     .textAlign(TextAlign.Center)
     .fontSize(30)
-  Text("1")
+  Text('1')
     .width(250)
     .height(250)
     .backgroundColor(Color.Green)
     .textAlign(TextAlign.Center)
     .fontSize(30)
-  Text("2")
+  Text('2')
     .width(250)
     .height(250)
     .backgroundColor(Color.Pink)
     .textAlign(TextAlign.Center)
     .fontSize(30)
-  Text("3")
+  Text('3')
     .width(250)
     .height(250)
     .backgroundColor(Color.Blue)

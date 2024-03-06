@@ -261,8 +261,8 @@ For details about the error codes, see [Universal Error Codes](../errorcodes/err
 **Example**
 
 ```ts
-import hidebug from '@ohos.hidebug'
-import { BusinessError } from '@ohos.base'
+import hidebug from '@ohos.hidebug';
+import { BusinessError } from '@ohos.base';
 
 try {
   hidebug.startJsCpuProfiling("cpu_profiling");
@@ -290,8 +290,8 @@ Stops the profiling method. `startJsCpuProfiling()` and `stopJsCpuProfiling()` a
 **Example**
 
 ```ts
-import hidebug from '@ohos.hidebug'
-import { BusinessError } from '@ohos.base'
+import hidebug from '@ohos.hidebug';
+import { BusinessError } from '@ohos.base';
 
 try {
   hidebug.startJsCpuProfiling("cpu_profiling");
@@ -327,8 +327,8 @@ For details about the error codes, see [Universal Error Codes](../errorcodes/err
 **Example**
 
 ```ts
-import hidebug from '@ohos.hidebug'
-import { BusinessError } from '@ohos.base'
+import hidebug from '@ohos.hidebug';
+import { BusinessError } from '@ohos.base';
 
 try {
   hidebug.dumpJsHeapData("heapData");

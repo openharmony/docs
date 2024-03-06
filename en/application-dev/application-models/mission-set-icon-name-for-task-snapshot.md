@@ -8,7 +8,7 @@ Figure 1 Mission snapshot of a UIAbility
 
 ![](figures/mission-list-recent.png)
 
-You can also use [UIAbilityContext.setMissionIcon()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetmissionicon) and [UIAbilityContext.setMissionLabel()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetmissionlabel) to customize the icon and name for a mission snapshot. For example, for a UIAbility instance in multiton mode, you can configure the icon and name for each mission snapshot based on different functions.
+You can also use [UIAbilityContext.setMissionIcon()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextsetmissionicon) and [UIAbilityContext.setMissionLabel()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetmissionlabel) to customize the icon and name for a mission snapshot. For example, for a UIAbility instance in multiton mode, you can configure the icon and name for each mission snapshot based on different functions.
 
 This document describes the following operations:
 
@@ -17,17 +17,28 @@ This document describes the following operations:
 
 ## Setting a Mission Snapshot Icon (for System Applications Only)
 
-Call [UIAbilityContext.setMissionIcon()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetmissionicon) to set the icon of a mission snapshot. For details about how to obtain the context, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability). For details about how to obtain the PixelMap information in the example, see [Image Decoding](../media/image-decoding.md).
+Call [UIAbilityContext.setMissionIcon()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextsetmissionicon) to set the icon of a mission snapshot.
+
+For details about how to obtain the context, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability). For details about how to obtain the PixelMap information in the example, see [Image Decoding](../media/image-decoding.md).
 
 ```ts
 import common from '@ohos.app.ability.common';
+import Logger from '../utils/Logger';
+import { BusinessError } from '@ohos.base';
 
-let context: common.UIAbilityContext = ...; // UIAbilityContext
-let pixelMap: PixelMap =...; // PixelMap information of the image.
+const TAG: string = 'EntryAbility';
 
-context.setMissionIcon(pixelMap, (err) => {
+...
+let context: common.UIAbilityContext = this.context; // UIAbilityContext
+
+... // Obtain a pixelMap object.
+
+// Set an icon for the mission snapshot.
+context.setMissionIcon(pixelMap, (err: BusinessError) => {
   if (err.code) {
-    console.error(`Failed to set mission icon. Code is ${err.code}, message is ${err.message}`);
+    Logger.error(TAG, `Failed to set mission icon. Code is ${err.code}, message is ${err.message}`);
+  } else {
+    Logger.info(TAG, `Success to set mission icon.`);
   }
 })
 ```
@@ -40,18 +51,22 @@ Figure 2 Mission snapshot icon
 
 ## Setting a Mission Snapshot Name
 
-Call [UIAbilityContext.setMissionLabel()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetmissionlabel) to set the name of a mission snapshot.
+Call [UIAbilityContext.setMissionLabel()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetmissionlabel) to set the name of a mission snapshot.
 
 ```ts
 import common from '@ohos.app.ability.common';
 import { BusinessError } from '@ohos.base';
+import Logger from '../utils/Logger';
 
+const TAG: string = 'EntryAbility';
+
+...
 let context: common.UIAbilityContext = this.context; // UIAbilityContext
-
+// Set a name for the mission snapshot.
 context.setMissionLabel('test').then(() => {
-  console.info('Succeeded in seting mission label.');
+  Logger.info(TAG, 'Succeeded in seting mission label.');
 }).catch((err: BusinessError) => {
-  console.error(`Failed to set mission label. Code is ${err.code}, message is ${err.message}`);
+  Logger.error(TAG, `Failed to set mission label. Code is ${err.code}, message is ${err.message}`);
 });
 ```
 

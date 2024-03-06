@@ -10,7 +10,7 @@ HUKS提供了接口供应用查询指定密钥是否存在。
    - 指定密钥别名keyAlias，密钥别名最大长度为64字节。
    - 查询密钥需要的属性TAG（默认传空）。
 
-2. 调用接口[OH_Huks_IsKeyItemExist](../../reference/native-apis/_huks_key_api.md#oh_huks_iskeyitemexist)，查询密钥是否存在。
+2. 调用接口[OH_Huks_IsKeyItemExist](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_iskeyitemexist)，查询密钥是否存在。
 
 ```c++
 #include "huks/native_huks_api.h"

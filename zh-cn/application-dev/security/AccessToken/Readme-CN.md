@@ -2,7 +2,7 @@
 
 - [访问控制概述](access-token-overview.md)
 - 应用权限管控
-- [应用权限管控概述](app-permission-mgmt-overview.md)
+  - [应用权限管控概述](app-permission-mgmt-overview.md)
   - 申请应用权限
     - [选择申请权限的方式](determine-application-mode.md)
     - [声明权限](declare-permissions.md)

@@ -14,7 +14,7 @@ import access from '@ohos.bluetooth.access';
 ```
 
 
-## access.enableBluetooth<a name="enableBluetooth"></a>
+## access.enableBluetooth
 
 enableBluetooth(): void
 
@@ -45,7 +45,7 @@ try {
 ```
 
 
-## access.disableBluetooth<a name="disableBluetooth"></a>
+## access.disableBluetooth
 
 disableBluetooth(): void
 
@@ -76,7 +76,7 @@ try {
 ```
 
 
-## access.getState<a name="getState"></a>
+## access.getState
 
 getState(): BluetoothState
 
@@ -107,6 +107,128 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 import { BusinessError } from '@ohos.base';
 try {
     let state = access.getState();
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+
+## access.factoryReset<sup>11+</sup>
+
+factoryReset(callback: AsyncCallback&lt;void&gt;): void
+
+Restores the Bluetooth factory settings.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH and ohos.permission.MANAGE_BLUETOOTH
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Parameters**
+
+| Name  | Type                                              | Mandatory | Description                                                      |
+| -------- | ------------------------------------------------- | ----- | ---------------------------------------------------------- |
+| callback     | AsyncCallback&lt;void&gt;             | Yes   | Callback invoked to return the result.<br> If the Bluetooth factory settings are restored successfully, **err** is **undefined**. Otherwise, **err** is an error object.      |
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+|ID  | Error Message          |
+| -------- | ------------------ |
+|2900001   | Service stopped.   |
+|2900099   | Operation failed.  |
+
+**Example**
+
+```js
+import { AsyncCallback, BusinessError } from '@ohos.base';
+try {
+    access.factoryReset((err: BusinessError) => {
+        if (err) {
+            console.error("factoryReset error");
+        }
+    });
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+
+## access.factoryReset<sup>11+</sup>
+
+factoryReset(): Promise&lt;void&gt;
+
+Restores the Bluetooth factory settings.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH and ohos.permission.MANAGE_BLUETOOTH
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Return value**
+
+| Type                             | Description             |
+| --------------------------------- | ---------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+|ID  | Error Message          |
+| -------- | ------------------ |
+|2900001   | Service stopped.   |
+|2900099   | Operation failed.  |
+
+**Example**
+
+```js
+import { AsyncCallback, BusinessError } from '@ohos.base';
+try {
+    access.factoryReset().then(() => {
+        console.info("factoryReset");
+    });
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+
+## access.getLocalAddress<sup>11+</sup><a name="getLocalAddress"></a>
+
+getLocalAddress(): string;
+
+Obtains the Bluetooth address of the local device.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH and ohos.permission.GET_BLUETOOTH_LOCAL_MAC
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Return value**
+
+| Type     | Description               |
+| --------- | ------------------ |
+| string    | Bluetooth address obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+|ID  | Error Message          |
+| -------- | ------------------ |
+|2900001   | Service stopped.   |
+|2900099   | Operation failed.  |
+
+**Example**
+
+```js
+try {
+    let localAddr = access.getLocalAddress();
 } catch (err) {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
@@ -153,7 +275,7 @@ try {
 ```
 
 
-## access.off('stateChange')<a name="stateChange"></a>
+## access.off('stateChange')
 
 off(type: "stateChange", callback?: Callback&lt;BluetoothState&gt;): void
 
@@ -194,7 +316,7 @@ try {
 ```
 
 
-## BluetoothState<a name="BluetoothState"></a>
+## BluetoothState
 
 Enumerates the Bluetooth states.
 

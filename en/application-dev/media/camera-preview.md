@@ -4,7 +4,7 @@ Preview is the image you see after you start the camera application but before y
 
 ## How to Develop
 
-Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
+Read [Camera](../reference/apis-camera-kit/js-apis-camera.md) for the API reference.
 
 1. Import the camera module, which provides camera-related attributes and methods.
      
@@ -14,10 +14,12 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
    ```
 
 2. Create a surface.
-     
-    The **\<XComponent>**, the capabilities of which are provided by the UI, offers the surface for preview streams. For details, see [XComponent](../reference/arkui-ts/ts-basic-components-xcomponent.md).
 
-    **NOTE**: The preview stream and video output stream must have the same aspect ratio of the resolution. For example, the aspect ratio in the code snippet below is 1920:1080 (which is equal to 16:9), then the aspect ratio of the resolution of the preview stream must also be 16:9. This means that the resolution can be 640:360, 960:540, 1920:1080, or the like.
+    The **\<XComponent>**, the capabilities of which are provided by the UI, offers the surface for preview streams. For details, see [XComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md).
+
+    > **NOTE**
+    >
+    > The preview stream and video output stream must have the same aspect ratio of the resolution. For example, the aspect ratio in the code snippet below is 1920:1080 (which is equal to 16:9), then the aspect ratio of the resolution of the preview stream must also be 16:9. This means that the resolution can be 640:360, 960:540, 1920:1080, or the like.
 
    ```ets
    // xxx.ets
@@ -51,7 +53,7 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
    }
    ```
 
-3. Call **previewProfiles()** in the **CameraOutputCapability** class to obtain the preview output capabilities, in the format of an **previewProfilesArray** array, supported by the current device. Then call **createPreviewOutput()** to create a **PreviewOutput** object, with the first parameter set to the first item in the **previewProfilesArray** array and the second parameter set to the surface ID obtained in step 2.
+3. Use **previewProfiles** in the [CameraOutputCapability](../reference/apis-camera-kit/js-apis-camera.md#cameraoutputcapability) class to obtain the preview output capabilities, in the format of an **previewProfilesArray** array, supported by the current device. Then call [createPreviewOutput](../reference/apis-camera-kit/js-apis-camera.md#createpreviewoutput) to create a **PreviewOutput** object, with the first parameter set to the first item in the **previewProfilesArray** array and the second parameter set to the surface ID obtained in step 2.
      
    ```ts
    function getPreviewOutput(cameraManager: camera.CameraManager, cameraOutputCapability: camera.CameraOutputCapability, surfaceId: string): camera.PreviewOutput | undefined {
@@ -67,15 +69,37 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
    }
    ```
 
-4. Call **start()** to start outputting the preview stream. If the call fails, an error code is returned. For details, see [Camera Error Codes](../reference/apis/js-apis-camera.md#cameraerrorcode).
+4. Call [Session.start](../reference/apis-camera-kit/js-apis-camera.md#start11) to start outputting the preview stream. If the call fails, an error code is returned. For details, see [CameraErrorCode](../reference/apis-camera-kit/js-apis-camera.md#cameraerrorcode).
      
    ```ts
-   function startPreviewOutput(previewOutput: camera.PreviewOutput): void {
-     previewOutput.start().then(() => {
-       console.info('Callback returned with previewOutput started.');
-     }).catch((err: BusinessError) => {
-       console.info('Failed to previewOutput start '+ err.code);
-     });
+   async function startPreviewOutput(cameraManager: camera.CameraManager, previewOutput: camera.PreviewOutput): Promise<void> {
+     let cameraArray: Array<camera.CameraDevice> = [];
+     cameraArray = cameraManager.getSupportedCameras();
+     if (cameraArray.length == 0) {
+       console.error('no camera.');
+       return;
+     }
+     // Obtain the supported modes.
+     let sceneModes: Array<camera.SceneMode> = cameraManager.getSupportedSceneModes(cameraArray[0]);
+     let isSupportPhotoMode: boolean = sceneModes.indexOf(camera.SceneMode.NORMAL_PHOTO) >= 0;
+     if (!isSupportPhotoMode) {
+       console.error('photo mode not support');
+       return;
+     }
+     let cameraInput: camera.CameraInput | undefined = undefined;
+     cameraInput = cameraManager.createCameraInput(cameraArray[0]);
+     if (cameraInput === undefined) {
+       console.error('cameraInput is undefined');
+       return;
+     }
+     // Open a camera.
+     await cameraInput.open();
+     let session: camera.PhotoSession = cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO) as camera.PhotoSession;
+     session.beginConfig();
+     session.addInput(cameraInput);
+     session.addOutput(previewOutput);
+     await session.commitConfig();
+     await session.start();
    }
    ```
 
@@ -104,12 +128,12 @@ During camera application development, you can listen for the preview output str
   }
   ```
 
-- Register the **'error'** event to listen for preview output errors. The callback function returns an error code when an API is incorrectly used. For details about the error code types, see [Camera Error Codes](../reference/apis/js-apis-camera.md#cameraerrorcode).
+- Register the **'error'** event to listen for preview output errors. The callback function returns an error code when an API is incorrectly used. For details about the error code types, see [Camera Error Codes](../reference/apis-camera-kit/js-apis-camera.md#cameraerrorcode).
     
   ```ts
   function onPreviewOutputError(previewOutput: camera.PreviewOutput): void {
     previewOutput.on('error', (previewOutputError: BusinessError) => {
-      console.info(`Preview output error code: ${previewOutputError.code}`);
+      console.error(`Preview output error code: ${previewOutputError.code}`);
     });
   }
   ```

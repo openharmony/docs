@@ -2,22 +2,28 @@
 
 ## Overview
 
-The Socket Connection module allows an application to transmit data over a socket connection through the TCP, UDP, or TLS protocol.
+The Socket Connection module allows an application to transmit data over a socket connection through the TCP, UDP, Multicast, or TLS protocol.
 
 ## Basic Concepts
 
 - Socket: An abstraction of endpoints for bidirectional communication between application processes running on different hosts in a network.
 - TCP: Transmission Control Protocol, which is a byte stream–based transport layer communication protocol that is connection-oriented and reliable.
 - UDP: User Datagram Protocol, which is a simple datagram-oriented transport layer communication protocol.
+- Multicast: A UDP-based communication mode that implements broadcast communication between all devices in a group.
+- LocalSocket: An inter-process communication (IPC) mechanism that implements communication between processes on a device without using a network.
 - TLS: Transport Layer Security, which is a protocol that ensures the data confidentiality and integrity between communication programs.
 
 ## When to Use
 
-Applications transmit data over TCP, UDP, or TLS socket connections. The main application scenarios are as follows:
+Applications transmit data over TCP, UDP, Multicast, or TLS socket connections. The main application scenarios are as follows:
 
 - Implementing data transmission over TCP socket or UDP socket connections
 - Implementing data transmission over TCP socket server connections
+- Implementing data transmission over multicast socket connections
+- Implementing data transmission over local socket connections
+- Implementing data transmission over local socket server connections
 - Implementing encrypted data transmission over TLS socket connections
+- Implementing encrypted data transmission over TLS socket server connections
 
 ## Available APIs
 
@@ -25,29 +31,39 @@ For the complete list of APIs and example code, see [Socket Connection](../refer
 
 Socket connection functions are mainly implemented by the **socket** module. The following table describes the related APIs.
 
-| API                            | Description                                                                          |
+| API                            | Description                                                                         |
 | ---------------------------------- | ------------------------------------------------------------------------------ |
 | constructUDPSocketInstance()       | Creates a **UDPSocket** object.                                                     |
 | constructTCPSocketInstance()       | Creates a **TCPSocket** object.                                                     |
 | constructTCPSocketServerInstance() | Creates a **TCPSocketServer** object.                                               |
-| listen()                           | Listens for and accepts TCP socket connections established over the socket. (This API is applicable only to TCP.)   |
-| bind()                             | Binds the IP address and port number.                                                          |
+| constructMulticastSocketInstance() | Creates a **MulticastSocket** object.                                               |
+| constructLocalSocketInstance()       | Creates a **LocalSocket** object.                                                 |
+| constructLocalSocketServerInstance() | Creates a **LocalSocketServer** object.                                           |
+| listen()                           | Subscribes to **connect** events from the client. This API is supported only for TCP and local socket connections.            |
+| bind()                             | Binds an IP address to a port, or binds the address of a local socket.                                       |
 | send()                             | Sends data.                                                                    |
 | close()                            | Closes a socket connection.                                                                    |
-| getState()                         | Obtains the socket connection status.                                                            |
-| connect()                          | Connects to the specified IP address and port. This function is supported only for TCP.                                     |
+| getState()                         | Obtains the status of a socket connection.                                                            |
+| connect()                          | Connects to the specified IP address and port, or connects to a local socket. This API is supported only for TCP and local socket connections.         |
 | getRemoteAddress()                 | Obtains the peer address of the socket connection. This function is supported only for TCP. The **connect** API must have been called before you use this API.                  |
 | setExtraOptions()                  | Sets other properties of the socket connection.                                                  |
-| on(type:&nbsp;'message')           | Subscribes to **message** events of the socket connection.                                              |
-| off(type:&nbsp;'message')          | Unsubscribes from **message** events of the socket connection.                                          |
-| on(type:&nbsp;'close')             | Subscribes to **close** events of the socket connection.                                                  |
-| off(type:&nbsp;'close')            | Unsubscribes from **close** events of the socket connection.                                              |
-| on(type:&nbsp;'error')             | Subscribes to **error** events of the socket connection.                                               |
-| off(type:&nbsp;'error')            | Unsubscribes from **error** events of the socket connection.                                           |
-| on(type:&nbsp;'listening')         | Subscribes to **listening** events of the UDP socket connection.                           |
-| off(type:&nbsp;'listening')        | Unsubscribes from **listening** events of the UDP socket connection.                       |
-| on(type:&nbsp;'connect')           | Subscribes to **connect** events of the TCP socket connection.                                     |
-| off(type:&nbsp;'connect')          | Unsubscribes from **connect** events of the TCP socket connection.                                |
+| getExtraOptions()                  | Obtains other properties of a socket connection. This API is supported only for local socket connections.                           |
+| addMembership()                    | Adds a member to the specified multicast group. This API is supported only for multicast socket connections.                                |
+| dropMembership()                   | Drops a member from the specified multicast group. This API is supported only for multicast socket connections.                                |
+| setMulticastTTL()                  | Sets the time to live (TTL) for multicast packets. This API is supported only for multicast socket connections.                                   |
+| getMulticastTTL()                  | Obtains the TTL for multicast packets. This API is supported only for multicast socket connections.                                   |
+| setLoopbackMode()                  | Sets the loopback mode flag for multicast communication. This API is supported only for multicast socket connections.      |
+| getLoopbackMode()                  | Obtains the loopback mode flag for multicast communication. This API is supported only for multicast socket connections.                              |
+| on(type:&nbsp;'message')           | Subscribes to **message** events of a socket connection.                                              |
+| off(type:&nbsp;'message')          | Unsubscribes from **message** events of a socket connection.                                          |
+| on(type:&nbsp;'close')             | Subscribes to **close** events of a socket connection.                                                  |
+| off(type:&nbsp;'close')            | Unsubscribes from **close** events of a socket connection.                                              |
+| on(type:&nbsp;'error')             | Subscribes to **error** events of a socket connection.                                               |
+| off(type:&nbsp;'error')            | Unsubscribes from **error** events of a socket connection.                                           |
+| on(type:&nbsp;'listening')         | Subscribes to **listening** events of a socket connection. This API is supported only for UDP socket connections.                          |
+| off(type:&nbsp;'listening')        | Unsubscribes from **listening** events of a socket connection. This API is supported only for UDP socket connections.                      |
+| on(type:&nbsp;'connect')           | Subscribes to **message** events of a socket connection. This API is supported only for TCP and local socket connections.                           |
+| off(type:&nbsp;'connect')          | Unsubscribes from **message** events of a socket connection. This API is supported only for TCP and local socket connections.                        |
 
 TLS socket connection functions are mainly provided by the **tls_socket** module. The following table describes the related APIs.
 
@@ -63,13 +79,13 @@ TLS socket connection functions are mainly provided by the **tls_socket** module
 | getRemoteAddress()           | Obtains the peer address of the TLS socket connection.                           |
 | getRemoteCertificate()       | Obtains an object representing a peer certificate.                                  |
 | getSignatureAlgorithms()     | Obtains a list containing signature algorithms shared between the server and client, in descending order of priority.|
-| getState()                   | Obtains the TLS socket connection status.                               |
-| off(type:&nbsp;'close')      | Unsubscribes from **close** events of the TLS socket connection.                       |
-| off(type:&nbsp;'error')      | Unsubscribes from **error** events of the TLS socket connection.                    |
-| off(type:&nbsp;'message')    | Unsubscribes from **message** events of the TLS socket connection.                   |
-| on(type:&nbsp;'close')       | Subscribes to **close** events of the TLS socket connection.                           |
-| on(type:&nbsp;'error')       | Subscribes to **error** events of the TLS socket connection.                        |
-| on(type:&nbsp;'message')     | Subscribes to **message** events of the TLS socket connection.                       |
+| getState()                   | Obtains the status of a TLS socket connection.                               |
+| off(type:&nbsp;'close')      | Unsubscribes from **close** events of a TLS socket connection.                       |
+| off(type:&nbsp;'error')      | Unsubscribes from **error** events of a TLS socket connection.                    |
+| off(type:&nbsp;'message')    | Unsubscribes from **message** events of a TLS socket connection.                   |
+| on(type:&nbsp;'close')       | Subscribes to **close** events of a TLS socket connection.                           |
+| on(type:&nbsp;'error')       | Subscribes to **error** events of a TLS socket connection.                        |
+| on(type:&nbsp;'message')     | Subscribes to **message** events of a TLS socket connection.                       |
 | send()                       | Sends data.                                                |
 | setExtraOptions()            | Sets other properties of the TLS socket connection.                           |
 
@@ -79,19 +95,19 @@ The implementation is similar for UDP socket and TCP socket connections. The fol
 
 1. Import the required **socket** module.
 
-2. Create a TCP socket connection. A **TCPSocket** object is returned.
+2. Create a TCP socket connection. A **TCPSocketConnction** object is returned.
 
-3. (Optional) Subscribe to TCP socket connection events.
+3. (Optional) Subscribe to events of the **TCPSocketConnction** object.
 
 4. Bind the IP address and port number. The port number can be specified or randomly allocated by the system.
 
-5. Sets up a connection to the specified IP address and port number.
+5. Set up a connection to the specified IP address and port number.
 
 6. Send data over the connection.
 
 7. Enable the TCP socket connection to be automatically closed after use.
 
-```js
+```ts
 import socket from '@ohos.net.socket';
 import { BusinessError } from '@ohos.base';
 
@@ -182,7 +198,7 @@ The TCP socket server connection process is described as follows:
 7. Close the connection between the client and the server.
 8. Unsubscribe from events of the **TCPSocketConnection** and **TCPSocketServer** objects.
 
-```js
+```ts
 import socket from '@ohos.net.socket';
 import { BusinessError } from '@ohos.base';
 // Create a TCP socket server connection. A TCPSocketServer object is returned.
@@ -257,6 +273,235 @@ setTimeout(() => {
 }, 30 * 1000);
 ```
 
+## Transmitting Data over Multicast Socket Connections
+
+### How to Develop
+
+1. Import the required **socket** module.
+
+2. Create a **MulticastSocket** object.
+
+3. Specify a **MulticastSocket** object by the IP address and port number, and add it to the multicast group.
+
+4. Subscribe to **message** events.
+
+5. Send data in broadcast mode. All **MulticastSocket** objects in the same multicast group for which **message** event listening has been enabled will receive the data.
+
+6. Unsubscribe from **message** events.
+
+7. Drop the **MulticastSocket** object from the multicast group.
+
+```ts
+import socket from '@ohos.net.socket'
+// Create a MulticastSocket object.
+let multicast = socket.constructMulticastSocketInstance();
+
+let addr : socket.NetAddress = {
+  address: '239.255.0.1',
+  port: 32123,
+  family: 1
+}
+
+// Add the MulticastSocket object to a multicast group.
+multicast.addMembership(addr, (err: Object) => {
+  if (err) {
+    console.info('add err: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('add ok');
+})
+
+// Subscribe to message events and convert the received data of the ArrayBuffer type to strings.
+class SocketInfo {
+  message: ArrayBuffer = new ArrayBuffer(1);
+  remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
+}
+multicast.on('message', (data: SocketInfo) => {
+  console.info ('Received data:' + JSON.stringify (data))
+  const uintArray = new Uint8Array(data.message)
+  let str = ''
+  for (let i = 0; i < uintArray.length; ++i) {
+    str += String.fromCharCode(uintArray[i])
+  }
+  console.info(str)
+})
+
+// Send data over the connection.
+multicast.send({ data:'Hello12345', address: addr }, (err: Object) => {
+  if (err) {
+    console.info ('Sending failed:' + JSON.stringify (err));
+    return;
+  }
+  console.info('Sending success');
+})
+
+// Unsubscribe from message events.
+multicast.off('message')
+
+// Drop the MulticastSocket object from the multicast group.
+multicast.dropMembership(addr, (err: Object) => {
+  if (err) {
+    console.info('drop err ' + JSON.stringify(err));
+    return;
+  }
+  console.info('drop ok');
+})
+```
+
+## Transmitting Data over Local Socket Connections
+
+### How to Develop
+
+1. Import the required **socket** module.
+
+2. Call **constructLocalSocketInstance** to create a **LocalSocket** object.
+
+3. Subscribe to **message** events of the **LocalSocket** object and other events (optional).
+
+4. Connect to server based on the specified address of the local socket file.
+
+5. Send data over the connection. 
+
+6. If the socket connection is no longer needed, unsubscribe from message events and close the connection.
+
+```ts
+import socket from '@ohos.net.socket';
+
+// Create a local socket connection. A LocalSocket object is returned.
+let client = socket.constructLocalSocketInstance();
+client.on('message', (value: socket.LocalSocketMessageInfo) => {
+  const uintArray = new Uint8Array(value.message)
+  let messageView = '';
+  for (let i = 0; i < uintArray.length; i++) {
+    messageView = String.fromCharCode(uintArray[i]);
+  }
+  console.log('total receive: ' + JSON.stringify(value));
+  console.log('message information: ' + messageView);
+});
+client.on('connect', () => {
+  console.log("on connect");
+});
+client.on('close', () => {
+  console.log("on close");
+});
+
+// Specify the address of local socket file to connect to the server.
+let connectOpt: socket.LocalConnectOptions = {
+  address: {
+    address: '/tmp/testSocket'
+  },
+  timeout: 6000
+}
+let sendOpt: socket.LocalSendOptions = {
+  data: 'Hello world!'
+}
+client.connect(connectOpt).then(() => {
+  console.log('connect success')
+  client.send(sendOpt).then(() => {
+  console.log('send success')
+  }).catch((err: Object) => {
+    console.log('send failed: ' + JSON.stringify(err))
+  })
+}).catch((err: Object) => {
+  console.log('connect fail: ' + JSON.stringify(err));
+});
+
+// If the socket connection is no longer needed, unsubscribe from message events and close the connection.
+client.off('message');
+client.off('connect');
+client.off('close');
+client.close().then(() => {
+  console.log('close client success')
+}).catch((err: Object) => {
+  console.log('close client err: ' + JSON.stringify(err))
+})
+```
+
+## Transmitting Data over Local Socket Server Connections
+
+### How to Develop
+
+The local socket connection process on the server is described as follows:
+
+1. Import the required **socket** module.
+
+2. Call **constructLocalSocketServerInstance** to create a **LocalSocketServer** object.
+
+3. Bind the address of the local socket file.
+
+4. Subscribe to **connect** events of the local socket client and other events (optional).
+
+5. When the local socket client is connected, obtain the **LocalSocketConnection** object through the callback of the **connect** event.
+
+6. Subscribe to **message** events of the **LocalSocketConnection** object and other events (optional).
+
+7. Send messages to the local socket client through the **LocalSocketConnection** object.
+
+8. When the communication ends, close the local socket connection.
+
+9. Unsubscribe from events of the **LocalSocketConnection** and **LocalSocketServer** objects.
+
+```ts
+import socket from '@ohos.net.socket';
+// Create a local socket server connection. A LocalSocketServer object is returned.
+let server = socket.constructLocalSocketServerInstance();
+// Bind the local IP address and port number for listening.
+let listenAddr: socket.LocalAddress = {
+  address: '/tmp/testSocket'
+}
+server.listen(listenAddr).then(() => {
+  console.log("listen success");
+}).catch((err: Object) => {
+  console.log("listen fail: " + JSON.stringify(err));
+});
+
+// Subscribe to connect events of the LocalSocketServer object.
+server.on("connect", (connection: socket.LocalSocketConnection) => {
+  // Subscribe to events of the LocalSocketConnection object.
+  connection.on("error", (err) => {
+    console.log("on error success");
+  });
+  connection.on('message', (value: socket.LocalSocketMessageInfo) => {
+    const uintArray = new Uint8Array(value.message);
+    let messageView = '';
+    for (let i = 0; i < uintArray.length; i++) {
+      messageView = String.fromCharCode(uintArray[i]);
+    }
+    console.log('total: ' + JSON.stringify(value));
+    console.log('message information: ' + messageView);
+  });
+
+  connection.on('error', (err) => {
+    console.log("err:" + JSON.stringify(err));
+  })
+
+  // Send data to the client.
+  let sendOpt : socket.LocalSendOptions = {
+    data: 'Hello world!'
+  };
+  connection.send(sendOpt).then(() => {
+    console.log('send success');
+  }).catch((err: Object) => {
+    console.log('send failed: ' + JSON.stringify(err));
+  })
+
+  // Close the connection between the client and the server.
+  connection.close().then(() => {
+    console.log('close success');
+  }).catch((err: Object) => {
+    console.log('close failed: ' + JSON.stringify(err));
+  });
+
+  // Unsubscribe from events of the LocalSocketConnection object.
+  connection.off('message');
+  connection.off('error');
+});
+
+// Unsubscribe from events of the LocalSocketServer object.
+server.off('connect');
+server.off('error');
+```
+
 ## Implementing Encrypted Data Transmission over TLS Socket Connections
 
 ### How to Develop
@@ -269,15 +514,15 @@ The TLS socket connection process on the client is described as follows:
 
 3. For two-way authentication, upload the client CA certificate and digital certificate. For one-way authentication, upload the client CA certificate.
 
-4. Create a TLS socket connection. A **TLSsocket** object is returned.
+4. Create a TLS socket connection. A **TLSSocketConnection** object is returned.
 
-5. (Optional) Subscribe to TLS socket connection events.
+5. (Optional) Subscribe to events of the **TLSSocketConnection** object.
 
 6. Send data over the connection.
 
 7. Enable the TLS socket connection to be automatically closed after use.
 
-```js
+```ts
 import socket from '@ohos.net.socket';
 import { BusinessError } from '@ohos.base';
 
@@ -285,9 +530,9 @@ class SocketInfo {
   message: ArrayBuffer = new ArrayBuffer(1);
   remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
 }
-// Create a TLS socket connection (for two-way authentication). A TLSSocket object is returned.
+// Create a TLS socket connection (for two-way authentication). A TLSSocketConnection object is returned.
 let tlsTwoWay = socket.constructTLSSocketInstance();
-// Subscribe to TLS socket connection events.
+// Subscribe to events of the TLSSocketConnection object.
 tlsTwoWay.on('message', (value: SocketInfo) => {
   console.log("on message");
   let buffer = value.message;
@@ -353,10 +598,10 @@ tlsTwoWay.close((err: BusinessError) => {
   tlsTwoWay.off('close');
 });
 
-// Create a TLS socket connection (for one-way authentication). A TLSsocket object is returned.
+// Create a TLS socket connection (for one-way authentication). A TLSSocketConnection object is returned.
 let tlsOneWay = socket.constructTLSSocketInstance(); // One way authentication
 
-// Subscribe to TLS socket connection events.
+// Subscribe to events of the TLSSocketConnection object.
 tlsTwoWay.on('message', (value: SocketInfo) => {
   console.log("on message");
   let buffer = value.message;
@@ -411,4 +656,94 @@ tlsTwoWay.close((err: BusinessError) => {
   tlsTwoWay.off('connect');
   tlsTwoWay.off('close');
 });
+```
+
+## Implementing Encrypted Data Transmission over TLS Socket Server Connections
+
+### How to Develop
+
+The TLS socket connection process on the server is described as follows:
+
+1. Import the required **socket** module.
+
+2. Start the service and bind the IP address and port number to set up a TLS socket connection. Then, create and initialize a TLS session, and load and verify the certificate key.
+
+3. Subscribe to **connect** events of the **TLSSocketServer** object.
+
+4. Obtain a **TLSSocketConnection** object through the callback when the client initiates a TLS socket connection.
+
+5. Subscribe to events of the **TLSSocketConnection** object.
+
+6. Send data over the connection.
+
+7. Close the TLS socket connection if it is no longer needed.
+
+8. Unsubscribe from events of the **TLSSocketConnection** and **TLSSocketServer** objects.
+
+```ts
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let tlsConnectOptions: socket.TLSConnectOptions = {
+  address: {
+    address: '192.168.xx.xxx',
+    port: 8080
+  },
+  secureOptions: {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: socket.Protocol.TLSv12,
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256"
+  },
+  ALPNProtocols: ["spdy/1", "http/1.1"]
+}
+tlsServer.listen(tlsConnectOptions).then(() => {
+  console.log("listen callback success");
+}).catch((err: BusinessError) => {
+  console.log("failed" + err);
+});
+
+class SocketInfo {
+  message: ArrayBuffer = new ArrayBuffer(1);
+  remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
+}
+let callback = (value: SocketInfo) => {
+  let messageView = '';
+  for (let i: number = 0; i < value.message.byteLength; i++) {
+    let uint8Array = new Uint8Array(value.message)
+    let messages = uint8Array[i]
+    let message = String.fromCharCode(messages);
+    messageView += message;
+  }
+  console.log('on message message: ' + JSON.stringify(messageView));
+  console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
+}
+tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
+  client.on('message', callback);
+
+  // Send data over the connection.
+  client.send('Hello, client!').then(() => {
+    console.log('send success');
+  }).catch((err: BusinessError) => {
+    console.log('send fail');
+  });
+
+  // Close the connection.
+  client.close().then(() => {
+    console.log('close success');
+  }).catch((err: BusinessError) => {
+    console.log('close fail');
+  });
+
+  // You can pass the callback of the on function if you want to unsubscribe from a certain type of events. If you do not pass the callback, you will unsubscribe from all events.
+  client.off('message', callback);
+  client.off('message');
+});
+
+// Unsubscribe from events of the TLSSocketServer object.
+tlsServer.off('connect');
 ```

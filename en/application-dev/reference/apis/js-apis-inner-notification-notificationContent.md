@@ -18,7 +18,8 @@ The **NotificationContent** module provides APIs for defining the notification c
 | longText       | [NotificationLongTextContent](#notificationlongtextcontent)                | No | No | Long text.|
 | multiLine      | [NotificationMultiLineContent](#notificationmultilinecontent)              | No | No | Multi-line text.  |
 | picture        | [NotificationPictureContent](#notificationpicturecontent)                  | No | No | Picture-attached.  |
-| systemLiveView<sup>11+</sup> | [NotificationSystemLiveViewContent](#notificationsystemliveviewcontent)    | No | No | Live view (for system applications only).|
+| systemLiveView<sup>11+</sup> | [NotificationSystemLiveViewContent](#notificationsystemliveviewcontent)    | No | No | System live view (for system applications only).|
+| liveView<sup>11+</sup>       | [NotificationLiveViewContent](#notificationliveviewcontent11)              | No | No | Common live view.<br>**System API**: This is a system API.|
 
 ## NotificationBasicContent
 
@@ -149,3 +150,33 @@ Describes the notification progress.
 | maxValue        | number         | No | No | Maximum progress value.                      |
 | currentValue    | number         | No | No | Current progress value.                      |
 | isPercentage    | boolean        | No | No | Whether to show the progress in percentage.                  |
+
+## NotificationLiveViewContent<sup>11+</sup>
+
+Describes the common live view.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**System API**: This is a system API.
+
+| Name          | Type                                                               | Read-only| Mandatory| Description                                                 |
+| -------------- | ------------------------------------------------------------------ | --- | --- | ------------------------------------------------------|
+| status         | [LiveViewStatus](#liveviewstatus11)                                | No | Yes | Notification status.                 |
+| version        | number                                                             | No | No | Version number of the notification. If the version number stored in the database is 0xffffffff, the value of this parameter is not verified for the update and ended states. Otherwise, it needs to be verified and it must be greater than the version number stored in the database to pass the verification. If this parameter is left blank, the default value **0xffffffff** is used.|
+| extraInfo      | [key: string] object                                               | No | No | Extra information of the live view.          |
+| pictureInfo    | [key: string] Array\<[image.PixelMap](js-apis-image.md#pixelmap7)> | No | No | Extra image information of the live view.|
+
+## LiveViewStatus<sup>11+</sup>
+
+Describes the status of the common live view.
+
+**System capability**: SystemCapability.Security.AccessToken
+
+**System API**: This is a system API.
+
+| Name                        | Value|   Description  |
+| ---------------------------- |----|----------|
+| LIVE_VIEW_CREATE             | 0  | The live view is created.    |
+| LIVE_VIEW_INCREMENTAL_UPDATE | 1  | The live view is updated in incremental mode.|
+| LIVE_VIEW_END                | 2  | The live view is ended.    |
+| LIVE_VIEW_FULL_UPDATE        | 3  | The live view is updated in full mode.|

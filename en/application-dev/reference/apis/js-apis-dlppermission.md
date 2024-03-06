@@ -1,6 +1,6 @@
-# \@ohos.dlpPermission (DLP)
+# @ohos.dlpPermission (DLP)
 
-Data loss prevention (DLP) is a system solution provided by OpenHarmony to prevent data disclosure. The **dlpPermission** module provides APIs for cross-device file access management, encrypted storage, and access authorization.
+Data loss prevention (DLP) is a system solution provided to prevent data disclosure. The **dlpPermission** module provides APIs for cross-device file access management, encrypted storage, and access authorization.
 
 > **NOTE**
 >
@@ -976,7 +976,7 @@ try {
   }; // Request parameters.
   dlpPermission.startDLPManagerForResult(context, want).then((res) => {
     console.info('res.resultCode', res.resultCode);
-    console.info('res.want', JSON.stringifg(res.want));
+    console.info('res.want', JSON.stringify(res.want));
   }); // Start the DLP manager application.
 } catch (err) {
   console.error('error', err.code, err.message); // Error reported if the operation fails.
@@ -2782,7 +2782,7 @@ Sets sandbox application configuration. This API uses a promise to return the re
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| configInfo | string | Yes| Sandbox application configuration to set. |
+| configInfo | string | Yes| Sandbox application configuration.|
 
 **Return value**
 
@@ -2885,7 +2885,7 @@ import { BusinessError } from '@ohos.base';
 try {
   dlpPermission.getSandboxAppConfig().then((res) => {
     console.info('res', JSON.stringify(res));
-  }); // Obtain sandbox application configuration.
+  }); // Obtain the sandbox application configuration.
 } catch (err) {
   console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Error reported if the operation fails.
 }

@@ -11,12 +11,12 @@
 
 数据管理服务仅支持数据库的基本访问或数据托管，如果有业务处理，需要将业务处理封装成接口，给数据访问方调用。
 
-如果业务过于复杂，无法放到数据访问方，建议通过[DataShareExtensionAbility](../reference/apis/js-apis-application-dataShareExtensionAbility.md)拉起数据提供方实现功能。
+如果业务过于复杂，无法放到数据访问方，建议通过[DataShareExtensionAbility](../reference/apis-arkdata/js-apis-application-dataShareExtensionAbility-sys.md)拉起数据提供方实现功能。
 
 
 ## 运作机制
 
-可以通过数据管理服务进行代理访问的数据分为以下两种：
+可以通过数据管理服务进行代理访问的数据分为以下三种：
 
 - 持久化数据：归属于数据提供方的数据库，这类数据存储于数据提供方的沙箱，可以在数据提供方中通过声明的方式进行共享，按表为粒度配置为可以被其他应用访问的数据表。
 
@@ -24,12 +24,16 @@
 - 过程数据：托管在数据管理服务上的过程数据，这类数据存储于数据管理服务的沙箱，格式为json或byte数据，无人订阅10天后自动删除。
 
 
+- 动态数据：托管在设备上的动态数据，这类数据存储于内存中，设备重启之后自动删除。只限于调用enableSilentProxy和disableSilentProxy接口设置的数据。
+
+
 | 数据类型  | 存储位置      | 数据格式        | 有效期          | 适用场景                              |
 | ----- | --------- | ----------- | ------------ | --------------------------------- |
 | 持久化数据 | 数据提供方的沙箱  | 数据库中的数据表    | 永久存储         | 适用于数据格式类似关系型数据库的相关场景，如日程，会议等      |
 | 过程数据  | 数据管理服务的沙箱 | json或byte数据 | 无人订阅10天后自动删除 | 适用于数据有时效性且数据格式较简单的相关场景，如步数，天气，心率等 |
+| 动态数据  | 数据管理服务的内存 | key-value数据 | 设备重启之后自动删除 | 适用于动态关闭/打开静默访问通道的场景。例如：升级过程中为了保证数据正确性可以动态关闭静默访问，升级结束后再调用相关接口打开静默访问。调用接口生成的开启关闭状态，设备重启之后会清除。只限于调用enableSilentProxy和disableSilentProxy接口设置的数据 |
 
-​
+
 
 图1 静默数据访问视图
 
@@ -55,7 +59,7 @@
 
 ## 接口说明
 
-以下是静默数据访问的相关接口，大部分为异步接口。异步接口均有callback和Promise两种返回形式，下表均以callback形式为例，更多接口及使用方式请见[数据共享](../reference/apis/js-apis-data-dataShare.md)。
+以下是静默数据访问的相关接口，大部分为异步接口。异步接口均有callback和Promise两种返回形式，下表均以callback形式为例，更多接口及使用方式请见[数据共享](../reference/apis-arkdata/js-apis-data-dataShare-sys.md)。
 
 ### 通用接口
 
@@ -80,6 +84,13 @@
 | ---------------------------------------- | ------------------ |
 | publish(data: Array&lt;PublishedItem&gt;, bundleName: string, version: number, callback: AsyncCallback&lt;Array&lt;OperationResult&gt;&gt;): void | 发布数据，将数据托管至数据管理服务。 |
 | on(type: 'publishedDataChange', uris: Array&lt;string&gt;, subscriberId: string, callback: AsyncCallback&lt;PublishedDataChangeNode&gt;): Array&lt;OperationResult&gt; | 订阅已发布数据的数据变更通知。    |
+
+### 动态数据
+
+| 接口名称                                     | 描述                 |
+| ---------------------------------------- | ------------------ |
+| enableSilentProxy(context: Context, uri?: string): Promise&lt;void&gt; | 数据提供方动态开启静默访问。<br />当访问方通过静默访问调用DataShare相关接口的时候，校验静默访问的开关状态。<br />如果静默访问的是开启的，DataShare相关接口会执行原逻辑。 |
+| disableSilentProxy(context: Context, uri?: string): Promise&lt;void&gt; | 数据提供方来动态关闭静默访问。<br />当访问方通过静默访问调用DataShare相关接口的时候，校验静默访问的开关状态。<br />如果静默访问的是关闭的，DataShare相关接口接口将会直接返回。 |
 
 
 
@@ -339,5 +350,47 @@
    }
    ```
 
-   ​
+## 动态数据实现说明
+
+动态数据实现静默访问只针对数据提供方。以动态开启静默访问为例，说明开发步骤。
+
+### 数据提供方应用的开发
+
+数据提供方调用开启动态开启静默访问接口，来开启静默访问功能。此接口是搭配data_share_config.json文件中isSilentProxyEnable字段进行工作的。支持的配置可参考[data_share_config.json配置](./share-data-by-datashareextensionability.md)
+
+> 注意：
+>
+> - 该步骤为可选，可以不对data_share_config.json文件中isSilentProxyEnable字段进行配置，默认为true，默认为开启静默访问功能。
+> - 校验静默访问是否开启，会优先校验enableSilentProxy/disableSilentProxy接口设置的开关状态，其次会校验data_share_config.json文件中isSilentProxyEnable字段。
+> - 不调用enableSilentProxy/disableSilentProxy接口时，优先会校验data_share_config.json文件中isSilentProxyEnable字段。
+> - 不调用enableSilentProxy/disableSilentProxy接口，也不配置data_share_config.json文件中isSilentProxyEnable字段时，默认静默访问是开启的。
+
+1. 导入基础依赖包。
+
+   ```ts
+   import dataShare from '@ohos.data.dataShare';
+   import UIAbility from '@ohos.app.ability.UIAbility';
+   import window from '@ohos.window';
+   ```
+
+2. 定义与数据提供方通信的URI字符串。
+
+   ```ts
+   let dseUri = ('datashare:///com.acts.datasharetest/entry/DB00/TBL00');
+   ```
+
+3. 创建工具接口类对象。
+
+   ```ts
+   let abilityContext: Context;
+   
+   export default class EntryAbility extends UIAbility {
+     onWindowStageCreate(windowStage: window.WindowStage) {
+       abilityContext = this.context;
+       dataShare.enableSilentProxy(abilityContext, dseUri);
+     }
+   }
+   ```
+
+   
 

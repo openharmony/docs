@@ -1,7 +1,7 @@
 # Text Display (Text/Span)
 
 
-The **\<Text>** component is used to display a piece of textual information. For details, see [Text](../reference/arkui-ts/ts-basic-components-text.md).
+The **\<Text>** component is used to display a piece of textual information. For details, see [Text](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md).
 
 
 ## Creating Text
@@ -38,7 +38,7 @@ You can create text in either of the following ways:
 
 ## Adding Child Components
 
-The [\<Span>](../reference/arkui-ts/ts-basic-components-span.md) component can only act as a child of the [\<Text>](../reference/arkui-ts/ts-basic-components-text.md) and [\<RichEditor>](../reference/arkui-ts/ts-basic-components-richeditor.md) components. You can add one or more **\<Span>** child components to a **\<Text>** component to display a piece of information, such as the product description and statement of commitment.
+The [\<Span>](../reference/apis-arkui/arkui-ts/ts-basic-components-span.md) component can only act as a child of the [\<Text>](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md) and [\<RichEditor>](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md) components. You can add one or more **\<Span>** child components to a **\<Text>** component to display a piece of information, such as the product description and statement of commitment.
 
 - Creating a \<Span> Component
 
@@ -137,19 +137,22 @@ The [\<Span>](../reference/arkui-ts/ts-basic-components-span.md) component can o
     .textOverflow({ overflow: TextOverflow.None })
     .maxLines(1)
     .fontSize(12)
-    .border({ width: 1 }).padding(10)
+    .border({ width: 1 })
+    .padding(10)
   Text('I am extra long text, with an ellipse displayed for any excess.')
     .width(250)
     .textOverflow({ overflow: TextOverflow.Ellipsis })
     .maxLines(1)
     .fontSize(12)
-    .border({ width: 1 }).padding(10)
+    .border({ width: 1 })
+    .padding(10)
   Text ('When the text overflows the container, it scrolls.')      
     .width(250)
     .textOverflow({ overflow: TextOverflow.MARQUEE })                 
     .maxLines(1)       
     .fontSize(12)
-    .border({ width: 1 }).padding(10)                       
+    .border({ width: 1 })
+    .padding(10)                       
   ```
 
   ![en-us_image_0000001563060701](figures/en-us_image_0000001563060701.gif)

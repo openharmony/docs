@@ -6,7 +6,7 @@ The input parameter **content** is deleted from **getAudioEffectInfoArray**.
 
 **Change Impact**
 
-Applications that use the involved ArkTS APIs may have compatibility issues.
+Third-party applications that use the involved JavaScript APIs may have compatibility issues.
 
 **Key API/Component Changes**
 

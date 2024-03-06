@@ -27,7 +27,7 @@ The following scenarios are common for native purgeable memory development:
 
 ## How to Develop
 
-The following steps describe how to use the native purgeable memory APIs to apply for a **PurgeableMemory** object, write data to the object, and read data from the object.
+The following walks you through on how to use the native purgeable memory APIs to apply for a **PurgeableMemory** object, write data to the object, and read data from the object.
 
 1. Declare the rules for creating a **PurgeableMemory** object.
     ```c++
@@ -90,7 +90,7 @@ The following steps describe how to use the native purgeable memory APIs to appl
     // Obtain the object content.
     ReqObj* pReqObj = (ReqObj*) OH_PurgeableMemory_GetContent(pPurgmem);
 
-    // End a read operation on the object.
+    // End the read operation on the object.
     OH_PurgeableMemory_EndRead(pPurgmem);
     ```
 

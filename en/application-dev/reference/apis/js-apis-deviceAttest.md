@@ -47,8 +47,8 @@ try {
     } else {
         console.info("auth:" + value.authResult + " software:" + value.softwareResult + " ticket:" + value.ticket);
         console.info("versionIdResult:" + value.softwareResultDetail[0],
-        " patchlevelResult:" + value.softwareResultDetail[1],
-        " roothashResult:" + value.softwareResultDetail[2],
+        " patchLevelResult:" + value.softwareResultDetail[1],
+        " rootHashResult:" + value.softwareResultDetail[2],
         " PCIDResult:" + value.softwareResultDetail[3],
         " reserver:" + value.softwareResultDetail[4]);
     }
@@ -89,8 +89,8 @@ try {
     deviceAttest.getAttestStatus().then((value: deviceAttest.AttestResultInfo) => {
     console.info("auth:" + value.authResult + " software:" + value.softwareResult + " ticket:" + value.ticket);
     console.info("versionIdResult:" + value.softwareResultDetail[0],
-        " patchlevelResult:" + value.softwareResultDetail[1],
-        " roothashResult:" + value.softwareResultDetail[2],
+        " patchLevelResult:" + value.softwareResultDetail[1],
+        " rootHashResult:" + value.softwareResultDetail[2],
         " PCIDResult:" + value.softwareResultDetail[3],
         " reserver:" + value.softwareResultDetail[4]);
     }).catch((error: base.BusinessError) => {
@@ -132,8 +132,8 @@ try {
     let value: deviceAttest.AttestResultInfo = deviceAttest.getAttestStatusSync();
     console.info("auth:" + value.authResult + " software:" + value.softwareResult + " ticket:" + value.ticket);
     console.info("versionIdResult:" + value.softwareResultDetail[0],
-    " patchlevelResult:" + value.softwareResultDetail[1],
-    " roothashResult:" + value.softwareResultDetail[2],
+    " patchLevelResult:" + value.softwareResultDetail[1],
+    " rootHashResult:" + value.softwareResultDetail[2],
     " PCIDResult:" + value.softwareResultDetail[3],
     " reserver:" + value.softwareResultDetail[4]);
 } catch (error) {

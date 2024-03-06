@@ -2,7 +2,7 @@
 
 ## When to Use
 
-Use the native Bundle APIs to obtain application information.
+Use the native bundle APIs to obtain application information.
 
 ## Available APIs
 
@@ -20,7 +20,7 @@ Use the native Bundle APIs to obtain application information.
 
 2. **Add dependencies.**
 
-   After the project is created, the **cpp** directory is created under the project. The directory contains files such as **libentry/index.d.ts**, **hello.cpp**, and **CMakeLists.txt**.
+   After the project is created, the **cpp** directory is created in the project directory. The directory contains files such as **libentry/index.d.ts**, **hello.cpp**, and **CMakeLists.txt**.
 
    1. Open the **src/main/cpp/CMakeLists.txt** file, and add **libbundle_ndk.z.so** to **target_link_libraries**.
 
@@ -39,17 +39,17 @@ Use the native Bundle APIs to obtain application information.
    When the **src/main/cpp/hello.cpp** file is opened, **Init** is called to initialize the API, which is **getCurrentApplicationInfo**.
 
    ```c++
-    EXTERN_C_START
-    static napi_value Init(napi_env env, napi_value exports)
-    {
-        napi_property_descriptor desc[] = {
-            { "getCurrentApplicationInfo", nullptr, GetCurrentApplicationInfo, nullptr, nullptr, nullptr, napi_default, nullptr}
-        };
+   EXTERN_C_START
+   static napi_value Init(napi_env env, napi_value exports)
+   {
+       napi_property_descriptor desc[] = {
+           { "getCurrentApplicationInfo", nullptr, GetCurrentApplicationInfo, nullptr, nullptr, nullptr, napi_default, nullptr}
+       };
    
-        napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
-        return exports;
-    }
-    EXTERN_C_END
+       napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
+       return exports;
+   }
+   EXTERN_C_END
    ```
 
    1. Add the API to the **src/main/cpp/hello.cpp** file.
@@ -83,7 +83,7 @@ Use the native Bundle APIs to obtain application information.
            napi_value appIdentifier;
            napi_create_string_utf8(env, nativeApplicationInfo.appIdentifier, NAPI_AUTO_LENGTH, &appIdentifier);
            napi_set_named_property(env, result, "appIdentifier", appIdentifier);
-           // To prevent memory leakage, manually free the memory.
+           // To prevent memory leak, manually free the memory.
            free(nativeApplicationInfo.bundleName);
            free(nativeApplicationInfo.fingerprint);
            free(nativeApplicationInfo.appId);
@@ -94,50 +94,50 @@ Use the native Bundle APIs to obtain application information.
 
 4. **Call APIs on the JavaScript side.**
 
-    1. Open the **src\main\ets\pages\index.ets** file, and import **libentry.so**.
+   1. Open the **src\main\ets\pages\index.ets** file, and import **libentry.so**.
 
-    2. Call the native API **getCurrentApplicationInfo()** to obtain application information. An example is as follows:
+   2. Call the native API **getCurrentApplicationInfo()** to obtain application information. An example is as follows:
 
-        ```js
-        import hilog from '@ohos.hilog';
-        import testNapi from 'libentry.so';
-        
-        @Entry
-        @Component
-        struct Index {
-        @State message: string = 'Hello World';
-        
-            build() {
-                Row() {
-                Column() {
-                    Text(this.message)
-                    .fontSize(50)
-                    .fontWeight(FontWeight.Bold)
-        
-                    Button(){
-                    Text("GetCurrentApplicationInfo").fontSize(30)
-                    }.type(ButtonType.Capsule)
-                    .margin({
-                    top: 20
-                    })
-                    .backgroundColor('#0D9FFB')
-                    .width('70%')
-                    .height('5%')
-                    .onClick(()=>{
-                    try {
-                        let data = testNapi.getCurrentApplicationInfo();
-                        console.info("getCurrentApplicationInfo success, data is " + JSON.stringify(data));
-                    } catch (error) {
-                        console.error("getCurrentApplicationInfo failed");
-                        this.message = "getCurrentApplicationInfo failed";
-                    }
-                    })
-                }
-                .width('100%')
-                }
-                .height('100%')
-            }
-        }
-        ```
+       ```js
+       import hilog from '@ohos.hilog';
+       import testNapi from 'libentry.so';
+       
+       @Entry
+       @Component
+       struct Index {
+       @State message: string = 'Hello World';
+       
+           build() {
+               Row() {
+               Column() {
+                   Text(this.message)
+                   .fontSize(50)
+                   .fontWeight(FontWeight.Bold)
+       
+                   Button(){
+                   Text("GetCurrentApplicationInfo").fontSize(30)
+                   }.type(ButtonType.Capsule)
+                   .margin({
+                   top: 20
+                   })
+                   .backgroundColor('#0D9FFB')
+                   .width('70%')
+                   .height('5%')
+                   .onClick(()=>{
+                   try {
+                       let data = testNapi.getCurrentApplicationInfo();
+                       console.info("getCurrentApplicationInfo success, data is " + JSON.stringify(data));
+                   } catch (error) {
+                       console.error("getCurrentApplicationInfo failed");
+                       this.message = "getCurrentApplicationInfo failed";
+                   }
+                   })
+               }
+               .width('100%')
+               }
+               .height('100%')
+           }
+       }
+       ```
 
-For details about the API reference, see [Bundle](../reference/native-apis/_bundle.md).
+For details about the APIs, see [Bundle](../reference/native-apis/_bundle.md).

@@ -28,95 +28,112 @@ Defines an accessibility event.
 
 ### Attributes
 
-| Name     | Type                                                        | Readable| Writable| Description                                                        |
-| --------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| eventType | [accessibility.EventType](js-apis-accessibility.md#EventType) \| [accessibility.WindowUpdateType](js-apis-accessibility.md#WindowUpdateType)\| [TouchGuideType](#touchguidetype) \| [GestureType](#gesturetype) \| [PageUpdateType](#pageupdatetype) | Yes  | No  | Event type.<br>**EventType**: accessibility event type.<br>**WindowUpdateType**: Window update type.<br>**TouchGuideType**: touch guide event type.<br>**GestureType**: gesture type.<br>**PageUpdateType**: page update type, which is not supported currently.|
-| target    | [AccessibilityElement](js-apis-inner-application-accessibilityExtensionContext.md#accessibilityelement9) | Yes  | No  | Target component where the event occurs.                                        |
-| timeStamp | number                                                       | Yes  | No  | Timestamp of the event.                                                |
+| Name     | Type                                                        | Readable                                                                          | Writable                                | Description                                                        |
+| --------- | ------------------------------------------------------------ |------------------------------------------------------------------------------|------------------------------------| ------------------------------------------------------------ |
+| eventType | [accessibility.EventType](js-apis-accessibility.md#eventtype) \| [accessibility.WindowUpdateType](js-apis-accessibility.md#windowupdatetype) \| [TouchGuideType](#touchguidetype) \| [GestureType](#gesturetype) \| [PageUpdateType](#pageupdatetype) | Yes  | No  | Event type.<br>**EventType**: accessibility event type.<br>**WindowUpdateType**: Window update type.<br>**TouchGuideType**: touch guide event type.<br>**GestureType**: gesture type.<br>**PageUpdateType**: page update type. This API is not supported yet.|
+| target    | [AccessibilityElement](js-apis-inner-application-accessibilityExtensionContext.md#accessibilityelement9) | Yes                                                                           | No                                 | Target component where the event occurs.                                        |
+| timeStamp | number                                                       | Yes                                                                           | No                                 | Timestamp of the event.                                                |
 
 
 ## AccessibilityElement<sup>10+</sup>
 
 Level-2 module of [AccessibilityElement](js-apis-inner-application-accessibilityExtensionContext.md#accessibilityelement9).
 
+**System capability**: SystemCapability.BarrierFree.Accessibility.Core
+
 **Example**
 
 ```ts
 import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
 
-let AccessibilityElement: AccessibilityElement;
+let accessibilityElement: AccessibilityElement;
 ```
 
 ## ElementAttributeValues<sup>10+</sup>
 
 Level-2 module of [ElementAttributeValues](js-apis-inner-application-accessibilityExtensionContext.md#elementattributevalues).
 
+**System capability**: SystemCapability.BarrierFree.Accessibility.Core
+
 **Example**
 
 ```ts
 import { ElementAttributeValues } from '@ohos.application.AccessibilityExtensionAbility';
 
-let ElementAttributeValues: ElementAttributeValues;
+let elementAttributeValues: ElementAttributeValues;
 ```
 
 ## FocusDirection<sup>10+</sup>
 
 Enumerates the focus directions. It is a level-2 module of [FocusDirection](js-apis-inner-application-accessibilityExtensionContext.md#focusdirection).
 
+**System capability**: SystemCapability.BarrierFree.Accessibility.Core
+
 **Example**
 
 ```ts
 import { FocusDirection } from '@ohos.application.AccessibilityExtensionAbility';
 
-let FocusDirection: FocusDirection;
+let focusDirection: FocusDirection;
 ```
 
 ## ElementAttributeKeys<sup>10+</sup>
 
-ElementAttributeKeys keyof [ElementAttributeValues](js-apis-inner-application-accessibilityExtensionContext.md#elementattributevalues)
+**System capability**: SystemCapability.BarrierFree.Accessibility.Core
+
+| Name     | Type                                                                                                               | Readable  | Writable  | Description                                                |
+| ------- |-------------------------------------------------------------------------------------------------------------------| ---- | ---- |----------------------------------------------------|
+| ElementAttributeKeys | keyof [ElementAttributeValues](js-apis-inner-application-accessibilityExtensionContext.md#elementattributevalues) | Yes   | No   | Key of **ElementAttributeValues**.|
+
 
 **Example**
 
 ```ts
 import { ElementAttributeKeys } from '@ohos.application.AccessibilityExtensionAbility';
 
-let ElementAttributeKeys: ElementAttributeKeys;
+let elementAttributeKeys: ElementAttributeKeys;
 ```
 
 ## FocusType<sup>10+</sup>
 
 Enumerates the focus types. It is a level-2 module of [FocusType](js-apis-inner-application-accessibilityExtensionContext.md#focustype).
 
+**System capability**: SystemCapability.BarrierFree.Accessibility.Core
+
 **Example**
 
 ```ts
 import { FocusType } from '@ohos.application.AccessibilityExtensionAbility';
 
-let FocusType: FocusType;
+let focusType: FocusType;
 ```
 
 ## WindowType <sup>10+</sup>
 
 Enumerates the window types. It is a level-2 module of [WindowType](js-apis-inner-application-accessibilityExtensionContext.md#windowtype).
 
+**System capability**: SystemCapability.BarrierFree.Accessibility.Core
+
 **Example**
 
 ```ts
 import { WindowType } from '@ohos.application.AccessibilityExtensionAbility';
 
-let WindowType: WindowType;
+let windowType: WindowType;
 ```
 
 ## Rect<sup>10+</sup>
 
 Defines a rectangle. It is a level-2 module of [Rect](js-apis-inner-application-accessibilityExtensionContext.md#rect).
 
+**System capability**: SystemCapability.BarrierFree.Accessibility.Core
+
 **Example**
 
 ```ts
 import { Rect } from '@ohos.application.AccessibilityExtensionAbility';
 
-let Rect: Rect;
+let rect: Rect;
 ```
 
 ## GestureType
@@ -143,33 +160,33 @@ Enumerates gesture types.
 | downThenLeft  | string          | Down-then-left gesture.|
 | downThenRight | string          | Down-then-right gesture.|
 | downThenUp    | string          | Down-then-up gesture.|
-| twoFingerSingleTap<sup>11+</sup>    | string          | Two-finger tap gesture.|
-| twoFingerDoubleTap<sup>11+</sup>    | string          | Two-finger double-tap gesture.|
-| twoFingerDoubleTapAndHold<sup>11+</sup>    | string          | Two-finger double-tap and press-and-hold gesture.|
-| twoFingerTripleTap<sup>11+</sup>    | string          | Two-finger triple-tap gesture.|
-| twoFingerTripleTapAndHold<sup>11+</sup>    | string          | Two-finger triple-tap and press-and-hold gesture.|
-| threeFingerSingleTap<sup>11+</sup>    | string          | Three-finger tap gesture.|
-| threeFingerDoubleTap<sup>11+</sup>    | string          | Three-finger double-tap gesture.|
-| threeFingerDoubleTapAndHold<sup>11+</sup>    | string          | Three-finger double-tap and press-and-hold gesture.|
-| threeFingerTripleTap<sup>11+</sup>    | string          | Three-finger triple-tap gesture.|
-| threeFingerTripleTapAndHold<sup>11+</sup>    | string          | Three-finger triple-tap and press-and-hold gesture.|
-| fourFingerSingleTap<sup>11+</sup>    | string          | Four-finger tap gesture.|
-| fourFingerDoubleTap<sup>11+</sup>    | string          | Four-finger double-tap gesture.|
-| fourFingerDoubleTapAndHold<sup>11+</sup>    | string          | Four-finger double-tap and press-and-hold gesture.|
-| fourFingerTripleTap<sup>11+</sup>    | string          | Four-finger triple-tap gesture.|
-| fourFingerTripleTapAndHold<sup>11+</sup>    | string          | Four-finger triple-tap and press-and-hold gesture.|
-| threeFingerSwiperUp<sup>11+</sup>    | string          | Three-finger swipe-up gesture.|
-| threeFingerSwiperDown<sup>11+</sup>    | string          | Three-finger swipe-down gesture.|
-| threeFingerSwiperLeft<sup>11+</sup>    | string          | Three-finger swipe-left gesture.|
-| threeFingerSwiperRight<sup>11+</sup>    | string          | Three-finger swipe-right gesture.|
-| fourFingerSwiperUp<sup>11+</sup>    | string          | Four-finger swipe-up gesture.|
-| fourFingerSwiperDown<sup>11+</sup>    | string          | Four-finger swipe-down gesture.|
-| fourFingerSwiperLeft<sup>11+</sup>    | string          | Four-finger swipe-left gesture.|
-| fourFingerSwiperRight<sup>11+</sup>    | string          | Four-finger swipe-right gesture.|
+| twoFingerSingleTap<sup>11+</sup>  | string          | Two-finger tap gesture.|
+| twoFingerDoubleTap<sup>11+</sup>  | string          | Two-finger double-tap gesture.|
+| twoFingerDoubleTapAndHold<sup>11+</sup> | string          | Two-finger double-tap and press-and-hold gesture.|
+| twoFingerTripleTap<sup>11+</sup>  | string          | Two-finger triple-tap gesture.|
+| twoFingerTripleTapAndHold<sup>11+</sup> | string          | Two-finger triple-tap and press-and-hold gesture.|
+| threeFingerSingleTap<sup>11+</sup> | string          | Three-finger tap gesture.|
+| threeFingerDoubleTap<sup>11+</sup> | string          | Three-finger double-tap gesture.|
+| threeFingerDoubleTapAndHold<sup>11+</sup> | string          | Three-finger double-tap and press-and-hold gesture.|
+| threeFingerTripleTap<sup>11+</sup> | string          | Three-finger triple-tap gesture.|
+| threeFingerTripleTapAndHold<sup>11+</sup> | string          | Three-finger triple-tap and press-and-hold gesture.|
+| fourFingerSingleTap<sup>11+</sup> | string          | Four-finger tap gesture.|
+| fourFingerDoubleTap<sup>11+</sup> | string          | Four-finger double-tap gesture.|
+| fourFingerDoubleTapAndHold<sup>11+</sup> | string          | Four-finger double-tap and press-and-hold gesture.|
+| fourFingerTripleTap<sup>11+</sup> | string          | Four-finger triple-tap gesture.|
+| fourFingerTripleTapAndHold<sup>11+</sup> | string          | Four-finger triple-tap and press-and-hold gesture.|
+| threeFingerSwipeUp<sup>11+</sup>  | string          | Three-finger swipe-up gesture.|
+| threeFingerSwipeDown<sup>11+</sup> | string          | Three-finger swipe-down gesture.|
+| threeFingerSwipeLeft<sup>11+</sup> | string          | Three-finger swipe-left gesture.|
+| threeFingerSwipeRight<sup>11+</sup> | string          | Three-finger swipe-right gesture.|
+| fourFingerSwipeUp<sup>11+</sup>   | string          | Four-finger swipe-up gesture.|
+| fourFingerSwipeDown<sup>11+</sup> | string          | Four-finger swipe-down gesture.|
+| fourFingerSwipeLeft<sup>11+</sup> | string          | Four-finger swipe-left gesture.|
+| fourFingerSwipeRight<sup>11+</sup> | string          | Four-finger swipe-right gesture.|
 
 ## PageUpdateType
 
-Enumerates the page update types. This API is not supported currently.
+Enumerates the page update types. This API is not supported in the current version.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 

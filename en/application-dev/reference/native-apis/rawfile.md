@@ -48,6 +48,7 @@ Provides APIs for operating the **rawfile** directory and its files, including t
 | [OH_ResourceManager_ReadRawFile](#oh_resourcemanager_readrawfile) (const [RawFile](#rawfile) \*rawFile, void \*buf, size_t length) | Reads data from a file in **rawfile**.                              |
 | [OH_ResourceManager_SeekRawFile](#oh_resourcemanager_seekrawfile) (const [RawFile](#rawfile) \*rawFile, long offset, int whence) | Seeks for the data read/write position in a file in **rawfile** based on the specified offset.       |
 | [OH_ResourceManager_GetRawFileSize](#oh_resourcemanager_getrawfilesize) ([RawFile](#rawfile) \*rawFile) | Obtains the size of a file in **rawfile**.                 |
+| [OH_ResourceManager_GetRawFileRemainingLength](#oh_resourcemanager_getrawfileremaininglength) ([RawFile](#rawfile) \*rawFile) | Obtains the remaining size of a raw file.                 |
 | [OH_ResourceManager_CloseRawFile](#oh_resourcemanager_closerawfile) ([RawFile](#rawfile) \*rawFile) | Closes a [RawFile](#rawfile) and releases all associated resources.  |
 | [OH_ResourceManager_GetRawFileOffset](#oh_resourcemanager_getrawfileoffset) (const [RawFile](#rawfile) \*rawFile) | Obtains the current offset of a file in **rawfile**.          |
 | [OH_ResourceManager_GetRawFileDescriptor](#oh_resourcemanager_getrawfiledescriptor) (const [RawFile](#rawfile) \*rawFile, [RawFileDescriptor](_raw_file_descriptor.md) &amp;descriptor) | Opens a file in **rawfile** based on the offset and file length and obtains the FD. |
@@ -310,6 +311,32 @@ Returns the file size obtained.
 
 **Since**
 
+11
+
+
+#### OH_ResourceManager_GetRawFileRemainingLength()
+
+
+```
+int64_t OH_ResourceManager_GetRawFileRemainingLength (RawFile * rawFile)
+```
+
+**Description**
+
+Obtains the remaining size of a raw file.
+
+**Parameters**
+
+| Name    | Description                         |
+| ------- | --------------------------- |
+| rawFile | Pointer to the target [RawFile](#rawfile).|
+
+**Returns**
+
+Returns the remaining size of the raw file.
+
+**Since**
+
 8
 
 
@@ -429,11 +456,11 @@ Reads data of the specified raw file.
 | ------- | --------------------------- |
 | rawFile | Pointer to the [RawFile](#rawfile) to read.|
 | buf     | Pointer to the buffer for receiving the read data.            |
-| length  | Length of the data to read.                 |
+| length  | Length of the data to read.                |
 
 **Returns**
 
-Length of the raw file read. If **length** is less than the file length, **0** is returned.
+Returns the length of the data read if the operation is successful; returns **0** otherwise.
 
 **Since**
 
@@ -511,7 +538,7 @@ Seeks for the data read/write position in a file in **rawfile** based on the spe
 
 **Returns**
 
-If the operation is successful, **0** is returned and the **rawFile** pointer is directed to the new read/write position. If an error occurs, **(long) -1** is returned.
+Returns **0** if the operation is successful, and the **rawFile** pointer is directed to the new read/write position. Returns **(int) -1** if an error occurs.
 
 **Since**
 

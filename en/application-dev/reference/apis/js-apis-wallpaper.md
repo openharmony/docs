@@ -562,7 +562,7 @@ imageSource.createPixelMap(opts).then((pixelMap: image.PixelMap) => {
 
 getImage(wallpaperType: WallpaperType, callback: AsyncCallback&lt;image.PixelMap&gt;): void;
 
-Obtains the pixel map for the wallpaper of the specified type. This API uses an asynchronous callback to return the result.
+Obtains the pixel map for the wallpaper of the specified type. This API only works for the static wallpaper set using **setImage**. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.GET_WALLPAPER
 
@@ -597,7 +597,7 @@ wallpaper.getImage(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error: BusinessErr
 
 getImage(wallpaperType: WallpaperType): Promise&lt;image.PixelMap&gt;
 
-Obtains the pixel map for the wallpaper of the specified type. This API uses a promise to return the result.
+Obtains the pixel map for the wallpaper of the specified type. This API only works for the static wallpaper set using **setImage**. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.GET_WALLPAPER
 

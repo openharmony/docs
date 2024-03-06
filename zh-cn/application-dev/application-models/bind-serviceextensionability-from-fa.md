@@ -13,6 +13,9 @@ PageAbility关联访问ServiceExtensionAbility和PageAbility关联访问ServiceA
 import featureAbility from '@ohos.ability.featureAbility';
 import common from '@ohos.app.ability.common';
 import Want from '@ohos.app.ability.Want';
+import Logger from '../../utils/Logger';
+
+const TAG: string = 'PageInterflowFaAndStage';
 
 let serviceWant: Want = {
   bundleName: 'com.samples.stagemodelabilityinteraction',
@@ -43,6 +46,10 @@ ServiceAbility/DataAbility关联访问ServiceExtensionAbility和ServiceAbility/D
 import particleAbility from '@ohos.ability.particleAbility';
 import common from '@ohos.app.ability.common';
 import Want from '@ohos.app.ability.Want';
+import hilog from '@ohos.hilog';
+
+const TAG: string = '[Sample_FAModelAbilityDevelop]';
+const domain: number = 0xFF00;
 
 let serviceWant: Want = {
   bundleName: 'com.samples.stagemodelabilityinteraction',

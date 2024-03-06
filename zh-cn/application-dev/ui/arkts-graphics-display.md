@@ -1,12 +1,10 @@
-# 显示图片（Image）
+# 显示图片 (Image)
 
 
-开发者经常需要在应用中显示一些图片，例如：按钮中的icon、网络图片、本地图片等。在应用中显示图片需要使用Image组件实现，Image支持多种图片格式，包括png、jpg、bmp、svg和gif，具体用法请参考[Image](../reference/arkui-ts/ts-basic-components-image.md)组件。
+开发者经常需要在应用中显示一些图片，例如：按钮中的icon、网络图片、本地图片等。在应用中显示图片需要使用Image组件实现，Image支持多种图片格式，包括png、jpg、bmp、svg和gif，具体用法请参考[Image](../reference/apis-arkui/arkui-ts/ts-basic-components-image.md)组件。
 
 
 Image通过调用接口来创建，接口调用形式如下：
-
-
 
 ```ts
 Image(src: PixelMap | ResourceStr | DrawableDescriptor)
@@ -40,6 +38,8 @@ Image支持加载存档图、多媒体像素图两种类型。
 
   引入网络图片需申请权限ohos.permission.INTERNET，具体申请方式请参考[声明权限](../security/AccessToken/declare-permissions.md)。此时，Image组件的src参数为网络图片的链接。
 
+  Image组件首次加载网络图片时，需要请求网络资源，非首次加载时，默认从缓存中直接读取图片，更多图片缓存设置请参考[setImageCacheCount、setImageRawDataCacheSize、setImageFileCacheSize](../reference/apis-arkui/js-apis-system-app.md#setimagecachecount7)。
+
   ```ts
   Image('https://www.example.com/example.JPG') // 实际使用时请替换为真实地址
   ```
@@ -72,7 +72,7 @@ Image支持加载存档图、多媒体像素图两种类型。
 
 - 媒体库file://data/storage
 
-  支持file://路径前缀的字符串，用于访问通过[媒体库](../reference/apis/js-apis-file-picker.md)提供的图片路径。
+  支持file://路径前缀的字符串，用于访问通过[媒体库](../reference/apis-core-file-kit/js-apis-file-picker.md)提供的图片路径。
 
   1. 调用接口获取图库的照片url。
       ```ts
@@ -195,7 +195,6 @@ PixelMap是图片解码后的像素图，具体用法请参考[图片开发指�
        
          class imagetmp {
            image: PixelMap | undefined = undefined
-       
            set(val: PixelMap) {
              this.image = val
            }
@@ -210,10 +209,10 @@ PixelMap是图片解码后的像素图，具体用法请参考[图片开发指�
    4. 显示图片。
        ```ts
        class htp{
-        httpRequest:Function|undefined = undefined
+        httpRequest: Function | undefined = undefined
         set(){
           if(this.httpRequest){
-          this.httpRequest()
+            this.httpRequest()
           }
         }
       }
@@ -234,8 +233,9 @@ svg格式的图片可以使用fillColor属性改变图片的绘制颜色。
 
 
 ```ts
-Image($r('app.media.cloud')).width(50)
-.fillColor(Color.Blue) 
+Image($r('app.media.cloud'))
+  .width(50)
+  .fillColor(Color.Blue) 
 ```
 
   **图3** 原始图片  
@@ -249,7 +249,7 @@ Image($r('app.media.cloud')).width(50)
 
 ## 添加属性
 
-给Image组件设置属性可以使图片显示更灵活，达到一些自定义的效果。以下是几个常用属性的使用示例，完整属性信息详见[Image](../reference/arkui-ts/ts-basic-components-image.md)。
+给Image组件设置属性可以使图片显示更灵活，达到一些自定义的效果。以下是几个常用属性的使用示例，完整属性信息详见[Image](../reference/apis-arkui/arkui-ts/ts-basic-components-image.md)。
 
 
 ### 设置图片缩放类型
@@ -265,38 +265,60 @@ struct MyComponent {
 
   build() {
     Scroll(this.scroller) {
-      Row() {
-        Image($r('app.media.img_2')).width(200).height(150)
-          .border({ width: 1 })
-          .objectFit(ImageFit.Contain).margin(15) // 保持宽高比进行缩小或者放大，使得图片完全显示在显示边界内。
-          .overlay('Contain', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-        Image($r('app.media.ic_img_2')).width(200).height(150)
-          .border({ width: 1 })
-          .objectFit(ImageFit.Cover).margin(15)
-          // 保持宽高比进行缩小或者放大，使得图片两边都大于或等于显示边界。
-          .overlay('Cover', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-        Image($r('app.media.img_2')).width(200).height(150)
-          .border({ width: 1 })
-            // 自适应显示。
-          .objectFit(ImageFit.Auto).margin(15)
-          .overlay('Auto', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-      }
-      Row() {
-        Image($r('app.media.img_2')).width(200).height(150)
-          .border({ width: 1 })
-          .objectFit(ImageFit.Fill).margin(15)
-          // 不保持宽高比进行放大缩小，使得图片充满显示边界。
-          .overlay('Fill', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-        Image($r('app.media.img_2')).width(200).height(150)
-          .border({ width: 1 })
-          // 保持宽高比显示，图片缩小或者保持不变。
-          .objectFit(ImageFit.ScaleDown).margin(15)
-          .overlay('ScaleDown', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-        Image($r('app.media.img_2')).width(200).height(150)
-          .border({ width: 1 })
-          // 保持原有尺寸显示。
-          .objectFit(ImageFit.None).margin(15)
-          .overlay('None', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
+      Column() {
+        Row() {
+          Image($r('app.media.img_2'))
+            .width(200)
+            .height(150)
+            .border({ width: 1 })
+              // 保持宽高比进行缩小或者放大，使得图片完全显示在显示边界内。
+            .objectFit(ImageFit.Contain)
+            .margin(15)
+            .overlay('Contain', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
+          Image($r('app.media.ic_img_2'))
+            .width(200)
+            .height(150)
+            .border({ width: 1 })
+            .objectFit(ImageFit.Cover)
+            .margin(15)
+              // 保持宽高比进行缩小或者放大，使得图片两边都大于或等于显示边界。
+            .overlay('Cover', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
+          Image($r('app.media.img_2'))
+            .width(200)
+            .height(150)
+            .border({ width: 1 })
+              // 自适应显示。
+            .objectFit(ImageFit.Auto)
+            .margin(15)
+            .overlay('Auto', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
+        }
+
+        Row() {
+          Image($r('app.media.img_2'))
+            .width(200)
+            .height(150)
+            .border({ width: 1 })
+            .objectFit(ImageFit.Fill)
+            .margin(15)
+              // 不保持宽高比进行放大缩小，使得图片充满显示边界。
+            .overlay('Fill', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
+          Image($r('app.media.img_2'))
+            .width(200)
+            .height(150)
+            .border({ width: 1 })
+              // 保持宽高比显示，图片缩小或者保持不变。
+            .objectFit(ImageFit.ScaleDown)
+            .margin(15)
+            .overlay('ScaleDown', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
+          Image($r('app.media.img_2'))
+            .width(200)
+            .height(150)
+            .border({ width: 1 })
+              // 保持原有尺寸显示。
+            .objectFit(ImageFit.None)
+            .margin(15)
+            .overlay('None', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
+        }
       }
     }
   }
@@ -359,7 +381,7 @@ struct Index {
 
 ### 设置图片重复样式
 
-通过objectRepeat属性设置图片的重复样式方式，重复样式请参考[ImageRepeat](../reference/arkui-ts/ts-appendix-enums.md#imagerepeat)枚举说明。
+通过objectRepeat属性设置图片的重复样式方式，重复样式请参考[ImageRepeat](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#imagerepeat)枚举说明。
 
 
 ```ts

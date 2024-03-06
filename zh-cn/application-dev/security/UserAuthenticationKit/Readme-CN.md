@@ -1,6 +1,6 @@
-# 用户身份认证
+# User Authentication Kit（用户认证服务）
 
-- [用户身份认证概述](user-authentication-overview.md)
+- [User Authentication Kit简介](user-authentication-overview.md)
 - 用户身份认证开发指导
   - [开发准备](prerequisites.md)
   - [查询支持的认证能力](obtain-supported-authentication-capabilities.md)

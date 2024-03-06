@@ -28,7 +28,7 @@ import cryptoFramework from "@ohos.security.cryptoFramework";
 
 ## DataBlob
 
-Defines a binary data array.
+Defines a buffer array of the Binary Large Object (BLOB) type.
 
  **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -38,39 +38,39 @@ Defines a binary data array.
 
 ## ParamsSpec
 
-Defines the parameters used for encryption and decryption. 
+Encapsulates the parameters used for encryption or decryption. You need to construct its child class object and pass it to [init()](#init-2) for symmetric encryption or decryption. 
 
-For the symmetric encryption and decryption modes that require parameters such as the initialization vector (IV), you need to construct a child class object and pass it to [init()](#init-2). If the IV is not required (for example, the ECB mode), pass in **null** in [init()](#init-2).
+It applies to the symmetric cipher modes that require parameters such as the initialization vector (IV). If the IV is not required (for example, the ECB mode), pass in **null** to [init()](#init-2).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
 | Name   | Type  | Readable| Writable| Description                                                        |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| algName | string | Yes  | Yes  | Symmetric encryption and decryption parameters. Options:<br>- **IvParamsSpec**: applicable to the CBC, CTR, OFB, and CFB modes.<br>- **GcmParamsSpec**: applicable to the GCM mode.<br>- **CcmParamsSpec**: applicable to the CCM mode.|
+| algName | string | Yes  | Yes  | Algorithm for symmetric encryption or decryption. Options:<br>- **IvParamsSpec**: applicable to the CBC, CTR, OFB, and CFB modes.<br>- **GcmParamsSpec**: applicable to the GCM mode.<br>- **CcmParamsSpec**: applicable to the CCM mode.|
 
 > **NOTE**
 >
-> The **params** parameter in [init()](#init-2) is of the **ParamsSpec** type (parent class). However, a specific child class object (such as **IvParamsSpec**) needs to be passed in. When constructing the child class object, you need to set **algName** for the parent class **ParamsSpec** to specify the child class object in **init()**.
+> The **params** parameter in [init()](#init-2) is of the **ParamsSpec** type (parent class). However, a child class object (such as **IvParamsSpec**) needs to be passed in. When constructing the child class object, you need to set **algName** for its parent class **ParamsSpec** to specify the child class object to be passed to **init()**.
 
 ## IvParamsSpec
 
-Defines the child class of [ParamsSpec](#paramsspec). It is used as a parameter of [init()](#init-2) during symmetric encryption and decryption.
+Defines the child class of [ParamsSpec](#paramsspec). It is a parameter of [init()](#init-2) for symmetric encryption or decryption.
 
-**IvParamsSpec** applies to the encryption and decryption modes such as CBC, CTR, OFB, and CFB, which use only the IV.
+**IvParamsSpec** applies to the cipher modes such as CBC, CTR, OFB, and CFB, which use only the IV.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
 | Name| Type                 | Readable| Writable| Description                                                        |
 | ---- | --------------------- | ---- | ---- | ------------------------------------------------------------ |
-| iv   | [DataBlob](#datablob) | Yes  | Yes  | IV for encryption and decryption. Options:<br>- AES CBC, CTR, OFB, or CFB mode: 16-byte IV<br>- 3DES CBC, OFB, or CFB mode: 8-byte IV<br>- SM4<sup>10+</sup>CBC, CTR, OFB, or CFB mode: 16-byte IV|
+| iv   | [DataBlob](#datablob) | Yes  | Yes  | IV for encryption or decryption. Options:<br>- AES CBC, CTR, OFB, or CFB mode: 16-byte IV<br>- 3DES CBC, OFB, or CFB mode: 8-byte IV<br>- SM4<sup>10+</sup> CBC, CTR, OFB, or CFB mode: 16-byte IV|
 
 > **NOTE**
 >
-> Before passing [init()](#init-2), specify **algName** for its parent class [ParamsSpec](#paramsspec).
+> Before passing **IvParamsSpec** to [init()](#init-2), specify **algName** for its parent class [ParamsSpec](#paramsspec).
 
 ## GcmParamsSpec
 
-Defines the child class of [ParamsSpec](#paramsspec). It is used as a parameter of [init()](#init-2) during symmetric encryption and decryption.
+Defines the child class of [ParamsSpec](#paramsspec). It is a parameter of [init()](#init-2) for symmetric encryption or decryption.
 
 **GcmParamsSpec** applies to the GCM mode.
 
@@ -80,17 +80,17 @@ Defines the child class of [ParamsSpec](#paramsspec). It is used as a parameter 
 | ------- | --------------------- | ---- | ---- | ------------------------------------------------------------ |
 | iv      | [DataBlob](#datablob) | Yes  | Yes  | IV, which is of 1 to 16 bytes. A 12-byte IV is commonly used.                            |
 | aad     | [DataBlob](#datablob) | Yes  | Yes  | Additional authentication data (AAD), which is of 0 to INT_MAX bytes. A 16-byte AAD is commonly used.                            |
-| authTag | [DataBlob](#datablob) | Yes  | Yes  | Authentication tag, which is of 16 bytes.<br>When the GCM mode is used for encryption, the last 16 bytes of the [DataBlob](#datablob) output by [doFinal()](#dofinal-2) are used as the **authTag** in [GcmParamsSpec](#gcmparamsspec) of [init()](#init-2). |
+| authTag | [DataBlob](#datablob) | Yes  | Yes  | Authentication tag, which is of 16 bytes.<br>When the GCM mode is used for encryption, the last 16 bytes of [DataBlob](#datablob) output by [doFinal()](#dofinal-2) are used as **authTag** in [GcmParamsSpec](#gcmparamsspec) of [init()](#init-2).|
 
 > **NOTE**
 >
-> - Before passing [init()](#init-2), specify **algName** for its parent class [ParamsSpec](#paramsspec).
-> - The Crypto framework has no requirements on the length of the IV. However, the operation result depends on whether the underlying OpenSSL supports the IV.
-> - If **aad** is not required or the length of **aad** is **0**, you can set the **data** attribute of **aad** to an empty **Uint8Array**, that is, **aad: { data: new Uint8Array() }**.
+> 1. Before passing **GcmParamsSpec** to [init()](#init-2), specify **algName** for its parent class [ParamsSpec](#paramsspec).
+> 2. The IV to use is not length bound. However, the operation result depends on whether the underlying OpenSSL supports the IV.
+> 3. If **aad** is not required or the length of **aad** is **0**, you can set **aad** to an empty Uint8Array, that is, **aad: { data: new Uint8Array() }**.
 
 ## CcmParamsSpec
 
-Defines the child class of [ParamsSpec](#paramsspec). It is used as a parameter of [init()](#init-2) during symmetric encryption and decryption.
+Defines the child class of [ParamsSpec](#paramsspec). It is a parameter of [init()](#init-2) for symmetric encryption or decryption.
 
 **CcmParamsSpec** applies to the CCM mode.
 
@@ -100,11 +100,11 @@ Defines the child class of [ParamsSpec](#paramsspec). It is used as a parameter 
 | ------- | --------------------- | ---- | ---- | ------------------------------------------------------------ |
 | iv      | [DataBlob](#datablob) | Yes  | Yes  | IV, which is of 7 bytes.                             |
 | aad     | [DataBlob](#datablob) | Yes  | Yes  | AAD, which is of 8 bytes.                            |
-| authTag | [DataBlob](#datablob) | Yes  | Yes  | Authentication tag, which is of 12 bytes.<br>When the CCM mode is used for encryption, the last 12 bytes of the [DataBlob](#datablob) output by [doFinal()](#dofinal-2) are used as the **authTag** in [CcmParamsSpec](#ccmparamsspec) of [init()](#init-2).|
+| authTag | [DataBlob](#datablob) | Yes  | Yes  | Authentication tag, which is of 12 bytes.<br>When the CCM mode is used for encryption, the last 12 bytes of [DataBlob](#datablob) output by [doFinal()](#dofinal-2) are used as **authTag** in [CcmParamsSpec](#ccmparamsspec) of [init()](#init-2).|
 
 > **NOTE**
 >
-> Before passing [init()](#init-2), specify **algName** for its parent class [ParamsSpec](#paramsspec).
+> Before passing **CcmParamsSpec** to [init()](#init-2), specify **algName** for its parent class [ParamsSpec](#paramsspec).
 
 ## CryptoMode
 
@@ -119,14 +119,14 @@ Enumerates the cryptographic operations.
 
 ## AsyKeySpecItem<sup>10+</sup>
 
-Enumerates the key parameters.
+Enumerates the asymmetric key parameters.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
 | Name        | Value  | Description            |
 | ------------ | ---- | ---------------- |
 | DSA_P_BN | 101 | Prime modulus **p** in the DSA algorithm.|
-| DSA_Q_BN | 102 | Parameter **q** (prime factor of p – 1) in the DSA algorithm.|
+| DSA_Q_BN | 102 | Parameter **q**, prime factor of (p – 1) in the DSA algorithm.|
 | DSA_G_BN | 103 | Parameter **g** in the DSA algorithm.|
 | DSA_SK_BN | 104 | Private key **sk** in the DSA algorithm.|
 | DSA_PK_BN | 105 | Public key **pk** in the DSA algorithm.|
@@ -141,8 +141,8 @@ Enumerates the key parameters.
 | ECC_PK_X_BN | 209 | X coordinate of the public key **pk** (a point on the elliptic curve) in the ECC algorithm.|
 | ECC_PK_Y_BN | 210 | Y coordinate of the public key **pk** (a point on the elliptic curve) in the ECC algorithm.|
 | ECC_FIELD_TYPE_STR | 211 | Elliptic curve field type in the ECC algorithm. Currently, only the **Fp** field is supported.|
-| ECC_FIELD_SIZE_NUM | 212 | Size of the field in the ECC algorithm, in bits.<br>**NOTE**<br>For the **Fp** field, the size of the field is the length of the prime **p**, in bits.|
-| ECC_CURVE_NAME_STR | 213 | SECG curve name in the ECC algorithm.|
+| ECC_FIELD_SIZE_NUM | 212 | Size of the field in the ECC algorithm, in bits.<br>**NOTE**<br>The size of the **Fp** field is the length of the prime **p**, in bits.|
+| ECC_CURVE_NAME_STR | 213 | Standards for Efficient Cryptography Group (SECG) curve name in the ECC algorithm.|
 | RSA_N_BN | 301 | Modulus **n** in the RSA algorithm.|
 | RSA_SK_BN | 302 | Private key **sk** (private key exponent **d**) in the RSA algorithm.|
 | RSA_PK_BN | 303 | Public key **pk** (public key exponent **e**) in the RSA algorithm.|
@@ -164,99 +164,99 @@ Enumerates the key parameter types.
 
 | Name        | Value  | Description            |
 | ------------ | ---- | ---------------- |
-| COMMON_PARAMS_SPEC | 0 | Common parameters contained in the public and private keys. You can use [generateKeyPair()](#generatekeypair-2) to randomly generate a key pair based on the parameters of this type.|
-| PRIVATE_KEY_SPEC | 1 | Parameter contained in the private key. You can use [generatePriKey()](#generateprikey) to generate a private key based on the parameters of this type.|
-| PUBLIC_KEY_SPEC | 2 | Parameter contained in the public key. You can use [generatePubKey()](#generatepubkey) to generate a public key based on the parameters of this type.|
-| KEY_PAIR_SPEC | 3 | All parameters contained in the public and private keys. You can use [generateKeyPair](#generatekeypair-2) to generate a key pair based on the parameters of this type.|
+| COMMON_PARAMS_SPEC | 0 | Common parameter of the public and private keys. You can use [generateKeyPair()](#generatekeypair-2) to randomly generate a key pair based on the parameters of this type.|
+| PRIVATE_KEY_SPEC | 1 | Parameter of the private key. You can use [generatePriKey()](#generateprikey) to generate a private key based on the parameters of this type.|
+| PUBLIC_KEY_SPEC | 2 | Parameter of the public key. You can use [generatePubKey()](#generatepubkey) to generate a public key based on the parameters of this type.|
+| KEY_PAIR_SPEC | 3 | Full parameters of the public and private keys. You can use [generateKeyPair](#generatekeypair-2) to generate a key pair based on the parameters of this type.|
 
 ## CipherSpecItem<sup>10+</sup>
 
 Enumerates the cipher parameters. You can use [setCipherSpec](#setcipherspec10) to set cipher parameters, and use [getCipherSpec](#getcipherspec10) to obtain cipher parameters.
 
-Currently, only RSA and SM2 are supported. Since API version 11, the **SM2_MD_NAME_STR** parameter is supported. For details, see [Encryption and Decryption Specifications](../../security/cryptoFramework-overview.md#encryption-and-decryption-specifications).
+Currently, only RSA and SM2 are supported. Since API version 11, the **SM2_MD_NAME_STR** parameter is supported. For details, see [Asymmetric Key Encryption and Decryption Algorithm Specifications](../../security/CryptoArchitectureKit/crypto-asym-encrypt-decrypt-spec.md).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
 | Name        | Value  | Description            |
 | ------------ | ---- | ---------------- |
-| OAEP_MD_NAME_STR | 100 | Name of the message digest algorithm when the PKCS1_OAEP padding mode is used in the RSA.|
-| OAEP_MGF_NAME_STR | 101 | Mask generation algorithm when the PKCS1_OAEP padding mode is used in the RSA. Currently, only MGF1 is supported.|
-| OAEP_MGF1_MD_STR | 102 | Message digest algorithm for the MGF1 mask generation when the PKCS1_OAEP padding mode is used in the RSA.|
-| OAEP_MGF1_PSRC_UINT8ARR | 103 | **pSource** byte stream when the PKCS1_OAEP padding mode is used in the RSA.|
-| SM2_MD_NAME_STR<sup>11+</sup> | 104 | Name of the digest algorithm used in SM2.|
+| OAEP_MD_NAME_STR | 100 | Message digest (MD) algorithm used with the PKCS1_OAEP padding mode in RSA.|
+| OAEP_MGF_NAME_STR | 101 | Mask generation algorithm used with the PKCS1_OAEP padding mode in RSA. Currently, only MGF1 is supported.|
+| OAEP_MGF1_MD_STR | 102 | MD algorithm for the MGF1 mask generation used with the PKCS1_OAEP padding mode in RSA.|
+| OAEP_MGF1_PSRC_UINT8ARR | 103 | **pSource** byte stream used with the PKCS1_OAEP padding mode in RSA.|
+| SM2_MD_NAME_STR<sup>11+</sup> | 104 | MD algorithm used in SM2.|
 
 ## SignSpecItem<sup>10+</sup>
 
 Enumerates the parameters for signing and signature verification. You can use [setSignSpec](#setsignspec10) and [setVerifySpec](#setverifyspec10) to set these parameters, and use [getSignSpec](#getsignspec10) and [getVerifySpec](#getverifyspec10) to obtain the parameters.
 
-Currently, only RSA and SM2 are supported. Since API version 11, the **SM2_USER_ID_UINT8ARR** parameter is supported. For details, see [Signing and Signature Verification Specifications](../../security/cryptoFramework-overview.md#signing-and-signature-verification-specifications).
+Currently, only RSA and SM2 are supported. Since API version 11, the **SM2_USER_ID_UINT8ARR** parameter is supported. For details, see [Signing and Signature Verification Overview and Algorithm Specifications](../../security/CryptoArchitectureKit/crypto-sign-sig-verify-overview.md).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
 | Name        | Value  | Description            |
 | ------------ | ---- | ---------------- |
-| PSS_MD_NAME_STR | 100 | Name of the message digest algorithm when the PSS padding mode is used in the RSA.|
-| PSS_MGF_NAME_STR | 101 | Mask generation algorithm when the PSS padding mode is used in the RSA. Currently, only MGF1 is supported.|
-| PSS_MGF1_MD_STR | 102 | Message digest parameters for the MGF1 mask generation when the PSS padding mode is used in the RSA.|
-| PSS_SALT_LEN_NUM | 103 | Length of the salt in bytes when the PSS padding mode is used in the RSA.|
-| PSS_TRAILER_FIELD_NUM | 104 | Integer used for encoding when the PSS padding mode is used in the RSA. The value is **1**.|
+| PSS_MD_NAME_STR | 100 | MD algorithm used with the PSS padding mode in RSA.|
+| PSS_MGF_NAME_STR | 101 | Mask generation algorithm used with the PSS padding mode in RSA. Currently, only MGF1 is supported.|
+| PSS_MGF1_MD_STR | 102 | MD parameters for the MGF1 mask generation used with the PSS padding mode in RSA.|
+| PSS_SALT_LEN_NUM | 103 | Length of the salt in bytes used with the PSS padding mode in RSA.|
+| PSS_TRAILER_FIELD_NUM | 104 | Trailer field used in the encoding operation when PSS padding mode is used in RSA. The value is **1**.|
 | SM2_USER_ID_UINT8ARR<sup>11+</sup> | 105 | User ID field in SM2.|
 
 ## AsyKeySpec<sup>10+</sup>
 
-Defines the asymmetric key parameter for creating a key generator. You need to construct a child class object and pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator. All the parameters of the bigint type in the child class object must be integers in big-endian format.
+Defines the asymmetric key parameters for creating a key generator. You need to construct a child class object and pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator. When constructing the child class object, all the parameters of the bigint type must be positive numbers in big-endian format.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
 | Name   | Type  | Readable| Writable| Description                                                        |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| algName | string | Yes  | Yes  | Algorithm of the asymmetric key pair, for example, **RSA**, **DSA**, or **ECC**.|
+| algName | string | Yes  | Yes  | Asymmetric key algorithm, for example, **RSA**, **DSA**, **ECC**, **SM2**, **Ed25519**, **X25519**, or **DH**.|
 | specType | [AsyKeySpecType](#asykeyspectype10) | Yes  | Yes| Key parameter type, which is used to distinguish public and private key parameters.|
 
 ## DSACommonParamsSpec<sup>10+</sup>
 
-Defines the common parameters contained in the public and private keys in the DSA algorithm. It is a child class of [AsyKeySpec](#asykeyspec10) and can be used to randomly generate public or private keys.
+Defines a child class of [AsyKeySpec](#asykeyspec10) used to specify the common parameters of the public and private keys in the DSA algorithm. It can be used to randomly generate a public or private key.
 
-When a key parameter is used to generate a key, you can pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
+To generate a key based on key parameters, pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
 | Name   | Type  | Readable| Writable| Description                                                        |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
 | p | bigint | Yes  | Yes  | Prime modulus **p** in the DSA algorithm.|
-| q | bigint | Yes  | Yes  | Parameter **q** (prime factor of **p** – 1) in the DSA algorithm.|
+| q | bigint | Yes  | Yes  | Parameter **q**, prime factor of (**p** – 1) in the DSA algorithm.|
 | g | bigint | Yes  | Yes  | Parameter **g** in the DSA algorithm.|
 
 ## DSAPubKeySpec<sup>10+</sup>
 
-Defines the parameters contained in the public key in the DSA algorithm. It is a child class of [AsyKeySpec](#asykeyspec10).
+Defines a child class of [AsyKeySpec](#asykeyspec10) used to specify the parameters of the public key in the DSA algorithm. 
 
-When a key parameter is used to generate a key, you can pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
+To generate a key based on key parameters, pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
 | Name   | Type  | Readable| Writable| Description                                                        |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| params | [DSACommonParamsSpec](#dsacommonparamsspec10) | Yes  | Yes  | Common parameters contained in both public and private keys in the DSA algorithm.|
+| params | [DSACommonParamsSpec](#dsacommonparamsspec10) | Yes  | Yes  | Common parameters of the public and private keys in the DSA algorithm.|
 | pk | bigint | Yes  | Yes  | Public key in the DSA algorithm.|
 
 ## DSAKeyPairSpec<sup>10+</sup>
 
-Defines all parameters contained in the public and private keys in the DSA algorithm. It is a child class of [AsyKeySpec](#asykeyspec10).
+Defines a child class of [AsyKeySpec](#asykeyspec10) used to specify full parameters of the public and private keys in the DSA algorithm.
 
-When a key parameter is used to generate a key, you can pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
+To generate a key based on key parameters, pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
 | Name   | Type  | Readable| Writable| Description                                                        |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| params | [DSACommonParamsSpec](#dsacommonparamsspec10) | Yes  | Yes  | Common parameters contained in both public and private keys in the DSA algorithm.|
+| params | [DSACommonParamsSpec](#dsacommonparamsspec10) | Yes  | Yes  | Common parameters of the public and private keys in the DSA algorithm.|
 | sk | bigint | Yes  | Yes  | Private key **sk** in the DSA algorithm.|
 | pk | bigint | Yes  | Yes  | Public key **pk** in the DSA algorithm.|
 
 ## ECField<sup>10+</sup>
 
-Defines the elliptic curve field. Currently, only the **Fp** field is supported.
+Defines an elliptic curve field. Currently, only the **Fp** field is supported.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -287,15 +287,15 @@ Defines a point on the elliptic curve.
 
 ## ECCCommonParamsSpec<sup>10+</sup>
 
-Defines the common parameters contained in the public and private keys in the ECC algorithm. It is a child class of [AsyKeySpec](#asykeyspec10) and can be used to randomly generate public or private keys.
+Defines a child class of [AsyKeySpec](#asykeyspec10) used to specify the common parameters of the public and private keys in the ECC algorithm. It can be used to randomly generate a public or private key.
 
-When a key parameter is used to generate a key, you can pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
+To generate a key based on key parameters, pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
 | Name   | Type  | Readable| Writable| Description                                                        |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| field | [ECField](#ecfield10) | Yes  | Yes  | Field of the elliptic curve. Currently, only the **Fp** field is supported.|
+| field | [ECField](#ecfield10) | Yes  | Yes  | Field of the elliptic curve. Currently, only **Fp** is supported.|
 | a | bigint | Yes  | Yes  | First coefficient **a** of the elliptic curve.|
 | b | bigint | Yes  | Yes  | Second coefficient **b** of the elliptic curve.|
 | g | [Point](#point10) | Yes  | Yes  | Base point g.|
@@ -304,49 +304,49 @@ When a key parameter is used to generate a key, you can pass it to [createAsyKey
 
 ## ECCPriKeySpec<sup>10+</sup>
 
-Defines the parameters contained in the private key in the ECC algorithm. It is a child class of [AsyKeySpec](#asykeyspec10).
+Defines a child class of [AsyKeySpec](#asykeyspec10) used to specify the parameters of the private key in the ECC algorithm.
 
-When a key parameter is used to generate a key, you can pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
+To generate a key based on key parameters, pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
 | Name   | Type  | Readable| Writable| Description                                                        |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| params | [ECCCommonParamsSpec](#ecccommonparamsspec10) | Yes  | Yes  | Common parameters contained in both public and private keys in the ECC algorithm.|
+| params | [ECCCommonParamsSpec](#ecccommonparamsspec10) | Yes  | Yes  | Common parameters of the public and private keys in the ECC algorithm.|
 | sk | bigint | Yes  | Yes  | Private key **sk** in the ECC algorithm.|
 
 ## ECCPubKeySpec<sup>10+</sup>
 
-Defines the parameters contained in the public key in the ECC algorithm. It is a child class of [AsyKeySpec](#asykeyspec10).
+Defines a child class of [AsyKeySpec](#asykeyspec10) used to specify the parameters of the public key in the ECC algorithm.
 
-When a key parameter is used to generate a key, you can pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
+To generate a key based on key parameters, pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
 | Name   | Type  | Readable| Writable| Description                                                        |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| params | [ECCCommonParamsSpec](#ecccommonparamsspec10) | Yes  | Yes  | Common parameters contained in both public and private keys in the ECC algorithm.|
+| params | [ECCCommonParamsSpec](#ecccommonparamsspec10) | Yes  | Yes  | Common parameters of the public and private keys in the ECC algorithm.|
 | pk | [Point](#point10) | Yes  | Yes  | Public key **pk** in the ECC algorithm.|
 
 ## ECCKeyPairSpec<sup>10+</sup>
 
-Defines all parameters contained in the public and private keys in the ECC algorithm. It is a child class of [AsyKeySpec](#asykeyspec10).
+Defines a child class of [AsyKeySpec](#asykeyspec10) used to specify full parameters of the public and private keys in the ECC algorithm. 
 
-When a key parameter are used to generate a key, you can pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
+To generate a key based on key parameters, pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
 | Name   | Type  | Readable| Writable| Description                                                        |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| params | [ECCCommonParamsSpec](#ecccommonparamsspec10) | Yes  | Yes  | Common parameters contained in both public and private keys in the ECC algorithm.|
+| params | [ECCCommonParamsSpec](#ecccommonparamsspec10) | Yes  | Yes  | Common parameters of the public and private keys in the ECC algorithm.|
 | sk | bigint | Yes  | Yes  | Private key **sk** in the ECC algorithm.|
 | pk | [Point](#point10) | Yes  | Yes  | Public key **pk** in the ECC algorithm.|
 
 ## RSACommonParamsSpec<sup>10+</sup>
 
-Defines the common parameters contained in the public and private keys in the RSA algorithm. It is a child class of [AsyKeySpec](#asykeyspec10) and can be used to randomly generate public or private keys.
+Defines a child class of [AsyKeySpec](#asykeyspec10) used to specify the common parameters of the public and private keys in the RSA algorithm. It can be used to randomly generate a public or private key.
 
-When a key parameter are used to generate a key, you can pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
+To generate a key based on key parameters, pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -356,36 +356,36 @@ When a key parameter are used to generate a key, you can pass it to [createAsyKe
 
 ## RSAPubKeySpec<sup>10+</sup>
 
-Defines the parameters contained in the public key in the RSA algorithm. It is a child class of [AsyKeySpec](#asykeyspec10).
+Defines a child class of [AsyKeySpec](#asykeyspec10) used to specify the parameters of the public key in the RSA algorithm. 
 
-When a key parameter are used to generate a key, you can pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
+To generate a key based on key parameters, pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
 | Name   | Type  | Readable| Writable| Description                                                        |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| params | [RSACommonParamsSpec](#rsacommonparamsspec10) | Yes  | Yes  | Common parameters contained in both public and private keys in the RSA algorithm.|
+| params | [RSACommonParamsSpec](#rsacommonparamsspec10) | Yes  | Yes  | Common parameters of the public and private keys in the RSA algorithm.|
 | pk | bigint | Yes  | Yes  | Public key **pk** in the RSA algorithm.|
 
 ## RSAKeyPairSpec<sup>10+</sup>
 
-Defines all parameters contained in the public and private keys in the RSA algorithm. It is a child class of [AsyKeySpec](#asykeyspec10).
+Defines a child class of [AsyKeySpec](#asykeyspec10) used to specify full parameters of the public and private keys in the RSA algorithm.
 
-When a key parameter is used to generate a key, you can pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
+To generate a key based on key parameters, pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
 | Name   | Type  | Readable| Writable| Description                                                        |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| params | [RSACommonParamsSpec](#rsacommonparamsspec10) | Yes  | Yes  | Common parameters contained in both public and private keys in the RSA algorithm.|
+| params | [RSACommonParamsSpec](#rsacommonparamsspec10) | Yes  | Yes  | Common parameters of the public and private keys in the RSA algorithm.|
 | sk | bigint | Yes  | Yes  | Private key **sk** in the RSA algorithm.|
 | pk | bigint | Yes  | Yes  | Public key **pk** in the RSA algorithm.|
 
 ## ED25519PriKeySpec<sup>11+</sup>
 
-Defines the parameter contained in the private key in the Ed25519 algorithm. It is a child class of [AsyKeySpec](#asykeyspec10).
+Defines a child class of [AsyKeySpec](#asykeyspec10) used to specify the parameters of the private key in the Ed25519 algorithm.
 
-When a key parameter is used to generate a key, you can pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
+To generate a key based on key parameters, pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -395,9 +395,9 @@ When a key parameter is used to generate a key, you can pass it to [createAsyKey
 
 ## ED25519PubKeySpec<sup>11+</sup>
 
-Defines the parameter contained in the public key in the Ed25519 algorithm. It is a child class of [AsyKeySpec](#asykeyspec10).
+Defines a child class of [AsyKeySpec](#asykeyspec10) used to specify the parameters of the public key in the Ed25519 algorithm.
 
-When a key parameter is used to generate a key, you can pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
+To generate a key based on key parameters, pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -407,9 +407,9 @@ When a key parameter is used to generate a key, you can pass it to [createAsyKey
 
 ## ED25519KeyPairSpec<sup>11+</sup>
 
-Defines all parameters contained in the public and private keys in the Ed25519 algorithm. It is a child class of [AsyKeySpec](#asykeyspec10).
+Defines a child class of [AsyKeySpec](#asykeyspec10) used to specify full parameters of the public and private keys in the Ed25519 algorithm.
 
-When a key parameter is used to generate a key, you can pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
+To generate a key based on key parameters, pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -420,9 +420,9 @@ When a key parameter is used to generate a key, you can pass it to [createAsyKey
 
 ## X25519PriKeySpec<sup>11+</sup>
 
-Defines the parameter contained in the private key in the X25519 algorithm. It is a child class of [AsyKeySpec](#asykeyspec10).
+Defines a child class of [AsyKeySpec](#asykeyspec10) used to specify the parameters of the private key in the X25519 algorithm.
 
-When a key parameter is used to generate a key, you can pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
+To generate a key based on key parameters, pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -432,9 +432,9 @@ When a key parameter is used to generate a key, you can pass it to [createAsyKey
 
 ## X25519PubKeySpec<sup>11+</sup>
 
-Defines the parameter contained in the public key in the X25519 algorithm. It is a child class of [AsyKeySpec](#asykeyspec10).
+Defines a child class of [AsyKeySpec](#asykeyspec10) used to specify the parameters of the public key in the X25519 algorithm.
 
-When a key parameter is used to generate a key, you can pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
+To generate a key based on key parameters, pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -444,9 +444,9 @@ When a key parameter is used to generate a key, you can pass it to [createAsyKey
 
 ## X25519KeyPairSpec<sup>11+</sup>
 
-Defines all parameters contained in the public and private keys in the X25519 algorithm. It is a child class of [AsyKeySpec](#asykeyspec10).
+Defines a child class of [AsyKeySpec](#asykeyspec10) used to specify full parameters of the public and private keys in the X25519 algorithm.
 
-When a key parameter is used to generate a key, you can pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
+To generate a key based on key parameters, pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -457,9 +457,9 @@ When a key parameter is used to generate a key, you can pass it to [createAsyKey
 
 ## DHCommonParamsSpec<sup>11+</sup>
 
-Defines the parameters contained in the public and private keys in the DH algorithm. It is a child class of [AsyKeySpec](#asykeyspec10).
+Defines a child class of [AsyKeySpec](#asykeyspec10) used to specify the parameters of the public and private keys in the DH algorithm.
 
-When a key parameter is used to generate a key, you can pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
+To generate a key based on key parameters, pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -471,41 +471,41 @@ When a key parameter is used to generate a key, you can pass it to [createAsyKey
 
 ## DHPriKeySpec<sup>11+</sup>
 
-Defines the parameters contained in the private key in the DH algorithm. It is a child class of [AsyKeySpec](#asykeyspec10).
+Defines a child class of [AsyKeySpec](#asykeyspec10) used to specify the parameters of the private key in the DH algorithm.
 
-When a key parameter is used to generate a key, you can pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
+To generate a key based on key parameters, pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
 | Name  | Type              | Readable| Writable| Description                                |
 | ------ | ------------------ | ---- | ---- | ------------------------------------ |
-| params | DHCommonParamsSpec | Yes  | Yes  | Common parameters contained in both public and private keys in the DH algorithm.|
+| params | [DHCommonParamsSpec](#dhcommonparamsspec11) | Yes  | Yes  | Common parameters of the public and private keys in the DH algorithm.|
 | sk     | bigint             | Yes  | Yes  | Private key **sk** in the DH algorithm.                |
 
 ## DHPubKeySpec<sup>11+</sup>
 
-Defines the parameters contained in the public key in the DH algorithm. It is a child class of [AsyKeySpec](#asykeyspec10).
+Defines a child class of [AsyKeySpec](#asykeyspec10) used to specify the parameters of the public key in the DH algorithm.
 
-When a key parameter is used to generate a key, you can pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
+To generate a key based on key parameters, pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
 | Name  | Type              | Readable| Writable| Description                                |
 | ------ | ------------------ | ---- | ---- | ------------------------------------ |
-| params | DHCommonParamsSpec | Yes  | Yes  | Common parameters contained in both public and private keys in the DH algorithm.|
+| params | [DHCommonParamsSpec](#dhcommonparamsspec11) | Yes  | Yes  | Common parameters of the public and private keys in the DH algorithm.|
 | pk     | bigint             | Yes  | Yes  | Public key **pk** in the DH algorithm.                |
 
 ## DHKeyPairSpec<sup>11+</sup>
 
-Defines all parameters contained in the public and private keys in the DH algorithm. It is a child class of [AsyKeySpec](#asykeyspec10).
+Defines a child class of [AsyKeySpec](#asykeyspec10) used to specify all parameters of the public and private keys in the DH algorithm.
 
-When a key parameter is used to generate a key, you can pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
+To generate a key based on key parameters, pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
 | Name  | Type              | Readable| Writable| Description                                |
 | ------ | ------------------ | ---- | ---- | ------------------------------------ |
-| params | DHCommonParamsSpec | Yes  | Yes  | Common parameters contained in both public and private keys in the DH algorithm.|
+| params | [DHCommonParamsSpec](#dhcommonparamsspec11) | Yes  | Yes  | Common parameters of the public and private keys in the DH algorithm.|
 | sk     | bigint             | Yes  | Yes  | Private key **sk** in the DH algorithm.                |
 | pk     | bigint             | Yes  | Yes  | Public key **pk** in the DH algorithm.                |
 
@@ -527,7 +527,7 @@ Defines the child class of [KdfSpec](#kdfspec11). It is used as an input of the 
 
 | Name   | Type  | Readable| Writable| Description                                                        |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| password | string \| Uint8Array | Yes  | Yes  | Original password entered by the user.|
+| password | string \| Uint8Array | Yes  | Yes  | Original password entered by the user. |
 | salt | Uint8Array | Yes  | Yes  | Salt value.|
 | iterations | number | Yes  | Yes  | Number of iterations. The value must be a positive integer.|
 | keySize | number | Yes  | Yes  | Length of the derived key, in bytes.|
@@ -581,9 +581,14 @@ For details about the error codes, see [Crypto Framework Error Codes](../errorco
 **Example**
 
 ```ts
-let key: cryptoFramework.SymKey;    // The key is generated by a key generator. The generation process is omitted here.
-let encodedKey = key.getEncoded();
-console.info("key blob:" + encodedKey.data);
+import cryptoFramework from '@ohos.security.cryptoFramework';
+
+async function testGenerateAesKey() {
+  let symKeyGenerator = cryptoFramework.createSymKeyGenerator('AES256');
+  let symKey = await symKeyGenerator.generateSymKey();
+  let encodedKey = symKey.getEncoded();
+  console.info('key hex:' + encodedKey.data);
+}
 ```
 
 ## SymKey
@@ -605,10 +610,10 @@ Clears the keys in the memory. This API returns the result synchronously. You ar
 ```ts
 let key: cryptoFramework.SymKey;    // The key is generated by a symKeyGenerator. The generation process is omitted here.
 let encodedKey = key.getEncoded();
-console.info("key blob: "+ encodedKey.data);    // Display key content.
+console.info('key blob: '+ encodedKey.data);    // Display key content.
 key.clearMem();
 encodedKey = key.getEncoded();
-console.info("key blob:" + encodedKey.data);    // Display all 0s.
+console.info('key blob: ' + encodedKey.data);  // Display all 0s.
 ```
 
 ## PubKey
@@ -651,7 +656,7 @@ For details about the error codes, see [Crypto Framework Error Codes](../errorco
 ```ts
 let key: cryptoFramework.PubKey; // key is a public key object. The generation process is omitted here.
 let p = key.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_FP_P_BN);
-console.info("ecc item --- p: " + p.toString(16));
+console.info('ecc item --- p: ' + p.toString(16));
 ```
 
 ## PriKey
@@ -709,7 +714,7 @@ For details about the error codes, see [Crypto Framework Error Codes](../errorco
 ```ts
 let key: cryptoFramework.PriKey; // key is a private key object. The generation process is omitted here.
 let p = key.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_FP_P_BN);
-console.info("ecc item --- p: " + p.toString(16));
+console.info('ecc item --- p: ' + p.toString(16));
 ```
 
 ## KeyPair
@@ -739,7 +744,7 @@ createSymKeyGenerator(algName: string): SymKeyGenerator
 
 Creates a **symKeyGenerator** instance based on the specified algorithm.
 
-For details about the supported specifications, see [Key Generation Specifications](../../security/cryptoFramework-overview.md#key-generation-specifications).
+For details about the supported specifications, see [Symmetric Key Generation and Conversion Specifications](../../security/CryptoArchitectureKit/crypto-sym-key-generation-conversion-spec.md).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -747,7 +752,7 @@ For details about the supported specifications, see [Key Generation Specificatio
 
 | Name | Type  | Mandatory| Description                                                        |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| algName | string | Yes  | Algorithm used to create the **symKeyGenerator** instance.<br>For details, see "String Parameter" in [Key Generation Specifications](../../security/cryptoFramework-overview.md#key-generation-specifications).|
+| algName | string | Yes  | Algorithm used to create the **symKeyGenerator** instance.<br>For details, see "String Parameter" in [Symmetric Key Generation and Conversion Specifications] (../../security/CryptoArchitectureKit/crypto-sym-key-generation-conversion-spec.md).|
 
 **Return value**
 
@@ -813,17 +818,12 @@ For details about the error codes, see [Crypto Framework Error Codes](../errorco
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import cryptoFramework from '@ohos.security.cryptoFramework';
 
-let symAlgName = '3DES192';
-let symKeyGenerator = cryptoFramework.createSymKeyGenerator(symAlgName);
-symKeyGenerator.generateSymKey((err, symKey) => {
-  if (err) {
-    console.error(`Generate symKey failed, ${err.code}, ${err.message}`);
-  } else {
-    console.info(`Generate symKey success, algName: ${symKey.algName}`);
-  }
-})
+let symKeyGenerator = cryptoFramework.createSymKeyGenerator('3DES192');
+  symKeyGenerator.generateSymKey((err, symKey) => {
+    console.info('Generate symKey success, algName: ' + symKey.algName);
+  });
 ```
 
 ### generateSymKey
@@ -856,14 +856,13 @@ For details about the error codes, see [Crypto Framework Error Codes](../errorco
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let symAlgName = 'AES128';
-let symKeyGenerator = cryptoFramework.createSymKeyGenerator(symAlgName);
-symKeyGenerator.generateSymKey()
-  .then(symKey => {
-    console.info(`Generate symKey success, algName: ${symKey.algName}`);
-  }, (error: BusinessError) => {
-    console.error(`Generate symKey failed, ${error.code}, ${error.message}`);
-  })
+let symKeyGenerator = cryptoFramework.createSymKeyGenerator('AES128');
+  symKeyGenerator.generateSymKey()
+    .then(symKey => {
+      console.info('Generate symKey success, algName: ' + symKey.algName);
+    }, (error: BusinessError) => {
+      console.error(`Generate symKey failed, ${error.code}, ${error.message}`);
+    });
 ```
 
 ### convertKey
@@ -898,7 +897,7 @@ For details about the error codes, see [Crypto Framework Error Codes](../errorco
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import cryptoFramework from '@ohos.security.cryptoFramework';
 
 function genKeyMaterialBlob(): cryptoFramework.DataBlob {
   let arr = [
@@ -909,16 +908,13 @@ function genKeyMaterialBlob(): cryptoFramework.DataBlob {
   return { data: keyMaterial };
 }
 
-let symAlgName = '3DES192';
-let symKeyGenerator = cryptoFramework.createSymKeyGenerator(symAlgName);
-let keyMaterialBlob = genKeyMaterialBlob();
-symKeyGenerator.convertKey(keyMaterialBlob, (err, symKey) => {
-  if (err) {
-    console.error(`Convert symKey failed, ${err.code}, ${err.message}`);
-  } else {
-    console.info(`Convert symKey success, algName: ${symKey.algName}`);
-  }
-})
+function testConvertKey() {
+  let symKeyGenerator = cryptoFramework.createSymKeyGenerator('3DES192');
+  let keyMaterialBlob = genKeyMaterialBlob();
+  symKeyGenerator.convertKey(keyMaterialBlob, (err, symKey) => {
+    console.info('Convert symKey success, algName: ' + symKey.algName);
+  });
+}
 ```
 
 ### convertKey
@@ -954,6 +950,7 @@ For details about the error codes, see [Crypto Framework Error Codes](../errorco
 **Example**
 
 ```ts
+import cryptoFramework from '@ohos.security.cryptoFramework';
 import { BusinessError } from '@ohos.base';
 
 function genKeyMaterialBlob(): cryptoFramework.DataBlob {
@@ -965,15 +962,16 @@ function genKeyMaterialBlob(): cryptoFramework.DataBlob {
   return { data: keyMaterial };
 }
 
-let symAlgName = '3DES192';
-let symKeyGenerator = cryptoFramework.createSymKeyGenerator(symAlgName);
-let keyMaterialBlob = genKeyMaterialBlob();
-symKeyGenerator.convertKey(keyMaterialBlob)
-  .then(symKey => {
-    console.info(`Convert symKey success, algName: ${symKey.algName}`);
-  }, (error: BusinessError) => {
-    console.error(`Convert symKey failed, ${error.code}, ${error.message}`);
-  })
+function testConvertKey() {
+  let symKeyGenerator = cryptoFramework.createSymKeyGenerator('3DES192');
+  let keyMaterialBlob = genKeyMaterialBlob();
+  symKeyGenerator.convertKey(keyMaterialBlob)
+    .then(symKey => {
+      console.info('Convert symKey success, algName: ' + symKey.algName);
+    }, (error: BusinessError) => {
+      console.error(`Convert symKey failed, ${error.code}, ${error.message}`);
+    });
+}
 ```
 
 ## cryptoFramework.createAsyKeyGenerator
@@ -982,7 +980,7 @@ createAsyKeyGenerator(algName: string): AsyKeyGenerator
 
 Creates an **AsyKeyGenerator** instance based on the specified algorithm.
 
-For details about the supported specifications, see [Key Generation Specifications](../../security/cryptoFramework-overview.md#key-generation-specifications).
+For details about the supported specifications, see [Asymmetric Key Generation and Conversion Specifications](../../security/CryptoArchitectureKit/crypto-sym-key-generation-conversion-spec.md).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -1010,7 +1008,7 @@ For details about the error codes, see [Crypto Framework Error Codes](../errorco
 **Example**
 
 ```ts
-let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator("ECC256");
+let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator('ECC256');
 ```
 
 ## AsyKeyGenerator
@@ -1051,15 +1049,13 @@ For details about the error codes, see [Crypto Framework Error Codes](../errorco
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
-let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator("ECC256");
+let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator('ECC256');
 asyKeyGenerator.generateKeyPair((err, keyPair) => {
   if (err) {
     console.error("generateKeyPair: error.");
     return;
   }
-  console.info("generateKeyPair: success.");
+  console.info('generateKeyPair: success.');
 })
 ```
 
@@ -1091,10 +1087,10 @@ For details about the error codes, see [Crypto Framework Error Codes](../errorco
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator("ECC256");
+let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator('ECC256');
 let keyGenPromise = asyKeyGenerator.generateKeyPair();
-keyGenPromise.then( keyPair => {
-  console.info("generateKeyPair success.");
+keyGenPromise.then(keyPair => {
+  console.info('generateKeyPair success.');
 }).catch((error: BusinessError) => {
   console.error("generateKeyPair error.");
 });
@@ -1128,20 +1124,18 @@ For details about the error codes, see [Crypto Framework Error Codes](../errorco
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 let pubKeyArray = new Uint8Array([48, 89, 48, 19, 6, 7, 42, 134, 72, 206, 61, 2, 1, 6, 8, 42, 134, 72, 206, 61, 3, 1, 7, 3, 66, 0, 4, 83, 96, 142, 9, 86, 214, 126, 106, 247, 233, 92, 125, 4, 128, 138, 105, 246, 162, 215, 71, 81, 58, 202, 121, 26, 105, 211, 55, 130, 45, 236, 143, 55, 16, 248, 75, 167, 160, 167, 106, 2, 152, 243, 44, 68, 66, 0, 167, 99, 92, 235, 215, 159, 239, 28, 106, 124, 171, 34, 145, 124, 174, 57, 92]);
 let priKeyArray = new Uint8Array([48, 49, 2, 1, 1, 4, 32, 115, 56, 137, 35, 207, 0, 60, 191, 90, 61, 136, 105, 210, 16, 27, 4, 171, 57, 10, 61, 123, 40, 189, 28, 34, 207, 236, 22, 45, 223, 10, 189, 160, 10, 6, 8, 42, 134, 72, 206, 61, 3, 1, 7]);
-let pubKeyBlob: cryptoFramework.DataBlob = {data: pubKeyArray}; // Data of the public key.
-let priKeyBlob: cryptoFramework.DataBlob = {data: priKeyArray}; // Data of the private key.
-let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator("ECC256");
+let pubKeyBlob: cryptoFramework.DataBlob = { data: pubKeyArray }; // Binary data of the public key.
+let priKeyBlob: cryptoFramework.DataBlob = { data: priKeyArray }; // Binary data of the private key.
+let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator('ECC256');
 asyKeyGenerator.convertKey(pubKeyBlob, priKeyBlob, (err, keyPair) => {
   if (err) {
     console.error("convertKey: error.");
     return;
   }
-  console.info("convertKey: success.");
-})
+  console.info('convertKey: success.');
+});
 ```
 
 ### convertKey
@@ -1181,12 +1175,12 @@ import { BusinessError } from '@ohos.base';
 
 let pubKeyArray = new Uint8Array([48, 89, 48, 19, 6, 7, 42, 134, 72, 206, 61, 2, 1, 6, 8, 42, 134, 72, 206, 61, 3, 1, 7, 3, 66, 0, 4, 83, 96, 142, 9, 86, 214, 126, 106, 247, 233, 92, 125, 4, 128, 138, 105, 246, 162, 215, 71, 81, 58, 202, 121, 26, 105, 211, 55, 130, 45, 236, 143, 55, 16, 248, 75, 167, 160, 167, 106, 2, 152, 243, 44, 68, 66, 0, 167, 99, 92, 235, 215, 159, 239, 28, 106, 124, 171, 34, 145, 124, 174, 57, 92]);
 let priKeyArray = new Uint8Array([48, 49, 2, 1, 1, 4, 32, 115, 56, 137, 35, 207, 0, 60, 191, 90, 61, 136, 105, 210, 16, 27, 4, 171, 57, 10, 61, 123, 40, 189, 28, 34, 207, 236, 22, 45, 223, 10, 189, 160, 10, 6, 8, 42, 134, 72, 206, 61, 3, 1, 7]);
-let pubKeyBlob: cryptoFramework.DataBlob = {data: pubKeyArray}; // Data of the public key.
-let priKeyBlob: cryptoFramework.DataBlob = {data: priKeyArray}; // Data of the private key.
-let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator("ECC256");
+let pubKeyBlob: cryptoFramework.DataBlob = { data: pubKeyArray }; // Binary data of the public key.
+let priKeyBlob: cryptoFramework.DataBlob = { data: priKeyArray }; // Binary data of the private key.
+let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator('ECC256');
 let keyGenPromise = asyKeyGenerator.convertKey(pubKeyBlob, priKeyBlob);
-keyGenPromise.then( keyPair => {
-  console.info("convertKey success.");
+keyGenPromise.then(keyPair => {
+  console.info('convertKey success.');
 }).catch((error: BusinessError) => {
   console.error("convertKey error.");
 });
@@ -1204,7 +1198,7 @@ createAsyKeyGeneratorBySpec(asyKeySpec: AsyKeySpec): AsyKeyGeneratorBySpec
 
 Creates an **AsyKeyGenerator** instance based on the specified key parameter.
 
-For details about the supported specifications, see [Key Generation Specifications](../../security/cryptoFramework-overview.md#key-generation-specifications).
+For details about the supported specifications, see [Asymmetric Key Generation and Conversion Specifications](../../security/CryptoArchitectureKit/crypto-sym-key-generation-conversion-spec.md).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -1212,7 +1206,7 @@ For details about the supported specifications, see [Key Generation Specificatio
 
 | Name | Type  | Mandatory| Description                            |
 | ------- | ------ | ---- | -------------------------------- |
-| asyKeySpec | [AsyKeySpec](#asykeyspec10) | Yes  | Parameters of the key. The **AsyKeyGenerator** generates the public/private key based on the specified parameters.|
+| asyKeySpec | [AsyKeySpec](#asykeyspec10) | Yes  | Key parameters. The **AsyKeyGenerator** generates the public/private key based on the specified parameters.|
 
 **Return value**
 
@@ -1232,26 +1226,27 @@ For details about the error codes, see [Crypto Framework Error Codes](../errorco
 **Example**
 
 ```ts
-// Set the common parameters contained in both the DSA1024 public and private keys.
+// Set the common parameters of the DSA1024 public and private keys.
 function genDsa1024CommonSpecBigE() {
   let dsaCommonSpec: cryptoFramework.DSACommonParamsSpec = {
-    algName : "DSA",
-    specType : cryptoFramework.AsyKeySpecType.COMMON_PARAMS_SPEC,
-    p : BigInt("0xed1501551b8ab3547f6355ffdc2913856ddeca198833dbd04f020e5f25e47c50e0b3894f7690a0d2ea5ed3a7be25c54292a698e1f086eb3a97deb4dbf04fcad2dafd94a9f35c3ae338ab35477e16981ded6a5b13d5ff20bf55f1b262303ad3a80af71aa6aa2354d20e9c82647664bdb6b333b7bea0a5f49d55ca40bc312a1729"),
-    q : BigInt("0xd23304044019d5d382cfeabf351636c7ab219694ac845051f60b047b"),
-    g : BigInt("0x2cc266d8bd33c3009bd67f285a257ba74f0c3a7e12b722864632a0ac3f2c17c91c2f3f67eb2d57071ef47aaa8f8e17a21ad2c1072ee1ce281362aad01dcbcd3876455cd17e1dd55d4ed36fa011db40f0bbb8cba01d066f392b5eaa9404bfcb775f2196a6bc20eeec3db32d54e94d87ecdb7a0310a5a017c5cdb8ac78597778bd"),
+    algName: "DSA",
+    specType: cryptoFramework.AsyKeySpecType.COMMON_PARAMS_SPEC,
+    p: BigInt("0xed1501551b8ab3547f6355ffdc2913856ddeca198833dbd04f020e5f25e47c50e0b3894f7690a0d2ea5ed3a7be25c54292a698e1f086eb3a97deb4dbf04fcad2dafd94a9f35c3ae338ab35477e16981ded6a5b13d5ff20bf55f1b262303ad3a80af71aa6aa2354d20e9c82647664bdb6b333b7bea0a5f49d55ca40bc312a1729"),
+    q: BigInt("0xd23304044019d5d382cfeabf351636c7ab219694ac845051f60b047b"),
+    g: BigInt("0x2cc266d8bd33c3009bd67f285a257ba74f0c3a7e12b722864632a0ac3f2c17c91c2f3f67eb2d57071ef47aaa8f8e17a21ad2c1072ee1ce281362aad01dcbcd3876455cd17e1dd55d4ed36fa011db40f0bbb8cba01d066f392b5eaa9404bfcb775f2196a6bc20eeec3db32d54e94d87ecdb7a0310a5a017c5cdb8ac78597778bd"),
   }
   return dsaCommonSpec;
 }
-// Set full parameters contained in the DSA1024 public and private keys.
+
+// Set full parameters of the DSA1024 key pair.
 function genDsa1024KeyPairSpecBigE() {
   let dsaCommonSpec = genDsa1024CommonSpecBigE();
   let dsaKeyPairSpec: cryptoFramework.DSAKeyPairSpec = {
-    algName : "DSA",
-    specType : cryptoFramework.AsyKeySpecType.KEY_PAIR_SPEC,
-    params : dsaCommonSpec,
-    sk : BigInt("0xa2dd2adb2d11392c2541930f61f1165c370aabd2d78d00342e0a2fd9"),
-    pk : BigInt("0xae6b5d5042e758f3fc9a02d009d896df115811a75b5f7b382d8526270dbb3c029403fafb8573ba4ef0314ea86f09d01e82a14d1ebb67b0c331f41049bd6b1842658b0592e706a5e4d20c14b67977e17df7bdd464cce14b5f13bae6607760fcdf394e0b73ac70aaf141fa4dafd736bd0364b1d6e6c0d7683a5de6b9221e7f2d6b"),
+    algName: "DSA",
+    specType: cryptoFramework.AsyKeySpecType.KEY_PAIR_SPEC,
+    params: dsaCommonSpec,
+    sk: BigInt("0xa2dd2adb2d11392c2541930f61f1165c370aabd2d78d00342e0a2fd9"),
+    pk: BigInt("0xae6b5d5042e758f3fc9a02d009d896df115811a75b5f7b382d8526270dbb3c029403fafb8573ba4ef0314ea86f09d01e82a14d1ebb67b0c331f41049bd6b1842658b0592e706a5e4d20c14b67977e17df7bdd464cce14b5f13bae6607760fcdf394e0b73ac70aaf141fa4dafd736bd0364b1d6e6c0d7683a5de6b9221e7f2d6b"),
   }
   return dsaKeyPairSpec;
 }
@@ -1278,7 +1273,7 @@ generateKeyPair(callback: AsyncCallback\<KeyPair>): void
 
 Generates an asymmetric key pair. This API uses an asynchronous callback to return the result.
 
-If a key parameter of the [COMMON_PARAMS_SPEC](#asykeyspectype10) type is used to create the key generator, a key pair will be randomly generated. If a key parameter of the [KEY_PAIR_SPEC](#asykeyspectype10) type is used to create the key generator, you can obtain a key pair that is consistent with the specified key parameter.
+If a key parameter of the [COMMON_PARAMS_SPEC](#asykeyspectype10) type is used to create the key generator, a key pair will be randomly generated. If a key parameter of the [KEY_PAIR_SPEC](#asykeyspectype10) type is used to create the key generator, you can obtain a key pair that is consistent with the specified key parameters.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -1300,16 +1295,14 @@ For details about the error codes, see [Crypto Framework Error Codes](../errorco
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
-let asyKeyPairSpec: cryptoFramework.DSAKeyPairSpec; // DSA is used as an example. asyKeyPairSpec specifies full parameters contained in the private and public keys. The generation process is omitted here.
+let asyKeyPairSpec: cryptoFramework.DSAKeyPairSpec; // Use DSA as an example. asyKeyPairSpec specifies full parameters of the private and public keys. The generation process is omitted here.
 let asyKeyGeneratorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(asyKeyPairSpec);
 asyKeyGeneratorBySpec.generateKeyPair((err, keyPair) => {
   if (err) {
     console.error("generateKeyPair: error.");
     return;
   }
-  console.info("generateKeyPair: success.");
+  console.info('generateKeyPair: success.');
 })
 ```
 
@@ -1319,7 +1312,7 @@ generateKeyPair(): Promise\<KeyPair>
 
 Generates an asymmetric key pair. This API uses a promise to return the result.
 
-If a key parameter of the [COMMON_PARAMS_SPEC](#asykeyspectype10) type is used to create the key generator, a key pair will be randomly generated. If a key parameter of the [KEY_PAIR_SPEC](#asykeyspectype10) type is used to create the key generator, you can obtain a key pair that is consistent with the specified key parameter.
+If a key parameter of the [COMMON_PARAMS_SPEC](#asykeyspectype10) type is used to create the key generator, a key pair will be randomly generated. If a key parameter of the [KEY_PAIR_SPEC](#asykeyspectype10) type is used to create the key generator, you can obtain a key pair that is consistent with the specified key parameters.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -1343,11 +1336,11 @@ For details about the error codes, see [Crypto Framework Error Codes](../errorco
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let asyKeyPairSpec: cryptoFramework.DSAKeyPairSpec; // DSA is used as an example. asyKeyPairSpec specifies full parameters contained in the private and public keys. The generation process is omitted here.
+let asyKeyPairSpec: cryptoFramework.DSAKeyPairSpec; // Use DSA as an example. asyKeyPairSpec specifies full parameters of the private and public keys. The generation process is omitted here.
 let asyKeyGeneratorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(asyKeyPairSpec);
 let keyGenPromise = asyKeyGeneratorBySpec.generateKeyPair();
-keyGenPromise.then( keyPair => {
-  console.info("generateKeyPair success.");
+keyGenPromise.then(keyPair => {
+  console.info('generateKeyPair success.');
 }).catch((error: BusinessError) => {
   console.error("generateKeyPair error.");
 });
@@ -1381,16 +1374,14 @@ For details about the error codes, see [Crypto Framework Error Codes](../errorco
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
-let asyKeyPairSpec: cryptoFramework.DSAKeyPairSpec; // DSA is used as an example. asyKeyPairSpec specifies full parameters contained in the private and public keys.
+let asyKeyPairSpec: cryptoFramework.DSAKeyPairSpec; // Use DSA as an example. asyKeyPairSpec specifies full parameters of the private and public keys. The generation process is omitted here.
 let asyKeyGeneratorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(asyKeyPairSpec);
 asyKeyGeneratorBySpec.generatePriKey((err, prikey) => {
   if (err) {
     console.error("generatePriKey: error.");
     return;
   }
-  console.info("generatePriKey: success.");
+  console.info('generatePriKey: success.');
 })
 ```
 
@@ -1408,7 +1399,7 @@ If a key parameter of the [PRIVATE_KEY_SPEC](#asykeyspectype10) type is used to 
 
 | Type             | Description                             |
 | ----------------- | --------------------------------- |
-| Promise\<[PriKey](#prikey)> | Promise used to return the key generated.|
+| Promise\<[PriKey](#prikey)> | Promise used to return the key pair generated.|
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](../errorcodes/errorcode-crypto-framework.md).
@@ -1424,11 +1415,11 @@ For details about the error codes, see [Crypto Framework Error Codes](../errorco
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let asyKeyPairSpec: cryptoFramework.DSAKeyPairSpec; // DSA is used as an example. asyKeyPairSpec specifies full parameters contained in the private and public keys.
+let asyKeyPairSpec: cryptoFramework.DSAKeyPairSpec; // Use DSA as an example. asyKeyPairSpec specifies full parameters of the private and public keys. The generation process is omitted here.
 let asyKeyGeneratorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(asyKeyPairSpec);
 let keyGenPromise = asyKeyGeneratorBySpec.generatePriKey();
-keyGenPromise.then( priKey => {
-  console.info("generatePriKey success.");
+keyGenPromise.then(priKey => {
+  console.info('generatePriKey success.');
 }).catch((error: BusinessError) => {
   console.error("generatePriKey error.");
 });
@@ -1462,16 +1453,14 @@ For details about the error codes, see [Crypto Framework Error Codes](../errorco
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
-let asyKeyPairSpec: cryptoFramework.DSAKeyPairSpec; // DSA is used as an example. asyKeyPairSpec specifies full parameters contained in the private and public keys. The generation process is omitted here.
+let asyKeyPairSpec: cryptoFramework.DSAKeyPairSpec; // Use DSA as an example. asyKeyPairSpec specifies full parameters of the private and public keys. The generation process is omitted here.
 let asyKeyGeneratorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(asyKeyPairSpec);
 asyKeyGeneratorBySpec.generatePubKey((err, pubKey) => {
   if (err) {
     console.error("generatePubKey: error.");
     return;
   }
-  console.info("generatePubKey: success.");
+  console.info('generatePubKey: success.');
 })
 ```
 
@@ -1489,7 +1478,7 @@ If a key parameter of the [PUBLIC_KEY_SPEC](#asykeyspectype10) type is used to c
 
 | Type             | Description                             |
 | ----------------- | --------------------------------- |
-| Promise\<[PubKey](#pubkey)> | Promise used to return the key generated.|
+| Promise\<[PubKey](#pubkey)> | Promise used to return the key pair generated.|
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](../errorcodes/errorcode-crypto-framework.md).
@@ -1505,14 +1494,110 @@ For details about the error codes, see [Crypto Framework Error Codes](../errorco
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let asyKeyPairSpec: cryptoFramework.DSAKeyPairSpec; // DSA is used as an example. asyKeyPairSpec specifies full parameters contained in the private and public keys. The generation process is omitted here.
+let asyKeyPairSpec: cryptoFramework.DSAKeyPairSpec; // Use DSA as an example. asyKeyPairSpec specifies full parameters of the private and public keys. The generation process is omitted here.
 let asyKeyGeneratorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(asyKeyPairSpec);
 let keyGenPromise = asyKeyGeneratorBySpec.generatePubKey();
-keyGenPromise.then( pubKey => {
-  console.info("generatePubKey success.");
+keyGenPromise.then(pubKey => {
+  console.info('generatePubKey success.');
 }).catch((error: BusinessError) => {
   console.error("generatePubKey error.");
 });
+```
+
+## ECCKeyUtil<sup>11+</sup>
+
+Provides APIs for generating common parameters for an asymmetric key pair based on the elliptic curve name.
+
+### genECCCommonParamsSpec<sup>11+</sup>
+
+static genECCCommonParamsSpec(curveName: string): ECCCommonParamsSpec
+
+Generates common parameters for an asymmetric key pair based on the specified name identifier (NID) of an elliptic curve. For details, see [ECC](../../security/CryptoArchitectureKit/crypto-asym-key-generation-conversion-spec.md#ecc) and [SM2](../../security/CryptoArchitectureKit/crypto-asym-key-generation-conversion-spec.md#sm2).
+
+**System capability**: SystemCapability.Security.CryptoFramework
+
+**Parameters**
+
+| Name | Type  | Mandatory| Description                                          |
+| ------- | ------ | ---- | ---------------------------------------------- |
+| algName | string | Yes  | NID of the elliptic curve.|
+
+**Return value**
+
+| Type             | Description                             |
+| ----------------- | --------------------------------- |
+| [ECCCommonParamsSpec](#ecccommonparamsspec10) | ECC common parameters generated.|
+
+**Error codes**
+For details about the error codes, see [Crypto Framework Error Codes](../errorcodes/errorcode-crypto-framework.md).
+
+| ID| Error Message                        |
+| -------- | -------------------------------- |
+| 401      | invalid parameters.              |
+| 801      | this operation is not supported. |
+| 17620001 | memory error.                    |
+
+**Example**
+
+```ts
+import cryptoFramework from "@ohos.security.cryptoFramework";
+import { BusinessError } from '@ohos.base';
+try {
+    let ECCCommonParamsSpec = cryptoFramework.ECCKeyUtil.genECCCommonParamsSpec('NID_brainpoolP160r1');
+    console.info('genECCCommonParamsSpec success');
+} catch (err) {
+    let e: BusinessError = err as BusinessError;
+    console.error(`genECCCommonParamsSpec error, ${e.code}, ${e.message}`);
+}
+```
+
+## DHKeyUtil<sup>11+</sup>
+
+Provides APIs for generating common parameters for a DH key based on the prime **p** length and the private key length.
+
+### genDHCommonParamsSpec<sup>11+</sup>
+
+static genDHCommonParamsSpec(pLen: number, skLen?: number): DHCommonParamsSpec
+
+Generates common parameters for a DH key based on the prime **p** length and the private key length. For details, see [DH](../../security/CryptoArchitectureKit/crypto-asym-key-generation-conversion-spec.md#dh).
+
+**System capability**: SystemCapability.Security.CryptoFramework
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                            |
+| ------ | ------ | ---- | ------------------------------------------------ |
+| pLen   | number | Yes  | Length of the prime **p**, in bits.|
+| skLen  | number | No  | Length of the private key, in bits. |
+
+**Return value**
+
+| Type             | Description                             |
+| ----------------- | --------------------------------- |
+| [DHCommonParamsSpec](#dhcommonparamsspec11) | DH common parameters generated.|
+
+**Error codes**
+For details about the error codes, see [Crypto Framework Error Codes](../errorcodes/errorcode-crypto-framework.md).
+
+| ID| Error Message                        |
+| -------- | -------------------------------- |
+| 401      | invalid parameters.              |
+| 801      | this operation is not supported. |
+| 17620001 | memory error.                    |
+| 17630001 | crypto operation error.          |
+
+**Example**
+
+```ts
+import cryptoFramework from "@ohos.security.cryptoFramework";
+import { BusinessError } from '@ohos.base';
+try {
+    let DHCommonParamsSpec = cryptoFramework.DHKeyUtil.genDHCommonParamsSpec(2048);
+    console.info('genDHCommonParamsSpec success');
+} catch (err) {
+    let e: BusinessError = err as BusinessError;
+    console.error(`genDHCommonParamsSpec error, ${e.code}, ${e.message}`);
+}
 ```
 
 ## cryptoFramework.createCipher
@@ -1521,7 +1606,7 @@ createCipher(transformation: string): Cipher
 
 Creates a [Cipher](#cipher) instance based on the specified algorithm.
 
-For details about the supported specifications, see [Encryption and Decryption Specifications](../../security/cryptoFramework-overview.md#encryption-and-decryption-specifications).
+For details about the supported specifications, see [Symmetric Key Encryption and Decryption Algorithm Specifications](../../security/CryptoArchitectureKit/crypto-sym-encrypt-decrypt-spec.md) and [Asymmetric Key Encryption and Decryption Algorithm Specifications](../../security/CryptoArchitectureKit/crypto-asym-encrypt-decrypt-spec.md).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -1529,12 +1614,12 @@ For details about the supported specifications, see [Encryption and Decryption S
 
 | Name        | Type  | Mandatory| Description                                                        |
 | -------------- | ------ | ---- | ------------------------------------------------------------ |
-| transformation | string | Yes  | Combination of the algorithm name (including the key length), encryption mode, and padding algorithm of the **Cipher** instance to create.<br>For details, see **String Parameter** in [Encryption and Decryption Specifications](../../security/cryptoFramework-overview.md#encryption-and-decryption-specifications).|
+| transformation | string | Yes  | Combination of the algorithm name (including the key length), encryption mode, and padding algorithm of the **Cipher** instance to create.|
 
 > **NOTE**
 >
-> 1. In symmetric encryption and decryption, the implementation of PKCS #5 is the same as that of PKCS #7. PKCS #5 and PKCS #7 use the same padding length and block length. That is, data is padded with 8 bytes in 3DES and 16 bytes in AES. **noPadding** indicates that no padding is performed.<br>
-> You need to understand the differences between different block cipher modes and use the correct parameter specifications. For example, padding is required for ECB and CBC. Otherwise, ensure that the plaintext length is an integer multiple of the block size. No padding is recommended for other modes. In this case, the ciphertext length is the same as the plaintext length.
+> 1. In symmetric encryption and decryption, the implementation of PKCS #5 is the same as that of PKCS #7. PKCS #5 and PKCS #7 use the same padding length and block length. That is, data is padded with 8 bytes in 3DES and 16 bytes in AES. **noPadding** indicates that no padding is performed.
+> <br>You need to understand the differences between different block cipher modes and use the correct parameter specifications. For example, padding is required for ECB and CBC. Otherwise, ensure that the plaintext length is an integer multiple of the block size. No padding is recommended for other modes. In this case, the ciphertext length is the same as the plaintext length.
 > 2. When RSA or SM2 is used for asymmetric encryption and decryption, create a **Cipher** instance for encryption and decryption respectively. Do not use the same **Cipher** instance for encryption and decryption. For symmetric encryption and decryption, one **cipher** object can be used to perform both encryption and decryption as long as the algorithm specifications are the same.
 
 **Return value**
@@ -1560,94 +1645,10 @@ import { BusinessError } from '@ohos.base';
 let cipherAlgName = '3DES192|ECB|PKCS7';
 try {
   let cipher = cryptoFramework.createCipher(cipherAlgName);
-  console.info(`cipher algName: ${cipher.algName}`);
+  console.info('cipher algName: ' + cipher.algName);
 } catch (error) {
   let e: BusinessError = error as BusinessError;
   console.error(`sync error, ${e.code}, ${e.message}`);
-}
-```
-
-## ECCKeyUtil<sup>11+</sup>
-
-Provides APIs for generating common key parameters for an asymmetric key pair based on the elliptic curve name.
-
-### genECCCommonParamsSpec<sup>11+</sup>
-
-static genECCCommonParamsSpec(curveName: string): ECCCommonParamsSpec
-
-Generates common key parameters for an asymmetric key pair based on the specified name identifier (NID) of an elliptic curve. For details about the key specifications, see [ECC Key Generation Specifications](../../security/cryptoFramework-overview.md#ecc-key-generation-specifications) and [SM2 Key Generation Specifications](../../security/cryptoFramework-overview.md#sm2-key-generation-specifications).
-
-**System capability**: SystemCapability.Security.CryptoFramework
-
-**Parameters**
-
-| Name | Type  | Mandatory| Description                                          |
-| ------- | ------ | ---- | ---------------------------------------------- |
-| algName | string | Yes  | NID of the elliptic curve.|
-
-**Error codes**
-For details about the error codes, see [Crypto Framework Error Codes](../errorcodes/errorcode-crypto-framework.md).
-
-| ID| Error Message                        |
-| -------- | -------------------------------- |
-| 401      | invalid parameters.              |
-| 801      | this operation is not supported. |
-| 17620001 | memory error.                    |
-
-**Example**
-
-```ts
-import cryptoFramework from "@ohos.security.cryptoFramework";
-import { BusinessError } from '@ohos.base';
-try {
-    let ECCCommonParamsSpec = cryptoFramework.ECCKeyUtil.genECCCommonParamsSpec('NID_brainpoolP160r1');
-    console.info(`genECCCommonParamsSpec success`);
-} catch (err) {
-    let e: BusinessError = err as BusinessError;
-    console.error(`genECCCommonParamsSpec error, ${e.code}, ${e.message}`);
-}
-```
-
-## DHKeyUtil<sup>11+</sup>
-
-Provides APIs for generating common parameters for a DH key based on the lengths of the prime **p** and the private key.
-
-### genDHCommonParamsSpec<sup>11+</sup>
-
-static genDHCommonParamsSpec(pLen: number, skLen?: number): DHCommonParamsSpec
-
-Generates common parameters for a DH key based on the lengths of the prime **p** and the private key. For details about the supported key specifications, see [DH Key Generation Specifications](../../security/cryptoFramework-overview.md#dh-key-generation-specifications).
-
-**System capability**: SystemCapability.Security.CryptoFramework
-
-**Parameters**
-
-| Name| Type  | Mandatory| Description                                            |
-| ------ | ------ | ---- | ------------------------------------------------ |
-| pLen   | number | Yes  | Length of the prime **p**, in bits.|
-| skLen  | number | No  | Length of the private key, in bits. |
-
-**Error codes**
-For details about the error codes, see [Crypto Framework Error Codes](../errorcodes/errorcode-crypto-framework.md).
-
-| ID| Error Message                        |
-| -------- | -------------------------------- |
-| 401      | invalid parameters.              |
-| 801      | this operation is not supported. |
-| 17620001 | memory error.                    |
-| 17630001 | crypto operation error.          |
-
-**Example**
-
-```ts
-import cryptoFramework from "@ohos.security.cryptoFramework";
-import { BusinessError } from '@ohos.base';
-try {
-    let DHCommonParamsSpec = cryptoFramework.ECCKeyUtil.genDHCommonParamsSpec(2048);
-    console.info(`genDHCommonParamsSpec success`);
-} catch (err) {
-    let e: BusinessError = err as BusinessError;
-    console.error(`genDHCommonParamsSpec error, ${e.code}, ${e.message}`);
 }
 ```
 
@@ -1655,7 +1656,7 @@ try {
 
 Provides APIs for cipher operations. The [init()](#init-1), [update()](#update), and [doFinal()](#dofinal) APIs in this class are called in sequence to implement symmetric encryption or decryption and asymmetric encryption or decryption.
 
-For details about the complete encryption and decryption process, see [Encryption and Decryption](../../security/cryptoFramework-guidelines.md#encryption-and-decryption).
+For details about the encryption and decryption process, see [Encryption and Decryption Overview] (../../security/CryptoArchitectureKit/crypto-encryption-decryption-overview.md).
 
 A complete symmetric encryption/decryption process is slightly different from the asymmetric encryption/decryption process.
 
@@ -1674,7 +1675,7 @@ A complete symmetric encryption/decryption process is slightly different from th
 
 init(opMode: CryptoMode, key: Key, params: ParamsSpec | null, callback: AsyncCallback\<void>): void
 
-Initializes a [Cipher](#cipher) instance. This API uses an asynchronous callback to return the result.
+Initializes a [cipher](#cipher) instance. This API uses an asynchronous callback to return the result. **init**, **update**, and **doFinal** must be used together. **init** and **doFinal** are mandatory, and **update** is optional.
 
 This API can be used only after a [Cipher](#cipher) instance is created by using [createCipher](#cryptoframeworkcreatecipher).
 
@@ -1699,29 +1700,11 @@ For details about the error codes, see [Crypto Framework Error Codes](../errorco
 | 17620002 | runtime error.                                           |
 | 17630001 | crypto operation error.|
 
-**Example**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-let symKey: cryptoFramework.SymKey;     // The process of generating the symmetric key is omitted here.
-let cipher: cryptoFramework.Cipher;        // The process of creating a Cipher instance is omitted here.
-
-cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, null, (err, ) => {
-  if (err) {
-    console.error(`Failed to init cipher, ${err.code}, ${err.message}`);
-  } else {
-    console.info(`Init cipher success`);
-    // Perform subsequent operations such as update.
-  }
-})
-```
-
 ### init
 
 init(opMode: CryptoMode, key: Key, params: ParamsSpec | null): Promise\<void>
 
-Initializes a [Cipher](#cipher) instance. This API uses a promise to return the result.
+Initializes a [cipher](#cipher) instance. This API uses a promise to return the result. **init**, **update**, and **doFinal** must be used together. **init** and **doFinal** are mandatory, and **update** is optional.
 
 This API can be used only after a [Cipher](#cipher) instance is created by using [createCipher](#cryptoframeworkcreatecipher).
 
@@ -1751,22 +1734,6 @@ For details about the error codes, see [Crypto Framework Error Codes](../errorco
 | 17620002 | runtime error.                                    |
 | 17630001 | crypto operation error.|
 
-**Example**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-let symKey: cryptoFramework.SymKey;     // The process of generating the symmetric key is omitted here.
-let cipher: cryptoFramework.Cipher;        // The process of creating a Cipher instance is omitted here.
-cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, null)
-  .then(() => {
-    console.info(`Init cipher success`);
-    // Perform subsequent operations such as update.
-  }, (error: BusinessError) => {
-    console.error(`Failed to init cipher, ${error.code}, ${error.message}`);
-  })
-```
-
 ### update
 
 update(data: DataBlob, callback: AsyncCallback\<DataBlob>): void
@@ -1777,10 +1744,10 @@ This API can be called only after the [Cipher](#cipher) instance is initialized 
 
 > **NOTE**
 >
-> 1. The **update()** and **doFinal()** operation results vary with the block mode used. If you are not familiar with the block modes for symmetric encryption and decryption, add a judgment to determine whether the result of each **update()** and **doFinal()** is null. If the result is not null, obtain the data to concatenate the complete ciphertext or plaintext. <br>For example, in ECB and CBC modes, data is encrypted or decrypted by block no matter whether the data passed in by **update()** is an integer multiple of the block length, and the encrypted/decrypted block data generated by this **update()** is output.<br>That is, encrypted/decrypted data is returned as long as the data passed in by **update()** reaches the size of a block. Otherwise, **null** is returned and the data will be retained until a block is formed in the next **update()**/**doFinal()**. <br>When **doFinal()** is called, the data that has not been encrypted or decrypted will be padded based on the padding mode set in [createCipher](#cryptoframeworkcreatecipher) to an integer multiple of the block length, and then encrypted or decrypted. <br>For a mode in which a block cipher can be converted into a stream cipher, the length of the ciphertext may be the same as that of the plaintext.
+> 1. The **update** and **doFinal** operation results vary with the block mode used. If you are not familiar with the block modes for symmetric encryption and decryption, add a judgment to determine whether the result of each **update** and **doFinal** is null. If the result is not null, obtain the data to concatenate the complete ciphertext or plaintext.  <br>For example, in ECB and CBC modes, data is encrypted or decrypted by block no matter whether the data passed in by **update()** is an integer multiple of the block length, and the encryption/decryption block result generated by this **update()** is output.<br>That is, encrypted/decrypted data is returned as long as the data passed in by **update()** reaches the size of a block. Otherwise, **null** is returned and the data will be retained until a block is formed in the next **update()**/**doFinal()**.<br>When **doFinal()** is called, the data that has not been encrypted or decrypted will be padded based on the padding mode set in [createCipher](#cryptoframeworkcreatecipher) to an integer multiple of the block length, and then encrypted or decrypted.<br>For a mode in which a block cipher can be converted into a stream cipher, the length of the ciphertext may be the same as that of the plaintext.
 > 2. You can use **update()** multiple times or do not use it (use **doFinal()** after **init()**), depending on the size of the data.<br>
->    The algorithm library does not set a limit on the amount of data that can be passed in by **updated()** (once or accumulatively). For symmetric encryption and decryption of a large amount of data, you are advised to call **update()** multiple times to pass in the data by segment.<br>
->    For details about the sample code for calling **update()** multiple times in AES, see [Encryption and Decryption](../../security/cryptoFramework-guidelines.md#encryption-and-decryption).
+>    The data to be passed in **updated()** (once or accumulatively) is not size bound. For symmetric encryption and decryption of a large amount of data, you are advised to call **update()** multiple times to pass in the data by segment.<br>
+>    For details about the sample code for calling **update** multiple times, see [Encryption and Decryption by Segment with an AES Symmetric Key (GCM Mode)](../../security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-gcm-by-segment.md).
 > 3. RSA or SM2 asymmetric encryption and decryption do not support **update()**.
 
 **System capability**: SystemCapability.Security.CryptoFramework
@@ -1802,35 +1769,6 @@ For details about the error codes, see [Crypto Framework Error Codes](../errorco
 | 17620002 | runtime error.                              |
 | 17630001 | crypto operation error.                     |
 
-**Example**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-function stringToUint8Array(str: string) {
-  let arr = new Uint8Array(str.length);
-  for (let i = 0, j = str.length; i < j; ++i) {
-    arr[i] = str.charCodeAt(i);
-  }
-  return arr;
-}
-
-let cipher: cryptoFramework.Cipher;        // The process of creating a Cipher instance is omitted here.
-// The init() process is omitted here.
-let plainText: cryptoFramework.DataBlob = {data: stringToUint8Array('this is test!')};
-cipher.update(plainText, (err, output) => {       // Example of the encryption process.
-  if (err) {
-    console.error(`Failed to update cipher`);
-  } else {
-    console.info(`Update cipher success`);
-    if (output != null) {
-      // Concatenate output.data to the ciphertext.
-    }
-    // Perform subsequent operations such as doFinal().
-  }
-})
-```
-
 ### update
 
 update(data: DataBlob): Promise\<DataBlob>
@@ -1841,12 +1779,11 @@ This API can be called only after the [Cipher](#cipher) instance is initialized 
 
 > **NOTE**
 >
-> 1. The **update()** and **doFinal()** operation results vary with the block mode used. If you are not familiar with the block modes for symmetric encryption and decryption, add a judgment to determine whether the result of each **update()** and **doFinal()** is null. If the result is not null, obtain the data to concatenate the complete ciphertext or plaintext.<br>
-> For example, in ECB and CBC modes, data is encrypted or decrypted by block no matter whether the data passed in by **update()** is an integer multiple of the block length, and the encrypted/decrypted block data generated by this **update()** is output.<br>That is, encrypted/decrypted data is returned as long as the data passed in by **update()** reaches the size of a block. Otherwise, **null** is returned and the data will be retained until a block is formed in the next **update()**/**doFinal()**.<br>When **doFinal()** is called, the data that has not been encrypted or decrypted will be padded based on the padding mode set in [createCipher](#cryptoframeworkcreatecipher) to an integer multiple of the block length, and then encrypted or decrypted. <br>For a mode in which a block cipher can be converted into a stream cipher, the length of the ciphertext may be the same as that of the plaintext.
+> 1. The **update** and **doFinal** operation results vary with the block mode used. If you are not familiar with the block modes for symmetric encryption and decryption, add a judgment to determine whether the result of each **update** and **doFinal** is null. If the result is not null, obtain the data to concatenate the complete ciphertext or plaintext.  <br>For example, in ECB and CBC modes, data is encrypted or decrypted by block no matter whether the data passed in by **update()** is an integer multiple of the block length, and the encryption/decryption block result generated by this **update()** is output.<br>That is, encrypted/decrypted data is returned as long as the data passed in by **update()** reaches the size of a block. Otherwise, **null** is returned and the data will be retained until a block is formed in the next **update()**/**doFinal()**.<br>When **doFinal()** is called, the data that has not been encrypted or decrypted will be padded based on the padding mode set in [createCipher](#cryptoframeworkcreatecipher) to an integer multiple of the block length, and then encrypted or decrypted.<br>For a mode in which a block cipher can be converted into a stream cipher, the length of the ciphertext may be the same as that of the plaintext.
 > 2. You can use **update()** multiple times or do not use it (use **doFinal()** after **init()**), depending on the size of the data.<br>
->    The algorithm library does not set a limit on the amount of data that can be passed in by **updated()** (once or accumulatively). For symmetric encryption and decryption of a large amount of data, you are advised to call **update()** multiple times to pass in the data by segment.<br>
->    For details about the sample code for calling **update()** multiple times in AES, see [Encryption and Decryption](../../security/cryptoFramework-guidelines.md#encryption-and-decryption).
-> 3. RSA or SM2 asymmetric encryption and decryption do not support **update()**.
+> The data to be passed in **updated()** (once or accumulatively) is not size bound. For symmetric encryption and decryption of a large amount of data, you are advised to call **update()** multiple times to pass in the data by segment.<br>
+>    For details about the sample code for calling **update** multiple times, see [Encryption and Decryption by Segment with an AES Symmetric Key (GCM Mode)](../../security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-gcm-by-segment.md).
+>    3. RSA or SM2 asymmetric encryption and decryption do not support **update()**.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -1872,51 +1809,25 @@ For details about the error codes, see [Crypto Framework Error Codes](../errorco
 | 17620002 | runtime error.                               |
 | 17630001 | crypto operation error.                      |
 
-**Example**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-function stringToUint8Array(str: string) {
-  let arr = new Uint8Array(str.length);
-  for (let i = 0, j = str.length; i < j; ++i) {
-    arr[i] = str.charCodeAt(i);
-  }
-  return arr;
-}
-
-let cipher: cryptoFramework.Cipher;        // The process of creating a Cipher instance is omitted here.
-// The init() process is omitted here.
-let plainText: cryptoFramework.DataBlob = {data: stringToUint8Array('this is test!')};
-cipher.update(plainText)
-  .then((output) => {
-    console.info(`Update cipher success.`);
-    if (output != null) {
-      // Concatenate output.data to the ciphertext.
-    }
-    // Perform subsequent operations such as doFinal().
-  }, (error: BusinessError) => {
-    console.info(`Update cipher failed.`);
-  })
-```
-
 ### doFinal
 
 doFinal(data: DataBlob | null, callback: AsyncCallback\<DataBlob>): void
 
- (1) Encrypts or decrypts the remaining data (generated by the block cipher mode) and the data passed in by **doFinal()** to finish the symmetric encryption or decryption. This API uses an asynchronous callback to return the encrypted or decrypted data. <br>If a small amount of data needs to be encrypted or decrypted, you can use **doFinal()** to pass in data without using **update()**. If all the data has been passed in by [update()](#update-4), you can pass in **null** in **data** of **doFinal()**.<br>The output of **doFinal()** varies with the symmetric encryption/decryption mode in use.
+(1) Encrypts or decrypts the remaining data (generated by the block cipher mode) and the data passed in by **doFinal()** to finalize the symmetric encryption or decryption. This API uses an asynchronous callback to return the encrypted or decrypted data.<br>If a small amount of data needs to be encrypted or decrypted, you can use **doFinal()** to pass in data without using **update()**. If all the data has been passed in by [update()](#update-4), you can pass in **null** in **data** of **doFinal()**.
+
+The output of **doFinal()** varies with the symmetric encryption/decryption mode in use.
 
 - Symmetric encryption in GCM and CCM mode: The result consists of the ciphertext and **authTag** (the last 16 bytes for GCM and the last 12 bytes for CCM). If **data** in **doFinal** is null, the result of **doFinal** is **authTag**.<br>Set **authTag** to [GcmParamsSpec](#gcmparamsspec) or [CcmParamsSpec](#ccmparamsspec) for decryption. The ciphertext is used as the input parameter **data** for decryption.
 - Symmetric encryption and decryption in other modes and symmetric decryption in GCM and CCM modes: The result is the complete plaintext/ciphertext.
 
- (2) Encrypts or decrypts the input data for RSA or SM2 asymmetric encryption/decryption. This API uses an asynchronous callback to return the result. If a large amount of data needs to be encrypted/decrypted, call **doFinal()** multiple times and concatenate the result of each **doFinal()** to obtain the complete plaintext/ciphertext.
+(2) Encrypts or decrypts the input data for RSA or SM2 asymmetric encryption/decryption. This API uses an asynchronous callback to return the result. If a large amount of data needs to be encrypted/decrypted, call **doFinal()** multiple times and concatenate the result of each **doFinal()** to obtain the complete plaintext/ciphertext.
 
 > **NOTE**
 >
->  1. In symmetric encryption or decryption, calling **doFinal()** means the end of an  encryption or decryption process, and the [Cipher](#cipher) instance state will be cleared. To start a new encryption or decryption operation, you must call **init()** to pass in a complete parameter list for initialization. For example, if the same symmetric key is used for a **Cipher** instance to perform encryption and then decryption. After the encryption is complete, the **params** in **init** for decryption must be set instead of being **null**.
+>  1. In symmetric encryption and decryption, after **doFinal** is called, the encryption and decryption process is complete and the [Cipher](#cipher) instance is cleared. When a new encryption and decryption process is started, **init()** must be called with a complete parameter list for initialization.<br>Even if the same symmetric key is used to encrypt and decrypt the same **Cipher** instance, the **params** parameter must be set when **init** is called during decryption.
 >  2. If a decryption fails, check whether the data to be encrypted and decrypted matches the parameters in **init()**. For the GCM mode, check whether the **authTag** obtained after encryption is obtained from the **GcmParamsSpec** for decryption.
 >  3. The result of **doFinal()** may be **null**. To avoid exceptions, determine whether the result is **null** before using the **.data** field to access the **doFinal()** result.
->  4. For details about the sample code for calling **doFinal()** multiple times during RSA or SM2 asymmetric encryption and decryption, see [Encryption and Decryption](../../security/cryptoFramework-guidelines.md#encryption-and-decryption).
+>  4. For details about the sample code for calling **doFinal** multiple times in asymmetric encryption and decryption, see [Encryption and Decryption by Segment with an RSA Asymmetric Key Pair](../../security/CryptoArchitectureKit/crypto-rsa-asym-encrypt-decrypt-by-segment.md). The operations are similar for SM2 and RSA.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -1937,43 +1848,71 @@ For details about the error codes, see [Crypto Framework Error Codes](../errorco
 | 17620002 | runtime error.          |
 | 17630001 | crypto operation error. |
 
-**Example**
+**Encryption with AES GCM (example)**
+
+For more encryption and decryption examples, see Encryption and Decryption with an AES Symmetric Key (GCM Mode)(../../security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-gcm.md).
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import buffer from '@ohos.buffer';
 
-let cipher: cryptoFramework.Cipher;        // The process of creating a Cipher instance is omitted here.
-let data: cryptoFramework.DataBlob;           // The process of preparing the data to encrypt or decrypt is omitted here.
-// The init() and update() processes are omitted here.
-cipher.doFinal(data, (err, output) => {
-  if (err) {
-    console.error(`Failed to finalize cipher, ${err.code}, ${err.message}`);
-  } else {
-    console.info(`Finalize cipher success`);
-    if (output != null) {
-      // Concatenate output.data to obtain the complete plaintext/ciphertext (and authTag).
-    }
-  }
-})
+function genGcmParamsSpec() {
+  let arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  let dataIv = new Uint8Array(arr);
+  let ivBlob: cryptoFramework.DataBlob = { data: dataIv };
+  arr = [0, 0, 0, 0, 0, 0, 0, 0];
+  let dataAad = new Uint8Array(arr);
+  let aadBlob: cryptoFramework.DataBlob = { data: dataAad };
+  arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  let dataTag = new Uint8Array(arr);
+  let tagBlob: cryptoFramework.DataBlob = {
+    data: dataTag
+  };
+  let gcmParamsSpec: cryptoFramework.GcmParamsSpec = {
+    iv: ivBlob,
+    aad: aadBlob,
+    authTag: tagBlob,
+    algName: "GcmParamsSpec"
+  };
+  return gcmParamsSpec;
+}
+
+function cipherByCallback() {
+  let gcmParams = genGcmParamsSpec();
+  let symKeyGenerator = cryptoFramework.createSymKeyGenerator('AES128');
+  let cipher = cryptoFramework.createCipher('AES128|GCM|PKCS7');
+  symKeyGenerator.generateSymKey((err, symKey) => {
+    cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, gcmParams, (err,) => {
+      let message = "This is a test";
+      let plainText: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from(message, 'utf-8').buffer) };
+      cipher.update(plainText, (err, encryptUpdate) => {
+        cipher.doFinal(null, (err, tag) => {
+          gcmParams.authTag = tag;
+          console.info('encryptUpdate plainText: ' + encryptUpdate.data);
+        });
+      });
+    });
+  });
+}
 ```
 
 ### doFinal
 
 doFinal(data: DataBlob | null): Promise\<DataBlob>
 
- (1) Encrypts or decrypts the remaining data (generated by the block cipher mode) and the data passed in by **doFinal()** to finish the symmetric encryption or decryption. This API uses a promise to return the encrypted or decrypted data. If a small amount of data needs to be encrypted or decrypted, you can use **doFinal()** to pass in data without using **update()**. If all the data has been passed in by **update()**, you can pass in **null** in **data** of **doFinal()**. 
+(1) Encrypts or decrypts the remaining data (generated by the block cipher mode) and the data passed in by **doFinal()** to finalize the symmetric encryption or decryption. This API uses a promise to return the encrypted or decrypted data.<br>If a small amount of data needs to be encrypted or decrypted, you can use **doFinal()** to pass in data without using **update()**. If all the data has been passed in by **update()**, you can pass in **null** in **data** of **doFinal()**.<br>The output of **doFinal()** varies with the symmetric encryption/decryption mode in use.
 
 - Symmetric encryption in GCM and CCM mode: The result consists of the ciphertext and **authTag** (the last 16 bytes for GCM and the last 12 bytes for CCM). If **data** in **doFinal** is null, the result of **doFinal** is **authTag**.<br>Set **authTag** to [GcmParamsSpec](#gcmparamsspec) or [CcmParamsSpec](#ccmparamsspec) for decryption. The ciphertext is used as the input parameter **data** for decryption.
 - Symmetric encryption and decryption in other modes and symmetric decryption in GCM and CCM modes: The result is the complete plaintext/ciphertext.
 
- (2) Encrypts or decrypts the input data for RSA or SM2 asymmetric encryption/decryption. This API uses a promise to return the result. If a large amount of data needs to be encrypted/decrypted, call **doFinal()** multiple times and concatenate the result of each **doFinal()** to obtain the complete plaintext/ciphertext.
+(2) Encrypts or decrypts the input data for RSA or SM2 asymmetric encryption/decryption. This API uses a promise to return the result. If a large amount of data needs to be encrypted/decrypted, call **doFinal()** multiple times and concatenate the result of each **doFinal()** to obtain the complete plaintext/ciphertext.
 
 > **NOTE**
 >
->  1. In symmetric encryption or decryption, calling **doFinal()** means the end of an  encryption or decryption process, and the [Cipher](#cipher) instance state will be cleared. To start a new encryption or decryption operation, you must call **init()** to pass in a complete parameter list for initialization. For example, if the same symmetric key is used for a **Cipher** instance to perform encryption and then decryption. After the encryption is complete, the **params** in **init** for decryption must be set instead of being **null**.
+>  1. In symmetric encryption and decryption, after **doFinal** is called, the encryption and decryption process is complete and the [Cipher](#cipher) instance is cleared. When a new encryption and decryption process is started, **init()** must be called with a complete parameter list for initialization.<br>Even if the same symmetric key is used to encrypt and decrypt the same **Cipher** instance, the **params** parameter must be set when **init** is called during decryption.
 >  2. If a decryption fails, check whether the data to be encrypted and decrypted matches the parameters in **init()**. For the GCM mode, check whether the **authTag** obtained after encryption is obtained from the **GcmParamsSpec** for decryption.
 >  3. The result of **doFinal()** may be **null**. To avoid exceptions, determine whether the result is **null** before using the **.data** field to access the **doFinal()** result.
->  4. For details about the sample code for calling **doFinal()** multiple times during RSA or SM2 asymmetric encryption and decryption, see [Encryption and Decryption](../../security/cryptoFramework-guidelines.md#encryption-and-decryption).
+>  4. For details about the sample code for calling **doFinal** multiple times in asymmetric encryption and decryption, see [Encryption and Decryption by Segment with an RSA Asymmetric Key Pair](../../security/CryptoArchitectureKit/crypto-rsa-asym-encrypt-decrypt-by-segment.md). The operations are similar for SM2 and RSA.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -1999,85 +1938,54 @@ For details about the error codes, see [Crypto Framework Error Codes](../errorco
 | 17620002 | runtime error.                               |
 | 17630001 | crypto operation error.                      |
 
-**Example**
+**Encryption with AES GCM (example)**
+
+For more encryption and decryption examples, see Encryption and Decryption with an AES Symmetric Key (GCM Mode)(../../security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-gcm.md).
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import buffer from '@ohos.buffer';
 
-let cipher: cryptoFramework.Cipher;        // The process of creating a Cipher instance is omitted here.
-let data: cryptoFramework.DataBlob;           // The process of preparing the data to encrypt or decrypt is omitted here.
-// The init() and update() processes are omitted here.
-cipher.doFinal(data)
-  .then(output => {
-    console.info(`Finalize cipher success`);
-    if (output != null) {
-      // Concatenate output.data to obtain the complete plaintext/ciphertext (and authTag).
-    }
-  }, (error: BusinessError) => {
-    console.error(`Failed to finalize cipher, ${error.code}, ${error.message}`);
-  })
-```
-
-**RSA encryption example (callback)**
-
-```ts
-function stringToUint8Array(str: string) {
-  let arr = new Uint8Array(str.length);
-  for (let i = 0, j = str.length; i < j; ++i) {
-    arr[i] = str.charCodeAt(i);
-  }
-  return arr;
+function genGcmParamsSpec() {
+  let arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  let dataIv = new Uint8Array(arr);
+  let ivBlob: cryptoFramework.DataBlob = { data: dataIv };
+  arr = [0, 0, 0, 0, 0, 0, 0, 0];
+  let dataAad = new Uint8Array(arr);
+  let aadBlob: cryptoFramework.DataBlob = { data: dataAad };
+  arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  let dataTag = new Uint8Array(arr);
+  let tagBlob: cryptoFramework.DataBlob = {
+    data: dataTag
+  };
+  let gcmParamsSpec: cryptoFramework.GcmParamsSpec = {
+    iv: ivBlob,
+    aad: aadBlob,
+    authTag: tagBlob,
+    algName: "GcmParamsSpec"
+  };
+  return gcmParamsSpec;
 }
 
-let rsaGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024|PRIMES_2");
-let cipher = cryptoFramework.createCipher("RSA1024|PKCS1");
-rsaGenerator.generateKeyPair((err, keyPair) => {
-  let pubKey = keyPair.pubKey;
-  cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, pubKey, null, (err, data) => {
-    let plainText = "this is cipher text";
-    let input: cryptoFramework.DataBlob = {data: stringToUint8Array(plainText) };
-    cipher.doFinal(input, (err, data) => {
-      AlertDialog.show({ message: "EncryptOutPut is " + data.data} );
-    });
-  });
-});
-```
-
-**RSA encryption example (promise)**
-
-```ts
-function stringToUint8Array(str: string) {
-  let arr = new Uint8Array(str.length);
-  for (let i = 0, j = str.length; i < j; ++i) {
-    arr[i] = str.charCodeAt(i);
-  }
-  return arr;
+async function cipherByPromise() {
+  let gcmParams = genGcmParamsSpec();
+  let symKeyGenerator = cryptoFramework.createSymKeyGenerator('AES128');
+  let cipher = cryptoFramework.createCipher('AES128|GCM|PKCS7');
+  let symKey = await symKeyGenerator.generateSymKey();
+  await cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, gcmParams);
+  let message = "This is a test";
+  let plainText: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from(message, 'utf-8').buffer) };
+  let encryptUpdate = await cipher.update(plainText);
+  gcmParams.authTag = await cipher.doFinal(null);
+  console.info('encryptUpdate plainText: ' + encryptUpdate.data);
 }
-
-let rsaGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024|PRIMES_2");
-let cipher = cryptoFramework.createCipher("RSA1024|PKCS1");
-let keyGenPromise = rsaGenerator.generateKeyPair();
-keyGenPromise.then((rsaKeyPair: cryptoFramework.KeyPair): Promise<void> => {
-  let pubKey = rsaKeyPair.pubKey;
-  return cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, pubKey, null); // Pass in the private key and DECRYPT_MODE to initialize the decryption mode.
-}).then(() => {
-  let plainText = "this is cipher text";
-  let input: cryptoFramework.DataBlob = { data: stringToUint8Array(plainText) };
-  return cipher.doFinal(input);
-}).then(dataBlob => {
-  console.info("EncryptOutPut is " + dataBlob.data);
-});
 ```
-
-> **NOTE**
->
-> For more encryption and decryption examples, see [Encryption and Decryption](../../security/cryptoFramework-guidelines.md#encryption-and-decryption).
 
 ### setCipherSpec<sup>10+</sup>
 
 setCipherSpec(itemType: CipherSpecItem, itemValue: Uint8Array): void
 
-Sets cipher specifications. You can use this API to set cipher specifications that cannot be set by [createCipher](#cryptoframeworkcreatecipher). Currently, only the RSA is supported.
+Sets cipher specifications. You can use this API to set cipher specifications that cannot be set by [createCipher](#cryptoframeworkcreatecipher). Currently, only RSA is supported.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -2149,7 +2057,7 @@ createSign(algName: string): Sign
 
 Creates a **Sign** instance.
 
-For details about the supported specifications, see [Signing and Signature Verification Specifications](../../security/cryptoFramework-overview.md#signing-and-signature-verification-specifications).
+For details about the supported specifications, see [Signing and Signature Verification Overview and Algorithm Specifications](../../security/CryptoArchitectureKit/crypto-sign-sig-verify-overview.md).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -2157,7 +2065,7 @@ For details about the supported specifications, see [Signing and Signature Verif
 
 | Name | Type  | Mandatory| Description                                                        |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| algName | string | Yes  | Signing algorithm to use. Currently, RSA, ECC, DSA, SM2<sup>10+</sup> and Ed25519<sup>11+</sup> are supported. <br>If the RSA PKCS1 mode is used, you need to set the digest. If the RSA PSS mode is used, you need to set the digest and mask digest. |
+| algName | string | Yes  | Signing algorithm to use. Currently, RSA, ECC, DSA, SM2<sup>10+</sup> and Ed25519<sup>11+</sup> are supported. <br>If the RSA PKCS1 mode is used, you need to set the digest. If the RSA PSS mode is used, you need to set the digest and mask digest.|
 
 **Return value**
 
@@ -2177,20 +2085,20 @@ For details about the error codes, see [Crypto Framework Error Codes](../errorco
 **Example**
 
 ```ts
-let signer1 = cryptoFramework.createSign("RSA1024|PKCS1|SHA256");
+let signer1 = cryptoFramework.createSign('RSA1024|PKCS1|SHA256');
 
-let signer2 = cryptoFramework.createSign("RSA1024|PSS|SHA256|MGF1_SHA256");
+let signer2 = cryptoFramework.createSign('RSA1024|PSS|SHA256|MGF1_SHA256');
 
-let signer3 = cryptoFramework.createSign("ECC224|SHA256");
+let signer3 = cryptoFramework.createSign('ECC224|SHA256');
 
-let signer4 = cryptoFramework.createSign("DSA2048|SHA256");
+let signer4 = cryptoFramework.createSign('DSA2048|SHA256');
 ```
 
 ## Sign
 
-Provides APIs for signing. Before using any API of the **Sign** class, you must create a **Sign** instance by using [createSign(algName: string): Sign](#cryptoframeworkcreatesign). Invoke **init()**, **update()**, and **sign()** in this class in sequence to complete the signing operation. For details about the sample code, see [Signing and Signature Verification](../../security/cryptoFramework-guidelines.md#signing-and-signature-verification).
+Provides APIs for signing. Before using any API of the **Sign** class, you must create a **Sign** instance by using [createSign(algName: string): Sign](#cryptoframeworkcreatesign). Invoke **init()**, **update()**, and **sign()** in this class in sequence to complete the signing operation. For details about the sample code, see [Signing and Signature Verification with an RSA Key Pair (PKCS1 Mode)](../../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1.md).
 
-The **Sign** class does not support repeated initialization. When a new key is used for signing, you must create a new **Sign** object and call **init()** for initialization.
+The **Sign** class does not support repeated initialization. When a new key is used for signing, you must create a new **Sign** instance and call **init()** for initialization.
 
 The signing mode is determined in **createSign()**, and the key is set by **init()**.
 
@@ -2212,7 +2120,7 @@ When **update()** is used, the **sign()** API supports only **DataBlob** in vers
 
 init(priKey: PriKey, callback: AsyncCallback\<void>): void
 
-Initializes the **Sign** instance with a private key. This API uses an asynchronous callback to return the result.
+Initializes the **Sign** instance with a private key. This API uses an asynchronous callback to return the result. **init**, **update**, and **sign** must be used together. **init** and **sign** are mandatory, and **update** is optional.
 
 The **Sign** class does not support repeated use of **init()**.
 
@@ -2239,7 +2147,7 @@ For details about the error codes, see [Crypto Framework Error Codes](../errorco
 
 init(priKey: PriKey): Promise\<void>
 
-Initializes the **Sign** instance with a private key. This API uses a promise to return the result.
+Initializes the **Sign** instance with a private key. This API uses a promise to return the result. **init**, **update**, and **sign** must be used together. **init** and **sign** are mandatory, and **update** is optional.
 
 The **Sign** class does not support repeated use of **init()**.
 
@@ -2277,9 +2185,9 @@ This API can be called only after the [Sign](#sign) instance is initialized by u
 
 > **NOTE**
 >
-> **update()** may be called multiple times or may not be called (call [sign](#sign-1) after [init](#init-2)), depending on the size of the data.
-> The algorithm library does not set a limit on the amount of data to be updated (once or accumulatively). If a large amount of data needs to be signed, you are advised to use **update()** multiple times to pass in data. This can prevent too much memory from being requested at a time.
-> For details about the sample code for calling **update()** multiple times, see [Signing and Signature verification](../../security/cryptoFramework-guidelines.md#signing-and-signature-verification).
+> You can call **update** multiple times or do not use **update** (call [sign](#sign-1) after [init](#init-2)), depending on the size of the data.<br>
+> The data to be passed in **updated()** (once or accumulatively) is not size bound. If a large amount of data needs to be signed, you are advised to use **update** multiple times to pass in data. This can prevent too much memory from being requested at a time.<br>
+> For details about the sample code for calling **update** multiple times in signing, see [Signing and Signature Verification by Segment with an RSA Key Pair (PKCS1 Mode)](../../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1-by-segment.md). The operations of other algorithms are similar.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -2310,9 +2218,9 @@ This API can be called only after the [Sign](#sign) instance is initialized by u
 
 > **NOTE**
 >
-> **update()** may be called multiple times or may not be called (call [sign](#sign-2) after [init](#init-3)), depending on the size of the data.<br>
-> The algorithm library does not set a limit on the amount of data to be updated (once or accumulatively). If a large amount of data needs to be signed, you are advised to use **update()** multiple times to pass in data. This can prevent too much memory from being requested at a time.
-> For details about the sample code for calling **update()** multiple times, see [Signing and Signature verification](../../security/cryptoFramework-guidelines.md#signing-and-signature-verification).
+> You can call **update** multiple times or do not use **update** (call [sign](#sign-2) after [init](#init-3)), depending on the size of the data.<br>
+> The data to be passed in **updated()** (once or accumulatively) is not size bound. If a large amount of data needs to be signed, you are advised to use **update** multiple times to pass in data. This can prevent too much memory from being requested at a time.<br>
+> For details about the sample code for calling **update** multiple times in signing, see [Signing and Signature Verification by Segment with an RSA Key Pair (PKCS1 Mode)](../../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1-by-segment.md). The operations of other algorithms are similar.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -2395,33 +2303,26 @@ For details about the error codes, see [Crypto Framework Error Codes](../errorco
 
 **Callback example**:
 
+For more examples of signing and signature verification, see [Signing and Signature Verification with an RSA Key Pair (PKCS1 Mode)](../../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1.md).
+
 ```ts
-function stringToUint8Array(str: string) {
-  let arr = new Uint8Array(str.length);
-  for (let i = 0, j = str.length; i < j; ++i) {
-    arr[i] = str.charCodeAt(i);
-  }
-  return arr;
-}
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import buffer from '@ohos.buffer';
 
-let globalKeyPair: cryptoFramework.KeyPair;
-let signMessageBlob: cryptoFramework.DataBlob;
-let plan1 = "This is Sign test plan1"; // The first segment of the data.
-let plan2 = "This is Sign test plan2"; // The second segment of the data.
-let input1: cryptoFramework.DataBlob = { data: stringToUint8Array(plan1) };
-let input2: cryptoFramework.DataBlob = { data: stringToUint8Array(plan2) };
-
-function signMessageCallback() {
-  let rsaGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024|PRIMES_2");
-  let signer = cryptoFramework.createSign("RSA1024|PKCS1|SHA256");
-  rsaGenerator.generateKeyPair((err, keyPair) => {
-    globalKeyPair = keyPair;
-    let priKey = globalKeyPair.priKey;
-    signer.init(priKey, err => {
-      signer.update(input1, err => { // add first segment of data
-        signer.sign(input2, (err, data) => { // add second segment of data, sign input1 and input2
-          signMessageBlob = data;
-          AlertDialog.show({message: "res" +  signMessageBlob.data});
+function signByCallback() {
+  let inputUpdate: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from("This is Sign test plan1", 'utf-8').buffer) };
+  let inputVerify: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from("This is Sign test plan2", 'utf-8').buffer) };
+  let pkData = new Uint8Array([48, 129, 159, 48, 13, 6, 9, 42, 134, 72, 134, 247, 13, 1, 1, 1, 5, 0, 3, 129, 141, 0, 48, 129, 137, 2, 129, 129, 0, 214, 179, 23, 198, 183, 139, 148, 8, 173, 74, 56, 160, 15, 248, 244, 166, 209, 250, 142, 74, 216, 58, 117, 215, 178, 247, 254, 39, 180, 227, 85, 201, 59, 133, 209, 221, 26, 9, 116, 31, 172, 151, 252, 185, 123, 20, 25, 7, 92, 129, 5, 196, 239, 214, 126, 254, 154, 188, 239, 144, 161, 171, 65, 42, 31, 214, 93, 115, 247, 69, 94, 143, 54, 51, 25, 49, 146, 204, 205, 165, 20, 120, 35, 184, 190, 65, 106, 12, 214, 176, 57, 125, 235, 51, 88, 135, 76, 73, 109, 112, 147, 138, 198, 252, 5, 20, 245, 51, 7, 32, 108, 89, 125, 204, 50, 189, 88, 254, 255, 146, 244, 244, 149, 79, 54, 216, 45, 89, 2, 3, 1, 0, 1]);
+  let skData = new Uint8Array([48, 130, 2, 120, 2, 1, 0, 48, 13, 6, 9, 42, 134, 72, 134, 247, 13, 1, 1, 1, 5, 0, 4, 130, 2, 98, 48, 130, 2, 94, 2, 1, 0, 2, 129, 129, 0, 214, 179, 23, 198, 183, 139, 148, 8, 173, 74, 56, 160, 15, 248, 244, 166, 209, 250, 142, 74, 216, 58, 117, 215, 178, 247, 254, 39, 180, 227, 85, 201, 59, 133, 209, 221, 26, 9, 116, 31, 172, 151, 252, 185, 123, 20, 25, 7, 92, 129, 5, 196, 239, 214, 126, 254, 154, 188, 239, 144, 161, 171, 65, 42, 31, 214, 93, 115, 247, 69, 94, 143, 54, 51, 25, 49, 146, 204, 205, 165, 20, 120, 35, 184, 190, 65, 106, 12, 214, 176, 57, 125, 235, 51, 88, 135, 76, 73, 109, 112, 147, 138, 198, 252, 5, 20, 245, 51, 7, 32, 108, 89, 125, 204, 50, 189, 88, 254, 255, 146, 244, 244, 149, 79, 54, 216, 45, 89, 2, 3, 1, 0, 1, 2, 129, 129, 0, 152, 111, 145, 203, 10, 88, 116, 163, 112, 126, 9, 20, 68, 34, 235, 121, 98, 14, 182, 102, 151, 125, 114, 91, 210, 122, 215, 29, 212, 5, 176, 203, 238, 146, 5, 190, 41, 21, 91, 56, 125, 239, 111, 133, 53, 200, 192, 56, 132, 202, 42, 145, 120, 3, 224, 40, 223, 46, 148, 29, 41, 92, 17, 40, 12, 72, 165, 69, 192, 211, 142, 233, 81, 202, 177, 235, 156, 27, 179, 48, 18, 85, 154, 101, 193, 45, 218, 91, 24, 143, 196, 248, 16, 83, 177, 198, 136, 77, 111, 134, 60, 219, 95, 246, 23, 5, 45, 14, 83, 29, 137, 248, 159, 28, 132, 142, 205, 99, 226, 213, 84, 232, 57, 130, 156, 81, 191, 237, 2, 65, 0, 255, 158, 212, 13, 43, 132, 244, 135, 148, 161, 232, 219, 20, 81, 196, 102, 103, 44, 110, 71, 100, 62, 73, 200, 32, 138, 114, 209, 171, 150, 179, 92, 198, 5, 190, 218, 79, 227, 227, 37, 32, 57, 159, 252, 107, 211, 139, 198, 202, 248, 137, 143, 186, 205, 106, 81, 85, 207, 134, 148, 110, 204, 243, 27, 2, 65, 0, 215, 4, 181, 121, 57, 224, 170, 168, 183, 159, 152, 8, 74, 233, 80, 244, 146, 81, 48, 159, 194, 199, 36, 187, 6, 181, 182, 223, 115, 133, 151, 171, 78, 219, 90, 161, 248, 69, 6, 207, 173, 3, 81, 161, 2, 60, 238, 204, 177, 12, 138, 17, 220, 179, 71, 113, 200, 248, 159, 153, 252, 150, 180, 155, 2, 65, 0, 190, 202, 185, 211, 170, 171, 238, 40, 84, 84, 21, 13, 144, 57, 7, 178, 183, 71, 126, 120, 98, 229, 235, 4, 40, 229, 173, 149, 185, 209, 29, 199, 29, 54, 164, 161, 38, 8, 30, 62, 83, 179, 47, 42, 165, 0, 156, 207, 160, 39, 169, 229, 81, 180, 136, 170, 116, 182, 20, 233, 45, 90, 100, 9, 2, 65, 0, 152, 255, 47, 198, 15, 201, 238, 133, 89, 11, 133, 153, 184, 252, 37, 239, 177, 65, 118, 80, 231, 190, 222, 66, 250, 118, 72, 166, 221, 67, 156, 245, 119, 138, 28, 6, 142, 107, 71, 122, 116, 200, 156, 199, 237, 152, 191, 239, 4, 184, 64, 114, 143, 81, 62, 48, 23, 233, 217, 95, 47, 221, 104, 171, 2, 64, 30, 219, 1, 230, 241, 70, 246, 243, 121, 174, 67, 66, 11, 99, 202, 17, 52, 234, 78, 29, 3, 57, 51, 123, 149, 86, 64, 192, 73, 199, 108, 101, 55, 232, 41, 114, 153, 237, 253, 52, 205, 148, 45, 86, 186, 241, 182, 183, 42, 77, 252, 195, 29, 158, 173, 3, 182, 207, 254, 61, 71, 184, 167, 184]);
+  let pubKeyBlob: cryptoFramework.DataBlob = { data: pkData };
+  let priKeyBlob: cryptoFramework.DataBlob = { data: skData };
+  let rsaGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024');
+  let signer = cryptoFramework.createSign('RSA1024|PKCS1|SHA256');
+  rsaGenerator.convertKey(pubKeyBlob, priKeyBlob, (err, keyPair) => {
+    signer.init(keyPair.priKey, err => {
+      signer.update(inputUpdate, err => {
+        signer.sign(inputVerify, (err, signData) => {
+          console.info('sign output is ' + signData.data);
         });
       });
     });
@@ -2431,38 +2332,32 @@ function signMessageCallback() {
 
 **Example (promise)**
 
+For more examples of signing and signature verification, see [Signing and Signature Verification with an RSA Key Pair (PKCS1 Mode)](../../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1.md).
+
 ```ts
-function stringToUint8Array(str: string) {
-  let arr = new Uint8Array(str.length);
-  for (let i = 0, j = str.length; i < j; ++i) {
-    arr[i] = str.charCodeAt(i);
-  }
-  return arr;
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import buffer from '@ohos.buffer';
+
+async function genKeyPairByData(pubKeyData: Uint8Array, priKeyData: Uint8Array) {
+  let pubKeyBlob: cryptoFramework.DataBlob = { data: pubKeyData };
+  let priKeyBlob: cryptoFramework.DataBlob = { data: priKeyData };
+  let rsaGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024');
+  let keyPair = await rsaGenerator.convertKey(pubKeyBlob, priKeyBlob);
+  console.info('convertKey success');
+  return keyPair;
 }
 
-let globalKeyPair: cryptoFramework.KeyPair;
-let signMessageBlob: cryptoFramework.DataBlob;
-let plan1 = "This is Sign test plan1"; // The first segment of the data.
-let plan2 = "This is Sign test plan2"; // The second segment of the data.
-let input1: cryptoFramework.DataBlob = { data: stringToUint8Array(plan1) };
-let input2: cryptoFramework.DataBlob = { data: stringToUint8Array(plan2) };
-
-function signMessagePromise() {
-  let rsaGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024|PRIMES_2");
-  let signer = cryptoFramework.createSign("RSA1024|PKCS1|SHA256"); // From API version 10, a Sign instance can be created by specifying a string parameter defining the key specifications.
-  let keyGenPromise = rsaGenerator.generateKeyPair();
-  keyGenPromise.then(keyPair => {
-    globalKeyPair = keyPair;
-    let priKey = globalKeyPair.priKey;
-    return signer.init(priKey);
-  }).then(() => {
-    return signer.update(input1);
-  }).then(() => {
-    return signer.sign(input2);
-  }).then(dataBlob => {
-    signMessageBlob = dataBlob;
-    console.info("sign output is " + signMessageBlob.data);
-  });
+async function signByPromise() {
+  let pkData = new Uint8Array([48, 129, 159, 48, 13, 6, 9, 42, 134, 72, 134, 247, 13, 1, 1, 1, 5, 0, 3, 129, 141, 0, 48, 129, 137, 2, 129, 129, 0, 214, 179, 23, 198, 183, 139, 148, 8, 173, 74, 56, 160, 15, 248, 244, 166, 209, 250, 142, 74, 216, 58, 117, 215, 178, 247, 254, 39, 180, 227, 85, 201, 59, 133, 209, 221, 26, 9, 116, 31, 172, 151, 252, 185, 123, 20, 25, 7, 92, 129, 5, 196, 239, 214, 126, 254, 154, 188, 239, 144, 161, 171, 65, 42, 31, 214, 93, 115, 247, 69, 94, 143, 54, 51, 25, 49, 146, 204, 205, 165, 20, 120, 35, 184, 190, 65, 106, 12, 214, 176, 57, 125, 235, 51, 88, 135, 76, 73, 109, 112, 147, 138, 198, 252, 5, 20, 245, 51, 7, 32, 108, 89, 125, 204, 50, 189, 88, 254, 255, 146, 244, 244, 149, 79, 54, 216, 45, 89, 2, 3, 1, 0, 1]);
+  let skData = new Uint8Array([48, 130, 2, 120, 2, 1, 0, 48, 13, 6, 9, 42, 134, 72, 134, 247, 13, 1, 1, 1, 5, 0, 4, 130, 2, 98, 48, 130, 2, 94, 2, 1, 0, 2, 129, 129, 0, 214, 179, 23, 198, 183, 139, 148, 8, 173, 74, 56, 160, 15, 248, 244, 166, 209, 250, 142, 74, 216, 58, 117, 215, 178, 247, 254, 39, 180, 227, 85, 201, 59, 133, 209, 221, 26, 9, 116, 31, 172, 151, 252, 185, 123, 20, 25, 7, 92, 129, 5, 196, 239, 214, 126, 254, 154, 188, 239, 144, 161, 171, 65, 42, 31, 214, 93, 115, 247, 69, 94, 143, 54, 51, 25, 49, 146, 204, 205, 165, 20, 120, 35, 184, 190, 65, 106, 12, 214, 176, 57, 125, 235, 51, 88, 135, 76, 73, 109, 112, 147, 138, 198, 252, 5, 20, 245, 51, 7, 32, 108, 89, 125, 204, 50, 189, 88, 254, 255, 146, 244, 244, 149, 79, 54, 216, 45, 89, 2, 3, 1, 0, 1, 2, 129, 129, 0, 152, 111, 145, 203, 10, 88, 116, 163, 112, 126, 9, 20, 68, 34, 235, 121, 98, 14, 182, 102, 151, 125, 114, 91, 210, 122, 215, 29, 212, 5, 176, 203, 238, 146, 5, 190, 41, 21, 91, 56, 125, 239, 111, 133, 53, 200, 192, 56, 132, 202, 42, 145, 120, 3, 224, 40, 223, 46, 148, 29, 41, 92, 17, 40, 12, 72, 165, 69, 192, 211, 142, 233, 81, 202, 177, 235, 156, 27, 179, 48, 18, 85, 154, 101, 193, 45, 218, 91, 24, 143, 196, 248, 16, 83, 177, 198, 136, 77, 111, 134, 60, 219, 95, 246, 23, 5, 45, 14, 83, 29, 137, 248, 159, 28, 132, 142, 205, 99, 226, 213, 84, 232, 57, 130, 156, 81, 191, 237, 2, 65, 0, 255, 158, 212, 13, 43, 132, 244, 135, 148, 161, 232, 219, 20, 81, 196, 102, 103, 44, 110, 71, 100, 62, 73, 200, 32, 138, 114, 209, 171, 150, 179, 92, 198, 5, 190, 218, 79, 227, 227, 37, 32, 57, 159, 252, 107, 211, 139, 198, 202, 248, 137, 143, 186, 205, 106, 81, 85, 207, 134, 148, 110, 204, 243, 27, 2, 65, 0, 215, 4, 181, 121, 57, 224, 170, 168, 183, 159, 152, 8, 74, 233, 80, 244, 146, 81, 48, 159, 194, 199, 36, 187, 6, 181, 182, 223, 115, 133, 151, 171, 78, 219, 90, 161, 248, 69, 6, 207, 173, 3, 81, 161, 2, 60, 238, 204, 177, 12, 138, 17, 220, 179, 71, 113, 200, 248, 159, 153, 252, 150, 180, 155, 2, 65, 0, 190, 202, 185, 211, 170, 171, 238, 40, 84, 84, 21, 13, 144, 57, 7, 178, 183, 71, 126, 120, 98, 229, 235, 4, 40, 229, 173, 149, 185, 209, 29, 199, 29, 54, 164, 161, 38, 8, 30, 62, 83, 179, 47, 42, 165, 0, 156, 207, 160, 39, 169, 229, 81, 180, 136, 170, 116, 182, 20, 233, 45, 90, 100, 9, 2, 65, 0, 152, 255, 47, 198, 15, 201, 238, 133, 89, 11, 133, 153, 184, 252, 37, 239, 177, 65, 118, 80, 231, 190, 222, 66, 250, 118, 72, 166, 221, 67, 156, 245, 119, 138, 28, 6, 142, 107, 71, 122, 116, 200, 156, 199, 237, 152, 191, 239, 4, 184, 64, 114, 143, 81, 62, 48, 23, 233, 217, 95, 47, 221, 104, 171, 2, 64, 30, 219, 1, 230, 241, 70, 246, 243, 121, 174, 67, 66, 11, 99, 202, 17, 52, 234, 78, 29, 3, 57, 51, 123, 149, 86, 64, 192, 73, 199, 108, 101, 55, 232, 41, 114, 153, 237, 253, 52, 205, 148, 45, 86, 186, 241, 182, 183, 42, 77, 252, 195, 29, 158, 173, 3, 182, 207, 254, 61, 71, 184, 167, 184]);
+  let keyPair = await genKeyPairByData(pkData, skData);
+  let inputUpdate: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from("This is Sign test plan1", 'utf-8').buffer) };
+  let inputSign: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from("This is Sign test plan2", 'utf-8').buffer) };
+  let signer = cryptoFramework.createSign('RSA1024|PKCS1|SHA256');
+  await signer.init(keyPair.priKey);
+  await signer.update(inputUpdate);
+  let signData = await signer.sign(inputSign);
+  console.info('signData result: ' + signData.data);
 }
 ```
 
@@ -2470,7 +2365,7 @@ function signMessagePromise() {
 
 setSignSpec(itemType: SignSpecItem, itemValue: number): void
 
-setSignSpec(itemType: SignSpecItem, itemValue: number\|Uint8Array<sup>11+</sup>): void
+setSignSpec(itemType: SignSpecItem, itemValue: number\|Uint8Array): void
 
 Sets signing specifications. You can use this API to set signing parameters that cannot be set by [createSign](#cryptoframeworkcreatesign).
 
@@ -2483,7 +2378,7 @@ Currently, only RSA and SM2 are supported. Since API version 11, signature param
 | Name  | Type                | Mandatory| Description      |
 | -------- | -------------------- | ---- | ---------- |
 | itemType     | [SignSpecItem](#signspecitem10)              | Yes  | Signing parameter to set.|
-| itemValue | number\|Uint8Array | Yes  | Value of the signing parameter to set.|
+| itemValue | number\|Uint8Array<sup>11+</sup> | Yes  | Value of the signing parameter to set.|
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](../errorcodes/errorcode-crypto-framework.md).
@@ -2507,7 +2402,7 @@ signer.setSignSpec(cryptoFramework.SignSpecItem.PSS_SALT_LEN_NUM, setN);
 
 getSignSpec(itemType: SignSpecItem): string | number
 
-Obtains signing specifications. Currently, only the RSA is supported.
+Obtains signing specifications. Currently, only RSA is supported.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -2546,7 +2441,7 @@ createVerify(algName: string): Verify
 
 Creates a **Verify** instance.
 
-For details about the supported specifications, see [Signing and Signature Verification Specifications](../../security/cryptoFramework-overview.md#signing-and-signature-verification-specifications).
+For details about the supported specifications, see [Signing and Signature Verification Overview and Algorithm Specifications](../../security/CryptoArchitectureKit/crypto-sign-sig-verify-overview.md).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -2554,7 +2449,7 @@ For details about the supported specifications, see [Signing and Signature Verif
 
 | Name | Type  | Mandatory| Description                                                        |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| algName | string | Yes  | Signing algorithm to use. Currently, RSA, ECC, DSA, SM2<sup>10+</sup> and Ed25519<sup>11+</sup> are supported. <br>If the RSA PKCS1 mode is used, you need to set the digest. If the RSA PSS mode is used, you need to set the digest and mask digest. |
+| algName | string | Yes  | Signing algorithm to use. Currently, RSA, ECC, DSA, SM2<sup>10+</sup> and Ed25519<sup>11+</sup> are supported. <br>If the RSA PKCS1 mode is used, you need to set the digest. If the RSA PSS mode is used, you need to set the digest and mask digest.|
 
 **Return value**
 
@@ -2574,16 +2469,16 @@ For details about the error codes, see [Crypto Framework Error Codes](../errorco
 **Example**
 
 ```ts
-let verifyer1 = cryptoFramework.createVerify("RSA1024|PKCS1|SHA256");
+let verifyer1 = cryptoFramework.createVerify('RSA1024|PKCS1|SHA256');
 
-let verifyer2 = cryptoFramework.createVerify("RSA1024|PSS|SHA256|MGF1_SHA256")
+let verifyer2 = cryptoFramework.createVerify('RSA1024|PSS|SHA256|MGF1_SHA256');
 ```
 
 ## Verify
 
-Provides APIs for signature verification. Before using any API of the **Verify** class, you must create a **Verify** instance by using [createVerify(algName: string): Verify](#cryptoframeworkcreateverify). Invoke **init()**, **update()**, and **sign()** in this class in sequence to complete the signature verification. For details about the sample code, see [Signing and Signature Verification](../../security/cryptoFramework-guidelines.md#signing-and-signature-verification).
+Provides APIs for signature verification. Before using any API of the **Verify** class, you must create a **Verify** instance by using [createVerify(algName: string): Verify](#cryptoframeworkcreateverify). Invoke **init()**, **update()**, and **sign()** in this class in sequence to complete the signature verification. For details about the sample code, see [Signing and Signature Verification with an RSA Key Pair (PKCS1 Mode)](../../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1.md).
 
-The **Verify** class does not support repeated initialization. When a new key is used for signature verification, you must create a new **Verify** object and call **init()** for initialization.
+The **Verify** class does not support repeated initialization. When a new key is used for signature verification, you must create a new **Verify** instance and call **init()** for initialization.
 
 The signature verification mode is determined in **createVerify()**, and key is set by **init()**.
 
@@ -2603,7 +2498,7 @@ If the signed message is too long, you can call **update()** multiple times to p
 
 init(pubKey: PubKey, callback: AsyncCallback\<void>): void
 
-Initializes the **Verify** instance with a public key. This API uses an asynchronous callback to return the result.
+Initializes the **Verify** instance with a public key. This API uses an asynchronous callback to return the result. **init**, **update**, and **verify** must be used together. **init** and **verify** are mandatory, and **update** is optional.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -2628,7 +2523,7 @@ For details about the error codes, see [Crypto Framework Error Codes](../errorco
 
 init(pubKey: PubKey): Promise\<void>
 
-Initializes the **Verify** instance with a public key. This API uses a promise to return the result.
+Initializes the **Verify** instance with a public key. This API uses a promise to return the result. **init**, **update**, and **verify** must be used together. **init** and **verify** are mandatory, and **update** is optional.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -2664,9 +2559,9 @@ This API can be called only after the [Verify](#verify) instance is initialized 
 
 > **NOTE**
 >
-> **update()** may be called multiple times or may not be called (call [verify](#verify-1) after [init](#init-4)), depending on the size of the data.<br>
-> The algorithm library does not set a limit on the amount of data to be updated (once or accumulatively). If a large amount of data is involved in signature verification, you are advised to use **update()** multiple times to pass in data. This can prevent too much memory from being requested at a time.<br>
-> For details about the sample code for calling **update()** multiple times, see [Signing and Signature verification](../../security/cryptoFramework-guidelines.md#signing-and-signature-verification).
+> You can call **update** multiple times or do not use **update** (call [verify](#verify-1) after [init](#init-4)), depending on the size of the data.<br>
+> The data to be passed in **update** (once or accumulatively) is not size bound. If the data is considerably long, you are advised to use **update()** multiple times to pass in data by segment. This prevents too much memory from being requested at a time.<br>
+> For details about the sample code for calling **update** multiple times in signature verification, see [Signing and Signature Verification by Segment with an RSA Key Pair (PKCS1 Mode)](../../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1-by-segment.md). The operations of other algorithms are similar.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -2697,9 +2592,9 @@ This API can be called only after the [Verify](#verify) instance is initialized 
 
 > **NOTE**
 >
-> **update()** may be called multiple times or may not be called (call [verify](#verify-2) after [init](#init-5)), depending on the size of the data.
-> The algorithm library does not set a limit on the amount of data to be updated (once or accumulatively). If a large amount of data is involved in signature verification, you are advised to use **update()** multiple times to pass in data. This can prevent too much memory from being requested at a time.<br>
-> For details about the sample code for calling **update()** multiple times, see [Signing and Signature verification](../../security/cryptoFramework-guidelines.md#signing-and-signature-verification).
+> You can call **update()** multiple times or do not use **update** (call [verify](#verify-2) after [init](#init-5)), depending on the size of the data.<br>
+> The data to be passed in **update** (once or accumulatively) is not size bound. If the data is considerably long, you are advised to use **update()** multiple times to pass in data by segment. This prevents too much memory from being requested at a time.<br>
+> For details about the sample code for calling **update** multiple times in signature verification, see [Signing and Signature Verification by Segment with an RSA Key Pair (PKCS1 Mode)](../../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1-by-segment.md). The operations of other algorithms are similar.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -2784,44 +2679,75 @@ For details about the error codes, see [Crypto Framework Error Codes](../errorco
 
 **Callback example**:
 
+For more examples of signing and signature verification, see [Signing and Signature Verification with an RSA Key Pair (PKCS1 Mode)](../../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1.md).
+
 ```ts
-let globalKeyPair: cryptoFramework.KeyPair; // globalKeyPair is an asymmetric key object generated by the asymmetric key generator. The generation process is omitted here.
-let input1: cryptoFramework.DataBlob;
-let input2: cryptoFramework.DataBlob;
-let signMessageBlob: cryptoFramework.DataBlob;// Signed data, which is omitted here.
-let verifyer = cryptoFramework.createVerify("RSA1024|PKCS1|SHA256");
-verifyer.init(globalKeyPair.pubKey, (err, data) => {
-  verifyer.update(input1, (err, data) => {
-    verifyer.verify(input2, signMessageBlob, (err, data) => {
-      console.info("verify result is " + data);
-    })
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import buffer from '@ohos.buffer';
+
+function verifyByCallback() {
+  let inputUpdate: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from("This is Sign test plan1", 'utf-8').buffer) };
+  let inputVerify: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from("This is Sign test plan2", 'utf-8').buffer) };
+  // Key generated based on the key data and input data for signature verification. If the data in verify() is the same as that in sign(), the signature verification is successful.
+  let pkData = new Uint8Array([48, 129, 159, 48, 13, 6, 9, 42, 134, 72, 134, 247, 13, 1, 1, 1, 5, 0, 3, 129, 141, 0, 48, 129, 137, 2, 129, 129, 0, 214, 179, 23, 198, 183, 139, 148, 8, 173, 74, 56, 160, 15, 248, 244, 166, 209, 250, 142, 74, 216, 58, 117, 215, 178, 247, 254, 39, 180, 227, 85, 201, 59, 133, 209, 221, 26, 9, 116, 31, 172, 151, 252, 185, 123, 20, 25, 7, 92, 129, 5, 196, 239, 214, 126, 254, 154, 188, 239, 144, 161, 171, 65, 42, 31, 214, 93, 115, 247, 69, 94, 143, 54, 51, 25, 49, 146, 204, 205, 165, 20, 120, 35, 184, 190, 65, 106, 12, 214, 176, 57, 125, 235, 51, 88, 135, 76, 73, 109, 112, 147, 138, 198, 252, 5, 20, 245, 51, 7, 32, 108, 89, 125, 204, 50, 189, 88, 254, 255, 146, 244, 244, 149, 79, 54, 216, 45, 89, 2, 3, 1, 0, 1]);
+  let skData = new Uint8Array([48, 130, 2, 120, 2, 1, 0, 48, 13, 6, 9, 42, 134, 72, 134, 247, 13, 1, 1, 1, 5, 0, 4, 130, 2, 98, 48, 130, 2, 94, 2, 1, 0, 2, 129, 129, 0, 214, 179, 23, 198, 183, 139, 148, 8, 173, 74, 56, 160, 15, 248, 244, 166, 209, 250, 142, 74, 216, 58, 117, 215, 178, 247, 254, 39, 180, 227, 85, 201, 59, 133, 209, 221, 26, 9, 116, 31, 172, 151, 252, 185, 123, 20, 25, 7, 92, 129, 5, 196, 239, 214, 126, 254, 154, 188, 239, 144, 161, 171, 65, 42, 31, 214, 93, 115, 247, 69, 94, 143, 54, 51, 25, 49, 146, 204, 205, 165, 20, 120, 35, 184, 190, 65, 106, 12, 214, 176, 57, 125, 235, 51, 88, 135, 76, 73, 109, 112, 147, 138, 198, 252, 5, 20, 245, 51, 7, 32, 108, 89, 125, 204, 50, 189, 88, 254, 255, 146, 244, 244, 149, 79, 54, 216, 45, 89, 2, 3, 1, 0, 1, 2, 129, 129, 0, 152, 111, 145, 203, 10, 88, 116, 163, 112, 126, 9, 20, 68, 34, 235, 121, 98, 14, 182, 102, 151, 125, 114, 91, 210, 122, 215, 29, 212, 5, 176, 203, 238, 146, 5, 190, 41, 21, 91, 56, 125, 239, 111, 133, 53, 200, 192, 56, 132, 202, 42, 145, 120, 3, 224, 40, 223, 46, 148, 29, 41, 92, 17, 40, 12, 72, 165, 69, 192, 211, 142, 233, 81, 202, 177, 235, 156, 27, 179, 48, 18, 85, 154, 101, 193, 45, 218, 91, 24, 143, 196, 248, 16, 83, 177, 198, 136, 77, 111, 134, 60, 219, 95, 246, 23, 5, 45, 14, 83, 29, 137, 248, 159, 28, 132, 142, 205, 99, 226, 213, 84, 232, 57, 130, 156, 81, 191, 237, 2, 65, 0, 255, 158, 212, 13, 43, 132, 244, 135, 148, 161, 232, 219, 20, 81, 196, 102, 103, 44, 110, 71, 100, 62, 73, 200, 32, 138, 114, 209, 171, 150, 179, 92, 198, 5, 190, 218, 79, 227, 227, 37, 32, 57, 159, 252, 107, 211, 139, 198, 202, 248, 137, 143, 186, 205, 106, 81, 85, 207, 134, 148, 110, 204, 243, 27, 2, 65, 0, 215, 4, 181, 121, 57, 224, 170, 168, 183, 159, 152, 8, 74, 233, 80, 244, 146, 81, 48, 159, 194, 199, 36, 187, 6, 181, 182, 223, 115, 133, 151, 171, 78, 219, 90, 161, 248, 69, 6, 207, 173, 3, 81, 161, 2, 60, 238, 204, 177, 12, 138, 17, 220, 179, 71, 113, 200, 248, 159, 153, 252, 150, 180, 155, 2, 65, 0, 190, 202, 185, 211, 170, 171, 238, 40, 84, 84, 21, 13, 144, 57, 7, 178, 183, 71, 126, 120, 98, 229, 235, 4, 40, 229, 173, 149, 185, 209, 29, 199, 29, 54, 164, 161, 38, 8, 30, 62, 83, 179, 47, 42, 165, 0, 156, 207, 160, 39, 169, 229, 81, 180, 136, 170, 116, 182, 20, 233, 45, 90, 100, 9, 2, 65, 0, 152, 255, 47, 198, 15, 201, 238, 133, 89, 11, 133, 153, 184, 252, 37, 239, 177, 65, 118, 80, 231, 190, 222, 66, 250, 118, 72, 166, 221, 67, 156, 245, 119, 138, 28, 6, 142, 107, 71, 122, 116, 200, 156, 199, 237, 152, 191, 239, 4, 184, 64, 114, 143, 81, 62, 48, 23, 233, 217, 95, 47, 221, 104, 171, 2, 64, 30, 219, 1, 230, 241, 70, 246, 243, 121, 174, 67, 66, 11, 99, 202, 17, 52, 234, 78, 29, 3, 57, 51, 123, 149, 86, 64, 192, 73, 199, 108, 101, 55, 232, 41, 114, 153, 237, 253, 52, 205, 148, 45, 86, 186, 241, 182, 183, 42, 77, 252, 195, 29, 158, 173, 3, 182, 207, 254, 61, 71, 184, 167, 184]);
+  let pubKeyBlob: cryptoFramework.DataBlob = { data: pkData };
+  let priKeyBlob: cryptoFramework.DataBlob = { data: skData };
+  // The data is signData.data in Sign().
+  let signMessageBlob: cryptoFramework.DataBlob = { data: new Uint8Array([9, 68, 164, 161, 230, 155, 255, 153, 10, 12, 14, 22, 146, 115, 209, 167, 223, 133, 89, 173, 50, 249, 176, 104, 10, 251, 219, 104, 117, 196, 105, 65, 249, 139, 119, 41, 15, 171, 191, 11, 177, 177, 1, 119, 130, 142, 87, 183, 32, 220, 226, 28, 38, 73, 222, 172, 153, 26, 87, 58, 188, 42, 150, 67, 94, 214, 147, 64, 202, 87, 155, 125, 254, 112, 95, 176, 255, 207, 106, 43, 228, 153, 131, 240, 120, 88, 253, 179, 207, 207, 110, 223, 173, 15, 113, 11, 183, 122, 237, 205, 206, 123, 246, 33, 167, 169, 251, 237, 199, 26, 220, 152, 190, 117, 131, 74, 232, 50, 39, 172, 232, 178, 112, 73, 251, 235, 131, 209]) }
+  let rsaGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024');
+  let verifyer = cryptoFramework.createVerify('RSA1024|PKCS1|SHA256');
+  rsaGenerator.convertKey(pubKeyBlob, priKeyBlob, (err, keyPair) => {
+    verifyer.init(keyPair.pubKey, err => {
+      verifyer.update(inputUpdate, err => {
+        verifyer.verify(inputVerify, signMessageBlob, (err, res) => {
+          console.info('verify result is ' + res);
+        });
+      });
+    });
   });
-})
+}
 ```
 
 **Example (promise)**
 
+For more examples of signing and signature verification, see [Signing and Signature Verification with an RSA Key Pair (PKCS1 Mode)](../../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1.md).
+
 ```ts
-let globalKeyPair: cryptoFramework.KeyPair; // globalKeyPair is an asymmetric key object generated by the asymmetric key generator. The generation process is omitted here.
-let verifyer = cryptoFramework.createVerify("RSA1024|PKCS1|SHA256");
-let verifyInitPromise = verifyer.init(globalKeyPair.pubKey);
-let input1: cryptoFramework.DataBlob;;
-let input2: cryptoFramework.DataBlob;;
-let signMessageBlob: cryptoFramework.DataBlob;; // Signed data, which is omitted here.
-verifyInitPromise.then((): Promise<void> => {
-  return verifyer.update(input1);
-}).then(() => {
-  return verifyer.verify(input2, signMessageBlob);
-}).then(res => {
-  console.log("Verify result is " + res);
-});
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import buffer from '@ohos.buffer';
+
+async function genKeyPairByData(pubKeyData: Uint8Array, priKeyData: Uint8Array) {
+  let pubKeyBlob: cryptoFramework.DataBlob = { data: pubKeyData };
+  let priKeyBlob: cryptoFramework.DataBlob = { data: priKeyData };
+  let rsaGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024');
+  let keyPair = await rsaGenerator.convertKey(pubKeyBlob, priKeyBlob);
+  console.info('convertKey success');
+  return keyPair;
+}
+
+async function verifyByPromise() {
+  // Key generated based on the key data and input data for signature verification. If the data in verify() is the same as that in sign(), the signature verification is successful.
+  let pkData = new Uint8Array([48, 129, 159, 48, 13, 6, 9, 42, 134, 72, 134, 247, 13, 1, 1, 1, 5, 0, 3, 129, 141, 0, 48, 129, 137, 2, 129, 129, 0, 214, 179, 23, 198, 183, 139, 148, 8, 173, 74, 56, 160, 15, 248, 244, 166, 209, 250, 142, 74, 216, 58, 117, 215, 178, 247, 254, 39, 180, 227, 85, 201, 59, 133, 209, 221, 26, 9, 116, 31, 172, 151, 252, 185, 123, 20, 25, 7, 92, 129, 5, 196, 239, 214, 126, 254, 154, 188, 239, 144, 161, 171, 65, 42, 31, 214, 93, 115, 247, 69, 94, 143, 54, 51, 25, 49, 146, 204, 205, 165, 20, 120, 35, 184, 190, 65, 106, 12, 214, 176, 57, 125, 235, 51, 88, 135, 76, 73, 109, 112, 147, 138, 198, 252, 5, 20, 245, 51, 7, 32, 108, 89, 125, 204, 50, 189, 88, 254, 255, 146, 244, 244, 149, 79, 54, 216, 45, 89, 2, 3, 1, 0, 1]);
+  let skData = new Uint8Array([48, 130, 2, 120, 2, 1, 0, 48, 13, 6, 9, 42, 134, 72, 134, 247, 13, 1, 1, 1, 5, 0, 4, 130, 2, 98, 48, 130, 2, 94, 2, 1, 0, 2, 129, 129, 0, 214, 179, 23, 198, 183, 139, 148, 8, 173, 74, 56, 160, 15, 248, 244, 166, 209, 250, 142, 74, 216, 58, 117, 215, 178, 247, 254, 39, 180, 227, 85, 201, 59, 133, 209, 221, 26, 9, 116, 31, 172, 151, 252, 185, 123, 20, 25, 7, 92, 129, 5, 196, 239, 214, 126, 254, 154, 188, 239, 144, 161, 171, 65, 42, 31, 214, 93, 115, 247, 69, 94, 143, 54, 51, 25, 49, 146, 204, 205, 165, 20, 120, 35, 184, 190, 65, 106, 12, 214, 176, 57, 125, 235, 51, 88, 135, 76, 73, 109, 112, 147, 138, 198, 252, 5, 20, 245, 51, 7, 32, 108, 89, 125, 204, 50, 189, 88, 254, 255, 146, 244, 244, 149, 79, 54, 216, 45, 89, 2, 3, 1, 0, 1, 2, 129, 129, 0, 152, 111, 145, 203, 10, 88, 116, 163, 112, 126, 9, 20, 68, 34, 235, 121, 98, 14, 182, 102, 151, 125, 114, 91, 210, 122, 215, 29, 212, 5, 176, 203, 238, 146, 5, 190, 41, 21, 91, 56, 125, 239, 111, 133, 53, 200, 192, 56, 132, 202, 42, 145, 120, 3, 224, 40, 223, 46, 148, 29, 41, 92, 17, 40, 12, 72, 165, 69, 192, 211, 142, 233, 81, 202, 177, 235, 156, 27, 179, 48, 18, 85, 154, 101, 193, 45, 218, 91, 24, 143, 196, 248, 16, 83, 177, 198, 136, 77, 111, 134, 60, 219, 95, 246, 23, 5, 45, 14, 83, 29, 137, 248, 159, 28, 132, 142, 205, 99, 226, 213, 84, 232, 57, 130, 156, 81, 191, 237, 2, 65, 0, 255, 158, 212, 13, 43, 132, 244, 135, 148, 161, 232, 219, 20, 81, 196, 102, 103, 44, 110, 71, 100, 62, 73, 200, 32, 138, 114, 209, 171, 150, 179, 92, 198, 5, 190, 218, 79, 227, 227, 37, 32, 57, 159, 252, 107, 211, 139, 198, 202, 248, 137, 143, 186, 205, 106, 81, 85, 207, 134, 148, 110, 204, 243, 27, 2, 65, 0, 215, 4, 181, 121, 57, 224, 170, 168, 183, 159, 152, 8, 74, 233, 80, 244, 146, 81, 48, 159, 194, 199, 36, 187, 6, 181, 182, 223, 115, 133, 151, 171, 78, 219, 90, 161, 248, 69, 6, 207, 173, 3, 81, 161, 2, 60, 238, 204, 177, 12, 138, 17, 220, 179, 71, 113, 200, 248, 159, 153, 252, 150, 180, 155, 2, 65, 0, 190, 202, 185, 211, 170, 171, 238, 40, 84, 84, 21, 13, 144, 57, 7, 178, 183, 71, 126, 120, 98, 229, 235, 4, 40, 229, 173, 149, 185, 209, 29, 199, 29, 54, 164, 161, 38, 8, 30, 62, 83, 179, 47, 42, 165, 0, 156, 207, 160, 39, 169, 229, 81, 180, 136, 170, 116, 182, 20, 233, 45, 90, 100, 9, 2, 65, 0, 152, 255, 47, 198, 15, 201, 238, 133, 89, 11, 133, 153, 184, 252, 37, 239, 177, 65, 118, 80, 231, 190, 222, 66, 250, 118, 72, 166, 221, 67, 156, 245, 119, 138, 28, 6, 142, 107, 71, 122, 116, 200, 156, 199, 237, 152, 191, 239, 4, 184, 64, 114, 143, 81, 62, 48, 23, 233, 217, 95, 47, 221, 104, 171, 2, 64, 30, 219, 1, 230, 241, 70, 246, 243, 121, 174, 67, 66, 11, 99, 202, 17, 52, 234, 78, 29, 3, 57, 51, 123, 149, 86, 64, 192, 73, 199, 108, 101, 55, 232, 41, 114, 153, 237, 253, 52, 205, 148, 45, 86, 186, 241, 182, 183, 42, 77, 252, 195, 29, 158, 173, 3, 182, 207, 254, 61, 71, 184, 167, 184]);
+  let keyPair = await genKeyPairByData(pkData, skData);
+  let inputUpdate: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from("This is Sign test plan1", 'utf-8').buffer) };
+  let inputVerify: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from("This is Sign test plan2", 'utf-8').buffer) };
+  // The data is signData.data in Sign().
+  let signMessageBlob: cryptoFramework.DataBlob = { data: new Uint8Array([9, 68, 164, 161, 230, 155, 255, 153, 10, 12, 14, 22, 146, 115, 209, 167, 223, 133, 89, 173, 50, 249, 176, 104, 10, 251, 219, 104, 117, 196, 105, 65, 249, 139, 119, 41, 15, 171, 191, 11, 177, 177, 1, 119, 130, 142, 87, 183, 32, 220, 226, 28, 38, 73, 222, 172, 153, 26, 87, 58, 188, 42, 150, 67, 94, 214, 147, 64, 202, 87, 155, 125, 254, 112, 95, 176, 255, 207, 106, 43, 228, 153, 131, 240, 120, 88, 253, 179, 207, 207, 110, 223, 173, 15, 113, 11, 183, 122, 237, 205, 206, 123, 246, 33, 167, 169, 251, 237, 199, 26, 220, 152, 190, 117, 131, 74, 232, 50, 39, 172, 232, 178, 112, 73, 251, 235, 131, 209]) };
+  let verifier = cryptoFramework.createVerify('RSA1024|PKCS1|SHA256');
+  await verifier.init(keyPair.pubKey);
+  await verifier.update(inputUpdate);
+  let res = await verifier.verify(inputVerify, signMessageBlob);
+  console.info('signData result: ' + res);
+}
 ```
 
 ### setVerifySpec<sup>10+</sup>
 
 setVerifySpec(itemType: SignSpecItem, itemValue: number): void
 
-setVerifySpec(itemType: SignSpecItem, itemValue: number\|Uint8Array<sup>11+</sup>): void
+setVerifySpec(itemType: SignSpecItem, itemValue: number\|Uint8Array): void
 
 Sets signature verification specifications. You can use this API to set signature verification parameters that cannot be set by [createVerify](#cryptoframeworkcreateverify).
 
@@ -2836,7 +2762,7 @@ The parameters for signature verification must be the same as those for signing.
 | Name  | Type                | Mandatory| Description      |
 | -------- | -------------------- | ---- | ---------- |
 | itemType     | [SignSpecItem](#signspecitem10)              | Yes  | Signature verification parameter to set.|
-| itemValue | number\|Uint8Array | Yes  | Value of the signature verification parameter to set.|
+| itemValue | number\|Uint8Array<sup>11+</sup> | Yes  | Value of the signature verification parameter to set.|
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](../errorcodes/errorcode-crypto-framework.md).
@@ -2851,7 +2777,7 @@ For details about the error codes, see [Crypto Framework Error Codes](../errorco
 **Example**
 
 ```ts
-let verifyer: cryptoFramework.Verify; //The process of generating the Verify instance is omitted here.
+let verifyer: cryptoFramework.Verify; // The process of generating the Verify instance is omitted here.
 let setN = 20;
 verifyer.setVerifySpec(cryptoFramework.SignSpecItem.PSS_SALT_LEN_NUM, setN);
 ```
@@ -2860,7 +2786,7 @@ verifyer.setVerifySpec(cryptoFramework.SignSpecItem.PSS_SALT_LEN_NUM, setN);
 
 getVerifySpec(itemType: SignSpecItem): string | number
 
-Obtains signature verification specifications. Currently, only the RSA is supported.
+Obtains signature verification specifications. Currently, only RSA is supported.
 
 The parameters for signature verification must be the same as those for signing.
 
@@ -2891,7 +2817,7 @@ For details about the error codes, see [Crypto Framework Error Codes](../errorco
 **Example**
 
 ```ts
-let verifyer: cryptoFramework.Verify; //The process of generating the Verify instance is omitted here.
+let verifyer: cryptoFramework.Verify; // The process of generating the Verify instance is omitted here.
 let saltLen = verifyer.getVerifySpec(cryptoFramework.SignSpecItem.PSS_SALT_LEN_NUM);
 ```
 
@@ -2901,7 +2827,7 @@ createKeyAgreement(algName: string): KeyAgreement
 
 Creates a **KeyAgreement** instance.
 
-For details about the supported specifications, see [Key Agreement Specifications](../../security/cryptoFramework-overview.md#key-agreement-specifications).
+For details about the supported specifications, see [Key Agreement Overview and Algorithm Specifications](../../security/CryptoArchitectureKit/crypto-key-agreement-overview.md).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -2929,7 +2855,7 @@ For details about the error codes, see [Crypto Framework Error Codes](../errorco
 **Example**
 
 ```ts
-let keyAgreement = cryptoFramework.createKeyAgreement("ECC256");
+let keyAgreement = cryptoFramework.createKeyAgreement('ECC256');
 
 ```
 
@@ -3008,13 +2934,13 @@ For details about the error codes, see [Crypto Framework Error Codes](../errorco
 import { BusinessError } from '@ohos.base';
 
 let globalKeyPair: cryptoFramework.KeyPair; // globalKeyPair is an asymmetric key object generated by the asymmetric key generator. The generation process is omitted here.
-let keyAgreement = cryptoFramework.createKeyAgreement("ECC256");
+let keyAgreement = cryptoFramework.createKeyAgreement('ECC256');
 keyAgreement.generateSecret(globalKeyPair.priKey, globalKeyPair.pubKey, (err, secret) => {
   if (err) {
     console.error("keyAgreement error.");
     return;
   }
-  console.info("keyAgreement output is " + secret.data);
+  console.info('keyAgreement output is ' + secret.data);
 });
 ```
 
@@ -3024,10 +2950,10 @@ keyAgreement.generateSecret(globalKeyPair.priKey, globalKeyPair.pubKey, (err, se
 import { BusinessError } from '@ohos.base';
 
 let globalKeyPair: cryptoFramework.KeyPair; // globalKeyPair is an asymmetric key object generated by the asymmetric key generator. The generation process is omitted here.
-let keyAgreement = cryptoFramework.createKeyAgreement("ECC256");
+let keyAgreement = cryptoFramework.createKeyAgreement('ECC256');
 let keyAgreementPromise = keyAgreement.generateSecret(globalKeyPair.priKey, globalKeyPair.pubKey);
-keyAgreementPromise.then((secret) => {
-  console.info("keyAgreement output is " + secret.data);
+keyAgreementPromise.then(secret => {
+  console.info('keyAgreement output is ' + secret.data);
 }).catch((error: BusinessError) => {
   console.error("keyAgreement error.");
 });
@@ -3037,9 +2963,9 @@ keyAgreementPromise.then((secret) => {
 
 createMd(algName: string): Md
 
-Creates an **Md** instance for message digest operations.
+Creates an **Md** instance for MD operations.
 
-For details about the supported specifications, see [MD Algorithm Specifications](../../security/cryptoFramework-overview.md#md-algorithm-specifications).
+For details about the supported specifications, see [Supported Algorithms and Specifications](../../security/CryptoArchitectureKit/crypto-generate-message-digest.md#supported-algorithms-and-specifications).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -3047,7 +2973,7 @@ For details about the supported specifications, see [MD Algorithm Specifications
 
 | Name | Type  | Mandatory| Description                                                        |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| algName | string | Yes  | Digest algorithm. For details about the supported algorithms, see [MD Algorithm Specifications](../../security/cryptoFramework-overview.md#md-algorithm-specifications).|
+| algName | string | Yes  | MD algorithm to use. For details about the supported algorithms, see [Supported Algorithms and Specifications](../../security/CryptoArchitectureKit/crypto-generate-message-digest.md#supported-algorithms-and-specifications).|
 
 **Return value**
 
@@ -3070,7 +2996,7 @@ import { BusinessError } from '@ohos.base';
 
 try {
   // Set algName based on the algorithm supported.
-  let md = cryptoFramework.createMd("SHA256");
+  let md = cryptoFramework.createMd('SHA256');
 } catch (error) {
   let e: BusinessError = error as BusinessError;
   console.error(`sync error, ${e.code}, ${e.message}`);
@@ -3079,7 +3005,7 @@ try {
 
 ## Md
 
-Provides APIs for message digest (MD) operations. Before using any API of the **Md** class, you must create an **Md** instance by using [createMd](#cryptoframeworkcreatemd).
+Provides APIs for MD operations. Before using any API of the **Md** class, you must create an **Md** instance by using [createMd](#cryptoframeworkcreatemd).
 
 ### Attributes
 
@@ -3093,11 +3019,11 @@ Provides APIs for message digest (MD) operations. Before using any API of the **
 
 update(input: DataBlob, callback: AsyncCallback\<void>): void
 
-Updates the message for MD operations. This API uses an asynchronous callback to return the result.
+Updates the message for MD operations. This API uses an asynchronous callback to return the result. **update** and **digest** must be used together. **digest** is mandatory, and **update** is optional.
 
 > **NOTE**
 >
-> For details about the sample code for calling **update()** multiple times, see [Generating a Digest](../../security/cryptoFramework-guidelines.md#generating-a-digest).
+> For details about the code for calling **update** multiple times in an MD operation, see [MD (Passing In Data by Segment)](../../security/CryptoArchitectureKit/crypto-generate-message-digest.md#md-passing-in-data-by-segment).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -3116,31 +3042,15 @@ For details about the error codes, see [Crypto Framework Error Codes](../errorco
 | 401 | invalid parameters.       |
 | 17630001 | crypto operation error. |
 
-**Example**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-let md = cryptoFramework.createMd("SHA256");
-console.info("Md algName is: " + md.algName);
-
-let blob: cryptoFramework.DataBlob;
-md.update(blob, (err,) => {
-  if (err) {
-    console.error("[Callback] err: " + err.code);
-  }
-});
-```
-
 ### update
 
 update(input: DataBlob): Promise\<void>
 
-Updates the message for MD operations. This API uses a promise to return the result.
+Updates the message for MD operations. This API uses a promise to return the result. **update** and **digest** must be used together. **digest** is mandatory, and **update** is optional.
 
 > **NOTE**
 >
-> For details about the sample code for calling **update()** multiple times, see [Generating a Digest](../../security/cryptoFramework-guidelines.md#generating-a-digest).
+> For details about the code for calling **update** multiple times in an MD operation, see [MD (Passing In Data by Segment)](../../security/CryptoArchitectureKit/crypto-generate-message-digest.md#md-passing-in-data-by-segment).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -3162,28 +3072,11 @@ For details about the error codes, see [Crypto Framework Error Codes](../errorco
 | 401 | invalid parameters.       |
 | 17630001 | crypto operation error. |
 
-**Example**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-let md = cryptoFramework.createMd("SHA256");
-console.info("Md algName is: " + md.algName);
-
-let blob: cryptoFramework.DataBlob;
-let promiseMdUpdate = md.update(blob);
-promiseMdUpdate.then(() => {
-  // do something
-}).catch((error: BusinessError) => {
-  console.error("[Promise]: error: " + error.message);
-});
-```
-
 ### digest
 
 digest(callback: AsyncCallback\<DataBlob>): void
 
-Generates a message digest. This API uses an asynchronous callback to return the result.
+Generates an MD. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -3202,31 +3095,25 @@ For details about the error codes, see [Crypto Framework Error Codes](../errorco
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import buffer from '@ohos.buffer';
 
-let md = cryptoFramework.createMd("SHA256");
-console.info("Md algName is: " + md.algName);
-
-let blob: cryptoFramework.DataBlob;
-md.update(blob, (err,) => {
-  if (err) {
-    console.error("[Callback] err: " + err.code);
-  }
-  md.digest((err1, mdOutput) => {
-    if (err1) {
-      console.error("[Callback] err: " + err1.code);
-    } else {
-      console.error("[Callback]: MD result: " + mdOutput);
-    }
+function mdByCallback() {
+  let md = cryptoFramework.createMd('SHA256');
+  md.update({ data: new Uint8Array(buffer.from("mdTestMessage", 'utf-8').buffer) }, (err,) => {
+    md.digest((err, digestOutput) => {
+      console.info('[Callback]: MD result: ' + digestOutput.data);
+      console.info('[Callback]: MD len: ' + md.getMdLength());
+    });
   });
-});
+}
 ```
 
 ### digest
 
 digest(): Promise\<DataBlob>
 
-Generates a message digest. This API uses a promise to return the result.
+Generates an MD. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -3234,7 +3121,7 @@ Generates a message digest. This API uses a promise to return the result.
 
 | Type              | Description       |
 | ------------------ | ----------- |
-| Promise\<[DataBlob](#datablob)> | Promise that returns the result.|
+| Promise\<[DataBlob](#datablob)> | Promise used to return the result.|
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](../errorcodes/errorcode-crypto-framework.md).
@@ -3247,28 +3134,23 @@ For details about the error codes, see [Crypto Framework Error Codes](../errorco
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import buffer from '@ohos.buffer';
 
-let md = cryptoFramework.createMd("SHA256");
-console.info("Md algName is: " + md.algName);
-
-let blob: cryptoFramework.DataBlob;
-let promiseMdUpdate = md.update(blob);
-promiseMdUpdate.then(() => {
-  let promiseMdDigest = md.digest();
-  return promiseMdDigest;
-}).then(mdOutput => {
-  console.error("[Promise]: MD result: " + mdOutput.data);
-}).catch((error: BusinessError) => {
-  console.error("[Promise]: error: " + error.message);
-});
+async function mdByPromise() {
+  let md = cryptoFramework.createMd('SHA256');
+  await md.update({ data: new Uint8Array(buffer.from("mdTestMessage", 'utf-8').buffer) });
+  let mdOutput = await md.digest();
+  console.info('[Promise]: MD result: ' + mdOutput.data);
+  console.info('[Promise]: MD len: ' + md.getMdLength());
+}
 ```
 
 ### getMdLength
 
 getMdLength(): number
 
-Obtains the message digest length, in bytes.
+Obtains the MD length, in bytes.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -3276,7 +3158,7 @@ Obtains the message digest length, in bytes.
 
 | Type  | Description                      |
 | ------ | -------------------------- |
-| number | Returns the length of the message digest obtained.|
+| number | MD length obtained.|
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](../errorcodes/errorcode-crypto-framework.md).
@@ -3288,23 +3170,12 @@ For details about the error codes, see [Crypto Framework Error Codes](../errorco
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import cryptoFramework from '@ohos.security.cryptoFramework';
 
-let md = cryptoFramework.createMd("SHA256");
-console.info("Md algName is: " + md.algName);
-
-let blob: cryptoFramework.DataBlob;
-let promiseMdUpdate = md.update(blob);
-promiseMdUpdate.then(() => {
-  let promiseMdDigest = md.digest();
-  return promiseMdDigest;
-}).then(mdOutput => {
-  console.error("[Promise]: MD result: " + mdOutput.data);
-  let mdLen = md.getMdLength();
-  console.error("MD len: " + mdLen);
-}).catch((error: BusinessError) => {
-  console.error("[Promise]: error: " + error.message);
-});
+function getLength() {
+  let md = cryptoFramework.createMd('SHA256');
+  console.info('[Promise]: MD len: ' + md.getMdLength());
+}
 ```
 
 ## cryptoFramework.createMac
@@ -3313,7 +3184,7 @@ createMac(algName: string): Mac
 
 Creates a **Mac** instance for message authentication code (MAC) operations.
 
-For details about the supported specifications, see [HMAC Algorithm Specifications](../../security/cryptoFramework-overview.md#hmac-algorithm-specifications).
+For details about the supported specifications, see [Supported Algorithms and Specifications](../../security/CryptoArchitectureKit/crypto-compute-mac.md#supported-algorithms-and-specifications).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -3321,7 +3192,7 @@ For details about the supported specifications, see [HMAC Algorithm Specificatio
 
 | Name | Type  | Mandatory| Description                                                        |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| algName | string | Yes  | Digest algorithm. For details about the supported algorithms, see [HMAC Algorithm Specifications](../../security/cryptoFramework-overview.md#hmac-algorithm-specifications).|
+| algName | string | Yes  | MD algorithm to use. For details about the supported algorithms, see [Supported Algorithms and Specifications](../../security/CryptoArchitectureKit/crypto-compute-mac.md#supported-algorithms-and-specifications).|
 
 **Return value**
 
@@ -3344,7 +3215,7 @@ import { BusinessError } from '@ohos.base';
 
 try {
   // Set algName based on the algorithm supported.
-  let mac = cryptoFramework.createMac("SHA256");
+  let mac = cryptoFramework.createMac('SHA256');
 } catch (error) {
   let e: BusinessError = error as BusinessError;
   console.error(`sync error, ${e.code}, ${e.message}`);
@@ -3367,11 +3238,11 @@ Provides APIs for MAC operations. Before using any API of the **Mac** class, you
 
 init(key: SymKey, callback: AsyncCallback\<void>): void
 
-Initializes the MAC computation with a symmetric key. This API uses an asynchronous callback to return the result.
+Initializes the MAC computation with a symmetric key. This API uses an asynchronous callback to return the result. **init**, **update**, and **doFinal** must be used together. **init** and **doFinal** are mandatory, and **update** is optional.
 
   > **NOTE**
   >
-  > You are advised to use [HMAC key generation specifications](../../security/cryptoFramework-overview.md#key generation specifications) to create a symmetric key generator, and call [generateSymKey](#generatesymkey) to generate a symmetric key at random or call [convertKey](#convertkey) to generate a key that is of the same length as the key specifications.<br>If **HMAC** is specified to generate the symmetric key generator, only [convertKey](#convertkey) can be called to pass in a binary key of 1 to 4096 bytes.
+  > You are advised to create a symmetric key generator based on the [HMAC key generation specifications](../../security/CryptoArchitectureKit/crypto-sym-key-generation-conversion-spec.md#hmac) and use [generateSymKey](#generatesymkey) to randomly generate a symmetric key or use [convertKey](#convertkey) to convert the binary data (whose length is the same as the key specifications) into a key.<br>If **HMAC** is specified to generate the symmetric key generator, only [convertKey](#convertkey) can be called to pass in a binary key of 1 to 4096 bytes.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -3390,31 +3261,11 @@ For details about the error codes, see [Crypto Framework Error Codes](../errorco
 | 401 | invalid parameters.       |
 | 17630001 | crypto operation error. |
 
-**Example**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-let mac = cryptoFramework.createMac("SHA256");
-let keyBlob: cryptoFramework.DataBlob;
-let symKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
-symKeyGenerator.convertKey(keyBlob, (err, symKey) => {
-  if (err) {
-    console.error("[Callback] err: " + err.code);
-  }
-  mac.init(symKey, (err1, ) => {
-    if (err1) {
-      console.error("[Callback] err: " + err1.code);
-    }
-  });
-});
-```
-
 ### init
 
 init(key: SymKey): Promise\<void>
 
-Initializes the MAC computation with a symmetric key. This API uses a promise to return the result.
+Initializes the MAC computation with a symmetric key. This API uses a promise to return the result. **init**, **update**, and **doFinal** must be used together. **init** and **doFinal** are mandatory, and **update** is optional.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -3438,26 +3289,6 @@ For details about the error codes, see [Crypto Framework Error Codes](../errorco
 | 401 | invalid parameters.       |
 | 17630001 | crypto operation error. |
 
-**Example**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-let mac = cryptoFramework.createMac("SHA256");
-console.info("Mac algName is: " + mac.algName);
-
-let keyBlob: cryptoFramework.DataBlob;
-let symKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
-let promiseConvertKey = symKeyGenerator.convertKey(keyBlob);
-promiseConvertKey.then(symKey => {
-  let promiseMacInit = mac.init(symKey);
-  return promiseMacInit;
-}).catch((error: BusinessError) => {
-  console.error("[Promise]: error: " + error.message);
-});
-
-```
-
 ### update
 
 update(input: DataBlob, callback: AsyncCallback\<void>): void
@@ -3466,7 +3297,7 @@ Updates the message for MAC computation. This API uses an asynchronous callback 
 
 > **NOTE**
 >
-> For details about the sample code for calling **update()** multiple times, see [Generating a MAC](../../security/cryptoFramework-guidelines.md#generating-a-mac).
+> For details about the code for calling **update** multiple times in an HMAC operation, see [HMAC (Passing In Full Data)](../../security/CryptoArchitectureKit/crypto-compute-mac.md#hmac-passing-in-full-data).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -3485,32 +3316,6 @@ For details about the error codes, see [Crypto Framework Error Codes](../errorco
 | 401 | invalid parameters.       |
 | 17630001 | crypto operation error. |
 
-**Example**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-let keyBlob: cryptoFramework.DataBlob;
-let mac = cryptoFramework.createMac("SHA256");
-let symKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
-symKeyGenerator.convertKey(keyBlob, (err, symKey) => {
-  if (err) {
-    console.error("[Callback] err: " + err.code);
-  }
-  mac.init(symKey, (err1, ) => {
-    if (err1) {
-      console.error("[Callback] err: " + err1.code);
-    }
-    let blob: cryptoFramework.DataBlob;
-    mac.update(blob, (err2, data) => {
-      if (err2) {
-        console.error("[Callback] err: " + err2.code);
-      }
-    });
-  });
-});
-```
-
 ### update
 
 update(input: DataBlob): Promise\<void>
@@ -3519,7 +3324,7 @@ Updates the message for MAC computation. This API uses a promise to return the r
 
 > **NOTE**
 >
-> For details about the sample code for calling **update()** multiple times, see [Generating a MAC](../../security/cryptoFramework-guidelines.md#generating-a-mac).
+> For details about the code for calling **update** multiple times in an HMAC operation, see [HMAC (Passing In Full Data)](../../security/CryptoArchitectureKit/crypto-compute-mac.md#hmac-passing-in-full-data).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -3542,30 +3347,6 @@ For details about the error codes, see [Crypto Framework Error Codes](../errorco
 | -------- | ---------------------- |
 | 401 | invalid parameters.       |
 | 17630001 | crypto operation error. |
-
-**Example**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-let mac = cryptoFramework.createMac("SHA256");
-console.info("Mac algName is: " + mac.algName);
-
-let keyBlob: cryptoFramework.DataBlob;
-let symKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
-let promiseConvertKey = symKeyGenerator.convertKey(keyBlob);
-promiseConvertKey.then(symKey => {
-  let promiseMacInit = mac.init(symKey);
-  return promiseMacInit;
-}).then(() => {
-  let blob: cryptoFramework.DataBlob;
-  let promiseMacUpdate = mac.update(blob);
-  return promiseMacUpdate;
-}).catch((error: BusinessError) => {
-  console.error("[Promise]: error: " + error.message);
-});
-
-```
 
 ### doFinal
 
@@ -3591,35 +3372,27 @@ For details about the error codes, see [Crypto Framework Error Codes](../errorco
 
 **Example**
 
-```ts
-import { BusinessError } from '@ohos.base';
+For more HMAC operation examples, see [MAC Operation](../../security/CryptoArchitectureKit/crypto-compute-mac.md).
 
-let keyBlob: cryptoFramework.DataBlob;
-let mac = cryptoFramework.createMac("SHA256");
-let symKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
-symKeyGenerator.convertKey(keyBlob, (err, symKey) => {
-  if (err) {
-    console.error("[Callback] err: " + err.code);
-  }
-  mac.init(symKey, (err1, ) => {
-    if (err1) {
-      console.error("[Callback] err: " + err1.code);
-    }
-    let blob: cryptoFramework.DataBlob;
-    mac.update(blob, (err2, ) => {
-      if (err2) {
-        console.error("[Callback] err: " + err2.code);
-      }
-      mac.doFinal((err3, macOutput) => {
-        if (err3) {
-          console.error("[Callback] err: " + err3.code);
-        } else {
-          console.error("[Promise]: HMAC result: " + macOutput);
-        }
+```ts
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import buffer from '@ohos.buffer';
+
+function hmacByCallback() {
+  let mac = cryptoFramework.createMac('SHA256');
+  let keyBlob: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from("12345678abcdefgh", 'utf-8').buffer) };
+  let symKeyGenerator = cryptoFramework.createSymKeyGenerator('AES128');
+  symKeyGenerator.convertKey(keyBlob, (err, symKey) => {
+    mac.init(symKey, (err,) => {
+      mac.update({ data: new Uint8Array(buffer.from("hmacTestMessage", 'utf-8').buffer) }, (err,) => {
+        mac.doFinal((err, output) => {
+          console.info('[Callback]: HMAC result: ' + output.data);
+          console.info('[Callback]: MAC len: ' + mac.getMacLength());
+        });
       });
     });
   });
-});
+}
 ```
 
 ### doFinal
@@ -3634,7 +3407,7 @@ Finishes the MAC computation. This API uses a promise to return the result.
 
 | Type              | Description       |
 | ------------------ | ----------- |
-| Promise\<[DataBlob](#datablob)> | Promise that returns the result.|
+| Promise\<[DataBlob](#datablob)> | Promise used to return the result.|
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](../errorcodes/errorcode-crypto-framework.md).
@@ -3646,29 +3419,23 @@ For details about the error codes, see [Crypto Framework Error Codes](../errorco
 
 **Example**
 
-```ts
-import { BusinessError } from '@ohos.base';
+For more HMAC operation examples, see [MAC Operation](../../security/CryptoArchitectureKit/crypto-compute-mac.md).
 
-let mac = cryptoFramework.createMac("SHA256");
-console.info("Mac algName is: " + mac.algName);
-let keyBlob: cryptoFramework.DataBlob;
-let symKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
-let promiseConvertKey = symKeyGenerator.convertKey(keyBlob);
-promiseConvertKey.then(symKey => {
-  let promiseMacInit = mac.init(symKey);
-  return promiseMacInit;
-}).then(() => {
-  let blob: cryptoFramework.DataBlob;
-  let promiseMacUpdate = mac.update(blob);
-  return promiseMacUpdate;
-}).then(() => {
-  let promiseMacDoFinal = mac.doFinal();
-  return promiseMacDoFinal;
-}).then(macOutput => {
-  console.error("[Promise]: HMAC result: " + macOutput.data);
-}).catch((error: BusinessError) => {
-  console.error("[Promise]: error: " + error.message);
-});
+```ts
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import buffer from '@ohos.buffer';
+
+async function hmacByPromise() {
+  let mac = cryptoFramework.createMac('SHA256');
+  let keyBlob: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from("12345678abcdefgh", 'utf-8').buffer) };
+  let symKeyGenerator = cryptoFramework.createSymKeyGenerator('AES128');
+  let symKey = await symKeyGenerator.convertKey(keyBlob);
+  await mac.init(symKey);
+  await mac.update({ data: new Uint8Array(buffer.from("hmacTestMessage", 'utf-8').buffer) });
+  let macOutput = await mac.doFinal();
+  console.info('[Promise]: HMAC result: ' + macOutput.data);
+  console.info('[Promise]: MAC len: ' + mac.getMacLength());
+}
 ```
 
 ### getMacLength
@@ -3697,25 +3464,25 @@ For details about the error codes, see [Crypto Framework Error Codes](../errorco
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let mac = cryptoFramework.createMac("SHA256");
-console.info("Mac algName is: " + mac.algName);
-let keyBlob: cryptoFramework.DataBlob;
-let symKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
+let mac = cryptoFramework.createMac('SHA256');
+console.info('Mac algName is: ' + mac.algName);
+let keyBlob: cryptoFramework.DataBlob;  // The generation process is omitted here.
+let symKeyGenerator = cryptoFramework.createSymKeyGenerator('AES128');
 let promiseConvertKey = symKeyGenerator.convertKey(keyBlob);
 promiseConvertKey.then(symKey => {
   let promiseMacInit = mac.init(symKey);
   return promiseMacInit;
 }).then(() => {
-  let blob: cryptoFramework.DataBlob;
+  let blob: cryptoFramework.DataBlob;  // The generation process is omitted here.
   let promiseMacUpdate = mac.update(blob);
   return promiseMacUpdate;
 }).then(() => {
   let promiseMacDoFinal = mac.doFinal();
   return promiseMacDoFinal;
 }).then(macOutput => {
-  console.error("[Promise]: HMAC result: " + macOutput.data);
+  console.info('[Promise]: HMAC result: ' + macOutput.data);
   let macLen = mac.getMacLength();
-  console.error("MAC len: " + macLen);
+  console.info('MAC len: ' + macLen);
 }).catch((error: BusinessError) => {
   console.error("[Promise]: error: " + error.message);
 });
@@ -3727,7 +3494,7 @@ createRandom(): Random
 
 Creates a **Random** instance for generating random numbers and setting seeds.
 
-For details about the supported specifications, see [Random Number Specifications](../../security/cryptoFramework-overview.md#random-number-specifications).
+For details about the supported specifications, see [Supported Algorithms and Specifications](../../security/CryptoArchitectureKit/crypto-generate-random-number.md#supported-algorithms-and-specifications).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -3803,7 +3570,7 @@ rand.generateRandom(12, (err, randData) => {
   if (err) {
     console.error("[Callback] err: " + err.code);
   } else {
-    console.error("[Callback]: generate random result: " + randData.data);
+    console.info('[Callback]: generate random result: ' + randData.data);
   }
 });
 ```
@@ -3826,7 +3593,7 @@ Generates a random number of the specified length. This API uses a promise to re
 
 | Type              | Description       |
 | ------------------ | ----------- |
-| Promise\<[DataBlob](#datablob)> | Promise that returns the result.|
+| Promise\<[DataBlob](#datablob)> | Promise used to return the result.|
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](../errorcodes/errorcode-crypto-framework.md).
@@ -3845,7 +3612,7 @@ import { BusinessError } from '@ohos.base';
 let rand = cryptoFramework.createRandom();
 let promiseGenerateRand = rand.generateRandom(12);
 promiseGenerateRand.then(randData => {
-  console.error("[Promise]: rand result: " + randData.data);
+  console.info('[Promise]: rand result: ' + randData.data);
 }).catch((error: BusinessError) => {
   console.error("[Promise]: error: " + error.message);
 });
@@ -3889,7 +3656,7 @@ let rand = cryptoFramework.createRandom();
 try {
   let randData = rand.generateRandomSync(12);
   if (randData != null) {
-    console.info("[Sync]: rand result: " + randData.data);
+    console.info('[Sync]: rand result: ' + randData.data);
   } else {
     console.error("[Sync]: get rand result fail!");
   }
@@ -3928,7 +3695,7 @@ rand.generateRandom(12, (err, randData) => {
   if (err) {
     console.error("[Callback] err: " + err.code);
   } else {
-    console.info("[Callback]: generate random result: " + randData.data);
+    console.info('[Callback]: generate random result: ' + randData.data);
     try {
       rand.setSeed(randData);
     } catch (error) {
@@ -3943,7 +3710,7 @@ rand.generateRandom(12, (err, randData) => {
 
 createKdf(algName: string): Kdf
 
-Creates a key derivation function instance.<br>For details about the supported specifications, see [Key Derivation Function Specifications](../../security/cryptoFramework-overview.md#key-derivation-function-specifications).
+Creates a key derivation function instance.<br>For details about the supported specifications, see [Supported Algorithms and Specifications](../../security/CryptoArchitectureKit/crypto-key-derivation.md#supported-algorithms-and-specifications).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -3951,7 +3718,7 @@ Creates a key derivation function instance.<br>For details about the supported s
 
 | Name | Type  | Mandatory| Description                             |
 | ------- | ------ | ---- | --------------------------------- |
-| algName | string | Yes  | Key derivation algorithm (including the hash function for the HMAC). Currently, only the PBKDF2 algorithm is supported. For example, **PBKDF2\|SHA1**. |
+| algName | string | Yes  | Key derivation algorithm (including the hash function for the HMAC). Currently, only the PBKDF2 algorithm is supported. For example, **PBKDF2\|SHA1**.| |
 
 **Return value**
 
@@ -3971,7 +3738,7 @@ For details about the error codes, see [Crypto Framework Error Codes](../errorco
 **Example**
 
 ```ts
-let kdf = cryptoFramework.createKdf("PBKDF2|SHA1");
+let kdf = cryptoFramework.createKdf('PBKDF2|SHA1');
 
 ```
 
@@ -3991,7 +3758,7 @@ Defines the key derivation function class. Before using APIs of this class, you 
 
 generateSecret(params: KdfSpec, callback: AsyncCallback\<DataBlob>): void
 
-Generates a key based on the specified parameters. This API uses an asynchronous callback to return the result.
+Generates a key based on the specified key derivation parameters. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -4000,7 +3767,7 @@ Generates a key based on the specified parameters. This API uses an asynchronous
 | Name  | Type                    | Mandatory| Description                  |
 | -------- | ------------------------ | ---- | ---------------------- |
 | spec   | [KdfSpec](#kdfspec11)        | Yes  | Parameters of the key derivation function.|
-| callback | AsyncCallback\<[DataBlob](#datablob)> | Yes  | Callback invoked to return the key generated.|
+| callback | AsyncCallback\<[DataBlob](#datablob)> | Yes  | Callback invoked to return the derived key generated.|
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](../errorcodes/errorcode-crypto-framework.md).
@@ -4014,8 +3781,6 @@ For details about the error codes, see [Crypto Framework Error Codes](../errorco
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 let spec: cryptoFramework.PBKDF2Spec = {
   algName: 'PBKDF2',
   password: '123456',
@@ -4029,7 +3794,7 @@ kdf.generateSecret(spec, (err, secret) => {
     console.error("key derivation error.");
     return;
   }
-  console.info("key derivation output is " + secret.data);
+  console.info('key derivation output is ' + secret.data);
 });
 ```
 
@@ -4037,7 +3802,7 @@ kdf.generateSecret(spec, (err, secret) => {
 
 generateSecret(params: KdfSpec): Promise\<DataBlob>
 
-Generates a key based on the specified parameters. This API uses a promise to return the result.
+Generates a key based on the specified key derivation parameters. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -4051,7 +3816,7 @@ Generates a key based on the specified parameters. This API uses a promise to re
 
 | Type              | Description    |
 | ------------------ | -------- |
-| Promise\<[DataBlob](#datablob)> | Promise used to return the key generated.|
+| Promise\<[DataBlob](#datablob)> | Promise used to return the derived key generated.|
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](../errorcodes/errorcode-crypto-framework.md).
@@ -4076,8 +3841,8 @@ let spec: cryptoFramework.PBKDF2Spec = {
 };
 let kdf = cryptoFramework.createKdf('PBKDF2|SHA256');
 let kdfPromise = kdf.generateSecret(spec);
-kdfPromise.then((secret) => {
-  console.info("key derivation output is " + secret.data);
+kdfPromise.then(secret => {
+  console.info('key derivation output is ' + secret.data);
 }).catch((error: BusinessError) => {
   console.error("key derivation error.");
 });

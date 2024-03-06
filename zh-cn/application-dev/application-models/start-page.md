@@ -9,6 +9,9 @@
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 import Want from '@ohos.app.ability.Want';
+import Logger from '../../utils/Logger';
+
+const TAG: string = 'PagePageAbilityFirst';
 ```
 ```ts
 (async (): Promise<void> => {
@@ -55,22 +58,9 @@ export class GlobalContext {
 ```ts
 import Want from '@ohos.app.ability.Want';
 import featureAbility from '@ohos.ability.featureAbility';
-import bundle from '@ohos.bundle';
 import { GlobalContext } from '../utils/GlobalContext';
-import Logger from '../utils/Logger';
-
-const TAG: string = 'PageAbilitySingleton';
 
 class PageAbilitySingleton {
-  onCreate() {
-    ...
-    Logger.info(TAG, 'Application onCreate');
-  }
-
-  onDestroy() {
-    Logger.info(TAG, 'Application onDestroy');
-  }
-
   onNewWant(want: Want) {
     featureAbility.getWant().then((want) => {
       GlobalContext.getContext().setObject('newWant', want);

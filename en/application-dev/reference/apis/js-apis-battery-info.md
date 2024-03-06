@@ -19,6 +19,8 @@ setBatteryConfig(sceneName: string, sceneValue: string): number
 
 Sets the battery configuration based on the specified scenario.
 
+**System API**: This is a system API.
+
 **System capability**: SystemCapability.PowerManager.BatteryManager.Core
 
 **Parameters**
@@ -33,6 +35,14 @@ Sets the battery configuration based on the specified scenario.
 | Type  | Description                                                      |
 | ------ | ---------------------------------------------------------- |
 | number | Operation result. The value **0** indicates that the operation is successful, and a non-zero value indicates the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Battery Information Error Codes](../errorcodes/errorcode-battery-info.md).
+
+| ID  | Error Message   |
+|---------|---------|
+| 4900101 | If connecting to the service failed. |
 
 **Example**
 
@@ -52,6 +62,8 @@ getBatteryConfig(sceneName: string): string
 
 Obtains the battery configuration based on the specified scenario.
 
+**System API**: This is a system API.
+
 **System capability**: SystemCapability.PowerManager.BatteryManager.Core
 
 **Parameters**
@@ -65,6 +77,14 @@ Obtains the battery configuration based on the specified scenario.
 | Type  | Description                          |
 | ------ | ------------------------------ |
 | string | Operation result. The battery configuration is returned if the operation is successful. Otherwise, **""** is returned.|
+
+**Error codes**
+
+For details about the error codes, see [Battery Information Error Codes](../errorcodes/errorcode-battery-info.md).
+
+| ID  | Error Message   |
+|---------|---------|
+| 4900101 | If connecting to the service failed. |
 
 **Example**
 
@@ -83,6 +103,8 @@ isBatteryConfigSupported(sceneName: string): boolean
 
 Checks whether the battery configuration is enabled based on the specified scenario.
 
+**System API**: This is a system API.
+
 **System capability**: SystemCapability.PowerManager.BatteryManager.Core
 
 **Parameters**
@@ -96,6 +118,14 @@ Checks whether the battery configuration is enabled based on the specified scena
 | Type   | Description                                             |
 | ------- | ------------------------------------------------- |
 | boolean | Operation result. The value **true** indicates that the charging scenario is supported, and the value **false** indicates the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Battery Information Error Codes](../errorcodes/errorcode-battery-info.md).
+
+| ID  | Error Message   |
+|---------|---------|
+| 4900101 | If connecting to the service failed. |
 
 **Example**
 

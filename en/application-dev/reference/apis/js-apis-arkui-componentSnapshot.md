@@ -1,12 +1,14 @@
 # @ohos.arkui.componentSnapshot (Component Snapshot)
 
-The **componentSnapshot** module provides APIs for obtaining component snapshots, including snapshots of components that have been loaded and snapshots of components that have not been loaded yet. Note that a component snapshot does not contain content drawn outside of the area of the owning component or the parent component.
+The **componentSnapshot** module provides APIs for obtaining component snapshots, including snapshots of components that have been loaded and snapshots of components that have not been loaded yet. Note that a component snapshot does not contain content drawn outside the area of the owning component or the parent component.
 
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> You can preview how this component looks on a real device. The preview is not yet available in the DevEco Studio Previewer.
+>In scenarios where [\<XComponent>](../arkui-ts/ts-basic-components-xcomponent.md) is used to, for example, display video or camera streams, obtain images through [surface](js-apis-image.md#imagecreatepixelmapfromsurface11), instead of through an API in this module.
+>
+> You can preview how this component looks on a real device, but not in the DevEco Studio Previewer.
 
 
 ## Modules to Import
@@ -32,7 +34,7 @@ Obtains the snapshot of a component that has been loaded. This API uses an async
 | Name     | Type                                 | Mandatory  | Description                                      |
 | -------- | ----------------------------------- | ---- | ---------------------------------------- |
 | id       | string                              | Yes   | [ID](../arkui-ts/ts-universal-attributes-component-id.md) of the target component.|
-| callback | [AsyncCallback](js-apis-base.md#asynccallback)&lt;image.PixelMap&gt; | Yes   | Callback used to return the result.                              |
+| callback | [AsyncCallback](js-apis-base.md#asynccallback)&lt;image.[PixelMap](js-apis-image.md#pixelmap7)&gt; | Yes   | Callback used to return the result.                              |
 
 **Error codes**
 
@@ -102,7 +104,7 @@ Obtains the snapshot of a component that has been loaded. This API uses a promis
 
 | Type                           | Description      |
 | ----------------------------- | -------- |
-| Promise&lt;image.PixelMap&gt; | Promise used to return the result.|
+| Promise&lt;image.[PixelMap](js-apis-image.md#pixelmap7)&gt; | Promise used to return the result.|
 
 **Error codes**
 
@@ -135,9 +137,9 @@ struct SnapshotExample {
               this.pixmap = pixmap
               // save pixmap to file
               // ....
-            }).catch(err:Error){
-              console.log("error: " + err)
-            }
+            }).catch((err:Error) => {
+            console.log("error: " + err)
+          })
         })
     }
     .width('80%')
@@ -159,7 +161,7 @@ Renders a custom component in the application background and outputs its snapsho
 >
 > To account for the time spent in awaiting component building and rendering, the callback of offscreen snapshots has a delay of less than 500 ms.
 >
-> If a component is on a time-consuming task, for example, an **\<Image>** or **\<Web>** component that is loading online images, its loading may be still in progress when this API is called. In this case, the output snapshot does not represent the component in the way it looks when the loading is successfully completed.
+> If a component is on a time-consuming task, for example, an [\<Image>](../arkui-ts/ts-basic-components-image.md) or [\<Web>](../arkui-ts/ts-basic-components-web.md) component that is loading online images, its loading may be still in progress when this API is called. In this case, the output snapshot does not represent the component in the way it looks when the loading is successfully completed.
 
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -168,8 +170,8 @@ Renders a custom component in the application background and outputs its snapsho
 
 | Name     | Type                                      | Mandatory  | Description        |
 | -------- | ---------------------------------------- | ---- | ---------- |
-| builder  | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) | Yes   | Builder of the custom component.|
-| callback | [AsyncCallback](js-apis-base.md#asynccallback)&lt;image.PixelMap&gt;      | Yes   | Callback used to return the result. The coordinates and size of the offscreen component's drawing area can be obtained through the callback.|
+| builder  | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) | Yes   | Builder of the custom component.<br>**NOTE**<br>The global builder is not supported.|
+| callback | [AsyncCallback](js-apis-base.md#asynccallback)&lt;image.[PixelMap](js-apis-image.md#pixelmap7)&gt;      | Yes   | Callback used to return the result. The coordinates and size of the offscreen component's drawing area can be obtained through the callback.|
 
 **Error codes**
 
@@ -226,6 +228,10 @@ struct OffscreenSnapshotExample {
               console.log(info.size.width + ' ' + info.size.height + ' ' + info.localOffset.x + ' ' + info.localOffset.y + ' ' + info.windowOffset.x + ' ' + info.windowOffset.y)
             })
         })
+      Image(this.pixmap)
+        .margin(10)
+        .height(100)
+        .width(100)
     }.width('80%').margin({ left: 10, top: 5, bottom: 5 }).height(200)
     .border({ color: '#880606', width: 2 })
   }
@@ -242,7 +248,7 @@ Renders a custom component in the application background and outputs its snapsho
 >
 > To account for the time spent in awaiting component building and rendering, the callback of offscreen snapshots has a delay of less than 500 ms.
 >
-> If a component is on a time-consuming task, for example, an **\<Image>** or **\<Web>** component that is loading online images, its loading may be still in progress when this API is called. In this case, the output snapshot does not represent the component in the way it looks when the loading is successfully completed.
+> If a component is on a time-consuming task, for example, an [\<Image>](../arkui-ts/ts-basic-components-image.md) or [\<Web>](../arkui-ts/ts-basic-components-web.md) component that is loading online images, its loading may be still in progress when this API is called. In this case, the output snapshot does not represent the component in the way it looks when the loading is successfully completed.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -250,13 +256,13 @@ Renders a custom component in the application background and outputs its snapsho
 
 | Name    | Type                                      | Mandatory  | Description        |
 | ------- | ---------------------------------------- | ---- | ---------- |
-| builder | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) | Yes   | Builder of the custom component.|
+| builder | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) | Yes   | Builder of the custom component.<br>**NOTE**<br>The global builder is not supported.|
 
 **Return value**
 
 | Type                           | Description      |
 | ----------------------------- | -------- |
-| Promise&lt;image.PixelMap&gt; | Promise used to return the result.|
+| Promise&lt;image.[PixelMap](js-apis-image.md#pixelmap7)&gt; | Promise used to return the result.|
 
 **Error codes**
 
@@ -307,10 +313,14 @@ struct OffscreenSnapshotExample {
               // get component size and location
               let info = componentUtils.getRectangleById("builder")
               console.log(info.size.width + ' ' + info.size.height + ' ' + info.localOffset.x + ' ' + info.localOffset.y + ' ' + info.windowOffset.x + ' ' + info.windowOffset.y)
-            }).catch(err:Error){
-              console.log("error: " + err)
-            }
+            }).catch((err:Error) => {
+            console.log("error: " + err)
+          })
         })
+      Image(this.pixmap)
+        .margin(10)
+        .height(100)
+        .width(100)
     }.width('80%').margin({ left: 10, top: 5, bottom: 5 }).height(200)
     .border({ color: '#880606', width: 2 })
   }

@@ -154,7 +154,19 @@ The menu bar is in the upper right corner of the **\<Navigation>** component. Yo
 ![menu-bar-2](figures/menu-bar-2.jpg)
 
 ```ts
-let TooTmp:Record<string,string|Function> = {'value': "", 'icon': "./image/ic_public_highlights.svg", 'action': ()=> {}}
+let TooTmp: NavigationMenuItem = {'value': "", 'icon': "./image/ic_public_highlights.svg", 'action': ()=> {}}
+Navigation() {
+  ...
+}
+.menus([TooTmp,
+  TooTmp,
+  TooTmp])
+```
+
+You can also reference images in the **resources** folder.
+
+```ts
+let TooTmp: NavigationMenuItem = {'value': "", 'icon': "resources/base/media/ic_public_highlights.svg", 'action': ()=> {}}
 Navigation() {
   ...
 }
@@ -168,7 +180,7 @@ Navigation() {
 ![menu-bar](figures/menu-bar.jpg)
 
 ```ts
-let TooTmp:Record<string,string|Function> = {'value': "", 'icon': "./image/ic_public_highlights.svg", 'action': ()=> {}}
+let TooTmp: NavigationMenuItem = {'value': "", 'icon': "./image/ic_public_highlights.svg", 'action': ()=> {}}
 Navigation() {
   ...
 }
@@ -189,10 +201,10 @@ The toolbar is located at the bottom of the **\<Navigation>** component. You can
 ![free3](figures/free3.jpg)
 
 ```ts
-let TooTmp:Record<string,string|Function> = {'value': "func", 'icon': "./image/ic_public_highlights.svg", 'action': ()=> {}}
-let TooBar: ToolbarItem = {'items':[TooTmp,TooTmp,TooTmp]}
+let TooTmp: ToolbarItem = {'value': "func", 'icon': "./image/ic_public_highlights.svg", 'action': ()=> {}}
+let TooBar: ToolbarItem[] = [TooTmp,TooTmp,TooTmp]
 Navigation() {
   ...
 }
-.toolbarConfiguration([TooBar])
+.toolbarConfiguration(TooBar)
 ```

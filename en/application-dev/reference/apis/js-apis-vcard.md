@@ -49,12 +49,13 @@ For details about the error codes, see [Telephony Error Codes](../../reference/e
 **Example**
 
 ```ts
+import window from '@ohos.window';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
 import vcard from '@ohos.telephony.vcard';
 
 class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage) {
+    onWindowStageCreate(windowStage: window.WindowStage) {
         let filePath: string = "/data/storage/vcf/contacts.vcf";
         vcard.importVCard(this.context, filePath, (err: BusinessError) => {
             console.log(`callback: err->${JSON.stringify(err)}`);
@@ -101,12 +102,13 @@ For details about the error codes, see [Telephony Error Codes](../../reference/e
 **Example**
 
 ```ts
+import window from '@ohos.window';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
 import vcard from '@ohos.telephony.vcard';
 
 class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage) {
+    onWindowStageCreate(windowStage: window.WindowStage) {
         let filePath: string = "/data/storage/vcf/contacts.vcf";
         let accountId: number = 0;
         vcard.importVCard(this.context, filePath, accountId, (err: BusinessError) => {
@@ -159,12 +161,13 @@ For details about the error codes, see [Telephony Error Codes](../../reference/e
 **Example**
 
 ```ts
+import window from '@ohos.window';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
 import vcard from '@ohos.telephony.vcard';
 
 class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage) {
+    onWindowStageCreate(windowStage: window.WindowStage) {
         let filePath: string = "/data/storage/vcf/contacts.vcf";
         let accountId: number = 0;
         vcard.importVCard(this.context, filePath, accountId).then(() => {
@@ -212,13 +215,14 @@ For details about the error codes, see [Telephony Error Codes](../../reference/e
 **Example**
 
 ```ts
+import window from '@ohos.window';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
 import vcard from '@ohos.telephony.vcard';
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage) {
+    onWindowStageCreate(windowStage: window.WindowStage) {
         let predicates = new dataSharePredicates.DataSharePredicates();
         predicates.equalTo("NAME", "Rose");
 
@@ -267,13 +271,14 @@ For details about the error codes, see [Telephony Error Codes](../../reference/e
 **Example**
 
 ```ts
+import window from '@ohos.window';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
 import vcard from '@ohos.telephony.vcard';
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage) {
+    onWindowStageCreate(windowStage: window.WindowStage) {
         let predicates = new dataSharePredicates.DataSharePredicates();
         predicates.equalTo("NAME", "Rose");
         let options: vcard.VCardBuilderOptions = {
@@ -329,13 +334,14 @@ For details about the error codes, see [Telephony Error Codes](../../reference/e
 **Example**
 
 ```ts
+import window from '@ohos.window';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
 import vcard from '@ohos.telephony.vcard';
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage) {
+    onWindowStageCreate(windowStage: window.WindowStage) {
         let predicates = new dataSharePredicates.DataSharePredicates();
         predicates.equalTo("NAME", "Rose");
         let options: vcard.VCardBuilderOptions = {

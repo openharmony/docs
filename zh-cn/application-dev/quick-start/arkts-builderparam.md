@@ -19,14 +19,16 @@
 - 使用所属自定义组件的自定义构建函数或者全局的自定义构建函数，在本地初始化\@BuilderParam。
 
   ```ts
-  @Builder function GlobalBuilder0() {}
+  @Builder function overBuilder() {}
 
   @Component
   struct Child {
     @Builder doNothingBuilder() {};
 
-    @BuilderParam aBuilder0: () => void = this.doNothingBuilder;
-    @BuilderParam aBuilder1: () => void = GlobalBuilder0;
+    // 使用自定义组件的自定义构建函数初始化@BuilderParam
+    @BuilderParam customBuilderParam: () => void = this.doNothingBuilder;
+    // 使用全局自定义构建函数初始化@BuilderParam
+    @BuilderParam customOverBuilderParam: () => void = overBuilder;
     build(){}
   }
   ```
@@ -36,12 +38,13 @@
   ```ts
   @Component
   struct Child {
-    @Builder FunABuilder0() {}
-    @BuilderParam aBuilder0: () => void = this.FunABuilder0;
+    @Builder customBuilder() {}
+    // 使用父组件@Builder装饰的方法初始化子组件@BuilderParam
+    @BuilderParam customBuilderParam: () => void = this.customBuilder;
 
     build() {
       Column() {
-        this.aBuilder0()
+        this.customBuilderParam()
       }
     }
   }
@@ -55,36 +58,34 @@
 
     build() {
       Column() {
-        Child({ aBuilder0: this.componentBuilder })
+        Child({ customBuilderParam: this.componentBuilder })
       }
     }
   }
   ```
+  **图1** 示例效果图
 
-  ![f1b703f7-2f2d-43af-b11d-fdc9542d8361](figures/f1b703f7-2f2d-43af-b11d-fdc9542d8361.png)
+  ![builderparam-demo1](figures/builderparam-demo1.png)
 
 
 - 需注意this指向正确。
 
-  以下示例中，Parent组件在调用this.componentBuilder()时，this指向其所属组件，即“Parent”。\@Builder componentBuilder()传给子组件\@BuilderParam aBuilder0，在Child组件中调用this.aBuilder0()时，this指向在Child的label，即“Child”。对于\@BuilderParam aBuilder1，在将this.componentBuilder传给aBuilder1时，调用bind绑定了this，因此其this.label指向Parent的label。
+  以下示例中，Parent组件在调用this.componentBuilder()时，this指向其所属组件，即“Parent”。@Builder componentBuilder()通过this.componentBuilder的形式传给子组件@BuilderParam customBuilderParam，this指向在Child的label，即“Child”。@Builder componentBuilder()通过():void=>{this.componentBuilder()}的形式传给子组件@BuilderParam customChangeThisBuilderParam，因为箭头函数的this指向的是宿主对象，所以label的值为“Parent”。
 
-   >  **说明：**
-   >
-   >  开发者谨慎使用bind改变函数调用的上下文，可能会使this指向混乱。
 
   ```ts
   @Component
   struct Child {
     label: string = `Child`
-    @Builder FunABuilder0() {}
-    @Builder FunABuilder1() {}
-    @BuilderParam aBuilder0: () => void = this.FunABuilder0;
-    @BuilderParam aBuilder1: () => void = this.FunABuilder1;
+    @Builder customBuilder() {}
+    @Builder customChangeThisBuilder() {}
+    @BuilderParam customBuilderParam: () => void = this.customBuilder;
+    @BuilderParam customChangeThisBuilderParam: () => void = this.customChangeThisBuilder;
 
     build() {
       Column() {
-        this.aBuilder0()
-        this.aBuilder1()
+        this.customBuilderParam()
+        this.customChangeThisBuilderParam()
       }
     }
   }
@@ -101,13 +102,14 @@
     build() {
       Column() {
         this.componentBuilder()
-        Child({ aBuilder0: this.componentBuilder, aBuilder1: ():void=>{this.componentBuilder()} })
+        Child({ customBuilderParam: this.componentBuilder, customChangeThisBuilderParam: ():void=>{this.componentBuilder()} })
       }
     }
   }
   ```
+ **图2** 示例效果图
 
-  ![3f17235e-57e6-4058-8729-a19127a3b007](figures/3f17235e-57e6-4058-8729-a19127a3b007.png)
+ ![builderparam-demo2](figures/builderparam-demo2.png)
 
 
 ## 使用场景
@@ -122,7 +124,7 @@
 class Tmp{
   label:string = ''
 }
-@Builder function GlobalBuilder1($$ : Tmp) {
+@Builder function overBuilder($$ : Tmp) {
   Text($$.label)
     .width(400)
     .height(50)
@@ -132,16 +134,16 @@ class Tmp{
 @Component
 struct Child {
   label: string = 'Child'
-  @Builder FunABuilder0() {}
-  // 无参数类，指向的componentBuilder也是无参数类型
-  @BuilderParam aBuilder0: () => void = this.FunABuilder0;
-  // 有参数类型，指向的GlobalBuilder1也是有参数类型的方法
-  @BuilderParam aBuilder1: ($$ : Tmp) => void = GlobalBuilder1;
+  @Builder customBuilder() {}
+  // 无参数类型，指向的componentBuilder也是无参数类型
+  @BuilderParam customBuilderParam: () => void = this.customBuilder;
+  // 有参数类型，指向的overBuilder也是有参数类型的方法
+  @BuilderParam customOverBuilderParam: ($$ : Tmp) => void = overBuilder;
 
   build() {
     Column() {
-      this.aBuilder0()
-      this.aBuilder1({label: 'global Builder label' } )
+      this.customBuilderParam()
+      this.customOverBuilderParam({label: 'global Builder label' } )
     }
   }
 }
@@ -158,13 +160,14 @@ struct Parent {
   build() {
     Column() {
       this.componentBuilder()
-      Child({ aBuilder0: this.componentBuilder, aBuilder1: GlobalBuilder1 })
+      Child({ customBuilderParam: this.componentBuilder, customOverBuilderParam: overBuilder })
     }
   }
 }
 ```
+**图3** 示例效果图
 
-![3869e265-4d12-44ff-93ef-e84473c68c97](figures/3869e265-4d12-44ff-93ef-e84473c68c97.png)
+![builderparam-demo3](figures/builderparam-demo3.png)
 
 
 ### 尾随闭包初始化组件
@@ -181,12 +184,12 @@ struct Parent {
 
 
 ```ts
-// xxx.ets
 @Component
 struct CustomContainer {
   @Prop header: string = '';
-  @Builder CloserFun(){}
-  @BuilderParam closer: () => void = this.CloserFun
+  @Builder closerBuilder(){}
+  // 使用父组件的尾随闭包{}(@Builder装饰的方法)初始化子组件@BuilderParam
+  @BuilderParam closer: () => void = this.closerBuilder
 
   build() {
     Column() {
@@ -227,5 +230,6 @@ struct CustomContainerUser {
   }
 }
 ```
+**图4** 示例效果图
 
-![7ae8ed5e-fc23-49ea-be3b-08a672a7b817](figures/7ae8ed5e-fc23-49ea-be3b-08a672a7b817.png)
+![builderparam-demo4](figures/builderparam-demo4.png)

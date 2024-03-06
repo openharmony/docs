@@ -35,18 +35,37 @@ In the **skills** attribute of the PageAbility, if the **actions** value contain
 
 ```json
 {
-  "abilities": [
-    {
-      "icon": "$media:icon",
-      "label": "$string:MainAbility_label",
-      "skills": [
-        {
-          "entities": ["entity.system.home"],
-          "actions": ["action.system.home"]
-        }
-      ]
-    }
-  ]
+  ...
+  "module": {
+    ...
+    "abilities": [
+      {
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ],
+        "orientation": "unspecified",
+        "formsEnabled": false,
+        "name": ".MainAbility",
+        "srcLanguage": "ets",
+        "srcPath": "MainAbility",
+        "icon": "$media:icon",
+        "description": "$string:MainAbility_desc",
+        "label": "$string:MainAbility_label",
+        "type": "page",
+        "visible": true,
+        "launchType": "singleton"
+      },
+      ...
+    ]
+    ...
+  }
 }
 ```
 #### Control Rules
@@ -86,5 +105,3 @@ To configure the device types supported by the module, set the **deviceType** fi
 ## Configuring the Component Permission
 
 To request component permissions, set the **reqPermissions** field under **module** in the **config.json** file. This field declares the name of the permission to request, the reason for requesting the permission, and the scenario where the permission is used. For details, see [Internal Structure of the reqPermissions Attribute](../quick-start/module-structure.md#internal-structure-of-the-reqpermissions-attribute).
-
- <!--no_check--> 

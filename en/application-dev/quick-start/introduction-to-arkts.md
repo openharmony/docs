@@ -33,8 +33,8 @@ Declarations in ArkTS introduce:
 A declaration starting with the keyword `let` introduces a variable which can have different values during program execution.
 
 ```typescript
-let hi: string = 'hello'
-hi = 'hello, world'
+let hi: string = 'hello';
+hi = 'hello, world';
 ```
 
 #### Constant Declaration
@@ -58,8 +58,8 @@ All cases that allow the type to be inferred automatically are specified in the 
 Both variable declarations are valid, and both variables are of the `string` type:
 
 ```typescript
-let hi1: string = 'hello'
-let hi2 = 'hello, world'
+let hi1: string = 'hello';
+let hi2 = 'hello, world';
 ```
 
 ### Types
@@ -90,16 +90,16 @@ A floating-point literal includes the following:
 Example:
 
 ```typescript
-let n1 = 3.14
-let n2 = 3.141592
-let n3 = .5
-let n4 = 1e10
+let n1 = 3.14;
+let n2 = 3.141592;
+let n3 = .5;
+let n4 = 1e10;
 
 function factorial(n: number): number {
   if (n <= 1) {
-    return 1
+    return 1;
   }
-  return n * factorial(n - 1)
+  return n * factorial(n - 1);
 }
 ```
 
@@ -126,10 +126,10 @@ A `string` is a sequence of characters; some characters can be set by using esca
 A `string` literal consists of zero or more characters enclosed in single (') or double quotes ("). The special form of string literals are template literals enclosed in backtick quotes (\`).
 
 ```typescript
-let s1 = 'Hello, world!\n'
-let s2 = 'this is a string'
-let a = 'Success'
-let s3 = `The result is ${a}`
+let s1 = 'Hello, world!\n';
+let s2 = 'this is a string';
+let a = 'Success';
+let s3 = `The result is ${a}`;
 ```
 
 #### `Void` Type
@@ -157,7 +157,7 @@ A value of an `array` is set by using *array composite literal*, that is a list 
 The following example creates the `array` with three elements:
 
 ```typescript
-let names: string[] = ['Alice', 'Bob', 'Carol']
+let names: string[] = ['Alice', 'Bob', 'Carol'];
 ```
 
 #### `Enum` Type
@@ -167,7 +167,7 @@ In order to be used, an `enum` constant must be prefixed with an enum `type` nam
 
 ```typescript
 enum ColorSet { Red, Green, Blue }
-let c: ColorSet = ColorSet.Red
+let c: ColorSet = ColorSet.Red;
 ```
 
 A constant expression can be used to explicitly set the value of an `enum` constant.
@@ -194,9 +194,9 @@ class Frog {
 type Animal = Cat | Dog | Frog | number
 // Cat, Dog, and Frog are some types (class or interface ones)
 
-let animal: Animal = new Cat()
-animal = new Frog()
-animal = 42
+let animal: Animal = new Cat();
+animal = new Frog();
+animal = 42;
 // One may assign the variable of the union type with any valid value
 ```
 
@@ -227,10 +227,10 @@ animal.sleep () // Any animal can sleep
 Type `aliases` provides names for anonymous types (array, function, object literal or union types) or alternative names for existing types.
 
 ```typescript
-type Matrix = number[][]
-type Handler = (s: string, no: number) => string
-type Predicate <T> = (x: T) => Boolean
-type NullableObject = Object | null
+type Matrix = number[][];
+type Handler = (s: string, no: number) => string;
+type Predicate <T> = (x: T) => Boolean;
+type NullableObject = Object | null;
 ```
 
 ### Operators
@@ -307,14 +307,14 @@ if (condition1) {
 All conditional expressions must be of the type `boolean` or other types (`string`, `number`, etc.). For types other than `boolean`, implicit conversion rules apply:
 
 ```typescript
-let s1 = 'Hello'
+let s1 = 'Hello';
 if (s1) {
-  console.log(s1) // prints 'Hello'
+  console.log(s1); // prints 'Hello'
 }
 
-let s2 = 'World'
+let s2 = 'World';
 if (s2.length != 0) {
-  console.log(s2) // prints 'World'
+  console.log(s2); // prints 'World'
 }
 ```
 
@@ -342,10 +342,6 @@ switch (expression) {
 }
 ```
 
-The `switch` expression type must be of `number`, `enum` or `string` types.
-
-Each label must be either a constant expression or the name of an enum constant.
-
 If the value of a `switch` expression equals the value of some label, then the corresponding statements are executed.
 
 If there is no match, and the `switch` has the default clause, then the default statements are executed.
@@ -364,7 +360,7 @@ A conditional expression looks as follows:
 condition ? expression1 : expression2
 ```
 
-The condition must be a logical expression. If that logical expression is `true`, then the first expression is used as the result of the ternary expression; otherwise, the second expression is used.
+If that logical expression is truthy(a value that is considered `true`), then the first expression is used as the result of the ternary expression; otherwise, the second expression is used.
 
 Example:
 
@@ -388,7 +384,7 @@ for ([init]; [condition]; [update]) {
 When a `for` statement is executed, the following process takes place:
 
 1. An `init` expression is executed, if any. This expression usually initializes one or more loop counters.
-2. The condition is evaluated. If the value of condition is `true`, or if the conditional expression is omitted, then the statements in the `for` body are to be executed. If the value of condition is `false`, then the `for` loop terminates.
+2. The condition is evaluated. If the value of condition is truthy(a value that is considered `true`), or if the conditional expression is omitted, then the statements in the `for` body are to be executed. If the value of condition is falsy(a value that is considered `false`), then the `for` loop terminates.
 3. The statements of the `for` body are executed.
 4. If there is an `update` expression, then the `update` expression is executed.
 5. Go back to step 2.
@@ -396,9 +392,9 @@ When a `for` statement is executed, the following process takes place:
 Example:
 
 ```typescript
-let sum = 0
+let sum = 0;
 for (let i = 0; i < 10; i += 2) {
-  sum += i
+  sum += i;
 }
 ```
 
@@ -434,22 +430,20 @@ while (condition) {
 }
 ```
 
-The condition must be a logical expression.
-
 Example:
 
 ```typescript
-let n = 0
-let x = 0
+let n = 0;
+let x = 0;
 while (n < 3) {
-  n++
-  x += n
+  n++;
+  x += n;
 }
 ```
 
 #### `Do-while` Statements
 
-`do-while` statements are executed repetitively until a specified condition evaluates to false.
+`do-while` statements are executed repetitively until a specified condition evaluates to `false`.
 
 A `do-while` statement looks as follows:
 
@@ -459,14 +453,12 @@ do {
 } while (condition)
 ```
 
-The condition must be a logical expression.
-
 Example:
 
 ```typescript
-let i = 0
+let i = 0;
 do {
-  i += 1
+  i += 1;
 } while (i < 10)
 ```
 
@@ -477,7 +469,7 @@ A `break` statement is used to terminate any `loop` statement or `switch`.
 Example:
 
 ```typescript
-let x = 0
+let x = 0;
 while (true) {
   x++;
   if (x > 5) {
@@ -508,12 +500,12 @@ A `continue` statement stops the execution of the current loop iteration and pas
 Example:
 
 ```typescript
-let sum = 0
+let sum = 0;
 for (let x = 0; x < 100; x++) {
   if (x % 2 == 0) {
     continue
   }
-  sum += x
+  sum += x;
 }
 ```
 
@@ -541,16 +533,16 @@ The example below shows the `throw` and `try` statements  used to handle the zer
 class ZeroDivisor extends Error {}
 
 function divide (a: number, b: number): number{
-  if (b == 0) throw new ZeroDivisor()
-  return a / b
+  if (b == 0) throw new ZeroDivisor();
+  return a / b;
 }
 
 function process (a: number, b: number) {
   try {
-    let res = divide(a, b)
-    console.log(res)
+    let res = divide(a, b);
+    console.log('result: ' + res);
   } catch (x) {
-    console.log('some error')
+    console.log('some error');
   }
 }
 ```
@@ -559,21 +551,21 @@ function process (a: number, b: number) {
 
 ```typescript
 function processData(s: string) {
-  let error: Error | null = null
+  let error: Error | null = null;
 
   try {
-    console.log('Data processed: ', s)
+    console.log('Data processed: ' + s);
     // ...
     // Throwing operations
     // ...
   } catch (e) {
-    error = e as Error
+    error = e as Error;
     // ...
     // More error handling
     // ...
   } finally {
     if (error != null) {
-      console.log(`Error caught: input='${s}', message='${error.message}'`)
+      console.log(`Error caught: input='${s}', message='${error.message}'`);
     }
   }
 }
@@ -589,8 +581,8 @@ Below is a simple function with two string parameters and string return type:
 
 ```typescript
 function add(x: string, y: string): string {
-  let z: string = `${x} ${y}`
-  return z
+  let z: string = `${x} ${y}`;
+  return z;
 }
 ```
 
@@ -604,9 +596,9 @@ An optional parameter has the form `name?: Type`.
 ```typescript
 function hello(name?: string) {
   if (name == undefined) {
-    console.log('Hello!')
+    console.log('Hello!');
   } else {
-    console.log('Hello, ${name}!')
+    console.log(`Hello, ${name}!`);
   }
 }
 ```
@@ -616,10 +608,10 @@ If the corresponding argument to such parameter is omitted in a function call, t
 
 ```typescript
 function multiply(n: number, coeff: number = 2): number {
-  return n * coeff
+  return n * coeff;
 }
-multiply(2)  // returns 2*2
-multiply(2, 3) // returns 2*3
+multiply(2);  // returns 2*2
+multiply(2, 3); // returns 2*3
 ```
 
 ### The Rest Parameter
@@ -628,10 +620,10 @@ The last parameter of a function can be a rest parameter. It allows functions or
 
 ```typescript
 function sum(...numbers: number[]): number {
-  let res = 0
+  let res = 0;
   for (let n of numbers)
-    res += n
-  return res
+    res += n;
+  return res;
 }
 
 sum() // returns 0
@@ -644,10 +636,10 @@ If function return type can be inferred from its body content, then it can be om
 
 ```typescript
 // Explicit return type
-function foo(): string { return 'foo' }
+function foo(): string { return 'foo'; }
 
 // Implicit return type inferred as string
-function goo() { return 'goo' }
+function goo() { return 'goo'; }
 ```
 
 The return type of a function that does not need to return a value can be explicitly specified as `void` or omitted altogether. No return statement is needed for such functions.
@@ -655,8 +647,8 @@ The return type of a function that does not need to return a value can be explic
 Both notations below are valid:
 
 ```typescript
-function hi1() { console.log('hi') }
-function hi2(): void { console.log('hi') }
+function hi1() { console.log('hi'); }
+function hi2(): void { console.log('hi'); }
 ```
 
 ### Function Scope
@@ -673,16 +665,16 @@ If the function is defined as follows:
 
 ```typescript
 function join(x: string, y: string): string {
-  let z: string = `${x} ${y}`
-  return z
+  let z: string = `${x} ${y}`;
+  return z;
 }
 ```
 
 then it is called with two arguments of the type `string`:
 
 ```typescript
-let x = join('hello', 'world')
-console.log(x)
+let x = join('hello', 'world');
+console.log(x);
 ```
 
 ## Function Types
@@ -693,10 +685,10 @@ Function types are commonly used as follows to define callbacks:
 type trigFunc = (x: number) => number // this is a function type
 
 function do_action(f: trigFunc) {
-   f(3.141592653589) // call the function
+   f(3.141592653589); // call the function
 }
 
-do_action(Math.sin) // pass the function as the parameter
+do_action(Math.sin); // pass the function as the parameter
 ```
 
 ### Arrow Functions or Lambdas
@@ -705,7 +697,7 @@ A function can be defined as an arrow function, for example:
 
 ```typescript
 let sum = (x: number, y: number): number => {
-  return x + y
+  return x + y;
 }
 ```
 
@@ -714,7 +706,7 @@ An arrow function return type can be omitted; in such case, it is inferred from 
 An expression can be specified as an arrow function to make the notation shorter, i.e., the following two notations are equivalent:
 
 ```typescript
-let sum1 = (x: number, y: number) => { return x + y }
+let sum1 = (x: number, y: number) => { return x + y; }
 let sum2 = (x: number, y: number) => x + y
 ```
 
@@ -727,13 +719,13 @@ The closure allows accessing such an inner function outside its own environment.
 
 ```typescript
 function f(): () => number {
-  let count = 0
-  return (): number => { count++; return count }
+  let count = 0;
+  return (): number => { count++; return count; }
 }
 
-let z = f()
-console.log(z()) // output: 1
-console.log(z()) // output: 2
+let z = f();
+z(); // output: 1
+z(); // output: 2
 ```
 
 In the sample above, the arrow function closure captures the `count` variable.
@@ -743,14 +735,13 @@ In the sample above, the arrow function closure captures the `count` variable.
 A function can be specified to be called in different ways by writing overload signatures. To do so, several functions' headers that have the same name but different signatures are written and immediately followed by the single implementation function.
 
 ```typescript
-function foo(): void;      /* 1st signature */
-function foo(x: string): void;   /* 2nd signature */
-function foo(x?: string): void { /* Implementation signature */
-  console.log(x)
+function foo(x: number): void;            /* 1st signature */
+function foo(x: string): void;            /* 2nd signature */
+function foo(x: number | string): void {  /* Implementation signature */
 }
 
-foo()   // ok, 1st signature is used
-foo('aa') // ok, 2nd signature is used
+foo(123);   // ok, 1st signature is used
+foo('aa');  // ok, 2nd signature is used
 ```
 
 An error occurs if two overload signatures have identical parameter lists.
@@ -766,11 +757,11 @@ class Person {
   name: string = ''
   surname: string = ''
   constructor (n: string, sn: string) {
-    this.name = n
-    this.surname = sn
+    this.name = n;
+    this.surname = sn;
   }
   fullName(): string {
-    return this.name + ' ' + this.surname
+    return this.name + ' ' + this.surname;
   }
 }
 ```
@@ -778,8 +769,8 @@ class Person {
 After the class is defined, its instances can be created by using the keyword `new`:
 
 ```typescript
-let p = new Person('John', 'Smith')
-console.log(p.fullName())
+let p = new Person('John', 'Smith');
+console.log(p.fullName());
 ```
 
 or an instance can be created by using object literals:
@@ -789,7 +780,7 @@ class Point {
   x: number = 0
   y: number = 0
 }
-let p: Point = {x: 42, y: 42}
+let p: Point = {x: 42, y: 42};
 ```
 
 ### Fields
@@ -809,19 +800,19 @@ class Person {
   name: string = ''
   age: number = 0
   constructor(n: string, a: number) {
-    this.name = n
-    this.age = a
+    this.name = n;
+    this.age = a;
   }
 
   getName(): string {
-    return this.name
+    return this.name;
   }
 }
 
-let p1 = new Person('Alice', 25)
-console.log(p1.name)
-let p2 = new Person('Bob', 28)
-console.log(p2.getName())
+let p1 = new Person('Alice', 25);
+console.log(p1.name);
+let p2 = new Person('Bob', 28);
+console.log(p2.getName());
 ```
 
 #### Static Fields
@@ -835,12 +826,12 @@ class Person {
   static numberOfPersons = 0
   constructor() {
      // ...
-     Person.numberOfPersons++
+     Person.numberOfPersons++;
      // ...
   }
 }
 
-console.log(Person.numberOfPersons)
+Person.numberOfPersons;
 ```
 
 #### Field Initializers
@@ -851,10 +842,10 @@ The following code (invalid in ArkTS) is error-prone:
 
 ```typescript
 class Person {
-  name: string // The compiler automatically sets to undefined
+  name: string // undefined
   
   setName(n:string): void {
-    this.name = n
+    this.name = n;
   }
   
   getName(): string {
@@ -869,41 +860,41 @@ class Person {
 let jack = new Person()
 // Let's assume that the developer forgets to call setName:
 // jack.setName('Jack')
-console.log(jack.getName().length); // runtime exception: name is undefined
+jack.getName().length; // runtime exception: name is undefined
 ```
 
 Here is how it should look in ArkTS:
 
 ```typescript
 class Person {
-  name: string = '' // The field is always defined
-
+  name: string = ''
+  
   setName(n:string): void {
-    this.name = n
+    this.name = n;
   }
 
   // The type is always string, no other "hidden options".
   getName(): string {
-    return this.name
+    return this.name;
   }
 }
 
-let jack = new Person()
+let jack = new Person();
 // Let's assume that the developer forgets to call setName:
 // jack.setName('Jack')
-console.log(jack.getName().length); // 0, no runtime error
+jack.getName().length; // 0, no runtime error
 ```
 
 And here how our code behaves if the field `name` can be `undefined`
 
 ```typescript
 class Person {
-  name ?: string // The field may be undefined, great
+  name?: string // The field may be undefined, great
   // More explicit syntax may also be used:
   // name: string | undefined = undefined
 
   setName(n:string): void {
-    this.name = n
+    this.name = n;
   }
 
   // Compile-time error:
@@ -924,9 +915,9 @@ let jack = new Person()
 
 // Compile-time(!) error: Compiler suspects that we
 // may possibly access something undefined and won't build the code:
-console.log(jack.getName().length); // The code won't build and run
+jack.getName().length; // The code won't build and run
 
-console.log(jack.getName()?.length); // Builds ok, no runtime error
+jack.getName()?.length; // Builds ok, no runtime error
 ```
 
 #### Getters and Setters
@@ -939,18 +930,18 @@ In the following example, a setter is used to forbid setting invalid values of t
 class Person {
   name: string = ''
   private _age: number = 0
-  get age(): number { return this._age }
+  get age(): number { return this._age; }
   set age(x: number) {
     if (x < 0) {
-      throw Error('Invalid age argument')
+      throw Error('Invalid age argument');
     }
-    this._age = x
+    this._age = x;
   }
 }
 
-let p = new Person()
-console.log (p.age) // 0 will be printed out
-p.age = -42 // Error will be thrown as an attempt to set incorrect age
+let p = new Person();
+p.age; // 0
+p.age = -42; // Error will be thrown as an attempt to set incorrect age
 ```
 
 A class can define a getter, a setter or both.
@@ -983,25 +974,24 @@ class RectangleSize {
 To use an instance method, it must be called on an instance of the class:
 
 ```typescript
-let square = new RectangleSize(10, 10)
-console.log(square.calculateArea()) // output: 100
+let square = new RectangleSize(10, 10);
+square.calculateArea(); // output: 100
 ```
 
 #### Static Methods
 
 The keyword `static` is used to declare a method as static. Static methods belong to the class itself and have access to static fields only.
 A static method defines a common behavior of the class as a whole.
-All instances have access to static methods.
 
 The class name is used to call a static method:
 
 ```typescript
 class Cl {
   static staticMethod(): string {
-    return 'this is a static method.'
+    return 'this is a static method.';
   }
 }
-console.log(Cl.staticMethod())
+console.log(Cl.staticMethod());
 ```
 
 #### Inheritance
@@ -1029,13 +1019,13 @@ class Person {
   name: string = ''
   private _age = 0
   get age(): number {
-    return this._age
+    return this._age;
   }
 }
 class Employee extends Person {
   salary: number = 0
   calculateTaxes(): number {
-    return this.salary * 0.42
+    return this.salary * 0.42;
   }
 }
 ```
@@ -1049,7 +1039,7 @@ interface DateInterface {
 class MyDate implements DateInterface {
   now(): string {
     // implementation is here
-    return 'now is now'
+    return 'now is now';
   }
 }
 ```
@@ -1066,8 +1056,8 @@ class RectangleSize {
   protected width: number = 0
 
   constructor (h: number, w: number) {
-    this.height = h
-    this.width = w
+    this.height = h;
+    this.width = w;
   }
 
   draw() {
@@ -1081,7 +1071,7 @@ class FilledRectangle extends RectangleSize {
     this.color = c
   }
 
-  override draw() {
+  draw() {
     super.draw() // call of super methods
     // super.height - can be used here
     /* fill rectangle */
@@ -1092,7 +1082,6 @@ class FilledRectangle extends RectangleSize {
 #### Override Methods
 
 A subclass can override implementation of a method defined in its superclass.
-An overridden method can be marked with the keyword `override` to improve readability.
 An overridden method must have the same types of parameters, and same or derived return type as the original method.
 
 ```typescript
@@ -1105,8 +1094,8 @@ class RectangleSize {
 }
 class Square extends RectangleSize {
   private side: number = 0
-  override area(): number {
-    return this.side * this.side
+  area(): number {
+    return this.side * this.side;
   }
 }
 ```
@@ -1117,15 +1106,14 @@ A method can be specified to be called in different ways by writing overload sig
 
 ```typescript
 class C {
-  foo(): void;            /* 1st signature */
-  foo(x: string): void;   /* 2nd signature */
-  foo(x?: string): void { /* implementation signature */
-    console.log(x)
+  foo(x: number): void;            /* 1st signature */
+  foo(x: string): void;            /* 2nd signature */
+  foo(x: number | string): void {  /* implementation signature */
   }
 }
-let c = new C()
-c.foo()     // ok, 1st signature is used
-c.foo('aa') // ok, 2nd signature is used
+let c = new C();
+c.foo(123);   // ok, 1st signature is used
+c.foo('aa');  // ok, 2nd signature is used
 ```
 
 An error occurs if two overload signatures have the same name and identical parameter lists.
@@ -1149,7 +1137,7 @@ class Point {
   x: number = 0
   y: number = 0
 }
-let p = new Point()
+let p = new Point();
 ```
 
 In this case the default constructor fills the instance fields with default values for the field types.
@@ -1171,22 +1159,19 @@ class Square extends RectangleSize {
 }
 ```
 
-If a constructor body does not begin with such an explicit call of a superclass constructor, then the constructor body implicitly begins with a superclass constructor call `super()`.
-
 #### Constructor Overload Signatures
 
 A constructor can be specified to be called in different ways by writing overload signatures. To do so, several constructor headers that have the same name but different signatures are written and immediately followed by the single implementation constructor.
 
 ```typescript
 class C {
-  constructor()             /* 1st signature */
-  constructor(x: string)    /* 2nd signature */
-  constructor(x?: string) { /* Implementation signature */
-    console.log(x)
+  constructor(x: number)             /* 1st signature */
+  constructor(x: string)             /* 2nd signature */
+  constructor(x: number | string) {  /* Implementation signature */
   }
 }
-let c1 = new C()      // ok, 1st signature is used
-let c2 = new C('abc') // ok, 2nd signature is used
+let c1 = new C(123);    // ok, 1st signature is used
+let c2 = new C('abc');  // ok, 2nd signature is used
 ```
 
 An error occurs if two overload signatures have the same name and identical parameter lists.
@@ -1237,8 +1222,8 @@ class Base {
 }
 class Derived extends Base {
   foo() {
-    this.x = 'a' // ok, access to protected member
-    this.y = 'b' // compile-time error, 'y' is not visible, as it is private
+    this.x = 'a'; // ok, access to protected member
+    this.y = 'b'; // compile-time error, 'y' is not visible, as it is private
   }
 }
 ```
@@ -1255,7 +1240,7 @@ class C {
   s: string = ''
 }
 
-let c: C = {n: 42, s: 'foo'}
+let c: C = {n: 42, s: 'foo'};
 ```
 
 Due to the static typing of the ArkTS, object literals can be used in a context where the class or interface type of the object literal can be inferred as in the example above. Other valid cases are illustrated below:
@@ -1270,8 +1255,8 @@ function foo(c: C) {}
 
 let c: C
 
-c = {n: 42, s: 'foo'}  // type of the variable is used
-foo({n: 42, s: 'foo'}) // type of the parameter is used
+c = {n: 42, s: 'foo'};  // type of the variable is used
+foo({n: 42, s: 'foo'}); // type of the parameter is used
 
 function bar(): C {
   return {n: 42, s: 'foo'} // return type is used
@@ -1300,7 +1285,7 @@ let map: Record<string, number> = {
   'Mary': 21,
 }
 
-console.log(map['John']) // prints 25
+map['John']; // 25
 ```
 
 The K type can be either string or number, while V can be any type.
@@ -1350,11 +1335,11 @@ class RectangleSize implements AreaSize {
   private width: number = 0
   private height: number = 0
   someMethod(): void {
-    console.log('someMethod called')
+    console.log('someMethod called');
   }
   calculateAreaSize(): number {
     this.someMethod() // calls another method and returns result
-    return this.width * this.height
+    return this.width * this.height;
   }
 }
 ```
@@ -1476,7 +1461,7 @@ Use a generic function to create a more universal code. Consider a function that
 function last(x: number[]): number {
   return x[x.length - 1]
 }
-console.log(last([1, 2, 3])) // output: 3
+last([1, 2, 3]); // output: 3
 ```
 
 If the same function needs to be defined for any array, then define it as a generic with a type parameter:
@@ -1493,12 +1478,12 @@ In a function call, type argument can be set explicitly or implicitly:
 
 ```typescript
 // Explicit type argument
-console.log(last<string>(['aa', 'bb']))
-console.log(last<number>([1, 2, 3]))
+last<string>(['aa', 'bb']);
+last<number>([1, 2, 3]);
 
 // Implicit type argument:
 // Compiler understands the type argument based on the type of the call arguments
-console.log(last([1, 2, 3]))
+last([1, 2, 3]);
 ```
 
 ### Generic Defaults
@@ -1551,10 +1536,14 @@ A postfix operator `!` can be used to assert that its operand is non-null.
 If applied to a null value, the operator throws an error. Otherwise, the type of the value is changed from `T | null` to `T`:
 
 ```typescript
-let x: number | null = 1
-let y: number
-y = x + 1  // compile time error: cannot add to a nullable value
-y = x! + 1 // ok
+class C {
+  value: number | null = 1;
+}
+
+let c = new C();
+let y: number;
+y = c.value + 1;  // compile time error: cannot add to a nullable value
+y = c.value! + 1; // ok，2
 ```
 
 ### Null-Coalescing Operator
@@ -1620,7 +1609,7 @@ class Person {
 }
 
 let p: Person = new Person('Alice')
-console.log(p.spouse?.nick) // print: undefined
+p.spouse?.nick // undefined
 ```
 
 ## Modules
@@ -1718,4 +1707,4 @@ This section demonstrates mechanisms that ArkTS provides for creating graphical 
 
 The [Example](arkts-mvvm.md#example) provides a complete ArkUI-based application as an illustration of GUI programming capabilities.
 
-For more details of the ArkUI features, refer to the ArkUI [tutorial](arkts-get-started.md).
+For more details of the ArkUI features, refer to the ArkUI [Basic Syntax](arkts-basic-syntax-overview.md).

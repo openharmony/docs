@@ -1,24 +1,17 @@
-# Hap包签名工具指导
+# 应用包签名工具指导
 
 ## 编译构建
 
- 1. 该工具基于Gradle 7.1编译构建，请确认环境已安装配置Gradle环境，并且版本高于或等于7.1。
 
-    ```shell 
-    gradle -v
-    ```
+1. 该工具基于Maven3编译构建，请确认环境已安装配置Maven3环境，并且版本正确
   
- 2. 下载代码，命令行打开文件目录至developtools_hapsigner/hapsigntool，执行命令进行编译打包。
+        mvn -version
 
-    ```shell    
-    gradle build 
-    ```
-     或
-    ```shell
-    gradle jar
-    ```
-    
- 3. 编译后得到二进制文件，目录为: ./hap_sign_tool/build/libs/hap-sign-tool.jar。
+2. 下载代码，命令行打开文件目录至developtools_hapsigner/hapsigntool，执行命令进行编译打包
+            
+        mvn package
+
+3. 编译后得到二进制文件，目录为: ./hap_sign_tool/target
 
 ## 开发指导
 
@@ -29,7 +22,7 @@ OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含
 按照有无应用签名证书可分为以下两种场景：
 
 1. 无应用签名证书场景：
-   开发者使用该工具对Hap包签名时，需按照签名步骤从第一步生成应用签名证书密钥对依次完成应用签名证书生成、profile文件签名、应用签名流程。
+   开发者使用该工具对应用包签名时，需按照签名步骤从第一步生成应用签名证书密钥对依次完成应用签名证书生成、profile文件签名、应用签名流程。
 2. 有应用签名证书场景：
    开发者可直接从签名步骤第三步对profile文件进行签名开始开发，使用应用签名证书和包含对应密钥的本地密钥库文件对应用进行签名。
 
@@ -190,48 +183,49 @@ OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含
          ├── -outFil       # 验证结果文件（包含验证结果和profile内容），json格式，可选项；如果不填，则直接输出到控制台
      ```
 
-11. hap应用包和调试工具签名。
+11. 应用包和调试工具签名。
 
       ```
-      sign-app : hap应用包和调试工具签名 
+     sign-app : 应用包和二进制工具签名
           ├── -mode          # 签名模式，必填项，包括localSign，remoteSign，remoteResign
           ├── -keyAlias      # 密钥别名，必填项
-          ├──-keyPwd         # 密钥口令，可选项
-          ├── -appCertFile   # 应用签名证书文件（证书链，顺序为最终实体证书-中间CA证书-根证书），必填项
-          ├── -profileFile   # 签名后的profile文件名，p7b格式，必填项
+          ├── -keyPwd        # 密钥口令，可选项
+          ├── -appCertFile   # 应用签名证书文件（证书链，顺序为实体证书-中间CA证书-根证书），必填项
+          ├── -profileFile   # 签名后的Provision Profile文件名，profileSigned为1时为p7b格式，profileSigned为0时为json格式，应用包签名必填项，二进制工具签名选填
           ├── -profileSigned # 指示profile文件是否带有签名，1表示有签名，0表示没有签名，默认为1。可选项
-          ├── -inForm        # 输入的原始文件的格式，zip格式、elf格式或bin格式，默认zip格式，可选项
-          ├── -inFile        # 输入的原始APP包文件，hap格式或bin格式，必填项
+          ├── -inForm        # 输入的原始文件的格式，枚举值：zip、elf或bin；zip应用包对应zip，二进制工具对应elf，bin应用包为bin，默认zip；可选项
+          ├── -inFile        # 输入的原始文件，应用包、elf或bin文件，必填项
           ├── -signAlg       # 签名算法，必填项，包括SHA256withECDSA / SHA384withECDSA
           ├── -keystoreFile  # 密钥库文件，localSign模式时为必填项，JKS或P12格式
           ├── -keystorePwd   # 密钥库口令，可选项
           ├── -outFile       # 输出签名后的包文件，必填项
-          ├── -signCode      # 是否启用代码签名，1表示开启代码签名，0表示关闭代码签名，默认为1。可选项
-      ```
-
-12. hap应用包和调试工具文件验签。
+          ├── -signCode      # 是否启用代码签名，1表示开启代码签名，0表示关闭代码签名。可选项。默认对hap、hsp、hqf、elf开启代码签名，通过参数配置为0关闭。
 
       ```
-      verify-app : hap应用包和调试工具文件验签
-          ├── -inFile          # 已签名的应用包文件，hap格式或bin格式，必填项
-          ├── -outCertchain    # 签名的证书链文件，必填项
-          ├── -outProfile      # 应用包中的profile文件，必填项
-          ├── -inForm          # 输入的原始文件的格式，zip格式、elf格式或bin格式，默认zip格式，可选项
+
+12. 应用包和调试工具文件验签。
+
+      ```
+      verify-app : 应用包和二进制工具文件验签
+         ├── -inFile          # 已签名的文件，应用包、elf或bin文件，必填项
+         ├── -outCertChain    # 签名的证书链文件，必填项
+         ├── -outProfile      # 应用包中的profile文件，必填项
+         ├── -inForm          # 输入的原始文件的格式，枚举值：zip、elf或bin；zip应用包对应zip，二进制工具对应elf，bin应用包为bin，默认zip；可选项
       ```
 
 ### 签名步骤
-对hap包签名的完整步骤为：
+对应用包签名的完整步骤为：
 
 - 生成应用签名证书密钥对
 - 生成应用签名证书
 - 对profile文件进行签名
-- 对Hap包进行签名
+- 对应用包进行签名
 
 
 > **注意事项：** <br/>
 >
 > 1. 步骤一中的密钥对算法推荐使用ECC，出于安全性考虑，应用签名暂不使用RSA算法。
-> 2. 建议将待签名hap包、profile文件、密钥库文件OpenHarmony.p12、根CA证书、中间CA证书、签名工具放在同一个目录下，方便操作。在[**developtools_hapsigner/autosign/result**](https://gitee.com/openharmony/developtools_hapsigner/tree/master/autosign/result)路径下，有如下文件：<br/>- OpenHarmony密钥库文件**OpenHarmony.p12**<br/>- 根CA证书**rootCA.cer**<br/>- 中间CA证书**subCA.cer**<br/>- profile签名证书**OpenHarmonyProfileRelease.pem**
+> 2. 建议将待签名应用包、profile文件、密钥库文件OpenHarmony.p12、根CA证书、中间CA证书、签名工具放在同一个目录下，方便操作。在[**developtools_hapsigner/autosign/result**](https://gitee.com/openharmony/developtools_hapsigner/tree/master/autosign/result)路径下，有如下文件：<br/>- OpenHarmony密钥库文件**OpenHarmony.p12**<br/>- 根CA证书**rootCA.cer**<br/>- 中间CA证书**subCA.cer**<br/>- profile签名证书**OpenHarmonyProfileRelease.pem**
 
 1. **生成应用签名证书密钥对**
 
@@ -245,7 +239,7 @@ OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含
    
    > **说明：** 
    > 
-   > 请记录下**keyAlias、keyStorePwd**和**keyPwd**的值，在后续生成应用  签名证书和对Hap包进行签名操作会使用到。
+   > 请记录下**keyAlias、keyStorePwd**和**keyPwd**的值，在后续生成应用签名证书和对应用包进行签名操作会使用到。
 
    该命令的参数说明：
 
@@ -314,9 +308,9 @@ OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含
        ├── -keystorePwd      # 密钥库口令，OpenHarmony.p12口令默认为“123456”
    ```
 
-4. **对Hap包进行签名**
+4. **对应用包进行签名**
 
-   调用Hap包签名接口，使用应用签名密钥为Hap包签名。
+   调用应用包签名接口，使用应用签名密钥为应用包签名。
 
    命令实例：
 
@@ -335,13 +329,13 @@ OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含
    该命令的参数说明：
 
    ```
-   sign-app：签名Hap包
+   sign-app：签名应用包
        ├── -keyAlias          # 密钥别名，为第一步生成的密钥信息别名，该参数必填
        ├── -signAlg           # 签名算法，包括 SHA256withECDSA / SHA384withECDSA，该参数必填
        ├──  -mode             # 签名模式，目前仅支持localSign，该参数必填
        ├──  -appCertFile      # 应用签名证书（证书链，顺序为最终实体证书-中间CA证书-根证书），填写第二步生成的应用签名证书，该参数必填
        ├──  -profileFile      # 签名后的profile文件，p7b格式，填写第三步中生成的profile文件，必填项
-       ├──  -inFile           # 输入原始APP包文件，该参数必填
+       ├──  -inFile           # 输入原始应用包文件，该参数必填
        ├──  -keystoreFile     # 密钥库文件，请与步骤一中密钥库文件保持一致，该参数必填且不可修改
        ├──  -outFile          # 输出签名后的包文件，必填项
        ├──  -keyPwd           # 密钥口令，与第一步生成的密钥对口令保持一致
@@ -393,7 +387,7 @@ OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含
 
      （3）检查证书主题顺序是否正确，顺序须为C、O、OU、CN。
 
-3. 对Hap包进行签名时提示签名错误。
+3. 对应用包进行签名时提示签名错误。
 
    - **现象描述**
 
@@ -407,7 +401,7 @@ OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含
 
      最终实体证书密钥对推荐使用ECC生成，hap签名算法修改为ECC对应的SHA256withECDSA,SHA384withECDSA。
 
-4. 签名hap包失败，提示证书CN字段为空。
+4. 签名应用包失败，提示证书CN字段为空。
 
    - **现象描述**
 
@@ -415,8 +409,8 @@ OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含
 
    - **可能原因**
 
-     当前使用的hap包签名证书，不包含CN字段，导致签名失败。
+     当前使用的应用包签名证书，不包含CN字段，导致签名失败。
 
    - **解决办法**
 
-     根据业界证书规范，hap包签名证书的CN字段必须不为空，请重新生成格式正确的证书。
+     根据业界证书规范，应用包签名证书的CN字段必须不为空，请重新生成格式正确的证书。

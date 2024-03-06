@@ -9,12 +9,12 @@ The **overlay** module provides APIs for installing a [module with the overlay f
 ## Modules to Import
 
 ``` ts
-import overlay from '@ohos.bundle.overlay'
+import overlay from '@ohos.bundle.overlay';
 ```
 
 ## overlay.setOverlayEnabled
 
-setOverlayEnabled(moduleName:string, isEnabled: boolean): Promise\<void>;
+setOverlayEnabled(moduleName:string, isEnabled: boolean): Promise\<void>
 
 Enables or disables a module with the overlay feature in the current application. This API uses a promise to return the result. If the operation is successful, **null** is returned; otherwise, an error message is returned.
 
@@ -66,7 +66,7 @@ try {
 
 ## overlay.setOverlayEnabled
 
-setOverlayEnabled(moduleName:string, isEnabled: boolean, callback: AsyncCallback\<void>): void;
+setOverlayEnabled(moduleName:string, isEnabled: boolean, callback: AsyncCallback\<void>): void
 
 Enables or disables a module with the overlay feature in the current application. This API uses an asynchronous callback to return the result. If the operation is successful, **null** is returned; otherwise, an error message is returned.
 
@@ -114,7 +114,7 @@ try {
 
 ## overlay.setOverlayEnabledByBundleName
 
-setOverlayEnabledByBundleName(bundleName:string, moduleName:string, isEnabled: boolean): Promise\<void>;
+setOverlayEnabledByBundleName(bundleName:string, moduleName:string, isEnabled: boolean): Promise\<void>
 
 Enables or disables a module with the overlay feature in another application. This API uses a promise to return the result. If the operation is successful, the processing result is returned; otherwise, an error message is returned.
 
@@ -174,7 +174,7 @@ try {
 
 ## overlay.setOverlayEnabledByBundleName
 
-setOverlayEnabledByBundleName(bundleName:string, moduleName:string, isEnabled: boolean, callback: AsyncCallback\<void>): void;
+setOverlayEnabledByBundleName(bundleName:string, moduleName:string, isEnabled: boolean, callback: AsyncCallback\<void>): void
 
 Enables or disables a module with the overlay feature in another application. This API uses an asynchronous callback to return the result. If the operation is successful, the processing result is returned; otherwise, an error message is returned.
 
@@ -230,7 +230,7 @@ try {
 
 ## overlay.getOverlayModuleInfo
 
-getOverlayModuleInfo(moduleName: string): Promise\<OverlayModuleInfo>;
+getOverlayModuleInfo(moduleName: string): Promise\<OverlayModuleInfo>
 
 Obtains the information about a module with the overlay feature in the current application. This API uses a promise to return the result. If the operation is successful, **null** is returned; otherwise, an error message is returned.
 
@@ -246,7 +246,7 @@ Obtains the information about a module with the overlay feature in the current a
 
 | Type                       | Description                |
 | ------------------------- | ------------------ |
-| Promise\<OverlayModuleInfo> | Promise used to return the result, which is an **OverlayModuleInfo** object.|
+| Promise\<[OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)> | Promise used to return the result, which is an [OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md) object.|
 
 **Error codes**
 
@@ -279,7 +279,7 @@ let moduleName = "feature";
 
 ## overlay.getOverlayModuleInfo
 
-getOverlayModuleInfo(moduleName: string, callback: AsyncCallback\<OverlayModuleInfo>): void;
+getOverlayModuleInfo(moduleName: string, callback: AsyncCallback\<OverlayModuleInfo>): void
 
 Obtains the information about a module with the overlay feature in the current application. This API uses an asynchronous callback to return the result. If the operation is successful, **null** is returned; otherwise, an error message is returned.
 
@@ -290,7 +290,7 @@ Obtains the information about a module with the overlay feature in the current a
 | Name      | Type    | Mandatory  | Description                                   |
 | ----------- | ------ | ---- | --------------------------------------- |
 | moduleName | string | Yes   | HAP name of the module with the overlay feature.    |
-| callback    | AsyncCallback\<OverlayModuleInfo> | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.                  |
+| callback    | AsyncCallback\<[OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)> | Yes   | Callback used to return the result, which is an [OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md) object. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.                  |
 
 **Error codes**
 
@@ -325,7 +325,7 @@ try {
 
 ## overlay.getTargetOverlayModuleInfos
 
-getTargetOverlayModuleInfos(targetModuleName: string): Promise\<Array\<OverlayModuleInfo>>;
+getTargetOverlayModuleInfos(targetModuleName: string): Promise\<Array\<OverlayModuleInfo>>
 
 Obtains the information about modules with the overlay feature in the current application based on the target module name. This API uses a promise to return the result. If the operation is successful, **null** is returned; otherwise, an error message is returned.
 
@@ -339,9 +339,9 @@ Obtains the information about modules with the overlay feature in the current ap
 
 **Return value**
 
-| Type                       | Description                |
-| ------------------------- | ------------------ |
-| Promise\<Array\<OverlayModuleInfo>> | Promise used to return the result, which is an array of **OverlayModuleInfo** objects.|
+| Type                                                        | Description                                                        |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Promise\<Array\<[OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)>> | Promise used to return the result, which is an array of [OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md) objects.|
 
 **Error codes**
 
@@ -373,7 +373,7 @@ let targetModuleName = "feature";
 
 ## overlay.getTargetOverlayModuleInfos
 
-getTargetOverlayModuleInfos(targetModuleName: string, callback: AsyncCallback\<Array\<OverlayModuleInfo>>): void;
+getTargetOverlayModuleInfos(targetModuleName: string, callback: AsyncCallback\<Array\<OverlayModuleInfo>>): void
 
 Obtains the information about modules with the overlay feature in the current application based on the target module name. This API uses an asynchronous callback to return the result. If the operation is successful, **null** is returned; otherwise, an error message is returned.
 
@@ -384,7 +384,7 @@ Obtains the information about modules with the overlay feature in the current ap
 | Name      | Type    | Mandatory  | Description                                   |
 | ----------- | ------ | ---- | --------------------------------------- |
 | targetModuleName | string | Yes   | HAP name of the target module specified by modules with the overlay feature.    |
-| callback    | AsyncCallback\<Array\<OverlayModuleInfo>> | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.                  |
+| callback    | AsyncCallback\<Array\<[OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)>> | Yes   | Callback used to return the result, which is an array of [OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md) objects. If the operation is successful, **err** is **null**; otherwise, **err** is an error object. |
 
 **Error codes**
 
@@ -418,7 +418,7 @@ try {
 
 ## overlay.getOverlayModuleInfoByBundleName
 
-getOverlayModuleInfoByBundleName(bundleName: string, moduleName?: string): Promise\<Array\<OverlayModuleInfo>>;
+getOverlayModuleInfoByBundleName(bundleName: string, moduleName?: string): Promise\<Array\<OverlayModuleInfo>>
 
 Obtains the information about a module with the overlay feature in another application. This API uses a promise to return the result. If the operation is successful, **null** is returned; otherwise, an error message is returned.
 
@@ -437,9 +437,9 @@ Obtains the information about a module with the overlay feature in another appli
 
 **Return value**
 
-| Type                       | Description                |
-| ------------------------- | ------------------ |
-| Promise\<Array\<OverlayModuleInfo>> | Promise used to return the result, which is an array of **OverlayModuleInfo** objects.|
+| Type                                                        | Description                                                        |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Promise\<Array\<[OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)>> | Promise used to return the result, which is an array of [OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md) objects.|
 
 **Error codes**
 
@@ -474,7 +474,7 @@ let moduleName = "feature";
 
 ## overlay.getOverlayModuleInfoByBundleName
 
-getOverlayModuleInfoByBundleName(bundleName: string, moduleName: string, callback: AsyncCallback\<Array\<OverlayModuleInfo>>): void;
+getOverlayModuleInfoByBundleName(bundleName: string, moduleName: string, callback: AsyncCallback\<Array\<OverlayModuleInfo>>): void
 
 Obtains the information about a module with the overlay feature in another application. This API uses an asynchronous callback to return the result. If the operation is successful, **null** is returned; otherwise, an error message is returned.
 
@@ -490,7 +490,7 @@ Obtains the information about a module with the overlay feature in another appli
 | ----------- | ------ | ---- | --------------------------------------- |
 | bundleName | string | Yes   | Bundle name of the application.                   |
 | moduleName | string | Yes   | HAP name of the module with the overlay feature. If this parameter is not specified, the API obtains the information of all modules with the overlay feature in that application.    |
-| callback    | AsyncCallback\<Array\<OverlayModuleInfo>> | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.                  |
+| callback    | AsyncCallback\<Array\<[OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)>> | Yes   | Callback used to return the result, which is an array of [OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md) objects. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.   |
 
 **Error codes**
 
@@ -528,7 +528,7 @@ try {
 
 ## overlay.getOverlayModuleInfoByBundleName
 
-getOverlayModuleInfoByBundleName(bundleName: string, callback: AsyncCallback\<Array\<OverlayModuleInfo>>): void;
+getOverlayModuleInfoByBundleName(bundleName: string, callback: AsyncCallback\<Array\<OverlayModuleInfo>>): void
 
 Obtains the information about all modules with the overlay feature in another application. This API uses an asynchronous callback to return the result. If the operation is successful, **null** is returned; otherwise, an error message is returned.
 
@@ -543,7 +543,7 @@ Obtains the information about all modules with the overlay feature in another ap
 | Name      | Type    | Mandatory  | Description                                   |
 | ----------- | ------ | ---- | --------------------------------------- |
 | bundleName | string | Yes   | Bundle name of the application.                   |
-| callback    | AsyncCallback\<Array\<OverlayModuleInfo>> | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.                  |
+| callback    | AsyncCallback\<Array\<[OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)>> | Yes   | Callback used to return the result, which is an array of [OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md) object. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.                  |
 
 **Error codes**
 
@@ -578,7 +578,7 @@ try {
 
 ## overlay.getTargetOverlayModuleInfosByBundleName
 
-getTargetOverlayModuleInfosByBundleName(targetBundleName: string, moduleName?: string): Promise\<Array\<OverlayModuleInfo>>;
+getTargetOverlayModuleInfosByBundleName(targetBundleName: string, moduleName?: string): Promise\<Array\<OverlayModuleInfo>>
 
 Obtains the information about modules with the overlay feature in another application based on the target module name. This API uses a promise to return the result. If the operation is successful, **null** is returned; otherwise, an error message is returned.
 
@@ -599,7 +599,7 @@ Obtains the information about modules with the overlay feature in another applic
 
 | Type                       | Description                |
 | ------------------------- | ------------------ |
-| Promise\<Array\<OverlayModuleInfo>> | Promise used to return the result, which is an array of **OverlayModuleInfo** objects.|
+| Promise\<Array\<[OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)>> | Promise used to return the result, which is an array of [OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md) objects.|
 
 **Error codes**
 
@@ -634,7 +634,7 @@ let moduleName = "feature";
 
 ## overlay.getTargetOverlayModuleInfosByBundleName
 
-getTargetOverlayModuleInfosByBundleName(targetBundleName: string, moduleName: string, callback: AsyncCallback&lt;Array&lt;OverlayModuleInfo&gt;&gt;): void;
+getTargetOverlayModuleInfosByBundleName(targetBundleName: string, moduleName: string, callback: AsyncCallback&lt;Array&lt;OverlayModuleInfo&gt;&gt;): void
 
 Obtains the information about modules with the overlay feature in another application based on the target module name. This API uses an asynchronous callback to return the result. If the operation is successful, **null** is returned; otherwise, an error message is returned.
 
@@ -650,7 +650,7 @@ Obtains the information about modules with the overlay feature in another applic
 | ----------- | ------ | ---- | --------------------------------------- |
 | targetBundleName | string | Yes   | Bundle name of the application.                   |
 | moduleName | string | Yes   | HAP name of the target module, which is **targetModuleName** specified by modules with the overlay feature. If this parameter is not specified, the API obtains the information associated with all modules in that application.    |
-| callback    | AsyncCallback\<Array\<OverlayModuleInfo>> | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.                  |
+| callback    | AsyncCallback\<Array\<[OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)>> | Yes   | Callback used to return the result, which is an array of the [OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md) objects. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.                  |
 
 **Error codes**
 
@@ -688,7 +688,7 @@ try {
 
 ## overlay.getTargetOverlayModuleInfosByBundleName
 
-getTargetOverlayModuleInfosByBundleName(targetBundleName: string, callback: AsyncCallback&lt;Array&lt;OverlayModuleInfo&gt;&gt;): void;
+getTargetOverlayModuleInfosByBundleName(targetBundleName: string, callback: AsyncCallback&lt;Array&lt;OverlayModuleInfo&gt;&gt;): void
 
 Obtains the information about all modules with the overlay feature in another application. This API uses an asynchronous callback to return the result. If the operation is successful, **null** is returned; otherwise, an error message is returned.
 
@@ -703,7 +703,7 @@ Obtains the information about all modules with the overlay feature in another ap
 | Name      | Type    | Mandatory  | Description                                   |
 | ----------- | ------ | ---- | --------------------------------------- |
 | targetBundleName | string | Yes   | Bundle name of the application.                   |
-| callback    | AsyncCallback\<Array\<OverlayModuleInfo>> | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.                  |
+| callback    | AsyncCallback\<Array\<[OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)>> | Yes   | Callback used to return the result, which is an array of [OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md) objects. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.                  |
 
 **Error codes**
 

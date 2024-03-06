@@ -14,7 +14,7 @@ import bundle from '@ohos.bundle';
 
 ## Required Permissions
 
-| Required Permissions                                        | Permission Level        | Description           |
+| Permission                                        | APL        | Description           |
 |--------------------------------------------|--------------|---------------|
 | ohos.permission.CHANGE_ABILITY_ENABLED_STATE | system_basic | Permission to enable or disable an application or ability.|
 | ohos.permission.GET_BUNDLE_INFO | normal | Permission to query information about a specified bundle.|
@@ -22,7 +22,7 @@ import bundle from '@ohos.bundle';
 | ohos.permission.INSTALL_BUNDLE             | system_core  | Permission to install or uninstall bundles.     |
 | ohos.permission.REMOVE_CACHE_FILES | system_basic | Permission to clear cache files of a bundle.|
 
-For details, see [Permission Levels](../../security/accesstoken-overview.md#permission-levels).
+For details, see [Permission APL](../../security/AccessToken/app-permission-mgmt-overview.md#permission-apl).
 
 ## bundle.getApplicationInfo<sup>deprecated<sup>
 
@@ -434,7 +434,7 @@ bundle.getBundleInfo(bundleName, bundleFlags, options, (err, data) => {
 
 > This API is deprecated since API version 9. You are advised to use [installer.getBundleInstaller](js-apis-installer.md#bundleinstallergetbundleinstaller) instead.
 
-getBundleInstaller(): Promise&lt;BundleInstaller&gt;;
+getBundleInstaller(): Promise&lt;BundleInstaller&gt;
 
 Obtains the installation package. This API uses a promise to return the result.
 
@@ -473,7 +473,7 @@ bundle.getBundleInstaller().then((data) => {
 
 > This API is deprecated since API version 9. You are advised to use [installer.getBundleInstaller](js-apis-installer.md#bundleinstallergetbundleinstaller) instead.
 
-getBundleInstaller(callback: AsyncCallback&lt;BundleInstaller&gt;): void;
+getBundleInstaller(callback: AsyncCallback&lt;BundleInstaller&gt;): void
 
 Obtains the installation package. This API uses an asynchronous callback to return the result.
 
@@ -512,7 +512,7 @@ bundle.getBundleInstaller((err, data) => {
 
 > This API is deprecated since API version 9. You are advised to use [bundleManager.cleanBundleCacheFiles](js-apis-bundleManager.md#bundlemanagercleanbundlecachefiles) instead.
 
-cleanBundleCacheFiles(bundleName: string, callback: AsyncCallback&lt;void&gt;): void;
+cleanBundleCacheFiles(bundleName: string, callback: AsyncCallback&lt;void&gt;): void
 
 Clears the cache data of an application. This API uses an asynchronous callback to return the result.
 
@@ -602,7 +602,7 @@ bundle.cleanBundleCacheFiles(bundleName).then(()=> {
 
 > This API is deprecated since API version 9. You are advised to use [bundleManager.setApplicationEnabled](js-apis-bundleManager.md#bundlemanagersetapplicationenabled) instead.
 
-setApplicationEnabled(bundleName: string, isEnable: boolean, callback: AsyncCallback&lt;void&gt;): void;
+setApplicationEnabled(bundleName: string, isEnable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 Sets whether to enable an application. This API uses an asynchronous callback to return the result.
 
@@ -694,7 +694,7 @@ bundle.setApplicationEnabled(bundleName, false).then(()=> {
 
 > This API is deprecated since API version 9. You are advised to use [bundleManager.setAbilityEnabled](js-apis-bundleManager.md#bundlemanagersetabilityenabled) instead.
 
-setAbilityEnabled(info: AbilityInfo, isEnable: boolean, callback: AsyncCallback&lt;void&gt;): void;
+setAbilityEnabled(info: AbilityInfo, isEnable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 Sets whether to enable an ability. This API uses an asynchronous callback to return the result.
 
@@ -776,7 +776,7 @@ bundle.getAbilityInfo(bundleName, abilityName).then((abilityInfo) => {
 
 > This API is deprecated since API version 9. You are advised to use [bundleManager.getPermissionDef](js-apis-bundleManager.md#bundlemanagergetpermissiondef) instead.
 
-getPermissionDef(permissionName: string, callback: AsyncCallback&lt;PermissionDef&gt;): void;
+getPermissionDef(permissionName: string, callback: AsyncCallback&lt;PermissionDef&gt;): void
 
 Obtains the permission details by permission name. This API uses an asynchronous callback to return the result.
 
@@ -950,7 +950,7 @@ bundle.getAllApplicationInfo(bundleFlags, userId, (err, data) => {
 
 > This API is deprecated since API version 9.
 
-getAllApplicationInfo(bundleFlags: number, callback: AsyncCallback\<Array\<ApplicationInfo\>\>): void;
+getAllApplicationInfo(bundleFlags: number, callback: AsyncCallback\<Array\<ApplicationInfo\>\>): void
 
 Obtains the information about all applications of the current user. This API uses an asynchronous callback to return the result.
 
@@ -1111,7 +1111,7 @@ bundle.getAbilityInfo(bundleName, abilityName)
 
 > This API is deprecated since API version 9.
 
-getAbilityInfo(bundleName: string, abilityName: string, callback: AsyncCallback\<AbilityInfo>): void;
+getAbilityInfo(bundleName: string, abilityName: string, callback: AsyncCallback\<AbilityInfo>): void
 
 Obtains the ability information based on a given bundle name and ability name. This API uses an asynchronous callback to return the result.
 
@@ -1496,7 +1496,7 @@ bundle.queryAbilityByWant(want, bundleFlags, userId, (err, data) => {
 
 > This API is deprecated since API version 9.
 
-queryAbilityByWant(want: Want, bundleFlags: number, callback: AsyncCallback\<Array\<AbilityInfo\>\>): void;
+queryAbilityByWant(want: Want, bundleFlags: number, callback: AsyncCallback\<Array\<AbilityInfo\>\>): void
 
 Obtains the ability information based on given Want. This API uses an asynchronous callback to return the result.
 
@@ -1586,7 +1586,7 @@ bundle.getLaunchWantForBundle(bundleName)
 
 > This API is deprecated since API version 9.
 
-getLaunchWantForBundle(bundleName: string, callback: AsyncCallback\<Want>): void;
+getLaunchWantForBundle(bundleName: string, callback: AsyncCallback\<Want>): void
 
 Obtains the **Want** object that launches the specified application. This API uses an asynchronous callback to return the result.
 
@@ -1698,7 +1698,7 @@ bundle.getNameForUid(uid, (err, data) => {
 
 > This API is deprecated since API version 9. You are advised to use [resourceManager.getMediaContent](js-apis-resource-manager.md#getmediacontent9) instead.
 
-getAbilityIcon(bundleName: string, abilityName: string): Promise\<image.PixelMap>;
+getAbilityIcon(bundleName: string, abilityName: string): Promise\<image.PixelMap>
 
 Obtains the [pixel map](js-apis-image.md) of the icon corresponding to a given bundle name and ability name. This API uses a promise to return the result.
 
@@ -1744,7 +1744,7 @@ bundle.getAbilityIcon(bundleName, abilityName)
 
 > This API is deprecated since API version 9. You are advised to use [resourceManager.getMediaContent](js-apis-resource-manager.md#getmediacontent9) instead.
 
-getAbilityIcon(bundleName: string, abilityName: string, callback: AsyncCallback\<image.PixelMap>): void;
+getAbilityIcon(bundleName: string, abilityName: string, callback: AsyncCallback\<image.PixelMap>): void
 
 Obtains the [pixel map](js-apis-image.md) of the icon corresponding to a given bundle name and ability name. This API uses an asynchronous callback to return the result.
 
@@ -1929,3 +1929,4 @@ Enumerates the permission grant states.
 | ------------------ | ---- | ------------ |
 | PERMISSION_DENIED  | -1   | Permission denied.|
 | PERMISSION_GRANTED | 0    | Permission granted.    |
+

@@ -5,6 +5,7 @@ The **notificationSubscribe** module provides APIs for notification subscription
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
 > The APIs provided by this module are system APIs.
 
 ## Modules to Import
@@ -23,7 +24,7 @@ Subscribes to a notification with the subscription information specified. This A
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -80,7 +81,7 @@ Subscribes to notifications of all applications under this user. This API uses a
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -133,7 +134,7 @@ Subscribes to a notification with the subscription information specified. This A
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -178,6 +179,58 @@ notificationSubscribe.subscribe(subscriber).then(() => {
 ```
 
 
+## notificationSubscribe.subscribeSelf<sup>11+</sup>
+
+subscribeSelf(subscriber: NotificationSubscriber): Promise\<void\>
+
+Subscribes to a notification with the subscription information specified. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name      | Type                     | Mandatory| Description        |
+| ---------- | ------------------------- | ---- | ------------ |
+| subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber.md#notificationsubscriber)    | Yes  | Notification subscriber.|
+
+**Return value**
+
+| Type    | Description              | 
+| ------- |------------------|
+| Promise\<void\> | Promise that returns no value.| 
+
+**Error codes**
+
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+| 1600012  | No memory space.                    |
+
+**Example**
+
+```ts
+import Base from '@ohos.base';
+
+let onConsumeCallback = (data: notificationSubscribe.SubscribeCallbackData) => {
+  console.info("Consume callback: " + JSON.stringify(data));
+}
+let subscriber: notificationSubscribe.NotificationSubscriber = {
+  onConsume: onConsumeCallback
+};
+notificationSubscribe.subscribeSelf(subscriber).then(() => {
+  console.info("subscribeSelf success");
+}).catch((err: Base.BusinessError) => {
+  console.error("subscribeSelf fail: " + JSON.stringify(err));
+});
+```
+
+
 
 ## notificationSubscribe.unsubscribe
 
@@ -189,7 +242,7 @@ Unsubscribes from a notification. This API uses an asynchronous callback to retu
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -239,7 +292,7 @@ Unsubscribes from a notification. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -291,7 +344,7 @@ Removes a notification based on the bundle information and notification key. Thi
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -350,7 +403,7 @@ Removes a notification based on the specified bundle information and notificatio
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -409,7 +462,7 @@ Removes a notification based on the specified unique notification ID. This API u
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -457,7 +510,7 @@ Removes a notification based on the specified unique notification ID. This API u
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -506,7 +559,7 @@ Removes specified notifications. This API uses an asynchronous callback to retur
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -553,7 +606,7 @@ Removes specified notifications. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -600,7 +653,7 @@ Removes all notifications for a specified application. This API uses an asynchro
 
 **System capability**: SystemCapability.Notification.Notification
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
 
@@ -650,7 +703,7 @@ Removes all notifications. This API uses an asynchronous callback to return the 
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -693,7 +746,7 @@ Removes all notifications for a specified application. This API uses a promise t
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -741,7 +794,7 @@ Removes all notifications for a specified user. This API uses an asynchronous ca
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -787,7 +840,7 @@ Removes all notifications for a specified user. This API uses a promise to retur
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -823,7 +876,7 @@ notificationSubscribe.removeAll(userId).then(() => {
 
 **System capability**: SystemCapability.Notification.Notification
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 | Name | Type  | Mandatory| Description    |
 | ----- | ------ | --- | -------- |
@@ -834,7 +887,7 @@ notificationSubscribe.removeAll(userId).then(() => {
 
 **System capability**: SystemCapability.Notification.Notification
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 | Name                | Value | Description                 |
 | -------------------- | --- | -------------------- |

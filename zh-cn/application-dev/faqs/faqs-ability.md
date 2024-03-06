@@ -182,11 +182,6 @@ try {
 }
 ```
 
-**参考链接**
-
-[系统时间、时区](../reference/apis/js-apis-system-date-time.md#systemdatetimegetcurrenttime)
-
-
 ## 如何获取当前应用程序缓存目录(API 9)
 
 **解决措施**
@@ -206,7 +201,7 @@ try {
 
 参考链接
 
-[FormExtensionAbility](../reference/apis/js-apis-app-form-formExtensionAbility.md)
+[FormExtensionAbility](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md)
 
 
 ## 使用ServiceExtensionAbility和DataShareExtensionAbility的相关接口后DevEco Studio无法编译(API 9)
@@ -457,3 +452,7 @@ struct AbilityContextTest {
 **参考链接**
 
 [服务卡片开发指导](../application-models/widget-development-fa.md)
+
+## 系统是否支持在桌面上创建应用的快捷入口，直接打开指定页面？(API 10)
+
+当前不支持

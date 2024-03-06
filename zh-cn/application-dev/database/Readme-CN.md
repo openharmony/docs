@@ -1,6 +1,10 @@
-# 数据管理
+# ArkData（方舟数据管理）
 
-- [数据管理概述](data-mgmt-overview.md)
+- [ArkData简介](data-mgmt-overview.md)
+- 标准化数据定义
+  - [标准化数据定义概述](unified-data-definition-overview.md)
+  - [标准化数据类型](uniform-data-type-descriptors.md)
+  - [标准化数据结构](uniform-data-structure.md)
 - 应用数据持久化
   - [应用数据持久化概述](app-data-persistence-overview.md)
   - [通过用户首选项实现数据持久化](data-persistence-by-preferences.md)
@@ -18,9 +22,9 @@
   - [基于设备分类和数据分级的访问控制](access-control-by-device-and-data-level.md)
 - 跨应用数据共享
   - [跨应用数据共享概述](data-share-overview.md)
-  - [标准化数据定义](unified-data-definition.md)
   - 一对多跨应用数据共享（仅对系统应用开放）
     - [通过DataShareExtensionAbility实现数据共享](share-data-by-datashareextensionability.md)
     - [通过数据管理服务实现数据共享静默访问](share-data-by-silent-access.md)
   - 多对多跨应用数据共享 
     - [通过标准化数据通路实现数据共享](unified-data-channels.md)
+- [RelationalStore开发指导 (C/C++)](native-relational-store-guidelines.md)

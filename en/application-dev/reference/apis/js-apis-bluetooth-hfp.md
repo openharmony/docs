@@ -15,7 +15,7 @@ import hfp from '@ohos.bluetooth.hfp';
 ```
 
 
-## hfp.createHfpAgProfile<a name="createHfpAgProfile"></a>
+## hfp.createHfpAgProfile
 
 createHfpAgProfile(): HandsFreeAudioGatewayProfile
 
@@ -47,7 +47,7 @@ try {
 Before using any API of **HandsFreeAudioGatewayProfile**, you need to create an instance of this class by using **createHfpAgProfile()**.
 
 
-### connect<a name="hfp-connect"></a>
+### connect
 
 connect(deviceId: string): void
 
@@ -89,7 +89,7 @@ try {
 ```
 
 
-### disconnect<a name="hfp-disconnect"></a>
+### disconnect
 
 disconnect(deviceId: string): void
 

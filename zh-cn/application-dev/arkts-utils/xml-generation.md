@@ -20,7 +20,7 @@ XML模块提供XmlSerializer类来生成XML文件，输入为固定长度的Arra
 
 通过调用不同的方法来写入不同的内容，如startElement(name: string)写入元素开始标记，setText(text: string)写入标签值。
 
-XML模块的API接口可以参考[@ohos.xml](../reference/apis/js-apis-xml.md)的详细描述，按需求调用对应函数可以生成一份完整的XML文件。
+XML模块的API接口可以参考[@ohos.xml](../reference/apis-arkts/js-apis-xml.md)的详细描述，按需求调用对应函数可以生成一份完整的XML文件。
 
 1. 引入模块。
 

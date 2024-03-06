@@ -1,6 +1,5 @@
-# UI Development
-
-- [ArkUI Overview](arkui-overview.md)
+# ArkUI
+- [Introduction to ArkUI](arkui-overview.md)
 - UI Development (ArkTS-based Declarative Development Paradigm)
   - [UI Development (ArkTS-based Declarative Development Paradigm) Overview](arkts-ui-development-overview.md)
   - Layout Development
@@ -137,7 +136,7 @@
       - [Defining Animations with the transform Attribute](ui-js-animate-transform.md)
       - [Defining Animations with the background-position Attribute](ui-js-animate-background-position-style.md)
       - [Defining Animations for SVG Components](ui-js-animate-svg.md)
-    - JS Animation
+    - JavaScript Animation
       - [Component Animation](ui-js-animate-component.md)
       - Interpolator Animation
         - [Animation Effect](ui-js-animate-dynamic-effects.md)

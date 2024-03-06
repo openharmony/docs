@@ -15,7 +15,7 @@ Currently, JPEG, WebP, and PNG encoding formats are supported.
 
 ## How to Develop
 
-Read [ImagePacker](../reference/native-apis/image__packer__mdk_8h.md) for the API reference.
+Read [ImagePacker](../reference/apis-image-kit/image__packer__mdk_8h.md) for the API reference.
 
 Refer to the code snippet below to complete the entire image encoding process, including creating an encoder, initializing resources, performing encoding, and destroying the encoder.
 
@@ -107,15 +107,13 @@ target_link_libraries(sample PUBLIC libimage_packer_ndk.z.so)
    > **NOTE**
    >
    > You only need to call the API once.
-   
-      ```c++
-      // Call OH_ImagePacker_Release to destroy the encoder.
-      int32_t ret = OH_ImagePacker_Release(nativePacker);
-      if (result != IMAGE_RESULT_SUCCESS) {
-          // Exception handling.
-      } else {
-          nativePacker = NULL; // The encoder cannot be destroyed repeatedly.
-      }
-      ```
 
- <!--no_check--> 
+   ```c++
+   // Call OH_ImagePacker_Release to destroy the encoder.
+   int32_t ret = OH_ImagePacker_Release(nativePacker);
+   if (result != IMAGE_RESULT_SUCCESS) {
+       // Exception handling.
+   } else {
+       nativePacker = NULL; // The encoder cannot be destroyed repeatedly.
+   }
+   ```

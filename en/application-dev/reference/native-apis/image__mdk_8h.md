@@ -3,15 +3,11 @@
 
 ## Overview
 
-The **image_mdk.h** file declares the functions that access the image rectangle, size, format, and component data.
+Declares the APIs used to access the image rectangle, size, format, and component data.
 
-**Since**
+**Since**: 10
 
-10
-
-**Related Modules**
-
-[Image](image.md)
+**Related module**: [Image](image.md)
 
 
 ## Summary
@@ -44,11 +40,11 @@ The **image_mdk.h** file declares the functions that access the image rectangle,
 
 | Name| Description|
 | -------- | -------- |
-| [OH_Image_InitImageNative](image.md#oh_image_initimagenative) (napi_env env, napi_value source) | Parses an **ImageNative** object from an **Image** object at the JavaScript native layer.|
+| [OH_Image_InitImageNative](image.md#oh_image_initimagenative) (napi_env env, napi_value source) | Converts an **Image** object at the JavaScript native layer into an **ImageNative** object.|
 | [OH_Image_ClipRect](image.md#oh_image_cliprect) (const [ImageNative](image.md#imagenative) \*native, struct [OhosImageRect](_o_h_o_s_1_1_media_1_1_ohos_image_rect.md) \*rect) | Obtains [OhosImageRect](_o_h_o_s_1_1_media_1_1_ohos_image_rect.md) of an **ImageNative** object.|
 | [OH_Image_Size](image.md#oh_image_size) (const [ImageNative](image.md#imagenative) \*native, struct [OhosImageSize](_ohos_image_size.md) \*size) | Obtains [OhosImageSize](_ohos_image_size.md) of an **ImageNative** object.|
 | [OH_Image_Format](image.md#oh_image_format) (const [ImageNative](image.md#imagenative) \*native, int32_t \*format) | Obtains the image format of an **ImageNative** object.|
 | [OH_Image_GetComponent](image.md#oh_image_getcomponent) (const [ImageNative](image.md#imagenative) \*native, int32_t componentType, struct [OhosImageComponent](_o_h_o_s_1_1_media_1_1_ohos_image_component.md) \*componentNative) | Obtains [OhosImageComponent](_o_h_o_s_1_1_media_1_1_ohos_image_component.md) of an **ImageNative** object.|
 | [OH_Image_Release](image.md#oh_image_release) ([ImageNative](image.md#imagenative) \*native) | Releases an **ImageNative** object.|
 
-<!--no_check-->
+ <!--no_check--> 

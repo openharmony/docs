@@ -2,11 +2,11 @@
 
 ## When to Use
 
-The **NativeBuffer** module provides APIs for you to apply for, use, and release the shared memory, and query memory properties.
+The native buffer module provides APIs that you can use to apply for, use, and release the shared memory, and query memory properties.
 
-The following scenario is common for **NativeBuffer** development:
+The following scenario is common for native buffer development:
 
-Use the native APIs provided by **NativeBuffer** to create an **OH_NativeBuffer** instance, obtain memory properties, and map the corresponding ION memory to the process address space.
+Use the native buffer APIs to create an **OH_NativeBuffer** instance, obtain memory properties, and map the corresponding ION memory to the process address space.
 
 ## Available APIs
 
@@ -16,15 +16,15 @@ Use the native APIs provided by **NativeBuffer** to create an **OH_NativeBuffer*
 | OH_NativeBuffer_Reference (OH_NativeBuffer \*buffer) | Increases the reference count of an **OH_NativeBuffer** instance by 1.|
 | OH_NativeBuffer_Unreference (OH_NativeBuffer \*buffer) | Decreases the reference count of an **OH_NativeBuffer** instance by 1 and, when the reference count reaches 0, destroys the instance.|
 | OH_NativeBuffer_GetConfig (OH_NativeBuffer \*buffer, OH_NativeBuffer_Config \*config) | Obtains the properties of an **OH_NativeBuffer** instance.|
-| OH_NativeBuffer_Map (OH_NativeBuffer \*buffer, void \*\*virAddr) | Maps the ION memory corresponding to an **OH_NativeBuffer** instance to the process address space.|
-| OH_NativeBuffer_Unmap (OH_NativeBuffer \*buffer) | Unmaps the ION memory corresponding to an **OH_NativeBuffer** instance from the process address space.|
+| OH_NativeBuffer_Map (OH_NativeBuffer \*buffer, void \*\*virAddr) | Maps the ION memory allocated to an **OH_NativeBuffer** instance to the process address space.|
+| OH_NativeBuffer_Unmap (OH_NativeBuffer \*buffer) | Unmaps the ION memory allocated to an **OH_NativeBuffer** instance from the process address space.|
 | OH_NativeBuffer_GetSeqNum (OH_NativeBuffer \*buffer) | Obtains the sequence number of an **OH_NativeBuffer** instance.|
 
 For details about the APIs, see [native_buffer](../reference/native-apis/_o_h___native_buffer.md).
 
 ## How to Develop
 
-The following describes how to use the native APIs provided by **NativeBuffer** to create an **OH_NativeBuffer** instance, obtain memory properties, and map the corresponding ION memory to the process address space.
+The following describes how to use the aforementioned APIs to create an **OH_NativeBuffer** instance, obtain memory properties, and map the corresponding ION memory to the process address space.
 
 **Adding Dynamic Link Libraries**
 
@@ -33,7 +33,7 @@ Add the following library to **CMakeLists.txt**:
 libnative_buffer.so
 ```
 
-**Header File**
+**Including Header Files**
 ```c++
 #include <native_buffer/native_buffer.h>
 ```
@@ -52,7 +52,7 @@ libnative_buffer.so
     }
     ```
    
-2. Map the ION memory corresponding to the **OH_NativeBuffer** instance to the process address space by calling **OH_NativeBuffer_Map**, if the application needs to access the memory space of the buffer.
+2. If the application needs to access the memory space of the **OH_NativeBuffer** instance, map the ION memory allocated to the instance to the process address space by calling **OH_NativeBuffer_Map**.
     ```c++
     // Map the ION memory to the process address space.
     void* virAddr = nullptr;
@@ -60,14 +60,14 @@ libnative_buffer.so
     if (ret != 0) {
         std::cout << "OH_NativeBuffer_Map Failed" << std::endl;
     }
-
-    // Unmap the ION memory from the process address space when it is no longer needed.
+    
+// Unmap the ION memory from the process address space when it is no longer needed.
     ret = OH_NativeBuffer_Unmap(buffer);
     if (ret != 0) {
         std::cout << "OH_NativeBuffer_Unmap Failed" << std::endl;
     }
     ```
-
+    
 3. Obtain the memory properties.
     ```c++
     // Obtain the properties of the OH_NativeBuffer instance.

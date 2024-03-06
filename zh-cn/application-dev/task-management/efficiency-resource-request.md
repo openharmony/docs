@@ -22,7 +22,7 @@
 
 **表1** 申请能效资源主要接口
 
-以下是能效资源开发使用的相关接口，更多接口及使用方式请见[后台任务管理](../reference/apis/js-apis-resourceschedule-backgroundTaskManager.md)。
+以下是能效资源开发使用的相关接口，更多接口及使用方式请见[后台任务管理](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager-sys.md)。
 
 | 接口名 | 描述 |
 | -------- | -------- |

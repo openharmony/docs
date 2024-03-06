@@ -966,6 +966,15 @@ TS/JS语言基础库
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
 | 是      | 否     | 是     | 是   | 否   | 是     | 否           | 否     |
 
+## SystemCapability.Security.Asset
+
+关键资产存储
+
+| Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| 是      | 否     | 否      | 是   | 否   | 否     | 否           | 否    |
+
+
 ## SystemCapability.Security.AccessToken
 
 访问控制
@@ -1390,7 +1399,7 @@ FA模型
 | ------- | --- | --- | --- | --- | --- | ------------ | ------ |
 | 是       | 否   | 是   | 是   | 是   | 否   | 否            | 否      |
 
-## SystemCapability.Applications.settings.Core
+## SystemCapability.Applications.Settings.Core
 
 设置API
 

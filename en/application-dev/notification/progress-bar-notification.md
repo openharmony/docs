@@ -3,7 +3,12 @@
 
 The progress notification is a commonly used notification type, mainly used to display the progress of an ongoing operation, such as file downloading. When publishing a progress notification through the notification subsystem, you can use the readily available template by specifying the related attributes, such as the template name and template data.
 
-In the [NotificationTemplate](../reference/apis/js-apis-inner-notification-notificationTemplate.md), which can only be of the progress type, **data** indicates custom template data.
+In the [NotificationTemplate](../reference/apis-notification-kit/js-apis-inner-notification-notificationTemplate.md), which can only be of the progress type, **data** indicates custom template data.
+
+**Figure 1** Progress notification
+
+![en-us_image_0000001416903138](figures/en-us_image_0000001416903138.png)
+
 
 ## Available APIs
 
@@ -14,7 +19,7 @@ In the [NotificationTemplate](../reference/apis/js-apis-inner-notification-notif
 
 ## How to Develop
 
-1. [Enable notification](notification-enable.md). An application can use the notification feature only after being authorized by the user.
+1. [Request notification authorization](notification-enable.md). Your application can send notifications only after obtaining user authorization. 
 
 2. Import the module.
    
@@ -30,7 +35,6 @@ In the [NotificationTemplate](../reference/apis/js-apis-inner-notification-notif
      console.info(`[ANS] isSupportTemplate success`);
      console.info('Succeeded in supporting download template notification.');
      let isSupportTpl: boolean = data; // The value true means that the template of the downloadTemplate type is supported, and false means the opposite.
-     // ...
    }).catch((err:Base.BusinessError) => {
      console.error(`Failed to support download template notification. Code is ${err.code}, message is ${err.message}`);
    });
@@ -44,9 +48,9 @@ In the [NotificationTemplate](../reference/apis/js-apis-inner-notification-notif
    
    ```ts
    let notificationRequest: notificationManager.NotificationRequest = {
-     id: 1,
+     id: 5,
      content: {
-       contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+       notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
        normal: {
          title: 'test_title',
          text: 'test_text',

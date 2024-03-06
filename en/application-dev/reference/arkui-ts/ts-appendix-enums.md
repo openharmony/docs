@@ -46,6 +46,15 @@ Since API version 9, this API is supported in ArkTS widgets.
 | Dashed | Dashed border.                |
 | Solid  | Solid border.                     |
 
+## OutlineStyle<sup>11+</sup>
+Since API version 11, this API is supported in ArkTS widgets.
+
+| Name    | Description                           |
+| ------ | ----------------------------- |
+| DOTTED | Dotted border. The radius of a dot is half of **outlineWidth**.|
+| DASHED | Dashed border.                |
+| SOLID  | Solid border.                     |
+
 ## LineJoinStyle
 
 Since API version 9, this API is supported in ArkTS widgets.
@@ -83,7 +92,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 | Press   | The mouse button is pressed.|
 | Release | The mouse button is released.|
 | Move    | The mouse cursor moves.  |
-| Hover   | The mouse pointer is hovered on an element.<br>**NOTE**<br>This value has no effect. |
+| Hover   | The mouse pointer is hovered on an element.<br>**NOTE**<br>This value has no effect.  |
 
 ## Curve
 
@@ -159,9 +168,9 @@ Since API version 9, this API is supported in ArkTS widgets.
 | Top                              | Top edge in the vertical direction.<br>Since API version 9, this API is supported in ArkTS widgets.|
 | Center<sup>(deprecated) </sup>   | Center position in the vertical direction.<br> This API is deprecated since API version 9.        |
 | Bottom                           | Bottom edge in the vertical direction.<br>Since API version 9, this API is supported in ArkTS widgets.|
-| Baseline<sup>(deprecated) </sup> | Text baseline position in the cross axis direction.<br> This API is deprecated since API version 9.     |
+| Baseline<sup>(deprecated) </sup> | Text baseline position in the cross axis direction.<br> This API is deprecated since API version 9.   |
 | Start                            | Start position in the horizontal direction.<br>Since API version 9, this API is supported in ArkTS widgets.|
-| Middle<sup>(deprecated) </sup>   | Center position in the horizontal direction.<br> This API is deprecated since API version 9.        |
+| Middle<sup>(deprecated) </sup>   | Center position in the horizontal direction.<br> This API is deprecated since API version 9.     |
 | End                              | End position in the horizontal direction.<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 ## Week
@@ -624,7 +633,7 @@ The object of this type can be of a custom type or **undefined**.
 | ----- | -------------------------------------- |
 | NORMAL  | Word breaks can occur between any two characters for Chinese, Japanese, and Korean (CJK) text, but can occur only at a space character for non-CJK text (such as English).|
 | BREAK_ALL | Word breaks can occur between any two characters for non-CJK text. CJK text behavior is the same as for **NORMAL**.|
-| BREAK_WORD | This option has the same effect as **BREAK_ALL** for non-CJK text, except that it does not break unbreakable words. CJK text behavior is the same as for **NORMAL**.|
+| BREAK_WORD | This option has the same effect as **BREAK_ALL** for non-CJK text, except that if it preferentially wraps lines at appropriate characters (for example, spaces) whenever possible. CJK text behavior is the same as for **NORMAL**.|
 
 ## GestureJudgeResult<sup>11+</sup>
 | Name | Description                                  |
@@ -694,3 +703,50 @@ Since API version 11, this API is supported in ArkTS widgets.
 | URL | URL.|
 | EMAIL | Email.|
 | ADDRESS | Address.|
+
+## TextSpanType<sup>11+</sup>
+
+Provides the span type information.
+
+| Name| Description|
+| -------- | -------- |
+| TEXT | Text span.|
+| IMAGE | Image span.|
+| MIXED | Mixed span, which contains both text and imagery.|
+
+## TextResponseType<sup>11+</sup>
+
+| Name        | Description           |
+| ---------- | ------------- |
+| RIGHT_CLICK | The menu is displayed when the component is right-clicked.|
+| LONG_PRESS  | The menu is displayed when the component is long-pressed.  |
+| SELECT | The menu is displayed when the component is selected.|
+
+## SelectionMenuOptions<sup>11+</sup>
+
+Provides the span range information.
+
+| Name| Description                              |
+| ------ | -------------------------------------- |
+| onAppear | Callback invoked when the custom context menu on selection is displayed.|
+| onDisappear | Callback invoked when the custom context menu on selection is closed.|
+
+## SymbolEffectStrategy<sup>11+</sup>
+
+Enumerates the symbol effects.
+
+| Name    | Description                           |
+| ------ | ----------------------------- |
+| NONE | No effect (default value).|
+| SCALE | Overall scale effect.                |
+|  HIERARCHICAL  | Hierarchical effect. |
+
+## SymbolRenderingStrategy<sup>11+</sup>
+
+Enumerates the symbol rendering modes.
+
+| Name    | Description                           |
+| ------ | ----------------------------- |
+| SINGLE  | Symbols are rendered as a single layer with one color. This is the default value.|
+| MULTIPLE_COLOR  |    Symbols are rendered as multiple layers, with layer-specific colors.          |
+|  MULTIPLE_OPACITY   | Symbols are rendered as a single layer with one color and layer-specific opacity. |

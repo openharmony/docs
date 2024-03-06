@@ -9,20 +9,21 @@
 
 ## 使用EventHub进行数据通信
 
-[EventHub](../reference/apis/js-apis-inner-application-eventHub.md)为UIAbility组件提供了事件机制，使它们能够进行订阅、取消订阅和触发事件等数据通信能力。
+[EventHub](../reference/apis-ability-kit/js-apis-inner-application-eventHub.md)为UIAbility组件提供了事件机制，使它们能够进行订阅、取消订阅和触发事件等数据通信能力。
 
 在[基类Context](application-context-stage.md)中，提供了EventHub对象，可用于在UIAbility组件实例内通信。使用EventHub实现UIAbility与UI之间的数据通信需要先获取EventHub对象，本章节将以此为例进行说明。
 
-1. 在UIAbility中调用[`eventHub.on()`](../reference/apis/js-apis-inner-application-eventHub.md#eventhubon)方法注册一个自定义事件“event1”，[`eventHub.on()`](../reference/apis/js-apis-inner-application-eventHub.md#eventhubon)有如下两种调用方式，使用其中一种即可。
+1. 在UIAbility中调用[`eventHub.on()`](../reference/apis-ability-kit/js-apis-inner-application-eventHub.md#eventhubon)方法注册一个自定义事件“event1”，[`eventHub.on()`](../reference/apis-ability-kit/js-apis-inner-application-eventHub.md#eventhubon)有如下两种调用方式，使用其中一种即可。
 
    ```ts
    import hilog from '@ohos.hilog';
-   import Logger from '../utils/Logger';
    import UIAbility from '@ohos.app.ability.UIAbility';
    import type window from '@ohos.window';
    import type { Context } from '@ohos.abilityAccessCtrl';
    import Want from '@ohos.app.ability.Want'
+   import type AbilityConstant from '@ohos.app.ability.AbilityConstant';
    
+   const DOMAIN_NUMBER: number = 0xFF00;
    const TAG: string = '[EventAbility]';
    
    export default class EntryAbility extends UIAbility {
@@ -43,18 +44,17 @@
        // ...
        
      eventFunc(argOne: Context, argTwo: Context): void {
-       Logger.info(TAG, '1. ' + `${argOne}, ${argTwo}`);
+       hilog.info(DOMAIN_NUMBER, TAG, '1. ' + `${argOne}, ${argTwo}`);
        return;
      }
    }
    ```
 
-2. 在UI中通过[eventHub.emit()](../reference/apis/js-apis-inner-application-eventHub.md#eventhubemit)方法触发该事件，在触发事件的同时，根据需要传入参数信息。
+2. 在UI中通过[eventHub.emit()](../reference/apis-ability-kit/js-apis-inner-application-eventHub.md#eventhubemit)方法触发该事件，在触发事件的同时，根据需要传入参数信息。
 
    ```ts
    import common from '@ohos.app.ability.common';
    import promptAction from '@ohos.promptAction'
-   import Want from '@ohos.app.ability.Want';
    
    @Entry
    @Component
@@ -73,51 +73,86 @@
      }
    
      build() {
-       Row() {
-         Column() {
-           Text($r('app.string.Page_UIAbilityFourth'))
-             .fontSize(40)
-             .fontWeight(FontWeight.Bold)
-   
-           Button(){
-             Text($r('app.string.EventHubFuncA'))
-               .fontColor($r('sys.color.ohos_id_color_foreground_contrary'))
-               .fontSize($r('sys.float.ohos_id_text_size_button1'))
-               .fontWeight(FontWeight.Bold)
+       Column() {
+         Row() {
+           Flex({ justifyContent: FlexAlign.Start, alignContent: FlexAlign.Center }) {
+             Text($r('app.string.DataSynchronization'))
+               .fontSize(24)
+               .fontWeight(700)
+               .textAlign(TextAlign.Start)
+               .margin({ top: 12 , bottom: 11 , right: 24 , left: 24})
            }
-           .width(300)
-           .height(40)
-           .borderRadius($r('sys.float.ohos_id_corner_radius_button'))
-           .backgroundColor($r('sys.color.ohos_id_color_component_activated'))
+         }
+         .width('100%')
+         .height(56)
+         .justifyContent(FlexAlign.Start)
+         .backgroundColor($r('app.color.backGrounding'))
+   
+         List({ initialIndex: 0 }) {
+           ListItem() {
+             Row() {
+               Row(){
+                 Text($r('app.string.EventHubFuncA'))
+                   .textAlign(TextAlign.Start)
+                   .fontWeight(500)
+                   .margin({ top: 13, bottom: 13, left: 0, right: 8 })
+                   .fontSize(16)
+                   .width(232)
+                   .height(22)
+                   .fontColor($r('app.color.text_color'))
+               }
+               .height(48)
+               .width('100%')
+               .borderRadius(24)
+               .margin({ top: 4, bottom: 4, left: 12, right: 12 })
+             }
              .onClick(() => {
                this.eventHubFunc();
                promptAction.showToast({
                  message: $r('app.string.EventHubFuncA')
                });
              })
-             .margin(3)
-   
-           Button(){
-             Text($r('app.string.EventHubFuncB'))
-               .fontColor($r('sys.color.ohos_id_color_foreground_contrary'))
-               .fontSize($r('sys.float.ohos_id_text_size_button1'))
-               .fontWeight(FontWeight.Bold)
            }
-           .width(300)
-           .height(40)
-           .borderRadius($r('sys.float.ohos_id_corner_radius_button'))
-           .backgroundColor($r('sys.color.ohos_id_color_component_activated'))
+           .height(56)
+           .backgroundColor($r('app.color.start_window_background'))
+           .borderRadius(24)
+           .margin({ top: 8, right: 12, left: 12 })
+   
+           ListItem() {
+             Row() {
+               Row(){
+                 Text($r('app.string.EventHubFuncB'))
+                   .textAlign(TextAlign.Start)
+                   .fontWeight(500)
+                   .margin({ top: 13, bottom: 13, left: 0, right: 8 })
+                   .fontSize(16)
+                   .width(232)
+                   .height(22)
+                   .fontColor($r('app.color.text_color'))
+               }
+               .height(48)
+               .width('100%')
+               .borderRadius(24)
+               .margin({ top: 4, bottom: 4, left: 12, right: 12 })
+             }
              .onClick(() => {
                this.context.eventHub.off('event1');
                promptAction.showToast({
                  message: $r('app.string.EventHubFuncB')
                });
              })
-             .margin(3)
+           }
+           .height(56)
+           .backgroundColor($r('app.color.start_window_background'))
+           .borderRadius(24)
+           .margin({ top: 12, right: 12, left: 12 })
          }
-         .width('100%')
+         .height('100%')
+         .backgroundColor($r('app.color.backGrounding'))
        }
-       .height('100%')
+       .width('100%')
+       .margin({ top: 8 })
+       .backgroundColor($r('app.color.backGrounding'))
      }
    }
    ```
@@ -130,7 +165,7 @@
    [Example].[Entry].[EntryAbility] 1. [2,"test"]
    ```
    
-4. 在自定义事件“event1”使用完成后，可以根据需要调用[eventHub.off()](../reference/apis/js-apis-inner-application-eventHub.md#eventhuboff)方法取消该事件的订阅。
+4. 在自定义事件“event1”使用完成后，可以根据需要调用[eventHub.off()](../reference/apis-ability-kit/js-apis-inner-application-eventHub.md#eventhuboff)方法取消该事件的订阅。
 
    ```ts
    // context为UIAbility实例的AbilityContext

@@ -1,6 +1,6 @@
 # button开发指导
 
-button是按钮组件，其类型包括胶囊按钮、圆形按钮、文本按钮、弧形按钮、下载按钮。具体用法请参考[button API](../reference/arkui-js/js-components-basic-button.md)。
+button是按钮组件，其类型包括胶囊按钮、圆形按钮、文本按钮、弧形按钮、下载按钮。具体用法请参考[button API](../reference/apis-arkui/arkui-js/js-components-basic-button.md)。
 
 
 ## 创建button组件
@@ -93,7 +93,7 @@ button是按钮组件，其类型包括胶囊按钮、圆形按钮、文本按�
 
 ## 显示下载进度
 
-为button组件添加progress方法，来实时显示下载进度条的进度。
+为button组件添加setProgress方法，来实时显示下载进度条的进度。
 
 ```html
 <!-- xxx.hml -->
@@ -238,7 +238,7 @@ export default {
   color: #ffffff;
 }
 .color-3 {
-  background-color: #0598db;;
+  background-color: #0598db;
 }
 ```
 

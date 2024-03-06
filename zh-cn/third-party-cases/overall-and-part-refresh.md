@@ -496,6 +496,5 @@ struct Sample {
 
 ## 参考
 - [@Link](../application-dev/quick-start/arkts-link.md)
-
-- [显隐控制](../application-dev/reference/arkui-ts/ts-universal-attributes-visibility.md)
-- [组合手势](../application-dev/reference/arkui-ts/ts-combined-gestures.md)
+- [显隐控制](../application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-visibility.md)
+- [组合手势](../application-dev/reference/apis-arkui/arkui-ts/ts-combined-gestures.md)

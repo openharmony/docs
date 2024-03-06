@@ -4,9 +4,9 @@ An audio recording application must notice audio stream state changes and perfor
 
 ## Reading or Listening for Audio Stream State Changes in the Application
 
-Create an AudioCapturer by referring to [Using AudioCapturer for Audio Recording](using-audiocapturer-for-recording.md) or [audio.createAudioCapturer](../reference/apis/js-apis-audio.md#audiocreateaudiocapturer8). Then obtain the audio stream state changes in either of the following ways:
+Create an AudioCapturer by referring to [Using AudioCapturer for Audio Recording](using-audiocapturer-for-recording.md) or [audio.createAudioCapturer](../reference/apis-audio-kit/js-apis-audio.md#audiocreateaudiocapturer8). Then obtain the audio stream state changes in either of the following ways:
 
-- Check the [state](../reference/apis/js-apis-audio.md#attributes) of the AudioCapturer.
+- Check the [state](../reference/apis-audio-kit/js-apis-audio.md#attributes) of the AudioCapturer.
     
   ```ts
   let audioCapturerState: audio.AudioState = audioCapturer.state;
@@ -21,7 +21,7 @@ Create an AudioCapturer by referring to [Using AudioCapturer for Audio Recording
   });
   ```
 
-The application then performs an operation, for example, displays a message indicating the end of the recording, by comparing the obtained state with [AudioState](../reference/apis/js-apis-audio.md#audiostate8).
+The application then performs an operation, for example, displays a message indicating the end of the recording, by comparing the obtained state with [AudioState](../reference/apis-audio-kit/js-apis-audio.md#audiostate8).
 
 ## Reading or Listening for Changes in All Audio Streams
 
@@ -37,7 +37,7 @@ The figure below shows the call relationship of audio stream management.
 
 During application development, first use **getStreamManager()** to create an **AudioStreamManager** instance. Then call **on('audioCapturerChange')** to listen for audio stream changes and obtain a notification when the audio stream state or device changes. To cancel the listening for these changes, call **off('audioCapturerChange')**. You can call **getCurrentAudioCapturerInfoArray()** to obtain information such as the unique ID of the recording stream, UID of the recording stream client, and stream status.
 
-For details about the APIs, see [AudioStreamManager](../reference/apis/js-apis-audio.md#audiostreammanager9).
+For details about the APIs, see [AudioStreamManager](../reference/apis-audio-kit/js-apis-audio.md#audiostreammanager9).
 
 
 ## How to Develop
@@ -90,7 +90,7 @@ For details about the APIs, see [AudioStreamManager](../reference/apis/js-apis-a
      This API can be used to obtain the unique ID of the audio recording stream, UID of the audio recording client, audio status, and other information about the AudioCapturer.
    > **NOTE**
    > 
-   > Before listening for state changes of all audio streams, the application must request the **ohos.permission.USE_BLUETOOTH** [permission](../security/accesstoken-guidelines.md), for the device name and device address (Bluetooth related attributes) to be displayed correctly.
+   > Before listening for state changes of all audio streams, the application must [declare the ohos.permission.USE_BLUETOOTH permission](../security/AccessToken/declare-permissions.md), for the device name and device address (Bluetooth related attributes) to be displayed correctly.
 
    ```ts
    async function getCurrentAudioCapturerInfoArray(){

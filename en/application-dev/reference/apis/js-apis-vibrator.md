@@ -25,11 +25,11 @@ Starts vibration with the specified effect and attribute. This API uses an async
 
 **Parameters**
 
-| Name   | Type                                               | Mandatory| Description                                                        |
-| --------- | --------------------------------------------------- | ---- | :----------------------------------------------------------- |
-| effect    | [VibrateEffect](#vibrateeffect9)<sup>9+</sup>       | Yes  | Vibration effect. The options are as follows:<br>- [VibrateTime](#vibratetime9): vibration with the specified duration.<br>- [VibratePreset](#vibratepreset9): vibration with a preset effect.<br>- [VibrateFromFile](#vibratefromfile10): vibration according to a custom vibration configuration file.|
-| attribute | [VibrateAttribute](#vibrateattribute9)<sup>9+</sup> | Yes  | Vibration attribute.                                              |
-| callback  | AsyncCallback&lt;void&gt;                           | Yes  | Callback used to return the result. If the vibration starts, **err** is **undefined**; otherwise, **err** is an error object.  |
+| Name   | Type                                  | Mandatory| Description                                                        |
+| --------- | -------------------------------------- | ---- | :----------------------------------------------------------- |
+| effect    | [VibrateEffect](#vibrateeffect9)       | Yes  | Vibration effect. The options are as follows:<br>- [VibrateTime](#vibratetime9): vibration with the specified duration.<br>- [VibratePreset](#vibratepreset9): vibration with a preset effect.<br>- [VibrateFromFile](#vibratefromfile10): vibration according to a custom vibration configuration file.|
+| attribute | [VibrateAttribute](#vibrateattribute9) | Yes  | Vibration attribute.                                              |
+| callback  | AsyncCallback&lt;void&gt;              | Yes  | Callback used to return the result. If the vibration starts, **err** is **undefined**; otherwise, **err** is an error object.  |
 
 **Error codes**
 
@@ -139,10 +139,10 @@ Starts vibration with the specified effect and attribute. This API uses a promis
 
 **Parameters**
 
-| Name   | Type                                               | Mandatory| Description                                                        |
-| --------- | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| effect    | [VibrateEffect](#vibrateeffect9)<sup>9+</sup>       | Yes  | Vibration effect. The options are as follows:<br>- [VibrateTime](#vibratetime9): vibration with the specified duration.<br>- [VibratePreset](#vibratepreset9): vibration with a preset effect.<br>- [VibrateFromFile](#vibratefromfile10): vibration according to a custom vibration configuration file.|
-| attribute | [VibrateAttribute](#vibrateattribute9)<sup>9+</sup> | Yes  | Vibration attribute.                                              |
+| Name   | Type                                  | Mandatory| Description                                                        |
+| --------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
+| effect    | [VibrateEffect](#vibrateeffect9)       | Yes  | Vibration effect. The options are as follows:<br>- [VibrateTime](#vibratetime9): vibration with the specified duration.<br>- [VibratePreset](#vibratepreset9): vibration with a preset effect.<br>- [VibrateFromFile](#vibratefromfile10): vibration according to a custom vibration configuration file.|
+| attribute | [VibrateAttribute](#vibrateattribute9) | Yes  | Vibration attribute.                                              |
 
 **Return value**
 
@@ -657,9 +657,9 @@ Describes the vibration effect.
 
 | Type                            | Description                          |
 | -------------------------------- | ------------------------------ |
-| [VibrateTime](#vibratetime9)<sup>9+</sup> | Vibration with the specified duration.|
-| [VibratePreset](#vibratepreset9)<sup>9+</sup> | Vibration with a preset effect.|
-| [VibrateFromFile](#vibratefromfile10)<sup>10+</sup> | Vibration according to a custom vibration configuration file.|
+| [VibrateTime](#vibratetime9) | Vibration with the specified duration.|
+| [VibratePreset](#vibratepreset9) | Vibration with a preset effect.|
+| [VibrateFromFile](#vibratefromfile10) | Vibration according to a custom vibration configuration file.|
 
 ## VibrateTime<sup>9+</sup>
 
@@ -716,7 +716,7 @@ Describes the vibration attribute.
 | Name | Type| Mandatory| Description          |
 | ----- | ------ | ---- | -------------- |
 | id    | number      |  No| Vibrator ID. The default value is **0**.   |
-| usage | [Usage](#usage9)<sup>9+</sup> | Yes| Vibration scenario.|
+| usage | [Usage](#usage) | Yes| Vibration scenario.|
 
 ## Usage<sup>9+</sup>
 

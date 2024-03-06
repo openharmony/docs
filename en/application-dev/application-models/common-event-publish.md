@@ -27,20 +27,24 @@ Common events that do not carry information can be published only as unordered c
 1. Import the **commonEventManager** module.
    
    ```ts
-   import commonEventManager from '@ohos.commonEventManager';
    import Base from '@ohos.base';
+   import commonEventManager from '@ohos.commonEventManager';
+   import Logger from '../utils/Logger';
+
+   const TAG: string = 'ProcessModel';
    ```
 
 2. Pass in the common event name and callback, and publish the event.
    
    ```ts
    // Publish a common event.
-   commonEventManager.publish("usual.event.SCREEN_OFF", (err: Base.BusinessError) => {
-       if (err) {
-           console.error(`[CommonEvent] PublishCallBack err=${JSON.stringify(err)}`);
-       } else {
-           console.info(`[CommonEvent] Publish success`);
-       }
+   commonEventManager.publish('usual.event.SCREEN_OFF', (err: Base.BusinessError) => {
+     if (err) {
+       console.info(`PublishCallBack err = ${JSON.stringify(err)}`);
+     } else {
+       ...
+       console.info(`Publish success`);
+     }
    });
    ```
 
@@ -52,8 +56,11 @@ Common events that carry information can be published as unordered, ordered, and
 1. Import the **commonEventManager** module.
    
    ```ts
-   import commonEventManager from '@ohos.commonEventManager';
    import Base from '@ohos.base';
+   import commonEventManager from '@ohos.commonEventManager';
+   import Logger from '../utils/Logger';
+
+   const TAG: string = 'ProcessModel';
    ```
 
 2. Pass in the common event name and callback, and publish the event.
@@ -61,20 +68,21 @@ Common events that carry information can be published as unordered, ordered, and
    ```ts
    // Attributes of a common event.
    let options: commonEventManager.CommonEventPublishData = {
-       code: 1, // Result code of the common event.
-       data: "initial data", // Result data of the common event.
-   }
+     code: 1, // Result code of the common event.
+     data: 'initial data', // Initial data of the common event.
+   };
    ```
 
 3. Pass in the common event name, attributes of the common event, and callback, and publish the event.
    
    ```ts
    // Publish a common event.
-   commonEventManager.publish("usual.event.SCREEN_OFF", options, (err: Base.BusinessError) => {
-       if (err) {
-           console.error('[CommonEvent] PublishCallBack err=' + JSON.stringify(err));
-       } else {
-           console.info('[CommonEvent] Publish success')
-       }
+   commonEventManager.publish('usual.event.SCREEN_OFF', options, (err: Base.BusinessError) => {
+     if (err) {
+       console.error('PublishCallBack err = ' + JSON.stringify(err));
+     } else {
+       ...
+       console.info('Publish success');
+     }
    });
    ```

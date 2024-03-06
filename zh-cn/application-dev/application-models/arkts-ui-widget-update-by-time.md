@@ -3,7 +3,7 @@
 当前卡片框架提供了如下几种按时间刷新卡片的方式：
 
 
-- 定时刷新：表示在一定时间间隔内调用[onUpdateForm](../reference/apis/js-apis-app-form-formExtensionAbility.md#onupdateform)的生命周期回调函数自动刷新卡片内容。可以在form_updatebytime_config.json配置文件的[`updateDuration`](arkts-ui-widget-configuration.md)字段中进行设置。例如，可以将刷新时间设置为每小时一次。
+- 定时刷新：表示在一定时间间隔内调用[onUpdateForm](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md#onupdateform)的生命周期回调函数自动刷新卡片内容。可以在form_updatebytime_config.json配置文件的[`updateDuration`](arkts-ui-widget-configuration.md)字段中进行设置。例如，可以将刷新时间设置为每小时一次。
 
   > **说明：**
   >
@@ -14,7 +14,7 @@
   > 也可以为已经安装的应用动态配置刷新周期，用来限制卡片刷新周期的时长，以达到降低周期刷新进程启动次数的目的。
   > <br/> ● 当配置了`updateDuration`（定时刷新）后，若应用市场动态配置了该应用的刷新周期，
   > 卡片框架会将form_config.json文件中配置的刷新周期与应用市场配置的刷新周期进行比较，取较长的刷新周期做为该卡片的定时刷新周期。
-  > <br/> ● 若应用市场未动态配置该应用的刷新周期，则以form_config.json文件中配置的定时刷新为准。
+  > <br/> ● 若应用市场未动态配置该应用的刷新周期，则以form_config.json文件中配置的刷新周期为准。
   > <br/> ● 若该卡片取消定时刷新功能，该规则将无效。
   > <br/> ● 卡片定时刷新的更新周期单位为30分钟。应用市场配置的刷新周期范围是1~336，即最短为半小时(1 * 30min)刷新一次，最长为一周(336 * 30min)刷新一次。
   > <br/> ● 该规则从API11开始生效。若小于API11，则以form_config.json文件中配置的刷新周期为准。
@@ -77,13 +77,11 @@
   }
   ```
 
-- 下次刷新：表示指定卡片的下一次刷新时间。可以通过调用[`setFormNextRefreshTime()`](../reference/apis/js-apis-app-form-formProvider.md#setformnextrefreshtime)接口来实现。最短刷新时间为5分钟。例如，可以在接口调用后的5分钟内刷新卡片内容。
+- 下次刷新：表示指定卡片的下一次刷新时间。可以通过调用[`setFormNextRefreshTime()`](../reference/apis-form-kit/js-apis-app-form-formProvider.md#setformnextrefreshtime)接口来实现。最短刷新时间为5分钟。例如，可以在接口调用后的5分钟内刷新卡片内容。
 
   ```ts
   import type Base from '@ohos.base';
-  import formBindingData from '@ohos.app.form.formBindingData';
   import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-  import formInfo from '@ohos.app.form.formInfo';
   import formProvider from '@ohos.app.form.formProvider';
   import hilog from '@ohos.hilog';
   
@@ -107,18 +105,18 @@
         });
       } catch (err) {
         hilog.info(DOMAIN_NUMBER, TAG, `Failed to setFormNextRefreshTime. Code: ${(err as Base.BusinessError).code}, message: ${(err as Base.BusinessError).message}`);
-      };
+      }
     }
     ...    
   }
   ```
 
 
-在触发定时、定点或下次刷新后，系统会调用FormExtensionAbility的[`onUpdateForm()`](../reference/apis/js-apis-app-form-formExtensionAbility.md#onupdateform)生命周期回调，在回调中，可以使用[`updateForm()`](../reference/apis/js-apis-app-form-formProvider.md#updateform)进行提供方刷新卡片。`onUpdateForm()`生命周期回调的使用请参见[通过FormExtensionAbility刷新卡片内容](arkts-ui-widget-event-formextensionability.md)。
+在触发定时、定点或下次刷新后，系统会调用FormExtensionAbility的[`onUpdateForm()`](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md#onupdateform)生命周期回调，在回调中，可以使用[`updateForm()`](../reference/apis-form-kit/js-apis-app-form-formProvider.md#updateform)进行提供方刷新卡片。`onUpdateForm()`生命周期回调的使用请参见[通过FormExtensionAbility刷新卡片内容](arkts-ui-widget-event-formextensionability.md)。
 
 
 > **说明：**
-> 1. 定时刷新有配额限制，每张卡片每天最多通过定时方式触发刷新50次，定时刷新包含[卡片配置项updateDuration](arkts-ui-widget-configuration.md)和调用[`setFormNextRefreshTime()`](../reference/apis/js-apis-app-form-formProvider.md#setformnextrefreshtime)方法两种方式，当达到50次配额后，无法通过定时方式再次触发刷新，刷新次数会在每天的0点重置。
+> 1. 定时刷新有配额限制，每张卡片每天最多通过定时方式触发刷新50次，定时刷新包含[卡片配置项updateDuration](arkts-ui-widget-configuration.md)和调用[`setFormNextRefreshTime()`](../reference/apis-form-kit/js-apis-app-form-formProvider.md#setformnextrefreshtime)方法两种方式，当达到50次配额后，无法通过定时方式再次触发刷新，刷新次数会在每天的0点重置。
 >
 > 2. 当前定时刷新使用同一个计时器进行计时，因此卡片定时刷新的第一次刷新会有最多30分钟的偏差。比如第一张卡片A（每隔半小时刷新一次）在3点20分添加成功，定时器启动并每隔半小时触发一次事件，第二张卡片B(每隔半小时刷新一次)在3点40分添加成功，在3点50分定时器事件触发时，卡片A触发定时刷新，卡片B会在下次事件（4点20分）中才会触发。
 >

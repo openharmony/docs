@@ -37,7 +37,7 @@ The table below uses promise as an example to describe the APIs used for develop
 
 ## How to Develop
 
-1. Request the **ohos.permission.PUBLISH_AGENT_REMINDER** permission. For details, see [Declaring Permissions in the Configuration File](../security/accesstoken-guidelines.md#declaring-permissions-in-the-configuration-file).
+1. Declare the **ohos.permission.PUBLISH_AGENT_REMINDER** permission. For details, see [Declaring Permissions](../security/AccessToken/declare-permissions.md).
 
 2. [Enable the notification feature](../notification/notification-enable.md). Agent-powered reminders can be used only after being authorized by the user.
 

@@ -14,11 +14,11 @@ During application development, you can use the **state** attribute of the AVPla
 **Figure 1** Playback state transition 
 ![Playback status change](figures/playback-status-change.png)
 
-For details about the state, see [AVPlayerState](../reference/apis/js-apis-media.md#avplayerstate9). When the AVPlayer is in the **prepared**, **playing**, **paused**, or **completed** state, the playback engine is working and a large amount of RAM is occupied. If your application does not need to use the AVPlayer, call **reset()** or **release()** to release the instance.
+For details about the state, see [AVPlayerState](../reference/apis-media-kit/js-apis-media.md#avplayerstate9). When the AVPlayer is in the **prepared**, **playing**, **paused**, or **completed** state, the playback engine is working and a large amount of RAM is occupied. If your application does not need to use the AVPlayer, call **reset()** or **release()** to release the instance.
 
 ## How to Develop
 
-Read [AVPlayer](../reference/apis/js-apis-media.md#avplayer9) for the API reference.
+Read [AVPlayer](../reference/apis-media-kit/js-apis-media.md#avplayer9) for the API reference.
 
 1. Call **createAVPlayer()** to create an **AVPlayer** instance. The AVPlayer is the **idle** state.
 
@@ -42,11 +42,11 @@ Read [AVPlayer](../reference/apis/js-apis-media.md#avplayer9) for the API refere
    > 
    > - If local files are used for playback, ensure that the files are available and the application sandbox path is used for access. For details about how to obtain the application sandbox path, see [Obtaining Application File Paths](../application-models/application-context-stage.md#obtaining-application-file-paths). For details about the application sandbox and how to push files to the application sandbox, see [File Management](../file-management/app-sandbox-directory.md).
    > 
-   > - If a network playback path is used, you must request the ohos.permission.INTERNET [permission](../security/accesstoken-guidelines.md).
+   > - If a network playback path is used, you must [declare the ohos.permission.INTERNET permission](../security/AccessToken/declare-permissions.md).
    > 
-   > - You can also use **ResourceManager.getRawFd** to obtain the file descriptor of a file packed in the HAP file. For details, see [ResourceManager API Reference](../reference/apis/js-apis-resource-manager.md#getrawfd9).
+   > - You can also use **ResourceManager.getRawFd** to obtain the FD of a file packed in the HAP file. For details, see [ResourceManager API Reference](../reference/apis-localization-kit/js-apis-resource-manager.md#getrawfd9).
    > 
-   > - The [playback formats and protocols](avplayer-avrecorder-overview.md#supported-formats-and-protocols) in use must be those supported by the system.
+   > - The [playback formats and protocols](media-kit-intro.md#supported-formats-and-protocols) in use must be those supported by the system.
 
 4. Call **prepare()** to switch the AVPlayer to the **prepared** state. In this state, you can obtain the duration of the media asset to play and set the volume.
 

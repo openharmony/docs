@@ -23,14 +23,14 @@ Call [query()](js-apis-data-dataShare.md#query) to obtain a **DataShareResultSet
 
 ```ts
 import dataShare from '@ohos.data.dataShare';
-import dataSharePredicates from '@ohos.data.dataSharePredicates'
-import { BusinessError } from '@ohos.base'
-import UIAbility from '@ohos.app.ability.UIAbility'
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
 let dataShareHelper: dataShare.DataShareHelper | undefined = undefined;
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let context = getContext(UIAbility);
-dataShare.createDataShareHelper(context, uri, (err, data) => {
+dataShare.createDataShareHelper(context, uri, (err:BusinessError, data:dataShare.DataShareHelper) => {
   if (err != undefined) {
     console.error("createDataShareHelper fail, error message : " + err);
   } else {
@@ -202,9 +202,9 @@ Moves to the specified row in the result set.
 
 **Parameters**
 
-| **Name**| **Type**| **Mandatory**| Description                    |
-| ---------- | -------- | -------- | ------------------------ |
-| position   | number   | Yes      | Destination position to move to.|
+| **Name**| **Type**| **Mandatory**| Description                                   |
+| ---------- | -------- | -------- | --------------------------------------- |
+| position   | number   | Yes      | Position to move to, starting from 0.|
 
 **Return value**
 

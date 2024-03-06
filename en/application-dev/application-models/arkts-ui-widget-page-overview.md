@@ -7,10 +7,14 @@ You can leverage the ArkUI declarative paradigm to develop ArkTS widget pages. T
 
 ArkTS widgets have full capabilities of JS widgets, with added animation and custom drawing capabilities plus partial support for components, events, animations, data management, and state management capabilities of the [declarative paradigm](../reference/arkui-ts/ts-components-summary.md).
 
+
+## Page Capabilities Supported by ArkTS Widgets
+
 For details about the capabilities supported by ArkTS widgets, see [Learning ArkTS](../quick-start/arkts-create-custom-components.md) and [ArkTS-based Declarative Development Paradigm](../reference/arkui-ts/ts-components-summary.md).
 
-Only the APIs marked with "supported in ArkTS widgets" can be used for ArkTS widgets. Pay special attention to the differences from applications.
+Only the components and APIs marked with "supported in ArkTS widgets" can be used for ArkTS widgets. Pay special attention to the differences from applications.
 
 For example, the following description indicates that the @Component decorator can be used in ArkTS widgets.
 
 ![WidgetSupportApi](figures/WidgetSupportApi.png)
+

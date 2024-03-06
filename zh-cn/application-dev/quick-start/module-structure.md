@@ -97,7 +97,7 @@ module示例：
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
-| moduleName | 标识当前HAP的名称，最大长度为31个字节。 在应用升级时，该名称允许修改，但需要应用适配Module相关数据目录的迁移，可使用[文件操作接口](../reference/apis/js-apis-file-fs.md#fscopydir10)。| 字符串 | 不可缺省。 |
+| moduleName | 标识当前HAP的名称，最大长度为31个字节。 在应用升级时，该名称允许修改，但需要应用适配Module相关数据目录的迁移，可使用[文件操作接口](../reference/apis-core-file-kit/js-apis-file-fs.md#fscopydir10)。| 字符串 | 不可缺省。 |
 | moduleType | 标识当前HAP的类型，包括三种类型：entry、feature和har。 | 字符串 | 不可缺省。 |
 | installationFree | 标识当前HAP是否支持免安装特性。true：表示支持免安装特性，且符合免安装约束。false：表示不支持免安装特性。另外还需注意：当entry.hap该字段配置为true时，与该entry.hap相关的所有feature.hap该字段也需要配置为true。当entry.hap该字段配置为false时，与该entry.hap相关的各feature.hap该字段可按业务需求配置true或false。 | 布尔值 | 不可缺省。 |
 | deliveryWithInstall | 标识当前HAP是否在用户主动安装HAP所在应用的时候一起安装。true：&nbsp;安装应用时当前HAP随应用一起下载安装。false：安装应用时当前HAP并不下载安装，后续使用是按需下载。 | 布尔值 | 不可缺省。 |
@@ -219,7 +219,7 @@ metadata对象示例：
 | targetAbility | 标识当前Ability重用的目标Ability。该标签仅适用于page类型的Ability。如果配置了targetAbility属性，则当前Ability（即别名Ability）的属性中仅name、icon、label、visible、permissions、skills生效，其他属性均沿用targetAbility中的属性值。目标Ability必须与别名Ability在同一应用中，且在配置文件中目标Ability必须在别名之前进行声明。 | 字符串 | 可缺省，缺省值为空。表示当前Ability不是一个别名Ability。 |
 | formsEnabled | 标识Ability是否支持卡片（forms）功能。该标签仅适用于page类型的Ability。<br/>true：支持卡片能力。<br/>false：不支持卡片能力。 | 布尔值 | 可缺省，缺省值为false。 |
 | forms | 标识服务卡片的属性。该标签仅当formsEnabled为"true"时，才能生效。 | 对象数组 | 可缺省，缺省值为空。 |
-| srcLanguage | Ability开发语言的类型，开发者创建工程时由开发者手动选择开发语言。 | 字符串 | 可缺省，缺省值为“js”。 |
+| srcLanguage | Ability开发语言的类型，开发者创建工程时由开发者手动选择开发语言。取值如下："js"、"ets"、"java"。 | 字符串 | 可缺省，缺省值为"js"。 |
 | srcPath | 该标签标识Ability对应的JS组件代码路径，该标签最大长度为127字节。 | 字符串 | 不可缺省。 |
 | uriPermission | 标识该Ability有权访问的应用程序数据。此属性由模式和路径子属性组成。此属性仅对类型提供者的能力有效。 | 对象 | 可缺省，缺省值为空。 |
 | startWindowIcon | 标识该Ability启动页面图标资源文件的索引。该标签仅适用于page类型的Ability。取值示例：$media:icon。 | 字符串 | 可缺省，缺省值为空。 |
@@ -432,8 +432,8 @@ skills示例：
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
-| name | 标识JS&nbsp;Component的名字。该标签不可缺省，默认值为default。 | 字符串 | 不可缺省。 |
-| pages | 标识JS&nbsp;Component的页面用于列举JS&nbsp;Component中每个页面的路由信息[页面路径+页面名称]。该标签不可缺省，取值为数组，数组第一个元素代表JS&nbsp;FA首页。 | 字符串数组 | 不可缺省。 |
+| name | 标识JS&nbsp;Component的名字。 | 字符串 | 不可缺省。 |
+| pages | 标识JS&nbsp;Component的页面用于列举JS&nbsp;Component中每个页面的路由信息，格式为“页面路径+页面名称”。其中，页面路径是以当前Ability的srcPath字段取值为基准，例如srcPath取值为EntryAbility，则JS Component页面路径需要从EntryAbility的下一层开始描述。该标签取值为数组，数组第一个元素代表JS&nbsp;FA首页。 | 字符串数组 | 不可缺省。 |
 | window | 用于定义与显示窗口相关的配置。 | 对象 | 可缺省，缺省值见表15。 |
 | type | 标识JS应用的类型。取值范围如下：<br/>normal：标识该JS&nbsp;Component为应用实例。<br/>form：标识该JS&nbsp;Component为卡片实例。 | 字符串 | 可缺省，缺省值为"normal"。 |
 |mode | 定义JS组件的开发模式。 | 对象 | 可缺省，缺省值为空。 |
@@ -462,16 +462,20 @@ js示例：
 ```json
 "js": [
   {
-    "name": "default",
+    "name": ".EntryAbility",
     "pages": [
-      "pages/index/index",
+      "pages/index",
       "pages/detail/detail"
     ],
     "window": {
       "designWidth": 720,
       "autoDesignWidth": false
     },
-    "type": "form"
+    "type": "form",
+    "mode": {
+      "syntax": "ets",
+      "type": "pageAbility"
+    }
   }
 ]
 ```
@@ -524,7 +528,7 @@ shortcuts示例：
 | name | 标识卡片的类名。字符串最大长度为127字节。 | 字符串 | 不可缺省。 |
 | description | 标识卡片的描述。取值可以是描述性内容，也可以是对描述性内容的资源索引，以支持多语言。字符串最大长度为255字节。 | 字符串 | 可缺省，缺省为空。 |
 | isDefault | 标识该卡片是否为默认卡片，每个Ability有且只有一个默认卡片。<br/>true：默认卡片。<br/>false：非默认卡片。 | 布尔值 | 不可缺省。 |
-| type | 标识卡片的类型。取值范围如下：<br/>JS：JS卡片。 | 字符串 | 不可缺省。 |
+| type | 标识卡片的类型。取值范围如下：<br/>JS：JS卡片。<br/>Java：Java卡片。 | 字符串 | 不可缺省。 |
 | colorMode | 标识卡片的主题样式，取值范围如下：<br/>auto：自适应。<br/>dark：深色主题。<br/>light：浅色主题。 | 字符串 | 可缺省，缺省值为"auto"。 |
 | supportDimensions | 标识卡片支持的外观规格，取值范围：<br/>1&nbsp;\*&nbsp;2：表示1行2列的二宫格。<br/>2&nbsp;\*&nbsp;1：表示2行1列的二宫格。<br/>2&nbsp;\*&nbsp;2：表示2行2列的四宫格。<br/>2&nbsp;\*&nbsp;4：表示2行4列的八宫格。<br/>4&nbsp;\*&nbsp;4：表示4行4列的十六宫格。 | 字符串数组 | 不可缺省。 |
 | defaultDimension | 标识卡片的默认外观规格，取值必须在该卡片supportDimensions配置的列表中。 | 字符串 | 不可缺省。 |
@@ -532,9 +536,9 @@ shortcuts示例：
 | scheduledUpdateTime | 标识卡片的定点刷新的时刻，采用24小时制，精确到分钟。 | 字符串 | 可缺省，缺省值为"0:0"。 |
 | updateDuration | 标识卡片定时刷新的更新周期，单位为30分钟，取值为自然数。<br/>当取值为0时，表示该参数不生效。<br/>当取值为正整数N时，表示刷新周期为30\*N分钟。 | 数值 | 可缺省，缺省值为"0"。 |
 | formConfigAbility | 标识用于调整卡片的设施或活动的名称。 | 字符串 | 可缺省，缺省值为空。 |
-| jsComponentName | 标识JS卡片的Component名称。字符串最大长度为127字节。仅当卡片类型为JS卡片时，需要配置该标签。 | 字符串 | 不可缺省。 |
+| jsComponentName | 标识JS卡片的Component名称。字符串最大长度为127字节。仅当卡片类型为JS卡片时，需要配置该标签。 | 字符串 | 可缺省，缺省值为空。 |
 | metaData | 标识卡片的自定义信息，包含customizeData数组标签。 | 对象 | 可缺省，缺省值为空。 |
-| customizeData | 标识自定义的卡片信息。 | 对象数组 | 可缺省，缺省值为空。 |
+| formVisibleNotify | 标识是否允许卡片使用卡片可见性通知。<br/>true：允许。<br/>false：不允许。 | 布尔值 | 可缺省，缺省值为false。 |
 
 ## customizeData对象内部结构
 

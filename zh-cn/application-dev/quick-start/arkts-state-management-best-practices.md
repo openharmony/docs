@@ -145,7 +145,7 @@ struct CompA {
 
 - this.needsUpdate是一个自定义的UI状态变量，应该仅应用于其绑定的UI组件。变量this.realState1、this.realState2没有被装饰，他们的变化将不会触发UI刷新。
 
-- 但是在该应用中，用户试图通过this.needsUpdate的更新来带动常规变量this.realState1、this.realState2的更新。此方法不合理且更新性能较差，如果只想更新背景颜色，且不需要更新ForEach，但this.needsUpdate值的变化也会带动ForEach更新。
+- 但是在该应用中，用户试图通过this.needsUpdate的更新来带动常规变量this.realState1、this.realState2的更新，此方法不合理且更新性能较差。
 
 【正例】
 

@@ -1,7 +1,7 @@
 # Button
 
 
-The **\<Button>** component is usually activated by user clicks to perform a specific action. Buttons are classified as capsule, circle, or normal buttons. When used as a container, the **\<Button>** component accepts child components such as text and images. For details, see [Button](../reference/arkui-ts/ts-basic-components-button.md).
+The **\<Button>** component is usually activated by user clicks to perform a specific action. Buttons are classified as capsule, circle, or normal buttons. When used as a container, the **\<Button>** component accepts child components such as text and images. For details, see [Button](../reference/apis-arkui/arkui-ts/ts-basic-components-button.md).
 
 
 ## Creating a Button
@@ -12,7 +12,7 @@ You can create a button that contains or does not contain child components.
 - Create a button that does not contain child components.
 
   ```ts
-  Button(label?: string, options?: { type?: ButtonType, stateEffect?: boolean })
+  Button(label?: ResourceStr, options?: { type?: ButtonType, stateEffect?: boolean })
   ```
 
   In this API, **label** indicates the button text, **type** indicates the button type, and **stateEffect** specifies whether to enable the pressed effect on the click of the button.
@@ -34,7 +34,7 @@ You can create a button that contains or does not contain child components.
   Button(options?: {type?: ButtonType, stateEffect?: boolean})
   ```
 
-  The child component contained can either be a [basic component](../reference/arkui-ts/ts-basic-components-blank.md) or a [container component](../reference/arkui-ts/ts-container-ability-component.md).
+  The child component contained can either be a [basic component](../reference/apis-arkui/arkui-ts/ts-basic-components-blank.md) or a [container component](../reference/apis-arkui/arkui-ts/ts-container-ability-component-sys.md).
 
   ```ts
   Button({ type: ButtonType.Normal, stateEffect: true }) {
@@ -140,9 +140,9 @@ Use the **type** parameter to set the button type to **Capsule**, **Circle**, or
   In this example, the delete function is assigned to the button.
 
   ```ts
-  let MarLeft:Record<string,number> = {'left':20}
+  let MarLeft: Record<string, number> = { 'left': 20 }
   Button({ type: ButtonType.Circle, stateEffect: true }) {
-  Image($r('app.media.ic_public_delete_filled')).width(30).height(30) 
+    Image($r('app.media.ic_public_delete_filled')).width(30).height(30)
   }.width(55).height(55).margin(MarLeft).backgroundColor(0xF55A42)
   ```
 

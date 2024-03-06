@@ -34,14 +34,13 @@ The public SDK, which does not include system APIs, is provided as standard in D
 
 ## Permission Description
 
-By default, applications can access limited system resources. However, in some cases, an application needs to access excess data (including personal data) and functions of the system or another application to implement extended functions. For details, see [Access Control Overview](../../security/accesstoken-overview.md).
+By default, applications can access limited system resources. However, in some cases, an application needs to access excess data (including personal data) and functions of the system or another application to implement extended functions. For details, see [Application Permission Management Overview](../../security/AccessToken/app-permission-mgmt-overview.md).
 
-To call APIs to access these resources, you must apply for the corresponding permissions by following the instructions provided in [Access Control Development](../../security/accesstoken-guidelines.md).
+To call APIs to access these resources, you must apply for the corresponding permissions by following the instructions provided in [Workflow for Using Permissions](../../security/AccessToken/determine-application-mode.md).
 
 - If an application can call an API only after it has obtained a specific permission, the following description is provided for the API: "**Required permissions**: ohos.permission.xxxx"
 - If an application can call an API without any permission, no special description is provided.
 
-To determine whether an application can request a specific permission, see [Applying for and Using a Permission](../../security/accesstoken-overview.md#applying-for-and-using-a-permission).
 
 ## System Capability Description
 

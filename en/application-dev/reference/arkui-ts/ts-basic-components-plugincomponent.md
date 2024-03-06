@@ -32,7 +32,7 @@ Creates a **PluginComponent** to display the UI provided by an external applicat
 | source     | string | Component template name.               |
 | bundleName | string | Bundle name of the provider ability.|
 ## Attributes
-The [universal attributes](ts-universal-attributes-size.md) are supported, and **size** must be set.
+The width and height of the component must be explicitly set to non-zero valid values.
 
 **NOTE**
 
@@ -40,7 +40,7 @@ The template can be provided in either of the following modes:
 * Use an absolute path. In this case, set **source** to the absolute path of the template and leave **bundleName** blank. This mode is not recommended as it is applicable only to standalone templates that do not need to load resources.
 * Use an application package. In this case, set **bundleName** to the application bundle name and **source** to the relative path of the HAP file template. In the multi-HAP scenario, a HAP file is identified based on its relative path and name.
 
-  Example: **{source: 'ets/pages/plugin.js&plugin', bundleName:'com.example.provider'}**
+  Example: **{source: 'pages/PluginProviderExample.ets&entry', bundleName:'com.example.provider'}**
 
   The template is provided only when **source** can be set to an ability name in the FA model.
 
@@ -49,7 +49,7 @@ The template can be provided in either of the following modes:
 
 ## Events
 
-Only the [gesture event](ts-gesture-settings.md) can be distributed to the provider page and processed inside the provider page.
+Only the [gesture event](ts-gesture-settings.md) can be distributed to and processed inside the provider page.
 
 In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
 
@@ -66,10 +66,6 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 ```ts
 //PluginUserExample.ets
 import plugin from "./plugin_component"
-class source2BundleName {
-  source: string = ""
-  bundleName: string = ""
-}
 interface Info{
   errcode:number,
   msg:string
@@ -77,10 +73,6 @@ interface Info{
 @Entry
 @Component
 struct PluginUserExample {
-  @StorageLink("plugincount") plugincount: Object[] = [
-    { source: 'plugincomponent1', bundleName: 'com.example.plugin' } as source2BundleName,
-    { source: 'plugintemplate', bundleName: 'com.example.myapplication' } as source2BundleName,
-    { source: 'plugintemplate', bundleName: 'com.example.myapplication' } as source2BundleName]
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -105,18 +97,16 @@ struct PluginUserExample {
           plugin.Request()
           console.log("Button('Request')")
         })
-      ForEach(this.plugincount, (item: source2BundleName) => {
-        PluginComponent({
-          template: { source: 'PluginProviderExample', bundleName: 'com.example.plugin' },
-          data: { 'countDownStartValue': 'new countDownStartValue' }
-        }).size({ width: 500, height: 100 })
-          .onComplete(() => {
-            console.log("onComplete")
-          })
-          .onError((info:Info) => {
-            console.log("onComplete" + info.errcode + ":" + info.msg)
-          })
-      })
+      PluginComponent({
+        template: { source: 'pages/PluginProviderExample.ets&entry', bundleName: 'com.example.plugin' },
+        data: { 'countDownStartValue': 'new countDownStartValue' }
+      }).size({ width: 500, height: 350 })
+        .onComplete(() => {
+          console.log("onComplete")
+        })
+        .onError((info:Info) => {
+          console.log("onComplete" + info.errcode + ":" + info.msg)
+        })
     }
     .width('100%')
     .height('100%')
@@ -176,14 +166,6 @@ import pluginComponentManager from '@ohos.pluginComponent'
 
 function onPushListener(source, template, data, extraData) {
   console.log("onPushListener template.source=" + template.source)
-  var jsonObject = JSON.parse(data.componentTemplate.source)
-  console.log("request_callback1:source json object" + jsonObject)
-  var jsonArry = jsonObject.ExternalComponent
-  for (var i in jsonArry) {
-    console.log(jsonArry[i])
-  }
-  console.log("onPushListener:source json object" + jsonObject)
-  console.log("onPushListener:source json string" + JSON.stringify(jsonObject))
   console.log("onPushListener template.ability=" + template.ability)
   console.log("onPushListener data=" + JSON.stringify(data))
   console.log("onPushListener extraData=" + JSON.stringify(extraData))
@@ -242,13 +224,6 @@ export default {
       (err, data) => {
         console.log("request_callback: componentTemplate.ability=" + data.componentTemplate.ability)
         console.log("request_callback: componentTemplate.source=" + data.componentTemplate.source)
-        var jsonObject = JSON.parse(data.componentTemplate.source)
-        console.log("request_callback:source json object" + jsonObject)
-        var jsonArry = jsonObject.ExternalComponent
-        for (var i in jsonArry) {
-          console.log(jsonArry[i])
-        }
-        console.log("request_callback:source json string" + JSON.stringify(jsonObject))
         console.log("request_callback: data=" + JSON.stringify(data.data))
         console.log("request_callback: extraData=" + JSON.stringify(data.extraData))
       }
@@ -265,14 +240,6 @@ import pluginComponentManager from '@ohos.pluginComponent'
 
 function onPushListener(source, template, data, extraData) {
   console.log("onPushListener template.source=" + template.source)
-  var jsonObject = JSON.parse(data.componentTemplate.source)
-  console.log("request_callback1:source json object" + jsonObject)
-  var jsonArry = jsonObject.ExternalComponent
-  for (var i in jsonArry) {
-    console.log(jsonArry[i])
-  }
-  console.log("onPushListener:source json object" + jsonObject)
-  console.log("onPushListener:source json string" + JSON.stringify(jsonObject))
   console.log("onPushListener template.ability=" + template.ability)
   console.log("onPushListener data=" + JSON.stringify(data))
   console.log("onPushListener extraData=" + JSON.stringify(extraData))
@@ -339,13 +306,6 @@ export default {
       (err, data) => {
         console.log("request_callback: componentTemplate.ability=" + data.componentTemplate.ability)
         console.log("request_callback: componentTemplate.source=" + data.componentTemplate.source)
-        var jsonObject = JSON.parse(data.componentTemplate.source)
-        console.log("request_callback:source json object" + jsonObject)
-        var jsonArry = jsonObject.ExternalComponent
-        for (var i in jsonArry) {
-          console.log(jsonArry[i])
-        }
-        console.log("request_callback:source json string" + JSON.stringify(jsonObject))
         console.log("request_callback: data=" + JSON.stringify(data.data))
         console.log("request_callback: extraData=" + JSON.stringify(data.extraData))
       }

@@ -7,6 +7,18 @@ You may want your application to behave differently based on the device environm
 Environment is a singleton object created by the ArkUI framework at application startup. It provides a range of application state attributes to AppStorage that describe the device environment in which the application is running. Environment and its attributes are immutable. All property values are of simple types only.
 
 
+## Environment Built-in Parameters
+
+| Key| Data Type| Description                                     |
+| ------------------ | ------------------ | ------------------ |
+| accessibilityEnabled              | boolean                  | Whether to enable accessibility.                |
+| colorMode              | ColorMode                  | Color mode. The options are as follows:<br>- **ColorMode.LIGHT**: light mode.<br>- **ColorMode.DARK**: dark mode.                |
+| fontScale              | number                  | Font scale. Range: [0.85, 1.45].                |
+| fontWeightScale              | number                  | Font weight scale. Range: [0.6, 1.6].               |
+| layoutDirection              | LayoutDirection                  | Layout direction. The options are as follows:<br>- **LayoutDirection.LTR**: from left to right.<br>- **LayoutDirection.RTL**: from right to left.                |
+| languageCode              | string                  | Current system language. The value is in lowercase, for example, **zh**.                |
+
+
 ## Use Scenarios
 
 
@@ -73,11 +85,11 @@ if (lang.get() === 'en') {
 ## Restrictions
 
 
-Environment can be called only when the [UIContext](../reference/apis/js-apis-arkui-UIContext.md#uicontext) is specified. The UIContext is specified when [runScopedTask](../reference/apis/js-apis-arkui-UIContext.md#runscopedtask) is called. If Environment is called otherwise, no device environment data can be obtained.
+Environment can be called only when the [UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext) is specified. The UIContext is specified when [runScopedTask](../reference/apis-arkui/js-apis-arkui-UIContext.md#runscopedtask) is called. If Environment is called otherwise, no device environment data can be obtained.
 
 
 ```ts
-// EntryAbility.ts
+// EntryAbility.ets
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 

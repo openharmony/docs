@@ -5,29 +5,57 @@ You can set state-specific styles for components.
 >  **NOTE**
 >
 >  The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
+>
+>  Since API version 11, you can also dynamically set component attributes through [attributeModifier](./ts-universal-attributes-attribute-modifier.md).
 
+## stateStyles
 
-## Attributes
+stateStyles(value: StateStyles)
 
-| Name| Type| Description|
-| -------- | -------- | -------- |
-| stateStyles | StateStyles | Styles of the component for different states.<br>Since API version 9, this API is supported in ArkTS widgets.|
+Sets the state-specific styles for the component.
+
+**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                               | Mandatory| Description                    |
+| ------ | ----------------------------------- | ---- | ------------------------ |
+| value  | [StateStyles](#statestyles) | Yes  | State-specific styles for the component.|
 
 ## StateStyles
 
 Since API version 9, this API is supported in ArkTS widgets.
 
-| Name| Type| Mandatory| Description|
+| State| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | normal | ()=&gt;void | No| Style of the component when being stateless.|
 | pressed | ()=&gt;void | No| Style of the component in the pressed state.|
 | disabled | ()=&gt;void | No| Style of the component in the disabled state.|
 | focused | ()=&gt;void | No| Style of the component in the focused state.|
 | clicked | ()=&gt;void | No| Style of the component in the clicked state.|
-| selected<sup>10+</sup> | ()=&gt;void | No| Style of the component in the selected state.<br>**NOTE**<br>The following components support the selected state: **\<ListItem>**, **\<GridItem>**, **\<CheckBox>**, **\<CheckBoxGroup>**, **\<Radio>**, **\<Toggle>**, and **\<MenuItem>**.|
+| selected<sup>10+</sup> | ()=&gt;void | No| Style of the component in the selected state.<br>|
 
+**Notes about the selected state:**
+
+- The selected state style depends on the value of the component's selected attribute. You can change the attribute value through [onClick](ts-universal-events-click.md) or [$$](../../quick-start/arkts-two-way-sync.md).
+
+- The table below lists the components that support the selected state style and their selected attributes or parameters.
+
+  | Component                                                        | Selected Parameter/Attribute| Initial API Version|
+  | ------------------------------------------------------------ | --------------- | ----------- |
+  | [Checkbox](ts-basic-components-checkbox.md) | select          | 10          |
+  | [CheckboxGroup](ts-basic-components-checkboxgroup.md) | selectAll       | 10          |
+  | [Radio](ts-basic-components-radio.md)  | checked         | 10          |
+  | [Toggle](ts-basic-components-toggle.md) | isOn            | 10          |
+  | [ListItem](ts-container-listitem.md) | selected         | 10          |
+  | [GridItem](ts-container-griditem.md) | selected         | 10          |
+  | [MenuItem](ts-basic-components-menuitem.md) | selected         | 10          |
 
 ## Example
+
+### Example 1
 
 ```ts
 // xxx.ets
@@ -124,3 +152,64 @@ struct StyleExample {
 ```
 
 ![en-us_image_0000001211898512](figures/en-us_image_0000001211898512.gif)
+
+### Example 2
+
+```ts
+// xxx.ets
+@Entry
+@Component
+@Observed
+struct Index {
+  @State value: boolean = false
+
+  @Styles
+  normalStyles(): void{
+    .backgroundColor("#E5E5E1")
+  }
+
+  @Styles
+  selectStyles(): void{
+    .backgroundColor("#ED6F21")
+    .borderWidth(2)
+  }
+
+  build() {
+    Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+      Column() {
+        Text('Radio1')
+        Radio({ value: 'Radio1', group: 'radioGroup1' })
+          .checked(this.value)
+          .height(50)
+          .width(50)
+          .borderWidth(0)
+          .borderRadius(30)
+          .onClick(() => {
+            this.value = !this.value
+          })
+          .stateStyles({
+            normal: this.normalStyles,
+            selected: this.selectStyles,
+          })
+      }
+
+      Column() {
+        Text('Radio2')
+        Radio({ value: 'Radio2', group: 'radioGroup2' })
+          .checked($$this.value)
+          .height(50)
+          .width(50)
+          .borderWidth(0)
+          .borderRadius(30)
+          .onClick(() => {
+            this.value = !this.value
+          })
+          .stateStyles({
+            normal: this.normalStyles,
+            selected: this.selectStyles,
+          })
+      }
+    }.padding({ top: 30 })
+  }
+}
+```

@@ -22,33 +22,42 @@ on(type: 'systemAutoStartup', callback: AutoStartupCallback): void
 
 Subscribes to auto-startup status change events of an application component.
 
+**Required permissions**: ohos.permission.MANAGE_APP_BOOT
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
 
 | Name       | Type                                      | Mandatory  | Description            |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| type | string | Yes   | Event type. The value is fixed at **systemAutoStartup**, which can be called only by system applications. |
+| type | string | Yes   | Event type. The value is fixed at **systemAutoStartup**, which can be called only by system applications.|
 | callback  | [AutoStartupCallback](js-apis-inner-application-autoStartupCallback.md)   | Yes   | Callback used for the subscription.     |
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+See [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
 ```ts
-import AutoStartupManager from '@ohos.app.ability.AutoStartupManager';
-
-let autoStartupCallback = {
-  onAutoStartupOn(data) {
-    console.info('===> onAutoStartupOn data: ' + JSON.stringify(data));
-  },
-  onAutoStartupOff(data) {
-    console.info('===> onAutoStartupOff data: ' + JSON.stringify(data));
-  }
-}
+import AutoStartupManager from '@ohos.app.ability.autoStartupManager';
+import common from '@ohos.app.ability.common';
 
 try {
-  AutoStartupManager.on('systemAutoStartup', autoStartupCallback);
+  AutoStartupManager.on('systemAutoStartup', {
+    onAutoStartupOn(data: common.AutoStartupInfo) {
+      console.info('===> autostartupmanager onAutoStartupOn data: ' + JSON.stringify(data));
+    },
+    onAutoStartupOff(data: common.AutoStartupInfo) {
+      console.info('===> autostartupmanager onAutoStartupOff data: ' + JSON.stringify(data));
+    }
+  });
 } catch (err) {
-  console.info('====> autostartupmanager on throw err: ' + JSON.stringify(err));
+  console.info('===> autostartupmanager on throw err: ' + JSON.stringify(err));
 }
 ```
 
@@ -58,33 +67,42 @@ off(type: 'systemAutoStartup', callback?: AutoStartupCallback): void
 
 Unsubscribes from auto-startup status change events of an application component.
 
+**Required permissions**: ohos.permission.MANAGE_APP_BOOT
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
 
 | Name       | Type                                      | Mandatory  | Description            |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| type | string              | Yes   | Event type. The value is fixed at **systemAutoStartup**, which can be called only by system applications. |
+| type | string              | Yes   | Event type. The value is fixed at **systemAutoStartup**, which can be called only by system applications.|
 | callback | [AutoStartupCallback](js-apis-inner-application-autoStartupCallback.md)   | No| Callback that has been registered to listen for auto-startup status changes.|
+
+**Error codes**
+
+| ID| Error Message                                    |
+| -------- | -------------------------------------------- |
+| 16000050 | Internal error.                              |
+
+See [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
 ```ts
-import AutoStartupManager from '@ohos.app.ability.AutoStartupManager';
-
-let autoStartupCallback = {
-  onAutoStartupOn(data) {
-    console.info('===> onAutoStartupOn data: ' + JSON.stringify(data));
-  },
-  onAutoStartupOff(data) {
-    console.info('===> onAutoStartupOff data: ' + JSON.stringify(data));
-  }
-}
+import AutoStartupManager from '@ohos.app.ability.autoStartupManager';
+import common from '@ohos.app.ability.common';
 
 try {
-  AutoStartupManager.off('systemAutoStartup', autoStartupCallback);
+  AutoStartupManager.off('systemAutoStartup', {
+    onAutoStartupOn(data: common.AutoStartupInfo) {
+      console.info('===> autostartupmanager onAutoStartupOn data: ' + JSON.stringify(data));
+    },
+    onAutoStartupOff(data: common.AutoStartupInfo) {
+      console.info('===> autostartupmanager onAutoStartupOff data: ' + JSON.stringify(data));
+    }
+  });
 } catch (err) {
-  console.info('====> autostartupmanager off throw err: ' + JSON.stringify(err));
+  console.info('===> autostartupmanager off throw err: ' + JSON.stringify(err));
 }
 ```
 
@@ -93,6 +111,8 @@ try {
 setApplicationAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<void\>): void
 
 Sets an application component to automatically start upon system boot. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.MANAGE_APP_BOOT
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -103,10 +123,20 @@ Sets an application component to automatically start upon system boot. This API 
 | info | [AutoStartupInfo](js-apis-inner-application-autoStartupInfo.md) | Yes   | Information about the target application component.|
 | callback | AsyncCallback\<void\> | Yes| Callback used to return the result. If the setting is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
+**Error codes**
+
+| ID| Error Message                                    |
+| -------- | -------------------------------------------- |
+| 16000004 | Can not start invisible component.           |
+| 16000013 | The application is controlled by EDM.        |
+| 16000050 | Internal error.                              |
+
+See [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
 ```ts
-import AutoStartupManager from '@ohos.app.ability.AutoStartupManager';
+import AutoStartupManager from '@ohos.app.ability.autoStartupManager';
 
 try {
   AutoStartupManager.setApplicationAutoStartup({
@@ -126,6 +156,8 @@ setApplicationAutoStartup(info: AutoStartupInfo): Promise\<void\>
 
 Sets an application component to automatically start upon system boot. This API uses a promise to return the result.
 
+**Required permissions**: ohos.permission.MANAGE_APP_BOOT
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
@@ -140,18 +172,29 @@ Sets an application component to automatically start upon system boot. This API 
 | ------------- | ------------------------------------------------------------ |
 | Promise\<void\> | Promise that returns no value.|
 
+**Error codes**
+
+| ID| Error Message                                    |
+| -------- | -------------------------------------------- |
+| 16000004 | Can not start invisible component.           |
+| 16000013 | The application is controlled by EDM.        |
+| 16000050 | Internal error.                              |
+
+See [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
 ```ts
-import AutoStartupManager from '@ohos.app.ability.AutoStartupManager';
+import AutoStartupManager from '@ohos.app.ability.autoStartupManager';
+import { BusinessError } from '@ohos.base';
 
 try {
   AutoStartupManager.setApplicationAutoStartup({
     bundleName: 'com.example.autostartupapp',
     abilityName: 'EntryAbility'
-  }).then((data) => {
+  }).then((data: void) => {
     console.info('====> setApplicationAutoStartup data: ' + JSON.stringify(data));
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.info('====> setApplicationAutoStartup err: ' + JSON.stringify(err));
   });
 } catch (err) {
@@ -165,6 +208,8 @@ cancelApplicationAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<voi
 
 Cancels the auto-startup setting for an application component. This API uses an asynchronous callback to return the result.
 
+**Required permissions**: ohos.permission.MANAGE_APP_BOOT
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
@@ -174,10 +219,20 @@ Cancels the auto-startup setting for an application component. This API uses an 
 | info | [AutoStartupInfo](js-apis-inner-application-autoStartupInfo.md)   | Yes| Information about the target application component.|
 | callback | AsyncCallback\<void\> | Yes   | Callback used to return the result. If the cancellation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
+**Error codes**
+
+| ID| Error Message                                    |
+| -------- | -------------------------------------------- |
+| 16000004 | Can not start invisible component.           |
+| 16000013 | The application is controlled by EDM.        |
+| 16000050 | Internal error.                              |
+
+See [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
 ```ts
-import AutoStartupManager from '@ohos.app.ability.AutoStartupManager';
+import AutoStartupManager from '@ohos.app.ability.autoStartupManager';
 
 try {
   AutoStartupManager.cancelApplicationAutoStartup({
@@ -197,6 +252,8 @@ cancelApplicationAutoStartup(info: AutoStartupInfo): Promise\<void\>
 
 Cancels the auto-startup setting for an application component. This API uses a promise to return the result.
 
+**Required permissions**: ohos.permission.MANAGE_APP_BOOT
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
@@ -211,18 +268,29 @@ Cancels the auto-startup setting for an application component. This API uses a p
 | ------------- | ------------------------------------------------------------ |
 | Promise\<void\> | Promise that returns no value.|
 
+**Error codes**
+
+| ID| Error Message                                    |
+| -------- | -------------------------------------------- |
+| 16000004 | Can not start invisible component.           |
+| 16000013 | The application is controlled by EDM.        |
+| 16000050 | Internal error.                              |
+
+See [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
 ```ts
-import AutoStartupManager from '@ohos.app.ability.AutoStartupManager';
+import AutoStartupManager from '@ohos.app.ability.autoStartupManager';
+import { BusinessError } from '@ohos.base';
 
 try {
   AutoStartupManager.cancelApplicationAutoStartup({
     bundleName: 'com.example.autostartupapp',
     abilityName: 'EntryAbility'
-  }).then((data) => {
+  }).then((data: void) => {
     console.info('====> cancelApplicationAutoStartup data: ' + JSON.stringify(data));
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.info('====> cancelApplicationAutoStartup err: ' + JSON.stringify(err));
   });
 } catch (err) {
@@ -236,6 +304,8 @@ queryAllAutoStartupApplications(callback: AsyncCallback\<Array\<AutoStartupInfo\
 
 Obtains information about all auto-startup application components. This API uses an asynchronous callback to return the result.
 
+**Required permissions**: ohos.permission.MANAGE_APP_BOOT
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
@@ -244,10 +314,18 @@ Obtains information about all auto-startup application components. This API uses
 | --------- | ---------------------------------------- | ---- | -------------- |
 | callback  | AsyncCallback\<Array\<[AutoStartupInfo](js-apis-inner-application-autoStartupInfo.md)\>\> | Yes   | Callback used to return the result. If the information is obtained, **err** is **undefined** and **data** is an array of **<[AutoStartupInfo](js-apis-inner-application-autoStartupInfo.md)\>** objects; otherwise, **err** is an error object.     |
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+See [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
 ```ts
-import AutoStartupManager from '@ohos.app.ability.AutoStartupManager';
+import AutoStartupManager from '@ohos.app.ability.autoStartupManager';
 
 try {
   AutoStartupManager.queryAllAutoStartupApplications((err, data) => {
@@ -264,6 +342,8 @@ try {
 
 Obtains information about all auto-startup application components. This API uses a promise to return the result.
 
+**Required permissions**: ohos.permission.MANAGE_APP_BOOT
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Return value**
@@ -272,15 +352,25 @@ Obtains information about all auto-startup application components. This API uses
 | ------------------------------- | ------------------------------------------------------------ |
 | Promise\<Array\<[AutoStartupInfo](js-apis-inner-application-autoStartupInfo.md)\>\> | Promise used to return the information obtained.|
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+See [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
 ```ts
-import AutoStartupManager from '@ohos.app.ability.AutoStartupManager';
+import AutoStartupManager from '@ohos.app.ability.autoStartupManager';
+import common from '@ohos.app.ability.common';
+import { BusinessError } from '@ohos.base';
 
 try {
-  AutoStartupManager.queryAllAutoStartupApplications().then((data) => {
-    console.info('====> queryAllAutoStartupApplications OK');
-  }).catch((err) => {
+  AutoStartupManager.queryAllAutoStartupApplications().then((autoStartupInfo: common.AutoStartupInfo[]) => {
+    console.info('====> queryAllAutoStartupApplications data: ' + JSON.stringify(autoStartupInfo));
+  }).catch((err: BusinessError) => {
     console.info('====> queryAllAutoStartupApplications err: ' + JSON.stringify(err));
   });
 } catch (err) {

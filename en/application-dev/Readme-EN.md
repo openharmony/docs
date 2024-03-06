@@ -22,6 +22,7 @@
   - [Telephony Service](telephony/Readme-EN.md)
   - [Task Management](task-management/Readme-EN.md)
   - [Device Management](device/Readme-EN.md)
+  - [Accunt Management](account/Readme-EN.md)
   - [Device Usage Statistics](device-usage-statistics/Readme-EN.md)
   - [DFX](dfx/Readme-EN.md)
   - [Internationalization](internationalization/Readme-EN.md)

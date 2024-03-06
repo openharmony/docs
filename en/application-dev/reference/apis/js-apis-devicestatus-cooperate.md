@@ -14,11 +14,13 @@ The **cooperate** module implements screen hopping for two or more networked dev
 import cooperate from '@ohos.cooperate';
 ```
 
-## cooperate.prepareCooperate
+## cooperate.prepareCooperate<sup>(11+)</sup>
 
 prepareCooperate(callback: AsyncCallback&lt;void&gt;): void;
 
 Prepares for screen hopping. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.COOPERATE_MANAGER
 
 **System capability**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -45,11 +47,13 @@ try {
 }
 ```
 
-## cooperate.prepareCooperate
+## cooperate.prepareCooperate<sup>(11+)</sup>
 
 prepareCooperate(): Promise&lt;void&gt;;
 
 Prepares for screen hopping. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.COOPERATE_MANAGER
 
 **System capability**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -76,11 +80,13 @@ try {
 
 
 
-## cooperate.unprepareCooperate
+## cooperate.unprepareCooperate<sup>(11+)</sup>
 
 unprepareCooperate(callback: AsyncCallback&lt;void&gt;): void;
 
 Cancels the preparation for screen hopping. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.COOPERATE_MANAGER
 
 **System capability**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -105,11 +111,13 @@ try {
 }
 ```
 
-## cooperate.unprepareCooperate
+## cooperate.unprepareCooperate<sup>(11+)</sup>
 
 unprepareCooperate(): Promise&lt;void&gt;;
 
 Cancels the preparation for screen hopping. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.COOPERATE_MANAGER
 
 **System capability**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -136,11 +144,13 @@ try {
 
 
 
-## cooperate.activateCooperate
+## cooperate.activateCooperate<sup>(11+)</sup>
 
 activateCooperate(targetNetworkId: string, inputDeviceId: number, callback: AsyncCallback&lt;void&gt;): void;
 
 Starts screen hopping. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.COOPERATE_MANAGER
 
 **System capability**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -179,11 +189,13 @@ try {
 }
 ```
 
-## cooperate.activateCooperate
+## cooperate.activateCooperate<sup>(11+)</sup>
 
 activateCooperate(targetNetworkId: string, inputDeviceId: number): Promise&lt;void&gt;;
 
 Starts screen hopping. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.COOPERATE_MANAGER
 
 **System capability**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -227,11 +239,13 @@ try {
 
 
 
-## cooperate.deactivateCooperate
+## cooperate.deactivateCooperate<sup>(11+)</sup>
 
 deactivateCooperate(isUnchained: boolean, callback: AsyncCallback&lt;void&gt;): void;
 
 Stops screen hopping. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.COOPERATE_MANAGER
 
 **System capability**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -259,11 +273,13 @@ try {
 }
 ```
 
-## cooperate.deactivateCooperate
+## cooperate.deactivateCooperate<sup>(11+)</sup>
 
 deactivateCooperate(isUnchained: boolean): Promise&lt;void&gt;;
 
 Stops screen hopping. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.COOPERATE_MANAGER
 
 **System capability**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -296,11 +312,13 @@ try {
 
 
 
-## cooperate.getCooperateSwitchState
+## cooperate.getCooperateSwitchState<sup>(11+)</sup>
 
 getCooperateSwitchState(networkId: string, callback: AsyncCallback&lt;boolean&gt;): void;
 
 Obtains the screen hopping status of the target device. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.COOPERATE_MANAGER
 
 **System capability**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -329,11 +347,13 @@ try {
 }
 ```
 
-## cooperate.getCooperateSwitchState
+## cooperate.getCooperateSwitchState<sup>(11+)</sup>
 
 getCooperateSwitchState(networkId: string): Promise&lt;boolean&gt;;
 
 Obtains the screen hopping status of the target device. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.COOPERATE_MANAGER
 
 **System capability**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -367,11 +387,13 @@ try {
 
 
 
-## on('cooperateMessage')
+## on('cooperateMessage')<sup>(11+)</sup>
 
 on(type: 'cooperateMessage', callback: Callback&lt;CooperateMessage&gt;): void;
 
 Enables listening for screen hopping status change events.
+
+**Required permissions**: ohos.permission.COOPERATE_MANAGER
 
 **System capability**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -380,7 +402,7 @@ Enables listening for screen hopping status change events.
 | Name  | Type                                                 | Mandatory| Description                                |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------ |
 | type     | string                                                | Yes  | Event type. The value is **cooperateMessage**.  |
-| callback | Callback&lt;[CooperateMessage](#cooperatemessage)&gt; | Yes  | Callback used to return the result.|
+| callback | Callback&lt;[CooperateMessage](#cooperatemessage11)&gt; | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -398,11 +420,13 @@ try {
 
 
 
-## off('cooperateMessage')
+## off('cooperateMessage')<sup>(11+)</sup>
 
 off(type: 'cooperateMessage', callback?: Callback&lt;CooperateMessage&gt;): void;
 
 Disables listening for screen hopping status change events.
+
+**Required permissions**: ohos.permission.COOPERATE_MANAGER
 
 **System capability**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -411,7 +435,7 @@ Disables listening for screen hopping status change events.
 | Name  | Type                                                 | Mandatory| Description                                                        |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                                | Yes  | Event type. The value is **cooperate**.                               |
-| callback | Callback&lt;[CooperateMessage](#cooperatemessage)&gt; | No  | Callback to be unregistered. If this parameter is not specified, all callbacks registered by the current application will be unregistered.|
+| callback | Callback&lt;[CooperateMessage](#cooperatemessage11)&gt; | No  | Callback to be unregistered. If this parameter is not specified, all callbacks registered by the current application will be unregistered.|
 
 **Example**
 
@@ -449,35 +473,35 @@ try {
 
 
 
-## CooperateMessage
+## CooperateMessage<sup>(11+)</sup>
 
 Defines a screen hopping status change event.
 
 **System capability**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
-| Name   | Type          | Description                    |
-| --------- | -------------- | ------------------------ |
-| networkId | string         | Descriptor of the target device for screen hopping.|
-| state     | CooperateState | Screen hopping status.        |
+| Name     | Type          | Readable| Writable| Description                    |
+| --------- | -------------- | ---- | ---- | ------------------------ |
+| networkId | string         | Yes  | No  | Descriptor of the target device for screen hopping.|
+| state     | CooperateState | Yes  | No  | Screen hopping status.        |
 
 
 
-## CooperateState
+## CooperateState<sup>(11+)</sup>
 
 Defines the screen hopping status.
 
 **System capability**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
-| Name                          | Value  | Description                  |
-| ------------------------------ | ---- | ---------------------- |
-| COOPERATE_PREPARE              | 0    | The preparation for screen hopping is finished.    |
-| COOPERATE_UNPREPARE            | 1    | The preparation for screen hopping is cancelled.|
-| COOPERATE_ACTIVATE             | 2    | Screen hopping starts.    |
-| COOPERATE_ACTIVATE_SUCCESS     | 3    | Starting screen hopping succeeds.|
-| COOPERATE_ACTIVATE_FAILURE     | 4    | Starting screen hopping fails.|
-| COOPERATE_DEACTIVATE_SUCCESS   | 5    | Stopping screen hopping succeeds.|
-| COOPERATE_DEACTIVATE_FAILURE   | 6    | Stopping screen hopping fails.|
-| COOPERATE_SESSION_DISCONNECTED | 7    | The screen hopping session is disconnected.|
+| Name                          | Type  | Readable| Writable| Description                  |
+| ------------------------------ | ------ | ---- | ---- | ---------------------- |
+| COOPERATE_PREPARE              | number | Yes  | No  | The preparation for screen hopping is finished.    |
+| COOPERATE_UNPREPARE            | number | Yes  | No  | The preparation for screen hopping is cancelled.|
+| COOPERATE_ACTIVATE             | number | Yes  | No  | Screen hopping starts.    |
+| COOPERATE_ACTIVATE_SUCCESS     | number | Yes  | No  | Starting screen hopping succeeds.|
+| COOPERATE_ACTIVATE_FAILURE     | number | Yes  | No  | Starting screen hopping fails.|
+| COOPERATE_DEACTIVATE_SUCCESS   | number | Yes  | No  | Stopping screen hopping succeeds.|
+| COOPERATE_DEACTIVATE_FAILURE   | number | Yes  | No  | Stopping screen hopping fails.|
+| COOPERATE_SESSION_DISCONNECTED | number | Yes  | No  | The screen hopping session is disconnected.|
 
 
 
@@ -489,7 +513,7 @@ Prepares for screen hopping. This API uses an asynchronous callback to return th
 
 > **NOTE**
 >
-> This API is deprecated since API version 10. You are advised to use [cooperate.prepareCooperate](#cooperatepreparecooperate).
+> This API is deprecated since API version 10. You are advised to use [cooperate.prepareCooperate](#cooperatepreparecooperate11).
 
 **System capability**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -524,7 +548,7 @@ Prepares for screen hopping. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> This API is deprecated since API version 10. You are advised to use [cooperate.prepareCooperate](#cooperatepreparecooperate-1).
+> This API is deprecated since API version 10. You are advised to use [cooperate.prepareCooperate](#cooperatepreparecooperate11-1).
 
 **System capability**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -561,7 +585,7 @@ Cancels the preparation for screen hopping. This API uses an asynchronous callba
 
 > **NOTE**
 >
-> This API is deprecated since API version 10. You are advised to use [cooperate.unprepareCooperate](#cooperateunpreparecooperate).
+> This API is deprecated since API version 10. You are advised to use [cooperate.unprepareCooperate](#cooperateunpreparecooperate11).
 
 **System capability**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -594,7 +618,7 @@ Cancels the preparation for screen hopping. This API uses a promise to return th
 
 > **NOTE**
 >
-> This API is deprecated since API version 10. You are advised to use [cooperate.unprepareCooperate](#cooperateunpreparecooperate-1).
+> This API is deprecated since API version 10. You are advised to use [cooperate.unprepareCooperate](#cooperateunpreparecooperate11-1).
 
 **System capability**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -629,7 +653,7 @@ Starts screen hopping. This API uses an asynchronous callback to return the resu
 
 > **NOTE**
 >
-> This API is deprecated since API version 10. You are advised to use [cooperate.activateCooperate](#cooperateactivatecooperate).
+> This API is deprecated since API version 10. You are advised to use [cooperate.activateCooperate](#cooperateactivatecooperate11).
 
 **System capability**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -676,7 +700,7 @@ Starts screen hopping. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> This API is deprecated since API version 10. You are advised to use [cooperate.activateCooperate](#cooperateactivatecooperate-1).
+> This API is deprecated since API version 10. You are advised to use [cooperate.activateCooperate](#cooperateactivatecooperate11-1).
 
 **System capability**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -730,7 +754,7 @@ Stops screen hopping. This API uses an asynchronous callback to return the resul
 
 > **NOTE**
 >
-> This API is deprecated since API version 10. You are advised to use [cooperate.activateCooperate](#cooperateactivatecooperate-1).
+> This API is deprecated since API version 10. You are advised to use [cooperate.deactivateCooperate](#cooperatedeactivatecooperate11).
 
 **System capability**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -768,7 +792,7 @@ Stops screen hopping. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> This API is deprecated since API version 10. You are advised to use [cooperate.deactivateCooperate](#cooperatedeactivatecooperate-1).
+> This API is deprecated since API version 10. You are advised to use [cooperate.deactivateCooperate](#cooperatedeactivatecooperate11-1).
 
 **System capability**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -813,7 +837,7 @@ Obtains the screen hopping status of the target device. This API uses an asynchr
 
 > **NOTE**
 >
-> This API is deprecated since API version 10. You are advised to use [cooperate.deactivateCooperate](#cooperatedeactivatecooperate-1).
+> This API is deprecated since API version 10. You are advised to use [cooperate.deactivateCooperate](#cooperatedeactivatecooperate11).
 
 **System capability**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -850,7 +874,7 @@ Obtains the screen hopping status of the target device. This API uses a promise 
 
 > **NOTE**
 >
-> This API is deprecated since API version 10. You are advised to use [cooperate.getCooperateSwitchState](#cooperategetcooperateswitchstate-1).
+> This API is deprecated since API version 10. You are advised to use [cooperate.getCooperateSwitchState](#cooperategetcooperateswitchstate11-1).
 
 **System capability**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -896,7 +920,7 @@ Enables listening for screen hopping status change events.
 
 > **NOTE**
 >
-> This API is deprecated since API version 10. You are advised to use [on('cooperateMessage')](#oncooperatemessage).
+> This API is deprecated since API version 10. You are advised to use [on('cooperateMessage')](#oncooperatemessage11).
 
 **System capability**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -905,7 +929,7 @@ Enables listening for screen hopping status change events.
 | Name               | Type                                                            | Mandatory| Description                           |
 | --------             | ----------------------------                                    | ---- | ----------------------------   |
 | type                 | string                                                          |  Yes | Event type. The value is **cooperate**.|
-| callback             | Callback&lt;{ networkId: string, msg: [CooperateMsg](#cooperatemsg) }&gt; |  Yes | Callback used to return the result.|
+| callback             | Callback&lt;{ networkId: string, msg: [CooperateMsg](#cooperatemsgdeprecated) }&gt; |  Yes | Callback used to return the result.|
 
 
 
@@ -933,7 +957,7 @@ Disables listening for screen hopping status change events.
 
 > **NOTE**
 >
-> This API is deprecated since API version 10. You are advised to use [off('cooperateMessage')](#offcooperatemessage).
+> This API is deprecated since API version 10. You are advised to use [off('cooperateMessage')](#offcooperatemessage11).
 
 **System capability**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -987,7 +1011,7 @@ Represents a screen hopping message notification.
 
 > **NOTE**
 >
-> This API is deprecated since API version 10. You are advised to use [CooperateMessage](#cooperatemessage).
+> This API is deprecated since API version 10. You are advised to use [CooperateMessage](#cooperatemessage11).
 
 **System capability**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -997,7 +1021,7 @@ Represents a screen hopping message notification.
 | COOPERATE_UNPREPARE |  1  |  The preparation for screen hopping is cancelled. |
 | COOPERATE_ACTIVATE |  2   |  Screen hopping starts. |
 | COOPERATE_ACTIVATE_SUCCESS | 3 | Starting screen hopping succeeds.|
-| COOPERATE_ACTIVATE_FAIL | 4 | Starting screen hopping fails.|
+| COOPERATE_ACTIVATE_FAILURE | 4 | Starting screen hopping fails.|
 | COOPERATE_DEACTIVATE_SUCCESS | 5 | Stopping screen hopping succeeds.|
-| COOPERATE_DEACTIVATE_FAIL | 6 | Stopping screen hopping fails.|
+| COOPERATE_DEACTIVATE_FAILURE | 6 | Stopping screen hopping fails.|
 | COOPERATE_SESSION_DISCONNECTED | 7 | The screen hopping session is disconnected.|

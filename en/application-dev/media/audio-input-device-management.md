@@ -1,6 +1,6 @@
 # Audio Input Device Management (ArkTS)
 
-If a device is connected to multiple audio input devices, you can use **AudioRoutingManager** to specify an audio input device to record audio. For details about the API reference, see [AudioRoutingManager](../reference/apis/js-apis-audio.md#audioroutingmanager9).
+If a device is connected to multiple audio input devices, you can use **AudioRoutingManager** to specify an audio input device to record audio. For details about the API reference, see [AudioRoutingManager](../reference/apis-audio-kit/js-apis-audio.md#audioroutingmanager9).
 
 ## Creating an AudioRoutingManager Instance
 
@@ -59,7 +59,7 @@ audioRoutingManager.off('deviceChange', (deviceChanged: audio.DeviceChangeAction
 
 ## Selecting an Audio Input Device (for System Applications only)
 
-Currently, only one input device can be selected, and the device ID is used as the unique identifier. For details about audio device descriptors, see [AudioDeviceDescriptors](../reference/apis/js-apis-audio.md#audiodevicedescriptors).
+Currently, only one input device can be selected, and the device ID is used as the unique identifier. For details about audio device descriptors, see [AudioDeviceDescriptors](../reference/apis-audio-kit/js-apis-audio.md#audiodevicedescriptors).
 
 > **NOTE**
 > 

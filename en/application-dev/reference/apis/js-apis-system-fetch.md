@@ -1,7 +1,7 @@
 # @system.fetch (Data Request)
 
 > **NOTE**
-> - The APIs of this module are no longer maintained since API version 6. You are advised to use [`@ohos.net.http`](js-apis-http.md) instead.
+> - The APIs of this module are no longer maintained since API version 6. You are advised to use [`@ohos.net.http`](js-apis-http.md).
 > 
 > - The initial APIs of this module are supported since API version 3. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
@@ -40,16 +40,16 @@ Obtains data through a network.
 | method | string | No| Request method. The default value is **GET**. The value can be **OPTIONS**, **GET**, **HEAD**, **POST**, **PUT**, **DELETE **or **TRACE**.|
 | responseType | string | No| Response type. The return type can be text or JSON. By default, the return type is determined based on **Content-Type** in the header returned by the server. For details, see return values in the **success** callback.|
 | success | Function | No| Called when the API call is successful. The return value is defined by [FetchResponse](#fetchresponse).|
-| fail | Function | No| Called when API call has failed.|
-| complete | Function | No| Called when the API call is complete.|
+| fail | Function | No| Called when an API call fails.|
+| complete | Function | No| Called when an API call is complete.|
 
 **Table 1** Mapping between data and Content-Type
 
 | data | Content-Type | Description|
 | -------- | -------- | -------- |
-| string | Not set| The default value of Content-Type is **text/plain**, and the value of data is used as the request body.|
+| string | Left unspecified| The default value of Content-Type is **text/plain**, and the value of data is used as the request body.|
 | string | Any type| The value of data is used as the request body.|
-| Object | Not set| The default value of **Content-Type** is **application/x-www-form-urlencoded**. The **data** value is encoded based on the URL rule and appended in the request body.|
+| Object | Left unspecified| The default value of **Content-Type** is **application/x-www-form-urlencoded**. The **data** value is encoded based on the URL rule and appended in the request body.|
 | Object | application/x-www-form-urlencoded | The value of data is encoded based on the URL rule and is used as the request body.|
 
 ## FetchResponse<sup>3+</sup>
@@ -96,7 +96,7 @@ export default {
 
 
 > **NOTE**
->   HTTPS is supported by default. To support HTTP, you need to add **"network"** to the **config.json** file, and set the attribute **"cleartextTraffic"** to **true**. That is:
+>   HTTPS is supported by default. To support HTTP, you need to add **"network"** to the **config.json** file, and set the attribute **"cleartextTraffic"** to **true**, as shown below:
 >   
 > ```
 > {

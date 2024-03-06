@@ -1546,7 +1546,7 @@ abilityDelegator.waitAbilityStageMonitor({
 
 ### setMockList<sup>11+</sup>
 
-setMockList(mockList: { [key: string]: string }): void
+setMockList(mockList: Record\<string, string>): void
 
 Sets a list of mock data.
 
@@ -1556,7 +1556,7 @@ Sets a list of mock data.
 
 | Name  | Type                     | Mandatory| Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| mockList | { [key: string]: string } | Yes  | Key-value object of the mock, where **key** is the target path to be replaced and **value** is the path of the mock implementation to be used for the replacement.|
+| mockList | Record\<string, string> | Yes  | Key-value object of the mock, where **key** is the target path to be replaced and **value** is the path of the mock implementation to be used for the replacement.|
 
 **Error codes**
 

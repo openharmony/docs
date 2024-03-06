@@ -5,10 +5,10 @@ The **<Web\>** component can be used to display web pages. It can be used with t
 > **NOTE**
 >
 > - This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
-> - You can preview how this component looks on a real device. The preview is not yet available in the DevEco Studio Previewer.
+> - You can preview how this component looks on a real device, but not in the DevEco Studio Previewer.
 
 ## Required Permissions
-To use online resources, the application must have the **ohos.permission.INTERNET** permission. For details about how to apply for a permission, see [Declaring Permissions](../../security/accesstoken-guidelines.md).
+To use online resources, the application must have the **ohos.permission.INTERNET** permission. For details about how to apply for a permission, see [Declaring Permissions](../../security/AccessToken/declare-permissions.md).
 
 ## Child Components
 
@@ -16,7 +16,7 @@ Not supported
 
 ## APIs
 
-Web(options: { src: ResourceStr, controller: WebviewController | WebController})
+Web(options: { src: ResourceStr, controller: WebviewController | WebController, incognitoMode? : boolean})
 
 > **NOTE**
 >
@@ -30,10 +30,12 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | src        | [ResourceStr](ts-types.md#resourcestr)   | Yes   | Address of a web page resource. To access local resource files, use the **$rawfile** or **resource** protocol. To load a local resource file in the sandbox outside of the application package, use **file://** to specify the path of the sandbox.|
 | controller | [WebviewController<sup>9+</sup>](../apis/js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | Yes   | Controller. This API is deprecated since API version 9. You are advised to use **WebviewController** instead.|
+| incognitoMode<sup>11+</sup> | boolean | No| Whether to enable incognito mode. The value **true** means to enable incognito mode, and **false** means the opposite.<br> Default value: **false**|
 
 **Example**
 
-  Example of loading online web pages:
+Example of loading online web pages:
+
   ```ts
   // xxx.ets
   import web_webview from '@ohos.web.webview'
@@ -50,7 +52,26 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
   }
   ```
 
-  Example of loading local web pages:
+Example of loading online web pages in incognito mode:
+
+   ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller, incognitoMode: true })
+      }
+    }
+  }
+   ```
+
+Example of loading local web pages:
+
   ```ts
   // xxx.ets
   import web_webview from '@ohos.web.webview'
@@ -85,86 +106,90 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
   }
   ```
 
-  Example of loading local resource files in the sandbox:
+Example of loading local resource files in the sandbox:
 
-  1. Obtain the sandbox path through the constructed singleton object **GlobalContext**.
-  ```ts
-  // GlobalContext.ts
-  export class GlobalContext {
-    private constructor() {}
-    private static instance: GlobalContext;
-    private _objects = new Map<string, Object>();
+1. Obtain the sandbox path through the constructed singleton object **GlobalContext**.
 
-    public static getContext(): GlobalContext {
-      if (!GlobalContext.instance) {
-        GlobalContext.instance = new GlobalContext();
-      }
-      return GlobalContext.instance;
-    }
+   ```ts
+   // GlobalContext.ts
+   export class GlobalContext {
+     private constructor() {}
+     private static instance: GlobalContext;
+     private _objects = new Map<string, Object>();
 
-    getObject(value: string): Object | undefined {
-      return this._objects.get(value);
-    }
+     public static getContext(): GlobalContext {
+       if (!GlobalContext.instance) {
+         GlobalContext.instance = new GlobalContext();
+       }
+       return GlobalContext.instance;
+     }
 
-    setObject(key: string, objectClass: Object): void {
-      this._objects.set(key, objectClass);
-    }
-  }
-  ```
+     getObject(value: string): Object | undefined {
+       return this._objects.get(value);
+     }
 
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  import { GlobalContext } from '../GlobalContext.ts'
+     setObject(key: string, objectClass: Object): void {
+       this._objects.set(key, objectClass);
+     }
+   }
+   ```
 
-  let url = 'file://' + GlobalContext.getContext().getObject("filesDir") + '/index.html'
+   ```ts
+   // xxx.ets
+   import web_webview from '@ohos.web.webview'
+   import { GlobalContext } from '../GlobalContext'
 
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    build() {
-      Column() {
-        // Load the files in the sandbox.
-        Web({ src: url, controller: this.controller })
-      }
-    }
-  }
-  ```
+   let url = 'file://' + GlobalContext.getContext().getObject("filesDir") + '/index.html'
 
-  2. Modify the **EntryAbility.ts** file.
-  The following uses **filesDir** as an example to describe how to obtain the path of the sandbox. For details about how to obtain other paths, see [Obtaining Application File Paths](../../application-models/application-context-stage.md#obtaining-application-file-paths).
-  ```ts
-  // xxx.ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-  import Want from '@ohos.app.ability.Want';
-  import web_webview from '@ohos.web.webview';
-  import { GlobalContext } from '../GlobalContext'
+   @Entry
+   @Component
+   struct WebComponent {
+     controller: web_webview.WebviewController = new web_webview.WebviewController()
+     build() {
+       Column() {
+         // Load the files in the sandbox.
+         Web({ src: url, controller: this.controller })
+       }
+     }
+   }
+   ```
 
-  export default class EntryAbility extends UIAbility {
-      onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-          // Data synchronization between the UIAbility component and UI can be implemented by binding filesDir to the GlobalContext object.
-          GlobalContext.getContext().setObject("filesDir", this.context.filesDir);
-          console.log("Sandbox path is " + GlobalContext.getContext().getObject("filesDir"))
-      }
-  }
-  ```
+2. Modify the **EntryAbility.ets** file.
 
-  HTML file to be loaded:
-  ```html
-  <!-- index.html -->
-  <!DOCTYPE html>
-  <html>
-      <body>
-          <p>Hello World</p>
-      </body>
-  </html>
-  ```
+   The following uses **filesDir** as an example to describe how to obtain the path of the sandbox. For details about how to obtain other paths, see [Obtaining Application File Paths](../../application-models/application-context-stage.md#obtaining-application-file-paths).
+
+   ```ts
+   // xxx.ts
+   import UIAbility from '@ohos.app.ability.UIAbility';
+   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+   import Want from '@ohos.app.ability.Want';
+   import web_webview from '@ohos.web.webview';
+   import { GlobalContext } from '../GlobalContext'
+
+   export default class EntryAbility extends UIAbility {
+       onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+           // Data synchronization between the UIAbility component and UI can be implemented by binding filesDir to the GlobalContext object.
+           GlobalContext.getContext().setObject("filesDir", this.context.filesDir);
+           console.log("Sandbox path is " + GlobalContext.getContext().getObject("filesDir"))
+       }
+   }
+   ```
+
+   HTML file to be loaded:
+
+   ```html
+   <!-- index.html -->
+   <!DOCTYPE html>
+   <html>
+       <body>
+           <p>Hello World</p>
+       </body>
+   </html>
+   ```
 
 ## Attributes
 
-The following universal attributes are supported: [aspectRatio](ts-universal-attributes-layout-constraints.md#attributes), [backdropBlur](ts-universal-attributes-image-effect.md#attributes), [backgroundColor](ts-universal-attributes-attribute-modifier.md#attributes), [bindContentCover](ts-universal-attributes-modal-transition.md#attributes), [bindContextMenu](ts-universal-attributes-menu.md#attributes), [bindMenu](ts-universal-attributes-menu.md#attributes), [bindSheet](ts-universal-attributes-sheet-transition.md#attributes), [blur](ts-universal-attributes-image-effect.md#attributes), [border](ts-universal-attributes-border.md#attributes), [borderColor](ts-universal-attributes-border.md#attributes), [borderRadius](ts-universal-attributes-border.md#attributes), [borderStyle](ts-universal-attributes-border.md#attributes), [borderWidth](ts-universal-attributes-border.md#attributes), [clip](ts-universal-attributes-sharp-clipping.md#attributes), [constraintSize](ts-universal-attributes-size.md#attributes), [defaultFocus](ts-universal-attributes-focus.md#attributes), [focusable](ts-universal-attributes-focus.md#attributes), [tabIndex](ts-universal-attributes-focus.md#attributes), [groupDefaultFocus](ts-universal-attributes-focus.md#attributes), [focusOnTouch](ts-universal-attributes-focus.md#attributes), [displayPriority](ts-universal-attributes-layout-constraints.md#attributes), [draggable](ts-universal-attributes-drag-drop.md#attributes), [enabled](ts-universal-attributes-enable.md#attributes), [flexBasis](ts-universal-attributes-flex-layout.md#attributes), [flexGrow](ts-universal-attributes-flex-layout.md#attributes), [flexShrink](ts-universal-attributes-flex-layout.md#attributes), [layoutWeight](ts-universal-attributes-flex-layout.md#attributes), [id](ts-universal-attributes-component-id.md#attributes), [gridOffset](ts-universal-attributes-grid.md#attributes), [gridSpan](ts-universal-attributes-grid.md#attributes), [useSizeType](ts-universal-attributes-grid.md#attributes), [height](ts-universal-attributes-size.md#attributes), [touchable](ts-universal-attributes-click.md#attributes), [margin](ts-universal-attributes-size.md#attributes), [markAnchor](ts-universal-attributes-location.md#attributes), [mask](ts-universal-attributes-sharp-clipping.md#attributes), [offset](ts-universal-attributes-location.md#attributes), [width](ts-universal-attributes-size.md#attributes), [zIndex](ts-universal-attributes-z-order.md#attributes), [visibility](ts-universal-attributes-visibility.md#attributes), [rotate](ts-universal-attributes-transformation.md#attributes), [scale](ts-universal-attributes-transformation.md#attributes), [transform](ts-universal-attributes-transformation.md#attributes), [responseRegion](ts-universal-attributes-touch-target.md#attributes), [padding](ts-universal-attributes-size.md#attributes), [size](ts-universal-attributes-size.md#attributes), [stateStyles](ts-universal-attributes-polymorphic-style.md#attributes), [opacity](ts-universal-attributes-opacity.md#attributes), [shadow](ts-universal-attributes-image-effect.md#attributes), [gesture](ts-gesture-settings.md#binding gesture recognition), [sharedTransition](ts-transition-animation-shared-elements.md#attributes), and [transition](ts-transition-animation-component.md#attributes).
+The following universal attributes are supported: [aspectRatio](ts-universal-attributes-layout-constraints.md#aspectratio), [backdropBlur](ts-universal-attributes-image-effect.md#backdropblur), [backgroundColor](ts-universal-attributes-background.md#backgroundcolor), [bindContentCover](ts-universal-attributes-modal-transition.md#bindcontentcover), [bindContextMenu](ts-universal-attributes-menu.md#bindcontextmenu8), [bindMenu ](ts-universal-attributes-menu.md#bindmenu), [bindSheet](ts-universal-attributes-sheet-transition.md#bindsheet), [borderColor](ts-universal-attributes-border.md#bordercolor), [borderRadius](ts-universal-attributes-border.md#borderradius), [borderStyle](ts-universal-attributes-border.md#borderstyle), [borderWidth](ts-universal-attributes-border.md#borderwidth), [clip](ts-universal-attributes-sharp-clipping.md#clip), [constraintSize](ts-universal-attributes-size.md#constraintsize), [defaultFocus](ts-universal-attributes-focus.md#defaultfocus9), [focusable](ts-universal-attributes-focus.md#focusable), [tabIndex](ts-universal-attributes-focus.md#tabindex9), [groupDefaultFocus](ts-universal-attributes-focus.md#groupdefaultfocus9), [focusOnTouch](ts-universal-attributes-focus.md#focusontouch9), [displayPriority](ts-universal-attributes-layout-constraints.md#displaypriority), [enabled](ts-universal-attributes-enable.md#enabled), [flexBasis](ts-universal-attributes-flex-layout.md#flexbasis), [flexGrow](ts-universal-attributes-flex-layout.md#flexgrow), [flexShrink](ts-universal-attributes-flex-layout.md#flexshrink), [layoutWeight](ts-universal-attributes-size.md#layoutweight), [id](ts-universal-attributes-component-id.md), [gridOffset](ts-universal-attributes-grid.md), [gridSpan](ts-universal-attributes-grid.md), [useSizeType](ts-universal-attributes-grid.md), [height](ts-universal-attributes-size.md#height), [touchable](ts-universal-attributes-click.md), [margin](ts-universal-attributes-size.md#margin), [markAnchor](ts-universal-attributes-location.md#markanchor), [offset](ts-universal-attributes-location.md#offset), [width](ts-universal-attributes-size.md#width), [zIndex](ts-universal-attributes-z-order.md#zindex), [visibility](ts-universal-attributes-visibility.md#visibility), [scale](ts-universal-attributes-transformation.md#scale), [translate](ts-universal-attributes-transformation.md#translate), [responseRegion](ts-universal-attributes-touch-target.md#responseregion), [size](ts-universal-attributes-size.md#size), [stateStyles](ts-universal-attributes-polymorphic-style.md#statestyles), [opacity](ts-universal-attributes-opacity.md#opacity), [shadow](ts-universal-attributes-image-effect.md#shadow), [sharedTransition](ts-transition-animation-shared-elements.md), [transition](ts-transition-animation-component.md)
 
 ### domStorageAccess
 
@@ -759,7 +784,7 @@ Sets the cache mode.
 
 | Name      | Type                       | Mandatory  | Default Value              | Description     |
 | --------- | --------------------------- | ---- | ----------------- | --------- |
-| cacheMode | [CacheMode](#cachemode)| Yes   | CacheMode.Default | Cache mode to set.|
+| cacheMode | [CacheMode](#cachemode9) | Yes   | CacheMode.Default | Cache mode to set.|
 
 **Example**
 
@@ -779,6 +804,36 @@ Sets the cache mode.
       }
     }
   }
+  ```
+
+### copyOptions<sup>11+</sup>
+
+copyOptions(value: CopyOptions)
+
+Sets the pasteboard copy options.
+
+**Parameters**
+
+| Name      | Type                       | Mandatory  | Default Value              | Description     |
+| --------- | --------------------------- | ---- | ----------------- | --------- |
+| value | [CopyOptions](ts-appendix-enums.md#copyoptions9) | Yes   | CopyOptions.Cross_Device | Pasteboard copy options.|
+
+**Example**
+
+  ```ts
+import web_webview from '@ohos.web.webview'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  build() {
+    Column() {
+      Web({ src: 'www.example.com', controller: this.controller })
+        .copyOptions(CopyOptions.None)
+    }
+  }
+}
   ```
 
 ### textZoomAtio<sup>(deprecated)</sup>
@@ -855,7 +910,7 @@ Sets the scale factor of the entire page. The default value is 100%.
 
 | Name    | Type  | Mandatory  | Default Value | Description                         |
 | ------- | ------ | ---- | ---- | ----------------------------- |
-| percent | number | Yes   | 100  | Scale factor of the entire page.<br>Value range: 1 to 100|
+| percent | number | Yes   | 100  | Scale factor of the entire page.|
 
 **Example**
 
@@ -1558,6 +1613,65 @@ struct Index {
 </html>
 ```
 
+### javaScriptOnDocumentEnd<sup>11+</sup>
+
+javaScriptOnDocumentEnd(scripts: Array\<ScriptItem>)
+
+Injects a JavaScript script into the **\<Web>** component. When the specified page or document starts to be loaded, the script is executed on any page whose source matches **scriptRules**.
+
+> **NOTE**
+>
+> - The script runs before any JavaScript code of the page, when the DOM tree has been loaded and rendered.
+
+**Parameters**
+
+| Name    | Type                               | Mandatory  | Default Value | Description              |
+| ------- | ----------------------------------- | ---- | ---- | ------------------ |
+| scripts | Array\<[ScriptItem](#scriptitem11)> | Yes   | -    | Script item array to be injected.|
+
+**Example**
+
+  ```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+
+@Entry
+@Component
+struct Index {
+  controller: web_webview.WebviewController = new web_webview.WebviewController()
+  private jsStr: string =
+    "window.document.getElementById(\"result\").innerHTML = 'this is msg from javaScriptOnDocumentEnd'";
+  @State scripts: Array<ScriptItem> = [
+    { script: this.jsStr, scriptRules: ["*"] }
+  ];
+
+  build() {
+    Column({ space: 20 }) {
+      Web({ src: $rawfile('index.html'), controller: this.controller })
+        .javaScriptAccess(true)
+        .domStorageAccess(true)
+        .backgroundColor(Color.Grey)
+        .javaScriptOnDocumentEnd(this.scripts)
+        .width('100%')
+        .height('100%')
+    }
+  }
+}
+  ```
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+</head>
+<body style="font-size: 30px;">
+Hello world!
+<div id="result">test msg</div>
+</body>
+</html>
+```
+
 ### layoutMode<sup>11+</sup>
 
 layoutMode(mode: WebLayoutMode)
@@ -1624,17 +1738,48 @@ Sets nested scrolling options.
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .nestedScroll({
-            scrollForward: NestedScrollOptions.SELF_FIRST,
-            scrollBackward: NestedScrollOptions.SELF_FIRST,
+            scrollForward: NestedScrollMode.SELF_FIRST,
+            scrollBackward: NestedScrollMode.SELF_FIRST,
           })
       }
     }
   }
   ```
+### enableNativeEmbedMode<sup>11+</sup>
+enableNativeEmbedMode(mode: boolean)
+
+Specifies whether to enable the same-layer rendering feature. By default, this feature is disabled.
+
+
+**Parameters**
+
+| Name  | Type                     | Mandatory  | Default Value               | Description            |
+| ----- | ---------------------------------------- | ---- | ------------------| ---------------- |
+| mode |  boolean | Yes   | false | Whether to enable the same-layer rendering feature.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .enableNativeEmbedMode(true)
+      }
+    }
+  }
+  ```
+
+
 
 ## Events
 
-The following universal events are supported: [onAppear](ts-universal-events-show-hide.md#events), [onDisAppear](ts-universal-events-show-hide.md#events), [onBlur](ts-universal-focus-event.md#events), [onFocus](ts-universal-focus-event.md#events), [onDragEnd](ts-universal-events-drag-drop.md#events). [onDragEnter](ts-universal-events-drag-drop.md#events), [onDragStart](ts-universal-events-drag-drop.md#events), [onDragMove](ts-universal-events-drag-drop.md#events), [onDragLeave](ts-universal-events-drag-drop.md#events), [onDrop](ts-universal-events-drag-drop.md#events), [onHover](ts-universal-mouse-key.md#events), [onMouse](ts-universal-mouse-key.md#events), [onKeyEvent](ts-universal-events-key.md#events), [onTouch](ts-universal-events-touch.md#events), and [onVisibleAreaChange](ts-universal-component-visible-area-change-event.md#events).
+The following universal events are supported: [onAppear](ts-universal-events-show-hide.md#onappear), [onDisAppear](ts-universal-events-show-hide.md#ondisappear), [onBlur](ts-universal-focus-event.md#onblur), [onFocus](ts-universal-focus-event.md#onfocus), [onDragEnd](ts-universal-events-drag-drop.md#ondragend), [onDragEnter](ts-universal-events-drag-drop.md#ondragenter), [onDragStart](ts-universal-events-drag-drop.md#ondragstart), [onDragMove](ts-universal-events-drag-drop.md#ondragmove), [onDragLeave](ts-universal-events-drag-drop.md#ondragleave), [onDrop](ts-universal-events-drag-drop.md#ondrop), [onHover](ts-universal-mouse-key.md#onhover), [onMouse](ts-universal-mouse-key.md#onmouse), [onKeyEvent](ts-universal-events-key.md#onkeyevent), [onTouch](ts-universal-events-touch.md#ontouch), [onVisibleAreaChange](ts-universal-component-visible-area-change-event.md#onvisibleareachange)
 
 ### onAlert
 
@@ -1654,7 +1799,7 @@ Called when **alert()** is invoked to display an alert dialog box on the web pag
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | If the callback returns **true**, the application can use the system dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to instruct the **\<Web>** component to exit the current page based on the user operation. If the callback returns **false**, the **\<Web>** component cannot trigger the system dialog box.|
+| boolean | If the callback returns **true**, the application can use the system dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to instruct the **\<Web>** component to exit the current page based on the user operation. If the callback returns **false**, the custom dialog box drawn in the function is ineffective.|
 
 **Example**
 
@@ -1738,7 +1883,7 @@ Called when this page is about to exit after the user refreshes or closes the pa
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | If the callback returns **true**, the application can use the system dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to instruct the **\<Web>** component to exit the current page based on the user operation. If the callback returns **false**, the **\<Web>** component cannot trigger the system dialog box.|
+| boolean | If the callback returns **true**, the application can use the system dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to instruct the **\<Web>** component to exit the current page based on the user operation. If the callback returns **false**, the custom dialog box drawn in the function is ineffective.|
 
 **Example**
 
@@ -1917,7 +2062,7 @@ Triggered when **prompt()** is invoked by the web page.
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | If the callback returns **true**, the application can use the system dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to instruct the **\<Web>** component to exit the current page based on the user operation. If the callback returns **false**, the **\<Web>** component cannot trigger the system dialog box.|
+| boolean | If the callback returns **true**, the application can use the system dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to instruct the **\<Web>** component to exit the current page based on the user operation. If the callback returns **false**, the custom dialog box drawn in the function is ineffective.|
 
 **Example**
 
@@ -2394,7 +2539,7 @@ Called when the rendering process exits abnormally.
 
 | Name             | Type                                    | Description            |
 | ---------------- | ---------------------------------------- | ---------------- |
-| renderExitReason | [RenderExitReason](#renderexitreason)| Cause for the abnormal exit of the rendering process.|
+| renderExitReason | [RenderExitReason](#renderexitreason9) | Cause for the abnormal exit of the rendering process.|
 
 **Example**
 
@@ -2437,7 +2582,7 @@ Called to process an HTML form whose input type is **file**, in response to the 
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | The value **true** means that the pop-up window provided by the system is displayed. If the callback returns **false**, the **\<Web>** component cannot trigger the system dialog box.|
+| boolean | The value **true** means that the pop-up window provided by the system is displayed. If the callback returns **false**, the custom dialog box drawn in the function is ineffective.|
 
 **Example**
 
@@ -2855,152 +3000,151 @@ Called when an SSL client certificate request is received.
 
   This example shows two-way authentication when interconnection with certificate management is supported.
 
-1. Construct the singleton object **GlobalContext**.
+  1. Construct the singleton object **GlobalContext**.
 
-   ```ts
-   // GlobalContext.ts
-   export class GlobalContext {
-     private constructor() {}
-     private static instance: GlobalContext;
-     private _objects = new Map<string, Object>();
+     ```ts
+     // GlobalContext.ts
+     export class GlobalContext {
+       private constructor() {}
+       private static instance: GlobalContext;
+       private _objects = new Map<string, Object>();
 
-     public static getContext(): GlobalContext {
-       if (!GlobalContext.instance) {
-         GlobalContext.instance = new GlobalContext();
-       }
-       return GlobalContext.instance;
-     }
-
-     getObject(value: string): Object | undefined {
-       return this._objects.get(value);
-     }
-
-     setObject(key: string, objectClass: Object): void {
-       this._objects.set(key, objectClass);
-     }
-   }
-   ```
-
-   ​
-
-2. Implement two-way authentication.
-
-   ```ts
-   // xxx.ets API10
-   import common from '@ohos.app.ability.common';
-   import Want from '@ohos.app.ability.Want';
-   import web_webview from '@ohos.web.webview'
-   import { BusinessError } from '@ohos.base';
-   import bundleManager from '@ohos.bundle.bundleManager'
-   import { GlobalContext } from '../GlobalContext'
-
-   let uri = "";
-
-   export default class CertManagerService {
-     private static sInstance: CertManagerService;
-     private authUri = "";
-     private appUid = "";
-
-     public static getInstance(): CertManagerService {
-       if (CertManagerService.sInstance == null) {
-         CertManagerService.sInstance = new CertManagerService();
-       }
-       return CertManagerService.sInstance;
-     }
-
-     async grantAppPm(callback: (message: string) => void) {
-       let message = '';
-       let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION;
-       // Note: Replace com.example.myapplication with the actual application name.
-       try {
-         bundleManager.getBundleInfoForSelf(bundleFlags).then((data) => {
-           console.info('getBundleInfoForSelf successfully. Data: %{public}s', JSON.stringify(data));
-           this.appUid = data.appInfo.uid.toString();
-         }).catch((err: BusinessError) => {
-           console.error('getBundleInfoForSelf failed. Cause: %{public}s', err.message);
-         });
-       } catch (err) {
-         let message = (err as BusinessError).message;
-         console.error('getBundleInfoForSelf failed: %{public}s', message);
-       }
-
-       // Note: Add GlobalContext.getContext().setObject("AbilityContext", this.context) to the onCreate function in the MainAbility.ts file.
-       let abilityContext = GlobalContext.getContext().getObject("AbilityContext") as common.UIAbilityContext
-       await abilityContext.startAbilityForResult(
-         {
-           bundleName: "com.ohos.certmanager",
-           abilityName: "MainAbility",
-           uri: "requestAuthorize",
-           parameters: {
-             appUid: this.appUid, // Pass the UID of the requesting application.
-           }
-         } as Want)
-         .then((data: common.AbilityResult) => {
-           if (!data.resultCode && data.want) {
-             if (data.want.parameters) {
-               this.authUri = data.want.parameters.authUri as string; // Obtain the returned authUri after successful authorization.
-             }
-           }
-         })
-       message += "after grantAppPm authUri: " + this.authUri;
-       uri = this.authUri;
-       callback(message)
-     }
-   }
-
-   @Entry
-   @Component
-   struct WebComponent {
-     controller: web_webview.WebviewController = new web_webview.WebviewController();
-     @State message: string ='Hello World' // message is used for debugging and observation.
-     certManager = CertManagerService.getInstance();
-
-     build() {
-       Row() {
-         Column() {
-           Row() {
-             // Step 1: Perform authorization to obtain the URI.
-             Button('GrantApp')
-               .onClick(() => {
-                 this.certManager.grantAppPm((data) => {
-                   this.message = data;
-                 });
-               })
-             // Step 2: After the authorization, in two-way authentication, the onClientAuthenticationRequest callback is used to send the URI to the web server for authentication.
-             Button("ClientCertAuth")
-               .onClick(() => {
-                 this.controller.loadUrl('https://www.example2.com'); // Server website that supports two-way authentication.
-               })
-           }
-
-           Web({ src: 'https://www.example1.com', controller: this.controller })
-             .fileAccess(true)
-             .javaScriptAccess(true)
-             .domStorageAccess(true)
-             .onlineImageAccess(true)
-
-           .onClientAuthenticationRequest((event) => {
-             AlertDialog.show({
-               title: 'ClientAuth',
-               message: 'Text',
-               confirm: {
-                 value: 'Confirm',
-                 action: () => {
-                   event.handler.confirm(uri);
-                 }
-               },
-               cancel: () => {
-                 event.handler.cancel();
-               }
-             })
-           })
+       public static getContext(): GlobalContext {
+         if (!GlobalContext.instance) {
+           GlobalContext.instance = new GlobalContext();
          }
+         return GlobalContext.instance;
        }
-       .width('100%')
-       .height('100%')
+
+       getObject(value: string): Object | undefined {
+         return this._objects.get(value);
+       }
+
+       setObject(key: string, objectClass: Object): void {
+         this._objects.set(key, objectClass);
+       }
      }
-   }
-   ```
+     ```
+
+
+  2. Implement two-way authentication.
+
+     ```ts
+     // xxx.ets API10
+     import common from '@ohos.app.ability.common';
+     import Want from '@ohos.app.ability.Want';
+     import web_webview from '@ohos.web.webview'
+     import { BusinessError } from '@ohos.base';
+     import bundleManager from '@ohos.bundle.bundleManager'
+     import { GlobalContext } from '../GlobalContext'
+
+      let uri = "";
+
+      export default class CertManagerService {
+        private static sInstance: CertManagerService;
+        private authUri = "";
+        private appUid = "";
+
+        public static getInstance(): CertManagerService {
+          if (CertManagerService.sInstance == null) {
+            CertManagerService.sInstance = new CertManagerService();
+          }
+          return CertManagerService.sInstance;
+        }
+
+        async grantAppPm(callback: (message: string) => void) {
+          let message = '';
+          let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION;
+          // Note: Replace com.example.myapplication with the actual application name.
+          try {
+            bundleManager.getBundleInfoForSelf(bundleFlags).then((data) => {
+              console.info('getBundleInfoForSelf successfully. Data: %{public}s', JSON.stringify(data));
+              this.appUid = data.appInfo.uid.toString();
+            }).catch((err: BusinessError) => {
+              console.error('getBundleInfoForSelf failed. Cause: %{public}s', err.message);
+            });
+          } catch (err) {
+            let message = (err as BusinessError).message;
+            console.error('getBundleInfoForSelf failed: %{public}s', message);
+          }
+
+          // Note: Add GlobalContext.getContext().setObject("AbilityContext", this.context) to the onCreate function in the MainAbility.ts file.
+          let abilityContext = GlobalContext.getContext().getObject("AbilityContext") as common.UIAbilityContext
+          await abilityContext.startAbilityForResult(
+            {
+              bundleName: "com.ohos.certmanager",
+              abilityName: "MainAbility",
+              uri: "requestAuthorize",
+              parameters: {
+                appUid: this.appUid, // Pass the UID of the requesting application.
+              }
+            } as Want)
+            .then((data: common.AbilityResult) => {
+              if (!data.resultCode && data.want) {
+                if (data.want.parameters) {
+                  this.authUri = data.want.parameters.authUri as string; // Obtain the returned authUri after successful authorization.
+                }
+              }
+            })
+          message += "after grantAppPm authUri: " + this.authUri;
+          uri = this.authUri;
+          callback(message)
+        }
+      }
+
+      @Entry
+      @Component
+      struct WebComponent {
+        controller: web_webview.WebviewController = new web_webview.WebviewController();
+        @State message: string ='Hello World' // message is used for debugging and observation.
+        certManager = CertManagerService.getInstance();
+
+        build() {
+          Row() {
+            Column() {
+              Row() {
+                // Step 1: Perform authorization to obtain the URI.
+                Button('GrantApp')
+                  .onClick(() => {
+                    this.certManager.grantAppPm((data) => {
+                      this.message = data;
+                    });
+                  })
+                // Step 2: After the authorization, in two-way authentication, the onClientAuthenticationRequest callback is used to send the URI to the web server for authentication.
+                Button("ClientCertAuth")
+                  .onClick(() => {
+                    this.controller.loadUrl('https://www.example2.com'); // Server website that supports two-way authentication.
+                  })
+              }
+
+              Web({ src: 'https://www.example1.com', controller: this.controller })
+                .fileAccess(true)
+                .javaScriptAccess(true)
+                .domStorageAccess(true)
+                .onlineImageAccess(true)
+
+              .onClientAuthenticationRequest((event) => {
+                AlertDialog.show({
+                  title: 'ClientAuth',
+                  message: 'Text',
+                  confirm: {
+                    value: 'Confirm',
+                    action: () => {
+                      event.handler.confirm(uri);
+                    }
+                  },
+                  cancel: () => {
+                    event.handler.cancel();
+                  }
+                })
+              })
+            }
+          }
+          .width('100%')
+          .height('100%')
+        }
+      }
+     ```
 
 ### onPermissionRequest<sup>9+</sup>
 
@@ -3107,7 +3251,157 @@ Called when a context menu is displayed after the user clicks the right mouse bu
 
 | Type     | Description                      |
 | ------- | ------------------------ |
-| boolean | The value **true** means a custom menu, and **false** means the default menu.|
+| boolean | The value **true** means a valid custom menu, and **false** means an invalid custom menu.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  import pasteboard from '@ohos.pasteboard'
+  const TAG = 'ContextMenu';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    private result: WebContextMenuResult | undefined = undefined;
+    @State linkUrl: string = '';
+    @State offsetX: number = 0;
+    @State offsetY: number = 0;
+    @State showMenu: boolean = false;
+    @Builder
+    // Build and trigger a custom menu.
+    MenuBuilder(){
+      // A component that is used to present a vertical list of items to the user.
+      Menu(){
+        // A component that is used to represent an item in a menu.
+        MenuItem({
+          content: 'Copy Image',
+        })
+        .width(100)
+        .height(50)
+        .onClick(() => {
+          this.result?.copyImage();
+          this.showMenu = false;
+        })
+        MenuItem({
+          content: 'Cut',
+        })
+        .width(100)
+        .height(50)
+        .onClick(() => {
+          this.result?.cut();
+          this.showMenu = false;
+        })
+        MenuItem({
+          content: 'Copy',
+        })
+        .width(100)
+        .height(50)
+        .onClick(() => {
+          this.result?.copy();
+          this.showMenu = false;
+        })
+        MenuItem({
+          content: 'Paste',
+        })
+        .width(100)
+        .height(50)
+        .onClick(() => {
+          this.result?.paste();
+          this.showMenu = false;
+        })
+        MenuItem({
+          content: 'Copy Link',
+        })
+        .width(100)
+        .height(50)
+        .onClick(() => {
+          let pasteData = pasteboard.createData('text/plain', this.linkUrl);
+          pasteboard.getSystemPasteboard().setData(pasteData, (error)=>{
+            if(error){
+              return;
+            }
+          })
+          this.showMenu = false;
+        })
+        MenuItem({
+          content: 'Select All',
+        })
+        .width(100)
+        .height(50)
+        .onClick(() => {
+          this.result?.selectAll();
+          this.showMenu = false;
+        })
+      }
+      .width(150)
+      .height(300)
+    }
+
+    build() {
+      Column() {
+        Web({ src: $rawfile("index.html"), controller: this.controller })
+          // Trigger a custom dialog box.
+          .onContextMenuShow((event) => {
+            if (event) {
+              this.result = event.result
+              console.info("x coord = " + event.param.x())
+              console.info("link url = " + event.param.getLinkUrl())
+              this.linkUrl = event.param.getLinkUrl()
+            }
+            console.info(TAG, `x: ${this.offsetX}, y: ${this.offsetY}`);
+            this.showMenu = true;
+            this.offsetX = 250;
+            this.offsetY = Math.max(px2vp(event?.param.y() ?? 0) - 0, 0);
+            return true
+        })
+        .bindPopup(this.showMenu,
+        {
+          builder: this.MenuBuilder(),
+          enableArrow: false,
+          placement: Placement.LeftTop,
+          offset: { x: this.offsetX, y: this.offsetY},
+          mask: false,
+          onStateChange: (e) => {
+            if(!e.isVisible){
+              this.showMenu = false;
+              this.result!.closeContextMenu();
+            }
+          }
+        })
+      }
+    }
+  }
+  ```
+
+  HTML file to be loaded:
+  ```html
+  <!-- index.html -->
+  <!DOCTYPE html>
+  <html lang="en">
+  <body>
+    <h1>onContextMenuShow</h1>
+    <a href="http://www.example.com" style="font-size:27px">URL www.example.com</a>
+    // Place any image in the rawfile directory and name it example.png.
+    <div><img src="example.png"></div>
+    <p>Right-click text to display the context menu</p>
+  </body>
+  </html>
+  ```
+
+### onContextMenuHide<sup>11+</sup>
+
+onContextMenuHide(callback: OnContextMenuHideCallback)
+
+Called when a context menu is hidden after the user clicks the right mouse button or long presses a specific element, such as an image or a link.
+
+**Parameters**
+
+| Name   | Type                                    | Description       |
+| ------ | ---------------------------------------- | ----------- |
+| callback  | [OnContextMenuHideCallback](#oncontextmenuhidecallback11) | Parameters related to the context menu.    |
 
 **Example**
 
@@ -3122,12 +3416,8 @@ Called when a context menu is displayed after the user clicks the right mouse bu
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
-          .onContextMenuShow((event) => {
-            if (event) {
-              console.info("x coord = " + event.param.x())
-              console.info("link url = " + event.param.getLinkUrl())
-            }
-            return true
+          .onContextMenuHide(() => {
+            console.log("onContextMenuHide callback")
         })
       }
     }
@@ -3219,38 +3509,27 @@ Called when a request to obtain the geolocation information is received.
   ```
 
   HTML file to be loaded:
- ```html
-  <!-- index.html -->
+  ```html
   <!DOCTYPE html>
   <html>
-  <head>
-    <meta charset="UTF-8">
-  </head>
   <body>
-  <p id="demo">Click to obtain your current coordinates (which may take some time): </p>
-  <button onclick="getLocation()">Click Me</button>
+  <p id="locationInfo">Location information</p>
+  <button onclick="getLocation()">Get Location</button>
   <script>
-    var x=document.grtElementByld("demo");
-    function getLocation()
-    {
-      if (navigator.geolocation)
-      {
-        navigator.geolocation.getCurrentPosition(showPosition);
-      }
-      else
-      {
-        x.innerHTML="Cannot obtain geographical location with the current browser.";
-      }
+  var locationInfo=document.getElementById("locationInfo");
+  function getLocation(){
+    if (navigator.geolocation) {
+      <!-- Access to the device location by the frontend page -->
+      navigator.geolocation.getCurrentPosition(showPosition);
     }
-
-    function showPosition(position)
-    {
-      x.innerHTML="Latitude:" + position.coords.latitude + "Longitude:" + position.coords.longitude;
-    }
+  }
+  function showPosition(position){
+    locationInfo.innerHTML="Latitude: " + position.coords.latitude + "<br />Longitude: " + position.coords.longitude;
+  }
   </script>
   </body>
   </html>
- ```
+  ```
 
 ### onGeolocationHide
 
@@ -3677,7 +3956,7 @@ Called when an apple-touch-icon URL is received.
 
 ### onFaviconReceived<sup>9+</sup>
 
-onFaviconReceived(callback: (event: {favicon: image.PixelMap}) => void)
+onFaviconReceived(callback: (event: { favicon: PixelMap }) => void)
 
 Called when this web page receives a new favicon.
 
@@ -3784,7 +4063,7 @@ Called when the web page content is first rendered.
 
 ### onLoadIntercept<sup>10+</sup>
 
-onLoadIntercept(callback: (event?: { data: WebResourceRequest }) => boolean)
+onLoadIntercept(callback: (event: { data: WebResourceRequest }) => boolean)
 
 Called when the **\<Web>** component is about to access a URL. This API is used to determine whether to block the access, which is allowed by default.
 
@@ -3792,7 +4071,7 @@ Called when the **\<Web>** component is about to access a URL. This API is used 
 
 | Name    | Type                                    | Description       |
 | ------- | ---------------------------------------- | ----------- |
-| request | [WebResourceRequest](#webresourcerequest) | Information about the URL request.|
+| data | [WebResourceRequest](#webresourcerequest) | Information about the URL request.|
 
 **Return value**
 
@@ -4008,6 +4287,195 @@ The following example uses **getWebId** in the callback
       </body>
   </html>
   ```
+
+### onNavigationEntryCommitted<sup>11+</sup>
+
+onNavigationEntryCommitted(callback: [OnNavigationEntryCommittedCallback](#onnavigationentrycommittedcallback11))
+
+Called when a web page redirection request is submitted.
+
+**Parameters**
+
+| Name         | Type                                                                        | Description                   |
+| -------------- | --------------------------------------------------------------------------- | ---------------------- |
+| callback       | [OnNavigationEntryCommittedCallback](#onnavigationentrycommittedcallback11) | Callback invoked when a web page redirection request is submitted.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+        .onNavigationEntryCommitted((details) => {
+            console.log("onNavigationEntryCommitted: [isMainFrame]= " + details.isMainFrame +
+              ", [isSameDocument]=" + details.isSameDocument +
+              ", [didReplaceEntry]=" + details.didReplaceEntry +
+              ", [navigationType]=" + details.navigationType +
+              ", [url]=" + details.url);
+        })
+      }
+    }
+  }
+  ```
+
+### onSafeBrowsingCheckResult<sup>11+</sup>
+
+onSafeBrowsingCheckResult(callback: OnSafeBrowsingCheckResultCallback)
+
+Called when the safe browsing check result is received.
+
+**Parameters**
+
+| Name    | Type                                                                      | Description                   |
+| ----------| --------------------------------------------------------------------------| ---------------------- |
+| callback  | [OnSafeBrowsingCheckResultCallback](#onsafebrowsingcheckresultcallback11) | Called when the safe browsing check result is received.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  export enum ThreatType {
+    UNKNOWN = -1,
+    THREAT_ILLEGAL = 0,
+    THREAT_FRAUD = 1,
+    THREAT_RISK = 2,
+    THREAT_WARNING = 3,
+  }
+
+  export class OnSafeBrowsingCheckResultCallback {
+    threatType: ThreatType = ThreatType.UNKNOWN;
+  }
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+        .onSafeBrowsingCheckResult((details: OnSafeBrowsingCheckResultCallback) => {
+            console.log("onSafeBrowsingCheckResult: [threatType]= " + details.threatType);
+        })
+      }
+    }
+  }
+  ```
+
+### onNativeEmbedLifecycleChange<sup>11+</sup>
+
+onNativeEmbedLifecycleChange(callback: NativeEmbedDataInfo)
+
+Called when the lifecycle of the Embed tag changes.
+
+**Parameters**
+
+| Name         | Type                                                                        | Description                   |
+| -------------- | --------------------------------------------------------------------------- | ---------------------- |
+| event       | [NativeEmbedDataInfo](#nativeembeddatainfo11) | Callback invoked when the lifecycle of the Embed tag changes.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    @State embedStatus: string = ''
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+        .onNativeEmbedLifecycleChange((event) => {
+            if (event.status == NativeEmbedStatus.CREATE) {
+              this.embedStatus = 'Create'
+            }
+            if (event.status == NativeEmbedStatus.UPDATE) {
+              this.embedStatus = 'Update'
+            }
+            if (event.status == NativeEmbedStatus.DESTROY) {
+              this.embedStatus = 'Destroy'
+            }
+            console.log("status = " + this.embedStatus);
+            console.log("surfaceId = " + event.surfaceId);
+            console.log("embedId = " + event.embedId);
+            if(event.info){
+              console.log("id = " + event.info.id);
+              console.log("type = " + event.info.type);
+              console.log("src = " + event.info.src);
+              console.log("width = " + event.info.width);
+              console.log("height = " + event.info.height);
+              console.log("url = " + event.info.url);
+            }
+        })
+      }
+    }
+  }
+  ```
+
+### onNativeEmbedGestureEvent<sup>11+</sup>
+
+onNativeEmbedGestureEvent(callback: NativeEmbedTouchInfo)
+
+Called when a finger touches the Embed tag.
+
+**Parameters**
+
+| Name         | Type                                                                        | Description                   |
+| -------------- | --------------------------------------------------------------------------- | ---------------------- |
+| event       | [NativeEmbedTouchInfo](#nativeembeddatainfo11) | Callback invoked when a finger touches the Embed tag.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    @State eventType: string = ''
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+        .onNativeEmbedGestureEvent((event) => {
+          if (event && event.touchEvent){
+            if (event.touchEvent.type == TouchType.Down) {
+              this.eventType = 'Down'
+            }
+            if (event.touchEvent.type == TouchType.Up) {
+              this.eventType = 'Up'
+            }
+            if (event.touchEvent.type == TouchType.Move) {
+              this.eventType = 'Move'
+            }
+            if (event.touchEvent.type == TouchType.Cancel) {
+              this.eventType = 'Cancel'
+            }
+            console.log("embedId = " + event.embedId);
+            console.log("touchType = " + this.eventType);
+            console.log("x = " + event.touchEvent.touches[0].x);
+            console.log("y = " + event.touchEvent.touches[0].y);
+            console.log("Component globalPos:(" + event.touchEvent.target.area.globalPosition.x + "," + event.touchEvent.target.area.globalPosition.y + ")");
+            console.log("width = " + event.touchEvent.target.area.width);
+            console.log("height = " + event.touchEvent.target.area.height);
+          }
+        })
+      }
+    }
+  }
+  ```
 ## ConsoleMessage
 
 Implements the **ConsoleMessage** object. For the sample code, see [onConsole](#onconsole).
@@ -4092,6 +4560,10 @@ Notifies the **\<Web>** component of the user's confirm operation in the dialog 
 
 Implements a **FullScreenExitHandler** object for listening for exiting full screen mode. For the sample code, see [onFullScreenEnter](#onfullscreenenter9).
 
+### constructor<sup>9+</sup>
+
+constructor()
+
 ### exitFullScreen<sup>9+</sup>
 
 exitFullScreen(): void
@@ -4148,7 +4620,7 @@ Implements the **WebResourceRequest** object. For the sample code, see [onErrorR
 
 ### getRequestHeader
 
-getResponseHeader() : Array\<Header\>
+getRequestHeader(): Array\<Header\>
 
 Obtains the information about the resource request header.
 
@@ -4305,7 +4777,7 @@ Obtains the MIME type of the resource response.
 
 ### setResponseData<sup>9+</sup>
 
-setResponseData(data: string | number \| Resource)
+setResponseData(data: string | number \| Resource | ArrayBuffer)
 
 Sets the data in the resource response.
 
@@ -4313,7 +4785,7 @@ Sets the data in the resource response.
 
 | Name | Type                                    | Mandatory  | Default Value | Description                                    |
 | ---- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
-| data | string \| number \| [Resource](ts-types.md)<sup>10+</sup> | Yes   | -    | Resource response data to set. When set to a string, the value indicates a string in HTML format. When set to a number, the value indicates a file handle, which is closed by the system **\<Web>** component. When set to a **Resource** object, the value indicates the file resources in the **rawfile** directory of the application.|
+| data | string \| number \| [Resource](ts-types.md)<sup>10+</sup> \| ArrayBuffer<sup>11+</sup> | Yes   | -    | Resource response data to set. When set to a string, the value indicates a string in HTML format. When set to a number, the value indicates a file handle, which is closed by the system **\<Web>** component. When set to a **Resource** object, the value indicates the file resources in the **rawfile** directory of the application. When set to a **ArrayBuffer** object, the value indicates the original binary data of a resource.|
 
 ### setResponseEncoding<sup>9+</sup>
 
@@ -4429,7 +4901,7 @@ Obtains the mode of the file selector.
 
 | Type                                      | Description         |
 | ---------------------------------------- | ----------- |
-| [FileSelectorMode](#fileselectormode)| Mode of the file selector.|
+| [FileSelectorMode](#fileselectormode9) | Mode of the file selector.|
 
 ### getAcceptType<sup>9+</sup>
 
@@ -4467,7 +4939,7 @@ Cancels HTTP authentication as requested by the user.
 
 ### confirm<sup>9+</sup>
 
-confirm(userName: string, pwd: string): boolean
+confirm(userName: string, password: string): boolean
 
 Performs HTTP authentication with the user name and password provided by the user.
 
@@ -4476,7 +4948,7 @@ Performs HTTP authentication with the user name and password provided by the use
 | Name     | Type  | Mandatory  | Default Value | Description      |
 | -------- | ------ | ---- | ---- | ---------- |
 | userName | string | Yes   | -    | HTTP authentication user name.|
-| pwd      | string | Yes   | -    | HTTP authentication password. |
+| password      | string | Yes   | -    | HTTP authentication password. |
 
 **Return value**
 
@@ -4638,39 +5110,40 @@ Grants the screen capture permission.
 | config | [ScreenCaptureConfig](#screencaptureconfig10) | Yes   | -    | Screen capture configuration.|
 
 ## ContextMenuSourceType<sup>9+</sup>
-| Name       | Description     |
-| --------- | ------- |
-| None      | Other event sources.|
-| Mouse     | Mouse event.  |
-| LongPress | Long press event.  |
+
+| Name      | Value| Description        |
+| --------- | -- |------------ |
+| None      | 0 | Other event sources.|
+| Mouse     | 1 | Mouse event.  |
+| LongPress | 2 | Long press event.  |
 
 ## ContextMenuMediaType<sup>9+</sup>
 
-| Name   | Description           |
-| ----- | ------------- |
-| None  | Non-special media or other media types.|
-| Image | Image.          |
+| Name   | Value| Description           |
+| ----- | -- | ------------- |
+| None  | 0 | Non-special media or other media types.|
+| Image | 1 | Image.          |
 
 ## ContextMenuInputFieldType<sup>9+</sup>
 
-| Name       | Description                         |
-| --------- | --------------------------- |
-| None      | Non-input field.                      |
-| PlainText | Plain text field, such as the text, search, or email field.|
-| Password  | Password field.                      |
-| Number    | Numeric field.                      |
-| Telephone | Phone number field.                    |
-| Other     | Field of any other type.                      |
+| Name       | Value| Description                         |
+| --------- | -- | --------------------------- |
+| None      | 0 | Non-input field.                      |
+| PlainText | 1 | Plain text field, such as the text, search, or email field.|
+| Password  | 2 | Password field.                      |
+| Number    | 3 | Numeric field.                      |
+| Telephone | 4 | Phone number field.                    |
+| Other     | 5 | Field of any other type.                      |
 
 ## ContextMenuEditStateFlags<sup>9+</sup>
 
-| Name            | Description   |
-| -------------- | ----- |
-| NONE           | Editing is not allowed.|
-| CAN_CUT        | The cut operation is allowed.|
-| CAN_COPY       | The copy operation is allowed.|
-| CAN_PASTE      | The paste operation is allowed.|
-| CAN_SELECT_ALL | The select all operation is allowed.|
+| Name           | Value| Description    |
+| -------------- | -- | -------- |
+| NONE           | 0 | Editing is not allowed.|
+| CAN_CUT        | 1 | The cut operation is allowed.|
+| CAN_COPY       | 2 | The copy operation is allowed.|
+| CAN_PASTE      | 4 | The paste operation is allowed.|
+| CAN_SELECT_ALL | 8 | The select all operation is allowed.|
 
 ## WebContextMenuParam<sup>9+</sup>
 
@@ -4880,101 +5353,108 @@ Sets the geolocation permission status of a web page.
 
 ## MessageLevel
 
-| Name   | Description   |
-| ----- | :---- |
-| Debug | Debug level.|
-| Error | Error level.|
-| Info  | Information level.|
-| Log   | Log level.|
-| Warn  | Warning level. |
+| Name   | Value| Description   |
+| ----- | -- | ---- |
+| Debug | 0 | Debug level.|
+| Error | 1 | Error level.|
+| Info  | 2 | Information level.|
+| Log   | 3 | Log level.|
+| Warn  | 4 | Warning level.|
 
-## RenderExitReason
+## RenderExitReason<sup>9+</sup>
 
 Enumerates the reasons why the rendering process exits.
 
-| Name                        | Description               |
-| -------------------------- | ----------------- |
-| ProcessAbnormalTermination | The rendering process exits abnormally.        |
-| ProcessWasKilled           | The rendering process receives a SIGKILL message or is manually terminated.|
-| ProcessCrashed             | The rendering process crashes due to segmentation or other errors.   |
-| ProcessOom                 | The program memory is running low.          |
-| ProcessExitUnknown         | Other reason.            |
+| Name                        | Value| Description               |
+| -------------------------- | -- | ----------------- |
+| ProcessAbnormalTermination | 0 | The rendering process exits abnormally.        |
+| ProcessWasKilled           | 1 | The rendering process receives a SIGKILL message or is manually terminated.|
+| ProcessCrashed             | 2 | The rendering process crashes due to segmentation or other errors.   |
+| ProcessOom                 | 3 | The program memory is running low.          |
+| ProcessExitUnknown         | 4 | Other reason.            |
 
 ## MixedMode
 
-| Name        | Description                                |
-| ---------- | ---------------------------------- |
-| All        | HTTP and HTTPS hybrid content can be loaded. This means that all insecure content can be loaded.|
-| Compatible | HTTP and HTTPS hybrid content can be loaded in compatibility mode. This means that some insecure content may be loaded.          |
-| None       | HTTP and HTTPS hybrid content cannot be loaded.              |
+| Name       | Value| Description                                |
+| ---------- | -- | ---------------------------------- |
+| All        | 0 | HTTP and HTTPS hybrid content can be loaded. This means that all insecure content can be loaded.|
+| Compatible | 1 | HTTP and HTTPS hybrid content can be loaded in compatibility mode. This means that some insecure content may be loaded.          |
+| None       | 2 | HTTP and HTTPS hybrid content cannot be loaded.              |
 
-## CacheMode
-| Name     | Description                                  |
-| ------- | ------------------------------------ |
-| Default | The cache that has not expired is used to load the resources. If the resources do not exist in the cache, they will be obtained from the Internet.|
-| None    | The cache is used to load the resources. If the resources do not exist in the cache, they will be obtained from the Internet.    |
-| Online  | The cache is not used to load the resources. All resources are obtained from the Internet.              |
-| Only    | The cache alone is used to load the resources.                       |
+## CacheMode<sup>9+</sup>
 
-## FileSelectorMode
-| Name                  | Description        |
-| -------------------- | ---------- |
-| FileOpenMode         | Open and upload a file. |
-| FileOpenMultipleMode | Open and upload multiple files. |
-| FileOpenFolderMode   | Open and upload a folder.|
-| FileSaveMode         | Save a file.   |
+| Name     | Value| Description                                  |
+| ------- | -- | ------------------------------------ |
+| Default | 0 | The cache that has not expired is used to load the resources. If the resources do not exist in the cache, they will be obtained from the Internet.|
+| None    | 1 | The cache is used to load the resources. If the resources do not exist in the cache, they will be obtained from the Internet.    |
+| Online  | 2 | The cache is not used to load the resources. All resources are obtained from the Internet.              |
+| Only    | 3 | The cache alone is used to load the resources.                       |
+
+## FileSelectorMode<sup>9+</sup>
+
+| Name                  | Value| Description        |
+| -------------------- | -- | ---------- |
+| FileOpenMode         | 0 | Open and upload a file. |
+| FileOpenMultipleMode | 1 | Open and upload multiple files. |
+| FileOpenFolderMode   | 2 | Open and upload a folder.|
+| FileSaveMode         | 3 | Save a file.   |
 
  ## HitTestType
 
-| Name           | Description                      |
-| ------------- | ------------------------ |
-| EditText      | Editable area.                 |
-| Email         | Email address.                 |
-| HttpAnchor    | Hyperlink whose **src** is **http**.          |
-| HttpAnchorImg | Image with a hyperlink, where **src** is **http**.|
-| Img           | HTML::img tag.            |
-| Map           | Geographical address.                   |
-| Phone         | Phone number.                   |
-| Unknown       | Unknown content.                   |
+| Name           | Value| Description                      |
+| ------------- | -- | ------------------------ |
+| EditText      | 0 | Editable area.                 |
+| Email         | 1 | Email address.                 |
+| HttpAnchor    | 2 | Hyperlink whose **src** is **http**.          |
+| HttpAnchorImg | 3 | Image with a hyperlink, where **src** is **http**.|
+| Img           | 4 | HTML::img tag.            |
+| Map           | 5 | Geographical address.                   |
+| Phone         | 6 | Phone number.                   |
+| Unknown       | 7 | Unknown content.                   |
 
  ## OverScrollMode<sup>11+</sup>
 
-| Name    | Description         |
-| ------ | ----------- |
-| NEVER  | The overscroll mode is disabled.|
-| ALWAYS | The overscroll mode is enabled.|
+| Name    | Value| Description         |
+| ------ | -- | ----------- |
+| NEVER  | 0 | The overscroll mode is disabled.|
+| ALWAYS | 1 | The overscroll mode is enabled.|
+
+## OnContextMenuHideCallback<sup>11+</sup>
+
+Implements the callback context menu customizes the hidden callback.
 
 ## SslError<sup>9+</sup>
 
 Enumerates the error codes returned by **onSslErrorEventReceive** API.
 
-| Name          | Description         |
-| ------------ | ----------- |
-| Invalid      | Minor error.      |
-| HostMismatch | The host name does not match.    |
-| DateInvalid  | The certificate has an invalid date.    |
-| Untrusted    | The certificate issuer is not trusted.|
+| Name          | Value| Description         |
+| ------------ | -- | ----------- |
+| Invalid      | 0 | Minor error.      |
+| HostMismatch | 1 | The host name does not match.    |
+| DateInvalid  | 2 | The certificate has an invalid date.    |
+| Untrusted    | 3 | The certificate issuer is not trusted.|
 
 ## ProtectedResourceType<sup>9+</sup>
 
-| Name                         | Description           | Remarks                        |
-| --------------------------- | ------------- | -------------------------- |
-| MidiSysex                   | MIDI SYSEX resource.| Currently, only permission events can be reported. MIDI devices are not yet supported.|
-| VIDEO_CAPTURE<sup>10+</sup> | Video capture resource, such as a camera. |                            |
-| AUDIO_CAPTURE<sup>10+</sup> | Audio capture resource, such as a microphone.|                            |
+| Name                         | Value| Description           | Remarks                        |
+| --------------------------- | --------------- | ------------- | -------------------------- |
+| MidiSysex                   | TYPE_MIDI_SYSEX | MIDI SYSEX resource.| Currently, only permission events can be reported. MIDI devices are not yet supported.|
+| VIDEO_CAPTURE<sup>10+</sup> | TYPE_VIDEO_CAPTURE | Video capture resource, such as a camera. |                            |
+| AUDIO_CAPTURE<sup>10+</sup> | TYPE_AUDIO_CAPTURE | Audio capture resource, such as a microphone.|                            |
 
 ## WebDarkMode<sup>9+</sup>
-| Name  | Description          |
-| ---- | ------------ |
-| Off  | The web dark mode is disabled.  |
-| On   | The web dark mode is enabled.  |
-| Auto | The web dark mode setting follows the system settings.|
+
+| Name  | Value| Description          |
+| ---- | -- | ------------ |
+| Off  | 0 | The web dark mode is disabled.  |
+| On   | 1 | The web dark mode is enabled.  |
+| Auto | 2 | The web dark mode setting follows the system settings.|
 
 ## WebCaptureMode<sup>10+</sup>
 
-| Name         | Description     |
-| ----------- | ------- |
-| HOME_SCREEN | Capture of the home screen.|
+| Name         | Value| Description     |
+| ----------- | -- | ------- |
+| HOME_SCREEN | 0 | Capture of the home screen.|
 
 ## WebMediaOptions<sup>10+</sup>
 
@@ -4994,24 +5474,27 @@ Provides the web screen capture configuration.
 | captureMode | [WebCaptureMode](#webcapturemode10) | Yes   | Yes   | Yes   | Web screen capture mode.|
 
 ## WebLayoutMode<sup>11+</sup>
-| Name         | Description                |
-| ----------- | ------------------ |
-| NONE        | The web layout follows the system.        |
-| FIT_CONTENT | The web layout adapts to the page size.|
+
+| Name         | Value| Description                |
+| ----------- | -- | ------------------ |
+| NONE        | 0 | The web layout follows the system.        |
+| FIT_CONTENT | 1 | The web layout adapts to the page size.|
 
 ## NestedScrollOptions<sup>11+</sup>
+
 | Name            | Type              | Description                  |
 | -------------- | ---------------- | -------------------- |
 | scrollForward  | NestedScrollMode | Nested scrolling options when the component scrolls forward.|
 | scrollBackward | NestedScrollMode | Nested scrolling options when the component scrolls backward.|
 
 ## NestedScrollMode<sup>11+</sup>
-| Name          | Description                                      |
-| ------------ | ---------------------------------------- |
-| SELF_ONLY    | The scrolling is contained within the component, and no scroll chaining occurs, that is, the parent component does not scroll when the component scrolling reaches the boundary.                          |
-| SELF_FIRST   | The component scrolls first, and when it hits the boundary, the parent component scrolls. When the parent component hits the boundary, its edge effect is displayed. If no edge effect is specified for the parent component, the edge effect of the child component is displayed instead.|
-| PARENT_FIRST | The parent component scrolls first, and when it hits the boundary, the component scrolls. When the component hits the boundary, its edge effect is displayed. If no edge effect is specified for the component, the edge effect of the parent component is displayed instead.|
-| PARALLEL     | The component and its parent component scroll at the same time. When both the component and its parent component hit the boundary, the edge effect of the component is displayed. If no edge effect is specified for the component, the edge effect of the parent component is displayed instead.|
+
+| Name          | Value| Description                                      |
+| ------------ | -- | ---------------------------------------- |
+| SELF_ONLY    | 0 | The scrolling is contained within the component, and no scroll chaining occurs, that is, the parent component does not scroll when the component scrolling reaches the boundary.                          |
+| SELF_FIRST   | 1 | The component scrolls first, and when it hits the boundary, the parent component scrolls. When the parent component hits the boundary, its edge effect is displayed. If no edge effect is specified for the parent component, the edge effect of the child component is displayed instead.|
+| PARENT_FIRST | 2 | The parent component scrolls first, and when it hits the boundary, the component scrolls. When the component hits the boundary, its edge effect is displayed. If no edge effect is specified for the component, the edge effect of the parent component is displayed instead.|
+| PARALLEL     | 3 | The component and its parent component scroll at the same time. When both the component and its parent component hit the boundary, the edge effect of the component is displayed. If no edge effect is specified for the component, the edge effect of the parent component is displayed instead.|
 
 ## DataResubmissionHandler<sup>9+</sup>
 
@@ -5455,7 +5938,7 @@ This API is deprecated since API version 9. You are advised to use [loadUrl<sup>
 
 | Name    | Type                      | Mandatory  | Default Value | Description          |
 | ------- | -------------------------- | ---- | ---- | -------------- |
-| url     | string                     | Yes   | -    | URL to load.    |
+| url     | string \| Resource                     | Yes   | -    | URL to load.    |
 | headers | Array\<[Header](#header)\> | No   | []   | Additional HTTP request header of the URL.|
 
 **Example**
@@ -5705,15 +6188,15 @@ This API is deprecated since API version 9. You are advised to use [runJavaScrip
         Text(this.webResult).fontSize(20)
         Web({ src: $rawfile('index.html'), controller: this.controller })
         .javaScriptAccess(true)
-        .onPageEnd(() => {
+        .onPageEnd((event) => {
           this.controller.runJavaScript({
             script: 'test()',
             callback: (result: string)=> {
               this.webResult = result
               console.info(`The test() return value is: ${result}`)
             }})
-          if (e) {
-            console.info('url: ', e.url)
+          if (event) {
+            console.info('url: ', event.url)
           }
         })
       }
@@ -5802,31 +6285,19 @@ Manages behavior of cookies in **\<Web>** components. All **\<Web>** components 
 
 ### setCookie<sup>(deprecated)</sup>
 
-setCookie(): boolean
+setCookie()
 
 Sets the cookie. This API returns the result synchronously. Returns **true** if the operation is successful; returns **false** otherwise.
 
 This API is deprecated since API version 9. You are advised to use [setCookie<sup>9+</sup>](../apis/js-apis-webview.md#setcookiedeprecated) instead.
 
-**Return value**
-
-| Type     | Description           |
-| ------- | ------------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
-
 ### saveCookie<sup>(deprecated)</sup>
 
-saveCookie(): boolean
+saveCookie()
 
 Saves the cookies in the memory to the drive. This API returns the result synchronously.
 
 This API is deprecated since API version 9. You are advised to use [saveCookieAsync<sup>9+</sup>](../apis/js-apis-webview.md#savecookieasync) instead.
-
-**Return value**
-
-| Type     | Description                  |
-| ------- | -------------------- |
-| boolean | Operation result.|
 
 ## ScriptItem<sup>11+</sup>
 
@@ -5836,3 +6307,99 @@ Describes the **ScriptItem** object injected to the **\<Web>** component through
 | ----------- | -------------- | ---- | --------------------- |
 | script      | string         | Yes   | JavaScript script to be injected and executed.|
 | scriptRules | Array\<string> | Yes   | Matching rules for allowed sources.         |
+
+## WebNavigationType<sup>11+</sup>
+
+Defines the navigation type.
+
+| Name                          | Value| Description          |
+| ----------------------------- | -- | ------------ |
+| UNKNOWN                       | 0 | Unknown type.  |
+| MAIN_FRAME_NEW_ENTRY          | 1 | Navigation to a new history entry from the main document.  |
+| MAIN_FRAME_EXISTING_ENTRY     | 2 | Navigation to an existing history entry from the main document.|
+| NAVIGATION_TYPE_NEW_SUBFRAME  | 4 | User-triggered navigation from a subdocument.|
+| NAVIGATION_TYPE_AUTO_SUBFRAME | 5 | Non-user-triggered navigation from a subdocument.|
+
+## LoadCommittedDetails<sup>11+</sup>
+
+Provides detailed information about the web page that has been submitted for redirection.
+
+| Name            | Type                                 | Mandatory  | Description                   |
+| -----------     | ------------------------------------ | ---- | --------------------- |
+| isMainFrame     | boolean                              | Yes   | Whether the document is the main document.|
+| isSameDocument  | boolean                              | Yes   | Whether to navigate without changing the document. Example of navigation in the same document: 1. navigation shown in the example; 2. navigation triggered by **pushState** or **replaceState**; 3. navigation to an history entry on the same page. |
+| didReplaceEntry | boolean                              | Yes   | Whether the submitted new entry replaces the existing entry. In certain scenarios for navigation to a subdocument, although the existing entry is not replaced, some attributes are changed. |
+| navigationType  | [WebNavigationType](#webnavigationtype11)  | Yes   | Navigation type.      |
+| url             | string                               | Yes   | URL of the current navigated-to web page.         |
+
+## ThreatType<sup>11+</sup>
+
+Enumerates the website threat types.
+
+| Name            | Value| Description                  |
+| ---------------- | -- | ----------------------|
+| THREAT_ILLEGAL  | 0 | Illegal website.             |
+| THREAT_FRAUD    | 1 | Fraudulent website.             |
+| THREAT_RISK     | 2 | Website that poses security risks.     |
+| THREAT_WARNING  | 3 | Website suspected to contain unsafe content.|
+
+## OnNavigationEntryCommittedCallback<sup>11+</sup>
+
+type OnNavigationEntryCommittedCallback = (loadCommittedDetails: [LoadCommittedDetails](#loadcommitteddetails11)) => void
+
+Called when a navigation item is submitted.
+
+| Name               | Type                                          | Description               |
+| -------------------- | ------------------------------------------------ | ------------------- |
+| loadCommittedDetails | [LoadCommittedDetails](#loadcommitteddetails11)  | Detailed information about the web page that has been submitted for redirection.|
+
+## OnSafeBrowsingCheckResultCallback<sup>11+</sup>
+
+type OnSafeBrowsingCheckResultCallback = (threatType: ThreatType) => void
+
+Called by a website safe browsing check.
+
+| Name     | Type                     | Description             |
+| ---------- | ---------------------------- | ------------------- |
+| threatType | [ThreatType](#threattype11)  | Website threat type. |
+
+## NativeEmbedStatus<sup>11+</sup>
+
+Defines the lifecycle of the **\<embed>** tag.
+
+| Name                          | Value| Description          |
+| ----------------------------- | -- | ------------ |
+| CREATE                        | 0 | The tag is created.  |
+| UPDATE                        | 1 | The tag is updated.  |
+| DESTROY                       | 2 | The tag is destroyed.|
+
+## NativeEmbedInfo<sup>11+</sup>
+
+Provides detailed information about the **\<embed>** tag.
+
+| Name            | Type                                 | Mandatory  | Description                   |
+| -----------     | ------------------------------------ | ---- | --------------------- |
+| id     | string             | Yes   | ID of the tag.|
+| type  | string                              | Yes   | Type of the tag. |
+| src | string                              | Yes   | **src** information of the tag. |
+| width  | number  | Yes   | Width of the tag.      |
+| height | number                              | Yes   | Height of the tag. |
+| url | string                              | Yes   | URL of the tag. |
+## NativeEmbedDataInfo<sup>11+</sup>
+
+Provides detailed information about the lifecycle changes of the **\<embed>** tag.
+
+| Name            | Type                                 | Mandatory  | Description                   |
+| -----------     | ------------------------------------ | ---- | --------------------- |
+| status     | [NativeEmbedStatus](#nativeembedstatus11)             | Yes   | Lifecycle status of the tag.|
+| surfaceId  | string                              | Yes   | Surface ID of the native image. |
+| embedId | string                              | Yes   | Unique ID of the tag. |
+| info  | [NativeEmbedInfo](#nativeembedinfo11)  | Yes   | Detailed information about the tag.      |
+## NativeEmbedTouchInfo<sup>11+</sup>
+
+Provides touch information of the **\<embed>** tag.
+
+| Name            | Type                                 | Mandatory  | Description                   |
+| -----------     | ------------------------------------ | ---- | --------------------- |
+| embedId     | string   | Yes   | Unique ID of the tag.|
+| touchEvent  | [TouchEvent](ts-universal-events-touch.md#touchevent)  | Yes   | Touch action information. |

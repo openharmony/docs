@@ -21,7 +21,7 @@ PasteButton()
 Creates a Paste button with an icon, text, and background.
 
 ### PasteButton
-PasteButton(option:{icon?: PasteIconStyle, text?: PasteDescription, buttonType?: ButtonType})
+PasteButton(option:PasteButtonOptions)
 
 Creates a Paste button that contains the specified elements.
 
@@ -29,9 +29,15 @@ Creates a Paste button that contains the specified elements.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
+| option | PasteButtonOptions | No| Creates a Paste button that contains the specified elements.|
+
+## PasteButtonOptions
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
 | icon | [PasteIconStyle](#pasteiconstyle) | No| Icon style of the Paste button.<br>If this parameter is not specified, no icon is contained. Either **icon** or **text**, or both, must be set.|
 | text | [PasteDescription](#pastedescription) | No| Text on the Paste button.<br>If this parameter is not specified, no text is contained. Either **icon** or **text**, or both, must be set.|
-| buttonType | [ButtonType](ts-basic-components-button.md#ButtonType) | No| Background style of the Paste button.<br>If this parameter is not specified, there is no background.|
+| buttonType | [ButtonType](ts-basic-components-button.md#buttontype) | No| Background style of the Paste button.<br>If this parameter is not specified, there is no background.|
 
 
 ## Attributes
@@ -41,24 +47,24 @@ This component can only inherit the [universal attributes of security components
 
 ## PasteIconStyle
 
-| Name| Description|
-| -------- | -------- |
-| LINES | Line style icon.|
+| Name| Value| Description|
+| -------- | -------- | -------- |
+| LINES | 0 | Line style icon.|
 
 
 ## PasteDescription
 
-| Name| Description|
-| -------- | -------- |
-| PASTE | The text on the Paste button is **Paste**.|
+| Name| Value| Description|
+| -------- | -------- | -------- |
+| PASTE | 0 | The text on the Paste button is **Paste**.|
 
 
 ## PasteButtonOnClickResult
 
-| Name| Description|
-| -------- | -------- |
-| SUCCESS | The Paste button is touched successfully.|
-| TEMPORARY_AUTHORIZATION_FAILED | Temporary authorization fails after the Paste button is touched.|
+| Name| Value| Description|
+| -------- | -------- | -------- |
+| SUCCESS | 0 | The Paste button is touched successfully.|
+| TEMPORARY_AUTHORIZATION_FAILED | 1 | Temporary authorization fails after the Paste button is touched.|
 
 
 ## Events
@@ -67,7 +73,7 @@ Only the following events are supported.
 
 | Name| Description|
 | -------- | -------- |
-| onClick(event: (event: [ClickEvent](ts-universal-events-click.md#clickevent)), result: [PasteButtonOnClickResult](#pastebuttononclickresult)) =&gt; void) | Triggered when the component is touched.<br>**result**: authorization result. After the authorization, the pasteboard content can be read.<br>**event**: For details, see **ClickEvent**.|
+| onClick(event: (event: [ClickEvent](ts-universal-events-click.md#clickevent), result: [PasteButtonOnClickResult](#pastebuttononclickresult)) =&gt; void) | Triggered when the component is touched.<br>**result**: authorization result. After the authorization, the pasteboard content can be read.<br>**event**: For details, see **ClickEvent**.|
 
 
 ## Example

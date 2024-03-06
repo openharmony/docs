@@ -12,7 +12,7 @@ The **cardEmulation** module implements Near-Field Communication (NFC) card emul
 import cardEmulation from '@ohos.nfc.cardEmulation';
 ```
 
-## FeatureType
+## FeatureType<sup>(deprecated)</sup>
 
 Enumerates the NFC card emulation types.
 
@@ -38,7 +38,7 @@ Enumerates the types of services used by the card emulation application.
 | PAYMENT | "payment" | Payment type.|
 | OTHER   | "other"   | Other types.|
 
-## isSupported
+## isSupported<sup>(deprecated)</sup>
 
 isSupported(feature: number): boolean
 
@@ -100,11 +100,29 @@ Checks whether an application is the default application of the specified servic
 | ------- | ------------------------------------ |
 | boolean | Returns **true** if the application is the default payment application; returns **false** otherwise.|
 
+## getPaymentServices<sup>11+</sup>
+
+getPaymentServices(): [AbilityInfo](js-apis-bundleManager-abilityInfo.md)[]
+
+Obtains all payment services.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Communication.NFC.CardEmulation
+
+**Required permissions**: ohos.permission.NFC_CARD_EMULATION
+
+**Return value**
+
+| **Type** | **Description**                              |
+| ------- | ------------------------------------ |
+| [AbilityInfo](js-apis-bundleManager-abilityInfo.md)[] | Payment services obtained.|
+
 ## HceService<sup>8+</sup>
 
 Implements HCE, including receiving Application Protocol Data Units (APDUs) from the peer card reader and sending a response. Before using HCE-related APIs, check whether the device supports HCE. This API is used only for declaration and cannot be used currently.
 
-### startHCE<sup>8+</sup>
+### startHCE<sup>(deprecated)</sup>
 
 startHCE(aidList: string[]): boolean
 
@@ -123,9 +141,15 @@ Starts HCE, including setting the application to be foreground preferred and dyn
 | ------- | -------- | ---- | ----------------------- |
 | aidList | string[] | Yes  | AID list to register.|
 
+**Return value**
+
+| **Type** | **Description**                                |
+| ------- | -------------------------------------- |
+| boolean | Returns **true** if HCE is started or has been started; returns **false** otherwise.|
+
 ### start<sup>9+</sup>
 
-start(elementName: ElementName, aidList: string[]): void
+start(elementName: [ElementName](js-apis-bundleManager-elementName.md#elementname), aidList: string[]): void
 
 Starts HCE, including setting the application to be foreground preferred and dynamically registering the application identifier (AID) list. This API is used only for declaration and cannot be used currently.
 
@@ -137,7 +161,7 @@ Starts HCE, including setting the application to be foreground preferred and dyn
 
 | Name | Type    | Mandatory| Description                   |
 | ------- | -------- | ---- | ----------------------- |
-| elementName | ElementName | Yes  | Element name of the service capability.|
+| elementName | [ElementName](js-apis-bundleManager-elementName.md#elementname) | Yes  | Element name of the service capability.|
 | aidList | string[] | Yes  | List of AIDs. This parameter can be left empty.|
 
 **Error codes**
@@ -148,7 +172,7 @@ For details about the error codes, see [NFC Error Codes](../errorcodes/errorcode
 | ------- | -------|
 | 3100301 | Card emulation running state is abnormal in service. |
 
-### stopHCE<sup>8+</sup>
+### stopHCE<sup>(deprecated)</sup>
 
 stopHCE(): boolean
 
@@ -161,9 +185,16 @@ Stops HCE, including removing the foreground preferred attribute and releasing t
 
 **System capability**: SystemCapability.Communication.NFC.CardEmulation
 
+**Return value**
+
+| **Type** | **Description**                                |
+| ------- | -------------------------------------- |
+| boolean | Returns **true** is HCE is stopped; returns **false** otherwise.|
+
+
 ### stop<sup>9+</sup>
 
-stop(elementName: ElementName): void;
+stop(elementName: [ElementName](js-apis-bundleManager-elementName.md#elementname)): void
 
 Stops HCE, including removing the foreground preferred attribute and releasing the dynamically registered AID list. This API is used only for declaration and cannot be used currently.
 
@@ -175,7 +206,7 @@ Stops HCE, including removing the foreground preferred attribute and releasing t
 
 | Name | Type    | Mandatory| Description                   |
 | ------- | -------- | ---- | ----------------------- |
-| elementName | ElementName | Yes  | Element name of a service capability.|
+| elementName | [ElementName](js-apis-bundleManager-elementName.md#elementname) | Yes  | Element name of the service capability.|
 
 **Error codes**
 
@@ -187,9 +218,9 @@ For details about the error codes, see [NFC Error Codes](../errorcodes/errorcode
 
 ### on<sup>8+</sup>
 
-on(type: "hceCmd", callback: AsyncCallback<number[]>): void;
+on(type: "hceCmd", callback: AsyncCallback<number[]>): void
 
-Registers a callback to receive APDUs from the peer card reader. This API is used only for declaration and cannot be used currently.
+Registers a callback to receive APDUs from the peer card reader.
 
 **Required permissions**: ohos.permission.NFC_CARD_EMULATION
 
@@ -202,9 +233,24 @@ Registers a callback to receive APDUs from the peer card reader. This API is use
 | type     | string                  | Yes  | Event type to subscribe to. The value is **hceCmd**.                        |
 | callback | AsyncCallback<number[]> | Yes  | Callback invoked to return the APDU, which consists of hexadecimal numbers ranging from **0x00** to **0xFF**.|
 
-### sendResponse<sup>8+</sup>
+**Example**
+```js
+import cardEmulation from '@ohos.nfc.cardEmulation';
+import { AsyncCallback } from '@ohos.base';
 
-sendResponse(responseApdu: number[]): void;
+let hceService: cardEmulation.HceService = new cardEmulation.HceService();
+
+const apduCallback: AsyncCallback<number[]> = (err, data) => {
+  //handle the data and err
+  console.log("got apdu data");
+};
+hceService.on('hceCmd', apduCallback);
+```
+
+
+### sendResponse<sup>(deprecated)</sup>
+
+sendResponse(responseApdu: number[]): void
 
 Sends a response to the peer card reader. This API is used only for declaration and cannot be used currently.
 
@@ -223,9 +269,9 @@ Sends a response to the peer card reader. This API is used only for declaration 
 
 ### transmit<sup>9+</sup>
 
-transmit(response: number[]): Promise\<void>;
+transmit(response: number[]): Promise\<void>
 
-Sends a response to the peer card reader. This API is used only for declaration and cannot be used currently.
+Sends a response to the peer card reader. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.NFC_CARD_EMULATION
 
@@ -235,7 +281,7 @@ Sends a response to the peer card reader. This API is used only for declaration 
 
 | Name      | Type    | Mandatory| Description                                              |
 | ------------ | -------- | ---- | -------------------------------------------------- |
-| responseApdu | number[] | Yes  | Response APDU sent to the peer card reader. The value consists of hexadecimal numbers ranging from **0x00** to **0xFF**.|
+| response | number[] | Yes  | Response APDU sent to the peer card reader. The value consists of hexadecimal numbers ranging from **0x00** to **0xFF**.|
 
 **Return value**
 
@@ -251,9 +297,26 @@ For details about the error codes, see [NFC Error Codes](../errorcodes/errorcode
 | ------- | -------|
 | 3100301 | Card emulation running state is abnormal in service. |
 
+**Example**
+```js
+import cardEmulation from '@ohos.nfc.cardEmulation';
+import { AsyncCallback } from '@ohos.base';
+
+let hceService: cardEmulation.HceService = new cardEmulation.HceService();
+
+// the data app wanna send, just a example data
+const responseData = [0x1, 0x2];
+hceService.transmit(responseData).then(() => {
+  // handle the transmit promise
+  console.log("send data.");
+}).catch((err: BusinessError) => {
+  console.log("send data error:", err);
+});
+```
+
 ### transmit<sup>9+</sup>
 
-transmit(response: number[], callback: AsyncCallback\<void>): void;
+transmit(response: number[], callback: AsyncCallback\<void>): void
 
 Sends a response to the peer card reader. This API is used only for declaration and cannot be used currently.
 
@@ -265,7 +328,7 @@ Sends a response to the peer card reader. This API is used only for declaration 
 
 | Name | Type    | Mandatory| Description                   |
 | ------- | -------- | ---- | ----------------------- |
-| responseApdu | number[] | Yes  | Response APDU sent to the peer card reader. The value consists of hexadecimal numbers ranging from **0x00** to **0xFF**.|
+| response | number[] | Yes  | Response APDU sent to the peer card reader. The value consists of hexadecimal numbers ranging from **0x00** to **0xFF**.|
 | callback | AsyncCallback\<void> | Yes  | Callback that returns no value.|
 
 **Error codes**

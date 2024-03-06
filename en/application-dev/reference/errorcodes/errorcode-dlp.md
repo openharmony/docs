@@ -348,6 +348,25 @@ The **want** parameter does not contain **displayName**.
 Set parameters correctly.
 
 
+## 19100018 Application Unauthorized
+
+**Error Message**
+
+Application not authorized.
+
+**Description**
+
+The application is not authorized.
+
+**Possible Causes**
+
+The application is not in the authorized application list.
+
+**Solution**
+
+Set the authorized application list.
+
+
 ## 19100019 DLP File Expired
 
 **Error Message**

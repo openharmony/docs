@@ -4,41 +4,43 @@ Before developing a camera application, you must create an independent camera ob
 
 ## How to Develop
 
-Read [Camera](../reference/native-apis/_o_h___camera.md) for the API reference.
+Read [Camera](../reference/apis-camera-kit/_o_h___camera.md) for the API reference.
 
-1. Import the NDK.
+1. Import the NDK.  
 
    ```c++
-    // Include the NDK header files in camera_manager.cpp.
-    #include "multimedia/camera_framework/camera.h"
-    #include "multimedia/camera_framework/camera_input.h"
-    #include "multimedia/camera_framework/capture_session.h"
-    #include "multimedia/camera_framework/photo_output.h"
-    #include "multimedia/camera_framework/preview_output.h"
-    #include "multimedia/camera_framework/video_output.h"
-    #include "multimedia/camera_framework/camera_manager.h"
+    // Include the NDK header files.
+    #include "hilog/log.h"
+    #include "ohcamera/camera.h"
+    #include "ohcamera/camera_input.h"
+    #include "ohcamera/capture_session.h"
+    #include "ohcamera/photo_output.h"
+    #include "ohcamera/preview_output.h"
+    #include "ohcamera/video_output.h"
+    #include "ohcamera/camera_manager.h"
    ```
 
-2. Link the camera NDK dynamic library in the CMake script.
+2. Link the dynamic library in the CMake script.
 
    ```txt
-    target_link_libraries(PUBLIC libohcamera.so)
+    target_link_libraries(entry PUBLIC libohcamera.so libhilog_ndk.z.so)
    ```
 
-3. Call **OH_Camera_GetCameraMananger** to obtain a **CameraManager** object.
+3. Call **OH_Camera_GetCameraManager()** to obtain a **CameraManager** object.
 
    ```c++
    Camera_Manager *cameraManager = nullptr;
    Camera_Input* cameraInput = nullptr;
    Camera_Device* cameras = nullptr;
+   Camera_OutputCapability* cameraOutputCapability = nullptr;
    const Camera_Profile* previewProfile = nullptr;
    const Camera_Profile* photoProfile = nullptr;
    uint32_t size = 0;
    uint32_t cameraDeviceIndex = 0;
    // Create a CameraManager object.
-   Camera_ErrorCode ret = OH_Camera_GetCameraMananger(&cameraManager);
+   Camera_ErrorCode ret = OH_Camera_GetCameraManager(&cameraManager);
    if (cameraManager == nullptr || ret != CAMERA_OK) {
-         OH_LOG_ERROR(LOG_APP, "OH_Camera_GetCameraMananger failed.");
+         OH_LOG_ERROR(LOG_APP, "OH_Camera_GetCameraManager failed.");
    }
    ```
 
@@ -62,26 +64,13 @@ Read [Camera](../reference/native-apis/_o_h___camera.md) for the API reference.
    }
    ```
 
-5. Call **OH_CameraManager_GetSupportedCameraOutputCapability** to obtain all output streams supported by the current device, such as preview streams and photo streams. The output streams supported are the value of each **profile** field under **CameraOutputCapability**.
-     
+5. Call **OH_CameraManager_GetSupportedCameraOutputCapability()** to obtain all output streams supported by the current device, such as preview streams and photo streams. The output streams supported are the value of each **profile** field under **CameraOutputCapability**.
+
    ```c++
    // Create a camera input stream.
    ret = OH_CameraManager_CreateCameraInput(cameraManager, &cameras[cameraDeviceIndex], &cameraInput);
    if (cameraInput == nullptr || ret != CAMERA_OK) {
          OH_LOG_ERROR(LOG_APP, "OH_CameraManager_CreateCameraInput failed.");
-   }
-   // Listen for camera input errors.
-   void OnCameraInputError(const Camera_Input* cameraInput, Camera_ErrorCode errorCode)
-   {
-      OH_LOG_INFO(LOG_APP, "OnCameraInput errorCode = %{public}d", errorCode);
-   }
-
-   CameraInput_Callbacks* GetCameraInputListener(void)
-   {
-      static CameraInput_Callbacks cameraInputCallbacks = {
-         .onError = OnCameraInputError
-      };
-      return &cameraInputCallbacks;
    }
    ret = OH_CameraInput_RegisterCallback(cameraInput, GetCameraInputListener());
    if (ret != CAMERA_OK) {
@@ -100,29 +89,48 @@ Read [Camera](../reference/native-apis/_o_h___camera.md) for the API reference.
    }
    
    if (cameraOutputCapability->previewProfilesSize < 0) {
-      console.error("previewProfilesSize == null");
+      OH_LOG_ERROR(LOG_APP, "previewProfilesSize == null");
    }
    previewProfile = cameraOutputCapability->previewProfiles[0];
 
    if (cameraOutputCapability->photoProfilesSize < 0) {
-      console.error("photoProfilesSize == null");
+      OH_LOG_ERROR(LOG_APP, "photoProfilesSize == null");
    }
    photoProfile = cameraOutputCapability->photoProfiles[0];
    ```
+   ```c++
+   // Listen for camera input errors.
+   void OnCameraInputError(const Camera_Input* cameraInput, Camera_ErrorCode errorCode)
+   {
+      OH_LOG_INFO(LOG_APP, "OnCameraInput errorCode = %{public}d", errorCode);
+   }
 
+   CameraInput_Callbacks* GetCameraInputListener(void)
+   {
+      static CameraInput_Callbacks cameraInputCallbacks = {
+         .onError = OnCameraInputError
+      };
+      return &cameraInputCallbacks;
+   }
+   ```
 
 ## Status Listening
 
 During camera application development, you can listen for the camera status, including the appearance of a new camera, removal of a camera, and availability of a camera. The camera ID and camera status are included in the callback function. When a new camera appears, the new camera can be added to the supported camera list.
 
-Register the **'cameraStatus'** event and return the listening result through a callback, which carries the **Camera_StatusInfo** parameter. For details about the parameter, see [Camera_StatusInfo](../reference/apis/js-apis-camera.md#camerastatusinfo).
-
-```c++
+  Register the **'cameraStatus'** event and return the listening result through a callback, which carries the **Camera_StatusInfo** parameter. For details about the parameter, see [Camera_StatusInfo](../reference/apis-camera-kit/_camera___status_info.md).
+  
+   ```c++
+   ret = OH_CameraManager_RegisterCallback(cameraManager, GetCameraManagerListener());
+   if (ret != CAMERA_OK) {
+      OH_LOG_ERROR(LOG_APP, "OH_CameraManager_RegisterCallback failed.");
+   }
+   ```
+   ```c++
    void CameraManagerStatusCallback(Camera_Manager* cameraManager, Camera_StatusInfo* status)
    {
       OH_LOG_INFO(LOG_APP, "CameraManagerStatusCallback is called");
    }
-
    CameraManager_Callbacks* GetCameraManagerListener()
    {
       static CameraManager_Callbacks cameraManagerListener = {
@@ -130,9 +138,4 @@ Register the **'cameraStatus'** event and return the listening result through a 
       };
       return &cameraManagerListener;
    }
-  ret = OH_CameraManager_RegisterCallback(cameraManager, GetCameraManagerListener());
-  if (ret != CAMERA_OK) {
-      OH_LOG_ERROR(LOG_APP, "OH_CameraManager_RegisterCallback failed.");
-  }
-```
-
+   ```

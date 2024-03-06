@@ -1,7 +1,7 @@
 # ForEach：循环渲染
 
 
-ForEach接口基于数组类型数据来进行循环渲染，需要与容器组件配合使用，且接口返回的组件应当是允许包含在ForEach父容器组件中的子组件。例如，ListItem组件要求ForEach的父容器组件必须为[List组件](../reference/arkui-ts/ts-container-list.md)。
+ForEach接口基于数组类型数据来进行循环渲染，需要与容器组件配合使用，且接口返回的组件应当是允许包含在ForEach父容器组件中的子组件。例如，ListItem组件要求ForEach的父容器组件必须为[List组件](../reference/apis-arkui/arkui-ts/ts-container-list.md)。
 
 > **说明：**
 >
@@ -14,7 +14,7 @@ ForEach接口基于数组类型数据来进行循环渲染，需要与容器组�
 ForEach(
   arr: Array,
   itemGenerator: (item: any, index?: number) => void,
-  keyGenerator?: (item: any, index?: number): string => string
+  keyGenerator?: (item: any, index?: number) => string
 )
 ```
 
@@ -37,7 +37,7 @@ ForEach(
 
 `ForEach`提供了一个名为`keyGenerator`的参数，这是一个函数，开发者可以通过它自定义键值的生成规则。如果开发者没有定义`keyGenerator`函数，则ArkUI框架会使用默认的键值生成函数，即`(item: any, index: number) => { return index + '__' + JSON.stringify(item); }`。
 
-ArkUI框架对于`ForEach`的键值生成有一套特定的判断规则，这主要与`itemGenerator`函数的第二个参数`index`以及`keyGenerator`函数的返回值有关。总的来说，只有当开发者在`itemGenerator`函数中声明了`index`参数，并且自定义的`keyGenerator`函数返回值中不包含`index`参数时，ArkUI框架才会在开发者自定义的`keyGenerator`函数返回值前添加`index`参数，作为最终的键值。在其他情况下，系统将直接使用开发者自定义的`keyGenerator`函数返回值作为最终的键值。如果`keyGenerator`函数未定义，系统将使用上述默认的键值生成函数。具体的键值生成规则判断逻辑如下图所示。
+ArkUI框架对于`ForEach`的键值生成有一套特定的判断规则，这主要与`itemGenerator`函数的第二个参数`index`以及`keyGenerator`函数的第二个参数`index`有关，具体的键值生成规则判断逻辑如下图所示。
 
 **图1** ForEach键值生成规则  
 ![ForEach-Key-Generation-Rules](figures/ForEach-Key-Generation-Rules.png)
@@ -602,7 +602,7 @@ struct ChildItem {
 **图10**  渲染性能降低案例日志打印图  
 ![ForEach-RenderPerformanceDecreaseLogs](figures/ForEach-RenderPerformanceDecreaseLogs.png)
 
-插入新项后，`ForEach`为`new item`、 `two`、 `three`三个数组项创建了对应的组件`ChildItem`，并执行了组件的[`aboutToAppear()`](../reference/arkui-ts/ts-custom-component-lifecycle.md#abouttoappear)生命周期函数。这是因为：
+插入新项后，`ForEach`为`new item`、 `two`、 `three`三个数组项创建了对应的组件`ChildItem`，并执行了组件的[`aboutToAppear()`](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttoappear)生命周期函数。这是因为：
 
 1. 在`ForEach`首次渲染时，创建的键值依次为`0__one`、`1__two`、`2__three`。
 2. 插入新项后，数据源`simpleList`变为`['one', 'new item', 'two', 'three']`，ArkUI框架监听到`@State`装饰的数据源长度变化触发`ForEach`重新渲染。

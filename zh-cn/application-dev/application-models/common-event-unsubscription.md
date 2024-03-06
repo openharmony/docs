@@ -21,6 +21,8 @@
    import Base from '@ohos.base';
    import commonEventManager from '@ohos.commonEventManager';
    import promptAction from '@ohos.promptAction';
+
+   const TAG: string = 'ProcessModel';
    ```
 
 2. 根据[动态订阅公共事件](common-event-subscription.md)章节的步骤来订阅某个事件。
@@ -32,12 +34,12 @@
    if (this.subscriber !== null) {
      commonEventManager.unsubscribe(this.subscriber, (err: Base.BusinessError) => {
        if (err) {
-         Logger.error(TAG, `UnsubscribeCallBack err = ${JSON.stringify(err)}`);
+         console.error(TAG, `UnsubscribeCallBack err = ${JSON.stringify(err)}`);
        } else {
          promptAction.showToast({
            message: $r('app.string.unsubscribe_success_toast')
          });
-         Logger.info(TAG, `Unsubscribe success`);
+         console.info(TAG, `Unsubscribe success`);
          this.subscriber = null;
        }
      })

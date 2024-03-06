@@ -178,11 +178,6 @@ try {
 }
 ```
 
-**References**
-
-[System time and time zone../reference/apis/js-apis-system-date-time.md#systemdatetimegetcurrenttime)
-
-
 ## How do I obtain the cache directory of the current application? (API version 9)
 
 **Solution**
@@ -202,7 +197,7 @@ When a widget is created, a **FormAblity.ts** file is generated, which contains 
 
 **References**
 
-[FormExtensionAbility](../reference/apis/js-apis-app-form-formExtensionAbility.md)
+[FormExtensionAbility](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md)
 
 
 ## What should I do when the compilation on DevEco Studio fails while ServiceExtensionAbility and DataShareExtensionAbility APIs are used? (API version 9)
@@ -435,7 +430,7 @@ To start a continuous task in the background, you must configure the permission 
 
 [ServiceAbility Configuration Items - backgroundModes](../application-models/serviceability-configuration.md)
 
-[Continuous Task Permission](../security/permission-list.md#ohospermissionkeep_background_running)
+[Continuous Task Permissions](../security/AccessToken/permissions-for-all.md#ohospermissionkeep_background_running)
 
 
 ## How do FA widgets exchange data? (API version 9)
@@ -445,3 +440,7 @@ The widget interacts with the widget provider through the **postCardAction** API
 **References**
 
 [Widget Development in the FA Model](../application-models/widget-development-fa.md)
+
+## Can I create a shortcut entry for an application on the home screen to directly open a specified page? (API version 10)
+
+This feature is not supported yet.

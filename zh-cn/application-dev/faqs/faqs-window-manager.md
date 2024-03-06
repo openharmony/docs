@@ -59,7 +59,7 @@ onWindowStageCreate(windowStage){
 
 **参考链接**
 
-[窗口基础能力文档](../reference/apis/js-apis-window.md)
+[窗口基础能力文档](../reference/apis-arkui/js-apis-window.md)
 
 ## 如何锁定设备竖屏，使得窗口不随屏幕旋转(API 9)
 
@@ -100,7 +100,7 @@ if (windowClass) {
 
 **参考链接**
 
-[window.Orientation](../reference/apis/js-apis-window.md#orientation9)
+[window.Orientation](../reference/apis-arkui/js-apis-window.md#orientation9)
 
 ## 调用Window实例的setWindowSystemBarProperties接口设置窗口状态栏和导航栏的高亮属性时不生效(API 9)
 
@@ -112,7 +112,7 @@ if (windowClass) {
 
 **参考链接**
 
-[window.SystemBarProperties](../reference/apis/js-apis-window.md#systembarproperties)
+[window.SystemBarProperties](../reference/apis-arkui/js-apis-window.md#systembarproperties)
 
 
 ## 如何保持屏幕常亮(API 9)
@@ -121,7 +121,9 @@ if (windowClass) {
 
 设置屏幕常亮，不熄屏。
 
-获取窗口实例对象后，调用[setWindowKeepScreenOn方法](../reference/apis/js-apis-window.md#setwindowkeepscreenon9)可设置屏幕是否常亮。
+获取窗口实例对象后，调用[setWindowKeepScreenOn方法](../reference/apis-arkui/js-apis-window.md#setwindowkeepscreenon9)可设置屏幕是否常亮。
+
+**代码示例**
 
 ```
 let isKeepScreenOn = true;
@@ -157,5 +159,103 @@ try {
 
 **参考链接**
 
-[window.on\("windowSizeChange"\)](../reference/apis/js-apis-window.md#onwindowsizechange7)
+[window.on\("windowSizeChange"\)](../reference/apis-arkui/js-apis-window.md#onwindowsizechange7)
+
+## 如何监听当前屏幕的横竖屏状态(API 10)
+
+**解决措施**
+
+应用可以通过display.on监听屏幕状态改变。  
+
+**参考链接**
+
+[开启显示设备变化的监听](../reference/apis-arkui/js-apis-display.md#displayonaddremovechange)
+
+## 如何实现页面跟随屏幕横竖屏自动旋转(API 10)
+
+**解决措施**
+
+1.Abilty级别配置：在模块配置文件module.json5中将EntryAbility设置为"orientation"。  
+2.动态设置：使用window.setPreferredOrientation设置窗口方向。
+
+**代码示例**
+```ts
+import window from '@ohos.window';
+import display from '@ohos.display';
+
+const TAG = 'foo'
+const ORIENTATION: Array<string> = ['垂直', '水平', '反向垂直', '反向水平']
+
+@Entry
+@Component
+struct ScreenTest {
+  @State rotation: number = 0
+  @State message: string = ORIENTATION[this.rotation]
+
+  aboutToAppear() {
+    this.setOrientation()
+
+    let callback = async () => {
+      let d = await display.getDefaultDisplaySync()
+      this.rotation = d.rotation
+      this.message = ORIENTATION[this.rotation]
+      console.info(TAG, JSON.stringify(d))
+    }
+    try {
+      display.on("change", callback); // 监听屏幕状态改变
+    } catch (exception) {
+      console.error(TAG, 'Failed to register callback. Code: ' + JSON.stringify(exception));
+    }
+  }
+
+  setOrientation() {
+    try {
+      window.getLastWindow(getContext(this), (err, data) => { // 获取window实例
+        if (err.code) {
+          console.error(TAG, 'Failed to obtain the top window. Cause: ' + JSON.stringify(err));
+          return;
+        }
+        let windowClass = data;
+        console.info(TAG, 'Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
+
+        let orientation = window.Orientation.AUTO_ROTATION; // 设置窗口方向为传感器自动旋转模式。
+        try {
+          windowClass.setPreferredOrientation(orientation, (err) => {
+            if (err.code) {
+              console.error(TAG, 'Failed to set window orientation. Cause: ' + JSON.stringify(err));
+              return;
+            }
+            console.info(TAG, 'Succeeded in setting window orientation.');
+          });
+        } catch (exception) {
+          console.error(TAG, 'Failed to set window orientation. Cause: ' + JSON.stringify(exception));
+        }
+        ;
+      });
+    } catch (exception) {
+      console.error(TAG, 'Failed to obtain the top window. Cause: ' + JSON.stringify(exception));
+    }
+    ;
+  }
+
+  build() {
+    Row() {
+      Column() {
+        Text(`${this.rotation}`).fontSize(25)
+        Text(`${this.message}`).fontSize(25)
+      }
+      .width("100%")
+    }
+    .height("100%")
+  }
+}
+```
+**参考链接**
+
+[设置窗口的显示方向属性](../reference/apis-arkui/js-apis-window.md#setpreferredorientation9)  
+[开启显示设备变化的监听](../reference/apis-arkui/js-apis-display.md#displayonaddremovechange)
+
+<!--no_check-->
+
+
 

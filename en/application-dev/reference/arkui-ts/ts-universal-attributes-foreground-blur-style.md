@@ -6,12 +6,25 @@ You can apply foreground blur effects to a component.
 >
 >  This attribute is supported since API version 10. Updates will be marked with a superscript to indicate their earliest API version.
 
-## Attributes
-| Name| Type| Description|
-| -------- | -------- | -------- |
-| foregroundBlurStyle | value:[BlurStyle](ts-appendix-enums.md#blurstyle9),<br>options?:[ForegroundBlurStyleOptions](#foregroundblurstyleoptions10) | Foreground blur style applied to the component.<br>**value**: settings of the foreground blur style, including the blur radius, mask color, mask opacity, saturation, and brightness.<br>**options**: foreground blur options. This parameter is optional.|
+## foregroundBlurStyle
+
+foregroundBlurStyle(value: BlurStyle, options?: ForegroundBlurStyleOptions)
+
+Applies a foreground blur style to the component.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type                                                        | Mandatory| Description                                                        |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value   | [BlurStyle](ts-appendix-enums.md#blurstyle9)                 | Yes  | Settings of the foreground blur style, including the blur radius, mask color, mask opacity, saturation, and brightness.|
+| options | [ForegroundBlurStyleOptions](#foregroundblurstyleoptions) | No  | Foreground blur options.                                    |
 
 ## ForegroundBlurStyleOptions
+Inherited from [BlurStyleOptions](#blurstyleoptions).
+
+## BlurStyleOptions
 
 | Name                       | Type                                               | Mandatory| Description                                                        |
 | --------------------------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
@@ -20,9 +33,10 @@ You can apply foreground blur effects to a component.
 | scale | number   | No  | Foreground blur scale. This API is a system API.<br>Default value: **1.0**<br>Value range: [0.0, 1.0]<br>|
 | blurOptions<sup>11+</sup> | [BlurOptions](ts-appendix-enums.md#bluroptions11)         | No   | Grayscale blur parameters.          |
 
-## Example
 
-### Example 1
+
+
+## Example
 
 ```ts
 // xxx.ets

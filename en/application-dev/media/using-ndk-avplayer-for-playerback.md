@@ -12,7 +12,7 @@ During application development, you can use the callback function of the AVPlaye
 **Figure 1** Playback state transition 
 ![Playback status change](figures/playback-status-change-ndk.png)
 
-For details about the states, see [AVPlayerState](../reference/native-apis/_a_v_player.md#avplayerstate-1). When the AVPlayer is in the **prepared**, **playing**, **paused**, or **completed** state, the playback engine is working and a large amount of RAM is occupied. If your application does not need to use the AVPlayer, call **OH_AVPlayer_Reset()** or **OH_AVPlayer_Release()** to release the instance.
+For details about the states, see [AVPlayerState](../reference/apis-media-kit/_a_v_player.md#avplayerstate-1). When the AVPlayer is in the **prepared**, **playing**, **paused**, or **completed** state, the playback engine is working and a large amount of RAM is occupied. If your application does not need to use the AVPlayer, call **OH_AVPlayer_Reset()** or **OH_AVPlayer_Release()** to release the instance.
 
 ## How to Develop
 Link the dynamic library in the CMake script.
@@ -20,8 +20,8 @@ Link the dynamic library in the CMake script.
 target_link_libraries(sample PUBLIC libavplayer.so)
 ```
 
-You can use C/C++ APIs related to audio playback by including the header files [avplayer.h](../reference/native-apis/avplayer__base_8h.md), [avpalyer_base.h](../reference/native-apis/avplayer__base_8h.md), and [native_averrors.h](../reference/native-apis/native__averrors_8h.md).
-Read [AVPlayer](../reference/native-apis/_a_v_player.md) for the API reference.
+You can use C/C++ APIs related to audio playback by including the header files [avplayer.h](../reference/apis-media-kit/avplayer__base_8h.md), [avpalyer_base.h](../reference/apis-media-kit/avplayer__base_8h.md), and [native_averrors.h](../reference/apis-avcodec-kit/native__averrors_8h.md).
+Read [AVPlayer](../reference/apis-media-kit/_a_v_player.md) for the API reference.
 
 1. Call **OH_AVPlayer_Create()** to create an **AVPlayer** instance. The AVPlayer is the **idle** state.
 
@@ -41,7 +41,7 @@ Read [AVPlayer](../reference/native-apis/_a_v_player.md) for the API reference.
 
 7. Call **OH_AVPlayer_Release()** to switch the AVPlayer to the **released** state. Now your application exits the playback.
 
-## Example
+## Sample Code
 
 ```c
 #include "napi/native_api.h"
@@ -50,41 +50,62 @@ Read [AVPlayer](../reference/native-apis/_a_v_player.md) for the API reference.
 #include <multimedia/player_framework/native_averrors.h>
 void OnInfo(OH_AVPlayer *player, AVPlayerOnInfoType type, int32_t extra)
 {
+    const char *url;
+    int32_t ret;
     switch (type) {
-       case AV_INFO_TYPE_SEEKDONE:
-       // do something
-           break;
-       case AV_INFO_TYPE_STATE_CHANGE:
-       // do something
-           break;
-       case AV_INFO_TYPE_SPEEDDONE:
-       // do something
-           break;
-       case AV_INFO_TYPE_POSITION_UPDATE:
-       // do something
-           break;
-       case AV_INFO_TYPE_BITRATE_COLLECT:
-       // do something
-           break;
-       case AV_INFO_TYPE_INTERRUPT_EVENT:
-       // do something
-           break;
-       case AV_INFO_TYPE_RESOLUTION_CHANGE:
-       // do something
-           break;
-       case AV_INFO_TYPE_TRACKCHANGE:
-       // do something
-           break;
-       case AV_INFO_TYPE_SUBTITLE_UPDATE: {
-       // do something
-           break;
-       }
-       case INFO_TYPE_TRACK_INFO_UPDATE: {
-       // do something
-           break;
-       }
-       default:
-           break;
+        case AV_INFO_TYPE_STATE_CHANGE:
+            switch (extra) {
+                case AV_IDLE: // This state is reported upon a successful callback of OH_AVPlayer_Reset().
+                    *url = "/data/test/mp3_48000Hz_64kbs_mono.mp3"
+                    ret = OH_AVPlayer_SetURLSource (player, url); // Set the URL.
+                    if (ret != AV_ERR_OK) {
+                    // Exception processing.
+                    }
+                    break;
+                case AV_INITIALIZED: 
+                    ret = OH_AVPlayer_Prepare(player); // This state is reported when the AVPlayer sets the playback source.
+                    if (ret != AV_ERR_OK) {
+                    // Exception processing.
+                    }
+                    break;
+                case AV_PREPARED:  
+                    ret = OH_AVPlayer_Play(player); // Call OH_AVPlayer_Play() to start playback.
+                    if (ret != AV_ERR_OK) {
+                    // Exception processing.
+                    }
+                    break;
+                case AV_PLAYING:  
+                    ret = OH_AVPlayer_Pause(player); // Call OH_AVPlayer_Pause() to pause the playback.
+                    if (ret != AV_ERR_OK) {
+                    // Exception processing.
+                    }
+                    break;
+                case AV_PAUSED:  
+                    ret = OH_AVPlayer_Play(player); // Call OH_AVPlayer_Play() again to start playback.
+                    if (ret != AV_ERR_OK) {
+                    // Exception processing.
+                    }break;
+                case AV_STOPPED:  
+                    ret = OH_AVPlayer_Reset(player); //Call OH_AVPlayer_Reset() to reset the AVPlayer state.
+                    if (ret != AV_ERR_OK) {
+                    // Exception processing.
+                    }
+                    break;
+                case AV_COMPLETED:  
+                    ret = OH_AVPlayer_Stop(player);// Call OH_AVPlayer_Stop() to stop the playback.
+                    if (ret != AV_ERR_OK) {
+                    // Exception processing.
+                    }
+                    break;
+                default:
+                    break;
+            }
+            break;
+        case AV_INFO_TYPE_POSITION_UPDATE:
+        // do something
+            break;
+        default:
+            break;
     }
 }
 
@@ -105,33 +126,10 @@ int main()
     if (ret != AV_ERR_OK) {
     // Exception processing.
     }
-    const char *path = "/data/test/mp3_48000Hz_64kbs_mono.mp3";
-    // Set the URL.
-    int32_t ret = OH_AVPlayer_SetURLSource(player, path);
-    if (ret != AV_ERR_OK) {
-    // Exception processing.
-    }
-    // Prepare resources.
-    int32_t ret = OH_AVPlayer_Prepare(player);
-    if (ret != AV_ERR_OK) {
-    // Exception processing.
-    }
-    // Play the media asset.
-    int32_t ret = OH_AVPlayer_Play(player);
-    if (ret != AV_ERR_OK) {
-    // Exception processing.
-    }
-    // Stop the playback.
-    int32_t ret = OH_AVPlayer_Stop(player);
-    if (ret != AV_ERR_OK) {
-    // Exception processing.
-    }
-    // Release the instance.
-    int32_t ret = OH_AVPlayer_Release(player);
+    const char *url = "/data/test/mp3_48000Hz_64kbs_mono.mp3";
+    ret = OH_AVPlayer_SetURLSource (player, url); // Set the URL.
     if (ret != AV_ERR_OK) {
     // Exception processing.
     }
 }
 ```
-
- <!--no_check--> 

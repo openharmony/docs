@@ -2,11 +2,11 @@
 
 ## 使用场景
 
-开发者可使用[MindSpore Lite提供的Native API](../reference/native-apis/_mind_spore.md)来部署AI算法，并提供高层接口供UI层调用，进行AI模型推理。典型场景如：AI套件SDK开发。
+开发者可使用[MindSpore Lite提供的Native API](../reference/apis-mindspore-lite-kit/_mind_spore.md)来部署AI算法，并提供高层接口供UI层调用，进行AI模型推理。典型场景如：AI套件SDK开发。
 
 ## 基本概念
 
-- [N-API](../reference/native-lib/third_party_napi/napi.md)：用于构建JS本地化组件的一套接口。可利用N-API，将C/C++开发的库封装成JS模块。
+- N-API：用于构建JS本地化组件的一套接口。可利用N-API，将C/C++开发的库封装成JS模块。
 
 ## 环境准备
 
@@ -258,29 +258,27 @@ const TAG = 'MSLiteNativeDemo'
 @Entry
 @Component
 struct Index {
-    @State message: string = 'MindSpore Lite Demo'
-    build() {
-        Row() {
-            Column() {
-                Text(this.message)
-                    .fontSize(30)
-                    .fontWeight(FontWeight.Bold)
-                    .onClick(() => {
-                        resManager.getResourceManager().then(mgr => {
-                            hilog.info(0x0000, TAG, '*** Start MSLite Demo ***');
-                            let ret: number = 0;
-                            ret = msliteNapi.runDemo("", mgr); // 调用runDemo()，执行AI模型推理。
-                            if (ret == -1) {
-                                hilog.info(0x0000, TAG, 'Error when running MSLite Demo!');
-                            }
-                            hilog.info(0x0000, TAG, '*** Finished MSLite Demo ***');
-                        })
-                    })
-            }
-            .width('100%')
-        }
-        .height('100%')
+  @State message: string = 'MindSpore Lite Demo'
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(30)
+          .fontWeight(FontWeight.Bold)
+            .onClick(async () => {
+              hilog.info(0x0000, TAG, '*** Start MSLite Demo ***');
+              let ret: number = 0;
+              ret = msliteNapi.runDemo("", getContext(this).resourceManager); // 调用runDemo()，执行AI模型推理。
+              if (ret == -1) {
+                hilog.error(0x0000, TAG, 'Error when running MSLite Demo!');
+              }
+              hilog.info(0x0000, TAG, '*** Finished MSLite Demo ***');
+            })
+      }
+      .width('100%')
     }
+    .height('100%')
+  }
 }
 ```
 

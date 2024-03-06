@@ -61,11 +61,8 @@
 
 - ### HAP
 
-    OpenHarmony Ability Package, released with the file name extension .hap. A HAP provides all content of an application, including the code, resources, third-party libraries, and application configuration file.
+    Harmony Ability Package, released with the file name extension .hap. A HAP provides all content of an application, including the code, resources, third-party libraries, and application configuration file.
 
-- ### HAR
-
-    OpenHarmony Archive file, a file containing intermediate representations of code, resources, and configuration files.
 
 - ### HCS
 

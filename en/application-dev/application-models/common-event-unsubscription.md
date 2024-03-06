@@ -18,8 +18,12 @@ You can call [unsubscribe()](../reference/apis/js-apis-commonEventManager.md#com
 1. Import the **commonEventManager** module.
    
    ```ts
-   import commonEventManager from '@ohos.commonEventManager';
    import Base from '@ohos.base';
+   import commonEventManager from '@ohos.commonEventManager';
+   import promptAction from '@ohos.promptAction';
+   import Logger from '../utils/Logger';
+
+   const TAG: string = 'ProcessModel';
    ```
 
 2. Subscribe to an event by following the procedure described in [Subscribing to Common Events in Dynamic Mode](common-event-subscription.md).
@@ -28,14 +32,21 @@ You can call [unsubscribe()](../reference/apis/js-apis-commonEventManager.md#com
    
    ```ts
    // The subscriber object is created during event subscription.
-   if (subscriber !== null) {
-       commonEventManager.unsubscribe(subscriber, (err: Base.BusinessError) => {
-           if (err) {
-               console.error(`[CommonEvent] UnsubscribeCallBack err=${JSON.stringify(err)}`);
-           } else {
-               console.info(`[CommonEvent] Unsubscribe`);
-               subscriber = null;
-           }
-       })
+   if (this.subscriber !== null) {
+     commonEventManager.unsubscribe(this.subscriber, (err: Base.BusinessError) => {
+       if (err) {
+         Logger.error(TAG, `UnsubscribeCallBack err = ${JSON.stringify(err)}`);
+       } else {
+         promptAction.showToast({
+           message: $r('app.string.unsubscribe_success_toast')
+         });
+         Logger.info(TAG, `Unsubscribe success`);
+         this.subscriber = null;
+       }
+     })
+   } else {
+     promptAction.showToast({
+       message: $r('app.string.unsubscribe_failed_toast')
+     });
    }
    ```

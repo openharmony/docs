@@ -1,20 +1,17 @@
 # 仅对系统应用开放
 
-
 在申请目标权限前，建议开发者先阅读[权限工作流程](determine-application-mode.md)，对权限的工作流程有基本了解后，再结合以下权限字段的具体说明，判断应用能否申请目标权限，提高开发效率。
 
-
 > **说明：**
-> - 以下权限仅对APL等级为systen_basic及以上的应用开放，不向APL等级为normal的应用开放。
+>
+> - 以下权限仅对APL等级为system_basic及以上的应用开放，不向APL等级为normal的应用开放。
 > - 仅部分权限可通过[访问控制列表（ACL）](app-permission-mgmt-overview.md#访问控制列表acl)的方式跨级别申请。
-
 
 ## system_grant，允许ACL跨级申请
 
 以下权限的授权方式均为system_grant（系统授权），且允许通过ACL的方式申请。
 
 申请流程可参考[选择申请权限的方式](determine-application-mode.md)。
-
 
 ### ohos.permission.SYSTEM_FLOAT_WINDOW
 
@@ -28,6 +25,17 @@
 
 **起始版本**：7
 
+### ohos.permission.ALLOW_UPGRADE_GUIDE_ACCESS
+
+允许系统应用获取应用的升级引导数据或拉起应用的升级引导组件。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
 
 ### ohos.permission.AGENT_REQUIRE_FORM
 
@@ -41,7 +49,6 @@
 
 **起始版本**：11
 
-
 ### ohos.permission.WAKEUP_VISION
 
 允许应用访问语音助手视觉组件。
@@ -53,7 +60,6 @@
 **ACL使能**：true
 
 **起始版本**：11
-
 
 ### ohos.permission.WAKEUP_VOICE
 
@@ -67,7 +73,6 @@
 
 **起始版本**：11
 
-
 ### ohos.permission.ATTEST_KEY
 
 允许应用获取用于证明密钥合法性的证书链。
@@ -79,7 +84,6 @@
 **ACL使能**：true
 
 **起始版本**：11
-
 
 ### ohos.permission.GET_PHONE_NUMBERS
 
@@ -93,7 +97,6 @@
 
 **起始版本**：10
 
-
 ### ohos.permission.ACTIVATE_THEME_PACKAGE
 
 允许系统应用设置主题内容，包括壁纸、图标、皮肤、AOD 和字体等。
@@ -105,7 +108,6 @@
 **ACL使能**：true
 
 **起始版本**：11
-
 
 ### ohos.permission.SET_UNREMOVABLE_NOTIFICATION
 
@@ -119,7 +121,6 @@
 
 **起始版本**：11
 
-
 ### ohos.permission.GET_DOMAIN_ACCOUNTS
 
 允许应用查询域帐号信息。
@@ -131,7 +132,6 @@
 **ACL使能**：true
 
 **起始版本**：10
-
 
 ### ohos.permission.UNINSTALL_BUNDLE
 
@@ -145,7 +145,6 @@
 
 **起始版本**：10
 
-
 ### ohos.permission.RECOVER_BUNDLE
 
 允许恢复预置应用。
@@ -157,7 +156,6 @@
 **ACL使能**：true
 
 **起始版本**：10
-
 
 ### ohos.permission.UPDATE_SYSTEM
 
@@ -171,7 +169,6 @@
 
 **起始版本**：8
 
-
 ### ohos.permission.FACTORY_RESET
 
 允许调用恢复出厂接口。
@@ -183,7 +180,6 @@
 **ACL使能**：true
 
 **起始版本**：8
-
 
 ### ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -197,7 +193,6 @@
 
 **起始版本**：7
 
-
 ### ohos.permission.ACCESS_SYSTEM_SETTINGS
 
 允许应用接入或拉起系统设置界面
@@ -209,7 +204,6 @@
 **ACL使能**：true
 
 **起始版本**：9
-
 
 ### ohos.permission.SET_ABILITY_CONTROLLER
 
@@ -235,7 +229,6 @@
 
 **起始版本**：7
 
-
 ### ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS_EXTENSION
 
 允许应用跨系统本地帐号交互。
@@ -247,7 +240,6 @@
 **ACL使能**：true
 
 **起始版本**：7
-
 
 ### ohos.permission.CLEAN_APPLICATION_DATA
 
@@ -261,7 +253,6 @@
 
 **起始版本**：7
 
-
 ### ohos.permission.GET_RUNNING_INFO
 
 允许应用获取运行态信息。
@@ -273,7 +264,6 @@
 **ACL使能**：true
 
 **起始版本**：7
-
 
 ### ohos.permission.START_ABILITIES_FROM_BACKGROUND
 
@@ -287,7 +277,6 @@
 
 **起始版本**：9
 
-
 ### ohos.permission.MANAGE_MISSIONS
 
 允许应用管理系统中的任务。
@@ -299,7 +288,6 @@
 **ACL使能**：true
 
 **起始版本**：9
-
 
 ### ohos.permission.RUNNING_STATE_OBSERVER
 
@@ -313,7 +301,6 @@
 
 **起始版本**：7
 
-
 ### ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
 允许应用激活设备管理应用。
@@ -325,7 +312,6 @@
 **ACL使能**：true
 
 **起始版本**：9
-
 
 ### ohos.permission.PUBLISH_SYSTEM_COMMON_EVENT
 
@@ -339,7 +325,6 @@
 
 **起始版本**：10
 
-
 ### ohos.permission.NOTIFICATION_CONTROLLER
 
 允许应用管理通知和订阅通知。
@@ -351,7 +336,6 @@
 **ACL使能**：true
 
 **起始版本**：8
-
 
 ### ohos.permission.CLOUDDATA_CONFIG
 
@@ -365,7 +349,6 @@
 
 **起始版本**：10
 
-
 ### ohos.permission.GET_DEFAULT_APPLICATION
 
 允许应用查询默认应用。
@@ -377,7 +360,6 @@
 **ACL使能**：true
 
 **起始版本**：9
-
 
 ### ohos.permission.MANAGE_INTELLIGENT_VOICE
 
@@ -391,7 +373,6 @@
 
 **起始版本**：10
 
-
 ### ohos.permission.POWER_MANAGER
 
 允许应用调用电源管理子系统的接口休眠或者唤醒设备。
@@ -403,7 +384,6 @@
 **ACL使能**：true
 
 **起始版本**：7
-
 
 ### ohos.permission.GET_SCENE_CODE
 
@@ -417,7 +397,6 @@
 
 **起始版本**：10
 
-
 ### ohos.permission.MANAGE_ECOLOGICAL_RULE
 
 允许为管控服务设置场景值生成规则和配套的体验。
@@ -429,7 +408,6 @@
 **ACL使能**：true
 
 **起始版本**：10
-
 
 ### ohos.permission.INSTALL_ENTERPRISE_BUNDLE
 
@@ -443,7 +421,6 @@
 
 **起始版本**：10
 
-
 ### ohos.permission.INSTALL_BUNDLE
 
 允许应用安装、卸载其他应用（除了企业相关应用，目前有企业InHouse应用，企业MDM应用和企业normal应用）
@@ -455,7 +432,6 @@
 **ACL使能**：true
 
 **起始版本**：7
-
 
 ### ohos.permission.MANAGE_SHORTCUTS
 
@@ -469,7 +445,6 @@
 
 **起始版本**：7
 
-
 ### ohos.permission.OBSERVE_FORM_RUNNING
 
 允许应用监听卡片运行状态。
@@ -481,7 +456,6 @@
 **ACL使能**：true
 
 **起始版本**：10
-
 
 ### ohos.permission.WRITE_HIVIEW_SYSTEM
 
@@ -495,7 +469,6 @@
 
 **起始版本**：10
 
-
 ### ohos.permission.READ_HIVIEW_SYSTEM
 
 允许应用访问hiview的数据。
@@ -507,7 +480,6 @@
 **ACL使能**：true
 
 **起始版本**：10
-
 
 ### ohos.permission.READ_DFX_SYSEVENT
 
@@ -521,7 +493,6 @@
 
 **起始版本**：8
 
-
 ### ohos.permission.PERMISSION_USED_STATS
 
 允许系统应用访问权限使用记录。
@@ -533,7 +504,6 @@
 **ACL使能**：true
 
 **起始版本**：9
-
 
 ### ohos.permission.CAPTURE_SCREEN
 
@@ -547,7 +517,6 @@
 
 **起始版本**：7
 
-
 ### ohos.permission.ACCESS_CERT_MANAGER_INTERNAL
 
 允许应用进行证书及凭据的安装、卸载、启用、禁用等操作。
@@ -559,7 +528,6 @@
 **ACL使能**：true
 
 **起始版本**：9
-
 
 ### ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
@@ -573,7 +541,6 @@
 
 **起始版本**：7
 
-
 ### ohos.permission.CLOUDFILE_SYNC
 
 允许应用使用端云同步能力。
@@ -585,7 +552,6 @@
 **ACL使能**：true
 
 **起始版本**：10
-
 
 ### ohos.permission.CHANGE_OVERLAY_ENABLED_STATE
 
@@ -599,7 +565,6 @@
 
 **起始版本**：10
 
-
 ### ohos.permission.ACCESS_SCREEN_LOCK_INNER
 
 允许应用使用锁屏服务的锁定屏幕、发送锁屏事件、系统事件回调功能。
@@ -611,7 +576,6 @@
 **ACL使能**：true
 
 **起始版本**：10
-
 
 ### ohos.permission.BACKUP
 
@@ -625,7 +589,6 @@
 
 **起始版本**：9
 
-
 ### ohos.permission.MOUNT_FORMAT_MANAGER
 
 允许应用对外卡进行格式化操作
@@ -637,7 +600,6 @@
 **ACL使能**：true
 
 **起始版本**：9
-
 
 ### ohos.permission.MOUNT_UNMOUNT_MANAGER
 
@@ -651,7 +613,6 @@
 
 **起始版本**：9
 
-
 ### ohos.permission.PROXY_AUTHORIZATION_URI
 
 允许应用代理授权URI。
@@ -663,7 +624,6 @@
 **ACL使能**：true
 
 **起始版本**：10
-
 
 ### ohos.permission.ACCESS_CAST_ENGINE_MIRROR
 
@@ -677,7 +637,6 @@
 
 **起始版本**：10
 
-
 ### ohos.permission.ACCESS_CAST_ENGINE_STREAM
 
 允许应用调用系统资源投射能力
@@ -689,7 +648,6 @@
 **ACL使能**：true
 
 **起始版本**：10
-
 
 ### ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE
 
@@ -703,7 +661,6 @@
 
 **起始版本**：10
 
-
 ### ohos.permission.UPDATE_MIGRATE
 
 允许升级过程中进行数据迁移。
@@ -715,7 +672,6 @@
 **ACL使能**：true
 
 **起始版本**：10
-
 
 ### ohos.permission.MANAGE_SENSOR
 
@@ -729,7 +685,6 @@
 
 **起始版本**：10
 
-
 ### ohos.permission.MANAGE_PRINT_JOB
 
 允许应用获取管理打印任务的能力。
@@ -741,7 +696,6 @@
 **ACL使能**：true
 
 **起始版本**：10
-
 
 ### ohos.permission.securityguard.SET_MODEL_STATE
 
@@ -755,7 +709,6 @@
 
 **起始版本**：10
 
-
 ### ohos.permission.CAPTURE_VOICE_DOWNLINK_AUDIO
 
 允许应用采集语音下行音频
@@ -767,7 +720,6 @@
 **ACL使能**：true
 
 **起始版本**：10
-
 
 ### ohos.permission.GET_WIFI_INFO_INTERNAL
 
@@ -781,7 +733,6 @@
 
 **起始版本**：8
 
-
 ### ohos.permission.ACCESS_BUNDLE_DIR
 
 允许应用访问其他应用安装目录。
@@ -793,7 +744,6 @@
 **ACL使能**：true
 
 **起始版本**：9
-
 
 ### ohos.permission.CHANGE_ABILITY_ENABLED_STATE
 
@@ -807,7 +757,6 @@
 
 **起始版本**：7
 
-
 ### ohos.permission.CLOUDFILE_SYNC_MANAGER
 
 允许应用获取端云同步管理能力。
@@ -819,7 +768,6 @@
 **ACL使能**：true
 
 **起始版本**：10
-
 
 ### ohos.permission.DUMP
 
@@ -833,7 +781,6 @@
 
 **起始版本**：9
 
-
 ### ohos.permission.DEVICE_STANDBY_EXEMPTION
 
 允许应用在系统待机模式正常使用资源。
@@ -845,7 +792,6 @@
 **ACL使能**：true
 
 **起始版本**：10
-
 
 ### ohos.permission.MANAGE_CAMERA_CONFIG
 
@@ -859,7 +805,6 @@
 
 **起始版本**：9
 
-
 ### ohos.permission.MANAGE_AUDIO_CONFIG
 
 允许应用进行全局麦克风静音等操作。
@@ -871,7 +816,6 @@
 **ACL使能**：true
 
 **起始版本**：9
-
 
 ### ohos.permission.MANAGE_DISPOSED_APP_STATUS
 
@@ -885,7 +829,6 @@
 
 **起始版本**：9
 
-
 ### ohos.permission.FILE_ACCESS_MANAGER
 
 允许文件管理类应用通过FAF框架访问公共数据文件。
@@ -897,7 +840,6 @@
 **ACL使能**：true
 
 **起始版本**：9
-
 
 ### ohos.permission.ACCESS_PUSH_SERVICE
 
@@ -911,7 +853,6 @@
 
 **起始版本**：9
 
-
 ### ohos.permission.MANAGE_NET_STRATEGY
 
 允许应用程序获取网络策略相关的信息或修改网络策略相关设置。
@@ -923,7 +864,6 @@
 **ACL使能**：true
 
 **起始版本**：10
-
 
 ### ohos.permission.INPUT_MONITORING
 
@@ -937,7 +877,6 @@
 
 **起始版本**：7
 
-
 ### ohos.permission.GET_WIFI_LOCAL_MAC
 
 允许应用获取本机的Wi-Fi设备的MAC地址。
@@ -949,7 +888,6 @@
 **ACL使能**：true
 
 **起始版本**：8
-
 
 ### ohos.permission.GET_WIFI_PEERS_MAC
 
@@ -963,7 +901,6 @@
 
 **起始版本**：8
 
-
 ### ohos.permission.securityguard.REQUEST_SECURITY_EVENT_INFO
 
 允许应用获取风险详细数据。
@@ -975,7 +912,6 @@
 **ACL使能**：true
 
 **起始版本**：9
-
 
 ### ohos.permission.securityguard.REPORT_SECURITY_INFO
 
@@ -989,7 +925,6 @@
 
 **起始版本**：9
 
-
 ### ohos.permission.GET_SENSITIVE_PERMISSIONS
 
 允许应用读取其他应用的敏感权限的状态。
@@ -1001,7 +936,6 @@
 **ACL使能**：true
 
 **起始版本**：8
-
 
 ### ohos.permission.ACCESS_SERVICE_DM
 
@@ -1015,7 +949,6 @@
 
 **起始版本**：10
 
-
 ### ohos.permission.UPLOAD_SESSION_MANAGER
 
 允许应用管理上传任务会话。
@@ -1027,7 +960,6 @@
 **ACL使能**：true
 
 **起始版本**：10
-
 
 ### ohos.permission.ABILITY_BACKGROUND_COMMUNICATION
 
@@ -1041,7 +973,6 @@
 
 **起始版本**：9
 
-
 ### ohos.permission.ACCESS_DLP_FILE
 
 允许对DLP文件进行权限配置和管理。
@@ -1053,7 +984,6 @@
 **ACL使能**：true
 
 **起始版本**：9
-
 
 ### ohos.permission.ACCESS_IDS
 
@@ -1067,7 +997,6 @@
 
 **起始版本**：9
 
-
 ### ohos.permission.ACCESS_MISSIONS
 
 允许应用访问任务栈信息。
@@ -1080,6 +1009,7 @@
 
 **起始版本**：7
 
+**废弃版本**：9
 
 ### ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -1093,7 +1023,6 @@
 
 **起始版本**：7
 
-
 ### ohos.permission.CONNECT_IME_ABILITY
 
 允许绑定输入法Ability（InputMethodAbility）。
@@ -1105,7 +1034,6 @@
 **ACL使能**：true
 
 **起始版本**：7
-
 
 ### ohos.permission.CONNECT_SCREEN_SAVER_ABILITY
 
@@ -1119,7 +1047,6 @@
 
 **起始版本**：7
 
-
 ### ohos.permission.CONNECTIVITY_INTERNAL
 
 允许应用程序获取网络相关的信息或修改网络相关设置。当前仅支持系统应用申请该权限。
@@ -1131,7 +1058,6 @@
 **ACL使能**：true
 
 **起始版本**：8
-
 
 ### ohos.permission.CONTROL_TASK_SYNC_ANIMATOR
 
@@ -1145,7 +1071,6 @@
 
 **起始版本**：7
 
-
 ### ohos.permission.DOWNLOAD_SESSION_MANAGER
 
 允许应用管理下载任务会话。
@@ -1157,7 +1082,6 @@
 **ACL使能**：true
 
 **起始版本**：7
-
 
 ### ohos.permission.GET_DISTRIBUTED_ACCOUNTS
 
@@ -1171,7 +1095,6 @@
 
 **起始版本**：9
 
-
 ### ohos.permission.GET_LOCAL_ACCOUNTS
 
 允许应用查询系统本地帐号信息。
@@ -1183,7 +1106,6 @@
 **ACL使能**：true
 
 **起始版本**：9
-
 
 ### ohos.permission.GET_TELEPHONY_STATE
 
@@ -1197,7 +1119,6 @@
 
 **起始版本**：8
 
-
 ### ohos.permission.GET_WALLPAPER
 
 允许应用读取壁纸文件。
@@ -1209,7 +1130,6 @@
 **ACL使能**：true
 
 **起始版本**：7
-
 
 ### ohos.permission.GET_WIFI_CONFIG
 
@@ -1223,7 +1143,6 @@
 
 **起始版本**：8
 
-
 ### ohos.permission.GRANT_SENSITIVE_PERMISSIONS
 
 允许应用为其他应用授予敏感权限。
@@ -1235,7 +1154,6 @@
 **ACL使能**：true
 
 **起始版本**：8
-
 
 ### ohos.permission.LAUNCH_DATA_PRIVACY_CENTER
 
@@ -1249,7 +1167,6 @@
 
 **起始版本**：7
 
-
 ### ohos.permission.LISTEN_BUNDLE_CHANGE
 
 允许应用监听其他应用安装、更新、卸载状态的变化。
@@ -1261,7 +1178,6 @@
 **ACL使能**：true
 
 **起始版本**：7
-
 
 ### ohos.permission.MANAGE_BLUETOOTH
 
@@ -1275,7 +1191,6 @@
 
 **起始版本**：7
 
-
 ### ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS
 
 允许应用管理系统分布式帐号信息。
@@ -1287,7 +1202,6 @@
 **ACL使能**：true
 
 **起始版本**：9
-
 
 ### ohos.permission.MANAGE_MEDIA_RESOURCES
 
@@ -1301,7 +1215,6 @@
 
 **起始版本**：9
 
-
 ### ohos.permission.MANAGE_SECURE_SETTINGS
 
 允许应用修改安全类系统设置。
@@ -1313,7 +1226,6 @@
 **ACL使能**：true
 
 **起始版本**：7
-
 
 ### ohos.permission.MANAGE_WIFI_CONNECTION
 
@@ -1327,7 +1239,6 @@
 
 **起始版本**：8
 
-
 ### ohos.permission.MANAGE_WIFI_HOTSPOT
 
 允许应用开启或关闭Wi-Fi热点。
@@ -1339,7 +1250,6 @@
 **ACL使能**：true
 
 **起始版本**：8
-
 
 ### ohos.permission.NOTIFICATION_AGENT_CONTROLLER
 
@@ -1353,7 +1263,6 @@
 
 **起始版本**：9
 
-
 ### ohos.permission.PLACE_CALL
 
 允许应用直接拨打电话。
@@ -1365,7 +1274,6 @@
 **ACL使能**：true
 
 **起始版本**：8
-
 
 ### ohos.permission.POWER_OPTIMIZATION
 
@@ -1379,7 +1287,6 @@
 
 **起始版本**：7
 
-
 ### ohos.permission.PROVISIONING_MESSAGE
 
 允许激活超级设备管理器应用。
@@ -1391,7 +1298,6 @@
 **ACL使能**：true
 
 **起始版本**：9
-
 
 ### ohos.permission.radio.ACCESS_FM_AM
 
@@ -1405,7 +1311,6 @@
 
 **起始版本**：7
 
-
 ### ohos.permission.READ_SCREEN_SAVER
 
 允许应用查询屏保状态信息。
@@ -1417,7 +1322,6 @@
 **ACL使能**：true
 
 **起始版本**：7
-
 
 ### ohos.permission.REBOOT
 
@@ -1431,7 +1335,6 @@
 
 **起始版本**：7
 
-
 ### ohos.permission.REBOOT_RECOVERY
 
 允许系统应用重启设备并进入恢复模式。
@@ -1443,7 +1346,6 @@
 **ACL使能**：true
 
 **起始版本**：7
-
 
 ### ohos.permission.REFRESH_USER_ACTION
 
@@ -1457,7 +1359,6 @@
 
 **起始版本**：7
 
-
 ### ohos.permission.REMOVE_CACHE_FILES
 
 允许清理指定应用的缓存。
@@ -1469,7 +1370,6 @@
 **ACL使能**：true
 
 **起始版本**：7
-
 
 ### ohos.permission.REQUIRE_FORM
 
@@ -1483,7 +1383,6 @@
 
 **起始版本**：7
 
-
 ### ohos.permission.REVOKE_SENSITIVE_PERMISSIONS
 
 允许应用撤销给其他应用授予的敏感权限。
@@ -1495,7 +1394,6 @@
 **ACL使能**：true
 
 **起始版本**：8
-
 
 ### ohos.permission.RUN_ANY_CODE
 
@@ -1509,7 +1407,6 @@
 
 **起始版本**：10
 
-
 ### ohos.permission.sec.ACCESS_UDID
 
 允许系统应用获取UDID。
@@ -1521,7 +1418,6 @@
 **ACL使能**：true
 
 **起始版本**：7
-
 
 ### ohos.permission.securityguard.REQUEST_SECURITY_MODEL_RESULT
 
@@ -1535,7 +1431,6 @@
 
 **起始版本**：9
 
-
 ### ohos.permission.SET_DEFAULT_APPLICATION
 
 允许应用设置、重置默认应用。
@@ -1547,7 +1442,6 @@
 **ACL使能**：true
 
 **起始版本**：9
-
 
 ### ohos.permission.SET_TELEPHONY_STATE
 
@@ -1561,7 +1455,6 @@
 
 **起始版本**：8
 
-
 ### ohos.permission.SET_TIME
 
 允许应用修改系统时间。
@@ -1573,7 +1466,6 @@
 **ACL使能**：true
 
 **起始版本**：7
-
 
 ### ohos.permission.SET_TIME_ZONE
 
@@ -1587,7 +1479,6 @@
 
 **起始版本**：7
 
-
 ### ohos.permission.SET_WIFI_CONFIG
 
 允许应用配置Wi-Fi信息。
@@ -1599,7 +1490,6 @@
 **ACL使能**：true
 
 **起始版本**：8
-
 
 ### ohos.permission.START_ABILIIES_FROM_BACKGROUND
 
@@ -1613,6 +1503,7 @@
 
 **起始版本**：7
 
+**废弃版本**：9
 
 ### ohos.permission.START_INVISIBLE_ABILITY
 
@@ -1626,7 +1517,6 @@
 
 **起始版本**：9
 
-
 ### ohos.permission.STORAGE_MANAGER
 
 允许应用调用storage manager服务中对空间统计以及卷信息的查询接口。
@@ -1639,7 +1529,6 @@
 
 **起始版本**：9
 
-
 ### ohos.permission.UPDATE_CONFIGURATION
 
 允许更新系统配置。
@@ -1651,7 +1540,6 @@
 **ACL使能**：true
 
 **起始版本**：7
-
 
 ### ohos.permission.WRITE_SCREEN_SAVER
 
@@ -1704,6 +1592,18 @@
 ### ohos.permission.ACCESS_PIN_AUTH
 
 允许注册口令认证过程获取口令数据的回调。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：8
+
+### ohos.permission.ACCESS_USER_AUTH_INTERNAL
+
+允许调用统一身份认证服务的系统内部接口。
 
 **权限级别**：system_basic
 
@@ -1965,6 +1865,42 @@
 
 **起始版本**：11
 
+### ohos.permission.GET_SECURITY_PRIVACY_ADVICE
+
+允许系统应用获取安全隐私中心建议相关数据。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：11
+
+### ohos.permission.SET_SECURITY_PRIVACY_ADVICE
+
+允许系统应用处理安全隐私中心保护建议。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：11
+
+### ohos.permission.USE_SECURITY_PRIVACY_MESSAGER
+
+允许系统服务调用权限管理相关接口。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：11
+
 ### ohos.permission.ACCESS_PASSWORDVAULT_ABILITY
 
 允许系统应用或系统服务拉起密码保险箱能力。
@@ -2001,9 +1937,9 @@
 
 **起始版本**：11
 
-### ohos.permission.START_ABILITY_WITH_ANIMATION
+### ohos.permission.ACCESS_DDK_HID
 
-允许应用取消Ability启动动效。
+允许扩展外设驱动访问HID DDK接口开发HID类扩展外设驱动。
 
 **权限级别**：system_basic
 
@@ -2011,11 +1947,11 @@
 
 **ACL使能**：true
 
-**起始版本**: 11
+**起始版本**：11
 
-### ohos.permission.ACCESS_DDK_HID
+### ohos.permission.ACCESS_DDK_USB
 
-允许扩展外设驱动访问HID DDK接口开发HID类扩展外设驱动。
+允许扩展外设驱动访问USB DDK接口开发USB总线扩展外设驱动。
 
 **权限级别**：system_basic
 
@@ -2133,7 +2069,19 @@
 
 **起始版本**：11
 
-## ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS
+### ohos.permission.ACCESS_STATUSBAR_ICON
+
+允许应用接入状态栏图标。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+### ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS
 
 允许应用管理系统音效。
 
@@ -2144,6 +2092,318 @@
 **ACL使能**：true
 
 **起始版本**：11
+
+### ohos.permission.SECURE_PASTE
+
+允许应用静默读取剪贴板。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：11
+
+### ohos.permission.SET_CODE_PROTECT_INFO
+
+允许系统应用设置云侧公钥以及工作秘钥密文，并协商代码保护秘钥信息。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：11
+
+### ohos.permission.SET_ADVANCED_SECURITY_MODE
+
+允许应用修改高级安全模式配置。
+
+权限级别: system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+起始版本: 11
+
+### ohos.permission.SET_DEVELOPER_MODE
+
+允许应用修改开发者模式配置。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：11
+
+### ohos.permission.DISABLE_PERMISSION_DIALOG
+
+允许系统应用去设置指定应用能否拉起权限弹窗。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：11
+
+### ohos.permission.MANAGE_ACTIVATION_LOCK
+
+允许应用管理设备激活锁。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+起始版本: 11
+
+### ohos.permission.MANAGE_PRIVATE_PHOTOS
+
+允许应用访问系统预置隐藏相册及相册内文件。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：11
+
+### ohos.permission.INTERCEPT_INPUT_EVENT
+
+允许系统应用拦截输入事件。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：11
+
+### ohos.permission.RECORD_VOICE_CALL
+
+允许应用录制通话内容。
+
+权限级别: system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+起始版本: 11
+
+### ohos.permission.MANAGE_APP_INSTALL_INFO
+
+允许应用创建、管理应用安装任务。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：11
+
+### ohos.permission.ACCESS_ADVANCED_SECURITY_MODE
+
+允许系统应用打开高级安全模式配置界面。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+起始版本: 11
+
+### ohos.permission.ACCESS_HIVIEWX
+
+允许系统应用拉起“用户体验改进计划”。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：11
+
+### ohos.permission.ACCESS_HIVIEWCARE
+
+允许系统应用拉起智能检测能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：11
+
+### ohos.permission.CONNECT_UI_EXTENSION_ABILITY
+
+允许系统服务连接UIExtensionAbility。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：11
+
+### ohos.permission.SET_SANDBOX_POLICY
+
+允许系统应用设置动态沙箱策略。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：11
+
+### ohos.permission.TRIGGER_ACTIVATIONLOCK
+
+允许系统SA调用“查找设备”。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：11
+
+### ohos.permission.WRITE_PRIVACY_PUSH_DATA
+
+允许应用往另一个应用中写入隐私Push数据。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：11
+
+### ohos.permission.MANAGE_NEARLINK
+
+允许应用配对星闪设备，并对设备的电话簿或消息进行访问。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.GET_NEARLINK_LOCAL_MAC
+
+允许应用获取本机的星闪MAC地址。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.GET_NEARLINK_PEER_MAC
+
+允许应用获取对端设备的星闪MAC地址。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.MANAGE_RGM
+
+允许系统服务或系统应用管理RGM。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.ACCESS_PROTOCOL_DFX_DATA
+
+允许系统应用读取通讯故障及系统统计信息等数据。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.MANAGE_USER_ACCOUNT_INFO
+
+允许系统应用及系统SA调用账号服务。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.ACCESS_AI_ABILITY
+
+允许应用和系统SA调用语音视觉服务的接口。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.READ_HEALTH_MOTION
+
+允许系统应用读取步数及运动三环信息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.hsdr.REQUEST_HSDR
+
+允许系统应用访问安全检测响应框架安全策略云查功能。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
 
 ## system_grant，不允许ACL跨级申请
 
@@ -2175,7 +2435,6 @@
 
 **起始版本**：11
 
-
 ### ohos.permission.QUERY_ACCESSIBILITY_ELEMENT
 
 允许批量查询无障碍节点。
@@ -2187,7 +2446,6 @@
 **ACL使能**：false
 
 **起始版本**：11
-
 
 ### ohos.permission.GET_ALL_APP_ACCOUNTS
 
@@ -2201,7 +2459,6 @@
 
 **起始版本**：7
 
-
 ### ohos.permission.MANAGE_DEVICE_AUTH_CRED
 
 允许应用调用设备认证华为帐号凭据管理应用接口。
@@ -2213,19 +2470,6 @@
 **ACL使能**：false
 
 **起始版本**：10
-
-
-### ohos.permission.ACCESS_USER_AUTH_INTERNAL
-
-允许调用统一身份认证服务的系统内部接口。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**ACL使能**：false
-
-**起始版本**：8
 
 ### ohos.permission.ACCESS_AUTH_RESPOOL
 
@@ -2251,7 +2495,6 @@
 
 **起始版本**：9
 
-
 ### ohos.permission.WRITE_APP_PUSH_DATA
 
 允许推送服务往应用中写入数据。
@@ -2263,7 +2506,6 @@
 **ACL使能**：false
 
 **起始版本**：10
-
 
 ### ohos.permission.READ_APP_PUSH_DATA
 
@@ -2277,7 +2519,6 @@
 
 **起始版本**：10
 
-
 ### ohos.permission.NETSYS_INTERNAL
 
 允许SA服务调用网络管理netsys中的网络诊断、wifi、网卡监听、iptables设置等功能接口。
@@ -2289,7 +2530,6 @@
 **ACL使能**：false
 
 **起始版本**：10
-
 
 ### ohos.permission.DISTRIBUTED_SOFTBUS_CENTER
 
@@ -2303,7 +2543,6 @@
 
 **起始版本**：9
 
-
 ### ohos.permission.GET_NETWORK_STATS
 
 允许系统应用获取历史流量。
@@ -2315,7 +2554,6 @@
 **ACL使能**：false
 
 **起始版本**：10
-
 
 ### ohos.permission.MANAGE_VPN
 
@@ -2329,7 +2567,6 @@
 
 **起始版本**：10
 
-
 ### ohos.permission.RESTRICT_APPLICATION_ACTIVE
 
 允许待机续航部件发布一个自定义的限网事件。
@@ -2341,7 +2578,6 @@
 **ACL使能**：false
 
 **起始版本**：10
-
 
 ### ohos.permission.CONNECT_CELLULAR_CALL_SERVICE
 
@@ -2355,7 +2591,6 @@
 
 **起始版本**：10
 
-
 ### ohos.permission.CONNECT_IMS_SERVICE
 
 允许系统服务访问IMS SA。
@@ -2368,7 +2603,6 @@
 
 **起始版本**：10
 
-
 ### ohos.permission.ENFORCE_USER_IDM
 
 允许SA无token删除IAM用户信息。
@@ -2380,7 +2614,6 @@
 **ACL使能**：false
 
 **起始版本**：9
-
 
 ### ohos.permission.WRITE_ACCESSIBILITY_CONFIG
 
@@ -2412,7 +2645,6 @@
 
 申请流程可参考[选择申请权限的方式](determine-application-mode.md)。
 
-
 ### ohos.permission.READ_AUDIO
 
 允许读取用户公共目录的音频文件。
@@ -2424,7 +2656,6 @@
 **ACL使能**：true
 
 **起始版本**：9
-
 
 ### ohos.permission.READ_DOCUMENT
 
@@ -2438,7 +2669,6 @@
 
 **起始版本**：9
 
-
 ### ohos.permission.READ_IMAGEVIDEO
 
 允许读取用户公共目录的图片或视频文件。
@@ -2450,7 +2680,6 @@
 **ACL使能**：true
 
 **起始版本**：9
-
 
 ### ohos.permission.WRITE_AUDIO
 
@@ -2464,7 +2693,6 @@
 
 **起始版本**：9
 
-
 ### ohos.permission.WRITE_DOCUMENT
 
 允许修改用户公共目录的文档。
@@ -2476,7 +2704,6 @@
 **ACL使能**：true
 
 **起始版本**：9
-
 
 ### ohos.permission.WRITE_IMAGEVIDEO
 
@@ -2490,7 +2717,6 @@
 
 **起始版本**：9
 
-
 ### ohos.permission.READ_CONTACTS
 
 允许应用读取联系人数据。
@@ -2502,7 +2728,6 @@
 **ACL使能**：true
 
 **起始版本**：8
-
 
 ### ohos.permission.WRITE_CONTACTS
 
@@ -2516,7 +2741,6 @@
 
 **起始版本**：8
 
-
 ### ohos.permission.READ_WHOLE_CALENDAR
 
 允许应用读取所有的日历信息。
@@ -2528,7 +2752,6 @@
 **ACL使能**：true
 
 **起始版本**：9
-
 
 ### ohos.permission.WRITE_WHOLE_CALENDAR
 
@@ -2542,7 +2765,6 @@
 
 **起始版本**：9
 
-
 ### ohos.permission.GET_INSTALLED_BUNDLE_LIST
 
 允许应用读取已安装应用列表。
@@ -2554,7 +2776,6 @@
 **ACL使能**：true
 
 **起始版本**：10
-
 
 ### ohos.permission.ANSWER_CALL
 
@@ -2568,7 +2789,6 @@
 
 **起始版本**：9
 
-
 ### ohos.permission.MANAGE_VOICEMAIL
 
 允许应用在语音信箱中留言。
@@ -2580,7 +2800,6 @@
 **ACL使能**：true
 
 **起始版本**：8
-
 
 ### ohos.permission.READ_CALL_LOG
 
@@ -2594,7 +2813,6 @@
 
 **起始版本**：8
 
-
 ### ohos.permission.READ_CELL_MESSAGES
 
 允许应用读取设备收到的小区广播信息。
@@ -2606,7 +2824,6 @@
 **ACL使能**：true
 
 **起始版本**：8
-
 
 ### ohos.permission.READ_MESSAGES
 
@@ -2620,7 +2837,6 @@
 
 **起始版本**：8
 
-
 ### ohos.permission.RECEIVE_MMS
 
 允许应用接收和处理彩信。
@@ -2632,7 +2848,6 @@
 **ACL使能**：true
 
 **起始版本**：8
-
 
 ### ohos.permission.RECEIVE_SMS
 
@@ -2646,7 +2861,6 @@
 
 **起始版本**：8
 
-
 ### ohos.permission.RECEIVE_WAP_MESSAGES
 
 允许应用接收和处理WAP消息。
@@ -2659,7 +2873,6 @@
 
 **起始版本**：8
 
-
 ### ohos.permission.SEND_MESSAGES
 
 允许应用发送短信。
@@ -2671,7 +2884,6 @@
 **ACL使能**：true
 
 **起始版本**：8
-
 
 ### ohos.permission.WRITE_CALL_LOG
 

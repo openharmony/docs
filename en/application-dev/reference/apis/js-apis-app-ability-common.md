@@ -26,13 +26,18 @@ import common from '@ohos.app.ability.common';
 | ExtensionContext   | [ExtensionContext](js-apis-inner-application-extensionContext.md)               | Level-2 module **ExtensionContext**.|
 | FormExtensionContext   | [FormExtensionContext](js-apis-inner-application-formExtensionContext.md)               | Level-2 module **FormExtensionContext**.|
 | ServiceExtensionContext | [ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext.md) | Level-2 module **ServiceExtensionContext**.<br>**System API**: This is a system API and cannot be called by third-party applications.|
+| VpnExtensionContext | [VpnExtensionContext](js-apis-inner-application-VpnExtensionContext.md) | Level-2 module **VpnExtensionContext**.|
 | EventHub   | [EventHub](js-apis-inner-application-eventHub.md)               | Level-2 module **EventHub**.|
 | PacMap   | [PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap)               | Level-2 module **PacMap**.|
 | AbilityResult   | [AbilityResult](js-apis-inner-ability-abilityResult.md)               | Level-2 module **AbilityResult**.|
 | AbilityStartCallback<sup>11+<sup>   | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md)               | Level-2 module **AbilityStartCallback**.|
 | ConnectOptions   | [ConnectOptions](js-apis-inner-ability-connectOptions.md)               | Level-2 module **ConnectOptions**.|
+| AutoFillExtensionContext   | [AutoFillExtensionContext](js-apis-inner-application-autoFillExtensionContext.md)               | Level-2 module **AutoFillExtensionContext**.|
+| AutoStartupInfo   | [AutoStartupInfo](js-apis-inner-application-autoStartupInfo.md)               | Level-2 module **AutoStartupInfo**.|
+| AutoStartupCallback   | [AutoStartupCallback](js-apis-inner-application-autoStartupCallback.md)               | Level-2 module **AutoStartupCallback**.|
 
 **Example**
+
 ```ts
 import common from '@ohos.app.ability.common';
 
@@ -43,9 +48,15 @@ let baseContext: common.BaseContext;
 let context: common.Context;
 let extensionContext: common.ExtensionContext;
 let formExtensionContext: common.FormExtensionContext;
+let VpnExtensionContext: common.VpnExtensionContext;
 let eventHub: common.EventHub;
 let pacMap: common.PacMap;
 let abilityResult: common.AbilityResult;
 let abilityStartCallback: common.AbilityStartCallback;
 let connectOptions: common.ConnectOptions;
+let autoFillExtensionContext: common.AutoFillExtensionContext;
+let autoStartupInfo: common.AutoStartupInfo;
+let autoStartupCallback: common.AutoStartupCallback;
 ```
+
+ <!--no_check--> 

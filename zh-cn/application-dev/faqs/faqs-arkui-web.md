@@ -106,7 +106,7 @@ Web组件的onUrlLoadIntercept的不同返回结果对应不同的操作：
 
 **参考链接**
 
-[onUrlloadIntercept](../reference/arkui-ts/ts-basic-components-web.md#onurlloadinterceptdeprecated)
+[onUrlloadIntercept](../reference/apis-arkweb/ts-basic-components-web.md#onurlloadinterceptdeprecated)
 
 
 ## 为什么Web组件的onKeyEvent键盘事件不生效(API 9)
@@ -121,7 +121,7 @@ onKeyEvent为通用事件，当前Web组件不支持通用事件。Web组件监�
 
 **参考链接**
 
-[onInterceptKeyEvent](../reference/arkui-ts/ts-basic-components-web.md#oninterceptkeyevent9)
+[onInterceptKeyEvent](../reference/apis-arkweb/ts-basic-components-web.md#oninterceptkeyevent9)
 
 
 ## onInterceptRequest拦截URL并自定义HTML文件，页面加载失败(API 9)
@@ -158,7 +158,7 @@ Web({ src: 'www.example.com', controller: this.controller })
 
 **参考链接**
 
-[WebResourceResponse](../reference/arkui-ts/ts-basic-components-web.md#webresourceresponse)
+[WebResourceResponse](../reference/apis-arkweb/ts-basic-components-web.md#webresourceresponse)
 
 
 ## 如何在ArkTS代码中执行HTML内的JS函数(API 9)
@@ -172,7 +172,7 @@ Web({ src: 'www.example.com', controller: this.controller })
 
 **参考链接**
 
-[runJavaScript](../reference/apis/js-apis-webview.md#runjavascript)
+[runJavaScript](../reference/apis-arkweb/js-apis-webview.md#runjavascript)
 
 
 ## 使用Web组件加载本地网页时，如何在本地网页中调用ArkTS中的函数(API 9)
@@ -247,7 +247,7 @@ Web({ src: 'www.example.com', controller: this.controller })
 
 **参考链接**
 
-[javaScriptProxy](../reference/arkui-ts/ts-basic-components-web.md#javascriptproxy)
+[javaScriptProxy](../reference/apis-arkweb/ts-basic-components-web.md#javascriptproxy)
 
 
 ## Web组件domStorageAccess属性设置(API 9)
@@ -258,7 +258,7 @@ Web({ src: 'www.example.com', controller: this.controller })
 
 **参考链接**
 
-[domStorageAccess](../reference/arkui-ts/ts-basic-components-web.md#domstorageaccess)
+[domStorageAccess](../reference/apis-arkweb/ts-basic-components-web.md#domstorageaccess)
 
 
 ## 如何解决Web组件加载的HTML页面内检测网络状态失败(API 9)
@@ -316,7 +316,7 @@ struct Index {
 
 **参考链接**
 
-[userAgent](../reference/arkui-ts/ts-basic-components-web.md#useragentdeprecated)、[getUserAgent](../reference/apis/js-apis-webview.md#getuseragent)
+[userAgent](../reference/apis-arkweb/ts-basic-components-web.md#useragentdeprecated)、[getUserAgent](../reference/apis-arkweb/js-apis-webview.md#getuseragent)
 
 
 ## Web组件中如何通过手势滑动返回上一个Web页面(API 9)
@@ -354,5 +354,56 @@ struct Index {
 
 **参考链接**
 
-[accessStep](../reference/apis/js-apis-webview.md#accessstep)
+[accessStep](../reference/apis-arkweb/js-apis-webview.md#accessstep)
+
+
+## WebView支持同层渲染吗(API 10)
+
+**解决措施**
+
+1. 支持Video、Map、Camera、Canvas、WebGL、WebView组件同层渲染。
+2. 支持将Web embed标签的id、type、src、width、height、url属性传递给原生组件。
+
+
+## WebView有哪些调试工具，调试工具的用法是什么(API 10)
+
+**解决措施**
+
+setWebDebuggingAccess()接口开启Web组件前端页面调试能力，利用DevTools工具可以在电脑上调试移动设备上的前端网页，设备需为4.1.0及以上版本。
+
+**参考链接**
+
+[使用Devtools工具调试前端页面（开发指南）](../web/web-debugging-with-devtools.md)
+
+
+## WebView如何实现网络请求拦截功能(API 10)
+
+**解决措施**
+
+可以通过onInterceptRequest()接口实现自定义资源请求响应，该能力可用于自定义Web页面响应、自定义文件资源响应等场景。当Web网页发起资源加载请求时，应用层会收到该请求消息并构造本地资源响应消息发送给Web内核，Web内核根据应用层响应信息进行页面资源加载。
+
+**参考链接**
+
+[自定义页面请求响应（开发指南）](../web/web-resource-interception-request-mgmt.md)
+
+
+## WebView和原生进行通信的方式有哪些，如何实现(API 10)
+
+**解决措施**
+
+1. Native->H5使用runJavaScript接口注入JS进行通信，H5->Native使用registerJavaScriptProy接口。先将Native方法注册至H5侧，H5再通过调用前端方法实现与Native侧的通信。
+2. runJavaScript、registerJavaScriptProy接口同时在NDK侧C API暴露。
+3. 使用onInterceptrequest接口拦截H5侧请求，同时将Native侧数据作为Response返回至H5，实现Native与H5的通信。
+
+**参考链接**
+
+[runJavaScript](../reference/apis-arkweb/js-apis-webview.md#runjavascriptext10)、[registerJavaScriptProxy](../reference/apis-arkweb/js-apis-webview.md#registerjavascriptproxy)、[javaScriptProxy](../reference/apis-arkweb/ts-basic-components-web.md#javascriptproxy)、[onInterceptRequest](../reference/apis-arkweb/ts-basic-components-web.md#oninterceptrequest9)
+
+
+## WebView进程模型和渲染机制是什么(API 11)
+
+**解决措施**
+
+1. 进程模型：1个主进程、多个render进程。
+2. 渲染机制：web自渲染。
 

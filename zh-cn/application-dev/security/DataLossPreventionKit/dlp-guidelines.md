@@ -1,6 +1,6 @@
-# 数据防泄漏（DLP）开发指导
+# Data Loss Prevention Kit开发指导
 
-数据防泄漏（Data Loss Prevention, DLP）是OpenHarmony提供的系统级的数据防泄漏解决方案，提供一种称为DLP的文件格式。后缀格式为“原始文件名（包含原始文件后缀）.dlp”，例如: “test.docx.dlp”，文件由授权凭证和原始文件密文组成。
+DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称为DLP的文件格式。后缀格式为“原始文件名（包含原始文件后缀）.dlp”，例如: “test.docx.dlp”，文件由授权凭证和原始文件密文组成。
 
 通过端云协同认证（需要联网）来获取文件的访问授权，授权类型包含只读、编辑、文档拥有者三种。
 
@@ -48,9 +48,7 @@
 
 ## 开发步骤
 
-开发步骤
-
-1. 引入[dlpPermission](../../reference/apis/js-apis-dlppermission.md)模块。
+1. 引入[dlpPermission](../../reference/apis-data-loss-prevention-kit/js-apis-dlppermission.md)模块。
 
    ```ts
    import dlpPermission from '@ohos.dlpPermission';
@@ -132,7 +130,7 @@
    });
    ```
 
-6. 判断当前打开文件是否是dlp文件。
+6. 判断当前打开文件是否是DLP文件。
 
    ```ts
    import dlpPermission from '@ohos.dlpPermission';
@@ -192,6 +190,7 @@
    ```
 
 9. 获取DLP文件保留沙箱记录。
+
     ```ts
     async getRetentionSandboxList() {
       try {
@@ -204,6 +203,7 @@
     ```
 
 10. 设置沙箱应用配置信息。
+
     ```ts
     async setSandboxAppConfig() {
       try {
@@ -215,6 +215,7 @@
     ```
 
 11. 清理沙箱应用配置信息。
+
     ```ts
     async cleanSandboxAppConfig() {
       try {
@@ -226,6 +227,7 @@
     ```
 
 12. 查询沙箱应用配置信息。
+
     ```ts
     async getSandboxAppConfig() {
       try {

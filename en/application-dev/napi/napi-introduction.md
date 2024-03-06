@@ -1,0 +1,49 @@
+# OpenHarmony Node-API
+
+
+## When to Use
+
+Developed based on the Node-API specifications of Node.js, OpenHarmony Node-API allows interaction between ArkTS/JS and C/C++ modules. It provides a set of stable APIs that can be used on different operating systems.
+
+Unless otherwise specified, Node-API in this document refers to OpenHarmony Node-API.
+
+Generally, ArkTS/JS is used for OpenHarmony application development. However, in compute-intensive scenarios, such as games and physical simulations, the existing C/C++ libraries are required to meet the requirements for performance and efficiency. Node-API encapsulates I/O, CPU-intensive, and OS underlying capabilities and exposes these capabilities in the form of ArkTS/JS interfaces to implement interaction between ArkTS/JS and C/C++ code. Node-API provides the following benefits:
+
+
+- The system can open rich module functions of the framework layer to upper-layer applications through the ArkTS/JS APIs.
+
+- You can encapsulate core capabilities in C/C++ and use them with ArkTS/JS APIs to improve the execution efficiency of your application.
+
+
+## Node-API Architecture
+
+**Figure 1** Node-API architecture
+  
+![napi_mechanism](figures/napi_mechanism.png)
+
+- Native module: a module developed using Node-API and imported to ArkTS.
+
+- Node-API: implements the logic for interaction between ArkTS and C/C++ code.
+
+- ModuleManager: manages native modules, including loading and locating native modules.
+
+- ScopeManager: manages the lifecycle of **napi_value**.
+
+- ReferenceManager: manages the lifecycle of **napi_ref**.
+
+- Native engine: ArkTS engine abstraction layer, which unifies the API behavior of the ArkTS engine at the Node-API layer.
+
+- ArkComiler ArkTS runtime: ArkTS runtime.
+
+
+## Key Interaction Process of Node-API
+
+**Figure 2** Key interaction process of Node-API
+  
+![process_napi](figures/process_napi.png)
+
+The interaction between ArkTS and C++ consists of the following two steps:
+
+1. Initialization: When a native module is imported to ArkTS, the ArkTS engine calls the ModuleManager to load the .so file and dependencies of the module. When the module is loaded for the first time, the module registration is triggered. Then, the method properties defined by the module are embedded to an **exports** object and the object is returned.
+
+2. Invocation: When an ArkTS method is called using the **exports** object, the ArkTS engine locates and calls the embedded C/C++ method.

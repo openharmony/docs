@@ -5,7 +5,6 @@ The **AppVersionInfo** module defines the application version information. You c
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> The APIs of this module can be used only in the FA model.
 
 ## Modules to Import
 

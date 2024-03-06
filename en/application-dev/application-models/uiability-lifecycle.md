@@ -17,17 +17,17 @@ The lifecycle of UIAbility has four states: **Create**, **Foreground**, **Backgr
 
 ### Create
 
-The **Create** state is triggered when the UIAbility instance is created during application loading. It corresponds to the **onCreate()** callback. In this callback, you can perform application initialization operations, for example, defining variables or loading resources.
+The **Create** state is triggered when the UIAbility instance is created during application loading. It corresponds to the **onCreate()** callback. In this callback, you can perform page initialization operations, for example, defining variables or loading resources.
 
 
 ```ts
+import type AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import Want from '@ohos.app.ability.Want';
+import type Want from '@ohos.app.ability.Want';
 
 export default class EntryAbility extends UIAbility {
-  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-    // Initialize the application.
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    // Initialize the page.
   }
   // ...
 }
@@ -35,7 +35,7 @@ export default class EntryAbility extends UIAbility {
 
 > **NOTE**
 >
-> [Want](../reference/apis/js-apis-app-ability-want.md) is used as the carrier to transfer information between application components. For details, see [Want](want-overview.md).
+> [Want](../reference/apis-ability-kit/js-apis-app-ability-want.md) is used as the carrier to transfer information between application components. For details, see [Want](want-overview.md).
 
 ### WindowStageCreate and WindowStageDestroy
 
@@ -45,40 +45,40 @@ After the UIAbility instance is created but before it enters the **Foreground** 
 
 ![Ability-Life-Cycle-WindowStage](figures/Ability-Life-Cycle-WindowStage.png)  
 
-In the **onWindowStageCreate()** callback, use [loadContent()](../reference/apis/js-apis-window.md#loadcontent9-2) to set the page to be loaded, and call [on('windowStageEvent')](../reference/apis/js-apis-window.md#onwindowstageevent9) to subscribe to [WindowStage events](../reference/apis/js-apis-window.md#windowstageeventtype9), for example, having or losing focus, or becoming visible or invisible.
+In the **onWindowStageCreate()** callback, use [loadContent()](../reference/apis-arkui/js-apis-window.md#loadcontent9-2) to set the page to be loaded, and call [on('windowStageEvent')](../reference/apis-arkui/js-apis-window.md#onwindowstageevent9) to subscribe to [WindowStage events](../reference/apis-arkui/js-apis-window.md#windowstageeventtype9), for example, having or losing focus, or becoming visible or invisible.
 
 ```ts
+import Logger from '../utils/Logger';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 
 export default class EntryAbility extends UIAbility {
   // ...
 
-  onWindowStageCreate(windowStage: window.WindowStage) {
+  onWindowStageCreate(windowStage: window.WindowStage): void {
     // Subscribe to the WindowStage events (having or losing focus, or becoming visible or invisible).
     try {
       windowStage.on('windowStageEvent', (data) => {
         let stageEventType: window.WindowStageEventType = data;
         switch (stageEventType) {
           case window.WindowStageEventType.SHOWN: // Switch to the foreground.
-            console.info('windowStage foreground.');
+            Logger.info('windowStage foreground.');
             break;
           case window.WindowStageEventType.ACTIVE: // Gain focus.
-            console.info('windowStage active.');
+            Logger.info('windowStage active.');
             break;
           case window.WindowStageEventType.INACTIVE: // Lose focus.
-            console.info('windowStage inactive.');
+            Logger.info('windowStage inactive.');
             break;
           case window.WindowStageEventType.HIDDEN: // Switch to the background.
-            console.info('windowStage background.');
+            Logger.info('windowStage background.');
             break;
           default:
             break;
         }
       });
     } catch (exception) {
-      console.error('Failed to enable the listener for window stage event changes. Cause:' +
-      JSON.stringify(exception));
+      Logger.error('Failed to enable the listener for window stage event changes. Cause:' + JSON.stringify(exception));
     }
 
     // Set the page to be loaded.
@@ -93,35 +93,25 @@ export default class EntryAbility extends UIAbility {
 >
 > For details about how to use WindowStage, see [Window Development](../windowmanager/application-window-stage.md).
 
-Before the UIAbility instance is destroyed, the **onWindowStageDestroy()** callback is invoked to release UI resources. In this callback, you can unsubscribe from the WindowStage events.
-
+Before the UIAbility instance is destroyed, the **onWindowStageDestroy()** callback is invoked to release UI resources.
 
 ```ts
+import Logger from '../utils/Logger';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
+import type { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
   windowStage: window.WindowStage | undefined = undefined;
   // ...
 
-  onWindowStageCreate(windowStage: window.WindowStage) {
+  onWindowStageCreate(windowStage: window.WindowStage): void {
     this.windowStage = windowStage;
     // ...
   }
 
   onWindowStageDestroy() {
     // Release UI resources.
-    // Unsubscribe from the WindowStage events such as having or losing focus in the onWindowStageDestroy() callback.
-    try {
-      if (this.windowStage) {
-        this.windowStage.off('windowStageEvent');
-      }
-    } catch (err) {
-      let code = (err as BusinessError).code;
-      let message = (err as BusinessError).message;
-      console.error(`Failed to disable the listener for windowStageEvent. Code is ${code}, message is ${message}`);
-    };
   }
 }
 ```
@@ -146,11 +136,11 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 export default class EntryAbility extends UIAbility {
   // ...
 
-  onForeground() {
+  onForeground(): void {
     // Apply for the resources required by the system or re-apply for the resources released in onBackground().
   }
 
-  onBackground() {
+  onBackground(): void {
     // Release unused resources when the UI is invisible, or perform time-consuming operations in this callback,
     // for example, saving the status.
   }

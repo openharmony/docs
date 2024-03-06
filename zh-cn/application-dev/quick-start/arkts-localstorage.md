@@ -36,7 +36,7 @@ LocalStorage根据与\@Component装饰的组件的同步类型不同，提供了
 ## 限制条件
 
 - LocalStorage创建后，命名属性的类型不可更改。后续调用Set时必须使用相同类型的值。
-- LocalStorage是页面级存储，[GetShared](../reference/arkui-ts/ts-state-management.md#getshared10)接口仅能获取当前Stage通过[windowStage.loadContent](../reference/apis/js-apis-window.md#loadcontent9)传入的LocalStorage实例，否则返回undefined。例子可见[将LocalStorage实例从UIAbility共享到一个或多个视图](#将localstorage实例从uiability共享到一个或多个视图)。
+- LocalStorage是页面级存储，[getShared](../reference/apis-arkui/arkui-ts/ts-state-management.md#getshared10)接口仅能获取当前Stage通过[windowStage.loadContent](../reference/apis-arkui/js-apis-window.md#loadcontent9)传入的LocalStorage实例，否则返回undefined。例子可见[将LocalStorage实例从UIAbility共享到一个或多个视图](#将localstorage实例从uiability共享到一个或多个视图)。
 
 
 ## \@LocalStorageProp
@@ -52,7 +52,7 @@ LocalStorage根据与\@Component装饰的组件的同步类型不同，提供了
 > 从API version 9开始，该装饰器支持在ArkTS卡片中使用。
 
 
-\@LocalStorageProp(key)是和LocalStorage中key对应的属性建立单向数据同步，我们允许本地改变的发生，但是对于\@LocalStorageProp，本地的修改永远不会同步回LocalStorage中，相反，如果LocalStorage给定key的属性发生改变，改变会被同步给\@LocalStorageProp，并覆盖掉本地的修改。
+\@LocalStorageProp(key)是和LocalStorage中key对应的属性建立单向数据同步，ArkUI框架支持修改@LocalStorageProp(key)在本地的值，但是对本地值的修改不会同步回LocalStorage中。相反，如果LocalStorage中key对应的属性值发生改变，例如通过set接口对LocalStorage中的值进行修改，改变会同步给\@LocalStorageProp(key)，并覆盖掉本地的值。
 
 
 ### 装饰器使用规则说明
@@ -60,7 +60,7 @@ LocalStorage根据与\@Component装饰的组件的同步类型不同，提供了
 | \@LocalStorageProp变量装饰器 | 说明                                       |
 | ----------------------- | ---------------------------------------- |
 | 装饰器参数                   | key：常量字符串，必填（字符串需要有引号）。                  |
-| 允许装饰的变量类型               | Object、class、string、number、boolean、enum类型，以及这些类型的数组。嵌套类型的场景请参考[观察变化和行为表现](#观察变化和行为表现)。<br/>类型必须被指定，建议和LocalStorage中对应属性类型相同，否则会发生类型隐式转换，从而导致应用行为异常。不支持any，不允许使用undefined和null。 |
+| 允许装饰的变量类型               | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>API12及以上支持Map、Set、Date类型。嵌套类型的场景请参考[观察变化和行为表现](#观察变化和行为表现)。<br/>类型必须被指定，建议和LocalStorage中对应属性类型相同，否则会发生类型隐式转换，从而导致应用行为异常。<br/>不支持any，API12及以上支持undefined和null类型。<br/>API12及以上支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[LocalStorage支持联合类型](#localstorage支持联合类型)。 <br/>**注意**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScript类型校验，比如：`@LocalStorageProp("AA") a: number \| null = null`是推荐的，不推荐`@LocalStorageProp("AA") a: number = null`。 |
 | 同步类型                    | 单向同步：从LocalStorage的对应属性到组件的状态变量。组件本地的修改是允许的，但是LocalStorage中给定的属性一旦发生变化，将覆盖本地的修改。 |
 | 被装饰变量的初始值               | 必须指定，如果LocalStorage实例中不存在属性，则作为初始化默认值，并存入LocalStorage中。 |
 
@@ -88,6 +88,12 @@ LocalStorage根据与\@Component装饰的组件的同步类型不同，提供了
 - 当装饰的数据类型为class或者Object时，可以观察到赋值和属性赋值的变化，即Object.keys(observedObject)返回的所有属性。
 
 - 当装饰的对象是array时，可以观察到数组添加、删除、更新数组单元的变化。
+
+- 当装饰的对象是Date时，可以观察到Date整体的赋值，同时可通过调用Date的接口`setFullYear`, `setMonth`, `setDate`, `setHours`, `setMinutes`, `setSeconds`, `setMilliseconds`, `setTime`, `setUTCFullYear`, `setUTCMonth`, `setUTCDate`, `setUTCHours`, `setUTCMinutes`, `setUTCSeconds`, `setUTCMilliseconds` 更新Date的属性。详见[装饰Date类型变量](#装饰date类型变量)。
+
+- 当装饰的变量是Map时，可以观察到Map整体的赋值，同时可通过调用Map的接口`set`, `clear`, `delete` 更新Map的值。详见[装饰Map类型变量](#装饰map类型变量)。
+
+- 当装饰的变量是Set时，可以观察到Set整体的赋值，同时可通过调用Set的接口`add`, `clear`, `delete` 更新Set的值。详见[装饰Set类型变量](#装饰set类型变量)。
 
 
 **框架行为**
@@ -118,7 +124,7 @@ LocalStorage根据与\@Component装饰的组件的同步类型不同，提供了
 | \@LocalStorageLink变量装饰器 | 说明                                       |
 | ----------------------- | ---------------------------------------- |
 | 装饰器参数                   | key：常量字符串，必填（字符串需要有引号）。                  |
-| 允许装饰的变量类型               | Object、class、string、number、boolean、enum类型，以及这些类型的数组。嵌套类型的场景请参考[观察变化和行为表现](#观察变化和行为表现)。<br/>类型必须被指定，建议和LocalStorage中对应属性类型相同，否则会发生类型隐式转换，从而导致应用行为异常。不支持any，不允许使用undefined和null。 |
+| 允许装饰的变量类型               | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>API12及以上支持Map、Set、Date类型。嵌套类型的场景请参考[观察变化和行为表现](#观察变化和行为表现)。<br/>类型必须被指定，建议和LocalStorage中对应属性类型相同，否则会发生类型隐式转换，从而导致应用行为异常。<br/>不支持any，API12及以上支持undefined和null类型。<br/>API12及以上支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[LocalStorage支持联合类型](#localstorage支持联合类型)。 <br/>**注意**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScript类型校验，比如：`@LocalStorageLink("AA") a: number \| null = null`是推荐的，不推荐`@LocalStorageLink("AA") a: number = null`。 |
 | 同步类型                    | 双向同步：从LocalStorage的对应属性到自定义组件，从自定义组件到LocalStorage对应属性。 |
 | 被装饰变量的初始值               | 必须指定，如果LocalStorage实例中不存在属性，则作为初始化默认值，并存入LocalStorage中。 |
 
@@ -148,6 +154,12 @@ LocalStorage根据与\@Component装饰的组件的同步类型不同，提供了
 - 当装饰的数据类型为class或者Object时，可以观察到赋值和属性赋值的变化，即Object.keys(observedObject)返回的所有属性。
 
 - 当装饰的对象是array时，可以观察到数组添加、删除、更新数组单元的变化。
+
+- 当装饰的对象是Date时，可以观察到Date整体的赋值，同时可通过调用Date的接口`setFullYear`, `setMonth`, `setDate`, `setHours`, `setMinutes`, `setSeconds`, `setMilliseconds`, `setTime`, `setUTCFullYear`, `setUTCMonth`, `setUTCDate`, `setUTCHours`, `setUTCMinutes`, `setUTCSeconds`, `setUTCMilliseconds` 更新Date的属性。详见[装饰Date类型变量](#装饰date类型变量)。
+
+- 当装饰的变量是Map时，可以观察到Map整体的赋值，同时可通过调用Map的接口`set`, `clear`, `delete` 更新Map的值。详见[装饰Map类型变量](#装饰map类型变量)。
+
+- 当装饰的变量是Set时，可以观察到Set整体的赋值，同时可通过调用Set的接口`add`, `clear`, `delete` 更新Set的值。详见[装饰Set类型变量](#装饰set类型变量)。
 
 
 **框架行为**
@@ -191,39 +203,43 @@ link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
 
 - \@LocalStorageLink绑定LocalStorage对给定的属性，建立双向数据同步。
 
-  ```ts
-  // 创建新实例并使用给定对象初始化
-  let para:Record<string,number> = { 'PropA': 47 };
-  let storage: LocalStorage = new LocalStorage(para);
+ ```ts
+// 创建新实例并使用给定对象初始化
+let para: Record<string, number> = { 'PropA': 47 };
+let storage: LocalStorage = new LocalStorage(para);
 
-  @Component
-  struct Child {
-    // @LocalStorageLink变量装饰器与LocalStorage中的'PropA'属性建立双向绑定
-    @LocalStorageLink('PropA') storLink2: number = 1;
+@Component
+struct Child {
+  // @LocalStorageLink变量装饰器与LocalStorage中的'PropA'属性建立双向绑定
+  @LocalStorageLink('PropA') storageLink2: number = 1;
 
-    build() {
-      Button(`Child from LocalStorage ${this.storLink2}`)
-        // 更改将同步至LocalStorage中的'PropA'以及Parent.storLink1
-        .onClick(() => this.storLink2 += 1)
+  build() {
+    Button(`Child from LocalStorage ${this.storageLink2}`)
+      // 更改将同步至LocalStorage中的'PropA'以及Parent.storageLink1
+      .onClick(() => {
+        this.storageLink2 += 1
+      })
+  }
+}
+// 使LocalStorage可从@Component组件访问
+@Entry(storage)
+@Component
+struct CompA {
+  // @LocalStorageLink变量装饰器与LocalStorage中的'PropA'属性建立双向绑定
+  @LocalStorageLink('PropA') storageLink1: number = 1;
+
+  build() {
+    Column({ space: 15 }) {
+      Button(`Parent from LocalStorage ${this.storageLink1}`) // initial value from LocalStorage will be 47, because 'PropA' initialized already
+        .onClick(() => {
+          this.storageLink1 += 1
+        })
+      // @Component子组件自动获得对CompA LocalStorage实例的访问权限。
+      Child()
     }
   }
-  // 使LocalStorage可从@Component组件访问
-  @Entry(storage)
-  @Component
-  struct CompA {
-    // @LocalStorageLink变量装饰器与LocalStorage中的'PropA'属性建立双向绑定
-    @LocalStorageLink('PropA') storLink1: number = 1;
-
-    build() {
-      Column({ space: 15 }) {
-        Button(`Parent from LocalStorage ${this.storLink1}`) // initial value from LocalStorage will be 47, because 'PropA' initialized already
-          .onClick(() => this.storLink1 += 1)
-        // @Component子组件自动获得对CompA LocalStorage实例的访问权限。
-        Child()
-      }
-    }
-  }
-  ```
+}
+```
 
 
 ### \@LocalStorageProp和LocalStorage单向同步的简单场景
@@ -234,40 +250,42 @@ link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
 
 - Child组件中，Text绑定的storProp2 依旧显示47。
 
-  ```ts
-  // 创建新实例并使用给定对象初始化
-  let para:Record<string,number> = { 'PropA': 47 };
-  let storage: LocalStorage = new LocalStorage(para);
-  // 使LocalStorage可从@Component组件访问
-  @Entry(storage)
-  @Component
-  struct CompA {
-    // @LocalStorageProp变量装饰器与LocalStorage中的'PropA'属性建立单向绑定
-    @LocalStorageProp('PropA') storProp1: number = 1;
+```ts
+// 创建新实例并使用给定对象初始化
+let para: Record<string, number> = { 'PropA': 47 };
+let storage: LocalStorage = new LocalStorage(para);
+// 使LocalStorage可从@Component组件访问
+@Entry(storage)
+@Component
+struct CompA {
+  // @LocalStorageProp变量装饰器与LocalStorage中的'PropA'属性建立单向绑定
+  @LocalStorageProp('PropA') storageProp1: number = 1;
 
-    build() {
-      Column({ space: 15 }) {
-        // 点击后从47开始加1，只改变当前组件显示的storProp1，不会同步到LocalStorage中
-        Button(`Parent from LocalStorage ${this.storProp1}`)
-          .onClick(() => this.storProp1 += 1)
-        Child()
-      }
+  build() {
+    Column({ space: 15 }) {
+      // 点击后从47开始加1，只改变当前组件显示的storageProp1，不会同步到LocalStorage中
+      Button(`Parent from LocalStorage ${this.storageProp1}`)
+        .onClick(() => {
+          this.storageProp1 += 1
+        })
+      Child()
     }
   }
+}
 
-  @Component
-  struct Child {
-    // @LocalStorageProp变量装饰器与LocalStorage中的'PropA'属性建立单向绑定
-    @LocalStorageProp('PropA') storProp2: number = 2;
+@Component
+struct Child {
+  // @LocalStorageProp变量装饰器与LocalStorage中的'PropA'属性建立单向绑定
+  @LocalStorageProp('PropA') storageProp2: number = 2;
 
-    build() {
-      Column({ space: 15 }) {
-        // 当CompA改变时，当前storProp2不会改变，显示47
-        Text(`Parent from LocalStorage ${this.storProp2}`)
-      }
+  build() {
+    Column({ space: 15 }) {
+      // 当CompA改变时，当前storageProp2不会改变，显示47
+      Text(`Parent from LocalStorage ${this.storageProp2}`)
     }
   }
-  ```
+}
+```
 
 
 ### \@LocalStorageLink和LocalStorage双向同步的简单场景
@@ -277,7 +295,7 @@ link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
 
 ```ts
 // 构造LocalStorage实例
-let para:Record<string,number> = { 'PropA': 47 };
+let para: Record<string, number> = { 'PropA': 47 };
 let storage: LocalStorage = new LocalStorage(para);
 // 调用link（api9以上）接口构造'PropA'的双向同步数据，linkToPropA 是全局变量
 let linkToPropA: SubscribedAbstractProperty<object> = storage.link('PropA');
@@ -287,17 +305,19 @@ let linkToPropA: SubscribedAbstractProperty<object> = storage.link('PropA');
 struct CompA {
 
   // @LocalStorageLink('PropA')在CompA自定义组件中创建'PropA'的双向同步数据，初始值为47，因为在构造LocalStorage已经给“PropA”设置47
-  @LocalStorageLink('PropA') storLink: number = 1;
+  @LocalStorageLink('PropA') storageLink: number = 1;
 
   build() {
     Column() {
       Text(`incr @LocalStorageLink variable`)
-        // 点击“incr @LocalStorageLink variable”，this.storLink加1，改变同步回storage，全局变量linkToPropA也会同步改变
+        // 点击“incr @LocalStorageLink variable”，this.storageLink加1，改变同步回storage，全局变量linkToPropA也会同步改变
 
-        .onClick(() => this.storLink += 1)
+        .onClick(() => {
+          this.storageLink += 1
+        })
 
       // 并不建议在组件内使用全局变量linkToPropA.get()，因为可能会有生命周期不同引起的错误。
-      Text(`@LocalStorageLink: ${this.storLink} - linkToPropA: ${linkToPropA.get()}`)
+      Text(`@LocalStorageLink: ${this.storageLink} - linkToPropA: ${linkToPropA.get()}`)
     }
   }
 }
@@ -321,8 +341,9 @@ Child自定义组件中的变化：
 1. playCountLink的刷新会同步回LocalStorage，并且引起兄弟组件和父组件相应的刷新。
 
 ```ts
-let ls:Record<string,number> = { 'countStorage': 1}
-let storage:LocalStorage = new LocalStorage(ls);
+let ls: Record<string, number> = { 'countStorage': 1 }
+let storage: LocalStorage = new LocalStorage(ls);
+
 @Component
 struct Child {
   // 子组件实例的名字
@@ -365,7 +386,7 @@ struct Parent {
           .width(50).height(60).fontSize(12)
         Text(`countStorage ${this.playCount} incr by 1`)
           .onClick(() => {
-            storage.set<number|undefined>('countStorage', Number(storage.get<number>('countStorage')) + 1);
+            storage.set<number | undefined>('countStorage', Number(storage.get<number>('countStorage')) + 1);
           })
           .width(250).height(60).fontSize(12)
       }.width(300).height(60)
@@ -383,41 +404,94 @@ struct Parent {
 
 ### 将LocalStorage实例从UIAbility共享到一个或多个视图
 
-上面的实例中，LocalStorage的实例仅仅在一个\@Entry装饰的组件和其所属的子组件（一个页面）中共享，如果希望其在多个视图中共享，可以在所属UIAbility中创建LocalStorage实例，并调用windowStage.[loadContent](../reference/apis/js-apis-window.md#loadcontent9)。
+上面的实例中，LocalStorage的实例仅仅在一个\@Entry装饰的组件和其所属的子组件（一个页面）中共享，如果希望其在多个视图中共享，可以在所属UIAbility中创建LocalStorage实例，并调用windowStage.[loadContent](../reference/apis-arkui/js-apis-window.md#loadcontent9)。
 
 
 ```ts
-// EntryAbility.ts
+// EntryAbility.ets
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
-let para:Record<string,number> = { 'PropA': 47 };
-let localStorage: LocalStorage = new LocalStorage(para);
+
 export default class EntryAbility extends UIAbility {
-storage: LocalStorage = localStorage
+para:Record<string, number> = { 'PropA': 47 };
+storage: LocalStorage = new LocalStorage(this.para);
 
 onWindowStageCreate(windowStage: window.WindowStage) {
 windowStage.loadContent('pages/Index', this.storage);
 }
 }
 ```
+> **说明：**
+>
+> 在UI页面通过getShared接口获取通过loadContent共享的LocalStorage实例。
+>
+> LocalStorage.getShared()只在模拟器或者实机上才有效，在Previewer预览器中使用不生效。
 
-在UI页面通过getShared接口获取在通过loadContent共享的LocalStorage实例。
 
-
+在下面的用例中，Index页面中的propA通过getShared()方法获取到共享的LocalStorage实例。点击Button跳转到Page页面，点击Change propA改变propA的值，back回Index页面后，页面中propA的值也同步修改。
 ```ts
+// index.ets
+import router from '@ohos.router';
+
 // 通过getShared接口获取stage共享的LocalStorage实例
 let storage = LocalStorage.getShared()
 
 @Entry(storage)
 @Component
-struct CompA {
+struct Index {
   // can access LocalStorage instance using 
   // @LocalStorageLink/Prop decorated variables
-  @LocalStorageLink('PropA') varA: number = 1;
+  @LocalStorageLink('PropA') propA: number = 1;
 
   build() {
-    Column() {
-      Text(`${this.varA}`).fontSize(50)
+    Row() {
+      Column() {
+        Text(`${this.propA}`)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+        Button("To Page")
+          .onClick(() => {
+            router.pushUrl({
+              url: 'pages/Page'
+            })
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+```ts
+// Page.ets
+import router from '@ohos.router';
+
+let storage = LocalStorage.getShared()
+
+@Entry(storage)
+@Component
+struct Page {
+  @LocalStorageLink('PropA') propA: number = 2;
+
+  build() {
+    Row() {
+      Column() {
+        Text(`${this.propA}`)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+
+        Button("Change propA")
+          .onClick(() => {
+            this.propA = 100;
+          })
+
+        Button("Back Index")
+          .onClick(() => {
+            router.back()
+          })
+      }
+      .width('100%')
     }
   }
 }
@@ -426,5 +500,360 @@ struct CompA {
 > **说明：**
 >
 > 对于开发者更建议使用这个方式来构建LocalStorage的实例，并且在创建LocalStorage实例的时候就写入默认值，因为默认值可以作为运行异常的备份，也可以用作页面的单元测试。
+
+
+### 自定义组件接收LocalStorage实例
+
+除了根节点可通过@Entry来接收LocalStorage实例，自定义组件（子节点）也可以通过构造参数来传递LocalStorage实例。
+
+本示例以\@LocalStorageLink为例，展示了：
+
+- 父组件中的Text，显示LocalStorage实例localStorage1中PropA的值为“PropA”。
+
+- Child组件中，Text绑定的PropB，显示LocalStorage实例localStorage2中PropB的值为“PropB”。
+
+> **说明：**
+>
+> 从API version 12开始，自定义组件支持接收LocalStorage实例。
+> 当自定义组件作为子节点，定义了成员属性时，LocalStorage实例必须要放在第二个参数位置传递，否则会报类型不匹配的编译问题。
+> 当在自定义组件中定义了属性时，暂时不支持只有一个LocalStorage实例作为入参。如果没定义属性，可以只[传入一个LocalStorage实例作为入参](#当自定义组件没有定义属性时可以只传入一个localstorage实例作为入参)。
+> 如果定义的属性不需要从父组件初始化变量，则[第一个参数需要传{}](#当定义的属性不需要从父组件初始化变量时第一个参数需要传)。
+> 作为构造参数传给子组件的LocalStorage实例在初始化时就会被决定，可以通过@LocalStorageLink或者LocalStorage的API修改LocalStorage实例中保存的属性值，但LocalStorage实例自身不能被动态修改。
+
+```ts
+let localStorage1: LocalStorage = new LocalStorage();
+localStorage1.setOrCreate('PropA', 'PropA');
+
+let localStorage2: LocalStorage = new LocalStorage();
+localStorage2.setOrCreate('PropB', 'PropB');
+
+@Entry(localStorage1)
+@Component
+struct Index {
+  // 'PropA'，和localStorage1中'PropA'的双向同步
+  @LocalStorageLink('PropA') PropA: string = 'Hello World';
+  @State count: number = 0;
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.PropA)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+        // 使用LocalStorage 实例localStorage2
+        Child({ count: this.count }, localStorage2)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+
+
+@Component
+struct Child {
+  @Link count: number;
+  //  'Hello World'，和localStorage2中'PropB'的双向同步，localStorage2中没有'PropB'，则使用默认值'Hello World'
+  @LocalStorageLink('PropB') PropB: string = 'Hello World';
+
+  build() {
+    Text(this.PropB)
+      .fontSize(50)
+      .fontWeight(FontWeight.Bold)
+  }
+}
+```
+
+### 当自定义组件没有定义属性时，可以只传入一个LocalStorage实例作为入参
+
+```ts
+let localStorage1: LocalStorage = new LocalStorage();
+localStorage1.setOrCreate('PropA', 'PropA');
+
+let localStorage2: LocalStorage = new LocalStorage();
+localStorage2.setOrCreate('PropB', 'PropB');
+
+@Entry(localStorage1)
+@Component
+struct Index {
+  // 'PropA'，和localStorage1中'PropA'的双向同步
+  @LocalStorageLink('PropA') PropA: string = 'Hello World';
+  @State count: number = 0;
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.PropA)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+        // 使用LocalStorage 实例localStorage2
+        Child(localStorage2)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+
+
+@Component
+struct Child {
+  build() {
+    Text("hello")
+      .fontSize(50)
+      .fontWeight(FontWeight.Bold)
+  }
+}
+```
+
+### 当定义的属性不需要从父组件初始化变量时，第一个参数需要传{}
+
+```ts
+let localStorage1: LocalStorage = new LocalStorage();
+localStorage1.setOrCreate('PropA', 'PropA');
+
+let localStorage2: LocalStorage = new LocalStorage();
+localStorage2.setOrCreate('PropB', 'PropB');
+
+@Entry(localStorage1)
+@Component
+struct Index {
+  // 'PropA'，和localStorage1中'PropA'的双向同步
+  @LocalStorageLink('PropA') PropA: string = 'Hello World';
+  @State count: number = 0;
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.PropA)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+        // 使用LocalStorage 实例localStorage2
+        Child({}, localStorage2)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+
+
+@Component
+struct Child {
+  @State count: number = 5;
+  // 'Hello World'，和localStorage2中'PropB'的双向同步，localStorage2中没有'PropB'，则使用默认值'Hello World'
+  @LocalStorageLink('PropB') PropB: string = 'Hello World';
+
+  build() {
+    Text(this.PropB)
+      .fontSize(50)
+      .fontWeight(FontWeight.Bold)
+  }
+}
+```
+
+
+### LocalStorage支持联合类型
+
+在下面的示例中，变量A的类型为number | null，变量B的类型为number | undefined。Text组件初始化分别显示为null和undefined，点击切换为数字，再次点击切换回null和undefined。
+
+```ts
+@Component
+struct LocalStorLink {
+  @LocalStorageLink("AA") A: number | null = null;
+  @LocalStorageLink("BB") B: number | undefined = undefined;
+
+  build() {
+    Column() {
+      Text("@LocalStorageLink接口初始化，@LocalStorageLink取值")
+      Text(this.A + "").fontSize(20).onClick(() => {
+        this.A ? this.A = null : this.A = 1;
+      })
+      Text(this.B + "").fontSize(20).onClick(() => {
+        this.B ? this.B = undefined : this.B = 1;
+      })
+    }
+    .borderWidth(3).borderColor(Color.Green)
+
+  }
+}
+
+@Component
+struct LocalStorProp {
+  @LocalStorageProp("AAA") A: number | null = null;
+  @LocalStorageProp("BBB") B: number | undefined = undefined;
+
+  build() {
+    Column() {
+      Text("@LocalStorageProp接口初始化，@LocalStorageProp取值")
+      Text(this.A + "").fontSize(20).onClick(() => {
+        this.A ? this.A = null : this.A = 1;
+      })
+      Text(this.B + "").fontSize(20).onClick(() => {
+        this.B ? this.B = undefined : this.B = 1;
+      })
+    }
+    .borderWidth(3).borderColor(Color.Yellow)
+
+  }
+}
+
+let storage1: LocalStorage = new LocalStorage();
+
+@Entry(storage1)
+@Component
+struct TestCase3 {
+  build() {
+    Row() {
+      Column() {
+        LocalStorLink()
+        LocalStorProp()
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+
+### 装饰Date类型变量
+
+> **说明：**
+>
+> 从API version 12开始，LocalStorage支持Date类型。
+
+在下面的示例中，@LocalStorageLink装饰的selectedDate类型为Date，点击Button改变selectedDate的值，视图会随之刷新。
+
+```ts
+@Entry
+@Component
+struct LocalDateSample {
+  @LocalStorageLink("date") selectedDate: Date = new Date('2021-08-08');
+
+  build() {
+    Column() {
+      Button('set selectedDate to 2023-07-08')
+        .margin(10)
+        .onClick(() => {
+          this.selectedDate = new Date('2023-07-08');
+        })
+      Button('increase the year by 1')
+        .margin(10)
+        .onClick(() => {
+          this.selectedDate.setFullYear(this.selectedDate.getFullYear() + 1);
+        })
+      Button('increase the month by 1')
+        .margin(10)
+        .onClick(() => {
+          this.selectedDate.setMonth(this.selectedDate.getMonth() + 1);
+        })
+      Button('increase the day by 1')
+        .margin(10)
+        .onClick(() => {
+          this.selectedDate.setDate(this.selectedDate.getDate() + 1);
+        })
+      DatePicker({
+        start: new Date('1970-1-1'),
+        end: new Date('2100-1-1'),
+        selected: $$this.selectedDate
+      })
+    }.width('100%')
+  }
+}
+```
+
+
+### 装饰Map类型变量
+
+> **说明：**
+>
+> 从API version 12开始，LocalStorage支持Map类型。
+
+在下面的示例中，@LocalStorageLink装饰的message类型为Map\<number, string\>，点击Button改变message的值，视图会随之刷新。
+
+```ts
+@Entry
+@Component
+struct LocalMapSample {
+  @LocalStorageLink("map") message: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]]);
+
+  build() {
+    Row() {
+      Column() {
+        ForEach(Array.from(this.message.entries()), (item: [number, string]) => {
+          Text(`${item[0]}`).fontSize(30)
+          Text(`${item[1]}`).fontSize(30)
+          Divider()
+        })
+        Button('init map').onClick(() => {
+          this.message = new Map([[0, "a"], [1, "b"], [3, "c"]]);
+        })
+        Button('set new one').onClick(() => {
+          this.message.set(4, "d");
+        })
+        Button('clear').onClick(() => {
+          this.message.clear();
+        })
+        Button('replace the existing one').onClick(() => {
+          this.message.set(0, "aa");
+        })
+        Button('delete the existing one').onClick(() => {
+          this.message.delete(0);
+        })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+
+### 装饰Set类型变量
+
+> **说明：**
+>
+> 从API version 12开始，LocalStorage支持Set类型。
+
+在下面的示例中，@LocalStorageLink装饰的memberSet类型为Set\<number\>，点击Button改变memberSet的值，视图会随之刷新。
+
+```ts
+@Entry
+@Component
+struct LocalSetSample {
+  @LocalStorageLink("set") memberSet: Set<number> = new Set([0, 1, 2, 3, 4]);
+
+  build() {
+    Row() {
+      Column() {
+        ForEach(Array.from(this.memberSet.entries()), (item: [number, string]) => {
+          Text(`${item[0]}`)
+            .fontSize(30)
+          Divider()
+        })
+        Button('init set')
+          .onClick(() => {
+            this.memberSet = new Set([0, 1, 2, 3, 4]);
+          })
+        Button('set new one')
+          .onClick(() => {
+            this.memberSet.add(5);
+          })
+        Button('clear')
+          .onClick(() => {
+            this.memberSet.clear();
+          })
+        Button('delete the first one')
+          .onClick(() => {
+            this.memberSet.delete(0);
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
 
 <!--no_check-->

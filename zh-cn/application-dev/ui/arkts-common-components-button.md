@@ -1,7 +1,7 @@
-# 按钮（Button）
+# 按钮 (Button)
 
 
-Button是按钮组件，通常用于响应用户的点击操作，其类型包括胶囊按钮、圆形按钮、普通按钮。Button做为容器使用时可以通过添加子组件实现包含文字、图片等元素的按钮。具体用法请参考[Button](../reference/arkui-ts/ts-basic-components-button.md)。
+Button是按钮组件，通常用于响应用户的点击操作，其类型包括胶囊按钮、圆形按钮、普通按钮。Button做为容器使用时可以通过添加子组件实现包含文字、图片等元素的按钮。具体用法请参考[Button](../reference/apis-arkui/arkui-ts/ts-basic-components-button.md)。
 
 
 ## 创建按钮
@@ -12,7 +12,7 @@ Button通过调用接口来创建，接口调用有以下两种形式：
 - 创建不包含子组件的按钮。
 
   ```ts
-  Button(label?: string, options?: { type?: ButtonType, stateEffect?: boolean })
+  Button(label?: ResourceStr, options?: { type?: ButtonType, stateEffect?: boolean })
   ```
 
   其中，label用来设置按钮文字，type用于设置Button类型，stateEffect属性设置Button是否开启点击效果。
@@ -34,7 +34,7 @@ Button通过调用接口来创建，接口调用有以下两种形式：
   Button(options?: {type?: ButtonType, stateEffect?: boolean})
   ```
 
-  只支持包含一个子组件，子组件可以是[基础组件](../reference/arkui-ts/ts-basic-components-blank.md)或者[容器组件](../reference/arkui-ts/ts-container-ability-component.md)。
+  只支持包含一个子组件，子组件可以是[基础组件](../reference/apis-arkui/arkui-ts/ts-basic-components-blank.md)或者[容器组件](../reference/apis-arkui/arkui-ts/ts-container-badge.md)。
 
   ```ts
   Button({ type: ButtonType.Normal, stateEffect: true }) {
@@ -140,9 +140,9 @@ Button有三种可选类型，分别为胶囊类型（Capsule）、圆形按钮�
   为删除操作创建一个按钮。
 
   ```ts
-  let MarLeft:Record<string,number> = {'left':20}
+  let MarLeft: Record<string, number> = { 'left': 20 }
   Button({ type: ButtonType.Circle, stateEffect: true }) {
-  Image($r('app.media.ic_public_delete_filled')).width(30).height(30) 
+    Image($r('app.media.ic_public_delete_filled')).width(30).height(30)
   }.width(55).height(55).margin(MarLeft).backgroundColor(0xF55A42)
   ```
 

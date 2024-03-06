@@ -29,8 +29,6 @@ When there is a large amount of page information, to enable the user to focus on
 
 Each **\<TabContent>** component should be mapped to a tab page, which can be configured through the **tabBar** attribute. The following is an example.
 
-
-
 ```ts
  TabContent() {
    Text('Content of the Home tab').fontSize(30)
@@ -40,8 +38,6 @@ Each **\<TabContent>** component should be mapped to a tab page, which can be co
 
 
 When setting multiple **\<TabContent>** components, place them in sequence in the **\<Tabs>** component.
-
-
 
 ```ts
 Tabs() {
@@ -133,9 +129,9 @@ Tabs({ barPosition: BarPosition.Start }) {
 
 >**NOTE**
 >
-> - When the **vertical** attribute is set to **false**, the tab bar takes up the whole screen width by default. You need to set **barWidth** to a proper value.
+> - When the **vertical** attribute is set to **false**, the tab bar takes up the whole screen width by default. Set **barWidth** to a proper value.
 >
-> - When the **vertical** attribute is set to **true**, the tab bar takes up the actual content height by default. You need to set **barWidth** to a proper value.
+> - When the **vertical** attribute is set to **true**, the tab bar takes up the actual content height by default. Set **barWidth** to a proper value.
 
 
 ## Restricting the Scrolling of the Navigation Bar
@@ -147,8 +143,6 @@ Tabs({ barPosition: BarPosition.Start }) {
 
 
 The attribute that enables or disables the scrolling is **scrollable**. Its default value is **true**, indicating that scrolling is enabled. To disable the scrolling, set the attribute to **false**.
-
-
 
 ```ts
 Tabs({ barPosition: BarPosition.End }) {
@@ -183,8 +177,6 @@ When the content categories are relatively fixed and not scalable, a fixed navig
 
 To use a fixed navigation bar, set the **barMode** attribute of the **\<Tabs>** component to **barMode.Fixed** (default).
 
-
-
 ```ts
 Tabs({ barPosition: BarPosition.End }) {
   // TabContent: Home, Discover, Recommended, and Me
@@ -205,8 +197,6 @@ The top navigation bar or side navigation bar can be set to be scrollable if the
 
 
 To use a scrollable navigation bar, set the **barMode** attribute of the **\<Tabs>** component to **BarMode.Scrollable**.
-
-
 
 ```ts
 Tabs({ barPosition: BarPosition.Start }) {
@@ -230,12 +220,10 @@ The bottom navigation bar is generally used on the home page of an application. 
 By default, the system uses an underscore (_) to indicate the active tab. For a custom navigation bar, you need to implement the corresponding style to distinguish active tabs from inactive tabs.
 
 
-To customize the navigation bar, use the **tabBar** parameter and pass in to it custom function component styles in **CustomBuilder** mode. In this example, a custom function component **TabBuilder** is declared, and the input parameters include **title** (tab title), **targetIndex** (target index of the tab), **selectedImg** (image for the selected state), and **normalImg** (image for the unselected state). The UI display style is determined based on whether the value of **currentIndex** (index of the active tab) matches that of **targetIndex** (target index of the tab).
-
-
+To customize the navigation bar, use the **tabBar** parameter and pass in to it custom function component styles in **CustomBuilder** mode. In this example, a custom function component **tabBuilder** is declared, and the input parameters include **title** (tab title), **targetIndex** (target index of the tab), **selectedImg** (image for the selected state), and **normalImg** (image for the unselected state). The UI display style is determined based on whether the value of **currentIndex** (index of the active tab) matches that of **targetIndex** (target index of the tab).
 
 ```ts
-@Builder TabBuilder(title: string, targetIndex: number, selectedImg: Resource, normalImg: Resource) {
+@Builder tabBuilder(title: string, targetIndex: number, selectedImg: Resource, normalImg: Resource) {
   Column() {
     Image(this.currentIndex === targetIndex ? selectedImg : normalImg)
       .size({ width: 25, height: 25 })
@@ -251,8 +239,6 @@ To customize the navigation bar, use the **tabBar** parameter and pass in to it 
 
 Pass the custom function component to the **tabBar** attribute corresponding to the tab content and transfer the corresponding parameters.
 
-
-
 ```ts
 TabContent() {
   Column(){
@@ -262,7 +248,7 @@ TabContent() {
   .height('100%')
   .backgroundColor('#007DFF')
 }
-.tabBar(this.TabBuilder('Me', 0, $r('app.media.mine_selected'), $r('app.media.mine_normal')))
+.tabBar(this.tabBuilder('Me', 0, $r('app.media.mine_selected'), $r('app.media.mine_normal')))
 ```
 
 
@@ -278,8 +264,6 @@ Non-custom navigation bars follow the default system switching logic. If you are
 
 To switch to a specified tab page, use **TabsController**, which is the controller of the **\<Tabs>** component. By using the **changeIndex** API of **TabsController**, you can set your application to display the tab content corresponding to the specified index.
 
-
-
 ```ts
 class Tmp{
   currentIndex:number = 0;
@@ -294,7 +278,7 @@ class Tmp{
 private tabsController : TabsController = new TabsController()
 @State currentIndex:number = 0;
 
-@Builder TabBuilder(title: string, targetIndex: number) {
+@Builder tabBuilder(title: string, targetIndex: number) {
   Column() {
     Text(title)
       .fontColor(this.currentIndex === targetIndex ? '#1698CE' : '#6B6B6B')
@@ -311,26 +295,24 @@ private tabsController : TabsController = new TabsController()
 
 When using a custom navigation bar, pass the corresponding \@Builder in the **tabBar** attribute and transfer the corresponding parameters.
 
-
-
 ```ts
 Tabs({ barPosition: BarPosition.End, controller: this.tabsController }) {
   TabContent(){
     ...
-  }.tabBar (this.TabBuilder ('Home', 0))
+  }.tabBar(this.tabBuilder('Home',0))
 
   TabContent(){
     ...
-  }.tabBar (this.TabBuilder ('Discover', 1))
+  }.tabBar (this.tabBuilder ('Discover', 1))
 
   TabContent(){
     ...
-  }.tabBar (this.TabBuilder ('Recommended', 2))
+  }.tabBar (this.tabBuilder ('Recommended', 2))
 
   TabContent(){
     ...
   }
-  .tabBar (this.TabBuilder ('Me',3))
+  .tabBar(this.tabBuilder('Me', 3))
 }
 ```
 
@@ -348,8 +330,6 @@ For non-custom navigation bars, tabs and tab content are linked by default. For 
 To manually switch between the tabs, use the **onChange** API provided by the **\<Tabs>** component to listen for the index change and pass the index of the active tab to **currentIndex**.
 
 
-
-
 ```ts
 class Tmp{
   currentIndex:number = 0;
@@ -360,20 +340,20 @@ class Tmp{
 Tabs({ barPosition: BarPosition.End, controller: this.tabsController }) {
   TabContent() {
     ...
-  }.tabBar (this.TabBuilder ('Home', 0))
+  }.tabBar(this.tabBuilder('Home', 0))
 
   TabContent() {
     ...
-  }.tabBar (this.TabBuilder ('Found', 1))
+  }.tabBar(this.tabBuilder('Discover', 1))
 
   TabContent() {
     ...
-  }.tabBar (this.TabBuilder ('Recommended', 2))
+  }.tabBar(this.tabBuilder('Recommended', 2))
 
   TabContent() {
     ...
   }
-  .tabBar (this.TabBuilder ('Me', 3))
+  .tabBar(this.tabBuilder('Me', 3))
 }.onChange((index:number) => {
   let cur:Tmp = new Tmp()
   cur.foo(index)

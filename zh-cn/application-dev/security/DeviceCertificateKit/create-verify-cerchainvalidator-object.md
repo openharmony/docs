@@ -15,24 +15,24 @@
 
 ## 开发步骤
 
-1. 导入[证书算法库框架模块](../../reference/apis/js-apis-cert.md)。
+1. 导入[证书算法库框架模块](../../reference/apis-device-certificate-kit/js-apis-cert.md)。
    ```ts
    import certFramework from '@ohos.security.cert';
    ```
 
-2. [cryptoCert.createCertChainValidator](../../reference/apis/js-apis-cert.md#cryptocertcreatecertchainvalidator)创建证书链校验器对象。
+2. [cryptoCert.createCertChainValidator](../../reference/apis-device-certificate-kit/js-apis-cert.md#cryptocertcreatecertchainvalidator)创建证书链校验器对象。
 
-3. 基于已有的证书数据，创建证书链数据对象[CertChainData](../../reference/apis/js-apis-cert.md#certchaindata)。
+3. 基于已有的证书数据，创建证书链数据对象[CertChainData](../../reference/apis-device-certificate-kit/js-apis-cert.md#certchaindata)。
    
    证书算法库框架提供了证书链校验器对象可用于校验证书链，以验证信任链根源，但待校验的证书链数据对象应符合如下的数据结构定义。
 
    | 名称 | 类型 | 可读 | 可写 | 说明 | 
    | -------- | -------- | -------- | -------- | -------- |
-   | data | Uint8Array | 是 | 是 | 证书数据，按照长度(2字节)-数据的形式传入，如：08ABCDEFGH07ABCDEFG,第一本证书，前2个字节表示证书的长度为8字节，后面附加8字节的证书数据；第2本证书前2个字节表示证书的长度为7字节，后面附加7字节的证书数据。 | 
+   | data | Uint8Array | 是 | 是 | 证书数据，按照长度(2字节)-数据的形式传入。如08ABCDEFGH07ABCDEFG：第一本证书，前2个字节表示证书的长度为8字节，后面附加8字节的证书数据；第2本证书前2个字节表示证书的长度为7字节，后面附加7字节的证书数据。 | 
    | count | number | 是 | 是 | 传入的数据中，包含的证书数量。 | 
-   | encodingFormat | [EncodingFormat](../../reference/apis/js-apis-cert.md#encodingformat) | 是 | 是 | 指明证书编码格式。 | 
+   | encodingFormat | [EncodingFormat](../../reference/apis-device-certificate-kit/js-apis-cert.md#encodingformat) | 是 | 是 | 指明证书编码格式。 | 
 
-4. 调用[CertChainValidator.validate](../../reference/apis/js-apis-cert.md#validate)校验证书链数据。
+4. 调用[CertChainValidator.validate](../../reference/apis-device-certificate-kit/js-apis-cert.md#validate)校验证书链数据。
 
 ```ts
 import certFramework from '@ohos.security.cert';

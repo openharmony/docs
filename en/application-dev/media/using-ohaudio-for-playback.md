@@ -12,30 +12,30 @@ To use the playback or recording capability of **OHAudio**, you must first impor
 target_link_libraries(sample PUBLIC libohaudio.so)
 ```
 ### Adding Header Files
-Specifically, to use APIs for audio playback, import <[native_audiostreambuilder.h](../reference/native-apis/native__audiostreambuilder_8h.md)> and <[native_audiorenderer.h](../reference/native-apis/native__audiorenderer_8h.md)>.
+To use APIs for audio playback, import <[native_audiostreambuilder.h](../reference/apis-audio-kit/native__audiostreambuilder_8h.md)> and <[native_audiorenderer.h](../reference/apis-audio-kit/native__audiorenderer_8h.md)>.
 
 ```cpp
 #include <ohaudio/native_audiorenderer.h>
 #include <ohaudio/native_audiostreambuilder.h>
 ```
 
-## Audio Stream Builder
+## Building Audio Streams
 
-**OHAudio** provides the **OH_AudioStreamBuilder** class, which complies with the builder design pattern and is used to build audio streams. You need to specify [OH_AudioStream_Type](../reference/native-apis/_o_h_audio.md#oh_audiostream_type) based on your service scenarios.
+**OHAudio** provides the **OH_AudioStreamBuilder** class, which complies with the builder design pattern and is used to build audio streams. You need to specify [OH_AudioStream_Type](../reference/apis-audio-kit/_o_h_audio.md#oh_audiostream_type) based on your service scenarios.
 
 **OH_AudioStream_Type** can be set to either of the following:
 
 - AUDIOSTREAM_TYPE_RENDERER
 - AUDIOSTREAM_TYPE_CAPTURER
 
-The following code snippet shows how to use [OH_AudioStreamBuilder_Create](../reference/native-apis/_o_h_audio.md#oh_audiostreambuilder_create) to create a builder:
+The following code snippet shows how to use [OH_AudioStreamBuilder_Create](../reference/apis-audio-kit/_o_h_audio.md#oh_audiostreambuilder_create) to create a builder:
 
 ```
 OH_AudioStreamBuilder* builder;
 OH_AudioStreamBuilder_Create(&builder, streamType);
 ```
 
-After the audio service is complete, call [OH_AudioStreamBuilder_Destroy](../reference/native-apis/_o_h_audio.md#oh_audiostreambuilder_destroy) to destroy the builder.
+After the audio service is complete, call [OH_AudioStreamBuilder_Destroy](../reference/apis-audio-kit/_o_h_audio.md#oh_audiostreambuilder_destroy) to destroy the builder.
 
 ```
 OH_AudioStreamBuilder_Destroy(builder);
@@ -43,7 +43,7 @@ OH_AudioStreamBuilder_Destroy(builder);
 
 ## How to Develop
 
-Read [OHAudio](../reference/native-apis/_o_h_audio.md) for the API reference.
+Read [OHAudio](../reference/apis-audio-kit/_o_h_audio.md) for the API reference.
 
 The following walks you through how to implement simple playback:
 
@@ -59,20 +59,81 @@ The following walks you through how to implement simple playback:
     After creating the builder for audio playback, set the parameters required.
 
     ```c++
-    OH_AudioStreamBuilder_SetSamplingRate(builder, rate);
-    OH_AudioStreamBuilder_SetChannelCount(builder, channelCount);
-    OH_AudioStreamBuilder_SetSampleFormat(builder, format);
-    OH_AudioStreamBuilder_SetEncodingType(builder, encodingType);
-    OH_AudioStreamBuilder_SetRendererInfo(builder, usage);
+    // Set the audio sampling rate.
+    OH_AudioStreamBuilder_SetSamplingRate(builder, 48000);
+    // Set the number of audio channels.
+    OH_AudioStreamBuilder_SetChannelCount(builder, 2);
+    // Set the audio sampling format.
+    OH_AudioStreamBuilder_SetSampleFormat(builder, AUDIOSTREAM_SAMPLE_S16LE);
+    // Set the encoding type of the audio stream.
+    OH_AudioStreamBuilder_SetEncodingType(builder, AUDIOSTREAM_ENCODING_TYPE_RAW);
+    // Set the usage scenario of the audio renderer.
+    OH_AudioStreamBuilder_SetRendererInfo(builder, AUDIOSTREAM_USAGE_MUSIC);
     ```
 
-    Note that the audio data to play is written through callbacks. You must call **OH_AudioStreamBuilder_SetRendererCallback** to implement the callbacks. For details about the declaration of the callback functions, see [OH_AudioRenderer_Callbacks](../reference/native-apis/_o_h_audio.md#oh_audiorenderer_callbacks).
+    Note that the audio data to play is written through callbacks. You must call **OH_AudioStreamBuilder_SetRendererCallback** to implement the callbacks. For details about the declaration of the callback functions, see [OH_AudioRenderer_Callbacks](../reference/apis-audio-kit/_o_h_audio.md#oh_audiorenderer_callbacks).
 
 
 3. Set the callback functions.
 
+    For details about concurrent processing of multiple audio streams, see [Audio Playback Concurrency Policy](audio-playback-concurrency.md). Only the interface language is different.
+
     ```c++
+    // Customize a data writing function.
+    int32_t MyOnWriteData(
+        OH_AudioRenderer* renderer,
+        void* userData,
+        void* buffer,
+        int32_t length)
+    {
+        // Write the data to be played to the buffer by length.
+        return 0;
+    }
+    // Customize an audio stream event function.
+    int32_t MyOnStreamEvent(
+        OH_AudioRenderer* renderer,
+        void* userData,
+        OH_AudioStream_Event event)
+    {
+        // Update the player status and UI based on the audio stream event information indicated by the event.
+        return 0;
+    }
+    // Customize an audio interruption event function.
+    int32_t MyOnInterruptEvent(
+        OH_AudioRenderer* renderer,
+        void* userData,
+        OH_AudioInterrupt_ForceType type,
+        OH_AudioInterrupt_Hint hint)
+    {
+        // Update the player status and UI based on the audio interruption information indicated by type and hint.
+        return 0;
+    }
+    // Customize an exception callback function.
+    int32_t MyOnError(
+        OH_AudioRenderer* renderer,
+        void* userData,
+        OH_AudioStream_Result error)
+    {
+        // Perform operations based on the audio exception information indicated by error.
+        return 0;
+    }
+
+    OH_AudioRenderer_Callbacks callbacks;
+    // Set the callbacks.
+    callbacks.OH_AudioRenderer_OnWriteData = MyOnWriteData;
+    callbacks.OH_AudioRenderer_OnStreamEvent = MyOnStreamEvent;
+    callbacks.OH_AudioRenderer_OnInterruptEvent = MyOnInterruptEvent;
+    callbacks.OH_AudioRenderer_OnError = MyOnError;
+
+    // Set callbacks for the audio renderer.
     OH_AudioStreamBuilder_SetRendererCallback(builder, callbacks, nullptr);
+    ```
+
+    To avoid unexpected behavior, ensure that each callback of [OH_AudioRenderer_Callbacks](../reference/apis-audio-kit/_o_h_audio.md#oh_audiorenderer_callbacks) is initialized by a custom callback method or null pointer when being set.
+
+    ```c++
+    // (Optional) Use a null pointer to initialize the OnError callback.
+    callbacks.OH_AudioRenderer_OnError = nullptr;
     ```
 
 4. Create an audio renderer instance.
@@ -101,129 +162,15 @@ The following walks you through how to implement simple playback:
     ```c++
     OH_AudioStreamBuilder_Destroy(builder);
     ```
-## Example
-
-```cpp
-#include <iostream>
-#include <cstdint>
-#include <cstdio>
-#include <cstring>
-#include <thread>
-#include <chrono>
-#include <ctime>
-#include <ohaudio/native_audiorenderer.h>
-#include <ohaudio/native_audiostreambuilder.h>
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-namespace AudioTestConstants {
-constexpr int32_t WAIT_INTERVAL = 1000;
-} // namespace AudioTestConstants
-
-// Ensure that the file in the directory can be played.
-std::string g_filePath = "/data/data/oh_test_audio.pcm";
-FILE *g_file = nullptr;
-bool g_readEnd = false;
-// Audio sampling rate.
-int32_t g_samplingRate = 48000;
-// Number of audio channels.
-int32_t g_channelCount = 2;
-// Audio scenario. The value 0 indicates the normal scenario, and 1 indicates the low-latency scenario.
-int32_t g_latencyMode = 0;
-// Audio sample format.
-int32_t g_sampleFormat = 1;
-
-// Callback, through which the played audio data will be written.
-static int32_t AudioRendererOnWriteData(OH_AudioRenderer *capturer, void *userData, void *buffer, int32_t bufferLen) {
-    size_t readCount = fread(buffer, bufferLen, 1, g_file);
-    if (!readCount) {
-        if (ferror(g_file)) {
-            printf("Error reading myfile");
-        } else if (feof(g_file)) {
-            printf("EOF found");
-            g_readEnd = true;
-        }
-    }
-    return 0;
-}
-
-void PlayerTest() {
-    OH_AudioStream_Result ret;
-
-    // 1. Create an audio stream builder.
-    OH_AudioStreamBuilder *builder;
-    OH_AudioStream_Type type = AUDIOSTREAM_TYPE_RENDERER;
-    ret = OH_AudioStreamBuilder_Create(&builder, type);
-
-    // 2. Set the parameters required by the audio stream.
-    OH_AudioStreamBuilder_SetSamplingRate(builder, g_samplingRate);
-    OH_AudioStreamBuilder_SetChannelCount(builder, g_channelCount);
-    OH_AudioStreamBuilder_SetLatencyMode(builder, (OH_AudioStream_LatencyMode)g_latencyMode);
-    OH_AudioStreamBuilder_SetSampleFormat(builder, (OH_AudioStream_SampleFormat)g_sampleFormat);
-
-    // Set the callback, through which the played audio data will be written.
-    OH_AudioRenderer_Callbacks callbacks;
-    callbacks.OH_AudioRenderer_OnWriteData = AudioRendererOnWriteData;
-    ret = OH_AudioStreamBuilder_SetRendererCallback(builder, callbacks, nullptr);
-
-    // 3. Create an audio renderer instance.
-    OH_AudioRenderer *audioRenderer;
-    ret = OH_AudioStreamBuilder_GenerateRenderer(builder, &audioRenderer);
-
-    // 4. Start playback.
-    ret = OH_AudioRenderer_Start(audioRenderer);
-
-    int timer = 0;
-    while (!g_readEnd) {
-        std::this_thread::sleep_for(std::chrono::milliseconds(AudioTestConstants::WAIT_INTERVAL));
-        int64_t frames;
-        OH_AudioRenderer_GetFramesWritten(audioRenderer, &frames);
-        printf("Wait for the audio to finish playing.(..%d s) frames:%ld\n", ++timer, frames);
-        int64_t framePosition;
-        int64_t timestamp;
-        OH_AudioRenderer_GetTimestamp(audioRenderer, CLOCK_MONOTONIC, &framePosition, &timestamp);
-        printf("framePosition %ld timestamp:%ld\n", framePosition, timestamp);
-    }
-    // 5. Stop the playback.
-    ret = OH_AudioRenderer_Stop(audioRenderer);
-    
-    // Release the audio renderer instance.
-    ret = OH_AudioRenderer_Release(audioRenderer);
-
-    // 6. Destroy the audio stream builder.
-    ret = OH_AudioStreamBuilder_Destroy(builder);
-}
-
-int main() {
-    // Open the file before playback.
-    g_file = fopen(g_filePath.c_str(), "rb");
-    if (g_file == nullptr) {
-        printf("OHAudioRendererTest: Unable to open file \n");
-        return 0;
-    }
-    // Start playback.
-    PlayerTest();
-    // Close the file after the playback is complete.
-    fclose(g_file);
-    g_file = nullptr;
-    return 0;
-}
-
-#ifdef __cplusplus
-}
-#endif
-```
 
 ## Setting the Low Latency Mode
 
 If the device supports the low-latency channel, you can use the low-latency mode to create a player for a higher-quality audio experience.
 
-The development process is similar to that in the common playback scenario. The only difference is that you need to set the low delay mode by calling [OH_AudioStreamBuilder_SetLatencyMode()](../reference/native-apis/_o_h_audio.md#oh_audiostreambuilder_setlatencymode) when creating an audio stream builder.
+The development process is similar to that in the common playback scenario. The only difference is that you need to set the low delay mode by calling [OH_AudioStreamBuilder_SetLatencyMode()](../reference/apis-audio-kit/_o_h_audio.md#oh_audiostreambuilder_setlatencymode) when creating an audio stream builder.
 
 The code snippet is as follows:
 
 ```C
-OH_AudioStream_LatencyMode latencyMode = AUDIOSTREAM_LATENCY_MODE_FAST;
-OH_AudioStreamBuilder_SetLatencyMode(builder, latencyMode);
+OH_AudioStreamBuilder_SetLatencyMode(builder, AUDIOSTREAM_LATENCY_MODE_FAST);
 ```

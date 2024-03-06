@@ -1,18 +1,16 @@
 # Multi-Language Capability
 
-
 Applications designed based on the JS UI framework apply to different countries and regions. With the multi-language capability, you do not need to develop application versions in different languages, and your users can switch between various locales. This also facilitates project maintenance.
 
 
-You only need to perform operations in [Resource Files](#resource-files) and [Resource Reference](#resource-reference) to use the multi-language capability of this framework. For details about how to obtain the current system language, see [Language Acquisition](#language-acquisition).
+You only need to perform operations in [Defining Resource Files](#defining-resource-files) and [Referencing Resources](#referencing-resources) to use the multi-language capability of this framework. For details about how to obtain the current system language, see [Obtaining the Language](#obtaining-the-language).
 
 
-## Resource Files
+## Defining Resource Files
 
-Resource files store application content in multiple languages. This framework uses JSON files to store resource definitions. Place the resource file of each locale in the i18n directory described in [File Organization](js-framework-file.md). 
+Resource files store application content in multiple languages. This framework uses JSON files to store resource definitions.
 
-Resource files should be named in _language-script-region_.json format. For example, the resource file for Hong Kong(China) in the traditional script is named zh-Hant-HK. You can omit the region, for example, zh-CN for simplified Chinese, or omit both the script and region, for example, zh for Chinese.
-
+Place the resource file of each locale in the i18n directory described in [File Organization](js-framework-file.md). Resource files should be named in _language-script-region_.json format. For example, the resource file for Hong Kong(China) in the traditional script is named zh-Hant-HK. You can omit the region, for example, zh-CN for simplified Chinese, or omit both the script and region, for example, zh for Chinese.  
 
 ```
 language[-script-region].json
@@ -22,11 +20,11 @@ The following table describes the requirements for the qualifiers of resource fi
 
 Table 1 Requirements for qualifier values
 
-| Qualifier Type | Description and Value Range |
-| -------- | -------- |
-| Language | Indicates the language used by the device. The value consists of two or three lowercase letters, for example, zh indicates Chinese, en indicates English, and mai indicates Maithili.<br/>For details about the value range, refer to ISO 639 (codes for the representation of names of languages). |
-| Script | Indicates the script type used by the device. The value starts with one uppercase letter followed by three lowercase letters, for example, Hans indicates simplified Chinese and Hant indicates traditional Chinese.<br/>For details about the value range, refer to ISO 15924 (codes for the representation of names of scripts). |
-| Country/Region | Indicates the country or region where a user is located. The value consists of two or three uppercase letters or three digits, for example, CN indicates China and GB indicates the United Kingdom.<br/>For details about the value range, refer to ISO 3166-1 (codes for the representation of names of countries and their subdivisions). |
+| Qualifier Type| Description and Value Range                                 |
+| ----- | ---------------------------------------- |
+| Language   | Indicates the language used by the device. The value consists of two or three lowercase letters. For example, **zh** indicates Chinese, **en** indicates English, and **mai** indicates Maithili.<br>For details about the value range, refer to **ISO 639** (codes for the representation of names of languages).|
+| Script   | Indicates the script type used by the device. The value starts with one uppercase letter followed by three lowercase letters. For example, **Hans** indicates simplified Chinese, and **Hant** indicates traditional Chinese.<br>For details about the value range, refer to **ISO 15924** (codes for the representation of names of scripts).|
+| Country/Region| Indicates the country or region where the user is located. The value consists of two or three uppercase letters or three digits. For example, **CN** indicates China, and **GB** indicates the United Kingdom.<br>For details about the value range, refer to **ISO 3166-1** (codes for the representation of names of countries and their subdivisions).|
 
 If there is no resource file of the locale that matches the system language, content in the **en-US.json** file will be used by default.
 
@@ -34,7 +32,7 @@ The format of the resource file content is as follows:
 
 **en-US.json**
 
-```
+```json
 {
     "strings": {
         "hello": "Hello world!",
@@ -50,7 +48,7 @@ The format of the resource file content is as follows:
 ```
 
 
-Different languages have different matching rules for singular and plural forms. In the resource file, zero, one, two, few, many, and other are used to define the string content in different singular and plural forms. For example, there is only the other scenario in Chinese since the language does not have singular and plural forms. one and other scenarios are applicable to English. All six scenarios are needed for Arabic.
+Different languages have different matching rules for singular and plural forms. In the resource file, **zero**, **one**, **two**, **few**, **many**, and **other** are used to define the string content in different singular and plural forms. For example, there is only the **other** scenario in Chinese since the language does not have singular and plural forms. **one** and **other** scenarios are applicable to English. All six scenarios are needed for Arabic.
 
 
 The following example takes **en-US.json** and **ar-AE.json** as examples:
@@ -69,7 +67,7 @@ The following example takes **en-US.json** and **ar-AE.json** as examples:
 ```
 
 
-ar-AE.json
+**ar-AE.json**
 
 ```json
 {
@@ -87,30 +85,28 @@ ar-AE.json
 ```
 
 
-## Resource Reference
+## Referencing Resources
 
-Multi-language syntax used on application development pages (including simple formatting and singular-plural formatting) can be used in .hml or .js files.
+Multi-language syntax used on application development pages (including simple formatting and singular-plural formatting) can be used in **.hml** or **.js** files.
 
 - Simple formatting
   
-  Use the `$t` function to reference to resources of different locales. The `$t` function is available for both .hml and .js files. The system displays content based on a resource file path specified via $t and the specified resource file whose locale matches the current system language.
+Use the **$t** function to reference to resources of different locales. The **$t** function is available for both **.hml** and **.js** files. The system displays content based on a resource file path specified via **$t** and the specified resource file whose locale matches the current system language.
   
-  Table 2 Simple formatting
+Table 2 Simple formatting
   
-  | Attribute | Type | Parameter | Mandatory | Description |
-  | -------- | -------- | -------- | -------- | -------- |
-  | $t | Function | See Table3 | Yes | Sets the parameters based on the system language, for example, this.$t('strings.hello'). |
+  | Attribute| Type    | Parameter             | Mandatory| Description                                                  |
+  | ---- | -------- | ----------------- | ---- | ------------------------------------------------------ |
+| $t   | Function | See Table 3.| Yes  | Sets the parameters based on the system language, for example, **this.$t('strings.hello')**.|
   
-
 Table 3 $t function parameters
-
-| Parameter | Type | Mandatory | Description |
-| -------- | -------- | -------- | -------- |
-| path | string | Yes | Path of the language resource key |
-| params | Array\|Object | No | Content used to replace placeholders during runtime. There are two types of placeholders available:<br/>- Named placeholder, for example, {name}. The actual content must be of the object type, for example, ```$t('strings.object', {name:'Hello world'})```.<br>- Digit placeholder, for example, {0}. The actual content must be of the array type, for example, ```$t('strings.array', [Hello world']```. |
-
-- Example code for simple formatting
   
+  | Parameter  | Type         | Mandatory| Description                                                        |
+  | ------ | ------------- | ---- | ------------------------------------------------------------ |
+  | path   | string        | Yes  | Path of the language resource key.                                                  |
+| params | Array\|Object | No  | Content used to replace placeholders during runtime. There are two types of placeholders available:<br>- Named placeholder, for example, **{name}**. The actual content must be of the object type, for example, **$t('strings.object', {name:'Hello world'})**.<br> - Digit placeholder, for example, **{0}**. The actual content must be of the array type, for example, **$t('strings.array', [Hello world']**.|
+  
+- Example code for simple formatting
   ```html
   <!-- xxx.hml -->
   <div>
@@ -154,22 +150,21 @@ Table 3 $t function parameters
   ```
 
 - Singular-plural formatting
-  
+
   Table 4 Singular-plural formatting
-  
-  | Attribute | Type | Parameter | Mandatory | Description |
-  | -------- | -------- | -------- | -------- | -------- |
-  | $tc | Function | See Table 5. | Yes | Converts between the singular and plural forms based on the system language, for example, **this.$tc('strings.people')**.<br/>**NOTE**<br/>The resource content is distinguished by the following JSON keys: zero, one, two, few, many, and other. |
+
+  | Attribute| Type    | Parameter              | Mandatory| Description                                                        |
+  | ---- | -------- | ------------------ | ---- | ------------------------------------------------------------ |
+  | $tc  | Function | See Table 5.| Yes  | Converts between the singular and plural forms based on the system language, for example, **this.$tc('strings.people')**.<br>**NOTE**<br>The resource content is distinguished by the following JSON keys: **zero**, **one**, **two**, **few**, **many**, and **other**.|
 
   Table 5 $tc function parameters
-  
-  | Parameter | Type | Mandatory | Description |
-  | -------- | -------- | -------- | -------- |
-  | path | string | Yes | Path of the language resource key |
-  | count | number | Yes | Number |
 
-- Sample code for singular-plural formatting
-  
+  | Parameter | Type  | Mandatory| Description        |
+  | ----- | ------ | ---- | ------------ |
+  | path  | string | Yes  | Path of the language resource key.  |
+  | count | number | Yes  | Number.|
+
+- Example code for singular-plural formatting
   ```html
   <!--xxx.hml-->
   <div>
@@ -189,6 +184,6 @@ Table 3 $t function parameters
   ```
 
 
-## Language Acquisition
+## Obtaining the Language
 
-For details about how to obtain the language, see [Configuration](../reference/apis/js-apis-application-configuration.md).
+For details about how to obtain the language, see [Configuration](../reference/apis/js-apis-app-ability-configuration.md).

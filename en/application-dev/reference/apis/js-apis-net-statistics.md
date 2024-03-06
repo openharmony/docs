@@ -625,7 +625,7 @@ statistics.getUidTxBytes(20010038).then((stats: number) => {
 
 ## statistics.on('netStatsChange')<sup>10+</sup>
 
-on(type: 'netStatsChange', callback: Callback\<{ iface: string, uid?: number }>): void
+on(type: 'netStatsChange', callback: Callback\<NetStatsChangeInfo\>): void
 
 Subscribes to traffic change events.
 
@@ -640,7 +640,7 @@ Subscribes to traffic change events.
 | Name  | Type                                       | Mandatory| Description                                                              |
 | -------- | ------------------------------------------- | ---- | ----------------------------------------------------------------- |
 | type     | string                                      | Yes  | Event type. This field has a fixed value of **netStatsChange**.                                |
-| callback | Callback\<{ iface: string, uid?: number }\> | Yes  | Callback invoked when the traffic changes.<br>**iface**: NIC name.<br>**uid**: application UID.|
+| callback | Callback\<[NetStatsChangeInfo](#netstatschangeinfo11)\> | Yes  | Callback invoked when the traffic changes.|
 
 **Error codes**
 
@@ -670,7 +670,7 @@ statistics.on('netStatsChange', (data: IFace) => {
 
 ## statistics.off('netStatsChange')<sup>10+</sup>
 
-off(type: 'netStatsChange', callback?: Callback\<{ iface: string, uid?: number }>): void;
+off(type: 'netStatsChange', callback?: Callback\<NetStatsChangeInfo>): void;
 
 Unsubscribes from traffic change events.
 
@@ -685,7 +685,7 @@ Unsubscribes from traffic change events.
 | Name  | Type                                       | Mandatory| Description                                                              |
 | -------- | ------------------------------------------- | ---- | ----------------------------------------------------------------- |
 | type     | string                                      | Yes  | Event type. This field has a fixed value of **netStatsChange**.                            |
-| callback | Callback\<{ iface: string, uid?: number }\> | No  | Callback invoked when the traffic changes.<br>**iface**: NIC name.<br>**uid**: application UID.|
+| callback | Callback\<[NetStatsChangeInfo](#netstatschangeinfo11)\> | No  | Callback invoked when the traffic changes.|
 
 **Error codes**
 
@@ -756,27 +756,28 @@ For details about the error codes, see [Traffic Management Error Codes](../error
 import { BusinessError } from '@ohos.base';
 import statistics from '@ohos.net.statistics';
 
-let iFaceInfo: statistics.IfaceInfo
-
-statistics.getTrafficStatsByIface(iFaceInfo, (error: BusinessError, statsInfo: statistics.NetStatsInfo) => {
-  console.log(JSON.stringify(error));
-  console.log(
-    "getTrafficStatsByIface bytes of received = " +
-    JSON.stringify(statsInfo.rxBytes)
-  );
-  console.log(
-    "getTrafficStatsByIface bytes of sent = " +
-    JSON.stringify(statsInfo.txBytes)
-  );
-  console.log(
-    "getTrafficStatsByIface packets of received = " +
-    JSON.stringify(statsInfo.rxPackets)
-  );
-  console.log(
-    "getTrafficStatsByIface packets of sent = " +
-    JSON.stringify(statsInfo.txPackets)
-  );
-});
+let iFaceInfo: statistics.IfaceInfo | null = null;
+if (iFaceInfo) {
+  statistics.getTrafficStatsByIface(iFaceInfo as statistics.IfaceInfo, (error: BusinessError, statsInfo: statistics.NetStatsInfo) => {
+    console.log(JSON.stringify(error));
+    console.log(
+      "getTrafficStatsByIface bytes of received = " +
+      JSON.stringify(statsInfo.rxBytes)
+    );
+    console.log(
+      "getTrafficStatsByIface bytes of sent = " +
+      JSON.stringify(statsInfo.txBytes)
+    );
+    console.log(
+      "getTrafficStatsByIface packets of received = " +
+      JSON.stringify(statsInfo.rxPackets)
+    );
+    console.log(
+      "getTrafficStatsByIface packets of sent = " +
+      JSON.stringify(statsInfo.txPackets)
+    );
+  });
+}
 ```
 
 ## statistics.getTrafficStatsByIface<sup>10+</sup>
@@ -819,25 +820,27 @@ For details about the error codes, see [Traffic Management Error Codes](../error
 ```js
 import statistics from '@ohos.net.statistics';
 
-let iFaceInfo: statistics.IfaceInfo
-statistics.getTrafficStatsByIface(iFaceInfo).then((statsInfo: statistics.NetStatsInfo) => {
-  console.log(
-    "getTrafficStatsByIface bytes of received = " +
-    JSON.stringify(statsInfo.rxBytes)
-  );
-  console.log(
-    "getTrafficStatsByIface bytes of sent = " +
-    JSON.stringify(statsInfo.txBytes)
-  );
-  console.log(
-    "getTrafficStatsByIface packets of received = " +
-    JSON.stringify(statsInfo.rxPackets)
-  );
-  console.log(
-    "getTrafficStatsByIface packets of sent = " +
-    JSON.stringify(statsInfo.txPackets)
-  );
-});
+let iFaceInfo: statistics.IfaceInfo | null = null;
+if (iFaceInfo) {
+  statistics.getTrafficStatsByIface(iFaceInfo as statistics.IfaceInfo).then((statsInfo: statistics.NetStatsInfo) => {
+    console.log(
+      "getTrafficStatsByIface bytes of received = " +
+      JSON.stringify(statsInfo.rxBytes)
+    );
+    console.log(
+      "getTrafficStatsByIface bytes of sent = " +
+      JSON.stringify(statsInfo.txBytes)
+    );
+    console.log(
+      "getTrafficStatsByIface packets of received = " +
+      JSON.stringify(statsInfo.rxPackets)
+    );
+    console.log(
+      "getTrafficStatsByIface packets of sent = " +
+      JSON.stringify(statsInfo.txPackets)
+    );
+  });
+}
 ```
 
 ## statistics.getTrafficStatsByUid<sup>10+</sup>
@@ -962,7 +965,7 @@ statistics.getTrafficStatsByUid(uidInfo).then((statsInfo: statistics.NetStatsInf
 
 ## statistics.getSockfdRxBytes<sup>11+</sup>
 
-getSockfdRxBytes(sockfd: number, callback: AsyncCallback<number>): void;
+getSockfdRxBytes(sockfd: number, callback: AsyncCallback\<number\>): void;
 
 Obtains the downlink data traffic (in bytes) of the specified socket. This API uses an asynchronous callback to return the result.
 
@@ -1001,7 +1004,7 @@ statistics.getSockfdRxBytes(sockfd, (error: BusinessError, stats: number) => {
 
 ## statistics.getSockfdRxBytes<sup>11+</sup>
 
-getSockfdRxBytes(sockfd: number): Promise<number>;
+getSockfdRxBytes(sockfd: number): Promise\<number\>;
 
 Obtains the downlink data traffic (in bytes) of the specified socket. This API uses a promise to return the result.
 
@@ -1046,7 +1049,7 @@ statistics.getSockfdRxBytes(sockfd).then((stats: number) => {
 
 ## statistics.getSockfdTxBytes<sup>11+</sup>
 
-getSockfdTxBytes(sockfd: number, callback: AsyncCallback<number>): void;
+getSockfdTxBytes(sockfd: number, callback: AsyncCallback\<number\>): void;
 
 Obtains the uplink data traffic (in bytes) of the specified socket. This API uses an asynchronous callback to return the result.
 
@@ -1085,7 +1088,7 @@ statistics.getSockfdTxBytes(sockfd, (error: BusinessError, stats: number) => {
 
 ## statistics.getSockfdTxBytes<sup>11+</sup>
 
-getSockfdTxBytes(sockfd: number): Promise<number>;
+getSockfdTxBytes(sockfd: number): Promise\<number\>;
 
 Obtains the uplink data traffic (in bytes) of the specified socket. This API uses a promise to return the result.
 
@@ -1169,3 +1172,16 @@ Defines the historical traffic information.
 | txBytes   | number | Yes  | Uplink traffic, in bytes.|
 | rxPackets | number | Yes  | Number of downlink packets.         |
 | txPackets | number | Yes  | Number of uplink packets.         |
+
+## NetStatsChangeInfo<sup>11+</sup>
+
+Defines the NIC status and usage of an application.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+| Name     | Type  | Mandatory| Description      |
+| --------- | ------ | ---- | --------- |
+| iface     | string | Yes  | NIC name.|
+| uid       | number | No  | Application UID. |

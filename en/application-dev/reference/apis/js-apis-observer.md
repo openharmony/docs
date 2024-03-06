@@ -54,7 +54,7 @@ observer.on('networkStateChange', (data: observer.NetworkState) => {
 
 ## observer.on('networkStateChange')
 
-on\(type: \'networkStateChange\', options: { slotId: number }, callback: Callback\<NetworkState\>\): void
+on\(type: \'networkStateChange\', options: ObserverOptions, callback: Callback\<NetworkState\>\): void
 
 Registers an observer for network status change events of the SIM card in the specified slot. This API uses an asynchronous callback to return the execution result.
 
@@ -67,7 +67,7 @@ Registers an observer for network status change events of the SIM card in the sp
 |  Name |                              Type                        | Mandatory|                            Description                                  |
 | -------- | --------------------------------------------------------- | ---- | ---------------------------------------------------------------- |
 | type     | string                                                    | Yes  | Network status change event. This field has a fixed value of **networkStateChange**.                |
-| slotId   | number                                                    | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2                            |
+| options  | [ObserverOptions](#observeroptions11)                     | Yes  | Event subscription parameters.                                       |
 | callback | Callback\<[NetworkState](js-apis-radio.md#networkstate)\> | Yes  | Callback used to return the result. For details, see [NetworkState](js-apis-radio.md#networkstate).|
 
 **Error codes**
@@ -86,11 +86,10 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```ts
-class SlotId {
-    slotId: number = 0
+let options: observer.ObserverOptions = {
+    slotId: 0
 }
-let id: SlotId = {slotId: 0}
-observer.on('networkStateChange', id, (data: observer.NetworkState) => {
+observer.on('networkStateChange', options, (data: observer.NetworkState) => {
     console.log("on networkStateChange, data:" + JSON.stringify(data));
 });
 ```
@@ -179,7 +178,7 @@ observer.on('signalInfoChange', (data: Array<radio.SignalInformation>) => {
 
 ## observer.on('signalInfoChange')
 
-on\(type: \'signalInfoChange\', options: { slotId: number }, callback: Callback\<Array\<SignalInformation\>\>): void
+on\(type: \'signalInfoChange\', options: ObserverOptions, callback: Callback\<Array\<SignalInformation\>\>): void
 
 Registers an observer for signal status change events of the SIM card in the specified slot. This API uses an asynchronous callback to return the execution result.
 
@@ -190,7 +189,7 @@ Registers an observer for signal status change events of the SIM card in the spe
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
 | type     | string                                                       | Yes  | Signal status change event. This field has a fixed value of **signalInfoChange**.             |
-| slotId   | number                                                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2                      |
+| options  | [ObserverOptions](#observeroptions11)                        | Yes  | Event subscription parameters.                                  |
 | callback | Callback\<Array\<[SignalInformation](js-apis-radio.md#signalinformation)\>\> | Yes  | Callback used to return the result. For details, see [SignalInformation](js-apis-radio.md#signalinformation).|
 
 **Error codes**
@@ -210,11 +209,10 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 ```ts
 import radio from '@ohos.telephony.radio';
 
-class SlotId {
-    slotId: number = 0
+let options: observer.ObserverOptions = {
+    slotId: 0
 }
-let id: SlotId = {slotId: 0}
-observer.on('signalInfoChange', id, (data: Array<radio.SignalInformation>) => {
+observer.on('signalInfoChange', options, (data: Array<radio.SignalInformation>) => {
     console.log("on signalInfoChange, data:" + JSON.stringify(data));
 });
 ```
@@ -311,7 +309,7 @@ observer.on('cellInfoChange', (data: Array<radio.CellInformation>) => {
 
 ## observer.on('cellInfoChange')<sup>8+</sup>
 
-on\(type: \'cellInfoChange\', options: { slotId: number }, callback: Callback\<Array\<CellInformation\>\>\): void
+on\(type: \'cellInfoChange\', options: ObserverOptions, callback: Callback\<Array\<CellInformation\>\>\): void
 
 Registers an observer for signal status change events of the SIM card in the specified slot. This API uses an asynchronous callback to return the execution result.
 
@@ -326,7 +324,7 @@ Registers an observer for signal status change events of the SIM card in the spe
 | Name| Type                                              | Mandatory| Description                                     |
 | ------ |--------------------------------------------------| ---- |--------------------------------------------|
 | type     | string                                           | Yes  | Cell information change event. This field has a fixed value of **cellInfoChange**.|
-| slotId | number                                           | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2     |
+| options  | [ObserverOptions](#observeroptions11)            | Yes  | Event subscription parameters.               |
 | callback | Callback\<Array\<[CellInformation](js-apis-radio.md#cellinformation8)\>\> | Yes  | Callback used to return the result.      |
 
 **Error codes**
@@ -348,11 +346,10 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 ```ts
 import radio from '@ohos.telephony.radio';
 
-class SlotId {
-    slotId: number = 0
+let options: observer.ObserverOptions = {
+    slotId: 0
 }
-let id: SlotId = {slotId: 0}
-observer.on('cellInfoChange', id, (data: Array<radio.CellInformation>) => {
+observer.on('cellInfoChange', options, (data: Array<radio.CellInformation>) => {
     console.log("on cellInfoChange, data:" + JSON.stringify(data));
 });
 ```
@@ -408,7 +405,7 @@ observer.off('cellInfoChange');
 
 ## observer.on('callStateChange')
 
-on(type: 'callStateChange', callback: Callback\<{ state: CallState, number: string }\>): void
+on(type: 'callStateChange', callback: Callback\<CallStateInfo\>): void
 
 Registers an observer for call status change events. This API uses an asynchronous callback to return the execution result.
 
@@ -416,10 +413,10 @@ Registers an observer for call status change events. This API uses an asynchrono
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory| Description                                                        |
-| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
-| type     | string                                                       | Yes  | Call status change event. This field has a fixed value of **callStateChange**.              |
-| callback | Callback\<{ state: [CallState](js-apis-call.md#callstate), number: string }\> | Yes  | Callback used to return the result. For details, see [CallState](js-apis-call.md#callstate).<br>**number**: phone number.|
+| Name  | Type                                          | Mandatory| Description                                                       |
+| -------- | --------------------------------------------- | ---- | ----------------------------------------------------------- |
+| type     | string                                        | Yes  | Call status change event. This field has a fixed value of **callStateChange**.               |
+| callback | Callback\<[CallStateInfo](#callstateinfo11)\> | Yes  | Callback used to return the result. For details, see [CallState](js-apis-call.md#callstate).<br>**number**: phone number.|
 
 **Error codes**
 
@@ -436,21 +433,15 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```ts
-import call from '@ohos.telephony.call';
-
-class Value {
-    state: call.CallState = call.CallState.CALL_STATE_UNKNOWN
-    number: string = ""
-}
-observer.on('callStateChange', (value: Value) => {
-    console.log("on callStateChange, state:" + value.state + ", number:" + value.number);
+observer.on('callStateChange', (data: observer.CallStateInfo) => {
+    console.log("on callStateChange, data:" + JSON.stringify(data));
 });
 ```
 
 
 ## observer.on('callStateChange')
 
-on(type: 'callStateChange', options: { slotId: number }, callback: Callback<{ state:CallState, number: string }>): void
+on(type: 'callStateChange', options: ObserverOptions, callback: Callback\<CallStateInfo\>): void
 
 Registers an observer for call status change events. This API uses an asynchronous callback to return the execution result.
 
@@ -461,8 +452,8 @@ Registers an observer for call status change events. This API uses an asynchrono
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
 | type     | string                                                       | Yes  | Call status change event. This field has a fixed value of **callStateChange**.              |
-| slotId   | number                                                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2                      |
-| callback | Callback\<{ state: [CallState](js-apis-call.md#callstate), number: string }\> | Yes  | Callback used to return the result. For details, see [CallState](js-apis-call.md#callstate).<br>**number**: phone number.|
+| options  | [ObserverOptions](#observeroptions11)                        | Yes  | Event subscription parameters.                                 |
+| callback | Callback\<[CallStateInfo](#callstateinfo11)\>                | Yes  | Callback used to return the result. For details, see [CallState](js-apis-call.md#callstate).<br>**number**: phone number.|
 
 **Error codes**
 
@@ -479,25 +470,18 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```ts
-import call from '@ohos.telephony.call';
-
-class Value {
-    state: call.CallState = call.CallState.CALL_STATE_UNKNOWN
-    number: string = ""
+let options: observer.ObserverOptions = {
+    slotId: 0
 }
-class SlotId {
-    slotId: number = 0
-}
-let id: SlotId = {slotId: 0}
-observer.on('callStateChange', id, (value: Value) => {
-    console.log("on callStateChange, state:" + value.state + ", number:" + value.number);
+observer.on('callStateChange', options, (data: observer.CallStateInfo) => {
+    console.log("on callStateChange, data:" + JSON.stringify(data));
 });
 ```
 
 
 ## observer.off('callStateChange')
 
-off(type: 'callStateChange', callback?: Callback<{ state: CallState, number: string }>): void
+off(type: 'callStateChange', callback?: Callback\<CallStateInfo\>): void
 
 Unregisters the observer for call status change events. This API uses an asynchronous callback to return the execution result.
 
@@ -512,7 +496,7 @@ Unregisters the observer for call status change events. This API uses an asynchr
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
 | type     | string                                                       | Yes  | Call status change event. This field has a fixed value of **callStateChange**.              |
-| callback | Callback\<{ state: [CallState](js-apis-call.md#callstate), number: string }\> | No  | Callback used to return the result. For details, see [CallState](js-apis-call.md#callstate).<br>**number**: phone number.|
+| callback | Callback\<[CallStateInfo](#callstateinfo11)\>                | No  | Callback used to return the result. For details, see [CallState](js-apis-call.md#callstate).<br>**number**: phone number.|
 
 **Error codes**
 
@@ -529,14 +513,8 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```ts
-import call from '@ohos.telephony.call';
-
-class Value {
-    state: call.CallState = call.CallState.CALL_STATE_UNKNOWN
-    number: string = ""
-}
-let callback: (value: Value) => void = (value: Value) => {
-    console.log("on callStateChange, state:" + value.state + ", number:" + value.number);
+let callback: (data: observer.CallStateInfo) => void = (data: observer.CallStateInfo) => {
+    console.log("on callStateChange, data:" + JSON.stringify(data));
 }
 observer.on('callStateChange', callback);
 // You can pass the callback of the on method to cancel listening for a certain type of callback. If you do not pass the callback, you will cancel listening for all callbacks.
@@ -547,7 +525,7 @@ observer.off('callStateChange');
 
 ## observer.on('cellularDataConnectionStateChange')<sup>7+</sup>
 
-on\(type: 'cellularDataConnectionStateChange', callback: Callback\<{ state: DataConnectState, network: RatType}\>\): void
+on\(type: 'cellularDataConnectionStateChange', callback: Callback\<DataConnectionStateInfo\>\): void
 
 Registers an observer for connection status change events of the cellular data link. This API uses an asynchronous callback to return the result.
 
@@ -555,10 +533,10 @@ Registers an observer for connection status change events of the cellular data l
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory| Description                                                        |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Cellular data connection status event. This field has a fixed value of **cellularDataConnectionStateChange**.|
-| callback | Callback\<{ state: [DataConnectState](js-apis-telephony-data.md#dataconnectstate), network: [RatType](js-apis-radio.md#radiotechnology) }\> | Yes  | Callback used to return the result. For details, see [DataConnectState](js-apis-telephony-data.md#dataconnectstate) and [RadioTechnology](js-apis-radio.md#radiotechnology).|
+| Name  | Type                              | Mandatory| Description                                                                |
+| -------- | --------------------------------- | ---- | -------------------------------------------------------------------- |
+| type     | string                            | Yes  | Cellular data connection status event. This field has a fixed value of **cellularDataConnectionStateChange**.|
+| callback | Callback\<[DataConnectionStateInfo](#dataconnectionstateinfo11)\>  | Yes  | Callback used to return the result. For details, see [DataConnectState](js-apis-telephony-data.md#dataconnectstate) and [RadioTechnology](js-apis-radio.md#radiotechnology).|
 
 **Error codes**
 
@@ -575,22 +553,15 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```ts
-import data from '@ohos.telephony.data';
-import radio from '@ohos.telephony.radio';
-
-class Value {
-    state: data.DataConnectState = data.DataConnectState.DATA_STATE_UNKNOWN
-    network: radio.RadioTechnology = radio.RadioTechnology.RADIO_TECHNOLOGY_UNKNOWN
-}
-observer.on('cellularDataConnectionStateChange', (value: Value) => {
-    console.log("on cellularDataConnectionStateChange, state:" + value.state + ", network:" + value.network);
+observer.on('cellularDataConnectionStateChange', (data: observer.DataConnectionStateInfo) => {
+    console.log("on cellularDataConnectionStateChange, data:" + JSON.stringify(data));
 });
 ```
 
 
 ## observer.on('cellularDataConnectionStateChange')<sup>7+</sup>
 
-on\(type: 'cellularDataConnectionStateChange', options: { slotId: number }, callback: Callback\<{ state: DataConnectState, network: RatType }\>\): void
+on\(type: 'cellularDataConnectionStateChange', options: ObserverOptions, callback: Callback\<DataConnectionStateInfo\>\): void
 
 Registers an observer for connection status change events of the cellular data link over the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
@@ -601,8 +572,8 @@ Registers an observer for connection status change events of the cellular data l
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | Yes  | Cellular data connection status event. This field has a fixed value of **cellularDataConnectionStateChange**.|
-| slotId   | number                                                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2                      |
-| callback | Callback\<{ state: [DataConnectState](js-apis-telephony-data.md#dataconnectstate), network: [RatType](js-apis-radio.md#radiotechnology) }\> | Yes  | Callback used to return the result. For details, see [DataConnectState](js-apis-telephony-data.md#dataconnectstate) and [RadioTechnology](js-apis-radio.md#radiotechnology).|
+| options  | [ObserverOptions](#observeroptions11)                        | Yes  | Event subscription parameters.            |
+| callback | Callback\<[DataConnectionStateInfo](#dataconnectionstateinfo11)\> | Yes  | Callback used to return the result. For details, see [DataConnectState](js-apis-telephony-data.md#dataconnectstate) and [RadioTechnology](js-apis-radio.md#radiotechnology).|
 
 **Error codes**
 
@@ -619,26 +590,18 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```ts
-import data from '@ohos.telephony.data';
-import radio from '@ohos.telephony.radio';
-
-class Value {
-    state: data.DataConnectState = data.DataConnectState.DATA_STATE_UNKNOWN
-    network: radio.RadioTechnology = radio.RadioTechnology.RADIO_TECHNOLOGY_UNKNOWN
+let options: observer.ObserverOptions = {
+    slotId: 0
 }
-class SlotId {
-    slotId: number = 0
-}
-let id: SlotId = {slotId: 0}
-observer.on('cellularDataConnectionStateChange', id, (value: Value) => {
-    console.log("on cellularDataConnectionStateChange, state:" + value.state + ", network:" + value.network);
+observer.on('cellularDataConnectionStateChange', options, (data: observer.DataConnectionStateInfo) => {
+    console.log("on cellularDataConnectionStateChange, data:" + JSON.stringify(data));
 });
 ```
 
 
 ## observer.off('cellularDataConnectionStateChange')<sup>7+</sup>
 
-off\(type: 'cellularDataConnectionStateChange',  callback?: Callback\<{ state: DataConnectState, network: RatType}\>\): void
+off\(type: 'cellularDataConnectionStateChange',  callback?: Callback\<DataConnectionStateInfo\>\): void
 
 Unregisters the observer for connection status change events of the cellular data link. This API uses an asynchronous callback to return the result.
 
@@ -653,7 +616,7 @@ Unregisters the observer for connection status change events of the cellular dat
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | Yes  | Cellular data connection status event. This field has a fixed value of **cellularDataConnectionStateChange**.|
-| callback | Callback\<{ state: [DataConnectState](js-apis-telephony-data.md#dataconnectstate), network: [RatType](js-apis-radio.md#radiotechnology) }\> | No  | Callback used to return the result. For details, see [DataConnectState](js-apis-telephony-data.md#dataconnectstate) and [RadioTechnology](js-apis-radio.md#radiotechnology).|
+| callback | Callback\<[DataConnectionStateInfo](#dataconnectionstateinfo11)\> | No  | Callback used to return the result. For details, see [DataConnectState](js-apis-telephony-data.md#dataconnectstate) and [RadioTechnology](js-apis-radio.md#radiotechnology).|
 
 **Error codes**
 
@@ -670,15 +633,8 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```ts
-import data from '@ohos.telephony.data';
-import radio from '@ohos.telephony.radio';
-
-class Value {
-    state: data.DataConnectState = data.DataConnectState.DATA_STATE_UNKNOWN
-    network: radio.RadioTechnology = radio.RadioTechnology.RADIO_TECHNOLOGY_UNKNOWN
-}
-let callback: (value: Value) => void = (value: Value) => {
-    console.log("on cellularDataConnectionStateChange, state:" + value.state + ", network:" + value.network);
+let callback: (data: observer.DataConnectionStateInfo) => void = (data: observer.DataConnectionStateInfo) => {
+    console.log("on cellularDataConnectionStateChange, data:" + JSON.stringify(data));
 }
 observer.on('cellularDataConnectionStateChange', callback);
 // You can pass the callback of the on method to cancel listening for a certain type of callback. If you do not pass the callback, you will cancel listening for all callbacks.
@@ -727,7 +683,7 @@ observer.on('cellularDataFlowChange', (data: data.DataFlowType) => {
 
 ## observer.on('cellularDataFlowChange')<sup>7+</sup>
 
-on\(type: 'cellularDataFlowChange', options: { slotId: number },  callback: Callback\<DataFlowType\>\): void
+on\(type: 'cellularDataFlowChange', options: ObserverOptions,  callback: Callback\<DataFlowType\>\): void
 
 Registers an observer for the uplink and downlink data flow status change events of the cellular data service on the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
@@ -735,10 +691,10 @@ Registers an observer for the uplink and downlink data flow status change events
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory| Description                                                        |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Cellular data flow change event. This field has a fixed value of **cellularDataFlowChange**.        |
-| slotId   | number                                                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2                                            |
+| Name  | Type                                                      | Mandatory| Description                                                        |
+| -------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                     | Yes  | Cellular data flow change event. This field has a fixed value of **cellularDataFlowChange**.        |
+| options   | [ObserverOptions](#observeroptions11)                     | Yes  | Event subscription parameters.                                                  |
 | callback | Callback\<[DataFlowType](js-apis-telephony-data.md#dataflowtype)\> | Yes  | Callback used to return the result. For details, see [DataFlowType](js-apis-telephony-data.md#dataflowtype).|
 
 **Error codes**
@@ -758,11 +714,10 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 ```ts
 import data from '@ohos.telephony.data';
 
-class SlotId {
-    slotId: number = 0
+let options: observer.ObserverOptions = {
+    slotId: 0
 }
-let id: SlotId = {slotId: 0}
-observer.on('cellularDataFlowChange', id, (data: data.DataFlowType) => {
+observer.on('cellularDataFlowChange', options, (data: data.DataFlowType) => {
     console.log("on cellularDataFlowChange, data:" + JSON.stringify(data));
 });
 ```
@@ -852,7 +807,7 @@ observer.on('simStateChange', (data: observer.SimStateData) => {
 
 ## observer.on('simStateChange')<sup>7+</sup>
 
-on\(type: 'simStateChange', options: { slotId: number }, callback: Callback\<SimStateData\>\): void
+on\(type: 'simStateChange', options: ObserverOptions, callback: Callback\<SimStateData\>\): void
 
 Registers an observer for status change events of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
@@ -863,7 +818,7 @@ Registers an observer for status change events of the SIM card in the specified 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | Yes  | SIM status change event. This field has a fixed value of **simStateChange**.                |
-| slotId   | number                                                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2                      |
+| options   | [ObserverOptions](#observeroptions11)                       | Yes  | Event subscription parameters.                                 |
 | callback | Callback\<[SimStateData](#simstatedata7)\> | Yes  | Callback used to return the result.|
 
 **Error codes**
@@ -881,11 +836,10 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```ts
-class SlotId {
-    slotId: number = 0
+let options: observer.ObserverOptions = {
+    slotId: 0
 }
-let id: SlotId = {slotId: 0}
-observer.on('simStateChange', id, (data: observer.SimStateData) => {
+observer.on('simStateChange', options, (data: observer.SimStateData) => {
     console.log("on simStateChange, data:" + JSON.stringify(data));
 });
 ```
@@ -1048,3 +1002,38 @@ Enumerates SIM card types and states.
 | type                | [CardType](js-apis-sim.md#cardtype7) | Yes  | SIM card type.|
 | state               | [SimState](js-apis-sim.md#simstate) | Yes  | SIM card state.|
 | reason<sup>8+</sup> | [LockReason](#lockreason8)          | Yes  | SIM card lock type.                                            |
+
+
+## CallStateInfo<sup>11+</sup>
+
+Defines information about the call status.
+
+**System capability**: SystemCapability.Telephony.StateRegistry
+
+|     Name           |                 Type                   | Mandatory| Description    |
+| ------------------- | -------------------------------------- | ---- | -------- |
+| callState           | [CallState](js-apis-call.md#callstate) | Yes  | Call type.|
+| number              | string                                 | Yes  | Phone number.|
+
+
+## DataConnectionStateInfo<sup>11+</sup>
+
+Defines information about the data connection status.
+
+**System capability**: SystemCapability.Telephony.StateRegistry
+
+|     Name           |                 Type                                           | Mandatory| Description        |
+| ------------------- | ---------------------------------------------------------------| ---- | ------------ |
+| state               | [DataConnectState](js-apis-telephony-data.md#dataconnectstate) | Yes  | Data connection status.|
+| network             | [RatType](js-apis-radio.md#radiotechnology)                    | Yes  | Network type.    |
+
+
+## ObserverOptions<sup>11+</sup>
+
+Defines event subscription parameters.
+
+**System capability**: SystemCapability.Telephony.StateRegistry
+
+|     Name           |         Type     | Mandatory | Description                                   |
+| ------------------- | ------------------| ---- | --------------------------------------- |
+| slotId              | number            | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2   |

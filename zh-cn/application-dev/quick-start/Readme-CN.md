@@ -9,18 +9,11 @@
     - 应用程序包结构
       - [Stage模型应用程序包结构](application-package-structure-stage.md)
       - [FA模型应用程序包结构](application-package-structure-fa.md)
-    - 应用程序包多HAP机制
-      - [多HAP机制设计目标](multi-hap-objective.md)
-      - [多HAP构建视图](multi-hap-build-view.md)
-      - [多HAP的开发调试与发布部署流程](multi-hap-release-deployment.md)
-      - [多HAP使用规则](multi-hap-rules.md)
-      - [多HAP运行机制及数据通信方式](multi-hap-principles.md)
-    - [应用程序包安装和卸载流程](application-package-install-uninstall.md)
-    - [应用程序包更新流程](application-package-update.md)
-    - 共享包
-      - [共享包概述](shared-guide.md)
+    - 应用程序包开发与使用
+      - [HAP](hap-package.md)
       - [HAR](har-package.md)
       - [HSP](in-app-hsp.md)
+    - [应用程序包安装卸载与更新](application-package-install-uninstall.md)
     - 应用程序包快速修复
       - [快速修复概述](quickfix-principles.md)
       - [快速修复命令行调试开发指导](quickfix-debug.md)
@@ -49,6 +42,7 @@
         - [创建自定义组件](arkts-create-custom-components.md)
         - [页面和自定义组件生命周期](arkts-page-custom-components-lifecycle.md)
         - [自定义组件冻结功能](arkts-custom-components-freeze.md)
+        - [自定义组件成员属性访问限定符使用限制](arkts-custom-components-access-restrictions.md)
       - [\@Builder装饰器：自定义构建函数](arkts-builder.md)
       - [\@BuilderParam装饰器：引用\@Builder函数](arkts-builderparam.md)
       - [wrapBuilder：封装全局@Builder](arkts-wrapBuilder.md)
@@ -79,6 +73,10 @@
       - [MVVM模式](arkts-mvvm.md)
       - [状态管理优秀实践](arkts-state-management-best-practices.md)
       - [状态管理合理使用开发指导](properly-use-state-management-to-develope.md)
+    - 状态管理（推荐）
+      - [状态管理（推荐）概述](arkts-new-state-management-overview.md)
+      - 状态管理（推荐）所属装饰器
+        - [\@observed装饰器和\@track装饰器：类属性变化观测](arkts-new-observed-and-track.md)
     - 渲染控制
       - [渲染控制概述](arkts-rendering-control-overview.md)
       - [if/else：条件渲染](arkts-rendering-control-ifelse.md)

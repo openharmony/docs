@@ -31,4 +31,4 @@ Stage模型下三方应用不能对其他三方提供服务，应用可以根据
 | -------- | -------- |
 | 对其他三方应用提供服务 | 需根据业务场景匹配到系统对应的场景化[ExtensionAbility](extensionability-overview.md)。 | 
 | 应用内：前台运行时公共使用 | 可以将该组件代码抽取成公共模块供其他组件使用。 | 
-| 应用内：进入后台时继续运行 | 可以将此服务切换为[后台任务](serviceextensionability.md)，可参考如下示例。 | 
+| 应用内：进入后台时继续运行 | 可以将此服务切换为[后台任务](serviceextensionability.md)。 | 

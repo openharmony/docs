@@ -1,14 +1,19 @@
-# 页面转场动画（不推荐）
+# 页面转场动画 (不推荐)
 
 为了实现更好的转场效果，推荐使用[导航转场](arkts-navigation-transition.md)和[模态转场](arkts-modal-transition.md)。
 
+两个页面间发生跳转，一个页面消失，另一个页面出现，这时可以配置各自页面的页面转场参数实现自定义的页面转场效果。[页面转场](../reference/apis-arkui/arkui-ts/ts-page-transition-animation.md)效果写在pageTransition函数中，通过[PageTransitionEnter](../reference/apis-arkui/arkui-ts/ts-page-transition-animation.md#pagetransitionenter)和[PageTransitionExit](../reference/apis-arkui/arkui-ts/ts-page-transition-animation.md#pagetransitionexit)指定页面进入和退出的动画效果。
+pageTransition的函数为：
 
-两个页面间发生跳转，一个页面消失，另一个页面出现，这时可以配置各自页面的页面转场参数实现自定义的页面转场效果。[页面转场](../reference/arkui-ts/ts-page-transition-animation.md)效果写在pageTransition函数中，通过PageTransitionEnter和PageTransitionExit指定页面进入和退出的动画效果。
+```ts
+pageTransition() {
+  PageTransitionEnter()
+  PageTransitionExit()
+}
+```
 
 
 PageTransitionEnter的接口为：
-
-
 
 ```ts
 PageTransitionEnter({type?: RouteType,duration?: number,curve?: Curve | string,delay?: number})
@@ -16,8 +21,6 @@ PageTransitionEnter({type?: RouteType,duration?: number,curve?: Curve | string,d
 
 
 PageTransitionExit的接口为：
-
-
 
 ```ts
 PageTransitionExit({type?: RouteType,duration?: number,curve?: Curve | string,delay?: number})
@@ -46,8 +49,6 @@ pageTransition() {
     .slide(SlideEffect.Left)
 }
 ```
-
-
 
 ```ts
 // page B
@@ -98,8 +99,6 @@ pageTransition() {
     .slide(SlideEffect.Right)
 }
 ```
-
-
 
 ```ts
 // page B
@@ -154,7 +153,7 @@ pageTransition() {
 
 ## 场景示例
 
-下面介绍了利用[router.pushUrl](../reference/apis/js-apis-router.md#routerpushurl9)跳转能力定义了所有的四种页面转场样式的页面转场动画示例。
+下面介绍了利用[router.pushUrl](../reference/apis-arkui/js-apis-router.md#routerpushurl9)跳转能力定义了所有的四种页面转场样式的页面转场动画示例。
 
 ```ts
 // PageTransitionSrc1

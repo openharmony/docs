@@ -1,12 +1,31 @@
 # Arkui子系统变更说明
 ## cl.Arkui.1 QRCode组件的默认颜色、默认背景颜色和默认尺寸变更
 
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+当前QRCode组件的默认颜色和默认尺寸不符合UX规范，因此依照UX规范做出变更。
+
 **变更影响**
+
+该变更为兼容性变更，改变了组件默认情况下的显示颜色和尺寸，提升了组件的默认显示效果。
+
+**API Level**
+
+7
+
+**变更的接口/组件**
 
 API 11前，二维码默认颜色是Color.Black，默认背景颜色是Color.White，组件默认宽高是父组件大小。
 
+![qrcode](figures/qrcodeApi10.png)
 
 API 11及以后，二维码默认颜色是系统资源中的`ohos_id_color_foreground`，默认背景颜色是系统资源中的`ohos_id_color_background`，组件默认宽度和高度都是240vp。
+
+![qrcode](figures/qrcodeApi11.png)
 
 **适配指导**
 
@@ -27,6 +46,15 @@ struct QRCodeExample {
 }
 ```
 ## cl.arkui.2 Refresh变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+UX增强导致的规格变更。
+
 **变更影响**
 
 1、默认刷新场景
@@ -39,7 +67,31 @@ API 11及以后，Refresh组件嵌套子组件，刷新组件下拉，子组件�
 
 ![refresh](figures/refreshApi11Default.gif)
 
+2、使用builder接口自定义刷新组件
+
+API 11以前，Refresh组件嵌套子组件，自定义刷新组件，刷新组件的高度不大于64vp。滑动组件的边缘回弹效果和builder下拉同时生效。
+
+![refresh](figures/refreshApi9Builder.gif)
+
+API 11及以后，Refresh组件嵌套子组件，刷新组件下拉，子组件下移。自定义刷新组件builder的高度没有限制。
+
+![refresh](figures/refreshApi11Builder.gif)
+
+**API Level**
+
+8
+
+**变更发生版本**
+
+从OpenHarmony SDK 4.1.2.2 开始。
+
+**变更的接口/组件**
+
+Refresh
+
 **适配指导**
+
+1、默认刷新场景
 
 请查阅[Refresh组件](../../../application-dev/reference/arkui-ts/ts-container-refresh.md)文档进行适配
 
@@ -89,16 +141,6 @@ struct RefreshExample {
 ```
 
 2、使用builder接口自定义刷新组件
-
-API 11以前，Refresh组件嵌套子组件，自定义刷新组件，刷新组件的高度不大于64vp。滑动组件的边缘回弹效果和builder下拉同时生效。
-
-![refresh](figures/refreshApi9Builder.gif)
-
-API 11及以后，Refresh组件嵌套子组件，刷新组件下拉，子组件下移。自定义刷新组件builder的高度没有限制。
-
-![refresh](figures/refreshApi11Builder.gif)
-
-**适配指导**
 
 请查阅[Refresh组件](../../../application-dev/reference/arkui-ts/ts-container-refresh.md)文档进行适配
 

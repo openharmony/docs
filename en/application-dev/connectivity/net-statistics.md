@@ -31,6 +31,8 @@ For the complete list of APIs and example code, see [Traffic Management](../refe
 | getUidTxBytes(uid: number, callback: AsyncCallback\<number>): void;                         | Obtains the real-time uplink data traffic of the specified application. |
 | getTrafficStatsByIface(ifaceInfo: IfaceInfo, callback: AsyncCallback\<NetStatsInfo>): void; | Obtains the historical data traffic of the specified NIC.     |
 | getTrafficStatsByUid(uidInfo: UidInfo, callback: AsyncCallback\<NetStatsInfo>): void;       | Obtains the historical data traffic of the specified application.     |
+| getSockfdRxBytes(sockfd: number, callback: AsyncCallback\<number>): void;                   | Obtains the real-time downlink data traffic of the specified socket. |
+| getSockfdTxBytes(sockfd: number, callback: AsyncCallback\<number>): void;                   | Obtains the real-time uplink data traffic of the specified socket. |
 | on(type: 'netStatsChange', callback: Callback\<{ iface: string, uid?: number }>): void      | Subscribes to traffic change events.        |
 | off(type: 'netStatsChange', callback?: Callback\<{ iface: string, uid?: number }>): void;   | Unsubscribes from traffic change events.    |
 
@@ -40,11 +42,13 @@ For the complete list of APIs and example code, see [Traffic Management](../refe
 2. Obtain the real-time data traffic of the cellular network.
 3. Obtain the real-time data traffic of all NICs. 
 4. Obtain the real-time data traffic of the specified application. 
+5. Obtains the real-time data traffic of the specified socket.
 
 ```ts
 // Import the statistics namespace from @ohos.net.statistics.
 import statistics from '@ohos.net.statistics';
 import { BusinessError } from '@ohos.base';
+import socket from "@ohos.net.socket";
 
 // Obtain the real-time downlink data traffic of the specified NIC. 
 statistics.getIfaceRxBytes('wlan0', (error: BusinessError, stats: number) => {
@@ -94,6 +98,23 @@ let uids = 20010038;
 statistics.getUidTxBytes(uids, (error: BusinessError, stats: number) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(stats));
+});
+
+// Obtain the real-time downlink data traffic of the specified socket. 
+let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
+tcp.getSocketFd().then((sockfd: number) => {
+  statistics.getSockfdRxBytes(sockfd, (error: BusinessError, stats: number) => {
+    console.log(JSON.stringify(error));
+    console.log(JSON.stringify(stats));
+  });
+});
+
+// Obtain the real-time uplink data traffic of the specified socket. 
+tcp.getSocketFd().then((sockfd: number) => {
+  statistics.getSockfdTxBytes(sockfd, (error: BusinessError, stats: number) => {
+    console.log(JSON.stringify(error));
+    console.log(JSON.stringify(stats));
+  });
 });
 ```
 

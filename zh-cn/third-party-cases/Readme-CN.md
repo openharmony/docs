@@ -38,6 +38,13 @@
 - [如何控制循环动画的播放停止](how-to-control-the-pause-of-playback-of-looping-animations.md)
 - [自定义输入框](customize-the-input-box.md)
 - [如何实现内容的下拉变化](realization-of-collapsible-title-effect.md)
+- [Tab组件如何让实现增删Tab页签](How-do-you-add-or-delete-tab-tags-in-the-tab-component.md)
+- [使用Badge组件完成聊天未读消息数量显示功能](Use-the-Badge-component-to-display-the-number-of-unread-messages-in-a-chat.md)
+- [如何实现流式布局](how-to-implement-fluid-layout.md)
+- [列表的多级联动](Multi-level-linkage.md)
+- [如何自定义鼠标悬停/点击组件的背景颜色](Mouse-operation.md)
+- [左右翻页](turn-the-page-left-and-right.md)
+- [实现组件被点击后样式的动态变化](component-pressed-UI-dynamic-change.md)
 
 ### 装饰器
 - [控制页面刷新范围](overall-and-part-refresh.md)

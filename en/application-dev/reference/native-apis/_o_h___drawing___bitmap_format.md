@@ -3,14 +3,11 @@
 
 ## Overview
 
-Defines the pixel format of a bitmap, including the color type and alpha type.
+The **OH_Drawing_BitmapFormat** struct defines the pixel format of a bitmap, including the color type and alpha type.
 
-**Since:**
-8
+**Since**: 8
 
-**Related Modules:**
-
-[Drawing](_drawing.md)
+**Related module**: [Drawing](_drawing.md)
 
 
 ## Summary
@@ -18,30 +15,32 @@ Defines the pixel format of a bitmap, including the color type and alpha type.
 
 ### Member Variables
 
-| Name | Description | 
+| Name| Description|
 | -------- | -------- |
-| [colorFormat](#colorformat) | Storage format of bitmap pixels  | 
-| [alphaFormat](#alphaformat) | Alpha format of bitmap pixels  | 
+| [OH_Drawing_ColorFormat](_drawing.md#oh_drawing_colorformat)[colorFormat](#colorformat) | Describes the storage format of bitmap pixels.|
+| [OH_Drawing_AlphaFormat](_drawing.md#oh_drawing_alphaformat)[alphaFormat](#alphaformat) | Describes the alpha format of bitmap pixels.|
 
 
-## Member Variable Description 
+## Member Variable Description
 
 
 ### alphaFormat
 
-  
 ```
 OH_Drawing_AlphaFormat OH_Drawing_BitmapFormat::alphaFormat
 ```
-**Description**<br>
-Alpha format of bitmap pixels
+
+**Description**
+
+Describes the alpha format of bitmap pixels.
 
 
 ### colorFormat
 
-  
 ```
 OH_Drawing_ColorFormat OH_Drawing_BitmapFormat::colorFormat
 ```
-**Description**<br>
-Storage format of bitmap pixels
+
+**Description**
+
+Describes the storage format of bitmap pixels.

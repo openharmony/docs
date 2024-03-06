@@ -13,14 +13,14 @@
 
 应用调用延迟任务接口添加、删除、查询延迟任务，延迟任务管理模块会根据任务设置的条件（通过WorkInfo参数设置，包括网络类型、充电类型、存储状态等）和系统状态（包括内存、功耗、设备温度、用户使用习惯等）统一决策调度时机。
 
-当满足调度条件或调度结束时，系统会回调应用[WorkSchedulerExtensionAbility](../reference/apis/js-apis-WorkSchedulerExtensionAbility.md)中 onWorkStart() 或 onWorkStop() 的方法，同时会为应用单独创建一个Extension扩展进程用以承载[WorkSchedulerExtensionAbility](../reference/apis/js-apis-WorkSchedulerExtensionAbility.md)，并给[WorkSchedulerExtensionAbility](../reference/apis/js-apis-WorkSchedulerExtensionAbility.md)一定的活动周期，开发者可以在对应回调方法中实现自己的任务逻辑。
+当满足调度条件或调度结束时，系统会回调应用[WorkSchedulerExtensionAbility](../reference/apis-backgroundtasks-kit/js-apis-WorkSchedulerExtensionAbility.md)中 onWorkStart() 或 onWorkStop() 的方法，同时会为应用单独创建一个Extension扩展进程用以承载[WorkSchedulerExtensionAbility](../reference/apis-backgroundtasks-kit/js-apis-WorkSchedulerExtensionAbility.md)，并给[WorkSchedulerExtensionAbility](../reference/apis-backgroundtasks-kit/js-apis-WorkSchedulerExtensionAbility.md)一定的活动周期，开发者可以在对应回调方法中实现自己的任务逻辑。
 
 
 ### 约束与限制
 
 - **数量限制**：一个应用同一时刻最多申请10个延迟任务。
 
-- **执行频率限制**：系统会根据[应用的活跃分组](../reference/apis/js-apis-resourceschedule-deviceUsageStatistics.md)，对延迟任务做分级管控，限制延迟任务调度的执行频率。通过能效资源接口申请了WORK_SCHEDULER资源的应用，会被放在能效资源豁免分组中。
+- **执行频率限制**：系统会根据[应用的活跃分组](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-deviceUsageStatistics-sys.md)，对延迟任务做分级管控，限制延迟任务调度的执行频率。通过能效资源接口申请了WORK_SCHEDULER资源的应用，会被放在能效资源豁免分组中。
 
   **表1** 应用活跃程度分组   
   | 应用活跃分组 | 延迟任务执行频率 |
@@ -39,22 +39,22 @@
 
 - **WorkSchedulerExtensionAbility接口调用限制**：为实现对WorkSchedulerExtensionAbility能力的管控，在WorkSchedulerExtensionAbility中限制以下接口的调用：
 
-  [@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](../reference/apis/js-apis-resourceschedule-backgroundTaskManager.md)
+  [@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md)
 
-  [@ohos.backgroundTaskManager (后台任务管理)](../reference/apis/js-apis-backgroundTaskManager.md)
+  [@ohos.backgroundTaskManager (后台任务管理)](../reference/apis-backgroundtasks-kit/js-apis-backgroundTaskManager.md)
 
-  [@ohos.multimedia.camera (相机管理)](../reference/apis/js-apis-camera.md)
+  [@ohos.multimedia.camera (相机管理)](../reference/apis-camera-kit/js-apis-camera.md)
 
-  [@ohos.multimedia.audio (音频管理)](../reference/apis/js-apis-audio.md)
+  [@ohos.multimedia.audio (音频管理)](../reference/apis-audio-kit/js-apis-audio.md)
 
-  [@ohos.multimedia.media (媒体服务)](../reference/apis/js-apis-media.md)
+  [@ohos.multimedia.media (媒体服务)](../reference/apis-media-kit/js-apis-media.md)
 
 
 ## 接口说明
 
 **表2** 延迟任务主要接口
 
-以下是延迟任务开发使用的相关接口，更多接口及使用方式请见[延迟任务](../reference/apis/js-apis-resourceschedule-workScheduler.md)文档。
+以下是延迟任务开发使用的相关接口，更多接口及使用方式请见[延迟任务](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-workScheduler.md)文档。
 | 接口名 | 接口描述 |
 | -------- | -------- |
 | startWork(work: WorkInfo): void; | 申请延迟任务 |
@@ -73,12 +73,12 @@
 | workId          | number                            | 是    | 延迟任务ID。          |
 | bundleName      | string                            | 是    | 延迟任务包名。           |
 | abilityName     | string                            | 是    | 延迟任务回调通知的组件名。 |
-| networkType     | [NetworkType](../reference/apis/js-apis-resourceschedule-workScheduler.md#networktype)       | 否    | 网络类型。             |
+| networkType     | [NetworkType](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-workScheduler.md#networktype)       | 否    | 网络类型。             |
 | isCharging      | boolean                           | 否    | 是否充电。<br>- true表示充电触发延迟回调，false表示不充电触发延迟回调。|
-| chargerType     | [ChargingType](../reference/apis/js-apis-resourceschedule-workScheduler.md#chargingtype)     | 否    | 充电类型。             |
+| chargerType     | [ChargingType](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-workScheduler.md#chargingtype)     | 否    | 充电类型。             |
 | batteryLevel    | number                            | 否    | 电量。              |
-| batteryStatus   | [BatteryStatus](../reference/apis/js-apis-resourceschedule-workScheduler.md#batterystatus)   | 否    | 电池状态。             |
-| storageRequest  | [StorageRequest](../reference/apis/js-apis-resourceschedule-workScheduler.md#storagerequest) | 否    | 存储状态。             |
+| batteryStatus   | [BatteryStatus](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-workScheduler.md#batterystatus)   | 否    | 电池状态。             |
+| storageRequest  | [StorageRequest](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-workScheduler.md#storagerequest) | 否    | 存储状态。             |
 | isRepeat        | boolean                           | 否    | 是否循环任务。<br>- true表示循环任务，false表示非循环任务。 |
 | repeatCycleTime | number                            | 否    | 循环间隔，单位为毫秒。             |
 | repeatCount     | number                            | 否    | 循环次数。             |
@@ -99,7 +99,7 @@ WorkInfo参数用于设置应用条件，参数设置时需遵循以下规则：
 
 **表4** 延迟任务回调接口
 
-以下是延迟任务回调开发使用的相关接口，更多接口及使用方式请见[延迟任务回调](../reference/apis/js-apis-WorkSchedulerExtensionAbility.md)文档。
+以下是延迟任务回调开发使用的相关接口，更多接口及使用方式请见[延迟任务回调](../reference/apis-backgroundtasks-kit/js-apis-WorkSchedulerExtensionAbility.md)文档。
 | 接口名 | 接口描述 |
 | -------- | -------- |
 | onWorkStart(work: workScheduler.WorkInfo): void | 延迟调度任务开始的回调 |
@@ -118,7 +118,7 @@ WorkInfo参数用于设置应用条件，参数设置时需遵循以下规则：
 
 1. 新建工程目录。
 
-   在工程entry Module对应的ets目录(./entry/src/main/ets)下，新建目录及ArkTS文件，例如新建一个目录并命名为extension。在extension目录下，新建一个ArkTS文件并命名为WorkSchedulerExtension.ets，用以实现延迟任务回调接口。
+   在工程entry Module对应的ets目录(./entry/src/main/ets)下，新建目录及ArkTS文件，例如新建一个目录并命名为WorkSchedulerExtension。在WorkSchedulerExtension目录下，新建一个ArkTS文件并命名为WorkSchedulerExtension.ets，用以实现延迟任务回调接口。
 
 2. 导入模块。
    

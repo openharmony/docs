@@ -29,5 +29,6 @@
 - [Startup Development](faqs-startup.md)
 - [Distributed Device Development](faqs-distributed-device-profile.md)
 - [SDK Usage](faqs-sdk.md)
+- [NDK Usage](faqs-ndk.md)
 - [Compiler and Runtime](faqs-compiler-runtime.md)
 - [Usage of Third- and Fourth-Party Libraries](faqs-third-fourth-party-library.md)

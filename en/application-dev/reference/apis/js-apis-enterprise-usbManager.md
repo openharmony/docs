@@ -170,6 +170,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 | -------- | ------------------------------------------------------------ |
 | 9200001  | the application is not an administrator of the device.       |
 | 9200002  | the administrator application does not have permission to manage the device. |
+| 9200010  | a conflicting policy has been configured.                    |
 
 **Example**
 
@@ -189,7 +190,7 @@ try {
 
 ## usbManager.isUsbDisabled<sup>11+</sup>
 
-isUsbDevicesDisallowed(admin: Want): boolean
+isUsbDisabled(admin: Want): boolean
 
 Checks whether USB is disabled through the specified device administrator application.
 
@@ -238,7 +239,7 @@ try {
 
 ## usbManager.addAllowedUsbDevices<sup>11+</sup>
 
-addAllowedUsbDevices(admin: Want, usbDeviceIds: Array<usbManager.UsbDeviceId>): void
+addAllowedUsbDevices(admin: Want, usbDeviceIds: Array\<UsbDeviceId>): void
 
 Adds allowed USB devices through the specified device administrator application.
 
@@ -250,10 +251,10 @@ Required permissions: ohos.permission.ENTERPRISE_MANAGE_USB
 
 **Parameters**
 
-| Name      | Type                                           | Mandatory| Description                                       |
-| ------------ | ----------------------------------------------- | ---- | ------------------------------------------- |
-| admin        | [Want](js-apis-app-ability-want.md)             | Yes  | Device administrator application.                             |
-| usbDeviceIds | Array<[usbManager.UsbDeviceId](#usbdeviceid11)> | Yes  | IDs of the allowed USB devices to add. This array can hold a maximum of 1000 device IDs.|
+| Name      | Type                                | Mandatory| Description                                       |
+| ------------ | ------------------------------------ | ---- | ------------------------------------------- |
+| admin        | [Want](js-apis-app-ability-want.md)  | Yes  | Device administrator application.                             |
+| usbDeviceIds | Array<[UsbDeviceId](#usbdeviceid11)> | Yes  | IDs of the allowed USB devices to add. This array can hold a maximum of 1000 device IDs.|
 
 **Error codes**
 
@@ -263,6 +264,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 | -------- | ------------------------------------------------------------ |
 | 9200001  | the application is not an administrator of the device.       |
 | 9200002  | the administrator application does not have permission to manage the device. |
+| 9200010  | a conflicting policy has been configured.                    |
 
 **Example**
 
@@ -286,7 +288,7 @@ try {
 
 ## usbManager.removeAllowedUsbDevices<sup>11+</sup>
 
-removeAllowedUsbDevices(admin: Want, usbDeviceIds: Array<usbManager.UsbDeviceId>): void
+removeAllowedUsbDevices(admin: Want, usbDeviceIds: Array\<UsbDeviceId>): void
 
 Removes allowed USB devices through the specified device administrator application.
 
@@ -298,10 +300,10 @@ Required permissions: ohos.permission.ENTERPRISE_MANAGE_USB
 
 **Parameters**
 
-| Name      | Type                                           | Mandatory| Description           |
-| ------------ | ----------------------------------------------- | ---- | --------------- |
-| admin        | [Want](js-apis-app-ability-want.md)             | Yes  | Device administrator application. |
-| usbDeviceIds | Array<[usbManager.UsbDeviceId](#usbdeviceid11)> | Yes  | IDs of the allowed USB devices to remove.|
+| Name      | Type                                | Mandatory| Description           |
+| ------------ | ------------------------------------ | ---- | --------------- |
+| admin        | [Want](js-apis-app-ability-want.md)  | Yes  | Device administrator application. |
+| usbDeviceIds | Array<[UsbDeviceId](#usbdeviceid11)> | Yes  | IDs of the allowed USB devices to remove.|
 
 **Error codes**
 
@@ -334,7 +336,7 @@ try {
 
 ## usbManager.getAllowedUsbDevices<sup>11+</sup>
 
-getAllowedUsbDevices(admin: Want): Array<usbManager.UsbDeviceId>
+getAllowedUsbDevices(admin: Want): Array\<UsbDeviceId>
 
 Obtains allowed USB devices through the specified device administrator application.
 
@@ -352,9 +354,9 @@ Required permissions: ohos.permission.ENTERPRISE_MANAGE_USB
 
 **Return value**
 
-| Type                                           | Description                     |
-| ----------------------------------------------- | ------------------------- |
-| Array<[usbManager.UsbDeviceId](#usbdeviceid11)> | Allowed USB devices obtained.|
+| Type                                | Description                     |
+| ------------------------------------ | ------------------------- |
+| Array<[UsbDeviceId](#usbdeviceid11)> | Allowed USB devices obtained.|
 
 **Error codes**
 
@@ -408,6 +410,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 | -------- | ------------------------------------------------------------ |
 | 9200001  | the application is not an administrator of the device.       |
 | 9200002  | the administrator application does not have permission to manage the device. |
+| 9200010  | a conflicting policy has been configured.                    |
 
 **Example**
 
@@ -428,7 +431,7 @@ try {
 
 ## usbManager.getUsbStorageDeviceAccessPolicy<sup>11+</sup>
 
-getUsbStorageDeviceAccessPolicy(admin: Want): Array<usbManager.UsbDeviceId>
+getUsbStorageDeviceAccessPolicy(admin: Want): UsbPolicy
 
 Obtains the USB storage device access policy through the specified device administrator application.
 

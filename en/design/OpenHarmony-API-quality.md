@@ -161,7 +161,7 @@ API names must be in English. Generally, a class is named using a noun, for exam
 
 It is incorrect to name a class **Start** or a function **ball()**.
 
-In terms of verbs, use transitive verbs, transitive verbs, and verb tenses correctly. For example, you can name events **transferStarted()** and **renderDone()**.
+In terms of verbs, use transitive verbs, intransitive verbs, and verb tenses correctly. For example, you can name events **transferStarted()** and **renderDone()**.
 
 * **Rule 3: Proper use of abbreviations**
 
@@ -790,7 +790,7 @@ Exploitation means that the use of an API causes negative impact, for example, s
 
 If a system problem occurs when an API or a combination of APIs is called, regardless of how they are called, there are defects in the API.
 
-It is forbidden if an API (in any case) can be called to crash the system, prevent the system from working, or steal user data. You should consider all possible calling scenarios to avoid extreme situations.
+It is forbidden to use an API if it (in any case) can be called to crash the system, prevent the system from working, or steal user data. You should consider all possible calling scenarios to avoid extreme situations.
 
 ### Maintainability
 

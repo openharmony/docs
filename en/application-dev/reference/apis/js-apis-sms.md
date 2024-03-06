@@ -302,7 +302,7 @@ Sends an MMS message. This API uses an asynchronous callback to return the resul
 | Name  | Type                       | Mandatory| Description                                    |
 | -------- | --------------------------- | ---- | ---------------------------------------- |
 | context | Context          | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-uiAbilityContext.md).|
-| mmsParams | [MmsParams](#mmsparams) | Yes  | Parameters (including the callback) for sending MMS messages. For details, see [MmsParams](#mmsparams).|
+| mmsParams | [MmsParams](#mmsparams11) | Yes  | Parameters (including the callback) for sending MMS messages. For details, see [MmsParams](#mmsparams11).|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
 
 **Error codes**
@@ -326,18 +326,18 @@ FA model:
 ```ts
 import sms from '@ohos.telephony.sms';
 import { BusinessError } from '@ohos.base';
-import type Context from './application/BaseContext';
+import common from '@ohos.app.ability.common';
 
 // Obtain the context.
 import featureAbility from '@ohos.ability.featureAbility';
-let context: Context = featureAbility.getContext();
+let context: common.BaseContext = featureAbility.getContext();
 
 // Configure the path for storing PDUs of MMS messages. Such PDUs are sent from the encoding API.
 const sandBoxPath: string = '/data/storage/el2/base/files/';
 let filePath: string  = sandBoxPath + 'SendReq.mms';
 
 // Options for sending MMS messages (The MMSC is for reference only.)
-let mmsPars: sms.MmsParam = {
+let mmsPars: sms.MmsParams = {
   slotId : 0,
   mmsc: 'http://mmsc.myuni.com.cn',
   data: filePath,
@@ -363,19 +363,20 @@ Stage model:
 import UIAbility from '@ohos.app.ability.UIAbility';
 import sms from '@ohos.telephony.sms';
 import { BusinessError } from '@ohos.base';
+import window from '@ohos.window';
 
 // Configure the path for storing PDUs of MMS messages. Such PDUs are sent from the encoding API.
 const sandBoxPath = '/data/storage/el2/base/files/';
 let filePath  = sandBoxPath + 'SendReq.mms';
 
 // Configure the MMS user agent and profile. The default values are ua an uaprof, respectively. The configuration is subject to the carrier's requirements. 
-let mmsConf = {
+let mmsConf: sms.MmsConfig = {
   userAgent:'ua',
   userAgentProfile: 'uaprof'
 };
 
 // Options for sending MMS messages (The MMSC is for reference only.)
-let mmsPars = {
+let mmsPars: sms.MmsParams = {
   slotId : 0,
   mmsc: 'http://mmsc.myuni.com.cn',
   data: filePath,
@@ -383,7 +384,7 @@ let mmsPars = {
 };
 
 class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage) {
+    onWindowStageCreate(windowStage: window.WindowStage) {
     sms.sendMms(this.context, mmsPars, async(err: BusinessError) =>{
         if (err) {
             console.error(`sendMms fail, err : ${JSON.stringify(err)}`);
@@ -412,7 +413,7 @@ Sends an MMS message. This API uses a promise to return the result.
 | Name  | Type                       | Mandatory| Description                                    |
 | -------- | --------------------------- | ---- | ---------------------------------------- |
 | context | Context          | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-uiAbilityContext.md).|
-| mmsParams | [MmsParams](#mmsparams) | Yes  | Parameters (including the callback) for sending MMS messages. For details, see [MmsParams](#mmsparams).|
+| mmsParams | [MmsParams](#mmsparams11) | Yes  | Parameters (including the callback) for sending MMS messages. For details, see [MmsParams](#mmsparams11).|
 
 **Return value**
 
@@ -441,17 +442,17 @@ FA model:
 ```ts
 import sms from '@ohos.telephony.sms';
 import { BusinessError } from '@ohos.base';
-import type Context from './application/BaseContext';
+import common from '@ohos.app.ability.common';
 // Obtain the context.
 import featureAbility from '@ohos.ability.featureAbility';
-let context: Context = featureAbility.getContext();
+let context: common.BaseContext = featureAbility.getContext();
 
 // Configure the path for storing PDUs of MMS messages. Such PDUs are sent from the encoding API.
 const sandBoxPath: string = '/data/storage/el2/base/files/';
 let filePath: string = sandBoxPath + 'SendReq.mms';
 
 // Options for sending MMS messages (The MMSC is for reference only.)
-let mmsPars: sms.MmsParam = {
+let mmsPars: sms.MmsParams = {
   slotId: 0,
   mmsc: 'http://mmsc.myuni.com.cn',
   data: filePath,
@@ -476,19 +477,20 @@ Stage model:
 import UIAbility from '@ohos.app.ability.UIAbility';
 import sms from '@ohos.telephony.sms';
 import { BusinessError } from '@ohos.base';
+import window from '@ohos.window';
 
 // Configure the path for storing PDUs of MMS messages. Such PDUs are sent from the encoding API.
 const sandBoxPath = '/data/storage/el2/base/files/';
 let filePath  = sandBoxPath + 'SendReq.mms';
 
 // Configure the MMS user agent and profile. The default values are ua an uaprof, respectively. The configuration is subject to the carrier's requirements. 
-let mmsConf = {
+let mmsConf: sms.MmsConfig = {
   userAgent:'ua',
   userAgentProfile: 'uaprof'
 };
 
 // Options for sending MMS messages (The MMSC is for reference only.)
-let mmsPars = {
+let mmsPars: sms.MmsParams = {
   slotId : 0,
   mmsc: 'http://mmsc.myuni.com.cn',
   data: filePath,
@@ -496,7 +498,7 @@ let mmsPars = {
 };
 
 class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage) {
+    onWindowStageCreate(windowStage: window.WindowStage) {
     let promise = sms.sendMms(this.context, mmsPars);
     promise.then(() => {
         console.log(`sendMms success`);
@@ -548,10 +550,10 @@ FA model:
 ```ts
 import sms from '@ohos.telephony.sms';
 import { BusinessError } from '@ohos.base';
-import type Context from './application/BaseContext';
+import common from '@ohos.app.ability.common';
 // Obtain the context.
 import featureAbility from '@ohos.ability.featureAbility';
-let context: Context = featureAbility.getContext();
+let context: common.BaseContext = featureAbility.getContext();
 
 // Configure the path for storing the PDU of the MMS message.
 const sandBoxPath: string = '/data/storage/el2/base/files/';
@@ -561,7 +563,7 @@ let filePath: string = sandBoxPath + 'RetrieveConf.mms';
 let wapPushUrl: string = 'URL';
 
 // Configure the parameters (including the callback) for downloading MMS messages.
-let mmsPars: sms.MmsParam = {
+let mmsPars: sms.MmsParams = {
   slotId: 0,
   mmsc: wapPushUrl,
   data: filePath,
@@ -572,13 +574,13 @@ let mmsPars: sms.MmsParam = {
 };
 
 // Call the downloadMms API.
-mms.downloadMms(context, mmsPars, async(err: BusinessError) =>{
+sms.downloadMms(context, mmsPars, async(err: BusinessError) =>{
   if (err) {
-      console.error(`downloadMms fail, err : ${toString(err)}`);
+      console.error(`downloadMms fail, err : ${JSON.stringify(err)}`);
       return;
   }
   console.log(`downloadMms Success`);
-}
+})
 ```
 
 Stage model:
@@ -587,6 +589,7 @@ Stage model:
 import UIAbility from '@ohos.app.ability.UIAbility';
 import mms from '@ohos.telephony.sms';
 import { BusinessError } from '@ohos.base';
+import window from '@ohos.window';
 
 // Configure the path for storing the PDU of the MMS message.
 const sandBoxPath = '/data/storage/el2/base/files/';
@@ -596,13 +599,13 @@ let filePath  = sandBoxPath + 'RetrieveConf.mms';
 let wapPushUrl  = 'URL';
 
 // Configure the MMS user agent and profile. The default values are ua an uaprof, respectively. The configuration is subject to the carrier's requirements. 
-let mmsConf = {
+let mmsConf: mms.MmsConfig = {
   userAgent:'ua',
   userAgentProfile: 'uaprof'
 };
 
 // Configure the parameters (including the callback) for downloading MMS messages.
-let mmsPars = {
+let mmsPars: mms.MmsParams = {
   slotId : 0,
   mmsc: wapPushUrl,
   data: filePath,
@@ -610,7 +613,7 @@ let mmsPars = {
 };
 
 class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage) {
+    onWindowStageCreate(windowStage: window.WindowStage) {
     mms.downloadMms(this.context, mmsPars, async(err: BusinessError) =>{
         if (err) {
             console.error(`downloadMms fail, err : ${JSON.stringify(err)}`);
@@ -668,10 +671,10 @@ FA model:
 ```ts
 import sms from '@ohos.telephony.sms';
 import { BusinessError } from '@ohos.base';
-import type Context from './application/BaseContext';
+import common from '@ohos.app.ability.common';
 // Obtain the context.
 import featureAbility from '@ohos.ability.featureAbility';
-let context: Context = featureAbility.getContext();
+let context: common.BaseContext = featureAbility.getContext();
 
 // Configure the path for storing the PDU of the MMS message.
 const sandBoxPath: string = '/data/storage/el2/base/files/';
@@ -681,7 +684,7 @@ let filePath: string = sandBoxPath + 'RetrieveConf.mms';
 let wapPushUrl: string = 'URL';
 
 // Configure the parameters (including the callback) for downloading MMS messages.
-let mmsPars: sms.MmsParam = {
+let mmsPars: sms.MmsParams = {
   slotId: 0,
   mmsc: wapPushUrl,
   data: filePath,
@@ -706,6 +709,7 @@ Stage model:
 import UIAbility from '@ohos.app.ability.UIAbility';
 import sms from '@ohos.telephony.sms';
 import { BusinessError } from '@ohos.base';
+import window from '@ohos.window';
 
 // Configure the path for storing the PDU of the MMS message.
 const sandBoxPath = '/data/storage/el2/base/files/';
@@ -715,13 +719,13 @@ let filePath  = sandBoxPath + 'RetrieveConf.mms';
 let wapPushUrl  = 'URL';
 
 // Configure the MMS user agent and profile. The default values are ua an uaprof, respectively. The configuration is subject to the carrier's requirements. 
-let mmsConf = {
+let mmsConf: sms.MmsConfig = {
   userAgent:'ua',
   userAgentProfile: 'uaprof'
 };
 
 // Configure the parameters (including the callback) for downloading MMS messages.
-let mmsPars = {
+let mmsPars: sms.MmsParams = {
   slotId : 0,
   mmsc: wapPushUrl,
   data: filePath,
@@ -729,7 +733,7 @@ let mmsPars = {
 };
 
 class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage) {
+    onWindowStageCreate(windowStage: window.WindowStage) {
     let promise = sms.downloadMms(this.context, mmsPars);
     promise.then(() => {
         console.log(`downloadMms success`);
@@ -1979,7 +1983,7 @@ sms.getImsShortMessageFormat((err: BusinessError, data: string) => {
 
 getImsShortMessageFormat\(\): Promise\<string\>
 
-Obtains the SMS format supported by the IMS. This API uses a promise to return the result.
+Obtains the SMS format supported by the IMS, for example, **3gpp**, **3gpp2**, or **unknown**. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -2030,7 +2034,7 @@ Decodes MMS messages. This API uses an asynchronous callback to return the resul
 | Name         | Type                                                   | Mandatory| Description          |
 | --------------- | ------------------------------------------------------- | ---- | -------------- |
 | mmsFilePathName | string \|Array<number\>                                 | Yes  | MMS message file path.|
-| callback        | AsyncCallback&lt;[MmsInformation](#mmsinformation8)&gt; | Yes  | Callback used to return the result.    |
+| callback        | AsyncCallback&lt;[MmsInformation](#mmsinformation8)&gt; | Yes  | Callback used to return the result, which is carried in {@code MmsInformation}.    |
 
 **Error codes**
 
@@ -2054,6 +2058,11 @@ import { BusinessError } from '@ohos.base';
 let mmsFilePathName: string = "filename";
 sms.decodeMms(mmsFilePathName, (err: BusinessError, data: sms.MmsInformation) => {
       console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+
+const mmsPdu: Array<number> = [0x8c, 0x80, 0x98, 0x31, 0x00, 0x8d, 0x92, 0x89, 0x09, 0x80, 0x07, 0xea, 0x31, 0x30, 0x30, 0x38, 0x36, 0x00, 0x97, 0x07, 0xea, 0x31, 0x30, 0x30,0x31, 0x30, 0x00, 0x84, 0x74, 0x79, 0x70, 0x65, 0x00, 0x00];
+sms.decodeMms(mmsPdu, (err: BusinessError, data: sms.MmsInformation) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -2102,6 +2111,14 @@ import { BusinessError } from '@ohos.base';
 let mmsFilePathName: string = "filename";
 let promise = sms.decodeMms(mmsFilePathName);
 promise.then((data: sms.MmsInformation) => {
+    console.log(`decodeMms success, promise: data->${JSON.stringify(data)}`);
+}).catch((err: BusinessError) => {
+    console.error(`decodeMms failed, promise: err->${JSON.stringify(err)}`);
+});
+
+const mmsPdu: Array<number> = [0x8c, 0x80, 0x98, 0x31, 0x00, 0x8d, 0x92, 0x89, 0x09, 0x80, 0x07, 0xea, 0x31, 0x30, 0x30, 0x38, 0x36, 0x00, 0x97, 0x07, 0xea, 0x31, 0x30, 0x30,0x31, 0x30, 0x00, 0x84, 0x74, 0x79, 0x70, 0x65, 0x00, 0x00];
+let promiseArr = sms.decodeMms(mmsPdu);
+promiseArr.then((data: sms.MmsInformation) => {
     console.log(`decodeMms success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`decodeMms failed, promise: err->${JSON.stringify(err)}`);
@@ -2306,7 +2323,7 @@ Defines an SMS message instance.
 |         Name            |                  Type                  | Mandatory| Description                                                        |
 | ------------------------ | --------------------------------------- | ---- | ------------------------------------------------------------ |
 | hasReplyPath             | boolean                                 |  Yes | Whether the received SMS contains **TP-Reply-Path**. The default value is **false**.<br>TP-Reply-Path: The device returns a response based on the SMSC that sends the SMS message. |
-| isReplaceMessage         | boolean                                 |  Yes | Whether the received SMS message is a **replace short message**. The default value is **false**.<br>For details, see section 9.2.3.9 in **3GPP TS 23.040**.|
+| isReplaceMessage         | boolean                                 |  Yes | Whether the received SMS message is a **replace short message**. The default value is **false**.<br>For details, see [3GPP TS 23.040 9.2.3.9](https://www.3gpp.org/ftp/specs/archive/23_series/23.040).|
 | isSmsStatusReportMessage | boolean                                 |  Yes | Whether the received SMS message is an SMS delivery report. The default value is **false**.<br>SMS delivery report: a message sent from the SMSC to show the current status of the SMS message you delivered.|
 | messageClass             | [ShortMessageClass](#shortmessageclass) |  Yes | Enumerates SMS message types.                                                  |
 | pdu                      | Array&lt;number&gt;                     |  Yes | PDU in the SMS message.                           |
@@ -2362,7 +2379,7 @@ Defines the parameters for sending SMS messages.
 | slotId<sup>11+</sup>           | number                                                       | Yes  | Slot ID of the SIM card used for sending SMS messages. <br>- **0**: card slot 1<br>- **1**: card slot 2     |
 | mmsc<sup>11+</sup>  | string                                                       | Yes  | MMSC address.                                            |
 | data<sup>11+</sup>          | string                               | Yes  | MMS PDU address.|
-| mmsConfig<sup>11+</sup>    | MmsConfig                                                       | No  | MMS configuration file. For details, see [MmsConfig](#mmsconfig).               |
+| mmsConfig<sup>11+</sup>    | MmsConfig                                                       | No  | MMS configuration file. For details, see [MmsParams](#mmsparams11).               |
 
 ## MmsConfig<sup>11+</sup>
 
@@ -2724,7 +2741,7 @@ Defines the SIM message status.
 
 |           Name           | Value  | Description                       |
 | ------------------------- | ---- | --------------------------- |
-| SIM_MESSAGE_STATUS_FREE   | 0    | Free state.      |
+| SIM_MESSAGE_STATUS_FREE   | 0    | Free space state of the SIM card.      |
 | SIM_MESSAGE_STATUS_READ   | 1    | Read state.               |
 | SIM_MESSAGE_STATUS_UNREAD | 3    | Unread state.               |
 | SIM_MESSAGE_STATUS_SENT   | 5    | Storage of sent messages (applicable only to SMS).|

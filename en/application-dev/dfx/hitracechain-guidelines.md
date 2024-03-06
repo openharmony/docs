@@ -18,12 +18,12 @@ The APIs for distributed call chain tracing are provided by the **hiTraceChain**
 
 | API                                                                                                             | Return Value        | Description                        |
 | ------------------------------------------------------------------------------------------------------------------- | -------------- | ------------                 |
-| hiTraceChain.begin(name: string, flags: number = HiTraceFlag.DEFAULT)                                               | HiTraceId      | Starts call chain tracing.                  |
+| hiTraceChain.begin(name: string, flags?: number = HiTraceFlag.DEFAULT)                                               | HiTraceId      | Starts call chain tracing.                  |
 | hiTraceChain.end(id: HiTraceId)                                                                                     | void           | Stops call chain tracing.                  |
 
 ## How to Develop
 
-The following example illustrates how to simulate one-time [system event logging](../reference/apis/js-apis-hiappevent.md) to implement distributed call chain tracing.
+The following example illustrates how to simulate one-time [system event logging](../reference/apis/js-apis-hiviewdfx-hiappevent.md) to implement distributed call chain tracing.
 
 1. Create an eTS application project. In the displayed **Project** window, choose **entry** > **src** > **main** > **ets** > **pages** > **index.ets**, and double-click **index.ets**. Then, add a button to trigger system event logging.
 

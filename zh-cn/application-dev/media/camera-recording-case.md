@@ -19,10 +19,12 @@ import camera from '@ohos.multimedia.camera';
 import { BusinessError } from '@ohos.base';
 import media from '@ohos.multimedia.media';
 import common from '@ohos.app.ability.common';
+import PhotoAccessHelper from '@ohos.file.photoAccessHelper';
+import fs from '@ohos.file.fs';
 
-async function videoRecording(baseContext: common.BaseContext, surfaceId: string): Promise<void> {
+async function videoRecording(context: common.Context, surfaceId: string): Promise<void> {
   // 创建CameraManager对象
-  let cameraManager: camera.CameraManager = camera.getCameraManager(baseContext);
+  let cameraManager: camera.CameraManager = camera.getCameraManager(context);
   if (!cameraManager) {
     console.error("camera.getCameraManager error");
     return;
@@ -30,8 +32,8 @@ async function videoRecording(baseContext: common.BaseContext, surfaceId: string
 
   // 监听相机状态变化
   cameraManager.on('cameraStatus', (err: BusinessError, cameraStatusInfo: camera.CameraStatusInfo) => {
-    console.log(`camera : ${cameraStatusInfo.camera.cameraId}`);
-    console.log(`status: ${cameraStatusInfo.status}`);
+    console.info(`camera : ${cameraStatusInfo.camera.cameraId}`);
+    console.info(`status: ${cameraStatusInfo.status}`);
   });
 
   // 获取相机列表
@@ -48,13 +50,21 @@ async function videoRecording(baseContext: common.BaseContext, surfaceId: string
     return;
   }
 
+  // 获取支持的模式类型
+  let sceneModes: Array<camera.SceneMode> = cameraManager.getSupportedSceneModes(cameraArray[0]);
+  let isSupportVideoMode: boolean = sceneModes.indexOf(camera.SceneMode.NORMAL_VIDEO) >= 0;
+  if (!isSupportVideoMode) {
+    console.error('video mode not support');
+    return;
+  }
+
   // 获取相机设备支持的输出流能力
-  let cameraOutputCap: camera.CameraOutputCapability = cameraManager.getSupportedOutputCapability(cameraArray[0]);
+  let cameraOutputCap: camera.CameraOutputCapability = cameraManager.getSupportedOutputCapability(cameraArray[0], camera.SceneMode.NORMAL_VIDEO);
   if (!cameraOutputCap) {
     console.error("cameraManager.getSupportedOutputCapability error")
     return;
   }
-  console.log("outputCapability: " + JSON.stringify(cameraOutputCap));
+  console.info("outputCapability: " + JSON.stringify(cameraOutputCap));
 
   let previewProfilesArray: Array<camera.Profile> = cameraOutputCap.previewProfiles;
   if (!previewProfilesArray) {
@@ -70,12 +80,18 @@ async function videoRecording(baseContext: common.BaseContext, surfaceId: string
   if (!videoProfilesArray) {
     console.error("createOutput videoProfilesArray == null || undefined");
   }
-
-  let metadataObjectTypesArray: Array<camera.MetadataObjectType> = cameraOutputCap.supportedMetadataObjectTypes;
-  if (!metadataObjectTypesArray) {
-    console.error("createOutput metadataObjectTypesArray == null || undefined");
+  // videoProfile的宽高需要与AVRecorderProfile的宽高保持一致，并且需要使用AVRecorderProfile锁支持的宽高
+  let videoSize: camera.Size = {
+    width: 640,
+    height: 480
   }
-
+  let videoProfile: undefined | camera.VideoProfile = videoProfilesArray.find((profile: camera.VideoProfile) => {
+    return profile.size.width === videoSize.width && profile.size.height === videoSize.height;
+  });
+  if (!videoProfile) {
+    console.error('videoProfile is not found');
+    return;
+  }
   // 配置参数以实际硬件设备支持的范围为准
   let aVRecorderProfile: media.AVRecorderProfile = {
     audioBitrate: 48000,
@@ -84,16 +100,22 @@ async function videoRecording(baseContext: common.BaseContext, surfaceId: string
     audioSampleRate: 48000,
     fileFormat: media.ContainerFormatType.CFT_MPEG_4,
     videoBitrate: 2000000,
-    videoCodec: media.CodecMimeType.VIDEO_MPEG4,
-    videoFrameWidth: 640,
-    videoFrameHeight: 480,
+    videoCodec: media.CodecMimeType.VIDEO_AVC,
+    videoFrameWidth: videoSize.width,
+    videoFrameHeight: videoSize.height,
     videoFrameRate: 30
   };
+  let options: PhotoAccessHelper.CreateOptions = {
+    title: Date.now().toString()
+  };
+  let photoAccessHelper: PhotoAccessHelper.PhotoAccessHelper = PhotoAccessHelper.getPhotoAccessHelper(context);
+  let videoUri: string = await photoAccessHelper.createAsset(PhotoAccessHelper.PhotoType.VIDEO, 'mp4', options);
+  let file: fs.File = fs.openSync(videoUri, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   let aVRecorderConfig: media.AVRecorderConfig = {
     audioSourceType: media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
     videoSourceType: media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
     profile: aVRecorderProfile,
-    url: 'fd://', // 文件需先由调用者创建，赋予读写权限，将文件fd传给此参数，eg.fd://45--file:///data/media/01.mp4
+    url: `fd://${file.fd.toString()}`, // 文件需先由调用者创建，赋予读写权限，将文件fd传给此参数，eg.fd://45--file:///data/media/01.mp4
     rotation: 0, // 合理值0、90、180、270，非合理值prepare接口将报错
     location: { latitude: 30, longitude: 130 }
   };
@@ -130,7 +152,7 @@ async function videoRecording(baseContext: common.BaseContext, surfaceId: string
   // 创建VideoOutput对象
   let videoOutput: camera.VideoOutput | undefined = undefined;
   try {
-    videoOutput = cameraManager.createVideoOutput(videoProfilesArray[0], videoSurfaceId);
+    videoOutput = cameraManager.createVideoOutput(videoProfile, videoSurfaceId);
   } catch (error) {
     let err = error as BusinessError;
     console.error(`Failed to create the videoOutput instance. error: ${JSON.stringify(err)}`);
@@ -140,28 +162,28 @@ async function videoRecording(baseContext: common.BaseContext, surfaceId: string
   }
   // 监听视频输出错误信息
   videoOutput.on('error', (error: BusinessError) => {
-    console.log(`Preview output error code: ${error.code}`);
+    console.error(`Preview output error code: ${error.code}`);
   });
 
   //创建会话
-  let captureSession: camera.CaptureSession | undefined = undefined;
+  let videoSession: camera.CaptureSession | undefined = undefined;
   try {
-    captureSession = cameraManager.createCaptureSession();
+    videoSession = cameraManager.createSession(camera.SceneMode.NORMAL_VIDEO) as camera.VideoSession;
   } catch (error) {
     let err = error as BusinessError;
-    console.error(`Failed to create the CaptureSession instance. error: ${JSON.stringify(err)}`);
+    console.error(`Failed to create the session instance. error: ${JSON.stringify(err)}`);
   }
-  if (captureSession === undefined) {
+  if (videoSession === undefined) {
     return;
   }
   // 监听session错误信息
-  captureSession.on('error', (error: BusinessError) => {
-    console.log(`Capture session error code: ${error.code}`);
+  videoSession.on('error', (error: BusinessError) => {
+    console.error(`Video session error code: ${error.code}`);
   });
 
   // 开始配置会话
   try {
-    captureSession.beginConfig();
+    videoSession.beginConfig();
   } catch (error) {
     let err = error as BusinessError;
     console.error(`Failed to beginConfig. error: ${JSON.stringify(err)}`);
@@ -181,7 +203,7 @@ async function videoRecording(baseContext: common.BaseContext, surfaceId: string
   // 监听cameraInput错误信息
   let cameraDevice: camera.CameraDevice = cameraArray[0];
   cameraInput.on('error', cameraDevice, (error: BusinessError) => {
-    console.log(`Camera input error code: ${error.code}`);
+    console.error(`Camera input error code: ${error.code}`);
   });
 
   // 打开相机
@@ -194,13 +216,13 @@ async function videoRecording(baseContext: common.BaseContext, surfaceId: string
 
   // 向会话中添加相机输入流
   try {
-    captureSession.addInput(cameraInput);
+    videoSession.addInput(cameraInput);
   } catch (error) {
     let err = error as BusinessError;
     console.error(`Failed to add cameraInput. error: ${JSON.stringify(err)}`);
   }
 
-  // 创建预览输出流,其中参数 surfaceId 参考下面 XComponent 组件，预览流为XComponent组件提供的surface
+  // 创建预览输出流，其中参数 surfaceId 参考下面 XComponent 组件，预览流为XComponent组件提供的surface
   let previewOutput: camera.PreviewOutput | undefined = undefined;
   try {
     previewOutput = cameraManager.createPreviewOutput(previewProfilesArray[0], surfaceId);
@@ -212,9 +234,9 @@ async function videoRecording(baseContext: common.BaseContext, surfaceId: string
   if (previewOutput === undefined) {
     return;
   }
-  // 向会话中添加预览输入流
+  // 向会话中添加预览输出流
   try {
-    captureSession.addOutput(previewOutput);
+    videoSession.addOutput(previewOutput);
   } catch (error) {
     let err = error as BusinessError;
     console.error(`Failed to add previewOutput. error: ${JSON.stringify(err)}`);
@@ -222,7 +244,7 @@ async function videoRecording(baseContext: common.BaseContext, surfaceId: string
 
   // 向会话中添加录像输出流
   try {
-    captureSession.addOutput(videoOutput);
+    videoSession.addOutput(videoOutput);
   } catch (error) {
     let err = error as BusinessError;
     console.error(`Failed to add videoOutput. error: ${JSON.stringify(err)}`);
@@ -230,18 +252,18 @@ async function videoRecording(baseContext: common.BaseContext, surfaceId: string
 
   // 提交会话配置
   try {
-    await captureSession.commitConfig();
+    await videoSession.commitConfig();
   } catch (error) {
     let err = error as BusinessError;
-    console.error(`captureSession commitConfig error: ${JSON.stringify(err)}`);
+    console.error(`videoSession commitConfig error: ${JSON.stringify(err)}`);
   }
 
   // 启动会话
   try {
-    await captureSession.start();
+    await videoSession.start();
   } catch (error) {
     let err = error as BusinessError;
-    console.error(`captureSession start error: ${JSON.stringify(err)}`);
+    console.error(`videoSession start error: ${JSON.stringify(err)}`);
   }
 
   // 启动录像输出流
@@ -250,7 +272,7 @@ async function videoRecording(baseContext: common.BaseContext, surfaceId: string
       console.error(`Failed to start the video output. error: ${JSON.stringify(err)}`);
       return;
     }
-    console.log('Callback invoked to indicate the video output start success.');
+    console.info('Callback invoked to indicate the video output start success.');
   });
 
   // 开始录像
@@ -267,7 +289,7 @@ async function videoRecording(baseContext: common.BaseContext, surfaceId: string
       console.error(`Failed to stop the video output. error: ${JSON.stringify(err)}`);
       return;
     }
-    console.log('Callback invoked to indicate the video output stop success.');
+    console.info('Callback invoked to indicate the video output stop success.');
   });
 
   // 停止录像
@@ -279,7 +301,10 @@ async function videoRecording(baseContext: common.BaseContext, surfaceId: string
   }
 
   // 停止当前会话
-  captureSession.stop();
+  videoSession.stop();
+
+  // 关闭文件
+  fs.closeSync(file);
 
   // 释放相机输入流
   cameraInput.close();
@@ -291,9 +316,9 @@ async function videoRecording(baseContext: common.BaseContext, surfaceId: string
   videoOutput.release();
 
   // 释放会话
-  captureSession.release();
+  videoSession.release();
 
   // 会话置空
-  captureSession = undefined;
+  videoSession = undefined;
 }
 ```

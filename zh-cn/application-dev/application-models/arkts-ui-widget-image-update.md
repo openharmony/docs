@@ -13,11 +13,8 @@
    import type fileFs from '@ohos.file.fs';
    import formBindingData from '@ohos.app.form.formBindingData';
    import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-   import formInfo from '@ohos.app.form.formInfo';
-   import formProvider from '@ohos.app.form.formProvider';
    import fs from '@ohos.file.fs';
    import hilog from '@ohos.hilog';
-   import request from '@ohos.request';
    import type Want from '@ohos.app.ability.Want';
    
    const TAG: string = 'WgtImgUpdateEntryFormAbility';
@@ -37,8 +34,8 @@
            'imgBear': file.fd
          };
        } catch (e) {
-         console.error(`openSync failed: ${JSON.stringify(e as Base.BusinessError)}`);
-       };
+         hilog.error(DOMAIN_NUMBER, TAG, `openSync failed: ${JSON.stringify(e as Base.BusinessError)}`);
+       }
    
        class FormDataClass {
          text: string = 'Image: Bear';
@@ -52,7 +49,6 @@
        // 将fd封装在formData中并返回至卡片页面
        return formBindingData.createFormBindingData(formData);
      }
-   
      ...
    }
    ```
@@ -64,12 +60,10 @@
    import type fileFs from '@ohos.file.fs';
    import formBindingData from '@ohos.app.form.formBindingData';
    import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-   import formInfo from '@ohos.app.form.formInfo';
    import formProvider from '@ohos.app.form.formProvider';
    import fs from '@ohos.file.fs';
    import hilog from '@ohos.hilog';
-   import request from '@ohos.request';
-   import type Want from '@ohos.app.ability.Want';
+   import http from '@ohos.net.http';
    
    const TAG: string = 'WgtImgUpdateEntryFormAbility';
    const DOMAIN_NUMBER: number = 0xFF00;
@@ -81,16 +75,26 @@
        };
        let formInfo: formBindingData.FormBindingData = formBindingData.createFormBindingData(param);
        formProvider.updateForm(formId, formInfo);
+   
        // 注意：FormExtensionAbility在触发生命周期回调时被拉起，仅能在后台存在5秒
        // 建议下载能快速下载完成的小文件，如在5秒内未下载完成，则此次网络图片无法刷新至卡片页面上
        let netFile = 'https://cn-assets.gitee.com/assets/mini_app-e5eee5a21c552b69ae6bf2cf87406b59.jpg'; // 需要在此处使用真实的网络图片下载链接
        let tempDir = this.context.getApplicationContext().tempDir;
        let fileName = 'file' + Date.now();
        let tmpFile = tempDir + '/' + fileName;
-       request.downloadFile(this.context, {
-         url: netFile, filePath: tmpFile, enableMetered: true, enableRoaming: true
-       }).then((task) => {
-         task.on('complete', () => {
+   
+       let httpRequest = http.createHttp()
+       httpRequest.request(netFile, (err, data) => {
+         if (!err && data.responseCode == http.ResponseCode.OK) {
+           let imgFile = fs.openSync(tmpFile, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+           fs.write(imgFile.fd, data.result as ArrayBuffer).then((writeLen: number) => {
+             hilog.info(DOMAIN_NUMBER, TAG, "write data to file succeed and size is:" + writeLen);
+           }).catch((err: Base.BusinessError) => {
+             hilog.error(DOMAIN_NUMBER, TAG, "write data to file failed with error message: " + err.message + ", error code: " + err.code);
+           }).finally(() => {
+             fs.closeSync(imgFile);
+           });
+   
            hilog.info(DOMAIN_NUMBER, TAG, 'ArkTSCard download complete: %{public}s', tmpFile);
            let file: fileFs.File;
            let fileInfo: Record<string, string | number> = {};
@@ -98,8 +102,8 @@
              file = fs.openSync(tmpFile);
              fileInfo[fileName] = file.fd;
            } catch (e) {
-             console.error(`openSync failed: ${JSON.stringify(e as Base.BusinessError)}`);
-           };
+             hilog.error(DOMAIN_NUMBER, TAG, `openSync failed: ${JSON.stringify(e as Base.BusinessError)}`);
+           }
    
            class FormDataClass {
              text: string = 'Image: Bear' + fileName;
@@ -115,24 +119,22 @@
            }).catch((error: Base.BusinessError) => {
              hilog.error(DOMAIN_NUMBER, TAG, `FormAbility updateForm failed: ${JSON.stringify(error)}`);
            });
-         });
-         task.on('fail', (err: number) => {
-           hilog.info(DOMAIN_NUMBER, TAG, `ArkTSCard download task failed. Cause: ${JSON.stringify(err)}`);
+         } else {
+           hilog.error(DOMAIN_NUMBER, TAG, `ArkTSCard download task failed. Cause: ${JSON.stringify(err)}`);
            let param: Record<string, string> = {
              'text': '刷新失败'
            };
            let formInfo: formBindingData.FormBindingData = formBindingData.createFormBindingData(param);
            formProvider.updateForm(formId, formInfo);
-         });
-       }).catch((err: Base.BusinessError) => {
-         hilog.error(DOMAIN_NUMBER, TAG, `Failed to request the download. Cause: ${JSON.stringify(err)}`);
-       });
+         }
+         httpRequest.destroy();
+       })
      }
      ...
    }
    ```
 
-4. 在卡片页面通过Image组件展示EntryFormAbility传递过来的卡片内容。
+4. 在卡片页面通过backgroundImage属性展示EntryFormAbility传递过来的卡片内容。
 
    ```ts
    let storageWidgetImageUpdate = new LocalStorage();
@@ -230,4 +232,4 @@
 >
 > - Image组件通过传入的参数是否有变化来决定是否刷新图片，因此EntryFormAbility每次传递过来的**imgName**都需要不同，连续传递两个相同的**imgName**时，图片不会刷新。
 >
-> - 文件使用完成后必须关闭，否则会出现内存泄漏问题。系统不会自动关闭文件，开发者可以使用[fs.closeSync](../reference/apis/js-apis-file-fs.md#fsclosesync)来关闭文件。
+> - 文件使用完成后必须关闭，否则会出现内存泄漏问题。系统不会自动关闭文件，开发者可以使用[fs.closeSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsclosesync)来关闭文件。

@@ -9,21 +9,21 @@
 
 对应的算法规格请查看[非对称密钥生成和转换规格：RSA](crypto-asym-key-generation-conversion-spec.md#rsa)。
 
-1. 构造[RSACommonParamsSpec](../../reference/apis/js-apis-cryptoFramework.md#rsacommonparamsspec10)对象，用于指定RSA算法中公私钥包含的公共参数（n）。
+1. 构造[RSACommonParamsSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#rsacommonparamsspec10)对象，用于指定RSA算法中公私钥包含的公共参数（n）。
    
    RSACommonParamsSpec是AsyKeySpec的子类。需要通过参数algName指定算法'RSA'；指定密钥参数类型AsyKeySpecType.COMMON_PARAMS_SPEC，表示是公私钥中包含的公共参数。
 
    使用密钥参数生成密钥时，用到的bigint类型需要以大端模式输入，且必须为正数。
 
-2. 创建[RSAPubKeySpec](../../reference/apis/js-apis-cryptoFramework.md#rsapubkeyspec10)对象，用于指定RSA算法中公钥包含的参数（n, pk）。
+2. 创建[RSAPubKeySpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#rsapubkeyspec10)对象，用于指定RSA算法中公钥包含的参数（n, pk）。
    
    RSAPubKeySpec是AsyKeySpec的子类。通过参数algName指定算法'RSA'；指定密钥参数类型AsyKeySpecType.PUBLIC_KEY_SPEC，表示是公钥中包含的参数。
 
-3. 调用[cryptoFramework.createAsyKeyGenerator](../../reference/apis/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygenerator)BySpec，将RSAPubKeySpec对象传入，创建非对称密钥生成器（AsyKeyGeneratorBySpec）。
+3. 调用[cryptoFramework.createAsyKeyGeneratorBySpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygeneratorbyspec10)，将RSAPubKeySpec对象传入，创建非对称密钥生成器（AsyKeyGeneratorBySpec）。
 
-4. 调用[AsyKeyGeneratorBySpec.generatePubKey](../../reference/apis/js-apis-cryptoFramework.md#generatepubkey-1)，获得指定的公钥（PubKey）。
+4. 调用[AsyKeyGeneratorBySpec.generatePubKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatepubkey-1)，获得指定的公钥（PubKey）。
 
-5. 调用[PubKey.getAsyKeySpec](../../reference/apis/js-apis-cryptoFramework.md#getasykeyspec10)，获取模数n和公钥pk（即公钥指数e）。
+5. 调用[PubKey.getAsyKeySpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getasykeyspec10)，获取模数n和公钥pk（即公钥指数e）。
 
 以使用callback方式根据密钥参数生成RSA公钥为例：
 
@@ -93,18 +93,16 @@ function rsaUsePubKeySpecGetCallback() {
 
 对应的算法规格请查看[非对称密钥生成和转换规格：ECC](crypto-asym-key-generation-conversion-spec.md#ecc)。
 
-1. 构造ECCCommonParamsSpec对象，用于指定ECC算法中公私钥包含的公共参数。
+1. 构造[ECCCommonParamsSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#ecccommonparamsspec10)对象，用于指定ECC算法中公私钥包含的公共参数。
    ECCCommonParamsSpec是AsyKeySpec的子类。需要通过参数algName指定算法'ECC'；指定密钥参数类型AsyKeySpecType.COMMON_PARAMS_SPEC，表示是公私钥中包含的公共参数。
 
    使用密钥参数生成密钥时，用到的bigint类型需要以大端模式输入，且必须为正数。
 
-2. 创建ECCPubKeySpec对象，用于指定ECC算法中公钥包含的参数。
+2. 调用[cryptoFramework.createAsyKeyGeneratorBySpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygeneratorbyspec10)，将ECCCommonParamsSpec对象传入，创建非对称密钥生成器（AsyKeyGeneratorBySpec）。
 
-3. 调用[cryptoFramework.createAsyKeyGenerator](../../reference/apis/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygenerator)BySpec，将ECCPubKeySpec对象传入，创建非对称密钥生成器（AsyKeyGeneratorBySpec）。
+3. 调用[AsyKeyGeneratorBySpec.generateKeyPair](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatekeypair-3)，得到随机生成的密钥对（KeyPair）。
 
-4. 调用[AsyKeyGeneratorBySpec.generatePubKey](../../reference/apis/js-apis-cryptoFramework.md#generatepubkey-1)，获得指定的公钥（PubKey）。
-
-5. 调用[PubKey.getAsyKeySpec](../../reference/apis/js-apis-cryptoFramework.md#getasykeyspec10)，获取ECC算法中的各种密钥参数。
+4. 分别传入密钥对中的私钥和公钥，调用[PriKey.getAsyKeySpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getasykeyspec10-1)和[PubKey.getAsyKeySpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getasykeyspec10)，获取ECC算法中私钥和公钥的各种密钥参数。
 
 以使用Promise方式根据密钥参数生成ECC密钥为例：
 
@@ -208,5 +206,49 @@ function testEccUseCommKeySpecGet() {
     let e: BusinessError = error as BusinessError;
     console.error(`ecc comm spec failed, ${e.code}, ${e.message}`);
   }
+}
+```
+
+
+## 根据椭圆曲线名生成SM2密钥对
+
+对应的算法规格请查看[非对称密钥生成和转换规格：SM2](crypto-asym-key-generation-conversion-spec.md#sm2)。
+
+1. 构造[ECCCommonParamsSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#ecccommonparamsspec10)对象，用于指定非对称公共密钥参数。根据[genECCCommonParamsSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#genecccommonparamsspec11)接口传入相应的NID字符串名称生成相应的非对称公共密钥参数。
+
+    使用密钥参数生成密钥时，用到的bigint类型需要以大端模式输入，且必须为正数。
+
+2. 创建[ECCKeyPairSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#ecckeypairspec10)对象，并且algName设置为SM2，用于指定SM2算法中密钥对包含的参数。
+
+3. 调用[cryptoFramework.createAsyKeyGeneratorBySpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygeneratorbyspec10)，将ECCKeyPairSpec对象传入，创建非对称密钥生成器。
+
+4. 调用[AsyKeyGeneratorBySpec.generateKeyPair](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatekeypair-3)，得到各项数据与密钥参数一致的密钥对（KeyPair）。
+
+5. 调用[PriKey.getAsyKeySpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getasykeyspec10-1)，获取SM2算法中椭圆曲线参数。
+
+```ts
+import cryptoFramework from '@ohos.security.cryptoFramework';
+
+function genSM2KeyPairSpec() {
+  let sm2CommonParamsSpec = cryptoFramework.ECCKeyUtil.genECCCommonParamsSpec('NID_sm2');
+  let sm2KeyPairSpec: cryptoFramework.ECCKeyPairSpec = {
+    algName: "SM2",
+    specType: cryptoFramework.AsyKeySpecType.KEY_PAIR_SPEC,
+    params: sm2CommonParamsSpec,
+    sk: BigInt('0x6330B599ECD23ABDC74B9A5B7B5E00E553005F72743101C5FAB83AEB579B7074'),
+    pk: {
+      x: BigInt('0x67F3B850BDC0BA5D3A29D8A0883C4B17612AB84F87F18E28F77D824A115C02C4'),
+      y: BigInt('0xD48966CE754BBBEDD6501A1385E1B205C186E926ADED44287145E8897D4B2071')
+    },
+  };
+  return sm2KeyPairSpec;
+}
+
+async function sm2Test() {
+  let sm2KeyPairSpec = genSM2KeyPairSpec();
+  let generatorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(sm2KeyPairSpec);
+  let keyPair = await generatorBySpec.generateKeyPair();
+  let sm2CurveName = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_CURVE_NAME_STR);
+  console.info('ECC_CURVE_NAME_STR: ' + sm2CurveName); // NID_sm2
 }
 ```

@@ -11,15 +11,15 @@ After a notification is read, the count on the badge is decremented by 1. If the
 
 1. The notification service provides two methods to increase the count on the notification badge:
 
-   - When publishing a notification, pass the **badgeNumber** parameter in [NotificationRequest](../reference/apis/js-apis-inner-notification-notificationRequest.md#notificationrequest). After the notification is received, the count on the badge is incremented.
+   - When publishing a notification, pass the **badgeNumber** parameter in [NotificationRequest](../reference/apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest). After the notification is received, the count on the badge is incremented.
 
-   - Call the [setBadgeNumber()](../reference/apis/js-apis-notificationManager.md#notificationmanagersetbadgenumber10) API to set the count on the badge.
+   - Call the [setBadgeNumber()](../reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanagersetbadgenumber10) API to set the count on the badge.
 
-2. To decrease the count on the badge, call the [setBadgeNumber()](../reference/apis/js-apis-notificationManager.md#notificationmanagersetbadgenumber10) API.
+2. To decrease the count on the badge, call the [setBadgeNumber()](../reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanagersetbadgenumber10) API.
 
-| API| Description|
-| -------- | -------- |
-| setBadgeNumber(badgeNumber: number, callback: AsyncCallback\<void\>): void | Sets the count on the badge.|
+  | API| Description|
+  | -------- | -------- |
+  | setBadgeNumber(badgeNumber: number, callback: AsyncCallback\<void\>): void | Sets the number count on the badge.|
 
 
 ## How to Develop
@@ -33,21 +33,21 @@ After a notification is read, the count on the badge is decremented by 1. If the
 
 2. Increase the count on the badge.
 
-   When publishing a notification, pass the **badgeNumber** parameter in [NotificationRequest](../reference/apis/js-apis-inner-notification-notificationRequest.md#notificationrequest). For details, see [Publishing a Basic Notification](text-notification.md).
+   When publishing a notification, pass the **badgeNumber** parameter in [NotificationRequest](../reference/apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest). For details, see [Publishing a Basic Notification](text-notification.md).
    
    In this example, the **setBadgeNumber** API is called to add a badge. This API is called after a new notification is published.
    
    ```ts
-   function setBadgeNumberCallback(err:Base.BusinessError) {
+   setBadgeNumberCallback = async (err: Base.BusinessError) => {
      if (err) {
        console.error(`Failed to set badge number. Code is ${err.code}, message is ${err.message}`);
        return;
      }
-     console.info(`Succeeded in seting badge number.`);
+     console.info(`Succeeded in setting badge number.`);
    }
    
-   let badgeNumber = 10;
-   notificationManager.setBadgeNumber(badgeNumber, setBadgeNumberCallback);
+   let badgeNumber = 9;
+   notificationManager.setBadgeNumber(badgeNumber, this.setBadgeNumberCallback);
    ```
 
 3. Decrease the count on the badge.
@@ -55,16 +55,16 @@ After a notification is read, the count on the badge is decremented by 1. If the
    After a notification is read, the application needs to call the API to set the number of remaining unread notifications. The badge is then updated.
 
    ```ts
-   function setBadgeNumberCallback(err:Base.BusinessError) {
+   setBadgeNumberCallback = async (err: Base.BusinessError) => {
      if (err) {
        console.error(`Failed to set badge number. Code is ${err.code}, message is ${err.message}`);
        return;
      }
-     console.info(`Succeeded in seting badge number.`);
+     console.info(`Succeeded in setting badge number.`);
    }
    
-   let badgeNumber = 9;
-   notificationManager.setBadgeNumber(badgeNumber, setBadgeNumberCallback);
+   let badgeNumber = 8;
+   notificationManager.setBadgeNumber(badgeNumber, this.setBadgeNumberCallback);
    ```
 
    

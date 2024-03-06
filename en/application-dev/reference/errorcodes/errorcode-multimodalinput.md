@@ -19,7 +19,7 @@ This error code is reported if an invalid device descriptor is passed to the scr
 1. The target device does not exist, or the device is not networked.
 2. The target device descriptor is empty.
 
-**Solution**
+**Procedure**
 
 1. Check whether the target device for screen hopping is correctly networked with the local device.
 2. Set the target device descriptor correctly.

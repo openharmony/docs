@@ -15,7 +15,7 @@ import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSessi
 
 ## UIExtensionContentSession.sendData
 
-sendData(data: { [key: string]: Object }): void
+sendData(data: Record\<string, Object>): void
 
 Sends data to the UIExtensionComponent.
 
@@ -27,7 +27,7 @@ Sends data to the UIExtensionComponent.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| data | {[key:&nbsp;string]:&nbsp;Object} | Yes| Data to send.|
+| data | Record\<string,&nbsp;Object> | Yes| Data to send.|
 
 **Error codes**
 
@@ -39,7 +39,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ## UIExtensionContentSession.setReceiveDataCallback
 
-setReceiveDataCallback(callback: (data: { [key: string]: Object }) => void): void
+setReceiveDataCallback(callback: (data: Record\<string, Object>) => void): void
 
 Sets a callback to receive data from the UIExtensionComponent.
 
@@ -51,7 +51,7 @@ Sets a callback to receive data from the UIExtensionComponent.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | (data: { [key: string]: Object }) => void | Yes| Callback used to receive data.|
+| callback | (data: Record\<string, Object>) => void | Yes| Callback used to receive data.|
 
 **Error codes**
 
@@ -525,10 +525,10 @@ Sets whether the window is in privacy mode. This API uses an asynchronous callba
 | isPrivacyMode | boolean                   | Yes| Whether the window is in privacy mode. The value **true** means that the window is in privacy mode, and **false** means the opposite. |
 | callback      | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.                                             |
 
-## UIAbilityContext.startAbilityByType<sup>11+</sup>
+## UIExtensionContentSession.startAbilityByType<sup>11+</sup>
 
 startAbilityByType(type: string, wantParam: Record<string, Object>,
-    abilityStartCallback: AbilityStartCallback, callback: AsyncCallback\<void>) : void;
+    abilityStartCallback: AbilityStartCallback, callback: AsyncCallback\<void>): void;
 
 Implicitly starts a given type of UIExtensionAbility. This API uses an asynchronous callback to return the result.
 
@@ -541,7 +541,7 @@ Implicitly starts a given type of UIExtensionAbility. This API uses an asynchron
 | type | string | Yes| Type of the UIExtensionAbility to start.|
 | wantParam | {[key: string]: any} | Yes| Extended parameter.|
 | abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | Yes| Callback to be invoked when the startup fails.|
-| callback | AsyncCallback<void> | Yes| Callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
 
 **Error codes**
 
@@ -555,10 +555,10 @@ Implicitly starts a given type of UIExtensionAbility. This API uses an asynchron
 
 For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
-## UIAbilityContext.startAbilityByType<sup>11+</sup>
+## UIExtensionContentSession.startAbilityByType<sup>11+</sup>
 
 startAbilityByType(type: string, wantParam: Record<string, Object>,
-    abilityStartCallback: AbilityStartCallback) : Promise\<void>;
+    abilityStartCallback: AbilityStartCallback): Promise\<void>;
 
 Implicitly starts a given type of UIExtensionAbility. This API uses a promise to return the result.
 
@@ -576,7 +576,7 @@ Implicitly starts a given type of UIExtensionAbility. This API uses a promise to
 
 | Type| Description|
 | -------- | -------- |
-| Promise<void> | Promise that returns no value.|
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
@@ -636,9 +636,9 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback\<void>): void
 
-Starts an ability as the caller, with **options** specified.
+Starts an ability as the caller, with **options** specified. This API uses an asynchronous callback to return the result.
 
-This API uses an asynchronous callback to return the result. The initial ability places its caller information (such as the bundle name and ability name) in the **want** parameter and transfers the information to an **ExtensionAbility** at the middle layer. When the ExtensionAbility starts another ability by calling this API, the started ability can obtain the caller information of the initial ability from the **onCreate** lifecycle.
+The initial ability places its caller information (such as the bundle name and ability name) in the **want** parameter and transfers the information to an **ExtensionAbility** at the middle layer. When the ExtensionAbility starts another ability by calling this API, the started ability can obtain the caller information of the initial ability from the **onCreate** lifecycle.
 
 **System API**: This is a system API.
 
@@ -690,7 +690,7 @@ The initial ability places its caller information (such as the bundle name and a
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
-| options | [StartOptions](js-apis-app-ability-startOptions.md) | Yes| Parameters used for starting the ability.|
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | No| Parameters used for starting the ability.|
 
 **Return value**
 

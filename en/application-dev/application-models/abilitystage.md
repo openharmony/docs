@@ -12,21 +12,21 @@ AbilityStage is not automatically generated in the default project of DevEco Stu
 
 1. In the **ets** directory of the **Module** project, right-click and choose **New > Directory** to create a directory named **myabilitystage**.
 
-2. In the **myabilitystage** directory, right-click and choose **New > TypeScript File** to create a file named **MyAbilityStage.ets**.
+2. In the **myabilitystage** directory, right-click and choose **New > ArkTS File** to create a file named **MyAbilityStage.ets**.
 
 3. Open the **MyAbilityStage.ets** file, and import the dependency package of AbilityStage. Customize a class that inherits from AbilityStage, and add the required lifecycle callbacks. The following code snippet adds the **onCreate()** lifecycle callback.
    
    ```ts
    import AbilityStage from '@ohos.app.ability.AbilityStage';
-   import Want from '@ohos.app.ability.Want';
+   import type Want from '@ohos.app.ability.Want';
    
    export default class MyAbilityStage extends AbilityStage {
-     onCreate() {
+     onCreate(): void {
        // When the HAP of the application is loaded for the first time, initialize the module.
      }
-     onAcceptWant(want: Want) {
+     onAcceptWant(want: Want): string {
        // Triggered only for the UIAbility with the specified launch type.
-       return "MyAbilityStage";
+       return 'MyAbilityStage';
      }
    }
    ```
@@ -43,7 +43,7 @@ AbilityStage is not automatically generated in the default project of DevEco Stu
    }
    ```
 
-[AbilityStage](../reference/apis/js-apis-app-ability-abilityStage.md) has the lifecycle callback [onCreate()](../reference/apis/js-apis-app-ability-abilityStage.md#abilitystageoncreate) and the event callbacks [onAcceptWant()](../reference/apis/js-apis-app-ability-abilityStage.md#abilitystageonacceptwant), [onConfigurationUpdated()](../reference/apis/js-apis-app-ability-abilityStage.md#abilitystageonconfigurationupdate), and [onMemoryLevel()](../reference/apis/js-apis-app-ability-abilityStage.md#abilitystageonmemorylevel).
+[AbilityStage](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md) has the lifecycle callback [onCreate()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#abilitystageoncreate) and the event callbacks [onAcceptWant()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#abilitystageonacceptwant), [onConfigurationUpdated()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#abilitystageonconfigurationupdate), and [onMemoryLevel()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#abilitystageonmemorylevel).
 
 
 - **onCreate()** lifecycle callback: Before the first UIAbility instance of a module is loaded, an AbilityStage instance is created. This callback is invoked when the AbilityStage instance is created. The AbilityStage module notifies you of when you can perform module initialization such as resource pre-loading and thread creation during module loading.
@@ -62,7 +62,7 @@ When an application is switched to the background, it is cached in the backgroun
   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
   
   export default class MyAbilityStage extends AbilityStage {
-    onMemoryLevel(level: AbilityConstant.MemoryLevel) {
+    onMemoryLevel(level: AbilityConstant.MemoryLevel): void {
       // Release unnecessary memory based on the change of available system memory.
     }
   }

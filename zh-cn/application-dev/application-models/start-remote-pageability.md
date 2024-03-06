@@ -39,7 +39,7 @@
 
 | 接口名 | 接口描述 |
 | -------- | -------- |
-| requestPermissionsFromUser(permissions:&nbsp;Array&lt;string&gt;,&nbsp;<br>requestCode:&nbsp;number,&nbsp;resultCallback:&nbsp;AsyncCallback&lt;<br>PermissionRequestResult&gt;):&nbsp;void | 以callback形式从系统请求某些权限，详见对应[接口文档](../reference/apis/js-apis-inner-app-context.md#contextrequestpermissionsfromuser7-1)。 |
+| requestPermissionsFromUser(permissions:&nbsp;Array&lt;string&gt;,&nbsp;<br>requestCode:&nbsp;number,&nbsp;resultCallback:&nbsp;AsyncCallback&lt;<br>PermissionRequestResult&gt;):&nbsp;void | 以callback形式从系统请求某些权限，详见对应[接口文档](../reference/apis-ability-kit/js-apis-inner-app-context.md#contextrequestpermissionsfromuser7-1)。 |
 
 
 如下示例代码展示了向用户申请数据同步权限的方法：
@@ -48,6 +48,10 @@
 import abilityAccessCtrl from "@ohos.abilityAccessCtrl";
 import featureAbility from '@ohos.ability.featureAbility';
 import bundle from '@ohos.bundle.bundleManager';
+import Logger from '../../utils/Logger';
+
+const TAG: string = 'PagePageAbilitySecond';
+
 async requestPermission(): Promise<void> {
   Logger.info(TAG, 'RequestPermission begin');
   let array: Array<string> = ['ohos.permission.DISTRIBUTED_DATASYNC'];
@@ -88,6 +92,12 @@ async requestPermission(): Promise<void> {
 
 ```ts
 import deviceManager from '@ohos.distributedDeviceManager';
+import promptAction from '@ohos.promptAction';
+import Logger from '../../utils/Logger';
+
+const TAG: string = 'PagePageAbilitySecond';
+
+@State deviceID: string = '';
 
 getRemoteDeviceId(): void {
   let dmClass: deviceManager.DeviceManager;
@@ -124,6 +134,13 @@ getRemoteDeviceId(): void {
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 import Want from '@ohos.app.ability.Want';
+import promptAction from '@ohos.promptAction';
+import { BusinessError } from '@ohos.base';
+import Logger from '../../utils/Logger';
+
+const TAG: string = 'PagePageAbilitySecond';;
+
+@State deviceID: string = '';
 
 onStartRemoteAbility(): void {
   Logger.info(TAG, 'onStartRemoteAbility begin');

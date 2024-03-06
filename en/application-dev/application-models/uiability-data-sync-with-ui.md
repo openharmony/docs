@@ -9,49 +9,60 @@ Based on the application model, you can use any of the following ways to impleme
 
 ## Using EventHub for Data Synchronization
 
-[EventHub](../reference/apis/js-apis-inner-application-eventHub.md) provides an event mechanism for the UIAbility component so that they can subscribe to, unsubscribe from, and trigger events.
+[EventHub](../reference/apis-ability-kit/js-apis-inner-application-eventHub.md) provides an event mechanism for the UIAbility component so that they can subscribe to, unsubscribe from, and trigger events.
 
 Before using the APIs provided by **EventHub**, you must obtain an **EventHub** object, which is provided by the [base class Context](application-context-stage.md).
 
-1. Call [eventHub.on()](../reference/apis/js-apis-inner-application-eventHub.md#eventhubon) in the UIAbility in either of the following ways to register a custom event **event1**.
+1. Call [eventHub.on()](../reference/apis-ability-kit/js-apis-inner-application-eventHub.md#eventhubon) in the UIAbility in either of the following ways to register a custom event **event1**.
 
    ```ts
+   import hilog from '@ohos.hilog';
    import UIAbility from '@ohos.app.ability.UIAbility';
-   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-   import Want from '@ohos.app.ability.Want';
-
-   const TAG: string = '[Example].[Entry].[EntryAbility]';
-
+   import type window from '@ohos.window';
+   import type { Context } from '@ohos.abilityAccessCtrl';
+   import Want from '@ohos.app.ability.Want'
+   import type AbilityConstant from '@ohos.app.ability.AbilityConstant';
+   
+   const DOMAIN_NUMBER: number = 0xFF00;
+   const TAG: string = '[EventAbility]';
+   
    export default class EntryAbility extends UIAbility {
-     func1(data: string) {
-       // Trigger the event to complete the service operation.
-       console.info(TAG, '1. ' + JSON.stringify(data));
-     }
-
-     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+   
+     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+       // Obtain the context of the UIAbility instance.
+       let context = this.context;
        // Obtain an eventHub object.
        let eventhub = this.context.eventHub;
        // Subscribe to the event.
-       eventhub.on('event1', this.func1);
+       eventhub.on('event1', this.eventFunc);
        eventhub.on('event1', (data: string) => {
          // Trigger the event to complete the service operation.
-         console.info(TAG, '2. ' + JSON.stringify(data));
        });
+       hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'Ability onCreate');
+     }
+       
+       // ...
+       
+     eventFunc(argOne: Context, argTwo: Context): void {
+       hilog.info(DOMAIN_NUMBER, TAG, '1. ' + `${argOne}, ${argTwo}`);
+       return;
      }
    }
    ```
 
-2. Call [eventHub.emit()](../reference/apis/js-apis-inner-application-eventHub.md#eventhubemit) on the UI page to trigger the event, and pass in the parameters as required.
+2. Call [eventHub.emit()](../reference/apis-ability-kit/js-apis-inner-application-eventHub.md#eventhubemit) on the UI page to trigger the event, and pass in the parameters as required.
 
    ```ts
    import common from '@ohos.app.ability.common';
-
+   import promptAction from '@ohos.promptAction'
+   
    @Entry
    @Component
-   struct Index {
+   struct Page_EventHub {
+   
      private context = getContext(this) as common.UIAbilityContext;
-
-     eventHubFunc() {
+   
+     eventHubFunc() : void {
        // Trigger the event without parameters.
        this.context.eventHub.emit('event1');
        // Trigger the event with one parameter.
@@ -60,17 +71,88 @@ Before using the APIs provided by **EventHub**, you must obtain an **EventHub** 
        this.context.eventHub.emit('event1', 2, 'test');
        // You can design the parameters based on your service requirements.
      }
-
-     // UI page display.
+   
      build() {
-       Button ('Button')
-         .onClick(() => {
-           this.eventHubFunc();
-         })
-       Button ('Close')
-         .onClick(() => {
-           this.context.eventHub.off('event1');
-         })
+       Column() {
+         Row() {
+           Flex({ justifyContent: FlexAlign.Start, alignContent: FlexAlign.Center }) {
+             Text($r('app.string.DataSynchronization'))
+               .fontSize(24)
+               .fontWeight(700)
+               .textAlign(TextAlign.Start)
+               .margin({ top: 12 , bottom: 11 , right: 24 , left: 24})
+           }
+         }
+         .width('100%')
+         .height(56)
+         .justifyContent(FlexAlign.Start)
+         .backgroundColor($r('app.color.backGrounding'))
+   
+         List({ initialIndex: 0 }) {
+           ListItem() {
+             Row() {
+               Row(){
+                 Text($r('app.string.EventHubFuncA'))
+                   .textAlign(TextAlign.Start)
+                   .fontWeight(500)
+                   .margin({ top: 13, bottom: 13, left: 0, right: 8 })
+                   .fontSize(16)
+                   .width(232)
+                   .height(22)
+                   .fontColor($r('app.color.text_color'))
+               }
+               .height(48)
+               .width('100%')
+               .borderRadius(24)
+               .margin({ top: 4, bottom: 4, left: 12, right: 12 })
+             }
+             .onClick(() => {
+               this.eventHubFunc();
+               promptAction.showToast({
+                 message: $r('app.string.EventHubFuncA')
+               });
+             })
+           }
+           .height(56)
+           .backgroundColor($r('app.color.start_window_background'))
+           .borderRadius(24)
+           .margin({ top: 8, right: 12, left: 12 })
+   
+           ListItem() {
+             Row() {
+               Row(){
+                 Text($r('app.string.EventHubFuncB'))
+                   .textAlign(TextAlign.Start)
+                   .fontWeight(500)
+                   .margin({ top: 13, bottom: 13, left: 0, right: 8 })
+                   .fontSize(16)
+                   .width(232)
+                   .height(22)
+                   .fontColor($r('app.color.text_color'))
+               }
+               .height(48)
+               .width('100%')
+               .borderRadius(24)
+               .margin({ top: 4, bottom: 4, left: 12, right: 12 })
+             }
+             .onClick(() => {
+               this.context.eventHub.off('event1');
+               promptAction.showToast({
+                 message: $r('app.string.EventHubFuncB')
+               });
+             })
+           }
+           .height(56)
+           .backgroundColor($r('app.color.start_window_background'))
+           .borderRadius(24)
+           .margin({ top: 12, right: 12, left: 12 })
+         }
+         .height('100%')
+         .backgroundColor($r('app.color.backGrounding'))
+       }
+       .width('100%')
+       .margin({ top: 8 })
+       .backgroundColor($r('app.color.backGrounding'))
      }
    }
    ```
@@ -79,14 +161,11 @@ Before using the APIs provided by **EventHub**, you must obtain an **EventHub** 
 
    ```json
    [Example].[Entry].[EntryAbility] 1. []
-   [Example].[Entry].[EntryAbility] 2. []
    [Example].[Entry].[EntryAbility] 1. [1]
-   [Example].[Entry].[EntryAbility] 2. [1]
    [Example].[Entry].[EntryAbility] 1. [2,"test"]
-   [Example].[Entry].[EntryAbility] 2. [2,"test"]
    ```
-
-4. When **event1** is not needed, call [eventHub.off()](../reference/apis/js-apis-inner-application-eventHub.md#eventhuboff) to unsubscribe from the event.
+   
+4. When **event1** is not needed, call [eventHub.off()](../reference/apis-ability-kit/js-apis-inner-application-eventHub.md#eventhuboff) to unsubscribe from the event.
 
    ```ts
    // context is the AbilityContext of the UIAbility instance.

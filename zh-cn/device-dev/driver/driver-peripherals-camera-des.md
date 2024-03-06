@@ -1023,20 +1023,20 @@ Dump配置文件为dump.config，存放在开发设备 /data/local/tmp 目录中
 
   **表1** Dump开关说明
 
-| 开关 | **取值** | **描述** |
-| -------- | -------- | -------- |
-| enableDQBufDump | true/false | 开启开关，可以Dump v4l2_buffer.cpp文件中DequeueBuffer函数中的数据 |
-| enableUVCNodeBufferDump | true/false | 开启开关，可以Dump uvc_node.cpp文件中YUV422To420函数转换前的数据 |
-| enableUVCNodeConvertedBufferDump | true/false | 开启开关，可以Dump uvc_node.cpp文件中YUV422To420函数转换后的数据 |
-| enableExifNodeConvertedBufferDump | true/false | 开启开关，可以Dump exif_node.cpp文件中DeliverBuffer函数中的数据 |
-| enableFaceNodeConvertedBufferDump | true/false | 开启开关，可以Dump face_node.cpp文件中DeliverBuffer函数中的数据 |
-| enableForkNodeConvertedBufferDump | true/false | 开启开关，可以Dump fork_node.cpp文件中DeliverBuffer函数中的数据 |
-| enableRKFaceNodeConvertedBufferDump | true/false | 开启开关，可以Dump rk_face_node.cpp文件中DeliverBuffer函数中的数据 |
-| enableRKExifNodeConvertedBufferDump | true/false | 开启开关，可以Dump rk_exif_node.cpp文件中DeliverBuffer函数中的数据 |
-| enableCodecNodeConvertedBufferDump | true/false | 开启开关，可以Dump codec_node.cpp文件中DeliverBuffer函数中的数据 |
-| enableRKCodecNodeConvertedBufferDump | true/false | 开启开关，可以Dump rk_codec_node.cpp文件中DeliverBuffer函数中的数据 |
-| enableSreamTunnelBufferDump | true/false | 开启开关，可以Dump stream_tunnel.cpp文件中PutBuffer函数中的数据 |
-| enableMetadataDump | true/false | 开启Dump metadata 数据开关 |
+| 开关 | **取值** | **描述** | **适用场景** | **输出数据格式**|
+| -------- | -------- | -------- | -------- | -------- |
+| enableDQBufDump | true/false | 开启开关，可以Dump v4l2_buffer.cpp文件中DequeueBuffer函数中的数据 | 预览、拍照、录像 | 板载相机：YUV420<br>USB相机：YUV422 |
+| enableUVCNodeBufferDump | true/false | 开启开关，可以Dump uvc_node.cpp文件中YUV422To420函数转换前的数据 | 预览、拍照、录像 | USB相机：YUV422 |
+| enableUVCNodeConvertedBufferDump | true/false | 开启开关，可以Dump uvc_node.cpp文件中YUV422To420函数转换后的数据 | 预览、拍照、录像 | USB相机：YUV420 |
+| enableExifNodeConvertedBufferDump | true/false | 开启开关，可以Dump exif_node.cpp文件中DeliverBuffer函数中的数据 | 拍照 | JPEG |
+| enableFaceNodeConvertedBufferDump | true/false | 开启开关，可以Dump face_node.cpp文件中DeliverBuffer函数中的数据 | 无（预留给后期使用） | 无 |
+| enableForkNodeConvertedBufferDump | true/false | 开启开关，可以Dump fork_node.cpp文件中DeliverBuffer函数中的数据 | 预览、拍照、录像 | YUV422 |
+| enableRKFaceNodeConvertedBufferDump | true/false | 开启开关，可以Dump rk_face_node.cpp文件中DeliverBuffer函数中的数据 | 无（预留给后期使用） | 无 |
+| enableRKExifNodeConvertedBufferDump | true/false | 开启开关，可以Dump rk_exif_node.cpp文件中DeliverBuffer函数中的数据 | 拍照 | JPEG |
+| enableCodecNodeConvertedBufferDump | true/false | 开启开关，可以Dump codec_node.cpp文件中DeliverBuffer函数中的数据 | 预览、拍照、录像 | JPEG、YUV420、RGBA8888 |
+| enableRKCodecNodeConvertedBufferDump | true/false | 开启开关，可以Dump rk_codec_node.cpp文件中DeliverBuffer函数中的数据 | 预览、拍照、录像 | JPEG、H264、RGBA8888 |
+| enableSreamTunnelBufferDump | true/false | 开启开关，可以Dump stream_tunnel.cpp文件中PutBuffer函数中的数据 | 预览、拍照、录像 | JPEG、H264、YUV420、RGBA8888 |
+| enableMetadataDump | true/false | 开启Dump metadata 数据开关 | 预览、拍照、录像 | .meta |
 
 
 除了上述开关，还可以配置Dump的采样间隔，如表2所示。

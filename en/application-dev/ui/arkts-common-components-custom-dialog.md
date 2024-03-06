@@ -1,7 +1,7 @@
 # Custom Dialog Box (CustomDialog)
 
 
-A custom dialog box is a dialog box you customize by using APIs of the **CustomDialogController** class. It can be used for user interactions, showing an ad, prize, alert, software update message, and more. For details, see [Custom Dialog Box](../reference/arkui-ts/ts-methods-custom-dialog-box.md).
+A custom dialog box is a dialog box you customize by using APIs of the **CustomDialogController** class. It can be used for user interactions, showing an ad, prize, alert, software update message, and more. For details, see [Custom Dialog Box](../reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md).
 
 
 ## Creating a Custom Dialog Box
@@ -44,7 +44,8 @@ A custom dialog box is a dialog box you customize by using APIs of the **CustomD
    ```ts
    @Entry
    @Component
-   struct CustomDialogUser {dialogController: CustomDialogController = new CustomDialogController({
+   struct CustomDialogUser {
+     dialogController: CustomDialogController = new CustomDialogController({
        builder: CustomDialogExample(),
      })
    
@@ -69,89 +70,83 @@ Custom dialog boxes can be used for data interactions to complete a series of re
 
 1. Add buttons in the \@CustomDialog decorator structure and add data functions.
 
-  ```ts
-  @CustomDialog
-  struct CustomDialogExample {
-    cancel: () => void = () => {
-      console.info('Callback when the first button is clicked')
-    }
-    confirm: () => void = () => {
-      console.info('Callback when the second button is clicked')
-    }
-    controller: CustomDialogController = new CustomDialogController({
-      builder: CustomDialogExample({
-        cancel: this.cancel,
-        confirm: this.confirm,
-      }),
-    })
-  
-    build() {
-      Column() {
-        Text('I am content') .fontSize(20).margin({ top: 10, bottom: 10 })
-        Flex({ justifyContent: FlexAlign.SpaceAround }) {
-          Button('cancel')
-            .onClick(() => {
-              this.controller.close()
-              this.cancel()
-            }).backgroundColor(0xffffff).fontColor(Color.Black)
-          Button('confirm')
-            .onClick(() => {
-              this.controller.close()
-              this.confirm()
-            }).backgroundColor(0xffffff).fontColor(Color.Red)
-        }.margin({ bottom: 10 })
-      }
-    }
-  }
-  ```
+   ```ts
+   @CustomDialog
+   struct CustomDialogExample {
+     cancel?: () => void
+     confirm?: () => void
+     controller: CustomDialogController
+   
+     build() {
+       Column() {
+         Text('I am content') .fontSize(20).margin({ top: 10, bottom: 10 })
+         Flex({ justifyContent: FlexAlign.SpaceAround }) {
+           Button('cancel')
+             .onClick(() => {
+               this.controller.close()
+               if (this.cancel) {
+                 this.cancel()
+               }
+             }).backgroundColor(0xffffff).fontColor(Color.Black)
+           Button('confirm')
+             .onClick(() => {
+               this.controller.close()
+               if (this.confirm) {
+                 this.confirm()
+               }
+             }).backgroundColor(0xffffff).fontColor(Color.Red)
+         }.margin({ bottom: 10 })
+       }
+     }
+   }
+   ```
 
 2. Receive the page in the builder and create corresponding function operations.
 
-  ```ts
-  @Entry
-  @Component
-  struct CustomDialogUser {
-    @State bud: Record<string, Function | void> = { 'cancel': this.onCancel(), 'confirm': this.onAccept() }
-    dialogController: CustomDialogController = new CustomDialogController({
-      builder: CustomDialogExample(this.bud),
-    })
-  
-    onCancel() {
-      console.info('Callback when the first button is clicked')
-    }
-  
-    onAccept() {
-      console.info('Callback when the second button is clicked')
-    }
-  
-    build() {
-      Column() {
-        Button('Click Me')
-          .onClick(() => {
-            this.dialogController.open()
-          })
-      }.width('100%').margin({ top: 5 })
-    }
-  }
-  ```
+     ```ts
+   @Entry
+   @Component
+   struct CustomDialogUser {
+       dialogController: CustomDialogController = new CustomDialogController({
+         builder: CustomDialogExample({
+           cancel: ()=> { this.onCancel() },
+           confirm: ()=> { this.onAccept() },
+         }),
+       })
    
-   ![en-us_image_0000001511421320](figures/en-us_image_0000001511421320.png)
+       onCancel() {
+         console.info('Callback when the first button is clicked')
+       }
+   
+       onAccept() {
+         console.info('Callback when the second button is clicked')
+       }
+   
+       build() {
+         Column() {
+           Button('click me')
+             .onClick(() => {
+               this.dialogController.open()
+             })
+         }.width('100%').margin({ top: 5 })
+       }
+     }
+   ```
 
-## Sample Code
+      ![en-us_image_0000001511421320](figures/en-us_image_0000001511421320.png)
+
+## Defining the Custom Dialog Box Animation
+
+You can define the custom dialog box animation, including its duration and speed, through **openAnimation**.
 
 ```ts
-// xxx.ets
 @CustomDialog
 struct CustomDialogExample {
-  controller: CustomDialogController = new CustomDialogController({
-    builder: undefined
-  })
+  controller?: CustomDialogController
 
   build() {
     Column() {
-      Text ('I am content')
-        .fontSize(20)
-        .margin({ top: 10, bottom: 10 })
+      Text('Whether to change a text?').fontSize(16).margin({ bottom: 10 })
     }
   }
 }
@@ -159,9 +154,88 @@ struct CustomDialogExample {
 @Entry
 @Component
 struct CustomDialogUser {
-  @State bud: Record<string, Function | void> = { 'cancel': this.onCancel(), 'confirm': this.onAccept() }
+  @State textValue: string = ''
+  @State inputValue: string = 'click me'
+  dialogController: CustomDialogController | null = new CustomDialogController({
+    builder: CustomDialogExample(),
+    openAnimation: {
+      duration: 1200,
+      curve: Curve.Friction,
+      delay: 500,
+      playMode: PlayMode.Alternate,
+      onFinish: () => {
+        console.info('play end')
+      }
+    },
+    autoCancel: true,
+    alignment: DialogAlignment.Bottom,
+    offset: { dx: 0, dy: -20 },
+    gridCount: 4,
+    customStyle: false,
+    backgroundColor: 0xd9ffffff,
+    cornerRadius: 10,
+  })
+
+  // Set dialogController to null when the custom component is about to be destroyed.
+  aboutToDisappear() {
+    this.dialogController = null // Set dialogController to null.
+  }
+
+  build() {
+    Column() {
+      Button(this.inputValue)
+        .onClick(() => {
+          if (this.dialogController != null) {
+            this.dialogController.open()
+          }
+        }).backgroundColor(0x317aff)
+    }.width('100%').margin({ top: 5 })
+  }
+}
+```
+
+![openAnimator](figures/openAnimator.gif)
+
+## Example
+
+```ts
+@CustomDialog
+struct CustomDialogExample {
+  cancel?: () => void
+  confirm?: () => void
+  controller: CustomDialogController
+
+  build() {
+    Column() {
+      Text('I am content') .fontSize(20).margin({ top: 10, bottom: 10 })
+      Flex({ justifyContent: FlexAlign.SpaceAround }) {
+        Button('cancel')
+          .onClick(() => {
+            this.controller.close()
+            if (this.cancel) {
+              this.cancel()
+            }
+          }).backgroundColor(0xffffff).fontColor(Color.Black)
+        Button('confirm')
+          .onClick(() => {
+            this.controller.close()
+            if (this.confirm) {
+              this.confirm()
+            }
+          }).backgroundColor(0xffffff).fontColor(Color.Red)
+      }.margin({ bottom: 10 })
+    }
+  }
+}
+
+@Entry
+@Component
+struct CustomDialogUser {
   dialogController: CustomDialogController = new CustomDialogController({
-    builder: CustomDialogExample(this.bud),
+    builder: CustomDialogExample({
+      cancel: ()=> { this.onCancel() },
+      confirm: ()=> { this.onAccept() },
+    }),
   })
 
   onCancel() {
@@ -174,7 +248,7 @@ struct CustomDialogUser {
 
   build() {
     Column() {
-      Button('Click Me')
+      Button('click me')
         .onClick(() => {
           this.dialogController.open()
         })

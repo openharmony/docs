@@ -14,16 +14,19 @@ The **terminateSelf()** method in the **featureAbility** class is used to stop a
 The following code snippet shows how to stop an ability.
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility'
+import featureAbility from '@ohos.ability.featureAbility';
+import Logger from '../../utils/Logger';
 
-(async () => {
+const TAG: string = 'PagePageAbilityFirst';
+```
+```ts
+(async (): Promise<void> => {
   try {
-    console.info('Begin to terminateSelf')
-    await featureAbility.terminateSelf()
-    console.info('terminateSelf succeed')
-  } 
-  catch (error) {
-    console.error('terminateSelf failed with ' + error)
+    Logger.info(TAG, 'Begin to terminateSelf');
+    await featureAbility.terminateSelf();
+    Logger.info(TAG, 'terminateSelf succeed');
+  } catch (error) {
+    Logger.error(TAG, 'terminateSelf failed with ' + error);
   }
 })()
 ```

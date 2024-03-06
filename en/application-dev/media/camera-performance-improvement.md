@@ -18,12 +18,12 @@ After optimization: Stream configuration does not depend on the **Surface** obje
 
 ### Available APIs
 
-Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
+Read [Camera](../reference/apis-camera-kit/js-apis-camera.md) for the API reference.
 
 | API| Description|
 | ---- | ---- |
 | createDeferredPreviewOutput(profile: Profile): Promise\<PreviewOutput> | Creates a deferred **PreviewOutput** instance and adds it, instead of a common **PreviewOutput** instance, to the data stream during stream configuration.|
-| addDeferredSurface(surfaceId: string): Promise\<void> | Adds a surface for delayed preview. This API can run after **session.commitConfig()** or **session.start()** is called.|
+| addDeferredSurface(surfaceId: string): Promise\<void> | Adds a surface for delayed preview. This API can run after [session.commitConfig](../reference/apis-camera-kit/js-apis-camera.md#commitconfig11) or [session.start](../reference/apis-camera-kit/js-apis-camera.md#start11) is called.|
 
 ### Development Example
 
@@ -31,18 +31,18 @@ The figure below shows the recommended API call process.
 
 ![](figures/deferred-surface-sequence-diagram.png)
 
-For details about how to obtain the BaseContext, see [BaseContext](../reference/apis/js-apis-inner-application-baseContext.md).
+For details about how to obtain the context, see [Obtaining the Context of UIAbility](../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 
 ```ts
 import camera from '@ohos.multimedia.camera';
 import common from '@ohos.app.ability.common';
 
-async function preview(baseContext: common.BaseContext, cameraInfo: camera.CameraDevice, previewProfile: camera.Profile, photoProfile: camera.Profile, photoSurfaceId: string, previewSurfaceId: string): Promise<void> {
+async function preview(baseContext: common.BaseContext, cameraInfo: camera.CameraDevice, previewProfile: camera.Profile, photoProfile: camera.Profile, previewSurfaceId: string): Promise<void> {
   const cameraManager: camera.CameraManager = camera.getCameraManager(baseContext);
   const cameraInput: camera.CameraInput = cameraManager.createCameraInput(cameraInfo);
   const previewOutput: camera.PreviewOutput = cameraManager.createDeferredPreviewOutput(previewProfile);
-  const photoOutput: camera.PhotoOutput = cameraManager.createPhotoOutput(photoProfile, photoSurfaceId);
-  const session: camera.CaptureSession  = cameraManager.createCaptureSession();
+  const photoOutput: camera.PhotoOutput = cameraManager.createPhotoOutput(photoProfile);
+  const session: camera.PhotoSession = cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO) as camera.PhotoSession;
   session.beginConfig();
   session.addInput(cameraInput);
   session.addOutput(previewOutput);
@@ -63,7 +63,7 @@ In this way, the photographing process is optimized, which fulfills the processi
 
 ### Available APIs
 
-Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
+Read [Camera](../reference/apis-camera-kit/js-apis-camera.md) for the API reference.
 
 | API| Description|
 | ---- | ---- |
@@ -73,7 +73,7 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
 
 > **NOTE**
 >
-> - **isQuickThumbnailSupported** and **enableQuickThumbnail** must be called after **CaptureSession.addOutput** and **CaptureSession.addInput** but before **CaptureSession.commitConfig()**.
+> - [isQuickThumbnailSupported](../reference/apis-camera-kit/js-apis-camera-sys.md#isquickthumbnailsupported) and [enableQuickThumbnail](../reference/apis-camera-kit/js-apis-camera-sys.md#enablequickthumbnail) must be called after [addOutput](../reference/apis-camera-kit/js-apis-camera.md#addoutput11) and [addInput](../reference/apis-camera-kit/js-apis-camera.md#addinput11) but before [commitConfig](../reference/apis-camera-kit/js-apis-camera.md#commitconfig11).
 > - **on()** takes effect after **enableQuickThumbnail(true)** is called.
 
 ### Development Example
@@ -82,27 +82,27 @@ The figure below shows the recommended API call process.
 
 ![](figures/quick-thumbnail-sequence-diagram.png)
 
-For details about how to obtain the BaseContext, see [BaseContext](../reference/apis/js-apis-inner-application-baseContext.md).
+For details about how to obtain the context, see [Obtaining the Context of UIAbility](../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 ```ts
 import camera from '@ohos.multimedia.camera';
 import { BusinessError } from '@ohos.base';
 import image from '@ohos.multimedia.image';
 import common from '@ohos.app.ability.common';
 
-async function enableQuickThumbnail(baseContext: common.BaseContext, surfaceId: string, photoProfile: camera.Profile): Promise<void> {
+async function enableQuickThumbnail(baseContext: common.BaseContext, photoProfile: camera.Profile): Promise<void> {
   let cameraManager: camera.CameraManager = camera.getCameraManager(baseContext);
   let cameras: Array<camera.CameraDevice> = cameraManager.getSupportedCameras();
-  // Create a CaptureSession instance.
-  let captureSession: camera.CaptureSession = cameraManager.createCaptureSession();
+  // Create a PhotoSession instance.
+  let photoSession: camera.PhotoSession = cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO) as camera.PhotoSession;
   // Start configuration for the session.
-  captureSession.beginConfig();
+  photoSession.beginConfig();
   // Add a CameraInput instance to the session.
   let cameraInput: camera.CameraInput = cameraManager.createCameraInput(cameras[0]);
   cameraInput.open();
-  captureSession.addInput(cameraInput);
+  photoSession.addInput(cameraInput);
   // Add a PhotoOutput instance to the session.
-  let photoOutPut: camera.PhotoOutput = cameraManager.createPhotoOutput(photoProfile, surfaceId);
-  captureSession.addOutput(photoOutPut);
+  let photoOutPut: camera.PhotoOutput = cameraManager.createPhotoOutput(photoProfile);
+  photoSession.addOutput(photoOutPut);
   let isSupported: boolean = photoOutPut.isQuickThumbnailSupported();
   if (isSupported) {
     // Enable the quick thumbnail feature.
@@ -127,13 +127,13 @@ function showOrSavePicture(pixelMap: image.PixelMap): void {
 
 Generally, the startup of the camera application is triggered when the user touches the camera icon on the home screen. The home screen senses the touch event and instructs the application manager to start the camera application. This takes a relatively long time. After the camera application is started, the camera startup process starts. A typical camera startup process includes starting the camera device, configuring a data stream, and starting the data stream, which is also time-consuming.
 
-The prelaunch feature triggers the action of starting the camera device before the camera application is started. In other words, when the user touches the camera icon on the home screen, the system starts the camera device. At this time, the camera application is not started yet. The figure below shows the camera application process before and after the prelaunch feature is introduced.
+​The prelaunch feature triggers the action of starting the camera device before the camera application is started. In other words, when the user touches the camera icon on the home screen, the system starts the camera device. At this time, the camera application is not started yet. The figure below shows the camera application process before and after the prelaunch feature is introduced.
 
 ![prelaunch-scene](figures/prelaunch-scene.png)
 
 ### Available APIs
 
-Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
+Read [Camera](../reference/apis-camera-kit/js-apis-camera.md) for the API reference.
 
 | API| Description|
 | ---- | ---- |
@@ -147,7 +147,7 @@ The figure below shows the recommended API call process.
 
 ![](figures/prelaunch-sequence-diagram.png)
 
-For details about how to obtain the BaseContext, see [BaseContext](../reference/apis/js-apis-inner-application-baseContext.md).
+For details about how to obtain the context, see [Obtaining the Context of UIAbility](../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 
 - **Home screen**
 
@@ -171,7 +171,7 @@ For details about how to obtain the BaseContext, see [BaseContext](../reference/
 
   To use the prelaunch feature, the camera application must configure the **ohos.permission.CAMERA** permission.
 
-  For details about how to request and verify the permissions, see [Permission Application Guide](../security/accesstoken-guidelines.md).
+  For details about how to request and verify the permissions, see [Requesting User Authorization](../security/AccessToken/request-user-authorization.md).
 
   ```ts
   import camera from '@ohos.multimedia.camera';

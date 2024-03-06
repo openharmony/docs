@@ -57,11 +57,13 @@ Focus navigation follows the set rules regardless of whether it is active or pas
   >
   > - After a component is deleted or set to be unfocusable, the linear navigation rule is followed. The focus automatically moves to the sibling component in front of the deleted or unfocusable component. If that component cannot receive focus, the focus is then moved to the sibling component on the rear.
 
-- **tabIndex**-based navigation: Focus navigation with the Tab/Shift+Tab keys becomes sequential when the [tabIndex](../reference/arkui-ts/ts-universal-attributes-focus.md) attribute is set for the components.
+- **tabIndex**-based navigation: Focus navigation with the Tab/Shift+Tab keys becomes sequential when the [tabIndex](../reference/apis-arkui/arkui-ts/ts-universal-attributes-focus.md#tabindex9) attribute is set for the components.
 
 - Area-based focus: You can define the order of sequential focus navigation and the default focused component, by setting the **tabIndex** attribute for a container component and the [groupDefaultFocus](#groupdefaultfocus) attribute.
 
-- Rules for focusing on a container component: When a container component (for which **groupDefaultFocus** is not set) is focused for the first time, the positions of its child components are calculated to identify the child component closest to the center of the container, and the focus automatically moves this child component. If the container is not focused for the first time, the focus automatically moves to the child component that is focused last time in the container.
+- Rules for focusing on a container component
+  - There is a focusable child in the container component.<br> When the container (for which **groupDefaultFocus** is not set) is focused for the first time, the positions of its child components are calculated to identify the child component closest to the center of the container, and the focus automatically moves to this child component. If the container is not focused for the first time, the focus automatically moves to the child component that is focused last time in the container.
+  - There is no focusable child in the container component.<br> If the **onClick** or single-finger tap event is configured for the container, the focus moves to the container.
 
 - Focus interaction: When a component is focused, the inherent click task of the component or its bound **onClick** callback task is automatically mounted to the Spacebar or Enter key. This means that pressing the key is equivalent to clicking and touching in terms of executing the task.
 
@@ -113,6 +115,7 @@ struct FocusEventExample {
     Column({ space: 20 }) {
       // You can use the up and down arrow keys on an external keyboard to move the focus between the three buttons. When a button gains focus, its color changes. When it loses focus, its color changes back.
       Button('First Button')
+        .defaultFocus(true)
         .width(260)
         .height(70)
         .backgroundColor(this.oneButtonColor)
@@ -189,105 +192,108 @@ Components can be classified into the following types based on their focusabilit
 
 - Components that can be focused but are unfocusable by default: Typical examples are **\<Text>** and **\<Image>**. To enable them to be focusable, use the **focusable(true)** attribute.
 
-- Components that cannot be focused: These components usually do not allow for interactions, such as **\<Blank>** and **\<Circle>**, and cannot be focused even if they use the **focusable** attribute.
+- Components that cannot be focused: These components usually do not allow for interactions and cannot be focused even if they use the **focusable** attribute. Examples are **\<Blank>** and **\<Circle>**.
 
 
 >**NOTE**
-> - If **focusable** is set to **false**, the component is unfocusable. The universal attribute [enabled](../reference/arkui-ts/ts-universal-attributes-enable.md) can also be used to make the component unfocusable.
+> - If **focusable** is set to **false**, the component is unfocusable. The universal attribute [enabled](../reference/apis-arkui/arkui-ts/ts-universal-attributes-enable.md) can also be used to make the component unfocusable.
 >
-> - When a component is in the focused state, if its **focusable** or **enabled** attribute is set to **false**, the component automatically loses focus. Then, the focus moves to other components based on the [Rules of Focus Navigation](#rules-of-focus-navigation).
+> - When a component is in the focused state, if its **focusable** or **enabled** attribute is set to **false**, the component automatically loses focus. Then, the focus moves to other components based on the [rules of focus navigation](#rules-of-focus-navigation).
+>
+> - For components that can be focused but are unfocusable by default (when the **focusable** attribute is not configured), they can implicitly become focusable if you bind an **onClick** event or single-finger tap gesture to them. However, when these components have the **focusable** attribute set to **false**, they remain unfocusable even if you bind the aforementioned event or gesture to them.
+
 
   **Table 1** Focusability of basic components
 
-| Basic Component                                    | Focusable| Default Value of focusable| Rules of Focus Navigation    |
+| Basic Component                                    | Can Be Focused| Default Value of focusable| Rules of Focus Navigation    |
 | ---------------------------------------- | ------- | ------------ | -------- |
-| [AlphabetIndexer](../reference/arkui-ts/ts-container-alphabet-indexer.md) | Yes      | true         | Linear navigation    |
-| [Blank](../reference/arkui-ts/ts-basic-components-blank.md) | No      | false        | /        |
-| [Button](../reference/arkui-ts/ts-basic-components-button.md) | Yes      | true         | /        |
-| [Checkbox](../reference/arkui-ts/ts-basic-components-checkbox.md) | Yes      | true         | /        |
-| [CheckboxGroup](../reference/arkui-ts/ts-basic-components-checkboxgroup.md) | Yes      | true         | /        |
-| [DataPanel](../reference/arkui-ts/ts-basic-components-datapanel.md) | No      | false        | /        |
-| [DatePicker](../reference/arkui-ts/ts-basic-components-datepicker.md) | Yes      | true         | Linear navigation    |
-| [Divider](../reference/arkui-ts/ts-basic-components-divider.md) | No      | false        | /        |
-| [Formcomponent](../reference/arkui-ts/ts-basic-components-formcomponent.md) | No      | false        | /        |
-| [Gauge](../reference/arkui-ts/ts-basic-components-gauge.md) | No      | false        | /        |
-| [Image](../reference/arkui-ts/ts-basic-components-image.md) | Yes      | false        | /        |
-| [ImageAnimator](../reference/arkui-ts/ts-basic-components-imageanimator.md) | Yes      | false        | /        |
-| [LoadingProgress](../reference/arkui-ts/ts-basic-components-loadingprogress.md) | No      | false        | /        |
-| [Marquee](../reference/arkui-ts/ts-basic-components-marquee.md) | No      | false        | /        |
-| [Menu](../reference/arkui-ts/ts-basic-components-menu.md) | Yes      | true         | Linear navigation    |
-| [MenuItem](../reference/arkui-ts/ts-basic-components-menuitem.md) | Yes      | true         | /        |
-| [MenuItemGroup](../reference/arkui-ts/ts-basic-components-menuitemgroup.md) | Yes      | true         | Linear navigation    |
-| [Navigation](../reference/arkui-ts/ts-basic-components-navigation.md) | No      | false        | Customized   |
-| [NavRouter](../reference/arkui-ts/ts-basic-components-navrouter.md) | No      | false        | Follows the child container   |
-| [NavDestination](../reference/arkui-ts/ts-basic-components-navdestination.md) | No      | false        | Linear navigation    |
-| [PatternLock](../reference/arkui-ts/ts-basic-components-patternlock.md) | No      | false        | /        |
-| [PluginComponent](../reference/arkui-ts/ts-basic-components-plugincomponent.md) | No      | false        | /        |
-| [Progress](../reference/arkui-ts/ts-basic-components-progress.md) | No      | false        | /        |
-| [QRCode](../reference/arkui-ts/ts-basic-components-qrcode.md) | No      | false        | /        |
-| [Radio](../reference/arkui-ts/ts-basic-components-radio.md) | Yes      | true         | /        |
-| [Rating](../reference/arkui-ts/ts-basic-components-rating.md) | Yes      | true         | /        |
-| [RemoteWindow](../reference/arkui-ts/ts-basic-components-remotewindow.md) | No      | false        | /        |
-| [RichText](../reference/arkui-ts/ts-basic-components-richtext.md) | No      | false        | /        |
-| [ScrollBar](../reference/arkui-ts/ts-basic-components-scrollbar.md) | No      | false        | /        |
-| [Search](../reference/arkui-ts/ts-basic-components-search.md) | Yes      | true         | /        |
-| [Select](../reference/arkui-ts/ts-basic-components-select.md) | Yes      | true         | Linear navigation    |
-| [Slider](../reference/arkui-ts/ts-basic-components-slider.md) | Yes      | true         | /        |
-| [Span](../reference/arkui-ts/ts-basic-components-span.md) | No      | false        | /        |
-| [Stepper](../reference/arkui-ts/ts-basic-components-stepper.md) | Yes      | true         | /        |
-| [StepperItem](../reference/arkui-ts/ts-basic-components-stepperitem.md) | Yes      | true         | /        |
-| [Text](../reference/arkui-ts/ts-basic-components-text.md) | Yes      | false        | /        |
-| [TextArea](../reference/arkui-ts/ts-basic-components-textarea.md) | Yes      | true         | /        |
-| [TextClock](../reference/arkui-ts/ts-basic-components-textclock.md) | No      | false        | /        |
-| [TextInput](../reference/arkui-ts/ts-basic-components-textinput.md) | Yes      | true         | /        |
-| [TextPicker](../reference/arkui-ts/ts-basic-components-textpicker.md) | Yes      | true         | Linear navigation    |
-| [TextTimer](../reference/arkui-ts/ts-basic-components-texttimer.md) | No      | false        | /        |
-| [TimePicker](../reference/arkui-ts/ts-basic-components-timepicker.md) | Yes      | true         | Linear navigation    |
-| [Toggle](../reference/arkui-ts/ts-basic-components-toggle.md) | Yes      | true         | /        |
-| [Web](../reference/arkui-ts/ts-basic-components-web.md) | Yes      | true         | Customized|
-| [XComponent](../reference/arkui-ts/ts-basic-components-xcomponent.md) | No      | false        | /        |
+| [AlphabetIndexer](../reference/apis-arkui/arkui-ts/ts-container-alphabet-indexer.md) | Yes      | true         | Linear navigation    |
+| [Blank](../reference/apis-arkui/arkui-ts/ts-basic-components-blank.md) | No      | false        | /        |
+| [Button](../reference/apis-arkui/arkui-ts/ts-basic-components-button.md) | Yes      | true         | /        |
+| [Checkbox](../reference/apis-arkui/arkui-ts/ts-basic-components-checkbox.md) | Yes      | true         | /        |
+| [CheckboxGroup](../reference/apis-arkui/arkui-ts/ts-basic-components-checkboxgroup.md) | Yes      | true         | /        |
+| [DataPanel](../reference/apis-arkui/arkui-ts/ts-basic-components-datapanel.md) | No      | false        | /        |
+| [DatePicker](../reference/apis-arkui/arkui-ts/ts-basic-components-datepicker.md) | Yes      | true         | Linear navigation    |
+| [Divider](../reference/apis-arkui/arkui-ts/ts-basic-components-divider.md) | No      | false        | /        |
+| [Formcomponent](../reference/apis-arkui/arkui-ts/ts-basic-components-formcomponent-sys.md) | No      | false        | /        |
+| [Gauge](../reference/apis-arkui/arkui-ts/ts-basic-components-gauge.md) | No      | false        | /        |
+| [Image](../reference/apis-arkui/arkui-ts/ts-basic-components-image.md) | Yes      | false        | /        |
+| [ImageAnimator](../reference/apis-arkui/arkui-ts/ts-basic-components-imageanimator.md) | Yes      | false        | /        |
+| [LoadingProgress](../reference/apis-arkui/arkui-ts/ts-basic-components-loadingprogress.md) | No      | false        | /        |
+| [Marquee](../reference/apis-arkui/arkui-ts/ts-basic-components-marquee.md) | No      | false        | /        |
+| [Menu](../reference/apis-arkui/arkui-ts/ts-basic-components-menu.md) | Yes      | true         | Linear navigation    |
+| [MenuItem](../reference/apis-arkui/arkui-ts/ts-basic-components-menuitem.md) | Yes      | true         | /        |
+| [MenuItemGroup](../reference/apis-arkui/arkui-ts/ts-basic-components-menuitemgroup.md) | Yes      | true         | Linear navigation    |
+| [Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md) | No      | false        | Customized   |
+| [NavRouter](../reference/apis-arkui/arkui-ts/ts-basic-components-navrouter.md) | No      | false        | Follows the child container   |
+| [NavDestination](../reference/apis-arkui/arkui-ts/ts-basic-components-navdestination.md) | No      | false        | Linear navigation    |
+| [PatternLock](../reference/apis-arkui/arkui-ts/ts-basic-components-patternlock.md) | No      | false        | /        |
+| [PluginComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-plugincomponent-sys.md) | No      | false        | /        |
+| [Progress](../reference/apis-arkui/arkui-ts/ts-basic-components-progress.md) | No      | false        | /        |
+| [QRCode](../reference/apis-arkui/arkui-ts/ts-basic-components-qrcode.md) | No      | false        | /        |
+| [Radio](../reference/apis-arkui/arkui-ts/ts-basic-components-radio.md) | Yes      | true         | /        |
+| [Rating](../reference/apis-arkui/arkui-ts/ts-basic-components-rating.md) | Yes      | true         | /        |
+| [RemoteWindow](../reference/apis-arkui/arkui-ts/ts-basic-components-remotewindow-sys.md) | No      | false        | /        |
+| [RichText](../reference/apis-arkui/arkui-ts/ts-basic-components-richtext.md) | No      | false        | /        |
+| [ScrollBar](../reference/apis-arkui/arkui-ts/ts-basic-components-scrollbar.md) | No      | false        | /        |
+| [Search](../reference/apis-arkui/arkui-ts/ts-basic-components-search.md) | Yes      | true         | /        |
+| [Select](../reference/apis-arkui/arkui-ts/ts-basic-components-select.md) | Yes      | true         | Linear navigation    |
+| [Slider](../reference/apis-arkui/arkui-ts/ts-basic-components-slider.md) | Yes      | true         | /        |
+| [Span](../reference/apis-arkui/arkui-ts/ts-basic-components-span.md) | No      | false        | /        |
+| [Stepper](../reference/apis-arkui/arkui-ts/ts-basic-components-stepper.md) | Yes      | true         | /        |
+| [StepperItem](../reference/apis-arkui/arkui-ts/ts-basic-components-stepperitem.md) | Yes      | true         | /        |
+| [Text](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md) | Yes      | false        | /        |
+| [TextArea](../reference/apis-arkui/arkui-ts/ts-basic-components-textarea.md) | Yes      | true         | /        |
+| [TextClock](../reference/apis-arkui/arkui-ts/ts-basic-components-textclock.md) | No      | false        | /        |
+| [TextInput](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md) | Yes      | true         | /        |
+| [TextPicker](../reference/apis-arkui/arkui-ts/ts-basic-components-textpicker.md) | Yes      | true         | Linear navigation    |
+| [TextTimer](../reference/apis-arkui/arkui-ts/ts-basic-components-texttimer.md) | No      | false        | /        |
+| [TimePicker](../reference/apis-arkui/arkui-ts/ts-basic-components-timepicker.md) | Yes      | true         | Linear navigation    |
+| [Toggle](../reference/apis-arkui/arkui-ts/ts-basic-components-toggle.md) | Yes      | true         | /        |
+| [Web](../reference/apis-arkweb/ts-basic-components-web.md) | Yes      | true         | Customized|
+| [XComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md) | No      | false        | /        |
 
   **Table 2** Focusability of container components
 
 | Container Component                                    | Focusable| Default Value of focusable| Rules of Focus Navigation    |
 | ---------------------------------------- | ----- | ------------ | -------- |
-| [AbilityComponent](../reference/arkui-ts/ts-container-ability-component.md) | No    | false        | /        |
-| [Badge](../reference/arkui-ts/ts-container-badge.md) | No    | false        | /        |
-| [Column](../reference/arkui-ts/ts-container-column.md) | Yes    | true         | Linear navigation    |
-| [ColumnSplit](../reference/arkui-ts/ts-container-columnsplit.md) | Yes    | true         | /        |
-| [Counter](../reference/arkui-ts/ts-container-counter.md) | Yes    | true         | Linear navigation    |
-| [Flex](../reference/arkui-ts/ts-container-flex.md) | Yes    | true         | Linear navigation    |
-| [GridCol](../reference/arkui-ts/ts-container-gridcol.md) | Yes    | true         | Customized |
-| [GridRow](../reference/arkui-ts/ts-container-gridrow.md) | Yes    | true         | Customized |
-| [Grid](../reference/arkui-ts/ts-container-grid.md) | Yes    | true         | Customized |
-| [GridItem](../reference/arkui-ts/ts-container-griditem.md) | Yes    | true         | Follows the child component   |
-| [List](../reference/arkui-ts/ts-container-list.md) | Yes    | true         | Linear navigation    |
-| [ListItem](../reference/arkui-ts/ts-container-listitem.md) | Yes    | true         | Follows the child component   |
-| [ListItemGroup](../reference/arkui-ts/ts-container-listitemgroup.md) | Yes    | true         | Follows the **\<List>** component|
-| [Navigator](../reference/arkui-ts/ts-container-navigator.md) | No    | true         | Customized |
-| [Panel](../reference/arkui-ts/ts-container-panel.md) | No    | true         | Follows the child component   |
-| [Refresh](../reference/arkui-ts/ts-container-refresh.md) | No    | false        | /        |
-| [RelativeContainer](../reference/arkui-ts/ts-container-relativecontainer.md) | No    | true         | Customized |
-| [Row](../reference/arkui-ts/ts-container-row.md) | Yes    | true         | Linear navigation    |
-| [RowSplit](../reference/arkui-ts/ts-container-rowsplit.md) | Yes    | true         | /        |
-| [Scroll](../reference/arkui-ts/ts-container-scroll.md) | Yes    | true         | Linear navigation    |
-| [SideBarContainer](../reference/arkui-ts/ts-container-sidebarcontainer.md) | Yes    | true         | Linear navigation    |
-| [Stack](../reference/arkui-ts/ts-container-stack.md) | Yes    | true         | Linear navigation    |
-| [Swiper](../reference/arkui-ts/ts-container-swiper.md) | Yes    | true         | Customized |
-| [Tabs](../reference/arkui-ts/ts-container-tabs.md) | Yes    | true         | Customized |
-| [TabContent](../reference/arkui-ts/ts-container-tabcontent.md) | Yes    | true         | Follows the child component   |
+| [AbilityComponent](../reference/apis-arkui/arkui-ts/ts-container-ability-component-sys.md) | No    | false        | /        |
+| [Badge](../reference/apis-arkui/arkui-ts/ts-container-badge.md) | No    | false        | /        |
+| [Column](../reference/apis-arkui/arkui-ts/ts-container-column.md) | Yes    | true         | Linear navigation    |
+| [ColumnSplit](../reference/apis-arkui/arkui-ts/ts-container-columnsplit.md) | Yes    | true         | /        |
+| [Counter](../reference/apis-arkui/arkui-ts/ts-container-counter.md) | Yes    | true         | Linear navigation    |
+| [Flex](../reference/apis-arkui/arkui-ts/ts-container-flex.md) | Yes    | true         | Linear navigation    |
+| [GridCol](../reference/apis-arkui/arkui-ts/ts-container-gridcol.md) | Yes    | true         | Customized |
+| [GridRow](../reference/apis-arkui/arkui-ts/ts-container-gridrow.md) | Yes    | true         | Customized |
+| [Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md) | Yes    | true         | Customized |
+| [GridItem](../reference/apis-arkui/arkui-ts/ts-container-griditem.md) | Yes    | true         | Follows the child component   |
+| [List](../reference/apis-arkui/arkui-ts/ts-container-list.md) | Yes    | true         | Linear navigation    |
+| [ListItem](../reference/apis-arkui/arkui-ts/ts-container-listitem.md) | Yes    | true         | Follows the child component   |
+| [ListItemGroup](../reference/apis-arkui/arkui-ts/ts-container-listitemgroup.md) | Yes    | true         | Follows the **\<List>** component|
+| [Navigator](../reference/apis-arkui/arkui-ts/ts-container-navigator.md) | No    | true         | Customized |
+| [Panel](../reference/apis-arkui/arkui-ts/ts-container-panel.md) | No    | true         | Follows the child component   |
+| [Refresh](../reference/apis-arkui/arkui-ts/ts-container-refresh.md) | No    | false        | /        |
+| [RelativeContainer](../reference/apis-arkui/arkui-ts/ts-container-relativecontainer.md) | No    | true         | Customized |
+| [Row](../reference/apis-arkui/arkui-ts/ts-container-row.md) | Yes    | true         | Linear navigation    |
+| [RowSplit](../reference/apis-arkui/arkui-ts/ts-container-rowsplit.md) | Yes    | true         | /        |
+| [Scroll](../reference/apis-arkui/arkui-ts/ts-container-scroll.md) | Yes    | true         | Linear navigation    |
+| [SideBarContainer](../reference/apis-arkui/arkui-ts/ts-container-sidebarcontainer.md) | Yes    | true         | Linear navigation    |
+| [Stack](../reference/apis-arkui/arkui-ts/ts-container-stack.md) | Yes    | true         | Linear navigation    |
+| [Swiper](../reference/apis-arkui/arkui-ts/ts-container-swiper.md) | Yes    | true         | Customized |
+| [Tabs](../reference/apis-arkui/arkui-ts/ts-container-tabs.md) | Yes    | true         | Customized |
+| [TabContent](../reference/apis-arkui/arkui-ts/ts-container-tabcontent.md) | Yes    | true         | Follows the child component   |
 
   **Table 3** Focusability of media components
 
 | Media Component                                    | Focusable| Default Value of focusable| Rules of Focus Navigation|
 | ---------------------------------------- | ----- | ------------ | ---- |
-| [Video](../reference/arkui-ts/ts-media-components-video.md) | Yes    | true         | /    |
+| [Video](../reference/apis-arkui/arkui-ts/ts-media-components-video.md) | Yes    | true         | /    |
 
   **Table 4** Focusability of canvas components
 
 | Canvas Component                                    | Focusable| Default Value of focusable| Rules of Focus Navigation|
 | ---------------------------------------- | ----- | ------------ | ---- |
-| [Canvas](../reference/arkui-ts/ts-components-canvas-canvas.md) | No    | false        | /    |
+| [Canvas](../reference/apis-arkui/arkui-ts/ts-components-canvas-canvas.md) | No    | false        | /    |
 
 
 The following example shows how to use the **focusable** API:
@@ -380,7 +386,7 @@ The preceding example includes two parts: default focus and active navigation.
 **Active navigation:**
 
 
-Pressing **F** on the keyboard triggers **onKeyEvent**, which sets **focusable** to **false** and makes the **\<Text>** component **unfocusable**. In this case, the focus automatically shifts. According to the description in passive focus, the system automatically searches for the immediate focusable component above the **\<Text>** component. Because the component immediately above is an unfocusable **\<Text>** component, the system searches for the next focusable component, which is the **\<Row>** container in this example. The system calculates the positions of **Button1** and **Button2** based on the [rule for focusing on a container component](#rules-of-focus-navigation). Because **Button2** is larger than Button1, the focus automatically moves to **Button2**.
+Pressing **F** on the keyboard triggers **onKeyEvent**, which sets **focusable** to **false** and makes the **\<Text>** component **unfocusable**. In this case, the focus automatically shifts. According to the description in passive focus, the system automatically searches for the immediate focusable component above the **\<Text>** component. Because the component immediately above is an unfocusable **\<Text>** component, the system searches for the next focusable component, which is the **\<Row>** container in this example. According to the [rule for focusing on a container component](#rules-of-focus-navigation), the sequential Tab navigation follows the Z-shaped pattern; as such, the focus automatically moves to **Button1**.
 
 
 ## Setting Default Focus
@@ -401,12 +407,11 @@ The following is the sample code for implementing the application layout, and **
 
 ```ts
 // xxx.ets
-// xxx.ets
 import promptAction from '@ohos.promptAction';
 
 class MyDataSource implements IDataSource {
   private list: number[] = [];
-  private listener: DataChangeListener|undefined = undefined;
+  private listener: DataChangeListener | undefined = undefined;
 
   constructor(list: number[]) {
     this.list = list;
@@ -428,33 +433,37 @@ class MyDataSource implements IDataSource {
   }
 }
 
-class swcf{
-  swiperController:SwiperController|undefined
-  fun(index:number){
-    if(this.swiperController){
-      if(index==0){
+class swcf {
+  swiperController: SwiperController | undefined
+
+  fun(index: number) {
+    if (this.swiperController) {
+      if (index == 0) {
         this.swiperController.showPrevious();
-      }else{
+      } else {
         this.swiperController.showNext();
       }
     }
   }
 }
-class TmpM{
-  left:number = 20
-  bottom:number = 20
-  right:number = 20
+
+class TmpM {
+  left: number = 20
+  bottom: number = 20
+  right: number = 20
 }
-let MarginTmp:TmpM = new TmpM()
+
+let MarginTmp: TmpM = new TmpM()
+
 @Entry
 @Component
 struct SwiperExample {
   private swiperController: SwiperController = new SwiperController()
-  @State tmp:promptAction.ShowToastOptions = {'message':'Button OK on clicked'}
+  @State tmp: promptAction.ShowToastOptions = { 'message': 'Button OK on clicked' }
   private data: MyDataSource = new MyDataSource([])
 
   aboutToAppear(): void {
-    let list:number[] = []
+    let list: number[] = []
     for (let i = 1; i <= 4; i++) {
       list.push(i);
     }
@@ -465,9 +474,9 @@ struct SwiperExample {
     Column({ space: 5 }) {
       Swiper(this.swiperController) {
         LazyForEach(this.data, (item: string) => {
-          Row({ space: 20 }) {
+          Row({ space: 10 }) {
             Column() {
-              Button('1').width(200).height(200)
+              Button('1').width(120).height(120)
                 .fontSize(40)
                 .backgroundColor('#dadbd9')
             }
@@ -475,15 +484,15 @@ struct SwiperExample {
             Column({ space: 20 }) {
               Row({ space: 20 }) {
                 Button('2')
-                  .width(100)
-                  .height(100)
+                  .width(70)
+                  .height(70)
                   .fontSize(40)
                   .type(ButtonType.Normal)
                   .borderRadius(20)
                   .backgroundColor('#dadbd9')
                 Button('3')
-                  .width(100)
-                  .height(100)
+                  .width(70)
+                  .height(70)
                   .fontSize(40)
                   .type(ButtonType.Normal)
                   .borderRadius(20)
@@ -492,15 +501,15 @@ struct SwiperExample {
 
               Row({ space: 20 }) {
                 Button('4')
-                  .width(100)
-                  .height(100)
+                  .width(70)
+                  .height(70)
                   .fontSize(40)
                   .type(ButtonType.Normal)
                   .borderRadius(20)
                   .backgroundColor('#dadbd9')
                 Button('5')
-                  .width(100)
-                  .height(100)
+                  .width(70)
+                  .height(70)
                   .fontSize(40)
                   .type(ButtonType.Normal)
                   .borderRadius(20)
@@ -509,15 +518,15 @@ struct SwiperExample {
 
               Row({ space: 20 }) {
                 Button('6')
-                  .width(100)
-                  .height(100)
+                  .width(70)
+                  .height(70)
                   .fontSize(40)
                   .type(ButtonType.Normal)
                   .borderRadius(20)
                   .backgroundColor('#dadbd9')
                 Button('7')
-                  .width(100)
-                  .height(100)
+                  .width(70)
+                  .height(70)
                   .fontSize(40)
                   .type(ButtonType.Normal)
                   .borderRadius(20)
@@ -525,13 +534,13 @@ struct SwiperExample {
               }
             }
           }
-          .width(480)
-          .height(380)
+          .width(320)
+          .height(300)
           .justifyContent(FlexAlign.Center)
           .borderWidth(2)
           .borderColor(Color.Gray)
           .backgroundColor(Color.White)
-        }, (item:string):string => item)
+        }, (item: string): string => item)
       }
       .cachedCount(2)
       .index(0)
@@ -545,6 +554,7 @@ struct SwiperExample {
         console.info(index.toString());
       })
       .margin({ left: 20, top: 20, right: 20 })
+
       Row({ space: 40 }) {
         Button('←')
           .fontSize(40)
@@ -565,14 +575,14 @@ struct SwiperExample {
             swf.fun(1)
           })
       }
-      .width(480)
+      .width(320)
       .height(50)
       .justifyContent(FlexAlign.Center)
       .borderWidth(2)
       .borderColor(Color.Gray)
       .backgroundColor('#f7f6dc')
 
-      Row({ space: 40 }) {
+      Row({ space: 20 }) {
         Button('Cancel')
           .fontSize(30)
           .fontColor('#787878')
@@ -592,7 +602,7 @@ struct SwiperExample {
             promptAction.showToast(this.tmp);
           })
       }
-      .width(480)
+      .width(320)
       .height(80)
       .justifyContent(FlexAlign.Center)
       .borderWidth(2)
@@ -600,7 +610,7 @@ struct SwiperExample {
       .backgroundColor('#dff2e4')
       .margin(MarginTmp)
     }.backgroundColor('#f2f2f2')
-    .margin({ left: 50, top: 50, right: 20 })
+    .margin({ left: 50, top: 50, right: 50 })
   }
 }
 ```
@@ -662,7 +672,7 @@ With the example provided in [Setting Default Focus](#setting-default-focus), th
 ![en-us_image_0000001511421364](figures/en-us_image_0000001511421364.gif)
 
 
-The default order for sequential Tab navigation is from the first focusable component to the last focusable component, and the process goes through Button1 -> Button4 -> Button5 -> Button7 -> Left arrow -> Right arrow -> ButtonOK. This focus navigation queue is relatively complete and traverses most of the components. However, the disadvantage is that the path from the first to the last is long.
+The default order for sequential Tab navigation is from the first focusable component to the last focusable component, and the process goes through Button 1-> Button 2 -> Button 3 -> Button 4 -> Button 5 -> Button 6 -> Button 7 -> Left arrow -> Right arrow -> Button OK. This focus navigation queue is relatively complete and traverses most of the components. However, the disadvantage is that the path from the first to the last is long.
 
 
 If you want to quickly go from the first to the last without sacrificing too much traversal integrity, you can use the **tabIndex** attribute.
@@ -678,10 +688,10 @@ For example, take the white area, the yellow area, and the green area each as a 
 struct MouseExample {
   build() {
     Column() {
-      Button('1').width(200).height(200)
+      Button('1').width(120).height(120)
         .fontSize(40)
         .backgroundColor('#dadbd9')
-        .tabIndex(1)    // Set Button1 as the first tabIndex node.
+        .tabIndex(1)    // Set Button 1 as the first tabIndex node.
     }
   }
 }
@@ -736,7 +746,7 @@ struct MouseExample {
       .onClick(() => {
         promptAction.showToast(this.Tmp);
       })
-      .tabIndex(3)    // Set Button-OK as the third tabIndex node.
+      .tabIndex(3)    // Set Button OK as the third tabIndex node.
     }
   }
 }
@@ -819,9 +829,9 @@ struct SwiperExample {
     Column({ space: 5 }) {
       Swiper(this.swiperController) {
         LazyForEach(this.data, (item: string) => {
-          Row({ space: 20 }) {    // Set the <Row> component as the first tabIndex node.
+          Row({ space: 10 }) {    // Set the <Row> component as the first tabIndex node.
             Column() {
-              Button('1').width(200).height(200)
+              Button('1').width(120).height(120)
                 .fontSize(40)
                 .backgroundColor('#dadbd9')
                 .groupDefaultFocus(true)    // Set Button-1 as the default focus of the first tabIndex node.
@@ -830,15 +840,15 @@ struct SwiperExample {
             Column({ space: 20 }) {
               Row({ space: 20 }) {
                 Button('2')
-                  .width(100)
-                  .height(100)
+                  .width(70)
+                  .height(70)
                   .fontSize(40)
                   .type(ButtonType.Normal)
                   .borderRadius(20)
                   .backgroundColor('#dadbd9')
                 Button('3')
-                  .width(100)
-                  .height(100)
+                  .width(70)
+                  .height(70)
                   .fontSize(40)
                   .type(ButtonType.Normal)
                   .borderRadius(20)
@@ -847,15 +857,15 @@ struct SwiperExample {
 
               Row({ space: 20 }) {
                 Button('4')
-                  .width(100)
-                  .height(100)
+                  .width(70)
+                  .height(70)
                   .fontSize(40)
                   .type(ButtonType.Normal)
                   .borderRadius(20)
                   .backgroundColor('#dadbd9')
                 Button('5')
-                  .width(100)
-                  .height(100)
+                  .width(70)
+                  .height(70)
                   .fontSize(40)
                   .type(ButtonType.Normal)
                   .borderRadius(20)
@@ -864,15 +874,15 @@ struct SwiperExample {
 
               Row({ space: 20 }) {
                 Button('6')
-                  .width(100)
-                  .height(100)
+                  .width(70)
+                  .height(70)
                   .fontSize(40)
                   .type(ButtonType.Normal)
                   .borderRadius(20)
                   .backgroundColor('#dadbd9')
                 Button('7')
-                  .width(100)
-                  .height(100)
+                  .width(70)
+                  .height(70)
                   .fontSize(40)
                   .type(ButtonType.Normal)
                   .borderRadius(20)
@@ -880,8 +890,8 @@ struct SwiperExample {
               }
             }
           }
-          .width(480)
-          .height(380)
+          .width(320)
+          .height(300)
           .justifyContent(FlexAlign.Center)
           .borderWidth(2)
           .borderColor(Color.Gray)
@@ -921,7 +931,7 @@ struct SwiperExample {
             this.swiperController.showNext();
           })
       }
-      .width(480)
+      .width(320)
       .height(50)
       .justifyContent(FlexAlign.Center)
       .borderWidth(2)
@@ -929,7 +939,7 @@ struct SwiperExample {
       .backgroundColor('#f7f6dc')
       .tabIndex(2)
 
-      Row({ space: 40 }) {    // Set the <Row> component as the third tabIndex node.
+      Row({ space: 20 }) {    // Set the <Row> component as the third tabIndex node.
         Button('Cancel')
           .fontSize(30)
           .fontColor('#787878')
@@ -951,7 +961,7 @@ struct SwiperExample {
           })
           .groupDefaultFocus(true)    // Set Button-OK as the default focus of the third tabIndex node.
       }
-      .width(480)
+      .width(320)
       .height(80)
       .justifyContent(FlexAlign.Center)
       .borderWidth(2)
@@ -960,7 +970,7 @@ struct SwiperExample {
       .margin({ left: 20, bottom: 20, right: 20 })
       .tabIndex(3)
     }.backgroundColor('#f2f2f2')
-    .margin({ left: 50, top: 50, right: 20 })
+    .margin({ left: 50, top: 50, right: 50 })
   }
 }
 ```
@@ -986,8 +996,6 @@ The sample code is as follows:
 
 ```ts
 // requestFocus.ets
-import promptAction from '@ohos.promptAction';
-
 @Entry
 @Component
 struct RequestFocusExample {
@@ -997,13 +1005,17 @@ struct RequestFocusExample {
     Column({ space:20 }){
       Button("id: " + this.idList[0] + " focusOnTouch(true) + focusable(false)")
         .width(400).height(70).fontColor(Color.White).focusOnTouch(true)
+        .hoverEffect(HoverEffect.Scale)
         .focusable(false)
       Button("id: " + this.idList[1] + " default")
         .width(400).height(70).fontColor(Color.White)
+        .hoverEffect(HoverEffect.Scale)
       Button("id: " + this.idList[2] + " focusOnTouch(false)")
         .width(400).height(70).fontColor(Color.White).focusOnTouch(false)
+        .hoverEffect(HoverEffect.Scale)
       Button("id: " + this.idList[3] + " focusOnTouch(true)")
         .width(400).height(70).fontColor(Color.White).focusOnTouch(true)
+        .hoverEffect(HoverEffect.Scale)
     }.width('100%').margin({ top:20 })
   }
 }

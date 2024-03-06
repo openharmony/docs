@@ -1,6 +1,6 @@
 # 组件动画
 
-在组件上创建和运行动画的快捷方式。具体用法请参考[通用方法](../reference/arkui-js/js-components-common-methods.md)。
+在组件上创建和运行动画的快捷方式。具体用法请参考[通用方法](../reference/apis-arkui/arkui-js/js-components-common-methods.md)。
 
 
 ## 获取动画对象

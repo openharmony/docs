@@ -11,15 +11,15 @@
 
 1. 通知服务提供了两种增加角标数的方法：
 
-   - 发布通知时，在[NotificationRequest](../reference/apis/js-apis-inner-notification-notificationRequest.md#notificationrequest)的badgeNumber字段里携带，桌面收到通知后，在原角标数上累加、呈现。
+   - 发布通知时，在[NotificationRequest](../reference/apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest)的badgeNumber字段里携带，桌面收到通知后，在原角标数上累加、呈现。
 
-   - 调用接口[`setBadgeNumber()`](../reference/apis/js-apis-notificationManager.md#notificationmanagersetbadgenumber10)设置，桌面按设置的角标数呈现。
+   - 调用接口[`setBadgeNumber()`](../reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanagersetbadgenumber10)设置，桌面按设置的角标数呈现。
 
-2. 角标数减少，目前仅支持通过[`setBadgeNumber()`](../reference/apis/js-apis-notificationManager.md#notificationmanagersetbadgenumber10)设置。
+2. 角标数减少，目前仅支持通过[`setBadgeNumber()`](../reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanagersetbadgenumber10)设置。
 
-| **接口名** | **描述** |
-| -------- | -------- |
-| setBadgeNumber(badgeNumber: number, callback: AsyncCallback\<void\>): void | 设置角标个数 |
+  | **接口名** | **描述** |
+  | -------- | -------- |
+  | setBadgeNumber(badgeNumber: number, callback: AsyncCallback\<void\>): void | 设置角标个数。 |
 
 
 ## 开发步骤
@@ -33,21 +33,21 @@
 
 2. 增加角标个数。
 
-   发布通知在[NotificationRequest](../reference/apis/js-apis-inner-notification-notificationRequest.md#notificationrequest)的badgeNumber字段里携带，可参考[通知发布](text-notification.md)章节。
+   发布通知在[NotificationRequest](../reference/apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest)的badgeNumber字段里携带，可参考[通知发布](text-notification.md)章节。
    
    示例为调用setBadgeNumber接口增加角标，在发布完新的通知后，调用该接口。
    
    ```ts
-   function setBadgeNumberCallback(err:Base.BusinessError) {
+   setBadgeNumberCallback = async (err: Base.BusinessError) => {
      if (err) {
        console.error(`Failed to set badge number. Code is ${err.code}, message is ${err.message}`);
        return;
      }
-     console.info(`Succeeded in seting badge number.`);
+     console.info(`Succeeded in setting badge number.`);
    }
    
-   let badgeNumber = 10;
-   notificationManager.setBadgeNumber(badgeNumber, setBadgeNumberCallback);
+   let badgeNumber = 9;
+   notificationManager.setBadgeNumber(badgeNumber, this.setBadgeNumberCallback);
    ```
 
 3. 减少角标个数。
@@ -55,16 +55,16 @@
    一条通知被查看后，应用需要调用接口设置剩下未读通知个数，桌面刷新角标。
 
    ```ts
-   function setBadgeNumberCallback(err:Base.BusinessError) {
+   setBadgeNumberCallback = async (err: Base.BusinessError) => {
      if (err) {
        console.error(`Failed to set badge number. Code is ${err.code}, message is ${err.message}`);
        return;
      }
-     console.info(`Succeeded in seting badge number.`);
+     console.info(`Succeeded in setting badge number.`);
    }
    
-   let badgeNumber = 9;
-   notificationManager.setBadgeNumber(badgeNumber, setBadgeNumberCallback);
+   let badgeNumber = 8;
+   notificationManager.setBadgeNumber(badgeNumber, this.setBadgeNumberCallback);
    ```
 
    

@@ -43,7 +43,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
 
 1. Before obtaining the device usage statistics, check that the application has the **ohos.permission.BUNDLE_ACTIVE_INFO** permission.
    
-    For details about how to request the permission, see [Declaring Permissions](../security/accesstoken-guidelines.md).
+    For details, see [Requesting Permissions for system_basic Applications](../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
 
 2. Query events of all applications based on the specified start time and end time. The caller must have the **ohos.permission.BUNDLE_ACTIVE_INFO** permission.
 

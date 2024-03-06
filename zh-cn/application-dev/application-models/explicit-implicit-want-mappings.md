@@ -1,11 +1,11 @@
 # 显式Want与隐式Want匹配规则
 
-在启动目标应用组件时，会通过显式[Want](../reference/apis/js-apis-app-ability-want.md)或者隐式[Want](../reference/apis/js-apis-app-ability-want.md)进行目标应用组件的匹配，这里说的匹配规则就是调用方传入的[want](../reference/apis/js-apis-app-ability-want.md)参数中设置的参数如何与目标应用组件声明的配置文件进行匹配。
+在启动目标应用组件时，会通过显式[Want](../reference/apis-ability-kit/js-apis-app-ability-want.md)或者隐式[Want](../reference/apis-ability-kit/js-apis-app-ability-want.md)进行目标应用组件的匹配，这里说的匹配规则就是调用方传入的[want](../reference/apis-ability-kit/js-apis-app-ability-want.md)参数中设置的参数如何与目标应用组件声明的配置文件进行匹配。
 
 ## 显式Want匹配原理
 
 
-显式[Want](../reference/apis/js-apis-app-ability-want.md)匹配原理如下表所示。
+显式[Want](../reference/apis-ability-kit/js-apis-app-ability-want.md)匹配原理如下表所示。
 
 | 名称 | 类型 | 匹配项 | 必选 | 规则 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -22,18 +22,18 @@
 
 ## 隐式Want匹配原理
 
-隐式[Want](../reference/apis/js-apis-app-ability-want.md)匹配原理如下表所示。
+隐式[Want](../reference/apis-ability-kit/js-apis-app-ability-want.md)匹配原理如下表所示。
 
 | 名称        | 类型                           | 匹配项 | 必选 | 规则                                                         |
 | ----------- | ------------------------------ | ------ | ---- | ------------------------------------------------------------ |
 | deviceId    | string                         | 是     | 否   | 跨设备目前不支持隐式调用。                                   |
 | abilityName | string                         | 否     | 否   | 该字段必须留空表示隐式匹配。                                 |
-| bundleName  | string                         | 是     | 否   | -&nbsp;声明bundleName时，隐式搜索将仅限于对应应用包内。<br/>-&nbsp;声明bundleName与moduleName时，隐式搜索将仅限于对应应用的对应Module内。<br/>-&nbsp;单独声明moduleName时，该字段无效。<br/>-&nbsp;同时声明bundleName与moduleName时，隐式搜索将仅限于对应应用包内的对应模块内。<br/>这些字段将用来隐式匹配。 |
-| moduleName  | string                         | 是     | 否   |                                                              |
-| uri         | string                         | 是     | 否   |                                                              |
-| type        | string                         | 是     | 否   |                                                              |
-| action      | string                         | 是     | 否   |                                                              |
-| entities    | Array&lt;string&gt;            | 是     | 否   |                                                              |
+| bundleName  | string                         | 是     | 否   | 匹配对应应用包内的目标应用组件。                              |
+| moduleName  | string                         | 是     | 否   | 匹配对应Module内的目标应用组件。                              |
+| uri         | string                         | 是     | 否   | 参见[want参数的uri和type匹配规则](#want参数的uri和type匹配规则)。                                                             |
+| type        | string                         | 是     | 否   | 参见[want参数的uri和type匹配规则](#want参数的uri和type匹配规则)。                                                             |
+| action      | string                         | 是     | 否   | 参见[want参数的action匹配规则](#want参数的action匹配规则)。                                                             |
+| entities    | Array&lt;string&gt;            | 是     | 否   | 参见[want参数的entities匹配规则](#want参数的entities匹配规则)。                                                             |
 | flags       | number                         | 否     | 否   | 不参与匹配，直接传递给系统处理，一般用来设置运行态信息，例如URI数据授权等。 |
 | parameters  | {[key:&nbsp;string]:&nbsp;Object} | 否     | 否   | 不参与匹配，应用自定义数据将直接传递给目标应用组件。         |
 

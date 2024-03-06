@@ -13,13 +13,13 @@
 **Float16推理模式**：  Float16又称半精度，它使用16比特表示一个数。Float16推理模式表示推理的时候用半精度进行推理。 
 
 ## 接口说明
-这里给出MindSpore Lite推理的通用开发流程中涉及的一些接口，具体请见下列表格。更多接口及详细内容，请见[@ohos.ai.mindSporeLite (推理能力)](../reference/apis/js-apis-mindSporeLite.md)。
+这里给出MindSpore Lite推理的通用开发流程中涉及的一些接口，具体请见下列表格。更多接口及详细内容，请见[@ohos.ai.mindSporeLite (推理能力)](../reference/apis-mindspore-lite-kit/js-apis-mindSporeLite.md)。
 
 | 接口名        | 描述        |
 | ------------------ | ----------------- |
-|loadModelFromFile(model: string, options: Context): Promise&lt;Model&gt;|从路径加载模型。|
+|loadModelFromFile(model: string, context?: Context): Promise&lt;Model&gt;|从路径加载模型。|
 |getInputs(): MSTensor[]|获取模型的输入。|
-|predict(inputs: MSTensor[]): Promise&lt;MSTensor&gt;|推理模型。|
+|predict(inputs: MSTensor[]): Promise&lt;MSTensor[]&gt;|推理模型。|
 | getData(): ArrayBuffer                 | 获取张量的数据。 |
 | setData(inputArray: ArrayBuffer): void | 设置张量的数据。 |
 

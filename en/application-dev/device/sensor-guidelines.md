@@ -5,7 +5,7 @@
 
 With the sensor module, a device can obtain sensor data. For example, the device can subscribe to data of the orientation sensor to detect its own orientation, and data of the pedometer sensor to learn the number of steps the user walks every day.
 
-For details about the APIs, see [Sensor](../reference/apis/js-apis-sensor.md).
+For details about the APIs, see [Sensor](../reference/apis-sensor-service-kit/js-apis-sensor.md).
 
 
 ## Available APIs
@@ -48,29 +48,29 @@ The acceleration sensor is used as an example.
 
     The minimum and the maximum sampling periods supported by the sensor are 5000000 ns and 200000000 ns, respectively. Therefore, the value of **interval** must be within this range.
 
-3. Check whether the corresponding permission has been configured. For details, see [Applying for Permissions](../security/accesstoken-guidelines.md).
+3. Check whether the corresponding permission has been configured. For details, see [Declaring Permissions](../security/AccessToken/declare-permissions.md).
 
 4. Register a listener. You can call **on()** or **once()** to listen for sensor data changes.
 
 - The **on()** API is used to continuously listen for data changes of the sensor. The sensor reporting interval is set to 100000000 ns.
 
-    ```ts    
-    sensor.on(sensor.SensorId.ACCELEROMETER, (data: sensor.AccelerometerResponse) => {
+   ```ts    
+   sensor.on(sensor.SensorId.ACCELEROMETER, (data: sensor.AccelerometerResponse) => {
         console.info("Succeeded in obtaining data. x: " + data.x + " y: " + data.y + " z: " + data.z);
-    }, { interval: 100000000 });
-    ```
+   }, { interval: 100000000 });
+   ```
 
     ![](figures/002.png)
 
 - The **once()** API is used to listen for only one data change of the sensor.
 
-    ```ts  
-    sensor.once(sensor.SensorId.ACCELEROMETER, (data: sensor.AccelerometerResponse) => {
-        console.info("Succeeded in obtaining data. x: " + data.x + " y: " + data.y + " z: " + data.z);
-    });
-    ```
+   ```ts
+   sensor.once(sensor.SensorId.ACCELEROMETER, (data: sensor.AccelerometerResponse) => {
+       console.info("Succeeded in obtaining data. x: " + data.x + " y: " + data.y + " z: " + data.z);
+   });
+   ```
 
-    ![](figures/003.png)
+   ![](figures/003.png)
 
 5. Cancel continuous listening.
 

@@ -52,6 +52,9 @@
    ```ts
    import { BusinessError } from '@ohos.base';
    import promptAction from '@ohos.promptAction';
+   import Logger from '../../utils/Logger';
+   
+   const TAG: string = 'PageDataAbility';
    
    // callback方式调用:
    this.DAHelper.insert(this.uri, this.valuesBucket_insert, (error: BusinessError, data: number) => {
@@ -74,6 +77,9 @@
    import featureAbility from '@ohos.ability.featureAbility'
    import { BusinessError } from '@ohos.base';
    import promptAction from '@ohos.promptAction';
+   import Logger from '../../utils/Logger';
+   
+   const TAG: string = 'PageDataAbility';
    
    // promise方式调用(await需要在async方法中使用):
    this.DAHelper.insert(this.uri, this.valuesBucket_insert).then((datainsert) => {
@@ -94,6 +100,9 @@
    ```ts
    import featureAbility from '@ohos.ability.featureAbility'
    import promptAction from '@ohos.promptAction';
+   import Logger from '../../utils/Logger';
+   
+   const TAG: string = 'PageDataAbility';
    
    // callback方式调用:
    this.DAHelper.delete(this.uri, this.predicates, (error, data) => {
@@ -115,6 +124,9 @@
    ```ts
    import featureAbility from '@ohos.ability.featureAbility'
    import promptAction from '@ohos.promptAction';
+   import Logger from '../../utils/Logger';
+   
+   const TAG: string = 'PageDataAbility';
    
    // promise方式调用(await需要在async方法中使用):
    this.DAHelper.delete(this.uri, this.predicates).then((datadelete) => {
@@ -135,6 +147,9 @@
    ```ts
    import featureAbility from '@ohos.ability.featureAbility'
    import promptAction from '@ohos.promptAction';
+   import Logger from '../../utils/Logger';
+   
+   const TAG: string = 'PageDataAbility';
    
    // callback方式调用:
    this.predicates.equalTo('name', 'Rose');
@@ -157,6 +172,9 @@
    ```ts
    import featureAbility from '@ohos.ability.featureAbility'
    import promptAction from '@ohos.promptAction';
+   import Logger from '../../utils/Logger';
+   
+   const TAG: string = 'PageDataAbility';
    
    // promise方式调用(await需要在async方法中使用):
    this.predicates.equalTo('name', 'Rose');
@@ -178,6 +196,9 @@
    ```ts
    import featureAbility from '@ohos.ability.featureAbility'
    import promptAction from '@ohos.promptAction';
+   import Logger from '../../utils/Logger';
+   
+   const TAG: string = 'PageDataAbility';
    
    // callback方式调用:
    this.predicates.equalTo('name', 'Rose');
@@ -209,6 +230,9 @@
    ```ts
    import featureAbility from '@ohos.ability.featureAbility'
    import promptAction from '@ohos.promptAction';
+   import Logger from '../../utils/Logger';
+   
+   const TAG: string = 'PageDataAbility';
    
    // promise方式调用(await需要在async方法中使用):
    this.predicates.equalTo('name', 'Rose');
@@ -238,6 +262,9 @@
    ```ts
    import featureAbility from '@ohos.ability.featureAbility'
    import promptAction from '@ohos.promptAction';
+   import Logger from '../../utils/Logger';
+   
+   const TAG: string = 'PageDataAbility';
    
    // callback方式调用:
    this.DAHelper.batchInsert(this.uri, this.crowd, (error, data) => {
@@ -259,6 +286,9 @@
    ```ts
    import featureAbility from '@ohos.ability.featureAbility'
    import promptAction from '@ohos.promptAction';
+   import Logger from '../../utils/Logger';
+   
+   const TAG: string = 'PageDataAbility';
    
    // promise方式调用(await需要在async方法中使用):
    this.DAHelper.batchInsert(this.uri, this.crowd).then((databatchInsert) => {
@@ -279,6 +309,9 @@
    ```ts
    import featureAbility from '@ohos.ability.featureAbility'
    import promptAction from '@ohos.promptAction';
+   import Logger from '../../utils/Logger';
+   
+   const TAG: string = 'PageDataAbility';
    
    // callback方式调用:
    let operations: Array<ability.DataAbilityOperation> = [{
@@ -309,6 +342,9 @@
    ```ts
    import featureAbility from '@ohos.ability.featureAbility'
    import promptAction from '@ohos.promptAction';
+   import Logger from '../../utils/Logger';
+   
+   const TAG: string = 'PageDataAbility';
    
    // promise方式调用(await需要在async方法中使用):
    let operations: Array<ability.DataAbilityOperation> = [{

@@ -91,7 +91,7 @@
 
 - 基础区域1-8之间的布局在不同设备上有较大差异，可以使用响应式布局中的[栅格布局](responsive-layout.md#栅格布局)能力实现组件间的布局效果。
 
-- 展开和隐藏侧边栏的功能可以通过[侧边栏组件](../../reference/arkui-ts/ts-container-sidebarcontainer.md)来实现。侧边栏是大设备上独有的，借助响应式布局中的[媒体查询](responsive-layout.md#媒体查询)能力，控制仅在大设备上展示侧边栏即可。
+- 展开和隐藏侧边栏的功能可以通过[侧边栏组件](../../reference/apis-arkui/arkui-ts/ts-container-sidebarcontainer.md)来实现。侧边栏是大设备上独有的，借助响应式布局中的[媒体查询](responsive-layout.md#媒体查询)能力，控制仅在大设备上展示侧边栏即可。
 
 
 ### 主页基础区域
@@ -116,18 +116,24 @@
 
 
 ```ts
+import { Forecast, getHoursData, MyDataSource, Style } from '@ohos/common';
+
 @Component
 export default struct HoursWeather {
-  ...
+  private hoursData: Forecast[] = getHoursData(0);
+  @State hoursDataResource: MyDataSource = new MyDataSource(this.hoursData);
+
   build() {
     // 通过列表组件实现延伸能力
     List() {
-      LazyForEach(this.hoursDataResource, (hoursItem) => {
+      LazyForEach(this.hoursDataResource, (hoursItem:IDataSource) => {
         ListItem() {
           // 具体每个小时的天气情况
-          Column() { ... }
+          Column() { 
+              // ... 
+            }
         }
-      }, item => `${item.key}`)
+      })
     }
     .height(Style.CARD_HEIGHT)
     .borderRadius(Style.NORMAL_RADIUS)
@@ -154,9 +160,22 @@ export default struct HoursWeather {
 
 
 ```ts
+import AirQuality from './AirQuality'; //组件请参考相关实例
+import HoursWeather from './HoursWeather';
+import IndexHeader from './IndexHeader';
+import IndexEnd from './IndexEnd';
+import LifeIndex from './LifeIndex';
+import MultidayWeather from './MultidayWeather';
+import SunCanvas from './SunCanvas';
+import { CityListData, Style } from '@ohos/common';
+
 @Component
 export default struct HomeContent {
-  ...
+  private cityListData: CityListData | undefined = undefined;
+  private index: number = 1;
+  @Prop showSideBar: boolean;
+  @State headerOpacity: number = 1;
+
   build() {
     // 支持滚动
     Scroll() {
@@ -217,10 +236,18 @@ export default struct HomeContent {
 
   
 ```ts
+import HomeContent from './home/HomeContent'; //组件请参考相关实例
+import IndexTitleBar from './home/IndexTitleBar';
+import SideContent from './home/SideContent';
+import { CityListData,  getCityListWeatherData } from '@ohos/common';
+
 @Entry
 @Component
 struct Home {
-  ...
+  @State cityListWeatherData: CityListData[] = getCityListWeatherData();
+  @State curBp: string = 'md';
+  @State showSideBar: boolean = false;
+  
   build() {
     SideBarContainer(SideBarContainerType.Embed) {
       // 左侧侧边栏
@@ -232,9 +259,9 @@ struct Home {
           .height(56)
         // 天气详情，通过Swiper组件实现左右滑动切换城市的效果
         Swiper() {
-          ForEach(this.cityListWeatherData, (item, index) => {
+          ForEach(this.cityListWeatherData, (item:CityListData, index) => {
             HomeContent({ showSideBar: this.showSideBar, cityListData: item, index: index })
-          }, item => item.city)
+          })
         }
         // 大设备关闭导航点
         .indicator(this.curBp !== 'lg')

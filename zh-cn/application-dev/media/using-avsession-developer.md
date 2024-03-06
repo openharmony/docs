@@ -12,7 +12,7 @@
 
 媒体会话提供方使用的关键接口如下表所示。接口返回值有两种返回形式：callback和promise，下表中为callback形式接口，promise和callback只是返回值方式不一样，功能相同。
 
-更多API说明请参见[API文档](../reference/apis/js-apis-avsession.md)。
+更多API说明请参见[API文档](../reference/apis-avsession-kit/js-apis-avsession.md)。
 
 | 接口名 | 说明 | 
 | -------- | -------- |
@@ -44,9 +44,9 @@
    // 创建session
    let context: Context = getContext(this);
    async function createSession() {
-   let type: AVSessionManager.AVSessionType = 'audio';
-   let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
-   await session.activate();
+     let type: AVSessionManager.AVSessionType = 'audio';
+     let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
+     await session.activate();
      console.info(`session create done : sessionId : ${session.sessionId}`);
    }
    ```
@@ -131,7 +131,7 @@
    ```
 
 3. 设置用于被媒体会话控制方拉起的UIAbility。当用户操作媒体会话控制方的界面时，例如点击播控中心的卡片，可以拉起此处配置的UIAbility。
-   设置UIAbility时通过WantAgent接口实现，更多关于WantAgent的信息请参考[WantAgent](../reference/apis/js-apis-app-ability-wantAgent.md)。
+   设置UIAbility时通过WantAgent接口实现，更多关于WantAgent的信息请参考[WantAgent](../reference/apis-ability-kit/js-apis-app-ability-wantAgent.md)。
  
    ```ts
    import wantAgent from "@ohos.app.ability.wantAgent";
@@ -212,15 +212,15 @@
 
 6. 注册播控命令事件监听，便于响应用户通过媒体会话控制方，例如播控中心，下发的播控命令。
 
-   在session侧注册的监听分为`固定播控命令`和`高级播控事件`两种。
+   在Session侧注册的监听分为`固定播控命令`和`高级播控事件`两种。
 
-   4.1 固定控制命令的监听
+   6.1 固定控制命令的监听
 
    > **说明：**
    >
    > 媒体会话提供方在注册相关固定播控命令事件监听时，监听的事件会在媒体会话控制方的getValidCommands()方法中体现，即媒体会话控制方会认为对应的方法有效，进而根据需要触发相应的事件。为了保证媒体会话控制方下发的播控命令可以被正常执行，媒体会话提供方请勿进行无逻辑的空实现监听。
 
-   Session侧的固定播控命令主要包括播放、暂停、上一首、下一首等基础操作命令，详细介绍请参见[AVControlCommand](../reference/apis/js-apis-avsession.md)
+   Session侧的固定播控命令主要包括播放、暂停、上一首、下一首等基础操作命令，详细介绍请参见[AVControlCommand](../reference/apis-avsession-kit/js-apis-avsession.md)
      
    ```ts
    import AVSessionManager from '@ohos.multimedia.avsession';
@@ -280,7 +280,7 @@
    }
    ```
 
-   4.2 高级播控事件的监听
+   6.2 高级播控事件的监听
 
    Session侧的可以注册的高级播控事件主要包括：
 

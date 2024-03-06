@@ -7,8 +7,7 @@ OpenHarmony uses a third-party JavaScript or TypeScript component in the form of
 
 1. Access the [OpenHarmony-TPC/tpc_resource](https://gitee.com/openharmony-tpc/tpc_resource) repository, and find the desired component based on the directory index.
 
-2. Visit the [OpenHarmony website](https://growing.openharmony.cn/mainPlay/tpc) and search for required third-party components by type, category, or keyword.
-   
+2. Access the [OpenHarmony Third-Party Libraries](https://ohpm.openharmony.cn/#/en/home) website, and search for the required third-party component.
 
 ## Installing and Using a Third-Party JavaScript or TypeScript Component
 
@@ -86,7 +85,7 @@ You can then reference the HML page based on the set element name. The sample co
 ### Referencing an HAR ArkTS Page  
 ArkTS is an extension of TypeScript. Therefore, the export and import syntax of ArkTS is the same as that of TypeScript. In the OpenHarmony ohpm module, use **export** to export an ArkTS page. The sample code is as follows:
 ```typescript
-// library/src/main/ets/components/MainPage/MainPage.ets
+// library/src/main/ets/components/mainpage/MainPage.ets
 @Entry
 @Component
 export struct MainPage {

@@ -5,9 +5,9 @@
 
 Input设备描述信息。
 
-**相关模块:**
+**起始版本：** 1.0
 
-[Input](_input.md)
+**相关模块：**[Input](_input.md)
 
 
 ## 汇总
@@ -15,10 +15,10 @@ Input设备描述信息。
 
 ### Public 属性
 
-  | 名称 | 描述 | 
+| 名称 | 描述 | 
 | -------- | -------- |
-| [devIndex](#devindex) | uint32_t<br/>设备索引&nbsp; | 
-| [devType](#devtype) | uint32_t<br/>设备类型&nbsp; | 
+| uint32_t [devIndex](#devindex) | 设备索引  | 
+| uint32_t [devType](#devtype) | 设备类型  | 
 
 
 ## 类成员变量说明
@@ -26,19 +26,17 @@ Input设备描述信息。
 
 ### devIndex
 
-  
 ```
 uint32_t InputDevDesc::devIndex
 ```
-**描述:**
+**描述**
 设备索引
 
 
 ### devType
 
-  
 ```
 uint32_t InputDevDesc::devType
 ```
-**描述:**
+**描述**
 设备类型

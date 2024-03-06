@@ -1,10 +1,26 @@
-# AVSession Overview
+# Introduction to AVSession Kit
 
-The Audio and Video Session (AVSession) service is used to manage the playback behavior of all audio and video applications in the system in a unified manner. For example, it allows only one audio application in the playing state.
+Audio and Video Session (AVSession) Kit provides the audio and video management service, which manages the playback behavior of all audio and video applications in the system in a unified manner. You can use the kit to quickly build unified audio and video display and control capabilities.
 
-Audio and video applications access the AVSession service and send application data (for example, a song that is being played and playback state) to it. Through a controller, the user can choose another application or device to continue the playback. If an application does not access the AVSession service, its playback will be forcibly interrupted when it switches to the background.
+## Capability Scope
 
-To implement background playback, you must request a continuous task to prevent the task from being suspended. For details, see [Continuous Task](../task-management/continuous-task.md).
+- Unified audio and video management: Audio and video applications access AVSession and send it application data (for example, the song that is being played and the playback state). Through a controller, the user can choose another application or device for playback.
+
+- Restricted audio background playback: After an audio application accesses AVSession, it can continue audio playback in the background. To use this feature, the application must also request a background task.
+
+## Highlights
+
+- Consistent user experience
+
+  Audio and video applications access AVSession and send it application data (for example, the song that is being played and the playback state).
+
+  Through a controller, the user can choose another application or device for playback.
+
+- Standardize background playback management
+
+  Through the controller, the background playback of applications is visible and controllable.
+
+  The system forcibly controls background playback. When an application that does not access AVSession switches to the background, its audio playback is forcibly paused. This prevents malicious applications from playing audio in the background.
 
 ## Basic Concepts
 
@@ -46,4 +62,8 @@ AVSessions are classified into local AVSessions and distributed AVSessions.
 
 ## Constraints
 
-The AVSession service manages the playback behavior of all audio and video applications in the system. To continue the playback after switching to the background, the audio and video applications must access the AVSession service.
+All audio and video applications that need to be played in the background must be connected to AVSession and background task management. Otherwise, audio playback is forcibly paused when such an application switches to the background.
+
+## Relationship with Related Kits
+
+To implement background playback, an application must use [Background Tasks Kit](../task-management/background-task-overview.md) to request a continuous task to avoid being suspended.

@@ -1,8 +1,6 @@
 # 仅对MDM应用开放
 
-
 以下权限仅对MDM（Mobile Device Management）设备管理应用开放。
-
 
 ## ohos.permission.ENTERPRISE_GET_DEVICE_INFO
 
@@ -16,7 +14,6 @@
 
 **起始版本**：10
 
-
 ## ohos.permission.ENTERPRISE_GET_NETWORK_INFO
 
 允许设备管理应用查询网络信息。
@@ -28,7 +25,6 @@
 **ACL使能**：true
 
 **起始版本**：10
-
 
 ## ohos.permission.ENTERPRISE_INSTALL_BUNDLE
 
@@ -42,7 +38,6 @@
 
 **起始版本**：10
 
-
 ## ohos.permission.ENTERPRISE_MANAGE_SET_APP_RUNNING_POLICY
 
 允许设备管理应用设置应用运行管理策略。
@@ -54,7 +49,6 @@
 **ACL使能**：true
 
 **起始版本**：10
-
 
 ## ohos.permission.ENTERPRISE_RESET_DEVICE
 
@@ -68,7 +62,6 @@
 
 **起始版本**：10
 
-
 ## ohos.permission.ENTERPRISE_SET_ACCOUNT_POLICY
 
 允许设备管理应用设置账户管理策略。
@@ -80,7 +73,6 @@
 **ACL使能**：true
 
 **起始版本**：10
-
 
 ## ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -94,7 +86,6 @@
 
 **起始版本**：10
 
-
 ## ohos.permission.ENTERPRISE_SET_DATETIME
 
 允许设备管理应用设置系统时间。
@@ -106,7 +97,6 @@
 **ACL使能**：true
 
 **起始版本**：9
-
 
 ## ohos.permission.ENTERPRISE_SET_NETWORK
 
@@ -120,7 +110,6 @@
 
 **起始版本**：10
 
-
 ## ohos.permission.ENTERPRISE_SET_WIFI
 
 允许设备管理应用设置和查询WiFi信息。
@@ -132,7 +121,6 @@
 **ACL使能**：true
 
 **起始版本**：10
-
 
 ## ohos.permission.ENTERPRISE_SUBSCRIBE_MANAGED_EVENT
 
@@ -146,7 +134,6 @@
 
 **起始版本**：9
 
-
 ## ohos.permission.ENTERPRISE_RESTRICT_POLICY
 
 允许设备管理员下发和获取限制类策略。
@@ -158,7 +145,6 @@
 **ACL使能**：true
 
 **起始版本**：10
-
 
 ## ohos.permission.ENTERPRISE_SET_SCREENOFF_TIME
 
@@ -172,7 +158,6 @@
 
 **起始版本**：10
 
-
 ## ohos.permission.ENTERPRISE_MANAGE_USB
 
 允许设备管理员管理USB。
@@ -184,7 +169,6 @@
 **ACL使能**：true
 
 **起始版本**：10
-
 
 ## ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
@@ -198,7 +182,6 @@
 
 **起始版本**：10
 
-
 ## ohos.permission.ENTERPRISE_MANAGE_CERTIFICATE
 
 允许设备管理员管理证书。
@@ -210,7 +193,6 @@
 **ACL使能**：true
 
 **起始版本**：10
-
 
 ## ohos.permission.ENTERPRISE_GET_SETTINGS
 
@@ -224,7 +206,6 @@
 
 **起始版本**：10
 
-
 ## ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE
 
 允许在企业设备上安装企业MDM应用包
@@ -236,7 +217,6 @@
 **ACL使能**：true
 
 **起始版本**：10
-
 
 ## ohos.permission.INSTALL_SELF_BUNDLE
 
@@ -250,7 +230,6 @@
 
 **起始版本**：10
 
-
 ## ohos.permission.ENTERPRISE_SET_BROWSER_POLICY
 
 允许设备设置/取消浏览器策略。
@@ -262,7 +241,6 @@
 **ACL使能**：true
 
 **起始版本**：10
-
 
 ## ohos.permission.SET_ENTERPRISE_INFO
 
@@ -276,7 +254,6 @@
 
 **起始版本**：9
 
-
 ## ohos.permission.SET_FILE_GUARD_POLICY
 
 允许应用下发文件管控策略。
@@ -288,7 +265,6 @@
 **ACL使能**：true
 
 **起始版本**：10
-
 
 ## ohos.permission.FILE_GUARD_MANAGER
 

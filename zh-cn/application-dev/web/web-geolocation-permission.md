@@ -1,7 +1,7 @@
 # 管理位置权限
 
 
-Web组件提供位置权限管理能力。开发者可以通过[onGeolocationShow()](../reference/arkui-ts/ts-basic-components-web.md#ongeolocationshow)接口对某个网站进行位置权限管理。Web组件根据接口响应结果，决定是否赋予前端页面权限。获取设备位置，需要开发者配置[ohos.permission.LOCATION](../security/AccessToken/request-user-authorization.md)权限，并同时在设备上打开应用的位置权限和控制中心的位置信息。
+Web组件提供位置权限管理能力。开发者可以通过[onGeolocationShow()](../reference/apis-arkweb/ts-basic-components-web.md#ongeolocationshow)接口对某个网站进行位置权限管理。Web组件根据接口响应结果，决定是否赋予前端页面权限。获取设备位置，需要开发者配置[ohos.permission.LOCATION](../security/AccessToken/request-user-authorization.md)权限，并同时在设备上打开应用的位置权限和控制中心的位置信息。
 
 
 在下面的示例中，用户点击前端页面"获取位置"按钮，Web组件通过弹窗的形式通知应用侧位置权限请求消息。
@@ -37,6 +37,34 @@ Web组件提供位置权限管理能力。开发者可以通过[onGeolocationSho
   ```ts
   // xxx.ets
   import web_webview from '@ohos.web.webview';
+  import { abilityAccessCtrl, common }from '@kit.AbilityKit';
+  import {geoLocationManager} from '@kit.LocationKit';
+
+  let context = getContext(this) as common.UIAbilityContext;
+  let atManager = abilityAccessCtrl.createAtManager();
+
+  try{
+    atManager.requestPermissionsFromUser(context, ["ohos.permission.APPROXIMATELY_LOCATION"], (err, data) => {
+      let requestInfo: geoLocationManager.LocationRequest = {
+        'priority': 0x203,
+        'scenario': 0x300,
+        'maxAccuracy': 0
+      };
+      let locationChange = (location: geoLocationManager.Location):void => {
+        if(location){
+          console.log('locationChanger: location=' + JSON.stringify(location));
+        }
+      };
+      try{
+        geoLocationManager.on('locationChange', requestInfo, locationChange);
+        geoLocationManager.off('locationChange', locationChange);
+      } catch (err) {
+        console.error("errCode:" + err.code + ", errMessage:" + err.message);
+      }
+    })
+  } catch (err) {
+    console.error("err:", err);
+  }
 
   @Entry
   @Component

@@ -26,13 +26,13 @@ Obtains a **PhotoAccessHelper** instance for accessing and modifying media files
 
 | Name | Type   | Mandatory| Description                      |
 | ------- | ------- | ---- | -------------------------- |
-| context | [Context](js-apis-inner-app-context.md) | Yes  | Context of the ability instance.|
+| context | [Context](js-apis-inner-application-context.md) | Yes  | Context of the ability instance.|
 
 **Return value**
 
 | Type                           | Description   |
 | ----------------------------- | :---- |
-| [PhotoAccessHelper](#photoaccesshelper) | Returns the **PhotoAccessHelper** instance created.|
+| [PhotoAccessHelper](#photoaccesshelper) | **PhotoAccessHelper** instance obtained.|
 
 **Error codes**
 
@@ -46,7 +46,7 @@ For details about the error codes, see [Universal Error Codes](../errorcodes/err
 
 ```ts
 // The phAccessHelper instance obtained is a global object. It is used by default in subsequent operations. If the code snippet is not added, an error will be reported indicating that phAccessHelper is not defined.
-const context = getContext(this);
+let context = getContext(this);
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 ```
 
@@ -94,10 +94,10 @@ async function example() {
   };
 
   phAccessHelper.getAssets(fetchOptions, async (err, fetchResult) => {
-    if (fetchResult != undefined) {
+    if (fetchResult !== undefined) {
       console.info('fetchResult success');
       let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-      if (photoAsset != undefined) {
+      if (photoAsset !== undefined) {
         console.info('photoAsset.displayName : ' + photoAsset.displayName);
       }
     } else {
@@ -154,10 +154,10 @@ async function example() {
   };
   try {
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
-    if (fetchResult != undefined) {
+    if (fetchResult !== undefined) {
       console.info('fetchResult success');
       let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-      if (photoAsset != undefined) {
+      if (photoAsset !== undefined) {
         console.info('photoAsset.displayName :' + photoAsset.displayName);
       }
     }
@@ -172,6 +172,11 @@ async function example() {
 createAsset(displayName: string, callback: AsyncCallback&lt;PhotoAsset&gt;): void
 
 Creates an image or video asset with the specified file name. This API uses an asynchronous callback to return the result.
+
+The file name must comply with the following specifications:
+- The file name must contain a valid file name and an image or video file name extension.
+- The file name cannot exceed 255 characters.
+- The file name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
 
 **System API**: This is a system API.
 
@@ -206,7 +211,7 @@ async function example() {
   console.info('createAssetDemo');
   let testFileName: string = 'testFile' + Date.now() + '.jpg';
   phAccessHelper.createAsset(testFileName, (err, photoAsset) => {
-    if (photoAsset != undefined) {
+    if (photoAsset !== undefined) {
       console.info('createAsset file displayName' + photoAsset.displayName);
       console.info('createAsset successfully');
     } else {
@@ -221,6 +226,11 @@ async function example() {
 createAsset(displayName: string): Promise&lt;PhotoAsset&gt;
 
 Creates an image or video asset with the specified file name. This API uses a promise to return the result.
+
+The file name must comply with the following specifications:
+- The file name must contain a valid file name and an image or video file name extension.
+- The file name cannot exceed 255 characters.
+- The file name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
 
 **System API**: This is a system API.
 
@@ -275,6 +285,11 @@ createAsset(displayName: string, options: PhotoCreateOptions, callback: AsyncCal
 
 Creates an image or video asset with the specified file name and options. This API uses an asynchronous callback to return the result.
 
+The file name must comply with the following specifications:
+- The file name must contain a valid file name and an image or video file name extension.
+- The file name cannot exceed 255 characters.
+- The file name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
+
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
@@ -312,7 +327,7 @@ async function example() {
     subtype: photoAccessHelper.PhotoSubtype.DEFAULT
   }
   phAccessHelper.createAsset(testFileName, createOption, (err, photoAsset) => {
-    if (photoAsset != undefined) {
+    if (photoAsset !== undefined) {
       console.info('createAsset file displayName' + photoAsset.displayName);
       console.info('createAsset successfully');
     } else {
@@ -327,6 +342,11 @@ async function example() {
 createAsset(displayName: string, options: PhotoCreateOptions): Promise&lt;PhotoAsset&gt;
 
 Creates an image or video asset with the specified file name and options. This API uses a promise to return the result.
+
+The file name must comply with the following specifications:
+- The file name must contain a valid file name and an image or video file name extension.
+- The file name cannot exceed 255 characters.
+- The file name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
 
 **System API**: This is a system API.
 
@@ -422,7 +442,7 @@ async function example() {
     title: 'testPhoto'
   }
   phAccessHelper.createAsset(photoType, extension, options, (err, uri) => {
-    if (uri != undefined) {
+    if (uri !== undefined) {
       console.info('createAsset uri' + uri);
       console.info('createAsset successfully');
     } else {
@@ -471,7 +491,7 @@ async function example() {
   let photoType: photoAccessHelper.PhotoType = photoAccessHelper.PhotoType.IMAGE;
   let extension: string = 'jpg';
   phAccessHelper.createAsset(photoType, extension, (err, uri) => {
-    if (uri != undefined) {
+    if (uri !== undefined) {
       console.info('createAsset uri' + uri);
       console.info('createAsset successfully');
     } else {
@@ -538,7 +558,7 @@ async function example() {
 }
 ```
 
-### createAlbum
+### createAlbum<sup>(deprecated)</sup>
 
 createAlbum(name: string, callback: AsyncCallback&lt;Album&gt;): void
 
@@ -549,6 +569,10 @@ The album name must meet the following requirements:
 - The album name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
 - The album name is case-insensitive.
 - Duplicate album names are not allowed.
+
+> **NOTE**
+>
+> This API is supported since API version 10 and deprecated since API version 11. Use [MediaAlbumChangeRequest.createAlbumRequest](#createalbumrequest11) instead.
 
 **System API**: This is a system API.
 
@@ -592,7 +616,7 @@ async function example() {
 }
 ```
 
-### createAlbum
+### createAlbum<sup>(deprecated)</sup>
 
 createAlbum(name: string): Promise&lt;Album&gt;
 
@@ -603,6 +627,10 @@ The album name must meet the following requirements:
 - The album name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
 - The album name is case-insensitive.
 - Duplicate album names are not allowed.
+
+> **NOTE**
+>
+> This API is supported since API version 10 and deprecated since API version 11. Use [MediaAlbumChangeRequest.createAlbumRequest](#createalbumrequest11) instead.
 
 **System API**: This is a system API.
 
@@ -651,13 +679,17 @@ async function example() {
 }
 ```
 
-### deleteAlbums
+### deleteAlbums<sup>(deprecated)</sup>
 
 deleteAlbums(albums: Array&lt;Album&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 Deletes albums. This API uses an asynchronous callback to return the result.
 
 Ensure that the albums to be deleted exist. Only user albums can be deleted.
+
+> **NOTE**
+>
+> This API is supported since API version 10 and deprecated since API version 11. Use [MediaAlbumChangeRequest.deleteAlbums](#deletealbums11) instead.
 
 **System API**: This is a system API.
 
@@ -711,13 +743,17 @@ async function example() {
 }
 ```
 
-### deleteAlbums
+### deleteAlbums<sup>(deprecated)</sup>
 
 deleteAlbums(albums: Array&lt;Album&gt;): Promise&lt;void&gt;
 
 Deletes albums. This API uses a promise to return the result.
 
 Ensure that the albums to be deleted exist. Only user albums can be deleted.
+
+> **NOTE**
+>
+> This API is supported since API version 10 and deprecated since API version 11. Use [MediaAlbumChangeRequest.deleteAlbums](#deletealbums11) instead.
 
 **System API**: This is a system API.
 
@@ -826,7 +862,7 @@ async function example() {
       console.error('getAlbumsCallback failed with err: ' + err);
       return;
     }
-    if (fetchResult == undefined) {
+    if (fetchResult === undefined) {
       console.error('getAlbumsCallback fetchResult is undefined');
       return;
     }
@@ -879,7 +915,7 @@ async function example() {
       console.error('getAlbumsCallback failed with err: ' + err);
       return;
     }
-    if (fetchResult == undefined) {
+    if (fetchResult === undefined) {
       console.error('getAlbumsCallback fetchResult is undefined');
       return;
     }
@@ -943,7 +979,7 @@ async function example() {
     predicates: predicates
   };
   phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, fetchOptions).then( async (fetchResult) => {
-    if (fetchResult == undefined) {
+    if (fetchResult === undefined) {
       console.error('getAlbumsPromise fetchResult is undefined');
       return;
     }
@@ -1003,7 +1039,7 @@ async function getHiddenAlbumsView() {
   };
   phAccessHelper.getHiddenAlbums(photoAccessHelper.HiddenPhotosDisplayMode.ALBUMS_MODE, fetchOptions,
     async (err, fetchResult) => {
-      if (fetchResult == undefined) {
+      if (fetchResult === undefined) {
         console.error('getHiddenAlbumsViewCallback fetchResult is undefined');
         return;
       }
@@ -1053,7 +1089,7 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 async function getSysHiddenAlbum() {
   console.info('getSysHiddenAlbumDemo');
   phAccessHelper.getHiddenAlbums(photoAccessHelper.HiddenPhotosDisplayMode.ASSETS_MODE, async (err, fetchResult) => {
-    if (fetchResult == undefined) {
+    if (fetchResult === undefined) {
       console.error('getSysHiddenAlbumCallback fetchResult is undefined');
       return;
     }
@@ -1067,7 +1103,7 @@ async function getSysHiddenAlbum() {
 async function getHiddenAlbumsView() {
   console.info('getHiddenAlbumsViewDemo');
   phAccessHelper.getHiddenAlbums(photoAccessHelper.HiddenPhotosDisplayMode.ALBUMS_MODE, async (err, fetchResult) => {
-    if (fetchResult == undefined) {
+    if (fetchResult === undefined) {
       console.error('getHiddenAlbumsViewCallback fetchResult is undefined');
       return;
     }
@@ -1126,7 +1162,7 @@ async function getSysHiddenAlbum() {
   console.info('getSysHiddenAlbumDemo');
   phAccessHelper.getHiddenAlbums(photoAccessHelper.HiddenPhotosDisplayMode.ASSETS_MODE)
     .then( async (fetchResult) => {
-      if (fetchResult == undefined) {
+      if (fetchResult === undefined) {
         console.error('getSysHiddenAlbumPromise fetchResult is undefined');
         return;
       }
@@ -1142,7 +1178,7 @@ async function getSysHiddenAlbum() {
 async function getHiddenAlbumsView() {
   console.info('getHiddenAlbumsViewDemo');
   phAccessHelper.getHiddenAlbums(photoAccessHelper.HiddenPhotosDisplayMode.ALBUMS_MODE).then( async (fetchResult) => {
-    if (fetchResult == undefined) {
+    if (fetchResult === undefined) {
       console.error('getHiddenAlbumsViewPromise fetchResult is undefined');
       return;
     }
@@ -1169,11 +1205,15 @@ async function getHiddenAlbumsView() {
 }
 ```
 
-### deleteAssets
+### deleteAssets<sup>(deprecated)</sup>
 
 deleteAssets(uriList: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 Deletes media assets. This API uses an asynchronous callback to return the result. The deleted assets are moved to the trash.
+
+> **NOTE**
+>
+> This API is supported since API version 10 and deprecated since API version 11. Use [MediaAssetChangeRequest.deleteAssets](#deleteassets11-1) instead.
 
 **System API**: This is a system API.
 
@@ -1216,28 +1256,32 @@ async function example() {
   try {
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
     let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-    if (asset == undefined) {
+    if (asset === undefined) {
       console.error('asset not exist');
       return;
     }
     phAccessHelper.deleteAssets([asset.uri], (err) => {
-      if (err == undefined) {
+      if (err === undefined) {
         console.info('deleteAssets successfully');
       } else {
         console.error('deleteAssets failed with error: ' + err);
       }
     });
   } catch (err) {
-    console.info('fetch failed, message =', err);
+    console.error('fetch failed, message =', err);
   }
 }
 ```
 
-### deleteAssets
+### deleteAssets<sup>(deprecated)</sup>
 
 deleteAssets(uriList: Array&lt;string&gt;): Promise&lt;void&gt;
 
 Deletes media assets. This API uses a promise to return the result. The deleted assets are moved to the trash.
+
+> **NOTE**
+>
+> This API is supported since API version 10 and deprecated since API version 11. Use [MediaAssetChangeRequest.deleteAssets](#deleteassets11-1) instead.
 
 **System API**: This is a system API.
 
@@ -1283,9 +1327,9 @@ async function example() {
     predicates: predicates
   };
   try {
-    const fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
     let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-    if (asset == undefined) {
+    if (asset === undefined) {
       console.error('asset not exist');
       return;
     }
@@ -1337,7 +1381,7 @@ async function example() {
   };
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
   let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-  if (photoAsset != undefined) {
+  if (photoAsset !== undefined) {
     console.info('photoAsset.displayName : ' + photoAsset.displayName);
   }
   let onCallback1 = (changeData: photoAccessHelper.ChangeData) => {
@@ -1354,7 +1398,7 @@ async function example() {
   phAccessHelper.registerChange(photoAsset.uri, false, onCallback2);
 
   photoAsset.setFavorite(true, (err) => {
-    if (err == undefined) {
+    if (err === undefined) {
       console.info('setFavorite successfully');
     } else {
       console.error('setFavorite failed with error:' + err);
@@ -1402,7 +1446,7 @@ async function example() {
   };
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
   let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-  if (photoAsset != undefined) {
+  if (photoAsset !== undefined) {
     console.info('photoAsset.displayName : ' + photoAsset.displayName);
   }
   let onCallback1 = (changeData: photoAccessHelper.ChangeData) => {
@@ -1418,7 +1462,7 @@ async function example() {
   // Unregister the listening of onCallback1.
   phAccessHelper.unRegisterChange(photoAsset.uri, onCallback1);
   photoAsset.setFavorite(true, (err) => {
-    if (err == undefined) {
+    if (err === undefined) {
       console.info('setFavorite successfully');
     } else {
       console.error('setFavorite failed with error:' + err);
@@ -1427,11 +1471,15 @@ async function example() {
 }
 ```
 
-### createDeleteRequest
+### createDeleteRequest<sup>(deprecated)</sup>
 
 createDeleteRequest(uriList: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 Creates a dialog box for deleting media files. This API uses an asynchronous callback to return the result. The deleted media files are moved to the trash.
+
+> **NOTE**
+>
+> This API is supported since API version 10 and deprecated since API version 11. Use [MediaAssetChangeRequest.deleteAssets](#deleteassets11-1) instead.
 
 **Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
 
@@ -1468,14 +1516,14 @@ async function example() {
     predicates: predicates
   };
   try {
-    const fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
     let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-    if (asset == undefined) {
+    if (asset === undefined) {
       console.error('asset not exist');
       return;
     }
     phAccessHelper.createDeleteRequest([asset.uri], (err) => {
-      if (err == undefined) {
+      if (err === undefined) {
         console.info('createDeleteRequest successfully');
       } else {
         console.error('createDeleteRequest failed with error: ' + err);
@@ -1487,11 +1535,15 @@ async function example() {
 }
 ```
 
-### createDeleteRequest
+### createDeleteRequest<sup>(deprecated)</sup>
 
 createDeleteRequest(uriList: Array&lt;string&gt;): Promise&lt;void&gt;
 
 Creates a dialog box for deleting media files. This API uses a promise to return the result. The deleted media files are moved to the trash.
+
+> **NOTE**
+>
+> This API is supported since API version 10 and deprecated since API version 11. Use [MediaAssetChangeRequest.deleteAssets](#deleteassets11-1) instead.
 
 **Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
 
@@ -1533,9 +1585,9 @@ async function example() {
     predicates: predicates
   };
   try {
-    const fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
     let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-    if (asset == undefined) {
+    if (asset === undefined) {
       console.error('asset not exist');
       return;
     }
@@ -1565,7 +1617,7 @@ Obtains the index of an image or video in an album. This API uses an asynchronou
 | -------- | ------------------------- | ---- | ---------- |
 | photoUri | string | Yes  | URI of the media asset whose index is to be obtained.|
 | albumUri | string | Yes  | Album URI, which can be an empty string. If it is an empty string, all the media assets in the Gallery are obtained by default.  |
-| options  | [FetchOptions](#fetchoptions)       | Yes  |  Fetch options. Only one search condition or sorting mode must be set in **predicates**. If no value is set or multiple search conditions or sorting modes are set, the API cannot be called successfully.     |
+| options  | [FetchOptions](#fetchoptions)       | Yes  |  Fetch options. Only one search condition or sorting mode must be set in **predicates**. If no value is set or multiple search criteria or sorting modes are set, the API cannot be called successfully.     |
 | callback | AsyncCallback&lt;number&gt;| Yes  | Callback invoked to return the index obtained.|
 
 **Error codes**
@@ -1608,10 +1660,10 @@ async function example() {
     let photoAsset: photoAccessHelper.PhotoAsset = await photoFetchResult.getObjectByPosition(expectIndex);
 
     phAccessHelper.getPhotoIndex(photoAsset.uri, album.albumUri, fetchOptions, (err, index) => {
-      if (err == undefined) {
+      if (err === undefined) {
         console.info(`getPhotoIndex successfully and index is : ${index}`);
       } else {
-        console.info(`getPhotoIndex failed;`);
+        console.info(`getPhotoIndex failed; error: ${err}`);
       }
     });
   } catch (error) {
@@ -1638,7 +1690,7 @@ Obtains the index of an image or video in an album. This API uses a promise to r
 | -------- | ------------------------- | ---- | ---------- |
 | photoUri | string | Yes  | URI of the media asset whose index is to be obtained.|
 | albumUri | string | Yes  | Album URI, which can be an empty string. If it is an empty string, all the media assets in the Gallery are obtained by default.  |
-| options  | [FetchOptions](#fetchoptions)       | Yes  |  Fetch options. Only one search condition or sorting mode must be set in **predicates**. If no value is set or multiple search conditions or sorting modes are set, the API cannot be called successfully.     |
+| options  | [FetchOptions](#fetchoptions)       | Yes  |  Fetch options. Only one search condition or sorting mode must be set in **predicates**. If no value is set or multiple search criteria or sorting modes are set, the API cannot be called successfully.     |
 
 **Return value**
 
@@ -1696,6 +1748,279 @@ async function example() {
 }
 ```
 
+### saveFormInfo<sup>11+</sup>
+
+saveFormInfo(info:FormInfo, callback: AsyncCallback&lt;void&gt;):void
+
+Saves a Gallery widget. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name  | Type                    | Mandatory| Description                     |
+| -------- | ------------------------ | ---- | ------------------------- |
+| info  | [FormInfo](#forminfo11)        | Yes  | Information about the Gallery widget to save, which includes the ID of the widget and the URI of the image bound to the widget.             |
+| callback |  AsyncCallback&lt;void&gt; | Yes  | Callback that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201   | Permission verification failed, usually the result returned by VerifyAccessToken.         |
+| 202   | Permission verification failed, application which is not a system application uses system API.         |
+| 401   | if the argument is invalid.         |
+| 14000011       | System inner fail.         |
+
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
+
+async function example() {
+  console.info('saveFormInfoDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+  let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+
+  let info: photoAccessHelper.FormInfo = {
+    // formId is a string consisting of only digits. uri indicates the URI of the image in Gallery. If there is no image in Gallery, uri must be an empty string.
+    formId : "20230116123",
+    uri: photoAsset.uri,
+  }
+
+  phAccessHelper.saveFormInfo(info, async (err: BusinessError) => {
+    if (err == undefined) {
+      console.info('saveFormInfo success');
+    } else {
+      console.error('saveFormInfo fail' + err);
+    }
+  });
+}
+```
+
+### saveFormInfo<sup>11+</sup>
+
+saveFormInfo(info:FormInfo):Promise&lt;void&gt;
+
+Saves a Gallery widget. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name  | Type                    | Mandatory| Description                     |
+| -------- | ------------------------ | ---- | ------------------------- |
+| info  | [FormInfo](#forminfo11)        | Yes  | Information about the Gallery widget to save, which includes the ID of the widget and the URI of the image bound to the widget.             |
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+| Promise&lt;void&gt;| Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201   | Permission verification failed, usually the result returned by VerifyAccessToken.         |
+| 202   | Permission verification failed, application which is not a system application uses system API.         |
+| 401   | if the argument is invalid.         |
+| 14000011       | System inner fail.         |
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
+
+async function example() {
+  console.info('saveFormInfoDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+  let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+
+  let info: photoAccessHelper.FormInfo = {
+    // formId is a string consisting of only digits. uri indicates the URI of the image in Gallery. If there is no image in Gallery, uri must be an empty string.
+    formId: "20230116123",
+    uri: photoAsset.uri,
+  }
+
+  phAccessHelper.saveFormInfo(info).then(() => {
+    console.info('saveFormInfo successfully');
+  }).catch((err: BusinessError) => {
+    console.info('saveFormInfo failed' + err);
+  });
+}
+```
+
+### removeFormInfo<sup>11+</sup>
+
+removeFormInfo(info:FormInfo, callback: AsyncCallback&lt;void&gt;):void
+
+Removes a Gallery widget. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name  | Type                    | Mandatory| Description                     |
+| -------- | ------------------------ | ---- | ------------------------- |
+| info  | [FormInfo](#forminfo11)        | Yes  |  Information about the Gallery widget to remove, which includes the ID of the widget and the URI of the image bound to the widget.             |
+| callback |  AsyncCallback&lt;void&gt; | Yes  | Callback that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201   | Permission verification failed, usually the result returned by VerifyAccessToken.         |
+| 202   | Permission verification failed, application which is not a system application uses system API.         |
+| 401   | if the argument is invalid.         |
+| 14000011       | System inner fail.         |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function example() {
+  console.info('removeFormInfoDemo');
+  let info: photoAccessHelper.FormInfo = {
+    // formId is a string consisting of only digits. When removing a widget, leave uri empty.
+    formId: "20230116123",
+    uri: "",
+  }
+
+  phAccessHelper.removeFormInfo(info, async (err: BusinessError) => {
+    if (err == undefined) {
+      console.info('removeFormInfo success');
+    } else {
+      console.error('removeFormInfo fail' + err);
+    }
+  });
+}
+```
+
+### removeFormInfo<sup>11+</sup>
+
+removeFormInfo(info:FormInfo):Promise&lt;void&gt;
+
+Removes a Gallery widget. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name  | Type                    | Mandatory| Description                     |
+| -------- | ------------------------ | ---- | ------------------------- |
+| info  | [FormInfo](#forminfo11)        | Yes  |  Information about the Gallery widget to remove, which includes the ID of the widget and the URI of the image bound to the widget.             |
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+| Promise&lt;void&gt;| Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201   | Permission verification failed, usually the result returned by VerifyAccessToken.         |
+| 202   | Permission verification failed, application which is not a system application uses system API.         |
+| 401   | if the argument is invalid.         |
+| 14000011       | System inner fail.         |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function example() {
+  console.info('removeFormInfoDemo');
+  let info: photoAccessHelper.FormInfo = {
+    // formId is a string consisting of only digits. When removing a widget, leave uri empty.
+    formId: "20230116123",
+    uri: "",
+  }
+
+  phAccessHelper.removeFormInfo(info).then(() => {
+    console.info('removeFormInfo successfully');
+  }).catch((err: BusinessError) => {
+    console.info('removeFormInfo failed' + err);
+  });
+}
+```
+
+### applyChanges<sup>11+</sup>
+
+applyChanges(mediaChangeRequest: MediaChangeRequest): Promise&lt;void&gt;
+
+Applies media changes. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name  | Type                    | Mandatory| Description                     |
+| -------- | ------------------------ | ---- | ------------------------- |
+| mediaChangeRequest  | [MediaChangeRequest](#mediachangerequest11)  | Yes |  Request for asset changes or album changes.|
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+| Promise&lt;void&gt;| Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201   | Permission denied.         |
+| 401   | if parameter is invalid.   |
+| 14000011  | System inner fail.     |
+
+**Example**
+
+This API depends on the [MediaChangeRequest](#mediachangerequest11) object. For details about the sample code, see [MediaAssetChangeRequest](#mediaassetchangerequest11), [MediaAssetsChangeRequest](#mediaassetschangerequest11), and [MediaAlbumChangeRequest](#mediaalbumchangerequest11).
+
 ### release
 
 release(callback: AsyncCallback&lt;void&gt;): void
@@ -1727,7 +2052,7 @@ For details about the error codes, see [Universal Error Codes](../errorcodes/err
 async function example() {
   console.info('releaseDemo');
   phAccessHelper.release((err) => {
-    if (err != undefined) {
+    if (err !== undefined) {
       console.error('release failed. message = ', err);
     } else {
       console.info('release ok.');
@@ -1938,7 +2263,7 @@ async function example() {
   console.info('photoAsset get photoAssetTitle = ', photoAssetTitle);
   photoAsset.set(title, 'newTitle2');
   photoAsset.commitModify((err) => {
-    if (err == undefined) {
+    if (err === undefined) {
       let newPhotoAssetTitle: photoAccessHelper.MemberType = photoAsset.get(title);
       console.info('photoAsset get newPhotoAssetTitle = ', newPhotoAssetTitle);
     } else {
@@ -2004,13 +2329,17 @@ async function example() {
 }
 ```
 
-### open
+### open<sup>(deprecated)</sup>
 
 open(mode: string, callback: AsyncCallback&lt;number&gt;): void
 
 Opens this file asset. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>The write operations are mutually exclusive. After a write operation is complete, you must call **close** to close the file.
+> **NOTE**
+>
+> This API is supported since API version 10 and deprecated since API version 11. For security purposes, the API for obtaining the handle of a media file is no longer provided.
+
+> **NOTE**<br>A file can be opened in only one mode at a time. Use **close()** to close the FD returned when it is not required.
 
 **System API**: This is a system API.
 
@@ -2022,7 +2351,7 @@ Opens this file asset. This API uses an asynchronous callback to return the resu
 
 | Name     | Type                         | Mandatory  | Description                                 |
 | -------- | --------------------------- | ---- | ----------------------------------- |
-| mode     | string                      | Yes   | File open mode, which can be **r** (read-only), **w** (write-only), or **rw** (read-write).|
+| mode     | string                      | Yes   | Mode for opening the file, which can be **'r'** (read-only), **'w'** (write-only), or **'rw'** (read/write).|
 | callback | AsyncCallback&lt;number&gt; | Yes   | Callback invoked to return the file descriptor (FD) of the file opened.                           |
 
 **Error codes**
@@ -2041,27 +2370,31 @@ For details about the error codes, see [Universal Error Codes](../errorcodes/err
 
 ```ts
 async function example() {
-  console.info('openDemo');
-   let testFileName: string = 'testFile' + Date.now() + '.jpg';
-  const photoAsset: photoAccessHelper.PhotoAsset = await phAccessHelper.createAsset(testFileName);
+  console.info('Open demo');
+  let testFileName: string = 'testFile' + Date.now() + '.jpg';
+  let photoAsset: photoAccessHelper.PhotoAsset = await phAccessHelper.createAsset(testFileName);
   photoAsset.open('rw', (err, fd) => {
-    if (fd != undefined) {
+    if (fd !== undefined) {
       console.info('File fd' + fd);
       photoAsset.close(fd);
     } else {
-      console.error('File err' + err);
+      console.error('Open file err' + err);
     }
   });
 }
 ```
 
-### open
+### open<sup>(deprecated)</sup>
 
 open(mode: string): Promise&lt;number&gt;
 
 Opens this file asset. This API uses a promise to return the result.
 
-> **NOTE**<br>The write operations are mutually exclusive. After a write operation is complete, you must call **close** to close the file.
+> **NOTE**
+>
+> This API is supported since API version 10 and deprecated since API version 11. For security purposes, the API for obtaining the handle of a media file is no longer provided.
+
+> **NOTE**<br>A file can be opened in only one mode at a time. Use **close()** to close the FD returned when it is not required.
 
 **System API**: This is a system API.
 
@@ -2073,7 +2406,7 @@ Opens this file asset. This API uses a promise to return the result.
 
 | Name | Type    | Mandatory  | Description                                 |
 | ---- | ------ | ---- | ----------------------------------- |
-| mode | string | Yes   | File open mode, which can be **r** (read-only), **w** (write-only), or **rw** (read-write).|
+| mode | string | Yes   | Mode for opening the file, which can be **'r'** (read-only), **'w'** (write-only), or **'rw'** (read/write).|
 
 **Return value**
 
@@ -2097,30 +2430,34 @@ For details about the error codes, see [Universal Error Codes](../errorcodes/err
 
 ```ts
 async function example() {
-  console.info('openDemo');
+  console.info('Open demo');
   try {
     let testFileName: string = 'testFile' + Date.now() + '.jpg';
-    const photoAsset: photoAccessHelper.PhotoAsset = await phAccessHelper.createAsset(testFileName);
+    let photoAsset: photoAccessHelper.PhotoAsset = await phAccessHelper.createAsset(testFileName);
     let fd: number = await photoAsset.open('rw');
-    if (fd != undefined) {
+    if (fd !== undefined) {
       console.info('File fd' + fd);
       photoAsset.close(fd);
     } else {
-      console.error(' open File fail');
+      console.error('Open file fail');
     }
   } catch (err) {
-    console.error('open Demo err' + err);
+    console.error('Open demo err' + err);
   }
 }
 ```
 
-### getReadOnlyFd
+### getReadOnlyFd<sup>(deprecated)</sup>
 
 getReadOnlyFd(callback: AsyncCallback&lt;number&gt;): void
 
 Opens this file in read-only mode. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>After the read operation is complete, call **close** to close the file.
+> **NOTE**
+>
+> This API is supported since API version 10 and deprecated since API version 11. For security purposes, the API for obtaining the handle of a media file is no longer provided.
+
+> **NOTE**<br>The returned FD must be closed when it is not required.
 
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO
 
@@ -2130,7 +2467,7 @@ Opens this file in read-only mode. This API uses an asynchronous callback to ret
 
 | Name     | Type                         | Mandatory  | Description                                 |
 | -------- | --------------------------- | ---- | ----------------------------------- |
-| callback | AsyncCallback&lt;number&gt; | Yes   | Callback invoked to return the FD of the file opened.                           |
+| callback | AsyncCallback&lt;number&gt; | Yes   | Callback invoked to return the file descriptor (FD) of the file opened.                           |
 
 **Error codes**
 
@@ -2148,26 +2485,36 @@ For details about the error codes, see [Universal Error Codes](../errorcodes/err
 ```ts
 async function example() {
   console.info('getReadOnlyFdDemo');
-   let testFileName: string = 'testFile' + Date.now() + '.jpg';
-  const photoAsset: photoAccessHelper.PhotoAsset = await phAccessHelper.createAsset(testFileName);
+  // Ensure that there are images and video files in the device.
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let assetResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+  let photoAsset: photoAccessHelper.PhotoAsset = await assetResult.getFirstObject();
   photoAsset.getReadOnlyFd((err, fd) => {
-    if (fd != undefined) {
+    if (fd !== undefined) {
       console.info('File fd' + fd);
       photoAsset.close(fd);
     } else {
-      console.error('File err' + err);
+      console.error('getReadOnlyFd err' + err);
     }
   });
 }
 ```
 
-### getReadOnlyFd
+### getReadOnlyFd<sup>(deprecated)</sup>
 
 getReadOnlyFd(): Promise&lt;number&gt;
 
 Opens this file in read-only mode. This API uses a promise to return the result.
 
-> **NOTE**<br>After the read operation is complete, call **close** to close the file.
+> **NOTE**
+>
+> This API is supported since API version 10 and deprecated since API version 11. For security purposes, the API for obtaining the handle of a media file is no longer provided.
+
+> **NOTE**<br>The returned FD must be closed when it is not required.
 
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO
 
@@ -2196,26 +2543,36 @@ For details about the error codes, see [Universal Error Codes](../errorcodes/err
 async function example() {
   console.info('getReadOnlyFdDemo');
   try {
-    let testFileName: string = 'testFile' + Date.now() + '.jpg';
-    const photoAsset: photoAccessHelper.PhotoAsset = await phAccessHelper.createAsset(testFileName);
+    // Ensure that there are images and video files in the device.
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let assetResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let photoAsset: photoAccessHelper.PhotoAsset = await assetResult.getFirstObject();
     let fd: number = await photoAsset.getReadOnlyFd();
-    if (fd != undefined) {
+    if (fd !== undefined) {
       console.info('File fd' + fd);
       photoAsset.close(fd);
     } else {
-      console.error(' open File fail');
+      console.error('getReadOnlyFd fail');
     }
   } catch (err) {
-    console.error('open Demo err' + err);
+    console.error('getReadOnlyFd demo err' + err);
   }
 }
 ```
 
-### close
+### close<sup>(deprecated)</sup>
 
 close(fd: number, callback: AsyncCallback&lt;void&gt;): void
 
 Closes a file. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 10 and deprecated since API version 11. For security purposes, the API for obtaining the handle of a media file is no longer provided. The corresponding **close** API is also deprecated.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -2250,11 +2607,11 @@ async function example() {
       predicates: predicates
     };
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
-    const photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
     let fd: number = await photoAsset.open('rw');
     console.info('file fd', fd);
     photoAsset.close(fd, (err) => {
-      if (err == undefined) {
+      if (err === undefined) {
         console.info('asset close succeed.');
       } else {
         console.error('close failed, message = ' + err);
@@ -2266,11 +2623,15 @@ async function example() {
 }
 ```
 
-### close
+### close<sup>(deprecated)</sup>
 
 close(fd: number): Promise&lt;void&gt;
 
 Closes a file. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 10 and deprecated since API version 11. For security purposes, the API for obtaining the handle of a media file is no longer provided. The corresponding **close** API is also deprecated.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -2310,7 +2671,7 @@ async function example() {
       predicates: predicates
     };
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
-    const asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
     let fd = await asset.open('rw');
     console.info('file fd', fd);
     await asset.close(fd);
@@ -2361,10 +2722,10 @@ async function example() {
     predicates: predicates
   };
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
-  const asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+  let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
   console.info('asset displayName = ', asset.displayName);
   asset.getThumbnail((err, pixelMap) => {
-    if (err == undefined) {
+    if (err === undefined) {
       console.info('getThumbnail successful ' + pixelMap);
     } else {
       console.error('getThumbnail fail', err);
@@ -2416,10 +2777,10 @@ async function example() {
   };
   let size: image.Size = { width: 720, height: 720 };
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
-  const asset = await fetchResult.getFirstObject();
+  let asset = await fetchResult.getFirstObject();
   console.info('asset displayName = ', asset.displayName);
   asset.getThumbnail(size, (err, pixelMap) => {
-    if (err == undefined) {
+    if (err === undefined) {
       console.info('getThumbnail successful ' + pixelMap);
     } else {
       console.error('getThumbnail fail', err);
@@ -2477,7 +2838,7 @@ async function example() {
   };
   let size: image.Size = { width: 720, height: 720 };
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
-  const asset = await fetchResult.getFirstObject();
+  let asset = await fetchResult.getFirstObject();
   console.info('asset displayName = ', asset.displayName);
   asset.getThumbnail(size).then((pixelMap) => {
     console.info('getThumbnail successful ' + pixelMap);
@@ -2487,11 +2848,15 @@ async function example() {
 }
 ```
 
-### setFavorite
+### setFavorite<sup>(deprecated)</sup>
 
 setFavorite(favoriteState: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 Favorites or unfavorites this file. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 10 and deprecated since API version 11. Use [MediaAssetChangeRequest.setFavorite](#setfavorite11) instead.
 
 **System API**: This is a system API.
 
@@ -2531,9 +2896,9 @@ async function example() {
     predicates: predicates
   };
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
-  const asset = await fetchResult.getFirstObject();
+  let asset = await fetchResult.getFirstObject();
   asset.setFavorite(true, (err) => {
-    if (err == undefined) {
+    if (err === undefined) {
       console.info('favorite successfully');
     } else {
       console.error('favorite failed with error:' + err);
@@ -2542,11 +2907,15 @@ async function example() {
 }
 ```
 
-### setFavorite
+### setFavorite<sup>(deprecated)</sup>
 
 setFavorite(favoriteState: boolean): Promise&lt;void&gt;
 
 Favorites or unfavorites this file asset. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 10 and deprecated since API version 11. Use [MediaAssetChangeRequest.setFavorite](#setfavorite11) instead.
 
 **System API**: This is a system API.
 
@@ -2592,7 +2961,7 @@ async function example() {
     predicates: predicates
   };
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
-  const asset = await fetchResult.getFirstObject();
+  let asset = await fetchResult.getFirstObject();
   asset.setFavorite(true).then(() => {
     console.info('setFavorite successfully');
   }).catch((err: BusinessError) => {
@@ -2601,13 +2970,17 @@ async function example() {
 }
 ```
 
-### setHidden
+### setHidden<sup>(deprecated)</sup>
 
 setHidden(hiddenState: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 Sets this file to hidden state. This API uses an asynchronous callback to return the result.
 
 Private files are stored in the private album. After obtaining private files from the private album, users can set **hiddenState** to **false** to remove them from the private album.
+
+> **NOTE**
+>
+> This API is supported since API version 10 and deprecated since API version 11. Use [MediaAssetChangeRequest.setHidden](#sethidden11) instead.
 
 **System API**: This is a system API.
 
@@ -2647,9 +3020,9 @@ async function example() {
     predicates: predicates
   };
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
-  const asset = await fetchResult.getFirstObject();
+  let asset = await fetchResult.getFirstObject();
   asset.setHidden(true, (err) => {
-    if (err == undefined) {
+    if (err === undefined) {
       console.info('setHidden successfully');
     } else {
       console.error('setHidden failed with error:' + err);
@@ -2658,13 +3031,17 @@ async function example() {
 }
 ```
 
-### setHidden
+### setHidden<sup>(deprecated)</sup>
 
 setHidden(hiddenState: boolean): Promise&lt;void&gt;
 
 Sets this file asset to hidden state. This API uses a promise to return the result.
 
 Private files are stored in the private album. After obtaining private files from the private album, users can set **hiddenState** to **false** to remove them from the private album.
+
+> **NOTE**
+>
+> This API is supported since API version 10 and deprecated since API version 11. Use [MediaAssetChangeRequest.setHidden](#sethidden11) instead.
 
 **System API**: This is a system API.
 
@@ -2711,9 +3088,9 @@ async function example() {
     predicates: predicates
   };
   let albumList: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.HIDDEN);
-  const album = await albumList.getFirstObject();
+  let album = await albumList.getFirstObject();
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await album.getAssets(fetchOption);
-  const asset = await fetchResult.getFirstObject();
+  let asset = await fetchResult.getFirstObject();
   asset.setHidden(false).then(() => {
     console.info('setHidden successfully');
   }).catch((err: BusinessError) => {
@@ -2727,6 +3104,8 @@ async function example() {
 getExif(): Promise&lt;string&gt;
 
 Obtains a JSON string consisting of the EXIF tags of this JPG image. This API uses a promise to return the result.
+
+The EXIF tag information is provided by the [image](js-apis-image.md) module. For details about the EXIF tag information, see [image.PropertyKey](js-apis-image.md#propertykey7).
 
 > **NOTE**<br>This API returns a JSON string consisting of EXIF tags. The complete EXIF information consists of **all_exif** and [PhotoKeys.USER_COMMENT](#photokeys). These two fields must be passed in via **fetchColumns**.
 
@@ -2754,48 +3133,6 @@ For details about the error codes, see [Universal Error Codes](../errorcodes/err
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
 
-**Supported EXIF tags**
-
-For details about the EXIF tags, see [image.PropertyKey](js-apis-image.md#propertykey7).
-
-| Key Value                                   | Description             |
-| --------------------------------------- | ----------------- |
-| BitsPerSample | Number of bits per pixel.|
-| Orientation | Image orientation.|
-| ImageLength | Image length.|
-| ImageWidth | Image width.|
-| GPSLatitude | GPS latitude of the image.|
-| GPSLongitude | GPS longitude of the image.|
-| GPSLatitudeRef | Longitude reference, for example, W or E.|
-| GPSLongitudeRef | Latitude reference, for example, N or S.|
-| DateTimeOriginal | Shooting time.|
-| ExposureTime | Exposure time.|
-| SceneType | Shooting scene type.|
-| ISOSpeedRatings | ISO sensitivity or speed.|
-| FNumber | f-number.|
-| DateTime | Date and time when the image was last modified.|
-| GPSTimeStamp | GPS timestamp.|
-| GPSDateStamp | GPS date stamp.|
-| ImageDescription | Image description.|
-| Make | Camera vendor.|
-| MakeNote | Camera vendor.|
-| Model | Model.|
-| PhotoMode | Photo mode.|
-| SensitivityType | Sensitivity type.|
-| StandardOutputSensitivity | Standard output sensitivity.|
-| RecommendedExposureIndex | Recommended exposure index.|
-| ApertureValue | Aperture value.|
-| MeteringMode | Metering mode.|
-| LightSource | Light source.|
-| Flash | Flash status.|
-| FocalLength | Focal length.|
-| UserComment | User comment.|
-| PixelXDimension | Pixel X dimension.|
-| PixelYDimension | Pixel Y dimension.|
-| WhiteBalance | White balance.|
-| FocalLengthIn35mmFilm | Focal length in 35 mm film.|
-| ExposureBiasValue | Exposure compensation.|
-
 **Example**
 
 ```ts
@@ -2814,6 +3151,7 @@ async function example() {
     let exifMessage = await photoAsset.getExif();
     let userCommentKey = 'UserComment';
     let userComment = JSON.stringify(JSON.parse(exifMessage), [userCommentKey]);
+    console.info('getExifDemo userComment: ' + JSON.stringify(userComment));
     fetchResult.close();
   } catch (err) {
     console.error('getExifDemoCallback failed with error: ' + err);
@@ -2826,6 +3164,8 @@ async function example() {
 getExif(callback: AsyncCallback&lt;string&gt;): void
 
 Obtains a JSON string consisting of the EXIF tags of this JPG image. This API uses an asynchronous callback to return the result.
+
+The EXIF tag information is provided by the [image](js-apis-image.md) module. For details about the EXIF tag information, see [image.PropertyKey](js-apis-image.md#propertykey7).
 
 > **NOTE**<br>This API returns a JSON string consisting of EXIF tags. The complete EXIF information consists of **all_exif** and [PhotoKeys.USER_COMMENT](#photokeys). These two fields must be passed in via **fetchColumns**.
 
@@ -2853,48 +3193,6 @@ For details about the error codes, see [Universal Error Codes](../errorcodes/err
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
 
-**Supported EXIF tags**
-
-For details about the EXIF tags, see [image.PropertyKey](js-apis-image.md#propertykey7).
-
-| Key Value                                   | Description             |
-| --------------------------------------- | ----------------- |
-| BitsPerSample | Number of bits per pixel.|
-| Orientation | Image orientation.|
-| ImageLength | Image length.|
-| ImageWidth | Image width.|
-| GPSLatitude | GPS latitude of the image.|
-| GPSLongitude | GPS longitude of the image.|
-| GPSLatitudeRef | Longitude reference, for example, W or E.|
-| GPSLongitudeRef | Latitude reference, for example, N or S.|
-| DateTimeOriginal | Shooting time.|
-| ExposureTime | Exposure time.|
-| SceneType | Shooting scene type.|
-| ISOSpeedRatings | ISO sensitivity or speed.|
-| FNumber | f-number.|
-| DateTime | Date and time when the image was last modified.|
-| GPSTimeStamp | GPS timestamp.|
-| GPSDateStamp | GPS date stamp.|
-| ImageDescription | Image description.|
-| Make | Camera vendor.|
-| MakeNote | Camera vendor.|
-| Model | Model.|
-| PhotoMode | Photo mode.|
-| SensitivityType | Sensitivity type.|
-| StandardOutputSensitivity | Standard output sensitivity.|
-| RecommendedExposureIndex | Recommended exposure index.|
-| ApertureValue | Aperture value.|
-| MeteringMode | Metering mode.|
-| LightSource | Light source.|
-| Flash | Flash status.|
-| FocalLength | Focal length.|
-| UserComment | User comment.|
-| PixelXDimension | Pixel X dimension.|
-| PixelYDimension | Pixel Y dimension.|
-| WhiteBalance | White balance.|
-| FocalLengthIn35mmFilm | Focal length in 35 mm film.|
-| ExposureBiasValue | Exposure compensation.|
-
 **Example**
 
 ```ts
@@ -2914,7 +3212,7 @@ async function example() {
     console.info('getExifDemo photoAsset displayName: ' + JSON.stringify(photoAsset.displayName));
     let userCommentKey = 'UserComment';
     photoAsset.getExif((err, exifMessage) => {
-      if (exifMessage != undefined) {
+      if (exifMessage !== undefined) {
         let userComment = JSON.stringify(JSON.parse(exifMessage), [userCommentKey]);
         console.info('getExifDemo userComment: ' + JSON.stringify(userComment));
       } else {
@@ -2928,11 +3226,15 @@ async function example() {
 }
 ```
 
-### setUserComment
+### setUserComment<sup>(deprecated)</sup>
 
 setUserComment(userComment: string): Promise&lt;void&gt;
 
 Sets user comment information of an image or video. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 10 and deprecated since API version 11. Use [MediaAssetChangeRequest.setUserComment](#setusercomment11) instead.
 
 > **NOTE**<br>This API can be used to modify the comment information of only images or videos.
 
@@ -2946,7 +3248,7 @@ Sets user comment information of an image or video. This API uses a promise to r
 
 | Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| userComment | string | Yes  | User comment information to set, which cannot exceed 140 characters.|
+| userComment | string | Yes  | User comment information to set, which cannot exceed 420 characters.|
 
 **Return value**
 
@@ -2984,16 +3286,20 @@ async function example() {
     let userComment = 'test_set_user_comment';
     await photoAsset.setUserComment(userComment);
   } catch (err) {
-    console.error('setUserCommentDemoCallback failed with error: ' + err);
+    console.error('setUserCommentDemoPromise failed with error: ' + err);
   }
 }
 ```
 
-### setUserComment
+### setUserComment<sup>(deprecated)</sup>
 
 setUserComment(userComment: string, callback: AsyncCallback&lt;void&gt;): void
 
 Sets user comment information of an image or video. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 10 and deprecated since API version 11. Use [MediaAssetChangeRequest.setUserComment](#setusercomment11) instead.
 
 > **NOTE**<br>This API can be used to modify the comment information of only images or videos.
 
@@ -3007,7 +3313,7 @@ Sets user comment information of an image or video. This API uses an asynchronou
 
 | Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| userComment | string | Yes  | User comment information to set, which cannot exceed 140 characters.|
+| userComment | string | Yes  | User comment information to set, which cannot exceed 420 characters.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback that returns no value.|
 
 **Error codes**
@@ -3093,6 +3399,7 @@ async function example() {
     console.info('setPendingCallbackDemo');
     let testFileName: string = 'testFile' + Date.now() + '.jpg';
     let photoAsset = await phAccessHelper.createAsset(testFileName);
+    let fd = await photoAsset.open('rw');
     photoAsset.setPending(true, async (err) => {
       if (err !== undefined) {
         console.error('setPending(true) failed with error: ' + err);
@@ -3141,7 +3448,6 @@ The pending state can be removed only through **setPending(false)**. You can use
 | --------------------------------------- | ----------------- |
 |Promise&lt;boolean&gt; | Promise that returns no value.|
 
-
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
@@ -3161,7 +3467,7 @@ async function example() {
     console.info('setPendingPromiseDemo');
     let testFileName: string = 'testFile' + Date.now() + '.jpg';
     let photoAsset = await phAccessHelper.createAsset(testFileName);
-    let fd = await photoAsset.open('fd');
+    let fd = await photoAsset.open('rw');
     await photoAsset.setPending(true);
     // write photo buffer in fd
     photoAsset.setPending(false);
@@ -3396,10 +3702,65 @@ async function example() {
     };
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
     let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-    let editdata = await photoAsset.requestEditData();
+    let editdata: string = await photoAsset.requestEditData();
     console.info('Editdata is ' + editdata);
   } catch (err) {
     console.error('requestEditDataPromiseDemo failed with error: ' + err);
+  }
+}
+```
+
+### getEditData<sup>11+</sup>
+
+getEditData(): Promise&lt;MediaAssetEditData&gt;
+
+Obtains the edited data of this asset. This API uses a promise to return the result.
+
+If the asset has not been edited, an empty string is returned.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+|Promise&lt;[MediaAssetEditData](#mediaasseteditdata11)&gt; | Promise used to return the edited asset data.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201   | Permission denied.        |
+| 202   | Called by non-system application.         |
+| 401   | if parameter is invalid.         |
+| 14000011   | System inner fail.        |
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('getEditDataDemo')
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    let assetEditData: photoAccessHelper.MediaAssetEditData = await photoAsset.getEditData();
+    let data: string = assetEditData.data;
+    console.info('edit data is ' + data);
+  } catch (err) {
+    console.error('getEditDataDemo failed with error: ' + err);
   }
 }
 ```
@@ -3420,7 +3781,7 @@ Opens the source file to obtain the FD. This API uses an asynchronous callback t
 
 | Name       | Type     | Mandatory  | Description                                |
 | ---------- | ------- | ---- | ---------------------------------- |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback invoked to return the FD.|
+| callback | AsyncCallback&lt;number&gt; | Yes   | Callback invoked to return the FD.|
 
 **Error codes**
 
@@ -3477,8 +3838,7 @@ Opens the source file to obtain the FD. This API uses a promise to return the re
 
 | Type                                   | Description             |
 | --------------------------------------- | ----------------- |
-|Promise&lt;string&gt; | Promise used to return the FD.|
-
+|Promise&lt;number&gt; | Promise used to return the FD.|
 
 **Error codes**
 
@@ -3520,7 +3880,7 @@ commitEditedAsset(editData: string, uri: string, callback: AsyncCallback&lt;void
 
 Commits the edited image or video asset. This API uses an asynchronous callback to return the result.
 
-The edited file is saved to the media library based on the URI. The URI is **FileUri** of the edited file in the application sandbox. For details, see [FileUri](./js-apis-file-fileuri.md).
+The edited file is saved to the media library based on the URI. The URI is **FileUri** of the edited file in the application sandbox directory. For details, see [FileUri](js-apis-file-fileuri.md).
 
 > **NOTE**<br>The commit operation overwrites the previous edited data.
 
@@ -3570,7 +3930,7 @@ async function example() {
       if (err === undefined) {
         console.info('commitEditedAsset is successful');
       } else {
-        console.error('requestSource failed with error: ' + err);
+        console.error('commitEditedAsset failed with error: ' + err);
       }
     });
   } catch (err) {
@@ -3581,11 +3941,11 @@ async function example() {
 
 ### commitEditedAsset<sup>11+</sup>
 
-commitEditedAsset(editData: string, uri: string): Promise&lt;void&gt
+commitEditedAsset(editData: string, uri: string): Promise&lt;void&gt;
 
 Commits the edited image or video asset. This API uses a promise to return the result.
 
-The edited file is saved to the media library based on the URI. The URI is **FileUri** of the edited file in the application sandbox. For details, see [FileUri](./js-apis-file-fileuri.md).
+The edited file is saved to the media library based on the URI. The URI is **FileUri** of the edited file in the application sandbox directory. For details, see [FileUri](js-apis-file-fileuri.md).
 
 > **NOTE**<br>The commit operation overwrites the previous edited data.
 
@@ -3607,7 +3967,6 @@ The edited file is saved to the media library based on the URI. The URI is **Fil
 | Type                                   | Description             |
 | --------------------------------------- | ----------------- |
 |Promise&lt;void&gt; | Promise that returns no value.|
-
 
 **Error codes**
 
@@ -3637,7 +3996,7 @@ async function example() {
     let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
     let editData = '123456';
     let uri = 'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.jpg';
-    photoAsset.commitEditedAsset(editData, uri);
+    await photoAsset.commitEditedAsset(editData, uri);
     console.info('commitEditedAsset is successful');
   } catch (err) {
     console.error('commitEditedAssetPromiseDemo failed with error: ' + err);
@@ -3699,7 +4058,7 @@ async function example() {
       }
     });
   } catch (err) {
-    console.error('RevertToOriginalCallbackDemo failed with error: ' + err);
+    console.error('revertToOriginalCallbackDemo failed with error: ' + err);
   }
 }
 ```
@@ -3724,6 +4083,65 @@ Reverts to the state of the file before being edited. This API uses a promise to
 | --------------------------------------- | ----------------- |
 |Promise&lt;string&gt; | Promise that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201   | Permission denied.        |
+| 202   | Called by non-system application.         |
+| 401   | if parameter is invalid.         |
+| 14000011   | System inner fail.        |
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('revertToOriginalPromiseDemo')
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    photoAsset.revertToOriginal();
+    console.info('revertToOriginal is successful');
+  } catch (err) {
+    console.error('revertToOriginalPromiseDemo failed with error: ' + err);
+  }
+}
+```
+
+### requestPhoto<sup>11+</sup>
+
+requestPhoto(callback: AsyncCallback&lt;image.PixelMap&gt;): string
+
+Obtains the quick thumbnail and quality thumbnail of this asset. This API uses an asynchronous callback to return the result.
+
+The size of a quick thumbnail is 128 x 128, and the size of a quality thumbnail is 256 x 256. After this API is called, the callback will be invoked twice to return a quick thumbnail and a quality thumbnail in sequence.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name       | Type     | Mandatory  | Description                                |
+| ---------- | ------- | ---- | ---------------------------------- |
+| callback | AsyncCallback&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt; | Yes   | Callback invoked twice to return the quick and common thumbnails obtained.|
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+| string | ID of the task for obtaining thumbnails.|
 
 **Error codes**
 
@@ -3743,25 +4161,220 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
   try {
-    console.info('RevertToOriginalPromiseDemo')
-    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    console.info('requestPhotoDemo')
+    let options: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: new dataSharePredicates.DataSharePredicates()
+    }
+    let fetchResult = await phAccessHelper.getAssets(options);
+    let photoAsset = await fetchResult.getFirstObject();
+    let taskId: string = photoAsset.requestPhoto(async (err, pixel: image.PixelMap) => {
+      if (err === undefined) {
+        console.info("requestSource in, size: " + JSON.stringify((await pixel.getImageInfo()).size))
+      } else {
+        console.error('requestSource failed with error: ' + err);
+      }
+    })
+    console.info('requestSource taskId: ' + taskId)
+  } catch (err) {
+    console.error('requestPhotoDemo failed with error: ' + err)
+  }
+}
+```
+
+### requestPhoto<sup>11+</sup>
+
+requestPhoto(options: RequestPhotoOptions, callback: AsyncCallback&lt;image.PixelMap&gt;): string
+
+Obtains the thumbnails of an asset based on the specified options. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name       | Type     | Mandatory  | Description                                |
+| ---------- | ------- | ---- | ---------------------------------- |
+| options | [RequestPhotoOptions](#requestphotooptions11) | Yes   | Options for obtaining the asset thumbnail.|
+| callback | AsyncCallback&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt; | Yes   | Callback invoked to return the thumbnails obtained. The callback may be invoked more than once, depending on **options**.|
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+| string | ID of the task for obtaining thumbnails.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201   | Permission denied.        |
+| 202   | Called by non-system application.         |
+| 401   | if parameter is invalid.         |
+| 14000011   | System inner fail.        |
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('requestPhotoDemo')
+    let options: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: new dataSharePredicates.DataSharePredicates()
+    }
+    let fetchResult = await phAccessHelper.getAssets(options);
+    let photoAsset = await fetchResult.getFirstObject();
+    let taskId: string = photoAsset.requestPhoto({
+      "size": {
+        "width": 256,
+        "height": 256
+      },
+      "requestPhotoType": photoAccessHelper.RequestPhotoType.REQUEST_ALL_THUMBNAILS
+    }, async (err, pixel: image.PixelMap) => {
+      if (err === undefined) {
+        console.info("requestSource in, size: " + JSON.stringify((await pixel.getImageInfo()).size))
+      } else {
+        console.error('requestSource failed with error: ' + err);
+      }
+    })
+    console.info('requestSource taskId: ' + taskId)
+  } catch (err) {
+    console.error('requestPhotoDemo failed with error: ' + err)
+  }
+}
+```
+
+### cancelPhotoRequest<sup>11+</sup>
+
+cancelPhotoRequest(requestId: string): void
+
+Cancels a task for obtaining media thumbnails.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name       | Type     | Mandatory  | Description                                |
+| ---------- | ------- | ---- | ---------------------------------- |
+| requestId | string | Yes   | ID of the task to cancel.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201   | Permission denied.        |
+| 202   | Called by non-system application.         |
+| 401   | if parameter is invalid.         |
+| 14000011   | System inner fail.        |
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('cancelPhotoRequestDemo')
+    let options: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: new dataSharePredicates.DataSharePredicates()
+    }
+    let fetchResult = await phAccessHelper.getAssets(options);
+    let photoAsset = await fetchResult.getFirstObject();
+    let taskId: string = photoAsset.requestPhoto({
+      "size": {
+        "width": 256,
+        "height": 256
+      },
+      "requestPhotoType": photoAccessHelper.RequestPhotoType.REQUEST_ALL_THUMBNAILS
+    }, async (err, pixel: image.PixelMap) => {
+      if (err === undefined) {
+        console.info("requestSource in, size: " + JSON.stringify((await pixel.getImageInfo()).size))
+      } else {
+        console.error('requestSource failed with error: ' + err);
+      }
+    })
+    console.info('requestSource taskId: ' + taskId)
+    photoAsset.cancelPhotoRequest(taskId);
+  } catch (err) {
+    console.error('cancelPhotoRequestDemo failed with error: ' + err)
+  }
+}
+```
+
+### getAnalysisData<sup>11+</sup>
+
+getAnalysisData(analysisType: AnalysisType): Promise\<string>
+
+Obtains analysis data. 
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.READ\_IMAGEVIDEO
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name         | Type          | Mandatory| Description          |
+| :----------- | :----------- | :- | :----------- |
+| analysisType | [AnalysisType](#analysistype11) | Yes | Smart analysis type.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID   | Error Message                             |
+| :------- | :-------------------------------- |
+| 201      | Permission denied.                |
+| 202      | Called by non-system application. |
+| 401      | if parameter is invalid.          |
+| 14000011 | System inner fail.                |
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('getAnalysisDataDemo')
     let fetchOptions: photoAccessHelper.FetchOptions = {
       fetchColumns: [],
-      predicates: predicates
-    };
-    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+      predicates: new dataSharePredicates.DataSharePredicates()
+    }
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> =
+      await phAccessHelper.getAssets(fetchOptions);
     let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-    photoAsset.revertToOriginal();
-    console.info('revertToOriginal is successful');
+    if (photoAsset != undefined) {
+      let analysisData: string = await photoAsset.getAnalysisData(
+        photoAccessHelper.AnalysisType.ANALYSIS_OCR);
+      console.info('get ocr result: ' + JSON.stringify(analysisData));
+    }
+    fetchResult.close();
   } catch (err) {
-    console.error('RevertToOriginalPromiseDemo failed with error: ' + err);
+    console.error('getAnalysisDataDemofailed with error: ' + err)
   }
 }
 ```
 
 ## PhotoViewPicker
 
-Provides APIs for selecting images and videos. Before using the APIs of **PhotoViewPicker**, you need to create a **PhotoViewPicker** instance.
+Provides APIs for the user to select images and videos. Before using the APIs of **PhotoViewPicker**, you need to create a **PhotoViewPicker** instance.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -3961,7 +4574,7 @@ async function example() {
     predicates: predicates
   };
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
-  const fetchCount = fetchResult.getCount();
+  let fetchCount = fetchResult.getCount();
   console.info('fetchCount = ', fetchCount);
 }
 ```
@@ -4002,13 +4615,13 @@ async function example() {
     predicates: predicates
   };
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
-  const fetchCount = fetchResult.getCount();
+  let fetchCount = fetchResult.getCount();
   console.info('count:' + fetchCount);
   let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getLastObject();
   if (fetchResult.isAfterLast()) {
     console.info('photoAsset isAfterLast displayName = ', photoAsset.displayName);
   } else {
-    console.info('photoAsset  not isAfterLast ');
+    console.info('photoAsset not isAfterLast.');
   }
 }
 ```
@@ -4091,7 +4704,7 @@ async function example() {
   };
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
   fetchResult.getFirstObject((err, photoAsset) => {
-    if (photoAsset != undefined) {
+    if (photoAsset !== undefined) {
       console.info('photoAsset displayName: ', photoAsset.displayName);
     } else {
       console.error('photoAsset failed with err:' + err);
@@ -4183,7 +4796,7 @@ async function example() {
   await fetchResult.getFirstObject();
   if (!fetchResult.isAfterLast()) {
     fetchResult.getNextObject((err, photoAsset) => {
-      if (photoAsset != undefined) {
+      if (photoAsset !== undefined) {
         console.info('photoAsset displayName: ', photoAsset.displayName);
       } else {
         console.error('photoAsset failed with err: ' + err);
@@ -4277,7 +4890,7 @@ async function example() {
   };
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
   fetchResult.getLastObject((err, photoAsset) => {
-    if (photoAsset != undefined) {
+    if (photoAsset !== undefined) {
       console.info('photoAsset displayName: ', photoAsset.displayName);
     } else {
       console.error('photoAsset failed with err: ' + err);
@@ -4367,7 +4980,7 @@ async function example() {
   };
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
   fetchResult.getObjectByPosition(0, (err, photoAsset) => {
-    if (photoAsset != undefined) {
+    if (photoAsset !== undefined) {
       console.info('photoAsset displayName: ', photoAsset.displayName);
     } else {
       console.error('photoAsset failed with err: ' + err);
@@ -4462,7 +5075,7 @@ async function example() {
   };
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
   fetchResult.getAllObjects((err, photoAssetList) => {
-    if (photoAssetList != undefined) {
+    if (photoAssetList !== undefined) {
       console.info('photoAssetList length: ', photoAssetList.length);
     } else {
       console.error('photoAssetList failed with err:' + err);
@@ -4529,6 +5142,8 @@ Provides APIs to manage albums.
 | albumUri | string | Yes   | No   | URI of the album.  |
 | count | number | Yes   | No   |  Number of files in the album.|
 | coverUri | string | Yes   | No   | URI of the cover file of the album.|
+| imageCount<sup>11+</sup> | number | Yes  | No  | Number of images in the album.|
+| videoCount<sup>11+</sup> | number | Yes  | No  | Number of videos in the album.|
 
 ### getAssets
 
@@ -4544,7 +5159,7 @@ Obtains image and video assets. This API uses an asynchronous callback to return
 
 | Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| options | [FetchOptions](#fetchoptions) | Yes  | Options for fetching the albums.|
+| options | [FetchOptions](#fetchoptions) | Yes  | Options for fetching the assets.|
 | callback | AsyncCallback&lt;[FetchResult](#fetchresult)&lt;[PhotoAsset](#photoasset)&gt;&gt; | Yes  | Callback invoked to return the image and video assets obtained.|
 
 **Error codes**
@@ -4574,10 +5189,10 @@ async function example() {
     fetchColumns: [],
     predicates: predicates
   };
-  const albumList: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
-  const album: photoAccessHelper.Album = await albumList.getFirstObject();
+  let albumList: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
+  let album: photoAccessHelper.Album = await albumList.getFirstObject();
   album.getAssets(fetchOption, (err, albumFetchResult) => {
-    if (albumFetchResult != undefined) {
+    if (albumFetchResult !== undefined) {
       console.info('album getAssets successfully, getCount: ' + albumFetchResult.getCount());
     } else {
       console.error('album getAssets failed with error: ' + err);
@@ -4627,7 +5242,6 @@ import { BusinessError } from '@ohos.base';
 
 async function example() {
   console.info('albumGetAssetsDemoPromise');
-
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let albumFetchOptions: photoAccessHelper.FetchOptions = {
     fetchColumns: [],
@@ -4637,12 +5251,12 @@ async function example() {
     fetchColumns: [],
     predicates: predicates
   };
-  const albumList: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
-  const album: photoAccessHelper.Album = await albumList.getFirstObject();
+  let albumList: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
+  let album: photoAccessHelper.Album = await albumList.getFirstObject();
   album.getAssets(fetchOption).then((albumFetchResult) => {
-    console.info('album getPhotoAssets successfully, getCount: ' + albumFetchResult.getCount());
+    console.info('album getAssets successfully, getCount: ' + albumFetchResult.getCount());
   }).catch((err: BusinessError) => {
-    console.error('album getPhotoAssets failed with error: ' + err);
+    console.error('album getAssets failed with error: ' + err);
   });
 }
 ```
@@ -4686,11 +5300,11 @@ async function example() {
     fetchColumns: [],
     predicates: predicates
   };
-  const albumList: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
-  const album: photoAccessHelper.Album = await albumList.getFirstObject();
+  let albumList: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
+  let album: photoAccessHelper.Album = await albumList.getFirstObject();
   album.albumName = 'hello';
   album.commitModify((err) => {
-    if (err != undefined) {
+    if (err !== undefined) {
       console.error('commitModify failed with error: ' + err);
     } else {
       console.info('commitModify successfully');
@@ -4739,8 +5353,8 @@ async function example() {
     fetchColumns: [],
     predicates: predicates
   };
-  const albumList: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
-  const album: photoAccessHelper.Album = await albumList.getFirstObject();
+  let albumList: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
+  let album: photoAccessHelper.Album = await albumList.getFirstObject();
   album.albumName = 'hello';
   album.commitModify().then(() => {
     console.info('commitModify successfully');
@@ -4750,11 +5364,15 @@ async function example() {
 }
 ```
 
-### addAssets
+### addAssets<sup>(deprecated)</sup>
 
 addAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 Adds image and video assets to an album. Before the operation, ensure that the image and video assets to add and the album exist. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 10 and deprecated since API version 11. Use [MediaAlbumChangeRequest.addAssets](#addassets11) instead.
 
 **Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
 
@@ -4808,11 +5426,15 @@ async function example() {
 }
 ```
 
-### addAssets
+### addAssets<sup>(deprecated)</sup>
 
 addAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;
 
 Adds image and video assets to an album. Before the operation, ensure that the image and video assets to add and the album exist. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 10 and deprecated since API version 11. Use [MediaAlbumChangeRequest.addAssets](#addassets11) instead.
 
 **Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
 
@@ -4870,11 +5492,15 @@ async function example() {
 }
 ```
 
-### removeAssets
+### removeAssets<sup>(deprecated)</sup>
 
 removeAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 Removes image and video assets from an album. The album and file resources must exist. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 10 and deprecated since API version 11. Use [MediaAlbumChangeRequest.removeAssets](#removeassets11) instead.
 
 **Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
 
@@ -4928,11 +5554,15 @@ async function example() {
 }
 ```
 
-### removeAssets
+### removeAssets<sup>(deprecated)</sup>
 
 removeAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;
 
 Removes image and video assets from an album. The album and file resources must exist. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 10 and deprecated since API version 11. Use [MediaAlbumChangeRequest.removeAssets](#removeassets11) instead.
 
 **Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
 
@@ -4990,11 +5620,15 @@ async function example() {
 }
 ```
 
-### recoverAssets
+### recoverAssets<sup>(deprecated)</sup>
 
 recoverAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 Recovers image or video assets from the trash. Before the operation, ensure that the image or video assets exist in the trash. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 10 and deprecated since API version 11. Use [MediaAlbumChangeRequest.recoverAssets](#recoverassets11) instead.
 
 **System API**: This is a system API.
 
@@ -5051,11 +5685,15 @@ async function example() {
 }
 ```
 
-### recoverAssets
+### recoverAssets<sup>(deprecated)</sup>
 
 recoverAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;
 
 Recovers image or video assets from the trash. Before the operation, ensure that the image or video assets exist in the trash. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 10 and deprecated since API version 11. Use [MediaAlbumChangeRequest.recoverAssets](#recoverassets11) instead.
 
 **System API**: This is a system API.
 
@@ -5116,13 +5754,17 @@ async function example() {
 }
 ```
 
-### deleteAssets
+### deleteAssets<sup>(deprecated)</sup>
 
 deleteAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 Deletes image or video assets from the trash. Before the operation, ensure that the image or video assets exist in the trash. This API uses an asynchronous callback to return the result.
 
-**CAUTION**<br>This operation is irreversible. The file assets deleted cannot be restored. Exercise caution when performing this operation.
+> **NOTE**
+>
+> This API is supported since API version 10 and deprecated since API version 11. Use [MediaAlbumChangeRequest.deleteAssets](#deleteassets11-2) instead.
+
+**NOTE**<br>This operation is irreversible. The file assets deleted cannot be restored. Exercise caution when performing this operation.
 
 **System API**: This is a system API.
 
@@ -5179,13 +5821,17 @@ async function example() {
 }
 ```
 
-### deleteAssets
+### deleteAssets<sup>(deprecated)</sup>
 
 deleteAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;
 
 Deletes image or video assets from the trash. Before the operation, ensure that the image or video assets exist in the trash. This API uses a promise to return the result.
 
-**CAUTION**<br>This operation is irreversible. The file assets deleted cannot be restored. Exercise caution when performing this operation.
+> **NOTE**
+>
+> This API is supported since API version 10 and deprecated since API version 11. Use [MediaAlbumChangeRequest.deleteAssets](#deleteassets11-2) instead.
+
+**NOTE**<br>This operation is irreversible. The file assets deleted cannot be restored. Exercise caution when performing this operation.
 
 **System API**: This is a system API.
 
@@ -5246,11 +5892,15 @@ async function example() {
 }
 ```
 
-### setCoverUri
+### setCoverUri<sup>(deprecated)</sup>
 
 setCoverUri(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
 Sets the album cover. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 10 and deprecated since API version 11. Use [MediaAlbumChangeRequest.setCoverUri](#setcoveruri11) instead.
 
 > **NOTE**<br>This API can be used to set the user album cover, but not the system album cover.
 
@@ -5309,11 +5959,15 @@ async function example() {
 }
 ```
 
-### setCoverUri
+### setCoverUri<sup>(deprecated)</sup>
 
 setCoverUri(uri: string): Promise&lt;void&gt;
 
 Sets the album cover. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 10 and deprecated since API version 11. Use [MediaAlbumChangeRequest.setCoverUri](#setcoveruri11) instead.
 
 > **NOTE**<br>This API can be used to set the user album cover, but not the system album cover.
 
@@ -5350,10 +6004,11 @@ For details about the error codes, see [Universal Error Codes](../errorcodes/err
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
 
 async function example() {
   try {
-    console.info('setCoverUriDemoCallback');
+    console.info('setCoverUriDemoPromise');
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
     let fetchOption: photoAccessHelper.FetchOptions = {
       fetchColumns: [],
@@ -5363,15 +6018,2202 @@ async function example() {
     let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await album.getAssets(fetchOption);
     let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-    album.setCoverUri(asset.uri, (err) => {
-      if (err === undefined) {
-        console.info('album setCoverUri successfully');
-      } else {
-        console.error('album setCoverUri failed with error: ' + err);
-      }
+    album.setCoverUri(asset.uri).then(() => {
+      console.info('album setCoverUri successfully');
+    }).catch((err: BusinessError) => { 
+      console.error('album setCoverUri failed with error: ' + err);
     });
   } catch (err) {
-    console.error('setCoverUriDemoCallback failed with error: ' + err);
+    console.error('setCoverUriDemoPromise failed with error: ' + err);
+  }
+}
+```
+
+## MediaAssetEditData<sup>11+</sup>
+
+Represents the edited media asset data.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+### Attributes
+
+| Name          | Type   | Readable  | Writable | Description  |
+| ------------ | ------ | ---- | ---- | ------- |
+| compatibleFormat | string | Yes   | Yes   | Format of the edited data.   |
+| formatVersion | string | Yes   | Yes  | Version of the data format.   |
+| data | string | Yes   | Yes  | Content edited.   |
+
+### constructor<sup>11+</sup>
+
+constructor(compatibleFormat: string, formatVersion: string)
+
+Constructor.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description      |
+| -------- | ------------------------- | ---- | ---------- |
+| compatibleFormat | string | Yes  | Format of the edited data.|
+| formatVersion | string | Yes  | Version of the data format.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 202      |  Called by non-system application.         |
+| 401      |  if parameter is invalid.         |
+| 14000011       | System inner fail.          |
+
+**Example**
+
+```ts
+let assetEditData: photoAccessHelper.MediaAssetEditData = new photoAccessHelper.MediaAssetEditData('system', '1.0');
+```
+
+## MediaAssetChangeRequest<sup>11+</sup>
+
+Represents a media asset change request.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+### constructor<sup>11+</sup>
+
+constructor(asset: PhotoAsset)
+
+Constructor.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description      |
+| -------- | ------------------------- | ---- | ---------- |
+| asset | [PhotoAsset](#photoasset) | Yes  | Assets to change.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 401      |  if parameter is invalid.         |
+| 14000011       | System inner fail.          |
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  console.info('MediaAssetChangeRequest constructorDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+  let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+  let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(photoAsset);
+}
+```
+
+### createImageAssetRequest<sup>11+</sup>
+
+static createImageAssetRequest(context: Context, fileUri: string): MediaAssetChangeRequest
+
+Creates an image asset change request.
+
+The data source of the asset is specified by [fileUri][FileUri](js-apis-file-fileuri.md).
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name | Type   | Mandatory| Description                      |
+| ------- | ------- | ---- | -------------------------- |
+| context | [Context](js-apis-inner-application-context.md) | Yes  | Context of the ability instance.|
+| fileUri | string | Yes  | Data source of the image asset, which is specified by a URI in the application sandbox directory.|
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+| [MediaAssetChangeRequest](#mediaassetchangerequest11) | **MediaAssetChangeRequest** created.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 401   | if parameter is invalid.         |
+| 13900002   | No such file.         |
+| 14000011   | System inner fail.        |
+
+**Example**
+
+```ts
+async function example() {
+  console.info('createImageAssetRequestDemo');
+  try {
+    // Ensure that the asset specified by fileUri exists.
+    let fileUri = 'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.jpg';
+    let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = photoAccessHelper.MediaAssetChangeRequest.createImageAssetRequest(context, fileUri);
+    await phAccessHelper.applyChanges(assetChangeRequest);
+    console.info('apply createImageAssetRequest successfully');
+  } catch (err) {
+    console.error('createImageAssetRequestDemo failed with error: ' + err);
+  }
+}
+```
+
+### createVideoAssetRequest<sup>11+</sup>
+
+static createVideoAssetRequest(context: Context, fileUri: string): MediaAssetChangeRequest
+
+Creates a video asset change request.
+
+The data source of the asset is specified by [fileUri][FileUri](js-apis-file-fileuri.md).
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name | Type   | Mandatory| Description                      |
+| ------- | ------- | ---- | -------------------------- |
+| context | [Context](js-apis-inner-application-context.md) | Yes  | Context of the ability instance.|
+| fileUri | string | Yes  | Data source of the video asset, which is specified by a URI in the application sandbox directory.|
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+| [MediaAssetChangeRequest](#mediaassetchangerequest11) | **MediaAssetChangeRequest** created.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 401   | if parameter is invalid.         |
+| 13900002   | No such file.         |
+| 14000011   | System inner fail.        |
+
+**Example**
+
+```ts
+async function example() {
+  console.info('createVideoAssetRequestDemo');
+  try {
+    // Ensure that the asset specified by fileUri exists.
+    let fileUri = 'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.mp4';
+    let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = photoAccessHelper.MediaAssetChangeRequest.createVideoAssetRequest(context, fileUri);
+    await phAccessHelper.applyChanges(assetChangeRequest);
+    console.info('apply createVideoAssetRequest successfully');
+  } catch (err) {
+    console.error('createVideoAssetRequestDemo failed with error: ' + err);
+  }
+}
+```
+
+### createAssetRequest<sup>11+</sup>
+
+static createAssetRequest(context: Context, displayName: string, options?: PhotoCreateOptions): MediaAssetChangeRequest
+
+Creates an asset change request based on a file name.
+
+The file name must comply with the following specifications:
+- The file name must contain a valid file name and an image or video file name extension.
+- The file name cannot exceed 255 characters.
+- The file name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name | Type   | Mandatory| Description                      |
+| ------- | ------- | ---- | -------------------------- |
+| context | [Context](js-apis-inner-application-context.md) | Yes  | Context of the ability instance.|
+| displayName  | string        | Yes  | File name of the image or video to create.             |
+| options  | [PhotoCreateOptions](#photocreateoptions)        | No  | Options for creating an image or video asset.             |
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+| [MediaAssetChangeRequest](#mediaassetchangerequest11) | **MediaAssetChangeRequest** created.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 202   |  Called by non-system application.         |
+| 401      |  if parameter is invalid.         |
+| 14000001      | Invalid display name.         |
+| 14000011       | System inner fail.         |
+
+**Example**
+
+```ts
+async function example() {
+  console.info('createAssetRequestDemo');
+  try {
+    let testFileName: string = 'testFile' + Date.now() + '.jpg';
+    let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = photoAccessHelper.MediaAssetChangeRequest.createAssetRequest(context, testFileName);
+    // Ensure that the asset specified by fileUri exists.
+    let fileUri = 'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.jpg';
+    assetChangeRequest.addResource(photoAccessHelper.ResourceType.IMAGE_RESOURCE, fileUri);
+    await phAccessHelper.applyChanges(assetChangeRequest);
+    console.info('apply createAssetRequest successfully');
+  } catch (err) {
+    console.error('createAssetRequestDemo failed with error: ' + err);
+  }
+}
+```
+
+### createAssetRequest<sup>11+</sup>
+
+static createAssetRequest(context: Context, photoType: PhotoType, extension: string, options?: CreateOptions): MediaAssetChangeRequest
+
+Create an asset change request based on the file type and filename extension.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name | Type   | Mandatory| Description                      |
+| ------- | ------- | ---- | -------------------------- |
+| context | [Context](js-apis-inner-application-context.md) | Yes  | Context of the ability instance.|
+| photoType  | [PhotoType](#phototype)        | Yes  | Type of the file to create, which can be **IMAGE** or **VIDEO**.             |
+| extension  | string        | Yes  | File name extension, for example, **'jpg'**.             |
+| options  | [CreateOptions](#createoptions)        | Yes  | Options for creating the image or video asset, for example, **{title: 'testPhoto'}**.             |
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+| [MediaAssetChangeRequest](#mediaassetchangerequest11) | **MediaAssetChangeRequest** created.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 401      |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+
+**Example**
+
+```ts
+async function example() {
+  console.info('createAssetRequestDemo');
+  try {
+    let photoType: photoAccessHelper.PhotoType = photoAccessHelper.PhotoType.IMAGE;
+    let extension: string = 'jpg';
+    let options: photoAccessHelper.CreateOptions = {
+      title: 'testPhoto'
+    }
+    let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = photoAccessHelper.MediaAssetChangeRequest.createAssetRequest(context, photoType, extension, options);
+    // Ensure that the asset specified by fileUri exists.
+    let fileUri = 'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.jpg';
+    assetChangeRequest.addResource(photoAccessHelper.ResourceType.IMAGE_RESOURCE, fileUri);
+    await phAccessHelper.applyChanges(assetChangeRequest);
+    console.info('apply createAssetRequest successfully');
+  } catch (err) {
+    console.error('createAssetRequestDemo failed with error: ' + err);
+  }
+}
+```
+
+### deleteAssets<sup>11+</sup>
+
+static deleteAssets(context: Context, assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;
+
+Deletes media assets. This API uses a promise to return the result. The deleted assets are moved to the trash.
+
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name | Type   | Mandatory| Description                      |
+| ------- | ------- | ---- | -------------------------- |
+| context | [Context](js-apis-inner-application-context.md) | Yes  | Context of the ability instance.|
+| assets | Array&lt;[PhotoAsset](#photoasset)&gt; | Yes  | Media assets to delete.|
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+| Promise&lt;void&gt;| Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201      |  Permission denied.         |
+| 401      |  if parameter is invalid.   |
+| 14000011 |  System inner fail.         |
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  console.info('deleteAssetsDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  try {
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let photoAssetList: Array<photoAccessHelper.PhotoAsset> = await fetchResult.getAllObjects();
+    await photoAccessHelper.MediaAssetChangeRequest.deleteAssets(context, photoAssetList);
+    console.info('deleteAssets successfully');
+  } catch (err) {
+    console.error('deleteAssetsDemo failed with error: ' + err);
+  }
+}
+```
+
+### deleteAssets<sup>11+</sup>
+
+static deleteAssets(context: Context, uriList: Array&lt;string&gt;): Promise&lt;void&gt;
+
+Deletes media assets. This API uses a promise to return the result. The deleted assets are moved to the trash.
+
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name | Type   | Mandatory| Description                      |
+| ------- | ------- | ---- | -------------------------- |
+| context | [Context](js-apis-inner-application-context.md) | Yes  | Context of the ability instance.|
+| uriList | Array&lt;string&gt; | Yes  | URIs of the media files to delete.|
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+| Promise&lt;void&gt;| Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201      |  Permission denied.         |
+| 401      |  if parameter is invalid.   |
+| 14000002 |  Invalid asset uri.         |
+| 14000011 |  System inner fail.         |
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  console.info('deleteAssetsDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  try {
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    await photoAccessHelper.MediaAssetChangeRequest.deleteAssets(context, [asset.uri]);
+    console.info('deleteAssets successfully');
+  } catch (err) {
+    console.error('deleteAssetsDemo failed with error: ' + err);
+  }
+}
+```
+
+### getAsset<sup>11+</sup>
+
+getAsset(): PhotoAsset
+
+Obtains the asset in this asset change request.
+
+**NOTE**<br>For the change request used to create an asset, this API returns **null** before [applyChanges](#applychanges11) is called to apply the changes.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+| [PhotoAsset](#photoasset) | Asset obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 401      |  if parameter is invalid.   |
+| 14000011 |  System inner fail.         |
+
+**Example**
+
+```ts
+async function example() {
+  console.info('getAssetDemo');
+  try {
+    // Ensure that the asset specified by fileUri exists.
+    let fileUri = 'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.jpg';
+    let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = photoAccessHelper.MediaAssetChangeRequest.createImageAssetRequest(context, fileUri);
+    await phAccessHelper.applyChanges(assetChangeRequest);
+    let asset: photoAccessHelper.PhotoAsset = assetChangeRequest.getAsset();
+    console.info('create asset successfully with uri = ' + asset.uri);
+  } catch (err) {
+    console.error('getAssetDemo failed with error: ' + err);
+  }
+}
+```
+
+### setFavorite<sup>11+</sup>
+
+setFavorite(favoriteState: boolean): void
+
+Favorites or unfavorites this file.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name       | Type     | Mandatory  | Description                                |
+| ---------- | ------- | ---- | ---------------------------------- |
+| favoriteState | boolean | Yes   | Operation to perform. The value **true** means to favorite the file asset, and **false** means the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 202        |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
+
+async function example() {
+  console.info('setFavoriteDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
+  let asset = await fetchResult.getFirstObject();
+  let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(asset);
+  assetChangeRequest.setFavorite(true);
+  phAccessHelper.applyChanges(assetChangeRequest).then(() => {
+    console.info('apply setFavorite successfully');
+  }).catch((err: BusinessError) => {
+    console.error('apply setFavorite failed with error:' + err);
+  });
+}
+```
+
+### setHidden<sup>11+</sup>
+
+setHidden(hiddenState: boolean): void
+
+Hides this file.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name       | Type     | Mandatory  | Description                                |
+| ---------- | ------- | ---- | ---------------------------------- |
+| hiddenState | boolean  | Yes   | Whether to hide the file. The value **true** means to hide the file; the value **false** means the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 202        |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
+
+async function example() {
+  console.info('setHiddenDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
+  let asset = await fetchResult.getFirstObject();
+  let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(asset);
+  assetChangeRequest.setHidden(true);
+  phAccessHelper.applyChanges(assetChangeRequest).then(() => {
+    console.info('apply setHidden successfully');
+  }).catch((err: BusinessError) => {
+    console.error('apply setHidden failed with error:' + err);
+  });
+}
+```
+
+### setUserComment<sup>11+</sup>
+
+setUserComment(userComment: string): void
+
+Sets the user comment information of this media asset.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name       | Type     | Mandatory  | Description                                |
+| ---------- | ------- | ---- | ---------------------------------- |
+| userComment | string | Yes  | Comment information to set, which cannot exceed 420 characters.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 202        |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
+
+async function example() {
+  console.info('setUserCommentDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
+  let asset = await fetchResult.getFirstObject();
+  let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(asset);
+  let userComment: string = 'test_set_user_comment';
+  assetChangeRequest.setUserComment(userComment);
+  phAccessHelper.applyChanges(assetChangeRequest).then(() => {
+    console.info('apply setUserComment successfully');
+  }).catch((err: BusinessError) => {
+    console.error('apply setUserComment failed with error:' + err);
+  });
+}
+```
+
+### setTitle<sup>11+</sup>
+
+setTitle(title: string): void
+
+Sets the media asset title.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name       | Type     | Mandatory  | Description                                |
+| ---------- | ------- | ---- | ---------------------------------- |
+| title | string | Yes  | Title to set.|
+
+The title must comply with the following specifications:
+- The title should not contain the filename extension.
+- It cannot exceed 255 characters.
+- The title cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 401       |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
+
+async function example() {
+  console.info('setTitleDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
+  let asset = await fetchResult.getFirstObject();
+  let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(asset);
+  let newTitle: string = 'newTitle';
+  assetChangeRequest.setTitle(newTitle);
+  phAccessHelper.applyChanges(assetChangeRequest).then(() => {
+    console.info('apply setTitle successfully');
+  }).catch((err: BusinessError) => {
+    console.error('apply setTitle failed with error:' + err);
+  });
+}
+```
+
+### setEditData<sup>11+</sup>
+
+setEditData(editData: MediaAssetEditData): void
+
+Saves the edited data of an asset.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name       | Type     | Mandatory  | Description                                |
+| ---------- | ------- | ---- | ---------------------------------- |
+| editData | (MediaAssetEditData)[#mediaasseteditdata11] | Yes  | Edited data to save.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 202        |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
+
+async function example() {
+  console.info('setEditDataDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
+  let asset = await fetchResult.getFirstObject();
+  let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(asset);
+
+  let assetEditData: photoAccessHelper.MediaAssetEditData = new photoAccessHelper.MediaAssetEditData('system', '1.0');
+  let fileUri = 'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.jpg';
+  assetChangeRequest.addResource(photoAccessHelper.ResourceType.IMAGE_RESOURCE, fileUri);
+  assetEditData.data = '123456';
+  assetChangeRequest.setEditData(assetEditData);
+  phAccessHelper.applyChanges(assetChangeRequest).then(() => {
+    console.info('apply setEditData successfully');
+  }).catch((err: BusinessError) => {
+    console.error('apply setEditData failed with error:' + err);
+  });
+}
+```
+
+### getWriteCacheHandler<sup>11+</sup>
+
+getWriteCacheHandler(): Promise&lt;number&gt;
+
+Obtains the write handle of a temporary file.
+
+**NOTE**<br>For the same asset change request, this API cannot be repeatedly called after a temporary file write handle is successfully obtained.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+| Promise&lt;number&gt; | Promise used to return the write handle obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201   | Permission denied.        |
+| 401      |  if parameter is invalid.   |
+| 14000011 |  System inner fail.         |
+| 14000016 |  Operation Not Support.     |
+
+**Example**
+
+```ts
+import fs from '@ohos.file.fs';
+
+async function example() {
+  console.info('getWriteCacheHandlerDemo');
+  try {
+    let photoType: photoAccessHelper.PhotoType = photoAccessHelper.PhotoType.VIDEO;
+    let extension: string = 'mp4';
+    let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = photoAccessHelper.MediaAssetChangeRequest.createAssetRequest(context, photoType, extension);
+    let fd: number = await assetChangeRequest.getWriteCacheHandler();
+    console.info('getWriteCacheHandler successfully');
+    // write date into fd
+    await fs.close(fd);
+    await phAccessHelper.applyChanges(assetChangeRequest);
+  } catch (err) {
+    console.error('getWriteCacheHandlerDemo failed with error: ' + err);
+  }
+}
+```
+
+### addResource<sup>11+</sup>
+
+addResource(type: ResourceType, fileUri: string): void
+
+Adds resources to the application sandbox directory using **fileUri**.
+
+**NOTE**<br>For the same asset change request, this API cannot be repeatedly called after resources are successfully added.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name | Type   | Mandatory| Description                      |
+| ------- | ------- | ---- | -------------------------- |
+| type | [ResourceType](#resourcetype11) | Yes  | Type of the resource to add.|
+| fileUri | string | Yes  | Data source of the resource to be added, which is specified by a URI in the application sandbox directory.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 401      |  if parameter is invalid.   |
+| 13900002      |  No such file.   |
+| 14000011 |  System inner fail.         |
+| 14000016 |  Operation Not Support.     |
+
+**Example**
+
+```ts
+async function example() {
+  console.info('addResourceByFileUriDemo');
+  try {
+    let photoType: photoAccessHelper.PhotoType = photoAccessHelper.PhotoType.IMAGE;
+    let extension: string = 'jpg';
+    let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = photoAccessHelper.MediaAssetChangeRequest.createAssetRequest(context, photoType, extension);
+    // Ensure that the asset specified by fileUri exists.
+    let fileUri = 'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.jpg';
+    assetChangeRequest.addResource(photoAccessHelper.ResourceType.IMAGE_RESOURCE, fileUri);
+    await phAccessHelper.applyChanges(assetChangeRequest);
+    console.info('addResourceByFileUri successfully');
+  } catch (err) {
+    console.error('addResourceByFileUriDemo failed with error: ' + err);
+  }
+}
+```
+
+### addResource<sup>11+</sup>
+
+addResource(type: ResourceType, data: ArrayBuffer): void
+
+Adds resources using **ArrayBuffer** data.
+
+**NOTE**<br>For the same asset change request, this API cannot be repeatedly called after resources are successfully added.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name | Type   | Mandatory| Description                      |
+| ------- | ------- | ---- | -------------------------- |
+| type | [ResourceType](#resourcetype11) | Yes  | Type of the resource to add.|
+| data | ArrayBuffer | Yes  | Data of the resource to add.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 401      |  if parameter is invalid.   |
+| 14000011 |  System inner fail.         |
+| 14000016 |  Operation Not Support.     |
+
+**Example**
+
+```ts
+async function example() {
+  console.info('addResourceByArrayBufferDemo');
+  try {
+    let photoType: photoAccessHelper.PhotoType = photoAccessHelper.PhotoType.IMAGE;
+    let extension: string = 'jpg';
+    let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = photoAccessHelper.MediaAssetChangeRequest.createAssetRequest(context, photoType, extension);
+    let buffer: ArrayBuffer = new ArrayBuffer(2048);
+    assetChangeRequest.addResource(photoAccessHelper.ResourceType.IMAGE_RESOURCE, buffer);
+    await phAccessHelper.applyChanges(assetChangeRequest);
+    console.info('addResourceByArrayBuffer successfully');
+  } catch (err) {
+    console.error('addResourceByArrayBufferDemo failed with error: ' + err);
+  }
+}
+```
+
+### addResource<sup>11+</sup>
+
+addResource(type: ResourceType, proxy: PhotoProxy): void
+
+Adds resources using **PhotoProxy** data.
+
+**NOTE**<br>For the same asset change request, this API cannot be repeatedly called after resources are successfully added.
+
+**System API**: This is a system API available only for camera applications.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name | Type                             | Mandatory| Description                  |
+| ------- |---------------------------------| ---- |----------------------|
+| type | [ResourceType](#resourcetype11) | Yes  | Type of the resource to add.           |
+| proxy | [PhotoProxy](#photoproxy11)     | Yes  | **PhotoProxy** data of the resource to add.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID   | Error Message                             |
+|----------|-----------------------------------|
+| 202      | Called by non-system application. |
+| 401      | if parameter is invalid.          |
+| 14000011 | System inner fail.                |
+| 14000016 | Operation Not Support.            |
+
+**Example**
+
+```ts
+async function example() {
+  console.info('addResourceByPhotoProxyDemo');
+  try {
+    let photoType: photoAccessHelper.PhotoType = photoAccessHelper.PhotoType.IMAGE;
+    let extension: string = 'jpg';
+    let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = photoAccessHelper.MediaAssetChangeRequest.createAssetRequest(context, photoType, extension);
+    let photoProxy: PhotoProxy;
+    assetChangeRequest.addResource(photoAccessHelper.ResourceType.IMAGE_RESOURCE, photoProxy);
+    await phAccessHelper.applyChanges(assetChangeRequest);
+    console.info('addResourceByPhotoProxy successfully');
+  } catch (err) {
+    console.error('addResourceByPhotoProxyDemo failed with error: ' + err);
+  }
+}
+```
+
+### setLocation<sup>11+</sup>
+
+setLocation(longitude: number, latitude: number): void
+
+Sets location information.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name | Type         | Mandatory| Description   |
+| ------- |-------------| ---- |-------|
+| longitude | number      | Yes  | Longitude.|
+| latitude | number | Yes  | Latitude.  |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 202      | Called by non-system application. |
+| 401      |  if parameter is invalid.   |
+| 14000011 |  System inner fail.         |
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
+
+async function example() {
+  console.info('setLocationDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
+  let asset = await fetchResult.getFirstObject();
+  let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(asset);
+  assetChangeRequest.setLocation(120.52, 30.40);
+  phAccessHelper.applyChanges(assetChangeRequest).then(() => {
+    console.info('apply setLocation successfully');
+  }).catch((err: BusinessError) => {
+    console.error('apply setLocation failed with error:' + err);
+  });
+}
+```
+
+## MediaAssetsChangeRequest<sup>11+</sup>
+
+Represents a request for changing assets.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+### constructor<sup>11+</sup>
+
+constructor(assets: Array&lt;PhotoAsset&gt;)
+
+Constructor.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description      |
+| -------- | ------------------------- | ---- | ---------- |
+| assets | Array&lt;[PhotoAsset](#photoasset)&gt; | Yes  | Assets to change.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 202        |  Called by non-system application.   |
+| 401      |  if parameter is invalid.         |
+| 14000011       | System inner fail.          |
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  console.info('MediaAssetsChangeRequest constructorDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
+  let photoAssetList: Array<photoAccessHelper.PhotoAsset> = await fetchResult.getAllObjects();
+  let assetsChangeRequest: photoAccessHelper.MediaAssetsChangeRequest = new photoAccessHelper.MediaAssetsChangeRequest(photoAssetList);
+}
+```
+
+### setFavorite<sup>11+</sup>
+
+setFavorite(favoriteState: boolean): void
+
+Favorites or unfavorites this file.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name       | Type     | Mandatory  | Description                                |
+| ---------- | ------- | ---- | ---------------------------------- |
+| favoriteState | boolean | Yes   | Operation to perform. The value **true** means to favorite the file, and **false** means the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 202        |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
+
+async function example() {
+  console.info('setFavoriteDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
+  let photoAssetList: Array<photoAccessHelper.PhotoAsset> = await fetchResult.getAllObjects();
+  let assetsChangeRequest: photoAccessHelper.MediaAssetsChangeRequest = new photoAccessHelper.MediaAssetsChangeRequest(photoAssetList);
+  assetsChangeRequest.setFavorite(true);
+  phAccessHelper.applyChanges(assetsChangeRequest).then(() => {
+    console.info('apply setFavorite successfully');
+  }).catch((err: BusinessError) => {
+    console.error('apply setFavorite failed with error:' + err);
+  });
+}
+```
+
+### setHidden<sup>11+</sup>
+
+setHidden(hiddenState: boolean): void
+
+Hides this file.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name       | Type     | Mandatory  | Description                                |
+| ---------- | ------- | ---- | ---------------------------------- |
+| hiddenState | boolean  | Yes   | Whether to hide the file. The value **true** means to hide the file; the value **false** means the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 202        |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
+
+async function example() {
+  console.info('setHiddenDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
+  let photoAssetList: Array<photoAccessHelper.PhotoAsset> = await fetchResult.getAllObjects();
+  let assetsChangeRequest: photoAccessHelper.MediaAssetsChangeRequest = new photoAccessHelper.MediaAssetsChangeRequest(photoAssetList);
+  assetsChangeRequest.setHidden(true);
+  phAccessHelper.applyChanges(assetsChangeRequest).then(() => {
+    console.info('apply setHidden successfully');
+  }).catch((err: BusinessError) => {
+    console.error('apply setHidden failed with error:' + err);
+  });
+}
+```
+
+### setUserComment<sup>11+</sup>
+
+setUserComment(userComment: string): void
+
+Sets the user comment information of this media asset.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name       | Type     | Mandatory  | Description                                |
+| ---------- | ------- | ---- | ---------------------------------- |
+| userComment | string | Yes  | Comment information to set, which cannot exceed 420 characters.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 202        |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
+
+async function example() {
+  console.info('setUserCommentDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
+  let photoAssetList: Array<photoAccessHelper.PhotoAsset> = await fetchResult.getAllObjects();
+  let assetsChangeRequest: photoAccessHelper.MediaAssetsChangeRequest = new photoAccessHelper.MediaAssetsChangeRequest(photoAssetList);
+  assetsChangeRequest.setUserComment('test_set_user_comment');
+  phAccessHelper.applyChanges(assetsChangeRequest).then(() => {
+    console.info('apply setUserComment successfully');
+  }).catch((err: BusinessError) => {
+    console.error('apply setUserComment failed with error:' + err);
+  });
+}
+```
+
+## MediaAlbumChangeRequest<sup>11+</sup>
+
+Provides APIs for managing the media album change request.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+### constructor<sup>11+</sup>
+
+constructor(album: Album)
+
+Constructor.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description      |
+| -------- | ------------------------- | ---- | ---------- |
+| album | [Album](#album) | Yes  | Album to change.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 401      |  if parameter is invalid.         |
+| 14000011       | System inner fail.          |
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  console.info('MediaAlbumChangeRequest constructorDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, fetchOptions);
+  let album: photoAccessHelper.Album = await fetchResult.getFirstObject();
+  let albumChangeRequest: photoAccessHelper.MediaAlbumChangeRequest = new photoAccessHelper.MediaAlbumChangeRequest(album);
+}
+```
+
+### createAlbumRequest<sup>11+</sup>
+
+static createAlbumRequest(context: Context, name: string): MediaAlbumChangeRequest
+
+Creates a **MediaAlbumChangeRequest** instance.
+
+The album name must comply with the following specifications:
+- The album name cannot exceed 255 characters.
+- The album name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
+- The album name is case-insensitive.
+- Duplicate album names are not allowed.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name | Type   | Mandatory| Description                      |
+| ------- | ------- | ---- | -------------------------- |
+| context | [Context](js-apis-inner-application-context.md) | Yes  | Context of the ability instance.|
+| name | string | Yes  | Name of the album to create. |
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+| [MediaAlbumChangeRequest](#mediaalbumchangerequest11) | **MediaAlbumChangeRequest** instance created.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 202   |  Called by non-system application.         |
+| 401   | if parameter is invalid.         |
+| 14000011   | System inner fail.        |
+
+**Example**
+
+```ts
+async function example() {
+  console.info('createAlbumRequestDemo');
+  try {
+    let albumName: string = 'newAlbumName' + new Date().getTime();
+    let albumChangeRequest: photoAccessHelper.MediaAlbumChangeRequest = photoAccessHelper.MediaAlbumChangeRequest.createAlbumRequest(context, albumName);
+    await phAccessHelper.applyChanges(albumChangeRequest);
+    console.info('apply createAlbumRequest successfully');
+  } catch (err) {
+    console.error('createAlbumRequestDemo failed with error: ' + err);
+  }
+}
+```
+
+### deleteAlbums<sup>11+</sup>
+
+static deleteAlbums(context: Context, albums: Array&lt;Album&gt;): Promise&lt;void&gt;
+
+Deletes albums. This API uses a promise to return the result.
+
+Ensure that the albums to be deleted exist. Only user albums can be deleted.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name | Type   | Mandatory| Description                      |
+| ------- | ------- | ---- | -------------------------- |
+| context | [Context](js-apis-inner-application-context.md) | Yes  | Context of the ability instance.|
+| albums  |  Array&lt;[Album](#album)&gt;          | Yes  | Albums to delete.        |
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+| Promise&lt;void&gt;| Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201      |  Permission denied.         |
+| 202   |  Called by non-system application.  |
+| 401      |  if parameter is invalid.   |
+| 14000011 |  System inner fail.         |
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  console.info('deleteAlbumsDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  try {
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, fetchOptions);
+    let album: photoAccessHelper.Album = await fetchResult.getFirstObject();
+    await photoAccessHelper.MediaAlbumChangeRequest.deleteAlbums(context, [album]);
+    console.info('deleteAlbums successfully');
+  } catch (err) {
+    console.error('deleteAlbumsDemo failed with error: ' + err);
+  }
+}
+```
+
+### getAlbum<sup>11+</sup>
+
+getAlbum(): Album
+
+Obtains the album in the current album change request.
+
+**NOTE**<br>For the change request for creating an album, this API returns **null** before [applyChanges](#applychanges11) is called to apply the changes.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+| [Album](#album) | Album obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 401      |  if parameter is invalid.   |
+| 14000011 |  System inner fail.         |
+
+**Example**
+
+```ts
+async function example() {
+  console.info('getAlbumDemo');
+  try {
+    let albumName: string = 'newAlbumName' + new Date().getTime();
+    let albumChangeRequest: photoAccessHelper.MediaAlbumChangeRequest = photoAccessHelper.MediaAlbumChangeRequest.createAlbumRequest(context, albumName);
+    await phAccessHelper.applyChanges(albumChangeRequest);
+    let album: photoAccessHelper.Album = albumChangeRequest.getAlbum();
+    console.info('create album successfully with uri = ' + album.albumUri);
+  } catch (err) {
+    console.error('getAlbumDemo failed with error: ' + err);
+  }
+}
+```
+
+### setCoverUri<sup>11+</sup>
+
+setCoverUri(coverUri: string): void
+
+Sets the album cover.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name       | Type     | Mandatory  | Description                                |
+| ---------- | ------- | ---- | ---------------------------------- |
+| coverUri | string | Yes  | URI of the file to be set as the album cover.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 202        |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  console.info('setCoverUriDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  try {
+    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC);
+    let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await album.getAssets(fetchOptions);
+    let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+
+    let albumChangeRequest: photoAccessHelper.MediaAlbumChangeRequest = new photoAccessHelper.MediaAlbumChangeRequest(album);
+    albumChangeRequest.setCoverUri(asset.uri);
+    await phAccessHelper.applyChanges(albumChangeRequest);
+    console.info('setCoverUri successfully');
+  } catch (err) {
+    console.error('setCoverUriDemo failed with error: ' + err);
+  }
+}
+```
+
+### setAlbumName<sup>11+</sup>
+
+setAlbumName(name: string): void
+
+Sets the album name.
+
+The album name must comply with the following specifications:
+- The album name cannot exceed 255 characters.
+- The album name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
+- The album name is case-insensitive.
+- Duplicate album names are not allowed.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name       | Type     | Mandatory  | Description                                |
+| ---------- | ------- | ---- | ---------------------------------- |
+| name | string | Yes  | Album name to set.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 401       |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+
+**Example**
+
+```ts
+async function example() {
+  console.info('setAlbumNameDemo');
+  try {
+    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC);
+    let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
+    let albumChangeRequest: photoAccessHelper.MediaAlbumChangeRequest = new photoAccessHelper.MediaAlbumChangeRequest(album);
+    let newAlbumName: string = 'newAlbumName' + new Date().getTime();
+    albumChangeRequest.setAlbumName(newAlbumName);
+    await phAccessHelper.applyChanges(albumChangeRequest);
+    console.info('setAlbumName successfully');
+  } catch (err) {
+    console.error('setAlbumNameDemo failed with error: ' + err);
+  }
+}
+```
+
+### addAssets<sup>11+</sup>
+
+addAssets(assets: Array&lt;PhotoAsset&gt;): void
+
+Add assets to the album.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name       | Type     | Mandatory  | Description                                |
+| ---------- | ------- | ---- | ---------------------------------- |
+| assets | Array&lt;[PhotoAsset](#photoasset)&gt; | Yes  | Assets to add.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 401       |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+| 14000016 |  Operation Not Support.     |
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  console.info('addAssetsDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  try {
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    let albumName: string = 'newAlbumName' + new Date().getTime();
+    let albumChangeRequest: photoAccessHelper.MediaAlbumChangeRequest = photoAccessHelper.MediaAlbumChangeRequest.createAlbumRequest(context, albumName);
+    albumChangeRequest.addAssets([asset]);
+    await phAccessHelper.applyChanges(albumChangeRequest);
+    console.info('addAssets successfully');
+  } catch (err) {
+    console.error('addAssetsDemo failed with error: ' + err);
+  }
+}
+```
+
+### removeAssets<sup>11+</sup>
+
+removeAssets(assets: Array&lt;PhotoAsset&gt;): void
+
+Removes assets from the album.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name       | Type     | Mandatory  | Description                                |
+| ---------- | ------- | ---- | ---------------------------------- |
+| assets | Array&lt;[PhotoAsset](#photoasset)&gt; | Yes  | Assets to remove.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 401       |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+| 14000016 |  Operation Not Support.     |
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  console.info('removeAssetsDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  try {
+    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC);
+    let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await album.getAssets(fetchOptions);
+    let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+
+    let albumChangeRequest: photoAccessHelper.MediaAlbumChangeRequest = new photoAccessHelper.MediaAlbumChangeRequest(album);
+    albumChangeRequest.removeAssets([asset]);
+    await phAccessHelper.applyChanges(albumChangeRequest);
+    console.info('removeAssets successfully');
+  } catch (err) {
+    console.error('removeAssetsDemo failed with error: ' + err);
+  }
+}
+```
+
+### moveAssets<sup>11+</sup>
+
+moveAssets(assets: Array&lt;PhotoAsset&gt;, targetAlbum: Album): void
+
+Moves assets to another album.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name       | Type     | Mandatory  | Description                                |
+| ---------- | ------- | ---- | ---------------------------------- |
+| assets | Array&lt;[PhotoAsset](#photoasset)&gt; | Yes  | Assets to move.|
+| targetAlbum | Album | Yes  | Album to which the assets are to be moved.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 202      |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+| 14000016 |  Operation Not Support.     |
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  console.info('moveAssetsDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  try {
+    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC);
+    let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await album.getAssets(fetchOptions);
+    let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+
+    if (albumFetchResult.isAfterLast()) {
+      console.error('lack of album to be moved into');
+      return;
+    }
+    let nextAlbum: photoAccessHelper.Album = await albumFetchResult.getNextObject();
+    let albumChangeRequest: photoAccessHelper.MediaAlbumChangeRequest = new photoAccessHelper.MediaAlbumChangeRequest(album);
+    albumChangeRequest.moveAssets([asset], nextAlbum);
+    await phAccessHelper.applyChanges(albumChangeRequest);
+    console.info('moveAssets successfully');
+  } catch (err) {
+    console.error('moveAssetsDemo failed with error: ' + err);
+  }
+}
+```
+
+### recoverAssets<sup>11+</sup>
+
+recoverAssets(assets: Array&lt;PhotoAsset&gt;): void
+
+Recovers assets from the trash.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name       | Type     | Mandatory  | Description                                |
+| ---------- | ------- | ---- | ---------------------------------- |
+| assets | Array&lt;[PhotoAsset](#photoasset)&gt; | Yes  | Assets to recover.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 202      |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+| 14000016 |  Operation Not Support.     |
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  console.info('recoverAssetsDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  try {
+    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.TRASH);
+    let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await album.getAssets(fetchOptions);
+    let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+
+    let albumChangeRequest: photoAccessHelper.MediaAlbumChangeRequest = new photoAccessHelper.MediaAlbumChangeRequest(album);
+    albumChangeRequest.recoverAssets([asset]);
+    await phAccessHelper.applyChanges(albumChangeRequest);
+    console.info('recoverAssets successfully');
+  } catch (err) {
+    console.error('recoverAssetsDemo failed with error: ' + err);
+  }
+}
+```
+
+### deleteAssets<sup>11+</sup>
+
+deleteAssets(assets: Array&lt;PhotoAsset&gt;): void
+
+Permanently deletes assets from the trash.
+
+**NOTE**<br>This operation is irreversible. The file assets deleted cannot be restored. Exercise caution when performing this operation.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name       | Type     | Mandatory  | Description                                |
+| ---------- | ------- | ---- | ---------------------------------- |
+| assets | Array&lt;[PhotoAsset](#photoasset)&gt; | Yes  | Assets to be permanently deleted.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 202      |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+| 14000016 |  Operation Not Support.     |
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  console.info('deleteAssetsPermanentlyDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  try {
+    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.TRASH);
+    let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await album.getAssets(fetchOptions);
+    let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+
+    let albumChangeRequest: photoAccessHelper.MediaAlbumChangeRequest = new photoAccessHelper.MediaAlbumChangeRequest(album);
+    albumChangeRequest.deleteAssets([asset]);
+    await phAccessHelper.applyChanges(albumChangeRequest);
+    console.info('succeed to deleteAssets permanently');
+  } catch (err) {
+    console.error('deleteAssetsPermanentlyDemo failed with error: ' + err);
+  }
+}
+```
+
+### setDisplayLevel<sup>11+</sup>
+
+setDisplayLevel(displayLevel: number): void
+
+Sets the display level of the portrait album.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name       | Type     | Mandatory  | Description                                |
+| ---------- | ------- | ---- | ---------------------------------- |
+| displayLevel | number | Yes   | Display level to set.<br>The options are as follows:<br>**0**: unfavorite the portrait album.<br>**1**: set the portrait album as the first to display.<br>**2**: do not display the portrait album as the first one.<br>**3**: favorite the portrait album.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 202        |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+
+**Example**
+
+``` ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('setDisplayLevel Example')
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    predicates.equalTo('user_display_level', 2);
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.PORTRAIT, fetchOptions);
+    let album: photoAccessHelper.Album = await fetchResult.getFirstObject();
+    let changeRequest: photoAccessHelper.MediaAlbumChangeRequest = new photoAccessHelper.MediaAlbumChangeRequest(album);
+    changeRequest.setDisplayLevel(1);
+    await phAccessHelper.applyChanges(changeRequest);
+  } catch (err) {
+    console.error('setDisplayLevel failed with error: ' + err);
+  }
+}
+```
+
+### setIsMe<sup>11+</sup>
+
+setIsMe(): void
+
+Sets the relationship between people in the portrait album to **Me**.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 202        |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+
+**Example**
+
+``` ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('setIsMe Example')
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    predicates.equalTo('user_display_level', 2);
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.PORTRAIT, fetchOptions);
+    let album: photoAccessHelper.Album = await fetchResult.getFirstObject();
+    let changeRequest: photoAccessHelper.MediaAlbumChangeRequest = new photoAccessHelper.MediaAlbumChangeRequest(album);
+    changeRequest.setIsMe();
+    await phAccessHelper.applyChanges(changeRequest);
+  } catch (err) {
+    console.error('setIsMe failed with error: ' + err);
+  }
+}
+```
+
+### dismissAssets<sup>11+</sup>
+
+dismissAssets(assets: Array&lt;PhotoAsset&gt;): void
+
+Removes assets from the portrait album.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name       | Type     | Mandatory  | Description                                |
+| ---------- | ------- | ---- | ---------------------------------- |
+| assets | Array&lt;PhotoAsset&gt; | Yes   | Assets to remove.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 202        |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+| 14000016       | Operation Not support.         |
+
+**Example**
+
+``` ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('dismissAssets Example')
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    predicates.equalTo('user_display_level', 2);
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.PORTRAIT, fetchOptions);
+    let album: photoAccessHelper.Album = await fetchResult.getFirstObject();
+
+    let predicatesAsset: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let assetFetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicatesAsset
+    };
+    let assetFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(assetFetchOptions);
+    let asset: photoAccessHelper.PhotoAsset = await assetFetchResult.getFirstObject();
+
+    let changeRequest: photoAccessHelper.MediaAlbumChangeRequest = new photoAccessHelper.MediaAlbumChangeRequest(album);
+    changeRequest.dismissAssets([asset]);
+    await phAccessHelper.applyChanges(changeRequest);
+  } catch (err) {
+    console.error('dismissAssets failed with error: ' + err);
+  }
+}
+```
+
+### mergeAlbum<sup>11+</sup>
+
+mergeAlbum(target: Album): void
+
+Merges two portrait albums.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name       | Type     | Mandatory  | Description                                |
+| ---------- | ------- | ---- | ---------------------------------- |
+| target | [Album](#album) | Yes   | Album generated after the merge. The album must be renamed.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 202        |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+| 14000016       | Operation Not support.         |
+
+**Example**
+
+``` ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('mergeAlbum Example')
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    predicates.equalTo('user_display_level', 2);
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.PORTRAIT, fetchOptions);
+    let album: photoAccessHelper.Album = await fetchResult.getFirstObject();
+    if (fetchResult.isAfterLast()) {
+      console.error('lack of album to merge');
+      return;
+    }
+    let target: photoAccessHelper.Album = await fetchResult.getNextObject();
+
+    let changeRequest: photoAccessHelper.MediaAlbumChangeRequest = new photoAccessHelper.MediaAlbumChangeRequest(album);
+    changeRequest.mergeAlbum(target);
+    changeRequest.setAlbumName("testName");
+    await phAccessHelper.applyChanges(changeRequest);
+  } catch (err) {
+    console.error('mergeAlbum failed with error: ' + err);
+  }
+}
+```
+
+### placeBefore<sup>11+</sup>
+
+placeBefore(album: Album): void;
+
+Places this album before an album.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name       | Type     | Mandatory  | Description                                |
+| ---------- | ------- | ---- | ---------------------------------- |
+| album | [Album](#album) | Yes  |  Target album. To place this album to the end, set **album** to null.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 202      |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+
+**Example**
+
+```ts
+async function example() {
+  console.info('placeBeforeDemo');
+  try {
+    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC);
+    let firstAlbum: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
+    if (albumFetchResult.isAfterLast()) {
+      console.error('lack of album to place before');
+      return;
+    }
+    let secondAlbum: photoAccessHelper.Album = await albumFetchResult.getNextObject();
+    let albumChangeRequest: photoAccessHelper.MediaAlbumChangeRequest = new photoAccessHelper.MediaAlbumChangeRequest(secondAlbum);
+    albumChangeRequest.placeBefore(firstAlbum);
+    await phAccessHelper.applyChanges(albumChangeRequest);
+    console.info('placeBefore successfully');
+  } catch (err) {
+    console.error('placeBeforeDemo failed with error: ' + err);
+  }
+}
+```
+
+## MediaAssetManager<sup>11+</sup>
+### requestImage<sup>11+</sup>
+
+static requestImage(context: Context, asset: PhotoAsset, requestOption: RequestOptions, dataHandler: MediaAssetDataHandler&lt;image.ImageSource&gt;): Promise&lt;string&gt;
+
+Requests an image.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO
+
+**Parameters**
+
+| Name           | Type                                                                                                       | Mandatory| Description                     |
+|----------------|-----------------------------------------------------------------------------------------------------------| ---- | ------------------------- |
+| context        | [Context](js-apis-inner-application-context.md)                                                           | Yes  | Context of the ability instance.|
+| assets         | [PhotoAsset](#photoasset)                                                                                | Yes  | Image to request.|
+| requestOptions | [RequestOptions](#requestoptions11)                                                                        | Yes  | Options for requesting the image.      
+| dataHandler    | [MediaAssetDataHandler](#mediaassetdatahandler11)&lt;[image.ImageSource](js-apis-image.md#imagesource)&gt; | Yes  | Media asset handler, which invokes a callback to return the image when the requested image is ready.
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201      |  Permission denied         |
+| 401      |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+class MediaHandler implements photoAccessHelper.MediaAssetDataHandler<image.ImageSource> {
+    onDataPrepared(data: image.ImageSource) {
+        console.info('on image data prepared');
+    }
+}
+
+async function example() {
+  console.info('requestImage');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let requestOptions: photoAccessHelper.RequestOptions = {
+    deliveryMode: photoAccessHelper.DeliveryMode.HIGH_QUALITY_MODE,
+    sourceMode: photoAccessHelper.SourceMode.ORIGINAL_MODE
+  }
+  const handler = new MediaHandler();
+
+  phAccessHelper.getAssets(fetchOptions, async (err, fetchResult) => {
+      console.info('fetchResult success');
+      let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+      await photoAccessHelper.MediaAssetManager.requestImage(context, photoAsset, requestOptions, handler);
+      console.info('requestImage successfully');
+  });
+}
+```
+
+### requestImageData<sup>11+</sup>
+
+static requestImageData(context: Context, asset: PhotoAsset, requestOptions: RequestOptions, dataHandler, MediaAssetDataHandler&lt;ArrayBuffer&gt;): Promise&lt;string&gt;
+
+Requests an image.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO
+
+**Parameters**
+
+| Name  | Type                                                                  | Mandatory| Description                     |
+| -------- |----------------------------------------------------------------------| ---- | ------------------------- |
+| context | [Context](js-apis-inner-application-context.md)                      | Yes  | Context of the ability instance.|
+| assets | [PhotoAsset](#photoasset)                                            | Yes  | Image to request.|
+| requestOptions  | [RequestOptions](#requestoptions11)                                  | Yes  | Options for requesting the image.      
+| dataHandler  | [MediaAssetDataHandler](#mediaassetdatahandler11)&lt;ArrayBuffer&gt; | Yes  | Media asset handler, which invokes a callback to return the image when the requested image is ready.
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201      |  Permission denied         |
+| 401      |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+class MediaDataHandler implements photoAccessHelper.MediaAssetDataHandler<ArrayBuffer> {
+    onDataPrepared(data: ArrayBuffer) {
+        console.info('on image data prepared');
+    }
+}
+
+async function example() {
+  console.info('requestImageData');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let requestOptions: photoAccessHelper.RequestOptions = {
+    deliveryMode: photoAccessHelper.DeliveryMode.HIGH_QUALITY_MODE,
+    sourceMode: photoAccessHelper.SourceMode.ORIGINAL_MODE
+  }
+  const handler = new MediaDataHandler();
+
+  phAccessHelper.getAssets(fetchOptions, async (err, fetchResult) => {
+      console.info('fetchResult success');
+      let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+      await photoAccessHelper.MediaAssetManager.requestImageData(context, photoAsset, requestOptions, handler);
+      console.info('requestImageData successfully');
+  });
+}
+```
+
+## MediaAssetDataHandler<sup>11+</sup>
+
+Media asset handler, which can be used to customize the media asset processing logic in **onDataPrepared**.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+### onDataPrepared<sup>11+</sup>
+
+onDataPrepared(data: T): void
+
+Called when the requested image is ready.
+**T** supports two data types: ArrayBuffer and [ImageSource](js-apis-image.md#imagesource).
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name | Type| Mandatory| Description                                                                           |
+|------|---| ---- |-------------------------------------------------------------------------------|
+| data | T | Yes  | Data type, which can be an ArrayBuffer or [ImageSource](js-apis-image.md#imagesource).|
+
+**Example**
+```ts
+class MediaHandler implements photoAccessHelper.MediaAssetDataHandler<image.ImageSource> {
+  onDataPrepared(data: image.ImageSource) {
+    // Customize the processing logic for ImageSource.
+    console.info('on image data prepared');
+  }
+}
+
+class MediaDataHandler implements photoAccessHelper.MediaAssetDataHandler<ArrayBuffer> {
+  onDataPrepared(data: ArrayBuffer) {
+    // Customize the processing logic for ImageSource.
+    console.info('on image data prepared');
   }
 }
 ```
@@ -5431,10 +8273,11 @@ Enumerates the album types.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-| Name |  Value|  Description|
-| ----- |  ---- |  ---- |
-| USER |  0 |  User album.|
-| SYSTEM |  1024 |  System album.|
+| Name                 | Value   | Description                       |
+| ------------------- | ---- | ------------------------- |
+| USER                | 0    | User album.                    |
+| SYSTEM              | 1024 | System album.                  |
+| SMART<sup>11+</sup> | 4096 | Smart analysis album. **System API**: This is a system API.|
 
 ## AlbumSubtype
 
@@ -5442,17 +8285,37 @@ Enumerate the album subtypes.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
+| Name                               | Value         | Description                             |
+| --------------------------------- | ---------- | ------------------------------- |
+| USER\_GENERIC                     | 1          | User album.                          |
+| FAVORITE                          | 1025       | Favorites.                           |
+| VIDEO                             | 1026       | Video album.                          |
+| HIDDEN                            | 1027       | Hidden album. **System API**: This is a system API.        |
+| TRASH                             | 1028       | Trash. **System API**: This is a system API.         |
+| SCREENSHOT                        | 1029       | Album for screenshots and screen recording files. **System API**: This is a system API.     |
+| CAMERA                            | 1030       | Album for photos and videos taken by the camera. **System API**: This is a system API.|
+| IMAGE<sup>11+</sup>               | 1031       | Album for images. **System API**: This is a system API.      |
+| SOURCE\_GENERIC<sup>11+</sup>     | 2049       | Source album. **System API**: This is a system API.        |
+| CLASSIFY<sup>11+</sup>            | 4097       | Classified album. **System API**: This is a system API.        |
+| GEOGRAPHY\_LOCATION<sup>11+</sup> | 4099       | Geographic location album. **System API**: This is a system API.        |
+| GEOGRAPHY\_CITY<sup>11+</sup>     | 4100       | City album. **System API**: This is a system API.        |
+| SHOOTING\_MODE<sup>11+</sup>      | 4101       | Shooting mode album. **System API**: This is a system API.      |
+| PORTRAIT<sup>11+</sup>            | 4102       | Portrait album. **System API**: This is a system API.        |
+| ANY                               | 2147483647 | Any album.                          |
+
+## RequestPhotoType<sup>11+</sup>
+
+Enumerates the types of the operation for obtaining image or video thumbnails.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
 | Name |  Value|  Description|
 | ----- |  ---- |  ---- |
-| USER_GENERIC |  1 |  User album.|
-| FAVORITE |  1025 |  Favorites.|
-| VIDEO |  1026 |  Video album.|
-| HIDDEN |  1027 |  Hidden album.<br>**System API**: This is a system API.|
-| TRASH |  1028 |  Trash.<br>**System API**: This is a system API.|
-| SCREENSHOT |  1029 |  Album for screenshots and screen recording files.<br>**System API**: This is a system API.|
-| CAMERA |  1030 |  Album for photos and videos taken by the camera.<br>**System API**: This is a system API.|
-| IMAGE<sup>11+</sup> |  1031 | Album for images.<br>**System API**: This is a system API.|
-| ANY |  2147483647 |  Any album.|
+| REQUEST_ALL_THUMBNAILS  |  0 |  Obtain both the quick thumbnail and the quality thumbnail.|
+| REQUEST_FAST_THUMBNAIL |  1 |  Obtain only the quick thumbnail.|
+| REQUEST_QUALITY_THUMBNAIL |  2 |  Obtain only the quality thumbnail.|
 
 ## PhotoKeys
 
@@ -5475,15 +8338,15 @@ Defines the key information about an image or video file.
 | ORIENTATION   | 'orientation'         | Orientation of the image file.                                            |
 | FAVORITE      | 'is_favorite'            | Whether the file is added to favorites.                                                   |
 | TITLE         | 'title'               | Title in the file.                                                  |
-| POSITION  | 'position'            | File location type.<br>**System API**: This is a system API.                              |
+| POSITION  | 'position'            | File location type. **System API**: This is a system API.                              |
 | DATE_TRASHED  | 'date_trashed'  | Date when the file was deleted. The value is the number of seconds elapsed since the Epoch time. **System API**: This is a system API.                |
-| HIDDEN  | 'hidden'            | Whether the file is hidden.<br>**System API**: This is a system API.                              |
-| CAMERA_SHOT_KEY  | 'camera_shot_key'  | Key for the Ultra Snapshot feature, which allows the camera to take photos or record videos with the screen off. (This parameter is available only for the system camera, and the key value is defined by the system camera.)<br>**System API**: This is a system API.           |
-| USER_COMMENT<sup>10+</sup>  | 'user_comment'            | User comment information.<br>**System API**: This is a system API.          |
-| DATE_YEAR<sup>11+</sup>  | 'date_year'            | Year when the file was created.<br>**System API**: This is a system API.          |
-| DATE_MONTH<sup>11+</sup>  | 'date_month'            | Month when the file was created.<br>**System API**: This is a system API.          |
-| DATE_DAY<sup>11+</sup>  | 'date_day'            | Date when the file was created.<br>**System API**: This is a system API.          |
-| PENDING<sup>11+</sup>  | 'pending'            | Pending state.<br>**System API**: This is a system API.          |
+| HIDDEN  | 'hidden'            | Whether the file is hidden. **System API**: This is a system API.                              |
+| CAMERA_SHOT_KEY  | 'camera_shot_key'  | Key for the camera to take photos or record videos with the screen off. (This parameter is available only for the system camera, and the key value is defined by the system camera.) **System API**: This is a system API.           |
+| USER_COMMENT<sup>10+</sup>  | 'user_comment'            | User comment information. **System API**: This is a system API.          |
+| DATE_YEAR<sup>11+</sup>  | 'date_year'            | Year when the file was created. **System API**: This is a system API.          |
+| DATE_MONTH<sup>11+</sup>  | 'date_month'            | Month when the file was created. **System API**: This is a system API.          |
+| DATE_DAY<sup>11+</sup>  | 'date_day'            | Date when the file was created. **System API**: This is a system API.          |
+| PENDING<sup>11+</sup>  | 'pending'            | Pending state. **System API**: This is a system API.          |
 
 ## AlbumKeys
 
@@ -5520,17 +8383,35 @@ Defines the options for creating an image or video asset.
 | Name                  | Type               | Mandatory| Description                                             |
 | ---------------------- | ------------------- | ---- | ------------------------------------------------ |
 | subtype           | [PhotoSubtype](#photosubtype) | No | Subtype of the image or video. |
-| cameraShotKey           | string | No | Key for the Ultra Snapshot feature, which allows the camera to take photos or record videos with the screen off. (This parameter is available only for the system camera, and the key value is defined by the system camera.)  |
+| cameraShotKey           | string | No | Key for the camera to take photos or record videos with the screen off. (This parameter is available only for the system camera, and the key value is defined by the system camera.)  |
 
 ## CreateOptions
 
-Defines the options for creating an image or video asset.
+Options for creating an image or video asset.
+
+The title must comply with the following specifications:
+- The title cannot contain the filename extension.
+- The title cannot exceed 255 characters.
+- The title cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 | Name                  | Type               | Mandatory| Description                                             |
 | ---------------------- | ------------------- | ---- | ------------------------------------------------ |
 | title           | string | No | Title of the image or video. |
+
+## RequestPhotoOptions<sup>11+</sup>
+
+Defines the options for obtaining the thumbnail of an image or video.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| Name                  | Type               | Mandatory| Description                                             |
+| ---------------------- | ------------------- | ---- | ------------------------------------------------ |
+| size           | [image.Size](js-apis-image.md#size) | No | Size of the thumbnail to obtain. |
+| requestPhotoType    | [RequestPhotoType](#requestphototype11) | No | Operation to perform. |
 
 ## FetchOptions
 
@@ -5540,8 +8421,58 @@ Defines the options for fetching media files.
 
 | Name                  | Type               | Readable| Writable| Description                                             |
 | ---------------------- | ------------------- | ---- |---- | ------------------------------------------------ |
-| fetchColumns           | Array&lt;string&gt; | Yes  | Yes  | Options for fetching files based on the attributes in columns.<br>If this parameter is left empty, files are fetched by URI, name, and type (the specific field names vary with the file asset or album object) by default. In addition, an error will be reported if [get](#get) is called to obtain other attributes of this object.<br>Example: fetchColumns: ['uri', 'title']|
-| predicates           | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md) | Yes  | Yes  | Predicates that specify the fetch criteria.|
+| fetchColumns           | Array&lt;string&gt; | Yes  | Yes  | Options for fetching files based on the attributes in columns. If this parameter is left empty, files are fetched by URI, name, and type (the specific field names vary with the file asset or album object) by default. In addition, an error will be reported if [get](#get) is called to obtain other attributes of this object. For example,<br>**fetchColumns: ['uri', 'title']**.|
+| predicates           | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Yes  | Predicates that specify the fetch criteria.|
+
+## RequestOptions<sup>11+</sup>
+
+Represents request options.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| Name                  | Type                             | Readable| Writable| Description                                             |
+| ---------------------- |---------------------------------| ---- |---- | ------------------------------------------------ |
+| deliveryMode           | [DeliveryMode](#deliverymode11) | Yes  | Yes  | Delivery mode of the requested asset, which can be fast mode, high-quality mode, or balance mode.|
+| sourceMode           | [SourceMode](#sourcemode11)     | Yes  | Yes  | Type of the asset file requested, which can be the original file or edited file. **System API**: This is a system API.|
+
+## PhotoProxy<sup>11+</sup>
+
+Photo proxy object, which is used by the camera application to write image data.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+## MediaChangeRequest<sup>11+</sup>
+
+Media change request, which is the parent class of the asset change request and album change request.
+
+**NOTE**<br>**MediaChangeRequest** takes effect only after [applyChanges](#applychanges11) is called.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+## FormInfo<sup>11+</sup>
+
+Defines the Gallery widget information.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| Name                  | Type               | Mandatory| Description                                             |
+| ---------------------- | ------------------- | ---- | ------------------------------------------------ |
+|formId       |string  |Yes| Widget ID, which is provided when a widget is created in Gallery.|
+|uri          |string  |Yes| URI of the image bound to the widget. When a widget is created, **uri** can be empty or the URI of an image. When a widget is removed, **uri** is not verified and can be empty. |
+
+## ResourceType<sup>11+</sup>
+
+Enumerates the types of the resources to write.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| Name |  Value|  Description|
+| ----- |  ---- |  ---- |
+| IMAGE_RESOURCE |  1 |  Image resource.|
+| VIDEO_RESOURCE |  2 |  Video resource.|
+| PHOTO_PROXY |  3 |  Photo proxy. **System API**: This is a system API.|
 
 ## ChangeData
 
@@ -5593,6 +8524,30 @@ Enumerates the media file types that can be selected.
 | VIDEO_TYPE |  'video/*' | Video.|
 | IMAGE_VIDEO_TYPE |  '\*/*' | Image and video.|
 
+## RecommendationType<sup>11+</sup>
+
+Enumerates the types of recommended images.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| Name |  Value|  Description|
+| ----- |  ---- | ---- |
+| QR_OR_BAR_CODE  |  1 | QR code or barcode.|
+| QR_CODE |  2 | QR code.|
+| BAR_CODE |  3 | Barcode.|
+| ID_CARD |  4 | ID card.|
+| PROFILE_PICTURE |  5 | Profile.|
+
+## RecommendationOptions<sup>11+</sup>
+
+Defines the image recommendation options. The image recommendation feature depends on the image data analysis capability, which varies with devices.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| Name                   | Type               | Mandatory| Description                         |
+| ----------------------- | ------------------- | ---- | -------------------------------- |
+| recommendationType | [RecommendationType](#recommendationtype11)   | No  | Type of the recommended image. If this parameter is not specified, images are not recommended by default.|
+
 ## PhotoSelectOptions
 
 Defines the options for selecting images or videos.
@@ -5604,7 +8559,9 @@ Defines the options for selecting images or videos.
 | MIMEType              | [PhotoViewMIMETypes](#photoviewmimetypes)   | No  | Available media file types. **IMAGE_VIDEO_TYPE** is used by default.|
 | maxSelectNumber       | number | No  | Maximum number of media files that can be selected. The default value is **50**, and the maximum value is **500**.     |
 | isPhotoTakingSupported<sup>11+</sup> | boolean  | No  | Whether photo taking is supported.|
-| isEditSupported<sup>11+</sup>       | boolean | No  | Whether the photo is editable.     |
+| isEditSupported<sup>11+</sup>       | boolean | No  | Whether the image is editable.     |
+| isSearchSupported<sup>11+</sup> | boolean  | No  | Whether the image is searchable.|
+| recommendationOptions<sup>11+</sup>       | [RecommendationOptions](#recommendationoptions11)   | No  | Recommended image.     |
 
 ## PhotoSelectResult
 
@@ -5616,3 +8573,48 @@ Defines information about the images or videos selected.
 | ----------------------- | ------------------- | ---- | ---- | ------------------------------ |
 | photoUris        | Array&lt;string&gt;    | Yes  | Yes  | URIs of the images or videos selected. The URI array can be used only by calling [photoAccessHelper.getAssets](#getassets) with temporary authorization. For details about how to use the media file URI, see [Using a Media File URI] (../../file-management/user-file-uri-intro.md#using-a-media-file-uri).|
 | isOriginalPhoto        | boolean    | Yes  | Yes  | Whether the selected media asset is the original image.|
+
+
+## DeliveryMode<sup>11+</sup>
+
+Enumerates the image delivery modes.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| Name |  Value|  Description|
+| ----- |  ---- |  ---- |
+| FAST_MODE |  1 |  Fast mode.|
+| HIGH_QUALITY_MODE |  2 |  High-quality mode.|
+| BALANCE_MODE |  3 |  Balance mode.|
+
+## SourceMode<sup>11+</sup>
+
+Enumerates the types of the file to read.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| Name |  Value|  Description|
+| ----- |  ---- |  ---- |
+| ORIGINAL_MODE |  0 |  Original file.|
+| EDITED_MODE |  1 |  Edited file.|
+
+## AnalysisType<sup>11+</sup>
+
+Enumerates the smart analysis types.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| Name                           | Value | Description      |
+| :---------------------------- | :- | :------- |
+| ANALYSIS\_AESTHETICS\_SCORE   | 0  | Aesthetics score. <br>**System API**: This is a system API.   |
+| ANALYSIS\_LABEL               | 1  | Label. <br>**System API**: This is a system API.   |
+| ANALYSIS\_OCR                 | 2  | Optical character recognition (OCR) analysis. <br>**System API**: This is a system API.   |
+| ANALYSIS\_FACE                | 3  | Facial detection analysis. <br>**System API**: This is a system API.   |
+| ANALYSIS\_OBJECT              | 4  | Object detection analysis. <br>**System API**: This is a system API.   |
+| ANALYSIS\_RECOMMENDATION      | 5  | Recommendation analysis. <br>**System API**: This is a system API.   |
+| ANALYSIS\_SEGMENTATION        | 6  | Segmentation analysis. <br>**System API**: This is a system API.   |
+| ANALYSIS\_COMPOSITION         | 7  | Aesthetic composition analysis. <br>**System API**: This is a system API.  |
+| ANALYSIS\_SALIENCY            | 8  | Salience analysis. <br>**System API**: This is a system API.  |
+| ANALYSIS\_DETAIL\_ADDRESS     | 9  | Detailed address analysis. <br>**System API**: This is a system API.   |

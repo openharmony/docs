@@ -6,12 +6,12 @@ Animation effects can add detail to your animations and create a sense of realis
 Blur effects add a sense of depth and allow for distinction of hierarchical relationship between elements.
 
 
-| API                                      | Description                    |
-| ---------------------------------------- | ---------------------- |
-| [backdropBlur](../reference/arkui-ts/ts-universal-attributes-image-effect.md) | Applies a background blur effect to the component. The input parameter is the blur radius.|
-| [blur](../reference/arkui-ts/ts-universal-attributes-image-effect.md) | Applies a foreground blur effect to the component. The input parameter is the blur radius.|
-| [backgroundBlurStyle](../reference/arkui-ts/ts-universal-attributes-background.md) | Applies a background blur effect to the component. The input parameter is the blur style.|
-| [foregroundBlurStyle](../reference/arkui-ts/ts-universal-attributes-foreground-blur-style.md) | Applies a foreground blur effect to the component. The input parameter is the blur style.|
+| API                                                        | Description                                        |
+| ------------------------------------------------------------ | -------------------------------------------- |
+| [backdropBlur](../reference/arkui-ts/ts-universal-attributes-image-effect.md#backdropblur) | Applies a background blur effect to the component. The input parameter is the blur radius.|
+| [blur](../reference/arkui-ts/ts-universal-attributes-image-effect.md#blur) | Applies a foreground blur effect to the component. The input parameter is the blur radius.|
+| [backgroundBlurStyle](../reference/arkui-ts/ts-universal-attributes-background.md#backgroundblurstyle9) | Applies a background blur effect to the component. The input parameter is the blur style.|
+| [foregroundBlurStyle](../reference/arkui-ts/ts-universal-attributes-foreground-blur-style.md#foregroundblurstyle) | Applies a foreground blur effect to the component. The input parameter is the blur style.|
 
 
 ## Applying Background Blur with backdropBlur

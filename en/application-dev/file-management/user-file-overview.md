@@ -8,8 +8,6 @@ User files are the private images, video and audio clips, and documents of the u
 
 - An application cannot access user files without user authorization, or the operations on user files must be performed by the user.
 
-OpenHarmony provides the [user file access framework](#user-file-access-framework) for developers to access and manage user files.
-
 ## User File Storage
 
 ### Built-in Storage
@@ -37,25 +35,3 @@ External storage is not inside a device's main storage or memory. Common externa
 External storage devices are pluggable. OpenHarmony provides listening for the device insertion/removal events and mount/unmount of an external storage device. For details, see [Managing External Storage Devices](manage-external-storage.md).
 
 The files on external storage devices are presented as common files in a directory tree, like the documents in built-in storage.
-
-## User File Access Framework
-
-OpenHarmony provides the user file access framework for developers to access and manage user files. This framework leverages the ExtensionAbility of OpenHarmony to provide a set of methods and interfaces for accessing user files.
-
-**Figure 1** User file access framework
-
-![User file access framework](figures/user-file-access-framework.png)
-
-- The file access client (a system application or third-party application) can access user files, for example, select a photo or save multiple documents, by starting the **FilePicker** application.
-
-- OpenHarmony is prebuilt with the **FilePicker** and **FileManager** applications.
-  - **FilePicker**: allows a file access client to select and save user files without any permission. For details, see [Selecting User Files](select-user-file.md).
-  - **FileManager**: allows users to view and modify files, and delete, rename, move, and create files or directories.
-
-  You can also develop your own file picker or file manager applications as required. File picker is a subset of file manager. For details about how to develop a file manager application, see [Developing a File Manager Application](dev-user-file-manager.md).
-
-- The user file access framework consists of the following functional modules:
-  - **File Access Helper**: provides APIs for the **FileManager** and **FilePicker** to access user files.
-  - **File Access ExtensionAbility**: implements file access via the following services:
-    - **UserFileManager**: implements management of the files on the built-in storage based on the File Access ExtensionAbility framework.
-    - **ExternalFileManager**: implements management of the files on the external storage based on the File Access ExtensionAbility framework.

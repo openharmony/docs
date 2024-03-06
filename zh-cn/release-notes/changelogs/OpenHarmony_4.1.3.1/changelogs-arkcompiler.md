@@ -80,7 +80,7 @@ TypeScript版本升级之后，TS类语法检查更加严格，有10类与现有
     ```
     适配建议：从泛型对象中解构属性时，确保属性属于可结构类型
 5. 对模板字符串表达式进行更严格的检查  
-当在模板字符串中使用Symbol时，在JavaScript会报运行时错误，现在TS语法检查阶段会报错，与之同时也会检查模板字符串中是否使用了某种方式来约束符号的泛型值。  
+当在模板字符串中使用Symbol时，在JavaScript会报运行时错误，现在TS文件中，TS语法检查会报错，与之同时也会检查模板字符串中是否使用了某种方式来约束符号的泛型值。  
     ```
     function logKey<S extends string | symbol>(key: S): S {
         // Implicit conversion of a 'symbol' to a 'string' will fail at runtime. Consider wrapping this expression in 'String(...)'.
@@ -108,7 +108,7 @@ JavaScript中对象（以及数组）之间的'==' 和 '===' 检查两个引用�
     }
     ```
 8. 不允许在类型签名中写未使用的重命名  
-下面示例，开发者一般会认为makePerson有一个对象，其有name和age两个属性，string与number为两个属性的类型。然而实际是一个析构语法，string与number是name与age的重命名。
+在TS文件中，开发者一般会认为下面示例中makePerson的入参是一个对象，其有name和age两个属性，string与number为两个属性的类型。然而此对象实际是一个析构语法，string与number是name与age的重命名。
     ```
     declare function makePerson({ name: string, age: number }): Person;
     ```

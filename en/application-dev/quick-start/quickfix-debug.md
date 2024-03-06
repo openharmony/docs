@@ -52,10 +52,10 @@ $ java -jar app_packing_tool.jar --mode hqf --json-path patch.json --lib-path li
 The command contains the following options.
 | Option|Description | Remarks|
 | --- | --- |---|
-| mode  |Mode. | Mandatory|
+| mode  | Packing mode. | Mandatory|
 | json-path|Path to the **patch.json** file.|Mandatory|
-| lib-path|Path to the quick fix .so file. For details about the path, see [Structure of the Quick Fix Package](quickfix-principles.md#structure-of-the-quick-fix-package).|Optional|
-| ets-path|Path to the quick fix .abc file.|Optional|
+| lib-path|Path to the folder where the .so file is located. For details about the path, see [Structure of the Quick Fix Package](quickfix-principles.md#structure-of-the-quick-fix-package).|Optional|
+| ets-path|Path to the folder where the .abc file is located.|Optional|
 
 ## Signing the Quick Fix File
 

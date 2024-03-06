@@ -2,13 +2,18 @@
 
 To achieve a better transition effect, you are advised to use the [\<Navigation>](arkts-navigation-transition.md) component and [modal transition](arkts-modal-transition.md).
 
+During page redirection, one page enters and the other page exits. You can customize the [page transition effects](../reference/apis-arkui/arkui-ts/ts-page-transition-animation.md) for these pages through the **pageTransition** function. Specifically, [PageTransitionEnter](../reference/apis-arkui/arkui-ts/ts-page-transition-animation.md#pagetransitionenter) defines the page entrance animation, while [PageTransitionExit](../reference/apis-arkui/arkui-ts/ts-page-transition-animation.md#pagetransitionexit) defines the page exit animation.
+The **pageTransition** function is as follows:
 
-During page redirection, one page disappears and the other page appears. You can customize the [page transition effects](../reference/arkui-ts/ts-page-transition-animation.md) for these pages through the **pageTransition** API. Specifically, **PageTransitionEnter** defines the page entrance animation, while **PageTransitionExit** defines the page exit animation.
+```ts
+pageTransition() {
+  PageTransitionEnter()
+  PageTransitionExit()
+}
+```
 
 
 API of **PageTransitionEnter**:
-
-
 
 ```ts
 PageTransitionEnter({type?: RouteType,duration?: number,curve?: Curve | string,delay?: number})
@@ -16,8 +21,6 @@ PageTransitionEnter({type?: RouteType,duration?: number,curve?: Curve | string,d
 
 
 API of **PageTransitionExit**:
-
-
 
 ```ts
 PageTransitionExit({type?: RouteType,duration?: number,curve?: Curve | string,delay?: number})
@@ -46,8 +49,6 @@ pageTransition() {
     .slide(SlideEffect.Left)
 }
 ```
-
-
 
 ```ts
 // page B
@@ -98,8 +99,6 @@ pageTransition() {
     .slide(SlideEffect.Right)
 }
 ```
-
-
 
 ```ts
 // page B
@@ -154,7 +153,7 @@ You can disable the transition animation of a page by setting the page transitio
 
 ## Example
 
-In the following example, page transition animations are defined using [router.pushUrl](../reference/apis/js-apis-router.md#routerpushurl9) for all the page transition scenarios.
+In the following example, page transition animations are defined using [router.pushUrl](../reference/apis-arkui/js-apis-router.md#routerpushurl9) for all the page transition scenarios.
 
 ```ts
 // PageTransitionSrc1

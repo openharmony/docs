@@ -12,14 +12,14 @@ import inputDevice from '@ohos.multimodalInput.inputDevice';
 
 ## 接口说明
 
-输入设备管理常用接口如下表所示，接口详细介绍请参考[ohos.multimodalInput.inputDevice文档](../reference/apis/js-apis-inputdevice.md)。
+输入设备管理常用接口如下表所示，接口详细介绍请参考[ohos.multimodalInput.inputDevice文档](../reference/apis-input-kit/js-apis-inputdevice.md)。
 
-| 实例名 | 接口名  | 说明 |
+| 接口名称  | 描述 |
 | ----------- | ------------------------------------------------------------ | -------------------------- |
-| inputDevice | function getDeviceList(): Promise\<Array\<number>>; | 获取输入设备列表。 |
-| inputDevice | function getKeyboardType(deviceId: number): Promise\<KeyboardType>; | 获取输入设备的键盘类型。 |
-| inputDevice | function on(type: "change", listener: Callback\<DeviceListener>): void; | 监听输入设备的热插拔事件。 |
-| inputDevice | function off(type: "change", listener?: Callback\<DeviceListener>): void; | 取消监听输入设备的热插拔事件。 |
+| getDeviceList(): Promise\<Array\<number>> | 获取输入设备列表。 |
+| getKeyboardType(deviceId: number): Promise\<KeyboardType> | 获取输入设备的键盘类型。 |
+| on(type: "change", listener: Callback\<DeviceListener>): void | 监听输入设备的热插拔事件。 |
+| off(type: "change", listener?: Callback\<DeviceListener>): void | 取消监听输入设备的热插拔事件。 |
 
 ## 虚拟键盘弹出检测
 
@@ -27,8 +27,8 @@ import inputDevice from '@ohos.multimodalInput.inputDevice';
 
 ## 开发步骤
 
-1. 调用[getDeviceList](../reference/apis/js-apis-inputdevice.md#inputdevicegetdevicelist9)方法查询所有连接的输入设备，调用[getKeyboardType](../reference/apis/js-apis-inputdevice.md#inputdevicegetkeyboardtype9)方法遍历所有连接的设备，判断是否有物理键盘，若有则标记已有物理键盘连接，该步骤确保监听设备热插拔之前，检测所有插入的输入设备。
-2. 调用[on](../reference/apis/js-apis-inputdevice.md#inputdeviceon9)接口监听输入设备热插拔事件，若监听到有物理键盘插入，则标记已有物理键盘连接；若监听到有物理键盘拔掉，则标记没有物理键盘连接。
+1. 调用[getDeviceList](../reference/apis-input-kit/js-apis-inputdevice.md#inputdevicegetdevicelist9)方法查询所有连接的输入设备，调用[getKeyboardType](../reference/apis-input-kit/js-apis-inputdevice.md#inputdevicegetkeyboardtype9)方法遍历所有连接的设备，判断是否有物理键盘，若有则标记已有物理键盘连接，该步骤确保监听设备热插拔之前，检测所有插入的输入设备。
+2. 调用[on](../reference/apis-input-kit/js-apis-inputdevice.md#inputdeviceon9)接口监听输入设备热插拔事件，若监听到有物理键盘插入，则标记已有物理键盘连接；若监听到有物理键盘拔掉，则标记没有物理键盘连接。
 
 
 ```js

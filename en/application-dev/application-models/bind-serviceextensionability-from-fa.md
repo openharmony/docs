@@ -13,24 +13,27 @@ A PageAbility accesses a ServiceExtensionAbility in the same way as it accesses 
 import featureAbility from '@ohos.ability.featureAbility';
 import common from '@ohos.app.ability.common';
 import Want from '@ohos.app.ability.Want';
+import Logger from '../../utils/Logger';
 
-let want: Want = {
-    bundleName: "com.ohos.stage",
-    abilityName: "com.ohos.stage.ServiceExtensionAbility"
+const TAG: string = 'PageInterflowFaAndStage';
+
+let serviceWant: Want = {
+  bundleName: 'com.samples.stagemodelabilityinteraction',
+  abilityName: 'ServiceExtAbility'
 };
 
 let faConnect: common.ConnectOptions = {
-    onConnect: (elementName, proxy) => {
-        console.info("Faconnection onConnect called.");
-    },
-    onDisconnect: (elementName) => {
-        console.info("Faconnection onDisconnect called.");
-    },
-    onFailed: (code) => {
-        console.info("Faconnection onFailed code is: " + code);
-    }
+  onConnect: (elementName, proxy) => {
+    Logger.info(TAG, "FaConnection onConnect called.");
+  },
+  onDisconnect: (elementName) => {
+    Logger.info(TAG, "FaConnection onDisconnect called.");
+  },
+  onFailed: (code) => {
+    Logger.info(TAG, "FaConnection onFailed code is: " + code);
+  }
 };
-let connectionId = featureAbility.connectAbility(want, faConnect);
+let connectionId = featureAbility.connectAbility(serviceWant, faConnect);
 ```
 
 
@@ -43,22 +46,25 @@ A ServiceAbility or DataAbility accesses a ServiceExtensionAbility in the same w
 import particleAbility from '@ohos.ability.particleAbility';
 import common from '@ohos.app.ability.common';
 import Want from '@ohos.app.ability.Want';
+import hilog from '@ohos.hilog';
 
-let want: Want = {
-    bundleName: "com.ohos.stage",
-    abilityName: "com.ohos.stage.ServiceExtensionAbility"
+const TAG: string = '[Sample_FAModelAbilityDevelop]';
+const domain: number = 0xFF00;
+
+let serviceWant: Want = {
+  bundleName: 'com.samples.stagemodelabilityinteraction',
+  abilityName: 'ServiceExtAbility'
 };
-
 let faConnect: common.ConnectOptions = {
-    onConnect: (elementName, proxy) => {
-        console.info("Faconnection onConnect called.");
-    },
-    onDisconnect: (elementName) => {
-        console.info("Faconnection onDisconnect called.");
-    },
-    onFailed: (code) => {
-        console.info("Faconnection onFailed code is: " + code);
-    }
+  onConnect: (elementName, proxy) => {
+    hilog.info(domain, TAG, 'FaConnection onConnect called.');
+  },
+  onDisconnect: (elementName) => {
+    hilog.info(domain, TAG, 'FaConnection onDisconnect called.');
+  },
+  onFailed: (code) => {
+    hilog.info(domain, TAG, 'FaConnection onFailed code is: ' + code);
+  }
 };
-let connectionId = particleAbility.connectAbility(want, faConnect);
+let connectionId = particleAbility.connectAbility(serviceWant, faConnect);
 ```

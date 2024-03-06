@@ -1,4 +1,4 @@
-# DataAbility Component Configuration
+# DataAbility Configuration
 
 
 ## URI Introduction
@@ -45,16 +45,22 @@ The following is an example **config.json** file:
 
 
 ```json
-"abilities": [{
-  "srcPath": "DataAbility",
-  "name": ".DataAbility",
-  "icon": "$media:icon",
-  "srcLanguage": "ets",
-  "description": "$string:description_dataability",
-  "type": "data",
-  "visible": true,
-  "uri": "dataability://ohos.samples.etsdataability.DataAbility"
-}]
+"abilities": [
+  ...
+  {
+    "name": ".DataAbility",
+    "srcLanguage": "ets",
+    "srcPath": "DataAbility",
+    "icon": "$media:icon",
+    "description": "$string:DataAbility_desc",
+    "type": "data",
+    "visible": true,
+    "uri": "dataability://com.samples.famodelabilitydevelop.DataAbility",
+    "readPermission": "ohos.permission.READ_CONTACTS",
+    "writePermission": "ohos.permission.WRITE_CONTACTS"
+  },
+  ...
+]
 ```
 
 For details about the configuration items, see [Internal Structure of module](../quick-start/module-structure.md).

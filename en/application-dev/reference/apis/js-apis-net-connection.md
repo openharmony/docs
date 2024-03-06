@@ -133,7 +133,7 @@ Obtains the default active data network in synchronous mode. You can use [getNet
 
 | Type     | Description                              |
 | --------- | ---------------------------------- |
-| NetHandle | Handle of the default active data network.|
+| [NetHandle](#nethandle) | Handle of the default active data network.|
 
 **Error codes**
 
@@ -329,6 +329,167 @@ connection.setGlobalHttpProxy({
   console.info(JSON.stringify(error));
 });
 ```
+
+## connection.setAppHttpProxy<sup>11+</sup>
+
+setAppHttpProxy(httpProxy: HttpProxy): void;
+
+Sets the application-level HTTP proxy configuration of the network.
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+**Parameters**
+
+| Name   | Type                                                        | Mandatory| Description            |
+| --------- | ------------------------------------------------------------ | ---- | ---------------- |
+| httpProxy | [HttpProxy](#httpproxy10)                                      | Yes  | Application-level HTTP proxy configuration.|
+
+**Error codes**
+
+| ID| Error Message                      |
+| ------- | -----------------------------  |
+| 401     | Parameter error.               |
+| 2100001 | Invalid http proxy.            |
+
+**Example**
+
+```ts
+import connection from '@ohos.net.connection';
+import { BusinessError } from '@ohos.base';
+
+let exclusionStr = "192.168,baidu.com";
+let exclusionArray = exclusionStr.split(',');
+connection.setAppHttpProxy({
+  host: "192.168.xx.xxx",
+  port: 8080,
+  exclusionList: exclusionArray
+} as connection.HttpProxy);
+```
+
+**Preset certificate PIN:**
+
+A certificate PIN is the hash value calculated using the SHA256 algorithm for a certificate file.
+For the **server.pem** certificate, you can use the following openssl command to calculate its PIN:
+
+```shell
+cat server.pem \
+| sed -n '/-----BEGIN/,/-----END/p' \
+| openssl x509 -noout -pubkey \
+| openssl pkey -pubin -outform der \
+| openssl dgst -sha256 -binary \
+| openssl enc -base64
+```
+
+**Preset application-level certificate:**
+
+The original certificate file is preset in the application. Currently, certificate files in the **.crt** and **.pem** formats are supported.
+
+**Preset JSON configuration file:**
+
+The mapping between preset certificates and network servers is configured in a JSON configuration file.
+The configuration file is stored in the **src/main/resources/base/profile/network_config.json** directory of the application.
+
+**JSON configuration file:**
+
+The following is an example configuration of the certificate pin:
+```json
+{
+  "network-security-config": {	
+	  "domain-config": {
+		  "domains": [
+        {
+          "include-subdomains": true,
+          "name": "server.com"
+        }
+      ],
+      "pin-set": {
+        "expiration": "2024-11-08",
+        "pin": [
+          {
+            "digest-algorithm": "sha256",
+            "digest": "FEDCBA987654321"
+          }
+        ]
+      }
+    }
+  }
+}
+```
+
+The following is an example configuration of the application-level certificate:
+```json
+{
+  "network-security-config": {
+    "base-config": {  
+      "trust-anchors": [                         
+        {"certificates": "/etc/security/certificates"}
+      ]
+    },
+    "domain-config": {
+      "domains": [
+        {
+          "include-subdomains": true,
+          "name": "example.com"
+        }
+      ],
+      "trust-anchors": [
+        {"certificates": "/data/storage/el1/bundle/entry/resources/resfile"}
+      ]
+    }
+  }
+}
+
+```
+
+**Description of fields**
+
+**network-security-config (object: network security configuration)**
+
+This field can contain zero or one **base-config**.
+
+This field must contain one **domain-config**.
+
+**base-config (object: application-wide security configuration)**
+
+This field must contain one **trust-anchors**.
+
+**domain-config (array: security configuration of each domain)**
+
+This field can contain any number of items.
+
+An item must contain one **domain**.
+
+An item can contain zero or one **trust-anchors**.
+
+An item can contain zero or one **pin-set**.
+
+**trust-anchors (array: trusted CA)**
+
+This field can contain any number of items.
+
+An item must contain one **certificates** (string: CA certificate path).
+
+**domain (array: domain)**
+
+This field can contain any number of items.
+
+An item must contain one **name** (string: domain name).
+
+An item can contain zero or one **include-subdomains** (boolean: whether a rule is applicable to subdomains).
+
+**pin-set (object: certificate PIN setting)**
+
+This field must contain one **pin**.
+
+This field can contain zero or one **expiration** (string: expiration time of the certificate PIN).
+
+**pin (array: certificate PIN)**
+
+This field can contain any number of items.
+
+An item must contain one **digest-algorithm** (string: digest algorithm used to generate the PIN).
+
+An item must contain one **digest** (string: public key PIN).
 
 ## connection.getDefaultHttpProxy<sup>10+</sup>
 
@@ -1474,7 +1635,7 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 
 getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): void
 
-Resolves the host name by using the default network to obtain all IP addresses. This API uses an asynchronous callback to return the result.
+Resolves the host name by using the corresponding network to obtain all IP addresses. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -1512,7 +1673,7 @@ connection.getAddressesByName("xxxx", (error: BusinessError, data: connection.Ne
 
 getAddressesByName(host: string): Promise\<Array\<NetAddress>>
 
-Resolves the host name by using the default network to obtain all IP addresses. This API uses a promise to return the result.
+Resolves the host name by using the corresponding network to obtain all IP addresses. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -1548,6 +1709,289 @@ connection.getAddressesByName("xxxx").then((data: connection.NetAddress[]) => {
   console.log(JSON.stringify(data));
 });
 ```
+
+## connection.addCustomDnsRule<sup>11+</sup>
+
+addCustomDnsRule(host: string, ip: Array\<string\>, callback: AsyncCallback\<void\>): void
+
+Adds the mapping between a custom host and the corresponding IP address for the current application. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.INTERNET
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+**Parameters**
+
+| Name  | Type                | Mandatory| Description                                                        |
+| -------- | -------------------- | ---- | ------------------------------------------------------------ |
+| host     | string               | Yes  | Name of the custom host.                                    |
+| ip       | Array\<string>       | Yes  | List of IP addresses mapped to the host name.                                  |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the mapping is added successfully, **error** is **undefined**. Otherwise, **error** is an error object.|
+
+**Error codes**
+
+| ID| Error Message                       |
+| ------- | -----------------------------  |
+| 201     | Permission denied.             |
+| 401     | Parameter error.               |
+| 2100001 | Invalid parameter value.                |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.         |
+
+**Example**
+
+```ts
+import connection from '@ohos.net.connection';
+import { BusinessError } from '@ohos.base';
+connection.addCustomDnsRule("xxxx", ["xx.xx.xx.xx","xx.xx.xx.xx"], (error: BusinessError, data: void) => {
+    console.log(JSON.stringify(error));
+    console.log(JSON.stringify(data));
+})
+```
+
+## connection.addCustomDnsRule<sup>11+</sup>
+
+addCustomDnsRule(host: string, ip: Array\<string\>): Promise\<void\>
+
+Adds the mapping between a custom host and the corresponding IP address for the current application. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.INTERNET
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+**Parameters**
+
+| Name| Type          | Mandatory| Description                      |
+| ------ | -------------- | ---- | -------------------------- |
+| host   | string         | Yes  | Name of the custom host.  |
+| ip     | Array\<string> | Yes  | List of IP addresses mapped to the host name.|
+
+**Return value**
+
+| Type                  | Description                   |
+| ---------------------- | ----------------------- |
+| Promise\<Array\<void>> | Promise that returns no value.|
+
+**Error codes**
+
+| ID| Error Message                       |
+| ------- | -----------------------------  |
+| 201     | Permission denied.             |
+| 401     | Parameter error.               |
+| 2100001 | Invalid parameter value.                |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.         |
+
+**Example**
+
+```ts
+import connection from '@ohos.net.connection';
+import { BusinessError } from '@ohos.base';
+connection.addCustomDNSRule("xxxx", ["xx.xx.xx.xx","xx.xx.xx.xx"]).then(() => {
+    console.log("success");
+}).catch((error: BusinessError) => {
+    console.log(JSON.stringify(error));
+})
+```
+
+## connection.removeCustomDnsRule<sup>11+</sup>
+
+removeCustomDnsRule(host: string, callback: AsyncCallback\<void\>): void
+
+Removes the custom DNS rules of the specified host from the current application. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.INTERNET
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+**Parameters**
+
+| Name  | Type                | Mandatory| Description                                                        |
+| -------- | -------------------- | ---- | ------------------------------------------------------------ |
+| host     | string               | Yes  | Name of the host for which DNS rules are to be deleted.                             |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the DNS rules are removed successfully, **error** is **undefined**. Otherwise, **error** is an error object.|
+
+**Error codes**
+
+| ID| Error Message                       |
+| ------- | -----------------------------  |
+| 201     | Permission denied.             |
+| 401     | Parameter error.               |
+| 2100001 | Invalid parameter value.                |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.         |
+
+**Example**
+
+```ts
+import connection from '@ohos.net.connection';
+import { BusinessError } from '@ohos.base';
+connection.removeCustomDnsRule("xxxx", (error: BusinessError, data: void) => {
+    console.log(JSON.stringify(error));
+    console.log(JSON.stringify(data));
+})
+```
+
+## connection.removeCustomDnsRule<sup>11+</sup>
+
+removeCustomDnsRule(host: string): Promise\<void\>
+
+Removes the custom DNS rules of the specified host from the current application. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.INTERNET
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                           |
+| ------ | ------ | ---- | ------------------------------- |
+| host   | string | Yes  | Name of the host for which DNS rules are to be deleted.|
+
+**Return value**
+
+| Type                  | Description                   |
+| ---------------------- | ----------------------- |
+| Promise\<Array\<void>> | Promise that returns no value.|
+
+**Error codes**
+
+| ID| Error Message                       |
+| ------- | -----------------------------  |
+| 201     | Permission denied.             |
+| 401     | Parameter error.               |
+| 2100001 | Invalid parameter value.                |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.         |
+
+**Example**
+
+```ts
+import connection from '@ohos.net.connection';
+import { BusinessError } from '@ohos.base';
+connection.removeCustomDnsRule("xxxx").then(() => {
+    console.log("success");
+}).catch((error: BusinessError) => {
+    console.log(JSON.stringify(error));
+})
+```
+
+## connection.clearCustomDnsRules<sup>11+</sup>
+
+clearCustomDnsRules(callback: AsyncCallback\<void\>): void
+
+Removes all custom DNS rules from the current application. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.INTERNET
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+**Parameters**
+
+| Name  | Type                | Mandatory| Description                                                        |
+| -------- | -------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If all the DNS rules are removed successfully, **error** is **undefined**. Otherwise, **error** is an error object.|
+
+**Error codes**
+
+| ID| Error Message                       |
+| ------- | -----------------------------  |
+| 201     | Permission denied.             |
+| 401     | Parameter error.               |
+| 2100001 | Invalid parameter value.                |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.         |
+
+**Example**
+
+```ts
+import connection from '@ohos.net.connection';
+import { BusinessError } from '@ohos.base';
+connection.clearCustomDnsRules((error: BusinessError, data: void) => {
+    console.log(JSON.stringify(error));
+    console.log(JSON.stringify(data));
+})
+```
+
+## connection.clearCustomDnsRules<sup>11+</sup>
+
+clearCustomDnsRules(): Promise\<void\>
+
+Removes all custom DNS rules from the current application. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.INTERNET
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+**Return value**
+
+| Type                  | Description                   |
+| ---------------------- | ----------------------- |
+| Promise\<void\>        | Promise that returns no value. |
+
+**Error codes**
+
+| ID| Error Message                       |
+| ------- | -----------------------------  |
+| 201     | Permission denied.             |
+| 401     | Parameter error.               |
+| 2100001 | Invalid parameter value.                |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.         |
+
+**Example**
+
+```ts
+import connection from '@ohos.net.connection';
+import { BusinessError } from '@ohos.base';
+connection.clearCustomDnsRules().then(() => {
+    console.log("success");
+}).catch((error: BusinessError) => {
+    console.log(JSON.stringify(error));
+})
+```
+
+
+## connection.factoryReset<sup>11+</sup>
+
+factoryReset(): Promise\<void\>
+
+Resets the network settings to factory defaults. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.CONNECTIVITY_INTERNAL
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+**Return value**
+
+| Type                  | Description                   |
+| ---------------------- | ----------------------- |
+| Promise\<void\>        | Promise that returns no value. |
+
+**Error codes**
+
+| ID| Error Message                                   |
+| ------- | ------------------------------------------  |
+| 201     | Permission denied.                          |
+| 202     | Non-system applications use system APIs.    |
+| 401     | Parameter error.                            |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.                      |
+
+**Example**
+
+```ts
+import connection from '@ohos.net.connection';
+import { BusinessError } from '@ohos.base';
+connection.factoryReset().then(() => {
+    console.log("success");
+}).catch((error: BusinessError) => {
+    console.log(JSON.stringify(error));
+})
+```
+
 
 ## NetConnection
 
@@ -1675,7 +2119,7 @@ netCon.unregister((error: BusinessError) => {
 
 ### on('netBlockStatusChange')
 
-on(type: 'netBlockStatusChange', callback: Callback&lt;{ netHandle: NetHandle, blocked: boolean }&gt;): void
+on(type: 'netBlockStatusChange', callback: Callback\<NetBlockStatusInfo>): void
 
 Registers a listener for **netBlockStatusChange** events. This API uses an asynchronous callback to return the result.
 
@@ -1688,7 +2132,7 @@ Registers a listener for **netBlockStatusChange** events. This API uses an async
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | Yes  | Event type. This field has a fixed value of **netBlockStatusChange**.<br>**netBlockStatusChange**: event indicating a change in the network blocking status.|
-| callback | Callback&lt;{&nbsp;netHandle:&nbsp;[NetHandle](#nethandle),&nbsp;blocked:&nbsp;boolean&nbsp;}&gt; | Yes  | Callback used to return the network handle (**netHandle**) and network status (**blocked**).|
+| callback | Callback<[NetBlockStatusInfo](#netblockstatusinfo11)> | Yes  | Callback used to return the result.  |
 
 **Example**
 
@@ -1721,7 +2165,7 @@ netCon.unregister((error: BusinessError) => {
 
 ### on('netCapabilitiesChange')
 
-on(type: 'netCapabilitiesChange', callback: Callback\<NetCapabilityInfo>): void
+on(type: 'netCapabilitiesChange', callback: Callback\<NetCapabilityInfo\>): void
 
 Registers a listener for **netCapabilitiesChange** events.
 
@@ -1750,8 +2194,8 @@ netCon.register((error: BusinessError) => {
   console.log(JSON.stringify(error));
 });
 
-// Subscribe to netAvailable events. Event notifications can be received only after register is called.
-netCon.on('netAvailable', (data: connection.NetHandle) => {
+// Subscribe to netCapabilitiesChange events. Event notifications can be received only after register is called.
+netCon.on('netCapabilitiesChange', (data: connection.NetCapabilityInfo) => {
   console.log(JSON.stringify(data));
 });
 
@@ -1763,8 +2207,7 @@ netCon.unregister((error: BusinessError) => {
 
 ### on('netConnectionPropertiesChange')
 
-on(type: 'netConnectionPropertiesChange', callback: Callback<{ netHandle: NetHandle, connectionProperties:
-ConnectionProperties }>): void
+on(type: 'netConnectionPropertiesChange', callback: Callback\<NetConnectionPropertyInfo\>): void
 
 Registers a listener for **netConnectionPropertiesChange** events.
 
@@ -1777,7 +2220,7 @@ Registers a listener for **netConnectionPropertiesChange** events.
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | Yes  | Event type. This field has a fixed value of **netConnectionPropertiesChange**.<br>**netConnectionPropertiesChange**: event indicating that network connection properties have changed.|
-| callback | Callback<{ netHandle: [NetHandle](#nethandle), connectionProperties: [ConnectionProperties](#connectionproperties) }> | Yes  | Callback used to return **netHandle** and **connectionProperties**.|
+| callback | Callback<[NetConnectionPropertyInfo](#netconnectionpropertyinfo11)> | Yes  | Callback used to return the result.  |
 
 **Example**
 
@@ -1882,8 +2325,8 @@ netCon.register((error: BusinessError) => {
   console.log(JSON.stringify(error));
 });
 
-// Subscribe to netAvailable events. Event notifications can be received only after register is called.
-netCon.on('netAvailable', (data: connection.NetHandle) => {
+// Subscribe to netUnavailable events. Event notifications can be received only after register is called.
+netCon.on('netUnavailable', () => {
   console.log(JSON.stringify(data));
 });
 
@@ -2321,6 +2764,32 @@ Defines the network capability set.
 | linkDownBandwidthKbps | number                             |  No|  Downlink (network-to-device) bandwidth. The value **0** indicates that the current network bandwidth cannot be evaluated.  |
 | networkCap            | Array\<[NetCap](#netcap)>           |  No|  Network capability.          |
 | bearerTypes           | Array\<[NetBearType](#netbeartype)> |  Yes|  Network type.              |
+
+## NetConnectionPropertyInfo<sup>11+</sup>
+
+Defines the network connection properties.
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+### Attributes
+
+| Name                | Type                                  | Mandatory|  Description           |
+| -------------------- | ------------------------------------- | ---- |---------------- |
+| netHandle            | [NetHandle](#nethandle)                             | Yes  |Data network handle.      |
+| connectionProperties | [ConnectionProperties](#connectionproperties)                  | Yes  |Network connection properties.|
+
+## NetBlockStatusInfo<sup>11+</sup>
+
+Obtains the network block status information.
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+### Attributes
+
+| Name                | Type                                  | Mandatory|  Description           |
+| -------------------- | ------------------------------------- | ---- |---------------- |
+| netHandle            | [NetHandle](#nethandle)                             | Yes  |Data network handle.  |
+| blocked | boolean                  | Yes  |Whether the current network is blocked.|
 
 ## ConnectionProperties
 

@@ -1,6 +1,6 @@
-# 加解密算法库框架
+# Crypto Architecture Kit（加解密算法框架服务）
 
-- [加解密算法库框架概述](crypto-framework-overview.md)
+- [Crypto Architecture Kit简介](crypto-architecture-kit-intro.md)
 - 密钥生成和转换
   - [密钥生成与转换介绍](crypto-key-generation-conversion-overview.md)
   - 密钥生成和转换规格
@@ -20,17 +20,19 @@
   - 加解密开发指导
     - [使用AES对称密钥（GCM模式）加解密](crypto-aes-sym-encrypt-decrypt-gcm.md)
     - [使用AES对称密钥（CBC模式）加解密](crypto-aes-sym-encrypt-decrypt-cbc.md)
-    - [使用AES对称密钥（GCM模式）分段加解密](crypto-aes-sym-encrypt-decrypt-cbc-by-segment.md)
+    - [使用AES对称密钥（GCM模式）分段加解密](crypto-aes-sym-encrypt-decrypt-gcm-by-segment.md)
     - [使用3DES对称密钥（ECB模式）加解密](crypto-3des-sym-encrypt-decrypt-ecb.md)
     - [使用SM4对称密钥（ECB模式）加解密](crypto-sm4-sym-encrypt-decrypt-ecb.md)
     - [使用RSA非对称密钥（PKCS1模式）加解密](crypto-rsa-asym-encrypt-decrypt-pkcs1.md)
     - [使用RSA非对称密钥分段加解密](crypto-rsa-asym-encrypt-decrypt-by-segment.md)
     - [使用RSA非对称密钥（PKCS1_OAEP模式）加解密](crypto-rsa-asym-encrypt-decrypt-pkcs1_oaep.md)
     - [使用SM2非对称密钥加解密](crypto-sm2-asym-encrypt-decrypt.md)
+    - [使用SM2密文格式转换](crypto-sm2-ciphertext-conversion.md)
 - 签名验签
   - [签名验签介绍及算法规格](crypto-sign-sig-verify-overview.md)
   - 签名验签开发指导
     - [使用RSA密钥对（PKCS1模式）签名验签](crypto-rsa-sign-sig-verify-pkcs1.md)
+    - [使用RSA密钥对（PKCS1模式）签名及签名恢复](crypto-rsa-sign-sig-verify-recover-pkcs1.md)
     - [使用RSA密钥对分段签名验签（PKCS1模式）](crypto-rsa-sign-sig-verify-pkcs1-by-segment.md)
     - [使用RSA密钥对签名验签（PSS模式）](crypto-rsa-sign-sig-verify-pss.md)
     - [使用ECDSA密钥对签名验签](crypto-ecdsa-sign-sig-verify.md)

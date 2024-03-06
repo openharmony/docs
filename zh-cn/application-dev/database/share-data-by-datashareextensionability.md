@@ -12,9 +12,9 @@
 
 数据共享可分为数据的提供方和访问方两部分。
 
-- 数据提供方：[DataShareExtensionAbility](../reference/apis/js-apis-application-dataShareExtensionAbility.md)，可以选择性实现数据的增、删、改、查，以及文件打开等功能，并对外共享这些数据。
+- 数据提供方：[DataShareExtensionAbility](../reference/apis-arkdata/js-apis-application-dataShareExtensionAbility-sys.md)，可以选择性实现数据的增、删、改、查，以及文件打开等功能，并对外共享这些数据。
 
-- 数据访问方：由[createDataShareHelper()](../reference/apis/js-apis-data-dataShare.md#datasharecreatedatasharehelper)方法所创建的工具类，利用工具类，便可以访问提供方提供的这些数据。
+- 数据访问方：由[createDataShareHelper()](../reference/apis-arkdata/js-apis-data-dataShare-sys.md#datasharecreatedatasharehelper)方法所创建的工具类，利用工具类，便可以访问提供方提供的这些数据。
 
 **图1** 数据共享运作机制  
 ![dataShare](figures/dataShare.jpg)
@@ -33,7 +33,7 @@
 
 ### 数据提供方应用的开发（仅限系统应用）
 
-[DataShareExtensionAbility](../reference/apis/js-apis-application-dataShareExtensionAbility.md)提供以下API，根据需要重写对应回调方法。
+[DataShareExtensionAbility](../reference/apis-arkdata/js-apis-application-dataShareExtensionAbility-sys.md)提供以下API，根据需要重写对应回调方法。
 
 - **onCreate**：DataShare客户端连接DataShareExtensionAbility服务端时，服务端需要在此回调中实现初始化业务逻辑，该方法可以选择性重写。
 
@@ -58,7 +58,7 @@
 2. 在DataShareAbility目录，右键选择“New &gt; ArkTS File”，新建一个文件并命名为DataShareExtAbility.ets。
 
 3. 在DataShareExtAbility.ets文件中，导入
-`@ohos.application.DataShareExtensionAbility`模块，开发者可根据应用需求选择性重写其业务实现。例如数据提供方只提供插入、删除和查询服务，则可只重写这些接口，并导入对应的基础依赖模块。
+`@ohos.application.DataShareExtensionAbility`模块，开发者可根据应用需求选择性重写其业务实现。例如数据提供方只提供插入、删除和查询服务，则可只重写这些接口，并导入对应的基础依赖模块；如果需要增加权限校验，可以在重写的回调方法中使用IPC提供的[getCallingPid](../reference/apis-ipc-kit/js-apis-rpc.md#getcallingpid)、[getCallingUid](../reference/apis-ipc-kit/js-apis-rpc.md#getcallinguid)、[getCallingTokenId](../reference/apis-ipc-kit/js-apis-rpc.md#getcallingtokenid8)方法获取访问者信息来进行权限校验。
    
    ```ts
    import Extension from '@ohos.application.DataShareExtensionAbility';
@@ -156,29 +156,33 @@
    
    **表2** data_share_config.json对应属性字段
 
-   | 属性名称          | 备注说明                                     | 必填   |
-   | ------------- | ---------------------------------------- | ---- |
-   | tableConfig   | 配置标签。                                    | 是    |
-   | uri           | 指定配置生效的范围，uri支持以下三种格式，优先级为**表配置>库配置>\***，如果同时配置，高优先级会覆盖低优先级 。<br /> 1. "*" : 所有的数据库和表。<br /> 2. "datashare:///{bundleName}/{moduleName}/{storeName}" : 指定数据库。<br /> 3. "datashare:///{bundleName}/{moduleName}/{storeName}/{tableName}" : 指定表。 | 是    |
-   | crossUserMode | 标识数据是否为多用户共享，配置为1则多用户数据共享，配置为2则多用户数据隔离。  | 是    |
-
+   | 属性名称            | 备注说明                                                     | 必填 |
+   | ------------------- | ------------------------------------------------------------ | ---- |
+   | tableConfig         | 配置标签。                                                   | 是   |
+   | uri                 | 指定配置生效的范围，uri支持以下三种格式，优先级为**表配置>库配置>\***，如果同时配置，高优先级会覆盖低优先级 。<br /> 1. "*" : 所有的数据库和表。<br /> 2. "datashare:///{bundleName}/{moduleName}/{storeName}" : 指定数据库。<br /> 3. "datashare:///{bundleName}/{moduleName}/{storeName}/{tableName}" : 指定表。 | 是   |
+   | crossUserMode       | 标识数据是否为多用户共享，配置为1则多用户数据共享，配置为2则多用户数据隔离。 | 是   |
+   | isSilentProxyEnable | 标识该ExtensionAbility是否关闭静默访问。<br />false：代表关闭静默访问。<br />true：代表打开静默访问。<br />不填写默认为true，即默认开启静默访问。<br />如果该应用下存在多个ExtensionAbility，其中一个配置了该属性为false，代表应用关闭静默访问。<br />如果数据提供方调用过enableSilentProxy和disableSilentProxy接口，则按照接口的设置结果来开启或关闭静默访问。否则会读取该配置来开启或关闭静默访问。 | 否   |
+   
    **data_share_config.json配置样例**
 
    ```json
-   "tableConfig": [
-    {
-      "uri": "*",
-      "crossUserMode": 1
-    },
-    {
-      "uri": "datashare:///com.acts.datasharetest/entry/DB00",
-      "crossUserMode": 1
-    },
-    {
-      "uri": "datashare:///com.acts.datasharetest/entry/DB00/TBL00",
-      "crossUserMode": 2
-    }
-   ]
+   {
+       "tableConfig":[
+           {
+               "uri":"*",
+               "crossUserMode":1
+           },
+           {
+               "uri":"datashare:///com.acts.datasharetest/entry/DB00",
+               "crossUserMode":1
+           },
+           {
+               "uri":"datashare:///com.acts.datasharetest/entry/DB00/TBL00",
+               "crossUserMode":2
+           }
+       ],
+       "isSilentProxyEnable":true
+   }
    ```
 
 

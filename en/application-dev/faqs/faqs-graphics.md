@@ -76,7 +76,84 @@ import effectKit from "@ohos.effectKit";
     }
   })
 ```
+**References**
+
+[blur](../reference/apis-arkgraphics2d/js-apis-effectKit.md#blur)
+
+
+## Can EGL operations be performed in subthreads? (API version 10)
+
+**Solution**
+
+Yes. You can create **SharedContext** to implement EGL operations in subthreads.  
+
+**Example**
+```cpp
+void CreateShareEglContext()
+{
+  if (renderContext == nullptr) { // renderContext is the context of the main thread.
+      RS_LOGE("renderContext_ is nullptr");
+      return;
+  }
+  eglShareContext = renderContext->CreateShareContext();
+  if (eglShareContext == EGL_NO_CONTEXT) {
+      RS_LOGE("eglShareContext is EGL_NO_CONTEXT");
+      return;
+  }
+  if (!eglMakeCurrent(renderContext->GetEGLDisplay(), EGL_NO_SURFACE, EGL_NO_SURFACE, eglShareContext)) {
+      RS_LOGE("eglMakeCurrent failed");
+      return;
+  }
+}
+```
+
+## How do I draw a custom animation using EGL? (API version 10)
+
+**Solution**
+
+Use OpenGL APIs to draw a custom animation.
+
+To implement a custom animation, code the logic of the service party so that the service party can identify animation trigger events, obtain the start and end of the animation based on the service requirements, and calculate the content of each frame to draw based on the time axis and animation curve. After that, you can draw the content by calling the OpenGL APIs.
+
+**References** 
+
+[Native XComponent Usage (ArkTS)](https://gitee.com/openharmony/codelabs/tree/master/NativeAPI/XComponent)
+
+## How do I operate a buffer to draw graphics in the EGL multithreaded drawing scenario? (API version 10)
+
+**Solution**
+
+You can generate a texture through each thread, and then combine the textures into a buffer.
+
+You can use **SharedContext** to implement EGL operations in subthreads. You can call OpenGL APIs for the drawing operation.
+
+**Example**
+```cpp
+void CreateShareEglContext()
+{
+  if (renderContext == nullptr) { // renderContext is the context of the main thread.
+      RS_LOGE("renderContext_ is nullptr");
+      return;
+  }
+  eglShareContext = renderContext->CreateShareContext();
+  if (eglShareContext == EGL_NO_CONTEXT) {
+      RS_LOGE("eglShareContext is EGL_NO_CONTEXT");
+      return;
+  }
+  if (!eglMakeCurrent(renderContext->GetEGLDisplay(), EGL_NO_SURFACE, EGL_NO_SURFACE, eglShareContext)) {
+      RS_LOGE("eglMakeCurrent failed");
+      return;
+  }
+}
+```
+## Can a custom transition animation be used during an ability migration? If yes, how can I implement it? (API version 10)
+
+**Solution**
+
+No, a custom transition animation cannot be used. The UIAbility displays only one widget on the Recents screen. No customization is allowed for consistency purposes.
+
+The UIAbility cannot be used to combine in-app screens. Instead, use the **\<Navigation>** component to implement in-app redirection.
 
 **References**
 
-[blur](../reference/apis/js-apis-effectKit.md#blur)
+[Navigation](../ui/arkts-navigation-navigation.md)

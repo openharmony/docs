@@ -82,6 +82,7 @@ Creates a **ColorPicker** instance based on a pixel map. This API uses a promise
 ```ts
 import image from "@ohos.multimedia.image";
 import effectKit from "@ohos.effectKit";
+import { BusinessError } from "@ohos.base";
 
 const color = new ArrayBuffer(96);
 let opts : image.InitializationOptions = {
@@ -128,6 +129,7 @@ Creates a **ColorPicker** instance for the selected region based on a pixel map.
 ```ts
 import image from "@ohos.multimedia.image";
 import effectKit from "@ohos.effectKit";
+import { BusinessError } from "@ohos.base";
 
 const color = new ArrayBuffer(96);
 let opts : image.InitializationOptions = {
@@ -181,9 +183,9 @@ let opts : image.InitializationOptions = {
 image.createPixelMap(color, opts).then((pixelMap) => {
   effectKit.createColorPicker(pixelMap, (error, colorPicker) => {
     if (error) {
-      console.log('Failed to create color picker.');
+      console.error('Failed to create color picker.');
     } else {
-      console.log('Succeeded in creating color picker.');
+      console.info('Succeeded in creating color picker.');
     }
   })
 })
@@ -223,9 +225,9 @@ let opts : image.InitializationOptions = {
 image.createPixelMap(color, opts).then((pixelMap) => {
   effectKit.createColorPicker(pixelMap, (error, colorPicker) => {
     if (error) {
-      console.log('Failed to create color picker.');
+      console.error('Failed to create color picker.');
     } else {
-      console.log('Succeeded in creating color picker.');
+      console.info('Succeeded in creating color picker.');
     }
   })
 })
@@ -281,11 +283,11 @@ export function test06(): void {
   image.createPixelMap(color, opts).then((pixelMap) => {
     effectKit.createColorPicker(pixelMap, (error, colorPicker) => {
       if (error) {
-        console.log('Failed to create color picker.');
+        console.error('Failed to create color picker.');
       } else {
-        console.log('Succeeded in creating color picker.');
+        console.info('Succeeded in creating color picker.');
         colorPicker.getMainColor().then(color => {
-          console.log('Succeeded in getting main color.');
+          console.info('Succeeded in getting main color.');
           console.info(`color[ARGB]=${color.alpha},${color.red},${color.green},${color.blue}`);
         })
       }
@@ -326,11 +328,11 @@ let opts : image.InitializationOptions = {
 image.createPixelMap(color, opts).then((pixelMap) => {
   effectKit.createColorPicker(pixelMap, (error, colorPicker) => {
     if (error) {
-      console.log('Failed to create color picker.');
+      console.error('Failed to create color picker.');
     } else {
-      console.log('Succeeded in creating color picker.');
+      console.info('Succeeded in creating color picker.');
       let color = colorPicker.getMainColorSync();
-      console.log('get main color =' + color);
+      console.info('get main color =' + color);
     }
   })
 })
@@ -369,11 +371,11 @@ let opts : image.InitializationOptions = {
 image.createPixelMap(color, opts).then((pixelMap) => {
   effectKit.createColorPicker(pixelMap, (error, colorPicker) => {
     if (error) {
-      console.log('Failed to create color picker.');
+      console.error('Failed to create color picker.');
     } else {
-      console.log('Succeeded in creating color picker.');
+      console.info('Succeeded in creating color picker.');
       let color = colorPicker.getLargestProportionColor();
-      console.log('get largest proportion color =' + color);
+      console.info('get largest proportion color =' + color);
     }
   })
 })
@@ -412,11 +414,11 @@ let opts: image.InitializationOptions = {
 image.createPixelMap(color, opts).then((pixelMap) => {
   effectKit.createColorPicker(pixelMap, (error, colorPicker) => {
     if (error) {
-      console.log('Failed to create color picker.');
+      console.error('Failed to create color picker.');
     } else {
-      console.log('Succeeded in creating color picker.');
+      console.info('Succeeded in creating color picker.');
       let color = colorPicker.getHighestSaturationColor();
-      console.log('get highest saturation color =' + color);
+      console.info('get highest saturation color =' + color);
     }
   })
 })
@@ -455,11 +457,11 @@ let opts: image.InitializationOptions = {
 image.createPixelMap(color, opts).then((pixelMap) => {
   effectKit.createColorPicker(pixelMap, (error, colorPicker) => {
     if (error) {
-      console.log('Failed to create color picker.');
+      console.error('Failed to create color picker.');
     } else {
-      console.log('Succeeded in creating color picker.');
+      console.info('Succeeded in creating color picker.');
       let color = colorPicker.getAverageColor();
-      console.log('get average color =' + color);
+      console.info('get average color =' + color);
     }
   })
 })
@@ -504,11 +506,11 @@ let opts: image.InitializationOptions = {
 image.createPixelMap(color, opts).then((pixelMap) => {
   effectKit.createColorPicker(pixelMap, (error, colorPicker) => {
     if (error) {
-      console.log('Failed to create color picker.');
+      console.error('Failed to create color picker.');
     } else {
-      console.log('Succeeded in creating color picker.');
+      console.info('Succeeded in creating color picker.');
       let bJudge = colorPicker.isBlackOrWhiteOrGrayColor(0xFFFFFFFF);
-      console.log('is black or white or gray color[bool](white) =' + bJudge);
+      console.info('is black or white or gray color[bool](white) =' + bJudge);
     }
   })
 })
@@ -646,11 +648,15 @@ image.createPixelMap(color, opts).then((pixelMap) => {
 ```
 ![en-us_image_Add_Grayscale.png](figures/en-us_image_Add_Grayscale.png)
 
-### getPixelMap
+### getPixelMap<sup>(deprecated)</sup>
 
-getPixelMap(): [image.PixelMap](js-apis-image.md#pixelmap7)
+getPixelMap(): image.PixelMap
 
 Obtains **image.PixelMap** of the source image to which the filter linked list is added.
+
+> **NOTE**
+>
+> This API is supported since API version 9 and deprecated since API version 10. You are advised to use [getEffectPixelMap](#geteffectpixelmap11) instead.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -677,6 +683,43 @@ let opts : image.InitializationOptions = {
 };
 image.createPixelMap(color, opts).then((pixelMap) => {
   let pixel = effectKit.createEffect(pixelMap).grayscale().getPixelMap();
-  console.log('getPixelBytesNumber = ', pixel.getPixelBytesNumber());
+  console.info('getPixelBytesNumber = ', pixel.getPixelBytesNumber());
+})
+```
+
+### getEffectPixelMap<sup>11+</sup>
+
+getEffectPixelMap(): Promise<image.PixelMap>
+
+Obtains **image.PixelMap** of the source image to which the filter linked list is added. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Return value**
+
+| Type                  | Description          |
+| ---------------------- | -------------- |
+| Promise\<image.PixelMap>  | Promise used to return **image.PixelMap** of the source image.|
+
+
+**Example**
+
+```ts
+import image from "@ohos.multimedia.image";
+import effectKit from "@ohos.effectKit";
+
+const color = new ArrayBuffer(96);
+let opts : image.InitializationOptions = {
+  editable: true,
+  pixelFormat: 3,
+  size: {
+    height: 4,
+    width: 6
+  }
+};
+image.createPixelMap(color, opts).then((pixelMap) => {
+  effectKit.createEffect(pixelMap).grayscale().getEffectPixelMap().then(data => {
+    console.info('getPixelBytesNumber = ', data.getPixelBytesNumber());
+  })
 })
 ```

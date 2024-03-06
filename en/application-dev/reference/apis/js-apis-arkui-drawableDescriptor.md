@@ -6,7 +6,7 @@ The **DrawableDescriptor** module provides APIs for obtaining **pixelMap** objec
 >
 > The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> You can preview how this component looks on a real device. The preview is not yet available in the DevEco Studio Previewer.
+> You can preview how this component looks on a real device, but not in the DevEco Studio Previewer.
 
 ## Modules to Import
 
@@ -188,9 +188,26 @@ Obtains the built-in clipping path parameters of the system. It is a static meth
 | string | String of the clipping path.|
 
 **Example**
+
   ```ts
+// xxx.ets
 import { DrawableDescriptor, LayeredDrawableDescriptor } from '@ohos.arkui.drawableDescriptor'
-Image($r('app.media.icon'))
-    .width('200px').height('200px')
-    .clip(new Path({commands:LayeredDrawableDescriptor.getMaskClipPath()}))
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        Image($r('app.media.icon'))
+          .width('200px').height('200px')
+          .clip(new Path({commands:LayeredDrawableDescriptor.getMaskClipPath()}))
+        Text(`Obtain the built-in clip path parameters:`)
+          .fontWeight(800)
+        Text(JSON.stringify(LayeredDrawableDescriptor.getMaskClipPath()))
+          .padding({ left: 20, right: 20 })
+      }.height('100%').justifyContent(FlexAlign.Center)
+    }.width('100%')
+  }
+}
   ```

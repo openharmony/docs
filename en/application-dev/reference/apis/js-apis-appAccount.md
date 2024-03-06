@@ -1453,7 +1453,7 @@ Authenticates an app account. This API uses an asynchronous callback to return t
 
 ### auth<sup>9+</sup>
 
-auth(name: string, owner: string, authType: string, options: {[key: string]: Object}, callback: AuthCallback): void
+auth(name: string, owner: string, authType: string, options: Record<string, Object>, callback: AuthCallback): void
 
 Authenticates an app account with customized options. This API uses an asynchronous callback to return the result.
 
@@ -1466,7 +1466,7 @@ Authenticates an app account with customized options. This API uses an asynchron
 | name     | string                | Yes   | Name of the target app account.    |
 | owner    | string                | Yes   | Owner of the app account. The value is the bundle name of the app. |
 | authType | string                | Yes   | Authentication type.          |
-| options  | {[key: string]: Object}  | Yes   | Options for the authentication.      |
+| options  | Record<string, Object>  | Yes   | Options for the authentication.      |
 | callback | [AuthCallback](#authcallback9) | Yes   | Callback invoked to return the authentication result.|
 
 **Error codes**
@@ -4742,7 +4742,7 @@ Defines the options for creating an app account.
 
 | Name    | Type    | Mandatory  | Description        |
 | ------- | ------ | ---- | ---------- |
-| customData   | {[key: string]: string} | No   | Custom data. By default, no value is passed.|
+| customData   | Record<string, Object> | No   | Custom data. By default, no value is passed.|
 
 ## CreateAccountImplicitlyOptions<sup>9+</sup>
 
@@ -4754,7 +4754,7 @@ Defines the options for implicitly creating an app account.
 | ------- | ------ | ---- | ---------- |
 | requiredLabels   | Array&lt;string&gt; | No   | Required labels. By default, no value is passed.|
 | authType   | string | No   | Authentication type. By default, no value is passed.|
-| parameters   | {[key: string]: Object} | No   | Custom parameter object. By default, no value is passed.|
+| parameters   | Record<string, Object> | No   | Custom parameter object. By default, no value is passed.|
 ## SelectAccountsOptions<sup>9+</sup>
 
 Defines the options for selecting accounts.
@@ -4777,7 +4777,7 @@ Represents the options for verifying the user credential.
 | -------------- | ---------------------- | ----- | -------------- |
 | credentialType | string                 | No   | Credential type. By default, no value is passed.     |
 | credential     | string                 | No   | Credential value. By default, no value is passed.     |
-| parameters     | {[key: string]: Object} | No   | Custom parameter object. By default, no value is passed.|
+| parameters     | Record<string, Object> | No   | Custom parameter object. By default, no value is passed.|
 
 
 ## SetPropertiesOptions<sup>9+</sup>
@@ -4788,8 +4788,8 @@ Represents the options for setting authenticator properties.
 
 | Name    | Type                   | Mandatory | Description          |
 | ---------- | ---------------------- | ----- | -------------- |
-| properties | {[key: string]: Object} | No   | Property object. By default, no value is passed.     |
-| parameters | {[key: string]: Object} | No   | Custom parameter object. By default, no value is passed.|
+| properties | Record<string, Object> | No   | Property object. By default, no value is passed.     |
+| parameters | Record<string, Object> | No   | Custom parameter object. By default, no value is passed.|
 
 ## Constants<sup>8+</sup>
 
@@ -5086,7 +5086,7 @@ Adds an app account implicitly based on the specified authentication type and op
 
 ### auth<sup>9+</sup>
 
-auth(name: string, authType: string, options: {[key:string]: Object}, callback: AuthCallback): void
+auth(name: string, authType: string, options: Record<string, Object>, callback: AuthCallback): void
 
 Authenticates an app account to obtain the authorization token. This API uses an asynchronous callback to return the result.
 
@@ -5099,7 +5099,7 @@ Authenticates an app account to obtain the authorization token. This API uses an
 | name             | string                | Yes   | Name of the target app account.       |
 | authType         | string                | Yes   | Authentication type.     |
 | callerBundleName | string                | Yes   | Authentication type.      |
-| options          | {[key: string]: Object}  | Yes   | Options for the authentication.     |
+| options          | Record<string, Object>  | Yes   | Options for the authentication.     |
 | callback         | [AuthCallback](#authcallback9) | Yes   | Callback invoked to return the result.|
 
 ### authenticate<sup>(deprecated)</sup>

@@ -10,7 +10,7 @@
 
 The table below describes the key APIs used for remote projection with the distributed AVSession. The APIs use either a callback or promise to return the result. The APIs listed below use a callback. They provide the same functions as their counterparts that use a promise.
 
-For details, see [AVSession Management](../reference/apis/js-apis-avsession.md).
+For details, see [AVSession Management](../reference/apis-avsession-kit/js-apis-avsession.md).
 
 | API| Description|
 | -------- | -------- |

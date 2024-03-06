@@ -21,15 +21,17 @@ import common from '@ohos.app.ability.common';
 import Want from '@ohos.app.ability.Want';
 import promptAction from '@ohos.promptAction';
 import rpc from '@ohos.rpc';
-import Logger from '../../utils/Logger';
+import hilog from '@ohos.hilog';
 ```
 ```ts
+const LOG_TAG: string = '[Sample_FAModelAbilityDevelop]';
+const LOG_DOMAIN: number = 0xFF00;
 let option: common.ConnectOptions = {
   onConnect: (element, proxy) => {
-    Logger.info(TAG, `onConnectLocalService onConnectDone element:` + JSON.stringify(element));
+    hilog.info(LOG_DOMAIN, LOG_TAG, 'onConnectLocalService onConnectDone element:' + JSON.stringify(element));
     if (proxy === null) {
       promptAction.showToast({
-        message: $r('app.string.connect_service_failed_toast')
+        message: 'connect service failed'
       });
       return;
     }
@@ -39,19 +41,19 @@ let option: common.ConnectOptions = {
     data.writeInterfaceToken('connect.test.token');
     proxy.sendRequest(0, data, reply, option);
     promptAction.showToast({
-      message: $r('app.string.connect_service_success_toast')
+      message: 'connect service success'
     });
   },
   onDisconnect: (element) => {
-    Logger.info(TAG, `onConnectLocalService onDisconnectDone element:${element}`);
+    hilog.info(LOG_DOMAIN, LOG_TAG, `onConnectLocalService onDisconnectDone element:${element}`);
     promptAction.showToast({
-      message: $r('app.string.disconnect_service_success_toast')
+      message: 'disconnect service success'
     });
   },
   onFailed: (code) => {
-    Logger.info(TAG, `onConnectLocalService onFailed errCode:${code}`);
+    hilog.info(LOG_DOMAIN, LOG_TAG, `onConnectLocalService onFailed errCode:${code}`);
     promptAction.showToast({
-      message: $r('app.string.connect_service_failed_toast')
+      message: 'connect service failed'
     });
   }
 };
@@ -61,7 +63,7 @@ let request: Want = {
   abilityName: 'com.samples.famodelabilitydevelop.ServiceAbility',
 };
 let connId = featureAbility.connectAbility(request, option);
-Logger.info(TAG, `onConnectLocalService onFailed errCode:${connId}`);
+hilog.info(LOG_DOMAIN, LOG_TAG, `connectAbility id:${connId}`);
 ```
 
 

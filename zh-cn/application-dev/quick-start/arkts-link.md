@@ -25,7 +25,7 @@
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | 装饰器参数                                                   | 无                                                           |
 | 同步类型                                                     | 双向同步。<br/>父组件中\@State,&nbsp;\@StorageLink和\@Link&nbsp;和子组件\@Link可以建立双向数据同步，反之亦然。 |
-| 允许装饰的变量类型                                           | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date、Map、Set类型。支持类型的场景请参考[观察变化](#观察变化)。<br/>API11及以上支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[Link支持联合类型实例](#link支持联合类型实例)。 <br/>**注意**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScipt类型校验，比如：`@Link a : string \| undefined`。 |
+| 允许装饰的变量类型                                           | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date类型。<br/>API11及以上支持Map、Set类型。支持类型的场景请参考[观察变化](#观察变化)。<br/>API11及以上支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[Link支持联合类型实例](#link支持联合类型实例)。 <br/>**注意**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScipt类型校验，比如：`@Link a : string \| undefined`。 |
 | <br/>支持AkrUI框架定义的联合类型Length、ResourceStr、ResourceColor类型。<br/>类型必须被指定，且和双向绑定状态变量的类型相同。<br/>不支持any。 |                                                              |
 | 被装饰变量的初始值                                           | 无，禁止本地初始化。                                         |
 
@@ -104,7 +104,7 @@ struct ParentComponent {
         selected: this.parentSelectedDate
       })
 
-      DateComponent({selectedDate:this.parentSelectedDate})
+      DateComponent({ selectedDate:this.parentSelectedDate })
     }
   }
 }
@@ -271,7 +271,7 @@ struct Parent {
       Child({ items: $arr })
         .margin(12)
       ForEach(this.arr,
-        (item: void) => {
+        (item: number) => {
           Button(`${item}`)
             .margin(12)
             .width(312)
@@ -292,7 +292,11 @@ struct Parent {
 
 ### 装饰Map类型变量
 
-\@Link支持Map类型，在下面的示例中，value类型为Map<number, string>，点击Button改变message的值，视图会随之刷新。
+> **说明：**
+>
+> 从API version 11开始，\@Link支持Map类型。
+
+在下面的示例中，value类型为Map\<number, string\>，点击Button改变message的值，视图会随之刷新。
 
 ```ts
 @Component
@@ -300,25 +304,25 @@ struct Child {
   @Link value: Map<number, string>
 
   build() {
-    Column(){
+    Column() {
       ForEach(Array.from(this.value.entries()), (item: [number, string]) => {
         Text(`${item[0]}`).fontSize(30)
         Text(`${item[1]}`).fontSize(30)
         Divider()
       })
-      Button('child init map').onClick(() =>{
+      Button('child init map').onClick(() => {
         this.value = new Map([[0, "a"], [1, "b"], [3, "c"]])
       })
-      Button('child set new one').onClick(() =>{
+      Button('child set new one').onClick(() => {
         this.value.set(4, "d")
       })
-      Button('child clear').onClick(() =>{
+      Button('child clear').onClick(() => {
         this.value.clear()
       })
-      Button('child replace the first one').onClick(() =>{
+      Button('child replace the first one').onClick(() => {
         this.value.set(0, "aa")
       })
-      Button('child delete the first one').onClick(() =>{
+      Button('child delete the first one').onClick(() => {
         this.value.delete(0)
       })
     }
@@ -334,7 +338,7 @@ struct MapSample2 {
   build() {
     Row() {
       Column() {
-        Child({value:this.message})
+        Child({ value: this.message })
       }
       .width('100%')
     }
@@ -345,7 +349,11 @@ struct MapSample2 {
 
 ### 装饰Set类型变量
 
-\@Link支持Set类型，在下面的示例中，message类型为Set<number>，点击Button改变message的值，视图会随之刷新。
+> **说明：**
+>
+> 从API version 11开始，\@Link支持Set类型。
+
+在下面的示例中，message类型为Set\<number\>，点击Button改变message的值，视图会随之刷新。
 
 ```ts
 @Component
@@ -358,16 +366,16 @@ struct Child {
         Text(`${item[0]}`).fontSize(30)
         Divider()
       })
-      Button('init set').onClick(() =>{
-        this.message = new Set([0, 1, 2 ,3,4 ])
+      Button('init set').onClick(() => {
+        this.message = new Set([0, 1, 2, 3, 4])
       })
-      Button('set new one').onClick(() =>{
+      Button('set new one').onClick(() => {
         this.message.add(5)
       })
-      Button('clear').onClick(() =>{
+      Button('clear').onClick(() => {
         this.message.clear()
       })
-      Button('delete the first one').onClick(() =>{
+      Button('delete the first one').onClick(() => {
         this.message.delete(0)
       })
     }
@@ -379,12 +387,12 @@ struct Child {
 @Entry
 @Component
 struct SetSample1 {
-  @State message: Set<number> = new Set([0, 1, 2 ,3,4 ])
+  @State message: Set<number> = new Set([0, 1, 2, 3, 4])
 
   build() {
     Row() {
       Column() {
-        Child({message:this.message})
+        Child({ message: this.message })
       }
       .width('100%')
     }
@@ -398,7 +406,6 @@ struct SetSample1 {
 @Link支持联合类型和undefined和null，在下面的示例中，name类型为string | undefined，点击父组件Index中的Button改变name的属性或者类型，Child中也会对应刷新。
 
 ```ts
-
 @Component
 struct Child {
   @Link name: string | undefined
@@ -423,13 +430,13 @@ struct Child {
 @Entry
 @Component
 struct Index {
-  @State name: string | undefined  = "mary"
+  @State name: string | undefined = "mary"
 
   build() {
     Column() {
       Text(`The name is  ${this.name}`).fontSize(30)
 
-      Child({name: this.name})
+      Child({ name: this.name })
 
       Button('Parents change name to Peter')
         .onClick(() => {

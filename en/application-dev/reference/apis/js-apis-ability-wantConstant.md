@@ -87,4 +87,3 @@ Enumerates the entity constants of the **Want** object. **entity** specifies add
 | FLAG_ABILITY_CLEAR_MISSION           | 0x00008000 | Clears other operation missions. This flag can be set for **Want** passed in [startAbility](js-apis-ability-featureAbility.md#startability). It must be used together with **FLAG_ABILITY_NEW_MISSION**.|
 | FLAG_ABILITY_NEW_MISSION             | 0x10000000 | Creates a mission on the history mission stack.                              |
 | FLAG_ABILITY_MISSION_TOP             | 0x20000000 | Reuses an ability instance if it is on the top of an existing mission stack; creates an ability instance otherwise.|
-| FLAG_START_WITHOUT_TIPS              | 0x40000000 | A flag passed in for an implicit start. In case that no ability is implicitly matched, no dialog box is displayed if this flag is carried; otherwise, a default dialog box is displayed.|

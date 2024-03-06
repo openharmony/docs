@@ -3,7 +3,7 @@
 
 ## Overview
 
-The flex layout, implemented using the [\<Flex>](../reference/arkui-ts/ts-container-flex.md) container component, provides simple and powerful tools for flexibly distributing space and aligning items. The flex layout is widely used in scenarios such as the navigation bar distribution on the page header, page framework setup, and arrangement of multiple lines of data.
+The flex layout, implemented using the [\<Flex>](../reference/apis-arkui/arkui-ts/ts-container-flex.md) container component, provides simple and powerful tools for flexibly distributing space and aligning items. The flex layout is widely used in scenarios such as the navigation bar distribution on the page header, page framework setup, and arrangement of multiple lines of data.
 
 By default, the flex container has a main axis and a cross axis, and child elements are arranged along the main axis. The size of a child element along the main axis is referred to as its main axis size. Similarly, the size of a child element along the cross axis is referred to as its cross axis size.
 
@@ -345,9 +345,9 @@ Use the **alignItems** parameter of the **\<Flex>** component to set alignment o
   ```ts
   let SWh:Record<string,number|string> = { 'width': '90%', 'height': 80 }
   Flex({ alignItems: ItemAlign.Stretch }) {  
-    Text('1').width('33%').height(30).backgroundColor(0xF5DEB3)  
-    Text('2').width('33%').height(40).backgroundColor(0xD2B48C)  
-    Text('3').width('33%').height(50).backgroundColor(0xF5DEB3)
+    Text('1').width('33%').backgroundColor(0xF5DEB3)  
+    Text('2').width('33%').backgroundColor(0xD2B48C)  
+    Text('3').width('33%').backgroundColor(0xF5DEB3)
   }
   .size(SWh)
   .padding(10)
@@ -376,7 +376,7 @@ Use the **alignItems** parameter of the **\<Flex>** component to set alignment o
 
 ### Setting Alignment on the Cross Axis for Child Elements
 
-Use the [alignSelf](../reference/arkui-ts/ts-universal-attributes-flex-layout.md#attributes) attribute of child elements to set their alignment in the container on the cross axis. The settings overwrite the default **alignItems** settings in the flex container. The sample code is as follows:
+Use the [alignSelf](../reference/apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#alignself) attribute of child elements to set their alignment in the container on the cross axis. The settings overwrite the default **alignItems** settings in the flex container. The sample code is as follows:
 
 ```ts
 Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) { // The child elements are aligned with the center of the container.
@@ -408,7 +408,7 @@ In the preceding example, the **alignItems** parameter of the **\<Flex>** contai
 
 ### Content Alignment
 
-Use the [alignContent](../reference/arkui-ts/ts-container-flex.md#apis) parameter to set how space is distributed between and around child elements along the cross axis. This parameter is effective only for a multi-line flex layout. Its available options are as follows:
+Use the [alignContent](../reference/apis-arkui/arkui-ts/ts-container-flex.md#apis) parameter to set how space is distributed between and around child elements along the cross axis. This parameter is effective only for a multi-line flex layout. Its available options are as follows:
 
 - **FlexAlign.Start**: The child elements are aligned toward the start edge of the cross axis in the container.
 
@@ -523,13 +523,13 @@ Use the [alignContent](../reference/arkui-ts/ts-container-flex.md#apis) paramete
 
 When the size of the flex container is not large enough, the following attributes of the child element can be used to achieve adaptive layout:
 
-- **flexBasis**: base size of the child element in the container along the main axis. It sets the space occupied by the child element. If this attribute is not set, the space occupied by the child element is the value of width/height.
+- **flexBasis**: base size of the child element in the container along the main axis. It sets the space occupied by the child element. If this attribute is not set, the space occupied by the child element is the result of width/height.
 
 
   ```ts
   Flex() {
     Text('flexBasis("auto")')
-      .flexBasis('auto') // When width is not set and flexBasis is set to auto, the content is loose.
+      .flexBasis('auto') // When width is not set and flexBasis is set to auto, the content is at its own width.
       .height(100)
       .backgroundColor(0xF5DEB3)
     Text('flexBasis("auto")'+' width("40%")')

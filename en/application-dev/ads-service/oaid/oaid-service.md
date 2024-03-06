@@ -2,23 +2,27 @@
 
 ## When to Use
 
-The Open Anonymous Device Identifier (OAID) is a non-permanent device identifier. The OAID service provides personalized ads for users while protecting their personal data privacy. It can also interact with third-party tracking platforms to provide conversion attribution analysis for advertisers.
+An Open Anonymous Device Identifier (OAID) is a non-permanent device identifier. The OAID service is useful for media application developers, ad platforms, and tracking platforms alike. Specifically, it provides personalized ads for users while protecting their personal data privacy, and also interact with third-party tracking platforms to provide conversion attribution analysis for advertisers.
 
-No matter whether you are running a media application, an ad platform, or a tracking platform, you can obtain OAID information from devices. The OAID information can be used to recommend personalized ads to users and attribute ad conversions.
+An OAID is a 32-bit Universally Unique Identifier (UUID) generated using a Huawei algorithm. The format is xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx.
 
+The OAID has the following features:
+- The OAID is device specific. Different applications on the same device obtain the same OAID.
+- The OAID obtained depends on the tracing function of the application. When tracing of the application is enabled, the application obtains a valid OAID. When tracing is disabled, the application obtains an all-zero OAID.
+- An OAID is generated when any application on the device enables tracking for the first time.
+- The OAID changes when the user restores the factory settings of the device.
 
 ## Available APIs
 
 | API| Description|
 | -------- | -------- |
-| [getOAID()](../../reference/apis/js-apis-oaid.md#identifiergetoaid):Promise&lt;string&gt; | Obtains an OAID. This API uses a promise to return the result.|
-| [getOAID(callback:&nbsp;AsyncCallback&lt;string&gt;)](../../reference/apis/js-apis-oaid.md#identifiergetoaid-1):&nbsp;void | Obtains an OAID. This API uses an asynchronous callback to return the result.|
-| [resetOAID()](../../reference/apis/js-apis-oaid.md#identifierresetoaid):&nbsp;void | Resets an OAID. This is a system API.|
+| [getOAID()](../../reference/apis-ads-kit/js-apis-oaid.md#identifiergetoaid):Promise&lt;string&gt; | Obtains an OAID. This API uses a promise to return the result.|
+| [getOAID(callback:&nbsp;AsyncCallback&lt;string&gt;)](../../reference/apis-ads-kit/js-apis-oaid.md#identifiergetoaid-1):&nbsp;void | Obtains an OAID. This API uses an asynchronous callback to return the result.|
 
 
 ## How to Develop
 
-1. In the **module.json5** file of the module, configure the [ohos.permission.APP_TRACKING_CONSENT](../../security/permission-list.md#ohospermissionapp_tracking_consent) permission. The sample code is as follows:
+1. In the **module.json5** file of the module, configure the [ohos.permission.APP_TRACKING_CONSENT](../../security/AccessToken/permissions-for-all.md#ohospermissionapp_tracking_consent) permission. The sample code is as follows:
    ```
    {
      "module": {
@@ -31,7 +35,7 @@ No matter whether you are running a media application, an ad platform, or a trac
     }
    ```
 
-2. Request authorization from the user by displaying a dialog box when the application is started. For details about how to obtain the context, see [Context](../../application-models/application-context-stage.md). The sample code is as follows:
+2. Request authorization from the user in a dialog box when the application is started. For details about how to obtain the context, see [Context](../../application-models/application-context-stage.md). The sample code is as follows:
    ```
    import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
    import { BusinessError } from '@ohos.base';
@@ -56,7 +60,7 @@ No matter whether you are running a media application, an ad platform, or a trac
       }
     }
    ```
-
+   
 3. Call **getOAID()** to obtain OAID information. The sample code is as follows:
    ```
    import identifier from '@ohos.identifier.oaid';
@@ -74,18 +78,5 @@ No matter whether you are running a media application, an ad platform, or a trac
       });
    } catch (err) {
      hilog.error(0x0000, 'testTag', '%{public}s', `get oaid catch error: ${err.code} ${err.message}`);
-   }
-   ```
-   
-4. Call **setOAID()** (a system API) to reset the OAID information. The sample code is as follows:
-   ```
-   import identifier from '@ohos.identifier.oaid';
-   import hilog from '@ohos.hilog'; 
-   
-   // Reset the OAID.
-   try {
-     identifier.resetOAID();
-   } catch (err) {
-     hilog.error(0x0000, 'testTag', '%{public}s', `reset oaid catch error: ${err.code} ${err.message}`);
    }
    ```
