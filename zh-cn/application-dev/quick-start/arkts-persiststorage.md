@@ -286,7 +286,7 @@ struct PersistedMap {
 
 ### 装饰Set类型变量
 
-在下面的示例中，@StorageLink装饰的memberSet类型为Set\<number\>，点击Button改变memberSet的值，视图会随之刷新。且persistedSet的值被持久化存储。
+在下面的示例中，@StorageLink装饰的persistedSet类型为Set\<number\>，点击Button改变persistedSet的值，视图会随之刷新。且persistedSet的值被持久化存储。
 
 ```ts
 PersistentStorage.persistProp("persistedSet", new Set<number>([]));
@@ -329,6 +329,23 @@ struct PersistedSet {
           .height('5%')
           .onClick(() => {
             this.persistSet();
+          })
+
+          Button() {
+            Text('Persist Clear')
+              .fontSize(25)
+              .fontWeight(FontWeight.Bold)
+              .fontColor(Color.White)
+          }
+          .type(ButtonType.Capsule)
+          .margin({
+            top: 20
+          })
+          .backgroundColor('#0D9FFB')
+          .width('60%')
+          .height('5%')
+          .onClick(() => {
+            this.clearSet();
           })
 
         }
