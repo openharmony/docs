@@ -2944,3 +2944,15 @@
 **ACL使能**：true
 
 **起始版本**：11
+
+### ohos.permission.NOTIFY_DEBUG_ASSERT_RESULT
+
+允许应用设置断言调试结果。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
