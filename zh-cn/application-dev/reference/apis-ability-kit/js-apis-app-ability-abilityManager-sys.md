@@ -859,7 +859,7 @@ notifyDebugAssertResult(requestAssertFaultId: string, status: UserStatus): Promi
 | 参数名 | 类型 | 必填 | 说明 |
 | ------- | -------- | -------- | -------- |
 | sessionId | string | 是 | 指示AssertFault的请求ID。 |
-| status | [UserStatus](#UserStatus) | 是 | 用户的操作状态。 |
+| status | [UserStatus](#userstatus) | 是 | 用户的操作状态。 |
 
 **返回值：**
 
