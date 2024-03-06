@@ -122,8 +122,6 @@
           bundleNames: ["bundleName1"],
           userId: 123
         };
-        // 订阅通知
-        notificationSubscribe.subscribe(notificationSubscriber, info, subscribeCallback);
         // 订阅系统实况窗(按钮)
         notificationManager.subscribeSystemLiveView(systemLiveViewSubscriber);
         // 发布通知
