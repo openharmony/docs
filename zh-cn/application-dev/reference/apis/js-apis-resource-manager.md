@@ -52,7 +52,7 @@ getResourceManager(callback: AsyncCallback&lt;ResourceManager&gt;): void
       console.error("error is " + error);
       return;
     }
-    mgr.getStringValue(0x1000000, (error: BusinessError, value: string) => {
+    mgr.getStringValue($r('app.string.test').id, (error: BusinessError, value: string) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -61,7 +61,6 @@ getResourceManager(callback: AsyncCallback&lt;ResourceManager&gt;): void
     });
   });
   ```
-注：示例代码中的0x1000000表示资源对应的id, 其可在编译后的文件ResourceTable.txt中找到。
 
 ## resourceManager.getResourceManager
 
@@ -109,7 +108,7 @@ getResourceManager(): Promise&lt;ResourceManager&gt;
   import { BusinessError } from '@ohos.base';
 
   resourceManager.getResourceManager().then((mgr: resourceManager.ResourceManager) => {
-    mgr.getStringValue(0x1000000, (error: BusinessError, value: string) => {
+    mgr.getStringValue($r('app.string.test').id, (error: BusinessError, value: string) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -120,7 +119,6 @@ getResourceManager(): Promise&lt;ResourceManager&gt;
     console.error("error is " + error);
   });
   ```
-注：示例代码中的0x1000000表示资源对应的id, 其可在编译后的文件ResourceTable.txt中找到。
 
 ## resourceManager.getResourceManager
 
