@@ -164,6 +164,8 @@ isDefaultService(elementName: ElementName, type: CardType): boolean
 **示例：**
 ```js
 import cardEmulation from '@ohos.nfc.cardEmulation';
+import bundleManager from '@ohos.bundle.bundleManager';
+
 let elementName : bundleManager.ElementName;
 
 // init elementName here, bundleName and abilityName are required.

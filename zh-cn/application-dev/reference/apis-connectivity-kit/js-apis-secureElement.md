@@ -879,7 +879,7 @@ openLogicalChannel(aid: number[], p2: number): Promise\<Channel>
 
 | **类型** | **说明**       |
 | -------- | -------------- |
-| Channel | 以Promise形式异步返回可用的逻辑Channel实例对象。 |
+| Promise\<Channel> | 以Promise形式异步返回可用的逻辑Channel实例对象。 |
 
 **错误码：**
 
