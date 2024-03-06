@@ -272,8 +272,9 @@ getTrafficStatsByUid(uidInfo: UidInfo, callback: AsyncCallback\<NetStatsInfo>): 
 import { BusinessError } from '@ohos.base';
 import statistics from '@ohos.net.statistics';
 
-let uidInfo: statistics.UidInfo
-uidInfo.uid = 20010037
+let uidInfo: statistics.UidInfo = {
+  uid: 20010037
+}
 
 statistics.getTrafficStatsByUid(
   uidInfo,
@@ -342,8 +343,9 @@ getTrafficStatsByUid(uidInfo: UidInfo): Promise\<NetStatsInfo>;
 ```js
 import statistics from '@ohos.net.statistics'
 
-let uidInfo: statistics.UidInfo
-uidInfo.uid = 20010037
+let uidInfo: statistics.UidInfo = {
+  uid: 20010037
+}
 
 statistics.getTrafficStatsByUid(uidInfo).then((statsInfo: statistics.NetStatsInfo) => {
   console.log("getTrafficStatsByUid bytes of received = " + JSON.stringify(statsInfo.rxBytes));
