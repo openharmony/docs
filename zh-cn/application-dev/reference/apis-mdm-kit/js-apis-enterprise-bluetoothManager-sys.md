@@ -95,7 +95,7 @@ isBluetoothDisabled(admin: Want): boolean
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-。
+
 
 **参数：**
 
@@ -111,7 +111,7 @@ isBluetoothDisabled(admin: Want): boolean
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)
+以下的错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)。
 
 | 错误码ID | 错误信息                                                                     |
 | ------- | ---------------------------------------------------------------------------- |
@@ -146,7 +146,7 @@ setBluetoothDisabled(admin: Want, disabled: boolean): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-。
+
 
 **参数：**
 
@@ -157,7 +157,7 @@ setBluetoothDisabled(admin: Want, disabled: boolean): void
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)
+以下的错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
