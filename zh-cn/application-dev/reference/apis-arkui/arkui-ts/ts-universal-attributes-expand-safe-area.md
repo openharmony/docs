@@ -26,6 +26,8 @@ expandSafeArea(types?: Array&lt;SafeAreaType&gt;, edges?: Array&lt;SafeAreaEdge&
 >设置expandSafeArea属性进行组件绘制扩展时，组件不能设置固定宽高尺寸（百分比除外）。
 >
 >安全区域不会限制内部组件的布局和大小，不会裁剪内部组件。
+>
+>当父容器是滚动容器时，设置expandSafeArea属性不生效。
 
 ## setKeyboardAvoidMode<sup>11+</sup>
 
