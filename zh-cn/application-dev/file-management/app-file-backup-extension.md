@@ -11,7 +11,7 @@ BackupExtensionAbility，是[Stage模型](../application-models/stage-model-deve
 | application | BundleVersion          | code: number                                  | 应用版本号。                                                      |
 | application | BundleVersion          | name: string                                  | 应用版本名称。                                                    |
 | application | BackupExtensionAbility | onBackup(): void                              | 由Extension机制提供的，应由应用开发者扩展实现的触发备份前的回调。 |
-| application | BackupExtensionAbility | onRestore(bundleVersion: BundleVersion): void | 由Extension机制提供的，应由应用开发者扩展实现的触发恢复前的回调。 |
+| application | BackupExtensionAbility | onRestore(bundleVersion: BundleVersion): void | 由Extension机制提供的，应由应用开发者扩展实现的触发恢复后的回调。 |
 | application | BackupExtensionAbility | context: ExtensionContext                     | BackupExtensionAbility的上下文环境，继承自Context。               |
 
 备份恢复扩展能力API的使用指导请参见[API参考](../reference/apis-core-file-kit/js-apis-application-backupExtensionAbility.md#backupextensionability)。
