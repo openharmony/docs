@@ -716,7 +716,7 @@ SymbolSpan样式选项。
 | ------------- | ---------------------------------------- | ---- | ------------------ |
 | textAlign     | [TextAlign](ts-appendix-enums.md#textalign) | 否    | 设置文本段落在水平方向的对齐方式。  |
 | leadingMargin | [Dimension](ts-types.md#dimension10) \| [LeadingMarginPlaceholder](#leadingmarginplaceholder11) | 否    | 设置文本段落缩进，不支持设置百分比，图片放在段首时不支持。 |
-| wordBreak<sup>12+</sup> |  [WordBreak](ts-appendix-enums.md#wordbreak11) | 否    | 断字规则。 <br />默认值：WordBreak.BREAK_WORD  |
+| wordBreak<sup>12+</sup> |  [WordBreak](ts-appendix-enums.md#wordbreak11) | 否    | 设置断行规则。 <br />默认值：WordBreak.BREAK_WORD  |
 
 ## LeadingMarginPlaceholder<sup>11+</sup>
 
