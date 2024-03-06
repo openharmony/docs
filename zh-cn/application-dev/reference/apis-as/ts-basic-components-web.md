@@ -3828,6 +3828,78 @@ onFirstContentfulPaint(callback: (event?: { navigationStartTick: number, firstCo
   }
   ```
 
+### onFirstMeaningfulPaint<sup>12+</sup>
+
+onFirstMeaningfulPaint(callback: [OnFirstMeaningfulPaintCallback](#onfirstmeaningfulpaintcallback12))
+
+设置网页绘制页面主要内容回调函数。
+
+**参数：**
+
+| 参数名   | 类型                                                         | 说明                                   |
+| -------- | ------------------------------------------------------------ | -------------------------------------- |
+| callback | [OnFirstMeaningfulPaintCallback](#onfirstmeaningfulpaintcallback12) | 网页绘制页面主要内容度量信息的回调。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+        .onFirstMeaningfulPaint((details) => {
+            console.log("onFirstMeaningfulPaint: [navigationStartTime]= " + details.navigationStartTime +
+              ", [firstMeaningfulPaintTime]=" + details.firstMeaningfulPaintTime);
+        })
+      }
+    }
+  }
+  ```
+
+### onLargestContentfulPaint<sup>12+</sup>
+
+onLargestContentfulPaint(callback: [OnLargestContentfulPaintCallback](#onlargestcontentfulpaintcallback12))
+
+设置网页绘制页面最大内容回调函数。
+
+**参数：**
+
+| 参数名   | 类型                                                         | 说明                                 |
+| -------- | ------------------------------------------------------------ | ------------------------------------ |
+| callback | [OnLargestContentfulPaintCallback](#onlargestcontentfulpaintcallback12) | 网页绘制页面最大内容度量信息的回调。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+        .onLargestContentfulPaint((details) => {
+            console.log("onLargestContentfulPaint: [navigationStartTime]= " + details.navigationStartTime +
+              ", [largestImagePaintTime]=" + details.largestImagePaintTime +
+              ", [largestTextPaintTime]=" + details.largestTextPaintTime +
+              ", [largestImageLoadStartTime]=" + details.largestImageLoadStartTime +
+              ", [largestImageLoadEndTime]=" + details.largestImageLoadEndTime +
+              ", [imageBPP]=" + details.imageBPP);
+        })
+      }
+    }
+  }
+  ```
+  
 ### onLoadIntercept<sup>10+</sup>
 
 onLoadIntercept(callback: (event: { data: WebResourceRequest }) => boolean)
@@ -5412,3 +5484,46 @@ type OnSafeBrowsingCheckResultCallback = (threatType: ThreatType) => void
 | -----------     | ------------------------------------ | ---- | --------------------- |
 | embedId     | string   | 是    | Embed标签的唯一id。 |
 | touchEvent  | TouchEvent  | 是    | 手指触摸动作信息。  |
+
+## FirstMeaningfulPaint<sup>12+</sup>
+
+提供网页绘制页面主要内容的详细信息。
+
+| 名称                     | 类型   | 必填 | 描述                                   |
+| ------------------------ | ------ | ---- | -------------------------------------- |
+| navigationStartTime      | number | 是   | 导航条加载时间，单位以微秒表示。       |
+| firstMeaningfulPaintTime | number | 是   | 绘制页面主要内容时间，单位以毫秒表示。 |
+
+## OnFirstMeaningfulPaintCallback<sup>12+</sup>
+
+type OnFirstMeaningfulPaintCallback = (firstMeaningfulPaint: [FirstMeaningfulPaint](#firstmeaningfulpaint12)) => void
+
+网页绘制页面最大内容度量信息的回调。
+
+| 参数名               | 参数类型                                        | 参数描述                         |
+| -------------------- | ----------------------------------------------- | -------------------------------- |
+| firstMeaningfulPaint | [FirstMeaningfulPaint](#firstmeaningfulpaint12) | 绘制页面主要内容度量的详细信息。 |
+
+## LargestContentfulPaint<sup>12+</sup>
+
+提供网页绘制页面主要内容的详细信息。
+
+| 名称                      | 类型   | 必填 | 描述                                     |
+| ------------------------- | ------ | ---- | ---------------------------------------- |
+| navigationStartTime       | number | 是   | 导航条加载时间，单位以微秒表示。         |
+| largestImagePaintTime     | number | 否   | 最大图片加载的时间，单位是以毫秒表示。   |
+| largestTextPaintTime      | number | 否   | 最大文本加载时间，单位是以毫秒表示。     |
+| largestImageLoadStartTime | number | 否   | 最大图片开始加载时间，单位是以毫秒表示。 |
+| largestImageLoadEndTime   | number | 否   | 最大图片结束记载时间，单位是以毫秒表示。 |
+| imageBPP                  | number | 否   | 图片像素位数。                           |
+
+## OnLargestContentfulPaintCallback<sup>12+</sup>
+
+type OnLargestContentfulPaintCallback = (largestContentfulPaint: [LargestContentfulPaint](#largestcontentfulpaint12
+)) => void
+
+网页绘制页面最大内容度量信息的回调。
+
+| 参数名                 | 参数类型                                            | 参数描述                             |
+| ---------------------- | --------------------------------------------------- | ------------------------------------ |
+| largestContentfulPaint | [LargestContentfulPaint](#largestcontentfulpaint12) | 网页绘制页面最大内容度量的详细信息。 |
