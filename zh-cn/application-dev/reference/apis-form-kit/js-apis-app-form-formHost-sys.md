@@ -102,7 +102,7 @@ deleteForm(formId: string): Promise&lt;void&gt;
 
 以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
-**参数：**
+**示例：**
 
 ```ts
 import Base from '@ohos.base';
@@ -2502,7 +2502,7 @@ recoverForms(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 
 以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
-**参数：**
+**示例：**
 
 ```ts
 import formHost from '@ohos.app.form.formHost';
