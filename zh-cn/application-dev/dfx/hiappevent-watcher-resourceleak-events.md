@@ -77,8 +77,9 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
     });
    ```
 
-2. hdc shell param set hiview.memleak.test enable 使能内存泄漏检测测试，原泄漏检测周期为200s，使能后，周期为5s
-   hdc shell killall hiview  重启hiview，使能内存检测测试才会生效
+2. 运行`hdc shell param set hiview.memleak.test enable`，使能内存泄漏检测测试，原泄漏检测周期为200s，使能后，周期为5s。
+
+   运行`hdc shell killall hiview`，重启hiview，使能内存检测测试才会生效。
 
 3. 点击IDE界面中的运行按钮，运行应用工程，hiview连续5次检测到应用内存超基线（RSS超过1228800KB），会上报应用内存泄漏事件。
    同一个应用，5小时内至多上报一次内存泄漏，如果短时间内要二次上报，需要重启hiview
