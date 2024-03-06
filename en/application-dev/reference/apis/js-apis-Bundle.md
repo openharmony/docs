@@ -5,6 +5,7 @@ The **bundle** module provides APIs for obtaining information about an applicati
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The APIs of this module are deprecated since API version 9. You are advised to use [@ohos.bundle.bundleManager](js-apis-bundleManager.md) instead.
 ## Modules to Import
 
 ```ts
@@ -13,18 +14,19 @@ import bundle from '@ohos.bundle';
 
 ## Required Permissions
 
-| Required Permissions                                        | Permission Level        | Description           |
+| Permission                                        | APL        | Description           |
 |--------------------------------------------|--------------|---------------|
-| ohos.permission.GET_BUNDLE_INFO            | normal       | Permission to query information about a specified bundle.     |
+| ohos.permission.CHANGE_ABILITY_ENABLED_STATE | system_basic | Permission to enable or disable an application or ability.|
+| ohos.permission.GET_BUNDLE_INFO | normal | Permission to query information about a specified bundle.|
 | ohos.permission.GET_BUNDLE_INFO_PRIVILEGED| system_basic | Permission to query information about all bundles.    |
 | ohos.permission.INSTALL_BUNDLE             | system_core  | Permission to install or uninstall bundles.     |
-| ohos.permission.MANAGE_DISPOSED_APP_STATUS | system_core  | Permission to set and query the application disposal status.|
+| ohos.permission.REMOVE_CACHE_FILES | system_basic | Permission to clear cache files of a bundle.|
 
-For details, see [Permission Levels](../../security/accesstoken-overview.md#permission-levels).
+For details, see [Levels of Permissions](../../security/accesstoken-overview.md#levels-of-permissions).
 
 ## bundle.getApplicationInfo<sup>deprecated<sup>
 
-> This API is deprecated since API version 9. You are advised to use [bundleManager.getApplicationInfo](js-apis-bundleManager.md#bundlemanagergetapplicationinfo) instead.
+> This API is deprecated since API version 9.
 
 getApplicationInfo(bundleName: string, bundleFlags: number, userId?: number): Promise\<ApplicationInfo>
 
@@ -44,7 +46,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | Name     | Type  | Mandatory| Description                                                        |
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
-| bundleName  | string | Yes  | Bundle name of the application.                                    |
+| bundleName  | string | Yes  | Bundle name.                                    |
 | bundleFlags | number | Yes  | Type of information that will be returned. For details about the available enumerated values, see the application information flags in [BundleFlag](#bundleflagdeprecated).|
 | userId      | number | No  | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.       |
 
@@ -57,20 +59,23 @@ SystemCapability.BundleManager.BundleFramework
 **Example**
 
 ```ts
-let bundleName = "com.example.myapplication";
-let bundleFlags = 0;
-let userId = 100;
+import bundle from '@ohos.bundle';
+import { BusinessError } from '@ohos.base'; 
+
+let bundleName: string = "com.example.myapplication";
+let bundleFlags: number = 0;
+let userId: number = 100;
 bundle.getApplicationInfo(bundleName, bundleFlags, userId)
 .then((data) => {
     console.info('Operation successful. Data: ' + JSON.stringify(data));
-}).catch((error) => {
+}).catch((error: BusinessError) => {
     console.error('Operation failed. Cause: ' + JSON.stringify(error));
 })
 ```
 
 ## bundle.getApplicationInfo<sup>deprecated<sup>
 
-> This API is deprecated since API version 9. You are advised to use [bundleManager.getApplicationInfo](js-apis-bundleManager.md#bundlemanagergetapplicationinfo) instead.
+> This API is deprecated since API version 9.
 
 getApplicationInfo(bundleName: string, bundleFlags: number, userId: number, callback: AsyncCallback\<ApplicationInfo>): void
 
@@ -90,17 +95,19 @@ SystemCapability.BundleManager.BundleFramework
 
 | Name     | Type                                                        | Mandatory| Description                                                        |
 | ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| bundleName  | string                                                       | Yes  | Bundle name of the application.                                    |
+| bundleName  | string                                                       | Yes  | Bundle name.                                    |
 | bundleFlags | number                                                       | Yes  | Type of information that will be returned. For details about the available enumerated values, see the application information flags in [BundleFlag](#bundleflagdeprecated).|
-| userId      | number                                                       | Yes  | User ID. The value must be greater than or equal to 0.       |
+| userId      | number                                                       | Yes  | User ID. The value must be greater than or equal to 0.                               |
 | callback    | AsyncCallback\<[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)> | Yes  | Callback used to return the application information.              |
 
 **Example**
 
 ```ts
-let bundleName = "com.example.myapplication";
-let bundleFlags = 0;
-let userId = 100;
+import bundle from '@ohos.bundle';
+
+let bundleName: string = "com.example.myapplication";
+let bundleFlags: number = 0;
+let userId: number = 100;
 bundle.getApplicationInfo(bundleName, bundleFlags, userId, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
@@ -112,7 +119,7 @@ bundle.getApplicationInfo(bundleName, bundleFlags, userId, (err, data) => {
 
 ## bundle.getApplicationInfo<sup>deprecated<sup>
 
-> This API is deprecated since API version 9. You are advised to use [bundleManager.getApplicationInfo](js-apis-bundleManager.md#bundlemanagergetapplicationinfo) instead.
+> This API is deprecated since API version 9.
 
 
 getApplicationInfo(bundleName: string, bundleFlags: number, callback: AsyncCallback\<ApplicationInfo>): void
@@ -133,15 +140,17 @@ SystemCapability.BundleManager.BundleFramework
 
 | Name     | Type                                                        | Mandatory| Description                                                        |
 | ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| bundleName  | string                                                       | Yes  | Bundle name of the application.                                    |
+| bundleName  | string                                                       | Yes  | Bundle name.                                    |
 | bundleFlags | number                                                       | Yes  | Type of information that will be returned. For details about the available enumerated values, see the application information flags in [BundleFlag](#bundleflagdeprecated).|
 | callback    | AsyncCallback\<[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)> | Yes  | Callback used to return the application information.              |
 
 **Example**
 
 ```ts
-let bundleName = "com.example.myapplication";
-let bundleFlags = 0;
+import bundle from '@ohos.bundle';
+
+let bundleName: string = "com.example.myapplication";
+let bundleFlags: number = 0;
 bundle.getApplicationInfo(bundleName, bundleFlags, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
@@ -154,7 +163,7 @@ bundle.getApplicationInfo(bundleName, bundleFlags, (err, data) => {
 
 ## bundle.getAllBundleInfo<sup>deprecated<sup>
 
-> This API is deprecated since API version 9. You are advised to use [bundleManager.getAllBundleInfo](js-apis-bundleManager.md#bundlemanagergetallbundleinfo) instead.
+> This API is deprecated since API version 9.
 
 getAllBundleInfo(bundleFlag: BundleFlag, userId?: number): Promise\<Array\<BundleInfo\>\>
 
@@ -184,19 +193,23 @@ SystemCapability.BundleManager.BundleFramework
 **Example**
 
 ```ts
-let bundleFlag = 0;
-let userId = 100;
+import bundle from '@ohos.bundle';
+import { BusinessError } from '@ohos.base';
+
+let bundleFlag: number = 0;
+let userId: number = 100;
+
 bundle.getAllBundleInfo(bundleFlag, userId)
 .then((data) => {
     console.info('Operation successful. Data: ' + JSON.stringify(data));
-}).catch((error) => {
+}).catch((error: BusinessError) => {
     console.error('Operation failed. Cause: ' + JSON.stringify(error));
 })
 ```
 
 ## bundle.getAllBundleInfo<sup>deprecated<sup>
 
-> This API is deprecated since API version 9. You are advised to use [bundleManager.getAllBundleInfo](js-apis-bundleManager.md#bundlemanagergetallbundleinfo) instead.
+> This API is deprecated since API version 9.
 
 
 getAllBundleInfo(bundleFlag: BundleFlag, callback: AsyncCallback\<Array\<BundleInfo\>\>): void
@@ -221,7 +234,9 @@ SystemCapability.BundleManager.BundleFramework
 **Example**
 
 ```ts
-let bundleFlag = 0;
+import bundle from '@ohos.bundle';
+
+let bundleFlag: number = 0;
 bundle.getAllBundleInfo(bundleFlag, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
@@ -233,7 +248,7 @@ bundle.getAllBundleInfo(bundleFlag, (err, data) => {
 
 ## bundle.getAllBundleInfo<sup>deprecated<sup>
 
-> This API is deprecated since API version 9. You are advised to use [bundleManager.getAllBundleInfo](js-apis-bundleManager.md#bundlemanagergetallbundleinfo) instead.
+> This API is deprecated since API version 9.
 
 
 getAllBundleInfo(bundleFlag: BundleFlag, userId: number, callback: AsyncCallback\<Array\<BundleInfo\>\>): void
@@ -260,8 +275,10 @@ SystemCapability.BundleManager.BundleFramework
 **Example**
 
 ```ts
-let bundleFlag = 0;
-let userId = 100;
+import bundle from '@ohos.bundle';
+
+let bundleFlag: number = 0;
+let userId: number = 100;
 bundle.getAllBundleInfo(bundleFlag, userId, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
@@ -273,7 +290,7 @@ bundle.getAllBundleInfo(bundleFlag, userId, (err, data) => {
 
 ## bundle.getBundleInfo<sup>deprecated<sup>
 
-> This API is deprecated since API version 9. You are advised to use [bundleManager.getBundleInfo](js-apis-bundleManager.md#bundlemanagergetbundleinfo) instead.
+> This API is deprecated since API version 9.
 
 
 getBundleInfo(bundleName: string, bundleFlags: number, options?: BundleOptions): Promise\<BundleInfo>
@@ -294,7 +311,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | Name        | Type           | Mandatory  | Description                                                                 |
 | ----------- | ------------- | ---- |---------------------------------------------------------------------|
-| bundleName  | string        | Yes   | Bundle name of the application.                                                        |
+| bundleName  | string        | Yes   | Bundle name.                                                |
 | bundleFlags | number        | Yes   | Type of information that will be returned. For details about the available enumerated values, see the bundle information flags in [BundleFlag](#bundleflagdeprecated).|
 | options     | [BundleOptions](#bundleoptionsdeprecated) | No   | Options that contain the user ID.                                                     |
 
@@ -307,22 +324,25 @@ SystemCapability.BundleManager.BundleFramework
 **Example**
 
 ```ts
-let bundleName = "com.example.myapplication";
-let bundleFlags = 1;
-let options = {
-  "userId" : 100
+import bundle from '@ohos.bundle';
+import { BusinessError } from '@ohos.base';
+
+let bundleName: string = "com.example.myapplication";
+let bundleFlags: number = 1;
+let options: bundle.BundleOptions = {
+    "userId": 100
 };
 bundle.getBundleInfo(bundleName, bundleFlags, options)
 .then((data) => {
     console.info('Operation successful. Data: ' + JSON.stringify(data));
-}).catch((error) => {
+}).catch((error: BusinessError) => {
     console.error('Operation failed. Cause: ' + JSON.stringify(error));
 })
 ```
 
 ## bundle.getBundleInfo<sup>deprecated<sup>
 
-> This API is deprecated since API version 9. You are advised to use [bundleManager.getBundleInfo](js-apis-bundleManager.md#bundlemanagergetbundleinfo) instead.
+> This API is deprecated since API version 9.
 
 getBundleInfo(bundleName: string, bundleFlags: number, callback: AsyncCallback\<BundleInfo>): void
 
@@ -340,17 +360,19 @@ SystemCapability.BundleManager.BundleFramework
 
 **Parameters**
 
-| Name     | Type                                                      | Mandatory| Description                                                                 |
-| ----------- | ---------------------------------------------------------- | ---- |---------------------------------------------------------------------|
-| bundleName  | string                                                     | Yes  | Bundle name of the application.                                                      |
+| Name     | Type                                                      | Mandatory| Description                                                        |
+| ----------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| bundleName  | string                                                     | Yes  | Bundle name.                                  |
 | bundleFlags | number                                                     | Yes  | Type of information that will be returned. For details about the available enumerated values, see the bundle information flags in [BundleFlag](#bundleflagdeprecated).|
-| callback    | AsyncCallback\<[BundleInfo](js-apis-bundle-BundleInfo.md)> | Yes  | Callback used to return the bundle information.                                               |
+| callback    | AsyncCallback\<[BundleInfo](js-apis-bundle-BundleInfo.md)> | Yes  | Callback used to return the bundle information.                    |
 
 **Example**
 
 ```ts
-let bundleName = "com.example.myapplication";
-let bundleFlags = 1;
+import bundle from '@ohos.bundle';
+
+let bundleName: string = "com.example.myapplication";
+let bundleFlags: number = 1;
 bundle.getBundleInfo(bundleName, bundleFlags, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
@@ -360,14 +382,13 @@ bundle.getBundleInfo(bundleName, bundleFlags, (err, data) => {
 })
 ```
 
-
 ## bundle.getBundleInfo<sup>deprecated<sup>
 
-> This API is deprecated since API version 9. You are advised to use [bundleManager.getBundleInfo](js-apis-bundleManager.md#bundlemanagergetbundleinfo) instead.
+> This API is deprecated since API version 9.
 
 getBundleInfo(bundleName: string, bundleFlags: number, options: BundleOptions, callback: AsyncCallback\<BundleInfo>): void
 
-Obtains the bundle information based on a given bundle name. This API uses an asynchronous callback to return the result.
+Obtains the bundle information based on a given bundle name and bundle options. This API uses an asynchronous callback to return the result.
 
 No permission is required for obtaining the caller's own information.
 
@@ -383,7 +404,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | Name     | Type                                                      | Mandatory| Description                                                        |
 | ----------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| bundleName  | string                                                     | Yes  | Bundle name of the application.                                                        |
+| bundleName  | string                                                     | Yes  | Bundle name.                                    |
 | bundleFlags | number                                                     | Yes  | Type of information that will be returned. For details about the available enumerated values, see the bundle information flags in [BundleFlag](#bundleflagdeprecated).|
 | options     | [BundleOptions](#bundleoptionsdeprecated)                            | Yes  | Includes **userId**.                                                |
 | callback    | AsyncCallback\<[BundleInfo](js-apis-bundle-BundleInfo.md)> | Yes  | Callback used to return the bundle information.                    |
@@ -391,10 +412,12 @@ SystemCapability.BundleManager.BundleFramework
 **Example**
 
 ```ts
-let bundleName = "com.example.myapplication";
-let bundleFlags = 1;
-let options = {
-  "userId" : 100
+import bundle from '@ohos.bundle';
+
+let bundleName: string = "com.example.myapplication";
+let bundleFlags: number = 1;
+let options: bundle.BundleOptions = {
+    "userId": 100
 };
 bundle.getBundleInfo(bundleName, bundleFlags, options, (err, data) => {
     if (err) {
@@ -425,7 +448,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **System API**
 
-This is a system API and cannot be called by third-party applications.
+This is a system API.
 
 **Return value**
 
@@ -436,9 +459,12 @@ This is a system API and cannot be called by third-party applications.
 **Example**
 
 ```ts
+import bundle from '@ohos.bundle';
+import { BusinessError } from '@ohos.base';
+
 bundle.getBundleInstaller().then((data) => {
     console.info('getBundleInstaller successfully.');
-}).catch((error) => {
+}).catch((error: BusinessError) => {
     console.error('getBundleInstaller failed.');
 });
 ```
@@ -461,7 +487,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **System API**
 
-This is a system API and cannot be called by third-party applications.
+This is a system API.
 
 **Parameters**
 
@@ -472,6 +498,8 @@ This is a system API and cannot be called by third-party applications.
 **Example**
 
 ```ts
+import bundle from '@ohos.bundle';
+
 bundle.getBundleInstaller((err, data) => {
     if (err.code == 0) {
         console.error('getBundleInstaller failed.');
@@ -498,19 +526,21 @@ SystemCapability.BundleManager.BundleFramework
 
 **System API**
 
-This is a system API and cannot be called by third-party applications.
+This is a system API.
 
 **Parameters**
 
 | Name     | Type               | Mandatory| Description                                 |
 | ---------- | ------------------- | ---- | ------------------------------------- |
-| bundleName | string              | Yes  | Bundle name of the application.|
+| bundleName | string              | Yes  | Bundle name.|
 | callback   | AsyncCallback\<void> | Yes  | Callback used to return the result.         |
 
 **Example**
 
 ```ts
-let bundleName = "com.example.myapplication";
+import bundle from '@ohos.bundle';
+
+let bundleName: string = "com.example.myapplication";
 
 bundle.cleanBundleCacheFiles(bundleName, err => {
     if (err) {
@@ -539,13 +569,13 @@ SystemCapability.BundleManager.BundleFramework
 
 **System API**
 
-This is a system API and cannot be called by third-party applications.
+This is a system API.
 
 **Parameters**
 
 | Name    | Type  | Mandatory| Description                                 |
 | ---------- | ------ | ---- | ------------------------------------- |
-| bundleName | string | Yes  | Bundle name of the application.|
+| bundleName | string | Yes  | Bundle name.|
 
 **Return value**
 
@@ -556,11 +586,14 @@ This is a system API and cannot be called by third-party applications.
 **Example**
 
 ```ts
-let bundleName = "com.example.myapplication";
+import bundle from '@ohos.bundle';
+import { BusinessError } from '@ohos.base';
+
+let bundleName: string = "com.example.myapplication";
 
 bundle.cleanBundleCacheFiles(bundleName).then(()=> {
     console.info('cleanBundleCacheFiles successfully.');
-}).catch(err=> {
+}).catch((error: BusinessError) => {
     console.error('cleanBundleCacheFiles failed.');
 });
 ```
@@ -583,20 +616,22 @@ SystemCapability.BundleManager.BundleFramework
 
 **System API**
 
-This is a system API and cannot be called by third-party applications.
+This is a system API.
 
 **Parameters**
 
 | Name     | Type               | Mandatory| Description                            |
 | ---------- | ------------------- | ---- |--------------------------------|
-| bundleName | string              | Yes  | Bundle name of the application.            |
+| bundleName | string              | Yes  | Bundle name.         |
 | isEnable   | boolean             | Yes  | Whether to enable the application. The value **true** means to enable the application, and **false** means the opposite.|
 | callback   | AsyncCallback\<void> | Yes  | Callback used to return the result.                         |
 
 **Example**
 
 ```ts
-let bundleName = "com.example.myapplication";
+import bundle from '@ohos.bundle';
+
+let bundleName: string = "com.example.myapplication";
 
 bundle.setApplicationEnabled(bundleName, false, err => {
     if (err) {
@@ -625,13 +660,13 @@ SystemCapability.BundleManager.BundleFramework
 
 **System API**
 
-This is a system API and cannot be called by third-party applications.
+This is a system API.
 
 **Parameters**
 
-| Name    | Type   | Mandatory| Description                          |
-| ---------- | ------- | ---- |------------------------------|
-| bundleName | string  | Yes  | Bundle name of the application.          |
+| Name    | Type   | Mandatory| Description                                           |
+| ---------- | ------- | ---- | ----------------------------------------------- |
+| bundleName | string  | Yes  | Bundle name.           |
 | isEnable   | boolean | Yes  | Whether to enable the application. The value **true** means to enable the application, and **false** means the opposite.|
 
 **Return value**
@@ -643,11 +678,14 @@ This is a system API and cannot be called by third-party applications.
 **Example**
 
 ```ts
-let bundleName = "com.example.myapplication";
+import bundle from '@ohos.bundle';
+import { BusinessError } from '@ohos.base';
+
+let bundleName: string = "com.example.myapplication";
 
 bundle.setApplicationEnabled(bundleName, false).then(()=> {
     console.info('setApplicationEnabled successfully.');
-}).catch(err=> {
+}).catch((error: BusinessError) => {
     console.error('setApplicationEnabled failed.');
 });
 ```
@@ -670,7 +708,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **System API**
 
-This is a system API and cannot be called by third-party applications.
+This is a system API.
 
 **Parameters**
 
@@ -698,7 +736,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **System API**
 
-This is a system API and cannot be called by third-party applications.
+This is a system API.
 
 **Parameters**
 
@@ -716,22 +754,21 @@ This is a system API and cannot be called by third-party applications.
 **Example**
 
 ```ts
-let flag = bundle.BundleFlag.GET_ABILITY_INFO_WITH_PERMISSION;
-let userId = 100;
-let want = {
-    bundleName : "com.example.myapplication",
-    abilityName : "com.example.myapplication.MainAbility"
-};
+import bundle from '@ohos.bundle';
+import { BusinessError } from '@ohos.base';
 
-bundle.getAbilityInfo(want, flag, userId).then((abilityInfo) => {
+let bundleName: string = "com.example.myapplication";
+let abilityName: string = "EntryAbility";
+
+bundle.getAbilityInfo(bundleName, abilityName).then((abilityInfo) => {
     console.info('getAbilityInfo successfully. Data: ' + JSON.stringify(abilityInfo));
 
     bundle.setAbilityEnabled(abilityInfo, false).then(data => {
         console.info('setAbilityEnabled successfully.');
-    }).catch(err => {
-        console.error('setAbilityEnabled failed:' + JSON.stringify(err));
+    }).catch((error: BusinessError) => {
+        console.error('setAbilityEnabled failed:' + JSON.stringify(error));
     })
-}).catch(error => {
+}).catch((error: BusinessError) => {
     console.error('getAbilityInfo failed. Cause: ' + JSON.stringify(error));
 });
 ```
@@ -753,7 +790,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **System API**
 
-This is a system API and cannot be called by third-party applications.
+This is a system API.
 
 **Parameters**
 
@@ -765,7 +802,9 @@ This is a system API and cannot be called by third-party applications.
 **Example**
 
 ```ts
-let permission = "ohos.permission.GET_BUNDLE_INFO";
+import bundle from '@ohos.bundle';
+
+let permission: string = "ohos.permission.GET_BUNDLE_INFO";
 bundle.getPermissionDef(permission, (err, data) => {
     if (err) {
         console.error('getPermissionDef failed:' + err.message);
@@ -793,7 +832,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **System API**
 
-This is a system API and cannot be called by third-party applications.
+This is a system API.
 
 **Parameters**
 
@@ -810,17 +849,20 @@ This is a system API and cannot be called by third-party applications.
 **Example**
 
 ```ts
-let permissionName = "ohos.permission.GET_BUNDLE_INFO";
+import bundle from '@ohos.bundle';
+import { BusinessError } from '@ohos.base';
+
+let permissionName: string = "ohos.permission.GET_BUNDLE_INFO";
 bundle.getPermissionDef(permissionName).then((data) => {
     console.info('getPermissionDef successfully. Data: ' + JSON.stringify(data));
-}).catch(error => {
+}).catch((error: BusinessError) => {
     console.error('getPermissionDef failed. Cause: ' + error.message);
 });
 ```
 
 ## bundle.getAllApplicationInfo<sup>deprecated<sup>
 
-> This API is deprecated since API version 9. You are advised to use [bundleManager.getAllApplicationInfo](js-apis-bundleManager.md#bundlemanagergetallapplicationinfo) instead.
+> This API is deprecated since API version 9.
 
 getAllApplicationInfo(bundleFlags: number, userId?: number): Promise\<Array\<ApplicationInfo\>\>
 
@@ -850,19 +892,22 @@ SystemCapability.BundleManager.BundleFramework
 **Example**
 
 ```ts
-let bundleFlags = 8;
-let userId = 100;
+import bundle from '@ohos.bundle';
+import { BusinessError } from '@ohos.base';
+
+let bundleFlags: number = 8;
+let userId: number = 100;
 bundle.getAllApplicationInfo(bundleFlags, userId)
 .then((data) => {
     console.info('Operation successful. Data: ' + JSON.stringify(data));
-}).catch((error) => {
+}).catch((error: BusinessError) => {
     console.error('Operation failed. Cause: ' + JSON.stringify(error));
 })
 ```
 
 ## bundle.getAllApplicationInfo<sup>deprecated<sup>
 
-> This API is deprecated since API version 9. You are advised to use [bundleManager.getAllApplicationInfo](js-apis-bundleManager.md#bundlemanagergetallapplicationinfo) instead.
+> This API is deprecated since API version 9.
 
 getAllApplicationInfo(bundleFlags: number, userId: number, callback: AsyncCallback\<Array\<ApplicationInfo\>\>): void
 
@@ -887,8 +932,10 @@ SystemCapability.BundleManager.BundleFramework
 **Example**
 
 ```ts
-let bundleFlags = bundle.BundleFlag.GET_APPLICATION_INFO_WITH_PERMISSION;
-let userId = 100;
+import bundle from '@ohos.bundle';
+
+let bundleFlags: number = bundle.BundleFlag.GET_APPLICATION_INFO_WITH_PERMISSION;
+let userId: number = 100;
 bundle.getAllApplicationInfo(bundleFlags, userId, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
@@ -901,7 +948,7 @@ bundle.getAllApplicationInfo(bundleFlags, userId, (err, data) => {
 
 ## bundle.getAllApplicationInfo<sup>deprecated<sup>
 
-> This API is deprecated since API version 9. You are advised to use [bundleManager.getAllApplicationInfo](js-apis-bundleManager.md#bundlemanagergetallapplicationinfo) instead.
+> This API is deprecated since API version 9.
 
 getAllApplicationInfo(bundleFlags: number, callback: AsyncCallback\<Array\<ApplicationInfo\>\>): void
 
@@ -925,7 +972,9 @@ SystemCapability.BundleManager.BundleFramework
 **Example**
 
 ```ts
-let bundleFlags = bundle.BundleFlag.GET_APPLICATION_INFO_WITH_PERMISSION;
+import bundle from '@ohos.bundle';
+
+let bundleFlags: number = bundle.BundleFlag.GET_APPLICATION_INFO_WITH_PERMISSION;
 bundle.getAllApplicationInfo(bundleFlags, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
@@ -937,7 +986,7 @@ bundle.getAllApplicationInfo(bundleFlags, (err, data) => {
 
 ## bundle.getBundleArchiveInfo<sup>deprecated<sup>
 
-> This API is deprecated since API version 9. You are advised to use [bundleManager.getBundleArchiveInfo](js-apis-bundleManager.md#bundlemanagergetbundlearchiveinfo) instead.
+> This API is deprecated since API version 9.
 
 getBundleArchiveInfo(hapFilePath: string, bundleFlags: number) : Promise\<BundleInfo>
 
@@ -955,26 +1004,29 @@ SystemCapability.BundleManager.BundleFramework
 | bundleFlags | number | Yes   | Flags used to specify information contained in the **BundleInfo** object that will be returned. For details about the available enumerated values, see the bundle information flags in [BundleFlag](#bundleflagdeprecated).|
 
 **Return value**
-| Type            | Description                                    |
-| -------------- | -------------------------------------- |
+| Type                                                | Description                                                        |
+| ---------------------------------------------------- | ------------------------------------------------------------ |
 | Promise\<[BundleInfo](js-apis-bundle-BundleInfo.md)> | Promise used to return the information about the bundles.|
 
 **Example**
 
 ```ts
-let hapFilePath = "/data/storage/el2/base/test.hap";
-let bundleFlags = 0;
+import bundle from '@ohos.bundle';
+import { BusinessError } from '@ohos.base';
+
+let hapFilePath: string = "/data/storage/el2/base/test.hap";
+let bundleFlags: number = 0;
 bundle.getBundleArchiveInfo(hapFilePath, bundleFlags)
 .then((data) => {
     console.info('Operation successful. Data: ' + JSON.stringify(data));
-}).catch((error) => {
+}).catch((error: BusinessError) => {
     console.error('Operation failed. Cause: ' + JSON.stringify(error));
 })
 ```
 
 ## bundle.getBundleArchiveInfo<sup>deprecated<sup>
 
-> This API is deprecated since API version 9. You are advised to use [bundleManager.getBundleArchiveInfo](js-apis-bundleManager.md#bundlemanagergetbundlearchiveinfo) instead.
+> This API is deprecated since API version 9.
 
 getBundleArchiveInfo(hapFilePath: string, bundleFlags: number, callback: AsyncCallback\<BundleInfo>) : void
 
@@ -988,15 +1040,17 @@ SystemCapability.BundleManager.BundleFramework
 
 | Name       | Type    | Mandatory  | Description          |
 | ---------- | ------ | ---- | ------------ |
-| hapFilePath | string | Yes   | Path where the HAP file is stored.. The absolute path of the application and the data directory sandbox path are supported.|
+| hapFilePath | string | Yes   | Path where the HAP file is stored. The absolute path of the application and the data directory sandbox path are supported.|
 | bundleFlags | number | Yes   | Flags used to specify information contained in the **BundleInfo** object that will be returned. For details about the available enumerated values, see the bundle information flags in [BundleFlag](#bundleflagdeprecated).|
 | callback| AsyncCallback\<[BundleInfo](js-apis-bundle-BundleInfo.md)> | Yes   | Callback used to return the information about the bundles.|
 
 **Example**
 
 ```ts
-let hapFilePath = "/data/storage/el2/base/test.hap";
-let bundleFlags = 0;
+import bundle from '@ohos.bundle';
+
+let hapFilePath: string = "/data/storage/el2/base/test.hap";
+let bundleFlags: number = 0;
 bundle.getBundleArchiveInfo(hapFilePath, bundleFlags, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
@@ -1006,10 +1060,9 @@ bundle.getBundleArchiveInfo(hapFilePath, bundleFlags, (err, data) => {
 })
 ```
 
-
 ## bundle.getAbilityInfo<sup>deprecated<sup>
 
-> This API is deprecated since API version 9. You are advised to use [bundleManager.queryAbilityInfo](js-apis-bundleManager.md#bundlemanagerqueryabilityinfo) instead.
+> This API is deprecated since API version 9.
 
 getAbilityInfo(bundleName: string, abilityName: string): Promise\<AbilityInfo>
 
@@ -1029,7 +1082,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | Name        | Type    | Mandatory  | Description        |
 | ----------- | ------ | ---- |------------|
-| bundleName  | string | Yes   | Bundle name of the application.  |
+| bundleName  | string | Yes   | Bundle name.|
 | abilityName | string | Yes   | Ability name.|
 
 **Return value**
@@ -1041,19 +1094,22 @@ SystemCapability.BundleManager.BundleFramework
 **Example**
 
 ```ts
-let bundleName = "com.example.myapplication";
-let abilityName = "com.example.myapplication.MainAbility";
+import bundle from '@ohos.bundle';
+import { BusinessError } from '@ohos.base';
+
+let bundleName: string = "com.example.myapplication";
+let abilityName: string = "EntryAbility";
 bundle.getAbilityInfo(bundleName, abilityName)
 .then((data) => {
     console.info('Operation successful. Data: ' + JSON.stringify(data));
-}).catch((error) => {
+}).catch((error: BusinessError) => {
     console.error('Operation failed. Cause: ' + JSON.stringify(error));
 })
 ```
 
 ## bundle.getAbilityInfo<sup>deprecated<sup>
 
-> This API is deprecated since API version 9. You are advised to use [bundleManager.queryAbilityInfo](js-apis-bundleManager.md#bundlemanagerqueryabilityinfo) instead.
+> This API is deprecated since API version 9.
 
 getAbilityInfo(bundleName: string, abilityName: string, callback: AsyncCallback\<AbilityInfo>): void
 
@@ -1073,15 +1129,17 @@ SystemCapability.BundleManager.BundleFramework
 
 | Name       | Type    | Mandatory  | Description                        |
 | ----------- | ------------ | ---- |----------------------------|
-| bundleName  | string | Yes   | Bundle name of the application.                  |
+| bundleName  | string | Yes   | Bundle name.               |
 | abilityName | string | Yes   | Ability name.                |
 | callback    | AsyncCallback\<[AbilityInfo](js-apis-bundle-AbilityInfo.md)> | Yes   | Callback used to return the ability information.|
 
 **Example**
 
 ```ts
-let bundleName = "com.example.myapplication";
-let abilityName = "com.example.myapplication.MainAbility";
+import bundle from '@ohos.bundle';
+
+let bundleName: string = "com.example.myapplication";
+let abilityName: string = "EntryAbility";
 bundle.getAbilityInfo(bundleName, abilityName, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
@@ -1093,7 +1151,7 @@ bundle.getAbilityInfo(bundleName, abilityName, (err, data) => {
 
 ## bundle.getAbilityLabel<sup>8+</sup> <sup>deprecated<sup>
 
-> This API is deprecated since API version 9. You are advised to use [bundleManager.getAbilityLabel](js-apis-bundleManager.md#bundlemanagergetabilitylabel) instead.
+> This API is deprecated since API version 9.
 
 getAbilityLabel(bundleName: string, abilityName: string): Promise\<string>
 
@@ -1111,10 +1169,10 @@ SystemCapability.BundleManager.BundleFramework
 
 **Parameters**
 
-| Name        | Type    | Mandatory | Description        |
-|-------------|--------|-----|------------|
-| bundleName  | string | Yes  | Bundle name of the application.  |
-| abilityName | string | Yes  | Ability name.|
+| Name     | Type  | Mandatory| Description            |
+| ----------- | ------ | ---- | ---------------- |
+| bundleName  | string | Yes  | Bundle name.|
+| abilityName | string | Yes  | Ability name.   |
 
 **Return value**
 
@@ -1125,19 +1183,22 @@ SystemCapability.BundleManager.BundleFramework
 **Example**
 
 ```ts
-let bundleName = "com.example.myapplication";
-let abilityName = "com.example.myapplication.MainAbility";
+import bundle from '@ohos.bundle';
+import { BusinessError } from '@ohos.base';
+
+let bundleName: string = "com.example.myapplication";
+let abilityName: string = "EntryAbility";
 bundle.getAbilityLabel(bundleName, abilityName)
 .then((data) => {
     console.info('Operation successful. Data: ' + JSON.stringify(data));
-}).catch((error) => {
+}).catch((error: BusinessError) => {
     console.error('Operation failed. Cause: ' + JSON.stringify(error));
 })
 ```
 
 ## bundle.getAbilityLabel<sup>8+</sup> <sup>deprecated<sup>
 
-> This API is deprecated since API version 9. You are advised to use [bundleManager.getAbilityLabel](js-apis-bundleManager.md#bundlemanagergetabilitylabel) instead.
+> This API is deprecated since API version 9.
 
 getAbilityLabel(bundleName: string, abilityName: string, callback : AsyncCallback\<string>): void
 
@@ -1155,17 +1216,19 @@ SystemCapability.BundleManager.BundleFramework
 
 **Parameters**
 
-| Name        | Type                    | Mandatory | Description                     |
-|-------------|------------------------|-----|-------------------------|
-| bundleName  | string                 | Yes  | Bundle name of the application.               |
-| abilityName | string                 | Yes  | Ability name.             |
+| Name     | Type                  | Mandatory| Description                                          |
+| ----------- | ---------------------- | ---- | ---------------------------------------------- |
+| bundleName  | string                 | Yes  | Bundle name.                              |
+| abilityName | string                 | Yes  | Ability name.                                 |
 | callback    | AsyncCallback\<string> | Yes  | Callback used to return the application name.|
 
 **Example**
 
 ```ts
-let bundleName = "com.example.myapplication";
-let abilityName = "com.example.myapplication.MainAbility";
+import bundle from '@ohos.bundle';
+
+let bundleName: string = "com.example.myapplication";
+let abilityName: string = "EntryAbility";
 bundle.getAbilityLabel(bundleName, abilityName, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
@@ -1177,7 +1240,7 @@ bundle.getAbilityLabel(bundleName, abilityName, (err, data) => {
 
 ## bundle.isAbilityEnabled<sup>8+</sup> <sup>deprecated<sup>
 
-> This API is deprecated since API version 9. You are advised to use [bundleManager.isAbilityEnabled](js-apis-bundleManager.md#bundlemanagerisabilityenabled) instead.
+> This API is deprecated since API version 9.
 
 isAbilityEnabled(info: AbilityInfo): Promise\<boolean>
 
@@ -1202,12 +1265,15 @@ SystemCapability.BundleManager.BundleFramework
 **Example**
 
 ```ts
-let bundleName = "com.example.myapplication";
-let abilityName = "com.example.myapplication.MainAbility";
+import bundle from '@ohos.bundle';
+import { BusinessError } from '@ohos.base';
+
+let bundleName: string = "com.example.myapplication";
+let abilityName: string = "EntryAbility";
 bundle.getAbilityInfo(bundleName, abilityName).then((abilityInfo)=>{
     bundle.isAbilityEnabled(abilityInfo).then((data) => {
         console.info('Operation successful. Data: ' + JSON.stringify(data));
-    }).catch((error) => {
+    }).catch((error: BusinessError) => {
         console.error('Operation failed. Cause: ' + JSON.stringify(error));
     })
 })
@@ -1215,7 +1281,7 @@ bundle.getAbilityInfo(bundleName, abilityName).then((abilityInfo)=>{
 
 ## bundle.isAbilityEnabled<sup>8+</sup> <sup>deprecated<sup>
 
-> This API is deprecated since API version 9. You are advised to use [bundleManager.isAbilityEnabled](js-apis-bundleManager.md#bundlemanagerisabilityenabled) instead.
+> This API is deprecated since API version 9.
 
 isAbilityEnabled(info : AbilityInfo, callback : AsyncCallback\<boolean>): void
 
@@ -1235,8 +1301,10 @@ SystemCapability.BundleManager.BundleFramework
 **Example**
 
 ```ts
-let bundleName = "com.example.myapplication";
-let abilityName = "com.example.myapplication.MainAbility";
+import bundle from '@ohos.bundle';
+
+let bundleName: string = "com.example.myapplication";
+let abilityName: string = "EntryAbility";
 bundle.getAbilityInfo(bundleName, abilityName).then((abilityInfo)=>{
     bundle.isAbilityEnabled(abilityInfo, (err, data) => {
     if (err) {
@@ -1250,7 +1318,7 @@ bundle.getAbilityInfo(bundleName, abilityName).then((abilityInfo)=>{
 
 ## bundle.isApplicationEnabled<sup>8+</sup> <sup>deprecated<sup>
 
-> This API is deprecated since API version 9. You are advised to use [bundleManager.isApplicationEnabled](js-apis-bundleManager.md#bundlemanagerisapplicationenabled) instead.
+> This API is deprecated since API version 9.
 
 isApplicationEnabled(bundleName: string): Promise\<boolean>
 
@@ -1264,7 +1332,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | Name    | Type  | Mandatory| Description                    |
 | ---------- | ------ | ---- | ------------------------ |
-| bundleName | string | Yes  | Bundle name of the application.|
+| bundleName | string | Yes  | Bundle name.|
 
 **Return value**
 
@@ -1275,18 +1343,21 @@ SystemCapability.BundleManager.BundleFramework
 **Example**
 
 ```ts
-let bundleName = "com.example.myapplication";
+import bundle from '@ohos.bundle';
+import { BusinessError } from '@ohos.base';
+
+let bundleName: string = "com.example.myapplication";
 bundle.isApplicationEnabled(bundleName)
 .then((data) => {
     console.info('Operation successful. Data: ' + JSON.stringify(data));
-}).catch((error) => {
+}).catch((error: BusinessError) => {
     console.error('Operation failed. Cause: ' + JSON.stringify(error));
 })
 ```
 
 ## bundle.isApplicationEnabled<sup>8+</sup> <sup>deprecated<sup>
 
-> This API is deprecated since API version 9. You are advised to use [bundleManager.isApplicationEnabled](js-apis-bundleManager.md#bundlemanagerisapplicationenabled) instead.
+> This API is deprecated since API version 9.
 
 isApplicationEnabled(bundleName: string, callback : AsyncCallback\<boolean>): void
 
@@ -1300,13 +1371,15 @@ SystemCapability.BundleManager.BundleFramework
 
 | Name    | Type                   | Mandatory| Description                    |
 | ---------- | ----------------------- | ---- | ------------------------ |
-| bundleName | string                  | Yes  | Bundle name of the application.|
+| bundleName | string                  | Yes  | Bundle name.|
 | callback   | AsyncCallback\<boolean> | Yes  | Callback used to return the result. If the application is enabled, **true** will be returned; otherwise, **false** will be returned.|
 
 **Example**
 
 ```ts
-let bundleName = "com.example.myapplication";
+import bundle from '@ohos.bundle';
+
+let bundleName: string = "com.example.myapplication";
 bundle.isApplicationEnabled(bundleName, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
@@ -1318,7 +1391,7 @@ bundle.isApplicationEnabled(bundleName, (err, data) => {
 
 ## bundle.queryAbilityByWant<sup>deprecated<sup>
 
-> This API is deprecated since API version 9. You are advised to use [bundleManager.queryAbilityInfo](js-apis-bundleManager.md#bundlemanagerqueryabilityinfo) instead.
+> This API is deprecated since API version 9.
 
 queryAbilityByWant(want: Want, bundleFlags: number, userId?: number): Promise\<Array\<AbilityInfo\>\>
 
@@ -1338,7 +1411,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | Name        | Type    | Mandatory  | Description                                   |
 | ----------- | ------ | ---- | ------------------------------------- |
-| want        | [Want](js-apis-application-want.md)   | Yes   | Want containing the bundle name.                    |
+| want        | [Want](js-apis-application-want.md)   | Yes   | Want containing the bundle name.                 |
 | bundleFlags | number | Yes   | Ability information to be returned. For details about the available enumerated values, see the ability information flags in [BundleFlag](#bundleflagdeprecated).|
 | userId      | number | No   | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.          |
 
@@ -1351,16 +1424,20 @@ SystemCapability.BundleManager.BundleFramework
 **Example**
 
 ```ts
-let bundleFlags = 0;
-let userId = 100;
-let want = {
+import bundle from '@ohos.bundle';
+import { BusinessError } from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
+
+let bundleFlags: number = 0;
+let userId: number = 100;
+let want: Want = {
     bundleName : "com.example.myapplication",
-    abilityName : "com.example.myapplication.MainAbility"
+    abilityName : "EntryAbility"
 };
 bundle.queryAbilityByWant(want, bundleFlags, userId)
 .then((data) => {
     console.info('Operation successful. Data: ' + JSON.stringify(data));
-}).catch((error) => {
+}).catch((error: BusinessError) => {
     console.error('Operation failed. Cause: ' + JSON.stringify(error));
 })
 ```
@@ -1369,7 +1446,7 @@ bundle.queryAbilityByWant(want, bundleFlags, userId)
 
 ## bundle.queryAbilityByWant<sup>deprecated<sup>
 
-> This API is deprecated since API version 9. You are advised to use [bundleManager.queryAbilityInfo](js-apis-bundleManager.md#bundlemanagerqueryabilityinfo) instead.
+> This API is deprecated since API version 9.
 
 queryAbilityByWant(want: Want, bundleFlags: number, userId: number, callback: AsyncCallback\<Array\<AbilityInfo\>\>): void
 
@@ -1387,21 +1464,24 @@ SystemCapability.BundleManager.BundleFramework
 
 **Parameters**
 
-| Name        | Type                                                                 | Mandatory | Description                                                                     |
-|-------------|---------------------------------------------------------------------|-----|-------------------------------------------------------------------------|
-| want        | [Want](js-apis-application-want.md)                                 | Yes  | Want containing the bundle name.                                                    |
-| bundleFlags | number                                                              | Yes  | Ability information to be returned. For details about the available enumerated values, see the ability information flags in [BundleFlag](#bundleflagdeprecated).|
-| userId      | number                                                              | Yes  | User ID. The value must be greater than or equal to 0.                                                       |
-| callback    | AsyncCallback<Array\<[AbilityInfo](js-apis-bundle-AbilityInfo.md)>> | Yes  | Callback used to return the ability information.                                             |
+| Name     | Type                                                        | Mandatory| Description                                                        |
+| ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| want        | [Want](js-apis-application-want.md)                          | Yes  | Want containing the bundle name.                      |
+| bundleFlags | number                                                       | Yes  | Ability information to be returned. For details about the available enumerated values, see the ability information flags in [BundleFlag](#bundleflagdeprecated).|
+| userId      | number                                                       | Yes  | User ID. The value must be greater than or equal to 0.                               |
+| callback    | AsyncCallback<Array\<[AbilityInfo](js-apis-bundle-AbilityInfo.md)>> | Yes  | Callback used to return the ability information.               |
 
 **Example**
 
 ```ts
-let bundleFlags = 0;
-let userId = 100;
-let want = {
+import bundle from '@ohos.bundle';
+import Want from '@ohos.app.ability.Want';
+
+let bundleFlags: number = 0;
+let userId: number = 100;
+let want: Want = {
     bundleName : "com.example.myapplication",
-    abilityName : "com.example.myapplication.MainAbility"
+    abilityName : "EntryAbility"
 };
 bundle.queryAbilityByWant(want, bundleFlags, userId, (err, data) => {
     if (err) {
@@ -1414,7 +1494,7 @@ bundle.queryAbilityByWant(want, bundleFlags, userId, (err, data) => {
 
 ## bundle.queryAbilityByWant<sup>deprecated<sup>
 
-> This API is deprecated since API version 9. You are advised to use [bundleManager.queryAbilityInfo](js-apis-bundleManager.md#bundlemanagerqueryabilityinfo) instead.
+> This API is deprecated since API version 9.
 
 queryAbilityByWant(want: Want, bundleFlags: number, callback: AsyncCallback\<Array\<AbilityInfo\>\>): void
 
@@ -1432,19 +1512,22 @@ SystemCapability.BundleManager.BundleFramework
 
 **Parameters**
 
-| Name        | Type                                                                 | Mandatory | Description                                                                     |
-|-------------|---------------------------------------------------------------------|-----|-------------------------------------------------------------------------|
-| want        | [Want](js-apis-application-want.md)                                 | Yes  | Want containing the bundle name.                                                    |
-| bundleFlags | number                                                              | Yes  | Ability information to be returned. For details about the available enumerated values, see the ability information flags in [BundleFlag](#bundleflagdeprecated).|
-| callback    | AsyncCallback<Array\<[AbilityInfo](js-apis-bundle-AbilityInfo.md)>> | Yes  | Callback used to return the ability information.                                             |
+| Name     | Type                                                        | Mandatory| Description                                                        |
+| ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| want        | [Want](js-apis-application-want.md)                          | Yes  | Want containing the bundle name.                      |
+| bundleFlags | number                                                       | Yes  | Ability information to be returned. For details about the available enumerated values, see the ability information flags in [BundleFlag](#bundleflagdeprecated).|
+| callback    | AsyncCallback<Array\<[AbilityInfo](js-apis-bundle-AbilityInfo.md)>> | Yes  | Callback used to return the ability information.               |
 
 **Example**
 
 ```ts
-let bundleFlags = 0;
-let want = {
+import bundle from '@ohos.bundle';
+import Want from '@ohos.app.ability.Want';
+
+let bundleFlags: number = 0;
+let want: Want = {
     bundleName : "com.example.myapplication",
-    abilityName : "com.example.myapplication.MainAbility"
+    abilityName : "EntryAbility"
 };
 bundle.queryAbilityByWant(want, bundleFlags, (err, data) => {
     if (err) {
@@ -1459,7 +1542,7 @@ bundle.queryAbilityByWant(want, bundleFlags, (err, data) => {
 
 ## bundle.getLaunchWantForBundle<sup>deprecated<sup>
 
-> This API is deprecated since API version 9. You are advised to use [bundleManager.getLaunchWantForBundle](js-apis-bundleManager.md#bundlemanagergetlaunchwantforbundle) instead.
+> This API is deprecated since API version 9.
 
 getLaunchWantForBundle(bundleName: string): Promise\<Want>
 
@@ -1477,7 +1560,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | Name    | Type  | Mandatory| Description                    |
 | ---------- | ------ | ---- | ------------------------ |
-| bundleName | string | Yes  | Bundle name of the application.|
+| bundleName | string | Yes  | Bundle name.|
 
 **Return value**
 | Type            | Description                                    |
@@ -1487,18 +1570,21 @@ SystemCapability.BundleManager.BundleFramework
 **Example**
 
 ```ts
-let bundleName = "com.example.myapplication";
+import bundle from '@ohos.bundle';
+import { BusinessError } from '@ohos.base';
+
+let bundleName: string = "com.example.myapplication";
 bundle.getLaunchWantForBundle(bundleName)
 .then((data) => {
     console.info('Operation successful. Data: ' + JSON.stringify(data));
-}).catch((error) => {
+}).catch((error: BusinessError) => {
     console.error('Operation failed. Cause: ' + JSON.stringify(error));
 })
 ```
 
 ## bundle.getLaunchWantForBundle<sup>deprecated<sup>
 
-> This API is deprecated since API version 9. You are advised to use [bundleManager.getLaunchWantForBundle](js-apis-bundleManager.md#bundlemanagergetlaunchwantforbundle) instead.
+> This API is deprecated since API version 9.
 
 getLaunchWantForBundle(bundleName: string, callback: AsyncCallback\<Want>): void
 
@@ -1516,13 +1602,15 @@ SystemCapability.BundleManager.BundleFramework
 
 | Name    | Type                                               | Mandatory| Description                                                    |
 | ---------- | --------------------------------------------------- | ---- | -------------------------------------------------------- |
-| bundleName | string                                              | Yes  | Bundle name of the application.                                |
+| bundleName | string                                              | Yes  | Bundle name.                                |
 | callback   | AsyncCallback\<[Want](js-apis-application-want.md)> | Yes  | Callback used to return the **Want** object.|
 
 **Example**
 
 ```ts
-let bundleName = "com.example.myapplication";
+import bundle from '@ohos.bundle';
+
+let bundleName: string = "com.example.myapplication";
 bundle.getLaunchWantForBundle(bundleName, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
@@ -1535,7 +1623,7 @@ bundle.getLaunchWantForBundle(bundleName, (err, data) => {
 
 ## bundle.getNameForUid<sup>8+</sup> <sup>deprecated<sup>
 
-> This API is deprecated since API version 9. You are advised to use [bundleManager.getBundleNameByUid](js-apis-bundleManager.md#bundlemanagergetbundlenamebyuid) instead.
+> This API is deprecated since API version 9.
 
 getNameForUid(uid: number): Promise\<string>
 
@@ -1559,18 +1647,21 @@ SystemCapability.BundleManager.BundleFramework
 **Example**
 
 ```ts
-let uid = 20010005;
+import bundle from '@ohos.bundle';
+import { BusinessError } from '@ohos.base';
+
+let uid: number = 20010005;
 bundle.getNameForUid(uid)
 .then((data) => {
     console.info('Operation successful. Data: ' + JSON.stringify(data));
-}).catch((error) => {
+}).catch((error: BusinessError) => {
     console.error('Operation failed. Cause: ' + JSON.stringify(error));
 })
 ```
 
 ## bundle.getNameForUid<sup>8+</sup> <sup>deprecated<sup>
 
-> This API is deprecated since API version 9. You are advised to use [bundleManager.getBundleNameByUid](js-apis-bundleManager.md#bundlemanagergetbundlenamebyuid) instead.
+> This API is deprecated since API version 9.
 
 getNameForUid(uid: number, callback: AsyncCallback\<string>) : void
 
@@ -1582,15 +1673,17 @@ SystemCapability.BundleManager.BundleFramework
 
 **Parameters**
 
-| Name     | Type                    | Mandatory | Description                        |
-|----------|------------------------|-----|----------------------------|
-| uid      | number                 | Yes  | UID based on which the bundle name is to obtain.                  |
+| Name  | Type                  | Mandatory| Description                                                 |
+| -------- | ---------------------- | ---- | ----------------------------------------------------- |
+| uid      | number                 | Yes  | UID based on which the bundle name is to obtain.                                        |
 | callback | AsyncCallback\<string> | Yes  | Callback used to return the bundle name.|
 
 **Example**
 
 ```ts
-let uid = 20010005;
+import bundle from '@ohos.bundle';
+
+let uid: number = 20010005;
 bundle.getNameForUid(uid, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
@@ -1621,10 +1714,10 @@ SystemCapability.BundleManager.BundleFramework
 
 **Parameters**
 
-| Name     | Type  | Mandatory| Description             |
-| ----------- | ------ | ---- |-----------------|
-| bundleName  | string | Yes  | Bundle name of the application.      |
-| abilityName | string | Yes  | Ability name.|
+| Name     | Type  | Mandatory| Description                    |
+| ----------- | ------ | ---- | ------------------------ |
+| bundleName  | string | Yes  | Bundle name.|
+| abilityName | string | Yes  | Ability name. |
 
 **Return value**
 | Type                 | Description                                                        |
@@ -1634,12 +1727,15 @@ SystemCapability.BundleManager.BundleFramework
 **Example**
 
 ```ts
-let bundleName = "com.example.myapplication";
-let abilityName = "com.example.myapplication.MainAbility";
+import bundle from '@ohos.bundle';
+import { BusinessError } from '@ohos.base';
+
+let bundleName: string = "com.example.myapplication";
+let abilityName: string = "EntryAbility";
 bundle.getAbilityIcon(bundleName, abilityName)
 .then((data) => {
     console.info('Operation successful. Data: ' + JSON.stringify(data));
-}).catch((error) => {
+}).catch((error: BusinessError) => {
     console.error('Operation failed. Cause: ' + JSON.stringify(error));
 })
 ```
@@ -1667,15 +1763,17 @@ SystemCapability.BundleManager.BundleFramework
 
 | Name        | Type                                      | Mandatory  | Description                                             |
 | ----------- | ---------------------------------------- | ---- |-------------------------------------------------|
-| bundleName  | string                                   | Yes   | Bundle name of the application.                                     |
+| bundleName  | string                                   | Yes   | Bundle name.                               |
 | abilityName | string                                   | Yes   | Ability name.                                |
 | callback   | AsyncCallback\<image.PixelMap> | Yes  | Callback used to return the [pixel map](js-apis-image.md).|
 
 **Example**
 
 ```ts
-let bundleName = "com.example.myapplication";
-let abilityName = "com.example.myapplication.MainAbility";
+import bundle from '@ohos.bundle';
+
+let bundleName: string = "com.example.myapplication";
+let abilityName: string = "EntryAbility";
 bundle.getAbilityIcon(bundleName, abilityName, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
