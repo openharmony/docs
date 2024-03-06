@@ -35,7 +35,7 @@ EXTERN_C_END
 
 **Calling the Native APIs**
 
-For details about the APIs, see [Image API Reference](../reference/native-apis/image.md).
+For details about the APIs, see [Image API Reference](../reference/apis-image-kit/image.md).
 
 Obtain the JS resource object from the **hello.cpp** file and convert it to a native resource object. Then you can call native APIs. The sample code is as follows:
 

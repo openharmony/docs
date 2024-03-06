@@ -59,7 +59,7 @@ onWindowStageCreate(windowStage){
 
 **References**
 
-[Window](../reference/apis-akui/js-apis-window.md)
+[Window](../reference/apis-arkui/js-apis-window.md)
 
 ## How do I lock the window in portrait mode so that it does not rotate with the device? (API version 9)
 
@@ -100,7 +100,7 @@ if (windowClass) {
 
 **References**
 
-[window.Orientation](../reference/apis-akui/js-apis-window.md#orientation9)
+[window.Orientation](../reference/apis-arkui/js-apis-window.md#orientation9)
 
 ## Why do the isStatusBarLightIcon and isNavigationBarLightIcon attributes set by calling setWindowSystemBarProperties not take effect? (API version 9)
 
@@ -112,14 +112,14 @@ In effect, the **isStatusBarLightIcon** and **isNavigationBarLightIcon** attribu
 
 **References**
 
-[window.SystemBarProperties](../reference/apis-akui/js-apis-window.md#systembarproperties)
+[window.SystemBarProperties](../reference/apis-arkui/js-apis-window.md#systembarproperties)
 
 
 ## How do I keep the device screen always on? (API version 9)
 
 **Solution**
 
-Obtain a **Window** instance, and call [setWindowKeepScreenOn](../reference/apis-akui/js-apis-window.md#setwindowkeepscreenon9) to keep the device screen always on.
+Obtain a **Window** instance, and call [setWindowKeepScreenOn](../reference/apis-arkui/js-apis-window.md#setwindowkeepscreenon9) to keep the device screen always on.
 
 **Example**
 
@@ -157,7 +157,7 @@ try {
 
 **References**
 
-[window.on\("windowSizeChange"\)](../reference/apis-akui/js-apis-window.md#onwindowsizechange7)
+[window.on\("windowSizeChange"\)](../reference/apis-arkui/js-apis-window.md#onwindowsizechange7)
 
 ## How do I listen for orientation status changes of the device screen? (API version 10)
 
@@ -167,7 +167,7 @@ Use **display.on** to listen for the orientation status changes.
 
 **References**
 
-[Subscribing to Display Changes](../reference/apis-akui/js-apis-display.md#displayonaddremovechange)
+[Subscribing to Display Changes](../reference/apis-arkui/js-apis-display.md#displayonaddremovechange)
 
 ## How do I enable the window to rotate with the device? (API version 10)
 
@@ -250,8 +250,8 @@ struct ScreenTest {
 ```
 **References**
 
-[Setting the Window Orientation](../reference/apis-akui/js-apis-window.md#setpreferredorientation9) 
+[Setting the Window Orientation](../reference/apis-arkui/js-apis-window.md#setpreferredorientation9) 
 
-[Subscribing to Display Changes](../reference/apis-akui/js-apis-display.md#displayonaddremovechange)
+[Subscribing to Display Changes](../reference/apis-arkui/js-apis-display.md#displayonaddremovechange)
 
 <!--no_check-->

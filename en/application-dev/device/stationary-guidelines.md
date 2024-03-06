@@ -5,7 +5,7 @@
 
 An application can call the **Stationary** module to obtain the device status, for example, whether the device is absolutely or relatively still.
 
-For details about the APIs, see [Stationary](../reference/apis/js-apis-stationary.md).
+For details about the APIs, see [Stationary](../reference/apis-multimodalawareness-kit/js-apis-stationary.md).
 
 ## Device Status Type Parameters
 
@@ -40,6 +40,31 @@ For details about the APIs, see [Stationary](../reference/apis/js-apis-stationar
 ## Constraints
 
 The device must support the acceleration sensor.
+
+Currently, only the algorithm framework is provided. The API test framework returns the following result: data={"type":3,"value":-1}.
+
+If the relative stationary and absolute stationary capabilities are required, you must implement them in **device_status/libs/src/algorithm**. The following code snippet is for reference:
+
+   ```ts
+   algoPara_.resultantAcc =
+      sqrt((algoPara_.x * algoPara_.x) + (algoPara_.y * algoPara_.y) + (algoPara_.z * algoPara_.z));
+   if ((algoPara_.resultantAcc > RESULTANT_ACC_LOW_THRHD) && (algoPara_.resultantAcc < RESULTANT_ACC_UP_THRHD)) {
+      if (state_ == STILL) {
+         return;
+      }
+      counter_--;
+      if (counter_ == 0) {
+         counter_ = COUNTER_THRESHOLD;
+         UpdateStateAndReport(VALUE_ENTER, STILL, TYPE_ABSOLUTE_STILL);
+      }
+   } else {
+      counter_ = COUNTER_THRESHOLD;
+      if (state_ == UNSTILL) {
+         return;
+      }
+      UpdateStateAndReport(VALUE_EXIT, UNSTILL, TYPE_ABSOLUTE_STILL);
+   }
+   ```
 
 ## How to Develop
 
@@ -88,3 +113,5 @@ The device must support the acceleration sensor.
       console.error('stationary off failed:' + message);
    }
    ```
+
+ <!--no_check--> 

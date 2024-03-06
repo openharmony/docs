@@ -4,7 +4,7 @@
 
 If multiple audio streams are played at the same time, the user may feel uncomfortable or even painful. To address this issue, OpenHarmony presets the audio interruption policy so that only the audio stream holding audio focus can be played.
 
-When an application attempts to play an audio, the system requests audio focus for the audio stream. The audio stream that gains the focus can be played. If the request is rejected, the audio stream cannot be played. If the audio stream is interrupted by another, it loses the focus and therefore the playback is paused. All these actions are automatically performed by the system and do not require additional operations on the application. However, to maintain state consistency between the application and the system and ensure good user experience, it is recommended that the application [listen for the audio interruption event](#listening-for-the-audio-interruption-event) and perform the corresponding processing when receiving such an event (specified by [InterruptEvent](../reference/apis/js-apis-audio.md#interruptevent9)).
+When an application attempts to play an audio, the system requests audio focus for the audio stream. The audio stream that gains the focus can be played. If the request is rejected, the audio stream cannot be played. If the audio stream is interrupted by another, it loses the focus and therefore the playback is paused. All these actions are automatically performed by the system and do not require additional operations on the application. However, to maintain state consistency between the application and the system and ensure good user experience, it is recommended that the application [listen for the audio interruption event](#listening-for-the-audio-interruption-event) and perform the corresponding processing when receiving such an event (specified by [InterruptEvent](../reference/apis-audio-kit/js-apis-audio.md#interruptevent9)).
 
 OpenHarmony presets two [audio interruption modes](#audio-interruption-mode) to specify whether audio concurrency is controlled by the application or system. You can choose a mode for each of the audio streams created by the same application.
 
@@ -12,7 +12,7 @@ The audio interruption policy determines the operations (for example, pause, res
 
 ### Audio Interruption Mode
 
-Two audio interruption modes, specified by [InterruptMode](../reference/apis/js-apis-audio.md#interruptmode9), are preset in the audio interruption policy:
+Two audio interruption modes, specified by [InterruptMode](../reference/apis-audio-kit/js-apis-audio.md#interruptmode9), are preset in the audio interruption policy:
 
 - **SHARE_MODE**: Multiple audio streams created by an application share one audio focus. The concurrency rules between these audio streams are determined by the application, without the use of the audio interruption policy. However, if another application needs to play audio while one of these audio streams is being played, the audio interruption policy is triggered.
 
@@ -22,14 +22,14 @@ The application can select an audio interruption mode as required. By default, t
 
 You can set the audio interruption mode in either of the following ways:
 
-- If you [use the AVPlayer to develop audio playback](using-avplayer-for-playback.md), set the [audioInterruptMode](../reference/apis/js-apis-media.md#avplayer9) attribute of the AVPlayer to set the audio interruption mode.
+- If you [use the AVPlayer to develop audio playback](using-avplayer-for-playback.md), set the [audioInterruptMode](../reference/apis-media-kit/js-apis-media.md#avplayer9) attribute of the AVPlayer to set the audio interruption mode.
 
-- If you [use the AudioRenderer to develop audio playback](using-audiorenderer-for-playback.md), call [setInterruptMode](../reference/apis/js-apis-audio.md#setinterruptmode9) of the AudioRenderer to set the audio interruption mode.
+- If you [use the AudioRenderer to develop audio playback](using-audiorenderer-for-playback.md), call [setInterruptMode](../reference/apis-audio-kit/js-apis-audio.md#setinterruptmode9) of the AudioRenderer to set the audio interruption mode.
 
 
 ### Audio Interruption Type
 
-The audio interruption policy (containing two audio interruption modes) determines the operation to be performed on each audio stream. These operations can be carried out by the system or application. To distinguish the executors, the audio interruption type, specified by [InterruptForceType](../reference/apis/js-apis-audio.md#interruptforcetype9), is introduced.
+The audio interruption policy (containing two audio interruption modes) determines the operation to be performed on each audio stream. These operations can be carried out by the system or application. To distinguish the executors, the audio interruption type, specified by [InterruptForceType](../reference/apis-audio-kit/js-apis-audio.md#interruptforcetype9), is introduced.
 
 - **INTERRUPT_FORCE**: The operation is performed by the system. The system forcibly interrupts audio playback.
 
@@ -49,9 +49,9 @@ Upon the receipt of the event, the application carries out processing based on t
 
 You can use either of the following methods to listen for the audio interruption event:
 
-- If you [use the AVPlayer to develop audio playback](using-avplayer-for-playback.md), call [on('audioInterrupt')](../reference/apis/js-apis-media.md#onaudiointerrupt9) of the AVPlayer to listen for the event.
+- If you [use the AVPlayer to develop audio playback](using-avplayer-for-playback.md), call [on('audioInterrupt')](../reference/apis-media-kit/js-apis-media.md#onaudiointerrupt9) of the AVPlayer to listen for the event.
 
-- If you [use the AudioRenderer to develop audio playback](using-audiorenderer-for-playback.md), call [on('audioInterrupt')](../reference/apis/js-apis-audio.md#onaudiointerrupt9) of the AudioRenderer to listen for the event.
+- If you [use the AudioRenderer to develop audio playback](using-audiorenderer-for-playback.md), call [on('audioInterrupt')](../reference/apis-audio-kit/js-apis-audio.md#onaudiointerrupt9) of the AudioRenderer to listen for the event.
 
 To deliver an optimal user experience, the application needs to perform processing based on the event content. The following uses the AudioRenderer as an example to describe the recommended application processing. (The recommended processing is similar if the AVPlayer is used to develop audio playback.) You can customize the code to implement your own audio playback functionality or application processing based on service requirements.
   

@@ -28,20 +28,18 @@ Creates a **DisplaySync** object, through which you can set the frame rate of th
 **Example**
 
 ```ts
-private backDisplaySyncBigger: displaySync.DisplaySync = displaySync.create();
+let backDisplaySync: displaySync.DisplaySync = displaySync.create();
 ```
-
 ## IntervalInfo
 
-Defines the interval information.
+You can obtain the timestamp information from the event callback, including the timestamp when the current frame arrives and the timestamp when the next frame is expected to arrive.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name            | Type                                     | Read-only| Mandatory| Description                                      |
 | ---------------- | ----------------------------------------- | ---- | ---- | ------------------------------------------ |
-| timestamp      | number | Yes  | No  | Timestamp of the current frame.|
-| targetTimestamp | number| Yes  | No  | Expected timestamp of the next frame.|
-
+| timestamp      | number | Yes  | No  | Time when the current frame arrives, in nanoseconds.|
+| targetTimestamp | number| Yes  | No  | Expected arrival time of the next frame, in nanoseconds.|
 
 ## DisplaySync
 
@@ -61,7 +59,7 @@ Sets the expected frame rate range.
 
 | Name          | Type                                      | Mandatory| Description                         |
 | --------------- | ------------------------------------------ | ---- | -----------------------------|
-| rateRange       | [ExpectedFrameRateRange](../arkui-ts/ts-animatorproperty.md#expectedframeraterange)| Yes  | Expected frame rate range.|
+| rateRange       | [ExpectedFrameRateRange](../apis-arkui/arkui-ts/ts-animatorproperty.md#expectedframeraterange)| Yes  | Expected frame rate range.|
 
 
 **Example**
@@ -72,7 +70,9 @@ let range : ExpectedFrameRateRange = {
   min:0,
   max:120
 };
-this.backDisplaySyncBigger.setExpectedFrameRateRange(range)
+
+// Set the expected frame rate range.
+backDisplaySync?.setExpectedFrameRateRange(range)
 ```
 
 ### on('frame')
@@ -94,13 +94,12 @@ Subscribes to change events of each frame.
 **Example**
 
 ```ts
-let _this = this
-let bigger = (frameInfo: displaySync.IntervalInfo) => {
-_this.drawFirstSize += 1;
-    console.info(_this.TAG, 'bigger:' + frameInfo.timestamp + ' TargetTimeStamp: ' + frameInfo.targetTimestamp);
+let callback = (frameInfo: displaySync.IntervalInfo) => {
+    console.info("DisplaySync", 'TimeStamp:' + frameInfo.timestamp + ' TargetTimeStamp: ' + frameInfo.targetTimestamp);
 }
-this.backDisplaySyncBigger.setExpectedFrameRateRange(range)
-this.backDisplaySyncBigger.on("frame", bigger)
+
+// Subscribe to the event.
+backDisplaySync?.on("frame", callback)
 ```
 
 ### off('frame')
@@ -122,12 +121,14 @@ Unsubscribes from change events of each frame.
 **Example**
 
 ```ts
-let _this = this
-let bigger = (frameInfo: displaySync.IntervalInfo) => {
-_this.drawFirstSize += 1;
-    console.info(_this.TAG, 'bigger:' + frameInfo.timestamp + ' TargetTimeStamp: ' + frameInfo.targetTimestamp);
+let callback = (frameInfo: displaySync.IntervalInfo) => {
+    console.info("DisplaySync", 'TimeStamp:' + frameInfo.timestamp + ' TargetTimeStamp: ' + frameInfo.targetTimestamp);
 }
-this.backDisplaySyncBigger.off("frame", bigger)
+
+backDisplaySync?.on("frame", callback)
+
+// Unsubscribe from the event.
+backDisplaySync?.off("frame", callback)
 ```
 
 ### start
@@ -141,12 +142,22 @@ Starts callback for each frame.
 **Example**
 
 ```ts
-Button('StartBigger')
-        .fontSize(30)
-        .fontColor(Color.Black)
-        .onClick(() => {
-          this.backDisplaySyncBigger.start()
-        })
+let range : ExpectedFrameRateRange = {
+  expected: 10,
+  min:0,
+  max:120
+};
+
+backDisplaySync?.setExpectedFrameRateRange(range)
+
+let callback = (frameInfo: displaySync.IntervalInfo) => {
+    console.info("DisplaySync", 'TimeStamp:' + frameInfo.timestamp + ' TargetTimeStamp: ' + frameInfo.targetTimestamp);
+}
+
+backDisplaySync?.on("frame", callback)
+
+// Start callback for each frame.
+backDisplaySync?.start()
 ```
 
 ### stop
@@ -162,10 +173,24 @@ Stops callback for each frame.
 **Example**
 
 ```ts
-Button('StopBigger')
-        .fontSize(30)
-        .fontColor(Color.Black)
-        .onClick(() => {
-          this.backDisplaySyncBigger.stop()
-        })
+let range : ExpectedFrameRateRange = {
+  expected: 10,
+  min:0,
+  max:120
+};
+
+backDisplaySync?.setExpectedFrameRateRange(range)
+
+let callback = (frameInfo: displaySync.IntervalInfo) => {
+    console.info("DisplaySync", 'TimeStamp:' + frameInfo.timestamp + ' TargetTimeStamp: ' + frameInfo.targetTimestamp);
+}
+
+backDisplaySync?.on("frame", callback)
+
+backDisplaySync?.start()
+
+// ...
+
+// Stop callback for each frame.
+backDisplaySync?.stop()
 ```

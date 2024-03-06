@@ -14,12 +14,12 @@ Live view notifications enable users to get the latest updates of tasks in real 
 | NOTIFICATION_CONTENT_LIVE_VIEW<sup>11+</sup>           | 6  | Common live view notification.|
 ## Available APIs
 
-The following table describes the APIs for notification publishing. You specify the notification information – content, ID, slot type, and delivery time – by setting the [NotificationRequest](../reference/apis/js-apis-inner-notification-notificationRequest.md#notificationrequest) parameter in the APIs.
+The following table describes the APIs for notification publishing. You specify the notification information – content, ID, slot type, and publish time – by setting the [NotificationRequest](../reference/apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest) parameter in the APIs.
 
 | **API**| **Description**|
 | -------- | -------- |
-| [publish](../reference/apis/js-apis-notificationManager.md#notificationmanagerpublish)(request: NotificationRequest, callback: AsyncCallback&lt;void&gt;): void | Publishes a notification.                |
-| [cancel](../reference/apis/js-apis-notificationManager.md#notificationmanagercancel)(id: number, label: string, callback: AsyncCallback&lt;void&gt;): void | Cancels a specified notification.     |
+| [publish](../reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanagerpublish)(request: NotificationRequest, callback: AsyncCallback&lt;void&gt;): void | Publishes a notification.                |
+| [cancel](../reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanagercancel)(id: number, label: string, callback: AsyncCallback&lt;void&gt;): void | Cancels a specified notification.     |
 
 
 ## How to Develop
@@ -35,7 +35,7 @@ The following table describes the APIs for notification publishing. You specify 
 
 3. Publish a notification.
 
-   - In addition to the parameters in the normal text notification, the system live view notification provides the **typeCode**, **capsule**, **button**, **time**, and **progress** parameters. For details, see [NotificationSystemLiveViewContent](../reference/apis/js-apis-inner-notification-notificationContent.md#notificationsystemliveviewcontent).
+   - In addition to the parameters in the normal text notification, the system live view notification provides the **typeCode**, **capsule**, **button**, **time**, and **progress** parameters. For details, see [NotificationSystemLiveViewContent](../reference/apis-notification-kit/js-apis-inner-notification-notificationContent.md#notificationsystemliveviewcontent).
      
       ```ts
       import image from '@ohos.multimedia.image';
@@ -133,7 +133,7 @@ The following table describes the APIs for notification publishing. You specify 
       }
       ```
 
-   - In addition to the parameters in the normal text notification, the common live view provides the **status**, **version**, **extraInfo**, and **pictureInfo** parameters. For details, see [NotificationLiveViewContent](../reference/apis/js-apis-inner-notification-notificationContent.md#notificationliveviewcontent11).
+   - In addition to the parameters in the normal text notification, the common live view provides the **status**, **version**, **extraInfo**, and **pictureInfo** parameters. For details, see [NotificationLiveViewContent](../reference/apis-notification-kit/js-apis-inner-notification-notificationContent-sys.md#notificationliveviewcontent11).
 
       ```ts
       import Want from '@ohos.app.ability.Want';

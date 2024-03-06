@@ -14,7 +14,7 @@ Before developing a camera application, you must request camera-related permissi
 | ohos.permission.MEDIA_LOCATION | Allows an application to access geographical locations in the user's media file. This permission is optional.| user_grant | 
 
 
-After configuring the permissions in the **module.json5** file, the application must call [abilityAccessCtrl.requestPermissionsFromUser](../reference/apis/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9) to check whether the required permissions are granted. If not, request the permissions from the user by displaying a dialog box.
+After configuring the permissions in the **module.json5** file, the application must call [abilityAccessCtrl.requestPermissionsFromUser](../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9) to check whether the required permissions are granted. If not, request the permissions from the user by displaying a dialog box.
 
 
 For details about how to request and verify the permissions, see [Requesting User Authorization](../security/AccessToken/request-user-authorization.md).

@@ -14,11 +14,11 @@ During application development, you can use the **state** attribute of the AVPla
 **Figure 1** Playback state transition 
 ![Playback status change](figures/playback-status-change.png)
 
-For details about the state, see [AVPlayerState](../reference/apis/js-apis-media.md#avplayerstate9). When the AVPlayer is in the **prepared**, **playing**, **paused**, or **completed** state, the playback engine is working and a large amount of RAM is occupied. If your application does not need to use the AVPlayer, call **reset()** or **release()** to release the instance.
+For details about the state, see [AVPlayerState](../reference/apis-media-kit/js-apis-media.md#avplayerstate9). When the AVPlayer is in the **prepared**, **playing**, **paused**, or **completed** state, the playback engine is working and a large amount of RAM is occupied. If your application does not need to use the AVPlayer, call **reset()** or **release()** to release the instance.
 
 ## How to Develop
 
-Read [AVPlayer](../reference/apis/js-apis-media.md#avplayer9) for the API reference.
+Read [AVPlayer](../reference/apis-media-kit/js-apis-media.md#avplayer9) for the API reference.
 
 1. Call **createAVPlayer()** to create an **AVPlayer** instance. The AVPlayer is the **idle** state.
 
@@ -44,7 +44,7 @@ Read [AVPlayer](../reference/apis/js-apis-media.md#avplayer9) for the API refere
    > 
    > - If a network playback path is used, you must [declare the ohos.permission.INTERNET permission](../security/AccessToken/declare-permissions.md).
    > 
-   > - You can also use **ResourceManager.getRawFd** to obtain the file descriptor of a file packed in the HAP file. For details, see [ResourceManager API Reference](../reference/apis/js-apis-resource-manager.md#getrawfd9).
+   > - You can also use **ResourceManager.getRawFd** to obtain the FD of a file packed in the HAP file. For details, see [ResourceManager API Reference](../reference/apis-localization-kit/js-apis-resource-manager.md#getrawfd9).
    > 
    > - The [playback formats and protocols](media-kit-intro.md#supported-formats-and-protocols) in use must be those supported by the system.
 

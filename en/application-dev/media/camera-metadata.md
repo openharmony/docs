@@ -6,7 +6,7 @@ Metadata uses a tag (key) to find the corresponding data during parameter transf
 
 ## How to Develop
 
-Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
+Read [Camera](../reference/apis-camera-kit/js-apis-camera.md) for the API reference.
 
 1. Import the modules.
    ```ts
@@ -14,7 +14,7 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
    import { BusinessError } from '@ohos.base';
    ```
 
-2. Obtain the metadata types supported by the current device from **supportedMetadataObjectTypes** in the [CameraOutputCapability](../reference/apis/js-apis-camera.md#cameraoutputcapability) class, and then use [createMetadataOutput](../reference/apis/js-apis-camera.md#createmetadataoutput) to create a metadata output stream.
+2. Obtain the metadata types supported by the current device from **supportedMetadataObjectTypes** in the [CameraOutputCapability](../reference/apis-camera-kit/js-apis-camera.md#cameraoutputcapability) class, and then use [createMetadataOutput](../reference/apis-camera-kit/js-apis-camera.md#createmetadataoutput) to create a metadata output stream.
      
    ```ts
    function getMetadataOutput(cameraManager: camera.CameraManager, cameraOutputCapability: camera.CameraOutputCapability): camera.MetadataOutput | undefined {
@@ -30,26 +30,50 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
    }
    ```
 
-3. Call [start](../reference/apis/js-apis-camera.md#start-3) to start outputting metadata. If the call fails, an error code is returned. For details, see [Camera Error Codes](../reference/apis/js-apis-camera.md#cameraerrorcode).
-     
+3. Call [Session.start](../reference/apis-camera-kit/js-apis-camera.md#start11) to start outputting metadata, and obtain the data through subscription to the **'metadataObjectsAvailable'** event. If the call fails, an error code is returned. For details, see [CameraErrorCode](../reference/apis-camera-kit/js-apis-camera.md#cameraerrorcode).
+
+   For details about how to obtain preview output, see [Camera Preview (ArkTS)](camera-preview.md).
    ```ts
-   function startMetadataOutput(metadataOutput: camera.MetadataOutput): void {
-     metadataOutput.start().then(() => {
-       console.info('Callback returned with metadataOutput started.');
-     }).catch((err: BusinessError) => {
-       console.error(`Failed to metadataOutput start, error code: ${err.code}`);
-     });
+   async function startMetadataOutput(previewOutput: camera.PreviewOutput, metadataOutput: camera.MetadataOutput, cameraManager: camera.CameraManager): Promise<void> {
+     let cameraArray: Array<camera.CameraDevice> = [];
+     cameraArray = cameraManager.getSupportedCameras();
+     if (cameraArray.length == 0) {
+       console.error('no camera.');
+       return;
+     }
+     // Obtain the supported modes.
+     let sceneModes: Array<camera.SceneMode> = cameraManager.getSupportedSceneModes(cameraArray[0]);
+     let isSupportPhotoMode: boolean = sceneModes.indexOf(camera.SceneMode.NORMAL_PHOTO) >= 0;
+     if (!isSupportPhotoMode) {
+       console.error('photo mode not support');
+       return;
+     }
+     let cameraInput: camera.CameraInput | undefined = undefined;
+     cameraInput = cameraManager.createCameraInput(cameraArray[0]);
+     if (cameraInput === undefined) {
+       console.error('cameraInput is undefined');
+       return;
+     }
+     // Open a camera.
+     await cameraInput.open();
+     let session: camera.PhotoSession = cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO) as camera.PhotoSession;
+     session.beginConfig();
+     session.addInput(cameraInput);
+     session.addOutput(previewOutput);
+     session.addOutput(metadataOutput);
+     await session.commitConfig();
+     await session.start();
    }
    ```
 
-4. Call [stop](../reference/apis/js-apis-camera.md#stop-3) to stop outputting metadata. If the call fails, an error code is returned. For details, see [Camera Error Codes](../reference/apis/js-apis-camera.md#cameraerrorcode).
+4. Call [Session.stop](../reference/apis-camera-kit/js-apis-camera.md#stop11) to stop outputting metadata. If the call fails, an error code is returned. For details, see [Camera Error Codes](../reference/apis-camera-kit/js-apis-camera.md#cameraerrorcode).
      
    ```ts
-   function stopMetadataOutput(metadataOutput: camera.MetadataOutput): void {
-     metadataOutput.stop().then(() => {
-       console.info('Callback returned with metadataOutput stopped.');
+   function stopMetadataOutput(session: camera.Session): void {
+     session.stop().then(() => {
+       console.info('Callback returned with session stopped.');
      }).catch((err: BusinessError) => {
-       console.error(`Failed to metadataOutput stop, error code: ${err.code}`);
+       console.error(`Failed to session stop, error code: ${err.code}`);
      });
    }
    ```
@@ -72,7 +96,7 @@ During camera application development, you can listen for the status of metadata
   >
   > Currently, only **FACE_DETECTION** is available for the metadata type. The metadata object is the rectangle of the recognized face, including the x-axis coordinate and y-axis coordinate of the upper left corner of the rectangle as well as the width and height of the rectangle.
 
-- Register the **'error'** event to listen for metadata stream errors. The callback function returns an error code when an API is incorrectly used. For details about the error code types, see [Camera Error Codes](../reference/apis/js-apis-camera.md#cameraerrorcode).
+- Register the **'error'** event to listen for metadata stream errors. The callback function returns an error code when an API is incorrectly used. For details about the error code types, see [CameraErrorCode](../reference/apis-camera-kit/js-apis-camera.md#cameraerrorcode).
     
   ```ts
   function onMetadataError(metadataOutput: camera.MetadataOutput): void {

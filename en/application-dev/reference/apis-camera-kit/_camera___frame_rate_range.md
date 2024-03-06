@@ -17,8 +17,8 @@ The **Camera_FrameRateRange** struct defines the frame rate range.
 
 | Name| Description| 
 | -------- | -------- |
-| [min](#min) | Minimum frame rate.| 
-| [max](#max) | Maximum frame rate.| 
+| uint32_t [min](#min) | Minimum frame rate. | 
+| uint32_t [max](#max) | Maximum frame rate. | 
 
 
 ## Member Variable Description
@@ -29,7 +29,6 @@ The **Camera_FrameRateRange** struct defines the frame rate range.
 ```
 uint32_t Camera_FrameRateRange::max
 ```
-
 **Description**
 
 Maximum frame rate.
@@ -40,7 +39,6 @@ Maximum frame rate.
 ```
 uint32_t Camera_FrameRateRange::min
 ```
-
 **Description**
 
 Minimum frame rate.

@@ -1,0 +1,47 @@
+# @ohos.bluetooth.map (Bluetooth MAP Module)
+
+The **map** module provides APIs for exchanging messages between devices using the Bluetooth Message Access Profile (MAP).
+
+> **NOTE**
+>
+> The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+
+
+
+## Modules to Import
+
+```js
+import map from '@ohos.bluetooth.map';
+```
+
+
+## map.createMapMseProfile
+
+createMapMseProfile(): MapMseProfile
+
+Creates a **MapMseProfile** instance.
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Return value**
+
+| Type                           | Description        |
+| ----------------------------- | ---------- |
+| MapMseProfile | **MapMseProfile** instance created.|
+
+**Example**
+
+```js
+import { BusinessError } from '@ohos.base';
+try {
+    let mapMseProfile = map.createMapMseProfile();
+    console.info('MapMse success');
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+
+## mapMseProfile
+
+Provides APIs for exchanging messages between devices. Before using any API of **mapMseProfile**, you need to create an instance of this class by using **createMapMseProfile()**.

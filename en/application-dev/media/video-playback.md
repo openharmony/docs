@@ -8,19 +8,17 @@ The system provides two solutions for video playback development:
 
 In this topic, you will learn how to use the AVPlayer to develop a video playback service that plays a complete video file. If you want the application to continue playing the video in the background or when the screen is off, you must use the [AVSession](avsession-overview.md) and [continuous task](../task-management/continuous-task.md) to prevent the playback from being forcibly interrupted by the system.
 
-## Development Guidelines
-
-The full playback process includes creating an **AVPlayer** instance, setting the media asset to play and the window to display the video, setting playback parameters (volume, speed, and scale type), controlling playback (play, pause, seek, and stop), resetting the playback configuration, and releasing the instance. During application development, you can use the **state** attribute of the AVPlayer to obtain the AVPlayer state or call **on('stateChange')** to listen for state changes. If the application performs an operation when the AudioPlayer is not in the given state, the system may throw an exception or generate other undefined behavior.
+The full playback process includes creating an **AVPlayer** instance, setting the media asset to play and the window to display the video, setting playback parameters (volume, speed, and scale type), controlling playback (play, pause, seek, and stop), resetting the playback configuration, and releasing the instance. During application development, you can use the **state** attribute of the AVPlayer to obtain the AVPlayer state or call **on('stateChange')** to listen for state changes. If the application performs an operation when the AVPlayer is not in the given state, the system may throw an exception or generate other undefined behavior.
 
 **Figure 1** Playback state transition 
 
 ![Playback state change](figures/video-playback-status-change.png)
 
-For details about the state, see [AVPlayerState](../reference/apis/js-apis-media.md#avplayerstate9). When the AVPlayer is in the **prepared**, **playing**, **paused**, or **completed** state, the playback engine is working and a large amount of RAM is occupied. If your application does not need to use the AVPlayer, call **reset()** or **release()** to release the instance.
+For details about the state, see [AVPlayerState](../reference/apis-media-kit/js-apis-media.md#avplayerstate9). When the AVPlayer is in the **prepared**, **playing**, **paused**, or **completed** state, the playback engine is working and a large amount of RAM is occupied. If your application does not need to use the AVPlayer, call **reset()** or **release()** to release the instance.
 
-### How to Develop
+## How to Develop
 
-Read [AVPlayer](../reference/apis/js-apis-media.md#avplayer9) for the API reference.
+Read [AVPlayer](../reference/apis-media-kit/js-apis-media.md#avplayer9) for the API reference.
 
 1. Call **createAVPlayer()** to create an **AVPlayer** instance. The AVPlayer is the idle state.
 
@@ -37,7 +35,7 @@ Read [AVPlayer](../reference/apis/js-apis-media.md#avplayer9) for the API refere
    | bitrateDone | Used to listen for the completion status of the **setBitrate()** request, which is used for HTTP Live Streaming (HLS) streams.<br>This event is reported when the AVPlayer plays video at the bit rate specified in **setBitrate()**.|
    | availableBitrates | Used to listen for available bit rates of HLS resources. The available bit rates are provided for **setBitrate()**.|
    | bufferingUpdate | Used to listen for network playback buffer information.|
-   | startRenderFrame | Used to listen for the rendering time of the first frame during video playback.|
+   | startRenderFrame | Used to listen for the rendering time of the first frame during video playback.<br>This event is reported when the AVPlayer enters the playing state and the first frame of the video image is rendered to the display. Generally, the application can use this event to remove the video cover, achieving smooth connection between the cover and the video image.|
    | videoSizeChange | Used to listen for the width and height of video playback and adjust the window size and ratio.|
    | audioInterrupt | Used to listen for audio interruption. This event is used together with the **audioInterruptMode** attribute.<br>This event is reported when the current audio playback is interrupted by another (for example, when a call is coming), so the application can process the event in time.|
 
@@ -50,12 +48,12 @@ Read [AVPlayer](../reference/apis/js-apis-media.md#avplayer9) for the API refere
    > 
    > - If a network playback path is used, you must [declare the ohos.permission.INTERNET permission](../security/AccessToken/declare-permissions.md).
    > 
-   > - You can also use **ResourceManager.getRawFd** to obtain the file descriptor of a file packed in the HAP file. For details, see [ResourceManager API Reference](../reference/apis/js-apis-resource-manager.md#getrawfd9).
+   > - You can also use **ResourceManager.getRawFd** to obtain the FD of a file packed in the HAP file. For details, see [ResourceManager API Reference](../reference/apis-localization-kit/js-apis-resource-manager.md#getrawfd9).
    > 
    > - The [playback formats and protocols](media-kit-intro.md#supported-formats-and-protocols) in use must be those supported by the system.
 
 4. Obtain and set the surface ID of the window to display the video.
-   The application obtains the surface ID from the XComponent. For details about the process, see [XComponent](../reference/arkui-ts/ts-basic-components-xcomponent.md).
+   The application obtains the surface ID from the **\<XComponent>**. For details about the process, see [XComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md).
 
 5. Call **prepare()** to switch the AVPlayer to the **prepared** state. In this state, you can obtain the duration of the media asset to play and set the scale type and volume.
 
@@ -65,8 +63,7 @@ Read [AVPlayer](../reference/apis/js-apis-media.md#avplayer9) for the API refere
 
 8. Call **release()** to switch the AVPlayer to the **released** state. Now your application exits the playback.
 
-
-### Sample Code
+## Sample Code
 
 
 ```ts
@@ -83,6 +80,10 @@ export class AVPlayerDemo {
   private fd: number = 0;
   // Set AVPlayer callback functions.
   setAVPlayerCallback(avPlayer: media.AVPlayer) {
+    // startRenderFrame: callback function invoked when the first frame starts rendering.
+    avPlayer.on('startRenderFrame', () => {
+      console.info(`AVPlayer start render frame`);
+    })
     // Callback function for the seek operation.
     avPlayer.on('seekDone', (seekDoneTime: number) => {
       console.info(`AVPlayer seek succeeded, seek time is ${seekDoneTime}`);

@@ -40,9 +40,9 @@ Before developing an audio feature, especially before implementing audio data pr
 
 ## Introduction to Audio Streams
 
- An audio stream is an independent audio data processing unit that has a specific audio format and audio usage scenario information. The audio stream can be used in playback and recording scenarios, and supports independent volume adjustment and audio device routing.
+An audio stream is an independent audio data processing unit that has a specific audio format and audio usage scenario information. The audio stream can be used in playback and recording scenarios, and supports independent volume adjustment and audio device routing.
 
-The basic audio stream information is defined by [AudioStreamInfo](../reference/apis/js-apis-audio.md#audiostreaminfo8), which includes the sampling, audio channel, bit width, and encoding information. It describes the basic attributes of audio data and is mandatory for creating an audio playback or recording stream. To enable the audio module to correctly process audio data, the configured basic information must match the transmitted audio data.
+The basic audio stream information is defined by [AudioStreamInfo](../reference/apis-audio-kit/js-apis-audio.md#audiostreaminfo8), which includes the sampling, audio channel, bit width, and encoding information. It describes the basic attributes of audio data and is mandatory for creating an audio playback or recording stream. To enable the audio module to correctly process audio data, the configured basic information must match the transmitted audio data.
 
 ### Audio Stream Usage Scenario Information
 
@@ -50,13 +50,13 @@ In addition to the basic information (which describes only audio data), an audio
 
 - Playback scenario
 
-  Information about the audio playback scenario is defined by [StreamUsage](../reference/apis/js-apis-audio.md#streamusage).
+  Information about the audio playback scenario is defined by [StreamUsage](../reference/apis-audio-kit/js-apis-audio.md#streamusage).
 
   **StreamUsage** specifies the usage type of an audio stream, for example, used for media, voice communication, voice assistant, notification, and ringtone.
 
 - Recording scenario
 
-  Information about the audio stream recording scenario is defined by [SourceType](../reference/apis/js-apis-audio.md#sourcetype8).
+  Information about the audio stream recording scenario is defined by [SourceType](../reference/apis-audio-kit/js-apis-audio.md#sourcetype8).
 
   **SourceType** specifies the recording source type of an audio stream, including the mic source, voice recognition source, and voice communication source.
 
@@ -66,14 +66,14 @@ The APIs of the audio module support PCM encoding, including AudioRenderer, Audi
 
 Be familiar with the following about the audio format:
 
-- The common audio sampling rates are supported: 8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, and 96000, in units of Hz. For details, see [AudioSamplingRate](../reference/apis/js-apis-audio.md#audiosamplingrate8).
+- The common audio sampling rates are supported: 8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, and 96000, in units of Hz. For details, see [AudioSamplingRate](../reference/apis-audio-kit/js-apis-audio.md#audiosamplingrate8).
   
-The sampling rate varies according to the device type.
-  
-- Mono and stereo are supported. For details, see [AudioChannel](../reference/apis/js-apis-audio.md#audiochannel8).
+  The sampling rate varies according to the device type.
 
-- The following sampling formats are supported: U8 (unsigned 8-bit integer), S16LE (signed 16-bit integer, little endian), S24LE (signed 24-bit integer, little endian), S32LE (signed 32-bit integer, little endian), and F32LE (signed 32-bit floating point number, little endian). For details, see [AudioSampleFormat](../reference/apis/js-apis-audio.md#audiosampleformat8).
+- Mono and stereo are supported. For details, see [AudioChannel](../reference/apis-audio-kit/js-apis-audio.md#audiochannel8).
+
+- The following sampling formats are supported: U8 (unsigned 8-bit integer), S16LE (signed 16-bit integer, little endian), S24LE (signed 24-bit integer, little endian), S32LE (signed 32-bit integer, little endian), and F32LE (signed 32-bit floating point number, little endian). For details, see [AudioSampleFormat](../reference/apis-audio-kit/js-apis-audio.md#audiosampleformat8).
   
-Due to system restrictions, only some devices support the sampling formats S24LE, S32LE, and F32LE.
-  
+  Due to system restrictions, only some devices support the sampling formats S24LE, S32LE, and F32LE.
+
   Little endian means that the most significant byte is stored at the largest memory address and the least significant byte of data is stored at the smallest. This storage mode effectively combines the memory address with the bit weight of the data. Specifically, the largest memory address has a high weight, and the smallest memory address has a low weight.

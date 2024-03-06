@@ -4,7 +4,7 @@ Image decoding refers to the process of decoding an archived image in a supporte
 
 ## How to Develop
 
-Read [Image](../reference/apis/js-apis-image.md#imagesource) for APIs related to image decoding.
+Read [Image](../reference/apis-image-kit/js-apis-image.md#imagesource) for APIs related to image decoding.
 
 ### Adding Dependencies
 
@@ -75,7 +75,7 @@ EXTERN_C_END
 
 ### Calling the Native APIs
 
-For details about the APIs, see [Image API Reference](../reference/native-apis/image.md).
+For details about the APIs, see [Image API Reference](../reference/apis-image-kit/image.md).
 
 Obtain the JS resource object from the **hello.cpp** file and convert it to a native resource object. Then you can call native APIs.
 

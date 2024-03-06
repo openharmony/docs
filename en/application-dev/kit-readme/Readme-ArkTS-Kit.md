@@ -1,4 +1,4 @@
-# ArkTS (ArkUI Programming Language)
+# ArkTS Kit
 - [Introduction to ArkTS](../arkts-utils/arkts-commonlibrary-overview.md)
 - Concurrency
   - [Concurrency Overview](../arkts-utils/concurrency-overview.md)

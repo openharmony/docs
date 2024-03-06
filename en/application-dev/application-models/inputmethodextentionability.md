@@ -1,16 +1,16 @@
 # InputMethodExtensionAbility
 
 ## When to Use
-[InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod-extension-ability.md), inherited from [ExtensionAbility](extensionability-overview.md), is used for developing input method applications.
+[InputMethodExtensionAbility](../reference/apis-ime-kit/js-apis-inputmethod-extension-ability.md), inherited from [ExtensionAbility](extensionability-overview.md), is used for developing input method applications.
 
-The entire lifecycle of the [InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod-extension-ability.md) instance and the owning ExtensionAbility process is scheduled and managed by the input method framework. The input method framework provides the [InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod-extension-ability.md) base class. Derive this base class to implement initialization and resource clearing.
+The entire lifecycle of the [InputMethodExtensionAbility](../reference/apis-ime-kit/js-apis-inputmethod-extension-ability.md) instance and the owning ExtensionAbility process is scheduled and managed by the input method framework. The input method framework provides the [InputMethodExtensionAbility](../reference/apis-ime-kit/js-apis-inputmethod-extension-ability.md) base class. Derive this base class to implement initialization and resource clearing.
 
-[InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod-extension-ability.md) provides related capabilities through [InputMethodExtensionContext](../reference/apis/js-apis-inputmethod-extension-context.md).
+[InputMethodExtensionAbility](../reference/apis-ime-kit/js-apis-inputmethod-extension-ability.md) provides related capabilities through [InputMethodExtensionContext](../reference/apis-ime-kit/js-apis-inputmethod-extension-context.md).
 
 
 ## Implementing an Input Method Application
 
-[InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod-extension-ability.md) provides the **onCreate()** and **onDestroy()** callbacks, as described below. Override them as required.  
+[InputMethodExtensionAbility](../reference/apis-ime-kit/js-apis-inputmethod-extension-ability.md) provides the **onCreate()** and **onDestroy()** callbacks, as described below. Override them as required.  
 
 - **onCreate()**
 
@@ -358,43 +358,53 @@ To implement an input method application, manually create an InputMethodExtensio
 
 ## Constraints
 
-To the InputMethodExtensionAbility against abuse, the invoking of APIs in the modules listed below is restricted in the InputMethodExtensionAbility.
+To protect the InputMethodExtensionAbility against abuse, the invoking of APIs in the modules listed below is restricted in the InputMethodExtensionAbility.
 
 > **NOTE**
 >
-> - If a restricted module is imported, no error is reported during compilation, but an incorrect value (**undefined**) is returned during running. As a result, the module does not take effect.
-> - Currently, access to the [@ohos.multimedia.audio (Audio Management)](../reference/apis/js-apis-audio.md) module is allowed, with compliance with the following rules:
+> - If a restricted module is imported, no error is reported during compilation, but an incorrect value (**undefined**) is returned during running, which renders the imported module ineffective.
+> - Currently, access to the [@ohos.multimedia.audio (Audio Management)](../reference/apis-audio-kit/js-apis-audio.md) module is allowed, but subject to the following rules:
 >   - Users who deny the recording permission should still be allowed to use the non-voice-input features of the input method application.
 >   - Recording-related services are allowed only when the InputMethodExtensionAbility is in the foreground. For example, perform recording only when the soft keyboard is in the foreground and the user is proactively using the voice input method; stop recording when the application is switched to the background.
->   - Applications will see increasingly stringent measures against violations with the preceding rules, and any violation may result in function exceptions.
+>   - Applications will be subject to increasingly stringent measures against violations with the preceding rules, and any violation may result in service exceptions.
 
 **Module list:**
 
-- [@ohos.ability.featureAbility (FeatureAbility)](../reference/apis/js-apis-ability-featureAbility.md)
-- [@ohos.ability.particleAbility (ParticleAbility)](../reference/apis/js-apis-ability-particleAbility.md)
-- [@ohos.account.distributedAccount (Distributed Account Management)](../reference/apis/js-apis-distributed-account.md)
-- [@ohos.backgroundTaskManager (Background Task Management)](../reference/apis/js-apis-backgroundTaskManager.md)
-- [@ohos.bluetooth (Bluetooth)](../reference/apis/js-apis-bluetooth.md)
-- [@ohos.bluetoothManager (Bluetooth)](../reference/apis/js-apis-bluetoothManager.md)
-- [@ohos.connectedTag (Active Tags)](../reference/apis/js-apis-connectedTag.md)
-- [@ohos.geolocation (Geolocation)](../reference/apis/js-apis-geolocation.md)
-- [@ohos.geoLocationManager (Geolocation Manager)](../reference/apis/js-apis-geoLocationManager.md)
-- [@ohos.nfc.cardEmulation (Standard NFC Card Emulation)](../reference/apis/js-apis-cardEmulation.md)
-- [@ohos.nfc.controller (Standard NFC)](../reference/apis/js-apis-nfcController.md)
-- [@ohos.nfc.tag (Standard NFC Tags)](../reference/apis/js-apis-nfcTag.md)
-- [@ohos.reminderAgent (Reminder Agent)](../reference/apis/js-apis-reminderAgent.md)
-- [@ohos.reminderAgentManager (reminderAgentManager)](../reference/apis/js-apis-reminderAgentManager.md)
-- [@ohos.sensor (Sensor)](../reference/apis/js-apis-sensor.md)
-- [@ohos.telephony.call (Call)](../reference/apis/js-apis-call.md)
-- [@ohos.telephony.data (Cellular Data)](../reference/apis/js-apis-telephony-data.md)
-- [@ohos.telephony.observer (observer)](../reference/apis/js-apis-observer.md)
-- [@ohos.telephony.radio (Network Search)](../reference/apis/js-apis-radio.md)
-- [@ohos.telephony.sim (SIM Management)](../reference/apis/js-apis-sim.md)
-- [@ohos.telephony.sms (SMS)](../reference/apis/js-apis-sms.md)
-- [@ohos.wallpaper (Wallpaper)](../reference/apis/js-apis-wallpaper.md)
-- [@ohos.wifiext (WLAN Extension)](../reference/apis/js-apis-wifiext.md)
-- [@ohos.wifiManager (WLAN)](../reference/apis/js-apis-wifiManager.md)
-- [@ohos.wifiManagerExt (WLAN Extension Interface)](../reference/apis/js-apis-wifiManagerExt.md)
-- [@system.geolocation (Geolocation)](../reference/apis/js-apis-system-location.md)
-- [nfctech (Standard NFC Technologies)](../reference/apis/js-apis-nfctech.md)
-- [tagSession (Standard NFC Tag Session)](../reference/apis/js-apis-tagSession.md)
+- [@ohos.ability.featureAbility (FeatureAbility)](../reference/apis-ability-kit/js-apis-ability-featureAbility.md)
+- [@ohos.ability.particleAbility (ParticleAbility)](../reference/apis-ability-kit/js-apis-ability-particleAbility.md)
+- [@ohos.account.distributedAccount (Distributed Account Management)](../reference/apis-basic-services-kit/js-apis-distributed-account.md)
+- [@ohos.backgroundTaskManager (Background Task Management)](../reference/apis-backgroundtasks-kit/js-apis-backgroundTaskManager.md)
+- [@ohos.bluetooth (Bluetooth)](../reference/apis-connectivity-kit/js-apis-bluetooth.md)
+- [@ohos.bluetoothManager (Bluetooth)](../reference/apis-connectivity-kit/js-apis-bluetoothManager.md)
+- [@ohos.connectedTag (Active Tags)](../reference/apis-connectivity-kit/js-apis-connectedTag.md)
+- [@ohos.geolocation (Geolocation)](../reference/apis-location-kit/js-apis-geolocation.md)
+- [@ohos.geoLocationManager (Geolocation Manager)](../reference/apis-location-kit/js-apis-geoLocationManager.md)
+- [@ohos.nfc.cardEmulation (Standard NFC Card Emulation)](../reference/apis-connectivity-kit/js-apis-cardEmulation.md)
+- [@ohos.nfc.controller (Standard NFC)](../reference/apis-connectivity-kit/js-apis-nfcController.md)
+- [@ohos.nfc.tag (Standard NFC Tags)](../reference/apis-connectivity-kit/js-apis-nfcTag.md)
+- [@ohos.reminderAgent (reminderAgent)](../reference/apis-backgroundtasks-kit/js-apis-reminderAgent.md)
+- [@ohos.reminderAgentManager (Agent-Powered Reminders)](../reference/apis-backgroundtasks-kit/js-apis-reminderAgentManager.md)
+- [@ohos.sensor (Sensor)](../reference/apis-sensor-service-kit/js-apis-sensor.md)
+- [@ohos.telephony.call (Call)](../reference/apis-telephony-kit/js-apis-call.md)
+- [@ohos.telephony.data (Cellular Data)](../reference/apis-telephony-kit/js-apis-telephony-data.md)
+- [@ohos.telephony.observer (observer)](../reference/apis-telephony-kit/js-apis-observer.md)
+- [@ohos.telephony.radio (Network Search)](../reference/apis-telephony-kit/js-apis-radio.md)
+- [@ohos.telephony.sim (SIM Management)](../reference/apis-telephony-kit/js-apis-sim.md)
+- [@ohos.telephony.sms (SMS)](../reference/apis-telephony-kit/js-apis-sms.md)
+- [@ohos.telephony.call (Call) (System API)](../reference/apis-telephony-kit/js-apis-call-sys.md)
+- [@ohos.telephony.data (Cellular Data) (System API)](../reference/apis-telephony-kit/js-apis-telephony-data-sys.md)
+- [@ohos.telephony.observer (Observer) (System API)](../reference/apis-telephony-kit/js-apis-observer-sys.md)
+- [@ohos.telephony.radio (Radio) (System API)](../reference/apis-telephony-kit/js-apis-radio-sys.md)
+- [@ohos.telephony.sim (SIM Management) (System API)](../reference/apis-telephony-kit/js-apis-sim-sys.md)
+- [@ohos.telephony.sms (SMS) (System API)](../reference/apis-telephony-kit/js-apis-sms-sys.md)
+- [@ohos.wallpaper (Wallpaper)](../reference/apis-basic-services-kit/js-apis-wallpaper.md)
+- [@ohos.wifiext (WLAN Extension)](../reference/apis-connectivity-kit/js-apis-wifiext.md)
+- [@ohos.wifiManager (WLAN)](../reference/apis-connectivity-kit/js-apis-wifiManager.md)
+- [@ohos.wifiManagerExt (WLAN Extension)](../reference/apis-connectivity-kit/js-apis-wifiManagerExt.md)
+- [@system.geolocation (Geolocation)](../reference/apis-location-kit/js-apis-system-location.md)
+- [nfctech (Standard NFC Technologies)](../reference/apis-connectivity-kit/js-apis-nfctech.md)
+- [tagSession (Standard NFC Tag Session)](../reference/apis-connectivity-kit/js-apis-tagSession.md)
+
+<!--no_check-->
+
+  
