@@ -17,12 +17,21 @@ RowSplit通过分割线限制子组件的宽度。初始化时，分割线位置
 
 RowSplit()
 
-
 ## 属性
 
-| 名称 | 参数类型 | 描述 |
-| -------- | -------- | -------- |
-| resizeable | boolean | 分割线是否可拖拽，默认为false。 |
+### resizeable
+
+resizeable(value: boolean)
+
+设置分割线是否可拖拽。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型 | 必填 | 描述 |
+| -------- | -------- | -------- | -------- |
+| value | boolean | 是 | 分割线是否可拖拽。<br/>默认值：false |
 
 >  **说明：**
 >

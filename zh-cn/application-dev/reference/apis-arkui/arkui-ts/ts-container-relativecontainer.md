@@ -45,10 +45,33 @@ RelativeContainer()
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持如下属性：
 
-| 名称       | 参数类型      |  必填   | 描述                   |
-| -------- | ------- |  ---- | -------------------- |
-| guideLine<sup>11+</sup> | Array<[GuideLineStyle](#guidelinestyle11)> | 否    | 声明RelativeContaine容器内的辅助线，Array中每个项目即为一条guideline。 |
-| barrier<sup>11+</sup> | Array<[BarrierStyle](#barrierstyle11)> | 否    | 声明RelativeContaine容器内的屏障，Array中每个项目即为一条barrier。 |
+### guideLine<sup>11+</sup>
+
+guideLine(value: Array&lt;GuideLineStyle&gt;)
+
+设置RelativeContaine容器内的辅助线，Array中每个项目即为一条guideline。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                       | 必填 | 说明                             |
+| ------ | ------------------------------------------ | ---- | -------------------------------- |
+| value  | Array<[GuideLineStyle](#guidelinestyle11)> | 是   | RelativeContaine容器内的辅助线。 |
+
+### barrier<sup>11+</sup>
+
+barrier(value: Array&lt;BarrierStyle&gt;)
+
+设置RelativeContaine容器内的屏障，Array中每个项目即为一条barrier。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                   | 必填 | 说明                           |
+| ------ | -------------------------------------- | ---- | ------------------------------ |
+| value  | Array<[BarrierStyle](#barrierstyle11)> | 是   | RelativeContaine容器内的屏障。 |
 
 
 ## GuideLineStyle<sup>11+</sup>

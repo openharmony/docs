@@ -40,13 +40,56 @@ Refresh(value: RefreshOptions)
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
 
+### onStateChange
 
-| 名称                                       | 描述                                     |
-| ---------------------------------------- | -------------------------------------- |
-| onStateChange(callback: (state: [RefreshStatus](#refreshstatus枚举说明)) => void) | 当前刷新状态变更时，触发回调。<br/>-&nbsp;state：刷新状态。 |
-| onRefreshing(callback: () => void)       | 进入刷新状态时触发回调。                           |
-| refreshOffset(value: number)<sup>12+</sup>                   | 触发刷新的下拉偏移量。<br/>-&nbsp;value：下拉偏移量，单位vp。      |
-| pullToRefresh(value: boolean)<sup>12+</sup>                  | 设置当下拉距离超过refreshOffset时是否触发刷新。<br/>-&nbsp;value：是否触发刷新。 |
+onStateChange(callback: (state: RefreshStatus) => void)
+
+当前刷新状态变更时，触发回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                    | 必填 | 说明       |
+| ------ | --------------------------------------- | ---- | ---------- |
+| state  | [RefreshStatus](#refreshstatus枚举说明) | 是   | 刷新状态。 |
+
+### onRefreshing
+
+onRefreshing(callback: () => void)
+
+进入刷新状态时触发回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### refreshOffset<sup>12+</sup>
+
+refreshOffset(value: number)
+
+触发刷新的下拉偏移量。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                 |
+| ------ | ------ | ---- | -------------------- |
+| value  | number | 是   | 下拉偏移量，单位vp。 |
+
+### pullToRefresh<sup>12+</sup>
+
+pullToRefresh(value: boolean)
+
+设置当下拉距离超过refreshOffset时是否触发刷新。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明           |
+| ------ | ------- | ---- | -------------- |
+| value  | boolean | 是   | 是否触发刷新。 |
+
 ## RefreshStatus枚举说明
 
 | 名称       | 具体值       | 描述                   |
