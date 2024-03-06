@@ -5916,3 +5916,16 @@ media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenera
 | AV_IMAGE_QUERY_PREVIOUS_SYNC        | 1    | 表示选取传入时间点或之前的关键帧。 |
 | AV_IMAGE_QUERY_CLOSEST_SYNC        | 2    | 表示选取离传入时间点最近的关键帧。                 |
 | AV_IMAGE_QUERY_CLOSEST          | 3      | 表示选取离传入时间点最近的帧，该帧不一定是关键帧。     |
+
+## PixelMapParams<sup>11+</sup>
+
+获取视频缩略图时，输出缩略图的格式参数。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVImageGenerator
+
+**系统接口：** 该接口为系统接口
+
+| 名称     | 类型   |  可读   |   可写    |  说明                   |
+| -------- | ------ |   ------| ------ | ---------------------- |
+| width     | number |  是   |  是   |  输出的缩略图宽度。         |
+| height | number |  是   |  是   | 输出的缩略图高度。 |
