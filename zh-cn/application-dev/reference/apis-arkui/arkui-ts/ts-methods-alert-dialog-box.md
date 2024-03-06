@@ -33,7 +33,7 @@
 | isModal<sup>11+</sup> | boolean | 否 | 弹窗是否为模态窗口，模态窗口有蒙层，非模态窗口无蒙层。<br/>默认值：true，此时弹窗有蒙层。 |
 | backgroundColor<sup>11+</sup> | [ResourceColor](ts-types.md#resourcecolor)  | 否 | 弹窗背板颜色。<br/>默认值：Color.Transparent |
 | backgroundBlurStyle<sup>11+</sup> | [BlurStyle](ts-appendix-enums.md#blurstyle9) | 否 | 弹窗背板模糊材质。<br/>默认值：BlurStyle.COMPONENT_ULTRA_THICK |
-| onWillDismiss<sup>12+</sup> | (dismissDialog:[DismissDialog](#dismissdialog12类型说明)) => void | 否 | 交互式关闭回调函数。<br/>**说明：**<br/>1.当用户执行点击遮障层关闭、左滑/右滑、三键back、键盘ESC关闭交互操作时，如果注册该回调函数，则不会立刻关闭弹窗。在回调函数中可以通过reason得到阻拦关闭弹窗的操作类型，从而根据原因选择是否能关闭弹窗。当前组件返回的reason中，暂不支持CLOSE_BUTTON的枚举值。<br/>2.在onWillDismiss回调中，不能再做onWillDismiss拦截。 |
+| onWillDismiss<sup>12+</sup> | Callback<[DismissDialogAction](#dismissdialogaction12类型说明)> | 否 | 交互式关闭回调函数。<br/>**说明：**<br/>1.当用户执行点击遮障层关闭、左滑/右滑、三键back、键盘ESC关闭交互操作时，如果注册该回调函数，则不会立刻关闭弹窗。在回调函数中可以通过reason得到阻拦关闭弹窗的操作类型，从而根据原因选择是否能关闭弹窗。当前组件返回的reason中，暂不支持CLOSE_BUTTON的枚举值。<br/>2.在onWillDismiss回调中，不能再做onWillDismiss拦截。 |
 | cornerRadius<sup>12+</sup> | [BorderRadiuses](ts-types.md#borderradiuses9) \| [Dimension](ts-types.md#dimension10)  | 否 | 设置背板的圆角半径。<br />可分别设置4个圆角的半径。<br />默认值：{ topLeft: '24vp', topRight: '24vp', bottomLeft: '24vp', bottomRight: '24vp' } |
 | borderWidth<sup>12+</sup> | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[EdgeWidths](ts-types.md#edgewidths9)  | 否 | 设置弹窗背板的边框宽度。 |
 | borderColor<sup>12+</sup> | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[EdgeColors](ts-types.md#edgecolors9)  | 否 | 设置弹窗背板的边框颜色。<br/>默认值：Color.Black<br/> 如果使用borderColor属性，需要和borderWidth属性一起使用。 |
@@ -58,7 +58,7 @@
 | maskRect<sup>10+</sup> | [Rectangle](#rectangle8类型说明) | 否     | 弹窗遮蔽层区域，在遮蔽层区域内的事件不透传，在遮蔽层区域外的事件透传。<br/>默认值：{ x: 0, y: 0, width: '100%', height: '100%' } |
 | backgroundColor<sup>11+</sup> | [ResourceColor](ts-types.md#resourcecolor)  | 否 | 弹窗背板颜色。<br/>默认值：Color.Transparent |
 | backgroundBlurStyle<sup>11+</sup> | [BlurStyle](ts-appendix-enums.md#blurstyle9) | 否 | 弹窗背板模糊材质。<br/>默认值：BlurStyle.COMPONENT_ULTRA_THICK。 |
-| onWillDismiss<sup>12+</sup> | (dismissDialog:[DismissDialog](#dismissdialog12类型说明)) => void | 否 | 交互式关闭回调函数。<br/>**说明：**<br/>1.当用户执行点击遮障层关闭、左滑/右滑、三键back、键盘ESC关闭交互操作时，如果注册该回调函数，则不会立刻关闭弹窗。在回调函数中可以通过reason得到阻拦关闭弹窗的操作类型，从而根据原因选择是否能关闭弹窗。当前组件返回的reason中，暂不支持CLOSE_BUTTON的枚举值。<br/>2.在onWillDismiss回调中，不能再做onWillDismiss拦截。 |
+| onWillDismiss<sup>12+</sup> | Callback<[DismissDialogAction](#dismissdialogaction12类型说明)> | 否 | 交互式关闭回调函数。<br/>**说明：**<br/>1.当用户执行点击遮障层关闭、左滑/右滑、三键back、键盘ESC关闭交互操作时，如果注册该回调函数，则不会立刻关闭弹窗。在回调函数中可以通过reason得到阻拦关闭弹窗的操作类型，从而根据原因选择是否能关闭弹窗。当前组件返回的reason中，暂不支持CLOSE_BUTTON的枚举值。<br/>2.在onWillDismiss回调中，不能再做onWillDismiss拦截。 |
 
 ## AlertDialogParamWithOptions<sup>10+</sup>对象说明
 | 参数名             | 参数类型                | 必填     | 参数描述                     |
@@ -76,7 +76,7 @@
 |buttonDirection<sup>10+</sup>      | [DialogButtonDirection](#dialogbuttondirection10枚举说明)| 否  | 按钮排布方向默认值为DialogButtonDirection.AUTO，建议3个以上按钮使用Auto模式（两个以上按钮会切换为纵向模式，通常能显示更多按钮），非Auto模式下，3个以上按钮可能会显示不全，超出显示范围的按钮会被截断。|
 | backgroundColor<sup>11+</sup> | [ResourceColor](ts-types.md#resourcecolor)  | 否 | 弹窗背板颜色。<br/>默认值：Color.Transparent |
 | backgroundBlurStyle<sup>11+</sup> | [BlurStyle](ts-appendix-enums.md#blurstyle9) | 否 | 弹窗背板模糊材质。<br/>默认值：BlurStyle.COMPONENT_ULTRA_THICK |
-| onWillDismiss<sup>12+</sup> | (dismissDialog:[DismissDialog](#dismissdialog12类型说明)) => void | 否 | 交互式关闭回调函数。<br/>**说明：**<br/>1.当用户执行点击遮障层关闭、左滑/右滑、三键back、键盘ESC关闭交互操作时，如果注册该回调函数，则不会立刻关闭弹窗。在回调函数中可以通过reason得到阻拦关闭弹窗的操作类型，从而根据原因选择是否能关闭弹窗。当前组件返回的reason中，暂不支持CLOSE_BUTTON的枚举值。<br/>2.在onWillDismiss回调中，不能再做onWillDismiss拦截。 |
+| onWillDismiss<sup>12+</sup> | Callback<[DismissDialogAction](#dismissdialogaction12类型说明)> | 否 | 交互式关闭回调函数。<br/>**说明：**<br/>1.当用户执行点击遮障层关闭、左滑/右滑、三键back、键盘ESC关闭交互操作时，如果注册该回调函数，则不会立刻关闭弹窗。在回调函数中可以通过reason得到阻拦关闭弹窗的操作类型，从而根据原因选择是否能关闭弹窗。当前组件返回的reason中，暂不支持CLOSE_BUTTON的枚举值。<br/>2.在onWillDismiss回调中，不能再做onWillDismiss拦截。 |
 
 ## AlertDialogButtonOptions<sup>10+</sup>对象说明
 | 参数名             | 参数类型                | 必填     | 参数描述                     |
@@ -155,11 +155,11 @@ Rectangle是各种Dialog中maskRect参数的类型。
 | DEFAULT   | 白底蓝字（深色主题：白底=黑底）。 |
 | HIGHLIGHT | 蓝底白字。                        |
 
-## DismissDialog<sup>12+</sup>类型说明
+## DismissDialogAction<sup>12+</sup>类型说明
 
 | 名称     | 类型                                 | 必填 | 描述                                                           |
 |----------|-------------------------------------|------|----------------------------------------------------------------|
-| dismiss  | () => void                            |  是  | Dialog关闭回调函数。开发者需要退出时调用，不需要退出时无需调用。    |
+| dismiss  | Callback&lt;void&gt;                            |  是  | Dialog关闭回调函数。开发者需要退出时调用，不需要退出时无需调用。    |
 | reason   | [DismissReason](#dismissreason12枚举说明) |  是  | Dialog无法关闭原因。根据开发者需要选择不同操作下，Dialog是否需要关闭。 |
 
 ## DismissReason<sup>12+</sup>枚举说明
@@ -200,14 +200,14 @@ struct AlertDialogExample {
               cancel: () => {
                 console.info('Closed callbacks')
               },
-              onWillDismiss:(dismissDialog: DismissDialog)=> {
-                console.info("reason=" + JSON.stringify(dismissDialog.reason))
+              onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
+                console.info("reason=" + JSON.stringify(dismissDialogAction.reason))
                 console.log("dialog onWillDismiss")
-                if (dismissDialog.reason == DismissReason.PRESS_BACK) {
-                  dismissDialog.dismiss()
+                if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
+                  dismissDialogAction.dismiss()
                 }
-                if (dismissDialog.reason == DismissReason.TOUCH_OUTSIDE) {
-                  dismissDialog.dismiss()
+                if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
+                  dismissDialogAction.dismiss()
                 }
               }
             }
@@ -243,14 +243,14 @@ struct AlertDialogExample {
               cancel: () => {
                 console.info('Closed callbacks')
               },
-              onWillDismiss:(dismissDialog: DismissDialog)=> {
-                console.info("reason=" + JSON.stringify(dismissDialog.reason))
+              onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
+                console.info("reason=" + JSON.stringify(dismissDialogAction.reason))
                 console.log("dialog onWillDismiss")
-                if (dismissDialog.reason == DismissReason.PRESS_BACK) {
-                  dismissDialog.dismiss()
+                if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
+                  dismissDialogAction.dismiss()
                 }
-                if (dismissDialog.reason == DismissReason.TOUCH_OUTSIDE) {
-                  dismissDialog.dismiss()
+                if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
+                  dismissDialogAction.dismiss()
                 }
               } 
             }
@@ -294,14 +294,14 @@ struct AlertDialogExample {
               cancel: () => {
                 console.info('Closed callbacks')
               },
-              onWillDismiss:(dismissDialog: DismissDialog)=> {
-                console.info("reason=" + JSON.stringify(dismissDialog.reason))
+              onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
+                console.info("reason=" + JSON.stringify(dismissDialogAction.reason))
                 console.log("dialog onWillDismiss")
-                if (dismissDialog.reason == DismissReason.PRESS_BACK) {
-                  dismissDialog.dismiss()
+                if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
+                  dismissDialogAction.dismiss()
                 }
-                if (dismissDialog.reason == DismissReason.TOUCH_OUTSIDE) {
-                  dismissDialog.dismiss()
+                if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
+                  dismissDialogAction.dismiss()
                 }
               }
             }
@@ -363,14 +363,14 @@ struct AlertDialogExample {
               cancel: () => {
                 console.info('Closed callbacks')
               },
-              onWillDismiss:(dismissDialog: DismissDialog)=> {
-                console.info("reason=" + JSON.stringify(dismissDialog.reason))
+              onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
+                console.info("reason=" + JSON.stringify(dismissDialogAction.reason))
                 console.log("dialog onWillDismiss")
-                if (dismissDialog.reason == DismissReason.PRESS_BACK) {
-                  dismissDialog.dismiss()
+                if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
+                  dismissDialogAction.dismiss()
                 }
-                if (dismissDialog.reason == DismissReason.TOUCH_OUTSIDE) {
-                  dismissDialog.dismiss()
+                if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
+                  dismissDialogAction.dismiss()
                 }
             }
           )
