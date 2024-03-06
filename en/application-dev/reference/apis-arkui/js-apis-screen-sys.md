@@ -4,9 +4,9 @@ The **Screen** module implements basic screen management. You can use the APIs o
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > 
-> The APIs provided by this module are system APIs.
+> - The APIs provided by this module are system APIs.
 
 ## Modules to Import
 
@@ -30,7 +30,7 @@ Obtains all screens. This API uses an asynchronous callback to return the result
 
 **Error codes**
 
-For details about the error codes, see [Display Error Codes](../errorcodes/errorcode-display.md).
+For details about the error codes, see [Display Error Codes](errorcode-display.md).
 
 | ID| Error Message|
 | ------- | ----------------------- |
@@ -69,7 +69,7 @@ Obtains all screens. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Display Error Codes](../errorcodes/errorcode-display.md).
+For details about the error codes, see [Display Error Codes](errorcode-display.md).
 
 | ID| Error Message|
 | ------- | ----------------------- |
@@ -163,7 +163,7 @@ Sets the screen to the expanded mode. This API uses an asynchronous callback to 
 
 **Error codes**
 
-For details about the error codes, see [Display Error Codes](../errorcodes/errorcode-display.md).
+For details about the error codes, see [Display Error Codes](errorcode-display.md).
 
 | ID| Error Message|
 | ------- | ----------------------- |
@@ -220,7 +220,7 @@ Sets the screen to the expanded mode. This API uses a promise to return the resu
 
 **Error codes**
 
-For details about the error codes, see [Display Error Codes](../errorcodes/errorcode-display.md).
+For details about the error codes, see [Display Error Codes](errorcode-display.md).
 
 | ID| Error Message|
 | ------- | ----------------------- |
@@ -268,7 +268,7 @@ Stops the expanded mode. This API uses an asynchronous callback to return the re
 
 **Error codes**
 
-For details about the error codes, see [Display Error Codes](../errorcodes/errorcode-display.md).
+For details about the error codes, see [Display Error Codes](errorcode-display.md).
 
 | ID| Error Message|
 | ------- | ----------------------- |
@@ -316,7 +316,7 @@ Stops the expanded mode. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Display Error Codes](../errorcodes/errorcode-display.md).
+For details about the error codes, see [Display Error Codes](errorcode-display.md).
 
 | ID| Error Message|
 | ------- | ----------------------- |
@@ -357,7 +357,7 @@ Sets screen mirroring. This API uses an asynchronous callback to return the resu
 
 **Error codes**
 
-For details about the error codes, see [Display Error Codes](../errorcodes/errorcode-display.md).
+For details about the error codes, see [Display Error Codes](errorcode-display.md).
 
 | ID| Error Message|
 | ------- | ----------------------- |
@@ -407,7 +407,7 @@ Sets screen mirroring. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Display Error Codes](../errorcodes/errorcode-display.md).
+For details about the error codes, see [Display Error Codes](errorcode-display.md).
 
 | ID| Error Message|
 | ------- | ----------------------- |
@@ -448,7 +448,7 @@ Stops screen mirroring. This API uses an asynchronous callback to return the res
 
 **Error codes**
 
-For details about the error codes, see [Display Error Codes](../errorcodes/errorcode-display.md).
+For details about the error codes, see [Display Error Codes](errorcode-display.md).
 
 | ID| Error Message|
 | ------- | ----------------------- |
@@ -496,7 +496,7 @@ Stops screen mirroring. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Display Error Codes](../errorcodes/errorcode-display.md).
+For details about the error codes, see [Display Error Codes](errorcode-display.md).
 
 | ID| Error Message|
 | ------- | ----------------------- |
@@ -527,7 +527,7 @@ Creates a virtual screen. This API uses an asynchronous callback to return the r
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-**Required permissions**: ohos.permission.CAPTURE_SCREEN (mandatory when **VirtualScreenOption.surfaceId** is valid; available only to system applications)
+**Required permissions**: ohos.permission.CAPTURE_SCREEN
 
 **Parameters**
 
@@ -538,7 +538,7 @@ Creates a virtual screen. This API uses an asynchronous callback to return the r
 
 **Error codes**
 
-For details about the error codes, see [Display Error Codes](../errorcodes/errorcode-display.md).
+For details about the error codes, see [Display Error Codes](errorcode-display.md).
 
 | ID| Error Message|
 | ------- | ----------------------- |
@@ -588,7 +588,7 @@ Creates a virtual screen. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-**Required permissions**: ohos.permission.CAPTURE_SCREEN (mandatory when **VirtualScreenOption.surfaceId** is valid; available only to system applications)
+**Required permissions**: ohos.permission.CAPTURE_SCREEN
 
 **Parameters**
 
@@ -604,7 +604,7 @@ Creates a virtual screen. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Display Error Codes](../errorcodes/errorcode-display.md).
+For details about the error codes, see [Display Error Codes](errorcode-display.md).
 
 | ID| Error Message|
 | ------- | ----------------------- |
@@ -661,7 +661,7 @@ Destroys a virtual screen. This API uses an asynchronous callback to return the 
 
 **Error codes**
 
-For details about the error codes, see [Display Error Codes](../errorcodes/errorcode-display.md).
+For details about the error codes, see [Display Error Codes](errorcode-display.md).
 
 | ID| Error Message|
 | ------- | ----------------------------- |
@@ -709,7 +709,7 @@ Destroys a virtual screen. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Display Error Codes](../errorcodes/errorcode-display.md).
+For details about the error codes, see [Display Error Codes](errorcode-display.md).
 
 | ID| Error Message|
 | ------- | ----------------------------- |
@@ -752,7 +752,7 @@ Sets the surface for a virtual screen. This API uses an asynchronous callback to
 
 **Error codes**
 
-For details about the error codes, see [Display Error Codes](../errorcodes/errorcode-display.md).
+For details about the error codes, see [Display Error Codes](errorcode-display.md).
 
 | ID| Error Message|
 | ------- | ----------------------- |
@@ -804,7 +804,7 @@ Sets the surface for a virtual screen. This API uses a promise to return the res
 
 **Error codes**
 
-For details about the error codes, see [Display Error Codes](../errorcodes/errorcode-display.md).
+For details about the error codes, see [Display Error Codes](errorcode-display.md).
 
 | ID| Error Message|
 | ------- | ----------------------- |
@@ -1015,7 +1015,7 @@ Sets the screen orientation. This API uses an asynchronous callback to return th
 
 **Error codes**
 
-For details about the error codes, see [Display Error Codes](../errorcodes/errorcode-display.md).
+For details about the error codes, see [Display Error Codes](errorcode-display.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
@@ -1082,7 +1082,7 @@ Sets the screen orientation. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Display Error Codes](../errorcodes/errorcode-display.md).
+For details about the error codes, see [Display Error Codes](errorcode-display.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
@@ -1142,7 +1142,7 @@ Sets the active mode of the screen. This API uses an asynchronous callback to re
 
 **Error codes**
 
-For details about the error codes, see [Display Error Codes](../errorcodes/errorcode-display.md).
+For details about the error codes, see [Display Error Codes](errorcode-display.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
@@ -1210,7 +1210,7 @@ Sets the active mode of the screen. This API uses a promise to return the result
 
 **Error codes**
 
-For details about the error codes, see [Display Error Codes](../errorcodes/errorcode-display.md).
+For details about the error codes, see [Display Error Codes](errorcode-display.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
@@ -1271,7 +1271,7 @@ Sets the pixel density of the screen. This API uses an asynchronous callback to 
 
 **Error codes**
 
-For details about the error codes, see [Display Error Codes](../errorcodes/errorcode-display.md).
+For details about the error codes, see [Display Error Codes](errorcode-display.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
@@ -1339,7 +1339,7 @@ Sets the pixel density of the screen. This API uses a promise to return the resu
 
 **Error codes**
 
-For details about the error codes, see [Display Error Codes](../errorcodes/errorcode-display.md).
+For details about the error codes, see [Display Error Codes](errorcode-display.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
@@ -1419,7 +1419,7 @@ Defines the screen mode information.
 
 | Name       | Type| Readable| Writable| Description                                              |
 | ----------- | -------- | ---- | ---- | -------------------------------------------------- |
-| id          | number   | Yes  | Yes  | Mode ID. The supported mode is determined by the device resolution and refresh rate. The value must be an integer.|
+| id          | number   | Yes  | Yes  | Mode ID. The supported mode is determined by the device resolution and refresh rate. The value must be an integer.| 
 | width       | number   | Yes  | Yes  | Width of the screen, in px. The value must be an integer.                               |
 | height      | number   | Yes  | Yes  | Height of the screen, in px. The value must be an integer.                               |
 | refreshRate | number   | Yes  | Yes  | Refresh rate of the screen, in hz. The value must be an integer.                                    |

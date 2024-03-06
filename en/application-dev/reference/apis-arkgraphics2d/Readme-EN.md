@@ -26,6 +26,7 @@
     - [drawing_image.h](drawing__image_8h.md)
     - [drawing_mask_filter.h](drawing__mask__filter_8h.md)
     - [drawing_matrix.h](drawing__matrix_8h.md)
+    - [drawing_memory_stream.h](drawing__memory__stream_8h.md)
     - [drawing_path.h](drawing__path_8h.md)
     - [drawing_path_effect.h](drawing__path__effect_8h.md)
     - [drawing_pen.h](drawing__pen_8h.md)
