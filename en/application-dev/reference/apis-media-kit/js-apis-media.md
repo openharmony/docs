@@ -5817,8 +5817,8 @@ Obtains a video thumbnail. This API uses a promise to return the result.
 | Name  | Type                                        | Mandatory| Description                               |
 | -------- | -------------------------------------------- | ---- | ----------------------------------- |
 | timeUs | number                   | Yes  | Time of the video for which a thumbnail is to be obtained, in μs.|
-| options | [AVImageQueryOptions](#avimagequeryoptions11)     | Yes  | Relationship between the time passed in and the video frame.|
-| param | [PixelMapParams](#pixelmapparams11)      | Yes  | Format parameters of the thumbnail to be obtained.|
+| options | [AVImageQueryOptions](#avimagequeryoptions12)     | Yes  | Relationship between the time passed in and the video frame.|
+| param | [PixelMapParams](#pixelmapparams12)      | Yes  | Format parameters of the thumbnail to be obtained.|
 
 **Return value**
 
@@ -5966,7 +5966,7 @@ media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenera
 });
 ```
 
-## AVImageQueryOptions<sup>11+</sup>
+## AVImageQueryOptions<sup>12+</sup>
 
 Enumerates the relationship between the video frame and the time at which the video thumbnail is obtained.
 
@@ -5981,7 +5981,7 @@ The time passed in for obtaining the thumbnail may be different from the time of
 | AV_IMAGE_QUERY_CLOSEST_SYNC        | 2    | The key frame closest to the specified time is selected.                |
 | AV_IMAGE_QUERY_CLOSEST          | 3      | The frame (not necessarily a key frame) closest to the specified time is selected.    |
 
-## PixelMapParams<sup>11+</sup>
+## PixelMapParams<sup>12+</sup>
 
 Defines the format parameters of the video thumbnail to be obtained.
 
@@ -5991,4 +5991,3 @@ Defines the format parameters of the video thumbnail to be obtained.
 | -------- | ------ |   ------| ------ | ---------------------- |
 | width     | number |  Yes  |  Yes  |  Width of the thumbnail.        |
 | height | number |  Yes  |  Yes  | Height of the thumbnail.|
-| colorFormat  | [PixelFormat](#pixelformat11) |  Yes  |  Yes  | Color format of the thumbnail.        |
