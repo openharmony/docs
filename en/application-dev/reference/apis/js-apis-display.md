@@ -330,7 +330,7 @@ Unsubscribes from display changes.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type.<br>- **add**, indicating the display addition event. Example: event that a display is connected.<br>- **remove**, indicating the display removal event. Example: event that a display is disconnected.<br>- **change**, indicating the display change event. Example: event that the display orientation is changed.|
-| callback | Callback&lt;number&gt; | No| Callback used to return the ID of the display, which is an integer.|
+| callback | Callback&lt;number&gt; | No| Callback used for unsubscription. If this parameter is not specified, all callbacks of the current type will be unregistered.|
 
 **Example**
 
@@ -636,7 +636,7 @@ Unsubscribes from folding status change events of the foldable device.
 | Name  | Type                                      | Mandatory| Description                                                   |
 | -------- |------------------------------------------| ---- | ------------------------------------------------------- |
 | type     | string                                   | Yes  | Event type. The event **'foldStatusChange'** is triggered when the folding status of the device changes.|
-| callback | Callback&lt;[FoldStatus](#foldstatus10)&gt; | No  | Callback used to return the folding status.|
+| callback | Callback&lt;[FoldStatus](#foldstatus10)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the current type will be unregistered.|
 
 **Error codes**
 
@@ -707,7 +707,7 @@ Unsubscribes from display mode change events of the foldable device.
 | Name  | Type                                      | Mandatory| Description                                                   |
 | -------- |------------------------------------------| ---- | ------------------------------------------------------- |
 | type     | string                                   | Yes  | Event type. The event **'foldDisplayModeChange'** is triggered when the display mode of the device changes.|
-| callback | Callback&lt;[FoldDisplayMode](#folddisplaymode10)&gt; | No  | Callback used to return the display mode.|
+| callback | Callback&lt;[FoldDisplayMode](#folddisplaymode10)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the current type will be unregistered.|
 
 **Error codes**
 
@@ -876,8 +876,8 @@ Before calling any API in **Display**, you must use [getAllDisplays()](#displayg
 | state | [DisplayState](#displaystate) | Yes| No| State of the display.                                                                                                     |
 | refreshRate | number | Yes| No| Refresh rate of the display, in hz. The value must be an integer.                                                                                            |
 | rotation | number | Yes| No| Clockwise rotation angle of the screen of the display.<br>The value **0** indicates that the screen of the display rotates clockwise by 0°.<br>The value **1** indicates that the screen of the display rotates clockwise by 90°.<br>The value **2** indicates that the screen of the display rotates clockwise by 180°.<br>The value **3** indicates that the screen of the display rotates clockwise by 270°.|
-| width | number | Yes| No| Width of the display, in px. The value must be an integer.                                                                                       |
-| height | number | Yes| No| Height of the display, in px. The value must be an integer.                                                                                       |
+| width | number | Yes| No| Screen width of the display, in px. The value must be an integer.                                                                                       |
+| height | number | Yes| No| Screen height of the display, in px. The value must be an integer.                                                                                       |
 | densityDPI | number | Yes| No| Screen density of the display, that is, the number of dots per inch. The value must be a floating point number, in px. Generally, the value is **160.0** or **480.0**.                                                                  |
 | orientation<sup>10+</sup> | [Orientation](#orientation10) | Yes| No| Orientation of the display.                                                                                                 |
 | densityPixels | number | Yes| No| Logical density of the display, which is a scaling coefficient independent of the pixel unit. The value must be a floating point number. Generally, the value is **1.0** or **3.0**.                                                                 |
