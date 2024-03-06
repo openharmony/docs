@@ -441,6 +441,34 @@ The image property does not exist.
 
 Use another image.
 
+## 62980133 Image Attribute Value Out of Range
+
+**Error Message**
+
+The EXIF data is out of range.
+
+**Possible Cause**
+
+The value of the image attribute is out of range.
+
+**Solution**
+
+Change the image or check the length of the image attribute value.
+
+## 62980135 Invalid Image Attribute Value
+
+**Error Message**
+
+The EXIF value is invalid.
+
+**Possible Cause**
+
+The image attribute is missing.
+
+**Solution**
+
+Correct the image data or use another image.
+
 ## 62980246 Failure in Reading the Pixel Map
 
 **Error Message**
