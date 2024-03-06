@@ -170,6 +170,11 @@ import web_webview from '@ohos.web.webview'
 import { NodeController, BuilderNode, Size, FrameNode }  from '@ohos.arkui.node';
 // @Builder contains the specific content of the dynamically created component.
 // Data is the class for input parameter encapsulation.
+class Data{
+  url: string = "https://www.example.com";
+  controller: WebviewController = new web_webview.WebviewController();
+}
+
 @Builder
 function WebBuilder(data:Data) {
   Column() {
