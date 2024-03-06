@@ -13,7 +13,7 @@
 1. 在已完成一个输入法应用的基础上，当输入法应用是当前输入法时，在输入法应用中使用inputMethod.switchCurrentInputMethodSubtype接口，传入当前输入法的子类型InputMethodSubtype作为参数即可切换当前输入法子类型。
 
    ```ts
-   import { InputMethodSubtype，inputMethod } from '@kit.IMEKit';
+   import { InputMethodSubtype, inputMethod } from '@kit.IMEKit';
    
    export class KeyboardController {
      async switchCurrentInputMethodSubtype() {
@@ -31,7 +31,7 @@
 2. 输入法应用中注册子类型变化事件，根据不同子类型加载不同的输入界面。
 
    ```ts
-   import { InputMethodSubtype，inputMethod } from '@kit.IMEKit';
+   import { InputMethodSubtype, inputMethod } from '@kit.IMEKit';
    
    export class KeyboardController {
      // 设置监听子类型事件，改变输入法应用界面
