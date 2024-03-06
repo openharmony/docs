@@ -1510,7 +1510,7 @@ write(fd: number, buffer: ArrayBuffer | string, options?: WriteOptions): Promise
 
   | 类型                    | 说明       |
   | --------------------- | -------- |
-  | Promise&lt;number&gt; | Promise对象。返回实际写入的长度。 |
+  | Promise&lt;number&gt; | Promise对象。返回实际写入的数据长度，单位字节。 |
 
 **错误码：**
 
@@ -1590,7 +1590,7 @@ writeSync(fd: number, buffer: ArrayBuffer | string, options?: WriteOptions): num
 
   | 类型     | 说明       |
   | ------ | -------- |
-  | number | 实际写入的长度。 |
+  | number | 返回实际写入的数据长度，单位字节。 |
 
 **错误码：**
 
