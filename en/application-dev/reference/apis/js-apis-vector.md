@@ -84,7 +84,7 @@ let result3 = vector.add(c);
 
 insert(element: T, index: number): void
 
-Inserts an element at the specified position in this container.
+Inserts an element within the length range and moves its subsequent elements rightwards.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -122,7 +122,7 @@ Checks whether this container has the specified element.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the element is contained; returns **false** otherwise.|
+| boolean | Returns **true** if the container has the specified element; returns **false** otherwise.|
 
 **Example**
 
@@ -205,7 +205,7 @@ let result = vector.getLastIndexOf(2);
 
 removeByIndex(index: number): T
 
-Removes an element at the specified position from this container.
+Searches for an element based on its index, removes the element after returning it, and moves its subsequent elements leftwards.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -219,7 +219,7 @@ Removes an element at the specified position from this container.
 
 | Type| Description|
 | -------- | -------- |
-| T | Element removed.|
+| T | Element removed. If the container is empty, **undefined** is returned. If the index is out of range, an exception is thrown.|
 
 **Example**
 
@@ -304,15 +304,15 @@ Replaces all elements in this container with new elements, and returns the new o
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | callbackFn | function | Yes| Callback invoked for replacement.|
-| thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked.|
+| thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked. |
 
 callbackFn
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | T | Yes| Value of the element that is currently traversed.|
-| index | number | No| Position index of the element that is currently traversed.|
-| vector | Vector&lt;T&gt; | No| Instance that calls the **replaceAllElements** API.|
+| index | number | No| Position index of the element that is currently traversed. |
+| vector | Vector&lt;T&gt; | No| Instance that calls the **replaceAllElements** API. |
 
 **Example**
 
@@ -323,7 +323,7 @@ vector.add(4);
 vector.add(5);
 vector.add(4);
 vector.replaceAllElements((value) => {
-    // Add the user operation logic based on the actual scenario.
+  // Add the user operation logic based on the actual scenario.
     return value;
 });
 ```
@@ -342,15 +342,15 @@ Uses a callback to traverse the elements in this container and obtain their posi
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | callbackFn | function | Yes| Callback invoked for replacement.|
-| thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked.|
+| thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked. |
 
 callbackFn
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | T | Yes| Value of the element that is currently traversed.|
-| index | number | No| Position index of the element that is currently traversed.|
-| vector | Vector&lt;T&gt; | No| Instance that calls the **forEach** API.|
+| index | number | No| Position index of the element that is currently traversed. |
+| vector | Vector&lt;T&gt; | No| Instance that calls the **forEach** API. |
 
 **Example**
 
@@ -378,7 +378,7 @@ Sorts elements in this container.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| comparator | function | No| Callback invoked for sorting.|
+| comparator | function | No| Callback invoked for sorting. |
 
 comparator
 

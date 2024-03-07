@@ -379,15 +379,15 @@ Replaces all elements in this container with new elements, and returns the new o
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | callbackFn | function | Yes| Callback invoked for the replacement.|
-| thisArg | Object | No| Value to use when the callback is invoked.|
+| thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked. |
 
-callbackfn
+callbackFn
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | T | Yes| Value of the element that is currently traversed.|
 | index | number | No| Position index of the element that is currently traversed.|
-| arrlist | ArrayList&lt;T&gt; | No| Instance that invokes the **replaceAllElements** method.|
+| arrlist | ArrayList&lt;T&gt; | No| Instance that calls the **replaceAllElements** API. |
 
 **Error codes**
 
@@ -406,7 +406,7 @@ arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
 arrayList.replaceAllElements((value) => {
-    // Add the user operation logic based on the actual scenario.
+  // Add the user operation logic based on the actual scenario.
     return value;
 });
 ```
@@ -425,15 +425,15 @@ Uses a callback to traverse the elements in this container and obtain their posi
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | callbackFn | function | Yes| Callback invoked for the replacement.|
-| thisArg | Object | No| Value to use when the callback is invoked.|
+| thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked. |
 
-callbackfn
+callbackFn
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | T | Yes| Value of the element that is currently traversed.|
-| index | number | No| Position index of the element that is currently traversed.|
-| arrlist | ArrayList&lt;T&gt; | No| Instance that invokes the **forEach** method.|
+| index | number | No| Position index of the element that is currently traversed. |
+| arrlist | ArrayList&lt;T&gt; | No| Instance that calls the **forEach** API. |
 
 **Error codes**
 
@@ -798,9 +798,9 @@ for (let item of arrayList) {
 
 // Method 2:
 let iter = arrayList[Symbol.iterator]();
-let temp = iter.next().value;
-while(temp != undefined) {
-    console.log(`value:${temp}`);
-    temp = iter.next().value;
+let temp = iter.next();
+while(!temp.done) {
+  console.log(`value:${temp.value}`);
+  temp = iter.next();
 }
 ```

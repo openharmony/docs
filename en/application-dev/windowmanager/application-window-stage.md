@@ -36,7 +36,6 @@ The table below lists the common APIs used for application window development. F
 | WindowStage | createSubWindow(name: string, callback: AsyncCallback&lt;Window&gt;): void | Creates a subwindow.<br>This API can be used only in the stage model.|
 | Window static method| createWindow(config: Configuration, callback: AsyncCallback\<Window>): void | Creates a system window.<br>**config**: parameters used for creating the window.|
 | Window | setUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void | Loads content to this window.<br>**path**: path of the page from which the content will be loaded. The path is configured in the **main_pages.json** file of the project in the stage model.|
-| Window | setWindowBackgroundColor(color: string, callback: AsyncCallback&lt;void&gt;): void | Sets the background color for this window.|
 | Window | setWindowBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void | Sets the brightness for this window.|
 | Window | setWindowTouchable(isTouchable: boolean, callback: AsyncCallback&lt;void&gt;): void | Sets whether this window is touchable.|
 | Window | moveWindowTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void | Moves this window.|
