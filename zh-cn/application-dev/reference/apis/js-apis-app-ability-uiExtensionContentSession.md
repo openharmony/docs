@@ -719,3 +719,68 @@ startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>
 | 16200001 | The caller has been released. |
 
 错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+
+## UIExtensionContentSession.getUIExtensionHostWindowProxy<sup>11+</sup>
+
+getUIExtensionHostWindowProxy(): uiExtensionHost.UIExtensionHostWindowProxy
+
+获取当前UIExtension对应的窗口对象，用于通知宽高、位置、避让信息等。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| uiExtensionHost.UIExtensionHostWindowProxy | 窗口对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 16000050 | Internal error. |
+
+**示例：**
+
+```ts
+import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility'
+import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession'
+import Want from '@ohos.app.ability.Want';
+import uiExtensionHost from '@ohos.uiExtensionHost';
+
+const TAG: string = '[UIExtAbility]'
+export default class UIExtAbility extends UIExtensionAbility {
+
+  onCreate() {
+    console.log(TAG, `UIExtAbility onCreate`)
+  }
+
+  onForeground() {
+    console.log(TAG, `UIExtAbility onForeground`)
+  }
+
+  onBackground() {
+    console.log(TAG, `UIExtAbility onBackground`)
+  }
+
+  onDestroy() {
+    console.log(TAG, `UIExtAbility onDestroy`)
+  }
+
+  onSessionCreate(want: Want, session: UIExtensionContentSession) {
+    let extensionHostWindow = session.getUIExtensionHostWindowProxy();
+      let data: Record<string, UIExtensionContentSession | uiExtensionHost.UIExtensionHostWindowProxy> = {
+      'session': session,
+      'extensionHostWindow': extensionHostWindow
+    }
+    let storage: LocalStorage = new LocalStorage(data);
+    session.loadContent('pages/extension', storage);
+  }
+  onSessionDestroy(session: UIExtensionContentSession) {
+    console.log(TAG, `UIExtAbility onSessionDestroy`)
+  }
+}
+```
+错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
