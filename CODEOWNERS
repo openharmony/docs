@@ -1083,3 +1083,6 @@ zh-cn/application-dev/device/externaldevice-guidelines.md @warehouse12
 zh-cn/application-dev/reference/apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md @warehouse12
 zh-cn/application-dev/reference/apis-driverdevelopment-kit/js-apis-driver-deviceManager.md @warehouse12
 zh-cn/application-dev/reference/apis-driverdevelopment-kit/js-apis-inner-application-driverExtensionContext.md @warehouse12
+
+[input kit]
+zh-cn/application-dev/reference/apis-input-kit/js-apis-pointer.md  @hu-zhiqiong
