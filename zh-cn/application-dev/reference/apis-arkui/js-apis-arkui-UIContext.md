@@ -986,8 +986,9 @@ on(type: 'routerPageUpdate', callback: Callback\<observer.RouterPageInfo\>): voi
 **示例：**
 
 ```ts
-import { UIObserver } from '@ohos.arkui.UIContext';
-let observer:UIObserver = uiContext.getUIObserver();
+import {UIContext, UIObserver } from '@kit.ArkUI';
+
+let observer:UIObserver = this.getUIContext().getUIObserver();
 observer.on('routerPageUpdate', (info) => {
     console.info('RouterPage state updated, called by ' + `${info.name}`);
 });
@@ -1011,8 +1012,10 @@ off(type: 'routerPageUpdate', callback?: Callback\<observer.RouterPageInfo\>): v
 **示例：**
 
 ```ts
-import { UIObserver } from '@ohos.arkui.UIContext';
-let observer:UIObserver = uiContext.getUIObserver();
+import {UIContext, UIObserver } from '@kit.ArkUI';
+
+let observer:UIObserver = this.getUIContext().getUIObserver();
+function callBackFunc(info:observer.RouterPageInfo) {};
 // callBackFunc is defined and used before
 observer.off('routerPageUpdate', callBackFunc);
 ```
