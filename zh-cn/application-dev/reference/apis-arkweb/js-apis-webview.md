@@ -5595,10 +5595,10 @@ struct WebComponent {
 <!DOCTYPE html>
 <html>
     <body>
-	<button style="width:300px;height:150px;font-size:50px" onclick="startTimer()">start</button>
-	<button style="width:300px;height:150px;font-size:50px" onclick="resetTimer()">reset</button>
-	<button style="width:300px;height:150px;font-size:50px" onclick="jsAlert()">alert</button><br><br>
-	<input style="width:300px;height:150px;font-size:50px" value="0" id="show_num">
+        <button style="width:300px;height:150px;font-size:50px" onclick="startTimer()">start</button>
+        <button style="width:300px;height:150px;font-size:50px" onclick="resetTimer()">reset</button>
+        <button style="width:300px;height:150px;font-size:50px" onclick="jsAlert()">alert</button><br><br>
+        <input style="width:300px;height:150px;font-size:50px" value="0" id="show_num">
     </body>
 </html>
 <script>
@@ -5677,10 +5677,10 @@ struct WebComponent {
 <!DOCTYPE html>
 <html>
     <body>
-	<button style="width:300px;height:150px;font-size:50px" onclick="startTimer()">start</button>
-	<button style="width:300px;height:150px;font-size:50px" onclick="resetTimer()">reset</button>
-	<button style="width:300px;height:150px;font-size:50px" onclick="jsAlert()">alert</button><br><br>
-	<input style="width:300px;height:150px;font-size:50px" value="0" id="show_num">
+        <button style="width:300px;height:150px;font-size:50px" onclick="startTimer()">start</button>
+        <button style="width:300px;height:150px;font-size:50px" onclick="resetTimer()">reset</button>
+        <button style="width:300px;height:150px;font-size:50px" onclick="jsAlert()">alert</button><br><br>
+        <input style="width:300px;height:150px;font-size:50px" value="0" id="show_num">
     </body>
 </html>
 <script>
