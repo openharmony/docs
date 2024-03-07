@@ -26,13 +26,13 @@ Obtains a **PhotoAccessHelper** instance for accessing and modifying media files
 
 | Name | Type   | Mandatory| Description                      |
 | ------- | ------- | ---- | -------------------------- |
-| context | [Context](js-apis-inner-app-context.md) | Yes  | Context of the ability instance.|
+| context | [Context](js-apis-inner-application-context.md) | Yes  | Context of the ability instance.|
 
 **Return value**
 
 | Type                           | Description   |
 | ----------------------------- | :---- |
-| [PhotoAccessHelper](#photoaccesshelper) | Returns the **PhotoAccessHelper** instance created.|
+| [PhotoAccessHelper](#photoaccesshelper) | **PhotoAccessHelper** instance obtained.|
 
 **Error codes**
 
@@ -545,7 +545,7 @@ createAlbum(name: string, callback: AsyncCallback&lt;Album&gt;): void
 Creates an album. This API uses an asynchronous callback to return the result.
 
 The album name must meet the following requirements:
-- The album name is a string of 1 to 255 characters.
+- The album name cannot exceed 255 characters.
 - The album name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
 - The album name is case-insensitive.
 - Duplicate album names are not allowed.
@@ -599,7 +599,7 @@ createAlbum(name: string): Promise&lt;Album&gt;
 Creates an album. This API uses a promise to return the result.
 
 The album name must meet the following requirements:
-- The album name is a string of 1 to 255 characters.
+- The album name cannot exceed 255 characters.
 - The album name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
 - The album name is case-insensitive.
 - Duplicate album names are not allowed.
@@ -4121,7 +4121,7 @@ deleteAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&gt
 
 Deletes image or video assets from the trash. Before the operation, ensure that the image or video assets exist in the trash. This API uses an asynchronous callback to return the result.
 
-**CAUTION**<br>This operation is irreversible. The file assets deleted cannot be restored. Exercise caution when performing this operation.
+> **NOTE**<br>This operation is irreversible. The file assets deleted cannot be restored. Exercise caution when performing this operation.
 
 **System API**: This is a system API.
 
@@ -4184,7 +4184,7 @@ deleteAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;
 
 Deletes image or video assets from the trash. Before the operation, ensure that the image or video assets exist in the trash. This API uses a promise to return the result.
 
-**CAUTION**<br>This operation is irreversible. The file assets deleted cannot be restored. Exercise caution when performing this operation.
+> **NOTE**<br>This operation is irreversible. The file assets deleted cannot be restored. Exercise caution when performing this operation.
 
 **System API**: This is a system API.
 
@@ -4520,7 +4520,7 @@ Defines the options for fetching media files.
 
 | Name                  | Type               | Readable| Writable| Description                                             |
 | ---------------------- | ------------------- | ---- |---- | ------------------------------------------------ |
-| fetchColumns           | Array&lt;string&gt; | Yes  | Yes  | Options for fetching files based on the attributes in columns.<br>If this parameter is left empty, files are fetched by URI, name, and type (the specific field names vary with the file asset or album object) by default. In addition, an error will be reported if [get](#get) is called to obtain other attributes of this object.<br>Example: fetchColumns: ['uri', 'title']|
+| fetchColumns           | Array&lt;string&gt; | Yes  | Yes  | Options for fetching files based on the attributes in columns.<br>If this parameter is left empty, files are fetched by URI, name, and type (the specific field names vary with the file asset or album object) by default. In addition, an error will be reported if [get](#get) is called to obtain other attributes of this object. <br>Example: fetchColumns: ['uri', 'title']|
 | predicates           | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Yes  | Predicates that specify the fetch criteria.|
 
 ## ChangeData
