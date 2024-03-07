@@ -67,6 +67,7 @@
       - [组件可见区域变化事件](arkui-ts/ts-universal-component-visible-area-change-event.md)
       - [组件快捷键事件](arkui-ts/ts-universal-events-keyboardshortcut.md)
       - [自定义事件分发](arkui-ts/ts-universal-attributes-on-child-touch-test.md)
+      - [自定义事件拦截](arkui-ts/ts-universal-attributes-on-touch-intercept.md)
     - 通用属性
       - [尺寸设置](arkui-ts/ts-universal-attributes-size.md)
       - [位置设置](arkui-ts/ts-universal-attributes-location.md)
