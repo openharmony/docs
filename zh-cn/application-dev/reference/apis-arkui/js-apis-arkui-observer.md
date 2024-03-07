@@ -177,7 +177,7 @@ off(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callba
 observer.off('navDestinationUpdate', { navigationId: "testId" });
 ```
 
-## observer.on('scrollEvent')
+## observer.on('scrollEvent')<sup>12+</sup>
 
 on(type: 'scrollEvent', callback: Callback\<ScrollEventInfo\>): void
 
@@ -192,15 +192,7 @@ on(type: 'scrollEvent', callback: Callback\<ScrollEventInfo\>): void
 | type     | string                                                | 是   | 监听事件，固定为'scrollEvent'，即滚动事件的开始和结束。                   |
 | callback | Callback\<[ScrollEventInfo](#ScrollEventInfo)\>       | 否   | 回调函数。返回滚动事件的信息。                                           |
 
-**示例：**
-
-```ts
-observer.on('scrollEvent', (info) => {
-    console.info('scrollEvent ', JSON.stringify(info));
-});
-```
-
-## observer.off('scrollEvent')
+## observer.off('scrollEvent')<sup>12+</sup>
 
 off(type: 'scrollEvent', callback?: Callback\<ScrollEventInfo\>): void
 
@@ -215,13 +207,7 @@ off(type: 'scrollEvent', callback?: Callback\<ScrollEventInfo\>): void
 | type     | string                                                | 是   | 监听事件，固定为'scrollEvent'，即滚动事件的开始和结束。                   |
 | callback | Callback\<[ScrollEventInfo](#ScrollEventInfo)\>       | 否   | 回调函数。返回滚动事件的信息。                                           |
 
-**示例：**
-
-```ts
-observer.off('scrollEvent');
-```
-
-## observer.on('scrollEvent')
+## observer.on('scrollEvent')<sup>12+</sup>
 
 on(type: 'scrollEvent', options: { id: string }, callback: Callback\<ScrollEventInfo\>): void
 
@@ -237,15 +223,7 @@ on(type: 'scrollEvent', options: { id: string }, callback: Callback\<ScrollEvent
 | options  | { id: string }                                                       | 是   | 指定监听的滚动组件的id。                                                 |
 | callback | Callback\<[ScrollEventInfo](#ScrollEventInfo)\>                      | 否   | 回调函数。返回滚动事件的信息。                                            |
 
-**示例：**
-
-```ts
-observer.on('scrollEvent', { id: "testId" }, (info) => {
-    console.info('scrollEvent ', JSON.stringify(info));
-});
-```
-
-## observer.off('scrollEvent')
+## observer.off('scrollEvent')<sup>12+</sup>
 
 off(type: 'scrollEvent', options: { id: string }, callback?: Callback\<ScrollEventInfo\>): void
 
@@ -264,7 +242,70 @@ off(type: 'scrollEvent', options: { id: string }, callback?: Callback\<ScrollEve
 **示例：**
 
 ```ts
-observer.off('scrollEvent', { id: "testId" });
+import observer from '@ohos.arkui.observer'
+
+@Entry
+@Component
+struct Index {
+  scroller: Scroller = new Scroller();
+  options: observer.ObserverOptions = { id:"testId" };
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7]
+
+  build() {
+    Row() {
+      Column() {
+        Scroll(this.scroller) {
+          Column() {
+            ForEach(this.arr, (item: number) => {
+              Text(item.toString())
+                .width('90%')
+                .height(150)
+                .backgroundColor(0xFFFFFF)
+                .borderRadius(15)
+                .fontSize(16)
+                .textAlign(TextAlign.Center)
+                .margin({ top: 10 })
+            }, (item: string) => item)
+          }.width('100%')
+        }
+        .id("testId")
+        .height('80%')
+      }
+      .width('100%')
+
+      Row() {
+        Button('UIObserver on')
+          .onClick(() => {
+            observer.on('scrollEvent', (info) => {
+              console.info('NavDestination state update', JSON.stringify(info));
+            });
+          })
+        Button('UIObserver off')
+          .onClick(() => {
+            observer.off('scrollEvent', (info) => {
+              console.info('NavDestination state update', JSON.stringify(info));
+            });
+          })
+      }
+
+      Row() {
+        Button('UIObserverWithId on')
+          .onClick(() => {
+            observer.on('scrollEvent', this.options, (info) => {
+              console.info('NavDestination state update', JSON.stringify(info));
+            });
+          })
+        Button('UIObserverWithId off')
+          .onClick(() => {
+            observer.off('scrollEvent', this.options, (info) => {
+              console.info('NavDestination state update', JSON.stringify(info));
+            });
+          })
+      }
+    }
+    .height('100%')
+  }
+}
 ```
 
 ## observer.on('routerPageUpdate')<sup>11+</sup>
