@@ -5597,7 +5597,6 @@ struct WebComponent {
     <body>
         <button style="width:300px;height:150px;font-size:50px" onclick="startTimer()">start</button>
         <button style="width:300px;height:150px;font-size:50px" onclick="resetTimer()">reset</button>
-        <button style="width:300px;height:150px;font-size:50px" onclick="jsAlert()">alert</button><br><br>
         <input style="width:300px;height:150px;font-size:50px" value="0" id="show_num">
     </body>
 </html>
@@ -5609,10 +5608,6 @@ struct WebComponent {
         timer = setInterval(function() {
             document.getElementById("show_num").value = ++num;
         }, 1000);
-    }
-
-    function jsAlert() {
-        alert("Can Alert!");
     }
 </script>
 ```
@@ -5679,7 +5674,6 @@ struct WebComponent {
     <body>
         <button style="width:300px;height:150px;font-size:50px" onclick="startTimer()">start</button>
         <button style="width:300px;height:150px;font-size:50px" onclick="resetTimer()">reset</button>
-        <button style="width:300px;height:150px;font-size:50px" onclick="jsAlert()">alert</button><br><br>
         <input style="width:300px;height:150px;font-size:50px" value="0" id="show_num">
     </body>
 </html>
@@ -5698,10 +5692,6 @@ struct WebComponent {
         document.getElementById("show_num").value = 0;
         countdown = null;
         num = 0;
-    }
-
-    function jsAlert() {
-        alert("Can Alert!");
     }
 </script>
 ```
