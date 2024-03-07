@@ -5575,10 +5575,10 @@ struct WebComponent {
   build() {
     Column() {
       Row() {
-        Button('ResumeAllTimers')
+        Button('pauseAllTimers')
           .onClick(() => {
               try {
-                web_webview.WebviewController.resumeAllTimers()
+                web_webview.WebviewController.pauseAllTimers()
               } catch (error) {
                 let e: business_error.BusinessError = error as business_error.BusinessError;
                 console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
