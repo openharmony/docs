@@ -4,7 +4,7 @@ The **account** module provides a role-based access control mechanism. You can s
 
 ## Constraints
 
-For details about the predefined account constraints, see [Constraints](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#constraints).
+For details about the predefined account constraints, see [Constraints](../reference/apis-basic-services-kit/js-apis-osAccount.md#constraints).
 
 ## Before You Start
 
@@ -31,7 +31,7 @@ The user can set constraints to restrict the system account behaviors. For examp
 1. Specify the system account ID and the constraints.
 
    ```ts
-   let localId: number = 101;
+   let localId: number = 100;
    let constraint: string[] = [ 'constraint.wifi.set' ];
    ```
 
