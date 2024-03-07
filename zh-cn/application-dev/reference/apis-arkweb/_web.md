@@ -5,7 +5,7 @@
 
 该模块主要提供Web组件下runJavaScript和registerJavaScirptProxy的NDK接口。
 
-**起始版本：** 12
+**起始版本：** 11
 
 
 ## 汇总
