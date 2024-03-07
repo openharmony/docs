@@ -26,7 +26,7 @@ The **HapModuleInfo** module defines the HAP module information. A third-party a
 | deviceTypes                       | Array\<string>                                               | Yes  | No  | Types of devices where the module can run.  |
 | installationFree                  | boolean                                                      | Yes  | No  | Whether installation-free is supported.      |
 | hashValue                         | string                                                       | Yes  | No  | Hash value of the module.             |
-| moduleType                        | [ModuleType](js-apis-bundleManager.md#moduletype)            | Yes  | No  | Type of the module.     |
+| type                              | [ModuleType](js-apis-bundleManager.md#moduletype)            | Yes  | No  | Type of the module.     |
 | preloads                          | Array\<[PreloadItem](#preloaditem)>                          | Yes  | No  | Preloaded modules in the atomic service.|
 | dependencies                      | Array\<[Dependency](#dependency)>                            | Yes  | No  | Dynamic shared libraries on which the module depends. |
 | fileContextMenuConfig<sup>11+</sup>     | string                                                       | Yes  | No  | File menu configuration of the module. The information can be obtained by passing in **GET_BUNDLE_INFO_WITH_HAP_MODULE** and **GET_BUNDLE_INFO_WITH_MENU** to the **bundleFlags** parameter of [getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself).|

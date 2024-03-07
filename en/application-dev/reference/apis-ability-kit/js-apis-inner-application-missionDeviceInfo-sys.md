@@ -1,6 +1,6 @@
 # MissionDeviceInfo (System API)
 
-The **MissionDeviceInfo** module defines the parameters required for registering a listener. It can be used as an input parameter in [registerMissionListener](../apis/js-apis-distributedMissionManager.md#distributedmissionmanagerregistermissionlistener).
+The **MissionDeviceInfo** module defines the parameters required for registering a listener. It can be used as an input parameter in [registerMissionListener](./js-apis-distributedMissionManager-sys.md#distributedmissionmanagerregistermissionlistener).
 
 > **NOTE**
 >
@@ -18,8 +18,11 @@ import distributedMissionManager from '@ohos.distributedMissionManager';
 
 **System API**: This is a system API.
 
+**Required permissions**: ohos.permission.MANAGE_MISSIONS
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
 | Name      | Type  | Readable  | Writable  | Description     |
 | -------- | ------ | ---- | ---- | ------- |
 | deviceId | string | Yes   | Yes   | Device ID.|
+
