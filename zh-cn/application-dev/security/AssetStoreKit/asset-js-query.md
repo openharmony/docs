@@ -6,6 +6,8 @@
 
 [query(query: AssetMap): Promise\<Array\<AssetMap>>](../../reference/apis-asset-store-kit/js-apis-asset.md#assetquery)
 
+[querySync(query: AssetMap): Array\<AssetMap>](../../reference/apis-asset-store-kit/js-apis-asset.md#assetquerysync12)
+
 参数列表：
 
 | 属性名称（Tag）        | 属性内容（Value）                                             | 是否必选  | 说明                                                         |
@@ -30,6 +32,10 @@
 | RETURN_ORDERED_BY     | 类型为number，取值范围：asset.Tag.DATA_LABEL_xxx             | 可选     | 关键资产查询返回的结果排序依据，仅支持按照附属信息排序<br>**说明：** 默认按照关键资产新增的顺序返回。 |
 
 ## 代码示例
+
+> **说明：**
+>
+> 本模块提供了异步和同步两套接口，以下为异步接口的使用示例，同步接口详见[API文档](../../reference/apis-asset-store-kit/js-apis-asset.md)。
 
 ### 查询单条关键资产明文
 

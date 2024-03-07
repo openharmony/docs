@@ -4,11 +4,21 @@
 
 接口文档链接：
 
+异步接口：
+
 [preQuery(query: AssetMap): Promise\<Uint8Array>](../../reference/apis-asset-store-kit/js-apis-asset.md#assetprequery)
 
 [query(query: AssetMap): Promise\<Array\<AssetMap>>](../../reference/apis-asset-store-kit/js-apis-asset.md#assetquery)
 
 [postQuery(handle: AssetMap): Promise\<void>](../../reference/apis-asset-store-kit/js-apis-asset.md#assetpostquery)
+
+同步接口：
+
+[preQuerySync(query: AssetMap): Uint8Array](../../reference/apis-asset-store-kit/js-apis-asset.md#assetprequerysync12)
+
+[querySync(query: AssetMap): Array\<AssetMap>](../../reference/apis-asset-store-kit/js-apis-asset.md#assetquerysync12)
+
+[postQuerySync(handle: AssetMap): void](../../reference/apis-asset-store-kit/js-apis-asset.md#assetpostquerysync12)
 
 preQuery参数列表
 
@@ -59,6 +69,10 @@ postQuery参数列表
 | AUTH_CHALLENGE      | 类型为Uint8Array，长度为32字节 | 必选     | 用户认证的挑战值 |
 
 ## 代码示例
+
+> **说明：**
+>
+> 本模块提供了异步和同步两套接口，以下为异步接口的使用示例，同步接口详见[API文档](../../reference/apis-asset-store-kit/js-apis-asset.md)。
 
 查询别名是demo_alias且需要用户认证的关键资产。
 
