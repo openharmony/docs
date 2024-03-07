@@ -277,14 +277,12 @@ struct Index {
         Button('UIObserver on')
           .onClick(() => {
             observer.on('scrollEvent', (info) => {
-              console.info('NavDestination state update', JSON.stringify(info));
+              console.info('scrollEventInfo', JSON.stringify(info));
             });
           })
         Button('UIObserver off')
           .onClick(() => {
-            observer.off('scrollEvent', (info) => {
-              console.info('NavDestination state update', JSON.stringify(info));
-            });
+            observer.off('scrollEvent');
           })
       }
 
@@ -292,14 +290,12 @@ struct Index {
         Button('UIObserverWithId on')
           .onClick(() => {
             observer.on('scrollEvent', this.options, (info) => {
-              console.info('NavDestination state update', JSON.stringify(info));
+              console.info('scrollEventInfo', JSON.stringify(info));
             });
           })
         Button('UIObserverWithId off')
           .onClick(() => {
-            observer.off('scrollEvent', this.options, (info) => {
-              console.info('NavDestination state update', JSON.stringify(info));
-            });
+            observer.off('scrollEvent', this.options);
           })
       }
     }

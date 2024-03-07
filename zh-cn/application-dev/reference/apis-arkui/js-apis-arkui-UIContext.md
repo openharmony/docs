@@ -983,16 +983,6 @@ on(type: 'scrollEvent', callback: Callback\<observer.ScrollEventInfo\>): void
 | type     | string                                                | 是   | 监听事件，固定为'scrollEvent'，即滚动事件的开始和结束。      |
 | callback | Callback\<observer.[ScrollEventInfo](js-apis-arkui-observer.md#ScrollEventInfo)\> | 是   | 回调函数。返回滚动事件的信息。   |
 
-**示例：**
-
-```ts
-import { UIObserver } from '@ohos.arkui.UIContext';
-let observer:UIObserver = uiContext.getUIObserver();
-observer.on('scrollEvent', (info) => {
-    console.info('scrollEvent ', JSON.stringify(info));
-});
-```
-
 ### off('scrollEvent')<sup>12+</sup>
 
 off(type: 'scrollEvent', callback?: Callback\<observer.ScrollEventInfo\>): void
@@ -1007,14 +997,6 @@ off(type: 'scrollEvent', callback?: Callback\<observer.ScrollEventInfo\>): void
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                                | 是   | 监听事件，固定为'scrollEvent'，即滚动事件的开始和结束。      |
 | callback | Callback\<observer.[ScrollEventInfo](js-apis-arkui-observer.md#ScrollEventInfo)\> | 是   | 回调函数。返回滚动事件的信息。   |
-
-**示例：**
-
-```ts
-import { UIObserver } from '@ohos.arkui.UIContext';
-let observer:UIObserver = uiContext.getUIObserver();
-observer.off('scrollEvent');
-```
 
 ### on('scrollEvent')<sup>12+</sup>
 
@@ -1031,16 +1013,6 @@ on(type: 'scrollEvent', options: { id: string }, callback: Callback\<observer.Sc
 | type     | string                                                       | 是   | 监听事件，固定为'scrollEvent'，即滚动事件的开始和结束。 |
 | options  | { id: string } | 是   | 指定监听的滚动组件的id。                                   |
 | callback | Callback\<observer.[ScrollEventInfo](js-apis-arkui-observer.md#ScrollEventInfo)\>        | 是   | 回调函数。返回滚动事件的信息。                 |
-
-**示例：**
-
-```ts
-import { UIObserver } from '@ohos.arkui.UIContext';
-let observer:UIObserver = uiContext.getUIObserver();
-observer.on('scrollEvent', { id: "testId" }, (info) => {
-    console.info('scrollEvent ', JSON.stringify(info));
-});
-```
 
 ### off('scrollEvent')<sup>12+</sup>
 
@@ -1061,9 +1033,66 @@ off(type: 'scrollEvent', options: { id: string }, callback?: Callback\<observer.
 **示例：**
 
 ```ts
-import { UIObserver } from '@ohos.arkui.UIContext';
-let observer:UIObserver = uiContext.getUIObserver();
-observer.off('scrollEvent', { id: "testId" });
+import uiContext, { UIObserver } from '@ohos.arkui.UIContext';
+
+@Entry
+@Component
+struct Index {
+  scroller: Scroller = new Scroller();
+  observer: uiContext.UIObserver = new UIObserver();
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7]
+
+  build() {
+    Row() {
+      Column() {
+        Scroll(this.scroller) {
+          Column() {
+            ForEach(this.arr, (item: number) => {
+              Text(item.toString())
+                .width('90%')
+                .height(150)
+                .backgroundColor(0xFFFFFF)
+                .borderRadius(15)
+                .fontSize(16)
+                .textAlign(TextAlign.Center)
+                .margin({ top: 10 })
+            }, (item: string) => item)
+          }.width('100%')
+        }
+        .id("testId")
+        .height('80%')
+      }
+      .width('100%')
+
+      Row() {
+        Button('UIObserver on')
+          .onClick(() => {
+            this.observer.on('scrollEvent', (info) => {
+              console.info('scrollEventInfo', JSON.stringify(info));
+            });
+          })
+        Button('UIObserver off')
+          .onClick(() => {
+            this.observer.off('scrollEvent');
+          })
+      }
+
+      Row() {
+        Button('UIObserverWithId on')
+          .onClick(() => {
+            this.observer.on('scrollEvent', { id:"testId" }, (info) => {
+              console.info('scrollEventInfo', JSON.stringify(info));
+            });
+          })
+        Button('UIObserverWithId off')
+          .onClick(() => {
+            this.observer.off('scrollEvent', { id:"testId" });
+          })
+      }
+    }
+    .height('100%')
+  }
+}
 ```
 
 ### on('routerPageUpdate')<sup>11+</sup>
