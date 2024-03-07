@@ -378,3 +378,66 @@ disconnectServiceExtensionAbility(connection: number, callback: AsyncCallback\<v
 | 16000050 | Internal error. |
 
 错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+
+## UIExtensionContext.terminateSelf<sup>12+</sup>
+
+terminateSelf(callback: AsyncCallback&lt;void&gt;): void
+
+停止UIExtensionContext对应的窗口界面对象。使用callback异步回调。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明                                                         |
+| -------- | ------------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当停止UIExtensionContext对应的窗口界面对象成功，err为undefined，否则为错误对象。 |
+
+## UIExtensionContext.terminateSelf<sup>12+</sup>
+
+terminateSelf(): Promise&lt;void&gt;
+
+停止UIExtensionContext对应的窗口界面对象。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**返回值：**
+
+| 类型                | 说明                                   |
+| ------------------- | -------------------------------------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+## UIExtensionContext.terminateSelfWithResult<sup>12+</sup>
+
+terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;void&gt;): void
+
+停止UIExtensionContext对应的窗口界面对象，并将结果返回给UIExtensionComponent控件。使用callback异步回调。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名    | 类型                                                    | 必填 | 说明                                                   |
+| --------- | ------------------------------------------------------- | ---- | ------------------------------------------------------ |
+| parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | 是   | 返回给UIExtensionComponent控件的信息。                 |
+| callback  | AsyncCallback&lt;void&gt;                               | 是   | 回调函数。当停止成功，err为undefined，否则为错误对象。 |
+
+## UIExtensionContext.terminateSelfWithResult<sup>12+</sup>
+
+terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;
+
+停止UIExtensionContext对应的窗口界面对象，并将结果返回给UIExtensionComponent控件。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名    | 类型                                                    | 必填 | 说明                                   |
+| --------- | ------------------------------------------------------- | ---- | -------------------------------------- |
+| parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | 是   | 返回给UIExtensionComponent控件的信息。 |
+
+**返回值：**
+
+| 类型                | 说明                                   |
+| ------------------- | -------------------------------------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
