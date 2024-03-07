@@ -2639,6 +2639,18 @@
 
 **起始版本**：11
 
+### ohos.permission.QUERY_PASSWORD_VAULT_DATA
+
+允许应用获取密码保险箱帐号数据。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**: 12
+
 ## user_grant，允许ACL跨级申请
 
 以下权限的授权方式均为user_grant（用户授权），且允许通过ACL的方式申请。
@@ -2944,15 +2956,3 @@
 **ACL使能**：true
 
 **起始版本**：11
-
-### ohos.permission.QUERY_PASSWORD_VAULT_DATA
-
-允许系统应用查询密码保险箱帐号相关数据。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**: 12
