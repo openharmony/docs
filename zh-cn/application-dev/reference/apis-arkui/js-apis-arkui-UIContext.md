@@ -986,8 +986,27 @@ on(type: 'routerPageUpdate', callback: Callback\<observer.RouterPageInfo\>): voi
 **示例：**
 
 ```ts
-import { UIObserver } from '@ohos.arkui.UIContext';
-let observer:UIObserver = uiContext.getUIObserver();
+// 在UI中使用接口observer.on与off，需要包括如下的库文件，并定义接口用以获取window
+import common from '@ohos.app.ability.common';
+import UIContext, { UIObserver } from '@ohos.arkui.UIContext';
+import window from '@ohos.window';
+
+interface Data {
+  window: window.Window | null
+}
+
+// 使用接口observer.on与off之前，需要先获取uiContext(uiContext是成员变量)，例如在aboutToAppear中采用如下的方式获取
+aboutToAppear() {
+  let abilityContext = getContext(this) as common.UIAbilityContext;
+  let data : Data = { window: null };
+  abilityContext.eventHub.emit("getWindow", data);
+  if (data.window) {
+    this.uiContext = data.window.getUIContext();
+  }
+}
+
+// 使用方法如下
+let observer:UIObserver | null = this.uiContext ? this.uiContext.getUIObserver() : null;
 observer.on('routerPageUpdate', (info) => {
     console.info('RouterPage state updated, called by ' + `${info.name}`);
 });
@@ -1011,8 +1030,28 @@ off(type: 'routerPageUpdate', callback?: Callback\<observer.RouterPageInfo\>): v
 **示例：**
 
 ```ts
-import { UIObserver } from '@ohos.arkui.UIContext';
-let observer:UIObserver = uiContext.getUIObserver();
+// 在UI中使用接口observer.on与off，需要包括如下的库文件，并定义接口用以获取window
+import common from '@ohos.app.ability.common';
+import UIContext, { UIObserver } from '@ohos.arkui.UIContext';
+import window from '@ohos.window';
+
+interface Data {
+  window: window.Window | null
+}
+
+// 使用接口observer.on与off之前，需要先获取uiContext(uiContext是成员变量)，例如在aboutToAppear中采用如下的方式获取
+aboutToAppear() {
+  let abilityContext = getContext(this) as common.UIAbilityContext;
+  let data : Data = { window: null };
+  abilityContext.eventHub.emit("getWindow", data);
+  if (data.window) {
+    this.uiContext = data.window.getUIContext();
+  }
+}
+
+// 使用方法如下
+let observer:UIObserver | null = this.uiContext ? this.uiContext.getUIObserver() : null;
+function callBackFunc(info:observer.RouterPageInfo) {};
 // callBackFunc is defined and used before
 observer.off('routerPageUpdate', callBackFunc);
 ```
