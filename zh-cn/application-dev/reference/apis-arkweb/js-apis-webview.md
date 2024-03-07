@@ -5690,7 +5690,6 @@ struct WebComponent {
     function resetTimer() {
         clearInterval(timer);
         document.getElementById("show_num").value = 0;
-        countdown = null;
         num = 0;
     }
 </script>
