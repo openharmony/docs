@@ -57,7 +57,7 @@
    };
    ```
 
-2. 指定类型和域帐号信息，调用[createOsAccount]()接口在设备上创建一个域帐号。
+2. 指定类型和域帐号信息，调用[createOsAccountForDomain](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#createosaccountfordomain)接口在设备上创建一个域帐号。
 
    ```ts
    try {
