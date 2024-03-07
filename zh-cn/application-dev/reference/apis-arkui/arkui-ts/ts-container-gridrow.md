@@ -139,9 +139,21 @@ GridRow(option?: GridRowOptions)
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
-| 名称                       | 参数类型                            | 描述                                               |
-| ----------------------- | ----------------------------------- | ------------------------------------------- |
-| alignItems<sup>10+</sup>             | ItemAlign | 设置GridRow中的GridCol垂直主轴方向对齐方式，默认值：ItemAlign.Start<br/>**说明**：<br/>ItemAlign支持的枚举：ItemAlign.Start、ItemAlign.Center、ItemAlign.End、ItemAlign.Stretch。<br/>GridCol本身也可通过alignSelf([ItemAlign](ts-appendix-enums.md#itemalign))设置自身对齐方式。当上述两种对齐方式都设置时，以GridCol自身设置为准。<br/>从API version 10开始，该接口支持在ArkTS卡片中使用。 |
+### alignItems<sup>10+</sup>
+
+alignItems(value: ItemAlign)
+
+设置GridRow中的GridCol垂直主轴方向对齐方式。GridCol本身也可通过alignSelf([ItemAlign](ts-appendix-enums.md#itemalign))设置自身对齐方式。当上述两种对齐方式都设置时，以GridCol自身设置为准。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                        | 必填 | 说明                                                         |
+| ------ | ------------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [ItemAlign](ts-appendix-enums.md#itemalign) | 是   | GridRow中的GridCol垂直主轴方向对齐方式。<br/>默认值：ItemAlign.Start<br/>**说明**：<br/>ItemAlign支持的枚举：ItemAlign.Start、ItemAlign.Center、ItemAlign.End、ItemAlign.Stretch。 |
 
 
 ## 事件
@@ -152,7 +164,9 @@ onBreakpointChange(callback: (breakpoints: string) => void)
 
 断点发生变化时触发回调。
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 

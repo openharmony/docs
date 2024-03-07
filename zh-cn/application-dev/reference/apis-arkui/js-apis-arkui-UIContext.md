@@ -986,8 +986,9 @@ on(type: 'routerPageUpdate', callback: Callback\<observer.RouterPageInfo\>): voi
 **示例：**
 
 ```ts
-import { UIObserver } from '@ohos.arkui.UIContext';
-let observer:UIObserver = uiContext.getUIObserver();
+import {UIContext, UIObserver } from '@kit.ArkUI';
+
+let observer:UIObserver = this.getUIContext().getUIObserver();
 observer.on('routerPageUpdate', (info) => {
     console.info('RouterPage state updated, called by ' + `${info.name}`);
 });
@@ -1011,8 +1012,10 @@ off(type: 'routerPageUpdate', callback?: Callback\<observer.RouterPageInfo\>): v
 **示例：**
 
 ```ts
-import { UIObserver } from '@ohos.arkui.UIContext';
-let observer:UIObserver = uiContext.getUIObserver();
+import {UIContext, UIObserver } from '@kit.ArkUI';
+
+let observer:UIObserver = this.getUIContext().getUIObserver();
+function callBackFunc(info:observer.RouterPageInfo) {};
 // callBackFunc is defined and used before
 observer.off('routerPageUpdate', callBackFunc);
 ```
@@ -1916,6 +1919,37 @@ let router: Router = uiContext.getRouter();
 router.back({url:'pages/detail'});    
 ```
 
+### back<sup>12+</sup>
+
+back(index: number, params?: Object): void;
+
+返回指定的页面。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                              | 必填   | 说明         |
+| ------- | ------------------------------- | ---- | ---------- |
+| index | number | 是    | 跳转目标页面的索引值。  |
+| params    | Object      | 否    | 页面返回时携带的参数。 |
+
+**示例：**
+
+```ts
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+let router: Router = uiContext.getRouter();
+router.back(1);
+```
+
+```ts
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+let router: Router = uiContext.getRouter();
+router.back(1, {info:'来自Home页'}); //携带参数返回
+```
+
 ### clear
 
 clear(): void
@@ -1981,6 +2015,74 @@ let page = router.getState();
 console.log('current index = ' + page.index);
 console.log('current name = ' + page.name);
 console.log('current path = ' + page.path);
+```
+
+### getStateByIndex<sup>12+</sup>
+
+getStateByIndex(index: number): router.RouterState | undefined
+
+通过索引值获取对应页面的状态信息。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                              | 必填   | 说明         |
+| ------- | ------------------------------- | ---- | ---------- |
+| index    | number | 是   | 表示要获取的页面索引。  |
+
+**返回值：**
+
+| 类型                          | 说明      |
+| --------------------------- | ------- |
+| router.[RouterState](js-apis-router.md#outerstate) | 页面状态信息。 |
+| undefined   | 索引不存在时返回undefined。|
+
+**示例：** 
+
+```ts
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+let router: Router = uiContext.getRouter();
+let options:router.RouterState = router.getStateByIndex(1);
+console.log('index = ' + options.index);
+console.log('name = ' + options.name);
+console.log('path = ' + options.path);
+console.log('params = ' + options.params);
+```
+### getStateByUrl<sup>12+</sup>
+
+getStateByUrl(url: string): Array<router.[RouterState](js-apis-router.md#outerstate)>
+
+通过url获取当前页面的状态信息。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                              | 必填   | 说明         |
+| ------- | ------------------------------- | ---- | ---------- |
+| url    | string | 是   | 表示要获取对应页面信息的url。  |
+
+**返回值：**
+
+| 类型                          | 说明      |
+| --------------------------- | ------- |
+| Array<router.[RouterState](js-apis-router.md#outerstate)> | 页面状态信息。 |
+
+**示例：** 
+
+```ts
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+let router: Router = uiContext.getRouter();
+let options:Array<router.RouterState> = router.getStateByUrl('pages/index');
+for (let i: number = 0; i < options.length; i++) {
+  console.log('index = ' + options[i].index);
+  console.log('name = ' + options[i].name);
+  console.log('path = ' + options[i].path);
+  console.log('params = ' + options[i].params);
+}
 ```
 
 ### showAlertBeforeBackPage

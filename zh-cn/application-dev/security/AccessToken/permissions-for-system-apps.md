@@ -2393,6 +2393,54 @@
 
 **起始版本**：12
 
+### ohos.permission.hsdr.REQUEST_HSDR
+
+允许系统应用访问安全检测响应框架安全策略云查功能。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.NOTIFY_DEBUG_ASSERT_RESULT
+
+允许应用设置断言调试结果。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.QUERY_PASSWORD_VAULT_DATA
+
+允许应用获取密码保险箱帐号数据。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**: 12
+
+### ohos.permission.SUBSCRIBE_NOTIFICATION_WINDOW_STATE
+
+允许应用订阅通知面板显示或收起时发送的广播。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ## system_grant，不允许ACL跨级申请
 
 以下权限的授权方式均为system_grant（系统授权），但不允许通过ACL的方式申请。

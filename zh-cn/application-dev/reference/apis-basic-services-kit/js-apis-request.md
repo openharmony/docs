@@ -3189,7 +3189,7 @@ off(event: 'response', callback?: Callback&lt;HttpResponse&gt;): void
 
 start(callback: AsyncCallback&lt;void&gt;): void
 
-启动任务，无法启动已初始化的任务。可以启动一个已失败的下载任务，从上次的进度开始续传。使用callback异步回调。
+启动任务，无法启动已初始化的任务。可以启动一个已失败或已停止的下载任务，从上次的进度开始续传。使用callback异步回调。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -3257,7 +3257,7 @@ start(callback: AsyncCallback&lt;void&gt;): void
 
 start(): Promise&lt;void&gt;
 
-启动任务，无法启动已初始化的任务。可以启动一个已失败的下载任务，从上次的进度开始续传。使用Promise异步回调。
+启动任务，无法启动已初始化的任务。可以启动一个已失败或已停止的下载任务，从上次的进度开始续传。使用Promise异步回调。
 
 **需要权限**：ohos.permission.INTERNET
 

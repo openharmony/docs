@@ -102,7 +102,7 @@ deleteForm(formId: string): Promise&lt;void&gt;
 
 以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
-**参数：**
+**示例：**
 
 ```ts
 import Base from '@ohos.base';
@@ -2575,7 +2575,7 @@ try {
   }).catch((err: Base.BusinessError) => {
     console.error(`formHost recover forms error, code: ${err.code}, message: ${err.message}`);
   });
-} catch (e: Base.BusinessError) {
+} catch (e) {
   console.info(`catch error, code: ${e.code}, message: ${e.message}`);
 }
 ```

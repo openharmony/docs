@@ -175,9 +175,12 @@ on(type: 'routerPageUpdate', context: UIAbilityContext | UIContext, callback: Ca
 ```ts
 // used in UIAbility
 import observer from '@ohos.arkui.observer';
+import { UIContext } from '@ohos.arkui.UIContext';
+function callBackFunc(info: observer.RouterPageInfo) {}
 // callBackFunc is user defined function
 observer.on('routerPageUpdate', this.context, callBackFunc);
 // uiContext could be got by window's function: getUIContext()
+uiContext: UIContext | null = null;
 observer.on('routerPageUpdate', this.uiContext, callBackFunc);
 ```
 
@@ -202,8 +205,11 @@ off(type: 'routerPageUpdate', context: UIAbilityContext | UIContext, callback?: 
 ```ts
 // used in UIAbility
 import observer from '@ohos.arkui.observer';
+import { UIContext } from '@ohos.arkui.UIContext';
+function callBackFunc(info: observer.RouterPageInfo) {}
 // callBackFunc is user defined function
 observer.off('routerPageUpdate', this.context, callBackFunc);
 // uiContext could be got by window's function: getUIContext()
+uiContext: UIContext | null = null;
 observer.off('routerPageUpdate', this.uiContext, callBackFunc);
 ```

@@ -106,29 +106,24 @@ class Params {
 @Builder
 function buttonBuilder(params: Params) {
   Column() {
-    Button(`button ` + params.text)
+    Button(params.text)
+      .fontSize(12)
+      .borderRadius(8)
       .borderWidth(2)
       .backgroundColor(Color.Orange)
   }
 }
 
 class MyNodeController extends NodeController {
-  private rootNode: FrameNode | null = null;
   private buttonNode: BuilderNode<[Params]> | null = null;
   private wrapBuilder: WrappedBuilder<[Params]> = wrapBuilder(buttonBuilder);
-  
-  makeNode(uiContext: UIContext): FrameNode {
-    if (this.rootNode == null) {
-      this.rootNode = new FrameNode(uiContext);
-      this.buttonNode = new BuilderNode(uiContext);
-      this.buttonNode.build(this.wrapBuilder, { text: "this is a string" })
 
-      const rootRenderNode = this.rootNode.getRenderNode();
-      if (rootRenderNode !== null) {
-        rootRenderNode.appendChild(this.buttonNode.getFrameNode()?.getRenderNode());
-      }
+  makeNode(uiContext: UIContext): FrameNode {
+    if (this.buttonNode == null) {
+      this.buttonNode = new BuilderNode(uiContext);
+      this.buttonNode.build(this.wrapBuilder, { text: "This is a Button" })
     }
-    return this.rootNode;
+    return this.buttonNode!.getFrameNode()!;
   }
 
   aboutToResize(size: Size) {
@@ -154,9 +149,13 @@ struct Index {
   private myNodeController: MyNodeController = new MyNodeController();
 
   build() {
-    Row() {
+    Column() {
       NodeContainer(this.myNodeController)
     }
+    .padding({ left: 35, right: 35, top: 35 })
+    .width("100%")
+    .height("100%")
   }
 }
 ```
+![patternlock](figures/node_controller.jpg)

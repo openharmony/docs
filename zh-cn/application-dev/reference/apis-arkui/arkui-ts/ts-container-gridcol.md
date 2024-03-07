@@ -40,11 +40,53 @@ GridCol(option?: GridColOptions)
 ## 属性
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
-| 参数名 | 类型                          | 必填 | 说明                                                         |
-| ------ | ----------------------------- | ---- | ------------------------------------------------------------ |
-| span   | number \| [GridColColumnOption](#gridcolcolumnoption) | 否   | 占用列数。span为0，意味着该元素不参与布局计算，即不会被渲染。<br/>默认值：1。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| gridColOffset | number \| [GridColColumnOption](#gridcolcolumnoption) | 否   | 相对于前一个栅格子组件偏移的列数。<br/>默认值：0。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| order  | number \| [GridColColumnOption](#gridcolcolumnoption) | 否   | 元素的序号，根据栅格子组件的序号，从小到大对栅格子组件做排序。<br/>默认值：0。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+### span
+
+span(value: number | GridColColumnOption)
+
+设置占用列数。span为0，意味着该元素不参与布局计算，即不会被渲染。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                     |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------ |
+| value  | number&nbsp;\|&nbsp;[GridColColumnOption](#gridcolcolumnoption) | 是   | 占用列数。<br/>默认值：1 |
+
+### gridColOffset
+
+gridColOffset(value: number | GridColColumnOption)
+
+设置相对于前一个栅格子组件偏移的列数。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                                             |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------ |
+| value  | number&nbsp;\|&nbsp;[GridColColumnOption](#gridcolcolumnoption) | 是   | 相对于前一个栅格子组件偏移的列数。<br/>默认值：0 |
+
+### order
+
+order(value: number | GridColColumnOption)
+
+设置元素的序号，根据栅格子组件的序号，从小到大对栅格子组件做排序。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | number&nbsp;\|&nbsp;[GridColColumnOption](#gridcolcolumnoption) | 是   | 元素的序号，根据栅格子组件的序号，从小到大对栅格子组件做排序。<br/>默认值：0 |
 
 ## GridColColumnOption
 
