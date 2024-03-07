@@ -228,7 +228,7 @@ Obtains an element at the specified position in this container.
 
 | Type| Description|
 | -------- | -------- |
-| T | Element obtained.|
+| T | Element obtained. If the element does not exist, **undefined** is returned.|
 
 **Error codes**
 
@@ -340,7 +340,7 @@ let result = linkedList.getIndexOf(2);
 
 removeByIndex(index: number): T
 
-Removes an element at the specified position from this container.
+Searches for an element based on its index and then removes it.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -354,7 +354,7 @@ Removes an element at the specified position from this container.
 
 | Type| Description|
 | -------- | -------- |
-| T | Element removed.|
+| T | Element removed. If the element does not exist, **undefined** is returned.|
 
 **Error codes**
 
@@ -504,7 +504,7 @@ Removes the first occurrence of the specified element from this container.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the element is removed successfully; returns **false** otherwise.|
+| boolean | Returns **true** if the element is removed; returns **false** if the element fails to be removed or does not exist.|
 
 **Error codes**
 
@@ -545,7 +545,7 @@ Removes the last occurrence of the specified element from this container.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the element is removed successfully; returns **false** otherwise.|
+| boolean | Returns **true** if the element is removed; returns **false** if the element fails to be removed or does not exist.|
 
 **Error codes**
 
@@ -692,7 +692,7 @@ Replaces an element at the specified position in this container with a given ele
 
 | Type| Description|
 | -------- | -------- |
-| T | New element.|
+| T | New element. If the operation fails, **undefined** is returned.|
 
 **Error codes**
 

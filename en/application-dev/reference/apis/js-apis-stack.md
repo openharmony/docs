@@ -108,7 +108,7 @@ Removes the top element from this container.
 
 | Type| Description|
 | -------- | -------- |
-| T | Element removed.|
+| T | Element removed. If the container is empty, **undefined** is returned.|
 
 **Error codes**
 
@@ -181,7 +181,7 @@ Obtains the index of the first occurrence of the specified element in this conta
 
 | Type| Description|
 | -------- | -------- |
-| number | Returns the position index if obtained; returns **-1** otherwise.|
+| number | Index of the first occurrence of the specified element. If the element does not exist, **-1** is returned.|
 
 **Error codes**
 

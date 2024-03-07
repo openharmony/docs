@@ -24,18 +24,15 @@ In the stage model, you can perform the following operations during application 
 
 - Setting a floating window
 
-- Listening for interactive and non-interactive window events
-
 ## Available APIs
 
 The table below lists the common APIs used for application window development. For details about more APIs, see [Window](../reference/apis/js-apis-window.md).
 
 | Instance        | API                                                      | Description                                                        |
 | -------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| WindowStage    | getMainWindow(callback: AsyncCallback&lt;Window&gt;): void   | Obtains the main window of this window stage.<br>This API can be used only in the stage model.|
-| WindowStage    | loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void | Loads content to the main window in this window stage.<br>**path**: path of the page from which the content will be loaded. The path is configured in the **main_pages.json** file of the project.<br>This API can be used only in the stage model.|
+| WindowStage    | getMainWindow(callback: AsyncCallback&lt;Window&gt;): void   | Obtains the main window of this window stage.<br>**path**: path of the page from which the content will be loaded. The path is configured in the **main_pages.json** file of the project.<br>This API can be used only in the stage model.|
+| WindowStage    | loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void | Loads content to the main window in this window stage.<br>This API can be used only in the stage model.|
 | WindowStage    | createSubWindow(name: string, callback: AsyncCallback&lt;Window&gt;): void | Creates a subwindow.<br>This API can be used only in the stage model.            |
-| WindowStage    | on(type: 'windowStageEvent', callback: Callback&lt;WindowStageEventType&gt;): void | Subscribes to window stage lifecycle change events.<br>This API can be used only in the stage model.|
 | Window static method| createWindow(config: Configuration, callback: AsyncCallback\<Window>): void | Creates a system window.<br>**config**: parameters used for creating the window.            |
 | Window         | setUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void | Loads the content of a page, with its path in the current project specified, to this window.<br>**path**: path of the page from which the content will be loaded. The path is configured in the **main_pages.json** file of the project in the stage model.                                    |
 | Window         | setWindowBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void | Sets the brightness for this window.                                            |
@@ -313,7 +310,7 @@ A floating window is created based on an existing task. It is always displayed i
 
 ### How to Develop
 
-**Prerequisites**: To create a floating window (a window of the type **WindowType.TYPE_FLOAT**), you must request the **ohos.permission.SYSTEM_FLOAT_WINDOW** permission. For details, see [Applying for Application Permissions](../security/AccessToken/applying-for-permissions-for-system-basic-applications).
+**Prerequisites**: To create a floating window (a window of the type **WindowType.TYPE_FLOAT**), you must request the **ohos.permission.SYSTEM_FLOAT_WINDOW** permission. For details, see [Declaring Permissions in the Configuration File](../security/accesstoken-guidelines.md#declaring-permissions-in-the-configuration-file).
 
 1. Create a floating window.
 
@@ -400,50 +397,7 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-## Listening for Interactive and Non-Interactive Window Events
 
-When running in the foreground, an application may switch between interactive and non-interactive states and process services depending on the state. For example, when the user opens the **Recents** screen, an application becomes non-interactive and pauses the service interacting with the user, such as video playback or camera preview; when the user switched back to the foreground, the application becomes interactive again, and the paused service needs to be resumed. To obtain these state changes, you can subscribe to the **'windowStageEvent'** event.
 
-### How to Develop
 
-After a **WindowStage** object is created, the application can listen for the **'windowStageEvent'** event to obtain window stage lifecycle changes, for example, whether the window stage is interactive or non-interactive in the foreground. The application can process services based on the reported event status.
 
-```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
-
-export default class EntryAbility extends UIAbility {
-  onWindowStageCreate(windowStage: window.WindowStage) {
-    try {
-      windowStage.on('windowStageEvent', (data) => {
-        console.info('Succeeded in enabling the listener for window stage event changes. Data: ' +
-          JSON.stringify(data));
-
-        // Process services based on the event status.
-        if (data == window.WindowStageEventType.SHOWN) {
-          console.info('current window stage event is SHOWN');
-          // The application enters the foreground and is interactive by default.
-          // ...
-        } else if (data == window.WindowStageEventType.HIDDEN) {
-          console.info('current window stage event is HIDDEN');
-          // The application enters the background and is non-interactive by default.
-          // ...
-        } else if (data == window.WindowStageEventType.PAUSED) {
-          console.info('current window stage event is PAUSED');
-          // The user opens the Recents screen when the application is running in the foreground, and the application becomes non-interactive.
-          // ...
-        } else if (data == window.WindowStageEventType.RESUMED) {
-          console.info('current window stage event is RESUMED');
-          // The user switches back from the Recents screen to the application, and the application becomes interactive.
-          // ...
-        }
-
-        // ...
-      });
-    } catch (exception) {
-      console.error('Failed to enable the listener for window stage event changes. Cause:' +
-        JSON.stringify(exception));
-    }
-  }
-}
-```

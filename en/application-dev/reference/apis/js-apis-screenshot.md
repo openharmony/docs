@@ -75,6 +75,7 @@ Takes a screenshot and saves it as a **PixelMap** object. This API uses an async
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import image from '@ohos.multimedia.image';
 
 let screenshotOptions: screenshot.ScreenshotOptions = {
   "screenRect": {
@@ -89,12 +90,12 @@ let screenshotOptions: screenshot.ScreenshotOptions = {
   "displayId": 0
 };
 try {
-  screenshot.save(screenshotOptions, (err: BusinessError, pixelMap) => {
+  screenshot.save(screenshotOptions, (err: BusinessError, pixelMap: image.PixelMap) => {
     if (err) {
       console.log('Failed to save screenshot. Code: ' + JSON.stringify(err));
       return;
     }
-    console.log('Succeeded in saving sreenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
+    console.log('Succeeded in saving screenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
     pixelMap.release(); // Release the memory in time after the PixelMap is used.
   });
 } catch (exception) {
@@ -122,14 +123,15 @@ Takes a screenshot and saves it as a **PixelMap** object. This API uses an async
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import image from '@ohos.multimedia.image';
 
 try {
-  screenshot.save((err: BusinessError, pixelMap) => {
+  screenshot.save((err: BusinessError, pixelMap: image.PixelMap) => {
     if (err) {
       console.log('Failed to save screenshot. Code: ' + JSON.stringify(err));
       return;
     }
-    console.log('Succeeded in saving sreenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
+    console.log('Succeeded in saving screenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
     pixelMap.release(); // Release the memory in time after the PixelMap is used.
   });
 } catch (exception) {
@@ -163,6 +165,7 @@ Takes a screenshot and saves it as a **PixelMap** object. This API uses a promis
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import image from '@ohos.multimedia.image';
 
 let screenshotOptions: screenshot.ScreenshotOptions = {
   "screenRect": {
@@ -178,8 +181,8 @@ let screenshotOptions: screenshot.ScreenshotOptions = {
 };
 try {
   let promise = screenshot.save(screenshotOptions);
-  promise.then((pixelMap) => {
-    console.log('Succeeded in saving sreenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
+  promise.then((pixelMap: image.PixelMap) => {
+    console.log('Succeeded in saving screenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
     pixelMap.release(); // Release the memory in time after the PixelMap is used.
   }).catch((err: BusinessError) => {
     console.log('Failed to save screenshot. Code: ' + JSON.stringify(err));
