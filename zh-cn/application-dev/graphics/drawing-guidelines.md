@@ -456,8 +456,8 @@ Native Drawing模块关于文本绘制提供两类API接口：
     OH_Drawing_Font* font = OH_Drawing_FontCreate();
     OH_Drawing_FontSetTextSize(font, 20);
     // 创建要显示的字符
-    size_t size = 6;
-    const char16_t* buffer = u"你好，NDK";
+    size_t size = 19;
+    const char16_t* buffer = "Hello World Drawing";
     // 通过字符和对应的编码格式创建默认排版的文本
     OH_Drawing_TextBlob* textBlob = OH_Drawing_TextBlobCreateFromText(buffer, size, font, OH_Drawing_TextEncoding::TEXT_ENCODING_UTF16);
     ```

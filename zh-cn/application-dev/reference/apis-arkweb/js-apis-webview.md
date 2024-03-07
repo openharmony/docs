@@ -891,6 +891,7 @@ loadData(data: string, mimeType: string, encoding: string, baseUrl?: string, his
 > 
 > 若加载本地图片，可以给baseUrl或historyUrl任一参数赋值空格，详情请参考示例代码。
 > 加载本地图片场景，baseUrl和historyUrl不能同时为空，否则图片无法成功加载。
+> 若html中的富文本中带有注入#等特殊字符，建议使用带有两个空格的loadData函数，将baseUrl和historyUrl置为空。
 
 **错误码：**
 
@@ -4229,7 +4230,7 @@ export default class EntryAbility extends UIAbility {
 
 static customizeSchemes(schemes: Array\<WebCustomScheme\>): void
 
-配置Web自定义协议请求的权限。建议在任何Web组件初始化之前进行调用。
+对Web内核赋予自定义协议url的跨域请求与fetch请求的权限。当Web在跨域fetch自定义协议url时，该fetch请求可被onInterceptRequest事件接口所拦截，从而开发者可以进一步处理该请求。建议在任何Web组件初始化之前调用该接口。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -5538,6 +5539,237 @@ struct WebComponent {
           } catch (error) {
             let e: business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode:${e.code}, Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### stopAllMedia<sup>12+</sup>
+
+stopAllMedia(): void
+
+控制网页所有音视频停止。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController()
+
+  build() {
+    Column() {
+      Button('stopAllMedia')
+        .onClick(() => {
+          try {
+            this.controller.stopAllMedia();
+          } catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### pauseAllMedia<sup>12+</sup>
+
+pauseAllMedia(): void
+
+控制网页所有音视频暂停。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController()
+
+  build() {
+    Column() {
+      Button('pauseAllMedia')
+        .onClick(() => {
+          try {
+            this.controller.pauseAllMedia();
+          } catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### resumeAllMedia<sup>12+</sup>
+
+resumeAllMedia(): void
+
+控制网页被pauseAllMedia接口暂停的音视频继续播放。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController()
+
+  build() {
+    Column() {
+      Button('resumeAllMedia')
+        .onClick(() => {
+          try {
+            this.controller.resumeAllMedia();
+          } catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### closeAllMediaPresentations<sup>12+</sup>
+
+closeAllMediaPresentations(): void
+
+控制网页所有全屏视频关闭。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController()
+
+  build() {
+    Column() {
+      Button('closeAllMediaPresentations')
+        .onClick(() => {
+          try {
+            this.controller.closeAllMediaPresentations();
+          } catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### getMediaPlaybackState<sup>12+</sup>
+
+getMediaPlaybackState(): MediaPlaybackState
+
+查询当前所有音视频播控状态。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型                                        | 说明                                                      |
+| ------------------------------------------- | --------------------------------------------------------- |
+| [MediaPlaybackState](#mediaplaybackstate12) | 当前网页的播控状态，具体值为NONE、PLAYING、PAUSED、STOP。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController()
+
+  build() {
+    Column() {
+      Button('getMediaPlaybackState')
+        .onClick(() => {
+          try {
+            console.log("MediaPlaybackState : " + this.controller.getMediaPlaybackState());
+          } catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -7892,6 +8124,19 @@ Web组件返回的请求/响应头对象。
 | ARRAY_BUFFER | 4 |原始二进制数据缓冲区。|
 | ARRAY        | 5 |数组类型。|
 | ERROR        | 6 |错误类型。|
+
+## MediaPlaybackState<sup>12+</sup>
+
+当前网页的播控状态。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称    | 值   | 说明               |
+| ------- | ---- | ------------------ |
+| NONE    | 0    | 页面无音视频启播。 |
+| PLAYING | 1    | 页面音视频播放中。 |
+| PAUSED  | 2    | 页面音视频暂停。   |
+| STOP    | 3    | 页面音视频停止。   |
 
 ## JsMessageExt<sup>10+</sup>
 

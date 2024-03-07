@@ -502,6 +502,43 @@ The number of child process exceeds upper bound.
 
 确认创建的子进程数量是否已经达到上限。子进程数量上限为128个。
 
+## 16000067 Ability启动参数校验失败
+
+**错误信息**
+
+Start options check failed.
+
+**错误描述**
+
+当StartOptions相关的参数校验失败时，返回该错误码。
+
+**可能原因**
+
+1. 调用startAbility时，processMode设置为NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM，但是应用在状态栏没有图标，则返回该错误码。
+2. 调用showAbility/hideAbility时，如果调用方不是以NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM模式启动，则返回该错误码。
+
+**处理步骤**
+
+确认StartOptions参数配置，以及相应的约束条件是否满足。
+
+## 16000068 Ability已经在运行中
+
+**错误信息**
+
+Ability already running.
+
+**错误描述**
+
+当目标Ability已经在运行中时，返回该错误码。
+
+**可能原因**
+
+调用startAbility时，指定了processMode和startupVisibility，目标Ability的launchType是singleton或者specified，并且目标Ability正在运行中，则返回该错误码。
+
+**处理步骤**
+
+当目标Ability的launchType是singleton或者specified时，避免通过指定processMode和startupVisibility的方式重复startAbility。
+
 ## 16000101 执行shell命令失败
 
 **错误信息**

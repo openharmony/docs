@@ -32,6 +32,7 @@
 | typedef struct OH_AudioCapturerStruct [OH_AudioCapturer](_o_h_audio.md#oh_audiocapturer)                                                                                 | 声明输入音频流。  | 
 | typedef struct [OH_AudioRenderer_Callbacks_Struct](_o_h___audio_renderer___callbacks___struct.md) [OH_AudioRenderer_Callbacks](_o_h_audio.md#oh_audiorenderer_callbacks) | 声明输出音频流的回调函数指针。  | 
 | typedef struct [OH_AudioCapturer_Callbacks_Struct](_o_h___audio_capturer___callbacks___struct.md) [OH_AudioCapturer_Callbacks](_o_h_audio.md#oh_audiocapturer_callbacks) | 声明输入音频流的回调函数指针。  | 
+| typedef void(\* [OH_AudioRenderer_OutputDeviceChangeCallback](_o_h_audio.md#oh_audiorenderer_outputdevicechangecallback)) ([OH_AudioRenderer](_o_h_audio.md#oh_audiorenderer) \*renderer, void \*userData, [OH_AudioStream_DeviceChangeReason](_o_h_audio.md#oh_audiostream_devicechangereason) reason) | 输出音频流设备变更的回调函数。 | 
 
 
 ### 枚举
@@ -49,3 +50,4 @@
 | [OH_AudioStream_Event](_o_h_audio.md#oh_audiostream_event) {<br/>AUDIOSTREAM_EVENT_ROUTING_CHANGED = 0<br/>} | 定义音频事件。 | 
 | [OH_AudioInterrupt_ForceType](_o_h_audio.md#oh_audiointerrupt_forcetype) {<br/>AUDIOSTREAM_INTERRUPT_FORCE = 0,<br/>AUDIOSTREAM_INTERRUPT_SHARE = 1<br/>} | 定义音频中断类型。 | 
 | [OH_AudioInterrupt_Hint](_o_h_audio.md#oh_audiointerrupt_hint) {<br/>AUDIOSTREAM_INTERRUPT_HINT_NONE = 0,<br/>AUDIOSTREAM_INTERRUPT_HINT_RESUME = 1,<br/>AUDIOSTREAM_INTERRUPT_HINT_PAUSE = 2,<br/>AUDIOSTREAM_INTERRUPT_HINT_STOP = 3,<br/>AUDIOSTREAM_INTERRUPT_HINT_DUCK = 4,<br/>AUDIOSTREAM_INTERRUPT_HINT_UNDUCK = 5<br/>} | 定义音频中断类型。 | 
+| [OH_AudioStream_DeviceChangeReason](_o_h_audio.md#oh_audiostream_devicechangereason) {<br/>REASON_UNKNOWN = 0,<br/>REASON_NEW_DEVICE_AVAILABLE = 1,<br/>REASON_OLD_DEVICE_UNAVAILABLE = 2,<br/>REASON_OVERRODE = 3<br/>} | 流设备变更原因。 | 
