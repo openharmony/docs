@@ -24,7 +24,7 @@ NavDestination组件状态。
 | ON_SHOWN  | 0   | NavDestination组件显示。 |
 | ON_HIDDEN | 1   | NavDestination组件隐藏。 |
 
-## ScrollEventType
+## ScrollEventType<sup>12+</sup>
 
 滚动事件的类型。
 
