@@ -61,7 +61,7 @@ NavDestination组件信息。
 | name         | [ResourceStr](arkui-ts/ts-types.md#resourcestr) | 是   | NavDestination组件的名称。                   |
 | state        | [NavDestinationState](#navdestinationstate)        | 是   | NavDestination组件的状态。                   |
 
-## ScrollEventInfo
+## ScrollEventInfo<sup>12+</sup>
 
 ScrollEvent滚动信息。
 
