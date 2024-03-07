@@ -23,6 +23,10 @@ import { SubHeader } from '@ohos.arkui.advanced.SubHeader'
 ## 属性
 支持[通用属性](ts-universal-attributes-size.md)
 
+> **说明：**
+>
+> 不支持设置[文本通用属性](ts-universal-attributes-text-style.md)。
+
 ## SubHeader
 
 SubHeader({primaryTitle?: ResourceStr, secondaryTitle?: ResourceStr, icon?: ResourceStr, select?: SelectOptions, operationType?: OperationType, operationItem?: Array&lt;OperationOption&gt;})
