@@ -412,7 +412,7 @@ try {
 
 ## wifiManager.setWifiDisabled<sup>11+</sup>
 
-setWifiDisabled(admin: Want, isDisabled: boolean): void
+setWifiDisabled(admin: Want, disabled: boolean): void
 
 Sets the Wi-Fi policy through the specified device administrator application.
 
@@ -427,7 +427,7 @@ Sets the Wi-Fi policy through the specified device administrator application.
 | Name    | Type                               | Mandatory| Description                                     |
 | ---------- | ----------------------------------- | ---- | ----------------------------------------- |
 | admin      | [Want](js-apis-app-ability-want.md) | Yes  | Device administrator application.                           |
-| isDisabled | boolean                             | Yes  | Wi-Fi policy to set. The value **true** means to disable Wi-Fi; the value **false** means the opposite.|
+| disabled   | boolean                             | Yes  | Wi-Fi policy to set. The value **true** means to disable Wi-Fi; the value **false** means the opposite.|
 
 **Error codes**
 
