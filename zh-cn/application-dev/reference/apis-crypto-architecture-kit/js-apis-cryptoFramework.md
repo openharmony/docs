@@ -36,10 +36,6 @@ buffer数组，提供blob数据类型。
 | ---- | ---------- | ---- | ---- | ------ |
 | data | Uint8Array | 是   | 是   | 数据。 |
 
-> **说明：**
->
-> Uint8Array类型数据表示8位无符号整数的数组。
-
 ## ParamsSpec
 
 加解密参数，在进行对称加解密时需要构造其子类对象，并将子类对象传入[init()](#init-2)方法。
@@ -678,6 +674,46 @@ getAsyKeySpec(itemType: AsyKeySpecItem): bigint | string | number
 let key: cryptoFramework.PubKey; // key is a public key object. The generation process is omitted here.
 let p = key.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_FP_P_BN);
 console.info('ecc item --- p: ' + p.toString(16));
+```
+
+### getEncodedDer<sup>12+</sup>
+
+getEncodedDer(format: string): DataBlob
+
+支持获取满足ASN.1语法、X.509规范、DER编码格式的公钥数据，当前仅支持获取ECC压缩/非压缩格式的公钥数据。
+> **说明：**
+>
+> 需要获取非压缩格式的公钥数据时，也可以使用getEncoded获取。
+
+**系统能力：** SystemCapability.Security.CryptoFramework
+
+**参数：**
+
+| 参数名 | 类型                  | 必填 | 说明                 |
+| ---- | --------------------- | ---- | -------------------- |
+| format  | string | 是   | 指定返回的公钥数据格式。format取值为"X509\|\[COMPRESSED/UNCOMPRESSED]"。 |
+
+**返回值：**
+
+| 类型                        | 说明                              |
+| --------------------------- | --------------------------------- |
+| [DataBlob](#datablob) | 返回符合ASN.1语法、X.509规范、DER编码格式的压缩/非压缩公钥数据。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 401 | invalid parameters. |
+| 17620001 | memory error. |
+| 17630001 | crypto operation error. |
+
+**示例：**
+
+```ts
+let key: cryptoFramework.PubKey; // key is a public key object. The generation process is omitted here.
+let returnBlob = key.getEncodedDer('X509|UNCOMPRESSED');
+console.info('returnBlob data：' + returnBlob.data);
 ```
 
 ## PriKey
@@ -1570,6 +1606,94 @@ try {
     let e: BusinessError = err as BusinessError;
     console.error(`genECCCommonParamsSpec error, ${e.code}, ${e.message}`);
 }
+```
+
+### convertPoint<sup>12+</sup>
+
+static convertPoint(curveName: string, encodedPoint: Uint8Array): Point
+
+根据椭圆曲线的曲线名，即相应的NID(Name IDentifier)，将压缩/非压缩的点数据转换为Point对象。其中，非压缩点数据的格式为：前缀04+x坐标+y坐标，压缩点数据的格式为：前缀03+x(如果y是奇数)，前缀02+x(如果y是偶数)。
+
+**系统能力：** SystemCapability.Security.CryptoFramework
+
+**参数：**
+
+| 参数名       | 类型        | 必填 | 说明                                           |
+| ------------ | ---------- | ---- | ---------------------------------------------- |
+| curveName    | string     | 是   | 椭圆曲线的曲线名，即相应的NID(Name IDentifier)。 |
+| encodedPoint | Uint8Array | 是   | 指定的ECC点数据。 |
+
+**返回值：**
+
+| 类型              | 说明                 |
+| ----------------- | ------------------- |
+| [Point](#point10) | 返回ECC的Point对象。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 401 | invalid parameters. |
+| 17620001 | memory error. |
+| 17630001 | crypto operation error. |
+
+**示例：**
+
+```ts
+// 随机生成的非压缩点数据
+let pkData = new Uint8Array([4, 143, 39, 57, 249, 145, 50, 63, 222, 35, 70, 178, 121, 202, 154, 21, 146, 129, 75, 76, 63, 8, 195, 157, 111, 40, 217, 215, 148, 120, 224, 205, 82, 83, 92, 185, 21, 211, 184, 5, 19, 114, 33, 86, 85, 228, 123, 242, 206, 200, 98, 178, 184, 130, 35, 232, 45, 5, 202, 189, 11, 46, 163, 156, 152]);
+let returnPoint = cryptoFramework.ECCKeyUtil.convertPoint('NID_brainpoolP256r1', pkData);
+console.info('returnPoint: ' + returnPoint.x.toString(16));
+```
+
+### getEncodedPoint<sup>12+</sup>
+
+static getEncodedPoint(curveName: string, point: Point, format: string): Uint8Array
+
+根据椭圆曲线的曲线名，即相应的NID(Name IDentifier)，按照指定的点数据格式，将Point对象转换为压缩/非压缩的点数据。
+
+**系统能力：** SystemCapability.Security.CryptoFramework
+
+**参数：**
+
+| 参数名       | 类型               | 必填 | 说明                                           |
+| ------------ | ----------------- | ---- | ---------------------------------------------- |
+| curveName    | string            | 是   | 根据椭圆曲线的曲线名，即相应的NID(Name IDentifier)。 |
+| point        | [Point](#point10) | 是   | 指定的ECC的Point对象。 |
+| format       | string            | 是   | 需要获取的点数据格式，当前支持"COMPRESSED"或"UNCOMPRESSED"。 |
+
+**返回值：**
+
+| 类型              | 说明                              |
+| ----------------- | --------------------------------- |
+| Uint8Array | 返回ECC的点数据。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 401 | invalid parameters. |
+| 17620001 | memory error. |
+| 17630001 | crypto operation error. |
+
+**示例：**
+
+```ts
+let generator = cryptoFramework.createAsyKeyGenerator('ECC_BrainPoolP256r1');
+let keyPair = await generator.generateKeyPair();
+let eccPkX = keyPair.pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_PK_X_BN);
+let eccPkY = keyPair.pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_PK_Y_BN);
+console.info('ECC_PK_X_BN 16：' + eccPkX.toString(16));
+console.info('ECC_PK_Y_BN 16：' + eccPkY.toString(16));
+// 将eccPkX.toString(16)结果放入x，eccPkY.toString(16)结果放入y
+let returnPoint: cryptoFramework.Point = {
+  x: BigInt('0x' + eccPkX.toString(16)),
+  y: BigInt('0x' + eccPkY.toString(16))
+};
+let returnBlob = cryptoFramework.ECCKeyUtil.getEncodedPoint('NID_brainpoolP256r1', returnPoint, 'UNCOMPRESSED');
+console.info('returnBlob: ' + returnBlob);
 ```
 
 ## DHKeyUtil<sup>11+</sup>
