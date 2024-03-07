@@ -1484,7 +1484,7 @@ Resolves the host name by using the corresponding network to obtain all IP addre
 
 | Name  | Type                                             | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| host     | string                                            | Yes  | Host name to resolve.                                          |
+| host     | string                                            | Yes  | Domain name to be resolved.                                          |
 | callback | AsyncCallback\<Array\<[NetAddress](#netaddress)>> | Yes  | Callback used to return the result. If all IP addresses are successfully obtained, **error** is **undefined**, and **data** is the list of all obtained IP addresses. Otherwise, **error** is an error object.|
 
 **Error codes**
@@ -1502,7 +1502,7 @@ Resolves the host name by using the corresponding network to obtain all IP addre
 ```ts
 import connection from '@ohos.net.connection';
 import { BusinessError } from "@ohos.base";
-connection.getAddressesByName("xxxx", (error: BusinessError, data: connection.NetAddress[]) => {
+connection.getAddressesByName("www.example.com", (error: BusinessError, data: connection.NetAddress[]) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
@@ -1522,7 +1522,7 @@ Resolves the host name by using the corresponding network to obtain all IP addre
 
 | Name| Type  | Mandatory| Description              |
 | ------ | ------ | ---- | ------------------ |
-| host   | string | Yes  | Host name to resolve.|
+| host   | string | Yes  | Domain name to be resolved.|
 
 **Return value**
 
@@ -1544,7 +1544,7 @@ Resolves the host name by using the corresponding network to obtain all IP addre
 
 ```ts
 import connection from '@ohos.net.connection';
-connection.getAddressesByName("xxxx").then((data: connection.NetAddress[]) => {
+connection.getAddressesByName("www.example.com").then((data: connection.NetAddress[]) => {
   console.log(JSON.stringify(data));
 });
 ```
@@ -1553,7 +1553,7 @@ connection.getAddressesByName("xxxx").then((data: connection.NetAddress[]) => {
 
 addCustomDnsRule(host: string, ip: Array\<string\>, callback: AsyncCallback\<void\>): void
 
-Adds the mapping between a custom host and the corresponding IP address for the current application. This API uses an asynchronous callback to return the result.
+Adds custom DNS rules for the specified host of the current application. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -1563,7 +1563,7 @@ Adds the mapping between a custom host and the corresponding IP address for the 
 
 | Name  | Type                | Mandatory| Description                                                        |
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| host     | string               | Yes  | Name of the custom host.                                    |
+| host     | string               | Yes  | Name of the host for which DNS rules are to be added.                                    |
 | ip       | Array\<string>       | Yes  | List of IP addresses mapped to the host name.                                  |
 | callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the mapping is added successfully, **error** is **undefined**. Otherwise, **error** is an error object.|
 
@@ -1592,7 +1592,7 @@ connection.addCustomDnsRule("xxxx", ["xx.xx.xx.xx","xx.xx.xx.xx"], (error: Busin
 
 addCustomDnsRule(host: string, ip: Array\<string\>): Promise\<void\>
 
-Adds the mapping between a custom host and the corresponding IP address for the current application. This API uses a promise to return the result.
+Adds custom DNS rules for the specified host of the current application. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -1602,7 +1602,7 @@ Adds the mapping between a custom host and the corresponding IP address for the 
 
 | Name| Type          | Mandatory| Description                      |
 | ------ | -------------- | ---- | -------------------------- |
-| host   | string         | Yes  | Name of the custom host.  |
+| host   | string         | Yes  | Name of the host for which DNS rules are to be added.  |
 | ip     | Array\<string> | Yes  | List of IP addresses mapped to the host name.|
 
 **Return value**
@@ -1637,7 +1637,7 @@ connection.addCustomDNSRule("xxxx", ["xx.xx.xx.xx","xx.xx.xx.xx"]).then(() => {
 
 removeCustomDnsRule(host: string, callback: AsyncCallback\<void\>): void
 
-Removes the custom DNS rules of the specified host from the current application. This API uses an asynchronous callback to return the result.
+Removes the custom DNS rules for the specified host of the current application. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -1719,7 +1719,7 @@ connection.removeCustomDnsRule("xxxx").then(() => {
 
 clearCustomDnsRules(callback: AsyncCallback\<void\>): void
 
-Removes all custom DNS rules from the current application. This API uses an asynchronous callback to return the result.
+Removes all custom DNS rules for the current application. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -1756,7 +1756,7 @@ connection.clearCustomDnsRules((error: BusinessError, data: void) => {
 
 clearCustomDnsRules(): Promise\<void\>
 
-Removes all custom DNS rules from the current application. This API uses a promise to return the result.
+Removes all custom DNS rules for the current application. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -2372,7 +2372,7 @@ Resolves the host name by using the corresponding network to obtain all IP addre
 
 | Name  | Type                                             | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| host     | string                                            | Yes  | Host name to resolve.                                          |
+| host     | string                                            | Yes  | Domain name to be resolved.                                          |
 | callback | AsyncCallback\<Array\<[NetAddress](#netaddress)>> | Yes  | Callback used to return the result. If all IP addresses are successfully obtained, **error** is **undefined**, and **data** is the list of all obtained IP addresses. Otherwise, **error** is an error object.|
 
 **Error codes**
@@ -2392,7 +2392,7 @@ import connection from '@ohos.net.connection';
 import { BusinessError } from "@ohos.base";
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
-  let host = "xxxx";
+  let host = "www.example.com";
   netHandle.getAddressesByName(host, (error: BusinessError, data: connection.NetAddress[]) => {
     console.log(JSON.stringify(error));
     console.log(JSON.stringify(data));
@@ -2414,7 +2414,7 @@ Resolves the host name by using the corresponding network to obtain all IP addre
 
 | Name| Type  | Mandatory| Description              |
 | ------ | ------ | ---- | ------------------ |
-| host   | string | Yes  | Host name to resolve.|
+| host   | string | Yes  | Domain name to be resolved.|
 
 **Return value**
 
@@ -2438,7 +2438,7 @@ Resolves the host name by using the corresponding network to obtain all IP addre
 import connection from '@ohos.net.connection';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
-  let host = "xxxx";
+  let host = "www.example.com";
   netHandle.getAddressesByName(host).then((data: connection.NetAddress[]) => {
     console.log(JSON.stringify(data));
   });
@@ -2459,7 +2459,7 @@ Resolves the host name by using the corresponding network to obtain the first IP
 
 | Name  | Type                                     | Mandatory| Description                                                        |
 | -------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| host     | string                                    | Yes  | Host name to resolve.                                          |
+| host     | string                                    | Yes  | Domain name to be resolved.                                          |
 | callback | AsyncCallback\<[NetAddress](#netaddress)> | Yes  | Callback used to return the result. If the first IP address is obtained successfully, **error** is **undefined**, and **data** is the first obtained IP address. Otherwise, **error** is an error object.|
 
 **Error codes**
@@ -2479,7 +2479,7 @@ import connection from '@ohos.net.connection';
 import { BusinessError } from "@ohos.base";
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
-  let host = "xxxx";
+  let host = "www.example.com";
   netHandle.getAddressByName(host, (error: BusinessError, data: connection.NetAddress) => {
     console.log(JSON.stringify(error));
     console.log(JSON.stringify(data));
@@ -2491,7 +2491,7 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 
 getAddressByName(host: string): Promise\<NetAddress>
 
-Resolves the host name by using the corresponding network to obtain the first IP address. This API uses a promise to return the result.
+Resolves the domain name by using the corresponding network to obtain the first IP address. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -2501,7 +2501,7 @@ Resolves the host name by using the corresponding network to obtain the first IP
 
 | Name| Type  | Mandatory| Description              |
 | ------ | ------ | ---- | ------------------ |
-| host   | string | Yes  | Host name to resolve.|
+| host   | string | Yes  | Domain name to be resolved.|
 
 **Return value**
 
@@ -2525,7 +2525,7 @@ Resolves the host name by using the corresponding network to obtain the first IP
 import connection from '@ohos.net.connection';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
-  let host = "xxxx";
+  let host = "www.example.com";
   netHandle.getAddressByName(host).then((data: connection.NetAddress) => {
     console.log(JSON.stringify(data));
   });

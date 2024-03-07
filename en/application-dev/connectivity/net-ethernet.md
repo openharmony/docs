@@ -9,8 +9,8 @@ The Ethernet Connection module allows a device to access the Internet through a 
 
 ## **Constraints**
 
-- Programming language: C++ and JS
-- System: Linux kernel
+- Programming language: JS
+- Operating system: Linux kernel
 - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Scenario

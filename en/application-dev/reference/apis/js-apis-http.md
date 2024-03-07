@@ -1145,7 +1145,6 @@ Enumerates the response codes for an HTTP request.
 | ENTITY_TOO_LARGE  | 413  | "Request Entity Too Large." The server refuses to process a request because the request entity is larger than the server is able to process.           |
 | REQ_TOO_LONG      | 414  | "Request-URI Too Long." The Request-URI is too long for the server to process.             |
 | UNSUPPORTED_TYPE  | 415  | "Unsupported Media Type." The server is unable to process the media format in the request.                                   |
-| RANGE_NOT_SATISFIABLE | 416  | "Range Not Satisfiable." The server cannot serve the requested ranges.                                 |
 | INTERNAL_ERROR    | 500  | "Internal Server Error." The server encounters an unexpected error that prevents it from fulfilling the request.                              |
 | NOT_IMPLEMENTED   | 501  | "Not Implemented." The server does not support the function required to fulfill the request.                      |
 | BAD_GATEWAY       | 502  | "Bad Gateway." The server acting as a gateway or proxy receives an invalid response from the upstream server.|
@@ -1397,5 +1396,3 @@ Enumerates certificate types.
 | PEM | PEM certificate.|
 | DER | DER certificate.|
 | P12 | P12 certificate.|
-
-<!--no_check-->
