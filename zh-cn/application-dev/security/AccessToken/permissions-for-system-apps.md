@@ -2944,3 +2944,15 @@
 **ACL使能**：true
 
 **起始版本**：11
+
+### ohos.permission.QUERY_PASSWORD_VAULT_DATA
+
+允许系统应用查询密码保险箱帐号相关数据。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**: 12
