@@ -36,7 +36,9 @@ GridItem(value?: GridItemOptions)
 | selectable<sup>8+</sup> | boolean | 当前GridItem元素是否可以被鼠标框选。<br/>>&nbsp;&nbsp;**说明：**<br/>>&nbsp;外层Grid容器的鼠标框选开启时，GridItem的框选才生效。<br/>默认值：true |
 | selected<sup>10+</sup> | boolean | 设置当前GridItem选中状态。该属性支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。<br/>**说明：**<br/>该属性需要在设置[选中态样式](./ts-universal-attributes-polymorphic-style.md#statestyles接口说明)前使用才能生效选中态样式。<br/>默认值：false|
 
->  **说明：**
+>  **说明：** 
+>
+>  当Grid配合[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)使用时，最后一个GridItem需要限定布局推荐使用[Grid的layoutOptions参数](ts-container-grid.md)，详细可参考[Grid的示例3](ts-container-grid.md#示例3)。
 >
 >  起始行号、终点行号、起始列号、终点列号生效规则如下：
 >
