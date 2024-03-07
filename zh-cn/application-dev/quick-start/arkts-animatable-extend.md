@@ -4,7 +4,7 @@
 
 - 可动画属性：如果一个属性方法在animation属性前调用，改变这个属性的值可以生效animation属性的动画效果，这个属性称为可动画属性。比如height、width、backgroundColor、translate属性，Text组件的fontSize属性等。
 
-- 不可动画属性：如果一个属性方法在animation属性前调用，改变这个属性的值不能生效animation属性的动画效果，这个属性称为不可动画属性。比如Ployline组件的points属性等。
+- 不可动画属性：如果一个属性方法在animation属性前调用，改变这个属性的值不能生效animation属性的动画效果，这个属性称为不可动画属性。比如Polyline组件的points属性等。
 
 >  **说明：**
 >
