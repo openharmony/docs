@@ -718,7 +718,7 @@ getEncodedDer(format: string): DataBlob
 **示例：**
 
 ```ts
-let key: cryptoFramework.PubKey; // key is a public key object. The generation process is omitted here.
+let key: cryptoFramework.PubKey; // Key is a public key object. The generation process is omitted here.
 let returnBlob = key.getEncodedDer('X509|UNCOMPRESSED');
 console.info('returnBlob data：' + returnBlob.data);
 ```
