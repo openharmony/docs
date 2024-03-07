@@ -361,16 +361,6 @@ RichEditor初始化参数。
 | ---------- | ---------------------------------------- | ---- | ------- |
 | controller | [RichEditorController](#richeditorcontroller) | 是    | 富文本控制器。 |
 
-## MenuPolicy<sup>12+</sup>
-
-菜单弹出的策略
-
-| 名称         | 描述            |
-| ---------- | ------------- |
-| DEFAULT  | 默认逻辑,是否弹出菜单取决于场景。   |
-| NEVER | 不弹出菜单。 |
-| ALWAYS | 始终弹出菜单。 |
-
 ## SelectionOptions<sup>12+</sup>
 
 setSelection的选择项配置。
@@ -378,6 +368,16 @@ setSelection的选择项配置。
 | 名称         | 类型                                       | 必填   | 说明      |
 | ---------- | ---------------------------------------- | ---- | ------- |
 | menuPolicy | [MenuPolicy](#menupolicy12) | 否    | 菜单弹出的策略。 |
+
+## MenuPolicy<sup>12+</sup>
+
+菜单弹出的策略
+
+| 名称         | 描述            |
+| ---------- | ------------- |
+| DEFAULT  | 默认逻辑,是否弹出菜单取决于场景。   |
+| NEVER | 始终不弹出菜单。 |
+| ALWAYS | 始终弹出菜单。 |
 
 ## TextDataDetectorConfig<sup>11+</sup>
 
