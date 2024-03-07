@@ -2429,9 +2429,9 @@
 
 **起始版本**: 12
 
-### ohos.permission.NOTIFY_DEBUG_ASSERT_RESULT
+### ohos.permission.SUBSCRIBE_NOTIFICATION_WINDOW_STATE
 
-允许应用设置断言调试结果。
+允许应用订阅通知面板显示或收起时发送的广播。
 
 **权限级别**：system_basic
 
