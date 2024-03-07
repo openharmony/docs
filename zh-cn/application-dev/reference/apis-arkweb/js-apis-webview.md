@@ -891,6 +891,7 @@ loadData(data: string, mimeType: string, encoding: string, baseUrl?: string, his
 > 
 > 若加载本地图片，可以给baseUrl或historyUrl任一参数赋值空格，详情请参考示例代码。
 > 加载本地图片场景，baseUrl和historyUrl不能同时为空，否则图片无法成功加载。
+> 若html中的富文本中带有注入#等特殊字符，建议使用带有两个空格的loadData函数，将baseUrl和historyUrl置为空。
 
 **错误码：**
 
@@ -4229,7 +4230,7 @@ export default class EntryAbility extends UIAbility {
 
 static customizeSchemes(schemes: Array\<WebCustomScheme\>): void
 
-配置Web自定义协议请求的权限。建议在任何Web组件初始化之前进行调用。
+对Web内核赋予自定义协议url的跨域请求与fetch请求的权限。当Web在跨域fetch自定义协议url时，该fetch请求可被onInterceptRequest事件接口所拦截，从而开发者可以进一步处理该请求。建议在任何Web组件初始化之前调用该接口。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
