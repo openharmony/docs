@@ -293,7 +293,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 ```
 
 
-## onStop
+## onStop<sup>12+</sup>
 
 onStop?(): void
 
