@@ -97,6 +97,16 @@ media.createVideoRecorder().then((video: media.VideoRecorder) => {
 });
 ```
 
+## PixelMapParams<sup>11+</sup>
+
+获取视频缩略图时，输出缩略图的格式参数。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVImageGenerator
+
+| 名称     | 类型   |  可读   |   可写    |  说明                   |
+| -------- | ------ |   ------| ------ | ---------------------- |
+| colorFormat  | [PixelFormat](#pixelformat11) |  是   |  是   | 输出的缩略图颜色格式<br>**系统接口：** 该接口为系统接口      |
+
 ## PixelFormat<sup>11+</sup>
 
 获取视频缩略图时，输出的缩略图采用的颜色格式枚举。

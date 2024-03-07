@@ -3373,7 +3373,7 @@ The time passed in for obtaining the thumbnail may be different from the time of
 | AV_IMAGE_QUERY_CLOSEST_SYNC        | 2    | The key frame closest to the specified time is selected.                |
 | AV_IMAGE_QUERY_CLOSEST          | 3      | The frame (not necessarily a key frame) closest to the specified time is selected.    |
 
-## PixelMapParams<sup>11+</sup>
+## PixelMapParams<sup>12+</sup>
 
 Defines the format parameters of the video thumbnail to be obtained.
 
@@ -3385,21 +3385,6 @@ Defines the format parameters of the video thumbnail to be obtained.
 | -------- | ------ |   ------| ------ | ---------------------- |
 | width     | number |  Yes  |  Yes  |  Width of the thumbnail.        |
 | height | number |  Yes  |  Yes  | Height of the thumbnail.|
-| colorFormat  | [PixelFormat](#pixelformat11) |  Yes  |  Yes  | Color format of the thumbnail.        |
-
-## PixelFormat<sup>11+</sup>
-
-Enumerates the color formats supported by the video thumbnail.
-
-**System capability**: SystemCapability.Multimedia.Media.AVImageGenerator
-
-**System API**: This is a system API.
-
-| Name                    | Value             | Description                                                        |
-| ------------------------ | --------------- | ------------------------------------------------------------ |
-| RGB_565       | 2   | RGB_565.                      |
-| RGBA_8888        | 3    | RGBA_8888.|
-| RGB_888        | 5    | RGB_888.                |
 
 ## VideoRecorder<sup>9+</sup>
 

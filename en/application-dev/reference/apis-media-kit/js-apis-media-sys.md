@@ -101,6 +101,16 @@ media.createVideoRecorder().then((video: media.VideoRecorder) => {
 });
 ```
 
+## PixelMapParams<sup>11+</sup>
+
+Defines the format parameters of the video thumbnail to be obtained.
+
+**System capability**: SystemCapability.Multimedia.Media.AVImageGenerator
+
+| Name    | Type  |  Readable  |   Writable   |  Description                  |
+| -------- | ------ |   ------| ------ | ---------------------- |
+| colorFormat  | [PixelFormat](#pixelformat11) |  Yes  |  Yes  | Color format of the thumbnail.<br>**System API**: This is a system API        |
+
 ## PixelFormat<sup>11+</sup>
 
 Enumerates the color formats supported by the video thumbnail.
