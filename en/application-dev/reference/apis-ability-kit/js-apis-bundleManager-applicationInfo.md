@@ -1,6 +1,6 @@
 # ApplicationInfo
 
-The **ApplicationInfo** module defines the application information. A third-party application can obtain its own application information through [bundleManager.getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself), with **GET_BUNDLE_INFO_WITH_APPLICATION** passed in to for [bundleFlags](js-apis-bundleManager.md#bundleflag).
+The **ApplicationInfo** module defines the application information. A third-party application can obtain its own application information through [bundleManager.getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself), with **GET_BUNDLE_INFO_WITH_APPLICATION** passed in to [bundleFlags](js-apis-bundleManager.md#bundleflag).
 
 > **NOTE**
 >
@@ -37,6 +37,7 @@ The **ApplicationInfo** module defines the application information. A third-part
 | bundleType                |[BundleType](js-apis-bundleManager.md#bundletype)             | Yes  | No  | Bundle type, which can be **APP** (application) or **ATOMIC_SERVICE** (atomic service).                               |
 | debug<sup>10+</sup>       | boolean                                | Yes  | No  | Whether the application is in debugging mode. The default value is **false**.       |
 | dataUnclearable<sup>11+</sup>       | boolean                      | Yes  | No  | Whether the application data is unclearable. The value **true** means that the application data is unclearable, and **false** means the opposite. The default value is **false**.       |
+| nativeLibraryPath<sup>12+</sup> | string                                                                     | Yes  | No  | Local library file path of the application.                                                                                                  |
 
 ## ModuleMetadata<sup>10+</sup>
 
@@ -48,5 +49,3 @@ Describes the metadata of a module.
 | --------- | -------------- | ---- | ---- | --------------------------- |
 | moduleName<sup>10+</sup>| string         | Yes  | No  | Module name.  |
 | metadata<sup>10+</sup>  | Array\<[Metadata](js-apis-bundleManager-metadata.md)>      | Yes  | No  | Metadata list of the module.|
-
- <!--no_check--> 

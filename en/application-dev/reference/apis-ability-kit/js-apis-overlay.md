@@ -24,7 +24,7 @@ Enables or disables a module with the overlay feature in the current application
 
 | Name      | Type    | Mandatory  | Description                                   |
 | ----------- | ------ | ---- | --------------------------------------- |
-| moduleName  | string | Yes   | HAP name of the module with the overlay feature.              |
+| moduleName  | string | Yes   | Name of the module with the overlay feature.              |
 | isEnabled   | boolean  | Yes | Whether to enable the module with the overlay feature. The value **true** means to enable the module, and **false** means to disable the module.|
 
 **Return value**
@@ -76,7 +76,7 @@ Enables or disables a module with the overlay feature in the current application
 
 | Name      | Type    | Mandatory  | Description                                   |
 | ----------- | ------ | ---- | --------------------------------------- |
-| moduleName  | string | Yes   | HAP name of the module with the overlay feature.              |
+| moduleName  | string | Yes   | Name of the module with the overlay feature.              |
 | isEnabled   | boolean  | Yes | Whether to enable the module with the overlay feature. The value **true** means to enable the module, and **false** means to disable the module.|
 | callback    | AsyncCallback\<void> | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.|
 
@@ -124,7 +124,7 @@ Obtains the information about a module with the overlay feature in the current a
 
 | Name      | Type    | Mandatory  | Description                                   |
 | ----------- | ------ | ---- | ------------------------------------------ |
-| moduleName | string | Yes   | HAP name of the module with the overlay feature.    |
+| moduleName | string | Yes   | Name of the module with the overlay feature.    |
 
 **Return value**
 
@@ -173,7 +173,7 @@ Obtains the information about a module with the overlay feature in the current a
 
 | Name      | Type    | Mandatory  | Description                                   |
 | ----------- | ------ | ---- | --------------------------------------- |
-| moduleName | string | Yes   | HAP name of the module with the overlay feature.    |
+| moduleName | string | Yes   | Name of the module with the overlay feature.    |
 | callback    | AsyncCallback\<[OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)> | Yes   | Callback used to return the result, which is an [OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md) object. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.                  |
 
 **Error codes**
@@ -219,7 +219,7 @@ Obtains the information about modules with the overlay feature in the current ap
 
 | Name      | Type    | Mandatory  | Description                                   |
 | ----------- | ------ | ---- | --------------------------------------- |
-| targetModuleName | string | Yes   | HAP name of the target module, which is **targetModuleName** specified by modules with the overlay feature.    |
+| targetModuleName | string | Yes   | Name of the target module specified by modules with the overlay feature.    |
 
 **Return value**
 
@@ -267,7 +267,7 @@ Obtains the information about modules with the overlay feature in the current ap
 
 | Name      | Type    | Mandatory  | Description                                   |
 | ----------- | ------ | ---- | --------------------------------------- |
-| targetModuleName | string | Yes   | HAP name of the target module specified by modules with the overlay feature.    |
+| targetModuleName | string | Yes   | Name of the target module specified by modules with the overlay feature.    |
 | callback    | AsyncCallback\<Array\<[OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)>> | Yes   | Callback used to return the result, which is an array of [OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md) objects. If the operation is successful, **err** is **null**; otherwise, **err** is an error object. |
 
 **Error codes**
