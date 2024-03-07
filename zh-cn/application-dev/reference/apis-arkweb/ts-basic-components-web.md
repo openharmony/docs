@@ -4549,6 +4549,52 @@ onNativeEmbedGestureEvent(callback: NativeEmbedTouchInfo)
     }
   }
   ```
+
+### onIntelligentTrackingPreventionResult<sup>12+</sup>
+
+onIntelligentTrackingPreventionResult(callback: OnIntelligentTrackingPreventionCallback)
+
+智能防跟踪功能使能时，当追踪者cookie被拦截时触发该回调。
+
+**参数：**
+
+| 参数名       | 类型                                                                                         | 说明                         |
+| ----------- | ------------------------------------------------------------------------------------------- | ---------------------------- |
+| callback    | [OnIntelligentTrackingPreventionCallback](#onintelligenttrackingpreventioncallback12) | 智能防跟踪功能使能时，当追踪者cookie被拦截时触发的回调。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  import business_error from '@ohos.base'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        // 需要打开智能防跟踪功能，才会触发onIntelligentTrackingPreventionResult回调
+        Button('enableIntelligentTrackingPrevention')
+          .onClick(() => {
+            try {
+              this.controller.enableIntelligentTrackingPrevention(true);
+            } catch (error) {
+              let e: business_error.BusinessError = error as business_error.BusinessError;
+              console.error('ErrorCode: ${e.code}, Message: ${e.message}');
+            }
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+        .onIntelligentTrackingPreventionResult((details) => {
+            console.log("onIntelligentTrackingPreventionResult: [websiteHost]= " + details.host +
+              ", [trackerHost]=" + details.trackerHost);
+        })
+      }
+    }
+  }
+  ```
+
 ## ConsoleMessage
 
 Web组件获取控制台信息对象。示例代码参考[onConsole事件](#onconsole)。
@@ -6519,3 +6565,22 @@ type OnLargestContentfulPaintCallback = (largestContentfulPaint: [LargestContent
 | 参数名                 | 参数类型                                            | 参数描述                             |
 | ---------------------- | --------------------------------------------------- | ------------------------------------ |
 | largestContentfulPaint | [LargestContentfulPaint](#largestcontentfulpaint12) | 网页绘制页面最大内容度量的详细信息。 |
+
+## IntelligentTrackingPreventionDetails<sup>12+</sup>
+
+提供智能防跟踪拦截的详细信息。
+
+| 名称           | 类型                                | 必填   | 描述         |
+| ------------- | ------------------------------------| ----- | ------------ |
+| host          | string                              | 是     | 网站域名。    |
+| trackerHost   | string                              | 是     | 追踪者域名。  |
+
+## OnIntelligentTrackingPreventionCallback<sup>12+</sup>
+
+type OnIntelligentTrackingPreventionCallback = (details: IntelligentTrackingPreventionDetails) => void
+
+当跟踪者cookie被拦截时触发的回调。
+
+| 参数名   | 参数类型                                                                          | 参数描述                    |
+| ------- | -------------------------------------------------------------------------------- | ------------------------- |
+| details | [IntelligentTrackingPreventionDetails](#intelligenttrackingpreventiondetails12)  | 提供智能防跟踪拦截的详细信息。 |
