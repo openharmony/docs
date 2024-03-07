@@ -5,7 +5,7 @@
 
 该模块主要提供Web组件下runJavaScript和registerJavaScirptProxy的NDK接口。
 
-**起始版本：** 11
+**起始版本：** 12
 
 
 ## 汇总
@@ -16,6 +16,29 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | [native_interface_arkweb.h](native__interface__arkweb_8h.md) | 该文件主要提供Web组件下runJavaScript和registerJavaScirptProxy的NDK接口。<br>**库：** libohweb.so  | 
+| [arkweb_interface.h](arkweb__interface_8h.md) | 提供ArkWeb在Native侧获取API的接口，及基础Native API类型。<br>**库：** libohweb.so  | 
+| [arkweb_type.h](arkweb__type_8h.md) | 提供ArkWeb在Native侧的公共类型定义。<br>**库：** libohweb.so  | 
+
+
+### 结构体
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| struct&nbsp;&nbsp;[ArkWeb_AnyNativeAPI](_ark_web___any_native_a_p_i.md) | 定义基础Native API类型。  | 
+| struct&nbsp;&nbsp;[ArkWeb_JavaScriptBridgeData](_ark_web___java_script_bridge_data.md) | 定义JavaScript Bridge数据的基础结构。  | 
+| struct&nbsp;&nbsp;[ArkWeb_JavaScriptObject](_ark_web___java_script_object.md) | 注入的JavaScript结构体。  | 
+| struct&nbsp;&nbsp;[ArkWeb_ProxyMethod](_ark_web___proxy_method.md) | 注入的Proxy方法通用结构体。  | 
+| struct&nbsp;&nbsp;[ArkWeb_ProxyObject](_ark_web___proxy_object.md) | 注入的Proxy对象通用结构体。  | 
+| struct&nbsp;&nbsp;[ArkWeb_ControllerAPI](_ark_web___controller_a_p_i.md) | Controller相关的Native API结构体。  | 
+| struct&nbsp;&nbsp;[ArkWeb_ComponentAPI](_ark_web___component_a_p_i.md) | Component相关的Native API结构体。  | 
+
+
+### 宏定义
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| [ARKWEB_MEMBER_EXISTS](#arkweb_member_exists)(s, f)&nbsp;&nbsp;&nbsp;&nbsp;((intptr_t) &amp; ((s)-&gt;f) - (intptr_t)(s) + sizeof((s)-&gt;f) &lt;= \*reinterpret_cast&lt;size_t\*&gt;(s)) | 检查结构体中是否存在该成员变量。  | 
+| [ARKWEB_MEMBER_MISSING](#arkweb_member_missing)(s, f)&nbsp;&nbsp;&nbsp;(![ARKWEB_MEMBER_EXISTS](#arkweb_member_exists)(s, f) \|\| !((s)-&gt;f)) | 当前结构体存在该成员变量则返回false，否则返回true。  | 
 
 
 ### 类型定义
@@ -26,6 +49,16 @@
 | typedef char \*(\* [NativeArkWeb_OnJavaScriptProxyCallback](#nativearkweb_onjavascriptproxycallback)) (const char \*\*argv, int32_t argc) | registerJavaScirptProxy接口的回调函数类型。当H5侧主动调用注册的对象下的函数时通过该接口通知开发者。  | 
 | typedef void(\* [NativeArkWeb_OnValidCallback](#nativearkweb_onvalidcallback)) (const char \*) | Web组件可注册对象时的回调函数类型。  | 
 | typedef void(\* [NativeArkWeb_OnDestroyCallback](#nativearkweb_ondestroycallback)) (const char \*) | Web组件销毁时的回调函数类型。  | 
+| typedef void(\* [ArkWeb_OnJavaScriptCallback](#arkweb_onjavascriptcallback)) (const char \*webTag, const [ArkWeb_JavaScriptBridgeData](_ark_web___java_script_bridge_data.md) \*data, void \*userData) | 注入的JavaScript执行完成的回调。  | 
+| typedef void(\* [ArkWeb_OnJavaScriptProxyCallback](#arkweb_onjavascriptproxycallback)) (const char \*webTag, const [ArkWeb_JavaScriptBridgeData](_ark_web___java_script_bridge_data.md) \*dataArray, size_t arraySize, void \*userData) | Proxy方法被执行的回调。  | 
+| typedef void(\* [ArkWeb_OnComponentCallback](#arkweb_oncomponentcallback)) (const char \*webTag, void \*userData) | 组件事件通知相关的通用回调。  | 
+
+
+### 枚举
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| [ArkWeb_NativeAPIVariantKind](#arkweb_nativeapivariantkind) { ARKWEB_NATIVE_COMPONENT, ARKWEB_NATIVE_CONTROLLER } | 定义Native API的类型枚举。  | 
 
 
 ### 函数
@@ -38,7 +71,35 @@
 | void [OH_NativeArkWeb_SetJavaScriptProxyValidCallback](#oh_nativearkweb_setjavascriptproxyvalidcallback) (const char \*webTag, [NativeArkWeb_OnValidCallback](#nativearkweb_onvalidcallback) callback) | 设置对象可注册的回调函数。  | 
 | [NativeArkWeb_OnValidCallback](#nativearkweb_onvalidcallback)[OH_NativeArkWeb_GetJavaScriptProxyValidCallback](#oh_nativearkweb_getjavascriptproxyvalidcallback) (const char \*webTag) | 获取对象可注册的回调函数。  | 
 | void [OH_NativeArkWeb_SetDestroyCallback](#oh_nativearkweb_setdestroycallback) (const char \*webTag, [NativeArkWeb_OnDestroyCallback](#nativearkweb_ondestroycallback) callback) | 设置组件销毁的回调函数。 | 
-| [NativeArkWeb_OnDestroyCallback](#nativearkweb_ondestroycallback)[OH_NativeArkWeb_GetDestroyCallback](#oh_nativearkweb_getdestroycallback) (const char \*webTag) | 获取组件销毁的回调函数。  | 
+| [NativeArkWeb_OnDestroyCallback](#nativearkweb_ondestroycallback)[OH_NativeArkWeb_GetDestroyCallback](#oh_nativearkweb_getdestroycallback) (const char \*webTag) | 获取组件销毁的回调函数。  |
+| [ArkWeb_AnyNativeAPI](_ark_web___any_native_a_p_i.md) \* OH_ArkWeb_GetNativeAPI ([ArkWeb_NativeAPIVariantKind](#arkweb_nativeapivariantkind) type) |  根据传入的API类型，获取对应的Native API结构体。| 
+
+
+## 宏定义说明
+
+
+### ARKWEB_MEMBER_EXISTS
+
+```
+#define ARKWEB_MEMBER_EXISTS( s,  f )    ((intptr_t) & ((s)->f) - (intptr_t)(s) + sizeof((s)->f) <= *reinterpret_cast<size_t*>(s))
+```
+**描述：**
+
+检查结构体中是否存在该成员变量。
+
+**起始版本：** 12
+
+
+### ARKWEB_MEMBER_MISSING
+
+```
+#define ARKWEB_MEMBER_MISSING( s,  f )   (!ARKWEB_MEMBER_EXISTS(s, f) || !((s)->f))
+```
+**描述：**
+
+当前结构体存在该成员变量则返回false，否则返回true。
+
+**起始版本：** 12
 
 
 ## 类型定义说明
@@ -91,6 +152,41 @@ typedef void(* NativeArkWeb_OnValidCallback) (const char *)
 
 **起始版本：** 11
 
+
+### ArkWeb_OnComponentCallback
+
+```
+typedef void(* ArkWeb_OnComponentCallback) (const char *webTag, void *userData)
+```
+**描述：**
+
+组件事件通知相关的通用回调。
+
+**起始版本：** 12
+
+
+### ArkWeb_OnJavaScriptCallback
+
+```
+typedef void(* ArkWeb_OnJavaScriptCallback) (const char *webTag, const ArkWeb_JavaScriptBridgeData *data, void *userData)
+```
+**描述：**
+
+注入的JavaScript执行完成的回调。
+
+**起始版本：** 12
+
+
+### ArkWeb_OnJavaScriptProxyCallback
+
+```
+typedef void(* ArkWeb_OnJavaScriptProxyCallback) (const char *webTag, const ArkWeb_JavaScriptBridgeData *dataArray, size_t arraySize, void *userData)
+```
+**描述：**
+
+Proxy方法被执行的回调。
+
+**起始版本：** 12
 
 ## 函数说明
 
@@ -251,6 +347,27 @@ void OH_NativeArkWeb_UnregisterJavaScriptProxy (const char * webTag, const char 
 | -------- | -------- |
 | webTag | Web组件的名称。  | 
 | objName | 注入对象的名称。 | 
+
+
+## 枚举类型说明
+
+
+### ArkWeb_NativeAPIVariantKind
+
+```
+enum ArkWeb_NativeAPIVariantKind
+```
+**描述：**
+
+定义Native API的类型枚举。
+
+**起始版本：** 12
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| ARKWEB_NATIVE_COMPONENT  | component相关API类型。&nbsp;&nbsp; | 
+| ARKWEB_NATIVE_CONTROLLER  | controller相关API类型。&nbsp;&nbsp; | 
+
 
 ## 示例代码
 
