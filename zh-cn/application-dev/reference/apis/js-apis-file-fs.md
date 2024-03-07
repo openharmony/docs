@@ -1942,7 +1942,7 @@ readText(filePath: string, options?: ReadTextOptions, callback: AsyncCallback&lt
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  import fs, { ReadOptions } from '@ohos.file.fs';
+  import fs, { ReadTextOptions } from '@ohos.file.fs';
   let filePath = pathDir + "/test.txt";
   let readTextOption: ReadTextOptions = {
       offset: 1,
@@ -1988,7 +1988,7 @@ readTextSync(filePath: string, options?: ReadTextOptions): string
 **示例：**
 
   ```ts
-  import fs, { ReadOptions } from '@ohos.file.fs'; 
+  import fs, { ReadTextOptions } from '@ohos.file.fs'; 
   let filePath = pathDir + "/test.txt";
   let readTextOptions: ReadTextOptions = {
     offset: 1,
