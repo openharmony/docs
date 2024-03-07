@@ -443,6 +443,7 @@ listFile(filter?: Filter) : FileIterator
   // rootinfos 从getRoots()获取
   // let filter = {suffix : [".txt", ".jpg", ".xlsx"]};
   let rootInfo: fileAccess.RootInfo; // = rootinfos[0];
+  
   let fileInfos: Array<fileAccess.FileInfo> = [];
   let isDone: boolean = false;
   try {
@@ -694,22 +695,25 @@ createFile(uri: string, displayName: string) : Promise&lt;string&gt;
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  // 以内置存储目录为例
-  // 示例代码sourceUri表示Download目录，该uri是对应的fileInfo中uri
-  // 开发者应根据自己实际获取的uri进行开发
-  let sourceUri: string = "file://docs/storage/Users/currentUser/Download";
-  let displayName: string = "file1";
-  let fileUri: string;
-  try {
-    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
-    fileUri = await fileAccessHelper.createFile(sourceUri, displayName);
-    if (!fileUri) {
-      console.error("createFile return undefined object");
+  async function createFile() {
+    // 以内置存储目录为例
+    // 示例代码sourceUri表示Download目录，该uri是对应的fileInfo中uri
+    // 开发者应根据自己实际获取的uri进行开发
+    let sourceUri: string = "file://docs/storage/Users/currentUser/Download";
+    let displayName: string = "file1";
+    let fileUri: string;
+    try {
+      // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+      fileUri = await fileAccessHelper.createFile(sourceUri, displayName);
+      if (!fileUri) {
+        console.error("createFile return undefined object");
+        return;
+      }
+      console.log("createFile sucess, fileUri: " + JSON.stringify(fileUri));
+    } catch (err) {
+      let error: BusinessError = err as BusinessError;
+      console.error("createFile failed, errCode:" + error.code + ", errMessage:" + error.message);
     }
-    console.log("createFile sucess, fileUri: " + JSON.stringify(fileUri));
-  } catch (err) {
-    let error: BusinessError = err as BusinessError;
-    console.error("createFile failed, errCode:" + error.code + ", errMessage:" + error.message);
   }
   ```
 
@@ -792,19 +796,23 @@ mkDir(parentUri: string, displayName: string) : Promise&lt;string&gt;
   // 以内置存储目录为例
   // 示例代码sourceUri表示Download目录，该uri是对应的fileInfo中uri
   // 开发者应根据自己实际获取的uri进行开发
-  let sourceUri: string = "file://docs/storage/Users/currentUser/Download";
-  let dirName: string = "dirTest";
-  let dirUri: string;
-  try {
-    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
-    dirUri = await fileAccessHelper.mkDir(sourceUri, dirName);
-    if (!dirUri) {
-      console.error("mkDir return undefined object");
+    async function createDirectory() {
+    let sourceUri: string = "file://docs/storage/Users/currentUser/Download";
+    let dirName: string = "dirTest";
+    let dirUri: string;
+
+    try {
+      // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+      dirUri = await fileAccessHelper.mkDir(sourceUri, dirName);
+      if (!dirUri) {
+        console.error("mkDir return undefined object");
+      } else {
+        console.log("mkDir success, dirUri: " + JSON.stringify(dirUri));
+      }
+    } catch (err) {
+      let error: BusinessError = err as BusinessError;
+      console.error("mkDir failed, errCode:" + error.code + ", errMessage:" + error.message);
     }
-    console.log("mkDir sucess, dirUri: " + JSON.stringify(dirUri));
-  } catch (err) {
-    let error: BusinessError = err as BusinessError;
-    console.error("mkDir failed, errCode:" + error.code + ", errMessage:" + error.message);
   }
   ```
 
@@ -1868,7 +1876,7 @@ async function registerObserver01() {
     // uri为'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR1/SUB_FILE'，事件类型为NOTIFY_MOVE_SELF
     const callbackDir1 = (NotifyMessageDir: fileAccess.NotifyMessage) => {
       if (NotifyMessageDir != undefined) {
-        console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uri[0]);
+        console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
       } else {
         console.error("NotifyMessageDir is undefined");
       }
@@ -1876,7 +1884,7 @@ async function registerObserver01() {
     // 期待收到uri为'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR2/SUB_FILE'，事件类型为NOTIFY_MOVED_TO
     const callbackDir2 = (NotifyMessageDir: fileAccess.NotifyMessage) => {
       if (NotifyMessageDir != undefined) {
-        console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uri[0]);
+        console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
       } else {
         console.error("NotifyMessageDir is undefined");
       }
@@ -1885,7 +1893,7 @@ async function registerObserver01() {
     // 期待收到uri为'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR1/SUB_FILE'，事件类型为NOTIFY_MOVED_FROM
     const callbackFile = (NotifyMessageDir: fileAccess.NotifyMessage) => {
       if (NotifyMessageDir != undefined) {
-        console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uri[0]);
+        console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
       } else {
         console.error("NotifyMessageDir is undefined");
       }
@@ -1919,7 +1927,7 @@ async function registerObserver02() {
     // 期待收到uri为'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR/SUB_DIR'，事件类型为NOTIFY_ADD
     const callbackDir = (NotifyMessageDir: fileAccess.NotifyMessage) => {
       if (NotifyMessageDir != undefined) {
-        console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uri[0]);
+        console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
       } else {
         console.error("NotifyMessageDir is undefined");
       }
@@ -1950,7 +1958,7 @@ async function registerObserver03() {
     // 期待无第二次返回
     const callbackDir = (NotifyMessageDir: fileAccess.NotifyMessage) => {
       if (NotifyMessageDir != undefined) {
-        console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uri[0]);
+        console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
       } else {
         console.error("NotifyMessageDir is undefined");
       }
@@ -1971,13 +1979,13 @@ async function registerObserver03() {
 
 **示例4：注册监听设备上下线**
 
-```
+```ts
 import { BusinessError } from '@ohos.base';
 async function UnregisterObserver03() {
   try {
     const callbackDir1 = (NotifyMessageDir: fileAccess.NotifyMessage) => {
       if (NotifyMessageDir != undefined) {
-        console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' + NotifyMessageDir.uri[0]);
+        console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
       } else {
         console.error("NotifyMessageDir is undefined");
       }
@@ -2022,7 +2030,7 @@ async function UnregisterObserver01() {
     // 期待收到uri为'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR'，事件类型为NOTIFY_DELETE
     const callbackDir = (NotifyMessageDir: fileAccess.NotifyMessage) => {
       if (NotifyMessageDir != undefined) {
-        console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uri[0]);
+        console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
       } else {
         console.error("NotifyMessageDir is undefined");
       }
@@ -2050,7 +2058,7 @@ async function UnregisterObserver02() {
     // 期待收到uri为'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR'，事件类型为NOTIFY_DELETE
     const callbackDir = (NotifyMessageDir: fileAccess.NotifyMessage) => {
       if (NotifyMessageDir != undefined) {
-        console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uri[0]);
+        console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
       } else {
         console.error("NotifyMessageDir is undefined");
       }
@@ -2081,7 +2089,7 @@ async function UnregisterObserver03() {
     // 期待收到uri为'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR/RENAME_FILE'，事件类型为NOTIFY_MOVED_TO
     const callbackDir1 = (NotifyMessageDir: fileAccess.NotifyMessage) => {
       if (NotifyMessageDir != undefined) {
-        console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uri[0]);
+        console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
       } else {
         console.error("NotifyMessageDir is undefined");
       }
@@ -2089,7 +2097,7 @@ async function UnregisterObserver03() {
     // 期待收不到任何事件
     const callbackDir2 = (NotifyMessageDir: fileAccess.NotifyMessage) => {
       if (NotifyMessageDir != undefined) {
-        console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uri[0]);
+        console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
       } else {
         console.error("NotifyMessageDir is undefined");
       }
@@ -2112,13 +2120,13 @@ async function UnregisterObserver03() {
 
 **示例4：解注册监听设备的上下线**
 
-```
+```ts
 import { BusinessError } from '@ohos.base';
 async function UnregisterObserver03() {
   try {
     const callbackDir1 = (NotifyMessageDir: fileAccess.NotifyMessage) => {
       if (NotifyMessageDir != undefined) {
-        console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' + NotifyMessageDir.uri[0]);
+        console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
       } else {
         console.error("NotifyMessageDir is undefined");
       }
