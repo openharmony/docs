@@ -2516,7 +2516,7 @@ try {
   }).catch((err: Base.BusinessError) => {
     console.error(`formHost recover forms error, code: ${err.code}, message: ${err.message}`);
   });
-} catch (e: Base.BusinessError) {
+} catch (e) {
   console.info(`catch error, code: ${e.code}, message: ${e.message}`);
 }
 ```
