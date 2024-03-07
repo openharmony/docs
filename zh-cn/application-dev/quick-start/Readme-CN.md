@@ -41,6 +41,7 @@
       - 自定义组件
         - [创建自定义组件](arkts-create-custom-components.md)
         - [页面和自定义组件生命周期](arkts-page-custom-components-lifecycle.md)
+        - [自定义组件的自定义布局](arkts-page-custom-components-layout.md)
         - [自定义组件冻结功能](arkts-custom-components-freeze.md)
         - [自定义组件成员属性访问限定符使用限制](arkts-custom-components-access-restrictions.md)
       - [\@Builder装饰器：自定义构建函数](arkts-builder.md)
