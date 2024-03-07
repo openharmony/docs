@@ -684,10 +684,13 @@ console.info('ecc item --- p: ' + p.toString(16));
 
 getEncodedDer(format: string): DataBlob
 
-支持获取满足ASN.1语法、X.509规范、DER编码格式的公钥数据，当前仅支持获取ECC压缩/非压缩格式的公钥数据。
+支持根据指定的密钥格式（如采用哪个规范、是否压缩等），获取满足ASN.1语法、DER编码的公钥数据。当前仅支持获取ECC压缩/非压缩格式的公钥数据。
+
 > **说明：**
 >
-> 需要获取非压缩格式的公钥数据时，也可以使用getEncoded获取。
+> 本接口和[Key.getEncoded()](#getencoded)的区别是：<br/>
+> 1. 使用本接口时应当明确指定格式标准，例如对于ECC公钥，需要指定X509标准、是否压缩。本接口适用于对密钥格式有特定需求的场景，例如签名验签的一方使用cryptoFramework，而另一方使用其他加解密算法库的情况下，可能需要指定统一的密钥格式。
+> 2. [Key.getEncoded()](#getencoded)提供默认DER编码的输出，不支持指定密钥格式，例如对于ECC公钥，getEncoded输出的结果是否为压缩格式取决于生成密钥时的数据是否压缩（例如指定二进制数据通过[convertKey](#convertkey-3)接口生成密钥对象时，二进制数据是否压缩决定了getEncoded结果是否压缩）。[Key.getEncoded()](#getencoded)适用于无需指定密钥格式的一般场景，例如签名验签的双方均使用cryptoFramework来生成密钥/获取密钥数据。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -695,13 +698,13 @@ getEncodedDer(format: string): DataBlob
 
 | 参数名 | 类型                  | 必填 | 说明                 |
 | ---- | --------------------- | ---- | -------------------- |
-| format  | string | 是   | 指定返回的公钥数据格式。format取值为"X509\|\[COMPRESSED/UNCOMPRESSED]"。 |
+| format  | string | 是   | format当前仅支持"X509\|COMPRESSED"和"X509\|UNCOMPRESSED"，其中X509和是否压缩均需要显式指定。 |
 
 **返回值：**
 
 | 类型                        | 说明                              |
 | --------------------------- | --------------------------------- |
-| [DataBlob](#datablob) | 返回符合ASN.1语法、X.509规范、DER编码格式的压缩/非压缩公钥数据。 |
+| [DataBlob](#datablob) | 返回特定密钥格式的，满足ASN.1语法、DER编码的公钥数据。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
@@ -1616,7 +1619,13 @@ try {
 
 static convertPoint(curveName: string, encodedPoint: Uint8Array): Point
 
-根据椭圆曲线的曲线名，即相应的NID(Name IDentifier)，将压缩/非压缩的点数据转换为Point对象。其中，非压缩点数据的格式为：前缀04+x坐标+y坐标，压缩点数据的格式为：前缀03+x(如果y是奇数)，前缀02+x(如果y是偶数)。
+根据椭圆曲线的曲线名，即相应的NID(Name IDentifier)，将指定的点数据转换为Point对象。当前支持压缩/非压缩格式的点数据。  
+
+> **说明：**
+>
+> 根据RFC5480规范中第2.2节的描述：<br/>
+> 1. 非压缩的点数据，表示为：前缀0x04\|x坐标\|y坐标；
+> 2. 压缩的点数据，对于Fp素数域上的点（当前暂不支持F2m域），表示为：前缀0x03\|x坐标 (坐标y是奇数时)，前缀0x02\|x坐标 (坐标y是偶数时)。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -1655,7 +1664,7 @@ console.info('returnPoint: ' + returnPoint.x.toString(16));
 
 static getEncodedPoint(curveName: string, point: Point, format: string): Uint8Array
 
-根据椭圆曲线的曲线名，即相应的NID(Name IDentifier)，按照指定的点数据格式，将Point对象转换为压缩/非压缩的点数据。
+根据椭圆曲线的曲线名，即相应的NID(Name IDentifier)，按照指定的点数据格式，将Point对象转换为点数据。当前支持压缩/非压缩格式的点数据。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -1663,15 +1672,15 @@ static getEncodedPoint(curveName: string, point: Point, format: string): Uint8Ar
 
 | 参数名       | 类型               | 必填 | 说明                                           |
 | ------------ | ----------------- | ---- | ---------------------------------------------- |
-| curveName    | string            | 是   | 根据椭圆曲线的曲线名，即相应的NID(Name IDentifier)。 |
-| point        | [Point](#point10) | 是   | 指定的ECC的Point对象。 |
+| curveName    | string            | 是   | 椭圆曲线的曲线名，即相应的NID(Name IDentifier)。 |
+| point        | [Point](#point10) | 是   | 椭圆曲线上的Point点对象。 |
 | format       | string            | 是   | 需要获取的点数据格式，当前支持"COMPRESSED"或"UNCOMPRESSED"。 |
 
 **返回值：**
 
 | 类型              | 说明                              |
 | ----------------- | --------------------------------- |
-| Uint8Array | 返回ECC的点数据。 |
+| Uint8Array | 返回指定格式的点数据。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
@@ -1696,8 +1705,8 @@ let returnPoint: cryptoFramework.Point = {
   x: BigInt('0x' + eccPkX.toString(16)),
   y: BigInt('0x' + eccPkY.toString(16))
 };
-let returnBlob = cryptoFramework.ECCKeyUtil.getEncodedPoint('NID_brainpoolP256r1', returnPoint, 'UNCOMPRESSED');
-console.info('returnBlob: ' + returnBlob);
+let returnData = cryptoFramework.ECCKeyUtil.getEncodedPoint('NID_brainpoolP256r1', returnPoint, 'UNCOMPRESSED');
+console.info('returnData: ' + returnData);
 ```
 
 ## DHKeyUtil<sup>11+</sup>
