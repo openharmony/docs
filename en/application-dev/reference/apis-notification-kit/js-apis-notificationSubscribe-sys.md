@@ -397,7 +397,7 @@ notificationSubscribe.remove(bundle, notificationKey, reason, removeCallback);
 
 remove(bundle: BundleOption, notificationKey: NotificationKey, reason: RemoveReason): Promise\<void\>
 
-Removes a notification based on the bundle information and notification key. This API uses a promise to return the result.
+Removes a notification based on the specified bundle information and notification key. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 

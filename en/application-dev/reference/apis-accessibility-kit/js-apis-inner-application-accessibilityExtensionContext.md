@@ -7,7 +7,6 @@ You can use the APIs of this module to configure the concerned information, obta
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
->
 
 ## Usage
 
@@ -29,59 +28,57 @@ Provides attribute names and value types of a node element.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
-### Attributes
+### Name
 
-| Name                  | Type                                                               | Description                 |
-|----------------------|-------------------------------------------------------------------| ------------------- |
-| accessibilityFocused | boolean                                                           |   Accessibility focus status.  |
-| bundleName           | string                                                            | Bundle name.|
-| checkable            | boolean                                                           | Whether the element is checkable.|
-| checked              | boolean                                                           | Whether the element is checked.|
-| children             | Array&lt;[AccessibilityElement](#accessibilityelement9)&gt;       | All child elements.|
-| clickable            | boolean                                                           | Whether the element is clickable.|
-| componentId          | number                                                            | ID of the component to which the element belongs.|
-| componentType        | string                                                            | Type of the component to which the element belongs.|
-| contents             | Array&lt;string&gt;                                               | Content.|
-| currentIndex         | number                                                            | Index of the current item.|
-| description          | string                                                            | Description of the element.|
-| editable             | boolean                                                           | Whether the element is editable.|
-| endIndex             | number                                                            | Index of the last list item displayed on the screen.|
-| error                | string                                                            | Error status.|
-| focusable            | boolean                                                           | Whether the element is focusable.|
-| hintText             | string                                                            | Hint text.|
-| inputType            | number                                                            | Type of the input text.|
-| inspectorKey         | string                                                            | Inspector key.|
-| isActive             | boolean                                                           | Whether the element is active.|
-| isEnable             | boolean                                                           | Whether the element is enabled.|
-| isHint               | boolean                                                           | Whether the element is in the hint state.|
-| isFocused            | boolean                                                           | Whether the element is focused.|
-| isPassword           | boolean                                                           | Whether the element is a password.|
-| isVisible            | boolean                                                           | Whether the element is visible.|
-| itemCount            | number                                                            | Total number of items.|
-| lastContent          | string                                                            | Last content.|
-| layer                | number                                                            | Display layer of the element.|
-| longClickable        | boolean                                                           | Whether the element is long-clickable.|
-| pageId               | number                                                            | Page ID.|
-| parent               | [AccessibilityElement](#accessibilityelement9)                    | Parent element of the element.|
-| pluralLineSupported  | boolean                                                           | Whether the element supports multiple lines of text.|
-| rect                 | [Rect](#rect)                                                     | Area of the element.|
-| resourceName         | string                                                            | Resource name of the element.|
-| rootElement          | [AccessibilityElement](#accessibilityelement9)                    | Root element of the window element.|
-| screenRect           | [Rect](#rect)                                                     | Display area of the element.|
-| scrollable           | boolean                                                           | Whether the element is scrollable.|
-| selected             | boolean                                                           | Whether the element is selected.|
-| startIndex           | number                                                            | Index of the first list item on the screen.|
-| text                 | string                                                            | Text of the element.|
-| textLengthLimit      | string                                                            | Maximum text length of the element.|
-| textMoveUnit         | [accessibility.TextMoveUnit](js-apis-accessibility.md#textmoveunit) | Unit of movement when the text is read.|
-| triggerAction        | [accessibility.Action](js-apis-accessibility.md#action)           | Action that triggers the element event.|
-| type                 | [WindowType](#windowtype)                                         | Window type of the element.|
-| valueMax             | number                                                            | Maximum value.|
-| valueMin             | number                                                            | Minimum value.|
-| valueNow             | number                                                            | Current value.|
-| windowId             | number                                                            | Window ID.|
-
-
+| Name                  | Type                                                                | Readable | Writable | Description                 |
+|----------------------|--------------------------------------------------------------------|-----|-----| ------------------- |
+| accessibilityFocused | boolean                                                            | Yes  | No  |   Accessibility focus status.  |
+| bundleName           | string                                                             | Yes  | No  | Bundle name.|
+| checkable            | boolean                                                            | Yes  | No  | Whether the element is checkable.|
+| checked              | boolean                                                            | Yes  | No  | Whether the element is checked.|
+| children             | Array&lt;[AccessibilityElement](#accessibilityelement9)&gt;        | Yes  | No  | All child elements.|
+| clickable            | boolean                                                            | Yes  | No  | Whether the element is clickable.|
+| componentId          | number                                                             | Yes  | No  | ID of the component to which the element belongs.|
+| componentType        | string                                                             | Yes  | No  | Type of the component to which the element belongs.|
+| contents             | Array&lt;string&gt;                                                | Yes  | No  | Content.|
+| currentIndex         | number                                                             | Yes  | No  | Index of the current item.|
+| description          | string                                                             | Yes  | No  | Description of the element.|
+| editable             | boolean                                                            | Yes  | No  | Whether the element is editable.|
+| endIndex             | number                                                             | Yes  | No  | Index of the last list item displayed on the screen.|
+| error                | string                                                             | Yes  | No  | Error status.|
+| focusable            | boolean                                                            | Yes  | No  | Whether the element is focusable.|
+| hintText             | string                                                             | Yes  | No  | Hint text.|
+| inputType            | number                                                             | Yes  | No  | Type of the input text.|
+| inspectorKey         | string                                                             | Yes  | No  | Inspector key.|
+| isActive             | boolean                                                            | Yes  | No  | Whether the element is active.|
+| isEnable             | boolean                                                            | Yes  | No  | Whether the element is enabled.|
+| isHint               | boolean                                                            | Yes  | No  | Whether the element is in the hint state.|
+| isFocused            | boolean                                                            | Yes  | No  | Whether the element is focused.|
+| isPassword           | boolean                                                            | Yes  | No  | Whether the element is a password.|
+| isVisible            | boolean                                                            | Yes  | No  | Whether the element is visible.|
+| itemCount            | number                                                             | Yes  | No  | Total number of items.|
+| lastContent          | string                                                             | Yes  | No  | Last content.|
+| layer                | number                                                             | Yes  | No  | Display layer of the element.|
+| longClickable        | boolean                                                            | Yes  | No  | Whether the element is long-clickable.|
+| pageId               | number                                                             | Yes  | No  | Page ID.|
+| parent               | [AccessibilityElement](#accessibilityelement9)                     | Yes  | No  | Parent element of the element.|
+| pluralLineSupported  | boolean                                                            | Yes  | No  | Whether the element supports multiple lines of text.|
+| rect                 | [Rect](#rect)                                                      | Yes  | No  | Area of the element.|
+| resourceName         | string                                                             | Yes  | No  | Resource name of the element.|
+| rootElement          | [AccessibilityElement](#accessibilityelement9)                     | Yes  | No  | Root element of the window element.|
+| screenRect           | [Rect](#rect)                                                      | Yes  | No  | Display area of the element.|
+| scrollable           | boolean                                                            | Yes  | No  | Whether the element is scrollable.|
+| selected             | boolean                                                            | Yes  | No  | Whether the element is selected.|
+| startIndex           | number                                                             | Yes  | No  | Index of the first list item on the screen.|
+| text                 | string                                                             | Yes  | No  | Text of the element.|
+| textLengthLimit      | string                                                             | Yes  | No  | Maximum text length of the element.|
+| textMoveUnit         | [accessibility.TextMoveUnit](js-apis-accessibility.md#textmoveunit) | Yes  | No  | Unit of movement when the text is read.|
+| triggerAction        | [accessibility.Action](js-apis-accessibility.md#action)         | Yes  | No  | Action that triggers the element event.|
+| type                 | [WindowType](#windowtype)                                          | Yes  | No  | Window type of the element.|
+| valueMax             | number                                                             | Yes  | No  | Maximum value.|
+| valueMin             | number                                                             | Yes  | No  | Minimum value.|
+| valueNow             | number                                                             | Yes  | No  | Current value.|
+| windowId             | number                                                             | Yes  | No  | Window ID.|
 
 ## FocusDirection
 
@@ -145,7 +142,7 @@ Sets the concerned target bundle. This API uses a promise to return the result.
 
 | Name        | Type                 | Mandatory  | Description      |
 | ----------- | ------------------- | ---- | -------- |
-| targetNames | Array&lt;string&gt; | Yes   | Bundles name of the concerned target applications. The service receives accessibility events of the concerned application. By default, accessibility events of all applications are received. Pass in an empty array if there is no concerned application.|
+| targetNames | Array&lt;string&gt; | Yes   | Bundle names of the concerned target application. The service receives accessibility events of the concerned application. By default, accessibility events of all applications are received. Pass in an empty array if there is no concerned application.|
 
 **Return value**
 
@@ -178,7 +175,7 @@ Sets the concerned target bundle. This API uses an asynchronous callback to retu
 
 | Name        | Type                       | Mandatory  | Description                                      |
 | ----------- | ------------------------- | ---- | ---------------------------------------- |
-| targetNames | Array&lt;string&gt;       | Yes   | Bundle names of the concerned target applications. The service receives accessibility events of the concerned application. By default, accessibility events of all applications are received. Pass in an empty array if there is no concerned application.                                |
+| targetNames | Array&lt;string&gt;       | Yes   | Bundle name of the concerned target application. The service receives accessibility events of the concerned application. By default, accessibility events of all applications are received. Pass in an empty array if there is no concerned application.                                |
 | callback    | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation fails, **err** that contains data is returned.|
 
 **Example**
@@ -221,7 +218,7 @@ Obtains the focus element. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Accessibility Error Codes](../errorcodes/errorcode-accessibility.md).
+For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
 
 | ID  | Error Message                                    |
 | ------- | ---------------------------------------- |
@@ -233,7 +230,10 @@ For details about the error codes, see [Accessibility Error Codes](../errorcodes
 import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
 import { BusinessError } from '@ohos.base';
 
+let rootElement: AccessibilityElement;
+
 axContext.getFocusElement().then((data: AccessibilityElement) => {
+  rootElement = data;
   console.log(`Succeeded in get focus element,${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
   console.error(`failed to get focus element, Code is ${err.code}, message is ${err.message}`);
@@ -256,7 +256,7 @@ Obtains the focus element. This API uses an asynchronous callback to return the 
 
 **Error codes**
 
-For details about the error codes, see [Accessibility Error Codes](../errorcodes/errorcode-accessibility.md).
+For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
 
 | ID  | Error Message                                    |
 | ------- | ---------------------------------------- |
@@ -268,11 +268,14 @@ For details about the error codes, see [Accessibility Error Codes](../errorcodes
 import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
 import { BusinessError } from '@ohos.base';
 
+let rootElement: AccessibilityElement;
+
 axContext.getFocusElement((err: BusinessError, data: AccessibilityElement) => {
-  if (err) {
+  if (err && err.code) {
     console.error(`failed to get focus element, Code is ${err.code}, message is ${err.message}`);
     return;
   }
+  rootElement = data;
   console.info(`Succeeded in get focus element, ${JSON.stringify(data)}`);
 });
 ```
@@ -294,7 +297,7 @@ Obtains the focus element. This API uses an asynchronous callback to return the 
 
 **Error codes**
 
-For details about the error codes, see [Accessibility Error Codes](../errorcodes/errorcode-accessibility.md).
+For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
 
 | ID  | Error Message                                    |
 | ------- | ---------------------------------------- |
@@ -307,12 +310,14 @@ import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAb
 import { BusinessError } from '@ohos.base';
 
 let isAccessibilityFocus = true;
+let rootElement: AccessibilityElement;
 
 axContext.getFocusElement(isAccessibilityFocus, (err: BusinessError, data: AccessibilityElement)=> {
-  if (err) {
+  if (err && err.code) {
     console.error(`failed to get focus element, Code is ${err.code}, message is ${err.message}`);
     return;
   }
+  rootElement = data;
   console.info(`Succeeded in get focus element, ${JSON.stringify(data)}`);
 });
 ```
@@ -339,7 +344,7 @@ Obtains the root element of a window. This API uses a promise to return the resu
 
 **Error codes**
 
-For details about the error codes, see [Accessibility Error Codes](../errorcodes/errorcode-accessibility.md).
+For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
 
 | ID  | Error Message                                    |
 | ------- | ---------------------------------------- |
@@ -351,7 +356,10 @@ For details about the error codes, see [Accessibility Error Codes](../errorcodes
 import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
 import { BusinessError } from '@ohos.base';
 
+let rootElement: AccessibilityElement;
+
 axContext.getWindowRootElement().then((data: AccessibilityElement) => {
+  rootElement = data;
   console.log(`Succeeded in get root element of the window, ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
   console.error(`failed to get root element of the window, Code is ${err.code}, message is ${err.message}`);
@@ -374,7 +382,7 @@ Obtains the root element of a window. This API uses an asynchronous callback to 
 
 **Error codes**
 
-For details about the error codes, see [Accessibility Error Codes](../errorcodes/errorcode-accessibility.md).
+For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
 
 | ID  | Error Message                                    |
 | ------- | ---------------------------------------- |
@@ -386,11 +394,14 @@ For details about the error codes, see [Accessibility Error Codes](../errorcodes
 import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
 import { BusinessError } from '@ohos.base';
 
+let rootElement: AccessibilityElement;
+
 axContext.getWindowRootElement((err: BusinessError, data: AccessibilityElement) => {
-  if (err) {
+  if (err && err.code) {
     console.error(`failed to get root element of the window, Code is ${err.code}, message is ${err.message}`);
     return;
   }
+  rootElement = data;
   console.info(`Succeeded in get root element of the window, ${JSON.stringify(data)}`);
 });
 ```
@@ -412,7 +423,7 @@ Obtains the root element of a window. This API uses an asynchronous callback to 
 
 **Error codes**
 
-For details about the error codes, see [Accessibility Error Codes](../errorcodes/errorcode-accessibility.md).
+For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
 
 | ID  | Error Message                                    |
 | ------- | ---------------------------------------- |
@@ -425,12 +436,14 @@ import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAb
 import { BusinessError } from '@ohos.base';
 
 let windowId = 10;
+let rootElement: AccessibilityElement;
 
 axContext.getWindowRootElement(windowId, (err: BusinessError, data: AccessibilityElement) => {
-  if (err) {
+  if (err && err.code) {
     console.error(`failed to get root element of the window, Code is ${err.code}, message is ${err.message}`);
     return;
   }
+  rootElement = data;
   console.info(`Succeeded in get root element of the window, ${JSON.stringify(data)}`);
 });
 ```
@@ -457,7 +470,7 @@ Obtains the list of windows on a display. This API uses a promise to return the 
 
 **Error codes**
 
-For details about the error codes, see [Accessibility Error Codes](../errorcodes/errorcode-accessibility.md).
+For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
 
 | ID  | Error Message                                    |
 | ------- | ---------------------------------------- |
@@ -492,7 +505,7 @@ Obtains the list of windows on this display. This API uses an asynchronous callb
 
 **Error codes**
 
-For details about the error codes, see [Accessibility Error Codes](../errorcodes/errorcode-accessibility.md).
+For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
 
 | ID  | Error Message                                    |
 | ------- | ---------------------------------------- |
@@ -505,7 +518,7 @@ import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAb
 import { BusinessError } from '@ohos.base';
 
 axContext.getWindows((err: BusinessError, data: AccessibilityElement[]) => {
-  if (err) {
+  if (err && err.code) {
     console.error(`failed to get windows, Code is ${err.code}, message is ${err.message}`);
     return;
   }
@@ -530,7 +543,7 @@ Obtains the list of windows on a display. This API uses an asynchronous callback
 
 **Error codes**
 
-For details about the error codes, see [Accessibility Error Codes](../errorcodes/errorcode-accessibility.md).
+For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
 
 | ID  | Error Message                                    |
 | ------- | ---------------------------------------- |
@@ -544,7 +557,7 @@ import { BusinessError } from '@ohos.base';
 
 let displayId = 10;
 axContext.getWindows(displayId, (err: BusinessError, data: AccessibilityElement[]) => {
-  if (err) {
+  if (err && err.code) {
     console.error(`failed to get windows, Code is ${err.code}, message is ${err.message}`);
     return;
   }
@@ -568,8 +581,8 @@ Injects a gesture. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name        | Type                                      | Mandatory  | Description        |
-| ----------- | ---------------------------------------- | ---- | ---------- |
+| Name        | Type                                                                | Mandatory  | Description        |
+| ----------- |--------------------------------------------------------------------| ---- | ---------- |
 | gesturePath | [GesturePath](js-apis-accessibility-GesturePath.md#gesturepath) | Yes   | Path of the gesture to inject.|
 
 **Return value**
@@ -580,7 +593,7 @@ Injects a gesture. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Accessibility Error Codes](../errorcodes/errorcode-accessibility.md).
+For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
 
 | ID  | Error Message                                    |
 | ------- | ---------------------------------------- |
@@ -621,14 +634,14 @@ Injects a gesture. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name        | Type                                      | Mandatory  | Description                 |
-| ----------- | ---------------------------------------- | ---- | ------------------- |
+| Name        | Type                                                                | Mandatory  | Description                 |
+| ----------- |--------------------------------------------------------------------| ---- | ------------------- |
 | gesturePath | [GesturePath](js-apis-accessibility-GesturePath.md#gesturepath) | Yes   | Path of the gesture to inject.         |
-| callback    | AsyncCallback&lt;void&gt;                | Yes   | Callback used to return the result.|
+| callback    | AsyncCallback&lt;void&gt;                                          | Yes   | Callback used to return the result.|
 
 **Error codes**
 
-For details about the error codes, see [Accessibility Error Codes](../errorcodes/errorcode-accessibility.md).
+For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
 
 | ID  | Error Message                                    |
 | ------- | ---------------------------------------- |
@@ -664,13 +677,13 @@ Injects a gesture.
 
 **Parameters**
 
-| Name     | Type                                                        | Mandatory| Description                |
-| ----------- | ------------------------------------------------------------ | ---- | -------------------- |
+| Name     | Type                                                                | Mandatory| Description                |
+| ----------- |--------------------------------------------------------------------| ---- | -------------------- |
 | gesturePath | [GesturePath](js-apis-accessibility-GesturePath.md#gesturepath) | Yes  | Path of the gesture to inject.|
 
 **Error codes**
 
-For details about the error codes, see [Accessibility Error Codes](../errorcodes/errorcode-accessibility.md).
+For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
 
 | ID| Error Message                                           |
 | -------- | --------------------------------------------------- |
@@ -716,8 +729,7 @@ Obtains all attribute names of this element. This API uses a promise to return t
 import { ElementAttributeKeys } from '@ohos.application.AccessibilityExtensionAbility';
 import { BusinessError } from '@ohos.base';
 
-let rootElement:AccessibilityElement;// rootElement is an AccessibilityElement instance.
-
+// rootElement is an instance of AccessibilityElement.
 rootElement.attributeNames().then((data: ElementAttributeKeys[]) => {
   console.log(`Succeeded in get attribute names, ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
@@ -745,10 +757,9 @@ Obtains all attribute names of this element. This API uses an asynchronous callb
 import { ElementAttributeKeys } from '@ohos.application.AccessibilityExtensionAbility';
 import { BusinessError } from '@ohos.base';
 
-let rootElement:AccessibilityElement;// rootElement is an AccessibilityElement instance.
-
+// rootElement is an instance of AccessibilityElement.
 rootElement.attributeNames((err: BusinessError, data: ElementAttributeKeys[]) => {
-  if (err) {
+  if (err && err.code) {
     console.error(`failed to get attribute names, Code is ${err.code}, message is ${err.message}`);
     return;
   }
@@ -779,7 +790,7 @@ Obtains the attribute value based on an attribute name. This API uses a promise 
 
 **Error codes**
 
-For details about the error codes, see [Accessibility Error Codes](../errorcodes/errorcode-accessibility.md).
+For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
 
 | ID  | Error Message                         |
 | ------- | ----------------------------- |
@@ -793,8 +804,8 @@ import { ElementAttributeKeys } from '@ohos.application.AccessibilityExtensionAb
 import { BusinessError } from '@ohos.base';
 
 let attributeName: ElementAttributeKeys = 'bundleName';
-let rootElement:AccessibilityElement;// rootElement is an AccessibilityElement instance.
 
+// rootElement is an instance of AccessibilityElement.
 rootElement.attributeValue(attributeName).then((data: string) => {
   console.log(`Succeeded in get attribute value by name, ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
@@ -820,7 +831,7 @@ Obtains the attribute value based on an attribute name. This API uses an asynchr
 
 **Error codes**
 
-For details about the error codes, see [Accessibility Error Codes](../errorcodes/errorcode-accessibility.md).
+For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
 
 | ID  | Error Message                         |
 | ------- | ----------------------------- |
@@ -833,10 +844,10 @@ import { ElementAttributeKeys } from '@ohos.application.AccessibilityExtensionAb
 import { BusinessError } from '@ohos.base';
 
 let attributeName: ElementAttributeKeys = 'bundleName';
-let rootElement:AccessibilityElement;// rootElement is an AccessibilityElement instance.
 
+// rootElement is an instance of AccessibilityElement.
 rootElement.attributeValue(attributeName, (err: BusinessError, data: string) => {
-  if (err) {
+  if (err && err.code) {
     console.error(`failed to get attribute value, Code is ${err.code}, message is ${err.message}`);
     return;
   }
@@ -863,8 +874,7 @@ Obtains the names of all actions supported by this element. This API uses a prom
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let rootElement:AccessibilityElement;// rootElement is an AccessibilityElement instance.
-
+// rootElement is an instance of AccessibilityElement.
 rootElement.actionNames().then((data: string[]) => {
   console.log(`Succeeded in get action names, ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
@@ -889,10 +899,9 @@ Obtains the names of all actions supported by this element. This API uses an asy
 **Example**
 
 ```ts
-let rootElement:AccessibilityElement;// rootElement is an AccessibilityElement instance.
-
+// rootElement is an instance of AccessibilityElement.
 rootElement.actionNames((err: BusinessError, data: string[]) => {
-  if (err) {
+  if (err && err.code) {
     console.error(`failed to get action names, Code is ${err.code}, message is ${err.message}`);
     return;
   }
@@ -923,7 +932,7 @@ Performs an action based on the specified action name. This API uses a promise t
 
 **Error codes**
 
-For details about the error codes, see [Accessibility Error Codes](../errorcodes/errorcode-accessibility.md).
+For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
 
 | ID  | Error Message                         |
 | ------- | ----------------------------- |
@@ -935,8 +944,8 @@ For details about the error codes, see [Accessibility Error Codes](../errorcodes
 import { BusinessError } from '@ohos.base';
 
 let actionName = 'action';
-let rootElement:AccessibilityElement;// rootElement is an AccessibilityElement instance.
 
+// rootElement is an instance of AccessibilityElement.
 rootElement.performAction(actionName).then(() => {
   console.info(`Succeeded in perform action,actionName is ${actionName}`);
 }).catch((err: BusinessError) => {
@@ -961,7 +970,7 @@ Performs an action based on the specified action name. This API uses an asynchro
 
 **Error codes**
 
-For details about the error codes, see [Accessibility Error Codes](../errorcodes/errorcode-accessibility.md).
+For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
 
 | ID  | Error Message                         |
 | ------- | ----------------------------- |
@@ -973,10 +982,10 @@ For details about the error codes, see [Accessibility Error Codes](../errorcodes
 import { BusinessError } from '@ohos.base';
 
 let actionName = 'action';
-let rootElement:AccessibilityElement;// rootElement is an AccessibilityElement instance.
 
+// rootElement is an instance of AccessibilityElement.
 rootElement.performAction(actionName, (err: BusinessError) => {
-  if (err) {
+  if (err && err.code) {
     console.error(`failed to perform action, Code is ${err.code}, message is ${err.message}`);
     return;
   }
@@ -994,15 +1003,15 @@ Performs an action based on the specified action name. This API uses an asynchro
 
 **Parameters**
 
-| Name       | Type                       | Mandatory  | Description                                                      |
-| ---------- | ------------------------- | ---- |----------------------------------------------------------|
+| Name       | Type                       | Mandatory  | Description                                                         |
+| ---------- | ------------------------- | ---- |-------------------------------------------------------------|
 | actionName | string                    | Yes   | Action name. For details, see [Action](./js-apis-accessibility.md#action).|
-| parameters | object                    | Yes   | Parameters required for performing the target action. Empty by default. Not supported currently.                            |
-| callback   | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.                                       |
+| parameters | object                    | Yes   | Parameters required for performing the target action. Empty by default. Not supported currently.                               |
+| callback   | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.                                          |
 
 **Error codes**
 
-For details about the error codes, see [Accessibility Error Codes](../errorcodes/errorcode-accessibility.md).
+For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
 
 | ID  | Error Message                         |
 | ------- | ----------------------------- |
@@ -1015,10 +1024,10 @@ import { BusinessError } from '@ohos.base';
 
 let actionName = 'action';
 let parameters: object = [];
-let rootElement:AccessibilityElement;// rootElement is an AccessibilityElement instance.
 
+// rootElement is an instance of AccessibilityElement.
 rootElement.performAction(actionName, parameters, (err: BusinessError) => {
-  if (err) {
+  if (err && err.code) {
     console.error(`failed to perform action, Code is ${err.code}, message is ${err.message}`);
     return;
   }
@@ -1053,8 +1062,8 @@ Finds an element based on the content type. This API uses a promise to return th
 import { BusinessError } from '@ohos.base';
 
 let condition = 'keyword';
-let rootElement:AccessibilityElement;// rootElement is an AccessibilityElement instance.
 
+// rootElement is an instance of AccessibilityElement.
 rootElement.findElement('content', condition).then((data: AccessibilityElement[]) => {
   console.log(`Succeeded in find element, ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
@@ -1084,10 +1093,10 @@ Finds an element based on the content type. This API uses an asynchronous callba
 import { BusinessError } from '@ohos.base';
 
 let condition = 'keyword';
-let rootElement:AccessibilityElement;// rootElement is an AccessibilityElement instance.
 
+// rootElement is an instance of AccessibilityElement.
 rootElement.findElement('content', condition, (err: BusinessError, data: AccessibilityElement[])=>{
-  if (err) {
+  if (err && err.code) {
     console.error(`failed to find element, Code is ${err.code}, message is ${err.message}`);
     return;
   }
@@ -1123,8 +1132,8 @@ import { FocusType } from '@ohos.application.AccessibilityExtensionAbility';
 import { BusinessError } from '@ohos.base';
 
 let condition: FocusType = 'normal';
-let rootElement:AccessibilityElement;// rootElement is an AccessibilityElement instance.
 
+// rootElement is an instance of AccessibilityElement.
 rootElement.findElement('focusType', condition).then((data: AccessibilityElement) => {
   console.log(`Succeeded in find element,${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
@@ -1155,10 +1164,10 @@ import { FocusType } from '@ohos.application.AccessibilityExtensionAbility';
 import { BusinessError } from '@ohos.base';
 
 let condition: FocusType = 'normal';
-let rootElement:AccessibilityElement;// rootElement is an AccessibilityElement instance.
 
+// rootElement is an instance of AccessibilityElement.
 rootElement.findElement('focusType', condition, (err: BusinessError, data: AccessibilityElement)=>{
-  if (err) {
+  if (err && err.code) {
     console.error(`failed to find element, Code is ${err.code}, message is ${err.message}`);
     return;
   }
@@ -1194,8 +1203,8 @@ import { FocusDirection } from '@ohos.application.AccessibilityExtensionAbility'
 import { BusinessError } from '@ohos.base';
 
 let condition: FocusDirection = 'up';
-let rootElement:AccessibilityElement;// rootElement is an AccessibilityElement instance.
 
+// rootElement is an instance of AccessibilityElement.
 rootElement.findElement('focusDirection', condition).then((data: AccessibilityElement) => {
   console.log(`Succeeded in find element, ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
@@ -1226,10 +1235,10 @@ import { FocusDirection } from '@ohos.application.AccessibilityExtensionAbility'
 import { BusinessError } from '@ohos.base';
 
 let condition: FocusDirection = 'up';
-let rootElement:AccessibilityElement;// rootElement is an AccessibilityElement instance.
 
+// rootElement is an instance of AccessibilityElement.
 rootElement.findElement('focusDirection', condition, (err: BusinessError, data: AccessibilityElement) =>{
-  if (err) {
+  if (err && err.code) {
     console.error(`failed to find element, Code is ${err.code}, message is ${err.message}`);
     return;
   }
