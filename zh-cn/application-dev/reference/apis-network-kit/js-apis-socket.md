@@ -4551,7 +4551,7 @@ getExtraOptions(): Promise\<ExtraOptionsBase\>;
 ```ts
 import socket from "@ohos.net.socket";
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
-let sandboxPath: string = getContext(this).filesDir + '/testSocket'
+let sandboxPath: string = getContext().filesDir + '/testSocket'
 let listenAddr: socket.LocalAddress = {
   address: sandboxPath
 }
@@ -4560,7 +4560,7 @@ server.listen(listenAddr).then(() => {
 }).catch((err: Object) => {
   console.error("listen fail: " + JSON.stringify(err));
 })
-server.getExtraOptions().then((options) => {
+server.getExtraOptions().then((options: socket.ExtraOptionsBase) => {
   console.log('options: ' + JSON.stringify(options));
 }).catch((err: Object) => {
   console.error('getExtraOptions fail: ' + JSON.stringify(err));
