@@ -6,7 +6,7 @@
 
 ## 开发步骤及注意事项
 
-详细的API说明请参考[AVImageGenerator API参考](../reference/apis-media-kit/js-apis-media-sys.md#avimagegenerator11)。
+详细的API说明请参考[AVImageGenerator API参考](../reference/apis-media-kit/js-apis-media.md#avimagegenerator12)。
 
 1. 使用createAVImageGenerator()创建实例。
 
