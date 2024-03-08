@@ -230,6 +230,7 @@ import advertising from '@ohos.advertising';
 import hilog from '@ohos.hilog'; 
 import common from '@ohos.app.ability.common';
 
+@Entry
 @Component
 export struct ShowAd {
   private context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
