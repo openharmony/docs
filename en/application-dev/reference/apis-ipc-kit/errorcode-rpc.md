@@ -4,7 +4,7 @@
 >
 > This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-The APIs of the **rpc** module return exceptions since API version 9. The following describes the error codes.
+The APIs of the **rpc** module return exceptions since API version 9.
 
 ## 1900001 Failed to Call mmap
 

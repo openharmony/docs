@@ -26,7 +26,7 @@ Queries the list of peripheral devices. If the device has no peripheral device c
 
 | Name | Type  | Mandatory| Description                                |
 | ------- | ------ | ---- | ------------------------------------ |
-| busType | number | No  | Bus type of the peripheral device. If this parameter is left blank, all types of peripheral devices are queried.|
+| busType | number | No  | Bus type of the peripheral device to query. If this parameter is left blank, all types of peripheral devices are queried.|
 
 **Return value**
 
@@ -402,5 +402,3 @@ Represents information about a remote device driver.
 | --------- | ------ | ---- | ------------------- |
 | deviceId<sup>11+</sup>  | number | Yes  | ID of the peripheral device. |
 | remote<sup>11+</sup> | [rpc.IRemoteObject](../apis-ipc-kit/js-apis-rpc.md#iremoteobject) | Yes  | Remote driver object.|
-
-<!--no_check-->
