@@ -410,7 +410,7 @@ export default class UIExtAbility extends UIExtensionAbility {
     let extensionHostWindow = session.getUIExtensionHostWindowProxy();
     let storage: LocalStorage = new LocalStorage({
         'session': session,
-        'extensionHostWindow': extensionHostWindow
+        'extensionWindow': extensionHostWindow
     });
     session.loadContent('pages/extension', storage);
   }
@@ -434,19 +434,22 @@ let storage = LocalStorage.getShared()
 @Entry(storage)
 @Component
 struct Hello {
-  private extensionWindow: uiExtensionHost.UIExtensionHostWindowProxy = storage.get<uiExtensionHost.UIExtensionHostWindowProxy>('extensionWindow');
-  private extensionWindowRect = this.extensionWindow.properties.uiExtensionHostWindowProxyRect;
+  private extensionWindow: uiExtensionHost.UIExtensionHostWindowProxy | undefined = storage.get<uiExtensionHost.UIExtensionHostWindowProxy>('extensionWindow');
 
   build() {
     Row() {
       Column() {
         Button("TYPE_SYSTEM").onClick(() => {
-          let avoidArea: window.AvoidArea = this.extensionWindow.getWindowAvoidArea(window.AvoidAreaType.TYPE_SYSTEM)
-          console.log(`${JSON.stringify(avoidArea)}`)
+          if (this.extensionWindow != undefined) {
+            let avoidArea: window.AvoidArea = this.extensionWindow.getWindowAvoidArea(window.AvoidAreaType.TYPE_SYSTEM)
+            console.log(`${JSON.stringify(avoidArea)}`)
+          }
         })
         Button("TYPE_CUTOUT").onClick(() => {
-          let avoidArea: window.AvoidArea = this.extensionWindow.getWindowAvoidArea(window.AvoidAreaType.TYPE_CUTOUT)
-          console.log(`${JSON.stringify(avoidArea)}`)
+          if (this.extensionWindow != undefined) {
+            let avoidArea: window.AvoidArea = this.extensionWindow.getWindowAvoidArea(window.AvoidAreaType.TYPE_CUTOUT)
+            console.log(`${JSON.stringify(avoidArea)}`)
+          }
         })
       }
       .width('100%')
