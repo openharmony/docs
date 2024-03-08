@@ -1753,7 +1753,7 @@ struct WebComponent {
 
 ### runJavaScriptExt<sup>10+</sup>
 
-runJavaScriptExt(script: string, callback : AsyncCallback\<JsMessageExt>): void
+runJavaScriptExt(script: string | ArrayBuffer, callback : AsyncCallback\<JsMessageExt>): void
 
 异步执行JavaScript脚本，并通过回调方式返回脚本执行的结果。runJavaScriptExt需要在loadUrl完成后，比如onPageEnd中调用。
 
@@ -1763,7 +1763,7 @@ runJavaScriptExt(script: string, callback : AsyncCallback\<JsMessageExt>): void
 
 | 参数名   | 类型                 | 必填 | 说明                         |
 | -------- | -------------------- | ---- | ---------------------------- |
-| script   | string                   | 是   | JavaScript脚本。                                             |
+| script   | string \| ArrayBuffer<sup>12+</sup>         | 是   | JavaScript脚本。                                             |
 | callback | AsyncCallback\<[JsMessageExt](#jsmessageext10)\> | 是   | 回调执行JavaScript脚本结果。 |
 
 **错误码：**
@@ -1857,6 +1857,99 @@ struct WebComponent {
 }
 ```
 
+```ts
+// 使用ArrayBuffer入参，从文件中获取JavaScript脚本数据
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
+import fs from '@ohos.file.fs';
+import common from '@ohos.app.ability.common';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  @State msg1: string = ''
+  @State msg2: string = ''
+
+  build() {
+    Column() {
+      Text(this.msg1).fontSize(20)
+      Text(this.msg2).fontSize(20)
+      Button('runJavaScriptExt')
+        .onClick(() => {
+          try {
+            let context = getContext(this) as common.UIAbilityContext;
+            let filePath = context.filesDir + 'test.txt';
+            // 新建并打开文件
+            let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+            // 写入一段内容至文件
+            fs.writeSync(file.fd, "test()");
+            // 从文件中读取内容
+            let arrayBuffer: ArrayBuffer = new ArrayBuffer(6);
+            fs.readSync(file.fd, arrayBuffer, { offset: 0, length: arrayBuffer.byteLength });
+            // 关闭文件
+            fs.closeSync(file);
+            this.controller.runJavaScriptExt(
+              arrayBuffer,
+              (error, result) => {
+                if (error) {
+                  let e: business_error.BusinessError = error as business_error.BusinessError;
+                  console.error(`run JavaScript error, ErrorCode: ${e.code},  Message: ${e.message}`)
+                  return;
+                }
+                if (result) {
+                  try {
+                    let type = result.getType();
+                    switch (type) {
+                      case web_webview.JsMessageType.STRING: {
+                        this.msg1 = "result type:" + typeof (result.getString());
+                        this.msg2 = "result getString:" + ((result.getString()));
+                        break;
+                      }
+                      case web_webview.JsMessageType.NUMBER: {
+                        this.msg1 = "result type:" + typeof (result.getNumber());
+                        this.msg2 = "result getNumber:" + ((result.getNumber()));
+                        break;
+                      }
+                      case web_webview.JsMessageType.BOOLEAN: {
+                        this.msg1 = "result type:" + typeof (result.getBoolean());
+                        this.msg2 = "result getBoolean:" + ((result.getBoolean()));
+                        break;
+                      }
+                      case web_webview.JsMessageType.ARRAY_BUFFER: {
+                        this.msg1 = "result type:" + typeof (result.getArrayBuffer());
+                        this.msg2 = "result getArrayBuffer byteLength:" + ((result.getArrayBuffer().byteLength));
+                        break;
+                      }
+                      case web_webview.JsMessageType.ARRAY: {
+                        this.msg1 = "result type:" + typeof (result.getArray());
+                        this.msg2 = "result getArray:" + result.getArray();
+                        break;
+                      }
+                      default: {
+                        this.msg1 = "default break, type:" + type;
+                        break;
+                      }
+                    }
+                  }
+                  catch (resError) {
+                    let e: business_error.BusinessError = resError as business_error.BusinessError;
+                    console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+                  }
+                }
+              });
+          } catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
+        .javaScriptAccess(true)
+    }
+  }
+}
+```
+
 加载的html文件。
 ```html
 <!-- index.html -->
@@ -1875,7 +1968,7 @@ function test() {
 
 ### runJavaScriptExt<sup>10+</sup>
 
-runJavaScriptExt(script: string): Promise\<JsMessageExt>
+runJavaScriptExt(script: string | ArrayBuffer): Promise\<JsMessageExt>
 
 异步执行JavaScript脚本，并通过Promise方式返回脚本执行的结果。runJavaScriptExt需要在loadUrl完成后，比如onPageEnd中调用。
 
@@ -1885,7 +1978,7 @@ runJavaScriptExt(script: string): Promise\<JsMessageExt>
 
 | 参数名 | 类型 | 必填 | 说明         |
 | ------ | -------- | ---- | ---------------- |
-| script | string   | 是   | JavaScript脚本。 |
+| script | string \| ArrayBuffer<sup>12+</sup>  | 是   | JavaScript脚本。 |
 
 **返回值：**
 
@@ -1969,6 +2062,94 @@ struct WebComponent {
               console.error("error: " + error);
             })
         })
+    }
+  }
+}
+```
+
+```ts
+// 使用ArrayBuffer入参，从文件中获取JavaScript脚本数据
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
+import fs from '@ohos.file.fs';
+import common from '@ohos.app.ability.common';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  @State msg1: string = ''
+  @State msg2: string = ''
+
+  build() {
+    Column() {
+      Text(this.msg1).fontSize(20)
+      Text(this.msg2).fontSize(20)
+      Button('runJavaScriptExt')
+        .onClick(() => {
+          try {
+            let context = getContext(this) as common.UIAbilityContext;
+            let filePath = context.filesDir + 'test.txt';
+            // 新建并打开文件
+            let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+            // 写入一段内容至文件
+            fs.writeSync(file.fd, "test()");
+            // 从文件中读取内容
+            let arrayBuffer: ArrayBuffer = new ArrayBuffer(6);
+            fs.readSync(file.fd, arrayBuffer, { offset: 0, length: arrayBuffer.byteLength });
+            // 关闭文件
+            fs.closeSync(file);
+            this.controller.runJavaScriptExt(arrayBuffer)
+              .then((result) => {
+                try {
+                  let type = result.getType();
+                  switch (type) {
+                    case web_webview.JsMessageType.STRING: {
+                      this.msg1 = "result type:" + typeof (result.getString());
+                      this.msg2 = "result getString:" + ((result.getString()));
+                      break;
+                    }
+                    case web_webview.JsMessageType.NUMBER: {
+                      this.msg1 = "result type:" + typeof (result.getNumber());
+                      this.msg2 = "result getNumber:" + ((result.getNumber()));
+                      break;
+                    }
+                    case web_webview.JsMessageType.BOOLEAN: {
+                      this.msg1 = "result type:" + typeof (result.getBoolean());
+                      this.msg2 = "result getBoolean:" + ((result.getBoolean()));
+                      break;
+                    }
+                    case web_webview.JsMessageType.ARRAY_BUFFER: {
+                      this.msg1 = "result type:" + typeof (result.getArrayBuffer());
+                      this.msg2 = "result getArrayBuffer byteLength:" + ((result.getArrayBuffer().byteLength));
+                      break;
+                    }
+                    case web_webview.JsMessageType.ARRAY: {
+                      this.msg1 = "result type:" + typeof (result.getArray());
+                      this.msg2 = "result getArray:" + result.getArray();
+                      break;
+                    }
+                    default: {
+                      this.msg1 = "default break, type:" + type;
+                      break;
+                    }
+                  }
+                }
+                catch (resError) {
+                  let e: business_error.BusinessError = resError as business_error.BusinessError;
+                  console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+                }
+              })
+              .catch((error: business_error.BusinessError) => {
+                console.error("error: " + error);
+              })
+          } catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
+        .javaScriptAccess(true)
     }
   }
 }
