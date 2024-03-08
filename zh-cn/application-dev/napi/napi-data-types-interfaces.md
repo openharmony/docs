@@ -324,22 +324,21 @@ Node-API接口在Node.js提供的原生模块基础上扩展，目前支持部�
 | -------- | -------- |
 | napi_module_register | native模块注册接口。 | 
 
-
 ### 生命周期相关
 
-| 接口 | 功能说明 | 
+| 接口 | 功能说明 |
 | -------- | -------- |
-| napi_open_handle_scope | 创建一个上下文环境使用。需要使用napi_close_handle_scope进行关闭。 | 
-| napi_close_handle_scope | 关闭传入的上下文环境，关闭后，全部在其中声明的引用都将被关闭。 | 
-| napi_open_escapable_handle_scope | 创建出一个可逃逸的handel scope，可将范围内声明的值返回到父作用域。需要使用napi_close_escapable_handle_scope进行关闭。 | 
-| napi_close_escapable_handle_scope | 关闭传入的可逃逸的handel scope。 | 
-| napi_escape_handle | 提升传入的JS Object的生命周期到其父作用域。 | 
-| napi_create_reference | 为Object创建一个reference，以延长其生命周期。调用者需要自己管理reference生命周期。 | 
-| napi_delete_reference | 删除传入的reference。 | 
-| napi_reference_ref | 增加传入的reference的引用计数，并获取新的计数。 | 
-| napi_reference_unref | 减少传入的reference的引用计数，并获取新的计数。 | 
-| napi_get_reference_value | 获取与reference相关联的JS Object。 | 
-
+| napi_open_handle_scope | 创建一个上下文环境使用。需要使用napi_close_handle_scope进行关闭。 |
+| napi_close_handle_scope | 关闭传入的上下文环境，关闭后，全部在其中声明的引用都将被关闭。 |
+| napi_open_escapable_handle_scope | 创建出一个可逃逸的handel scope，可将范围内声明的值返回到父作用域。需要使用napi_close_escapable_handle_scope进行关闭。 |
+| napi_close_escapable_handle_scope | 关闭传入的可逃逸的handel scope。 |
+| napi_escape_handle | 提升传入的JS Object的生命周期到其父作用域。 |
+| napi_create_reference | 为Object创建一个reference，以延长其生命周期。调用者需要自己管理reference生命周期。 |
+| napi_delete_reference | 删除传入的reference。 |
+| napi_reference_ref | 增加传入的reference的引用计数，并获取新的计数。 |
+| napi_reference_unref | 减少传入的reference的引用计数，并获取新的计数。 |
+| napi_get_reference_value | 获取与reference相关联的JS Object。 |
+| napi_add_finalizer | 当js Object中的对象被垃圾回收时调用注册的napi_finalize回调。 |
 
 ### promise相关
 
@@ -492,16 +491,18 @@ Node-API接口在Node.js提供的原生模块基础上扩展，目前支持部�
 | napi_call_function | 在C/C++侧调用JS方法。 | 
 | napi_get_cb_info | 从给定的callback info中获取有关调用的详细信息，如参数和this指针。 | 
 
-
 ### 扩展能力
 
-| 接口 | 功能说明 | 
+| 接口 | 功能说明 |
 | -------- | -------- |
-| napi_queue_async_work_with_qos | 将异步工作对象加到队列，由底层根据传入的qos优先级去调度执行。 | 
-| napi_run_script_path | 运行指定abc文件。 | 
+| napi_queue_async_work_with_qos | 将异步工作对象加到队列，由底层根据传入的qos优先级去调度执行。 |
+| napi_run_script_path | 运行指定abc文件。 |
+| napi_load_module | 将abc文件作为模块加载，返回模块的命名空间。 |
+| napi_create_object_with_properties | 使用给定的napi_property_descriptor创建js Object。descriptor的键名必须为 string，且不可转为number。 |
+| napi_create_object_with_named_properties | 使用给定的napi_value和键名创建js Object。键名必须为 string，且不可转为number。 |
+| napi_coerce_to_native_binding_object | 强制将js Object和Native对象绑定。 |
 
-
-#### napi_queue_async_work_with_qos 
+#### napi_queue_async_work_with_qos
 
 ```c
 napi_status napi_queue_async_work_with_qos(napi_env env,
@@ -511,7 +512,7 @@ napi_status napi_queue_async_work_with_qos(napi_env env,
 
 用法同napi_queue_async_work，但可以指定QoS等级。
 
-##### napi_run_script_path
+#### napi_run_script_path
 
 ```c
 napi_status napi_run_script_path(napi_env env,
@@ -519,6 +520,43 @@ napi_status napi_run_script_path(napi_env env,
                                  napi_value* result);
 ```
 
+#### napi_load_module
+
+```c
+napi_status napi_load_module(napi_env env,
+                             const char* path,
+                             napi_value* result);
+```
+
+#### napi_create_object_with_properties
+
+```c
+napi_status napi_create_object_with_properties(napi_env env,
+                                               napi_value* result,
+                                               size_t property_count,
+                                               const napi_property_descriptor* properties);
+```
+
+#### napi_create_object_with_named_properties
+
+```c
+napi_status napi_create_object_with_named_properties(napi_env env,
+                                                     napi_value* result,
+                                                     size_t property_count,
+                                                     const char** keys,
+                                                     const napi_value* values);
+```
+
+#### napi_coerce_to_native_binding_object
+
+```c
+napi_status napi_coerce_to_native_binding_object(napi_env env,
+                                                 napi_value js_object,
+                                                 napi_native_binding_detach_callback detach_cb,
+                                                 napi_native_binding_attach_callback attach_cb,
+                                                 void* native_object,
+                                                 void* hint);  
+```
 
 ### 环境生命周期
 
