@@ -1676,7 +1676,56 @@ enableNativeEmbedMode(mode: boolean)
   }
   ```
 
+### defaultTextEncodingFormat<sup>12+</sup>
 
+defaultTextEncodingFormat(textEncodingFormat: string)
+
+设置网页的默认字符编码。
+
+**参数：**
+
+| 参数名  | 参数类型   | 必填   | 默认值  | 参数描述                                     |
+| ---- | ------ | ---- | ---- | ---------------------------------------- |
+| textEncodingFormat | string | 是    | "UTF-8"   | 默认字符编码。 |
+
+  **示例：**
+
+  ```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Web({ src: $rawfile('index.html'), controller: this.controller })
+        // 设置高和内边距
+        .height(500)
+        .padding(20)
+        .defaultTextEncodingFormat("UTF-8")
+        .javaScriptAccess(true)
+    }
+  }
+}
+  ```
+
+```html
+
+<!doctype html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>My test html5 page</title>
+</head>
+<body>
+    hello world, 你好世界!
+</body>
+</html>
+```
 
 ## 事件
 
