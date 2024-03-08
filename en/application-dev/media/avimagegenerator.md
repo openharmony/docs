@@ -6,7 +6,7 @@ The full process of obtaining the video thumbnail includes creating an **AVImage
 
 ## How to Develop
 
-Read [AVImageGenerator](../reference/apis/js-apis-media.md#avimagegenerator11) for the API reference.
+Read [AVImageGenerator](../reference/apis-media-kit/js-apis-media.md#avimagegenerator12) for the API reference.
 
 1. Call **createAVImageGenerator()** to create an **AVImageGenerator** instance.
 
