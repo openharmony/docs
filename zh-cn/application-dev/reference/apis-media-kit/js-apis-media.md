@@ -5753,7 +5753,7 @@ fetchFrameByTime(timeUs: number, options: AVImageQueryOptions, param: PixelMapPa
 | -------- | -------------------------------------------- | ---- | ----------------------------------- |
 | timeUs | number                   | 是   | 需要获取的缩略图在视频中的时间点，单位为微秒（μs）。 |
 | options | [AVImageQueryOptions](#avimagequeryoptions12)     | 是   | 需要获取的缩略图时间点与视频帧的对应关系。 |
-| param | PixelMapParams    | 是   | 需要获取的缩略图的格式参数。 |
+| param | [PixelMapParams](#pixelmapparams12)    | 是   | 需要获取的缩略图的格式参数。 |
 
 **返回值：**
 
