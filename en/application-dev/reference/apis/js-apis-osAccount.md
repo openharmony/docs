@@ -1,6 +1,6 @@
-# @ohos.account.osAccount (OS Account Management)
+# @ohos.account.osAccount (System Account Management)
 
-The **osAccount** module provides basic capabilities for managing OS accounts, including adding, deleting, querying, setting, subscribing to, and enabling an OS account.
+The **osAccount** module provides basic capabilities for managing system (OS) accounts, including adding, deleting, querying, setting, subscribing to, and enabling a system account.
 
 > **NOTE**
 >
@@ -29,12 +29,12 @@ Obtains an **AccountManager** instance.
 
 **Example**
   ```ts
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   ```
 
 ## OsAccountType
 
-Enumerates the OS account types.
+Enumerates the system account types.
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -46,13 +46,13 @@ Enumerates the OS account types.
 
 ## AccountManager
 
-Provides APIs for managing OS accounts.
+Provides APIs for managing system accounts.
 
 ### activateOsAccount
 
 activateOsAccount(localId: number, callback: AsyncCallback&lt;void&gt;): void
 
-Activates an OS account. This API uses an asynchronous callback to return the result.
+Activates a system account. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -64,7 +64,7 @@ Activates an OS account. This API uses an asynchronous callback to return the re
 
 | Name  | Type                      | Mandatory| Description                                               |
 | -------- | ------------------------- | ---- | -------------------------------------------------- |
-| localId  | number                    | Yes  | ID of the target OS account.                 |
+| localId  | number                    | Yes  | ID of the target system account.                 |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -77,7 +77,7 @@ Activates an OS account. This API uses an asynchronous callback to return the re
 | 12300008 | Restricted Account. |
 | 12300009 | Account has been activated. |
 
-**Example**: Activate OS account 100.
+**Example**: Activate system account 100.
   ```ts
   import { BusinessError } from '@ohos.base';
   let localId: number = 100;
@@ -98,7 +98,7 @@ Activates an OS account. This API uses an asynchronous callback to return the re
 
 activateOsAccount(localId: number): Promise&lt;void&gt;
 
-Activates an OS account. This API uses a promise to return the result.
+Activates a system account. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -110,7 +110,7 @@ Activates an OS account. This API uses a promise to return the result.
 
 | Name | Type  | Mandatory| Description                |
 | ------- | ------ | ---- | -------------------- |
-| localId | number | Yes  | ID of the target OS account.|
+| localId | number | Yes  | ID of the target system account.|
 
 **Return value**
 
@@ -128,10 +128,10 @@ Activates an OS account. This API uses a promise to return the result.
 | 12300008 | Restricted Account. |
 | 12300009 | Account has been activated. |
 
-**Example**: Activate OS account 100.
+**Example**: Activate system account 100.
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
   try {
     accountManager.activateOsAccount(localId).then(() => {
@@ -148,7 +148,7 @@ Activates an OS account. This API uses a promise to return the result.
 
 checkMultiOsAccountEnabled(callback: AsyncCallback&lt;boolean&gt;): void
 
-Checks whether multiple OS accounts are supported. This API uses an asynchronous callback to return the result.
+Checks whether multiple system accounts are supported. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -156,7 +156,7 @@ Checks whether multiple OS accounts are supported. This API uses an asynchronous
 
 | Name  | Type                        | Mandatory| Description                                                    |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------ |
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result. The value **true** means multiple OS accounts are supported; the value **false** means the opposite.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result. The value **true** means multiple system accounts are supported; the value **false** means the opposite.|
 
 **Error codes**
 
@@ -168,7 +168,7 @@ Checks whether multiple OS accounts are supported. This API uses an asynchronous
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   try {
     accountManager.checkMultiOsAccountEnabled((err: BusinessError, isEnabled: boolean) => {
       if (err) {
@@ -186,7 +186,7 @@ Checks whether multiple OS accounts are supported. This API uses an asynchronous
 
 checkMultiOsAccountEnabled(): Promise&lt;boolean&gt;
 
-Checks whether multiple OS accounts are supported. This API uses a promise to return the result.
+Checks whether multiple system accounts are supported. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -194,7 +194,7 @@ Checks whether multiple OS accounts are supported. This API uses a promise to re
 
 | Type                  | Description                                                       |
 | :--------------------- | :--------------------------------------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means multiple OS accounts are supported; the value **false** means the opposite.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means multiple system accounts are supported; the value **false** means the opposite.|
 
 **Error codes**
 
@@ -207,7 +207,7 @@ Checks whether multiple OS accounts are supported. This API uses a promise to re
   ```ts
   import { BusinessError } from '@ohos.base';
   try {
-    let accountManager = account_osAccount.getAccountManager();
+    let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
     accountManager.checkMultiOsAccountEnabled().then((isEnabled: boolean) => {
       console.log('checkMultiOsAccountEnabled successfully, isEnabled: ' + isEnabled);
     }).catch((err: BusinessError) => {
@@ -218,11 +218,63 @@ Checks whether multiple OS accounts are supported. This API uses a promise to re
   }
   ```
 
-### checkOsAccountActivated<sup>9+</sup>
+### isOsAccountActivated<sup>11+</sup>
+
+isOsAccountActivated(localId: number): Promise&lt;boolean&gt;
+
+Checks whether a system account is activated. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS or ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Parameters**
+
+| Name | Type  | Mandatory| Description                              |
+| ------- | ------ | ---- | --------------------------------- |
+| localId | number | Yes  | ID of the target system account.|
+
+**Return value**
+
+| Type                  | Description                                                      |
+| ---------------------- | ---------------------------------------------------------- |
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the account is activated; the value **false** means the opposite.|
+
+**Error codes**
+
+| ID| Error Message            |
+| -------- | ------------------- |
+| 12300001 | System service exception. |
+| 12300003 | Account not found. |
+
+**Example**: Check whether system account 100 is activated.
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let localId: number = 100;
+  try {
+    accountManager.isOsAccountActivated(localId).then((isActivated: boolean) => {
+      console.log('isOsAccountActivated successfully, isActivated: ' + isActivated);
+    }).catch((err: BusinessError) => {
+      console.log('isOsAccountActivated failed, error: ' + JSON.stringify(err));
+    });
+  } catch (err) {
+    console.log('isOsAccountActivated exception: ' + JSON.stringify(err));
+  }
+  ```
+
+### checkOsAccountActivated<sup>(deprecated)</sup>
 
 checkOsAccountActivated(localId: number, callback: AsyncCallback&lt;boolean&gt;): void
 
-Checks whether an OS account is activated. This API uses an asynchronous callback to return the result.
+Checks whether a system account is activated. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 9 and deprecated since API version 11. The substitute API is available only to system applications.
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS or ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -232,7 +284,7 @@ Checks whether an OS account is activated. This API uses an asynchronous callbac
 
 | Name  | Type                        | Mandatory| Description                                                    |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------ |
-| localId  | number                       | Yes  | ID of the target OS account.                                            |
+| localId  | number                       | Yes  | ID of the target system account.                                            |
 | callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result. The value **true** means the account is activated; the value **false** means the opposite.|
 
 **Error codes**
@@ -243,11 +295,11 @@ Checks whether an OS account is activated. This API uses an asynchronous callbac
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
 
-**Example**: Check whether OS account 100 is activated.
+**Example**: Check whether system account 100 is activated.
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
   try {
     accountManager.checkOsAccountActivated(localId, (err: BusinessError, isActivated: boolean) => {
@@ -262,11 +314,15 @@ Checks whether an OS account is activated. This API uses an asynchronous callbac
   }
   ```
 
-### checkOsAccountActivated<sup>9+</sup>
+### checkOsAccountActivated<sup>(deprecated)</sup>
 
 checkOsAccountActivated(localId: number): Promise&lt;boolean&gt;
 
-Checks whether an OS account is activated. This API uses a promise to return the result.
+Checks whether a system account is activated. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 9 and deprecated since API version 11. The substitute API is available only to system applications.
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS or ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -276,7 +332,7 @@ Checks whether an OS account is activated. This API uses a promise to return the
 
 | Name | Type  | Mandatory| Description                              |
 | ------- | ------ | ---- | --------------------------------- |
-| localId | number | Yes  | ID of the target OS account.|
+| localId | number | Yes  | ID of the target system account.|
 
 **Return value**
 
@@ -292,11 +348,11 @@ Checks whether an OS account is activated. This API uses a promise to return the
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
 
-**Example**: Check whether OS account 100 is activated.
+**Example**: Check whether system account 100 is activated.
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
   try {
     accountManager.checkOsAccountActivated(localId).then((isActivated: boolean) => {
@@ -309,11 +365,108 @@ Checks whether an OS account is activated. This API uses a promise to return the
   }
   ```
 
-### checkOsAccountConstraintEnabled<sup>9+</sup>
+### isOsAccountConstraintEnabled<sup>11+</sup>
+
+isOsAccountConstraintEnabled(constraint: string): Promise&lt;boolean&gt;
+
+Checks whether a constraint is enabled for this system account. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Parameters**
+
+| Name    | Type  | Mandatory| Description                               |
+| ---------- | ------ | ---- | ---------------------------------- |
+| constraint | string | Yes  | [Constraint](#constraints) to check.|
+
+**Return value**
+
+| Type                  | Description                                                                 |
+| --------------------- | --------------------------------------------------------------------- |
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the specified constraint is enabled; the value **false** means the opposite.|
+
+**Error codes**
+
+| ID| Error Message            |
+| -------- | ------------------- |
+| 12300001 | System service exception. |
+
+**Example**: Check whether system account 100 is forbidden to use Wi-Fi.
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let constraint: string = 'constraint.wifi';
+  try {
+    accountManager.isOsAccountConstraintEnabled(constraint).then((isEnabled: boolean) => {
+      console.log('isOsAccountConstraintEnabled successfully, isEnabled: ' + isEnabled);
+    }).catch((err: BusinessError) => {
+      console.log('isOsAccountConstraintEnabled failed, error: ' + JSON.stringify(err));
+    });
+  } catch (err) {
+    console.log('isOsAccountConstraintEnabled exception: ' + JSON.stringify(err));
+  }
+  ```
+
+### isOsAccountConstraintEnabled<sup>11+</sup>
+
+isOsAccountConstraintEnabled(localId: number, constraint: string): Promise&lt;boolean&gt;
+
+Checks whether a constraint is enabled for a system account. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS or ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Parameters**
+
+| Name    | Type  | Mandatory| Description                               |
+| ---------- | ------ | ---- | ---------------------------------- |
+| localId    | number | Yes  | ID of the target system account. |
+| constraint | string | Yes  | [Constraint](#constraints) to check.|
+
+**Return value**
+
+| Type                  | Description                                                                 |
+| --------------------- | --------------------------------------------------------------------- |
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the specified constraint is enabled; the value **false** means the opposite.|
+
+**Error codes**
+
+| ID| Error Message            |
+| -------- | ------------------- |
+| 12300001 | System service exception. |
+| 12300003 | Account not found. |
+
+**Example**: Check whether system account 100 is forbidden to use Wi-Fi.
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let localId: number = 100;
+  let constraint: string = 'constraint.wifi';
+  try {
+    accountManager.isOsAccountConstraintEnabled(localId, constraint).then((isEnabled: boolean) => {
+      console.log('isOsAccountConstraintEnabled successfully, isEnabled: ' + isEnabled);
+    }).catch((err: BusinessError) => {
+      console.log('isOsAccountConstraintEnabled failed, error: ' + JSON.stringify(err));
+    });
+  } catch (err) {
+    console.log('isOsAccountConstraintEnabled exception: ' + JSON.stringify(err));
+  }
+  ```
+
+### checkOsAccountConstraintEnabled<sup>(deprecated)</sup>
 
 checkOsAccountConstraintEnabled(localId: number, constraint: string, callback: AsyncCallback&lt;boolean&gt;): void
 
-Checks whether the specified constraint is enabled for an OS account. This API uses an asynchronous callback to return the result.
+Checks whether the specified constraint is enabled for a system account. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 9 and deprecated since API version 11. The substitute API is available only to system applications.
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS or ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -323,7 +476,7 @@ Checks whether the specified constraint is enabled for an OS account. This API u
 
 | Name    | Type                        | Mandatory| Description                                                              |
 | ---------- | ---------------------------- | ---- | ----------------------------------------------------------------- |
-| localId    | number                       | Yes  | ID of the target OS account.                                |
+| localId    | number                       | Yes  | ID of the target system account.                                |
 | constraint | string                       | Yes  | [Constraint](#constraints) to check.                               |
 | callback   | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result. The value **true** means the specified constraint is enabled; the value **false** means the opposite.|
 
@@ -335,11 +488,11 @@ Checks whether the specified constraint is enabled for an OS account. This API u
 | 12300002 | Invalid localId or constraint.    |
 | 12300003 | Account not found. |
 
-**Example**: Check whether OS account 100 is forbidden to use Wi-Fi.
+**Example**: Check whether system account 100 is forbidden to use Wi-Fi.
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
   let constraint: string = 'constraint.wifi';
   try {
@@ -355,11 +508,15 @@ Checks whether the specified constraint is enabled for an OS account. This API u
   }
   ```
 
-### checkOsAccountConstraintEnabled<sup>9+</sup>
+### checkOsAccountConstraintEnabled<sup>(deprecated)</sup>
 
 checkOsAccountConstraintEnabled(localId: number, constraint: string): Promise&lt;boolean&gt;
 
-Checks whether the specified constraint is enabled for an OS account. This API uses a promise to return the result.
+Checks whether the specified constraint is enabled for a system account. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 9 and deprecated since API version 11. The substitute API is available only to system applications.
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS or ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -369,7 +526,7 @@ Checks whether the specified constraint is enabled for an OS account. This API u
 
 | Name    | Type  | Mandatory| Description                               |
 | ---------- | ------ | ---- | ---------------------------------- |
-| localId    | number | Yes  | ID of the target OS account. |
+| localId    | number | Yes  | ID of the target system account. |
 | constraint | string | Yes  | [Constraint](#constraints) to check.|
 
 **Return value**
@@ -386,11 +543,11 @@ Checks whether the specified constraint is enabled for an OS account. This API u
 | 12300002 | Invalid localId or constraint.    |
 | 12300003 | Account not found. |
 
-**Example**: Check whether OS account 100 is forbidden to use Wi-Fi.
+**Example**: Check whether system account 100 is forbidden to use Wi-Fi.
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
   let constraint: string = 'constraint.wifi';
   try {
@@ -408,7 +565,7 @@ Checks whether the specified constraint is enabled for an OS account. This API u
 
 checkOsAccountTestable(callback: AsyncCallback&lt;boolean&gt;): void
 
-Checks whether this OS account is a test account. This API uses an asynchronous callback to return the result.
+Checks whether this system account is a test account. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -428,7 +585,7 @@ Checks whether this OS account is a test account. This API uses an asynchronous 
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   try {
     accountManager.checkOsAccountTestable((err: BusinessError, isTestable: boolean) => {
       if (err) {
@@ -446,7 +603,7 @@ Checks whether this OS account is a test account. This API uses an asynchronous 
 
 checkOsAccountTestable(): Promise&lt;boolean&gt;
 
-Checks whether this OS account is a test account. This API uses a promise to return the result.
+Checks whether this system account is a test account. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -466,7 +623,7 @@ Checks whether this OS account is a test account. This API uses a promise to ret
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   try {
     accountManager.checkOsAccountTestable().then((isTestable: boolean) => {
       console.log('checkOsAccountTestable successfully, isTestable: ' + isTestable);
@@ -477,20 +634,20 @@ Checks whether this OS account is a test account. This API uses a promise to ret
     console.log('checkOsAccountTestable exception: ' + JSON.stringify(err));
   }
   ```
+  
+### isOsAccountUnlocked<sup>11+</sup>
 
-### checkOsAccountVerified<sup>9+</sup>
+isOsAccountUnlocked(): Promise&lt;boolean&gt;
 
-checkOsAccountVerified(callback: AsyncCallback&lt;boolean&gt;): void
-
-Checks whether this OS account has been verified. This API uses an asynchronous callback to return the result.
+Checks whether this system account has been verified. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-**Parameters**
+**Return value**
 
-| Name  | Type                        | Mandatory| Description                                                           |
-| -------- | ---------------------------- | ---- | ------------------------------------------------------------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result. The value **true** means the OS account has been verified; the value **false** means the opposite.|
+| Type                  | Description                                                                     |
+| ---------------------- | ------------------------------------------------------------------------ |
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the system account has been verified; the value **false** means the opposite.|
 
 **Error codes**
 
@@ -502,7 +659,95 @@ Checks whether this OS account has been verified. This API uses an asynchronous 
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  try {
+    accountManager.isOsAccountUnlocked().then((isVerified: boolean) => {
+      console.log('isOsAccountUnlocked successfully, isVerified: ' + isVerified);
+    }).catch((err: BusinessError) => {
+      console.log('isOsAccountUnlocked failed, error: ' + JSON.stringify(err));
+    });
+  } catch (err) {
+    console.log('isOsAccountUnlocked exception: ' + JSON.stringify(err));
+  }
+  ```
+
+### isOsAccountUnlocked<sup>11+</sup>
+
+isOsAccountUnlocked(localId: number): Promise&lt;boolean&gt;
+
+Checks whether a system account has been verified. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS or ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Parameters**
+
+| Name | Type  | Mandatory| Description                                                             |
+| ------- | ------ | ---- | --------------------------------------------------------------- |
+| localId | number | Yes  | ID of the target system account. If this parameter is not specified, this API checks whether the current system account has been verified.|
+
+**Return value**
+
+| Type                  | Description                                                              |
+| ---------------------- | ----------------------------------------------------------------- |
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the system account has been verified; the value **false** means the opposite.|
+
+**Error codes**
+
+| ID| Error Message            |
+| -------- | ------------------- |
+| 12300001 | System service exception. |
+| 12300003 | Account not found. |
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let localId: number = 100;
+  try {
+    accountManager.isOsAccountUnlocked(localId).then((isVerified: boolean) => {
+      console.log('isOsAccountUnlocked successfully, isVerified: ' + isVerified);
+    }).catch((err: BusinessError) => {
+      console.log('isOsAccountUnlocked failed, error: ' + JSON.stringify(err));
+    });
+  } catch (err) {
+    console.log('isOsAccountUnlocked exception: ' + JSON.stringify(err));
+  }
+  ```
+
+### checkOsAccountVerified<sup>(deprecated)</sup>
+
+checkOsAccountVerified(callback: AsyncCallback&lt;boolean&gt;): void
+
+Checks whether this system account has been verified. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 9 and deprecated since API version 11. Use [isOsAccountUnlocked](#isosaccountunlocked11) instead.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Parameters**
+
+| Name  | Type                        | Mandatory| Description                                                           |
+| -------- | ---------------------------- | ---- | ------------------------------------------------------------- |
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result. The value **true** means the system account has been verified; the value **false** means the opposite.|
+
+**Error codes**
+
+| ID| Error Message            |
+| -------- | ------------------- |
+| 12300001 | System service exception. |
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   try {
     accountManager.checkOsAccountVerified((err: BusinessError, isVerified: boolean) => {
       if (err) {
@@ -516,11 +761,16 @@ Checks whether this OS account has been verified. This API uses an asynchronous 
   }
   ```
 
-### checkOsAccountVerified<sup>9+</sup>
+
+### checkOsAccountVerified<sup>(deprecated)</sup>
 
 checkOsAccountVerified(): Promise&lt;boolean&gt;
 
-Checks whether this OS account has been verified. This API uses a promise to return the result.
+Checks whether this system account has been verified. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 9 and deprecated since API version 11. Use [isOsAccountUnlocked](#isosaccountunlocked11) instead.
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -528,7 +778,7 @@ Checks whether this OS account has been verified. This API uses a promise to ret
 
 | Type                  | Description                                                                     |
 | ---------------------- | ------------------------------------------------------------------------ |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the OS account has been verified; the value **false** means the opposite.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the system account has been verified; the value **false** means the opposite.|
 
 **Error codes**
 
@@ -540,7 +790,7 @@ Checks whether this OS account has been verified. This API uses a promise to ret
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   try {
     accountManager.checkOsAccountVerified().then((isVerified: boolean) => {
       console.log('checkOsAccountVerified successfully, isVerified: ' + isVerified);
@@ -552,11 +802,15 @@ Checks whether this OS account has been verified. This API uses a promise to ret
   }
   ```
 
-### checkOsAccountVerified<sup>9+</sup>
+### checkOsAccountVerified<sup>(deprecated)</sup>
 
 checkOsAccountVerified(localId: number, callback: AsyncCallback&lt;boolean&gt;): void
 
-Checks whether an OS account has been verified. This API uses an asynchronous callback to return the result.
+Checks whether a system account has been verified. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 9 and deprecated since API version 11. The substitute API is available only to system applications.
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS or ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -566,8 +820,8 @@ Checks whether an OS account has been verified. This API uses an asynchronous ca
 
 | Name  | Type                        | Mandatory| Description                                                           |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------------- |
-| localId  | number                       | Yes  | ID of the target OS account.                             |
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result. The value **true** means the OS account has been verified; the value **false** means the opposite.|
+| localId  | number                       | Yes  | ID of the target system account.                             |
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result. The value **true** means the system account has been verified; the value **false** means the opposite.|
 
 **Error codes**
 
@@ -581,7 +835,7 @@ Checks whether an OS account has been verified. This API uses an asynchronous ca
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
   try {
     accountManager.checkOsAccountVerified(localId, (err: BusinessError, isVerified: boolean) => {
@@ -596,11 +850,15 @@ Checks whether an OS account has been verified. This API uses an asynchronous ca
   }
   ```
 
-### checkOsAccountVerified<sup>9+</sup>
+### checkOsAccountVerified<sup>(deprecated)</sup>
 
 checkOsAccountVerified(localId: number): Promise&lt;boolean&gt;
 
-Checks whether an OS account has been verified. This API uses a promise to return the result.
+Checks whether a system account has been verified. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 9 and deprecated since API version 11. The substitute API is available only to system applications.
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS or ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -610,13 +868,13 @@ Checks whether an OS account has been verified. This API uses a promise to retur
 
 | Name | Type  | Mandatory| Description                                                             |
 | ------- | ------ | ---- | --------------------------------------------------------------- |
-| localId | number | Yes  | ID of the target OS account. If this parameter is not specified, this API checks whether the current OS account has been verified.|
+| localId | number | Yes  | ID of the target system account. If this parameter is not specified, this API checks whether the current system account has been verified.|
 
 **Return value**
 
 | Type                  | Description                                                              |
 | ---------------------- | ----------------------------------------------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the OS account has been verified; the value **false** means the opposite.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the system account has been verified; the value **false** means the opposite.|
 
 **Error codes**
 
@@ -630,7 +888,7 @@ Checks whether an OS account has been verified. This API uses a promise to retur
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
   try {
     accountManager.checkOsAccountVerified(localId).then((isVerified: boolean) => {
@@ -647,7 +905,7 @@ Checks whether an OS account has been verified. This API uses a promise to retur
 
 checkOsAccountVerified(): Promise&lt;boolean&gt;
 
-Checks whether this OS account has been verified. This API uses a promise to return the result.
+Checks whether this system account has been verified. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -667,7 +925,7 @@ Checks whether this OS account has been verified. This API uses a promise to ret
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   try {
     accountManager.checkOsAccountVerified().then((isVerified: boolean) => {
       console.log('checkOsAccountVerified successfully, isVerified: ' + isVerified);
@@ -683,7 +941,7 @@ Checks whether this OS account has been verified. This API uses a promise to ret
 
 removeOsAccount(localId: number, callback: AsyncCallback&lt;void&gt;): void
 
-Deletes an OS account. This API uses an asynchronous callback to return the result.
+Removes a system account. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -695,7 +953,7 @@ Deletes an OS account. This API uses an asynchronous callback to return the resu
 
 | Name  | Type                     | Mandatory| Description                                                |
 | -------- | ------------------------- | ---- | -------------------------------------------------- |
-| localId  | number                    | Yes  | ID of the target OS account.                 |
+| localId  | number                    | Yes  | ID of the target system account.                 |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -711,7 +969,7 @@ Deletes an OS account. This API uses an asynchronous callback to return the resu
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   let accountName: string = 'testAccountName';
   try {
     accountManager.createOsAccount(accountName, account_osAccount.OsAccountType.NORMAL,
@@ -733,7 +991,7 @@ Deletes an OS account. This API uses an asynchronous callback to return the resu
 
 removeOsAccount(localId: number): Promise&lt;void&gt;
 
-Deletes an OS account. This API uses a promise to return the result.
+Removes a system account. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -745,7 +1003,7 @@ Deletes an OS account. This API uses a promise to return the result.
 
 | Name | Type  | Mandatory| Description                              |
 | ------- | ------ | ---- | --------------------------------- |
-| localId | number | Yes  | ID of the target OS account.|
+| localId | number | Yes  | ID of the target system account.|
 
 **Return value**
 
@@ -766,7 +1024,7 @@ Deletes an OS account. This API uses a promise to return the result.
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   let accountName: string = 'testAccountName';
   try {
     accountManager.createOsAccount(accountName, account_osAccount.OsAccountType.NORMAL,
@@ -786,7 +1044,7 @@ Deletes an OS account. This API uses a promise to return the result.
 
 setOsAccountConstraints(localId: number, constraints: Array&lt;string&gt;, enable: boolean,callback: AsyncCallback&lt;void&gt;): void
 
-Sets or removes constraints for an OS account. This API uses an asynchronous callback to return the result.
+Sets or removes constraints for a system account. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -798,7 +1056,7 @@ Sets or removes constraints for an OS account. This API uses an asynchronous cal
 
 | Name     | Type                     | Mandatory| Description                                            |
 | ----------- | ------------------------- | ---- | ----------------------------------------------- |
-| localId     | number                    | Yes  | ID of the target OS account.              |
+| localId     | number                    | Yes  | ID of the target system account.              |
 | constraints | Array&lt;string&gt;       | Yes  | List of [constraints](#constraints) to set or remove.       |
 | enable      | boolean                   | Yes  | Set or remove constraints. The value **true** means to set constraints, and **false** means to remove constraints.                          |
 | callback    | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
@@ -812,11 +1070,11 @@ Sets or removes constraints for an OS account. This API uses an asynchronous cal
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
 
-**Example**: Disable Wi-Fi for OS account 100.
+**Example**: Disable Wi-Fi for system account 100.
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
   let constraint: string = 'constraint.wifi';
   try {
@@ -836,7 +1094,7 @@ Sets or removes constraints for an OS account. This API uses an asynchronous cal
 
 setOsAccountConstraints(localId: number, constraints: Array&lt;string&gt;, enable: boolean): Promise&lt;void&gt;
 
-Sets or removes constraints for an OS account. This API uses a promise to return the result.
+Sets or removes constraints for a system account. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -848,7 +1106,7 @@ Sets or removes constraints for an OS account. This API uses a promise to return
 
 | Name     | Type               | Mandatory| Description                                        |
 | ----------- | ------------------- | ---- | -------------------------------------------- |
-| localId     | number              | Yes  | ID of the target OS account.          |
+| localId     | number              | Yes  | ID of the target system account.          |
 | constraints | Array&lt;string&gt; | Yes  | List of [constraints](#constraints) to set or remove.   |
 | enable      | boolean             | Yes  | Set or remove constraints. The value **true** means to set constraints, and **false** means to remove constraints.                    |
 
@@ -867,11 +1125,11 @@ Sets or removes constraints for an OS account. This API uses a promise to return
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
 
-**Example**: Remove the constraint on the use of Wi-Fi for OS account 100.
+**Example**: Remove the constraint on the use of Wi-Fi for system account 100.
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
   try {
     accountManager.setOsAccountConstraints(localId, ['constraint.location.set'], false).then(() => {
@@ -888,7 +1146,7 @@ Sets or removes constraints for an OS account. This API uses a promise to return
 
 setOsAccountName(localId: number, localName: string, callback: AsyncCallback&lt;void&gt;): void
 
-Sets a name for an OS account. This API uses an asynchronous callback to return the result.
+Sets a name for a system account. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -900,7 +1158,7 @@ Sets a name for an OS account. This API uses an asynchronous callback to return 
 
 | Name   | Type                     | Mandatory| Description                                            |
 | :-------- | ------------------------- | ---- | ----------------------------------------------- |
-| localId   | number                    | Yes  | ID of the target OS account.              |
+| localId   | number                    | Yes  | ID of the target system account.              |
 | localName | string                    | Yes  | Account name. The value cannot exceed 1024 characters.                         |
 | callback  | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
@@ -913,11 +1171,11 @@ Sets a name for an OS account. This API uses an asynchronous callback to return 
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
 
-**Example**: Set the name of OS account 100 to **demoName**.
+**Example**: Set the name of system account 100 to **demoName**.
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
   let name: string = 'demoName';
   try {
@@ -937,7 +1195,7 @@ Sets a name for an OS account. This API uses an asynchronous callback to return 
 
 setOsAccountName(localId: number, localName: string): Promise&lt;void&gt;
 
-Sets a name for an OS account. This API uses a promise to return the result.
+Sets a name for a system account. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -949,7 +1207,7 @@ Sets a name for an OS account. This API uses a promise to return the result.
 
 | Name   | Type  | Mandatory| Description                               |
 | --------- | ------ | ---- | --------------------------------- |
-| localId   | number | Yes  | ID of the target OS account.|
+| localId   | number | Yes  | ID of the target system account.|
 | localName | string | Yes  | Account name to set. The value cannot exceed 1024 characters.           |
 
 **Return value**
@@ -967,11 +1225,11 @@ Sets a name for an OS account. This API uses a promise to return the result.
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
 
-**Example**: Set the name of OS account 100 to **demoName**.
+**Example**: Set the name of system account 100 to **demoName**.
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
   let name: string = 'testName';
   try {
@@ -989,7 +1247,7 @@ Sets a name for an OS account. This API uses a promise to return the result.
 
 getOsAccountCount(callback: AsyncCallback&lt;number&gt;): void
 
-Obtains the number of OS accounts created. This API uses an asynchronous callback to return the result.
+Obtains the number of system accounts created. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -999,7 +1257,7 @@ Obtains the number of OS accounts created. This API uses an asynchronous callbac
 
 | Name  | Type                       | Mandatory| Description                                                                        |
 | -------- | --------------------------- | ---- | -------------------------------------------------------------------------- |
-| callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the number of created OS accounts. If the operation fails, **err** is an error object.|
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the number of created system accounts. If the operation fails, **err** is an error object.|
 
 **Error codes**
 
@@ -1011,7 +1269,7 @@ Obtains the number of OS accounts created. This API uses an asynchronous callbac
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   try {
     accountManager.getOsAccountCount((err: BusinessError, count: number) => {
       if (err) {
@@ -1029,7 +1287,7 @@ Obtains the number of OS accounts created. This API uses an asynchronous callbac
 
 getOsAccountCount(): Promise&lt;number&gt;
 
-Obtains the number of OS accounts created. This API uses a promise to return the result.
+Obtains the number of system accounts created. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -1039,7 +1297,7 @@ Obtains the number of OS accounts created. This API uses a promise to return the
 
 | Type                 | Description                                   |
 | --------------------- | -------------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the number of created OS accounts.|
+| Promise&lt;number&gt; | Promise used to return the number of created system accounts.|
 
 **Error codes**
 
@@ -1051,7 +1309,7 @@ Obtains the number of OS accounts created. This API uses a promise to return the
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   try {
     accountManager.getOsAccountCount().then((count: number) => {
       console.log('getOsAccountCount successfully, count: ' + count);
@@ -1067,7 +1325,7 @@ Obtains the number of OS accounts created. This API uses a promise to return the
 
 getOsAccountLocalId(callback: AsyncCallback&lt;number&gt;): void
 
-Obtains the ID of the OS account to which the current process belongs. This API uses an asynchronous callback to return the result.
+Obtains the ID of the system account to which the current process belongs. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -1075,7 +1333,7 @@ Obtains the ID of the OS account to which the current process belongs. This API 
 
 | Name  | Type                       | Mandatory| Description                                                                          |
 | -------- | --------------------------- | ---- | ---------------------------------------------------------------------------- |
-| callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the OS account ID obtained. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the system account ID obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -1087,7 +1345,7 @@ Obtains the ID of the OS account to which the current process belongs. This API 
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   try {
     accountManager.getOsAccountLocalId((err: BusinessError, localId: number) => {
       if (err) {
@@ -1105,7 +1363,7 @@ Obtains the ID of the OS account to which the current process belongs. This API 
 
 getOsAccountLocalId(): Promise&lt;number&gt;
 
-Obtains the ID of the OS account to which the current process belongs. This API uses a promise to return the result.
+Obtains the ID of the system account to which the current process belongs. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -1113,7 +1371,7 @@ Obtains the ID of the OS account to which the current process belongs. This API 
 
 | Type                 | Description                                     |
 | --------------------- | ---------------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the OS account ID obtained.|
+| Promise&lt;number&gt; | Promise used to return the system account ID obtained.|
 
 **Error codes**
 
@@ -1125,7 +1383,7 @@ Obtains the ID of the OS account to which the current process belongs. This API 
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   try {
     accountManager.getOsAccountLocalId().then((localId: number) => {
       console.log('getOsAccountLocalId successfully, localId: ' + localId);
@@ -1141,7 +1399,7 @@ Obtains the ID of the OS account to which the current process belongs. This API 
 
 getOsAccountLocalIdForUid(uid: number, callback: AsyncCallback&lt;number&gt;): void
 
-Obtains the OS account ID based on the process UID. This API uses an asynchronous callback to return the result.
+Obtains the system account ID based on the process UID. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -1150,7 +1408,7 @@ Obtains the OS account ID based on the process UID. This API uses an asynchronou
 | Name  | Type                       | Mandatory| Description                                                                   |
 | -------- | --------------------------- | ---- | --------------------------------------------------------------------- |
 | uid      | number                      | Yes  | Process UID.                                                             |
-| callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the OS account ID obtained. Otherwise, **data** is an error object.|
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the system account ID obtained. Otherwise, **data** is an error object.|
 
 **Error codes**
 
@@ -1159,11 +1417,11 @@ Obtains the OS account ID based on the process UID. This API uses an asynchronou
 | 12300001 | System service exception. |
 | 12300002 | Invalid uid.    |
 
-**Example**: Obtain the ID of the OS account whose process UID is **12345678**.
+**Example**: Obtain the ID of the system account whose process UID is **12345678**.
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   let uid: number = 12345678;
   try {
     accountManager.getOsAccountLocalIdForUid(uid, (err: BusinessError, localId: number) => {
@@ -1181,7 +1439,7 @@ Obtains the OS account ID based on the process UID. This API uses an asynchronou
 
 getOsAccountLocalIdForUid(uid: number): Promise&lt;number&gt;
 
-Obtains the OS account ID based on the process UID. This API uses a promise to return the result.
+Obtains the system account ID based on the process UID. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -1195,7 +1453,7 @@ Obtains the OS account ID based on the process UID. This API uses a promise to r
 
 | Type                 | Description                                    |
 | --------------------- | --------------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the OS account ID obtained.|
+| Promise&lt;number&gt; | Promise used to return the system account ID obtained.|
 
 **Error codes**
 
@@ -1204,11 +1462,11 @@ Obtains the OS account ID based on the process UID. This API uses a promise to r
 | 12300001 | System service exception. |
 | 12300002 | Invalid uid. |
 
-**Example**: Obtain the ID of the OS account whose process UID is **12345678**.
+**Example**: Obtain the ID of the system account whose process UID is **12345678**.
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   let uid: number = 12345678;
   try {
     accountManager.getOsAccountLocalIdForUid(uid).then((localId: number) => {
@@ -1225,7 +1483,7 @@ Obtains the OS account ID based on the process UID. This API uses a promise to r
 
 getOsAccountLocalIdForUidSync(uid: number): number
 
-Obtains the OS account ID based on the process UID. The API returns the result synchronously.
+Obtains the system account ID based on the process UID. The API returns the result synchronously.
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -1239,7 +1497,7 @@ Obtains the OS account ID based on the process UID. The API returns the result s
 
 | Type                 | Description                                    |
 | --------------------- | --------------------------------------- |
-| number | OS account ID obtained.|
+| number | System account ID obtained.|
 
 **Error codes**
 
@@ -1247,10 +1505,10 @@ Obtains the OS account ID based on the process UID. The API returns the result s
 | -------- | ------------- |
 | 12300002 | Invalid uid. |
 
-**Example**: Obtain the ID of the OS account whose process UID is **12345678**.
+**Example**: Obtain the ID of the system account whose process UID is **12345678**.
 
   ```ts
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   let uid: number = 12345678;
   try {
     let localId : number = accountManager.getOsAccountLocalIdForUidSync(uid);
@@ -1264,7 +1522,7 @@ Obtains the OS account ID based on the process UID. The API returns the result s
 
 getOsAccountLocalIdForDomain(domainInfo: DomainAccountInfo, callback: AsyncCallback&lt;number&gt;): void
 
-Obtains the OS account ID based on the domain account information. This API uses an asynchronous callback to return the result.
+Obtains the system account ID based on the domain account information. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -1275,7 +1533,7 @@ Obtains the OS account ID based on the domain account information. This API uses
 | Name    | Type                                   | Mandatory| Description                                                                        |
 | ---------- | --------------------------------------- | ---- | -------------------------------------------------------------------------- |
 | domainInfo | [DomainAccountInfo](#domainaccountinfo8) | Yes  | Domain account information.                                                               |
-| callback   | AsyncCallback&lt;number&gt;             | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the ID of the OS account associated with the domain account. Otherwise, **err** is an error object.|
+| callback   | AsyncCallback&lt;number&gt;             | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the ID of the system account associated with the domain account. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -1289,7 +1547,7 @@ Obtains the OS account ID based on the domain account information. This API uses
   ```ts
   import { BusinessError } from '@ohos.base';
   let domainInfo: account_osAccount.DomainAccountInfo = {domain: 'testDomain', accountName: 'testAccountName'};
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   try {
     accountManager.getOsAccountLocalIdForDomain(domainInfo, (err: BusinessError, localId: number) => {
       if (err) {
@@ -1307,7 +1565,7 @@ Obtains the OS account ID based on the domain account information. This API uses
 
 getOsAccountLocalIdForDomain(domainInfo: DomainAccountInfo): Promise&lt;number&gt;
 
-Obtains the OS account ID based on the domain account information. This API uses a promise to return the result.
+Obtains the system account ID based on the domain account information. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -1323,7 +1581,7 @@ Obtains the OS account ID based on the domain account information. This API uses
 
 | Type                 | Description                                   |
 | :-------------------- | :------------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the ID of the OS account associated with the domain account.|
+| Promise&lt;number&gt; | Promise used to return the ID of the system account associated with the domain account.|
 
 **Error codes**
 
@@ -1336,7 +1594,7 @@ Obtains the OS account ID based on the domain account information. This API uses
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   let domainInfo: account_osAccount.DomainAccountInfo = {domain: 'testDomain', accountName: 'testAccountName'};
   try {
     accountManager.getOsAccountLocalIdForDomain(domainInfo).then((localId: number) => {
@@ -1353,7 +1611,7 @@ Obtains the OS account ID based on the domain account information. This API uses
 
 queryMaxOsAccountNumber(callback: AsyncCallback&lt;number&gt;): void
 
-Obtains the maximum number of OS accounts that can be created. This API uses an asynchronous callback to return the result.
+Queries the maximum number of system accounts that can be created. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -1363,7 +1621,7 @@ Obtains the maximum number of OS accounts that can be created. This API uses an 
 
 | Name  | Type                       | Mandatory| Description                                                                             |
 | -------- | --------------------------- | ---- | -------------------------------------------------------------------------------- |
-| callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the maximum number of OS accounts that can be created. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the maximum number of system accounts that can be created. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -1375,7 +1633,7 @@ Obtains the maximum number of OS accounts that can be created. This API uses an 
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   try {
     accountManager.queryMaxOsAccountNumber((err: BusinessError, maxCnt: number) => {
       if (err) {
@@ -1393,7 +1651,7 @@ Obtains the maximum number of OS accounts that can be created. This API uses an 
 
 queryMaxOsAccountNumber(): Promise&lt;number&gt;
 
-Obtains the maximum number of OS accounts that can be created. This API uses a promise to return the result.
+Queries the maximum number of system accounts that can be created. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -1403,7 +1661,7 @@ Obtains the maximum number of OS accounts that can be created. This API uses a p
 
 | Type                 | Description                                        |
 | --------------------- | ------------------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the maximum number of OS accounts that can be created.|
+| Promise&lt;number&gt; | Promise used to return the maximum number of system accounts that can be created.|
 
 **Error codes**
 
@@ -1415,7 +1673,7 @@ Obtains the maximum number of OS accounts that can be created. This API uses a p
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   try {
     accountManager.queryMaxOsAccountNumber().then((maxCnt: number) => {
       console.log('queryMaxOsAccountNumber successfully, maxCnt: ' + maxCnt);
@@ -1427,11 +1685,63 @@ Obtains the maximum number of OS accounts that can be created. This API uses a p
   }
   ```
 
-### getOsAccountConstraints<sup>9+</sup>
+### getEnabledOsAccountConstraints<sup>11+</sup>
+
+getEnabledOsAccountConstraints(localId: number): Promise&lt;Array&lt;string&gt;&gt;
+
+Obtains all the enabled constraints of a system account. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS or ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Parameters**
+
+| Name | Type  | Mandatory| Description        |
+| ------- | ------ | ---- | ------------ |
+| localId | number | Yes  | ID of the target system account.|
+
+**Return value**
+
+| Type                              | Description                                                      |
+| ---------------------------------- | ---------------------------------------------------------- |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return all the enabled [constraints](#constraints) obtained.|
+
+**Error codes**
+
+| ID| Error Message            |
+| -------- | ------------------- |
+| 12300001 | System service exception. |
+| 12300003 | Account not found. |
+
+**Example**: Obtain all constraints of system account 100.
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let localId: number = 100;
+  try {
+    accountManager.getEnabledOsAccountConstraints(localId).then((constraints: string[]) => {
+      console.log('getEnabledOsAccountConstraints, constraints: ' + constraints);
+    }).catch((err: BusinessError) => {
+      console.log('getEnabledOsAccountConstraints err: ' + JSON.stringify(err));
+    });
+  } catch (e) {
+    console.log('getEnabledOsAccountConstraints exception: ' + JSON.stringify(e));
+  }
+  ```
+
+### getOsAccountConstraints<sup>(deprecated)</sup>
 
 getOsAccountConstraints(localId: number, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
-Obtains all constraints enabled for an OS account. This API uses an asynchronous callback to return the result.
+Obtains all constraints enabled for a system account. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 9 and deprecated since API version 11. The substitute API is available only to system applications.
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -1441,7 +1751,7 @@ Obtains all constraints enabled for an OS account. This API uses an asynchronous
 
 | Name  | Type                                    | Mandatory| Description                                                                                          |
 | -------- | ---------------------------------------- | ---- | -------------------------------------------------------------------------------------------- |
-| localId  | number                                   | Yes  | ID of the target OS account.                                                                                 |
+| localId  | number                                   | Yes  | ID of the target system account.                                                                                 |
 | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is all [constraints](#constraints) obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -1452,11 +1762,11 @@ Obtains all constraints enabled for an OS account. This API uses an asynchronous
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
 
-**Example**: Obtain all constraints of OS account 100.
+**Example**: Obtain all constraints of system account 100.
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
   try {
     accountManager.getOsAccountConstraints(localId, (err: BusinessError, constraints: string[]) => {
@@ -1471,11 +1781,15 @@ Obtains all constraints enabled for an OS account. This API uses an asynchronous
   }
   ```
 
-### getOsAccountConstraints<sup>9+</sup>
+### getOsAccountConstraints<sup>(deprecated)</sup>
 
 getOsAccountConstraints(localId: number): Promise&lt;Array&lt;string&gt;&gt;
 
-Obtains all constraints enabled for an OS account. This API uses a promise to return the result.
+Obtains all constraints enabled for a system account. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 9 and deprecated since API version 11. The substitute API is available only to system applications.
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -1485,13 +1799,13 @@ Obtains all constraints enabled for an OS account. This API uses a promise to re
 
 | Name | Type  | Mandatory| Description        |
 | ------- | ------ | ---- | ------------ |
-| localId | number | Yes  | ID of the target OS account.|
+| localId | number | Yes  | ID of the target system account.|
 
 **Return value**
 
 | Type                              | Description                                                      |
 | ---------------------------------- | ---------------------------------------------------------- |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return all the [constraints](#constraints) enabled for the OS account.|
+| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return all the [constraints](#constraints) enabled for the system account.|
 
 **Error codes**
 
@@ -1501,11 +1815,11 @@ Obtains all constraints enabled for an OS account. This API uses a promise to re
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
 
-**Example**: Obtain all constraints of OS account 100.
+**Example**: Obtain all constraints of system account 100.
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
   try {
     accountManager.getOsAccountConstraints(localId).then((constraints: string[]) => {
@@ -1522,7 +1836,7 @@ Obtains all constraints enabled for an OS account. This API uses a promise to re
 
 queryAllCreatedOsAccounts(callback: AsyncCallback&lt;Array&lt;OsAccountInfo&gt;&gt;): void
 
-Obtains information about all the OS accounts created. This API uses an asynchronous callback to return the result.
+Queries information about all the system accounts created. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -1534,7 +1848,7 @@ Obtains information about all the OS accounts created. This API uses an asynchro
 
 | Name  | Type                                                        | Mandatory| Description                                              |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------------------- |
-| callback | AsyncCallback&lt;Array&lt;[OsAccountInfo](#osaccountinfo)&gt;&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is a list of all created OS accounts. Otherwise, **data** is an error object.|
+| callback | AsyncCallback&lt;Array&lt;[OsAccountInfo](#osaccountinfo)&gt;&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is a list of all created system accounts. Otherwise, **data** is an error object.|
 
 **Error codes**
 
@@ -1546,7 +1860,7 @@ Obtains information about all the OS accounts created. This API uses an asynchro
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   try {
     accountManager.queryAllCreatedOsAccounts((err: BusinessError, accountArr: account_osAccount.OsAccountInfo[])=>{
       console.log('queryAllCreatedOsAccounts err:' + JSON.stringify(err));
@@ -1561,7 +1875,7 @@ Obtains information about all the OS accounts created. This API uses an asynchro
 
 queryAllCreatedOsAccounts(): Promise&lt;Array&lt;OsAccountInfo&gt;&gt;
 
-Obtains information about all the OS accounts created. This API uses a promise to return the result.
+Queries information about all the system accounts created. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -1573,7 +1887,7 @@ Obtains information about all the OS accounts created. This API uses a promise t
 
 | Type                                                       | Description                                          |
 | ----------------------------------------------------------- | --------------------------------------------- |
-| Promise&lt;Array&lt;[OsAccountInfo](#osaccountinfo)&gt;&gt; | Promise used to return the information about all the OS accounts created.|
+| Promise&lt;Array&lt;[OsAccountInfo](#osaccountinfo)&gt;&gt; | Promise used to return the information about all the system accounts created.|
 
 **Error codes**
 
@@ -1585,7 +1899,7 @@ Obtains information about all the OS accounts created. This API uses a promise t
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   try {
     accountManager.queryAllCreatedOsAccounts().then((accountArr: account_osAccount.OsAccountInfo[]) => {
       console.log('queryAllCreatedOsAccounts, accountArr: ' + JSON.stringify(accountArr));
@@ -1601,7 +1915,7 @@ Obtains information about all the OS accounts created. This API uses a promise t
 
 getActivatedOsAccountLocalIds(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
-Obtains information about all activated OS accounts. This API uses an asynchronous callback to return the result.
+Obtains information about all activated system accounts. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -1609,7 +1923,7 @@ Obtains information about all activated OS accounts. This API uses an asynchrono
 
 | Name  | Type                                    | Mandatory| Description                                                  |
 | -------- | ---------------------------------------- | ---- | ------------------------------------------------------ |
-| callback | AsyncCallback&lt;Array&lt;number&gt;&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is a list of activated OS accounts. Otherwise, **data** is an error object.|
+| callback | AsyncCallback&lt;Array&lt;number&gt;&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is a list of activated system accounts. Otherwise, **data** is an error object.|
 
 **Error codes**
 
@@ -1621,7 +1935,7 @@ Obtains information about all activated OS accounts. This API uses an asynchrono
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   try {
     accountManager.getActivatedOsAccountLocalIds((err: BusinessError, idArray: number[])=>{
       console.log('getActivatedOsAccountLocalIds err:' + JSON.stringify(err));
@@ -1639,7 +1953,7 @@ Obtains information about all activated OS accounts. This API uses an asynchrono
 
 getActivatedOsAccountLocalIds(): Promise&lt;Array&lt;number&gt;&gt;
 
-Obtains information about all activated OS accounts. This API uses a promise to return the result.
+Obtains information about all activated system accounts. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -1647,7 +1961,7 @@ Obtains information about all activated OS accounts. This API uses a promise to 
 
 | Type                              | Description                                              |
 | :--------------------------------- | :------------------------------------------------ |
-| Promise&lt;Array&lt;number&gt;&gt; | Promise used to return the information about all activated OS accounts.|
+| Promise&lt;Array&lt;number&gt;&gt; | Promise used to return the information about all activated system accounts.|
 
 **Error codes**
 
@@ -1659,7 +1973,7 @@ Obtains information about all activated OS accounts. This API uses a promise to 
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   try {
     accountManager.getActivatedOsAccountLocalIds().then((idArray: number[]) => {
       console.log('getActivatedOsAccountLocalIds, idArray: ' + idArray);
@@ -1675,7 +1989,7 @@ Obtains information about all activated OS accounts. This API uses a promise to 
 
 createOsAccount(localName: string, type: OsAccountType, callback: AsyncCallback&lt;OsAccountInfo&gt;): void
 
-Creates an OS account. This API uses an asynchronous callback to return the result.
+Creates a system account. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -1687,9 +2001,9 @@ Creates an OS account. This API uses an asynchronous callback to return the resu
 
 | Name   | Type                                                | Mandatory| Description                                                                        |
 | :-------- | ---------------------------------------------------- | ---- | --------------------------------------------------------------------------- |
-| localName | string                                               | Yes  | Name of the OS account to create.                                                       |
-| type      | [OsAccountType](#osaccounttype)                      | Yes  | Type of the OS account to create.                                                       |
-| callback  | AsyncCallback&lt;[OsAccountInfo](#osaccountinfo)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the created OS account. Otherwise, **err** is an error object.|
+| localName | string                                               | Yes  | Name of the system account to create.                                                       |
+| type      | [OsAccountType](#osaccounttype)                      | Yes  | Type of the system account to create.                                                       |
+| callback  | AsyncCallback&lt;[OsAccountInfo](#osaccountinfo)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the created system account. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -1705,7 +2019,7 @@ Creates an OS account. This API uses an asynchronous callback to return the resu
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   try {
     accountManager.createOsAccount('testName', account_osAccount.OsAccountType.NORMAL,
       (err: BusinessError, osAccountInfo: account_osAccount.OsAccountInfo)=>{
@@ -1721,7 +2035,7 @@ Creates an OS account. This API uses an asynchronous callback to return the resu
 
 createOsAccount(localName: string, type: OsAccountType): Promise&lt;OsAccountInfo&gt;
 
-Creates an OS account. This API uses a promise to return the result.
+Creates a system account. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -1733,14 +2047,14 @@ Creates an OS account. This API uses a promise to return the result.
 
 | Name   | Type                           | Mandatory| Description                  |
 | --------- | ------------------------------- | ---- | ---------------------- |
-| localName | string                          | Yes  | Name of the OS account to create.|
-| type      | [OsAccountType](#osaccounttype) | Yes  | Type of the OS account to create.|
+| localName | string                          | Yes  | Name of the system account to create.|
+| type      | [OsAccountType](#osaccounttype) | Yes  | Type of the system account to create.|
 
 **Return value**
 
 | Type                                          | Description                                 |
 | ---------------------------------------------- | ------------------------------------- |
-| Promise&lt;[OsAccountInfo](#osaccountinfo)&gt; | Promise used to return the information about the created OS account.|
+| Promise&lt;[OsAccountInfo](#osaccountinfo)&gt; | Promise used to return the information about the created system account.|
 
 **Error codes**
 
@@ -1756,7 +2070,7 @@ Creates an OS account. This API uses a promise to return the result.
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   try {
     accountManager.createOsAccount('testAccountName', account_osAccount.OsAccountType.NORMAL).then(
       (accountInfo: account_osAccount.OsAccountInfo) => {
@@ -1773,7 +2087,7 @@ Creates an OS account. This API uses a promise to return the result.
 
 createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo, callback: AsyncCallback&lt;OsAccountInfo&gt;): void
 
-Creates an OS account and associates it with the specified domain account. This API uses an asynchronous callback to return the result.
+Creates a system account and associates it with the specified domain account. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -1785,9 +2099,9 @@ Creates an OS account and associates it with the specified domain account. This 
 
 | Name    | Type                                                | Mandatory| Description                                                                        |
 | ---------- | ---------------------------------------------------- | ---- | -------------------------------------------------------------------------- |
-| type       | [OsAccountType](#osaccounttype)                      | Yes  | Type of the OS account to create.                                                      |
+| type       | [OsAccountType](#osaccounttype)                      | Yes  | Type of the system account to create.                                                      |
 | domainInfo | [DomainAccountInfo](#domainaccountinfo8)              | Yes  | Domain account information.                                                              |
-| callback   | AsyncCallback&lt;[OsAccountInfo](#osaccountinfo)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the created OS account. Otherwise, **err** is an error object.|
+| callback   | AsyncCallback&lt;[OsAccountInfo](#osaccountinfo)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the created system account. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -1804,7 +2118,7 @@ Creates an OS account and associates it with the specified domain account. This 
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   let domainInfo: account_osAccount.DomainAccountInfo =
     {domain: 'testDomain', accountName: 'testAccountName'};
   try {
@@ -1822,7 +2136,7 @@ Creates an OS account and associates it with the specified domain account. This 
 
 createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo): Promise&lt;OsAccountInfo&gt;
 
-Creates an OS account and associates it with the specified domain account. This API uses a promise to return the result.
+Creates a system account and associates it with the specified domain account. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -1834,14 +2148,14 @@ Creates an OS account and associates it with the specified domain account. This 
 
 | Name    | Type                                     | Mandatory| Description                |
 | ---------- | ---------------------------------------- | ---- | -------------------- |
-| type       | [OsAccountType](#osaccounttype)          | Yes  | Type of the OS account to create.|
+| type       | [OsAccountType](#osaccounttype)          | Yes  | Type of the system account to create.|
 | domainInfo | [DomainAccountInfo](#domainaccountinfo8) | Yes  | Domain account information.         |
 
 **Return value**
 
 | Type                                          | Description                                   |
 | ---------------------------------------------- | -------------------------------------- |
-| Promise&lt;[OsAccountInfo](#osaccountinfo)&gt; | Promise used to return the information about the created OS account.|
+| Promise&lt;[OsAccountInfo](#osaccountinfo)&gt; | Promise used to return the information about the created system account.|
 
 **Error codes**
 
@@ -1858,7 +2172,7 @@ Creates an OS account and associates it with the specified domain account. This 
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   let domainInfo: account_osAccount.DomainAccountInfo =
     {domain: 'testDomain', accountName: 'testAccountName'};
   try {
@@ -1873,11 +2187,15 @@ Creates an OS account and associates it with the specified domain account. This 
   }
   ```
 
-### getCurrentOsAccount<sup>9+</sup>
+### getCurrentOsAccount<sup>(deprecated)</sup>
 
 getCurrentOsAccount(callback: AsyncCallback&lt;OsAccountInfo&gt;): void
 
-Obtains information about the OS account to which the current process belongs. This API uses an asynchronous callback to return the result.
+Obtains information about the system account to which the current process belongs. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 9 and deprecated since API version 11. The substitute API is available only to system applications.
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS or ohos.permission.GET_LOCAL_ACCOUNTS<sup>10+</sup>
 
@@ -1887,7 +2205,7 @@ Obtains information about the OS account to which the current process belongs. T
 
 | Name  | Type                                                | Mandatory| Description                                          |
 | -------- | ---------------------------------------------------- | ---- | ---------------------------------------------- |
-| callback | AsyncCallback&lt;[OsAccountInfo](#osaccountinfo)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the OS account information obtained. Otherwise, **data** is an error object.|
+| callback | AsyncCallback&lt;[OsAccountInfo](#osaccountinfo)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the system account information obtained. Otherwise, **data** is an error object.|
 
 **Error codes**
 
@@ -1899,7 +2217,7 @@ Obtains information about the OS account to which the current process belongs. T
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   try {
     accountManager.getCurrentOsAccount((err: BusinessError, curAccountInfo: account_osAccount.OsAccountInfo)=>{
       console.log('getCurrentOsAccount err:' + JSON.stringify(err));
@@ -1910,11 +2228,15 @@ Obtains information about the OS account to which the current process belongs. T
   }
   ```
 
-### getCurrentOsAccount<sup>9+</sup>
+### getCurrentOsAccount<sup>(deprecated)</sup>
 
 getCurrentOsAccount(): Promise&lt;OsAccountInfo&gt;
 
-Obtains information about the OS account to which the current process belongs. This API uses a promise to return the result.
+Obtains information about the system account to which the current process belongs. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 9 and deprecated since API version 11. The substitute API is available only to system applications.
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS or ohos.permission.GET_LOCAL_ACCOUNTS<sup>10+</sup>
 
@@ -1924,7 +2246,7 @@ Obtains information about the OS account to which the current process belongs. T
 
 | Type                                          | Description                                      |
 | ---------------------------------------------- | ----------------------------------------- |
-| Promise&lt;[OsAccountInfo](#osaccountinfo)&gt; | Promise used to return the OS account information obtained.|
+| Promise&lt;[OsAccountInfo](#osaccountinfo)&gt; | Promise used to return the system account information obtained.|
 
 **Error codes**
 
@@ -1936,7 +2258,7 @@ Obtains information about the OS account to which the current process belongs. T
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   try {
     accountManager.getCurrentOsAccount().then((accountInfo: account_osAccount.OsAccountInfo) => {
       console.log('getCurrentOsAccount, accountInfo: ' + JSON.stringify(accountInfo));
@@ -1948,11 +2270,51 @@ Obtains information about the OS account to which the current process belongs. T
   }
   ```
 
+### queryOsAccount<sup>11+</sup>
+
+queryOsAccount(): Promise&lt;OsAccountInfo&gt;
+
+Queries information about the system account to which the current process belongs. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS or ohos.permission.GET_LOCAL_ACCOUNTS
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Return value**
+
+| Type                                          | Description                                      |
+| ---------------------------------------------- | ----------------------------------------- |
+| Promise&lt;[OsAccountInfo](#osaccountinfo)&gt; | Promise used to return the system account information obtained.|
+
+**Error codes**
+
+| ID| Error Message            |
+| -------- | ------------------- |
+| 12300001 | System service exception. |
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  try {
+    accountManager.queryOsAccount().then((accountInfo: account_osAccount.OsAccountInfo) => {
+      console.log('queryOsAccount, accountInfo: ' + JSON.stringify(accountInfo));
+    }).catch((err: BusinessError) => {
+      console.log('queryOsAccount err: ' + JSON.stringify(err));
+    });
+  } catch (e) {
+    console.log('queryOsAccount exception: ' + JSON.stringify(e));
+  }
+  ```
+
 ### queryOsAccountById
 
 queryOsAccountById(localId: number, callback: AsyncCallback&lt;OsAccountInfo&gt;): void
 
-Obtains information about the OS account of the given ID. This API uses an asynchronous callback to return the result.
+Queries information about the system account of the given ID. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -1964,8 +2326,8 @@ Obtains information about the OS account of the given ID. This API uses an async
 
 | Name  | Type                                                | Mandatory| Description                                                                      |
 | -------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------------------ |
-| localId  | number                                               | Yes  | ID of the target OS account.                                                     |
-| callback | AsyncCallback&lt;[OsAccountInfo](#osaccountinfo)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the OS account information obtained. Otherwise, **data** is an error object.|
+| localId  | number                                               | Yes  | ID of the target system account.                                                     |
+| callback | AsyncCallback&lt;[OsAccountInfo](#osaccountinfo)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the system account information obtained. Otherwise, **data** is an error object.|
 
 **Error codes**
 
@@ -1975,11 +2337,11 @@ Obtains information about the OS account of the given ID. This API uses an async
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
 
-**Example**: Query information about OS account 100.
+**Example**: Query information about system account 100.
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
   try {
     accountManager.queryOsAccountById(localId, (err: BusinessError, accountInfo: account_osAccount.OsAccountInfo)=>{
@@ -1995,7 +2357,7 @@ Obtains information about the OS account of the given ID. This API uses an async
 
 queryOsAccountById(localId: number): Promise&lt;OsAccountInfo&gt;
 
-Obtains information about the OS account of the given ID. This API uses a promise to return the result.
+Queries information about the system account of the given ID. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -2007,13 +2369,13 @@ Obtains information about the OS account of the given ID. This API uses a promis
 
 | Name | Type  | Mandatory| Description                |
 | ------- | ------ | ---- | -------------------- |
-| localId | number | Yes  | ID of the target OS account.|
+| localId | number | Yes  | ID of the target system account.|
 
 **Return value**
 
 | Type                                          | Description                                |
 | ---------------------------------------------- | ------------------------------------ |
-| Promise&lt;[OsAccountInfo](#osaccountinfo)&gt; | Promise used to return the OS account information obtained.|
+| Promise&lt;[OsAccountInfo](#osaccountinfo)&gt; | Promise used to return the system account information obtained.|
 
 **Error codes**
 
@@ -2023,11 +2385,11 @@ Obtains information about the OS account of the given ID. This API uses a promis
 | 12300002 | Invalid localId. |
 | 12300003 | Account not found. |
 
-**Example**: Query information about OS account 100.
+**Example**: Query information about system account 100.
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
   try {
     accountManager.queryOsAccountById(localId).then((accountInfo: account_osAccount.OsAccountInfo) => {
@@ -2052,7 +2414,7 @@ Obtains the type of the account to which the current process belongs. This API u
 
 | Name  | Type                                                | Mandatory| Description                                                |
 | -------- | ---------------------------------------------------- | ---- | ---------------------------------------------------- |
-| callback | AsyncCallback&lt;[OsAccountType](#osaccounttype)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the OS account type obtained. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;[OsAccountType](#osaccounttype)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the system account type obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -2064,7 +2426,7 @@ Obtains the type of the account to which the current process belongs. This API u
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   try {
     accountManager.getOsAccountType((err: BusinessError, accountType: account_osAccount.OsAccountType) => {
       console.log('getOsAccountType err: ' + JSON.stringify(err));
@@ -2087,7 +2449,7 @@ Obtains the type of the account to which the current process belongs. This API u
 
 | Type                                          | Description                                            |
 | ---------------------------------------------- | ----------------------------------------------- |
-| Promise&lt;[OsAccountType](#osaccounttype)&gt; | Promise used to return the OS account type obtained.|
+| Promise&lt;[OsAccountType](#osaccounttype)&gt; | Promise used to return the system account type obtained.|
 
 **Error codes**
 
@@ -2099,7 +2461,7 @@ Obtains the type of the account to which the current process belongs. This API u
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   try {
     accountManager.getOsAccountType().then((accountType: account_osAccount.OsAccountType) => {
       console.log('getOsAccountType, accountType: ' + accountType);
@@ -2115,7 +2477,7 @@ Obtains the type of the account to which the current process belongs. This API u
 
 queryDistributedVirtualDeviceId(callback: AsyncCallback&lt;string&gt;): void
 
-Obtains the ID of this distributed virtual device. This API uses an asynchronous callback to return the result.
+Queries the ID of this distributed virtual device. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC or ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -2137,7 +2499,7 @@ Obtains the ID of this distributed virtual device. This API uses an asynchronous
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   try {
     accountManager.queryDistributedVirtualDeviceId((err: BusinessError, virtualID: string) => {
       console.log('queryDistributedVirtualDeviceId err: ' + JSON.stringify(err));
@@ -2152,7 +2514,7 @@ Obtains the ID of this distributed virtual device. This API uses an asynchronous
 
 queryDistributedVirtualDeviceId(): Promise&lt;string&gt;
 
-Obtains the ID of this distributed virtual device. This API uses a promise to return the result.
+Queries the ID of this distributed virtual device. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC or ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -2174,7 +2536,7 @@ Obtains the ID of this distributed virtual device. This API uses a promise to re
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   try {
     accountManager.queryDistributedVirtualDeviceId().then((virtualID: string) => {
       console.log('queryDistributedVirtualDeviceId, virtualID: ' + virtualID);
@@ -2190,7 +2552,7 @@ Obtains the ID of this distributed virtual device. This API uses a promise to re
 
 getOsAccountProfilePhoto(localId: number, callback: AsyncCallback&lt;string&gt;): void
 
-Obtains the profile photo of an OS account. This API uses an asynchronous callback to return the result.
+Obtains the profile photo of a system account. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -2202,7 +2564,7 @@ Obtains the profile photo of an OS account. This API uses an asynchronous callba
 
 | Name  | Type                       | Mandatory| Description                                                                        |
 | -------- | --------------------------- | ---- | -------------------------------------------------------------------------- |
-| localId  | number                      | Yes  | ID of the target OS account.                                                               |
+| localId  | number                      | Yes  | ID of the target system account.                                                               |
 | callback | AsyncCallback&lt;string&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the profile photo information obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -2213,11 +2575,11 @@ Obtains the profile photo of an OS account. This API uses an asynchronous callba
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
 
-**Example**: Obtain the profile photo of OS account 100.
+**Example**: Obtain the profile photo of system account 100.
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
   try {
     accountManager.getOsAccountProfilePhoto(localId, (err: BusinessError, photo: string)=>{
@@ -2233,7 +2595,7 @@ Obtains the profile photo of an OS account. This API uses an asynchronous callba
 
 getOsAccountProfilePhoto(localId: number): Promise&lt;string&gt;
 
-Obtains the profile photo of an OS account. This API uses a promise to return the result.
+Obtains the profile photo of a system account. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -2245,7 +2607,7 @@ Obtains the profile photo of an OS account. This API uses a promise to return th
 
 | Name | Type  | Mandatory| Description        |
 | ------- | ------ | ---- | ------------ |
-| localId | number | Yes  | ID of the target OS account.|
+| localId | number | Yes  | ID of the target system account.|
 
 **Return value**
 
@@ -2261,11 +2623,11 @@ Obtains the profile photo of an OS account. This API uses a promise to return th
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
 
-**Example**: Obtain the profile photo of OS account 100.
+**Example**: Obtain the profile photo of system account 100.
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
   try {
     accountManager.getOsAccountProfilePhoto(localId).then((photo: string) => {
@@ -2282,7 +2644,7 @@ Obtains the profile photo of an OS account. This API uses a promise to return th
 
 setOsAccountProfilePhoto(localId: number, photo: string, callback: AsyncCallback&lt;void&gt;): void
 
-Sets a profile photo for an OS account. This API uses an asynchronous callback to return the result.
+Sets a profile photo for a system account. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -2294,7 +2656,7 @@ Sets a profile photo for an OS account. This API uses an asynchronous callback t
 
 | Name  | Type                     | Mandatory| Description        |
 | -------- | ------------------------- | ---- | ------------ |
-| localId  | number                    | Yes  | ID of the target OS account.|
+| localId  | number                    | Yes  | ID of the target system account.|
 | photo    | string                    | Yes  | Profile photo information.  |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object. |
 
@@ -2307,11 +2669,11 @@ Sets a profile photo for an OS account. This API uses an asynchronous callback t
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
 
-**Example**: Set a profile photo for OS account 100.
+**Example**: Set a profile photo for system account 100.
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
   let photo: string = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAPCAYAAAA/I0V3AAAAAXNSR0IArs4c6QAAAARnQU1BAA'+
   'Cxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACwSURBVDhPvZLBDYMwDEV/ugsXRjAT0EHCOuFIBwkbdIRewi6unbiAyoGgSn1SFH85+Y'+
@@ -2330,7 +2692,7 @@ Sets a profile photo for an OS account. This API uses an asynchronous callback t
 
 setOsAccountProfilePhoto(localId: number, photo: string): Promise&lt;void&gt;
 
-Sets a profile photo for an OS account. This API uses a promise to return the result.
+Sets a profile photo for a system account. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -2342,7 +2704,7 @@ Sets a profile photo for an OS account. This API uses a promise to return the re
 
 | Name | Type  | Mandatory| Description        |
 | ------- | ------ | ---- | ------------ |
-| localId | number | Yes  | ID of the target OS account.|
+| localId | number | Yes  | ID of the target system account.|
 | photo   | string | Yes  | Profile photo information.  |
 
 **Return value**
@@ -2360,11 +2722,11 @@ Sets a profile photo for an OS account. This API uses a promise to return the re
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
 
-**Example**: Set a profile photo for OS account 100.
+**Example**: Set a profile photo for system account 100.
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
   let photo: string = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAPCAYAAAA/I0V3AAAAAXNSR0IArs4c6QAAAARnQU1BAA'+
   'Cxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACwSURBVDhPvZLBDYMwDEV/ugsXRjAT0EHCOuFIBwkbdIRewi6unbiAyoGgSn1SFH85+Y'+
@@ -2385,7 +2747,7 @@ Sets a profile photo for an OS account. This API uses a promise to return the re
 
 getOsAccountLocalIdForSerialNumber(serialNumber: number, callback: AsyncCallback&lt;number&gt;): void
 
-Obtains the OS account ID based on the serial number (SN). This API uses an asynchronous callback to return the result.
+Obtains the system account ID based on the SN. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -2394,7 +2756,7 @@ Obtains the OS account ID based on the serial number (SN). This API uses an asyn
 | Name      | Type                       | Mandatory| Description                                                                          |
 | ------------ | --------------------------- | ---- | ---------------------------------------------------------------------------- |
 | serialNumber | number                      | Yes  | Account SN.                                                                   |
-| callback     | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the OS account ID obtained. Otherwise, **err** is an error object.|
+| callback     | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the system account ID obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -2404,11 +2766,11 @@ Obtains the OS account ID based on the serial number (SN). This API uses an asyn
 | 12300002 | Invalid serialNumber. |
 | 12300003 | The account indicated by serialNumber dose not exist. |
 
-**Example**: Obtain the ID of the OS account whose SN is 12345.
+**Example**: Obtain the ID of the system account whose SN is 12345.
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   let serialNumber: number = 12345;
   try {
     accountManager.getOsAccountLocalIdForSerialNumber(serialNumber, (err: BusinessError, localId: number)=>{
@@ -2424,7 +2786,7 @@ Obtains the OS account ID based on the serial number (SN). This API uses an asyn
 
 getOsAccountLocalIdForSerialNumber(serialNumber: number): Promise&lt;number&gt;
 
-Obtains the OS account ID based on the SN. This API uses a promise to return the result.
+Obtains the system account ID based on the SN. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -2438,7 +2800,7 @@ Obtains the OS account ID based on the SN. This API uses a promise to return the
 
 | Type                 | Description                                        |
 | --------------------- | -------------------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the OS account ID obtained.|
+| Promise&lt;number&gt; | Promise used to return the system account ID obtained.|
 
 **Error codes**
 
@@ -2448,11 +2810,11 @@ Obtains the OS account ID based on the SN. This API uses a promise to return the
 | 12300002 | Invalid serialNumber. |
 | 12300003 | The account indicated by serialNumber dose not exist. |
 
-**Example**: Obtain the ID of the OS account whose SN is 12345.
+**Example**: Obtain the ID of the system account whose SN is 12345.
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   let serialNumber: number = 12345;
   try {
     accountManager.getOsAccountLocalIdForSerialNumber(serialNumber).then((localId: number) => {
@@ -2469,7 +2831,7 @@ Obtains the OS account ID based on the SN. This API uses a promise to return the
 
 getSerialNumberForOsAccountLocalId(localId: number, callback: AsyncCallback&lt;number&gt;): void
 
-Obtains the SN of an OS account based on the account ID. This API uses an asynchronous callback to return the result.
+Obtains the SN of a system account based on the account ID. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -2477,7 +2839,7 @@ Obtains the SN of an OS account based on the account ID. This API uses an asynch
 
 | Name  | Type                       | Mandatory| Description                                                                        |
 | -------- | --------------------------- | ---- | -------------------------------------------------------------------------- |
-| localId  | number                      | Yes  | ID of the target OS account.                                                                |
+| localId  | number                      | Yes  | ID of the target system account.                                                                |
 | callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the SN obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -2488,11 +2850,11 @@ Obtains the SN of an OS account based on the account ID. This API uses an asynch
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
 
-**Example**: Obtain the SN of the OS account 100.
+**Example**: Obtain the SN of the system account 100.
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
   try {
     accountManager.getSerialNumberForOsAccountLocalId(localId, (err: BusinessError, serialNumber: number)=>{
@@ -2508,7 +2870,7 @@ Obtains the SN of an OS account based on the account ID. This API uses an asynch
 
 getSerialNumberForOsAccountLocalId(localId: number): Promise&lt;number&gt;
 
-Obtains the SN of an OS account based on the account ID. This API uses a promise to return the result.
+Obtains the SN of a system account based on the account ID. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -2516,7 +2878,7 @@ Obtains the SN of an OS account based on the account ID. This API uses a promise
 
 | Name | Type  | Mandatory| Description         |
 | ------- | ------ | ---- | ----------- |
-| localId | number | Yes  | ID of the target OS account.|
+| localId | number | Yes  | ID of the target system account.|
 
 **Return value**
 
@@ -2532,11 +2894,11 @@ Obtains the SN of an OS account based on the account ID. This API uses a promise
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
 
-**Example**: Obtain the SN of the OS account 100.
+**Example**: Obtain the SN of the system account 100.
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
   try {
     accountManager.getSerialNumberForOsAccountLocalId(localId).then((serialNumber: number) => {
@@ -2553,7 +2915,7 @@ Obtains the SN of an OS account based on the account ID. This API uses a promise
 
 on(type: 'activate' | 'activating', name: string, callback: Callback&lt;number&gt;): void
 
-Subscribes to the OS account activation states, including the states of the account being activated and the account with activation completed. This API uses an asynchronous callback to return the result.
+Subscribes to the system account activation states, including the states of the account being activated and the account with activation completed. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -2565,9 +2927,9 @@ Subscribes to the OS account activation states, including the states of the acco
 
 | Name  | Type                      | Mandatory| Description                                                        |
 | -------- | -------------------------- | ---- | ------------------------------------------------------------ |
-| type     | 'activate' \| 'activating' | Yes  | Type of the event to subscribe to. The value **activate** indicates an event reported when the OS account activation is complete, and **activating** indicates an event reported when OS account is being activated.|
+| type     | 'activate' \| 'activating' | Yes  | Type of the event to subscribe to. The value **activate** indicates an event reported when the system account activation is complete, and **activating** indicates an event reported when system account is being activated.|
 | name     | string                     | Yes  | Subscription name, which can be customized. The value cannot be empty or exceed 1024 bytes.          |
-| callback | Callback&lt;number&gt;     | Yes  | Callback invoked to return the ID of the OS account being activated or activated.   |
+| callback | Callback&lt;number&gt;     | Yes  | Callback invoked to return the ID of the system account being activated or activated.   |
 
 **Error codes**
 
@@ -2579,7 +2941,7 @@ Subscribes to the OS account activation states, including the states of the acco
 **Example**
 
   ```ts
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   function onCallback(receiveLocalId: number){
     console.log('receive localId:' + receiveLocalId);
   }
@@ -2594,7 +2956,7 @@ Subscribes to the OS account activation states, including the states of the acco
 
 off(type: 'activate' | 'activating', name: string, callback?: Callback&lt;number&gt;): void
 
-Unsubscribes from the OS account activation states, including the states of the account being activated and the account with activation completed. This API uses an asynchronous callback to return the result.
+Unsubscribes from the system account activation states, including the states of the account being activated and the account with activation completed. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -2606,9 +2968,9 @@ Unsubscribes from the OS account activation states, including the states of the 
 
 | Name  | Type                      | Mandatory| Description                                                        |
 | -------- | -------------------------- | ---- | ------------------------------------------------------------ |
-| type     | 'activate' \| 'activating' | Yes  | Type of the event to unsubscribe from. The value **activate** means an event indicating that an OS account is activated, and **activating** means an event indicating that an OS account is being activated.|
+| type     | 'activate' \| 'activating' | Yes  | Type of the event to unsubscribe from. The value **activate** means an event indicating that a system account is activated, and **activating** means an event indicating that a system account is being activated.|
 | name     | string                     | Yes  | Subscription name, which can be customized. The value cannot be empty or exceed 1024 bytes, and must be the same as the value passed by **on()**.|
-| callback | Callback&lt;number&gt;     | No  | Callback for the OS account activation state events. By default, this parameter is left empty, which unsubscribes from all the callbacks for the OS account activation state events.                     |
+| callback | Callback&lt;number&gt;     | No  | Callback for the system account activation state events. By default, this parameter is left empty, which unsubscribes from all the callbacks for the system account activation state events.                     |
 
 **Error codes**
 
@@ -2620,7 +2982,7 @@ Unsubscribes from the OS account activation states, including the states of the 
 **Example**
 
   ```ts
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   function offCallback(){
     console.log('off enter')
   }
@@ -2659,7 +3021,7 @@ Obtains the bundle ID based on the UID. This API uses an asynchronous callback t
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   let testUid: number = 1000000;
   try {
     accountManager.getBundleIdForUid(testUid, (err: BusinessError, bundleId: number) => {
@@ -2704,7 +3066,7 @@ Obtains the bundle ID based on the UID. This API uses a promise to return the re
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   let testUid: number = 1000000;
   try {
     accountManager.getBundleIdForUid(testUid).then((result: number) => {
@@ -2748,7 +3110,7 @@ Obtains the bundle ID based on the specified UID. The API returns the result syn
 **Example**
 
   ```ts
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   let testUid: number = 1000000;
   try {
     let bundleId : number = accountManager.getBundleIdForUidSync(testUid);
@@ -2762,7 +3124,7 @@ Obtains the bundle ID based on the specified UID. The API returns the result syn
 
 isMainOsAccount(callback: AsyncCallback&lt;boolean&gt;): void;
 
-Checks whether the current process belongs to the main OS account. This API uses an asynchronous callback to return the result.
+Checks whether the current process belongs to the main system account. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -2774,7 +3136,7 @@ Checks whether the current process belongs to the main OS account. This API uses
 
 | Name  | Type                         | Mandatory| Description                                                              |
 | -------- | ---------------------------- | ---- | ----------------------------------------------------------------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result. If **true** is returned, the current process belongs to the main OS account. If **false** is returned, the current process does not belong to the main OS account.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result. If **true** is returned, the current process belongs to the main system account. If **false** is returned, the current process does not belong to the main system account.|
 
 **Error codes**
 
@@ -2786,7 +3148,7 @@ Checks whether the current process belongs to the main OS account. This API uses
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   try {
     accountManager.isMainOsAccount((err: BusinessError,result: boolean)=>{
       console.info('isMainOsAccount errInfo:' + JSON.stringify(err));
@@ -2800,7 +3162,7 @@ Checks whether the current process belongs to the main OS account. This API uses
 
 isMainOsAccount(): Promise&lt;boolean&gt;;
 
-Checks whether the current process belongs to the main OS account. This API uses a promise to return the result.
+Checks whether the current process belongs to the main system account. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -2812,7 +3174,7 @@ Checks whether the current process belongs to the main OS account. This API uses
 
 | Type                  | Description                                                                 |
 | ---------------------- | --------------------------------------------------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. If **true** is returned, the current process belongs to the main OS account. If **false** is returned, the current process does not belong to the main OS account.|
+| Promise&lt;boolean&gt; | Promise used to return the result. If **true** is returned, the current process belongs to the main system account. If **false** is returned, the current process does not belong to the main system account.|
 
 **Error codes**
 
@@ -2824,7 +3186,7 @@ Checks whether the current process belongs to the main OS account. This API uses
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   try {
     accountManager.isMainOsAccount().then((result: boolean) => {
       console.info('isMainOsAccount result:' + JSON.stringify(result));
@@ -2839,7 +3201,7 @@ Checks whether the current process belongs to the main OS account. This API uses
 
 getOsAccountConstraintSourceTypes(localId: number, constraint: string, callback: AsyncCallback&lt;Array&lt;ConstraintSourceTypeInfo&gt;&gt;): void;
 
-Obtains the constraint source information of an OS account. This API uses an asynchronous callback to return the result.
+Obtains the constraint source information of a system account. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -2851,9 +3213,9 @@ Obtains the constraint source information of an OS account. This API uses an asy
 
 | Name  | Type                      | Mandatory| Description                                                        |
 | -------- | -------------------------- | ---- | ------------------------------------------------------------ |
-| localId     | number | Yes  |  ID of the target OS account.|
+| localId     | number | Yes  |  ID of the target system account.|
 | constraint     | string | Yes  |  Name of the [constraint](#constraints) to query.|
-| callback | AsyncCallback&lt;Array&lt;[ConstraintSourceTypeInfo](#constraintsourcetypeinfo)&gt;&gt;     | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the [constraint](#constraints) source information obtained. Otherwise, **err** is an error object.                     |
+| callback | AsyncCallback&lt;Array&lt;[ConstraintSourceTypeInfo](#constraintsourcetypeinfo9)&gt;&gt;     | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the [constraint](#constraints) source information obtained. Otherwise, **err** is an error object.                     |
 
 **Error codes**
 
@@ -2867,7 +3229,7 @@ Obtains the constraint source information of an OS account. This API uses an asy
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   try {
     accountManager.getOsAccountConstraintSourceTypes(100, 'constraint.wifi',
       (err: BusinessError,sourceTypeInfos: account_osAccount.ConstraintSourceTypeInfo[])=>{
@@ -2883,7 +3245,7 @@ Obtains the constraint source information of an OS account. This API uses an asy
 
 getOsAccountConstraintSourceTypes(localId: number, constraint: string): Promise&lt;Array&lt;ConstraintSourceTypeInfo&gt;&gt;;
 
-Obtains the constraint source information of an OS account. This API uses a promise to return the result.
+Obtains the constraint source information of a system account. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -2895,14 +3257,14 @@ Obtains the constraint source information of an OS account. This API uses a prom
 
 | Name | Type  | Mandatory| Description        |
 | ------- | ------ | ---- | ------------ |
-| localId     | number | Yes  |  ID of the target OS account.|
+| localId     | number | Yes  |  ID of the target system account.|
 | constraint     | string | Yes  |  Name of the [constraint](#constraints) to query.|
 
 **Return value**
 
 | Type                 | Description                                                        |
 | --------------------- | ------------------------------------------------------------ |
-| Promise&lt;Array&lt;[ConstraintSourceTypeInfo](#constraintsourcetypeinfo)&gt;&gt; | Promise used to return the [constraint](#constraints) source information obtained.|
+| Promise&lt;Array&lt;[ConstraintSourceTypeInfo](#constraintsourcetypeinfo9)&gt;&gt; | Promise used to return the [constraint](#constraints) source information obtained.|
 
 **Error codes**
 
@@ -2916,7 +3278,7 @@ Obtains the constraint source information of an OS account. This API uses a prom
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   try {
     accountManager.getOsAccountConstraintSourceTypes(100, 'constraint.wifi').then(
       (result: account_osAccount.ConstraintSourceTypeInfo[]) => {
@@ -2933,11 +3295,11 @@ Obtains the constraint source information of an OS account. This API uses a prom
 
 isMultiOsAccountEnable(callback: AsyncCallback&lt;boolean&gt;): void
 
-Checks whether multiple OS accounts are supported. This API uses an asynchronous callback to return the result.
+Checks whether multiple system accounts are supported. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [checkMultiOsAccountEnabled](#checkmultiosaccountenabled9).
+> This API is supported since API version 7 and deprecated since API version 9. Use [checkMultiOsAccountEnabled](#checkmultiosaccountenabled9) instead.
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -2945,13 +3307,13 @@ Checks whether multiple OS accounts are supported. This API uses an asynchronous
 
 | Name  | Type                        | Mandatory| Description                                                    |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------ |
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result. The value **true** means multiple OS accounts are supported; the value **false** means the opposite.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result. The value **true** means multiple system accounts are supported; the value **false** means the opposite.|
 
 **Example**
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   accountManager.isMultiOsAccountEnable((err: BusinessError, isEnabled: boolean) => {
     if (err) {
       console.log('isMultiOsAccountEnable failed, error: ' + JSON.stringify(err));
@@ -2965,11 +3327,11 @@ Checks whether multiple OS accounts are supported. This API uses an asynchronous
 
 isMultiOsAccountEnable(): Promise&lt;boolean&gt;
 
-Checks whether multiple OS accounts are supported. This API uses a promise to return the result.
+Checks whether multiple system accounts are supported. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [checkMultiOsAccountEnabled](#checkmultiosaccountenabled9-1).
+> This API is supported since API version 7 and deprecated since API version 9. Use [checkMultiOsAccountEnabled](#checkmultiosaccountenabled9-1) instead.
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -2977,13 +3339,13 @@ Checks whether multiple OS accounts are supported. This API uses a promise to re
 
 | Type                  | Description                                                      |
 | :--------------------- | :--------------------------------------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means multiple OS accounts are supported; the value **false** means the opposite.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means multiple system accounts are supported; the value **false** means the opposite.|
 
 **Example**
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   accountManager.isMultiOsAccountEnable().then((isEnabled: boolean) => {
     console.log('isMultiOsAccountEnable successfully, isEnabled: ' + isEnabled);
   }).catch((err: BusinessError) => {
@@ -2996,11 +3358,11 @@ Checks whether multiple OS accounts are supported. This API uses a promise to re
 
 isOsAccountActived(localId: number, callback: AsyncCallback&lt;boolean&gt;): void
 
-Checks whether an OS account is activated. This API uses an asynchronous callback to return the result.
+Checks whether a system account is activated. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [checkOsAccountActivated](#checkosaccountactivated9).
+> This API is supported since API version 7 and deprecated since API version 9. The substitute API is available only to system applications.
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS or ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -3010,14 +3372,14 @@ Checks whether an OS account is activated. This API uses an asynchronous callbac
 
 | Name  | Type                        | Mandatory| Description                                                    |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------ |
-| localId  | number                       | Yes  | ID of the target OS account.                                           |
+| localId  | number                       | Yes  | ID of the target system account.                                           |
 | callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result. The value **true** means the account is activated; the value **false** means the opposite.|
 
-**Example**: Check whether OS account 100 is activated.
+**Example**: Check whether system account 100 is activated.
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
   accountManager.isOsAccountActived(localId, (err: BusinessError, isActived: boolean) => {
     if (err) {
@@ -3032,11 +3394,11 @@ Checks whether an OS account is activated. This API uses an asynchronous callbac
 
 isOsAccountActived(localId: number): Promise&lt;boolean&gt;
 
-Checks whether an OS account is activated. This API uses a promise to return the result.
+Checks whether a system account is activated. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [checkOsAccountActivated](#checkosaccountactivated9-1).
+> This API is supported since API version 7 and deprecated since API version 9. The substitute API is available only to system applications.
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS or ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -3046,7 +3408,7 @@ Checks whether an OS account is activated. This API uses a promise to return the
 
 | Name | Type  | Mandatory| Description                              |
 | ------- | ------ | ---- | --------------------------------- |
-| localId | number | Yes  | ID of the target OS account.|
+| localId | number | Yes  | ID of the target system account.|
 
 **Return value**
 
@@ -3054,11 +3416,11 @@ Checks whether an OS account is activated. This API uses a promise to return the
 | --------------------- | ----------------------------------------------------------- |
 | Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the account is activated; the value **false** means the opposite.|
 
-**Example**: Check whether OS account 100 is activated.
+**Example**: Check whether system account 100 is activated.
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
   accountManager.isOsAccountActived(localId).then((isActived: boolean) => {
     console.log('isOsAccountActived successfully, isActived: ' + isActived);
@@ -3071,11 +3433,11 @@ Checks whether an OS account is activated. This API uses a promise to return the
 
 isOsAccountConstraintEnable(localId: number, constraint: string, callback: AsyncCallback&lt;boolean&gt;): void
 
-Checks whether the specified constraint is enabled for an OS account. This API uses an asynchronous callback to return the result.
+Checks whether the specified constraint is enabled for a system account. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [checkOsAccountConstraintEnabled](#checkosaccountconstraintenabled9).
+> This API is supported since API version 7 and deprecated since API version 9. The substitute API is available only to system applications.
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -3085,15 +3447,15 @@ Checks whether the specified constraint is enabled for an OS account. This API u
 
 | Name    | Type                        | Mandatory| Description                                                               |
 | ---------- | ---------------------------- | ---- | ----------------------------------------------------------------- |
-| localId    | number                       | Yes  | ID of the target OS account.                                |
+| localId    | number                       | Yes  | ID of the target system account.                                |
 | constraint | string                       | Yes  | [Constraint](#constraints) to check.                               |
 | callback   | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result. The value **true** means the specified constraint is enabled; the value **false** means the opposite.|
 
-**Example**: Check whether OS account 100 is forbidden to use Wi-Fi.
+**Example**: Check whether system account 100 is forbidden to use Wi-Fi.
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
   let constraint: string = 'constraint.wifi';
   accountManager.isOsAccountConstraintEnable(localId, constraint, (err: BusinessError, isEnabled: boolean) => {
@@ -3109,11 +3471,11 @@ Checks whether the specified constraint is enabled for an OS account. This API u
 
 isOsAccountConstraintEnable(localId: number, constraint: string): Promise&lt;boolean&gt;
 
-Checks whether the specified constraint is enabled for an OS account. This API uses a promise to return the result.
+Checks whether the specified constraint is enabled for a system account. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [checkOsAccountConstraintEnabled](#checkosaccountconstraintenabled9-1).
+> This API is supported since API version 7 and deprecated since API version 9. The substitute API is available only to system applications.
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -3123,7 +3485,7 @@ Checks whether the specified constraint is enabled for an OS account. This API u
 
 | Name    | Type  | Mandatory| Description                                |
 | ---------- | ------ | ---- | ---------------------------------- |
-| localId    | number | Yes  | ID of the target OS account. |
+| localId    | number | Yes  | ID of the target system account. |
 | constraint | string | Yes  | [Constraint](#constraints) to check.|
 
 **Return value**
@@ -3132,11 +3494,11 @@ Checks whether the specified constraint is enabled for an OS account. This API u
 | ---------------------- | --------------------------------------------------------------------- |
 | Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the specified constraint is enabled; the value **false** means the opposite.|
 
-**Example**: Check whether OS account 100 is forbidden to use Wi-Fi.
+**Example**: Check whether system account 100 is forbidden to use Wi-Fi.
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
   let constraint: string = 'constraint.wifi';
   accountManager.isOsAccountConstraintEnable(localId, constraint).then((isEnabled: boolean) => {
@@ -3150,11 +3512,11 @@ Checks whether the specified constraint is enabled for an OS account. This API u
 
 isTestOsAccount(callback: AsyncCallback&lt;boolean&gt;): void
 
-Checks whether this OS account is a test account. This API uses an asynchronous callback to return the result.
+Checks whether this system account is a test account. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [checkOsAccountTestable](#checkosaccounttestable9).
+> This API is supported since API version 7 and deprecated since API version 9. Use [checkOsAccountTestable](#checkosaccounttestable9) instead.
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -3168,7 +3530,7 @@ Checks whether this OS account is a test account. This API uses an asynchronous 
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   accountManager.isTestOsAccount((err: BusinessError, isTestable: boolean) => {
     if (err) {
       console.log('isTestOsAccount failed, error: ' + JSON.stringify(err));
@@ -3182,11 +3544,11 @@ Checks whether this OS account is a test account. This API uses an asynchronous 
 
 isTestOsAccount(): Promise&lt;boolean&gt;
 
-Checks whether this OS account is a test account. This API uses a promise to return the result.
+Checks whether this system account is a test account. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [checkOsAccountTestable](#checkosaccounttestable9-1).
+> This API is supported since API version 7 and deprecated since API version 9. Use [checkOsAccountTestable](#checkosaccounttestable9-1) instead.
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -3200,7 +3562,7 @@ Checks whether this OS account is a test account. This API uses a promise to ret
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
     accountManager.isTestOsAccount().then((isTestable: boolean) => {
       console.log('isTestOsAccount successfully, isTestable: ' + isTestable);
     }).catch((err: BusinessError) => {
@@ -3212,11 +3574,11 @@ Checks whether this OS account is a test account. This API uses a promise to ret
 
 isOsAccountVerified(callback: AsyncCallback&lt;boolean&gt;): void
 
-Checks whether this OS account has been verified. This API uses an asynchronous callback to return the result.
+Checks whether this system account has been verified. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [checkOsAccountVerified](#checkosaccountverified9).
+> This API is supported since API version 7 and deprecated since API version 9. Use [checkOsAccountVerified](#checkosaccountverified9) instead.
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS or ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -3226,13 +3588,13 @@ Checks whether this OS account has been verified. This API uses an asynchronous 
 
 | Name  | Type                        | Mandatory| Description                                                           |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result. The value **true** means the OS account has been verified; the value **false** means the opposite.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result. The value **true** means the system account has been verified; the value **false** means the opposite.|
 
 **Example**
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   accountManager.isOsAccountVerified((err: BusinessError, isVerified: boolean) => {
     if (err) {
       console.log('isOsAccountVerified failed, error: ' + JSON.stringify(err));
@@ -3246,11 +3608,11 @@ Checks whether this OS account has been verified. This API uses an asynchronous 
 
 isOsAccountVerified(localId: number, callback: AsyncCallback&lt;boolean&gt;): void
 
-Checks whether an OS account has been verified. This API uses an asynchronous callback to return the result.
+Checks whether a system account has been verified. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [checkOsAccountVerified](#checkosaccountverified9-1).
+> This API is supported since API version 7 and deprecated since API version 9. Use [checkOsAccountVerified](#checkosaccountverified9-1) instead.
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS or ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -3260,14 +3622,14 @@ Checks whether an OS account has been verified. This API uses an asynchronous ca
 
 | Name  | Type                        | Mandatory| Description                                                           |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------------- |
-| localId  | number                       | Yes  | ID of the target OS account.                            |
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result. The value **true** means the OS account has been verified; the value **false** means the opposite.|
+| localId  | number                       | Yes  | ID of the target system account.                            |
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result. The value **true** means the system account has been verified; the value **false** means the opposite.|
 
 **Example**
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
   accountManager.isOsAccountVerified(localId, (err: BusinessError, isVerified: boolean) => {
     if (err) {
@@ -3282,11 +3644,11 @@ Checks whether an OS account has been verified. This API uses an asynchronous ca
 
 isOsAccountVerified(localId?: number): Promise&lt;boolean&gt;
 
-Checks whether an OS account has been verified. This API uses a promise to return the result.
+Checks whether a system account has been verified. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [checkOsAccountVerified](#checkosaccountverified9-2).
+> This API is supported since API version 7 and deprecated since API version 9. Use [checkOsAccountVerified](#checkosaccountverified9-2) instead.
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS or ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -3296,20 +3658,20 @@ Checks whether an OS account has been verified. This API uses a promise to retur
 
 | Name | Type  | Mandatory| Description                                                             |
 | ------- | ------ | ---- | ---------------------------------------------------------------- |
-| localId | number | No  | ID of the target OS account. If this parameter is not specified, this API checks whether the current OS account has been verified.|
+| localId | number | No  | ID of the target system account. If this parameter is not specified, this API checks whether the current system account has been verified.|
 
 **Return value**
 
 | Type                  | Description                                                              |
 | ---------------------- | ----------------------------------------------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the OS account has been verified; the value **false** means the opposite.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the system account has been verified; the value **false** means the opposite.|
 
 **Example**
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
-  accountManager.isOsAccountVerified(localId).then((isVerified: boolean) => {
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  accountManager.isOsAccountVerified().then((isVerified: boolean) => {
     console.log('isOsAccountVerified successfully, isVerified: ' + isVerified);
   }).catch((err: BusinessError) => {
     console.log('isOsAccountVerified failed, error: ' + JSON.stringify(err));
@@ -3320,11 +3682,11 @@ Checks whether an OS account has been verified. This API uses a promise to retur
 
 getCreatedOsAccountsCount(callback: AsyncCallback&lt;number&gt;): void
 
-Obtains the number of OS accounts created. This API uses an asynchronous callback to return the result.
+Obtains the number of system accounts created. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getOsAccountCount](#getosaccountcount9).
+> This API is supported since API version 7 and deprecated since API version 9. Use [getOsAccountCount](#getosaccountcount9) instead.
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -3334,13 +3696,13 @@ Obtains the number of OS accounts created. This API uses an asynchronous callbac
 
 | Name  | Type                       | Mandatory| Description                                                                        |
 | -------- | --------------------------- | ---- | -------------------------------------------------------------------------- |
-| callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the number of created OS accounts. If the operation fails, **err** is an error object.|
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the number of created system accounts. If the operation fails, **err** is an error object.|
 
 **Example**
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   accountManager.getCreatedOsAccountsCount((err: BusinessError, count: number)=>{
     if (err) {
       console.log('getCreatedOsAccountsCount failed, error: ' + JSON.stringify(err));
@@ -3354,11 +3716,11 @@ Obtains the number of OS accounts created. This API uses an asynchronous callbac
 
 getCreatedOsAccountsCount(): Promise&lt;number&gt;
 
-Obtains the number of OS accounts created. This API uses a promise to return the result.
+Obtains the number of system accounts created. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getOsAccountCount](#getosaccountcount9-1).
+> This API is supported since API version 7 and deprecated since API version 9. Use [getOsAccountCount](#getosaccountcount9-1) instead.
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -3368,13 +3730,13 @@ Obtains the number of OS accounts created. This API uses a promise to return the
 
 | Type                 | Description                                   |
 | --------------------- | -------------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the number of created OS accounts.|
+| Promise&lt;number&gt; | Promise used to return the number of created system accounts.|
 
 **Example**
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   accountManager.getCreatedOsAccountsCount().then((count: number) => {
     console.log('getCreatedOsAccountsCount successfully, count: ' + count);
   }).catch((err: BusinessError) => {
@@ -3386,11 +3748,11 @@ Obtains the number of OS accounts created. This API uses a promise to return the
 
 getOsAccountLocalIdFromProcess(callback: AsyncCallback&lt;number&gt;): void
 
-Obtains the ID of the OS account to which the current process belongs. This API uses an asynchronous callback to return the result.
+Obtains the ID of the system account to which the current process belongs. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getOsAccountLocalId](#getosaccountlocalid9).
+> This API is supported since API version 7 and deprecated since API version 9. Use [getOsAccountLocalId](#getosaccountlocalid9) instead.
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -3398,13 +3760,13 @@ Obtains the ID of the OS account to which the current process belongs. This API 
 
 | Name  | Type                       | Mandatory| Description                                                                          |
 | -------- | --------------------------- | ---- | ---------------------------------------------------------------------------- |
-| callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the OS account ID obtained. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the system account ID obtained. Otherwise, **err** is an error object.|
 
 **Example**
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   accountManager.getOsAccountLocalIdFromProcess((err: BusinessError, localId: number) => {
     if (err) {
       console.log('getOsAccountLocalIdFromProcess failed, error: ' + JSON.stringify(err));
@@ -3418,11 +3780,11 @@ Obtains the ID of the OS account to which the current process belongs. This API 
 
 getOsAccountLocalIdFromProcess(): Promise&lt;number&gt;
 
-Obtains the ID of the OS account to which the current process belongs. This API uses a promise to return the result.
+Obtains the ID of the system account to which the current process belongs. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getOsAccountLocalId](#getosaccountlocalid9-1).
+> This API is supported since API version 7 and deprecated since API version 9. Use [getOsAccountLocalId](#getosaccountlocalid9-1) instead.
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -3430,13 +3792,13 @@ Obtains the ID of the OS account to which the current process belongs. This API 
 
 | Type                 | Description                                     |
 | :-------------------- | :--------------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the OS account ID obtained.|
+| Promise&lt;number&gt; | Promise used to return the system account ID obtained.|
 
 **Example**
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   accountManager.getOsAccountLocalIdFromProcess().then((localId: number) => {
     console.log('getOsAccountLocalIdFromProcess successfully, localId: ' + localId);
   }).catch((err: BusinessError) => {
@@ -3448,11 +3810,11 @@ Obtains the ID of the OS account to which the current process belongs. This API 
 
 getOsAccountLocalIdFromUid(uid: number, callback: AsyncCallback&lt;number&gt;): void
 
-Obtains the OS account ID based on the process UID. This API uses an asynchronous callback to return the result.
+Obtains the system account ID based on the process UID. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getOsAccountLocalIdForUid](#getosaccountlocalidforuid9).
+> This API is supported since API version 7 and deprecated since API version 9. Use [getOsAccountLocalIdForUid](#getosaccountlocalidforuid9) instead.
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -3461,13 +3823,13 @@ Obtains the OS account ID based on the process UID. This API uses an asynchronou
 | Name  | Type                       | Mandatory| Description                                                                   |
 | -------- | --------------------------- | ---- | --------------------------------------------------------------------- |
 | uid      | number                      | Yes  | Process UID.                                                             |
-| callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the OS account ID obtained. Otherwise, **data** is an error object.|
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the system account ID obtained. Otherwise, **data** is an error object.|
 
-**Example**: Obtain the ID of the OS account whose process UID is **12345678**.
+**Example**: Obtain the ID of the system account whose process UID is **12345678**.
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   let uid: number = 12345678;
   accountManager.getOsAccountLocalIdFromUid(uid, (err: BusinessError, localId: number) => {
     if (err) {
@@ -3482,11 +3844,11 @@ Obtains the OS account ID based on the process UID. This API uses an asynchronou
 
 getOsAccountLocalIdFromUid(uid: number): Promise&lt;number&gt;
 
-Obtains the OS account ID based on the process UID. This API uses a promise to return the result.
+Obtains the system account ID based on the process UID. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getOsAccountLocalIdForUid](#getosaccountlocalidforuid9-1).
+> This API is supported since API version 7 and deprecated since API version 9. Use [getOsAccountLocalIdForUid](#getosaccountlocalidforuid9-1) instead.
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -3500,13 +3862,13 @@ Obtains the OS account ID based on the process UID. This API uses a promise to r
 
 | Type                 | Description                                 |
 | :-------------------- | :----------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the OS account ID obtained.|
+| Promise&lt;number&gt; | Promise used to return the system account ID obtained.|
 
-**Example**: Obtain the ID of the OS account whose process UID is **12345678**.
+**Example**: Obtain the ID of the system account whose process UID is **12345678**.
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   let uid: number = 12345678;
   accountManager.getOsAccountLocalIdFromUid(uid).then((localId: number) => {
     console.log('getOsAccountLocalIdFromUid successfully, localId: ' + localId);
@@ -3519,11 +3881,11 @@ Obtains the OS account ID based on the process UID. This API uses a promise to r
 
 getOsAccountLocalIdFromDomain(domainInfo: DomainAccountInfo, callback: AsyncCallback&lt;number&gt;): void
 
-Obtains the OS account ID based on the domain account information. This API uses an asynchronous callback to return the result.
+Obtains the system account ID based on the domain account information. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getOsAccountLocalIdForDomain](#getosaccountlocalidfordomain9).
+> This API is supported since API version 8 and deprecated since API version 9. Use [getOsAccountLocalIdForDomain](#getosaccountlocalidfordomain9) instead.
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -3534,14 +3896,14 @@ Obtains the OS account ID based on the domain account information. This API uses
 | Name    | Type                                   | Mandatory| Description                                                                        |
 | ---------- | --------------------------------------- | ---- | --------------------------------------------------------------------------- |
 | domainInfo | [DomainAccountInfo](#domainaccountinfo8) | Yes  | Domain account information.                                                               |
-| callback   | AsyncCallback&lt;number&gt;             | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the OS account ID obtained. Otherwise, **err** is an error object.|
+| callback   | AsyncCallback&lt;number&gt;             | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the system account ID obtained. Otherwise, **err** is an error object.|
 
 **Example**
 
   ```ts
   import { BusinessError } from '@ohos.base';
   let domainInfo: account_osAccount.DomainAccountInfo = {domain: 'testDomain', accountName: 'testAccountName'};
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   accountManager.getOsAccountLocalIdFromDomain(domainInfo, (err: BusinessError, localId: number) => {
     if (err) {
       console.log('getOsAccountLocalIdFromDomain failed, error: ' + JSON.stringify(err));
@@ -3555,11 +3917,11 @@ Obtains the OS account ID based on the domain account information. This API uses
 
 getOsAccountLocalIdFromDomain(domainInfo: DomainAccountInfo): Promise&lt;number&gt;
 
-Obtains the OS account ID based on the domain account information. This API uses a promise to return the result.
+Obtains the system account ID based on the domain account information. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getOsAccountLocalIdForDomain](#getosaccountlocalidfordomain9-1).
+> This API is supported since API version 8 and deprecated since API version 9. Use [getOsAccountLocalIdForDomain](#getosaccountlocalidfordomain9-1) instead.
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -3575,13 +3937,13 @@ Obtains the OS account ID based on the domain account information. This API uses
 
 | Type                 | Description                                   |
 | :-------------------- | :------------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the ID of the OS account associated with the domain account.|
+| Promise&lt;number&gt; | Promise used to return the ID of the system account associated with the domain account.|
 
 **Example**
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   let domainInfo: account_osAccount.DomainAccountInfo = {domain: 'testDomain', accountName: 'testAccountName'};
   accountManager.getOsAccountLocalIdFromDomain(domainInfo).then((localId: number) => {
     console.log('getOsAccountLocalIdFromDomain successfully, localId: ' + localId);
@@ -3594,11 +3956,11 @@ Obtains the OS account ID based on the domain account information. This API uses
 
 getOsAccountAllConstraints(localId: number, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
-Obtains all constraints enabled for an OS account. This API uses an asynchronous callback to return the result.
+Obtains all constraints enabled for a system account. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getOsAccountConstraints](#getosaccountconstraints9).
+> This API is supported since API version 7 and deprecated since API version 9. The substitute API is available only to system applications.
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -3608,14 +3970,14 @@ Obtains all constraints enabled for an OS account. This API uses an asynchronous
 
 | Name  | Type                                    | Mandatory| Description                                                                                            |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------------------------------------------------------------- |
-| localId  | number                                   | Yes  | ID of the target OS account.                                                                                   |
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is a list of all [constraints](#constraints) enabled for the OS account. Otherwise, **err** is an error object.|
+| localId  | number                                   | Yes  | ID of the target system account.                                                                                   |
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is a list of all [constraints](#constraints) enabled for the system account. Otherwise, **err** is an error object.|
 
-**Example**: Obtain all constraints of OS account 100.
+**Example**: Obtain all constraints of system account 100.
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
   accountManager.getOsAccountAllConstraints(localId, (err: BusinessError, constraints: string[])=>{
     console.log('getOsAccountAllConstraints err:' + JSON.stringify(err));
@@ -3629,9 +3991,9 @@ getOsAccountAllConstraints(localId: number): Promise&lt;Array&lt;string&gt;&gt;
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getOsAccountConstraints](#getosaccountconstraints9-1).
+> This API is supported since API version 7 and deprecated since API version 9. The substitute API is available only to system applications.
 
-Obtains all constraints enabled for an OS account. This API uses a promise to return the result.
+Obtains all constraints enabled for a system account. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -3641,19 +4003,19 @@ Obtains all constraints enabled for an OS account. This API uses a promise to re
 
 | Name | Type  | Mandatory| Description        |
 | ------- | ------ | ---- | ------------ |
-| localId | number | Yes  | ID of the target OS account.|
+| localId | number | Yes  | ID of the target system account.|
 
 **Return value**
 
 | Type                              | Description                                                        |
 | :--------------------------------- | :----------------------------------------------------------- |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return all the [constraints](#constraints) enabled for the OS account.|
+| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return all the [constraints](#constraints) enabled for the system account.|
 
-**Example**: Obtain all constraints of OS account 100.
+**Example**: Obtain all constraints of system account 100.
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
   accountManager.getOsAccountAllConstraints(localId).then((constraints: string[]) => {
     console.log('getOsAccountAllConstraints, constraints: ' + constraints);
@@ -3666,11 +4028,11 @@ Obtains all constraints enabled for an OS account. This API uses a promise to re
 
 queryActivatedOsAccountIds(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
-Obtains information about all activated OS accounts. This API uses an asynchronous callback to return the result.
+Queries information about all activated system accounts. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getActivatedOsAccountLocalIds](#getactivatedosaccountlocalids9).
+> This API is supported since API version 8 and deprecated since API version 9. Use [getActivatedOsAccountLocalIds](#getactivatedosaccountlocalids9) instead.
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -3678,13 +4040,13 @@ Obtains information about all activated OS accounts. This API uses an asynchrono
 
 | Name  | Type                                    | Mandatory| Description                                                  |
 | -------- | ---------------------------------------- | ---- | ------------------------------------------------------ |
-| callback | AsyncCallback&lt;Array&lt;number&gt;&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is a list of activated OS accounts. Otherwise, **data** is an error object.|
+| callback | AsyncCallback&lt;Array&lt;number&gt;&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is a list of activated system accounts. Otherwise, **data** is an error object.|
 
 **Example**
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   accountManager.queryActivatedOsAccountIds((err: BusinessError, idArray: number[])=>{
     console.log('queryActivatedOsAccountIds err:' + JSON.stringify(err));
     console.log('queryActivatedOsAccountIds idArray length:' + idArray.length);
@@ -3700,9 +4062,9 @@ queryActivatedOsAccountIds(): Promise&lt;Array&lt;number&gt;&gt;
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getActivatedOsAccountLocalIds](#getactivatedosaccountlocalids9-1).
+> This API is supported since API version 8 and deprecated since API version 9. Use [getActivatedOsAccountLocalIds](#getactivatedosaccountlocalids9-1) instead.
 
-Obtains information about all activated OS accounts. This API uses a promise to return the result.
+Obtains information about all activated system accounts. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -3710,13 +4072,13 @@ Obtains information about all activated OS accounts. This API uses a promise to 
 
 | Type                              | Description                                              |
 | ---------------------------------- | ------------------------------------------------- |
-| Promise&lt;Array&lt;number&gt;&gt; | Promise used to return the information about all activated OS accounts.|
+| Promise&lt;Array&lt;number&gt;&gt; | Promise used to return the information about all activated system accounts.|
 
 **Example**
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   accountManager.queryActivatedOsAccountIds().then((idArray: number[]) => {
     console.log('queryActivatedOsAccountIds, idArray: ' + idArray);
   }).catch((err: BusinessError) => {
@@ -3728,11 +4090,11 @@ Obtains information about all activated OS accounts. This API uses a promise to 
 
 queryCurrentOsAccount(callback: AsyncCallback&lt;OsAccountInfo&gt;): void
 
-Obtains information about the OS account to which the current process belongs. This API uses an asynchronous callback to return the result.
+Queries information about the system account to which the current process belongs. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getCurrentOsAccount](#getcurrentosaccount9).
+> This API is supported since API version 7 and deprecated since API version 9. The substitute API is available only to system applications.
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -3742,13 +4104,13 @@ Obtains information about the OS account to which the current process belongs. T
 
 | Name  | Type                                                | Mandatory| Description                                          |
 | -------- | ---------------------------------------------------- | ---- | ---------------------------------------------- |
-| callback | AsyncCallback&lt;[OsAccountInfo](#osaccountinfo)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the OS account information obtained. Otherwise, **data** is an error object.|
+| callback | AsyncCallback&lt;[OsAccountInfo](#osaccountinfo)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the system account information obtained. Otherwise, **data** is an error object.|
 
 **Example**
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   accountManager.queryCurrentOsAccount((err: BusinessError, curAccountInfo: account_osAccount.OsAccountInfo)=>{
     console.log('queryCurrentOsAccount err:' + JSON.stringify(err));
     console.log('queryCurrentOsAccount curAccountInfo:' + JSON.stringify(curAccountInfo));
@@ -3759,11 +4121,11 @@ Obtains information about the OS account to which the current process belongs. T
 
 queryCurrentOsAccount(): Promise&lt;OsAccountInfo&gt;
 
-Obtains information about the OS account to which the current process belongs. This API uses a promise to return the result.
+Queries information about the system account to which the current process belongs. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getCurrentOsAccount](#getcurrentosaccount9-1).
+> This API is supported since API version 7 and deprecated since API version 9. The substitute API is available only to system applications.
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -3773,13 +4135,13 @@ Obtains information about the OS account to which the current process belongs. T
 
 | Type                                          | Description                                      |
 | ---------------------------------------------- | ------------------------------------------ |
-| Promise&lt;[OsAccountInfo](#osaccountinfo)&gt; | Promise used to return the OS account information obtained.|
+| Promise&lt;[OsAccountInfo](#osaccountinfo)&gt; | Promise used to return the system account information obtained.|
 
 **Example**
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   accountManager.queryCurrentOsAccount().then((accountInfo: account_osAccount.OsAccountInfo) => {
     console.log('queryCurrentOsAccount, accountInfo: ' + JSON.stringify(accountInfo));
   }).catch((err: BusinessError) => {
@@ -3795,7 +4157,7 @@ Obtains the type of the account to which the current process belongs. This API u
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getOsAccountType](#getosaccounttype9).
+> This API is supported since API version 7 and deprecated since API version 9. Use [getOsAccountType](#getosaccounttype9) instead.
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -3803,13 +4165,13 @@ Obtains the type of the account to which the current process belongs. This API u
 
 | Name  | Type                                                | Mandatory| Description                                                |
 | -------- | ---------------------------------------------------- | ---- | ---------------------------------------------------- |
-| callback | AsyncCallback&lt;[OsAccountType](#osaccounttype)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the OS account type obtained. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;[OsAccountType](#osaccounttype)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the system account type obtained. Otherwise, **err** is an error object.|
 
 **Example**
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   accountManager.getOsAccountTypeFromProcess((err: BusinessError, accountType: account_osAccount.OsAccountType) => {
     console.log('getOsAccountTypeFromProcess err: ' + JSON.stringify(err));
     console.log('getOsAccountTypeFromProcess accountType: ' + accountType);
@@ -3824,7 +4186,7 @@ Obtains the type of the account to which the current process belongs. This API u
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getOsAccountType](#getosaccounttype9-1).
+> This API is supported since API version 7 and deprecated since API version 9. Use [getOsAccountType](#getosaccounttype9-1) instead.
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -3832,13 +4194,13 @@ Obtains the type of the account to which the current process belongs. This API u
 
 | Type                                          | Description                                           |
 | ---------------------------------------------- | ----------------------------------------------- |
-| Promise&lt;[OsAccountType](#osaccounttype)&gt; | Promise used to return the OS account type obtained.|
+| Promise&lt;[OsAccountType](#osaccounttype)&gt; | Promise used to return the system account type obtained.|
 
 **Example**
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   accountManager.getOsAccountTypeFromProcess().then((accountType: account_osAccount.OsAccountType) => {
     console.log('getOsAccountTypeFromProcess, accountType: ' + accountType);
   }).catch((err: BusinessError) => {
@@ -3854,7 +4216,7 @@ Obtains the ID of this distributed virtual device. This API uses an asynchronous
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [queryDistributedVirtualDeviceId](#querydistributedvirtualdeviceid9).
+> This API is supported since API version 7 and deprecated since API version 9. Use [queryDistributedVirtualDeviceId](#querydistributedvirtualdeviceid9) instead.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC or ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -3870,7 +4232,7 @@ Obtains the ID of this distributed virtual device. This API uses an asynchronous
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   accountManager.getDistributedVirtualDeviceId((err: BusinessError, virtualID: string) => {
     console.log('getDistributedVirtualDeviceId err: ' + JSON.stringify(err));
     console.log('getDistributedVirtualDeviceId virtualID: ' + virtualID);
@@ -3885,7 +4247,7 @@ Obtains the ID of this distributed virtual device. This API uses a promise to re
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [queryDistributedVirtualDeviceId](#querydistributedvirtualdeviceid9-1).
+> This API is supported since API version 7 and deprecated since API version 9. Use [queryDistributedVirtualDeviceId](#querydistributedvirtualdeviceid9-1) instead.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC or ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -3901,7 +4263,7 @@ Obtains the ID of this distributed virtual device. This API uses a promise to re
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   accountManager.getDistributedVirtualDeviceId().then((virtualID: string) => {
     console.log('getDistributedVirtualDeviceId, virtualID: ' + virtualID);
   }).catch((err: BusinessError) => {
@@ -3913,11 +4275,11 @@ Obtains the ID of this distributed virtual device. This API uses a promise to re
 
 getOsAccountLocalIdBySerialNumber(serialNumber: number, callback: AsyncCallback&lt;number&gt;): void
 
-Obtains the OS account ID based on the SN. This API uses an asynchronous callback to return the result.
+Obtains the system account ID based on the SN. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getOsAccountLocalIdForSerialNumber](#getosaccountlocalidforserialnumber9).
+> This API is supported since API version 8 and deprecated since API version 9. Use [getOsAccountLocalIdForSerialNumber](#getosaccountlocalidforserialnumber9) instead.
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -3926,13 +4288,13 @@ Obtains the OS account ID based on the SN. This API uses an asynchronous callbac
 | Name      | Type                       | Mandatory| Description                                                                              |
 | ------------ | --------------------------- | ---- | -------------------------------------------------------------------------------- |
 | serialNumber | number                      | Yes  | Account SN.                                                                       |
-| callback     | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the OS account ID obtained. Otherwise, **err** is an error object.|
+| callback     | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the system account ID obtained. Otherwise, **err** is an error object.|
 
-**Example**: Obtain the ID of the OS account whose SN is 12345.
+**Example**: Obtain the ID of the system account whose SN is 12345.
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   let serialNumber: number = 12345;
   accountManager.getOsAccountLocalIdBySerialNumber(serialNumber, (err: BusinessError, localId: number)=>{
     console.log('ger localId err:' + JSON.stringify(err));
@@ -3944,11 +4306,11 @@ Obtains the OS account ID based on the SN. This API uses an asynchronous callbac
 
 getOsAccountLocalIdBySerialNumber(serialNumber: number): Promise&lt;number&gt;
 
-Obtains the OS account ID based on the SN. This API uses a promise to return the result.
+Obtains the system account ID based on the SN. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getOsAccountLocalIdForSerialNumber](#getosaccountlocalidforserialnumber9-1).
+> This API is supported since API version 8 and deprecated since API version 9. Use [getOsAccountLocalIdForSerialNumber](#getosaccountlocalidforserialnumber9-1) instead.
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -3962,13 +4324,13 @@ Obtains the OS account ID based on the SN. This API uses a promise to return the
 
 | Type                 | Description                                                        |
 | --------------------- | -------------------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the OS account ID obtained.|
+| Promise&lt;number&gt; | Promise used to return the system account ID obtained.|
 
-**Example**: Obtain the ID of the OS account whose SN is 12345.
+**Example**: Obtain the ID of the system account whose SN is 12345.
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   let serialNumber: number = 12345;
   accountManager.getOsAccountLocalIdBySerialNumber(serialNumber).then((localId: number) => {
     console.log('getOsAccountLocalIdBySerialNumber localId: ' + localId);
@@ -3981,11 +4343,11 @@ Obtains the OS account ID based on the SN. This API uses a promise to return the
 
 getSerialNumberByOsAccountLocalId(localId: number, callback: AsyncCallback&lt;number&gt;): void
 
-Obtains the SN of an OS account based on the account ID. This API uses an asynchronous callback to return the result.
+Obtains the SN of a system account based on the account ID. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getSerialNumberForOsAccountLocalId](#getserialnumberforosaccountlocalid9).
+> This API is supported since API version 8 and deprecated since API version 9. Use [getSerialNumberForOsAccountLocalId](#getserialnumberforosaccountlocalid9) instead.
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -3993,14 +4355,14 @@ Obtains the SN of an OS account based on the account ID. This API uses an asynch
 
 | Name  | Type                       | Mandatory| Description                                                                        |
 | -------- | --------------------------- | ---- | --------------------------------------------------------------------------- |
-| localId  | number                      | Yes  | ID of the target OS account.                                                                |
+| localId  | number                      | Yes  | ID of the target system account.                                                                |
 | callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the SN obtained. Otherwise, **err** is an error object.|
 
-**Example**: Obtain the SN of the OS account 100.
+**Example**: Obtain the SN of the system account 100.
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
   accountManager.getSerialNumberByOsAccountLocalId(localId, (err: BusinessError, serialNumber: number)=>{
     console.log('ger serialNumber err:' + JSON.stringify(err));
@@ -4012,11 +4374,11 @@ Obtains the SN of an OS account based on the account ID. This API uses an asynch
 
 getSerialNumberByOsAccountLocalId(localId: number): Promise&lt;number&gt;
 
-Obtains the SN of an OS account based on the account ID. This API uses a promise to return the result.
+Obtains the SN of a system account based on the account ID. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getSerialNumberForOsAccountLocalId](#getserialnumberforosaccountlocalid9-1).
+> This API is supported since API version 8 and deprecated since API version 9. Use [getSerialNumberForOsAccountLocalId](#getserialnumberforosaccountlocalid9-1) instead.
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -4024,7 +4386,7 @@ Obtains the SN of an OS account based on the account ID. This API uses a promise
 
 | Name | Type  | Mandatory| Description         |
 | ------- | ------ | ---- | ----------- |
-| localId | number | Yes  | ID of the target OS account.|
+| localId | number | Yes  | ID of the target system account.|
 
 **Return value**
 
@@ -4032,11 +4394,11 @@ Obtains the SN of an OS account based on the account ID. This API uses a promise
 | --------------------- | -------------------------------------- |
 | Promise&lt;number&gt; | Promise used to return the SN obtained.|
 
-**Example**: Obtain the SN of the OS account 100.
+**Example**: Obtain the SN of the system account 100.
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let accountManager = account_osAccount.getAccountManager();
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
   accountManager.getSerialNumberByOsAccountLocalId(localId).then((serialNumber: number) => {
     console.log('getSerialNumberByOsAccountLocalId serialNumber: ' + serialNumber);
@@ -5347,7 +5709,7 @@ No permission is required since API version 11. Use the SDK of the latest versio
 
 | Name     | Type                                   | Mandatory| Description            |
 | ---------- | --------------------------------------- | ---- | --------------- |
-| localId   | number  | Yes  | Local ID of the OS account bound to the domain account.|
+| localId   | number  | Yes  | Local ID of the system account bound to the domain account.|
 | callback   | [IUserAuthCallback](#iuserauthcallback8)  | Yes  | Callback invoked to return the authentication result.|
 
 **Error codes**
@@ -6755,24 +7117,26 @@ Enumerates the tip codes for fingerprint authentication.
 
 ## OsAccountInfo
 
-Defines the OS account information.
+Defines the system account information.
 
 **System capability**: SystemCapability.Account.OsAccount
 
 | Name                        | Type                                                        | Mandatory| Description                             |
 | ------------------------------ | ------------------------------------------------------------ | ---- | --------------------------------- |
-| localId                        | number                                                       | Yes  | ID of the target OS account.                     |
-| localName                      | string                                                       | Yes  | OS account name.                   |
-| type                           | [OsAccountType](#osaccounttype)                              | Yes  | OS account type.                     |
-| constraints                    | Array&lt;string&gt;                                          | No  | OS account [Constraints](#constraints). By default, no value is passed.|
-| isVerified<sup>8+</sup>        | boolean                                                      | Yes  | Whether to verify the OS account.                     |
-| photo<sup>8+</sup>             | string                                                       | No  | OS account avatar. By default, no value is passed.                     |
-| createTime<sup>8+</sup>        | number                                                       | Yes  | Time when the OS account was created.                 |
-| lastLoginTime<sup>8+</sup>     | number                                                       | No  | Last login time of the OS account. By default, no value is passed.         |
-| serialNumber<sup>8+</sup>      | number                                                       | Yes  | SN of the OS account.                     |
-| isActived<sup>8+</sup>         | boolean                                                      | Yes  | Whether the OS account is activated.                 |
-| isCreateCompleted<sup>8+</sup> | boolean                                                      | Yes  | Whether the OS account information is complete.             |
-| distributedInfo                | [distributedAccount.DistributedInfo](js-apis-distributed-account.md) | No  | Distributed account information. By default, no value is passed.                   |
+| localId                        | number                                                       | Yes  | ID of the target system account.                     |
+| localName                      | string                                                       | Yes  | System account name.                   |
+| type                           | [OsAccountType](#osaccounttype)                              | Yes  | System account type.                     |
+| constraints                    | Array&lt;string&gt;                                          | No  | System account [Constraints](#constraints). By default, no value is passed.|
+| isVerified<sup>(deprecated)</sup> | boolean                                                   | Yes  | Whether to verify the system account.<br>**NOTE**<br/>This parameter is supported since API version 7 and deprecated since API version 11.                    |
+| isUnlocked<sup>11+</sup>      | boolean                                                       | Yes  | Whether the account is unlocked (whether the **el2** directory is decrypted).                     |
+| photo<sup>8+</sup>             | string                                                       | No  | System account avatar. By default, no value is passed.                     |
+| createTime<sup>8+</sup>        | number                                                       | Yes  | Time when the system account was created.                 |
+| lastLoginTime<sup>8+</sup>     | number                                                       | No  | Last login time of the system account. By default, no value is passed.         |
+| serialNumber<sup>8+</sup>      | number                                                       | Yes  | SN of the system account.                     |
+| isActived<sup>(deprecated)</sup>         | boolean                                            | Yes  | Whether the system account is activated.<br>**NOTE**<br/>This parameter is supported since API version 7 and deprecated since API version 11.                 |
+| isActivated<sup>11+</sup>         | boolean                                                   | Yes  | Whether the system account is activated.                 |
+| isCreateCompleted<sup>8+</sup> | boolean                                                      | Yes  | Whether the system account information is complete.             |
+| distributedInfo                | [distributedAccount.DistributedInfo](js-apis-distributed-account.md#distributedinfo) | No  | Distributed account information. By default, no value is passed.                   |
 | domainInfo<sup>8+</sup>        | [DomainAccountInfo](#domainaccountinfo8)                      | No  | Domain account information. By default, no value is passed.                       |
 
 ## DomainAccountInfo<sup>8+</sup>
@@ -6786,7 +7150,7 @@ Defines the domain account information.
 | domain      | string | Yes  | Domain name.    |
 | accountName | string | Yes  | Domain account name.|
 | accountId<sup>10+</sup> | string | No  | Domain account ID.<br>**System API**: It is a system API and is left blank by default.|
-| isAuthenticated<sup>11+</sup>| boolean | No| Whether the domain account has been authenticated.<br>**System API**: It is a system API. The default value is **false**. |
+| isAuthenticated<sup>11+</sup>| boolean | No| Whether the domain account has been authenticated.<br>**System API**: This is a system API. The default value is **false**.|
 
 ## Constraints
 
@@ -6866,8 +7230,8 @@ Defines the constraint source type.
 
 | Name     | Type  | Mandatory| Description      |
 | ----------- | ------ | ---- | ---------- |
-| localId      | number | Yes  | ID of the OS account.    |
-| type | [ConstraintSourceType](#constraintsourcetype) | Yes  | Type of the constrain source.|
+| localId      | number | Yes  | ID of the system account.    |
+| type | [ConstraintSourceType](#constraintsourcetype9) | Yes  | Type of the constrain source.|
 
 ## ConstraintSourceType<sup>9+</sup>
 
