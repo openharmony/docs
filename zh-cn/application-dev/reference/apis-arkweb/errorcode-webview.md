@@ -357,3 +357,62 @@ The download has not been started yet.
 **处理步骤**
 
 需要在WebDownloadDelegate.onBeforeDownload中调用start('xxx')并指定下载路径。
+
+## 17100020 注册自定义协议失败
+
+**错误信息**
+
+Register custom schemes failed.
+
+**错误描述**
+
+注册自定义协议失败。
+
+**可能原因**
+
+在ArkWeb引擎初始化之后才设置自定义协议。
+
+**处理步骤**
+
+注册自定义协议需要在ArkWeb引擎初始化之前设置。
+
+## 17100021 WebResourceHandler已经失效
+
+**错误信息**
+
+Resource handler is invalid.
+
+**错误描述**
+
+WebResourceHandler已经失效。
+
+**可能原因**
+
+1.对应的请求在WebSchemeHandler中没有拦截；
+
+2.该请求拦截在构造返回体之前，因为某些原因已经请求结束；
+
+3.该WebResourceHandler已经调用过didFinish和didFail。
+
+
+**处理步骤**
+
+请勿在以上所说的情况下调用WebResourceHandler的接口。
+
+## 17100022 WebHttpBodyStream初始化失败
+
+**错误信息**
+
+The http body stream init failed.
+
+**错误描述**
+
+WebHttpBodyStream数据初始化失败。
+
+**可能原因**
+
+发起的POST等类型的请求中，携带的数据不合法。例如里面数据流中有文件类型的数据，但是该文件路径不存在，则数据流初始化失败.
+
+**处理步骤**
+
+检查发起的POST等类型的请求中，携带的数据是否合法
