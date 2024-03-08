@@ -101,6 +101,18 @@ media.createVideoRecorder().then((video: media.VideoRecorder) => {
 });
 ```
 
+## AVImageQueryOptions<sup>11+</sup>
+
+Enumerates the relationship between the video frame and the time at which the video thumbnail is obtained.
+
+The time passed in for obtaining the thumbnail may be different from the time of the video frame for which the thumbnail is actually obtained. Therefore, you need to specify their relationship.
+
+**System capability**: SystemCapability.Multimedia.Media.AVImageGenerator
+
+| Name                    | Value             | Description                                                        |
+| ------------------------ | --------------- | ------------------------------------------------------------ |
+| AV_IMAGE_QUERY_CLOSEST          | 3      | The frame (not necessarily a key frame) closest to the specified time is selected.<br>**System API**: This is a system API    |
+
 ## PixelMapParams<sup>11+</sup>
 
 Defines the format parameters of the video thumbnail to be obtained.

@@ -5719,14 +5719,13 @@ let queryOption: media.AVImageQueryOptions = media.AVImageQueryOptions.AV_IMAGE_
 let param: media.PixelMapParams = {
   width : 300,
   height : 300,
-  colorFormat : media.PixelFormat.RGB_565
 }
 
 // 获取缩略图
 media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenerator) => {
   if(generator != null){
     avImageGenerator = generator;
-    console.error(`createAVImageGenerator success`);
+    console.info(`createAVImageGenerator success`);
     avImageGenerator.fetchFrameByTime(timeUs, queryOption, param, (error: BusinessError, pixelMap) => {
       if (error) {
         console.error(`fetchFrameByTime callback failed, err = ${JSON.stringify(error)}`)
@@ -5735,7 +5734,7 @@ media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenera
       pixel_map = pixelMap;
     });
   } else {
-    console.error(`createAVImageGenerator fail, error message:${err.messag-e}`);
+    console.error(`createAVImageGenerator fail, error message:${err.message}`);
   };
 });
 ```
@@ -5789,14 +5788,13 @@ let queryOption: media.AVImageQueryOptions = media.AVImageQueryOptions.AV_IMAGE_
 let param: media.PixelMapParams = {
   width : 300,
   height : 300,
-  colorFormat : media.PixelFormat.RGB_565
 }
 
 // 获取缩略图
 media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenerator) => {
   if(generator != null){
     avImageGenerator = generator;
-    console.error(`createAVImageGenerator success`);
+    console.info(`createAVImageGenerator success`);
     avImageGenerator.fetchFrameByTime(timeUs, queryOption, param).then((pixelMap: image.PixelMap) => {
       pixel_map = pixelMap;
     }).catch((error: BusinessError) => {
@@ -5842,7 +5840,7 @@ let avImageGenerator: media.AVImageGenerator | undefined = undefined;
 media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenerator) => {
   if(generator != null){
     avImageGenerator = generator;
-    console.error(`createAVImageGenerator success`);
+    console.info(`createAVImageGenerator success`);
     avImageGenerator.release((error: BusinessError) => {
       if (error) {
         console.error(`release failed, err = ${JSON.stringify(error)}`);
@@ -5915,15 +5913,12 @@ media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenera
 | AV_IMAGE_QUERY_NEXT_SYNC       | 0   | 表示选取传入时间点或之后的关键帧。                       |
 | AV_IMAGE_QUERY_PREVIOUS_SYNC        | 1    | 表示选取传入时间点或之前的关键帧。 |
 | AV_IMAGE_QUERY_CLOSEST_SYNC        | 2    | 表示选取离传入时间点最近的关键帧。                 |
-| AV_IMAGE_QUERY_CLOSEST          | 3      | 表示选取离传入时间点最近的帧，该帧不一定是关键帧。     |
 
 ## PixelMapParams<sup>12+</sup>
 
 获取视频缩略图时，输出缩略图的格式参数。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVImageGenerator
-
-**系统接口：** 该接口为系统接口
 
 | 名称     | 类型   |  可读   |   可写    |  说明                   |
 | -------- | ------ |   ------| ------ | ---------------------- |

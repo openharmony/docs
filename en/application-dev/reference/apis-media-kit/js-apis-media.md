@@ -5783,14 +5783,13 @@ let queryOption: media.AVImageQueryOptions = media.AVImageQueryOptions.AV_IMAGE_
 let param: media.PixelMapParams = {
   width : 300,
   height : 300,
-  colorFormat : media.PixelFormat.RGB_565
 }
 
 // Obtain the thumbnail.
 media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenerator) => {
   if(generator != null){
     avImageGenerator = generator;
-    console.error(`createAVImageGenerator success`);
+    console.info(`createAVImageGenerator success`);
     avImageGenerator.fetchFrameByTime(timeUs, queryOption, param, (error: BusinessError, pixelMap) => {
       if (error) {
         console.error(`fetchFrameByTime callback failed, err = ${JSON.stringify(error)}`)
@@ -5799,7 +5798,7 @@ media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenera
       pixel_map = pixelMap;
     });
   } else {
-    console.error(`createAVImageGenerator fail, error message:${err.messag-e}`);
+    console.error(`createAVImageGenerator fail, error message:${err.message}`);
   };
 });
 ```
@@ -5853,14 +5852,13 @@ let queryOption: media.AVImageQueryOptions = media.AVImageQueryOptions.AV_IMAGE_
 let param: media.PixelMapParams = {
   width : 300,
   height : 300,
-  colorFormat : media.PixelFormat.RGB_565
 }
 
 // Obtain the thumbnail.
 media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenerator) => {
   if(generator != null){
     avImageGenerator = generator;
-    console.error(`createAVImageGenerator success`);
+    console.info(`createAVImageGenerator success`);
     avImageGenerator.fetchFrameByTime(timeUs, queryOption, param).then((pixelMap: image.PixelMap) => {
       pixel_map = pixelMap;
     }).catch((error: BusinessError) => {
@@ -5906,7 +5904,7 @@ let avImageGenerator: media.AVImageGenerator | undefined = undefined;
 media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenerator) => {
   if(generator != null){
     avImageGenerator = generator;
-    console.error(`createAVImageGenerator success`);
+    console.info(`createAVImageGenerator success`);
     avImageGenerator.release((error: BusinessError) => {
       if (error) {
         console.error(`release failed, err = ${JSON.stringify(error)}`);
@@ -5979,7 +5977,6 @@ The time passed in for obtaining the thumbnail may be different from the time of
 | AV_IMAGE_QUERY_NEXT_SYNC       | 0   | The key frame at or next to the specified time is selected.                      |
 | AV_IMAGE_QUERY_PREVIOUS_SYNC        | 1    | The key frame at or prior to the specified time is selected.|
 | AV_IMAGE_QUERY_CLOSEST_SYNC        | 2    | The key frame closest to the specified time is selected.                |
-| AV_IMAGE_QUERY_CLOSEST          | 3      | The frame (not necessarily a key frame) closest to the specified time is selected.    |
 
 ## PixelMapParams<sup>12+</sup>
 
