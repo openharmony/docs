@@ -647,7 +647,7 @@ selectionStart和selectionEnd均为-1时表示全选。
 | -------------- | ------ | ---- | ------- |
 | selectionStart | number | 是    | 选中开始位置。 |
 | selectionEnd   | number | 是    | 选中结束位置。 |
-| options<sup>12+</sup>   | [SelectionOptions](#SelectionOptions12) | 否    | 选择项配置。 |
+| options<sup>12+</sup>   | [SelectionOptions](#selectionoptions12) | 否    | 选择项配置。 |
 
 ### getSelection<sup>11+</sup>
 
