@@ -7,7 +7,6 @@ You can use the APIs of this module to configure the concerned information, obta
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
->
 
 ## Usage
 
@@ -29,57 +28,57 @@ Provides attribute names and value types of a node element.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
-### Attributes
+### Name
 
-| Name                  | Type                                                               | Description                 |
-|----------------------|-------------------------------------------------------------------| ------------------- |
-| accessibilityFocused | boolean                                                           |   Accessibility focus status.  |
-| bundleName           | string                                                            | Bundle name.|
-| checkable            | boolean                                                           | Whether the element is checkable.|
-| checked              | boolean                                                           | Whether the element is checked.|
-| children             | Array&lt;[AccessibilityElement](#accessibilityelement9)&gt;       | All child elements.|
-| clickable            | boolean                                                           | Whether the element is clickable.|
-| componentId          | number                                                            | ID of the component to which the element belongs.|
-| componentType        | string                                                            | Type of the component to which the element belongs.|
-| contents             | Array&lt;string&gt;                                               | Content.|
-| currentIndex         | number                                                            | Index of the current item.|
-| description          | string                                                            | Description of the element.|
-| editable             | boolean                                                           | Whether the element is editable.|
-| endIndex             | number                                                            | Index of the last list item displayed on the screen.|
-| error                | string                                                            | Error status.|
-| focusable            | boolean                                                           | Whether the element is focusable.|
-| hintText             | string                                                            | Hint text.|
-| inputType            | number                                                            | Type of the input text.|
-| inspectorKey         | string                                                            | Inspector key.|
-| isActive             | boolean                                                           | Whether the element is active.|
-| isEnable             | boolean                                                           | Whether the element is enabled.|
-| isHint               | boolean                                                           | Whether the element is in the hint state.|
-| isFocused            | boolean                                                           | Whether the element is focused.|
-| isPassword           | boolean                                                           | Whether the element is a password.|
-| isVisible            | boolean                                                           | Whether the element is visible.|
-| itemCount            | number                                                            | Total number of items.|
-| lastContent          | string                                                            | Last content.|
-| layer                | number                                                            | Display layer of the element.|
-| longClickable        | boolean                                                           | Whether the element is long-clickable.|
-| pageId               | number                                                            | Page ID.|
-| parent               | [AccessibilityElement](#accessibilityelement9)                    | Parent element of the element.|
-| pluralLineSupported  | boolean                                                           | Whether the element supports multiple lines of text.|
-| rect                 | [Rect](#rect)                                                     | Area of the element.|
-| resourceName         | string                                                            | Resource name of the element.|
-| rootElement          | [AccessibilityElement](#accessibilityelement9)                    | Root element of the window element.|
-| screenRect           | [Rect](#rect)                                                     | Display area of the element.|
-| scrollable           | boolean                                                           | Whether the element is scrollable.|
-| selected             | boolean                                                           | Whether the element is selected.|
-| startIndex           | number                                                            | Index of the first list item on the screen.|
-| text                 | string                                                            | Text of the element.|
-| textLengthLimit      | string                                                            | Maximum text length of the element.|
-| textMoveUnit         | [accessibility.TextMoveUnit](js-apis-accessibility.md#textmoveunit) | Unit of movement when the text is read.|
-| triggerAction        | [accessibility.Action](js-apis-accessibility.md#action)           | Action that triggers the element event.|
-| type                 | [WindowType](#windowtype)                                         | Window type of the element.|
-| valueMax             | number                                                            | Maximum value.|
-| valueMin             | number                                                            | Minimum value.|
-| valueNow             | number                                                            | Current value.|
-| windowId             | number                                                            | Window ID.|
+| Name                  | Type                                                                | Readable | Writable | Description                 |
+|----------------------|--------------------------------------------------------------------|-----|-----| ------------------- |
+| accessibilityFocused | boolean                                                            | Yes  | No  |   Accessibility focus status.  |
+| bundleName           | string                                                             | Yes  | No  | Bundle name.|
+| checkable            | boolean                                                            | Yes  | No  | Whether the element is checkable.|
+| checked              | boolean                                                            | Yes  | No  | Whether the element is checked.|
+| children             | Array&lt;[AccessibilityElement](#accessibilityelement9)&gt;        | Yes  | No  | All child elements.|
+| clickable            | boolean                                                            | Yes  | No  | Whether the element is clickable.|
+| componentId          | number                                                             | Yes  | No  | ID of the component to which the element belongs.|
+| componentType        | string                                                             | Yes  | No  | Type of the component to which the element belongs.|
+| contents             | Array&lt;string&gt;                                                | Yes  | No  | Content.|
+| currentIndex         | number                                                             | Yes  | No  | Index of the current item.|
+| description          | string                                                             | Yes  | No  | Description of the element.|
+| editable             | boolean                                                            | Yes  | No  | Whether the element is editable.|
+| endIndex             | number                                                             | Yes  | No  | Index of the last list item displayed on the screen.|
+| error                | string                                                             | Yes  | No  | Error status.|
+| focusable            | boolean                                                            | Yes  | No  | Whether the element is focusable.|
+| hintText             | string                                                             | Yes  | No  | Hint text.|
+| inputType            | number                                                             | Yes  | No  | Type of the input text.|
+| inspectorKey         | string                                                             | Yes  | No  | Inspector key.|
+| isActive             | boolean                                                            | Yes  | No  | Whether the element is active.|
+| isEnable             | boolean                                                            | Yes  | No  | Whether the element is enabled.|
+| isHint               | boolean                                                            | Yes  | No  | Whether the element is in the hint state.|
+| isFocused            | boolean                                                            | Yes  | No  | Whether the element is focused.|
+| isPassword           | boolean                                                            | Yes  | No  | Whether the element is a password.|
+| isVisible            | boolean                                                            | Yes  | No  | Whether the element is visible.|
+| itemCount            | number                                                             | Yes  | No  | Total number of items.|
+| lastContent          | string                                                             | Yes  | No  | Last content.|
+| layer                | number                                                             | Yes  | No  | Display layer of the element.|
+| longClickable        | boolean                                                            | Yes  | No  | Whether the element is long-clickable.|
+| pageId               | number                                                             | Yes  | No  | Page ID.|
+| parent               | [AccessibilityElement](#accessibilityelement9)                     | Yes  | No  | Parent element of the element.|
+| pluralLineSupported  | boolean                                                            | Yes  | No  | Whether the element supports multiple lines of text.|
+| rect                 | [Rect](#rect)                                                      | Yes  | No  | Area of the element.|
+| resourceName         | string                                                             | Yes  | No  | Resource name of the element.|
+| rootElement          | [AccessibilityElement](#accessibilityelement9)                     | Yes  | No  | Root element of the window element.|
+| screenRect           | [Rect](#rect)                                                      | Yes  | No  | Display area of the element.|
+| scrollable           | boolean                                                            | Yes  | No  | Whether the element is scrollable.|
+| selected             | boolean                                                            | Yes  | No  | Whether the element is selected.|
+| startIndex           | number                                                             | Yes  | No  | Index of the first list item on the screen.|
+| text                 | string                                                             | Yes  | No  | Text of the element.|
+| textLengthLimit      | string                                                             | Yes  | No  | Maximum text length of the element.|
+| textMoveUnit         | [accessibility.TextMoveUnit](js-apis-accessibility.md#textmoveunit) | Yes  | No  | Unit of movement when the text is read.|
+| triggerAction        | [accessibility.Action](js-apis-accessibility.md#action)         | Yes  | No  | Action that triggers the element event.|
+| type                 | [WindowType](#windowtype)                                          | Yes  | No  | Window type of the element.|
+| valueMax             | number                                                             | Yes  | No  | Maximum value.|
+| valueMin             | number                                                             | Yes  | No  | Minimum value.|
+| valueNow             | number                                                             | Yes  | No  | Current value.|
+| windowId             | number                                                             | Yes  | No  | Window ID.|
 
 
 
@@ -145,7 +144,7 @@ Sets the concerned target bundle. This API uses a promise to return the result.
 
 | Name        | Type                 | Mandatory  | Description      |
 | ----------- | ------------------- | ---- | -------- |
-| targetNames | Array&lt;string&gt; | Yes   | Bundles name of the concerned target applications. The service receives accessibility events of the concerned application. By default, accessibility events of all applications are received. Pass in an empty array if there is no concerned application.|
+| targetNames | Array&lt;string&gt; | Yes   | Bundle names of the concerned target application. The service receives accessibility events of the concerned application. By default, accessibility events of all applications are received. Pass in an empty array if there is no concerned application.|
 
 **Return value**
 

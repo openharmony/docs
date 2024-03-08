@@ -11,6 +11,19 @@ The **settings** module provides APIs for setting data items.
 ```js
 import settings from '@ohos.settings';
 ```
+## domainName
+
+Describes the domain name.
+
+### Attributes
+
+**System capability**: SystemCapability.Applications.Settings.Core
+
+| Name               | Type  | Readable| Writable| Description                                                        |
+| ------------------- | ------ | ---- | ---- | ------------------------------------------------------------ |
+| DEVICE_SHARED       | string | Yes  | Yes  | Shared device domain.                                         |
+| USER_PROPERTY       | string | Yes  | Yes  | User property domain.                                          |
+| USER_SECURITY       | string | Yes  | Yes  | User security domain.                                       |
 
 ## date
 
@@ -215,7 +228,7 @@ import settings from '@ohos.settings';
 // Update the value of SCREEN_BRIGHTNESS_STATUS. (As this data item exists in the database, the setValue API will update its value.)
 const context: Context =  getContext(this);
 settings.setValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100', (status) => {
-  console.log('Callback return whether value is set.');
+  console.log('Callback return when value is set.');
 });
 ```
 
@@ -253,7 +266,44 @@ import settings from '@ohos.settings';
 // Update the value of SCREEN_BRIGHTNESS_STATUS. (As this data item exists in the database, the setValue API will update its value.)
 const context: Context =  getContext(this);
 settings.setValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100').then((status) => {
-  console.log('Callback return whether value is set.');
+  console.log('Callback return when value is set.');
+});
+```
+
+## setting.setValue<sup>11+</sup>
+
+setValue(context: Context, name: string, domainName: string): Promise\<boolean>
+
+Sets the value for a data item. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Applications.Settings.Core
+
+**Required permissions**: ohos.permission.MANAGE_SECURE_SETTINGS
+
+**Parameters**
+
+| Name  | Type                  | Mandatory| Description                                                        |
+| -------- | ---------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                | Yes  | Application context.<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
+| name     | string                 | Yes  | Name of the target data item. Data items can be classified as follows:<br> - Existing data items in the database<br>- Custom data items|
+| value    | string                 | Yes  | Value of the data item. The value range varies by service.                  |
+|domainName| string                 | Yes  | Domain name to set.<br> - **domainName.DEVICE_SHARED**:<br>shared device domain<br>- **domainName.USER_PROPRERTY**:<br>user property domain<br> - **domainName.USER_SECURITY**:<br>user security domain|
+
+**Return value**
+
+| Type            | Description                               |
+| ---------------- | ----------------------------------- |
+| Promise\<string> | Promise used to return the result. Returns **true** if the operation is successful; returns **false** otherwise.|
+
+**Example**
+
+```js
+import settings from '@ohos.settings';
+
+// Update the value of SCREEN_BRIGHTNESS_STATUS. (As this data item exists in the database, the setValue API will update its value.)
+const context: Context =  getContext(this);
+settings.setValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100', domainName.DEVICE_SHARED).then((status) => {
+  console.log(`callback:return when value is set.`)
 });
 ```
 
@@ -322,6 +372,43 @@ settings.getValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS).then((valu
 });
 ```
 
+## settings.getValue<sup>11+</sup>
+
+getValue(context: Context, name: string, domainName: string): Promise\<string>;
+
+Obtains the value of a data item in the database. This API uses a promise to return the result.
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System capability**: SystemCapability.Applications.Settings.Core
+
+**Parameters**
+
+| Name  | Type                  | Mandatory| Description                                                        |
+| -------- | ---------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                | Yes  | Application context.<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
+| name     | string                 | Yes  | Name of the target data item. Data items can be classified as follows:<br> - Existing data items in the database<br>- Custom data items|
+| value    | string                 | Yes  | Value of the data item. The value range varies by service.                  |
+|domainName| string                 | Yes  | Domain name to set.<br> - **domainName.DEVICE_SHARED**:<br>shared device domain<br>- **domainName.USER_PROPRERTY**:<br>user property domain<br> - **domainName.USER_SECURITY**:<br>user security domain|
+
+**Return value**
+
+| Type            | Description                               |
+| ---------------- | ----------------------------------- |
+| Promise\<string> | Promise used to return the result. Returns **true** if the operation is successful; returns **false** otherwise.|
+
+**Example**
+
+```js
+import settings from '@ohos.settings';
+
+// Update the value of SCREEN_BRIGHTNESS_STATUS. (As this data item exists in the database, the getValue API will update its value.)
+const context: Context =  getContext(this);
+settings.getValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, settings.domainName.DEVICE_SHARED).then((value) => {
+  console.log(`Promise:value -> $ {JSON.stringify(value)}`);
+});
+```
+
 ## settings.getValueSync<sup>10+</sup>
 
 getValueSync(context: Context, name: string, defValue: string): string;
@@ -354,6 +441,42 @@ import settings from '@ohos.settings';
 // Obtain the value of SCREEN_BRIGHTNESS_STATUS (this data item already exists in the database).
 const context: Context =  getContext(this);
 let value = settings.getValueSync(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '10');
+```
+
+## settings.getValueSync<sup>11+</sup>
+
+getValueSync(context: Context, name: string, defvalue: string, domainName: string): boolean;
+
+Obtains the value of a data item. Unlike **getValue**, this API returns the result synchronously.
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System capability**: SystemCapability.Applications.Settings.Core
+
+**Parameters**
+
+| Name  | Type                  | Mandatory| Description                                                        |
+| -------- | ---------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                | Yes  | Application context.<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
+| name     | string                 | Yes  | Name of the target data item. Data items can be classified as follows:<br> - Existing data items in the database<br>- Custom data items|
+| value    | string                 | Yes  | Value of the data item. The value range varies by service.                  |
+|domainName| string                 | Yes  | Domain name to set.<br> - **domainName.DEVICE_SHARED**:<br>shared device domain<br>- **domainName.USER_PROPRERTY**:<br>user property domain<br> - **domainName.USER_SECURITY**:<br>user security domain|
+
+
+**Return value**
+
+| Type            | Description                               |
+| ---------------- | ----------------------------------- |
+| string           | Value of the data item.                      |
+
+**Example**
+
+```js
+import settings from '@ohos.settings';
+
+// Update the value of SCREEN_BRIGHTNESS_STATUS (this data item already exists in the database).
+const context: Context =  getContext(this);
+let value = settings.getValueSync(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100',  settings.domainName.DEVICE_SHARED);
 ```
 
 ## settings.setValueSync<sup>10+</sup>
@@ -392,6 +515,119 @@ import settings from '@ohos.settings';
 // Update the value of SCREEN_BRIGHTNESS_STATUS. (As this data item exists in the database, the setValueSync API will update the value of the data item.)
 const context: Context =  getContext(this);
 let ret = settings.setValueSync(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100');
+```
+
+## settings.setValueSync<sup>11+</sup>
+
+setValueSync(context: Context, name: string, value: string): boolean
+
+Sets the value for a data item. Unlike **setValue**, this API returns the result synchronously.
+
+If the specified data item exists in the database, the **setValueSync** method updates the value of the data item. If the data item does not exist in the database, the **setValueSync** method inserts the data item into the database.
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System capability**: SystemCapability.Applications.Settings.Core
+
+**Required permissions**: ohos.permission.MANAGE_SECURE_SETTINGS
+
+**Parameters**
+
+| Name  | Type                  | Mandatory| Description                                                        |
+| -------- | ---------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                | Yes  | Application context.<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
+| name     | string                 | Yes  | Name of the target data item. Data items can be classified as follows:<br> - Existing data items in the database<br>- Custom data items|
+| value    | string                 | Yes  | Value of the data item. The value range varies by service.                  |
+|domainName| string                 | Yes  | Domain name to set.<br> - **domainName.DEVICE_SHARED**:<br>shared device domain<br>- **domainName.USER_PROPRERTY**:<br>user property domain<br> - **domainName.USER_SECURITY**:<br>user security domain|
+
+**Return value**
+
+| Type            | Description                               |
+| ---------------- | ----------------------------------- |
+| boolean          | Result indicating whether the value is set successfully. Returns **true** if the value is set successfully; returns **false** otherwise.|
+
+**Example**
+
+```js
+import settings from '@ohos.settings';
+
+// Update the value of 'settings.screen.brightness'. (As this data item exists in the database, the setValueSync API will update its value.)
+const context: Context =  getContext(this);
+let ret = settings.setValueSync(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100', domainName.DEVICE_SHARED);
+```
+
+## settings.registerKeyObserver<sup>11+</sup>
+
+registerKeyObserver(context: Context, name: string, domainName: string, observer:AsyncCallback\<void>): boolean
+
+Registers an observer in the specified context so that the specified data item can be observed in the specified domain name. When the data item value changes, the registered callback is called. If the registration is successful, **true** is returned. Otherwise, **false** is returned.
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System capability**: SystemCapability.Applications.Settings.Core
+
+**Parameters**
+
+| Name  | Type                  | Mandatory| Description                                                        |
+| -------- | ---------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                | Yes  | Application context.<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
+| name     | string                 | Yes  | Name of the target data item. Data items can be classified as follows:<br> - Existing data items in the database<br>- Custom data items|
+| value    | string                 | Yes  | Value of the data item. The value range varies by service.                  |
+|domainName| string                 | Yes  | Domain name to set.<br> - **domainName.DEVICE_SHARED**:<br>shared device domain<br>- **domainName.USER_PROPRERTY**:<br>user property domain<br> - **domainName.USER_SECURITY**:<br>user security domain|
+|observer  |  AsyncCallback\<void>  | Yes  | Callback used to return the value of the data item.                  |
+
+**Return value**
+
+| Type            | Description                               |
+| ---------------- | ----------------------------------- |
+| boolean | Returns **true** if the registration is successful; returns **false** otherwise.|
+
+**Example**
+
+```js
+import settings from '@ohos.settings';
+
+const context: Context =  getContext(this);
+settings.registeKeyObserver(context, settings.display.SCREEN_BRIGHTNESS_STATUS, domainName.DEVICE_SHARED, (err, value) => {
+  if(err){
+    console.error('Failed to get the setting.${err.message}');
+    return;
+  }
+  console.log(`Promise:value -> $ {JSON.stringify(value)}`);
+});
+```
+
+## settings.unregisterKeyObserver<sup>11+</sup>
+
+unregisterKeyObserver(context: Context, name: string, domainName: string): boolean
+
+Unregisters the observer under the specified domain name. This API returns the result synchronously.
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System capability**: SystemCapability.Applications.Settings.Core
+
+| Name  | Type                  | Mandatory| Description                                                        |
+| -------- | ---------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                | Yes  | Application context.<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
+| name     | string                 | Yes  | Name of the target data item. Data items can be classified as follows:<br> - Existing data items in the database<br>- Custom data items|
+| value    | string                 | Yes  | Value of the data item. The value range varies by service.                  |
+|domainName| string                 | Yes  | Domain name to set.<br> - **domainName.DEVICE_SHARED**:<br>shared device domain<br>- **domainName.USER_PROPRERTY**:<br>user property domain<br> - **domainName.USER_SECURITY**:<br>user security domain|
+
+**Return value**
+
+| Type            | Description                               |
+| ---------------- | ----------------------------------- |
+| boolean | Returns **true** if the registration is successful; returns **false** otherwise.|
+
+**Example**
+
+```js
+import settings from '@ohos.settings';
+
+const context: Context =  getContext(this);
+const context: Context =  getContext(this);
+let ret = settings.setValueSync(context, settings.display.SCREEN_BRIGHTNESS_STATUS,  domainName.DEVICE_SHARED);
 ```
 
 ## settings.enableAirplaneMode

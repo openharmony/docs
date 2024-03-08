@@ -329,7 +329,7 @@ onKeyEvent(event: (event?: KeyEvent) => void)
 ```
 
 
-Triggered when the bound component has [focus](arkts-common-events-focus-event.md) and a key event occurs on the component. The callback parameter [KeyEvent](../reference/arkui-ts/ts-universal-events-key.md) can be used to obtain the information about the key event, including [KeyType](../reference/arkui-ts/ts-appendix-enums.md#keytype), [keyCode](../reference/apis/js-apis-keycode.md), keyText, [KeySource](../reference/arkui-ts/ts-appendix-enums.md#keysource), **deviceId**, **metaKey**, **timestamp**, and **stopPropagation**.
+Triggered when the bound component has [focus](arkts-common-events-focus-event.md) and a key event occurs on the component. The callback parameter [KeyEvent](../reference/arkui-ts/ts-universal-events-key.md#keyevent) can be used to obtain the information about the key event, including [KeyType](../reference/arkui-ts/ts-appendix-enums.md#keytype), [keyCode](../reference/apis/js-apis-keycode.md), **keyText**, [KeySource](../reference/arkui-ts/ts-appendix-enums.md#keysource), **deviceId**, **metaKey**, **timestamp**, and **stopPropagation**.
 
 
 
