@@ -386,8 +386,8 @@ Native Drawing模块关于文本绘制提供两类API接口：
     OH_Drawing_SetTextStyleFontHeight(txtStyle, 1);
     OH_Drawing_FontCollection* fontCollection = OH_Drawing_CreateFontCollection();
     // 注册自定义字体
-    const char * fontFamily = "myFamilyName"; // myFamilyName为自定义字体的family name
-    const char * fontPath = "/data/storage/el2/base/haps/entry/files/myFontFile.ttf"; // 设置自定义字体所在的沙箱路径
+    const char* fontFamily = "myFamilyName"; // myFamilyName为自定义字体的family name
+    const char* fontPath = "/data/storage/el2/base/haps/entry/files/myFontFile.ttf"; // 设置自定义字体所在的沙箱路径
     OH_Drawing_RegisterFont(fontCollection, fontFamily, fontPath);
     // 设置系统字体类型
     const char* systemFontFamilies[] = {"Roboto"};
