@@ -5575,7 +5575,7 @@ struct WebComponent {
   build() {
     Column() {
       Row() {
-		Button('PauseAllTimers')
+	Button('PauseAllTimers')
           .onClick(() => {
               try {
                 web_webview.WebviewController.pauseAllTimers()
@@ -5652,7 +5652,7 @@ struct WebComponent {
                 console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
               }
           })
-		Button('PauseAllTimers')
+	Button('PauseAllTimers')
           .onClick(() => {
               try {
                 web_webview.WebviewController.pauseAllTimers()
