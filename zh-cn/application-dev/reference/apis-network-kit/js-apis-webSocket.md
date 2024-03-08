@@ -39,7 +39,7 @@ ws.on('open', (err:BusinessError, value: Object) => {
     }
   });
 });
-ws.on('message',(BusinessError<void>, value: string | ArrayBuffer) => {
+ws.on('message',(error: BusinessError, value: string | ArrayBuffer) => {
   console.log("on message, message:" + value);
   // 当收到服务器的`bye`消息时（此消息字段仅为示意，具体字段需要与服务器协商），主动断开连接
   if (value === 'bye') {
