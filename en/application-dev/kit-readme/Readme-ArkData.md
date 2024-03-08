@@ -6,7 +6,7 @@
   - [Unified Data Types](../database/uniform-data-type-descriptors.md)
   - [Unified Data Structs](../database/uniform-data-structure.md)
 - Application Data Persistence
-  - [Application Data Persistence Overview](database/app-data-persistence-overview.md)
+  - [Application Data Persistence Overview](../database/app-data-persistence-overview.md)
   - [Persisting Preferences Data](../database/data-persistence-by-preferences.md)
   - [Persisting KV Store Data](../database/data-persistence-by-kv-store.md)
   - [Persisting RDB Store Data](../database/data-persistence-by-rdb-store.md)
@@ -25,7 +25,6 @@
   - One-to-Many Data Sharing (for System Applications Only)
     - [Sharing Data Using DataShareExtensionAbility](../database/share-data-by-datashareextensionability.md)
     - [Silent Access via the DatamgrService](../database/share-data-by-silent-access.md)
-  - Many-to-Many Data Sharing
+  - Many-to-Many Data Sharing 
     - [Sharing Data via Unified Data Channels](../database/unified-data-channels.md)
-
-<!--no_check-->
+- [RelationalStore Development (C/C++)](../database/native-relational-store-guidelines.md)
