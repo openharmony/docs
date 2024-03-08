@@ -462,3 +462,143 @@ TextInput/TextArea
 **适配指导**
 
 默认行为变更，不涉及适配。
+
+## cl.arkui.11 全局接口作用的UI实例跟踪匹配规则变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+规范全局接口UI实例匹配行为，避免因实例不明确造成的非预期行为。
+
+**变更影响**
+
+多实例场景下，在未绑定UI实例的上下文中调用全局接口（如在异步回调中使用路由接口），接口的作用实例可能发生变化。
+
+全局接口需要明确的UI实例上下文以确定作用的UI实例，建议通过绑定实例的接口进行调用。
+
+**API Level**
+
+8
+
+**变更发生版本**
+
+从OpenHarmony SDK 4.1.6.5开始。 
+
+**变更的接口/组件**
+
+不推荐开发者在多实例场景下使用如下接口，建议开发者使用适配指导中的替代接口。
+
+|                  API                  |            说明            |
+| :-----------------------------------: | :------------------------: |
+|            @ohos.animator             |      自定义动画控制器      |
+|     @ohos.arkui.componentSnapshot     |          组件截图          |
+|      @ohos.arkui.componentUtils       |         组件工具类         |
+|      @ohos.arkui.dragController       |         拖拽控制器         |
+|         @ohos.arkui.inspector         |        组件布局回调        |
+|         @ohos.arkui.observer          |          无感监听          |
+|              @ohos.font               |         自定义字体         |
+|             @ohos.measure             |          文本计算          |
+|           @ohos.mediaquery            |          媒体查询          |
+|          @ohos.promptAction           |            弹窗            |
+|             @ohos.router              |          页面路由          |
+|              AlertDialog              |          警告弹窗          |
+|              ActionSheet              |        列表选择弹窗        |
+|         CalendarPickerDialog          |       日历选择器弹窗       |
+|           DatePickerDialog            |      日期滑动选择弹窗      |
+|           TimePickerDialog            |     时间滑动选择器弹窗     |
+|           TextPickerDialog            |     文本滑动选择器弹窗     |
+|              ContextMenu              |          菜单控制          |
+| vp2px/px2vp/fp2px/px2fp/lpx2px/px2lpx |        像素单位转换        |
+|             focusControl              |          焦点控制          |
+|             cursorControl             |          光标控制          |
+|              getContext               | 获取当前的Ability的Context |
+|        LocalStorage.getShared         |  获取Ability传递的Storage  |
+|               animateTo               |          显式动画          |
+|         animateToImmediately          |        显式立即动画        |
+
+**适配指导**
+
+使用组件内置方法[`getUIContext`](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-custom-component-api.md#getuicontext)，可直接获取当前组件所在的UIContext，并使用如下[UIContext](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)中的API获取与实例绑定的对象。
+
+| UIContext接口                    | 说明               |
+| -------------------------------- | ------------------ |
+| getRouter                        | 页面路由           |
+| getComponentUtils                | 组件工具类         |
+| getUIInspector                   | 组件布局回调       |
+| getUIObserver                    | 无感监听           |
+| getMediaQuery                    | 媒体查询           |
+| getFont                          | 字体               |
+| getPrompAction                   | 弹窗               |
+| animateTo                        | 显示动画           |
+| showAlerDialog                   | 警告弹窗           |
+| showActionSheet                  | 列表选择弹窗       |
+| showDatePickerDialog             | 日期滑动选择弹窗   |
+| showTimePickerDialog             | 时间滑动选择器弹窗 |
+| showTextPcikerDialog             | 文本滑动选择器弹窗 |
+| createAnimator                   | 自定义动画控制器   |
+| KeyboardAvoidMode                | 键盘避让           |
+| getAtomicServiceBar              | 云服务             |
+| getDragController/getDragPreview | 拖拽               |
+| runScopedTask                    | 执行绑定实例的闭包 |
+
+对于以下UIContext中尚不具备的API，可使用runScopedTask进行适配：
+
+| 接口                                  | 说明                       |
+| ------------------------------------- | -------------------------- |
+| measure                               | 文本计算                   |
+| getContext                            | 获取当前的Ability的Context |
+| LocalStorage.getShared                | 获取Ability传递的Storage   |
+| animateToImmediately                  | 显式立即动画               |
+| ContextMenu                           | 菜单控制                   |
+| vp2px/px2vp/fp2px/px2fp/lpx2px/px2lpx | 像素单位转换               |
+| focusControl                          | 焦点控制                   |
+| cursorControl                         | 光标控制                   |
+| @ohos.arkui.componentSnapshot         | 组件截图                   |
+
+示例1
+
+```ets
+// 使用绑定实例的路由对象进行页面路由
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Button()
+        .onClick(() => {
+          let uiContext = this.getUIContext();
+          let uiRouter = uiContext.getRouter();
+          uiRouter.pushUrl({
+            url: 'pages/Page'
+          })
+        })
+    }
+  }
+}
+```
+
+示例2
+
+```ets
+// 执行绑定实例的闭包
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Button()
+        .onClick(() => {
+          let uiContext = this.getUIContext();
+          uiContext.runScopedTask(() => {
+            let context = getContext();
+            console.log('Get context: ' + JSON.stringify(context))
+          })
+        })
+    }
+  }
+}
+```
+
