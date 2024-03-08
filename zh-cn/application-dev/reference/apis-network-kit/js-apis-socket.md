@@ -538,12 +538,8 @@ import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
 
-class SocketInfo {
-  message: ArrayBuffer = new ArrayBuffer(1);
-  remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
-}
 let messageView = '';
-udp.on('message', (value: SocketInfo) => {
+udp.on('message', (value: socket.SocketMessageInfo) => {
   for (let i: number = 0; i < value.message.byteLength; i++) {
     let uint8Array = new Uint8Array(value.message) 
     let messages = uint8Array[i]
@@ -578,13 +574,9 @@ off(type: 'message', callback?: Callback\<SocketMessageInfo\>): void
 ```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
-class SocketInfo {
-  message: ArrayBuffer = new ArrayBuffer(1);
-  remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
-}
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
 let messageView = '';
-let callback = (value: SocketInfo) => {
+let callback = (value: socket.SocketMessageInfo) => {
   for (let i: number = 0; i < value.message.byteLength; i++) {
     let uint8Array = new Uint8Array(value.message) 
     let messages = uint8Array[i]
@@ -871,7 +863,7 @@ let addr: socket.NetAddress = {
   address: '239.255.0.1',
   port: 8080
 }
-multicast.addMembership(addr, (err) => {
+multicast.addMembership(addr, (err: Object) => {
   if (err) {
     console.log('add membership fail, err: ' + JSON.stringify(err));
     return;
@@ -926,7 +918,7 @@ let addr: socket.NetAddress = {
 }
 multicast.addMembership(addr).then(() => {
   console.log('addMembership success');
-}).catch((err) => {
+}).catch((err: Object) => {
   console.log('addMembership fail');
 });
 ```
@@ -970,7 +962,7 @@ let addr: socket.NetAddress = {
   address: '239.255.0.1',
   port: 8080
 }
-multicast.dropMembership(addr, (err) => {
+multicast.dropMembership(addr, (err: Object) => {
   if (err) {
     console.log('drop membership fail, err: ' + JSON.stringify(err));
     return;
@@ -1025,7 +1017,7 @@ let addr: socket.NetAddress = {
 }
 multicast.dropMembership(addr).then(() => {
   console.log('drop membership success');
-}).catch((err) => {
+}).catch((err: Object) => {
   console.log('drop membership fail');
 });
 ```
@@ -1065,7 +1057,7 @@ setMulticastTTL(ttl: number, callback: AsyncCallback\<void\>): void;
 import socket from "@ohos.net.socket";
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
 let ttl = 8
-multicast.setMulticastTTL(ttl, (err) => {
+multicast.setMulticastTTL(ttl, (err: Object) => {
   if (err) {
     console.log('set ttl fail, err: ' + JSON.stringify(err));
     return;
@@ -1115,7 +1107,7 @@ import socket from "@ohos.net.socket";
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
 multicast.setMulticastTTL(8).then(() => {
   console.log('set ttl success');
-}).catch((err) => {
+}).catch((err: Object) => {
   console.log('set ttl failed');
 });
 ```
@@ -1152,7 +1144,7 @@ getMulticastTTL(callback: AsyncCallback\<number\>): void;
 ```ts
 import socket from "@ohos.net.socket";
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
-multicast.getMulticastTTL((err, value) => {
+multicast.getMulticastTTL((err: Object, value: Number) => {
   if (err) {
     console.log('set ttl fail, err: ' + JSON.stringify(err));
     return;
@@ -1193,9 +1185,9 @@ getMulticastTTL(): Promise\<number\>;
 ```ts
 import socket from "@ohos.net.socket";
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
-multicast.getMulticastTTL().then((value) => {
+multicast.getMulticastTTL().then((value: Number) => {
   console.log('ttl: ', JSON.stringify(value));
-}).catch((err) => {
+}).catch((err: Object) => {
   console.log('set ttl failed');
 });
 ```
@@ -1232,7 +1224,7 @@ setLoopbackMode(flag: boolean, callback: AsyncCallback\<void\>): void;
 ```ts
 import socket from "@ohos.net.socket";
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
-multicast.setLoopbackMode(false, (err) => {
+multicast.setLoopbackMode(false, (err: Object) => {
   if (err) {
     console.log('set loopback mode fail, err: ' + JSON.stringify(err));
     return;
@@ -1280,7 +1272,7 @@ import socket from "@ohos.net.socket";
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
 multicast.setLoopbackMode(false).then(() => {
   console.log('set loopback mode success');
-}).catch((err) => {
+}).catch((err: Object) => {
   console.log('set loopback mode failed');
 });
 ```
@@ -1316,7 +1308,7 @@ getLoopbackMode(callback: AsyncCallback\<boolean\>): void;
 ```ts
 import socket from "@ohos.net.socket";
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
-multicast.getLoopbackMode((err, value) => {
+multicast.getLoopbackMode((err: Object, value: Boolean) => {
   if (err) {
     console.log('get loopback mode fail, err: ' + JSON.stringify(err));
     return;
@@ -1356,9 +1348,9 @@ getLoopbackMode(): Promise\<boolean\>;
 ```ts
 import socket from "@ohos.net.socket";
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
-multicast.getLoopbackMode().then((value) => {
+multicast.getLoopbackMode().then((value: Boolean) => {
   console.log('loopback mode: ', JSON.stringify(value));
-}).catch((err) => {
+}).catch((err: Object) => {
   console.log('get loopback mode failed');
 });
 ```
@@ -1402,7 +1394,7 @@ let sendOptions: socket.UDPSendOptions = {
     port: 8080
   }
 }
-multicast.send(sendOptions, (err) => {
+multicast.send(sendOptions, (err: Object) => {
   if (err) {
     console.log('send fail: ' + JSON.stringify(err));
     return;
@@ -1456,7 +1448,7 @@ let sendOptions: socket.UDPSendOptions = {
 }
 multicast.send(sendOptions).then(() => {
   console.log('send success');
-}).catch((err) => {
+}).catch((err: Object) => {
   console.log('send fail, ' + JSON.stringify(err));
 });
 ```
@@ -2373,12 +2365,8 @@ on(type: 'message', callback: Callback<SocketMessageInfo\>): void
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
-class SocketInfo {
-  message: ArrayBuffer = new ArrayBuffer(1);
-  remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
-}
 let messageView = '';
-tcp.on('message', (value: SocketInfo) => {
+tcp.on('message', (value: socket.SocketMessageInfo) => {
   for (let i: number = 0; i < value.message.byteLength; i++) {
     let uint8Array = new Uint8Array(value.message) 
     let messages = uint8Array[i]
@@ -2389,7 +2377,7 @@ tcp.on('message', (value: SocketInfo) => {
   console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
 });
 ```
-
+    
 ### off('message')
 
 off(type: 'message', callback?: Callback<SocketMessageInfo\>): void
@@ -2414,12 +2402,8 @@ off(type: 'message', callback?: Callback<SocketMessageInfo\>): void
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
-class SocketInfo {
-  message: ArrayBuffer = new ArrayBuffer(1);
-  remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
-}
 let messageView = '';
-let callback = (value: SocketInfo) => {
+let callback = (value: socket.SocketMessageInfo) => {
   for (let i: number = 0; i < value.message.byteLength; i++) {
     let uint8Array = new Uint8Array(value.message) 
     let messages = uint8Array[i]
@@ -3429,12 +3413,8 @@ import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 
-class SocketInfo {
-  message: ArrayBuffer = new ArrayBuffer(1);
-  remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
-}
 tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
-  client.on('message', (value: SocketInfo) => {
+  client.on('message', (value: socket.SocketMessageInfo) => {
     let messageView = '';
     for (let i: number = 0; i < value.message.byteLength; i++) {
       let uint8Array = new Uint8Array(value.message) 
@@ -3478,11 +3458,7 @@ off(type: 'message', callback?: Callback<SocketMessageInfo\>): void
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
-class SocketInfo {
-  message: ArrayBuffer = new ArrayBuffer(1);
-  remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
-}
-let callback = (value: SocketInfo) => {
+let callback = (value: socket.SocketMessageInfo) => {
   let messageView = '';
   for (let i: number = 0; i < value.message.byteLength; i++) {
     let uint8Array = new Uint8Array(value.message) 
@@ -3714,7 +3690,7 @@ bind(address: LocalAddress): Promise\<void\>;
 import socket from "@ohos.net.socket";
 
 let client = socket.constructLocalSocketInstance()
-let sandboxPath: string = getContext(this).filesDir + '/testSocket'
+let sandboxPath: string = getContext().filesDir + '/testSocket'
 let address : socket.LocalAddress = {
   address: sandboxPath
 }
@@ -3764,7 +3740,7 @@ connect(options: LocalConnectOptions): Promise\<void\>
 import socket from "@ohos.net.socket";
 
 let client = socket.constructLocalSocketInstance();
-let sandboxPath: string = getContext(this).filesDir + '/testSocket'
+let sandboxPath: string = getContext().filesDir + '/testSocket'
 let connectOpt: socket.LocalConnectOptions = {
   address: {
     address: sandboxPath
@@ -3814,7 +3790,7 @@ send(options: LocalSendOptions): Promise\<void\>
 import socket from "@ohos.net.socket"
 
 let client: socket.LocalSocket = socket.constructLocalSocketInstance()
-let sandboxPath: string = getContext(this).filesDir + '/testSocket'
+let sandboxPath: string = getContext().filesDir + '/testSocket'
 let connectOpt: socket.LocalConnectOptions = {
   address: {
     address: sandboxPath
@@ -3891,7 +3867,7 @@ getState(): Promise\<SocketStateBase\>
 ```ts
 import socket from "@ohos.net.socket";
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
-let sandboxPath: string = getContext(this).filesDir + '/testSocket'
+let sandboxPath: string = getContext().filesDir + '/testSocket'
 let connectOpt: socket.LocalConnectOptions = {
   address: {
     address: sandboxPath
@@ -3933,7 +3909,7 @@ getSocketFd(): Promise\<number\>
 ```ts
 import socket from "@ohos.net.socket";
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
-let sandboxPath: string = getContext(this).filesDir + '/testSocket'
+let sandboxPath: string = getContext().filesDir + '/testSocket'
 let connectOpt: socket.LocalConnectOptions = {
   address: {
     address: sandboxPath
@@ -3987,7 +3963,7 @@ setExtraOptions(options: ExtraOptionsBase): Promise\<void\>
 ```ts
 import socket from "@ohos.net.socket";
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
-let sandboxPath: string = getContext(this).filesDir + '/testSocket'
+let sandboxPath: string = getContext().filesDir + '/testSocket'
 let connectOpt: socket.LocalConnectOptions = {
   address: {
     address: sandboxPath
@@ -4039,7 +4015,7 @@ getExtraOptions(): Promise\<ExtraOptionsBase\>;
 ```ts
 import socket from "@ohos.net.socket";
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
-let sandboxPath: string = getContext(this).filesDir + '/testSocket'
+let sandboxPath: string = getContext().filesDir + '/testSocket'
 let connectOpt: socket.LocalConnectOptions = {
   address: {
     address: sandboxPath
@@ -4082,7 +4058,7 @@ client.on('message', (value: socket.LocalSocketMessageInfo) => {
   const uintArray = new Uint8Array(value.message)
   let messageView = '';
   for (let i = 0; i < uintArray.length; i++) {
-    messageView = String.fromCharCode(uintArray[i]);
+    messageView += String.fromCharCode(uintArray[i]);
   }
   console.log('total: ' + JSON.stringify(value));
   console.log('message infomation: ' + messageView);
@@ -4117,7 +4093,7 @@ let callback = (value: socket.LocalSocketMessageInfo) => {
   const uintArray = new Uint8Array(value.message)
   let messageView = '';
   for (let i = 0; i < uintArray.length; i++) {
-    messageView = String.fromCharCode(uintArray[i]);
+    messageView += String.fromCharCode(uintArray[i]);
   }
   console.log('total: ' + JSON.stringify(value));
   console.log('message infomation: ' + messageView);
@@ -4261,7 +4237,7 @@ on(type: 'error', callback: ErrorCallback): void
 ```ts
 import socket from "@ohos.net.socket";
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
-client.on('error', (err) => {
+client.on('error', (err: Object) => {
   console.log("on error, err:" + JSON.stringify(err))
 });
 ```
@@ -4289,7 +4265,7 @@ off(type: 'error', callback?: ErrorCallback): void;
 ```ts
 import socket from "@ohos.net.socket";
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
-let callback = (err) => {
+let callback = (err: Object) => {
   console.log("on error, err:" + JSON.stringify(err));
 }
 client.on('error', callback);
@@ -4418,7 +4394,7 @@ listen(address: LocalAddress): Promise\<void\>
 ```ts
 import socket from "@ohos.net.socket";
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
-let sandboxPath: string = getContext(this).filesDir + '/testSocket'
+let sandboxPath: string = getContext().filesDir + '/testSocket'
 let addr: socket.LocalAddress = {
   address: sandboxPath
 }
@@ -4451,7 +4427,7 @@ getState(): Promise\<SocketStateBase\>
 ```ts
 import socket from "@ohos.net.socket";
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
-let sandboxPath: string = getContext(this).filesDir + '/testSocket'
+let sandboxPath: string = getContext().filesDir + '/testSocket'
 let listenAddr: socket.LocalAddress = {
   address: sandboxPath
 }
@@ -4502,7 +4478,7 @@ setExtraOptions(options: ExtraOptionsBase): Promise\<void\>
 ```ts
 import socket from "@ohos.net.socket";
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
-let sandboxPath: string = getContext(this).filesDir + '/testSocket'
+let sandboxPath: string = getContext().filesDir + '/testSocket'
 let listenAddr: socket.NetAddress = {
   address: sandboxPath
 }
@@ -4673,7 +4649,7 @@ on(type: 'error', callback: ErrorCallback): void
 ```ts
 import socket from "@ohos.net.socket";
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
-server.on('error', (err) => {
+server.on('error', (err: Object) => {
   console.error("on error, err:" + JSON.stringify(err))
 });
 ```
@@ -4707,7 +4683,7 @@ off(type: 'error', callback?: ErrorCallback): void
 ```ts
 import socket from "@ohos.net.socket";
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
-let callback = (err) => {
+let callback = (err: Object) => {
   console.error("on error, err:" + JSON.stringify(err));
 }
 server.on('error', callback);
@@ -4841,7 +4817,7 @@ on(type: 'message', callback: Callback\<LocalSocketMessageInfo\>): void;
 ```ts
 import socket from "@ohos.net.socket";
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
-let sandboxPath: string = getContext(this).filesDir + '/testSocket'
+let sandboxPath: string = getContext().filesDir + '/testSocket'
 let listenAddr: socket.LocalAddress = {
   address: sandboxPath
 }
@@ -4855,7 +4831,7 @@ server.on('connect', (connection: socket.LocalSocketConnection) => {
     const uintArray = new Uint8Array(value.message);
     let messageView = '';
     for (let i = 0; i < uintArray.length; i++) {
-      messageView = String.fromCharCode(uintArray[i]);
+      messageView += String.fromCharCode(uintArray[i]);
     }
     console.log('total: ' + JSON.stringify(value));
     console.log('message infomation: ' + messageView);
@@ -4896,7 +4872,7 @@ let callback = (value: socket.LocalSocketMessageInfo) => {
   const uintArray = new Uint8Array(value.message)
   let messageView = '';
   for (let i = 0; i < uintArray.length; i++) {
-    messageView = String.fromCharCode(uintArray[i]);
+    messageView += String.fromCharCode(uintArray[i]);
   }
   console.log('total: ' + JSON.stringify(value));
   console.log('message infomation: ' + messageView);
@@ -5009,7 +4985,7 @@ on(type: 'error', callback: ErrorCallback): void
 import socket from "@ohos.net.socket";
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
 server.on('connect', (connection: socket.LocalSocketConnection) => {
-  connection.on('error', (err) => {
+  connection.on('error', (err: Object) => {
     console.error("on error, err:" + JSON.stringify(err))
   });
 });
@@ -5043,7 +5019,7 @@ off(type: 'error', callback?: ErrorCallback): void
 
 ```ts
 import socket from "@ohos.net.socket";
-let callback = (err) => {
+let callback = (err: Object) => {
   console.error("on error, err: " + JSON.stringify(err));
 }
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
@@ -5415,12 +5391,8 @@ on(type: 'message', callback: Callback\<SocketMessageInfo\>): void;
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
-class SocketInfo {
-  message: ArrayBuffer = new ArrayBuffer(1);
-  remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
-}
 let messageView = '';
-tls.on('message', (value: SocketInfo) => {
+tls.on('message', (value: socket.SocketMessageInfo) => {
   for (let i: number = 0; i < value.message.byteLength; i++) {
     let uint8Array = new Uint8Array(value.message) 
     let messages = uint8Array[i]
@@ -5456,12 +5428,8 @@ off(type: 'message', callback?: Callback\<SocketMessageInfo\>): void
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
-class SocketInfo {
-  message: ArrayBuffer = new ArrayBuffer(1);
-  remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
-}
 let messageView = '';
-let callback = (value: SocketInfo) => {
+let callback = (value: socket.SocketMessageInfo) => {
   for (let i: number = 0; i < value.message.byteLength; i++) {
     let uint8Array = new Uint8Array(value.message) 
     let messages = uint8Array[i]
@@ -5675,8 +5643,8 @@ tlsTwoWay.connect(tlsConnectOptions, (err: BusinessError) => {
   console.error("connect callback error" + err);
 });
 
-let tlsOneWay: socket.TLSSocket = socket.constructTLSSocketInstance(); // One way authentication
-tlsOneWay.bind(bindAddr, (err: BusinessError) => {
+let tlsTwoWay: socket.TLSSocket = socket.constructTLSSocketInstance(); // One way authentication
+tlsTwoWay.bind(bindAddr, (err: BusinessError) => {
   if (err) {
     console.log('bind fail');
     return;
@@ -5684,7 +5652,7 @@ tlsOneWay.bind(bindAddr, (err: BusinessError) => {
   console.log('bind success');
 });
 
-let tlsOneWayConnectOptions: socket.TLSConnectOptions = {
+let tlsTwoWayConnectOptions: socket.TLSConnectOptions = {
   address: {
     address: '192.168.xx.xxx',
     port: 8080
@@ -5694,7 +5662,7 @@ let tlsOneWayConnectOptions: socket.TLSConnectOptions = {
     cipherSuite: "AES256-SHA256"
   }
 }
-tlsOneWay.connect(tlsOneWayConnectOptions, (err: BusinessError) => {
+tlsTwoWay.connect(tlsTwoWayConnectOptions, (err: BusinessError) => {
   console.error("connect callback error" + err);
 });
 ```
@@ -5780,8 +5748,8 @@ tlsTwoWay.connect(tlsConnectOptions).then(() => {
   console.log("connect failed " + JSON.stringify(err));
 });
 
-let tlsOneWay: socket.TLSSocket = socket.constructTLSSocketInstance(); // One way authentication
-tlsOneWay.bind(bindAddr, (err: BusinessError) => {
+let tlsTwoWay: socket.TLSSocket = socket.constructTLSSocketInstance(); // One way authentication
+tlsTwoWay.bind(bindAddr, (err: BusinessError) => {
   if (err) {
     console.log('bind fail');
     return;
@@ -5789,7 +5757,7 @@ tlsOneWay.bind(bindAddr, (err: BusinessError) => {
   console.log('bind success');
 });
 
-let tlsOneWayConnectOptions: socket.TLSConnectOptions = {
+let tlsTwoWayConnectOptions: socket.TLSConnectOptions = {
   address: {
     address: '192.168.xx.xxx',
     port: 8080
@@ -5799,7 +5767,7 @@ let tlsOneWayConnectOptions: socket.TLSConnectOptions = {
     cipherSuite: "AES256-SHA256"
   }
 }
-tlsOneWay.connect(tlsOneWayConnectOptions).then(() => {
+tlsTwoWay.connect(tlsTwoWayConnectOptions).then(() => {
   console.log("connect successfully");
 }).catch((err: BusinessError) => {
   console.log("connect failed " + JSON.stringify(err));
@@ -8182,12 +8150,8 @@ tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("failed" + err);
 });
 
-class SocketInfo {
-  message: ArrayBuffer = new ArrayBuffer(1);
-  remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
-}
 tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
-  client.on('message', (value: SocketInfo) => {
+  client.on('message', (value: socket.SocketMessageInfo) => {
     let messageView = '';
     for (let i: number = 0; i < value.message.byteLength; i++) {
       let uint8Array = new Uint8Array(value.message) 
@@ -8254,11 +8218,7 @@ tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("failed" + err);
 });
 
-class SocketInfo {
-  message: ArrayBuffer = new ArrayBuffer(1);
-  remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
-}
-let callback = (value: SocketInfo) => {
+let callback = (value: socket.SocketMessageInfo) => {
   let messageView = '';
   for (let i: number = 0; i < value.message.byteLength; i++) {
     let uint8Array = new Uint8Array(value.message) 
