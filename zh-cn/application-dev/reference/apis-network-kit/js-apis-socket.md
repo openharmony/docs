@@ -2376,7 +2376,7 @@ tcp.on('message', (value: socket.SocketMessageInfo) => {
   console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
 });
 ```
-    
+
 ### off('message')
 
 off(type: 'message', callback?: Callback<SocketMessageInfo\>): void
