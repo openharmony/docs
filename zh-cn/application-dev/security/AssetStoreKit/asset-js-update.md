@@ -6,6 +6,8 @@
 
 [update(query: AssetMap, attributesToUpdate: AssetMap): Promise\<void>](../../reference/apis-asset-store-kit/js-apis-asset.md#assetupdate)
 
+[updateSync(query: AssetMap, attributesToUpdate: AssetMap): void](../../reference/apis-asset-store-kit/js-apis-asset.md#assetupdatesync12)
+
 query的参数列表：
 
 | 属性名称（Tag）        | 属性内容（Value）                                             | 是否必选  | 说明                                             |
@@ -38,6 +40,10 @@ attributesToUpdate的参数列表：
 | DATA_LABEL_NORMAL_4   | 类型为Uint8Array，长度为1-512字节                            | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护             |
 
 ## 代码示例
+
+> **说明：**
+>
+> 本模块提供了异步和同步两套接口，以下为异步接口的使用示例，同步接口详见[API文档](../../reference/apis-asset-store-kit/js-apis-asset.md)。
 
 更新别名是demo_alias的关键资产，将关键资产明文更新为demo_pwd_new，附属属性更新成demo_label_new。
 
