@@ -66,7 +66,7 @@ try {
 
 getBundleInstaller(): Promise\<BundleInstaller>
 
-获取BundleInstaller对象，使用callback形式返回结果。
+获取BundleInstaller对象，使用Promise形式返回结果。
 
 **系统接口：** 此接口为系统接口。
 
