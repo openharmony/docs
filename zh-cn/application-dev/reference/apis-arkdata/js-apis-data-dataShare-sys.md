@@ -355,7 +355,7 @@ dataShare.disableSilentProxy(context, uri).then(() => {
 | -------- | -------- | ----- | -------- |
 | key | string | 是 | 指定运算结果的键。 |
 | result | number | 是 | 指定运算结果。正常情况下返回0，异常情况下返回错误码。  |
-## UpdateOperation<sup>10+</sup>
+## UpdateOperation<sup>12+</sup>
 
 批量更新操作的参数结构。
 
@@ -1279,11 +1279,11 @@ try {
 };
 ```
 
-### batchUpdate<sup>10+</sup>
+### batchUpdate<sup>12+</sup>
 
-batchUpdate(operations: Record<string, Array<UpdateOperation>>): Promise<Record<string, Array<number>>>
+batchUpdate(operations: Record&lt;string, Array&lt;UpdateOperation&gt;&gt;): Promise&lt;Record&lt;string, Array&lt;number&gt;&gt;&gt;
 
-批量更新数据库中的数据记录。使用Promise异步回调。
+批量更新数据库中的数据记录，Record最多支持900K的数据，超出该限制更新失败；该接口的事务性取决于provider（数据提供方）。使用Promise异步回调。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -1291,13 +1291,22 @@ batchUpdate(operations: Record<string, Array<UpdateOperation>>): Promise<Record<
 
 | 参数名     | 类型                                                         | 必填 | 说明                                   |
 | ---------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
-| operations | Record<string, Array<[UpdateOperation](js-apis-data-dataShare-sys.md#UpdateOperation)>> | 是   | 要更新数据的路径、筛选条件和数据集合。 |
+| operations | Record&lt;string, Array&lt;[UpdateOperation](#updateoperation12)&gt;&gt; | 是   | 要更新数据的路径、筛选条件和数据集合。 |
 
 **返回值：**
 
-| 类型                                         | 说明                                    |
-| -------------------------------------------- | --------------------------------------- |
-| Promise&lt;Record<string, Array<number>>&gt; | Promise对象。返回更新的数据记录数集合。 |
+| 类型                                                  | 说明                                                         |
+| ----------------------------------------------------- | ------------------------------------------------------------ |
+| Promise&lt;Record&lt;string, Array&lt;number&gt;&gt;&gt; | Promise对象。返回更新的数据记录数集合，更新失败的UpdateOperation的数据记录数为-1。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)。
+
+| 错误码ID | 错误信息                             |
+| -------- | ------------------------------------ |
+| 15700000 | Inner error.                         |
+| 15700010 | The datasharehelper has been closed. |
 
 **示例：**
 
@@ -1306,32 +1315,52 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import { ValuesBucket } from '@ohos.data.ValuesBucket'
 import { BusinessError } from '@ohos.base'
 
-let uri = ("datashare:///com.samples.datasharetest.DataShare");
-let da = new dataSharePredicates.DataSharePredicates();
-da.equalTo("name", "ZhangSan");
-let key1: string = "name";
-let value1: string = "roe1"
-let key2: string = "age";
-let value2: number = 21
-let key3: string = "salary";
-let value3: number = 20.5;
-const va: ValuesBucket = {
-  key1: value1,
-  key2: value2,
-  key3: value3,
+let record: Record<string, Array<dataShare.UpdateOperation>> = {};
+let operations1: Array<dataShare.UpdateOperation> = [];
+let operations2: Array<dataShare.UpdateOperation> = [];
+
+let pre1: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+pre1.equalTo("name", "ZhangSan");
+let vb1: ValueBucket = {
+  "name": "ZhangSan1",
 }
+let operation1: dataShare.UpdateOperation = {
+  values: vb1,
+  predicates: pre1
+}
+operations1.push(operation1);
+
+let pre2: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+pre2.equalTo("name", "ZhangSan2");
+let vb2: ValueBucket = {
+  "name": "ZhangSan3",
+}
+let operation2: dataShare.UpdateOperation = {
+  values: vb2,
+  predicates: pre2
+}
+operations2.push(operation2);
+record["uri1"] = operations1;
+record["uri2"] = operations2;
+
 try {
   if (dataShareHelper != undefined) {
-    (dataShareHelper as dataShare.DataShareHelper).update(uri, da, va).then((data: number) => {
-      console.info("update succeed, data : " + data);
+    (dataShareHelper as dataShare.DataShareHelper).batchUpdate(record).then((data: Record<string, Array<number>>) => {
+      // 遍历data获取每条数据的更新结果， value为更新成功的数据记录数，若小于0，说明该次更新失败
+      for (const [key, values] of Object.entries(data)) {
+          console.info(`Update uri:${key}`);
+          for (const value of values) {
+              console.info(`Update result:${value}`);
+          }
+      }
     }).catch((err: BusinessError) => {
-      console.error(`update error: code: ${err.code}, message: ${err.message} `);
+      console.error(`Batch update error: code: ${err.code}, message: ${err.message} `);
     });
   }
 } catch (err) {
   let code = (err as BusinessError).code;
   let message = (err as BusinessError).message;
-  console.error(`update error: code: ${code}, message: ${message} `);
+  console.error(`Batch update error: code: ${code}, message: ${message} `);
 };
 ```
 
