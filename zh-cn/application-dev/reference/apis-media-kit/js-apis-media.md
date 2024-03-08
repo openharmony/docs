@@ -3586,7 +3586,7 @@ import media from '@ohos.multimedia.media';
 
 let avMetadataExtractor: media.AVMetadataExtractor | undefined = undefined;
 
-// 释放资源
+//释放资源
 media.createAVMetadataExtractor((err: BusinessError, extractor: media.AVMetadataExtractor) => {
   if(extractor != null){
     avMetadataExtractor = extractor;
@@ -3634,7 +3634,7 @@ import media from '@ohos.multimedia.media';
 
 let avMetadataExtractor: media.AVMetadataExtractor | undefined = undefined;
 
-// 释放资源
+//释放资源
 media.createAVMetadataExtractor((err: BusinessError, extractor: media.AVMetadataExtractor) => {
   if(extractor != null){
     avMetadataExtractor = extractor;
@@ -5836,7 +5836,7 @@ import media from '@ohos.multimedia.media';
 
 let avImageGenerator: media.AVImageGenerator | undefined = undefined;
 
-// 释放资源
+//释放资源
 media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenerator) => {
   if(generator != null){
     avImageGenerator = generator;
@@ -5884,7 +5884,7 @@ import media from '@ohos.multimedia.media';
 
 let avImageGenerator: media.AVImageGenerator | undefined = undefined;
 
-// 释放资源
+//释放资源
 media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenerator) => {
   if(generator != null){
     avImageGenerator = generator;
