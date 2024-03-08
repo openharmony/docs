@@ -355,6 +355,17 @@ dataShare.disableSilentProxy(context, uri).then(() => {
 | -------- | -------- | ----- | -------- |
 | key | string | 是 | 指定运算结果的键。 |
 | result | number | 是 | 指定运算结果。正常情况下返回0，异常情况下返回错误码。  |
+## UpdateOperation<sup>10+</sup>
+
+批量更新操作的参数结构。
+
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
+
+| 名称       | 类型                                                         | 必填 | 说明           |
+| ---------- | ------------------------------------------------------------ | ---- | -------------- |
+| values     | [ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)    | 是   | 要更新的数据。 |
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 筛选条件。     |
+
 ## DataShareHelper
 
 DataShare管理工具实例，可使用此实例访问或管理服务端的数据。在调用DataShareHelper提供的方法前，需要先通过[createDataShareHelper](#datasharecreatedatasharehelper)构建一个实例。
@@ -1231,6 +1242,62 @@ update(uri: string, predicates: dataSharePredicates.DataSharePredicates, value: 
 | 类型             | 说明                                                         |
 | ---------------- | ------------------------------------------------------------ |
 | Promise&lt;number&gt; | Promise对象。返回更新的数据记录数。<br />因部分数据库（如KVDB）的相应接口并不提供相应支持，故若服务端使用此数据库，则此Promise也无法返回更新的数据记录数。 |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { ValuesBucket } from '@ohos.data.ValuesBucket'
+import { BusinessError } from '@ohos.base'
+
+let uri = ("datashare:///com.samples.datasharetest.DataShare");
+let da = new dataSharePredicates.DataSharePredicates();
+da.equalTo("name", "ZhangSan");
+let key1: string = "name";
+let value1: string = "roe1"
+let key2: string = "age";
+let value2: number = 21
+let key3: string = "salary";
+let value3: number = 20.5;
+const va: ValuesBucket = {
+  key1: value1,
+  key2: value2,
+  key3: value3,
+}
+try {
+  if (dataShareHelper != undefined) {
+    (dataShareHelper as dataShare.DataShareHelper).update(uri, da, va).then((data: number) => {
+      console.info("update succeed, data : " + data);
+    }).catch((err: BusinessError) => {
+      console.error(`update error: code: ${err.code}, message: ${err.message} `);
+    });
+  }
+} catch (err) {
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`update error: code: ${code}, message: ${message} `);
+};
+```
+
+### batchUpdate<sup>10+</sup>
+
+batchUpdate(operations: Record<string, Array<UpdateOperation>>): Promise<Record<string, Array<number>>>
+
+批量更新数据库中的数据记录。使用Promise异步回调。
+
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
+
+**参数：**
+
+| 参数名     | 类型                                                         | 必填 | 说明                                   |
+| ---------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
+| operations | Record<string, Array<[UpdateOperation](js-apis-data-dataShare-sys.md#UpdateOperation)>> | 是   | 要更新数据的路径、筛选条件和数据集合。 |
+
+**返回值：**
+
+| 类型                                         | 说明                                    |
+| -------------------------------------------- | --------------------------------------- |
+| Promise&lt;Record<string, Array<number>>&gt; | Promise对象。返回更新的数据记录数集合。 |
 
 **示例：**
 
