@@ -1455,7 +1455,7 @@ Authenticates an app account. This API uses an asynchronous callback to return t
 
 auth(name: string, owner: string, authType: string, options: Record<string, Object>, callback: AuthCallback): void
 
-Authenticates an app account with customized options. This API uses an asynchronous callback to return the result.
+Authenticates an app account. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -2860,7 +2860,7 @@ Adds an app account. This API uses an asynchronous callback to return the result
 
 > **NOTE**
 > 
->This API is supported since API version 7 and deprecated since API version 9. You are advised to use [createAccount](#createaccount9).
+>This API is supported since API version 7 and deprecated since API version 9. Use [createAccount](#createaccount9) instead.
 
 
 **System capability**: SystemCapability.Account.AppAccount
@@ -2889,7 +2889,7 @@ addAccount(name: string, extraInfo: string, callback: AsyncCallback&lt;void&gt;)
 Adds an app account name and additional information. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [createAccount](#createaccount9-1).
+> This API is supported since API version 7 and deprecated since API version 9. Use [createAccount](#createaccount9-1) instead.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -2918,7 +2918,7 @@ addAccount(name: string, extraInfo?: string): Promise&lt;void&gt;
 Adds an app account name and additional information. This API uses an asynchronous callback to return the result. This API uses a promise to return the result.
 
 > **NOTE** 
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [createAccount](#createaccount9-2).
+> This API is supported since API version 7 and deprecated since API version 9. Use [createAccount](#createaccount9-2) instead.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -2955,7 +2955,7 @@ Adds an app account implicitly based on the specified owner. This API uses an as
 
 > **NOTE** 
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [createAccountImplicitly](#createaccountimplicitly9).
+> This API is supported since API version 8 and deprecated since API version 9. Use [createAccountImplicitly](#createaccountimplicitly9) instead.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -3010,7 +3010,7 @@ Deletes an app account. This API uses an asynchronous callback to return the res
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [removeAccount](#removeaccount9).
+> This API is supported since API version 7 and deprecated since API version 9. Use [removeAccount](#removeaccount9) instead.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -3039,7 +3039,7 @@ Deletes an app account. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [removeAccount](#removeaccount9).
+> This API is supported since API version 7 and deprecated since API version 9. Use [removeAccount](#removeaccount9) instead.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -3074,7 +3074,7 @@ Disables an app account from accessing an app. This API uses an asynchronous cal
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setAppAccess](#setappaccess9).
+> This API is supported since API version 7 and deprecated since API version 9. Use [setAppAccess](#setappaccess9) instead.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -3104,7 +3104,7 @@ Disables an app account from accessing an app. This API uses a promise to return
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setAppAccess](#setappaccess9-1).
+> This API is supported since API version 7 and deprecated since API version 9. Use [setAppAccess](#setappaccess9-1) instead.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -3141,7 +3141,7 @@ Enables an app account to access an app. This API uses an asynchronous callback 
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setAppAccess](#setappaccess9).
+> This API is supported since API version 7 and deprecated since API version 9. Use [setAppAccess](#setappaccess9) instead.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -3171,7 +3171,7 @@ Enables an app account to access an app. This API uses a promise to return the r
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setAppAccess](#setappaccess9-1).
+> This API is supported since API version 7 and deprecated since API version 9. Use [setAppAccess](#setappaccess9-1) instead.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -3208,7 +3208,7 @@ Checks whether data synchronization is enabled for an app account. This API uses
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [checkDataSyncEnabled](#checkdatasyncenabled9).
+> This API is supported since API version 7 and deprecated since API version 9. Use [checkDataSyncEnabled](#checkdatasyncenabled9) instead.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -3218,7 +3218,7 @@ Checks whether data synchronization is enabled for an app account. This API uses
 
 | Name     | Type                          | Mandatory  | Description                   |
 | -------- | ---------------------------- | ---- | --------------------- |
-| name     | string                       | Yes   | Name of the target app account.              |
+| name     | string                       | Yes   | Name of the target app account.       |
 | callback | AsyncCallback&lt;boolean&gt; | Yes   | Callback invoked to return the result. The value **true** means data synchronization is enabled for the app account; the value **false** means the opposite.|
 
 **Example**
@@ -3240,7 +3240,7 @@ Checks whether data synchronization is enabled for an app account. This API uses
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [checkDataSyncEnabled](#checkdatasyncenabled9-1).
+> This API is supported since API version 7 and deprecated since API version 9. Use [checkDataSyncEnabled](#checkdatasyncenabled9-1) instead.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -3250,7 +3250,7 @@ Checks whether data synchronization is enabled for an app account. This API uses
 
 | Name | Type    | Mandatory  | Description     |
 | ---- | ------ | ---- | ------- |
-| name | string | Yes   | Name of the target app account.|
+| name | string | Yes   | Name of the target app account. |
 
 **Return value**
 
@@ -3278,7 +3278,7 @@ Set credentials for an app account. This API uses an asynchronous callback to re
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setCredential](#setcredential9).
+> This API is supported since API version 7 and deprecated since API version 9. Use [setCredential](#setcredential9) instead.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -3309,7 +3309,7 @@ Set credentials for an app account. This API uses a promise to return the result
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setCredential](#setcredential9-1).
+> This API is supported since API version 7 and deprecated since API version 9. Use [setCredential](#setcredential9-1) instead.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -3347,7 +3347,7 @@ Sets additional information for an app account. This API uses an asynchronous ca
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setCustomData](#setcustomdata9).
+> This API is supported since API version 7 and deprecated since API version 9. Use [setCustomData](#setcustomdata9) instead.
 
 
 **System capability**: SystemCapability.Account.AppAccount
@@ -3378,7 +3378,7 @@ Sets additional information for an app account. This API uses a promise to retur
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setCustomData](#setcustomdata9-1).
+> This API is supported since API version 7 and deprecated since API version 9. Use [setCustomData](#setcustomdata9-1) instead.
 
 
 **System capability**: SystemCapability.Account.AppAccount
@@ -3416,7 +3416,7 @@ Sets data synchronization for an app account. This API uses an asynchronous call
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setDataSyncEnabled](#setdatasyncenabled9).
+> This API is supported since API version 7 and deprecated since API version 9. Use [setDataSyncEnabled](#setdatasyncenabled9) instead.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -3448,7 +3448,7 @@ Sets data synchronization for an app account. This API uses a promise to return 
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setDataSyncEnabled](#setdatasyncenabled9-1).
+> This API is supported since API version 7 and deprecated since API version 9. Use [setDataSyncEnabled](#setdatasyncenabled9-1) instead.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -3487,7 +3487,7 @@ Sets data to be associated with an app account. This API uses an asynchronous ca
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setCustomData](#setcustomdata9).
+> This API is supported since API version 7 and deprecated since API version 9. Use [setCustomData](#setcustomdata9) instead.
 
 
 **System capability**: SystemCapability.Account.AppAccount
@@ -3519,7 +3519,7 @@ Sets data to be associated with an app account. This API uses a promise to retur
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setCustomData](#setcustomdata9-1).
+> This API is supported since API version 7 and deprecated since API version 9. Use [setCustomData](#setcustomdata9-1) instead.
 
 
 **System capability**: SystemCapability.Account.AppAccount
@@ -3558,7 +3558,7 @@ Obtains information about all accessible app accounts. This API uses an asynchro
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getAllAccounts](#getallaccounts9).
+> This API is supported since API version 7 and deprecated since API version 9. Use [getAllAccounts](#getallaccounts9) instead.
 
 **Required permissions**: ohos.permission.GET_ALL_APP_ACCOUNTS
 
@@ -3589,7 +3589,7 @@ Obtains information about all accessible app accounts. This API uses a promise t
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getAllAccounts](#getallaccounts9-1).
+> This API is supported since API version 7 and deprecated since API version 9. Use [getAllAccounts](#getallaccounts9-1) instead.
 
 **Required permissions**: ohos.permission.GET_ALL_APP_ACCOUNTS
 
@@ -3621,7 +3621,7 @@ Obtains the app accounts that can be accessed by the invoker based on the app ac
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getAccountsByOwner](#getaccountsbyowner9).
+> This API is supported since API version 7 and deprecated since API version 9. Use [getAccountsByOwner](#getaccountsbyowner9) instead.
 
 **Required permissions**: ohos.permission.GET_ALL_APP_ACCOUNTS
 
@@ -3654,7 +3654,7 @@ Obtains the app accounts that can be accessed by the invoker based on the app ac
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getAccountsByOwner](#getaccountsbyowner9-1).
+> This API is supported since API version 7 and deprecated since API version 9. Use [getAccountsByOwner](#getaccountsbyowner9-1) instead.
 
 **Required permissions**: ohos.permission.GET_ALL_APP_ACCOUNTS (available only to system applications)
 
@@ -3670,7 +3670,7 @@ Obtains the app accounts that can be accessed by the invoker based on the app ac
 
 | Type                                      | Description                   |
 | ---------------------------------------- | --------------------- |
-| Promise&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | Promise use to return the app accounts that can be accessed by the invoker.|
+| Promise&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | Promise used to return the app accounts that can be accessed by the invoker.|
 
 **Example**
 
@@ -3693,7 +3693,7 @@ Obtains the credential of an app account. This API uses an asynchronous callback
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getCredential](#getcredential9).
+> This API is supported since API version 7 and deprecated since API version 9. Use [getCredential](#getcredential9) instead.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -3724,7 +3724,7 @@ Obtains the credential of an app account. This API uses a promise to return the 
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getCredential](#getcredential9-1).
+> This API is supported since API version 7 and deprecated since API version 9. Use [getCredential](#getcredential9-1) instead.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -3761,7 +3761,7 @@ Obtains additional information of an app account. Additional information refers 
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getCustomData](#getcustomdata9).
+> This API is supported since API version 7 and deprecated since API version 9. Use [getCustomData](#getcustomdata9) instead.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -3791,7 +3791,7 @@ Obtains additional information of an app account. Additional information refers 
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getCustomData](#getcustomdata9-1).
+> This API is supported since API version 7 and deprecated since API version 9. Use [getCustomData](#getcustomdata9-1) instead.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -3827,7 +3827,7 @@ Obtains data associated with an app account. This API uses an asynchronous callb
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getCustomData](#getcustomdata9).
+> This API is supported since API version 7 and deprecated since API version 9. Use [getCustomData](#getcustomdata9) instead.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -3858,7 +3858,7 @@ Obtains data associated with an app account. This API uses a promise to return t
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getCustomData](#getcustomdata9-1).
+> This API is supported since API version 7 and deprecated since API version 9. Use [getCustomData](#getcustomdata9-1) instead.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -3895,7 +3895,7 @@ Subscribes to account information changes of apps.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [on('accountChange')](#onaccountchange9).
+> This API is supported since API version 7 and deprecated since API version 9. Use [on('accountChange')](#onaccountchange9) instead.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -3929,7 +3929,7 @@ Unsubscribes from account information changes.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [off('accountChange')](#offaccountchange9).
+> This API is supported since API version 7 and deprecated since API version 9. Use [off('accountChange')](#offaccountchange9) instead.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -3965,7 +3965,7 @@ Authenticates an app account with customized options. This API uses an asynchron
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [auth](#auth9).
+> This API is supported since API version 8 and deprecated since API version 9. Use [auth](#auth9) instead.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -4021,7 +4021,7 @@ Obtains the authorization token of the specified authentication type for an app 
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getAuthToken](#getauthtoken9).
+> This API is supported since API version 8 and deprecated since API version 9. Use [getAuthToken](#getauthtoken9) instead.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -4054,7 +4054,7 @@ Obtains the authorization token of the specified authentication type for an app 
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getAuthToken](#getauthtoken9-1).
+> This API is supported since API version 8 and deprecated since API version 9. Use [getAuthToken](#getauthtoken9-1) instead.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -4092,7 +4092,7 @@ Sets an authorization token of the specific authentication type for an app accou
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [setAuthToken](#setauthtoken9).
+> This API is supported since API version 8 and deprecated since API version 9. Use [setAuthToken](#setauthtoken9) instead.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -4123,7 +4123,7 @@ Sets an authorization token of the specific authentication type for an app accou
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [setAuthToken](#setauthtoken9-1).
+> This API is supported since API version 8 and deprecated since API version 9. Use [setAuthToken](#setauthtoken9-1) instead.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -4161,7 +4161,7 @@ Deletes the authorization token of the specified authentication type for an app 
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [deleteAuthToken](#deleteauthtoken9).
+> This API is supported since API version 8 and deprecated since API version 9. Use [deleteAuthToken](#deleteauthtoken9) instead.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -4194,7 +4194,7 @@ Deletes the authorization token of the specified authentication type for an app 
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [deleteAuthToken](#deleteauthtoken9-1).
+> This API is supported since API version 8 and deprecated since API version 9. Use [deleteAuthToken](#deleteauthtoken9-1) instead.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -4233,7 +4233,7 @@ Sets the visibility of an authorization token to an app. This API uses an asynch
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [setAuthTokenVisibility](#setauthtokenvisibility9).
+> This API is supported since API version 8 and deprecated since API version 9. Use [setAuthTokenVisibility](#setauthtokenvisibility9) instead.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -4266,7 +4266,7 @@ Sets the visibility of an authorization token to an app. This API uses a promise
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [setAuthTokenVisibility](#setauthtokenvisibility9-1).
+> This API is supported since API version 8 and deprecated since API version 9. Use [setAuthTokenVisibility](#setauthtokenvisibility9-1) instead.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -4305,7 +4305,7 @@ Checks the visibility of an authorization token of the specified authentication 
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [checkAuthTokenVisibility](#checkauthtokenvisibility9).
+> This API is supported since API version 8 and deprecated since API version 9. Use [checkAuthTokenVisibility](#checkauthtokenvisibility9) instead.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -4338,7 +4338,7 @@ Checks the visibility of an authorization token of the specified authentication 
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [checkAuthTokenVisibility](#checkauthtokenvisibility9-1).
+> This API is supported since API version 8 and deprecated since API version 9. Use [checkAuthTokenVisibility](#checkauthtokenvisibility9-1) instead.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -4377,7 +4377,7 @@ Obtains all tokens visible to the invoker for an app account. This API uses an a
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getAllAuthTokens](#getallauthtokens9).
+> This API is supported since API version 8 and deprecated since API version 9. Use [getAllAuthTokens](#getallauthtokens9) instead.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -4409,7 +4409,7 @@ Obtains all tokens visible to the invoker for an app account. This API uses a pr
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getAllAuthTokens](#getallauthtokens9-1).
+> This API is supported since API version 8 and deprecated since API version 9. Use [getAllAuthTokens](#getallauthtokens9-1) instead.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -4447,7 +4447,7 @@ Obtains the authorization list of the specified authentication type for an app a
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getAuthList](#getauthlist9).
+> This API is supported since API version 8 and deprecated since API version 9. Use [getAuthList](#getauthlist9) instead.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -4478,7 +4478,7 @@ Obtains the authorization list of the specified authentication type for an app a
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getAuthList](#getauthlist9-1).
+> This API is supported since API version 8 and deprecated since API version 9. Use [getAuthList](#getauthlist9-1) instead.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -4515,7 +4515,7 @@ Obtains the authenticator callback for an authentication session. This API uses 
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getAuthCallback](#getauthcallback9).
+> This API is supported since API version 8 and deprecated since API version 9. Use [getAuthCallback](#getauthcallback9) instead.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -4562,7 +4562,7 @@ Obtains the authenticator callback for an authentication session. This API uses 
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getAuthCallback](#getauthcallback9-1).
+> This API is supported since API version 8 and deprecated since API version 9. Use [getAuthCallback](#getauthcallback9-1) instead.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -4612,7 +4612,7 @@ Obtains the authenticator information of an app. This API uses an asynchronous c
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [queryAuthenticatorInfo](#queryauthenticatorinfo9).
+> This API is supported since API version 8 and deprecated since API version 9. Use [queryAuthenticatorInfo](#queryauthenticatorinfo9) instead.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -4643,7 +4643,7 @@ Obtains the authenticator information of an app. This API uses a promise to retu
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [queryAuthenticatorInfo](#queryauthenticatorinfo9-1).
+> This API is supported since API version 8 and deprecated since API version 9. Use [queryAuthenticatorInfo](#queryauthenticatorinfo9-1) instead.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -4701,7 +4701,7 @@ Defines authorization token information.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [AuthTokenInfo](#authtokeninfo9).
+> This API is supported since API version 8 and deprecated since API version 9. Use [AuthTokenInfo](#authtokeninfo9) instead.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -4821,9 +4821,8 @@ Enumerates the constants.
 
 Enumerates the result codes.
 
-> **NOTE**
-> 
-> This enum is supported since API version 8 and deprecated since API version 9. Error codes are used from API version 9. For details, see [Account Management Error Codes](../errorcodes/errorcode-account.md).
+> **NOTE**<br>
+> This enum is supported since API version 8 and deprecated since API version 9. For details, see [Account Management Error Codes](errorcode-account.md).
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -4968,7 +4967,7 @@ Provides OAuth authenticator callbacks.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [AuthCallback](#authcallback9).
+> This API is supported since API version 8 and deprecated since API version 9. Use [AuthCallback](#authcallback9) instead.
 
 ### onResult<sup>8+</sup>
 
@@ -5071,7 +5070,7 @@ Adds an app account implicitly based on the specified authentication type and op
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [createAccountImplicitly](#createaccountimplicitly9-2).
+> This API is supported since API version 8 and deprecated since API version 9. Use [createAccountImplicitly](#createaccountimplicitly9-2) instead.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -5110,7 +5109,7 @@ Authenticates an app account to obtain the authorization token. This API uses an
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [auth](#auth9-2).
+> This API is supported since API version 8 and deprecated since API version 9. Use [auth](#auth9-2) instead.
 
 **System capability**: SystemCapability.Account.AppAccount
 
