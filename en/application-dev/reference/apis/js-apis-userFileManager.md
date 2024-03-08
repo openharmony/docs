@@ -1,6 +1,6 @@
 # @ohos.filemanagement.userFileManager (User Data Management)
 
-The **userFileManager** module provides user data management capabilities, including accessing and modifying user media data (audio and video clips, images, and files).
+The **userFileManager** module provides user data management capabilities, including accessing and modifying user media data (audio and video clips, images, and documents).
 
 > **NOTE**
 >
@@ -17,7 +17,7 @@ import userFileManager from '@ohos.filemanagement.userFileManager';
 
 getUserFileMgr(context: Context): UserFileManager
 
-Obtains a **UserFileManager** instance. This instance can be used to access and modify user media data (such as audio and video clips, images, and files).
+Obtains a **UserFileManager** instance.This instance can be used to access and modify user media data (such as audio and video clips, images, and documents).
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -1398,7 +1398,7 @@ Favorites or unfavorites this file asset. This API uses an asynchronous callback
 
 | Name       | Type                       | Mandatory  | Description                                |
 | ---------- | ------------------------- | ---- | ---------------------------------- |
-| isFavorite | boolean                   | Yes   | Operation to perform. The value **true** means to favorite the file asset, and **false** means the opposite.|
+| isFavorite | boolean                   | Yes   | Whether to favorite or unfavorite the file. The value **true** means to favorite the file, and **false** means to unfavorite the file.|
 | callback   | AsyncCallback&lt;void&gt; | Yes   | Callback that returns no value.                             |
 
 **Example**
@@ -1439,7 +1439,7 @@ Favorites or unfavorites this file asset. This API uses a promise to return the 
 
 | Name       | Type     | Mandatory  | Description                                |
 | ---------- | ------- | ---- | ---------------------------------- |
-| isFavorite | boolean | Yes   | Operation to perform. The value **true** means to favorite the file asset, and **false** means the opposite.|
+| isFavorite | boolean | Yes   | Whether to favorite or unfavorite the file. The value **true** means to favorite the file, and **false** means to unfavorite the file.|
 
 **Return value**
 
@@ -2453,7 +2453,7 @@ Defines the options for fetching media files.
 
 | Name                  | Type               | Readable| Writable| Description                                             |
 | ---------------------- | ------------------- | ---- |---- | ------------------------------------------------ |
-| fetchColumns           | Array&lt;string&gt; | Yes  | Yes  | Options for fetching files based on the attributes in columns.<br>If this parameter is left empty, files are fetched by URI, name, and type (the specific field names vary with the file asset or album object) by default. In addition, an error will be reported if [get](#get) is called to obtain other attributes of this object.<br>Example: fetchColumns: ['uri', 'title']|
+| fetchColumns           | Array&lt;string&gt; | Yes  | Yes  | Options for fetching files based on the attributes in columns.<br>If this parameter is left empty, files are fetched by URI, name, and type (the specific field names vary with the file asset or album object) by default. In addition, an error will be reported if [get](#get) is called to obtain other attributes of this object.<br>Example:<br>fetchColumns: ['uri', 'title']|
 | predicates           | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md) | Yes  | Yes  | Predicates that specify the fetch criteria.|
 
 ## AlbumFetchOptions
