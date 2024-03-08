@@ -5803,7 +5803,7 @@ media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenera
 });
 ```
 
-### fetchFrameByTime<sup>11+</sup>
+### fetchFrameByTime<sup>12+</sup>
 
 fetchFrameByTime(timeUs: number, options: AVImageQueryOptions, param: PixelMapParams): Promise<image.PixelMap>
 
@@ -5870,7 +5870,7 @@ media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenera
 });
 ```
 
-### release<sup>11+</sup>
+### release<sup>12+</sup>
 
 release(callback: AsyncCallback\<void>): void
 
@@ -5918,7 +5918,7 @@ media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenera
 });
 ```
 
-### release<sup>11+</sup>
+### release<sup>12+</sup>
 
 release(): Promise\<void>
 
