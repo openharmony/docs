@@ -4598,6 +4598,43 @@ onNativeEmbedGestureEvent(callback: NativeEmbedTouchInfo)
     }
   }
   ```
+
+### onOverrideUrlLoading<sup>12+</sup>
+
+onOverrideUrlLoading(callback: OnOverrideUrlLoadingCallback)
+
+当URL将要加载到当前WebView中时，让宿主应用程序有机会获得控制权，如果没有提供WebViewClient，那么WebView将默认请求Activity Manager为URL选择适当的处理程序。
+如果提供了WebViewClient，返回true将导致当前WebView中止加载URL，而返回false则会导致WebView继续照常加载URL。
+
+**参数：**
+
+| 参数名          | 类型                                                                         | 说明                    |
+| -------------- | --------------------------------------------------------------------------- | ---------------------- |
+| callback       | [OnOverrideUrlLoadingCallback](#onoverrideurlloadingcallback12) | onOverrideUrlLoading的回调。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src: 'www.baidu.com', controller: this.controller })
+        .onOverrideUrlLoading((webResourceRequest: WebResourceRequest) => {
+            if (webResourceRequest && webResourceRequest.isRedirect()) {
+              return true;
+            }
+            return false;
+        })
+      }
+    }
+  }
+  ```
 ## ConsoleMessage
 
 Web组件获取控制台信息对象。示例代码参考[onConsole事件](#onconsole)。
@@ -6568,3 +6605,21 @@ type OnLargestContentfulPaintCallback = (largestContentfulPaint: [LargestContent
 | 参数名                 | 参数类型                                            | 参数描述                             |
 | ---------------------- | --------------------------------------------------- | ------------------------------------ |
 | largestContentfulPaint | [LargestContentfulPaint](#largestcontentfulpaint12) | 网页绘制页面最大内容度量的详细信息。 |
+
+## OnOverrideUrlLoadingCallback<sup>12+</sup>
+
+type OnOverrideUrlLoadingCallback = (webResourceRequest: WebResourceRequest) => boolean
+
+onOverrideUrlLoading的回调。
+
+**参数：**
+
+| 参数名                | 参数类型                                           | 参数描述                |
+| -------------------- | ------------------------------------------------ | ------------------- |
+| webResourceRequest | [WebResourceRequest](#webresourcerequest)  | url请求的相关信息。 |
+
+**返回值：**
+
+| 类型      | 说明                       |
+| ------- | ------------------------ |
+| boolean | 返回true表示阻止此次加载，否则允许此次加载。 |
