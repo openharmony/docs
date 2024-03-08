@@ -5923,4 +5923,4 @@ media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenera
 | 名称     | 类型   |  可读   |   可写    |  说明                   |
 | -------- | ------ |   ------| ------ | ---------------------- |
 | width     | number |  是   |  是   |  输出的缩略图宽度。         |
-| height | number |  是   |  是   | 输出的缩略图高度。 |
+| height | number |  是   |  是   | 输出的缩略图高度。 |

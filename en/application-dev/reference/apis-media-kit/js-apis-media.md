@@ -5987,4 +5987,4 @@ Defines the format parameters of the video thumbnail to be obtained.
 | Name    | Type  |  Readable  |   Writable   |  Description                  |
 | -------- | ------ |   ------| ------ | ---------------------- |
 | width     | number |  Yes  |  Yes  |  Width of the thumbnail.        |
-| height | number |  Yes  |  Yes  | Height of the thumbnail.|
+| height | number |  Yes  |  Yes  | Height of the thumbnail.|
