@@ -181,14 +181,6 @@ on(type: 'loopObserver', timeout: number, observer: LoopObserver): void
 | timeout | number | 是 |  表示事件执行阈值。 阈值必须大于0|
 | observer | [LoopObserver](js-apis-inner-application-loopObserver.md) | 是 | 注册主线程消息处理耗时监听器。 |
 
-**错误码**：
-
-| 错误码ID | 错误信息 |
-| ------- | -------- |
-| 16200001 | Invalid caller. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
-
 **示例：**
     
 ```ts
@@ -204,7 +196,7 @@ errorManager.on("loopObserver", 1, observer);
 
 ## ErrorManager.off<sup>12+</sup>
 
-function off(type: 'loopObserver', observer?: LoopObserver): void
+off(type: 'loopObserver', observer?: LoopObserver): void
 
 注销主线程消息处理监听器。
 
