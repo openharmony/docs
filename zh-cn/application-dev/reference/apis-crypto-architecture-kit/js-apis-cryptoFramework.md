@@ -689,8 +689,9 @@ getEncodedDer(format: string): DataBlob
 > **说明：**
 >
 > 本接口和[Key.getEncoded()](#getencoded)的区别是：<br/>
-> 1. 使用本接口时应当明确指定格式标准，例如对于ECC公钥，需要指定X509标准、是否压缩。本接口适用于对密钥格式有特定需求的场景，例如签名验签的一方使用cryptoFramework，而另一方使用其他加解密算法库的情况下，可能需要指定统一的密钥格式。
-> 2. [Key.getEncoded()](#getencoded)提供默认DER编码的输出，不支持指定密钥格式，例如对于ECC公钥，getEncoded输出的结果是否为压缩格式取决于生成密钥时的数据是否压缩（例如指定二进制数据通过[convertKey](#convertkey-3)接口生成密钥对象时，二进制数据是否压缩决定了getEncoded结果是否压缩）。[Key.getEncoded()](#getencoded)适用于无需指定密钥格式的一般场景，例如签名验签的双方均使用cryptoFramework来生成密钥/获取密钥数据。
+> 1. 本接口可根据入参决定数据的输出格式。
+> 2. [Key.getEncoded()](#getencoded)接口，不支持指定密钥格式，生成的数据格式与原始数据格式保持一致。
+> 3. 当使用双方不一致时，用户可以根据实际场景，调用本接口做格式转换。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -1634,7 +1635,7 @@ static convertPoint(curveName: string, encodedPoint: Uint8Array): Point
 | 参数名       | 类型        | 必填 | 说明                                           |
 | ------------ | ---------- | ---- | ---------------------------------------------- |
 | curveName    | string     | 是   | 椭圆曲线的曲线名，即相应的NID(Name IDentifier)。 |
-| encodedPoint | Uint8Array | 是   | 指定的ECC点数据。 |
+| encodedPoint | Uint8Array | 是   | 指定的ECC椭圆曲线上的点的数据。 |
 
 **返回值：**
 
