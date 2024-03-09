@@ -30,6 +30,20 @@ Ability的状态，该类型为枚举，可配合[AbilityRunningInfo](js-apis-in
 | FOREGROUNDING | 11 | 表示ability为前台调度中状态。  | 
 | BACKGROUNDING | 12 | 表示ability为后台调度中状态。  | 
 
+## UserStatus<sup>12+</sup>
+
+用户操作的断言调试结果，该类型为枚举。
+
+**系统接口**: 该接口为系统接口。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| ASSERT_TERMINATE | 0 | 表示用户点击终止的操作的断言调试结果。 |
+| ASSERT_CONTINUE | 1 | 表示用户点击继续的操作的断言调试结果。 |
+| ASSERT_RETRY | 2 | 表示用户点击重试的操作的断言调试结果。 |
+
 ## updateConfiguration
 
 updateConfiguration(config: Configuration, callback: AsyncCallback\<void>): void
@@ -826,4 +840,54 @@ abilityManager.getForegroundUIAbilities().then((data: Array<abilityManager.Abili
 }).catch((error: BusinessError) => {
     console.error(`Get foreground ui abilities failed, error: ${JSON.stringify(error)}`);
 });
+```
+
+## abilityManager.notifyDebugAssertResult<sup>12+</sup>
+
+notifyDebugAssertResult(requestAssertFaultId: string, status: UserStatus): Promise\<void>
+
+将断言调试结果通知应用程序。使用Promise异步回调。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.NOTIFY_DEBUG_ASSERT_RESULT
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数**：
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------- | -------- | -------- | -------- |
+| sessionId | string | 是 | 指示AssertFault的请求ID。 |
+| status | [UserStatus](#userstatus12) | 是 | 用户的操作状态。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+
+**示例：**
+
+```ts
+import abilityManager from '@ohos.app.ability.abilityManager';
+import { BusinessError } from '@ohos.base';
+import wantConstant from '@ohos.app.ability.wantConstant';
+
+onSessionCreate(want, session) {
+    let sessionId = want.parameters[wantConstant.Params.ASSERT_FAULT_SESSION_ID];
+    abilityManager.notifyDebugAssertResult(sessionId, abilityManager.UserStatus.ASSERT_TERMINATE).then(() => {
+        console.log('notifyUserActionResult success.');
+    }).catch((err: BusinessError) => {
+        console.error(`notifyUserActionResult failed, error: ${JSON.stringify(err)}`);
+    })
+}
 ```
