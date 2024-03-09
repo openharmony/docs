@@ -30,7 +30,7 @@ Ability的状态，该类型为枚举，可配合[AbilityRunningInfo](js-apis-in
 | FOREGROUNDING | 11 | 表示ability为前台调度中状态。  | 
 | BACKGROUNDING | 12 | 表示ability为后台调度中状态。  | 
 
-## UserStatus
+## UserStatus<sup>12+</sup>
 
 用户操作的断言调试结果，该类型为枚举。
 
@@ -846,7 +846,7 @@ abilityManager.getForegroundUIAbilities().then((data: Array<abilityManager.Abili
 
 notifyDebugAssertResult(requestAssertFaultId: string, status: UserStatus): Promise\<void>
 
-通知用户的操作状态。
+将断言调试结果通知应用程序。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -859,13 +859,13 @@ notifyDebugAssertResult(requestAssertFaultId: string, status: UserStatus): Promi
 | 参数名 | 类型 | 必填 | 说明 |
 | ------- | -------- | -------- | -------- |
 | sessionId | string | 是 | 指示AssertFault的请求ID。 |
-| status | [UserStatus](#userstatus) | 是 | 用户的操作状态。 |
+| status | [UserStatus](#userstatus12) | 是 | 用户的操作状态。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<void> | 以Promise方式返回接口运行结果息，可进行错误处理或其他自定义处理。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码**：
 
@@ -873,7 +873,7 @@ notifyDebugAssertResult(requestAssertFaultId: string, status: UserStatus): Promi
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[errcode-ability](errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
