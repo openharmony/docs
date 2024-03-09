@@ -117,7 +117,7 @@ const transform: Matrix4 = [
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-## Vector2<sup>12+</sup>
+## Vector2
 
 用于表示包含x和y两个值的向量。
 
@@ -238,16 +238,16 @@ Corners\<T>
 
 ## CornerRadius<sup>12+</sup>
 
-类型定义为[Corners](#corners12)[<Vector2>](#vector212)，用于设置四个角的圆角度数。
+类型定义为[Corners](#corners12)[<Vector2>](#vector2)，用于设置四个角的圆角度数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称        | 类型                | 可读 | 可写 | 说明                             |
 | ----------- | ------------------- | ---- | ---- | -------------------------------- |
-| topLeft     | [Vector2](#vector212) | 是   | 是   | 左上边框的圆角度数，单位为vp。   |
-| topRight    | [Vector2](#vector212) | 是   | 是   | 右上上边框的圆角度数，单位为vp。 |
-| bottomLeft  | [Vector2](#vector212) | 是   | 是   | 左下边框的圆角度数，单位为vp。   |
-| bottomRight | [Vector2](#vector212) | 是   | 是   | 右下边框的圆角度数，单位为vp。   |
+| topLeft     | [Vector2](#vector2) | 是   | 是   | 左上边框的圆角度数，单位为vp。   |
+| topRight    | [Vector2](#vector2) | 是   | 是   | 右上上边框的圆角度数，单位为vp。 |
+| bottomLeft  | [Vector2](#vector2) | 是   | 是   | 左下边框的圆角度数，单位为vp。   |
+| bottomRight | [Vector2](#vector2) | 是   | 是   | 右下边框的圆角度数，单位为vp。   |
 
 ## BorderRadiuses<sup>12+</sup>
 
