@@ -2210,7 +2210,8 @@ try {
 }
 ```
 
-## window.setWindowOnlyHandwrite<sup>12+</sup>
+### setWindowOnlyHandwrite<sup>12+</sup>
+
 setWindowOnlyHandwrite(enable: boolean): Promise&lt;void&gt;
 
 为当前窗口添加或移除手写标志，添加该标识后窗口只响应手写笔事件，不响应触屏事件。使用Promise异步回调。
