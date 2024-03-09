@@ -29,15 +29,19 @@ DataAbility作为服务端，在被拉起的时候，会根据config.json里面�
 
 ```json
 {
+  ...
   "module": {
-    "reqPermissions":{
+    ...
+    "reqPermissions": [
       {
-        "name":"ohos.permission.READ_CONTACTS"
+        "name": "ohos.permission.READ_CONTACTS"
       },
       {
-        "name":"ohos.permission.WRITE_CONTACTS"
-      }
-    }
+        "name": "ohos.permission.WRITE_CONTACTS"
+      },
+      ...
+    ],
+    ...
   }
 }
 ```
