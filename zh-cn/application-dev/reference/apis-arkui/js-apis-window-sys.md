@@ -847,54 +847,6 @@ image.createPixelMap(color, initializationOptions).then((pixelMap: image.PixelMa
 });
 ```
 
-## window.setWindowOnlyHandwrite<sup>12+</sup>
-setWindowOnlyHandwrite(enable: boolean): Promise&lt;void&gt;
-
-为当前窗口添加或移除手写标志，添加该标识后窗口只响应手写笔事件，不响应触屏事件。使用Promise异步回调。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Window.SessionManager
-
-**参数：**
-
-| 参数名 | 类型     | 必填 | 说明                                            |
-| ------ | ------- | --- | ------------------------------------------------ |
-| enable | boolean | 是   | 是否对窗口添加标志位。true表示添加，false表示移除。 |
-
-**返回值：**
-
-| 类型                | 说明                      |
-| ------------------- | ------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------------------- |
-| 1300002 | This window state is abnormal.                 |
-| 1300003 | This window manager service works abnormally.  |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-try {
-  let enable = true;
-  let promise = windowClass.setWindowOnlyHandwrite(enable);
-  promise.then(() => {
-    console.info('Succeeded in setting handwrite flag of window.');
-  }).catch((err: BusinessError) => {
-    console.error('Failed to set handwrite flag of window. Cause:' + JSON.stringify(err));
-  });
-} catch (exception) {
-  console.error('Failed to set handwrite flag of window. Cause: ' + JSON.stringify(exception));
-}
-```
-
 ## Window
 
 当前窗口实例，窗口管理器管理的基本单元。
@@ -2257,6 +2209,55 @@ try {
   console.error('Failed to set water mark flag of window. Cause: ' + JSON.stringify(exception));
 }
 ```
+
+## window.setWindowOnlyHandwrite<sup>12+</sup>
+setWindowOnlyHandwrite(enable: boolean): Promise&lt;void&gt;
+
+为当前窗口添加或移除手写标志，添加该标识后窗口只响应手写笔事件，不响应触屏事件。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名 | 类型     | 必填 | 说明                                            |
+| ------ | ------- | --- | ------------------------------------------------ |
+| enable | boolean | 是   | 是否对窗口添加标志位。true表示添加，false表示移除。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 1300002 | This window state is abnormal.                 |
+| 1300003 | This window manager service works abnormally.  |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  let enable = true;
+  let promise = windowClass.setWindowOnlyHandwrite(enable);
+  promise.then(() => {
+    console.info('Succeeded in setting handwrite flag of window.');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to set handwrite flag of window. Cause:' + JSON.stringify(err));
+  });
+} catch (exception) {
+  console.error('Failed to set handwrite flag of window. Cause: ' + JSON.stringify(exception));
+}
+```
+
 ### raiseAboveTarget<sup>10+</sup>
 
 raiseAboveTarget(windowId: number, callback: AsyncCallback&lt;void&gt;): void
