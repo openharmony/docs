@@ -1,4 +1,4 @@
-# @ohos.application.formHost (formHost)
+# @ohos.application.formHost (formHost) (System API)
 
 The **formHost** module provides APIs related to the widget host, which is an application that displays the widget content and controls the position where the widget is displayed. You can use the APIs to delete, release, and update widgets installed by the same user, and obtain widget information and status.
 
@@ -866,7 +866,7 @@ Obtains the widget state. This API uses an asynchronous callback to return the r
 
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
-| want | [want](../apis/js-apis-application-want.md) | Yes  | **Want** information carried to query the widget state. The information must contain the bundle name, ability name, module name, widget name, and widget dimensions.|
+| want | [want](../apis-ability-kit/js-apis-application-want.md) | Yes  | **Want** information carried to query the widget state. The information must contain the bundle name, ability name, module name, widget name, and widget dimensions.|
 | callback | AsyncCallback&lt;[formInfo.FormStateInfo](js-apis-application-formInfo.md#formstateinfo)&gt; | Yes| Callback used to return the result. If the widget state is obtained, **error** is undefined and **data** is the widget state obtained; otherwise, **error** is an error object.|
 
 **Example**
@@ -909,7 +909,7 @@ Obtains the widget state. This API uses a promise to return the result.
 
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
-| want   | [want](../apis/js-apis-application-want.md) | Yes  | **Want** information carried to query the widget state.|
+| want   | [want](../apis-ability-kit/js-apis-application-want.md) | Yes  | **Want** information carried to query the widget state.|
 
 **Return value**
 
