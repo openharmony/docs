@@ -157,7 +157,7 @@ onAccept(callback: (value: string, index: number) => void)
 | value  | boolean | 是   | 当前选中项的文本。   |
 | index  | number  | 是   | 当前选中项的索引值。 |
 
-## onCancel<sup>(deprecated) </sup>
+### onCancel<sup>(deprecated) </sup>
 
 onCancel(callback: () => void)
 
