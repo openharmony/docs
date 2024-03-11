@@ -51,7 +51,7 @@ placeholderColor(value: ResourceColor)
 
 ### placeholderFont
 
-placeholderFont(value?: Font)
+placeholderFont(value: Font)
 
 设置placeholder文本样式，包括字体大小，字体粗细，字体族，字体风格。目前仅支持默认字体族。
 
@@ -61,7 +61,7 @@ placeholderFont(value?: Font)
 
 | 参数名 | 类型                     | 必填 | 说明                  |
 | ------ | ------------------------ | ---- | --------------------- |
-| value  | [Font](ts-types.md#font) | 否   | placeholder文本样式。 |
+| value  | [Font](ts-types.md#font) | 是   | placeholder文本样式。 |
 
 ### textAlign
 
@@ -197,7 +197,7 @@ enableKeyboardOnFocus(value: boolean)
 
 selectionMenuHidden(value: boolean)
 
-设置长按输入框或者右键输入框时，是否弹出文本选择菜单。
+设置长按、双击输入框或者右键输入框时，是否不弹出文本选择菜单。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -205,7 +205,7 @@ selectionMenuHidden(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | 长按输入框或者右键输入框时，是否弹出文本选择菜单。<br />默认值：false |
+| value  | boolean | 是   | 长按、双击输入框或者右键输入框时，是否不弹出文本选择菜单。<br />默认值：false |
 
 ### barState<sup>10+</sup>
 
@@ -233,7 +233,7 @@ maxLines(value: number)
 
 | 参数名 | 类型                                      | 必填 | 说明                                                         |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [BarState](ts-appendix-enums.md#barstate) | 是   | 内联输入风格编辑态时文本可显示的最大行数。<br/>默认值：3 <br/>取值范围：(0, +∞) |
+| value  | number | 是   | 内联输入风格编辑态时文本可显示的最大行数。<br/>默认值：3 <br/>取值范围：(0, +∞) |
 
 ### customKeyboard<sup>10+</sup>
 
@@ -287,7 +287,7 @@ enterKeyType(value: EnterKeyType)
 
 | 参数名 | 类型                                    | 必填 | 说明                                                 |
 | ------ | --------------------------------------- | ---- | ---------------------------------------------------- |
-| value  | [TextAreaType](#textareatype11枚举说明) | 是   | 输入法回车键类型。<br/>默认值：EnterKeyType.NEW_LINE |
+| value  | [EnterKeyType](ts-basic-components-textinput.md#enterkeytype枚举说明) | 是   | 输入法回车键类型。<br/>默认值：EnterKeyType.NEW_LINE |
 
 >  **说明：**
 >
@@ -383,7 +383,7 @@ onTextSelectionChange(callback: (selectionStart: number, selectionEnd: number) =
 | selectionStart | number | 是   | 所选文本的起始位置，文字的起始位置为0。 |
 | selectionEnd   | number | 是   | 所选文本的结束位置。                    |
 
-## onContentScroll<sup>10+</sup>
+### onContentScroll<sup>10+</sup>
 
 onContentScroll(callback: (totalOffsetX: number, totalOffsetY: number) => void)
 
@@ -398,7 +398,7 @@ onContentScroll(callback: (totalOffsetX: number, totalOffsetY: number) => void)
 | totalOffsetX | number | 是   | 文本在内容区的横坐标偏移，单位px。 |
 | totalOffsetY | number | 是   | 文本在内容区的纵坐标偏移，单位px。 |
 
-## onSubmit<sup>11+</sup>
+### onSubmit<sup>11+</sup>
 
 onSubmit(callback:&nbsp;(enterKey:&nbsp;EnterKeyType)&nbsp;=&gt;&nbsp;void)
 

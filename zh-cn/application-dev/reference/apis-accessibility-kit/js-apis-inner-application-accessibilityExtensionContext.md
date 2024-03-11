@@ -33,6 +33,7 @@ class EntryAbility extends AccessibilityExtensionAbility {
 | 名称                   | 类型                                                                 | 可读  | 可写  | 说明                  |
 |----------------------|--------------------------------------------------------------------|-----|-----| ------------------- |
 | accessibilityFocused | boolean                                                            | 是   | 否   |   accessibility焦点状态。   |
+| accessibilityText<sup>12+</sup> | string                                                  | 是   | 否   | 元素的无障碍文本信息。 |
 | bundleName           | string                                                             | 是   | 否   | 应用包名。 |
 | checkable            | boolean                                                            | 是   | 否   | 元素是否可查。 |
 | checked              | boolean                                                            | 是   | 否   | 元素是否被检查。 |

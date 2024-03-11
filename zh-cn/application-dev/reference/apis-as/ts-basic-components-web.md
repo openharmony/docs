@@ -4360,8 +4360,7 @@ onNativeEmbedGestureEvent(callback: NativeEmbedTouchInfo)
 
 onOverrideUrlLoading(callback: OnOverrideUrlLoadingCallback)
 
-当URL将要加载到当前WebView中时，让宿主应用程序有机会获得控制权，如果没有提供WebViewClient，那么WebView将默认请求Activity Manager为URL选择适当的处理程序。
-如果提供了WebViewClient，返回true将导致当前WebView中止加载URL，而返回false则会导致WebView继续照常加载URL。
+当URL将要加载到当前WebView中时，让宿主应用程序有机会获得控制权，回调函数返回true将导致当前WebView中止加载URL，而返回false则会导致WebView继续照常加载URL。
 
 **参数：**
 
@@ -4381,9 +4380,9 @@ onOverrideUrlLoading(callback: OnOverrideUrlLoadingCallback)
     controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
-        Web({ src: 'www.baidu.com', controller: this.controller })
+        Web({ src: $rawfile("index.html"), controller: this.controller })
         .onOverrideUrlLoading((webResourceRequest: WebResourceRequest) => {
-            if (webResourceRequest && webResourceRequest.isRedirect()) {
+            if (webResourceRequest && webResourceRequest.getRequestUrl() == "about:blank") {
               return true;
             }
             return false;
@@ -4391,6 +4390,21 @@ onOverrideUrlLoading(callback: OnOverrideUrlLoadingCallback)
       }
     }
   }
+  ```
+
+  加载的html文件。
+  ```html
+  <!--index.html-->
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <title>测试网页</title>
+  </head>
+  <body>
+    <h1>onOverrideUrlLoading Demo</h1>
+    <a href="about:blank">Click here</a>访问about:blank。
+  </body>
+  </html>
   ```
 ## ConsoleMessage
 

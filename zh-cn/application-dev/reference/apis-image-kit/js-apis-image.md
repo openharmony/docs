@@ -735,13 +735,21 @@ getImageInfoSync(): ImageInfo
 
 以同步方法获取图像像素信息。
 
-**系统能力：** SystemCapability.Multimedia.Image.Core
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
 **返回值：**
 
 | 类型                              | 说明                                                        |
 | --------------------------------- | ----------------------------------------------------------- |
 | [ImageInfo](#imageinfo)           | 图像像素信息                                                |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+|  501    | Resource Unavailable |
 
 **示例：**
  

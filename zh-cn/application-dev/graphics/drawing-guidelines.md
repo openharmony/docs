@@ -384,19 +384,30 @@ Native Drawing模块关于文本绘制提供两类API接口：
     OH_Drawing_SetTextStyleFontWeight(txtStyle, FONT_WEIGHT_400);
     OH_Drawing_SetTextStyleBaseLine(txtStyle, TEXT_BASELINE_ALPHABETIC);
     OH_Drawing_SetTextStyleFontHeight(txtStyle, 1);
-    // 设置字体类型等
-    const char* fontFamilies[] = {"Roboto"};
-    OH_Drawing_SetTextStyleFontFamilies(txtStyle, 1, fontFamilies);
+    OH_Drawing_FontCollection* fontCollection = OH_Drawing_CreateFontCollection();
+    // 注册自定义字体
+    const char* fontFamily = "myFamilyName"; // myFamilyName为自定义字体的family name
+    const char* fontPath = "/data/storage/el2/base/haps/entry/files/myFontFile.ttf"; // 设置自定义字体所在的沙箱路径
+    OH_Drawing_RegisterFont(fontCollection, fontFamily, fontPath);
+    // 设置系统字体类型
+    const char* systemFontFamilies[] = {"Roboto"};
+    OH_Drawing_SetTextStyleFontFamilies(txtStyle, 1, systemFontFamilies);
     OH_Drawing_SetTextStyleFontStyle(txtStyle, FONT_STYLE_NORMAL);
     OH_Drawing_SetTextStyleLocale(txtStyle, "en");
+    // 设置自定义字体类型
+    auto txtStyle2 = OH_Drawing_CreateTextStyle();
+    OH_Drawing_SetTextStyleFontSize(txtStyle2, fontSize);
+    const char* myFontFamilies[] = {"myFamilyName"}; //如果已经注册自定义字体，填入自定义字体的family name使用自定义字体
+    OH_Drawing_SetTextStyleFontFamilies(txtStyle2, 1, myFontFamilies);
     ```
 
 4. **生成最终文本显示效果**。
 
     ```c++
     OH_Drawing_TypographyCreate* handler = OH_Drawing_CreateTypographyHandler(typoStyle,
-        OH_Drawing_CreateFontCollection());
+        fontCollection);
     OH_Drawing_TypographyHandlerPushTextStyle(handler, txtStyle);
+    OH_Drawing_TypographyHandlerPushTextStyle(handler, txtStyle2);
     // 设置文字内容
     const char* text = "Hello World Drawing\n";
     OH_Drawing_TypographyHandlerAddText(handler, text);
@@ -409,6 +420,16 @@ Native Drawing模块关于文本绘制提供两类API接口：
     double position[2] = {width_ / 5.0, height_ / 2.0};
     // 将文本绘制到画布上
     OH_Drawing_TypographyPaint(typography, cCanvas_, position[0], position[1]);
+    ```
+5. **释放变量**。
+
+    ```c++
+    OH_Drawing_DestroyTypography(typography);
+    OH_Drawing_DestroyTypographyHandler(handler);
+    OH_Drawing_DestroyFontCollection(fontCollection);
+    OH_Drawing_DestroyTextStyle(txtStyle);
+    OH_Drawing_DestroyTextStyle(txtStyle2);
+    OH_Drawing_DestroyTypographyStyle(typoStyle);
     ```
 
 #### 使用非定制排版能力实现文本绘制

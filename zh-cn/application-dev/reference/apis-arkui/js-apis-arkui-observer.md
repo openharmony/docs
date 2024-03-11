@@ -156,7 +156,7 @@ observer.off('navDestinationUpdate', { navigationId: "testId" });
 
 ## observer.on('routerPageUpdate')<sup>11+</sup>
 
-on(type: 'routerPageUpdate', context: UIAbilityContext | UIContext, callback: Callback\<observer.RouterPageInfo\>): void
+on(type: 'routerPageUpdate', context: UIAbilityContext | UIContext, callback: Callback\<RouterPageInfo\>): void
 
 监听router中page页面的状态变化。
 
@@ -167,7 +167,7 @@ on(type: 'routerPageUpdate', context: UIAbilityContext | UIContext, callback: Ca
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 监听事件，固定为'routerPageUpdate'，即router中page页面的状态变化。 |
-| context  | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) / [UIContext](./js-apis-arkui-UIContext.md) | 是   | 上下文信息，用以指定监听页面的范围 |
+| context  | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 上下文信息，用以指定监听页面的范围 |
 | callback | Callback\<[RouterPageInfo](#routerpageinfo)\>        | 是   | 回调函数。携带pageInfo，返回当前的page页面状态。                 |
 
 **示例：**
@@ -186,7 +186,7 @@ observer.on('routerPageUpdate', this.uiContext, callBackFunc);
 
 ## observer.off('routerPageUpdate')<sup>11+</sup>
 
-off(type: 'routerPageUpdate', context: UIAbilityContext | UIContext, callback?: Callback\<observer.RouterPageInfo\>): void
+off(type: 'routerPageUpdate', context: UIAbilityContext | UIContext, callback?: Callback\<RouterPageInfo\>): void
 
 取消监听router中page页面的状态变化。
 
@@ -197,7 +197,7 @@ off(type: 'routerPageUpdate', context: UIAbilityContext | UIContext, callback?: 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 监听事件，固定为'routerPageUpdate'，即router中page页面的状态变化。 |
-| context  | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) / [UIContext](./js-apis-arkui-UIContext.md) | 是   | 上下文信息，用以指定监听页面的范围 |
+| context  | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 上下文信息，用以指定监听页面的范围 |
 | callback | Callback\<[RouterPageInfo](#routerpageinfo)\>        | 否   | 需要被注销的回调函。                 |
 
 **示例：**
