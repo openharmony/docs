@@ -1,10 +1,10 @@
 # 请求通知授权
 
-应用需要获取用户授权才能发送通知。在通知发布前调用[requestEnableNotification()](../reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanagerrequestenablenotification)方法，弹窗让用户选择是否允许发送通知，后续再次调用[requestEnableNotification()](../reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanagerrequestenablenotification)方法时，则不再弹窗。
+应用需要获取用户授权才能发送通知。在通知发布前调用[requestEnableNotification()](../reference/apis/js-apis-notificationManager.md#notificationmanagerrequestenablenotification)方法，弹窗让用户选择是否允许发送通知，后续再次调用[requestEnableNotification()](../reference/apis/js-apis-notificationManager.md#notificationmanagerrequestenablenotification)方法时，则不再弹窗。
   
 ## 接口说明
 
-接口详情参见[API参考](../reference/apis-notification-kit/js-apis-notificationManager.md#notificationrequestenablenotification)。
+接口详情参见[API参考](../reference/apis/js-apis-notificationManager.md#notificationrequestenablenotification)。
 
 **表1** 通知授权接口功能介绍
 
