@@ -428,6 +428,7 @@
        - [HiSysEvent Listening](subsystems/subsys-dfx-hisysevent-listening.md)
        - [HiSysEvent Query](subsystems/subsys-dfx-hisysevent-query.md)
        - [HiSysEvent Tool Usage](subsystems/subsys-dfx-hisysevent-tool.md)
+     - [HiAppEvent Data Processor Library](subsystems/subsys-dfx-hiappevent-extend-so.md)
      - [HiDumper Development](subsystems/subsys-dfx-hidumper.md)
      - [HiChecker Development](subsystems/subsys-dfx-hichecker.md)
      - [FaultLogger Development](subsystems/subsys-dfx-faultlogger.md)
