@@ -673,4 +673,3 @@ Sets the time information for a calendar reminder.
 | hour | number | Yes| Hour. The value ranges from 0 to 23.|
 | minute | number | Yes| Minute. The value ranges from 0 to 59.|
 | second | number | No| Second. The value ranges from 0 to 59.|
-
