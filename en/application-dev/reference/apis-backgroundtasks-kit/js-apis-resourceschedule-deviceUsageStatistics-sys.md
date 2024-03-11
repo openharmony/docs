@@ -6,6 +6,7 @@ The **usageStatistics** module provides APIs for collecting statistics on device
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
+> The APIs provided by this module are system APIs.
 
 ## Modules to Import
 
@@ -23,8 +24,6 @@ Checks whether an application is commonly used (with the value of **GroupType** 
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
-**System API**: This is a system API.
-
 **Parameters**
 
 | Name       | Type                          | Mandatory  | Description                                      |
@@ -34,7 +33,7 @@ Checks whether an application is commonly used (with the value of **GroupType** 
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
 | ID       | Error Message                    |
 | ---------- | ----------------------------     |
@@ -67,8 +66,6 @@ Checks whether an application is commonly used (with the value of **GroupType** 
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
-**System API**: This is a system API.
-
 **Parameters**
 
 | Name       | Type    | Mandatory  | Description            |
@@ -83,7 +80,7 @@ Checks whether an application is commonly used (with the value of **GroupType** 
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
 | ID       | Error Message                    |
 | ---------- | ----------------------------     |
@@ -114,8 +111,6 @@ Checks whether an application is commonly used (with the value of **GroupType** 
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
-**System API**: This is a system API.
-
 **Parameters**
 
 | Name       | Type                          | Mandatory  | Description                                      |
@@ -130,7 +125,7 @@ Checks whether an application is commonly used (with the value of **GroupType** 
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
 | ID       | Error Message                    |
 | ---------- | ----------------------------     |
@@ -153,8 +148,6 @@ Queries the priority group of this application. This API uses a promise to retur
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
-**System API**: This is a system API.
-
 **Return value**
 
 | Type             | Description                         |
@@ -163,7 +156,7 @@ Queries the priority group of this application. This API uses a promise to retur
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
 | ID       | Error Message                      |
 | ---------- | ----------------------------       |
@@ -195,8 +188,6 @@ Queries the priority group of this application. This API uses an asynchronous ca
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
-**System API**: This is a system API.
-
 **Parameters**
 
 | Name     | Type                   | Mandatory  | Description                        |
@@ -205,7 +196,7 @@ Queries the priority group of this application. This API uses an asynchronous ca
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
 | ID       | Error Message                      |
 | ---------- | ----------------------------       |
@@ -239,8 +230,6 @@ Queries the priority group of this application. This API returns the result sync
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
-**System API**: This is a system API.
-
 **Return value**
 
 | Type             | Description                         |
@@ -249,7 +238,7 @@ Queries the priority group of this application. This API returns the result sync
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
 | ID       | Error Message                      |
 | ---------- | ----------------------------       |
@@ -277,8 +266,6 @@ Queries the priority group of the application specified by **bundleName**. This 
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
-**System API**: This is a system API.
-
 **Parameters**
 
 | Name       | Type    | Mandatory  | Description                                      |
@@ -293,7 +280,7 @@ Queries the priority group of the application specified by **bundleName**. This 
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
 | ID       | Error Message                      |
 | ---------- | ----------------------------       |
@@ -329,8 +316,6 @@ Queries the priority group of the application specified by **bundleName**. This 
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
-**System API**: This is a system API.
-
 **Parameters**
 
 | Name       | Type                   | Mandatory  | Description                                      |
@@ -340,7 +325,7 @@ Queries the priority group of the application specified by **bundleName**. This 
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
 | ID       | Error Message                      |
 | ---------- | ----------------------------       |
@@ -377,8 +362,6 @@ Queries the priority group of the application specified by **bundleName**. This 
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
-**System API**: This is a system API.
-
 **Parameters**
 
 | Name       | Type                          | Mandatory  | Description                                      |
@@ -393,7 +376,7 @@ Queries the priority group of the application specified by **bundleName**. This 
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
 | ID       | Error Message                      |
 | ---------- | ----------------------------       |
@@ -421,8 +404,6 @@ Sets a new group for the application specified by **bundleName**. This API uses 
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
-**System API**: This is a system API.
-
 **Parameters**
 
 | Name       | Type       | Mandatory  | Description  |
@@ -438,7 +419,7 @@ Sets a new group for the application specified by **bundleName**. This API uses 
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
 | ID       | Error Message                         |
 | ---------- | ----------------------------          |
@@ -474,8 +455,6 @@ Sets a new group for the application specified by **bundleName**. This API uses 
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
-**System API**: This is a system API.
-
 **Parameters**
 
 | Name       | Type                 | Mandatory  | Description                       |
@@ -486,7 +465,7 @@ Sets a new group for the application specified by **bundleName**. This API uses 
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
 | ID       | Error Message                         |
 | ---------- | ----------------------------          |
@@ -524,8 +503,6 @@ Queries the application usage duration statistics based on the specified start t
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
 
-**System API**: This is a system API.
-
 **Parameters**
 
 | Name     | Type                                      | Mandatory  | Description                                     |
@@ -536,7 +513,7 @@ Queries the application usage duration statistics based on the specified start t
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
 | ID       | Error Message                      |
 | ---------- | ----------------------------       |
@@ -572,8 +549,6 @@ Queries the application usage duration statistics based on the specified start t
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
 
-**System API**: This is a system API.
-
 **Parameters**
 
 | Name  | Type    | Mandatory  | Description   |
@@ -589,7 +564,7 @@ Queries the application usage duration statistics based on the specified start t
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
 | ID       | Error Message                      |
 | ---------- | ----------------------------       |
@@ -623,8 +598,6 @@ Queries the application usage duration statistics in the specified time frame at
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
 
-**System API**: This is a system API.
-
 **Parameters**
 
 | Name       | Type                                      | Mandatory  | Description                                      |
@@ -636,7 +609,7 @@ Queries the application usage duration statistics in the specified time frame at
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
 | ID       | Error Message                      |
 | ---------- | ----------------------------       |
@@ -675,8 +648,6 @@ Queries the application usage duration statistics in the specified time frame at
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
 
-**System API**: This is a system API.
-
 **Parameters**
 
 | Name       | Type                           | Mandatory  | Description   |
@@ -693,7 +664,7 @@ Queries the application usage duration statistics in the specified time frame at
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
 | ID       | Error Message                      |
 | ---------- | ----------------------------       |
@@ -730,8 +701,6 @@ Queries events of all applications based on the specified start time and end tim
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
 
-**System API**: This is a system API.
-
 **Parameters**
 
 | Name     | Type                                      | Mandatory  | Description                                     |
@@ -742,7 +711,7 @@ Queries events of all applications based on the specified start time and end tim
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
 | ID       | Error Message                      |
 | ---------- | ----------------------------       |
@@ -781,8 +750,6 @@ Queries events of all applications based on the specified start time and end tim
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
 
-**System API**: This is a system API.
-
 **Parameters**
 
 | Name  | Type    | Mandatory  | Description   |
@@ -798,7 +765,7 @@ Queries events of all applications based on the specified start time and end tim
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
 | ID       | Error Message                      |
 | ---------- | ----------------------------       |
@@ -833,8 +800,6 @@ Queries events of this application based on the specified start time and end tim
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
 
-**System API**: This is a system API.
-
 **Parameters**
 
 | Name     | Type                                      | Mandatory  | Description                                     |
@@ -845,7 +810,7 @@ Queries events of this application based on the specified start time and end tim
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
 | ID       | Error Message                      |
 | ---------- | ----------------------------       |
@@ -882,8 +847,6 @@ Queries events of this application based on the specified start time and end tim
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
 
-**System API**: This is a system API.
-
 **Parameters**
 
 | Name  | Type    | Mandatory  | Description   |
@@ -899,7 +862,7 @@ Queries events of this application based on the specified start time and end tim
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
 | ID       | Error Message                      |
 | ---------- | ----------------------------       |
@@ -936,8 +899,6 @@ Queries statistics about system events (hibernation, wakeup, unlocking, and lock
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
 
-**System API**: This is a system API.
-
 **Parameters**
 
 | Name  | Type    | Mandatory  | Description   |
@@ -953,7 +914,7 @@ Queries statistics about system events (hibernation, wakeup, unlocking, and lock
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
 | ID       | Error Message                         |
 | ---------- | ----------------------------          |
@@ -987,19 +948,17 @@ Queries statistics about system events (hibernation, wakeup, unlocking, and lock
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
 
-**System API**: This is a system API.
-
 **Parameters**
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | begin    | number                                   | Yes   | Start time, in milliseconds.                                   |
 | end      | number                                   | Yes   | End time, in milliseconds.                                   |
-| callback | AsyncCallback&lt;Array&lt;[DeviceEventStats](#deviceeventstats)&gt;&gt; | Yes   | Callback used to return the statistics about system events.|
+| callback | AsyncCallback&lt;Array&lt;[DeviceEventStats](#deviceeventstats)&gt;&gt; | Yes   | Callback used to return the statistics about system events.| 
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
 | ID       | Error Message                         |
 | ---------- | ----------------------------          |
@@ -1035,8 +994,6 @@ Queries the number of notifications from all applications based on the specified
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
 
-**System API**: This is a system API.
-
 **Parameters**
 
 | Name  | Type    | Mandatory  | Description   |
@@ -1052,7 +1009,7 @@ Queries the number of notifications from all applications based on the specified
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
 | ID       | Error Message                         |
 | ---------- | ----------------------------          |
@@ -1086,8 +1043,6 @@ Queries the number of notifications from all applications based on the specified
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
 
-**System API**: This is a system API.
-
 **Parameters**
 
 | Name     | Type                                      | Mandatory  | Description                                      |
@@ -1098,7 +1053,7 @@ Queries the number of notifications from all applications based on the specified
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
 | ID       | Error Message                         |
 | ---------- | ----------------------------          |
@@ -1136,8 +1091,6 @@ Queries FA usage records. This API uses a promise to return a maximum of 1000 FA
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
 
-**System API**: This is a system API.
-
 **Return value**
 
 | Type                                      | Description                                |
@@ -1146,7 +1099,7 @@ Queries FA usage records. This API uses a promise to return a maximum of 1000 FA
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
 | ID       | Error Message                      |
 | ---------- | ----------------------------       |
@@ -1184,8 +1137,6 @@ Queries the usage records of unused HAP files for each application in the FA mod
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
 
-**System API**: This is a system API.
-
 **Parameters**
 
 | Name     | Type                                      | Mandatory  | Description                                 |
@@ -1194,7 +1145,7 @@ Queries the usage records of unused HAP files for each application in the FA mod
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
 | ID       | Error Message                      |
 | ---------- | ----------------------------       |
@@ -1233,8 +1184,6 @@ Queries a given number of usage records of unused HAP files for each application
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
 
-**System API**: This is a system API.
-
 **Parameters**
 
 | Name   | Type    | Mandatory  | Description                                |
@@ -1249,7 +1198,7 @@ Queries a given number of usage records of unused HAP files for each application
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
 | ID       | Error Message                      |
 | ---------- | ----------------------------       |
@@ -1286,8 +1235,6 @@ Queries a given number of usage records of unused HAP files for each application
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
 
-**System API**: This is a system API.
-
 **Parameters**
 
 | Name     | Type                                      | Mandatory  | Description                                 |
@@ -1297,7 +1244,7 @@ Queries a given number of usage records of unused HAP files for each application
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
 | ID       | Error Message                      |
 | ---------- | ----------------------------       |
@@ -1336,8 +1283,6 @@ Registers a callback for application group changes. When an application group of
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
-**System API**: This is a system API.
-
 **Parameters**
 
 | Name  | Type                                                        | Mandatory| Description                                      |
@@ -1352,7 +1297,7 @@ Registers a callback for application group changes. When an application group of
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
 | ID       | Error Message                         |
 | ---------- | ----------------------------          |
@@ -1393,8 +1338,6 @@ Registers a callback for application group changes. When an application group of
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
-**System API**: This is a system API.
-
 **Parameters**
 
 | Name  | Type                                                        | Mandatory| Description                                        |
@@ -1404,7 +1347,7 @@ Registers a callback for application group changes. When an application group of
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
 | ID       | Error Message                         |
 | ---------- | ----------------------------          |
@@ -1447,8 +1390,6 @@ Unregisters the callback for application group changes. This API uses a promise 
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
-**System API**: This is a system API.
-
 **Return value**
 
 | Type           | Description                      |
@@ -1457,7 +1398,7 @@ Unregisters the callback for application group changes. This API uses a promise 
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
 | ID       | Error Message                         |
 | ---------- | ----------------------------          |
@@ -1489,8 +1430,6 @@ Unregisters the callback for application group changes. This API uses an asynchr
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
-**System API**: This is a system API.
-
 **Parameters**
 
 | Name     | Type                 | Mandatory  | Description            |
@@ -1499,7 +1438,7 @@ Unregisters the callback for application group changes. This API uses an asynchr
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
 | ID       | Error Message                         |
 | ---------- | ----------------------------          |
@@ -1529,8 +1468,6 @@ Defines the information about the usage record in the FA model.
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
 
-**System API**: This is a system API.
-
 | Name                 | Type                                      | Mandatory  | Description                           |
 | -------------------- | ---------------------------------------- | ---- | ----------------------------- |
 | deviceId             | string                                   | No   | Device ID.                |
@@ -1553,8 +1490,6 @@ Defines the information about the usage record of FA widgets.
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
 
-**System API**: This is a system API.
-
 | Name             | Type    | Mandatory  | Description         |
 | ---------------- | ------ | ---- | ----------- |
 | formName         | string | Yes   | Widget name.      |
@@ -1569,8 +1504,6 @@ Provides the application group changes returned through a callback.
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
-**System API**: This is a system API.
-
 | Name          | Type  | Mandatory| Description            |
 | ---------------- | ------ | ---- | ---------------- |
 | appOldGroup | number | Yes  | Application group before the change.|
@@ -1584,8 +1517,6 @@ Provides the application group changes returned through a callback.
 Provides the usage duration information of an application.
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
-
-**System API**: This is a system API.
 
 | Name                     | Type    | Mandatory  | Description                                      |
 | ------------------------ | ------ | ---- | ---------------------------------------- |
@@ -1606,8 +1537,6 @@ Provides information about an application event.
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
 
-**System API**: This is a system API.
-
 | Name                  | Type    | Mandatory  | Description                                      |
 | --------------------- | ------ | ---- | ---------------------------------------- |
 | bundleName            | string | No   | Bundle name of the application.                                   |
@@ -1623,8 +1552,6 @@ Provides the usage duration information of an application.
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
 
-**System API**: This is a system API.
-
 |Name                          | Description                                      |
 | ------------------------------ | ---------------------------------------- |
 | Record<string, [BundleStatsInfo](#bundlestatsinfo)> | Usage duration information by application.|
@@ -1634,8 +1561,6 @@ Provides the usage duration information of an application.
 Provides statistics about notifications and system events.
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
-
-**System API**: This is a system API.
 
 | Name    | Type    | Mandatory  | Description               |
 | ------- | ------ | ---- | ----------------- |
@@ -1648,8 +1573,6 @@ Provides statistics about notifications and system events.
 Enumerates the interval types for querying the application usage duration.
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
-
-**System API**: This is a system API.
 
 | Name          | Value | Description                                      |
 | ------------ | ---- | ---------------------------------------- |
@@ -1664,8 +1587,6 @@ Enumerates the interval types for querying the application usage duration.
 Enumerates the application group types.
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
-
-**System API**: This is a system API.
 
 | Name                | Value | Description               |
 | ------------------ | ---- | ----------------- |
