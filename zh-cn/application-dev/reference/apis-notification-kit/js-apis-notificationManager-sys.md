@@ -2847,11 +2847,11 @@ notificationManager.cancelAsBundle(representativeBundle, 1).then(() => {
 });
 ```
 
-## notificationManager.cancelAsBundle<sup>12+</sup>
+## notificationManager.cancel<sup>12+</sup>
 
-cancelAsBundle(representativeBundle: BundleOption, id: number, label?: string): Promise\<void\>;
+cancel(representativeBundle: BundleOption, id: number): Promise\<void\>
 
-代理取消通知。使用Promise异步回调。
+代理取消当前用户其他应用的通知。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2863,7 +2863,6 @@ cancelAsBundle(representativeBundle: BundleOption, id: number, label?: string): 
 | -------------------- | ------ | ---- | ------------------ |
 | representativeBundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 应用的包信息。           |
 |       id             | number | 是   | 通知ID。 |
-|      label           | string | 否   | 通知标签。 |
 
 **返回值：**
 
@@ -2873,7 +2872,7 @@ cancelAsBundle(representativeBundle: BundleOption, id: number, label?: string): 
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -2881,6 +2880,7 @@ cancelAsBundle(representativeBundle: BundleOption, id: number, label?: string): 
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
 | 1600007  | The notification is not exist.      |
+| 1600012  | No memory space.                    |
 
 **示例：**
 
@@ -2891,10 +2891,10 @@ let bundle: notificationManager.BundleOption = {
   bundle: "bundleName"
 };
 let id: number = 1;
-notificationManager.cancelAsBundle(bundle, id).then(() => {
-  console.info("cancelAsBundle success");
+notificationManager.cancel(bundle, id).then(() => {
+  console.info("cancel success");
 }).catch((err: Base.BusinessError) => {
-  console.error(`cancelAsBundle fail: ${JSON.stringify(err)}`);
+  console.error(`cancel fail: ${JSON.stringify(err)}`);
 });
 ```
 
