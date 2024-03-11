@@ -3871,3 +3871,30 @@ notificationManager.isSmartReminderEnabled(deviceType).then((data: boolean) => {
 | 名称    | 类型                                  | 必填 | 说明                   |
 | ------- | ------------------------------------ | ---- | ---------------------- |
 | onResponse    | (notificationId: number, buttonOptions: ButtonOptions) => void;                         | 否   | 点击按钮的回调。 |
+
+
+## SlotType
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+
+| 名称                                | 值     | 说明                                                         |
+| ----------------------------------- | ------ | ------------------------------------------------------------ |
+| EMERGENCY_INFORMATION<sup>12+</sup> | 10     | 紧急事件。**系统接口**: 此接口为系统接口。                               |
+
+
+## NotificationControlFlagStatus<sup>12+</sup>
+每个bit位都可以控制通知的提示方式。当notificationControlFlags和下表中枚举值进行按位或操作，则表示关闭其提示方式。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+
+**系统接口**：此接口为系统接口。
+
+| 名称                                 | 值   | 说明     |
+| ------------------------------------ | ---- | -------- |
+| NOTIFICATION_STATUS_CLOSE_SOUND      | 1<<0 | 关闭声音提示功能。 |
+| NOTIFICATION_STATUS_CLOSE_LOCKSCREEN |  1<<1    |     关闭锁屏提示功能。     |
+| NOTIFICATION_STATUS_CLOSE_BANNER     |    1<<2   |     关闭横幅提示功能。     |
+| NOTIFICATION_STATUS_CLOSE_LIGHT_SCREEN     |   1<<3   |     关闭亮屏提示功能。     |
+| NOTIFICATION_STATUS_CLOSE_VIBRATION     |   1<<4   |     关闭振动提示功能。     |
+| NOTIFICATION_STATUS_CLOSE_STATUSBAR_ICON     |  1<<5    |     关闭状态栏图标提示功能。     |
+
