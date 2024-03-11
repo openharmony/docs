@@ -16,7 +16,7 @@
 
 ## 接口说明
 
-通知渠道主要接口如下。其他接口介绍详情参见[API参考](../reference/apis-notification-kit/js-apis-notificationManager.md)。
+通知渠道主要接口如下。其他接口介绍详情参见[API参考](../reference/apis/js-apis-notificationManager.md)。
 
 | **接口名** | **描述** |
 | ---------- | -------- |
@@ -24,7 +24,7 @@
 | getSlot(slotType: SlotType): Promise\<NotificationSlot\> | 获取一个指定类型的通知渠道。       |
 | removeSlot(slotType: SlotType): Promise\<void\>          | 删除此应用程序指定类型的通知渠道。  |
 
-除了可以使用`addslot()`创建通知渠道，还可以在发布通知的[NotificationRequest](../reference/apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest)中携带notificationSlotType字段，如果对应渠道不存在，会自动创建。
+除了可以使用`addslot()`创建通知渠道，还可以在发布通知的[NotificationRequest](../reference/apis/js-apis-inner-notification-notificationRequest.md#notificationrequest)中携带notificationSlotType字段，如果对应渠道不存在，会自动创建。
 
 ## 开发步骤
 

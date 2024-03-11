@@ -1,13 +1,13 @@
 # 为通知添加行为意图
 
-当发布通知时，如果期望用户可以通过点击通知栏拉起目标应用组件或发布公共事件，可以通过Ability Kit申请[WantAgent](../reference/apis-ability-kit/js-apis-app-ability-wantAgent.md)封装至通知消息中。
+当发布通知时，如果期望用户可以通过点击通知栏拉起目标应用组件或发布公共事件，可以通过Ability Kit申请[WantAgent](../reference/apis/js-apis-app-ability-wantAgent.md)封装至通知消息中。
 
 **图1** 携带行为意图的通知运行机制  
  ![notification_wantagent](figures/notification_wantagent.png) 
 
 ## 接口说明
 
-具体接口描述，详见[WantAgent接口文档](../reference/apis-ability-kit/js-apis-app-ability-wantAgent.md)。
+具体接口描述，详见[WantAgent接口文档](../reference/apis/js-apis-app-ability-wantAgent.md)。
 
 | **接口名** | **描述** |
 | -------- | -------- |
@@ -26,7 +26,7 @@
 
 2. 创建WantAgentInfo信息。
 
-   场景一：创建拉起UIAbility的WantAgent的[WantAgentInfo](../reference/apis-ability-kit/js-apis-inner-wantAgent-wantAgentInfo.md)信息。
+   场景一：创建拉起UIAbility的WantAgent的[WantAgentInfo](../reference/apis/js-apis-inner-wantAgent-wantAgentInfo.md)信息。
 
    ```typescript
    let wantAgentObj:WantAgent; // 用于保存创建成功的wantAgent对象，后续使用其完成触发的动作。
@@ -50,7 +50,7 @@
    };
    ```
 
-   场景二：创建发布[公共事件](../application-models/common-event-overview.md)的WantAgent的[WantAgentInfo](../reference/apis-ability-kit/js-apis-inner-wantAgent-wantAgentInfo.md)信息。
+   场景二：创建发布[公共事件](../application-models/common-event-overview.md)的WantAgent的[WantAgentInfo](../reference/apis/js-apis-inner-wantAgent-wantAgentInfo.md)信息。
 
    ```typescript
    let wantAgentObj:WantAgent; // 用于保存创建成功的WantAgent对象，后续使用其完成触发的动作。
@@ -69,7 +69,7 @@
    };
    ```
 
-3. 调用[getWantAgent()](../reference/apis-ability-kit/js-apis-app-ability-wantAgent.md#wantagentgetwantagent)方法进行创建WantAgent。
+3. 调用[getWantAgent()](../reference/apis/js-apis-app-ability-wantAgent.md#wantagentgetwantagent)方法进行创建WantAgent。
 
    ```typescript
    // 创建WantAgent
