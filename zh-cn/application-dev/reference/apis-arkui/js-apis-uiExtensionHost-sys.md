@@ -306,7 +306,7 @@ struct Hello {
 
 ### hideNonSecureWindows
 
-hideNonSecureWindows(shouldHide: boolean): Promise<void>;
+hideNonSecureWindows(shouldHide: boolean): Promise\<void>
 
 设置是否隐藏不安全窗口。
 不安全窗口是指可能遮挡UIExtensionComponent的窗口类型，如非系统全局悬浮窗、宿主子窗口。当UIExtensionComponent组件被用来显示敏感操作提示内容时，可以选择隐藏不安全窗口，保护敏感操作提示内容不会被遮挡。当UIExtensionComponent不显示或销毁时需要让不安全窗口重新显示。
