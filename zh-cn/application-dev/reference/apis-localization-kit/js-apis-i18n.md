@@ -859,10 +859,10 @@ isWeekend(date?: Date): boolean
 **示例：**
   ```ts
   let calendar: I18n.Calendar = I18n.getCalendar("zh-Hans");
-  calendar.set(2021, 11, 11, 8, 0, 0); // set time to 2021.11.11 08:00:00
-  calendar.isWeekend(); // false
+  calendar.set(2021, 11, 11, 8, 0, 0); // set time to 2021.12.11 08:00:00
+  calendar.isWeekend(); // true
   let date: Date = new Date(2011, 11, 6, 9, 0, 0);
-  calendar.isWeekend(date); // true
+  calendar.isWeekend(date); // false
   ```
 
 
