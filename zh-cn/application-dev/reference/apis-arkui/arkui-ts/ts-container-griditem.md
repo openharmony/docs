@@ -80,6 +80,28 @@ columnEnd(value: number)
 | ------ | ------ | ---- | ------------------ |
 | value  | number | 是   | 当前元素终点列号。 |
 
+>  **说明：**
+>
+>  当Grid配合[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)使用时，最后一个GridItem需要限定布局推荐使用[Grid的layoutOptions参数](ts-container-grid.md)，详细可参考[Grid的示例3](ts-container-grid.md#示例3)。
+>
+>  起始行号、终点行号、起始列号、终点列号生效规则如下：
+>
+>  rowStart/rowEnd合理取值范围为0\~总行数-1，columnStart/columnEnd合理取值范围为0\~总列数-1。
+>
+>  如果设置了rowStart/rowEnd/columnStart/columnEnd，GridItem会占据指定的行数(rowEnd-rowStart+1)或列数(columnEnd-columnStart+1)。
+>
+>  只有在设置columnTemplate和rowTemplate的Grid中，设置合理的rowStart/rowEnd/columnStart/columnEnd四个属性的GridItem才能按照指定的行列号布局。
+>
+>  在设置columnTemplate和rowTemplate的Grid中，单独设置行号rowStart/rowEnd或列号columnStart/columnEnd的GridItem会按照一行一列进行布局。
+>
+>  在只设置columnTemplate的Grid中设置列号columnStart/columnEnd的GridItem按照列数布局。在该区域位置存在GridItem布局，则直接换行进行放置。
+>
+>  在只设置rowTemplate的Grid中设置行号rowStart/rowEnd的GridItem按照行数布局。在该区域位置存在GridItem布局，则直接换列进行放置。
+>
+>  在只设置columnTemplate的Grid中，在GridItem上设置了不合理的值，GridItem按照一行一列进行布局。
+>
+>  columnTemplate和rowTemplate都不设置的Grid中GridItem的行列号属性无效。
+
 ### forceRebuild<sup>(deprecated)</sup>
 
 forceRebuild(value: boolean)
@@ -127,26 +149,6 @@ selected(value: boolean)
 | 参数名 | 类型    | 必填 | 说明                                     |
 | ------ | ------- | ---- | ---------------------------------------- |
 | value  | boolean | 是   | 当前GridItem选中状态。<br/>默认值：false |
-
->  **说明：**
->
->  起始行号、终点行号、起始列号、终点列号生效规则如下：
->
->  rowStart/rowEnd合理取值范围为0\~总行数-1，columnStart/columnEnd合理取值范围为0\~总列数-1。
->
->  如果设置了rowStart/rowEnd/columnStart/columnEnd，GridItem会占据指定的行数(rowEnd-rowStart+1)或列数(columnEnd-columnStart+1)。
->
->  只有在设置columnTemplate和rowTemplate的Grid中，设置合理的rowStart/rowEnd/columnStart/columnEnd四个属性的GridItem才能按照指定的行列号布局。
->
->  在设置columnTemplate和rowTemplate的Grid中，单独设置行号rowStart/rowEnd或列号columnStart/columnEnd的GridItem会按照一行一列进行布局。
->
->  在只设置columnTemplate的Grid中设置列号columnStart/columnEnd的GridItem按照列数布局。在该区域位置存在GridItem布局，则直接换行进行放置。
->
->  在只设置rowTemplate的Grid中设置行号rowStart/rowEnd的GridItem按照行数布局。在该区域位置存在GridItem布局，则直接换列进行放置。
->
->  在只设置columnTemplate的Grid中，在GridItem上设置了不合理的值，GridItem按照一行一列进行布局。
->
->  columnTemplate和rowTemplate都不设置的Grid中GridItem的行列号属性无效。
 
 ## GridItemOptions<sup>11+</sup>对象说明
 
