@@ -1,4 +1,4 @@
-# @ohos.reminderAgent (reminder Agent)
+# @ohos.reminderAgent (reminderAgent)
 
 The **reminderAgent** module provides APIs for publishing scheduled reminders through the reminder agent.
 
@@ -22,7 +22,7 @@ import reminderAgent from'@ohos.reminderAgent';
 
 publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback\<number>): void
 
-Publishes a reminder through the reminder agent. This API uses an asynchronous callback to return the result. It can be called only when notification is enabled for the application through [Notification.requestEnableNotification](../apis/js-apis-notification.md#notificationrequestenablenotification8).
+Publishes a reminder through the reminder agent. This API uses an asynchronous callback to return the result. It can be called only when notification is enabled for the application through [Notification.requestEnableNotification](../apis-notification-kit/js-apis-notification.md#notificationrequestenablenotification8).
 
 > **NOTE**
 >
@@ -34,10 +34,10 @@ Publishes a reminder through the reminder agent. This API uses an asynchronous c
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| reminderReq | [ReminderRequest](#reminderrequest) | Yes| Reminder to be published.|
-| callback | AsyncCallback\<number> | Yes| Callback used to return the published reminder's ID.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | reminderReq | [ReminderRequest](#reminderrequestdeprecated) | Yes| Reminder to be published.|
+  | callback | AsyncCallback\<number> | Yes| Callback used to return the published reminder's ID.|
 
 **Example**
 ```ts
@@ -58,7 +58,7 @@ reminderAgent.publishReminder(timer, (err: BusinessError, reminderId: number) =>
 
 publishReminder(reminderReq: ReminderRequest): Promise\<number>
 
-Publishes a reminder through the reminder agent. This API uses a promise to return the result. It can be called only when notification is enabled for the application through [Notification.requestEnableNotification](../apis/js-apis-notification.md#notificationrequestenablenotification8).
+Publishes a reminder through the reminder agent. This API uses a promise to return the result. It can be called only when notification is enabled for the application through [Notification.requestEnableNotification](../apis-notification-kit/js-apis-notification.md#notificationrequestenablenotification8).
 
 > **NOTE**
 >
@@ -69,14 +69,14 @@ Publishes a reminder through the reminder agent. This API uses a promise to retu
 **System capability**: SystemCapability.Notification.ReminderAgent
 
 **Parameters**
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| reminderReq | [ReminderRequest](#reminderrequest) | Yes| Reminder to be published.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | reminderReq | [ReminderRequest](#reminderrequestdeprecated) | Yes| Reminder to be published.|
 
 **Return value**
-| Type| Description|
-| -------- | -------- |
-| Promise\<number> | Promise used to return the published reminder's ID.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise\<number> | Promise used to return the published reminder's ID.|
 
 **Example**
 ```ts
@@ -107,7 +107,7 @@ Cancels the reminder with the specified ID. This API uses an asynchronous callba
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| reminderId | number | Yes| ID of the reminder to cancel.|
+| reminderId | number | Yes| ID of the reminder.|
 | callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
 
 **Example**
@@ -137,7 +137,7 @@ Cancels the reminder with the specified ID. This API uses a promise to return th
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| reminderId | number | Yes| ID of the reminder to cancel.|
+| reminderId | number | Yes| ID of the reminder.|
 
 **Return value**
 
@@ -169,7 +169,7 @@ Obtains all valid (not yet expired) reminders set by the current application. Th
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback\<Array\<[ReminderRequest](#reminderrequest)>> | Yes| Callback used to return an array of all valid reminders set by the current application.|
+| callback | AsyncCallback\<Array\<[ReminderRequest](#reminderrequestdeprecated)>> | Yes| Callback used to return an array of all valid reminders set by the current application.|
 
 **Example**
 
@@ -220,7 +220,7 @@ Obtains all valid (not yet expired) reminders set by the current application. Th
 
 | Type| Description|
 | -------- | -------- |
-| Promise\<Array\<[ReminderRequest](#reminderrequest)>> | Promise used to return an array of all valid reminders set by the current application.|
+| Promise\<Array\<[ReminderRequest](#reminderrequestdeprecated)>> | Promise used to return an array of all valid reminders set by the current application.|
 
 **Example**
 
@@ -359,7 +359,7 @@ Adds a notification slot. This API uses a promise to return the result.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| slot | [NotificationSlot](../apis/js-apis-notification.md#notificationslot) | Yes| Notification slot, whose type can be set.|
+| slot | [NotificationSlot](../apis-notification-kit/js-apis-notification.md#notificationslot) | Yes| Notification slot, whose type can be set.|
 
 **Return value**
 
@@ -397,7 +397,7 @@ Removes a notification slot of a specified type. This API uses an asynchronous c
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| slotType | [notification.SlotType](../apis/js-apis-notification.md#slottype) | Yes| Type of the reminder notification slot to remove.|
+| slotType | [notification.SlotType](../apis-notification-kit/js-apis-notification.md#slottype) | Yes| Type of the reminder notification slot to remove.|
 | callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
 
 **Example**
@@ -428,7 +428,7 @@ Removes a notification slot of a specified type. This API uses a promise to retu
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| slotType | [notification.SlotType](../apis/js-apis-notification.md#slottype) | Yes| Type of the reminder notification slot to remove.|
+| slotType | [notification.SlotType](../apis-notification-kit/js-apis-notification.md#slottype) | Yes| Type of the reminder notification slot to remove.|
 
 **Return value**
 
@@ -493,7 +493,7 @@ Defines a button displayed in the reminder notification.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | title | string | Yes| Text on the button.|
-| type | [ActionButtonType](#actionbuttontype) | Yes| Button type.|
+| type | [ActionButtonType](#actionbuttontypedeprecated) | Yes| Button type.|
 
 
 ## WantAgent<sup>(deprecated)</sup>
@@ -518,7 +518,7 @@ Provides the information about the target package and ability to start automatic
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [reminderAgentManager.MaxScreenWantAgent](js-apis-reminderAgentManager.md#MaxScreenWantAgent).
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [reminderAgentManager.MaxScreenWantAgent](js-apis-reminderAgentManager.md#maxscreenwantagent).
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
@@ -540,10 +540,10 @@ Defines the reminder to publish.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| reminderType | [ReminderType](#remindertype) | Yes| Type of the reminder.|
-| actionButton | [ActionButton](#actionbutton) | No| Button displayed in the reminder notification. (The parameter is optional. Up to two buttons are supported.)|
-| wantAgent | [WantAgent](#wantagent) | No| Information about the ability that is redirected to when the notification is clicked.|
-| maxScreenWantAgent | [MaxScreenWantAgent](#maxscreenwantagent) | No| Information about the ability that is automatically started when the reminder arrives. If the device is in use, a notification will be displayed.|
+| reminderType | [ReminderType](#remindertypedeprecated) | Yes| Type of the reminder.|
+| actionButton | [ActionButton](#actionbuttondeprecated) | No| Button displayed in the reminder notification. (The parameter is optional. Up to two buttons are supported.)|
+| wantAgent | WantAgent | No| Information about the ability that is redirected to when the notification is clicked.|
+| maxScreenWantAgent | [MaxScreenWantAgent](#maxscreenwantagentdeprecated) | No| Information about the ability that is automatically started when the reminder arrives. If the device is in use, a notification will be displayed.|
 | ringDuration | number | No| Ringing duration, in seconds. The default value is **1**.|
 | snoozeTimes | number | No| Number of reminder snooze times. The default value is **0**.|
 | timeInterval | number | No| Reminder snooze interval, in seconds. The default value is **0**.|
@@ -552,7 +552,7 @@ Defines the reminder to publish.
 | expiredContent | string | No| Content to be displayed after the reminder expires.|
 | snoozeContent | string | No| Content to be displayed when the reminder is snoozing.|
 | notificationId | number | No| Notification ID used by the reminder. If there are reminders with the same notification ID, the later one will overwrite the earlier one.|
-| slotType | [notification.SlotType](../apis/js-apis-notification.md#slottype) | No| Type of the slot used by the reminder.|
+| slotType | [notification.SlotType](../apis-notification-kit/js-apis-notification.md#slottype) | No| Type of the slot used by the reminder.|
 
 
 ## ReminderRequestCalendar<sup>(deprecated)</sup>
@@ -568,7 +568,7 @@ Defines a reminder for a calendar event.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| dateTime | [LocalDateTime](#localdatetime) | Yes| Reminder time.|
+| dateTime | [LocalDateTime](#localdatetimedeprecated) | Yes| Reminder time.|
 | repeatMonths | Array\<number> | No| Month in which the reminder repeats.|
 | repeatDays | Array\<number> | No| Date on which the reminder repeats.|
 

@@ -21,7 +21,7 @@ Publishes a reminder. This API uses an asynchronous callback to return the resul
 
 > **NOTE**
 >
-> This API can be called only after the [Notification.requestEnableNotification](../apis/js-apis-notification.md#notificationrequestenablenotification8) permission is obtained.
+> This API can be called only after the [Notification.requestEnableNotification](../apis-notification-kit/js-apis-notification.md#notificationrequestenablenotification8) permission is obtained.
 
 **Required permissions**: ohos.permission.PUBLISH_AGENT_REMINDER
 
@@ -69,7 +69,7 @@ Publishes a reminder. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> This API can be called only after the [Notification.requestEnableNotification](../apis/js-apis-notification.md#notificationrequestenablenotification8) permission is obtained.
+> This API can be called only after the [Notification.requestEnableNotification](../apis-notification-kit/js-apis-notification.md#notificationrequestenablenotification8) permission is obtained.
 
 **Required permissions**: ohos.permission.PUBLISH_AGENT_REMINDER
 
@@ -401,7 +401,7 @@ Adds a notification slot. This API uses an asynchronous callback to return the r
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| slot | [NotificationSlot](../apis/js-apis-inner-notification-notificationSlot.md#notificationslot) | Yes| notificationManager\.slot instance. Only **notificationType** can be set.|
+| slot | [NotificationSlot](../apis-notification-kit/js-apis-inner-notification-notificationSlot.md#notificationslot) | Yes| notificationManager\.slot instance. Only **notificationType** can be set.|
 | callback | AsyncCallback\<void> | Yes| Callback used to return the result. If the notification slot is added, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Example**
@@ -436,7 +436,7 @@ Adds a notification slot. This API uses a promise to return the result.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| slot | [NotificationSlot](../apis/js-apis-inner-notification-notificationSlot.md#notificationslot) | Yes| notificationManager\.slot instance. Only **notificationType** can be set.|
+| slot | [NotificationSlot](../apis-notification-kit/js-apis-inner-notification-notificationSlot.md#notificationslot) | Yes| notificationManager\.slot instance. Only **notificationType** can be set.|
 
 **Return value**
 
@@ -473,7 +473,7 @@ Removes a notification slot. This API uses an asynchronous callback to return th
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| slotType | [notification.SlotType](../apis/js-apis-notification.md#slottype) | Yes| Type of the notification slot to remove.|
+| slotType | [notification.SlotType](../apis-notification-kit/js-apis-notification.md#slottype) | Yes| Type of the notification slot to remove.|
 | callback | AsyncCallback\<void> | Yes| Callback used to return the result. If the notification slot is removed, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Example**
@@ -505,7 +505,7 @@ Removes a notification slot. This API uses a promise to return the result.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| slotType | [notification.SlotType](../apis/js-apis-notification.md#slottype) | Yes| Type of the notification slot to remove.|
+| slotType | [notification.SlotType](../apis-notification-kit/js-apis-notification.md#slottype) | Yes| Type of the notification slot to remove.|
 
 **Return value**
 
@@ -609,10 +609,10 @@ Defines the request for publishing a reminder.
 | snoozeContent | string | No| Content to be displayed when the reminder is snoozing. (It is not applicable to countdown reminders.)|
 | notificationId | number | No| Notification ID used by the reminder. If there are reminders with the same notification ID, the later one will overwrite the earlier one.|
 | groupId<sup>11+</sup> | string | No| Group ID used for the reminder. If "Don't ask again" or similar information is selected for the reminder, other reminders with the same group ID are also canceled.|
-| slotType | [notification.SlotType](../apis/js-apis-notificationManager.md#slottype) | No| Type of the slot used by the reminder.|
-| tapDismissed<sup>10+</sup> | boolean | No| Whether the reminder is automatically cleared. For details, see [NotificationRequest.tapDismissed](../apis/js-apis-inner-notification-notificationRequest.md#notificationrequest). |
-| autoDeletedTime<sup>10+</sup> | number | No| Time when the reminder is automatically cleared. For details, see [NotificationRequest.autoDeletedTime](../apis/js-apis-inner-notification-notificationRequest.md#notificationrequest).|
-| snoozeSlotType<sup>11+</sup> | [notification.SlotType](../apis/js-apis-notificationManager.md#slottype) | No| Type of the slot used by the reminder. (It is not applicable to countdown reminders.)|
+| slotType | [notification.SlotType](../apis-notification-kit/js-apis-notificationManager.md#slottype) | No| Type of the slot used by the reminder.|
+| tapDismissed<sup>10+</sup> | boolean | No| Whether the reminder is automatically cleared. For details, see [NotificationRequest.tapDismissed](../apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest). |
+| autoDeletedTime<sup>10+</sup> | number | No| Time when the reminder is automatically cleared. For details, see [NotificationRequest.autoDeletedTime](../apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest).|
+| snoozeSlotType<sup>11+</sup> | [notification.SlotType](../apis-notification-kit/js-apis-notificationManager.md#slottype) | No| Type of the slot used by the reminder. (It is not applicable to countdown reminders.)|
 | customRingUri<sup>11+</sup> | string | No| URI of the custom prompt tone.|
 
 ## ReminderRequestCalendar
