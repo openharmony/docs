@@ -8,6 +8,9 @@ You can use the APIs of this module to start a FormExtensionAbility.
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > The APIs of this module can be used only in the stage model.
+> The APIs provided by this module are system APIs.
+
+
 
 ## Modules to Import
 
@@ -132,7 +135,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
     this.context.startAbility(want).then(() => {
       console.info('StartAbility Success');
     }).catch((error: Base.BusinessError) => {
-      console.error('StartAbility failed, error.code: ${error.code}, error.message: ${error.message}');
+      console.error(`StartAbility failed, error.code: ${error.code}, error.message: ${error.message}`);
     });
   }
 };
@@ -176,7 +179,7 @@ Connects this ability to a ServiceExtensionAbility.
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
 
-For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
@@ -243,7 +246,7 @@ Disconnects this ability from a ServiceExtensionAbility and after the successful
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
 
-For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
@@ -308,7 +311,7 @@ Disconnects this ability from a ServiceExtensionAbility and after the successful
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
 
-For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
@@ -344,5 +347,3 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
   }
 };
 ```
-
- <!--no_check--> 

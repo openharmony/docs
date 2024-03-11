@@ -7,8 +7,9 @@
   - [@ohos.app.form.formProvider (FormProvider)](js-apis-app-form-formProvider.md)
   - [@ohos.app.form.formAgent (FormAgent) (System API)](js-apis-app-form-formAgent-sys.md)
   - [@ohos.app.form.FormExtensionAbility (FormExtensionAbility) (System API)](js-apis-app-form-formExtensionAbility-sys.md)
-  - [@ohos.app.form.formInfo (FormInfo) (System API)](js-apis-app-form-formExtensionAbility-sys.md)
+  - [@ohos.app.form.formInfo (FormInfo) (System API)](js-apis-app-form-formInfo-sys.md)
   - [@ohos.app.form.formHost (formHost) (System API)](js-apis-app-form-formHost-sys.md)
+  - [@ohos.app.form.formProvider (FormProvider) (System API)](js-apis-app-form-formProvider-sys.md)
   - [@ohos.app.form.formObserver (formObserver) (System API)](js-apis-app-form-formObserver-sys.md)
   - application
     - [FormExtensionContext](js-apis-inner-application-formExtensionContext.md)
@@ -19,7 +20,7 @@
   - [@ohos.application.formInfo (FormInfo)](js-apis-application-formInfo.md)
   - [@ohos.application.formProvider (FormProvider)](js-apis-application-formProvider.md)
   - [@ohos.application.formError (FormError) (System API)](js-apis-application-formError-sys.md)
-  - [@ohos.application.formHost (FormHost) (System API)](js-apis-application-formHost.md)
+  - [@ohos.application.formHost (FormHost) (System API)](js-apis-application-formHost-sys.md)
   - [@ohos.application.formInfo (FormInfo) (System API)](js-apis-application-formInfo-sys.md)
 - Error Codes
   - [Form Error Codes](errorcode-form.md)
