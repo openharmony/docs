@@ -899,6 +899,42 @@ The application has applied for an incorrect permission, causing the installatio
 1. Check whether the application has applied for the [MDM permission](../../security/AccessToken/permissions-for-mdm-apps.md), which is available only for MDM applications.
 2. Check whether the [permission level](../../security/AccessToken/permissions-for-all.md) is higher than the [application's APL](../../security/app-provision-structure.md#internal-structure-of-the-bundle-info-object). If the application uses the default APL, which is normal, it can require the system_basic or system_core permission only. Change the API in the **UnsgnedDebugProfileTemplate.json** file to **system_basic** or **system_core**, and sign and pack the application again.
 
+## 17700055 Invalid Link
+
+**Error Message**
+
+The specified link is invalid.
+
+**Description**
+
+When the **canOpenLink** API of the **bundleManager** module is called, the link passed in is invalid.
+
+**Possible Causes**
+
+The format of the link is incorrect.
+
+**Solution**
+
+Check whether the link format is correct.
+
+## 17700056 Scheme of the Link Not Configured in querySchemes
+
+**Error Message**
+
+The scheme of the specified link is not in the querySchemes.
+
+**Description**
+
+When the **canOpenLink** API of the **bundleManager** module is called, the scheme of the link is not configured in the **querySchemes** field.
+
+**Possible Causes**
+
+The scheme of the link is not configured in the **querySchemes** field.
+
+**Solution**
+
+Check whether the URL scheme is configured in the **querySchemes** field.
+
 ## 17700201 .abc File Verification Failure
 
 **Error Message**
