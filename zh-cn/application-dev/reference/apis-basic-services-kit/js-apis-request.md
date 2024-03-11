@@ -2141,18 +2141,6 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | extras | string | 否 | 任务的额外部分。|
 
 
-## HttpResponse<sup>12+</sup> 
-任务响应头的数据结构。
-
-**系统能力**: SystemCapability.Request.FileTransferAgent
-
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| version | string | 是 | Http版本。 |
-| statusCode | number | 是 | Http响应状态码。 |
-| reason | string | 是 | Http响应原因。|
-| headers | Map&lt;string, Array&lt;string&gt;&gt; | 是 | Http响应头部。 |
-
 ## Task<sup>10+</sup> 
 上传或下载任务。使用该方法前需要先获取Task对象，promise形式通过[request.agent.create<sup>10+</sup>](#requestagentcreate10-1)获取，callback形式通过[request.agent.create<sup>10+</sup>](#requestagentcreate10)获取。
 
@@ -2571,73 +2559,6 @@ on(event: 'remove', callback: (progress: Progress) =&gt; void): void
   };
   request.agent.create(getContext(), config).then((task: request.agent.Task) => {
     task.on('remove', createOnCallback);
-    console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
-  });
-  ```
-
-> **说明：**
->
-> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
-
-### on('response')<sup>12+</sup>
-
-on(event: 'response', callback: Callback&lt;HttpResponse&gt;): void
-
-订阅任务响应头，异步方法，使用callback形式返回结果。
-
-**系统能力**: SystemCapability.Request.FileTransferAgent
-
-**参数：**
-
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | event | string | 是 | 订阅的事件类型。<br>- 取值为'response'，表示任务响应。 |
-  | callback | function | 是 | 发生相关的事件时触发该回调方法，返回任务响应头的数据结构。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
-
-**示例：**
-
-  ```ts
-  let attachments: Array<request.agent.FormItem> = [{
-    name: "taskOnTest",
-    value: {
-      filename: "taskOnTest.avi",
-      mimeType: "application/octet-stream",
-      path: "./taskOnTest.avi",
-    }
-  }];
-  let config: request.agent.Config = {
-    action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1',
-    title: 'taskOnTest',
-    description: 'Sample code for event listening',
-    mode: request.agent.Mode.FOREGROUND,
-    overwrite: false,
-    method: "PUT",
-    data: attachments,
-    saveas: "./",
-    network: request.agent.Network.CELLULAR,
-    metered: false,
-    roaming: true,
-    retry: true,
-    redirect: true,
-    index: 0,
-    begins: 0,
-    ends: -1,
-    gauge: false,
-    precise: false,
-    token: "it is a secret"
-  };
-  let createOnCallback = (response: request.agent.HttpResponse) => {
-    console.info('upload task response.');
-  };
-  request.agent.create(getContext(), config).then((task: request.agent.Task) => {
-    task.on('response', createOnCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
@@ -3100,81 +3021,6 @@ off(event: 'remove', callback?: (progress: Progress) =&gt; void): void
     task.off('remove', createOffCallback1);
     //表示取消订阅任务移除的所有回调
     task.off('remove');
-    console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
-  });
-  ```
-
-> **说明：**
->
-> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
-
-### off('response')<sup>12+</sup>
-
-off(event: 'response', callback?: Callback&lt;HttpResponse&gt;): void
-
-取消订阅任务响应头。
-
-**系统能力**: SystemCapability.Request.FileTransferAgent
-
-**参数：**
-
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | event | string | 是 | 订阅的事件类型。<br>- 取值为'response'，表示任务响应。 |
-  | callback | function | 否 | 需要取消订阅的回调函数。若无此参数，则取消订阅当前类型的所有回调函数。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
-
-**示例：**
-
-  ```ts
-  let attachments: Array<request.agent.FormItem> = [{
-    name: "taskOffTest",
-    value: {
-      filename: "taskOffTest.avi",
-      mimeType: "application/octet-stream",
-      path: "./taskOffTest.avi",
-    }
-  }];
-  let config: request.agent.Config = {
-    action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1',
-    title: 'taskOffTest',
-    description: 'Sample code for event listening',
-    mode: request.agent.Mode.FOREGROUND,
-    overwrite: false,
-    method: "PUT",
-    data: attachments,
-    saveas: "./",
-    network: request.agent.Network.CELLULAR,
-    metered: false,
-    roaming: true,
-    retry: true,
-    redirect: true,
-    index: 0,
-    begins: 0,
-    ends: -1,
-    gauge: false,
-    precise: false,
-    token: "it is a secret"
-  };
-  let createOffCallback1 = (progress: request.agent.HttpResponse) => {
-    console.info('upload task response.');
-  };
-  let createOffCallback2 = (progress: request.agent.HttpResponse) => {
-    console.info('upload task response.');
-  };
-  request.agent.create(getContext(), config).then((task: request.agent.Task) => {
-    task.on('response', createOffCallback1);
-    task.on('response', createOffCallback2);
-    //表示取消createOffCallback1的订阅
-    task.off('response', createOffCallback1);
-    //表示取消订阅任务移除的所有回调
-    task.off('response');
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
