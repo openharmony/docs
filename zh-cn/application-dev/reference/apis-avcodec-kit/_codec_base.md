@@ -107,12 +107,12 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | const char \* [OH_MD_KEY_AUDIO_SAMPLE_FORMAT](#oh_md_key_audio_sample_format) | 音频原始格式的键，值类型为uint32_t。 | 
 | const char \* [OH_MD_KEY_FRAME_RATE](#oh_md_key_frame_rate) | 视频帧率的键，值类型为double。 | 
 | const char \* [OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE](#oh_md_key_video_encode_bitrate_mode) | 视频编码码率模式，值类型为int32_t，请参见[OH_VideoEncodeBitrateMode](_video_encoder.md#oh_videoencodebitratemode)。 | 
-| const char \* [OH_MD_KEY_PROFILE](#oh_md_key_profile) | 编码模板，值类型为数字，请参见[OH_HEVCProfile](#oh_hevcprofile), [OH_AACProfile](#oh_aacprofile)。 | 
+| const char \* [OH_MD_KEY_PROFILE](#oh_md_key_profile) | 编码档次，值类型为int32_t请参见[OH_HEVCProfile](#oh_hevcprofile), [OH_AACProfile](#oh_aacprofile)。 | 
 | const char \* [OH_MD_KEY_AUD_CHANNEL_COUNT](#oh_md_key_aud_channel_count) | 音频通道计数键，值类型为uint32_t。 | 
 | const char \* [OH_MD_KEY_AUD_SAMPLE_RATE](#oh_md_key_aud_sample_rate) | 音频采样率键，值类型为uint32_t。 | 
 | const char \* [OH_MD_KEY_I_FRAME_INTERVAL](#oh_md_key_i_frame_interval) | 关键帧间隔的键，值类型为int32_t，单位为毫秒。 | 
 | const char \* [OH_MD_KEY_ROTATION](#oh_md_key_rotation) | 表面旋转角度的键。值类型为int32_t：应为{0, 90, 180, 270}，默认值为0。 | 
-| const char \* [OH_MD_KEY_RANGE_FLAG](#oh_md_key_range_flag) | 视频YUV取值范围标志的键，值类型为bool。 | 
+| const char \* [OH_MD_KEY_RANGE_FLAG](#oh_md_key_range_flag) | 视频YUV值域标志的键，值类型为bool，true表示full range，false表示limited range。 | 
 | const char \* [OH_MD_KEY_COLOR_PRIMARIES](#oh_md_key_color_primaries) | 视频色域的键, 值类型为int32_t, 请参见[OH_ColorPrimary](#oh_colorprimary)。 | 
 | const char \* [OH_MD_KEY_TRANSFER_CHARACTERISTICS](#oh_md_key_transfer_characteristics) | 视频转移特性的键，值类型为int32_t,请参见[OH_TransferCharacteristic](#oh_transfercharacteristic)。 | 
 | const char \* [OH_MD_KEY_MATRIX_COEFFICIENTS](#oh_md_key_matrix_coefficients) | 视频矩阵系数的键，值类型为int32_t,请参见[OH_MatrixCoefficient](#oh_matrixcoefficient)。 | 
@@ -1696,7 +1696,7 @@ const char* OH_MD_KEY_PROFILE
 
 **描述**
 
-编码模板，值类型为数字，请参见[OH_HEVCProfile](#oh_hevcprofile), [OH_AACProfile](#oh_aacprofile)。
+编码档次，值类型为int32_t请参见[OH_HEVCProfile](#oh_hevcprofile), [OH_AACProfile](#oh_aacprofile)。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
@@ -1726,7 +1726,7 @@ const char* OH_MD_KEY_RANGE_FLAG
 
 **描述**
 
-视频YUV取值范围标志的键，值类型为bool。
+视频YUV值域标志的键，值类型为bool，true表示full range，false表示limited range。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
