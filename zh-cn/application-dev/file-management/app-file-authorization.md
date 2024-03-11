@@ -65,7 +65,7 @@
   }
   ```
 
-2.应用按需对路径设置持久化授权,检查是否对URI有持久化权限，如果没有权限则进行第3步持久化权限，参数uri为第一步FilePicker应用获取的选择路径。以下示例代码演示了检查持久化权限过程：
+2.应用按需对路径设置持久化授权，检查是否对URI有持久化权限，如果没有权限则进行第3步持久化权限，参数uri为第1步FilePicker应用获取的选择路径。以下示例代码演示了检查持久化权限过程：
   ```ts
   import { BusinessError } from '@ohos.base';
   import picker from '@ohos.file.picker';
