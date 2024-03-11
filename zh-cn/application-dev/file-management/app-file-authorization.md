@@ -12,12 +12,14 @@
 
 下面介绍几种常用操作示例。
 
-### 通过授权的方式申请Download目录权限和获取对应路径
+### 通过授权的方式申请Download目录权限、Documents目录权限或Desktop目录权限，并获取对应路径
 
-1.配置Download目录授权权限。
+1.三方应用可以通过ACL方式申请对应权限，并通过弹窗授权([request-user-authorization](../security/AccessToken/request-user-authorization.md)）向用户申请授予Download目录权限、Documents目录权限或Desktop目录权限权限。
 
     “requestPermissions” : [
-        "name": "ohos.permission.READ_WRITE_DOWNLOAD_DIRECTORY"
+        "ohos.permission.READ_WRITE_DOWNLOAD_DIRECTORY",
+        "ohos.permission.READ_WRITE_DOCUMENTS_DIRECTORY",
+        "ohos.permission.READ_WRITE_DESKTOP_DIRECTORY",
     ]
 
 2.应用获取公共Download目录后可以访问操作目录，通过获取目录环境能力接口（[ohos.file.environment](../reference/apis-core-file-kit/js-apis-file-environment.md)）获取环境路径。
@@ -63,7 +65,46 @@
   }
   ```
 
-2.应用按需对路径设置持久化授权，参数uri为第一步FilePicker应用获取的选择路径。以下示例代码演示了持久化授权过程：
+2.应用按需对路径设置持久化授权,检查是否对URI有持久化权限，如果没有权限则进行第3步持久化权限，参数uri为第一步FilePicker应用获取的选择路径。以下示例代码演示了检查持久化权限过程：
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  import picker from '@ohos.file.picker';
+  import fileshare from '@ohos.fileshare';
+  
+  async function checkPersistentPermissionExample() {
+      try {
+          let documentSelectOptions = new picker.DocumentSelectOptions();
+          let documentPicker = new picker.DocumentViewPicker();
+          let uris = await documentPicker.select(documentSelectOptions);
+          let policyInfo: fileshare.PolicyInfo = {
+              uri: uris[0],
+              operationMode: fileshare.OperationMode.READ_MODE,
+          };
+          let policies: Array<fileshare.PolicyInfo> = [policyInfo];
+          fileshare.checkPersistentPermission(policies).then(async (data) => {
+              let results: Array<boolean> = data;
+              for (let i = 0; i < results.length; i++) {
+                  console.log("checkPersistentPermission result: " + JSON.stringify(results[i]));
+                  if (!results[i]) {
+                      let info: fileshare.PolicyInfo = {
+                          uri: policies[i].uri,
+                          operationMode: policies[i].operationMode,
+                      };
+                      let policy: Array<fileshare.PolicyInfo> = [info];
+                      await fileshare.persistPermission(policy);
+                  }
+              }
+          }).catch((err: BusinessError<Array<fileshare.PolicyErrorResult>>) => {
+              console.info("checkPersistentPermission failed with error message: " + err.message + ", error code: " + err.code);
+          });
+      } catch (error) {
+          let err: BusinessError = error as BusinessError;
+          console.error('checkPersistentPermission failed with err: ' + JSON.stringify(err));
+      }
+  }
+  ```
+
+3.应用按需对路径设置持久化授权，参数uri为第1步FilePicker应用获取的选择路径。以下示例代码演示了持久化授权过程：
   ```ts
   import { BusinessError } from '@ohos.base';
   import fileshare from '@ohos.fileshare';
@@ -94,7 +135,7 @@
   }
   ```
 
-3.应用按需对持久化授权后的路径取消授权，参数URI为第一步通过FilePicker选择的路径。以下示例代码演示了去除持久化授权URI的过程：
+4.应用按需对持久化授权后的路径取消授权，参数URI为第1步通过FilePicker选择的路径。以下示例代码演示了去除持久化授权URI的过程：
   ```ts
   import { BusinessError } from '@ohos.base';
   import fileshare from '@ohos.fileshare';
@@ -108,6 +149,7 @@
         operationMode: fileshare.OperationMode.READ_MODE,
       };
       let policies: Array<fileshare.PolicyInfo> = [policyInfo];
+      await fileshare.persistPermission(policy);
       fileshare.revokePermission(policies).then(() => {
         console.info("revokePermission successfully");
       }).catch((err: BusinessError<Array<fileshare.PolicyErrorResult>>) => {
@@ -125,37 +167,45 @@
   }
   ```
 
-4.应用支持的持久化能力需要在重启时激活已经持久化授权URI，持久化授权的接口需要与激活持久化权限的接口配套使用。
+5.应用获得的持久化权限需要在重启后进行激活，应用重启后及访问URI之前首先检查对URI是否有持久化权限，有权限则激活已经持久化的授权URI，持久化授权的接口需要与激活持久化权限的接口配套使用。
 
-以下示例代码演示了应用重启时激活持久化授权的URI，其中参数URI为应用重启后读取的最近使用文件：
+以下示例代码演示了应用激活持久化授权的过程，其中参数URI为应用重启后需要激活权限的路径：
   ```ts
   import { BusinessError } from '@ohos.base';
   import fileshare from '@ohos.fileshare';
   import fs from '@ohos.file.fs';
   
   async function activatePermissionExample01() {
-    try {
-      let uri = "file://docs/storage/Users/username/tmp.txt";
-      let policyInfo: fileshare.PolicyInfo = {
-        uri: uri,
-        operationMode: fileshare.OperationMode.READ_MODE,
-      };
-      let policies: Array<fileshare.PolicyInfo> = [policyInfo];
-      fileshare.activatePermission(policies).then(() => {
-        console.info("activatePermission successfully");
-      }).catch((err: BusinessError<Array<fileshare.PolicyErrorResult>>) => {
-        console.info("activatePermission failed with error message: " + err.message + ", error code: " + err.code);
-      });
-      let fd = await fs.open(uri);
-      await fs.close(fd);
-    } catch (error) {
-      let err: BusinessError = error as BusinessError;
-      console.error('activatePermission failed with err: ' + JSON.stringify(err));
-    }
+      try {
+          let uri = "file://docs/storage/Users/username/tmp.txt";
+          let policyInfo: fileshare.PolicyInfo = {
+              uri: uri,
+              operationMode: fileshare.OperationMode.READ_MODE,
+          };
+          let policies: Array<fileshare.PolicyInfo> = [policyInfo];
+          let results = await fileshare.checkPersistentPermission(policies);
+          for (let i = 0; i < results.length; i++) {
+              console.log("checkPersistentPermission result: " + JSON.stringify(results[i]));
+              if (results[i]) {
+                  let info: fileshare.PolicyInfo = {
+                      uri: policies[i].uri,
+                      operationMode: policies[i].operationMode,
+                  };
+                  let policy: Array<fileshare.PolicyInfo> = [info];
+                  await fileshare.activatePermission(policy);
+                  console.info("activatePermission successfully");
+              }
+          }
+          let fd = await fs.open(uri);
+          await fs.close(fd);
+      } catch (error) {
+          let err: BusinessError = error as BusinessError;
+          console.error('activatePermission failed with err: ' + JSON.stringify(err));
+      }
   }
   ```
 
-5.应用可以按需取消激活的持久化权限能力，参数URI为应用重启后读取的最近使用文件。以下示例代码演示了取消激活持久化权限的过程：
+6.应用可以按需取消激活的持久化权限能力，参数URI为应用重启后需要激活权限的路径。以下示例代码演示了取消激活持久化权限的过程：
   ```ts
   import { BusinessError } from '@ohos.base';
   import fileshare from '@ohos.fileshare';
@@ -169,6 +219,7 @@
         operationMode: fileshare.OperationMode.READ_MODE,
       };
       let policies: Array<fileshare.PolicyInfo> = [policyInfo];
+      await fileshare.activatePermission(policies);
       fileshare.deactivatePermission(policies).then(() => {
         console.info("deactivatePermission successfully");
       }).catch((err: BusinessError<Array<fileshare.PolicyErrorResult>>) => {
