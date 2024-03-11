@@ -14,7 +14,7 @@
 
 ### 通过授权的方式申请Download目录权限、Documents目录权限或Desktop目录权限，并获取对应路径
 
-1.三方应用可以通过ACL方式申请对应权限，并通过弹窗授权([request-user-authorization](../security/AccessToken/request-user-authorization.md)）向用户申请授予Download目录权限、Documents目录权限或Desktop目录权限权限。
+1.三方应用可以通过ACL方式申请对应权限，并通过弹窗授权([request-user-authorization](../security/AccessToken/request-user-authorization.md)）向用户申请授予Download目录权限、Documents目录权限或Desktop目录权限。
 
     “requestPermissions” : [
         "ohos.permission.READ_WRITE_DOWNLOAD_DIRECTORY",
