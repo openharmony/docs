@@ -127,11 +127,9 @@ showTips(value: boolean, content?: ResourceStr)
 
 设置滑动时是否显示气泡提示。
 
-当direction的值为Axis.Horizontal时，tip显示在滑块正上方。值为Axis.Vertical时，tip显示在滑块正左边。
+当direction的值为Axis.Horizontal时，tip显示在滑块上方，如果上方空间不够，则在下方显示。值为Axis.Vertical时，tip显示在滑块左边，如果左边空间不够，则在右边显示。不设置周边边距或者周边边距比较小时，tip会被截断。
 
 tip的绘制区域为Slider自身节点的overlay。
-
-Slider不设置边距或者边距比较小时，tip会被截断。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
