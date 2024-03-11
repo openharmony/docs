@@ -520,7 +520,6 @@ closeCustomDialog(dialogId: number): void
 | 名称    | 类型                                                    | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | builder | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) | 否   | 设置自定义弹窗的内容。<br/>**说明：** <br/>builder需要使用bind(this)。<br/>builder根节点宽高百分比相对弹框容器大小。<br/>builder非根节点宽高百分比相对父节点大小。 |
-| onWillDismiss<sup>12+</sup> | (dismissDialog:&nbsp;[DismissDialog](arkui-ts/ts-methods-alert-dialog-box.md#DismissDialog12类型说明)) => void | 否 | 交互式关闭回调函数。<br/>**说明：**<br/>1.当注册该回调函数后，点击、左滑/右滑、三键back或键盘ESC，不会立刻关闭。在回调函数中可以通过reason得到阻拦关闭弹窗的操作类型，从而根据原因选择是否能关闭弹窗。<br/>2.在onWillDismiss回调中，不能再做onWillDismiss拦截。 |
 
 ## BaseDialogOptions<sup>11+</sup>
 
