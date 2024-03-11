@@ -17,7 +17,7 @@ import hidebug from '@ohos.hidebug';
 
 getNativeHeapSize(): bigint
 
-获取本应用堆内存的总大小。
+获取内存分配器统计的进程持有的堆内存大小（含分配器元数据）。
 
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -25,7 +25,7 @@ getNativeHeapSize(): bigint
 
 | 类型   | 说明                        |
 | ------ | --------------------------- |
-| bigint | 返回本应用堆内存总大小，单位为Byte。 |
+| bigint | 内存分配器统计的进程持有的堆内存大小（含分配器元数据），单位为Byte。 |
 
 **示例：**
   ```ts
@@ -36,7 +36,7 @@ getNativeHeapSize(): bigint
 
 getNativeHeapAllocatedSize(): bigint
 
-获取本应用堆内存的已分配内存大小。
+获取内存分配器统计的进程业务分配的堆内存大小。
 
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -44,7 +44,7 @@ getNativeHeapAllocatedSize(): bigint
 
 | 类型   | 说明                              |
 | ------ | --------------------------------- |
-| bigint | 返回本应用堆内存的已分配内存，单位为Byte。 |
+| bigint | 返回内存分配器统计的进程业务分配的堆内存大小，单位为Byte。 |
 
 
 **示例：**
@@ -56,7 +56,7 @@ getNativeHeapAllocatedSize(): bigint
 
 getNativeHeapFreeSize(): bigint
 
-获取本应用堆内存的空闲内存大小。
+获取内存分配器持有的缓存内存大小。
 
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -64,7 +64,7 @@ getNativeHeapFreeSize(): bigint
 
 | 类型   | 说明                            |
 | ------ | ------------------------------- |
-| bigint | 返回本应用堆内存的空闲内存，单位为Byte。 |
+| bigint | 返回内存分配器持有的缓存内存大小，单位为Byte。 |
 
 **示例：**
   ```ts
