@@ -401,7 +401,7 @@ Adds a notification slot. This API uses an asynchronous callback to return the r
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| slot | [NotificationSlot](js-apis-inner-notification-notificationSlot.md#notificationslot) | Yes| notification\.slot instance. Only **type** can be set.|
+| slot | [NotificationSlot](js-apis-notification.md#notificationslot) | Yes| Notification slot. Only the type can be set.|
 | callback | AsyncCallback\<void> | Yes| Callback used to return the result. If the notification slot is added, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Example**
@@ -436,7 +436,7 @@ Adds a notification slot. This API uses a promise to return the result.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| slot | [NotificationSlot](js-apis-inner-notification-notificationSlot.md#notificationslot) | Yes| notification\.slot instance. Only **type** can be set.|
+| slot | [NotificationSlot](js-apis-notification.md#notificationslot) | Yes| Notification slot. Only the type can be set.|
 
 **Return value**
 
