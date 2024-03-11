@@ -86,8 +86,8 @@
 | int32_t [OH_NativeXComponent_DetachNativeRootNode](#oh_nativexcomponent_detachnativerootnode) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, [ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) root) | 将ArkUI的native组件从当前XComponent上卸载.  | 
 | int32_t [OH_NativeXComponent_RegisterUIInputEventCallback](#oh_nativexcomponent_registeruiinputeventcallback) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, void(\*callback)([OH_NativeXComponent](#oh_nativexcomponent) \*component, [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \*event, [ArkUI_UIInputEvent_Type](_ark_u_i___event_module.md#arkui_uiinputevent_type) type), [ArkUI_UIInputEvent_Type](_ark_u_i___event_module.md#arkui_uiinputevent_type) type) | 为此OH_NativeXComponent实例注册UI输入事件回调，并使能收到UI输入事件时回调此函数。  | 
 | int32_t [OH_NativeXComponent_SetNeedSoftKeyboard](#oh_nativexcomponent_setneedsoftkeyboard) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, bool isNeedSoftKeyboard) | 为此OH_NativeXComponent实例设置是否需要软键盘。  | 
-| int32_t [OH_NativeXComponent_RegisterSurfaceShowCallback](#oh_nativexcomponent_registersurfaceshowcallback)&nbsp;([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;void(\*callback)([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;void&nbsp;\*window)) | 为此OH_NativeXComponent实例注册应用界面显示回调。|
-| int32_t [OH_NativeXComponent_RegisterSurfaceHideCallback](#oh_nativexcomponent_registersurfacehidecallback)&nbsp;([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;void(\*callback)([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;void&nbsp;\*window)) | 为此OH_NativeXComponent实例注册应用界面隐藏回调。|
+| int32_t [OH_NativeXComponent_RegisterSurfaceShowCallback](#oh_nativexcomponent_registersurfaceshowcallback)&nbsp;([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;void(\*callback)([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;void&nbsp;\*window)) | 为此OH_NativeXComponent实例注册surface显示回调，该回调在应用从后台返回前台时触发。|
+| int32_t [OH_NativeXComponent_RegisterSurfaceHideCallback](#oh_nativexcomponent_registersurfacehidecallback)&nbsp;([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;void(\*callback)([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;void&nbsp;\*window)) | 为此OH_NativeXComponent实例注册surface隐藏回调，该回调在应用从前台来到后台时触发。|
 
 ### 变量
 
@@ -1392,14 +1392,14 @@ int32_t OH_NativeXComponent_RegisterSurfaceShowCallback (OH_NativeXComponent * c
 
 **描述:**
 
-为此OH_NativeXComponent实例注册应用界面显示回调。
+为此OH_NativeXComponent实例注册surface显示回调，该回调在应用从后台返回前台时触发。
 
 **参数:**
 
 | 名称        | 描述                            |
 | --------- | ----------------------------- |
 | component | 表示指向OH_NativeXComponent实例的指针。 |
-| callback  | 指示指向应用界面显示回调的指针。                |
+| callback  | 指示指向surface显示回调的指针。                |
 
 **返回:**
 
@@ -1417,14 +1417,14 @@ int32_t OH_NativeXComponent_RegisterSurfaceHideCallback (OH_NativeXComponent * c
 
 **描述:**
 
-为此OH_NativeXComponent实例注册应用界面隐藏回调。
+为此OH_NativeXComponent实例注册surface隐藏回调，该回调在应用从前台来到后台时触发。
 
 **参数:**
 
 | 名称        | 描述                            |
 | --------- | ----------------------------- |
 | component | 表示指向OH_NativeXComponent实例的指针。 |
-| callback  | 指示指向应用界面隐藏回调的指针。                |
+| callback  | 指示指向surface隐藏回调的指针。                |
 
 **返回:**
 
