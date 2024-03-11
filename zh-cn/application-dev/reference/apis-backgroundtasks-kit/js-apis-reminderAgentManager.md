@@ -630,7 +630,7 @@ reminderAgentManager.getAllValidReminders().then((reminders: Array<reminderAgent
 | -------- | -------- | -------- | -------- |
 | pkgName | string | 是 | 指明跳转目标的包名。 |
 | abilityName | string | 是 | 指明跳转目标的ability名称。 |
-| parameters<sup>12+</sup> | Record<string, Object> | 否 | 需要传递到目标的参数。 |
+| parameters<sup>12+</sup> | Record\<string, Object> | 否 | 需要传递到目标的参数。 |
 
 
 ## MaxScreenWantAgent
