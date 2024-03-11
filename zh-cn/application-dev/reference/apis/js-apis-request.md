@@ -179,7 +179,9 @@ upload(config: UploadConfig): Promise&lt;UploadTask&gt;
 
 **模型约束**：此接口仅可在FA模型下使用
 
->  **说明：** 从API Version 9开始不再维护，建议使用[request.uploadFile<sup>9+</sup>](#requestuploadfile9)替代。
+>  **说明：**
+>
+> 从API Version 9开始不再维护，建议使用[request.uploadFile<sup>9+</sup>](#requestuploadfile9)替代。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -224,7 +226,9 @@ upload(config: UploadConfig, callback: AsyncCallback&lt;UploadTask&gt;): void
 
 **模型约束**：此接口仅可在FA模型下使用
 
->  **说明：** 从API Version 9开始不再维护，建议使用[request.uploadFile<sup>9+</sup>](#requestuploadfile9-1)替代。
+>  **说明：**
+>
+> 从API Version 9开始不再维护，建议使用[request.uploadFile<sup>9+</sup>](#requestuploadfile9-1)替代。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -530,7 +534,9 @@ remove(): Promise&lt;boolean&gt;
 
 移除上传的任务，异步方法，使用promise形式返回结果。
 
->  **说明：** 从API Version 9开始不再维护，建议使用[delete<sup>9+</sup>](#delete9)替代。
+>  **说明：**
+>
+> 从API Version 9开始不再维护，建议使用[delete<sup>9+</sup>](#delete9)替代。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -563,7 +569,9 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 
 移除上传的任务，异步方法，使用callback形式返回结果。
 
->  **说明：** 从API Version 9开始不再维护，建议使用[delete<sup>9+</sup>](#delete9-1)替代。
+>  **说明：**
+>
+> 从API Version 9开始不再维护，建议使用[delete<sup>9+</sup>](#delete9-1)替代。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -746,7 +754,9 @@ download(config: DownloadConfig): Promise&lt;DownloadTask&gt;
 
 下载，异步方法，使用promise形式返回结果。
 
->  **说明：** 从API Version 9开始不再维护，建议使用[request.downloadFile<sup>9+</sup>](#requestdownloadfile9)替代。
+>  **说明：**
+>
+> 从API Version 9开始不再维护，建议使用[request.downloadFile<sup>9+</sup>](#requestdownloadfile9)替代。
 
 **模型约束**：此接口仅可在FA模型下使用
 
@@ -784,7 +794,9 @@ download(config: DownloadConfig, callback: AsyncCallback&lt;DownloadTask&gt;): v
 
 下载，异步方法，使用callback形式返回结果。
 
->  **说明：** 从API Version 9开始不再维护，建议使用[request.downloadFile<sup>9+</sup>](#requestdownloadfile9-1)替代。
+>  **说明：**
+>
+> 从API Version 9开始不再维护，建议使用[request.downloadFile<sup>9+</sup>](#requestdownloadfile9-1)替代。
 
 **模型约束**：此接口仅可在FA模型下使用
 
@@ -1324,7 +1336,9 @@ remove(): Promise&lt;boolean&gt;
 
 移除下载的任务，异步方法，使用promise形式返回结果。
 
->  **说明：** 从API Version 9开始不再维护，建议使用[delete<sup>9+</sup>](#delete9-2)替代。
+>  **说明：**
+>
+> 从API Version 9开始不再维护，建议使用[delete<sup>9+</sup>](#delete9-2)替代。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -1357,7 +1371,9 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 
 移除下载的任务，异步方法，使用callback形式返回结果。
 
->  **说明：** 从API Version 9开始不再维护，建议使用[delete<sup>9+</sup>](#delete9-3)替代。
+>  **说明：**
+>
+> 从API Version 9开始不再维护，建议使用[delete<sup>9+</sup>](#delete9-3)替代。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -1392,7 +1408,9 @@ query(): Promise&lt;DownloadInfo&gt;
 
 查询下载任务，异步方法，使用promise形式返回DownloadInfo里的信息。
 
->  **说明：** 从API Version 7开始支持，从API Version 9开始不再维护，建议使用[getTaskInfo<sup>9+</sup>](#gettaskinfo9)替代。
+>  **说明：**
+>
+> 从API Version 7开始支持，从API Version 9开始不再维护，建议使用[getTaskInfo<sup>9+</sup>](#gettaskinfo9)替代。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -1421,7 +1439,9 @@ query(callback: AsyncCallback&lt;DownloadInfo&gt;): void
 
 查询下载的任务，异步方法，使用callback形式返回结果。
 
->  **说明：** 从API Version 7开始支持，从API Version 9开始不再维护，建议使用[getTaskInfo<sup>9+</sup>](#gettaskinfo9-1)替代。
+>  **说明：**
+>
+> 从API Version 7开始支持，从API Version 9开始不再维护，建议使用[getTaskInfo<sup>9+</sup>](#gettaskinfo9-1)替代。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -1452,7 +1472,9 @@ queryMimeType(): Promise&lt;string&gt;
 
 查询下载的任务的 MimeType，异步方法，使用promise形式返回结果。
 
->  **说明：** 从API Version 7开始支持，从API Version 9开始不再维护，建议使用[getTaskMimeType<sup>9+</sup>](#gettaskmimetype9)替代。
+>  **说明：**
+>
+> 从API Version 7开始支持，从API Version 9开始不再维护，建议使用[getTaskMimeType<sup>9+</sup>](#gettaskmimetype9)替代。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -1481,7 +1503,9 @@ queryMimeType(callback: AsyncCallback&lt;string&gt;): void;
 
 查询下载的任务的 MimeType，异步方法，使用callback形式返回结果。
 
->  **说明：** 从API Version 7开始支持，从API Version 9开始不再维护，建议使用[getTaskMimeType<sup>9+</sup>](#gettaskmimetype9-1)替代。
+>  **说明：**
+>
+> 从API Version 7开始支持，从API Version 9开始不再维护，建议使用[getTaskMimeType<sup>9+</sup>](#gettaskmimetype9-1)替代。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -1512,7 +1536,9 @@ pause(): Promise&lt;void&gt;
 
 暂停下载任务，异步方法，使用promise形式返回结果。
 
->  **说明：** 从API Version 7开始支持，从API Version 9开始不再维护，建议使用[suspend<sup>9+</sup>](#suspend9)替代。
+>  **说明：**
+>
+> 从API Version 7开始支持，从API Version 9开始不再维护，建议使用[suspend<sup>9+</sup>](#suspend9)替代。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -1543,7 +1569,9 @@ pause(): Promise&lt;void&gt;
 
 pause(callback: AsyncCallback&lt;void&gt;): void
 
->  **说明：** 从API Version 7开始支持，从API Version 9开始不再维护，建议使用[suspend<sup>9+</sup>](#suspend9-1)替代。
+>  **说明：**
+>
+> 从API Version 7开始支持，从API Version 9开始不再维护，建议使用[suspend<sup>9+</sup>](#suspend9-1)替代。
 
 暂停下载任务，异步方法，使用callback形式返回结果。
 
@@ -1580,7 +1608,9 @@ resume(): Promise&lt;void&gt;
 
 重新启动暂停的下载任务，异步方法，使用promise形式返回结果。
 
->  **说明：** 从API Version 7开始支持，从API Version 9开始不再维护，建议使用[restore<sup>9+</sup>](#restore9)替代。
+>  **说明：**
+>
+> 从API Version 7开始支持，从API Version 9开始不再维护，建议使用[restore<sup>9+</sup>](#restore9)替代。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -1612,7 +1642,9 @@ resume(): Promise&lt;void&gt;
 
 resume(callback: AsyncCallback&lt;void&gt;): void
 
->  **说明：** 从API Version 7开始支持，从API Version 9开始不再维护，建议使用[restore<sup>9+</sup>](#restore9-1)替代。
+>  **说明：**
+>
+> 从API Version 7开始支持，从API Version 9开始不再维护，建议使用[restore<sup>9+</sup>](#restore9-1)替代。
 
 重新启动暂停的下载任务，异步方法，使用callback形式返回结果。
 
