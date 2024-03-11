@@ -292,5 +292,3 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
   }
 };
 ```
-
- <!--no_check--> 
