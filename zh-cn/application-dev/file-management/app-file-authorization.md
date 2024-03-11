@@ -72,35 +72,35 @@
   import fileshare from '@ohos.fileshare';
   
   async function checkPersistentPermissionExample() {
-      try {
-          let documentSelectOptions = new picker.DocumentSelectOptions();
-          let documentPicker = new picker.DocumentViewPicker();
-          let uris = await documentPicker.select(documentSelectOptions);
-          let policyInfo: fileshare.PolicyInfo = {
-              uri: uris[0],
-              operationMode: fileshare.OperationMode.READ_MODE,
-          };
-          let policies: Array<fileshare.PolicyInfo> = [policyInfo];
-          fileshare.checkPersistentPermission(policies).then(async (data) => {
-              let results: Array<boolean> = data;
-              for (let i = 0; i < results.length; i++) {
-                  console.log("checkPersistentPermission result: " + JSON.stringify(results[i]));
-                  if (!results[i]) {
-                      let info: fileshare.PolicyInfo = {
-                          uri: policies[i].uri,
-                          operationMode: policies[i].operationMode,
-                      };
-                      let policy: Array<fileshare.PolicyInfo> = [info];
-                      await fileshare.persistPermission(policy);
-                  }
-              }
-          }).catch((err: BusinessError<Array<fileshare.PolicyErrorResult>>) => {
-              console.info("checkPersistentPermission failed with error message: " + err.message + ", error code: " + err.code);
-          });
-      } catch (error) {
-          let err: BusinessError = error as BusinessError;
-          console.error('checkPersistentPermission failed with err: ' + JSON.stringify(err));
-      }
+    try {
+      let documentSelectOptions = new picker.DocumentSelectOptions();
+      let documentPicker = new picker.DocumentViewPicker();
+      let uris = await documentPicker.select(documentSelectOptions);
+      let policyInfo: fileshare.PolicyInfo = {
+        uri: uris[0],
+        operationMode: fileshare.OperationMode.READ_MODE,
+      };
+      let policies: Array<fileshare.PolicyInfo> = [policyInfo];
+      fileshare.checkPersistentPermission(policies).then(async (data) => {
+        let results: Array<boolean> = data;
+        for (let i = 0; i < results.length; i++) {
+          console.log("checkPersistentPermission result: " + JSON.stringify(results[i]));
+          if (!results[i]) {
+            let info: fileshare.PolicyInfo = {
+              uri: policies[i].uri,
+              operationMode: policies[i].operationMode,
+            };
+            let policy: Array<fileshare.PolicyInfo> = [info];
+            await fileshare.persistPermission(policy);
+          }
+        }
+      }).catch((err: BusinessError<Array<fileshare.PolicyErrorResult>>) => {
+        console.info("checkPersistentPermission failed with error message: " + err.message + ", error code: " + err.code);
+      });
+    } catch (error) {
+      let err: BusinessError = error as BusinessError;
+      console.error('checkPersistentPermission failed with err: ' + JSON.stringify(err));
+    }
   }
   ```
 
@@ -176,32 +176,32 @@
   import fs from '@ohos.file.fs';
   
   async function activatePermissionExample01() {
-      try {
-          let uri = "file://docs/storage/Users/username/tmp.txt";
-          let policyInfo: fileshare.PolicyInfo = {
-              uri: uri,
-              operationMode: fileshare.OperationMode.READ_MODE,
+    try {
+      let uri = "file://docs/storage/Users/username/tmp.txt";
+      let policyInfo: fileshare.PolicyInfo = {
+        uri: uri,
+        operationMode: fileshare.OperationMode.READ_MODE,
+      };
+      let policies: Array<fileshare.PolicyInfo> = [policyInfo];
+      let results = await fileshare.checkPersistentPermission(policies);
+      for (let i = 0; i < results.length; i++) {
+        console.log("checkPersistentPermission result: " + JSON.stringify(results[i]));
+        if (results[i]) {
+          let info: fileshare.PolicyInfo = {
+            uri: policies[i].uri,
+            operationMode: policies[i].operationMode,
           };
-          let policies: Array<fileshare.PolicyInfo> = [policyInfo];
-          let results = await fileshare.checkPersistentPermission(policies);
-          for (let i = 0; i < results.length; i++) {
-              console.log("checkPersistentPermission result: " + JSON.stringify(results[i]));
-              if (results[i]) {
-                  let info: fileshare.PolicyInfo = {
-                      uri: policies[i].uri,
-                      operationMode: policies[i].operationMode,
-                  };
-                  let policy: Array<fileshare.PolicyInfo> = [info];
-                  await fileshare.activatePermission(policy);
-                  console.info("activatePermission successfully");
-              }
-          }
-          let fd = await fs.open(uri);
-          await fs.close(fd);
-      } catch (error) {
-          let err: BusinessError = error as BusinessError;
-          console.error('activatePermission failed with err: ' + JSON.stringify(err));
+          let policy: Array<fileshare.PolicyInfo> = [info];
+          await fileshare.activatePermission(policy);
+          console.info("activatePermission successfully");
+        }
       }
+      let fd = await fs.open(uri);
+      await fs.close(fd);
+    } catch (error) {
+      let err: BusinessError = error as BusinessError;
+      console.error('activatePermission failed with err: ' + JSON.stringify(err));
+    }
   }
   ```
 
