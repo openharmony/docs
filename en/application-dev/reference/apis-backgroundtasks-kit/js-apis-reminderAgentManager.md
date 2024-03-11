@@ -526,70 +526,6 @@ reminderAgentManager.removeNotificationSlot(notification.SlotType.CONTENT_INFORM
 });
 ```
 
-## reminderAgentManager.getAllValidReminders<sup>12+</sup>
-
-getAllValidReminders(): Promise\<Array\<ReminderInfo>>
-
-Obtains all valid (not yet expired) reminders set by the current application, include reminder id. This API uses a promise to return the result.
-
-> **NOTE**
->
-> When the preset reminder time arrives, a notification message is displayed in the notification center. The reminder is valid before the user touches the CLOSE button to close the message.
->
-> For an alarm reminder that repeats every day, the reminder is valid regardless of whether the user touches the CLOSE button.
-
-**Required permissions**: ohos.permission.PUBLISH_AGENT_REMINDER
-
-**System capability**: SystemCapability.Notification.ReminderAgent
-
-**Return value**
-
-| Type                                              | Description                                     |
-| ------------------------------------------------- | ----------------------------------------------- |
-| Promise\<Array\<[ReminderInfo](#reminderinfo12)>> | Promise used to return all the valid reminders. |
-
-**Error codes**
-
-For details about the error codes, see [reminderAgentManager Error Codes](errorcode-reminderAgentManager.md).
-
-| ID   | Error Message      |
-| ---- | ------------------ |
-| 201  | Permission denied. |
-
-**Example**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-reminderAgentManager.getAllValidReminders().then((reminders: Array<reminderAgentManager.ReminderInfo>) => {
-  console.log("promise, getAllValidReminders length = " + reminders.length);
-  for (let i = 0; i < reminders.length; i++) {
-    console.log("getAllValidReminders, reminderId = " + reminders[i].reminderId);
-    console.log("getAllValidReminders, reminderType = " + reminders[i].reminderReq.reminderType);
-    const actionButton = reminders[i].reminderReq.actionButton || [];
-    for (let j = 0; j < actionButton.length; j++) {
-      console.log("getAllValidReminders, actionButton.title = " + actionButton[j]?.title);
-      console.log("getAllValidReminders, actionButton.type = " + actionButton[j]?.type);
-    }
-    console.log("getAllValidReminders, wantAgent.pkgName = " + reminders[i].reminderReq.wantAgent?.pkgName);
-    console.log("getAllValidReminders, wantAgent.abilityName = " + reminders[i].reminderReq.wantAgent?.abilityName);
-    console.log("getAllValidReminders, maxScreenWantAgent.pkgName = " + reminders[i].reminderReq.maxScreenWantAgent?.pkgName);
-    console.log("getAllValidReminders, maxScreenWantAgent.abilityName = " + reminders[i].reminderReq.maxScreenWantAgent?.abilityName);
-    console.log("getAllValidReminders, ringDuration = " + reminders[i].reminderReq.ringDuration);
-    console.log("getAllValidReminders, snoozeTimes = " + reminders[i].reminderReq.snoozeTimes);
-    console.log("getAllValidReminders, timeInterval = " + reminders[i].reminderReq.timeInterval);
-    console.log("getAllValidReminders, title = " + reminders[i].reminderReq.title);
-    console.log("getAllValidReminders, content = " + reminders[i].reminderReq.content);
-    console.log("getAllValidReminders, expiredContent = " + reminders[i].reminderReq.expiredContent);
-    console.log("getAllValidReminders, snoozeContent = " + reminders[i].reminderReq.snoozeContent);
-    console.log("getAllValidReminders, notificationId = " + reminders[i].reminderReq.notificationId);
-    console.log("getAllValidReminders, slotType = " + reminders[i].reminderReq.slotType);
-  }
-}).catch((err: BusinessError) => {
-  console.error("promise err code:" + err.code + " message:" + err.message);
-}); 
-```
-
 ## ActionButtonType
 
 Enumerates the button types.
@@ -638,7 +574,6 @@ Defines the information about the redirected-to ability.
 | -------- | -------- | -------- | -------- |
 | pkgName | string | Yes| Name of the target package.|
 | abilityName | string | Yes| Name of the target ability.|
-| parameters<sup>12+</sup> | Record<string, Object> | No | Parameters that need to be passed to the target. |
 
 
 ## MaxScreenWantAgent
@@ -738,15 +673,4 @@ Sets the time information for a calendar reminder.
 | hour | number | Yes| Hour. The value ranges from 0 to 23.|
 | minute | number | Yes| Minute. The value ranges from 0 to 59.|
 | second | number | No| Second. The value ranges from 0 to 59.|
-
-## ReminderInfo<sup>12+</sup>
-
-reminder info, include reminder request and reminder id。
-
-**System capability**: SystemCapability.Notification.ReminderAgent
-
-| Name        | Type                                | Mandatory | Description       |
-| ----------- | ----------------------------------- | --------- | ----------------- |
-| reminderId  | number                              | No        | reminder id.      |
-| reminderReq | [ReminderRequest](#reminderrequest) | No        | reminder request. |
 
