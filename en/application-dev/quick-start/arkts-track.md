@@ -31,6 +31,83 @@ When a class object is a state variable, any changes to its properties decorated
 >
 > When no property in the class object is decorated with \@Track, the behavior remains unchanged. \@Track is unable to observe changes of nested objects.
 
+Using the @Track decorator can avoid redundant re-renders.
+
+```ts
+class LogTrack {
+  @Track str1: string;
+  @Track str2: string;
+
+  constructor(str1: string) {
+    this.str1 = str1;
+    this.str2 = 'World';
+  }
+}
+
+class LogNotTrack {
+  str1: string;
+  str2: string;
+
+  constructor(str1: string) {
+    this.str1 = str1;
+    this.str2 = 'World';
+  }
+}
+
+@Entry
+@Component
+struct AddLog {
+  @State logTrack: LogTrack = new LogTrack('Hello');
+  @State logNotTrack: LogNotTrack = new LogNotTrack('Hello');
+
+  isRender(index: number) {
+    console.log(`Text ${index} is rendered`);
+    return 50;
+  }
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.logTrack.str1) // UINode1
+          .fontSize(this.isRender(1))
+          .fontWeight(FontWeight.Bold)
+        Text(this.logTrack.str2) // UINode2
+          .fontSize(this.isRender(2))
+          .fontWeight(FontWeight.Bold)
+        Button('change logTrack.str1')
+          .onClick(() => {
+            this.logTrack.str1 = 'Bye';
+          })
+        Text(this.logNotTrack.str1) // UINode3
+          .fontSize(this.isRender(3))
+          .fontWeight(FontWeight.Bold)
+        Text(this.logNotTrack.str2) // UINode4
+          .fontSize(this.isRender(4))
+          .fontWeight(FontWeight.Bold)
+        Button('change logNotTrack.str1')
+          .onClick(() => {
+            this.logNotTrack.str1 = 'Goodbye';
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+In the preceding example:
+
+1. All attributes in the **LogTrack** class are decorated by @Track. After the **change logTrack.str1** button is clicked, **UINode1** is re-rendered, but **UINode2** is not, as indicated by that only one log record is generated.
+```ts
+Text 1 is rendered
+```
+
+2. None of the attributes in the **logNotTrack** class is decorated by @Track. After the **change logTrack.str1** button is clicked, both **UINode3** and **UINode4** are re-rendered, as indicated by that two log records are generated. Redundant re-renders occur.
+```ts
+Text 3 is rendered
+Text 4 is rendered
+```
 
 ## Constraints
 
