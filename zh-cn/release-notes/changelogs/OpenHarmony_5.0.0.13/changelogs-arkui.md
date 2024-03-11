@@ -8,7 +8,7 @@
 
 **变更原因**
 
-该变更为兼容性变更。
+该变更为不兼容性变更。
 
 **变更影响**
 
@@ -48,7 +48,7 @@ struct ComA {
 **适配指导**
 
  @LocalStorageLink,@LocalStorageProp,@StorageProp(),@StorageLink,@Provide,@Consume,@Watch key值需要准确定义。
- 
+
 
 ## cl.arkui.2 AppStorage,LocalStorage,PersistentStorage支持undefined和null
 
