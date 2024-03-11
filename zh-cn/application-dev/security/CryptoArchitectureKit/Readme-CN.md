@@ -27,7 +27,6 @@
     - [使用RSA非对称密钥分段加解密](crypto-rsa-asym-encrypt-decrypt-by-segment.md)
     - [使用RSA非对称密钥（PKCS1_OAEP模式）加解密](crypto-rsa-asym-encrypt-decrypt-pkcs1_oaep.md)
     - [使用SM2非对称密钥加解密](crypto-sm2-asym-encrypt-decrypt.md)
-    - [使用SM2密文格式转换](crypto-sm2-ciphertext-conversion.md)
 - 签名验签
   - [签名验签介绍及算法规格](crypto-sign-sig-verify-overview.md)
   - 签名验签开发指导
