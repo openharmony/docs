@@ -530,7 +530,7 @@ reminderAgentManager.removeNotificationSlot(notification.SlotType.CONTENT_INFORM
 
 getAllValidReminders(): Promise\<Array\<ReminderInfo>>
 
-获取当前应用设置的所有有效（未过期）的代理提醒，包含 reminderId。使用promise异步回调。
+获取当前应用设置的所有有效（未过期）的代理提醒。使用promise异步回调。
 
 > **说明：**
 >
@@ -547,14 +547,6 @@ getAllValidReminders(): Promise\<Array\<ReminderInfo>>
 | 类型                                              | 说明                                                |
 | ------------------------------------------------- | --------------------------------------------------- |
 | Promise\<Array\<[ReminderInfo](#reminderinfo12)>> | Promise对象，返回当前应用设置的所有有效的代理提醒。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)。
-
-| 错误码ID | 错误信息           |
-| -------- | ------------------ |
-| 201      | Permission denied. |
 
 **示例**：
 
