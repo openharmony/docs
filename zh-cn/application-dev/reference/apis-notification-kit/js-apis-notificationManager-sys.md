@@ -3760,6 +3760,58 @@ notificationManager.isSmartReminderEnabled(deviceType).then((data: boolean) => {
 });
 ```
 
+## notificationManager.setBadgeNumberByBundle<sup>12+</sup>
+
+setBadgeNumberByBundle(bundle: bundleOption, badgeNumber: number): Promise\<void\>
+
+代理其他应用设定角标个数。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**系统接口**：此接口为系统接口。
+
+**参数：**
+
+| 参数名      | 类型   | 必填 | 说明       |
+| ----------- | ------ | ---- | ---------- |
+| bundle | [BundleOption](js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 指定应用的包信息。 |
+| badgeNumber | number | 是   | 角标个数。 |
+
+**返回值：**
+
+| 类型            | 说明                      |
+| --------------- | ------------------------- |
+| Promise\<void\> | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+| 1600012  | No memory space.                    |
+| 17700001 | The specified bundle name was not found.   |
+
+**示例：**
+
+```ts
+import Base from '@ohos.base';
+
+let bundle: notificationManager.BundleOption = {
+    bundle: 'com.example.bundleName',
+};
+let badgeNumber: number = 10;
+
+notificationManager.setBadgeNumberByBundle(bundle, badgeNumber).then(() => {
+    console.info('setBadgeNumberByBundle success');
+}).catch((err: Base.BusinessError) => {
+    console.error(`setBadgeNumberByBundle fail: ${JSON.stringify(err)}`);
+});
+```
+
 ## DoNotDisturbDate
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
