@@ -104,7 +104,7 @@ java -jar path\app_packing_tool.jar --mode hsp --json-path <option> --resources-
 示例：
 
 ```
-java -jar app_packing_tool.jar --mode app --hap-path <option> --hsp-path <option> --out-path <option> --signature-path [option] --certificate-path [option] --pack-info [option]--force [option]
+java -jar app_packing_tool.jar --mode app --hap-path <option> --hsp-path <option> --out-path <option> --signature-path [option] --certificate-path [option] --pack-info-path [option]--force [option]
 ```
 
 **表4** App打包指令参数说明
