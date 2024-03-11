@@ -50,7 +50,7 @@ show(value: ActionSheetOptions)
 | width<sup>12+</sup> | [Dimension](ts-types.md#dimension10)   | 否 | 设置弹窗背板的宽度。<br>width和gridCount同时设置时，width优先。 |
 | height<sup>12+</sup> | [Dimension](ts-types.md#dimension10)   | 否 | 设置弹窗背板的高度。|
 | shadow<sup>12+</sup> | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;[ShadowStyle](ts-universal-attributes-image-effect.md#shadowstyle10枚举说明)   | 否 | 设置弹窗背板的阴影。 |
-
+| transition<sup>12+</sup> | [TransitionEffect](ts-transition-animation-component.md#transitioneffect10) | 否 | 设置弹窗显示和退出的过渡效果。 |
 ## SheetInfo接口说明
 
 | 参数名 | 参数类型                                                     | 必填 | 参数描述          |
@@ -203,3 +203,62 @@ struct ActionSheetExample {
 ```
 
 ![zh-cn_image_action_showinsubwindow](figures/zh-cn_image_action_showinsubwindow.jpg)
+
+### 示例3
+ActionSheet显示动画持续3秒，退出动画持续100毫秒
+```ts
+import router from '@ohos.router';
+@Entry
+@Component
+struct ActionSheetExample {
+  build() {
+    Column({ space: 5 }) {
+      Button('ActionSheet Set Duration')
+        .onClick(() => {
+            ActionSheet.show({
+              title: 'ActionSheet 1',
+              message: 'Set Animation Duration open 3 second, close 100 ms',
+              autoCancel: true,
+              alignment: DialogAlignment.Top,
+              transition:TransitionEffect.asymmetric(TransitionEffect.OPACITY
+                .animation({ duration: 3000, curve: Curve.Sharp }).combine(TransitionEffect.scale({x: 1.5, y: 1.5}).animation({duration: 3000, curve: Curve.Sharp})),
+                TransitionEffect.OPACITY.animation({ duration: 100, curve: Curve.Smooth })
+                  .combine(TransitionEffect.scale({x: 0.5, y: 0.5}).animation({duration: 100, curve: Curve.Smooth}))),
+              offset: { dx: 0, dy: -20 },
+              confirm: {
+                value: 'button',
+                action: () => {
+                  console.info('Button-clicking callback')
+                }
+              },
+              cancel: () => {
+                console.info('Closed callbacks')
+              },
+              sheets: [
+                {
+                  title: 'apples',
+                  action: () => {
+                    console.log('apples')
+                  }
+                },
+                {
+                  title: 'bananas',
+                  action: () => {
+                    console.log('bananas')
+                  }
+                },
+                {
+                  title: 'pears',
+                  action: () => {
+                    console.log('pears')
+                  }
+                }
+              ]
+            })
+        }).backgroundColor(0x317aff).height("88px")
+    }.width('100%').margin({ top: 5 })
+  }
+}
+```
+
+![zh-cn_image_action_animation](figures/zh-cn_image_action_animation.gif)
