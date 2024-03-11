@@ -538,6 +538,42 @@ Restart too frequently. Try again at least 10s later.
 
 间隔10s后再次调用。
 
+## 16000065 接口只支持Ability在前台时调用
+
+**错误信息**
+
+The interface can be called only when ability is foreground.
+
+**错误描述**
+
+当Ability不在前台时，方法将返回该错误码。
+
+**可能原因**
+
+调用接口时，Ability不在前台。
+
+**处理步骤**
+
+将Ability切换到前台后，再调用接口。
+
+## 16000066  wukong模式，不允许移动Ability到前台/后台
+
+**错误信息**
+
+An ability cannot move to foreground or background in Wukong mode.
+
+**错误描述**
+
+当wukong模式下，移动Ability到前台/后台时，方法将返回该错误码。
+
+**可能原因**
+
+wukong模式，不允许移动Ability到前台/后台。
+
+**处理步骤**
+
+退出wukong模式后，再尝试移动Ability到前台/后台。请勿在wukong模式下移动Ability到前台/后台。
+
 ## 16000067 Ability启动参数校验失败
 
 **错误信息**
