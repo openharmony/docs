@@ -15,7 +15,7 @@ If synchronous tasks are independent of each other, you are advised to use **Tas
 
 1. Define a concurrency function that internally calls the synchronous methods.
 
-2. Create a [task](../reference/apis/js-apis-taskpool.md#task), call [execute()](../reference/apis/js-apis-taskpool.md#taskpoolexecute-1) to execute the task, and perform operations on the result returned by the task.
+2. Create a [task](../reference/apis-arkts/js-apis-taskpool.md#task), call [execute()](../reference/apis-arkts/js-apis-taskpool.md#taskpoolexecute-1) to execute the task, and perform operations on the result returned by the task.
 
 3. Perform concurrent operations.
 

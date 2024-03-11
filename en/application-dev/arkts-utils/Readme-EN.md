@@ -1,6 +1,6 @@
 # ArkTS Common Library
 
-- [Overview of ArkTS Common Library](arkts-commonlibrary-overview.md)
+- [Introduction to ArkTS](arkts-commonlibrary-overview.md)
 - Concurrency
   - [Concurrency Overview](concurrency-overview.md)
   - Using Asynchronous Concurrency for Development
