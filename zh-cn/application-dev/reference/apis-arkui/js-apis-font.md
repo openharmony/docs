@@ -100,6 +100,10 @@ struct FontExample {
   }
 }
 ```
+> **说明：** 
+>
+> 若需全局使用自定义字体，请在EntryAbility.ets文件的[onWindowStageCreate](../apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate)生命周期中，通过[windowStage.loadContent](js-apis-window.md#loadcontent9)回调注册。
+
 ## font.getSystemFontList<sup>10+</sup>
 
 getSystemFontList(): Array\<string>

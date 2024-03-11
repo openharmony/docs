@@ -304,7 +304,7 @@ This error code is reported when the window type is invalid.
 
 **Possible Causes**
 
-An invalid window type is used. For details about valid window types, see [WindowType](../apis/js-apis-window.md#windowtype7).
+An invalid window type is used. For details about valid window types, see [WindowType](js-apis-window.md#windowtype7).
 
 **Solution**
 

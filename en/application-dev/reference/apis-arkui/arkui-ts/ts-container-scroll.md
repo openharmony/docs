@@ -61,8 +61,8 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name                                                        | Description                                                    |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| onScrollFrameBegin<sup>9+</sup>(event: (offset: number, state: [ScrollState](ts-container-list.md#scrollstate)) => { offsetRemain: number; }) | Triggered when each frame scrolling starts. The input parameters indicate the amount by which the **\<Scroll>** component will scroll. The event handler then works out the amount by which the component needs to scroll based on the real-world situation and returns the result.<br>\- **offset**: amount to scroll by.<br>\- **state**: current scrolling status.<br>- **offsetRemain**: actual amount by which the component scrolls.<br>**NOTE**<br>1. This event is triggered when scrolling is started by the **\<Scroll>** component or other input settings, such as keyboard and mouse operations.<br>2. This event is not triggered when the controller API is called.<br>3. This event does not support the out-of-bounds bounce effect.<br>4. This event is not triggered when the scroll bar is dragged.<br>**NOTE**<br>The value of **offsetRemain** can be a negative value.<br>If the **onScrollFrameBegin** event and **scrollBy** method are used to implement nested scrolling, set the **edgeEffect** attribute of the scrollable child component to **None**. For example, if a **\<List>** is nested in the **\<Scroll>** component, **edgeEffect** of the **\<List>** must be set to **EdgeEffect.None**.|
-| onScroll(event: (xOffset: number, yOffset: number) => void)  | Triggered to return the horizontal and vertical offsets during scrolling when the specified scroll event occurs.<br>**NOTE**<br>1. This event is triggered when scrolling is started by the **\<Scroll>** component or other input settings, such as keyboard and mouse operations.<br>2. This event is triggered when the controller API is called.<br>3. This event supports the out-of-bounds bounce effect.|
+| onScrollFrameBegin<sup>9+</sup>(event: (offset: number, state: [ScrollState](ts-container-list.md#scrollstate)) => { offsetRemain: number; }) | Triggered when each frame scrolling starts. The input parameters indicate the amount by which the **\<Scroll>** component will scroll. The event handler then works out the amount by which the component needs to scroll based on the real-world situation and returns the result.<br>\- **offset**: amount to scroll by, in vp.<br>\- **state**: current scrolling status.<br>- **offsetRemain**: actual amount by which the component scrolls, in vp.<br>**NOTE**<br>1. This event is triggered when scrolling is started by the **\<Scroll>** component or other input settings, such as keyboard and mouse operations.<br>2. This event is not triggered when the controller API is called.<br>3. This event does not support the out-of-bounds bounce effect.<br>4. This event is not triggered when the scroll bar is dragged.<br>**NOTE**<br>The value of **offsetRemain** can be a negative value.<br>If the **onScrollFrameBegin** event and **scrollBy** method are used to implement nested scrolling, set the **edgeEffect** attribute of the scrollable child component to **None**. For example, if a **\<List>** is nested in the **\<Scroll>** component, **edgeEffect** of the **\<List>** must be set to **EdgeEffect.None**.|
+| onScroll(event: (xOffset: number, yOffset: number) => void)  | Triggered to return the horizontal and vertical offsets, in vp, during scrolling when the specified scroll event occurs.<br>**NOTE**<br>1. This event is triggered when scrolling is started by the **\<Scroll>** component or other input settings, such as keyboard and mouse operations.<br>2. This event is triggered when the controller API is called.<br>3. This event supports the out-of-bounds bounce effect.|
 | onScrollEdge(event: (side: Edge) => void)                    | Triggered when scrolling reaches the edge.<br>**NOTE**<br>1. This event is triggered when scrolling reaches the edge after being started by the **\<Scroll>** component or other input settings, such as keyboard and mouse operations.<br>2. This event is triggered when the controller API is called.<br>3. This event supports the out-of-bounds bounce effect.|
 | onScrollEnd<sup>(deprecated) </sup>(event: () => void)       | Triggered when scrolling stops.<br>This event is deprecated since API version 9. Use the **onScrollStop** event instead.<br>**NOTE**<br>1. This event is triggered when scrolling is stopped by the **\<Scroll>** component or other input settings, such as keyboard and mouse operations.<br>2. This event is triggered when the controller API is called, accompanied by a transition animation.|
 | onScrollStart<sup>9+</sup>(event: () => void)                | Triggered when scrolling starts and is initiated by the user's finger dragging the **\<Scroll>** component or its scrollbar. This event is also triggered when the animation contained in the scrolling triggered by [Scroller](#scroller) starts.<br>**NOTE**<br>1. This event is triggered when scrolling is started by the **\<Scroll>** component or other input settings, such as keyboard and mouse operations.<br>2. This event is triggered when the controller API is called, accompanied by a transition animation.|
@@ -99,7 +99,7 @@ Scrolls to the specified position.
 | --------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | xOffset   | number \| string                                   | Yes  | Horizontal scrolling offset.<br>**NOTE**<br>This parameter cannot be set in percentage.<br>If the value is less than 0, the offset will be 0 for scrolling without animation; scrolling with animation stops when it reaches the start position.<br>This parameter takes effect only when the scroll axis is the x-axis.|
 | yOffset   | number \| string                                   | Yes  | Vertical scrolling offset.<br>**NOTE**<br>This parameter cannot be set in percentage.<br>If the value is less than 0, the offset will be 0 for scrolling without animation; scrolling with animation stops when it reaches the start position.<br>This parameter takes effect only when the scroll axis is the y-axis.|
-| animation | {duration?: number, curve?: [Curve](ts-appendix-enums.md#curve) \| [ICurve](../apis/js-apis-curve.md#icurve)<sup>10+ </sup>} \| boolean<sup>10+ </sup> | No  | Animation configuration, which includes the following:<br>- **duration**: scrolling duration.<br>- **curve**: scrolling curve.<br>- **boolean**: whether to enable the default spring animation.<br>Default value:<br>{<br>duration: 1000,<br>curve: Curve.Ease<br>}<br>boolean: false<br>**NOTE**<br>A value less than 0 evaluates to the default value.<br>Currently, the **\<List>**, **\<Scroll>**, **\<Grid>**, and **\<WaterFlow>** support the **Boolean** type and **ICurve**.|
+| animation | [ScrollAnimationOptions](#scrollanimationoptions12)<sup>12+</sup> \| boolean<sup>10+ </sup> | No  | Animation configuration, which includes the following:<br>- **ScrollAnimationOptions**: custom animation settings.<br>- **boolean**: whether to enable the default spring animation.<br>Default value:<br>ScrollAnimationOptions: { duration: 1000, curve: Curve.Ease, canOverScroll: false } <br>boolean: false<br>**NOTE**<br>Currently, the **\<List>**, **\<Scroll>**, **\<Grid>**, and **\<WaterFlow>** support the **Boolean** type and **ICurve**.<br>Since API version 12, {duration?: number, curve?: [Curve](ts-appendix-enums.md#curve) \| [ICurve](../js-apis-curve.md#icurve)<sup>10+ </sup>} is abstracted as the **ScrollAnimationOptions** API, and the **canOverScroll** parameter is added to the API.|
 
 
 ### scrollEdge
@@ -238,6 +238,14 @@ Obtains the size and position of a child component.
 | xOffset | number | Horizontal scrolling offset.<br>The unit of the return value is vp.|
 | yOffset | number | Vertical scrolling offset.<br>The unit of the return value is vp.|
 
+## ScrollAnimationOptions<sup>12+</sup>
+
+| Name  | Type  | Mandatory  | Description             |
+| ----- | ------ | ------ | ----------------- |
+| duration | number | No| Scrolling duration.<br>Default value: **1000**<br>**NOTE**<br>A value less than 0 evaluates to the default value.|
+| curve | [Curve](ts-appendix-enums.md#curve) \| [ICurve](../js-apis-curve.md#icurve)<sup>10+ </sup> | No| Scrolling curve.<br>Default value: **Curve.Ease**|
+| canOverScroll | boolean | No| Whether to enable overscroll.<br>Default value: **false**|
+
 ## ScrollAlign<sup>10+</sup>
 
 | Name    | Description                            |
@@ -247,13 +255,13 @@ Obtains the size and position of a child component.
 | END  | The end edge of the list item is flush with the end edge of the list.|
 | AUTO  | The list item is automatically aligned.<br>If the list item is fully contained within the display area, no adjustment is performed. Otherwise, the list item is aligned so that its start or end edge is flush with the start or end edge of the list, whichever requires a shorter scrolling distance.|
 
-## NestedScrollOptions<sup>10+ </sup>
+## NestedScrollOptions<sup>10+</sup>
 | Name  | Type | Mandatory| Description             |
 | ----- | ------ | ------ | ----------------- |
 | scrollForward | NestedScrollMode | Yes| Nested scrolling option when the component scrolls forward.|
 | scrollBackward | NestedScrollMode | Yes| Nested scrolling option when the component scrolls backward.|
 
-## NestedScrollMode<sup>10+ </sup>
+## NestedScrollMode<sup>10+</sup>
 | Name    | Description                            |
 | ------ | ------------------------------ |
 | SELF_ONLY   | The scrolling is contained within the component, and no scroll chaining occurs, that is, the parent component does not scroll when the component scrolling reaches the boundary. |
@@ -261,7 +269,7 @@ Obtains the size and position of a child component.
 | PARENT_FIRST  | The parent component scrolls first, and when it hits the boundary, the component scrolls. When the component hits the boundary, its edge effect is displayed. If no edge effect is specified for the component, the edge effect of the parent component is displayed instead.|
 | PARALLEL  | The component and its parent component scroll at the same time. When both the component and its parent component hit the boundary, the edge effect of the component is displayed. If no edge effect is specified for the component, the edge effect of the parent component is displayed instead.|
 
-## EdgeEffectOptions<sup>11+ </sup>
+## EdgeEffectOptions<sup>11+</sup>
 | Name  | Type | Mandatory| Description             |
 | ----- | ------| ------- | ----------------- |
 | alwaysEnabled | boolean | Yes| Whether to enable the scroll effect when the component content is smaller than the component itself.|

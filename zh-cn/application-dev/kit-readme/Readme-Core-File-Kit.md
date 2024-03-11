@@ -1,4 +1,4 @@
-# Core File Kit (文件基础服务)
+# Core File Kit（文件基础服务）
 
 - [Core File Kit简介](../file-management/core-file-kit-intro.md)
 - 应用文件
@@ -13,16 +13,14 @@
   - 应用数据备份恢复
     - [应用数据备份恢复概述](../file-management/app-file-backup-overview.md)
     - [应用接入数据备份恢复](../file-management/app-file-backup-extension.md)
-    - [应用触发数据备份/恢复（仅对系统应用开放）](../file-management/app-file-backup.md)
   - [文件授权访问](../file-management/app-file-authorization.md)
 - 用户文件
   - [用户文件概述](../file-management/user-file-overview.md)
   - [用户文件uri介绍](../file-management/user-file-uri-intro.md)
+  - [FileUri开发指导(C/C++)](../file-management/native-fileuri-guidelines.md)
   - 选择与保存用户文件（FilePicker）
     - [选择用户文件](../file-management/select-user-file.md)
     - [保存用户文件](../file-management/save-user-file.md)
-  - [开发用户文件管理器（仅对系统应用开放）](../file-management/dev-user-file-manager.md)
-  - [管理外置存储设备（仅对系统应用开放）](../file-management/manage-external-storage.md)
 - 分布式文件系统
   - [分布式文件系统概述](../file-management/distributed-fs-overview.md)
   - [设置分布式文件数据等级](../file-management/set-security-label.md)

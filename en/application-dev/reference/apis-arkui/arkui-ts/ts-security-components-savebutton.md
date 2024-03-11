@@ -30,7 +30,7 @@ Creates a Save button that contains the specified elements.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| option | SaveButtonOptions | No| Creates a Save button that contains the specified elements.|
+| option | [SaveButtonOptions](#savebuttonoptions) | No| Creates a Save button that contains the specified elements.|
 
 ## SaveButtonOptions
 

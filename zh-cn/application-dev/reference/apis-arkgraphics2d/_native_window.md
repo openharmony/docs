@@ -42,8 +42,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [NativeWindowOperation](#nativewindowoperation) {<br/>SET_BUFFER_GEOMETRY, GET_BUFFER_GEOMETRY, GET_FORMAT, SET_FORMAT,<br/>GET_USAGE, SET_USAGE, SET_STRIDE, GET_STRIDE,<br/>SET_SWAP_INTERVAL, GET_SWAP_INTERVAL, SET_TIMEOUT, GET_TIMEOUT,<br/>SET_COLOR_GAMUT, GET_COLOR_GAMUT, SET_TRANSFORM, GET_TRANSFORM,<br/>SET_UI_TIMESTAMP<br/>} | [OH_NativeWindow_NativeWindowHandleOpt](#oh_nativewindow_nativewindowhandleopt)函数中的操作码。 | 
-| [OHScalingMode](#ohscalingmode) { OH_SCALING_MODE_FREEZE = 0, OH_SCALING_MODE_SCALE_TO_WINDOW, OH_SCALING_MODE_SCALE_CROP, OH_SCALING_MODE_NO_SCALE_CROP } | 缩放模式Scaling Mode。<br/>**弃用：**从API version 10开始废弃，不再提供替代接口。 | 
+| [NativeWindowOperation](#nativewindowoperation) {<br/>SET_BUFFER_GEOMETRY, GET_BUFFER_GEOMETRY, GET_FORMAT, SET_FORMAT,<br/>GET_USAGE, SET_USAGE, SET_STRIDE, GET_STRIDE,<br/>SET_SWAP_INTERVAL, GET_SWAP_INTERVAL, SET_TIMEOUT, GET_TIMEOUT,<br/>SET_COLOR_GAMUT, GET_COLOR_GAMUT, SET_TRANSFORM, GET_TRANSFORM,<br/>SET_UI_TIMESTAMP, GET_BUFFERQUEUE_SIZE<br/>} | OH_NativeWindow_NativeWindowHandleOpt函数中的操作码。 |
+| [OHScalingMode](#ohscalingmode) { OH_SCALING_MODE_FREEZE = 0, OH_SCALING_MODE_SCALE_TO_WINDOW, OH_SCALING_MODE_SCALE_CROP, OH_SCALING_MODE_NO_SCALE_CROP } | 缩放模式Scaling Mode。<br/>**弃用：** 从API version 10开始废弃，不再提供替代接口。 | 
 | [OHHDRMetadataKey](#ohhdrmetadatakey) {<br/>OH_METAKEY_RED_PRIMARY_X = 0, OH_METAKEY_RED_PRIMARY_Y = 1, OH_METAKEY_GREEN_PRIMARY_X = 2, OH_METAKEY_GREEN_PRIMARY_Y = 3,<br/>OH_METAKEY_BLUE_PRIMARY_X = 4, OH_METAKEY_BLUE_PRIMARY_Y = 5, OH_METAKEY_WHITE_PRIMARY_X = 6, OH_METAKEY_WHITE_PRIMARY_Y = 7,<br/>OH_METAKEY_MAX_LUMINANCE = 8, OH_METAKEY_MIN_LUMINANCE = 9, OH_METAKEY_MAX_CONTENT_LIGHT_LEVEL = 10, OH_METAKEY_MAX_FRAME_AVERAGE_LIGHT_LEVEL = 11,<br/>OH_METAKEY_HDR10_PLUS = 12, OH_METAKEY_HDR_VIVID = 13<br/>} | 枚举HDR元数据关键字。<br/>**弃用：** 从API version 10开始废弃，不再提供替代接口。 | 
 
 
@@ -69,6 +69,8 @@
 | int32_t [OH_NativeWindow_NativeWindowSetMetaData](#oh_nativewindow_nativewindowsetmetadata) ([OHNativeWindow](#ohnativewindow) \*window, uint32_t sequence, int32_t size, const [OHHDRMetaData](_o_h_h_d_r_meta_data.md) \*metaData) | 设置OHNativeWindow的元数据。<br/>**弃用：** 从API version 10开始废弃，不再提供替代接口。 | 
 | int32_t [OH_NativeWindow_NativeWindowSetMetaDataSet](#oh_nativewindow_nativewindowsetmetadataset) ([OHNativeWindow](#ohnativewindow) \*window, uint32_t sequence, [OHHDRMetadataKey](#ohhdrmetadatakey) key, int32_t size, const uint8_t \*metaData) | 设置OHNativeWindow的元数据集。<br/>**弃用：** 从API version 10开始废弃，不再提供替代接口。 | 
 | int32_t [OH_NativeWindow_NativeWindowSetTunnelHandle](#oh_nativewindow_nativewindowsettunnelhandle) ([OHNativeWindow](#ohnativewindow) \*window, const [OHExtDataHandle](_o_h_ext_data_handle.md) \*handle) | 设置OHNativeWindow的TunnelHandle。<br/>**弃用：** 从API version 10开始废弃，不再提供替代接口。 | 
+| int32_t [OH_NativeWindow_NativeWindowAttachBuffer](#oh_nativewindow_nativewindowattachbuffer) ([OHNativeWindow](#ohnativewindow) \*window, [OHNativeWindowBuffer](#ohnativewindowbuffer) \*buffer) | 将OHNativeWindowBuffer添加进OHNativeWindow中。 | 
+| int32_t [OH_NativeWindow_NativeWindowDetachBuffer](#oh_nativewindow_nativewindowdetachbuffer) ([OHNativeWindow](#ohnativewindow) \*window, [OHNativeWindowBuffer](#ohnativewindowbuffer) \*buffer) | 将OHNativeWindowBuffer从OHNativeWindow中分离。 | 
 | int32_t [OH_NativeWindow_GetSurfaceId](#oh_nativewindow_getsurfaceid) ([OHNativeWindow](#ohnativewindow) \*window, uint64_t \*surfaceId) | 通过OHNativeWindow获取对应的surfaceId。 | 
 | int32_t [OH_NativeWindow_CreateNativeWindowFromSurfaceId](#oh_nativewindow_createnativewindowfromsurfaceid) (uint64_t surfaceId, [OHNativeWindow](#ohnativewindow) \*\*window) | 通过surfaceId创建对应的OHNativeWindow。 | 
 
@@ -149,6 +151,7 @@ OH_NativeWindow_NativeWindowHandleOpt函数中的操作码。
 | SET_TRANSFORM | 设置本地窗口缓冲区变换， 函数中的可变参数是 [输入] int32_t transform。 | 
 | GET_TRANSFORM | 获取本地窗口缓冲区变换， 函数中的可变参数是 [输出] int32_t \*transform。 | 
 | SET_UI_TIMESTAMP | 设置本地窗口缓冲区UI时间戳， 函数中的可变参数是 [输入] uint64_t uiTimestamp。 | 
+| GET_BUFFERQUEUE_SIZE<sup>12+</sup> | 获取内存队列大小, 函数中的可变参数是 [输出] int32_t \*size。<br/>从API version 12开始支持此枚举。 | 
 
 
 ### OHHDRMetadataKey
@@ -520,6 +523,57 @@ int32_t OH_NativeWindow_NativeWindowAbortBuffer (OHNativeWindow *window, OHNativ
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
 
 **起始版本：** 8
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| window | 一个OHNativeWindow的结构体实例的指针。 | 
+| buffer | 一个OHNativeWindowBuffer的结构体实例的指针。 | 
+
+**返回：**
+
+返回值为0表示执行成功。
+
+### OH_NativeWindow_NativeWindowAttachBuffer()
+
+```
+int32_t OH_NativeWindow_NativeWindowAttachBuffer (OHNativeWindow *window, OHNativeWindowBuffer *buffer )
+```
+
+**描述**
+
+将OHNativeWindowBuffer添加进OHNativeWindow中。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| window | 一个OHNativeWindow的结构体实例的指针。 | 
+| buffer | 一个OHNativeWindowBuffer的结构体实例的指针。 | 
+
+**返回：**
+
+返回值为0表示执行成功。
+
+
+### OH_NativeWindow_NativeWindowDetachBuffer()
+
+```
+int32_t OH_NativeWindow_NativeWindowDetachBuffer (OHNativeWindow *window, OHNativeWindowBuffer *buffer )
+```
+
+**描述**
+
+将OHNativeWindowBuffer从OHNativeWindow中分离。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
+
+**起始版本：** 12
 
 **参数:**
 

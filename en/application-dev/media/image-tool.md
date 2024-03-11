@@ -6,11 +6,11 @@ EXIF is a file format dedicated for photos taken by digital cameras and is used 
 
 Users may need to view or modify the EXIF data of photos in the Gallery application, for example, when the manual lens parameters of the camera are not automatically written as part of the EXIF data or the shooting time is incorrect due to camera power-off.
 
-Currently, OpenHarmony allows you to view and modify part of EXIF data. For details, see [EIXF](../reference/apis/js-apis-image.md#propertykey7).
+Currently, OpenHarmony allows you to view and modify part of EXIF data. For details, see [EIXF](../reference/apis-image-kit/js-apis-image.md#propertykey7).
 
 ## How to Develop
 
-Read [Image](../reference/apis/js-apis-image.md#getimageproperty11) for APIs used to read and edit EXIF data.
+Read [Image](../reference/apis-image-kit/js-apis-image.md#getimageproperty11) for APIs used to read and edit EXIF data.
 
 1. Obtain the image and create an **ImageSource** object.
 

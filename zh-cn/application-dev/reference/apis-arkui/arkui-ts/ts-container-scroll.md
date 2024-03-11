@@ -62,13 +62,93 @@ Scroll(scroller?: Scroller)
 | 名称                                                         | 功能描述                                                     |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | onScrollFrameBegin<sup>9+</sup>(event: (offset: number, state: [ScrollState](ts-container-list.md#scrollstate枚举说明)) => { offsetRemain: number; }) | 每帧开始滚动时触发，事件参数传入即将发生的滚动量，事件处理函数中可根据应用场景计算实际需要的滚动量并作为事件处理函数的返回值返回，Scroll将按照返回值的实际滚动量进行滚动。<br/>\- offset：即将发生的滚动量，单位vp。<br/>\- state：当前滚动状态。<br/>- offsetRemain：实际滚动量，单位vp。<br/>触发该事件的条件 ：<br/>1、滚动组件触发滚动时触发，包括键鼠操作等其他触发滚动的输入设置。<br/>2、调用控制器接口时不触发。<br/>3、越界回弹不触发。<br/>4、拖动滚动条不触发。<br/>**说明：** <br/>支持offsetRemain为负值。<br/>若通过onScrollFrameBegin事件和scrollBy方法实现容器嵌套滚动，需设置子滚动节点的EdgeEffect为None。如Scroll嵌套List滚动时，List组件的edgeEffect属性需设置为EdgeEffect.None。 |
-| onScroll(event: (xOffset: number, yOffset: number) => void)  | 滚动事件回调,&nbsp;返回滚动时水平、竖直方向偏移量，单位vp。<br/>触发该事件的条件 ：<br/>1、滚动组件触发滚动时触发，支持键鼠操作等其他触发滚动的输入设置。<br/>2、通过滚动控制器API接口调用。<br/>3、越界回弹。 |
 | onScrollEdge(event: (side: Edge) => void)                    | 滚动到边缘事件回调。<br/>触发该事件的条件 ：<br/>1、滚动组件滚动到边缘时触发，支持键鼠操作等其他触发滚动的输入设置。<br/>2、通过滚动控制器API接口调用。<br/>3、越界回弹。 |
 | onScrollEnd<sup>(deprecated) </sup>(event: () => void)       | 滚动停止事件回调。<br>该事件从API version 9开始废弃，使用onScrollStop事件替代。<br/>触发该事件的条件 ：<br/>1、滚动组件触发滚动后停止，支持键鼠操作等其他触发滚动的输入设置。<br/>2、通过滚动控制器API接口调用后停止，带过渡动效。 |
 | onScrollStart<sup>9+</sup>(event: () => void)                | 滚动开始时触发。手指拖动Scroll或拖动Scroll的滚动条触发的滚动开始时，会触发该事件。使用[Scroller](#scroller)滚动控制器触发的带动画的滚动，动画开始时会触发该事件。<br/>触发该事件的条件 ：<br/>1、滚动组件开始滚动时触发，支持键鼠操作等其他触发滚动的输入设置。<br/>2、通过滚动控制器API接口调用后开始，带过渡动效。 |
 | onScrollStop<sup>9+</sup>(event: () => void)                 | 滚动停止时触发。手拖动Scroll或拖动Scroll的滚动条触发的滚动，手离开屏幕并且滚动停止时会触发该事件。使用[Scroller](#scroller)滚动控制器触发的带动画的滚动，动画停止时会触发该事件。<br/>触发该事件的条件 ：<br/>1、滚动组件触发滚动后停止，支持键鼠操作等其他触发滚动的输入设置。<br/>2、通过滚动控制器API接口调用后开始，带过渡动效。 |
 | onReachStart<sup>11+</sup>(event: () => void)          | Scroll到达起始位置时触发。<br/>**说明：** <br>Scroll初始化时会触发一次，滚动到起始位置时触发一次。Scroll边缘效果为弹簧效果时，划动经过起始位置时触发一次，回弹回起始位置时再触发一次。 |
 | onReachEnd<sup>11+</sup>(event: () => void)            | Scroll到达末尾位置时触发。<br/>**说明：** <br/>Scroll边缘效果为弹簧效果时，划动经过末尾位置时触发一次，回弹回末尾位置时再触发一次。 |
+
+### onScroll<sup>(deprecated)</sup>
+
+onScroll(event: (xOffset: number, yOffset: number) => void)
+
+滚动事件回调，返回滚动时水平、竖直方向偏移量，单位vp。
+
+触发该事件的条件 ：
+
+1、滚动组件触发滚动时触发，支持键鼠操作等其他触发滚动的输入设置。
+
+2、通过滚动控制器API接口调用。
+
+3、越界回弹。
+
+从API version12开始废弃不再使用，推荐使用[onWillScroll](#onwillscroll12)事件替代。
+
+**参数：**
+
+| 参数名  | 类型                                                      | 必填 | 说明                   |
+| ------- | --------------------------------------------------------- | ---- | ---------------------- |
+| xOffset     | number                                                  | 是   | 每帧滚动时竖直方向的偏移量，Scroll的内容向上滚动时偏移量为正，向下滚动时偏移量为负。<br/>单位vp。 |
+| yOffset     | number                                                  | 是   | 每帧滚动时水平方向的偏移量，Scroll的内容向左滚动时偏移量为正，向右滚动时偏移量为负。<br/>单位vp。 |   
+
+### onWillScroll<sup>12+</sup>
+
+onWillScroll(handler: [ScrollOnScrollCallback](#scrollonscrollcallback对象说明) )
+
+滚动事件回调，Scroll滚动前触发。
+
+返回当前帧将要滚动的偏移量和当前滚动状态。返回的偏移量为计算得到的将要滚动的偏移量值，并非最终实际滚动偏移。
+
+触发该事件的条件 ：
+
+1、滚动组件触发滚动时触发，支持键鼠操作等其他触发滚动的输入设置。
+
+2、通过滚动控制器API接口调用。
+
+3、越界回弹。 
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                                      | 必填 | 说明                   |
+| ------- | --------------------------------------------------------- | ---- | ---------------------- |
+| handler | [ScrollOnScrollCallback](#scrollonscrollcallback对象说明) | 是   | Scroll滚动时触发的回调。 |
+
+### onDidScroll<sup>12+</sup>
+
+onDidScroll(handler: [ScrollOnScrollCallback](#scrollonscrollcallback对象说明) )
+
+滚动事件回调，Scroll滚动时触发。
+
+返回当前帧滚动的偏移量和当前滚动状态。
+
+触发该事件的条件 ：
+
+1、滚动组件触发滚动时触发，支持键鼠操作等其他触发滚动的输入设置。
+
+2、通过滚动控制器API接口调用。
+
+3、越界回弹。 
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                                      | 必填 | 说明                   |
+| ------- | --------------------------------------------------------- | ---- | ---------------------- |
+| handler | [ScrollOnScrollCallback](#scrollonscrollcallback对象说明) | 是   | Scroll滚动时触发的回调 |
+
+## ScrollOnScrollCallback对象说明
+
+Scroll滚动时触发的回调  
+
+| 参数名      | 类型                                                    | 必填 | 说明                                                         |
+| ----------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| xOffset     | number                                                  | 是   | 每帧滚动时竖直方向的偏移量，Scroll中的内容向上滚动时偏移量为正，向下滚动时偏移量为负。<br/>单位vp。 |
+| yOffset     | number                                                  | 是   | 每帧滚动时水平方向的偏移量，Scroll中的内容向左滚动时偏移量为正，向右滚动时偏移量为负。<br/>单位vp。 |
+| scrollState | [ScrollState](ts-container-list.md#scrollstate枚举说明) | 是  | 当前滚动状态。                                               |
 
 >  **说明：**
 >
@@ -97,8 +177,8 @@ scrollTo(value: { xOffset: number | string, yOffset: number | string, animation?
 
 | 参数名    | 参数类型                                                     | 必填 | 参数描述                                                     |
 | --------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| xOffset   | number&nbsp;\|&nbsp;string                                   | 是   | 水平滑动偏移。<br/>**说明：** <br/>该参数值不支持设置百分比。<br/>当值小于0时，不带动画的滚动，按0处理。带动画的滚动，滚动到起始位置后停止。<br/>仅滚动轴为x轴时生效。 |
-| yOffset   | number&nbsp;\|&nbsp;string                                   | 是   | 垂直滑动偏移。<br/>**说明：** <br/>该参数值不支持设置百分比。<br/>当值小于0时，不带动画的滚动，按0处理。带动画的滚动，滚动到起始位置后停止。<br/>仅滚动轴为y轴时生效。 |
+| xOffset   | number&nbsp;\|&nbsp;string                                   | 是   | 水平滑动偏移。<br/>**说明：** <br/>该参数值不支持设置百分比。<br/>当值小于0时，不带动画的滚动，按0处理。带动画的滚动，默认滚动到起始位置后停止，可通过设置animation参数，使滚动在越界时启动回弹动画。<br/>仅滚动轴为x轴时生效。 |
+| yOffset   | number&nbsp;\|&nbsp;string                                   | 是   | 垂直滑动偏移。<br/>**说明：** <br/>该参数值不支持设置百分比。<br/>当值小于0时，不带动画的滚动，按0处理。带动画的滚动，默认滚动到起始位置后停止，可通过设置animation参数，使滚动在越界时启动回弹动画。<br/>仅滚动轴为y轴时生效。 |
 | animation | [ScrollAnimationOptions](#scrollanimationoptions12)<sup>12+</sup>&nbsp;\|&nbsp;boolean<sup>10+ </sup> | 否   | 动画配置。<br/>- ScrollAnimationOptions:&nbsp; 自定义滚动动效。 <br/>- boolean:&nbsp;使能默认弹簧动效。<br/>默认值：<br/>ScrollAnimationOptions: { duration: 1000, curve: Curve.Ease, canOverScroll: false } <br/>boolean:&nbsp;false<br/>**说明：** <br/>当前List、Scroll、Grid、WaterFlow均支持boolean类型和ICurve曲线。<br/>于API12将原来的 {duration?:&nbsp;number, curve?:&nbsp;[Curve](ts-appendix-enums.md#curve)&nbsp;\|&nbsp;[ICurve](../js-apis-curve.md#icurve)<sup>10+ </sup>}&nbsp;抽象为了ScrollAnimationOptions接口，并在其中添加了一个参数canOverScroll。 |
 
 
@@ -117,15 +197,15 @@ scrollEdge(value: Edge): void
 
 ### scrollPage<sup>9+</sup>
 
-scrollPage(value: { next: boolean }): void
+scrollPage(value:   ScrollPageOptions)
 
 滚动到下一页或者上一页。
 
 **参数：**
 
-| 参数名                            | 参数类型                          | 必填 | 参数描述                                                    |
-| --------------------------------- | --------------------------------- | ---- | ----------------------------------------------------------- |
-| next                              | boolean                           | 是   | 是否向下翻页。true表示向下翻页，false表示向上翻页。         |
+| 参数名 | 参数类型                                           | 必填 | 参数描述       |
+| ------ | -------------------------------------------------- | ---- | -------------- |
+| value  | [ScrollPageOptions](#scrollpageoptions12+对象说明) | 是   | 设置翻页模式。 |
 
 ### scrollPage<sup>(deprecated)</sup>
 
@@ -244,7 +324,7 @@ getItemRect(index: number): RectResult
 | ----- | ------ | ------ | ----------------- |
 | duration | number | 否 | 设置滚动时长。<br/>默认值：1000。<br/>**说明：** <br/>设置为小于0的值时，按默认值显示。 |
 | curve | [Curve](ts-appendix-enums.md#curve) \| [ICurve](../js-apis-curve.md#icurve)<sup>10+ </sup> | 否 | 设置滚动曲线。<br/>默认值：Curve.Ease。 |
-| canOverScroll | boolean | 否 | 设置滚动是否可越界。<br/>默认值：false。 |
+| canOverScroll | boolean | 否 | 设置滚动是否可越界。<br/>默认值：false。<br/>**说明：** <br/> 仅在设置为true，且组件的edgeEffect设置为[EdgeEffect.Spring](ts-appendix-enums.md#edgeeffect)时，滚动能够越界，并在越界时启动回弹动画。|
 
 ## ScrollAlign<sup>10+</sup>枚举说明
 
@@ -274,6 +354,12 @@ getItemRect(index: number): RectResult
 | ----- | ------| ------- | ----------------- |
 | alwaysEnabled | boolean | 是 | 组件内容大小小于组件自身时，设置是否开启滑动效果|
 
+## ScrollPageOptions<sup>12+</sup>对象说明
+
+| 参数名    | 参数类型 | 必填 | 参数描述                                                     |
+| --------- | -------- | ---- | ------------------------------------------------------------ |
+| next      | boolean  | 是   | 是否向下翻页。true表示向下翻页，false表示向上翻页。          |
+| animation | boolean  | 否   | 是否开启翻页动画效果。true有动画，false无动画。<br />默认值：false。 |
 
 ## 示例
 ### 示例1
@@ -350,7 +436,7 @@ struct ScrollExample {
       Button('next page')
         .height('5%')
         .onClick(() => { // 点击后滑到下一页
-          this.scroller.scrollPage({ next: true })
+          this.scroller.scrollPage({ next: true ,animation: true })
         })
         .margin({ top: 210, left: 20 })
     }.width('100%').height('100%').backgroundColor(0xDCDCDC)

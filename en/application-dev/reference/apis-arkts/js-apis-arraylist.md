@@ -43,7 +43,7 @@ A constructor used to create an **ArrayList** instance.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -78,7 +78,7 @@ Adds an element at the end of this container.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -119,7 +119,7 @@ Inserts an element at the specified position in this container.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -157,7 +157,7 @@ Checks whether this container has the specified element.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -193,7 +193,7 @@ Obtains the index of the first occurrence of the specified element in this conta
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -235,7 +235,7 @@ Obtains the index of the last occurrence of the specified element in this contai
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -277,7 +277,7 @@ Removes an element with the specified position from this container.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -318,7 +318,7 @@ Removes the first occurrence of the specified element from this container.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -352,7 +352,7 @@ Removes from this container all of the elements within a range, including the el
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -396,7 +396,7 @@ callbackFn
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -442,7 +442,7 @@ callbackFn
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -484,7 +484,7 @@ comparator
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -526,7 +526,7 @@ Obtains elements within a range in this container, including the element at the 
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -554,7 +554,7 @@ Clears this container and sets its length to **0**.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -588,7 +588,7 @@ Clones this container and returns a copy. The modification to the copy does not 
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -621,7 +621,7 @@ Obtains the capacity of this container.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -654,7 +654,7 @@ Converts this container into an array.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -687,7 +687,7 @@ Checks whether this container is empty (contains no element).
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -720,7 +720,7 @@ Increases the capacity of this container.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -748,7 +748,7 @@ Trims the capacity of this container to its current length.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -785,7 +785,7 @@ Obtains an iterator, each item of which is a JavaScript object.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -808,7 +808,7 @@ for (let item of numbers) {
 
 // Method 2:
 let iter = arrayList[Symbol.iterator]();
-let temp: IteratorResult<number> = iter.next().value;
+let temp: IteratorResult<number> = iter.next();
 while(!temp.done) {
     console.log(`value:${temp.value}`);
     temp = iter.next();

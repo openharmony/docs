@@ -43,6 +43,15 @@
 | string                | 字符串类型。                    |
 | [Resource](#resource) | 资源引用类型，引入系统资源或者应用资源中的字符串。 |
 
+## ASTCResource<sup>12+</sup>
+
+纹理类型，用于设置纹理拼接的属性值。
+
+| 类型                    | 说明                        |
+| --------------------- | ------------------------- |
+| sources               | uri资源数组，表示进行拼接的纹理资源信息。                    |
+| column                | 列大小，表示每行要拼接的纹理资源个数。 |
+
 ## Padding
 
 内边距类型，用于描述组件不同方向的内边距。
@@ -407,10 +416,10 @@ Tabs自定义切换动画执行过程中，返回给开发者的proxy对象。�
 
 | 名称     | 类型                | 必填   | 说明                   |
 | ------ | ----------------- | ---- | -------------------- |
-| start | [PixelRoundCalcPolicy](ts-appendix-enums.md##PixelRoundCalcPolicy) | 否 | 组件前部边界取整对齐。 |
-| top | [PixelRoundCalcPolicy](ts-appendix-enums.md##PixelRoundCalcPolicy) | 否 | 组件上部边界取整对齐。 |
-| end | [PixelRoundCalcPolicy](ts-appendix-enums.md##PixelRoundCalcPolicy) | 否 | 组件尾部边界取整对齐。 |
-| bottom | [PixelRoundCalcPolicy](ts-appendix-enums.md##PixelRoundCalcPolicy) | 否 | 组件底部边界取整对齐。 |
+| start | [PixelRoundCalcPolicy](ts-appendix-enums.md#pixelroundcalcpolicy11) | 否 | 组件前部边界取整对齐。 |
+| top | [PixelRoundCalcPolicy](ts-appendix-enums.md#pixelroundcalcpolicy11) | 否 | 组件上部边界取整对齐。 |
+| end | [PixelRoundCalcPolicy](ts-appendix-enums.md#pixelroundcalcpolicy11) | 否 | 组件尾部边界取整对齐。 |
+| bottom | [PixelRoundCalcPolicy](ts-appendix-enums.md#pixelroundcalcpolicy11) | 否 | 组件底部边界取整对齐。 |
 
 ## VoidCallback<sup>12+</sup>
 

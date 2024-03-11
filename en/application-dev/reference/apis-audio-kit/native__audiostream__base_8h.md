@@ -25,13 +25,13 @@ The **native_audiostream_base.h** file declares the basic data structure of **OH
 
 ### Types
 
-| Name| Description| 
-| -------- | -------- |
-| typedef struct OH_AudioStreamBuilderStruct [OH_AudioStreamBuilder](_o_h_audio.md#oh_audiostreambuilder) | Defines an audio stream builder. | 
-| typedef struct OH_AudioRendererStruct [OH_AudioRenderer](_o_h_audio.md#oh_audiorenderer) | Defines an audio renderer. | 
-| typedef struct OH_AudioCapturerStruct [OH_AudioCapturer](_o_h_audio.md#oh_audiocapturer) | Defines an audio capturer. | 
-| typedef struct [OH_AudioRenderer_Callbacks_Struct](_o_h___audio_renderer___callbacks___struct.md)[OH_AudioRenderer_Callbacks](_o_h_audio.md#oh_audiorenderer_callbacks) | Defines a pointer to the callback functions related to an audio renderer. | 
-| typedef struct [OH_AudioCapturer_Callbacks_Struct](_o_h___audio_capturer___callbacks___struct.md)[OH_AudioCapturer_Callbacks](_o_h_audio.md#oh_audiocapturer_callbacks) | Defines a pointer to the callback functions related to an audio capturer. | 
+| Name                                                                                                                                                                      | Description| 
+|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------| -------- |
+| typedef struct OH_AudioStreamBuilderStruct [OH_AudioStreamBuilder](_o_h_audio.md#oh_audiostreambuilder)                                                                  | Defines an audio stream builder. | 
+| typedef struct OH_AudioRendererStruct [OH_AudioRenderer](_o_h_audio.md#oh_audiorenderer)                                                                                 | Defines an audio renderer. | 
+| typedef struct OH_AudioCapturerStruct [OH_AudioCapturer](_o_h_audio.md#oh_audiocapturer)                                                                                 | Defines an audio capturer. | 
+| typedef struct [OH_AudioRenderer_Callbacks_Struct](_o_h___audio_renderer___callbacks___struct.md) [OH_AudioRenderer_Callbacks](_o_h_audio.md#oh_audiorenderer_callbacks) | Defines a pointer to the callback functions related to an audio renderer. | 
+| typedef struct [OH_AudioCapturer_Callbacks_Struct](_o_h___audio_capturer___callbacks___struct.md) [OH_AudioCapturer_Callbacks](_o_h_audio.md#oh_audiocapturer_callbacks) | Defines a pointer to the callback functions related to an audio capturer. | 
 
 
 ### Enum

@@ -1773,7 +1773,56 @@ enableNativeEmbedMode(mode: boolean)
     }
   }
   ```
+### defaultTextEncodingFormat<sup>12+</sup>
 
+defaultTextEncodingFormat(textEncodingFormat: string)
+
+设置网页的默认字符编码。
+
+**参数：**
+
+| 参数名  | 参数类型   | 必填   | 默认值  | 参数描述                                     |
+| ---- | ------ | ---- | ---- | ---------------------------------------- |
+| textEncodingFormat | string | 是    | "UTF-8"   | 默认字符编码。 |
+
+  **示例：**
+
+  ```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Web({ src: $rawfile('index.html'), controller: this.controller })
+        // 设置高和内边距
+        .height(500)
+        .padding(20)
+        .defaultTextEncodingFormat("UTF-8")
+        .javaScriptAccess(true)
+    }
+  }
+}
+  ```
+
+```html
+
+<!doctype html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>My test html5 page</title>
+</head>
+<body>
+    hello world, 你好世界!
+</body>
+</html>
+```
 
 
 ## 事件
@@ -3219,7 +3268,7 @@ onPermissionRequest(callback: (event?: { request: PermissionRequest }) => void)
         audio: true
       };
       //获取video摄像头区域
-      let video = document.getElementByld("video");
+      let video = document.getElementById("video");
       //返回的Promise对象
       let promise = navigator.mediaDevices.getUserMedia(constraints);
       //then()异步，调用MediaStream对象作为参数
@@ -4060,6 +4109,78 @@ onFirstContentfulPaint(callback: (event?: { navigationStartTick: number, firstCo
   }
   ```
 
+### onFirstMeaningfulPaint<sup>12+</sup>
+
+onFirstMeaningfulPaint(callback: [OnFirstMeaningfulPaintCallback](#onfirstmeaningfulpaintcallback12))
+
+设置网页绘制页面主要内容回调函数。
+
+**参数：**
+
+| 参数名   | 类型                                                         | 说明                                   |
+| -------- | ------------------------------------------------------------ | -------------------------------------- |
+| callback | [OnFirstMeaningfulPaintCallback](#onfirstmeaningfulpaintcallback12) | 网页绘制页面主要内容度量信息的回调。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+        .onFirstMeaningfulPaint((details) => {
+            console.log("onFirstMeaningfulPaint: [navigationStartTime]= " + details.navigationStartTime +
+              ", [firstMeaningfulPaintTime]=" + details.firstMeaningfulPaintTime);
+        })
+      }
+    }
+  }
+  ```
+
+### onLargestContentfulPaint<sup>12+</sup>
+
+onLargestContentfulPaint(callback: [OnLargestContentfulPaintCallback](#onlargestcontentfulpaintcallback12))
+
+设置网页绘制页面最大内容回调函数。
+
+**参数：**
+
+| 参数名   | 类型                                                         | 说明                                 |
+| -------- | ------------------------------------------------------------ | ------------------------------------ |
+| callback | [OnLargestContentfulPaintCallback](#onlargestcontentfulpaintcallback12) | 网页绘制页面最大内容度量信息的回调。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+        .onLargestContentfulPaint((details) => {
+            console.log("onLargestContentfulPaint: [navigationStartTime]= " + details.navigationStartTime +
+              ", [largestImagePaintTime]=" + details.largestImagePaintTime +
+              ", [largestTextPaintTime]=" + details.largestTextPaintTime +
+              ", [largestImageLoadStartTime]=" + details.largestImageLoadStartTime +
+              ", [largestImageLoadEndTime]=" + details.largestImageLoadEndTime +
+              ", [imageBPP]=" + details.imageBPP);
+        })
+      }
+    }
+  }
+  ```
+
 ### onLoadIntercept<sup>10+</sup>
 
 onLoadIntercept(callback: (event: { data: WebResourceRequest }) => boolean)
@@ -4477,6 +4598,52 @@ onNativeEmbedGestureEvent(callback: NativeEmbedTouchInfo)
     }
   }
   ```
+
+### onIntelligentTrackingPreventionResult<sup>12+</sup>
+
+onIntelligentTrackingPreventionResult(callback: OnIntelligentTrackingPreventionCallback)
+
+智能防跟踪功能使能时，当追踪者cookie被拦截时触发该回调。
+
+**参数：**
+
+| 参数名       | 类型                                                                                         | 说明                         |
+| ----------- | ------------------------------------------------------------------------------------------- | ---------------------------- |
+| callback    | [OnIntelligentTrackingPreventionCallback](#onintelligenttrackingpreventioncallback12) | 智能防跟踪功能使能时，当追踪者cookie被拦截时触发的回调。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  import business_error from '@ohos.base'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        // 需要打开智能防跟踪功能，才会触发onIntelligentTrackingPreventionResult回调
+        Button('enableIntelligentTrackingPrevention')
+          .onClick(() => {
+            try {
+              this.controller.enableIntelligentTrackingPrevention(true);
+            } catch (error) {
+              let e: business_error.BusinessError = error as business_error.BusinessError;
+              console.error('ErrorCode: ${e.code}, Message: ${e.message}');
+            }
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+        .onIntelligentTrackingPreventionResult((details) => {
+            console.log("onIntelligentTrackingPreventionResult: [websiteHost]= " + details.host +
+              ", [trackerHost]=" + details.trackerHost);
+        })
+      }
+    }
+  }
+  ```
+
 ## ConsoleMessage
 
 Web组件获取控制台信息对象。示例代码参考[onConsole事件](#onconsole)。
@@ -5356,11 +5523,11 @@ invoke(origin: string, allow: boolean, retain: boolean): void
 
 | 名称    | 值 | 描述    |
 | ----- | -- | ---- |
-| Debug | 0 | 调试级别。 |
-| Error | 1 | 错误级别。 |
+| Debug | 1 | 调试级别。 |
+| Error | 4 | 错误级别。 |
 | Info  | 2 | 消息级别。 |
-| Log   | 3 | 日志级别。 |
-| Warn  | 4 | 警告级别。 |
+| Log   | 5 | 日志级别。 |
+| Warn  | 3 | 警告级别。 |
 
 ## RenderExitReason<sup>9+</sup>枚举说明
 
@@ -5378,7 +5545,7 @@ onRenderExited接口返回的渲染进程退出的具体原因。
 
 | 名称        | 值 | 描述                                 |
 | ---------- | -- | ---------------------------------- |
-| All        | 0 | 允许加载HTTP和HTTPS混合内容。所有不安全的内容都可以被加载。 |
+| All        | undefined | 允许加载HTTP和HTTPS混合内容。所有不安全的内容都可以被加载。 |
 | Compatible | 1 | 混合内容兼容性模式，部分不安全的内容可能被加载。           |
 | None       | 2 | 不允许加载HTTP和HTTPS混合内容。               |
 
@@ -5440,8 +5607,8 @@ onSslErrorEventReceive接口返回的SSL错误的具体原因。
 | 名称                          | 值 | 描述            | 备注                         |
 | --------------------------- | --------------- | ------------- | -------------------------- |
 | MidiSysex                   | TYPE_MIDI_SYSEX | MIDI SYSEX资源。 | 目前仅支持权限事件上报，MIDI设备的使用还未支持。 |
-| VIDEO_CAPTURE<sup>10+</sup> | TYPE_VIDEO_CAPTURE | 视频捕获资源，例如相机。  |                            |
-| AUDIO_CAPTURE<sup>10+</sup> | TYPE_AUDIO_CAPTURE | 音频捕获资源，例如麦克风。 |                            |
+| VIDEO_CAPTURE<sup>10+</sup> | undefined | 视频捕获资源，例如相机。  |                            |
+| AUDIO_CAPTURE<sup>10+</sup> | undefined | 音频捕获资源，例如麦克风。 |                            |
 
 ## WebDarkMode<sup>9+</sup>枚举说明
 
@@ -6307,7 +6474,7 @@ saveCookie()
 | 名称          | 类型             | 必填   | 描述                    |
 | ----------- | -------------- | ---- | --------------------- |
 | script      | string         | 是    | 需要注入、执行的JavaScript脚本。 |
-| scriptRules | Array\<string> | 是    | 一组允许来源的匹配规则。<br>1.如果需要允许所有来源的网址，使用通配符“ * ”。<br>2.如果需要精确匹配，则描述网站地址，如"https://www.example.com"。<br>3.如果模糊匹配网址，可以使用“ * ”通配符替代，如"https://*.example.com"。不允许使用"x. * .y.com"、" * foobar.com"等。<br>4.如果来源是ip地址，则使用规则2。       |
+| scriptRules | Array\<string> | 是    | 一组允许来源的匹配规则。<br>1.如果需要允许所有来源的网址，使用通配符“ * ”。<br>2.如果需要精确匹配，则描述网站地址，如"https:\//www\.example.com"。<br>3.如果模糊匹配网址，可以使用“ * ”通配符替代，如"https://*.example.com"。不允许使用"x. * .y.com"、" * foobar.com"等。<br>4.如果来源是ip地址，则使用规则2。       |
 
 ## WebNavigationType<sup>11+</sup>
 
@@ -6403,4 +6570,66 @@ type OnSafeBrowsingCheckResultCallback = (threatType: ThreatType) => void
 | 名称             | 类型                                  | 必填   | 描述                    |
 | -----------     | ------------------------------------ | ---- | --------------------- |
 | embedId     | string   | 是    | Embed标签的唯一id。 |
-| touchEvent  | [TouchEvent](../apis-arkui/arkui-ts/ts-universal-events-touch.md#touchevent对象说明)  | 是    | 手指触摸动作信息。  |
+| touchEvent  | [TouchEvent](../apis-arkui/arkui-ts/ts-universal-events-touch.md#touchevent对象说明)  | 是    | 手指触摸动作信息。 |
+
+## FirstMeaningfulPaint<sup>12+</sup>
+
+提供网页绘制页面主要内容的详细信息。
+
+| 名称                     | 类型   | 必填 | 描述                                   |
+| ------------------------ | ------ | ---- | -------------------------------------- |
+| navigationStartTime      | number | 是   | 导航条加载时间，单位以微秒表示。       |
+| firstMeaningfulPaintTime | number | 是   | 绘制页面主要内容时间，单位以毫秒表示。 |
+
+## OnFirstMeaningfulPaintCallback<sup>12+</sup>
+
+type OnFirstMeaningfulPaintCallback = (firstMeaningfulPaint: [FirstMeaningfulPaint](#firstmeaningfulpaint12)) => void
+
+网页绘制页面最大内容度量信息的回调。
+
+| 参数名               | 参数类型                                        | 参数描述                         |
+| -------------------- | ----------------------------------------------- | -------------------------------- |
+| firstMeaningfulPaint | [FirstMeaningfulPaint](#firstmeaningfulpaint12) | 绘制页面主要内容度量的详细信息。 |
+
+## LargestContentfulPaint<sup>12+</sup>
+
+提供网页绘制页面主要内容的详细信息。
+
+| 名称                      | 类型   | 必填 | 描述                                     |
+| ------------------------- | ------ | ---- | ---------------------------------------- |
+| navigationStartTime       | number | 是   | 导航条加载时间，单位以微秒表示。         |
+| largestImagePaintTime     | number | 否   | 最大图片加载的时间，单位是以毫秒表示。   |
+| largestTextPaintTime      | number | 否   | 最大文本加载时间，单位是以毫秒表示。     |
+| largestImageLoadStartTime | number | 否   | 最大图片开始加载时间，单位是以毫秒表示。 |
+| largestImageLoadEndTime   | number | 否   | 最大图片结束记载时间，单位是以毫秒表示。 |
+| imageBPP                  | number | 否   | 图片像素位数。                           |
+
+## OnLargestContentfulPaintCallback<sup>12+</sup>
+
+type OnLargestContentfulPaintCallback = (largestContentfulPaint: [LargestContentfulPaint](#largestcontentfulpaint12
+)) => void
+
+网页绘制页面最大内容度量信息的回调。
+
+| 参数名                 | 参数类型                                            | 参数描述                             |
+| ---------------------- | --------------------------------------------------- | ------------------------------------ |
+| largestContentfulPaint | [LargestContentfulPaint](#largestcontentfulpaint12) | 网页绘制页面最大内容度量的详细信息。 |
+
+## IntelligentTrackingPreventionDetails<sup>12+</sup>
+
+提供智能防跟踪拦截的详细信息。
+
+| 名称           | 类型                                | 必填   | 描述         |
+| ------------- | ------------------------------------| ----- | ------------ |
+| host          | string                              | 是     | 网站域名。    |
+| trackerHost   | string                              | 是     | 追踪者域名。  |
+
+## OnIntelligentTrackingPreventionCallback<sup>12+</sup>
+
+type OnIntelligentTrackingPreventionCallback = (details: IntelligentTrackingPreventionDetails) => void
+
+当跟踪者cookie被拦截时触发的回调。
+
+| 参数名   | 参数类型                                                                          | 参数描述                    |
+| ------- | -------------------------------------------------------------------------------- | ------------------------- |
+| details | [IntelligentTrackingPreventionDetails](#intelligenttrackingpreventiondetails12)  | 提供智能防跟踪拦截的详细信息。 |

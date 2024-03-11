@@ -28,7 +28,7 @@ Create an app account for an application user.
    let name: string = "ZhangSan";
    let options: account_appAccount.CreateAccountOptions = {
      customData: {
-       age: 10
+       age: '10'
      }
    };
    ```

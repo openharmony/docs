@@ -49,7 +49,7 @@ SelectTitleBar({selected: number, options: Array&lt;SelectOption&gt;, menuItems?
 | Name| Type| Mandatory| Description| 
 | -------- | -------- | -------- | -------- |
 | value | [ResourceStr](ts-types.md#resourcestr) | Yes| Icon.| 
-| isEnabled | boolean | No| Whether to enable the item.<br>Default value: **false** The value **true** means to enable the item, and **false** means the opposite.| 
+| isEnabled | boolean | No| Whether to enable the item.<br>Default value: **false**<br> The value **true** means to enable the item, and **false** means the opposite.| 
 | action | () =&gt; void | No| Action to perform.| 
 
 ## Events

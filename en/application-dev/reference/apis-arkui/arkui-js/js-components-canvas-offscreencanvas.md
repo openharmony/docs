@@ -36,7 +36,7 @@ Obtains the **OffscreenCanvas** context. This API returns a 2D drawing object.
 
 | Type                                      | Description                         |
 | ---------------------------------------- | --------------------------- |
-| [OffscreenCanvasRenderingContext2D](../arkui-js/js-offscreencanvasrenderingcontext2d.md) | 2D drawing object, which can be used to draw rectangles, images, and texts, on the **OffscreenCanvas**.|
+| [OffscreenCanvasRenderingContext2D](js-offscreencanvasrenderingcontext2d.md) | 2D drawing object, which can be used to draw rectangles, images, and texts, on the **OffscreenCanvas**.|
 
 ### CanvasRenderingContext2DSettings
 
@@ -78,7 +78,7 @@ Creates an **ImageBitmap** object on the most recently rendered image of the **O
 
 | Type                                      | Description             |
 | ---------------------------------------- | --------------- |
-| [ImageBitmap](../arkui-js/js-components-canvas-imagebitmap.md) | Pixel data rendered on the **OffscreenCanvas**.|
+| [ImageBitmap](js-components-canvas-imagebitmap.md) | Pixel data rendered on the **OffscreenCanvas**.|
 
 
 ## Example

@@ -15,12 +15,12 @@ The **Camera_Device** struct defines the camera device.
 
 ### Member Variables
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| \*[cameraId](#cameraid) | Camera ID.|
-| [cameraPosition](#cameraposition) | Camera position.|
-| [cameraType](#cameratype) | Camera type.|
-| [connectionType](#connectiontype) | Camera connection type.|
+| char \* [cameraId](#cameraid) | Camera ID. | 
+| [Camera_Position](_o_h___camera.md#camera_position) [cameraPosition](#cameraposition) | Camera position. | 
+| [Camera_Type](_o_h___camera.md#camera_type) [cameraType](#cameratype) | Camera type. | 
+| [Camera_Connection](_o_h___camera.md#camera_connection) [connectionType](#connectiontype) | Camera connection type. | 
 
 
 ## Member Variable Description
@@ -31,7 +31,6 @@ The **Camera_Device** struct defines the camera device.
 ```
 char* Camera_Device::cameraId
 ```
-
 **Description**
 
 Camera ID.
@@ -42,7 +41,6 @@ Camera ID.
 ```
 Camera_Position Camera_Device::cameraPosition
 ```
-
 **Description**
 
 Camera position.
@@ -53,7 +51,6 @@ Camera position.
 ```
 Camera_Type Camera_Device::cameraType
 ```
-
 **Description**
 
 Camera type.
@@ -64,7 +61,6 @@ Camera type.
 ```
 Camera_Connection Camera_Device::connectionType
 ```
-
 **Description**
 
 Camera connection type.

@@ -86,7 +86,7 @@ Called when an auto-fill request is successfully processed.
       try {
         let storageData: Record<string, string | autoFillManager.FillRequestCallback | autoFillManager.ViewData> = {
           'fillCallback': callback,
-          'message': "AutoFill Page",
+          'message': 'AutoFill Page',
           'viewData': request.viewData,
         }
         let storage_fill = new LocalStorage(storageData);
@@ -108,8 +108,9 @@ Called when an auto-fill request is successfully processed.
   import Base from '@ohos.base';
   import hilog from '@ohos.hilog';
   
-  let storage = LocalStorage.getShared();
-  let fillCallback = storage.get<autoFillManager.FillRequestCallback>('fillCallback');
+  let storage: LocalStorage = LocalStorage.getShared();
+  let fillCallback: autoFillManager.FillRequestCallback | undefined =
+    storage.get<autoFillManager.FillRequestCallback>('fillCallback');
   let viewData: autoFillManager.ViewData | undefined = storage.get<autoFillManager.ViewData>('viewData');
 
   @Entry
@@ -127,14 +128,15 @@ Called when an auto-fill request is successfully processed.
         Button('onSuccess')
           .onClick(() => {
             if (viewData) {
-              viewData.pageNodeInfos[0].value = "user1";
-              viewData.pageNodeInfos[1].value = "user1 password";
-              viewData.pageNodeInfos[2].value = "user1 generate new password";
+              viewData.pageNodeInfos[0].value = 'user1';
+              viewData.pageNodeInfos[1].value = 'user1 password';
+              viewData.pageNodeInfos[2].value = 'user1 generate new password';
               hilog.info(0x0000, 'testTag', 'autofill success with viewData: %{public}s', JSON.stringify(viewData));
               try {
                 fillCallback?.onSuccess({ viewData: viewData });
               } catch (error) {
-                console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+                console.error(`catch error, code: ${(error as Base.BusinessError).code},
+                  message: ${(error as Base.BusinessError).message}`);
               }
             }
           })
@@ -176,7 +178,7 @@ Called when an auto-fill request fails to be processed.
       try {
         let storageData: Record<string, string | autoFillManager.FillRequestCallback | autoFillManager.ViewData> = {
           'fillCallback': callback,
-          'message': "AutoFill Page",
+          'message': 'AutoFill Page',
           'viewData': request.viewData,
         }
         let storage_fill = new LocalStorage(storageData);
@@ -198,8 +200,9 @@ Called when an auto-fill request fails to be processed.
   import Base from '@ohos.base';
   import hilog from '@ohos.hilog';
 
-  let storage = LocalStorage.getShared();
-  let fillCallback = storage.get<autoFillManager.FillRequestCallback>('fillCallback');
+  let storage: LocalStorage = LocalStorage.getShared();
+  let fillCallback: autoFillManager.FillRequestCallback | undefined =
+    storage.get<autoFillManager.FillRequestCallback>('fillCallback');
 
   @Entry
   @Component
@@ -218,7 +221,8 @@ Called when an auto-fill request fails to be processed.
             try {
               fillCallback?.onFailure();
             } catch (error) {
-              console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+              console.error(`catch error, code: ${(error as Base.BusinessError).code},
+                message: ${(error as Base.BusinessError).message}`);
             }
           })
         .width('100%')
@@ -259,7 +263,7 @@ Called when an auto-fill request is canceled.
       try {
         let storageData: Record<string, string | autoFillManager.FillRequestCallback | autoFillManager.ViewData> = {
           'fillCallback': callback,
-          'message': "AutoFill Page",
+          'message': 'AutoFill Page',
           'viewData': request.viewData,
         }
         let storage_fill = new LocalStorage(storageData);
@@ -281,8 +285,9 @@ Called when an auto-fill request is canceled.
   import Base from '@ohos.base';
   import hilog from '@ohos.hilog';
  
-  let storage = LocalStorage.getShared();
-  let fillCallback = storage.get<autoFillManager.FillRequestCallback>('fillCallback');
+  let storage: LocalStorage = LocalStorage.getShared();
+  let fillCallback: autoFillManager.FillRequestCallback | undefined =
+    storage.get<autoFillManager.FillRequestCallback>('fillCallback');
 
   @Entry
   @Component
@@ -302,7 +307,8 @@ Called when an auto-fill request is canceled.
             try {
               fillCallback?.onCancel();
             } catch (error) {
-              console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+              console.error(`catch error, code: ${(error as Base.BusinessError).code},
+                message: ${(error as Base.BusinessError).message}`);
             }
           })
           .width('100%')
@@ -346,7 +352,7 @@ Called when a saving request is successfully processed.
       hilog.info(0x0000, 'testTag', '%{public}s', 'onSaveRequest');
       try {
         let storageData: Record<string, string | autoFillManager.SaveRequestCallback | autoFillManager.ViewData> = {
-          'message': "AutoFill Page",
+          'message': 'AutoFill Page',
           'saveCallback': callback,
           'viewData': request.viewData
         }
@@ -369,8 +375,9 @@ Called when a saving request is successfully processed.
   import Base from '@ohos.base';
   import hilog from '@ohos.hilog';
 
-  let storage = LocalStorage.getShared();
-  let saveCallback = storage.get<autoFillManager.SaveRequestCallback>('saveCallback');
+  let storage: LocalStorage = LocalStorage.getShared();
+  let saveCallback: autoFillManager.SaveRequestCallback | undefined =
+    storage.get<autoFillManager.SaveRequestCallback>('saveCallback');
 
   @Entry
   @Component
@@ -390,7 +397,8 @@ Called when a saving request is successfully processed.
             try {
               saveCallback?.onSuccess();
             } catch (error) {
-              console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+              console.error(`catch error, code: ${(error as Base.BusinessError).code},
+                message: ${(error as Base.BusinessError).message}`);
             }
           })
           .width('100%')
@@ -430,7 +438,7 @@ Called when a saving request fails to be processed.
       hilog.info(0x0000, 'testTag', '%{public}s', 'onSaveRequest');
       try {
         let storageData: Record<string, string | autoFillManager.SaveRequestCallback | autoFillManager.ViewData> = {
-          'message': "AutoFill Page",
+          'message': 'AutoFill Page',
           'saveCallback': callback,
           'viewData': request.viewData
         }
@@ -453,8 +461,9 @@ Called when a saving request fails to be processed.
   import Base from '@ohos.base';
   import hilog from '@ohos.hilog';
 
-  let storage = LocalStorage.getShared();
-  let saveCallback = storage.get<autoFillManager.SaveRequestCallback>('saveCallback');  
+  let storage: LocalStorage = LocalStorage.getShared();
+  let saveCallback: autoFillManager.FillRequestCallback | undefined =
+    storage.get<autoFillManager.SaveRequestCallback>('saveCallback');  
 
   @Entry
   @Component
@@ -473,7 +482,8 @@ Called when a saving request fails to be processed.
             try {
               saveCallback?.onFailure();
             } catch (error) {
-              console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+              console.error(`catch error, code: ${(error as Base.BusinessError).code},
+                message: ${(error as Base.BusinessError).message}`);
             }
           })
           .width('100%')

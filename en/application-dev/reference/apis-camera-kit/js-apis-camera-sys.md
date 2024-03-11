@@ -439,7 +439,7 @@ Adds a surface for delayed preview. This API can run after [Session.commitConfig
 
 | Name    | Type        | Mandatory| Description                      |
 | -------- | --------------| ---- | ------------------------ |
-| surfaceId | string | Yes| Surface ID, which is obtained from [XComponent](../arkui-ts/ts-basic-components-xcomponent.md).|
+| surfaceId | string | Yes| Surface ID, which is obtained from [XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md).|
 
 **Error codes**
 
@@ -588,7 +588,7 @@ Attaches a surface for PiP preview.
 
 | Name    | Type        | Mandatory| Description                      |
 | -------- | --------------| ---- | ------------------------ |
-| surfaceId | string | Yes| Surface ID, which is obtained from [XComponent](../arkui-ts/ts-basic-components-xcomponent.md).|
+| surfaceId | string | Yes| Surface ID, which is obtained from [XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md).|
 
 **Error codes**
 
@@ -1775,7 +1775,7 @@ Obtains the supported color spaces.
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
-| Array<[colorSpaceManager.ColorSpace](../apis/js-apis-colorSpaceManager.md#colorspace)>| Array of color spaces supported.    |
+| Array<[colorSpaceManager.ColorSpace](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspace)>| Array of color spaces supported.    |
 
 **Error codes**
 
@@ -1811,7 +1811,7 @@ Sets a color space. Before the setting, use [getSupportedColorSpaces](#getsuppor
 
 | Name        | Type                | Mandatory| Description                     |
 | ------------ |---------------------- | -- | -------------------------- |
-| colorSpace | [colorSpaceManager.ColorSpace](../apis/js-apis-colorSpaceManager.md#colorspace)  | Yes| Color space, which can be obtained through [getSupportedColorSpaces](#getsupportedcolorspaces11).  |
+| colorSpace | [colorSpaceManager.ColorSpace](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspace)  | Yes| Color space, which can be obtained through [getSupportedColorSpaces](#getsupportedcolorspaces11).  |
 
 **Error codes**
 
@@ -1856,7 +1856,7 @@ Obtains the color space in use.
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
-| [colorSpaceManager.ColorSpace](../apis/js-apis-colorSpaceManager.md#colorspace)               | Color space.               |
+| [colorSpaceManager.ColorSpace](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspace)               | Color space.               |
 
 **Error codes**
 

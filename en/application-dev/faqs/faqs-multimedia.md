@@ -181,7 +181,7 @@ Enumerates the camera statuses.
 
 **References**
 
-[CameraStatus](../reference/apis/js-apis-camera.md#oncamerastatus)
+[CameraStatus](../reference/apis-camera-kit/js-apis-camera.md#oncamerastatus)
 
 ## Does SoundPool support audio in WMV format? Which formats are supported? (API version 10)
 
@@ -201,9 +201,9 @@ You can call **ImageReceiver.readLatestImage** to obtain the preview image of th
 
 **References**
 
-[readLatestImage](../reference/apis/js-apis-image.md#readlatestimage9)
+[readLatestImage](../reference/apis-image-kit/js-apis-image.md#readlatestimage9)
 
-## How do I listen for recordings?(API 10)
+## How do I listen for recordings? (API version 10)
 
 **Solution**
 
@@ -211,7 +211,7 @@ Audio-related listening of the system is implemented in **AudioStreamManager**. 
 
 **References**
 
-[onaudiocapturerchange](../reference/apis/js-apis-audio.md#onaudiocapturerchange9)
+[onaudiocapturerchange](../reference/apis-audio-kit/js-apis-audio.md#onaudiocapturerchange9)
 
 ## In which audio processing scenarios are 3A algorithms (AEC, ANC, and AGC) embedded? If they are embedded, is there any API related to audio 3A processing? How do I call them? Are independent switches provided for the 3A algorithms? Does the system support 3A in recording scenarios? If not, what is the solution? For example, how do I ensure the sound quality of audio recording when playing music? (API version 10)
 
@@ -221,4 +221,61 @@ The embedded 3A processing is automatically enabled for the audio stream with th
 
 **References**
 
-[AudioCapturer](../reference/apis/js-apis-audio.md#audiocapturer8)
+[AudioCapturer](../reference/apis-audio-kit/js-apis-audio.md#audiocapturer8)
+
+## How do I implement low latency audio recording?(API 11)
+
+**Solution**
+
+To implement low latency audio recording, use the C APIs provided by the **AudioCapturer** class of the **OHAudio** module. For details, see [Using OHAudio for Audio Recording (C/C++)](../media/using-ohaudio-for-recording.md).
+
+**References**
+
+[ohaudio](../reference/apis-audio-kit/_o_h_audio.md)
+
+## How do I implement real-time video stream transmission? How do I implement live broadcast? (API version 10)
+
+**Solution**
+
+Currently, the AVPlayer supports HTTP, HTTPS, and HLS for real-time video stream transmission. In the live broadcast scenario, the AVPlayer can play the data sent by the peer once it receives the live broadcast address. Stream pushing is not supported yet, which means that the Avplayer cannot use the current device for live broadcast.
+
+**References**
+
+- [Media Kit](../media/media-kit-intro.md)
+- [AVPlayer](../media/using-avplayer-for-playback.md)
+
+## How do I enable the AVPlayer to play in the background? (API version 10)
+
+**Solution**
+
+To continue background playback, the application must request a continuous task and register the AVSession with the system for unified management.
+
+**References**
+
+[Accessing AVSession](../media/avsession-access-scene.md)
+
+## Why can't a third-party application create albums? (API version 10)
+
+**Symptom**
+
+The read and write permissions of album resources are set to the system_basic level, and the APIs for creating albums are designed as system APIs. What is the reason of this design? (API version 10)
+
+**Solution**
+
+To protect the privacy of users' images and videos, any operation on these files must be notified by the users. Therefore, the read and write permissions are not granted to third-party applications. The system generates source albums based on the image and video storage sources. User-defined albums can only be created in Gallery and can be dragged to the user-defined album area.
+
+## How do I compress an image to a specified size? What are the factors affecting the size after compression? (API version 10)
+
+**Symptom**
+
+What is the relationship between the **quality** parameter in the image compression APIs and the original size and compressed size of an image? How do I set the target image size? For example, if I want to compress an image to 500 KB, how do I set the parameters?
+
+**Solution**
+
+The **quality** parameter affects the target image size for a lossy compression image format (such as JPEG), but not for a lossless compression image format (such as PNG).
+For lossy compression images, the target image size depends on the original image size, compression quality, and image content. Therefore, the current system does not support the setting of the target image size. If an application wants to specify the size, you can adjust the **quality** parameter based on the compression result, or scale the pixel map to a smaller size and then compress the pixel map.
+
+**References**
+
+- [scale](../reference/apis-image-kit/js-apis-image.md#scale9)
+- [packing](../reference/apis-image-kit/js-apis-image.md#packing)

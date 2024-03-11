@@ -31,11 +31,11 @@
 | ArkWeb_Response | 请求的响应，可以为被拦截的请求创建一个ArkWeb_Response并填充自定义的内容返回给ArkWeb。|
 | ArkWeb_ResourceRequest | 代表一个ArkWeb发出的请求，通过ArkWeb_ResourceRequest可以拿到该请求的信息。|
 | ArkWeb_RequestHeaderList | 请求的请求头信息。|
-| ArkWeb_PostDataStream | POST请求的数据体，支持BYTES、FILE、BLOB、CHUNKED类型的数据。|
+| ArkWeb_HttpBodyStream | POST、PUT请求的数据体，支持BYTES、FILE、BLOB、CHUNKED类型的数据。|
 | ArkWeb_OnRequestStart | 当请求开始时的回调，在该回调函数中可以决定是否拦截该请求，该接口会在IO线程回调。|
 | ArkWeb_OnRequestStop | 当请求完成时的回调，请求完成后需要销毁ArkWeb_ResourceRequest以及ArkWeb_ResourceHandler，该接口会在IO线程回调。|
-| ArkWeb_PostDataReadCallback | OH_ArkWebPostDataStream_Read读取操作完成时的回调。|
-| ArkWeb_PostDataStreamInitCallback | ArkWeb_PostDataStream初始化操作完成时的回调。|
+| ArkWeb_HttpBodyStreamReadCallback | OH_ArkWebHttpBodyStream_Read读取操作完成时的回调。|
+| ArkWeb_HttpBodyStreamInitCallback | ArkWeb_HttpBodyStream初始化操作完成时的回调。|
 
 
 ### 函数
@@ -49,18 +49,18 @@
 | OH_ArkWebResourceRequest_GetUserData(const ArkWeb_ResourceRequest* resourceRequest) | 从ArkWeb_ResourceRequest获取用户数据。|
 | OH_ArkWebResourceRequest_GetMethod(const ArkWeb_ResourceRequest* resourceRequest, char** method) | 获取请求的方法。|
 | OH_ArkWebResourceRequest_GetUrl(const ArkWeb_ResourceRequest* resourceRequest, char** url) | 获取请求的url。|
-| OH_ArkWebResourceRequest_GetPostData(const ArkWeb_ResourceRequest* resourceRequest, ArkWeb_PostDataStream** postDataStream) | 获取请求的POST数据，该接口需要在IO线程使用。|
-| OH_ArkWebResourceRequest_DestroyPostData(ArkWeb_PostDataStream* postDataStream) | 销毁ArkWeb_PostDataStream对象。|
-| OH_ArkWebPostDataStream_SetUserData(ArkWeb_PostDataStream* postDataStream, void* userData) | 将一个用户数据设置到ArkWeb_PostDataStream对象中。|
-| OH_ArkWebPostDataStream_GetUserData(const ArkWeb_PostDataStream* postDataStream) | 从ArkWeb_PostDataStream获取用户数据。|
-| OH_ArkWebPostDataStream_SetReadCallback(ArkWeb_PostDataStream* postDataStream, ArkWeb_PostDataReadCallback readCallback) | 为 OH_ArkWebPostDataStream_Read 设置回调函数，OH_ArkWebPostDataStream_Read 的结果将通过 readCallback 通知给调用者。该回调函数将在与OH_ArkWebPostDataStream_Read 相同的线程中运行。|
-| OH_ArkWebPostDataStream_Init(ArkWeb_PostDataStream* postDataStream, ArkWeb_PostDataStreamInitCallback initCallback) | 初始化ArkWeb_PostDataStream。在调用任何其他函数之前，必须调用此函数。该接口需要在IO线程调用。|
-| OH_ArkWebPostDataStream_Read(const ArkWeb_PostDataStream* postDataStream, uint8_t* buffer, int bufLen) | 将POST数据读取到缓冲区。缓冲区的大小必须大于bufLen。我们将从工作线程读取数据到缓冲区，因此在回调函数返回之前，不应在其他线程中使用缓冲区，以避免并发问题。|
-| OH_ArkWebPostDataStream_GetSize(const ArkWeb_PostDataStream* postDataStream) | 获取postDataStream的大小，分块传输时总是返回零。|
-| OH_ArkWebPostDataStream_GetPosition(const ArkWeb_PostDataStream* postDataStream) | 获取postDataStream当前的读取位置。|
-| OH_ArkWebPostDataStream_IsChunked(const ArkWeb_PostDataStream* postDataStream) | 获取postDataStream是否采用分块传输。|
-| OH_ArkWebPostDataStream_IsEof(const ArkWeb_PostDataStream* postDataStream) | 判断postDataStream中的所有数据是否都已被读取。|
-| OH_ArkWebPostDataStream_IsInMemory(const ArkWeb_PostDataStream* postDataStream) | 判断postDataStream中的数据是否在内存中。|
+| OH_ArkWebResourceRequest_GetHttpBodyStream(const ArkWeb_ResourceRequest* resourceRequest, ArkWeb_HStream** httpBodyStream) | 获取POST、PUT请求的上传数据，该接口需要在IO线程使用。|
+| OH_ArkWebResourceRequest_DestroyHttpBodyStream(ArkWeb_HttpBodyStream* httpBodyStream) | 销毁ArkWeb_HttpBodyStream对象。|
+| OH_ArkWebHttpBodyStream_SetUserData(ArkWeb_HttpBodyStream* httpBodyStream, void* userData) | 将一个用户数据设置到ArkWeb_HttpBodyStream对象中。|
+| OH_ArkWebHStream_GetUserData(const ArkWeb_HttpBodyStream* httpBodyStream) | 从ArkWeb_HttpBodyStream获取用户数据。|
+| OH_ArkWebHttpBodyStream_SetReadCallback(ArkWeb_HttpBodyStream* httpBodyStream, ArkWeb_HttpBodyStreamReadCallback readCallback) | 为 OH_ArkWebHttpBodyStream_Read 设置回调函数，OH_ArkWebHttpBodyStream_Read 的结果将通过 readCallback 通知给调用者。该回调函数将在与OH_ArkWebHttpBodyStream_Read 相同的线程中运行。|
+| OH_ArkWebHttpBodyStream_Init(ArkWeb_HttpBodyStream* httpBodyStream, ArkWeb_HttpBodyStreamInitCallback initCallback) | 初始化ArkWeb_HttpBodyStream。在调用任何其他函数之前，必须调用此函数。该接口需要在IO线程调用。|
+| OH_ArkWebHttpBodyStream_Read(const ArkWeb_HttpBodyStream* httpBodyStream, uint8_t* buffer, int bufLen) | 将数据读取到缓冲区。缓冲区的大小必须大于bufLen。我们将从工作线程读取数据到缓冲区，因此在回调函数返回之前，不应在其他线程中使用缓冲区，以避免并发问题。|
+| OH_ArkWebHttpBodyStream_GetSize(const ArkWeb_HttpBodyStream* httpBodyStream) | 获取 ArkWeb_HttpBodyStream 的大小，分块传输时总是返回零。|
+| OH_ArkWebHttpBodyStream_GetPosition(const ArkWeb_HttpBodyStream* httpBodyStream) | 获取 ArkWeb_HttpBodyStream 当前的读取位置。|
+| OH_ArkWebHttpBodyStream_IsChunked(const ArkWeb_HttpBodyStream* httpBodyStream) | 获取 ArkWeb_HttpBodyStream 是否采用分块传输。|
+| OH_ArkWebHttpBodyStream_IsEof(const ArkWeb_HttpBodyStream* httpBodyStream) | 判断 ArkWeb_HttpBodyStream 中的所有数据是否都已被读取。|
+| OH_ArkWebHttpBodyStream_IsInMemory(const ArkWeb_HttpBodyStream* httpBodyStream) | 判断 ArkWeb_HttpBodyStream 中的数据是否在内存中。|
 | OH_ArkWebResourceRequest_Destroy(const ArkWeb_ResourceRequest* resourceRequest) | 销毁ArkWeb_ResourceRequest对象。|
 | OH_ArkWebResourceRequest_GetReferrer(const ArkWeb_ResourceRequest* resourceRequest, char** referrer) | 获取请求的referrer。|
 | OH_ArkWebResourceRequest_GetRequestHeaders(const ArkWeb_ResourceRequest* resourceRequest, ArkWeb_RequestHeaderList** requestHeaderList) |获取请求的请求头列表 OH_ArkWeb_RequestHeaderList。|
@@ -158,9 +158,9 @@
 **系统能力：** SystemCapability.Web.Webview.Core
 
 
-### ArkWeb_PostDataStream
+### ArkWeb_HttpBodyStream
 
-POST请求的数据体，支持BYTES、FILE、BLOB、CHUNKED类型的数据。使用OH_ArkWebPostDataStream_*接口来读取POST请求中的数据体。
+POST、PUT请求的上传数据，支持BYTES、FILE、BLOB、CHUNKED类型的数据。使用OH_ArkWebHttpBodyStream_*接口来读取POST、PUT请求的上传数据。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -207,14 +207,14 @@ typedef void (*ArkWeb_OnRequestStop)(const ArkWeb_SchemeHandler* schemeHandler,
 | schemeHandler | ArkWeb_SchemeHandler。 |
 | resourceRequest | 通过resourceRequest获取请求的信息。 |
 
-### ArkWeb_PostDataReadCallback
+### ArkWeb_HttpBodyStreamReadCallback
 
-当OH_ArkWebPostDataStream_Read读取操作完成时的回调。
+当OH_ArkWebHttpBodyStream_Read读取操作完成时的回调。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
 ```
-typedef void (*ArkWeb_PostDataReadCallback)(const ArkWeb_PostDataStream* postDataStream,
+typedef void (*ArkWeb_HttpBodyStreamReadCallback)(const ArkWeb_HttpBodyStream* httpBodyStream,
                                             uint8_t* buffer,
                                             int bytesRead);
 ```
@@ -223,26 +223,26 @@ typedef void (*ArkWeb_PostDataReadCallback)(const ArkWeb_PostDataStream* postDat
 
 | 名称 | 描述 |
 | -------- | -------- |
-| postDataStream | ArkWeb_PostDataStream。 |
+| httpBodyStream | ArkWeb_HttpBodyStream。 |
 | buffer | 用于接收数据的缓冲区。 |
-| bytesRead | 大于0的bytesRead意味着缓冲区被bytesRead大小的数据填满。调用者可以从缓冲区中读取，如果OH_ArkWebPostDataStream_IsEOF为false，调用者可以继续读取剩余的数据。 |
+| bytesRead | 大于0的bytesRead意味着缓冲区被bytesRead大小的数据填满。调用者可以从缓冲区中读取，如果OH_ArkWebHttpBodyStream_IsEOF为false，调用者可以继续读取剩余的数据。 |
 
 
-### ArkWeb_PostDataStreamInitCallback
+### ArkWeb_HttpBodyStreamInitCallback
 
-ArkWeb_PostDataStream初始化操作完成时回调。
+ArkWeb_HttpBodyStream初始化操作完成时回调。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
 ```
-typedef void (*ArkWeb_PostDataStreamInitCallback)(const ArkWeb_PostDataStream* postDataStream, ArkWeb_NetError result);
+typedef void (*ArkWeb_HttpBodyStreamInitCallback)(const ArkWeb_HttpBodyStream* httpBodyStream, ArkWeb_NetError result);
 ```
 
 **参数:**
 
 | 名称 | 描述 |
 | -------- | -------- |
-| postDataStream | ArkWeb_PostDataStream。 |
+| httpBodyStream | ArkWeb_HttpBodyStream。 |
 | result | 成功时为ARKWEB_NET_OK。 |
 
 
@@ -412,16 +412,16 @@ void OH_ArkWebResourceRequest_GetUrl(const ArkWeb_ResourceRequest* resourceReque
 | url | 请求的URL。此函数将为URL字符串分配内存，调用者必须通过OH_ArkWeb_ReleaseString释放该字符串。 |
 
 
-### OH_ArkWebResourceRequest_GetPostData
+### OH_ArkWebResourceRequest_GetHttpBodyStream
 
 ```
-void OH_ArkWebResourceRequest_GetPostData(const ArkWeb_ResourceRequest* resourceRequest,
-                                          ArkWeb_PostDataStream** postDataStream);
+void OH_ArkWebResourceRequest_GetHttpBodyStream(const ArkWeb_ResourceRequest* resourceRequest,
+                                                ArkWeb_HttpBodyStream** httpBodyStream);
 ```
 
 **描述**
 
-获取请求的POST数据。
+获取请求的上传数据。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -432,18 +432,18 @@ void OH_ArkWebResourceRequest_GetPostData(const ArkWeb_ResourceRequest* resource
 | 名称 | 描述 |
 | -------- | -------- |
 | resourceRequest | ArkWeb_ResourceRequest。 |
-| postDataStream | 请求的POST数据。此函数将为postDataStream分配内存，调用者必须使用 OH_ArkWebResourceRequest_DestroyPostData 释放postDataStream。 |
+| httpBodyStream | 请求的上传数据。此函数将为 httpBodyStream 分配内存，调用者必须使用 OH_ArkWebResourceRequest_DestroyHttpBodyStream 释放 httpBodyStream。 |
 
 
-### OH_ArkWebResourceRequest_DestroyPostData
+### OH_ArkWebResourceRequest_DestroyHttpBodyStream
 
 ```
-void OH_ArkWebResourceRequest_DestroyPostData(ArkWeb_PostDataStream* postDataStream);
+void OH_ArkWebResourceRequest_DestroyHttpBodyStream(ArkWeb_HttpBodyStream* httpBodyStream);
 ```
 
 **描述**
 
-销毁ArkWeb_PostDataStream对象。
+销毁ArkWeb_HttpBodyStream对象。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -453,18 +453,18 @@ void OH_ArkWebResourceRequest_DestroyPostData(ArkWeb_PostDataStream* postDataStr
 
 | 名称 | 描述 |
 | -------- | -------- |
-| postDataStream | 待销毁的ArkWeb_PostDataStream。 |
+| httpBodyStream | 待销毁的ArkWeb_HttpBodyStream。 |
 
 
-### OH_ArkWebPostDataStream_SetUserData
+### OH_ArkWebHttpBodyStream_SetUserData
 
 ```
-int32_t OH_ArkWebPostDataStream_SetUserData(ArkWeb_PostDataStream* postDataStream, void* userData);
+int32_t OH_ArkWebHttpBodyStream_SetUserData(ArkWeb_HttpBodyStream* httpBodyStream, void* userData);
 ```
 
 **描述**
 
-将一个用户数据设置到ArkWeb_PostDataStream对象中。
+将一个用户数据设置到ArkWeb_HttpBodyStream对象中。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -474,7 +474,7 @@ int32_t OH_ArkWebPostDataStream_SetUserData(ArkWeb_PostDataStream* postDataStrea
 
 | 名称 | 描述 |
 | -------- | -------- |
-| postDataStream | ArkWeb_PostDataStream。 |
+| httpBodyStream | ArkWeb_HttpBodyStream。 |
 | userData | 要设置的用户数据。 |
 
 **返回：**
@@ -482,15 +482,15 @@ int32_t OH_ArkWebPostDataStream_SetUserData(ArkWeb_PostDataStream* postDataStrea
 如果成功，返回0；失败返回其它错误码，错误码的详细介绍请参见[arkweb_error_code.md](arkweb_error_code.md)。
 
 
-### OH_ArkWebPostDataStream_GetUserData
+### OH_ArkWebHttpBodyStream_GetUserData
 
 ```
-void* OH_ArkWebPostDataStream_GetUserData(const ArkWeb_PostDataStream* postDataStream);
+void* OH_ArkWebHttpBodyStream_GetUserData(const ArkWeb_HttpBodyStream* httpBodyStream);
 ```
 
 **描述**
 
-从ArkWeb_PostDataStream获取用户数据。
+从ArkWeb_HttpBodyStream获取用户数据。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -500,19 +500,19 @@ void* OH_ArkWebPostDataStream_GetUserData(const ArkWeb_PostDataStream* postDataS
 
 | 名称 | 描述 |
 | -------- | -------- |
-| postDataStream | ArkWeb_PostDataStream。 |
+| httpBodyStream | ArkWeb_HttpBodyStream。 |
 
 
-### OH_ArkWebPostDataStream_SetReadCallback
+### OH_ArkWebHttpBodyStream_SetReadCallback
 
 ```
-int32_t OH_ArkWebPostDataStream_SetReadCallback(ArkWeb_PostDataStream* postDataStream,
-                                                ArkWeb_PostDataReadCallback readCallback);
+int32_t OH_ArkWebHttpBodyStream_SetReadCallback(ArkWeb_HttpBodyStream* httpBodyStream,
+                                                ArkWeb_HttpBodyStreamReadCallback readCallback);
 ```
 
 **描述**
 
-为 OH_ArkWebPostDataStream_Read 设置回调函数，OH_ArkWebPostDataStream_Read 的结果将通过 readCallback 通知给调用者。该回调函数将在与 OH_ArkWebPostDataStream_Read 相同的线程中运行。
+为 OH_ArkWebHttpBodyStream_Read 设置回调函数，OH_ArkWebHttpBodyStream_Read 的结果将通过 readCallback 通知给调用者。该回调函数将在与 OH_ArkWebHttpBodyStream_Read 相同的线程中运行。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -522,24 +522,24 @@ int32_t OH_ArkWebPostDataStream_SetReadCallback(ArkWeb_PostDataStream* postDataS
 
 | 名称 | 描述 |
 | -------- | -------- |
-| postDataStream | ArkWeb_PostDataStream。 |
-| readCallback | OH_ArkWebPostDataStream_Read的回调函数。 |
+| httpBodyStream | ArkWeb_HttpBodyStream。 |
+| readCallback | OH_ArkWebHttpBodyStream_Read的回调函数。 |
 
 **返回：**
 
 如果成功，返回0；失败返回其它错误码，错误码的详细介绍请参见[arkweb_error_code.md](arkweb_error_code.md)。
 
 
-### OH_ArkWebPostDataStream_Init
+### OH_ArkWebHttpBodyStream_Init
 
 ```
-int32_t OH_ArkWebPostDataStream_Init(ArkWeb_PostDataStream* postDataStream,
-                                     ArkWeb_PostDataStreamInitCallback initCallback);
+int32_t OH_ArkWebHttpBodyStream_Init(ArkWeb_HttpBodyStream* httpBodyStream,
+                                     ArkWeb_HttpBodyStreamInitCallback initCallback);
 ```
 
 **描述**
 
-初始化ArkWeb_PostDataStream。在调用任何其他函数之前，必须调用此函数。该接口需要在IO线程调用。
+初始化ArkWeb_HttpBodyStream。在调用任何其他函数之前，必须调用此函数。该接口需要在IO线程调用。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -549,7 +549,7 @@ int32_t OH_ArkWebPostDataStream_Init(ArkWeb_PostDataStream* postDataStream,
 
 | 名称 | 描述 |
 | -------- | -------- |
-| postDataStream | ArkWeb_PostDataStream。 |
+| httpBodyStream | ArkWeb_HttpBodyStream。 |
 | initCallback | 初始化的回调函数。 |
 
 **返回：**
@@ -557,15 +557,15 @@ int32_t OH_ArkWebPostDataStream_Init(ArkWeb_PostDataStream* postDataStream,
 如果成功，返回0；失败返回其它错误码，错误码的详细介绍请参见[arkweb_error_code.md](arkweb_error_code.md)。
 
 
-### OH_ArkWebPostDataStream_Read
+### OH_ArkWebHttpBodyStream_Read
 
 ```
-void OH_ArkWebPostDataStream_Read(const ArkWeb_PostDataStream* postDataStream, uint8_t* buffer, int bufLen);
+void OH_ArkWebHttpBodyStream_Read(const ArkWeb_HttpBodyStream* httpBodyStream, uint8_t* buffer, int bufLen);
 ```
 
 **描述**
 
-将POST数据读取到缓冲区。缓冲区的大小必须大于bufLen。我们将从工作线程读取数据到缓冲区，因此在回调函数返回之前，不应在其他线程中使用缓冲区，以避免并发问题。
+将数据读取到缓冲区。缓冲区的大小必须大于bufLen。我们将从工作线程读取数据到缓冲区，因此在回调函数返回之前，不应在其他线程中使用缓冲区，以避免并发问题。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -575,20 +575,20 @@ void OH_ArkWebPostDataStream_Read(const ArkWeb_PostDataStream* postDataStream, u
 
 | 名称 | 描述 |
 | -------- | -------- |
-| postDataStream | ArkWeb_PostDataStream。 |
+| httpBodyStream | ArkWeb_HttpBodyStream。 |
 | buffer | 接收数据的缓冲区。 |
 | bufLen | 要读取的字节的大小。 |
 
 
-### OH_ArkWebPostDataStream_GetSize
+### OH_ArkWebHttpBodyStream_GetSize
 
 ```
-uint64_t OH_ArkWebPostDataStream_GetSize(const ArkWeb_PostDataStream* postDataStream);
+uint64_t OH_ArkWebHttpBodyStream_GetSize(const ArkWeb_HttpBodyStream* httpBodyStream);
 ```
 
 **描述**
 
-获取postDataStream的大小，分块传输时总是返回零。
+获取 ArkWeb_HttpBodyStream 的大小，分块传输时总是返回零。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -598,22 +598,22 @@ uint64_t OH_ArkWebPostDataStream_GetSize(const ArkWeb_PostDataStream* postDataSt
 
 | 名称 | 描述 |
 | -------- | -------- |
-| postDataStream | ArkWeb_PostDataStream。 |
+| httpBodyStream | ArkWeb_HttpBodyStream。 |
 
 **返回：**
 
-返回postDataStream的大小，分块传输时总是返回零。
+返回 ArkWeb_HttpBodyStream 的大小，分块传输时总是返回零。
 
 
-### OH_ArkWebPostDataStream_GetPosition
+### OH_ArkWebHttpBodyStream_GetPosition
 
 ```
-uint64_t OH_ArkWebPostDataStream_GetPosition(const ArkWeb_PostDataStream* postDataStream);
+uint64_t OH_ArkWebHttpBodyStream_GetPosition(const ArkWeb_HttpBodyStream* httpBodyStream);
 ```
 
 **描述**
 
-获取postDataStream当前的读取位置。
+获取 ArkWeb_HttpBodyStream 当前的读取位置。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -623,22 +623,22 @@ uint64_t OH_ArkWebPostDataStream_GetPosition(const ArkWeb_PostDataStream* postDa
 
 | 名称 | 描述 |
 | -------- | -------- |
-| postDataStream | ArkWeb_PostDataStream。 |
+| httpBodyStream | ArkWeb_HttpBodyStream。 |
 
 **返回：**
 
-返回postDataStream当前的读取位置。
+返回 ArkWeb_HttpBodyStream 当前的读取位置。
 
 
-### OH_ArkWebPostDataStream_IsChunked
+### OH_ArkWebHttpBodyStream_IsChunked
 
 ```
-bool OH_ArkWebPostDataStream_IsChunked(const ArkWeb_PostDataStream* postDataStream);
+bool OH_ArkWebHttpBodyStream_IsChunked(const ArkWeb_HttpBodyStream* httpBodyStream);
 ```
 
 **描述**
 
-获取postDataStream是否采用分块传输。
+获取 ArkWeb_HttpBodyStream 是否采用分块传输。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -648,22 +648,22 @@ bool OH_ArkWebPostDataStream_IsChunked(const ArkWeb_PostDataStream* postDataStre
 
 | 名称 | 描述 |
 | -------- | -------- |
-| postDataStream | ArkWeb_PostDataStream。 |
+| httpBodyStream | ArkWeb_HttpBodyStream。 |
 
 **返回：**
 
-返回postDataStream是否以分块类型传输。
+返回 ArkWeb_HttpBodyStream 是否以分块类型传输。
 
 
-### OH_ArkWebPostDataStream_IsEof
+### OH_ArkWebHttpBodyStream_IsEof
 
 ```
-bool OH_ArkWebPostDataStream_IsEof(const ArkWeb_PostDataStream* postDataStream);
+bool OH_ArkWebHttpBodyStream_IsEof(const ArkWeb_HttpBodyStream* httpBodyStream);
 ```
 
 **描述**
 
-判断postDataStream中的所有数据是否都已被读取。如果此上传postDataStream中的所有数据都已被读取，则返回true。对于分块传输类型的postDataStream，在第一次读取尝试之前返回false。 
+判断 ArkWeb_HttpBodyStream 中的所有数据是否都已被读取。如果所有数据都已被读取，则返回true。对于分块传输类型的 ArkWeb_HttpBodyStream，在第一次读取尝试之前返回false。 
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -673,22 +673,22 @@ bool OH_ArkWebPostDataStream_IsEof(const ArkWeb_PostDataStream* postDataStream);
 
 | 名称 | 描述 |
 | -------- | -------- |
-| postDataStream | ArkWeb_PostDataStream。 |
+| httpBodyStream | ArkWeb_HttpBodyStream。 |
 
 **返回：**
 
-返回postDataStream中的所有数据是否都已被读取。
+返回 httpBodyStream 中的所有数据是否都已被读取。
 
 
-### OH_ArkWebPostDataStream_IsInMemory
+### OH_ArkWebHttpBodyStream_IsInMemory
 
 ```
-bool OH_ArkWebPostDataStream_IsInMemory(const ArkWeb_PostDataStream* postDataStream);
+bool OH_ArkWebHttpBodyStream_IsInMemory(const ArkWeb_HttpBodyStream* httpBodyStream);
 ```
 
 **描述**
 
-判断postDataStream中的上传数据是否在内存中。如果postDataStream中的上传数据完全在内存中，并且所有读取请求都将同步成功，则返回true。对于分块传输类型的数据，预期返回false。
+判断 httpBodyStream 中的上传数据是否在内存中。如果 httpBodyStream 中的上传数据完全在内存中，并且所有读取请求都将同步成功，则返回true。对于分块传输类型的数据，预期返回false。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -698,11 +698,11 @@ bool OH_ArkWebPostDataStream_IsInMemory(const ArkWeb_PostDataStream* postDataStr
 
 | 名称 | 描述 |
 | -------- | -------- |
-| postDataStream | ArkWeb_PostDataStream。 |
+| httpBodyStream | ArkWeb_HttpBodyStream。 |
 
 **返回：**
 
-返回postDataStream中的上传数据是否在内存中。
+返回 httpBodyStream 中的上传数据是否在内存中。
 
 
 ### OH_ArkWebResourceRequest_Destroy
@@ -1959,7 +1959,7 @@ public:
     const ArkWeb_ResourceRequest *resourceRequest() { return resourceRequest_; }
     const NativeResourceManager *resourceManager() { return resourceManager_; }
     ArkWeb_Response *response() { return response_; }
-    ArkWeb_PostDataStream *stream() { return stream_; }
+    ArkWeb_HttpBodyStream *stream() { return stream_; }
     const std::string rawfilePath() { return rawfilePath_; }
 
     void DidReceiveResponse();
@@ -1974,7 +1974,7 @@ private:
     ArkWeb_Response *response_;
     bool stopped_{false};
     std::string rawfilePath_;
-    ArkWeb_PostDataStream *stream_{nullptr};
+    ArkWeb_HttpBodyStream *stream_{nullptr};
     std::mutex mutex_;
 };
 
@@ -1997,34 +1997,34 @@ main/cpp/rawfile_request.cpp
 namespace {
 
 uint8_t buffer[1024];
-cnd_t post_data_cnd;
-mtx_t post_data_mtx;
+cnd_t http_body_cnd;
+mtx_t http_body_mtx;
 
-// PostDataStream的读回调。
-void ReadCallback(const ArkWeb_PostDataStream  *postDataStream, uint8_t* buffer, int bytesRead)
+// HttpBodyStream的读回调。
+void ReadCallback(const ArkWeb_HttpBodyStream  *httpBodyStream, uint8_t* buffer, int bytesRead)
 {
-    OH_LOG_INFO(LOG_APP, "read post data back.");
-    bool isEof = OH_ArkWebPostDataStream_IsEof(postDataStream);
+    OH_LOG_INFO(LOG_APP, "read http body back.");
+    bool isEof = OH_ArkWebHttpBodyStream_IsEof(httpBodyStream);
     if (!isEof && bytesRead != 0) {
         memset(buffer, 0, 1000);
-        OH_ArkWebPostDataStream_Read(postDataStream, buffer, 1000);
+        OH_ArkWebHttpBodyStream_Read(httpBodyStream, buffer, 1000);
     } else {
-        RawfileRequest *rawfileRequest = (RawfileRequest *)OH_ArkWebPostDataStream_GetUserData(postDataStream);
+        RawfileRequest *rawfileRequest = (RawfileRequest *)OH_ArkWebHttpBodyStream_GetUserData(httpBodyStream);
         if (rawfileRequest) {
             rawfileRequest->ReadRawfileDataOnWorkerThread();
-            cnd_signal(&post_data_cnd);
+            cnd_signal(&http_body_cnd);
         }
     }
 }
 
-int ReadPostDataOnWorkerThread(void* userData)
+int ReadHttpBodyOnWorkerThread(void* userData)
 {
     memset(buffer, 0, 1000);
-    ArkWeb_PostDataStream *postDataStream = (ArkWeb_PostDataStream *)userData;
-    OH_ArkWebPostDataStream_Read(postDataStream, buffer, 1000);
-    cnd_init(&post_data_cnd);
-    mtx_init(&post_data_mtx, mtx_plain);
-    cnd_wait(&post_data_cnd, &post_data_mtx);
+    ArkWeb_HttpBodyStream *httpBodyStream = (ArkWeb_HttpBodyStream *)userData;
+    OH_ArkWebHttpBodyStream_Read(httpBodyStream, buffer, 1000);
+    cnd_init(&http_body_cnd);
+    mtx_init(&http_body_mtx, mtx_plain);
+    cnd_wait(&http_body_cnd, &http_body_mtx);
     return 0;
 }
 
@@ -2037,14 +2037,14 @@ int ReadRawfileOnWorkerThread(void* userData)
     return 0;
 }
 
-// PostDataStream的初始化回调。
-void InitCallback(const ArkWeb_PostDataStream *postDataStream, ArkWeb_NetError result)
+// ArkWeb_HttpBodyStream 的初始化回调。
+void InitCallback(const ArkWeb_HttpBodyStream *httpBodyStream, ArkWeb_NetError result)
 {
-    OH_LOG_INFO(LOG_APP, "init post data stream done %{public}d.", result);
-    bool isChunked = OH_ArkWebPostDataStream_IsChunked(postDataStream);
-    OH_LOG_INFO(LOG_APP, "post data stream is chunked %{public}d.", isChunked);
+    OH_LOG_INFO(LOG_APP, "init http body stream done %{public}d.", result);
+    bool isChunked = OH_ArkWebHttpBodyStream_IsChunked(httpBodyStream);
+    OH_LOG_INFO(LOG_APP, "http body stream is chunked %{public}d.", isChunked);
     thrd_t th;
-    if (thrd_create(&th, ReadPostDataOnWorkerThread, (void *)postDataStream) != thrd_success) {
+    if (thrd_create(&th, ReadHttpBodyOnWorkerThread, (void *)httpBodyStream) != thrd_success) {
         OH_LOG_ERROR(LOG_APP, "create thread failed.");
         return;
     }
@@ -2080,12 +2080,12 @@ void RawfileRequest::Start()
     OH_ArkWeb_ReleaseString(url);
 
     OH_ArkWeb_CreateResponse(&response_);
-    OH_ArkWebResourceRequest_GetPostData(resourceRequest(), &stream_);
+    OH_ArkWebResourceRequest_GetHttpBodyStream(resourceRequest(), &stream_);
     if (stream_) {
-        OH_LOG_ERROR(LOG_APP, "have post data stream");
-        OH_ArkWebPostDataStream_SetUserData(stream_, this);
-        OH_ArkWebPostDataStream_SetReadCallback(stream_, ReadCallback);
-        OH_ArkWebPostDataStream_Init(stream_, InitCallback);
+        OH_LOG_ERROR(LOG_APP, "have http body stream");
+        OH_ArkWebHttpBodyStream_SetUserData(stream_, this);
+        OH_ArkWebHttpBodyStream_SetReadCallback(stream_, ReadCallback);
+        OH_ArkWebHttpBodyStream_Init(stream_, InitCallback);
     } else {
         thrd_t th;
         if (thrd_create(&th, ReadRawfileOnWorkerThread, (void *)this) != thrd_success) {
@@ -2227,8 +2227,8 @@ main/resources/rawfile/test.html
 <a href="https://www.example.com/isolated.html">测试拦截设置ISOLATED属性的三方协议</a><br/>
 <a href="https://www.example.com/local.html">测试拦截设置LOCAL属性的三方协议</a><br/>
 <a href="https://www.example.com/service_worker.html">测试拦截service worker触发的请求</a><br/>
-<a href="https://www.example.com/post_data.html">测试读取blob类型post data stream</a><br/>
-<a href="https://www.example.com/chunked_post_stream.html">测试读取chunked类型post data stream</a>
+<a href="https://www.example.com/post_data.html">测试读取blob类型http body stream</a><br/>
+<a href="https://www.example.com/chunked_post_stream.html">测试读取chunked类型http body stream</a>
 </body>
 </html>
 ```
@@ -2309,7 +2309,7 @@ main/resources/rawfile/post_data.html
 <head>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <script>
-    function textXhr(url) {
+    function textPostXhr(url) {
         var formData = new FormData();
         var myBlob = new Blob(["This is my blob content"], {type : "text/plain"});
         formData.append("upload", myBlob);
@@ -2320,10 +2320,22 @@ main/resources/rawfile/post_data.html
             console.log(err.target.status);
         }
     }
+    function textPutXhr(url) {
+        var formData = new FormData();
+        var myBlob = new Blob(["This is my blob content"], {type : "text/plain"});
+        formData.append("upload", myBlob);
+        var xhr = new XMLHttpRequest();
+        xhr.open('PUT', url, true);
+        xhr.send(formData);
+        xhr.onreadystatechange = function (err) {
+            console.log(err.target.status);
+        }
+    }
 </script>
 </head>
 <body>
-<div onclick="textXhr('https://www.example.com/xhr')">test xhr post</div>
+<div onclick="textPostXhr('https://www.example.com/xhr')">test xhr post</div>
+<div onclick="textPutXhr('https://www.example.com/xhr')">test xhr put</div>
 </body>
 </html>
 ```
@@ -2407,7 +2419,7 @@ function test() {
 }
 </script>
 <body>
-<div onclick="test()">test chunked post data.</div>
+<div onclick="test()">test post chunked http body.</div>
 </body>
 </html>
 ```

@@ -1,4 +1,4 @@
-## postCardAction
+# postCardAction
 
 postCardAction(component: Object, action: Object): void
 

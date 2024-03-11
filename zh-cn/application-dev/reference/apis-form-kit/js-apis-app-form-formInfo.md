@@ -109,6 +109,7 @@ import formInfo from '@ohos.app.form.formInfo';
 | LAUNCH_REASON_KEY<sup>10+</sup>    | 'ohos.extra.param.key.form_launch_reason'   | 卡片创建原因。   |
 | PARAM_FORM_CUSTOMIZE_KEY<sup>10+</sup>    | 'ohos.extra.param.key.form_customize'   | 自定义数据。   |
 | FORM_RENDERING_MODE_KEY<sup>11+</sup>    | 'ohos.extra.param.key.form_rendering_mode'   | 卡片渲染模式。  |
+| HOST_BG_INVERSE_COLOR_KEY<sup>12+</sup>    | 'ohos.extra.param.key.host_bg_inverse_color'   | 卡片使用方的背景反色颜色值。  |
 
 ##  FormDimension
 
@@ -124,6 +125,7 @@ import formInfo from '@ohos.app.form.formInfo';
 | Dimension_4_4      | 4   | 4 x 4 form。   |
 | Dimension_2_1      | 5   | 2 x 1 form。   |
 | DIMENSION_1_1<sup>11+<sup>      | 6   | 1 x 1 form。   |
+| DIMENSION_4_6<sup>12+<sup>      | 7   | 4 x 6 form。   |
 
 
 ## FormInfoFilter

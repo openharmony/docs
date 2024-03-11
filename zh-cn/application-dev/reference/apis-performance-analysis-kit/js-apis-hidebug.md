@@ -16,7 +16,7 @@ import hidebug from '@ohos.hidebug';
 
 getNativeHeapSize(): bigint
 
-获取本应用堆内存的总大小。
+获取内存分配器统计的进程持有的堆内存大小（含分配器元数据）。
 
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -24,7 +24,7 @@ getNativeHeapSize(): bigint
 
 | 类型   | 说明                        |
 | ------ | --------------------------- |
-| bigint | 返回本应用堆内存总大小，单位为Byte。 |
+| bigint | 内存分配器统计的进程持有的堆内存大小（含分配器元数据），单位为Byte。 |
 
 **示例：**
 
@@ -36,7 +36,7 @@ getNativeHeapSize(): bigint
 
 getNativeHeapAllocatedSize(): bigint
 
-获取本应用堆内存的已分配内存大小。
+获取内存分配器统计的进程业务分配的堆内存大小。
 
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -44,7 +44,7 @@ getNativeHeapAllocatedSize(): bigint
 
 | 类型   | 说明                              |
 | ------ | --------------------------------- |
-| bigint | 返回本应用堆内存的已分配内存，单位为Byte。 |
+| bigint | 返回内存分配器统计的进程业务分配的堆内存大小，单位为Byte。 |
 
 
 **示例：**
@@ -56,7 +56,7 @@ getNativeHeapAllocatedSize(): bigint
 
 getNativeHeapFreeSize(): bigint
 
-获取本应用堆内存的空闲内存大小。
+获取内存分配器持有的缓存内存大小。
 
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -64,7 +64,7 @@ getNativeHeapFreeSize(): bigint
 
 | 类型   | 说明                            |
 | ------ | ------------------------------- |
-| bigint | 返回本应用堆内存的空闲内存，单位为Byte。 |
+| bigint | 返回内存分配器持有的缓存内存大小，单位为Byte。 |
 
 **示例：**
   ```ts
@@ -561,9 +561,9 @@ getAppMemoryLimit() : MemoryLimit
 
 | 名称      | 类型   | 必填 | 说明         |
 | --------- | ------ | ---- | ------------ |
-| rssLimit    | bigint |  是  | 应用程序进程的驻留集的限制（以字节为单位）     |
-| vssLimit  | bigint |  是  | 进程的虚拟内存限制（以字节为单位）       |
-| vmHeapLimit | bigint |  是  | 当前线程的 JS VM 堆大小限制（以字节为单位）      |
+| rssLimit    | bigint |  是  | 应用程序进程的驻留集的限制，以KB为单位     |
+| vssLimit  | bigint |  是  | 进程的虚拟内存限制，以KB为单位       |
+| vmHeapLimit | bigint |  是  | 当前线程的 JS VM 堆大小限制，以KB为单位      |
 
 ## VMMemoryInfo<sup>12+</sup>
 
@@ -573,9 +573,9 @@ getAppMemoryLimit() : MemoryLimit
 
 | 名称               | 类型    | 可读 | 可写 | 说明                                |
 | -------------------| ------- | ---- | ---- | ---------------------------------- |
-| totalHeap          | bigint  | 是   | 否   | 表示当前虚拟机的堆总大小  （以字节为单位）    |
-| heapUsed           | bigint  | 是   | 否   | 表示当前虚拟机使用的堆大小  （以字节为单位）  |
-| allArraySize       | bigint  | 是   | 否   | 表示当前虚拟机的所有数组对象大小 （以字节为单位） |
+| totalHeap          | bigint  | 是   | 否   | 表示当前虚拟机的堆总大小，以KB为单位    |
+| heapUsed           | bigint  | 是   | 否   | 表示当前虚拟机使用的堆大小，以KB为单位  |
+| allArraySize       | bigint  | 是   | 否   | 表示当前虚拟机的所有数组对象大小，以KB为单位 |
 
 ## ThreadCpuUsage<sup>12+</sup>
 

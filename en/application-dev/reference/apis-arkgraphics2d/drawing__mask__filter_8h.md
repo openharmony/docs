@@ -17,16 +17,23 @@ The **drawing_mask_filter.h** file declares the functions related to the mask fi
 ## Summary
 
 
+### Types
+
+| Name| Description|
+| -------- | -------- |
+| typedef enum [OH_Drawing_BlurType](_drawing.md#oh_drawing_blurtype)  [OH_Drawing_BlurType](_drawing.md#oh_drawing_blurtype) | Defines an enum for blur types.|
+
+
 ### Enums
 
 | Name| Description|
 | -------- | -------- |
-| [OH_Drawing_BlurType](_drawing.md#oh_drawing_blurtype) {<br>NORMAL, SOLID, OUTER, INNER<br>} | Enumerates the blur types.|
+| [OH_Drawing_BlurType](_drawing.md#oh_drawing_blurtype) { NORMAL, SOLID, OUTER, INNER } | Enumerates the blur types.|
 
 
 ### Functions
 
 | Name| Description|
 | -------- | -------- |
-| [OH_Drawing_MaskFilter](_drawing.md#oh_drawing_maskfilter) \* [OH_Drawing_MaskFilterCreateBlur](_drawing.md#oh_drawing_maskfiltercreateblur) ([OH_Drawing_BlurType](_drawing.md#oh_drawing_blurtype) blurType, float sigma, bool respectCTM) | Creates an **OH_Drawing_MaskFilter** object with a given blur type.|
+| [OH_Drawing_MaskFilter](_drawing.md#oh_drawing_maskfilter) \* [OH_Drawing_MaskFilterCreateBlur](_drawing.md#oh_drawing_maskfiltercreateblur) ([OH_Drawing_BlurType](_drawing.md#oh_drawing_blurtype) blurType, float sigma, bool respectCTM) | Creates an **OH_Drawing_MaskFilter** object with a blur type.|
 | void [OH_Drawing_MaskFilterDestroy](_drawing.md#oh_drawing_maskfilterdestroy) ([OH_Drawing_MaskFilter](_drawing.md#oh_drawing_maskfilter) \*) | Destroys an **OH_Drawing_MaskFilter** object and reclaims the memory occupied by the object.|

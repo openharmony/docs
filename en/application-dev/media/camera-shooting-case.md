@@ -24,18 +24,20 @@ import PhotoAccessHelper from '@ohos.file.photoAccessHelper';
 
 let context = getContext(this);
 
-async function savePicture(buffer: ArrayBuffer, img: image.Image) {
-  let photoAccessHelper: PhotoAccessHelper = PhotoAccessHelper.getPhotoAccessHelper(context);
-  let testFileName: string = 'testFile' + Date.now() + '.jpg';
-  let photoAsset: PhotoAsset = await photoAccessHelper.createAsset(testFileName);
+async function savePicture(buffer: ArrayBuffer, img: image.Image): Promise<void> {
+  let photoAccessHelper: PhotoAccessHelper.PhotoAccessHelper = PhotoAccessHelper.getPhotoAccessHelper(context);
+  let options: PhotoAccessHelper.CreateOptions = {
+    title: Date.now().toString()
+  };
+  let photoUri: string = await photoAccessHelper.createAsset(PhotoAccessHelper.PhotoType.IMAGE, 'jpg', options);
   // To call createAsset(), the application must have the ohos.permission.READ_IMAGEVIDEO and ohos.permission.WRITE_IMAGEVIDEO permissions.
-  const fd = await photoAsset.open('rw');
-  fs.write(fd, buffer);
-  await photoAsset.close(fd);
+  let file: fs.File = fs.openSync(photoUri, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  await fs.write(file.fd, buffer);
+  fs.closeSync(file);
   img.release(); 
 }
 
-function setPhotoOutputCb(photoOutput: camera.PhotoOutput) {
+function setPhotoOutputCb(photoOutput: camera.PhotoOutput): void {
   // After the callback is set, call capture() of photoOutput to transfer the photo buffer back to the callback.
   photoOutput.on('photoAvailable', (errCode: BusinessError, photo: camera.Photo): void => {
     console.info('getPhoto start');
@@ -112,7 +114,7 @@ async function cameraShootingCase(baseContext: common.BaseContext, surfaceId: st
   await cameraInput.open();
 
   // Obtain the supported modes.
-  let modes: Array<camera.SceneMode> = cameraManager.getSupportedSceneModes(cameraArray[0]);
+  let sceneModes: Array<camera.SceneMode> = cameraManager.getSupportedSceneModes(cameraArray[0]);
   let isSupportPhotoMode: boolean = sceneModes.indexOf(camera.SceneMode.NORMAL_PHOTO) >= 0;
   if (!isSupportPhotoMode) {
     console.error('photo mode not support');
@@ -170,10 +172,10 @@ async function cameraShootingCase(baseContext: common.BaseContext, surfaceId: st
   // Create a session.
   let photoSession: camera.PhotoSession | undefined = undefined;
   try {
-    photoSession = cameraManager.createSession(camera.SceneMode..NORMAL_PHOTO);
+    photoSession = cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO) as camera.PhotoSession;
   } catch (error) {
     let err = error as BusinessError;
-    console.error('Failed to create the photoSession instance. errorCode = ' + err.code);
+    console.error('Failed to create the session instance. errorCode = ' + err.code);
   }
   if (photoSession === undefined) {
     return;

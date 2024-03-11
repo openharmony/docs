@@ -34,28 +34,226 @@ The [universal attributes](ts-universal-attributes-size.md) are supported.
 >  The default value of the **clip** attribute is **true**.
 >  The **align** attribute supports only the start, center, and end options.
 
-| Name                              | Type                                    | Description                                      |
-| -------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| customKeyboard                   | [CustomBuilder](ts-types.md#custombuilder8) | Custom keyboard.<br>**NOTE**<br>When a custom keyboard is set, activating the text box opens the specified custom component, instead of the system input method.<br>The custom keyboard's height can be set through the **height** attribute of the custom component's root node, and its width is fixed at the default value.<br>The custom keyboard is displayed on top of the current page, without compressing or raising the page.<br>The custom keyboard cannot obtain focus, but it blocks gesture events.<br>By default, the custom keyboard is closed when the input component loses the focus.<br>When a custom keyboard is set, the text box does not support camera input, even when the device supports.|
-| bindSelectionMenu                | {<br>spantype: [RichEditorSpanType](#richeditorspantype),<br>content: [CustomBuilder](ts-types.md#custombuilder8),<br>responseType: [ResponseType](ts-appendix-enums.md#responsetype8) \| [RichEditorResponseType<sup>11+</sup>](ts-appendix-enums.md#richeditorresponsetype11),<br>options?: [SelectionMenuOptions](#selectionmenuoptions11)<br>} | Custom context menu on text selection.<br> Default value: {<br>  spanType: RichEditorSpanType.TEXT<br>responseType: ResponseType.LongPress<br>Other: null<br>}<br>If the custom menu is too long, embed a [\<Scroll>](./ts-container-scroll.md) component to prevent the keyboard from being blocked.|
-| copyOptions                      | [CopyOptions](ts-appendix-enums.md#copyoptions9) | Whether copy and paste is allowed for text content.<br>Default value: **CopyOptions.LocalDevice**<br>**NOTE**<br>If **copyOptions** is not set to **CopyOptions.None**, long-pressing the text content displays the context menu. If a custom context menu is defined through **bindSelectionMenu** or other approaches, it will be displayed.<br>If **copyOptions** is set to **CopyOptions.None**, copy and paste is not allowed.|
-| enableDataDetector<sup>11+</sup> | boolean                                  | Whether to enable text recognition.<br>Default value: **false**<br>**NOTE**<br>The recognized entity is in the following style settings:<br>fontColor: Color.Blue<br>decoration: {<br>type: TextDecorationType.Underline,<br>color: Color.Blue<br>}<br>For this API to work, the target device must provide the text recognition capability.<br>When **enableDataDetector** is set to **true** and **dataDetectorConfig** is not set, all types of entities are recognized by default.<br>When **copyOptions** is set to **CopyOptions.None**, this API does not take effect.<br>This API does not work for the node text of **addBuilderSpan**.|
-| dataDetectorConfig<sup>11+</sup> | [TextDataDetectorConfig](#textdatadetectorconfig11) | Text recognition configuration.<br>Default value: {<br>types: [ ],<br>onDetectResultUpdate: null<br>} <br>**NOTE**<br>This API must be used together with **enableDataDetector**. It takes effect only when **enableDataDetector** is set to **true**.<br>|
+### customKeyboard
+
+customKeyboard(value: CustomBuilder)
+
+Custom keyboard.
+
+When a custom keyboard is set, activating the text box opens the specified custom component, instead of the system input method.
+
+The custom keyboard's height can be set through the **height** attribute of the custom component's root node, and its width is fixed at the default value.
+
+The custom keyboard is displayed on top of the current page, without compressing or raising the page.
+
+The custom keyboard cannot obtain focus, but it blocks gesture events.
+
+By default, the custom keyboard is closed when the input component loses the focus.
+
+When a custom keyboard is set, the text box does not support camera input, even when the device supports.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                       | Mandatory| Description        |
+| ------ | ------------------------------------------- | ---- | ------------ |
+| value  | [CustomBuilder](ts-types.md#custombuilder8) | Yes  | Custom keyboard.|
+
+### bindSelectionMenu
+
+bindSelectionMenu(spanType: RichEditorSpanType, content: CustomBuilder, responseType: ResponseType | RichEditorResponseType,
+    options?: SelectionMenuOptions)
+
+Custom context menu on text selection. If the custom menu is too long, embed a [\<Scroll>](./ts-container-scroll.md) component to prevent the keyboard from being blocked.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name      | Type                                                        | Mandatory| Description                                                     |
+| ------------ | ------------------------------------------------------------ | ---- | --------------------------------------------------------- |
+| spanType     | [RichEditorSpanType](#richeditorspantype)                    | Yes  | Menu type.<br> Default value:<br>RichEditorSpanType.TEXT    |
+| content      | [CustomBuilder](ts-types.md#custombuilder8)                  | Yes  | Menu content.                                             |
+| responseType |  [ResponseType](ts-appendix-enums.md#responsetype8) \| [RichEditorResponseType<sup>11+</sup>](ts-appendix-enums.md#richeditorresponsetype11) | Yes  | Response type of the menu.<br> Default value:<br>ResponseType.LongPress |
+| options      | [SelectionMenuOptions](#selectionmenuoptions11)              | No  | Menu options.                                             |
+
+### copyOptions
+
+copyOptions(value: CopyOptions)
+
+Specifies whether copy and paste is allowed for text content.
+
+If **copyOptions** is not set to **CopyOptions.None**, long-pressing the text content displays the context menu. If a custom context menu is defined through **bindSelectionMenu** or other approaches, it will be displayed.
+
+If **copyOptions** is set to **CopyOptions.None**, copy and paste is not allowed.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                            | Mandatory| Description                                                        |
+| ------ | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [CopyOptions](ts-appendix-enums.md#copyoptions9) | Yes  | Whether copy and paste is allowed for text content.<br>Default value: **CopyOptions.LocalDevice**|
+
+### enableDataDetector<sup>11+</sup>
+
+enableDataDetector(enable: boolean)
+
+Enables text recognition.
+
+The recognized entity is in the following style settings:<br>fontColor: Color.Blue<br>decoration: {<br>type: TextDecorationType.Underline,<br>color: Color.Blue<br>}
+
+For this API to work, the target device must provide the text recognition capability.
+
+When **enableDataDetector** is set to **true** and **dataDetectorConfig** is not set, all types of entities are recognized by default.
+
+When **copyOptions** is set to **CopyOptions.None**, this API does not take effect.
+
+This API does not work for the node text of **addBuilderSpan**.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description                             |
+| ------ | ------- | ---- | --------------------------------- |
+| value  | boolean | Yes  | Whether to enable text recognition.<br>Default value: **false**|
+
+### dataDetectorConfig<sup>11+</sup>
+
+dataDetectorConfig(config: TextDataDetectorConfig)
+
+Configures text recognition settings. This API must be used together with [enableDataDetector](#enabledatadetector11). It takes effect only when **enableDataDetector** is set to **true**.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                               | Mandatory| Description                                                        |
+| ------ | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| config | [TextDataDetectorConfig](#textdatadetectorconfig11) | Yes  | Text recognition configuration.<br>Default value: {<br>types: [ ],<br>onDetectResultUpdate: null<br>} |
+
+### placeholder<sup>12+</sup>
+
+placeholder(value: ResourceStr, style?: PlaceholderStyle)
+
+Sets the placeholder text, which is displayed when there is no input.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                   | Mandatory| Description                                                   |
+| ------ | --------------------------------------- | ---- | ------------------------------------------------------- |
+| value  | [ResourceStr](ts-types.md#resourcestr)  | Yes  | Placeholder text.                                   |
+| style  | [PlaceholderStyle](#placeholderstyle12) | No  | Style of the placeholder text.<br>By default, the style follows the theme.|
 
 ## Events
 
 In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
 
-| Name                                      | Description                                    |
-| ---------------------------------------- | ---------------------------------------- |
-| onReady(callback: () =&gt; void) | Triggered when initialization of the component is completed.                       |
-| onSelect(callback: (value: [RichEditorSelection](#richeditorselection)) =&gt; void) | Triggered when content is selected.<br>If a mouse device is used for selection, this event is triggered when the mouse button is released. If a finger is used for selection, this event is triggered when the finger is released.<br>- **value**: information about all selected spans.|
-| aboutToIMEInput(callback: (value: [RichEditorInsertValue](#richeditorinsertvalue)) =&gt; boolean) | Triggered when content is about to be entered in the input method.<br>- **value**: content to be entered in the input method.|
-| onIMEInputComplete(callback: (value: [RichEditorTextSpanResult](#richeditortextspanresult)) =&gt; void) | Triggered when text input in the input method is complete.<br>- **value**: text span information after text input is completed.|
-| aboutToDelete(callback: (value: [RichEditorDeleteValue](#richeditordeletevalue)) =&gt; boolean) | Triggered when content is about to be deleted in the input method.<br>- **value**: information about the text span where the content to be deleted is located.|
-| onDeleteComplete(callback: () =&gt; void) | Triggered when deletion in the input method is completed.                          |
-| onPaste<sup>11+</sup>(callback: (event?: [PasteEvent](#pasteevent11)) => void) | Triggered when the paste is about to be completed.<br>**NOTE**<br>The default system paste and drag behaviors are available for text only.<br>You can use this API to overwrite the default system behaviors so that both images and text can be pasted.|
-| onSelectionChange<sup>12+</sup>(callback: (value: [RichEditorRange](#richeditorrange)) => void) | Triggered when the text selection area changes or the caret position changes in the editing state.<br>- **value**: start and end positions of the text selection.<br>**NOTE**<br>In the case of caret position changes, the start position of the text selection is equal to the end position.|
+### onReady
+
+onReady(callback: () =&gt; void)
+
+Triggered when initialization of the component is completed.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+### onSelect
+
+onSelect(callback: (value: RichEditorSelection =&gt; void)
+
+Triggered when content is selected.
+
+If a mouse device is used for selection, this event is triggered when the mouse button is released. If a finger is used for selection, this event is triggered when the finger is released.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                       | Mandatory| Description                |
+| ------ | ------------------------------------------- | ---- | -------------------- |
+| value  | [RichEditorSelection](#richeditorselection) | Yes  | Information about all selected spans.|
+
+### aboutToIMEInput
+
+aboutToIMEInput(callback: (value: RichEditorInsertValue) =&gt; boolean)
+
+Triggered when content is about to be entered in the input method.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                           | Mandatory| Description                    |
+| ------ | ----------------------------------------------- | ---- | ------------------------ |
+| value  | [RichEditorInsertValue](#richeditorinsertvalue) | Yes  | Content to be entered in the input method.|
+
+### onIMEInputComplete
+
+onIMEInputComplete(callback: (value: RichEditorTextSpanResult) =&gt; void)
+
+Triggered when text input in the input method is complete.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                 | Mandatory| Description                            |
+| ------ | ----------------------------------------------------- | ---- | -------------------------------- |
+| value  | [RichEditorTextSpanResult](#richeditortextspanresult) | Yes  | Text span information of the content entered in the input method.|
+
+### aboutToDelete
+
+aboutToDelete(callback: (value: RichEditorDeleteValue) =&gt; boolean)
+
+Triggered when content is about to be deleted in the input method.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                           | Mandatory| Description                              |
+| ------ | ----------------------------------------------- | ---- | ---------------------------------- |
+| value  | [RichEditorDeleteValue](#richeditordeletevalue) | Yes  | Text span information of the content to be deleted.|
+
+### onDeleteComplete
+
+onDeleteComplete(callback: () =&gt; void)
+
+Triggered when deletion in the input method is completed.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+### onPaste<sup>11+</sup>
+
+onPaste(callback: (event?: PasteEvent) => void)
+
+Triggered when the paste is about to be completed. The default system paste and drag behaviors are available for text only. You can use this API to overwrite the default system behaviors so that both images and text can be pasted.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                       | Mandatory| Description              |
+| ------ | --------------------------- | ---- | ------------------ |
+| event  | [PasteEvent](#pasteevent11) | No  | Defines the custom paste event.|
+
+### onSelectionChange<sup>12+</sup>
+
+onSelectionChange(callback: (value: RichEditorRange) => void)
+
+Triggered when the text selection area changes or the caret position changes in the editing state. In the case of caret position changes, the start position of the text selection is equal to the end position.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                               | Mandatory| Description                        |
+| ------ | ----------------------------------- | ---- | ---------------------------- |
+| event  | [RichEditorRange](#richeditorrange) | No  | Start and end positions of the text selection area.|
 
 ## RichEditorInsertValue
 
@@ -423,7 +621,7 @@ If no context menu is displayed before the API is called, calling this API will 
 
 If this API is called when the text box is not focused, the selected effect is not displayed.
 
-[Example](ohos-arkui-advanced-SelectionMenu.md#example)
+For details, see [Example](ohos-arkui-advanced-SelectionMenu.md#example).
 
 **Parameters**
 
@@ -437,8 +635,6 @@ If this API is called when the text box is not focused, the selected effect is n
 getSelection(): RichEditorSelection
 
 Obtains the current text selection.
-
-[Example](ohos-arkui-advanced-SelectionMenu.md#example)
 
 **Return value**
 
@@ -564,6 +760,14 @@ Provides the text style information.
 | decoration               | {<br>type: [TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br>color?: [ResourceColor](ts-types.md#resourcecolor)<br>} | No   | Style and color of the text decorative line.<br>Default value: {<br>type: TextDecorationType.None,<br>color: Color.Black<br>}|
 | textShadow<sup>11+</sup> | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions) \| Array&lt;[ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions)> | Yes   | Text shadow. It supports input parameters in an array to implement multiple text shadows.<br>**NOTE**<br>This API does not work with the **fill** attribute or coloring strategy.|
 
+## PlaceholderStyle<sup>12+</sup>
+
+Defines the style of the placeholder text.
+
+| Name                          | Type                                      | Mandatory  | Description                        |
+| ---------------------------- | ---------------------------------------- | ---- | -------------------------- |
+| font                         | [Font](ts-types.md#font)                    | No   | Style of the placeholder text.<br>The default value follows the theme.|
+| fontColor                    | [ResourceColor](ts-types.md#resourcecolor)  | No   | Color of the placeholder text.<br>The default value follows the theme.|
 
 ## RichEditorImageSpanOptions
 

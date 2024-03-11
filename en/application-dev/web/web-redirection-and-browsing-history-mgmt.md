@@ -3,7 +3,7 @@
 
 ## History Navigation
 
-When a user clicks a web page link on the frontend page, the **Web** component automatically opens and loads the target website by default. When the current page is assigned a new loading link, the address of the accessed web page is automatically recorded. You can call [forward()](../reference/apis/js-apis-webview.md#forward) or [backward()](../reference/apis/js-apis-webview.md#backward) to browse the previous or next history record.
+When a user clicks a web page link on the frontend page, the **Web** component automatically opens and loads the target website by default. When the current page is assigned a new loading link, the address of the accessed web page is automatically recorded. You can call [forward()](../reference/apis-arkweb/js-apis-webview.md#forward) or [backward()](../reference/apis-arkweb/js-apis-webview.md#backward) to browse the previous or next history record.
 
   In the following example, when a user clicks the button, **backward()** is called to go back to the previous page.
 
@@ -30,12 +30,12 @@ struct WebComponent {
 ```
 
 
-If a previous record exists, [accessBackward()](../reference/apis/js-apis-webview.md#accessbackward) will return **true**. Similarly, you can call [accessForward()](../reference/apis/js-apis-webview.md#accessforward) to check whether a next record exists. If you skip the check, [forward()](../reference/apis/js-apis-webview.md#forward) and [backward()](../reference/apis/js-apis-webview.md#backward) will not trigger any action if the user has navigated to the end of history records.
+If a previous record exists, [accessBackward()](../reference/apis-arkweb/js-apis-webview.md#accessbackward) will return **true**. Similarly, you can call [accessForward()](../reference/apis-arkweb/js-apis-webview.md#accessforward) to check whether a next record exists. If you skip the check, [forward()](../reference/apis-arkweb/js-apis-webview.md#forward) and [backward()](../reference/apis-arkweb/js-apis-webview.md#backward) will not trigger any action if the user has navigated to the end of history records.
 
 
 ## Page Redirection
 
-The **Web** component provides the [onUrlLoadIntercept()](../reference/arkui-ts/ts-basic-components-web.md#onurlloadintercept) API to redirect you from one page to another.
+The **Web** component provides the [onLoadIntercept()](../reference/apis-arkweb/ts-basic-components-web.md#onloadintercept10) API to redirect you from one page to another.
 
 In the following example, the frontend page **route.html** is loaded on to the application home page **Index.ets**, and the user is redirected to the application page **ProfilePage.ets** when clicking the link on the **route.html** page.
 
@@ -53,9 +53,9 @@ In the following example, the frontend page **route.html** is loaded on to the a
     build() {
       Column() {
         Web({ src: $rawfile('route.html'), controller: this.webviewController })
-          .onUrlLoadIntercept((event) => {
+          .onLoadIntercept((event) => {
             if (event) {
-              let url: string = event.data as string;
+              let url: string = event.data.getRequestUrl();
               if (url.indexOf('native://') === 0) {
                 // Redirect to another page.
                 router.pushUrl({ url:url.substring(9) })
@@ -121,10 +121,10 @@ In the following example, when a user clicks the link on the frontend page **cal
   
     build() {
       Column() {
-        Web({ src: $rawfile('xxx.html'), controller: this.webviewController})
-          .onUrlLoadIntercept((event) => {
+        Web({ src: $rawfile('call.html'), controller: this.webviewController})
+          .onLoadIntercept((event) => {
             if (event) {
-              let url: string = event.data as string;
+              let url: string = event.data.getRequestUrl();
               // Check whether the link is redirecting to the dial screen of the phone app.
               if (url.indexOf('tel://') === 0) {
                 // Redirect to the dial screen.

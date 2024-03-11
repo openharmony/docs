@@ -1367,7 +1367,7 @@ import { BusinessError } from '@ohos.base';
 let httpRequest = http.createHttp();
 httpRequest.request("EXAMPLE_URL").then(data => {
   const httpResponseCache = http.createHttpResponseCache();
-  httpResponseCache.delete(err => {
+  httpResponseCache.delete((err: BusinessError) => {
     try {
       if (err) {
         console.error('fail: ' + err);
@@ -1409,7 +1409,7 @@ httpRequest.request("EXAMPLE_URL").then(data => {
   const httpResponseCache = http.createHttpResponseCache();
   httpResponseCache.delete().then(() => {
     console.log("success");
-  }).catch(err => {
+  }).catch((err: BusinessError) => {
     console.error("fail");
   });
   httpRequest.destroy();

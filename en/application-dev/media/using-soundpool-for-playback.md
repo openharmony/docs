@@ -6,7 +6,7 @@ Short sound effects (such as the camera shutter sound effect and system notifica
 
 Currently, the **SoundPool** APIs can be used to play an audio file that is less than 1 MB. If the size of an audio file exceeds 1 MB, 1 MB data is captured and played.
 
-This topic walks you through on how to use the **SoundPool** APIs to implement low-latency playback. For details about the API, see [SoundPool](../reference/apis/js-apis-inner-multimedia-soundPool.md).
+This topic walks you through on how to use the **SoundPool** APIs to implement low-latency playback. For details about the API, see [SoundPool](../reference/apis-media-kit/js-apis-inner-multimedia-soundPool.md).
 
 The full process includes creating a **SoundPool** instance, loading a sound (including decapsulation and decoding), setting playback parameters (loop mode, and playback priority), playing the sound, stopping the playback, and releasing the instance. (For details about the decoding formats, see [Audio Decoding](audio-decoding.md).)
 
@@ -40,7 +40,7 @@ During application development, you must subscribe to playback state changes and
     ```
 
 2. Call **load()** to load a sound.
-    You can pass in a URI or an FD to load the sound. The following uses the URI as an example. For more methods, see [SoundPool](../reference/apis/js-apis-inner-multimedia-soundPool.md#load).
+    You can pass in a URI or an FD to load the sound. The following uses the URI as an example. For more methods, see [SoundPool](../reference/apis-media-kit/js-apis-inner-multimedia-soundPool.md#load).
 
     ```ts
     import { BusinessError } from '@ohos.base';
@@ -203,7 +203,7 @@ During application development, you must subscribe to playback state changes and
     });
     ```
 
-### Sample Code
+## Sample Code
 
 The following sample code implements low-latency playback using **SoundPool**.
   

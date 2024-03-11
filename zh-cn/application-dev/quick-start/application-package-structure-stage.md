@@ -14,7 +14,7 @@
 > **说明：**
 > 
 > - AppScope目录由DevEco Studio自动生成，不可更改。 
-> - Module目录名称可以由DevEco Studio自动生成（比如entry、library等），也可以自定义。为了便于说明，下表中统一采用用Module_name表示。
+> - Module目录名称可以由DevEco Studio自动生成（比如entry、library等），也可以自定义。为了便于说明，下表中统一采用Module_name表示。
 
  
 | 文件类型 | 说明 | 

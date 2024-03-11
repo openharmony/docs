@@ -22,18 +22,18 @@ The **Vibrator** module provides APIs for vibrator services to access the vibrat
 
 | Name| Description|
 | -------- | -------- |
-| [Vibrator_Attribute](_vibrator_attribute.md) | Defines the vibrator attribute. |
-| [Vibrator_FileDescription](_vibrator_file_description.md) | Defines the vibration file description. |
+| [Vibrator_Attribute](_vibrator_attribute.md) | Describes the vibrator attribute. |
+| [Vibrator_FileDescription](_vibrator_file_description.md) | Describes the vibration file description. |
 
 
 ### Types
 
 | Name| Description|
 | -------- | -------- |
-| [Vibrator_ErrorCode](#vibrator_errorcode) | Defines an enum that enumerates the vibrator error codes. |
-| [Vibrator_Usage](#vibrator_usage) | Defines an enum that enumerates the vibration scenarios.      |
-| [Vibrator_Attribute](#vibrator_attribute) | Defines the vibrator attribute. |
-| [Vibrator_FileDescription](#vibrator_filedescription) | Defines the vibration file description. |
+| [Vibrator_ErrorCode](#vibrator_errorcode) | Defines an enum for vibrator error codes. |
+| [Vibrator_Usage](#vibrator_usage) | Defines an enum for vibration scenarios.      |
+| [Vibrator_Attribute](#vibrator_attribute) | Defines a struct for the vibrator attribute. |
+| [Vibrator_FileDescription](#vibrator_filedescription) | Defines a struct for the vibration file description. |
 
 
 ### Enums
@@ -54,7 +54,7 @@ typedef struct Vibrator_Attribute Vibrator_Attribute
 ```
 **Description**
 
-Defines the vibrator attribute.
+Defines a struct for the vibrator attribute.
 
 **Since**: 11
 
@@ -66,7 +66,7 @@ typedef enum Vibrator_ErrorCode Vibrator_ErrorCode
 ```
 **Description**
 
-Defines an enum that enumerates the vibrator error codes.
+Defines an enum for vibrator error codes.
 
 **Since**: 11
 
@@ -78,7 +78,7 @@ typedef struct Vibrator_FileDescription Vibrator_FileDescription
 ```
 **Description**
 
-Defines the vibration file description.
+Defines a struct for the vibration file description.
 
 **Since**: 11
 
@@ -90,7 +90,7 @@ typedef enum Vibrator_Usage Vibrator_Usage
 ```
 **Description**
 
-Defines an enum that enumerates the vibration scenarios.
+Defines an enum for vibration scenarios.
 
 **Since**: 11
 

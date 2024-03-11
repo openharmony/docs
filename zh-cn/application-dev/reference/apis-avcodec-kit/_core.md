@@ -20,7 +20,7 @@ Core模块提供用于播放框架的基础骨干能力，包含内存、错误�
 | [native_audio_channel_layout.h](native__audio__channel__layout_8h.md) | 用声道布局来表示在录制或播放时扬声器的外观和顺序。 | 
 | [native_avbuffer.h](native__avbuffer_8h.md) | 声明了媒体数据结构AVBuffer的函数接口。 | 
 | [native_avbuffer_info.h](native__avbuffer__info_8h.md) | 声明了媒体数据结构AVBuffer属性的定义。 | 
-| [native_averrors.h](native__averrors_8h.md) | 声明了媒体子系统的错误码OH_AVErrCode的定义。 | 
+| [native_averrors.h](native__averrors_8h.md) | 声明了播放框架的错误码OH_AVErrCode的定义。 | 
 | [native_avformat.h](native__avformat_8h.md) | 声明了格式相关的函数和枚举。 | 
 | [native_avmemory.h](native__avmemory_8h.md) | 声明了媒体数据结构AVMemory的定义。 | 
 
@@ -39,10 +39,14 @@ Core模块提供用于播放框架的基础骨干能力，包含内存、错误�
 | typedef enum [OH_AudioChannelSet](#oh_audiochannelset-1) [OH_AudioChannelSet](#oh_audiochannelset) | 音频声道集合。 | 
 | typedef enum [OH_AmbAttributeSet](#oh_ambattributeset-1) [OH_AmbAttributeSet](#oh_ambattributeset) | 高保真立体声混响设置。 | 
 | typedef enum [OH_AudioChannelLayout](#oh_audiochannellayout-1) [OH_AudioChannelLayout](#oh_audiochannellayout) | 音频声道布局。 | 
+| typedef struct [OH_AVBuffer](#oh_avbuffer) [OH_AVBuffer](#oh_avbuffer) | 为媒体内存接口定义native层对象。 | 
+| typedef struct [OH_NativeBuffer](#oh_nativebuffer) [OH_NativeBuffer](#oh_nativebuffer) | 为图形内存接口定义native层对象。 | 
 | typedef enum [OH_AVCodecBufferFlags](#oh_avcodecbufferflags-1) [OH_AVCodecBufferFlags](#oh_avcodecbufferflags) | 枚举OH_AVCodec缓冲区标记的类别。 | 
 | typedef struct [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) [OH_AVCodecBufferAttr](#oh_avcodecbufferattr) | 定义OH_AVCodec的缓冲区描述信息。 | 
 | typedef enum [OH_AVErrCode](#oh_averrcode-1) [OH_AVErrCode](#oh_averrcode) | 音视频错误码。 | 
+| typedef struct [OH_AVFormat](#oh_avformat) [OH_AVFormat](#oh_avformat) | 为媒体格式接口定义native层对象。 | 
 | typedef enum [OH_AVPixelFormat](#oh_avpixelformat-1) [OH_AVPixelFormat](#oh_avpixelformat) | 视频像素格式的枚举类。 | 
+| typedef struct [OH_AVMemory](#oh_avmemory) [OH_AVMemory](#oh_avmemory) | 为音视频内存接口定义native层对象。 | 
 
 
 ### 枚举
@@ -61,37 +65,37 @@ Core模块提供用于播放框架的基础骨干能力，包含内存、错误�
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| OH_AVBuffer \* [OH_AVBuffer_Create](#oh_avbuffer_create) (int32_t capacity) | 创建OH_AVBuffer实例。 需要注意的是，返回值指向的创建OH_AVBuffer的实例需要调用者手动释放，请参阅[OH_AVBuffer_Destroy](#oh_avbuffer_destroy)。 | 
-| [OH_AVErrCode](#oh_averrcode) [OH_AVBuffer_Destroy](#oh_avbuffer_destroy) (OH_AVBuffer \*buffer) | 释放OH_AVBuffer实例指针的资源。 | 
-| [OH_AVErrCode](#oh_averrcode) [OH_AVBuffer_GetBufferAttr](#oh_avbuffer_getbufferattr) (OH_AVBuffer \*buffer, [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) \*attr) | 获取数据缓冲区的高频属性参数。 | 
-| [OH_AVErrCode](#oh_averrcode) [OH_AVBuffer_SetBufferAttr](#oh_avbuffer_setbufferattr) (OH_AVBuffer \*buffer, const [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) \*attr) | 设置数据缓冲区的高频属性参数。 | 
-| OH_AVFormat \* [OH_AVBuffer_GetParameter](#oh_avbuffer_getparameter) (OH_AVBuffer \*buffer) | 获取数据缓冲区的随帧参数。 | 
-| [OH_AVErrCode](#oh_averrcode) [OH_AVBuffer_SetParameter](#oh_avbuffer_setparameter) (OH_AVBuffer \*buffer, const OH_AVFormat \*format) | 设置数据缓冲区的随帧参数。 | 
-| uint8_t \* [OH_AVBuffer_GetAddr](#oh_avbuffer_getaddr) (OH_AVBuffer \*buffer) | 获取数据缓冲区的虚拟地址。 | 
-| int32_t [OH_AVBuffer_GetCapacity](#oh_avbuffer_getcapacity) (OH_AVBuffer \*buffer) | 获取数据缓冲区的容量。 | 
-| OH_NativeBuffer \* [OH_AVBuffer_GetNativeBuffer](#oh_avbuffer_getnativebuffer) (OH_AVBuffer \*buffer) | 获取OH_NativeBuffer实例的指针。 | 
-| struct OH_AVFormat \* [OH_AVFormat_Create](#oh_avformat_create) (void) | 创建OH_AVFormat句柄，用于读取数据。 | 
-| struct OH_AVFormat \* [OH_AVFormat_CreateAudioFormat](#oh_avformat_createaudioformat) (const char \*mimeType, int32_t sampleRate, int32_t channelCount) | 创建音频OH_AVFormat句柄指针，用于读写数据。 | 
-| struct OH_AVFormat \* [OH_AVFormat_CreateVideoFormat](#oh_avformat_createvideoformat) (const char \*mimeType, int32_t width, int32_t height) | 创建视频OH_AVFormat句柄指针，用于读写数据。 | 
-| void [OH_AVFormat_Destroy](#oh_avformat_destroy) (struct OH_AVFormat \*format) | 销毁OH_AVFormat句柄。 | 
-| bool [OH_AVFormat_Copy](#oh_avformat_copy) (struct OH_AVFormat \*to, struct OH_AVFormat \*from) | 复制OH_AVFormat句柄。 | 
-| bool [OH_AVFormat_SetIntValue](#oh_avformat_setintvalue) (struct OH_AVFormat \*format, const char \*key, int32_t value) | 将int数据写入OH_AVFormat。 | 
-| bool [OH_AVFormat_SetLongValue](#oh_avformat_setlongvalue) (struct OH_AVFormat \*format, const char \*key, int64_t value) | 将long数据写入OH_AVFormat。 | 
-| bool [OH_AVFormat_SetFloatValue](#oh_avformat_setfloatvalue) (struct OH_AVFormat \*format, const char \*key, float value) | 将float数据写入OH_AVFormat。 | 
-| bool [OH_AVFormat_SetDoubleValue](#oh_avformat_setdoublevalue) (struct OH_AVFormat \*format, const char \*key, double value) | 将double数据写入OH_AVFormat。 | 
-| bool [OH_AVFormat_SetStringValue](#oh_avformat_setstringvalue) (struct OH_AVFormat \*format, const char \*key, const char \*value) | 将string数据写入OH_AVFormat。 | 
-| bool [OH_AVFormat_SetBuffer](#oh_avformat_setbuffer) (struct OH_AVFormat \*format, const char \*key, const uint8_t \*addr, size_t size) | 将指定长度的数据块写入OH_AVFormat。 | 
-| bool [OH_AVFormat_GetIntValue](#oh_avformat_getintvalue) (struct OH_AVFormat \*format, const char \*key, int32_t \*out) | 从OH_AVFormat读取int数据。 | 
-| bool [OH_AVFormat_GetLongValue](#oh_avformat_getlongvalue) (struct OH_AVFormat \*format, const char \*key, int64_t \*out) | 从OH_AVFormat读取long数据。 | 
-| bool [OH_AVFormat_GetFloatValue](#oh_avformat_getfloatvalue) (struct OH_AVFormat \*format, const char \*key, float \*out) | 从OH_AVFormat读取float数据。 | 
-| bool [OH_AVFormat_GetDoubleValue](#oh_avformat_getdoublevalue) (struct OH_AVFormat \*format, const char \*key, double \*out) | 从OH_AVFormat读取double数据。 | 
-| bool [OH_AVFormat_GetStringValue](#oh_avformat_getstringvalue) (struct OH_AVFormat \*format, const char \*key, const char \*\*out) | 从OH_AVFormat读取string数据。 | 
-| bool [OH_AVFormat_GetBuffer](#oh_avformat_getbuffer) (struct OH_AVFormat \*format, const char \*key, uint8_t \*\*addr, size_t \*size) | 从OH_AVFormat中读取指定长度的数据块。 | 
-| const char \* [OH_AVFormat_DumpInfo](#oh_avformat_dumpinfo) (struct OH_AVFormat \*format) | 输出OH_AVFormat中包含的字符串。 | 
-| OH_AVMemory \* [OH_AVMemory_Create](#oh_avmemory_create) (int32_t size) | 创建OH_AVMemory实例的指针。 | 
-| uint8_t \* [OH_AVMemory_GetAddr](#oh_avmemory_getaddr) (struct OH_AVMemory \*mem) | 获取入参的内存虚拟地址。 | 
-| int32_t [OH_AVMemory_GetSize](#oh_avmemory_getsize) (struct OH_AVMemory \*mem) | 获取入参的内存长度。 | 
-| [OH_AVErrCode](#oh_averrcode) [OH_AVMemory_Destroy](#oh_avmemory_destroy) (struct OH_AVMemory \*mem) | 释放OH_AVMemory实例指针的资源。 | 
+| [OH_AVBuffer](#oh_avbuffer) \* [OH_AVBuffer_Create](#oh_avbuffer_create) (int32_t capacity) | 创建OH_AVBuffer实例。 需要注意的是，返回值指向的创建OH_AVBuffer的实例需要调用者手动释放，请参阅[OH_AVBuffer_Destroy](#oh_avbuffer_destroy)。 | 
+| [OH_AVErrCode](#oh_averrcode) [OH_AVBuffer_Destroy](#oh_avbuffer_destroy) ([OH_AVBuffer](#oh_avbuffer) \*buffer) | 释放OH_AVBuffer实例指针的资源。 | 
+| [OH_AVErrCode](#oh_averrcode) [OH_AVBuffer_GetBufferAttr](#oh_avbuffer_getbufferattr) ([OH_AVBuffer](#oh_avbuffer) \*buffer, [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) \*attr) | 获取数据缓冲区的高频属性参数。 | 
+| [OH_AVErrCode](#oh_averrcode) [OH_AVBuffer_SetBufferAttr](#oh_avbuffer_setbufferattr) ([OH_AVBuffer](#oh_avbuffer) \*buffer, const [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) \*attr) | 设置数据缓冲区的高频属性参数。 | 
+| [OH_AVFormat](#oh_avformat) \* [OH_AVBuffer_GetParameter](#oh_avbuffer_getparameter) ([OH_AVBuffer](#oh_avbuffer) \*buffer) | 获取数据缓冲区的随帧参数。 | 
+| [OH_AVErrCode](#oh_averrcode) [OH_AVBuffer_SetParameter](#oh_avbuffer_setparameter) ([OH_AVBuffer](#oh_avbuffer) \*buffer, const [OH_AVFormat](#oh_avformat) \*format) | 设置数据缓冲区的随帧参数。 | 
+| uint8_t \* [OH_AVBuffer_GetAddr](#oh_avbuffer_getaddr) ([OH_AVBuffer](#oh_avbuffer) \*buffer) | 获取数据缓冲区的虚拟地址。 | 
+| int32_t [OH_AVBuffer_GetCapacity](#oh_avbuffer_getcapacity) ([OH_AVBuffer](#oh_avbuffer) \*buffer) | 获取数据缓冲区的容量。 | 
+| [OH_NativeBuffer](#oh_nativebuffer) \* [OH_AVBuffer_GetNativeBuffer](#oh_avbuffer_getnativebuffer) ([OH_AVBuffer](#oh_avbuffer) \*buffer) | 获取OH_NativeBuffer实例的指针。 | 
+| struct [OH_AVFormat](#oh_avformat) \* [OH_AVFormat_Create](#oh_avformat_create) (void) | 创建OH_AVFormat句柄，用于读取数据。 | 
+| struct [OH_AVFormat](#oh_avformat) \* [OH_AVFormat_CreateAudioFormat](#oh_avformat_createaudioformat) (const char \*mimeType, int32_t sampleRate, int32_t channelCount) | 创建音频OH_AVFormat句柄指针，用于读写数据。 | 
+| struct [OH_AVFormat](#oh_avformat) \* [OH_AVFormat_CreateVideoFormat](#oh_avformat_createvideoformat) (const char \*mimeType, int32_t width, int32_t height) | 创建视频OH_AVFormat句柄指针，用于读写数据。 | 
+| void [OH_AVFormat_Destroy](#oh_avformat_destroy) (struct [OH_AVFormat](#oh_avformat) \*format) | 销毁OH_AVFormat句柄。 | 
+| bool [OH_AVFormat_Copy](#oh_avformat_copy) (struct [OH_AVFormat](#oh_avformat) \*to, struct [OH_AVFormat](#oh_avformat) \*from) | 复制OH_AVFormat句柄。 | 
+| bool [OH_AVFormat_SetIntValue](#oh_avformat_setintvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, int32_t value) | 将int数据写入OH_AVFormat。 | 
+| bool [OH_AVFormat_SetLongValue](#oh_avformat_setlongvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, int64_t value) | 将long数据写入OH_AVFormat。 | 
+| bool [OH_AVFormat_SetFloatValue](#oh_avformat_setfloatvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, float value) | 将float数据写入OH_AVFormat。 | 
+| bool [OH_AVFormat_SetDoubleValue](#oh_avformat_setdoublevalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, double value) | 将double数据写入OH_AVFormat。 | 
+| bool [OH_AVFormat_SetStringValue](#oh_avformat_setstringvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, const char \*value) | 将string数据写入OH_AVFormat。 | 
+| bool [OH_AVFormat_SetBuffer](#oh_avformat_setbuffer) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, const uint8_t \*addr, size_t size) | 将指定长度的数据块写入OH_AVFormat。 | 
+| bool [OH_AVFormat_GetIntValue](#oh_avformat_getintvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, int32_t \*out) | 从OH_AVFormat读取int数据。 | 
+| bool [OH_AVFormat_GetLongValue](#oh_avformat_getlongvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, int64_t \*out) | 从OH_AVFormat读取long数据。 | 
+| bool [OH_AVFormat_GetFloatValue](#oh_avformat_getfloatvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, float \*out) | 从OH_AVFormat读取float数据。 | 
+| bool [OH_AVFormat_GetDoubleValue](#oh_avformat_getdoublevalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, double \*out) | 从OH_AVFormat读取double数据。 | 
+| bool [OH_AVFormat_GetStringValue](#oh_avformat_getstringvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, const char \*\*out) | 从OH_AVFormat读取string数据。 | 
+| bool [OH_AVFormat_GetBuffer](#oh_avformat_getbuffer) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, uint8_t \*\*addr, size_t \*size) | 从OH_AVFormat中读取指定长度的数据块。 | 
+| const char \* [OH_AVFormat_DumpInfo](#oh_avformat_dumpinfo) (struct [OH_AVFormat](#oh_avformat) \*format) | 输出OH_AVFormat中包含的字符串。 | 
+| [OH_AVMemory](#oh_avmemory) \* [OH_AVMemory_Create](#oh_avmemory_create) (int32_t size) | 创建OH_AVMemory实例的指针。 | 
+| uint8_t \* [OH_AVMemory_GetAddr](#oh_avmemory_getaddr) (struct [OH_AVMemory](#oh_avmemory) \*mem) | 获取入参的内存虚拟地址。 | 
+| int32_t [OH_AVMemory_GetSize](#oh_avmemory_getsize) (struct [OH_AVMemory](#oh_avmemory) \*mem) | 获取入参的内存长度。 | 
+| [OH_AVErrCode](#oh_averrcode) [OH_AVMemory_Destroy](#oh_avmemory_destroy) (struct [OH_AVMemory](#oh_avmemory) \*mem) | 释放OH_AVMemory实例指针的资源。 | 
 
 
 ## 类型定义说明
@@ -148,6 +152,18 @@ typedef enum OH_AudioChannelSet OH_AudioChannelSet
 **起始版本：** 11
 
 
+### OH_AVBuffer
+
+```
+typedef struct OH_AVBuffer OH_AVBuffer
+```
+**描述**
+
+为媒体内存接口定义native层对象。
+
+**起始版本：** 11
+
+
 ### OH_AVCodecBufferAttr
 
 ```
@@ -193,6 +209,30 @@ typedef enum OH_AVErrCode OH_AVErrCode
 **起始版本：** 9
 
 
+### OH_AVFormat
+
+```
+typedef struct OH_AVFormat OH_AVFormat
+```
+**描述**
+
+为媒体格式接口定义native层对象。
+
+**起始版本：** 9
+
+
+### OH_AVMemory
+
+```
+typedef struct OH_AVMemory OH_AVMemory
+```
+**描述**
+
+为音视频内存接口定义native层对象。
+
+**起始版本：** 9
+
+
 ### OH_AVPixelFormat
 
 ```
@@ -206,6 +246,18 @@ typedef enum OH_AVPixelFormat OH_AVPixelFormat
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
 **起始版本：** 9
+
+
+### OH_NativeBuffer
+
+```
+typedef struct OH_NativeBuffer OH_NativeBuffer
+```
+**描述**
+
+为图形内存接口定义native层对象。
+
+**起始版本：** 11
 
 
 ## 枚举类型说明

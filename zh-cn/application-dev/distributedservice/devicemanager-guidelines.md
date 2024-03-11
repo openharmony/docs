@@ -97,7 +97,7 @@ ohos.permission.DISTRIBUTED_DATASYNC：分布式数据同步权限
 
 startDiscovering(discoverParam: {[key:&nbsp;string]:&nbsp;Object} , filterOptions?: {[key:&nbsp;string]:&nbsp;Object} ): void;
 
-发现周边同局域网或者开启蓝牙的设备。详细信息参见：[startDiscovering](../reference/apis/js-apis-distributedDeviceManager.md#startdiscovering)。
+发现周边同局域网或者开启蓝牙的设备。详细信息参见：[startDiscovering](../reference/apis-distributedservice-kit/js-apis-distributedDeviceManager.md#startdiscovering)。
 
 
 ### 开发步骤
@@ -165,7 +165,7 @@ startDiscovering(discoverParam: {[key:&nbsp;string]:&nbsp;Object} , filterOption
 
 bindTarget(deviceId: string, bindParam: {[key:&nbsp;string]:&nbsp;Object} , callback: AsyncCallback&lt;{deviceId: string}>): void;
 
-设备绑定。详细信息参见：[bindTarget](../reference/apis/js-apis-distributedDeviceManager.md#bindtarget)。
+设备绑定。详细信息参见：[bindTarget](../reference/apis-distributedservice-kit/js-apis-distributedDeviceManager.md#bindtarget)。
 
 ### 开发步骤
 
@@ -211,7 +211,7 @@ bindTarget(deviceId: string, bindParam: {[key:&nbsp;string]:&nbsp;Object} , call
 
 getAvailableDeviceListSync(): Array&lt;DeviceBasicInfo&gt;;
 
-设备信息查询。详细信息参见：[getAvailableDeviceListSync](../reference/apis/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)。
+设备信息查询。详细信息参见：[getAvailableDeviceListSync](../reference/apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)。
 
 ### 开发步骤
 
@@ -242,7 +242,7 @@ getAvailableDeviceListSync(): Array&lt;DeviceBasicInfo&gt;;
 
 on(type: 'deviceStateChange', callback: Callback&lt;{ action: DeviceStateChange, device: DeviceBasicInfo }&gt;): void;
 
-设备上下线监听。详细信息参见：[on('deviceStateChange')](../reference/apis/js-apis-distributedDeviceManager.md#ondevicestatechange)。
+设备上下线监听。详细信息参见：[on('deviceStateChange')](../reference/apis-distributedservice-kit/js-apis-distributedDeviceManager.md#ondevicestatechange)。
 
 ### 开发步骤
 

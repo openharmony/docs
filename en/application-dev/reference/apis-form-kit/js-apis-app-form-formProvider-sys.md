@@ -70,7 +70,7 @@ try {
       console.error(`callback error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message})`);
       return;
     }
-    console.log('formProvider requestPublishForm, form ID is: ${JSON.stringify(data)}');
+    console.log(`formProvider requestPublishForm, form ID is: ${JSON.stringify(data)}`);
   });
 } catch (error) {
   console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message})`);
@@ -323,5 +323,3 @@ try {
   console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message})`);
 }
 ```
-
- <!--no_check--> 

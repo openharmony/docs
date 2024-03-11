@@ -165,7 +165,7 @@ try {
 }
 ```
 
-## ErrorManager.on
+## ErrorManager.on<sup>12+</sup>
 
 on(type: 'loopObserver', timeout: number, observer: LoopObserver): void
 
@@ -178,7 +178,7 @@ Registers an observer for the message processing duration of the main thread. Af
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type. It is fixed at **'loopObserver'**, indicating an observer for the message processing duration of the main thread.|
-| timeout | number | Yes|  Event execution threshold.|
+| timeout | number | Yes|  Event execution threshold, which must be greater than **0**.|
 | observer | [LoopObserver](js-apis-inner-application-loopObserver.md) | Yes| Observer to register.|
 
 **Error codes**
@@ -202,7 +202,7 @@ let observer: errorManager.LoopObserver = {
 errorManager.on("loopObserver", 1, observer);
 ```
 
-## ErrorManager.off
+## ErrorManager.off<sup>12+</sup>
 
 function off(type: 'loopObserver', observer?: LoopObserver): void
 

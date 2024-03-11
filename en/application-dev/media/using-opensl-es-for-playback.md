@@ -2,6 +2,16 @@
 
 OpenSL ES, short for Open Sound Library for Embedded Systems, is an embedded, cross-platform audio processing library that is free of charge. It provides high-performance and low-latency APIs for you to develop applications running on embedded mobile multimedia devices. OpenHarmony have implemented certain native APIs based on [OpenSL ES](https://www.khronos.org/opensles/) 1.0.1 API specifications developed by the [Khronos Group](https://www.khronos.org/). You can use these APIs through <OpenSLES.h\> and <OpenSLES_OpenHarmony.h\>.
 
+## Using OHAudio to Replace OpenSL ES
+
+OpenHarmony provides the OpenSL ES APIs for audio development at the native layer since SDK8. As the version evolves, these APIs fail to meet the capability expansion requirements of the audio system and therefore are no longer recommended.
+
+In SDK 10, OpenHarmony provides the **OHAudio** APIs, which open up all audio functions of the system. The **OHAudio** APIs cover all the capabilities provided by OpenSL ES in OpenHarmony. They also support new features such as audio focus events and low latency.
+
+For details about how to use the **OHAudio** APIs for audio development, see [Using OHAudio for Audio Playback (C/C++)](using-ohaudio-for-playback.md).
+
+If you have used the OpenSL ES APIs in your code, you can switch them to the **OHAudio** APIs. For details, see [Switching from OpenSL ES to OHAudio (C/C++)](replace-opensles-by-ohaudio.md).
+
 ## OpenSL ES on OpenHarmony
 
 Currently, OpenHarmony implements parts of [OpenSL ES APIs](https://gitee.com/openharmony/third_party_opensles/blob/master/api/1.0.1/OpenSLES.h) to implement basic audio playback functionalities.
@@ -9,6 +19,15 @@ Currently, OpenHarmony implements parts of [OpenSL ES APIs](https://gitee.com/op
 If an API that has not been implemented on OpenHarmony is called, **SL_RESULT_FEATURE_UNSUPPORTED** is returned.
 
 The following lists the OpenSL ES APIs that have been implemented on OpenHarmony. For details, see the [OpenSL ES](https://www.khronos.org/opensles/) specifications.
+
+- **SLInterfaceID implemented on OpenHarmony**
+
+  | SLInterfaceID | Description|
+  | -------- | -------- |
+  | SL_IID_ENGINE | Universal engine, which provides the interface for creating player objects.|
+  | SL_IID_PLAY | Provides the player status interface.|
+  | SL_IID_VOLUME | Provides interfaces for adjusting and reading the volume of audio playback streams.|
+  | SL_IID_OH_BUFFERQUEUE | Provides the callback registration interface for audio playback stream data.|
 
 - **Engine APIs implemented on OpenHarmony**
   - SLresult (\*CreateAudioPlayer) (SLEngineItf self, SLObjectItf \* pPlayer, SLDataSource \*pAudioSrc, SLDataSink \*pAudioSnk, SLuint32 numInterfaces, const SLInterfaceID \* pInterfaceIds, const SLboolean \* pInterfaceRequired)
@@ -80,7 +99,7 @@ Refer to the sample code below to play an audio file.
    ```c++
    SLDataLocator_BufferQueue slBufferQueue = {
        SL_DATALOCATOR_BUFFERQUEUE,
-       0
+       1
    };
    
    // Configure the parameters based on the audio file format.
@@ -89,13 +108,22 @@ Refer to the sample code below to play an audio file.
        2,                           // Number of channels.
        SL_SAMPLINGRATE_48,          // Sampling rate.
        SL_PCMSAMPLEFORMAT_FIXED_16, // Audio sample format.
-       0,
-       0,
-       0
+       16,
+       SL_SPEAKER_FRONT_LEFT | SL_SPEAKER_FRONT_RIGHT,
+       SL_BYTEORDER_LITTLEENDIAN
    };
-   SLDataSource slSource = {&slBufferQueue, &pcmFormat};
+   SLDataSource slSource = {
+      &slBufferQueue,
+      &pcmFormat
+   };
    SLObjectItf pcmPlayerObject = nullptr;
-   (*engineEngine)->CreateAudioPlayer(engineEngine, &pcmPlayerObject, &slSource, nullptr, 0, nullptr, nullptr);
+   (*engineEngine)->CreateAudioPlayer(engineEngine,
+                                      &pcmPlayerObject,
+                                      &slSource,
+                                      &slSink,
+                                      0,
+                                      nullptr,
+                                      nullptr);
    (*pcmPlayerObject)->Realize(pcmPlayerObject, SL_BOOLEAN_FALSE);
    ```
 

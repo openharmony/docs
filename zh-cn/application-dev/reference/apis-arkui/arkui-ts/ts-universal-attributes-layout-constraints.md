@@ -50,7 +50,7 @@ pixelRound(value: PixelRoundPolicy)
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value | [PixelRoundPolicy](ts-types.md##PixelRoundPolicy) | 是 | 指定当前组件边界取整策略。<br/>**说明：**<br/>该属性用于因浮点数绘制产生视觉异常的场景。|
+| value | [PixelRoundPolicy](ts-types.md#pixelroundpolicy11) | 是 | 指定当前组件边界取整策略。<br/>**说明：**<br/>该属性用于因浮点数绘制产生视觉异常的场景。|
 
 ## 示例
 
@@ -179,7 +179,8 @@ struct DisplayPriorityExample {
 
 ### 示例3
 
-采用pixelRound指导布局<br>
+采用pixelRound指导布局。
+
 ```ts
 @Entry
 @Component
@@ -208,7 +209,10 @@ struct PixelRoundExample {
   }
 }
 ```
-**图1** 采用pixelRound指导布局效果图<br>
-![zh-cn_image_pixel_round_disable.png](figures/zh-cn_image_pixel_round_enable.png)<br>
-**图2** 不用pixelRound指导布局效果图<br>
+**图1** 采用pixelRound指导布局效果图
+
+![zh-cn_image_pixel_round_disable.png](figures/zh-cn_image_pixel_round_enable.png)
+
+**图2** 不用pixelRound指导布局效果图
+
 ![zh-cn_image_pixel_round_disable.png](figures/zh-cn_image_pixel_round_disable.png)

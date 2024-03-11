@@ -58,7 +58,7 @@ fontStyle(value: FontStyle)
 
 fontWeight(value: number | FontWeight | string)
 
-设置文本的字体粗细。
+设置文本的字体粗细，设置过大可能会在不同字体下有截断。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 

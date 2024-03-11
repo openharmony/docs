@@ -1694,7 +1694,7 @@ routerF.pushNamedRoute({
 
 replaceNamedRoute(options: router.NamedRouterOptions): Promise&lt;void&gt;
 
-Replaces the current page with another one using the named route and destroys the current page. This API uses a promise to return an error.
+Replaces the current page with another one using the named route and destroys the current page. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -2293,7 +2293,7 @@ showActionMenu(options: promptAction.ActionMenuOptions, callback: [promptAction.
 
 Shows an action menu in the given settings. This API uses an asynchronous callback to return the result.
 
-his API is deprecated since API version 11. You are advised to use [showActionMenu](#showactionmenu11) instead.
+This API is deprecated since API version 11. You are advised to use [showActionMenu](#showactionmenu11) instead.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -2416,7 +2416,7 @@ Executes dragging, by passing in the object to be dragged and the dragging infor
 
 | Name  | Type                                                        | Mandatory| Description                            |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------- |
-| custom   | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo) | Yes  | Object to be dragged.<br> **NOTE**<br>The global builder is not supported. If the [\<Image>](arkui-ts/ts-basic-components-image.md) component is used in the builder, enable synchronous loading, that is, set the [syncLoad](arkui-ts/ts-basic-components-image.md#attributes) attribute of the component to **true**.|
+| custom   | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo) | Yes  | Object to be dragged.<br> **NOTE**<br>The global builder is not supported. If the [\<Image>](arkui-ts/ts-basic-components-image.md) component is used in the builder, enable synchronous loading, that is, set the [syncLoad](arkui-ts/ts-basic-components-image.md#attributes) attribute of the component to **true**. The builder is used only to generate the image displayed during the current dragging. Changes to the builder, if any, apply to the next dragging, but not to the current dragging.|
 | dragInfo | [dragController.DragInfo](js-apis-arkui-dragController.md#draginfo)                                        | Yes  | Dragging information.                      |
 | callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;{event: [DragEvent](arkui-ts/ts-universal-events-drag-drop.md#dragevent), extraParams: string}&gt; | Yes  | Callback used to return the result.<br>- **event**: drag event information that includes only the drag result.<br>- **extraParams**: extra information about the drag event.         |
 

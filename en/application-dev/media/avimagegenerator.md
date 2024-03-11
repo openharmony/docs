@@ -6,14 +6,14 @@ The full process of obtaining the video thumbnail includes creating an **AVImage
 
 ## How to Develop
 
-Read [AVImageGenerator](../reference/apis/js-apis-media.md#avimagegenerator11) for the API reference.
+Read [AVImageGenerator](../reference/apis-media-kit/js-apis-media.md#avimagegenerator12) for the API reference.
 
 1. Call **createAVImageGenerator()** to create an **AVImageGenerator** instance.
 
 2. Set resources. Specifically, set the **fdSrc** attribute (indicating the file descriptor).
    > **NOTE**
    >
-   > You need to check the resource validity and set **fdSrc** based on the actual situation. You can use **ResourceManager.getRawFd** to obtain the file descriptor of the resource file packed in the HAP. For details, see [ResourceManager API Reference](../reference/apis/js-apis-resource-manager.md#getrawfd9).
+   > You need to check the resource validity and set **fdSrc** based on the actual situation. You can use **ResourceManager.getRawFd** to obtain the file descriptor of the resource file packed in the HAP. For details, see [ResourceManager API Reference](../reference/apis-localization-kit/js-apis-resource-manager.md#getrawfd9).
 
 3. Obtain the thumbnail. Specifically, call **fetchFrameByTime()** to obtain a **PixelMap** object, which can be used for image display.
 
@@ -26,8 +26,6 @@ Refer to the sample code below to set the file descriptor and obtain the thumbna
 ```ts
 import media from '@ohos.multimedia.media'
 import image from '@ohos.multimedia.image'
-import type common from '@ohos.app.ability.common';
-import fileIo from '@ohos.fileio';
 
 const TAG = 'MetadataDemo'
 @Entry

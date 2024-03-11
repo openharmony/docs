@@ -850,7 +850,7 @@ image.createPixelMap(color, initializationOptions).then((pixelMap: image.PixelMa
 
 Represents the current window instance, which is the basic unit managed by the window manager.
 
-In the following API examples, you must use [getLastWindow()](js-apis-window.md#windowgetlastwindow9), [createWindow()](js-apis-window.md##windowcreatewindow9), or [findWindow()](js-apis-window.md##windowfindwindow9) to obtain a **Window** instance and then call a method in this instance.
+In the following API examples, you must use [getLastWindow()](js-apis-window.md#windowgetlastwindow9), [createWindow()](js-apis-window.md#windowcreatewindow9), or [findWindow()](js-apis-window.md#windowfindwindow9) to obtain a **Window** instance (named windowClass in this example) and then call a method in this instance.
 
 ### hide<sup>7+</sup>
 
@@ -881,7 +881,6 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 windowClass.hide((err: BusinessError) => {
   const errCode: number = err.code;
   if (errCode) {
@@ -921,7 +920,6 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 let promise = windowClass.hide();
 promise.then(() => {
   console.info('Succeeded in hiding the window.');
@@ -961,7 +959,6 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 windowClass.hideWithAnimation((err: BusinessError) => {
   const errCode: number = err.code;
   if (errCode) {
@@ -1003,7 +1000,6 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 let promise = windowClass.hideWithAnimation();
 promise.then(() => {
   console.info('Succeeded in hiding the window with animation.');
@@ -1044,7 +1040,6 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 windowClass.showWithAnimation((err: BusinessError) => {
   const errCode: number = err.code;
   if (errCode) {
@@ -1086,7 +1081,6 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 let promise = windowClass.showWithAnimation();
 promise.then(() => {
   console.info('Succeeded in showing the window with animation.');
@@ -1128,7 +1122,6 @@ import { BusinessError } from '@ohos.base';
 
 let mode = window.WindowMode.FULLSCREEN;
 try {
-  let windowClass: window.Window = window.findWindow("test");
   windowClass.setWindowMode(mode, (err: BusinessError) => {
     const errCode: number = err.code;
     if (errCode) {
@@ -1180,7 +1173,6 @@ import { BusinessError } from '@ohos.base';
 
 let mode = window.WindowMode.FULLSCREEN;
 try {
-  let windowClass: window.Window = window.findWindow("test");
   let promise = windowClass.setWindowMode(mode);
   promise.then(() => {
     console.info('Succeeded in setting the window mode.');
@@ -1206,7 +1198,7 @@ Binds the modal window to the target window, and adds a callback to listen for m
 
 | Name      | Type                     | Mandatory| Description                 |
 | ----------- | ------------------------- | ---- | -------------------- |
-| token       | [rpc.RemoteObject](../apis/js-apis-rpc.md#remoteobject) | Yes  | Token of the target window.|
+| token       | [rpc.RemoteObject](../apis-ipc-kit/js-apis-rpc.md#remoteobject) | Yes  | Token of the target window.|
 | deathCallback | Callback&lt;void&gt;        | Yes  | Callback used to listen for modal window destruction events.|
 | callback    | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
 
@@ -1251,7 +1243,7 @@ class TestRemoteObject extends rpc.RemoteObject {
 
 let token: TestRemoteObject = new TestRemoteObject('testObject');
 let windowClass: window.Window | undefined = undefined;
-let config: window.Configuration = { name: "dialogWindow", windowType: window.WindowType.TYPE_DIALOG };
+let config: window.Configuration = { name: "test", windowType: window.WindowType.TYPE_DIALOG, ctx: this.context };
 try {
   window.createWindow(config, (err: BusinessError, data) => {
     let errCode: number = err.code;
@@ -1290,7 +1282,7 @@ Binds the modal window to the target window, and adds a callback to listen for m
 
 | Name      | Type                     | Mandatory| Description                 |
 | ----------- | ------------------------- | ---- | -------------------- |
-| token       | [rpc.RemoteObject](../apis/js-apis-rpc.md#remoteobject) | Yes  | Token of the target window.|
+| token       | [rpc.RemoteObject](../apis-ipc-kit/js-apis-rpc.md#remoteobject) | Yes  | Token of the target window.|
 | deathCallback | Callback&lt;void&gt;        | Yes  | Callback used to listen for modal window destruction events.|
 
 **Return value**
@@ -1341,8 +1333,9 @@ class TestRemoteObject extends rpc.RemoteObject {
 let token: TestRemoteObject = new TestRemoteObject('testObject');
 let windowClass: window.Window | undefined = undefined;
 let config: window.Configuration = {
-  name: "dialogWindow",
-  windowType: window.WindowType.TYPE_DIALOG
+  name: "test",
+  windowType: window.WindowType.TYPE_DIALOG,
+  ctx: this.context
 };
 try {
   window.createWindow(config, (err: BusinessError, data) => {
@@ -1380,7 +1373,7 @@ Binds the modal window to the target window, and adds a callback to listen for m
 
 | Name      | Type                     | Mandatory| Description                 |
 | ----------- | ------------------------- | ---- | -------------------- |
-| requestInfo | [dialogRequest.RequestInfo](../apis/js-apis-app-ability-dialogRequest.md#requestinfo) | Yes  | **RequestInfo** of the target window.|
+| requestInfo | [dialogRequest.RequestInfo](../apis-ability-kit/js-apis-app-ability-dialogRequest.md#requestinfo) | Yes  | **RequestInfo** of the target window.|
 | deathCallback | Callback&lt;void&gt;    | Yes  | Callback used to listen for modal window destruction events.|
 | callback    | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
 
@@ -1406,7 +1399,7 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
     console.info('onRequest');
     let windowClass: window.Window | undefined = undefined;
     let config: window.Configuration = {
-      name: "dialogWindow", windowType: window.WindowType.TYPE_DIALOG
+      name: "test", windowType: window.WindowType.TYPE_DIALOG, ctx: this.context
     };
     try {
       window.createWindow(config, (err: BusinessError, data) => {
@@ -1449,7 +1442,7 @@ Binds the modal window to the target window, and adds a callback to listen for m
 
 | Name      | Type                     | Mandatory| Description                 |
 | ----------- | ------------------------- | ---- | -------------------- |
-| requestInfo | [dialogRequest.RequestInfo](../apis/js-apis-app-ability-dialogRequest.md#requestinfo) | Yes  | **RequestInfo** of the target window.|
+| requestInfo | [dialogRequest.RequestInfo](../apis-ability-kit/js-apis-app-ability-dialogRequest.md#requestinfo) | Yes  | **RequestInfo** of the target window.|
 | deathCallback | Callback&lt;void&gt;    | Yes  | Callback used to listen for modal window destruction events.|
 
 **Return value**
@@ -1480,7 +1473,7 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
     console.info('onRequest');
     let windowClass: window.Window | undefined = undefined;
     let config: window.Configuration = {
-      name: "dialogWindow", windowType: window.WindowType.TYPE_DIALOG
+      name: "test", windowType: window.WindowType.TYPE_DIALOG, ctx: this.context
     };
     try {
       window.createWindow(config, (err: BusinessError, data) => {
@@ -1536,7 +1529,6 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 
 ```ts
 let wakeUp: boolean = true;
-let windowClass: window.Window = window.findWindow("test");
 try {
   windowClass.setWakeUpScreen(wakeUp);
 } catch (exception) {
@@ -1568,7 +1560,6 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 | 1300002 | This window state is abnormal. |
 
 ```ts
-let windowClass: window.Window = window.findWindow("test");
 let isSkip: boolean = true;
 try {
   windowClass.setSnapshotSkip(isSkip);
@@ -1609,7 +1600,6 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 import { BusinessError } from '@ohos.base';
 
 let isForbidSplitMove: boolean = true;
-let windowClass: window.Window = window.findWindow("test");
 try {
   windowClass.setForbidSplitMove(isForbidSplitMove, (err: BusinessError) => {
     const errCode: number = err.code;
@@ -1661,7 +1651,6 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 import { BusinessError } from '@ohos.base';
 
 let isForbidSplitMove: boolean = true;
-let windowClass: window.Window = window.findWindow("test");
 try {
   let promise = windowClass.setForbidSplitMove(isForbidSplitMove);
   promise.then(() => {
@@ -1702,7 +1691,6 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 **Example**
 
 ```ts
-let windowClass: window.Window = window.findWindow("test");
 try {
   windowClass.opacity(0.5);
 } catch (exception) {
@@ -1738,7 +1726,6 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 **Example**
 
 ```ts
-let windowClass: window.Window = window.findWindow("test");
 let obj: window.ScaleOptions = {
   x: 2.0,
   y: 1.0,
@@ -1780,7 +1767,6 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 **Example**
 
 ```ts
-let windowClass: window.Window = window.findWindow("test");
 let obj: window.RotateOptions = {
   x: 1.0,
   y: 1.0,
@@ -1823,7 +1809,6 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 **Example**
 
 ```ts
-let windowClass: window.Window = window.findWindow("test");
 let obj: window.TranslateOptions = {
   x: 100.0,
   y: 0.0,
@@ -1895,7 +1880,6 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 **Example**
 
 ```ts
-let windowClass: window.Window = window.findWindow("test");
 try {
   windowClass.setBlur(4.0);
 } catch (exception) {
@@ -1931,7 +1915,6 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 **Example**
 
 ```ts
-let windowClass: window.Window = window.findWindow("test");
 try {
   windowClass.setBackdropBlur(4.0);
 } catch (exception) {
@@ -1967,7 +1950,6 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 **Example**
 
 ```ts
-let windowClass: window.Window = window.findWindow("test");
 try {
   windowClass.setBackdropBlurStyle(window.BlurStyle.THIN);
 } catch (exception) {
@@ -2006,7 +1988,6 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 **Example**
 
 ```ts
-let windowClass: window.Window = window.findWindow("test");
 try {
   windowClass.setShadow(4.0, '#FF00FF00', 2, 3);
 } catch (exception) {
@@ -2042,7 +2023,6 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 **Example**
 
 ```ts
-let windowClass: window.Window = window.findWindow("test");
 try {
   windowClass.setCornerRadius(4.0);
 } catch (exception) {
@@ -2082,7 +2062,6 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 windowClass.raiseToAppTop((err: BusinessError) => {
   const errCode: number = err.code;
   if (errCode) {
@@ -2125,7 +2104,6 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 let promise = windowClass.raiseToAppTop();
 promise.then(() => {
   console.info('Succeeded in raising the window to app top.');
@@ -2171,7 +2149,6 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 try {
   let enable = true;
   let promise = windowClass.setWaterMarkFlag(enable);
@@ -2217,7 +2194,6 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 try {
   let enable: boolean = true;
   windowClass.setWaterMarkFlag(enable, (err: BusinessError) => {
@@ -2263,8 +2239,7 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 **Example**
 
 ```js
-// Raise windowClass above targetWindow.
-let windowClass: window.Window | undefined = undefined;
+// The windowClass must be obtained above the targetWindow.
 let targetWindow: window.Window = windowClass;
 let properties = targetWindow.getWindowProperties();
 let targetId = properties.id;
@@ -2313,8 +2288,7 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 **Example**
 
 ```js
-// Raise windowClass above targetWindow.
-let windowClass: window.Window | undefined = undefined;
+// The windowClass must be obtained above the targetWindow.
 let targetWindow: window.Window = windowClass;
 let properties = targetWindow.getWindowProperties();
 let targetId = properties.id;
@@ -2359,7 +2333,6 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 
 ```js
 let enabled = false;
-let windowClass: window.Window = window.findWindow("test");
 windowClass.setRaiseByClickEnabled(enabled, (err) => {
     if (err.code) {
         console.error('Failed to disable the raise-by-click function. Cause: ' + JSON.stringify(err));
@@ -2408,7 +2381,6 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 
 ```js
 let enabled = false;
-let windowClass: window.Window = window.findWindow("test");
 let promise = windowClass.setRaiseByClickEnabled(enabled);
 promise.then(()=> {
     console.info('Succeeded in disabling the raise-by-click function.');
@@ -2735,7 +2707,6 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 import { BusinessError } from '@ohos.base';
 
 let enable = true;
-let windowClass: window.Window = window.findWindow("test");
 let promise = windowClass.setSingleFrameComposerEnabled(enable);
 promise.then(()=> {
     console.info('Succeeded in enabling the single-frame-composer function.');
@@ -2770,8 +2741,7 @@ Sets the type of this window. This API uses an asynchronous callback to return t
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
-let type = window.WindowType.TYPE_APP;
+let type = window.WindowType.TYPE_SYSTEM_ALERT;
 windowClass.setWindowType(type, (err: BusinessError) => {
   const errCode: number = err.code;
   if (errCode) {
@@ -2813,8 +2783,7 @@ Sets the type of this window. This API uses a promise to return the result.
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
-let type = window.WindowType.TYPE_APP;
+let type = window.WindowType.TYPE_SYSTEM_ALERT;
 let promise = windowClass.setWindowType(type);
 promise.then(() => {
   console.info('Succeeded in setting the window type.');
@@ -2827,7 +2796,7 @@ promise.then(() => {
 
 Implements a window manager, which manages each basic window unit, that is, [Window](#window) instance.
 
-Before calling any of the following APIs, you must use [onWindowStageCreate()](../apis/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate) to create a **WindowStage** instance.
+Before calling any of the following APIs, you must use [onWindowStageCreate()](../apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate) to create a **WindowStage** instance.
 
 ### disableWindowDecor()<sup>9+</sup>
 
@@ -2932,7 +2901,7 @@ Provides the context for the transition animation.
 
 completeTransition(isCompleted: boolean): void
 
-Completes the transition. This API can be called only after [animateTo()](../arkui-ts/ts-explicit-animation.md) is executed.
+Completes the transition. This API can be called only after [animateTo()](arkui-ts/ts-explicit-animation.md) is executed.
 
 **System API**: This is a system API.
 
@@ -2947,7 +2916,6 @@ Completes the transition. This API can be called only after [animateTo()](../ark
 **Example**
 
 ```ts
-let windowClass: window.Window | undefined = undefined;
 (context: window.TransitionContext) => {
   let toWindow: window.Window = context.toWindow;
   animateTo({
@@ -3128,3 +3096,5 @@ try {
   console.error('HideWindowWithCustomAnimation err : ' + JSON.stringify(error));
 }
 ```
+
+ <!--no_check--> 

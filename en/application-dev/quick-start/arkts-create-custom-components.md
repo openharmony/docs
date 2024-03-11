@@ -71,15 +71,15 @@ struct ParentComponent {
 To fully understand the preceding example, a knowledge of the following concepts is essential:
 
 
-- [Basic Structure of a Custom Component](#basic-structure-of-a-custom-component)
-
-- [Member Functions/Variables](#member-functionsvariables)
-
-- [Rules for Custom Component Parameters](#rules-for-custom-component-parameters)
-
-- [build Function](#build-function)
-
-- [Universal Style of a Custom Component](#universal-style-of-a-custom-component)
+- [Creating a Custom Component](#creating-a-custom-component)
+  - [Basic Usage of Custom Components](#basic-usage-of-custom-components)
+  - [Basic Structure of a Custom Component](#basic-structure-of-a-custom-component)
+    - [freezeWhenInactive11+](#freezewheninactive11)
+    - [EntryOptions10+](#entryoptions10)
+  - [Member Functions/Variables](#member-functionsvariables)
+  - [Rules for Custom Component Parameters](#rules-for-custom-component-parameters)
+  - [build() Function](#build-function)
+  - [Universal Style of a Custom Component](#universal-style-of-a-custom-component)
 
 
 ## Basic Structure of a Custom Component
@@ -131,7 +131,7 @@ To fully understand the preceding example, a knowledge of the following concepts
   >
   > Since API version 9, this decorator is supported in ArkTS widgets.
   >
-  > Since API version 10, the \@Entry decorator accepts an optional parameter of type [LocalStorage](arkts-localstorage.md) or type [EntryOptions](#entryOptions).
+  > Since API version 10, the \@Entry decorator accepts an optional parameter of type [LocalStorage](arkts-localstorage.md) or type [EntryOptions](#entryoptions10).
 
   ```ts
   @Entry
@@ -189,7 +189,7 @@ A custom component can also implement member variables with the following restri
 
 ## Rules for Custom Component Parameters
 
-As can be learnt from preceding examples, a custom component can be created from a **build** or [@Builder](arkts-builder.md) decorated function. During the creation, the custom component's parameters are initialized based on the decorator rules.
+As can be learnt from preceding examples, a custom component can be created from a **build** method. During the creation, the custom component's parameters are initialized based on the decorator rules.
 
 
 ```ts

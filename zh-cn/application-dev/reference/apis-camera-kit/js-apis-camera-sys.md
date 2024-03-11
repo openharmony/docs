@@ -1333,7 +1333,7 @@ isMacroSupported(): boolean
 **示例：**
 
 ```ts
-function isMacroSupported(photoSession: camera.PhotoSession): boolean {
+function isMacroSupported(photoSession: camera.PhotoSessionForSys): boolean {
   let isSupported: boolean = photoSession.isMacroSupported();
   return isSupported;
 }
@@ -1367,7 +1367,7 @@ enableMacro(enabled: boolean): void
 **示例：**
 
 ```ts
-function enableMacro(photoSession: camera.PhotoSession): void {
+function enableMacro(photoSession: camera.PhotoSessionForSys): void {
   let isSupported: boolean = photoSession.isMacroSupported();
   if (isSupported) {
     photoSession.enableMacro(true);
@@ -1670,7 +1670,7 @@ getSupportedColorEffects(): Array\<ColorEffectType\>
 **示例：**
 
 ```ts
-function getSupportedColorEffects(session: camera.PhotoSession): Array<camera.ColorEffectType> {
+function getSupportedColorEffects(session: camera.PhotoSessionForSys): Array<camera.ColorEffectType> {
   let colorEffects: Array<camera.ColorEffectType> = session.getSupportedColorEffects();
   return colorEffects;
 }
@@ -1704,7 +1704,7 @@ setColorEffect(type: ColorEffectType): void
 **示例：**
 
 ```ts
-function setColorEffect(session: camera.PhotoSession, colorEffect: camera.ColorEffectType): void {
+function setColorEffect(session: camera.PhotoSessionForSys, colorEffect: camera.ColorEffectType): void {
   session.setColorEffect(colorEffect);
 }
 ```
@@ -1737,7 +1737,7 @@ getColorEffect(): ColorEffectType
 **示例：**
 
 ```ts
-function getColorEffect(session: camera.PhotoSession): camera.ColorEffectType {
+function getColorEffect(session: camera.PhotoSessionForSys): camera.ColorEffectType {
   let colorEffect: camera.ColorEffectType = session.getColorEffect();
   return colorEffect;
 }
@@ -1791,7 +1791,7 @@ getSupportedColorSpaces(): Array\<colorSpaceManager.ColorSpace\>
 ```ts
 import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
 
-function getSupportedColorSpaces(session: camera.PhotoSession): Array<colorSpaceManager.ColorSpace> {
+function getSupportedColorSpaces(session: camera.PhotoSessionForSys): Array<colorSpaceManager.ColorSpace> {
   let colorSpaces: Array<colorSpaceManager.ColorSpace> = session.getSupportedColorSpaces();
   return colorSpaces;
 }
@@ -1829,7 +1829,7 @@ setColorSpace(colorSpace: colorSpaceManager.ColorSpace): void
 import { BusinessError } from '@ohos.base';
 import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
 
-function setColorSpace(session: camera.PhotoSession, colorSpaces: Array<colorSpaceManager.ColorSpace>): void {
+function setColorSpace(session: camera.PhotoSessionForSys, colorSpaces: Array<colorSpaceManager.ColorSpace>): void {
   if (colorSpaces === undefined || colorSpaces.length <= 0) {
     return;
   }
@@ -1872,7 +1872,7 @@ getActiveColorSpace(): colorSpaceManager.ColorSpace
 ```ts
 import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
 
-function getActiveColorSpace(session: camera.PhotoSession): colorSpaceManager.ColorSpace {
+function getActiveColorSpace(session: camera.PhotoSessionForSys): colorSpaceManager.ColorSpace {
   let colorSpace: colorSpaceManager.ColorSpace = session.getActiveColorSpace();
   return colorSpace;
 }

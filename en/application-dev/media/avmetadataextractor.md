@@ -6,7 +6,7 @@ The full process of obtaining the metadata of an audio asset includes creating a
 
 ## How to Develop
 
-Read [AVMetadataExtractor](../reference/apis/js-apis-media.md#avmetadataextractor11) for the API reference.
+Read [AVMetadataExtractor](../reference/apis-media-kit/js-apis-media.md#avmetadataextractor11) for the API reference.
 
 1. Call **createAVMetadataExtractor()** to create an **AVMetadataExtractor** instance.
 
@@ -14,9 +14,9 @@ Read [AVMetadataExtractor](../reference/apis/js-apis-media.md#avmetadataextracto
    > **NOTE**
    >
    > You need to check the resource validity and set either attribute based on the actual situation.
-   > 
-   > - To set **fdSrc**, use **ResourceManager.getRawFd** to obtain the file descriptor of the resource file packed in the HAP. For details, see [ResourceManager API Reference](../reference/apis/js-apis-resource-manager.md#getrawfd9).
-   > 
+   >
+   > - To set **fdSrc**, use **ResourceManager.getRawFd** to obtain the file descriptor of the resource file packed in the HAP. For details, see [ResourceManager API Reference](../reference/apis-localization-kit/js-apis-resource-manager.md#getrawfd9).
+   >
    > - To set **dataSrc**, set **callback** in **dataSrc** to ensure that the corresponding resource can be correctly read when the callback is invoked, and use the application sandbox directory to access the resource. For details, see [Obtaining Application File Paths](../application-models/application-context-stage.md#obtaining-application-file-paths). For details about the application sandbox and how to push files to the application sandbox directory, see [File Management](../file-management/app-sandbox-directory.md).
 
 3. Obtain the metadata. Specifically, call **fetchMetadata()** to obtain an **AVMetadata** object, the attributes of which are the metadata of the media asset.
@@ -33,7 +33,7 @@ Refer to the sample code below to set the file descriptor and obtain the metadat
 import media from '@ohos.multimedia.media'
 import image from '@ohos.multimedia.image'
 import type common from '@ohos.app.ability.common';
-import fileIo from '@ohos.fileio';
+import fs from '@ohos.file.fs';
 
 const TAG = 'MetadataDemo'
 @Entry
@@ -135,14 +135,14 @@ struct Index {
     console.info(TAG, `release success.`)
   }
 
-  // The demo below uses the fileIo API to open the sandbox directory and obtain the audio file address. By setting dataSrc, it obtains and displays the audio metadata,
+  // The demo below uses the fs API to open the sandbox directory and obtain the audio file address. By setting dataSrc, it obtains and displays the audio metadata,
   // obtains the audio album cover, and displays it on the screen through the Image component.
   async testFetchMetadataFromDataSrc() {
     let context = getContext(this) as common.UIAbilityContext
     // Obtain the sandbox address filesDir through UIAbilityContext. The stage model is used as an example.
     let filePath: string = context.filesDir + '/cover.mp3';
-    let fd: number = fileIo.openSync(filePath, 0o0)
-    let fileSize: number = fileIo.statSync(filePath).size;
+    let fd: number = fs.openSync(filePath, 0o0).fd;
+    let fileSize: number = fs.statSync(filePath).size;
     // Set the dataSrc descriptor, obtain resources from the file through a callback, and write the resources to the buffer.
     let dataSrc: media.AVDataSrcDescriptor = {
       fileSize: fileSize,
@@ -158,7 +158,7 @@ struct Index {
           position: number | undefined = pos;
         }
         let options = new Option();
-        let num = fileIo.readSync(fd, buffer, options)
+        let num = fs.readSync(fd, buffer, options)
         console.info(TAG, 'readAt end, num: ' + num)
         if (num > 0 && fileSize >= pos) {
           return num;

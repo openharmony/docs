@@ -243,7 +243,7 @@ let string2ArrayBuffer: (str: string) => ArrayBuffer = (str: string): ArrayBuffe
   return array.buffer;
 }
 
-let characteristicsArray: Array<ble.BLECharacteristic> = new Array(8);
+let characteristicsArray: Array<ble.BLECharacteristic> = new Array<ble.BLECharacteristic>();
 let descriptorsArray: Array<ble.BLEDescriptor> = new Array<ble.BLEDescriptor>();
 let characteristics1: ble.BLECharacteristic = {
   serviceUuid: '0000aaaa-0000-1000-8000-00805f9b34fb',

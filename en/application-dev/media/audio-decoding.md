@@ -29,7 +29,7 @@ Currently, the following decoding capabilities are supported:
 
 ## How to Develop
 
-Read [Audio Codec](../reference/native-apis/_audio_codec.md) for the API reference.
+Read [Audio Codec](../reference/apis-avcodec-kit/_audio_codec.md) for the API reference.
 
 Refer to the code snippet below to complete the entire audio decoding process, including creating a decoder, setting decoding parameters (such as the sampling rate, bit rate, and number of audio channels), and starting, refreshing, resetting, and destroying the decoder.
 
@@ -96,7 +96,8 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     ADecBufferSignal *signal_;
     ```
    
-3. Call **OH_AudioCodec_RegisterCallback()** to register callback functions. 
+3. Call **OH_AudioCodec_RegisterCallback()** to register callback functions.
+
    Register the **OH_AVCodecCallback** struct that defines the following callback function pointers:
 
     - **OH_AVCodecOnError**, a callback used to report a codec operation error
@@ -268,16 +269,16 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
         // End
     }
     ```
-   
+
 9. (Optional) Call **OH_AudioCodec_Flush()** to refresh the decoder.
 
    After **OH_AudioCodec_Flush()** is called, the decoder remains in the running state, but the current queue is cleared and the buffer storing the decoded data is freed. To continue decoding, you must call **OH_AudioCodec_Start()** again.
-
+   
    You need to call **OH_AudioCodec_Start()** in the following cases:
-   
-    * The EOS of the file is reached.
-    * An error with **OH_AudioCodec_IsValid** set to **true** (indicating that the execution can continue) occurs.
-   
+
+   * The EOS of the file is reached.
+   * An error with **OH_AudioCodec_IsValid** set to **true** (indicating that the execution can continue) occurs.
+
     ```c++
     // Refresh the decoder.
     ret = OH_AudioCodec_Flush(audioDec_);
@@ -290,7 +291,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
         // Exception handling.
     }
     ```
-   
+
 10. (Optional) Call **OH_AudioCodec_Reset()** to reset the decoder.
 
     After **OH_AudioCodec_Reset()** is called, the decoder returns to the initialized state. To continue decoding, you must call **OH_AudioCodec_Configure()** and then **OH_AudioCodec_Start()**.
@@ -310,25 +311,27 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
 
 11. Call **OH_AudioCodec_Stop()** to stop the decoder.
 
-     ```c++
-     // Stop the decoder.
-     ret = OH_AudioCodec_Stop(audioDec_);
-     if (ret != AV_ERR_OK) {
-         // Exception handling.
-     }
-     ```
+    ```c++
+    // Stop the decoder.
+    ret = OH_AudioCodec_Stop(audioDec_);
+    if (ret != AV_ERR_OK) {
+        // Exception handling.
+    }
+    ```
 
 12. Call **OH_AudioCodec_Destroy()** to destroy the decoder instance and release resources.
 
-     **NOTE**: You only need to call this API once.
+    > **NOTE**
+    >
+    > You only need to call this API once.
 
-     ```c++
-     // Call OH_AudioCodec_Destroy to destroy the decoder.
-     ret = OH_AudioCodec_Destroy(audioDec_);
-     if (ret != AV_ERR_OK) {
-         // Exception handling.
-     } else {
-         audioDec_ = NULL; // The decoder cannot be destroyed repeatedly.
-     }
-     ```
+    ```c++
+    // Call OH_AudioCodec_Destroy to destroy the decoder.
+    ret = OH_AudioCodec_Destroy(audioDec_);
+    if (ret != AV_ERR_OK) {
+        // Exception handling.
+    } else {
+        audioDec_ = NULL; // The decoder cannot be destroyed repeatedly.
+    }
+    ```
 

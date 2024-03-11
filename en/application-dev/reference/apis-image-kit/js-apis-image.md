@@ -36,13 +36,14 @@ Creates a **PixelMap** object with the default BGRA_8888 format and pixel proper
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
+
 async function Demo() {
-    const color : ArrayBuffer = new ArrayBuffer(96);  // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
-    let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
-    image.createPixelMap(color, opts).then((pixelMap : image.PixelMap) => {
-        console.log('Succeeded in creating pixelmap.');
-    }).catch((error : BusinessError) => {
+    const color: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
+    let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+    image.createPixelMap(color, opts).then((pixelMap: image.PixelMap) => {
+        console.info('Succeeded in creating pixelmap.');
+    }).catch((error: BusinessError) => {
         console.error('Failed to create pixelmap.');
     })
 }
@@ -67,16 +68,17 @@ Creates a **PixelMap** object with the default BGRA_8888 format and pixel proper
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
+
 async function Demo() {
-    const color : ArrayBuffer = new ArrayBuffer(96);  // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
-    let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
-    image.createPixelMap(color, opts, (error : BusinessError, pixelMap : image.PixelMap) => {
+    const color: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
+    let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+    image.createPixelMap(color, opts, (error: BusinessError, pixelMap: image.PixelMap) => {
         if(error) {
             console.error('Failed to create pixelmap.');
             return;
         } else {
-            console.log('Succeeded in creating pixelmap.');
+            console.info('Succeeded in creating pixelmap.');
         }
     })
 }
@@ -94,7 +96,7 @@ Unmarshals a **MessageSequence** object to obtain a **PixelMap** object.
 
 | Name                | Type                                                 | Mandatory| Description                                    |
 | ---------------------- | ----------------------------------------------------- | ---- | ---------------------------------------- |
-| sequence               | [rpc.MessageSequence](../apis/js-apis-rpc.md#messagesequence9) | Yes  | **MessageSequence** object that stores the **PixelMap** information.     |
+| sequence               | [rpc.MessageSequence](../apis-ipc-kit/js-apis-rpc.md#messagesequence9) | Yes  | **MessageSequence** object that stores the **PixelMap** information.     |
 
 **Return value**
 
@@ -104,7 +106,7 @@ Unmarshals a **MessageSequence** object to obtain a **PixelMap** object.
 
 **Error codes**
 
-For details about the error codes, see [Image Error Codes](../errorcodes/errorcode-image.md).
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -123,49 +125,52 @@ For details about the error codes, see [Image Error Codes](../errorcodes/errorco
 ```ts
 import image from '@ohos.multimedia.image';
 import rpc from '@ohos.rpc';
+import { BusinessError } from '@ohos.base';
+
 class MySequence implements rpc.Parcelable {
-    pixel_map : image.PixelMap;
-    constructor(conPixelmap : image.PixelMap) {
+    pixel_map: image.PixelMap;
+    constructor(conPixelmap: image.PixelMap) {
         this.pixel_map = conPixelmap;
     }
-    marshalling(messageSequence : rpc.MessageSequence) {
+    marshalling(messageSequence: rpc.MessageSequence) {
         this.pixel_map.marshalling(messageSequence);
         return true;
     }
-    unmarshalling(messageSequence : rpc.MessageSequence) {
+    unmarshalling(messageSequence: rpc.MessageSequence) {
         try {
             this.pixel_map = image.createPixelMapFromParcel(messageSequence);
         } catch(e) {
-            console.error('createPixelMapFromParcel error: '+ e);
+            let error = e as BusinessError;
+            console.error(`createPixelMapFromParcel error: ${error}`);
             return false;
         }
       return true;
     }
 }
 async function Demo() {
-   const color : ArrayBuffer = new ArrayBuffer(96);
-   let bufferArr : Uint8Array = new Uint8Array(color);
+   const color: ArrayBuffer = new ArrayBuffer(96);
+   let bufferArr: Uint8Array = new Uint8Array(color);
    for (let i = 0; i < bufferArr.length; i++) {
       bufferArr[i] = 0x80;
    }
-   let opts : image.InitializationOptions = {
+   let opts: image.InitializationOptions = {
       editable: true,
       pixelFormat: 4,
       size: { height: 4, width: 6 },
       alphaType: 3
    }
-   let pixelMap : image.PixelMap | undefined = undefined;
-   await image.createPixelMap(color, opts).then((srcPixelMap : image.PixelMap) => {
+   let pixelMap: image.PixelMap | undefined = undefined;
+   await image.createPixelMap(color, opts).then((srcPixelMap: image.PixelMap) => {
       pixelMap = srcPixelMap;
    })
    if (pixelMap != undefined) {
      // Implement serialization.
-     let parcelable : MySequence = new MySequence(pixelMap);
-     let data : rpc.MessageSequence = rpc.MessageSequence.create();
+     let parcelable: MySequence = new MySequence(pixelMap);
+     let data: rpc.MessageSequence = rpc.MessageSequence.create();
      data.writeParcelable(parcelable);
 
      // Deserialize to obtain data through the RPC.
-     let ret : MySequence = new MySequence(pixelMap);
+     let ret: MySequence = new MySequence(pixelMap);
      data.readParcelable(ret);
 
      // Obtain the PixelMap object.
@@ -186,7 +191,7 @@ createPixelMapFromSurface(surfaceId: string, region: Region): Promise\<PixelMap>
 
 | Name                | Type                | Mandatory| Description                                    |
 | ---------------------- | -------------       | ---- | ---------------------------------------- |
-| surfaceId              | string              | Yes  | Surface ID, which is obtained from [XComponent](../arkui-ts/ts-basic-components-xcomponent.md) or [ImageReceiver](js-apis-image.md#imagereceiver9).|
+| surfaceId              | string              | Yes  | Surface ID, which is obtained from [XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md).|
 | region                 | [Region](#region7)  | Yes  | Size of the image after cropping.                        |
 
 **Return value**
@@ -196,7 +201,7 @@ createPixelMapFromSurface(surfaceId: string, region: Region): Promise\<PixelMap>
 
 **Error codes**
 
-For details about the error codes, see [Image Error Codes](../errorcodes/errorcode-image.md).
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -207,12 +212,13 @@ For details about the error codes, see [Image Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
+
 async function Demo(surfaceId: string) {
-    let region : image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
-    await multimedia_image.createPixelMapFromSurface(surfaceId, region).then(() => {
-        console.log('Succeeded in creating pixelmap from Surface');
-    }).catch((error : BusinessError) => {
+    let region: image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
+    await image.createPixelMapFromSurface(surfaceId, region).then(() => {
+        console.info('Succeeded in creating pixelmap from Surface');
+    }).catch((error: BusinessError) => {
         console.error('Failed to create pixelmap');
     });
 } 
@@ -222,7 +228,7 @@ async function Demo(surfaceId: string) {
 
 Provides APIs to read or write image pixel map data and obtain image pixel map information. Before calling any API in **PixelMap**, you must use [createPixelMap](#imagecreatepixelmap8) to create a **PixelMap** object. Currently, the maximum size of a serialized pixel map is 128 MB. A larger size will cause a display failure. The size is calculated as follows: Width * Height * Number of bytes occupied by each pixel.
 
-Since API version 11, **PixelMap** supports cross-thread calls through workers. If a **PixelMap** object is invoked by another thread through [Worker](../apis/js-apis-worker.md), all APIs of the **PixelMap** object cannot be called in the original thread. Otherwise, error 501 is reported, indicating that the server cannot complete the request. 
+Since API version 11, **PixelMap** supports cross-thread calls through workers. If a **PixelMap** object is invoked by another thread through [Worker](../apis-arkts/js-apis-worker.md), all APIs of the **PixelMap** object cannot be called in the original thread. Otherwise, error 501 is reported, indicating that the server cannot complete the request. 
 
 Before calling any API in **PixelMap**, you must use [image.createPixelMap](#imagecreatepixelmap8) to create a **PixelMap** object.
 
@@ -233,7 +239,7 @@ Before calling any API in **PixelMap**, you must use [image.createPixelMap](#ima
 | Name             | Type   | Readable| Writable| Description                      |
 | -----------------| ------- | ---- | ---- | -------------------------- |
 | isEditable        | boolean | Yes  | No  | Whether the image pixel map is editable.|
-| isStrideAlignment | boolean | Yes  | No  | Whether the image memory is the DMA memory.|
+| isStrideAlignment<sup>11+</sup> | boolean | Yes  | No  | Whether the image memory is the DMA memory.|
 
 ### readPixelsToBuffer<sup>7+</sup>
 
@@ -258,13 +264,14 @@ Reads data of this pixel map and writes the data to an **ArrayBuffer**. This API
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
+
 async function Demo() {
-    const readBuffer : ArrayBuffer = new ArrayBuffer(96);  // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
+    const readBuffer: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
     pixelMap.readPixelsToBuffer(readBuffer).then(() => {
-        console.log('Succeeded in reading image pixel data.'); // Called if the condition is met.
-    }).catch((error : BusinessError) => {
-        console.error('Failed to read image pixel data.');  // Called if no condition is met.
+        console.info('Succeeded in reading image pixel data.'); // Called if the condition is met.
+    }).catch((error: BusinessError) => {
+        console.error('Failed to read image pixel data.'); // Called if no condition is met.
     })
 }
 ```
@@ -287,15 +294,16 @@ Reads data of this pixel map and writes the data to an **ArrayBuffer**. This API
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
+
 async function Demo() {
-    const readBuffer : ArrayBuffer = new ArrayBuffer(96);  // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
-    pixelMap.readPixelsToBuffer(readBuffer, (err : BusinessError, res : void) => {
+    const readBuffer: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
+    pixelMap.readPixelsToBuffer(readBuffer, (err: BusinessError, res: void) => {
         if(err) {
             console.error('Failed to read image pixel data.');  // Called if no condition is met.
             return;
         } else {
-            console.log('Succeeded in reading image pixel data.'); // Called if the condition is met.
+            console.info('Succeeded in reading image pixel data.');  // Called if the condition is met.
         }
     })
 }
@@ -324,17 +332,18 @@ Reads image pixel map data in an area. This API uses a promise to return the res
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
+
 async function Demo() {
-    const area : image.PositionArea = {
+    const area: image.PositionArea = {
         pixels: new ArrayBuffer(8),
         offset: 0,
         stride: 8,
         region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
     };
     pixelMap.readPixels(area).then(() => {
-        console.log('Succeeded in reading the image data in the area.'); // Called if the condition is met.
-    }).catch((error : BusinessError) => {
+        console.info('Succeeded in reading the image data in the area.'); // Called if the condition is met.
+    }).catch((error: BusinessError) => {
         console.error('Failed to read the image data in the area.'); // Called if no condition is met.
     })
 }
@@ -358,15 +367,16 @@ Reads image pixel map data in an area. This API uses an asynchronous callback to
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
+
 async function Demo() {
-    const area : image.PositionArea = {
+    const area: image.PositionArea = {
         pixels: new ArrayBuffer(8),
         offset: 0,
         stride: 8,
         region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
     };
-    pixelMap.readPixels(area, (err : BusinessError) => {
+    pixelMap.readPixels(area, (err: BusinessError) => {
         if (err != undefined) {
             console.error('Failed to read pixelmap from the specified area.');
             return;
@@ -400,21 +410,22 @@ Writes image pixel map data to an area. This API uses a promise to return the re
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
+
 async function Demo() {
-    const area : image.PositionArea = {
+    const area: image.PositionArea = {
         pixels: new ArrayBuffer(8),
         offset: 0,
         stride: 8,
         region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
     };
-    let bufferArr : Uint8Array = new Uint8Array(area.pixels);
+    let bufferArr: Uint8Array = new Uint8Array(area.pixels);
     for (let i = 0; i < bufferArr.length; i++) {
         bufferArr[i] = i + 1;
     }
     pixelMap.writePixels(area).then(() => {
         console.info('Succeeded to write pixelmap into the specified area.');
-    }).catch((error : BusinessError) => {
+    }).catch((error: BusinessError) => {
         console.error(`Failed to write pixelmap into the specified area. code is ${error.code}, message is ${error.message}`);
     })
 }
@@ -438,14 +449,15 @@ Writes image pixel map data to an area. This API uses an asynchronous callback t
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
+
 async function Demo() {
-    const area : image.PositionArea = { pixels: new ArrayBuffer(8),
+    const area: image.PositionArea = { pixels: new ArrayBuffer(8),
         offset: 0,
         stride: 8,
         region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
     };
-    let bufferArr : Uint8Array = new Uint8Array(area.pixels);
+    let bufferArr: Uint8Array = new Uint8Array(area.pixels);
     for (let i = 0; i < bufferArr.length; i++) {
         bufferArr[i] = i + 1;
     }
@@ -483,16 +495,17 @@ Reads image data in an **ArrayBuffer** and writes the data to a **PixelMap** obj
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
+
 async function Demo() {
-    const color : ArrayBuffer = new ArrayBuffer(96);  // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
-    let bufferArr : Uint8Array = new Uint8Array(color);
+    const color: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
+    let bufferArr: Uint8Array = new Uint8Array(color);
     for (let i = 0; i < bufferArr.length; i++) {
         bufferArr[i] = i + 1;
     }
     pixelMap.writeBufferToPixels(color).then(() => {
-        console.log("Succeeded in writing data from a buffer to a PixelMap.");
-    }).catch((error : BusinessError) => {
+        console.info("Succeeded in writing data from a buffer to a PixelMap.");
+    }).catch((error: BusinessError) => {
         console.error("Failed to write data from a buffer to a PixelMap.");
     })
 }
@@ -516,19 +529,20 @@ Reads image data in an **ArrayBuffer** and writes the data to a **PixelMap** obj
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
+
 async function Demo() {
-    const color : ArrayBuffer = new ArrayBuffer(96);  // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
-    let bufferArr : Uint8Array = new Uint8Array(color);
+    const color: ArrayBuffer = new ArrayBuffer(96);  // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
+    let bufferArr: Uint8Array = new Uint8Array(color);
     for (let i = 0; i < bufferArr.length; i++) {
         bufferArr[i] = i + 1;
     }
-    pixelMap.writeBufferToPixels(color, (err : BusinessError) => {
+    pixelMap.writeBufferToPixels(color, (err: BusinessError) => {
         if (err != undefined) {
             console.error("Failed to write data from a buffer to a PixelMap.");
             return;
         } else {
-            console.log("Succeeded in writing data from a buffer to a PixelMap.");
+            console.info("Succeeded in writing data from a buffer to a PixelMap.");
         }
     })
 }
@@ -551,13 +565,15 @@ Obtains pixel map information of this image. This API uses a promise to return t
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 async function Demo() {
-    pixelMap.getImageInfo().then((imageInfo : image.ImageInfo) => {
+    pixelMap.getImageInfo().then((imageInfo: image.ImageInfo) => {
         if (imageInfo == undefined) {
             console.error("Failed to obtain the image pixel map information.");
         }
         if (imageInfo.size.height == 4 && imageInfo.size.width == 6) {
-            console.log("Succeeded in obtaining the image pixel map information.");
+            console.info("Succeeded in obtaining the image pixel map information.");
         }
     })
 }
@@ -580,15 +596,16 @@ Obtains pixel map information of this image. This API uses an asynchronous callb
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
+
 async function Demo() {
-    pixelMap.getImageInfo((err : BusinessError, imageInfo : image.ImageInfo) => {
+    pixelMap.getImageInfo((err: BusinessError, imageInfo: image.ImageInfo) => {
         if (imageInfo == undefined) {
             console.error("Failed to obtain the image pixel map information.");
             return;
         }
         if (imageInfo.size.height == 4 && imageInfo.size.width == 6) {
-            console.log("Succeeded in obtaining the image pixel map information.");
+            console.info("Succeeded in obtaining the image pixel map information.");
         }
     })
 }
@@ -611,7 +628,7 @@ Obtains the number of bytes per row of this image pixel map.
 **Example**
 
 ```ts
-let rowCount : number = pixelMap.getBytesNumberPerRow();
+let rowCount: number = pixelMap.getBytesNumberPerRow();
 ```
 
 ### getPixelBytesNumber<sup>7+</sup>
@@ -631,7 +648,7 @@ Obtains the total number of bytes of this image pixel map.
 **Example**
 
 ```ts
-let pixelBytesNumber : number = pixelMap.getPixelBytesNumber();
+let pixelBytesNumber: number = pixelMap.getPixelBytesNumber();
 ```
 
 ### getDensity<sup>9+</sup>
@@ -651,7 +668,7 @@ Obtains the density of this image pixel map.
 **Example**
 
 ```ts
-let getDensity : number = pixelMap.getDensity();
+let getDensity: number = pixelMap.getDensity();
 ```
 
 ### opacity<sup>9+</sup>
@@ -672,15 +689,16 @@ Sets an opacity rate for this image pixel map. This API uses an asynchronous cal
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
+
 async function Demo() {
-    let rate : number = 0.5;
-    pixelMap.opacity(rate, (err : BusinessError) => {
+    let rate: number = 0.5;
+    pixelMap.opacity(rate, (err: BusinessError) => {
         if (err) {
             console.error("Failed to set opacity.");
             return;
         } else {
-            console.log("Succeeded in setting opacity.");
+            console.info("Succeeded in setting opacity.");
         }
     })
 }
@@ -709,12 +727,13 @@ Sets an opacity rate for this image pixel map. This API uses a promise to return
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
+
 async function Demo() {
-    let rate : number = 0.5;
+    let rate: number = 0.5;
     await pixelMap.opacity(rate).then(() => {
-        console.log('Sucessed in setting opacity.');
-    }).catch((err : BusinessError) => {
+        console.info('Sucessed in setting opacity.');
+    }).catch((err: BusinessError) => {
         console.error('Failed to set opacity.');
     })
 }
@@ -737,11 +756,12 @@ Creates a **PixelMap** object that contains only the alpha channel information. 
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
+
 async function Demo() {
-    await pixelMap.createAlphaPixelmap().then((alphaPixelMap : image.PixelMap) => {
-        console.log('Succeeded in creating alpha pixelmap.');
-    }).catch((error : BusinessError) => {
+    await pixelMap.createAlphaPixelmap().then((alphaPixelMap: image.PixelMap) => {
+        console.info('Succeeded in creating alpha pixelmap.');
+    }).catch((error: BusinessError) => {
         console.error('Failed to create alpha pixelmap.');
     })
 }
@@ -764,9 +784,10 @@ Creates a **PixelMap** object that contains only the alpha channel information. 
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
+
 async function Demo() {
-    pixelMap.createAlphaPixelmap((err : BusinessError, alphaPixelMap : image.PixelMap) => {
+    pixelMap.createAlphaPixelmap((err: BusinessError, alphaPixelMap: image.PixelMap) => {
         if (alphaPixelMap == undefined) {
             console.error('Failed to obtain new pixel map.');
             return;
@@ -796,16 +817,17 @@ Scales this image based on the input scaling multiple of the width and height. T
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
+
 async function Demo() {
-    let scaleX : number = 2.0;
-    let scaleY : number = 1.0;
-    pixelMap.scale(scaleX, scaleY, (err : BusinessError) => {
+    let scaleX: number = 2.0;
+    let scaleY: number = 1.0;
+    pixelMap.scale(scaleX, scaleY, (err: BusinessError) => {
         if (err) {
             console.error("Failed to scale pixelmap.");
             return;
         } else {
-            console.log("Succeeded in scaling pixelmap.");
+            console.info("Succeeded in scaling pixelmap.");
         }
     })
 }
@@ -835,13 +857,14 @@ Scales this image based on the input scaling multiple of the width and height. T
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
+
 async function Demo() {
-    let scaleX : number = 2.0;
-    let scaleY : number = 1.0;
+    let scaleX: number = 2.0;
+    let scaleY: number = 1.0;
     await pixelMap.scale(scaleX, scaleY).then(() => {
-        console.log('Sucessed in scaling pixelmap.');
-    }).catch((err : BusinessError) => {
+        console.info('Sucessed in scaling pixelmap.');
+    }).catch((err: BusinessError) => {
         console.error('Failed to scale pixelmap.');
     })
 }
@@ -866,16 +889,17 @@ Translates this image based on the input coordinates. This API uses an asynchron
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
+
 async function Demo() {
-    let translateX : number = 50.0;
-    let translateY : number = 10.0;
-    pixelMap.translate(translateX, translateY, (err : BusinessError) => {
+    let translateX: number = 50.0;
+    let translateY: number = 10.0;
+    pixelMap.translate(translateX, translateY, (err: BusinessError) => {
         if (err) {
             console.error("Failed to translate pixelmap.");
             return;
         } else {
-            console.log("Succeeded in translating pixelmap.");
+            console.info("Succeeded in translating pixelmap.");
         }
     })
 }
@@ -905,13 +929,14 @@ Translates this image based on the input coordinates. This API uses a promise to
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
+
 async function Demo() {
-    let translateX : number = 50.0;
-    let translateY : number = 10.0;
+    let translateX: number = 50.0;
+    let translateY: number = 10.0;
     await pixelMap.translate(translateX, translateY).then(() => {
-        console.log('Sucessed in translating pixelmap.');
-    }).catch((err : BusinessError) => {
+        console.info('Sucessed in translating pixelmap.');
+    }).catch((err: BusinessError) => {
         console.error('Failed to translate pixelmap.');
     })
 }
@@ -935,15 +960,16 @@ Rotates this image based on the input angle. This API uses an asynchronous callb
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
+
 async function Demo() {
-    let angle : number = 90.0;
-    pixelMap.rotate(angle, (err : BusinessError) => {
+    let angle: number = 90.0;
+    pixelMap.rotate(angle, (err: BusinessError) => {
         if (err != undefined) {
             console.error("Failed to rotate pixelmap.");
             return;
         } else {
-            console.log("Succeeded in rotating pixelmap.");
+            console.info("Succeeded in rotating pixelmap.");
         }
     })
 }
@@ -972,12 +998,13 @@ Rotates this image based on the input angle. This API uses a promise to return t
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
+
 async function Demo() {
-    let angle : number = 90.0;
+    let angle: number = 90.0;
     await pixelMap.rotate(angle).then(() => {
-        console.log('Sucessed in rotating pixelmap.');
-    }).catch((err : BusinessError) => {
+        console.info('Sucessed in rotating pixelmap.');
+    }).catch((err: BusinessError) => {
         console.error('Failed to rotate pixelmap.');
     })
 }
@@ -1002,16 +1029,17 @@ Flips this image horizontally or vertically, or both. This API uses an asynchron
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
+
 async function Demo() {
-    let horizontal : boolean = true;
-    let vertical : boolean = false;
-    pixelMap.flip(horizontal, vertical, (err : BusinessError) => {
+    let horizontal: boolean = true;
+    let vertical: boolean = false;
+    pixelMap.flip(horizontal, vertical, (err: BusinessError) => {
         if (err != undefined) {
             console.error("Failed to flip pixelmap.");
             return;
         } else {
-            console.log("Succeeded in flipping pixelmap.");
+            console.info("Succeeded in flipping pixelmap.");
         }
     })
 }
@@ -1041,13 +1069,14 @@ Flips this image horizontally or vertically, or both. This API uses a promise to
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
+
 async function Demo() {
-    let horizontal : boolean = true;
-    let vertical : boolean = false;
+    let horizontal: boolean = true;
+    let vertical: boolean = false;
     await pixelMap.flip(horizontal, vertical).then(() => {
-        console.log('Sucessed in flipping pixelmap.');
-    }).catch((err : BusinessError) => {
+        console.info('Sucessed in flipping pixelmap.');
+    }).catch((err: BusinessError) => {
         console.error('Failed to flip pixelmap.');
     })
 }
@@ -1071,15 +1100,16 @@ Crops this image based on the input size. This API uses an asynchronous callback
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
+
 async function Demo() {
-    let region : image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
-    pixelMap.crop(region, (err : BusinessError) => {
+    let region: image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
+    pixelMap.crop(region, (err: BusinessError) => {
         if (err != undefined) {
             console.error("Failed to crop pixelmap.");
             return;
         } else {
-            console.log("Succeeded in cropping pixelmap.");
+            console.info("Succeeded in cropping pixelmap.");
         }
     })
 }
@@ -1108,12 +1138,13 @@ Crops this image based on the input size. This API uses a promise to return the 
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
+
 async function Demo() {
-    let region : image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
+    let region: image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
     await pixelMap.crop(region).then(() => {
-        console.log('Sucessed in cropping pixelmap.');
-    }).catch((err : BusinessError) => {
+        console.info('Sucessed in cropping pixelmap.');
+    }).catch((err: BusinessError) => {
         console.error('Failed to crop pixelmap.');
     });
 }
@@ -1131,11 +1162,11 @@ Obtains the color space of this image.
 
 | Type                               | Description            |
 | ----------------------------------- | ---------------- |
-| [colorSpaceManager.ColorSpaceManager](../apis/js-apis-colorSpaceManager.md#colorspacemanager) | Color space obtained.|
+| [colorSpaceManager.ColorSpaceManager](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspacemanager) | Color space obtained.|
 
 **Error codes**
 
-For details about the error codes, see [Image Error Codes](../errorcodes/errorcode-image.md).
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -1163,11 +1194,11 @@ Sets the color space for this image.
 
 | Name    | Type                               | Mandatory| Description           |
 | ---------- | ----------------------------------- | ---- | --------------- |
-| colorSpace | [colorSpaceManager.ColorSpaceManager](../apis/js-apis-colorSpaceManager.md#colorspacemanager) | Yes  | Color space to set.|
+| colorSpace | [colorSpaceManager.ColorSpaceManager](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspacemanager) | Yes  | Color space to set.|
 
 **Error codes**
 
-For details about the error codes, see [Image Error Codes](../errorcodes/errorcode-image.md).
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -1180,7 +1211,7 @@ For details about the error codes, see [Image Error Codes](../errorcodes/errorco
 import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
 async function Demo() {
     let colorSpaceName = colorSpaceManager.ColorSpace.SRGB;
-    let csm : colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
+    let csm: colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
     pixelMap.setColorSpace(csm);
 }
 ```
@@ -1197,12 +1228,12 @@ Performs color space conversion (CSC) on the image pixel color based on a given 
 
 | Name  | Type                | Mandatory| Description                         |
 | -------- | -------------------- | ---- | ----------------------------- |
-| targetColorSpace | [colorSpaceManager.ColorSpaceManager](../apis/js-apis-colorSpaceManager.md#colorspacemanager) | Yes  | Target color space. SRGB, DCI_P3, DISPLAY_P3, and ADOBE_RGB_1998 are supported.|
+| targetColorSpace | [colorSpaceManager.ColorSpaceManager](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspacemanager) | Yes  | Target color space. SRGB, DCI_P3, DISPLAY_P3, and ADOBE_RGB_1998 are supported.|
 | callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation fails, an error message is returned.|
 
 **Error codes**
 
-For details about the error codes, see [Image Error Codes](../errorcodes/errorcode-image.md).
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | ------------------------------------------|
@@ -1215,17 +1246,17 @@ For details about the error codes, see [Image Error Codes](../errorcodes/errorco
 
 ```ts
 import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
-import {BusinessError} from '@ohos.base'
+import { BusinessError } from '@ohos.base'
 
 async function Demo() {
     let colorSpaceName = colorSpaceManager.ColorSpace.SRGB;
-    let targetColorSpace : colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
-    pixelmap.applyColorSpace(targetColorSpace, (err : BusinessError) => {
+    let targetColorSpace: colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
+    pixelmap.applyColorSpace(targetColorSpace, (err: BusinessError) => {
         if (err) {
             console.error('Failed to apply color space for pixelmap object.');
             return;
         } else {
-            console.log('Succeeded in applying color space for pixelmap object.');
+            console.info('Succeeded in applying color space for pixelmap object.');
         }
     })
 }
@@ -1243,7 +1274,7 @@ Performs CSC on the image pixel color based on a given color space. This API use
 
 | Name| Type              | Mandatory| Description       |
 | ------ | ------------------ | ---- | ----------- |
-| targetColorSpace | [colorSpaceManager.ColorSpaceManager](../apis/js-apis-colorSpaceManager.md#colorspacemanager) | Yes  | Target color space. SRGB, DCI_P3, DISPLAY_P3, and ADOBE_RGB_1998 are supported.|
+| targetColorSpace | [colorSpaceManager.ColorSpaceManager](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspacemanager) | Yes  | Target color space. SRGB, DCI_P3, DISPLAY_P3, and ADOBE_RGB_1998 are supported.|
 
 **Return value**
 
@@ -1253,7 +1284,7 @@ Performs CSC on the image pixel color based on a given color space. This API use
 
 **Error codes**
 
-For details about the error codes, see [Image Error Codes](../errorcodes/errorcode-image.md).
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | ------------------------------------------|
@@ -1266,14 +1297,14 @@ For details about the error codes, see [Image Error Codes](../errorcodes/errorco
 
 ```ts
 import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
-import {BusinessError} from '@ohos.base'
+import { BusinessError } from '@ohos.base'
 
 async function Demo() {
     let colorSpaceName = colorSpaceManager.ColorSpace.SRGB;
-    let targetColorSpace : colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
+    let targetColorSpace: colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
     pixelmap.applyColorSpace(targetColorSpace).then(() => {
-        console.log('Succeeded in applying color space for pixelmap object.');
-    }).catch((error : BusinessError) => {
+        console.info('Succeeded in applying color space for pixelmap object.');
+    }).catch((error: BusinessError) => {
         console.error('Failed to apply color space for pixelmap object.');
     })
 }
@@ -1291,11 +1322,11 @@ Marshals this **PixelMap** object and writes it to a **MessageSequence** object.
 
 | Name                | Type                                                 | Mandatory| Description                                    |
 | ---------------------- | ------------------------------------------------------ | ---- | ---------------------------------------- |
-| sequence               | [rpc.MessageSequence](../apis/js-apis-rpc.md#messagesequence9)  | Yes  | **MessageSequence** object.                |
+| sequence               | [rpc.MessageSequence](../apis-ipc-kit/js-apis-rpc.md#messagesequence9)  | Yes  | **MessageSequence** object.                |
 
 **Error codes**
 
-For details about the error codes, see [Image Error Codes](../errorcodes/errorcode-image.md).
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -1307,22 +1338,23 @@ For details about the error codes, see [Image Error Codes](../errorcodes/errorco
 ```ts
 import image from '@ohos.multimedia.image';
 import rpc from '@ohos.rpc';
+
 class MySequence implements rpc.Parcelable {
-    pixel_map : image.PixelMap;
+    pixel_map: image.PixelMap;
     constructor(conPixelMap : image.PixelMap) {
         this.pixel_map = conPixelMap;
     }
     marshalling(messageSequence : rpc.MessageSequence) {
         this.pixel_map.marshalling(messageSequence);
-        console.log('marshalling');
+        console.info('marshalling');
         return true;
     }
     unmarshalling(messageSequence : rpc.MessageSequence) {
-      image.createPixelMap(new ArrayBuffer(96), {size: { height:4, width: 6}}).then((pixelParcel : image.PixelMap) => {
-        pixelParcel.unmarshalling(messageSequence).then(async (pixelMap : image.PixelMap) => {
+      image.createPixelMap(new ArrayBuffer(96), {size: { height:4, width: 6}}).then((pixelParcel: image.PixelMap) => {
+        pixelParcel.unmarshalling(messageSequence).then(async (pixelMap: image.PixelMap) => {
           this.pixel_map = pixelMap;
-          await pixelMap.getImageInfo().then((imageInfo : image.ImageInfo) => {
-            console.log("unmarshalling information h:" + imageInfo.size.height + "w:" + imageInfo.size.width);
+          await pixelMap.getImageInfo().then((imageInfo: image.ImageInfo) => {
+            console.info("unmarshalling information h:" + imageInfo.size.height + "w:" + imageInfo.size.width);
           })
         })
       });
@@ -1330,30 +1362,29 @@ class MySequence implements rpc.Parcelable {
     }
 }
 async function Demo() {
-   const color : ArrayBuffer = new ArrayBuffer(96);
-   let bufferArr : Uint8Array = new Uint8Array(color);
+   const color: ArrayBuffer = new ArrayBuffer(96);
+   let bufferArr: Uint8Array = new Uint8Array(color);
    for (let i = 0; i < bufferArr.length; i++) {
       bufferArr[i] = 0x80;
    }
-   let opts : image.InitializationOptions = {
+   let opts: image.InitializationOptions = {
       editable: true,
       pixelFormat: 4,
       size: { height: 4, width: 6 },
       alphaType: 3
    }
-   let pixelMap : image.PixelMap | undefined = undefined;
-   await image.createPixelMap(color, opts).then((srcPixelMap : image.PixelMap) => {
+   let pixelMap: image.PixelMap | undefined = undefined;
+   await image.createPixelMap(color, opts).then((srcPixelMap: image.PixelMap) => {
       pixelMap = srcPixelMap;
    })
    if (pixelMap != undefined) {
-     // Implement serialization.
-     let parcelable : MySequence = new MySequence(pixelMap);
-     let data : rpc.MessageSequence = rpc.MessageSequence.create();
+    // Implement serialization.
+     let parcelable: MySequence = new MySequence(pixelMap);
+     let data: rpc.MessageSequence = rpc.MessageSequence.create();
      data.writeParcelable(parcelable);
 
-
-     // Deserialize to obtain data through the RPC.
-     let ret : MySequence = new MySequence(pixelMap);
+    // Deserialize to obtain data through the RPC.
+     let ret: MySequence = new MySequence(pixelMap);
      data.readParcelable(ret);
    }
 }
@@ -1372,7 +1403,7 @@ To create a **PixelMap** object in synchronous mode, use [createPixelMapFromParc
 
 | Name                | Type                                                 | Mandatory| Description                                    |
 | ---------------------- | ----------------------------------------------------- | ---- | ---------------------------------------- |
-| sequence               | [rpc.MessageSequence](../apis/js-apis-rpc.md#messagesequence9) | Yes  | **MessageSequence** object that stores the **PixelMap** information.     |
+| sequence               | [rpc.MessageSequence](../apis-ipc-kit/js-apis-rpc.md#messagesequence9) | Yes  | **MessageSequence** object that stores the **PixelMap** information.     |
 
 **Return value**
 
@@ -1382,7 +1413,7 @@ To create a **PixelMap** object in synchronous mode, use [createPixelMapFromParc
 
 **Error codes**
 
-For details about the error codes, see [Image Error Codes](../errorcodes/errorcode-image.md).
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -1395,22 +1426,23 @@ For details about the error codes, see [Image Error Codes](../errorcodes/errorco
 ```ts
 import image from '@ohos.multimedia.image';
 import rpc from '@ohos.rpc';
+
 class MySequence implements rpc.Parcelable {
-    pixel_map : image.PixelMap;
-    constructor(conPixelMap : image.PixelMap) {
+    pixel_map: image.PixelMap;
+    constructor(conPixelMap: image.PixelMap) {
         this.pixel_map = conPixelMap;
     }
-    marshalling(messageSequence : rpc.MessageSequence) {
+    marshalling(messageSequence: rpc.MessageSequence) {
         this.pixel_map.marshalling(messageSequence);
-        console.log('marshalling');
+        console.info('marshalling');
         return true;
     }
-    unmarshalling(messageSequence : rpc.MessageSequence) {
+    unmarshalling(messageSequence: rpc.MessageSequence) {
       image.createPixelMap(new ArrayBuffer(96), {size: { height:4, width: 6}}).then((pixelParcel : image.PixelMap) => {
         pixelParcel.unmarshalling(messageSequence).then(async (pixelMap : image.PixelMap) => {
           this.pixel_map = pixelMap;
           await pixelMap.getImageInfo().then((imageInfo : image.ImageInfo) => {
-            console.log("unmarshalling information h:" + imageInfo.size.height + "w:" + imageInfo.size.width);
+            console.info("unmarshalling information h:" + imageInfo.size.height + "w:" + imageInfo.size.width);
           })
         })
       });
@@ -1418,29 +1450,29 @@ class MySequence implements rpc.Parcelable {
     }
 }
 async function Demo() {
-   const color : ArrayBuffer = new ArrayBuffer(96);
-   let bufferArr : Uint8Array = new Uint8Array(color);
+   const color: ArrayBuffer = new ArrayBuffer(96);
+   let bufferArr: Uint8Array = new Uint8Array(color);
    for (let i = 0; i < bufferArr.length; i++) {
       bufferArr[i] = 0x80;
    }
-   let opts : image.InitializationOptions = {
+   let opts: image.InitializationOptions = {
       editable: true,
       pixelFormat: 4,
       size: { height: 4, width: 6 },
       alphaType: 3
    }
-   let pixelMap : image.PixelMap | undefined = undefined;
+   let pixelMap: image.PixelMap | undefined = undefined;
    await image.createPixelMap(color, opts).then((srcPixelMap : image.PixelMap) => {
       pixelMap = srcPixelMap;
    })
    if (pixelMap != undefined) {
-     // Implement serialization.
-     let parcelable : MySequence = new MySequence(pixelMap);
+    // Implement serialization.
+     let parcelable: MySequence = new MySequence(pixelMap);
      let data : rpc.MessageSequence = rpc.MessageSequence.create();
      data.writeParcelable(parcelable);
 
 
-     // Deserialize to obtain data through the RPC.
+    // Deserialize to obtain data through the RPC.
      let ret : MySequence = new MySequence(pixelMap);
      data.readParcelable(ret);
    }
@@ -1464,11 +1496,12 @@ Releases this **PixelMap** object. This API uses a promise to return the result.
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
+
 async function Demo() {
     pixelMap.release().then(() => {
-        console.log('Succeeded in releasing pixelmap object.');
-    }).catch((error : BusinessError) => {
+        console.info('Succeeded in releasing pixelmap object.');
+    }).catch((error: BusinessError) => {
         console.error('Failed to release pixelmap object.');
     })
 }
@@ -1491,14 +1524,15 @@ Releases this **PixelMap** object. This API uses an asynchronous callback to ret
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
+
 async function Demo() {
-    pixelMap.release((err : BusinessError) => {
+    pixelMap.release((err: BusinessError) => {
         if (err != undefined) {
             console.error('Failed to release pixelmap object.');
             return;
         } else {
-            console.log('Succeeded in releasing pixelmap object.');
+            console.info('Succeeded in releasing pixelmap object.');
         }
     })
 }
@@ -1527,19 +1561,9 @@ Creates an **ImageSource** instance based on the URI.
 **Example**
 
 ```ts
-// Stage model
-const context : Context = getContext(this);
-const path : string = context.cacheDir + "/test.jpg";
-const imageSourceApi : image.ImageSource = image.createImageSource(path);
-```
-
-```ts
-// FA model
-import featureAbility from '@ohos.ability.featureAbility';
-
-const context : featureAbility.Context = featureAbility.getContext();
-const path : string = context.getCacheDir() + "/test.jpg";
-const imageSourceApi : image.ImageSource = image.createImageSource(path);
+const context: Context = getContext(this);
+const path: string = context.cacheDir + "/test.jpg";
+const imageSourceApi: image.ImageSource = image.createImageSource(path);
 ```
 
 ## image.createImageSource<sup>9+</sup>
@@ -1566,8 +1590,8 @@ Creates an **ImageSource** instance based on the URI.
 **Example**
 
 ```ts
-let sourceOptions : image.SourceOptions = { sourceDensity: 120 };
-let imageSource : image.ImageSource = image.createImageSource('test.png', sourceOptions);
+let sourceOptions: image.SourceOptions = { sourceDensity: 120 };
+let imageSourceApi: image.ImageSource = image.createImageSource('test.png', sourceOptions);
 ```
 
 ## image.createImageSource<sup>7+</sup>
@@ -1593,7 +1617,7 @@ Creates an **ImageSource** instance based on the file descriptor.
 **Example**
 
 ```ts
-const imageSourceApi : image.ImageSource = image.createImageSource(0);
+const imageSourceApi: image.ImageSource = image.createImageSource(0);
 ```
 
 ## image.createImageSource<sup>9+</sup>
@@ -1620,8 +1644,8 @@ Creates an **ImageSource** instance based on the file descriptor.
 **Example**
 
 ```ts
-let sourceOptions : image.SourceOptions = { sourceDensity: 120 };
-const imageSourceApi : image.ImageSource = image.createImageSource(0, sourceOptions);
+let sourceOptions: image.SourceOptions = { sourceDensity: 120 };
+const imageSourceApi: image.ImageSource = image.createImageSource(0, sourceOptions);
 ```
 
 ## image.createImageSource<sup>9+</sup>
@@ -1648,8 +1672,8 @@ Creates an **ImageSource** instance based on the buffers.
 **Example**
 
 ```ts
-const buf : ArrayBuffer = new ArrayBuffer(96);  // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
-const imageSourceApi : image.ImageSource = image.createImageSource(buf);
+const buf: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
+const imageSourceApi: image.ImageSource = image.createImageSource(buf);
 ```
 
 ## image.createImageSource<sup>9+</sup>
@@ -1676,9 +1700,9 @@ Creates an **ImageSource** instance based on the buffers.
 **Example**
 
 ```ts
-const data : ArrayBuffer= new ArrayBuffer(112);
-let sourceOptions : image.SourceOptions = { sourceDensity: 120 };
-const imageSourceApi : image.ImageSource = image.createImageSource(data, sourceOptions);
+const data: ArrayBuffer = new ArrayBuffer(112);
+let sourceOptions: image.SourceOptions = { sourceDensity: 120 };
+const imageSourceApi: image.ImageSource = image.createImageSource(data, sourceOptions);
 ```
 
 ## image.createImageSource<sup>11+</sup>
@@ -1693,7 +1717,7 @@ Creates an **ImageSource** instance by using the raw file descriptor of the imag
 
 | Name| Type                            | Mandatory| Description                                |
 | ------ | -------------------------------- | ---- | ------------------------------------ |
-| rawfile | [resourceManager.RawFileDescriptor](../apis/js-apis-resource-manager.md#rawfiledescriptor8) | Yes| Raw file descriptor of the image resource file.|
+| rawfile | [resourceManager.RawFileDescriptor](../apis-localization-kit/js-apis-resource-manager.md#rawfiledescriptor8) | Yes| Raw file descriptor of the image resource file.|
 | options | [SourceOptions](#sourceoptions9) | No| Image properties, including the image index and default property value.|
 
 **Return value**
@@ -1704,18 +1728,15 @@ Creates an **ImageSource** instance by using the raw file descriptor of the imag
 
 **Example**
 
-Stage model
-
 ```ts
 import resourceManager from '@ohos.resourceManager';
 
-// Code on the stage model
-const context : Context = getContext(this);
+const context: Context = getContext(this);
 // Obtain a resource manager.
 const resourceMgr: resourceManager.ResourceManager = context.resourceManager;
-resourceMgr.getRawFd('test.jpg').then((rawFileDescriptor : resourceManager.RawFileDescriptor) => {
+resourceMgr.getRawFd('test.jpg').then((rawFileDescriptor: resourceManager.RawFileDescriptor) => {
     const imageSourceApi: image.ImageSource = image.createImageSource(rawFileDescriptor);
-}).catch((error : BusinessError) => {
+}).catch((error: BusinessError) => {
     console.error(`Failed to get RawFileDescriptor.code is ${error.code}, message is ${error.message}`);
 })
 ```
@@ -1743,8 +1764,8 @@ Creates an **ImageSource** instance in incremental mode based on the buffers.
 **Example**
 
 ```ts
-const buf : ArrayBuffer = new ArrayBuffer(96);  // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
-const imageSourceIncrementalSApi : image.ImageSource = image.CreateIncrementalSource(buf);
+const buf: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
+const imageSourceIncrementalSApi: image.ImageSource = image.CreateIncrementalSource(buf);
 ```
 
 ## image.CreateIncrementalSource<sup>9+</sup>
@@ -1771,8 +1792,9 @@ Creates an **ImageSource** instance in incremental mode based on the buffers.
 **Example**
 
 ```ts
-const buf : ArrayBuffer = new ArrayBuffer(96);  // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
-const imageSourceIncrementalSApi : image.ImageSource = image.CreateIncrementalSource(buf);
+const buf: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
+let sourceOptions: image.SourceOptions = { sourceDensity: 120 };
+const imageSourceIncrementalSApi: image.ImageSource = image.CreateIncrementalSource(buf, sourceOptions);
 ```
 
 ## ImageSource
@@ -1805,12 +1827,13 @@ Obtains information about an image with the specified index. This API uses an as
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
-imageSourceApi.getImageInfo(0,(error : BusinessError, imageInfo : image.ImageInfo) => { 
-    if(error) {
+import { BusinessError } from '@ohos.base';
+
+imageSourceApi.getImageInfo(0, (error: BusinessError, imageInfo: image.ImageInfo) => { 
+    if (error) {
         console.error('getImageInfo failed.');
     } else {
-        console.log('getImageInfo succeeded.');
+        console.info('getImageInfo succeeded.');
     }
 })
 ```
@@ -1832,12 +1855,13 @@ Obtains information about this image. This API uses an asynchronous callback to 
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
-imageSourceApi.getImageInfo((err : BusinessError, imageInfo : image.ImageInfo) => { 
+import { BusinessError } from '@ohos.base';
+
+imageSourceApi.getImageInfo((err: BusinessError, imageInfo: image.ImageInfo) => { 
     if (err != undefined) {
         console.error(`Failed to obtaining the image information.code is ${err.code}, message is ${err.message}`);
     } else {
-        console.log('Succeeded in obtaining the image information.');
+        console.info('Succeeded in obtaining the image information.');
     }
 })
 ```
@@ -1865,11 +1889,12 @@ Obtains information about an image with the specified index. This API uses a pro
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
+
 imageSourceApi.getImageInfo(0)
-    .then((imageInfo : image.ImageInfo) => {
-		console.log('Succeeded in obtaining the image information.');
-	}).catch((error : BusinessError) => {
+    .then((imageInfo: image.ImageInfo) => {
+		console.info('Succeeded in obtaining the image information.');
+	}).catch((error: BusinessError) => {
 		console.error('Failed to obtain the image information.');
 	})
 ```
@@ -1897,7 +1922,7 @@ Obtains the value of a property with the specified index in this image. This API
 
 **Error codes**
 
-For details about the error codes, see [Image Error Codes](../errorcodes/errorcode-image.md).
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -1918,12 +1943,13 @@ For details about the error codes, see [Image Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
-let options : image.ImagePropertyOptions = { index: 0, defaultValue: '9999' }
+import { BusinessError } from '@ohos.base';
+
+let options: image.ImagePropertyOptions = { index: 0, defaultValue: '9999' }
 imageSourceApi.getImageProperty(image.PropertyKey.BITS_PER_SAMPLE, options)
-.then((data : string) => {
-    console.log('Succeeded in getting the value of the specified attribute key of the image.');
-}).catch((error : BusinessError) => {
+.then((data: string) => {
+    console.info('Succeeded in getting the value of the specified attribute key of the image.');
+}).catch((error: BusinessError) => {
     console.error('Failed to get the value of the specified attribute key of the image.');
 })
 ```
@@ -1956,11 +1982,12 @@ Obtains the value of a property with the specified index in this image. This API
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
+
 imageSourceApi.getImageProperty("BitsPerSample")
-    .then((data : string) => {
-		console.log('Succeeded in getting the value of the specified attribute key of the image.');
-	}).catch((error : BusinessError) => {
+    .then((data: string) => {
+		console.info('Succeeded in getting the value of the specified attribute key of the image.');
+	}).catch((error: BusinessError) => {
 		console.error('Failed to get the value of the specified attribute key of the image.');
 	})
 ```
@@ -1987,12 +2014,13 @@ Obtains the value of a property with the specified index in this image. This API
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
-imageSourceApi.getImageProperty("BitsPerSample",(error : BusinessError, data : string) => { 
-    if(error) {
+import { BusinessError } from '@ohos.base';
+
+imageSourceApi.getImageProperty("BitsPerSample", (error: BusinessError, data: string) => { 
+    if (error) {
         console.error('Failed to get the value of the specified attribute key of the image.');
     } else {
-        console.log('Succeeded in getting the value of the specified attribute key of the image.');
+        console.info('Succeeded in getting the value of the specified attribute key of the image.');
     }
 })
 ```
@@ -2020,13 +2048,14 @@ Obtains the value of a property in this image. This API uses an asynchronous cal
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
-let property : image.GetImagePropertyOptions = { index: 0, defaultValue: '9999' }
-imageSourceApi.getImageProperty("BitsPerSample",property,(error : BusinessError, data : string) => { 
-    if(error) {
+import { BusinessError } from '@ohos.base';
+
+let property: image.GetImagePropertyOptions = { index: 0, defaultValue: '9999' }
+imageSourceApi.getImageProperty("BitsPerSample", property, (error: BusinessError, data: string) => { 
+    if (error) {
         console.error('Failed to get the value of the specified attribute key of the image.');
     } else {
-        console.log('Succeeded in getting the value of the specified attribute key of the image.');
+        console.info('Succeeded in getting the value of the specified attribute key of the image.');
     }
 })
 ```
@@ -2054,7 +2083,7 @@ Modifies the value of a property in this image. This API uses a promise to retur
 
 **Error codes**
 
-For details about the error codes, see [Image Error Codes](../errorcodes/errorcode-image.md).
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -2067,14 +2096,15 @@ For details about the error codes, see [Image Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
+
 imageSourceApi.modifyImageProperty(image.PropertyKey.IMAGE_WIDTH, "120").then(() => {
-    imageSourceApi.getImageProperty(image.PropertyKey.IMAGE_WIDTH).then((width : string) => {
+    imageSourceApi.getImageProperty(image.PropertyKey.IMAGE_WIDTH).then((width: string) => {
         console.info(`ImageWidth is :${width}`);
-    }).catch((error : BusinessError) => {
+    }).catch((error: BusinessError) => {
         console.error('Failed to get the Image Width.');
 	})
-}).catch((error : BusinessError) => {
+}).catch((error: BusinessError) => {
 	console.error('Failed to modify the Image Width');
 })
 ```
@@ -2107,14 +2137,15 @@ Modifies the value of a property in this image. This API uses a promise to retur
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
+
 imageSourceApi.modifyImageProperty("ImageWidth", "120").then(() => {
-    imageSourceApi.getImageProperty("ImageWidth").then((width : string) => {
+    imageSourceApi.getImageProperty("ImageWidth").then((width: string) => {
         console.info(`ImageWidth is :${width}`);
-    }).catch((error : BusinessError) => {
+    }).catch((error: BusinessError) => {
         console.error('Failed to get the Image Width.');
 	})
-}).catch((error : BusinessError) => {
+}).catch((error: BusinessError) => {
 	console.error('Failed to modify the Image Width');
 })
 ```
@@ -2142,8 +2173,9 @@ Modifies the value of a property in this image. This API uses an asynchronous ca
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
-imageSourceApi.modifyImageProperty("ImageWidth", "120",(err : BusinessError) => {
+import { BusinessError } from '@ohos.base';
+
+imageSourceApi.modifyImageProperty("ImageWidth", "120", (err: BusinessError) => {
     if (err != undefined) {
         console.error('modifyImageProperty Failed');
     } else {
@@ -2178,8 +2210,9 @@ Updates incremental data. This API uses a promise to return the result.
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
-const array : ArrayBuffer = new ArrayBuffer(100);
+import { BusinessError } from '@ohos.base';
+
+const array: ArrayBuffer = new ArrayBuffer(100);
 imageSourceApi.updateData(array, false, 0, 10).then(() => {
     console.info('Succeeded in updating data.');
 }).catch((err: BusinessError) => {
@@ -2209,8 +2242,9 @@ Updates incremental data. This API uses an asynchronous callback to return the r
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
-const array : ArrayBuffer = new ArrayBuffer(100);
+import { BusinessError } from '@ohos.base';
+
+const array: ArrayBuffer = new ArrayBuffer(100);
 imageSourceApi.updateData(array, false, 0, 10, (err: BusinessError) => {
     if (err != undefined) {
         console.error(`Failed to update data.code is ${err.code},message is ${err.message}`);
@@ -2243,10 +2277,11 @@ Creates a **PixelMap** object based on image decoding parameters. This API uses 
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
-imageSourceApi.createPixelMap().then((pixelMap : image.PixelMap) => {
-    console.log('Succeeded in creating pixelMap object through image decoding parameters.');
-}).catch((error : BusinessError) => {
+import { BusinessError } from '@ohos.base';
+
+imageSourceApi.createPixelMap().then((pixelMap: image.PixelMap) => {
+    console.info('Succeeded in creating pixelMap object through image decoding parameters.');
+}).catch((error: BusinessError) => {
     console.error('Failed to create pixelMap object through image decoding parameters.');
 })
 ```
@@ -2268,8 +2303,9 @@ Creates a **PixelMap** object based on the default parameters. This API uses an 
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
-imageSourceApi.createPixelMap((err : BusinessError, pixelMap : image.PixelMap) => {
+import { BusinessError } from '@ohos.base';
+
+imageSourceApi.createPixelMap((err: BusinessError, pixelMap: image.PixelMap) => {
     if (err != undefined) {
         console.error(`Failed to create pixelMap.code is ${err.code},message is ${err.message}`);
     } else {
@@ -2296,8 +2332,9 @@ Creates a **PixelMap** object based on image decoding parameters. This API uses 
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
-let decodingOptions : image.DecodingOptions = {
+import { BusinessError } from '@ohos.base';
+
+let decodingOptions: image.DecodingOptions = {
     sampleSize: 1,
     editable: true,
     desiredSize: { width: 1, height: 2 },
@@ -2306,11 +2343,11 @@ let decodingOptions : image.DecodingOptions = {
     desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 },
     index: 0
 };
-imageSourceApi.createPixelMap(decodingOptions, (err : BusinessError, pixelMap : image.PixelMap) => { 
+imageSourceApi.createPixelMap(decodingOptions, (err: BusinessError, pixelMap: image.PixelMap) => { 
     if (err != undefined) {
         console.error(`Failed to create pixelMap.code is ${err.code},message is ${err.message}`);
     } else {
-        console.log('Succeeded in creating pixelMap object.');
+        console.info('Succeeded in creating pixelMap object.');
     }
 })
 ```
@@ -2337,7 +2374,7 @@ Creates an array of **PixelMap** objects based on image decoding parameters. Thi
 
 **Error codes**
 
-For details about the error codes, see [Image Error Codes](../errorcodes/errorcode-image.md).
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -2362,7 +2399,8 @@ For details about the error codes, see [Image Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
+
 let decodeOpts: image.DecodingOptions = {
     sampleSize: 1,
     editable: true,
@@ -2372,7 +2410,7 @@ let decodeOpts: image.DecodingOptions = {
     index: 0,
 };
 imageSourceApi.createPixelMapList(decodeOpts).then((pixelMapList: Array<image.PixelMap>) => {
-    console.log('Succeeded in creating pixelMapList object.');
+    console.info('Succeeded in creating pixelMapList object.');
 }).catch((err: BusinessError) => {
     console.error(`Failed to create pixelMapList object.code is ${err.code},message is ${err.message}`);
 })
@@ -2394,7 +2432,7 @@ Creates an array of **PixelMap** objects based on the default parameters. This A
 
 **Error codes**
 
-For details about the error codes, see [Image Error Codes](../errorcodes/errorcode-image.md).
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -2419,7 +2457,8 @@ For details about the error codes, see [Image Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
+
 imageSourceApi.createPixelMapList((err: BusinessError, pixelMapList: Array<image.PixelMap>) => {
     if (err != undefined) {
         console.error(`Failed to create pixelMapList object.code is ${err.code},message is ${err.message}`);
@@ -2446,7 +2485,7 @@ Creates an array of **PixelMap** objects based on image decoding parameters. Thi
 
 **Error codes**
 
-For details about the error codes, see [Image Error Codes](../errorcodes/errorcode-image.md).
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -2471,8 +2510,9 @@ For details about the error codes, see [Image Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
-let decodeOpts : image.DecodingOptions = {
+import { BusinessError } from '@ohos.base';
+
+let decodeOpts: image.DecodingOptions = {
     sampleSize: 1,
     editable: true,
     desiredSize: { width: 198, height: 202 },
@@ -2484,7 +2524,7 @@ imageSourceApi.createPixelMapList(decodeOpts, (err: BusinessError, pixelMapList:
     if (err != undefined) {
         console.error(`Failed to create pixelMapList object.code is ${err.code},message is ${err.message}`);
     } else {
-        console.log('Succeeded in creating pixelMapList object.');
+        console.info('Succeeded in creating pixelMapList object.');
     }
 })
 ```
@@ -2505,7 +2545,7 @@ Obtains an array of delay times. This API uses an asynchronous callback to retur
 
 **Error codes**
 
-For details about the error codes, see [Image Error Codes](../errorcodes/errorcode-image.md).
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -2524,12 +2564,13 @@ For details about the error codes, see [Image Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
+
 imageSourceApi.getDelayTimeList((err: BusinessError, delayTimes: Array<number>) => {
     if (err != undefined) {
         console.error(`Failed to get delayTimes object.code is ${err.code},message is ${err.message}`);
     } else {
-        console.log('Succeeded in delayTimes object.');
+        console.info('Succeeded in delayTimes object.');
     }
 })
 ```
@@ -2550,7 +2591,7 @@ Obtains an array of delay times. This API uses a promise to return the result. I
 
 **Error codes**
 
-For details about the error codes, see [Image Error Codes](../errorcodes/errorcode-image.md).
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -2569,9 +2610,10 @@ For details about the error codes, see [Image Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
-imageSourceApi.getDelayTimeList().then((delayTimes : Array<number>) => {
-    console.log('Succeeded in delayTimes object.');
+import { BusinessError } from '@ohos.base';
+
+imageSourceApi.getDelayTimeList().then((delayTimes: Array<number>) => {
+    console.info('Succeeded in delayTimes object.');
 }).catch((err: BusinessError) => {
     console.error(`Failed to get delayTimes object.code is ${err.code},message is ${err.message}`);
 })
@@ -2593,7 +2635,7 @@ Obtains the number of frames. This API uses an asynchronous callback to return t
 
 **Error codes**
 
-For details about the error codes, see [Image Error Codes](../errorcodes/errorcode-image.md).
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -2611,12 +2653,13 @@ For details about the error codes, see [Image Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
+
 imageSourceApi.getFrameCount((err: BusinessError, frameCount: number) => {
     if (err != undefined) {
         console.error(`Failed to get frame count.code is ${err.code},message is ${err.message}`);
     } else {
-        console.log('Succeeded in getting frame count.');
+        console.info('Succeeded in getting frame count.');
     }
 })
 ```
@@ -2637,7 +2680,7 @@ Obtains the number of frames. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Image Error Codes](../errorcodes/errorcode-image.md).
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -2655,10 +2698,11 @@ For details about the error codes, see [Image Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
+
 imageSourceApi.getFrameCount().then((frameCount: number) => {
-    console.log('Succeeded in getting frame count.');
-}).catch((err : BusinessError) => {
+    console.info('Succeeded in getting frame count.');
+}).catch((err: BusinessError) => {
     console.error(`Failed to get frame count.code is ${err.code},message is ${err.message}`);
 })
 ```
@@ -2680,12 +2724,13 @@ Releases this **ImageSource** instance. This API uses an asynchronous callback t
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
-imageSourceApi.release((err : BusinessError) => { 
+import { BusinessError } from '@ohos.base';
+
+imageSourceApi.release((err: BusinessError) => { 
     if (err != undefined) {
         console.error('Failed to release the image source instance.');
     } else {
-        console.log('Succeeded in releasing the image source instance.');
+        console.info('Succeeded in releasing the image source instance.');
     }
 })
 ```
@@ -2707,10 +2752,11 @@ Releases this **ImageSource** instance. This API uses a promise to return the re
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
-imageSourceApi.release().then(()=>{
-    console.log('Succeeded in releasing the image source instance.');
-}).catch((error : BusinessError) => {
+import { BusinessError } from '@ohos.base';
+
+imageSourceApi.release().then(() => {
+    console.info('Succeeded in releasing the image source instance.');
+}).catch((error: BusinessError) => {
     console.error('Failed to release the image source instance.');
 })
 ```
@@ -2732,7 +2778,7 @@ Creates an **ImagePacker** instance.
 **Example**
 
 ```ts
-const imagePackerApi : image.ImagePacker = image.createImagePacker();
+const imagePackerApi: image.ImagePacker = image.createImagePacker();
 ```
 
 ## ImagePacker
@@ -2766,14 +2812,15 @@ Packs an image. This API uses an asynchronous callback to return the result.
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
-const imageSourceApi : image.ImageSource = image.createImageSource(0);
-let packOpts : image.PackingOption = { format:"image/jpeg", quality:98 };
-imagePackerApi.packing(imageSourceApi, packOpts, (err : BusinessError, data : ArrayBuffer) => {
-    if(err) {
+import { BusinessError } from '@ohos.base';
+
+const imageSourceApi: image.ImageSource = image.createImageSource(0);
+let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 };
+imagePackerApi.packing(imageSourceApi, packOpts, (err: BusinessError, data: ArrayBuffer) => {
+    if (err) {
         console.error('packing failed.');
     } else {
-        console.log('packing succeeded.');
+        console.info('packing succeeded.');
     }
 })
 ```
@@ -2802,13 +2849,14 @@ Packs an image. This API uses a promise to return the result.
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
-const imageSourceApi : image.ImageSource = image.createImageSource(0);
-let packOpts : image.PackingOption = { format:"image/jpeg", quality:98 }
+import { BusinessError } from '@ohos.base';
+
+const imageSourceApi: image.ImageSource = image.createImageSource(0);
+let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
 imagePackerApi.packing(imageSourceApi, packOpts)
-    .then( (data : ArrayBuffer) => {
-        console.log('packing succeeded.');
-	}).catch((error : BusinessError) => {
+    .then((data: ArrayBuffer) => {
+        console.info('packing succeeded.');
+	}).catch((error: BusinessError) => {
 	    console.error('packing failed.');
 	})
 ```
@@ -2832,15 +2880,16 @@ Packs an image. This API uses an asynchronous callback to return the result.
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
-const color : ArrayBuffer = new ArrayBuffer(96);  // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
-let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
-image.createPixelMap(color, opts).then((pixelMap : image.PixelMap) => {
-    let packOpts : image.PackingOption = { format:"image/jpeg", quality:98 }
-    imagePackerApi.packing(pixelMap, packOpts, (err : BusinessError, data : ArrayBuffer) => { 
-        console.log('Succeeded in packing the image.');
+import { BusinessError } from '@ohos.base';
+
+const color: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
+let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+image.createPixelMap(color, opts).then((pixelMap: image.PixelMap) => {
+    let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
+    imagePackerApi.packing(pixelMap, packOpts, (err: BusinessError, data: ArrayBuffer) => { 
+        console.info('Succeeded in packing the image.');
     })
-}).catch((error : BusinessError) => {
+}).catch((error: BusinessError) => {
 	console.error('createPixelMap failed.');
 })
 ```
@@ -2869,18 +2918,19 @@ Packs an image. This API uses a promise to return the result.
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
-const color : ArrayBuffer = new ArrayBuffer(96);  // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
-let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
-image.createPixelMap(color, opts).then((pixelMap : image.PixelMap) => {
-    let packOpts : image.PackingOption = { format:"image/jpeg", quality:98 }
+import { BusinessError } from '@ohos.base';
+
+const color: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
+let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+image.createPixelMap(color, opts).then((pixelMap: image.PixelMap) => {
+    let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
     imagePackerApi.packing(pixelMap, packOpts)
-        .then( (data : ArrayBuffer) => {
-            console.log('Succeeded in packing the image.');
-        }).catch((error : BusinessError) => {
+        .then((data: ArrayBuffer) => {
+            console.info('Succeeded in packing the image.');
+        }).catch((error: BusinessError) => {
             console.error('Failed to pack the image..');
         })
-}).catch((error : BusinessError) => {
+}).catch((error: BusinessError) => {
 	console.error('createPixelMap failed.');
 })
 ```
@@ -2902,12 +2952,13 @@ Releases this **ImagePacker** instance. This API uses an asynchronous callback t
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
-imagePackerApi.release((err : BusinessError)=>{ 
+import { BusinessError } from '@ohos.base';
+
+imagePackerApi.release((err: BusinessError)=>{ 
     if (err != undefined) {
         console.error('Failed to release image packaging.'); 
     } else {
-        console.log('Succeeded in releasing image packaging.');
+        console.info('Succeeded in releasing image packaging.');
     }
 })
 ```
@@ -2929,12 +2980,13 @@ Releases this **ImagePacker** instance. This API uses a promise to return the re
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
-imagePackerApi.release().then(()=>{
-    console.log('Succeeded in releasing image packaging.');
-}).catch((error : BusinessError)=>{ 
+import { BusinessError } from '@ohos.base';
+
+imagePackerApi.release().then(() => {
+    console.info('Succeeded in releasing image packaging.');
+}).catch((error: BusinessError) => { 
     console.error('Failed to release image packaging.'); 
-}) 
+})
 ```
 
 ### packToFile<sup>11+</sup>
@@ -2957,21 +3009,21 @@ Encodes an **ImageSource** instance and packs it into a file. This API uses an a
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import { BusinessError } from '@ohos.base'
 import fs from '@ohos.file.fs'
 
-const context : Context = getContext(this);
-const path : string = context.filesDir + "/test.png";
-const imageSourceApi : image.ImageSource = image.createImageSource(path);
-let packOpts : image.PackingOption = { format: "image/jpeg", quality: 98 };
-const filePath : string = context.cacheDir + "/image_source.jpg";
+const context: Context = getContext(this);
+const path: string = context.filesDir + "/test.png";
+const imageSourceApi: image.ImageSource = image.createImageSource(path);
+let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 };
+const filePath: string = context.cacheDir + "/image_source.jpg";
 let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-const imagePackerApi : image.ImagePacker = image.createImagePacker();
-imagePackerApi.packToFile(imageSourceApi, file.fd, packOpts, (err : BusinessError) => {
-    if(err) {
+const imagePackerApi: image.ImagePacker = image.createImagePacker();
+imagePackerApi.packToFile(imageSourceApi, file.fd, packOpts, (err: BusinessError) => {
+    if (err) {
         console.error('packToFile failed.');
     } else {
-        console.log('packToFile succeeded.');
+        console.info('packToFile succeeded.');
     }
 })
 ```
@@ -3001,20 +3053,20 @@ Encodes an **ImageSource** instance and packs it into a file. This API uses a pr
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import { BusinessError } from '@ohos.base'
 import fs from '@ohos.file.fs'
 
-const context : Context = getContext(this);
-const path : string = context.filesDir + "/test.png";
-const imageSourceApi : image.ImageSource = image.createImageSource(path);
-let packOpts : image.PackingOption = { format: "image/jpeg", quality: 98 };
-const filePath : string = context.cacheDir + "/image_source.jpg";
+const context: Context = getContext(this);
+const path: string = context.filesDir + "/test.png";
+const imageSourceApi: image.ImageSource = image.createImageSource(path);
+let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 };
+const filePath: string = context.cacheDir + "/image_source.jpg";
 let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-const imagePackerApi : image.ImagePacker = image.createImagePacker();
-imagePackerApi.packToFile(imageSourceApi, file.fd, packOpts).then(()=>{
-    console.log('Succeeded in packToFile.');
-}).catch((error : BusinessError)=>{ 
-    console.log('Failed to packToFile.'); 
+const imagePackerApi: image.ImagePacker = image.createImagePacker();
+imagePackerApi.packToFile(imageSourceApi, file.fd, packOpts).then(() => {
+    console.info('Succeeded in packToFile.');
+}).catch((error: BusinessError) => { 
+    console.error('Failed to packToFile.'); 
 }) 
 ```
 
@@ -3038,22 +3090,22 @@ Encodes a **PixelMap** instance and packs it into a file. This API uses an async
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import { BusinessError } from '@ohos.base'
 import fs from '@ohos.file.fs'
 
-const color : ArrayBuffer = new ArrayBuffer(96);  // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
-let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
-const context : Context = getContext(this);
-const path : string = context.cacheDir + "/pixel_map.jpg";
-image.createPixelMap(color, opts).then((pixelmap : image.PixelMap) => {
-    let packOpts : image.PackingOption = { format: "image/jpeg", quality: 98 }
+const color: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
+let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+const context: Context = getContext(this);
+const path: string = context.cacheDir + "/pixel_map.jpg";
+image.createPixelMap(color, opts).then((pixelmap: image.PixelMap) => {
+    let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
     let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-    const imagePackerApi : image.ImagePacker = image.createImagePacker();
-    imagePackerApi.packToFile(pixelmap, file.fd, packOpts, (err : BusinessError) => {
-        if(err) {
+    const imagePackerApi: image.ImagePacker = image.createImagePacker();
+    imagePackerApi.packToFile(pixelmap, file.fd, packOpts, (err: BusinessError) => {
+        if (err) {
             console.error('packToFile failed.');
         } else {
-            console.log('packToFile succeeded.');
+            console.info('packToFile succeeded.');
         }
     })
 })
@@ -3084,22 +3136,22 @@ Encodes a **PixelMap** instance and packs it into a file. This API uses a promis
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import { BusinessError } from '@ohos.base'
 import fs from '@ohos.file.fs'
 
-const color : ArrayBuffer = new ArrayBuffer(96);  // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
-let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
-const context : Context = getContext(this);
-const path : string = context.cacheDir + "/pixel_map.jpg";
-image.createPixelMap(color, opts).then((pixelmap : image.PixelMap) => {
-    let packOpts : image.PackingOption = { format: "image/jpeg", quality: 98 }
+const color: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
+let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+const context: Context = getContext(this);
+const path: string = context.cacheDir + "/pixel_map.jpg";
+image.createPixelMap(color, opts).then((pixelmap: image.PixelMap) => {
+    let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
     let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-    const imagePackerApi : image.ImagePacker = image.createImagePacker();
+    const imagePackerApi: image.ImagePacker = image.createImagePacker();
     imagePackerApi.packToFile(pixelmap, file.fd, packOpts)
         .then(() => {
-            console.log('Succeeded in packToFile.');
-        }).catch((error : BusinessError) => {
-            console.log('Failed to packToFile.');
+            console.info('Succeeded in packToFile.');
+        }).catch((error: BusinessError) => {
+            console.error('Failed to packToFile.');
         })
 })
 ```
@@ -3128,7 +3180,7 @@ Creates an **ImageReceiver** instance by specifying the image size, format, and 
 
 **Error codes**
 
-For details about the error codes, see [Image Error Codes](../errorcodes/errorcode-image.md).
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -3137,11 +3189,11 @@ For details about the error codes, see [Image Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let size:image.Size = {
+let size: image.Size = {
     height: 8192,
     width: 8
 } 
-let receiver : image.ImageReceiver = image.createImageReceiver(size, image.ImageFormat.JPEG, 8);
+let receiver: image.ImageReceiver = image.createImageReceiver(size, image.ImageFormat.JPEG, 8);
 ```
 
 ## image.createImageReceiver<sup>(deprecated)</sup>
@@ -3174,7 +3226,7 @@ Creates an **ImageReceiver** instance by specifying the image width, height, for
 **Example**
 
 ```ts
-let receiver : image.ImageReceiver = image.createImageReceiver(8192, 8, image.ImageFormat.JPEG, 8);
+let receiver: image.ImageReceiver = image.createImageReceiver(8192, 8, image.ImageFormat.JPEG, 8);
 ```
 
 ## ImageReceiver<sup>9+</sup>
@@ -3210,12 +3262,13 @@ Obtains a surface ID for the camera or other components. This API uses an asynch
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
-receiver.getReceivingSurfaceId((err : BusinessError, id : string) => { 
-    if(err) {
+import { BusinessError } from '@ohos.base';
+
+receiver.getReceivingSurfaceId((err: BusinessError, id: string) => { 
+    if (err) {
         console.error('getReceivingSurfaceId failed.');
     } else {
-        console.log('getReceivingSurfaceId succeeded.');
+        console.info('getReceivingSurfaceId succeeded.');
     }
 });
 ```
@@ -3237,10 +3290,11 @@ Obtains a surface ID for the camera or other components. This API uses a promise
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
-receiver.getReceivingSurfaceId().then( (id : string) => { 
-    console.log('getReceivingSurfaceId succeeded.');
-}).catch((error : BusinessError) => {
+import { BusinessError } from '@ohos.base';
+
+receiver.getReceivingSurfaceId().then((id: string) => { 
+    console.info('getReceivingSurfaceId succeeded.');
+}).catch((error: BusinessError) => {
     console.error('getReceivingSurfaceId failed.');
 })
 ```
@@ -3262,12 +3316,13 @@ Reads the latest image from the **ImageReceiver** instance. This API uses an asy
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
-receiver.readLatestImage((err : BusinessError, img : image.Image) => { 
-    if(err) {
+import { BusinessError } from '@ohos.base';
+
+receiver.readLatestImage((err: BusinessError, img: image.Image) => { 
+    if (err) {
         console.error('readLatestImage failed.');
     } else {
-        console.log('readLatestImage succeeded.');
+        console.info('readLatestImage succeeded.');
     }
 });
 ```
@@ -3289,10 +3344,11 @@ Reads the latest image from the **ImageReceiver** instance. This API uses a prom
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
-receiver.readLatestImage().then((img : image.Image) => {
-    console.log('readLatestImage succeeded.');
-}).catch((error : BusinessError) => {
+import { BusinessError } from '@ohos.base';
+
+receiver.readLatestImage().then((img: image.Image) => {
+    console.info('readLatestImage succeeded.');
+}).catch((error: BusinessError) => {
     console.error('readLatestImage failed.');
 })
 ```
@@ -3314,12 +3370,13 @@ Reads the next image from the **ImageReceiver** instance. This API uses an async
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
-receiver.readNextImage((err : BusinessError, img : image.Image) => { 
-    if(err) {
+import { BusinessError } from '@ohos.base';
+
+receiver.readNextImage((err: BusinessError, img: image.Image) => { 
+    if (err) {
         console.error('readNextImage failed.');
     } else {
-        console.log('readNextImage succeeded.');
+        console.info('readNextImage succeeded.');
     }
 });
 ```
@@ -3341,10 +3398,11 @@ Reads the next image from the **ImageReceiver** instance. This API uses a promis
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
-receiver.readNextImage().then((img : image.Image) => {
-    console.log('readNextImage succeeded.');
-}).catch((error : BusinessError) => {
+import { BusinessError } from '@ohos.base';
+
+receiver.readNextImage().then((img: image.Image) => {
+    console.info('readNextImage succeeded.');
+}).catch((error: BusinessError) => {
     console.error('readNextImage failed.');
 })
 ```
@@ -3389,12 +3447,13 @@ Releases this **ImageReceiver** instance. This API uses an asynchronous callback
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base'
-receiver.release((err : BusinessError) => {
-    if(err) {
+import { BusinessError } from '@ohos.base'
+
+receiver.release((err: BusinessError) => {
+    if (err) {
         console.error('release ImageReceiver failed.');
     } else {
-        console.log('release ImageReceiver succeeded.');
+        console.info('release ImageReceiver succeeded.');
     }
 })
 ```
@@ -3416,10 +3475,11 @@ Releases this **ImageReceiver** instance. This API uses a promise to return the 
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
+
 receiver.release().then(() => {
-    console.log('release succeeded.');
-}).catch((error : BusinessError) => {
+    console.info('release succeeded.');
+}).catch((error: BusinessError) => {
     console.error('release failed.');
 })
 ```
@@ -3449,7 +3509,7 @@ Creates an **ImageCreator** instance by specifying the image size, format, and c
 
 **Error codes**
 
-For details about the error codes, see [Image Error Codes](../errorcodes/errorcode-image.md).
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -3458,11 +3518,11 @@ For details about the error codes, see [Image Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let size:image.Size = {
+let size: image.Size = {
     height: 8192,
     width: 8
 } 
-let creator : image.ImageCreator = image.createImageCreator(size, image.ImageFormat.JPEG, 8);
+let creator: image.ImageCreator = image.createImageCreator(size, image.ImageFormat.JPEG, 8);
 ```
 
 ## image.createImageCreator<sup>(deprecated)</sup>
@@ -3495,7 +3555,7 @@ Creates an **ImageCreator** instance by specifying the image width, height, form
 **Example**
 
 ```ts
-let creator : image.ImageCreator = image.createImageCreator(8192, 8, image.ImageFormat.JPEG, 8);
+let creator: image.ImageCreator = image.createImageCreator(8192, 8, image.ImageFormat.JPEG, 8);
 ```
 
 ## ImageCreator<sup>9+</sup>
@@ -3529,8 +3589,9 @@ Obtains an image buffer from the idle queue and writes image data into it. This 
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
-creator.dequeueImage((err : BusinessError, img : image.Image) => {
+import { BusinessError } from '@ohos.base';
+
+creator.dequeueImage((err: BusinessError, img: image.Image) => {
     if (err) {
         console.error('dequeueImage failed.');
     } else {
@@ -3556,10 +3617,11 @@ Obtains an image buffer from the idle queue and writes image data into it. This 
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
-creator.dequeueImage().then((img : image.Image) => {
+import { BusinessError } from '@ohos.base';
+
+creator.dequeueImage().then((img: image.Image) => {
     console.info('dequeueImage succeeded.');
-}).catch((error : BusinessError) => {
+}).catch((error: BusinessError) => {
     console.error('dequeueImage failed: ' + error);
 })
 ```
@@ -3582,11 +3644,12 @@ Places the drawn image in the dirty queue. This API uses an asynchronous callbac
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
-creator.dequeueImage().then((img : image.Image) => {
+import { BusinessError } from '@ohos.base';
+
+creator.dequeueImage().then((img: image.Image) => {
     // Draw the image.
-    img.getComponent(4).then( (component : image.Component) => {
-        let bufferArr : Uint8Array = new Uint8Array(component.byteBuffer);
+    img.getComponent(4).then((component : image.Component) => {
+        let bufferArr: Uint8Array = new Uint8Array(component.byteBuffer);
         for (let i = 0; i < bufferArr.length; i += 4) {
             bufferArr[i] = 0; //B
             bufferArr[i + 1] = 0; //G
@@ -3594,7 +3657,7 @@ creator.dequeueImage().then((img : image.Image) => {
             bufferArr[i + 3] = 255; //A
         }
     })
-    creator.queueImage(img, (err : BusinessError) => {
+    creator.queueImage(img, (err: BusinessError) => {
         if (err) {
             console.error('queueImage failed: ' + err);
         } else {
@@ -3628,11 +3691,12 @@ Places the drawn image in the dirty queue. This API uses a promise to return the
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
-creator.dequeueImage().then((img : image.Image) => {
+import { BusinessError } from '@ohos.base';
+
+creator.dequeueImage().then((img: image.Image) => {
     // Draw the image.
-    img.getComponent(4).then((component : image.Component) => {
-        let bufferArr : Uint8Array = new Uint8Array(component.byteBuffer);
+    img.getComponent(4).then((component: image.Component) => {
+        let bufferArr: Uint8Array = new Uint8Array(component.byteBuffer);
         for (let i = 0; i < bufferArr.length; i += 4) {
             bufferArr[i] = 0; //B
             bufferArr[i + 1] = 0; //G
@@ -3642,7 +3706,7 @@ creator.dequeueImage().then((img : image.Image) => {
     })
     creator.queueImage(img).then(() => {
         console.info('queueImage succeeded.');
-    }).catch((error : BusinessError) => {
+    }).catch((error: BusinessError) => {
         console.error('queueImage failed: ' + error);
     })
 })
@@ -3667,8 +3731,9 @@ Listens for image release events. This API uses an asynchronous callback to retu
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
-creator.on('imageRelease', (err : BusinessError) => {
+import { BusinessError } from '@ohos.base';
+
+creator.on('imageRelease', (err: BusinessError) => {
     if (err) {
         console.error('on faild' + err);
     } else {
@@ -3694,8 +3759,9 @@ Releases this **ImageCreator** instance. This API uses an asynchronous callback 
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
-creator.release((err : BusinessError) => {
+import { BusinessError } from '@ohos.base';
+
+creator.release((err: BusinessError) => {
     if (err) {
         console.error('release failed: ' + err);
     } else {
@@ -3720,10 +3786,11 @@ Releases this **ImageCreator** instance. This API uses a promise to return the r
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
+
 creator.release().then(() => {
     console.info('release succeeded');
-}).catch((error : BusinessError) => {
+}).catch((error: BusinessError) => {
     console.error('release failed');
 })
 ```
@@ -3740,7 +3807,7 @@ Provides APIs for basic image operations, including obtaining image information 
 | -------- | ------------------ | ---- | ---- | -------------------------------------------------- |
 | clipRect | [Region](#region7) | Yes  | Yes  | Image area to be cropped.                                |
 | size     | [Size](#size)      | Yes  | No  | Image size.                                        |
-| format   | number             | Yes  | No  | Image format. For details, see [PixelMapFormat](#pixelmapformat7).|
+| format   | number             | Yes  | No  | Image format. For details, see [OH_NativeBuffer_Format](../apis-arkgraphics2d/_o_h___native_buffer.md#oh_nativebuffer_format).|
 
 ### getComponent<sup>9+</sup>
 
@@ -3760,12 +3827,13 @@ Obtains the component buffer from the **Image** instance based on the color comp
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
-img.getComponent(4, (err : BusinessError, component : image.Component) => {
-    if(err) {
+import { BusinessError } from '@ohos.base';
+
+img.getComponent(4, (err: BusinessError, component: image.Component) => {
+    if (err) {
         console.error('getComponent failed.');
     } else {
-        console.log('getComponent succeeded.');
+        console.info('getComponent succeeded.');
     }
 })
 ```
@@ -3793,9 +3861,11 @@ Obtains the component buffer from the **Image** instance based on the color comp
 **Example**
 
 ```ts
-img.getComponent(4).then((component : image.Component) => {
-    console.log('getComponent succeeded.');
-}).catch((error : BusinessError) => {
+import { BusinessError } from '@ohos.base';
+
+img.getComponent(4).then((component: image.Component) => {
+    console.info('getComponent succeeded.');
+}).catch((error: BusinessError) => {
     console.error('getComponent failed');
 })
 ```
@@ -3819,14 +3889,15 @@ The corresponding resources must be released before another image arrives.
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
-img.release((err : BusinessError) =>{ 
+import { BusinessError } from '@ohos.base';
+
+img.release((err: BusinessError) => {
     if (err != undefined) {
         console.error('Failed to release the image source instance.');
     } else {
-        console.log('Succeeded in releasing the image source instance.');
+        console.info('Succeeded in releasing the image source instance.');
     }
-}) 
+})
 ```
 
 ### release<sup>9+</sup>
@@ -3848,10 +3919,11 @@ The corresponding resources must be released before another image arrives.
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
-img.release().then(() =>{
-    console.log('release succeeded.');
-}).catch((error : BusinessError) => {
+import { BusinessError } from '@ohos.base';
+
+img.release().then(() => {
+    console.info('release succeeded.');
+}).catch((error: BusinessError) => {
     console.error('release failed.');
 })
 ```
@@ -3977,7 +4049,7 @@ Defines image decoding options.
 | desiredPixelFormat | [PixelMapFormat](#pixelmapformat7) | Yes  | Yes  | Pixel map format for decoding.|
 | index              | number                             | Yes  | Yes  | Index of the image to decode.  |
 | fitDensity<sup>9+</sup> | number                        | Yes  | Yes  | Image pixel density, in ppi.  |
-| desiredColorSpace<sup>11+</sup> | [colorSpaceManager.ColorSpaceManager](../apis/js-apis-colorSpaceManager.md#colorspacemanager) | Yes  | Yes  | Target color space.|
+| desiredColorSpace<sup>11+</sup> | [colorSpaceManager.ColorSpaceManager](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspacemanager) | Yes  | Yes  | Target color space.|
 
 ## Region<sup>7+</sup>
 
@@ -4168,3 +4240,5 @@ The SVG tags are supported since API version 10. The used version is (SVG) 1.1. 
 - textPath
 - tspan
 - use
+
+ <!--no_check--> 

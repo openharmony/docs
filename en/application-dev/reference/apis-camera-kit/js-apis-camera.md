@@ -24,7 +24,7 @@ Obtains a **CameraManager** instance. This API returns the result synchronously.
 
 | Name    | Type                                            | Mandatory| Description                          |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| context  | [Context](../apis/js-apis-inner-application-baseContext.md)      | Yes  | Application context.                  |
+| context  | [Context](../apis-ability-kit/js-apis-inner-application-baseContext.md)      | Yes  | Application context.                  |
 
 **Return value**
 
@@ -482,7 +482,7 @@ Creates a **PreviewOutput** instance. This API returns the result synchronously.
 | Name    | Type                                            | Mandatory| Description                             |
 | -------- | ----------------------------------------------- | ---- | ------------------------------- |
 | profile  | [Profile](#profile)                             | Yes  | Supported preview profiles, which are obtained through [getSupportedOutputCapability](#getsupportedoutputcapability11).|
-| surfaceId| string | Yes  | Surface ID, which is obtained from [XComponent](../arkui-ts/ts-basic-components-xcomponent.md) or [ImageReceiver](../apis-image-kit/js-apis-image.md#imagereceiver9).|
+| surfaceId| string | Yes  | Surface ID, which is obtained from [XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md) or [ImageReceiver](../apis-image-kit/js-apis-image.md#imagereceiver9).|
 
 **Return value**
 
@@ -3901,7 +3901,7 @@ function getMeteringPoint(photoSession: camera.PhotoSession): camera.Point | und
 
 setMeteringPoint(point: Point): void
 
-Sets the metering point, which is the center point of the metering rectangle. 
+Sets the metering point, which is the center point of the metering rectangle.
 
 The metering point must be in the coordinate system (0-1), where the upper left corner is {0, 0} and the lower right corner is {1, 1}.
 
@@ -5871,7 +5871,7 @@ setFocusPoint(point: Point): void
 
 Sets the focal point. The focal point must be in the coordinate system (0-1), where the upper left corner is {0, 0} and the lower right corner is {1, 1}.
 
-The coordinate system is based on the horizontal device direction with the device's charging port on the right. If the layout of the preview screen of an application is based on the vertical direction with the  charging port on the lower side, the layout width and height are {w, h}, and the touch point is {x, y}, then the coordinate point after conversion is {y/h, 1-x/w}.
+The coordinate system is based on the horizontal device direction with the device's charging port on the right. If the layout of the preview screen of an application is based on the vertical direction with the charging port on the lower side, the layout width and height are {w, h}, and the touch point is {x, y}, then the coordinate point after conversion is {y/h, 1-x/w}.
 
 > **NOTE**
 >

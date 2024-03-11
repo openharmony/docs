@@ -5,9 +5,7 @@
 
 The **VideoOutput_Callbacks** struct defines the callbacks used for video output.
 
-**See**
-
-[OH_VideoOutput_RegisterCallback](_o_h___camera.md#oh_videooutput_registercallback)
+For details, see [OH_VideoOutput_RegisterCallback](_o_h___camera.md#oh_videooutput_registercallback).
 
 **Since**: 11
 
@@ -21,9 +19,9 @@ The **VideoOutput_Callbacks** struct defines the callbacks used for video output
 
 | Name| Description| 
 | -------- | -------- |
-| [onFrameStart](#onframestart) | Callback to report video output frame start events.| 
-| [onFrameEnd](#onframeend) | Callback to report video output frame end events.| 
-| [onError](#onerror) | Callback to report video output errors.| 
+| [OH_VideoOutput_OnFrameStart](_o_h___camera.md#oh_videooutput_onframestart) [onFrameStart](#onframestart) | Callback to report video output frame start events.| 
+| [OH_VideoOutput_OnFrameEnd](_o_h___camera.md#oh_videooutput_onframeend) [onFrameEnd](#onframeend) | Callback to report video output frame end events.| 
+| [OH_VideoOutput_OnError](_o_h___camera.md#oh_videooutput_onerror) [onError](#onerror) | Callback to report video output errors.| 
 
 
 ## Member Variable Description

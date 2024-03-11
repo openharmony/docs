@@ -1,11 +1,23 @@
 # HSP
 
-A Harmony Shared Package (HSP) is a dynamic shared package. It can be classified as intra-application HSP or inter-application HSP (not supported yet). An intra-application Harmony Shared Package (HSP) is a file used for code and resource sharing within an application (called the host application) and can only be invoked by a HAP or HSP of the same application. The intra-application HSP is released with the Application Package (App Pack) of the host application, shares a process with the host application, and has the same bundle name and lifecycle as the host application.
+A Harmony Shared Package (HSP) is a dynamic shared package that can contain code, C++ libraries, resource files, and configuration files (also called profiles) and allows for code and resource sharing within an application (called the host application). An HSP is released with the Application Package (App Pack) of the host application, shares a process with the host application, and has the same bundle name and lifecycle as the host application.
 > **NOTE**
 > 
 > As the inter-application HSP is not supported yet, unless otherwise specified, the HSP refers to the intra-application HSP.
 
-## Creating an HSP Module
+## When to Use
+- By storing code and resource files shared by multiple HAPs/HSPs in one place, the HSP significantly improves the reusability and maintainability of the code and resource files. Better yet, because only one copy of the HSP code and resource files is retained during building and packaging, the size of the application package is effectively controlled.
+
+- The HSP is loaded on demand during application running, which helps improve application performance.
+
+## Constraints
+
+- An HSP must be installed and run with the HAP that depends on it. It cannot be installed or run independently on a device. The version of an HSP must be the same as that of the HAP.
+- No [UIAbility](../application-models/uiability-overview.md) or [ExtensionAbility](../application-models/extensionability-overview.md) can be declared in the configuration file of an HSP.
+- An HSP can depend on other HARs or HSPs, but does not support cyclic dependency or dependency transfer.
+
+
+## Creating an HSP
 Create an HSP module in DevEco Studio. In this example, an HSP module named **library** is created. The basic project directory structure is as follows:
 ```
 library
@@ -19,7 +31,10 @@ library
 └── oh-package.json5
 ```
 
-## Exporting ArkUI Components, APIs, and Resources from HSP
+## Developing an HSP
+
+
+You can export the ArkUI components, APIs, and other resources of an HSP for other HAPs or HSPs in the same application to reference.
 
 ### Exporting ArkUI Components
 Use **export** to export ArkUI components. The sample code is as follows:
@@ -30,21 +45,20 @@ export struct MyTitleBar {
   build() {
     Row() {
       Text($r('app.string.library_title'))
-        .fontColor($r('app.color.white'))
-        .fontSize(25)
-        .margin({left:15})
+        .id('library')
+        .fontFamily('HarmonyHeiTi')
+        .fontWeight(FontWeight.Bold)
+        .fontSize(32)
+        .fontColor($r('app.color.text_color'))
     }
     .width('100%')
-    .height(50)
-    .padding({left:15})
-    .backgroundColor('#0D9FFB')
   }
 }
 ```
 In the entry point file **index.ets**, declare the APIs to be exposed.
 ```ts
 // library/src/main/ets/index.ets
-export { MyTitleBar } from './components/MyTitleBar'
+export { MyTitleBar } from './components/MyTitleBar';
 ```
 
 
@@ -53,40 +67,40 @@ Use **export** to export TS classes and methods. The sample code is as follows:
 ```ts
 // library/src/main/ets/utils/test.ts
 export class Log {
-    static info(msg: string) {
-        console.info(msg);
-    }
+  static info(msg: string): void {
+    console.info(msg);
+  }
 }
 
-export function add(a: number, b: number) {
+export function add(a: number, b: number): number {
   return a + b;
 }
 
-export function minus(a: number, b: number) {
+export function minus(a: number, b: number): number {
   return a - b;
 }
 ```
 In the entry point file **index.ets**, declare the APIs to be exposed.
 ```ts
 // library/src/main/ets/index.ets
-export { Log, add, minus } from './utils/test'
+export { Log, add, minus } from './utils/test';
 ```
 ### Exporting Native Methods
-The HSP can contain .so files compiled in C++. The HSP indirectly exports the native method in the .so file. In this example, the **multi** API in the **libnative.so** file is exported.
+The HSP can contain .so files compiled in C++. The HSP indirectly exports the native method in the .so file. In this example, the **multi** API in the **liblibrary.so** file is exported.
 ```ts
 // library/src/main/ets/utils/nativeTest.ts
-import native from "libnative.so"
+import native from 'liblibrary.so';
 
-export function nativeMulti(a: number, b: number) {
-    let result: number = native.multi(a, b);
-    return result;
+export function nativeMulti(a: number, b: number): number {
+  let result: number = native.multi(a, b);
+  return result;
 }
 ```
 
 In the entry point file **index.ets**, declare the APIs to be exposed.
 ```ts
 // library/src/main/ets/index.ets
-export { nativeMulti } from './utils/nativeTest'
+export { nativeMulti } from './utils/nativeTest';
 ```
 
 ### Accessing Resources in an HSP Through $r
@@ -100,11 +114,13 @@ if you use **Image("../../resources/base/media/example.png")**, the image actual
 ```ts
 // library/src/main/ets/pages/Index.ets
 // Correct
-Image($r("app.media.example"))
-  .width("100%")
+Image($r('app.media.example'))
+  .id('example')
+  .borderRadius('48px')
 // Incorrect
 Image("../../resources/base/media/example.png")
-  .width("100%")
+  .id('example')
+  .borderRadius('48px')
 ```
 
 ### Exporting Resources from HSP
@@ -119,10 +135,10 @@ The implementation is as follows:
 // library/src/main/ets/ResManager.ets
 export class ResManager{
   static getPic(): Resource{
-    return $r("app.media.pic");
+    return $r('app.media.pic');
   }
   static getDesc(): Resource{
-    return $r("app.string.shared_desc");
+    return $r('app.string.shared_desc');
   }
 }
 ```
@@ -130,66 +146,144 @@ export class ResManager{
 In the entry point file **index.ets**, declare the APIs to be exposed.
 ```ts
 // library/src/main/ets/index.ets
-export { ResManager } from './ResManager'
+export { ResManager } from './ResManager';
 ```
 
 
-## Referencing HSP
+
+## Using an HSP
+
+You can reference APIs in an HSP and and implement page redirection in the HSP through page routing.
+
+### Referencing APIs
 To use APIs in the HSP, first configure the dependency on the HSP in the **oh-package.json5** file of the module that needs to call the APIs (called the invoking module).
 You can then call the external APIs of the HSP in the same way as calling the APIs in the HAR. In this example, the external APIs are the following ones exported from **library**:
 
 ```ts
 // library/src/main/ets/index.ets
-export { Log, add, minus } from './utils/test'
-export { MyTitleBar } from './components/MyTitleBar'
-export { ResManager } from './ResManager'
-export { nativeMulti } from './utils/nativeTest'
+export { Log, add, minus } from './utils/test';
+export { MyTitleBar } from './components/MyTitleBar';
+export { ResManager } from './ResManager';
+export { nativeMulti } from './utils/nativeTest';
 ```
 The APIs can be used as follows in the code of the invoking module:
 ```ts
 // entry/src/main/ets/pages/index.ets
-import { Log, add, MyTitleBar, ResManager, nativeMulti } from "library"
+import { Log, add, MyTitleBar, ResManager, nativeMulti } from 'library';
 import { BusinessError } from '@ohos.base';
+import Logger from '../logger/Logger';
+import router from '@ohos.router';
+
+const TAG = 'Index';
 
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Hello World'
+  @State message: string = '';
+
   build() {
-    Row() {
-      Column() {
-        MyTitleBar()
-        Text(this.message)
-          .fontSize(30)
-          .fontWeight(FontWeight.Bold)
-        Button('add(1, 2)')
-          .onClick(()=>{
-            Log.info("add button click!");
-            this.message = "result: " + add(1, 2);
-          })
-        // Resource object returned by ResManager, which can be passed to a component for direct use or be extracted.
-        Image(ResManager.getPic())
-          .width("100%")
-        Button('getStringValue')
-          .onClick(()=> {
-            // Obtain the context of the HSP module based on the current context, obtain the resourceManager object of the HSP module, and then call the API of resourceManager to obtain resources.
-            getContext().createModuleContext('library').resourceManager.getStringValue(ResManager.getDesc())
-              .then(value => {
-                console.log("getStringValue is " + value);
-              })
-              .catch((err: BusinessError) => {
-                console.log("getStringValue promise error is " + err);
-              });
-          })
-          .width("50%")
-        Button('nativeMulti(3, 4)')
-          .onClick(()=>{
-            Log.info("nativeMulti button click!");
-            this.message = "result: " + nativeMulti(3, 4);
-          })
+    Column() {
+      List() {
+        ListItem() {
+          MyTitleBar()
+        }
+        .margin({ left: '35px', top: '32px' })
+
+        ListItem() {
+          Text(this.message)
+            .fontFamily('HarmonyHeiTi')
+            .fontSize(18)
+            .textAlign(TextAlign.Start)
+            .width('100%')
+            .fontWeight(FontWeight.Bold)
+        }
+        .width('685px')
+        .margin({ top: 30, bottom: 10 })
+
+        ListItem() {
+          // Resource object returned by ResManager, which can be passed to a component for direct use or be extracted.
+          Image(ResManager.getPic())
+            .id('image')
+            .borderRadius('48px')
+        }
+        .width('685px')
+        .margin({ top: 10, bottom: 10 })
+        .padding({ left: 12, right: 12, top: 4, bottom: 4 })
+
+        ListItem() {
+          Text($r('app.string.add'))
+            .fontSize(18)
+            .textAlign(TextAlign.Start)
+            .width('100%')
+            .fontWeight(500)
+            .height('100%')
+        }
+        .id('add')
+        .borderRadius(24)
+        .width('685px')
+        .height('84px')
+        .backgroundColor($r('sys.color.ohos_id_color_foreground_contrary'))
+        .margin({ top: 10, bottom: 10 })
+        .padding({ left: 12, right: 12, top: 4, bottom: 4 })
+        .onClick(() => {
+          Log.info('add button click!');
+          this.message = 'result: ' + add(1, 2);
+        })
+
+        ListItem() {
+          Text($r('app.string.get_string_value'))
+            .fontSize(18)
+            .textAlign(TextAlign.Start)
+            .width('100%')
+            .fontWeight(500)
+            .height('100%')
+        }
+        .id('getStringValue')
+        .borderRadius(24)
+        .width('685px')
+        .height('84px')
+        .backgroundColor($r('sys.color.ohos_id_color_foreground_contrary'))
+        .margin({ top: 10, bottom: 10 })
+        .padding({ left: 12, right: 12, top: 4, bottom: 4 })
+        .onClick(() => {
+          // Obtain the context of the HSP module based on the current context, obtain the resourceManager object of the HSP module, and then call the API of resourceManager to obtain resources.
+          getContext()
+            .createModuleContext('library')
+            .resourceManager
+            .getStringValue(ResManager.getDesc())
+            .then(value => {
+              Logger.info(TAG, `getStringValue is ${value}`);
+              this.message = 'getStringValue is ' + value;
+            })
+            .catch((err: BusinessError) => {
+              Logger.info(TAG, `getStringValue promise error is ${err}`);
+            });
+        })
+
+        ListItem() {
+          Text($r('app.string.native_multi'))
+            .fontSize(18)
+            .textAlign(TextAlign.Start)
+            .width('100%')
+            .fontWeight(500)
+            .height('100%')
+        }
+        .id('nativeMulti')
+        .borderRadius(24)
+        .width('685px')
+        .height('84px')
+        .backgroundColor($r('sys.color.ohos_id_color_foreground_contrary'))
+        .margin({ top: 10, bottom: 10 })
+        .padding({ left: 12, right: 12, top: 4, bottom: 4 })
+        .onClick(() => {
+          Log.info('nativeMulti button click!');
+          this.message = 'result: ' + nativeMulti(3, 4);
+        })
       }
-      .width('100%')
+      .alignListItem(ListItemAlign.Center)
     }
+    .width('100%')
+    .backgroundColor($r('app.color.page_background'))
     .height('100%')
   }
 }
@@ -197,55 +291,60 @@ struct Index {
 
 ### Redirecting to a Page
 
-If you want to add a button in the **entry** module to jump to the menu page (**library/src/main/ets/pages/menu.ets**) in the **library** module, you can write the following code in the **entry/src/main/ets/MainAbility/Index.ets** file of the **entry** module:
+If you want to add a button in the **entry** module to jump to the menu page (**library/src/main/ets/pages/menu.ets**) in the **library** module, you can write the following code in the **entry/src/main/ets/pages/Index.ets** file of the **entry** module:
 ```ts
-import router from '@ohos.router';
+import { Log, add, MyTitleBar, ResManager, nativeMulti } from 'library';
 import { BusinessError } from '@ohos.base';
+import Logger from '../logger/Logger';
+import router from '@ohos.router';
+
+const TAG = 'Index';
 
 @Entry
 @Component
 struct Index {
-    @State message: string = 'Hello World'
+  @State message: string = '';
 
-    build() {
-    Row() {
-        Column() {
-        Text(this.message)
-            .fontSize(50)
-            .fontWeight(FontWeight.Bold)
-        // Add a button to respond to user clicks.
-        Button() {
-            Text('click to menu')
-            .fontSize(30)
-            .fontWeight(FontWeight.Bold)
+  build() {
+    Column() {
+      List() {
+        ListItem() {
+          Text($r('app.string.click_to_menu'))
+            .fontSize(18)
+            .textAlign(TextAlign.Start)
+            .width('100%')
+            .fontWeight(500)
+            .height('100%')
         }
-        .type(ButtonType.Capsule)
-        .margin({
-            top: 20
-        })
-        .backgroundColor('#0D9FFB')
-        .width('40%')
-        .height('5%')
-        // Bind click events.
+        .id('clickToMenu')
+        .borderRadius(24)
+        .width('685px')
+        .height('84px')
+        .backgroundColor($r('sys.color.ohos_id_color_foreground_contrary'))
+        .margin({ top: 10, bottom: 10 })
+        .padding({ left: 12, right: 12, top: 4, bottom: 4 })
         .onClick(() => {
-            router.pushUrl({
-              url: '@bundle:com.example.hmservice/library/ets/pages/menu'
-            }).then(() => {
-              console.log("push page success");
-            }).catch((err: BusinessError) => {
-              console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
-            })
+          router.pushUrl({
+            url: '@bundle:com.samples.hspsample/library/ets/pages/Menu'
+          }).then(() => {
+            console.log('push page success');
+            Logger.info(TAG, 'push page success');
+          }).catch((err: BusinessError) => {
+            Logger.error(TAG, `pushUrl failed, code is ${err.code}, message is ${err.message}`);
+          })
         })
-      .width('100%')
+      }
+      .alignListItem(ListItemAlign.Center)
     }
+    .width('100%')
+    .backgroundColor($r('app.color.page_background'))
     .height('100%')
-    }
   }
 }
 ```
 The input parameter **url** of the **router.pushUrl** API is as follows:
 ```ets
-'@bundle:com.example.hmservice/library/ets/pages/menu'
+'@bundle:com.samples.hspsample/library/ets/pages/Menu'
 ```
 The **url** content template is as follows:
 ```ets
@@ -258,36 +357,60 @@ import router from '@ohos.router';
 
 @Entry
 @Component
-struct Index3 {// The path is `library/src/main/ets/pages/Index3.ets.
-  @State message: string = 'Hello World'
+struct Index3 { // The path is library/src/main/ets/pages/Back.ets.
+  @State message: string = 'HSP back page';
 
   build() {
     Row() {
-        Column() {
-        Button('back to HAP page')
-        .width('40%')
-        .height('5%')
-        // Bind click events.
-        .onClick(() => {
-          router.back({ // Go back to the HAP page.
-            url: 'pages/Index'    // The path is `entry/src/main/ets/pages/Index.ets`.
-          })
-        })
-        .width('100%')
+      Column() {
+        Text(this.message)
+          .fontFamily('HarmonyHeiTi')
+          .fontWeight(FontWeight.Bold)
+          .fontSize(32)
+          .fontColor($r('app.color.text_color'))
+          .margin({ top: '32px' })
+          .width('624px')
 
-        Button('back to HSP page')
-        .width('40%')
-        .height('5%')
-        // Bind click events.
-        .onClick(() => {
-          router.back({ // Go back to the HSP page.
-            url: '@bundle:com.example.hmservice/library/ets/pages/Index2'  // The path is `library/src/main/ets/pages/Index2.ets.
+        Button($r('app.string.back_to_HAP'))
+          .id('backToHAP')
+          .fontFamily('HarmonyHeiTi')
+          .height(48)
+          .width('624px')
+          .margin({ top: 550 })
+          .type(ButtonType.Capsule)
+          .borderRadius($r('sys.float.ohos_id_corner_radius_button'))
+          .backgroundColor($r('app.color.button_background'))
+          .fontColor($r('sys.color.ohos_id_color_foreground_contrary'))
+          .fontSize($r('sys.float.ohos_id_text_size_button1'))
+            // Bind click events.
+          .onClick(() => {
+            router.back({ // Go back to the HAP page.
+              url: 'pages/Index' // The path is entry/src/main/ets/pages/Index.ets.
+            })
           })
-        })
-        .width('100%')
+
+        Button($r('app.string.back_to_HSP'))
+          .id('backToHSP')
+          .fontFamily('HarmonyHeiTi')
+          .height(48)
+          .width('624px')
+          .margin({ top: '4%' , bottom: '6%' })
+          .type(ButtonType.Capsule)
+          .borderRadius($r('sys.float.ohos_id_corner_radius_button'))
+          .backgroundColor($r('app.color.button_background'))
+          .fontColor($r('sys.color.ohos_id_color_foreground_contrary'))
+          .fontSize($r('sys.float.ohos_id_text_size_button1'))
+            // Bind click events.
+          .onClick(() => {
+            router.back({ // Go back to the HSP page.
+              url: '@bundle:com.samples.hspsample/library/ets/pages/Menu' // The path is library/src/main/ets/pages/Menu.ets.
+            })
+          })
       }
-      .height('100%')
+      .width('100%')
     }
+    .backgroundColor($r('app.color.page_background'))
+    .height('100%')
   }
 }
 ```
@@ -304,10 +427,10 @@ The **url** parameter in the **router.back** method is described as follows:
     'Page file name (without the extension .ets)
     ```
 
-* In this example, the URL for going back from the HSP page to the HSP page is as follows:
+* To return to the HSP1 page after switching to the HSP2 page, the URL should be as follows:
 
     ```ets
-    '@bundle:com.example.hmservice/library/ets/pages/Index2'
+    '@bundle:com.samples.hspsample/library/ets/pages/Menu'
     ```
     The **url** content template is as follows:
     ```ets
