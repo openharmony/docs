@@ -119,7 +119,7 @@ List(value?:{space?: number&nbsp;|&nbsp;string, initialIndex?: number, scroller?
 
 >  **说明：**
 >
->  要使List处于可编辑模式需配合onItemDelete事件和ListItem的editable属性，即可编辑模式实现删除列表项功能，需满足以下条件：
+>  要使List处于可编辑模式需配合onItemDelete事件和ListItem的editable属性，即可编辑模式实现删除列表项功能，需满足以下条件（该功能从API9开始废弃）：
 >
 >  - editMode属性设置为true。
 >
@@ -129,7 +129,7 @@ List(value?:{space?: number&nbsp;|&nbsp;string, initialIndex?: number, scroller?
 >
 >  实现ListItem拖拽，需满足以下条件：
 >
->  - editMode属性设置为true。
+>  - editMode属性设置为true（从API9开始无需设置editMode属性）。
 >
 >  - 绑定onDragStart事件，且事件回调中返回浮动UI布局。
 
