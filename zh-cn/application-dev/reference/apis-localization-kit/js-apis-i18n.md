@@ -2247,7 +2247,7 @@ normalize(text: string): string
 **示例：**
   ```ts
   let normalizer: I18n.Normalizer = I18n.Normalizer.getInstance(I18n.NormalizerMode.NFC);
-  let normalizedText: string = normalizer.normalize('\u1E9B\u0323'); // normalizedText = \u1E9B\u0323
+  let normalizedText: string = normalizer.normalize('\u1E9B\u0323'); // normalizedText = ẛ̣
   ```
 
 
