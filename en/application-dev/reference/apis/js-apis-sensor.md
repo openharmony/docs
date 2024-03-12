@@ -4432,7 +4432,7 @@ Describes the sensor data reporting frequency.
 
 | Name    | Type  | Readable| Writable| Description                                       |
 | -------- | ------ | ---- | ---- | ------------------------------------------- |
-| interval | number | Yes  | Yes  | Frequency at which a sensor reports data. The default value is 200,000,000 ns.|
+| interval | number | Yes  | Yes  | Frequency at which a sensor reports data. The default value is 200,000,000 ns. This attribute has restrictions on the minimum and maximum values, determined by the reporting frequency supported by the hardware. |
 
 ## RotationMatrixResponse
 
@@ -7204,3 +7204,5 @@ promise.then((data: sensor.RotationMatrixResponse) => {
   console.info(`Failed to get promise.`);
 })
 ```
+
+ <!--no_check--> 

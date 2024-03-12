@@ -416,11 +416,11 @@ Enumerates the codec MIME types.
 
 | Name        | Value                   | Description                    |
 | ------------ | --------------------- | ------------------------ |
-| VIDEO_H263   | 'video/h263'          | Video in H.263 format.      |
+| VIDEO_H263   | 'video/h263'          | Video in H.263 format.     |
 | VIDEO_AVC    | 'video/avc'           | Video in AVC format.      |
-| VIDEO_MPEG2  | 'video/mpeg2'         | Video in MPEG-2 format.     |
-| VIDEO_MPEG4  | 'video/mp4v-es'       | Video in MPEG-4 format.     |
-| VIDEO_VP8    | 'video/x-vnd.on2.vp8' | Video in VP8 format.       |
+| VIDEO_MPEG2  | 'video/mpeg2'         | Video in MPEG-2 format.    |
+| VIDEO_MPEG4  | 'video/mp4v-es'       | Video in MPEG-4 format.    |
+| VIDEO_VP8    | 'video/x-vnd.on2.vp8' | Video in VP8 format.      |
 | AUDIO_AAC    | 'audio/mp4a-latm'     | Audio in MP4A-LATM format.|
 | AUDIO_VORBIS | 'audio/vorbis'        | Audio in Vorbis format.   |
 | AUDIO_FLAC   | 'audio/flac'          | Audio in FLAC format.     |
@@ -480,7 +480,7 @@ For details about the audio and video playback demo, see [Audio Playback](../../
 
 | Name                                               | Type                                                        | Readable| Writable| Description                                                        |
 | --------------------------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| url<sup>9+</sup>                                    | string                                                       | Yes  | Yes  | URL of the media asset. It is a static attribute and can be set only when the AVPlayer is in the idle state. <br>The video formats MP4, MPEG-TS, WebM, and MKV are supported.<br>The audio formats M4A, AAC, MP3, OGG, WAV, and FLAC are supported.<br>**Example of supported URLs**:<br>1. FD: fd://xx<br>![](figures/en-us_image_url.png)<br>2. HTTP: http\://xx<br>3. HTTPS: https\://xx<br>4. HLS: http\://xx or https\://xx|
+| url<sup>9+</sup>                                    | string                                                       | Yes  | Yes  | URL of the media asset. It is a static attribute and can be set only when the AVPlayer is in the idle state. <br>The video formats MP4, MPEG-TS, WebM, and MKV are supported.<br>The audio formats M4A, AAC, MP3, OGG, WAV, and FLAC are supported.<br>**Example of supported URLs**:<br>1. FD: fd://xx<br>![](figures/en-us_image_url.png) <br>2. HTTP: http\://xx<br>3. HTTPS: https\://xx<br>4. HLS: http\://xx or https\://xx|
 | fdSrc<sup>9+</sup>                                  | [AVFileDescriptor](#avfiledescriptor9)                       | Yes  | Yes  | FD of the media asset. It is a static attribute and can be set only when the AVPlayer is in the idle state.<br>This attribute is required when media assets of an application are continuously stored in a file.<br>The video formats MP4, MPEG-TS, WebM, and MKV are supported.<br>The audio formats M4A, AAC, MP3, OGG, WAV, and FLAC are supported.<br>**Example:**<br>Assume that a media file that stores continuous assets consists of the following:<br>Video 1 (address offset: 0, byte length: 100)<br>Video 2 (address offset: 101; byte length: 50)<br>Video 3 (address offset: 151, byte length: 150)<br>1. To play video 1: AVFileDescriptor {fd = resource handle; offset = 0; length = 100; }<br>2. To play video 2: AVFileDescriptor {fd = resource handle; offset = 101; length = 50; }<br>3. To play video 3: AVFileDescriptor {fd = resource handle; offset = 151; length = 150; }<br>To play an independent media file, use **src=fd://xx**.|
 | dataSrc<sup>10+</sup>                               | [AVDataSrcDescriptor](#avdatasrcdescriptor10)                | Yes  | Yes  | Descriptor of a streaming media asset. It is a static attribute and can be set only when the AVPlayer is in the idle state.<br>Use scenario: An application starts playing a media file while the file is still being downloaded from the remote to the local host.<br>The video formats MP4, MPEG-TS, WebM, and MKV are supported.<br>The audio formats M4A, AAC, MP3, OGG, WAV, and FLAC are supported.<br>**Example:**<br>A user is obtaining an audio and video file from a remote server and wants to play the downloaded file content. To implement this scenario, do as follows:<br>1. Obtain the total file size, in bytes. If the total size cannot be obtained, set **fileSize** to **-1**.<br>2. Implement the **func** callback to fill in data. If **fileSize** is **-1**, the format of **func** is **func(buffer: ArrayBuffer, length: number)**, and the AVPlayer obtains data in sequence; otherwise, the format is **func(buffer: ArrayBuffer, length: number, pos: number)**, and the AVPlayer seeks and obtains data in the required positions.<br>3. Set **AVDataSrcDescriptor {fileSize = size, callback = func}**.<br>**Notes:**<br>If the media file to play is in MP4/M4A format, ensure that the **moov** field (specifying the media information) is before the **mdat** field (specifying the media data) or the fields before the **moov** field is less than 10 MB. Otherwise, the parsing fails and the media file cannot be played.|
 | surfaceId<sup>9+</sup>                              | string                                                       | Yes  | Yes  | Video window ID. By default, there is no video window. It is a static attribute and can be set only when the AVPlayer is in the initialized state.<br>It is used to render the window for video playback and therefore is not required in audio-only playback scenarios.<br>**Example:**<br>[Create a surface ID through XComponent](../arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid).|
@@ -492,8 +492,8 @@ For details about the audio and video playback demo, see [Audio Playback](../../
 | state<sup>9+</sup>                                  | [AVPlayerState](#avplayerstate9)                             | Yes  | No  | AVPlayer state. It can be used as a query parameter when the AVPlayer is in any state.                  |
 | currentTime<sup>9+</sup>                            | number                                                       | Yes  | No  | Current video playback position, in ms. It can be used as a query parameter when the AVPlayer is in the prepared, playing, paused, or completed state.<br>The value **-1** indicates an invalid value.<br>In live mode, **-1** is returned by default.|
 | duration<sup>9+</sup><a name=avplayer_duration></a> | number                                                       | Yes  | No  | Video duration, in ms. It can be used as a query parameter when the AVPlayer is in the prepared, playing, paused, or completed state.<br>The value **-1** indicates an invalid value.<br>In live mode, **-1** is returned by default.|
-| width<sup>9+</sup>                                  | number                                                       | Yes  | No  | Video width, in pixels. It can be used as a query parameter when the AVPlayer is in the prepared, playing, paused, or completed state.<br>The value **0** indicates an invalid value.|
-| height<sup>9+</sup>                                 | number                                                       | Yes  | No  | Video height, in pixels. It can be used as a query parameter when the AVPlayer is in the prepared, playing, paused, or completed state.<br>The value **0** indicates an invalid value.|
+| width<sup>9+</sup>                                  | number                                                       | Yes  | No  | Video width, in px. It can be used as a query parameter when the AVPlayer is in the prepared, playing, paused, or completed state.<br>The value **0** indicates an invalid value.|
+| height<sup>9+</sup>                                 | number                                                       | Yes  | No  | Video height, in px. It can be used as a query parameter when the AVPlayer is in the prepared, playing, paused, or completed state.<br>The value **0** indicates an invalid value.|
 
 **NOTE**
 
@@ -1445,7 +1445,7 @@ avPlayer.off('endOfStream')
 
 on(type: 'timeUpdate', callback: Callback\<number>): void
 
-Subscribes to playback position changes. It is used to refresh the current position of the progress bar. By default, this event is reported every 1 second. However, it is reported immediately upon a successful seek operation.
+Subscribes to playback position changes. It is used to refresh the current position of the progress bar. By default, this event is reported every 100 ms. However, it is reported immediately upon a successful seek operation.
 The **'timeUpdate'** event is not supported in live mode.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
@@ -1486,7 +1486,6 @@ avPlayer.off('timeUpdate')
 ```
 
 ### on('durationUpdate')<sup>9+</sup>
-
 
 on(type: 'durationUpdate', callback: Callback\<number>): void
 
@@ -1731,8 +1730,8 @@ Describes an audio and video file asset. It is used to specify a particular asse
 | Name  | Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | fd     | number | Yes  | Resource handle, which is obtained by calling [resourceManager.getRawFd](js-apis-resource-manager.md#getrawfd9).    |
-| offset | number | No  | Resource offset, which needs to be entered based on the preset asset information. An invalid value causes a failure to parse audio and video assets.|
-| length | number | No  | Resource length, which needs to be entered based on the preset asset information. An invalid value causes a failure to parse audio and video assets.|
+| offset | number | No  | Resource offset, which needs to be entered based on the preset resource information. An invalid value causes a failure to parse audio and video resources.|
+| length | number | No  | Resource length, which needs to be entered based on the preset resource information. An invalid value causes a failure to parse audio and video resources.|
 
 ## AVDataSrcDescriptor<sup>10+</sup>
 
@@ -1981,7 +1980,7 @@ This API can be called only after the **prepare()** API is called.
 
 | Name  | Type                  | Mandatory| Description                       |
 | -------- | ---------------------- | ---- | --------------------------- |
-| callback | AsyncCallback\<string> | Yes  | Callback used to obtain the result.|
+| callback | AsyncCallback\<string> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -2138,7 +2137,7 @@ This API can be called only after the **start()** API is called. You can call **
 
 | Name  | Type                | Mandatory| Description                       |
 | -------- | -------------------- | ---- | --------------------------- |
-| callback | AsyncCallback\<void> | Yes  | Callback used to obtain the result.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -2649,7 +2648,7 @@ Describes the audio and video recording profile.
 | audioSampleRate  | number                                       | No  | Audio sampling rate. This parameter is mandatory for audio recording. The value range is [8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 96000].|
 | fileFormat       | [ContainerFormatType](#containerformattype8) | Yes  | Container format of a file. This parameter is mandatory.                                  |
 | videoBitrate     | number                                       | No  | Video encoding bit rate. This parameter is mandatory for video recording. The value range is [1 - 3000000]. |
-| videoCodec       | [CodecMimeType](#codecmimetype8)             | No  | Video encoding format. This parameter is mandatory for video recording. Currently, VIDEO_MPEG4 is supported.   |
+| videoCodec       | [CodecMimeType](#codecmimetype8)             | No  | Video encoding format. This parameter is mandatory for video recording. Only **VIDEO_MPEG4** is supported.   |
 | videoFrameWidth  | number                                       | No  | Width of a video frame. This parameter is mandatory for video recording. The value range is [2 - 1920].        |
 | videoFrameHeight | number                                       | No  | Height of a video frame. This parameter is mandatory for video recording. The value range is [2 - 1080].        |
 | videoFrameRate   | number                                       | No  | Video frame rate. This parameter is mandatory for video recording. The value range is [1 - 30].            |
@@ -2871,7 +2870,7 @@ This API can be called only after prepare() is called.
 
 | Name  | Type                  | Mandatory| Description                       |
 | -------- | ---------------------- | ---- | --------------------------- |
-| callback | AsyncCallback\<string> | Yes  | Callback used to obtain the result.|
+| callback | AsyncCallback\<string> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -3029,7 +3028,7 @@ pause(callback: AsyncCallback\<void>): void
 
 Pauses recording. This API uses an asynchronous callback to return the result.
 
-This API can be called only after start() is called. You can resume recording by calling resume().
+This API can be called only after **start()** is called. You can resume recording by calling **resume()**.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -3070,7 +3069,7 @@ pause(): Promise\<void>
 
 Pauses recording. This API uses a promise to return the result.
 
-This API can be called only after start() is called. You can resume recording by calling resume().
+This API can be called only after **start()** is called. You can resume recording by calling **resume()**.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -3185,7 +3184,7 @@ stop(callback: AsyncCallback\<void>): void
 
 Stops recording. This API uses an asynchronous callback to return the result.
 
-To start another recording, you must call prepare() and getInputSurface() again.
+To start another recording, you must call **prepare()** and **getInputSurface()** again.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -3226,7 +3225,7 @@ stop(): Promise\<void>
 
 Stops recording. This API uses a promise to return the result.
 
-To start another recording, you must call prepare() and getInputSurface() again.
+To start another recording, you must call **prepare()** and **getInputSurface()** again.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -3337,7 +3336,7 @@ reset(callback: AsyncCallback\<void>): void
 
 Resets video recording. This API uses an asynchronous callback to return the result.
 
-To start another recording, you must call prepare() and getInputSurface() again.
+To start another recording, you must call **prepare()** and **getInputSurface()** again.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -3377,7 +3376,7 @@ reset(): Promise\<void>
 
 Resets video recording. This API uses a promise to return the result.
 
-To start another recording, you must call prepare() and getInputSurface() again.
+To start another recording, you must call **prepare()** and **getInputSurface()** again.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -3600,6 +3599,7 @@ media.createVideoPlayer().then((video: media.VideoPlayer) => {
 createAudioRecorder(): AudioRecorder
 
 Creates an **AudioRecorder** instance to control audio recording.
+
 Only one **AudioRecorder** instance can be created per device.
 
 > **NOTE**
@@ -3657,7 +3657,7 @@ Provides APIs to manage and play audio. Before calling any API in **AudioPlayer*
 
 | Name                           | Type                                                  | Readable| Writable| Description                                                        |
 | ------------------------------- | ------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| src                             | string                                                 | Yes  | Yes  | Audio file URI. The mainstream audio formats (M4A, AAC, MP3, OGG, and WAV) are supported.<br>**Example of supported URLs**:<br>1. FD: fd://xx<br>![](figures/en-us_image_url.png)<br>2. HTTP: http\://xx<br>3. HTTPS: https\://xx<br>4. HLS: http\://xx or https\://xx<br>**Required permissions**: ohos.permission.READ_MEDIA or ohos.permission.INTERNET|
+| src                             | string                                                 | Yes  | Yes  | Audio file URI. The mainstream audio formats (M4A, AAC, MP3, OGG, and WAV) are supported.<br>**Example of supported URLs**:<br>1. FD: fd://xx<br>![](figures/en-us_image_url.png) <br>2. HTTP: http\://xx<br>3. HTTPS: https\://xx<br>4. HLS: http\://xx or https\://xx<br>**Required permissions**: ohos.permission.READ_MEDIA or ohos.permission.INTERNET|
 | fdSrc<sup>9+</sup>              | [AVFileDescriptor](#avfiledescriptor9)                 | Yes  | Yes  | Description of the audio file. This attribute is required when audio assets of an application are continuously stored in a file.<br>**Example:**<br>Assume that a music file that stores continuous music assets consists of the following:<br>Music 1 (address offset: 0, byte length: 100)<br>Music 2 (address offset: 101; byte length: 50)<br>Music 3 (address offset: 151, byte length: 150)<br>1. To play music 1: AVFileDescriptor {fd = resource handle; offset = 0; length = 100; }<br>2. To play music 2: AVFileDescriptor {fd = resource handle; offset = 101; length = 50; }<br>3. To play music 3: AVFileDescriptor {fd = resource handle; offset = 151; length = 150; }<br>To play an independent music file, use **src=fd://xx**.<br>|
 | loop                            | boolean                                                | Yes  | Yes  | Whether to loop audio playback. The value **true** means to loop audio playback, and **false** means the opposite.                |
 | audioInterruptMode<sup>9+</sup> | [audio.InterruptMode](js-apis-audio.md#interruptmode9) | Yes  | Yes  | Audio interruption mode.                                              |
@@ -4081,7 +4081,7 @@ Provides APIs to manage and play video. Before calling any API of **VideoPlayer*
 
 | Name                           | Type                                                  | Readable| Writable| Description                                                        |
 | ------------------------------- | ------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| url<sup>8+</sup>                | string                                                 | Yes  | Yes  | Video URL. The mainstream video formats (MP4, MPEG-TS, WebM, and MKV) are supported.<br>**Example of supported URLs**:<br>1. FD: fd://xx<br>![](figures/en-us_image_url.png)<br>2. HTTP: http\://xx<br>3. HTTPS: https\://xx<br>4. HLS: http\://xx or https\://xx<br>|
+| url<sup>8+</sup>                | string                                                 | Yes  | Yes  | Video URL. The mainstream video formats (MP4, MPEG-TS, WebM, and MKV) are supported.<br>**Example of supported URLs**:<br>1. FD: fd://xx<br>![](figures/en-us_image_url.png) <br>2. HTTP: http\://xx<br>3. HTTPS: https\://xx<br>4. HLS: http\://xx or https\://xx<br>|
 | fdSrc<sup>9+</sup>              | [AVFileDescriptor](#avfiledescriptor9)                 | Yes  | Yes  | Description of a video file. This attribute is required when video assets of an application are continuously stored in a file.<br>**Example:**<br>Assume that a music file that stores continuous music assets consists of the following:<br>Video 1 (address offset: 0, byte length: 100)<br>Video 2 (address offset: 101; byte length: 50)<br>Video 3 (address offset: 151, byte length: 150)<br>1. To play video 1: AVFileDescriptor {fd = resource handle; offset = 0; length = 100; }<br>2. To play video 2: AVFileDescriptor {fd = resource handle; offset = 101; length = 50; }<br>3. To play video 3: AVFileDescriptor {fd = resource handle; offset = 151; length = 150; }<br>To play an independent video file, use **src=fd://xx**.<br>|
 | loop<sup>8+</sup>               | boolean                                                | Yes  | Yes  | Whether to loop video playback. The value **true** means to loop video playback, and **false** means the opposite.                |
 | videoScaleType<sup>9+</sup>     | [VideoScaleType](#videoscaletype9)                     | Yes  | Yes  | Video scale type.                                              |
@@ -4089,8 +4089,8 @@ Provides APIs to manage and play video. Before calling any API of **VideoPlayer*
 | currentTime<sup>8+</sup>        | number                                                 | Yes  | No  | Current video playback position, in ms.                      |
 | duration<sup>8+</sup>           | number                                                 | Yes  | No  | Video duration, in ms. The value **-1** indicates the live mode.            |
 | state<sup>8+</sup>              | [VideoPlayState](#videoplaystatedeprecated)                    | Yes  | No  | Video playback state.                                            |
-| width<sup>8+</sup>              | number                                                 | Yes  | No  | Video width, in pixels.                                  |
-| height<sup>8+</sup>             | number                                                 | Yes  | No  | Video height, in pixels.                                  |
+| width<sup>8+</sup>              | number                                                 | Yes  | No  | Video width, in px.                                  |
+| height<sup>8+</sup>             | number                                                 | Yes  | No  | Video height, in px.                                  |
 
 ### setDisplaySurface<sup>(deprecated)</sup>
 
