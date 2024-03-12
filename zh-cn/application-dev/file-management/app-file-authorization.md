@@ -122,7 +122,7 @@
         console.info("persistPermission successfully");
       }).catch((err: BusinessError<Array<fileshare.PolicyErrorResult>>) => {
         console.info("persistPermission failed with error message: " + err.message + ", error code: " + err.code);
-        if (err.code == 13900001) {
+        if (err.code == 13900001 && err.data) {
           console.log("error data : " + JSON.stringify(err.data));
         }
       });
@@ -154,7 +154,7 @@
         console.info("revokePermission successfully");
       }).catch((err: BusinessError<Array<fileshare.PolicyErrorResult>>) => {
         console.info("revokePermission failed with error message: " + err.message + ", error code: " + err.code);
-        if (err.code == 13900001) {
+        if (err.code == 13900001 && err.data) {
           console.log("error data : " + JSON.stringify(err.data));
         }
       });
@@ -224,6 +224,9 @@
         console.info("deactivatePermission successfully");
       }).catch((err: BusinessError<Array<fileshare.PolicyErrorResult>>) => {
         console.info("deactivatePermission failed with error message: " + err.message + ", error code: " + err.code);
+        if (err.code == 13900001 && err.data) {
+          console.log("error data : " + JSON.stringify(err.data));
+        }
       });
       let fd = await fs.open(uri);
       await fs.close(fd);
