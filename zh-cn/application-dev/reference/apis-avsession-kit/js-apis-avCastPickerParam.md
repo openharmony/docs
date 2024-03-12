@@ -12,7 +12,7 @@ avCastPickerParam提供了[@ohos.multimedia.avCastPicker](ohos-multimedia-avcast
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
-| 类型   | 说明    |
-|------|-------|
-| STATE_APPEARING    | 组件显示。 |
-| STATE_DISAPPEARING    | 组件消失。 |
+| 名称                        | 值   | 说明         |
+| --------------------------- | ---- | ----------- |
+| STATE_APPEARING    | 0    | 组件显示。 |
+| STATE_DISAPPEARING    | 1    | 组件消失。 |
