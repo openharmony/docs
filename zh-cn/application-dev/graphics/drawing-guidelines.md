@@ -453,7 +453,7 @@ Native Drawing模块关于文本绘制提供两类API接口：
     ```c++
     // 创建字体，并设置文字大小
     OH_Drawing_Font* font = OH_Drawing_FontCreate();
-    OH_Drawing_FontSetTextSize(font, 20);
+    OH_Drawing_FontSetTextSize(font, 40);
     // 创建文本构造器
     OH_Drawing_TextBlobBuilder* builder = OH_Drawing_TextBlobBuilderCreate();
     // 申请一块内存
@@ -470,7 +470,18 @@ Native Drawing模块关于文本绘制提供两类API接口：
     OH_Drawing_TextBlobBuilderDestroy(builder);
     ```
 
-3. **生成最终文本显示效果**。
+3. **设置画笔和画刷样式**。
+
+    ```c++
+    // 创建一个画刷Brush对象，Brush对象用于形状的填充
+    cBrush_ = OH_Drawing_BrushCreate();
+    OH_Drawing_BrushSetColor(cBrush_, OH_Drawing_ColorSetArgb(0xFF, 0x00, 0x00, 0x00));
+
+    // 将Brush画刷设置到canvas中
+    OH_Drawing_CanvasAttachBrush(cCanvas_, cBrush_);
+    ```
+
+4. **生成最终文本显示效果**。
 
     ```c++
     // 设置文本在画布上绘制的起始位置
