@@ -1692,7 +1692,7 @@ function unregisterVendorDefined(mediaKeysession: drm.MediaKeySession): void {
 }
 ```
 
-### on('expirationUpdated')
+### on('expirationUpdate')
 
 on(type: 'expirationUpdate', callback: (eventInfo: EventInfo) => void): void
 
@@ -1704,7 +1704,7 @@ on(type: 'expirationUpdate', callback: (eventInfo: EventInfo) => void): void
 
 | 参数名      | 类型                  | 必填 | 说明                                  |
 | -------- | -------------------- | ---- | ------------------------------------- |
-| type     | string               | 是   | 监听事件，固定为'expirationUpdated'，MediaKeySystem实例创建成功可监听。密钥过期更新时触发该事件并返回。 |
+| type     | string               | 是   | 监听事件，固定为'expirationUpdate'，MediaKeySystem实例创建成功可监听。密钥过期更新时触发该事件并返回。 |
 | callback | Callback\<[EventInfo](#eventinfo)\> | 是   | 回调函数，用于获取结果。只要有该事件返回就证明会话丢失。                 |
 
 **错误码：**
@@ -1721,14 +1721,14 @@ on(type: 'expirationUpdate', callback: (eventInfo: EventInfo) => void): void
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-function registerExpirationUpdated(mediaKeysession: drm.MediaKeySession): void {
-    mediaKeysession.on('expirationUpdated', (eventInfo: drm.EventInfo) => {
-        console.log('expirationUpdated' + 'extra:' + eventInfo.extraInfo + ' data:' + eventInfo.info);
+function registerExpirationUpdate(mediaKeysession: drm.MediaKeySession): void {
+    mediaKeysession.on('expirationUpdate', (eventInfo: drm.EventInfo) => {
+        console.log('expirationUpdate' + 'extra:' + eventInfo.extraInfo + ' data:' + eventInfo.info);
     });
 }
 ```
 
-### off('expirationUpdated')
+### off('expirationUpdate')
 
 off(type: 'expirationUpdate', callback?: (eventInfo: EventInfo) => void): void
 
@@ -1740,7 +1740,7 @@ off(type: 'expirationUpdate', callback?: (eventInfo: EventInfo) => void): void
 
 | 参数名      | 类型                  | 必填 | 说明                                  |
 | -------- | -------------------- | ---- | ------------------------------------- |
-| type     | string               | 是   | 监听事件，固定为'expirationUpdated'，MediaKeySystem实例创建成功可监听。 |
+| type     | string               | 是   | 监听事件，固定为'expirationUpdate'，MediaKeySystem实例创建成功可监听。 |
 | callback | Callback\<[EventInfo](#eventinfo)\> | 否   | 回调函数，可选                |
 
 **错误码：**
@@ -1757,8 +1757,8 @@ off(type: 'expirationUpdate', callback?: (eventInfo: EventInfo) => void): void
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-function unregisterExpirationUpdated(mediaKeysession: drm.MediaKeySession): void {
-    mediaKeysession.off('expirationUpdated');
+function unregisterExpirationUpdate(mediaKeysession: drm.MediaKeySession): void {
+    mediaKeysession.off('expirationUpdate');
 }
 ```
 
