@@ -565,5 +565,3 @@ Allows an application to read media files from and write media files into the us
 **Enable via ACL**: true
 
 **Valid since**: 7
-
-<!--no_check-->

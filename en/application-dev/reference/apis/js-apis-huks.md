@@ -100,7 +100,7 @@ For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcod
 
 ```ts
 import huks from '@ohos.security.huks';
-/* Generate an ECC key of 256 bits. */
+/* Generate a 256-bit ECC key. */
 class HuksProperties {
     tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
     value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose | huks.HuksKeyDigest = huks.HuksKeyAlg.HUKS_ALG_ECC
@@ -179,7 +179,7 @@ For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcod
 **Example**
 
 ```ts
-/* Generate an ECC key of 256 bits. */
+/* Generate a 256-bit ECC key. */
 import huks from '@ohos.security.huks';
 import { BusinessError } from '@ohos.base';
 class HuksProperties {
@@ -236,7 +236,7 @@ Deletes a key. This API uses an asynchronous callback to return the result.
 | Name  | Type                       | Mandatory| Description                                         |
 | -------- | --------------------------- | ---- | --------------------------------------------- |
 | keyAlias | string                      | Yes  | Alias of the key to delete. It must be the key alias passed in when the key was generated.          |
-| options  | [HuksOptions](#huksoptions) | Yes  | Properties of the key to delete, for example, delete all keys or a single key. To delete a single key, pass in an empty **properties**.                     |
+| options  | [HuksOptions](#huksoptions) | Yes  | Properties of the key to delete, for example, delete all keys or a single key. To delete a single key, leave **properties** empty.                     |
 | callback | AsyncCallback\<void>        | Yes  | Callback invoked to return the result. If the operation is successful, no **err** value is returned; otherwise, an error code is returned.|
 
 **Error codes**
@@ -288,7 +288,7 @@ Deletes a key. This API uses a promise to return the result.
 | Name  | Type                       | Mandatory| Description                               |
 | -------- | --------------------------- | ---- | ----------------------------------- |
 | keyAlias | string                      | Yes  | Alias of the key to delete. It must be the key alias passed in when the key was generated.|
-| options  | [HuksOptions](#huksoptions) | Yes  | Properties of the key to delete, for example, delete all keys or a single key. To delete a single key, pass in an empty **properties**.           |
+| options  | [HuksOptions](#huksoptions) | Yes  | Properties of the key to delete, for example, delete all keys or a single key. To delete a single key, leave **properties** empty.           |
 
 **Error codes**
 
@@ -398,7 +398,7 @@ For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcod
 
 ```ts
 import huks from '@ohos.security.huks';
-/* Import an AES key of 256 bits. */
+/* Import a 256-bit AES key. */
 class HuksProperties {
     tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
     value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose | huks.HuksKeyPadding |
@@ -615,10 +615,6 @@ async function generateKeyThenattestKey(alias: string) {
             value: huks.HuksKeyAlg.HUKS_ALG_RSA
         },
         {
-            tag: huks.HuksTag.HUKS_TAG_KEY_STORAGE_FLAG,
-            value: huks.HuksKeyStorageType.HUKS_STORAGE_PERSISTENT
-        },
-        {
             tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
             value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_2048
         },
@@ -760,10 +756,6 @@ async function generateKey(alias: string) {
         {
             tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
             value: huks.HuksKeyAlg.HUKS_ALG_RSA
-        },
-        {
-            tag: huks.HuksTag.HUKS_TAG_KEY_STORAGE_FLAG,
-            value: huks.HuksKeyStorageType.HUKS_STORAGE_PERSISTENT
         },
         {
             tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
@@ -912,10 +904,6 @@ async function generateKeyThenAttestKey(alias: string): Promise<void> {
             value: huks.HuksKeyAlg.HUKS_ALG_RSA
         },
         {
-            tag: huks.HuksTag.HUKS_TAG_KEY_STORAGE_FLAG,
-            value: huks.HuksKeyStorageType.HUKS_STORAGE_PERSISTENT
-        },
-        {
             tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
             value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_2048
         },
@@ -1057,10 +1045,6 @@ async function generateKey(alias: string): Promise<void> {
         {
             tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
             value: huks.HuksKeyAlg.HUKS_ALG_RSA
-        },
-        {
-            tag: huks.HuksTag.HUKS_TAG_KEY_STORAGE_FLAG,
-            value: huks.HuksKeyStorageType.HUKS_STORAGE_PERSISTENT
         },
         {
             tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
@@ -1285,7 +1269,7 @@ async function TestImportWrappedKeyFunc(
      * nonce1 length (4 bytes) + nonce1 + tag1 length (4 bytes) + tag1 +
      * Memory occupied by the keyA length (4 bytes) + keyA length + keyA_enc length (4 bytes) + keyA_enc
      */
-    /* The key data imported vary with the sample code given below. The data structure is described in the preceding comments. */
+    /* The key data imported may be different from the sample code given below. The data structure is described in the preceding comments. */
     let inputKey = new Uint8Array([0x02, 0x00, 0x00, 0x00]);
     importOptions.inData = inputKey;
     await TestImportWrappedFunc(alias, wrappingAlias, importOptions);
@@ -1403,8 +1387,8 @@ For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcod
 ```ts
 import huks from '@ohos.security.huks';
 import { BusinessError } from '@ohos.base';
-/* The process is similar as if a callback is used, except the following:*/
-/* The key data imported vary with the sample code given below. The data structure is described in the preceding comments. */
+/* The process is similar if a callback is used, except the following: */
+/* The key data imported may be different from the sample code given below. The data structure is described in the preceding comments. */
 async function TestImportWrappedFunc(alias: string, wrappingAlias: string, options: huks.HuksOptions) {
     try {
         await huks.importWrappedKeyItem(alias, wrappingAlias, options)
@@ -1669,7 +1653,7 @@ Checks whether a key exists. This API uses an asynchronous callback to return th
 | Name  | Type                       | Mandatory| Description                                                    |
 | -------- | --------------------------- | ---- |--------------------------------------------------------|
 | keyAlias | string                      | Yes  | Alias of the key to check.                                           |
-| options  | [HuksOptions](#huksoptions) | Yes  | Properties of the key to check, for example, check all keys or a single key. To check a single key, pass in an empty **properties**.    |
+| options  | [HuksOptions](#huksoptions) | Yes  | Properties of the key to check, for example, check all keys or a single key. To check a single key, leave **properties** empty.    |
 | callback | AsyncCallback\<boolean>     | Yes  | Callback invoked to return the result. If the key exists, **data** is **true**. If the key does not exist, **error** is the error code.|
 
 **Error codes**
@@ -1726,7 +1710,7 @@ Checks whether a key exists. This API uses a promise to return the result.
 | Name  | Type                       | Mandatory| Description                    |
 | -------- | --------------------------- | ---- | ------------------------ |
 | keyAlias | string                      | Yes  | Alias of the key to check.  |
-| options  | [HuksOptions](#huksoptions) | Yes  | Properties of the key to check, for example, check all keys or a single key. To check a single key, pass in an empty **properties**.|
+| options  | [HuksOptions](#huksoptions) | Yes  | Properties of the key to check, for example, check all keys or a single key. To check a single key, leave **properties** empty.|
 
 **Return value**
 
@@ -2103,7 +2087,7 @@ For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcod
 
 finishSession(handle: number, options: HuksOptions, callback: AsyncCallback\<HuksReturnResult>) : void
 
-Finishes the key operation to release resources. This API uses an asynchronous callback to return the result. **huks.initSession**, **huks.updateSession**, and **huks.finishSession** must be used together.
+Completes the key operation and releases resources. This API uses an asynchronous callback to return the result. **huks.initSession**, **huks.updateSession**, and **huks.finishSession** must be used together.
 
 **System capability**: SystemCapability.Security.Huks.Core
 
@@ -2140,7 +2124,7 @@ For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcod
 
 finishSession(handle: number, options: HuksOptions, token: Uint8Array, callback: AsyncCallback\<HuksReturnResult>) : void
 
-Finishes the key operation to release resources. This API uses an asynchronous callback to return the result. **huks.initSession**, **huks.updateSession**, and **huks.finishSession** must be used together.
+Completes the key operation and releases resources. This API uses an asynchronous callback to return the result. **huks.initSession**, **huks.updateSession**, and **huks.finishSession** must be used together.
 
 **System capability**: SystemCapability.Security.Huks.Extension
 
@@ -2178,7 +2162,7 @@ For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcod
 
 finishSession(handle: number, options: HuksOptions, token?: Uint8Array) : Promise\<HuksReturnResult>
 
-Finishes the key operation to release resources. This API uses a promise to return the result. **huks.initSession**, **huks.updateSession**, and **huks.finishSession** must be used together.
+Completes the key operation and releases resources. This API uses a promise to return the result. **huks.initSession**, **huks.updateSession**, and **huks.finishSession** must be used together.
 
 **System capability**: SystemCapability.Security.Huks.Extension
 
@@ -2256,20 +2240,12 @@ import huks from '@ohos.security.huks';
  * and huks.finishSession operations,
  * huks.abortSession must be called to terminate the use of the key.
  *
- * The following uses the callback of an RSA1024 key as an example.
+ * The following uses a 2048-bit RSA key as an example. The callback-based APIs are used.
  */
 class HuksProperties {
     tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
     value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose | huks.HuksKeyDigest |
     huks.HuksKeyPadding | huks.HuksCipherMode = huks.HuksKeyAlg.HUKS_ALG_ECC
-}
-function stringToUint8Array(str: string) {
-    let arr: number[] = [];
-    for (let i = 0, j = str.length; i < j; ++i) {
-        arr.push(str.charCodeAt(i));
-    }
-    let tmpUint8Array = new Uint8Array(arr);
-    return tmpUint8Array;
 }
 let keyAlias = "HuksDemoRSA";
 let properties: HuksProperties[] = []
@@ -2278,14 +2254,14 @@ let options: huks.HuksOptions = {
     inData: new Uint8Array(0)
 };
 let handle: number = 0;
-async function generateKey() {
+async function huksAbort() {
     properties[0] = {
         tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
         value: huks.HuksKeyAlg.HUKS_ALG_RSA
     };
     properties[1] = {
         tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-        value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_1024
+        value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_2048
     };
     properties[2] = {
         tag: huks.HuksTag.HUKS_TAG_PURPOSE,
@@ -2304,74 +2280,30 @@ async function generateKey() {
         value: huks.HuksCipherMode.HUKS_MODE_ECB,
     }
     try {
-        await huks.generateKeyItem(keyAlias, options, (error, data) => {
+        huks.generateKeyItem(keyAlias, options, (error, data) => {
             if (error) {
                 console.error(`callback: generateKeyItem failed`);
             } else {
                 console.info(`callback: generateKeyItem success`);
+                huks.initSession(keyAlias, options, (error, data) => {// Use abortSession to abort initSession.
+                    if (error) {
+                        console.error(`callback: initSession failed`);
+                    } else {
+                        console.info(`callback: initSession success, data = ${JSON.stringify(data)}`);
+                        handle = data.handle;
+                        huks.abortSession(handle, options, (error, data) => {
+                            if (error) {
+                                console.error(`callback: abortSession failed`);
+                            } else {
+                                console.info(`callback: abortSession success`);
+                            }
+                        });
+                    }
+                });
             }
         });
     } catch (error) {
-        console.error(`callback: generateKeyItem input arg invalid`);
-    }
-}
-async function huksInit() {
-    console.log('enter huksInit');
-    try {
-        huks.initSession(keyAlias, options, (error, data) => {
-            if (error) {
-                console.error(`callback: initSession failed`);
-            } else {
-                console.info(`callback: initSession success, data = ${JSON.stringify(data)}`);
-                handle = data.handle;
-            }
-        });
-    } catch (error) {
-        console.error(`callback: initSession input arg invalid`);
-    }
-}
-async function huksUpdate() {
-    console.log('enter huksUpdate');
-    options.inData = stringToUint8Array("huksHmacTest");
-    try {
-        huks.updateSession(handle, options, (error, data) => {
-            if (error) {
-                console.error(`callback: updateSession failed`);
-            } else {
-                console.info(`callback: updateSession success, data = ${JSON.stringify(data)}`);
-            }
-        });
-    } catch (error) {
-        console.error(`callback: updateSession input arg invalid`);
-    }
-}
-async function huksFinish() {
-    console.log('enter huksFinish');
-    options.inData = new Uint8Array(0);
-    try {
-        huks.finishSession(handle, options, (error, data) => {
-            if (error) {
-                console.error(`callback: finishSession failed`);
-            } else {
-                console.info(`callback: finishSession success, data = ${JSON.stringify(data)}`);
-            }
-        });
-    } catch (error) {
-        console.error(`callback: finishSession input arg invalid`);
-    }
-}
-async function huksAbort() {
-    console.log('enter huksAbort');
-    try {
-        huks.abortSession(handle, options, (error, data) => {
-            if (error) {
-                console.error(`callback: abortSession failed`);
-            } else {
-                console.info(`callback: abortSession success`);
-            }
-        });
-    } catch (error) {
-        console.error(`callback: abortSession input arg invalid`);
+        console.error(`callback: huksAbort failed`);
     }
 }
 ```
@@ -2421,7 +2353,7 @@ import { BusinessError } from '@ohos.base';
  * and huks.finishSession operations,
  * huks.abortSession must be called to terminate the use of the key.
  *
- * The following uses the callback of an RSA1024 key as an example.
+ * The following uses a 2048-bit RSA key as an example. The promise-based APIs are used.
  */
 class HuksProperties {
     tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
@@ -2454,7 +2386,7 @@ async function generateKey() {
     };
     properties[1] = {
         tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-        value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_1024
+        value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_2048
     };
     properties[2] = {
         tag: huks.HuksTag.HUKS_TAG_PURPOSE,
@@ -2548,6 +2480,12 @@ async function huksAbort() {
         console.error(`promise: abortSession input arg invalid`);
     }
 }
+
+async function testAbort() {
+    await generateKey();
+    await huksInit(); // Use abortSession to abort initSession.
+    await huksAbort();
+}
 ```
 
 
@@ -2555,7 +2493,7 @@ async function huksAbort() {
 
 Enumerates the error codes.
 
-For details about the error codes, see [KUKS Error Codes](../errorcodes/errorcode-huks.md).
+For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcode-huks.md).
 
 **System capability**: SystemCapability.Security.Huks.Core
 
@@ -2911,7 +2849,7 @@ Enumerates the tags used to invoke parameters.
 | HUKS_TAG_ALL_USERS                                          | HuksTagType.HUKS_TAG_TYPE_BOOL \| 301    | Reserved.<br>**System capability**: SystemCapability.Security.Huks.Extension|
 | HUKS_TAG_USER_ID                                            | HuksTagType.HUKS_TAG_TYPE_UINT \| 302    | ID of the user to which the key belongs.<br>**System capability**: SystemCapability.Security.Huks.Extension|
 | HUKS_TAG_NO_AUTH_REQUIRED                                   | HuksTagType.HUKS_TAG_TYPE_BOOL \| 303    | Reserved.<br>**System capability**: SystemCapability.Security.Huks.Extension|
-| HUKS_TAG_USER_AUTH_TYPE                                     | HuksTagType.HUKS_TAG_TYPE_UINT \| 304    | User authentication type. For details, see [HuksUserAuthType](#huksuserauthtype9). This parameter must be set together with [HuksAuthAccessType](#huksauthaccesstype9). You can set a maximum of two user authentication types at a time. For example, if **HuksAuthAccessType** is **HKS_SECURE_ACCESS_INVALID_NEW_BIO_ENROLL**, you can set two of **HKS_USER_AUTH_TYPE_FACE**, **HKS_USER_AUTH_TYPE_FINGERPRINT**, and **HKS_USER_AUTH_TYPE_FACE\**.| HKS_USER_AUTH_TYPE_FINGERPRINT   <br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_USER_AUTH_TYPE                                     | HuksTagType.HUKS_TAG_TYPE_UINT \| 304    | User authentication type. For details, see [HuksUserAuthType](#huksuserauthtype9). This parameter must be set together with [HuksAuthAccessType](#huksauthaccesstype9). You can set a maximum of two user authentication types at a time. For example, if **HuksAuthAccessType** is **HUKS_SECURE_ACCESS_INVALID_NEW_BIO_ENROLL**, you can set the user authentication type to **HUKS_USER_AUTH_TYPE_FACE**, **HUKS_USER_AUTH_TYPE_FINGERPRINT**, or **HUKS_USER_AUTH_TYPE_FACE\HUKS_USER_AUTH_TYPE_FINGERPRINT**.| HUKS_USER_AUTH_TYPE_FINGERPRINT   <br>**System capability**: SystemCapability.Security.Huks.Extension|
 | HUKS_TAG_AUTH_TIMEOUT                                       | HuksTagType.HUKS_TAG_TYPE_UINT \| 305    | Timeout period of an authentication token.<br>**System capability**: SystemCapability.Security.Huks.Extension|
 | HUKS_TAG_AUTH_TOKEN                                         | HuksTagType.HUKS_TAG_TYPE_BYTES \| 306   | Used to pass in the authentication token.<br>**System capability**: SystemCapability.Security.Huks.Extension|
 | HUKS_TAG_KEY_AUTH_ACCESS_TYPE<sup>9+</sup>                  | HuksTagType.HUKS_TAG_TYPE_UINT \| 307    | Access control type. For details, see [HuksAuthAccessType](#huksauthaccesstype9). This parameter must be set together with [HuksUserAuthType](#huksuserauthtype9).<br>**System capability**: SystemCapability.Security.Huks.Extension|
@@ -2943,20 +2881,20 @@ Enumerates the tags used to invoke parameters.
 | HUKS_TAG_KEY_ROLE                                           | HuksTagType.HUKS_TAG_TYPE_UINT \| 1006   | Reserved.<br>**System capability**: SystemCapability.Security.Huks.Extension|
 | HUKS_TAG_KEY_FLAG                                           | HuksTagType.HUKS_TAG_TYPE_UINT \| 1007   | Flag of the key.<br>**System capability**: SystemCapability.Security.Huks.Core|
 | HUKS_TAG_IS_ASYNCHRONIZED                                   | HuksTagType.HUKS_TAG_TYPE_UINT \| 1008   | Reserved.<br>**System capability**: SystemCapability.Security.Huks.Extension|
-| HUKS_TAG_SECURE_KEY_ALIAS<sup>(deprecated)</sup>            | HuksTagType.HUKS_TAG_TYPE_BOOL \| 1009   | Reserved filed, which is deprecated since API version 9.<br>**System capability**: SystemCapability.Security.Huks.Core|
-| HUKS_TAG_SECURE_KEY_UUID<sup>(deprecated)</sup>             | HuksTagType.HUKS_TAG_TYPE_BYTES \| 1010  | Reserved filed, which is deprecated since API version 9.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_SECURE_KEY_ALIAS<sup>(deprecated)</sup>            | HuksTagType.HUKS_TAG_TYPE_BOOL \| 1009   | Reserved field, which is deprecated since API version 9.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_TAG_SECURE_KEY_UUID<sup>(deprecated)</sup>             | HuksTagType.HUKS_TAG_TYPE_BYTES \| 1010  | Reserved field, which is deprecated since API version 9.<br>**System capability**: SystemCapability.Security.Huks.Extension|
 | HUKS_TAG_KEY_DOMAIN                                         | HuksTagType.HUKS_TAG_TYPE_UINT \| 1011   | Reserved.<br>**System capability**: SystemCapability.Security.Huks.Core|
-| HUKS_TAG_IS_DEVICE_PASSWORD_SET<sup>11+</sup>                | HuksTagType.HUKS_TAG_TYPE_BOOL \| 1012   | Whether the key is accessible only with a lock screen password.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_IS_DEVICE_PASSWORD_SET<sup>11+</sup>                | HuksTagType.HUKS_TAG_TYPE_BOOL \| 1012   | Whether the key is accessible only when the user sets a lock screen password.<br>**System capability**: SystemCapability.Security.Huks.Extension|
 | HUKS_TAG_PROCESS_NAME<sup>(deprecated)</sup>                | HuksTagType.HUKS_TAG_TYPE_BYTES \| 10001 | Process name. It is deprecated since API version 9.<br>**System capability**: SystemCapability.Security.Huks.Core|
-| HUKS_TAG_PACKAGE_NAME<sup>(deprecated)</sup>                | HuksTagType.HUKS_TAG_TYPE_BYTES \| 10002 | Reserved filed, which is deprecated since API version 9.<br>**System capability**: SystemCapability.Security.Huks.Extension|
-| HUKS_TAG_ACCESS_TIME<sup>(deprecated)</sup>                 | HuksTagType.HUKS_TAG_TYPE_UINT \| 10003  | Reserved filed, which is deprecated since API version 9.<br>**System capability**: SystemCapability.Security.Huks.Extension|
-| HUKS_TAG_USES_TIME<sup>(deprecated)</sup>                   | HuksTagType.HUKS_TAG_TYPE_UINT \| 10004  | Reserved filed, which is deprecated since API version 9.<br>**System capability**: SystemCapability.Security.Huks.Extension|
-| HUKS_TAG_CRYPTO_CTX<sup>(deprecated)</sup>                  | HuksTagType.HUKS_TAG_TYPE_ULONG \| 10005 | Reserved filed, which is deprecated since API version 9.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_PACKAGE_NAME<sup>(deprecated)</sup>                | HuksTagType.HUKS_TAG_TYPE_BYTES \| 10002 | Reserved field, which is deprecated since API version 9.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_ACCESS_TIME<sup>(deprecated)</sup>                 | HuksTagType.HUKS_TAG_TYPE_UINT \| 10003  | Reserved field, which is deprecated since API version 9.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_USES_TIME<sup>(deprecated)</sup>                   | HuksTagType.HUKS_TAG_TYPE_UINT \| 10004  | Reserved field, which is deprecated since API version 9.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_CRYPTO_CTX<sup>(deprecated)</sup>                  | HuksTagType.HUKS_TAG_TYPE_ULONG \| 10005 | Reserved field, which is deprecated since API version 9.<br>**System capability**: SystemCapability.Security.Huks.Extension|
 | HUKS_TAG_KEY                                                | HuksTagType.HUKS_TAG_TYPE_BYTES \| 10006 | Reserved.<br>**System capability**: SystemCapability.Security.Huks.Core|
 | HUKS_TAG_KEY_VERSION<sup>(deprecated)</sup>                 | HuksTagType.HUKS_TAG_TYPE_UINT \| 10007  | Key version. It is deprecated since API version 9.<br>**System capability**: SystemCapability.Security.Huks.Extension|
-| HUKS_TAG_PAYLOAD_LEN<sup>(deprecated)</sup>                 | HuksTagType.HUKS_TAG_TYPE_UINT \| 10008  | Reserved filed, which is deprecated since API version 9.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_PAYLOAD_LEN<sup>(deprecated)</sup>                 | HuksTagType.HUKS_TAG_TYPE_UINT \| 10008  | Reserved field, which is deprecated since API version 9.<br>**System capability**: SystemCapability.Security.Huks.Extension|
 | HUKS_TAG_AE_TAG                                             | HuksTagType.HUKS_TAG_TYPE_BYTES \| 10009 | Used to pass in the AEAD in GCM mode.<br>**System capability**: SystemCapability.Security.Huks.Core|
-| HUKS_TAG_IS_KEY_HANDLE<sup>(deprecated)</sup>               | HuksTagType.HUKS_TAG_TYPE_ULONG \| 10010 | Reserved filed, which is deprecated since API version 9.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_TAG_IS_KEY_HANDLE<sup>(deprecated)</sup>               | HuksTagType.HUKS_TAG_TYPE_ULONG \| 10010 | Reserved field, which is deprecated since API version 9.<br>**System capability**: SystemCapability.Security.Huks.Core|
 | HUKS_TAG_OS_VERSION<sup>(deprecated)</sup>                  | HuksTagType.HUKS_TAG_TYPE_UINT \| 10101  | OS version. It is deprecated since API version 9.<br>**System capability**: SystemCapability.Security.Huks.Core|
 | HUKS_TAG_OS_PATCHLEVEL<sup>(deprecated)</sup>               | HuksTagType.HUKS_TAG_TYPE_UINT \| 10102  | OS patch level. It is deprecated since API version 9.<br>**System capability**: SystemCapability.Security.Huks.Core|
 | HUKS_TAG_SYMMETRIC_KEY_DATA                                 | HuksTagType.HUKS_TAG_TYPE_BYTES \| 20001 | Reserved.<br>**System capability**: SystemCapability.Security.Huks.Core|
@@ -3054,7 +2992,7 @@ Generates a key. This API uses a promise to return the result.
 
 ```ts
 import huks from '@ohos.security.huks';
-/* Generate an ECC key of 256 bits. */
+/* Generate a 256-bit ECC key. */
 class HuksProperties {
     tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
     value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose |
@@ -3105,7 +3043,7 @@ Deletes a key. This API uses an asynchronous callback to return the result.
 | Name  | Type                                     | Mandatory| Description                                                |
 | -------- | ----------------------------------------- | ---- |----------------------------------------------------|
 | keyAlias | string                                    | Yes  | Alias of the key to delete. It must be the key alias passed in when the key was generated.                               |
-| options  | [HuksOptions](#huksoptions)               | Yes  | Properties of the key to delete, for example, delete all keys or a single key. To delete a single key, pass in an empty **properties**.|
+| options  | [HuksOptions](#huksoptions)               | Yes  | Properties of the key to delete, for example, delete all keys or a single key. To delete a single key, leave **properties** empty.|
 | callback | AsyncCallback\<[HuksResult](#huksresultdeprecated)> | Yes  | Callback invoked to return the result. If the operation is successful, **HUKS_SUCCESS** is returned. If the operation fails, an error code is returned.              |
 
 **Example**
@@ -3138,7 +3076,7 @@ Deletes a key. This API uses a promise to return the result.
 | Name  | Type       | Mandatory| Description                                                 |
 | -------- | ----------- | ---- | ----------------------------------------------------- |
 | keyAlias | string      | Yes  | Alias of the key to delete. It must be the key alias passed in when the key was generated.|
-| options | [HuksOptions](#huksoptions) | Yes  | Properties of the key to delete, for example, delete all keys or a single key. To delete a single key, pass in an empty **properties**.|
+| options | [HuksOptions](#huksoptions) | Yes  | Properties of the key to delete, for example, delete all keys or a single key. To delete a single key, leave **properties** empty.|
 
 **Return value**
 
@@ -3182,7 +3120,7 @@ Imports a key in plaintext. This API uses an asynchronous callback to return the
 
 ```ts
 import huks from '@ohos.security.huks';
-/* Import an AES key of 256 bits. */
+/* Import a 256-bit AES key. */
 class HuksProperties {
     tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
     value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose |
@@ -3459,7 +3397,7 @@ Checks whether a key exists. This API uses an asynchronous callback to return th
 | Name  | Type                  | Mandatory| Description                                 |
 | -------- | ---------------------- | ---- | ------------------------------------- |
 | keyAlias | string                 | Yes  | Alias of the key to check.|
-| options  | [HuksOptions](#huksoptions) | Yes  | Properties of the key to check, for example, check all keys or a single key. To check a single key, pass in an empty **properties**.|
+| options  | [HuksOptions](#huksoptions) | Yes  | Properties of the key to check, for example, check all keys or a single key. To check a single key, leave **properties** empty.|
 | callback | AsyncCallback\<boolean> | Yes  | Callback invoked to return the result. The value **true** means the key exists; the value **false** means the opposite.|
 
 **Example**
@@ -3492,7 +3430,7 @@ Checks whether a key exists. This API uses a promise to return the result.
 | Name  | Type       | Mandatory| Description                            |
 | -------- | ----------- | ---- | -------------------------------- |
 | keyAlias | string      | Yes  | Alias of the key to check.|
-| options  | [HuksOptions](#huksoptions) | Yes  | Properties of the key to check, for example, check all keys or a single key. To check a single key, pass in an empty **properties**.|
+| options  | [HuksOptions](#huksoptions) | Yes  | Properties of the key to check, for example, check all keys or a single key. To check a single key, leave **properties** empty.|
 
 **Return value**
 
@@ -3608,7 +3546,7 @@ Updates the key operation by segment. This API uses a promise to return the resu
 
 finish(handle: number, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void
 
-Finishes the key operation to release resources. This API uses an asynchronous callback to return the result. **huks.init**, **huks.update**, and **huks.finish** must be used together.
+Completes the key operation and releases resources. This API uses an asynchronous callback to return the result. **huks.init**, **huks.update**, and **huks.finish** must be used together.
 
 > **NOTE**
 >
@@ -3628,7 +3566,7 @@ Finishes the key operation to release resources. This API uses an asynchronous c
 
 finish(handle: number, options: HuksOptions) : Promise\<HuksResult>
 
-Finishes the key operation to release resources. This API uses a promise to return the result. **huks.init**, **huks.update**, and **huks.finish** must be used together.
+Completes the key operation and releases resources. This API uses a promise to return the result. **huks.init**, **huks.update**, and **huks.finish** must be used together.
 
 > **NOTE**
 >
@@ -3677,7 +3615,7 @@ import { BusinessError } from '@ohos.base';
 /* huks.init, huks.update, and huks.finish must be used together.
  * If an error occurs in any of them, huks.abort must be called to terminate the use of the key.
  *
- * The following uses the callback of an RSA 1024 key as an example.
+ * The following uses a 2048-bit RSA key as an example. The callback-based APIs are used.
  */
 class HuksProperties {
     tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
@@ -3699,7 +3637,7 @@ async function generateKey() {
     };
     properties[1] = {
         tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-        value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_1024
+        value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_2048
     };
     properties[2] = {
         tag: huks.HuksTag.HUKS_TAG_PURPOSE,
@@ -3758,8 +3696,8 @@ function huksFinish() {
 async function huksAbort() {
     new Promise<huks.HuksResult>((resolve, reject) => {
         huks.abort(handle, options, (err, data) => {
-            console.log(`Huks_Demo hmac huksAbort1 data ${JSON.stringify(data)}`);
-            console.log(`Huks_Demo hmac huksAbort1 err ${JSON.stringify(err)}`);
+            console.log(`huksAbort data ${JSON.stringify(data)}`);
+            console.log(`huksAbort err ${JSON.stringify(err)}`);
         });
     });
 }
@@ -3798,7 +3736,7 @@ import { BusinessError } from '@ohos.base';
 /* huks.init, huks.update, and huks.finish must be used together.
  * If an error occurs in any of them, huks.abort must be called to terminate the use of the key.
  *
- * The following uses the promise of an RSA 1024-bit key as an example.
+ * The following uses a 2048-bit RSA key as an example. The promise-based APIs are used.
  */
 class HuksProperties {
     tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
@@ -3830,7 +3768,7 @@ async function generateKey() {
     };
     properties[1] = {
         tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-        value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_1024
+        value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_2048
     };
     properties[2] = {
         tag: huks.HuksTag.HUKS_TAG_PURPOSE,
@@ -3982,7 +3920,7 @@ Enumerates the error codes.
 | HUKS_ERROR_COMMUNICATION_TIMEOUT | -32   |Communication timed out.|
 | HUKS_ERROR_IPC_INIT_FAIL | -33   |IPC initialization failed.|
 | HUKS_ERROR_IPC_DLOPEN_FAIL | -34   |IPC DLOPEN failed.|
-| HUKS_ERROR_EFUSE_READ_FAIL | -35   |Failed to read eFUSE.|
+| HUKS_ERROR_EFUSE_READ_FAIL | -35   |Failed to read eFuse.|
 | HUKS_ERROR_NEW_ROOT_KEY_MATERIAL_EXIST | -36   |New root key material exists.|
 | HUKS_ERROR_UPDATE_ROOT_KEY_MATERIAL_FAIL | -37   |Failed to update the root key material.|
 | HUKS_ERROR_VERIFICATION_FAILED | -38   |Failed to verify the certificate chain.|
