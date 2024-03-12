@@ -1,7 +1,7 @@
 # 系统公共事件定义(待停用)
 
 本文档提供系统所定义的公共事件类型的索引。
-公共事件类型定义在[ohos.commonEvent模块的Support枚举](./js-apis-commonEvent.md#support)中。
+公共事件类型定义在[ohos.commonEvent模块的Support枚举](../js-apis-commonEvent.md#support)中。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -885,7 +885,7 @@
   - 订阅者所需权限：无
 
 
-* [COMMON_EVENT_SPLIT_SCREEN<sup>8+</sup>](./common_event/commonEvent-window.md)
+* [COMMON_EVENT_SPLIT_SCREEN<sup>8+</sup>](../common_event/commonEvent-window.md)
 提示分屏。
 
 
@@ -911,5 +911,5 @@
   - 值：usual.event.USER_INFO_UPDATED
   - 订阅者所需权限：无
 
-* [COMMON_EVENT_SMS_RECEIVE_COMPLETED](./common_event/commonEvent-mms.md)
+* [COMMON_EVENT_SMS_RECEIVE_COMPLETED](../common_event/commonEvent-mms.md)
 表示设备接收到信息的动作。
