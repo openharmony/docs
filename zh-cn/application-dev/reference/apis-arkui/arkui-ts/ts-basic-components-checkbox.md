@@ -80,22 +80,21 @@ Checkbox(options?: CheckboxOptions)
 @Entry
 @Component
 struct CheckboxExample {
-
   build() {
-    Row() {
-      Checkbox({name: 'checkbox1',  group: 'checkboxGroup'})
+    Flex({ justifyContent: FlexAlign.SpaceAround }) {
+      Checkbox({ name: 'checkbox1', group: 'checkboxGroup' })
         .select(true)
         .selectedColor(0xed6f21)
-        .shape(CheckBoxShape.ROUNDED_SQUARE)
+        .shape(CheckBoxShape.CIRCLE)
         .onChange((value: boolean) => {
-          console.info('Checkbox1 change is'+ value)
+          console.info('Checkbox1 change is' + value)
         })
-      Checkbox({name: 'checkbox2',  group: 'checkboxGroup'})
+      Checkbox({ name: 'checkbox2', group: 'checkboxGroup' })
         .select(false)
         .selectedColor(0x39a2db)
         .shape(CheckBoxShape.ROUNDED_SQUARE)
         .onChange((value: boolean) => {
-          console.info('Checkbox2 change is'+ value)
+          console.info('Checkbox2 change is' + value)
         })
     }
   }
@@ -154,33 +153,3 @@ struct Index {
 
 
 ![](figures/checkbox2.gif)
-
-### 示例3
-
-```ts
-// xxx.ets
-@Entry
-@Component
-struct CheckboxExample {
-
-  build() {
-    Row() {
-      Checkbox({name: 'checkbox1',  group: 'checkboxGroup'})
-        .select(true)
-        .shape(CheckBoxShape.CIRCLE)
-        .onChange((value: boolean) => {
-          console.info('Checkbox1 change is'+ value)
-        })
-      Checkbox({name: 'checkbox2',  group: 'checkboxGroup'})
-        .select(false)
-        .shape(CheckBoxShape.CIRCLE)
-        .onChange((value: boolean) => {
-          console.info('Checkbox2 change is'+ value)
-        })
-    }
-  }
-}
-```
-
-
-![](figures/checkbox.png)
