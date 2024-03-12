@@ -3615,7 +3615,7 @@ onGeolocationHide(callback: () => void)
 
 ### onFullScreenEnter<sup>9+</sup>
 
-onFullScreenEnter(callback: (event: { handler: FullScreenExitHandler }) => void)
+onFullScreenEnter(callback: OnFullScreenEnterCallback)
 
 通知开发者web组件进入全屏模式。
 
@@ -3623,7 +3623,7 @@ onFullScreenEnter(callback: (event: { handler: FullScreenExitHandler }) => void)
 
 | 参数名     | 参数类型                                     | 参数描述           |
 | ------- | ---------------------------------------- | -------------- |
-| handler | [FullScreenExitHandler](#fullscreenexithandler9) | 用于退出全屏模式的函数句柄。 |
+| callback | [OnFullScreenEnterCallback](#onfullscreenentercallback12) | Web组件进入全屏时的回调信息。 |
 
 **示例：**
 
@@ -3640,7 +3640,9 @@ onFullScreenEnter(callback: (event: { handler: FullScreenExitHandler }) => void)
       Column() {
         Web({ src:'www.example.com', controller:this.controller })
         .onFullScreenEnter((event) => {
-          console.log("onFullScreenEnter...")
+          console.log("onFullScreenEnter videoWidth: " + event.videoWidth +
+            ", videoHeight: " + event.videoHeight)
+          // 应用可以通过 this.handler.exitFullScreen() 主动退出全屏。
           this.handler = event.handler
         })
       }
@@ -6530,6 +6532,26 @@ type OnSafeBrowsingCheckResultCallback = (threatType: ThreatType) => void
 | 参数名      | 参数类型                      | 参数描述              |
 | ---------- | ---------------------------- | ------------------- |
 | threatType | [ThreatType](#threattype11)  | 定义网站threat类型。  |
+
+## FullScreenEnterEvent<sup>12+</sup>
+
+Web组件进入全屏回调事件的详情。
+
+| 名称             | 类型                                  | 必填   | 描述                    |
+| -----------     | ------------------------------------ | ---- | --------------------- |
+| handler     | [FullScreenExitHandler](#fullscreenexithandler9) | 是    | 用于退出全屏模式的函数句柄。 |
+| videoWidth  | number | 否    | 视频的宽度，单位：px。如果进入全屏的是 `<video>` 元素，表示其宽度；如果进入全屏的子元素中包含 `<video>` 元素，表示第一个子视频元素的宽度；其他情况下，为0。 |
+| videoHeight  | number | 否    | 视频的高度，单位：px。如果进入全屏的是 `<video>` 元素，表示其高度；如果进入全屏的子元素中包含 `<video>` 元素，表示第一个子视频元素的高度；其他情况下，为0。 |
+
+## OnFullScreenEnterCallback<sup>12+</sup>
+
+type OnFullScreenEnterCallback = (event: FullScreenEnterEvent) => void
+
+Web组件进入全屏时触发的回调。
+
+| 参数名      | 参数类型                      | 参数描述              |
+| ---------- | ---------------------------- | ------------------- |
+| event | [FullScreenEnterEvent](#fullscreenenterevent12)  | Web组件进入全屏的回调事件详情。 |
 
 ## NativeEmbedStatus<sup>11+</sup>
 
