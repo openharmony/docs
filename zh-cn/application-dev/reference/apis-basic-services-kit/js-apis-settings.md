@@ -907,7 +907,7 @@ settings.getValue(helper, settings.display.SCREEN_BRIGHTNESS_STATUS).then((value
 
 ## settings.getValueSync<sup>(deprecated)</sup>
 
-getValueSync(dataAbilityHelper: DataAbilityHelper, name: string, defValue: string): string
+getValueSync(context: Context, name: string, defValue: string, domainName: string): string
 
 获取数据项的值。此方法相较getValue为同步方法。
 
