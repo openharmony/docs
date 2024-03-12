@@ -21,15 +21,15 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [hidEventTypes](#hideventtypes) | 事件类型编码数组 | 
-| [hidKeys](#hidkeys) | 键值编码数组 | 
-| [hidAbs](#hidabs) | 绝对坐标特性代码数组 | 
-| [hidRelBits](#hidrelbits) | 相对坐标特性编码数组 | 
-| [hidMiscellaneous](#hidmiscellaneous) | 其他事件属性编码数组 | 
-| [hidAbsMax](#hidabsmax) | 绝对坐标的最大值数组 | 
-| [hidAbsMin](#hidabsmin) | 绝对坐标的最小值数组 | 
-| [hidAbsFuzz](#hidabsfuzz) | 绝对坐标的模糊值数组 | 
-| [hidAbsFlat](#hidabsflat) | 绝对坐标的固定值数组 | 
+| [hidEventTypes](#hideventtypes) | 事件类型属性编码数组 | 
+| [hidKeys](#hidkeys) | 键值属性编码数组 | 
+| [hidAbs](#hidabs) | 绝对坐标属性数组 | 
+| [hidRelBits](#hidrelbits) | 相对坐标属性数组 | 
+| [hidMiscellaneous](#hidmiscellaneous) | 其它特殊事件属性编码数组 | 
+| [hidAbsMax](#hidabsmax) | 绝对坐标属性最大值 | 
+| [hidAbsMin](#hidabsmin) | 绝对坐标属性最小值 | 
+| [hidAbsFuzz](#hidabsfuzz) | 绝对坐标属性模糊值 | 
+| [hidAbsFlat](#hidabsflat) | 绝对坐标属性固定值 | 
 
 
 ## 结构体成员变量说明
@@ -44,7 +44,7 @@ struct Hid_EventTypeArray Hid_EventProperties::hidEventTypes
 
 **描述:**
 
-事件类型编码数组。
+事件类型属性编码数组
 
 
 ### hidKeys
@@ -56,7 +56,7 @@ struct Hid_KeyCodeArray Hid_EventProperties::hidKeys
 
 **描述:**
 
-键值编码数组。
+键值属性编码数组
 
 
 ### hidAbs
@@ -68,7 +68,7 @@ struct Hid_AbsAxesArray Hid_EventProperties::hidAbs
 
 **描述:**
 
-绝对坐标特性代码数组。
+绝对坐标属性数组
 
 
 ### hidRelBits
@@ -80,7 +80,7 @@ struct Hid_RelAxesArray Hid_EventProperties::hidRelBits
 
 **描述:**
 
-相对坐标特性编码数组。
+相对坐标属性数组
 
 
 ### hidMiscellaneous
@@ -92,7 +92,7 @@ struct Hid_MscEventArray Hid_EventProperties::hidMiscellaneous
 
 **描述:**
 
-其他事件属性编码数组。
+其它特殊事件属性编码数组
 
 
 ### hidAbsMax
@@ -104,7 +104,7 @@ int32_t Hid_EventProperties::hidAbsMax[64]
 
 **描述:**
 
-绝对坐标的最大值数组，数组长度固定为64。
+绝对坐标属性最大值
 
 
 ### hidAbsMin
@@ -116,7 +116,7 @@ int32_t Hid_EventProperties::hidAbsMin[64]
 
 **描述:**
 
-绝对坐标的最小值数组，数组长度固定为64。
+绝对坐标属性最小值
 
 
 ### hidAbsFuzz
@@ -128,7 +128,7 @@ int32_t Hid_EventProperties::hidAbsFuzz[64]
 
 **描述:**
 
-绝对坐标的模糊值数组，数组长度固定为64。
+绝对坐标属性模糊值
 
 
 ### hidAbsFlat
@@ -140,4 +140,4 @@ int32_t Hid_EventProperties::hidAbsFlat[64]
 
 **描述:**
 
-绝对坐标的固定值数组，数组长度固定为64。
+绝对坐标属性固定值

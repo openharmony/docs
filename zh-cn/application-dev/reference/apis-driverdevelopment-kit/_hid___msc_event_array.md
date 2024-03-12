@@ -37,7 +37,7 @@ Hid_MscEvent Hid_MscEventArray::*hidMscEvent
 
 **描述:**
 
-事件特性编码。
+事件特性编码
 
 
 ### length
@@ -49,4 +49,4 @@ uint16_t Hid_MscEventArray::length
 
 **描述:**
 
-数组长度。
+数组长度

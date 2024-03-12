@@ -21,7 +21,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [hidAbsAxes](#hidAbsAxes) | 绝对位置坐标特性码  | 
+| [hidAbsAxes](#hidAbsAxes) | 绝对位置坐标特性编码 | 
 | [length](#length) | 数组长度 | 
 
 
@@ -37,7 +37,7 @@ Hid_AbsAxes Hid_AbsAxesArray::*hidAbsAxes
 
 **描述:**
 
-绝对位置坐标特性码。
+绝对位置坐标特性编码
 
 
 ### length
@@ -49,4 +49,4 @@ uint16_t Hid_AbsAxesArray::length
 
 **描述:**
 
-数组长度。
+数组长度

@@ -38,7 +38,7 @@ uint16_t Hid_EmitItem::type
 
 **描述:**
 
-事件类型。
+事件类型
 
 
 ### code
@@ -50,7 +50,7 @@ uint16_t Hid_EmitItem::code
 
 **描述:**
 
-事件编码。
+事件编码
 
 
 ### value
@@ -62,4 +62,4 @@ uint32_t Hid_EmitItem::value
 
 **描述:**
 
-事件值。
+事件值

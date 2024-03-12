@@ -42,7 +42,7 @@ const char Hid_Device::deviceName
 
 **描述:**
 
-设备名称。
+设备名称
 
 
 ### vendorId
@@ -54,7 +54,7 @@ uint16_t Hid_Device::vendorId
 
 **描述:**
 
-供应商ID。
+供应商ID
 
 
 ### productId
@@ -66,7 +66,7 @@ uint16_t  Hid_Device::productId
 
 **描述:**
 
-产品ID。
+产品ID
 
 
 ### version
@@ -78,7 +78,7 @@ uint16_t Hid_Device::version
 
 **描述:**
 
-版本号。
+版本号
 
 
 ### bustype
@@ -90,7 +90,7 @@ uint16_t Hid_Device::bustype
 
 **描述:**
 
-总线类型。
+总线类型
 
 
 ### properties
@@ -102,7 +102,7 @@ Hid_DeviceProp Hid_Device::properties
 
 **描述:**
 
-设备属性。
+设备属性
 
 
 ### propLength
@@ -114,4 +114,4 @@ uint16_t Hid_Device::propLength
 
 **描述:**
 
-设备属性编号。
+设备属性编号

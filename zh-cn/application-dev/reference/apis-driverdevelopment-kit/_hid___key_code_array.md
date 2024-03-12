@@ -37,7 +37,7 @@ Hid_KeyCode Hid_KeyCodeArray::*hidKeyCode
 
 **描述:**
 
-键值编码。
+键值编码
 
 
 ### length
@@ -49,4 +49,4 @@ uint16_t Hid_KeyCodeArray::length
 
 **描述:**
 
-数组长度。
+数组长度

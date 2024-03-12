@@ -37,7 +37,7 @@ Hid_EventType Hid_EventTypeArray::*hidEventType
 
 **描述:**
 
-绝对位置坐标特性码。
+绝对位置坐标特性码
 
 
 ### length
@@ -49,4 +49,4 @@ uint16_t Hid_EventTypeArray::length
 
 **描述:**
 
-数组长度。
+数组长度

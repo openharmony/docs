@@ -37,7 +37,7 @@ Hid_RelAxes Hid_RelAxesArray::*hidRelAxes
 
 **描述:**
 
-相对位置坐标特性码。
+相对位置坐标特性码
 
 
 ### length
@@ -49,4 +49,4 @@ uint16_t Hid_RelAxesArray::length
 
 **描述:**
 
-数组长度。
+数组长度
