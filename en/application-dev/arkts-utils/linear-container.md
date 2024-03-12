@@ -29,13 +29,11 @@ To accelerate data access, linear containers support Create, Read, Update, and D
 
 ## Vector
 
-> **NOTE**
->
-> The APIs provided by **Vector** are deprecated since API version 9. You are advised to use [ArrayList](../reference/apis/js-apis-arraylist.md).
-
 [Vector](../reference/apis/js-apis-vector.md) is a continuous storage structure that can be used to construct a global array object. **Vector** uses generics and must be stored in a contiguous memory space. Its initial capacity is 10, and it has capacity doubled in each dynamic expansion.
 
 Both **Vector** and [ArrayList](../reference/apis/js-apis-arraylist.md) are implemented based on arrays, but **Vector** provides more interfaces for operating the arrays. In addition to operator access, **Vector** provides the getter and setter to provide a more complete verification and error tolerance mechanism.
+
+The APIs provided by **Vector** are deprecated since API version 9. You are advised to use [ArrayList](../reference/apis/js-apis-arraylist.md).
 
 **Vector** provides the following CRUD APIs.
 
@@ -228,9 +226,9 @@ console.info(`result: ${vector2.getFirstElement()}`); // Access an element.
 // Deque
 import Deque from '@ohos.util.Deque'; // Import the Deque module.
 
-let deque1: Deque<string> = new Deque;
+let deque1: Deque<string> = new Deque();
 deque1.insertFront('a');
-let deque2: Deque<number> = new Deque;
+let deque2: Deque<number> = new Deque();
 deque2.insertFront(1); // Add an element.
 console.info(`result: ${deque1[0]}`); // Access an element.
 deque1[0] = 'one'; // Modify an element.
@@ -250,11 +248,11 @@ console.info(`result: ${stack2.length}`);
 // List
 import List from '@ohos.util.List'; // Import the List module.
 
-let list1: List<string> = new List;
+let list1: List<string> = new List();
 list1.add('a');
-let list2: List<number> = new List;
+let list2: List<number> = new List();
 list2.add(1);
-let list3: List<Array<number>> = new List;
+let list3: List<Array<number>> = new List();
 let b2 = [1, 2, 3];
 list3.add(b2); // Add an element.
 console.info(`result: ${list1[0]}`); // Access an element.

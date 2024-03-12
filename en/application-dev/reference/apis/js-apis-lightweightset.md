@@ -137,6 +137,12 @@ Adds all elements in a **LightWeightSet** instance to this container.
 | -------- | -------- | -------- | -------- |
 | set | LightWeightSet&lt;T&gt; | Yes| **LightWeightSet** instance whose elements are to be added to the current container.|
 
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the element is added; returns **false** otherwise.|
+
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
@@ -398,7 +404,7 @@ Removes the element at the specified position from this container.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the element is removed successfully; returns **false** otherwise.|
+| boolean | Returns **true** if the element is removed; returns **false** otherwise.|
 
 **Error codes**
 

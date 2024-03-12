@@ -197,9 +197,9 @@ Since API version 10, error code 10200016 is not reported when this API is calle
 ```ts
 @Concurrent
 function inspectStatus(arg: number): number {
-  // Check the cancellation status and return the result.
+  // Check whether the task has been canceled and respond accordingly.
   if (taskpool.Task.isCanceled()) {
-    console.log("task has been canceled before 2s sleep.");
+    console.info("task has been canceled before 2s sleep.");
     return arg + 2;
   }
   // 2s sleep
@@ -207,33 +207,40 @@ function inspectStatus(arg: number): number {
   while (Date.now() - t < 2000) {
     continue;
   }
-  // Check the cancellation status again and return the result.
+  // Check again whether the task has been canceled and respond accordingly.
   if (taskpool.Task.isCanceled()) {
-    console.log("task has been canceled after 2s sleep.");
+    console.info("task has been canceled after 2s sleep.");
     return arg + 3;
   }
   return arg + 1;
 }
 
-let task1: taskpool.Task = new taskpool.Task(inspectStatus, 100); // 100: test number
-let task2: taskpool.Task = new taskpool.Task(inspectStatus, 200); // 200: test number
-let task3: taskpool.Task = new taskpool.Task(inspectStatus, 300); // 300: test number
-let task4: taskpool.Task = new taskpool.Task(inspectStatus, 400); // 400: test number
-let task5: taskpool.Task = new taskpool.Task(inspectStatus, 500); // 500: test number
-let task6: taskpool.Task = new taskpool.Task(inspectStatus, 600); // 600: test number
-taskpool.execute(task1).then((res: number)=>{
-  console.log("taskpool test result: " + res);
-});
-taskpool.execute(task2);
-taskpool.execute(task3);
-taskpool.execute(task4);
-taskpool.execute(task5);
-taskpool.execute(task6);
-// Cancel the task 1s later.
-setTimeout(()=>{
-  taskpool.cancel(task1);
+function concurrntFunc() {
+  let task1: taskpool.Task = new taskpool.Task(inspectStatus, 100); // 100: test number
+  let task2: taskpool.Task = new taskpool.Task(inspectStatus, 200); // 200: test number
+  let task3: taskpool.Task = new taskpool.Task(inspectStatus, 300); // 300: test number
+  let task4: taskpool.Task = new taskpool.Task(inspectStatus, 400); // 400: test number
+  let task5: taskpool.Task = new taskpool.Task(inspectStatus, 500); // 500: test number
+  let task6: taskpool.Task = new taskpool.Task(inspectStatus, 600); // 600: test number
+  taskpool.execute(task1).then((res: Object)=>{
+    console.info("taskpool test result: " + res);
+  });
+  taskpool.execute(task2);
+  taskpool.execute(task3);
+  taskpool.execute(task4);
+  taskpool.execute(task5);
+  taskpool.execute(task6);
+  // Cancel the task 1s later.
+  setTimeout(()=>{
+    try {
+      taskpool.cancel(task1);
+    } catch (e) {
+      console.error(`taskpool: cancel error code: ${e.code}, info: ${e.message}`);
+    }
+  }, 1000);
+}
 
-}, 1000);
+concurrntFunc();
 ```
 
 ## taskpool.cancel<sup>10+</sup>
@@ -267,27 +274,31 @@ function printArgs(args: number): number {
   while (Date.now() - t < 2000) {
     continue;
   }
-  console.log("printArgs: " + args);
+  console.info("printArgs: " + args);
   return args;
 }
 
-let taskGroup1: taskpool.TaskGroup = new taskpool.TaskGroup();
-taskGroup1.addTask(printArgs, 10); // 10: test number
-let taskGroup2: taskpool.TaskGroup = new taskpool.TaskGroup();
-taskGroup2.addTask(printArgs, 100); // 100: test number
-taskpool.execute(taskGroup1).then((res: Array<number>)=>{
-  console.info("taskGroup1 res is:" + res);
-});
-taskpool.execute(taskGroup2).then((res: Array<number>)=>{
-  console.info("taskGroup2 res is:" + res);
-});
-setTimeout(()=>{
-  try {
-    taskpool.cancel(taskGroup2);
-  } catch (e) {
-    console.log("taskGroup.cancel occur error:" + e);
-  }
-}, 1000);
+function concurrntFunc() {
+  let taskGroup1: taskpool.TaskGroup = new taskpool.TaskGroup();
+  taskGroup1.addTask(printArgs, 10); // 10: test number
+  let taskGroup2: taskpool.TaskGroup = new taskpool.TaskGroup();
+  taskGroup2.addTask(printArgs, 100); // 100: test number
+  taskpool.execute(taskGroup1).then((res: Array<Object>)=>{
+    console.info("taskGroup1 res is:" + res);
+  });
+  taskpool.execute(taskGroup2).then((res: Array<Object>)=>{
+    console.info("taskGroup2 res is:" + res);
+  });
+  setTimeout(()=>{
+    try {
+      taskpool.cancel(taskGroup2);
+    } catch (e) {
+      console.error(`taskpool: cancel error code: ${e.code}, info: ${e.message}`);
+    }
+  }, 1000);
+}
+
+concurrntFunc();
 ```
 
 
@@ -512,7 +523,7 @@ console.info("testTransfer view1 byteLength: " + view1.byteLength);
 
 ## TaskGroup<sup>10+</sup>
 
-Implements a task group. Before calling any APIs in **TaskGroup**, you must use [constructor](#constructor10) to create a **TaskGroup** instance.
+Implements a task group, in which all tasks are executed at a time. If all the tasks are executed normally, an array of task results is returned asynchronously, and the sequence of elements in the array is the same as the sequence of tasks added by calling [addTask](#addtask10-1). If any task fails, the corresponding exception is thrown. A task group can be executed for multiple times, but no task can be added after the task group is executed. Before calling any APIs in **TaskGroup**, you must use [constructor](#constructor10) to create a **TaskGroup** instance.
 
 ### constructor<sup>10+</sup>
 
@@ -782,9 +793,9 @@ func2();
 // Success in canceling a task
 @Concurrent
 function inspectStatus(arg: number): number {
-  // Check the cancellation status and return the result.
+  // Check whether the task has been canceled and respond accordingly.
   if (taskpool.Task.isCanceled()) {
-    console.log("task has been canceled before 2s sleep.");
+    console.info("task has been canceled before 2s sleep.");
     return arg + 2;
   }
   // 2s sleep
@@ -792,9 +803,9 @@ function inspectStatus(arg: number): number {
   while (Date.now() - t < 2000) {
     continue;
   }
-  // Check the cancellation status again and return the result.
+  // Check again whether the task has been canceled and respond accordingly.
   if (taskpool.Task.isCanceled()) {
-    console.log("task has been canceled after 2s sleep.");
+    console.info("task has been canceled after 2s sleep.");
     return arg + 3;
   }
   return arg + 1;
@@ -802,14 +813,19 @@ function inspectStatus(arg: number): number {
 
 async function taskpoolCancel(): Promise<void> {
   let task: taskpool.Task = new taskpool.Task(inspectStatus, 100); // 100: test number
-  taskpool.execute(task).then((res: number)=>{
-    console.log("taskpool test result: " + res);
+  taskpool.execute(task).then((res: Object)=>{
+    console.info("taskpool test result: " + res);
   }).catch((err: string) => {
-    console.log("taskpool test occur error: " + err);
+    console.error("taskpool test occur error: " + err);
   });
   // Cancel the task 1s later.
   setTimeout(()=>{
-    taskpool.cancel(task);}, 1000);
+    try {
+      taskpool.cancel(task);
+    } catch (e) {
+      console.error(`taskpool: cancel error code: ${e.code}, info: ${e.message}`);
+    }
+  }, 1000);
 }
 
 taskpoolCancel();
@@ -821,7 +837,7 @@ taskpoolCancel();
 // Failure to cancel a task that has been executed
 @Concurrent
 function inspectStatus(arg: number): number {
-  // Check the cancellation status and return the result.
+  // Check whether the task has been canceled and respond accordingly.
   if (taskpool.Task.isCanceled()) {
     return arg + 2;
   }
@@ -830,7 +846,7 @@ function inspectStatus(arg: number): number {
   while (Date.now() - t < 500) {
     continue;
   }
-  // Check the cancellation status again and return the result.
+  // Check again whether the task has been canceled and respond accordingly.
   if (taskpool.Task.isCanceled()) {
     return arg + 3;
   }
@@ -839,17 +855,17 @@ function inspectStatus(arg: number): number {
 
 async function taskpoolCancel(): Promise<void> {
   let task: taskpool.Task = new taskpool.Task(inspectStatus, 100); // 100: test number
-  taskpool.execute(task).then((res: number)=>{
-    console.log("taskpool test result: " + res);
+  taskpool.execute(task).then((res: Object)=>{
+    console.info("taskpool test result: " + res);
   }).catch((err: string) => {
-    console.log("taskpool test occur error: " + err);
+    console.error("taskpool test occur error: " + err);
   });
 
   setTimeout(()=>{
     try {
       taskpool.cancel(task); // The task has been executed and fails to be canceled.
     } catch (e) {
-      console.log("taskpool.cancel occur error:" + e);
+      console.error(`taskpool: cancel error code: ${e.code}, info: ${e.message}`);
     }
   }, 3000); // Wait for 3s to ensure that the task has been executed.
 }
