@@ -2,6 +2,7 @@
 
 - ArkTS API 
   - [@ohos.web.webview (Webview)](js-apis-webview.md)
+  - [@ohos.web.netErrorList](js-apis-netErrorList.md)
 - ArkTS 组件
   - [Web](ts-basic-components-web.md)
 - C API
