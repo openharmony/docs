@@ -1,4 +1,4 @@
-# HidDdk
+# HID DDK
 
 
 ## 概述
@@ -7,8 +7,9 @@
 
 **系统能力：** SystemCapability.Driver.HID.Extension
 
-**起始版本：** 11
+**起始版本：** 
 
+11
 
 ## 汇总
 
