@@ -980,7 +980,7 @@ taskpool.execute(task3).then(() => {
 | -------------------- | --------- | ---- | ---- | ------------------------------------------------------------ |
 | function             | Function  | 是   | 是   | 创建任务时需要传入的函数，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。 |
 | arguments            | Object[]  | 是   | 是   | 创建任务传入函数所需的参数，支持的参数类型请查[序列化支持类型](#序列化支持类型)。 |
-| name<sup>11+</sup>   | string    | 是   | 是   | 创建任务时指定的任务名称。                                    |
+| name<sup>11+</sup>   | string    | 是   | 否   | 创建任务时指定的任务名称。                                    |
 | totalDuration<sup>11+</sup>  | number    | 是   | 否   | 执行任务总耗时。                                    |
 | ioDuration<sup>11+</sup>     | number    | 是   | 否   | 执行任务异步IO耗时。                                    |
 | cpuDuration<sup>11+</sup>    | number    | 是   | 否   | 执行任务CPU耗时。                                    |
@@ -1229,6 +1229,7 @@ async function seqRunner()
 
 | 名称     | 类型                | 可读 | 可写 | 说明                                                           |
 | -------- | ------------------ | ---- | ---- | ------------------------------------------------------------- |
+| name<sup>12+</sup> | string             | 是   | 否   | 任务的名字。                                                     |
 | taskId   | number             | 是   | 否   | 任务的ID。                                                     |
 | state    | [State](#state10)  | 是   | 否   | 任务的状态。                                                    |
 | duration | number             | 是   | 否   | 任务执行至当前所用的时间，单位为ms。当返回为0时，表示任务未执行；返回为空时，表示没有任务执行。  |
@@ -1561,6 +1562,7 @@ let priority: number = 0;
 let taskId: number = 0;
 let state: number = 0;
 let duration: number = 0;
+let name: string = "";
 let threadIS = Array.from(taskpoolInfo.threadInfos)
 for(let threadInfo of threadIS) {
   tid = threadInfo.tid;
@@ -1578,7 +1580,8 @@ for(let taskInfo of taskIS) {
   if (taskInfo.duration != undefined )
   {
     duration = taskInfo.duration;
+    name = taskInfo.name;
   }
-  console.info("taskpool---taskId is:" + taskId + ", state is:" + state + ", duration is:" + duration);
+  console.info("taskpool---taskId is:" + taskId + ", state is:" + state + ", duration is:" + duration + ", name is:" + name);
 }
 ```
