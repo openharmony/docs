@@ -119,7 +119,7 @@ Compresses a file. This API uses an asynchronous callback to return the result.
 
 | Name                 | Type               | Mandatory| Description                                                        |
 | ----------------------- | ------------------- | ---- | ------------------------------------------------------------ |
-| inFile                  | string              | Yes  | Path of the folder or file to compress. The path must be an application sandbox path, which can be obtained from the context. For details about the context, see [FA Model](js-apis-inner-app-context.md) and [Stage Model](js-apis-inner-application-context.md).|
+| inFile                  | string              | Yes  | Path of the folder or file to compress. The path must be an application sandbox path, which can be obtained from the context. For details about the context, see [FA Model](js-apis-inner-app-context.md) and [Stage Model](js-apis-inner-application-context.md). The folder to compress cannot be empty. Otherwise, an error will be reported when [decompressFile](#zlibdecompressfile9) is used to decompress the folder.|
 | outFile                 | string              | Yes  | Path of the compressed file.                                          |
 | options                 | [Options](#options) | Yes  | Compression parameters.                                              |
 | callback | AsyncCallback\<void>            | Yes  | Callback used to return the result. If the operation is successful, **null** is returned; otherwise, a specific error code is returned.            |
@@ -173,7 +173,7 @@ Compresses a file. This API uses a promise to return the result.
 
 | Name | Type               | Mandatory| Description                                                        |
 | ------- | ------------------- | ---- | ------------------------------------------------------------ |
-| inFile  | string              | Yes  | Path of the folder or file to compress. The path must be an application sandbox path, which can be obtained from the context. For details about the context, see [FA Model](js-apis-inner-app-context.md) and [Stage Model](js-apis-inner-application-context.md).|
+| inFile  | string              | Yes  | Path of the folder or file to compress. The path must be an application sandbox path, which can be obtained from the context. For details about the context, see [FA Model](js-apis-inner-app-context.md) and [Stage Model](js-apis-inner-application-context.md). The folder to compress cannot be empty. Otherwise, an error will be reported when [decompressFile](#zlibdecompressfile9) is used to decompress the folder.|
 | outFile | string              | Yes  | Path of the compressed file.                                          |
 | options | [Options](#options) | Yes  | Compression parameters.                                              |
 
