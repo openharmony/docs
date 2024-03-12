@@ -60,6 +60,54 @@ struct ComA {
 
 AppStorage,LocalStorage,PersistentStorage的API方法支持null和undefined作为入参。@StorageLink，@StorageProp，@LocalStorageLink，@LocalStorageProp装饰器支持null和undefined类型。
 
+以@StorageLink为例，当前应用存在误用null和undefined作为初始值或目标值在AppStorage中保存的情况。在更改前的语义中，null和undefined作为初始值或目标值的调用并不会生效，并给出warning。在更改后的语义中，支持了使用null和undefined作为初始值或目标值在AppStorage中保存。该更改使得以下场景中，原有应用代码运行崩溃。
+
+更改前
+
+```ts
+class PropA {
+  num: number = 100;
+}
+
+AppStorage.setOrCreate("PropA", null);
+AppStorage.has("PropA");// 不支持设置null或undefined，会返回false
+
+@Entry
+@Component
+struct TestPage {
+  @StorageLink('PropA') propA: PropA = new PropA();
+
+  build() {
+    Column() {
+      Text(this.propA.num.toString()) //使用propA本地初始化的值为100
+    }
+  }
+}
+```
+
+更改后
+
+```ts
+class PropA {
+  num: number = 100;
+}
+
+AppStorage.setOrCreate("PropA", null);
+AppStorage.has("PropA");// 支持设置null或undefined，会返回true
+
+@Entry
+@Component
+struct TestPage {
+  @StorageLink('PropA') propA: PropA = new PropA();
+
+  build() {
+    Column() {
+      Text(this.propA.num.toString()) //使用AppStorage初始化的值 ‘null’ ,调用时触发JsCrash
+    }
+  }
+}
+```
+
 **API Level**
 
 12 
@@ -70,179 +118,45 @@ AppStorage,LocalStorage,PersistentStorage的API方法支持null和undefined作�
 
 **适配指导**
 
-LocalStorage支持undefined和null：
+1、在初始化值的时候不使用null或者undefined的值来初始化，使用有意义的值来初始化。
 
-在下面的示例中，变量A的类型为Info | null，变量B的类型为Info | undefined。Text组件初始化分别显示为null和undefined，点击切换为字母，再次点击切换回null和undefined。
+2、将原有的值改为null或undefined会触发UI刷新。
 
-当状态变量设置undefined和null时，开发者要注意做判空保护。
+3、在调用的地方增加判空。
 
 ```ts
-class Info {
-  public name: string;
-
-  constructor(name: string) {
-    this.name = name;
-  }
+class PropA {
+  num: number = 100;
 }
 
-
-@Component
-struct StorLink {
-  @LocalStorageLink("AA") A: Info | null = null;
-  @LocalStorageLink("BB") B: Info | undefined = undefined;
-
-  build() {
-    Column() {
-      Text("@StorageLink接口初始化，@StorageLink取值")
-      Text(`${this.A == null ? "null" : this.A.name}`).fontSize(20).onClick(() => {
-        this.A ? this.A = null : this.A = new Info("A");
-      })
-      Text(`${this.B == undefined ? "undefined" : this.B.name}`).fontSize(20).onClick(() => {
-        this.B ? this.B = undefined : this.B = new Info("B");
-      })
-    }
-    .borderWidth(3).borderColor(Color.Red)
-
-  }
-}
-
-@Component
-struct StorProp {
-  @LocalStorageProp("AAA") A: Info | null = null;
-  @LocalStorageProp("BBB") B: Info | undefined = undefined;
-
-  build() {
-    Column() {
-      Text("@StorageProp接口初始化，@StorageProp取值")
-      Text(`${this.A == null ? "null" : this.A.name}`).fontSize(20).onClick(() => {
-        this.A ? this.A = null : this.A = new Info("A");
-      })
-      Text(`${this.B == undefined ? "undefined" : this.B.name}`).fontSize(20).onClick(() => {
-        this.B ? this.B = undefined : this.B = new Info("B");
-      })
-    }
-    .borderWidth(3).borderColor(Color.Blue)
-  }
-}
+AppStorage.setOrCreate("PropA", null);
+AppStorage.has("PropA"); // 支持设置null或undefined，会返回true
 
 @Entry
 @Component
-struct TestCase3 {
-  build() {
-    Row() {
-      Column() {
-        StorLink()
-        StorProp()
-      }
-      .width('100%')
-    }
-    .height('100%')
-  }
-}
-```
-
-AppStorage支持undefined和null：
-
-在下面的示例中，变量A的类型为Info | null，变量B的类型为Info | undefined。Text组件初始化分别显示为null和undefined，点击切换为字母，再次点击切换回null和undefined。
-
-当状态变量设置undefined和null时，开发者要注意做判空保护。
-
-```ts
-class Info {
-  public name: string;
-
-  constructor(name: string) {
-    this.name = name;
-  }
-}
-
-
-@Component
-struct StorLink {
-  @StorageLink("AA") A: Info | null = null;
-  @StorageLink("BB") B: Info | undefined = undefined;
+struct TestPage {
+  @StorageLink('PropA') propA: PropA | null | undefined = new PropA();
 
   build() {
     Column() {
-      Text("@StorageLink接口初始化，@StorageLink取值")
-      Text(`${this.A == null ? "null" : this.A.name}`).fontSize(20).onClick(() => {
-        this.A ? this.A = null : this.A = new Info("A");
-      })
-      Text(`${this.B == undefined ? "undefined" : this.B.name}`).fontSize(20).onClick(() => {
-        this.B ? this.B = undefined : this.B = new Info("B");
-      })
-    }
-    .borderWidth(3).borderColor(Color.Red)
-
-  }
-}
-
-@Component
-struct StorProp {
-  @StorageProp("AAA") A: Info | null = null;
-  @StorageProp("BBB") B: Info | undefined = undefined;
-
-  build() {
-    Column() {
-      Text("@StorageProp接口初始化，@StorageProp取值")
-      Text(`${this.A == null ? "null" : this.A.name}`).fontSize(20).onClick(() => {
-        this.A ? this.A = null : this.A = new Info("A");
-      })
-      Text(`${this.B == undefined ? "undefined" : this.B.name}`).fontSize(20).onClick(() => {
-        this.B ? this.B = undefined : this.B = new Info("B");
-      })
-    }
-    .borderWidth(3).borderColor(Color.Blue)
-  }
-}
-
-@Entry
-@Component
-struct TestCase3 {
-  build() {
-    Row() {
-      Column() {
-        StorLink()
-        StorProp()
-      }
-      .width('100%')
-    }
-    .height('100%')
-  }
-}
-```
-
-PersistentStorage支持undefined和null：
-
-在下面的示例中，使用persistProp方法初始化"P"为undefined。通过@StorageLink("P")绑定变量p，类型为number | undefined | null，点击Button改变P的值，视图会随之刷新。且P的值被持久化存储。
-
-```ts
-PersistentStorage.persistProp("P", undefined);
-
-@Entry
-@Component
-struct TestCase6 {
-  @StorageLink("P") p: number | undefined | null = 10;
-
-  build() {
-    Row() {
-      Column() {
-        Text(this.p + "")
-          .fontSize(50)
-          .fontWeight(FontWeight.Bold)
-        Button("changeToNumber").onClick(() => {
-          this.p = 10;
+      Text(this.propA?.num.toString())//使用时进行判空，防止调用时为null和undefined的情况造成crash。
+        .fontSize(20)
+      Button("Set propA to null")
+        .margin(10)
+        .onClick(() => {
+          this.propA = null;
         })
-        Button("changeTo undefined").onClick(() => {
-          this.p = undefined;
+      Button("Set propA to undefined")
+        .margin(10)
+        .onClick(() => {
+          this.propA = undefined;
         })
-        Button("changeTo null").onClick(() => {
-          this.p = null;
+      Button("Assign new PropA")
+        .margin(10)
+        .onClick(() => {
+          this.propA = new PropA();
         })
-      }  
-      .width('100%')
     }
-    .height('100%')
   }
 }
 ```
