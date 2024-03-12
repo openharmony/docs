@@ -21,7 +21,7 @@ After an application switches to the background or an application process is ter
 
 ## Available APIs
 
-The table below uses promise as an example to describe the APIs used for developing agent-powered reminders. For details about more APIs and their usage, see [reminderAgentManager](../reference/apis/js-apis-reminderAgentManager.md).
+The table below uses promise as an example to describe the APIs used for developing agent-powered reminders. For details about more APIs and their usage, see [reminderAgentManager](../reference/apis-backgroundtasks-kit/js-apis-reminderAgentManager.md).
 
 **Table 1** Main APIs for agent-powered reminders
 
