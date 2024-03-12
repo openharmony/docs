@@ -588,7 +588,7 @@ class EntryAbility extends UIAbility {
 
 | 键类型 | 值类型                   |
 | ------ | ----------------------- |
-| number | 主键的类型可以是number |
+| number | 主键的类型可以是number。 |
 | string | 主键的类型可以是string。 |
 
 ## PRIKeyType<sup>10+</sup> 
