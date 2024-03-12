@@ -21,6 +21,7 @@
 | deviceId<sup>8+<sup>          | string                                                   |   是  | 否  | 通知源的deviceId。<br>**系统接口**: 此接口为系统接口。                       |
 | representativeBundle<sup>12+<sup> | [BundleOption](js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 否 | 否 | 被代理的包信息。<br>**系统接口**: 此接口为系统接口。 |
 | notificationControlFlags<sup>12+<sup>       | number                                                   |   否  | 否  | 通知提醒方式管控。可以通过此接口减少当前通知的提醒方式。与[NotificationControlFlagStatus](js-apis-notificationManager-sys.md#notificationcontrolflagstatus)的枚举进行按位或运算得到该参数。  <br>**系统接口**：此接口为系统接口。           |
+| unifiedGroupInfo<sup>12+<sup>       | [UnifiedGroupInfo](#unifiedgroupinfo12) |   否  | 否  |消息智能聚合信息字段。 <br>**系统接口**：此接口为系统接口。|
 
 ## DistributedOptions
 
@@ -39,7 +40,7 @@
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
-**系统接口**: 此接口为系统接口。  
+**系统接口**: 此接口为系统接口。
 
 | 名称            | 类型                                   | 必填 | 说明                               |
 | ----------------| ------------------------------------- | ---- | ---------------------------------- |
@@ -54,10 +55,26 @@
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
-**系统接口**: 此接口为系统接口。  
+**系统接口**: 此接口为系统接口。
 
 | 名称          | 类型                                                       | 必填 | 说明              |
 | --------------| --------------------------------------------------------- | ---- | ----------------- |
 | contentType   | [ContentType](js-apis-notificationManager.md#contenttype) | 是   | 通知类型。         |
 | slotType      | [SlotType](js-apis-notificationManager.md#slottype)       | 是   | 渠道类型。         |
 | extraInfoKeys | Array\<string>                                            | 是   | 实况通知的附加信息。|
+
+## UnifiedGroupInfo<sup>12+</sup>
+
+描述通知智能聚合信息字段。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+
+**系统接口**: 此接口为系统接口。
+
+| 名称                   | 类型            | 必填 | 说明                               |
+| ---------------------- | -------------- | ---- | ---------------------------------- |
+| key          | string        | 否   | 聚合组ID。                   |
+| title  | string | 否   | 聚合组标题。            |
+| content  | string | 否   | 聚合组摘要正文。              |
+| sceneName          | string        | 否   | 聚合场景名称。                   |
+| extraInfo  | {[key: string]: any} | 否   | 其他聚合信息。            |
