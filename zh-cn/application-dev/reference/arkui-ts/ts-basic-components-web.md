@@ -295,7 +295,7 @@ javaScriptProxy(javaScriptProxy: { object: object, name: string, methodList: Arr
 
 | 参数名        | 参数类型                                     | 必填   | 默认值  | 参数描述                                     |
 | ---------- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
-| object     | object                                   | 是    | -    | 参与注册的对象。只能声明方法，不能声明属性。                   |
+| object     | object                                   | 是    | -    | 参与注册的对象。可以声明方法，也可以声明属性，但是不支持h5直接调用。                   |
 | name       | string                                   | 是    | -    | 注册对象的名称，与window中调用的对象名一致。                |
 | methodList | Array\<string\>                          | 是    | -    | 参与注册的应用侧JavaScript对象的方法。                 |
 | controller | [WebviewController<sup>9+</sup>](../apis/js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | 是    | -    | 控制器。从API Version 9开始，WebController不再维护，建议使用WebviewController替代。 |
