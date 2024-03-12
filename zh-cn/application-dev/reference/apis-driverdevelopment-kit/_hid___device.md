@@ -22,12 +22,12 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | [deviceName](#devicename) | 设备名称 | 
-| [vendorId](#vendorid) | 供应商ID | 
+| [vendorId](#vendorid) | 厂商ID | 
 | [productId](#productid) | 产品ID | 
 | [version](#version) | 版本号 | 
 | [bustype](#bustype) | 总线类型 | 
-| [properties](#properties) | 设备属性 | 
-| [propLength](#proplength) | 设备属性编号 | 
+| [properties](#properties) | 设备特性 | 
+| [propLength](#proplength) | 设备特性数量 | 
 
 
 ## 结构体成员变量说明
@@ -54,7 +54,7 @@ uint16_t Hid_Device::vendorId
 
 **描述:**
 
-供应商ID
+厂商ID
 
 
 ### productId
@@ -102,7 +102,7 @@ Hid_DeviceProp Hid_Device::properties
 
 **描述:**
 
-设备属性
+设备特性
 
 
 ### propLength
@@ -114,4 +114,4 @@ uint16_t Hid_Device::propLength
 
 **描述:**
 
-设备属性编号
+设备特性数量

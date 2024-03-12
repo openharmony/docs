@@ -21,7 +21,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [hidMscEvent](#hidMscEvent) | 事件特性编码 | 
+| [hidMscEvent](#hidMscEvent) | 其它特殊事件属性编码 | 
 | [length](#length) | 数组长度 | 
 
 
@@ -37,7 +37,7 @@ Hid_MscEvent Hid_MscEventArray::*hidMscEvent
 
 **描述:**
 
-事件特性编码
+其它特殊事件属性编码
 
 
 ### length

@@ -21,7 +21,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [hidRelAxes](#hidrelaxes) | 相对位置坐标特性码 \* | 
+| [hidRelAxes](#hidrelaxes) | 相对坐标属性编码 | 
 | [length](#length) | 数组长度 | 
 
 
@@ -37,7 +37,7 @@ Hid_RelAxes Hid_RelAxesArray::*hidRelAxes
 
 **描述:**
 
-相对位置坐标特性码
+相对坐标属性编码
 
 
 ### length

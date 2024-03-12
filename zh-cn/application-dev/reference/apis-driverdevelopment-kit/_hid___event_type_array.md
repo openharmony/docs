@@ -37,7 +37,7 @@ Hid_EventType Hid_EventTypeArray::*hidEventType
 
 **描述:**
 
-绝对位置坐标特性码
+事件类型编码
 
 
 ### length
