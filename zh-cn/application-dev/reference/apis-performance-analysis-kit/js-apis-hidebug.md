@@ -422,7 +422,7 @@ getAppVMMemoryInfo(): VMMemoryInfo
 **示例：**
 
   ```ts
-let vmMemory: VMMemoryInfo = hidebug.getAppVMMemoryInfo();
+let vmMemory: hidebug.VMMemoryInfo = hidebug.getAppVMMemoryInfo();
 hilog.info(0x0000, "example", "totalHeap = %{public}d", vmMemory.totalHeap);
 hilog.info(0x0000, "example", "heapUsed = %{public}d", vmMemory.heapUsed);
 hilog.info(0x0000, "example", "allArraySize = %{public}d", vmMemory.allArraySize);
@@ -447,7 +447,7 @@ getAppThreadCpuUsage(): ThreadCpuUsage[]
 **示例：**
 
   ```ts
-let appThreadCpuUsage = hidebug.getAppThreadCpuUsage();
+let appThreadCpuUsage: hidebug.ThreadCpuUsage[] = hidebug.getAppThreadCpuUsage();
 for (let ii = 0; ii < appThreadCpuUsage.length; ii++) {
     hilog.info(0x0000, "example", "threadId=%{public}d, cpuUsage=%{public}f", appThreadCpuUsage[ii].threadId,
     appThreadCpuUsage[ii].cpuUsage);
@@ -492,10 +492,10 @@ startAppTraceCapture(tags : number[], flag: TraceFlag, limitSize: number) : stri
 **示例：**
 
 ```ts
-let tags = [hidebug.tags.ABILITY_MANAGER, hidebug.tags.ACE];
-let flag = hidebug.TraceFlag.MAIN_THREAD;
-let limitSize = 1024 * 1024;
-let fileName = hidebug.startAppTraceCapture(tags, flag, limitSize);
+let tags: number[] = [hidebug.tags.ABILITY_MANAGER, hidebug.tags.ACE];
+let flag: hidebug.TraceFlag = hidebug.TraceFlag.MAIN_THREAD;
+let limitSize: number = 1024 * 1024;
+let fileName: string = hidebug.startAppTraceCapture(tags, flag, limitSize);
 // code block
 // ...
 // code block
@@ -524,10 +524,10 @@ stopAppTraceCapture() : void
 **示例：**
 
 ```ts
-let tags = [hidebug.tags.ABILITY_MANAGER, hidebug.tags.ACE];
-let flag = hidebug.TraceFlag.MAIN_THREAD;
-let limitSize = 1024 * 1024;
-let fileName = hidebug.startAppTraceCapture(tags, flag, limitSize);
+let tags: number[] = [hidebug.tags.ABILITY_MANAGER, hidebug.tags.ACE];
+let flag: hidebug.TraceFlag = hidebug.TraceFlag.MAIN_THREAD;
+let limitSize: number = 1024 * 1024;
+let fileName: string = hidebug.startAppTraceCapture(tags, flag, limitSize);
 // code block
 // ...
 // code block
@@ -675,7 +675,7 @@ getAppNativeMemInfo(): NativeMemInfo
 **示例**
 
 ```ts
-let nativeMemInfo: NativeMemInfo = hidebug.getAppNativeMemInfo();
+let nativeMemInfo: hidebug.NativeMemInfo = hidebug.getAppNativeMemInfo();
 
 hilog.info(0x0000, 'testTag', "pss = %{public}d", nativeMemInfo.pss);
 
@@ -724,7 +724,7 @@ getSystemMemInfo(): SystemMemInfo
 **示例**
 
 ```ts
-let systemMemInfo: SystemMemInfo = hidebug.getSystemMemInfo();
+let systemMemInfo: hidebug.SystemMemInfo = hidebug.getSystemMemInfo();
 
 hilog.info(0x0000, 'testTag', "totalMem = %{public}d", systemMemInfo.totalMem);
 
