@@ -981,7 +981,7 @@ on(type: 'scrollEvent', callback: Callback\<observer.ScrollEventInfo\>): void
 | 参数名   | 类型                                                  | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                                | 是   | 监听事件，固定为'scrollEvent'，即滚动事件的开始和结束。      |
-| callback | Callback\<observer.[ScrollEventInfo](js-apis-arkui-observer.md#ScrollEventInfo)\> | 是   | 回调函数。返回滚动事件的信息。   |
+| callback | Callback\<observer.[ScrollEventInfo](js-apis-arkui-observer.md#scrolleventinfo12)\> | 是   | 回调函数。返回滚动事件的信息。   |
 
 **示例：**
 
@@ -1000,7 +1000,7 @@ off(type: 'scrollEvent', callback?: Callback\<observer.ScrollEventInfo\>): void
 | 参数名   | 类型                                                  | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                                | 是   | 监听事件，固定为'scrollEvent'，即滚动事件的开始和结束。      |
-| callback | Callback\<observer.[ScrollEventInfo](js-apis-arkui-observer.md#ScrollEventInfo)\> | 是   | 回调函数。返回滚动事件的信息。   |
+| callback | Callback\<observer.[ScrollEventInfo](js-apis-arkui-observer.md#scrolleventinfo12)\> | 是   | 回调函数。返回滚动事件的信息。   |
 
 **示例：**
 
@@ -1020,7 +1020,7 @@ on(type: 'scrollEvent', options: { id: string }, callback: Callback\<observer.Sc
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 监听事件，固定为'scrollEvent'，即滚动事件的开始和结束。 |
 | options  | { id: string } | 是   | 指定监听的滚动组件的id。                                   |
-| callback | Callback\<observer.[ScrollEventInfo](js-apis-arkui-observer.md#ScrollEventInfo)\>        | 是   | 回调函数。返回滚动事件的信息。                 |
+| callback | Callback\<observer.[ScrollEventInfo](js-apis-arkui-observer.md#scrolleventinfo12)\>        | 是   | 回调函数。返回滚动事件的信息。                 |
 
 **示例：**
 
@@ -1040,7 +1040,7 @@ off(type: 'scrollEvent', options: { id: string }, callback?: Callback\<observer.
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 监听事件，固定为'scrollEvent'，即滚动事件的开始和结束。 |
 | options  | { id: string } | 是   | 指定监听的滚动组件的id。                                   |
-| callback | Callback\<observer.[ScrollEventInfo](js-apis-arkui-observer.md#ScrollEventInfo)\>        | 否   | 回调函数。返回滚动事件的信息。                 |
+| callback | Callback\<observer.[ScrollEventInfo](js-apis-arkui-observer.md#scrolleventinfo12)\>        | 否   | 回调函数。返回滚动事件的信息。                 |
 
 **示例：**
 
