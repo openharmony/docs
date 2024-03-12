@@ -57,8 +57,8 @@ import { BusinessError } from '@ohos.base';
 let pipController: pipWindow.PiPController | undefined = undefined;
 let mXComponentController: XComponentController = new XComponentController(); // Use the mXComponentController to initialize the XComponent: XComponent( {id: 'video', type: 'surface', controller: mXComponentController} ). This ensures that the XComponent content can be migrated to the PiP window.
 let navId: string = "page_1"; // The navigation ID of the current page is page_1. For details, see the definition of PiPConfiguration. The navigation name is customized.
-let contentWidth: number = 800; // The content width is 800 pixels.
-let contentHeight: number = 600; // The content height is 600 pixels.
+let contentWidth: number = 800; // The content width is 800 px.
+let contentHeight: number = 600; // The content height is 600 px.
 
 let config: pipWindow.PiPConfiguration = {
   context: getContext(this),
@@ -106,8 +106,8 @@ import { BusinessError } from '@ohos.base';
 let pipController: pipWindow.PiPController | undefined = undefined;
 let mXComponentController: XComponentController = new XComponentController(); // Use the mXComponentController to initialize the XComponent: XComponent( {id: 'video', type: 'surface', controller: mXComponentController} ). This ensures that the XComponent content can be migrated to the PiP window.
 let navId: string = "page_1"; // The navigation ID of the current page is page_1. For details, see the definition of PiPConfiguration. The navigation name is customized.
-let contentWidth: number = 800; // The content width is 800 pixels.
-let contentHeight: number = 600; // The content height is 600 pixels.
+let contentWidth: number = 800; // The content width is 800 px.
+let contentHeight: number = 600; // The content height is 600 px.
 let config: pipWindow.PiPConfiguration = {
   context: getContext(this),
   componentController: mXComponentController,
@@ -136,10 +136,10 @@ Defines the parameters for creating a PiP controller.
 |---------------------|-----------------------------------------------------------------------|-----|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | context             | [BaseContext](js-apis-inner-application-baseContext.md)               | Yes  | Context environment.                                                                                                                                                                                                                                                                                                                                    |
 | componentController | [XComponentController](../arkui-ts/ts-basic-components-xcomponent.md) | Yes  | Original [XComponent](../../ui/arkts-common-components-xcomponent.md) controller.                                                                                                                                                                                                                                                                        |
-| navigationId        | string                                                                | No  | Navigation ID of the current page.<br>- When the UIAbility uses [Navigation](../arkui-ts/ts-basic-components-navigation.md) to manage pages, set the ID of the **<\Navigation>** component for the PiP controller. This ensures that the original page can be restored from the PiP window.<br>- When the UIAbility uses [Router](js-apis-router.md) to manage pages, you do not need to set the navigation ID. (This navigation mode is not recommended in PiP scenarios.) After a PiP window is started in this scenario, do not switch between pages. Otherwise, exceptions may occur during restoration.<br>- If the UIAbility has only one page, you do not need to set the navigation ID. The original page can be restored from the PiP window. |
+| navigationId        | string                                                                | No  | Navigation ID of the current page.<br>- When the UIAbility uses [Navigation](../arkui-ts/ts-basic-components-navigation.md) to manage pages, set the ID of the **<\Navigation>** component for the PiP controller. This ensures that the original page can be restored from the PiP window.<br>- When the UIAbility uses [Router](js-apis-router.md) to manage pages, you do not need to set the navigation ID. (This navigation mode is not recommended in PiP scenarios.) After a PiP window is started in this scenario, do not switch between pages. Otherwise, exceptions may occur during restoration.<br>- If the UIAbility has only one page, you do not need to set the navigation ID. The original page can be restored from the PiP window.|
 | templateType        | [PiPTemplateType](#piptemplatetype)                                   | No  | Template type, which is used to distinguish video playback, video call, and video meeting scenarios.                                                                                                                                                                                                                                                                                                                    |
-| contentWidth        | number                                                                | No  | Width of the original content, in pixels. It is used to determine the aspect ratio of the PiP window.                                                                                                                                                                                                                                                                                                                   |
-| contentHeight       | number                                                                | No  | Height of the original content, in pixels. It is used to determine the aspect ratio of the PiP window.                                                                                                                                                                                                                                                                                                                   |
+| contentWidth        | number                                                                | No  | Width of the original content, in px. It is used to determine the aspect ratio of the PiP window.                                                                                                                                                                                                                                                                                                                   |
+| contentHeight       | number                                                                | No  | Height of the original content, in px. It is used to determine the aspect ratio of the PiP window.                                                                                                                                                                                                                                                                                                                   |
 
 ## PiPTemplateType
 
@@ -393,12 +393,12 @@ Updates the media content size when the media content is switched.
 
 | Name   | Type    | Mandatory | Description                          |
 |--------|--------|-----|------------------------------|
-| width  | number | Yes  | Width of the media content, in pixels. It is used to update the aspect ratio of the PiP window.  |
-| height | number | Yes  | Width of the media content, in pixels. It is used to update the aspect ratio of the PiP window.  |
+| width  | number | Yes  | Width of the media content, in px. It is used to update the aspect ratio of the PiP window.  |
+| height | number | Yes  | Width of the media content, in px. It is used to update the aspect ratio of the PiP window.  |
 
 ```ts
-let width: number = 540; // The content width changes to 540 pixels.
-let height: number = 960; // The content height changes to 960 pixels.
+let width: number = 540; // The content width changes to 540 px.
+let height: number = 960; // The content height changes to 960 px.
 pipController.updateContentSize(width, height);
 ```
 
@@ -479,7 +479,7 @@ Subscribes to PiP action events.
 | Name     | Type        | Mandatory   | Description                                                                                                                            |
 |----------|------------|-------|--------------------------------------------------------------------------------------------------------------------------------|
 | type     | string     | Yes    | Event type. The value **'controlPanelActionEvent'** indicates the PiP action event.                                                                                   |
-| callback | function   | Yes    | Callback used to return the result, which includes the following information:<br>**event**: [PiPActionEventType](#pipactioneventtype), indicating the type of the PiP action event. The application performs processing based on the event. For example, if the **'playbackStateChanged'** event is triggered, the application starts or stops the video. |
+| callback | function   | Yes    | Callback used to return the result, which includes the following information:<br>**event**: [PiPActionEventType](#pipactioneventtype), indicating the type of the PiP action event. The application performs processing based on the event. For example, if the **'playbackStateChanged'** event is triggered, the application starts or stops the video.|
 
 ```ts
 pipController.on('controlPanelActionEvent', (event: pipWindow.PiPActionEventType) => {

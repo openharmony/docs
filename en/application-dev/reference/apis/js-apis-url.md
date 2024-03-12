@@ -377,7 +377,7 @@ console.log(params.toString());
 
 ## URL
 
-Provides APIs for parsing, constructing, and encoding URL strings.
+Provides APIs for parsing, constructing, standardizing, and encoding URL strings.
 
 ### Attributes
 
@@ -445,7 +445,7 @@ A no-argument constructor used to create a URL. It returns a **URL** object afte
 
 ### parseURL<sup>9+</sup>
 
-static parseURL(url : string, base?: string | URL): URL
+static parseURL(url: string, base?: string | URL): URL
 
 Parses a URL.
 
@@ -932,4 +932,4 @@ let params = new Url.URLSearchParams(url.search.slice(1));
 params.append('fod', '3');
 console.log(params.toString());
 ```
-<!--no_check-->
+

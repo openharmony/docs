@@ -228,9 +228,9 @@ console.info(`result: ${vector2.getFirstElement()}`); // Access an element.
 // Deque
 import Deque from '@ohos.util.Deque'; // Import the Deque module.
 
-let deque1: Deque<string> = new Deque;
+let deque1: Deque<string> = new Deque();
 deque1.insertFront('a');
-let deque2: Deque<number> = new Deque;
+let deque2: Deque<number> = new Deque();
 deque2.insertFront(1); // Add an element.
 console.info(`result: ${deque1[0]}`); // Access an element.
 deque1[0] = 'one'; // Modify an element.
@@ -250,11 +250,11 @@ console.info(`result: ${stack2.length}`);
 // List
 import List from '@ohos.util.List'; // Import the List module.
 
-let list1: List<string> = new List;
+let list1: List<string> = new List();
 list1.add('a');
-let list2: List<number> = new List;
+let list2: List<number> = new List();
 list2.add(1);
-let list3: List<Array<number>> = new List;
+let list3: List<Array<number>> = new List();
 let b2 = [1, 2, 3];
 list3.add(b2); // Add an element.
 console.info(`result: ${list1[0]}`); // Access an element.

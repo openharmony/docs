@@ -36,7 +36,7 @@ import TreeSet from '@ohos.util.TreeSet';
 
 constructor(comparator?: (firstValue: T, secondValue: T) => boolean)
 
-A constructor used to create a **TreeSet** instance.
+A constructor used to create a **TreeSet** instance. It supports sorting elements in ascending or descending order by using comparators.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -44,7 +44,7 @@ A constructor used to create a **TreeSet** instance.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| comparator | function | No| Custom comparator. The default value is **hole** (a blank placeholder), indicating that no comparator. is provided.|
+| comparator | function | No| Custom comparator, which can be used to sort elements based on the comparison relationship. The default value is **hole** (a blank placeholder), indicating that no comparator is provided.|
 
 **Error codes**
 
@@ -58,8 +58,33 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 
 ```ts
 let treeSet : TreeSet<string | number | boolean | Object> = new TreeSet();
+// Use the comparator firstValue < secondValue if the elements are expected to be sorted in ascending order. Use firstValue > secondValue if the elements are expected to be sorted in descending order.
+let treeSet : TreeSet<string> = new TreeSet<string>((firstValue: string, secondValue: string) : boolean => {return firstValue < secondValue});
+treeSet.add("a");
+treeSet.add("c");
+treeSet.add("d");
+treeSet.add("b");
+let numbers = Array.from(treeSet.values())
+for (let item of numbers) {
+  console.log("TreeSet:" + item);
+}
 ```
-
+```ts
+// When a custom type is inserted, a comparator must be provided.
+class TestEntry{
+  public id: number = 0;
+}
+let ts1: TreeSet<TestEntry> = new TreeSet<TestEntry>((t1: TestEntry, t2: TestEntry): boolean => {return t1.id > t2.id;});
+let entry1: TestEntry = {
+  id: 0
+};
+let entry2: TestEntry = {
+  id: 1
+}
+ts1.add(entry1);
+ts1.add(entry2);
+console.log("treeSet: ", ts1.length);
+```
 
 ### isEmpty
 
@@ -139,7 +164,7 @@ Obtains the value of the first element in this container.
 
 | Type| Description|
 | -------- | -------- |
-| T | Value obtained.|
+| T | Value obtained. If nothing is obtained, **undefined** is returned.|
 
 **Error codes**
 
@@ -171,7 +196,7 @@ Obtains the value of the last element in this container.
 
 | Type| Description|
 | -------- | -------- |
-| T | Value obtained.|
+| T | Value obtained. If nothing is obtained, **undefined** is returned.|
 
 **Error codes**
 
@@ -283,7 +308,7 @@ Obtains the value that is placed in front of the input key in this container.
 
 | Type| Description|
 | -------- | -------- |
-| T | Value obtained.|
+| T | Value obtained. If nothing is obtained, **undefined** is returned.|
 
 **Error codes**
 
@@ -322,7 +347,7 @@ Obtains the value that is placed next to the input key in this container.
 
 | Type| Description|
 | -------- | -------- |
-| T | Value obtained.|
+| T | Value obtained. If nothing is obtained, **undefined** is returned.|
 
 **Error codes**
 
@@ -355,7 +380,7 @@ Removes the first element in this container.
 
 | Type| Description|
 | -------- | -------- |
-| T | Element removed.|
+| T | Element removed. If nothing is obtained, **undefined** is returned.|
 
 **Error codes**
 
@@ -387,7 +412,7 @@ Removes the last element in this container.
 
 | Type| Description|
 | -------- | -------- |
-| T | Element removed.|
+| T | Element removed. If nothing is obtained, **undefined** is returned.|
 
 **Error codes**
 
@@ -578,6 +603,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
+
 let treeSet : TreeSet<string> = new TreeSet();
 treeSet.add("squirrel");
 treeSet.add("sparrow");

@@ -341,7 +341,7 @@ let result = list.equal(obj);
 
 removeByIndex(index: number): T
 
-Removes an element at the specified position from this container.
+Searches for an element based on its index and then removes it.
 
 **System capability**: SystemCapability.Utils.Lang
 
