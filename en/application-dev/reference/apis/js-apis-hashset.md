@@ -282,14 +282,14 @@ Uses a callback to traverse the elements in this container and obtain their posi
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | callbackFn | function | Yes| Callback invoked to traverse the elements in the container.|
-| thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked.|
+| thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked. |
 
 callbackFn
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | T | No| Value of the element that is currently traversed.|
-| key | T | No| Key of the element that is currently traversed (same as **value**).|
-| set | HashSet&lt;T&gt; | No| Instance that calls the **forEach** API.|
+| value | T | No| Value of the element that is currently traversed. |
+| key | T | No| Key of the element that is currently traversed (same as **value**). |
+| set | HashSet&lt;T&gt; | No| Instance that calls the **forEach** API. |
 
 **Error codes**
 
@@ -355,6 +355,7 @@ while(temp != undefined) {
 Obtains an iterator, each item of which is a JavaScript object.
 
 **System capability**: SystemCapability.Utils.Lang
+
 
 **Return value**
 

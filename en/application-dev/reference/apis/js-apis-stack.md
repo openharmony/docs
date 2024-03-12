@@ -106,7 +106,7 @@ Removes the top element from this container.
 
 | Type| Description|
 | -------- | -------- |
-| T | Element removed.|
+| T | Element removed. If the container is empty, **undefined** is returned.|
 
 **Error codes**
 
@@ -179,7 +179,7 @@ Obtains the index of the first occurrence of the specified element in this conta
 
 | Type| Description|
 | -------- | -------- |
-| number | Returns the position index if obtained; returns **-1** otherwise.|
+| number | Index of the first occurrence of the specified element. If the element does not exist, **-1** is returned.|
 
 **Error codes**
 
@@ -214,15 +214,15 @@ Uses a callback to traverse the elements in this container and obtain their posi
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | callbackFn | function | Yes| Callback invoked to traverse the elements in the container.|
-| thisArg | Object | No| Value to use when the callback is invoked.|
+| thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked. |
 
-callbackfn
+callbackFn
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | T | Yes| Value of the element that is currently traversed.|
-| index | number | No| Position index of the element that is currently traversed.|
-| stack | Stack&lt;T&gt; | No| Instance that invokes the **forEach** method.|
+| index | number | No| Position index of the element that is currently traversed. |
+| stack | Stack&lt;T&gt; | No| Instance that calls the **forEach** API. |
 
 **Error codes**
 

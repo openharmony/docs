@@ -36,7 +36,7 @@ import TreeSet from '@ohos.util.TreeSet';
 
 constructor(comparator?: (firstValue: T, secondValue: T) => boolean)
 
-A constructor used to create a **TreeSet** instance.
+A constructor used to create a **TreeSet** instance. It supports sorting elements in ascending or descending order by using comparators.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -44,7 +44,7 @@ A constructor used to create a **TreeSet** instance.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| comparator | function | No| Custom comparator.|
+| comparator | function | No| Custom comparator, which can be used to sort elements based on the comparison relationship. The default value is **hole** (a blank placeholder), indicating that no comparator is provided.|
 
 **Error codes**
 
@@ -58,6 +58,16 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 
 ```ts
 let treeSet = new TreeSet();
+// Use the comparator firstValue < secondValue if the elements are expected to be sorted in ascending order. Use firstValue > secondValue if the elements are expected to be sorted in descending order.
+let treeSet : TreeSet<string> = new TreeSet<string>((firstValue: string, secondValue: string) : boolean => {return firstValue < secondValue});
+treeSet.add("a");
+treeSet.add("c");
+treeSet.add("d");
+treeSet.add("b");
+let numbers = Array.from(treeSet.values())
+for (let item of numbers) {
+  console.log("TreeSet:" + item);
+}
 ```
 
 
@@ -140,7 +150,7 @@ Obtains the value of the first element in this container.
 
 | Type| Description|
 | -------- | -------- |
-| T | Value obtained.|
+| T | Value obtained. If nothing is obtained, **undefined** is returned.|
 
 **Error codes**
 
@@ -172,7 +182,7 @@ Obtains the value of the last element in this container.
 
 | Type| Description|
 | -------- | -------- |
-| T | Value obtained.|
+| T | Value obtained. If nothing is obtained, **undefined** is returned.|
 
 **Error codes**
 
@@ -284,7 +294,7 @@ Obtains the value that is placed in front of the input key in this container.
 
 | Type| Description|
 | -------- | -------- |
-| T | Value obtained.|
+| T | Value obtained. If nothing is obtained, **undefined** is returned.|
 
 **Error codes**
 
@@ -323,7 +333,7 @@ Obtains the value that is placed next to the input key in this container.
 
 | Type| Description|
 | -------- | -------- |
-| T | Value obtained.|
+| T | Value obtained. If nothing is obtained, **undefined** is returned.|
 
 **Error codes**
 
@@ -356,7 +366,7 @@ Removes the first element in this container.
 
 | Type| Description|
 | -------- | -------- |
-| T | Element removed.|
+| T | Element removed. If nothing is obtained, **undefined** is returned.|
 
 **Error codes**
 
@@ -388,7 +398,7 @@ Removes the last element in this container.
 
 | Type| Description|
 | -------- | -------- |
-| T | Element removed.|
+| T | Element removed. If nothing is obtained, **undefined** is returned.|
 
 **Error codes**
 
@@ -484,14 +494,14 @@ Uses a callback to traverse the elements in this container and obtain their posi
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | callbackFn | function | Yes| Callback invoked to traverse the elements in the container.|
-| thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked.|
+| thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked. |
 
 callbackFn
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | T | No| Value of the element that is currently traversed.|
-| key | T | No| Key of the element that is currently traversed.|
-| set | TreeSet&lt;T&gt; | No| Instance that calls the **forEach** API.|
+| value | T | No| Value of the element that is currently traversed. |
+| key | T | No| Key of the element that is currently traversed. |
+| set | TreeSet&lt;T&gt; | No| Instance that calls the **forEach** API. |
 
 **Error codes**
 

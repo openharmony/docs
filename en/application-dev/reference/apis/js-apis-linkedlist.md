@@ -220,7 +220,7 @@ Obtains an element at the specified position in this container.
 
 | Type| Description|
 | -------- | -------- |
-| T | Element obtained.|
+| T | Element obtained. If the element does not exist, **undefined** is returned.|
 
 **Error codes**
 
@@ -332,7 +332,7 @@ let result = linkedList.getIndexOf(2);
 
 removeByIndex(index: number): T
 
-Removes an element at the specified position from this container.
+Searches for an element based on its index and then removes it.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -346,7 +346,7 @@ Removes an element at the specified position from this container.
 
 | Type| Description|
 | -------- | -------- |
-| T | Element removed.|
+| T | Element removed. If the element does not exist, **undefined** is returned.|
 
 **Error codes**
 
@@ -496,7 +496,7 @@ Removes the first occurrence of the specified element from this container.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the element is removed successfully; returns **false** otherwise.|
+| boolean | Returns **true** if the element is removed; returns **false** if the element fails to be removed or does not exist.|
 
 **Error codes**
 
@@ -537,7 +537,7 @@ Removes the last occurrence of the specified element from this container.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the element is removed successfully; returns **false** otherwise.|
+| boolean | Returns **true** if the element is removed; returns **false** if the element fails to be removed or does not exist.|
 
 **Error codes**
 
@@ -607,15 +607,15 @@ Uses a callback to traverse the elements in this container and obtain their posi
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | callbackFn | function | Yes| Callback invoked to traverse the elements in the container.|
-| thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked. The default value is this instance.|
+| thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked. |
 
 callbackFn
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | T | Yes| Value of the element that is currently traversed.|
-| index | number | No| Position index of the element that is currently traversed. The default value is **0**.|
-| LinkedList | LinkedList&lt;T&gt; | No| Instance that calls the **forEach** API. The default value is this instance.|
+| index | number | No| Position index of the element that is currently traversed. |
+| LinkedList | LinkedList&lt;T&gt; | No| Instance that calls the **forEach** API. |
 
 **Error codes**
 
@@ -684,7 +684,7 @@ Replaces an element at the specified position in this container with a given ele
 
 | Type| Description|
 | -------- | -------- |
-| T | New element.|
+| T | New element. If the operation fails, **undefined** is returned.|
 
 **Error codes**
 

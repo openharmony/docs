@@ -24,7 +24,6 @@ The table below lists the common APIs used for application window development. F
 | Window static method| findWindow(name: string): Window | Finds a window based on the name.|
 | Window | setUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void | Loads the page content to this window.<br>**path**: path of the page from which the content will be loaded. The path is configured in the **config.json** file of the project in the FA model.|
 | Window | moveWindowTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void | Moves this window.|
-| Window | setWindowBackgroundColor(color: string, callback: AsyncCallback&lt;void&gt;): void | Sets the background color for this window.|
 | Window | setWindowBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void | Sets the brightness for this window.|
 | Window | resize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): void | Changes the window size.|
 | Window | setWindowLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void | Sets whether to enable the full-screen mode for the window layout. |

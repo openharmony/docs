@@ -59,12 +59,6 @@ A constructor used to create a **ThreadWorker** instance.
 | scriptURL | string                          | Yes  | Directory of the script to be executed by the **Worker** instance.<br>In the FA or stage model, DevEco Studio creates a **Worker** project in either of the following scenarios:<br>(a) The script directory is at the same level as the **pages** directory.<br>(b) The script directory is at a different level from the **pages** directory.|
 | options   | [WorkerOptions](#workeroptions) | No  | Options that can be set for the **Worker** instance.                                          |
 
-**Return value**
-
-| Type        | Description                                                        |
-| ------------ | ------------------------------------------------------------ |
-| ThreadWorker | Returns the **ThreadWorker** instance created; returns **undefined** if the **ThreadWorker** instance fails to be created.|
-
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
@@ -240,7 +234,7 @@ Adds an event listener for the worker thread. This API provides the same functio
 | Name  | Type                                        | Mandatory| Description                  |
 | -------- | -------------------------------------------- | ---- | ---------------------- |
 | type     | string                                       | Yes  | Type of the event to listen for.      |
-| listener | [WorkerEventListener](#workereventlistener9) | Yes| Callback to invoke when an event of the specified type occurs. Callback to invoke when an event of the specified type occurs.|
+| listener | [WorkerEventListener](#workereventlistener9) | Yes| Callback to invoke when an event of the specified type occurs.|
 
 **Error codes**
 
@@ -274,7 +268,7 @@ Adds an event listener for the worker thread and removes the event listener afte
 | Name  | Type                                        | Mandatory| Description                  |
 | -------- | -------------------------------------------- | ---- | ---------------------- |
 | type     | string                                       | Yes  | Type of the event to listen for.      |
-| listener | [WorkerEventListener](#workereventlistener9) | Yes| Callback to invoke when an event of the specified type occurs. Callback to invoke when an event of the specified type occurs.|
+| listener | [WorkerEventListener](#workereventlistener9) | Yes| Callback to invoke when an event of the specified type occurs.|
 
 **Error codes**
 
@@ -308,7 +302,7 @@ Removes an event listener for the worker thread. This API provides the same func
 | Name  | Type                                        | Mandatory| Description                        |
 | -------- | -------------------------------------------- | ---- | ---------------------------- |
 | type     | string                                       | Yes  | Type of the event for which the event listener is to be removed.        |
-| listener | [WorkerEventListener](#workereventlistener9) | No| Callback to invoke when an event of the specified type occurs. Callback of the event listener to remove.|
+| listener | [WorkerEventListener](#workereventlistener9) | No| Callback to invoke when the listener is removed.|
 
 **Error codes**
 
@@ -356,15 +350,9 @@ workerInstance.terminate();
 
 onexit?: (code: number) =&gt; void
 
-Defines the event handler to be called when the worker thread exits. The handler is executed in the host thread.
+Called when the worker thread exits. The event handler is executed in the host thread. In the callback function, the **code** value is of the number type, where the value **1** indicates abnormal exit and **0** indicates normal exit.
 
 **System capability**: SystemCapability.Utils.Lang
-
-**Parameters**
-
-| Name| Type  | Mandatory| Description              |
-| ------ | ------ | ---- | ------------------ |
-| code   | number | Yes  | Code indicating the worker thread exit state.|
 
 **Error codes**
 
@@ -379,7 +367,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 
 ```js
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
-workerInstance.onexit = function(e) {
+workerInstance.onexit = function(code) {
     console.log("onexit");
 }
 
@@ -396,15 +384,9 @@ workerInstance.terminate();
 
 onerror?: (err: ErrorEvent) =&gt; void
 
-Defines the event handler to be called when an exception occurs during worker execution. The event handler is executed in the host thread.
+Called when an exception occurs during worker execution. The event handler is executed in the host thread. In the callback function, the **err** type is [ErrorEvent](#errorevent), indicating the received abnormal data.
 
 **System capability**: SystemCapability.Utils.Lang
-
-**Parameters**
-
-| Name| Type                     | Mandatory| Description      |
-| ------ | ------------------------- | ---- | ---------- |
-| err    | [ErrorEvent](#errorevent) | Yes  | Error data.|
 
 **Error codes**
 
@@ -429,15 +411,9 @@ workerInstance.onerror = function(e) {
 
 onmessage?: (event: MessageEvents) =&gt; void
 
-Defines the event handler to be called when the host thread receives a message sent by the worker thread through **workerPort.postMessage**. The event handler is executed in the host thread.
+Called when the host thread receives a message sent by the worker thread through **workerPort.postMessage**. The event handler is executed in the host thread. In the callback function, the **event** type is [MessageEvents](#messageevents9), indicating the received message data.
 
 **System capability**: SystemCapability.Utils.Lang
-
-**Parameters**
-
-| Name| Type                            | Mandatory| Description                  |
-| ------ | -------------------------------- | ---- | ---------------------- |
-| event  | [MessageEvents](#messageevents9) | Yes  | Message received.|
 
 **Error codes**
 
@@ -464,15 +440,9 @@ workerInstance.onmessage = function(e) {
 
 onmessageerror?: (event: MessageEvents) =&gt; void
 
-Defines the event handler to be called when the worker thread receives a message that cannot be serialized. The event handler is executed in the host thread.
+Called when the worker thread receives a message that cannot be serialized. The event handler is executed in the host thread. In the callback function, the **event** type is [MessageEvents](#messageevents9), indicating the received message data.
 
 **System capability**: SystemCapability.Utils.Lang
-
-**Parameters**
-
-| Name| Type                            | Mandatory| Description      |
-| ------ | -------------------------------- | ---- | ---------- |
-| event  | [MessageEvents](#messageevents9) | Yes  | Error data.|
 
 **Error codes**
 
@@ -487,7 +457,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 
 ```js
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
-workerInstance.onmessageerror= function(e) {
+workerInstance.onmessageerror = function(e) {
     console.log("onmessageerror");
 }
 ```
@@ -539,7 +509,7 @@ Removes an event listener for the worker thread. This API provides the same func
 | Name  | Type                                        | Mandatory| Description                        |
 | -------- | -------------------------------------------- | ---- | ---------------------------- |
 | type     | string                                       | Yes  | Type of the event for which the event listener is to be removed.    |
-| callback | [WorkerEventListener](#workereventlistener9) | No| Callback to invoke when an event of the specified type occurs. Callback of the event listener to remove.|
+| callback | [WorkerEventListener](#workereventlistener9) | No| Callback to invoke when the listener is removed.|
 
 **Error codes**
 
@@ -578,7 +548,7 @@ Dispatches the event defined for the worker thread.
 
 | Type   | Description                           |
 | ------- | ------------------------------- |
-| boolean | Returns **true** if the event is dispatched successfully; returns **false** otherwise.|
+| boolean | Returns **true** if the event is dispatched; returns **false** otherwise.|
 
 **Error codes**
 
@@ -716,7 +686,7 @@ Removes an event listener for the worker thread. This API provides the same func
 | Name  | Type                                        | Mandatory| Description                        |
 | -------- | -------------------------------------------- | ---- | ---------------------------- |
 | type     | string                                       | Yes  | Type of the event for which the event listener is to be removed.    |
-| callback | [WorkerEventListener](#workereventlistener9) | No| Callback to invoke when an event of the specified type occurs. Callback of the event listener to remove.|
+| callback | [WorkerEventListener](#workereventlistener9) | No| Callback to invoke when the listener is removed.|
 
 **Error codes**
 
@@ -859,7 +829,7 @@ Used by the worker thread to send a message to the host thread by transferring o
 
 | Name  | Type         | Mandatory| Description                                                        |
 | -------- | ------------- | ---- | ------------------------------------------------------------ |
-| message  | Object        | Yes  | Data to be sent to the host thread. The data object must be sequenceable. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types).|
+| messageObject  | Object        | Yes  | Data to be sent to the host thread. The data object must be sequenceable. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types).|
 | transfer | ArrayBuffer[] | Yes  | **ArrayBuffer** instance holding an array of objects for which the ownership is transferred to the host thread. After the transfer, the objects are available only in the host thread. The array cannot be null.|
 
 **Error codes**
@@ -907,7 +877,7 @@ Used by the worker thread to send a message to the host thread by transferring o
 
 | Name | Type                                     | Mandatory| Description                                                        |
 | ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| message | Object                                    | Yes  | Data to be sent to the host thread. The data object must be sequenceable. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types).|
+| messageObject | Object                                    | Yes  | Data to be sent to the host thread. The data object must be sequenceable. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types).|
 | options | [PostMessageOptions](#postmessageoptions) | No  | If this parameter is specified, it functions the same as **ArrayBuffer[]**. Specifically, the ownership of the objects in the array is transferred to the host thread and becomes unavailable in the worker thread. The objects are available only in the host thread.<br>If this parameter is not specified, the default value **undefined** is used, and information is transferred to the host thread by copying data.|
 
 **Error codes**
@@ -981,16 +951,9 @@ workerPort.onmessage = function(e) {
 
 onmessage?: (this: ThreadWorkerGlobalScope, ev: MessageEvents) =&gt; void
 
-Defines the event handler to be called when the worker thread receives a message sent by the host thread through **postMessage**. The event handler is executed in the worker thread.
+Called Called when the worker thread receives a message sent by the host thread through **postMessage**. The event handler is executed in the worker thread. In the callback function, **this** indicates the caller's [ThreadWorkerGlobalScope](#threadworkerglobalscope9), and the **ev** type is [MessageEvents](#messageevents9), indicating the received message data.
 
 **System capability**: SystemCapability.Utils.Lang
-
-**Parameters**
-
-| Name| Type                                                | Mandatory| Description                    |
-| ------ | ---------------------------------------------------- | ---- | ------------------------ |
-| this   | [ThreadWorkerGlobalScope](#threadworkerglobalscope9) | Yes  | Caller.        |
-| ev     | [MessageEvents](#messageevents9)                     | Yes  | Message received.|
 
 **Error codes**
 
@@ -1024,16 +987,9 @@ workerPort.onmessage = function(e) {
 
 onmessageerror?: (this: ThreadWorkerGlobalScope, ev: MessageEvents) =&gt; void
 
-Defines the event handler to be called when the worker thread receives a message that cannot be deserialized. The event handler is executed in the worker thread.
+Called Called when the worker thread receives a message that cannot be deserialized. The event handler is executed in the worker thread. In the callback function, **this** indicates the caller's [ThreadWorkerGlobalScope](#threadworkerglobalscope9), and the **ev** type is [MessageEvents](#messageevents9), indicating the received message data.
 
 **System capability**: SystemCapability.Utils.Lang
-
-**Parameters**
-
-| Name| Type                            | Mandatory| Description      |
-| ------ | -------------------------------- | ---- | ---------- |
-| this   | [ThreadWorkerGlobalScope](#threadworkerglobalscope9) | Yes  | Caller.        |
-| ev     | [MessageEvents](#messageevents9) | Yes  | Error data.|
 
 **Error codes**
 
@@ -1119,15 +1075,9 @@ Implements the running environment of the worker thread. The **GlobalScope** cla
 
 onerror?: (ev: ErrorEvent) =&gt; void
 
-Defines the event handler to be called when an exception occurs during worker execution. The event handler is executed in the worker thread.
+Called when an exception occurs during worker execution. The event handler is executed in the worker thread. In the callback function, the **ev** type is [ErrorEvent](#errorevent), indicating the received abnormal data.
 
 **System capability**: SystemCapability.Utils.Lang
-
-**Parameters**
-
-| Name| Type                     | Mandatory| Description      |
-| ------ | ------------------------- | ---- | ---------- |
-| ev     | [ErrorEvent](#errorevent) | Yes  | Error data.|
 
 **Example**
 
@@ -1181,12 +1131,6 @@ A constructor used to create a **Worker** instance.
 | --------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | scriptURL | string                          | Yes  | Directory of the script to be executed by the **Worker** instance.<br>In the FA or stage model, DevEco Studio creates a **Worker** project in either of the following scenarios:<br>(a) The script directory is at the same level as the **pages** directory.<br>(b) The script directory is at a different level from the **pages** directory.|
 | options   | [WorkerOptions](#workeroptions) | No  | Options that can be set for the **Worker** instance.                                          |
-
-**Return value**
-
-| Type  | Description                                                     |
-| ------ | --------------------------------------------------------- |
-| Worker | Returns the **Worker** instance created; returns **undefined** if the **Worker** instance fails to be created.|
 
 **Example**
 
@@ -1385,7 +1329,7 @@ Removes an event listener for the worker thread. This API provides the same func
 | Name  | Type                                     | Mandatory| Description                |
 | -------- | ----------------------------------------- | ---- | -------------------- |
 | type     | string                                    | Yes  | Type of the event for which the event listener is to be removed.|
-| listener | [EventListener](#eventlistenerdeprecated) | No  | Callback of the event listener to remove.    |
+| listener | [EventListener](#eventlistenerdeprecated) | No  | Callback to invoke when the listener is removed.|
 
 **Example**
 
@@ -1419,18 +1363,12 @@ workerInstance.terminate();
 
 onexit?: (code: number) =&gt; void
 
-Defines the event handler to be called when the worker thread exits. The handler is executed in the host thread.
+Called when the worker thread exits. The event handler is executed in the host thread. In the callback function, the **code** value is of the number type, where the value **1** indicates abnormal exit and **0** indicates normal exit.
 
 > **NOTE**<br>
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [ThreadWorker.onexit<sup>9+</sup>](#onexit9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
-
-**Parameters**
-
-| Name| Type  | Mandatory| Description              |
-| ------ | ------ | ---- | ------------------ |
-| code   | number | Yes  | Code indicating the worker thread exit state.|
 
 **Example**
 
@@ -1453,18 +1391,12 @@ workerInstance.terminate();
 
 onerror?: (err: ErrorEvent) =&gt; void
 
-Defines the event handler to be called when an exception occurs during worker execution. The event handler is executed in the host thread.
+Called when an exception occurs during worker execution. The event handler is executed in the host thread. In the callback function, the **ev** type is **ErrorEvent**, indicating the received abnormal data.
 
 > **NOTE**<br>
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [ThreadWorker.onerror<sup>9+</sup>](#onerror9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
-
-**Parameters**
-
-| Name| Type                     | Mandatory| Description      |
-| ------ | ------------------------- | ---- | ---------- |
-| err    | [ErrorEvent](#errorevent) | Yes  | Error data.|
 
 **Example**
 
@@ -1480,18 +1412,12 @@ workerInstance.onerror = function(e) {
 
 onmessage?: (event: MessageEvent) =&gt; void
 
-Defines the event handler to be called when the host thread receives a message sent by the worker thread through **parentPort.postMessage**. The event handler is executed in the host thread.
+Called when the host thread receives a message sent by the worker thread through **workerPort.postMessage**. The event handler is executed in the host thread. In the callback function, the **event** type is **MessageEvent**, indicating the received message data.
 
 > **NOTE**<br>
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [ThreadWorker.onmessage<sup>9+</sup>](#onmessage9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
-
-**Parameters**
-
-| Name| Type                              | Mandatory| Description                  |
-| ------ | ---------------------------------- | ---- | ---------------------- |
-| event  | [MessageEvent](#messageeventt) | Yes  | Message received.|
 
 **Example**
 
@@ -1509,18 +1435,12 @@ workerInstance.onmessage = function(e) {
 
 onmessageerror?: (event: MessageEvent) =&gt; void
 
-Defines the event handler to be called when the worker thread receives a message that cannot be serialized. The event handler is executed in the host thread.
+Called when the worker thread receives a message that cannot be serialized. The event handler is executed in the host thread. In the callback function, the **event** type is **MessageEvent**, indicating the received message data.
 
 > **NOTE**<br>
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [ThreadWorker.onmessageerror<sup>9+</sup>](#onmessageerror9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
-
-**Parameters**
-
-| Name| Type                              | Mandatory| Description      |
-| ------ | ---------------------------------- | ---- | ---------- |
-| event  | [MessageEvent](#messageeventt) | Yes  | Error data.|
 
 **Example**
 
@@ -1728,7 +1648,7 @@ Used by the worker thread to send a message to the host thread by transferring o
 
 | Name  | Type         | Mandatory| Description                                                        |
 | -------- | ------------- | ---- | ------------------------------------------------------------ |
-| message  | Object        | Yes  | Data to be sent to the host thread. The data object must be sequenceable. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types).|
+| messageObject  | Object        | Yes  | Data to be sent to the host thread. The data object must be sequenceable. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types).|
 | transfer | ArrayBuffer[] | Yes  | **ArrayBuffer** instance holding an array of objects for which the ownership is transferred to the host thread. After the transfer, the objects are available only in the host thread. The array cannot be null.|
 
 **Example**
@@ -1769,7 +1689,7 @@ Used by the worker thread to send a message to the host thread by transferring o
 
 | Name | Type                                     | Mandatory| Description                                                        |
 | ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| message | Object                                    | Yes  | Data to be sent to the host thread. The data object must be sequenceable. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types).|
+| messageObject | Object                                    | Yes  | Data to be sent to the host thread. The data object must be sequenceable. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types).|
 | options | [PostMessageOptions](#postmessageoptions) | No  | If this parameter is specified, it functions the same as **ArrayBuffer[]**. Specifically, the ownership of the objects in the array is transferred to the host thread and becomes unavailable in the worker thread. The objects are available only in the host thread.<br>If this parameter is not specified, the default value **undefined** is used, and information is transferred to the host thread by copying data.|
 
 **Example**
@@ -1826,19 +1746,12 @@ parentPort.onmessage = function(e) {
 
 onmessage?: (this: DedicatedWorkerGlobalScope, ev: MessageEvent) =&gt; void
 
-Defines the event handler to be called when the worker thread receives a message sent by the host thread through **postMessage**. The event handler is executed in the worker thread.
+Called when the worker thread receives a message sent by the host thread through **postMessage**. The event handler is executed in the worker thread. In the callback function, **this** indicates the caller's **DedicatedWorkerGlobalScope**, and the **ev** type is **MessageEvent**, indicating the received message data.
 
 > **NOTE**<br>
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [ThreadWorkerGlobalScope<sup>9+</sup>.onmessage<sup>9+</sup>](#onmessage9-1).
 
 **System capability**: SystemCapability.Utils.Lang
-
-**Parameters**
-
-| Name| Type                                                        | Mandatory| Description                    |
-| ------ | ------------------------------------------------------------ | ---- | ------------------------ |
-| this   | [DedicatedWorkerGlobalScope](#dedicatedworkerglobalscopedeprecated) | Yes  | Caller.        |
-| ev     | [MessageEvent](#messageeventt)                           | Yes  | Message received.|
 
 **Example**
 
@@ -1862,19 +1775,12 @@ parentPort.onmessage = function(e) {
 
 onmessageerror?: (this: DedicatedWorkerGlobalScope, ev: MessageEvent) =&gt; void
 
-Defines the event handler to be called when the worker thread receives a message that cannot be deserialized. The event handler is executed in the worker thread.
+Called when the worker thread receives a message that cannot be deserialized. The event handler is executed in the worker thread. In the callback function, **this** indicates the caller's **DedicatedWorkerGlobalScope**, and the **ev** type is **MessageEvent**, indicating the received message data.
 
 > **NOTE**<br>
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [ThreadWorkerGlobalScope<sup>9+</sup>.onmessageerror<sup>9+</sup>](#onmessageerror9-1).
 
 **System capability**: SystemCapability.Utils.Lang
-
-**Parameters**
-
-| Name| Type                                                        | Mandatory| Description            |
-| ------ | ------------------------------------------------------------ | ---- | ---------------- |
-| this   | [DedicatedWorkerGlobalScope](#dedicatedworkerglobalscopedeprecated) | Yes  | Caller.|
-| ev     | [MessageEvent](#messageeventt)                           | Yes  | Error data.      |
 
 **Example**
 
@@ -1996,18 +1902,12 @@ Implements the running environment of the worker thread. The **WorkerGlobalScope
 
 onerror?: (ev: ErrorEvent) =&gt; void
 
-Defines the event handler to be called when an exception occurs during worker execution. The event handler is executed in the worker thread.
+Called when an exception occurs during worker execution. The event handler is executed in the worker thread. In the callback function, the **ev** type is **ErrorEvent**, indicating the received abnormal data.
 
 > **NOTE**<br>
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [GlobalScope<sup>9+</sup>.onerror<sup>9+</sup>](#onerror9-1).
 
 **System capability**: SystemCapability.Utils.Lang
-
-**Parameters**
-
-| Name| Type                     | Mandatory| Description      |
-| ------ | ------------------------- | ---- | ---------- |
-| ev     | [ErrorEvent](#errorevent) | Yes  | Error data.|
 
 **Example**
 

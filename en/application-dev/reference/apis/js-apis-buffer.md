@@ -624,8 +624,7 @@ Creates and returns an iterator that contains key-value pairs of this **Buffer**
 
 | Type| Description|
 | -------- | -------- |
-| number |  Key of the iterator.|
-| number |  Value of the iterator.|
+| IterableIterator&lt;[number,&nbsp;number]&gt; |  Iterator that contains the key and value, both of which are of the number type.|
 
 **Example**
 

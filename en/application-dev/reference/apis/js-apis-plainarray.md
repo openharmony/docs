@@ -603,7 +603,7 @@ callbackFn
 | Name| Type | Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | T | Yes| Value of the element that is currently traversed.|
-| index | number | No| Position index of the element that is currently traversed.|
+| index | number | No| Position index of the element that is currently traversed. |
 | PlainArray | PlainArray&lt;T&gt;| No| Instance that calls the **forEach** API. |
 
 **Error codes**
@@ -621,7 +621,7 @@ let plainArray = new PlainArray();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 plainArray.forEach((value, index) => {
-    console.log("value:" + value, "index:" + index);
+  console.log("value:" + value, "index:" + index);
 });
 ```
 

@@ -369,7 +369,7 @@ console.log(params.toString());
 
 ## URL
 
-Provides APIs for parsing, constructing, and encoding URL strings.
+Provides APIs for parsing, constructing, standardizing, and encoding URL strings.
 
 ### Attributes
 
@@ -437,7 +437,7 @@ A no-argument constructor used to create a URL. It returns a **URL** object afte
 
 ### parseURL<sup>9+</sup>
 
-static parseURL(url : string, base?: string | URL): URL
+static parseURL(url: string, base?: string | URL): URL
 
 Parses a URL.
 
@@ -510,7 +510,9 @@ let result = url.toJSON();
 
 ## URLSearchParams<sup>(deprecated)</sup>
 
-Defines APIs for handling URL query strings. This class is deprecated since API version 9. You are advised to use [URLParams](#urlparams9) instead.
+Defines APIs for handling URL query strings.
+
+This class is deprecated since API version 9. You are advised to use [URLParams](#urlparams9) instead.
 
 ### constructor<sup>(deprecated)</sup>
 

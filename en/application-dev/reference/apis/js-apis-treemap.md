@@ -40,7 +40,7 @@ import TreeMap from '@ohos.util.TreeMap';
 
 constructor(comparator?:(firstValue: K, secondValue: K) => boolean)
 
-A constructor used to create a **TreeMap** instance.
+A constructor used to create a **TreeMap** instance. It supports sorting elements in ascending or descending order by using comparators.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -48,7 +48,7 @@ A constructor used to create a **TreeMap** instance.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| comparator | function | No| Custom comparator.|
+| comparator | function | No| Custom comparator, which can be used to sort elements based on the comparison relationship. The default value is **hole** (a blank placeholder), indicating that no comparator is provided.|
 
 **Error codes**
 
@@ -62,6 +62,16 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 
 ```ts
 let treeMap = new TreeMap();
+// Use the comparator firstValue < secondValue if the elements are expected to be sorted in ascending order. Use firstValue > secondValue if the elements are expected to be sorted in descending order.
+let treeMap : TreeMap<string,string> = new TreeMap<string,string>((firstValue: string, secondValue: string) : boolean => {return firstValue > secondValue});
+treeMap.set("aa","3");
+treeMap.set("dd","1");
+treeMap.set("cc","2");
+treeMap.set("bb","4");
+let numbers = Array.from(treeMap.keys())
+for (let item of numbers) {
+  console.log("treeMap:" + item);
+}
 ```
 
 
@@ -187,7 +197,7 @@ Obtains the value of the specified key in this container.
 
 | Type| Description|
 | -------- | -------- |
-| V | Value of the key.|
+| V | Value obtained. If nothing is obtained, **undefined** is returned.|
 
 **Error codes**
 
@@ -219,7 +229,7 @@ Obtains the first key in this container.
 
 | Type| Description|
 | -------- | -------- |
-| K | Key obtained.|
+| K | Key obtained. If nothing is obtained, **undefined** is returned.|
 
 **Error codes**
 
@@ -251,7 +261,7 @@ Obtains the last key in this container.
 
 | Type| Description|
 | -------- | -------- |
-| K | Key obtained.|
+| K | Key obtained. If nothing is obtained, **undefined** is returned.|
 
 **Error codes**
 
@@ -387,7 +397,7 @@ let result = treeMap.remove("sparrow");
 
 getLowerKey(key: K): K
 
-Obtains the key that is placed in front of the input key in this container.
+Obtains the key that is equal to placed in front of the input key in this container.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -401,7 +411,7 @@ Obtains the key that is placed in front of the input key in this container.
 
 | Type| Description|
 | -------- | -------- |
-| K | Key obtained.|
+| K | Key obtained. If nothing is obtained, **undefined** is returned.|
 
 **Error codes**
 
@@ -426,7 +436,7 @@ let result = treeMap.getLowerKey("sparrow");
 
 getHigherKey(key: K): K
 
-Obtains the key that is placed next to the input key in this container.
+Obtains the key that is equal to or placed next to the input key in this container.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -440,7 +450,7 @@ Obtains the key that is placed next to the input key in this container.
 
 | Type| Description|
 | -------- | -------- |
-| K | Key obtained.|
+| K | Key obtained. If nothing is obtained, **undefined** is returned.|
 
 **Error codes**
 
@@ -611,14 +621,14 @@ Uses a callback to traverse the elements in this container and obtain their posi
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | callbackFn | function | Yes| Callback invoked to traverse the elements in the container.|
-| thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked.|
+| thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked. |
 
-callbackfn
+callbackFn
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | V | No| Value of the element that is currently traversed.|
-| key | K | No| Key of the element that is currently traversed.|
-| map | TreeMap<K, V> | No| Instance that invokes the **forEach** method.|
+| value | V | No| Value of the element that is currently traversed. |
+| key | K | No| Key of the element that is currently traversed. |
+| map | TreeMap<K, V> | No| Instance that calls the **forEach** API. |
 
 **Error codes**
 
@@ -714,10 +724,10 @@ for (let item of treeMap) {
 
 // Method 2:
 let iter = treeMap[Symbol.iterator]();
-let temp = iter.next().value;
-while(temp != undefined) {
-  console.log("key:" + temp[0]);
-  console.log("value:" + temp[1]);
-  temp = iter.next().value;
+let temp: IteratorResult<Object[]> = iter.next();
+while(!temp.done) {
+  console.log("key:" + temp.value[0]);
+  console.log("value:" + temp.value[1]);
+  temp = iter.next();
 }
 ```

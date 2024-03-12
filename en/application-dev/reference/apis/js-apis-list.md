@@ -337,7 +337,7 @@ let result = list.equal(obj);
 
 removeByIndex(index: number): T
 
-Removes an element at the specified position from this container.
+Searches for an element based on its index and then removes it.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -427,15 +427,15 @@ Replaces all elements in this container with new elements, and returns the new o
 | Name| Value Type | Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | callbackFn | function | Yes| Callback invoked for the replacement.|
-| thisArg | Object | No| Value to use when the callback is invoked.|
+| thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked. |
 
-callbackfn
+callbackFn
 
 | Name| Value Type | Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | T | Yes| Value of the element that is currently traversed.|
-| index | number | No| Position index of the element that is currently traversed.|
-| list | List&lt;T&gt; | No| Instance that invokes the **replaceAllElements** method.|
+| index | number | No| Position index of the element that is currently traversed. |
+| list | List&lt;T&gt; | No| Instance that calls the **replaceAllElements** API. |
 
 **Error codes**
 
@@ -473,15 +473,15 @@ Uses a callback to traverse the elements in this container and obtain their posi
 | Name| Value Type | Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | callbackFn | function | Yes| Callback invoked for the replacement.|
-| thisArg | Object | No| Value to use when the callback is invoked.|
+| thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked. |
 
-callbackfn
+callbackFn
 
 | Name| Value Type | Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | T | Yes| Value of the element that is currently traversed.|
-| index | number | No| Position index of the element that is currently traversed.|
-| List | List&lt;T&gt; | No| Instance that invokes the **forEach** method.|
+| index | number | No| Position index of the element that is currently traversed. |
+| List | List&lt;T&gt; | No| Instance that calls the **forEach** API. |
 
 **Error codes**
 
