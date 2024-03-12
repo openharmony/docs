@@ -1694,7 +1694,7 @@ function unregisterVendorDefined(mediaKeysession: drm.MediaKeySession): void {
 
 ### on('expirationUpdated')
 
-on(type: 'expirationUpdate', callback: (eventInfo: drm.EventInfo) => void): void
+on(type: 'expirationUpdate', callback: (eventInfo: EventInfo) => void): void
 
 监听过期更新事件，通过注册回调函数获取结果。
 
