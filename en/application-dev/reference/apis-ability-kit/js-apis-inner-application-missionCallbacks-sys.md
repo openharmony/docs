@@ -1,13 +1,18 @@
 # MissionCallback (System API)
 
-The **MissionCallback** module defines the callbacks invoked after synchronization starts. These callbacks can be used as input parameters in [registerMissionListener](../apis/js-apis-distributedMissionManager.md#distributedmissionmanagerregistermissionlistener).
+The **MissionCallback** module defines the callbacks invoked after synchronization starts. These callbacks can be used as input parameters in [registerMissionListener](./js-apis-distributedMissionManager-sys.md#distributedmissionmanagerregistermissionlistener).
 
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
 > The APIs provided by this module are system APIs.
 
 ## MissionCallback.notifyMissionsChanged
+
+notifyMissionsChanged(deviceId: string): void
+
+**Required permissions**: ohos.permission.MANAGE_MISSIONS
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
@@ -45,6 +50,10 @@ distributedMissionManager.registerMissionListener(
 
 ## MissionCallback.notifySnapshot
 
+notifySnapshot(deviceId: string, mission: number): void
+
+**Required permissions**: ohos.permission.MANAGE_MISSIONS
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
 **System API**: This is a system API.
@@ -81,6 +90,10 @@ distributedMissionManager.registerMissionListener(
 ```
 
 ## MissionCallback.notifyNetDisconnect
+
+notifyNetDisconnect(deviceId: string, state: number): void
+
+**Required permissions**: ohos.permission.MANAGE_MISSIONS
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
