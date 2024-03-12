@@ -193,7 +193,7 @@ Represents the cloud data change information.
 | Name    | Type  | Mandatory| Description|
 | ---------- | ------ | ---- | ---- |
 | eventId | string | Yes  | Change event ID.|
-| extraData | string | Yes  | Change of the cloud data.|
+| extraData | ExtraData | Yes  | Change of the cloud data.|
 
 
 ## cloudSyncManager.notifyDataChange<sup>11+</sup> 
@@ -210,8 +210,8 @@ Notifies the cloud sync service of the application data change in the cloud. Thi
 
 | Name    | Type  | Mandatory| Description|
 | ---------- | ------ | ---- | ---- |
-| userId | number | Yes  | User ID. |
-| extraData | string | Yes  | Change of the cloud data.|
+| userId | number | Yes  | Account ID.|
+| extraData | ExtraData | Yes  | Change of the cloud data.|
 
 **Return value**
 
@@ -235,7 +235,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
   ```ts
   import { BusinessError } from '@ohos.base';
   let userId: number = 100;
-  let extraData: ExtraData = {eventId: "eventId", extraData: "data"};
+  let extraData = {eventId: "eventId", extraData: "data"};
   cloudSyncManager.notifyDataChange(userId, extraData).then(() => {
     console.info("notifyDataChange successfully");
   }).catch((err: BusinessError) => {
@@ -258,7 +258,7 @@ Notifies the cloud sync service of the application data change in the cloud. Thi
 | Name    | Type  | Mandatory| Description|
 | ---------- | ------ | ---- | ---- |
 | userId | number | Yes  | User ID.|
-| extraData | string | Yes  | Change of the cloud data.|
+| extraData | ExtraData | Yes  | Change of the cloud data.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the application data change in the cloud.|
 
 **Error codes**
@@ -277,7 +277,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
   ```ts
   import { BusinessError } from '@ohos.base';
   let userId: number = 100;
-  let extraData: ExtraData = {eventId: "eventId", extraData: "data"};
+  let extraData = {eventId: "eventId", extraData: "data"};
   cloudSyncManager.notifyDataChange(userId, extraData, (err: BusinessError) => {
     if (err) {
       console.info("notifyDataChange failed with error message: " + err.message + ", error code: " + err.code);

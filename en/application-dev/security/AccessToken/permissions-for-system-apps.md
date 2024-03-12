@@ -997,6 +997,8 @@ Allows an application to obtain information about running processes and mission 
 
 **Valid since**: 7
 
+**Deprecated since**: 9
+
 ### ohos.permission.BUNDLE_ACTIVE_INFO
 
 Allows an application to obtain how long other applications have been running in the foreground or background.
@@ -1488,6 +1490,8 @@ Allows an application to start FAs in the background.
 **Enable via ACL**: true
 
 **Valid since**: 7
+
+**Deprecated version**: 9
 
 ### ohos.permission.START_INVISIBLE_ABILITY
 

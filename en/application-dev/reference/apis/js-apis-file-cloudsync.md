@@ -147,7 +147,7 @@ Unregisters a listener for the device-cloud synchronization progress.
 | Name    | Type  | Mandatory| Description|
 | ---------- | ------ | ---- | ---- |
 | evt | string | Yes  | Event type. The value is **progress**, which indicates the synchronization progress event.|
-| callback | (pg: SyncProgress) => void | Yes  | Callback for the synchronization progress event. The input parameter is [SyncProgress](#syncprogress), and the return value is **void**.|
+| callback | (pg: SyncProgress) => void | Yes  | Callback to unregister. The input parameter is [SyncProgress](#syncprogress), and the return value is **void**.|
 
 **Error codes**
 
@@ -401,13 +401,11 @@ For details about the error codes, see [File Management Error Codes](../errorcod
   });
   ```
 
-## State
+## State<sup>11+</sup>
 
 Enumerates the download states of a cloud file.
 
 **System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
-
-**System API**: This is a system API.
 
 | Name|  Value|  Description|
 | ----- |  ---- |  ---- |
@@ -416,20 +414,19 @@ Enumerates the download states of a cloud file.
 | FAILED |  2 | The cloud file download failed.|
 | STOPPED |  3 | The cloud file download is stopped.|
 
-## DownloadProgress
+## DownloadProgress<sup>11+</sup>
 
 Represents information about the download progress of a cloud file.
 
 **System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-**System API**: This is a system API.
-
 | Name    | Type  | Mandatory| Description|
 | ---------- | ------ | ---- | ---- |
-| state | [State](#state) | Yes  | File download state.|
+| state | [State](#state11) | Yes  | File download state.|
 | processed | number | Yes  | Size of the data downloaded.|
 | size | number | Yes  | Size of the cloud file.|
 | uri | string | Yes  | URI of the cloud file.|
+| error | [DownloadErrorType](#downloaderrortype11) | Yes  | Download error type.|
 
 ## Download
 
@@ -1294,7 +1291,7 @@ Starts to download a file from the Drive Kit to the local device. This API uses 
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  import fileUri from file.fileUri;
+  import fileUri from '@ohos.file.fileuri';
   let fileCache = new cloudSync.CloudFileCache();
   let path = "/data/storage/el2/cloud/1.txt";
   let uri = fileUri.getUriFromPath(path);
@@ -1353,7 +1350,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  import fileUri from file.fileUri;
+  import fileUri from '@ohos.file.fileuri';
   let fileCache = new cloudSync.CloudFileCache();
   let path = "/data/storage/el2/cloud/1.txt";
   let uri = fileUri.getUriFromPath(path);
@@ -1404,7 +1401,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  import fileUri from file.fileUri;
+  import fileUri from '@ohos.file.fileuri';
   let fileCache = new cloudSync.CloudFileCache();
   let path = "/data/storage/el2/cloud/1.txt";
   let uri = fileUri.getUriFromPath(path);
@@ -1448,7 +1445,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  import fileUri from file.fileUri;
+  import fileUri from '@ohos.file.fileuri';
   let fileCache = new cloudSync.CloudFileCache();
   let path = "/data/storage/el2/cloud/1.txt";
   let uri = fileUri.getUriFromPath(path);
@@ -1496,7 +1493,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  import fileUri from file.fileUri;
+  import fileUri from '@ohos.file.fileuri';
   let fileCache = new cloudSync.CloudFileCache();
   let path = "/data/storage/el2/cloud/1.txt";
   let uri = fileUri.getUriFromPath(path);
@@ -1550,10 +1547,9 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let fileSync = new cloudSync.FileSync();
 
   let uris: Array<string> = ["file://uri"];
-  fileSync.getFileSyncState(uris).then(function(syncStates: Array<FileSyncState>){
+  cloudSync.getFileSyncState(uris).then(cloudSync.function(syncStates: Array<cloudSync.FileSyncState>){
     console.info("get file sync state successfully");
   }).catch((err: BusinessError) => {
 	  console.info("get file sync state failed with error message: " + err.message + ", error code: " + err.code);
@@ -1597,10 +1593,9 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let fileSync = new cloudSync.FileSync();
 
   let uris: Array<string> = ["file://uri"];
-  fileSync.getFileSyncState(uris, function(err: BusinessError) => {
+  cloudSync.getFileSyncState(uris, cloudSync.function(err: BusinessError) => {
     if (err) {
       console.info("get file sync state with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -1623,3 +1618,18 @@ Enumerates the device-cloud file synchronization states.
 | DOWNLOADING |  1 | Downloading.|
 | COMPLETED |  2 | Synchronization completed.|
 | STOPPED |  3 | Synchronization stopped.|
+
+## DownloadErrorType<sup>11+</sup>
+
+Enumerates the device-cloud download error types.
+
+**System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+| Name|  Value|  Description|
+| ----- |  ---- |  ---- |
+| NO_ERROR |  0 | No error.|
+| UNKNOWN_ERROR |  1 | Unknown error.|
+| NETWORK_UNAVAILABLE |  2 | The network is unavailable.|
+| LOCAL_STORAGE_FULL |  3 | The local space is insufficient.|
+| CONTENT_NOT_FOUND |  4 | The file is not found in the cloud space.|
+| FREQUENT_USER_REQUESTS |  5 | The user requests are too frequent to respond.|
