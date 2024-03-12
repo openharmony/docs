@@ -59,6 +59,7 @@
   - [drawing_pen.h](drawing__pen_8h.md)
   - [drawing_point.h](drawing__point_8h.md) 
   - [drawing_rect.h](drawing__rect_8h.md) 
+  - [drawing_register_font.h](drawing__register__font_8h.md)
   - [drawing_round_rect.h](drawing__round__rect_8h.md) 
   - [drawing_shader_effect.h](drawing__shader__effect_8h.md) 
   - [drawing_text_blob.h](drawing__text__blob_8h.md) 
