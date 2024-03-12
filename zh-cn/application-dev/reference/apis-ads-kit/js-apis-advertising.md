@@ -92,7 +92,7 @@ function requestAd(context: common.Context): void {
     // 设置广告内容分级上限
     adContentClassification: 'A',
     // 可选自定义参数，设置是否允许使用流量下载广告素材 0：不允许，1：允许
-    allowMobileTraffic： 0,
+    allowMobileTraffic: 0,
   };
   // 广告请求回调监听
   const adLoaderListener: advertising.AdLoadListener = {
@@ -170,7 +170,7 @@ function requestMultiAd(context: common.Context): void {
     //设置广告内容分级上限
     adContentClassification: 'A',
     // 可选自定义参数，设置是否允许使用流量下载广告素材 0：不允许，1：允许
-    allowMobileTraffic： 0,
+    allowMobileTraffic: 0,
   };
   // 广告请求回调监听
   const multiSlotsAdLoaderListener: advertising.MultiSlotsAdLoadListener = {
