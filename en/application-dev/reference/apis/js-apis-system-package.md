@@ -31,12 +31,6 @@ Checks whether an application exists, or whether a native application has been i
 | -------- | -------- | -------- | -------- |
 |options | [CheckPackageHasInstalledOptions](#checkpackagehasinstalledoptions) | Yes| Options.|
 
-**Return value**
-
-| Name| Type| Description|
-| -------- | -------- | -------- |
-| result | boolean | The value **true** means that the application exists or the native application has been installed, and **false** means the opposite.|
-
 **Example**
 
 ``` ts
