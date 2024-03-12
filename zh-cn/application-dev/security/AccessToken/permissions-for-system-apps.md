@@ -2980,3 +2980,15 @@
 **ACL使能**：true
 
 **起始版本**：11
+
+### ohos.permission.CHANGE_DISPLAYMODE
+
+允许应用改变屏幕模式。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
