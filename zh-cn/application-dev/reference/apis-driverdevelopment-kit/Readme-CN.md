@@ -25,7 +25,7 @@
     - [UsbDeviceMemMap](_usb_device_mem_map.md)
     - [UsbEndpointDescriptor](_usb_endpoint_descriptor.md)
     - [UsbInterfaceDescriptor](_usb_interface_descriptor.md)
-    - [UsbRequestPipe](_usb_request_pipes.md)
+    - [UsbRequestPipe](_usb_request_pipe.md)
     - [Hid_AbsAxesArray](_hid___abs_axes_array.md)
     - [Hid_Device](_hid___device.md)
     - [Hid_EmitItem](_hid___emit_item.md)
