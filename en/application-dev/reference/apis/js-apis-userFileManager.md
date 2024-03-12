@@ -1,6 +1,6 @@
 # @ohos.filemanagement.userFileManager (User Data Management)
 
-The **userFileManager** module provides user data management capabilities, including accessing and modifying user media data (audio and video clips, images, and files).
+The **userFileManager** module provides user data management capabilities, including accessing and modifying user media data (audio and video clips, images, and documents).
 
 > **NOTE**
 >
@@ -17,7 +17,7 @@ import userFileManager from '@ohos.filemanagement.userFileManager';
 
 getUserFileMgr(context: Context): UserFileManager
 
-Obtains a **UserFileManager** instance. This instance can be used to access and modify user media data (such as audio and video clips, images, and files).
+Obtains a **UserFileManager** instance.This instance can be used to access and modify user media data (such as audio and video clips, images, and documents).
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -487,9 +487,9 @@ createAlbum(name: string, callback: AsyncCallback&lt;Album&gt;): void;
 
 Creates an album. This API uses an asynchronous callback to return the result.
 
-The album name must meet the following requirements:
-- The album name is a string of 1 to 255 characters.
-- The album name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
+The album name cannot:
+- Exceed 255 characters.
+- Contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
 - The album name is case-insensitive.
 - Duplicate album names are not allowed.
 
@@ -526,9 +526,9 @@ createAlbum(name: string): Promise&lt;Album&gt;;
 
 Creates an album. This API uses a promise to return the result.
 
-The album name must meet the following requirements:
-- The album name is a string of 1 to 255 characters.
-- The album name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
+The album name cannot:
+- Exceed 255 characters.
+- Contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
 - The album name is case-insensitive.
 - Duplicate album names are not allowed.
 
@@ -1840,7 +1840,7 @@ Obtains the value of a **FileAsset** parameter.
 
 | Name     | Type                       | Mandatory  | Description   |
 | -------- | ------------------------- | ---- | ----- |
-| member | string | Yes   | Member parameter name, for example, **ImageVideoKey.DISPLAY_NAME**. You need to enter the **PhotoKeys** to be obtained in **fetchColumns** for all attributes except **uri**, **photoType**, and **displayName**. For example, **fetchColumns: ['title']**.|
+| member | string | Yes   | Name of the parmaeter to obtain, for example, **ImageVideoKey.DISPLAY_NAME**. You need to set **PhotoKeys** to be obtained in **fetchColumns** for all attributes except **uri**, **photoType**, and **displayName**. For example, **fetchColumns: ['title']**.|
 
 **Example**
 
