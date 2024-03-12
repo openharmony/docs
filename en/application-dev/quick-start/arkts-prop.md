@@ -21,7 +21,7 @@ For the \@Prop decorated variable of a child component, the change synchronizati
 
 ## Restrictions
 
-- When decorating variables of complex types, \@Prop makes a deep copy, during which all types, except primitive types, Map, Set, Date, and Array, will be lost. For example, for complex types provided by N-API, such as [PixelMap](../reference/apis/js-apis-image.md#pixelmap7), because they are partially implemented in the native code, complete data cannot be obtained through a deep copy in ArkTS.
+- When decorating variables, \@Prop makes a deep copy, during which all types, except primitive types, Map, Set, Date, and Array, will be lost. For example, for complex types provided by N-API, such as [PixelMap](../reference/apis/js-apis-image.md#pixelmap7), because they are partially implemented in the native code, complete data cannot be obtained through a deep copy in ArkTS.
 
 - The \@Prop decorator cannot be used in custom components decorated by \@Entry.
 
@@ -32,7 +32,7 @@ For the \@Prop decorated variable of a child component, the change synchronizati
 | ----------- | ---------------------------------------- |
 | Decorator parameters      | None.                                       |
 | Synchronization type       | One-way: from the data source provided by the parent component to the @Prop decorated variable. For details about the scenarios of nested types, see [Observed Changes](#observed-changes).|
-| Allowed variable types  | Object, class, string, number, Boolean, enum, and array of these types.<br>**undefined** or **null** (**any** is not supported).<br>Date type.<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>Union type of the preceding types, for example, string \| number, string \| undefined or ClassA \| null. For details, see [Union Type @Prop](#union-type-prop).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScipt type check. For example, @Prop a: string \| undefined = undefined is recommended; **@Prop a: string = undefined** is not recommended.<br>The union types defined by the AkrUI framework, including Length, ResourceStr, and ResourceColor, are supported.<br>The type must be specified.<br>The type must be the same as that of the [data source](arkts-state-management-overview.md#basic-concepts). There are three cases:<br>- Synchronizing the \@Prop decorated variable from an \@State or other decorated variable. Example: [Simple Type Sync from @State of the Parent Component to @Prop of the Child Component](#simple-type-sync-from-state-of-the-parent-component-to-prop-of-the-child-component).<br>- Synchronizing the \@Prop decorated variable from the item of an array decorated by an \@State or other decorators. Example: [Simple Type Sync from @State Array Item in Parent Component](#simple-type-sync-from-state-array-item-in-parent-component).<br>- Synchronizing the \@Prop decorated variable from a state property of the Object or class type in the parent component. Example: [Class Object Type Sync from @State Class Object Property in Parent Component](#class-object-type-sync-from-state-class-object-property-in-parent-component).|
+| Allowed variable types  | Object, class, string, number, Boolean, enum, and array of these types.<br>**any** is not supported. A combination of simple and complex types is not supported. The **undefined** and **null** values are not allowed.<br>Date type.<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>The type must be specified.<br>**NOTE**<br>The Length, ResourceStr, and ResourceColor types are a combination of simple and complex types and therefore not supported.<br>Negative examples:<br>CompA ({ aProp: undefined })<br>CompA ({ aProp: null })<br>The type must be the same as that of the [data source](arkts-state-management-overview.md#basic-concepts). There are three cases:<br>- Synchronizing the \@Prop decorated variable from an \@State or other decorated variable. Example: [Simple Type Sync from @State of the Parent Component to @Prop of the Child Component](#simple-type-sync-from-state-of-the-parent-component-to-prop-of-the-child-component).<br>- Synchronizing the \@Prop decorated variable from the item of an array decorated by an \@State or other decorators. Example: [Simple Type Sync from @State Array Item in Parent Component](#simple-type-sync-from-state-array-item-in-parent-component).<br>- Synchronizing the \@Prop decorated variable from a state property of the Object or class type in the parent component. Example: [Class Object Type Sync from @State Class Object Property in Parent Component](#class-object-type-sync-from-state-class-object-property-in-parent-component).|
 | Number of nested layers       | In component reuse scenarios, it is recommended that @Prop be nested with no more than five layers of data. If @Prop is nested with too many layers of data, garbage collection and increased memory usage caused by deep copy will arise, resulting in performance issues. To avoid such issues, use [\@ObjectLink](arkts-observed-and-objectlink.md) instead.|
 | Initial value for the decorated variable  | Local initialization is allowed.                                |
 
@@ -67,7 +67,7 @@ For the \@Prop decorated variable of a child component, the change synchronizati
   // The value change can be observed.
   this.count = 1;
   // Complex type
-  @Prop count: Model;
+  @Prop title: Model;
   // The value change can be observed.
   this.title = new Model('Hi');
   ```
@@ -170,7 +170,7 @@ struct ParentComponent {
         selected: this.parentSelectedDate
       })
 
-      DateComponent({selectedDate:this.parentSelectedDate})
+      DateComponent({ selectedDate: this.parentSelectedDate })
     }
 
   }
@@ -189,8 +189,12 @@ To understand the value initialization and update mechanism of the \@Prop decora
    1. When the @Prop decorated variable is modified locally, the change does not propagate back to its parent component.
    2. When the data source of the parent component is updated, the \@Prop decorated variable in the child component is reset, and its local value changes are overwritten.
 
+> **NOTE**
+>
+> The update of an \@Prop decorated variable relies on the re-rendering of the owning custom component. As such, when the application is in the background, the \@Prop decorated variable cannot be updated. In this case, use \@Link instead.
 
-## Application Scenarios
+
+## Use Scenarios
 
 
 ### Simple Type Sync from @State of the Parent Component to @Prop of the Child Component
@@ -277,36 +281,38 @@ struct Child {
   build() {
     Text(`${this.value}`)
       .fontSize(50)
-      .onClick(()=>{this.value++})
+      .onClick(() => {
+        this.value++
+      })
   }
 }
 
 @Entry
 @Component
 struct Index {
-  @State arr: number[] = [1,2,3];
+  @State arr: number[] = [1, 2, 3];
 
   build() {
     Row() {
       Column() {
-        Child({value: this.arr[0]})
-        Child({value: this.arr[1]})
-        Child({value: this.arr[2]})
+        Child({ value: this.arr[0] })
+        Child({ value: this.arr[1] })
+        Child({ value: this.arr[2] })
 
         Divider().height(5)
 
-        ForEach(this.arr, 
+        ForEach(this.arr,
           (item: number) => {
-            Child({value: item})
-          }, 
+            Child({ value: item })
+          },
           (item: string) => item.toString()
         )
         Text('replace entire arr')
-        .fontSize(50)
-        .onClick(()=>{
-          // Both arrays contain item "3".
-          this.arr = this.arr[0] == 1 ? [3,4,5] : [1,2,3];
-        })
+          .fontSize(50)
+          .onClick(() => {
+            // Both arrays contain item "3".
+            this.arr = this.arr[0] == 1 ? [3, 4, 5] : [1, 2, 3];
+          })
       }
     }
   }
@@ -728,9 +734,9 @@ struct Child1 {
 
 The \@Prop decorated state variable must be initialized. If not initialized locally, the variable must be initialized from the parent component. If it has been initialized locally, initialization from the parent component is optional.
 
-[Nonexample]
+[Incorrect Usage]
 
-​```ts
+```ts
 @Observed
 class ClassA {
   public c: number = 0;
@@ -794,6 +800,7 @@ struct PropChild1 {
       })
   }
 }
+
 @Component
 struct PropChild2 {
   @Prop testNum: ClassA = new ClassA(1); // The state variable is initialized locally.
@@ -817,7 +824,7 @@ struct Parent {
         .onClick(() => {
           this.testNum[0].c += 1;
         })
-        
+
       // @PropChild1 is not initialized locally and must be initialized from the parent component.
       PropChild1({ testNum: this.testNum[0] })
       // @PropChild2 is initialized locally. In this case, initialization from the parent component is optional.

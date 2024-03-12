@@ -9,11 +9,11 @@ PersistentStorage is an optional singleton object within an application. Its pur
 
 ## Overview
 
-PersistentStorage retains the selected AppStorage attributes on the device disk. The application uses the API to determine which AppStorage attributes should be persisted with PersistentStorage. The UI and business logic do not directly access attributes in PersistentStorage. All attribute access is to AppStorage. Changes in AppStorage are automatically synchronized to PersistentStorage.
+PersistentStorage retains the selected AppStorage attributes on the device. The application uses the API to determine which AppStorage attributes should be persisted with PersistentStorage. The UI and business logic do not directly access attributes in PersistentStorage. All attribute access is to AppStorage. Changes in AppStorage are automatically synchronized to PersistentStorage.
 
 PersistentStorage creates a two-way synchronization with attributes in AppStorage. A frequently used API function is to access AppStorage through PersistentStorage. Additional API functions include managing persisted attributes. The business logic always obtains or sets attributes through AppStorage.
 
-## Restrictions
+## Constraints
 
 PersistentStorage accepts the following types and values:
 
@@ -22,16 +22,16 @@ PersistentStorage accepts the following types and values:
 
 PersistentStorage does not accept the following types and values:
 
-- Nested objects (object arrays and object attributes), because the framework cannot detect the value changes of nested objects (including arrays) in AppStorage
-- **undefined** and **null**
+- Nested objects (object arrays and object attributes), because the framework cannot detect the value changes of nested objects (including arrays) in AppStorage.
+- **undefined** and **null**.
 
-Persistence of data is a relatively slow operation. Applications should avoid the following situations:
+Data persistence is an operation that takes time. Applications should avoid the following situations:
 
 - Persistence of large data sets
 
 - Persistence of variables that change frequently
 
-It is recommended that the persistent variables of PersistentStorage be less than 2 KB data. As PersistentStorage writes data to disks synchronously, a large amount of persistent data may result in time-consuming local data read and write operations in the UI thread, affecting UI rendering performance. If you need to store a large amount of data, consider using the database API.
+It is recommended that the persistent variables of PersistentStorage be less than 2 KB. As PersistentStorage flushes data synchronously, a large amount of persistent data may result in time-consuming local data read and write operations in the UI thread, affecting UI rendering performance. If you need to store a large amount of data, consider using the database API.
 
 PersistentStorage can be called to persist data only when the [UIContext](../reference/apis/js-apis-arkui-UIContext.md#uicontext), which can be obtained through [runScopedTask](../reference/apis/js-apis-arkui-UIContext.md#runscopedtask), is specified.
 
@@ -87,11 +87,11 @@ struct Index {
 ```
 
 - First running after fresh application installation:
-  1. **persistProp** is called to initialize PersistentStorage. A search for the **aProp** attribute on the PersistentStorage disk returns no result, because the application has just been installed.
+  1. **persistProp** is called to initialize PersistentStorage. A search for the **aProp** attribute in PersistentStorage returns no result, because the application has just been installed.
   2. A search for the attribute **aProp** in AppStorage still returns no result.
   3. Create the **aProp** attribute of the number type in AppStorge and initialize it with the value 47.
-  4. PersistentStorage writes the **aProp** attribute and its value **47** to the disk. The value of **aProp** in AppStorage and its subsequent changes are persisted.
-  5. Create the state variable **\@StorageLink('aProp') aProp** in the **\<Index>** component, which creates a two-way synchronization with the **aProp** attribute in AppStorage. During the creation, the search in AppStorage for the **aProp** attribute succeeds, and therefore, the state variable is initialized with the value **47** found in AppStorage.
+  4. PersistentStorage writes the **aProp** attribute and its value **47** to the local device. The value of **aProp** in AppStorage and its subsequent changes are persisted.
+  5. In the **\<Index>** component, create the state variable **\@StorageLink('aProp') aProp**, which creates a two-way synchronization with the **aProp** attribute in AppStorage. During the creation, the search in AppStorage for the **aProp** attribute is successful, and therefore, the state variable is initialized with the value **47** found in AppStorage.
 
   **Figure 1** PersistProp initialization process 
 
@@ -101,15 +101,15 @@ struct Index {
   1. The state variable **\@StorageLink('aProp') aProp** is updated, triggering the **\<Text>** component to be re-rendered.
   2. The two-way synchronization between the \@StorageLink decorated variable and AppStorage results in the change of the **\@StorageLink('aProp') aProp** being synchronized back to AppStorage.
   3. The change of the **aProp** attribute in AppStorage triggers any other one-way or two-way bound variables to be updated. (In this example, there are no such other variables.)
-  4. Because the attribute corresponding to **aProp** has been persisted, the change of the **aProp** attribute in AppStorage triggers PersistentStorage to write the attribute and its new value to the device disk.
+  4. Because the attribute corresponding to **aProp** has been persisted, the change of the **aProp** attribute in AppStorage triggers PersistentStorage to write the attribute and its new value to the device.
 
 - Subsequent application running:
-  1. **PersistentStorage.persistProp('aProp', 47)** is called. A search for the **aProp** attribute on the PersistentStorage disk succeeds.
-  2. The attribute is added to AppStorage with the value found on the PersistentStorage disk.
+  1. **PersistentStorage.persistProp('aProp', 47)** is called. A search for the **aProp** attribute in PersistentStorage succeeds.
+  2. The attribute is added to AppStorage with the value found in PersistentStorage.
   3. In the **\<Index>** component, the value of the @StorageLink decorated **aProp** attribute is the value written by PersistentStorage to AppStorage, that is, the value stored when the application was closed last time.
 
 
-### Accessing Attribute in AppStorage Before PersistentStorage
+### Accessing an Attribute in AppStorage Before PersistentStorage
 
 This example is an incorrect use. It is incorrect to use the API to access the attributes in AppStorage before calling **PersistentStorage.persistProp** or **persistProps**, because such a call sequence will result in loss of the attribute values used in the previous application run:
 
@@ -119,6 +119,20 @@ let aProp = AppStorage.setOrCreate('aProp', 47);
 PersistentStorage.persistProp('aProp', 48);
 ```
 
-**AppStorage.setOrCreate('aProp', 47)**: The **aProp** attribute is created in AppStorage, its type is number, and its value is set to the specified default value **47**. **aProp** is a persisted attribute. Therefore, it is written back to the PersistentStorage disk, and the value stored in the PersistentStorage disk from the previous run is lost.
+**AppStorage.setOrCreate('aProp', 47)**: The **aProp** attribute of the number type is created in AppStorage, and its value is set to the specified default value **47**. **aProp** is a persisted attribute. Therefore, it is written back to PersistentStorage, and the value stored in PersistentStorage from the previous run is lost.
 
-**PersistentStorage.persistProp('aProp', 48)**: An attribute with same name **aProp** is available in PersistentStorage.
+PersistentStorage.persistProp('aProp', 48): An attribute with the name **aProp** and value **47** – set through the API in AppStorage – is found in PersistentStorage.
+
+### Accessing an Attribute in AppStorage After PersistentStorage
+
+If you do not want to overwrite the values saved in PersistentStorage during the previous application run, make sure any access to attributes in AppStorage is made after a call to a PersistentStorage API.
+
+```ts
+PersistentStorage.persistProp('aProp', 48);
+if (AppStorage.get('aProp') > 50) {
+    // If the value stored in PersistentStorage exceeds 50, set the value to 47.
+    AppStorage.setOrCreate('aProp',47);
+}
+```
+
+After reading the data stored in PersistentStorage, the sample code checks whether the value of **aProp** is greater than 50 and, if it is, sets **aProp** to **47** through an API in AppStorage.

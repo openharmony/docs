@@ -83,7 +83,7 @@ As shown above, the **module.json5** file contains several tags.
 | mainElement | Name of the entry UIAbility or ExtensionAbility of the module. The value is a string with a maximum of 255 bytes.| String| Yes (initial value: left empty)|
 | [deviceTypes](#devicetypes) | Types of the devices on which the module can run.| String array| No|
 | deliveryWithInstall | Whether the HAP of the module is installed together with the application. This tag only applies to atomic services.<br>- **true**: The HAP of the module is installed together with the application.<br>- **false**: The HAP of the module is not installed together with the application.| Boolean| No|
-| installationFree | Whether the module supports the installation-free feature.<br>- **true**: The module supports the installation-free feature and meets installation-free constraints.<br>- **false**: The module does not support the installation-free feature.<br>**NOTE**<br>- If this tag is set to **true** for the entry-type module of an application, it must also be set to **true** for feature-type modules of the same application. <br>- If this tag is set to **false** for the entry-type module of an application, it can be set to **true** or **false** for feature-type modules of the same application based on service requirements.| Boolean| No|
+| installationFree | Whether the module supports the installation-free feature.<br>- **true**: The module supports the installation-free feature and meets installation-free constraints.<br>- **false**: The module does not support the installation-free feature.<br>**NOTE**<br>If [bundleType](./app-configuration-file.md#tags-in-the-configuration-file) is set to **atomicService**, set this tag to **true**. Otherwise, set this tag to <b class="+ topic/ph hi-d/b " id="b1842016483597">false</b>.| Boolean| No|
 | virtualMachine | Type of the target virtual machine (VM) where the module can run. It is used for cloud distribution, such as distribution by the application market and distribution center. If the target VM type is ArkTS engine, the value is **ark**+*version number*.| String| Yes (initial value: automatically inserted when DevEco Studio builds the HAP file)|
 | [pages](#pages)| Profile that represents information about each page in the module. The value is a string with a maximum of 255 bytes.| String| No in the UIAbility scenario|
 | [metadata](#metadata)| Custom metadata of the module. You can configure [distributionFilter](#distributionfilter) and [shortcuts](#shortcuts) by referencing resources. The setting is effective only for the current module, UIAbility, and ExtensionAbility.| Object array| Yes (initial value: left empty)|
@@ -150,7 +150,7 @@ Define the **main_pages.json** file under **resources/base/profile** in the deve
 
 | Name| Description| Data Type| Initial Value Allowed|
 | -------- | -------- | -------- | -------- |
-| src | Route information about all pages in the module, including the page path and page name. The value is a string array, each element of which represents a page.| String array| No|
+| src | Route information about all pages in the module, including the page path and page name. The page path is relative to the **src/main/ets** directory of the current module. The value is a string array, each element of which represents a page.| String array| No|
 | window | Window-related configuration.	 | Object| Yes (initial value: left empty)|
 
 
@@ -189,6 +189,7 @@ The **metadata** tag represents the custom metadata of the HAP. The tag value is
 | value | Value of the data item. The value is a string with a maximum of 255 bytes.| String| Yes (initial value: left empty)|
 | resource | Custom data format. The value is a resource index. It contains a maximum of 255 bytes.| String| Yes (initial value: left empty)|
 
+The value of **resource** is in the format of $profile:file name, where **$profile** indicates that the resource is placed under **/resources/base/profile** in the project directory. For example, **$profile:shortcuts_config** indicates the **/resources/base/profile/shortcuts_config.json** file.
 
 ```json
 {
@@ -240,7 +241,7 @@ The **abilities** tag represents the UIAbility configuration of the module, whic
 | name | Name of the UIAbility. This name must be unique in the entire application. The value is a string with a maximum of 127 bytes.| String| No|
 | srcEntry | Code path of the entry UIAbility. The value is a string with a maximum of 127 bytes.| String| No|
 | [launchType](../application-models/uiability-launch-type.md) | Launch type of the UIAbility. The options are as follows:<br>- **multiton**: A UIAbility instance is created each time the UIAbility is started.<br>- **singleton**: A UIAbility instance is created only when the UIAbility is started for the first time.<br>- **specified**: You can determine whether to create a UIAbility instance when the application is running.| String| Yes (initial value: **"singleton"**)|
-| description | Description of the UIAbility. The value is a string with a maximum of 31 bytes. It must be a resource index to support multiple languages.| String| Yes (initial value: left empty)|
+| description | Description of the UIAbility. The value is a string with a maximum of 255 bytes. It must be a resource index to support multiple languages.| String| Yes (initial value: left empty)|
 | icon | Icon of the UIAbility. The value is the index of the icon resource file.| String| Yes (initial value: left empty)<br>If **UIAbility** is set to **MainElement**, this attribute is mandatory.|
 | label | Name of the UIAbility displayed to users. The value must be a resource index to support multiple languages.| String| Yes (initial value: left empty)<br>If **UIAbility** is set to **MainElement**, this attribute is mandatory.|
 | permissions | Permissions required for another application to access the UIAbility.<br>The value is generally in the reverse domain name notation and contains a maximum of 255 bytes. It is an array of predefined permission names.| String array| Yes (initial value: left empty)|
@@ -324,8 +325,8 @@ The **skills** tag represents the feature set of [wants](../application-models/w
 
 | Name| Description| Data Type| Initial Value Allowed|
 | -------- | -------- | -------- | -------- |
-| actions | [Actions](../application-models/actions-entities.md) of wants that can be received, which can be predefined or customized.| String array| Yes (initial value: left empty)|
-| entities | [Entities](../application-models/actions-entities.md) of wants that can be received.| String array| Yes (initial value: left empty)|
+| actions | Actions of wants that can be received, which can be predefined or customized.| String array| Yes (initial value: left empty)|
+| entities | Entities of wants that can be received.| String array| Yes (initial value: left empty)|
 | uris | URIs that match the wants.| Object array| Yes (initial value: left empty)|
 
 
@@ -384,7 +385,9 @@ The **extensionAbilities** tag represents the configuration of ExtensionAbilitie
 | icon | Icon of the ExtensionAbility. The value is the index of the icon resource file. If **ExtensionAbility** is set to **MainElement** of the current module, this field is mandatory.| String| Yes (initial value: left empty)|
 | label | Name of the ExtensionAbility displayed to users. The value must be a resource index to support multiple languages. If **ExtensionAbility** is set to **MainElement** of the current module, this field is mandatory and its value must be unique in the application.| String| Yes (initial value: left empty)|
 | type | Type of the ExtensionAbility. The options are as follows:<br>- **form**: ExtensionAbility of a widget.<br>- **workScheduler**: ExtensionAbility of a deferred task.<br>- **inputMethod**: ExtensionAbility of an input method.<br>- **service**: service component running in the background.<br>- **accessibility**: ExtensionAbility of an accessibility feature.<br>- **dataShare**: ExtensionAbility for data sharing.<br>- **fileShare**: ExtensionAbility for file sharing.<br>- **staticSubscriber**: ExtensionAbility for static broadcast.<br>- **wallpaper**: ExtensionAbility of the wallpaper.<br>- **backup**: ExtensionAbility for data backup.<br>- **window**: ExtensionAbility of a window. This type of ExtensionAbility creates a window during startup for which you can develop the GUI. The GUI you develop is combined with the windows of other applications through the **UIExtensionComponent**.<br>- **thumbnail**: ExtensionAbility for obtaining file thumbnails. You can provide thumbnails for files of customized file types.<br>- **preview**: ExtensionAbility for preview. This type of ExtensionAbility can parse the file and display it in a window. You can combine the window with other application windows.<br>- **print**: ExtensionAbility for the print framework.<br>- **push**: ExtensionAbility for the push service.<br>- **driver**: ExtensionAbility for the driver framework.<br>- **remoteNotification**: ExtensionAbility for remote notifications.<br>- **remoteLocation**: ExtensionAbility for remote location.<br>- **voip**: ExtensionAbility for VoIP calls.<br>**NOTE**<br>The **service** and **dataShare** types apply only to system applications and do not take effect for third-party applications.| String| No|
-| permissions | Permissions required for another application to access the ExtensionAbility component.<br>The value is generally in the reverse domain name notation and contains a maximum of 255 bytes. It is an array of [predefined permission names](../security/permission-list.md).| String array| Yes (initial value: left empty)|
+| permissions | Permissions required for another application to access the ExtensionAbility.<br>The value is generally in the reverse domain name notation and contains a maximum of 255 bytes. It is an array of [predefined permission names](../security/permission-list.md).| String array| Yes (initial value: left empty)|
+| readPermission | Permission required for reading data in the ExtensionAbility. The value is a string with a maximum of 255 bytes. This field is available only when the type of the ExtensionAbility is set to **dataShare**.| String| Yes (initial value: left empty)|
+| writePermission | Permission required for writing data to the ExtensionAbility. The value is a string with a maximum of 255 bytes. This field is available only when the type of the ExtensionAbility is set to **dataShare**.| String| Yes (initial value: left empty)|
 | uri | Data URI provided by the ExtensionAbility. The value is a string with a maximum of 255 bytes, in the reverse domain name notation.<br>**NOTE**<br>This field is mandatory when the type of the ExtensionAbility is set to **dataShare**.| String| Yes (initial value: left empty)|
 |skills | A set of [wants](../application-models/want-overview.md) that can be received by the ExtensionAbility.<br>Configuration rule: In an entry package, you can configure multiple **skills** attributes with the entry capability. (A **skills** attribute with the entry capability is the one that has **ohos.want.action.home** and **entity.system.home** configured.) The label and icon of the first ExtensionAbility that has **skills** configured are used as the label and icon of the entire service/application.<br>**NOTE**<br>The **skills** attribute with the entry capability can be configured for the feature package of an application, but not for a service. | Array| Yes (initial value: left empty)|
 | [metadata](#metadata)| Metadata of the ExtensionAbility component.| Object| Yes (initial value: left empty)|
@@ -485,7 +488,7 @@ The **shortcut** information is identified in **metadata**, where:
 | [wants](../application-models/want-overview.md) | Wants to which the shortcut points. Each want can contain one or more of the **bundleName**, **moduleName**, and **abilityName** sub-attributes.<br>- **bundleName**: target bundle name of the shortcut. The value is a string.<br>- **moduleName**: target module name of the shortcut. The value is a string.<br>- **abilityName**: target ability name of the shortcut. The value is a string.| Object| Yes (initial value: left empty)|
 
 
-1. Configure the **shortcuts_config.json** file in **/resource/base/profile/**.
+1. Configure the **shortcuts_config.json** file in **/resources/base/profile/**.
 
    ```json
    {
@@ -591,7 +594,7 @@ The **distributionFilter** tag defines the rules for distributing HAP files base
 
 - **Configuration**:
 
-  This tag must be configured in the **/resource/profile** directory and be referenced in the **resource** field of **metadata**.
+  This tag must be configured in the **/resources/base/profile** directory and be referenced in the **resource** field of **metadata**.
 
 
 **Table 12** distributionFilter

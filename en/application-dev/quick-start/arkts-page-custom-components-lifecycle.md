@@ -27,7 +27,7 @@ The following lifecycle callbacks are provided for a custom component decorated 
 - [aboutToDisappear](../reference/arkui-ts/ts-custom-component-lifecycle.md#abouttodisappear): Invoked when the custom component is about to be destroyed. Do not change state variables in the **aboutToDisappear** function as doing this can cause unexpected errors. For example, the modification of the **@Link** decorated variable may cause unstable application running.
 
 
-The following figure shows the lifecycle of a component (home page) decorated with \@Entry.
+The following figure shows the lifecycle of a component (page) decorated with \@Entry.
 
 
 ![en-us_image_0000001502372786](figures/en-us_image_0000001502372786.png)
@@ -74,7 +74,7 @@ Re-rending of a custom component is triggered when its state variable is changed
 
 1. The framework observes the state variable change and marks the component for re-rendering.
 
-2. Using the mapping tables – created in step 4 of the custom component creation and rendering process, the framework knows which UI components are managed by the state variable and which update functions are used for these UI components. With this knowledge, the framework executes only the update functions of these UI components.
+2. Using the mapping tables – created in step 4 of the [custom component creation and rendering process](#custom-component-creation-and-rendering), the framework knows which UI components are managed by the state variable and which update functions are used for these UI components. With this knowledge, the framework executes only the update functions of these UI components.
 
 
 ## Custom Component Deletion
@@ -213,7 +213,7 @@ struct page {
 }
 ```
 
-In the preceding example, the **Index** page contains two custom components. One is **MyComponent** decorated with \@Entry, which is also the entry component (root node) of the page. The other is **Child**, which is a child component of **MyComponent**. Only components decorated by \@Entry can call the page lifecycle callbacks. Therefore, the lifecycle callbacks of the **Index** page are declared in **MyComponent**. **MyComponent** and its child components also declare the lifecycle callbacks of the respective component.
+In the preceding example, the **Index** page contains two custom components. One is **MyComponent** decorated with \@Entry, which is also the entry component (root node) of the page. The other is **Child**, which is a child component of **MyComponent**. Only components decorated by \@Entry can call the page lifecycle callbacks. Therefore, the lifecycle callbacks of the **Index** page – **onPageShow**, **onPageHide**, and **onBackPress**, are declared in **MyComponent**. In **MyComponent** and its child components, component lifecycle callbacks – **aboutToAppear** and **aboutToDisappear** –  are also declared.
 
 
 - The initialization process of application cold start is as follows: MyComponent aboutToAppear -> MyComponent build -> Child aboutToAppear -> Child build -> Child build execution completed -> MyComponent build execution completed -> Index onPageShow

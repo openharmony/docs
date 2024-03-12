@@ -1,5 +1,5 @@
 # HAR
-A Harmony Archive (HAR) is a static shared package that can contain code, C++ libraries, resource files, and configuration files (also called profiles). It enables modules and projects to share code related to ArkUI components, resources, and more. Unlike a Harmony Ability Package (HAP), which is a dynamic shared package, a HAR cannot be independently installed on a device. Instead, it can be referenced only as the dependency of an application module.
+A Harmony Archive (HAR) is a static shared package that can contain code, C++ libraries, resource files, and configuration files (also called profiles). It enables modules and projects to share code of ArkUI components, resources, and more.
 
 ## Creating a HAR Module
 You can create a HAR module in DevEco Studio.
@@ -163,7 +163,17 @@ export { nativeAdd } from './src/main/ets/utils/nativeTest';
 Resources are packed into the HAR during building. Specifically, DevEco Studio collects resource files from the HAP module and its dependent modules, and overwrites the resource files with the same name (if any) based on the following priorities (in descending order):
 - AppScope (only for the stage model of API version 9)
 - Modules in the HAP
-- Dependent HAR modules<br>If resource conflicts occur between dependent HAR modules, they are overwritten based on the dependency sequence. (The module that is higher in the dependency sequence list has a higher priority.)
+- Dependent HAR modules<br>If resource conflicts occur between dependent HAR modules, they are overwritten based on the dependency sequence indicated under **dependencies** in the **oh-package.json5** file. The module that is higher in the dependency sequence list has a higher priority. For example, in the following example, if **dayjs** and **lottie** folders contain files with the same name, resources in **dayjs** are used preferentially.
+
+```
+// oh-package.json5
+{
+  "dependencies": {
+    "dayjs": "^1.10.4",
+    "lottie": "^2.0.0"
+  }
+}
+```
 
 ## Referencing ArkUI Components, APIs, and Resources in the HAR
 To start with, configure dependency on the HAR.

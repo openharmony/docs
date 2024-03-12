@@ -34,7 +34,6 @@ export struct MyTitleBar {
         .fontFamily('HarmonyHeiTi')
         .fontWeight(FontWeight.Bold)
         .fontSize(32)
-        .fontWeight(700)
         .fontColor($r('app.color.text_color'))
     }
     .width('100%')
@@ -409,7 +408,7 @@ The **url** parameter in the **router.back** method is described as follows:
     'Page file name (without the extension .ets)
     ```
 
-* In this example, the URL for going back from the HSP page to the HSP page is as follows:
+* To return to the HSP1 page after switching to the HSP2 page, the URL should be as follows:
 
     ```ets
     '@bundle:com.samples.hspsample/library/ets/pages/Menu'
