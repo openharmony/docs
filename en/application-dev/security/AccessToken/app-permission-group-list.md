@@ -1,4 +1,4 @@
-# Application Permission Groups (Only for OpenHarmony)
+# Application Permission Groups
 
 
 ## NOTE

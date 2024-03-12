@@ -759,7 +759,7 @@ Allows an application to obtain the device-cloud synchronization management capa
 
 ### ohos.permission.DUMP
 
-Allows the basic system information and SA service information to be exported.
+Allows the basic system information and system ability (SA) information to be dumped.
 
 **Permission level**: system_core
 
@@ -996,6 +996,8 @@ Allows an application to obtain information about running processes and mission 
 **Enable via ACL**: true
 
 **Valid since**: 7
+
+**Deprecated since**: 9
 
 ### ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -1489,6 +1491,8 @@ Allows an application to start FAs in the background.
 
 **Valid since**: 7
 
+**Deprecated since**: 9
+
 ### ohos.permission.START_INVISIBLE_ABILITY
 
 Allows an application to start an invisible ability.
@@ -1576,6 +1580,18 @@ Allows an application to enroll and manage user identity authentication credenti
 ### ohos.permission.ACCESS_PIN_AUTH
 
 Allows an application to register the callback for obtaining the PIN during the PIN authentication process.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 8
+
+### ohos.permission.ACCESS_USER_AUTH_INTERNAL
+
+Allows an application to call internal system interfaces of IAM.
 
 **Permission level**: system_basic
 
@@ -2269,30 +2285,6 @@ Allows an application to write privacy push data to another application.
 
 **Valid since**: 11
 
-### ohos.permission.MANAGE_NEARLINK
-
-Allows an application to pair with a NearLink device and access the Contacts or messages of the device.
-
-**Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: true
-
-**Valid since**: 12
-
-### ohos.permission.GET_NEARLINK_LOCAL_MAC
-
-Allows the application to obtain the NearLink MAC address of the local device.
-
-**Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: true
-
-**Valid since**: 12
-
 ## system_grant Permissions (Unavailable via ACL)
 
 The following lists the system_grant permissions that cannot be requested via the ACL.
@@ -2358,18 +2350,6 @@ Allows an application to call interfaces of the DeviceAuthCredMgr application.
 **Enable via ACL**: false
 
 **Valid since**: 10
-
-### ohos.permission.ACCESS_USER_AUTH_INTERNAL
-
-Allows an application to call internal system interfaces of IAM.
-
-**Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: false
-
-**Valid since**: 8
 
 ### ohos.permission.ACCESS_AUTH_RESPOOL
 
