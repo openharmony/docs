@@ -156,6 +156,22 @@ stateEffect(value: boolean)
 | ------ | ------- | ---- | ------------------------------------------------------------ |
 | value  | boolean | 是   | 按钮按下时是否开启按压态显示效果，当设置为false时，按压效果关闭。<br/>默认值：true |
 
+### fontFamily
+
+fontFamily(value: string | Resource)
+
+设置字体列表。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                 | 必填 | 说明                                                         |
+| ------ | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [Resource](ts-types.md#resource)&nbsp;\|&nbsp;string | 是   | 字体列表。默认字体'HarmonyOS Sans'，当前支持'HarmonyOS Sans'字体和[注册自定义字体](../js-apis-font.md)。 |
+
 ### labelStyle<sup>10+</sup>
 
 labelStyle(value: LabelStyle)
@@ -198,9 +214,9 @@ controlSize(value: ControlSize)
 
 **参数：** 
 
-| 参数名 | 类型                                          | 必填 | 说明                                             |
-| ------ | --------------------------------------------- | ---- | ------------------------------------------------ |
-| value  | [ButtonStyleMode](#buttonstylemode11枚举说明) | 是   | Button组件的尺寸。<br/>默认值:ControlSize.NORMAL |
+| 参数名 | 类型                                  | 必填 | 说明                                             |
+| ------ | ------------------------------------- | ---- | ------------------------------------------------ |
+| value  | [ControlSize](#controlsize11枚举说明) | 是   | Button组件的尺寸。<br/>默认值:ControlSize.NORMAL |
 
 ## ButtonType枚举说明
 
