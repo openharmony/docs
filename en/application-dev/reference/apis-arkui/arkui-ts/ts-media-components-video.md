@@ -8,7 +8,7 @@ The **\<Video>** component is used to play a video and control its playback.
 
 ## Required Permissions
 
-To use online videos, you must apply for the **ohos.permission.INTERNET** permission. For details about how to apply for the permission, see [Declaring Permissions](../../security/AccessToken/declare-permissions.md).
+To use online videos, you must apply for the **ohos.permission.INTERNET** permission. For details about how to apply for a permission, see [Declaring Permissions](../../../security/AccessToken/declare-permissions.md).
 
 
 ## Child Components
@@ -30,9 +30,9 @@ Video(value: VideoOptions)
 
 | Name             | Type                                                    | Mandatory| Description                                                    |
 | ------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| src                 | string \| [Resource](ts-types.md#resource)                            | No  | Path of the video source, which can be a local path or a URL.<br>The video resources can be stored in the **video** or **rawfile** folder under **resources**.<br>The path can include a **dataability://** prefix, which indicates that the path is provided by a Data ability. For details about the path, see [Data Ability Development](../../application-models/dataability-overview.md).<br>- Strings with the **file:///data/storage** prefix are supported, which are used to read resources in the application sandbox. Ensure that the application has the read permission to the files in the specified path.<br>**NOTE**<br><br>The supported video formats are MP4, MKV, WebM, and TS.|
+| src                 | string \| [Resource](ts-types.md#resource)                            | No  | Path of the video source, which can be a local path or a URL.<br>The video resources can be stored in the **video** or **rawfile** folder under **resources**.<br>The path can include a **dataability://** prefix, which indicates that the path is provided by a DataAbility. For details about the path, see [DataAbility Overview](../../../application-models/dataability-overview.md).<br>- Strings with the **file:///data/storage** prefix are supported, which are used to read resources in the application sandbox. Ensure that the application has the read permission to the files in the specified path.<br>**NOTE**<br><br>The supported video formats are MP4, MKV, and TS.|
 | currentProgressRate | number \| string \| [PlaybackSpeed<sup>8+</sup>](#playbackspeed8) | No  | Video playback speed.<br>**NOTE**<br><br>The value of the number type can only be **0.75**, **1.0**, **1.25**, **1.75**, or **2.0**.<br>Default value: 1.0 \| PlaybackSpeed.Speed_Forward_1_00_X |
-| previewUri          | string \| [PixelMap](../apis/js-apis-image.md#pixelmap7) \| [Resource](ts-types.md)  | No  | Path of the preview image displayed before the video playback starts. By default, no preview image is displayed.                |
+| previewUri          | string \| [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) \| [Resource](ts-types.md)  | No  | Path of the preview image displayed before the video playback starts. By default, no preview image is displayed.                |
 | controller          | [VideoController](#videocontroller)                          | No  | Video controller to control the video playback status.                    |
 
 
@@ -77,7 +77,7 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 
 ## VideoController
 
-Defines a **VideoController** object to control one or more videos. For details about available video playback examples, see [@ohos.multimedia.media](../apis/js-apis-media.md).
+Defines a **VideoController** object to control one or more videos. For details about available video playback examples, see [@ohos.multimedia.media](../../apis-media-kit/js-apis-media.md).
 
 
 ### Objects to Import
