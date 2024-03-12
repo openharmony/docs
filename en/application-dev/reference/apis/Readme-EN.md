@@ -256,6 +256,7 @@
   - [@ohos.effectKit (Image Effects)](js-apis-effectKit.md)
   - [@ohos.graphics.colorSpaceManager (Color Space Management)](js-apis-colorSpaceManager.md)
   - [@ohos.graphics.displaySync (Variable Frame Rate)](js-apis-graphics-displaySync.md)
+  - [@ohos.graphics.hdrCapability (HDR Capability)](js-apis-hdrCapability.md)
   - [@ohos.PiPWindow (PiP Window)](js-apis-pipWindow.md)
   - [@ohos.screen (Screen)](js-apis-screen.md)
   - [@ohos.screenshot (Screenshot)](js-apis-screenshot.md)
@@ -264,6 +265,7 @@
 - Multimedia
   - [@ohos.app.ability.MediaControlExtensionAbility (ExtensionAbility for Media Playback Control)](js-apis-app-ability-MediaControlExtensionAbility.md)
   - [@ohos.multimedia.audio (Audio Management)](js-apis-audio.md)
+  - [@ohos.multimedia.audioHaptic (Audio-Haptic)](js-apis-audioHaptic.md)
   - [@ohos.multimedia.avsession (AVSession Management)](js-apis-avsession.md)
   - [@ohos.multimedia.camera (Camera Management)](js-apis-camera.md)
   - [@ohos.multimedia.image (Image Processing)](js-apis-image.md)
@@ -274,6 +276,7 @@
   - multimedia
     - [ringtonePlayer (Ringtone Player)](js-apis-inner-multimedia-ringtonePlayer.md)
     - [soundPool (Sound Pool)](js-apis-inner-multimedia-soundPool.md)
+    - [systemTonePlayer (System Alert Tone Player)](js-apis-inner-multimedia-systemTonePlayer.md)
 
 - Resource Management
   - [@ohos.i18n (Internationalization)](js-apis-i18n.md)
@@ -536,7 +539,9 @@
 - Application services
   - [@ohos.identifier.oaid (OAID)](js-apis-oaid.md)
   - [@ohos.advertising (Ads Service Framework](js-apis-advertising.md)
+  - [@ohos.advertising.AdComponent (Non-Full-Screen Ad Component)](js-apis-adcomponent.md)
   - [@ohos.advertising.AdsServiceExtensionAbility (ExtensionAbility for Ads](js-apis-adsserviceextensionability.md)
+  - [@ohos.advertising.AutoAdComponent (Carousel Ad Component)](js-apis-autoadcomponent.md)
 
 - Test
   - [@ohos.application.testRunner (TestRunner)](js-apis-application-testRunner.md)
