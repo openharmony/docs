@@ -70,7 +70,7 @@ ScrollEvent滚动信息。
 | 名称         | 类型                                               | 必填 | 说明                                         |
 | ------------ | -------------------------------------------------- | ---- | -------------------------------------------- |
 | id           | string                                             | 是   | 滚动组件的id。                               |
-| eventType    | [ScrollEventType](#ScrollEventType)                | 是   | 滚动事件的类型。                             |
+| eventType    | [ScrollEventType](#scrolleventtype)                | 是   | 滚动事件的类型。                             |
 | offset       | number                                             | 是   | 滚动组件的当前偏移量。                        |
 
 ## RouterPageInfo
