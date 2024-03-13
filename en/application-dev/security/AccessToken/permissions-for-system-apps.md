@@ -759,7 +759,7 @@ Allows an application to obtain the device-cloud synchronization management capa
 
 ### ohos.permission.DUMP
 
-Allows the basic system information and SA service information to be exported.
+Allows the basic system information and system ability (SA) information to be dumped.
 
 **Permission level**: system_core
 
@@ -1491,7 +1491,7 @@ Allows an application to start FAs in the background.
 
 **Valid since**: 7
 
-**Deprecated version**: 9
+**Deprecated since**: 9
 
 ### ohos.permission.START_INVISIBLE_ABILITY
 
@@ -2353,7 +2353,7 @@ Allows an application to call interfaces of the DeviceAuthCredMgr application.
 
 ### ohos.permission.ACCESS_USER_AUTH_INTERNAL
 
-Allows an application to call internal system interfaces of IAM.
+Allows an application to call internal system APIs of IAM.
 
 **Permission level**: system_basic
 
