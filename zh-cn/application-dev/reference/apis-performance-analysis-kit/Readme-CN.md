@@ -29,6 +29,8 @@
     - [log.h](log_8h.md)
     - [trace.h](trace_8h.md)
   - 结构体
+    - [HiAppEvent_AppEventGroup](_hi_app_event___app_event_group.md)
+    - [HiAppEvent_AppEventInfo](_hi_app_event___app_event_info.md)
     - [HiDebug_MemoryLimit](_hi_debug___memory_limit.md)
     - [HiDebug_NativeMemInfo](_hi_debug___native_mem_info.md)
     - [HiDebug_SystemMemInfo](_hi_debug___system_mem_info.md)
