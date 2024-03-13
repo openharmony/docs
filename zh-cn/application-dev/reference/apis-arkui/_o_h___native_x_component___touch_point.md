@@ -3,7 +3,15 @@
 
 ## 概述
 
-**相关模块：**[Native XComponent](_o_h___native_x_component.md)
+触摸事件中触摸点的信息。
+
+**起始版本：**
+
+8
+
+**相关模块：**
+
+[Native XComponent](_o_h___native_x_component.md)
 
 
 ## 汇总
