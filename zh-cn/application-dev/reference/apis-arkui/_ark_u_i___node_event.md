@@ -46,7 +46,7 @@ int32_t ArkUI_NodeEvent::eventId
 
 事件自定义标识ID。
 
-该事件id在调用**registerNodeEvent**函数时作为参数传递进来，可应用于同一事件入口函数{**}分发逻辑。 **
+该事件id在调用**registerNodeEvent**函数时作为参数传递进来，可应用于同一事件入口函数{**}分发逻辑。 
 
 
 ### extraParam
