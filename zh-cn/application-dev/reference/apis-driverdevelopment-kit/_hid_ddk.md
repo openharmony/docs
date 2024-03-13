@@ -9,7 +9,7 @@
 
 **起始版本：** 
 
-API version 11
+11
 
 ## 汇总
 
@@ -119,7 +119,7 @@ typedef struct Hid_AbsAxesArrayHid_AbsAxesArray
 **描述**
 绝对坐标属性数组。
 
-**起始版本：** API version 11
+**起始版本：** 11
 
 
 ### Hid_Device
@@ -130,7 +130,7 @@ typedef struct Hid_DeviceHid_Device
 **描述**
 设备基本信息。
 
-**起始版本：** API version 11
+**起始版本：** 11
 
 
 ### Hid_EmitItem
@@ -141,7 +141,7 @@ typedef struct Hid_EmitItemHid_EmitItem
 **描述**
 事件信息。
 
-**起始版本：** API version 11
+**起始版本：** 11
 
 
 ### Hid_EventProperties
@@ -152,7 +152,7 @@ typedef struct Hid_EventPropertiesHid_EventProperties
 **描述**
 设备关注事件属性。
 
-**起始版本：** API version 11
+**起始版本：** 11
 
 
 ### Hid_EventTypeArray
@@ -163,7 +163,7 @@ typedef struct Hid_EventTypeArrayHid_EventTypeArray
 **描述**
 事件类型编码数组。
 
-**起始版本：** API version 11
+**起始版本：** 11
 
 
 ### Hid_KeyCodeArray
@@ -174,7 +174,7 @@ typedef struct Hid_KeyCodeArrayHid_KeyCodeArray
 **描述**
 键值属性数组。
 
-**起始版本：** API version 11
+**起始版本：** 11
 
 
 ### Hid_MscEventArray
@@ -185,7 +185,7 @@ typedef struct Hid_MscEventArrayHid_MscEventArray
 **描述**
 其它特殊事件属性数组。
 
-**起始版本：** API version 11
+**起始版本：** 11
 
 
 ### Hid_RelAxesArray
@@ -196,7 +196,7 @@ typedef struct Hid_RelAxesArrayHid_RelAxesArray
 **描述**
 相对坐标属性数组。
 
-**起始版本：** API version 11
+**起始版本：** 11
 
 
 ## 枚举类型说明
@@ -210,7 +210,7 @@ enum Hid_AbsAxes
 **描述**
 绝对坐标编码。
 
-**起始版本：** API version 11
+**起始版本：** 11
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
@@ -250,7 +250,7 @@ enum Hid_DdkErrCode
 **描述**
 HID DDK错误码定义。
 
-**起始版本：** API version 11
+**起始版本：** 11
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
@@ -271,7 +271,7 @@ enum Hid_DeviceProp
 **描述**
 输入设备特性定义。
 
-**起始版本：** API version 11
+**起始版本：** 11
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
@@ -292,7 +292,7 @@ enum Hid_EventType
 **描述**
 事件类型。
 
-**起始版本：** API version 11
+**起始版本：** 11
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
@@ -311,7 +311,7 @@ enum Hid_KeyCode
 **描述**
 键值编码。
 
-**起始版本：** API version 11
+**起始版本：** 11
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
@@ -434,7 +434,7 @@ enum Hid_MscEvent
 **描述**
 不适合其它类型的输入事件编码。
 
-**起始版本：** API version 11
+**起始版本：** 11
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
@@ -454,7 +454,7 @@ enum Hid_RelAxes
 **描述**
 相对坐标编码。
 
-**起始版本：** API version 11
+**起始版本：** 11
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
@@ -481,7 +481,7 @@ enum Hid_SynEvent
 **描述**
 同步事件编码。
 
-**起始版本：** API version 11
+**起始版本：** 11
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
@@ -502,7 +502,7 @@ int32_t OH_Hid_CreateDevice (Hid_Device * hidDevice, Hid_EventProperties * hidEv
 **描述**
 创建设备。
 
-**起始版本：** API version 11
+**起始版本：** 11
 
 **参数:**
 
@@ -528,7 +528,7 @@ int32_t OH_Hid_DestroyDevice (int32_t deviceId)
 **描述**
 销毁设备。
 
-**起始版本：** API version 11
+**起始版本：** 11
 
 **参数:**
 
@@ -553,7 +553,7 @@ int32_t OH_Hid_EmitEvent (int32_t deviceId, const Hid_EmitItem items[], uint16_t
 **描述**
 向指定设备发送事件列表。
 
-**起始版本：** API version 11
+**起始版本：** 11
 
 **参数:**
 

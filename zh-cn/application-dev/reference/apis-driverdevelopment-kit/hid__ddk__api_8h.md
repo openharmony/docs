@@ -7,7 +7,7 @@
 
 引用文件：&lt;hid/hid_ddk_api.h&gt;
 
-**起始版本：** API version 11
+**起始版本：** 11
 
 **相关模块：**[HID DDK](_hid_ddk.md)
 
