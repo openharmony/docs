@@ -273,7 +273,7 @@ plural.json文件的内容如下：
 
 - 通过```"$r"```或```"$rawfile"```引用资源。具体操作如下：
 
- 1. 这里是列表文本[hsp].type.name获取资源。其中，hsp为hsp模块名，type为资源类型，name为资源名称，示例如下：
+  1.这里是列表文本[hsp].type.name获取资源。其中，hsp为hsp模块名，type为资源类型，name为资源名称，示例如下：
   
     ```ts
       Text($r('[hsp].string.test_string'))
@@ -281,7 +281,6 @@ plural.json文件的内容如下：
         .fontColor($r('[hsp].color.font_color'))  
       Image($rawfile('[hsp].icon.png'))
     ```
-
   2.使用变量获取资源。示例如下：
 
    ```ts
