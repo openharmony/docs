@@ -4148,8 +4148,8 @@ img.release().then(() => {
 
 | 名称   | 类型   | 可读 | 可写 | 说明           |
 | ------ | ------ | ---- | ---- | -------------- |
-| height | number | 是   | 是   | 输出图片的高。 |
-| width  | number | 是   | 是   | 输出图片的宽。 |
+| height | number | 是   | 是   | 输出图片的高，单位：像素。 |
+| width  | number | 是   | 是   | 输出图片的宽，单位：像素。 |
 
 ## PixelMapFormat<sup>7+</sup>
 
