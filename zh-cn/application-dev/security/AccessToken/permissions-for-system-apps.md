@@ -2443,7 +2443,7 @@
 
 ### ohos.permission.CHANGE_DISPLAYMODE
 
-允许系统应用改变屏幕模式
+允许系统应用改变屏幕模式。
 
 **权限级别**：system_core
 
