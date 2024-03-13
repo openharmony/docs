@@ -59,8 +59,10 @@ bindSheet(isShow: boolean, builder: CustomBuilder, options?: SheetOptions)
 | 名称            | 类型                                       | 必填 | 说明                     |
 | --------------- | ------------------------------------------ | ---- | ------------------------ |
 | backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | 半模态页面的背板颜色。   |
-| onAppear        | () => void                                 | 否   | 半模态页面显示回调函数。 |
-| onDisappear     | () => void                                 | 否   | 半模态页面回退回调函数。 |
+| onWillAppear<sup>12+</sup>        | () => void                                 | 否   | 半模态页面显示（动画开始前）回调函数。 |
+| onAppear        | () => void                                 | 否   | 半模态页面显示（动画结束后）回调函数。 |
+| onWillDisappear<sup>12+</sup>     | () => void                                 | 否   | 半模态页面回退（动画开始前）回调函数。 |
+| onDisappear     | () => void                                 | 否   | 半模态页面回退（动画结束后）回调函数。 |
 
 ## SheetType<sup>11+</sup>枚举说明
 
@@ -137,7 +139,15 @@ struct SheetTransitionExample {
         })
         .fontSize(20)
         .margin(10)
-        .bindSheet($$this.isShow, this.myBuilder(), {height: this.sheetHeight, dragBar: this.showDragBar, backgroundColor: Color.Green, onAppear: () => {console.log("BindSheet onAppear.")}, onDisappear: () => {console.log("BindSheet onDisappear.")}})
+        .bindSheet($$this.isShow, this.myBuilder(), {
+          height: this.sheetHeight, 
+          dragBar: this.showDragBar, 
+          backgroundColor: Color.Green,
+          onWillAppear: () => {console.log("BindSheet onWillAppear.")}, 
+          onAppear: () => {console.log("BindSheet onAppear.")}, 
+          onWillDisappear: () => {console.log("BindSheet onWillDisappear.")}, 
+          onDisappear: () => {console.log("BindSheet onDisappear.")}
+        })
     }
     .justifyContent(FlexAlign.Center)
     .width('100%')
