@@ -363,7 +363,7 @@ The table below uses promise as an example to describe the APIs used for develop
    import rpc from "@ohos.rpc";
    ```
 
-4. Request and cancel a continuous task. In the ServiceAbility, call **startBackgroundRunning()** and **startBackgroundRunning()** to request and cancel a continuous task.
+4. Request and cancel a continuous task. In the ServiceAbility, call **startBackgroundRunning()** and **stopBackgroundRunning()** to request and cancel a continuous task.
    
    ```js
    function startContinuousTask() {
