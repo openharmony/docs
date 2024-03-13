@@ -721,7 +721,7 @@ deleteAssets(uriList: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;):
 
 > **说明：** 
 >
-> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAssetChangeRequest.deleteAssets](#deleteassets11-1)替代。
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAssetChangeRequest.deleteAssets](js-apis-photoAccessHelper.md#deleteassets11)替代。
 
 **系统接口**：此接口为系统接口。
 
@@ -789,7 +789,7 @@ deleteAssets(uriList: Array&lt;string&gt;): Promise&lt;void&gt;
 
 > **说明：** 
 >
-> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAssetChangeRequest.deleteAssets](#deleteassets11-1)替代。
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAssetChangeRequest.deleteAssets](js-apis-photoAccessHelper.md#deleteassets11)替代。
 
 **系统接口**：此接口为系统接口。
 
@@ -3030,7 +3030,7 @@ deleteAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&gt
 
 > **说明：** 
 >
-> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest.deleteAssets](#deleteassets11-2)替代。
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest.deleteAssets](#deleteassets11)替代。
 
 **注意**：此操作不可逆，执行此操作后文件资源将彻底删除，请谨慎操作。
 
@@ -3097,7 +3097,7 @@ deleteAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;
 
 > **说明：** 
 >
-> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest.deleteAssets](#deleteassets11-2)替代。
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest.deleteAssets](#deleteassets11)替代。
 
 **注意**：此操作不可逆，执行此操作后文件资源将彻底删除，请谨慎操作。
 
