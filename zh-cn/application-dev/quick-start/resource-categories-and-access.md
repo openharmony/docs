@@ -263,7 +263,7 @@ Image($r('sys.media.ohos_app_icon'))
 
 #### 跨HAP/HSP包资源
 
-##### bundle不同,跨bundle访问（仅支持系统应用使用）
+##### bundle不同，跨bundle访问（仅支持系统应用使用）
 
 - 通过createModuleContext(bundleName, moduleName)接口创建对应HAP/HSP包的上下文，获取resourceManager对象后，调用不同[资源管理接口](../reference/apis-localization-kit/js-apis-resource-manager.md)访问不同资源。<br/>例如：getContext.createModuleContext(bundleName， moduleName).resourceManager.getStringByNameSync('app.string.XXX')。
 
