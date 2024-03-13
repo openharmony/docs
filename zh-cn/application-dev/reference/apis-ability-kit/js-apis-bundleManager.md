@@ -842,7 +842,7 @@ getAllPreinstalledApplicationInfo(): Promise\<Array\<PreinstalledApplicationInfo
 import bundleManager from '@ohos.bundle.bundleManager';
 import Base from '@ohos.base';
 
-bundleManager.getAllPreinstalledApplicationInfo().then(() => {
+bundleManager.getAllPreinstalledApplicationInfo().then((bundleInfos: Array<bundleManager.PreinstalledApplicationInfo>) => {
     console.info("GetAllPreinstalledApplicationInfo success");
 }).catch((err: Base.BusinessError) => {
     console.error("GetAllPreinstalledApplicationInfo errCode is :" + JSON.stringify(err.code));
