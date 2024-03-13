@@ -70,7 +70,7 @@ import cardEmulation from '@ohos.nfc.cardEmulation';
 | ---- | ---- | -------- |
 | HCE  | 0    | HCE 卡模拟。 |
 | UICC | 1    | SIM 卡模拟。 |
-| ESE  | 2    | ESE卡模拟。  |
+| ESE  | 2    | ESE 卡模拟。  |
 
 ## CardType<sup>9+</sup>
 
@@ -260,7 +260,7 @@ start(elementName: [ElementName](../apis-ability-kit/js-apis-bundle-ElementName.
 
 stopHCE(): boolean
 
-停止HCE业务功能。包括退出当前应用前台优先，释放动态注册的AID列表，释放[hceCmd](#on8)的订阅。
+停止HCE业务功能。包括退出当前应用前台优先，释放动态注册的AID列表，释放hceCmd的订阅。
 
 > **说明：**
 > 从 API version 8 开始支持，从 API version 9 开始废弃，建议使用[stop](#stop9)替代。
