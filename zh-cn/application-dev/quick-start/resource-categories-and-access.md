@@ -233,31 +233,31 @@ plural.json文件的内容如下：
 
  - 通过```"$r"```或```"$rawfile"```引用资源。<br/>对于“color”、“float”、“string”、“plural”、“media”、“profile”等类型的资源，通过```"$r('app.type.name')"```形式引用。其中，app为resources目录中定义的资源；type为资源类型或资源的存放位置；name为资源名，开发者定义资源时确定。<br/>对于rawfile目录资源，通过```"$rawfile('filename')"```形式引用。其中，filename为rawfile目录下文件的相对路径，文件名需要包含后缀，路径开头不可以"/"开头。
 
-  > **说明：**
-  >
-  > rawfile的native的访问方式请参考[Rawfile开发指导](../napi/rawfile-guidelines.md)。
+   > **说明：**
+   >
+   > rawfile的native的访问方式请参考[Rawfile开发指导](../napi/rawfile-guidelines.md)。
 
   [资源组目录](#资源组目录)下的“资源文件示例”显示了.json文件内容，包含color.json文件、string.json文件和plural.json文件，访问应用资源时需先了解.json文件的使用规范。<br/>资源的具体使用方法如下：
 
-```ts
-Text('Hello')
-  .fontColor($r('sys.color.ohos_id_color_emphasize'))
-  .fontSize($r('sys.float.ohos_id_text_size_headline1'))
-  .fontFamily($r('sys.string.ohos_id_text_font_family_medium'))
-  .backgroundColor($r('sys.color.ohos_id_color_palette_aux1'))
+  ```ts
+    Text('Hello')
+    .fontColor($r('sys.color.ohos_id_color_emphasize'))
+    .fontSize($r('sys.float.ohos_id_text_size_headline1'))
+    .fontFamily($r('sys.string.ohos_id_text_font_family_medium'))
+    .backgroundColor($r('sys.color.ohos_id_color_palette_aux1'))
 
-Image($r('sys.media.ohos_app_icon'))
-  .border({
-    color: $r('sys.color.ohos_id_color_palette_aux1'),
-    radius: $r('sys.float.ohos_id_corner_radius_button'), width: 2
-  })
-  .margin({
-    top: $r('sys.float.ohos_id_elements_margin_horizontal_m'),
-    bottom: $r('sys.float.ohos_id_elements_margin_horizontal_l')
-  })
-  .height(200)
-  .width(300)
-```
+    Image($r('sys.media.ohos_app_icon'))
+    .border({
+      color: $r('sys.color.ohos_id_color_palette_aux1'),
+      radius: $r('sys.float.ohos_id_corner_radius_button'), width: 2
+    })
+    .margin({
+      top: $r('sys.float.ohos_id_elements_margin_horizontal_m'),
+      bottom: $r('sys.float.ohos_id_elements_margin_horizontal_l')
+    })
+    .height(200)
+    .width(300)
+  ```
 
 - 通过本应用上下文获取ResourceManager后，调用不同[资源管理接口](../reference/apis-localization-kit/js-apis-resource-manager.md)访问不同资源。<br/>例如：getContext.resourceManager.getStringByNameSync('app.string.XXX') 可获取字符串资源；getContext.resourceManager.getRawFd('rawfilepath') 可获取Rawfile所在hap包的descriptor信息，访问rawfile文件时需{fd, offset, length}一起使用。
 
@@ -271,51 +271,45 @@ Image($r('sys.media.ohos_app_icon'))
 
 - 通过createModuleContext(moduleName)接口创建同应用中不同module的上下文，获取resourceManager对象后，调用不同接口访问不同资源。<br/>例如：getContext.createModuleContext(moduleName).resourceManager.getStringByNameSync('app.string.XXX')。
 
-### \\$r/\\$rawfile跨包访问HSP包资源
+- 通过```"$r"```或```"$rawfile"```引用资源。具体操作如下：
 
-- [hsp].type.name获取资源。
+  1. 这里是列表文本[hsp].type.name获取资源。其中，hsp为hsp模块名，type为资源类型，name为资源名称，示例如下：
+  
+    ```ts
+      Text($r('[hsp].string.test_string'))
+        .fontSize($r('[hsp].float.font_size'))
+        .fontColor($r('[hsp].color.font_color'))  
+      Image($rawfile('[hsp].icon.png'))
+    ```
 
-  hsp为hsp模块名，type为资源类型，name为资源名称。
-  
-  示例：
-  
-  ```ts
-  Text($r('[hsp].string.test_string'))
-    .fontSize($r('[hsp].float.font_size'))
-    .fontColor($r('[hsp].color.font_color'))
-  
-  Image($rawfile('[hsp].icon.png'))
-  ```
+  2.使用变量获取资源。示例如下：
 
-- 使用变量获取资源。
-
-  示例：
-
-  ```ts
-  @Entry
-  @Component
-  struct Index {
-    text: string = '[hsp].string.test_string';
-    fontSize: string = '[hsp].float.font_size';
-    fontColor: string = '[hsp].color.font_color';
-    image: string = '[hsp].media.string';
-    rawfile: string = '[hsp].icon.png';
+   ```ts
+    @Entry
+    @Component
+    struct Index {
+      text: string = '[hsp].string.test_string';
+      fontSize: string = '[hsp].float.font_size';
+      fontColor: string = '[hsp].color.font_color';
+      image: string = '[hsp].media.string';
+      rawfile: string = '[hsp].icon.png';
   
-    build() {
-      Row() {
-        Text($r(this.text))
-          .fontSize($r(this.fontSize))
-          .fontColor($r(this.fontColor))
+      build() {
+        Row() {
+          Text($r(this.text))
+            .fontSize($r(this.fontSize))
+            .fontColor($r(this.fontColor))
   
-        Image($r(this.image))
+          Image($r(this.image))
   
-        Image($rawfile(this.rawfile))
+          Image($rawfile(this.rawfile))
+        }
       }
     }
-  }
-  ```
-
-  hsp包名必须写在[]内，”rawfile“下有多层目录，需要从”rawfile“下面第一个目录开始写，如`“\$rawfile('[hsp].oneFile/twoFile/icon.png')”`，使用`"$r"`和`"$rawfile"`跨包访问HSP包资源无法提供编译时的资源校验，需要开发者自行保证使用资源存在于对应包中。
+   ```
+  > **说明** 
+  >
+  > hsp包名必须写在[]内，rawfile下有多层目录，需要从rawfile下面第一个目录开始写，如```"\$rawfile('[hsp].oneFile/twoFile/icon.png')"```，使用```"$r"```和```"$rawfile"```跨包访问HSP包资源无法提供编译时的资源校验，需要开发者自行保证使用资源存在于对应包中。
 
 ### 系统资源
 
