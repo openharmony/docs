@@ -1,6 +1,6 @@
 # @ohos.data.ValuesBucket (Data Set)
 
-The **ValueBucket** module holds data in key-value (KV) pairs. You can use it to insert data into a database.
+The **ValuesBucket** module holds data in key-value (KV) pairs. You can use it to insert data into a database.
 
 > **NOTE**
 >
@@ -26,7 +26,7 @@ Enumerates the value types allowed by the database.
 | ------- | -------------------- |
 | number  | The value is a number.  |
 | string  | The value is a string.|
-| boolean | The value is of Boolean type.|
+| boolean | The value is **true** or **false**.|
 
 ## ValuesBucket
 

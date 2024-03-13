@@ -3,11 +3,12 @@
 
 ## Overview
 
+
 Provides APIs to access the result set obtained by querying the RDB store.
 
 **Since**: 10
 
-**Related modules**: [RDB](_r_d_b.md)
+**Related module**: [RDB](_r_d_b.md)
 
 
 ## Summary
