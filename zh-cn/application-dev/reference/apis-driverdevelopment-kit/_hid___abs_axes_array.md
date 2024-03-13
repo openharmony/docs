@@ -21,7 +21,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [hidAbsAxes](#hidAbsAxes) | 绝对坐标属性编码 | 
+| [hidAbsAxes](#hidabsaxes) | 绝对坐标属性编码 | 
 | [length](#length) | 数组长度 | 
 
 

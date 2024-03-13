@@ -21,7 +21,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [hidKeyCode](#hidKeyCode) | 键值编码 | 
+| [hidKeyCode](#hidkeycode) | 键值编码 | 
 | [length](#length) | 数组长度 | 
 
 

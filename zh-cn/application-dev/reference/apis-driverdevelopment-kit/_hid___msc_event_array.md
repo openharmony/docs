@@ -21,7 +21,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [hidMscEvent](#hidMscEvent) | 其它特殊事件属性编码 | 
+| [hidMscEvent](#hidmscevent) | 其它特殊事件属性编码 | 
 | [length](#length) | 数组长度 | 
 
 

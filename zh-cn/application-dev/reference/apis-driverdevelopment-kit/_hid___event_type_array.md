@@ -21,7 +21,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [hidEventType](#hidEventType) | 事件类型编码 | 
+| [hidEventType](#hideventtype) | 事件类型编码 | 
 | [length](#length) | 数组长度 | 
 
 
