@@ -104,6 +104,7 @@ ArkUI会在该函数调用时创建触控点信息数组的堆内存对象并返
 bool ArkUI_NodeTouchEvent::preventDefault
 ```
 **描述：**
+
 阻止当前节点的默认事件处理行为，允许事件进一步向上冒泡。
 
 
