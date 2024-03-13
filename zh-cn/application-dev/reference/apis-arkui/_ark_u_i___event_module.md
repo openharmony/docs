@@ -15,14 +15,14 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [ui_input_event.h](ui__input__event_8h.md) | 提供ArkUI在Native侧的事件定义。<br>**库：** libace_ndk.z.so| 
+| [ui_input_event.h](ui__input__event_8h.md) | 提供ArkUI在Native侧的事件定义。  <br>**库：** libace_ndk.z.so| 
 
 
 ### 类型定义
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| typedef struct [ArkUI_UIInputEvent](#arkui_uiinputevent) [ArkUI_UIInputEvent](#arkui_uiinputevent) | UI输入事件定义。  | 
+| typedef struct [ArkUI_UIInputEvent](#arkui_uiinputevent)[ArkUI_UIInputEvent](#arkui_uiinputevent) | UI输入事件定义。  | 
 
 
 ### 枚举
@@ -101,7 +101,7 @@ double OH_ArkUI_AxisEvent_GetHorizontalAxisValue (const ArkUI_UIInputEvent * eve
 
 **返回：**
 
-返回当前轴事件的水平滚动轴的值。
+返回当前轴事件的水平滚动轴的值，如果参数异常则返回0.0。
 
 
 ### OH_ArkUI_AxisEvent_GetPinchAxisScaleValue()
@@ -123,7 +123,7 @@ double OH_ArkUI_AxisEvent_GetPinchAxisScaleValue (const ArkUI_UIInputEvent * eve
 
 **返回：**
 
-返回当前轴事件的捏合轴缩放的值。
+返回当前轴事件的捏合轴缩放的值，如果参数异常则返回0.0。
 
 
 ### OH_ArkUI_AxisEvent_GetVerticalAxisValue()
@@ -145,7 +145,7 @@ double OH_ArkUI_AxisEvent_GetVerticalAxisValue (const ArkUI_UIInputEvent * event
 
 **返回：**
 
-返回当前轴事件的垂直滚动轴的值。
+返回当前轴事件的垂直滚动轴的值，如果参数异常则返回0.0。
 
 
 ### OH_ArkUI_PointerEvent_GetDisplayX()
@@ -167,7 +167,7 @@ float OH_ArkUI_PointerEvent_GetDisplayX (const ArkUI_UIInputEvent * event)
 
 **返回：**
 
-返回当前带有指向性的输入事件相对于当前屏幕左上角的X坐标。
+返回当前带有指向性的输入事件相对于当前屏幕左上角的X坐标，如果参数异常则返回0.0f。
 
 
 ### OH_ArkUI_PointerEvent_GetDisplayY()
@@ -189,7 +189,7 @@ float OH_ArkUI_PointerEvent_GetDisplayY (const ArkUI_UIInputEvent * event)
 
 **返回：**
 
-返回当前带有指向性的输入事件相对于当前屏幕左上角的Y坐标。
+返回当前带有指向性的输入事件相对于当前屏幕左上角的Y坐标，如果参数异常则返回0.0f。
 
 
 ### OH_ArkUI_PointerEvent_GetWindowX()
@@ -211,7 +211,7 @@ float OH_ArkUI_PointerEvent_GetWindowX (const ArkUI_UIInputEvent * event)
 
 **返回：**
 
-返回当前带有指向性的输入事件相对于当前应用窗口左上角的X坐标。
+返回当前带有指向性的输入事件相对于当前应用窗口左上角的X坐标，如果参数异常则返回0.0f。
 
 
 ### OH_ArkUI_PointerEvent_GetWindowY()
@@ -233,7 +233,7 @@ float OH_ArkUI_PointerEvent_GetWindowY (const ArkUI_UIInputEvent * event)
 
 **返回：**
 
-返回当前带有指向性的输入事件相对于当前应用窗口左上角的Y坐标。
+返回当前带有指向性的输入事件相对于当前应用窗口左上角的Y坐标，如果参数异常则返回0.0f。
 
 
 ### OH_ArkUI_PointerEvent_GetX()
@@ -255,7 +255,7 @@ float OH_ArkUI_PointerEvent_GetX (const ArkUI_UIInputEvent * event)
 
 **返回：**
 
-返回当前带有指向性的输入事件相对于当前组件左上角的X坐标。
+返回当前带有指向性的输入事件相对于当前组件左上角的X坐标，如果参数异常则返回0.0f。
 
 
 ### OH_ArkUI_PointerEvent_GetY()
@@ -277,7 +277,7 @@ float OH_ArkUI_PointerEvent_GetY (const ArkUI_UIInputEvent * event)
 
 **返回：**
 
-返回当前带有指向性的输入事件相对于当前组件左上角的Y坐标。
+返回当前带有指向性的输入事件相对于当前组件左上角的Y坐标，如果参数异常则返回0.0f。
 
 
 ### OH_ArkUI_UIInputEvent_GetEventTime()
@@ -299,7 +299,7 @@ int64_t OH_ArkUI_UIInputEvent_GetEventTime (const ArkUI_UIInputEvent * event)
 
 **返回：**
 
-返回UI输入事件发生的时间。
+返回UI输入事件发生的时间，如果参数异常则返回0。
 
 
 ### OH_ArkUI_UIInputEvent_GetType()
@@ -321,4 +321,4 @@ int32_t OH_ArkUI_UIInputEvent_GetType (const ArkUI_UIInputEvent * event)
 
 **返回：**
 
-返回当前UI输入事件的类型。
+返回当前UI输入事件的类型，如果参数异常则返回0。
