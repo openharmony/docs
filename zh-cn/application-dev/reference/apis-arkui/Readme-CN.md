@@ -64,6 +64,7 @@
       - [焦点事件](arkui-ts/ts-universal-focus-event.md)
       - [鼠标事件](arkui-ts/ts-universal-mouse-key.md)
       - [组件区域变化事件](arkui-ts/ts-universal-component-area-change-event.md)
+      - [组件尺寸变化事件](arkui-ts/ts-universal-component-size-change-event.md)
       - [组件可见区域变化事件](arkui-ts/ts-universal-component-visible-area-change-event.md)
       - [组件快捷键事件](arkui-ts/ts-universal-events-keyboardshortcut.md)
       - [自定义事件分发](arkui-ts/ts-universal-attributes-on-child-touch-test.md)

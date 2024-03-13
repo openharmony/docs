@@ -230,6 +230,32 @@ struct AnimateToExample {
 }
 ```
 
+### getFrameNodeById<sup>12+</sup>
+
+getFrameNodeById(id: string): FrameNode | null
+
+提供getFrameNodeById接口通过组件的id获取组件树的实体节点。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型                                       | 必填   | 说明                                    |
+| ----- | ---------------------------------------- | ---- | ------------------------------------- |
+| id | string | 是    | 节点对应的[组件标识](arkui-ts/ts-universal-attributes-component-id.md)                          |
+
+**返回值：**
+
+| 类型                                       | 说明            |
+| ---------------------------------------- | ------------- |
+| [FrameNode](js-apis-arkui-frameNode.md)  \| null | 返回的组件树的实体节点或者空节点。 |
+
+**示例：**
+
+```ts
+uiContext.getFrameNodeById("TestNode")
+```
+
 ### showAlertDialog
 
 showAlertDialog(options: AlertDialogParamWithConfirm | AlertDialogParamWithButtons | AlertDialogParamWithOptions): void
