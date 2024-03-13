@@ -7,11 +7,11 @@
 
 **起始版本：**
 
-11
+API version 11
 
 **相关模块：**
 
-[HidDdk](_hid_ddk.md)
+[HID DDK](_hid_ddk.md)
 
 
 ## 汇总

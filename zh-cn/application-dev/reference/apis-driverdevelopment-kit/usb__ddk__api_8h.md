@@ -7,11 +7,11 @@
 
 **起始版本：**
 
-10
+API version 10
 
 **相关模块：**
 
-[UsbDdk](_usb_ddk.md)
+[USB DDK](_usb_ddk.md)
 
 
 ## 汇总
