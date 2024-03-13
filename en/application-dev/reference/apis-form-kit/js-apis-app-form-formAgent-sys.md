@@ -39,7 +39,7 @@ Requests to publish a widget to the widget host. This API uses an asynchronous c
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
 
-For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
+For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
@@ -101,7 +101,7 @@ Requests to publish a widget to the widget host. This API uses a promise to retu
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
 
-For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
+For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
@@ -128,5 +128,3 @@ try {
   console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message})`);
 }
 ```
-
- <!--no_check--> 

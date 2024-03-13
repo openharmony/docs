@@ -293,4 +293,23 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 };
 ```
 
- <!--no_check--> 
+
+## onStop
+
+onStop?(): void
+
+Called when the widget process of the widget provider exits.
+  
+**System capability**: SystemCapability.Ability.Form
+
+**Example**
+
+```ts
+import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+
+export default class MyFormExtensionAbility extends FormExtensionAbility {
+  onStop() {
+    console.log(`FormExtensionAbility onStop`);
+  }
+}
+```

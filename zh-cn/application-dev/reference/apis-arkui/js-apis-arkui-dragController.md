@@ -261,25 +261,37 @@ startDrag(): Promise&lt;void&gt;
 ```ts
 import dragController from "@ohos.arkui.dragController"
 import UDC from '@ohos.data.unifiedDataChannel';
-let customBuilders:Array<CustomBuilder | DragItemInfo> = new Array<CustomBuilder | DragItemInfo>();
-let text = new UDC.Text()
-let unifiedData = new UDC.UnifiedData(text)
-let dragInfo: dragController.DragInfo = {
-  pointerId: 0,
-  data: unifiedData,
-  extraParams: ''
-}
-try{
-  let dragAction: dragController.DragAction | null = dragController.createDragAction(customBuilders, dragInfo);
-  if(!dragAction){
-    console.log("listener dragAction is null");
-    return
+
+@Entry
+@Component
+struct DragControllerPage {
+  build() {
+    Column() {
+      Button('touch to execute drag')
+        .onTouch((event?:TouchEvent) => {
+          let customBuilders:Array<CustomBuilder | DragItemInfo> = new Array<CustomBuilder | DragItemInfo>();
+          let text = new UDC.Text()
+          let unifiedData = new UDC.UnifiedData(text)
+          let dragInfo: dragController.DragInfo = {
+            pointerId: 0,
+            data: unifiedData,
+            extraParams: ''
+          }
+          try {
+            let dragAction: dragController.DragAction | null = dragController.createDragAction(customBuilders, dragInfo);
+            if(!dragAction){
+              console.log("listener dragAction is null");
+              return
+            }
+            dragAction.startDrag().then(()=>{}).catch((err:Error)=>{
+              console.log("start drag Error:" + err.message);
+            })
+          } catch (err) {
+            console.log("create dragAction Error:" + err.message);
+          }
+        })
+    }
   }
-  dragAction.startDrag().then(()=>{}).catch((err:Error)=>{
-    console.log("start drag Error:" + err.message);
-  })
-}catch(err) {
-  console.log("create dragAction Error:" + err.message);
 }
 
 ```
@@ -302,25 +314,37 @@ on(type: 'statusChange', callback: Callback&lt;[DragAndDropInfo](#draganddropinf
 ```ts
 import dragController from "@ohos.arkui.dragController"
 import UDC from '@ohos.data.unifiedDataChannel';
-let customBuilders:Array<CustomBuilder | DragItemInfo> = new Array<CustomBuilder | DragItemInfo>();
-let text = new UDC.Text()
-let unifiedData = new UDC.UnifiedData(text)
-let dragInfo: dragController.DragInfo = {
-  pointerId: 0,
-  data: unifiedData,
-  extraParams: ''
-}
-try{
-  let dragAction: dragController.DragAction | null = dragController.createDragAction(customBuilders, dragInfo);
-  if(!dragAction){
-    console.log("listener dragAction is null");
-    return
+
+@Entry
+@Component
+struct DragControllerPage {
+  build() {
+    Column() {
+      Button('touch to execute drag')
+        .onTouch((event?:TouchEvent) => {
+          let customBuilders:Array<CustomBuilder | DragItemInfo> = new Array<CustomBuilder | DragItemInfo>();
+          let text = new UDC.Text()
+          let unifiedData = new UDC.UnifiedData(text)
+          let dragInfo: dragController.DragInfo = {
+            pointerId: 0,
+            data: unifiedData,
+            extraParams: ''
+          }
+          try{
+            let dragAction: dragController.DragAction | null = dragController.createDragAction(customBuilders, dragInfo);
+            if(!dragAction){
+              console.log("listener dragAction is null");
+              return
+            }
+            dragAction.on('statusChange', (dragAndDropInfo: dragController.DragAndDropInfo)=>{
+              console.info("Register to listen on drag status", JSON.stringify(dragAndDropInfo));
+            })
+          }catch(err) {
+            console.log("create dragAction Error:" + err.message);
+          }
+        })
+    }
   }
-  dragAction.on('statusChange', (dragAndDropInfo: dragController.DragAndDropInfo)=>{
-    console.info("Register to listen on drag status", JSON.stringify(dragAndDropInfo));
-  })
-}catch(err) {
-  console.log("create dragAction Error:" + err.message);
 }
 ```
 
@@ -342,25 +366,37 @@ try{
 ```ts
 import dragController from "@ohos.arkui.dragController"
 import UDC from '@ohos.data.unifiedDataChannel';
-let customBuilders:Array<CustomBuilder | DragItemInfo> = new Array<CustomBuilder | DragItemInfo>();
-let text = new UDC.Text()
-let unifiedData = new UDC.UnifiedData(text)
-let dragInfo: dragController.DragInfo = {
-  pointerId: 0,
-  data: unifiedData,
-  extraParams: ''
-}
-try{
-  let dragAction: dragController.DragAction | null = dragController.createDragAction(customBuilders, dragInfo);
-  if(!dragAction){
-    console.log("listener dragAction is null");
-    return
+
+@Entry
+@Component
+struct DragControllerPage {
+  build() {
+    Column() {
+      Button('touch to execute drag')
+        .onTouch((event?:TouchEvent) => {
+          let customBuilders:Array<CustomBuilder | DragItemInfo> = new Array<CustomBuilder | DragItemInfo>();
+          let text = new UDC.Text()
+          let unifiedData = new UDC.UnifiedData(text)
+          let dragInfo: dragController.DragInfo = {
+            pointerId: 0,
+            data: unifiedData,
+            extraParams: ''
+          }
+          try{
+            let dragAction: dragController.DragAction | null = dragController.createDragAction(customBuilders, dragInfo);
+            if(!dragAction){
+              console.log("listener dragAction is null");
+              return
+            }
+            dragAction.off('statusChange', (dragAndDropInfo: dragController.DragAndDropInfo)=>{
+              console.info("Cancel listening on drag status", JSON.stringify(dragAndDropInfo));
+            })
+          }catch(err) {
+            console.log("create dragAction Error:" + err.message);
+          }
+        })
+    }
   }
-  dragAction.off('statusChange', (dragAndDropInfo: dragController.DragAndDropInfo)=>{
-    console.info("Cancel listening on drag status", JSON.stringify(dragAndDropInfo));
-  })
-}catch(err) {
-  console.log("create dragAction Error:" + err.message);
 }
 ```
 

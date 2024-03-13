@@ -127,7 +127,7 @@ java -jar app_unpacking_tool.jar --mode <option> --appqf-path <options> --out-pa
 
 ## 包解析接口
 
-包解析接口用于对打好的hap、app、hsp等包等进行解析，获取其中的配置文件等信息。
+包解析接口仅用于应用市场对打好的hap、app、hsp等包进行解析，获取其中配置文件等信息。
 
 ### 接口目录
 

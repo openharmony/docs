@@ -2045,6 +2045,18 @@
 
 **起始版本**：11
 
+### ohos.permission.READ_FINDSERVICE
+
+允许系统应用读取“查找我的设备”开关状态。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.MANAGE_USB_CONFIG
 
 允许应用管理USB设备功能和端口。
@@ -2396,6 +2408,42 @@
 ### ohos.permission.hsdr.REQUEST_HSDR
 
 允许系统应用访问安全检测响应框架安全策略云查功能。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.NOTIFY_DEBUG_ASSERT_RESULT
+
+允许应用设置断言调试结果。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.QUERY_PASSWORD_VAULT_DATA
+
+允许应用获取密码保险箱帐号数据。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**: 12
+
+### ohos.permission.SUBSCRIBE_NOTIFICATION_WINDOW_STATE
+
+允许应用订阅通知面板显示或收起时发送的广播。
 
 **权限级别**：system_basic
 

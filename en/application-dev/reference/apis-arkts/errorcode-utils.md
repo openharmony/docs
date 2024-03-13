@@ -2,7 +2,7 @@
 
 > **NOTE**
 >
-> This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](errorcode-universal.md).
+> This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 ## 10200001 Value Out of Range
 
@@ -130,7 +130,7 @@ The worker file path is invalid. As a result, a valid **worker.abc** file cannot
 
 **Solution**
 
-Ensure that the worker file path complies with the specifications for creating **Worker** instances. For details, see the example under [constructor<sup>9+</sup>](../apis/js-apis-worker.md#constructor9).
+Ensure that the worker file path complies with the specifications for creating **Worker** instances. For details, see the example under [constructor<sup>9+</sup>](js-apis-worker.md#constructor9).
 
 ## 10200009 Buffer Size Error
 
@@ -258,7 +258,7 @@ The task to cancel does not exist in the task pool.
 
 **Solution**
 
-Before canceling a task, ensure that the task has been placed in the task pool by calling [taskpool.execute](../apis/js-apis-taskpool.md#taskpoolexecute-1) and is not finishing. If you are not sure, capture exceptions.
+Before canceling a task, ensure that the task has been placed in the task pool by calling [taskpool.execute](js-apis-taskpool.md#taskpoolexecute-1) and is not finishing. If you are not sure, capture exceptions.
 
 ## 10200016 Failed to Cancel a Task Being Executed
 
@@ -276,7 +276,7 @@ The task to cancel is being executed.
 
 **Solution**
 
-Before canceling a task, ensure that the task has been placed in the task pool by calling [taskpool.execute](../apis/js-apis-taskpool.md#taskpoolexecute-1) and has not started execution. If you are not sure, capture exceptions.
+Before canceling a task, ensure that the task has been placed in the task pool by calling [taskpool.execute](js-apis-taskpool.md#taskpoolexecute-1) and has not started execution. If you are not sure, capture exceptions.
 
 ## 10200017 Failed to Delete an Element That Does Not Exist
 
@@ -312,7 +312,7 @@ The task group to cancel does not exist in the task pool.
 
 **Solution**
 
-Before canceling a task group, ensure that the task group placed in the task pool by calling [taskpool.execute](../apis/js-apis-taskpool.md#taskpoolexecute10) and is not finishing. If you are not sure, capture exceptions.
+Before canceling a task group, ensure that the task group placed in the task pool by calling [taskpool.execute](js-apis-taskpool.md#taskpoolexecute10) and is not finishing. If you are not sure, capture exceptions.
 
 ## 10200019 Failed to Call an API of an Unregistered Object
 
@@ -354,7 +354,7 @@ Ensure that the attribute contained in the method is callable and that the metho
 
 **Error Message**
 
-The global call exceededs the timeout.
+The global call exceeds the timeout.
 
 **Description**
 
@@ -438,7 +438,7 @@ The task to be added to the queue has dependent tasks.
 
 **Solution**
 
-Call [removeDependency()](../apis/js-apis-taskpool.md#removedependency11) to remove the dependent tasks first.
+Call [removeDependency()](js-apis-taskpool.md#removedependency11) to remove the dependent tasks first.
 
 ## 10200026 Task with a Cyclic Dependency
 
@@ -456,7 +456,7 @@ The current task has a cyclic dependency.
 
 **Solution**
 
-Call [removeDependency()](../apis/js-apis-taskpool.md#removedependency11) to remove unnecessary dependencies.
+Call [removeDependency()](js-apis-taskpool.md#removedependency11) to remove unnecessary dependencies.
 
 ## 10200027 Dependency Does Not Exist
 
@@ -474,7 +474,7 @@ The dependent task to remove does not exist.
 
 **Solution**
 
-Ensure that the dependent task to remove has been added by using [addDependency()](../apis/js-apis-taskpool.md#adddependency11). If you are not sure, capture exceptions.
+Ensure that the dependent task to remove has been added by using [addDependency()](js-apis-taskpool.md#adddependency11). If you are not sure, capture exceptions.
 
 ## 10200028 Delay Less Than Zero
 
@@ -488,11 +488,11 @@ This error code is reported when the value of [delayTime](../apis/js-apis-taskpo
 
 **Possible Causes**
 
-The value of [delayTime](../apis/js-apis-taskpool.md#taskpoolexecutedelayed11) is less than 0.
+The value of [delayTime](js-apis-taskpool.md#taskpoolexecutedelayed11) is less than 0.
 
 **Solution**
 
-Ensure that [delayTime](../apis/js-apis-taskpool.md#taskpoolexecutedelayed11) is set to a value greater than 0. If you are not sure, capture exceptions.
+Ensure that [delayTime](js-apis-taskpool.md#taskpoolexecutedelayed11) is set to a value greater than 0. If you are not sure, capture exceptions.
 
 ## 10200029 ArrayBuffer Cannot Be Set as Both TransferList and CloneList
 
@@ -506,7 +506,7 @@ An ArrayBuffer cannot be set as both a transfer list and a clone list.
 
 **Possible Causes**
 
-During the transmission of a shared list, an ArrayBuffer is a parameter of both [setTransferList](../apis/js-apis-taskpool.md#settransferlist10) and [setCloneList](../apis/js-apis-taskpool.md#setclonelist11).
+During the transmission of a shared list, an ArrayBuffer is a parameter of both [setTransferList](js-apis-taskpool.md#settransferlist10) and [setCloneList](js-apis-taskpool.md#setclonelist11).
 
 **Solution**
 

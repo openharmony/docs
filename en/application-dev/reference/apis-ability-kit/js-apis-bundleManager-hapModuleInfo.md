@@ -26,11 +26,13 @@ The **HapModuleInfo** module defines the HAP module information. A third-party a
 | deviceTypes                       | Array\<string>                                               | Yes  | No  | Types of devices where the module can run.  |
 | installationFree                  | boolean                                                      | Yes  | No  | Whether installation-free is supported.      |
 | hashValue                         | string                                                       | Yes  | No  | Hash value of the module.             |
-| moduleType                        | [ModuleType](js-apis-bundleManager.md#moduletype)            | Yes  | No  | Type of the module.     |
+| type                              | [ModuleType](js-apis-bundleManager.md#moduletype)            | Yes  | No  | Type of the module.     |
 | preloads                          | Array\<[PreloadItem](#preloaditem)>                          | Yes  | No  | Preloaded modules in the atomic service.|
 | dependencies                      | Array\<[Dependency](#dependency)>                            | Yes  | No  | Dynamic shared libraries on which the module depends. |
 | fileContextMenuConfig<sup>11+</sup>     | string                                                       | Yes  | No  | File menu configuration of the module. The information can be obtained by passing in **GET_BUNDLE_INFO_WITH_HAP_MODULE** and **GET_BUNDLE_INFO_WITH_MENU** to the **bundleFlags** parameter of [getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself).|
 | routerMap<sup>12+</sup>           | Array\<[RouterItem](#routeritem)>                            | Yes  | No  | [Router table configuration of the module](../../quick-start/module-configuration-file.md#routermap). The information can be obtained by passing in **GET_BUNDLE_INFO_WITH_HAP_MODULE** and **GET_BUNDLE_INFO_WITH_ROUTER_MAP** to the **bundleFlags** parameter of [getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself).|
+| codePath<sup>12+</sup>            | string                                                       | Yes  | No  | Installation path of the module.             |
+| nativeLibraryPath<sup>12+</sup> | string                                                                     | Yes  | No  | Local library file path of a HAP module in the application.                                                                                                  |
 
 ## PreloadItem
 
@@ -78,5 +80,3 @@ Describes the user-defined data in the router table configuration of the module.
 | ------------- | ------ | ---- | ---- | ---------------------- |
 | key           | string | Yes  | Yes  | Key of the user-defined data.      |
 | value         | string | Yes  | Yes  | Value of the user-defined data.|
-
- <!--no_check--> 

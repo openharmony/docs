@@ -6,6 +6,8 @@
 
 [add(attributes: AssetMap): Promise\<void>](../../reference/apis-asset-store-kit/js-apis-asset.md#assetadd)
 
+[addSync(attributes: AssetMap): void](../../reference/apis-asset-store-kit/js-apis-asset.md#assetaddsync12)
+
 参数列表：
 
 | 属性名称（Tag）        | 属性内容（Value）                                             | 是否必选  | 说明                                                         |
@@ -28,6 +30,10 @@
 | CONFLICT_RESOLUTION   | 类型为number，取值范围详见[ConflictResolution](../../reference/apis-asset-store-kit/js-apis-asset.md#conflictresolution) | 可选     | 新增关键资产时的冲突（如：别名相同）处理策略                             |
 
 ## 代码示例
+
+> **说明：**
+>
+> 本模块提供了异步和同步两套接口，以下为异步接口的使用示例，同步接口详见[API文档](../../reference/apis-asset-store-kit/js-apis-asset.md)。
 
 新增一条密码是demo_pwd，别名是demo_alias，附属信息是demo_label的数据，该数据在用户首次解锁设备后可被访问。
 

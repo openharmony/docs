@@ -122,6 +122,7 @@ import formInfo from '@ohos.app.form.formInfo';
 | Dimension_4_4      | 4   | 4 x 4 form。   |
 | Dimension_2_1      | 5   | 2 x 1 form。   |
 | DIMENSION_1_1      | 6   | 1 x 1 form。   |
+| DDIMENSION_4_6<sup>12+<sup>    | 7   | 4 x 6 form。   |
 
 
 ## FormInfoFilter

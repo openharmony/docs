@@ -4,9 +4,9 @@ The **WindowAnimationManager** module provides APIs to listen for application st
 
 >  **NOTE**
 >
->  The APIs of this module are supported since API version 9. Updates will be marked with a superscript to indicate their earliest API version.
+>  - The APIs of this module are supported since API version 9. Updates will be marked with a superscript to indicate their earliest API version.
 >
->  The APIs provided by this module are system APIs.
+>  - The APIs provided by this module are system APIs.
 
 ## Modules to Import
 

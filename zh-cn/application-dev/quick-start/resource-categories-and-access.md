@@ -98,7 +98,7 @@ en_US和zh_CN是默认存在的两个限定词目录，其余限定词目录需�
 
 | 目录类型    | 说明                                     | 资源文件                                     |
 | --------- | ---------------------------------------- | ---------------------------------------- |
-| element | 表示元素资源，以下每一类数据都采用相应的JSON文件来表征（目录下仅支持文件类型）。<br/>-&nbsp;boolean，布尔型<br/>-&nbsp;color，颜色<br/>-&nbsp;float，浮点型，范围是-2^128-2^128<br/>-&nbsp;intarray，整型数组<br/>-&nbsp;integer，整型，范围是-2^31-2^31-1<br/>-&nbsp;pattern，样式<br/>-&nbsp;plural，复数形式<br/>-&nbsp;strarray，字符串数组<br/>-&nbsp;string，字符串 | element目录中的文件名称建议与下面的文件名保持一致。每个文件中只能包含同一类型的数据。<br/>-&nbsp;boolean.json<br/>-&nbsp;color.json<br/>-&nbsp;float.json<br/>-&nbsp;intarray.json<br/>-&nbsp;integer.json<br/>-&nbsp;pattern.json<br/>-&nbsp;plural.json<br/>-&nbsp;strarray.json<br/>-&nbsp;string.json |
+| element | 表示元素资源，以下每一类数据都采用相应的JSON文件来表征（目录下仅支持文件类型）。<br/>-&nbsp;boolean，布尔型<br/>-&nbsp;color，颜色<br/>-&nbsp;float，浮点型，范围是-2^128-2^128<br/>-&nbsp;intarray，整型数组<br/>-&nbsp;integer，整型，范围是-2^31-2^31-1<br/>-&nbsp;pattern，样式（仅支持系统应用使用）<br/>-&nbsp;plural，复数形式<br/>-&nbsp;strarray，字符串数组<br/>-&nbsp;string，字符串 <br/>-&nbsp;theme，主题（仅支持系统应用使用）| element目录中的文件名称建议与下面的文件名保持一致。每个文件中只能包含同一类型的数据。<br/>-&nbsp;boolean.json<br/>-&nbsp;color.json<br/>-&nbsp;float.json<br/>-&nbsp;intarray.json<br/>-&nbsp;integer.json<br/>-&nbsp;pattern.json<br/>-&nbsp;plural.json<br/>-&nbsp;strarray.json<br/>-&nbsp;string.json |
 | media   | 表示媒体资源，包括图片、音频、视频等非文本格式的文件（目录下只支持文件类型）。<br/>图片和音视频的类型说明间表4和表5。              | 文件名可自定义，例如：icon.png。                     |
 | profile  | 表示自定义配置文件，其文件内容可[通过包管理接口](../reference/apis-ability-kit/js-apis-bundleManager.md#bundlemanagergetprofilebyability)获取（目录下只支持文件类型）。       | 文件名可自定义，例如：test_profile.json。           |
 
@@ -271,6 +271,51 @@ Image($r('sys.media.ohos_app_icon'))
 
 - 通过createModuleContext(moduleName)接口创建同应用中不同module的上下文，获取resourceManager对象后，调用不同接口访问不同资源。<br/>例如：getContext.createModuleContext(moduleName).resourceManager.getStringByNameSync('app.string.XXX')。
 
+### \\$r/\\$rawfile跨包访问HSP包资源
+
+- [hsp].type.name获取资源。
+
+  hsp为hsp模块名，type为资源类型，name为资源名称。
+  
+  示例：
+  
+  ```ts
+  Text($r('[hsp].string.test_string'))
+    .fontSize($r('[hsp].float.font_size'))
+    .fontColor($r('[hsp].color.font_color'))
+  
+  Image($rawfile('[hsp].icon.png'))
+  ```
+
+- 使用变量获取资源。
+
+  示例：
+
+  ```ts
+  @Entry
+  @Component
+  struct Index {
+    text: string = '[hsp].string.test_string';
+    fontSize: string = '[hsp].float.font_size';
+    fontColor: string = '[hsp].color.font_color';
+    image: string = '[hsp].media.string';
+    rawfile: string = '[hsp].icon.png';
+  
+    build() {
+      Row() {
+        Text($r(this.text))
+          .fontSize($r(this.fontSize))
+          .fontColor($r(this.fontColor))
+  
+        Image($r(this.image))
+  
+        Image($rawfile(this.rawfile))
+      }
+    }
+  }
+  ```
+
+  hsp包名必须写在[]内，”rawfile“下有多层目录，需要从”rawfile“下面第一个目录开始写，如`“\$rawfile('[hsp].oneFile/twoFile/icon.png')”`，使用`"$r"`和`"$rawfile"`跨包访问HSP包资源无法提供编译时的资源校验，需要开发者自行保证使用资源存在于对应包中。
 
 ### 系统资源
 
@@ -283,6 +328,8 @@ Image($r('sys.media.ohos_app_icon'))
 > - 仅声明式开发范式支持使用系统资源。
 >
 > - 对于系统预置应用，建议使用系统资源；对于三方应用，可以根据需要选择使用系统资源或自定义应用资源。
+>
+> - 界面加载的系统资源字体进行显示时，可以在配置中system/etc/fontconfig.json文件查看。默认字体为HarmonyOS Sans。
 
 ```ts
 Text('Hello')

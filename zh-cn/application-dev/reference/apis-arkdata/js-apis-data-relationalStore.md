@@ -588,7 +588,7 @@ class EntryAbility extends UIAbility {
 
 | 键类型 | 值类型                   |
 | ------ | ----------------------- |
-| number | 主键的类型可以是number |
+| number | 主键的类型可以是number。 |
 | string | 主键的类型可以是string。 |
 
 ## PRIKeyType<sup>10+</sup> 
@@ -2984,6 +2984,74 @@ if(store != undefined) {
     console.info('Delete table done.');
   }).catch((err: BusinessError) => {
     console.error(`ExecuteSql failed, code is ${err.code},message is ${err.message}`);
+  })
+}
+```
+
+### execute<sup>12+</sup>
+
+execute(sql: string, args?: Array&lt;ValueType&gt;):Promise&lt;ValueType&gt;
+
+执行包含指定参数的SQL语句，返回值类型为ValueType，使用Promise异步回调。
+该接口支持执行增删改操作，支持执行PRAGMA语法的sql，支持对表的操作（建表、删表、修改表）,返回结果类型由执行具体sql的结果决定。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名   | 类型                                 | 必填 | 说明                                                         |
+| -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
+| sql      | string                               | 是   | 指定要执行的SQL语句。                                        |
+| args | Array&lt;[ValueType](#valuetype)&gt; | 否   | SQL语句中参数的值。该值与sql参数语句中的占位符相对应。当sql参数语句完整时，该参数不填。 |
+
+**返回值**：
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;[ValueType](#valuetype)&gt; | Promise对象，返回sql执行后的结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800011     | Database corrupted.
+| 14800047     | The WAL file size exceeds the default limit. |
+| 14800000     | Inner error.                                 |
+
+**示例：**
+
+```ts
+import { BusinessError } from "@ohos.base";
+
+// 校验数据库完整性
+if(store != undefined) {
+  const SQL_CHECK_INTEGRITY = 'PRAGMA integrity_check';
+  (store as relationalStore.RdbStore).execute(SQL_CHECK_INTEGRITY).then((data) => {
+    console.info(`check result: ${data}`);
+  }).catch((err) => {
+    console.error(`check failed, code is ${err.code}, message is ${err.message}`);
+  })
+}
+
+// 删除表中所有数据
+if(store != undefined) {
+  const SQL_DELETE_TABLE = 'DELETE FROM test';
+  (store as relationalStore.RdbStore).execute(SQL_DELETE_TABLE).then((data) => {
+    console.info(`delete result: ${data}`);
+  }).catch((err) => {
+    console.error(`delete failed, code is ${err.code}, message is ${err.message}`);
+  })
+}
+
+// 删表
+if(store != undefined) {
+  const SQL_DROP_TABLE = 'DROP TABLE test';
+  (store as relationalStore.RdbStore).execute(SQL_DROP_TABLE).then((data) => {
+    console.info(`drop result: ${data}`);
+  }).catch((err) => {
+    console.error(`drop failed, code is ${err.code}, message is ${err.message}`);
   })
 }
 ```

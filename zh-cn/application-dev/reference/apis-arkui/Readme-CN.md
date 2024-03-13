@@ -67,6 +67,7 @@
       - [组件可见区域变化事件](arkui-ts/ts-universal-component-visible-area-change-event.md)
       - [组件快捷键事件](arkui-ts/ts-universal-events-keyboardshortcut.md)
       - [自定义事件分发](arkui-ts/ts-universal-attributes-on-child-touch-test.md)
+      - [自定义事件拦截](arkui-ts/ts-universal-attributes-on-touch-intercept.md)
     - 通用属性
       - [尺寸设置](arkui-ts/ts-universal-attributes-size.md)
       - [位置设置](arkui-ts/ts-universal-attributes-location.md)
@@ -285,6 +286,7 @@
       - [文本滑动选择器弹窗 (TextPickerDialog)](arkui-ts/ts-methods-textpicker-dialog.md)
     - [菜单](arkui-ts/ts-methods-menu.md)
   - [自定义组件的生命周期](arkui-ts/ts-custom-component-lifecycle.md)
+  - [自定义组件的自定义布局](arkui-ts/ts-custom-component-layout.md)
   - [自定义组件内置方法](arkui-ts/ts-custom-component-api.md)
   - [应用级变量的状态管理](arkui-ts/ts-state-management.md)
   - [像素单位](arkui-ts/ts-pixel-units.md)

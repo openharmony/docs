@@ -4,9 +4,9 @@
     - Account Management
         - [@ohos.account.appAccount (App Account Management)](js-apis-appAccount.md)
         - [@ohos.account.distributedAccount (Distributed Account Management)](js-apis-distributed-account.md)
-        - [@ohos.account.osAccount (OS Account Management)](js-apis-osAccount.md)
+        - [@ohos.account.osAccount (System Account Management)](js-apis-osAccount.md)
         - [@ohos.account.distributedAccount (Distributed Account Management) (System API)](js-apis-distributed-account-sys.md)
-        - [@ohos.account.osAccount (OS Account Management) (System API)](js-apis-osAccount-sys.md)
+        - [@ohos.account.osAccount (System Account Management) (System API)](js-apis-osAccount-sys.md)
     - Device Management
         - [@ohos.batteryInfo (Battery Information)](js-apis-battery-info.md)
         - [@ohos.deviceInfo (Device Information)](js-apis-device-info.md)

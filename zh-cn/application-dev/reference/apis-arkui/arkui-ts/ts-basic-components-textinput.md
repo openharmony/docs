@@ -122,7 +122,7 @@ inputFilter(value: ResourceStr, error?: (value: string) => void)
 
 通过正则表达式设置输入过滤器。匹配表达式的输入允许显示，不匹配的输入将被过滤。仅支持单个字符匹配，不支持字符串匹配。
 
-从API version 11开始，设置inputFilter会导致设置输入框类型(即type接口)附带的文本过滤效果失效。
+从API version 11开始，设置inputFilter且输入的字符不为空字符，会导致设置输入框类型(即type接口)附带的文本过滤效果失效。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -265,7 +265,7 @@ showError(value?: string | undefined)
 
 | 参数名 | 类型                          | 必填 | 说明                                                         |
 | ------ | ----------------------------- | ---- | ------------------------------------------------------------ |
-| value  | string&nbsp;\|&nbsp;undefined | 是   | 错误状态下提示的错误文本或者不显示错误状态。<br/>默认不显示错误状态。 |
+| value  | string&nbsp;\|&nbsp;undefined | 否   | 错误状态下提示的错误文本或者不显示错误状态。<br/>默认不显示错误状态。 |
 
 ### showUnderline<sup>10+</sup>
 
@@ -315,7 +315,7 @@ enableKeyboardOnFocus(value: boolean)
 
 selectionMenuHidden(value: boolean)
 
-设置长按输入框或者右键输入框时，是否弹出文本选择菜单。
+设置长按、双击输入框或者右键输入框时，是否不弹出文本选择菜单。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -323,7 +323,7 @@ selectionMenuHidden(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | 长按输入框或者右键输入框时，是否弹出文本选择菜单。<br />默认值：false |
+| value  | boolean | 是   | 长按、双击输入框或者右键输入框时，是否不弹出文本选择菜单。<br />默认值：false |
 
 ### barState<sup>10+</sup>
 
@@ -441,9 +441,9 @@ showCounter(value: boolean, options?: InputCounterOptions)
 
 设置当通过InputCounterOptions输入的字符数超过阈值时显示计数器。
 
-参数value为true时，才能设置options，文本框开启计数下标功能，需要配合maxlength（设置最大字符限制）一起使用。字符计数器显示的效果是当前输入字符数/最大可输入字符数。
+参数value为true时，才能设置options，文本框开启计数下标功能，需要配合maxLength（设置最大字符限制）一起使用。字符计数器显示的效果是当前输入字符数/最大可输入字符数。
 
-当输入字符数大于最大字符数乘百分比值时，显示字符计数器。如果用户设置计数器时不设置InputCounterOptions，那么当前输入字符数达到最大字符数时，边框和计数器下标将变为红色。用户同时设置参数value为true和InputCounterOptions，当thresholdPercentage数值在有效区间内，且输入字符数超过最大字符数时，边框和计数器下标将变为红色，框体抖动。highlightBorder设置为false，则不显示红色边框，计数器默认显示红色边框。内联模式和密码模式下字符计数器不显示。
+当输入字符数大于最大字符数乘百分比值时，显示字符计数器。如果用户设置计数器时不设置InputCounterOptions，那么当前输入字符数达到最大字符数时，边框和计数器下标将变为红色。用户同时设置参数value为true和InputCounterOptions，当thresholdPercentage数值在有效区间内，且输入字符数超过最大字符数时，边框和计数器下标将变为红色，框体抖动。highlightBorder设置为false，则不显示红色边框，计数器默认显示红色边框。
 
 TextInput组件显示边框需要设置为下划线模式，内联模式和密码模式下字符计数器不显示。
 
@@ -451,10 +451,10 @@ TextInput组件显示边框需要设置为下划线模式，内联模式和密�
 
 **参数：** 
 
-| 参数名                | 类型                                                         | 必填 | 说明             |
-| --------------------- | ------------------------------------------------------------ | ---- | ---------------- |
-| value                 | boolean                                                      | 是   | 是否显示计数器。 |
-| options<sup>11+</sup> | [InputCounterOptions](ts-basic-components-textinput.md#inputcounteroptions11对象说明) | 否   | 计数器的百分比。 |
+| 参数名                | 类型                                                  | 必填 | 说明             |
+| --------------------- | ----------------------------------------------------- | ---- | ---------------- |
+| value                 | boolean                                               | 是   | 是否显示计数器。 |
+| options<sup>11+</sup> | [InputCounterOptions](#inputcounteroptions11对象说明) | 否   | 计数器的百分比。 |
 
 >  **说明：**    
 >  [通用属性padding](ts-universal-attributes-size.md#padding)的默认值为：<br>{<br>&nbsp;top: 8 vp,<br>&nbsp;right: 16 vp,<br>&nbsp;bottom: 8 vp,<br>&nbsp;left: 16 vp<br> }    
@@ -492,13 +492,13 @@ TextInput组件显示边框需要设置为下划线模式，内联模式和密�
 | 名称                                 | 描述                                       |
 | ---------------------------------- | ---------------------------------------- |
 | Normal                             | 基本输入模式，无特殊限制。                            |
-| Password                           | 密码输入模式。支持输入数字、字母、下划线、空格、特殊字符。密码显示小眼睛图标并且默认会将文字变成圆点。密码输入模式不支持下划线样式。在已启用密码保险箱的情况下，支持用户名、密码的自动保存和自动填充。 |
+| Password                           | 密码输入模式。支持输入数字、字母、下划线、空格、特殊字符。密码显示小眼睛图标，默认输入文字短暂显示后变成圆点，特定设备上输入文字直接显示为圆点。密码输入模式不支持下划线样式。在已启用密码保险箱的情况下，支持用户名、密码的自动保存和自动填充。 |
 | Email                              | 邮箱地址输入模式。支持数字，字母，下划线，小数点，以及@字符（只能存在一个@字符）。 |
 | Number                             | 纯数字输入模式。                                 |
 | PhoneNumber<sup>9+</sup>           | 电话号码输入模式。<br/>支持输入数字、空格、+ 、-、*、#、(、)，长度不限。      |
 | USER_NAME<sup>11+<sup>             | 用户名输入模式。在已启用密码保险箱的情况下，支持用户名、密码的自动保存和自动填充。                |
-| NEW_PASSWORD<sup>11+<sup>          | 新密码输入模式。在已启用密码保险箱的情况下，支持自动生成新密码。                                 |
-| NUMBER_PASSWORD<sup>11+</sup>      | 纯数字密码输入模式。密码显示小眼睛图标并且默认会将文字变成圆点。密码输入模式不支持下划线样式。 |
+| NEW_PASSWORD<sup>11+<sup>          | 新密码输入模式。密码显示小眼睛图标，默认输入文字短暂显示后变成圆点，特定设备上输入文字直接显示为圆点。在已启用密码保险箱的情况下，支持自动生成新密码。                                 |
+| NUMBER_PASSWORD<sup>11+</sup>      | 纯数字密码输入模式。密码显示小眼睛图标，默认输入文字短暂显示后变成圆点，特定设备上输入文字直接显示为圆点。密码输入模式不支持下划线样式。 |
 | NUMBER_DECIMAL<sup>11+</sup>       | 带小数点的数字输入模式。支持数字，小数点（只能存在一个小数点）。         |
 
 ## TextInputStyle<sup>9+</sup>枚举说明
@@ -541,7 +541,7 @@ onChange(callback:&nbsp;(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)
 | ------ | ------ | ---- | -------------------- |
 | value  | string | 是   | 当前输入的文本内容。 |
 
-## onSubmit
+### onSubmit
 
 onSubmit(callback:&nbsp;(enterKey:&nbsp;EnterKeyType,&nbsp;event:&nbsp;SubmitEvent&nbsp;=&gt;&nbsp;void)
 
@@ -556,7 +556,7 @@ onSubmit(callback:&nbsp;(enterKey:&nbsp;EnterKeyType,&nbsp;event:&nbsp;SubmitEve
 | enterKey            | [EnterKeyType](#enterkeytype枚举说明) | 是   | 输入法回车键类型，类型为EnterKeyType.NEW_LINE时不触发onSubmit。 |
 | event<sup>11+</sup> | [SubmitEvent](#submitevent11)         | 是   | 提交事件。                                                   |
 
-## onEditChanged<sup>(deprecated)</sup>
+### onEditChanged<sup>(deprecated)</sup>
 
 onEditChanged(callback:&nbsp;(isEditing:&nbsp;boolean)&nbsp;=&gt;&nbsp;void)
 
@@ -598,7 +598,7 @@ onCopy(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)
 
 | 参数名    | 类型    | 必填 | 说明             |
 | --------- | ------- | ---- | ---------------- |
-| isEditing | boolean | 是   | 复制的文本内容。 |
+| value | string | 是   | 复制的文本内容。 |
 
 ### onCut<sup>8+</sup>
 
@@ -612,7 +612,7 @@ onCut(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)
 
 | 参数名    | 类型    | 必填 | 说明             |
 | --------- | ------- | ---- | ---------------- |
-| isEditing | boolean | 是   | 剪切的文本内容。 |
+| value | string | 是   | 剪切的文本内容。 |
 
 ### onPaste
 
@@ -644,7 +644,7 @@ onTextSelectionChange(callback: (selectionStart: number, selectionEnd: number) =
 | selectionStart | number | 是   | 所选文本的起始位置，文字的起始位置为0。 |
 | selectionEnd   | number | 是   | 所选文本的结束位置。                    |
 
-## onContentScroll<sup>10+</sup>
+### onContentScroll<sup>10+</sup>
 
 onContentScroll(callback: (totalOffsetX: number, totalOffsetY: number) => void)
 
@@ -767,7 +767,7 @@ getCaretOffset(): CaretOffset
 | 参数名              | 类型    | 描述                                                         |
 | ------------------- | ------- | ------------------------------------------------------------ |
 | thresholdPercentage | number  | thresholdPercentage是可输入字符数占最大字符限制的百分比值。字符计数器显示的样式为当前输入字符数/最大字符数。当输入字符数大于最大字符数乘百分比值时，显示字符计数器。thresholdPercentage值的有效值区间为[1,100]，数值为小数时，向下取整，如果设置的number超出有效值区间内，不显示字符计数器。thresholdPercentage设置为undefined，显示字符计数器，但此参数不生效。 |
-| highlightBorder     | boolean | 如果用户设置计数器时不设置InputCounterOptions，那么当前输入字符数达到最大字符数时，边框将变为红色。如果用户设置显示字符计数器同时thresholdPercentage参数数值在有效区间内，那么当输入字符数超过最大字符数时，边框将变为红色。如果此参数为true，则显示红色边框。计数器默认显示红色边框。 |
+| highlightBorder     | boolean | 如果用户设置计数器时不设置InputCounterOptions，那么当前输入字符数达到最大字符数时，边框和计数器下标将变为红色。如果用户设置显示字符计数器同时thresholdPercentage参数数值在有效区间内，那么当输入字符数超过最大字符数时，边框和计数器下标将变成红色。如果此参数为true，则显示红色边框。计数器默认显示红色边框。 |
 
 ## 示例
 

@@ -1676,7 +1676,56 @@ enableNativeEmbedMode(mode: boolean)
   }
   ```
 
+### defaultTextEncodingFormat<sup>12+</sup>
 
+defaultTextEncodingFormat(textEncodingFormat: string)
+
+设置网页的默认字符编码。
+
+**参数：**
+
+| 参数名  | 参数类型   | 必填   | 默认值  | 参数描述                                     |
+| ---- | ------ | ---- | ---- | ---------------------------------------- |
+| textEncodingFormat | string | 是    | "UTF-8"   | 默认字符编码。 |
+
+  **示例：**
+
+  ```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Web({ src: $rawfile('index.html'), controller: this.controller })
+        // 设置高和内边距
+        .height(500)
+        .padding(20)
+        .defaultTextEncodingFormat("UTF-8")
+        .javaScriptAccess(true)
+    }
+  }
+}
+  ```
+
+```html
+
+<!doctype html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>My test html5 page</title>
+</head>
+<body>
+    hello world, 你好世界!
+</body>
+</html>
+```
 
 ## 事件
 
@@ -3334,7 +3383,7 @@ onGeolocationHide(callback: () => void)
 
 ### onFullScreenEnter<sup>9+</sup>
 
-onFullScreenEnter(callback: (event: { handler: FullScreenExitHandler }) => void)
+onFullScreenEnter(callback: OnFullScreenEnterCallback)
 
 通知开发者web组件进入全屏模式。
 
@@ -3342,7 +3391,7 @@ onFullScreenEnter(callback: (event: { handler: FullScreenExitHandler }) => void)
 
 | 参数名     | 参数类型                                     | 参数描述           |
 | ------- | ---------------------------------------- | -------------- |
-| handler | [FullScreenExitHandler](#fullscreenexithandler9) | 用于退出全屏模式的函数句柄。 |
+| callback | [OnFullScreenEnterCallback](#onfullscreenentercallback12) | Web组件进入全屏时的回调信息。 |
 
 **示例：**
 
@@ -3359,7 +3408,9 @@ onFullScreenEnter(callback: (event: { handler: FullScreenExitHandler }) => void)
       Column() {
         Web({ src:'www.example.com', controller:this.controller })
         .onFullScreenEnter((event) => {
-          console.log("onFullScreenEnter...")
+          console.log("onFullScreenEnter videoWidth: " + event.videoWidth +
+            ", videoHeight: " + event.videoHeight)
+          // 应用可以通过 this.handler.exitFullScreen() 主动退出全屏。
           this.handler = event.handler
         })
       }
@@ -3828,6 +3879,78 @@ onFirstContentfulPaint(callback: (event?: { navigationStartTick: number, firstCo
   }
   ```
 
+### onFirstMeaningfulPaint<sup>12+</sup>
+
+onFirstMeaningfulPaint(callback: [OnFirstMeaningfulPaintCallback](#onfirstmeaningfulpaintcallback12))
+
+设置网页绘制页面主要内容回调函数。
+
+**参数：**
+
+| 参数名   | 类型                                                         | 说明                                   |
+| -------- | ------------------------------------------------------------ | -------------------------------------- |
+| callback | [OnFirstMeaningfulPaintCallback](#onfirstmeaningfulpaintcallback12) | 网页绘制页面主要内容度量信息的回调。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+        .onFirstMeaningfulPaint((details) => {
+            console.log("onFirstMeaningfulPaint: [navigationStartTime]= " + details.navigationStartTime +
+              ", [firstMeaningfulPaintTime]=" + details.firstMeaningfulPaintTime);
+        })
+      }
+    }
+  }
+  ```
+
+### onLargestContentfulPaint<sup>12+</sup>
+
+onLargestContentfulPaint(callback: [OnLargestContentfulPaintCallback](#onlargestcontentfulpaintcallback12))
+
+设置网页绘制页面最大内容回调函数。
+
+**参数：**
+
+| 参数名   | 类型                                                         | 说明                                 |
+| -------- | ------------------------------------------------------------ | ------------------------------------ |
+| callback | [OnLargestContentfulPaintCallback](#onlargestcontentfulpaintcallback12) | 网页绘制页面最大内容度量信息的回调。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+        .onLargestContentfulPaint((details) => {
+            console.log("onLargestContentfulPaint: [navigationStartTime]= " + details.navigationStartTime +
+              ", [largestImagePaintTime]=" + details.largestImagePaintTime +
+              ", [largestTextPaintTime]=" + details.largestTextPaintTime +
+              ", [largestImageLoadStartTime]=" + details.largestImageLoadStartTime +
+              ", [largestImageLoadEndTime]=" + details.largestImageLoadEndTime +
+              ", [imageBPP]=" + details.imageBPP);
+        })
+      }
+    }
+  }
+  ```
+  
 ### onLoadIntercept<sup>10+</sup>
 
 onLoadIntercept(callback: (event: { data: WebResourceRequest }) => boolean)
@@ -5372,6 +5495,26 @@ type OnSafeBrowsingCheckResultCallback = (threatType: ThreatType) => void
 | ---------- | ---------------------------- | ------------------- |
 | threatType | [ThreatType](#threattype11)  | 定义网站threat类型。  |
 
+## FullScreenEnterEvent<sup>12+</sup>
+
+Web组件进入全屏回调事件的详情。
+
+| 名称             | 类型                                  | 必填   | 描述                    |
+| -----------     | ------------------------------------ | ---- | --------------------- |
+| handler     | [FullScreenExitHandler](#fullscreenexithandler9) | 是    | 用于退出全屏模式的函数句柄。 |
+| videoWidth  | number | 否    | 视频的宽度，单位：px。如果进入全屏的是 `<video>` 元素，表示其宽度；如果进入全屏的子元素中包含 `<video>` 元素，表示第一个子视频元素的宽度；其他情况下，为0。 |
+| videoHeight  | number | 否    | 视频的高度，单位：px。如果进入全屏的是 `<video>` 元素，表示其高度；如果进入全屏的子元素中包含 `<video>` 元素，表示第一个子视频元素的高度；其他情况下，为0。 |
+
+## OnFullScreenEnterCallback<sup>12+</sup>
+
+type OnFullScreenEnterCallback = (event: FullScreenEnterEvent) => void
+
+Web组件进入全屏时触发的回调。
+
+| 参数名      | 参数类型                      | 参数描述              |
+| ---------- | ---------------------------- | ------------------- |
+| event | [FullScreenEnterEvent](#fullscreenenterevent12)  | Web组件进入全屏的回调事件详情。 |
+
 ## NativeEmbedStatus<sup>11+</sup>
 
 定义Embed标签生命周期。
@@ -5412,3 +5555,46 @@ type OnSafeBrowsingCheckResultCallback = (threatType: ThreatType) => void
 | -----------     | ------------------------------------ | ---- | --------------------- |
 | embedId     | string   | 是    | Embed标签的唯一id。 |
 | touchEvent  | TouchEvent  | 是    | 手指触摸动作信息。  |
+
+## FirstMeaningfulPaint<sup>12+</sup>
+
+提供网页绘制页面主要内容的详细信息。
+
+| 名称                     | 类型   | 必填 | 描述                                   |
+| ------------------------ | ------ | ---- | -------------------------------------- |
+| navigationStartTime      | number | 是   | 导航条加载时间，单位以微秒表示。       |
+| firstMeaningfulPaintTime | number | 是   | 绘制页面主要内容时间，单位以毫秒表示。 |
+
+## OnFirstMeaningfulPaintCallback<sup>12+</sup>
+
+type OnFirstMeaningfulPaintCallback = (firstMeaningfulPaint: [FirstMeaningfulPaint](#firstmeaningfulpaint12)) => void
+
+网页绘制页面最大内容度量信息的回调。
+
+| 参数名               | 参数类型                                        | 参数描述                         |
+| -------------------- | ----------------------------------------------- | -------------------------------- |
+| firstMeaningfulPaint | [FirstMeaningfulPaint](#firstmeaningfulpaint12) | 绘制页面主要内容度量的详细信息。 |
+
+## LargestContentfulPaint<sup>12+</sup>
+
+提供网页绘制页面主要内容的详细信息。
+
+| 名称                      | 类型   | 必填 | 描述                                     |
+| ------------------------- | ------ | ---- | ---------------------------------------- |
+| navigationStartTime       | number | 是   | 导航条加载时间，单位以微秒表示。         |
+| largestImagePaintTime     | number | 否   | 最大图片加载的时间，单位是以毫秒表示。   |
+| largestTextPaintTime      | number | 否   | 最大文本加载时间，单位是以毫秒表示。     |
+| largestImageLoadStartTime | number | 否   | 最大图片开始加载时间，单位是以毫秒表示。 |
+| largestImageLoadEndTime   | number | 否   | 最大图片结束记载时间，单位是以毫秒表示。 |
+| imageBPP                  | number | 否   | 图片像素位数。                           |
+
+## OnLargestContentfulPaintCallback<sup>12+</sup>
+
+type OnLargestContentfulPaintCallback = (largestContentfulPaint: [LargestContentfulPaint](#largestcontentfulpaint12
+)) => void
+
+网页绘制页面最大内容度量信息的回调。
+
+| 参数名                 | 参数类型                                            | 参数描述                             |
+| ---------------------- | --------------------------------------------------- | ------------------------------------ |
+| largestContentfulPaint | [LargestContentfulPaint](#largestcontentfulpaint12) | 网页绘制页面最大内容度量的详细信息。 |

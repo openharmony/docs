@@ -425,8 +425,8 @@ try {
   let params: Record<string, Object> = {
     'ohos.extra.param.key.host_bg_inverse_color': '#ff000000' as Object
   };
-  formHost.requestForm(formId, params).then(() => {
-    console.log('formHost requestForm success');
+  formHost.requestFormWithParams(formId, params).then(() => {
+    console.log('formHost requestFormWithParams success');
   }).catch((error: Base.BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
@@ -2575,7 +2575,7 @@ try {
   }).catch((err: Base.BusinessError) => {
     console.error(`formHost recover forms error, code: ${err.code}, message: ${err.message}`);
   });
-} catch (e: Base.BusinessError) {
+} catch (e) {
   console.info(`catch error, code: ${e.code}, message: ${e.message}`);
 }
 ```

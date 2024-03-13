@@ -130,6 +130,9 @@ listener.on('change', onPortrait);
 | round-screen      | 屏幕类型，圆形屏幕为true，非圆形屏幕为false。              |
 | dark-mode         | 系统为深色模式时为true，否则为false。                  |
 
+>**说明：** 
+>
+>目前在卡片中使用媒体查询，只支持height、width。
 
 ## 场景示例
 

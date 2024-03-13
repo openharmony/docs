@@ -40,7 +40,7 @@ import TreeMap from '@ohos.util.TreeMap';
 
 constructor(comparator?:(firstValue: K, secondValue: K) => boolean)
 
-A constructor used to create a **TreeMap** instance.
+A constructor used to create a **TreeMap** instance. It supports sorting elements in ascending or descending order by using comparators.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -48,11 +48,11 @@ A constructor used to create a **TreeMap** instance.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| comparator | function | No| Custom comparator. The default value is **hole** (a blank placeholder), indicating that no comparator. is provided.|
+| comparator | function | No| Custom comparator, which can be used to sort elements based on the comparison relationship. The default value is **hole** (a blank placeholder), indicating that no comparator is provided.|
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -62,6 +62,33 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 
 ```ts
 let treeMap : TreeMap<number, number> = new TreeMap();
+// Use the comparator firstValue < secondValue if the elements are expected to be sorted in ascending order. Use firstValue > secondValue if the elements are expected to be sorted in descending order.
+let treeMap : TreeMap<string,string> = new TreeMap<string,string>((firstValue: string, secondValue: string) : boolean => {return firstValue > secondValue});
+treeMap.set("aa","3");
+treeMap.set("dd","1");
+treeMap.set("cc","2");
+treeMap.set("bb","4");
+let numbers = Array.from(treeMap.keys())
+for (let item of numbers) {
+  console.log("treeMap:" + item);
+}
+```
+```ts
+// When a custom type is inserted, a comparator must be provided.
+ class TestEntry{
+   public id: number = 0;
+ }
+ let ts1: TreeMap<TestEntry, string> = new TreeMap<TestEntry, string>((t1: TestEntry, t2: TestEntry): boolean => {return t1.id < t2.id;});
+ let entry1: TestEntry = {
+   id: 0
+ };
+ let entry2: TestEntry = {
+   id: 1
+ }
+ ts1.set(entry1, "0");
+ ts1.set(entry2, "1");
+ console.log("treeMap: ", ts1.length);
+
 ```
 
 
@@ -81,7 +108,7 @@ Checks whether this container is empty (contains no element).
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -117,7 +144,7 @@ Checks whether this container has the specified key.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -154,7 +181,7 @@ Checks whether this container has the specified value.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -187,11 +214,11 @@ Obtains the value of the specified key in this container.
 
 | Type| Description|
 | -------- | -------- |
-| V | Value of the key.|
+| V | Value obtained. If nothing is obtained, **undefined** is returned.|
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -219,11 +246,11 @@ Obtains the first key in this container.
 
 | Type| Description|
 | -------- | -------- |
-| K | Key obtained.|
+| K | Key obtained. If nothing is obtained, **undefined** is returned.|
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -251,11 +278,11 @@ Obtains the last key in this container.
 
 | Type| Description|
 | -------- | -------- |
-| K | Key obtained.|
+| K | Key obtained. If nothing is obtained, **undefined** is returned.|
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -287,7 +314,7 @@ Adds all elements in a **TreeMap** instance to this container.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -331,7 +358,7 @@ Adds or updates an element in this container.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -367,7 +394,7 @@ Removes the element with the specified key from this container.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -401,11 +428,11 @@ Obtains the key that is equal to placed in front of the input key in this contai
 
 | Type| Description|
 | -------- | -------- |
-| K | Key obtained.|
+| K | Key obtained. If nothing is obtained, **undefined** is returned.|
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -440,11 +467,11 @@ Obtains the key that is equal to or placed next to the input key in this contain
 
 | Type| Description|
 | -------- | -------- |
-| K | Key obtained.|
+| K | Key obtained. If nothing is obtained, **undefined** is returned.|
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -483,7 +510,7 @@ Replaces an element in this container.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -508,7 +535,7 @@ Clears this container and sets its length to **0**.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -540,7 +567,7 @@ Obtains an iterator that contains all the keys in this container.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -577,7 +604,7 @@ Obtains an iterator that contains all the values in this container.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -622,7 +649,7 @@ callbackFn
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -656,7 +683,7 @@ Obtains an iterator that contains all the elements in this container.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -696,7 +723,7 @@ Obtains an iterator, each item of which is a JavaScript object.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -718,11 +745,11 @@ while(!t.done) {
 }
 
 // Method 2:
-let iter = treeMap[Symbol.iterator]();
-let temp: IteratorResult<Object[]> = iter.next().value;
-while(temp != undefined) {
-  console.log("key:" + temp[0]);
-  console.log("value:" + temp[1]);
-  temp = iter.next().value;
-}
+ let iter = treeMap[Symbol.iterator]();
+ let temp: IteratorResult<Object[]> = iter.next();
+ while(!temp.done) {
+   console.log("key:" + temp.value[0]);
+   console.log("value:" + temp.value[1]);
+   temp = iter.next();
+ }
 ```

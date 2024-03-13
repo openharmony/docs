@@ -145,7 +145,10 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
+| 16000067 | Start options check failed. |
+| 16000068 | Ability already running. |
 | 16200001 | The caller has been released. |
+| 16300003 | The target application is not self application. |
 
 错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
@@ -233,7 +236,10 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
+| 16000067 | Start options check failed. |
+| 16000068 | Ability already running. |
 | 16200001 | The caller has been released. |
+| 16300003 | The target application is not self application. |
 
 错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
@@ -1714,3 +1720,136 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
     console.error(`startAbilityByType fail, err: ${JSON.stringify(err)}`);
   })
   ```
+
+## UIAbilityContext.showAbility<sup>12+</sup>
+
+showAbility() : Promise\<void>
+
+显示当前Ability。使用Promise异步回调。仅在平板类设备上生效。
+
+调用此接口要求当前Ability必须通过[UIAbilityContext.startAbility](#uiabilitycontextstartability-1)启动，且启动入参中[options.processMode](js-apis-app-ability-contextConstant.md#contextconstantprocessmode12)必须设置为NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 16000050 | Internal error. |
+| 16000067 | Start options check failed. |
+
+错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+
+**示例：**
+
+  ```ts
+  import common from '@ohos.app.ability.common';
+  import { BusinessError } from '@ohos.base';
+  let context = getContext(this) as common.UIAbilityContext;
+  context.showAbility().then(() => {
+    console.log(`showAbility success`);
+  }).catch((err: BusinessError) => {
+    console.error(`showAbility fail, err: ${JSON.stringify(err)}`);
+  })
+  ```
+## UIAbilityContext.hideAbility<sup>12+</sup>
+
+hideAbility() : Promise\<void>
+
+隐藏当前Ability。使用Promise异步回调。仅在平板类设备上生效。
+
+调用此接口要求当前Ability必须通过[UIAbilityContext.startAbility](#uiabilitycontextstartability-1)启动，且启动入参中[options.processMode](js-apis-app-ability-contextConstant.md#contextconstantprocessmode12)必须设置为NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 16000050 | Internal error. |
+| 16000067 | Start options check failed. |
+
+错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+
+**示例：**
+
+  ```ts
+  import common from '@ohos.app.ability.common';
+  import { BusinessError } from '@ohos.base';
+  let context = getContext(this) as common.UIAbilityContext;
+  context.hideAbility().then(() => {
+    console.log(`hideAbility success`);
+  }).catch((err: BusinessError) => {
+    console.error(`hideAbility fail, err: ${JSON.stringify(err)}`);
+  })
+  ```
+
+## UIAbilityContext.moveAbilityToBackground<sup>12+<sup>
+moveAbilityToBackground(): Promise\<void>
+
+将处于前台的Ability移动到后台。使用Promise异步回调。
+ 
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+| 16000061 | Operation not supported. |
+| 16000065 | The interface can be called only when ability is foreground. |
+| 16000066 | An ability cannot move to foreground or background in Wukong mode. |
+
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+
+**示例：**
+
+```ts
+import common from '@ohos.app.ability.common';
+import { BusinessError } from '@ohos.base';
+
+@Entry
+@Component
+struct Index {
+  @State moveAbilityToBackground: string = 'Move To Background'
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.moveAbilityToBackground)
+          .fontSize(30)
+          .fontWeight(FontWeight.Bold)
+          .onClick(() => {
+            let context = getContext(this) as common.UIAbilityContext;
+            context.moveAbilityToBackground().then(() => {
+              console.log(`moveAbilityToBackground success.`);
+            }).catch((err: BusinessError) => {
+              console.log(`moveAbilityToBackground error: ${JSON.stringify(err)}.`)
+            });
+          });
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
