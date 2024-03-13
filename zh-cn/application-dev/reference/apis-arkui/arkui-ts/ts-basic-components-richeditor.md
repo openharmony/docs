@@ -361,6 +361,24 @@ RichEditor初始化参数。
 | ---------- | ---------------------------------------- | ---- | ------- |
 | controller | [RichEditorController](#richeditorcontroller) | 是    | 富文本控制器。 |
 
+## SelectionOptions<sup>12+</sup>
+
+setSelection的选择项配置。
+
+| 名称         | 类型                                       | 必填   | 说明      |
+| ---------- | ---------------------------------------- | ---- | ------- |
+| menuPolicy | [MenuPolicy](#menupolicy12) | 否    | 菜单弹出的策略。 |
+
+## MenuPolicy<sup>12+</sup>
+
+菜单弹出的策略。
+
+| 名称         | 描述            |
+| ---------- | ------------- |
+| DEFAULT  | 默认逻辑,是否弹出菜单取决于场景。   |
+| NEVER | 始终不弹出菜单。 |
+| ALWAYS | 始终弹出菜单。 |
+
 ## TextDataDetectorConfig<sup>11+</sup>
 
 文本识别配置参数。
@@ -607,7 +625,7 @@ closeSelectionMenu(): void
 
 ### setSelection<sup>11+</sup>
 
-setSelection(selectionStart:&nbsp;number, selectionEnd:&nbsp;number)
+setSelection(selectionStart:&nbsp;number, selectionEnd:&nbsp;number, options?:&nbsp;SelectionOptions)
 
 支持设置文本选中，选中部分背板高亮。
 
@@ -629,6 +647,7 @@ selectionStart和selectionEnd均为-1时表示全选。
 | -------------- | ------ | ---- | ------- |
 | selectionStart | number | 是    | 选中开始位置。 |
 | selectionEnd   | number | 是    | 选中结束位置。 |
+| options<sup>12+</sup>   | [SelectionOptions](#selectionoptions12) | 否    | 选择项配置。 |
 
 ### getSelection<sup>11+</sup>
 
