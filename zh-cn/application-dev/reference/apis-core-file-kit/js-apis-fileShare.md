@@ -387,7 +387,7 @@ checkPersistentPermission(policies: Array&lt;PolicyInfo>): Promise&lt;Array&lt;b
         operationMode: fileShare.OperationMode.READ_MODE,
       };
       let policies: Array<fileShare.PolicyInfo> = [policyInfo];
-      fileShare.checkPersistentPermission(policies).then((data) => {
+      fileShare.checkPersistentPermission(policies).then(async (data) => {
         let result: Array<boolean> = data;
         for (let i = 0; i < result.length; i++) {
           console.log("checkPersistentPermission result: " + JSON.stringify(result[i]));
