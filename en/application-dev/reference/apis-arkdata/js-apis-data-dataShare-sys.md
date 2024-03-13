@@ -196,10 +196,10 @@ Observe the following when using this API:
 
 **Parameters**
 
-| Name | Type                                                   | Mandatory| Description                                                        |
-| ------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| context | [Context](../apis-ability-kit/js-apis-inner-application-context.md#context) | Yes  | Context of the application.                                          |
-| uri     | string                                                  | No  | URI of the data, for which silent access is to be enabled.<br>1. If **uri** is left blank, silent access is enabled for all URIs of the data provider by default. In addition, the previous setting for a specific URI will be cleared.<br>2. If **uri** is set, silent access is enabled for the specified URI.<br>When a **datashareHelper** API is called, the URI passed in will be preferentially verified to check whether silent access is enabled. If no match is found, the system checks whether **enableSilentProxy** with an empty **uri** has been called.<br>URI format: **datashare:///{bundleName}/{moduleName}/{storeName}/{tableName}**|
+| Name | Type                                                   | Mandatory| Description                                                                                                                                                                                                                                                                              |
+| ------- | ------------------------------------------------------- | ---- |----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| context | [Context](../apis-ability-kit/js-apis-inner-application-context.md#context) | Yes  | Context of the application.                                                                                                                                                                                                                                                                       |
+| uri     | string                                                  | No  | URI of the data, for which silent access is to be enabled.<br>Global setting: If **uri** is **undefined** or **null** or is not specified, all the previous settings will be cleared and silent access will be enabled globally for the data provider.<br>URI-specific setting: If a URI is specified, silent access to the specified URI will be enabled.<br>When datashareHelper APIs are called, the URI-specific setting is preferentially applied. If no match is found, the global setting is applied.<br>URI format: **datashare:///{bundleName}/{moduleName}/{storeName}/{tableName}**|
 
 **Return value**
 
@@ -245,11 +245,10 @@ Observe the following when using this API:
 
 **Parameters**
 
-| Name | Type                                                   | Mandatory| Description                                                        |
-| ------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| context | [Context](../apis-ability-kit/js-apis-inner-application-context.md#context) | Yes  | Context of the application.                                          |
-| uri     | string                                                  | No  | URI of the data, for which silent access is to be disabled.<br>1. If **uri** is left blank, silent access is disabled for all URIs of the data provider by default. In addition, the previous setting for a specific URI will be cleared.<br>2. If **uri** is set, silent access is disabled for the specified URI.<br>When a **datashareHelper** API is called, the URI passed in will be preferentially verified to check whether silent access is disabled. If no match is found, the system checks whether **disableSilentProxy** with an empty **uri** has been called.<br>URI format: **datashare:///{bundleName}/{moduleName}/{storeName}/{tableName}**|
-
+| Name | Type                                                   | Mandatory| Description                                                                                                                                                                                                                                                                            |
+| ------- | ------------------------------------------------------- | ---- |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| context | [Context](../apis-ability-kit/js-apis-inner-application-context.md#context) | Yes  | Context of the application.                                                                                                                                                                                                                                                                     |
+| uri     | string                                                  | No  | URI of the data, for which silent access is to be disabled.<br>Global setting: If **uri** is **undefined** or **null** or is not specified, all the previous settings will be cleared and silent access will be disbled globally for the data provider.<br>URI-specific setting: If a URI is specified, silent access to the specified URI will be disabled.<br>When datashareHelper APIs are called, the URI-specific setting is preferentially applied. If no match is found, the global setting is applied.<br>URI format: **datashare:///{bundleName}/{moduleName}/{storeName}/{tableName}**|
 **Return value**
 
 | Type                                              | Description                                  |
@@ -566,7 +565,7 @@ Unsubscribes from the changes of the data corresponding to the specified URI and
 | type      | string                                      | Yes  | Event type. The value is **rdbDataChange**, which indicates the RDB data changes. |
 | uris    | Array&lt;string&gt;                           | Yes  | URIs of the data to operate.          |
 | templateId | [TemplateId](#templateid10)                | Yes  | ID of the template that triggers the callback.       |
-| callback | AsyncCallback&lt;[RdbDataChangeNode](#rdbdatachangenode10)&gt; | No  | Callback for the RDB data change. If this parameter is left empty, all notification events of the URI will be unsubscribed from. |
+| callback | AsyncCallback&lt;[RdbDataChangeNode](#rdbdatachangenode10)&gt; | No  | Callback to unregister. If this parameter is left empty, all notification events of the URI will be unsubscribed from.|
 
 **Return value**
 
@@ -647,7 +646,7 @@ Unsubscribes from the changes of the published data.
 | type      | string                                      | Yes  | Event type. The value is **publishedDataChange**, which indicates the published data changes. |
 | uris    | Array&lt;string&gt;                           | Yes  | URIs of the data to operate.          |
 | subscriberId | string                                   | Yes  | Subscriber ID of the callback.          |
-| callback | AsyncCallback&lt;[PublishedDataChangeNode](#publisheddatachangenode10)&gt; | No  | Callback for the published data change. If this parameter is left empty, all callbcks of the URI will be unregistered.|
+| callback | AsyncCallback&lt;[PublishedDataChangeNode](#publisheddatachangenode10)&gt; | No  | Callback to unregister. If this parameter is left empty, all callbacks of the URI will be unregistered.|
 
 **Return value**
 

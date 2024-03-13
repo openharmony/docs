@@ -7,7 +7,7 @@ Defines a struct for distributed configuration of a table.
 
 **Since**: 11
 
-**Related modules**: [RDB](_r_d_b.md)
+**Related module**: [RDB](_r_d_b.md)
 
 
 ## Summary
@@ -18,4 +18,4 @@ Defines a struct for distributed configuration of a table.
 | Name| Description|
 | -------- | -------- |
 | [version](_r_d_b.md#version-13) | Version of the **Rdb_DistributedConfig** struct.|
-| [isAutoSync](_r_d_b.md#isautosync) | Whether the table supports automatic synchronization.|
+| [isAutoSync](_r_d_b.md#isautosync) | Whether the table supports automatic sync.|
