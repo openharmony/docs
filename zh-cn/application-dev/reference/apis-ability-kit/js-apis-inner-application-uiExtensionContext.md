@@ -441,3 +441,60 @@ terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;
 | 类型                | 说明                                   |
 | ------------------- | -------------------------------------- |
 | Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+## UIExtensionContext.reportDrawnCompleted
+
+reportDrawnCompleted(callback: AsyncCallback\<void>): void
+
+当页面加载完成（onSessionCreate成功）时，为开发者提供打点功能。使用callback异步回调。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当打点成功，err为undefined，否则为错误对象。|
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+
+错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+
+**示例：**
+
+  ```ts
+  import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
+  import Want from '@ohos.app.ability.Want';
+  import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+  const TAG: string = '[testTag] UIExtAbility';
+
+  export default class UIExtAbility extends UIExtensionAbility {
+    onSessionCreate(want: Want, session: UIExtensionContentSession) {
+      console.info(TAG, `onSessionCreate, want: ${JSON.stringify(want)}`);
+      let storage: LocalStorage = new LocalStorage({
+        'session': session
+      });
+      session.loadContent('pages/extension', storage);
+      try {
+        this.context.reportDrawnCompleted((err) => {
+          if (err.code) {
+            // 处理业务逻辑错误
+            console.error(`reportDrawnCompleted failed, code is ${err.code}, message is ${err.message}`);
+            return;
+          }
+          // 执行正常业务
+          console.info('reportDrawnCompleted succeed');
+        });
+      } catch (err) {
+        // 捕获同步的参数错误
+        let code = (err as BusinessError).code;
+        let message = (err as BusinessError).message;
+        console.error(`reportDrawnCompleted failed, code is ${code}, message is ${message}`);
+      }
+    }
+  }
+  ```
