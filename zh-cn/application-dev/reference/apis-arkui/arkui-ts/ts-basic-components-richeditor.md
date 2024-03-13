@@ -371,7 +371,7 @@ setSelection的选择项配置。
 
 ## MenuPolicy<sup>12+</sup>
 
-菜单弹出的策略
+菜单弹出的策略。
 
 | 名称         | 描述            |
 | ---------- | ------------- |
@@ -625,7 +625,7 @@ closeSelectionMenu(): void
 
 ### setSelection<sup>11+</sup>
 
-setSelection(selectionStart:&nbsp;number, selectionEnd:&nbsp;number, options<sup>12+</sup>?:&nbsp;SelectionOptions)
+setSelection(selectionStart:&nbsp;number, selectionEnd:&nbsp;number, options?:&nbsp;SelectionOptions)
 
 支持设置文本选中，选中部分背板高亮。
 
