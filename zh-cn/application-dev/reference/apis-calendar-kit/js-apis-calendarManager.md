@@ -25,9 +25,9 @@ getCalendarManager(context : Context): CalendarManager
 
 **参数**：
 
-| 参数名   | 类型                        | 必填 | 说明                                                         |
-| -------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                     | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context]()。 |
+| 参数名   | 类型                        | 必填 | 说明                                                                                                             |
+| -------- | --------------------------- | ---- |----------------------------------------------------------------------------------------------------------------|
+| context  | Context                     | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)。 |
 
 **返回值**：
 
@@ -111,7 +111,7 @@ createCalendar(calendarAccount: CalendarAccount, callback: AsyncCallback\<Calend
 
 根据日历帐户信息，创建一个Calendar对象，使用callback异步回调。
 
-**需要权限**： ohos.permission.WRITE_CALENDAR or ohos.permission.WRITE_WHOLE_CALENDAR
+**需要权限**： ohos.permission.WRITE_CALENDAR
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
@@ -153,7 +153,7 @@ createCalendar(calendarAccount: CalendarAccount): Promise\<Calendar>
 
 根据日历帐户信息，创建一个Calendar对象，使用Promise异步回调。
 
-**需要权限**： ohos.permission.WRITE_CALENDAR or ohos.permission.WRITE_WHOLE_CALENDAR
+**需要权限**： ohos.permission.WRITE_CALENDAR
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
@@ -195,7 +195,7 @@ deleteCalendar(calendar: Calendar, callback: AsyncCallback\<void>): void
 
 删除指定Calendar对象，使用callback异步回调。
 
-**需要权限**： ohos.permission.WRITE_CALENDAR or ohos.permission.WRITE_WHOLE_CALENDAR
+**需要权限**： ohos.permission.WRITE_CALENDAR
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
@@ -243,7 +243,7 @@ deleteCalendar(calendar: Calendar): Promise\<void>
 
 删除指定Calendar对象，使用Promise异步回调。
 
-**需要权限**： ohos.permission.WRITE_CALENDAR or ohos.permission.WRITE_WHOLE_CALENDAR
+**需要权限**： ohos.permission.WRITE_CALENDAR
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
@@ -292,7 +292,7 @@ getCalendar(callback: AsyncCallback\<Calendar>): void
 
 获取默认Calendar对象，默认Calendar是日历存储首次运行时创建的，若创建Event时不关注其Calendar归属，则无须通过[createCalendar()](#createcalendar)创建Calendar，直接使用默认Calendar，使用callback异步回调。
 
-**需要权限**：ohos.permission.READ_CALENDAR or ohos.permission.READ_WHOLE_CALENDAR
+**需要权限**：ohos.permission.READ_CALENDAR
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
@@ -325,7 +325,7 @@ getCalendar(calendarAccount: CalendarAccount, callback: AsyncCallback\<Calendar>
 
 获取指定Calendar对象，使用callback异步回调。
 
-**需要权限**： ohos.permission.READ_CALENDAR or ohos.permission.READ_WHOLE_CALENDAR
+**需要权限**： ohos.permission.READ_CALENDAR
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
@@ -368,7 +368,7 @@ getCalendar(calendarAccount?: CalendarAccount): Promise\<Calendar>
 
 获取默认Calendar对象或者指定Calendar对象，使用Promise异步回调。
 
-**需要权限**： ohos.permission.READ_CALENDAR or ohos.permission.READ_WHOLE_CALENDAR
+**需要权限**： ohos.permission.READ_CALENDAR
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
@@ -405,7 +405,7 @@ getAllCalendars(callback: AsyncCallback\<Calendar[]>): void
 
 获取当前应用所有创建的Calendar对象以及默认Calendar对象，使用callback异步回调。
 
-**需要权限**：ohos.permission.READ_CALENDAR or ohos.permission.READ_WHOLE_CALENDAR
+**需要权限**：ohos.permission.READ_CALENDAR
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
@@ -440,7 +440,7 @@ getAllCalendars(): Promise\<Calendar[]>
 
 获取当前应用所有创建的Calendar对象以及默认Calendar对象，使用Promise异步回调。
 
-**需要权限**： ohos.permission.READ_CALENDAR or ohos.permission.WRITE_WHOLE_CALENDAR
+**需要权限**： ohos.permission.READ_CALENDAR
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
@@ -1147,7 +1147,7 @@ getEvents(eventFilter?: EventFilter, eventKey?: (keyof Event)[]): Promise\<Event
 
 | 类型                       | 说明                                |
 | -------------------------- | ----------------------------------- |
-| Promise<[Event](#event)[]> | Promise对象，返回日程配置信息数组。 |
+| Promise<[Event](#event)[]> | Promise对象，返回的是Event对象数组。 |
 
 **示例**：
 
@@ -1368,21 +1368,21 @@ calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => 
 
 **系统能力**：SystemCapability.Applications.CalendarData
 
-| 名称           | 类型                              | 只读 | 必填 | 说明                                                         |
-| -------------- | --------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| id             | number                            | 否   | 否   | 日程id。当调用[addEvent()](#addevent)、[addEvents()](#addevents)创建日程时，不填写此参数。 |
-| type           | [EventType](#eventtype)           | 否   | 是   | 日程类型。                                                   |
-| title          | string                            | 否   | 否   | 日程标题。不填时，默认为空字符串。                             |
-| location       | [Location](#location)             | 否   | 否   | 日程地点。不填时，默认为null。                               |
-| startTime      | number                            | 否   | 是   | 日程开始时间，需要13位时间戳。                                               |
-| endTime        | number                            | 否   | 是   | 日程结束时间，需要13位时间戳。                                               |
-| isAllDay       | boolean                           | 否   | 否   | 是否为全天日程。当取值为true时，说明为全天日程；当取值为false时，说明不是全天日程，默认为非全天日程。 |
-| attendee       | [Attendee](#attendee)[]           | 否   | 否   | 日程参与者。不填时，默认为null。                             |
-| timeZone       | string                            | 否   | 否   | 日程时区。不填时，默认为当前所在时区，当需要创建与当前不一样的时区时，可填入对应的时区。可通过[getTimeZone()]()获取当前系统时区。 |
-| reminderTime   | number[]                          | 否   | 否   | 日程提醒时间，单位为分钟。填写x分钟，即距开始时间提前x分钟提醒，不填时，默认为不提醒。可为负值。                           |
-| recurrenceRule | [RecurrenceRule](#recurrencerule) | 否   | 否   | 日程重复规则。不填时，默认为不重复。                           |
-| description    | string                            | 否   | 否   | 日程描述。不填时，默认为空字符串。                             |
-| service        | [EventService](#eventservice)     | 否   | 否   | 日程服务。不填时，默认没有一键服务。                           |
+| 名称           | 类型                              | 只读 | 必填 | 说明                                                                                                                                                 |
+| -------------- | --------------------------------- | ---- | ---- |----------------------------------------------------------------------------------------------------------------------------------------------------|
+| id             | number                            | 否   | 否   | 日程id。当调用[addEvent()](#addevent)、[addEvents()](#addevents)创建日程时，不填写此参数。                                                                             |
+| type           | [EventType](#eventtype)           | 否   | 是   | 日程类型。                                                                                                                                              |
+| title          | string                            | 否   | 否   | 日程标题。不填时，默认为空字符串。                                                                                                                                  |
+| location       | [Location](#location)             | 否   | 否   | 日程地点。不填时，默认为null。                                                                                                                                  |
+| startTime      | number                            | 否   | 是   | 日程开始时间，需要13位时间戳。                                                                                                                                   |
+| endTime        | number                            | 否   | 是   | 日程结束时间，需要13位时间戳。                                                                                                                                   |
+| isAllDay       | boolean                           | 否   | 否   | 是否为全天日程。当取值为true时，说明为全天日程；当取值为false时，说明不是全天日程，默认为非全天日程。                                                                                            |
+| attendee       | [Attendee](#attendee)[]           | 否   | 否   | 日程参与者。不填时，默认为null。                                                                                                                                 |
+| timeZone       | string                            | 否   | 否   | 日程时区。不填时，默认为当前所在时区，当需要创建与当前不一样的时区时，可填入对应的时区。可通过[getTimeZone()](../apis-basic-services-kit/js-apis-date-time.md#systemdatetimegettimezone)获取当前系统时区。 |
+| reminderTime   | number[]                          | 否   | 否   | 日程提醒时间，单位为分钟。填写x分钟，即距开始时间提前x分钟提醒，不填时，默认为不提醒。可为负值。                                                                                                  |
+| recurrenceRule | [RecurrenceRule](#recurrencerule) | 否   | 否   | 日程重复规则。不填时，默认为不重复。                                                                                                                                 |
+| description    | string                            | 否   | 否   | 日程描述。不填时，默认为空字符串。                                                                                                                                  |
+| service        | [EventService](#eventservice)     | 否   | 否   | 日程服务。不填时，默认没有一键服务。                                                                                                                                 |
 
 ## CalendarType
 
