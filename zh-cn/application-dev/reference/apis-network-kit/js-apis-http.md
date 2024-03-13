@@ -1242,7 +1242,7 @@ request方法回调函数的返回值类型。
 
 createHttpResponseCache(cacheSize?: number): HttpResponseCache
 
-创建一个默认的对象来存储HTTP访问请求的响应。
+创建一个HttpResponseCache对象，可用于存储HTTP请求的响应数据。对象中可调用flush与delete方法，cacheSize指定缓存大小。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
