@@ -42,7 +42,7 @@ Shows an action sheet in the given settings.
 | isModal<sup>11+</sup> | boolean | No| Whether the dialog box is a modal. A modal dialog box has a mask applied, while a non-modal dialog box does not.<br>Default value: **true**|
 | backgroundColor<sup>11+</sup> | [ResourceColor](ts-types.md#resourcecolor)  | No| Backplane color of the dialog box.<br>Default value: **Color.Transparent**|
 | backgroundBlurStyle<sup>11+</sup> | [BlurStyle](ts-appendix-enums.md#blurstyle9) | No| Background blur style of the dialog box.<br>Default value: **BlurStyle.COMPONENT_ULTRA_THICK**|
-
+| onWillDismiss<sup>12+</sup> | (dismissDialog:[DismissDialog](ts-methods-alert-dialog-box.md#dismissdialog12)) => void | No| Callback for interactive closure of the dialog box.<br>**NOTE**<br>1. If this callback is registered, the dialog box will not be closed immediately after the user touches the mask or the Back button, presses the Esc key, or swipes left or right on the screen. The **reason** parameter in the callback is used to determine whether the dialog box can be closed. The reason returned by the component does not support the value **CLOSE_BUTTON**.<br>2. In the **onWillDismiss** callback, another **onWillDismiss** callback is not allowed.|
 ## SheetInfo
 
 | Name| Type                                                    | Mandatory| Description         |
@@ -85,6 +85,16 @@ struct ActionSheetExample {
             cancel: () => {
               console.log('actionSheet canceled')
             },
+              onWillDismiss:(dismissDialog: DismissDialog)=> {
+                console.info("reason=" + JSON.stringify(dismissDialog.reason))
+                console.log("dialog onWillDismiss")
+                if (dismissDialog.reason == DismissReason.PRESS_BACK) {
+                  dismissDialog.dismiss()
+                }
+                if (dismissDialog.reason == DismissReason.TOUCH_OUTSIDE) {
+                  dismissDialog.dismiss()
+                }
+              },
             alignment: DialogAlignment.Bottom,
             offset: { dx: 0, dy: -10 },
             sheets: [
@@ -144,6 +154,16 @@ struct ActionSheetExample {
             cancel: () => {
               console.log('actionSheet canceled')
             },
+              onWillDismiss:(dismissDialog: DismissDialog)=> {
+                console.info("reason=" + JSON.stringify(dismissDialog.reason))
+                console.log("dialog onWillDismiss")
+                if (dismissDialog.reason == DismissReason.PRESS_BACK) {
+                  dismissDialog.dismiss()
+                }
+                if (dismissDialog.reason == DismissReason.TOUCH_OUTSIDE) {
+                  dismissDialog.dismiss()
+                }
+              },
             alignment: DialogAlignment.Center,
             offset: { dx: 0, dy: -10 },
             sheets: [
