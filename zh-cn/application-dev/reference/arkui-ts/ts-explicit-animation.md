@@ -36,7 +36,7 @@ animateTo(value: AnimateParam, event: () => void): void
 | finishCallbackType<sup>11+</sup>   | [FinishCallbackType](ts-appendix-enums.md#finishcallbacktype11)|否 | 在动画中定义onFinish回调的类型。<br/>默认值：FinishCallbackType.REMOVED<br/>从API version 11开始，该接口支持在ArkTS卡片中使用。 |
 | expectedFrameRateRange<sup>11+</sup>   | [ExpectedFrameRateRange](#expectedframeraterange11) | 否 | 设置动画的期望帧率。 |
 
-## ExpectedFrameRateRange <sup>11+</sup>
+## ExpectedFrameRateRange<sup>11+</sup>
 | 名称  | 类型     | 说明      |
 |-----|--------|---------|
 | min | number | 期望的最小帧率。 |
