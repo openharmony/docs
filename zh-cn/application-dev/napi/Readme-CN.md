@@ -21,6 +21,7 @@
             - [使用Node-API接口进行线程安全开发](use-napi-thread-safety.md)
             - [Native与ArkTS对象绑定](use-napi-object-wrap.md)
             - [非ArkTS线程调用ArkTS函数](use-uv-queue-work.md)
+            - [使用Node-API接口创建ArkTs运行时环境](use-napi-ark-runtime.md)
         - [OpenHarmony Node-API常见问题](use-napi-faqs.md)
     - 资源管理
         - [Rawfile开发指导](rawfile-guidelines.md)
