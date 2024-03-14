@@ -149,6 +149,34 @@ placeholder(value: ResourceStr, style?: PlaceholderStyle)
 | value  | [ResourceStr](ts-types.md#resourcestr)  | 是   | 无输入时的提示文本。                                    |
 | style  | [PlaceholderStyle](#placeholderstyle12) | 否   | 添加提示文本的字体样式。<br />style缺省时默认跟随主题。 |
 
+### caretColor<sup>12+</sup>
+
+caretColor(value: ResourceColor)
+
+设置输入框光标颜色。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                       | 必填 | 说明                                   |
+| ------ | ------------------------------------------ | ---- | -------------------------------------- |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 输入框光标颜色。<br/>默认值：'#0A59F7' |
+
+### selectedBackgroundColor<sup>12+</sup>
+
+selectedBackgroundColor(value: ResourceColor)
+
+设置文本选中底板颜色。如果未设置不透明度，默认为20%不透明度。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                       | 必填 | 说明                                       |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------ |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 文本选中底板颜色。<br/>默认为20%不透明度。 |
+
 ## 事件
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
