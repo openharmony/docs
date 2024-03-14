@@ -30,12 +30,12 @@ MindSpore Lite开发流程分为两个阶段：
 
 MindSpore Lite已作为系统部件在OpenHarmony标准系统内置，基于MindSpore Lite开发AI应用的开发方式有：
 
-- 方式一：[使用MindSpore Lite JS API开发AI应用](./mindspore-guidelines-based-js.md)。开发者直接在UI代码中调用 MindSpore Lite JS API 加载模型并进行AI模型推理，此方式可快速验证效果。
-- 方式二：[使用MindSpore Lite Native API开发AI应用](./mindspore-guidelines-based-native.md)。开发者将算法模型和调用 MindSpore Lite Native API 的代码封装成动态库，并通过N-API封装成JS接口，供UI调用。
+- 方式一：[使用MindSpore Lite JS API开发AI应用](mindspore-guidelines-based-js.md)。开发者直接在UI代码中调用 MindSpore Lite JS API 加载模型并进行AI模型推理，此方式可快速验证效果。
+- 方式二：[使用MindSpore Lite Native API开发AI应用](mindspore-guidelines-based-native.md)。开发者将算法模型和调用 MindSpore Lite Native API 的代码封装成动态库，并通过N-API封装成JS接口，供UI调用。
 
 ## Neural Network Runtime
 
 Neural Network Runtime（NNRt, 神经网络运行时）是面向AI领域的跨芯片推理计算运行时，作为中间桥梁连通上层AI推理框架和底层加速芯片，实现AI模型的跨芯片推理计算。
 
-MindSpore Lite已支持配置Neural Network Runtime后端，开发者可直接配置MindSpore Lite来使用NNRt硬件。因此，这里不再对NNRt具体展开说明，主要针对MindSpore开发AI应用提供指导。关于更多NNRt的Native使用，请参见[NNRt Native模块](../napi/neural-network-runtime-guidelines.md)。
+MindSpore Lite已支持配置Neural Network Runtime后端，开发者可直接配置MindSpore Lite来使用NNRt硬件。因此，这里不再对NNRt具体展开说明，主要针对MindSpore开发AI应用提供指导。关于更多NNRt的Native使用，请参见[NNRt Native模块](../nnrt/neural-network-runtime-guidelines.md)。
 

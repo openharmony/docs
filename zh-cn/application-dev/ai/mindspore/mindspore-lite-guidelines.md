@@ -1,4 +1,4 @@
-# 使用MindSpore Lite引擎进行模型推理
+# 使用MindSpore Lite引擎进行模型推理 (C/C++)
 
 ## 场景介绍
 
