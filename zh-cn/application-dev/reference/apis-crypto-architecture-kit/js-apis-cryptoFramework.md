@@ -690,8 +690,7 @@ getEncodedDer(format: string): DataBlob
 >
 > 本接口和[Key.getEncoded()](#getencoded)的区别是：<br/>
 > 1. 本接口可根据入参决定数据的输出格式。
-> 2. [Key.getEncoded()](#getencoded)接口，不支持指定密钥格式，生成的数据格式与原始数据格式保持一致。
-> 3. 当使用双方不一致时，用户可以根据实际场景，调用本接口做格式转换。
+> 2. [Key.getEncoded()](#getencoded)接口，不支持指定密钥格式，生成的数据格式与原始数据格式保持一致。（原始数据格式，指通过[convertKey](#convertkey-3)接口生成密钥对象时的数据格式）。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -705,7 +704,7 @@ getEncodedDer(format: string): DataBlob
 
 | 类型                        | 说明                              |
 | --------------------------- | --------------------------------- |
-| [DataBlob](#datablob) | 返回特定密钥格式的，满足ASN.1语法、DER编码的公钥数据。 |
+| [DataBlob](#datablob) | 返回指定密钥格式的，满足ASN.1语法、DER编码的公钥数据。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
