@@ -3031,12 +3031,18 @@ struct DragControllerPage {
 ## AtomicServiceBar<sup>11+</sup>
 
 以下接口需要先使用UIContext中的[getAtomicServiceBar](#getatomicservicebar11)方法获取到AtomicServiceBar对象，再通过该对象调用对应方法。
+> **说明：**
+>
+> 从API version 12开始原子化服务menuBar样式变更，以下接口将失效。
 
 ### setVisible<sup>11+</sup>
 
 setVisible(visible: boolean): void
 
 通过该方法设置原子化服务menuBar是否可见。
+> **说明：**
+>
+> 从API version 12开始原子化服务menuBar样式变更，menuBar默认隐藏，变为悬浮按钮，通过该接口无法改变menuBar的可见性。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -3044,7 +3050,7 @@ setVisible(visible: boolean): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------- | ------- | ------- | ------- |
-| visiable | boolean | 是 | 原子化服务menuBar是否可见。|
+| visible | boolean | 是 | 原子化服务menuBar是否可见。|
 
 
 **示例：**
@@ -3074,6 +3080,9 @@ onWindowStageCreate(windowStage: window.WindowStage) {
 setBackgroundColor(color:Nullable<Color | number | string>): void
 
 通过该方法设置原子化服务menuBar的背景颜色。
+> **说明：**
+>
+> 从API version 12开始原子化服务menuBar样式变更，menuBar的背景默认隐藏，通过该接口无法改变menuBar的背景颜色。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -3110,6 +3119,9 @@ onWindowStageCreate(windowStage: window.WindowStage) {
 setTitleContent(content:string): void
 
 通过该方法设置原子化服务menuBar的标题内容。
+> **说明：**
+>
+> 从API version 12开始原子化服务menuBar样式变更，menuBar的标题默认隐藏，通过该接口无法改变menuBar的标题内容。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -3146,6 +3158,9 @@ onWindowStageCreate(windowStage: window.WindowStage) {
 setTitleFontStyle(font:FontStyle):void
 
 通过该方法设置原子化服务menuBar的字体样式。
+> **说明：**
+>
+> 从API version 12开始原子化服务menuBar样式变更，menuBar的标题默认隐藏，通过该接口无法改变menuBar的字体样式。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full。
 
@@ -3182,6 +3197,9 @@ onWindowStageCreate(windowStage: window.WindowStage) {
 setIconColor(color:Nullable<Color | number | string>): void
 
 通过该方法设置原子化服务图标的颜色。
+> **说明：**
+>
+> 从API version 12开始原子化服务menuBar样式变更，menuBar默认隐藏，悬浮按钮图标不予用户设置，通过该接口无法改变menuBar的图标颜色。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
