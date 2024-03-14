@@ -424,3 +424,15 @@ Tabs自定义切换动画执行过程中，返回给开发者的proxy对象。�
 ## VoidCallback<sup>12+</sup>
 
 函数回调：() => void
+
+## StyledStringValue<sup>12+</sup>
+
+样式对象类型，用于设置属性字符串的样式。
+
+| 名称   | 描述       |
+| ------ | ---------- |
+| TextStyle | 文本字体样式。 |
+
+
+
+
