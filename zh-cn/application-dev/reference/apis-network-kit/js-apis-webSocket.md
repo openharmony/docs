@@ -760,6 +760,58 @@ let ws = webSocket.createWebSocket();
 ws.off('dataEnd');
 ```
 
+### on('headerReceive')<sup>12+</sup>
+
+on(type: 'headerReceive', callback: Callback\<ResponseHeaders\>): void
+
+订阅HTTP Response Header事件，使用callback方式作为同步方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   |        类型       | 必填 |                说明                    |
+| -------- | ---------------- | ---- | -------------------------------------- |
+| type     | string           | 是   | 'headerReceive'：WebSocket的headerReceive事件。|
+| callback | Callback\<ResponseHeaders\> | 是   | 回调函数,返回订阅事件。                             |
+
+**示例：**
+
+```ts
+import webSocket from '@ohos.net.webSocket';
+
+let ws = webSocket.createWebSocket();
+ws.on('headerReceive', (data) => {
+  console.log("on headerReceive " + JSON.stringify(data));
+});
+```
+
+### off('headerReceive')<sup>12+</sup>
+
+off(type: 'headerReceive', callback?: Callback\<ResponseHeaders\>): void
+
+取消订阅HTTP Response Header事件，使用callback方式作为同步方法。
+
+> **说明：**
+> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   |        类型       | 必填 |                说明                    |
+| -------- | ---------------- | ---- | -------------------------------------- |
+| type     | string           | 是   | 'headerReceive'：WebSocket的headerReceive事件。|
+| callback | Callback\<ResponseHeaders\> | 否   | 回调函数,返回订阅事件。                           |
+
+**示例：**
+
+```ts
+import webSocket from '@ohos.net.webSocket';
+let ws = webSocket.createWebSocket();
+ws.off('headerReceive');
+```
+
 ## WebSocketRequestOptions
 
 建立WebSocket连接时，可选参数的类型和说明。
