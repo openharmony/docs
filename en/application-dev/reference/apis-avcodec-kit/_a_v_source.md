@@ -20,15 +20,36 @@ The AVSource module provides the functions for constructing audio and video reso
 | [native_avsource.h](native__avsource_8h.md) | Declares the native APIs used for audio and video demuxing.| 
 
 
+### Types
+
+| Name| Description| 
+| -------- | -------- |
+| typedef struct [OH_AVSource](#oh_avsource) [OH_AVSource](#oh_avsource) | Defines a struct that describes a native object for the media source interface. | 
+
+
 ### Functions
 
 | Name| Description| 
 | -------- | -------- |
-| OH_AVSource \* [OH_AVSource_CreateWithURI](#oh_avsource_createwithuri) (char \*uri) | Creates an **OH_AVSource** instance based on a URI.| 
-| OH_AVSource \* [OH_AVSource_CreateWithFD](#oh_avsource_createwithfd) (int32_t fd, int64_t offset, int64_t size) | Creates an **OH_AVSource** instance based on a file descriptor (FD).| 
-| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVSource_Destroy](#oh_avsource_destroy) (OH_AVSource \*source) | Destroys an **OH_AVSource** instance and clears internal resources.| 
-| OH_AVFormat \* [OH_AVSource_GetSourceFormat](#oh_avsource_getsourceformat) (OH_AVSource \*source) | Obtains the basic information about a media resource.| 
-| OH_AVFormat \* [OH_AVSource_GetTrackFormat](#oh_avsource_gettrackformat) (OH_AVSource \*source, uint32_t trackIndex) | Obtains the basic information about a track.| 
+| [OH_AVSource](#oh_avsource) \* [OH_AVSource_CreateWithURI](#oh_avsource_createwithuri) (char \*uri) | Creates an **OH_AVSource** instance based on a URI.| 
+| [OH_AVSource](#oh_avsource) \* [OH_AVSource_CreateWithFD](#oh_avsource_createwithfd) (int32_t fd, int64_t offset, int64_t size) | Creates an **OH_AVSource** instance based on a file descriptor (FD).| 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVSource_Destroy](#oh_avsource_destroy) ([OH_AVSource](#oh_avsource) \*source) | Destroys an **OH_AVSource** instance and clears internal resources.| 
+| [OH_AVFormat](_core.md#oh_avformat) \* [OH_AVSource_GetSourceFormat](#oh_avsource_getsourceformat) ([OH_AVSource](#oh_avsource) \*source) | Obtains the basic information about a media resource.| 
+| [OH_AVFormat](_core.md#oh_avformat) \* [OH_AVSource_GetTrackFormat](#oh_avsource_gettrackformat) ([OH_AVSource](#oh_avsource) \*source, uint32_t trackIndex) | Obtains the basic information about a track.| 
+
+
+## Type Description
+
+
+### OH_AVSource
+
+```
+typedef struct OH_AVSource OH_AVSource
+```
+**Description**
+Defines a struct that describes a native object for the media source interface.
+
+**Since**: 10
 
 
 ## Function Description
