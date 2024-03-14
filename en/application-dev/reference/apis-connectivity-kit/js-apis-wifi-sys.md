@@ -4,8 +4,9 @@ The **WLAN** module provides basic wireless local area network (WLAN) functions,
 
 > **NOTE**
 >
-> - The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> - This topic describes only the system APIs provided by the module. For details about its public APIs, see [@ohos.wifi (WLAN)](js-apis-wifi.md).
+> The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> This topic describes only the system APIs provided by the module. For details about its public APIs, see [@ohos.wifi (WLAN)](js-apis-wifi.md).
+> The APIs of this module are no longer maintained since API version 9. You are advised to use [@ohos.wifiManager (WLAN)](js-apis-wifiManager-sys.md).
 
 
 ## Modules to Import
@@ -28,9 +29,9 @@ Enables WLAN.
 
 **Return value**
 
-| **Type**| **Description**|
-| -------- | -------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 
@@ -58,9 +59,9 @@ Disables WLAN.
 
 **Return value**
 
-| **Type**| **Description**|
-| -------- | -------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 
@@ -90,14 +91,14 @@ Adds network configuration. This API uses a promise to return the result.
 
 **Parameters**
 
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to add.|
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to add.|
 
 **Return value**
 
-| **Type**| **Description**|
-| -------- | -------- |
+  | **Type**| **Description**|
+  | -------- | -------- |
 | Promise&lt;number&gt; | Promise used to return the WLAN configuration ID. If **-1** is returned, the network configuration fails to be added.|
 
   **Example**
@@ -197,10 +198,10 @@ Adds network configuration. This API uses an asynchronous callback to return the
 
 **Parameters**
 
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to add.|
-| callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the network configuration ID. If **data** is **-1**, the operation has failed. If **err** is not **0**, an error has occurred.|
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to add.|
+  | callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the network configuration ID. If **data** is **-1**, the operation has failed. If **err** is not **0**, an error has occurred.|
 
 **Example**
 
@@ -250,15 +251,15 @@ Connects to the specified network.
 
 **Parameters**
 
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| networkId | number | Yes| Network configuration ID.|
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | networkId | number | Yes| Network configuration ID.|
 
 **Return value**
 
-| **Type**| **Description**|
-| -------- | -------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 
@@ -288,15 +289,15 @@ Connects to the specified network.
 
 **Parameters**
 
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
 | config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration.|
 
 **Return value**
 
-| **Type**| **Description**|
-| -------- | -------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 ```ts
@@ -344,9 +345,9 @@ Disconnects the network.
 
 **Return value**
 
-| **Type**| **Description**|
-| -------- | -------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 ```ts
@@ -413,9 +414,9 @@ Obtains the features supported by this device.
 
 **Return value**
 
-| **Type**| **Description**|
-| -------- | -------- |
-| number | Feature value. |
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | number | Feature value. |
 
 **Feature IDs**
 
@@ -449,9 +450,9 @@ Obtains the device MAC address.
 
 **Return value**
 
-| **Type**| **Description**|
-| -------- | -------- |
-| string[] | MAC address obtained.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | string[] | MAC address obtained.|
 
 **Example**
 ```ts
@@ -481,9 +482,9 @@ Re-associates with the network.
 
 **Return value**
 
-| **Type**| **Description**|
-| -------- | -------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 ```ts
@@ -510,9 +511,9 @@ Reconnects to the network.
 
 **Return value**
 
-| **Type**| **Description**|
-| -------- | -------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 ```ts
@@ -539,9 +540,9 @@ Obtains network configuration.
 
 **Return value**
 
-| **Type**| **Description**|
-| -------- | -------- |
-| &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig)&gt; | Array of network configuration obtained.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig)&gt; | Array of network configuration obtained.|
 
 **Example**
 ```ts
@@ -569,15 +570,15 @@ Updates network configuration.
 
 **Parameters**
 
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
 | config | [WifiDeviceConfig](#wifideviceconfig) | Yes| New WLAN configuration.|
 
 **Return value**
 
-| **Type**| **Description**|
-| -------- | -------- |
-| number | ID of the updated network configuration. The value **-1** indicates that the operation has failed.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | number | ID of the updated network configuration. The value **-1** indicates that the operation has failed.|
 
 **Example**
 ```ts
@@ -624,15 +625,15 @@ Disables network configuration.
 
 **Parameters**
 
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| netId | number | Yes| ID of the network configuration to disable.|
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | netId | number | Yes| ID of the network configuration to disable.|
 
 **Return value**
 
-| **Type**| **Description**|
-| -------- | -------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 ```ts
@@ -660,9 +661,9 @@ Removes the configuration of all networks.
 
 **Return value**
 
-| **Type**| **Description**|
-| -------- | -------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 ```ts
@@ -689,15 +690,15 @@ Removes the specified network configuration.
 
 **Parameters**
 
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
 | id | number | Yes| ID of the network configuration to remove.|
 
 **Return value**
 
-| **Type**| **Description**|
-| -------- | -------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 ```ts
@@ -725,9 +726,9 @@ Enables this hotspot.
 
 **Return value**
 
-| **Type**| **Description**|
-| -------- | -------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 ```ts
@@ -754,9 +755,9 @@ Disables this hotspot.
 
 **Return value**
 
-| **Type**| **Description**|
-| -------- | -------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 ```ts
@@ -783,9 +784,9 @@ Checks whether the hotspot supports dual band.
 
 **Return value**
 
-| **Type**| **Description**|
-| -------- | -------- |
-| boolean | Returns **true** if the feature is supported; returns **false** otherwise.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | boolean | Returns **true** if the feature is supported; returns **false** otherwise.|
 
 **Example**
 ```ts
@@ -813,8 +814,8 @@ Checks whether this hotspot is active.
 
 **Return value**
 
-| **Type**| **Description**|
-| -------- | -------- |
+  | **Type**| **Description**|
+  | -------- | -------- |
 | boolean | Returns **true** if the hotspot is active; returns **false** otherwise.|
 
 **Example**
@@ -843,15 +844,15 @@ Sets hotspot configuration.
 
 **Parameters**
 
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| config | [HotspotConfig](#hotspotconfig7) | Yes| Hotspot configuration to set.|
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | config | [HotspotConfig](#hotspotconfig7) | Yes| Hotspot configuration to set.|
 
 **Return value**
 
-| **Type**| **Description**|
-| -------- | -------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 ```ts
@@ -903,9 +904,9 @@ Obtains hotspot configuration.
 
 **Return value**
 
-| **Type**| **Description**|
-| -------- | -------- |
-| [HotspotConfig](#hotspotconfig7) | Hotspot configuration obtained.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | [HotspotConfig](#hotspotconfig7) | Hotspot configuration obtained.|
 
 **Example**
 ```ts
@@ -933,9 +934,9 @@ Obtains information about the connected stations.
 
 **Return value**
 
-| **Type**| **Description**|
-| -------- | -------- |
-| &nbsp;Array&lt;[StationInfo](#stationinfo7)&gt; | Connected stations obtained.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | &nbsp;Array&lt;[StationInfo](#stationinfo7)&gt; | Connected stations obtained.|
 
 **Example**
 ```ts
@@ -979,15 +980,15 @@ Deletes a persistent group.
 **Parameters**
 
 
-| **Name**| **Type**| Mandatory| **Description**|
-| -------- | -------- | -------- | -------- |
-| netId | number | Yes| ID of the group to delete.|
+  | **Name**| **Type**| Mandatory| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | netId | number | Yes| ID of the group to delete.|
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | Type| Description|
+  | -------- | -------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 ```ts
@@ -1016,15 +1017,15 @@ Sets the device name.
 
 **Parameters**
 
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| devName | string | Yes| Device name to set.|
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | devName | string | Yes| Device name to set.|
 
 **Return value**
 
-| **Type**| **Description**|
-| -------- | -------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 ```ts
@@ -1052,9 +1053,9 @@ Subscribes to Wi-Fi stream changes.
 
 **Parameters**
 
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type, which has a fixed value of **streamChange**.|
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Event type, which has a fixed value of **streamChange**.|
 | callback | Callback&lt;number&gt; | Yes| Callback invoked to return the Wi-Fi stream change, which can be any of the following values:<br>- **0**: No stream.<br>- **1**: Downward.<br>- **2**: Upward.<br>- **3**: Bidirectional. |
 
 ## wifi.off('streamChange')<sup>7+</sup>
@@ -1107,9 +1108,9 @@ Subscribes to the event of an STA joining a Wi-Fi hotspot.
 
 **Parameters**
 
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type, which has a fixed value of **hotspotStaJoin**.|
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Event type, which has a fixed value of **hotspotStaJoin**.|
 | callback | Callback&lt;StationInfo&gt; | Yes| Callback invoked when an STA is connected to a Wi-Fi hotspot.|
 
 ## wifi.off('hotspotStaJoin')<sup>7+</sup>
@@ -1126,9 +1127,9 @@ Unsubscribes from the event of an STA joining a Wi-Fi hotspot.
 
 **Parameters**
 
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type, which has a fixed value of **hotspotStaJoin**.|
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Event type, which has a fixed value of **hotspotStaJoin**.|
 | callback | Callback&lt;StationInfo&gt; | No| Callback to unregister.|
 
   **Example**
@@ -1161,9 +1162,9 @@ Subscribes to the event of an STA leaving a Wi-Fi hotspot.
 
 **Parameters**
 
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type, which has a fixed value of **hotspotStaLeave**.|
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Event type, which has a fixed value of **hotspotStaLeave**.|
 | callback | Callback&lt;StationInf]&gt; | Yes| Callback invoked when an STA is disconnected from a Wi-Fi hotspot.|
 
 ## wifi.off('hotspotStaLeave')<sup>7+</sup>
@@ -1180,9 +1181,9 @@ Unsubscribes from the event of an STA leaving a Wi-Fi hotspot.
 
 **Parameters**
 
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type, which has a fixed value of **hotspotStaLeave**.|
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Event type, which has a fixed value of **hotspotStaLeave**.|
 | callback | Callback&lt;StationInf]&gt; | No| Callback to unregister.|
 
   **Example**

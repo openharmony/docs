@@ -570,7 +570,7 @@ let aidArray : number[] = [0xA0, 0x00, 0x00, 0x00, 0x03, 0x10, 0x10];
 // Initialize seSession before using it.
 
 try {
-    // change the aid value for open channel.
+    // Change the AID value for the channel to open.
     seSession.openBasicChannel(aidArray).then((data) => {
         seChannel = data;
     }).catch((error : BusinessError)=> {
@@ -621,7 +621,7 @@ let aidArray : number[] = [0xA0, 0x00, 0x00, 0x00, 0x03, 0x10, 0x10];
 // Initialize seSession before using it.
 
 try {
-    // change the aid value for open channel.
+    // Change the AID value for the channel to open.
     seSession.openBasicChannel(aidArray, (error, data) => {
         if (error) {
             hilog.error(0x0000, 'testTag', 'openBasicChannel error %{public}s', JSON.stringify(error));
@@ -734,7 +734,7 @@ let p2 : number = 0x00;
 // Initialize seSession before using it.
 
 try {
-    // change the aid value for open channel.
+    // Change the AID value for the channel to open.
     seSession.openBasicChannel(aidArray, p2, (error, data) => {
         if (error) {
             hilog.error(0x0000, 'testTag', 'openBasicChannel error %{public}s', JSON.stringify(error));
@@ -879,7 +879,7 @@ Opens a logical channel, as defined in ISO/IEC 7816-4. This API uses a promise t
 
 | **Type**| **Description**      |
 | -------- | -------------- |
-| Channel | Promise used to return the logical channel instance obtained.|
+| Promise\<Channel> | Promise used to return the logical channel instance obtained.|
 
 **Error codes**
 
@@ -903,7 +903,7 @@ let p2 : number = 0x00;
 // Initialize seSession before using it.
 
 try {
-    // change the aid value for open channel.
+    // Change the AID value for the channel to open.
     seSession.openLogicalChannel(aidArray, p2).then((data) => {
         seChannel = data;
     }).catch((error : BusinessError)=> {
@@ -956,7 +956,7 @@ let p2 : number = 0x00;
 // Initialize seSession before using it.
 
 try {
-    // change the aid value for open channel.
+    // Change the AID value for the channel to open.
     seSession.openLogicalChannel(aidArray, p2, (error, data) => {
         if (error) {
             hilog.error(0x0000, 'testTag', 'openLogicalChannel error %{public}s', JSON.stringify(error));
@@ -993,7 +993,7 @@ Obtains the session used to open this channel.
 let seSession : secureElement.Session;
 let seChannel : secureElement.Channel;
 
-// Before use seChannel, initialization for seChannel is required
+// Initialize seChannel before using it.
 
 try {
     seSession = seChannel.getSession();

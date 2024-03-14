@@ -164,6 +164,8 @@ Checks whether an application is the default application of the specified servic
 **Example**
 ```js
 import cardEmulation from '@ohos.nfc.cardEmulation';
+import bundleManager from '@ohos.bundle.bundleManager';
+
 let elementName : bundleManager.ElementName;
 
 // init elementName here. bundleName and abilityName are required.
@@ -258,7 +260,7 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
 stopHCE(): boolean
 
-Stops HCE, including exiting the current application from the foreground, releasing the dynamically registered AID list, and canceling the subscription of [hceCmd](#on8).
+Stops HCE, including exiting the current application from the foreground, releasing the dynamically registered AID list, and canceling the subscription of **hceCmd**.
 
 > **NOTE**
 > This API is supported since API version 8 and deprecated since API version 9. Use [stop](#stop9) instead.
@@ -422,7 +424,7 @@ hceService.transmit(responseData).then(() => {
 
 transmit(response: number[], callback: AsyncCallback\<void>): void
 
-Transmits an APDU to the peer card reader. This API uses an asynchronous callback to return the result. The application calls this API only after receiving an APDU data sent by the card reader via [on](#on8).
+Transmits an APDU to the peer card reader. This API uses an asynchronous callback to return the result. The application calls this API only after receiving an APDU sent by the card reader via [on](#on8).
 
 **Required permissions**: ohos.permission.NFC_CARD_EMULATION
 
