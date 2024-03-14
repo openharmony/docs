@@ -8,6 +8,7 @@
     - [Using AudioRenderer for Audio Playback (ArkTS)](using-audiorenderer-for-playback.md)
     - [Using TonePlayer for Audio Playback (for System Applications Only) (ArkTS)](using-toneplayer-for-playback.md)
     - [Using OHAudio for Audio Playback (C/C++)](using-ohaudio-for-playback.md)
+    - [Using AudioHaptic for Audio-Haptic Playback (ArkTS)](using-audiohaptic-for-playback.md)
     - [Audio Playback Concurrency Policy (ArkTS)](audio-playback-concurrency.md)
     - [Volume Management (ArkTS)](volume-management.md)
     - [Audio Effect Management (ArkTS)](audio-effect-management.md)
@@ -25,6 +26,7 @@
     - [Audio Call Overview](audio-call-overview.md)
     - [Developing Audio Call (ArkTS)](audio-call-development.md)
   - Not Recommended
+    - [Switching from OpenSL ES to OHAudio (C/C++)](replace-opensles-by-ohaudio.md)
     - [Using OpenSL ES for Audio Playback (C/C++)](using-opensl-es-for-playback.md)
     - [Using OpenSL ES for Audio Recording (C/C++)](using-opensl-es-for-recording.md)
 - Media Kit
@@ -71,11 +73,13 @@
     - [Camera Photographing (ArkTS)](camera-shooting.md)
     - [Camera Recording (ArkTS)](camera-recording.md)
     - [Camera Metadata (ArkTS)](camera-metadata.md)
+    - [High-Performance Camera Photographing (for System Applications Only) (ArkTS)](camera-deferred-photo.md)
   - Camera Best Practices (ArkTS)
     - [Camera Photographing Sample (ArkTS)](camera-shooting-case.md)
     - [Camera Recording Sample (ArkTS)](camera-recording-case.md)
     - [Dual-Channel Preview (ArkTS)](camera-dual-channel-preview.md)
     - [Using Performance Improvement Features (for System Applications Only) (ArkTS)](camera-performance-improvement.md)
+    - [High-Performance Camera Photographing Sample (for System Applications Only) (ArkTS)](camera-deferred-photo-case.md)
   - Camera Development (C/C++)
     - [Device Input Management (C/C++)](native-camera-device-input.md)
     - [Camera Session Management (C/C++)](native-camera-session-management.md)
@@ -102,6 +106,7 @@
   - [Introduction to Image Kit](image-overview.md)
   - [Image Decoding (ArkTS)](image-decoding.md)
   - [Image Decoding (C/C++)](image-decoding-native.md)
+  - [Image Receiver (C/C++)](image-receiver-native.md)
   - Image Processing
     - [Image Transformation (ArkTS)](image-transformation.md)
     - [Image Transformation (C/C++)](image-transformation-native.md)

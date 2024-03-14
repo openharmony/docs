@@ -7,12 +7,14 @@ When you use native APIs to develop an application based on the [\<XComponent>](
 | Name | Description    |
 |-----|--------|
 | OH_NativeXComponent_SetExpectedFrameRateRange (OH_NativeXComponent *component, OH_NativeXComponent_ExpectedRateRange *range) |Sets the expected frame rate range.
-| H_NativeXComponent_RegisterOnFrameCallback (OH_NativeXComponent *component, OH_NativeXComponent_OnFrameCallback *callback) | Registers the display update callback and enables the callback for each frame.|
+| OH_NativeXComponent_RegisterOnFrameCallback (OH_NativeXComponent *component, OH_NativeXComponent_OnFrameCallback *callback) | Registers the display update callback and enables the callback for each frame.|
 | OH_NativeXComponent_UnRegisterOnFrameCallback (OH_NativeXComponent *component) | Deregisters the display update callback and disables the callback for each frame.|
 
 ## How to Develop
 
-This section draws a graphic through the native Drawing module and presents it using the native Window module. For details, see [Using Drawing to Draw and Display Graphics](drawing-guidelines.md).
+   > **NOTE**
+   >
+   > This section draws a graphic through the native Drawing module and presents it using the native Window module. For details, see [Using Drawing to Draw and Display Graphics](drawing-guidelines.md).
 
 1. Define an ArkTS API file and name it **XComponentContext.ts**, which is used to connect to the native layer.
    ```ts
