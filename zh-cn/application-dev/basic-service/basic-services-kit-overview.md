@@ -30,7 +30,7 @@ Basic Services Kit为开发者提供了多种基础能力，满足开发者不�
   - [上传下载](../reference/apis-basic-services-kit/js-apis-request.md)：提供文件上传下载、后台传输代理的基础能力。
 
 - 进程间/线程间通信：
-  -  [公共事件](../reference/apis-basic-services-kit/js-apis-commonEvent.md)：提供进程间通信的能力，包括订阅、发布、退订公共事件等，相关开发指南请参考[公共事件简介](../application-models/common-event-overview.md)。
+  - [公共事件](../reference/apis-basic-services-kit/js-apis-commonEvent.md)：提供进程间通信的能力，包括订阅、发布、退订公共事件等，相关开发指南请参考[公共事件简介](../application-models/common-event-overview.md)。
   - [Emitter](../reference/apis-basic-services-kit/js-apis-emitter.md)：提供线程内通信的能力，包括订阅、发布、退订自定义事件等，相关开发指南请参考[使用Emitter进行线程间通信](../application-models/itc-with-emitter.md)。
 
 - 设备管理：
@@ -42,10 +42,10 @@ Basic Services Kit为开发者提供了多种基础能力，满足开发者不�
   - [热管理](../reference/apis-basic-services-kit/js-apis-thermal.md)：提供热管理相关的能力，比如热档位查询等。
   - [USB管理](../reference/apis-basic-services-kit/js-apis-usbManager.md)：提供USB设备管理相关的能力，比如查询USB设备列表、批量数据传输、控制命令传输、权限控制等，相关开发指南请参考[USB服务开发概述](../device/usb-overview.md)。
 
- - 其他：
-   - [应用帐号管理](../reference/apis-basic-services-kit/js-apis-appAccount.md)：提供应用帐号的期管理以及数据管理的能力，相关开发指南请参考[管理应用帐号](../account/manage-application-account.md)。
-   - [公共回调](../reference/apis-basic-services-kit/js-apis-base.md)：定义了OpenHarmony ArkTS接口的公共回调类型，包括接口调用时出现的公共回调和公共错误信息。
-   - [时间时区](../reference/apis-basic-services-kit/js-apis-system-date-time.md)：提供获取系统时间以及系统时区的能力。
+- 其他：
+  - [应用帐号管理](../reference/apis-basic-services-kit/js-apis-appAccount.md)：提供应用帐号的期管理以及数据管理的能力，相关开发指南请参考[管理应用帐号](account/manage-application-account.md)。
+  - [公共回调](../reference/apis-basic-services-kit/js-apis-base.md)：定义了OpenHarmony ArkTS接口的公共回调类型，包括接口调用时出现的公共回调和公共错误信息。
+  - [时间时区](../reference/apis-basic-services-kit/js-apis-system-date-time.md)：提供获取系统时间以及系统时区的能力。
 
 ## 与其他kit的关系
 
@@ -54,6 +54,3 @@ Basic Services Kit为开发者提供了多种基础能力，满足开发者不�
 - [Ability Kit](../application-models/abilitykit-overview.md)：Ability Kit中的进程间通信需要使用本Kit中的公共事件。
 
 - [Core File Kit](../file-management/core-file-kit-intro.md)：与Core File Kit的使用场景不同，Core File Kit主要提供访问和管理文件的能力，开发者可以在应用文件访问和文件分享、应用数据备份恢复等场景使用Core File Kit进行开发，而涉及到文件压缩、文件上传下载、文件打印等场景时需要使用本Kit进行开发。
-
-
-
