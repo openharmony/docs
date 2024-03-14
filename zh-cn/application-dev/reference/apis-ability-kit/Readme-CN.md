@@ -13,6 +13,7 @@
     - [@ohos.app.ability.childProcessManager (childProcessManager)](js-apis-app-ability-childProcessManager.md)
     - [@ohos.app.ability.common (应用上下文Context)](js-apis-app-ability-common.md)
     - [@ohos.app.ability.contextConstant (ContextConstant)](js-apis-app-ability-contextConstant.md)
+    - [@ohos.app.ability.EmbeddableUIAbility (可嵌入式UIAbility)](js-apis-app-ability-embeddableUIAbility.md)
     - [@ohos.app.ability.EmbeddedUIExtensionAbility (跨进程界面嵌入扩展能力)](js-apis-app-ability-embeddedUIExtensionAbility.md)
     - [@ohos.app.ability.EnvironmentCallback (EnvironmentCallback)](js-apis-app-ability-environmentCallback.md)
     - [@ohos.app.ability.ExtensionAbility (扩展能力基类)](js-apis-app-ability-extensionAbility.md)
@@ -98,6 +99,7 @@
       - [ApplicationContext](js-apis-inner-application-applicationContext.md)
       - [BaseContext](js-apis-inner-application-baseContext.md)
       - [Context](js-apis-inner-application-context.md)
+      - [EmbeddableUIAbilityContext](js-apis-inner-application-EmbeddableUIAbilityContext.md)
       - [ErrorObserver](js-apis-inner-application-errorObserver.md)
       - [EventHub](js-apis-inner-application-eventHub.md)
       - [ExtensionContext](js-apis-inner-application-extensionContext.md)
@@ -134,6 +136,7 @@
       - [ProcessData(系统接口)](js-apis-inner-application-processData-sys.md)
       - [ServiceExtensionContext(系统接口)](js-apis-inner-application-serviceExtensionContext-sys.md)
       - [UIAbilityContext(系统接口)](js-apis-inner-application-uiAbilityContext-sys.md)
+      - [UIExtensionContext(系统接口)](js-apis-inner-application-uiExtensionContext-sys.md)
       - [ViewData(系统接口)](js-apis-inner-application-viewData-sys.md)
     - bundleManager
       - [abilityInfo](js-apis-bundleManager-abilityInfo.md)

@@ -11482,6 +11482,133 @@ struct WebComponent {
 }
 ```
 
+## getLastJavascriptProxyCallingFrameUrl<sup>12+</sup>
+
+getLastJavascriptProxyCallingFrameUrl(): string
+
+通过[registerJavaScriptProxy](#registerjavascriptproxy)或者[javaScriptProxy](ts-basic-components-web.md#javascriptproxy)注入JavaScript对象到window对象中。该接口可以获取最后一次调用注入的对象的frame的url。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
+
+class TestObj {
+  mycontroller: web_webview.WebviewController;
+  constructor(controller: web_webview.WebviewController) {
+    this.mycontroller = controller;
+  }
+
+  test(testStr:string): string {
+    console.log('Web Component str' + testStr + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
+    return testStr;
+  }
+
+  toString(): void {
+    console.log('Web Component toString ' + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
+  }
+
+  testNumber(testNum:number): number {
+    console.log('Web Component number' + testNum + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
+    return testNum;
+  }
+
+  testBool(testBol:boolean): boolean {
+    console.log('Web Component boolean' + testBol + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
+    return testBol;
+  }
+}
+
+class WebObj {
+  mycontroller: web_webview.WebviewController;
+  constructor(controller: web_webview.WebviewController) {
+    this.mycontroller = controller;
+  }
+
+  webTest(): string {
+    console.log('Web test ' + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
+    return "Web test";
+  }
+
+  webString(): void {
+    console.log('Web test toString ' + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  @State testObjtest: TestObj = new TestObj(this.controller);
+  @State webTestObj: WebObj = new WebObj(this.controller);
+  build() {
+    Column() {
+      Button('refresh')
+        .onClick(() => {
+          try {
+            this.controller.refresh();
+          } catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('Register JavaScript To Window')
+        .onClick(() => {
+          try {
+            this.controller.registerJavaScriptProxy(this.testObjtest, "objName", ["test", "toString", "testNumber", "testBool"]);
+            this.controller.registerJavaScriptProxy(this.webTestObj, "objTestName", ["webTest", "webString"]);
+          } catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
+        .javaScriptAccess(true)
+    }
+  }
+}
+```
+
+加载的html文件。
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+    <meta charset="utf-8">
+    <body>
+      <button type="button" onclick="htmlTest()">Click Me!</button>
+      <p id="demo"></p>
+      <p id="webDemo"></p>
+    </body>
+    <script type="text/javascript">
+    function htmlTest() {
+      // This function call expects to return "ArkUI Web Component"
+      let str=objName.test("webtest data");
+      objName.testNumber(1);
+      objName.testBool(true);
+      document.getElementById("demo").innerHTML=str;
+      console.log('objName.test result:'+ str)
+
+      // This function call expects to return "Web test"
+      let webStr = objTestName.webTest();
+      document.getElementById("webDemo").innerHTML=webStr;
+      console.log('objTestName.webTest result:'+ webStr)
+    }
+</script>
+</html>
+```
 ## WebHttpBodyStream<sup>12+</sup>
 
 POST、PUT请求的数据体，支持BYTES、FILE、BLOB、CHUNKED类型的数据。注意本类中其他接口需要在[initialize](#initialize12)成功后才能调用。

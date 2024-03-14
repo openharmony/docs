@@ -292,6 +292,7 @@ abilities标签描述UIAbility组件的配置信息，标签值为数组类型�
 | unclearableMission | 标识当前UIAbility组件是否支持从最近任务列表中移除。<br/>-&nbsp;true：表示在任务列表中不可移除。<br/>-&nbsp;false：表示在任务列表中可以移除。<br/>**说明：**<br/>单独配置该字段不可生效，需要申请对应的[AllowMissionNotCleared](../../device-dev/subsystems/subsys-app-privilege-config-guide.md)特权之后，该字段才能生效。 | 布尔值 | 该标签可缺省，缺省值为false。 |
 | isolationProcess | 标识组件能否运行在独立的进程中。<br/>-&nbsp;true：表示能运行在独立的进程中。<br/>-&nbsp;false：表示不能运行在独立的进程中。 | 布尔值 | 该标签可缺省，缺省值为false。 |
 | excludeFromDock | 标识当前UIAbility组件是否支持从dock区域隐藏图标。<br/>-&nbsp;true：表示在dock区域隐藏。<br/>-&nbsp;false：表示不能在dock区域隐藏。 | 布尔值 | 该标签可缺省，缺省值为false。 |
+| preferMultiWindowOrientation | 标识当前UIAbility组件多窗布局方向：<br/>-&nbsp;default：缺省值，参数不配置默认值，建议其他应用类配置。<br/>-&nbsp;portrait：多窗布局方向为竖向，建议竖向游戏类应用配置。<br/>-&nbsp;landscape：多窗布局方向为横向，配置后支持横屏悬浮窗和上下分屏，建议横向游戏类应用配置。<br/>-&nbsp;landscape_auto：多窗布局动态可变为横向，需要配合API enableLandScapeMultiWindow/disableLandScapeMultiWindow使用，建议视频类应用配置。 | 字符串 | 该标签可缺省，缺省值为default。 |
 
 abilities示例：
 
@@ -339,6 +340,7 @@ abilities示例：
     "excludeFromMissions": false,
     "unclearableMission": false,
     "excludeFromDock": false,
+    "preferMultiWindowOrientation": "default",
     "isolationProcess": false
   }]
 }
