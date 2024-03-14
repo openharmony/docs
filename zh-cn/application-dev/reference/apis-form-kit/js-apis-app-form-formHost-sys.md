@@ -1081,7 +1081,7 @@ getAllFormsInfo(): Promise&lt;Array&lt;formInfo.FormInfo&gt;&gt;
 
 | 类型                                                                                     | 说明                    |
 |:---------------------------------------------------------------------------------------|:----------------------|
-| Promise&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md#forminfo)&gt;&gt; | Promise对象，返回查询到的卡片信息。 |
+| Promise&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md#forminfo)&gt;&gt; | Promise对象。返回查询到的卡片信息。 |
 
 **错误码：**
 
@@ -1234,7 +1234,7 @@ getFormsInfo(bundleName: string, moduleName?: string): Promise&lt;Array&lt;formI
 
 | 类型                                                                                     | 说明                                |
 |:---------------------------------------------------------------------------------------| :---------------------------------- |
-| Promise&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md#forminfo)&gt;&gt; | Promise对象，返回查询到的卡片信息。 |
+| Promise&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md#forminfo)&gt;&gt; | Promise对象。返回查询到的卡片信息。 |
 
 **错误码：**
 
@@ -1395,7 +1395,7 @@ deleteInvalidForms(formIds: Array&lt;string&gt;): Promise&lt;number&gt;
 
 | 类型          | 说明                                |
 | :------------ | :---------------------------------- |
-| Promise&lt;number&gt; | Promise对象，返回删除的卡片个数。 |
+| Promise&lt;number&gt; | Promise对象。返回删除的卡片个数。 |
 
 **错误码：**
 
@@ -1508,7 +1508,7 @@ acquireFormState(want: Want): Promise&lt;formInfo.FormStateInfo&gt;
 
 | 类型          | 说明                                |
 | :------------ | :---------------------------------- |
-| Promise&lt;[formInfo.FormStateInfo](js-apis-app-form-formInfo.md#formstateinfo)&gt; | Promise对象，返回卡片状态。 |
+| Promise&lt;[formInfo.FormStateInfo](js-apis-app-form-formInfo.md#formstateinfo)&gt; | Promise对象。返回卡片状态。 |
 
 **错误码：**
 

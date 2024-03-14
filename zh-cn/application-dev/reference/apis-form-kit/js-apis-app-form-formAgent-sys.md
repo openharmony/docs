@@ -92,7 +92,7 @@ requestPublishForm(want: Want): Promise&lt;string&gt;
 
 | 类型          | 说明                                |
 | :------------ | :---------------------------------- |
-| Promise&lt;string&gt; | Promise对象，返回卡片标识。 |
+| Promise&lt;string&gt; | Promise对象。返回卡片标识。 |
 
 **错误码：**
 
