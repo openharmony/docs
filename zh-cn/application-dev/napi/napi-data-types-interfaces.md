@@ -575,6 +575,11 @@ napi_status napi_coerce_to_native_binding_object(napi_env env,
 | napi_add_async_cleanup_hook | 注册清理异步钩子函数。 | 
 | napi_remove_async_cleanup_hook | 取消清理异步钩子函数。| 
 
+### ArkTs基础运行时环境
+| 接口 | 功能说明 | 
+| -------- | -------- |
+| napi_create_ark_runtime | 创建基础运行时环境 | 
+| napi_destroy_ark_runtime | 销毁基础运行时环境 | 
 
 ### 其他实用工具
 
