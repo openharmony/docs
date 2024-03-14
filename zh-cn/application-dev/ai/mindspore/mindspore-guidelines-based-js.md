@@ -1,4 +1,4 @@
-# 使用MindSpore Lite JS API开发AI应用
+# 使用MindSpore Lite开发AI应用
 
 ## 使用场景
 
