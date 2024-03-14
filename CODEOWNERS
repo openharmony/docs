@@ -222,8 +222,13 @@ zh-cn/application-dev/web/ @bigpumpkin @HelloCrease @litao33 @zhang-xinyue15
 
 
 [开发-Background Tasks Kit]
-zh-cn/application-dev/task-management/ @chenmingJay @ningningW @very0228 @iceice1001
-
+zh-cn/application-dev/task-management/background-task-overview.md @ningningW @very0228 @hmosdeveloper
+zh-cn/application-dev/task-management/transient-task.md @ningningW @very0228 @hmosdeveloper
+zh-cn/application-dev/task-management/continuous-task.md @ningningW @very0228 @hmosdeveloper
+zh-cn/application-dev/task-management/work-scheduler.md @ningningW @very0228 @hmosdeveloper
+zh-cn/application-dev/task-management/agent-powered-reminder.md @ningningW @very0228 @hmosdeveloper
+zh-cn/application-dev/task-management/efficiency-resource-request.md @ningningW @very0228 @hmosdeveloper
+zh-cn/application-dev/device-usage-statistics/ @ningningW @very0228 @hmosdeveloper
 
 [开发-Basic Services Kit-帐号]
 zh-cn/application-dev/account/ @zengyawen
@@ -276,13 +281,19 @@ zh-cn/application-dev/dfx/apprecovery-guidelines.md   @huipeizi @lixiaogang30  @
 
 [开发-IDL]
 zh-cn/application-dev/IDL/ @huipeizi  @ccllee  @lxfycode  @lixiaogang30
-zh-cn/application-dev/device-usage-statistics/ @chenmingJay @ningningW @tangtiantian2021 @nan-xiansen @iceice1001
-
 
 [开发-IME kit]
 zh-cn/application-dev/inputmethod/ @illybyy @murphy1984 @feng-aiwen  @hu-zhiqiong @SuperShrimp @murphy1984
 zh-cn/application-dev/kit-readme/Readme-IME-Kit.md @illybyy @murphy1984 @feng-aiwen  @hu-zhiqiong @SuperShrimp @murphy1984
 
+[开发-Input kit]
+zh-cn/application-dev/device/inputdevice-guidelines.md @houpengfei @ningningW @mayunteng
+zh-cn/application-dev/device/pointerstyle-guidelines.md @houpengfei @ningningW @mayunteng
+zh-cn/application-dev/device/inputmonitor-guidelines.md @houpengfei @ningningW @mayunteng
+zh-cn/application-dev/device/inputeventclient-guidelines.md @houpengfei @ningningW @mayunteng
+zh-cn/application-dev/device/inputconsumer-guidelines.md @houpengfei @ningningW @mayunteng
+zh-cn/application-dev/device/shortkey-guidelines.md @houpengfei @ningningW @mayunteng
+zh-cn/application-dev/device/input-overview.md  @houpengfei @ningningW @mayunteng
 
 [开发-IPC Kit]
 zh-cn/application-dev/connectivity/ipc-rpc-overview.md @zhang_yixin13 @luodh0157  @zhaopeng_gitee @zhang-yang123321
@@ -292,7 +303,7 @@ zh-cn/application-dev/connectivity/subscribe-remote-state.md @zhang_yixin13 @luo
 
 
 [开发-Localization Kit]
-zh-cn/application-dev/internationalization/ @ningningW @Buda-Liu @mengjingzhimo @yangqing3
+zh-cn/application-dev/internationalization/ @ningningW @mengjingzhimo @yangqing3
 
 
 [开发-Location Kit]
@@ -377,8 +388,9 @@ zh-cn/application-dev/telephony/telephony-sms.md @zhang_yixin13 @jiayanhong-hw @
 
 
 [开发-Test Kit]
-zh-cn/application-dev/application-test/ @ningningW
-
+zh-cn/application-dev/application-test/arkxtest-guidelines.md @ningningW @inter515
+zh-cn/application-dev/application-test/smartperf-guidelines.md @ningningW @niuguoliang @xielinnan
+zh-cn/application-dev/application-test/wukong-guidelines.md @ningningW
 
 [开发-Webgl]
 zh-cn/application-dev/webgl/ @ge-yafang @zhangqiang183  @wind_zj @zxg-gitee
@@ -804,8 +816,21 @@ zh-cn/application-dev/reference/apis-arkweb/errorcode-webview.md @bigpumpkin @He
 
 
 [API参考-Background Tasks Kit]
-zh-cn/application-dev/reference/apis-backgroundtasks-kit/ @chenmingJay @ningningW @very0228 @iceice1001
+zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-reminderAgentManager.md @ningningW @very0228 @hmosdeveloper
+zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-reminderAgentManager-sys.md @ningningW @very0228 @hmosdeveloper
+zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md @ningningW @very0228 @hmosdeveloper
+zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager-sys.md @ningningW @very0228 @hmosdeveloper
+zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-resourceschedule-workScheduler.md @ningningW @very0228 @hmosdeveloper
+zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-WorkSchedulerExtensionAbility.md @ningningW @very0228 @hmosdeveloper
+zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-inner-application-WorkSchedulerExtensionContext.md @ningningW @very0228 @hmosdeveloper
 
+zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-resourceschedule-deviceStandby-sys.md @foolish-older-man @ningningW @very0228
+zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-resourceschedule-deviceUsageStatistics-sys.md @ningningW @very0228 @hmosdeveloper
+
+zh-cn/application-dev/reference/apis-backgroundtasks-kit/errorcode-backgroundTaskMgr.md @ningningW @very0228 @hmosdeveloper
+zh-cn/application-dev/reference/apis-backgroundtasks-kit/errorcode-reminderAgentManager.md @ningningW @very0228 @hmosdeveloper
+zh-cn/application-dev/reference/apis-backgroundtasks-kit/errorcode-workScheduler.md @ningningW @very0228 @hmosdeveloper
+zh-cn/application-dev/reference/apis-backgroundtasks-kit/errorcode-DeviceUsageStatistics.md @ningningW @very0228 @hmosdeveloper
 
 [API参考-Basic Services Kit-帐号]
 zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-appAccount.md @zengyawen
@@ -966,18 +991,26 @@ zh-cn/application-dev/reference/apis-ime-kit/ @illybyy @murphy1984 @feng-aiwen  
 
 
 [API参考-Input Kit]
-zh-cn/application-dev/reference/apis-input-kit/ @yuanxinying @ningningW @cococoler @alien0208
-zh-cn/application-dev/reference/apis/js-apis-touchevent.md @yuanxinying @ningningW @houchengyu
-zh-cn/application-dev/reference/apis/js-apis-shortKey.md @yuanxinying @ningningW @houchengyu
+zh-cn/application-dev/reference/apis-input-kit/ @houpengfei @ningningW @mayunteng
 
 
 [API参考-IPC Kit]
 zh-cn/application-dev/reference/apis-ipc-kit/js-apis-rpc.md @luodh0157 @zhang_yixin13 @zhaopeng_gitee @zhang-yang123321
 
 [API参考-Localization Kit]
-zh-cn/application-dev/reference/apis-Localization-kit/ @Buda-Liu @ningningW @mengjingzhimo @yangqing3
-zh-cn/application-dev/reference/apis-arkui/js-apis-system-configuration.md @Buda-Liu @ningningW @budda-wang @tomatodevboy
-
+zh-cn/application-dev/reference/apis-Localization-kit/js-apis-i18n.md  @ningningW @mengjingzhimo @yangqing3
+zh-cn/application-dev/reference/apis-Localization-kit/js-apis-intl.md  @ningningW @mengjingzhimo @yangqing3
+zh-cn/application-dev/reference/apis-Localization-kit/js-apis-i18n-sys.md  @ningningW @mengjingzhimo @yangqing3
+zh-cn/application-dev/reference/apis-Localization-kit/errorcode-i18n.md  @ningningW @mengjingzhimo @yangqing3
+zh-cn/application-dev/reference/apis-Localization-kit/js-apis-resource-manager.md  @ningningW @wangyong @yangqing3
+zh-cn/application-dev/reference/apis-Localization-kit/rawfile.md  @ningningW @wangyong @yangqing3
+zh-cn/application-dev/reference/apis-Localization-kit/raw__dir_8h.md  @ningningW @wangyong @yangqing3
+zh-cn/application-dev/reference/apis-Localization-kit/raw__file__manager_8h.md  @ningningW @wangyong @yangqing3
+zh-cn/application-dev/reference/apis-Localization-kit/raw__file_8h.md  @ningningW @wangyong @yangqing3
+zh-cn/application-dev/reference/apis-Localization-kit/_raw_file_descriptor.md  @ningningW @wangyong @yangqing3
+zh-cn/application-dev/reference/apis-Localization-kit/_raw_file_descriptor64.md  @ningningW @wangyong @yangqing3
+zh-cn/application-dev/reference/apis-Localization-kit/errorcode-resource-manager.md  @ningningW @wangyong @yangqing3
+zh-cn/application-dev/napi/rawfile-guidelines.md @ningningW @wangyong @yangqing3
 
 [API参考-Location Kit]
 zh-cn/application-dev/reference/apis-location-kit/ @cheng_guohong @RayShih @cheng_guohong @xiangkejin123
@@ -996,7 +1029,7 @@ zh-cn/application-dev/reference/apis-media-library-kit/ @zengyawen
 
 
 [API参考-MDM Kit]
-zh-cn/application-dev/reference/apis-mdm-kit/ @liuzuming @ningningW @yangqing3 @caiminggang
+zh-cn/application-dev/reference/apis-mdm-kit/ @liuzuming @ningningW @yangqing3 
 
 
 [API参考-MindSpore Lite Kit]
@@ -1062,10 +1095,11 @@ zh-cn/application-dev/reference/apis-telephony-kit/ @jiayanhong-hw @zhang_yixin1
 
 
 [API参考-Test Kit]
-zh-cn/application-dev/reference/apis-tesk-kit/js-apis-testRunner.md @inter515 @littlejerry1 @ningningW @inter515 @jiyong
+zh-cn/application-dev/reference/apis-tesk-kit/js-apis-testRunner.md @ningningW 
+zh-cn/application-dev/reference/apis-tesk-kit/js-apis-app-ability-abilityDelegatorRegistry.md @ningningW 
 zh-cn/application-dev/reference/apis-tesk-kit/js-apis-uitest.md @inter515 @ningningW @inter515 @jiyong
-
-
+zh-cn/application-dev/reference/apis-tesk-kit/errorcode-uitest.md @ningningW @inter515 @jiyong
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-deviceAttest-sys.md @ningningW @jiyong
 
 [工具-元能力、包管理、通知等]
 zh-cn/application-dev/tools/aa-tool.md @huipeizi  @ccllee  @lxfycode  @lixiaogang30
