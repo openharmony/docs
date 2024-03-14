@@ -18,7 +18,7 @@ onSizeChange(event: SizeChangeCallback)
 
 | 参数名   | 类型                      | 必填 | 说明                                                         |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| event | [SizeChangeCallback](#sizechangecallback) | 是   | 返回目标元素变化之前的宽高。 |
+| event | [SizeChangeCallback](#sizechangecallback) | 是   | 目标元素变化前后的尺寸。 |
 
 ## SizeChangeCallback
 
