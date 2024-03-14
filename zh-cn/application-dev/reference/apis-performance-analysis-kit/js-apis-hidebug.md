@@ -470,7 +470,7 @@ startAppTraceCapture(tags : number[], flag: TraceFlag, limitSize: number) : stri
 | -------- | ------   | ---- | ------------------------------------------------------------------------------------- |
 | tags     | number[] | 是   | 详情请见[tags](#tags12)                                                      |
 | flag     | TraceFlag| 是   | 详情请见[TraceFlag](#traceflag12)          |
-| limitSize| number   | 是   | 开启trace文件大小限制，单位为Byte                                                       |
+| limitSize| number   | 是   | 开启trace文件大小限制，单位为Byte，单个文件大小上限为500MB                                                       |
 
 **返回值：**
 
@@ -492,7 +492,7 @@ startAppTraceCapture(tags : number[], flag: TraceFlag, limitSize: number) : stri
 **示例：**
 
 ```ts
-let tags: number[] = [hidebug.tags.ABILITY_MANAGER, hidebug.tags.ACE];
+let tags: number[] = [hidebug.tags.ABILITY_MANAGER, hidebug.tags.ARKUI];
 let flag: hidebug.TraceFlag = hidebug.TraceFlag.MAIN_THREAD;
 let limitSize: number = 1024 * 1024;
 let fileName: string = hidebug.startAppTraceCapture(tags, flag, limitSize);
@@ -524,7 +524,7 @@ stopAppTraceCapture() : void
 **示例：**
 
 ```ts
-let tags: number[] = [hidebug.tags.ABILITY_MANAGER, hidebug.tags.ACE];
+let tags: number[] = [hidebug.tags.ABILITY_MANAGER, hidebug.tags.ARKUI];
 let flag: hidebug.TraceFlag = hidebug.TraceFlag.MAIN_THREAD;
 let limitSize: number = 1024 * 1024;
 let fileName: string = hidebug.startAppTraceCapture(tags, flag, limitSize);
