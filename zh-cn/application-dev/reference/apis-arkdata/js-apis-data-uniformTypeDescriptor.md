@@ -65,9 +65,9 @@ OpenHarmony标准化数据类型的枚举定义。标准化数据类型之间存
 | JFX_FAX<sup>12+</sup>                         | 'com.j2.jfx-fax'                    | J2 jConnect传真文件类型，归属类型为FAX。       |
 | EFX_FAX<sup>12+</sup>                         | 'com.js.efx-fax'                    | 电子传真文件类型，归属类型为FAX。       |
 | XBITMAP_IMAGE<sup>12+</sup>                         | 'general.xbitmap-image'                    | X Window系统（X11）中使用的位图图像格式，归属类型为IMAGE。       |
-| TGA_IMAGE<sup>12+</sup>                         | 'com.truevision.tga-image'                    | TaggedGraphics图像类型，归属类型为IMAGE。       |
-| SGI_IMAGE<sup>12+</sup>                         | 'com.sgi.sgi-image'                    | Silicon Graphics图像类型，归属类型为IMAGE。       |
-| OPENEXR_IMAGE<sup>12+</sup>                         | 'com.ilm.openexr-image'                    | OpenEXR图像文件类型，归属类型为IMAGE。       |
+| TGA_IMAGE<sup>12+</sup>                         | 'com.truevision.tga-image'                    | 标签图形（TaggedGraphics）图像类型，归属类型为IMAGE。       |
+| SGI_IMAGE<sup>12+</sup>                         | 'com.sgi.sgi-image'                    | 硅图（Silicon Graphics）图像类型，归属类型为IMAGE。       |
+| OPENEXR_IMAGE<sup>12+</sup>                         | 'com.ilm.openexr-image'                    | 开放标准的高动态范围图像格式类型，归属类型为IMAGE。       |
 | FLASHPIX_IMAGE<sup>12+</sup>                         | 'com.kodak.flashpix.image'                    | FlashPix 图像文件类型，归属类型为IMAGE。       |
 | WORD_DOC<sup>11+</sup>                         | 'com.microsoft.word.doc'                   | Microsoft Word数据类型，归属类型为COMPOSITE_OBJECT。                |
 | EXCEL<sup>11+</sup>                        | 'com.microsoft.excel.xls'                  | Microsoft Excel数据类型，归属类型为COMPOSITE_OBJECT。               |
@@ -99,8 +99,8 @@ OpenHarmony标准化数据类型的枚举定义。标准化数据类型之间存
 | WAVEFORM_AUDIO<sup>11+</sup>                         | 'com.microsoft.waveform-audio'                   | WINDOWS波形音频类型，归属类型为AUDIO。         |
 | WINDOWS_MEDIA_WAX<sup>11+</sup>                        | 'com.microsoft.windows-media-wax'                  | WINDOWS WAX音频类型，归属类型为AUDIO。       |
 | AU_AUDIO<sup>12+</sup>                         | 'general.au-audio'                    | Au数据格式，归属类型为AUDIO。       |
-| AIFC_AUDIO<sup>12+</sup>                         | 'general.aifc-audio'                    | 音频交换数据类型，，归属类型为AUDIO。       |
-| SD2_AUDIO<sup>12+</sup>                         | 'com.digidesign.sd2-audio'                    | Digidesign Sound Designer II 音频类型，归属类型为AUDIO。       |
+| AIFC_AUDIO<sup>12+</sup>                         | 'general.aifc-audio'                    | 音频交换数据类型，归属类型为AUDIO。       |
+| SD2_AUDIO<sup>12+</sup>                         | 'com.digidesign.sd2-audio'                    | 单声道/立体声音频类型（Digidesign Sound Designer II），归属类型为AUDIO。       |
 | REALAUDIO<sup>12+</sup>                         | 'com.real.realaudio'                    | RealMedia音频类型，归属类型为AUDIO。       |
 | FILE                       | 'general.file'                 | 所有文件的基类型，归属类型为ENTITY。                          |
 | DIRECTORY<sup>11+</sup>             | 'general.directory'               | 所有目录的基类型，归属类型为ENTITY。                          |
@@ -125,10 +125,10 @@ OpenHarmony标准化数据类型的枚举定义。标准化数据类型之间存
 | OPENDOCUMENT_PRESENTATION<sup>12+</sup>                         | 'org.oasis.opendocument.presentation'                    | 开源文档演示类型，归属类型为OPENDOCUMENT。       |
 | OPENDOCUMENT_GRAPHICS<sup>12+</sup>                         | 'org.oasis.opendocument.graphics'                    | 开源文档图形类型，归属类型为OPENDOCUMENT。       |
 | OPENDOCUMENT_FORMULA<sup>12+</sup>                         | 'org.oasis.opendocument.formula'                    | 开源文档公式集类型，归属类型为OPENDOCUMENT。       |
-| STUFFIT_ARCHIVE<sup>12+</sup>                         | 'com.allume.stuffit-archive'                    |      * Stuffit archive.       |
+| STUFFIT_ARCHIVE<sup>12+</sup>                         | 'com.allume.stuffit-archive'                    | Stuffit压缩格式类型（Stuffit archive），归属类型为ARCHIVE。       |
 | CALENDAR<sup>11+</sup>                        | 'general.calendar'                  | 所有日程类数据的基类型，归属类型为OBJECT。                       |
-| VCS<sup>12+</sup>                         | 'general.vcs'                    |      * VCalendar type, a type of calendar format.       |
-| ICS<sup>12+</sup>                         | 'general.ics'                    |      * ICalendar type, a type of calendar format.       |
+| VCS<sup>12+</sup>                         | 'general.vcs'                    | VCalendar日历数据类型，归属类型为CALENDAR。       |
+| ICS<sup>12+</sup>                         | 'general.ics'                    | ICalendar日历数据类型，归属类型为CALENDAR。       |
 | CONTACT<sup>11+</sup>                        | 'general.contact'                  | 所有联系人类数据的基类型，归属类型为OBJECT。                      |
 | DATABASE<sup>11+</sup>                        | 'general.database'                  | 所有数据库文件的基类型，归属类型为OBJECT。                       |
 | MESSAGE<sup>11+</sup>                       | 'general.message'                 | 所有消息类数据的基类型，归属类型为OBJECT。                       |
@@ -160,6 +160,8 @@ OpenHarmony标准化数据类型的枚举定义。标准化数据类型之间存
 ## TypeDescriptor<sup>11+</sup> 
 
 标准化数据类型的描述类，它包含了一些属性和方法用于描述标准化数据类型自身以及和其他标准化数据类型之间的归属与层级关系。
+
+## 属性
 
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
@@ -405,6 +407,17 @@ try {
     let error: BusinessError = e as BusinessError;
     console.error(`getUniformDataTypeByFilenameExtension throws an exception. code is ${error.code}, message is ${error.message} `);
 }
+
+// 根据“.myts”，“general.plain-text”查不到预置数据类型则按返回根据入参信息生成的动态类型。
+try {
+    let typeId = uniformTypeDescriptor.getUniformDataTypeByFilenameExtension('.myts', 'general.plain-text');
+    if(typeId) {
+        console.info('typeId is flex.************');
+    }
+} catch(e) {
+    let error: BusinessError = e as BusinessError;
+    console.error(`getUniformDataTypeByFilenameExtension throws an exception. code is ${error.code}, message is ${error.message} `);
+}
 ```
 
 ## uniformTypeDescriptor.getUniformDataTypeByMIMEType<sup>11+</sup>
@@ -438,6 +451,17 @@ try {
     let typeId = uniformTypeDescriptor.getUniformDataTypeByMIMEType('image/jpeg', 'general.image');
     if(typeId) {
         console.info('typeId is general.jpeg');
+    }
+} catch(e) {
+    let error: BusinessError = e as BusinessError;
+    console.error(`getUniformDataTypeByMIMEType throws an exception. code is ${error.code}, message is ${error.message} `);
+}
+
+// 根据“image/myimage”, “general.image”查不到预置数据类型则按返回根据入参信息生成的动态类型。
+try {
+    let typeId = uniformTypeDescriptor.getUniformDataTypeByMIMEType('image/myimage', 'general.image');
+    if(typeId) {
+        console.info('typeId is flex.************');
     }
 } catch(e) {
     let error: BusinessError = e as BusinessError;
