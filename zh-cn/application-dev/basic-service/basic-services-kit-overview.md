@@ -45,7 +45,7 @@ Basic Services Kit为开发者提供了多种基础能力，满足开发者不�
 - 其他：
   - [应用帐号管理](../reference/apis-basic-services-kit/js-apis-appAccount.md)：提供应用帐号的期管理以及数据管理的能力，相关开发指南请参考[管理应用帐号](account/manage-application-account.md)。
   - [公共回调](../reference/apis-basic-services-kit/js-apis-base.md)：定义了OpenHarmony ArkTS接口的公共回调类型，包括接口调用时出现的公共回调和公共错误信息。
-  - [时间时区](../reference/apis-basic-services-kit/js-apis-system-date-time.md)：提供获取系统时间以及系统时区的能力。
+  - [时间时区](../reference/apis-basic-services-kit/js-apis-date-time.md)：提供获取系统时间以及系统时区的能力。
 
 ## 与其他kit的关系
 

@@ -188,7 +188,7 @@ WMV当前是不支持，支持的格式有AAC、MPEG(MP3)、Flac、Vorbis。
 
 **参考资料**
 
-soundpool支持的格式与底层一致，支持的格式可以参考文档：[音频解码](../media/audio/audio-decoding.md)
+soundpool支持的格式与底层一致，支持的格式可以参考文档：[音频解码](../media/avcodec/audio-decoding.md)
 
 ## 如何读取相机的预览图？(API 10)
 
