@@ -1,4 +1,4 @@
-# 使用MindSpore Lite引擎进行端侧训练
+# 使用MindSpore Lite引擎进行端侧训练 (C/C++)
 
 ## 场景介绍
 
