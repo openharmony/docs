@@ -43,3 +43,41 @@ API 12及之后，全屏模态转场/半模态转场的onAppear回调会在模�
 **适配指导**
 
 如有需要在模态页面显示动画开始前执行的逻辑，可以使用API 12新增的onWillAppear回调替代onAppear回调，请查阅[半模态转场](../../../application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md)文档进行适配。
+
+## cl.arkui.2  TextPicker内容默认布局行为变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+TextPicker布局绘制逻辑与DatePicker、TimePicker不一致, 当组件高度设置过大时，滑动选项显示数量会超过5个，导致上下边缘渐隐效果异常。
+
+**变更影响**
+
+该变更为兼容性变更。
+
+变更前，TextPicker的滑动选项总高度与组件高度相同，且滑动事件在整个组件内相应。
+
+![textpicker内容布局变更前](figures/textpicker_before.jpg)
+
+变更后，TextPicker组件高度过大时(大于5个滑动选项所需高度)，组件的整体高度不发生改变，但滑动选项最多只会显示5个，在组件内上下居中显示，剩余区域将填充空白，且手势事件将只在滑动选项区域响应。
+
+![textpicker内容布局变更后](figures/textpicker_after.jpg)
+
+**API Level**
+
+8
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.17 开始。
+
+**变更的接口/组件**
+
+受影响的组件：TextPicker。
+
+**适配指导**
+
+无
