@@ -5,6 +5,7 @@
 > **说明：**
 >
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块能力仅支持WGS-84坐标系。
 
 ## 申请权限
 
@@ -332,7 +333,7 @@ getCurrentLocation(request?: CurrentLocationRequest): Promise&lt;Location&gt;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | [Location](#location) | 返回位置信息。 |
+  | Promise&lt;[Location](#location)&gt; | 以Promise形式返回位置信息。 |
 
 **错误码**：
 
