@@ -145,7 +145,7 @@ animateTo(value: AnimateParam, event: () => void): void
 
 | 参数名   | 类型                                       | 必填   | 说明                                    |
 | ----- | ---------------------------------------- | ---- | ------------------------------------- |
-| value | [AnimateParam](../arkui-ts/ts-explicit-animation.md#animateparam对象说明) | 是    | 设置动画效果相关参数。                           |
+| value | [AnimateParam](../apis-arkui/arkui-ts/ts-explicit-animation.md#animateparam对象说明) | 是    | 设置动画效果相关参数。                           |
 | event | () => void                               | 是    | 指定显示动效的闭包函数，在闭包函数中导致的状态变化系统会自动插入过渡动画。 |
 
 **示例：**
@@ -222,7 +222,7 @@ showAlertDialog(options: AlertDialogParamWithConfirm | AlertDialogParamWithButto
 
 | 参数名     | 类型                                       | 必填   | 说明                  |
 | ------- | ---------------------------------------- | ---- | ------------------- |
-| options | [AlertDialogParamWithConfirm](../arkui-ts/ts-methods-alert-dialog-box.md#alertdialogparamwithconfirm对象说明)&nbsp;\|&nbsp;[AlertDialogParamWithButtons](../arkui-ts/ts-methods-alert-dialog-box.md#alertdialogparamwithbuttons对象说明)&nbsp;\|&nbsp;[AlertDialogParamWithOptions](../arkui-ts/ts-methods-alert-dialog-box.md#alertdialogparamwithoptions10对象说明) | 是    | 定义并显示AlertDialog组件。 |
+| options | [AlertDialogParamWithConfirm](../apis-arkui/arkui-ts/ts-methods-alert-dialog-box.md#alertdialogparamwithconfirm对象说明)&nbsp;\|&nbsp;[AlertDialogParamWithButtons](../apis-arkui/arkui-ts/ts-methods-alert-dialog-box.md#alertdialogparamwithbuttons对象说明)&nbsp;\|&nbsp;[AlertDialogParamWithOptions](../apis-arkui/arkui-ts/ts-methods-alert-dialog-box.md#alertdialogparamwithoptions10对象说明) | 是    | 定义并显示AlertDialog组件。 |
 
 
 **示例：**
@@ -261,21 +261,21 @@ showActionSheet(value: ActionSheetOptions): void
 
 | 参数名        | 类型                                       | 必填   | 说明                                       |
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| title      | [Resource](../arkui-ts/ts-types.md#resource)&nbsp;\|&nbsp;string | 是    | 弹窗标题。                                    |
-| message    | [Resource](../arkui-ts/ts-types.md#resource)&nbsp;\|&nbsp;string | 是    | 弹窗内容。                                    |
+| title      | [Resource](../apis-arkui/arkui-ts/ts-types.md#resource)&nbsp;\|&nbsp;string | 是    | 弹窗标题。                                    |
+| message    | [Resource](../apis-arkui/arkui-ts/ts-types.md#resource)&nbsp;\|&nbsp;string | 是    | 弹窗内容。                                    |
 | autoCancel | boolean                                  | 否    | 点击遮障层时，是否关闭弹窗。<br>默认值：true               |
-| confirm    | {<br/>value:&nbsp;[ResourceStr](../arkui-ts/ts-types.md#resourcestr),<br/>action:&nbsp;()&nbsp;=&gt;&nbsp;void<br/>} | 否    | 确认按钮的文本内容和点击回调。<br>默认值：<br/>value：按钮文本内容。<br/>action:&nbsp;按钮选中时的回调。 |
+| confirm    | {<br/>value:&nbsp;[ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr),<br/>action:&nbsp;()&nbsp;=&gt;&nbsp;void<br/>} | 否    | 确认按钮的文本内容和点击回调。<br>默认值：<br/>value：按钮文本内容。<br/>action:&nbsp;按钮选中时的回调。 |
 | cancel     | ()&nbsp;=&gt;&nbsp;void                  | 否    | 点击遮障层关闭dialog时的回调。                       |
-| alignment  | [DialogAlignment](../arkui-ts/ts-methods-alert-dialog-box.md#dialogalignment枚举说明) | 否    | 弹窗在竖直方向上的对齐方式。<br>默认值：DialogAlignment.Bottom |
-| offset     | {<br/>dx:&nbsp;[Length](../arkui-ts/ts-types.md#length),<br/>dy:&nbsp;[Length](../arkui-ts/ts-types.md#length)<br/>} | 否    | 弹窗相对alignment所在位置的偏移量。{<br/>dx:&nbsp;0,<br/>dy:&nbsp;0<br/>} |
+| alignment  | [DialogAlignment](../apis-arkui/arkui-ts/ts-methods-alert-dialog-box.md#dialogalignment枚举说明) | 否    | 弹窗在竖直方向上的对齐方式。<br>默认值：DialogAlignment.Bottom |
+| offset     | {<br/>dx:&nbsp;[Length](../apis-arkui/arkui-ts/ts-types.md#length),<br/>dy:&nbsp;[Length](../apis-arkui/arkui-ts/ts-types.md#length)<br/>} | 否    | 弹窗相对alignment所在位置的偏移量。{<br/>dx:&nbsp;0,<br/>dy:&nbsp;0<br/>} |
 | sheets     | Array&lt;SheetInfo&gt;                   | 是    | 设置选项内容，每个选择项支持设置图片、文本和选中的回调。             |
 
 **SheetInfo接口说明：**
 
 | 参数名    | 类型                                       | 必填   | 说明             |
 | ------ | ---------------------------------------- | ---- | -------------- |
-| title  | [ResourceStr](../arkui-ts/ts-types.md#resourcestr) | 是    | 选项的文本内容。       |
-| icon   | [ResourceStr](../arkui-ts/ts-types.md#resourcestr) | 否    | 选项的图标，默认无图标显示。 |
+| title  | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr) | 是    | 选项的文本内容。       |
+| icon   | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr) | 否    | 选项的图标，默认无图标显示。 |
 | action | ()=&gt;void                              | 是    | 选项选中的回调。       |
 
 **示例：**
@@ -337,12 +337,12 @@ showDatePickerDialog(options: DatePickerDialogOptions): void
 | lunar              | boolean                                  | 否    | 日期是否显示为农历。<br/>默认值：false               |
 | showTime           | boolean                                  | 否    | 是否展示时间项。<br/>默认值：false                 |
 | useMilitaryTime    | boolean                                  | 否    | 展示时间是否为24小时制。<br/>默认值：false            |
-| disappearTextStyle | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否    | 设置所有选项中最上和最下两个选项的文本颜色、字号、字体粗细。         |
-| textStyle          | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否    | 设置所有选项中除了最上、最下及选中项以外的文本颜色、字号、字体粗细。     |
-| selectedTextStyle  | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否    | 设置选中项的文本颜色、字号、字体粗细。                    |
-| onAccept           | (value: [DatePickerResult](../arkui-ts/ts-basic-components-datepicker.md#datepickerresult对象说明)) => void | 否    | 点击弹窗中的“确定”按钮时触发该回调。                    |
+| disappearTextStyle | [PickerTextStyle](../apis-arkui/arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否    | 设置所有选项中最上和最下两个选项的文本颜色、字号、字体粗细。         |
+| textStyle          | [PickerTextStyle](../apis-arkui/arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否    | 设置所有选项中除了最上、最下及选中项以外的文本颜色、字号、字体粗细。     |
+| selectedTextStyle  | [PickerTextStyle](../apis-arkui/arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否    | 设置选中项的文本颜色、字号、字体粗细。                    |
+| onAccept           | (value: [DatePickerResult](../apis-arkui/arkui-ts/ts-basic-components-datepicker.md#datepickerresult对象说明)) => void | 否    | 点击弹窗中的“确定”按钮时触发该回调。                    |
 | onCancel           | () => void                               | 否    | 点击弹窗中的“取消”按钮时触发该回调。                    |
-| onChange           | (value: [DatePickerResult](../arkui-ts/ts-basic-components-datepicker.md#datepickerresult对象说明)) => void | 否    | 滑动弹窗中的滑动选择器使当前选中项改变时触发该回调。             |
+| onChange           | (value: [DatePickerResult](../apis-arkui/arkui-ts/ts-basic-components-datepicker.md#datepickerresult对象说明)) => void | 否    | 滑动弹窗中的滑动选择器使当前选中项改变时触发该回调。             |
 
 **示例：**
 
@@ -380,12 +380,12 @@ showTimePickerDialog(options: TimePickerDialogOptions): void
 | ------------------ | ---------------------------------------- | ---- | ------------------------------------ |
 | selected           | Date                                     | 否    | 设置当前选中的时间。<br/>默认值：当前系统时间            |
 | useMilitaryTime    | boolean                                  | 否    | 展示时间是否为24小时制，默认为12小时制。<br/>默认值：false |
-| disappearTextStyle | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否    | 设置所有选项中最上和最下两个选项的文本颜色、字号、字体粗细。       |
-| textStyle          | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否    | 设置所有选项中除了最上、最下及选中项以外的文本颜色、字号、字体粗细。   |
-| selectedTextStyle  | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否    | 设置选中项的文本颜色、字号、字体粗细。                  |
-| onAccept           | (value: [TimePickerResult](../arkui-ts/ts-basic-components-timepicker.md#timepickerresult对象说明)) => void | 否    | 点击弹窗中的“确定”按钮时触发该回调。                  |
+| disappearTextStyle | [PickerTextStyle](../apis-arkui/arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否    | 设置所有选项中最上和最下两个选项的文本颜色、字号、字体粗细。       |
+| textStyle          | [PickerTextStyle](../apis-arkui/arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否    | 设置所有选项中除了最上、最下及选中项以外的文本颜色、字号、字体粗细。   |
+| selectedTextStyle  | [PickerTextStyle](../apis-arkui/arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否    | 设置选中项的文本颜色、字号、字体粗细。                  |
+| onAccept           | (value: [TimePickerResult](../apis-arkui/arkui-ts/ts-basic-components-timepicker.md#timepickerresult对象说明)) => void | 否    | 点击弹窗中的“确定”按钮时触发该回调。                  |
 | onCancel           | () => void                               | 否    | 点击弹窗中的“取消”按钮时触发该回调。                  |
-| onChange           | (value: [TimePickerResult](../arkui-ts/ts-basic-components-timepicker.md#timepickerresult对象说明)) => void | 否    | 滑动弹窗中的选择器使当前选中时间改变时触发该回调。            |
+| onChange           | (value: [TimePickerResult](../apis-arkui/arkui-ts/ts-basic-components-timepicker.md#timepickerresult对象说明)) => void | 否    | 滑动弹窗中的选择器使当前选中时间改变时触发该回调。            |
 
 **示例：**
 
@@ -427,16 +427,16 @@ showTextPickerDialog(options: TextPickerDialogOptions): void
 
 | 参数名                     | 类型                                       | 必填   | 说明                                       |
 | ----------------------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| range                   | string[]&nbsp;\|&nbsp;[Resource](../arkui-ts/ts-types.md#resource)\|[TextPickerRangeContent](../arkui-ts/ts-basic-components-textpicker.md#textpickerrangecontent10类型说明)[] | 是    | 设置文本选择器的选择范围。不可设置为空数组，若设置为空数组，则不弹出弹窗。    |
+| range                   | string[]&nbsp;\|&nbsp;[Resource](../apis-arkui/arkui-ts/ts-types.md#resource)\|[TextPickerRangeContent](../apis-arkui/arkui-ts/ts-basic-components-textpicker.md#textpickerrangecontent10类型说明)[] | 是    | 设置文本选择器的选择范围。不可设置为空数组，若设置为空数组，则不弹出弹窗。    |
 | selected                | number                                   | 否    | 设置选中项的索引值。<br>默认值：0                      |
 | value                   | string                                   | 否    | 设置选中项的文本内容。当设置了selected参数时，该参数不生效。如果设置的value值不在range范围内，则默认取range第一个元素。 |
 | defaultPickerItemHeight | number \| string                         | 否    | 设置选择器中选项的高度。                             |
-| disappearTextStyle      | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否    | 设置所有选项中最上和最下两个选项的文本颜色、字号、字体粗细。           |
-| textStyle               | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否    | 设置所有选项中除了最上、最下及选中项以外的文本颜色、字号、字体粗细。       |
-| selectedTextStyle       | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否    | 设置选中项的文本颜色、字号、字体粗细。                      |
-| onAccept                | (value: [TextPickerResult](../arkui-ts/ts-methods-textpicker-dialog.md#textpickerresult对象说明)) => void | 否    | 点击弹窗中的“确定”按钮时触发该回调。                      |
+| disappearTextStyle      | [PickerTextStyle](../apis-arkui/arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否    | 设置所有选项中最上和最下两个选项的文本颜色、字号、字体粗细。           |
+| textStyle               | [PickerTextStyle](../apis-arkui/arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否    | 设置所有选项中除了最上、最下及选中项以外的文本颜色、字号、字体粗细。       |
+| selectedTextStyle       | [PickerTextStyle](../apis-arkui/arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否    | 设置选中项的文本颜色、字号、字体粗细。                      |
+| onAccept                | (value: [TextPickerResult](../apis-arkui/arkui-ts/ts-methods-textpicker-dialog.md#textpickerresult对象说明)) => void | 否    | 点击弹窗中的“确定”按钮时触发该回调。                      |
 | onCancel                | () => void                               | 否    | 点击弹窗中的“取消”按钮时触发该回调。                      |
-| onChange                | (value: [TextPickerResult](../arkui-ts/ts-methods-textpicker-dialog.md#textpickerresult对象说明)) => void | 否    | 滑动弹窗中的选择器使当前选中项改变时触发该回调。                 |
+| onChange                | (value: [TextPickerResult](../apis-arkui/arkui-ts/ts-methods-textpicker-dialog.md#textpickerresult对象说明)) => void | 否    | 滑动弹窗中的选择器使当前选中项改变时触发该回调。                 |
 
 **示例：**
 
@@ -674,7 +674,7 @@ createComponentObserver(id: string): inspector.ComponentObserver
 
 | 类型                                       | 说明                        |
 | ---------------------------------------- | ------------------------- |
-| [ComponentObserver](../apis/js-apis-arkui-inspector.md#componentobserver) | 组件回调事件监听句柄，用于注册和取消注册监听回调。 |
+| [ComponentObserver](../apis-arkui/js-apis-arkui-inspector.md#componentobserver) | 组件回调事件监听句柄，用于注册和取消注册监听回调。 |
 
 **示例：**
 
@@ -742,7 +742,7 @@ pushUrl(options: router.RouterOptions): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[ohos.router(页面路由)](../apis-arkui/errorcode-router.md)错误码。
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
@@ -790,7 +790,7 @@ pushUrl(options: router.RouterOptions, callback: AsyncCallback&lt;void&gt;): voi
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[ohos.router(页面路由)](../apis-arkui/errorcode-router.md)错误码。
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
@@ -846,7 +846,7 @@ pushUrl(options: router.RouterOptions, mode: router.RouterMode): Promise&lt;void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[ohos.router(页面路由)](../apis-arkui/errorcode-router.md)错误码。
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
@@ -900,7 +900,7 @@ pushUrl(options: router.RouterOptions, mode: router.RouterMode, callback: AsyncC
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[ohos.router(页面路由)](../apis-arkui/errorcode-router.md)错误码。
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
@@ -960,7 +960,7 @@ replaceUrl(options: router.RouterOptions): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[ohos.router(页面路由)](../apis-arkui/errorcode-router.md)错误码。
 
 | 错误码ID  | 错误信息                                     |
 | ------ | ---------------------------------------- |
@@ -1004,7 +1004,7 @@ replaceUrl(options: router.RouterOptions, callback: AsyncCallback&lt;void&gt;): 
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[ohos.router(页面路由)](../apis-arkui/errorcode-router.md)错误码。
 
 | 错误码ID  | 错误信息                                     |
 | ------ | ---------------------------------------- |
@@ -1056,7 +1056,7 @@ replaceUrl(options: router.RouterOptions, mode: router.RouterMode): Promise&lt;v
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[ohos.router(页面路由)](../apis-arkui/errorcode-router.md)错误码。
 
 | 错误码ID  | 错误信息                                     |
 | ------ | ---------------------------------------- |
@@ -1106,7 +1106,7 @@ replaceUrl(options: router.RouterOptions, mode: router.RouterMode, callback: Asy
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[ohos.router(页面路由)](../apis-arkui/errorcode-router.md)错误码。
 
 | 错误码ID  | 错误信息                                     |
 | ------ | ---------------------------------------- |
@@ -1162,7 +1162,7 @@ pushNamedRoute(options: router.NamedRouterOptions): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[ohos.router(页面路由)](../apis-arkui/errorcode-router.md)错误码。
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
@@ -1210,7 +1210,7 @@ pushNamedRoute(options: router.NamedRouterOptions, callback: AsyncCallback&lt;vo
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[ohos.router(页面路由)](../apis-arkui/errorcode-router.md)错误码。
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
@@ -1265,7 +1265,7 @@ pushNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode): Pro
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[ohos.router(页面路由)](../apis-arkui/errorcode-router.md)错误码。
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
@@ -1319,7 +1319,7 @@ pushNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode, call
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[ohos.router(页面路由)](../apis-arkui/errorcode-router.md)错误码。
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
@@ -1379,7 +1379,7 @@ replaceNamedRoute(options: router.NamedRouterOptions): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[ohos.router(页面路由)](../apis-arkui/errorcode-router.md)错误码。
 
 | 错误码ID  | 错误信息                                     |
 | ------ | ---------------------------------------- |
@@ -1423,7 +1423,7 @@ replaceNamedRoute(options: router.NamedRouterOptions, callback: AsyncCallback&lt
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[ohos.router(页面路由)](../apis-arkui/errorcode-router.md)错误码。
 
 | 错误码ID  | 错误信息                                     |
 | ------ | ---------------------------------------- |
@@ -1476,7 +1476,7 @@ replaceNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode): 
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[ohos.router(页面路由)](../apis-arkui/errorcode-router.md)错误码。
 
 | 错误码ID  | 错误信息                                     |
 | ------ | ---------------------------------------- |
@@ -1526,7 +1526,7 @@ replaceNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode, c
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[ohos.router(页面路由)](../apis-arkui/errorcode-router.md)错误码。
 
 | 错误码ID  | 错误信息                                     |
 | ------ | ---------------------------------------- |
@@ -1666,7 +1666,7 @@ showAlertBeforeBackPage(options: router.EnableAlertOptions): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[ohos.router(页面路由)](../apis-arkui/errorcode-router.md)错误码。
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
@@ -1749,7 +1749,7 @@ showToast(options: promptAction.ShowToastOptions): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.promptAction(弹窗)](../errorcodes/errorcode-promptAction.md)错误码。
+以下错误码的详细介绍请参见[ohos.promptAction(弹窗)](../apis-arkui/errorcode-promptAction.md)错误码。
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
@@ -1790,7 +1790,7 @@ showDialog(options: promptAction.ShowDialogOptions, callback: AsyncCallback&lt;p
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.promptAction(弹窗)](../errorcodes/errorcode-promptAction.md)错误码。
+以下错误码的详细介绍请参见[ohos.promptAction(弹窗)](../apis-arkui/errorcode-promptAction.md)错误码。
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
@@ -1856,7 +1856,7 @@ showDialog(options: promptAction.ShowDialogOptions): Promise&lt;promptAction.Sho
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.promptAction(弹窗)](../errorcodes/errorcode-promptAction.md)错误码。
+以下错误码的详细介绍请参见[ohos.promptAction(弹窗)](../apis-arkui/errorcode-promptAction.md)错误码。
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
@@ -1913,7 +1913,7 @@ showActionMenu(options: promptAction.ActionMenuOptions, callback: AsyncCallback&
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.promptAction(弹窗)](../errorcodes/errorcode-promptAction.md)错误码。
+以下错误码的详细介绍请参见[ohos.promptAction(弹窗)](../apis-arkui/errorcode-promptAction.md)错误码。
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
@@ -1976,7 +1976,7 @@ showActionMenu(options: promptAction.ActionMenuOptions): Promise&lt;promptAction
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.promptAction(弹窗)](../errorcodes/errorcode-promptAction.md)错误码。
+以下错误码的详细介绍请参见[ohos.promptAction(弹窗)](../apis-arkui/errorcode-promptAction.md)错误码。
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
