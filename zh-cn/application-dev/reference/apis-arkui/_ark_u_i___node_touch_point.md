@@ -36,7 +36,7 @@
 | int32_t [toolHeight](#toolheight) | 工具接触区域的高度。  | 
 | int32_t [rawX](#rawx) | 输入设备上的X坐标。  | 
 | int32_t [rawY](#rawy) | 输入设备上的Y坐标。  | 
-| [ArkUI_NodeToolType](_ark_u_i___native_module.md#arkui_nodetooltype) [toolType](#tooltype) | 工具类型。  | 
+| [ArkUI_NodeToolType](_ark_u_i___native_module.md#arkui_nodetooltype)[toolType](#tooltype) | 工具类型。  | 
 
 
 ## 结构体成员变量说明
