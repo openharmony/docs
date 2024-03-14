@@ -108,6 +108,20 @@ Grid组件根据rowsTemplate、columnsTemplate属性的设置情况，可分为�
 - 当前layoutDirection设置为Row时，先从左到右排列，排满一行再排下一行。剩余高度不足时不再布局，整体内容顶部居中。
 - 当前layoutDirection设置为Column时，先从上到下排列，排满一列再排下一列，剩余宽度不足时不再布局。整体内容顶部居中。
 
+### flingSpeedLimit<sup>11+</sup>
+
+flingSpeedLimit(speedLimit: number)
+
+限制跟手滑动结束后，Fling动效开始时的最大初始速度。单位是vp/s。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名     | 类型   | 必填 | 说明                            |
+| ---------- | ------ | ---- | ------------------------------- |
+| speedLimit | number | 是   | Fling动效开始时的最大初始速度。 |
+
 ## GridDirection<sup>8+</sup>枚举说明
 
 | 名称   |枚举值| 描述                                   |
