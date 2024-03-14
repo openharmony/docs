@@ -2210,11 +2210,11 @@ try {
 }
 ```
 
-### setWindowOnlyHandwrite<sup>12+</sup>
+### setHandwritingFlag<sup>12+</sup>
 
-setWindowOnlyHandwrite(enable: boolean): Promise&lt;void&gt;
+setHandwritingFlag(enable: boolean): Promise&lt;void&gt;
 
-为当前窗口添加或移除手写标志，添加该标识后窗口只响应手写笔事件，不响应触屏事件。使用Promise异步回调。
+为当前窗口添加或移除手写标识，添加该标识后窗口只响应手写笔事件，不响应触屏事件。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2248,14 +2248,14 @@ import { BusinessError } from '@ohos.base';
 
 try {
   let enable = true;
-  let promise = windowClass.setWindowOnlyHandwrite(enable);
+  let promise = windowClass.setHandwritingFlag(enable);
   promise.then(() => {
-    console.info('Succeeded in setting handwrite flag of window.');
+    console.info('Succeeded in setting handwriting flag of window.');
   }).catch((err: BusinessError) => {
-    console.error('Failed to set handwrite flag of window. Cause:' + JSON.stringify(err));
+    console.error('Failed to set handwriting flag of window. Cause:' + JSON.stringify(err));
   });
 } catch (exception) {
-  console.error('Failed to set handwrite flag of window. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to set handwriting flag of window. Cause: ' + JSON.stringify(exception));
 }
 ```
 
