@@ -695,26 +695,26 @@ zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-components-offscreencanva
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-offscreencanvasrenderingcontext2d.md	@seaside_wu	@keerecles	@stivn	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-components-canvas-path2d.md	@seaside_wu	@keerecles	@stivn	@HelloCrease
 
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-composite-components-chip.md   @youzhi92 @pangxinyu10128 @HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-composite-components-composelistitem.md   @lianghuaiguo @HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-composite-components-composetitlebar.md   @lianghuaiguo @HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-counter.md   @youzhi92 @zhangshuang-xiaohuihui @HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-composite-components-dialog.md   @lianghuaiguo @HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-composite-components-editabletitlebar.md   @lianghuaiguo @HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-composite-components-exceptionprompt.md   @lianghuaiguo @HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-composite-components-filter.md   @lianghuaiguo @HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-composite-components-gridobjectsortcomponent.md   @lianghuaiguo @HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-composite-components-progressbutton.md   @lianghuaiguo @HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-popup.md   @youzhi92 @zhangshuang-xiaohuihui @HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-segmentbutton.md   @youzhi92 @pangxinyu10128 @HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-composite-components-selectionmenu.md   @pangxinyu10128 @HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-composite-components-selecttitlebar.md   @lianghuaiguo @HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-composite-components-splitlayout.md   @lianghuaiguo @HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-composite-components-subheader.md   @lianghuaiguo @HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-composite-components-swiperefresher.md @lianghuaiguo @HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-composite-components-tabtitlebar.md  @lianghuaiguo @HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-composite-components-toolbar.md   @lianghuaiguo @HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-composite-components-treeview.md   @lianghuaiguo @HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Chip.md   @youzhi92 @pangxinyu10128 @HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ComposeListItem.md   @lianghuaiguo @HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ComposeTitleBar.md   @lianghuaiguo @HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Counter.md   @youzhi92 @zhangshuang-xiaohuihui @HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Dialog.md   @lianghuaiguo @HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-EditableTitleBar.md   @lianghuaiguo @HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ExceptionPrompt.md   @lianghuaiguo @HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Filter.md   @lianghuaiguo @HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-GridObjectSortComponent.md   @lianghuaiguo @HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ProgressButton.md   @lianghuaiguo @HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Popup.md   @youzhi92 @zhangshuang-xiaohuihui @HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-SegmentButton.md   @youzhi92 @pangxinyu10128 @HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-SelectionMenu.md  @pangxinyu10128 @HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-SelectTitleBar.md   @lianghuaiguo @HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-SplitLayout.md   @lianghuaiguo @HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-SubHeader.md   @lianghuaiguo @HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-SwipeRefresher.md @lianghuaiguo @HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-TabTitleBar.md  @lianghuaiguo @HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ToolBar.md   @lianghuaiguo @HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-TreeView.md   @lianghuaiguo @HelloCrease
 
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-animatorproperty.md		@lightningHo	@zhangshuang-xiaohuihui	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-explicit-animation.md		@lightningHo	@zhangshuang-xiaohuihui	@HelloCrease
