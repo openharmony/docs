@@ -492,7 +492,7 @@ startAppTraceCapture(tags : number[], flag: TraceFlag, limitSize: number) : stri
 **示例：**
 
 ```ts
-let tags: number[] = [hidebug.tags.ABILITY_MANAGER, hidebug.tags.ACE];
+let tags: number[] = [hidebug.tags.ABILITY_MANAGER, hidebug.tags.ARKUI];
 let flag: hidebug.TraceFlag = hidebug.TraceFlag.MAIN_THREAD;
 let limitSize: number = 1024 * 1024;
 let fileName: string = hidebug.startAppTraceCapture(tags, flag, limitSize);
@@ -524,7 +524,7 @@ stopAppTraceCapture() : void
 **示例：**
 
 ```ts
-let tags: number[] = [hidebug.tags.ABILITY_MANAGER, hidebug.tags.ACE];
+let tags: number[] = [hidebug.tags.ABILITY_MANAGER, hidebug.tags.ARKUI];
 let flag: hidebug.TraceFlag = hidebug.TraceFlag.MAIN_THREAD;
 let limitSize: number = 1024 * 1024;
 let fileName: string = hidebug.startAppTraceCapture(tags, flag, limitSize);
