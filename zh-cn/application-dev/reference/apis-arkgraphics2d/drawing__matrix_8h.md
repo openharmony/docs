@@ -32,6 +32,7 @@
 | void [OH_Drawing_MatrixTranslate](_drawing.md#oh_drawing_matrixtranslate) ([OH_Drawing_Matrix](_drawing.md#oh_drawing_matrix) \*, float dx, float dy) | 将矩阵进行平移(dx, dy)。 |
 | void [OH_Drawing_MatrixScale](_drawing.md#oh_drawing_matrixscale) ([OH_Drawing_Matrix](_drawing.md#oh_drawing_matrix) \*, float sx, float sy, float px, float py) | 设置矩阵围绕位于(px, py)的旋转轴点，以sx和sy进行缩放。 |
 | bool [OH_Drawing_MatrixInvert](_drawing.md#oh_drawing_matrixinvert) ([OH_Drawing_Matrix](_drawing.md#oh_drawing_matrix) \*, [OH_Drawing_Matrix](_drawing.md#oh_drawing_matrix) \*inverse) | 将矩阵inverse设置为矩阵的倒数，并返回结果。 |
+| bool [OH_Drawing_MatrixSetPolyToPoly](_drawing.md#oh_drawing_matrixsetpolytopoly) ([OH_Drawing_Matrix](_drawing.md#oh_drawing_matrix) \*, const [OH_Drawing_Point2D](_o_h___drawing___point2_d.md) \*src, const [OH_Drawing_Point2D](_o_h___drawing___point2_d.md) \*dst, uint32_t count) | 通过设置源点以及目标点，生成对应的变换矩阵。 源点以及目标点的个数要大于等于0，小于等于4。 | 
 | bool [OH_Drawing_MatrixIsEqual](_drawing.md#oh_drawing_matrixisequal) ([OH_Drawing_Matrix](_drawing.md#oh_drawing_matrix) \*, [OH_Drawing_Matrix](_drawing.md#oh_drawing_matrix) \*other) | 判断两个矩阵是否相等。 |
 | bool [OH_Drawing_MatrixIsIdentity](_drawing.md#oh_drawing_matrixisidentity) ([OH_Drawing_Matrix](_drawing.md#oh_drawing_matrix) \*) | 判断矩阵是否是单位矩阵。 |
 | void [OH_Drawing_MatrixDestroy](_drawing.md#oh_drawing_matrixdestroy) ([OH_Drawing_Matrix](_drawing.md#oh_drawing_matrix) \*) | 用于销毁矩阵对象并回收该对象占有的内存。 |
