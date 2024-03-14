@@ -2214,7 +2214,7 @@ try {
 
 setHandwritingFlag(enable: boolean): Promise&lt;void&gt;
 
-为当前窗口添加或移除手写标识，添加该标识后窗口只响应手写笔事件，不响应触屏事件。使用Promise异步回调。
+为当前窗口添加或移除手写标志，添加该标志后窗口只响应手写笔事件，不响应触屏事件。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
