@@ -218,7 +218,7 @@ After obtaining the output stream capabilities supported by the camera, create a
             OH_LOG_ERROR(LOG_APP, "OH_CameraManager_CreatePreviewOutput failed.");
         }
 
-        // Add the preview input stream to the session.
+        // Add the preview output stream to the session.
         ret = OH_CaptureSession_AddPreviewOutput(captureSession, previewOutput);
         if (ret != CAMERA_OK) {
             OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_AddPreviewOutput failed.");
