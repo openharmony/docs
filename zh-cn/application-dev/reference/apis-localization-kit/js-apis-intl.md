@@ -345,8 +345,8 @@ resolvedOptions(): DateTimeOptions
 | 名称              | 类型      | 必填   | 说明                                       |
 | --------------- | ------- | ---- |  ---------------------------------------- |
 | locale          | string  | 否    |区域参数，&nbsp;如：zh-Hans-CN。                 |
-| dateStyle       | string  | 否     |日期显示格式，取值包括："long",&nbsp;"short",&nbsp;"medium",&nbsp;"full"。 |
-| timeStyle       | string  | 否     |时间显示格式，取值包括："long",&nbsp;"short",&nbsp;"medium",&nbsp;"full"。 |
+| dateStyle       | string  | 否     |日期显示格式，取值包括："long",&nbsp;"short",&nbsp;"medium",&nbsp;"full",&nbsp;"auto"。 |
+| timeStyle       | string  | 否     |时间显示格式，取值包括："long",&nbsp;"short",&nbsp;"medium",&nbsp;"full"&nbsp;"auto"。 |
 | hourCycle       | string  | 否     |时制格式，取值包括："h11",&nbsp;"h12",&nbsp;"h23",&nbsp;"h24"。 |
 | timeZone        | string  | 否     |使用的时区（合法的IANA时区ID）。                      |
 | numberingSystem | string  | 否     |数字系统，取值包括："adlm",&nbsp;"ahom",&nbsp;"arab",&nbsp;"arabext",&nbsp;"bali",&nbsp;"beng",&nbsp;"bhks",&nbsp;"brah",&nbsp;"cakm",&nbsp;"cham",&nbsp;"deva",&nbsp;"diak",&nbsp;"fullwide",&nbsp;"gong",&nbsp;"gonm",&nbsp;"gujr",&nbsp;"guru",&nbsp;"hanidec",&nbsp;"hmng",&nbsp;"hmnp",&nbsp;"java",&nbsp;"kali",&nbsp;"khmr",&nbsp;"knda",&nbsp;"lana",&nbsp;"lanatham",&nbsp;"laoo",&nbsp;"latn",&nbsp;"lepc",&nbsp;"limb",&nbsp;"mathbold",&nbsp;"mathdbl",&nbsp;"mathmono",&nbsp;"mathsanb",&nbsp;"mathsans",&nbsp;"mlym",&nbsp;"modi",&nbsp;"mong",&nbsp;"mroo",&nbsp;"mtei",&nbsp;"mymr",&nbsp;"mymrshan",&nbsp;"mymrtlng",&nbsp;"newa",&nbsp;"nkoo",&nbsp;"olck",&nbsp;"orya",&nbsp;"osma",&nbsp;"rohg",&nbsp;"saur",&nbsp;"segment",&nbsp;"shrd",&nbsp;"sind",&nbsp;"sinh",&nbsp;"sora",&nbsp;"sund",&nbsp;"takr",&nbsp;"talu",&nbsp;"tamldec",&nbsp;"telu",&nbsp;"thai",&nbsp;"tibt",&nbsp;"tirh",&nbsp;"vaii",&nbsp;"wara",&nbsp;"wcho"。 |
