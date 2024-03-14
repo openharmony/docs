@@ -12,7 +12,7 @@ import shortKey from '@ohos.multimodalInput.shortKey';
 
 ## 接口说明
 
-事件注入常用接口如下表所示，接口详细介绍请参考[ohos.multimodalInput.shortKey文档](../reference/apis/js-apis-shortKey.md)。
+事件注入常用接口如下表所示，接口详细介绍请参考[ohos.multimodalInput.shortKey文档](../../reference/apis/js-apis-shortKey.md)。
 
 | 接口名称  | 描述 |
 | ------------------------------------------------------------ | -------------------------- |
