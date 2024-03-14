@@ -28,7 +28,7 @@ Buffer输出是指经过解码的数据会以共享内存的方式输出。
 
 ## 开发指导
 
-详细的API说明请参考[API文档](../reference/apis-avcodec-kit/_video_decoder.md)。
+详细的API说明请参考[API文档](../../reference/apis-avcodec-kit/_video_decoder.md)。
 如下为视频解码调用关系图：
 ![Invoking relationship of video decode stream](figures/video-decode.png)
 
@@ -136,7 +136,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
 4. 调用OH_VideoDecoder_Configure()配置解码器。
 
-    详细可配置选项的说明请参考[变量](../reference/apis-avcodec-kit/_codec_base.md#变量)。
+    详细可配置选项的说明请参考[变量](../../reference/apis-avcodec-kit/_codec_base.md#变量)。
     目前支持的所有格式都必须配置以下选项：视频帧宽度、视频帧高度。示例中的变量如下：
 
     - DEFAULT_WIDTH：320像素宽度；
@@ -163,7 +163,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     OH_AVFormat_Destroy(format);
     ```
 
-5. 设置Surface。本例中的nativeWindow，需要从XComponent组件获取，获取方式请参考 [XComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)。
+5. 设置Surface。本例中的nativeWindow，需要从XComponent组件获取，获取方式请参考 [XComponent](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)。
 
     ```c++
     // 配置送显窗口参数
@@ -181,7 +181,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     int32_t ret = OH_VideoDecoder_SetParameter(videoDec, format);
     OH_AVFormat_Destroy(format);
     ```
-7. （可选）OH_VideoDecoder_SetDecryptionConfig设置解密配置。当获取到DRM信息(参考[音视频解封装](audio-video-demuxer.md)开发步骤第3步)后，通过此接口进行解密配置。DRM相关接口详见[DRM使用指导](../reference/apis-drm-kit)。此接口需在Prepare前调用。
+7. （可选）OH_VideoDecoder_SetDecryptionConfig设置解密配置。当获取到DRM信息(参考[音视频解封装](audio-video-demuxer.md)开发步骤第3步)后，通过此接口进行解密配置。DRM相关接口详见[DRM使用指导](../../reference/apis-drm-kit)。此接口需在Prepare前调用。
 
     添加头文件
 
@@ -252,7 +252,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     - buffer：回调函数OnNeedInputBuffer传入的参数，可以通过OH_AVBuffer_GetAddr接口得到共享内存地址的指针；
     - index：回调函数OnNeedInputBuffer传入的参数，数据队列的索引；
     - size, offset, pts：输入尺寸、偏移量、时间戳等字段信息，获取方式可以参考[音视频解封装](./audio-video-demuxer.md)
-    - flags：缓冲区标记的类别，请参考[OH_AVCodecBufferFlags](../reference/apis-avcodec-kit/_core.md#oh_avcodecbufferflags)
+    - flags：缓冲区标记的类别，请参考[OH_AVCodecBufferFlags](../../reference/apis-avcodec-kit/_core.md#oh_avcodecbufferflags)
 
     ```c++
     // 配置帧数据的输入尺寸、偏移量、时间戳等字段信息
@@ -565,7 +565,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     }
     ```
 
-    硬件解码在处理buffer数据时（释放数据前），一般需要获取数据的宽高、跨距来保证解码输出数据被正确的处理，请参考图形子系统 [OH_NativeBuffer](../reference/apis-arkgraphics2d/_o_h___native_buffer.md)。
+    硬件解码在处理buffer数据时（释放数据前），一般需要获取数据的宽高、跨距来保证解码输出数据被正确的处理，请参考图形子系统 [OH_NativeBuffer](../../reference/apis-arkgraphics2d/_o_h___native_buffer.md)。
 
     ```c++
     // OH_NativeBuffer *可以通过图形模块的接口可以获取数据的宽高、跨距等信息。

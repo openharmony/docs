@@ -28,7 +28,7 @@ Buffer输入是指有一块预先分配好的内存区域，调用者需要将�
 
 ## 开发指导
 
-详细的API说明请参考[API文档](../reference/apis-avcodec-kit/_video_encoder.md)。
+详细的API说明请参考[API文档](../../reference/apis-avcodec-kit/_video_encoder.md)。
 如下为视频编码调用关系图：
 ![Invoking relationship of video encode stream](figures/video-encode.png)
 
@@ -134,7 +134,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
 4. 调用OH_VideoEncoder_Configure()配置编码器。
 
-    详细可配置选项的说明请参考[变量](../reference/apis-avcodec-kit/_codec_base.md#变量)。
+    详细可配置选项的说明请参考[变量](../../reference/apis-avcodec-kit/_codec_base.md#变量)。
     目前支持的所有格式都必须配置以下选项：视频帧宽度、视频帧高度、视频颜色格式。示例中的变量如下：
 
     - DEFAULT_WIDTH：320像素宽度；
@@ -217,7 +217,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     // 通过OHNativeWindow*变量类型，配置输入数据的Surface
     ```
 
-    OHNativeWindow*变量类型的使用方法请参考图形子系统 [OHNativeWindow](../reference/apis-arkgraphics2d/_native_window.md#ohnativewindow)
+    OHNativeWindow*变量类型的使用方法请参考图形子系统 [OHNativeWindow](../../reference/apis-arkgraphics2d/_native_window.md#ohnativewindow)
 
 7. 调用OH_VideoEncoder_Start()启动编码器。
 
@@ -510,7 +510,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
     - buffer：回调函数OnNeedInputBuffer传入的参数，可以通过OH_AVBuffer_GetAddr接口得到共享内存地址的指针；
     - index：回调函数OnNeedInputBuffer传入的参数，数据队列的索引；
-    - flags：缓冲区标记的类别，请参考[OH_AVCodecBufferFlags](../reference/apis-avcodec-kit/_core.md#oh_avcodecbufferflags)
+    - flags：缓冲区标记的类别，请参考[OH_AVCodecBufferFlags](../../reference/apis-avcodec-kit/_core.md#oh_avcodecbufferflags)
     - stride: 获取到的buffer数据的跨距。
 
     ```c++
@@ -538,7 +538,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         }
     ```
 
-    硬件编码在处理buffer数据时（推送数据前），一般需要获取数据的宽高、跨距来保证编码输入数据被正确的处理，请参考图形子系统 [OH_NativeBuffer](../reference/apis-arkgraphics2d/_o_h___native_buffer.md)。
+    硬件编码在处理buffer数据时（推送数据前），一般需要获取数据的宽高、跨距来保证编码输入数据被正确的处理，请参考图形子系统 [OH_NativeBuffer](../../reference/apis-arkgraphics2d/_o_h___native_buffer.md)。
 
     ```c++
         // OH_NativeBuffer *可以通过图形模块的接口可以获取数据的宽高、跨距等信息。

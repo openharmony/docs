@@ -66,4 +66,4 @@ AVSession Kit（Audio &amp; Video Session Kit，音视频播控服务）是系�
 
 ## 与相关Kit的关系
 
-应用实现后台播放时，需要使用[BackgroundTasks Kit](../task-management/background-task-overview.md)（后台任务管理）的能力，申请对应的长时任务，避免进入挂起（Suspend）状态。
+应用实现后台播放时，需要使用[BackgroundTasks Kit](../../task-management/background-task-overview.md)（后台任务管理）的能力，申请对应的长时任务，避免进入挂起（Suspend）状态。
