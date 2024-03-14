@@ -16,7 +16,7 @@ import formBindingData from '@ohos.application.formBindingData';
 
 FormBindingData相关描述。
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -29,7 +29,7 @@ createFormBindingData(obj?: Object | string): FormBindingData
 
 创建一个FormBindingData对象。
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 

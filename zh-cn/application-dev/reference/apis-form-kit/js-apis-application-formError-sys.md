@@ -22,9 +22,7 @@ import formError from '@ohos.application.formError';
 
 枚举，支持的卡片类型
 
-**系统能力：**
-
-SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 | 名称        | 值   | 说明         |
 | ----------- | ---- | ------------ |

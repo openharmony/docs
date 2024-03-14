@@ -18,20 +18,20 @@ import formInfo from '@ohos.app.form.formInfo';
 
 卡片参数枚举。
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 | 名称        | 值   | 说明         |
 | ----------- | ---- | ------------ |
-| DEVICE_ID_KEY    | 'ohos.extra.param.key.device_id'   | 设备标识。 <br>**系统接口**: 此接口为系统接口。  |
+| DEVICE_ID_KEY    | 'ohos.extra.param.key.device_id'   | 设备标识。 <br>**系统接口：** 此接口为系统接口。  |
 
 
 ## FormUsageState
 
 卡片当前使用状态枚举。
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
-**系统接口**: 此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 | 名称        |  值   | 说明         |
 | ----------- | ---- | ------------ |
@@ -42,9 +42,9 @@ import formInfo from '@ohos.app.form.formInfo';
 
 已添加的卡片信息，包括使用中的以及未使用的卡片。
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
-**系统接口**: 此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 | 名称        | 类型                 | 可读    | 可写    | 说明                                                         |
 | ----------- | -------- | -------- | -------------------- | ------------------------------------------------------------ |
@@ -63,11 +63,11 @@ import formInfo from '@ohos.app.form.formInfo';
 
 卡片提供方信息。
 
-**模型约束**：此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
-**系统接口**: 此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 | 名称        | 类型                 | 可读    | 可写    | 说明                                                         |
 | ----------- | -------- | -------- | -------------------- | ------------------------------------------------------------ |

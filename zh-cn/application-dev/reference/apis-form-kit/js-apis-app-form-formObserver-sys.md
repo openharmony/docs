@@ -19,9 +19,9 @@ import formObserver from '@ohos.app.form.formObserver';
 
 订阅卡片新增事件。使用callback异步回调，返回当前新增卡片的信息。
 
-**需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
+**需要权限：** ohos.permission.OBSERVE_FORM_RUNNING
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
@@ -49,9 +49,9 @@ formObserver.on('formAdd', callback);
 
 订阅卡片新增事件。使用callback异步回调，返回指定卡片使用方应用新增卡片的信息。
 
-**需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
+**需要权限：** ohos.permission.OBSERVE_FORM_RUNNING
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
@@ -83,9 +83,9 @@ formObserver.on('formAdd', bundleName, callback);
 
 取消订阅卡片新增事件。使用callback异步回调，返回当前新增卡片的信息。
 
-**需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
+**需要权限：** ohos.permission.OBSERVE_FORM_RUNNING
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
@@ -112,6 +112,7 @@ formObserver.off('formAdd', bundleName, callback);
 
 ```
 > **说明：**
+>
 > on('formAdd', callback)与off('formAdd', callback)相对应；
 > on('formAdd', bundleName, callback)与off('formAdd', bundleName, callback)相对应；
 > 订阅（on）只能由自己对应的取消订阅接口（off）取消。
@@ -122,9 +123,9 @@ formObserver.off('formAdd', bundleName, callback);
 
 订阅卡片删除事件。使用callback异步回调，返回当前删除卡片的信息。
 
-**需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
+**需要权限：** ohos.permission.OBSERVE_FORM_RUNNING
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
@@ -152,9 +153,9 @@ formObserver.on('formRemove', callback);
 
 订阅卡片删除事件。使用callback异步回调，返回指定卡片使用方应用被删除卡片的信息。
 
-**需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
+**需要权限：** ohos.permission.OBSERVE_FORM_RUNNING
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
@@ -185,9 +186,9 @@ off(type: "formRemove", hostBundleName?: string, observerCallback?: Callback&lt;
 
 取消订阅卡片删除事件。使用callback异步回调，返回当前删除卡片的信息。
 
-**需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
+**需要权限：** ohos.permission.OBSERVE_FORM_RUNNING
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
@@ -212,6 +213,7 @@ let callback = (data: formInfo.RunningFormInfo) => {
 formObserver.off('formRemove', bundleName, callback);
 ```
 > **说明：**
+>
 > on('formRemove', callback)与off('formRemove', callback)相对应；
 > on('formRemove', bundleName, callback)与off('formRemove', bundleName, callback)相对应；
 > 订阅（on）只能由自己对应的取消订阅接口（off）取消。
@@ -224,9 +226,9 @@ formObserver.off('formRemove', bundleName, callback);
 
 ​触发通知卡片可见场景为：调用[notifyVisibleForms](js-apis-app-form-formHost-sys.md#notifyvisibleforms)接口通知对应卡片可见性变更为可见状态。
 
-**需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
+**需要权限：** ohos.permission.OBSERVE_FORM_RUNNING
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
@@ -257,9 +259,9 @@ formObserver.on('notifyVisible', callback);
 
 ​触发通知卡片可见场景为：调用[notifyVisibleForms](js-apis-app-form-formHost-sys.md#notifyvisibleforms)接口通知对应卡片可见性变更为可见状态。
 
-**需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
+**需要权限：** ohos.permission.OBSERVE_FORM_RUNNING
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
@@ -291,9 +293,9 @@ formObserver.on('notifyVisible', bundleName, callback);
 
 取消订阅通知卡片可见的事件。使用callback异步回调。
 
-**需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
+**需要权限：** ohos.permission.OBSERVE_FORM_RUNNING
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
@@ -320,6 +322,7 @@ formObserver.off('notifyVisible', bundleName, callback);
 ```
 
 > **说明：**
+>
 > on('notifyVisible', callback)与off('notifyVisible', callback)相对应；
 > on('notifyVisible', bundleName, callback)与off('notifyVisible', bundleName, callback)相对应；
 > 订阅（on）只能由自己对应的取消订阅接口（off）取消。
@@ -332,9 +335,9 @@ formObserver.off('notifyVisible', bundleName, callback);
 
 ​触发通知卡片不可见场景为：调用[notifyInvisibleForms](js-apis-app-form-formHost-sys.md#notifyinvisibleforms)接口通知对应卡片可见性变更为不可见状态。
 
-**需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
+**需要权限：** ohos.permission.OBSERVE_FORM_RUNNING
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
@@ -365,9 +368,9 @@ formObserver.on('notifyInvisible', callback);
 
 ​触发通知卡片不可见场景为：调用[notifyInvisibleForms](js-apis-app-form-formHost-sys.md#notifyinvisibleforms)接口通知对应卡片可见性变更为不可见状态。
 
-**需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
+**需要权限：** ohos.permission.OBSERVE_FORM_RUNNING
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
@@ -398,9 +401,9 @@ formObserver.on('notifyInvisible', bundleName, callback);
 
 取消订阅通知卡片不可见事件。使用callback异步回调。
 
-**需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
+**需要权限：** ohos.permission.OBSERVE_FORM_RUNNING
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
@@ -426,6 +429,7 @@ formObserver.off('notifyInvisible', bundleName, callback);
 ```
 
 > **说明：**
+>
 > on('notifyInvisible', callback)与off('notifyInvisible', callback)相对应；
 > on('notifyInvisible', bundleName, callback)与off('notifyInvisible', bundleName, callback)相对应；
 > 订阅（on）只能由自己对应的取消订阅接口（off）取消。
@@ -437,9 +441,9 @@ getRunningFormInfos(callback: AsyncCallback&lt;Array&lt;formInfo.RunningFormInfo
 
 获取设备上正在运行的所有非临时卡片信息。使用callback异步回调。
 
-**需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
+**需要权限：** ohos.permission.OBSERVE_FORM_RUNNING
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
@@ -482,9 +486,9 @@ getRunningFormInfos(callback: AsyncCallback&lt;Array&lt;formInfo.RunningFormInfo
 
 获取设备上正在运行的所有非临时卡片信息。使用callback异步回调。
 
-**需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
+**需要权限：** ohos.permission.OBSERVE_FORM_RUNNING
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
@@ -528,9 +532,9 @@ getRunningFormInfos(hostBundleName?: string):  Promise&lt;Array&lt;formInfo.Runn
 
 获取设备上正在运行的所有非临时卡片信息。使用Promise异步回调。
 
-**需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
+**需要权限：** ohos.permission.OBSERVE_FORM_RUNNING
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
@@ -576,9 +580,9 @@ getRunningFormInfos(isUnusedIncluded: boolean, hostBundleName?: string):  Promis
 
 获取设备上正在运行的所有非临时卡片信息。使用Promise异步回调。
 
-**需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
+**需要权限：** ohos.permission.OBSERVE_FORM_RUNNING
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
@@ -627,9 +631,9 @@ getRunningFormInfosByFilter(formProviderFilter: formInfo.FormProviderFilter): Pr
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
-**需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
+**需要权限：** ohos.permission.OBSERVE_FORM_RUNNING
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
@@ -687,9 +691,9 @@ getRunningFormInfosByFilter(formProviderFilter: formInfo.FormProviderFilter, cal
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
-**需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
+**需要权限：** ohos.permission.OBSERVE_FORM_RUNNING
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
@@ -745,9 +749,9 @@ getRunningFormInfoById(formId: string): Promise&lt;formInfo.RunningFormInfo&gt;
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
-**需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
+**需要权限：** ohos.permission.OBSERVE_FORM_RUNNING
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
@@ -801,9 +805,9 @@ getRunningFormInfoById(formId: string, isUnusedIncluded: boolean): Promise&lt;fo
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
-**需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
+**需要权限：** ohos.permission.OBSERVE_FORM_RUNNING
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
@@ -855,9 +859,9 @@ getRunningFormInfoById(formId: string, callback: AsyncCallback&lt;formInfo.Runni
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
-**需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
+**需要权限：** ohos.permission.OBSERVE_FORM_RUNNING
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
@@ -908,9 +912,9 @@ getRunningFormInfoById(formId: string, isUnusedIncluded: boolean, callback: Asyn
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
-**需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
+**需要权限：** ohos.permission.OBSERVE_FORM_RUNNING
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
@@ -957,9 +961,9 @@ try {
 
 订阅卡片router事件。使用callback异步回调，返回触发router事件的卡片信息。
 
-**需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
+**需要权限：** ohos.permission.OBSERVE_FORM_RUNNING
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
@@ -986,9 +990,9 @@ formObserver.on('router', callback);
 
 订阅指定卡片使用方的卡片router事件。使用callback异步回调，返回触发router事件的卡片信息。
 
-**需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
+**需要权限：** ohos.permission.OBSERVE_FORM_RUNNING
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
@@ -1017,9 +1021,9 @@ formObserver.on('router', hostBundleName, callback);
 
 取消订阅卡片router事件。使用callback异步回调，返回触发router事件的卡片信息。
 
-**需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
+**需要权限：** ohos.permission.OBSERVE_FORM_RUNNING
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
@@ -1048,9 +1052,9 @@ formObserver.off('router', hostBundleName, callback);
 
 订阅卡片message事件。使用callback异步回调，返回触发message事件的卡片信息。
 
-**需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
+**需要权限：** ohos.permission.OBSERVE_FORM_RUNNING
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
@@ -1077,9 +1081,9 @@ formObserver.on('message', callback);
 
 订阅指定卡片使用方的卡片message事件。使用callback异步回调，返回触发message事件的卡片信息。
 
-**需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
+**需要权限：** ohos.permission.OBSERVE_FORM_RUNNING
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
@@ -1108,9 +1112,9 @@ formObserver.on('message', hostBundleName, callback);
 
 取消订阅卡片message事件。使用callback异步回调，返回触发message事件的卡片的信息。
 
-**需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
+**需要权限：** ohos.permission.OBSERVE_FORM_RUNNING
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
@@ -1139,9 +1143,9 @@ formObserver.off('message', hostBundleName, callback);
 
 订阅卡片call事件。使用callback异步回调，返回触发call事件的卡片信息。
 
-**需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
+**需要权限：** ohos.permission.OBSERVE_FORM_RUNNING
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
@@ -1168,9 +1172,9 @@ formObserver.on('call', callback);
 
 订阅指定卡片使用方的卡片call事件。使用callback异步回调，返回触发call事件的卡片信息。
 
-**需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
+**需要权限：** ohos.permission.OBSERVE_FORM_RUNNING
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
@@ -1199,9 +1203,9 @@ formObserver.on('call', hostBundleName, callback);
 
 取消订阅卡片call事件。使用callback异步回调，返回触发call事件的卡片信息。
 
-**需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
+**需要权限：** ohos.permission.OBSERVE_FORM_RUNNING
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
