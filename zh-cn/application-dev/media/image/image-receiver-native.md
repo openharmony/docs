@@ -32,7 +32,7 @@ EXTERN_C_END
 
 ### 添加权限申请
 
-开启调试功能需要在DevEco Studio应用工程的src\main\module.json5文件中增加权限, 配置文件个字段含义详见[module.json5配置文件](../quick-start/module-configuration-file.md)：
+开启调试功能需要在DevEco Studio应用工程的src\main\module.json5文件中增加权限, 配置文件个字段含义详见[module.json5配置文件](../../quick-start/module-configuration-file.md)：
 
    ```
    "requestPermissions":[
