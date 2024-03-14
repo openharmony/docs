@@ -68,7 +68,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| **IMAGE_RESULT_BASE** 62980096 | 接口返回值的基础值  |
+| **IMAGE_RESULT_BASE** 62980096 | 接口返回值的基础值。  |
 
 ### 枚举
 
@@ -2667,7 +2667,7 @@ int32_t OH_PixelMap_CreatePixelMap (napi_env env, OhosPixelMapCreateOps info, vo
 
 **描述**
 
-创建**PixelMap**对象。当前只支持输入流为BGRA格式的流
+创建**PixelMap**对象。当前只支持输入流为BGRA格式的流。
 
 **起始版本：** 10
 
