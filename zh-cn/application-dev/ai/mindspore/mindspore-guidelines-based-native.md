@@ -1,4 +1,4 @@
-# 使用MindSpore Lite Native API开发AI应用
+# 使用MindSpore Lite开发AI应用 (C/C++)
 
 ## 使用场景
 

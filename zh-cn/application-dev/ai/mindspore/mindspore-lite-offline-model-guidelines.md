@@ -1,4 +1,4 @@
-# 使用MindSpore Lite进行离线模型的转换及推理
+# 使用MindSpore Lite进行离线模型的转换及推理 (C/C++)
 
 ## 基本概念
 
