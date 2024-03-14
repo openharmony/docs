@@ -300,6 +300,43 @@ getParent(): FrameNode | null;
 
 请参考[节点操作示例](#节点操作示例)。
 
+### getPositionToWindow<sup>12+</sup> 
+
+  getPositionToWindow(): Position
+
+获取FrameNode相对于窗口的位置偏移。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型     | 说明                            |
+| -------- | ------------------------------- |
+| [Position](./js-apis-arkui-graphics.md#position) | 节点相对于窗口的位置偏移。 |
+
+**示例：**
+
+请参考[节点操作示例](#节点操作示例)。
+
+
+### getPositionToParent<sup>12+</sup>
+
+getPositionToParent(): Position
+
+获取FrameNode相对于父组件的位置偏移。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                                                           | 说明                                                                  |
+| -------------------------------------------------------------- | --------------------------------------------------------------------- |
+| [Position](./js-apis-arkui-graphics.md#position) | 节点相对于父组件的位置偏移。 |
+
+**示例：**
+
+请参考[节点操作示例](#节点操作示例)。
+
 ## 节点操作示例
 ```ts
 import { FrameNode, NodeController } from "@ohos.arkui.node"
@@ -393,6 +430,16 @@ class MyNodeController extends NodeController {
       console.log(TEST_TAG + " get ArkTsNode fail.");
     }
   }
+  getPositionToWindow()
+  {
+    let positionToWindow = this.frameNode?.getPositionToWindow();
+    console.log(TEST_TAG + JSON.stringify(positionToWindow));
+  }
+  getPositionToParent()
+  {
+    let positionToParent = this.frameNode?.getPositionToWindow();
+    console.log(TEST_TAG + JSON.stringify(positionToParent));
+  }
 
   throwError()
   {
@@ -462,6 +509,16 @@ struct Index {
         .width(300)
         .onClick(()=>{
           this.myNodeController.searchFrameNode();
+        })
+      Button("getPositionToWindow")
+        .width(300)
+        .onClick(()=>{
+          this.myNodeController.getPositionToWindow();
+        })
+      Button("getPositionToParent")
+        .width(300)
+        .onClick(()=>{
+          this.myNodeController.getPositionToParent();
         })
       Button("throwError")
         .width(300)
