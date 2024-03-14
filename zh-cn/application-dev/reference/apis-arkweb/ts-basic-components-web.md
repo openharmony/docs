@@ -3615,7 +3615,7 @@ onGeolocationHide(callback: () => void)
 
 ### onFullScreenEnter<sup>9+</sup>
 
-onFullScreenEnter(callback: (event: { handler: FullScreenExitHandler }) => void)
+onFullScreenEnter(callback: OnFullScreenEnterCallback)
 
 通知开发者web组件进入全屏模式。
 
@@ -3623,7 +3623,7 @@ onFullScreenEnter(callback: (event: { handler: FullScreenExitHandler }) => void)
 
 | 参数名     | 参数类型                                     | 参数描述           |
 | ------- | ---------------------------------------- | -------------- |
-| handler | [FullScreenExitHandler](#fullscreenexithandler9) | 用于退出全屏模式的函数句柄。 |
+| callback | [OnFullScreenEnterCallback](#onfullscreenentercallback12) | Web组件进入全屏时的回调信息。 |
 
 **示例：**
 
@@ -3640,7 +3640,9 @@ onFullScreenEnter(callback: (event: { handler: FullScreenExitHandler }) => void)
       Column() {
         Web({ src:'www.example.com', controller:this.controller })
         .onFullScreenEnter((event) => {
-          console.log("onFullScreenEnter...")
+          console.log("onFullScreenEnter videoWidth: " + event.videoWidth +
+            ", videoHeight: " + event.videoHeight)
+          // 应用可以通过 this.handler.exitFullScreen() 主动退出全屏。
           this.handler = event.handler
         })
       }
@@ -4648,7 +4650,13 @@ onIntelligentTrackingPreventionResult(callback: OnIntelligentTrackingPreventionC
 
 onOverrideUrlLoading(callback: OnOverrideUrlLoadingCallback)
 
-当URL将要加载到当前WebView中时，让宿主应用程序有机会获得控制权，回调函数返回true将导致当前WebView中止加载URL，而返回false则会导致WebView继续照常加载URL。
+当URL将要加载到当前Web中时，让宿主应用程序有机会获得控制权，回调函数返回true将导致当前Web中止加载URL，而返回false则会导致Web继续照常加载URL。
+
+POST请求不会触发该回调。
+
+子frame和非HTTP(s)协议的跳转也会触发该回调。但是调用loadUrl(String)主动触发的跳转不会触发该回调。
+
+不要使用相同的URL调用loadUrl(String)方法，然后返回true。这样做会不必要地取消当前的加载并重新使用相同的URL开始新的加载。继续加载给定URL的正确方式是直接返回false，而不是调用loadUrl(String)。
 
 **参数：**
 
@@ -6580,6 +6588,26 @@ type OnSafeBrowsingCheckResultCallback = (threatType: ThreatType) => void
 | 参数名      | 参数类型                      | 参数描述              |
 | ---------- | ---------------------------- | ------------------- |
 | threatType | [ThreatType](#threattype11)  | 定义网站threat类型。  |
+
+## FullScreenEnterEvent<sup>12+</sup>
+
+Web组件进入全屏回调事件的详情。
+
+| 名称             | 类型                                  | 必填   | 描述                    |
+| -----------     | ------------------------------------ | ---- | --------------------- |
+| handler     | [FullScreenExitHandler](#fullscreenexithandler9) | 是    | 用于退出全屏模式的函数句柄。 |
+| videoWidth  | number | 否    | 视频的宽度，单位：px。如果进入全屏的是 `<video>` 元素，表示其宽度；如果进入全屏的子元素中包含 `<video>` 元素，表示第一个子视频元素的宽度；其他情况下，为0。 |
+| videoHeight  | number | 否    | 视频的高度，单位：px。如果进入全屏的是 `<video>` 元素，表示其高度；如果进入全屏的子元素中包含 `<video>` 元素，表示第一个子视频元素的高度；其他情况下，为0。 |
+
+## OnFullScreenEnterCallback<sup>12+</sup>
+
+type OnFullScreenEnterCallback = (event: FullScreenEnterEvent) => void
+
+Web组件进入全屏时触发的回调。
+
+| 参数名      | 参数类型                      | 参数描述              |
+| ---------- | ---------------------------- | ------------------- |
+| event | [FullScreenEnterEvent](#fullscreenenterevent12)  | Web组件进入全屏的回调事件详情。 |
 
 ## NativeEmbedStatus<sup>11+</sup>
 

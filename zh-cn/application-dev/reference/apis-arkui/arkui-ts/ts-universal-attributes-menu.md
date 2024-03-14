@@ -61,7 +61,11 @@ bindContextMenu(content: CustomBuilder, responseType: ResponseType, options?: Co
 
 bindContextMenu(isShown: boolean, content: CustomBuilder, options?: ContextMenuOptions)
 
-给组件绑定菜单，触发方式为控制绑定的isShown；isShown为true，弹出菜单；isShown为false，隐藏菜单；弹出菜单项需要自定义。菜单弹出不跟随点击位置，只与placement设置有关。
+给组件绑定菜单，触发方式为控制绑定的isShown。
+
+isShown为true，弹出菜单。isShown为false，隐藏菜单。弹出菜单项需要自定义。
+
+菜单弹出不跟随点击位置，只与placement设置有关。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -69,7 +73,7 @@ bindContextMenu(isShown: boolean, content: CustomBuilder, options?: ContextMenuO
 
 | 参数名       | 类型                                               | 必填 | 说明                                         |
 | ------------ | -------------------------------------------------- | ---- | -------------------------------------------- |
-| isShown<sup>12+</sup> | boolean | 是   | 支持开发者通过状态变量控制显隐，默认值为false。menu需要在页面全部构建完成后才能弹窗展示，如果在页面构建前或构建中设置为true，可能导致显示位置及形状错误、无法正常弹出显示等问题。当前不支持双向绑定。             |
+| isShown | boolean | 是   | 支持开发者通过状态变量控制显隐，默认值为false。menu需要在页面全部构建完成后才能弹窗展示，如果在页面构建前或构建中设置为true，可能导致显示位置及形状错误、无法正常弹出显示等问题。当前不支持双向绑定。             |
 | content      | [CustomBuilder](ts-types.md#custombuilder8)        | 是   | 配置菜单项图标和文本的数组，或者自定义组件。 |
 | options      | [ContextMenuOptions](#contextmenuoptions10)                      | 否   | 配置弹出菜单的参数。                         |
 

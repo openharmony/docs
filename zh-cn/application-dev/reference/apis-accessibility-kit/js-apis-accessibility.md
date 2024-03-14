@@ -68,20 +68,20 @@ import accessibility from '@ohos.accessibility';
 | ----------------------- |--------------------|
 | click                   | 表示点击操作。            |
 | longClick               | 表示长按操作。            |
-| scrollForward           | 表示向前滚动操作。当前版本暂不支持。 |
-| scrollBackward          | 表示向后滚动操作。当前版本暂不支持。 |
-| focus                   | 表示获得焦点操作。当前版本暂不支持。 |
-| clearFocus              | 表示清除焦点操作。当前版本暂不支持。 |
+| scrollForward           | 表示向前滚动操作。 |
+| scrollBackward          | 表示向后滚动操作。 |
+| focus                   | 表示获得焦点操作。 |
+| clearFocus              | 表示清除焦点操作。 |
 | clearSelection          | 表示清除选择操作。当前版本暂不支持。 |
 | accessibilityFocus      | 表示获得无障碍焦点操作。       |
 | clearAccessibilityFocus | 表示清除无障碍焦点操作。       |
-| cut                     | 表示剪切操作。当前版本暂不支持。   |
-| copy                    | 表示复制操作。当前版本暂不支持。   |
-| paste                   | 表示粘贴操作。当前版本暂不支持。   |
+| cut                     | 表示剪切操作。   |
+| copy                    | 表示复制操作。   |
+| paste                   | 表示粘贴操作。   |
 | select                  | 表示选择操作。当前版本暂不支持。   |
 | setText                 | 表示设置文本操作。当前版本暂不支持。 |
 | delete                  | 表示删除操作。当前版本暂不支持。   |
-| setSelection            | 表示选择操作。当前版本暂不支持。   |
+| setSelection            | 表示选择操作。   |
 
 ## Capability
 
@@ -289,6 +289,8 @@ captionsManager.off('styleChange', (data: accessibility.CaptionsStyle) => {
 | currentIndex     | number                                | 否   | 当前条目序号。当前版本暂不支持。      |
 | endIndex         | number                                | 否   | 画面显示条目的结束序号。当前版本暂不支持。 |
 | itemCount        | number                                | 否   | 条目总数。当前版本暂不支持。        |
+| elementId<sup>12+</sup>        | number                                | 否   | 主动聚焦的组件ID。        |
+| textAnnouncedForAccessibility<sup>12+</sup>        | string                                | 否   | 主动播报的内容。        |
 
 ### constructor
 
@@ -352,13 +354,15 @@ constructor(type: EventType, bundleName: string, triggerAction: Action)
 | accessibilityFocusClear | 描述清除无障碍焦点的事件。          |
 | click                   | 描述点击组件的事件。             |
 | longClick               | 描述长按组件的事件。             |
-| select                  | 描述选择组件的事件。当前版本暂不支持。    |
-| hoverEnter              | 描述悬停进入组件的事件。当前版本暂不支持。  |
-| hoverExit               | 描述悬停离开组件的事件。当前版本暂不支持。  |
+| select                  | 描述选择组件的事件。    |
+| hoverEnter              | 描述悬停进入组件的事件。  |
+| hoverExit               | 描述悬停离开组件的事件。  |
 | focus                   | 描述组件获得焦点的事件。当前版本暂不支持。  |
-| textUpdate              | 描述组件文本已更改的事件。当前版本暂不支持。 |
+| textUpdate              | 描述组件文本已更改的事件。 |
 | textSelectionUpdate     | 描述选定文本已更改的事件。当前版本暂不支持。 |
-| scroll                  | 描述滚动视图的事件。当前版本暂不支持。    |
+| scroll                  | 描述滚动视图的事件。    |
+| requestFocusForAccessibility<sup>12+</sup>     | 描述主动聚焦的事件。 |
+| announceForAccessibility<sup>12+</sup>         | 描述主动播报的事件。 |
 
 
 ## TextMoveUnit
@@ -539,6 +543,46 @@ accessibility.getAccessibilityExtensionList(abilityType, abilityState,(err: Busi
   }
   console.info(`Succeeded in get accessibility extension list, ${JSON.stringify(data)}`);
 });
+```
+
+## accessibility.getAccessibilityExtensionListSync<sup>12+</sup>
+
+getAccessibilityExtensionListSync(abilityType: AbilityType, stateType: AbilityState): Array&lt;AccessibilityAbilityInfo&gt;
+
+查询辅助应用列表同步接口。
+
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+
+**参数：**
+
+| 参数名         | 类型                            | 必填   | 说明       |
+| ----------- | ----------------------------- | ---- | -------- |
+| abilityType | [AbilityType](#abilitytype)   | 是    | 辅助应用的类型。 |
+| stateType   | [AbilityState](#abilitystate) | 是    | 辅助应用的状态。 |
+
+**返回值：**
+
+| 类型                                       | 说明                    |
+| ---------------------------------------- | --------------------- |
+| Array&lt;[AccessibilityAbilityInfo](#accessibilityabilityinfo)&gt; | 返回辅助应用信息列表。 |
+
+**示例：**
+
+```ts
+import accessibility from '@ohos.accessibility';
+import { BusinessError } from '@ohos.base';
+
+let abilityType: accessibility.AbilityType = 'all';
+let abilityState: accessibility.AbilityState = 'install';
+let data: accessibility.AccessibilityAbilityInfo[];
+
+try {
+  data = accessibility.getAccessibilityExtensionListSync(abilityType, abilityState);
+  console.info(`Succeeded in get accessibility extension list, ${JSON.stringify(data)}`);
+} catch (error) {
+  let err = error as BusinessError;
+  console.error(`error code: ${err.code}`);
+}
 ```
 
 ## accessibility.getCaptionsManager<sup>8+</sup>
@@ -743,7 +787,7 @@ isOpenAccessibilitySync(): boolean
 
 | 类型        | 说明                                  |
 | ----------- | ------------------------------------- |
-| boolean&gt; | 启用辅助功能返回true，否则返回false。 |
+| boolean | 启用辅助功能返回true，否则返回false。 |
 
 **示例：**
 

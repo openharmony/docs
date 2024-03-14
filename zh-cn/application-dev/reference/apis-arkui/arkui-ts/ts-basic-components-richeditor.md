@@ -149,6 +149,34 @@ placeholder(value: ResourceStr, style?: PlaceholderStyle)
 | value  | [ResourceStr](ts-types.md#resourcestr)  | 是   | 无输入时的提示文本。                                    |
 | style  | [PlaceholderStyle](#placeholderstyle12) | 否   | 添加提示文本的字体样式。<br />style缺省时默认跟随主题。 |
 
+### caretColor<sup>12+</sup>
+
+caretColor(value: ResourceColor)
+
+设置输入框光标颜色。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                       | 必填 | 说明                                   |
+| ------ | ------------------------------------------ | ---- | -------------------------------------- |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 输入框光标颜色。<br/>默认值：'#0A59F7' |
+
+### selectedBackgroundColor<sup>12+</sup>
+
+selectedBackgroundColor(value: ResourceColor)
+
+设置文本选中底板颜色。如果未设置不透明度，默认为20%不透明度。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                       | 必填 | 说明                                       |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------ |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 文本选中底板颜色。<br/>默认为20%不透明度。 |
+
 ## 事件
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
@@ -330,6 +358,8 @@ Span类型信息。
 | fontWeight | number                                   | 是    | 字体粗细。        |
 | fontFamily | string                                   | 是    | 字体列表。        |
 | decoration | {<br/>type:&nbsp;[TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br/>color:&nbsp;[ResourceColor](ts-types.md#resourcecolor)<br/>} | 是    | 文本装饰线样式及其颜色。 |
+| lineHeight<sup>12+</sup> | number       | 是    | 文本行高。          |
+| letterSpacing<sup>12+</sup>| number       | 是    | 文本字符间距。    |
 
 ## RichEditorImageSpanResult
 
@@ -360,6 +390,24 @@ RichEditor初始化参数。
 | 名称         | 类型                                       | 必填   | 说明      |
 | ---------- | ---------------------------------------- | ---- | ------- |
 | controller | [RichEditorController](#richeditorcontroller) | 是    | 富文本控制器。 |
+
+## SelectionOptions<sup>12+</sup>
+
+setSelection的选择项配置。
+
+| 名称         | 类型                                       | 必填   | 说明      |
+| ---------- | ---------------------------------------- | ---- | ------- |
+| menuPolicy | [MenuPolicy](#menupolicy12) | 否    | 菜单弹出的策略。 |
+
+## MenuPolicy<sup>12+</sup>
+
+菜单弹出的策略。
+
+| 名称         | 描述            |
+| ---------- | ------------- |
+| DEFAULT  | 默认逻辑,是否弹出菜单取决于场景。   |
+| NEVER | 始终不弹出菜单。 |
+| ALWAYS | 始终弹出菜单。 |
 
 ## TextDataDetectorConfig<sup>11+</sup>
 
@@ -607,7 +655,7 @@ closeSelectionMenu(): void
 
 ### setSelection<sup>11+</sup>
 
-setSelection(selectionStart:&nbsp;number, selectionEnd:&nbsp;number)
+setSelection(selectionStart:&nbsp;number, selectionEnd:&nbsp;number, options?:&nbsp;SelectionOptions)
 
 支持设置文本选中，选中部分背板高亮。
 
@@ -629,6 +677,7 @@ selectionStart和selectionEnd均为-1时表示全选。
 | -------------- | ------ | ---- | ------- |
 | selectionStart | number | 是    | 选中开始位置。 |
 | selectionEnd   | number | 是    | 选中结束位置。 |
+| options<sup>12+</sup>   | [SelectionOptions](#selectionoptions12) | 否    | 选择项配置。 |
 
 ### getSelection<sup>11+</sup>
 
@@ -716,6 +765,7 @@ SymbolSpan样式选项。
 | ------------- | ---------------------------------------- | ---- | ------------------ |
 | textAlign     | [TextAlign](ts-appendix-enums.md#textalign) | 否    | 设置文本段落在水平方向的对齐方式。  |
 | leadingMargin | [Dimension](ts-types.md#dimension10) \| [LeadingMarginPlaceholder](#leadingmarginplaceholder11) | 否    | 设置文本段落缩进，不支持设置百分比，图片放在段首时不支持。 |
+| wordBreak<sup>12+</sup> |  [WordBreak](ts-appendix-enums.md#wordbreak11) | 否    | 设置断行规则。 <br />默认值：WordBreak.BREAK_WORD  |
 
 ## LeadingMarginPlaceholder<sup>11+</sup>
 
@@ -759,7 +809,8 @@ SymbolSpan样式选项。
 | fontFamily               | [ResourceStr](ts-types.md#resourcestr) | 否    | 设置字体列表。默认字体'HarmonyOS Sans'，当前支持'HarmonyOS Sans'字体和[注册自定义字体](../js-apis-font.md)。 <br/>默认字体:'HarmonyOS Sans'。 |
 | decoration               | {<br/>type:&nbsp;[TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br/>color?:&nbsp;[ResourceColor](ts-types.md#resourcecolor)<br/>} | 否    | 设置文本装饰线样式及其颜色。<br />默认值：{<br/>type:&nbsp;TextDecorationType.None,<br/>color：Color.Black<br/>}。 |
 | textShadow<sup>11+</sup> | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;Array&lt;[ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)> | 是    | 设置文字阴影效果。该接口支持以数组形式入参，实现多重文字阴影。<br/>**说明：**<br/>不支持fill字段, 不支持智能取色模式。 |
-
+| lineHeight<sup>12+</sup>    | number \| string \| Resource | 否     |设置文本的文本行高，设置值不大于0时，不限制文本行高，自适应字体大小，number类型时单位为fp。 | 
+| letterSpacing<sup>12+</sup> | number \| string             | 否     | 设置文本字符间距。设置该值为百分比时，按默认值显示。当取值为负值时，文字会发生压缩，负值过小时会将组件内容区大小压缩为0，导致无内容显示。|
 ## PlaceholderStyle<sup>12+</sup>
 
 添加提示文本的字体样式。

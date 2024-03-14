@@ -21,16 +21,12 @@
             - [使用Node-API接口进行线程安全开发](use-napi-thread-safety.md)
             - [Native与ArkTS对象绑定](use-napi-object-wrap.md)
             - [非ArkTS线程调用ArkTS函数](use-uv-queue-work.md)
+            - [使用NAPI接口在主线程中进行模块加载](use-napi-load-module.md)
         - [OpenHarmony Node-API常见问题](use-napi-faqs.md)
     - 资源管理
         - [Rawfile开发指导](rawfile-guidelines.md)
     - 资源调度
         - [FFRT开发指导](ffrt-guidelines.md)
-    - AI
-        - [使用MindSpore Lite引擎进行模型推理](mindspore-lite-guidelines.md)
-        - [使用MindSpore Lite引擎进行端侧训练](mindspore-lite-train-guidelines.md)
-        - [使用MindSpore Lite进行离线模型的转换及推理](mindspore-lite-offline-model-guidelines.md)
-        - [Neural Network Runtime对接AI推理框架开发指导](neural-network-runtime-guidelines.md)
     - 内存管理
         - [Purgeable memory开发指导](purgeable-memory-guidelines.md)
     - 设备管理

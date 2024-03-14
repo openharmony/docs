@@ -955,7 +955,7 @@ struct Parent {
         })
         
       // @Prop本地没有初始化，也没有从父组件初始化
-      PropChild1()
+      PropChild()
     }
   }
 }

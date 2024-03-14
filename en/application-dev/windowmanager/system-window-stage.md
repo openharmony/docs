@@ -2,7 +2,7 @@
 
 ## Overview
 
-In the stage model, system applications are allowed to create and manage system windows, including the volume bar, wallpaper, notification panel, status bar, and navigation bar. For details about the supported system window types, see [WindowType](../reference/apis/js-apis-window.md#windowtype7).
+In the stage model, system applications are allowed to create and manage system windows, including the volume bar, wallpaper, notification panel, status bar, and navigation bar. For details about the supported system window types, see [WindowType](../reference/apis-arkui/js-apis-window.md#windowtype7).
 
 When a window is displayed, hidden, or switched, an animation is usually used to smooth the interaction process.
 
@@ -17,20 +17,20 @@ However, you can customize an animation to be played during the display or hidin
 
 ## Available APIs
 
-For details, see [Window](../reference/apis/js-apis-window.md).
+For details about more APIs, see [Window](../reference/apis-arkui/js-apis-window.md).
 
 | Instance           | API                                                      | Description                                                        |
 | ----------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | Window static method   | createWindow(config: Configuration, callback: AsyncCallback\<Window>): void | Creates a subwindow or system window.<br>**config**: parameters used for creating the window.    |
 | Window            | resize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): void | Changes the window size.                                          |
 | Window            | moveWindowTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void | Moves this window.                                          |
-| Window            | setUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void | Loads the content of a page, with its path in the current project specified, to this window.<br>**path**: path of the page from which the content will be loaded. The path is configured in the **main_pages.json** file of the project in the stage model.                                 |
+| Window            | setUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void | Loads the content of a page, with its path in the current project specified, to this window.<br>**path**: path of the page from which the content will be loaded. The path is configured in the **main_pages.json** file of the project in the stage model.                                    |
 | Window            | showWindow(callback: AsyncCallback\<void>): void             | Shows this window.                                              |
 | Window            | on(type: 'touchOutside', callback: Callback&lt;void&gt;): void | Subscribes to touch events outside this window.                          |
 | Window            | hide (callback: AsyncCallback\<void>): void                  | Hides this window. This is a system API.                            |
 | Window            | destroyWindow(callback: AsyncCallback&lt;void&gt;): void     | Destroys this window.                                              |
 | Window            | getTransitionController(): TransitionController              | Obtains the transition animation controller. This is a system API.                  |
-| TransitionContext | completeTransition(isCompleted: boolean): void               | Completes the transition. This API can be called only after [animateTo()](../reference/arkui-ts/ts-explicit-animation.md) is executed. This is a system API.|
+| TransitionContext | completeTransition(isCompleted: boolean): void               | Completes the transition. This API can be called only after [animateTo()](../reference/apis-arkui/arkui-ts/ts-explicit-animation.md) is executed. This is a system API.|
 | Window            | showWithAnimation(callback: AsyncCallback\<void>): void      | Shows this window and plays an animation during the process. This is a system API.            |
 | Window            | hideWithAnimation(callback: AsyncCallback\<void>): void      | Hides this window and plays an animation during the process. This is a system API.            |
 
@@ -43,7 +43,7 @@ This section uses the volume bar as an example to describe how to develop a syst
 
 1. Create a system window.
 
-   In [ServiceExtensionContext](../reference/apis/js-apis-inner-application-serviceExtensionContext.md), call **window.createWindow** to create a system window of the volume bar type.
+   In [ServiceExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-serviceExtensionContext-sys.md), call **window.createWindow** to create a system window of the volume bar type.
 
 2. Set the properties of the system window.
 
@@ -143,7 +143,7 @@ You can determine whether to play an animation when a system window is showing o
 
 2. Configure the animation to be played.
 
-   Call [animateTo()](../reference/arkui-ts/ts-explicit-animation.md) to configure the animation attributes.
+   Call [animateTo()](../reference/apis-arkui/arkui-ts/ts-explicit-animation.md) to configure the animation attributes.
 
 3. Complete the transition.
 
