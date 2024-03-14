@@ -11,7 +11,7 @@ USB接口，是特定接口下备用设置的集合。
 
 **相关模块:**
 
-[UsbDdk](_usb_ddk.md)
+[USB DDK](_usb_ddk.md)
 
 
 ## 汇总

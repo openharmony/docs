@@ -1278,7 +1278,7 @@ getThumbnail(callback: AsyncCallback&lt;image.PixelMap&gt;): void
 
 > **说明：**
 >
-> 此接口从API version 9开始废弃。请使用[close](js-apis-photoAccessHelper.md#getThumbnail)替代。
+> 此接口从API version 9开始废弃。请使用[getThumbnail](js-apis-photoAccessHelper.md#getthumbnail)替代。
 
 **需要权限**：ohos.permission.READ_MEDIA
 
@@ -1322,7 +1322,7 @@ getThumbnail(size: Size, callback: AsyncCallback&lt;image.PixelMap&gt;): void
 
 > **说明：**
 >
-> 此接口从API version 9开始废弃。请使用[close](js-apis-photoAccessHelper.md#getThumbnail-1)替代。
+> 此接口从API version 9开始废弃。请使用[getThumbnail](js-apis-photoAccessHelper.md#getthumbnail-1)替代。
 
 **需要权限**：ohos.permission.READ_MEDIA
 
@@ -1368,7 +1368,7 @@ getThumbnail(size?: Size): Promise&lt;image.PixelMap&gt;
 
 > **说明：**
 >
-> 此接口从API version 9开始废弃。请使用[close](js-apis-photoAccessHelper.md#getThumbnail-2)替代。
+> 此接口从API version 9开始废弃。请使用[getThumbnail](js-apis-photoAccessHelper.md#getthumbnail-2)替代。
 
 **需要权限**：ohos.permission.READ_MEDIA
 
@@ -1419,7 +1419,7 @@ favorite(isFavorite: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 > **说明：**
 >
-> 此接口从API version 9开始废弃。请使用[setFavorite](js-apis-photoAccessHelper.md#setfavorite)替代。
+> 此接口从API version 9开始废弃。替代接口仅对系统应用开放。
 
 **需要权限**：ohos.permission.READ_MEDIA, ohos.permission.WRITE_MEDIA
 
@@ -1464,7 +1464,7 @@ favorite(isFavorite: boolean): Promise&lt;void&gt;
 
 > **说明：**
 >
-> 此接口从API version 9开始废弃。请使用[setFavorite](js-apis-photoAccessHelper.md#setfavorite-1)替代。
+> 此接口从API version 9开始废弃。替代接口仅对系统应用开放。
 
 **需要权限**：ohos.permission.READ_MEDIA, ohos.permission.WRITE_MEDIA
 
@@ -1604,7 +1604,7 @@ trash(isTrash: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 > **说明：**
 >
-> 此接口从API version 9开始废弃。请使用[deleteAssets](js-apis-photoAccessHelper.md#deleteAssets)替代。
+> 此接口从API version 9开始废弃。替代接口仅对系统应用开放。
 
 **需要权限**：ohos.permission.READ_MEDIA, ohos.permission.WRITE_MEDIA
 
@@ -1651,7 +1651,7 @@ trash(isTrash: boolean): Promise&lt;void&gt;
 
 > **说明：**
 >
-> 此接口从API version 9开始废弃。请使用[deleteAssets](js-apis-photoAccessHelper.md#deleteAssets-1)替代。
+> 此接口从API version 9开始废弃。替代接口仅对系统应用开放。
 
 **需要权限**：ohos.permission.READ_MEDIA, ohos.permission.WRITE_MEDIA
 

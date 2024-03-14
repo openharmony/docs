@@ -309,7 +309,7 @@ menuBackgroundBlurStyle(value: BlurStyle)
 
 ### onSelect
 
-onSelect(callback: (index: number, value?:&nbsp;string) => void)
+onSelect(callback: (index: number, value:&nbsp;string) => void)
 
 下拉菜单选中某一项的回调。
 
@@ -320,7 +320,7 @@ onSelect(callback: (index: number, value?:&nbsp;string) => void)
 | 参数名 | 类型   | 必填 | 说明           |
 | ------ | ------ | ---- | -------------- |
 | index  | number | 是   | 选中项的索引。 |
-| value  | string | 否   | 选中项的值。   |
+| value  | string | 是   | 选中项的值。   |
 
 ##  示例
 
@@ -349,7 +349,7 @@ struct SelectExample {
         .arrowPosition(this.arrowPosition)
         .menuAlign(MenuAlignType.START, {dx:0, dy:0})
         .optionWidth(200)
-        .optionHeight(100)
+        .optionHeight(300)
         .onSelect((index:number, text?: string | undefined)=>{
           console.info('Select:' + index)
           this.index = index;
@@ -362,4 +362,4 @@ struct SelectExample {
 }
 ```
 
-![](figures/selectExample.jpg)
+![](figures/selectExample.png)

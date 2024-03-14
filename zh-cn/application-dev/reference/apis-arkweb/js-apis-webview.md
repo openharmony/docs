@@ -1753,7 +1753,7 @@ struct WebComponent {
 
 ### runJavaScriptExt<sup>10+</sup>
 
-runJavaScriptExt(script: string, callback : AsyncCallback\<JsMessageExt>): void
+runJavaScriptExt(script: string | ArrayBuffer, callback : AsyncCallback\<JsMessageExt>): void
 
 异步执行JavaScript脚本，并通过回调方式返回脚本执行的结果。runJavaScriptExt需要在loadUrl完成后，比如onPageEnd中调用。
 
@@ -1763,7 +1763,7 @@ runJavaScriptExt(script: string, callback : AsyncCallback\<JsMessageExt>): void
 
 | 参数名   | 类型                 | 必填 | 说明                         |
 | -------- | -------------------- | ---- | ---------------------------- |
-| script   | string                   | 是   | JavaScript脚本。                                             |
+| script   | string \| ArrayBuffer<sup>12+</sup>         | 是   | JavaScript脚本。                                             |
 | callback | AsyncCallback\<[JsMessageExt](#jsmessageext10)\> | 是   | 回调执行JavaScript脚本结果。 |
 
 **错误码：**
@@ -1857,6 +1857,99 @@ struct WebComponent {
 }
 ```
 
+```ts
+// 使用ArrayBuffer入参，从文件中获取JavaScript脚本数据
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
+import fs from '@ohos.file.fs';
+import common from '@ohos.app.ability.common';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  @State msg1: string = ''
+  @State msg2: string = ''
+
+  build() {
+    Column() {
+      Text(this.msg1).fontSize(20)
+      Text(this.msg2).fontSize(20)
+      Button('runJavaScriptExt')
+        .onClick(() => {
+          try {
+            let context = getContext(this) as common.UIAbilityContext;
+            let filePath = context.filesDir + 'test.txt';
+            // 新建并打开文件
+            let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+            // 写入一段内容至文件
+            fs.writeSync(file.fd, "test()");
+            // 从文件中读取内容
+            let arrayBuffer: ArrayBuffer = new ArrayBuffer(6);
+            fs.readSync(file.fd, arrayBuffer, { offset: 0, length: arrayBuffer.byteLength });
+            // 关闭文件
+            fs.closeSync(file);
+            this.controller.runJavaScriptExt(
+              arrayBuffer,
+              (error, result) => {
+                if (error) {
+                  let e: business_error.BusinessError = error as business_error.BusinessError;
+                  console.error(`run JavaScript error, ErrorCode: ${e.code},  Message: ${e.message}`)
+                  return;
+                }
+                if (result) {
+                  try {
+                    let type = result.getType();
+                    switch (type) {
+                      case web_webview.JsMessageType.STRING: {
+                        this.msg1 = "result type:" + typeof (result.getString());
+                        this.msg2 = "result getString:" + ((result.getString()));
+                        break;
+                      }
+                      case web_webview.JsMessageType.NUMBER: {
+                        this.msg1 = "result type:" + typeof (result.getNumber());
+                        this.msg2 = "result getNumber:" + ((result.getNumber()));
+                        break;
+                      }
+                      case web_webview.JsMessageType.BOOLEAN: {
+                        this.msg1 = "result type:" + typeof (result.getBoolean());
+                        this.msg2 = "result getBoolean:" + ((result.getBoolean()));
+                        break;
+                      }
+                      case web_webview.JsMessageType.ARRAY_BUFFER: {
+                        this.msg1 = "result type:" + typeof (result.getArrayBuffer());
+                        this.msg2 = "result getArrayBuffer byteLength:" + ((result.getArrayBuffer().byteLength));
+                        break;
+                      }
+                      case web_webview.JsMessageType.ARRAY: {
+                        this.msg1 = "result type:" + typeof (result.getArray());
+                        this.msg2 = "result getArray:" + result.getArray();
+                        break;
+                      }
+                      default: {
+                        this.msg1 = "default break, type:" + type;
+                        break;
+                      }
+                    }
+                  }
+                  catch (resError) {
+                    let e: business_error.BusinessError = resError as business_error.BusinessError;
+                    console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+                  }
+                }
+              });
+          } catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
+        .javaScriptAccess(true)
+    }
+  }
+}
+```
+
 加载的html文件。
 ```html
 <!-- index.html -->
@@ -1875,7 +1968,7 @@ function test() {
 
 ### runJavaScriptExt<sup>10+</sup>
 
-runJavaScriptExt(script: string): Promise\<JsMessageExt>
+runJavaScriptExt(script: string | ArrayBuffer): Promise\<JsMessageExt>
 
 异步执行JavaScript脚本，并通过Promise方式返回脚本执行的结果。runJavaScriptExt需要在loadUrl完成后，比如onPageEnd中调用。
 
@@ -1885,7 +1978,7 @@ runJavaScriptExt(script: string): Promise\<JsMessageExt>
 
 | 参数名 | 类型 | 必填 | 说明         |
 | ------ | -------- | ---- | ---------------- |
-| script | string   | 是   | JavaScript脚本。 |
+| script | string \| ArrayBuffer<sup>12+</sup>  | 是   | JavaScript脚本。 |
 
 **返回值：**
 
@@ -1969,6 +2062,94 @@ struct WebComponent {
               console.error("error: " + error);
             })
         })
+    }
+  }
+}
+```
+
+```ts
+// 使用ArrayBuffer入参，从文件中获取JavaScript脚本数据
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
+import fs from '@ohos.file.fs';
+import common from '@ohos.app.ability.common';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  @State msg1: string = ''
+  @State msg2: string = ''
+
+  build() {
+    Column() {
+      Text(this.msg1).fontSize(20)
+      Text(this.msg2).fontSize(20)
+      Button('runJavaScriptExt')
+        .onClick(() => {
+          try {
+            let context = getContext(this) as common.UIAbilityContext;
+            let filePath = context.filesDir + 'test.txt';
+            // 新建并打开文件
+            let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+            // 写入一段内容至文件
+            fs.writeSync(file.fd, "test()");
+            // 从文件中读取内容
+            let arrayBuffer: ArrayBuffer = new ArrayBuffer(6);
+            fs.readSync(file.fd, arrayBuffer, { offset: 0, length: arrayBuffer.byteLength });
+            // 关闭文件
+            fs.closeSync(file);
+            this.controller.runJavaScriptExt(arrayBuffer)
+              .then((result) => {
+                try {
+                  let type = result.getType();
+                  switch (type) {
+                    case web_webview.JsMessageType.STRING: {
+                      this.msg1 = "result type:" + typeof (result.getString());
+                      this.msg2 = "result getString:" + ((result.getString()));
+                      break;
+                    }
+                    case web_webview.JsMessageType.NUMBER: {
+                      this.msg1 = "result type:" + typeof (result.getNumber());
+                      this.msg2 = "result getNumber:" + ((result.getNumber()));
+                      break;
+                    }
+                    case web_webview.JsMessageType.BOOLEAN: {
+                      this.msg1 = "result type:" + typeof (result.getBoolean());
+                      this.msg2 = "result getBoolean:" + ((result.getBoolean()));
+                      break;
+                    }
+                    case web_webview.JsMessageType.ARRAY_BUFFER: {
+                      this.msg1 = "result type:" + typeof (result.getArrayBuffer());
+                      this.msg2 = "result getArrayBuffer byteLength:" + ((result.getArrayBuffer().byteLength));
+                      break;
+                    }
+                    case web_webview.JsMessageType.ARRAY: {
+                      this.msg1 = "result type:" + typeof (result.getArray());
+                      this.msg2 = "result getArray:" + result.getArray();
+                      break;
+                    }
+                    default: {
+                      this.msg1 = "default break, type:" + type;
+                      break;
+                    }
+                  }
+                }
+                catch (resError) {
+                  let e: business_error.BusinessError = resError as business_error.BusinessError;
+                  console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+                }
+              })
+              .catch((error: business_error.BusinessError) => {
+                console.error("error: " + error);
+              })
+          } catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
+        .javaScriptAccess(true)
     }
   }
 }
@@ -4240,6 +4421,15 @@ static customizeSchemes(schemes: Array\<WebCustomScheme\>): void
 | -------- | ------- | ---- | -------------------------------------- |
 | schemes | Array\<[WebCustomScheme](#webcustomscheme)\> | 是   | 自定义协议配置，最多支持同时配置10个自定义协议。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+|  401 | Invalid input parameter.    |
+| 17100020 | Register custom schemes failed. |
+
 **示例：**
 
 ```ts
@@ -5112,6 +5302,246 @@ struct WebComponent {
 }
 ```
 
+### enableIntelligentTrackingPrevention<sup>12+</sup>
+
+enableIntelligentTrackingPrevention(enable: boolean): void
+
+启用智能防跟踪功能，默认该功能未启用。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名   | 类型    |  必填  | 说明                       |
+| --------| ------- | ---- | ---------------------------|
+|  enable | boolean | 是   | 是否启用智能防跟踪功能。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                  |
+| -------- | ----------------------- |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+|  401 | Invalid input parameter.    |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('enableIntelligentTrackingPrevention')
+        .onClick(() => {
+          try {
+            this.controller.enableSafeBrowsing(true);
+            console.log("enableIntelligentTrackingPrevention: true");
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### isIntelligentTrackingPreventionEnabled<sup>12+</sup>
+
+isIntelligentTrackingPreventionEnabled(): boolean
+
+获取当前Web是否启用了智能防跟踪功能。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型    | 说明                                     |
+| ------- | --------------------------------------- |
+| boolean | 当前Web是否启用了智能防跟踪功能，默认为false。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                  |
+| -------- | ----------------------- |
+|  401 | Invalid input parameter.    |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('isIntelligentTrackingPreventionEnabled')
+        .onClick(() => {
+          try {
+            let result = this.controller.isIntelligentTrackingPreventionEnabled();
+            console.log("result: " + result);
+        } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+        }
+      })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### addIntelligentTrackingPreventionBypassingList<sup>12+</sup>
+
+static addIntelligentTrackingPreventionBypassingList(hostList: Array\<string>): void
+
+添加智能防跟踪功能绕过的域名列表。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名       | 类型           | 必填  | 说明                      |
+| ----------- | ------------- | ---- | ------------------------ |
+| hostList    | Array\<string> | 是   | 绕过智能防跟踪功能的域名列表。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID  | 错误信息                  |
+| -------- | ------------------------ |
+|  401     | Invalid input parameter. |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('addIntelligentTrackingPreventionBypassingList')
+        .onClick(() => {
+          try {
+            let hostList = [ "www.test1.com", "www.test2.com", "www.test3.com" ];
+            web_webview.WebviewController.addIntelligentTrackingPreventionBypassingList(hostList);
+        } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+        }
+      })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### removeIntelligentTrackingPreventionBypassingList<sup>12+</sup>
+
+static removeIntelligentTrackingPreventionBypassingList(hostList: Array\<string>): void
+
+删除通过addIntelligentTrackingPreventionBypassingList接口添加的部分域名列表。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名       | 类型           | 必填  | 说明                      |
+| ----------- | ------------- | ---- | ------------------------ |
+| hostList    | Array\<string> | 是   | 绕过智能防跟踪功能的域名列表。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID  | 错误信息                  |
+| -------- | ------------------------ |
+|  401     | Invalid input parameter. |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('removeIntelligentTrackingPreventionBypassingList')
+        .onClick(() => {
+          try {
+            let hostList = [ "www.test1.com", "www.test2.com" ];
+            web_webview.WebviewController.removeIntelligentTrackingPreventionBypassingList(hostList);
+        } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+        }
+      })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### clearIntelligentTrackingPreventionBypassingList<sup>12+</sup>
+
+static clearIntelligentTrackingPreventionBypassingList(): void
+
+删除通过addIntelligentTrackingPreventionBypassingList接口添加的所有域名。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('removeIntelligentTrackingPreventionBypassingList')
+        .onClick(() => {
+          web_webview.WebviewController.clearIntelligentTrackingPreventionBypassingList();
+      })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
 ### postUrl<sup>11+</sup>
 
 postUrl(url: string, postData: ArrayBuffer): void
@@ -5546,6 +5976,156 @@ struct WebComponent {
   }
 }
 ```
+### pauseAllTimers<sup>12+</sup>
+
+pauseAllTimers(): void
+
+暂停所有WebView的定时器。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**示例：**
+
+```ts
+import webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Row() {
+	Button('PauseAllTimers')
+          .onClick(() => {
+              try {
+                web_webview.WebviewController.pauseAllTimers()
+              } catch (error) {
+                let e: business_error.BusinessError = error as business_error.BusinessError;
+                console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+              }
+          })
+      }
+      Web({ src: $rawfile("index.html"), controller: this.controller })
+    }
+  }
+}
+```
+加载的html文件。
+
+```html
+<!DOCTYPE html>
+<html>
+    <body>
+        <button style="width:300px;height:150px;font-size:50px" onclick="startTimer()">start</button>
+        <button style="width:300px;height:150px;font-size:50px" onclick="resetTimer()">reset</button>
+        <input style="width:300px;height:150px;font-size:50px" value="0" id="show_num">
+    </body>
+</html>
+<script>
+    var timer = null;
+    var num = 0;
+
+    function startTimer() {
+        timer = setInterval(function() {
+            document.getElementById("show_num").value = ++num;
+        }, 1000);
+    }
+</script>
+```
+
+### ResumeAllTimers<sup>12+</sup>
+
+ResumeAllTimers(): void
+
+恢复从PauseAllTimers()接口中被暂停的所有的定时器。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**示例：**
+
+```ts
+import webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Row() {
+        Button('ResumeAllTimers')
+          .onClick(() => {
+              try {
+                web_webview.WebviewController.resumeAllTimers()
+              } catch (error) {
+                let e: business_error.BusinessError = error as business_error.BusinessError;
+                console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+              }
+          })
+	Button('PauseAllTimers')
+          .onClick(() => {
+              try {
+                web_webview.WebviewController.pauseAllTimers()
+              } catch (error) {
+                let e: business_error.BusinessError = error as business_error.BusinessError;
+                console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+              }
+          })
+      }
+      Web({ src: $rawfile("index.html"), controller: this.controller })
+    }
+  }
+}
+```
+加载的html文件。
+
+```html
+<!DOCTYPE html>
+<html>
+    <body>
+        <button style="width:300px;height:150px;font-size:50px" onclick="startTimer()">start</button>
+        <button style="width:300px;height:150px;font-size:50px" onclick="resetTimer()">reset</button>
+        <input style="width:300px;height:150px;font-size:50px" value="0" id="show_num">
+    </body>
+</html>
+<script>
+    var timer = null;
+    var num = 0;
+
+    function startTimer() {
+        timer = setInterval(function() {
+            document.getElementById("show_num").value = ++num;
+        }, 1000);
+    }
+
+    function resetTimer() {
+        clearInterval(timer);
+        document.getElementById("show_num").value = 0;
+        num = 0;
+    }
+</script>
+```
 
 ### stopAllMedia<sup>12+</sup>
 
@@ -5771,6 +6351,190 @@ struct WebComponent {
             let e: business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### setWebSchemeHandler<sup>12+</sup>
+
+setWebSchemeHandler(scheme: string, handler: WebSchemeHandler): void
+
+为当前web组件设置[WebSchemeHandler](#webschemehandler12), [WebSchemeHandler](#webschemehandler12)类用于拦截指定scheme的请求。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                      |
+| ------ | ------ | ---- | :------------------------ |
+| scheme    | string | 是   | 要拦截的协议。 |
+| handler    | WebSchemeHandler | 是   | 拦截此协议的拦截器。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Invalid input parameter.                                     |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController()
+  schemeHandler: web_webview.WebSchemeHandler = new web_webview.WebSchemeHandler()
+
+  build() {
+    Column() {
+      Button('setWebSchemeHandler')
+        .onClick(() => {
+          try {
+            this.controller.setWebSchemeHandler('http', this.schemeHandler);
+          } catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### clearWebSchemeHandler<sup>12+</sup>
+
+clearWebSchemeHandler(): void
+
+清除当前web组件设置的所有WebSchemeHandler。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController()
+
+  build() {
+    Column() {
+      Button('clearWebSchemeHandler')
+        .onClick(() => {
+          try {
+            this.controller.clearWebSchemeHandler();
+          } catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### setServiceWorkerWebSchemeHandler<sup>12+</sup>
+
+setServiceWorkerWebSchemeHandler(scheme: string, handler: WebSchemeHandler): void
+
+为当前应用的所有Web组件设置用于拦截ServiceWorker的WebSchemeHandler。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                      |
+| ------ | ------ | ---- | :------------------------ |
+| scheme    | string | 是   | 要拦截的协议。 |
+| handler    | [WebSchemeHandler](#webschemehandler12) | 是   | 拦截此协议的拦截器。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Invalid input parameter.                                     |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController()
+  schemeHandler: web_webview.WebSchemeHandler = new web_webview.WebSchemeHandler()
+
+  build() {
+    Column() {
+      Button('setWebSchemeHandler')
+        .onClick(() => {
+          try {
+            web_webview.WebviewController.setServiceWorkerWebSchemeHandler('http', this.schemeHandler);
+          } catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### clearServiceWorkerWebSchemeHandler<sup>12+</sup>
+
+clearServiceWorkerWebSchemeHandler(): void
+
+清除应用中设置的所有用于拦截ServiceWorker的WebSchemeHandler。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController()
+
+  build() {
+    Column() {
+      Button('clearServiceWorkerWebSchemeHandler')
+        .onClick(() => {
+            web_webview.WebviewController.clearServiceWorkerWebSchemeHandler();
         })
       Web({ src: 'www.example.com', controller: this.controller })
     }
@@ -7006,7 +7770,7 @@ struct WebComponent {
   <div id="status" name="status">状态信息</div>
   </body>
   </html>
-  ```
+ ```
 
 ### getOrigins
 
@@ -8663,6 +9427,11 @@ struct WebComponent {
 | schemeName     | string    | 是   | 是   | 自定义协议名称。最大长度为32，其字符仅支持小写字母、数字、'.'、'+'、'-'。        |
 | isSupportCORS  | boolean   | 是   | 是   | 是否支持跨域请求。    |
 | isSupportFetch | boolean   | 是   | 是   | 是否支持fetch请求。           |
+| isStandard<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme是否将作为标准scheme进行处理。标准scheme需要符合[RFC 1738](http://www.ietf.org/rfc/rfc1738.txt)第3.1节中定义的URL规范化和解析规则。           |
+| isLocal<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme是否将使用与应用于“FILE”的安全规则相同的安全规则来处理。           |
+| isDisplayIsolated<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme的内容是否只能从相同scheme的其他内容中显示或访问。           |
+| isSecure<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme是否将使用与应用于“https”的安全规则相同的安全规则来处理。           |
+| isCspBypassing<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme可以绕过内容安全策略（CSP）检查。在大多数情况下，当设置ARKWEB_SCHEME_OPTION_STANDARD时，不应设置此值。           |
 
 ## SecureDnsMode<sup>10+</sup>
 
@@ -10712,3 +11481,1114 @@ struct WebComponent {
   }
 }
 ```
+
+## getLastJavascriptProxyCallingFrameUrl<sup>12+</sup>
+
+getLastJavascriptProxyCallingFrameUrl(): string
+
+通过[registerJavaScriptProxy](#registerjavascriptproxy)或者[javaScriptProxy](ts-basic-components-web.md#javascriptproxy)注入JavaScript对象到window对象中。该接口可以获取最后一次调用注入的对象的frame的url。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
+
+class TestObj {
+  mycontroller: web_webview.WebviewController;
+  constructor(controller: web_webview.WebviewController) {
+    this.mycontroller = controller;
+  }
+
+  test(testStr:string): string {
+    console.log('Web Component str' + testStr + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
+    return testStr;
+  }
+
+  toString(): void {
+    console.log('Web Component toString ' + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
+  }
+
+  testNumber(testNum:number): number {
+    console.log('Web Component number' + testNum + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
+    return testNum;
+  }
+
+  testBool(testBol:boolean): boolean {
+    console.log('Web Component boolean' + testBol + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
+    return testBol;
+  }
+}
+
+class WebObj {
+  mycontroller: web_webview.WebviewController;
+  constructor(controller: web_webview.WebviewController) {
+    this.mycontroller = controller;
+  }
+
+  webTest(): string {
+    console.log('Web test ' + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
+    return "Web test";
+  }
+
+  webString(): void {
+    console.log('Web test toString ' + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  @State testObjtest: TestObj = new TestObj(this.controller);
+  @State webTestObj: WebObj = new WebObj(this.controller);
+  build() {
+    Column() {
+      Button('refresh')
+        .onClick(() => {
+          try {
+            this.controller.refresh();
+          } catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('Register JavaScript To Window')
+        .onClick(() => {
+          try {
+            this.controller.registerJavaScriptProxy(this.testObjtest, "objName", ["test", "toString", "testNumber", "testBool"]);
+            this.controller.registerJavaScriptProxy(this.webTestObj, "objTestName", ["webTest", "webString"]);
+          } catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
+        .javaScriptAccess(true)
+    }
+  }
+}
+```
+
+加载的html文件。
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+    <meta charset="utf-8">
+    <body>
+      <button type="button" onclick="htmlTest()">Click Me!</button>
+      <p id="demo"></p>
+      <p id="webDemo"></p>
+    </body>
+    <script type="text/javascript">
+    function htmlTest() {
+      // This function call expects to return "ArkUI Web Component"
+      let str=objName.test("webtest data");
+      objName.testNumber(1);
+      objName.testBool(true);
+      document.getElementById("demo").innerHTML=str;
+      console.log('objName.test result:'+ str)
+
+      // This function call expects to return "Web test"
+      let webStr = objTestName.webTest();
+      document.getElementById("webDemo").innerHTML=webStr;
+      console.log('objTestName.webTest result:'+ webStr)
+    }
+</script>
+</html>
+```
+## WebHttpBodyStream<sup>12+</sup>
+
+POST、PUT请求的数据体，支持BYTES、FILE、BLOB、CHUNKED类型的数据。注意本类中其他接口需要在[initialize](#initialize12)成功后才能调用。
+
+### initialize<sup>12+</sup>
+
+initialize(): Promise\<void\>
+
+初始化WebHttpBodyStream。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型   | 说明                      |
+| ------ | ------------------------- |
+| Promise\<void\> | Promise实例，用于获取WebHttpBodyStream是否初始化成功。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                              |
+| -------- | ------------------------------------- |
+| 17100022 | The http body stream init failed. |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base';
+import buffer from '@ohos.buffer'
+import { WebNetErrorList } from '@ohos.web.netErrorList'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController()
+  schemeHandler: web_webview.WebSchemeHandler = new web_webview.WebSchemeHandler()
+  htmlData: string = "<html><body bgcolor=\"white\">Source:<pre>source</pre></body></html>";
+
+  build() {
+    Column() {
+      Button('postUrl')
+        .onClick(() => {
+          try {
+            let postData = buffer.from(this.htmlData)
+            this.controller.postUrl('https://www.example.com', postData.buffer);
+          } catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'https://www.example.com', controller: this.controller })
+        .onControllerAttached(() => {
+          try {
+            this.schemeHandler.onRequestStart((request: web_webview.WebSchemeHandlerRequest, resourceHandler: web_webview.WebResourceHandler) => {
+              console.log("[schemeHandler] onRequestStart")
+              try {
+                let stream = request.getHttpBodyStream();
+                if (stream) {
+                  stream.initialize().then(() => {
+                    if (!stream) {
+                      return;
+                    }
+                    console.log("[schemeHandler] onRequestStart postDataStream size:" + stream.getSize());
+                    console.log("[schemeHandler] onRequestStart postDataStream position:" + stream.getPosition());
+                    console.log("[schemeHandler] onRequestStart postDataStream isChunked:" + stream.isChunked());
+                    console.log("[schemeHandler] onRequestStart postDataStream isEof:" + stream.isEof());
+                    console.log("[schemeHandler] onRequestStart postDataStream isInMemory:" + stream.isInMemory());
+                    stream.read(stream.getSize()).then((buffer) => {
+                      if (!stream) {
+                        return;
+                      }
+                      console.log("[schemeHandler] onRequestStart postDataStream readlength:" + buffer.byteLength);
+                      console.log("[schemeHandler] onRequestStart postDataStream isEof:" + stream.isEof());
+                      console.log("[schemeHandler] onRequestStart postDataStream position:" + stream.getPosition());
+                    }).catch((error: business_error.BusinessError) => {
+                      let e: business_error.BusinessError = error as business_error.BusinessError;
+                      console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+                    })
+                  }).catch((error: business_error.BusinessError) => {
+                    let e: business_error.BusinessError = error as business_error.BusinessError;
+                    console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+                  })
+                } else {
+                  console.log("[schemeHandler] onRequestStart has no http body stream")
+                }
+              } catch (error) {
+                let e: business_error.BusinessError = error as business_error.BusinessError;
+                console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+              }
+
+              return false;
+            })
+
+            this.schemeHandler.onRequestStop((request: web_webview.WebSchemeHandlerRequest) => {
+              console.log("[schemeHandler] onRequestStop")
+            });
+
+            this.controller.setWebSchemeHandler('https', this.schemeHandler);
+          } catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+        .javaScriptAccess(true)
+        .domStorageAccess(true)
+    }
+  }
+}
+
+```
+
+### read<sup>12+</sup>
+
+read(size: number): Promise\<ArrayBuffer\>
+
+读取WebHttpBodyStream中的数据。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名   | 类型    |  必填  | 说明                       |
+| --------| ------- | ---- | ---------------------------|
+|  size | number | 是   | 读取WebHttpBodyStream中的字节数。 |
+
+**返回值：**
+
+| 类型   | 说明                      |
+| ------ | ------------------------- |
+| Promise\<ArrayBuffer\> | Promise实例，用于获取WebHttpBodyStream中读取的数据。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                              |
+| -------- | ------------------------------------- |
+|  401 | Invalid input parameter.    |
+
+**示例：**
+
+完整示例代码参考[initialize](#initialize12)。
+
+### getSize<sup>12+</sup>
+
+getSize(): number
+
+获取WebHttpBodyStream中的数据大小，分块传输时总是返回零。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型   | 说明                      |
+| ------ | ------------------------- |
+| number | 获取WebHttpBodyStream中的数据大小。 |
+
+**示例：**
+
+完整示例代码参考[initialize](#initialize12)。
+
+### getPosition<sup>12+</sup>
+
+getPosition(): number
+
+读取WebHttpBodyStream中当前的读取位置。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型   | 说明                      |
+| ------ | ------------------------- |
+| number | WebHttpBodyStream中当前的读取位置。 |
+
+**示例：**
+
+完整示例代码参考[initialize](#initialize12)。
+
+### isChunked<sup>12+</sup>
+
+isChunked(): boolean
+
+WebHttpBodyStream是否采用分块传输。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型   | 说明                      |
+| ------ | ------------------------- |
+| boolean | WebHttpBodyStream是否采用分块传输。 |
+
+**示例：**
+
+完整示例代码参考[initialize](#initialize12)。
+
+### isEof<sup>12+</sup>
+
+isEof(): boolean
+
+判断WebHttpBodyStream中的所有数据是否都已被读取。如果所有数据都已被读取，则返回true。对于分块传输类型的 WebHttpBodyStream，在第一次读取尝试之前返回false。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型   | 说明                      |
+| ------ | ------------------------- |
+| boolean | WebHttpBodyStream中的所有数据是否都已被读取。 |
+
+**示例：**
+
+完整示例代码参考[initialize](#initialize12)。
+
+### isInMemory<sup>12+</sup>
+
+isInMemory(): boolean
+
+判断WebHttpBodyStream中的上传数据是否在内存中。如果WebHttpBodyStream中的上传数据完全在内存中，并且所有读取请求都将同步成功，则返回true。对于分块传输类型的数据，预期返回false。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型   | 说明                      |
+| ------ | ------------------------- |
+| boolean | WebHttpBodyStream中的上传数据是否在内存中。 |
+
+**示例：**
+
+完整示例代码参考[initialize](#initialize12)。
+
+## WebSchemeHandlerRequest<sup>12+</sup>
+
+通过WebSchemeHandler拦截到的请求。
+
+### getHeader<sup>12+</sup>
+
+getHeader(): Array\<WebHeader\>
+
+获取资源请求头信息。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型                         | 说明         |
+| -------------------------- | ---------- |
+| Array\<[WebHeader](#webheader)\> | 返回资源请求头信息。 |
+
+**示例：**
+
+完整示例代码参考[onRequestStart](#onrequeststart12)。
+
+### getRequestUrl<sup>12+</sup>
+
+getRequestUrl(): string
+
+获取资源请求的URL信息。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型     | 说明            |
+| ------ | ------------- |
+| string | 返回资源请求的URL信息。 |
+
+**示例：**
+
+完整示例代码参考[onRequestStart](#onrequeststart12)。
+
+### getRequestMethod<sup>12+</sup>
+
+getRequestMethod(): string
+
+获取请求方法。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型     | 说明            |
+| ------ | ------------- |
+| string | 返回请求方法。 |
+
+**示例：**
+
+完整示例代码参考[onRequestStart](#onrequeststart12)。
+
+### getReferrer<sup>12+</sup>
+
+getReferrer(): string
+
+获取referrer。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型     | 说明            |
+| ------ | ------------- |
+| string | 获取到的referrer。 |
+
+**示例：**
+
+完整示例代码参考[onRequestStart](#onrequeststart12)。
+
+### isMainFrame<sup>12+</sup>
+
+isMainFrame(): boolean
+
+判断资源请求是否为主frame。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型     | 说明            |
+| ------ | ------------- |
+| boolean | 判断资源请求是否为主frame。 |
+
+**示例：**
+
+完整示例代码参考[onRequestStart](#onrequeststart12)。
+
+### hasGesture<sup>12+</sup>
+
+hasGesture(): boolean
+
+获取资源请求是否与手势（如点击）相关联。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型     | 说明            |
+| ------ | ------------- |
+| boolean | 返回资源请求是否与手势（如点击）相关联。 |
+
+**示例：**
+
+完整示例代码参考[onRequestStart](#onrequeststart12)。
+
+### getHttpBodyStream<sup>12+</sup>
+
+getHttpBodyStream(): WebHttpBodyStream | null
+
+获取资源请求中的WebHttpBodyStream。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型     | 说明            |
+| ------ | ------------- |
+| [WebHttpBodyStream](#webhttpbodystream12) \| null | 返回资源请求中的WebHttpBodyStream，如果没有则返回null。 |
+
+**示例：**
+
+完整示例代码参考[onRequestStart](#onrequeststart12)。
+
+## WebSchemeHandlerResponse<sup>12+</sup>
+
+请求的响应，可以为被拦截的请求创建一个Response并填充自定义的内容返回给Web组件。
+
+### constructor<sup>12+</sup>
+
+constructor()
+
+Response的构造函数。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base';
+import { WebNetErrorList } from '@ohos.web.netErrorList'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController()
+  schemeHandler: web_webview.WebSchemeHandler = new web_webview.WebSchemeHandler()
+
+  build() {
+    Column() {
+      Button('response').onClick(() => {
+        let response = new web_webview.WebSchemeHandlerResponse();
+        try {
+          response.setUrl("http://www.example.com")
+          response.setStatus(200)
+          response.setStatusText("OK")
+          response.setMimeType("text/html")
+          response.setEncoding("utf-8")
+          response.setHeaderByName("header1", "value1", false)
+          response.setNetErrorCode(WebNetErrorList.NET_OK)
+          console.log("[schemeHandler] getUrl:" + response.getUrl())
+          console.log("[schemeHandler] getStatus:" + response.getStatus())
+          console.log("[schemeHandler] getStatusText:" + response.getStatusText())
+          console.log("[schemeHandler] getMimeType:" + response.getMimeType())
+          console.log("[schemeHandler] getEncoding:" + response.getEncoding())
+          console.log("[schemeHandler] getHeaderByValue:" + response.getHeaderByName("header1"))
+          console.log("[schemeHandler] getNetErrorCode:" + response.getNetErrorCode())
+
+        } catch (error) {
+          let e: business_error.BusinessError = error as business_error.BusinessError;
+          console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+        }
+      })
+      Web({ src: 'https://www.example.com', controller: this.controller })
+    }
+  }
+}
+
+```
+
+### setUrl<sup>12+</sup>
+
+setUrl(url: string): void
+
+给当前的Response设置重定向或因HSTS而更改后的URL，设置了url后会触发请求的跳转。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名   | 类型    |  必填  | 说明                       |
+| --------| ------- | ---- | ---------------------------|
+|  url | string | 是   | 即将要跳转的URL。 |
+
+**示例：**
+
+示例完整示例代码参考[constructor](#constructor12)。
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                  |
+| -------- | ----------------------- |
+|  401 | Invalid input parameter.    |
+
+### setNetErrorCode<sup>12+</sup>
+
+setNetErrorCode(code: WebNetErrorList): void
+
+给当前的Response设置网络错误码。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名   | 类型    |  必填  | 说明                       |
+| --------| ------- | ---- | ---------------------------|
+|  code | [WebNetErrorList](js-apis-netErrorList.md#webneterrorlist) | 是   | 网络错误码。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                  |
+| -------- | ----------------------- |
+|  401 | Invalid input parameter.    |
+
+**示例：**
+
+示例完整示例代码参考[constructor](#constructor12)。
+
+### setStatus<sup>12+</sup>
+
+setStatus(code: number): void
+
+给当前的Response设置HTTP状态码。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名   | 类型    |  必填  | 说明                       |
+| --------| ------- | ---- | ---------------------------|
+|  code | number | 是   | Http状态码。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                  |
+| -------- | ----------------------- |
+|  401 | Invalid input parameter.    |
+
+**示例：**
+
+示例完整示例代码参考[constructor](#constructor12)。
+
+### setStatusText<sup>12+</sup>
+
+setStatusText(text: string): void
+
+给当前的Response设置状态文本。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名   | 类型    |  必填  | 说明                       |
+| --------| ------- | ---- | ---------------------------|
+|  text | string | 是   | 状态文本。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                  |
+| -------- | ----------------------- |
+|  401 | Invalid input parameter.    |
+
+**示例：**
+
+示例完整示例代码参考[constructor](#constructor12)。
+
+### setMimeType<sup>12+</sup>
+
+setMimeType(type: string): void
+
+给当前的Response设置媒体类型。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名   | 类型    |  必填  | 说明                       |
+| --------| ------- | ---- | ---------------------------|
+|  text | string | 是   | 媒体类型。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                  |
+| -------- | ----------------------- |
+|  401 | Invalid input parameter.    |
+
+**示例：**
+
+示例完整示例代码参考[constructor](#constructor12)。
+
+### setEncoding<sup>12+</sup>
+
+setEncoding(encoding: string): void
+
+给当前的Response设置字符集。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名   | 类型    |  必填  | 说明                       |
+| --------| ------- | ---- | ---------------------------|
+|  encoding | string | 是   | 字符集。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                  |
+| -------- | ----------------------- |
+|  401 | Invalid input parameter.    |
+
+**示例：**
+
+示例完整示例代码参考[constructor](#constructor12)。
+
+### setHeaderByName<sup>12+</sup>
+
+setHeaderByName(name: string, value: string, overwrite: boolean): void
+
+给当前的Response设置头信息。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名   | 类型    |  必填  | 说明                       |
+| --------| ------- | ---- | ---------------------------|
+|  name | string | 是   | 头部（header）的名称。 |
+|  value | string | 是   | 头部（header）的值。 |
+|  overwrite | boolean | 是   | 如果为true，将覆盖现有的头部，否则不覆盖。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                  |
+| -------- | ----------------------- |
+|  401 | Invalid input parameter.    |
+
+**示例：**
+
+示例完整示例代码参考[constructor](#constructor12)。
+
+### getUrl<sup>12+</sup>
+
+getUrl(): string
+
+获取重定向或由于HSTS而更改后的URL。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型    | 说明                                     |
+| ------- | --------------------------------------- |
+| string | 获取经过重定向或由于HSTS而更改后的URL。|
+
+**示例：**
+
+示例完整示例代码参考[constructor](#constructor12)。
+
+### getNetErrorCode<sup>12+</sup>
+
+getNetErrorCode(): WebNetErrorList
+
+获取Response的网络错误码。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型    | 说明                                     |
+| ------- | --------------------------------------- |
+| [WebNetErrorList](js-apis-netErrorList.md#webneterrorlist) | 获取Response的网络错误码。|
+
+**示例：**
+
+示例完整示例代码参考[constructor](#constructor12)。
+
+### getStatus<sup>12+</sup>
+
+getStatus(): number
+
+获取Response的Http状态码。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型    | 说明                                     |
+| ------- | --------------------------------------- |
+| number | 获取Response的Http状态码。|
+
+**示例：**
+
+示例完整示例代码参考[constructor](#constructor12)。
+
+### getStatusText<sup>12+</sup>
+
+getStatusText(): string
+
+获取Response的状态文本。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型    | 说明                                     |
+| ------- | --------------------------------------- |
+| string | 状态文本。|
+
+**示例：**
+
+示例完整示例代码参考[constructor](#constructor12)。
+
+### getMimeType<sup>12+</sup>
+
+getMimeType(): string
+
+获取Response的媒体类型。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型    | 说明                                     |
+| ------- | --------------------------------------- |
+| string | 媒体类型。|
+
+**示例：**
+
+示例完整示例代码参考[constructor](#constructor12)。
+
+### getEncoding<sup>12+</sup>
+
+getEncoding(): string
+
+获取Response的字符集。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型    | 说明                                     |
+| ------- | --------------------------------------- |
+| string | 字符集。|
+
+**示例：**
+
+示例完整示例代码参考[constructor](#constructor12)。
+
+### getHeaderByName<sup>12+</sup>
+
+getHeaderByName(name: string): string
+
+获取Response的字符集。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名  | 类型             | 必填 | 说明                  |
+| ------- | ---------------- | ---- | -------------------- |
+| name     | string | 是   | 头部（header）的名称。      |
+
+
+**返回值：**
+
+| 类型    | 说明                                     |
+| ------- | --------------------------------------- |
+| string | 头部（header）的值。|
+
+**示例：**
+
+示例完整示例代码参考[constructor](#constructor12)。
+
+## WebResourceHandler<sup>12+</sup>
+
+通过WebResourceHandler，可以提供自定义的返回头以及返回体给Web组件。
+
+### didReceiveResponse<sup>12+</sup>
+
+didReceiveResponse(response: WebSchemeHandlerResponse): void
+
+将构造的响应头传递给被拦截的请求。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名          | 类型    |  必填  | 说明                                            |
+| ---------------| ------- | ---- | ------------- |
+| response      | [WebSchemeHandlerResponse](#webschemehandlerresponse12)  | 是   | 该拦截请求的响应。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                              |
+| -------- | ------------------------------------- |
+|  401 | Invalid input parameter.    |
+| 17100021 | Resource handler is invalid. |
+
+**示例：**
+
+示例请参考[OnRequestStart](#onrequeststart12)。
+
+### didReceiveResponseBody<sup>12+</sup>
+
+didReceiveResponseBody(data: ArrayBuffer): void
+
+将构造的响应体传递给被拦截的请求。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名          | 类型    |  必填  | 说明                                            |
+| ---------------| ------- | ---- | ------------- |
+| data      | ArrayBuffer  | 是   | 响应体数据。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                              |
+| -------- | ------------------------------------- |
+|  401 | Invalid input parameter.    |
+| 17100021 | Resource handler is invalid. |
+
+**示例：**
+
+示例请参考[OnRequestStart](#onrequeststart12)。
+
+### didFinish<sup>12+</sup>
+
+didFinish(): void
+
+通知Web组件被拦截的请求已经完成，并且没有更多的数据可用。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                              |
+| -------- | ------------------------------------- |
+| 17100021 | Resource handler is invalid. |
+
+**示例：**
+
+示例请参考[OnRequestStart](#onrequeststart12)。
+
+### didFail<sup>12+</sup>
+
+didFail(code: WebNetErrorList): void
+
+通知ArkWeb内核被拦截请求应该返回失败。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名   | 类型    |  必填  | 说明                       |
+| --------| ------- | ---- | ---------------------------|
+|  code | [WebNetErrorList](js-apis-netErrorList.md#webneterrorlist) | 是   | 网络错误码。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                              |
+| -------- | ------------------------------------- |
+| 17100021 | Resource handler is invalid. |
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**示例：**
+
+示例请参考[OnRequestStart](#onrequeststart12)。
+
+## WebSchemeHandler<sup>12+</sup>
+
+用于拦截指定scheme的请求的拦截器。
+
+### onRequestStart<sup>12+</sup>
+
+onRequestStart(callback: (request: WebSchemeHandlerRequest, handler: WebResourceHandler) => boolean): void
+
+当请求开始时的回调，在该回调函数中可以决定是否拦截该请求。当回调返回false是表示不拦截此请求，此时handler失效；当回调返回true，表示拦截此请求。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数**：
+
+| 参数名   | 类型                 | 必填 | 说明       |
+| -------- | -------------------- | ---- | ---------- |
+| callback   | (request: WebSchemeHandlerRequest, handler: WebResourceHandler) => boolean | 是 | 拦截对应scheme请求开始时触发的回调。request为请求，handler用于提供自定义的返回头以及返回体给Web组件，返回值表示该请求是否拦截。 |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base';
+import buffer from '@ohos.buffer'
+import { WebNetErrorList } from '@ohos.web.netErrorList'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController()
+  schemeHandler: web_webview.WebSchemeHandler = new web_webview.WebSchemeHandler()
+  htmlData: string = "<html><body bgcolor=\"white\">Source:<pre>source</pre></body></html>";
+
+  build() {
+    Column() {
+      Web({ src: 'https://www.example.com', controller: this.controller })
+        .onControllerAttached(() => {
+          try {
+            this.schemeHandler.onRequestStart((request: web_webview.WebSchemeHandlerRequest, resourceHandler: web_webview.WebResourceHandler) => {
+              console.log("[schemeHandler] onRequestStart")
+              try {
+                console.log("[schemeHandler] onRequestStart url:" + request.getRequestUrl())
+                console.log("[schemeHandler] onRequestStart method:" + request.getRequestMethod())
+                console.log("[schemeHandler] onRequestStart referrer:" + request.getReferrer())
+                console.log("[schemeHandler] onRequestStart isMainFrame:" + request.isMainFrame())
+                console.log("[schemeHandler] onRequestStart hasGesture:" + request.hasGesture())
+                console.log("[schemeHandler] onRequestStart header size:" + request.getHeader().length)
+                let header = request.getHeader();
+                for (let i = 0; i < header.length; i++) {
+                  console.log("[schemeHandler] onRequestStart header:" + header[i].headerKey + " " + header[i].headerValue);
+                }
+                let stream = request.getHttpBodyStream();
+                if (stream) {
+                  console.log("[schemeHandler] onRequestStart has http body stream")
+                } else {
+                  console.log("[schemeHandler] onRequestStart has no http body stream")
+                }
+              } catch (error) {
+                let e: business_error.BusinessError = error as business_error.BusinessError;
+                console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+              }
+
+              if (request.getRequestUrl().endsWith("example.com")) {
+                return false;
+              }
+
+              let response = new web_webview.WebSchemeHandlerResponse();
+              try {
+                response.setNetErrorCode(WebNetErrorList.NET_OK)
+                response.setStatus(200)
+                response.setStatusText("OK")
+                response.setMimeType("text/html")
+                response.setEncoding("utf-8")
+                response.setHeaderByName("header1", "value1", false)
+              } catch (error) {
+                let e: business_error.BusinessError = error as business_error.BusinessError;
+                console.error(`[schemeHandler] ErrorCode: ${e.code},  Message: ${e.message}`);
+              }
+
+              let buf = buffer.from(this.htmlData)
+              try {
+                if (buf.length == 0) {
+                  console.log("[schemeHandler] length 0")
+                  resourceHandler.didFail(WebNetErrorList.ERR_FAILED)
+                } else {
+                  console.log("[schemeHandler] length 1")
+                  resourceHandler.didReceiveResponse(response);
+                  resourceHandler.didReceiveResponseBody(buf.buffer);
+                  resourceHandler.didFinish();
+                }
+              } catch (error) {
+                let e: business_error.BusinessError = error as business_error.BusinessError;
+                console.error(`[schemeHandler] ErrorCode: ${e.code},  Message: ${e.message}`);
+              }
+              return true;
+            })
+
+            this.schemeHandler.onRequestStop((request: web_webview.WebSchemeHandlerRequest) => {
+              console.log("[schemeHandler] onRequestStop")
+            });
+
+            this.controller.setWebSchemeHandler('https', this.schemeHandler);
+          } catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+        .javaScriptAccess(true)
+        .domStorageAccess(true)
+    }
+  }
+}
+```
+### onRequestStop<sup>12+</sup>
+
+onRequestStop(callback: Callback\<WebSchemeHandlerRequest\>): void
+
+当请求完成时的回调，仅当前面onRequestStart中回调决定拦截此请求中触发。触发的时机有以下两点：
+
+1.WebResourceHandler调用didFail或者didFinish。
+
+2.此请求因为其他原因中断。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数**：
+
+| 参数名   | 类型                 | 必填 | 说明       |
+| -------- | -------------------- | ---- | ---------- |
+| callback | Callback\<WebSchemeHandlerRequest\> | 是   | 对应请求结束的回调函数。 |
+
+**示例：**
+
+完整示例代码参考[onRequestStart](#onrequeststart12)。

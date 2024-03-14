@@ -90,7 +90,7 @@ fontSize(value: Length)
 
 | 参数名 | 类型                         | 必填 | 说明                              |
 | ------ | ---------------------------- | ---- | --------------------------------- |
-| value  | [Length](ts-types.md#length) | 是   | 文本显示字号。<br/>默认值：'16fp' |
+| value  | [Length](ts-types.md#length) | 是   | 文本显示字号。<br/>默认值：若controlSize的值为：controlSize.NORMAL，取'16fp'，若controlSize的值为：controlSize.SMALL，取'12fp' |
 
 ### fontColor
 
@@ -156,6 +156,22 @@ stateEffect(value: boolean)
 | ------ | ------- | ---- | ------------------------------------------------------------ |
 | value  | boolean | 是   | 按钮按下时是否开启按压态显示效果，当设置为false时，按压效果关闭。<br/>默认值：true |
 
+### fontFamily
+
+fontFamily(value: string | Resource)
+
+设置字体列表。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                 | 必填 | 说明                                                         |
+| ------ | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [Resource](ts-types.md#resource)&nbsp;\|&nbsp;string | 是   | 字体列表。默认字体'HarmonyOS Sans'，当前支持'HarmonyOS Sans'字体和[注册自定义字体](../js-apis-font.md)。 |
+
 ### labelStyle<sup>10+</sup>
 
 labelStyle(value: LabelStyle)
@@ -198,9 +214,9 @@ controlSize(value: ControlSize)
 
 **参数：** 
 
-| 参数名 | 类型                                          | 必填 | 说明                                             |
-| ------ | --------------------------------------------- | ---- | ------------------------------------------------ |
-| value  | [ButtonStyleMode](#buttonstylemode11枚举说明) | 是   | Button组件的尺寸。<br/>默认值:ControlSize.NORMAL |
+| 参数名 | 类型                                  | 必填 | 说明                                             |
+| ------ | ------------------------------------- | ---- | ------------------------------------------------ |
+| value  | [ControlSize](#controlsize11枚举说明) | 是   | Button组件的尺寸。<br/>默认值:ControlSize.NORMAL |
 
 ## ButtonType枚举说明
 
@@ -227,7 +243,7 @@ controlSize(value: ControlSize)
 | maxLines             | number                                                       | 否   | 设置Label文本的最大行数。默认情况下，文本是自动折行的，如果指定此参数，则文本最多不会超过指定的行。如果有多余的文本，可以通过overflow来指定截断方式。<br>默认值：1 |
 | minFontSize          | number \| [ResourceStr](ts-types.md#resourcestr)             | 否   | 设置Label文本最小显示字号。需配合maxFontSize以及maxLines或布局大小限制使用。 |
 | maxFontSize          | number \| [ResourceStr](ts-types.md#resourcestr)             | 否   | 设置Label文本最大显示字号。需配合minFontSize以及maxLines或布局大小限制使用。 |
-| heightAdaptivePolicy | [TextHeightAdaptivePolicy](ts-appendix-enums.md#textheightadaptivepolicy10) | 否   | 设置Label文本自适应高度的方式。                             |
+| heightAdaptivePolicy | [TextHeightAdaptivePolicy](ts-appendix-enums.md#textheightadaptivepolicy10) | 否   | 设置Label文本自适应高度的方式。<br>默认值：TextHeightAdaptivePolicy.MAX_LINES_FIRST。                             |
 | font                 | [Font](ts-types.md#font)                                     | 否   | 设置Label文本字体样式。<br>默认值：默认值参考[Font](ts-types.md#font)。     |
 
 ## ButtonStyleMode<sup>11+</sup>枚举说明

@@ -25,6 +25,18 @@ Allows an application to be displayed in a floating window on top of other appli
 
 **Valid since**: 7
 
+### ohos.permission.ALLOW_UPGRADE_GUIDE_ACCESS
+
+Allows a system application to obtain the application upgrade guide or start the application upgrade component.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
 ### ohos.permission.AGENT_REQUIRE_FORM
 
 Allows the application agent to request widgets.
@@ -759,7 +771,7 @@ Allows an application to obtain the device-cloud synchronization management capa
 
 ### ohos.permission.DUMP
 
-Allows the basic system information and SA service information to be exported.
+Allows the basic system information and system ability (SA) information to be dumped.
 
 **Permission level**: system_core
 
@@ -996,6 +1008,8 @@ Allows an application to obtain information about running processes and mission 
 **Enable via ACL**: true
 
 **Valid since**: 7
+
+**Deprecated since**: 9
 
 ### ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -1489,6 +1503,8 @@ Allows an application to start FAs in the background.
 
 **Valid since**: 7
 
+**Deprecated since**: 9
+
 ### ohos.permission.START_INVISIBLE_ABILITY
 
 Allows an application to start an invisible ability.
@@ -1576,6 +1592,18 @@ Allows an application to enroll and manage user identity authentication credenti
 ### ohos.permission.ACCESS_PIN_AUTH
 
 Allows an application to register the callback for obtaining the PIN during the PIN authentication process.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 8
+
+### ohos.permission.ACCESS_USER_AUTH_INTERNAL
+
+Allows an application to call internal system interfaces of IAM.
 
 **Permission level**: system_basic
 
@@ -2283,7 +2311,127 @@ Allows an application to pair with a NearLink device and access the Contacts or 
 
 ### ohos.permission.GET_NEARLINK_LOCAL_MAC
 
-Allows the application to obtain the NearLink MAC address of the local device.
+Allows an application to obtain the NearLink MAC address of the local device.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
+### ohos.permission.GET_NEARLINK_PEER_MAC
+
+Allows an application to obtain the NearLink MAC address of the peer device.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
+### ohos.permission.MANAGE_RGM
+
+Allows a system service or system application to manage RGM.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
+### ohos.permission.ACCESS_PROTOCOL_DFX_DATA
+
+Allows a system application to access communication failure information and system statistics.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
+### ohos.permission.MANAGE_USER_ACCOUNT_INFO
+
+Allows a system application or an SA to call the account service.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
+### ohos.permission.ACCESS_AI_ABILITY
+
+Allows a system application or an SA to access the AI ability.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
+### ohos.permission.READ_HEALTH_MOTION
+
+Allows a system application to read the activity ring information, such as the step count.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
+### ohos.permission.hsdr.REQUEST_HSDR
+
+Allows a system application to access the OpenHarmony Security Detection and Response (HSDR) function of querying the security policies from the cloud.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
+### ohos.permission.NOTIFY_DEBUG_ASSERT_RESULT
+
+Allows a system application to set the assertion debugging result.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
+### ohos.permission.QUERY_PASSWORD_VAULT_DATA
+
+Allows a system application to obtain password vault data.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
+### ohos.permission.SUBSCRIBE_NOTIFICATION_WINDOW_STATE
+
+Allows an application to subscribe to the broadcasts sent when the notification window is displayed or collapsed.
 
 **Permission level**: system_basic
 
@@ -2358,18 +2506,6 @@ Allows an application to call interfaces of the DeviceAuthCredMgr application.
 **Enable via ACL**: false
 
 **Valid since**: 10
-
-### ohos.permission.ACCESS_USER_AUTH_INTERNAL
-
-Allows an application to call internal system interfaces of IAM.
-
-**Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: false
-
-**Valid since**: 8
 
 ### ohos.permission.ACCESS_AUTH_RESPOOL
 

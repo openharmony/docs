@@ -136,7 +136,7 @@ Obtains the memory size of this application. This API uses a promise to return t
 
   | Type| Description| 
   | -------- | -------- |
-  | Promise&lt;number&gt; | Promise used to return the memory size, in MB.| 
+  | Promise&lt;number&gt; | Promise used to return the memory size, in MB. You can perform error processing or other custom processing based on the size.  | 
 
 **Example**
     
@@ -163,7 +163,7 @@ Obtains the memory size of this application. This API uses an asynchronous callb
 
   | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the memory size, in MB.| 
+  | callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the memory size, in MB. You can perform error processing or other custom processing based on the size.  | 
 
 **Example**
     

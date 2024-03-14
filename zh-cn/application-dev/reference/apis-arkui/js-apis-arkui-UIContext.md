@@ -230,6 +230,32 @@ struct AnimateToExample {
 }
 ```
 
+### getFrameNodeById<sup>12+</sup>
+
+getFrameNodeById(id: string): FrameNode | null
+
+提供getFrameNodeById接口通过组件的id获取组件树的实体节点。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型                                       | 必填   | 说明                                    |
+| ----- | ---------------------------------------- | ---- | ------------------------------------- |
+| id | string | 是    | 节点对应的[组件标识](arkui-ts/ts-universal-attributes-component-id.md)                          |
+
+**返回值：**
+
+| 类型                                       | 说明            |
+| ---------------------------------------- | ------------- |
+| [FrameNode](js-apis-arkui-frameNode.md)  \| null | 返回的组件树的实体节点或者空节点。 |
+
+**示例：**
+
+```ts
+uiContext.getFrameNodeById("TestNode")
+```
+
 ### showAlertDialog
 
 showAlertDialog(options: AlertDialogParamWithConfirm | AlertDialogParamWithButtons | AlertDialogParamWithOptions): void
@@ -966,6 +992,145 @@ off(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callba
 import { UIObserver } from '@ohos.arkui.UIContext';
 let observer:UIObserver = uiContext.getUIObserver();
 observer.off('navDestinationUpdate', { navigationId: "testId" });
+```
+
+### on('scrollEvent')<sup>12+</sup>
+
+on(type: 'scrollEvent', callback: Callback\<observer.ScrollEventInfo\>): void
+
+监听滚动事件的开始和结束。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                  | 必填 | 说明                                                         |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                | 是   | 监听事件，固定为'scrollEvent'，即滚动事件的开始和结束。      |
+| callback | Callback\<observer.[ScrollEventInfo](js-apis-arkui-observer.md#scrolleventinfo12)\> | 是   | 回调函数。返回滚动事件的信息。   |
+
+**示例：**
+
+请参考[offscrollevent示例](#offscrollevent12-1)
+
+### off('scrollEvent')<sup>12+</sup>
+
+off(type: 'scrollEvent', callback?: Callback\<observer.ScrollEventInfo\>): void
+
+取消监听滚动事件的开始和结束。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                  | 必填 | 说明                                                         |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                | 是   | 监听事件，固定为'scrollEvent'，即滚动事件的开始和结束。      |
+| callback | Callback\<observer.[ScrollEventInfo](js-apis-arkui-observer.md#scrolleventinfo12)\> | 是   | 回调函数。返回滚动事件的信息。   |
+
+**示例：**
+
+请参考[offscrollevent示例](#offscrollevent12-1)
+
+### on('scrollEvent')<sup>12+</sup>
+
+on(type: 'scrollEvent', options: { id: string }, callback: Callback\<observer.ScrollEventInfo\>): void
+
+监听滚动事件的开始和结束。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'scrollEvent'，即滚动事件的开始和结束。 |
+| options  | { id: string } | 是   | 指定监听的滚动组件的id。                                   |
+| callback | Callback\<observer.[ScrollEventInfo](js-apis-arkui-observer.md#scrolleventinfo12)\>        | 是   | 回调函数。返回滚动事件的信息。                 |
+
+**示例：**
+
+请参考[offscrollevent示例](#offscrollevent12-1)
+
+### off('scrollEvent')<sup>12+</sup>
+
+off(type: 'scrollEvent', options: { id: string }, callback?: Callback\<observer.ScrollEventInfo\>): void
+
+取消监听滚动事件的开始和结束。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'scrollEvent'，即滚动事件的开始和结束。 |
+| options  | { id: string } | 是   | 指定监听的滚动组件的id。                                   |
+| callback | Callback\<observer.[ScrollEventInfo](js-apis-arkui-observer.md#scrolleventinfo12)\>        | 否   | 回调函数。返回滚动事件的信息。                 |
+
+**示例：**
+
+```ts
+import uiContext, { UIObserver } from '@ohos.arkui.UIContext';
+
+@Entry
+@Component
+struct Index {
+  scroller: Scroller = new Scroller();
+  observer: uiContext.UIObserver = new UIObserver();
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7]
+
+  build() {
+    Row() {
+      Column() {
+        Scroll(this.scroller) {
+          Column() {
+            ForEach(this.arr, (item: number) => {
+              Text(item.toString())
+                .width('90%')
+                .height(150)
+                .backgroundColor(0xFFFFFF)
+                .borderRadius(15)
+                .fontSize(16)
+                .textAlign(TextAlign.Center)
+                .margin({ top: 10 })
+            }, (item: string) => item)
+          }.width('100%')
+        }
+        .id("testId")
+        .height('80%')
+      }
+      .width('100%')
+
+      Row() {
+        Button('UIObserver on')
+          .onClick(() => {
+            this.observer.on('scrollEvent', (info) => {
+              console.info('scrollEventInfo', JSON.stringify(info));
+            });
+          })
+        Button('UIObserver off')
+          .onClick(() => {
+            this.observer.off('scrollEvent');
+          })
+      }
+
+      Row() {
+        Button('UIObserverWithId on')
+          .onClick(() => {
+            this.observer.on('scrollEvent', { id:"testId" }, (info) => {
+              console.info('scrollEventInfo', JSON.stringify(info));
+            });
+          })
+        Button('UIObserverWithId off')
+          .onClick(() => {
+            this.observer.off('scrollEvent', { id:"testId" });
+          })
+      }
+    }
+    .height('100%')
+  }
+}
 ```
 
 ### on('routerPageUpdate')<sup>11+</sup>
@@ -2866,12 +3031,18 @@ struct DragControllerPage {
 ## AtomicServiceBar<sup>11+</sup>
 
 以下接口需要先使用UIContext中的[getAtomicServiceBar](#getatomicservicebar11)方法获取到AtomicServiceBar对象，再通过该对象调用对应方法。
+> **说明：**
+>
+> 从API version 12开始原子化服务menuBar样式变更，以下接口将失效。
 
 ### setVisible<sup>11+</sup>
 
 setVisible(visible: boolean): void
 
 通过该方法设置原子化服务menuBar是否可见。
+> **说明：**
+>
+> 从API version 12开始原子化服务menuBar样式变更，menuBar默认隐藏，变为悬浮按钮，通过该接口无法改变menuBar的可见性。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2879,7 +3050,7 @@ setVisible(visible: boolean): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------- | ------- | ------- | ------- |
-| visiable | boolean | 是 | 原子化服务menuBar是否可见。|
+| visible | boolean | 是 | 原子化服务menuBar是否可见。|
 
 
 **示例：**
@@ -2909,6 +3080,9 @@ onWindowStageCreate(windowStage: window.WindowStage) {
 setBackgroundColor(color:Nullable<Color | number | string>): void
 
 通过该方法设置原子化服务menuBar的背景颜色。
+> **说明：**
+>
+> 从API version 12开始原子化服务menuBar样式变更，menuBar的背景默认隐藏，通过该接口无法改变menuBar的背景颜色。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -2945,6 +3119,9 @@ onWindowStageCreate(windowStage: window.WindowStage) {
 setTitleContent(content:string): void
 
 通过该方法设置原子化服务menuBar的标题内容。
+> **说明：**
+>
+> 从API version 12开始原子化服务menuBar样式变更，menuBar的标题默认隐藏，通过该接口无法改变menuBar的标题内容。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -2981,6 +3158,9 @@ onWindowStageCreate(windowStage: window.WindowStage) {
 setTitleFontStyle(font:FontStyle):void
 
 通过该方法设置原子化服务menuBar的字体样式。
+> **说明：**
+>
+> 从API version 12开始原子化服务menuBar样式变更，menuBar的标题默认隐藏，通过该接口无法改变menuBar的字体样式。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full。
 
@@ -3017,6 +3197,9 @@ onWindowStageCreate(windowStage: window.WindowStage) {
 setIconColor(color:Nullable<Color | number | string>): void
 
 通过该方法设置原子化服务图标的颜色。
+> **说明：**
+>
+> 从API version 12开始原子化服务menuBar样式变更，menuBar默认隐藏，悬浮按钮图标不予用户设置，通过该接口无法改变menuBar的图标颜色。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

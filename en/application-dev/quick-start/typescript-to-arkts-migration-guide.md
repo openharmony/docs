@@ -1,6 +1,6 @@
 # TypeScript to ArkTS Cookbook
 
-Welcome to the "TypeScript to ArkTS" cookbook. This document gives you short
+Welcome to the "TypeScript to ArkTS cookbook". This document gives you short
 recipes to rewrite your standard TypeScript code to ArkTS. Although ArkTS is
 designed to be close to TypeScript, some limitations were added for the sake of
 performance. As a result, all TypeScript features can be divided into the following
@@ -20,7 +20,7 @@ categories:
 The document is built on the feature-by-feature basis, and if you do not
 find a specific feature, then you can safely consider it **fully supported**. Otherwise,
 a recipe will give you a suggestion on how to rewrite your code and work
-around an unsupported case.
+around an unsupported case. For example, the custom decorators supported by ArkTS have the same syntax as those supported by TypeScript.
 
 **Recipe Explained**
 
