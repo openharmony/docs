@@ -1,4 +1,4 @@
-# 屏幕录制(仅对系统应用开放)(C/C++)
+# 屏幕录制(C/C++)
 
 屏幕录制主要为主屏幕录屏功能。
 
@@ -14,15 +14,6 @@
 
 使用AVScreenCapture时要明确其状态的变化，在创建实例后，调用对应的方法可以进入指定的状态实现对应的行为。
 在确定的状态下执行不合适的方法会导致AVScreenCapture发生错误，开发者需要在调用状态转换的方法前进行状态检查，避免程序运行异常。
-
-### 录屏取原始码流权限说明
-
-在开发前，请根据应用实际需求，参考[申请应用权限](../../security/AccessToken/determine-application-mode.md)申请以下权限：
-
-| 权限名 | 说明 | 授权方式 | 权限级别 |
-| ------ | ----- | --------| ------- |
-| ohos.permission.CAPTURE_SCREEN | 允许应用截取屏幕图像。| system_grant | system_core |
-| ohos.permission.MICROPHONE | 允许应用使用麦克风（可选）。<br>如需录制麦克风源的音频，需要申请该权限。| user_grant | normal |
 
 ### 录屏取原始码流开发步骤及注意事项
 
@@ -254,7 +245,6 @@ int main() {
 
 | 权限名 | 说明 | 授权方式 | 权限级别 |
 | ------ | ----- | --------| ------- |
-| ohos.permission.CAPTURE_SCREEN | 允许应用截取屏幕图像。| system_grant | system_core |
 | ohos.permission.MICROPHONE | 允许应用使用麦克风（可选）。| user_grant | normal |
 | ohos.permission.READ_MEDIA | 允许应用读取用户外部存储中的媒体文件信息。| user_grant | normal |
 | ohos.permission.WRITE_MEDIA | 允许应用读写用户外部存储中的媒体文件信息。| user_grant | normal |
