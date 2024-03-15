@@ -14,11 +14,11 @@
 **图1** 播放状态变化示意图  
 ![Playback status change](figures/playback-status-change.png)
 
-状态的详细说明请参考[AVPlayerState](../reference/apis-media-kit/js-apis-media.md#avplayerstate9)。当播放处于prepared / playing / paused / completed状态时，播放引擎处于工作状态，这需要占用系统较多的运行内存。当客户端暂时不使用播放器时，调用reset()或release()回收内存资源，做好资源利用。
+状态的详细说明请参考[AVPlayerState](../../reference/apis-media-kit/js-apis-media.md#avplayerstate9)。当播放处于prepared / playing / paused / completed状态时，播放引擎处于工作状态，这需要占用系统较多的运行内存。当客户端暂时不使用播放器时，调用reset()或release()回收内存资源，做好资源利用。
 
 ## 开发步骤及注意事项
 
-详细的API说明请参考[AVPlayer API参考](../reference/apis-media-kit/js-apis-media.md#avplayer9)。
+详细的API说明请参考[AVPlayer API参考](../../reference/apis-media-kit/js-apis-media.md#avplayer9)。
 
 1. 创建实例createAVPlayer()，AVPlayer初始化idle状态。
 
@@ -42,9 +42,9 @@
    > 
    > - 如果使用本地资源播放，必须确认资源文件可用，并使用应用沙箱路径访问对应资源，参考[获取应用文件路径](../application-models/application-context-stage.md#获取应用文件路径)。应用沙箱的介绍及如何向应用沙箱推送文件，请参考[文件管理](../file-management/app-sandbox-directory.md)。
    > 
-   > - 如果使用网络播放路径，需[声明权限](../security/AccessToken/declare-permissions.md)：ohos.permission.INTERNET。
+   > - 如果使用网络播放路径，需[声明权限](../../security/AccessToken/declare-permissions.md)：ohos.permission.INTERNET。
    > 
-   > - 如果使用ResourceManager.getRawFd打开HAP资源文件描述符，使用方法可参考[ResourceManager API参考](../reference/apis-localization-kit/js-apis-resource-manager.md#getrawfd9)。
+   > - 如果使用ResourceManager.getRawFd打开HAP资源文件描述符，使用方法可参考[ResourceManager API参考](../../reference/apis-localization-kit/js-apis-resource-manager.md#getrawfd9)。
    > 
    > - 需要使用[支持的播放格式与协议](media-kit-intro.md#支持的格式与协议)。
 
