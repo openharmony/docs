@@ -37,6 +37,18 @@
 
 **起始版本**：12
 
+### ohos.permission.ACCESS_MEDIALIB_THUMB_DB
+
+允许系统应用访问和修改媒体库数据库。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.AGENT_REQUIRE_FORM
 
 允许应用代理请求卡片。
