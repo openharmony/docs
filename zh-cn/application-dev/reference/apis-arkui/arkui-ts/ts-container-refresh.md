@@ -6,7 +6,7 @@
 >
 >  - 该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
->  - 该组件从API Version 12开始支持与Swiper和Web的联动。当Swiper设置loop属性为true时，Refresh无法和Swiper产生联动。
+>  - 该组件从API Version 12开始支持与垂直滚动的Swiper和Web的联动。当Swiper设置loop属性为true时，Refresh无法和Swiper产生联动。
 
 ## 子组件
 
