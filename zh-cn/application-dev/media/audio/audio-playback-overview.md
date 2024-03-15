@@ -16,15 +16,15 @@
 
 除上述方式外，也可以通过Media Kit实现音频播放。
 
-- [AVPlayer](using-avplayer-for-playback.md)：用于音频播放的ArkTS/JS API，集成了流媒体和本地资源解析、媒体资源解封装、音频解码和音频输出功能。可用于直接播放mp3、m4a等格式的音频文件，不支持直接播放PCM格式文件。
+- [AVPlayer](../media/using-avplayer-for-playback.md)：用于音频播放的ArkTS/JS API，集成了流媒体和本地资源解析、媒体资源解封装、音频解码和音频输出功能。可用于直接播放mp3、m4a等格式的音频文件，不支持直接播放PCM格式文件。
 
-- [SoundPool](using-soundpool-for-playback.md)：低时延的短音播放ArkTS/JS API，适用于播放急促简短的音效，如相机快门音效、按键音效、游戏射击音效等。
+- [SoundPool](../media/using-soundpool-for-playback.md)：低时延的短音播放ArkTS/JS API，适用于播放急促简短的音效，如相机快门音效、按键音效、游戏射击音效等。
 
 ## 开发音频播放应用须知
 
 应用如果要实现后台播放或熄屏播放，需要同时满足：
 
-1. 使用媒体会话功能注册到系统内统一管理，否则在应用进入后台时，播放将被强制停止。具体参考[AVSession Kit开发指导](avsession-overview.md)。
+1. 使用媒体会话功能注册到系统内统一管理，否则在应用进入后台时，播放将被强制停止。具体参考[AVSession Kit开发指导](../avsession/avsession-overview.md)。
 
 2. 申请长时任务避免进入挂起（Suspend）状态。具体参考[Background Tasks Kit开发指导](../../task-management/continuous-task.md)。
 
