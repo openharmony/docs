@@ -16,11 +16,11 @@
 
 ### 帐号完整信息
 
-系统帐号的完整信息请参考[OsAccountInfo](../reference/apis-basic-services-kit/js-apis-osAccount.md#osaccountinfo)定义。
+系统帐号的完整信息请参考[OsAccountInfo](../../reference/apis-basic-services-kit/js-apis-osAccount.md#osaccountinfo)定义。
 
 ## 开发准备
 
-1. 申请权限：ohos.permission.MANAGE_LOCAL_ACCOUNTS。申请流程请参考：[申请应用权限](../security/AccessToken/determine-application-mode.md#system_basic等级的应用申请权限)。
+1. 申请权限：ohos.permission.MANAGE_LOCAL_ACCOUNTS。申请流程请参考：[申请应用权限](../../security/AccessToken/determine-application-mode.md#system_basic等级的应用申请权限)。
 
 2. 导入系统帐号模块。
 
@@ -40,7 +40,7 @@
 
 具体开发实例如下：
 
-调用[createOsAccount](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#createosaccount)接口，指定昵称和类型信息来创建系统帐号。
+调用[createOsAccount](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#createosaccount)接口，指定昵称和类型信息来创建系统帐号。
 
 ```ts
 let name: string = 'Bob';
@@ -58,7 +58,7 @@ accountManager.createOsAccount(name, type, (err: BusinessError, osAccountInfo: a
 
 具体开发实例如下：
 
-调用[queryAllCreatedOsAccounts](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#queryallcreatedosaccounts)接口查询全量帐号。  
+调用[queryAllCreatedOsAccounts](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#queryallcreatedosaccounts)接口查询全量帐号。  
 
 ```ts
 accountManager.queryAllCreatedOsAccounts((err: BusinessError, accountArr: account_osAccount.OsAccountInfo[])=>{
@@ -73,7 +73,7 @@ accountManager.queryAllCreatedOsAccounts((err: BusinessError, accountArr: accoun
 
 具体开发实例如下：
 
-调用[queryOsAccountById](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#queryosaccountbyid)接口查询指定帐号的详细信息。
+调用[queryOsAccountById](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#queryosaccountbyid)接口查询指定帐号的详细信息。
 
 ```ts
 let localId: number = 100;
@@ -89,7 +89,7 @@ accountManager.queryOsAccountById(localId, (err: BusinessError, accountInfo: acc
 
 具体开发实例如下：
 
-1. 调用[setOsAccountProfilePhoto](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#setosaccountprofilephoto)接口修改系统帐号头像。
+1. 调用[setOsAccountProfilePhoto](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#setosaccountprofilephoto)接口修改系统帐号头像。
 
    ```ts
    let localId: number = 100;
@@ -103,7 +103,7 @@ accountManager.queryOsAccountById(localId, (err: BusinessError, accountInfo: acc
    });
    ```
 
-2. 调用[setOsAccountName](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#setosaccountname)接口修改系统帐号名称。
+2. 调用[setOsAccountName](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#setosaccountname)接口修改系统帐号名称。
 
    ```ts
    let localId: number = 100;
@@ -119,11 +119,11 @@ accountManager.queryOsAccountById(localId, (err: BusinessError, accountInfo: acc
 
 ## 激活系统帐号
 
-系统帐号默认处于未激活状态，需要激活后才能使用。开发者可以使用[activateOsAccount](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#activateosaccount)接口完成此操作。
+系统帐号默认处于未激活状态，需要激活后才能使用。开发者可以使用[activateOsAccount](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#activateosaccount)接口完成此操作。
 
 具体开发实例如下：
 
-调用[activateOsAccount](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#activateosaccount)接口激活指定系统帐号。
+调用[activateOsAccount](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#activateosaccount)接口激活指定系统帐号。
 
 ```ts
 let localId: number = 101;
@@ -142,7 +142,7 @@ accountManager.activateOsAccount(localId, (err: BusinessError)=>{
 
 具体开发实例如下：
 
-调用[removeOsAccount](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#removeosaccount)接口删除指定的帐号。
+调用[removeOsAccount](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#removeosaccount)接口删除指定的帐号。
 
 ```ts
 let localId: number = 101;
