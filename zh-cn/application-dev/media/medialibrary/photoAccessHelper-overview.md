@@ -52,7 +52,7 @@ Media Library Kit（媒体文件管理服务）提供了管理相册和媒体文
 ## 约束与限制
 
 相册管理模块涉及用户个人数据信息，所以应用需要向用户申请相册管理模块读写操作权限才能保证功能的正常运行。
-在申请权限前，请保证符合[权限使用的基本原则](../security/AccessToken/app-permission-mgmt-overview.md#权限使用的基本原则)。涉及的权限如下表。申请方式请参考[向用户申请授权](../security/AccessToken/request-user-authorization.md)。
+在申请权限前，请保证符合[权限使用的基本原则](../../security/AccessToken/app-permission-mgmt-overview.md#权限使用的基本原则)。涉及的权限如下表。申请方式请参考[向用户申请授权](../../security/AccessToken/request-user-authorization.md)。
 
 | 权限名                         | 说明                                       | 授权方式   |
 | ------------------------------ | ------------------------------------------ | ---------- |
