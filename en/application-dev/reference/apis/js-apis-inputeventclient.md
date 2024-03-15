@@ -63,6 +63,55 @@ try {
   console.log(`Failed to inject KeyEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
+## inputEventClient.injectKeyEvent<sup>11+</sup>
+
+injectKeyEvent(keyEvent: KeyEventData): void
+
+Injects key events (for both single keys and combination keys).
+
+**System capability**: SystemCapability.MultimodalInput.Input.InputSimulator
+
+**Parameters**
+
+| Name      | Type                   | Mandatory  | Description       |
+| -------- | --------------------- | ---- | --------- |
+| keyEvent | [KeyEventData](#keyeventdata11) | Yes   | Key event to inject.|
+
+**Example**
+
+```js
+try {
+  let backKeyDown: inputEventClient.KeyEvent = {
+    isPressed: true,
+    keyCode: 2,
+    keyDownDuration: 0,
+    isIntercepted: false
+  }
+
+  class EventDown {
+    KeyEvent: inputEventClient.KeyEvent | null = null
+  }
+
+  let eventDown: EventDown = { KeyEvent: backKeyDown }
+  inputEventClient.injectKeyEvent(eventDown);
+
+  let backKeyUp: inputEventClient.KeyEvent = {
+    isPressed: false,
+    keyCode: 2,
+    keyDownDuration: 0,
+    isIntercepted: false
+  };
+
+  class EventUp {
+    KeyEvent: inputEventClient.KeyEvent | null = null
+  }
+
+  let eventUp: EventUp = { KeyEvent: backKeyUp }
+  inputEventClient.injectKeyEvent(eventUp);
+} catch (error) {
+  console.log(`Failed to inject KeyEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
 ## inputEventClient.injectMouseEvent<sup>11+</sup>
 
 injectMouseEvent(mouseEvent: MouseEventData): void;
@@ -80,6 +129,8 @@ Injects a mouse/touchpad event.
 **Example**
 
 ```js
+import mouseEvent from '@ohos.multimodalInput.mouseEvent'
+
 try {
   let mouseButtonUpData: mouseEvent.MouseEvent = {
     id: 0,
@@ -154,7 +205,7 @@ catch (error) {
 
 ## inputEventClient.injectTouchEvent<sup>11+</sup>
 
-injectTouchEvent(touchEvent: TouchEventData): void;
+injectTouchEvent(touchEvent: TouchEventData): void
 
 Injects a touchscreen event.
 
@@ -169,6 +220,8 @@ Injects a touchscreen event.
 **Example**
 
 ```js
+import touchEvent from '@ohos.multimodalInput.touchEvent'
+
 try {
   let touchEvent: touchEvent.Touch = {
     id: 1,
@@ -231,7 +284,7 @@ try {
 
 ## KeyEvent
 
-Defines the key event to inject.
+Represents information about the key event to inject.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputSimulator
 
@@ -240,7 +293,17 @@ Defines the key event to inject.
 | isPressed       | boolean | Yes   |  No| Whether the key is pressed.<br>The value **true** indicates that the key is pressed, and the value **false** indicates the opposite.  |
 | keyCode         | number  | Yes   |  No| Keycode value. Currently, only the **KEYCODE_BACK** key is supported.|
 | keyDownDuration | number  | Yes   |  No| Duration for pressing a key, in μs.          |
-| isIntercepted   | boolean | Yes   |  No| Whether the key event can be intercepted.<br>The value **true** indicates that the key event can be intercepted, and the value **false** indicates the opposite.|
+| isIntercepted   | boolean | Yes   |  No| Whether the key can be intercepted.<br>The value **true** indicates that the key event can be intercepted, and the value **false** indicates the opposite.|
+
+## KeyEventData<sup>11+</sup>
+
+Represents information about the key event to inject.
+
+**System capability**: SystemCapability.MultimodalInput.Input.InputSimulator
+
+| Name       | Type  | Mandatory  | Description     |
+| --------- | ------ | ---- |  ------- |
+| keyEvent | [KeyEvent](#keyevent) | Yes   | Information about the key event to inject.  |
 
 ## MouseEventData<sup>11+</sup>
 
@@ -260,4 +323,4 @@ Defines the touchscreen event data.
 
 | Name       | Type  | Readable  | Writable  | Description     |
 | --------- | ------ | ---- | ---- | ------- |
-| touchEvent | [TouchEvent](../apis/js-apis-touchevent.md) | Yes   |  No| Touchscreen event data  |
+| touchEvent | [TouchEvent](../apis/js-apis-touchevent.md) | Yes   |  No| Touchscreen event data.  |

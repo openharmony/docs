@@ -176,7 +176,7 @@ Since API version 11, this API is supported in ArkTS widgets.
 Represents the locale options.
 
 Since API version 9, the attributes in **LocaleOptions** are optional.
-Since API version 11, **LocaleOptions** is supported in ArkTS widgets.
+Since API version 11, **DateTimeOptions** is supported in ArkTS widgets.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -470,7 +470,7 @@ Since API version 9, the attributes in **NumberOptions** are optional.
 | ------------------------ | ------- | ---- |  ---------------------------------------- |
 | locale                   | string  | No   | Locale, for example, **zh-Hans-CN**. The default value is the system locale.              |
 | currency                 | string  | No   | Currency unit, for example, **EUR**, **CNY**, or **USD**.        |
-| currencySign             | string  | No   | Currency unit symbol. The options are "standard" and "accounting". The default value is **standard**.|
+| currencySign             | string  | No   | Currency unit symbol. The value can be **standard** or **accounting**. The default value is **symbol**.|
 | currencyDisplay          | string  | No   | Currency display mode. The value can be **symbol**, **narrowSymbol**, **code**, or **name**. The default value is **symbol**.|
 | unit                     | string  | No   | Unit name, for example, **meter**, **inch**, or **hectare**.       |
 | unitDisplay              | string  | No   | Unit display format. The value can be **long**, **short**, or **narrow**. The default value is **short**.|
@@ -835,7 +835,7 @@ Represents the properties of a **RelativeTimeFormat** object.
 **System capability**: SystemCapability.Global.I18n
 
 | Name             | Type    | Mandatory  |Description                                      |
-| --------------- | ------ | ---- | ---- | ---------------------------------------- |
+| --------------- | ------ | ---- | ---------------------------------------- |
 | locale          | string | Yes   | A string containing locale information, including the language, optional script, and region.            |
 | numeric         | string | Yes   | Format of the output message. The value can be **always** or **auto**.     |
 | style           | string | Yes   | Length of an internationalized message. The value can be **long**, **short**, or **narrow**.|
