@@ -1,4 +1,4 @@
-# DRM会话管理(ArkTS)
+# 会话管理(ArkTS)
 
 DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可证申请与处理等。
 
