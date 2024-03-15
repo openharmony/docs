@@ -27,7 +27,7 @@ Socket 连接主要是通过 Socket 进行数据传输，支持 TCP/UDP/Multicas
 
 ## 接口说明
 
-完整的 JS API 说明以及实例代码请参考：[Socket 连接](../reference/apis-network-kit/js-apis-socket.md)。
+完整的 API 说明以及实例代码请参考：[Socket 连接](../reference/apis-network-kit/js-apis-socket.md)。
 
 Socket 连接主要由 socket 模块提供。具体接口说明如下表。
 

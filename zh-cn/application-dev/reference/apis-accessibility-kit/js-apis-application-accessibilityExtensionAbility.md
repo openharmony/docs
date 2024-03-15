@@ -252,7 +252,7 @@ class MyAccessibilityExtensionAbility extends AccessibilityExtensionAbility {
 
 onAccessibilityEvent(event: AccessibilityEvent): void;
 
-在关注的应用及事件类型对应的事件发生时回调此接口，可以在该方法中根据事件信息进行业务逻辑处理。一般情况下需要重写该方法完成业务。
+在关注的应用及事件类型对应的事件发生时回调此接口，可以在该方法中根据事件信息进行业务逻辑处理。一般情况下需要重写该方法完成业务。（目前暂不支持UIExtension组件和onTouch事件）
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -260,7 +260,7 @@ onAccessibilityEvent(event: AccessibilityEvent): void;
 
 | 参数名   | 类型                                       | 必填   | 说明              |
 | ----- | ---------------------------------------- | ---- | --------------- |
-| event | [AccessibilityEvent](#accessibilityevent) | 是    | 无障碍事件回调函数。无返回值。 |
+| event | [AccessibilityEvent](#accessibilityevent) | 是    | 无障碍事件回调函数。无返回值。<br>目前暂不支持UIExtension组件和onTouch事件 |
 
 **示例：**
 

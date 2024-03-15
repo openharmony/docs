@@ -109,7 +109,7 @@ The time passed in for obtaining the thumbnail may be different from the time of
 
 | Name                    | Value             | Description                                                        |
 | ------------------------ | --------------- | ------------------------------------------------------------ |
-| AV_IMAGE_QUERY_CLOSEST          | 3      | The frame (not necessarily a key frame) closest to the specified time is selected.<br>**System API**: This is a system API    |
+| AV_IMAGE_QUERY_CLOSEST          | 3      | The frame (not necessarily a key frame) closest to the specified time is selected.<br>**System API**: This is a system API.    |
 
 ## PixelMapParams<sup>11+</sup>
 
@@ -119,7 +119,7 @@ Defines the format parameters of the video thumbnail to be obtained.
 
 | Name    | Type  |  Readable  |   Writable   |  Description                  |
 | -------- | ------ |   ------| ------ | ---------------------- |
-| colorFormat  | [PixelFormat](#pixelformat11) |  Yes  |  Yes  | Color format of the thumbnail.<br>**System API**: This is a system API        |
+| colorFormat  | [PixelFormat](#pixelformat11) |  Yes  |  Yes  | Color format of the thumbnail.<br>**System API**: This is a system API.     |
 
 ## PixelFormat<sup>11+</sup>
 

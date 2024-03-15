@@ -234,7 +234,7 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
   if (previewOutput === undefined) {
     return;
   }
-  // Add the preview input stream to the session.
+  // Add the preview output stream to the session.
   try {
     videoSession.addOutput(previewOutput);
   } catch (error) {
