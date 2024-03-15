@@ -11,6 +11,8 @@
 > 本模块功能依赖UI的执行上下文，不可在UI上下文不明确的地方使用，参见[UIContext](js-apis-arkui-UIContext.md#uicontext)说明。
 >
 > 从API version 10开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getMediaQuery](js-apis-arkui-UIContext.md#getmediaquery)方法获取当前UI上下文关联的[MediaQuery](js-apis-arkui-UIContext.md#mediaquery)对象。
+>
+> 从API version 11开始，本模块部分接口支持在ArkTS卡片中使用。
 
 
 ## 导入模块
@@ -25,6 +27,8 @@ import mediaquery from '@ohos.mediaquery'
 matchMediaSync(condition: string): MediaQueryListener
 
 设置媒体查询的查询条件，并返回对应的监听句柄。
+
+从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -52,6 +56,8 @@ let listener:mediaquery.MediaQueryListener = mediaquery.matchMediaSync('(orienta
 
 媒体查询的句柄，并包含了申请句柄时的首次查询结果。媒体查询根据设置的条件语句，比如'(width <= 600vp)'，比较系统信息，若首次查询时相关信息未初始化，matches返回false。
 
+从API version 11开始，该接口支持在ArkTS卡片中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### 属性
@@ -67,6 +73,8 @@ let listener:mediaquery.MediaQueryListener = mediaquery.matchMediaSync('(orienta
 on(type: 'change', callback: Callback&lt;MediaQueryResult&gt;): void
 
 通过句柄向对应的查询条件注册回调，当媒体属性发生变更时会触发该回调。
+
+从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -87,6 +95,8 @@ on(type: 'change', callback: Callback&lt;MediaQueryResult&gt;): void
 off(type: 'change', callback?: Callback&lt;MediaQueryResult&gt;): void
 
 通过句柄向对应的查询条件取消注册回调，当媒体属性发生变更时不再触发指定的回调。
+
+从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -117,6 +127,8 @@ off(type: 'change', callback?: Callback&lt;MediaQueryResult&gt;): void
 ## MediaQueryResult
 
 用于执行媒体查询操作。
+
+从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
