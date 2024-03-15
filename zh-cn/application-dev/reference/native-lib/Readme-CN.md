@@ -7,6 +7,7 @@
 - [OpenSL ES](opensles.md)
 - [OpenGL ES](opengles.md)
 - [EGL](egl.md)
+- [ICU4C](icu4c.md)
 - [Zlib](zlib.md)
 - Vulkan
   - [Vulkan开发指导](vulkan-guidelines.md)
