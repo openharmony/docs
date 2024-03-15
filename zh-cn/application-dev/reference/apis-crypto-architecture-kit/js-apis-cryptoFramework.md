@@ -1117,6 +1117,47 @@ keyGenPromise.then(keyPair => {
 });
 ```
 
+### generateKeyPairSync<sup>12+</sup>
+
+generateKeyPairSync(): KeyPair
+
+同步获取该非对称密钥生成器随机生成的密钥。
+
+**系统能力：** SystemCapability.Security.CryptoFramework
+
+**返回值：**
+
+| 类型              | 说明                              |
+| ----------------- | --------------------------------- |
+| [KeyPair](#keypair) | 非对称密钥。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 401 | invalid parameters.          |
+| 17620001 | memory error.          |
+| 17630001 | crypto operation error.          |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator('ECC256');
+try {
+  let keyPairData = asyKeyGenerator.generateKeyPairSync();
+  if (keyPairData != null) {
+    console.info('[Sync]: key pair success');
+  } else {
+    console.error("[Sync]: get key pair result fail!");
+  }
+} catch (e) {
+  console.error(`sync error, ${e.code}, ${e.message}`);
+}
+```
+
 ### convertKey
 
 convertKey(pubKey: DataBlob | null, priKey: DataBlob | null, callback: AsyncCallback\<KeyPair\>): void
@@ -1205,6 +1246,58 @@ keyGenPromise.then(keyPair => {
 }).catch((error: BusinessError) => {
   console.error("convertKey error.");
 });
+```
+
+### convertKeySync<sup>12+</sup>
+
+convertKeySync(pubKey: DataBlob | null, priKey: DataBlob | null): KeyPair
+
+同步获取指定数据生成非对称密钥。详情请看下方**密钥转换说明**。
+
+**系统能力：** SystemCapability.Security.CryptoFramework
+
+**参数：**
+
+| 参数名   | 类型    | 必填 | 说明             |
+| ------ | -------- | ---- | ---------------- |
+| pubKey | [DataBlob](#datablob) \| null<sup>10+</sup> | 是   | 指定的公钥材料。如果公钥不需要转换，可直接传入null。API 10之前只支持DataBlob， API 10之后增加支持null。 |
+| priKey | [DataBlob](#datablob) \| null<sup>10+</sup> | 是   | 指定的私钥材料。如果私钥不需要转换，可直接传入null。API 10之前只支持DataBlob， API 10之后增加支持null。 |
+
+**返回值：**
+
+| 类型              | 说明                              |
+| ----------------- | --------------------------------- |
+| [KeyPair](#keypair) | 非对称密钥。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 401 | invalid parameters.          |
+| 17620001 | memory error.          |
+| 17630001 | crypto operation error.          |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let pubKeyArray = new Uint8Array([48, 89, 48, 19, 6, 7, 42, 134, 72, 206, 61, 2, 1, 6, 8, 42, 134, 72, 206, 61, 3, 1, 7, 3, 66, 0, 4, 83, 96, 142, 9, 86, 214, 126, 106, 247, 233, 92, 125, 4, 128, 138, 105, 246, 162, 215, 71, 81, 58, 202, 121, 26, 105, 211, 55, 130, 45, 236, 143, 55, 16, 248, 75, 167, 160, 167, 106, 2, 152, 243, 44, 68, 66, 0, 167, 99, 92, 235, 215, 159, 239, 28, 106, 124, 171, 34, 145, 124, 174, 57, 92]);
+let priKeyArray = new Uint8Array([48, 49, 2, 1, 1, 4, 32, 115, 56, 137, 35, 207, 0, 60, 191, 90, 61, 136, 105, 210, 16, 27, 4, 171, 57, 10, 61, 123, 40, 189, 28, 34, 207, 236, 22, 45, 223, 10, 189, 160, 10, 6, 8, 42, 134, 72, 206, 61, 3, 1, 7]);
+let pubKeyBlob: cryptoFramework.DataBlob = { data: pubKeyArray }; // 公钥二进制数据
+let priKeyBlob: cryptoFramework.DataBlob = { data: priKeyArray }; // 私钥二进制数据
+let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator('ECC256');
+try {
+  let keyPairData = asyKeyGenerator.convertKeySync(pubKeyBlob, priKeyBlob);
+  if (keyPairData != null) {
+    console.info('[Sync]: key pair success');
+  } else {
+    console.error("[Sync]: convert key pair result fail!");
+  }
+} catch (e) {
+  console.error(`sync error, ${e.code}, ${e.message}`);
+}
 ```
 
 **密钥转换说明**
@@ -1367,6 +1460,51 @@ keyGenPromise.then(keyPair => {
 });
 ```
 
+### generateKeyPairSync<sup>12+</sup>
+
+generateKeyPairSync(): KeyPair
+
+同步获取该非对称密钥生成器生成的密钥。
+
+当使用[COMMON_PARAMS_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以得到随机生成的密钥对；当使用[KEY_PAIR_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以得到各项数据与密钥参数一致的密钥对。
+
+**系统能力：** SystemCapability.Security.CryptoFramework
+
+**返回值：**
+
+| 类型              | 说明                              |
+| ----------------- | --------------------------------- |
+| [KeyPair](#keypair) | 非对称密钥。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 401 | invalid parameters.          |
+| 17620001 | memory error.          |
+| 17630001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let asyKeyPairSpec: cryptoFramework.DSAKeyPairSpec; // dsa as example, asyKeyPairSpec specifies full parameters contained in the private and public keys. The generation process is omitted here.
+let asyKeyGeneratorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(asyKeyPairSpec);
+try {
+  let keyPairData = asyKeyGeneratorBySpec.generateKeyPairSync();
+  if (keyPairData != null) {
+    console.info('[Sync]: key pair success');
+  } else {
+    console.error("[Sync]: get key pair result fail!");
+  }
+} catch (error) {
+  let e: BusinessError = error as BusinessError;
+  console.error(`sync error, ${e.code}, ${e.message}`);
+}
+```
+
 ### generatePriKey
 
 generatePriKey(callback: AsyncCallback\<PriKey>): void
@@ -1446,6 +1584,50 @@ keyGenPromise.then(priKey => {
 });
 ```
 
+### generatePriKeySync<sup>12+</sup>
+
+generatePriKeySync(): PriKey
+
+同步获取该非对称密钥生成器生成的密钥。
+
+当使用[PRIVATE_KEY_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以得到指定的私钥；当使用[KEY_PAIR_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以从生成的密钥对中获取指定的私钥。
+
+**系统能力：** SystemCapability.Security.CryptoFramework
+
+**返回值：**
+
+| 类型              | 说明                              |
+| ----------------- | --------------------------------- |
+| [PriKey](#prikey) | 非对称密钥。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 401 | invalid parameters.          |
+| 17620001 | memory error.          |
+| 17630001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let asyKeyPairSpec: cryptoFramework.DSAKeyPairSpec; // dsa as example, asyKeyPairSpec specifies full parameters contained in the private and public keys. The generation process is omitted here.
+let asyKeyGeneratorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(asyKeyPairSpec);
+try {
+  let priKeyData = asyKeyGeneratorBySpec.generatePriKeySync();
+  if (priKeyData != null) {
+    console.info('[Sync]: pri key success');
+  } else {
+    console.error("[Sync]: get pri key result fail!");
+  }
+} catch (e) {
+  console.error(`sync error, ${e.code}, ${e.message}`);
+}
+```
+
 ### generatePubKey
 
 generatePubKey(callback: AsyncCallback\<PubKey>): void
@@ -1523,6 +1705,50 @@ keyGenPromise.then(pubKey => {
 }).catch((error: BusinessError) => {
   console.error("generatePubKey error.");
 });
+```
+
+### generatePubKeySync<sup>12+</sup>
+
+generatePubKeySync(): PubKey
+
+同步获取该非对称密钥生成器生成的密钥。
+
+当使用[PUBLIC_KEY_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以得到指定的公钥；当使用[KEY_PAIR_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以从生成的密钥对中获取指定的公钥。
+
+**系统能力：** SystemCapability.Security.CryptoFramework
+
+**返回值：**
+
+| 类型              | 说明                              |
+| ----------------- | --------------------------------- |
+| [PubKey](#pubkey) | 非对称密钥。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 401 | invalid parameters.          |
+| 17620001 | memory error.          |
+| 17630001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let asyKeyPairSpec: cryptoFramework.DSAKeyPairSpec; // dsa as example, asyKeyPairSpec specifies full parameters contained in the private and public keys. The generation process is omitted here.
+let asyKeyGeneratorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(asyKeyPairSpec);
+try {
+  let pubKeyData = asyKeyGeneratorBySpec.generatePubKeySync();
+  if (pubKeyData != null) {
+    console.info('[Sync]: pub key success');
+  } else {
+    console.error("[Sync]: get pub key result fail!");
+  }
+} catch (e) {
+  console.error(`sync error, ${e.code}, ${e.message}`);
+}
 ```
 
 ## ECCKeyUtil<sup>11+</sup>
