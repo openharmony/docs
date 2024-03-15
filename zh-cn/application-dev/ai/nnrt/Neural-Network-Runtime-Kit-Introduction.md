@@ -12,7 +12,7 @@ AI推理框架和应用开发者也可以无需调用NNRt构图接口，直接�
 ## NNRt架构
 
 如图1所示，除了Native开放接口，NNRt软件架构包含如下几个功能模块：
-1. <b>在线构图</b>：AI推理框架需要调用NNRt的构图接口将推理框架的模型图转换为NNRt内部模型图。而系统内置的MindSpore Lite推理框架（具体可参考[MindSpore Lite Kit](mindspore-lite-guidelines.md)）通过MindIR模型图对接NNRt。由于MindIR模型图和NNRt内部模型图格式兼容，因此MindSpore Lite无需调用NNRt的构图接口即可对接NNRt。
+1. <b>在线构图</b>：AI推理框架需要调用NNRt的构图接口将推理框架的模型图转换为NNRt内部模型图。而系统内置的MindSpore Lite推理框架（具体可参考[MindSpore Lite Kit](../mindspore/mindspore-lite-guidelines.md)）通过MindIR模型图对接NNRt。由于MindIR模型图和NNRt内部模型图格式兼容，因此MindSpore Lite无需调用NNRt的构图接口即可对接NNRt。
 2. <b>模型编译</b>：NNRt内部模型图或离线模型文件需要通过NNRt的编译接口在底层AI硬件驱动上编译为硬件相关的模型对象，后续就可以在该硬件上执行模型推理。
 3. <b>模型推理</b>：基于已编译的模型对象创建执行器，设置推理的输入和输出张量，然后在AI硬件上执行模型推理。
 4. <b>内存管理</b>：推理的输入和输出张量需要包含对应的数据内存，该模块负责在AI硬件驱动上申请共享内存并赋给张量，并在张量销毁时释放对应共享内存。通过AI硬件驱动上的共享内存可以实现输入和输出数据的“零拷贝”，提升推理性能。
