@@ -152,7 +152,7 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so)
 
 下面展示了使用AVScreenCapture屏幕录制的完整示例代码。
 
-创建OH_AVBuffer,参考 [视频解码Buffer模式](../avcodec/video-decoding.md#buffer模式)。
+创建OH_AVBuffer,参考[视频解码Buffer模式](../avcodec/video-decoding.md#buffer模式)。
 
 使用Surface模式录屏,参考[Surface模式](../avcodec/video-encoding.md#surface模式)。
 
@@ -353,7 +353,7 @@ int main() {
     OH_AVScreenCapture_StopScreenCapture(capture);
     ```
 
-6. 调用release()方法销毁实例，释放资源。
+6. 调用Release()方法销毁实例，释放资源。
      
     ```c++
     OH_AVScreenCapture_Release(capture);
