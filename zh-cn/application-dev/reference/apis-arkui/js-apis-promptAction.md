@@ -411,6 +411,20 @@ openCustomDialog(options: CustomDialogOptions): Promise&lt;number&gt;
 | ------- | --------------------------------------------- | ---- | ------------------ |
 | options | [CustomDialogOptions](#customdialogoptions11) | 是   | 自定义弹窗的内容。 |
 
+## CustomDialogOptions<sup>12+</sup>对象说明
+
+| 名称                           | 参数类型                                     | 必填   | 描述                                     |
+| ----------------------------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| backgroundColor | [ResourceColor](arkui-ts/ts-types.md#resourcecolor)  | 否 | 设置弹窗背板颜色。 |
+| cornerRadius | [BorderRadiuses](arkui-ts/ts-types.md#borderradiuses9) \| [Dimension](arkui-ts/ts-types.md#dimension10)  | 否 | 设置背板的圆角半径。<br />可分别设置4个圆角的半径。<br />默认值：{ topLeft: '24vp', topRight: '24vp', bottomLeft: '24vp', bottomRight: '24vp' } |
+| borderWidth | [Dimension](arkui-ts/ts-types.md#dimension10)&nbsp;\|&nbsp;[EdgeWidths](arkui-ts/ts-types.md#edgewidths9)  | 否 | 设置弹窗背板的边框宽度。 |
+| borderColor | [ResourceColor](arkui-ts/ts-types.md#resourcecolor)&nbsp;\|&nbsp;[EdgeColors](arkui-ts/ts-types.md#edgecolors9)  | 否 | 设置弹窗背板的边框颜色。<br/>默认值：Color.Black<br/> 如果使用borderColor属性，需要和borderWidth属性一起使用。 |
+| borderStyle | [BorderStyle](arkui-ts/ts-appendix-enums.md#borderstyle)&nbsp;\|&nbsp;[EdgeStyles](arkui-ts/ts-types.md#edgestyles9)  | 否 | 设置弹窗背板的边框样式。<br/>默认值：BorderStyle.Solid<br/> 如果使用borderStyle属性，需要和borderWidth属性一起使用。 |
+| width | [Dimension](arkui-ts/ts-types.md#dimension10)   | 否 | 设置弹窗背板的宽度。<br>width和gridCount同时设置时，width优先。 |
+| height | [Dimension](arkui-ts/ts-types.md#dimension10)   | 否 | 设置弹窗背板的高度。|
+| shadow | [ShadowOptions](arkui-ts/ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;[ShadowStyle](arkui-ts/ts-universal-attributes-image-effect.md#shadowstyle10枚举说明)   | 否 | 设置弹窗背板的阴影。 |
+
+
 **返回值：**
 
 | 类型                  | 说明                                  |
