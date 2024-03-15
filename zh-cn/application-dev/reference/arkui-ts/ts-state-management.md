@@ -41,7 +41,7 @@ static Link(propName: string): any
 
 | 类型   | 描述                                       |
 | ---- | ---------------------------------------- |
-| any  | 返回双向绑定的数据，如果AppStorage不存在对应的propName，在返回undefined。 |
+| any  | 返回双向绑定的数据，如果AppStorage不存在对应的propName，则返回undefined。 |
 
 
 ```ts
@@ -98,7 +98,7 @@ static Prop(propName: string): any
 
 | 类型   | 描述                                       |
 | ---- | ---------------------------------------- |
-| any  | 返回单向绑定的数据，如果AppStorage不存在对应的propName，在返回undefined。 |
+| any  | 返回单向绑定的数据，如果AppStorage不存在对应的propName，则返回undefined。 |
 
 
 ```ts
@@ -607,7 +607,7 @@ prop&lt;S&gt;(propName: string): SubscribedAbstractProperty&lt;S&gt;
 
 | 类型                                  | 描述                                       |
 | ----------------------------------- | ---------------------------------------- |
-| SubscribedAbstractProperty&lt;S&gt; | SubscribedAbstractProperty&lt;S&gt;的实例，如果AppStorage不存在对应的propName，在返回undefined。 |
+| SubscribedAbstractProperty&lt;S&gt; | SubscribedAbstractProperty&lt;S&gt;的实例，如果AppStorage不存在对应的propName，则返回undefined。 |
 
 
 ```ts
