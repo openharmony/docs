@@ -106,6 +106,12 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so)
     OH_AVScreenCapture_StartScreenCapture(capture);
     ```
 
+    或调用StartScreenCaptureWithSurface方法以Surface模式进行屏幕录制。
+
+    ```c++
+    OH_AVScreenCapture_StartScreenCaptureWithSurface(capture, window);
+    ```	
+
 7. 调用StopScreenCapture()方法停止录制。
      
     ```c++
