@@ -5,6 +5,8 @@
 
 The **Drawing** module provides the functions for 2D graphics rendering, text drawing, and image display.
 
+This module does not provide the pixel unit. The pixel unit to use is consistent with the application context environment. In the ArkUI development environment, the default pixel unit vp is used. For details about the pixel unit, see [Pixel Units](../apis-arkui/arkui-ts/ts-pixel-units.md).
+
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **Since**: 8
@@ -31,11 +33,12 @@ The **Drawing** module provides the functions for 2D graphics rendering, text dr
 | [drawing_pen.h](drawing__pen_8h.md) | Declares the functions related to the pen in the drawing module.|
 | [drawing_point.h](drawing__point_8h.md) | Declares the functions related to the coordinate point in the drawing module.|
 | [drawing_rect.h](drawing__rect_8h.md) | Declares the functions related to the rectangle in the drawing module.|
+| [drawing_register_font.h](drawing__register__font_8h.md) | Declares the functions related to the font manager in the drawing module.| 
 | [drawing_round_rect.h](drawing__round__rect_8h.md) | Declares the functions related to the rounded rectangle in the drawing module.|
 | [drawing_shader_effect.h](drawing__shader__effect_8h.md) | Declares the functions related to the shader effect in the drawing module.|
 | [drawing_text_blob.h](drawing__text__blob_8h.md) | Declares the functions related to the text blob in the drawing module.|
 | [drawing_text_declaration.h](drawing__text__declaration_8h.md) | Declares the structs related to text in 2D drawing.|
-| [drawing_text_typography.h](drawing__text__typography_8h.md) | Declares the functions related to the typography in the drawing module.|
+| [drawing_text_typography.h](drawing__text__typography_8h.md) | Declares the functions related to typography in the drawing module.|
 | [drawing_typeface.h](drawing__typeface_8h.md) | Declares the functions related to the typeface in the drawing module. Different platforms have their own default typefaces. You can also parse the .ttf file to obtain the typefaces specified by the third party, such as SimSun and SimHei.|
 | [drawing_types.h](drawing__types_8h.md) | Declares the data types of the canvas, brush, pen, bitmap, and path used to draw 2D graphics.|
 
@@ -44,7 +47,7 @@ The **Drawing** module provides the functions for 2D graphics rendering, text dr
 
 | Name| Description|
 | -------- | -------- |
-| [OH_Drawing_BitmapFormat](_o_h___drawing___bitmap_format.md) | Defines the pixel format of a bitmap, including the color type and alpha type.|
+| [OH_Drawing_BitmapFormat](_o_h___drawing___bitmap_format.md) | Describes the pixel format of a bitmap, including the color type and alpha type.|
 | [OH_Drawing_RunBuffer](_o_h___drawing___run_buffer.md) | Describes a run, which provides storage for glyphs and positions.|
 | [OH_Drawing_PlaceholderSpan](_o_h___drawing___placeholder_span.md) | Describes a placeholder that acts as a span.|
 
@@ -53,31 +56,31 @@ The **Drawing** module provides the functions for 2D graphics rendering, text dr
 
 | Name| Description|
 | -------- | -------- |
-| [OH_Drawing_FontCollection](#oh_drawing_fontcollection) | Defines a font collection, which is used to load fonts.|
-| [OH_Drawing_Typography](#oh_drawing_typography) | Used to manage the typography layout and display.|
-| [OH_Drawing_TextStyle](#oh_drawing_textstyle) | Used to manage text colors and decorations.|
-| [OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) | Defines the typography style, such as the text direction.|
-| [OH_Drawing_TypographyCreate](#oh_drawing_typographycreate) | Used to create an [OH_Drawing_Typography](#oh_drawing_typography).|
-| [OH_Drawing_TextBox](#oh_drawing_textbox) | Defines a text box, which is used to receive the rectangle size, direction, and quantity.|
-| [OH_Drawing_PositionAndAffinity](#oh_drawing_positionandaffinity) | Used to receive the position and affinity of the graph.|
-| [OH_Drawing_Range](#oh_drawing_range) | Defines a range, which is used to receive the start position and end position of the font.|
-| [OH_Drawing_Canvas](#oh_drawing_canvas) | Defines a rectangular canvas on which various shapes, images, and texts can be drawn by using the brush and pen.|
-| [OH_Drawing_Pen](#oh_drawing_pen) | Defines a pen, which is used to describe the style and color to outline a shape.|
-| [OH_Drawing_Brush](#oh_drawing_brush) | Defines a brush, which is used to describe the style and color to fill in a shape.|
-| [OH_Drawing_Path](#oh_drawing_path) | Defines a path, which is used to customize various shapes.|
-| [OH_Drawing_Bitmap](#oh_drawing_bitmap) | Defines a bitmap, which is a memory area that contains the pixel data of a shape.|
-| [OH_Drawing_Point](#oh_drawing_point) | Defines a coordinate point.|
-| [OH_Drawing_Rect](#oh_drawing_rect) | Defines a rectangle.|
-| [OH_Drawing_RoundRect](#oh_drawing_roundrect) | Defines a rounded rectangle.|
-| [OH_Drawing_Matrix](#oh_drawing_matrix) | Defines a matrix, which is used to describe coordinate transformation.|
-| [OH_Drawing_ShaderEffect](#oh_drawing_shadereffect) | Defines a shader effect, which is used to describe the source color of the drawn content.|
-| [OH_Drawing_Filter](#oh_drawing_filter) | Defines a filter, which consists of a color filter and mask filter.|
-| [OH_Drawing_MaskFilter](#oh_drawing_maskfilter) | Defines a mask filter, which is used to convert a mask into a new one.|
-| [OH_Drawing_ColorFilter](#oh_drawing_colorfilter) | Defines a color filter, which is used to convert a color into a new one.|
-| [OH_Drawing_Font](#oh_drawing_font) | Defines a font.|
-| [OH_Drawing_Typeface](#oh_drawing_typeface) | Defines a typeface.|
-| [OH_Drawing_TextBlob](#oh_drawing_textblob) | Defines a text blob, which is an immutable container that holds multiple texts. Each text line consists of a glyph and position.|
-| [OH_Drawing_TextBlobBuilder](#oh_drawing_textblobbuilder) | Defines a text blob builder, which is used to build a text blob.|
+| [OH_Drawing_FontCollection](#oh_drawing_fontcollection) | Defines a struct used to load fonts.|
+| [OH_Drawing_Typography](#oh_drawing_typography) | Defines a struct used to manage the typography layout and display.|
+| [OH_Drawing_TextStyle](#oh_drawing_textstyle) | Defines a struct used to manage text colors and decorations.|
+| [OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) | Defines a struct used to manage the typography style, such as the text direction.|
+| [OH_Drawing_TypographyCreate](#oh_drawing_typographycreate) | Defines a struct used to create an [OH_Drawing_Typography](#oh_drawing_typography) object.|
+| [OH_Drawing_TextBox](#oh_drawing_textbox) | Defines a struct for a text box, which is used to receive the rectangle size, direction, and quantity.|
+| [OH_Drawing_PositionAndAffinity](#oh_drawing_positionandaffinity) | Defines a struct used to receive the position and affinity of the graph.|
+| [OH_Drawing_Range](#oh_drawing_range) | Defines a struct for a range, which is used to receive the start position and end position of the font.|
+| [OH_Drawing_Canvas](#oh_drawing_canvas) | Defines a struct for a rectangular canvas, on which various shapes, images, and texts can be drawn by using the brush and pen.|
+| [OH_Drawing_Pen](#oh_drawing_pen) | Defines a struct for a pen, which is used to describe the style and color to outline a shape.|
+| [OH_Drawing_Brush](#oh_drawing_brush) | Defines a struct for a brush, which is used to describe the style and color to fill in a shape.|
+| [OH_Drawing_Path](#oh_drawing_path) | Defines a struct for a path, which is used to customize various shapes.|
+| [OH_Drawing_Bitmap](#oh_drawing_bitmap) | Defines a struct for a bitmap, which is a memory area that contains the pixel data of a shape.|
+| [OH_Drawing_Point](#oh_drawing_point) | Defines a struct for a coordinate point.|
+| [OH_Drawing_Rect](#oh_drawing_rect) | Defines a struct for a rectangle.|
+| [OH_Drawing_RoundRect](#oh_drawing_roundrect) | Defines a struct for a rounded rectangle.|
+| [OH_Drawing_Matrix](#oh_drawing_matrix) | Defines a struct for a matrix, which is used to describe coordinate transformation.|
+| [OH_Drawing_ShaderEffect](#oh_drawing_shadereffect) | Defines a struct for a shader effect, which is used to describe the source color of the drawn content.|
+| [OH_Drawing_Filter](#oh_drawing_filter) | Defines a struct for a filter, which consists of a color filter and mask filter.|
+| [OH_Drawing_MaskFilter](#oh_drawing_maskfilter) | Defines a struct for a mask filter, which is used to convert a mask into a new one.|
+| [OH_Drawing_ColorFilter](#oh_drawing_colorfilter) | Defines a struct for a color filter, which is used to convert a color into a new one.|
+| [OH_Drawing_Font](#oh_drawing_font) | Defines a struct for a font.|
+| [OH_Drawing_Typeface](#oh_drawing_typeface) | Defines a struct for a typeface.|
+| [OH_Drawing_TextBlob](#oh_drawing_textblob) | Defines a struct for a text blob, an immutable container that holds multiple texts. Each text blob consists of glyphs and position.|
+| [OH_Drawing_TextBlobBuilder](#oh_drawing_textblobbuilder) | Defines a struct for a text blob builder, which is used to build a text blob.|
 
 ### Enums
 
@@ -197,11 +200,15 @@ The **Drawing** module provides the functions for 2D graphics rendering, text dr
 | void [OH_Drawing_PenSetCap](#oh_drawing_pensetcap) ([OH_Drawing_Pen](#oh_drawing_pen) \*, [OH_Drawing_PenLineCapStyle](#oh_drawing_penlinecapstyle)) | Sets the line cap style for a pen.|
 | [OH_Drawing_PenLineJoinStyle](#oh_drawing_penlinejoinstyle)[OH_Drawing_PenGetJoin](#oh_drawing_pengetjoin) (const [OH_Drawing_Pen](#oh_drawing_pen) \*) | Obtains the line join style of a pen.|
 | void [OH_Drawing_PenSetJoin](#oh_drawing_pensetjoin) ([OH_Drawing_Pen](#oh_drawing_pen) \*, [OH_Drawing_PenLineJoinStyle](#oh_drawing_penlinejoinstyle)) | Sets the line join style for a pen.|
+| void [OH_Drawing_PenSetShaderEffect](#oh_drawing_pensetshadereffect) ([OH_Drawing_Pen](#oh_drawing_pen) \*, [OH_Drawing_ShaderEffect](#oh_drawing_shadereffect) \*) | Sets the shader effect for a pen.|
+| void [OH_Drawing_PenSetFilter](#oh_drawing_pensetfilter) ([OH_Drawing_Pen](#oh_drawing_pen) \*, [OH_Drawing_Filter](#oh_drawing_filter) \*) | Sets a filter for a pen.|
 | [OH_Drawing_Point](#oh_drawing_point) \* [OH_Drawing_PointCreate](#oh_drawing_pointcreate) (float x, float y) | Creates an **OH_Drawing_Point** object.|
 | void [OH_Drawing_PointDestroy](#oh_drawing_pointdestroy) ([OH_Drawing_Point](#oh_drawing_point) \*) | Destroys an **OH_Drawing_Point** object and reclaims the memory occupied by the object.|
 | [OH_Drawing_Rect](#oh_drawing_rect) \* [OH_Drawing_RectCreate](#oh_drawing_rectcreate) (float left, float top, float right, float bottom) | Creates an **OH_Drawing_Rect** object.|
 | void [OH_Drawing_RectDestroy](#oh_drawing_rectdestroy) ([OH_Drawing_Rect](#oh_drawing_rect) \*) | Destroys an **OH_Drawing_Rect** object and reclaims the memory occupied by the object.|
 | [OH_Drawing_RoundRect](#oh_drawing_roundrect) \* [OH_Drawing_RoundRectCreate](#oh_drawing_roundrectcreate) (const [OH_Drawing_Rect](#oh_drawing_rect) \*, float xRad, float yRad) | Creates an **OH_Drawing_RoundRect** object.|
+| uint32_t [OH_Drawing_RegisterFont](#oh_drawing_registerfont) ([OH_Drawing_FontCollection](#oh_drawing_fontcollection) \*, const char \*fontFamily, const char \*familySrc) | Registers a custom font with the font manager.| 
+| uint32_t [OH_Drawing_RegisterFontBuffer](#oh_drawing_registerfontbuffer) ([OH_Drawing_FontCollection](#oh_drawing_fontcollection) \*, const char \*fontFamily, uint8_t \*fontBuffer, size_t length) | Registers a font buffer with the font manager.| 
 | void [OH_Drawing_RoundRectDestroy](#oh_drawing_roundrectdestroy) ([OH_Drawing_RoundRect](#oh_drawing_roundrect) \*) | Destroys an **OH_Drawing_RoundRect** object and reclaims the memory occupied by the object.|
 | [OH_Drawing_ShaderEffect](#oh_drawing_shadereffect) \* [OH_Drawing_ShaderEffectCreateLinearGradient](#oh_drawing_shadereffectcreatelineargradient) (const [OH_Drawing_Point](#oh_drawing_point) \*startPt, const [OH_Drawing_Point](#oh_drawing_point) \*endPt, const uint32_t \*colors, const float \*pos, uint32_t size, [OH_Drawing_TileMode](#oh_drawing_tilemode)) | Creates an **OH_Drawing_ShaderEffect** object that generates a linear gradient between two points.|
 | [OH_Drawing_ShaderEffect](#oh_drawing_shadereffect) \* [OH_Drawing_ShaderEffectCreateRadialGradient](#oh_drawing_shadereffectcreateradialgradient) (const [OH_Drawing_Point](#oh_drawing_point) \*centerPt, float radius, const uint32_t \*colors, const float \*pos, uint32_t size, [OH_Drawing_TileMode](#oh_drawing_tilemode)) | Creates an **OH_Drawing_ShaderEffect** object that generates a radial gradient based on the center and radius of a circle. The radial gradient transitions colors from the center to the ending shape in a radial manner.|
@@ -275,11 +282,11 @@ The **Drawing** module provides the functions for 2D graphics rendering, text dr
 | void [OH_Drawing_SetTypographyTextEllipsisModal](#oh_drawing_settypographytextellipsismodal) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*, int) | Sets the ellipsis style for text.|
 | double [OH_Drawing_TypographyGetLineHeight](#oh_drawing_typographygetlineheight) ([OH_Drawing_Typography](#oh_drawing_typography) \*, int) | Obtains the height of a line.|
 | double [OH_Drawing_TypographyGetLineWidth](#oh_drawing_typographygetlinewidth) ([OH_Drawing_Typography](#oh_drawing_typography) \*, int) | Obtains the width of a line.|
-| [OH_Drawing_Typeface](#oh_drawing_typeface) \* [OH_Drawing_TypefaceCreateDefault](#oh_drawing_typefacecreatedefault) (void) | Creates an **OH_Drawing_Typeface** object, which defines the default font.|
+| [OH_Drawing_Typeface](#oh_drawing_typeface) \* [OH_Drawing_TypefaceCreateDefault](#oh_drawing_typefacecreatedefault) (void) | Creates a default **OH_Drawing_Typeface** object.|
 | void [OH_Drawing_TypefaceDestroy](#oh_drawing_typefacedestroy) ([OH_Drawing_Typeface](#oh_drawing_typeface) \*) | Destroys an **OH_Drawing_Typeface** object and reclaims the memory occupied by the object.|
 | void [OH_Drawing_CanvasClipRect](#oh_drawing_canvascliprect) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*, const [OH_Drawing_Rect](#oh_drawing_rect) \*, [OH_Drawing_CanvasClipOp](#oh_drawing_canvasclipop) clipOp, bool doAntiAlias) | Clips a rectangle.|
 | void [OH_Drawing_CanvasClipPath](#oh_drawing_canvasclippath) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*, const [OH_Drawing_Path](#oh_drawing_path) \*, [OH_Drawing_CanvasClipOp](#oh_drawing_canvasclipop) clipOp, bool doAntiAlias) | Clips a path.|
-| void [OH_Drawing_CanvasRotate](#oh_drawing_canvasrotate) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*, float degrees, float px, float py) | Rotates a canvas by a given angle. A positive number indicates clockwise rotation, and a negative number indicates clockwise rotation.|
+| void [OH_Drawing_CanvasRotate](#oh_drawing_canvasrotate) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*, float degrees, float px, float py) | Rotates a canvas by a given angle. A positive number indicates a clockwise rotation, and a negative number indicates a counterclockwise rotation.|
 | void [OH_Drawing_CanvasTranslate](#oh_drawing_canvastranslate) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*, float dx, float dy) | Translates a canvas by a given distance.|
 | void [OH_Drawing_CanvasScale](#oh_drawing_canvasscale) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*, float sx, float sy) | Scales a canvas.|
 | void [OH_Drawing_CanvasClear](#oh_drawing_canvasclear) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*, uint32_t color) | Clears a canvas by using a given color.|
@@ -295,7 +302,7 @@ typedef struct OH_Drawing_Bitmap OH_Drawing_Bitmap
 
 **Description**
 
-Defines a bitmap, which is a memory area that contains the pixel data of a shape.
+Defines a struct for a bitmap, which is a memory area that contains the pixel data of a shape.
 
 **Since**: 8
 
@@ -308,7 +315,7 @@ typedef struct OH_Drawing_Brush OH_Drawing_Brush
 
 **Description**
 
-Defines a brush, which is used to describe the style and color to fill in a shape.
+Defines a struct for a brush, which is used to describe the style and color to fill in a shape.
 
 **Since**: 8
 
@@ -321,7 +328,7 @@ typedef struct OH_Drawing_Canvas OH_Drawing_Canvas
 
 **Description**
 
-Defines a rectangular canvas on which various shapes, images, and texts can be drawn by using the brush and pen.
+Defines a struct for a rectangular canvas, on which various shapes, images, and texts can be drawn by using the brush and pen.
 
 **Since**: 8
 
@@ -334,7 +341,7 @@ typedef struct OH_Drawing_ColorFilter OH_Drawing_ColorFilter
 
 **Description**
 
-Defines a color filter, which is used to convert a color into a new one.
+Defines a struct for a color filter, which is used to convert a color into a new one.
 
 **Since**: 11
 
@@ -347,7 +354,7 @@ typedef struct OH_Drawing_Filter OH_Drawing_Filter
 
 **Description**
 
-Defines a filter, which consists of a color filter and mask filter.
+Defines a struct for a filter, which consists of a color filter and mask filter.
 
 **Since**: 11
 
@@ -360,7 +367,7 @@ typedef struct OH_Drawing_Font OH_Drawing_Font
 
 **Description**
 
-Defines a font.
+Defines a struct for a font.
 
 **Since**: 11
 
@@ -373,7 +380,7 @@ typedef struct OH_Drawing_FontCollection OH_Drawing_FontCollection
 
 **Description**
 
-Defines a font collection, which is used to load fonts.
+Defines a struct used to load fonts.
 
 **Since**: 8
 
@@ -386,7 +393,7 @@ typedef struct OH_Drawing_MaskFilter OH_Drawing_MaskFilter
 
 **Description**
 
-Defines a mask filter, which is used to convert a mask into a new one.
+Defines a struct for a mask filter, which is used to convert a mask into a new one.
 
 **Since**: 11
 
@@ -399,7 +406,7 @@ typedef struct OH_Drawing_MatrixOH_Drawing_Matrix
 
 **Description**
 
-Defines a matrix, which is used to describe coordinate transformation.
+Defines a struct for a matrix, which is used to describe coordinate transformation.
 
 **Since**: 11
 
@@ -412,7 +419,7 @@ typedef struct OH_Drawing_PathOH_Drawing_Path
 
 **Description**
 
-Defines a path, which is used to customize various shapes.
+Defines a struct for a path, which is used to customize various shapes.
 
 **Since**: 8
 
@@ -425,7 +432,7 @@ typedef struct OH_Drawing_Pen OH_Drawing_Pen
 
 **Description**
 
-Defines a pen, which is used to describe the style and color to outline a shape.
+Defines a struct for a pen, which is used to describe the style and color to outline a shape.
 
 **Since**: 8
 
@@ -438,7 +445,7 @@ typedef struct OH_Drawing_Point OH_Drawing_Point
 
 **Description**
 
-Defines a coordinate point.
+Defines a struct for a coordinate point.
 
 **Since**: 11
 
@@ -451,7 +458,7 @@ typedef struct OH_Drawing_PositionAndAffinity OH_Drawing_PositionAndAffinity
 
 **Description**
 
-Used to receive the position and affinity of the graph.
+Defines a struct used to receive the position and affinity of the graph.
 
 **Since**: 11
 
@@ -464,7 +471,7 @@ typedef struct OH_Drawing_Range OH_Drawing_Range
 
 **Description**
 
-Defines a range, which is used to receive the start position and end position of the font.
+Defines a struct for a range, which is used to receive the start position and end position of the font.
 
 **Since**: 11
 
@@ -477,7 +484,7 @@ typedef struct OH_Drawing_Rect OH_Drawing_Rect
 
 **Description**
 
-Defines a rectangle.
+Defines a struct for a rectangle.
 
 **Since**: 11
 
@@ -490,7 +497,7 @@ typedef struct OH_Drawing_RoundRect OH_Drawing_RoundRect
 
 **Description**
 
-Defines a rounded rectangle.
+Defines a struct for a rounded rectangle.
 
 **Since**: 11
 
@@ -503,7 +510,7 @@ typedef struct OH_Drawing_ShaderEffectOH_Drawing_ShaderEffect
 
 **Description**
 
-Defines a shader effect, which is used to describe the source color of the drawn content.
+Defines a struct for a shader effect, which is used to describe the source color of the drawn content.
 
 **Since**: 11
 
@@ -516,7 +523,7 @@ typedef struct OH_Drawing_TextBlobOH_Drawing_TextBlob
 
 **Description**
 
-Defines a text blob, which is an immutable container that holds multiple texts. Each text line consists of a glyph and position.
+Defines a struct for a text blob, an immutable container that holds multiple texts. Each text blob consists of glyphs and position.
 
 **Since**: 11
 
@@ -529,7 +536,7 @@ typedef struct OH_Drawing_TextBlobBuilderOH_Drawing_TextBlobBuilder
 
 **Description**
 
-Defines a text blob builder, which is used to build a text blob.
+Defines a struct for a text blob builder, which is used to build a text blob.
 
 **Since**: 11
 
@@ -542,7 +549,7 @@ typedef struct OH_Drawing_TextBoxOH_Drawing_TextBox
 
 **Description**
 
-Defines a text box, which is used to receive the rectangle size, direction, and quantity.
+Defines a struct for a text box, which is used to receive the rectangle size, direction, and quantity.
 
 **Since**: 11
 
@@ -555,7 +562,7 @@ typedef struct OH_Drawing_TextStyleOH_Drawing_TextStyle
 
 **Description**
 
-Used to manage text colors and decorations.
+Defines a struct used to manage text colors and decorations.
 
 **Since**: 8
 
@@ -568,7 +575,7 @@ typedef struct OH_Drawing_TypefaceOH_Drawing_Typeface
 
 **Description**
 
-Defines a typeface.
+Defines a struct for a typeface.
 
 **Since**: 11
 
@@ -581,7 +588,7 @@ typedef struct OH_Drawing_TypographyOH_Drawing_Typography
 
 **Description**
 
-Used to manage the typography layout and display.
+Defines a struct used to manage the typography layout and display.
 
 **Since**: 8
 
@@ -594,7 +601,7 @@ typedef struct OH_Drawing_TypographyCreateOH_Drawing_TypographyCreate
 
 **Description**
 
-Used to create an [OH_Drawing_Typography](#oh_drawing_typography).
+Defines a struct used to create an [OH_Drawing_Typography](#oh_drawing_typography) object.
 
 **Since**: 8
 
@@ -607,7 +614,7 @@ typedef struct OH_Drawing_TypographyStyleOH_Drawing_TypographyStyle
 
 **Description**
 
-Defines the typography style, such as the text direction.
+Defines a struct used to manage the typography style, such as the text direction.
 
 **Since**: 8
 
@@ -1935,7 +1942,7 @@ void OH_Drawing_CanvasRotate (OH_Drawing_Canvas * , float degrees, float px, flo
 
 **Description**
 
-Rotates a canvas by a given angle. A positive number indicates clockwise rotation, and a negative number indicates clockwise rotation.
+Rotates a canvas by a given angle. A positive number indicates a clockwise rotation, and a negative number indicates a counterclockwise rotation.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -3530,6 +3537,27 @@ Sets the color for a pen. The color is used by the pen to outline a shape.
 | OH_Drawing_Pen | Pointer to an **OH_Drawing_Pen** object.|
 | color | Color, which is a 32-bit (ARGB) variable.|
 
+### OH_Drawing_PenSetFilter()
+
+```
+void OH_Drawing_PenSetFilter (OH_Drawing_Pen* , OH_Drawing_Filter*  )
+```
+
+**Description**
+
+Sets a filter for a pen.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 11
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| OH_Drawing_Pen | Pointer to an [OH_Drawing_Pen](#oh_drawing_pen) object.|
+| OH_Drawing_Filter | Pointer to an [OH_Drawing_Filter](#oh_drawing_filter) object.|
+
 
 ### OH_Drawing_PenSetJoin()
 
@@ -3574,6 +3602,26 @@ Sets the stroke miter limit for a polyline drawn by a pen. When the corner type 
 | OH_Drawing_Pen | Pointer to an **OH_Drawing_Pen** object.|
 | miter | Stroke miter limit, which is a variable.|
 
+### OH_Drawing_PenSetShaderEffect()
+
+```
+void OH_Drawing_PenSetShaderEffect (OH_Drawing_Pen* , OH_Drawing_ShaderEffect*  )
+```
+
+**Description**
+
+Sets the shader effect for a pen.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 11
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| OH_Drawing_Pen | Pointer to an [OH_Drawing_Pen](#oh_drawing_pen) object.|
+| OH_Drawing_ShaderEffect | Pointer to an [OH_Drawing_ShaderEffect](#oh_drawing_shadereffect) object.|
 
 ### OH_Drawing_PenSetWidth()
 
@@ -3740,6 +3788,59 @@ Destroys an **OH_Drawing_RoundRect** object and reclaims the memory occupied by 
 | -------- | -------- |
 | OH_Drawing_RoundRect | Pointer to an **OH_Drawing_RoundRect** object.|
 
+### OH_Drawing_RegisterFont()
+
+```
+uint32_t OH_Drawing_RegisterFont (OH_Drawing_FontCollection* , const char* fontFamily, const char* familySrc )
+```
+
+**Description**
+
+Registers a custom font with the font manager.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 11
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| OH_Drawing_FontCollection | Pointer to an [OH_Drawing_FontCollection](#oh_drawing_fontcollection) object.| 
+| fontFamily | Pointer to the family name of the font to register.| 
+| familySrc | Pointer to the path of the font file.| 
+
+**Returns**
+
+Returns **0** if the font is registered; returns **1** if the file does not exist; returns **2** if the file fails to be opened; returns **3** if the file fails to be read; returns **4** if the file fails to be found; returns **5** if the file size fails to be obtained.
+
+
+### OH_Drawing_RegisterFontBuffer()
+
+```
+uint32_t OH_Drawing_RegisterFontBuffer (OH_Drawing_FontCollection* , const char* fontFamily, uint8_t* fontBuffer, size_t length )
+```
+
+**Description**
+
+Registers a font buffer with the font manager.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 11
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| OH_Drawing_FontCollection | Pointer to an [OH_Drawing_FontCollection](#oh_drawing_fontcollection) object.| 
+| fontFamily | Pointer to the family name of the font to register.| 
+| fontBuffer | Pointer to the buffer of the font file.| 
+| length | Length of the font file.| 
+
+**Returns**
+
+Returns **0** if the font is registered; returns **6** if the buffer size is zero; returns **7** if the font set is empty.
 
 ### OH_Drawing_SetTextStyleBaseLine()
 
@@ -4476,7 +4577,7 @@ OH_Drawing_Typeface* OH_Drawing_TypefaceCreateDefault (void )
 
 **Description**
 
-Creates an **OH_Drawing_Typeface** object, which defines the default font.
+Creates a default **OH_Drawing_Typeface** object.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -4721,7 +4822,7 @@ double OH_Drawing_TypographyGetLineWidth (OH_Drawing_Typography * , int  )
 
 **Description**
 
-Obtains the width of a given line.
+Obtains the width of a line.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -4747,7 +4848,7 @@ double OH_Drawing_TypographyGetLongestLine (OH_Drawing_Typography * )
 
 **Description**
 
-Obtains the longest line.
+Obtains the width of the longest line. You are advised to round up the return value in actual use. When the text content is empty, the minimum float value, that is, -340282346638528859811704183484516925440.000000, is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -4761,7 +4862,7 @@ Obtains the longest line.
 
 **Returns**
 
-Returns the longest line.
+Returns the width of the longest line.
 
 
 ### OH_Drawing_TypographyGetMaxIntrinsicWidth()
