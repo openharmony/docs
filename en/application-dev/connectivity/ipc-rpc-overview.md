@@ -3,7 +3,7 @@
 
 ## Basic Concepts
 
-The inter-process communication (IPC) and remote procedure call (RPC) mechanisms are used to implement cross-process communication. The difference between them lies in that IPC uses the Binder driver to implement cross-process communication within a device, whereas RPC uses the DSoftBus driver to implement cross-process communication across devices. The reason why cross-process communication is needed is that each process has its own independent resources and memory space and one process is not allowed to access the resources and memory space of other processes.
+Inter-process communication (IPC) and remote procedure call (RPC) are used to implement cross-process communication. IPC uses the Binder driver to implement cross-process communication within a device, whereas RPC uses the DSoftBus driver to implement cross-process communication across devices. Cross-process communication is required because each process has its own independent resources and memory space and one process is not allowed to access the resources and memory space of other processes.
 
 > **NOTE**
 > The applications in the stage model cannot use IPC or RPC directly, and must use the following capabilities to implement related service scenarios:

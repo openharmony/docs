@@ -14,11 +14,21 @@ Not supported
 
 ## APIs
 
-Radio(options: {value: string, group: string})
+Radio(options: RadioOptions)
 
-Since API version 9, this API is supported in ArkTS widgets.
+Creates a radio button.
+
+**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
+
+| Name | Type                                 | Mandatory| Description              |
+| ------- | ------------------------------------- | ---- | ------------------ |
+| options | [RadioOptions](#radiooptions) | No  | Parameters of the radio button.|
+
+## RadioOptions
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -32,7 +42,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | Name| Type| Description|
 | -------- | -------- | -------- |
 | checked | boolean | Whether the radio button is selected.<br>Default value: **false**<br>Since API version 9, this API is supported in ArkTS widgets.<br>Since API version 10, this attribute supports [$$](../../quick-start/arkts-two-way-sync.md) for two-way binding of variables.|
-| radioStyle<sup>10+</sup> | [RadioStyle](#radiostyle) | Style of the radio button in selected or deselected state.<br>Since API version 10, this API is supported in ArkTS widgets.|
+| radioStyle<sup>10+</sup> | [RadioStyle](#radiostyle10) | Style of the radio button in selected or deselected state.<br>Since API version 10, this API is supported in ArkTS widgets.|
 
 ## Events
 
@@ -42,7 +52,7 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 | -------- | -------- |
 | onChange(callback: (isChecked: boolean) => void) | Triggered when the selected state of the radio button changes.<br> - If **isChecked** is **true**, it indicates that the radio button changes from unselected to selected.<br> - If **isChecked** is **false**, it indicates that the radio button changes from selected to unselected.<br>Since API version 9, this API is supported in ArkTS widgets.|
 
-## RadioStyle
+## RadioStyle<sup>10+</sup>
 
 | Name                  | Type                                      | Mandatory| Default Value | Description                  |
 | ---------------------- | ------------------------------------------ | ---- | ------- | ---------------------- |

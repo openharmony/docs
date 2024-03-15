@@ -56,7 +56,7 @@ Called when an exception occurs during the application running.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| errObject | Error | Yes| Event name, message, and error stack of the exception.|
+| errObject | Error | No| Event name, message, and error stack of the exception.|
 
 **Example**
 

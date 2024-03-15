@@ -16,12 +16,11 @@ You can bind a full-screen modal to a component through the **bindContentCover**
 | ---------------- | ---------------------------------------- | ---------------------------------------- |
 | bindContentCover | isShow: boolean,<br>builder: [CustomBuilder](ts-types.md#custombuilder8),<br>options?: [ContentCoverOptions](#contentcoveroptions) | Binds a modal to the component, which can be displayed when the component is touched. The content of the modal is customizable. The transition type can be set to none, slide-up and slide-down animation, and opacity gradient animation.<br> **isShow**: whether to display the modal.<br>Since API version 10, this parameter supports two-way binding through [$$](../../quick-start/arkts-two-way-sync.md).<br>**builder**: content of the modal.<br> **options**: optional attributes of the modal.|
 ## ContentCoverOptions
+
+Inherited from [BindOptions](ts-universal-attributes-sheet-transition.md#bindoptions).
 | Name             | Type                                      | Mandatory  | Description           |
 | --------------- | ---------------------------------------- | ---- | ------------- |
 | modalTransition | [ModalTransition](ts-types.md#modaltransition10) | No   | Transition mode of the modal. |
-| backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | No   | Background color of the modal. |
-| onAppear        | () => void                               | No   | Callback invoked when the modal appears.|
-| onDisappear     | () => void                               | No   | Callback invoked when the modal disappears.|
 
 ## Example
 

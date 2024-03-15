@@ -14,17 +14,25 @@ Not supported
 
 ## APIs
 
-DatePicker(options?: {start?: Date, end?: Date, selected?: Date})
+DatePicker(options?: DatePickerOptions)
 
 Creates a date picker in the given date range.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
-| Name  | Type| Mandatory| Description                                                    |
-| -------- | -------- | ---- | ------------------------------------------------------------ |
-| start    | Date     | No  | Start date of the picker.<br>Default value: **Date('1970-1-1')**         |
-| end      | Date     | No  | End date of the picker.<br>Default value: **Date('2100-12-31')**       |
-| selected | Date     | No  | Date of the selected item.<br>Default value: current system date<br>Since API version 10, this parameter supports [$$](../../quick-start/arkts-two-way-sync.md) for two-way binding of variables.|
+| Name | Type                                           | Mandatory| Description                      |
+| ------- | ----------------------------------------------- | ---- | -------------------------- |
+| options | [DatePickerOptions](#datepickeroptions) | No  | Parameters of the date picker.|
+
+## DatePickerOptions
+
+| Name    | Type| Mandatory| Description                                                        |
+| -------- | ---- | ---- | ------------------------------------------------------------ |
+| start    | Date | No  | Start date of the picker.<br>Default value: **Date('1970-1-1')**         |
+| end      | Date | No  | End date of the picker.<br>Default value: **Date('2100-12-31')**       |
+| selected | Date | No  | Date of the selected item.<br>Default value: current system date<br>Since API version 10, this parameter supports [$$](../../quick-start/arkts-two-way-sync.md) for two-way binding of variables.|
 
 **Handling in the case of exceptions**
 

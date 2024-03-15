@@ -144,7 +144,7 @@ Before sending data, call [UDPSocket.bind()](#bind) to bind the IP address and p
 
 | Name  | Type                                    | Mandatory| Description                                                        |
 | -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
-| options  | [UDPSendOptions](#udpsendoptions) | Yes  | Parameters for sending data over the UDP socket connection. For details, see [UDPSendOptions](#udpsendoptions).|
+| options  | [UDPSendOptions](#udpsendoptions) | Yes  | Parameters for sending data over a UDP socket connection. For details, see [UDPSendOptions](#udpsendoptions).|
 | callback | AsyncCallback\<void\>                    | Yes  | Callback used to return the result.                                                  |
 
 **Error codes**
@@ -194,7 +194,7 @@ Before sending data, call [UDPSocket.bind()](#bind) to bind the IP address and p
 
 | Name | Type                                    | Mandatory| Description                                                        |
 | ------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [UDPSendOptions](#udpsendoptions) | Yes  | Parameters for sending data over the UDP socket connection. For details, see [UDPSendOptions](#udpsendoptions).|
+| options | [UDPSendOptions](#udpsendoptions) | Yes  | Parameters for sending data over a UDP socket connection. For details, see [UDPSendOptions](#udpsendoptions).|
 
 **Error codes**
 
@@ -528,7 +528,7 @@ Subscribes to **message** events of the UDP socket connection. This API uses an 
 
 | Name  | Type                                                        | Mandatory| Description                                     |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
-| type     | string                                                       | Yes  | Type of the event to subscribe to.<br/> **message**: message receiving event.|
+| type     | string                                                       | Yes  | Event type.<br/> **message**: message receiving event.|
 | callback | Callback\<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}\> | Yes  | Callback used to return the result.                               |
 
 **Example**
@@ -569,7 +569,7 @@ Unsubscribes from **message** events of the UDP socket connection. This API uses
 
 | Name  | Type                                                        | Mandatory| Description                                     |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
-| type     | string                                                       | Yes  | Type of the event to subscribe to.<br/> **message**: message receiving event.|
+| type     | string                                                       | Yes  | Event type.<br/> **message**: message receiving event.|
 | callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | No  | Callback used to return the result.                               |
 
 **Example**
@@ -610,7 +610,7 @@ Subscribes to **listening** events or **close** events of the UDP socket connect
 
 | Name  | Type            | Mandatory| Description                                                        |
 | -------- | ---------------- | ---- | ------------------------------------------------------------ |
-| type     | string           | Yes  | Type of the event to subscribe to.<br>- **listening**: data packet message event.<br>- **close**: close event.|
+| type     | string           | Yes  | Event type.<br>- **listening**: data packet message event.<br>- **close**: close event.|
 | callback | Callback\<void\> | Yes  | Callback used to return the result.                                                  |
 
 **Example**
@@ -642,7 +642,7 @@ Unsubscribes from **listening** events or **close** events of the UDP socket con
 
 | Name  | Type            | Mandatory| Description                                                        |
 | -------- | ---------------- | ---- | ------------------------------------------------------------ |
-| type     | string           | Yes  | Type of the event to subscribe to.<br>- **listening**: data packet message event.<br>- **close**: close event.|
+| type     | string           | Yes  | Event type.<br>- **listening**: data packet message event.<br>- **close**: close event.|
 | callback | Callback\<void\> | No  | Callback used to return the result.                                                  |
 
 **Example**
@@ -679,7 +679,7 @@ Subscribes to **error** events of the UDP socket connection. This API uses an as
 
 | Name  | Type         | Mandatory| Description                                |
 | -------- | ------------- | ---- | ------------------------------------ |
-| type     | string        | Yes  | Type of the event to subscribe to.<br/> **error**: error event.|
+| type     | string        | Yes  | Event type.<br/> **error**: error event.|
 | callback | ErrorCallback | Yes  | Callback used to return the result.                          |
 
 **Example**
@@ -708,7 +708,7 @@ Unsubscribes from **error** events of the UDP socket connection. This API uses a
 
 | Name  | Type         | Mandatory| Description                                |
 | -------- | ------------- | ---- | ------------------------------------ |
-| type     | string        | Yes  | Type of the event to subscribe to.<br/> **error**: error event.|
+| type     | string        | Yes  | Event type.<br/> **error**: error event.|
 | callback | ErrorCallback | No  | Callback used to return the result.                          |
 
 **Example**
@@ -740,7 +740,7 @@ Defines the destination address.
 
 ## UDPSendOptions
 
-Defines the parameters for sending data over the UDP socket connection.
+Defines the parameters for sending data over a UDP socket connection.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -1038,7 +1038,7 @@ Sends data over a TCP socket connection. This API uses an asynchronous callback 
 
 | Name  | Type                                   | Mandatory| Description                                                        |
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| options  | [TCPSendOptions](#tcpsendoptions) | Yes  | Parameters for sending data over the TCP socket connection. For details, see [TCPSendOptions](#tcpsendoptions).|
+| options  | [TCPSendOptions](#tcpsendoptions) | Yes  | Parameters for sending data over a TCP socket connection. For details, see [TCPSendOptions](#tcpsendoptions).|
 | callback | AsyncCallback\<void\>                   | Yes  | Callback used to return the result.                                                  |
 
 **Error codes**
@@ -1094,7 +1094,7 @@ Sends data over a TCP socket connection. This API uses a promise to return the r
 
 | Name | Type                                   | Mandatory| Description                                                        |
 | ------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [TCPSendOptions](#tcpsendoptions) | Yes  | Parameters for sending data over the TCP socket connection. For details, see [TCPSendOptions](#tcpsendoptions).|
+| options | [TCPSendOptions](#tcpsendoptions) | Yes  | Parameters for sending data over a TCP socket connection. For details, see [TCPSendOptions](#tcpsendoptions).|
 
 **Return value**
 
@@ -1632,7 +1632,7 @@ Subscribes to **message** events of the TCP socket connection. This API uses an 
 
 | Name  | Type                                                        | Mandatory| Description                                     |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
-| type     | string                                                       | Yes  | Type of the event to subscribe to.<br/> **message**: message receiving event.|
+| type     | string                                                       | Yes  | Event type.<br/> **message**: message receiving event.|
 | callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | Yes  | Callback used to return the result.                               |
 
 **Example**
@@ -1672,7 +1672,7 @@ Unsubscribes from **message** events of the TCP socket connection. This API uses
 
 | Name  | Type                                                        | Mandatory| Description                                     |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
-| type     | string                                                       | Yes  | Type of the event to subscribe to.<br/> **message**: message receiving event.|
+| type     | string                                                       | Yes  | Event type.<br/> **message**: message receiving event.|
 | callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | No  | Callback used to return the result.                               |
 
 **Example**
@@ -1713,7 +1713,7 @@ Subscribes to connection or close events of the TCP socket connection. This API 
 
 | Name  | Type            | Mandatory| Description                                                        |
 | -------- | ---------------- | ---- | ------------------------------------------------------------ |
-| type     | string           | Yes  | Type of the event to subscribe to.<br>- **connect**: connection event.<br>- **close**: close event.|
+| type     | string           | Yes  | Event type.<br>- **connect**: connection event.<br>- **close**: close event.|
 | callback | Callback\<void\> | Yes  | Callback used to return the result.                                                  |
 
 **Example**
@@ -1745,7 +1745,7 @@ Unsubscribes from connection or close events of the TCP socket connection. This 
 
 | Name  | Type            | Mandatory| Description                                                        |
 | -------- | ---------------- | ---- | ------------------------------------------------------------ |
-| type     | string           | Yes  | Type of the event to subscribe to.<br>- **connect**: connection event.<br>- **close**: close event.|
+| type     | string           | Yes  | Event type.<br>- **connect**: connection event.<br>- **close**: close event.|
 | callback | Callback\<void\> | No  | Callback used to return the result.                                                  |
 
 **Example**
@@ -1782,7 +1782,7 @@ Subscribes to **error** events of the TCP socket connection. This API uses an as
 
 | Name  | Type         | Mandatory| Description                                |
 | -------- | ------------- | ---- | ------------------------------------ |
-| type     | string        | Yes  | Type of the event to subscribe to.<br/> **error**: error event.|
+| type     | string        | Yes  | Event type.<br/> **error**: error event.|
 | callback | ErrorCallback | Yes  | Callback used to return the result.                          |
 
 **Example**
@@ -1811,7 +1811,7 @@ Unsubscribes from **error** events of the TCP socket connection. This API uses a
 
 | Name  | Type         | Mandatory| Description                                |
 | -------- | ------------- | ---- | ------------------------------------ |
-| type     | string        | Yes  | Type of the event to subscribe to.<br/> **error**: error event.|
+| type     | string        | Yes  | Event type.<br/> **error**: error event.|
 | callback | ErrorCallback | No  | Callback used to return the result.                          |
 
 **Example**
@@ -1842,7 +1842,7 @@ Defines TCP socket connection parameters.
 
 ## TCPSendOptions
 
-Defines the parameters for sending data over the TCP socket connection.
+Defines the parameters for sending data over a TCP socket connection.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -1891,7 +1891,7 @@ let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance(
 
 ## TCPSocketServer<sup>10+</sup>
 
-Defines a TCPSocketServer connection. Before calling TCPSocketServer APIs, you need to call [socket.constructTCPSocketServerInstance](#socketconstructtcpsocketserverinstance10) to create a **TCPSocketServer** object.
+Defines a TCP socket server connection. Before calling TCPSocketServer APIs, you need to call [socket.constructTCPSocketServerInstance](#socketconstructtcpsocketserverinstance10) to create a **TCPSocketServer** object.
 
 ### listen<sup>10+</sup>
 
@@ -1899,7 +1899,7 @@ listen(address: NetAddress, callback: AsyncCallback\<void\>): void
 
 Binds the IP address and port number. The port number can be specified or randomly allocated by the system. The server listens to and accepts TCP socket connections established over the socket. Multiple threads are used to process client data concurrently. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
+> **NOTE**<br>
 > The server uses this API to perform the **bind**, **listen**, and **accept** operations. If the **bind** operation fails, the system randomly allocates a port number.
 
 **Required permissions**: ohos.permission.INTERNET
@@ -1951,7 +1951,7 @@ listen(address: NetAddress): Promise\<void\>
 
 Binds the IP address and port number. The port number can be specified or randomly allocated by the system. The server listens to and accepts TCP socket connections established over the socket. Multiple threads are used to process client data concurrently. This API uses a promise to return the result.
 
-> **NOTE**
+> **NOTE**<br>
 > The server uses this API to perform the **bind**, **listen**, and **accept** operations. If the **bind** operation fails, the system randomly allocates a port number.
 
 **Required permissions**: ohos.permission.INTERNET
@@ -2004,7 +2004,7 @@ tcpServer.listen(listenAddr).then(() => {
 
 getState(callback: AsyncCallback\<SocketStateBase\>): void
 
-Obtains the status of the TCPSocketServer connection. This API uses an asynchronous callback to return the result.
+Obtains the status of a TCP socket server connection. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 > This API can be called only after **listen** is successfully called.
@@ -2059,7 +2059,7 @@ tcpServer.getState((err: BusinessError, data: socket.SocketStateBase) => {
 
 getState(): Promise\<SocketStateBase\>
 
-Obtains the status of the TCPSocketServer connection. This API uses a promise to return the result.
+Obtains the status of a TCP socket server connection. This API uses a promise to return the result.
 
 > **NOTE**
 > This API can be called only after **listen** is successfully called.
@@ -2111,7 +2111,7 @@ tcpServer.getState().then((data: socket.SocketStateBase) => {
 
 setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
 
-Sets other properties of the TCPSocketServer connection. This API uses an asynchronous callback to return the result.
+Sets other properties of a TCP socket server connection. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 > This API can be called only after **listen** is successfully called.
@@ -2124,7 +2124,7 @@ Sets other properties of the TCPSocketServer connection. This API uses an asynch
 
 | Name  | Type                               | Mandatory| Description                                                        |
 | -------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| options  | [TCPExtraOptions](#tcpextraoptions) | Yes  | Other properties of the TCPSocketServer connection.|
+| options  | [TCPExtraOptions](#tcpextraoptions) | Yes  | Other properties of a TCP socket server connection.|
 | callback | AsyncCallback\<void\>               | Yes  | Callback used to return the result.                                                  |
 
 **Error codes**
@@ -2178,7 +2178,7 @@ tcpServer.setExtraOptions(tcpExtraOptions, (err: BusinessError) => {
 
 setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 
-Sets other properties of the TCPSocketServer connection. This API uses a promise to return the result.
+Sets other properties of a TCP socket server connection. This API uses a promise to return the result.
 
 > **NOTE**
 > This API can be called only after **listen** is successfully called.
@@ -2191,7 +2191,7 @@ Sets other properties of the TCPSocketServer connection. This API uses a promise
 
 | Name | Type                               | Mandatory| Description                                                        |
 | ------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [TCPExtraOptions](#tcpextraoptions) | Yes  | Other properties of the TCPSocketServer connection.|
+| options | [TCPExtraOptions](#tcpextraoptions) | Yes  | Other properties of a TCP socket server connection.|
 
 **Return value**
 
@@ -2248,7 +2248,7 @@ tcpServer.setExtraOptions(tcpExtraOptions).then(() => {
 
 on(type: 'connect', callback: Callback\<TCPSocketConnection\>): void
 
-Subscribes to TCPSocketServer connection events. This API uses an asynchronous callback to return the result.
+Subscribes to **connect** events of a **TCPSocketServer** object. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 > This API can be called only after **listen** is successfully called.
@@ -2259,7 +2259,7 @@ Subscribes to TCPSocketServer connection events. This API uses an asynchronous c
 
 | Name  | Type                           | Mandatory| Description                                 |
 | -------- | ------------------------------- | ---- | ------------------------------------- |
-| type     | string                          | Yes  | Type of the event to subscribe to.<br/> **connect**: connection event.|
+| type     | string                          | Yes  | Event type.<br/> **connect**: connection event.|
 | callback | Callback<[TCPSocketConnection](#tcpsocketconnection10)> | Yes  | Callback used to return the result.                           |
 
 **Error codes**
@@ -2282,7 +2282,7 @@ tcpServer.on('connect', (data: socket.TCPSocketConnection) => {
 
 off(type: 'connect', callback?: Callback\<TCPSocketConnection\>): void
 
-Unsubscribes from TCPSocketServer connection events. This API uses an asynchronous callback to return the result.
+Unsubscribes from **connect** events of a **TCPSocketServer** object. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 > You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
@@ -2293,7 +2293,7 @@ Unsubscribes from TCPSocketServer connection events. This API uses an asynchrono
 
 | Name  | Type                           | Mandatory| Description                                 |
 | -------- | ------------------------------- | ---- | ------------------------------------- |
-| type     | string                          | Yes  | Type of the event to subscribe to.<br/> **connect**: connection event.|
+| type     | string                          | Yes  | Event type.<br/> **connect**: connection event.|
 | callback | Callback<[TCPSocketConnection](#tcpsocketconnection10)> | No  | Callback used to return the result.                           |
 
 **Error codes**
@@ -2320,7 +2320,7 @@ tcpServer.off('connect');
 
 on(type: 'error', callback: ErrorCallback): void
 
-Subscribes to **error** events of the TCPSocketServer connection. This API uses an asynchronous callback to return the result.
+Subscribes to **error** events of a **TCPSocketServer** object. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 > This API can be called only after **listen** is successfully called.
@@ -2331,7 +2331,7 @@ Subscribes to **error** events of the TCPSocketServer connection. This API uses 
 
 | Name  | Type         | Mandatory| Description                                |
 | -------- | ------------- | ---- | ------------------------------------ |
-| type     | string        | Yes  | Type of the event to subscribe to.<br/> **error**: error event.|
+| type     | string        | Yes  | Event type.<br/> **error**: error event.|
 | callback | ErrorCallback | Yes  | Callback used to return the result.                          |
 
 **Error codes**
@@ -2355,7 +2355,7 @@ tcpServer.on('error', (err: BusinessError) => {
 
 off(type: 'error', callback?: ErrorCallback): void
 
-Unsubscribes from **error** events of the TCPSocketServer connection. This API uses an asynchronous callback to return the result.
+Unsubscribes from **error** events of a **TCPSocketServer** object. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 > You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
@@ -2366,7 +2366,7 @@ Unsubscribes from **error** events of the TCPSocketServer connection. This API u
 
 | Name  | Type         | Mandatory| Description                                |
 | -------- | ------------- | ---- | ------------------------------------ |
-| type     | string        | Yes  | Type of the event to subscribe to.<br/> **error**: error event.|
+| type     | string        | Yes  | Event type.<br/> **error**: error event.|
 | callback | ErrorCallback | No  | Callback used to return the result.                          |
 
 **Error codes**
@@ -2422,7 +2422,7 @@ Sends data over a **TCPSocketConnection** object. This API uses an asynchronous 
 
 | Name  | Type                             | Mandatory| Description                                                        |
 | -------- | --------------------------------- | ---- | ------------------------------------------------------------ |
-| options  | [TCPSendOptions](#tcpsendoptions) | Yes  | Defines the parameters for sending data over the **TCPSocketConnection** object.|
+| options  | [TCPSendOptions](#tcpsendoptions) | Yes  | Defines the parameters for sending data over a TCP socket connection.|
 | callback | AsyncCallback\<void\>             | Yes  | Callback used to return the result.                                                  |
 
 **Error codes**
@@ -2466,7 +2466,7 @@ Sends data over a **TCPSocketConnection** object. This API uses a promise to ret
 
 | Name | Type                             | Mandatory| Description                                                        |
 | ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [TCPSendOptions](#tcpsendoptions) | Yes  | Defines the parameters for sending data over the **TCPSocketConnection** object.|
+| options | [TCPSendOptions](#tcpsendoptions) | Yes  | Defines the parameters for sending data over a TCP socket connection.|
 
 **Return value**
 
@@ -2679,8 +2679,8 @@ Subscribes to **message** events of a **TCPSocketConnection** object. This API u
 
 | Name  | Type                                                        | Mandatory| Description                                     |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
-| type     | string                                                       | Yes  | Type of the event to subscribe to.<br/> **message**: message receiving event.|
-| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | Yes  | Callback used to return the result.<br> **message**: received message.<br>**remoteInfo**: socket connection information.                               |
+| type     | string                                                       | Yes  | Event type.<br/> **message**: message receiving event.|
+| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | Yes  | Callback used to return the result. **message**: received message.<br>**remoteInfo**: socket connection information.                               |
 
 **Error codes**
 
@@ -2728,8 +2728,8 @@ Unsubscribes from **message** events of a **TCPSocketConnection** object. This A
 
 | Name  | Type                                                        | Mandatory| Description                                     |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
-| type     | string                                                       | Yes  | Type of the event to subscribe to.<br/> **message**: message receiving event.|
-| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | No  | Callback used to return the result.<br> **message**: received message.<br>**remoteInfo**: socket connection information.                               |
+| type     | string                                                       | Yes  | Event type.<br/> **message**: message receiving event.|
+| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | No  | Callback used to return the result. **message**: received message.<br>**remoteInfo**: socket connection information.                               |
 
 **Error codes**
 
@@ -2777,7 +2777,7 @@ Subscribes to **close** events of a **TCPSocketConnection** object. This API use
 
 | Name  | Type            | Mandatory| Description                               |
 | -------- | ---------------- | ---- | ----------------------------------- |
-| type     | string           | Yes  | Type of the event to subscribe to.<br/> **close**: close event.|
+| type     | string           | Yes  | Event type.<br/> **close**: close event.|
 | callback | Callback\<void\> | Yes  | Callback used to return the result.                         |
 
 **Error codes**
@@ -2814,7 +2814,7 @@ Unsubscribes from **close** events of a **TCPSocketConnection** object. This API
 
 | Name  | Type            | Mandatory| Description                               |
 | -------- | ---------------- | ---- | ----------------------------------- |
-| type     | string           | Yes  | Type of the event to subscribe to.<br/> **close**: close event.|
+| type     | string           | Yes  | Event type.<br/> **close**: close event.|
 | callback | Callback\<void\> | No  | Callback used to return the result.                         |
 
 **Error codes**
@@ -2851,7 +2851,7 @@ Subscribes to **error** events of a **TCPSocketConnection** object. This API use
 
 | Name  | Type         | Mandatory| Description                                |
 | -------- | ------------- | ---- | ------------------------------------ |
-| type     | string        | Yes  | Type of the event to subscribe to.<br/> **error**: error event.|
+| type     | string        | Yes  | Event type.<br/> **error**: error event.|
 | callback | ErrorCallback | Yes  | Callback used to return the result.                          |
 
 **Error codes**
@@ -2888,7 +2888,7 @@ Unsubscribes from **error** events of a **TCPSocketConnection** object. This API
 
 | Name  | Type         | Mandatory| Description                                |
 | -------- | ------------- | ---- | ------------------------------------ |
-| type     | string        | Yes  | Type of the event to subscribe to.<br/> **error**: error event.|
+| type     | string        | Yes  | Event type.<br/> **error**: error event.|
 | callback | ErrorCallback | No  | Callback used to return the result.                          |
 
 **Error codes**
@@ -3265,8 +3265,8 @@ Subscribes to **message** events of the TLS socket connection. This API uses an 
 
 | Name  | Type                                                        | Mandatory| Description                                     |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
-| type     | string                                                       | Yes  | Type of the event to subscribe to.<br/> **message**: message receiving event.|
-| callback | Callback\<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}\> | Yes  | Callback used to return the result.<br> **message**: received message.<br>**remoteInfo**: socket connection information.|
+| type     | string                                                       | Yes  | Event type.<br/> **message**: message receiving event.|
+| callback | Callback\<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}\> | Yes  | Callback used to return the result. **message**: received message.<br>**remoteInfo**: socket connection information.|
 
 **Example**
 
@@ -3294,7 +3294,7 @@ tls.on('message', (value: SocketInfo) => {
 
 off(type: 'message', callback?: Callback\<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
 
-Unsubscribes from **message** events of the TLS socket connection. This API uses an asynchronous callback to return the result.
+Unsubscribes from **message** events of a **TLSSocket** object. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 > You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
@@ -3305,8 +3305,8 @@ Unsubscribes from **message** events of the TLS socket connection. This API uses
 
 | Name  | Type                                                        | Mandatory| Description                                     |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
-| type     | string                                                       | Yes  | Type of the event to subscribe to.<br/> **message**: message receiving event.|
-| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | No  | Callback used to return the result.<br> **message**: received message.<br>**remoteInfo**: socket connection information.|
+| type     | string                                                       | Yes  | Event type.<br/> **message**: message receiving event.|
+| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | No  | Callback used to return the result. **message**: received message.<br>**remoteInfo**: socket connection information.|
 
 **Example**
 
@@ -3344,7 +3344,7 @@ Subscribes to **connect** or **close** events of the TLS socket connection. This
 
 | Name  | Type            | Mandatory| Description                                                        |
 | -------- | ---------------- | ---- | ------------------------------------------------------------ |
-| type     | string           | Yes  | Type of the event to subscribe to.<br>- **connect**: connection event.<br>- **close**: close event.|
+| type     | string           | Yes  | Event type.<br>- **connect**: connection event.<br>- **close**: close event.|
 | callback | Callback\<void\> | Yes  | Callback used to return the result.                                                  |
 
 **Example**
@@ -3365,7 +3365,7 @@ tls.on('close', () => {
 
 off(type: 'connect' | 'close', callback?: Callback\<void\>): void
 
-Unsubscribes from **connect** or **close** events of the TLS socket connection. This API uses an asynchronous callback to return the result.
+Unsubscribes from **connect** or **close** events of a **TLSSocket** object. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 > You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
@@ -3376,7 +3376,7 @@ Unsubscribes from **connect** or **close** events of the TLS socket connection. 
 
 | Name  | Type            | Mandatory| Description                                                        |
 | -------- | ---------------- | ---- | ------------------------------------------------------------ |
-| type     | string           | Yes  | Type of the event to subscribe to.<br>- **connect**: connection event.<br>- **close**: close event.|
+| type     | string           | Yes  | Event type.<br>- **connect**: connection event.<br>- **close**: close event.|
 | callback | Callback\<void\> | No  | Callback used to return the result.                                                  |
 
 **Example**
@@ -3412,7 +3412,7 @@ Subscribes to **error** events of the TLS socket connection. This API uses an as
 
 | Name  | Type         | Mandatory| Description                                |
 | -------- | ------------- | ---- | ------------------------------------ |
-| type     | string        | Yes  | Type of the event to subscribe to.<br/> **error**: error event.|
+| type     | string        | Yes  | Event type.<br/> **error**: error event.|
 | callback | ErrorCallback | Yes  | Callback used to return the result.                          |
 
 **Example**
@@ -3430,7 +3430,7 @@ tls.on('error', (err: BusinessError) => {
 
 off(type: 'error', callback?: ErrorCallback): void
 
-Unsubscribes from **error** events of the TLS socket connection. This API uses an asynchronous callback to return the result.
+Unsubscribes from **error** events of a **TLSSocket** object. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 > You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
@@ -3441,7 +3441,7 @@ Unsubscribes from **error** events of the TLS socket connection. This API uses a
 
 | Name  | Type         | Mandatory| Description                                |
 | -------- | ------------- | ---- | ------------------------------------ |
-| type     | string        | Yes  | Type of the event to subscribe to.<br/> **error**: error event.|
+| type     | string        | Yes  | Event type.<br/> **error**: error event.|
 | callback | ErrorCallback | No  | Callback used to return the result.                          |
 
 **Example**
@@ -3462,7 +3462,7 @@ tls.off('error', callback);
 
 connect(options: TLSConnectOptions, callback: AsyncCallback\<void\>): void
 
-Sets up a TLS socket connection, and creates and initializes a TLS session after **bind** is successfully called. During this process, a TLS/SSL handshake is performed between the application and the server to implement data transmission. This API uses an asynchronous callback to return the result.
+Sets up a TLS socket connection, and creates and initializes a TLS session after **bind** is successfully called. During this process, a TLS/SSL handshake is performed between the application and the server to implement data transmission. This API uses an asynchronous callback to return the result. Note that **ca** in **secureOptions** of the **options** parameter is mandatory. You need to enter the CA certificate of the server for certificate authentication. The certificate content starts with "-----BEGIN CERTIFICATE-----" and ends with "-----END CERTIFICATE-----".
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -3560,7 +3560,7 @@ tlsOneWay.connect(tlsOneWayConnectOptions, (err: BusinessError) => {
 
 connect(options: TLSConnectOptions): Promise\<void\>
 
-Sets up a TLS socket connection, and creates and initializes a TLS session after **bind** is successfully called. During this process, a TLS/SSL handshake is performed between the application and the server to implement data transmission. Both two-way and one-way authentication modes are supported. This API uses a promise to return the result.
+Sets up a TLS socket connection, and creates and initializes a TLS session after **bind** is successfully called. During this process, a TLS/SSL handshake is performed between the application and the server to implement data transmission. Both two-way and one-way authentication modes are supported. This API uses a promise to return the result. Note that **ca** in **secureOptions** of the **options** parameter is mandatory. You need to enter the CA certificate of the server for certificate authentication. The certificate content starts with "-----BEGIN CERTIFICATE-----" and ends with "-----END CERTIFICATE-----".
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -4990,7 +4990,7 @@ Subscribes to TLS socket server connection events. This API uses an asynchronous
 
 | Name  | Type                                                   | Mandatory| Description                                 |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------- |
-| type     | string                                                  | Yes  | Type of the event to subscribe to.<br/> **connect**: connection event.|
+| type     | string                                                  | Yes  | Event type.<br/> **connect**: connection event.|
 | callback | Callback<[TLSSocketConnection](#tlssocketconnection10)> | Yes  | Callback used to return the result.                           |
 
 **Error codes**
@@ -5036,7 +5036,7 @@ tlsServer.on('connect', (data: socket.TLSSocketConnection) => {
 
 off(type: 'connect', callback?: Callback\<TLSSocketConnection\>): void
 
-Unsubscribes from TLS socket server connection events. This API uses an asynchronous callback to return the result.
+Unsubscribes from **connect** events of a **TLSSocketServer** object. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 > This API can be called only after **listen** is successfully called.
@@ -5048,7 +5048,7 @@ Unsubscribes from TLS socket server connection events. This API uses an asynchro
 
 | Name  | Type                                                   | Mandatory| Description                                 |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------- |
-| type     | string                                                  | Yes  | Type of the event to subscribe to.<br/> **connect**: connection event.|
+| type     | string                                                  | Yes  | Event type.<br/> **connect**: connection event.|
 | callback | Callback<[TLSSocketConnection](#tlssocketconnection10)> | No  | Callback used to return the result.                           |
 
 **Error codes**
@@ -5110,7 +5110,7 @@ Subscribes to **error** events of a **TLSSocketServer** object. This API uses an
 
 | Name  | Type         | Mandatory| Description                                |
 | -------- | ------------- | ---- | ------------------------------------ |
-| type     | string        | Yes  | Type of the event to subscribe to.<br/> **error**: error event.|
+| type     | string        | Yes  | Event type.<br/> **error**: error event.|
 | callback | ErrorCallback | Yes  | Callback used to return the result.                          |
 
 **Error codes**
@@ -5168,7 +5168,7 @@ Unsubscribes from **error** events of a **TLSSocketServer** object. This API use
 
 | Name  | Type         | Mandatory| Description                                |
 | -------- | ------------- | ---- | ------------------------------------ |
-| type     | string        | Yes  | Type of the event to subscribe to.<br/> **error**: error event.|
+| type     | string        | Yes  | Event type.<br/> **error**: error event.|
 | callback | ErrorCallback | No  | Callback used to return the result.                          |
 
 **Error codes**
@@ -5242,7 +5242,7 @@ Sends a message to the client after a TLS socket server connection is establishe
 
 | Name  | Type                 | Mandatory| Description                                            |
 | -------- | --------------------- | ---- | ------------------------------------------------ |
-| data     | string                | Yes  | Parameters for sending data over the TLS socket server connection.           |
+| data     | string                | Yes  | Parameters for sending data over a TLS socket server connection.           |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. If the operation is successful, no value is returned. If the operation fails, an error message is returned.|
 
 **Error codes**
@@ -5308,7 +5308,7 @@ Sends a message to the server after a TLS socket server connection is establishe
 
 | Name| Type  | Mandatory| Description                                 |
 | ------ | ------ | ---- | ------------------------------------- |
-| data   | string | Yes  | Parameters for sending data over the TLS socket server connection.|
+| data   | string | Yes  | Parameters for sending data over a TLS socket server connection.|
 
 **Return value**
 
@@ -5981,7 +5981,7 @@ Subscribes to **message** events of a **TLSSocketConnection** object. This API u
 
 | Name  | Type                                                        | Mandatory| Description                                     |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
-| type     | string                                                       | Yes  | Type of the event to subscribe to.<br/> **message**: message receiving event.|
+| type     | string                                                       | Yes  | Event type.<br/> **message**: message receiving event.|
 | callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | Yes  | Callback used to return the result.                               |
 
 **Error codes**
@@ -6052,7 +6052,7 @@ Unsubscribes from **message** events of a **TLSSocketConnection** object. This A
 
 | Name  | Type                                                        | Mandatory| Description                                     |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
-| type     | string                                                       | Yes  | Type of the event to subscribe to.<br/> **message**: message receiving event.|
+| type     | string                                                       | Yes  | Event type.<br/> **message**: message receiving event.|
 | callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | No  | Callback used to return the result.                               |
 
 **Error codes**
@@ -6124,7 +6124,7 @@ Subscribes to **close** events of a **TLSSocketConnection** object. This API use
 
 | Name  | Type            | Mandatory| Description                               |
 | -------- | ---------------- | ---- | ----------------------------------- |
-| type     | string           | Yes  | Type of the event to subscribe to.<br/> **close**: close event.|
+| type     | string           | Yes  | Event type.<br/> **close**: close event.|
 | callback | Callback\<void\> | Yes  | Callback used to return the result.                         |
 
 **Error codes**
@@ -6183,7 +6183,7 @@ Unsubscribes from **close** events of a **TLSSocketConnection** object. This API
 
 | Name  | Type            | Mandatory| Description                               |
 | -------- | ---------------- | ---- | ----------------------------------- |
-| type     | string           | Yes  | Type of the event to subscribe to.<br/> **close**: close event.|
+| type     | string           | Yes  | Event type.<br/> **close**: close event.|
 | callback | Callback\<void\> | No  | Callback used to return the result.                         |
 
 **Error codes**
@@ -6244,7 +6244,7 @@ Subscribes to **error** events of a **TLSSocketConnection** object. This API use
 
 | Name  | Type         | Mandatory| Description                                |
 | -------- | ------------- | ---- | ------------------------------------ |
-| type     | string        | Yes  | Type of the event to subscribe to.<br/> **error**: error event.|
+| type     | string        | Yes  | Event type.<br/> **error**: error event.|
 | callback | ErrorCallback | Yes  | Callback used to return the result.                          |
 
 **Error codes**
@@ -6304,7 +6304,7 @@ Unsubscribes from **error** events of a **TLSSocketConnection** object. This API
 
 | Name  | Type         | Mandatory| Description                                |
 | -------- | ------------- | ---- | ------------------------------------ |
-| type     | string        | Yes  | Type of the event to subscribe to.<br/> **error**: error event.|
+| type     | string        | Yes  | Event type.<br/> **error**: error event.|
 | callback | ErrorCallback | No  | Callback used to return the result.                          |
 
 **Error codes**

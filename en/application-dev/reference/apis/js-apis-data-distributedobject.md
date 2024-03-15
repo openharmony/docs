@@ -58,7 +58,7 @@ class SourceObject {
     }
 }
 
-let source: SourceObject = new SourceObject("amy", 18, false);
+let source: SourceObject = new SourceObject("jack", 18, false);
 let g_object: distributedObject.DataObject = distributedObject.create(context, source);
 ```
 
@@ -86,7 +86,7 @@ class SourceObject {
 
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
-        let source: SourceObject = new SourceObject("amy", 18, false);
+        let source: SourceObject = new SourceObject("jack", 18, false);
         g_object = distributedObject.create(this.context, source);
     }
 }
@@ -191,7 +191,7 @@ Exits all sessions. This API uses an asynchronous callback to return the result.
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked when the distributed data object exits all sessions. |
+  | callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked when the distributed data object exits all sessions.|
 
 **Error codes**
 
@@ -281,7 +281,7 @@ Subscribes to data changes of this distributed data object.
 ```ts
 g_object.on("change", (sessionId: string, fields: Array<string>) => {
     console.info("change" + sessionId);
-    if (fields != null && fields != undefined) {
+    if (g_object != null && fields != null && fields != undefined) {
         for (let index: number = 0; index < fields.length; index++) {
             console.info("changed !" + fields[index] + " " + g_object[fields[index]]);
         }
@@ -311,7 +311,7 @@ Unsubscribes from the data changes of this distributed data object.
 // Unregister the specified data change callback.
 g_object.off("change", (sessionId: string, fields: Array<string>) => {
     console.info("change" + sessionId);
-    if (fields != null && fields != undefined) {
+    if (g_object != null && fields != null && fields != undefined) {
         for (let index: number = 0; index < fields.length; index++) {
             console.info("changed !" + fields[index] + " " + g_object[fields[index]]);
         }
@@ -431,7 +431,7 @@ The saved data will be released in the following cases:
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-| deviceId | string | Yes| ID of the device where the data is saved. The default value is **local**, which indicates the local device. |
+  | deviceId | string | Yes| ID of the device where the data is saved. The default value is **local**, which indicates the local device. |
 
 **Return value**
 
@@ -581,7 +581,7 @@ class SourceObject {
     }
 }
 
-let source: SourceObject = new SourceObject("amy", 18, false);
+let source: SourceObject = new SourceObject("jack", 18, false);
 let g_object: distributedObject.DistributedObject = distributedObject.createDistributedObject(source);
 ```
 
@@ -631,7 +631,7 @@ class SourceObject {
     }
 }
 
-let source: SourceObject = new SourceObject("amy", 18, false);
+let source: SourceObject = new SourceObject("jack", 18, false);
 let g_object: distributedObject.DistributedObject = distributedObject.createDistributedObject(source);
 // Add g_object to the distributed network.
 g_object.setSessionId(distributedObject.genSessionId());
@@ -674,7 +674,7 @@ class SourceObject {
     }
 }
 
-let source: SourceObject = new SourceObject("amy", 18, false);
+let source: SourceObject = new SourceObject("jack", 18, false);
 let g_object: distributedObject.DistributedObject = distributedObject.createDistributedObject(source);
 g_object.on("change", (sessionId: string, fields: Array<string>) => {
     console.info("change" + sessionId);
@@ -721,7 +721,7 @@ class SourceObject {
     }
 }
 
-let source: SourceObject = new SourceObject("amy", 18, false);
+let source: SourceObject = new SourceObject("jack", 18, false);
 let g_object: distributedObject.DistributedObject = distributedObject.createDistributedObject(source);
 // Unregister the specified data change callback.
 g_object.off("change", (sessionId: string, fields: Array<string>) => {
@@ -771,7 +771,7 @@ class SourceObject {
     }
 }
 
-let source: SourceObject = new SourceObject("amy", 18, false);
+let source: SourceObject = new SourceObject("jack", 18, false);
 let g_object: distributedObject.DistributedObject = distributedObject.createDistributedObject(source);
 
 g_object.on("status", (sessionId: string, networkId: string, status: 'online' | 'offline') => {
@@ -815,7 +815,7 @@ class SourceObject {
     }
 }
 
-let source: SourceObject = new SourceObject("amy", 18, false);
+let source: SourceObject = new SourceObject("jack", 18, false);
 let g_object: distributedObject.DistributedObject = distributedObject.createDistributedObject(source);
 // Unregister the specified status change callback.
 g_object.off("status", (sessionId: string, networkId: string, status: 'online' | 'offline') => {

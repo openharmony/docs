@@ -28,7 +28,7 @@ Obtains a **DistributedAccountAbility** instance.
 
 **Example**
   ```ts
-  const accountAbility = account_distributedAccount.getDistributedAccountAbility();
+  const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
   ```
 
 ## DistributedAccountAbility
@@ -61,7 +61,7 @@ Obtains distributed account information. This API uses an asynchronous callback 
   ```ts
   import { BusinessError } from '@ohos.base';
 
-  const accountAbility = account_distributedAccount.getDistributedAccountAbility();
+  const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
   try {
     accountAbility.getOsAccountDistributedInfo(
       (err: BusinessError, data: account_distributedAccount.DistributedInfo) => {
@@ -102,7 +102,7 @@ Obtains distributed account information. This API uses a promise to return the r
   ```ts
   import { BusinessError } from '@ohos.base';
 
-  const accountAbility = account_distributedAccount.getDistributedAccountAbility();
+  const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
   try {
     accountAbility.getOsAccountDistributedInfo().then((data: account_distributedAccount.DistributedInfo) => {
         console.log('distributed information: ' + JSON.stringify(data));
@@ -118,7 +118,7 @@ Obtains distributed account information. This API uses a promise to return the r
 
 getOsAccountDistributedInfoByLocalId(localId: number, callback: AsyncCallback&lt;DistributedInfo&gt;): void
 
-Obtains distributed information about an OS account. This API uses an asynchronous callback to return the result.
+Obtains distributed information about a system account. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -130,7 +130,7 @@ Obtains distributed information about an OS account. This API uses an asynchrono
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | localId | number | Yes| ID of the target OS account.|
+  | localId | number | Yes| ID of the target system account.|
   | callback | AsyncCallback&lt;[DistributedInfo](#distributedinfo)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the distributed account information obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -144,7 +144,7 @@ Obtains distributed information about an OS account. This API uses an asynchrono
   ```ts
   import { BusinessError } from '@ohos.base';
   
-  const accountAbility = account_distributedAccount.getDistributedAccountAbility();
+  const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
   try {
     accountAbility.getOsAccountDistributedInfoByLocalId(100,
       (err: BusinessError, data: account_distributedAccount.DistributedInfo) => {
@@ -163,7 +163,7 @@ Obtains distributed information about an OS account. This API uses an asynchrono
 
 getOsAccountDistributedInfoByLocalId(localId: number): Promise&lt;DistributedInfo&gt;
 
-Obtains distributed information about an OS account. This API uses a promise to return the result.
+Obtains distributed information about a system account. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -188,7 +188,7 @@ Obtains distributed information about an OS account. This API uses a promise to 
   ```ts
   import { BusinessError } from '@ohos.base';
   
-  const accountAbility = account_distributedAccount.getDistributedAccountAbility();
+  const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
   try {
     accountAbility.getOsAccountDistributedInfoByLocalId(100).then((
       data: account_distributedAccount.DistributedInfo) => {
@@ -208,7 +208,7 @@ queryOsAccountDistributedInfo(callback: AsyncCallback&lt;DistributedInfo&gt;): v
 Obtains distributed account information. This API uses an asynchronous callback to return the result.
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getOsAccountDistributedInfo](#getosaccountdistributedinfo9).
+> This API is supported since API version 7 and deprecated since API version 9. Use [getOsAccountDistributedInfo](#getosaccountdistributedinfo9) instead.
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -224,7 +224,7 @@ Obtains distributed account information. This API uses an asynchronous callback 
   ```ts
   import { BusinessError } from '@ohos.base';
   
-  const accountAbility = account_distributedAccount.getDistributedAccountAbility();
+  const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
   accountAbility.queryOsAccountDistributedInfo(
     (err: BusinessError, data: account_distributedAccount.DistributedInfo) => {
       if (err) {
@@ -243,7 +243,7 @@ Obtains distributed account information. This API uses a promise to return the r
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getOsAccountDistributedInfo](#getosaccountdistributedinfo9-1).
+> This API is supported since API version 7 and deprecated since API version 9. Use [getOsAccountDistributedInfo](#getosaccountdistributedinfo9-1) instead.
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -259,7 +259,7 @@ Obtains distributed account information. This API uses a promise to return the r
   ```ts
   import { BusinessError } from '@ohos.base';
   
-  const accountAbility = account_distributedAccount.getDistributedAccountAbility();
+  const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
   accountAbility.queryOsAccountDistributedInfo().then((data: account_distributedAccount.DistributedInfo) => {
       console.log('distributed information: ' + JSON.stringify(data));
   }).catch((err: BusinessError) => {
@@ -296,7 +296,7 @@ Sets the distributed account information. This API uses an asynchronous callback
   ```ts
   import { BusinessError } from '@ohos.base';
   
-  const accountAbility = account_distributedAccount.getDistributedAccountAbility();
+  const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
   let accountInfo: account_distributedAccount.DistributedInfo =
     {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
   try {
@@ -346,7 +346,7 @@ Sets the distributed account information. This API uses a promise to return the 
   ```ts
   import { BusinessError } from '@ohos.base';
   
-  const accountAbility = account_distributedAccount.getDistributedAccountAbility();
+  const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
   let accountInfo: account_distributedAccount.DistributedInfo =
     {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
   try {
@@ -363,7 +363,7 @@ Sets the distributed account information. This API uses a promise to return the 
 
 setOsAccountDistributedInfoByLocalId(localId: number, distributedInfo: DistributedInfo, callback: AsyncCallback&lt;void&gt;): void
 
-Sets the distributed information for an OS account. This API uses an asynchronous callback to return the result.
+Sets the distributed information for a system account. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -375,7 +375,7 @@ Sets the distributed information for an OS account. This API uses an asynchronou
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | localId | number | Yes| ID of the target OS account.|
+  | localId | number | Yes| ID of the target system account.|
   | accountInfo | [DistributedInfo](#distributedinfo) | Yes| Distributed account information to set.|
   | callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result. If the distributed information is set successfully, **err** is **undefined**. Otherwise, **err** is an error object.|
 
@@ -392,7 +392,7 @@ Sets the distributed information for an OS account. This API uses an asynchronou
   ```ts
   import { BusinessError } from '@ohos.base';
   
-  const accountAbility = account_distributedAccount.getDistributedAccountAbility();
+  const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
   let accountInfo: account_distributedAccount.DistributedInfo =
     {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
   try {
@@ -412,7 +412,7 @@ Sets the distributed information for an OS account. This API uses an asynchronou
 
 setOsAccountDistributedInfoByLocalId(localId: number, distributedInfo: DistributedInfo): Promise&lt;void&gt;
 
-Sets the distributed information for an OS account. This API uses a promise to return the result.
+Sets the distributed information for a system account. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -424,7 +424,7 @@ Sets the distributed information for an OS account. This API uses a promise to r
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | localId | number | Yes| ID of the target OS account.|
+  | localId | number | Yes| ID of the target system account.|
   | distributedInfo | [DistributedInfo](#distributedinfo) | Yes| Distributed account information to set.|
 
 **Return value**
@@ -446,7 +446,7 @@ Sets the distributed information for an OS account. This API uses a promise to r
   ```ts
   import { BusinessError } from '@ohos.base';
   
-  const accountAbility = account_distributedAccount.getDistributedAccountAbility();
+  const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
   let accountInfo: account_distributedAccount.DistributedInfo =
     {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
   try {
@@ -468,7 +468,7 @@ Updates the distributed account information. This API uses an asynchronous callb
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setOsAccountDistributedInfo](#setosaccountdistributedinfo9).
+> This API is supported since API version 7 and deprecated since API version 9. Use [setOsAccountDistributedInfo](#setosaccountdistributedinfo9) instead.
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -485,7 +485,7 @@ Updates the distributed account information. This API uses an asynchronous callb
   ```ts
   import { BusinessError } from '@ohos.base';
   
-  const accountAbility = account_distributedAccount.getDistributedAccountAbility();
+  const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
   let accountInfo: account_distributedAccount.DistributedInfo =
     {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
   accountAbility.updateOsAccountDistributedInfo(accountInfo, (err: BusinessError) => {
@@ -504,7 +504,7 @@ updateOsAccountDistributedInfo(accountInfo: DistributedInfo): Promise&lt;void&gt
 Updates the distributed account information. This API uses a promise to return the result.
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setOsAccountDistributedInfo](#setosaccountdistributedinfo9-1).
+> This API is supported since API version 7 and deprecated since API version 9. Use [setOsAccountDistributedInfo](#setosaccountdistributedinfo9-1) instead.
 **System capability**: SystemCapability.Account.OsAccount
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
@@ -525,7 +525,7 @@ Updates the distributed account information. This API uses a promise to return t
   ```ts
   import { BusinessError } from '@ohos.base';
   
-  const accountAbility = account_distributedAccount.getDistributedAccountAbility();
+  const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
   let accountInfo: account_distributedAccount.DistributedInfo =
     {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
   accountAbility.updateOsAccountDistributedInfo(accountInfo).then(() => {
@@ -536,7 +536,7 @@ Updates the distributed account information. This API uses a promise to return t
   ```
 ## DistributedInfo
 
-Defines the distributed information about an OS account.
+Defines the distributed information about a system account.
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -548,7 +548,7 @@ Defines the distributed information about an OS account.
 | nickname<sup>9+</sup> | string |No| Nickname of the distributed account. By default, no value is passed.|
 | avatar<sup>9+</sup> | string |No| Avatar of the distributed account. By default, no value is passed.|
 | status<sup>10+</sup> | [DistributedAccountStatus](#distributedaccountstatus10) |No| Status of the distributed account. The value is of the enumerated type. The default status is unlogged.|
-| scalableData<sup>8+</sup> | object |No| Extended information about the distributed account, passed in key-value (KV) pairs based on service requirements. By default, no value is passed.|
+| scalableData<sup>8+</sup> | object |No| Additional information about the distributed account, in the form of KV pairs. This parameter is left empty by default.|
 
 ## DistributedAccountStatus<sup>10+</sup>
 

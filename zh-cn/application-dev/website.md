@@ -810,6 +810,7 @@
       - [高效并发编程](performance/efficient-concurrent-programming.md)
       - [N-API高效开发指导](performance/develop-Native-modules-using-NAPI-safely-and-efficiently.md)
       - [多线程能力场景化](performance/multi_thread_capability.md)
+      - [利用native的方式实现跨线程调用](performance/native-threads-call-js.md)
     - 减少卡顿丢帧
       - [正确使用LazyForEach优化](performance/lazyforeach_optimization.md)
       - [组件复用使用指导](performance/component-recycle.md)

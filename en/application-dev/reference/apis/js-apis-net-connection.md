@@ -133,7 +133,7 @@ Obtains the default active data network in synchronous mode. You can use [getNet
 
 | Type     | Description                              |
 | --------- | ---------------------------------- |
-| NetHandle | Handle of the default active data network.|
+| [NetHandle](#nethandle) | Handle of the default active data network.|
 
 **Error codes**
 
@@ -1750,8 +1750,8 @@ netCon.register((error: BusinessError) => {
   console.log(JSON.stringify(error));
 });
 
-// Subscribe to netAvailable events. Event notifications can be received only after register is called.
-netCon.on('netAvailable', (data: connection.NetHandle) => {
+// Subscribe to netCapabilitiesChange events. Event notifications can be received only after register is called.
+netCon.on('netCapabilitiesChange', (data: connection.NetCapabilityInfo) => {
   console.log(JSON.stringify(data));
 });
 
@@ -1882,8 +1882,8 @@ netCon.register((error: BusinessError) => {
   console.log(JSON.stringify(error));
 });
 
-// Subscribe to netAvailable events. Event notifications can be received only after register is called.
-netCon.on('netAvailable', (data: connection.NetHandle) => {
+// Subscribe to netUnavailable events. Event notifications can be received only after register is called.
+netCon.on('netUnavailable', () => {
   console.log(JSON.stringify(data));
 });
 

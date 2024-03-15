@@ -54,7 +54,7 @@ CustomDialogController(value: CustomDialogControllerOptions)
 ### 导入对象
 
 ```ts
-let dialogController : CustomDialogController = new CustomDialogController(CustomDialogControllerOptions)
+dialogController : CustomDialogController | null = new CustomDialogController(CustomDialogControllerOptions)
 ```
 **说明**：CustomDialogController仅在作为@CustomDialog和@Component struct的成员变量，且在@Component struct内部定义时赋值才有效，具体用法可看下方示例。
 
@@ -156,8 +156,8 @@ struct CustomDialogUser {
   @State inputValue: string = 'click me'
   dialogController: CustomDialogController | null = new CustomDialogController({
     builder: CustomDialogExample({
-      cancel: this.onCancel,
-      confirm: this.onAccept,
+      cancel: ()=> { this.onCancel() },
+      confirm: ()=> { this.onAccept() },
       textValue: $textValue,
       inputValue: $inputValue
     }),

@@ -115,11 +115,14 @@ For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorco
 	}
 ```
 
-## wifiManager.scan<sup>9+</sup>
+## wifiManager.scan<sup>9+</sup><sup>(deprecated)</sup>
 
 scan(): void
 
 Starts a scan for WLAN.
+
+> **NOTE**
+> This API is supported since API version 9 and deprecated since API version 10. Use [wifiManager.startScan](#wifimanagerstartscan10) instead.
 
 **Required permissions**: ohos.permission.SET_WIFI_INFO, ohos.permission.LOCATION, and ohos.permission.APPROXIMATELY_LOCATION
 
@@ -176,11 +179,14 @@ For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorco
 		console.error("failed:" + JSON.stringify(error));
 	}
 ```
-## wifiManager.getScanResults<sup>9+</sup>
+## wifiManager.getScanResults<sup>9+</sup><sup>(deprecated)</sup>
 
 getScanResults(): Promise&lt;Array&lt;WifiScanInfo&gt;&gt;
 
 Obtains the scan result. This API uses a promise to return the result.
+
+> **NOTE**
+> This API is supported since API version 9 and deprecated since API version 10. Use [wifiManager.getScanInfoList](#wifimanagergetscaninfolist10) instead.
 
 **Required permissions**: ohos.permission.GET_WIFI_INFO and (ohos.permission.GET_WIFI_PEERS_MAC or (ohos.permission.LOCATION and ohos.permission.APPROXIMATELY_LOCATION))
 
@@ -200,11 +206,14 @@ For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorco
 | -------- | -------- |
 | 2501000  | Operation failed.|
 
-## wifiManager.getScanResults<sup>9+</sup>
+## wifiManager.getScanResults<sup>9+</sup><sup>(deprecated)</sup>
 
 getScanResults(callback: AsyncCallback&lt;Array&lt;WifiScanInfo&gt;&gt;): void
 
 Obtains the scan result. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+> This API is supported since API version 9 and deprecated since API version 10. Use [wifiManager.getScanInfoList](#wifimanagergetscaninfolist10) instead.
 
 **Required permissions**: ohos.permission.GET_WIFI_INFO and (ohos.permission.GET_WIFI_PEERS_MAC or (ohos.permission.LOCATION and ohos.permission.APPROXIMATELY_LOCATION))
 
@@ -213,7 +222,7 @@ Obtains the scan result. This API uses an asynchronous callback to return the re
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;&nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo9)&gt;&gt; | Yes| Callback invoked to return the result. If the operation is successful, **error** is **0** and **data** is the detected hotspots. Otherwise, **error** is a non-zero value and **data** is empty.|
+| callback | AsyncCallback&lt;&nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo9)&gt;&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the detected hotspots. Otherwise, **err** is a non-zero value and **data** is empty.|
 | Array&lt;[WifiScanInfo](#wifiscaninfo9)&gt; | return the hotspots detected.|
 
 **Error codes**
@@ -268,11 +277,14 @@ For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorco
   });
 ```
 
-## wifiManager.getScanResultsSync<sup>9+</sup>
+## wifiManager.getScanResultsSync<sup>9+</sup><sup>(deprecated)</sup>
 
 getScanResultsSync(): &nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo9)&gt;
 
 Obtains the scan result. This API returns the result synchronously.
+
+> **NOTE**
+> This API is supported since API version 9 and deprecated since API version 10. Use [wifiManager.getScanInfoList](#wifimanagergetscaninfolist10) instead.
 
 **Required permissions**: ohos.permission.GET_WIFI_INFO and (ohos.permission.GET_WIFI_PEERS_MAC or (ohos.permission.LOCATION and ohos.permission.APPROXIMATELY_LOCATION))
 
@@ -383,15 +395,15 @@ Represents WLAN hotspot information.
 
 | **Name**| **Type**| **Readable**| **Writable**| **Description**|
 | -------- | -------- | -------- | -------- | -------- |
-| ssid | string | Yes| No| SSID of the hotspot, in UTF-8 format. The maximum length is 32 bytes.|
+| ssid | string | Yes| No| Service set identifier (SSID) of the hotspot, in UTF-8 format. The maximum length is 32 bytes.|
 | bssid | string | Yes| No| Hotspot BSSID, for example, **00:11:22:33:44:55**.|
 | bssidType<sup>10+</sup>| DeviceAddressType | Yes| No| BSSID type of the hotspot.|
 | capabilities | string | Yes| No| Hotspot capabilities.|
 | securityType | [WifiSecurityType](#wifisecuritytype9) | Yes| No| WLAN security type.|
 | rssi | number | Yes| No| Received signal strength indicator (RSSI) of the hotspot, in dBm.|
-| band | number | Yes| No| Frequency band of the WLAN access point (AP).|
+| band | number | Yes| No| Frequency band of the WLAN access point (AP). The value **1** indicates 2.4 GHz, and **2** indicates 5 GHz.|
 | frequency | number | Yes| No| Frequency of the WLAN AP.|
-| channelWidth | number | Yes| No| Channel width of the WLAN AP.|
+| channelWidth | number | Yes| No| Channel width of the WLAN AP. For details, see [WifiChannelWidth](#wifichannelwidth9).|
 | centerFrequency0 | number | Yes| No| Center frequency of the hotspot.|
 | centerFrequency1 | number | Yes| No| Center frequency of the hotspot. If the hotspot uses two non-overlapping WLAN channels, two center frequencies, namely **centerFrequency0** and **centerFrequency1**, are returned.|
 | infoElems | Array&lt;[WifiInfoElem](#wifiinfoelem9)&gt; | Yes| No| Information elements.|
@@ -418,8 +430,8 @@ Enumerates the WLAN security types.
 | **Name**| **Value**| **Description**|
 | -------- | -------- | -------- |
 | WIFI_SEC_TYPE_INVALID | 0 | Invalid security type.|
-| WIFI_SEC_TYPE_OPEN | 1 | Open security type.|
-| WIFI_SEC_TYPE_WEP | 2 | Wired Equivalent Privacy (WEP).|
+| WIFI_SEC_TYPE_OPEN | 1 | Open security type. The candidate network configuration does not support this encryption type.|
+| WIFI_SEC_TYPE_WEP | 2 | Wired Equivalent Privacy (WEP). The candidate network configuration does not support this encryption type.|
 | WIFI_SEC_TYPE_PSK | 3 | Pre-shared key (PSK).|
 | WIFI_SEC_TYPE_SAE | 4 | Simultaneous Authentication of Equals (SAE).|
 | WIFI_SEC_TYPE_EAP | 5 | Extensible Authentication protocol (EAP).|
@@ -635,7 +647,7 @@ Represents the WLAN configuration.
 | securityType | [WifiSecurityType](#wifisecuritytype9)| Yes| No| Security type.|
 | creatorUid | number | Yes| No| ID of the creator.<br>**System API**: This is a system API.|
 | disableReason | number | Yes| No| Reason for disabling WLAN.<br>**System API**: This is a system API.|
-| netId | number | Yes| No| Network ID.<br>**System API**: This is a system API.|
+| netId | number | Yes| No| Network ID allocated.<br>**System API**: This is a system API.|
 | randomMacType | number | Yes| No| MAC address type. <br>The value **0** indicates random MAC address, and **1** indicates device MAC address.<br>**System API**: This is a system API.|
 | randomMacAddr | string | Yes| No| MAC address.<br>**System API**: This is a system API.|
 | ipType | [IpType](#iptype9) | Yes| No| IP address type.<br>**System API**: This is a system API.|
@@ -785,7 +797,7 @@ Adds network configuration. This API uses an asynchronous callback to return the
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | config | [WifiDeviceConfig](#wifideviceconfig9) | Yes| WLAN configuration to add. The default **bssidType** is random device address.|
-| callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the result. If the operation is successful, **error** is **0** and **data** is the network configuration ID. If **data** is **-1**, the operation has failed. If the operation fails, **error** is not **0**.|
+| callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the network configuration ID. If **data** is **-1**, the operation has failed. If the operation fails, **error** is not **0**.|
 
 **Error codes**
 
@@ -879,7 +891,7 @@ Adds the configuration of a candidate network. This API uses an asynchronous cal
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | config | [WifiDeviceConfig](#wifideviceconfig9) | Yes| WLAN configuration to add. The default **bssidType** is random device address.|
-| callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the result. If the operation is successful, **error** is **0** and **data** is the network configuration ID. If **data** is **-1**, the candidate network configuration fails to be added. If the operation fails, **error** is not **0**.|
+| callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the network configuration ID. If **data** is **-1**, the operation has failed. If **err** is not **0**, an error has occurred.|
 
 **Error codes**
 
@@ -969,7 +981,7 @@ Removes the configuration of a candidate network. This API uses an asynchronous 
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | networkId | number | Yes| ID of the network configuration to remove.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result. If the operation is successful, **error** is **0**. If the operation fails, **error** is not **0**.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0**. If the operation fails, **error** is not **0**.|
 
 **Error codes**
 
@@ -1213,7 +1225,7 @@ Obtains the WLAN signal level.
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | rssi | number | Yes| RSSI of the hotspot, in dBm.|
-| band | number | Yes| Frequency band of the WLAN AP.|
+| band | number | Yes| Frequency band of the WLAN AP. The value **1** indicates 2.4 GHz, and **2** indicates 5 GHz.|
 
 **Return value**
 
@@ -1252,7 +1264,7 @@ Obtains WLAN connection information. This API uses a promise to return the resul
 
 **Required permissions**: ohos.permission.GET_WIFI_INFO and
 
- ohos.permission.GET_WIFI_LOCAL_MAC (if **macAddress** needs to be obtained; otherwise, **macAddress** is an empty string.)
+If **macType** is **1** (device MAC address), the caller must also have the  ohos.permission.GET_WIFI_LOCAL_MAC permission. If the caller does not have this permission, an empty string will be returned.
 
 **System capability**: SystemCapability.Communication.WiFi.STA
 
@@ -1279,7 +1291,7 @@ Obtains WLAN connection information. This API uses an asynchronous callback to r
 
 **Required permissions**: ohos.permission.GET_WIFI_INFO and
 
-ohos.permission.GET_WIFI_LOCAL_MAC (if **macAddress** needs to be obtained; otherwise, **macAddress** is an empty string.)
+If **macType** is **1** (device MAC address), the caller must also have the  ohos.permission.GET_WIFI_LOCAL_MAC permission. If the caller does not have this permission, an empty string will be returned.
 
 **System capability**: SystemCapability.Communication.WiFi.STA
 
@@ -1287,7 +1299,7 @@ ohos.permission.GET_WIFI_LOCAL_MAC (if **macAddress** needs to be obtained; othe
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;[WifiLinkedInfo](#wifilinkedinfo9)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **error** is **0** and **data** is the WLAN connection information obtained. If the operation fails, **error** is not **0**.|
+| callback | AsyncCallback&lt;[WifiLinkedInfo](#wifilinkedinfo9)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the WLAN connection information obtained. If the operation fails, **err** is not **0**.|
 
 **Error codes**
 
@@ -1330,7 +1342,7 @@ Represents the WLAN connection information.
 | bssid | string | Yes| No| BSSID of the hotspot.|
 | networkId | number | Yes| No| Network configuration ID.<br>**System API**: This is a system API.|
 | rssi | number | Yes| No| Hotspot RSSI, in dBm.|
-| band | number | Yes| No| Band of the WLAN AP.|
+| band | number | Yes| No| Band of the WLAN AP. The value **1** indicates 2.4 GHz, and **2** indicates 5 GHz.|
 | linkSpeed | number | Yes| No| Uplink speed of the WLAN AP.|
 | rxLinkSpeed<sup>10+</sup> | number | Yes| No| Downlink speed of the WLAN AP.|
 | maxSupportedTxLinkSpeed<sup>10+</sup> | number | Yes| No| Maximum uplink speed supported.|
@@ -1492,10 +1504,24 @@ Checks whether the device supports the specified WLAN feature.
 
 **Parameters**
 
-
 | **Name**| **Type**| Mandatory| **Description**|
 | -------- | -------- | -------- | -------- |
 | featureId | number | Yes| Feature ID.|
+
+**Feature IDs**
+
+| Value| Description|
+| -------- | -------- |
+| 0x0001 | WLAN infrastructure mode|
+| 0x0002 | 5 GHz feature|
+| 0x0004 | Generic Advertisement Service (GAS)/Access Network Query Protocol (ANQP) feature|
+| 0x0008 | Wi-Fi Direct|
+| 0x0010 | SoftAP|
+| 0x0040 | Wi-Fi Aware|
+| 0x8000 | WLAN AP/STA concurrency|
+| 0x8000000 | WPA3 Personal (WPA-3 SAE)|
+| 0x10000000 | WPA3-Enterprise Suite B |
+| 0x20000000 | Enhanced open feature|
 
 **Return value**
 
@@ -1615,14 +1641,14 @@ Represents IP information.
 | primaryDns | number | Yes| No| IP address of the preferred DNS server.|
 | secondDns | number | Yes| No| IP address of the alternate DNS server.|
 | serverIp | number | Yes| No| IP address of the DHCP server.|
-| leaseDuration | number | Yes| No| Lease duration of the IP address.|
+| leaseDuration | number | Yes| No| Lease duration of the IP address, in seconds.|
 
 
 ## wifiManager.getIpv6Info<sup>10+</sup>
 
 getIpv6Info(): Ipv6Info
 
-Obtains IP information.
+Obtains IPv6 information.
 
 **Required permissions**: ohos.permission.GET_WIFI_INFO
 
@@ -2405,6 +2431,8 @@ Obtains P2P link information. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.GET_WIFI_INFO
 
+To obtain **groupOwnerAddr**, the caller must also have the ohos.permission.GET_WIFI_LOCAL_MAC permission. If the caller does not have this permission, **groupOwnerAddr** returned is an all-zero address.
+
 **System capability**: SystemCapability.Communication.WiFi.P2P
 
 **Return value**
@@ -2430,13 +2458,15 @@ Obtains P2P link information. This API uses an asynchronous callback to return t
 
 **Required permissions**: ohos.permission.GET_WIFI_INFO
 
+To obtain **groupOwnerAddr**, the caller must also have the ohos.permission.GET_WIFI_LOCAL_MAC permission. If the caller does not have this permission, **groupOwnerAddr** returned is an all-zero address.
+
 **System capability**: SystemCapability.Communication.WiFi.P2P
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo9)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **error** is **0** and **data** is the P2P link information. If the operation fails, **error** is not **0**.|
+| callback | AsyncCallback&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo9)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the P2P link information. If the operation fails, **err** is not **0**.|
 
 **Error codes**
 
@@ -2474,7 +2504,7 @@ Represents the P2P link information.
 | -------- | -------- | -------- | -------- | -------- |
 | connectState | [P2pConnectState](#p2pconnectstate9) | Yes| No| P2P connection state.|
 | isGroupOwner | boolean | Yes| No| Whether the device is the group owner.|
-| groupOwnerAddr | string | Yes| No| MAC address of the group.
+| groupOwnerAddr | string | Yes| No| IP address of the group.
 
 
 ## P2pConnectState<sup>9+</sup>
@@ -2534,7 +2564,7 @@ API version 10 and later : ohos.permission.GET_WIFI_INFO
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;[WifiP2pGroupInfo](#wifip2pgroupinfo9)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **error** is **0** and **data** is the group information obtained. If the operation fails, **error** is not **0**. If the application has the **ohos.permission.GET_WIFI_PEERS_MAC** permission, **deviceAddress** in the return value is a real device address; otherwise, **deviceAddress** is a random device address.|
+| callback | AsyncCallback&lt;[WifiP2pGroupInfo](#wifip2pgroupinfo9)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the group information obtained. If the operation fails, **error** is not **0**. If the application has the **ohos.permission.GET_WIFI_PEERS_MAC** permission, **deviceAddress** in the return value is a real device address; otherwise, **deviceAddress** is a random device address.|
 
 **Error codes**
 
@@ -2607,7 +2637,7 @@ API version 10 and later : ohos.permission.GET_WIFI_INFO
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;[WifiP2pDevice[]](#wifip2pdevice9)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **error** is **0** and **data** is the peer device list obtained. If the operation fails, **error** is not **0**. If the application has the **ohos.permission.GET_WIFI_PEERS_MAC** permission, **deviceAddress** in the return value is a real device address; otherwise, **deviceAddress** is a random device address.|
+| callback | AsyncCallback&lt;[WifiP2pDevice[]](#wifip2pdevice9)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the peer device list obtained. If the operation fails, **err** is not **0**. If the application has the **ohos.permission.GET_WIFI_PEERS_MAC** permission, **deviceAddress** in the return value is a real device address; otherwise, **deviceAddress** is a random device address.|
 
 **Error codes**
 
@@ -2703,7 +2733,7 @@ Obtains the local device information in the P2P connection. This API uses an asy
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;[WifiP2pDevice](#wifip2pdevice9)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **error** is **0** and **data** is the local device information obtained. If the operation fails, **error** is not **0**.|
+| callback | AsyncCallback&lt;[WifiP2pDevice](#wifip2pdevice9)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the local device information obtained. If the operation fails, **error** is not **0**.|
 
 **Error codes**
 
@@ -3239,7 +3269,7 @@ Unsubscribes from WLAN state changes.
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type, which has a fixed value of **wifiStateChange**.|
-| callback | Callback&lt;number&gt; | No| Callback for the WLAN state change. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
+| callback | Callback&lt;number&gt; | No| Callback to unregister. If this parameter is not specified, all callbacks registered for the specified event will be unregistered. |
 
 **Error codes**
 
@@ -3312,7 +3342,7 @@ Unsubscribes from WLAN connection state changes.
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type, which has a fixed value of **wifiConnectionChange**.|
-| callback | Callback&lt;number&gt; | No| Callback for the WLAN connection state change. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
+| callback | Callback&lt;number&gt; | No| Callback to unregister. If this parameter is not specified, all callbacks registered for the specified event will be unregistered. |
 
 **Error codes**
 
@@ -3384,7 +3414,7 @@ Unsubscribes from WLAN scan state changes.
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type, which has a fixed value of **wifiScanStateChange**.|
-| callback | Callback&lt;number&gt; | No| Callback for the WLAN scan state change. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
+| callback | Callback&lt;number&gt; | No| Callback to unregister. If this parameter is not specified, all callbacks registered for the specified event will be unregistered.|
 
 **Error codes**
 
@@ -3449,7 +3479,7 @@ Unsubscribes from RSSI changes.
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type, which has a fixed value of **wifiRssiChange**.|
-| callback | Callback&lt;number&gt; | No| Callback for the RSSI change. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
+| callback | Callback&lt;number&gt; | No| Callback to unregister. If this parameter is not specified, all callbacks registered for the specified event will be unregistered.|
 
 **Error codes**
 
@@ -3517,7 +3547,7 @@ Unsubscribes from Wi-Fi stream changes. This API is not supported in the current
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type, which has a fixed value of **streamChange**.|
-| callback | Callback&lt;number&gt; | No| Callback for the stream change, which can be any of the following values:<br>- **0**: No stream.<br>- **1**: Downward.<br>- **2**: Upward.<br>- **3**: Bidirectional.|
+| callback | Callback&lt;number&gt; | No| Callback to unregister. The stream change can be any of the following values:<br>- **0**: No stream.<br>- **1**: Downward.<br>- **2**: Upward.<br>- **3**: Bidirectional. |
 
 **Error codes**
 
@@ -3586,7 +3616,7 @@ Unsubscribes from Wi-Fi device configuration changes.
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type, which has a fixed value of **deviceConfigChange**.|
-| callback | Callback&lt;number&gt; | No| Callback for the device configuration change, which can be any of the following values:<br>- **0**: device configuration added.<br>- **1**: device configuration changed.<br>- **2**: device configuration deleted.|
+| callback | Callback&lt;number&gt; | No| Callback to unregister. The device configuration change can be any of the following values:<br>- **0**: device configuration added.<br>- **1**: device configuration changed.<br>- **2**: device configuration deleted. |
 
 **Error codes**
 
@@ -3661,7 +3691,7 @@ Unsubscribes from hotspot state changes.
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type, which has a fixed value of **hotspotStateChange**.|
-| callback | Callback&lt;number&gt; | No| Callback for the hotspot state change. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
+| callback | Callback&lt;number&gt; | No| Callback to unregister. If this parameter is not specified, all callbacks registered for the specified event will be unregistered.|
 
 **Error codes**
 
@@ -3730,7 +3760,7 @@ Unsubscribes from the connection of an STA to a Wi-Fi hotspot.
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type, which has a fixed value of **hotspotStaJoin**.|
-| callback | Callback&lt;StationInfo&gt; | No| Callback for the connection of an STA to a Wi-Fi hotspot.|
+| callback | Callback&lt;StationInfo&gt; | No| Callback to unregister. |
 
 **Error codes**
 
@@ -3800,7 +3830,7 @@ Unsubscribes from the disconnection of an STA from a Wi-Fi hotspot.
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type, which has a fixed value of **hotspotStaLeave**.|
-| callback | Callback&lt;StationInf]&gt; | No| Callback for the disconnection of an STA from a Wi-Fi hotspot.|
+| callback | Callback&lt;StationInf]&gt; | No| Callback to unregister.|
 
 **Error codes**
 
@@ -3876,7 +3906,7 @@ Unsubscribes from P2P state changes.
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type, which has a fixed value of **p2pStateChange**.|
-| callback | Callback&lt;number&gt; | No| Callback for the P2P state change. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
+| callback | Callback&lt;number&gt; | No| Callback to unregister. If this parameter is not specified, all callbacks registered for the specified event will be unregistered.|
 
 **Error codes**
 
@@ -3941,7 +3971,7 @@ Unsubscribes from P2P connection state changes.
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type, which has a fixed value of **p2pConnectionChange**.|
-| callback | Callback&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo9)&gt; | No| Callback for the P2P connection state change. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
+| callback | Callback&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo9)&gt; | No| Callback to unregister. If this parameter is not specified, all callbacks registered for the specified event will be unregistered.|
 
 **Error codes**
 
@@ -4014,7 +4044,7 @@ API version 10 and later: No permission is required.
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type, which has a fixed value of **p2pDeviceChange**.|
-| callback | Callback&lt;[WifiP2pDevice](#wifip2pdevice9)&gt; | No| Callback for the P2P device state change. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
+| callback | Callback&lt;[WifiP2pDevice](#wifip2pdevice9)&gt; | No| Callback to unregister. If this parameter is not specified, all callbacks registered for the specified event will be unregistered.|
 
 **Error codes**
 
@@ -4087,7 +4117,7 @@ API version 10 and later: No permission is required.
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type, which has a fixed value of **p2pPeerDeviceChange**.|
-| callback | Callback&lt;[WifiP2pDevice[]](#wifip2pdevice9)&gt; | No| Callback for the P2P peer device state change. If this parameter is not specified, all callbacks associated with the specified event will be unregistered. If the application has the **ohos.permission.GET_WIFI_PEERS_MAC** permission, **deviceAddress** in the return value is a real device address; otherwise, **deviceAddress** is a random device address.|
+| callback | Callback&lt;[WifiP2pDevice[]](#wifip2pdevice9)&gt; | No| Callback to unregister. If this parameter is not specified, all callbacks registered for the specified event will be unregistered. If the application has the **ohos.permission.GET_WIFI_PEERS_MAC** permission, **deviceAddress** in the return value is a real device address; otherwise, **deviceAddress** is a random device address.|
 
 **Error codes**
 
@@ -4152,7 +4182,7 @@ Unsubscribes from P2P persistent group state changes.
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type, which has a fixed value of **p2pPersistentGroupChange**.|
-| callback | Callback&lt;void&gt; | No| Callback for the P2P persistent group state change. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
+| callback | Callback&lt;void&gt; | No| Callback to unregister. If this parameter is not specified, all callbacks registered for the specified event will be unregistered.|
 
 **Error codes**
 
@@ -4224,7 +4254,7 @@ Unsubscribes from P2P device discovery state changes.
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type, which has a fixed value of **p2pDiscoveryChange**.|
-| callback | Callback&lt;number&gt; | No| Callback for the P2P device discovery state change. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
+| callback | Callback&lt;number&gt; | No| Callback to unregister. If this parameter is not specified, all callbacks registered for the specified event will be unregistered.|
 
 **Error codes**
 

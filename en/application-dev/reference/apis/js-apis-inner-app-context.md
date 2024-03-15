@@ -530,12 +530,17 @@ Sets the display orientation for this ability. This API uses a promise to return
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
+**Parameters**
+
+| Type                                      | Type                                      | Mandatory  | Description                                      |
+| ---------------------------------------- | ---------------------------------------- | ---- | ------------ |
+| orientation                              | [bundle.DisplayOrientation](js-apis-bundleManager.md#displayorientation) | Yes   | Callback used to return the display orientation.                               |
+
 **Return value**
 
-| Type                                      | Description                                      |
-| ---------------------------------------- | ---------------------------------------- |
-| orientation                              | [bundle.DisplayOrientation](js-apis-bundleManager.md#displayorientation) |
-| Promise\<void> | Promise used to return the display orientation.                               |
+| Type            | Description              |
+| -------------- | ---------------- |
+| Promise\<void> | Promise that returns no value.|
 
 **Example**
 
@@ -555,7 +560,7 @@ context.setDisplayOrientation(orientation).then((data) => {
 setShowOnLockScreen(show: boolean, callback: AsyncCallback\<void>): void
 
 Sets whether to show this feature at the top of the lock screen so that the feature remains activated. This API uses an asynchronous callback to return the result.
-> This API is deprecated since API version 9. You are advised to use [window.setShowOnLockScreen](js-apis-window.md#setshowonlockscreen9).
+> This API is deprecated since API version 9. You are advised to use [window.setShowOnLockScreen](js-apis-window.md#setshowonlockscreen9) instead.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -583,7 +588,7 @@ context.setShowOnLockScreen(show, (error) => {
 setShowOnLockScreen(show: boolean): Promise\<void>
 
 Sets whether to show this feature at the top of the lock screen so that the feature remains activated. This API uses a promise to return the result.
-> This API is deprecated since API version 9. You are advised to use [window.setShowOnLockScreen](js-apis-window.md#setshowonlockscreen9).
+> This API is deprecated since API version 9. You are advised to use [window.setShowOnLockScreen](js-apis-window.md#setshowonlockscreen9) instead.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 

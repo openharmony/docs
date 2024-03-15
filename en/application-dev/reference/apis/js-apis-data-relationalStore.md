@@ -1,10 +1,7 @@
 # @ohos.data.relationalStore (RDB Store)
 
 The relational database (RDB) store manages data based on relational models. It provides a complete mechanism for managing local databases based on the underlying SQLite. To satisfy different needs in complicated scenarios, the RDB store offers a series of APIs for performing operations such as adding, deleting, modifying, and querying data, and supports direct execution of SQL statements. The worker threads are not supported.
-
-ArkTS supports the following basic data types: number, string, binary data, and boolean. 
-
-To ensure successful read and write of data, the data size cannot exceed 2 MB. If a data record exceeds 2 MB, it can be inserted successfully but cannot be read.
+ArkTS supports the following basic data types: number, string, binary data, and boolean. The maximum size of a data record is 2 MB. If a data record exceeds 2 MB, it can be inserted successfully but cannot be read.
 
 The **relationalStore** module provides the following functions:
 
@@ -504,7 +501,7 @@ Defines the RDB store configuration.
 
 | Name       | Type         | Mandatory| Description                                                     |
 | ------------- | ------------- | ---- | --------------------------------------------------------- |
-| name          | string        | Yes  | Database file name.                                           |
+| name          | string        | Yes  | Database file name, which is the unique identifier of the database.|
 | securityLevel | [SecurityLevel](#securitylevel) | Yes  | Security level of the RDB store.                                       |
 | encrypt       | boolean       | No  | Whether to encrypt the RDB store.<br>The value **true** means to encrypt the RDB store; the value **false** (default) means the opposite.|
 | dataGroupId<sup>10+</sup> | string | No| Application group ID, which needs to be obtained from AppGallery.<br>**Model restriction**: This attribute can be used only in the stage model.<br>This parameter is supported since API version 10. It specifies the **relationalStore** instance created in the sandbox directory corresponding to **dataGroupId**. If this parameter is not specified, the **relationalStore** instance is created in the sandbox directory of the application.|
@@ -847,13 +844,6 @@ try {
 
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.inDevices(deviceIds);
-
-if(store != undefined) {
-  // Set the RDB store version.
-  (store as relationalStore.RdbStore).version = 3;
-  // Obtain the RDB store version.
-  console.info(`RdbStore version is ${(store as relationalStore.RdbStore).version}`);
-}
 ```
 
 ### inAllDevices
@@ -1597,7 +1587,7 @@ Sets an **RdbPredicates** object to specify the index column.
 
 ```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-predicates.indexedBy("SALARY_INDEX");
+predicates.indexedBy("SALARY");
 ```
 
 ### in
@@ -1687,7 +1677,7 @@ if(store != undefined) {
 
 insert(table: string, values: ValuesBucket, callback: AsyncCallback&lt;number&gt;):void
 
-Inserts a row of data into a table. This API uses an asynchronous callback to return the result.
+Inserts a row of data into a table. This API uses an asynchronous callback to return the result. Due to the limit of the shared memory (max. 2 MB), a single data record cannot exceed 2 MB. Otherwise, the query operation will fail.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1742,7 +1732,7 @@ if(store != undefined) {
 
 insert(table: string, values: ValuesBucket,  conflict: ConflictResolution, callback: AsyncCallback&lt;number&gt;):void
 
-Inserts a row of data into a table. This API uses an asynchronous callback to return the result.
+Inserts a row of data into a table. This API uses an asynchronous callback to return the result. Due to the limit of the shared memory (max. 2 MB), a single data record cannot exceed 2 MB. Otherwise, the query operation will fail.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1799,7 +1789,7 @@ if(store != undefined) {
 
 insert(table: string, values: ValuesBucket):Promise&lt;number&gt;
 
-Inserts a row of data into a table. This API uses a promise to return the result.
+Inserts a row of data into a table. This API uses a promise to return the result. Due to the limit of the shared memory (max. 2 MB), a single data record cannot exceed 2 MB. Otherwise, the query operation will fail.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1858,7 +1848,7 @@ if(store != undefined) {
 
 insert(table: string, values: ValuesBucket,  conflict: ConflictResolution):Promise&lt;number&gt;
 
-Inserts a row of data into a table. This API uses a promise to return the result.
+Inserts a row of data into a table. This API uses a promise to return the result. Due to the limit of the shared memory (max. 2 MB), a single data record cannot exceed 2 MB. Otherwise, the query operation will fail.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2076,7 +2066,7 @@ if(store != undefined) {
 
 update(values: ValuesBucket, predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void
 
-Updates data in the RDB store based on the specified **RdbPredicates** object. This API uses an asynchronous callback to return the result.
+Updates data in the RDB store based on the specified **RdbPredicates** object. This API uses an asynchronous callback to return the result. Due to the limit of the shared memory (max. 2 MB), a single data record cannot exceed 2 MB. Otherwise, the query operation will fail.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2133,7 +2123,7 @@ if(store != undefined) {
 
 update(values: ValuesBucket, predicates: RdbPredicates, conflict: ConflictResolution, callback: AsyncCallback&lt;number&gt;):void
 
-Updates data in the RDB store based on the specified **RdbPredicates** object. This API uses an asynchronous callback to return the result.
+Updates data in the RDB store based on the specified **RdbPredicates** object. This API uses an asynchronous callback to return the result. Due to the limit of the shared memory (max. 2 MB), a single data record cannot exceed 2 MB. Otherwise, the query operation will fail.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2191,7 +2181,7 @@ if(store != undefined) {
 
 update(values: ValuesBucket, predicates: RdbPredicates):Promise&lt;number&gt;
 
-Updates data based on the specified **RdbPredicates** object. This API uses a promise to return the result.
+Updates data based on the specified **RdbPredicates** object. This API uses a promise to return the result. Due to the limit of the shared memory (max. 2 MB), a single data record cannot exceed 2 MB. Otherwise, the query operation will fail.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2252,7 +2242,7 @@ if(store != undefined) {
 
 update(values: ValuesBucket, predicates: RdbPredicates, conflict: ConflictResolution):Promise&lt;number&gt;
 
-Updates data based on the specified **RdbPredicates** object. This API uses a promise to return the result.
+Updates data based on the specified **RdbPredicates** object. This API uses a promise to return the result. Due to the limit of the shared memory (max. 2 MB), a single data record cannot exceed 2 MB. Otherwise, the query operation will fail.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2314,7 +2304,7 @@ if(store != undefined) {
 
 update(table: string, values: ValuesBucket, predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallback&lt;number&gt;):void
 
-Updates data based on the specified **DataSharePredicates** object. This API uses an asynchronous callback to return the result.
+Updates data based on the specified **DataSharePredicates** object. This API uses an asynchronous callback to return the result. Due to the limit of the shared memory (max. 2 MB), a single data record cannot exceed 2 MB. Otherwise, the query operation will fail.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2377,7 +2367,7 @@ if(store != undefined) {
 
 update(table: string, values: ValuesBucket, predicates: dataSharePredicates.DataSharePredicates):Promise&lt;number&gt;
 
-Updates data based on the specified **DataSharePredicates** object. This API uses a promise to return the result.
+Updates data based on the specified **DataSharePredicates** object. This API uses a promise to return the result. Due to the limit of the shared memory (max. 2 MB), a single data record cannot exceed 2 MB. Otherwise, the query operation will fail.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2627,7 +2617,7 @@ if(store != undefined) {
 
 query(predicates: RdbPredicates, callback: AsyncCallback&lt;ResultSet&gt;):void
 
-Queries data from the RDB store based on specified conditions. This API uses an asynchronous callback to return the result.
+Queries data from the RDB store based on specified conditions. This API uses an asynchronous callback to return the result. Due to the limit of the shared memory (max. 2 MB), a single data record cannot exceed 2 MB. Otherwise, the query operation will fail.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2676,7 +2666,7 @@ if(store != undefined) {
 
 query(predicates: RdbPredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;ResultSet&gt;):void
 
-Queries data from the RDB store based on specified conditions. This API uses an asynchronous callback to return the result.
+Queries data from the RDB store based on specified conditions. This API uses an asynchronous callback to return the result. Due to the limit of the shared memory (max. 2 MB), a single data record cannot exceed 2 MB. Otherwise, the query operation will fail.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2726,7 +2716,7 @@ if(store != undefined) {
 
 query(predicates: RdbPredicates, columns?: Array&lt;string&gt;):Promise&lt;ResultSet&gt;
 
-Queries data from the RDB store based on specified conditions. This API uses a promise to return the result.
+Queries data from the RDB store based on specified conditions. This API uses a promise to return the result. Due to the limit of the shared memory (max. 2 MB), a single data record cannot exceed 2 MB. Otherwise, the query operation will fail.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2781,7 +2771,7 @@ if(store != undefined) {
 
 query(table: string, predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallback&lt;ResultSet&gt;):void
 
-Queries data from the RDB store based on specified conditions. This API uses an asynchronous callback to return the result.
+Queries data from the RDB store based on specified conditions. This API uses an asynchronous callback to return the result. Due to the limit of the shared memory (max. 2 MB), a single data record cannot exceed 2 MB. Otherwise, the query operation will fail.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2837,7 +2827,7 @@ if(store != undefined) {
 
 query(table: string, predicates: dataSharePredicates.DataSharePredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;ResultSet&gt;):void
 
-Queries data from the RDB store based on specified conditions. This API uses an asynchronous callback to return the result.
+Queries data from the RDB store based on specified conditions. This API uses an asynchronous callback to return the result. Due to the limit of the shared memory (max. 2 MB), a single data record cannot exceed 2 MB. Otherwise, the query operation will fail.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2894,7 +2884,7 @@ if(store != undefined) {
 
 query(table: string, predicates: dataSharePredicates.DataSharePredicates, columns?: Array&lt;string&gt;):Promise&lt;ResultSet&gt;
 
-Queries data from the RDB store based on specified conditions. This API uses a promise to return the result.
+Queries data from the RDB store based on specified conditions. This API uses a promise to return the result. Due to the limit of the shared memory (max. 2 MB), a single data record cannot exceed 2 MB. Otherwise, the query operation will fail.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -3402,7 +3392,7 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 ```ts
 let PRIKey = [1, 4, 2, 3];
 if(store != undefined) {
-  (store as relationalStore.RdbStore).getModifyTime("cloud_tasks", "uuid", PRIKey, (err, modifyTime: relationalStore.ModifyTime) => {
+  (store as relationalStore.RdbStore).getModifyTime("EMPLOYEE", "NAME", PRIKey, (err, modifyTime: relationalStore.ModifyTime) => {
     if (err) {
       console.error(`getModifyTime failed, code is ${err.code},message is ${err.message}`);
       return;
@@ -3449,7 +3439,7 @@ import { BusinessError } from "@ohos.base";
 
 let PRIKey = [1, 2, 3];
 if(store != undefined) {
-  (store as relationalStore.RdbStore).getModifyTime("cloud_tasks", "uuid", PRIKey)
+  (store as relationalStore.RdbStore).getModifyTime("EMPLOYEE", "NAME", PRIKey)
     .then((modifyTime: relationalStore.ModifyTime) => {
       let size = modifyTime.size;
     })
@@ -3483,8 +3473,6 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 import featureAbility from '@ohos.ability.featureAbility'
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 
-let context = getContext(this);
-
 let key1 = "name";
 let key2 = "age";
 let key3 = "SALARY";
@@ -3493,25 +3481,16 @@ let value1 = "Lisa";
 let value2 = 18;
 let value3 = 100.5;
 let value4 = new Uint8Array([1, 2, 3]);
-const STORE_CONFIG: relationalStore.StoreConfig = {
-  name: "RdbTest.db",
-  securityLevel: relationalStore.SecurityLevel.S1
+
+store.beginTransaction();
+const valueBucket: ValuesBucket = {
+  key1: value1,
+  key2: value2,
+  key3: value3,
+  key4: value4,
 };
-relationalStore.getRdbStore(context, STORE_CONFIG, async (err, store) => {
-  if (err) {
-    console.error(`GetRdbStore failed, code is ${err.code},message is ${err.message}`);
-    return;
-  }
-  store.beginTransaction();
-  const valueBucket: ValuesBucket = {
-    key1: value1,
-    key2: value2,
-    key3: value3,
-    key4: value4,
-  };
-  await store.insert("test", valueBucket);
-  store.commit();
-})
+store.insert("test", valueBucket);
+store.commit();
 ```
 
 ### commit
@@ -3528,8 +3507,6 @@ This API cannot be used in multi-process or multi-thread scenarios.
 ```ts
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 
-let context = getContext(this);
-
 let key1 = "name";
 let key2 = "age";
 let key3 = "SALARY";
@@ -3538,25 +3515,16 @@ let value1 = "Lisa";
 let value2 = 18;
 let value3 = 100.5;
 let value4 = new Uint8Array([1, 2, 3]);
-const STORE_CONFIG: relationalStore.StoreConfig = {
-  name: "RdbTest.db",
-  securityLevel: relationalStore.SecurityLevel.S1
+
+store.beginTransaction();
+const valueBucket: ValuesBucket = {
+  key1: value1,
+  key2: value2,
+  key3: value3,
+  key4: value4,
 };
-relationalStore.getRdbStore(context, STORE_CONFIG, async (err, store) => {
-  if (err) {
-    console.error(`GetRdbStore failed, code is ${err.code},message is ${err.message}`);
-    return;
-  }
-  store.beginTransaction();
-  const valueBucket: ValuesBucket = {
-    key1: value1,
-    key2: value2,
-    key3: value3,
-    key4: value4,
-  };
-  await store.insert("test", valueBucket);
-  store.commit();
-})
+store.insert("test", valueBucket);
+store.commit();
 ```
 
 ### rollBack
@@ -3573,8 +3541,6 @@ This API cannot be used in multi-process or multi-thread scenarios.
 ```ts
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 
-let context = getContext(this);
-
 let key1 = "name";
 let key2 = "age";
 let key3 = "SALARY";
@@ -3583,32 +3549,23 @@ let value1 = "Lisa";
 let value2 = 18;
 let value3 = 100.5;
 let value4 = new Uint8Array([1, 2, 3]);
-const STORE_CONFIG: relationalStore.StoreConfig = {
-  name: "RdbTest.db",
-  securityLevel: relationalStore.SecurityLevel.S1
-};
-relationalStore.getRdbStore(context, STORE_CONFIG, async (err, store) => {
-  if (err) {
-    console.error(`GetRdbStore failed, code is ${err.code},message is ${err.message}`);
-    return;
-  }
-  try {
-    store.beginTransaction()
-    const valueBucket: ValuesBucket = {
-      key1: value1,
-      key2: value2,
-      key3: value3,
-      key4: value4,
-    };
-    await store.insert("test", valueBucket);
-    store.commit();
-  } catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message
-    console.error(`Transaction failed, code is ${code},message is ${message}`);
-    store.rollBack();
-  }
-})
+
+try {
+  store.beginTransaction()
+  const valueBucket: ValuesBucket = {
+    key1: value1,
+    key2: value2,
+    key3: value3,
+    key4: value4,
+  };
+  store.insert("test", valueBucket);
+  store.commit();
+} catch (err) {
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message
+  console.error(`Transaction failed, code is ${code},message is ${message}`);
+  store.rollBack();
+}
 ```
 
 ### backup
@@ -4446,7 +4403,7 @@ Registers a data change event listener for the RDB store. When the data in the R
 | -------- | ----------------------------------- | ---- | ------------------------------------------- |
 | event    | string                              | Yes  | Event type. The value is **dataChange**, which indicates data changes.     |
 | type     | [SubscribeType](#subscribetype)    | Yes  | Subscription type to register.|
-| observer | Callback&lt;Array&lt;string&gt;&gt; \| Callback&lt;Array&lt;[ChangeInfo](#changeinfo10)&gt;&gt; | Yes  | Callback invoked to return the data change.<br>If **type** is **SUBSCRIBE_TYPE_REMOTE**, **observer** must be **Callback&lt;Array&lt;string&gt;&gt;**, where **Array&lt;string&gt;** specifies the IDs of the peer devices with data changes.<br>If **type** is **SUBSCRIBE_TYPE_CLOUD**, **observer** must be **Callback&lt;Array&lt;string&gt;&gt;**, where **Array&lt;string&gt;** specifies the cloud accounts with data changes.<br>If **type** is **SUBSCRIBE_TYPE_CLOUD_DETAILS**, **observer** must be **Callback&lt;Array&lt;ChangeInfo&gt;&gt;**, where **Array&lt;ChangeInfo&gt;** specifies the details about the device-cloud synchronization. |
+| observer | Callback&lt;Array&lt;string&gt;&gt; \| Callback&lt;Array&lt;[ChangeInfo](#changeinfo10)&gt;&gt; | Yes  | Callback invoked to return the data change.<br>If **type** is **SUBSCRIBE_TYPE_REMOTE**, **observer** must be **Callback&lt;Array&lt;string&gt;&gt;**, where **Array&lt;string&gt;** specifies the IDs of the peer devices with data changes.<br>If **type** is **SUBSCRIBE_TYPE_CLOUD**, **observer** must be **Callback&lt;Array&lt;string&gt;&gt;**, where **Array&lt;string&gt;** specifies the cloud accounts with data changes.<br>If **type** is **SUBSCRIBE_TYPE_CLOUD_DETAILS**, **observer** must be **Callback&lt;Array&lt;ChangeInfo&gt;&gt;**, where **Array&lt;ChangeInfo&gt;** specifies the details about the device-cloud synchronization.|
 
 **Example**
 
@@ -4485,7 +4442,7 @@ Registers an intra-process or inter-process event listener for the RDB store. Th
 | Name      | Type           | Mandatory| Description                                                        |
 | ------------ | --------------- | ---- | ------------------------------------------------------------ |
 | event        | string          | Yes  | Event name to observe.                                              |
-| interProcess | boolean         | Yes  | Type of the event to observe.<br>The value **true** means the inter-process event.<br>The value **false** means the intra-process event. |
+| interProcess | boolean         | Yes  | Type of the event to observe.<br>The value **true** means the inter-process event.<br>The value **false** means the intra-process event.|
 | observer     | Callback\<void> | Yes  | Callback invoked to return the result.                                                  |
 
 **Error codes**
@@ -4525,9 +4482,9 @@ Unregisters the data change event listener.
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| event    | string                                                       | Yes  | Event type. The value is **dataChange**, which indicates data changes.                          |
-| type     | [SubscribeType](#subscribetype) | Yes  | Subscription type to unregister.                                                  |
-| observer | Callback&lt;Array&lt;string&gt;&gt;                          | Yes  | Callback for the data change. **Array<string>** indicates the IDs of the peer devices whose data in the database is changed.|
+| event    | string                                                       | Yes  | Event type. The value is **dataChange**, which indicates data changes.                     |
+| type     | [SubscribeType](#subscribetype) | Yes  | Subscription type to unregister.                                                |
+| observer | Callback&lt;Array&lt;string&gt;&gt;                          | Yes  | Callback for the data change. **Array<string>** indicates the IDs of the peer devices whose data in the database is changed. |
 
 **Example**
 
@@ -4604,7 +4561,7 @@ Unregisters the data change event listener.
 | Name      | Type           | Mandatory| Description                                                        |
 | ------------ | --------------- | ---- | ------------------------------------------------------------ |
 | event        | string          | Yes  | Name of the event.                                          |
-| interProcess | boolean         | Yes  | Type of the event.<br>The value **true** means the inter-process event.<br>The value **false** means the intra-process event. |
+| interProcess | boolean         | Yes  | Type of the event.<br>The value **true** means the inter-process event.<br>The value **false** means the intra-process event.|
 | observer     | Callback\<void> | No  | Callback for the event to unregister.<br/>If this parameter is specified, the specified callback will be unregistered. If this parameter is not specified, all callbacks of the specified event will be unregistered. |
 
 **Error codes**

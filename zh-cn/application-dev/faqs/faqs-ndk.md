@@ -288,3 +288,13 @@ libc++_shared.so被打包到应用目录下了，每个应用都有一份独立�
 **参考链接**
 
 [使用Node-API接口进行线程安全开发](../napi/use-napi-thread-safety.md)
+
+## 由napi_create_object创建，或者作为参数传下来的JS对象，如果想持久持有，需要怎么做？(API 10)
+
+**问题描述**
+
+以及，怎么主动销毁或减少引用计数？
+
+**解决方案**
+
+持久持有一个对象，可以通过napi_create_reference创建一个强引用，然后将这个ref保存下来使用；主动销毁可以使用napi_delete_reference，减少或者增加引用计数可以通过napi_reference_unref或者napi_reference_ref。

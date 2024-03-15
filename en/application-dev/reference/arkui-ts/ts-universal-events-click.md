@@ -11,7 +11,7 @@ A click event is triggered when a component is clicked.
 
 | Name                                      | Bubbling Supported| Description                             |
 | ---------------------------------------- | ---- | --------------------------------- |
-| onClick(event: (event?: [ClickEvent](#clickevent)) =&gt; void) | No   | Called when a click event occurs. For details about **event**, see **ClickEvent**.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| onClick(event: (event: [ClickEvent](#clickevent)) =&gt; void) | No   | Called when a click event occurs. For details about **event**, see **ClickEvent**.<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 ## ClickEvent
 

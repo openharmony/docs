@@ -172,7 +172,7 @@ async function Demo() {
 
 readPixels(area: PositionArea): Promise\<void>
 
-Reads image pixel map data in an area. This API uses a promise to return the data read.
+Reads image pixel map data in an area. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -212,7 +212,7 @@ async function Demo() {
 
 readPixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
-Reads image pixel map data in an area. This API uses an asynchronous callback to return the data read.
+Reads image pixel map data in an area. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -250,7 +250,7 @@ async function Demo() {
 
 writePixels(area: PositionArea): Promise\<void>
 
-Writes image pixel map data to an area. This API uses a promise to return the operation result.
+Writes image pixel map data to an area. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -294,7 +294,7 @@ async function Demo() {
 
 writePixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
-Writes image pixel map data to an area. This API uses an asynchronous callback to return the operation result.
+Writes image pixel map data to an area. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -411,7 +411,7 @@ async function Demo() {
 
 getImageInfo(): Promise\<ImageInfo>
 
-Obtains pixel map information of this image. This API uses a promise to return the information.
+Obtains pixel map information of this image. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -440,7 +440,7 @@ async function Demo() {
 
 getImageInfo(callback: AsyncCallback\<ImageInfo>): void
 
-Obtains pixel map information of this image. This API uses an asynchronous callback to return the information.
+Obtains pixel map information of this image. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -1313,7 +1313,7 @@ Creates an **ImageSource** instance based on the URI.
 
 | Name| Type  | Mandatory| Description                              |
 | ------ | ------ | ---- | ---------------------------------- |
-| uri    | string | Yes  | Image path. Currently, only the application sandbox path is supported.<br>Currently, the following formats are supported: .jpg, .png, .gif, .bmp, .webp, and raw. For details, see [SVG Tags<sup>10+</sup>](#svg-tags).|
+| uri    | string | Yes  | Image path. Currently, only the application sandbox path is supported.<br>Currently, the following formats are supported: .jpg, .png, .gif, .bmp, .webp, and raw [SVG<sup>10+</sup>](#svg-tags). |
 
 **Return value**
 
@@ -1351,7 +1351,7 @@ Creates an **ImageSource** instance based on the URI.
 
 | Name | Type                           | Mandatory| Description                               |
 | ------- | ------------------------------- | ---- | ----------------------------------- |
-| uri     | string                          | Yes  | Image path. Currently, only the application sandbox path is supported.<br>Currently, the following formats are supported: .jpg, .png, .gif, .bmp, .webp, and raw. For details, see [SVG Tags<sup>10+</sup>](#svg-tags).|
+| uri     | string                          | Yes  | Image path. Currently, only the application sandbox path is supported.<br>Currently, the following formats are supported: .jpg, .png, .gif, .bmp, .webp, and raw [SVG<sup>10+</sup>](#svg-tags). |
 | options | [SourceOptions](#sourceoptions9) | Yes  | Image properties, including the image index and default property value.|
 
 **Return value**
@@ -1550,7 +1550,7 @@ Provides APIs to obtain image information. Before calling any API in **ImageSour
 
 getImageInfo(index: number, callback: AsyncCallback\<ImageInfo>): void
 
-Obtains information about an image with the specified index. This API uses an asynchronous callback to return the information.
+Obtains information about an image with the specified index. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
@@ -1579,7 +1579,7 @@ imageSourceApi.getImageInfo(0,(error : BusinessError, imageInfo : image.ImageInf
 
 getImageInfo(callback: AsyncCallback\<ImageInfo>): void
 
-Obtains information about this image. This API uses an asynchronous callback to return the information.
+Obtains information about this image. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
@@ -1607,7 +1607,7 @@ imageSourceApi.getImageInfo((err : BusinessError, imageInfo : image.ImageInfo) =
 
 getImageInfo(index?: number): Promise\<ImageInfo>
 
-Obtains information about an image with the specified index. This API uses a promise to return the image information.
+Obtains information about an image with the specified index. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
@@ -1703,7 +1703,7 @@ imageSourceApi.getImageProperty("BitsPerSample",(error : BusinessError, data : s
 
 getImageProperty(key:string, options: GetImagePropertyOptions, callback: AsyncCallback\<string>): void
 
-Obtains the value of a property in this image. This API uses an asynchronous callback to return the property value in a string. The image must be in JPEG format and contain EXIF information.
+Obtains the value of a property in this image. This API uses an asynchronous callback to return the result. The image must be in JPEG format and contain EXIF information.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
@@ -3245,7 +3245,7 @@ Describes area information in an image.
 | ------ | ------------------ | ---- | ---- | ------------------------------------------------------------ |
 | pixels | ArrayBuffer        | Yes  | No  | Pixels of the image.                                                      |
 | offset | number             | Yes  | No  | Offset for data reading.                                                    |
-| stride | number             | Yes  | No  | Number of bytes from one row of pixels in memory to the next row of pixels in memory. The value of **stride** must be greater than or equal to the value of **region.size.width** multiplied by 4.                   |
+| stride | number             | Yes  | No  | Number of bytes from one row of pixels in memory to the next row of pixels in memory. The value of **stride** must be greater than or equal to the value of **region.size.width** multiplied by 4.                  |
 | region | [Region](#region7) | Yes  | No  | Region to read or write. The width of the region to write plus the X coordinate cannot be greater than the width of the original image. The height of the region to write plus the Y coordinate cannot be greater than the height of the original image.|
 
 ## ImageInfo
@@ -3388,7 +3388,7 @@ Describes image properties.
 
 | Name        | Type  | Readable| Writable| Description        |
 | ------------ | ------ | ---- | ---- | ------------ |
-| index        | number | Yes  | Yes  | Index of an image.  |
+| index        | number | Yes  | Yes  | Index of the image.  |
 | defaultValue | string | Yes  | Yes  | Default property value.|
 
 ## PropertyKey<sup>7+</sup>

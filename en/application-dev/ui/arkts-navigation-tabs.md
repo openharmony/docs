@@ -29,8 +29,6 @@ When there is a large amount of page information, to enable the user to focus on
 
 Each **\<TabContent>** component should be mapped to a tab page, which can be configured through the **tabBar** attribute. The following is an example.
 
-
-
 ```ts
  TabContent() {
    Text('Content of the Home tab').fontSize(30)
@@ -40,8 +38,6 @@ Each **\<TabContent>** component should be mapped to a tab page, which can be co
 
 
 When setting multiple **\<TabContent>** components, place them in sequence in the **\<Tabs>** component.
-
-
 
 ```ts
 Tabs() {
@@ -118,8 +114,6 @@ Side navigation is seldom used in applications. It is more applicable to landsca
 
 To implement the side navigation bar, set the **vertical** attribute of the **\<Tabs>** component to **true**. By default, **vertical** is set to **false**, indicating that the content page and navigation bar are aligned vertically.
 
-
-
 ```ts
 Tabs({ barPosition: BarPosition.Start }) {
   // TabContent: Home, Discover, Recommended, and Me
@@ -147,8 +141,6 @@ Tabs({ barPosition: BarPosition.Start }) {
 
 
 The attribute that enables or disables the scrolling is **scrollable**. Its default value is **true**, indicating that scrolling is enabled. To disable the scrolling, set the attribute to **false**.
-
-
 
 ```ts
 Tabs({ barPosition: BarPosition.End }) {
@@ -183,8 +175,6 @@ When the content categories are relatively fixed and not scalable, a fixed navig
 
 To use a fixed navigation bar, set the **barMode** attribute of the **\<Tabs>** component to **barMode.Fixed** (default).
 
-
-
 ```ts
 Tabs({ barPosition: BarPosition.End }) {
   // TabContent: Home, Discover, Recommended, and Me
@@ -205,8 +195,6 @@ The top navigation bar or side navigation bar can be set to be scrollable if the
 
 
 To use a scrollable navigation bar, set the **barMode** attribute of the **\<Tabs>** component to **BarMode.Scrollable**.
-
-
 
 ```ts
 Tabs({ barPosition: BarPosition.Start }) {

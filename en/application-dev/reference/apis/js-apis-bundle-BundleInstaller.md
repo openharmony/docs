@@ -198,18 +198,21 @@ For the FA model, the sandbox path of a bundle can be obtained using the APIs in
 ``` ts
 // Stage model
 import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
 export default class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage) {
+    onWindowStageCreate(windowStage: window.WindowStage) {
         let context = this.context;
         let pathDir = context.filesDir;
         console.info('sandbox path is ' + pathDir);
     }
 }
+```
 
+``` ts
 // FA model
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
-context.getFilesDir().then((data) => {
+context.getFilesDir().then((data: string) => {
     let pathDir = data;
     console.info('sandbox path is ' + pathDir);
 });

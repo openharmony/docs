@@ -163,7 +163,7 @@ Calls back an asynchronous function. In the callback, the first parameter indica
 
 | Type| Description|
 | -------- | -------- |
-| Function | Callback, in which the first parameter indicates the cause of the rejection (the value is **null** if the promise has been resolved) and the second parameter indicates the resolved value.|
+| Function | Callback function, in which the first parameter **err** indicates the cause of the rejection (the value is **null** if the promise has been resolved) and the second parameter **value** indicates the resolved value.|
 
 **Example**
 
@@ -190,13 +190,13 @@ Processes an asynchronous function and returns a promise.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| original | Function | Yes| Asynchronous function.|
+| original | Function | Yes| Function, in which the first parameter **err** indicates the cause of the rejection (the value is **null** if the promise has been resolved) and the second parameter **value** indicates the resolved value. |
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| Function | Function in the error-first style (that is, **(err, value) =>...** is called as the last parameter) and the promise.|
+| Function | Promise function.|
 
 **Example**
 

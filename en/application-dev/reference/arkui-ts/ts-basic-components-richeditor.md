@@ -115,10 +115,22 @@ Provides the text span style information returned by the backend.
 | fontStyle | [FontStyle](ts-appendix-enums.md#fontstyle) | Yes| Font style.|
 | fontWeight |  number | Yes| Font weight.|
 | fontFamily  |  string | Yes| Font family.|
-| decoration  | {<br>type: [TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br>color?: [ResourceColor](ts-types.md#resourcecolor)<br>} | Yes| Style and color of the text decorative line.|
+| decoration | {<br>type: [TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br>color: [ResourceColor](ts-types.md#resourcecolor)<br>} | Yes   | Style and color of the text decorative line.|
 
 
 ## RichEditorImageSpanResult
+
+Provides the image information returned by the backend.
+
+| Name              | Type                                                               | Mandatory | Description              |
+|------------------|-------------------------------------------------------------------|-----|------------------|
+| spanPosition     | [RichEditorSpanPosition](#richeditorspanposition)                 | Yes  | Span position.         |
+| valuePixelMap    | [PixelMap](../apis/js-apis-image.md#pixelmap7)                    | No  | Image content.           |
+| valueResourceStr | [ResourceStr](ts-types.md#resourcestr)                            | No  | Image resource ID.         |
+| imageStyle       | [RichEditorImageSpanStyleResult](#richeditorimagespanstyleresult) | Yes  | Image style.           |
+| offsetInSpan     | [number, number]                                                  | Yes  | Start and end positions of the image in the span.|
+
+## RichEditorImageSpanStyleResult
 
 Provides the image span style information returned by the backend.
 
@@ -227,7 +239,7 @@ Updates the text or image span style. <br>If only part of a span is updated, the
 
 | Name| Type| Mandatory| Description                              |
 | ------ | -------- | ---- | -------------------------------------- |
-| value | [RichEditorUpdateTextSpanStyleOptions](#richeditorupdatetextspanstyleoptions) \| [RichEditorUpdateImageSpanStyleOptions](#richeditorupdatetextspanstyleoptions) | Yes| Text or image span style options.|
+| value | [RichEditorUpdateTextSpanStyleOptions](#richeditorupdatetextspanstyleoptions) \| [RichEditorUpdateImageSpanStyleOptions](#richeditorupdateimagespanstyleoptions) | Yes| Text or image span style options.|
 
 
 ### getSpans
@@ -275,22 +287,22 @@ Provides information about the selected content.
 
 Defines the text span style options.
 
-| Name| Type| Mandatory| Description                              |
-| ------ | -------- | ---- | -------------------------------------- |
-| start | number   | No| Start position of the text span whose style needs to be updated. If this parameter is omitted or set to a negative value, the value **0** will be used.|
-| end | number | No| End position of the text span whose style needs to be updated. If this parameter is omitted or set to a value beyond the text range, it indicates the end of the text span.|
-| textStyle | [RichEditorTextStyle](#richeditortextstyle) | Yes| Text style.|
+| Name       | Type                                      | Mandatory  | Description                             |
+| --------- | ---------------------------------------- | ---- | ------------------------------- |
+| start     | number                                   | No   | Start position of the span whose style needs to be updated. If this parameter is left empty or set to a negative value, the value **0** will be used. |
+| end       | number                                   | No   | End position of the span whose style needs to be updated. If this parameter is left empty or set to a value beyond the range, it indicates infinity.|
+| textStyle | [RichEditorTextStyle](#richeditortextstyle) | Yes   | Text style.                          |
 
 
 ## RichEditorUpdateImageSpanStyleOptions
 
 Defines the image span style options.
 
-| Name| Type| Mandatory| Description                              |
-| ------ | -------- | ---- | -------------------------------------- |
-| start | number   | No| Start position of the image span whose style needs to be updated. If this parameter is omitted or set to a negative value, the value **0** will be used.|
-| end | number | No| End position of the image span whose style needs to be updated. If this parameter is omitted or set to a value beyond the text range, it indicates the end of the image span.|
-| imageStyle | [RichEditorImageSpanStyle](#richeditorimagespanstyle) | Yes| Image style.|
+| Name        | Type                                      | Mandatory  | Description                             |
+| ---------- | ---------------------------------------- | ---- | ------------------------------- |
+| start      | number                                   | No   | Start position of the span whose style needs to be updated. If this parameter is left empty or set to a negative value, the value **0** will be used. |
+| end        | number                                   | No   | End position of the span whose style needs to be updated. If this parameter is left empty or set to a value beyond the range, it indicates infinity.|
+| imageStyle | [RichEditorImageSpanStyle](#richeditorimagespanstyle) | Yes   | Image style.                          |
 
 
 ## RichEditorTextSpanOptions
@@ -309,10 +321,10 @@ Provides the text style information.
 | Name| Type| Mandatory| Description                              |
 | ------ | -------- | ---- | -------------------------------------- |
 | fontColor | [ResourceColor](ts-types.md#resourcecolor) | No| Font color.<br> Default value: **Color.Black**|
-| fontSize | [Length](ts-types.md#length) | No| Font size. If **Length** is of the number type, the unit fp is used. The default value is **16**. The value cannot be a percentage.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| fontSize | [Length](ts-types.md#length) \| number | No| Font size. If **Length** is of the number type, the unit fp is used. The default value is **16**. The value cannot be a percentage.<br>Since API version 9, this API is supported in ArkTS widgets.|
 | fontStyle | [FontStyle](ts-appendix-enums.md#fontstyle) | No| Font style.<br>Default value: **FontStyle.Normal**|
 | fontWeight | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | No| Font weight.<br>For the number type, the value ranges from 100 to 900, at an interval of 100. A larger value indicates a heavier font weight. The default value is **400**.<br>For the string type, only strings of the number type are supported, for example, **"400"**, **"bold"**, **"bolder"**, **"lighter"**, **"regular"**, and **"medium"**, which correspond to the enumerated values in **FontWeight**.<br>Default value: **FontWeight.Normal**|
-| fontFamily  | [ResourceStr](ts-types.md#resourcestr) \| number \| string | No| Font family. The HarmonyOS Sans font and [register custom fonts](../apis/js-apis-font.md) are supported.<br>Default font: **'HarmonyOS Sans'**|
+| fontFamily  | [ResourceStr](ts-types.md#resourcestr) | No| Font family. The HarmonyOS Sans font and [register custom fonts](../apis/js-apis-font.md) are supported.<br>Default font: **'HarmonyOS Sans'**|
 | decoration  | {<br>type: [TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br>color?: [ResourceColor](ts-types.md#resourcecolor)<br>} | No| Style and color of the text decorative line.<br>Default value: {<br>type: TextDecorationType.None,<br>color: Color.Black<br>}|
 
 
@@ -339,10 +351,10 @@ Provides the image span style information.
 
 Provides the span range information.
 
-| Name| Type| Mandatory| Description                              |
-| ------ | -------- | ---- | -------------------------------------- |
-| start | number   | No| Start position. If this parameter is omitted or set to a negative value, the value **0** will be used.|
-| end | number | No| End position of the image span whose style needs to be updated. If this parameter is omitted or set to a value beyond the text range, it indicates the very end.|
+| Name   | Type    | Mandatory  | Description                    |
+| ----- | ------ | ---- | ---------------------- |
+| start | number | No   | Start position. If this parameter is left empty or set to a negative value, the value **0** will be used. |
+| end   | number | No   | End position. If this parameter is left empty or set to a negative value or any value beyond the range, it indicates infinity.|
 
 
 ## Example

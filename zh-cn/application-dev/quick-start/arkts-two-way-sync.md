@@ -7,6 +7,11 @@ $$运算符为系统内置组件提供TS变量的引用，使得TS变量和系�
 内部状态具体指什么取决于组件。例如，[TextInput](../reference/arkui-ts/ts-basic-components-textinput.md)组件的text参数。
 
 
+> **说明：**
+>
+> $$还用于[@Builder装饰器的按引用传递参数](arkts-builder.md#按引用传递参数)，开发者需要注意两种用法的区别。
+
+
 ## 使用规则
 
 - 当前$$支持基础类型变量，以及\@State、\@Link和\@Prop装饰的变量。

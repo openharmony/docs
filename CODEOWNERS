@@ -126,6 +126,7 @@ zh-cn/application-dev/device/sensor-guidelines.md @hu-zhiqiong @hellohyh001 @but
 zh-cn/application-dev/device/stationary-guidelines.md @mayunteng_1 @hu-zhiqiong @cococoler @alien0208
 zh-cn/application-dev/device/vibrator-overview.md @hu-zhiqiong @hellohyh001 @butterls @star-wind-snow-and-rain
 zh-cn/application-dev/device/vibrator-guidelines.md @hu-zhiqiong @hellohyh001 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/device/externaldevice-guidelines.md @warehouse12
 zh-cn/application-dev/device/sample-server-overview.md @hu-zhiqiong @hughes802 @zhangzhengxue @mamba-ting
 zh-cn/application-dev/device/sample-server-guidelines.md @hu-zhiqiong @hughes802 @zhangzhengxue @mamba-ting
 zh-cn/application-dev/reference/arkui-js/ @HelloCrease
@@ -144,7 +145,8 @@ zh-cn/application-dev/application-test/ @ningningW
 zh-cn/application-dev/device-usage-statistics/ @chenmingJay @ningningW @tangtiantian2021 @nan-xiansen @iceice1001
 zh-cn/application-dev/web/ @bigpumpkin @HelloCrease @litao33 @zhang-xinyue15
 zh-cn/application-dev/key-features/multi-device-app-dev/ @HelloCrease @uhamc
-zh-cn/application-dev/reference/apis/js-apis-accessibility-extension-context.md @mupceet @RayShih @mupceet @gaoxi785
+zh-cn/application-dev/reference/apis/js-apis-accessibility-extension-context.md @mupceet @RayShih @mupceet @gaoxi785 @warehouse12
+zh-cn/application-dev/reference/apis/js-apis-inner-application-accessibilityExtensionContext.md @warehouse12
 zh-cn/application-dev/reference/apis/js-apis-animator.md @HelloCrease @niulihua @tomatodevboy
 
 zh-cn/application-dev/reference/apis/js-apis-application-WindowExtensionAbility.md @zhangqiang183  @ge-yafang @zhouyaoying @zxg-gitee @nobuggers
@@ -361,12 +363,12 @@ zh-cn/application-dev/reference/apis/js-apis-xml.md @gongjunsong @ge-yafang @fly
 zh-cn/application-dev/reference/apis/js-apis-zlib.md @shuaytao @RayShih @wangzhen107 @inter515
 zh-cn/application-dev/reference/apis/js-apis-webview.md @bigpumpkin @HelloCrease @litao33 @zhang-xinyue15
 zh-cn/application-dev/reference/arkui-ts/ts-basic-components-web.md @bigpumpkin @HelloCrease @litao33 @zhang-xinyue15
-zh-cn/application-dev/reference/apis/js-apis-accessibility-config.md @mupceet @RayShih @mupceet @gaoxi785
-zh-cn/application-dev/reference/apis/js-apis-accessibility-GesturePath.md @mupceet @RayShih @mupceet @gaoxi785
-zh-cn/application-dev/reference/apis/js-apis-accessibility-GesturePoint.md @mupceet @RayShih @mupceet @gaoxi785
-zh-cn/application-dev/reference/apis/js-apis-accessibility.md @mupceet @RayShih @mupceet @gaoxi785
+zh-cn/application-dev/reference/apis/js-apis-accessibility-config.md @mupceet @RayShih @mupceet @gaoxi785 @warehouse12
+zh-cn/application-dev/reference/apis/js-apis-accessibility-GesturePath.md @mupceet @RayShih @mupceet @gaoxi785 @warehouse12
+zh-cn/application-dev/reference/apis/js-apis-accessibility-GesturePoint.md @mupceet @RayShih @mupceet @gaoxi785 @warehouse12
+zh-cn/application-dev/reference/apis/js-apis-accessibility.md @mupceet @RayShih @mupceet @gaoxi785 @warehouse12
 zh-cn/application-dev/reference/apis/js-apis-appControl.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
-zh-cn/application-dev/reference/apis/js-apis-batteryStatistics.md  @warehouse12  @alien0208
+zh-cn/application-dev/reference/apis/js-apis-batteryStatistics.md  @warehouse12  @alien0208 @warehouse12
 zh-cn/application-dev/reference/apis/js-apis-colorSpaceManager.md @zhangqiang183  @ge-yafang @liuchao92 @zxg-gitee
 zh-cn/application-dev/reference/apis/js-apis-configPolicy.md @liuzuming @ningningW @yangqing3
 zh-cn/application-dev/reference/apis/js-apis-cooperate.md @yuanxinying @ningningW @cococoler @alien0208
@@ -387,7 +389,7 @@ zh-cn/application-dev/reference/apis/js-apis-enterprise-deviceInfo.md @liuzuming
 zh-cn/application-dev/reference/apis/js-apis-enterprise-networkManager.md @liuzuming @ningningW @yangqing3 @caiminggang
 zh-cn/application-dev/reference/apis/js-apis-EnterpriseAdminExtensionAbility.md @liuzuming @ningningW @yangqing3 @caiminggang
 zh-cn/application-dev/reference/apis/js-apis-enterprise-restrictions.md @liuzuming @ningningW @yangqing3 @caiminggang
-zh-cn/application-dev/reference/apis/js-apis-enterprise-usbManager.md @liuzuming @ningningW @yangqing3 @caiminggang
+zh-cn/application-dev/reference/apis/js-apis-enterprise-usbManager.md @liuzuming @ningningW @yangqing3 @caiminggang @warehouse12
 zh-cn/application-dev/reference/apis/js-apis-enterprise-wifiManager.md @liuzuming @ningningW @yangqing3 @caiminggang
 zh-cn/application-dev/reference/apis/js-apis-geoLocationManager.md @cheng_guohong @RayShih @cheng_guohong @xiangkejin123
 zh-cn/application-dev/reference/apis/js-apis-hiviewdfx-hiappevent.md @stone2050 @zengyawen @stesen @elsen-liu
@@ -530,6 +532,9 @@ zh-cn/application-dev/application-models/thread*.md @huipeizi  @li-weifeng2  @lx
 zh-cn/application-dev/application-models/itc*.md @huipeizi  @li-weifeng2  @lxfycode  @lixiaogang30
 zh-cn/application-dev/application-models/common-event*.md @huipeizi  @idanny  @suzhenxuan  @lixiaogang30
 zh-cn/application-dev/application-models/windowextensionability.md @zhangqiang183  @ge-yafang @zhouyaoying @zxg-gitee @nobuggers
+zh-cn/application-dev/application-models/accessibilityextensionability.md @mupceet @RayShih @mupceet @chengxingzhen @warehouse12
+zh-cn/application-dev/application-models/driverextensionability.md @warehouse12
+
 
 [开发-通知]
 zh-cn/application-dev/notification/ @huipeizi  @idanny  @suzhenxuan  @lixiaogang30
@@ -560,7 +565,7 @@ zh-cn/application-dev/reference/apis/js-apis-inner-wantAgent*.md @huipeizi  @li-
 zh-cn/application-dev/reference/apis/js-apis-uripermissionmanager.md @huipeizi  @ccllee  @lxfycode  @lixiaogang30
 zh-cn/application-dev/reference/apis/js-apis-wantAgent.md @huipeizi  @li-weifeng2  @lxfycode  @lixiaogang30
 
-zh-cn/application-dev/reference/apis/js-apis-application-AccessibilityExtensionAbility.md @mupceet @RayShih @mupceet @chengxingzhen
+zh-cn/application-dev/reference/apis/js-apis-application-AccessibilityExtensionAbility.md @mupceet @RayShih @mupceet @chengxingzhen @warehouse12
 zh-cn/application-dev/reference/apis/js-apis-application-DataShareExtensionAbility.md @feng-aiwen @ge-yafang @gong-a-shi @logic42
 
 
@@ -586,6 +591,8 @@ zh-cn/application-dev/reference/apis/common_event/commonEvent-definitions.md @hu
 zh-cn/application-dev/reference/apis/common_event/commonEventManager-definitions.md @huipeizi  @idanny  @suzhenxuan  @lixiaogang30
 zh-cn/application-dev/reference/apis/common_event/commonEvent-ability.md @huipeizi  @idanny  @suzhenxuan  @lixiaogang30
 zh-cn/application-dev/reference/apis/common_event/commonEvent-bundleManager.md @huipeizi  @idanny  @suzhenxuan  @lixiaogang30
+zh-cn/application-dev/reference/apis/common_event/commonEvent-powermgr.md @warehouse12
+zh-cn/application-dev/reference/apis/common_event/commonEvent-usb.md @warehouse12
 
 
 [错误码-Ability]
@@ -702,6 +709,14 @@ zh-cn/application-dev/reference/errorcodes/errorcode-media.md @zengyawen
 zh-cn/application-dev/reference/errorcodes/errorcode-avsession.md @zengyawen
 zh-cn/application-dev/reference/errorcodes/errorcode-camera.md @zengyawen
 zh-cn/application-dev/reference/errorcodes/errorcode-image.md @zengyawen
+
+[参考-设备管理]
+zh-cn/application-dev/reference/apis/js-apis-app-ability-driverExtensionAbility.md @warehouse12
+zh-cn/application-dev/reference/apis/js-apis-inner-application-driverExtensionContext.md @warehouse12
+zh-cn/application-dev/reference/apis/js-apis-driver-deviceManager.md @warehouse12
+
+zh-cn/application-dev/reference/apis/js-apis-distributedDeviceManager.md @warehouse12
+zh-cn/application-dev/reference/apis/js-apis-device-manager.md @warehouse12
 
 
 

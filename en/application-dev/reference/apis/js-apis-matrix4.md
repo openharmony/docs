@@ -124,8 +124,9 @@ struct Tests {
 }
 ```
 
+## Matrix4Transit
 
-## matrix4.copy
+### copy
 
 copy(): Matrix4Transit
 
@@ -140,6 +141,7 @@ Copies this matrix object.
 | --------------------------------- | -------------------- |
 | [Matrix4Transit](#matrix4transit) | Copy object of the current matrix.|
 
+
 **Example**
 
 ```ts
@@ -149,158 +151,29 @@ import matrix4 from '@ohos.matrix4'
 @Entry
 @Component
 struct Test {
-  private matrix1 = matrix4.identity().translate({ x: 100 })
+  private matrix1 = matrix4.identity().translate({ x: 200 })
   // Perform the scale operation on the copy matrix of matrix1, which does not affect matrix1.
-  private matrix2 = this.matrix1.copy().scale({ x: 2 })
+  private matrix2 = this.matrix1.copy().scale({ x: 1.5 })
 
   build() {
     Column() {
-      Image($r("app.media.bg1"))
+      Image($r("app.media.test"))
         .width("40%")
         .height(100)
         .transform(this.matrix1)
-      Image($r("app.media.bg2"))
+      Image($r("app.media.test"))
         .width("40%")
         .height(100)
         .margin({ top: 50 })
         .transform(this.matrix2)
-    }
+    }.alignItems(HorizontalAlign.Center)
+    .height('100%')
+    .justifyContent(FlexAlign.Center)
   }
 }
 ```
 
-![en-us_image_0000001219744181](figures/en-us_image_0000001219744181.png)
-
-## matrix4.invert<sup>(deprecated)</sup>
-
-invert(): Matrix4Transit
-
-Inverts this matrix object.
-
-This API is deprecated since API version 10.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Return value**
-
-| Type                             | Description                  |
-| --------------------------------- | ---------------------- |
-| [Matrix4Transit](#matrix4transit) | Inverse matrix object of the current matrix.|
-
-## matrix4.combine<sup>(deprecated)</sup>
-
-combine(options: Matrix4Transit): Matrix4Transit
-
-Combines the effects of two matrices to generate a new matrix object.
-
-This API is deprecated since API version 10.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Parameters**
-
-| Name| Type                             | Mandatory| Description              |
-| ------ | --------------------------------- | ---- | ------------------ |
-| option | [Matrix4Transit](#matrix4transit) | Yes  | Matrix object to be combined.|
-
-**Return value**
-
-| Type                             | Description                  |
-| --------------------------------- | ---------------------- |
-| [Matrix4Transit](#matrix4transit) | Matrix object after combination.|
-
-## matrix4.translate<sup>(deprecated)</sup>
-
-translate(options: TranslateOption): Matrix4Transit
-
-Translates this matrix object along the x, y, and z axes.
-
-This API is deprecated since API version 10.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Parameters**
-
-| Name| Type                               | Mandatory| Description          |
-| ------ | ----------------------------------- | ---- | -------------- |
-| option | [TranslateOption](#translateoption) | Yes  | Translation configuration.|
-
-**Return value**
-
-| Type                             | Description                  |
-| --------------------------------- | ---------------------- |
-| [Matrix4Transit](#matrix4transit) | Matrix object after translation.|
-
-## matrix4.scale<sup>(deprecated)</sup>
-
-scale(options: ScaleOption): Matrix4Transit
-
-Scales this matrix object along the x, y, and z axes.
-
-This API is deprecated since API version 10.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Parameters**
-
-| Name| Type                       | Mandatory| Description          |
-| ------ | --------------------------- | ---- | -------------- |
-| option | [ScaleOption](#scaleoption) | Yes  | Scaling configuration.|
-
-**Return value**
-
-| Type                             | Description                  |
-| --------------------------------- | ---------------------- |
-| [Matrix4Transit](#matrix4transit) | Matrix object after scaling.|
-
-## matrix4.rotate<sup>(deprecated)</sup>
-
-rotate(options: RotateOption): Matrix4Transit
-
-Rotates this matrix object along the x, y, and z axes.
-
-This API is deprecated since API version 10.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Parameters**
-
-| Name| Type                         | Mandatory| Description          |
-| ------ | ----------------------------- | ---- | -------------- |
-| option | [RotateOption](#rotateoption) | Yes  | Rotation configuration.|
-
-**Return value**
-
-| Type                             | Description                  |
-| --------------------------------- | ---------------------- |
-| [Matrix4Transit](#matrix4transit) | Matrix object after rotation.|
-
-## matrix4.transformPoint<sup>(deprecated)</sup>
-
-transformPoint(options: [number, number]): [number, number]
-
-Applies the current transformation effect to a coordinate point.
-
-This API is deprecated since API version 10.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Parameters**
-
-| Name| Type            | Mandatory| Description              |
-| ------ | ---------------- | ---- | ------------------ |
-| option | [number, number] | Yes  | Point to be transformed.|
-
-**Return value**
-
-| Type            | Description                       |
-| ---------------- | --------------------------- |
-| [number, number] | Point object after matrix transformation|
-
-
-## Matrix4Transit
-
-
+![en-us_image_0000001219744181](figures/en-us_image_0000001219744185.png)
 ### combine
 
 combine(options: Matrix4Transit): Matrix4Transit
@@ -623,3 +496,195 @@ struct Test {
 | angle   | number | No  | Rotation angle.<br>Default value: **0**                               |
 | centerX | number | No  | X coordinate of the center point.<br>Default value: **0**                      |
 | centerY | number | No  | Y coordinate of the center point.<br>Default value: **0**                      |
+
+
+
+
+## matrix4.copy<sup>(deprecated)</sup>
+
+copy(): Matrix4Transit
+
+
+Copies this matrix object.
+
+> **NOTE**
+>
+> This API is deprecated since API version 10. You are advised to use [Matrix4Transit.copy](#copy) instead.
+
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Return value**
+
+| Type                             | Description                |
+| --------------------------------- | -------------------- |
+| [Matrix4Transit](#matrix4transit) | Copy object of the current matrix.|
+
+**Example**
+
+```ts
+// xxx.ets
+import matrix4 from '@ohos.matrix4'
+
+@Entry
+@Component
+struct Test {
+  private matrix1 = matrix4.identity().translate({ x: 100 })
+  // Perform the scale operation on the copy matrix of matrix1, which does not affect matrix1.
+  private matrix2 = this.matrix1.copy().scale({ x: 2 })
+
+  build() {
+    Column() {
+      Image($r("app.media.bg1"))
+        .width("40%")
+        .height(100)
+        .transform(this.matrix1)
+      Image($r("app.media.bg2"))
+        .width("40%")
+        .height(100)
+        .margin({ top: 50 })
+        .transform(this.matrix2)
+    }
+  }
+}
+```
+
+![en-us_image_0000001219744181](figures/en-us_image_0000001219744181.png)
+
+## matrix4.invert<sup>(deprecated)</sup>
+
+invert(): Matrix4Transit
+
+Inverts this matrix object.
+
+> **NOTE**
+>
+> This API is deprecated since API version 10. You are advised to use [Matrix4Transit.invert](#invert) instead.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Return value**
+
+| Type                             | Description                  |
+| --------------------------------- | ---------------------- |
+| [Matrix4Transit](#matrix4transit) | Inverse matrix object of the current matrix.|
+
+## matrix4.combine<sup>(deprecated)</sup>
+
+combine(options: Matrix4Transit): Matrix4Transit
+
+Combines the effects of two matrices to generate a new matrix object.
+
+> **NOTE**
+>
+> This API is deprecated since API version 10. You are advised to use [Matrix4Transit.combine](#combine) instead.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                             | Mandatory| Description              |
+| ------ | --------------------------------- | ---- | ------------------ |
+| option | [Matrix4Transit](#matrix4transit) | Yes  | Matrix object to be combined.|
+
+**Return value**
+
+| Type                             | Description                  |
+| --------------------------------- | ---------------------- |
+| [Matrix4Transit](#matrix4transit) | Matrix object after combination.|
+
+## matrix4.translate<sup>(deprecated)</sup>
+
+translate(options: TranslateOption): Matrix4Transit
+
+Translates this matrix object along the x, y, and z axes.
+
+> **NOTE**
+>
+> This API is deprecated since API version 10. You are advised to use [Matrix4Transit.translate](#translate) instead.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                               | Mandatory| Description          |
+| ------ | ----------------------------------- | ---- | -------------- |
+| option | [TranslateOption](#translateoption) | Yes  | Translation configuration.|
+
+**Return value**
+
+| Type                             | Description                  |
+| --------------------------------- | ---------------------- |
+| [Matrix4Transit](#matrix4transit) | Matrix object after translation.|
+
+## matrix4.scale<sup>(deprecated)</sup>
+
+scale(options: ScaleOption): Matrix4Transit
+
+Scales this matrix object along the x, y, and z axes.
+
+> **NOTE**
+>
+> This API is deprecated since API version 10. You are advised to use [Matrix4Transit.scale](#scale) instead.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                       | Mandatory| Description          |
+| ------ | --------------------------- | ---- | -------------- |
+| option | [ScaleOption](#scaleoption) | Yes  | Scaling configuration.|
+
+**Return value**
+
+| Type                             | Description                  |
+| --------------------------------- | ---------------------- |
+| [Matrix4Transit](#matrix4transit) | Matrix object after scaling.|
+
+## matrix4.rotate<sup>(deprecated)</sup>
+
+rotate(options: RotateOption): Matrix4Transit
+
+Rotates this matrix object along the x, y, and z axes.
+
+> **NOTE**
+>
+> This API is deprecated since API version 10. You are advised to use [Matrix4Transit.rotate](#rotate) instead.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                         | Mandatory| Description          |
+| ------ | ----------------------------- | ---- | -------------- |
+| option | [RotateOption](#rotateoption) | Yes  | Rotation configuration.|
+
+**Return value**
+
+| Type                             | Description                  |
+| --------------------------------- | ---------------------- |
+| [Matrix4Transit](#matrix4transit) | Matrix object after rotation.|
+
+## matrix4.transformPoint<sup>(deprecated)</sup>
+
+transformPoint(options: [number, number]): [number, number]
+
+Applies the current transformation effect to a coordinate point.
+
+> **NOTE**
+>
+> This API is deprecated since API version 10. You are advised to use [Matrix4Transit.transformPoint](#transformpoint) instead.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type            | Mandatory| Description              |
+| ------ | ---------------- | ---- | ------------------ |
+| option | [number, number] | Yes  | Point to be transformed.|
+
+**Return value**
+
+| Type            | Description                       |
+| ---------------- | --------------------------- |
+| [number, number] | Point object after matrix transformation|

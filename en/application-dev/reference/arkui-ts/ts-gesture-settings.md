@@ -15,7 +15,7 @@ Use the following attributes to bind gesture recognition to a component. When a 
 | -------- | -------- | -------- | -------- |
 | gesture | gesture: [GestureType](#gesturetype),<br>mask?: [GestureMask](#gesturemask) | gesture: -,<br>mask: GestureMask.Normal | Gesture to bind.<br>- **gesture**: type of the gesture to bind.<br>- **mask**: mask for gesture events.|
 | priorityGesture | gesture: [GestureType](#gesturetype),<br>mask?: [GestureMask](#gesturemask) | gesture: -,<br>mask: GestureMask.Normal | Gesture to preferentially recognize.<br>- **gesture**: type of the gesture to bind.<br>- **mask**: mask for gesture events.<br>1. By default, the child component preferentially recognizes the gesture specified by **gesture**, and the parent component preferentially recognizes the gesture specified by **priorityGesture** (if set).<br>2. With regard to long press gestures, the component with the shortest minimum hold-down time responds first, ignoring the **priorityGesture** settings.|
-| parallelGesture | gesture: [GestureType](#gesturetype),<br>mask?: [GestureMask](#gesturemask) | gesture: -,<br>mask: GestureMask.Normal | Gesture that can be triggered together with the child component gesture.<br>- **gesture**: type of the gesture to bind. <br>- **mask**: mask for gesture events.<br>The gesture event is not a bubbling event. When **parallelGesture** is set for the parent component, gesture events that are the same for the parent and child components can be triggered, thereby implementing a bubbling effect. If both the single-tap gesture event and the double-tap gesture event are bound to the parent and child components, only the single-tap gesture event is responded.|
+| parallelGesture | gesture: [GestureType](#gesturetype),<br>mask?: [GestureMask](#gesturemask) | gesture: -,<br>mask: GestureMask.Normal | Gesture that can be recognized at once by the component and its child component.<br>- **gesture**: type of the gesture to bind. <br>- **mask**: mask for gesture events.<br>The gesture event is not a bubbling event. When **parallelGesture** is set for a component, both it and its child component can respond to the same gesture events, thereby implementing a quasi-bubbling effect. If the component and its child component are bound to both the single-tap and double-tap gesture events, only the single-tap gesture event is responded.|
 
 
 ## GestureType
@@ -57,10 +57,10 @@ The component binds gesture objects of different **GestureType**s through gestur
 | pinchCenterX | number | X coordinate of the center of the pinch gesture, in vp, relative to the upper left corner of the current component. This attribute is used for the **PinchGesture** event.|
 | pinchCenterY | number | Y coordinate of the center of the pinch gesture, in vp, relative to the upper left corner of the current component. This attribute is used for the **PinchGesture** event.|
 | speed<sup>8+</sup> | number | Swipe gesture speed, that is, the average swipe speed of all fingers. The unit is vp/s. This attribute is used for the **SwipeGesture** event.|
-| fingerList<sup>8+</sup> | [FingerInfo](#fingerinfo)[] | Information about all fingers that trigger the gesture event.|
+| fingerList<sup>8+</sup> | [FingerInfo](#fingerinfo8)[] | Information about all fingers that trigger the gesture event.|
 | timestamp<sup>8+</sup> | number | Timestamp of the event.|
 | target<sup>8+</sup> | [EventTarget](ts-universal-events-click.md#eventtarget8) | Display area of the element that triggers the gesture event.|
-| source<sup>8+</sup> | [SourceType](#sourcetype) | Event input device.|
+| source<sup>8+</sup> | [SourceType](#sourcetype9) | Event input device.|
 | pressure<sup>9+</sup> | number | Press pressure.|
 | tiltX<sup>9+</sup> | number | Angle between the projection of the stylus on the device plane and the x-axis.|
 | tiltY<sup>9+</sup> | number | Angle between the projection of the stylus on the device plane and the y-axis.|
@@ -69,14 +69,14 @@ The component binds gesture objects of different **GestureType**s through gestur
 | velocityY<sup>10+</sup> | number | Velocity along the y-axis. This parameter is used in [PanGesture](ts-basic-gestures-pangesture.md). The origin of the coordinate axis is the upper left corner of the screen. The velocity is positive if the movement is from top to bottom, and it is negative if the movement is from bottom to top.|
 | velocity<sup>10+</sup> | number | Velocity along the main axis. This parameter is used in [PanGesture](ts-basic-gestures-pangesture.md). The value is the arithmetic square root of the sum of squares of the velocity along the x- and y-axis.|
 
-## SourceType
+## SourceType<sup>9+</sup>
 | Name| Description|
 | -------- | -------- |
 | Unknown | Unknown device type.|
 | Mouse | Mouse.|
 | TouchScreen | Touchscreen.|
 
-## FingerInfo
+## FingerInfo<sup>8+</sup>
 | Name| Type| Description|
 | -------- | -------- | -------- |
 | id | number | Index of a finger.|

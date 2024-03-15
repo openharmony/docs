@@ -165,7 +165,7 @@ let result = hashMap.hasValue(123);
 
 get(key: K): V
 
-Obtains the value of the specified key in this container.
+Obtains the value of the specified key in this container. If nothing is obtained, **undefined** is returned.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -237,7 +237,7 @@ hashMap.setAll(newHashMap);
 
 set(key: K, value: V): Object
 
-Adds an element to this container.
+Adds or updates an element in this container.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -427,7 +427,7 @@ Replaces an element in this container.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the element is replaced successfully; returns **false** otherwise.|
+| boolean | Returns **true** if the element is replaced; returns **false** otherwise.|
 
 **Error codes**
 
@@ -566,11 +566,11 @@ for (let key of keys) {
 }
 
 // Method 2:
-let iter = hashMap[Symbol.iterator]();
-let temp: IteratorResult<Object[]> = iter.next().value;
-while(temp != undefined) {
-  console.log("key:" + temp[0]);
-  console.log("value:" + temp[1]);
-  temp = iter.next().value;
-}
+ let iter = hashMap[Symbol.iterator]();
+ let temp: IteratorResult<Object[]> = iter.next();
+ while(!temp.done) {
+   console.log("key:" + temp.value[0]);
+   console.log("value:" + temp.value[1]);
+   temp = iter.next();
+ }
 ```

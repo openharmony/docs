@@ -26,7 +26,7 @@ import Want from '@ohos.app.ability.Want';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-    // 应用初始化
+    // 页面初始化
   }
   // ...
 }

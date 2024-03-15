@@ -133,7 +133,7 @@ import window from '@ohos.window';
 | AUTO_ROTATION_LANDSCAPE               | 7    | 表示传感器自动横向旋转模式。 |
 | AUTO_ROTATION_RESTRICTED              | 8    | 表示受开关控制的自动旋转模式。 |
 | AUTO_ROTATION_PORTRAIT_RESTRICTED     | 9    | 表示受开关控制的自动竖向旋转模式。 |
-| AUTO_ROTATION_LANDSCAPE_RESTRICTED    | 10   | 表述受开关控制的自动横向旋转模式。 |
+| AUTO_ROTATION_LANDSCAPE_RESTRICTED    | 10   | 表示受开关控制的自动横向旋转模式。 |
 | LOCKED                                | 11   | 表示锁定模式。 |
 
 ## BlurStyle<sup>9+</sup>
@@ -4001,11 +4001,22 @@ setWindowBackgroundColor(color: string): void
 **示例：**
 
 ```ts
-let color: string = '#00ff33';
-try {
-  windowClass.setWindowBackgroundColor(color);
-} catch (exception) {
-  console.error('Failed to set the background color. Cause: ' + JSON.stringify(exception));
+import { BusinessError } from '@ohos.base';
+
+private SetUIContent(windowClass: window.Window) {
+    windowClass.setUIContent("pages/ButtonWindow",(err: BusinessError) => {
+      if (err.code) {
+        console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+        return;
+      }
+      console.info('Succeeded in loading the content.');
+      let color: string = '#00ff33';
+      try {
+        windowClass.setWindowBackgroundColor(color);
+      } catch (exception) {
+        console.error('Failed to set the background color. Cause: ' + JSON.stringify(exception));
+      };
+    });
 }
 ```
 

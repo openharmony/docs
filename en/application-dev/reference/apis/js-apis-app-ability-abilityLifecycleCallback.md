@@ -1,10 +1,11 @@
 # @ohos.app.ability.abilityLifecycleCallback (AbilityLifecycleCallback)
 
-The **AbilityLifecycleCallback** module defines the callbacks to receive lifecycle changes of [ApplicationContext](js-apis-inner-application-applicationContext.md). The callbacks include [onAbilityCreate](#abilitylifecyclecallbackonabilitycreate), [onWindowStageCreate](#abilitylifecyclecallbackonwindowstagecreate), [onWindowStageActive](#abilitylifecyclecallbackonwindowstageactive), [onWindowStageInactive](#abilitylifecyclecallbackonwindowstageinactive), [onWindowStageDestroy](#abilitylifecyclecallbackonwindowstagedestroy), [onAbilityDestroy](#abilitylifecyclecallbackonabilitydestroy), [onAbilityForeground](#abilitylifecyclecallbackonabilityforeground), [onAbilityBackground](#abilitylifecyclecallbackonabilitybackground), and [onAbilityContinue](#abilitylifecyclecallbackonabilitycontinue).
+The **AbilityLifecycleCallback** module defines the callbacks to receive lifecycle changes of [ApplicationContext](js-apis-inner-application-applicationContext.md).
 
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
 > The APIs of this module can be used only in the stage model.
 
 ## Modules to Import
@@ -15,7 +16,7 @@ import AbilityLifecycleCallback from '@ohos.app.ability.AbilityLifecycleCallback
 
 ## AbilityLifecycleCallback.onAbilityCreate
 
-onAbilityCreate(ability: UIAbility): void;
+onAbilityCreate(ability: UIAbility): void
 
 Called when an ability is created.
 
@@ -28,20 +29,12 @@ Called when an ability is created.
   | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| **Ability** object.|
 
 **Example**
-```ts
-import AbilityLifecycleCallback from '@ohos.app.ability.AbilityLifecycleCallback';
 
-let abilityLifecycleCallback: AbilityLifecycleCallback =  {
-    onAbilityCreate(ability){
-        console.log('AbilityLifecycleCallback onAbilityCreate.');
-    }
-    ...
-};
-```
+See [Usage of AbilityLifecycleCallback](#usage-of-abilitylifecyclecallback).
 
 ## AbilityLifecycleCallback.onWindowStageCreate
 
-onWindowStageCreate(ability: UIAbility, windowStage: window.WindowStage): void;
+onWindowStageCreate(ability: UIAbility, windowStage: window.WindowStage): void
 
 Called when the window stage of an ability is created.
 
@@ -55,19 +48,12 @@ Called when the window stage of an ability is created.
   | windowStage | [window.WindowStage](js-apis-window.md#windowstage9) | Yes| **WindowStage** object.|
 
 **Example**
-```ts
-import AbilityLifecycleCallback from '@ohos.app.ability.AbilityLifecycleCallback';
 
-let abilityLifecycleCallback: AbilityLifecycleCallback =  {
-    onWindowStageCreate(ability, windowStage){
-        console.log('AbilityLifecycleCallback onWindowStageCreate.');
-    }
-};
-```
+See [Usage of AbilityLifecycleCallback](#usage-of-abilitylifecyclecallback).
 
 ## AbilityLifecycleCallback.onWindowStageActive
 
-onWindowStageActive(ability: UIAbility, windowStage: window.WindowStage): void;
+onWindowStageActive(ability: UIAbility, windowStage: window.WindowStage): void
 
 Called when the window stage of an ability gains focus.
 
@@ -81,19 +67,12 @@ Called when the window stage of an ability gains focus.
   | windowStage | [window.WindowStage](js-apis-window.md#windowstage9) | Yes| **WindowStage** object.|
 
 **Example**
-```ts
-import AbilityLifecycleCallback from '@ohos.app.ability.AbilityLifecycleCallback';
 
-let abilityLifecycleCallback: AbilityLifecycleCallback =  {
-    onWindowStageActive(ability, windowStage){
-        console.log('AbilityLifecycleCallback onWindowStageActive.');
-    }
-};
-```
+See [Usage of AbilityLifecycleCallback](#usage-of-abilitylifecyclecallback).
 
 ## AbilityLifecycleCallback.onWindowStageInactive
 
-onWindowStageInactive(ability: UIAbility, windowStage: window.WindowStage): void;
+onWindowStageInactive(ability: UIAbility, windowStage: window.WindowStage): void
 
 Called when the window stage of an ability loses focus.
 
@@ -107,19 +86,12 @@ Called when the window stage of an ability loses focus.
   | windowStage | [window.WindowStage](js-apis-window.md#windowstage9) | Yes| **WindowStage** object.|
 
 **Example**
-```ts
-import AbilityLifecycleCallback from '@ohos.app.ability.AbilityLifecycleCallback';
 
-let abilityLifecycleCallback: AbilityLifecycleCallback =  {
-    onWindowStageInactive(ability, windowStage){
-        console.log('AbilityLifecycleCallback onWindowStageInactive.');
-    }
-};
-```
+See [Usage of AbilityLifecycleCallback](#usage-of-abilitylifecyclecallback).
 
 ## AbilityLifecycleCallback.onWindowStageDestroy
 
-onWindowStageDestroy(ability: UIAbility, windowStage: window.WindowStage): void;
+onWindowStageDestroy(ability: UIAbility, windowStage: window.WindowStage): void
 
 Called when the window stage of an ability is destroyed.
 
@@ -133,19 +105,12 @@ Called when the window stage of an ability is destroyed.
   | windowStage | [window.WindowStage](js-apis-window.md#windowstage9) | Yes| **WindowStage** object.|
 
 **Example**
-```ts
-import AbilityLifecycleCallback from '@ohos.app.ability.AbilityLifecycleCallback';
 
-let abilityLifecycleCallback: AbilityLifecycleCallback =  {
-    onWindowStageDestroy(ability, windowStage){
-        console.log('AbilityLifecycleCallback onWindowStageDestroy.');
-    }
-};
-```
+See [Usage of AbilityLifecycleCallback](#usage-of-abilitylifecyclecallback).
 
 ## AbilityLifecycleCallback.onAbilityDestroy
 
-onAbilityDestroy(ability: UIAbility): void;
+onAbilityDestroy(ability: UIAbility): void
 
 Called when an ability is destroyed.
 
@@ -158,19 +123,12 @@ Called when an ability is destroyed.
   | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| **Ability** object.|
 
 **Example**
-```ts
-import AbilityLifecycleCallback from '@ohos.app.ability.AbilityLifecycleCallback';
 
-let abilityLifecycleCallback: AbilityLifecycleCallback =  {
-    onAbilityDestroy(ability){
-        console.log('AbilityLifecycleCallback onAbilityDestroy.');
-    }
-};
-```
+See [Usage of AbilityLifecycleCallback](#usage-of-abilitylifecyclecallback).
 
 ## AbilityLifecycleCallback.onAbilityForeground
 
-onAbilityForeground(ability: UIAbility): void;
+onAbilityForeground(ability: UIAbility): void
 
 Called when an ability is switched from the background to the foreground.
 
@@ -183,19 +141,12 @@ Called when an ability is switched from the background to the foreground.
   | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| **Ability** object.|
 
 **Example**
-```ts
-import AbilityLifecycleCallback from '@ohos.app.ability.AbilityLifecycleCallback';
 
-let abilityLifecycleCallback: AbilityLifecycleCallback =  {
-    onAbilityForeground(ability){
-        console.log('AbilityLifecycleCallback onAbilityForeground.');
-    }
-};
-```
+See [Usage of AbilityLifecycleCallback](#usage-of-abilitylifecyclecallback).
 
 ## AbilityLifecycleCallback.onAbilityBackground
 
-onAbilityBackground(ability: UIAbility): void;
+onAbilityBackground(ability: UIAbility): void
 
 Called when an ability is switched from the foreground to the background.
 
@@ -208,19 +159,12 @@ Called when an ability is switched from the foreground to the background.
   | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| **Ability** object.|
 
 **Example**
-```ts
-import AbilityLifecycleCallback from '@ohos.app.ability.AbilityLifecycleCallback';
 
-let abilityLifecycleCallback: AbilityLifecycleCallback =  {
-    onAbilityBackground(ability){
-        console.log('AbilityLifecycleCallback onAbilityBackground.');
-    }
-};
-```
+See [Usage of AbilityLifecycleCallback](#usage-of-abilitylifecyclecallback).
 
 ## AbilityLifecycleCallback.onAbilityContinue
 
-onAbilityContinue(ability: UIAbility): void;
+onAbilityContinue(ability: UIAbility): void
 
 Called when an ability is continued on another device.
 
@@ -233,15 +177,8 @@ Called when an ability is continued on another device.
   | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| **Ability** object.|
 
 **Example**
-```ts
-import AbilityLifecycleCallback from '@ohos.app.ability.AbilityLifecycleCallback';
 
-let abilityLifecycleCallback: AbilityLifecycleCallback =  {
-    onAbilityContinue(ability){
-        console.log('AbilityLifecycleCallback onAbilityContinue.');
-    }
-};
-```
+See [Usage of AbilityLifecycleCallback](#usage-of-abilitylifecyclecallback).
 
 ## Usage of AbilityLifecycleCallback
 
@@ -276,7 +213,6 @@ MyFirstAbility.ts
 First ability of the application
 ```ts
 import AbilityLifecycleCallback from '@ohos.app.ability.AbilityLifecycleCallback';
-import AbilityStage from '@ohos.app.ability.AbilityStage';
 import UIAbility from '@ohos.app.ability.UIAbility';
 
 // Import GlobalContext. Use the actual path declared.
