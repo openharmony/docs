@@ -32,7 +32,7 @@ DrawModifier可设置前景(drawFront)、内容(drawContent)和背景(drawBehind
 
 ### drawFront
 
-drawFront(context: DrawContext): void
+drawFront?(drawContext: DrawContext): void
 
 自定义绘制前景的接口，若重载该方法则可进行前景的自定义绘制。
 
@@ -42,11 +42,11 @@ drawFront(context: DrawContext): void
 
 | 参数名  | 类型                                                   | 必填 | 说明             |
 | ------- | ------------------------------------------------------ | ---- | ---------------- |
-| context | [DrawContext](../js-apis-arkui-graphics.md#drawcontext) | 是   | 图形绘制上下文。 |
+| drawContext | [DrawContext](../js-apis-arkui-graphics.md#drawcontext) | 是   | 图形绘制上下文。 |
 
 ### drawContent
 
-drawContent(context: DrawContext): void
+drawContent?(drawContext: DrawContext): void
 
 自定义绘制内容的接口，若重载该方法可进行内容的自定义绘制，会替换组件原本的内容绘制函数。
 
@@ -56,11 +56,11 @@ drawContent(context: DrawContext): void
 
 | 参数名  | 类型                                                   | 必填 | 说明             |
 | ------- | ------------------------------------------------------ | ---- | ---------------- |
-| context | [DrawContext](../js-apis-arkui-graphics.md#drawcontext) | 是   | 图形绘制上下文。 |
+| drawContext | [DrawContext](../js-apis-arkui-graphics.md#drawcontext) | 是   | 图形绘制上下文。 |
 
 ### drawBehind
 
-drawBehind(context: DrawContext): void
+drawBehind?(drawContext: DrawContext): void
 
 自定义绘制背景的接口，若重载该方法则可进行背景的自定义绘制。
 
@@ -70,7 +70,7 @@ drawBehind(context: DrawContext): void
 
 | 参数名  | 类型                                                   | 必填 | 说明             |
 | ------- | ------------------------------------------------------ | ---- | ---------------- |
-| context | [DrawContext](../js-apis-arkui-graphics.md#drawcontext) | 是   | 图形绘制上下文。 |
+| drawContext | [DrawContext](../js-apis-arkui-graphics.md#drawcontext) | 是   | 图形绘制上下文。 |
 
 
 ### invalidate
