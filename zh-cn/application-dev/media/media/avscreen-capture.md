@@ -217,7 +217,7 @@ int main() {
     // mic开关设置
     OH_AVScreenCapture_SetMicrophoneEnabled(capture, true);
     //可选 配置录屏旋转
-    int32_t retRotation = OH_AVScreenCapture_SetScreenCanvasRotation(capture, true);
+    int32_t retRotation = OH_AVScreenCapture_SetCanvasRotation(capture, true);
     sleep(10); // 录制10s
     // 结束录屏
     OH_AVScreenCapture_StopScreenCapture(capture);
@@ -424,7 +424,7 @@ static napi_value Screencapture(napi_env env, napi_callback_info info) {
     int32_t retStart = OH_AVScreenCapture_StartScreenCapture(capture);
 
     //可选 配置录屏旋转
-    int32_t retRotation = OH_AVScreenCapture_SetScreenCanvasRotation(capture, true);
+    int32_t retRotation = OH_AVScreenCapture_SetCanvasRotation(capture, true);
 
     // 录制10s
     sleep(10);
