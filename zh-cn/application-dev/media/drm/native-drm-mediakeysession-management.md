@@ -1,4 +1,4 @@
-# DRM会话管理(C/C++)
+# 会话管理(C/C++)
 
 DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可证申请与处理等。
 
