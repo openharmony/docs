@@ -2438,7 +2438,7 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 | netHandle            | [NetHandle](#nethandle)                             | 是   |数据网络句柄(netHandle)。       |
 | connectionProperties | [ConnectionProperties](#connectionproperties)                  | 是   |网络连接属性。 |
 
-站## NetBlockStatusInfo<sup>11+</sup>
+## NetBlockStatusInfo<sup>11+</sup>
 
 获取网络状态信息
 
