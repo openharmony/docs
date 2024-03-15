@@ -35,3 +35,5 @@
         - [翻译伪本地化测试](pseudo-i18n-testing-translation.md)
         - [界面镜像伪本地化测试](pseudo-i18n-testing-mirror.md)
     - [语言测试](linguistic-testing.md)
+- Native接口支持
+    - [ICU4C](../reference/native-lib/icu4c.md)
