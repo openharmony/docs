@@ -293,6 +293,7 @@
   - [像素单位](arkui-ts/ts-pixel-units.md)
   - [枚举说明](arkui-ts/ts-appendix-enums.md)
   - [类型定义](arkui-ts/ts-types.md)
+  - [设置事件回调](arkui-ts/ts-uicommonevent.md)
   - 已停止维护的组件
     - [AbilityComponent (系统接口)](arkui-ts/ts-container-ability-component-sys.md)
     - [GridContainer](arkui-ts/ts-container-gridcontainer.md)
