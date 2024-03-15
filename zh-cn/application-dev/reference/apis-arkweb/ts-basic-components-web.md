@@ -6322,7 +6322,7 @@ registerJavaScriptProxy(options: { object: object, name: string, methodList: Arr
 
 | 参数名        | 参数类型            | 必填   | 默认值  | 参数描述                                     |
 | ---------- | --------------- | ---- | ---- | ---------------------------------------- |
-| object     | object          | 是    | -    | 参与注册的应用侧JavaScript对象。只能声明方法，不能声明属性 。其中方法的参数和返回类型只能为string，number，boolean |
+| object     | object          | 是    | -    | 参与注册的应用侧JavaScript对象。可以声明方法，也可以声明属性，但是不支持h5直接调用。其中方法的参数和返回类型只能为string，number，boolean |
 | name       | string          | 是    | -    | 注册对象的名称，与window中调用的对象名一致。注册后window对象可以通过此名字访问应用侧JavaScript对象。 |
 | methodList | Array\<string\> | 是    | -    | 参与注册的应用侧JavaScript对象的方法。                 |
 
