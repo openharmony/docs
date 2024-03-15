@@ -252,7 +252,7 @@
 |FUNC|vkWaitForFences|
 |FUNC|vkWaitSemaphores|
 
-## OpenHarmon新增的扩展接口列表
+## OpenHarmony新增的扩展接口列表
 
 除了标准能力，还提供了OpenHarmony平台扩展的Vulkan能力，扩展了使用OHNativeWindow创建Vulkan Surface的能力，以及获取OH_NativeBuffer和OH_NativeBuffer属性的能力。
 
