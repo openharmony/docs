@@ -472,7 +472,7 @@ Codec MIME类型枚举。
 
 播放管理类，用于管理和播放媒体资源。在调用AVPlayer的方法前，需要先通过[createAVPlayer()](#mediacreateavplayer9)构建一个AVPlayer实例。
 
-Audio/Video播放demo可参考：[音频播放开发指导](../../media/using-avplayer-for-playback.md)、[视频播放开发指导](../../media/video-playback.md)。
+Audio/Video播放demo可参考：[音频播放开发指导](../../media/media/using-avplayer-for-playback.md)、[视频播放开发指导](../../media/media/video-playback.md)。
 
 ### 属性
 
@@ -1903,7 +1903,7 @@ avPlayer.off('audioOutputDeviceChangeWithInfo');
 
 ## AVPlayerState<sup>9+</sup>
 
-[AVPlayer](#avplayer9)的状态机，可通过state属性主动获取当前状态，也可通过监听[stateChange](#onstatechange9)事件上报当前状态，状态机之间的切换规则，可参考[音频播放开发指导](../../media/using-avplayer-for-playback.md)。
+[AVPlayer](#avplayer9)的状态机，可通过state属性主动获取当前状态，也可通过监听[stateChange](#onstatechange9)事件上报当前状态，状态机之间的切换规则，可参考[音频播放开发指导](../../media/media/using-avplayer-for-playback.md)。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -2025,7 +2025,7 @@ media.createAVPlayer((err: BusinessError, player: media.AVPlayer) => {
 
 音视频录制管理类，用于音视频媒体录制。在调用AVRecorder的方法前，需要先通过[createAVRecorder()](#mediacreateavrecorder9)构建一个AVRecorder实例。
 
-音视频录制demo可参考：[音频录制开发指导](../../media/using-avrecorder-for-recording.md)、[视频录制开发指导](../../media/video-recording.md)。
+音视频录制demo可参考：[音频录制开发指导](../../media/media/using-avrecorder-for-recording.md)、[视频录制开发指导](../../media/media/video-recording.md)。
 
 > **说明：**
 >
@@ -3349,7 +3349,7 @@ avRecorder.off('audioCapturerChange');
 
 元数据获取类，用于从媒体资源中获取元数据。在调用AVMetadataExtractor的方法前，需要先通过[createAVMetadataExtractor()](#mediacreateavmetadataextractor11)构建一个AVMetadataExtractor实例。
 
-获取音频或视频元数据的demo可参考：[获取音视频元数据开发指导](../../media/avmetadataextractor.md)。
+获取音频或视频元数据的demo可参考：[获取音视频元数据开发指导](../../media/media/avmetadataextractor.md)。
 
 ### 属性
 
@@ -5665,7 +5665,7 @@ media.createAVImageGenerator().then((generator: media.AVImageGenerator) => {
 
 视频缩略图获取类，用于从视频资源中获取缩略图。在调用AVImageGenerator的方法前，需要先通过[createAVImageGenerator()](#mediacreateavimagegenerator12)构建一个AVImageGenerator实例。
 
-获取视频缩略图的demo可参考：[获取视频缩略图开发指导](../../media/avimagegenerator.md)。
+获取视频缩略图的demo可参考：[获取视频缩略图开发指导](../../media/media/avimagegenerator.md)。
 
 ### 属性
 
