@@ -46,7 +46,7 @@ FFRT（Function Flow运行时）是支持Function Flow编程模型的软件运�
 | -------- | -------- |
 | typedef void \* ffrt_queue_t | 队列句柄. | 
 | typedef int ffrt_qos_t | qos类型. | 
-| typedef void(\* ffrt_function_t ) (void \*) | 任务执行函数指针类型. | 
+| typedef void(\* ffrt_function_t) (void \*) | 任务执行函数指针类型. | 
 | typedef void \* ffrt_task_handle_t | 并行任务句柄. | 
 
 
@@ -313,7 +313,7 @@ FFRT_C_API int ffrt_cond_destroy (ffrt_cond_t * cond)
 ### ffrt_cond_init()
 
 ```
-FFRT_C_API int ffrt_cond_init (ffrt_cond_t * cond, const ffrt_condattr_t * attr )
+FFRT_C_API int ffrt_cond_init (ffrt_cond_t * cond, const ffrt_condattr_t * attr)
 ```
 
 **描述**
@@ -360,7 +360,7 @@ FFRT_C_API int ffrt_cond_signal (ffrt_cond_t * cond)
 ### ffrt_cond_timedwait()
 
 ```
-FFRT_C_API int ffrt_cond_timedwait (ffrt_cond_t * cond, ffrt_mutex_t * mutex, const struct timespec * time_point )
+FFRT_C_API int ffrt_cond_timedwait (ffrt_cond_t * cond, ffrt_mutex_t * mutex, const struct timespec * time_point)
 ```
 
 **描述**
@@ -385,7 +385,7 @@ FFRT_C_API int ffrt_cond_timedwait (ffrt_cond_t * cond, ffrt_mutex_t * mutex, co
 ### ffrt_cond_wait()
 
 ```
-FFRT_C_API int ffrt_cond_wait (ffrt_cond_t * cond, ffrt_mutex_t * mutex )
+FFRT_C_API int ffrt_cond_wait (ffrt_cond_t * cond, ffrt_mutex_t * mutex)
 ```
 
 **描述**
@@ -432,7 +432,7 @@ FFRT_C_API int ffrt_mutex_destroy (ffrt_mutex_t * mutex)
 ### ffrt_mutex_init()
 
 ```
-FFRT_C_API int ffrt_mutex_init (ffrt_mutex_t * mutex, const ffrt_mutexattr_t * attr )
+FFRT_C_API int ffrt_mutex_init (ffrt_mutex_t * mutex, const ffrt_mutexattr_t * attr)
 ```
 
 **描述**
@@ -636,7 +636,7 @@ FFRT_C_API int ffrt_queue_attr_init (ffrt_queue_attr_t * attr)
 ### ffrt_queue_attr_set_callback()
 
 ```
-FFRT_C_API void ffrt_queue_attr_set_callback (ffrt_queue_attr_t * attr, ffrt_function_header_t * f )
+FFRT_C_API void ffrt_queue_attr_set_callback (ffrt_queue_attr_t * attr, ffrt_function_header_t * f)
 ```
 
 **描述**
@@ -656,7 +656,7 @@ FFRT_C_API void ffrt_queue_attr_set_callback (ffrt_queue_attr_t * attr, ffrt_fun
 ### ffrt_queue_attr_set_qos()
 
 ```
-FFRT_C_API void ffrt_queue_attr_set_qos (ffrt_queue_attr_t * attr, ffrt_qos_t qos )
+FFRT_C_API void ffrt_queue_attr_set_qos (ffrt_queue_attr_t * attr, ffrt_qos_t qos)
 ```
 
 **描述**
@@ -676,7 +676,7 @@ FFRT_C_API void ffrt_queue_attr_set_qos (ffrt_queue_attr_t * attr, ffrt_qos_t qo
 ### ffrt_queue_attr_set_timeout()
 
 ```
-FFRT_C_API void ffrt_queue_attr_set_timeout (ffrt_queue_attr_t * attr, uint64_t timeout_us )
+FFRT_C_API void ffrt_queue_attr_set_timeout (ffrt_queue_attr_t * attr, uint64_t timeout_us)
 ```
 
 **描述**
@@ -719,7 +719,7 @@ FFRT_C_API int ffrt_queue_cancel (ffrt_task_handle_t handle)
 ### ffrt_queue_create()
 
 ```
-FFRT_C_API ffrt_queue_t ffrt_queue_create (ffrt_queue_type_t type, const char * name, const ffrt_queue_attr_t * attr )
+FFRT_C_API ffrt_queue_t ffrt_queue_create (ffrt_queue_type_t type, const char * name, const ffrt_queue_attr_t * attr)
 ```
 
 **描述**
@@ -763,7 +763,7 @@ FFRT_C_API void ffrt_queue_destroy (ffrt_queue_t queue)
 ### ffrt_queue_submit()
 
 ```
-FFRT_C_API void ffrt_queue_submit (ffrt_queue_t queue, ffrt_function_header_t * f, const ffrt_task_attr_t * attr )
+FFRT_C_API void ffrt_queue_submit (ffrt_queue_t queue, ffrt_function_header_t * f, const ffrt_task_attr_t * attr)
 ```
 
 **描述**
@@ -784,7 +784,7 @@ FFRT_C_API void ffrt_queue_submit (ffrt_queue_t queue, ffrt_function_header_t * 
 ### ffrt_queue_submit_h()
 
 ```
-FFRT_C_API ffrt_task_handle_t ffrt_queue_submit_h (ffrt_queue_t queue, ffrt_function_header_t * f, const ffrt_task_attr_t * attr )
+FFRT_C_API ffrt_task_handle_t ffrt_queue_submit_h (ffrt_queue_t queue, ffrt_function_header_t * f, const ffrt_task_attr_t * attr)
 ```
 
 **描述**
@@ -828,7 +828,7 @@ FFRT_C_API void ffrt_queue_wait (ffrt_task_handle_t handle)
 ### ffrt_submit_base()
 
 ```
-FFRT_C_API void ffrt_submit_base (ffrt_function_header_t * f, const ffrt_deps_t * in_deps, const ffrt_deps_t * out_deps, const ffrt_task_attr_t * attr )
+FFRT_C_API void ffrt_submit_base (ffrt_function_header_t * f, const ffrt_deps_t * in_deps, const ffrt_deps_t * out_deps, const ffrt_task_attr_t * attr)
 ```
 
 **描述**
@@ -850,7 +850,7 @@ FFRT_C_API void ffrt_submit_base (ffrt_function_header_t * f, const ffrt_deps_t 
 ### ffrt_submit_h_base()
 
 ```
-FFRT_C_API ffrt_task_handle_t ffrt_submit_h_base (ffrt_function_header_t * f, const ffrt_deps_t * in_deps, const ffrt_deps_t * out_deps, const ffrt_task_attr_t * attr )
+FFRT_C_API ffrt_task_handle_t ffrt_submit_h_base (ffrt_function_header_t * f, const ffrt_deps_t * in_deps, const ffrt_deps_t * out_deps, const ffrt_task_attr_t * attr)
 ```
 
 **描述**
@@ -987,7 +987,7 @@ FFRT_C_API int ffrt_task_attr_init (ffrt_task_attr_t * attr)
 ### ffrt_task_attr_set_delay()
 
 ```
-FFRT_C_API void ffrt_task_attr_set_delay (ffrt_task_attr_t * attr, uint64_t delay_us )
+FFRT_C_API void ffrt_task_attr_set_delay (ffrt_task_attr_t * attr, uint64_t delay_us)
 ```
 
 **描述**
@@ -1007,7 +1007,7 @@ FFRT_C_API void ffrt_task_attr_set_delay (ffrt_task_attr_t * attr, uint64_t dela
 ### ffrt_task_attr_set_name()
 
 ```
-FFRT_C_API void ffrt_task_attr_set_name (ffrt_task_attr_t * attr, const char * name )
+FFRT_C_API void ffrt_task_attr_set_name (ffrt_task_attr_t * attr, const char * name)
 ```
 
 **描述**
@@ -1027,7 +1027,7 @@ FFRT_C_API void ffrt_task_attr_set_name (ffrt_task_attr_t * attr, const char * n
 ### ffrt_task_attr_set_qos()
 
 ```
-FFRT_C_API void ffrt_task_attr_set_qos (ffrt_task_attr_t * attr, ffrt_qos_t qos )
+FFRT_C_API void ffrt_task_attr_set_qos (ffrt_task_attr_t * attr, ffrt_qos_t qos)
 ```
 
 **描述**
@@ -1066,7 +1066,7 @@ FFRT_C_API void ffrt_task_handle_destroy (ffrt_task_handle_t handle)
 ### ffrt_this_task_get_id()
 
 ```
-FFRT_C_API uint64_t ffrt_this_task_get_id (void )
+FFRT_C_API uint64_t ffrt_this_task_get_id (void)
 ```
 
 **描述**
@@ -1119,7 +1119,7 @@ FFRT_C_API int ffrt_usleep (uint64_t usec)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| usec延迟时间，单位微秒. | 
+| usec | 延迟时间，单位微秒. | 
 
 **返回：**
 
@@ -1129,7 +1129,7 @@ FFRT_C_API int ffrt_usleep (uint64_t usec)
 ### ffrt_wait()
 
 ```
-FFRT_C_API void ffrt_wait (void )
+FFRT_C_API void ffrt_wait (void)
 ```
 
 **描述**
@@ -1161,7 +1161,7 @@ FFRT_C_API void ffrt_wait_deps (const ffrt_deps_t * deps)
 ### ffrt_yield()
 
 ```
-FFRT_C_API void ffrt_yield (void )
+FFRT_C_API void ffrt_yield (void)
 ```
 
 **描述**
