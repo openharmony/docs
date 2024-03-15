@@ -10,5 +10,5 @@
 - 视频播放和录制
   - [视频播放](video-playback.md)
   - [视频录制](video-recording.md)
-  - [屏幕录制(仅对系统应用开放)(C/C++)](avscreen-capture.md)
+  - [屏幕录制(C/C++)](avscreen-capture.md)
   - [获取视频缩略图](avimagegenerator.md)
