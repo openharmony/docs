@@ -5,9 +5,13 @@
 
 键值属性数组。
 
-**起始版本：** 11
+**起始版本：**
 
-**相关模块：**[HidDdk](_hid_ddk.md)
+11
+
+**相关模块：**
+
+[HID DDK](_hid_ddk.md)
 
 
 ## 汇总
@@ -17,5 +21,32 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [hidKeyCode](_hid_ddk.md#hidkeycode) | [Hid_KeyCode](_hid_ddk.md#hid_keycode) \* | 
-| [length](_hid_ddk.md#length-25) | uint16_t | 
+| [hidKeyCode](#hidkeycode) | 键值编码 | 
+| [length](#length) | 数组长度 | 
+
+
+## 结构体成员变量说明
+
+
+### hidKeyCode
+
+
+```
+Hid_KeyCode Hid_KeyCodeArray::*hidKeyCode
+```
+
+**描述:**
+
+键值编码
+
+
+### length
+
+
+```
+uint16_t Hid_KeyCodeArray::length
+```
+
+**描述:**
+
+数组长度

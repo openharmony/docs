@@ -41,6 +41,8 @@ load(uri: string, callback: AsyncCallback\<number>): void
 
 Loads a sound. This API uses an asynchronous callback to obtain the sound ID. The input parameter **uri** is a string starting with fd://, which is generated based on the file descriptor (FD) obtained.
 
+This API cannot be used to load resources in the **rawfile** directory. Instead, use **load(fd: number, offset: number, length: number, callback: AsyncCallback\<number>): void** or **load(fd: number, offset: number, length: number): Promise\<number>**.
+
 **System capability**: SystemCapability.Multimedia.Media.SoundPool
 
 **Parameters**
@@ -103,6 +105,8 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 load(uri: string): Promise\<number>
 
 Loads a sound. This API uses a promise to obtain the sound ID. The input parameter **uri** is a starting with fd://, which is generated based on the FD obtained.
+
+This API cannot be used to load resources in the **rawfile** directory. Instead, use **load(fd: number, offset: number, length: number, callback: AsyncCallback\<number>): void** or **load(fd: number, offset: number, length: number): Promise\<number>**.
 
 **System capability**: SystemCapability.Multimedia.Media.SoundPool
 

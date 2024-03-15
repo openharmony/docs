@@ -33,7 +33,7 @@ Publishes a notification to a specified user. This API uses an asynchronous call
 
 | Name    | Type                                       | Mandatory| Description                                       |
 | -------- | ----------------------------------------- | ---- | ------------------------------------------- |
-| request  | [NotificationRequest](#notificationrequest) | Yes  | Content and related configuration of the notification to publish.|
+| request  | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | Yes  | Content and related configuration of the notification to publish.|
 | userId   | number                                      | Yes  | User ID.                          |
 | callback | AsyncCallback\<void\>                       | Yes  | Callback used to return the result.                          |
 
@@ -84,7 +84,7 @@ Publishes a notification to a specified user. This API uses a promise to return 
 
 | Name    |  Type                                       | Mandatory| Description                                       |
 | -------- | ----------------------------------------- | ---- | ------------------------------------------- |
-| request  | [NotificationRequest](#notificationrequest) | Yes  | Content and related configuration of the notification to publish.|
+| request  | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | Yes  | Content and related configuration of the notification to publish.|
 | userId   | number                                      | Yes  | User ID.                          |
 
 **Return value**
@@ -306,8 +306,8 @@ Subscribes to a notification with the subscription information specified. This A
 
 | Name      | Type                     | Mandatory| Description            |
 | ---------- | ------------------------- | ---- | ---------------- |
-| subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber-sys.md)    | Yes  | Notification subscriber.    |
-| info       | [NotificationSubscribeInfo](#notificationsubscribeinfo) | Yes  | Notification subscription information.|
+| subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber-sys.md#notificationsubscriber)    | Yes  | Notification subscriber.    |
+| info       | [NotificationSubscribeInfo](js-apis-inner-notification-notificationSubscribeInfo-sys.md#notificationsubscribeinfo) | Yes  | Notification subscription information.|
 | callback   | AsyncCallback\<void\>     | Yes  | Callback used to return the result.|
 
 **Example**
@@ -352,7 +352,7 @@ Subscribes to notifications of all applications under this user. This API uses a
 
 | Name      | Type                  | Mandatory| Description            |
 | ---------- | ---------------------- | ---- | ---------------- |
-| subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber-sys.md) | Yes  | Notification subscriber.    |
+| subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber-sys.md#notificationsubscriber) | Yes  | Notification subscriber.    |
 | callback   | AsyncCallback\<void\>  | Yes  | Callback used to return the result.|
 
 **Example**
@@ -393,8 +393,8 @@ Subscribes to a notification with the subscription information specified. This A
 
 | Name      | Type                     | Mandatory| Description        |
 | ---------- | ------------------------- | ---- | ------------ |
-| subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber-sys.md)    | Yes  | Notification subscriber.|
-| info       | [NotificationSubscribeInfo](#notificationsubscribeinfo) | No  | Notification subscription information. This parameter is left empty by default.  |
+| subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber-sys.md#notificationsubscriber)    | Yes  | Notification subscriber.|
+| info       | [NotificationSubscribeInfo](js-apis-inner-notification-notificationSubscribeInfo-sys.md#notificationsubscribeinfo) | No  | Notification subscription information. This parameter is left empty by default.  |
 
 **Return value**
 
@@ -437,7 +437,7 @@ Unsubscribes from a notification. This API uses an asynchronous callback to retu
 
 | Name      | Type                  | Mandatory| Description                |
 | ---------- | ---------------------- | ---- | -------------------- |
-| subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber-sys.md) | Yes  | Notification subscriber.        |
+| subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber-sys.md#notificationsubscriber) | Yes  | Notification subscriber.        |
 | callback   | AsyncCallback\<void\>  | Yes  | Callback used to return the result.|
 
 **Example**
@@ -478,7 +478,7 @@ Unsubscribes from a notification. This API uses a promise to return the result.
 
 | Name      | Type                  | Mandatory| Description        |
 | ---------- | ---------------------- | ---- | ------------ |
-| subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber-sys.md) | Yes  | Notification subscriber.|
+| subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber-sys.md#notificationsubscriber) | Yes  | Notification subscriber.|
 
 **Return value**
 
@@ -1232,7 +1232,7 @@ Removes a notification for a specified bundle. This API uses an asynchronous cal
 
 | Name    | Type                 | Mandatory| Description                |
 | -------- | --------------------- | ---- | -------------------- |
-| hashCode | string                | Yes  | Unique notification ID. It is the **hashCode** in the [NotificationRequest](#notificationrequest) object of [SubscribeCallbackData](#subscribecallbackdata) of the [onConsume](js-apis-inner-notification-notificationSubscriber-sys.md#onconsume) callback.|
+| hashCode | string                | Yes  | Unique notification ID. It is the value of **hashCode** in the [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) object of [SubscribeCallbackData](#subscribecallbackdata) of the [onConsume](js-apis-inner-notification-notificationSubscriber-sys.md#onconsume) callback.|
 | reason   | [RemoveReason](#removereason-deprecated) | Yes  | Reason for deleting a notification.        |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
@@ -1485,7 +1485,7 @@ Obtains all active notifications. This API uses an asynchronous callback to retu
 
 | Name    | Type                                                        | Mandatory| Description                |
 | -------- | ------------------------------------------------------------ | ---- | -------------------- |
-| callback | AsyncCallback\<Array\<[NotificationRequest](#notificationrequest)>> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)>> | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -1506,7 +1506,7 @@ Notification.getAllActiveNotifications(getAllActiveNotificationsCallback);
 
 ## Notification.getAllActiveNotifications
 
-getAllActiveNotifications(): Promise\<Array\<[NotificationRequest](#notificationrequest)>>
+getAllActiveNotifications(): Promise\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)>>
 
 Obtains all active notifications. This API uses a promise to return the result.
 
@@ -1520,7 +1520,7 @@ Obtains all active notifications. This API uses a promise to return the result.
 
 | Type                                                       | Description                                                        |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<Array\<[NotificationRequest](#notificationrequest)>> | Promise used to return the result.|
+| Promise\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)>> | Promise used to return the result.|
 
 **Example**
 
@@ -2282,34 +2282,6 @@ Notification.getDeviceRemindType().then((data: Notification.DeviceRemindType) =>
 });
 ```
 
-## SubscribeCallbackData
-
-**System capability**: SystemCapability.Notification.Notification
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-| Name           | Type                                             | Readable| Writable| Description    |
-| --------------- | ------------------------------------------------- | ---- | --- | -------- |
-| request         | [NotificationRequest](#notificationrequest)       | Yes | No | Notification content.|
-| sortingMap      | [NotificationSortingMap](#notificationsortingmap) | Yes | No | Notification sorting information.|
-| reason          | number                                            | Yes | No | Reason for deletion.|
-| sound           | string                                            | Yes | No | Sound used for notification.|
-| vibrationValues | Array\<number\>                                   | Yes | No | Vibration used for notification.|
-
-
-## EnabledNotificationCallbackData<sup>8+</sup>
-
-**System capability**: SystemCapability.Notification.Notification
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-| Name  | Type   | Readable| Writable| Description            |
-| ------ | ------- | ---- | --- | ---------------- |
-| bundle | string  | Yes | No | Bundle name of the application.      |
-| uid    | number  | Yes | No | UID of the application.       |
-| enable | boolean | Yes | No | Notification enabled status of the application.|
-
-
 ## DoNotDisturbDate<sup>8+</sup> <sup>deprecated</sup>
 
 **System capability**: SystemCapability.Notification.Notification
@@ -2340,85 +2312,6 @@ Notification.getDeviceRemindType().then((data: Notification.DeviceRemindType) =>
 | TYPE_ONCE    | 1 | One-shot DND at the specified time segment (only considering the hour and minute).|
 | TYPE_DAILY   | 2 | Daily DND at the specified time segment (only considering the hour and minute).|
 | TYPE_CLEARLY | 3 | DND at the specified time segment (considering the year, month, day, hour, and minute).    |
-
-## NotificationFlagStatus<sup>8+</sup>
-
-Describes the notification flag status.
-
-**System capability**: SystemCapability.Notification.Notification
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-| Name          | Value | Description                              |
-| -------------- | --- | --------------------------------- |
-| TYPE_NONE      | 0   | The default flag is used.                        |
-| TYPE_OPEN      | 1   | The notification flag is enabled.                    |
-| TYPE_CLOSE     | 2   | The notification flag is disabled.                    |
-
-## NotificationRequest
-
-Describes the notification request.
-
-**System capability**: SystemCapability.Notification.Notification
-
-| Name                 | Type                                         | Readable| Writable| Description                      |
-| --------------------- | --------------------------------------------- | ---- | --- | -------------------------- |
-| classification        | string                                        | Yes | Yes | Notification category.<br>**System API**: This is a system API and cannot be called by third-party applications.                  |
-| isRemoveAllowed<sup>8+</sup> | boolean                                | Yes | No | Whether the notification can be removed.<br>**System API**: This is a system API and cannot be called by third-party applications.                  |
-| source<sup>8+</sup>   | number                                        | Yes | No | Notification source.<br>**System API**: This is a system API and cannot be called by third-party applications.                  |
-| deviceId<sup>8+</sup> | string                                        | Yes | No | Device ID of the notification source.<br>**System API**: This is a system API and cannot be called by third-party applications.         |
-
-## DistributedOptions<sup>8+</sup>
-
-Describes distributed notifications options.
-
-**System capability**: SystemCapability.Notification.Notification
-
-| Name                  | Type           | Readable| Writable| Description                              |
-| ---------------------- | -------------- | ---- | ---- | ---------------------------------- |
-| remindType             | number         | Yes  | No  | Notification reminder type.<br>**System API**: This is a system API and cannot be called by third-party applications.                   |
-
-## NotificationSorting
-
-Provides sorting information of active notifications.
-
-**System capability**: SystemCapability.Notification.Notification
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-| Name    | Type                                 | Readable| Writable| Description        |
-| -------- | ------------------------------------- | ---- | --- | ------------ |
-| slot     | [NotificationSlot](./js-apis-notification.md#notificationslot) | Yes | No | Notification slot content.|
-| hashCode | string                                | Yes | No | Unique ID of the notification.|
-| ranking  | number                                | Yes | No | Notification sequence number.|
-
-
-## NotificationSortingMap
-
-Provides sorting information of active notifications in all subscribed notifications.
-
-**System capability**: SystemCapability.Notification.Notification
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-| Name          | Type                                                        | Readable| Writable| Description            |
-| -------------- | ------------------------------------------------------------ | ---- | --- | ---------------- |
-| sortings       | {[key: string]: [NotificationSorting](#notificationsorting)} | Yes | No | Array of notification sorting information.|
-| sortedHashCode | Array\<string\>                                              | Yes | No | Array of unique notification IDs.|
-
-
-## NotificationSubscribeInfo
-
-Provides the information about the publisher for notification subscription.
-
-**System capability**: SystemCapability.Notification.Notification
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-| Name                                               | Type           | Readable| Writable| Description                                                                                          |
-|---------------------------------------------------| --------------- | --- | ---- |----------------------------------------------------------------------------------------------|
-| bundleNames                                       | Array\<string\> | Yes | Yes | Bundle names of the applications whose notifications are to be subscribed to.                                                                          |
-| userId | number          | Yes | Yes | User whose notifications are to be subscribed to.|
 
 ## DeviceRemindType<sup>8+</sup> <sup>deprecated</sup>
 

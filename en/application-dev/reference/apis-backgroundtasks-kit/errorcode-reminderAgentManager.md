@@ -21,7 +21,7 @@ The application is not allowed to send notifications when **publishReminder()** 
 
 **Solution**
 
-1. Call [Notification.requestEnableNotification](../apis/js-apis-notification.md#notificationrequestenablenotification8) to request notification to be enabled for the application.
+1. Call [Notification.requestEnableNotification](../apis-notification-kit/js-apis-notification.md#notificationrequestenablenotification8) to request notification to be enabled for the application.
 2. Check whether the notification function is disabled.
 
 ## 1700002 Too Many Reminders

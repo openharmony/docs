@@ -3,7 +3,7 @@
 
 ## Overview
 
-**VkNativeBufferFormatPropertiesOHOS** defines the format properties of a **NaitveBuffer**.
+**VkNativeBufferFormatPropertiesOHOS** defines the format properties of the **NativeBuffer**.
 
 **Since**
 

@@ -58,7 +58,7 @@ class MyNodeController extends NodeController {
     const renderNode = this.rootNode.getRenderNode();
     if (renderNode !== null) {
       renderNode.size = { width: 100, height: 100 };
-      renderNode.backgroundColor = 0XFF0000;
+      renderNode.backgroundColor = 0XFFFF0000;
     }
 
     return this.rootNode;
@@ -300,6 +300,43 @@ getParent(): FrameNode | null;
 
 请参考[节点操作示例](#节点操作示例)。
 
+### getPositionToWindow<sup>12+</sup> 
+
+  getPositionToWindow(): Position
+
+获取FrameNode相对于窗口的位置偏移。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型     | 说明                            |
+| -------- | ------------------------------- |
+| [Position](./js-apis-arkui-graphics.md#position) | 节点相对于窗口的位置偏移。 |
+
+**示例：**
+
+请参考[节点操作示例](#节点操作示例)。
+
+
+### getPositionToParent<sup>12+</sup>
+
+getPositionToParent(): Position
+
+获取FrameNode相对于父组件的位置偏移。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                                                           | 说明                                                                  |
+| -------------------------------------------------------------- | --------------------------------------------------------------------- |
+| [Position](./js-apis-arkui-graphics.md#position) | 节点相对于父组件的位置偏移。 |
+
+**示例：**
+
+请参考[节点操作示例](#节点操作示例)。
+
 ## 节点操作示例
 ```ts
 import { FrameNode, NodeController } from "@ohos.arkui.node"
@@ -393,6 +430,16 @@ class MyNodeController extends NodeController {
       console.log(TEST_TAG + " get ArkTsNode fail.");
     }
   }
+  getPositionToWindow()
+  {
+    let positionToWindow = this.frameNode?.getPositionToWindow();
+    console.log(TEST_TAG + JSON.stringify(positionToWindow));
+  }
+  getPositionToParent()
+  {
+    let positionToParent = this.frameNode?.getPositionToWindow();
+    console.log(TEST_TAG + JSON.stringify(positionToParent));
+  }
 
   throwError()
   {
@@ -463,6 +510,16 @@ struct Index {
         .onClick(()=>{
           this.myNodeController.searchFrameNode();
         })
+      Button("getPositionToWindow")
+        .width(300)
+        .onClick(()=>{
+          this.myNodeController.getPositionToWindow();
+        })
+      Button("getPositionToParent")
+        .width(300)
+        .onClick(()=>{
+          this.myNodeController.getPositionToParent();
+        })
       Button("throwError")
         .width(300)
         .onClick(()=>{
@@ -481,6 +538,97 @@ struct Index {
     .padding({ left: 35, right: 35, top: 35, bottom: 35 })
     .width("100%")
     .height("100%")
+  }
+}
+```
+
+### dispose<sup>12+</sup>
+
+dispose(): void
+
+立即释放当前FrameNode。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**示例：**
+
+```ts
+import { FrameNode, NodeController, BuilderNode } from "@ohos.arkui.node"
+
+@Component
+struct TestComponent {
+  build() {
+    Column() {
+      Text('This is a BuilderNode.')
+        .fontSize(16)
+        .fontWeight(FontWeight.Bold)
+    }
+    .width('100%')
+    .backgroundColor(Color.Gray)
+  }
+
+  aboutToAppear() {
+    console.error('aboutToAppear');
+  }
+
+  aboutToDisappear() {
+    console.error('aboutToDisappear');
+  }
+}
+
+@Builder
+function buildComponent() {
+  TestComponent()
+}
+
+class MyNodeController extends NodeController {
+  private rootNode: FrameNode | null = null;
+  private builderNode: BuilderNode<[]> | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+    this.builderNode = new BuilderNode(uiContext, { selfIdealSize: { width: 200, height: 100 } });
+    this.builderNode.build(new WrappedBuilder(buildComponent));
+
+    const rootRenderNode = this.rootNode.getRenderNode();
+    if (rootRenderNode !== null) {
+      rootRenderNode.size = { width: 200, height: 200 };
+      rootRenderNode.backgroundColor = 0xff00ff00;
+      rootRenderNode.appendChild(this.builderNode!.getFrameNode()!.getRenderNode());
+    }
+
+    return this.rootNode;
+  }
+
+  disposeFrameNode() {
+    this.rootNode.removeChild(this.builderNode.getFrameNode());
+    this.builderNode.dispose();
+
+    this.rootNode.dispose();
+  }
+
+  removeBuilderNode() {
+    const rootRenderNode = this.rootNode.getRenderNode();
+    if (rootRenderNode !== null && this.builderNode !== null && this.builderNode.getFrameNode() !== null) {
+      rootRenderNode.removeChild(this.builderNode!.getFrameNode()!.getRenderNode());
+    }
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private myNodeController: MyNodeController = new MyNodeController();
+
+  build() {
+    Column({ space: 4 }) {
+      NodeContainer(this.myNodeController)
+      Button('FrameNode dispose')
+        .onClick(() => {
+          this.myNodeController.disposeFrameNode();
+        })
+        .width('100%')
+    }
   }
 }
 ```

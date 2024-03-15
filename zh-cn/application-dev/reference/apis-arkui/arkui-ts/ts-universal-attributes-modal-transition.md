@@ -66,7 +66,14 @@ struct ModalTransitionExample {
         .fontSize(20)
         .onClick(()=>{
           this.isShow2 = true;
-        }).bindContentCover(this.isShow2, this.myBuilder2(), {modalTransition: ModalTransition.NONE, backgroundColor: Color.Orange, onAppear: () => {console.log("BindContentCover onAppear.")}, onDisappear: () => {console.log("BindContentCover onDisappear.")}})
+        }).bindContentCover(this.isShow2, this.myBuilder2(), {
+          modalTransition: ModalTransition.NONE, 
+          backgroundColor: Color.Orange, 
+          onWillAppear: () => {console.log("BindContentCover onWillAppear.")}, 
+          onAppear: () => {console.log("BindContentCover onAppear.")}, 
+          onWillDisappear: () => {console.log("BindContentCover onWillDisappear.")}, 
+          onDisappear: () => {console.log("BindContentCover onDisappear.")}
+        })
 
       Button("close modal 1")
         .margin(10)
@@ -88,7 +95,14 @@ struct ModalTransitionExample {
         })
         .fontSize(20)
         .margin(10)
-        .bindContentCover(this.isShow, this.myBuilder(), {modalTransition: ModalTransition.NONE, backgroundColor: Color.Pink, onAppear: () => {console.log("BindContentCover onAppear.")}, onDisappear: () => {console.log("BindContentCover onDisappear.")}})
+        .bindContentCover(this.isShow, this.myBuilder(), {
+          modalTransition: ModalTransition.NONE, 
+          backgroundColor: Color.Pink, 
+          onWillAppear: () => {console.log("BindContentCover onWillAppear.")}, 
+          onAppear: () => {console.log("BindContentCover onAppear.")}, 
+          onWillDisappear: () => {console.log("BindContentCover onWillDisappear.")}, 
+          onDisappear: () => {console.log("BindContentCover onDisappear.")}
+        })
     }
     .justifyContent(FlexAlign.Center)
     .backgroundColor("#ff49c8ab")
@@ -142,7 +156,14 @@ struct ModalTransitionExample {
         .fontSize(20)
         .onClick(()=>{
           this.isShow2 = true;
-        }).bindContentCover(this.isShow2, this.myBuilder2(), {modalTransition: ModalTransition.NONE, backgroundColor: Color.Orange, onAppear: () => {console.log("BindContentCover onAppear.")}, onDisappear: () => {console.log("BindContentCover onDisappear.")}})
+        }).bindContentCover(this.isShow2, this.myBuilder2(), {
+          modalTransition: ModalTransition.NONE, 
+          backgroundColor: Color.Orange, 
+          onWillAppear: () => {console.log("BindContentCover onWillAppear.")}, 
+          onAppear: () => {console.log("BindContentCover onAppear.")}, 
+          onWillDisappear: () => {console.log("BindContentCover onWillDisappear.")}, 
+          onDisappear: () => {console.log("BindContentCover onDisappear.")}
+        })
 
       Button("close modal 1")
         .margin(10)
@@ -166,7 +187,14 @@ struct ModalTransitionExample {
         })
         .fontSize(20)
         .margin(10)
-        .bindContentCover(this.isShow, this.myBuilder(), {modalTransition: ModalTransition.NONE, backgroundColor: Color.Pink, onAppear: () => {console.log("BindContentCover onAppear.")}, onDisappear: () => {console.log("BindContentCover onDisappear.")}})
+        .bindContentCover(this.isShow, this.myBuilder(), {
+          modalTransition: ModalTransition.NONE, 
+          backgroundColor: Color.Pink, 
+          onWillAppear: () => {console.log("BindContentCover onWillAppear.")}, 
+          onAppear: () => {console.log("BindContentCover onAppear.")}, 
+          onWillDisappear: () => {console.log("BindContentCover onWillDisappear.")}, 
+          onDisappear: () => {console.log("BindContentCover onDisappear.")}
+        })
     }
     .justifyContent(FlexAlign.Center)
     .backgroundColor("#ff49c8ab")
@@ -212,7 +240,14 @@ struct ModalTransitionExample {
         .fontSize(20)
         .onClick(()=>{
           this.isShow2 = true;
-        }).bindContentCover(this.isShow2, this.myBuilder2(), {modalTransition: ModalTransition.DEFAULT, backgroundColor: Color.Gray, onAppear: () => {console.log("BindContentCover onAppear.")}, onDisappear: () => {console.log("BindContentCover onDisappear.")}})
+        }).bindContentCover(this.isShow2, this.myBuilder2(), {
+          modalTransition: ModalTransition.DEFAULT, 
+          backgroundColor: Color.Gray, 
+          onWillAppear: () => {console.log("BindContentCover onWillAppear.")}, 
+          onAppear: () => {console.log("BindContentCover onAppear.")}, 
+          onWillDisappear: () => {console.log("BindContentCover onWillDisappear.")}, 
+          onDisappear: () => {console.log("BindContentCover onDisappear.")}
+        })
 
       Button("close modal 1")
         .margin(10)
@@ -234,7 +269,14 @@ struct ModalTransitionExample {
         })
         .fontSize(20)
         .margin(10)
-        .bindContentCover(this.isShow, this.myBuilder(), {modalTransition: ModalTransition.DEFAULT, backgroundColor: Color.Pink, onAppear: () => {console.log("BindContentCover onAppear.")}, onDisappear: () => {console.log("BindContentCover onDisappear.")}})
+        .bindContentCover(this.isShow, this.myBuilder(), {
+          modalTransition: ModalTransition.DEFAULT, 
+          backgroundColor: Color.Pink, 
+          onWillAppear: () => {console.log("BindContentCover onWillAppear.")}, 
+          onAppear: () => {console.log("BindContentCover onAppear.")}, 
+          onWillDisappear: () => {console.log("BindContentCover onWillDisappear.")}, 
+          onDisappear: () => {console.log("BindContentCover onDisappear.")}
+        })
     }
     .justifyContent(FlexAlign.Center)
     .backgroundColor(Color.White)
@@ -280,7 +322,14 @@ struct ModalTransitionExample {
         .fontSize(20)
         .onClick(()=>{
           this.isShow2 = true;
-        }).bindContentCover(this.isShow2, this.myBuilder2(), {modalTransition: ModalTransition.ALPHA, backgroundColor: Color.Gray, onAppear: () => {console.log("BindContentCover onAppear.")}, onDisappear: () => {console.log("BindContentCover onDisappear.")}})
+        }).bindContentCover(this.isShow2, this.myBuilder2(), {
+          modalTransition: ModalTransition.ALPHA, 
+          backgroundColor: Color.Gray, 
+          onWillAppear: () => {console.log("BindContentCover onWillAppear.")}, 
+          onAppear: () => {console.log("BindContentCover onAppear.")}, 
+          onWillDisappear: () => {console.log("BindContentCover onWillDisappear.")}, 
+          onDisappear: () => {console.log("BindContentCover onDisappear.")}
+        })
 
       Button("close modal 1")
         .margin(10)
@@ -302,7 +351,14 @@ struct ModalTransitionExample {
         })
         .fontSize(20)
         .margin(10)
-        .bindContentCover(this.isShow, this.myBuilder(), {modalTransition: ModalTransition.ALPHA, backgroundColor: Color.Pink, onAppear: () => {console.log("BindContentCover onAppear.")}, onDisappear: () => {console.log("BindContentCover onDisappear.")}})
+        .bindContentCover(this.isShow, this.myBuilder(), {
+          modalTransition: ModalTransition.ALPHA, 
+          backgroundColor: Color.Pink, 
+          onWillAppear: () => {console.log("BindContentCover onWillAppear.")}, 
+          onAppear: () => {console.log("BindContentCover onAppear.")}, 
+          onWillDisappear: () => {console.log("BindContentCover onWillDisappear.")}, 
+          onDisappear: () => {console.log("BindContentCover onDisappear.")}
+        })
     }
     .justifyContent(FlexAlign.Center)
     .backgroundColor(Color.White)

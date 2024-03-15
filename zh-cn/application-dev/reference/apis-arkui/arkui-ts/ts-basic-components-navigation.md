@@ -52,7 +52,7 @@ title(value: ResourceStr | CustomBuilder | NavigationCommonTitle | NavigationCus
 | 参数名  | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value   | [ResourceStr](ts-types.md#resourcestr)<sup>10+</sup>&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8)&nbsp;\|&nbsp;[NavigationCommonTitle](#navigationcommontitle9类型说明)<sup>9+</sup>&nbsp;\|&nbsp;[NavigationCustomTitle](#navigationcustomtitle9类型说明)<sup>9+</sup> | 是   | 页面标题，使用NavigationCustomTitle类型设置height高度时，[titleMode](#titlemode)属性不会生效。字符串超长时，如果不设置副标题，先缩小再换行（2行）最后...截断。如果设置副标题，先缩小最后...截断。 |
-| options | [NavigationTitleOptions](#navigationtitleoptions11类型说明)<sup>11+</sup> | 否   | 标题样式。                                                   |
+| options | [NavigationTitleOptions](#navigationtitleoptions11类型说明)<sup>11+</sup> | 否   | 标题样式，默认白色背景，关闭模糊样式。                                                   |
 
 ### subTitle<sup>(deprecated)</sup>
 
@@ -129,7 +129,7 @@ toolbarConfiguration(value: Array&lt;ToolbarItem&gt; | CustomBuilder, options?: 
 | 参数名  | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value   | &nbsp;Array&lt;[ToolbarItem](#toolbaritem10类型说明)&gt; &nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 是   | 工具栏内容，使用Array&lt;[ToolbarItem](#toolbaritem10类型说明)&gt;写法设置的工具栏有如下特性：<br/>工具栏所有选项均分底部工具栏，在每个均分内容区布局文本和图标。<br/>文本超长时，若工具栏选项个数小于5个，优先拓展选项的宽度，最大宽度与屏幕等宽，其次逐级缩小，缩小之后换行，最后...截断。<br/>竖屏最多支持显示5个图标，多余的图标会被放入自动生成的更多图标。横屏下必须配合menus属性的Array&lt;[NavigationMenuItem](#navigationmenuitem类型说明)&gt;使用，底部工具栏会自动隐藏，同时底部工具栏所有选项移动至页面右上角菜单。<br/>使用[CustomBuilder](ts-types.md#custombuilder8)写法为用户自定义工具栏选项，除均分底部工具栏外不具备以上功能。 |
-| options | [NavigationToolbarOptions](#navigationtoolbaroptions11类型说明)<sup>11+</sup> | 否   | 工具栏选项。                                                 |
+| options | [NavigationToolbarOptions](#navigationtoolbaroptions11类型说明)<sup>11+</sup> | 否   | 工具栏选项，默认白色背景，关闭模糊样式。                                                 |
 
 ### hideToolBar
 
@@ -596,7 +596,7 @@ pop(result: Object, animated?: boolean): NavPathInfo | undefined
 
 popToName(name: string, animated?: boolean): number
 
-回退路由栈到第一个名为name的NavDestination页面。
+回退路由栈到由栈顶开始第一个名为name的NavDestination页面。
 
 **参数：**
 
@@ -609,13 +609,13 @@ popToName(name: string, animated?: boolean): number
 
 | 类型     | 说明                                       |
 | ------ | ---------------------------------------- |
-| number | 如果栈中存在名为name的NavDestination页面，则返回第一个名为name的NavDestination页面的索引，否则返回-1。 |
+| number | 如果栈中存在名为name的NavDestination页面，则返回由栈顶开始第一个名为name的NavDestination页面的索引，否则返回-1。 |
 
 ### popToName<sup>11+</sup>
 
 popToName(name: string, result: Object, animated?: boolean): number
 
-回退路由栈到第一个名为name的NavDestination页面，并触发onPop回调传入页面处理结果。
+回退路由栈到由栈顶开始第一个名为name的NavDestination页面，并触发onPop回调传入页面处理结果。
 
 **参数：**
 
@@ -629,7 +629,7 @@ popToName(name: string, result: Object, animated?: boolean): number
 
 | 类型     | 说明                                       |
 | ------ | ---------------------------------------- |
-| number | 如果栈中存在名为name的NavDestination页面，则返回第一个名为name的NavDestination页面的索引，否则返回-1。 |
+| number | 如果栈中存在名为name的NavDestination页面，则返回由栈顶开始第一个名为name的NavDestination页面的索引，否则返回-1。 |
 
 ### popToIndex<sup>10+</sup>
 
@@ -662,7 +662,7 @@ popToIndex(index: number, result: Object, animated?: boolean): void
 
 moveToTop(name: string, animated?: boolean): number
 
-将第一个名为name的NavDestination页面移到栈顶。
+将由栈顶开始第一个名为name的NavDestination页面移到栈顶。
 
 **参数：**
 
@@ -675,7 +675,7 @@ moveToTop(name: string, animated?: boolean): number
 
 | 类型     | 说明                                       |
 | ------ | ---------------------------------------- |
-| number | 如果栈中存在名为name的NavDestination页面，则返回第一个名为name的NavDestination页面的当前索引，否则返回-1。 |
+| number | 如果栈中存在名为name的NavDestination页面，则返回由栈顶开始第一个名为name的NavDestination页面的当前索引，否则返回-1。 |
 
 ### moveIndexToTop<sup>10+</sup>
 

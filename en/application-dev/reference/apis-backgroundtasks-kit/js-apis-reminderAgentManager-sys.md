@@ -60,4 +60,4 @@ The data provider needs to set the ID, read/write permissions, and basic informa
 | -------- | -------- | -------- | -------- |
 | uri | string | Yes| URI of the data, which is the unique identifier for cross-application data access.|
 | equalTo | Record<string, number \| string \| boolean> | Yes| Filter criteria. Currently, only equal to is supported.|
-| value | [ValueBucket](../apis/js-apis-data-valuesBucket.md#valuesbucket) | Yes| New data.|
+| value | [ValueBucket](../apis-arkdata/js-apis-data-valuesBucket.md#valuesbucket) | Yes| New data.|

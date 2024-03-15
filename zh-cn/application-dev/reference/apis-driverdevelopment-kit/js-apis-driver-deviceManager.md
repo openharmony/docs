@@ -65,7 +65,7 @@ bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;,
 
 根据queryDevices()返回的设备信息绑定设备。
 
-需要调用[deviceManager.queryDevices](#devicemanagerquerydevices)获取设备信息以及device。
+需要调用[deviceManager.queryDevices()](#devicemanagerquerydevices)获取设备信息以及device。
 
 **需要权限：** ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER
 
@@ -120,7 +120,7 @@ bindDeviceDriver(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;,
 
 根据queryDevices()返回的设备信息绑定设备。
 
-需要调用[deviceManager.queryDevices](#devicemanagerquerydevices)获取设备信息以及device。
+需要调用[deviceManager.queryDevices()](#devicemanagerquerydevices)获取设备信息以及device。
 
 **需要权限：** ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER
 

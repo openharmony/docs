@@ -42,7 +42,7 @@ The **NativeWindow** module provides the **NativeWindow** capability for connect
 
 | Name| Description| 
 | -------- | -------- |
-| [NativeWindowOperation](#nativewindowoperation) {<br>SET_BUFFER_GEOMETRY, GET_BUFFER_GEOMETRY, GET_FORMAT, SET_FORMAT,<br>GET_USAGE, SET_USAGE, SET_STRIDE, GET_STRIDE,<br>SET_SWAP_INTERVAL, GET_SWAP_INTERVAL, SET_TIMEOUT, GET_TIMEOUT,<br>SET_COLOR_GAMUT, GET_COLOR_GAMUT, SET_TRANSFORM, GET_TRANSFORM,<br>SET_UI_TIMESTAMP<br>} | Enumerates the operation codes in the **OH_NativeWindow_NativeWindowHandleOpt** function.| 
+| [NativeWindowOperation](#nativewindowoperation) {<br>SET_BUFFER_GEOMETRY, GET_BUFFER_GEOMETRY, GET_FORMAT, SET_FORMAT,<br>GET_USAGE, SET_USAGE, SET_STRIDE, GET_STRIDE,<br>SET_SWAP_INTERVAL, GET_SWAP_INTERVAL, SET_TIMEOUT, GET_TIMEOUT,<br>SET_COLOR_GAMUT, GET_COLOR_GAMUT, SET_TRANSFORM, GET_TRANSFORM,<br>SET_UI_TIMESTAMP, GET_BUFFERQUEUE_SIZE<br>} | Enumerates the operation codes in the **OH_NativeWindow_NativeWindowHandleOpt** function.|
 | [OHScalingMode](#ohscalingmode) { OH_SCALING_MODE_FREEZE = 0, OH_SCALING_MODE_SCALE_TO_WINDOW, OH_SCALING_MODE_SCALE_CROP, OH_SCALING_MODE_NO_SCALE_CROP } | Enumerates the scaling modes.<br>**Deprecated**: This enum is deprecated since API version 10. No substitute is provided.| 
 | [OHHDRMetadataKey](#ohhdrmetadatakey) {<br>OH_METAKEY_RED_PRIMARY_X = 0, OH_METAKEY_RED_PRIMARY_Y = 1, OH_METAKEY_GREEN_PRIMARY_X = 2, OH_METAKEY_GREEN_PRIMARY_Y = 3,<br>OH_METAKEY_BLUE_PRIMARY_X = 4, OH_METAKEY_BLUE_PRIMARY_Y = 5, OH_METAKEY_WHITE_PRIMARY_X = 6, OH_METAKEY_WHITE_PRIMARY_Y = 7,<br>OH_METAKEY_MAX_LUMINANCE = 8, OH_METAKEY_MIN_LUMINANCE = 9, OH_METAKEY_MAX_CONTENT_LIGHT_LEVEL = 10, OH_METAKEY_MAX_FRAME_AVERAGE_LIGHT_LEVEL = 11,<br>OH_METAKEY_HDR10_PLUS = 12, OH_METAKEY_HDR_VIVID = 13<br>} | Enumerates the HDR metadata keys.<br>**Deprecated**: This enum is deprecated since API version 10. No substitute is provided.| 
 
@@ -69,6 +69,8 @@ The **NativeWindow** module provides the **NativeWindow** capability for connect
 | int32_t [OH_NativeWindow_NativeWindowSetMetaData](#oh_nativewindow_nativewindowsetmetadata) ([OHNativeWindow](#ohnativewindow) \*window, uint32_t sequence, int32_t size, const [OHHDRMetaData](_o_h_h_d_r_meta_data.md) \*metaData) | Sets metadata for an **OHNativeWindow**.<br>**Deprecated**: This function is deprecated since API version 10. No substitute is provided.| 
 | int32_t [OH_NativeWindow_NativeWindowSetMetaDataSet](#oh_nativewindow_nativewindowsetmetadataset) ([OHNativeWindow](#ohnativewindow) \*window, uint32_t sequence, [OHHDRMetadataKey](#ohhdrmetadatakey) key, int32_t size, const uint8_t \*metaData) | Sets a metadata set for an **OHNativeWindow**.<br>**Deprecated**: This function is deprecated since API version 10. No substitute is provided.| 
 | int32_t [OH_NativeWindow_NativeWindowSetTunnelHandle](#oh_nativewindow_nativewindowsettunnelhandle) ([OHNativeWindow](#ohnativewindow) \*window, const [OHExtDataHandle](_o_h_ext_data_handle.md) \*handle) | Sets a tunnel handle to an **OHNativeWindow**.<br>**Deprecated**: This function is deprecated since API version 10. No substitute is provided.| 
+| int32_t [OH_NativeWindow_NativeWindowAttachBuffer](#oh_nativewindow_nativewindowattachbuffer) ([OHNativeWindow](#ohnativewindow) \*window, [OHNativeWindowBuffer](#ohnativewindowbuffer) \*buffer) | Attaches an **OHNativeWindowBuffer** to an **OHNativeWindow** instance.| 
+| int32_t [OH_NativeWindow_NativeWindowDetachBuffer](#oh_nativewindow_nativewindowdetachbuffer) ([OHNativeWindow](#ohnativewindow) \*window, [OHNativeWindowBuffer](#ohnativewindowbuffer) \*buffer) | Detaches an **OHNativeWindowBuffer** from an **OHNativeWindow** instance.| 
 | int32_t [OH_NativeWindow_GetSurfaceId](#oh_nativewindow_getsurfaceid) ([OHNativeWindow](#ohnativewindow) \*window, uint64_t \*surfaceId) | Obtains a surface ID through an **OHNativeWindow**.| 
 | int32_t [OH_NativeWindow_CreateNativeWindowFromSurfaceId](#oh_nativewindow_createnativewindowfromsurfaceid) (uint64_t surfaceId, [OHNativeWindow](#ohnativewindow) \*\*window) | Creates an **OHNativeWindow** instance based on a surface ID.| 
 
@@ -149,6 +151,7 @@ Enumerates the operation codes in the **OH_NativeWindow_NativeWindowHandleOpt** 
 | SET_TRANSFORM | Setting the transform for the local window buffer.<br>Variable argument in the function: [Input] int32_t transform.| 
 | GET_TRANSFORM | Obtaining the transform of the local window buffer.<br>Variable argument in the function: [Output] int32_t *transform.| 
 | SET_UI_TIMESTAMP | Setting the UI timestamp for the local window buffer.<br>Variable argument in the function: [Input] uint64_t uiTimestamp.| 
+| GET_BUFFERQUEUE_SIZE<sup>12+</sup> | Obtaining the memory queue size.<br>Variable argument in the function: [Output] int32_t \*size.<br>This value is supported since API version 12.| 
 
 
 ### OHHDRMetadataKey
@@ -520,6 +523,57 @@ Returns the **OHNativeWindowBuffer** to the buffer queue through an **OHNativeWi
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeWindow
 
 **Since**: 8
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| window | Pointer to an **OHNativeWindow** instance.| 
+| buffer | Pointer to an **OHNativeWindowBuffer** instance.| 
+
+**Returns**
+
+Returns **0** if the operation is successful.
+
+### OH_NativeWindow_NativeWindowAttachBuffer()
+
+```
+int32_t OH_NativeWindow_NativeWindowAttachBuffer (OHNativeWindow *window, OHNativeWindowBuffer *buffer )
+```
+
+**Description**
+
+Attaches an **OHNativeWindowBuffer** to an **OHNativeWindow** instance.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeWindow
+
+**Since**: 12
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| window | Pointer to an **OHNativeWindow** instance.| 
+| buffer | Pointer to an **OHNativeWindowBuffer** instance.| 
+
+**Returns**
+
+Returns **0** if the operation is successful.
+
+
+### OH_NativeWindow_NativeWindowDetachBuffer()
+
+```
+int32_t OH_NativeWindow_NativeWindowDetachBuffer (OHNativeWindow *window, OHNativeWindowBuffer *buffer )
+```
+
+**Description**
+
+Detaches an **OHNativeWindowBuffer** from an **OHNativeWindow** instance.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeWindow
+
+**Since**: 12
 
 **Parameters**
 

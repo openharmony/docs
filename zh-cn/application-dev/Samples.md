@@ -1699,9 +1699,9 @@ Preferences.flush()保存并刷新文件内容。
     + 使用@ohos.net.socket 的constructTCPSocketInstance创建TCP socket连接，模拟实现音频流网络传输
     + 3s一次检查网络状态和尝试连接，实现网络异常时的处理逻辑
 + 音频录制：
-    + 使用@ohos.multimedia.audio.AudioCapturer完成音频采集 [具体使用参考](media/using-audiocapturer-for-recording.md)
+    + 使用@ohos.multimedia.audio.AudioCapturer完成音频采集 [具体使用参考](media/audio/using-audiocapturer-for-recording.md)
 + 音频播放：
-    + 使用@ohos.multimedia.audio.AudioRenderer完成音频播放 [具体使用参考](media/using-audiorenderer-for-playback.md)
+    + 使用@ohos.multimedia.audio.AudioRenderer完成音频播放 [具体使用参考](media/audio/using-audiorenderer-for-playback.md)
 + 麦克风与扬声器以及通话场景控制：
     + 使用@ohos.multimedia.audio.AudioManager的setAudioScene接口切换通话场景
     + 使用@ohos.multimedia.audio.AudioVolumeGroupManager的setMicrophoneMute接口切换麦克风
@@ -2000,8 +2000,8 @@ Preferences.flush()保存并刷新文件内容。
 ##### 介绍
 
 本示例主要展示了音频低时延录制和播放的相关功能：<br>
-    1. [低时延录制](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/media/using-ohaudio-for-recording.md)。<br>
-    2. [低时延播放](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/media/using-ohaudio-for-playback.md)。
+    1. [低时延录制](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/media/audio/using-ohaudio-for-recording.md)。<br>
+    2. [低时延播放](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/media/audio/using-ohaudio-for-playback.md)。
 
 ##### 使用
 
@@ -2024,8 +2024,8 @@ Preferences.flush()保存并刷新文件内容。
 音频录制和播放使用到了OHAudio开发音频录制功能。OHAudio是OpenHarmony在API version 10中引入的一套全新Naitve API，此API在设计上实现归一，同时支持普通音频通路和低时延通路。
 
 相关API使用可参考以下开发文档：
-  * [低时延录制开发指导文档](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/media/using-ohaudio-for-recording.md)
-  * [低时延播放开发指导文档](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/media/using-ohaudio-for-playback.md)
+  * [低时延录制开发指导文档](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/media/audio/using-ohaudio-for-recording.md)
+  * [低时延播放开发指导文档](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/media/audio/using-ohaudio-for-playback.md)
   * [低时延录制开发示例](https://gitee.com/openharmony/multimedia_audio_framework/blob/master/frameworks/native/ohaudio/test/example/oh_audio_capturer_test.cpp)
   * [低时延播放开发示例](https://gitee.com/openharmony/multimedia_audio_framework/blob/master/frameworks/native/ohaudio/test/example/oh_audio_renderer_test.cpp)
 
@@ -2181,7 +2181,7 @@ Preferences.flush()保存并刷新文件内容。
 
   - 设置中订阅事件模块
     - 本模块主要支持指定应用订阅自定义事件。subScribeInfo新增可选属性publisherBundleName,创建订阅对象时可指定PublisherBundlerName，事件发布时，获取订阅者信息，增加校验bundleName是否等于publisherBundlerName，相等则加入事件回调方，达成只接收指定发布方发布的事件的效果。
-    - 参考接口：[@ohos.commonEventManager](reference/apis-basic-services-kit/commonEventManager-definitions.md)，[@ohos.hilog](reference/apis-performance-analysis-kit/js-apis-hilog.md)，[@ohos.app.form.formInfo](reference/apis-form-kit/js-apis-app-form-formInfo.md)，[@ohos.app.form.formBindingData](reference/apis-form-kit/js-apis-app-form-formBindingData.md)，[@ohos.app.form.FormExtensionAbility](reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md)
+    - 参考接口：[@ohos.commonEventManager](reference/apis-basic-services-kit/common_event/commonEventManager-definitions.md)，[@ohos.hilog](reference/apis-performance-analysis-kit/js-apis-hilog.md)，[@ohos.app.form.formInfo](reference/apis-form-kit/js-apis-app-form-formInfo.md)，[@ohos.app.form.formBindingData](reference/apis-form-kit/js-apis-app-form-formBindingData.md)，[@ohos.app.form.FormExtensionAbility](reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md)
 
 ##### 约束与限制
 
@@ -2988,7 +2988,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Telephony/Message)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Telephony/Message)
 
 #### 蜂窝数据
 

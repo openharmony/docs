@@ -15,13 +15,25 @@ import JSON from '@ohos.util.json';
 
 ## Transformer
 
+type Transformer = (this: Object, key: string, value: Object) => Object | undefined | null
+
 用于转换结果函数的类型。
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明            |
+| ------ | ------ | ---- | --------------- |
+| this   | Object | 是 | 在解析的键值对所属的对象。|
+| key  | string | 是 | 属性名。|
+| value  | Object | 是 | 在解析的键值对的值。|
+
+**返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
-| (this: Object, key: string, value: Object) => Object \| undefined \| null | 转换结果函数。|
+| Object \| undefined \| null | 返回修改后的对象或undefined或null。|
 
 ## JSON.parse
 
@@ -68,7 +80,7 @@ stringify(value: Object, replacer?: (number | string)[] | null, space?: string |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | ArkTS对象或数组。|
 | replacer | number[] \| string[] \| null | 否 | 当参数是数组时，只有包含在这个数组中的属性名才会被序列化到最终的JSON字符串中；当参数为null或者未提供时，则对象所有的属性都会被序列化。默认值是undefined。|
-| space | string \| number | 否 | 指定缩进用的空格或字符串或空字符串，用于美化输出。当参数是数字时表示有多少个空格；当参数是字符串时，该字符串被当作空格；当参数没有提供或者是null时，将没有空格。默认值是空字符串。|
+| space | string \| number | 否 | 指定缩进用的空格或字符串或空字符串，用于美化输出。当参数是数字时表示有多少个空格；当参数是字符串时，该字符串被当作空格；当参数没有提供时，将没有空格。默认值是空字符串。|
 
 **返回值：**
 
@@ -103,7 +115,7 @@ stringify(value: Object, replacer?: Transformer, space?: string | number): strin
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | ArkTS对象或数组。|
 | replacer | [Transformer](#transformer) | 否 | 在序列化过程中，被序列化的值的每个属性都会经过该函数的转换和处理。默认值是undefined。|
-| space | string \| number | 否 | 指定缩进用的空格或字符串或空字符串，用于美化输出。当参数是数字时表示有多少个空格；当参数是字符串时，该字符串被当作空格；当参数没有提供或者是null时，将没有空格。默认值是空字符串。|
+| space | string \| number | 否 | 指定缩进用的空格或字符串或空字符串，用于美化输出。当参数是数字时表示有多少个空格；当参数是字符串时，该字符串被当作空格；当参数没有提供时，将没有空格。默认值是空字符串。|
 
 **返回值：**
 
@@ -135,7 +147,7 @@ let str2 = JSON.stringify(obj, replacer);
 
 has(obj: object, property: string): boolean
 
-检查ArkTS对象或数组是否包含某种属性，可用于[JSON.parse](#jsonparse)解析JSON字符串之后的相关操作。
+检查ArkTS对象是否包含某种属性，可用于[JSON.parse](#jsonparse)解析JSON字符串之后的相关操作。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -143,7 +155,7 @@ has(obj: object, property: string): boolean
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| obj | object | 是 | ArkTS对象或数组。|
+| obj | object | 是 | ArkTS对象。|
 | property | string | 是 | 属性名。|
 
 **返回值：**
@@ -166,7 +178,7 @@ let rst = JSON.has(obj, "name");
 
 remove(obj: object, property: string): void
 
-从ArkTS对象或数组中删除某种属性，可用于[JSON.parse](#jsonparse)解析JSON字符串之后的相关操作。
+从ArkTS对象中删除某种属性，可用于[JSON.parse](#jsonparse)解析JSON字符串之后的相关操作。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -174,7 +186,7 @@ remove(obj: object, property: string): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| obj | object | 是 | ArkTS对象或数组。|
+| obj | object | 是 | ArkTS对象。|
 | property | string | 是 | 属性名。|
 
 **示例：**

@@ -3615,7 +3615,7 @@ onGeolocationHide(callback: () => void)
 
 ### onFullScreenEnter<sup>9+</sup>
 
-onFullScreenEnter(callback: (event: { handler: FullScreenExitHandler }) => void)
+onFullScreenEnter(callback: OnFullScreenEnterCallback)
 
 通知开发者web组件进入全屏模式。
 
@@ -3623,7 +3623,7 @@ onFullScreenEnter(callback: (event: { handler: FullScreenExitHandler }) => void)
 
 | 参数名     | 参数类型                                     | 参数描述           |
 | ------- | ---------------------------------------- | -------------- |
-| handler | [FullScreenExitHandler](#fullscreenexithandler9) | 用于退出全屏模式的函数句柄。 |
+| callback | [OnFullScreenEnterCallback](#onfullscreenentercallback12) | Web组件进入全屏时的回调信息。 |
 
 **示例：**
 
@@ -3640,7 +3640,9 @@ onFullScreenEnter(callback: (event: { handler: FullScreenExitHandler }) => void)
       Column() {
         Web({ src:'www.example.com', controller:this.controller })
         .onFullScreenEnter((event) => {
-          console.log("onFullScreenEnter...")
+          console.log("onFullScreenEnter videoWidth: " + event.videoWidth +
+            ", videoHeight: " + event.videoHeight)
+          // 应用可以通过 this.handler.exitFullScreen() 主动退出全屏。
           this.handler = event.handler
         })
       }
@@ -4597,6 +4599,108 @@ onNativeEmbedGestureEvent(callback: NativeEmbedTouchInfo)
       }
     }
   }
+  ```
+
+### onIntelligentTrackingPreventionResult<sup>12+</sup>
+
+onIntelligentTrackingPreventionResult(callback: OnIntelligentTrackingPreventionCallback)
+
+智能防跟踪功能使能时，当追踪者cookie被拦截时触发该回调。
+
+**参数：**
+
+| 参数名       | 类型                                                                                         | 说明                         |
+| ----------- | ------------------------------------------------------------------------------------------- | ---------------------------- |
+| callback    | [OnIntelligentTrackingPreventionCallback](#onintelligenttrackingpreventioncallback12) | 智能防跟踪功能使能时，当追踪者cookie被拦截时触发的回调。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  import business_error from '@ohos.base'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        // 需要打开智能防跟踪功能，才会触发onIntelligentTrackingPreventionResult回调
+        Button('enableIntelligentTrackingPrevention')
+          .onClick(() => {
+            try {
+              this.controller.enableIntelligentTrackingPrevention(true);
+            } catch (error) {
+              let e: business_error.BusinessError = error as business_error.BusinessError;
+              console.error('ErrorCode: ${e.code}, Message: ${e.message}');
+            }
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+        .onIntelligentTrackingPreventionResult((details) => {
+            console.log("onIntelligentTrackingPreventionResult: [websiteHost]= " + details.host +
+              ", [trackerHost]=" + details.trackerHost);
+        })
+      }
+    }
+  }
+  ```
+
+### onOverrideUrlLoading<sup>12+</sup>
+
+onOverrideUrlLoading(callback: OnOverrideUrlLoadingCallback)
+
+当URL将要加载到当前Web中时，让宿主应用程序有机会获得控制权，回调函数返回true将导致当前Web中止加载URL，而返回false则会导致Web继续照常加载URL。
+
+POST请求不会触发该回调。
+
+子frame和非HTTP(s)协议的跳转也会触发该回调。但是调用loadUrl(String)主动触发的跳转不会触发该回调。
+
+不要使用相同的URL调用loadUrl(String)方法，然后返回true。这样做会不必要地取消当前的加载并重新使用相同的URL开始新的加载。继续加载给定URL的正确方式是直接返回false，而不是调用loadUrl(String)。
+
+**参数：**
+
+| 参数名          | 类型                                                                         | 说明                    |
+| -------------- | --------------------------------------------------------------------------- | ---------------------- |
+| callback       | [OnOverrideUrlLoadingCallback](#onoverrideurlloadingcallback12) | onOverrideUrlLoading的回调。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src: $rawfile("index.html"), controller: this.controller })
+        .onOverrideUrlLoading((webResourceRequest: WebResourceRequest) => {
+            if (webResourceRequest && webResourceRequest.getRequestUrl() == "about:blank") {
+              return true;
+            }
+            return false;
+        })
+      }
+    }
+  }
+  ```
+
+  加载的html文件。
+  ```html
+  <!--index.html-->
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <title>测试网页</title>
+  </head>
+  <body>
+    <h1>onOverrideUrlLoading Demo</h1>
+    <a href="about:blank">Click here</a>访问about:blank。
+  </body>
+  </html>
   ```
 ## ConsoleMessage
 
@@ -6218,7 +6322,7 @@ registerJavaScriptProxy(options: { object: object, name: string, methodList: Arr
 
 | 参数名        | 参数类型            | 必填   | 默认值  | 参数描述                                     |
 | ---------- | --------------- | ---- | ---- | ---------------------------------------- |
-| object     | object          | 是    | -    | 参与注册的应用侧JavaScript对象。只能声明方法，不能声明属性 。其中方法的参数和返回类型只能为string，number，boolean |
+| object     | object          | 是    | -    | 参与注册的应用侧JavaScript对象。可以声明方法，也可以声明属性，但是不支持h5直接调用。其中方法的参数和返回类型只能为string，number，boolean |
 | name       | string          | 是    | -    | 注册对象的名称，与window中调用的对象名一致。注册后window对象可以通过此名字访问应用侧JavaScript对象。 |
 | methodList | Array\<string\> | 是    | -    | 参与注册的应用侧JavaScript对象的方法。                 |
 
@@ -6485,6 +6589,26 @@ type OnSafeBrowsingCheckResultCallback = (threatType: ThreatType) => void
 | ---------- | ---------------------------- | ------------------- |
 | threatType | [ThreatType](#threattype11)  | 定义网站threat类型。  |
 
+## FullScreenEnterEvent<sup>12+</sup>
+
+Web组件进入全屏回调事件的详情。
+
+| 名称             | 类型                                  | 必填   | 描述                    |
+| -----------     | ------------------------------------ | ---- | --------------------- |
+| handler     | [FullScreenExitHandler](#fullscreenexithandler9) | 是    | 用于退出全屏模式的函数句柄。 |
+| videoWidth  | number | 否    | 视频的宽度，单位：px。如果进入全屏的是 `<video>` 元素，表示其宽度；如果进入全屏的子元素中包含 `<video>` 元素，表示第一个子视频元素的宽度；其他情况下，为0。 |
+| videoHeight  | number | 否    | 视频的高度，单位：px。如果进入全屏的是 `<video>` 元素，表示其高度；如果进入全屏的子元素中包含 `<video>` 元素，表示第一个子视频元素的高度；其他情况下，为0。 |
+
+## OnFullScreenEnterCallback<sup>12+</sup>
+
+type OnFullScreenEnterCallback = (event: FullScreenEnterEvent) => void
+
+Web组件进入全屏时触发的回调。
+
+| 参数名      | 参数类型                      | 参数描述              |
+| ---------- | ---------------------------- | ------------------- |
+| event | [FullScreenEnterEvent](#fullscreenenterevent12)  | Web组件进入全屏的回调事件详情。 |
+
 ## NativeEmbedStatus<sup>11+</sup>
 
 定义Embed标签生命周期。
@@ -6568,3 +6692,40 @@ type OnLargestContentfulPaintCallback = (largestContentfulPaint: [LargestContent
 | 参数名                 | 参数类型                                            | 参数描述                             |
 | ---------------------- | --------------------------------------------------- | ------------------------------------ |
 | largestContentfulPaint | [LargestContentfulPaint](#largestcontentfulpaint12) | 网页绘制页面最大内容度量的详细信息。 |
+
+## IntelligentTrackingPreventionDetails<sup>12+</sup>
+
+提供智能防跟踪拦截的详细信息。
+
+| 名称           | 类型                                | 必填   | 描述         |
+| ------------- | ------------------------------------| ----- | ------------ |
+| host          | string                              | 是     | 网站域名。    |
+| trackerHost   | string                              | 是     | 追踪者域名。  |
+
+## OnIntelligentTrackingPreventionCallback<sup>12+</sup>
+
+type OnIntelligentTrackingPreventionCallback = (details: IntelligentTrackingPreventionDetails) => void
+
+当跟踪者cookie被拦截时触发的回调。
+
+| 参数名   | 参数类型                                                                          | 参数描述                    |
+| ------- | -------------------------------------------------------------------------------- | ------------------------- |
+| details | [IntelligentTrackingPreventionDetails](#intelligenttrackingpreventiondetails12)  | 提供智能防跟踪拦截的详细信息。 |
+
+## OnOverrideUrlLoadingCallback<sup>12+</sup>
+
+type OnOverrideUrlLoadingCallback = (webResourceRequest: WebResourceRequest) => boolean
+
+onOverrideUrlLoading的回调。
+
+**参数：**
+
+| 参数名                | 参数类型                                           | 参数描述                |
+| -------------------- | ------------------------------------------------ | ------------------- |
+| webResourceRequest | [WebResourceRequest](#webresourcerequest)  | url请求的相关信息。 |
+
+**返回值：**
+
+| 类型      | 说明                       |
+| ------- | ------------------------ |
+| boolean | 返回true表示阻止此次加载，否则允许此次加载。 |

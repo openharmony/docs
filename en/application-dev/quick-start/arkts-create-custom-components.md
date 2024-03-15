@@ -71,15 +71,15 @@ struct ParentComponent {
 To fully understand the preceding example, a knowledge of the following concepts is essential:
 
 
-- [Creating a Custom Component](#creating-a-custom-component)
-  - [Basic Usage of Custom Components](#basic-usage-of-custom-components)
-  - [Basic Structure of a Custom Component](#basic-structure-of-a-custom-component)
-    - [freezeWhenInactive11+](#freezewheninactive11)
-    - [EntryOptions10+](#entryoptions10)
-  - [Member Functions/Variables](#member-functionsvariables)
-  - [Rules for Custom Component Parameters](#rules-for-custom-component-parameters)
-  - [build() Function](#build-function)
-  - [Universal Style of a Custom Component](#universal-style-of-a-custom-component)
+- [Basic Structure of a Custom Component](#basic-structure-of-a-custom-component)
+
+- [Member Functions/Variables](#member-functionsvariables)
+
+- [Rules for Custom Component Parameters](#rules-for-custom-component-parameters)
+
+- [build() Function](#build-function)
+
+- [Universal Style of a Custom Component](#universal-style-of-a-custom-component)
 
 
 ## Basic Structure of a Custom Component

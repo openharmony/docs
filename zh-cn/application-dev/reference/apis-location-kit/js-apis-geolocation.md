@@ -5,6 +5,7 @@
 > **说明：**
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > 从API Version 9开始，该接口不再维护，推荐使用新接口[geoLocationManager](js-apis-geoLocationManager.md)。
+> 本模块能力仅支持WGS-84坐标系。
 
 ## 申请权限
 
@@ -577,7 +578,7 @@ getCurrentLocation(request?: CurrentLocationRequest): Promise&lt;Location&gt;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  |[Location](#locationdeprecated)| 返回位置信息。 |
+  | Promise&lt;[Location](#locationdeprecated)&gt; | 以Promise形式返回位置信息。 |
 
 
 **示例**
@@ -643,7 +644,7 @@ getLastLocation(): Promise&lt;Location&gt;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  |  [Location](#locationdeprecated)|返回上次位置信息。 |
+  | Promise&lt;[Location](#locationdeprecated)&gt; | 以Promise形式返回上次位置信息。 |
 
 
 **示例**
@@ -707,7 +708,7 @@ isLocationEnabled(): Promise&lt;boolean&gt;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | boolean|返回位置服务是否可用的状态。 |
+  | Promise&lt;boolean&gt; | 以Promise形式返回位置服务是否可用的状态。 |
 
 **示例**
 
@@ -770,7 +771,7 @@ requestEnableLocation(): Promise&lt;boolean&gt;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | boolean|返回位置服务是否可用。 |
+  | Promise&lt;boolean&gt; | 以Promise形式返回位置服务是否可用的状态。 |
 
 **示例**
 
@@ -833,7 +834,7 @@ isGeoServiceAvailable(): Promise&lt;boolean&gt;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  |boolean| 返回地理编码服务是否可用的状态。 |
+  | Promise&lt;boolean&gt; | 以Promise形式返回地理编码服务是否可用的状态。 |
 
 **示例**
 
@@ -904,7 +905,7 @@ getAddressesFromLocation(request: ReverseGeoCodeRequest): Promise&lt;Array&lt;Ge
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Array&lt;[GeoAddress](#geoaddressdeprecated)&gt;|返回地理描述信息。 |
+  | Promise&lt;Array&lt;[GeoAddress](#geoaddressdeprecated)&gt;&gt; | 以Promise形式返回地理描述信息。 |
 
 **示例**
 
@@ -976,7 +977,7 @@ getAddressesFromLocationName(request: GeoCodeRequest): Promise&lt;Array&lt;GeoAd
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Array&lt;[GeoAddress](#geoaddressdeprecated)&gt;|设置接收地理编码请求的回调参数。 |
+  | Promise&lt;Array&lt;[GeoAddress](#geoaddressdeprecated)&gt;&gt; | 以Promise形式返回地理编码请求的结果。 |
 
 **示例**
 
@@ -1042,7 +1043,7 @@ getCachedGnssLocationsSize(): Promise&lt;number&gt;;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | number|返回GNSS缓存位置的个数。 |
+  | Promise&lt;number&gt; | 以Promise形式返回GNSS缓存位置的个数。 |
 
 **示例**
 
@@ -1107,7 +1108,7 @@ flushCachedGnssLocations(): Promise&lt;boolean&gt;;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  |boolean| 清空所有GNSS缓存位置是否成功。 |
+  | Promise&lt;boolean&gt;| 以Promise形式返回清空所有GNSS缓存位置结果。 |
 
 **示例**
 
@@ -1180,7 +1181,7 @@ sendCommand(command: LocationCommand): Promise&lt;boolean&gt;;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  |boolean| 表示命令发送成功或失败。 |
+  | Promise&lt;boolean&gt; | 以Promise形式返回命令发送成功或失败结果。 |
 
 **示例**
 

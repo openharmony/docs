@@ -14,14 +14,14 @@ If an application needs to execute a non-real-time task after switching to the b
 
 An application calls the **WorkScheduler** APIs to add, delete, and query deferred tasks. Based on the task-specific conditions (specified by **WorkInfo**, including the network type, charging type, and storage status) and system status (including the memory, power consumption, device temperature, and user habits), the WorkSchedulerService determines the time to schedule the tasks.
 
-When the scheduling conditions are met or the task scheduling ends, the system calls back **onWorkStart()** or **onWorkStop()** in [WorkSchedulerExtensionAbility](../reference/apis/js-apis-WorkSchedulerExtensionAbility.md). The system also creates an independent process for the **WorkSchedulerExtensionAbility** and provides a duration for the **WorkSchedulerExtensionAbility** to run. You can implement your own service logic in the callback functions.
+When the scheduling conditions are met or the task scheduling ends, the system calls back **onWorkStart()** or **onWorkStop()** in [WorkSchedulerExtensionAbility](../reference/apis-backgroundtasks-kit/js-apis-WorkSchedulerExtensionAbility.md). The system also creates an independent process for the **WorkSchedulerExtensionAbility** and provides a duration for the **WorkSchedulerExtensionAbility** to run. You can implement your own service logic in the callback functions.
 
 
 ### Constraints
 
 - **Quantity limit**: An application can request a maximum of 10 deferred tasks during a time segment.
 
-- **Execution frequency limit**: The system controls the execution frequency of deferred tasks based on the [application activity group](../reference/apis/js-apis-resourceschedule-deviceUsageStatistics.md). Applications that request the WORK_SCHEDULER resource are placed in the efficiency resource exemption group.
+- **Execution frequency limit**: The system controls the execution frequency of deferred tasks based on the [application activity group](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-deviceUsageStatistics-sys.md). Applications that request the WORK_SCHEDULER resource are placed in the efficiency resource exemption group.
 
   **Table 1** Application activity groups  
   | Group| Deferred Task Execution Frequency|
@@ -40,20 +40,20 @@ When the scheduling conditions are met or the task scheduling ends, the system c
 
 - **Restrictions for WorkSchedulerExtensionAbility**: The following APIs cannot be called in the WorkSchedulerExtensionAbility:
 
-  [@ohos.resourceschedule.backgroundTaskManager (Background Task Management)](../reference/apis/js-apis-resourceschedule-backgroundTaskManager.md)
+  [@ohos.resourceschedule.backgroundTaskManager (Background Task Management)](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md)
 
-  [@ohos.backgroundTaskManager (Background Task Management)](../reference/apis/js-apis-backgroundTaskManager.md)
+  [@ohos.backgroundTaskManager (Background Task Management)](../reference/apis-backgroundtasks-kit/js-apis-backgroundTaskManager.md)
 
-  [@ohos.multimedia.camera (Camera Management)](../reference/apis/js-apis-camera.md)
+  [@ohos.multimedia.camera (Camera Management)](../reference/apis-camera-kit/js-apis-camera.md)
 
-  [@ohos.multimedia.audio (Audio Management)](../reference/apis/js-apis-audio.md)
+  [@ohos.multimedia.audio (Audio Management)](../reference/apis-audio-kit/js-apis-audio.md)
 
-  [@ohos.multimedia.media (Media)](../reference/apis/js-apis-media.md)
+  [@ohos.multimedia.media (Media)](../reference/apis-media-kit/js-apis-media.md)
 
 
 ## Available APIs
 
-The table below lists the APIs used for developing deferred tasks. For details about more APIs and their usage, see [@ohos.resourceschedule.workScheduler (Deferred Task Scheduling)](../reference/apis/js-apis-resourceschedule-workScheduler.md).
+The table below lists the APIs used for developing deferred tasks. For details about more APIs and their usage, see [@ohos.resourceschedule.workScheduler (Deferred Task Scheduling)](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-workScheduler.md).
 
 **Table 2** Main APIs for deferred tasks
 
@@ -75,12 +75,12 @@ The table below lists the APIs used for developing deferred tasks. For details a
 | workId          | number                            | Yes   | ID of a deferred task.         |
 | bundleName      | string                            | Yes   | Bundle name of the application that requests the deferred task.          |
 | abilityName     | string                            | Yes   | Name of the ability to be notified by a deferred task scheduling callback.|
-| networkType     | [NetworkType](../reference/apis/js-apis-resourceschedule-workScheduler.md#networktype)       | No   | Network type.            |
+| networkType     | [NetworkType](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-workScheduler.md#networktype)       | No   | Network type.            |
 | isCharging      | boolean                           | No   | Whether the device needs to enter the charging state to trigger deferred task scheduling.<br>The value **true** means that the device needs to enter the charging state to trigger deferred task scheduling, and **false** means the opposite.|
-| chargerType     | [ChargingType](../reference/apis/js-apis-resourceschedule-workScheduler.md#chargingtype)     | No   | Charging type.            |
+| chargerType     | [ChargingType](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-workScheduler.md#chargingtype)     | No   | Charging type.            |
 | batteryLevel    | number                            | No   | Battery level.             |
-| batteryStatus   | [BatteryStatus](../reference/apis/js-apis-resourceschedule-workScheduler.md#batterystatus)   | No   | Battery status.            |
-| storageRequest  | [StorageRequest](../reference/apis/js-apis-resourceschedule-workScheduler.md#storagerequest) | No   | Storage status.            |
+| batteryStatus   | [BatteryStatus](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-workScheduler.md#batterystatus)   | No   | Battery status.            |
+| storageRequest  | [StorageRequest](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-workScheduler.md#storagerequest) | No   | Storage status.            |
 | isRepeat        | boolean                           | No   | Whether the deferred task is repeated.<br>The value** true** means that the task is repeated, and **false** means the opposite.|
 | repeatCycleTime | number                            | No   | Repeat interval, in milliseconds.            |
 | repeatCount     | number                            | No   | Number of repeat times.            |
@@ -99,7 +99,7 @@ The **WorkInfo** parameter is used to set conditions for triggering task schedul
 
 - For repeated tasks, **repeatCycleTime** must be at least 20 minutes. When **isRepeat** is set, you must set **repeatCycleTime** or **repeatCount**.
 
-The table below lists the APIs used for developing deferred task scheduling callbacks. For details about more APIs and their usage, see [@ohos.WorkSchedulerExtensionAbility (Deferred Task Scheduling Callbacks)](../reference/apis/js-apis-WorkSchedulerExtensionAbility.md).
+The table below lists the APIs used for developing deferred task scheduling callbacks. For details about more APIs and their usage, see [@ohos.WorkSchedulerExtensionAbility (Deferred Task Scheduling Callbacks)](../reference/apis-backgroundtasks-kit/js-apis-WorkSchedulerExtensionAbility.md).
 
 **Table 4** Deferred task scheduling callbacks
 

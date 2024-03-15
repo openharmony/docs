@@ -100,7 +100,7 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 ## onUpdate
 
-onUpdate?:(data: [NotificationSortingMap](js-apis-notification-sys.md#notificationsortingmap)) => void
+onUpdate?:(data: [NotificationSortingMap](js-apis-inner-notification-notificationSortingMap-sys.md)) => void
 
 更新通知排序的回调函数。
 
@@ -112,7 +112,7 @@ onUpdate?:(data: [NotificationSortingMap](js-apis-notification-sys.md#notificati
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------------ | ------------------------ | ---- | -------------------------- |
-| onUpdate | (data: [NotificationSortingMap](js-apis-notification-sys.md#notificationsortingmap)) => void | 是 | 最新的通知排序列表。 |
+| onUpdate | (data: [NotificationSortingMap](js-apis-inner-notification-notificationSortingMap-sys.md)) => void | 是 | 最新的通知排序列表。 |
 
 **示例：**
 
@@ -357,7 +357,7 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 ## onEnabledNotificationChanged<sup>8+</sup>
 
-onEnabledNotificationChanged?:(callbackData: [EnabledNotificationCallbackData](js-apis-notification-sys.md#enablednotificationcallbackdata8)) => void
+onEnabledNotificationChanged?:(callbackData: [EnabledNotificationCallbackData](#enablednotificationcallbackdata8)) => void
 
 监听应用通知使能变化。
 
@@ -369,7 +369,7 @@ onEnabledNotificationChanged?:(callbackData: [EnabledNotificationCallbackData](j
 
 | 参数名 | 类型                                                                                                           | 必填 | 说明 |
 | ------------ |--------------------------------------------------------------------------------------------------------------| ---- | -------------------------- |
-| onEnabledNotificationChanged | (callbackData: [EnabledNotificationCallbackData](js-apis-notification-sys.md#enablednotificationcallbackdata8)) => void | 是 | 回调返回监听到的应用信息。 |
+| onEnabledNotificationChanged | (callbackData: [EnabledNotificationCallbackData](#enablednotificationcallbackdata8)) => void | 是 | 回调返回监听到的应用信息。 |
 
 **示例：**
 
@@ -432,6 +432,45 @@ let subscriber: notificationSubscribe.NotificationSubscriber = {
     console.info("uid: ", data.uid);
     console.info("badgeNumber: ", data.badgeNumber);
   }
+};
+
+notificationSubscribe.subscribe(subscriber, subscribeCallback);
+```
+
+## onBadgeEnabledChanged<sup>12+</sup>
+
+onBadgeEnabledChanged?: [BadgeEnabledChangedCallback](#badgeenabledchangedcallback12)
+
+监听应用角标使能状态变化。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**系统接口**: 此接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                       |
+| -------- | ------------------------------------------------------------ | ---- | -------------------------- |
+| onBadgeEnabledChanged | [BadgeEnabledChangedCallback](#badgeenabledchangedcallback12) | 是   | 回调应用角标使能状态变化。 |
+
+**示例：**
+
+```ts
+import Base from '@ohos.base';
+
+let subscribeCallback = (err: Base.BusinessError) => {
+  if (err) {
+    console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info('subscribeCallback');
+  }
+};
+
+let BadgeEnabledChangedCallback = (data: notificationSubscribe.EnabledNotificationCallbackData) => {
+  console.info('onBadgeEnabledChanged, badge enabled state change to: ', JSON.stringify(data));
+};
+let subscriber: notificationSubscribe.NotificationSubscriber = {
+  onBadgeEnabledChanged: BadgeEnabledChangedCallback
 };
 
 notificationSubscribe.subscribe(subscriber, subscribeCallback);
@@ -518,4 +557,15 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 | bundle      | string | 是   | 否   | 应用的包名。 |
 | uid         | number | 是   | 否   | 应用的uid。  |
 | badgeNumber | number | 是   | 否   | 角标个数。   |
+
+
+## BadgeEnabledChangedCallback<sup>12+</sup>
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+
+**系统接口**：此接口为系统接口。
+
+| 名称        | 类型   | 只读 | 必填 | 说明     |
+| ----------- | ------ | ---- | ---- |------------ |
+| data        | [EnabledNotificationCallbackData](#enablednotificationcallbackdata8)) => void | 是   | 是    |   回调返回监听到的角标使能状态信息。 |
 
