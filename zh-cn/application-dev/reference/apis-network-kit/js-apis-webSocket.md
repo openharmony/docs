@@ -872,6 +872,18 @@ ws.off('headerReceive');
 | code   | number | 是   | 错误码，订阅close事件得到的关闭连接的错误码。 |
 | reason | string | 是   | 原因值，订阅close事件得到的关闭连接的错误原因。 |
 
+## ResponseHeaders<sup>12+</sup>
+
+服务器发送的响应头。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+| 类型   | 必填 | 说明                                                         |
+| ------ | ---- | ------------------------------------------------------------ |
+| [k:string]:string | 否   | header数据类型为键值对 |
+| string[] | 否   | header数据类型为字符串 |
+| undefined | 否   | header数据类型为undefined |
+
 ## close错误码说明
 
 发送给服务端的错误码可以自行定义，下面的列表仅供参考。
