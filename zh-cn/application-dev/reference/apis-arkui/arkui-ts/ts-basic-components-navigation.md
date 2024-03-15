@@ -341,7 +341,7 @@ onNavigationModeChange(callback: (mode: NavigationMode) =&gt; void)
 
 | 参数名    | 类型    | 必填 | 说明                                           |
 | --------- | ------- | ---- | ---------------------------------------------- |
-| mode | [NavigationMode](#navigationmode9枚举说明) | 是   | NavigationMode.Split: 当前Navigation显示为双栏;<br/>NavigationMode.Stack: 当前Navigation显示为单栏。 |
+| mode | [NavigationMode](#navigationmode9枚举说明) | 是   | NavigationMode.Split: 当前Navigation显示为双栏;<br/>NavigationMode.Stack: 当前Navigation显示为单栏;<br/>NavigationMode.Auto: 自适应：基于组件宽度自适应单栏和双栏。 |
 
 ### customNavContentTransition<sup>11+</sup>
 
