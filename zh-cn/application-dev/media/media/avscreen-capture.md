@@ -168,7 +168,9 @@ void OnError(OH_AVScreenCapture *capture, int32_t errorCode, void *userData) {
 
 void OnStateChange(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureStateCode stateCode, void *userData) {
     (void)capture;
-    (void)stateCode;
+    if (stateCode == OH_SCREEN_CAPTURE_STATE_INTERRUPT_BY_OTHER) {
+        // 处理状态变更
+    }
     (void)userData;
 }
 
