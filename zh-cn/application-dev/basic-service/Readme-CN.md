@@ -2,3 +2,4 @@
 
 - [Basic Services Kit简介](basic-services-kit-overview.md)
 - [帐号管理](account/Readme-CN.md)
+- [USB服务](usb/Readme-CN.md)
