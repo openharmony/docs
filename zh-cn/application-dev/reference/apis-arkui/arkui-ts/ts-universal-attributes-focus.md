@@ -104,7 +104,7 @@ requestFocus(value: string): boolean
 
 ## clearFocus<sup>12+</sup>
 
-clearFocus()
+clearFocus(): void
 
 清除焦点，将焦点强制转移到页面根容器节点，焦点链路上其他节点失焦。
 
