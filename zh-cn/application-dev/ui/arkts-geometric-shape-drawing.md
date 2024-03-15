@@ -266,7 +266,7 @@ viewPort{ x?: number | string, y?: number | string, width?: number | string, hei
 
 ## 场景示例
 
-- 在Shape的(-80, -5)点绘制一个封闭路径，填充颜色0x317AF7，线条宽度10，边框颜色红色，拐角样式锐角（默认值）。
+- 在Shape的(-80, -5)点绘制一个封闭路径，填充颜色0x317AF7，线条宽度3，边框颜色红色，拐角样式锐角（默认值）。
 
   ```ts
   @Entry
