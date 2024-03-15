@@ -138,10 +138,9 @@ cancelButton(value: { style?: CancelButtonStyle, icon?: IconOptions })
 
 **参数：** 
 
-| 参数名 | 类型                                              | 必填 | 说明                                                         |
-| ------ | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| style  | [CancelButtonStyle](#cancelbuttonstyle10枚举说明) | 否   | 右侧图标显示状态。<br />默认值：<br />style：CancelButtonStyle.INPUT |
-| icon   | [IconOptions](#iconoptions10对象说明)             | 否   | 右侧图标。<br />默认值：<br />{<br />fontSize: '16vp',<br />color: '#99ffffff',<br />src: ' '<br />}<br />当style为CancelButtonStyle.CONSTANT时，默认显示清除样式。                                                   |
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | {&nbsp;style:?&nbsp;[CancelButtonStyle](#cancelbuttonstyle10枚举说明),&nbsp;icon:?&nbsp;[IconOptions](#iconoptions10对象说明)&nbsp;} | 是   | 右侧清除按钮样式。<br />style：右侧图标显示状态。<br/>icon：右侧图标。<br>默认值：<br />{<br/>style：CancelButtonStyle.INPUT,<br/>icon:&nbsp;{<br/>size: '16vp',<br/>color: '#99ffffff',<br/>src: ' '<br/>}<br/>}<br/>当style为CancelButtonStyle.CONSTANT时，默认显示清除样式。 |
 
 ### fontColor<sup>10+</sup>
 
