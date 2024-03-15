@@ -59,7 +59,7 @@ Sets the expected frame rate range.
 
 | Name          | Type                                      | Mandatory| Description                         |
 | --------------- | ------------------------------------------ | ---- | -----------------------------|
-| rateRange       | [ExpectedFrameRateRange](../apis-arkui/arkui-ts/ts-animatorproperty.md#expectedframeraterange)| Yes  | Expected frame rate range.|
+| rateRange       | [ExpectedFrameRateRange](../apis-arkui/arkui-ts/ts-explicit-animation.md#expectedframeraterange11)| Yes  | Expected frame rate range.|
 
 
 **Example**

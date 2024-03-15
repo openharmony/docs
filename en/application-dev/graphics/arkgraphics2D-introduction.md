@@ -14,7 +14,7 @@ ArkGraphics 2D provides APIs for drawing and displaying graphics. With this set 
 
 - Self-drawing capabilities, which you can use to customize and draw UI effects, basic shapes, texts, and images. For details, see [@ohos.graphics.drawing](../reference/apis-arkgraphics2d/js-apis-graphics-drawing.md).
 
-- Native capabilities related to graphics drawing and display. For details, see [NativeWindow](../reference/native-apis/_native_window.md), [NativeBuffer](../reference/native-apis/_o_h___native_buffer.md), [NativeImage](../reference/native-apis/_o_h___native_image.md), [NativeVsync](../reference/native-apis/_native_vsync.md), and [Drawing](../reference/native-apis/_drawing.md).
+- Native capabilities related to graphics drawing and display. For details, see [NativeWindow](../reference/apis-arkgraphics2d/_native_window.md), [NativeBuffer](../reference/apis-arkgraphics2d/_o_h___native_buffer.md), [NativeImage](../reference/apis-arkgraphics2d/_o_h___native_image.md), [NativeVsync](../reference/apis-arkgraphics2d/_native_vsync.md), and [Drawing](../reference/apis-arkgraphics2d/_drawing.md).
 
 ## Use Scenarios
 

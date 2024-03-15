@@ -5647,6 +5647,7 @@ Enumerates the audio output formats.
 | AMR_WB   | 4    | AMR_WB.<br>This API is defined but not implemented yet.         |
 | AAC_ADTS | 6    | Audio Data Transport Stream (ADTS), which is a transport stream format of AAC-based audio.|
 
+
 ## media.createAVImageGenerator<sup>12+</sup>
 
 createAVImageGenerator(callback: AsyncCallback\<AVImageGenerator>): void
@@ -5659,7 +5660,7 @@ Creates an **AVImageGenerator** instance. This API uses an asynchronous callback
 
 | Name  | Type                                 | Mandatory| Description                                                        |
 | -------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<[AVImageGenerator](#avimagegenerator12)> | Yes  | Callback used to return the result. If the operation is successful, an **AVImageGenerator** instance is returned; otherwise, **null** is returned. The interface can be used to obtain a video thumbnail.|
+| callback | AsyncCallback\<[AVImageGenerator](#avimagegenerator12)> | Yes  | Callback used to return the result. If the operation is successful, an **AVImageGenerator** instance is returned; otherwise, **null** is returned. The API can be used to obtain a video thumbnail.|
 
 **Error codes**
 
@@ -5697,7 +5698,7 @@ Creates an **AVImageGenerator** instance. This API uses a promise to return the 
 
 | Type                           | Description                                                        |
 | ------------------------------- | ------------------------------------------------------------ |
-| Promise\<[AVImageGenerator](#avimagegenerator12)> | Promise used to return the result. If the operation is successful, an **AVImageGenerator** instance is returned; otherwise, **null** is returned. The interface can be used to obtain a video thumbnail.|
+| Promise\<[AVImageGenerator](#avimagegenerator12)> | Promise used to return the result. If the operation is successful, an **AVImageGenerator** instance is returned; otherwise, **null** is returned. The API can be used to obtain a video thumbnail.|
 
 **Error codes**
 
@@ -5737,7 +5738,7 @@ For details about the demo for obtaining video thumbnails, see [Obtaining Video 
 
 | Name                                               | Type                                                        | Readable| Writable| Description                                                        |
 | --------------------------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| fdSrc<sup>11+</sup>                                  | [AVFileDescriptor](js-apis-media.md#avfiledescriptor9)                       | Yes  | Yes  | Media file descriptor, which specifies the data source.<br>**Example:**<br>There is a media file that stores continuous assets, the address offset is 0, and the byte length is 100. Its file descriptor is **AVFileDescriptor {fd = resourceHandle; offset = 0; length = 100; }**. |
+| fdSrc<sup>11+</sup>                                  | [AVFileDescriptor](js-apis-media.md#avfiledescriptor9)                       | Yes  | Yes  | Media file descriptor, which specifies the data source.<br> **Example:**<br>There is a media file that stores continuous assets, the address offset is 0, and the byte length is 100. Its file descriptor is **AVFileDescriptor {fd = resourceHandle; offset = 0; length = 100; }**.|
 
 ### fetchFrameByTime<sup>12+</sup>
 
@@ -5753,7 +5754,7 @@ Obtains a video thumbnail. This API uses an asynchronous callback to return the 
 | -------- | -------------------------------------------- | ---- | ----------------------------------- |
 | timeUs | number                   | Yes  | Time of the video for which a thumbnail is to be obtained, in μs.|
 | options | [AVImageQueryOptions](#avimagequeryoptions12)     | Yes  | Relationship between the time passed in and the video frame.|
-| param | [PixelMapParams](#pixelmapparams12)      | Yes  | Format parameters of the thumbnail to be obtained.|
+| param | [PixelMapParams](#pixelmapparams12)     | Yes  | Format parameters of the thumbnail to be obtained.|
 | callback | AsyncCallback\<[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)>   | Yes  | Callback used to return the video thumbnail.|
 
 **Error codes**
@@ -5817,7 +5818,7 @@ Obtains a video thumbnail. This API uses a promise to return the result.
 | -------- | -------------------------------------------- | ---- | ----------------------------------- |
 | timeUs | number                   | Yes  | Time of the video for which a thumbnail is to be obtained, in μs.|
 | options | [AVImageQueryOptions](#avimagequeryoptions12)     | Yes  | Relationship between the time passed in and the video frame.|
-| param | [PixelMapParams](#pixelmapparams12)      | Yes  | Format parameters of the thumbnail to be obtained.|
+| param | [PixelMapParams](#pixelmapparams12)    | Yes  | Format parameters of the thumbnail to be obtained.|
 
 **Return value**
 
@@ -5952,7 +5953,7 @@ let avImageGenerator: media.AVImageGenerator | undefined = undefined;
 media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenerator) => {
   if(generator != null){
     avImageGenerator = generator;
-    console.error(`creatAVImageGenerator success`);
+    console.info(`createAVImageGenerator success`);
     avImageGenerator.release().then(() => {
       console.info(`release success.`);
     }).catch((error: BusinessError) => {

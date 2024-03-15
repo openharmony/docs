@@ -1,6 +1,6 @@
-# 国际化和本地化
+# Localization Kit（本地化开发服务）
 
-- [国际化和本地化概述](i18n-l10n.md)
+- [Localization Kit简介](i18n-l10n.md)
 - 应用国际化
     - [国际化界面设计](i18n-ui-design.md)
     - [区域标识与文化习惯划分](i18n-locale-culture.md)

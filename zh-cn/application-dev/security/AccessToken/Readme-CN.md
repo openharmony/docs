@@ -1,4 +1,4 @@
-# 访问控制
+# 程序访问控制
 
 - [访问控制概述](access-token-overview.md)
 - 应用权限管控

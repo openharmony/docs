@@ -95,8 +95,36 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
       return;
    }
    ```
+3. (Optional) Register a [callback to obtain the media key system information](../reference/apis-drm-kit/_drm.md#drm_mediakeysysteminfocallback). If the stream is not a DRM stream or the [media key system information](../reference/apis-drm-kit/_drm.md#drm_mediakeysysteminfo) has been obtained, you can skip this step.
 
-3. (Optional) Obtain the number of tracks. If you know the track information, skip this step.
+   Import the header file.
+   ```c++
+   #include <multimedia/drm_framework/native_drm_common.h>
+   ```
+   Link the dynamic library in the cmake script.
+
+   ``` cmake
+   target_link_libraries(sample PUBLIC libnative_drm.so)
+   ```
+
+   The following is the sample code:
+   ```c++
+   // Implement the OnDrmInfoChanged callback.
+   static void OnDrmInfoChanged(DRM_MediaKeySystemInfo *drmInfo)
+   {
+      // Parse the media key system information, including the quantity, DRM type, and corresponding PSSH.
+   }
+
+   // Set the asynchronous callbacks.
+   DRM_MediaKeySystemInfoCallback callback = &OnDrmInfoChanged;
+   int32_t ret = OH_AVDemuxer_SetMediaKeySystemInfoCallback(demuxer, callback);
+
+   // After the callback is invoked, you can call the API to proactively obtain the media key system information.
+   DRM_MediaKeySystemInfo mediaKeySystemInfo;
+   OH_AVDemuxer_GetMediaKeySystemInfo(demuxer, &mediaKeySystemInfo);
+   ```
+
+4. (Optional) Obtain the number of tracks. If you know the track information, skip this step.
 
    ```c++
    // Obtain the number of tracks from the file source information.
@@ -110,7 +138,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    OH_AVFormat_Destroy(sourceFormat);
    ```
 
-4. (Optional) Obtain the track index and format. If you know the track information, skip this step.
+5. (Optional) Obtain the track index and format. If you know the track information, skip this step.
 
    ```c++
    uint32_t audioTrackIndex = 0;
@@ -136,7 +164,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    }
    ```
 
-5. Select a track, from which the demuxer reads data.
+6. Select a track, from which the demuxer reads data.
 
    ```c++
    if(OH_AVDemuxer_SelectTrackByID(demuxer, audioTrackIndex) != AV_ERR_OK){
@@ -151,7 +179,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    // OH_AVDemuxer_UnselectTrackByID(demuxer, audioTrackIndex);
    ```
 
-6. (Optional) Seek to the specified time for the selected track.
+7. (Optional) Seek to the specified time for the selected track.
 
    ```c++
    // Demuxing is performed from this time.
@@ -161,7 +189,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    OH_AVDemuxer_SeekToTime(demuxer, 0, OH_AVSeekMode::SEEK_MODE_CLOSEST_SYNC);
    ```
 
-7. Start demuxing and cyclically obtain frame data. The code snippet below uses a file that contains audio and video tracks as an example.
+8. Start demuxing and cyclically obtain frame data. The code snippet below uses a file that contains audio and video tracks as an example.
 
    ```c++
    // Create a buffer to store the data obtained after demuxing.
@@ -203,7 +231,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    OH_AVBuffer_Destroy(buffer);
    ```
 
-8. Destroy the demuxer instance.
+9. Destroy the demuxer instance.
 
    ```c++
    // Manually set the instance to NULL after OH_AVSource_Destroy is called. Do not call this API repeatedly for the same instance; otherwise, a program error occurs.

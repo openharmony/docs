@@ -1,6 +1,6 @@
 # @ohos.multimedia.avCastPickerParam (AVCastPicker Parameters)
 
-**avCastPickerParam** defines the enumerated values of the [@ohos.multimedia.avCastPicker](../arkui-ts/ohos-multimedia-avcastpicker.md) states.
+**avCastPickerParam** defines the enumerated values of the [@ohos.multimedia.avCastPicker](ohos-multimedia-avcastpicker.md) states.
 
 > **NOTE**
 >
@@ -12,7 +12,7 @@ Enumerates the states of the **AVCastPicker** component.
 
 **System capability**: SystemCapability.Multimedia.AVSession.AVCast
 
-| Type  | Description   |
-|------|-------|
-| STATE_APPEARING    | The component is displayed.|
-| STATE_DISAPPEARING    | The component disappears.|
+| Name                       | Value  | Description        |
+| --------------------------- | ---- | ----------- |
+| STATE_APPEARING    | 0    | The component is displayed.|
+| STATE_DISAPPEARING    | 1    | The component disappears.|

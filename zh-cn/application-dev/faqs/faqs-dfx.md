@@ -134,3 +134,28 @@ hdc shell hilog -L &lt;D/I/W/E/F&gt;
 4、看一下PeerBinderCatcher当前进程是否有对端的binder卡住，如果有跟当前进程相关的同步wait，则会有相应的PeerBinder Stacktrace信息——这个是卡住你当前进程的对端进程的栈信息。
 
 5、还有整机进程的cpu信息和当前进程的内存信息辅助定位。
+
+## 如何查看ArkCompiler出现Error日志时，具体的异常调用栈信息？(API 10)
+
+**解决方案**
+
+Native抛异常，如果需要查看backtrace，需要运行一下命令。
+
+打开异常栈：
+
+```bash
+hdc shell param set persist.ark.properties 0x125c
+hdc shell reboot
+```  
+恢复默认值：
+
+```bash
+hdc shell param set persist.ark.properties 0x105c
+hdc shell reboot
+```  
+
+## hdc工具的属性开关有哪些？例如Ark属性开关等(API 10)
+
+**解决方案**
+
+在命令行输入 `hdc shell ark` 可以看到Ark命令行的所有参数和开关。
