@@ -146,7 +146,8 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so)
 
 下面展示了使用AVScreenCapture屏幕录制的完整示例代码。
 
-参考 [视频解码Buffer模式](../avcodec/video-decoding.md#buffer模式)
+创建OH_AVBuffer,参考 [视频解码Buffer模式](../avcodec/video-decoding.md#buffer模式)
+使用Surface模式录屏,参考[Surface模式](../avcodec/video-encoding.md#surface模式)。
 
 目前阶段流程结束后返回的buffer为原始码流，针对原始码流可以进行编码并以mp4等文件格式保存以供播放。编码格式当前阶段仅作预留，待后续版本实现。
   
@@ -176,7 +177,7 @@ void OnStateChange(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureStateCo
 
 void OnBufferAvailable(OH_AVScreenCapture *capture, OH_AVBuffer *buffer,
     OH_AVScreenCaptureBufferType bufferType, int64_t timestamp, void *userData) {
-	int32_t ret;
+    int32_t ret;
     // 获取解码后信息
     OH_AVCodecBufferAttr info;
     ret = OH_AVBuffer_GetBufferAttr(buffer, &info);
@@ -186,9 +187,9 @@ void OnBufferAvailable(OH_AVScreenCapture *capture, OH_AVBuffer *buffer,
     if (bufferType == OH_SCREEN_CAPTURE_BUFFERTYPE_VIDEO) {
         // 处理视频buffer
     } else if (bufferType == OH_SCREEN_CAPTURE_BUFFERTYPE_AUDIO_INNER) {
-	    // 处理内录buffer
+        // 处理内录buffer
     } else if (bufferType == OH_SCREEN_CAPTURE_BUFFERTYPE_AUDIO_MIC) {
-	    // 处理麦克风buffer
+        // 处理麦克风buffer
     }
 }
 
@@ -214,6 +215,17 @@ int main() {
                                        .audioInfo = audioinfo,
                                        .videoInfo = videoinfo};
     OH_AVScreenCapture_Init(capture, config);
+
+    // 可选 [Surface模式]
+    // 通过 MIME TYPE 创建编码器，系统会根据MIME创建最合适的编码器。
+    // OH_AVCodec *codec = OH_VideoEncoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_AVC);    
+    // 从视频编码器获取输入Surface
+    // OH_AVErrCode OH_VideoEncoder_GetSurface(codec, window);
+    // 启动编码器
+    // int32_t retEnc = OH_VideoEncoder_Start(codec);
+    // 指定surface开始录屏
+    // int32_t retStart = OH_AVScreenCapture_StartScreenCaptureWithSurface(capture, window); 
+
     // 开始录屏
     OH_AVScreenCapture_StartScreenCapture(capture);
     // mic开关设置
@@ -344,8 +356,6 @@ int main() {
 
 下面展示了使用AVScreenCapture屏幕录制存文件的完整示例代码。
 
-使用Surface模式创建,参考[Surface模式](../avcodec/video-encoding.md#surface模式)。
-
 ```c++
 
 #include "napi/native_api.h"
@@ -411,16 +421,6 @@ static napi_value Screencapture(napi_env env, napi_callback_info info) {
 
     // 进行初始化操作
     int32_t retInit = OH_AVScreenCapture_Init(capture, config);
-
-    // 可选 [Surface模式]
-    // 通过 MIME TYPE 创建编码器，系统会根据MIME创建最合适的编码器。
-    // OH_AVCodec *codec = OH_VideoEncoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_AVC);    
-    // 从视频编码器获取输入Surface
-    // OH_AVErrCode OH_VideoEncoder_GetSurface(codec, window);
-    // 启动编码器
-    // int32_t retEnc = OH_VideoEncoder_Start(codec);
-    // 指定surface开始录屏
-    // int32_t retStart = OH_AVScreenCapture_StartScreenCaptureWithSurface(capture, window); 
     
     // 开始录屏
     int32_t retStart = OH_AVScreenCapture_StartScreenCapture(capture);
