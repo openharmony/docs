@@ -5,15 +5,11 @@
 
 The **OH_AVCodecBufferAttr** struct defines the description information about the buffer of an **OH_AVCodec** instance.
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**System capability**: SystemCapability.Multimedia.Media.Core
 
-**Since**
+**Since**: 9
 
-9
-
-**Related Modules**
-
-[CodecBase](_codec_base.md)
+**Related module**: [Core](_core.md)
 
 
 ## Summary
@@ -23,76 +19,54 @@ The **OH_AVCodecBufferAttr** struct defines the description information about th
 
 | Name| Description| 
 | -------- | -------- |
-| [pts](#pts) | Defines the display timestamp of the buffer, in microseconds.| 
-| [size](#size) | Defines the size of data contained in the buffer, in bytes.| 
-| [offset](#offset) | Defines the offset of valid data in the buffer.| 
-| [flags](#flags) | Defines the flags of the buffer. It is a combination of multiple [OH_AVCodecBufferFlags](_core.md#oh_avcodecbufferflags).| 
+| int64_t [pts](#pts) | Defines the display timestamp of the buffer, in microseconds.| 
+| int32_t [size](#size) | Defines the size of data contained in the buffer, in bytes.| 
+| int32_t [offset](#offset) | Defines the offset of valid data in the buffer.| 
+| uint32_t [flags](#flags) | Defines the flags of the buffer. For details, see [OH_AVCodecBufferFlags](_core.md#oh_avcodecbufferflags).| 
 
 
 ## Member Variable Description
 
 
-### pts
+### flags
 
-  
 ```
-int64_t pts
-```
-
-**Description**
-
-Defines the display timestamp of the buffer, in microseconds.
-
-**Since**
-
-9
-
-
-### size
-
-  
-```
-int32_t size
+uint32_t OH_AVCodecBufferAttr::flags
 ```
 
 **Description**
 
-Defines the size of data contained in the buffer, in bytes.
-
-**Since**
-
-9
+Defines the flags of the buffer. For details, see [OH_AVCodecBufferFlags](_core.md#oh_avcodecbufferflags).
 
 
 ### offset
 
-  
 ```
-int32_t offset
+int32_t OH_AVCodecBufferAttr::offset
 ```
 
 **Description**
 
 Defines the offset of valid data in the buffer.
 
-**Since**
 
-9
+### pts
 
-
-### flags
-
-  
 ```
-uint32_t flags
+int64_t OH_AVCodecBufferAttr::pts
 ```
 
 **Description**
 
-Defines the flags of the buffer. It is a combination of multiple [OH_AVCodecBufferFlags](_codec_base.md#oh_avcodecbufferflags).
+Defines the display timestamp of the buffer, in microseconds.
 
-**Since**
 
-9
+### size
 
- <!--no_check--> 
+```
+int32_t OH_AVCodecBufferAttr::size
+```
+
+**Description**
+
+Defines the size of data contained in the buffer, in bytes.

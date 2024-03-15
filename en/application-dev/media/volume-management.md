@@ -33,14 +33,14 @@ Currently, the system volume is mainly adjusted by using system APIs, which serv
 
 ## Audio Stream Volume
 
-The **setVolume()** API in both the **AVPlayer** and **AudioRenderer** classes can be used to set the audio stream volume. The code snippet below uses the API in the [AVPlayer](../reference/apis/js-apis-media.md#mediacreateavplayer9) class:
+The **setVolume()** API in both the **AVPlayer** and **AudioRenderer** classes can be used to set the audio stream volume. The code snippet below uses the API in the [AVPlayer](../reference/apis-media-kit/js-apis-media.md#mediacreateavplayer9) class:
 
 ```ts
 let volume = 1.0 // Specified volume. The value range is [0.00-1.00]. The value 1 indicates the maximum volume.
 avPlayer.setVolume(volume);
 ```
 
-The code snippet below uses the API in the [AudioRenderer](../reference/apis/js-apis-audio.md#audiocreateaudiorenderer8) class:
+The code snippet below uses the API in the [AudioRenderer](../reference/apis-audio-kit/js-apis-audio.md#audiocreateaudiorenderer8) class:
 
 ```ts
 import { BusinessError } from '@ohos.base';

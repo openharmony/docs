@@ -16,6 +16,8 @@
 
 访问设备的位置信息，必须申请权限，并且获得用户授权。
 
+当前位置相关能力仅支持WGS-84坐标系。
+
 **表1** 位置权限申请方式介绍
 
 | target API level | 申请位置权限 | 申请结果 | 位置的精确度 |
@@ -350,7 +352,7 @@ Location Kit每个接口需要申请哪些权限可以参见如下文档：[Loca
 
 4. 调用getWantAgent()方法进行创建WantAgent。
 
-并且在获取到WantAgent对象之后调用地理围栏接口添加围栏，当设备进入或者退出该围栏时，系统会自动触发WantAgent的动作。
+   并且在获取到WantAgent对象之后调用地理围栏接口添加围栏，当设备进入或者退出该围栏时，系统会自动触发WantAgent的动作。
 
    ```ts
    // 创建WantAgent
@@ -361,7 +363,7 @@ Location Kit每个接口需要申请哪些权限可以参见如下文档：[Loca
        }
        console.info('getWantAgent success');
        wantAgentObj = data;
-       let requestInfo:geoLocationManager.GeofenceRequest = {'scenario': 0x301, "geofence": {"latitude": 121, "longitude": 26, "radius": 100, "expiration": 10000}};
+       let requestInfo:geoLocationManager.GeofenceRequest = {'scenario': 0x301, "geofence": {"latitude": 31.12, "longitude": 121.11, "radius": 100, "expiration": 10000}};
        try {
            geoLocationManager.on('gnssFenceStatusChange', requestInfo, wantAgentObj);
        } catch (err) {

@@ -134,11 +134,11 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 | onSubmit(callback: (enterKey: EnterKeyType, event<sup>11+</sup>: [SubmitEvent](#submitevent11)) =&gt; void) | Triggered when the Enter key on the keyboard is pressed.<br>**enterKey**: type of the Enter key. If it is **EnterKeyType.NEW_LINE** and the text box is in inline input style, **onSubmit** is not triggered. For details, see [EnterKeyType](#enterkeytype).<br>**event**: submission event. For details, see [SubmitEvent](#submitevent11).|
 | onEditChanged(callback: (isEditing: boolean) =&gt; void)<sup>(deprecated)</sup> | Triggered when the input status changes. Since API version 8, **onEditChange** is recommended.|
 | onEditChange(callback: (isEditing: boolean) =&gt; void)<sup>8+</sup> | Triggered when the input status changes. The text box is in the editing state when the caret is placed in it. If the value of **isEditing** is **true**, text input is in progress.|
-| onCopy(callback:(value: string) =&gt; void)<sup>8+</sup> | Triggered when the copy button on the pasteboard, which displays when the text box is long pressed, is clicked.<br>**value**: text to be copied.|
-| onCut(callback:(value: string) =&gt; void)<sup>8+</sup> | Triggered when the cut button on the pasteboard, which displays when the text box is long pressed, is clicked.<br>**value**: text to be cut.|
-| onPaste(callback:(value: string, event<sup>11+</sup>: [PasteEvent](ts-basic-components-richeditor.md#pasteevent11)) =&gt; void) | Triggered when the paste button on the pasteboard, which displays when the text box is long pressed, is clicked.<br>**value**: text to be pasted.<br>**event**: custom paste event.|
+| onCopy(callback:(value: string) =&gt; void)<sup>8+</sup> | Triggered when the copy button on the pasteboard, which displays when the text box is long pressed, is clicked.<br>**value**: text that is copied.|
+| onCut(callback:(value: string) =&gt; void)<sup>8+</sup> | Triggered when the cut button on the pasteboard, which displays when the text box is long pressed, is clicked.<br>**value**: text that is cut.|
+| onPaste(callback:(value: string, event<sup>11+</sup>: [PasteEvent](ts-basic-components-richeditor.md#pasteevent11)) =&gt; void) | Triggered when the paste button on the pasteboard, which displays when the text box is long pressed, is clicked.<br>**value**: text that is pasted.<br>**event**: custom paste event.|
 | onTextSelectionChange(callback: (selectionStart: number, selectionEnd: number) => void)<sup>10+</sup> | Triggered when the text selection position changes.<br>**selectionStart**: start position of the text selection area. The start position of text in the text box is **0**.<br>**selectionEnd**: end position of the text selection area.|
-| onContentScroll(callback: (totalOffsetX: number, totalOffsetY: number) => void)<sup>10+</sup> | Triggered when the text content is scrolled.<br>**totalOffsetX**: X coordinate offset of the text in the content area.<br>**totalOffsetY**: Y coordinate offset of the text in the content area.|
+| onContentScroll(callback: (totalOffsetX: number, totalOffsetY: number) => void)<sup>10+</sup> | Triggered when the text content is scrolled.<br>**totalOffsetX**: offset in the X coordinate of the text in the content area, in px.<br>**totalOffsetY**: offset in the Y coordinate of the text in the content area, in px.|
 
 ## TextInputController<sup>8+</sup>
 
@@ -199,7 +199,7 @@ Obtains the position of the edited text area relative to the component and its s
 
 ### RectResult<sup>10+</sup>
 
-Describes the position and size.
+Sets the position and size, in pixels.
 
 | Parameter    | Type    | Description      |
 | ------ | ------ | -------- |
@@ -240,8 +240,8 @@ Returns the position information of the caret.
 | Name  | Type    | Description            |
 | ----- | ------ | -------------- |
 | index | number | Index of the caret position.   |
-| x     | number | X coordinate of the caret relative to the text box.|
-| y     | number | Y coordinate of the caret relative to the text box.|
+| x     | number | X coordinate of the caret relative to the text box, in px.|
+| y     | number | Y coordinate of the caret relative to the text box, in px.|
 
 ## InputCounterOptions<sup>11+</sup>
 

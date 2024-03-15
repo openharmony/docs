@@ -11,6 +11,7 @@
 - [ArkTS API参考](apis-arkts/Readme-CN.md)
 - [ArkUI API参考](apis-arkui/Readme-CN.md)
 - [ArkWeb API参考](apis-arkweb/Readme-CN.md)
+- [Asset Store Kit API参考](apis-asset-store-kit/Readme-CN.md)
 - [Audio Kit API参考](apis-audio-kit/Readme-CN.md)
 - [AVCodec Kit API参考](apis-avcodec-kit/Readme-CN.md)
 - [AVSession Kit API参考](apis-avsession-kit/Readme-CN.md)

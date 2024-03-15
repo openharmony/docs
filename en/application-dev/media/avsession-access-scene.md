@@ -8,22 +8,13 @@ In different access scenarios, different UIs are displayed in the controller of 
 
 AVSession restricts background audio playback and VoIP calls. As such, applications that provide long-duration audio or video playback, audiobook applications, and VoIP applications need to access AVSession. If such an application does not access AVSession, the system stops its audio playback or mutes the ongoing call when detecting that the application is running in the background. In this way, the application behavior is restricted. You can verify the restriction locally before the application is released.
 
-For applications that may use audio playback, such as browser, gaming, and live broadcast applications, accessing AVSession is optional. However, if they want to continue audio playback after switching to the background, they must access AVSession.
+For applications that may use audio playback, such as gaming and live broadcast applications, accessing AVSession is optional. However, if they want to continue audio playback after switching to the background, they must access AVSession.
 
 To implement background playback, the application must also use [Background Tasks Kit](../task-management/background-task-overview.md) to request a continuous task to avoid being suspended.
 
 ## Access Process
 
-The process for implement AVSession access varies depending on whether the application needs to be displayed in the controller.
-
-If the application does not need to be displayed in the controller, implement AVSession access as follows:
-
-1. Determine the type of AVSession to be created for the application, and then [create one](#creating-avsession). The AVSession type determines the style of the control template displayed in the controller.
-2. [Create a background task](#creating-a-background-task).
-3. Set the playback state to [PLAYBACK_STATE_STOP](#not-displaying-in-the-controller) so that the application is not displayed in the controller.
-4. Destroy AVSession when the application exits or stops providing service.
-
-If the application needs to be displayed in the controller, implement AVSession access as follows:
+The process for implementing AVSession access is as follows:
 
 1. Determine the type of AVSession to be created for the application, and then [create one](#creating-avsession). The AVSession type determines the style of the control template displayed in the controller.
 2. [Create a background task](#creating-a-background-task).
@@ -34,7 +25,7 @@ If the application needs to be displayed in the controller, implement AVSession 
 
 ## Creating AVSession
 
-[AVSessionType](../reference/apis/js-apis-avsession.md#avsessiontype10) in the constructor determines the type of AVSession to create. Different AVSession types represent the control capabilities in various scenarios and display different control templates in the controller.
+[AVSessionType](../reference/apis-avsession-kit/js-apis-avsession.md#avsessiontype10) in the constructor determines the type of AVSession to create. Different AVSession types represent the control capabilities in various scenarios and display different control templates in the controller.
 
 - For audio AVSession, the controller provides the following control buttons: favorite, previous, play/pause, next, and loop mode.
 
@@ -53,6 +44,8 @@ Refer to the code snippet below:
   async function createSession() {
   let type: AVSessionManager.AVSessionType = 'audio';
   let session = await AVSessionManager.createAVSession(context,'SESSION_NAME', type);
+
+  // Call activate() after the metadata and control commands are registered.
   await session.activate();
     console.info(`session create done : sessionId : ${session.sessionId}`);
   }
@@ -62,34 +55,8 @@ Refer to the code snippet below:
 
 To implement background playback, the application must also use [Background Tasks Kit](../task-management/background-task-overview.md) to request a continuous task to avoid being suspended.
 
-Media playback applications must request a continuous task of the [AUDIO_PLAYBACK](../reference/apis/js-apis-resourceschedule-backgroundTaskManager.md#backgroundmode) background mode.
+Media playback applications must request a continuous task of the [AUDIO_PLAYBACK](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md#backgroundmode) background mode.
 
-## Not Displaying in the Controller
-
-If the application wants to support background playback but does not want to be displayed in the controller, it can set the playback state to **PLAYBACK_STATE_STOP**. When the system reads this state, it does not display the application information in the controller.
-
-```ts
-  import AVSessionManager from '@ohos.multimedia.avsession';
-
-  let context: Context = getContext(this);
-  async function setListener() {
-    // It is assumed that an AVSession object has been created. For details about how to create an AVSession object, see the node snippet above.
-    let type: AVSessionManager.AVSessionType = 'audio';
-    let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
-
-    // Set the playback state to PLAYBACK_STATE_STOP. The controller does not display the application information even if AVSession exists.
-    let playbackState: AVSessionManager.AVPlaybackState = {
-      state: AVSessionManager.PlaybackState.PLAYBACK_STATE_STOP, // Set the playback state to PLAYBACK_STATE_STOP.
-    };
-    session.setAVPlaybackState(playbackState, (err) => {
-      if (err) {
-        console.error(`Failed to set AVPlaybackState. Code: ${err.code}, message: ${err.message}`);
-      } else {
-        console.info(`SetAVPlaybackState successfully`);
-      }
-    });
-  }
-```
 
 ## Setting Metadata
 
@@ -118,7 +85,6 @@ The application can call **setAVMetadata()** to set AVSession metadata to the sy
     });
    }
 ```
-
 ### Setting Lyrics
 
 The controller provides the UI to show lyrics. The application only needs to set the lyrics content. The controller parses the lyrics content and displays it based on the playback progress.
@@ -146,26 +112,10 @@ The controller provides the UI to show lyrics. The application only needs to set
   }
 ```
 
-### Setting Historical Playlists
+### Display Tags of Media Assets
+The controller displays a special type identifier for long-duration media assets. Currently, only the AudioVivid identifier is displayed.
 
-To access a historical playlist, the application must access the InsightIntent framework to support the MUSIC_PLAYBACK capability (by registering the PlayMusicList intent in background mode) and implement the corresponding InsightIntent APIs. For details, see the InsightIntent framework.
-
-After the PlayMusicList intent in background mode is registered, when the system starts to play a historical playlist, the application obtains the playlist startup parameters from the InsightIntent APIs.
-
-A music application can call **setAVMetadata()** to set a playlist, which consists of the following information:
-
-- **avQueueName**: name of the playlist.
-- **avQueueId**: unique ID of the playlist.
-- **avQueueImage**: image of the playlist.
-
-After a playlist is set, users can control the playback of the playlist in the controller. The system sends the unique ID of the playlist to the application.
-
-After the playlist starts to play, the application listens for control commands from AVSession.
-
-Pay attention to the following:
-1. Accessing a historical playlist is equivalent to cold start in the background.
-2. If the application registers only the PlayMusicList intent in background mode but does not set a playlist through **setAVMetadata()**, background playback of the PlayMusicList intent without a unique playlist ID must be supported. In this case, the system starts the playback, and the application determines the actual content to play.
-3. If the application registers the PlayMusicList intent in background mode and sets a playlist through **setAVMetadata()**, the corresponding playlist will be played in cold start in the background.
+The application notifies the system of the display tag of the media asset through the AVMetadata during the access, and the controller displays the tag when the media asset is being played.
 
 ```ts
   import AVSessionManager from '@ohos.multimedia.avsession';
@@ -176,20 +126,18 @@ Pay attention to the following:
     let type: AVSessionManager.AVSessionType = 'audio';
     let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
 
-    // Set a playlist to AVSession.
+    // Set the media audio source information to AVSession.
     let metadata: AVSessionManager.AVMetadata = {
-      // The following content is specified by the application.
-      assetId: '0', 
-      avQueueName: 'myQueue',
-      avQueueId: 'myQueue123',
-      avQueueImage: "PIXELMAP_OBJECT",
+      assetId: '0',
+      // The display tag of the audio source is AudioVivid.
+      displayTags: AVSessionManager.DisplayTag.TAG_AUDIO_VIVID,
     };
     session.setAVMetadata(metadata).then(() => {
       console.info(`SetAVMetadata successfully`);
     }).catch((err: BusinessError) => {
       console.error(`Failed to set AVMetadata. Code: ${err.code}, message: ${err.message}`);
     });
-    // Report the playback state. For details, see the content below.
+
   }
 ```
 
@@ -197,7 +145,7 @@ Pay attention to the following:
 
 ### Setting General State Information
 
-The application can call [setAVPlaybackState()](../reference/apis/js-apis-avsession.md#setavplaybackstate10) to set the playback state information to the system so that the information can be displayed in the controller.
+The application can call [setAVPlaybackState()](../reference/apis-avsession-kit/js-apis-avsession.md#setavplaybackstate10) to set the playback state information to the system so that the information can be displayed in the controller.
 
 Generally, the playback state information includes the playback state, position, speed, buffered time, loop mode, media item being played (activeItemId), custom media data (extras), and whether the media asset is favorited (isFavorite). It changes during the playback.
 
@@ -209,20 +157,21 @@ Generally, the playback state information includes the playback state, position,
   async function setSessionInfo() {
     // It is assumed that an AVSession object has been created. For details about how to create an AVSession object, see the node snippet above.
     let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', 'audio');
+
     // The player logic that triggers changes in the AVSession metadata and playback state information is omitted here.
-     // Set the playback state to paused and set isFavorite to false.
-     let playbackState: AVSessionManager.AVPlaybackState = {
-       state:AVSessionManager.PlaybackState.PLAYBACK_STATE_PAUSE,
-       isFavorite:false
-     };
-     session.setAVPlaybackState(playbackState, (err) => {
-       if (err) {
-         console.error(`Failed to set AVPlaybackState. Code: ${err.code}, message: ${err.message}`);
-       } else {
-         console.info(`SetAVPlaybackState successfully`);
-       }
-     });
-   }
+    // Set the playback state to paused and set isFavorite to false.
+    let playbackState: AVSessionManager.AVPlaybackState = {
+      state:AVSessionManager.PlaybackState.PLAYBACK_STATE_PAUSE,
+      isFavorite:false
+    };
+    session.setAVPlaybackState(playbackState, (err) => {
+     if (err) {
+        console.error(`Failed to set AVPlaybackState. Code: ${err.code}, message: ${err.message}`);
+      } else {
+        console.info(`SetAVPlaybackState successfully`);
+      }
+    });
+  }
 ```
 
 ### Setting the Progress Bar
@@ -262,7 +211,8 @@ To display a progress bar in the controller, the application must set the durati
 The controller calculates the playback progress based on the information set by the application. The application does not need to update the playback progress in real time.
 However, it needs to update the playback state when the following information changes to avid calculation errors:
 
-- playbackState
+- state
+- position
 - speed
 
 Certain special processing is required when setting the progress bar.
@@ -270,6 +220,8 @@ Certain special processing is required when setting the progress bar.
 1. Songs that can be previewed
 
     If a VIP song can be previewed, the application should set the preview duration of the song, rather than the total duration.
+
+    If only the preview duration is set, when the user triggers progress control in the controller, the application receives the relative timestamp within the preview duration, rather than that within the total duration. The application needs to calculate the absolute timestamp from the very beginning of the song.
 
 2. Songs that do not support preview
 
@@ -283,7 +235,7 @@ Certain special processing is required when setting the progress bar.
 
 ## Registering Control Commands
 
-The application can register different control commands through **on()** to implement control operations in the controller. For details, see the [API reference](../reference/apis/js-apis-avsession.md#onplay10).
+The application can register different control commands through **on()** to implement control operations in the controller. For details, see the [API reference](../reference/apis-avsession-kit/js-apis-avsession.md#onplay10).
 > **NOTE**
 >
 > After an AVSession object is created, register control commands supported by the application before activating the object.
@@ -295,7 +247,7 @@ The table below lists the control commands supported by media assets.
 | play    | Plays the media.|
 | pause    | Pauses the playback.|
 | stop    | Stops the playback.|
-| playNex    | Plays the next media asset.|
+| playNext    | Plays the next media asset.|
 | playPrevious    | Plays the previous media asset.|
 | fastForward    | Fast-forwards.|
 | rewind    | Rewinds.|
@@ -375,7 +327,7 @@ async function unregisterSessionListener() {
 
 ### Favoriting Media Assets
 
-To implement favoriting, a music application must call [on('toggleFavorite')](../reference/apis/js-apis-avsession.md#ontogglefavorite10) to register the **toggleFavorite** control command.
+To implement favoriting, a music application must call [on('toggleFavorite')](../reference/apis-avsession-kit/js-apis-avsession.md#ontogglefavorite10) to register the **toggleFavorite** control command.
 
 ```ts
   import AVSessionManager from '@ohos.multimedia.avsession';
@@ -405,7 +357,7 @@ To implement favoriting, a music application must call [on('toggleFavorite')](..
 
 ### Setting the Loop Mode
 
-For music applications, the controller displays control operations in loop mode by default. Currently, the system supports four fixed [loop modes](../reference/apis/js-apis-avsession.md#loopmode10), namely, shuffle, sequential playback, single loop, and playlist loop. The controller notifies the application of the loop mode changes, and the application responds accordingly.
+For music applications, the controller displays control operations in loop mode by default. Currently, the system supports four fixed [loop modes](../reference/apis-avsession-kit/js-apis-avsession.md#loopmode10), namely, shuffle, sequential playback, single loop, and playlist loop. The controller notifies the application of the loop mode changes, and the application responds accordingly.
 
 Refer to the code snippet below:
 
@@ -466,7 +418,7 @@ An application that supports progress display can further supports progress cont
         }
       });
 
-      // The application responds to the seek command command and seeks to the specified position.
+      // The application responds to the seek command and seeks to the specified position.
 
       // After seeking to the specified position, the application synchronizes the new position to the system.
       playbackState.state = AVSessionManager.PlaybackState.PLAYBACK_STATE_PLAY; // Playing state.

@@ -4,7 +4,7 @@ The AudioRenderer is used to play Pulse Code Modulation (PCM) audio data. Unlike
 
 ## Development Guidelines
 
-The full rendering process involves creating an **AudioRenderer** instance, configuring audio rendering parameters, starting and stopping rendering, and releasing the instance. In this topic, you will learn how to use the AudioRenderer to render audio data. Before the development, you are advised to read [AudioRenderer](../reference/apis/js-apis-audio.md#audiorenderer8) for the API reference.
+The full rendering process involves creating an **AudioRenderer** instance, configuring audio rendering parameters, starting and stopping rendering, and releasing the instance. In this topic, you will learn how to use the AudioRenderer to render audio data. Before the development, you are advised to read [AudioRenderer](../reference/apis-audio-kit/js-apis-audio.md#audiorenderer8) for the API reference.
 
 The figure below shows the state changes of the AudioRenderer. After an **AudioRenderer** instance is created, different APIs can be called to switch the AudioRenderer to different states and trigger the required behavior. If an API is called when the AudioRenderer is not in the given state, the system may throw an exception or generate other undefined behavior. Therefore, you are advised to check the AudioRenderer state before triggering state transition.
 
@@ -14,21 +14,21 @@ To prevent the UI thread from being blocked, most **AudioRenderer** calls are as
 
 ![AudioRenderer state transition](figures/audiorenderer-status-change.png)
 
-During application development, you are advised to use **on('stateChange')** to subscribe to state changes of the AudioRenderer. This is because some operations can be performed only when the AudioRenderer is in a given state. If the application performs an operation when the AudioRenderer is not in the given state, the system may throw an exception or generate other undefined behavior.
+During application development, you are advised to use [on('stateChange')](../reference/apis-audio-kit/js-apis-audio.md#onstatechange-8) to subscribe to state changes of the AudioRenderer. This is because some operations can be performed only when the AudioRenderer is in a given state. If the application performs an operation when the AudioRenderer is not in the given state, the system may throw an exception or generate other undefined behavior.
 
-- **prepared**: The AudioRenderer enters this state by calling **createAudioRenderer()**.
+- **prepared**: The AudioRenderer enters this state by calling [createAudioRenderer()](../reference/apis-audio-kit/js-apis-audio.md#audiocreateaudiorenderer8).
 
-- **running**: The AudioRenderer enters this state by calling **start()** when it is in the **prepared**, **paused**, or **stopped** state.
+- **running**: The AudioRenderer enters this state by calling [start()](../reference/apis-audio-kit/js-apis-audio.md#start8) when it is in the **prepared**, **paused**, or **stopped** state.
 
-- **paused**: The AudioRenderer enters this state by calling **pause()** when it is in the **running** state. When the audio playback is paused, it can call **start()** to resume the playback.
+- **paused**: The AudioRenderer enters this state by calling [pause()](../reference/apis-audio-kit/js-apis-audio.md#pause8) when it is in the **running** state. When the audio playback is paused, it can call [start()](../reference/apis-audio-kit/js-apis-audio.md#start8) to resume the playback.
 
-- **stopped**: The AudioRenderer enters this state by calling **stop()** when it is in the **paused** or **running** state
+- **stopped**: The AudioRenderer enters this state by calling [stop()](../reference/apis-audio-kit/js-apis-audio.md#stop8) when it is in the **paused** or **running** state.
 
-- **released**: The AudioRenderer enters this state by calling **release()** when it is in the **prepared**, **paused**, or **stopped** state. In this state, the AudioRenderer releases all occupied hardware and software resources and will not transit to any other state.
+- **released**: The AudioRenderer enters this state by calling [release()](../reference/apis-audio-kit/js-apis-audio.md#release8) when it is in the **prepared**, **paused**, or **stopped** state. In this state, the AudioRenderer releases all occupied hardware and software resources and will not transit to any other state.
 
 ### How to Develop
 
-1. Set audio rendering parameters and create an **AudioRenderer** instance. For details about the parameters, see [AudioRendererOptions](../reference/apis/js-apis-audio.md#audiorendereroptions8).
+1. Set audio rendering parameters and create an **AudioRenderer** instance. For details about the parameters, see [AudioRendererOptions](../reference/apis-audio-kit/js-apis-audio.md#audiorendereroptions8).
      
     ```ts
     import audio from '@ohos.multimedia.audio';
@@ -52,11 +52,11 @@ During application development, you are advised to use **on('stateChange')** to 
 
     audio.createAudioRenderer(audioRendererOptions, (err, data) => {
       if (err) {
-      console.error(`Invoke createAudioRenderer failed, code is ${err.code}, message is ${err.message}`);
-      return;
+        console.error(`Invoke createAudioRenderer failed, code is ${err.code}, message is ${err.message}`);
+        return;
       } else {
-      console.info('Invoke createAudioRenderer succeeded.');
-      let audioRenderer = data;
+        console.info('Invoke createAudioRenderer succeeded.');
+        let audioRenderer = data;
       }
     });
     ```

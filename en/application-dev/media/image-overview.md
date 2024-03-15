@@ -44,3 +44,7 @@ Image Kit supports multiple image formats and uses efficient algorithms and opti
 ## Constraints
 
 During image processing, applications may need to request the read and write permissions from users on images.
+
+## Related Kits
+
+The image framework provides the image encoding and decoding capabilities for the **\<image>** component and the Gallery application. The decoding result can be sent to the [**\<image>** component](../ui/arkts-graphics-display.md) for display.

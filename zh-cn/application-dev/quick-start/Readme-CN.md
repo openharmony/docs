@@ -13,6 +13,7 @@
       - [HAP](hap-package.md)
       - [HAR](har-package.md)
       - [HSP](in-app-hsp.md)
+      - [动态import](arkts-dynamic-import.md)
     - [应用程序包安装卸载与更新](application-package-install-uninstall.md)
     - 应用程序包快速修复
       - [快速修复概述](quickfix-principles.md)
@@ -41,6 +42,7 @@
       - 自定义组件
         - [创建自定义组件](arkts-create-custom-components.md)
         - [页面和自定义组件生命周期](arkts-page-custom-components-lifecycle.md)
+        - [自定义组件的自定义布局](arkts-page-custom-components-layout.md)
         - [自定义组件冻结功能](arkts-custom-components-freeze.md)
       - [\@Builder装饰器：自定义构建函数](arkts-builder.md)
       - [\@BuilderParam装饰器：引用\@Builder函数](arkts-builderparam.md)

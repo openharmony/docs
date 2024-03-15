@@ -24,7 +24,7 @@ Starts a camera picker and enters the corresponding mode based on the media type
 
 | Name         | Type                                             | Mandatory| Description                          |
 | -------------- |-------------------------------------------------| ---- | ---------------------------- |
-| context        | [Context](../apis/js-apis-inner-application-context.md) | Yes  | Application context.                  |
+| context        | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | Yes  | Application context.                  |
 | mediaTypes     | Array\<[PickerMediaType](#pickermediatype)\>    | Yes  | Media type.                   |
 | pickerProfile  | [PickerProfile](#pickerprofile)                 | Yes  | Profile of the camera picker.           |
 
@@ -46,11 +46,11 @@ let mContext = getContext(this) as common.Context;
 
 async function demo() {
   try {
-    let pickerProfile = {
+    let pickerProfile: picker.PickerProfile = {
       cameraPosition: camera.CameraPosition.CAMERA_POSITION_BACK
     };
     let pickerResult: picker.PickerResult = await picker.pick(mContext,
-      [picker.PickerMedaiType.PHOTO, picker.PickerMediaType.VIDEO], pickerProfile);
+      [picker.PickerMediaType.PHOTO, picker.PickerMediaType.VIDEO], pickerProfile);
     console.log("the pick pickerResult is:" + JSON.stringify(pickerResult));
   } catch (error) {
     let err = error as BusinessError;

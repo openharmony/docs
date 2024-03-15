@@ -1374,10 +1374,10 @@ createPattern(image: ImageBitmap, repetition: string | null): CanvasPattern | nu
 
 **参数：**
 
-| 参数         | 类型                                       | 必填   | 描述                                       |
-| ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| image      | [ImageBitmap](ts-components-canvas-imagebitmap.md) | 是    | 图源对象，具体参考ImageBitmap对象。                  |
-| repetition | string \| null                            | 是    | 设置图像重复的方式，取值为：'repeat'、'repeat-x'、&nbsp'repeat-y'、'no-repeat'、'clamp'、'mirror'。<br/>默认值：'' |
+| 参数  | 类型  | 必填  | 默认值  | 描述  |
+| ---------- | ---------- | ---- | ---------- | ---------------------------------------- |
+| image  | [ImageBitmap](ts-components-canvas-imagebitmap.md) | 是  |     | 图源对象，具体参考ImageBitmap对象。 |
+| repetition | string \| null  | 是    | null    | 设置图像重复的方式：<br>'repeat'：沿x轴和y轴重复绘制图像；<br>'repeat-x'：沿x轴重复绘制图像；<br>'repeat-y'：沿y轴重复绘制图像；<br>'no-repeat'：不重复绘制图像；<br>'clamp'：在原始边界外绘制时，超出部分使用边缘的颜色绘制；<br>'mirror'：沿x轴和y轴重复翻转绘制图像。 |
 
 **返回值：**
 

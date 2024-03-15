@@ -29,12 +29,12 @@ The **AVScreenCapture** module provides APIs for screen capture.
 | Name| Description| 
 | -------- | -------- |
 | [OH_AudioCaptureInfo](_o_h___audio_capture_info.md) | Defines audio capture information.| 
-| [OH_AudioEncInfo](_o_h___audio_enc_info.md) | Defines audio encoding information.<br>**NOTE**: This struct is reserved and will be provided in later versions.| 
+| [OH_AudioEncInfo](_o_h___audio_enc_info.md) | Defines audio encoding information.| 
 | [OH_AudioInfo](_o_h___audio_info.md) | Defines audio capture parameters.| 
 | [OH_VideoCaptureInfo](_o_h___video_capture_info.md) | Defines video capture information.| 
-| [OH_VideoEncInfo](_o_h___video_enc_info.md) | Defines video encoding information.<br>**NOTE**: This struct is reserved and will be provided in later versions.| 
+| [OH_VideoEncInfo](_o_h___video_enc_info.md) | Defines video encoding information.| 
 | [OH_VideoInfo](_o_h___video_info.md) | Defines video capture parameters.| 
-| [OH_RecorderInfo](_o_h___recorder_info.md) | Defines recording file information.<br>**NOTE**: This struct is reserved and will be provided in later versions.| 
+| [OH_RecorderInfo](_o_h___recorder_info.md) | Defines recording file information.| 
 | [OH_AVScreenCaptureConfig](_o_h___a_v_screen_capture_config.md) | Defines the screen capture configuration.| 
 | [OH_AVScreenCaptureCallback](_o_h___a_v_screen_capture_callback.md) | Defines all the asynchronous callback function pointers of an **OH_AVScreenCapture** instance.| 
 | [OH_Rect](_o_h___rect.md) | Defines the width, height, and image information of the rectangle used for screen capture.| 
@@ -53,12 +53,12 @@ The **AVScreenCapture** module provides APIs for screen capture.
 | [OH_VideoCodecFormat](#oh_videocodecformat) | Defines an enum that enumerates the video encoding formats.| 
 | [OH_DataType](#oh_datatype) | Defines an enum that enumerates the data types of screen capture streams.| 
 | [OH_VideoSourceType](#oh_videosourcetype) | Defines an enum that enumerates the video source formats.| 
-| [OH_ContainerFormatType](#oh_containerformattype) | Defines an enum that enumerates the types of files generated during screen capture.<br>**NOTE**: This type is reserved and will be provided in later versions.| 
+| [OH_ContainerFormatType](#oh_containerformattype) | Defines an enum that enumerates the types of files generated during screen capture.| 
 | [OH_AudioCaptureInfo](#oh_audiocaptureinfo) | Defines audio capture information.| 
-| [OH_AudioEncInfo](#oh_audioencinfo) | Defines audio encoding information.<br>**NOTE**: This type is reserved and will be provided in later versions.| 
+| [OH_AudioEncInfo](#oh_audioencinfo) | Defines audio encoding information.| 
 | [OH_AudioInfo](#oh_audioinfo) | Defines audio capture parameters.| 
 | [OH_VideoCaptureInfo](#oh_videocaptureinfo) | Defines video capture information.| 
-| [OH_VideoEncInfo](#oh_videoencinfo) | Defines video encoding information.<br>**NOTE**: This type is reserved and will be provided in later versions.| 
+| [OH_VideoEncInfo](#oh_videoencinfo) | Defines video encoding information.| 
 | [OH_VideoInfo](#oh_videoinfo) | Defines video capture parameters.| 
 | [OH_RecorderInfo](#oh_recorderinfo) | Defines recording file information.| 
 | [OH_AVScreenCaptureConfig](#oh_avscreencaptureconfig) | Defines the screen capture configuration.| 
@@ -81,7 +81,7 @@ The **AVScreenCapture** module provides APIs for screen capture.
 | [OH_VideoCodecFormat](#oh_videocodecformat) {<br>OH_VIDEO_DEFAULT = 0, OH_H264 = 2, OH_H265 = 4, OH_MPEG4 = 6,<br>OH_VP8 = 8, OH_VP9 = 10, OH_VIDEO_CODEC_FORMAT_BUTT<br>} | Enumerates the video encoding formats.| 
 | [OH_DataType](#oh_datatype) { OH_ORIGINAL_STREAM = 0, OH_ENCODED_STREAM = 1, OH_CAPTURE_FILE = 2, OH_INVAILD = -1 } | Enumerates the data types of screen capture streams.| 
 | [OH_VideoSourceType](#oh_videosourcetype) { OH_VIDEO_SOURCE_SURFACE_YUV = 0, OH_VIDEO_SOURCE_SURFACE_ES, OH_VIDEO_SOURCE_SURFACE_RGBA, OH_VIDEO_SOURCE_BUTT } | Enumerates the video source formats.| 
-| [OH_ContainerFormatType](#oh_containerformattype) { CFT_MPEG_4A = 0, CFT_MPEG_4 = 1 } | Enumerates the types of files generated during screen capture.<br>**NOTE**: This enum is reserved and will be provided in later versions.| 
+| [OH_ContainerFormatType](#oh_containerformattype) { CFT_MPEG_4A = 0, CFT_MPEG_4 = 1 } | Enumerates the types of files generated during screen capture.| 
 | [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode) {<br>AV_SCREEN_CAPTURE_ERR_BASE = 0, AV_SCREEN_CAPTURE_ERR_OK = AV_SCREEN_CAPTURE_ERR_BASE, AV_SCREEN_CAPTURE_ERR_NO_MEMORY = AV_SCREEN_CAPTURE_ERR_BASE + 1, AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT = AV_SCREEN_CAPTURE_ERR_BASE + 2,<br>AV_SCREEN_CAPTURE_ERR_INVALID_VAL = AV_SCREEN_CAPTURE_ERR_BASE + 3, AV_SCREEN_CAPTURE_ERR_IO = AV_SCREEN_CAPTURE_ERR_BASE + 4, AV_SCREEN_CAPTURE_ERR_TIMEOUT = AV_SCREEN_CAPTURE_ERR_BASE + 5, AV_SCREEN_CAPTURE_ERR_UNKNOWN = AV_SCREEN_CAPTURE_ERR_BASE + 6,<br>AV_SCREEN_CAPTURE_ERR_SERVICE_DIED = AV_SCREEN_CAPTURE_ERR_BASE + 7, AV_SCREEN_CAPTURE_ERR_INVALID_STATE = AV_SCREEN_CAPTURE_ERR_BASE + 8, AV_SCREEN_CAPTURE_ERR_UNSUPPORT = AV_SCREEN_CAPTURE_ERR_BASE + 9, AV_SCREEN_CAPTURE_ERR_EXTEND_START = AV_SCREEN_CAPTURE_ERR_BASE + 100<br>} | Enumerates the error codes generated during screen recording.| 
 
 
@@ -93,8 +93,8 @@ The **AVScreenCapture** module provides APIs for screen capture.
 | [OH_AVScreenCapture_Init](#oh_avscreencapture_init) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture, [OH_AVScreenCaptureConfig](_o_h___a_v_screen_capture_config.md) config) | Initializes parameters related to an **OH_AVScreenCapture** instance.| 
 | [OH_AVScreenCapture_StartScreenCapture](#oh_avscreencapture_startscreencapture) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture) | Starts screen capture and collects original streams. After calling this function, the application can use the callback listeners **OH_AVScreenCaptureOnAudioBufferAvailable** and **OH_AVScreenCaptureOnVideoBufferAvailable** to check whether streams are generated.| 
 | [OH_AVScreenCapture_StopScreenCapture](#oh_avscreencapture_stopscreencapture) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture) | Stops screen capture. This function is used in pair with **OH_AVScreenCapture_StartScreenCapture**. After calling this function, the application stops screen capture or screen share and releases the microphone.| 
-| [OH_AVScreenCapture_StartScreenRecording](#oh_avscreencapture_startscreenrecording) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture) | Starts screen recording and collects encoded streams.<br>**NOTE**: This function is reserved and will be provided in later versions.| 
-| [OH_AVScreenCapture_StopScreenRecording](#oh_avscreencapture_stopscreenrecording) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture) | Stops screen recording. This function is used in pair with **OH_AVScreenCapture_StartScreenRecording**.<br>**NOTE**: This function is reserved and will be provided in later versions.| 
+| [OH_AVScreenCapture_StartScreenRecording](#oh_avscreencapture_startscreenrecording) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture) | Starts screen recording and collects encoded streams.| 
+| [OH_AVScreenCapture_StopScreenRecording](#oh_avscreencapture_stopscreenrecording) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture) | Stops screen recording. This function is used in pair with **OH_AVScreenCapture_StartScreenRecording**.| 
 | [OH_AVScreenCapture_AcquireAudioBuffer](#oh_avscreencapture_acquireaudiobuffer) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture, [OH_AudioBuffer](_o_h___audio_buffer.md) \*\*audiobuffer, [OH_AudioCaptureSourceType](#oh_audiocapturesourcetype) type) | Obtains an audio buffer. When calling this function, the application must allocate the memory of the corresponding struct size to the audio buffer.| 
 | [OH_AVScreenCapture_AcquireVideoBuffer](#oh_avscreencapture_acquirevideobuffer) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture, int32_t \*fence, int64_t \*timestamp, struct [OH_Rect](_o_h___rect.md) \*region) | Obtains a video buffer. An application can call this function to obtain information such as the video buffer and timestamp.| 
 | [OH_AVScreenCapture_ReleaseAudioBuffer](#oh_avscreencapture_releaseaudiobuffer) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture, [OH_AudioCaptureSourceType](#oh_audiocapturesourcetype) type) | Releases an audio buffer.| 
@@ -739,7 +739,7 @@ OH_NativeBuffer* OH_AVScreenCapture_AcquireVideoBuffer (struct OH_AVScreenCaptur
 
 **Description**
 
-Obtains a video buffer. An application can call this function to obtain information such as the video buffer and timestamp. After the buffer is no longer needed, call **OH_AVScreenCapture_ReleaseVideoBuffer** to release it.
+Obtains a video buffer. An application can call this function to obtain information such as the video buffer and timestamp. After the buffer is no longer needed, call [OH_AVScreenCapture_ReleaseVideoBuffer](#oh_avscreencapture_releasevideobuffer) to release it.
 
 **Parameters**
 
@@ -767,7 +767,7 @@ struct OH_AVScreenCapture* OH_AVScreenCapture_Create (void )
 
 **Description**
 
-Creates an **OH_AVScreenCapture** instance. You can release the instance by calling **OH_AVScreenCapture_Release**.
+Creates an **OH_AVScreenCapture** instance. You can release the instance by calling [OH_AVScreenCapture_Release](#oh_avscreencapture_release).
 
 **System capability**
 
@@ -814,7 +814,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_Release (struct OH_AVScreenCaptur
 
 **Description**
 
-Releases an **OH_AVScreenCapture** instance. This function is used in pair with **OH_AVScreenCapture_Create**.
+Releases an **OH_AVScreenCapture** instance. This function is used in pair with [OH_AVScreenCapture_Create](#oh_avscreencapture_create).
 
 **Parameters**
 
@@ -916,7 +916,8 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetMicrophoneEnabled (struct OH_A
 
 **Description**
 
-Enables or disables the microphone. When **isMicrophone** is set to **true**, the microphone is enabled, and the original PCM data of the microphone can be obtained by calling **OH_AVScreenCapture_StartScreenRecording** and **OH_AVScreenCapture_AcquireAudioBuffer**. When **isMicrophone** is set to **false**, the obtained audio data is silent data.
+Enables or disables the microphone. When **isMicrophone** is set to **true**, the microphone is enabled, and the original PCM data of the microphone can be obtained by calling [OH_AVScreenCapture_StartScreenCapture](#oh_avscreencapture_startscreencapture) and [OH_AVScreenCapture_AcquireAudioBuffer](#oh_avscreencapture_acquireaudiobuffer). When **isMicrophone** is set to **false**, the obtained audio data is silent data.
+By default, the microphone is enabled.
 
 **Parameters**
 
@@ -942,9 +943,9 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StartScreenCapture (struct OH_AVS
 
 **Description**
 
-Starts screen capture and collects original streams. After calling this function, the application can use the callback listeners **OH_AVScreenCaptureOnAudioBufferAvailable** and **OH_AVScreenCaptureOnVideoBufferAvailable** to check whether streams are generated.
+Starts screen capture and collects original streams. After calling this function, the application can use the callback listeners [OH_AVScreenCaptureOnAudioBufferAvailable](#oh_avscreencaptureonaudiobufferavailable) and [OH_AVScreenCaptureOnVideoBufferAvailable](#oh_avscreencaptureonvideobufferavailable) to check whether streams are generated.
 
-The application can obtain the original streams of screen capture by calling **OH_AVScreenCapture_AcquireAudioBuffer** and **OH_AVScreenCapture_ReleaseVideoBuffer**.
+The application can obtain the original streams of screen capture by calling [OH_AVScreenCapture_AcquireAudioBuffer](#oh_avscreencapture_acquireaudiobuffer) and [OH_AVScreenCapture_ReleaseVideoBuffer](#oh_avscreencapture_releasevideobuffer).
 
 **Parameters**
 
@@ -971,10 +972,6 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StartScreenRecording (struct OH_A
 
 Starts screen recording and collects encoded streams.
 
-> **NOTE**
-> 
-> This function is reserved and will be provided in later versions.
-
 **Parameters**
 
 | Name| Description| 
@@ -998,7 +995,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StopScreenCapture (struct OH_AVSc
 
 **Description**
 
-Stops screen capture. This function is used in pair with **OH_AVScreenCapture_StartScreenCapture**. After calling this function, the application stops screen capture or screen share and releases the microphone.
+Stops screen capture. This function is used in pair with [OH_AVScreenCapture_StartScreenCapture](#oh_avscreencapture_startscreencapture). After calling this function, the application stops screen capture or screen share and releases the microphone.
 
 **Parameters**
 
@@ -1023,11 +1020,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StopScreenRecording (struct OH_AV
 
 **Description**
 
-Stops screen recording. This function is used in pair with **OH_AVScreenCapture_StartScreenRecording**.
-
-> **NOTE**
-> 
-> This function is reserved and will be provided in later versions.
+Stops screen recording. This function is used in pair with [OH_AVScreenCapture_StartScreenRecording](#oh_avscreencapture_startscreenrecording).
 
 **Parameters**
 

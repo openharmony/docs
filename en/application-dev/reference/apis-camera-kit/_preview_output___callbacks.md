@@ -5,9 +5,7 @@
 
 The **PreviewOutput_Callbacks** struct defines the callbacks used for preview output.
 
-**See**
-
-[OH_PreviewOutput_RegisterCallback](_o_h___camera.md#oh_previewoutput_registercallback)
+For details, see [OH_PreviewOutput_RegisterCallback](_o_h___camera.md#oh_previewoutput_registercallback).
 
 **Since**: 11
 
@@ -21,9 +19,9 @@ The **PreviewOutput_Callbacks** struct defines the callbacks used for preview ou
 
 | Name| Description| 
 | -------- | -------- |
-| [onFrameStart](#onframestart) | Callback to report preview output frame start events.| 
-| [onFrameEnd](#onframeend) | Callback to report preview output frame end events.| 
-| [onError](#onerror) | Callback to report preview output errors.| 
+| [OH_PreviewOutput_OnFrameStart](_o_h___camera.md#oh_previewoutput_onframestart) [onFrameStart](#onframestart) | Callback to report preview output frame start events.| 
+| [OH_PreviewOutput_OnFrameEnd](_o_h___camera.md#oh_previewoutput_onframeend) [onFrameEnd](#onframeend) | Callback to report preview output frame end events.| 
+| [OH_PreviewOutput_OnError](_o_h___camera.md#oh_previewoutput_onerror) [onError](#onerror) | Callback to report preview output errors.| 
 
 
 ## Member Variable Description

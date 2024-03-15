@@ -10,7 +10,7 @@ During application development, you can use the **state** attribute of the AVRec
 
 ![Recording state change](figures/video-recording-status-change.png)
 
-For details about the state, see [AVRecorderState](../reference/apis/js-apis-media.md#avrecorderstate9).
+For details about the state, see [AVRecorderState](../reference/apis-media-kit/js-apis-media.md#avrecorderstate9).
 
 ## How to Develop
 
@@ -18,7 +18,7 @@ For details about the state, see [AVRecorderState](../reference/apis/js-apis-med
 > 
 > The AVRecorder only processes video data. To complete video recording, it must work with the video data collection module, which transfers the captured video data to the AVRecorder for data processing through the surface. Currently, the commonly used data collection module is the camera module. For details, see [Camera Recording](camera-recording.md).
 
-Read [AVRecorder](../reference/apis/js-apis-media.md#avrecorder9) for the API reference.
+Read [AVRecorder](../reference/apis-media-kit/js-apis-media.md#avrecorder9) for the API reference.
 
 1. Create an **AVRecorder** instance. The AVRecorder is the **idle** state.
      
@@ -62,7 +62,7 @@ Read [AVRecorder](../reference/apis/js-apis-media.md#avrecorder9) for the API re
    > 
    > - The [recording specifications]((media-kit-intro.md#supported-formats) in use must be those supported. The video bit rate, resolution, and frame rate are subject to the ranges supported by the hardware device.
    > 
-   > - The recording output URL (URL in **avConfig** in the sample code) must be in the format of fd://xx (where xx indicates a file descriptor). You must call [ohos.file.fs](../reference/apis/js-apis-file-fs.md) to implement access to the application file. For details, see [Application File Access and Management](../file-management/app-file-access.md).
+   > - The recording output URL (URL in **avConfig** in the sample code) must be in the format of fd://xx (where xx indicates a file descriptor). You must call [ohos.file.fs](../reference/apis-core-file-kit/js-apis-file-fs.md) to implement access to the application file. For details, see [Application File Access and Management](../file-management/app-file-access.md).
 
    ```ts
    import media from '@ohos.multimedia.media';

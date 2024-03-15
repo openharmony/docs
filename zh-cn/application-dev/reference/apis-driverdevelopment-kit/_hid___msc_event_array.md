@@ -5,9 +5,13 @@
 
 其它特殊事件属性数组。
 
-**起始版本：** 11
+**起始版本：**
 
-**相关模块：**[HidDdk](_hid_ddk.md)
+11
+
+**相关模块：**
+
+[HDI DDK](_hid_ddk.md)
 
 
 ## 汇总
@@ -17,5 +21,32 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [hidMscEvent](_hid_ddk.md#hidmscevent) | [Hid_MscEvent](_hid_ddk.md#hid_mscevent) \* | 
-| [length](_hid_ddk.md#length-55) | uint16_t | 
+| [hidMscEvent](#hidmscevent) | 其它特殊事件属性编码 | 
+| [length](#length) | 数组长度 | 
+
+
+## 结构体成员变量说明
+
+
+### hidMscEvent
+
+
+```
+Hid_MscEvent Hid_MscEventArray::*hidMscEvent
+```
+
+**描述:**
+
+其它特殊事件属性编码
+
+
+### length
+
+
+```
+uint16_t Hid_MscEventArray::length
+```
+
+**描述:**
+
+数组长度

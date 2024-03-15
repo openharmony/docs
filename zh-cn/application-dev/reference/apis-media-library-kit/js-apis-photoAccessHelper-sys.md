@@ -721,7 +721,7 @@ deleteAssets(uriList: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;):
 
 > **说明：** 
 >
-> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAssetChangeRequest.deleteAssets](#deleteassets11-1)替代。
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAssetChangeRequest.deleteAssets](js-apis-photoAccessHelper.md#deleteassets11)替代。
 
 **系统接口**：此接口为系统接口。
 
@@ -789,7 +789,7 @@ deleteAssets(uriList: Array&lt;string&gt;): Promise&lt;void&gt;
 
 > **说明：** 
 >
-> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAssetChangeRequest.deleteAssets](#deleteassets11-1)替代。
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAssetChangeRequest.deleteAssets](js-apis-photoAccessHelper.md#deleteassets11)替代。
 
 **系统接口**：此接口为系统接口。
 
@@ -1672,7 +1672,7 @@ async function example() {
 
 getExif(callback: AsyncCallback&lt;string&gt;): void
 
-返回jpg格式图片Exif标签组成的json格式的字符串，该方法使用Promise方式返回结果。
+返回jpg格式图片Exif标签组成的json格式的字符串，使用callback方式返回异步结果。
 
 此接口中获取的Exif标签信息是由[image](../apis-image-kit/js-apis-image.md)模块提供。Exif标签详细信息请参考[image.PropertyKey](../apis-image-kit/js-apis-image.md#propertykey7)。
 
@@ -3030,7 +3030,7 @@ deleteAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&gt
 
 > **说明：** 
 >
-> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest.deleteAssets](#deleteassets11-2)替代。
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest.deleteAssets](#deleteassets11)替代。
 
 **注意**：此操作不可逆，执行此操作后文件资源将彻底删除，请谨慎操作。
 
@@ -3097,7 +3097,7 @@ deleteAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;
 
 > **说明：** 
 >
-> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest.deleteAssets](#deleteassets11-2)替代。
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest.deleteAssets](#deleteassets11)替代。
 
 **注意**：此操作不可逆，执行此操作后文件资源将彻底删除，请谨慎操作。
 

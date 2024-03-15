@@ -4,11 +4,11 @@ The camera application controls the camera hardware to implement basic operation
 
 To implement dual-channel preview (there are two preview streams instead of one preview stream plus one photo stream), you must create a **previewOutput** object through the surface of an **ImageReceiver** object. Other processes are the same as those of the photo stream and preview stream.
 
-Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
+Read [Camera](../reference/apis-camera-kit/js-apis-camera.md) for the API reference.
 
 ## Constraints
 
--  Currently, streams cannot be dynamically added. In other words, you cannot call [addOutput](../reference/apis/js-apis-camera.md#addoutput) to add streams without calling [session.stop](../reference/apis/js-apis-camera.md#stop-4) first.
+-  Currently, streams cannot be dynamically added. In other words, you cannot call [addOutput](../reference/apis-camera-kit/js-apis-camera.md#addoutput11) to add streams without calling [session.stop](../reference/apis-camera-kit/js-apis-camera.md#stop11) first.
 - After an **ImageReceiver** object processes image data obtained, it must release the image buffer so that the buffer queue of the surface properly rotates.
 
 ## API Calling Process
@@ -26,16 +26,21 @@ The figure below shows the recommended API calling process of the dual-channel p
    ```ts
    import image from '@ohos.multimedia.image';
    ```
-
-2. Create a surface of the **ImageReceiver** object.
+2. Create an **ImageReceiver** object.
+   ```ts
+   let size: image.Size = {
+       width: 640,
+       height: 480
+     }
+   let receiver: image.ImageReceiver = image.createImageReceiver(size, image.ImageFormat.JPEG, 8);
+   ```
+3. Obtain the surface ID of the **ImageReceiver** object.
 
    ```ts
-   async function getImageReceiverSurfaceId(): Promise<string | undefined> {
-     let receiver: image.ImageReceiver = image.createImageReceiver(640, 480, 4, 8);
-     console.info('before ImageReceiver check');
+   async function getImageReceiverSurfaceId(receiver: image.ImageReceiver): Promise<string | undefined> {
      let ImageReceiverSurfaceId: string | undefined = undefined;
      if (receiver !== undefined) {
-       console.info('createImageReceiver success');
+       console.info('receiver is not undefined');
        let ImageReceiverSurfaceId: string = await receiver.getReceivingSurfaceId();
        console.info(`ImageReceived id: ${ImageReceiverSurfaceId}`);
      } else {
@@ -45,7 +50,7 @@ The figure below shows the recommended API calling process of the dual-channel p
    }
    ```
 
-3. Create a surface of an **\<XComponent>** object.
+4. Create a surface of an **\<XComponent>** object.
 
    For details, see [Camera Preview](camera-preview.md).
 
@@ -79,9 +84,9 @@ The figure below shows the recommended API calling process of the dual-channel p
    }
    ```
 
-4. Implement dual-channel preview.
+5. Implement dual-channel preview.
 
-   Call [createPreviewOutput](../reference/apis/js-apis-camera.md#createpreviewoutput) to transfer the two surface IDs generated in steps 2 and 3 to the camera service to create two preview streams. Develop other processes based on the normal preview process.
+   Call [createPreviewOutput](../reference/apis-camera-kit/js-apis-camera.md#createpreviewoutput) to transfer the two surface IDs generated in steps 2 and 3 to the camera service to create two preview streams. Develop other processes based on the normal preview process.
 
    ```ts
    import camera from '@ohos.multimedia.camera';
@@ -122,7 +127,7 @@ The figure below shows the recommended API calling process of the dual-channel p
      await cameraInput.open();
 
      // Create a session.
-     let photoSession: camera.PhotoSession = cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO);
+     let photoSession: camera.PhotoSession = cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO) as camera.PhotoSession;
 
      // Start configuration for the session.
      photoSession.beginConfig();
@@ -144,9 +149,9 @@ The figure below shows the recommended API calling process of the dual-channel p
    }
    ```
 
-5. Obtain preview images in real time through the **ImageReceiver** object.
+6. Obtain preview images in real time through the **ImageReceiver** object.
 
-   Use the **imageArrival** event of the **ImageReceiver** object to listen for and obtain image data returned by the bottom layer. For details, see [Image](../reference/apis/js-apis-image.md).
+   Use the **imageArrival** event of the **ImageReceiver** object to listen for and obtain image data returned by the bottom layer. For details, see [Image](../reference/apis-image-kit/js-apis-image.md).
 
    ```ts
    import { BusinessError } from '@ohos.base';
@@ -161,14 +166,13 @@ The figure below shows the recommended API calling process of the dual-channel p
          nextImage.getComponent(image.ComponentType.JPEG, (err: BusinessError, imgComponent: image.Component) => {
            if (err || imgComponent === undefined) {
              console.error('getComponent failed');
-             return;
            }
-           if (imgComponent.byteBuffer as ArrayBuffer) {
+           if (imgComponent && imgComponent.byteBuffer as ArrayBuffer) {
              // do something...
            } else {
              console.error('byteBuffer is null');
-             return;
            }
+           nextImage.release();
          })
        })
      })

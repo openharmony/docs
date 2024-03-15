@@ -33,11 +33,11 @@ Subscribes to data of the color sensor.
 | -------- | ------------------------------------------------- | ---- | ----------------------------------------------------------- |
 | type     | [SensorId](#sensorid9).COLOR                      | Yes  | Sensor type. The value is fixed at **SensorId.COLOR**.                     |
 | callback | Callback&lt;[ColorResponse](#colorresponse10)&gt; | Yes  | Callback used to report the sensor data, which is a **ColorResponse** object.        |
-| options  | [Options](#options)                               | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns.|
+| options  | Options                               | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns.|
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
@@ -79,11 +79,11 @@ Subscribes to data of the Sodium Adsorption Ratio (SAR) sensor.
 | -------- | --------------------------------------------- | ---- | ----------------------------------------------------------- |
 | type     | [SensorId](#sensorid9).SAR                    | Yes  | Sensor type. The value is fixed at **SensorId.SAR**.                       |
 | callback | Callback&lt;[SarResponse](#sarresponse10)&gt; | Yes  | Callback used to report the sensor data, which is a **SarResponse** object.          |
-| options  | [Options](#options)                           | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns.|
+| options  | Options                           | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns.|
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
@@ -127,6 +127,8 @@ Unsubscribes from data of the color sensor.
 | type     | [SensorId](#sensorid9).COLOR                      | Yes  | Sensor type. The value is fixed at **SensorId.COLOR**.                      |
 | callback | Callback&lt;[ColorResponse](#colorresponse10)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
+**Example**
+
 ```ts
 import sensor from "@ohos.sensor";
 import BusinessError from "@ohos.base";
@@ -169,6 +171,8 @@ Unsubscribes from data of the SAR sensor.
 | type     | [SensorId](#sensorid9).SAR                    | Yes  | Sensor type. The value is fixed at **SensorId.SAR**.                        |
 | callback | Callback&lt;[SarResponse](#sarresponse10)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
+**Example**
+
 ```ts
 import sensor from "@ohos.sensor";
 import BusinessError from "@ohos.base";
@@ -205,33 +209,9 @@ Enumerates the sensor types.
 | COLOR<sup>10+</sup> | 14   | Color sensor.<br>System API: This is a system API.    |
 | SAR<sup>10+</sup>   | 15   | Sodium Adsorption Ratio (SAR) sensor.<br>System API: This is a system API.|
 
-## SensorAccuracy<sup>11+</sup>
-
-Enumerates the accuracy levels of sensor data.
-
-**System capability**: SystemCapability.Sensors.Sensor
-
-| Name               | Value  | Description              |
-| ------------------- | ---- | ------------------ |
-| ACCURACY_UNRELIABLE | 0    | The sensor data is unreliable.|
-| ACCURACY_LOW        | 1    | The sensor data is at a low accuracy level.|
-| ACCURACY_MEDIUM     | 2    | The sensor data is at a medium accuracy level.|
-| ACCURACY_HIGH       | 3    | The sensor data is at a high accuracy level.|
-
-## Response
-
-Describes the timestamp of the sensor data.
-
-**System capability**: SystemCapability.Sensors.Sensor
-
-| Name                  | Type                                             | Readable| Writable| Description                        |
-| ---------------------- | ------------------------------------------------- | ---- | ---- | ---------------------------- |
-| timestamp              | number                                            | Yes  | Yes  | Timestamp when the sensor reports data.    |
-| accuracy<sup>11+</sup> | [SensorAccuracy](#sensoraccuracy11)<sup>11+</sup> | Yes  | No  | Accuracy of the sensor data.|
-
 ## ColorResponse<sup>10+</sup>
 
-Describes the color sensor data. It extends from [Response](#response).
+Describes the color sensor data.
 
 **System capability**: SystemCapability.Sensors.Sensor
 
@@ -245,7 +225,7 @@ Describes the color sensor data. It extends from [Response](#response).
 
 ## SarResponse<sup>10+ </sup>
 
-Describes the SAR sensor data. It extends from [Response](#response).
+Describes the SAR sensor data.
 
 **System capability**: SystemCapability.Sensors.Sensor
 
@@ -255,13 +235,3 @@ Describes the SAR sensor data. It extends from [Response](#response).
 | Name           | Type  | Readable| Writable| Description                           |
 | --------------- | ------ | ---- | ---- | ------------------------------- |
 | absorptionRatio | number | Yes  | Yes  | Absorption ratio, in W/kg.|
-
-## Options
-
-Describes the sensor data reporting frequency.
-
-**System capability**: SystemCapability.Sensors.Sensor
-
-| Name    | Type                                                    | Readable| Writable| Description                                                        |
-| -------- | -------------------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| interval | number/[SensorAccuracy](#sensoraccuracy11)<sup>11+</sup> | Yes  | Yes  | Frequency at which a sensor reports data. The default value is 200,000,000 ns. This attribute has restrictions on the minimum and maximum values, determined by the reporting frequency supported by the hardware.|

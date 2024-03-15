@@ -9,7 +9,7 @@
 
 **起始版本：** 11
 
-**相关模块：**[HidDdk](_hid_ddk.md)
+**相关模块：**[HID DDK](_hid_ddk.md)
 
 
 ## 汇总
@@ -19,28 +19,28 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [Hid_EmitItem](_hid___emit_item.md) | struct<br/>事件信息。  | 
-| [Hid_Device](_hid___device.md) | struct<br/>设备基本信息。  | 
-| [Hid_EventTypeArray](_hid___event_type_array.md) | struct<br/>事件类型编码数组。  | 
-| [Hid_KeyCodeArray](_hid___key_code_array.md) | struct<br/>键值属性数组。  | 
-| [Hid_AbsAxesArray](_hid___abs_axes_array.md) | struct<br/>绝对坐标属性数组。  | 
-| [Hid_RelAxesArray](_hid___rel_axes_array.md) | struct<br/>相对坐标属性数组。  | 
-| [Hid_MscEventArray](_hid___msc_event_array.md) | struct<br/>其它特殊事件属性数组。  | 
-| [Hid_EventProperties](_hid___event_properties.md) | struct<br/>设备关注事件属性。  | 
+| [Hid_EmitItem](_hid___emit_item.md) | 事件信息。  | 
+| [Hid_Device](_hid___device.md) | 设备基本信息。  | 
+| [Hid_EventTypeArray](_hid___event_type_array.md) | 事件类型编码数组。  | 
+| [Hid_KeyCodeArray](_hid___key_code_array.md) | 键值属性数组。  | 
+| [Hid_AbsAxesArray](_hid___abs_axes_array.md) | 绝对坐标属性数组。  | 
+| [Hid_RelAxesArray](_hid___rel_axes_array.md) | 相对坐标属性数组。  | 
+| [Hid_MscEventArray](_hid___msc_event_array.md) | 其它特殊事件属性数组。  | 
+| [Hid_EventProperties](_hid___event_properties.md) | 设备关注事件属性。  | 
 
 
 ### 类型定义
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [Hid_EmitItem](_hid_ddk.md#hid_emititem) | typedef struct [Hid_EmitItem](_hid___emit_item.md)<br/>事件信息。  | 
-| [Hid_Device](_hid_ddk.md#hid_device) | typedef struct [Hid_Device](_hid___device.md)<br/>设备基本信息。  | 
-| [Hid_EventTypeArray](_hid_ddk.md#hid_eventtypearray) | typedef struct [Hid_EventTypeArray](_hid___event_type_array.md)<br/>事件类型编码数组。  | 
-| [Hid_KeyCodeArray](_hid_ddk.md#hid_keycodearray) | typedef struct [Hid_KeyCodeArray](_hid___key_code_array.md)<br/>键值属性数组。  | 
-| [Hid_AbsAxesArray](_hid_ddk.md#hid_absaxesarray) | typedef struct [Hid_AbsAxesArray](_hid___abs_axes_array.md)<br/>绝对坐标属性数组。  | 
-| [Hid_RelAxesArray](_hid_ddk.md#hid_relaxesarray) | typedef struct [Hid_RelAxesArray](_hid___rel_axes_array.md)<br/>相对坐标属性数组。  | 
-| [Hid_MscEventArray](_hid_ddk.md#hid_msceventarray) | typedef struct [Hid_MscEventArray](_hid___msc_event_array.md)<br/>其它特殊事件属性数组。  | 
-| [Hid_EventProperties](_hid_ddk.md#hid_eventproperties) | typedef struct [Hid_EventProperties](_hid___event_properties.md)<br/>设备关注事件属性。  | 
+| [Hid_EmitItem](_hid_ddk.md#hid_emititem) | 事件信息。  | 
+| [Hid_Device](_hid_ddk.md#hid_device) | 设备基本信息。  | 
+| [Hid_EventTypeArray](_hid_ddk.md#hid_eventtypearray) | 事件类型编码数组。  | 
+| [Hid_KeyCodeArray](_hid_ddk.md#hid_keycodearray) | 键值属性数组。  | 
+| [Hid_AbsAxesArray](_hid_ddk.md#hid_absaxesarray) | 绝对坐标属性数组。  | 
+| [Hid_RelAxesArray](_hid_ddk.md#hid_relaxesarray) | 相对坐标属性数组。  | 
+| [Hid_MscEventArray](_hid_ddk.md#hid_msceventarray) | 其它特殊事件属性数组。  | 
+| [Hid_EventProperties](_hid_ddk.md#hid_eventproperties) | 设备关注事件属性。  | 
 
 
 ### 枚举

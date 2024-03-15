@@ -18,8 +18,6 @@ USB子系统面向应用发布如下系统公共事件，应用如需订阅系�
 
 当USB的端口状态发生变化，将会触发事件通知服务发布该系统公共事件。
 
-与这个公共事件相关的接口：具体可见[setPortRoles](../Readme-CN.md)中的dataRole参数。
-
 ## COMMON_EVENT_USB_DEVICE_ATTACHED
 
 当用户设备作为USB主机时，提示USB设备已挂载。
@@ -27,9 +25,7 @@ USB子系统面向应用发布如下系统公共事件，应用如需订阅系�
 - 常量值："usual.event.hardware.usb.action.USB_DEVICE_ATTACHED"
 - 订阅方需要的权限：无
 
-当USB连接时状态发生变化，将会触发事件通知服务发布该系统公共事件。
-
-与这个公共事件相关的接口：具体可见[USBDevice](../Readme-CN.md)。 
+当USB连接时状态发生变化，将会触发事件通知服务发布该系统公共事件。 
 
 ## COMMON_EVENT_USB_DEVICE_DETACHED
 
@@ -39,8 +35,6 @@ USB子系统面向应用发布如下系统公共事件，应用如需订阅系�
 - 订阅方需要的权限：无
 
 当USB断开时状态发生变化，将会触发事件通知服务发布该系统公共事件。
-
-与这个公共事件相关的接口：具体可见[USBDevice](../Readme-CN.md)。
 
 ## COMMON_EVENT_USB_ACCESSORY_ATTACHED
 

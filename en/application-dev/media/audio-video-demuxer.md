@@ -35,13 +35,13 @@ The following demuxing formats are supported:
 
 ## How to Develop
 
-Read [AVDemuxer](../reference/native-apis/_a_v_demuxer.md) and [AVSource](../reference/native-apis/_a_v_source.md) for the API reference.
+Read [AVDemuxer](../reference/apis-avcodec-kit/_a_v_demuxer.md) and [AVSource](../reference/apis-avcodec-kit/_a_v_source.md) for the API reference.
 
 > **NOTE**
 >
 > - To call the demuxing APIs to parse a network playback path, declare the **ohos.permission.INTERNET** permission by following the instructions provided in [Declaring Permissions](../security/AccessToken/declare-permissions.md).
 > - To call the demuxer APIs to write a local file, request the **ohos.permission.READ_MEDIA** permission by following the instructions provided in [Requesting User Authorization](../security/AccessToken/request-user-authorization.md).
-> - You can also use **ResourceManager.getRawFd** to obtain the FD of a file packed in the HAP file. For details, see [ResourceManager API Reference](../reference/apis/js-apis-resource-manager.md#getrawfd9).
+> - You can also use **ResourceManager.getRawFd** to obtain the FD of a file packed in the HAP file. For details, see [ResourceManager API Reference](../reference/apis-localization-kit/js-apis-resource-manager.md#getrawfd9).
 
 ### Linking the Dynamic Library in the CMake Script
 
@@ -65,7 +65,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
 
 2. Create a demuxer instance.
 
-   ``` c++
+   ```c++
    // Create the FD. You must have the read permission on the file handle when opening the file. (filePath indicates the path of the file to be demuxed. The file must exist.)
    std::string filePath = "test.mp4";
    int fd = open(filePath.c_str(), O_RDONLY);
@@ -95,10 +95,38 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
       return;
    }
    ```
+3. (Optional) Register a [callback to obtain the media key system information](../reference/apis-drm-kit/_drm.md#drm_mediakeysysteminfocallback). If the stream is not a DRM stream or the [media key system information](../reference/apis-drm-kit/_drm.md#drm_mediakeysysteminfo) has been obtained, you can skip this step.
 
-3. (Optional) Obtain the number of tracks. If you know the track information, skip this step.
+   Import the header file.
+   ```c++
+   #include <multimedia/drm_framework/native_drm_common.h>
+   ```
+   Link the dynamic library in the cmake script.
 
-   ``` c++
+   ``` cmake
+   target_link_libraries(sample PUBLIC libnative_drm.so)
+   ```
+
+   The following is the sample code:
+   ```c++
+   // Implement the OnDrmInfoChanged callback.
+   static void OnDrmInfoChanged(DRM_MediaKeySystemInfo *drmInfo)
+   {
+      // Parse the media key system information, including the quantity, DRM type, and corresponding PSSH.
+   }
+
+   // Set the asynchronous callbacks.
+   DRM_MediaKeySystemInfoCallback callback = &OnDrmInfoChanged;
+   int32_t ret = OH_AVDemuxer_SetMediaKeySystemInfoCallback(demuxer, callback);
+
+   // After the callback is invoked, you can call the API to proactively obtain the media key system information.
+   DRM_MediaKeySystemInfo mediaKeySystemInfo;
+   OH_AVDemuxer_GetMediaKeySystemInfo(demuxer, &mediaKeySystemInfo);
+   ```
+
+4. (Optional) Obtain the number of tracks. If you know the track information, skip this step.
+
+   ```c++
    // Obtain the number of tracks from the file source information.
    OH_AVFormat *sourceFormat = OH_AVSource_GetSourceFormat(source);
    if (sourceFormat == nullptr) {
@@ -110,9 +138,9 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    OH_AVFormat_Destroy(sourceFormat);
    ```
 
-4. (Optional) Obtain the track index and format. If you know the track information, skip this step.
+5. (Optional) Obtain the track index and format. If you know the track information, skip this step.
 
-   ``` c++
+   ```c++
    uint32_t audioTrackIndex = 0;
    uint32_t videoTrackIndex = 0;
    int32_t w = 0;
@@ -136,9 +164,9 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    }
    ```
 
-5. Select a track, from which the demuxer reads data.
+6. Select a track, from which the demuxer reads data.
 
-   ``` c++
+   ```c++
    if(OH_AVDemuxer_SelectTrackByID(demuxer, audioTrackIndex) != AV_ERR_OK){
       printf("select audio track failed: %d", audioTrackIndex);
       return;
@@ -151,9 +179,9 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    // OH_AVDemuxer_UnselectTrackByID(demuxer, audioTrackIndex);
    ```
 
-6. (Optional) Seek to the specified time for the selected track.
+7. (Optional) Seek to the specified time for the selected track.
 
-   ``` c++
+   ```c++
    // Demuxing is performed from this time.
    // Note:
    // 1. If OH_AVDemuxer_SeekToTime is called for an MPEG TS file, the target position may be a non-key frame. You can then call OH_AVDemuxer_ReadSampleBuffer to check whether the current frame is a key frame based on the obtained OH_AVCodecBufferAttr. If it is a non-key frame, which causes display issues on the application side, cyclically read the frames until you reach the first key frame, where you can perform processing such as decoding.
@@ -161,9 +189,9 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    OH_AVDemuxer_SeekToTime(demuxer, 0, OH_AVSeekMode::SEEK_MODE_CLOSEST_SYNC);
    ```
 
-7. Start demuxing and cyclically obtain frame data. The code snippet below uses a file that contains audio and video tracks as an example.
+8. Start demuxing and cyclically obtain frame data. The code snippet below uses a file that contains audio and video tracks as an example.
 
-   ``` c++
+   ```c++
    // Create a buffer to store the data obtained after demuxing.
    OH_AVBuffer *buffer = OH_AVBuffer_Create(w * h * 3 >> 1);
    if (buffer == nullptr) {
@@ -203,9 +231,9 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    OH_AVBuffer_Destroy(buffer);
    ```
 
-8. Destroy the demuxer instance.
+9. Destroy the demuxer instance.
 
-   ``` c++
+   ```c++
    // Manually set the instance to NULL after OH_AVSource_Destroy is called. Do not call this API repeatedly for the same instance; otherwise, a program error occurs.
    if (OH_AVSource_Destroy(source) != AV_ERR_OK) {
       printf("destroy source pointer error");

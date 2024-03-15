@@ -891,6 +891,7 @@ loadData(data: string, mimeType: string, encoding: string, baseUrl?: string, his
 > 
 > 若加载本地图片，可以给baseUrl或historyUrl任一参数赋值空格，详情请参考示例代码。
 > 加载本地图片场景，baseUrl和historyUrl不能同时为空，否则图片无法成功加载。
+> 若html中的富文本中带有注入#等特殊字符，建议使用带有两个空格的loadData函数，将baseUrl和historyUrl置为空。
 
 **错误码：**
 
@@ -1459,7 +1460,7 @@ registerJavaScriptProxy(object: object, name: string, methodList: Array\<string>
 
 | 参数名     | 类型       | 必填 | 说明                                        |
 | ---------- | -------------- | ---- | ------------------------------------------------------------ |
-| object     | object         | 是   | 参与注册的应用侧JavaScript对象。只能声明方法，不能声明属性 。<br>方法的参数和返回类型可以为string，number，boolean。<br>方法的参数和返回类型支持Dictionary，Array，最多嵌套10层，每层1w个数据。<br>方法的参数和返回类型支持Object，需要在Object里添加属性methodNameListForJsProxy:[fun1, fun2]，fun1和fun2为可被调用的方法。<br>方法的参数支持Function，Promise，它们的Callback不能有返回值。<br>方法的返回类型支持Promise，Promise的Callback不能有返回值。<br>示例请参考[前端页面调用应用侧函数](../../web/web-in-page-app-function-invoking.md)。 |
+| object     | object         | 是   | 参与注册的应用侧JavaScript对象。可以声明方法，也可以声明属性，但是不支持h5直接调用。<br>方法的参数和返回类型可以为string，number，boolean。<br>方法的参数和返回类型支持Dictionary，Array，最多嵌套10层，每层1w个数据。<br>方法的参数和返回类型支持Object，需要在Object里添加属性methodNameListForJsProxy:[fun1, fun2]，fun1和fun2为可被调用的方法。<br>方法的参数支持Function，Promise，它们的Callback不能有返回值。<br>方法的返回类型支持Promise，Promise的Callback不能有返回值。<br>示例请参考[前端页面调用应用侧函数](../../web/web-in-page-app-function-invoking.md)。 |
 | name       | string         | 是   | 注册对象的名称，与window中调用的对象名一致。注册后window对象可以通过此名字访问应用侧JavaScript对象。 |
 | methodList | Array\<string> | 是   | 参与注册的应用侧JavaScript对象的方法。                       |
 
@@ -4229,7 +4230,7 @@ export default class EntryAbility extends UIAbility {
 
 static customizeSchemes(schemes: Array\<WebCustomScheme\>): void
 
-配置Web自定义协议请求的权限。建议在任何Web组件初始化之前进行调用。
+对Web内核赋予自定义协议url的跨域请求与fetch请求的权限。当Web在跨域fetch自定义协议url时，该fetch请求可被onInterceptRequest事件接口所拦截，从而开发者可以进一步处理该请求。建议在任何Web组件初始化之前调用该接口。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -4755,7 +4756,12 @@ export default class EntryAbility extends UIAbility {
 
 setCustomUserAgent(userAgent: string): void
 
-设置自定义用户代理，会覆盖系统的用户代理。
+设置自定义用户代理，会覆盖系统的用户代理，推荐设置的位置是onControllerAttached回调事件，不建议放在onLoadIntercept。
+
+> **说明：**
+>
+>setCustomUserAgent设置后与web页面的跳转时序是web跳转后才设置UserAgent，这就导致页面跳转了但新agent关联的页面堆栈数仍只有一个,webviewController.accessBackward()总是返回false。
+>若需要setCustomUserAgent，在setCustomUserAgent方法后添加this.controller.loadUrl(this.webUrl)，webUrl为要加载的web页面，在原始的web组件的src可以设置一个空字符串。
 
 **系统能力：**  SystemCapability.Web.Webview.Core
 

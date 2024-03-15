@@ -10,7 +10,7 @@ By default, the main screen is captured, and the **Graphics** module generates t
 
 ## Development Guidelines
 
-The full screen capture process involves creating an **AVScreenCapture** instance, configuring audio and video capture parameters, starting and stopping screen capture, and releasing the instance. This topic describes how to use the **AVScreenCapture** module to carry out one-time screen capture. For details about the API reference, see [AVScreenCapture](../reference/native-apis/_a_v_screen_capture.md).
+The full screen capture process involves creating an **AVScreenCapture** instance, configuring audio and video capture parameters, starting and stopping screen capture, and releasing the instance. This topic describes how to use the **AVScreenCapture** module to carry out one-time screen capture. For details about the API reference, see [AVScreenCapture](../reference/apis-media-kit//_a_v_screen_capture.md).
 
 After an **AVScreenCapture** instance is created, different APIs can be called to switch the AVScreenCapture to different states and trigger the required behavior. If an API is called when the AVScreenCapture is not in the given state, the system may throw an exception or generate other undefined behavior. Therefore, you are advised to check the AVScreenCapture state before triggering state transition.
 

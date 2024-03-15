@@ -15,10 +15,10 @@ The **Camera_FrameShutterInfo** struct defines the frame shutter callback.
 
 ### Member Variables
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| [captureId](#captureid) | Capture ID.|
-| [timestamp](#timestamp) | Timestamp of the frame captured.|
+| int32_t [captureId](#captureid) | Capture ID. | 
+| uint64_t [timestamp](#timestamp) | Timestamp of the frame captured. | 
 
 
 ## Member Variable Description
@@ -29,7 +29,6 @@ The **Camera_FrameShutterInfo** struct defines the frame shutter callback.
 ```
 int32_t Camera_FrameShutterInfo::captureId
 ```
-
 **Description**
 
 Capture ID.
@@ -40,7 +39,6 @@ Capture ID.
 ```
 uint64_t Camera_FrameShutterInfo::timestamp
 ```
-
 **Description**
 
 Timestamp of the frame captured.

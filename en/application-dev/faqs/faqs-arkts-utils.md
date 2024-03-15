@@ -62,41 +62,46 @@ To address the problem that a large number of threads are required, you are advi
 
 ## How do I set task priorities, what are the differences between scheduling policies for these priorities, and what are the recommended scenarios for them? (API version 10)
 
-Set task priorities by referring to the code below.
+ 
+
+You can set different priorities for different tasks. The sequence of repeatedly executing the same task is irrelevant to the priority.
 
 **Sample Code**
 
 ```ts
 @Concurrent
 function printArgs(args: number): number {
-  console.log("printArgs: " + args);
+  let t: number = Date.now();
+  while (Date.now() - t < 1000) { // 1000: delay 1s
+    continue;
+  }
+  console.info("printArgs: " + args);
   return args;
 }
 
-let task: taskpool.Task = new taskpool.Task(printArgs, 100); // 100: test number
-let highCount = 0;
-let mediumCount = 0;
-let lowCount = 0;
-let allCount = 100;
-for (let i: number = 0; i < allCount; i++) {
-  taskpool.execute(task, taskpool.Priority.LOW).then((res: number) => {
-    lowCount++;
-    console.log("taskpool lowCount is :" + lowCount);
-  });
-  taskpool.execute(task, taskpool.Priority.MEDIUM).then((res: number) => {
-    mediumCount++;
-    console.log("taskpool mediumCount is :" + mediumCount);
-  });
-  taskpool.execute(task, taskpool.Priority.HIGH).then((res: number) => {
-    highCount++;
-    console.log("taskpool highCount is :" + highCount);
-  });
+let allCount = 100; // 100: test number
+let taskArray: Array<taskpool.Task> = [];
+// Create 300 tasks and add them to taskArray.
+for (let i: number = 1; i < allCount; i++) {
+  let task1: taskpool.Task = new taskpool.Task(printArgs, i);
+  taskArray.push(task1);
+  let task2: taskpool.Task = new taskpool.Task(printArgs, i * 10); // 10: test number
+  taskArray.push(task2);
+  let task3: taskpool.Task = new taskpool.Task(printArgs, i * 100); // 100: test number
+  taskArray.push(task3);
+}
+
+// Obtain different tasks from taskArray and specify different priorities for execution.
+for (let i: number = 0; i < allCount; i+=3) { // 3: Three tasks are executed each time. When obtaining tasks cyclically, obtain the three items following the last batch to ensure that different tasks are obtained each time.
+  taskpool.execute(taskArray[i], taskpool.Priority.HIGH);
+  taskpool.execute(taskArray[i + 1], taskpool.Priority.LOW);
+  taskpool.execute(taskArray[i + 2], taskpool.Priority.MEDIUM);
 }
 ```
 
 **References**
 
-[Priority](../reference/apis/js-apis-taskpool.md)
+[Priority](../reference/apis-arkts/js-apis-taskpool.md)
 
 ## How do I convert the implementation in the Java-like thread model (memory sharing) to the implementation in the ArkTS thread model (memory isolation)? (API version 11)
 
@@ -404,8 +409,8 @@ Subthreads support priority setting, and the priority affects their scheduling.
 
 **References**
 
-1. [@ohos.taskpool (Using the Task Pool)](../reference/apis/js-apis-taskpool.md)
-2. [@ohos.worker (Worker Startup)](../reference/apis/js-apis-worker.md)
+1. [@ohos.taskpool (Using the Task Pool)](../reference/apis-arkts/js-apis-taskpool.md)
+2. [@ohos.worker (Worker Startup)](../reference/apis-arkts/js-apis-worker.md)
 
 ## Does ArkTS support multithreading development using a Java-like shared memory model? (API version 10)
 
@@ -490,7 +495,7 @@ They are thread safe.
 
 ##  If most background tasks (computing, tracing, and storage) in ArkTS use asynchronous concurrency mode, will the main thread become slower and finally cause frame freezing and frame loss? (API version 10)
 
- If I/O operations are not involved, asynchronous tasks of ArkTS APIs are triggered at the microtask execution time of the main thread and still occupy the main thread. You are advised to use **TaskPool** to distribute the tasks to the background task pool.
+If I/O operations are not involved, asynchronous tasks of ArkTS APIs are triggered at the microtask execution time of the main thread and still occupy the main thread. You are advised to use **TaskPool** to distribute the tasks to the background task pool.
 
 ##  How do I implement synchronous function calls in ArkTS as easily as using **synchronized** in Java methods? (API version 10)
 

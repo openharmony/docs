@@ -3,7 +3,7 @@
 
 ## 概述
 
-声明了媒体子系统的错误码OH_AVErrCode的定义。
+声明了播放框架的错误码OH_AVErrCode的定义。
 
 **库：** libnative_media_core.so
 

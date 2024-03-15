@@ -15,7 +15,7 @@ Both KV stores and RDB stores support database backup and restore. In addition, 
 
 ## Backing Up, Restoring, and Deleting a KV Store
 
-You can use **backup()** to back up a KV store, use **restore()** to restore a KV store, and use **deletebackup()** to delete a KV store backup file. For details about the APIs, see [Distributed KV Store](../reference/apis/js-apis-distributedKVStore.md).
+You can use **backup()** to back up a KV store, use **restore()** to restore a KV store, and use **deletebackup()** to delete a KV store backup file. For details about the APIs, see [Distributed KV Store](../reference/apis-arkdata/js-apis-distributedKVStore.md).
 
 1. Create a KV store.
 
@@ -164,7 +164,7 @@ You can use **backup()** to back up a KV store, use **restore()** to restore a K
 
 ## Backing Up and Restoring an RDB Store
 
-You can use **backup()** to back up an RDB store, and use **restore()** to restore an RDB store. For details about the APIs, see [RDB Store](../reference/apis/js-apis-data-relationalStore.md).
+You can use **backup()** to back up an RDB store, and use **restore()** to restore an RDB store. For details about the APIs, see [RDB Store](../reference/apis-arkdata/js-apis-data-relationalStore.md).
 
 1. Use **getRdbStore()** to create an RDB store.
      

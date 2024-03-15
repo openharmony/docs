@@ -69,4 +69,3 @@ Sets the value for a data item. This API uses a promise to return the result.
 | Type             | Description                                              |
 | ----------------- | -------------------------------------------------- |
 | Promise\<boolean> | Promise used to return the result. Returns **true** if the operation is successful; returns **false** otherwise.|
-<!--no_check-->

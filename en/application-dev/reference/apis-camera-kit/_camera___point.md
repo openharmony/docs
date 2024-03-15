@@ -17,8 +17,8 @@ The **Camera_Point** struct defines the parameters that describe a point.
 
 | Name| Description| 
 | -------- | -------- |
-| [x](#x) | X coordinate.| 
-| [y](#y) | Y coordinate.| 
+| double [x](#x) | X coordinate. | 
+| double [y](#y) | Y coordinate. | 
 
 
 ## Member Variable Description
@@ -29,7 +29,6 @@ The **Camera_Point** struct defines the parameters that describe a point.
 ```
 double Camera_Point::x
 ```
-
 **Description**
 
 X coordinate.
@@ -40,7 +39,6 @@ X coordinate.
 ```
 double Camera_Point::y
 ```
-
 **Description**
 
 Y coordinate.

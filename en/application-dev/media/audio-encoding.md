@@ -26,7 +26,7 @@ Currently, the following encoding capabilities are supported:
 
 ## How to Develop
 
-Read [Audio Codec](../reference/native-apis/_audio_codec.md) for the API reference.
+Read [Audio Codec](../reference/apis-avcodec-kit/_audio_codec.md) for the API reference.
 
 Refer to the code snippet below to complete the entire audio encoding process, including creating an encoder, setting encoding parameters (such as the sampling rate, bit rate, and number of audio channels), and starting, refreshing, resetting, and destroying the encoder.
 
@@ -76,7 +76,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     // Create an encoder by MIME type.
     OH_AVCodec *audioEnc_ = OH_AudioCodec_CreateByMime(OH_AVCODEC_MIMETYPE_AUDIO_AAC, isEncoder);
     ```
-   
+    
     ```cpp
     // Initialize the queues.
     class AEncBufferSignal {
@@ -157,10 +157,12 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
 
 4. Call **OH_AudioCodec_Configure** to configure the encoder.
 
-   The following options are mandatory: sampling rate, bit rate, number of audio channels, audio channel type, and bit depth. The maximum input length is optional.
-   
+   The following options are mandatory: sampling rate, bit rate, number of audio channels, audio channel type, and bit depth.
+
+   The maximum input length is optional.
+
    For FLAC encoding, the compliance level and sampling precision are also mandatory.
-   
+
    The following provides the AAC invoking process.
 
     ```cpp
@@ -262,7 +264,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
    For AAC encoding, **FRAME_SIZE** (number of sampling points) is fixed at **1024**.
    
    For FLAC encoding, set **FRAME_SIZE** based on the table below.
-   
+
    | Sampling Rate| FRAME_SIZE|
    | :----: | :----: |
    |  8000  |  576  |
@@ -275,7 +277,9 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
    | 88200 |  8192  |
    | 96000 |  8192  |
 
-   **NOTE**: If **FRAME_SIZE** is not set to **1024** for AAC encoding, an error code is returned. In the case of FLAC encoding, if **FRAME_SIZE** is set to a value greater than the value listed in the table for a given sampling rate, an error code is returned; if **FRAME_SIZE** is set to a value less than the value listed, the encoded file may be damaged.
+   > **NOTE**
+   >
+   > If **FRAME_SIZE** is not set to **1024** for AAC encoding, an error code is returned. In the case of FLAC encoding, if **FRAME_SIZE** is set to a value greater than the value listed in the table for a given sampling rate, an error code is returned; if **FRAME_SIZE** is set to a value less than the value listed, the encoded file may be damaged.
 
    ```c++
     constexpr int32_t FRAME_SIZE = 1024; // aac
@@ -298,7 +302,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     if (ret != AV_ERR_OK) {
         // Exception handling.
     }
-   ```
+    ```
 
 8. Call **OH_AudioCodec_FreeOutputBuffer()** to output the encoded stream.
 
@@ -376,7 +380,9 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
 
 12. Call **OH_AudioCodec_Destroy()** to destroy the encoder instance and release resources.
 
-    **NOTE**: You only need to call this API once.
+    > **NOTE**
+    >
+    > You only need to call the API once.
 
     ```c++
     // Call OH_AudioCodec_Destroy to destroy the encoder.

@@ -14,6 +14,10 @@ The [\<Scroll>](../../../application-dev/reference/arkui-ts/ts-container-scroll.
 
 This change is a non-compatible change. The new check rule does not affect the layout or behavior of the **\<Scroll>** component.
 
+**API Level**
+
+11
+
 **Change Since**
 
 OpenHarmony SDK 4.1.3.5

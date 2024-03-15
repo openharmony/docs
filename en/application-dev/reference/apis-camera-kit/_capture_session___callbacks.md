@@ -5,9 +5,7 @@
 
 The **CaptureSession_Callbacks** struct defines the callbacks used for session capture.
 
-**See**
-
-[OH_CaptureSession_RegisterCallback](_o_h___camera.md#oh_capturesession_registercallback)
+For details, see [OH_CaptureSession_RegisterCallback](_o_h___camera.md#oh_capturesession_registercallback).
 
 **Since**: 11
 
@@ -19,10 +17,10 @@ The **CaptureSession_Callbacks** struct defines the callbacks used for session c
 
 ### Member Variables
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| [onFocusStateChange](#onfocusstatechange) | Callback to report a session focus status change.|
-| [onError](#onerror) | Callback to report a session error.|
+| [OH_CaptureSession_OnFocusStateChange](_o_h___camera.md#oh_capturesession_onfocusstatechange) [onFocusStateChange](#onfocusstatechange) | Callback to report a session focus status change.| 
+| [OH_CaptureSession_OnError](_o_h___camera.md#oh_capturesession_onerror) [onError](#onerror) | Callback to report a session error.| 
 
 
 ## Member Variable Description

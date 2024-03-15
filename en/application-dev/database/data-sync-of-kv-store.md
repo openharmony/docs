@@ -32,7 +32,7 @@ The underlying devices manage the data by device. The device KV stores support d
 The **DatamgrService** provides the following synchronization types:
 
 
-- Manual synchronization: The application calls **sync()** to trigger a synchronization. The list of devices to be synchronized and the synchronization mode must be specified. The synchronization mode can be **PULL_ONLY** (pulling remote data to the local end), **PUSH_ONLY** (pushing local data to the remote end), or **PUSH_PULL** (pushing local data to the remote end and pulling remote data to the local end). You can use the [**sync()** with the **query** parameter](../reference/apis/js-apis-distributedKVStore.md#sync-1) to synchronize the data that meets the specified conditions.
+- Manual synchronization: The application calls **sync()** to trigger a synchronization. The list of devices to be synchronized and the synchronization mode must be specified. The synchronization mode can be **PULL_ONLY** (pulling remote data to the local end), **PUSH_ONLY** (pushing local data to the remote end), or **PUSH_PULL** (pushing local data to the remote end and pulling remote data to the local end). You can use the [**sync()** with the **query** parameter](../reference/apis-arkdata/js-apis-distributedKVStore.md#sync-1) to synchronize the data that meets the specified conditions.
 
 - Automatic synchronization: The distributed database automatically pushes local data to the remote end and pulls remote data to the local end. An automatic synchronization is triggered when a device goes online or an application updates data.
 
@@ -75,16 +75,16 @@ When data is added, deleted, or modified, a notification is sent to the subscrib
 
 ## Available APIs
 
-The following table lists the APIs for cross-device data synchronization of the single KV store. Most of the APIs are executed asynchronously, using a callback or promise to return the result. The following table uses the callback-based APIs as an example. For more information about the APIs, see [Distributed KV Store](../reference/apis/js-apis-distributedKVStore.md).
+The following table lists the APIs for cross-device data synchronization of the single KV store. Most of the APIs are executed asynchronously, using a callback or promise to return the result. The following table uses the callback-based APIs as an example. For more information about the APIs, see [Distributed KV Store](../reference/apis-arkdata/js-apis-distributedKVStore.md).
 
-| API| Description|
+| API| Description| 
 | -------- | -------- |
-| createKVManager(config: KVManagerConfig): KVManager | Creates a **KvManager** instance to manage database objects.|
-| getKVStore&lt;T&gt;(storeId: string, options: Options, callback: AsyncCallback&lt;T&gt;): void | Creates and obtains a KV store of the specified type.|
-| put(key: string, value: Uint8Array\|string\|number\|boolean, callback: AsyncCallback&lt;void&gt;): void | Inserts and updates data.|
-| on(event: 'dataChange', type: SubscribeType, listener: Callback&lt;ChangeNotification&gt;): void | Subscribes to data changes in the KV store.|
-| get(key: string, callback: AsyncCallback&lt;boolean \| string \| number \| Uint8Array&gt;): void | Queries the value of the specified key.|
-| sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void | Triggers a manual synchronization of the KV store.|
+| createKVManager(config: KVManagerConfig): KVManager | Creates a **KvManager** instance to manage database objects.| 
+| getKVStore&lt;T&gt;(storeId: string, options: Options, callback: AsyncCallback&lt;T&gt;): void | Creates and obtains a KV store of the specified type.| 
+| put(key: string, value: Uint8Array\|string\|number\|boolean, callback: AsyncCallback&lt;void&gt;): void | Inserts and updates data.| 
+| on(event: 'dataChange', type: SubscribeType, listener: Callback&lt;ChangeNotification&gt;): void | Subscribes to data changes in the KV store.| 
+| get(key: string, callback: AsyncCallback&lt;boolean \| string \| number \| Uint8Array&gt;): void | Queries the value of the specified key.| 
+| sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void | Triggers a manual synchronization of the KV store.| 
 
 
 ## How to Develop
@@ -98,7 +98,7 @@ The following uses a single KV store as an example to describe how to implement 
 > The data on a device can be synchronized only to the devices whose data security labels are not higher than the security level of the device. For details, see [Access Control Mechanism in Cross-Device Synchronization](sync-app-data-across-devices-overview.md#access-control-mechanism-in-cross-device-synchronization).
 
 1. Import the module.
-   
+     
    ```ts
    import distributedKVStore from '@ohos.data.distributedKVStore';
    ```
@@ -106,16 +106,14 @@ The following uses a single KV store as an example to describe how to implement 
 2. Request permissions.
 
    a) Declare the **ohos.permission.DISTRIBUTED_DATASYNC** permission. For details, see [Declaring Permissions](../security/AccessToken/declare-permissions.md).
-
-   b) Display a dialog box to ask user authorization when the application is started for the first time. For details, see [Requesting User Authorization](../security/AccessToken/request-user-authorization.md).
+   b) Display a dialog box to ask for user authorization when the application is started for the first time. For details, see [Requesting User Authorization](../security/AccessToken/request-user-authorization.md).
 
 3. Create a **KvManager** instance based on the specified **KvManagerConfig** object.
 
    a) Create a **kvManagerConfig** object based on the application context.
-
    b) Create a **KvManager** instance.
 
-   
+     
    ```ts
    // Obtain the context of the stage model.
    import window from '@ohos.window';
@@ -160,10 +158,9 @@ The following uses a single KV store as an example to describe how to implement 
 4. Obtain the KV store of the specified type.
 
    a) Declare the ID of the distributed KV store to create.
-
    b) Disable the auto synchronization function (**autoSync:false**) to facilitate subsequent verification of the synchronization function. If synchronization is required, call the **sync()** interface.
 
-   
+     
    ```ts
    let kvStore: distributedKVStore.SingleKVStore | undefined = undefined;
    try {
@@ -197,8 +194,8 @@ The following uses a single KV store as an example to describe how to implement 
    }
    ```
 
-5. Subscribe to distributed data changes. To unsubscribe from the data changes, call [off('dataChange')](../reference/apis/js-apis-distributedKVStore.md#offdatachange).
-   
+5. Subscribe to distributed data changes. To unsubscribe from the data changes, call [off('dataChange')](../reference/apis-arkdata/js-apis-distributedKVStore.md#offdatachange).
+     
    ```ts
    try {
      kvStore.on('dataChange', distributedKVStore.SubscribeType.SUBSCRIBE_TYPE_ALL, (data) => {
@@ -213,10 +210,9 @@ The following uses a single KV store as an example to describe how to implement 
 6. Write data to the single KV store.
 
    a) Construct the key and value to be written to the single KV store.
-
    b) Write KV pairs to the single KV store.
 
-   
+     
    ```ts
    const KEY_TEST_STRING_ELEMENT = 'key_test_string';
    const VALUE_TEST_STRING_ELEMENT = 'value_test_string';
@@ -237,10 +233,9 @@ The following uses a single KV store as an example to describe how to implement 
 7. Query data in the single KV store.
 
    a) Construct the key to be queried from the single KV store.
-
    b) Query data from the single KV store.
 
-   
+     
    ```ts
    const KEY_TEST_STRING_ELEMENT = 'key_test_string';
    const VALUE_TEST_STRING_ELEMENT = 'value_test_string';
@@ -272,7 +267,7 @@ The following uses a single KV store as an example to describe how to implement 
 
    > **NOTE**
    >
-   > In manual synchronization mode, **deviceIds** can be obtained by [devManager.getAvailableDeviceListSync](../reference/apis/js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
+   > In manual synchronization mode, **deviceIds** can be obtained by [devManager.getAvailableDeviceListSync](../reference/apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
 
    ```ts
    import deviceManager from '@ohos.distributedDeviceManager';
@@ -302,4 +297,4 @@ The following uses a single KV store as an example to describe how to implement 
      console.error("createDeviceManager errCode:" + error.code + ",errMessage:" + error.message);
    }
    ```
-
+<!--no_check-->
