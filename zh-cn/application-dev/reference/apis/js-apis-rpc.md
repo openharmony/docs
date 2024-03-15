@@ -7688,7 +7688,7 @@ isObjectDead(): boolean
   | TF_SYNC       | 0 (0x00)  | 同步调用标识。                                              |
   | TF_ASYNC      | 1 (0x01)  | 异步调用标识。                                              |
   | TF_ACCEPT_FDS | 16 (0x10) | 指示sendMessageRequest<sup>9+</sup>接口可以返回文件描述符。 |
-  | TF_WAIT_TIME  | 8 (0x8)   | RPC等待时间(单位/秒)，不用于IPC的情况。                                     |
+  | TF_WAIT_TIME  | 4 (0x4)   | RPC等待时间(单位/秒)，不用于IPC的情况。                                     |
 
 ### constructor<sup>9+</sup>
 
