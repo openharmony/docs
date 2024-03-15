@@ -6542,6 +6542,176 @@ struct WebComponent {
 }
 ```
 
+### startCamera<sup>12+</sup>
+
+startCamera(): void
+
+开启当前网页摄像头捕获。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**示例：**
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+import common from '@ohos.app.ability.common';
+import abilityAccessCtrl, { PermissionRequestResult } from '@ohos.abilityAccessCtrl';
+import business_error, { BusinessError } from '@ohos.base';
+
+let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
+try {
+  let context: Context = getContext(this) as common.UIAbilityContext;
+  atManager.requestPermissionsFromUser(context, ['ohos.permission.CAMERA'], (err: BusinessError, data: PermissionRequestResult) => {
+    console.info('data:' + JSON.stringify(data));
+    console.info('data permissions:' + data.permissions);
+    console.info('data authResults:' + data.authResults);
+  })
+} catch (error) {
+  let e: business_error.BusinessError = error as business_error.BusinessError;
+  console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+}
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button("startCamera").onClick(() => {
+        try {
+          this.controller.startCamera();
+        } catch (error) {
+          let e: business_error.BusinessError = error as business_error.BusinessError;
+          console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+        }
+      })
+      Button("stopCamera").onClick(() => {
+        try {
+          this.controller.stopCamera();
+        } catch (error) {
+          let e: business_error.BusinessError = error as business_error.BusinessError;
+          console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+        }
+      })
+      Button("closeCamera").onClick(() => {
+        try {
+          this.controller.closeCamera();
+        } catch (error) {
+          let e: business_error.BusinessError = error as business_error.BusinessError;
+          console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+        }
+      })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
+        .onPermissionRequest((event) => {
+          if (event) {
+            AlertDialog.show({
+              title: 'title',
+              message: 'text',
+              primaryButton: {
+                value: 'deny',
+                action: () => {
+                  event.request.deny();
+                }
+              },
+              secondaryButton: {
+                value: 'onConfirm',
+                action: () => {
+                  event.request.grant(event.request.getAccessibleResource());
+                }
+              },
+              cancel: () => {
+                event.request.deny();
+              }
+            })
+          }
+        })
+    }
+  }
+}
+
+```
+加载的html文件。
+ ```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <video id="video" width="400px" height="400px" autoplay="autoplay">
+    </video>
+    <input type="button" title="HTML5摄像头" value="开启摄像头" onclick="getMedia()" />
+    <script>
+      function getMedia() {
+        let constraints = {
+          video: {
+            width: 500,
+            height: 500
+          },
+          audio: true
+        }
+        let video = document.getElementById("video");
+        let promise = navigator.mediaDevices.getUserMedia(constraints);
+        promise.then(function(MediaStream) {
+          video.srcObject = MediaStream;
+          video.play();
+        })
+      }
+    </script>
+  </body>
+</html>
+```
+
+### stopCamera<sup>12+</sup>
+
+stopCamera(): void
+
+停止当前网页摄像头捕获。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**示例：**
+
+完整示例代码参考[startCamera](#startcamera12)。
+
+### closeCamera<sup>12+</sup>
+
+closeCamera(): void
+
+关闭当前网页摄像头捕获。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**示例：**
+
+完整示例代码参考[startCamera](#startcamera12)。
+
 ## WebCookieManager
 
 通过WebCookie可以控制Web组件中的cookie的各种行为，其中每个应用中的所有web组件共享一个WebCookieManager实例。
