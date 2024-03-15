@@ -100,6 +100,7 @@
       - [无障碍属性](arkui-ts/ts-universal-attributes-accessibility.md)
       - [动态属性设置](arkui-ts/ts-universal-attributes-attribute-modifier.md)
       - [外描边设置](arkui-ts/ts-universal-attributes-outline.md)
+      - [自定义绘制](arkui-ts/ts-universal-attributes-draw-modifier.md)
       - 触摸交互控制
         - [触摸热区设置](arkui-ts/ts-universal-attributes-touch-target.md)
         - [触摸测试控制](arkui-ts/ts-universal-attributes-hit-test-behavior.md)
