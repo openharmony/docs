@@ -146,7 +146,8 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so)
 
 下面展示了使用AVScreenCapture屏幕录制的完整示例代码。
 
-创建OH_AVBuffer,参考 [视频解码Buffer模式](../avcodec/video-decoding.md#buffer模式)
+创建OH_AVBuffer,参考 [视频解码Buffer模式](../avcodec/video-decoding.md#buffer模式)。
+
 使用Surface模式录屏,参考[Surface模式](../avcodec/video-encoding.md#surface模式)。
 
 目前阶段流程结束后返回的buffer为原始码流，针对原始码流可以进行编码并以mp4等文件格式保存以供播放。编码格式当前阶段仅作预留，待后续版本实现。
