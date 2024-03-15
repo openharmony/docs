@@ -1011,7 +1011,7 @@ createImageSource(uri: string, options: SourceOptions): ImageSource
 | 参数名  | 类型                            | 必填 | 说明                                |
 | ------- | ------------------------------- | ---- | ----------------------------------- |
 | uri     | string                          | 是   | 图片路径，当前仅支持应用沙箱路径。</br>当前支持格式有：.jpg .png .gif .bmp .webp RAW [SVG<sup>10+</sup>](#svg标签说明) .ico<sup>11+</sup>。 |
-| options | [SourceOptions](#sourceoptions9) | 是   | 图片属性，包括图片序号与默认属性值。|
+| options | [SourceOptions](#sourceoptions9) | 是   | 图片属性，包括图片像素密度、像素格式和图片尺寸。|
 
 **返回值：**
 
@@ -1065,7 +1065,7 @@ createImageSource(fd: number, options: SourceOptions): ImageSource
 | 参数名  | 类型                            | 必填 | 说明                                |
 | ------- | ------------------------------- | ---- | ----------------------------------- |
 | fd      | number                          | 是   | 文件描述符fd。                      |
-| options | [SourceOptions](#sourceoptions9) | 是   | 图片属性，包括图片序号与默认属性值。|
+| options | [SourceOptions](#sourceoptions9) | 是   | 图片属性，包括图片像素密度、像素格式和图片尺寸。 |
 
 **返回值：**
 
@@ -1121,7 +1121,7 @@ createImageSource(buf: ArrayBuffer, options: SourceOptions): ImageSource
 | 参数名 | 类型                             | 必填 | 说明                                 |
 | ------ | -------------------------------- | ---- | ------------------------------------ |
 | buf    | ArrayBuffer                      | 是   | 图像缓冲区数组。                     |
-| options | [SourceOptions](#sourceoptions9) | 是   | 图片属性，包括图片序号与默认属性值。 |
+| options | [SourceOptions](#sourceoptions9) | 是   | 图片属性，包括图片像素密度、像素格式和图片尺寸。 |
 
 **返回值：**
 
@@ -1150,7 +1150,7 @@ createImageSource(rawfile: resourceManager.RawFileDescriptor, options?: SourceOp
 | 参数名 | 类型                             | 必填 | 说明                                 |
 | ------ | -------------------------------- | ---- | ------------------------------------ |
 | rawfile | [resourceManager.RawFileDescriptor](js-apis-resource-manager.md#rawfiledescriptor8) | 是 | 图像资源文件的RawFileDescriptor。 |
-| options | [SourceOptions](#sourceoptions9) | 否 | 图片属性，包括图片序号与默认属性值。 |
+| options | [SourceOptions](#sourceoptions9) | 否 | 图片属性，包括图片像素密度、像素格式和图片尺寸。 |
 
 **返回值：**
 
