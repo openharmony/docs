@@ -23,8 +23,8 @@ MindSpore Lite提供面向不同硬件设备的AI模型推理能力，使能全�
 
 MindSpore Lite已作为系统部件在OpenHarmony标准系统内置，基于MindSpore Lite开发AI应用的开发方式有：
 
-- 方式一：[使用MindSpore Lite JS API开发AI应用](./mindspore-guidelines-based-js.md)。开发者直接在UI代码中调用 MindSpore Lite JS API 加载模型并进行AI模型推理，此方式可快速验证效果。
-- 方式二：[使用MindSpore Lite Native API开发AI应用](./mindspore-guidelines-based-native.md)。开发者将算法模型和调用 MindSpore Lite Native API 的代码封装成动态库，并通过N-API封装成JS接口，供UI调用。
+- 方式一：[使用MindSpore Lite JS API开发AI应用](mindspore-guidelines-based-js.md)。开发者直接在UI代码中调用 MindSpore Lite JS API 加载模型并进行AI模型推理，此方式可快速验证效果。
+- 方式二：[使用MindSpore Lite Native API开发AI应用](mindspore-guidelines-based-native.md)。开发者将算法模型和调用 MindSpore Lite Native API 的代码封装成动态库，并通过N-API封装成JS接口，供UI调用。
 
 ## 与其他Kit的关系
 
