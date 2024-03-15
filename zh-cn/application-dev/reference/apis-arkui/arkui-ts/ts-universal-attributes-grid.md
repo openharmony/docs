@@ -29,7 +29,7 @@ struct GridContainerExample1 {
     Column() {
       Text('useSizeType').fontSize(15).fontColor(0xCCCCCC).width('90%')
       GridContainer() {
-        Row({}) {
+        Row() {
           Row() {
             Text('Left').fontSize(25)
           }
