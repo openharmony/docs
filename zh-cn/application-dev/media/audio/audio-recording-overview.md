@@ -12,7 +12,7 @@
 
 除上述方式为，也可以通过Media Kit实现音频播放。
 
-- [AVRecorder](using-avrecorder-for-recording.md)：用于音频录制的ArkTS/JS API，集成了音频输入录制、音频编码和媒体封装的功能。开发者可以直接调用设备硬件如麦克风录音，并生成m4a音频文件。
+- [AVRecorder](../media/using-avrecorder-for-recording.md)：用于音频录制的ArkTS/JS API，集成了音频输入录制、音频编码和媒体封装的功能。开发者可以直接调用设备硬件如麦克风录音，并生成m4a音频文件。
 
 ## 开发音频录制应用须知
 

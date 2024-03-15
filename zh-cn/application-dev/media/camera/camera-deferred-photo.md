@@ -116,7 +116,7 @@
 
 2. 调用媒体库接口落盘缩略图。
 
-   Context获取方式请参考：[获取UIAbility的上下文信息](../application-models/uiability-usage.md#获取uiability的上下文信息)。
+   Context获取方式请参考：[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
    ```ts
    let context = getContext(this);

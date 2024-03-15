@@ -168,7 +168,7 @@
 
    select返回的uri权限是只读权限，开发者可以根据结果集中uri做读取文件数据操作。建议定义一个全局变量保存uri，使用类似一个按钮去触发打开文件。
 
-   例如通过[文件管理接口](../reference/apis-core-file-kit/js-apis-file-fs.md)根据uri拿到音频资源的文件句柄（FD），再配合媒体服务实现音频播放的开发，具体请参考[音频播放开发指导](../media/audio-playback-overview.md)。
+   例如通过[文件管理接口](../reference/apis-core-file-kit/js-apis-file-fs.md)根据uri拿到音频资源的文件句柄（FD），再配合媒体服务实现音频播放的开发，具体请参考[音频播放开发指导](../media/audio/audio-playback-overview.md)。
 
    ```ts
    import picker from '@ohos.file.picker';

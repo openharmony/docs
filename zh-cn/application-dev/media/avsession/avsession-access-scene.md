@@ -1,6 +1,6 @@
 # 应用接入AVSession场景介绍
 
-音视频应用在实现音视频功能的同时，需要接入媒体会话即[AVSession Kit](../kit-readme/Readme-Avsession-Kit.md)，下文将提供一些典型的接入AVSession的展示和控制场景，方便开发者根据场景进行适配。
+音视频应用在实现音视频功能的同时，需要接入媒体会话即AVSession Kit，下文将提供一些典型的接入AVSession的展示和控制场景，方便开发者根据场景进行适配。
 
 对于不同的场景，将会在系统的播控中心看到不同的UI呈现。同时，在不同的场景下，应用的接入处理也需要遵循不同的规范约束。
 
@@ -10,7 +10,7 @@ AVSession会对后台的音频播放、VOIP通话做约束，所以通常来说�
 
 对于其他使用到音频播放的应用，比如游戏，直播等场景，接入AVSession不是必选项，只是可选，取决于应用是否有后台播放的使用诉求。若应用需要后台播放，那么接入AVSession仍然是必须的，否则业务的正常功能会受到限制。
 
-当应用需要实现后台播放等功能时，需要使用[BackgroundTasks Kit](../task-management/background-task-overview.md)（后台任务管理）的能力，申请对应的长时任务，避免进入挂起（Suspend）状态。
+当应用需要实现后台播放等功能时，需要使用[BackgroundTasks Kit](../../task-management/background-task-overview.md)（后台任务管理）的能力，申请对应的长时任务，避免进入挂起（Suspend）状态。
 
 ## 接入流程
 
@@ -53,7 +53,7 @@ AVSession在构造方法中支持不同的类型参数，由 [AVSessionType](../
 
 ## 创建后台任务
 
-当应用需要实现后台播放等功能时，需要使用[BackgroundTasks Kit](../task-management/background-task-overview.md)（后台任务管理）的能力，申请对应的长时任务，避免进入挂起（Suspend）状态。
+当应用需要实现后台播放等功能时，需要使用[BackgroundTasks Kit](../../task-management/background-task-overview.md)（后台任务管理）的能力，申请对应的长时任务，避免进入挂起（Suspend）状态。
 
 对媒体类播放来说，需要申请[AUDIO_PLAYBACK BackgroundMode](../../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md#backgroundmode)的长时任务。
 
