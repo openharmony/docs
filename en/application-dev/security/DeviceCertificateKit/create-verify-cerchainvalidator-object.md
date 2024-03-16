@@ -15,14 +15,14 @@ You can refer to the following example to construct a certificate chain from mul
 
 ## How to Develop
 
-1. Import the [certFramework](../../reference/apis/js-apis-cert.md) module.
+1. Import the [certFramework](../../reference/apis-device-certificate-kit/js-apis-cert.md) module.
    ```ts
    import certFramework from '@ohos.security.cert';
    ```
 
-2. Use [cryptoCert.createCertChainValidator](../../reference/apis/js-apis-cert.md#cryptocertcreatecertchainvalidator) to create a certificate chain validator (**CertChainValidator**) object.
+2. Use [cryptoCert.createCertChainValidator](../../reference/apis-device-certificate-kit/js-apis-cert.md#cryptocertcreatecertchainvalidator) to create a certificate chain validator (**CertChainValidator**) object.
 
-3. Create a [CertChainData](../../reference/apis/js-apis-cert.md#certchaindata) object.
+3. Create a [CertChainData](../../reference/apis-device-certificate-kit/js-apis-cert.md#certchaindata) object.
    
    The certificate framework provides a **CertChainValidator** object to validate certificate chains. However, the **CertChainData** object to be validated must comply with the following struct definition.
 
@@ -30,9 +30,9 @@ You can refer to the following example to construct a certificate chain from mul
    | -------- | -------- | -------- | -------- | -------- |
    | data | Uint8Array | Yes| Yes| Certificate data, which is in the length (2 bytes)-data format. For example, **08ABCDEFGH07ABCDEFG**. The first two bytes (**08**) indicate the length of the first certificate, which is eight bytes, and the following eight bytes indicate the certificate data. The next two bytes (**07**) indicate the length of another certificate, which is seven bytes, and the seven bytes followed indicate the certificate data.| 
    | count | number | Yes| Yes| Number of certificates.| 
-   | encodingFormat | [EncodingFormat](../../reference/apis/js-apis-cert.md#encodingformat) | Yes| Yes| Certificate encoding format.| 
+   | encodingFormat | [EncodingFormat](../../reference/apis-device-certificate-kit/js-apis-cert.md#encodingformat) | Yes| Yes| Certificate encoding format.| 
 
-4. Use [CertChainValidator.validate](../../reference/apis/js-apis-cert.md#validate) to validate the certificate chain data.
+4. Use [CertChainValidator.validate](../../reference/apis-device-certificate-kit/js-apis-cert.md#validate) to validate the certificate chain data.
 
 ```ts
 import certFramework from '@ohos.security.cert';
