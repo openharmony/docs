@@ -4851,7 +4851,7 @@ prefetchPage(url: string, additionalHeaders?: Array\<WebHeader>): void
 
 **参数：**
 
-| 参数名             | 类型                             | 必填  | 说明                      |                            
+| 参数名             | 类型                             | 必填  | 说明                      |
 | ------------------| --------------------------------| ---- | ------------- |
 | url               | string                          | 是    | 预加载的url。|
 | additionalHeaders | Array\<[WebHeader](#webheader)> | 否    | url的附加HTTP请求头。|
@@ -6000,7 +6000,7 @@ pauseAllTimers(): void
 **示例：**
 
 ```ts
-import webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview'
 import business_error from '@ohos.base'
 
 @Entry
@@ -6068,7 +6068,7 @@ ResumeAllTimers(): void
 **示例：**
 
 ```ts
-import webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview'
 import business_error from '@ohos.base'
 
 @Entry
@@ -6675,7 +6675,7 @@ struct WebComponent {
     </script>
   </body>
 </html>
-```
+ ```
 
 ### stopCamera<sup>12+</sup>
 
