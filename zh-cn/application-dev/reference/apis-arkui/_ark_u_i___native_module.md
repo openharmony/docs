@@ -21,7 +21,7 @@
 | [native_node.h](native__node_8h.md) | 提供NativeNode接口的类型定义。 <br>**库：** libace_ndk.z.so | 
 | [native_node_napi.h](native__node__napi_8h.md) | 提供ArkTS侧的FrameNode转换NodeHandle的方式。 <br>**库：** libace_ndk.z.so | 
 | [native_type.h](native__type_8h.md) | 提供NativeModule公共的类型定义。  <br>**库：** libace_ndk.z.so| 
-| [native_dialog.h](native__dialog_8h.md) | 提供ArkUI在Native侧的自定义弹窗接口定义集合。  <br>**库：** libace_ndk.z.so | 
+| [native_dialog.h](native__dialog_8h.md) | 提供ArkUI在Native侧的自定义弹窗接口定义集合。  | 
 
 
 ### 结构体
@@ -42,7 +42,7 @@
 | struct&nbsp;&nbsp;[ARKUI_TextPickerCascadeRangeContent](_a_r_k_u_i___text_picker_cascade_range_content.md) | 定义多列带联动能力的滑动数据选择器的输入结构体。  | 
 | struct&nbsp;&nbsp;[ArkUI_ColorStop](_ark_u_i___color_stop.md) | 定义渐变色结构。  | 
 | struct&nbsp;&nbsp;[ArkUI_Rect](_ark_u_i___rect.md) | 定义遮罩屏蔽区域的范围结构体。  | 
-| struct&nbsp;&nbsp;[ArkUI_NativeDialogAPI_1](_ark_u_i___native_dialog_a_p_i__1.md) | ArkUI提供的Native侧自定义弹窗接口集合。  | 
+| struct&nbsp;&nbsp;[ArkUI_NativeDialogAPI_1](_ark_u_i___native_dialog_a_p_i__1.md) | ArkUI提供的Native侧自定义弹窗接口集合。  |
 
 
 ### 类型定义
@@ -132,7 +132,7 @@
 | [ArkUI_EllipsisMode](#arkui_ellipsismode) { ARKUI_ELLIPSIS_MODE_START = 0, ARKUI_ELLIPSIS_MODE_CENTER, ARKUI_ELLIPSIS_MODE_END } | 定义文本省略位置。  | 
 | [ArkUI_ImageRenderMode](#arkui_imagerendermode) { ARKUI_IMAGE_RENDER_MODE_ORIGINAL = 0, ARKUI_IMAGE_RENDER_MODE_TEMPLATE } | 定义图片渲染模式。  | 
 | [ArkUI_TransitionEdge](#arkui_transitionedge) { ARKUI_TRANSITION_EDGE_TOP = 0, ARKUI_TRANSITION_EDGE_BOTTOM, ARKUI_TRANSITION_EDGE_START, ARKUI_TRANSITION_EDGE_END } | 定义转场从边缘滑入和滑出的效果。  | 
-| [ArkUI_DismissReason](#arkui_dismissreason) { DIALOG_DISMISS_BACK_PRESS = 0, DIALOG_DISMISS_TOUCH_OUTSIDE } | 弹窗关闭的触发方式。  |
+| [ArkUI_DismissReason](#arkui_dismissreason) { DIALOG_DISMISS_BACK_PRESS = 0, DIALOG_DISMISS_TOUCH_OUTSIDE } | 弹窗关闭的触发方式。  | 
 
 
 ### 函数
@@ -142,6 +142,7 @@
 | [ArkUI_AnyNativeAPI](_ark_u_i___any_native_a_p_i.md) \* [OH_ArkUI_GetNativeAPI](#oh_arkui_getnativeapi) ([ArkUI_NativeAPIVariantKind](#arkui_nativeapivariantkind) type, int32_t version) | 获取指定版本的Native接口集合。  | 
 | [ArkUI_AnyNativeAPI](_ark_u_i___any_native_a_p_i.md) \* [OH_ArkUI_QueryModuleInterface](#oh_arkui_querymoduleinterface) ([ArkUI_NativeAPIVariantKind](#arkui_nativeapivariantkind) type, int32_t version) | 获取指定版本的Native模块接口集合。  | 
 | int32_t [OH_ArkUI_GetNodeHandleFromNapiValue](#oh_arkui_getnodehandlefromnapivalue) (napi_env env, napi_value frameNode, [ArkUI_NodeHandle](#arkui_nodehandle) \*handle) | 获取ArkTS侧创建的FrameNode节点对象映射到native侧的ArkUI_NodeHandle。  | 
+
 
 
 ### 变量
@@ -164,8 +165,7 @@
 | int32_t(\* [ArkUI_NativeDialogAPI_1::enableCustomStyle](#enablecustomstyle) )(ArkUI_NativeDialogHandle handle, bool enableCustomStyle) | 弹窗容器样式是否自定义。  | 
 | int32_t(\* [ArkUI_NativeDialogAPI_1::enableCustomAnimation](#enablecustomanimation) )(ArkUI_NativeDialogHandle handle, bool enableCustomAnimation) | 弹窗容器是否使用自定义弹窗动画。  | 
 | int32_t(\* [ArkUI_NativeDialogAPI_1::registerOnWillDismiss](#registeronwilldismiss) )(ArkUI_NativeDialogHandle handle, [OnWillDismissEvent](#onwilldismissevent) eventHandler) | 当触发系统定义的返回操作、键盘ESC关闭交互操作时，如果注册该回调函数，则不会立刻关闭弹窗，是否关闭由用户自行决定。  | 
-| int32_t(\* [ArkUI_NativeDialogAPI_1::show](#show) )(ArkUI_NativeDialogHandle handle, bool showInSubWindow) | 显示自定义弹窗。  | 
-| int32_t(\* [ArkUI_NativeDialogAPI_1::close](#close) )(ArkUI_NativeDialogHandle handle) | 关闭自定义弹窗，如已关闭，则不生效。  | 
+| int32_t(\* [ArkUI_NativeDialogAPI_1::show](#show) )(ArkUI_NativeDialogHandle handle, bool showInSubWindow) | 显示自定义弹窗。 
 
 
 ## 类型定义说明
@@ -191,6 +191,18 @@ typedef struct ArkUI_Node* ArkUI_NodeHandle
 **描述：**
 
 定义ArkUI native组件实例对象指针定义。
+
+**起始版本：** 12
+
+
+### OnWillDismissEvent
+
+```
+typedef bool(* OnWillDismissEvent) (int32_t reason)
+```
+**描述：**
+
+弹窗关闭的回调函数。
 
 **起始版本：** 12
 
@@ -1918,6 +1930,24 @@ enum HitTestMode
 | HTMNONE  | 自身不响应触摸测试，不会阻塞子节点和兄弟节点的触摸测试。&nbsp;&nbsp; | 
 
 
+
+### ArkUI_DismissReason
+
+```
+enum ArkUI_DismissReason
+```
+**描述：**
+
+弹窗关闭的触发方式。
+
+**起始版本：** 12
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| DIALOG_DISMISS_BACK_PRESS  | 系统定义的返回操作、键盘ESC触发。&nbsp;&nbsp; | 
+| DIALOG_DISMISS_TOUCH_OUTSIDE  | 点击遮障层触发。&nbsp;&nbsp; | 
+
+
 ## 函数说明
 
 
@@ -1989,3 +2019,421 @@ ArkUI_AnyNativeAPI* OH_ArkUI_QueryModuleInterface (ArkUI_NativeAPIVariantKind ty
 **返回：**
 
 返回携带版本的Native接口抽象对象。 
+
+
+
+## 变量说明
+
+
+### close
+
+```
+int32_t(* ArkUI_NativeDialogAPI_1::close) (ArkUI_NativeDialogHandle handle)
+```
+**描述：**
+
+关闭自定义弹窗，如已关闭，则不生效。
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| handle | 指向自定义弹窗控制器的指针。  | 
+
+**返回：**
+
+返回错误码，0 - 成功， 401 - 参数错误。
+
+
+### create
+
+```
+ArkUI_NativeDialogHandle(* ArkUI_NativeDialogAPI_1::create) ()
+```
+**描述：**
+
+创建自定义弹窗并返回指向自定义弹窗的指针。
+
+**注解：**
+
+create方法需要在调用show方法之前调用。
+
+**返回：**
+
+返回指向自定义弹窗的指针，如创建失败，返回空指针。
+
+
+### dispose
+
+```
+void(* ArkUI_NativeDialogAPI_1::dispose) (ArkUI_NativeDialogHandle handle)
+```
+**描述：**
+
+销毁自定义弹窗。
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| handle | 指向自定义弹窗控制器的指针。  | 
+
+
+### enableCustomAnimation
+
+```
+int32_t(* ArkUI_NativeDialogAPI_1::enableCustomAnimation) (ArkUI_NativeDialogHandle handle, bool enableCustomAnimation)
+```
+**描述：**
+
+弹窗容器是否使用自定义弹窗动画。
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| handle | 指向自定义弹窗控制器的指针。  | 
+| enableCustomAnimation | true:使用自定义动画，关闭系统默认动画；false:使用系统默认动画。  | 
+
+**注解：**
+
+enableCustomAnimation方法需要在调用show方法之前调用。
+
+**返回：**
+
+返回错误码，0 - 成功， 401 - 参数错误。
+
+
+### enableCustomStyle
+
+```
+int32_t(* ArkUI_NativeDialogAPI_1::enableCustomStyle) (ArkUI_NativeDialogHandle handle, bool enableCustomStyle)
+```
+**描述：**
+
+弹窗容器样式是否自定义。
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| handle | 指向自定义弹窗控制器的指针。  | 
+| enableCustomStyle | true:宽度自适应子节点，圆角为0，弹窗背景色透明；false:高度自适应子节点，宽度由栅格系统定义, 圆角半径24vp。  | 
+
+**注解：**
+
+enableCustomStyle方法需要在调用show方法之前调用。
+
+**返回：**
+
+返回错误码，0 - 成功， 401 - 参数错误。
+
+
+### registerOnWillDismiss
+
+```
+int32_t(* ArkUI_NativeDialogAPI_1::registerOnWillDismiss) (ArkUI_NativeDialogHandle handle, OnWillDismissEvent eventHandler)
+```
+**描述：**
+
+当触发系统定义的返回操作、键盘ESC关闭交互操作时，如果注册该回调函数，则不会立刻关闭弹窗，是否关闭由用户自行决定。
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| handle | 指向自定义弹窗控制器的指针。  | 
+| eventHandler | 弹窗关闭的回调函数 参数类型{\@Link OnWillDismissEvent}。  | 
+
+**注解：**
+
+registerOnWillDismiss方法需要在调用show方法之前调用。
+
+**返回：**
+
+返回错误码，0 - 成功， 401 - 参数错误。
+
+
+### removeContent
+
+```
+int32_t(* ArkUI_NativeDialogAPI_1::removeContent) (ArkUI_NativeDialogHandle handle)
+```
+**描述：**
+
+卸载自定义弹窗内容。
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| handle | 指向自定义弹窗控制器的指针。  | 
+
+**注解：**
+
+removeContent方法需要在调用show方法之前调用。
+
+**返回：**
+
+返回错误码，0 - 成功， 401 - 参数错误。
+
+
+### resetContentAlignment
+
+```
+int32_t(* ArkUI_NativeDialogAPI_1::resetContentAlignment) (ArkUI_NativeDialogHandle handle)
+```
+**描述：**
+
+重置setContentAlignment方法设置的属性，使用系统默认的对齐方式。
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| handle | 指向自定义弹窗控制器的指针。  | 
+
+**注解：**
+
+resetContentAlignment方法需要在调用show方法之前调用。
+
+**返回：**
+
+返回错误码，0 - 成功， 401 - 参数错误。
+
+
+### setAutoCancel
+
+```
+int32_t(* ArkUI_NativeDialogAPI_1::setAutoCancel) (ArkUI_NativeDialogHandle handle, bool autoCancel)
+```
+**描述：**
+
+设置自定义弹窗是否允许点击遮罩层退出。
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| handle | 指向自定义弹窗控制器的指针。  | 
+| autoCancel | 设置是否允许点击遮罩层退出，true表示关闭弹窗，false表示不关闭弹窗。  | 
+
+**注解：**
+
+setAutoCancel方法需要在调用show方法之前调用。
+
+**返回：**
+
+返回错误码，0 - 成功， 401 - 参数错误。
+
+
+### setBackgroundColor
+
+```
+int32_t(* ArkUI_NativeDialogAPI_1::setBackgroundColor) (ArkUI_NativeDialogHandle handle, uint32_t backgroundColor)
+```
+**描述：**
+
+设置弹窗背景色。
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| handle | 指向自定义弹窗控制器的指针。  | 
+| backgroundColor | 设置弹窗背景颜色，0xargb格式。  | 
+
+**注解：**
+
+setBackgroundColor方法需要在调用show方法之前调用。
+
+**返回：**
+
+返回错误码，0 - 成功， 401 - 参数错误。
+
+
+### setContent
+
+```
+int32_t(* ArkUI_NativeDialogAPI_1::setContent) (ArkUI_NativeDialogHandle handle, ArkUI_NodeHandle content)
+```
+**描述：**
+
+挂载自定义弹窗内容。
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| handle | 指向自定义弹窗控制器的指针。  | 
+| content | 弹窗内容根节点指针。  | 
+
+**注解：**
+
+setContent方法需要在调用show方法之前调用。
+
+**返回：**
+
+返回错误码，0 - 成功， 401 - 参数错误。
+
+
+### setContentAlignment
+
+```
+int32_t(* ArkUI_NativeDialogAPI_1::setContentAlignment) (ArkUI_NativeDialogHandle handle, int32_t alignment, float offsetX, float offsetY)
+```
+**描述：**
+
+为自定义弹窗设置对齐方式。
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| handle | 指向自定义弹窗控制器的指针。  | 
+| alignment | 对齐方式，参数类型{\@Link ArkUI_Alignment}。  | 
+| offsetX | 弹窗的水平偏移量，浮点型。  | 
+| offsetY | 弹窗的垂直偏移量，浮点型。  | 
+
+**注解：**
+
+setContentAlignment方法需要在调用show方法之前调用。
+
+**返回：**
+
+返回错误码，0 - 成功， 401 - 参数错误。
+
+
+### setCornerRadius
+
+```
+int32_t(* ArkUI_NativeDialogAPI_1::setCornerRadius) (ArkUI_NativeDialogHandle handle, float topLeft, float topRight, float bottomLeft, float bottomRight)
+```
+**描述：**
+
+设置弹窗背板圆角半径。
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| handle | 指向自定义弹窗控制器的指针。  | 
+| topLeft | 设置弹窗背板左上角圆角半径。  | 
+| topRight | 设置弹窗背板右上角圆角半径。  | 
+| bottomLeft | 设置弹窗背板左下圆角半径。  | 
+| bottomRight | 设置弹窗背板右下角圆角半径。  | 
+
+**注解：**
+
+setCornerRadius方法需要在调用show方法之前调用。
+
+**返回：**
+
+返回错误码，0 - 成功， 401 - 参数错误。
+
+
+### setGridColumnCount
+
+```
+int32_t(* ArkUI_NativeDialogAPI_1::setGridColumnCount) (ArkUI_NativeDialogHandle handle, int32_t gridCount)
+```
+**描述：**
+
+弹窗宽度占栅格宽度的个数。
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| handle | 指向自定义弹窗控制器的指针。  | 
+| gridCount | 默认为按照窗口大小自适应，最大栅格数为系统最大栅格数。  | 
+
+**注解：**
+
+setGridColumnCount方法需要在调用show方法之前调用。
+
+**返回：**
+
+返回错误码，0 - 成功， 401 - 参数错误。
+
+
+### setMask
+
+```
+int32_t(* ArkUI_NativeDialogAPI_1::setMask) (ArkUI_NativeDialogHandle handle, uint32_t maskColor, const ArkUI_Rect *maskRect)
+```
+**描述：**
+
+设置自定义弹窗遮罩属性。
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| handle | 指向自定义弹窗控制器的指针。  | 
+| maskColor | 设置遮罩颜色，0xargb格式。  | 
+| maskRect | 遮蔽层区域范围的指针，遮蔽层区域内的事件不透传，在遮蔽层区域外的事件透传。参数类型{\@Link ArkUI_Rect}。  | 
+
+**注解：**
+
+setMask方法需要在调用show方法之前调用。
+
+**返回：**
+
+返回错误码，0 - 成功， 401 - 参数错误。
+
+
+### setModalMode
+
+```
+int32_t(* ArkUI_NativeDialogAPI_1::setModalMode) (ArkUI_NativeDialogHandle handle, bool isModal)
+```
+**描述：**
+
+设置自定义弹窗是否开启模态样式的弹窗。
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| handle | 指向自定义弹窗控制器的指针。  | 
+| isModal | 设置是否开启模态窗口，模态窗口有蒙层，非模态窗口无蒙层，为true时开启模态窗口。  | 
+
+**注解：**
+
+setModalMode方法需要在调用show方法之前调用。
+
+**返回：**
+
+返回错误码，0 - 成功， 401 - 参数错误。
+
+
+### show
+
+```
+int32_t(* ArkUI_NativeDialogAPI_1::show) (ArkUI_NativeDialogHandle handle, bool showInSubWindow)
+```
+**描述：**
+
+显示自定义弹窗。
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| handle | 指向自定义弹窗控制器的指针。  | 
+| showInSubWindow | 是否在子窗口显示弹窗。  | 
+
+**返回：**
+
+返回错误码，0 - 成功， 401 - 参数错误。
+
+
+### version
+
+```
+int32_t ArkUI_NativeDialogAPI_1::version
+```
+**描述：**
+
+结构体版本。
