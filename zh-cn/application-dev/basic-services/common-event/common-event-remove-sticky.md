@@ -7,7 +7,7 @@
 
 ## 接口说明
 
-参考[接口文档](../reference/apis-basic-services-kit/js-apis-commonEventManager.md)。
+参考[接口文档](../../reference/apis-basic-services-kit/js-apis-commonEventManager.md)。
 
 | 接口名 | 接口描述 |
 | -------- | -------- |
@@ -16,7 +16,7 @@
 
 ## 开发步骤
 
-1. 需要申请`ohos.permission.COMMONEVENT_STICKY`权限，配置方式请参见[声明权限](../security/AccessToken/declare-permissions.md)。
+1. 需要申请`ohos.permission.COMMONEVENT_STICKY`权限，配置方式请参见[声明权限](../../security/AccessToken/declare-permissions.md)。
 
 2. 导入模块。
 
@@ -27,7 +27,7 @@
    const TAG: string = 'ProcessModel';
    ```
 
-3. 调用[`removeStickyCommonEvent()`](../reference/apis-basic-services-kit/js-apis-commonEventManager-sys.md#commoneventmanagerremovestickycommonevent10)方法移除对应的粘性公共事件。
+3. 调用[`removeStickyCommonEvent()`](../../reference/apis-basic-services-kit/js-apis-commonEventManager-sys.md#commoneventmanagerremovestickycommonevent10)方法移除对应的粘性公共事件。
 
    > **说明：**
    >
