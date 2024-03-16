@@ -80,7 +80,7 @@ struct MouseEventExample {
       Button(this.hoverText)
         .width(180).height(80)
         .backgroundColor(this.color)
-        .onHover((isHover?: boolean, event?: HoverEvent):void => {
+        .onHover((isHover: boolean, event: HoverEvent) => {
           // 通过onHover事件动态修改按钮在是否有鼠标悬浮时的文本内容与背景颜色
           if (isHover) {
             this.hoverText = 'hover';
