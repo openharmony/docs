@@ -886,6 +886,44 @@ let symKeyGenerator = cryptoFramework.createSymKeyGenerator('AES128');
     });
 ```
 
+### generateSymKeySync<sup>12+</sup>
+
+generateSymKeySync(): SymKey
+
+同步获取对称密钥生成器随机生成的密钥。
+
+必须在使用[createSymKeyGenerator](#cryptoframeworkcreatesymkeygenerator)创建对称密钥生成器后，才能使用本函数。
+
+目前支持使用OpenSSL的RAND_priv_bytes()作为底层能力生成随机密钥。
+
+> **说明：**
+>
+> 对于HMAC算法的对称密钥，如果已经在创建对称密钥生成器时指定了具体哈希算法（如指定“HMAC|SHA256”），则会随机生成与哈希长度一致的二进制密钥数据（如指定“HMAC|SHA256”会随机生成256位的密钥数据）。<br/>如果在创建对称密钥生成器时没有指定具体哈希算法，如仅指定“HMAC”，则不支持随机生成对称密钥数据，可通过[convertKeySync](#convertkeysync12)方式生成对称密钥数据。
+
+**系统能力：** SystemCapability.Security.CryptoFramework
+
+**错误码：**
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 17620001 | memory error. |
+
+**示例：**
+
+```ts
+import cryptoFramework from '@ohos.security.cryptoFramework';
+
+function testGenerateSymKeySync() {
+  // 创建SymKeyGenerator实例
+  let symKeyGenerator = cryptoFramework.createSymKeyGenerator('AES256');
+  // 使用密钥生成器随机生成对称密钥
+  let key = symKeyGenerator.generateSymKeySync();
+  let encodedKey = key.getEncoded();
+  console.info('key hex:' + encodedKey.data);
+}
+```
+
 ### convertKey
 
 convertKey(key: DataBlob, callback: AsyncCallback\<SymKey>): void
@@ -992,6 +1030,52 @@ function testConvertKey() {
     }, (error: BusinessError) => {
       console.error(`Convert symKey failed, ${error.code}, ${error.message}`);
     });
+}
+```
+
+### convertKeySync<sup>12+</sup>
+
+convertKeySync(key: DataBlob): SymKey
+
+同步根据指定数据生成对称密钥。
+
+必须在使用[createSymKeyGenerator](#cryptoframeworkcreatesymkeygenerator)创建对称密钥生成器后，才能使用本函数。
+
+> **说明：**
+>
+> 对于HMAC算法的对称密钥，如果已经在创建对称密钥生成器时指定了具体哈希算法（如指定“HMAC|SHA256”），则需要传入与哈希长度一致的二进制密钥数据（如传入SHA256对应256位的密钥数据）。<br/>如果在创建对称密钥生成器时没有指定具体哈希算法，如仅指定“HMAC”，则支持传入长度在[1,4096]范围内（单位为byte）的任意二进制密钥数据。
+
+**系统能力：** SystemCapability.Security.CryptoFramework
+
+**参数：**
+
+| 参数名     | 类型          | 必填 | 说明                       |
+| -------- | ------------------- | ---- | ---------------------|
+| key      | [DataBlob](#datablob)             | 是   | 指定的对称密钥材料。                                         |
+
+**错误码：**
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+
+| 错误码ID | 错误信息                                               |
+| -------- | --------------------------------------------------- |
+| 401 | invalid parameters.          |
+| 17620001 | memory error.                                       |
+
+**示例：**
+
+```ts
+import cryptoFramework from '@ohos.security.cryptoFramework';
+
+function testConvertKeySync() {
+  // 对称密钥长度为64字节，512比特
+  let keyMessage = '87654321abcdefgh87654321abcdefgh87654321abcdefgh87654321abcdefgh';
+  let keyBlob: cryptoFramework.DataBlob = {
+    data : new Uint8Array(buffer.from(keyMessage, 'utf-8').buffer)
+  }
+  let symKeyGenerator = cryptoFramework.createSymKeyGenerator('HMAC');
+  let key = symKeyGenerator.convertKeySync(keyBlob);
+  let encodedKey = key.getEncoded();
+  console.info('key encoded data：' + encodedKey.data);
 }
 ```
 
