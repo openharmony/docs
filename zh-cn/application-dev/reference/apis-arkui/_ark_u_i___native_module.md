@@ -50,7 +50,7 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | typedef struct ArkUI_Node \* [ArkUI_NodeHandle](#arkui_nodehandle) | 定义ArkUI native组件实例对象指针定义。  | 
-| typedef struct ArkUI_NativeDialog \* [ArkUI_NativeDialogHandle](#ArkUI_NativeDialogHandle) | 定义ArkUI在Native侧的自定义弹窗控制器对象指针。  | 
+| typedef struct ArkUI_NativeDialog \* [ArkUI_NativeDialogHandle](#arkui_nativedialoghandle) | 定义ArkUI在Native侧的自定义弹窗控制器对象指针。  | 
 | typedef bool(\* [OnWillDismissEvent](#onwilldismissevent)) (int32_t reason) | 弹窗关闭的回调函数。  | 
 
 
