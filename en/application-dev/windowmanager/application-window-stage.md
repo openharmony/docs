@@ -28,7 +28,7 @@ In the stage model, you can perform the following operations during application 
 
 ## Available APIs
 
-The table below lists the common APIs used for application window development. For details about more APIs, see [Window](../reference/apis/js-apis-window.md).
+The table below lists the common APIs used for application window development. For details about more APIs, see [Window](../reference/apis-arkui/js-apis-window.md).
 
 | Instance        | API                                                      | Description                                                        |
 | -------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |

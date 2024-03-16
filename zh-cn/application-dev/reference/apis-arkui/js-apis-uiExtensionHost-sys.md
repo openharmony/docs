@@ -306,7 +306,7 @@ struct Hello {
 
 ### hideNonSecureWindows
 
-hideNonSecureWindows(shouldHide: boolean): Promise<void>;
+hideNonSecureWindows(shouldHide: boolean): Promise\<void>
 
 设置是否隐藏不安全窗口。
 不安全窗口是指可能遮挡UIExtensionComponent的窗口类型，如非系统全局悬浮窗、宿主子窗口。当UIExtensionComponent组件被用来显示敏感操作提示内容时，可以选择隐藏不安全窗口，保护敏感操作提示内容不会被遮挡。当UIExtensionComponent不显示或销毁时需要让不安全窗口重新显示。
@@ -410,7 +410,7 @@ export default class UIExtAbility extends UIExtensionAbility {
     let extensionHostWindow = session.getUIExtensionHostWindowProxy();
     let storage: LocalStorage = new LocalStorage({
         'session': session,
-        'extensionHostWindow': extensionHostWindow
+        'extensionWindow': extensionHostWindow
     });
     session.loadContent('pages/extension', storage);
   }
@@ -434,19 +434,22 @@ let storage = LocalStorage.getShared()
 @Entry(storage)
 @Component
 struct Hello {
-  private extensionWindow: uiExtensionHost.UIExtensionHostWindowProxy = storage.get<uiExtensionHost.UIExtensionHostWindowProxy>('extensionWindow');
-  private extensionWindowRect = this.extensionWindow.properties.uiExtensionHostWindowProxyRect;
+  private extensionWindow: uiExtensionHost.UIExtensionHostWindowProxy | undefined = storage.get<uiExtensionHost.UIExtensionHostWindowProxy>('extensionWindow');
 
   build() {
     Row() {
       Column() {
         Button("TYPE_SYSTEM").onClick(() => {
-          let avoidArea: window.AvoidArea = this.extensionWindow.getWindowAvoidArea(window.AvoidAreaType.TYPE_SYSTEM)
-          console.log(`${JSON.stringify(avoidArea)}`)
+          if (this.extensionWindow != undefined) {
+            let avoidArea: window.AvoidArea = this.extensionWindow.getWindowAvoidArea(window.AvoidAreaType.TYPE_SYSTEM)
+            console.log(`${JSON.stringify(avoidArea)}`)
+          }
         })
         Button("TYPE_CUTOUT").onClick(() => {
-          let avoidArea: window.AvoidArea = this.extensionWindow.getWindowAvoidArea(window.AvoidAreaType.TYPE_CUTOUT)
-          console.log(`${JSON.stringify(avoidArea)}`)
+          if (this.extensionWindow != undefined) {
+            let avoidArea: window.AvoidArea = this.extensionWindow.getWindowAvoidArea(window.AvoidAreaType.TYPE_CUTOUT)
+            console.log(`${JSON.stringify(avoidArea)}`)
+          }
         })
       }
       .width('100%')

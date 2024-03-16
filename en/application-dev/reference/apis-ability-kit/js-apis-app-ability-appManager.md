@@ -22,9 +22,9 @@ Checks whether this application is undergoing a stability test. This API uses an
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | Yes|Callback used to return the API call result and the result **true** or **false**. You can perform error handling or custom processing in this callback. The value **true** means that the application is undergoing a stability test, and **false** means the opposite. | 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;boolean&gt; | Yes|Callback used to return the API call result and the result **true** or **false**. You can perform error handling or custom processing in this callback. The value **true** means that the application is undergoing a stability test, and **false** means the opposite. |
 
 **Error codes**
 
@@ -59,9 +59,9 @@ Checks whether this application is undergoing a stability test. This API uses a 
 
 **Return value**
 
-  | Type| Description| 
-  | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise used to return the API call result and the result **true** or **false**. You can perform error handling or custom processing in this callback. The value **true** means that the application is undergoing a stability test, and **false** means the opposite.| 
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;boolean&gt; | Promise used to return the API call result and the result **true** or **false**. You can perform error handling or custom processing in this callback. The value **true** means that the application is undergoing a stability test, and **false** means the opposite.|
 
 **Error codes**
 
@@ -95,9 +95,9 @@ Checks whether this application is running on a RAM constrained device. This API
 
 **Return value**
 
-  | Type| Description| 
-  | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise used to return the API call result and the result **true** or **false**. You can perform error handling or custom processing in this callback. The value **true** means that the application is running on a RAM constrained device, and **false** means the opposite.| 
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;boolean&gt; | Promise used to return the API call result and the result **true** or **false**. You can perform error handling or custom processing in this callback. The value **true** means that the application is running on a RAM constrained device, and **false** means the opposite.|
 
 **Error codes**
 
@@ -130,9 +130,9 @@ Checks whether this application is running on a RAM constrained device. This API
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | Yes|Callback used to return the API call result and the result **true** or **false**. You can perform error handling or custom processing in this callback. The value **true** means that the application is running on a RAM constrained device, and **false** means the opposite. | 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;boolean&gt; | Yes|Callback used to return the API call result and the result **true** or **false**. You can perform error handling or custom processing in this callback. The value **true** means that the application is running on a RAM constrained device, and **false** means the opposite. |
 
 **Error codes**
 
@@ -166,9 +166,9 @@ Obtains the memory size of this application. This API uses a promise to return t
 
 **Return value**
 
-  | Type| Description| 
-  | -------- | -------- |
-  | Promise&lt;number&gt; | Promise used to return the API call result and the memory size. You can perform error handling or custom processing in this callback.| 
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;number&gt; | Promise used to return the memory size, in MB. You can perform error processing or other custom processing based on the size.  |
 
 **Error codes**
 
@@ -201,9 +201,9 @@ Obtains the memory size of this application. This API uses an asynchronous callb
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;number&gt; | Yes|Callback used to return the API call result and the memory size. You can perform error handling or custom processing in this callback.| 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;number&gt; | Yes|Callback used to return the memory size, in MB. You can perform error processing or other custom processing based on the size.  |
 
 **Error codes**
 
@@ -267,3 +267,62 @@ appManager.getRunningProcessInformation().then((data) => {
     console.error(`error: ${JSON.stringify(error)}`);
 });
 ```
+
+## appManager.getRunningProcessInformation
+
+getRunningProcessInformation(callback: AsyncCallback<Array\<ProcessInformation>>): void
+
+Obtains information about the running processes. This API uses a promise to return the result.  
+
+**Required permissions**: ohos.permission.GET_RUNNING_INFO
+
+> **NOTE**
+>
+> Since API version 11, the **ohos.permission.GET_RUNNING_INFO** permission is no longer required for calling this API.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>&gt; | Yes| Callback used to return the API call result and the process running information. You can perform error handling or custom processing in this callback.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+
+**Example**
+
+```ts
+import appManager from '@ohos.app.ability.appManager';
+import { BusinessError } from '@ohos.base';
+
+appManager.getRunningProcessInformation((err, data) => {
+    if (err) {
+        console.error(`getRunningProcessInformation fail, err: ${JSON.stringify(err)}`);
+    } else {
+        console.log(`ProcessInformation: ${JSON.stringify(data)}`);
+    }
+});
+```
+
+## ProcessState<sup>10+</sup>
+
+Enumerates the process states. This enum can be used together with [ProcessData](js-apis-inner-application-processData-sys.md) to return the process state.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+| Name                | Value | Description                              |
+| -------------------- | --- | --------------------------------- |
+| STATE_CREATE    | 0   |      The process is being created.      |
+| STATE_FOREGROUND          | 1   |            The process is running in the foreground.     |
+| STATE_ACTIVE  | 2   |          The process is active.  |
+| STATE_BACKGROUND        | 3   |       The process is running in the background.          |
+| STATE_DESTROY        | 4   |         The process is destroyed.        |
+
+

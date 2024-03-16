@@ -1811,11 +1811,7 @@ netCon.register((error: BusinessError) => {
 });
 
 // 订阅网络可用事件。调用register后，才能接收到此事件通知
-class Value {
-    netHandle: NetHandle = connection.NetHandle
-    blocked: boolean = false
-}
-netCon.on('netBlockStatusChange', (data: Value) => {
+netCon.on('netBlockStatusChange', (data: connection.NetBlockStatusInfo) => {
   console.info("Succeeded to get data: " + JSON.stringify(data));
 });
 
@@ -1898,13 +1894,8 @@ netCon.register((error: BusinessError) => {
   console.log(JSON.stringify(error));
 });
 
-class Value {
-    netHandle: NetHandle = connection.NetHandle
-    connectionProperties: ConnectionProperties = connection.ConnectionProperties
-}
-
 // 订阅网络可用事件。调用register后，才能接收到此事件通知
-netCon.on('netConnectionPropertiesChange', (data: Value) => {
+netCon.on('netConnectionPropertiesChange', (data: connection.NetConnectionPropertyInfo) => {
   console.info("Succeeded to get data: " + JSON.stringify(data));
 });
 
@@ -2447,7 +2438,7 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 | netHandle            | [NetHandle](#nethandle)                             | 是   |数据网络句柄(netHandle)。       |
 | connectionProperties | [ConnectionProperties](#connectionproperties)                  | 是   |网络连接属性。 |
 
-站## NetBlockStatusInfo<sup>11+</sup>
+## NetBlockStatusInfo<sup>11+</sup>
 
 获取网络状态信息
 

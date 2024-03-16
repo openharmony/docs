@@ -33,6 +33,14 @@ Subscribes to auto-startup status change events of an application component.
 | type | string | Yes   | Event type. The value is fixed at **systemAutoStartup**, which can be called only by system applications.|
 | callback  | [AutoStartupCallback](js-apis-inner-application-autoStartupCallback-sys.md)   | Yes   | Callback used for subscription.     |
 
+**Error codes**
+
+| ID| Error Message                                    |
+| -------- | -------------------------------------------- |
+| 16000050 | Internal error.                              |
+
+For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+
 **Example**
 
 ```ts
@@ -69,6 +77,14 @@ Unsubscribes from auto-startup status change events of an application component.
 | --------- | ---------------------------------------- | ---- | -------------- |
 | type | string              | Yes   | Event type. The value is fixed at **systemAutoStartup**, which can be called only by system applications.|
 | callback | [AutoStartupCallback](js-apis-inner-application-autoStartupCallback-sys.md)   | No| Callback used for unsubscription.|
+
+**Error codes**£º
+
+| ID| Error Message                                    |
+| -------- | -------------------------------------------- |
+| 16000050 | Internal error.                              |
+
+For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -361,3 +377,4 @@ try {
   console.info('====> queryAllAutoStartupApplications throw err: ' + JSON.stringify(err));
 }
 ```
+

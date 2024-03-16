@@ -667,11 +667,11 @@ Kills a process by bundle name and account ID. This API uses an asynchronous cal
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | bundleName | string | Yes| Bundle name.| 
-  | accountId | number | Yes| ID of a system account. For details, see [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9).| 
-  | callback | AsyncCallback\<void\> | Yes| Callback used to return the API call result. You can perform error handling or custom processing in this callback.| 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| bundleName | string | Yes| Bundle name.|
+| accountId | number | Yes| ID of a system account. For details, see [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9).|
+| callback | AsyncCallback\<void\> | Yes| Callback used to return the API call result. You can perform error handling or custom processing in this callback.|
 
 **Error codes**
 
@@ -1312,16 +1312,4 @@ Enumerates the application states. This enum can be used together with [AbilityS
 | STATE_BACKGROUND        | 4   |       State indicating that the application is running in the background.          |
 | STATE_DESTROY        | 5   |           State indicating that the application is destroyed.      |
 
-## ProcessState<sup>10+</sup>
 
-Enumerates the process states. This enum can be used together with [ProcessData](js-apis-inner-application-processData-sys.md) to return the process state.
-
-**System capability**: SystemCapability.Ability.AbilityRuntime.Core
-
-| Name                | Value | Description                              |
-| -------------------- | --- | --------------------------------- |
-| STATE_CREATE    | 0   |      State indicating that the process is being created.      |
-| STATE_FOREGROUND          | 1   |            State indicating that the process is running in the foreground.     |
-| STATE_ACTIVE  | 2   |          State indicating that the process is active.  |
-| STATE_BACKGROUND        | 3   |       State indicating that the process is running in the background.          |
-| STATE_DESTROY        | 4   |         State indicating that the process is destroyed.        |

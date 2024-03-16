@@ -635,7 +635,7 @@ on(type: 'sketchStatusChanged', callback: AsyncCallback\<SketchStatusData\>): vo
 | 参数名      | 类型                    | 必填 | 说明                                       |
 | -------- | ---------------------- | ---- | ------------------------------------------ |
 | type     | string                 | 是   | 监听事件，固定为'sketchStatusChanged'，画中画流创建成功后可监听。底层画中画的状态启停以及画中画Zoom值变更会回调该接口。 |
-| callback | AsyncCallback\<SketchStatusData\> | 是   | 使用callback的方式获取SketchStatusData。            |
+| callback | AsyncCallback\<[SketchStatusData](#sketchstatusdata11)\> | 是   | 使用callback的方式获取SketchStatusData。            |
 
 **示例：**
 
@@ -666,7 +666,7 @@ off(type: 'sketchStatusChanged', callback?: AsyncCallback\<SketchStatusData\>): 
 | 参数名      | 类型                    | 必填 | 说明                                       |
 | -------- | ---------------------- | ---- | ------------------------------------------ |
 | type     | string                 | 是   | 监听事件，固定为'sketchStatusChanged'，画中画流创建成功后可监听。 |
-| callback | AsyncCallback\<SketchStatusData\> | 否   | 回调函数，可选，有就是匹配on('sketchStatusChanged') callback（callback对象不可是匿名函数）。           |
+| callback | AsyncCallback\<[SketchStatusData](#sketchstatusdata11)\> | 否   | 回调函数，可选，有就是匹配on('sketchStatusChanged') callback（callback对象不可是匿名函数）。           |
 
 **示例：**
 
@@ -2568,7 +2568,7 @@ on(type: 'error', callback: ErrorCallback): void
 | 参数名     | 类型        | 必填 | 说明                           |
 | -------- | --------------------------------- | ---- | ------------------------------ |
 | type     | string                               | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。session调用相关接口出现错误时会触发该事件，比如调用[beginConfig](js-apis-camera.md#beginconfig11)，[commitConfig](js-apis-camera.md#commitconfig11-1)，[addInput](js-apis-camera.md#addinput11)等接口发生错误时返回错误信息。 |
-| callback | ErrorCallback| 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。        |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。        |
 
 **示例：**
 
@@ -2599,7 +2599,7 @@ off(type: 'error', callback?: ErrorCallback): void
 | 参数名     | 类型        | 必填 | 说明                           |
 | -------- | -------------------------- | ---- | ------------------------------ |
 | type     | string                     | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。 |
-| callback | ErrorCallback| 否   | 回调函数，可选，有就是匹配on('error') callback（callback对象不可是匿名函数）。    |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| 否   | 回调函数，可选，有就是匹配on('error') callback（callback对象不可是匿名函数）。    |
 
 **示例：**
 
@@ -2742,7 +2742,7 @@ on(type: 'error', callback: ErrorCallback): void
 | 参数名     | 类型                                                          | 必填 | 说明                           |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------ |
 | type     | string                                                      | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。session调用相关接口出现错误时会触发该事件，比如调用[beginConfig](js-apis-camera.md#beginconfig11)，[commitConfig](js-apis-camera.md#commitconfig11-1)，[addInput](js-apis-camera.md#addinput11)等接口发生错误时返回错误信息。 |
-| callback | ErrorCallback| 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。 |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。 |
 
 **示例：**
 
@@ -2773,7 +2773,7 @@ off(type: 'error', callback?: ErrorCallback): void
 | 参数名     | 类型                        | 必填 | 说明                           |
 | -------- | ------------------------ | ---- | ------------------------------ |
 | type     | string    | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。 |
-| callback | ErrorCallback| 否   | 回调函数，可选，有就是匹配on('error') callback（callback对象不可是匿名函数）。       |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| 否   | 回调函数，可选，有就是匹配on('error') callback（callback对象不可是匿名函数）。       |
 
 **示例：**
 

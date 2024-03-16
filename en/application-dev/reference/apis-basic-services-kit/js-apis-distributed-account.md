@@ -121,7 +121,7 @@ queryOsAccountDistributedInfo(callback: AsyncCallback&lt;DistributedInfo&gt;): v
 Obtains distributed account information. This API uses an asynchronous callback to return the result.
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getOsAccountDistributedInfo](#getosaccountdistributedinfo9).
+> This API is supported since API version 7 and deprecated since API version 9. Use [getOsAccountDistributedInfo](#getosaccountdistributedinfo9) instead.
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -156,7 +156,7 @@ Obtains distributed account information. This API uses a promise to return the r
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getOsAccountDistributedInfo](#getosaccountdistributedinfo9-1).
+> This API is supported since API version 7 and deprecated since API version 9. Use [getOsAccountDistributedInfo](#getosaccountdistributedinfo9-1) instead.
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -281,7 +281,7 @@ Updates the distributed account information. This API uses an asynchronous callb
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setOsAccountDistributedInfo](#setosaccountdistributedinfo9).
+> This API is supported since API version 7 and deprecated since API version 9. Use [setOsAccountDistributedInfo](#setosaccountdistributedinfo9) instead.
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -317,7 +317,7 @@ updateOsAccountDistributedInfo(accountInfo: DistributedInfo): Promise&lt;void&gt
 Updates the distributed account information. This API uses a promise to return the result.
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setOsAccountDistributedInfo](#setosaccountdistributedinfo9-1).
+> This API is supported since API version 7 and deprecated since API version 9. Use [setOsAccountDistributedInfo](#setosaccountdistributedinfo9-1) instead.
 **System capability**: SystemCapability.Account.OsAccount
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
@@ -350,7 +350,7 @@ Updates the distributed account information. This API uses a promise to return t
 
 ## DistributedInfo
 
-Defines the distributed information about an OS account.
+Defines the distributed information about a system account.
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -362,7 +362,7 @@ Defines the distributed information about an OS account.
 | nickname<sup>9+</sup> | string |No| Nickname of the distributed account. By default, no value is passed.|
 | avatar<sup>9+</sup> | string |No| Avatar of the distributed account. By default, no value is passed.|
 | status<sup>10+</sup> | [DistributedAccountStatus](#distributedaccountstatus10) |No| Status of the distributed account. The value is of the enumerated type. The default status is unlogged.|
-| scalableData<sup>8+</sup> | object |No| Extended information about the distributed account, passed in key-value (KV) pairs based on service requirements. By default, no value is passed.|
+| scalableData<sup>8+</sup> | object |No| Additional information about the distributed account, in the form of KV pairs. This parameter is left empty by default. |
 
 ## DistributedAccountStatus<sup>10+</sup>
 

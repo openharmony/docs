@@ -6,7 +6,7 @@ The **appManager** module implements application management. You can use the API
 > 
 > The APIs of this module are supported since API version 8 and deprecated since API version 9. You are advised to use [@ohos.app.ability.appManager](js-apis-app-ability-appManager.md) instead. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> This topic describes only system APIs provided by the module. For details about its public APIs, see [@ohos.application.appManager (appManager)](js-apis-app-ability-wantConstant.md).
+> This topic describes only system APIs provided by the module. For details about its public APIs, see [@ohos.application.appManager (appManager)](js-apis-application-appManager.md).
 
 ## Modules to Import
 
@@ -30,7 +30,7 @@ Registers an observer to listen for the state changes of all applications.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| observer | [ApplicationStateObserver (System API)](js-apis-inner-application-applicationStateObserver-sys.md)| Yes| Application state observer, which is used to observe the lifecycle change of an application.|
+| observer | [ApplicationStateObserver](js-apis-inner-application-applicationStateObserver-sys.md)| Yes| Application state observer, which is used to observe the lifecycle change of an application.|
 
 **Return value**
 
@@ -444,3 +444,4 @@ Clears application data by bundle name. This API uses a promise to return the re
         console.error('------------ clearUpApplicationData fail ------------', err);
     });
   ```
+

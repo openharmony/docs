@@ -322,7 +322,7 @@ pop(result: Object, animated?: boolean): NavPathInfo | undefined
 
 popToName(name: string, animated?: boolean): number
 
-回退路由栈到第一个名为name的NavDestination页面。
+回退路由栈到由栈顶开始第一个名为name的NavDestination页面。
 
 **参数：**
 
@@ -335,13 +335,13 @@ popToName(name: string, animated?: boolean): number
 
 | 类型     | 说明                                       |
 | ------ | ---------------------------------------- |
-| number | 如果栈中存在名为name的NavDestination页面，则返回第一个名为name的NavDestination页面的索引，否则返回-1。 |
+| number | 如果栈中存在名为name的NavDestination页面，则返回由栈顶开始第一个名为name的NavDestination页面的索引，否则返回-1。 |
 
 ### popToName<sup>11+</sup>
 
 popToName(name: string, result: Object, animated?: boolean): number
 
-回退路由栈到第一个名为name的NavDestination页面，并触发onPop回调传入页面处理结果。
+回退路由栈到由栈顶开始第一个名为name的NavDestination页面，并触发onPop回调传入页面处理结果。
 
 **参数：**
 
@@ -355,7 +355,7 @@ popToName(name: string, result: Object, animated?: boolean): number
 
 | 类型     | 说明                                       |
 | ------ | ---------------------------------------- |
-| number | 如果栈中存在名为name的NavDestination页面，则返回第一个名为name的NavDestination页面的索引，否则返回-1。 |
+| number | 如果栈中存在名为name的NavDestination页面，则返回由栈顶开始第一个名为name的NavDestination页面的索引，否则返回-1。 |
 
 ### popToIndex<sup>10+</sup>
 
@@ -388,7 +388,7 @@ popToIndex(index: number, result: Object, animated?: boolean): void
 
 moveToTop(name: string, animated?: boolean): number
 
-将第一个名为name的NavDestination页面移到栈顶。
+将由栈顶开始第一个名为name的NavDestination页面移到栈顶。
 
 **参数：**
 
@@ -401,7 +401,7 @@ moveToTop(name: string, animated?: boolean): number
 
 | 类型     | 说明                                       |
 | ------ | ---------------------------------------- |
-| number | 如果栈中存在名为name的NavDestination页面，则返回第一个名为name的NavDestination页面的当前索引，否则返回-1。 |
+| number | 如果栈中存在名为name的NavDestination页面，则返回由栈顶开始第一个名为name的NavDestination页面的当前索引，否则返回-1。 |
 
 ### moveIndexToTop<sup>10+</sup>
 

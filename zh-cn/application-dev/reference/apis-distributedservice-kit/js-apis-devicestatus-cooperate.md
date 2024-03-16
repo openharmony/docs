@@ -486,7 +486,7 @@ try {
 
 
 
-## CooperateState<sup>11+</sup>
+## CooperateState<sup>10+</sup>
 
 键鼠穿越的状态。
 
@@ -498,9 +498,9 @@ try {
 | COOPERATE_UNPREPARE            | number | 是   | 否   | 表示取消键鼠穿越准备。 |
 | COOPERATE_ACTIVATE             | number | 是   | 否   | 表示启动键鼠穿越。     |
 | COOPERATE_ACTIVATE_SUCCESS     | number | 是   | 否   | 表示键鼠穿越启动成功。 |
-| COOPERATE_ACTIVATE_FAIL     | number | 是   | 否   | 表示键鼠穿越启动失败。 |
+| COOPERATE_ACTIVATE_FAILURE  | number | 是   | 否   | 表示键鼠穿越启动失败。 |
 | COOPERATE_DEACTIVATE_SUCCESS   | number | 是   | 否   | 表示键鼠穿越停止成功。 |
-| COOPERATE_DEACTIVATE_FAIL   | number | 是   | 否   | 表示键鼠穿越停止失败。 |
+| COOPERATE_DEACTIVATE_FAILURE | number | 是   | 否   | 表示键鼠穿越停止失败。 |
 | COOPERATE_SESSION_DISCONNECTED | number | 是   | 否   | 表示键鼠穿越会话断开。 |
 
 
