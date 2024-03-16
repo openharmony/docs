@@ -84,7 +84,7 @@ buffer数组，提供blob数据类型。
 | ------- | --------------------- | ---- | ---- | ------------------------------------------------------------ |
 | iv      | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数iv，长度为1~16字节，常用为12字节。                             |
 | aad     | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数aad，长度为0~INT_MAX字节，常用为16字节。                             |
-| authTag | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数authTag，长度为16字节。<br/>采用GCM模式加密时，需要获取[doFinal()](#dofinal-2)输出的[DataBlob](#datablob)，取出其末尾16字节作为解密时[init()](#init-2)方法的入参[GcmParamsSpec](#gcmparamsspec)中的的authTag。 |
+| authTag | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数authTag，长度为16字节。<br/>采用GCM模式加密时，需要获取[doFinal()](#dofinal-2)或[doFinalSync()](#dofinalsync12)输出的[DataBlob](#datablob)，取出其末尾16字节作为解密时[init()](#init-2)或[initSync()](#initsync12)方法的入参[GcmParamsSpec](#gcmparamsspec)中的的authTag。 |
 
 > **说明：**
 >
@@ -104,7 +104,7 @@ buffer数组，提供blob数据类型。
 | ------- | --------------------- | ---- | ---- | ------------------------------------------------------------ |
 | iv      | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数iv，长度为7字节。                              |
 | aad     | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数aad，长度为8字节。                             |
-| authTag | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数authTag，长度为12字节。<br/>采用CCM模式加密时，需要获取[doFinal()](#dofinal-2)输出的[DataBlob](#datablob)，取出其末尾12字节作为解密时[init()](#init-2)方法的入参[CcmParamsSpec](#ccmparamsspec)中的authTag。 |
+| authTag | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数authTag，长度为12字节。<br/>采用CCM模式加密时，需要获取[doFinal()](#dofinal-2)或[doFinalSync()](#dofinalsync12)输出的[DataBlob](#datablob)，取出其末尾12字节作为解密时[init()](#init-2)或[initSync()](#initsync12)方法的入参[CcmParamsSpec](#ccmparamsspec)中的authTag。 |
 
 > **说明：**
 >
@@ -2161,6 +2161,34 @@ init(opMode: CryptoMode, key: Key, params: ParamsSpec | null): Promise\<void>
 | 17620002 | runtime error.                                    |
 | 17630001 | crypto operation error.|
 
+### initSync<sup>12+</sup>
+
+initSync(opMode: CryptoMode, key: Key, params: ParamsSpec | null): void
+
+初始化加解密的[cipher](#cipher)对象，通过注册回调函数获取结果。initSync、updateSync、doFinalSync为三段式接口，需要成组使用。其中initSync和doFinalSync必选，updateSync可选。
+
+必须在使用[createCipher](#cryptoframeworkcreatecipher)创建[Cipher](#cipher)实例后，才能使用本函数。
+
+**系统能力：** SystemCapability.Security.CryptoFramework
+
+**参数：**
+
+| 参数名 | 类型                                            | 必填 | 说明                                                         |
+| ------ | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
+| opMode | [CryptoMode](#cryptomode)                       | 是   | 加密或者解密模式。                                           |
+| key    | [Key](#key)                                     | 是   | 指定加密或解密的密钥。                                       |
+| params | [ParamsSpec](#paramsspec)  | 是   | 指定加密或解密的参数，对于ECB等没有参数的算法模式，可以传入null。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 401      | invalid parameters.     |
+| 17620001 | memory error.           |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
+
 ### update
 
 update(data: DataBlob, callback: AsyncCallback\<DataBlob>): void
@@ -2236,6 +2264,34 @@ update(data: DataBlob): Promise\<DataBlob>
 | 17620001 | memory error.                                |
 | 17620002 | runtime error.                               |
 | 17630001 | crypto operation error.                      |
+
+### updateSync<sup>12+</sup>
+
+updateSync(data: DataBlob): void
+
+分段更新加密或者解密数据操作，通过注册回调函数获取加/解密数据。
+
+必须在对[Cipher](#cipher)实例使用[initSync()](#initsync12)初始化后，才能使用本函数。
+
+其他注意事项同上异步接口说明。
+
+**系统能力：** SystemCapability.Security.CryptoFramework
+
+**参数：**
+
+| 参数名 | 类型                  | 必填 | 说明                                                         |
+| ------ | --------------------- | ---- | ------------------------------------------------------------ |
+| data   | [DataBlob](#datablob) | 是   | 加密或者解密的数据。data不能为null，也不允许传入{data: Uint8Array(空) }。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 401      | invalid parameters.     |
+| 17620001 | memory error.           |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
 
 ### doFinal
 
@@ -2405,6 +2461,81 @@ async function cipherByPromise() {
   gcmParams.authTag = await cipher.doFinal(null);
   console.info('encryptUpdate plainText: ' + encryptUpdate.data);
 }
+```
+
+### doFinalSync<sup>12+</sup>
+
+doFinalSync(data: DataBlob | null): void
+
+（1）在对称加解密中，doFinalSync加/解密（分组模式产生的）剩余数据和本次传入的数据，最后结束加密或者解密数据操作，通过注册回调函数获取加密或者解密数据。<br/>如果数据量较小，可以在doFinalSync中一次性传入数据，而不使用updateSync；如果在本次加解密流程中，已经使用[updateSync](#updatesync12)传入过数据，可以在doFinalSync的data参数处传入null。<br/>根据对称加解密的模式不同，doFinalSync的输出有如下区别：
+
+- 对于GCM和CCM模式的对称加密：一次加密流程中，如果将每一次updateSync和doFinalSync的结果拼接起来，会得到“密文+authTag”，即末尾的16字节（GCM模式）或12字节（CCM模式）是authTag，而其余部分均为密文。（也就是说，如果doFinalSync的data参数传入null，则doFinalSync的结果就是authTag）<br/>authTag需要填入解密时的[GcmParamsSpec](#gcmparamsspec)或[CcmParamsSpec](#ccmparamsspec)；密文则作为解密时的入参data。
+- 对于其他模式的对称加解密、GCM和CCM模式的对称解密：一次加/解密流程中，每一次updateSync和doFinalSync的结果拼接起来，得到完整的明文/密文。
+
+（2）在RSA、SM2非对称加解密中，doFinalSync加/解密本次传入的数据，通过注册回调函数获取加密或者解密数据。如果数据量较大，可以多次调用doFinalSync，拼接结果得到完整的明文/密文。
+
+其他注意事项同接口[doFinal()](#dofinal)说明。
+
+**系统能力：** SystemCapability.Security.CryptoFramework
+
+**参数：**
+
+| 参数名 | 类型                                        | 必填 | 说明                                                         |
+| ------ | ------------------------------------------- | ---- | ------------------------------------------------------------ |
+| data   | [DataBlob](#datablob)  | 是   | 加密或者解密的数据。在对称加解密中允许为null，但不允许传入{data: Uint8Array(空) }。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 401      | invalid parameters.     |
+| 17620001 | memory error.           |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
+
+**以AES GCM模式加密为例：**
+
+此外，更多加解密流程的完整示例可参考[加解密开发指导](../../security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-gcm.md)。
+
+```ts
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import buffer from '@ohos.buffer';
+
+function genGcmParamsSpec() {
+  let arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  let dataIv = new Uint8Array(arr);
+  let ivBlob: cryptoFramework.DataBlob = { data: dataIv };
+  arr = [0, 0, 0, 0, 0, 0, 0, 0];
+  let dataAad = new Uint8Array(arr);
+  let aadBlob: cryptoFramework.DataBlob = { data: dataAad };
+  arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  let dataTag = new Uint8Array(arr);
+  let tagBlob: cryptoFramework.DataBlob = {
+    data: dataTag
+  };
+  let gcmParamsSpec: cryptoFramework.GcmParamsSpec = {
+    iv: ivBlob,
+    aad: aadBlob,
+    authTag: tagBlob,
+    algName: "GcmParamsSpec"
+  };
+  return gcmParamsSpec;
+}
+
+async function cipherBySync() {
+  let gcmParams = genGcmParamsSpec();
+  let symKeyGenerator = cryptoFramework.createSymKeyGenerator('AES128');
+  let cipher = cryptoFramework.createCipher('AES128|GCM|PKCS7');
+  let symKey = await symKeyGenerator.generateSymKey();
+  await cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, gcmParams);
+  let message = "This is a test";
+  let plainText: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from(message, 'utf-8').buffer) };
+  let encryptUpdate = cipher.updateSync(plainText);
+  gcmParams.authTag = cipher.doFinalSync(null);
+  console.info('encryptUpdate plainText: ' + encryptUpdate.data);
+}
+
 ```
 
 ### setCipherSpec<sup>10+</sup>
