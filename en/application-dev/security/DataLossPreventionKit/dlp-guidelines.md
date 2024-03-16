@@ -48,7 +48,7 @@ For an application in the DLP sandbox state, the permissions granted to the appl
 
 ## How to Develop
 
-1. Import the [dlpPermission](../../reference/apis/js-apis-dlppermission.md) module.
+1. Import the [dlpPermission](../../reference/apis-data-loss-prevention-kit/js-apis-dlppermission.md) module.
 
    ```ts
    import dlpPermission from '@ohos.dlpPermission';
@@ -136,7 +136,7 @@ For an application in the DLP sandbox state, the permissions granted to the appl
    import dlpPermission from '@ohos.dlpPermission';
    import fs from '@ohos.file.fs';
    import { BusinessError } from '@ohos.base';
-   
+
    let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
    let file = fs.openSync(uri);
    try {
@@ -248,7 +248,7 @@ For an application in the DLP sandbox state, the permissions granted to the appl
     import UIAbility from '@ohos.app.ability.UIAbility'
     import Want from '@ohos.app.ability.Want';
     import { BusinessError } from '@ohos.base';
-    
+
     try {
       let context = getContext () as common.UIAbilityContext; // Obtain the UIAbility context.
       let want: Want = {
@@ -263,5 +263,19 @@ For an application in the DLP sandbox state, the permissions granted to the appl
       }); // Start the DLP manager application.
     } catch (err) {
       console.error('error', err.code, err.message); // Report an error upon a failure.
+    }
+    ```
+
+14. Check whether the current system provides the DLP feature.
+    ```ts
+    import dlpPermission from '@ohos.dlpPermission';
+    import { BusinessError } from '@ohos.base';
+
+    async checkIsDLPFeatureProvided() {
+      dlpPermission.isDLPFeatureProvided().then((res) => {git
+        console.info('res', JSON.stringify(res));
+      }).catch((err: BusinessError) => {
+        console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Report an error upon a failure.
+      });
     }
     ```
