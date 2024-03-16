@@ -38,7 +38,8 @@
 
 - 通信适配层：由OpenHarmony SDK提供，负责与卡片管理服务通信，用于将卡片的更新数据主动推送到卡片管理服务。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
+> 
 > 实际开发时只需要作为卡片提供方进行卡片内容的开发，卡片使用方和卡片管理服务由系统自动处理。
 
 
@@ -75,7 +76,7 @@ formBindingData类有如下API接口，具体的API介绍详见[接口文档](..
 
 ## 开发步骤
 
-Stage卡片开发，即基于[Stage模型](stage-model-development-overview.md)的卡片提供方开发，主要涉及如下关键步骤：
+Stage卡片开发，即基于[Stage模型](../application-models/stage-model-development-overview.md)的卡片提供方开发，主要涉及如下关键步骤：
 
 - [创建卡片FormExtensionAbility](#创建卡片formextensionability)：卡片生命周期回调函数FormExtensionAbility开发。
 
