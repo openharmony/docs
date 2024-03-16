@@ -87,6 +87,17 @@ RouterPageInfo包含的信息。
 | path         | string                                             | 是   | 触发生命周期的routerPage页面的路径。           |
 | state        | [RouterPageState](#routerpagestate)                | 是   | 触发生命周期的routerPage页面的状态             |
 
+## DensityInfo<sup>12+</sup>
+
+屏幕像素密度变化回调包含的信息。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称    | 类型                                      | 必填 | 说明                                   |
+| ------- | ----------------------------------------- | ---- | -------------------------------------- |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 屏幕像素密度变化时页面对应的上下文信息 |
+| density | number                                    | 是   | 变化后的屏幕像素密度。                 |
+
 ## observer.on('navDestinationUpdate')
 
 on(type: 'navDestinationUpdate', callback: Callback\<NavDestinationInfo\>): void
@@ -374,4 +385,101 @@ observer.off('routerPageUpdate', this.context, callBackFunc);
 // uiContext could be got by window's function: getUIContext()
 uiContext: UIContext | null = null;
 observer.off('routerPageUpdate', this.uiContext, callBackFunc);
+```
+
+## observer.on('densityUpdate')<sup>12+</sup>
+
+on(type: 'densityUpdate', context: UIContext, callback: Callback<DensityInfo>): void
+
+监听屏幕像素密度变化。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'densityUpdate'，即屏幕像素密度变化。 |
+| context  | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 上下文信息，用以指定监听页面的范围 |
+| callback | Callback\<[DensityInfo](#densityinfo12)\>        | 是   | 回调函数。携带densityInfo，返回变化后的屏幕像素密度。                 |
+
+**示例：**
+
+```ts
+import observer from '@ohos.arkui.observer';
+
+@Entry
+@Component
+struct Index {
+  @State density: number = 0;
+  @State message: string = '未注册监听'
+
+  densityUpdateCallback = (info: observer.DensityInfo) => {
+    this.density = info.density;
+    this.message = '变化后的DPI：' + this.density.toString();
+  }
+
+  build() {
+    Column() {
+      Text(this.message)
+        .fontSize(24)
+        .fontWeight(FontWeight.Bold)
+      Button('注册屏幕像素密度变化监听')
+        .onClick(() => {
+          this.message = '已注册监听'
+          observer.on('densityUpdate', this.getUIContext(), this.densityUpdateCallback);
+        })
+    }
+  }
+}
+```
+
+## observer.off('densityUpdate')<sup>12+</sup>
+
+off(type: 'densityUpdate', context: UIContext, callback?: Callback<DensityInfo>): void
+
+取消监听屏幕像素密度的变化。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                      | 必填 | 说明                                                  |
+| -------- | ----------------------------------------- | ---- | ----------------------------------------------------- |
+| type     | string                                    | 是   | 监听事件，固定为'densityUpdate'，即屏幕像素密度变化。 |
+| context  | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 上下文信息，用以指定监听页面的范围                    |
+| callback | Callback\<[DensityInfo](#densityinfo12)\>   | 否   | 需要被注销的回调函数。                                |
+
+```ts
+import observer from '@ohos.arkui.observer';
+
+@Entry
+@Component
+struct Index {
+  @State density: number = 0;
+  @State message: string = '未注册监听'
+
+  densityUpdateCallback = (info: observer.DensityInfo) => {
+    this.density = info.density;
+    this.message = '变化后的DPI：' + this.density.toString();
+  }
+
+  build() {
+    Column() {
+      Text(this.message)
+        .fontSize(24)
+        .fontWeight(FontWeight.Bold)
+      Button('注册屏幕像素密度变化监听')
+        .onClick(() => {
+          this.message = '已注册监听'
+          observer.on('densityUpdate', this.getUIContext(), this.densityUpdateCallback);
+        })
+      Button('解除注册屏幕像素密度变化监听')
+        .onClick(() => {
+          this.message = '未注册监听'
+          observer.off('densityUpdate', this.getUIContext(), this.densityUpdateCallback);
+        })
+    }
+  }
+}
 ```

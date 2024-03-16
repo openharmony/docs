@@ -1185,6 +1185,99 @@ function callBackFunc(info:observer.RouterPageInfo) {};
 observer.off('routerPageUpdate', callBackFunc);
 ```
 
+### observer.on('densityUpdate')<sup>12+</sup>
+
+on(type: 'densityUpdate', callback: Callback<DensityInfo>): void
+
+监听屏幕像素密度变化。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'densityUpdate'，即屏幕像素密度变化。 |
+| callback | Callback\<[DensityInfo](./js-apis-arkui-observer.md#densityinfo12)\>        | 是   | 回调函数。携带densityInfo，返回变化后的屏幕像素密度。                 |
+
+```ts
+import observer from '@ohos.arkui.observer';
+
+@Entry
+@Component
+struct Index {
+  @State density: number = 0;
+  @State message: string = '未注册监听'
+
+  densityUpdateCallback = (info: observer.DensityInfo) => {
+    this.density = info.density;
+    this.message = '变化后的DPI：' + this.density.toString();
+  }
+
+  build() {
+    Column() {
+      Text(this.message)
+        .fontSize(24)
+        .fontWeight(FontWeight.Bold)
+      Button('注册屏幕像素密度变化监听')
+        .onClick(() => {
+          this.message = '已注册监听'
+          this.getUIContext().getUIObserver().on('densityUpdate', this.densityUpdateCallback);
+        })
+    }
+  }
+}
+```
+
+### observer.off('densityUpdate')<sup>12+</sup>
+
+off(type: 'densityUpdate', callback?: Callback<DensityInfo>): void
+
+取消监听屏幕像素密度的变化。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'densityUpdate'，即屏幕像素密度变化。 |
+| callback | Callback\<[DensityInfo](./js-apis-arkui-observer.md#densityinfo12)\>        | 否   | 需要被注销的回调函数。                  |
+
+```ts
+import observer from '@ohos.arkui.observer';
+
+@Entry
+@Component
+struct Index {
+  @State density: number = 0;
+  @State message: string = '未注册监听'
+
+  densityUpdateCallback = (info: observer.DensityInfo) => {
+    this.density = info.density;
+    this.message = '变化后的DPI：' + this.density.toString();
+  }
+
+  build() {
+    Column() {
+      Text(this.message)
+        .fontSize(24)
+        .fontWeight(FontWeight.Bold)
+      Button('注册屏幕像素密度变化监听')
+        .onClick(() => {
+          this.message = '已注册监听'
+          this.getUIContext().getUIObserver().on('densityUpdate', this.densityUpdateCallback);
+        })
+      Button('解除注册屏幕像素密度变化监听')
+        .onClick(() => {
+          this.message = '未注册监听'
+          this.getUIContext().getUIObserver().off('densityUpdate', this.densityUpdateCallback);
+        })
+    }
+  }
+}
+```
+
 ## MediaQuery
 
 以下API需先使用UIContext中的[getMediaQuery()](#getmediaquery)方法获取到MediaQuery对象，再通过该对象调用对应方法。
