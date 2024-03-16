@@ -95,6 +95,11 @@ import window from '@ohos.window';
 | AUTO_ROTATION_PORTRAIT_RESTRICTED     | 9    | 表示受开关控制的自动竖向旋转模式。 |
 | AUTO_ROTATION_LANDSCAPE_RESTRICTED    | 10   | 表示受开关控制的自动横向旋转模式。 |
 | LOCKED                                | 11   | 表示锁定模式。 |
+| AUTO_ROTATION_UNSPECIFIED<sup>12+</sup>        | 12   | 表示受开关控制和系统判定的自动旋转模式。 |
+| USER_ROTATION_PORTRAIT<sup>12+</sup>           | 13   | 表示临时竖屏后受开关控制和系统判定的自动旋转模式。 |
+| USER_ROTATION_LANDSCAPE<sup>12+</sup>          | 14   | 表示临时横屏后受开关控制和系统判定的自动旋转模式。 |
+| USER_ROTATION_PORTRAIT_INVERTED<sup>12+</sup>  | 15   | 表示临时反向竖屏后受开关控制和系统判定的自动旋转模式。 |
+| USER_ROTATION_LANDSCAPE_INVERTED<sup>12+</sup> | 16   | 表示临时反向横屏后受开关控制和系统判定的自动旋转模式。 |
 
 
 ## Rect<sup>7+</sup>
@@ -1792,6 +1797,38 @@ try {
   });
 } catch (exception) {
   console.error('Failed to set window orientation. Cause: ' + JSON.stringify(exception));
+}
+```
+
+### getPreferredOrientation<sup>12+</sup>
+
+getPreferredOrientation(): Orientation
+
+获取窗口的显示方向属性。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**返回值：**
+
+| 类型 | 说明 |
+|------------------------------| ------------------ |
+| [Orientation](#orientation9) | 窗口显示方向的属性。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal. |
+
+**示例：**
+
+```ts
+try {
+  let orientation = windowClass.getPreferredOrientation();
+} catch (exception) {
+  console.error('Failed to get window orientation. Cause:' + JSON.stringify(exception));
 }
 ```
 
