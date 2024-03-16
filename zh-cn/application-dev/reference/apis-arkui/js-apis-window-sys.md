@@ -2669,6 +2669,66 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
+
+### setTopmost<sup>12+</sup>
+
+setTopmost(isTopmost: boolean): Promise&lt;void&gt;
+
+系统应用主窗口调用，实现将窗口置于所有应用窗口之上不被遮挡，使用Promise异步回调。
+
+仅对2in1设备的悬浮窗口生效。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| isTopmost | boolean | 是   | 是否将系统应用主窗口置顶，true表示置顶，false表示取消置顶。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation.                       |
+
+**示例：**
+
+```js
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    // ...
+    windowStage.getMainWindow().then((window) => {
+      let isTopmost: boolean = true;
+      let promise = window.setTopmost(isTopmost);
+      promise.then(() => {
+        console.info('Succeeded in setting the main window to be topmost.');
+      }).catch((err: BusinessError) => {
+        console.error('Failed to set the main window to be topmost. Cause: ' + JSON.stringify(err));
+      });
+    });
+  }
+}
+```
+
+
 ### setSingleFrameComposerEnabled<sup>11+</sup>
 
 setSingleFrameComposerEnabled(enable: boolean): Promise&lt;void&gt;
