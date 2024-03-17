@@ -2715,6 +2715,48 @@ promise.then(()=> {
 });
 ```
 
+###  setTitleButtonShow<sup>12+</sup>
+
+setTitleButtonShow(isShowMaximize: boolean, isShowMinimize: boolean, isShowSplit: boolean): void;
+
+设置是否显示标题栏上的最小化、最大化、关闭按钮矩形。
+
+该接口设置按钮显示范围应限制在应用设置的supportWindowMode范围内。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名    | 类型    | 必填 | 说明                                          |
+| --------- | ------- | ---- | --------------------------------------------- |
+| isShowMaximize | boolean | 是   | 设置最大化按钮是否可见，true为可见，false为隐藏。 |
+| isShowMinimize | boolean | 是   | 设置最小化按钮是否可见，true为可见，false为隐藏。 |
+| isShowSplit | boolean | 是   | 设置分屏按钮是否可见，true为可见，false为隐藏。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 202   | Permission verification failed, application which is not a system application uses system API. |
+| 401   | Parameter error. |
+| 801   | Capability not supported on this device. |
+| 1300002  | This window state is abnormal. |
+
+**示例：**
+
+```ts
+try {
+  let titleButtonArea = windowClass.setTitleButtonShow(false, false, false);
+  console.info('Succeeded hide maximize, minimize, split title buttons');
+} catch (exception) {
+  console.error('Failed to set title buttons show. Cause: ' + JSON.stringify(exception));
+}
+```
+
 ### setWindowType<sup>(deprecated)</sup>
 
 setWindowType(type: WindowType, callback: AsyncCallback&lt;void&gt;): void
