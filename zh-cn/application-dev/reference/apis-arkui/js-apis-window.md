@@ -7029,17 +7029,21 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-### disableWindowDecor()<sup>9+</sup>
+### setUseDefaultDensity()<sup>12+</sup>
 
-disableWindowDecor(): void
+setUseDefaultDensity(isUseDefaultDensity: boolean): void
 
-禁止窗口装饰。
+设置应用使用系统默认DPI。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
-**系统接口：** 此接口为系统接口。
+**系统能力：** SystemCapability.WindowManager.WindowManager
 
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+**参数：**
+
+| 参数名           | 类型    | 必填 | 说明                         |
+| ---------------- | ------- | ---- | ---------------------------- |
+| isUseDefaultDensity | boolean | 是   | 是否设置应用使用系统默认DPI。true表示使用系统默认DPI；false表示不使用系统默认DPI，跟随系统DPI调整变化。 |
 
 **错误码：**
 
@@ -7060,8 +7064,12 @@ export default class EntryAbility extends UIAbility {
   // ...
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    console.log('disableWindowDecor');
-    windowStage.disableWindowDecor();
+    console.log('onWindowStageCreate');
+    try {
+      windowStage.setUseDefaultDensity(true);
+    } catch (exception) {
+      console.error('Failed to set use default density. Cause:' + JSON.stringify(exception));
+    }
   }
 };
 ```
