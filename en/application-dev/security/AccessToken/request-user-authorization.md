@@ -24,13 +24,15 @@ This topic elaborates steps 3 and 4.
 
 - A check for the required permission is mandatory each time before the operation that requires the permission is performed.
   
-  To check whether the user has granted the permission to your application, use [checkAccessToken()](../../reference/apis/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9). This API returns [PERMISSION_GRANTED](../../reference/apis/js-apis-abilityAccessCtrl.md#grantstatus) or [PERMISSION_DENIED](../../reference/apis/js-apis-abilityAccessCtrl.md#grantstatus). For details, see the example given below.
+  You can use [checkAccessToken()](../../reference/apis/js-apis-abilityAccessCtrl.md#checkaccesstoken9) to check whether the user has granted specific permissions to your application. This API returns [PERMISSION_GRANTED](../../reference/apis/js-apis-abilityAccessCtrl.md#grantstatus) or [PERMISSION_DENIED](../../reference/apis/js-apis-abilityAccessCtrl.md#grantstatus). For details, see the example given below.
 
 - Each time before an API that requires a **user_grant** permission is called, use [requestPermissionsFromUser()](../../reference/apis/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9) to check whether the user has already granted the permission.
 
   After a permission is granted, the user may revoke the permission in **Settings**. Therefore, the previous authorization status cannot be persistent.
 
 - For a user_grant permission, show a rationale to the user in a UI element, clearly explaining why your application needs the permission. Based on the rationale, the user then determines whether to grant the permission.
+
+- To avoid interrupting user experience, the authorization dialog box cannot be displayed again if the user denies the authorization. The application needs to provide information to guide the user to manually grant permissions on **Settings**.
 
 
 ## How to Develop
