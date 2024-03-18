@@ -2742,6 +2742,7 @@ setTitleButtonVisible(isMaximizeVisible: boolean, isMinimizeVisible: boolean, is
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
 | 1300002  | This window state is abnormal. |
+| 1300004  | Unauthorized operation. |
 
 **示例：**
 
