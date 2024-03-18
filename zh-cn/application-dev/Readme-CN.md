@@ -32,6 +32,7 @@
   - [IDL工具规格及使用说明书](IDL/idl-guidelines.md)
   - [Native API的相关指导](napi/Readme-CN.md)
   - [性能](performance/readme-CN.md)
+  - [卡片开发服务](form/Readme-CN.md)
 - 工具
   - [DevEco Studio（OpenHarmony）使用指南](quick-start/deveco-studio-user-guide-for-openharmony.md)
   - [调试工具](tools/Readme-CN.md)
