@@ -6555,6 +6555,8 @@ startCamera(): void
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
+**需要权限：** ohos.permission.CAMERA
+
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
@@ -6685,6 +6687,8 @@ stopCamera(): void
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
+**需要权限：** ohos.permission.CAMERA
+
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
@@ -6704,6 +6708,8 @@ closeCamera(): void
 关闭当前网页摄像头捕获。
 
 **系统能力：** SystemCapability.Web.Webview.Core
+
+**需要权限：** ohos.permission.CAMERA
 
 **错误码：**
 
