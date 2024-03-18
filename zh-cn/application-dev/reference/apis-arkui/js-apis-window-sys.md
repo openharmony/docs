@@ -845,7 +845,7 @@ image.createPixelMap(color, initializationOptions).then((pixelMap: image.PixelMa
   console.error('Failed to create PixelMap. Cause: ' + JSON.stringify(err));
 });
 ```
-### getSnapshot<sup>12+</sup>
+## getSnapshot<sup>12+</sup>
 
 getSnapshot(windowId: number): Promise<image.pixelMap>;
 
