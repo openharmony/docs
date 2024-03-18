@@ -7033,17 +7033,17 @@ export default class EntryAbility extends UIAbility {
 
 setUseDefaultDensity(isUseDefaultDensity: boolean): void
 
-设置应用使用系统默认DPI。
+设置应用使用系统默认Density。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
-**系统能力：** SystemCapability.WindowManager.WindowManager
+**系统能力：** SystemCapability.Window.SessionManager
 
 **参数：**
 
 | 参数名           | 类型    | 必填 | 说明                         |
 | ---------------- | ------- | ---- | ---------------------------- |
-| isUseDefaultDensity | boolean | 是   | 是否设置应用使用系统默认DPI。true表示使用系统默认DPI；false表示不使用系统默认DPI，跟随系统DPI调整变化。 |
+| isUseDefaultDensity | boolean | 是   | 是否设置应用使用系统默认Density。true表示使用系统默认Density；false表示不使用系统默认Density，跟随系统Density调整变化。 |
 
 **错误码：**
 
