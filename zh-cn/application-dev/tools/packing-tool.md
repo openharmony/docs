@@ -13,14 +13,14 @@
 
 
     ```
-    java -jar app_packing_tool.jar --mode hap --json-path <option> --resources-path <option> --ets-path <option> --index-path <option> --pack-info-path <option> --out-path <option> --force true --compress-level 5
+    java -jar app_packing_tool.jar --mode hap --json-path <option> --resources-path <option> --ets-path <option> --index-path <option> --pack-info-path <option> --out-path <option> --force true
     ```
 
 - FA模型示例：
 
 
     ```
-    java -jar app_packing_tool.jar --mode hap --json-path <option> --maple-so-path [option] --profile-path [option] --maple-so-dir [option] --dex-path [option] --lib-path [option] --resources-path [option] --index-path [option] --out-path <option> --force [option] --compress-level 5
+    java -jar app_packing_tool.jar --mode hap --json-path <option> --maple-so-path [option] --profile-path [option] --maple-so-dir [option] --dex-path [option] --lib-path [option] --resources-path [option] --index-path [option] --out-path <option> --force [option]
     ```
 
 **表1** HAP打包指令参数说明
@@ -45,7 +45,6 @@
 | --an-path        | 否         | NA            | 存放an文件的路径。                                           | 仅stage模型生效 |
 | --ap-path        | 否         | NA            | 存放ap文件的路径。                                           | 仅stage模型生效 |
 | --dir-list       | 否         | NA            | 可指定目标文件夹列表，将其打入HAP包内。                      | NA              |
-| --compress-level | 否         | number        | 压缩等级，默认值1，可选等级1-9。在应用配置compressNativeLibs参数为true的情况下生效，数值越大压缩率越高、压缩速度越慢。 | NA  |
 
 ## HAR打包指令
 
@@ -75,7 +74,7 @@ HSP包实现了多个HAP对文件的共享，开发者可以使用打包工具�
 
 示例：
 ```
-java -jar path\app_packing_tool.jar --mode hsp --json-path <option> --resources-path <option> --ets-path <option> --index-path <option> --pack-info-path <option> --out-path path\out\library.hsp --force true --compress-level 5
+java -jar path\app_packing_tool.jar --mode hsp --json-path <option> --resources-path <option> --ets-path <option> --index-path <option> --pack-info-path <option> --out-path path\out\library.hsp --force true
 ```
 
 **表3** HSP打包指令参数说明
@@ -94,7 +93,6 @@ java -jar path\app_packing_tool.jar --mode hsp --json-path <option> --resources-
 | --ets-path       | 否         | NA            | 存放ets文件目录路径。                                        |
 | --out-path       | 是         | NA            | 目标文件路径，文件名必须以.hsp为后缀。                       |
 | --force          | 否         | true或者false | 默认值为false，如果为true，表示当目标文件存在时，强制删除。  |
-| --compress-level | 否         | number        | 压缩等级，默认值1，可选等级1-9。在应用配置compressNativeLibs参数为true的情况下生效，数值越大压缩率越高、压缩速度越慢。 |
 
 ## App打包指令
 
