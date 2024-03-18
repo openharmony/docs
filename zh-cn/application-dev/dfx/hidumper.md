@@ -49,6 +49,8 @@ HiDumper为开发、测试人员提供统一的系统信息获取工具，可帮
 
    ![](figures/hidumper-mem-pid.png)
 
+   **Graph字段统计方式为：计算/proc/process_dmabuf_info节点下该进程使用的内存大小。**
+
 3. 查看设备中所有pid的内存信息，命令格式如下：
 
    ```
