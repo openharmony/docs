@@ -2719,7 +2719,7 @@ promise.then(()=> {
 
 setTitleButtonShow(isShowMaximize: boolean, isShowMinimize: boolean, isShowSplit: boolean): void;
 
-设置是否显示标题栏上的最小化、最大化、关闭按钮矩形。
+设置是否显示标题栏上的最大化、最小化、分屏按钮。
 
 该接口设置按钮显示范围应限制在应用设置的supportWindowMode范围内。
 
@@ -2750,7 +2750,7 @@ try {
   let titleButtonArea = windowClass.setTitleButtonShow(false, false, false);
   console.info('Succeeded hide maximize, minimize, split title buttons');
 } catch (exception) {
-  console.error('Failed to set title buttons show. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to hide title buttons. Cause: ' + JSON.stringify(exception));
 }
 ```
 
