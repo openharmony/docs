@@ -483,3 +483,161 @@ struct Index {
   }
 }
 ```
+
+## observer.on('willDraw')<sup>12+</sup>
+
+on(type: 'willDraw', context: UIContext, callback: Callback\<void\>): void
+
+监听每一帧绘制指令下发情况。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'willDraw'，即是否将要绘制。 |
+| context  | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 上下文信息，用以指定监听页面的范围。 |
+| callback | Callback\<void\>        | 是   | 回调函数。                 |
+
+**示例：**
+
+```ts
+import observer from '@ohos.arkui.observer';
+
+@Entry
+@Component
+struct Index {
+  willDrawCallback = () => {
+    console.log("willDraw指令下发");
+  }
+  build() {
+    Column() {
+      Button('注册绘制指令下发监听')
+        .onClick(() => {
+          observer.on('willDraw', this.getUIContext(), this.willDrawCallback);
+        })
+    }
+  }
+}
+```
+
+## observer.off('willDraw')<sup>12+</sup>
+
+off(type: 'willDraw', context: UIContext, callback?: Callback\<void\>): void
+
+取消监听每一帧绘制指令下发情况。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                      | 必填 | 说明                                                  |
+| -------- | ----------------------------------------- | ---- | ----------------------------------------------------- |
+| type     | string                                    | 是   | 监听事件，固定为'willDraw'，即是否将要绘制。 |
+| context  | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 上下文信息，用以指定监听页面的范围。                    |
+| callback | Callback\<void\>   | 否   | 需要被注销的回调函数。                                |
+
+```ts
+import observer from '@ohos.arkui.observer';
+
+@Entry
+@Component
+struct Index {
+  willDrawCallback = () => {
+    console.log("willDraw指令下发")
+  }
+
+  build() {
+    Column() {
+      Button('注册绘制指令下发监听')
+        .onClick(() => {
+          observer.on('willDraw', this.getUIContext(), this.willDrawCallback);
+        })
+      Button('解除注册绘制指令下发监听')
+        .onClick(() => {
+          observer.off('willDraw', this.getUIContext(), this.willDrawCallback);
+        })
+    }
+  }
+}
+```
+
+## observer.on('didLayout')<sup>12+</sup>
+
+on(type: 'didLayout', context: UIContext, callback: Callback\<void\>): void
+
+监听每一帧布局完成情况
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'didLayout'，即是否布局完成。 |
+| context  | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 上下文信息，用以指定监听页面的范围。 |
+| callback | Callback\<void\>        | 是   | 回调函数。                 |
+
+**示例：**
+
+```ts
+import observer from '@ohos.arkui.observer';
+
+@Entry
+@Component
+struct Index {
+  didLayoutCallback = () => {
+    console.log("Layout布局完成");
+  }
+  build() {
+    Column() {
+      Button('注册布局完成监听')
+        .onClick(() => {
+          observer.on('didLayout', this.getUIContext(), this.didLayoutCallback);
+        })
+    }
+  }
+}
+```
+
+## observer.off('didLayout')<sup>12+</sup>
+
+off(type: 'didLayout', context: UIContext, callback?: Callback\<void\>): void
+
+取消监听每一帧布局完成情况。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                      | 必填 | 说明                                                  |
+| -------- | ----------------------------------------- | ---- | ----------------------------------------------------- |
+| type     | string                                    | 是   | 监听事件，固定为'didLayout'，即是否布局完成。 |
+| context  | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 上下文信息，用以指定监听页面的范围。                    |
+| callback | Callback\<void\>   | 否   | 需要被注销的回调函数。                                |
+
+```ts
+import observer from '@ohos.arkui.observer';
+
+@Entry
+@Component
+struct Index {
+  didLayoutCallback = () => {
+    console.log("Layout布局完成")
+  }
+
+  build() {
+    Column() {
+      Button('注册布局完成监听')
+        .onClick(() => {
+          observer.on('didLayout', this.getUIContext(), this.didLayoutCallback);
+        })
+      Button('解除布局完成s监听')
+        .onClick(() => {
+          observer.off('didLayout', this.getUIContext(), this.didLayoutCallback);
+        })
+    }
+  }
+}
+```
