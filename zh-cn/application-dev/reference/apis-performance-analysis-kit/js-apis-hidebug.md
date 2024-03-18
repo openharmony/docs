@@ -177,7 +177,7 @@ getServiceDump(serviceid : number, fd : number, args : Array\<string>) : void
 
 获取系统服务信息。
 
-**需要权限**: ohos.permission.DUMP
+**需要权限**: ohos.permission.DUMP，仅系统应用可申请。
 
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -341,7 +341,8 @@ try {
 
 startProfiling(filename : string) : void
 
-> **说明：** 从 API Version 9 开始废弃，建议使用[hidebug.startJsCpuProfiling](#hidebugstartjscpuprofiling9)替代。
+> **说明：** 
+> 从 API Version 9 开始废弃，建议使用[hidebug.startJsCpuProfiling](#hidebugstartjscpuprofiling9)替代。
 
 启动虚拟机Profiling方法跟踪，`startProfiling()`方法的调用需要与`stopProfiling()`方法的调用一一对应，先开启后关闭，严禁使用`start->start->stop`，`start->stop->stop`，`start->start->stop->stop`等类似的顺序调用。
 
@@ -367,7 +368,8 @@ hidebug.stopProfiling();
 
 stopProfiling() : void
 
-> **说明：** 从 API Version 9 开始废弃，建议使用[hidebug.stopJsCpuProfiling](#hidebugstopjscpuprofiling9)替代。
+> **说明：** 
+> 从 API Version 9 开始废弃，建议使用[hidebug.stopJsCpuProfiling](#hidebugstopjscpuprofiling9)替代。
 
 停止虚拟机Profiling方法跟踪，`stopProfiling()`方法的调用需要与`startProfiling()`方法的调用一一对应，先开启后关闭，严禁使用`start->start->stop`，`start->stop->stop`，`start->start->stop->stop`等类似的顺序调用。
 
@@ -387,7 +389,8 @@ hidebug.stopProfiling();
 
 dumpHeapData(filename : string) : void
 
-> **说明：** 从 API Version 9 开始废弃，建议使用[hidebug.dumpJsHeapData](#hidebugdumpjsheapdata9)替代。
+> **说明：** 
+> 从 API Version 9 开始废弃，建议使用[hidebug.dumpJsHeapData](#hidebugdumpjsheapdata9)替代。
 
 虚拟机堆导出。
 
