@@ -1,4 +1,6 @@
 # IPC Kit API Reference
 
-- Error Cdoes
-  - [RPC Error Cdoes](errorcode-rpc.md)
+- ArkTS APIs
+  - [@ohos.rpc (RPC)](js-apis-rpc.md)
+- Error Codes
+  - [RPC Error Codes](errorcode-rpc.md)
