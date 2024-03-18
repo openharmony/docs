@@ -30,22 +30,22 @@ OAID会在下述场景中发生变化：
 ### 开发步骤
 1. 在模块的module.json5文件中，申请广告跟踪权限[ohos.permission.APP_TRACKING_CONSENT](../../security/AccessToken/module-configuration-file.md#requestPermissions)，该权权限为user_grant权限，当申请的权限为user_grant权限时，reason，abilities标签必填，配置方式参见[requestPermissions标签说明](../../quick-start/permissions-for-all.md#ohospermissionapp_tracking_consent),示例代码如下所示：
    ```
-{
-  "module" : {
-    "requestPermissions": [
-      {
-        "name": "ohos.permission.APP_TRACKING_CONSENT",
-        "reason": "$string:reason",
-        "usedScene": {
-          "abilities": [
-            "EntryFormAbility"
-          ],
-          "when": "inuse"
-        }
-      }
-    ]
-  }
-}
+   {
+     "module" : {
+       "requestPermissions": [
+         {
+           "name": "ohos.permission.APP_TRACKING_CONSENT",
+           "reason": "$string:reason",
+           "usedScene": {
+             "abilities": [
+               "EntryFormAbility"
+             ],
+             "when": "inuse"
+           }
+         }
+       ]
+     }
+   }
    ```
 
    在应用启动时触发动态授权弹框，向用户请求授权。其中context的获取方式参见[各类Context的获取方式](../../application-models/application-context-stage.md)。示例代码如下所示：
