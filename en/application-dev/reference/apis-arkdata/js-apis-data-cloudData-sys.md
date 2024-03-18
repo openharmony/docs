@@ -1351,8 +1351,8 @@ Confirms the invitation based on the sharing invitation code and obtains the sha
 ```ts
 import { BusinessError } from "@ohos.base";
 
-let shareResource: string;
-cloudData.sharing.confirmInvitation('sharing_invitation_code_test', cloudData.sharing.State.STATE_ACCEPTED).then((result) => {
+let shareResource: string | undefined;
+cloudData.sharing.confirmInvitation('sharing_invitation_code_test', cloudData.sharing.State.STATE_ACCEPTED).then((result: cloudData.sharing.Result<string>) => {
   console.info(`confirm invitation succeeded, result: ${result}`);
   shareResource = result.value;
 }).catch((err: BusinessError) => {
@@ -1454,5 +1454,4 @@ cloudData.sharing.changeConfirmation('sharing_resource_test', cloudData.sharing.
 }))
 
 ```
-
 <!--no_check-->

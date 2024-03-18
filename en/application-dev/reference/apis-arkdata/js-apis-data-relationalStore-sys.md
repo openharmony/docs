@@ -464,7 +464,7 @@ if(store != undefined) {
 
 cloudSync(mode: SyncMode, predicates: RdbPredicates, progress: Callback&lt;ProgressDetails&gt;, callback: AsyncCallback&lt;void&gt;): void
 
-Manually performs device-cloud synchronization based on specified conditions. This API uses an asynchronous callback to return the result. The cloud synchronization function must be implemented. Otherwise, this API cannot be used.
+Manually performs device-cloud sync based on specified conditions. This API uses an asynchronous callback to return the result. The cloud sync function must be implemented. Otherwise, this API cannot be used.
 
 **System capability**: SystemCapability.DistributedDataManager.CloudSync.Client
 
@@ -474,10 +474,10 @@ Manually performs device-cloud synchronization based on specified conditions. Th
 
 | Name        | Type                            | Mandatory| Description                           |
 |-------------|--------------------------------| ---- |-------------------------------|
-| mode        | [SyncMode](js-apis-data-relationalStore.md#syncmode)          | Yes  | Synchronization mode of the database.                  |
-| predicates  | [RdbPredicates](js-apis-data-relationalStore.md#rdbpredicates)                  | Yes  | Conditions for data synchronization.                 |
-| progress    | Callback&lt;[ProgressDetails](js-apis-data-relationalStore.md#details10)&gt; | Yes  | Callback used to process database synchronization details.          |
-| callback    | AsyncCallback&lt;void&gt;      | Yes  | Callback invoked to send the synchronization result to the caller.|
+| mode        | [SyncMode](js-apis-data-relationalStore.md#syncmode)          | Yes  | Sync mode of the database.                  |
+| predicates  | [RdbPredicates](js-apis-data-relationalStore.md#rdbpredicates)                  | Yes  | Conditions for data sync.                 |
+| progress    | Callback&lt;[ProgressDetails](js-apis-data-relationalStore.md#details10)&gt; | Yes  | Callback used to process database sync details.          |
+| callback    | AsyncCallback&lt;void&gt;      | Yes  | Callback invoked to send the sync result to the caller.|
 
 **Example**
 
@@ -502,7 +502,7 @@ if(store != undefined) {
 
 cloudSync(mode: SyncMode, predicates: RdbPredicates, progress: Callback&lt;ProgressDetails&gt;): Promise&lt;void&gt;
 
-Manually performs device-cloud synchronization based on specified conditions. This API uses a promise to return the result. The cloud synchronization function must be implemented. Otherwise, this API cannot be used.
+Manually performs device-cloud sync based on specified conditions. This API uses a promise to return the result. The cloud sync function must be implemented. Otherwise, this API cannot be used.
 
 **System capability**: SystemCapability.DistributedDataManager.CloudSync.Client
 
@@ -512,15 +512,15 @@ Manually performs device-cloud synchronization based on specified conditions. Th
 
 | Name       | Type                             | Mandatory| Description                 |
 |------------|---------------------------------| ---- |---------------------|
-| mode       | [SyncMode](js-apis-data-relationalStore.md#syncmode)           | Yes  | Synchronization mode of the database.        |
-| predicates | [RdbPredicates](js-apis-data-relationalStore.md#rdbpredicates)                   | Yes  | Conditions for data synchronization.               |
-| progress   | Callback&lt;[ProgressDetails](js-apis-data-relationalStore.md#progressdetails10)&gt; | Yes  | Callback used to process database synchronization details.|
+| mode       | [SyncMode](js-apis-data-relationalStore.md#syncmode)           | Yes  | Sync mode of the database.        |
+| predicates | [RdbPredicates](js-apis-data-relationalStore.md#rdbpredicates)                   | Yes  | Conditions for data sync.               |
+| progress   | Callback&lt;[ProgressDetails](js-apis-data-relationalStore.md#progressdetails10)&gt; | Yes  | Callback used to process database sync details.|
 
 **Return value**
 
 | Type               | Description                                   |
 | ------------------- | --------------------------------------- |
-| Promise&lt;void&gt; | Promise used to return the synchronization result.|
+| Promise&lt;void&gt; | Promise used to return the sync result.|
 
 **Example**
 

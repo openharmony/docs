@@ -3,11 +3,12 @@
 
 ## Overview
 
-Defines data asset structures.
+Defines data asset structs.
 
 Asset is a data struct used in data management. You can use it to set and obtain file attributes, including the name, absolute path, relative path, creation time, modification time, status, and size of a file.
 
 **File to include**: <database/data/data_asset.h>
+
 **Library**: libnative_rdb_ndk.z.so
 
 **Since**: 11

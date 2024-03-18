@@ -9,13 +9,9 @@ Defines the predicates for RDB stores.
 
 **Library**: libnative_rdb_ndk.z.so
 
-**Since**
+**Since**: 10
 
-10
-
-**Related Modules**
-
-[RDB](_r_d_b.md)
+**Related module**: [RDB](_r_d_b.md)
 
 
 ## Summary

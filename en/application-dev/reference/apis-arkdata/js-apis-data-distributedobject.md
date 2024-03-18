@@ -158,7 +158,7 @@ Provides APIs for managing a distributed data object. Before using any API of th
 
 setSessionId(sessionId: string, callback: AsyncCallback&lt;void&gt;): void
 
-Sets a session ID. This API uses an asynchronous callback to return the result. Automatic synchronization is performed for multiple devices with the same session ID on a trusted network.
+Sets a session ID. This API uses an asynchronous callback to return the result. Automatic sync is performed for multiple devices with the same session ID on a trusted network.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -233,7 +233,7 @@ g_object.setSessionId(() => {
 
 setSessionId(sessionId?: string): Promise&lt;void&gt;
 
-Sets a session ID. This API uses a promise to return the result. Automatic synchronization is performed for multiple devices with the same session ID on a trusted network.
+Sets a session ID. This API uses a promise to return the result. Automatic sync is performed for multiple devices with the same session ID on a trusted network.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -760,7 +760,7 @@ Provides APIs for managing a distributed data object. Before using any API of th
 
 setSessionId(sessionId?: string): boolean
 
-Sets a session ID. Automatic synchronization is performed for multiple devices with the same session ID on a trusted network.
+Sets a session ID. Automatic sync is performed for multiple devices with the same session ID on a trusted network.
 
 > **NOTE**
 >
