@@ -6,7 +6,7 @@
 
 ## 导入模块
 
-```
+```ts
 import Url from '@ohos.url' 
 ```
 ## URLParams<sup>9+</sup>
@@ -390,6 +390,25 @@ console.log(params.toString());
 | searchParams<sup>(deprecated)</sup> | [URLSearchParams](#urlsearchparamsdeprecated) | 是 | 否 | 获取URLSearchParams表示URL查询参数的对象。<br/>- **说明：** 此属性从API version 7开始支持，从API version 9开始被废弃。建议使用params<sup>9+</sup>替代。 |
 | params<sup>9+</sup> | [URLParams](#urlparams9) | 是 | 否 | 获取URLParams表示URL查询参数的对象。 |
 | username | string | 是 | 是 | 获取和设置URL的用户名部分。 |
+
+**示例：**
+
+```ts
+let that = url.URL.parseURL('http://username:password@host:8080/directory/file?foo=1&bar=2#fragment');
+console.log("hash " + that.hash) // hash #fragment
+console.log("host " + that.host) // host host:8080
+console.log("hostname " + that.hostname) // hostname host
+console.log("href " + that.href) // href http://username:password@host:8080/directory/file?foo=1&bar=2#fragment
+console.log("origin " + that.origin) // origin http://host:8080
+console.log("password " + that.password) // password password
+console.log("pathname " + that.pathname) // pathname /directory/file
+console.log("port " + that.port) // port 8080
+console.log("protocol " + that.protocol) // protocol http:
+console.log("search " + that.search) // search ?foo=1&bar=2
+console.log("username " + that.username) // username username
+// that.params 返回值为URLParams对象
+console.log("params: foo " + that.params.get("foo")) // params: foo 1
+```
 
 ### constructor<sup>(deprecated)</sup>
 
