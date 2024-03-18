@@ -845,14 +845,14 @@ image.createPixelMap(color, initializationOptions).then((pixelMap: image.PixelMa
   console.error('Failed to create PixelMap. Cause: ' + JSON.stringify(err));
 });
 ```
-## getSnapshot<sup>12+</sup>
+## window.getSnapshot<sup>12+</sup>
 
-getSnapshot(windowId: number): Promise<image.pixelMap>;
+window.getSnapshot(windowId: number): Promise<image.pixelMap>;
 
 获取指定窗口截图，使用Promise异步回调
 
 **系统接口：** 此接口为系统接口。
-**系统能力：** SystemCapability.windowManager.windowManager.Core
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 | 参数名   | 类型   | 必填  | 说明         |
