@@ -2632,7 +2632,6 @@ publishAsBundle(representativeBundle: BundleOption, request: NotificationRequest
 
 
 | 参数名               | 类型                                        | 必填 | 说明                                          |
-|---------------------|---------------------------------------------|------|-----------------------------------------------|
 | representativeBundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)  | 是   | 被代理应用的包信息。                            |
 | request              | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
 
@@ -2704,7 +2703,7 @@ cancelAsBundle(id: number, representativeBundle: string, userId: number, callbac
 | id                   | number        | 是   | 通知ID。                 |
 | representativeBundle | string        | 是   | 被代理应用的包名。       |
 | userId               | number        | 是   | 用户ID。       |
-| callback             | AsyncCallback\<void\> | 是   | 取消代理通知的回调方法。 |
+| callback             | AsyncCallback | 是   | 取消代理通知的回调方法。 |
 
 **错误码：**
 
@@ -3602,7 +3601,7 @@ notificationManager.subscribeSystemLiveView(subscriber).then(() => {
 });
 ```
 
-## notificationManager.setDistributedEnabledByBundle<sup>12+</sup>
+## notificationManager.setDistributedEnableByBundle<sup>12+</sup>
 
 setDistributedEnabledByBundle(bundle: BundleOption, deviceType: string, enable: boolean): Promise<void>
 
