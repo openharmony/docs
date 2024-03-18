@@ -3151,11 +3151,48 @@ createRandomAccessFile(file: string | File, mode?: number): Promise&lt;RandomAcc
   });
   ```
 
+
+## fs.createRandomAccessFile<sup>10+</sup>
+
+createRandomAccessFile(file: string | File, callback: AsyncCallback&lt;RandomAccessFile&gt;): void
+
+基于文件路径或文件对象，以只读方式创建RandomAccessFile文件对象，使用callback异步回调。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**参数：**
+
+|  参数名    | 类型     | 必填   | 说明                          |
+| ------------ | ------ | ------ | ------------------------------------------------------------ |
+|     file     | string \| [File](#file) | 是    | 文件的应用沙箱路径或已打开的File对象 |
+| callback | AsyncCallback&lt;[RandomAccessFile](#randomaccessfile)&gt; | 是   | 异步创建RandomAccessFile对象之后的回调。                                   |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件io错误码)。
+
+**示例：**
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let filePath = pathDir + "/test.txt";
+  let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+  fs.createRandomAccessFile(file, (err: BusinessError, randomAccessFile: fs.RandomAccessFile) => {
+    if (err) {
+      console.error("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
+    } else {
+      console.info("randomAccessFile fd: " + randomAccessFile.fd);
+      randomAccessFile.close();
+    }
+    fs.closeSync(file);
+  });
+  ```
+
+
 ## fs.createRandomAccessFile<sup>10+</sup>
 
 createRandomAccessFile(file: string | File, mode: number, callback: AsyncCallback&lt;RandomAccessFile&gt;): void
 
-基于文件路径或文件对象，以只读方式创建RandomAccessFile文件对象。使用callback异步回调。
+基于文件路径或文件对象创建RandomAccessFile文件对象。使用callback异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -3187,40 +3224,6 @@ createRandomAccessFile(file: string | File, mode: number, callback: AsyncCallbac
   });
   ```
 
-  ## fs.createRandomAccessFile<sup>10+</sup>
-
-createRandomAccessFile(file: string | File, mode: number, callback: AsyncCallback&lt;RandomAccessFile&gt;): void
-
-基于文件路径或文件对象创建RandomAccessFile文件对象，使用callback异步回调。
-
-**系统能力**：SystemCapability.FileManagement.File.FileIO
-
-**参数：**
-
-|  参数名    | 类型     | 必填   | 说明                          |
-| ------------ | ------ | ------ | ------------------------------------------------------------ |
-|     file     | string \| [File](#file) | 是    | 文件的应用沙箱路径或已打开的File对象 |
-| callback | AsyncCallback&lt;[RandomAccessFile](#randomaccessfile)&gt; | 是   | 异步创建RandomAccessFile对象之后的回调。                                   |
-
-**错误码：**
-
-接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件io错误码)。
-
-**示例：**
-  ```ts
-  import { BusinessError } from '@ohos.base';
-  let filePath = pathDir + "/test.txt";
-  let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-  fs.createRandomAccessFile(file, (err: BusinessError, randomAccessFile: fs.RandomAccessFile) => {
-    if (err) {
-      console.error("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
-    } else {
-      console.info("randomAccessFile fd: " + randomAccessFile.fd);
-      randomAccessFile.close();
-    }
-    fs.closeSync(file);
-  });
-  ```
 
 ## fs.createRandomAccessFileSync<sup>10+</sup>
 
