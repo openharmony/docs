@@ -37,6 +37,18 @@ Allows a system application to obtain the application upgrade guide or start the
 
 **Valid since**: 12
 
+### ohos.permission.ACCESS_MEDIALIB_THUMB_DB
+
+Allows a system application to access and modify the media library database.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
 ### ohos.permission.AGENT_REQUIRE_FORM
 
 Allows the application agent to request widgets.
@@ -2045,6 +2057,18 @@ Allows a system application to obtain and modify the setting of **Find My Phone*
 
 **Valid since**: 11
 
+### ohos.permission.READ_FINDSERVICE
+
+Allows a system application to read the status of **Find Device**.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
 ### ohos.permission.MANAGE_USB_CONFIG
 
 Allows an application to manage the USB device functions and ports.
@@ -2434,6 +2458,18 @@ Allows a system application to obtain password vault data.
 Allows an application to subscribe to the broadcasts sent when the notification window is displayed or collapsed.
 
 **Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
+### ohos.permission.CHANGE_DISPLAYMODE
+
+Allows a system application to change the display mode.
+
+**Permission level**: system_core
 
 **Authorization mode**: system_grant
 
