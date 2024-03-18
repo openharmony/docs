@@ -103,13 +103,13 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so)
     OH_AVScreenCapture_Init(capture, config);
     ```
 
-4. 调用StartScreenCapture方法开始进行屏幕录制。
+4. 调用StartScreenRecording()方法开始进行屏幕录制。
 
     ```c++
     OH_AVScreenCapture_StartScreenCapture(capture);
     ```
 
-5. 调用StopScreenCapture()方法停止录制。
+5. 调用StopScreenRecording()方法停止录制。
 
     ```c++
     OH_AVScreenCapture_StopScreenCapture(capture);
@@ -192,16 +192,13 @@ static napi_value Screencapture(napi_env env, napi_callback_info info) {
     int32_t retInit = OH_AVScreenCapture_Init(capture, config);
     
     // 开始录屏
-    int32_t retStart = OH_AVScreenCapture_StartScreenCapture(capture);
-
-    //可选 配置录屏旋转
-    int32_t retRotation = OH_AVScreenCapture_SetCanvasRotation(capture, true);
+    int32_t retStart = OH_AVScreenCapture_StartScreenRecording(capture);
 
     // 录制10s
     sleep(10);
 
     // 结束录屏
-    int32_t retStop = OH_AVScreenCapture_StopScreenCapture(capture);
+    int32_t retStop = OH_AVScreenCapture_StopScreenRecording(capture);
 
     // 释放ScreenCapture
     int32_t retRelease = OH_AVScreenCapture_Release(capture);
