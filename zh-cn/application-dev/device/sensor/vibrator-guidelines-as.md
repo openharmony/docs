@@ -5,7 +5,7 @@
 
 当设备需要振动固定时长时，可以调用Vibrator模块，例如：设备的按键可以设置不同时长的振动。
 
-详细的接口介绍请参考[Vibrator接口](../reference/apis-as/js-apis-vibrator.md)。
+详细的接口介绍请参考[Vibrator接口](../../reference/apis-as/js-apis-vibrator.md)。
 
 
 ## 接口说明
@@ -20,7 +20,7 @@
 
 ## 开发步骤
 
-1. 控制设备上的振动器，需要申请权限ohos.permission.VIBRATE。具体配置方式请参考[声明权限](../security/AccessToken/declare-permissions.md)。
+1. 控制设备上的振动器，需要申请权限ohos.permission.VIBRATE。具体配置方式请参考[声明权限](../../security/AccessToken/declare-permissions.md)。
 
 2. 根据指定振动时长和振动属性触发马达振动。
 

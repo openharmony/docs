@@ -5,7 +5,7 @@
 
 当设备需要获取传感器数据时，可以使用sensor模块，例如：通过订阅方向传感器数据感知用户设备当前的朝向，通过订阅计步传感器数据统计用户的步数等。
 
-详细的接口介绍请参考[Sensor接口](../reference/apis-sensor-service-kit/js-apis-sensor.md)。
+详细的接口介绍请参考[Sensor接口](../../reference/apis-sensor-service-kit/js-apis-sensor.md)。
 
 
 ## 接口说明
@@ -48,7 +48,7 @@
 
     可以看到该传感器支持的最小采样周期为5000000纳秒，支持的最大采样周期是200000000纳秒，传感器上报周期interval应该设置在该范围内。
 
-3. 检查是否已经配置相应权限，具体配置方式请参考[声明权限](../security/AccessToken/declare-permissions.md)。
+3. 检查是否已经配置相应权限，具体配置方式请参考[声明权限](../../security/AccessToken/declare-permissions.md)。
 
 4. 注册监听。可以通过on()和once()两种接口监听传感器的调用结果。
 
