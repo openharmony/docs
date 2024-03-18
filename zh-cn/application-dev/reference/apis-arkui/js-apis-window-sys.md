@@ -2741,9 +2741,6 @@ setTitleButtonShow(isShowMaximize: boolean, isShowMinimize: boolean, isShowSplit
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
-| 202   | Permission verification failed, application which is not a system application uses system API. |
-| 401   | Parameter error. |
-| 801   | Capability not supported on this device. |
 | 1300002  | This window state is abnormal. |
 
 **示例：**
