@@ -1413,7 +1413,7 @@ httpRequest.request("EXAMPLE_URL").then(data => {
     console.error("fail");
   });
   httpRequest.destroy();
-}).catch(error => {
+}).catch((error: BusinessError) => {
   console.error("errocode" + JSON.stringify(error));
 });
 ```
