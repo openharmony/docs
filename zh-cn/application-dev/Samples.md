@@ -187,7 +187,7 @@ specified多实例功能实现：specified模式则是根据MyAbilityStage中的
 
 #### 自定义分享
 ##### 介绍
-自定义分享主要是发送方将文本，链接，图片三种类型分享给三方应用,同时能够在三方应用中展示。本示例使用[数据请求](reference/apis-network-kit/js-apis-http.md) 实现网络资源的获取，使用[屏幕截屏](reference/apis-arkui/js-apis-screenshot-sys.md) 实现屏幕的截取，使用[文件管理](reference/apis-core-file-kit/js-apis-fileio.md) 实现对文件，文件目录的管理，使用[媒体库管理](reference/apis-media-library-kit/js-apis-medialibrary.md) 获取截取的图片，使用[弹窗](reference/apis-arkui/js-apis-promptAction.md) 进行信息的提示。
+自定义分享主要是发送方将文本，链接，图片三种类型分享给三方应用,同时能够在三方应用中展示。本示例使用[数据请求](reference/apis-arkui/js-apis-http.md) 实现网络资源的获取，使用[屏幕截屏](reference/apis-arkui/js-apis-screenshot-sys.md) 实现屏幕的截取，使用[文件管理](reference/apis-core-file-kit/js-apis-fileio.md) 实现对文件，文件目录的管理，使用[媒体库管理](reference/apis-media-library-kit/js-apis-medialibrary.md) 获取截取的图片，使用[弹窗](reference/apis-arkui/js-apis-promptAction.md) 进行信息的提示。
 ##### 使用
 使用说明：
 
@@ -265,7 +265,7 @@ specified多实例功能实现：specified模式则是根据MyAbilityStage中的
 
 #### Http
 ##### 介绍
-本示例通过[@ohos.net.http](reference/apis-network-kit/js-apis-http.md) 等接口，实现了根据URL地址和相关配置项发起http请求的功能。
+本示例通过[@ohos.net.http](reference/apis-arkui/js-apis-http.md) 等接口，实现了根据URL地址和相关配置项发起http请求的功能。
 ##### 使用
 1.启动应用可配置网络请求，设置网址、请求方式、请求参数；
 
@@ -810,7 +810,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 介绍
 
-本示例使用 [geolocation](reference/apis-location-kit/js-apis-geolocation.md) 实现获取当前位置的经纬度，然后通过 [http](reference/apis-network-kit/js-apis-http.md) 将经纬度作为请求参数，获取到该经纬度所在的城市。通过 [AlphabetIndexer](reference/apis-arkui/arkui-ts/ts-container-alphabet-indexer.md) 容器组件实现按逻辑结构快速定位容器显示区域。
+本示例使用 [geolocation](reference/apis-location-kit/js-apis-geolocation.md) 实现获取当前位置的经纬度，然后通过 [http](reference/apis-arkui/js-apis-http.md) 将经纬度作为请求参数，获取到该经纬度所在的城市。通过 [AlphabetIndexer](reference/apis-arkui/arkui-ts/ts-container-alphabet-indexer.md) 容器组件实现按逻辑结构快速定位容器显示区域。
 
 ##### 使用
 
@@ -1655,7 +1655,7 @@ Preferences.flush()保存并刷新文件内容。
   + 视频播放：start方法视频开始播放；
   + 全屏播放：再次点击视频进入全屏播放页面，使用setCurrentTime参数设定当前播放时间，pause方法停止播放;
   + 小窗口播放：记录当前播放时间，小窗口页面渲染之前设置视频当前播放时间，页面滚动到固定距离开始展示组件；
-  + 直播：使用[http](reference/apis-network-kit/js-apis-http.md)接口的request方法获取直播数据;
+  + 直播：使用[http](reference/apis-arkui/js-apis-http.md)接口的request方法获取直播数据;
 
 ##### 约束与限制
 
@@ -2859,7 +2859,7 @@ Preferences.flush()保存并刷新文件内容。
 
 * 该示例使用cancelSuspendDelay方法取消延迟挂起，applyQuickFix方法快速修复补丁，createHttp方法创建一个HTTP请求，openSync方法同步打开文件，writeSync方法同步将数据写入文件，closeSync方法同步关闭文件流等接口实现应用热更新的方式去展现短时任务机制。
 
-* 接口参考：[@ohos.backgroundTaskManager](reference/apis-backgroundtasks-kit/js-apis-backgroundTaskManager.md)，[@ohos.app.ability.quickFixManager](reference/apis-ability-kit/js-apis-app-ability-quickFixManager-sys.md)，[@ohos.net.http](reference/apis-network-kit/js-apis-http.md)，[@ohos.fileio](reference/apis-core-file-kit/js-apis-fileio.md)
+* 接口参考：[@ohos.backgroundTaskManager](reference/apis-backgroundtasks-kit/js-apis-backgroundTaskManager.md)，[@ohos.app.ability.quickFixManager](reference/apis-ability-kit/js-apis-app-ability-quickFixManager-sys.md)，[@ohos.net.http](reference/apis-arkui/js-apis-http.md)，[@ohos.fileio](reference/apis-core-file-kit/js-apis-fileio.md)
 
 ##### 约束与限制
 
@@ -2873,7 +2873,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 介绍
 
-本示例使用[@ohos.WorkSchedulerExtensionAbility](reference/apis-backgroundtasks-kit/js-apis-WorkSchedulerExtensionAbility.md) 、[@ohos.net.http](reference/apis-network-kit/js-apis-http.md) 、[@ohos.notification](reference/apis-notification-kit/js-apis-notification.md) 、[@ohos.bundle](reference/apis-ability-kit/js-apis-Bundle.md) 、[@ohos.fileio](reference/apis-core-file-kit/js-apis-fileio.md) 等接口，实现了设置后台任务、下载更新包 、保存更新包、发送通知 、安装更新包实现升级的功能。
+本示例使用[@ohos.WorkSchedulerExtensionAbility](reference/apis-backgroundtasks-kit/js-apis-WorkSchedulerExtensionAbility.md) 、[@ohos.net.http](reference/apis-arkui/js-apis-http.md) 、[@ohos.notification](reference/apis-notification-kit/js-apis-notification.md) 、[@ohos.bundle](reference/apis-ability-kit/js-apis-Bundle.md) 、[@ohos.fileio](reference/apis-core-file-kit/js-apis-fileio.md) 等接口，实现了设置后台任务、下载更新包 、保存更新包、发送通知 、安装更新包实现升级的功能。
 
 ##### 使用
 
@@ -3866,7 +3866,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 * 该示例分为两个模块：
   * 键盘布局
     * 在Index中完成键盘的总体布局。在components中自定不同的按键组件。
-    * 参考接口：ArkTS声明式开发范式
+    * 参考接口：[ArkTs声明式开发范式](kit-readme/Readme-ArkUI.md)
   * 输入法控制
     * 使用[@ohos.request](reference/apis-basic-services-kit/js-apis-request.md)中API 10接口agent.create创建上传任务，调用@ohos.request中的Task相关接口实现上传任务的创建、取消、进度加载，前台任务只支持单文件下载，后台任务支持多文件下载。使用[@ohos.file.fs](reference/apis-core-file-kit/js-apis-file-fs.md)完成指定路径的创建和查询已下载的文件。
     * 参考接口：[@ohos.inputMethodEngine](reference/apis-ime-kit/js-apis-inputmethodengine.md)
@@ -3924,7 +3924,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 ##### 介绍
 
-本示例使用延迟任务回调能力接口[@ohos.WorkSchedulerExtensionAbility](reference/apis-backgroundtasks-kit/js-apis-WorkSchedulerExtensionAbility.md) 、通知管理的能力接口[@ohos.notification](reference/apis-notification-kit/js-apis-notification.md) 、HTTP数据请求能力接口[@ohos.net.http](reference/apis-network-kit/js-apis-http.md) 、媒体查询接口[@system.mediaquery](reference/apis-arkui/js-apis-system-mediaquery.md) 、管理窗口能力接口[@ohos.window](reference/apis-arkui/js-apis-window.md) 。实现在进场时加载进场动画，使用[Tabs容器](reference/apis-arkui/arkui-ts/ts-container-tabs.md) 实现通过页签进行内容视图切换。使用[自定义弹窗](reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md) 设置位置信息。使用[Swiper](reference/apis-arkui/arkui-ts/ts-container-swiper.md) 组件实现页面展示图轮播。使用[Grid](reference/apis-arkui/arkui-ts/ts-container-list.md) 容器组件设置展示的商品信息。
+本示例使用延迟任务回调能力接口[@ohos.WorkSchedulerExtensionAbility](reference/apis-backgroundtasks-kit/js-apis-WorkSchedulerExtensionAbility.md) 、通知管理的能力接口[@ohos.notification](reference/apis-notification-kit/js-apis-notification.md) 、HTTP数据请求能力接口[@ohos.net.http](reference/apis-arkui/js-apis-http.md) 、媒体查询接口[@system.mediaquery](reference/apis-arkui/js-apis-system-mediaquery.md) 、管理窗口能力接口[@ohos.window](reference/apis-arkui/js-apis-window.md) 。实现在进场时加载进场动画，使用[Tabs容器](reference/apis-arkui/arkui-ts/ts-container-tabs.md) 实现通过页签进行内容视图切换。使用[自定义弹窗](reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md) 设置位置信息。使用[Swiper](reference/apis-arkui/arkui-ts/ts-container-swiper.md) 组件实现页面展示图轮播。使用[Grid](reference/apis-arkui/arkui-ts/ts-container-list.md) 容器组件设置展示的商品信息。
 
 ##### 使用
 
@@ -5148,12 +5148,12 @@ return formInfo.FormState.READY }。
 
 ##### 介绍
 
-本示例展示了[AccessibilityExtensionAbility](accessibility/accessibilityextensionability.md)的简单应用，使用多个辅助功能接口，启动或关闭无障碍扩展服务，实现了一些快捷的交互方式。
+本示例展示了[AccessibilityExtensionAbility](application-models/accessibilityextensionability.md)的简单应用，使用多个辅助功能接口，启动或关闭无障碍扩展服务，实现了一些快捷的交互方式。
 
 ##### 使用
 
 1. 在启动无障碍扩展服务前，需退出当前应用保证界面节点正常生成；
-2. 启动关闭无障碍扩展服务可参考[AccessibilityExtensionAbility开发指南](accessibility/accessibilityextensionability.md), 服务连接状态将显示在屏幕上;
+2. 启动关闭无障碍扩展服务可参考[AccessibilityExtensionAbility开发指南](application-models/accessibilityextensionability.md), 服务连接状态将显示在屏幕上;
 3. 启动无障碍扩展服务后，在设备屏幕上绘画右划后再下划的手势`rightThenDown`获取当前界面全部节点，之后绘画左划后再下划的手势`leftThenDown`打印所有节点的指定信息；
 4. 在设备屏幕上绘画左划手势`left`对按钮`获焦`进行聚焦，之后可通过绘画右划手势`right`取消对按钮聚焦；
 5. 在设备屏幕上绘画下划手势`down`，触发对按钮`未点击/已点击`的点击动作。
