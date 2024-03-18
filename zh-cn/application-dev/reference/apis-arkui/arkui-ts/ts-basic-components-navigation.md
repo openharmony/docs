@@ -329,6 +329,20 @@ onNavBarStateChange(callback: (isVisible: boolean) =&gt; void)
 | --------- | ------- | ---- | ---------------------------------------------- |
 | isVisible | boolean | 是   | isVisible为true时表示显示，为false时表示隐藏。 |
 
+### onNavigationModeChange<sup>11+</sup>
+
+onNavigationModeChange(callback: (mode: NavigationMode) =&gt; void) 
+
+当Navigation首次显示或者单双栏状态发生变化时触发该回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名    | 类型    | 必填 | 说明                                           |
+| --------- | ------- | ---- | ---------------------------------------------- |
+| mode | [NavigationMode](#navigationmode9枚举说明) | 是   | NavigationMode.Split: 当前Navigation显示为双栏;<br/>NavigationMode.Stack: 当前Navigation显示为单栏。 |
+
 ### customNavContentTransition<sup>11+</sup>
 
 customNavContentTransition(delegate(from: NavContentInfo, to: NavContentInfo, operation: NavigationOperation) => NavigationAnimatedTransition | undefined)
