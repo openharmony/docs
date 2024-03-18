@@ -82,7 +82,7 @@ barMode(value: BarMode, options?: ScrollableBarModeOptions)
 
 | 参数名                | 类型                                                         | 必填 | 说明                                                         |
 | --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value                 | [BarMode](#barmode枚举说明)                                  | 是   | 布局模式。                                                   |
+| value                 | [BarMode](#barmode枚举说明)                                  | 是   | 布局模式。<br/>默认值：BarMode. Fixed                                                 |
 | options<sup>10+</sup> | [ScrollableBarModeOptions](#scrollablebarmodeoptions10对象说明) | 否   | Scrollable模式下的TabBar的布局样式。<br/>**说明：** <br/>仅Scrollable模式下有效 |
 
 ### barWidth
@@ -139,7 +139,7 @@ divider(value: DividerStyle | null)
 
 | 参数名 | 类型                                                      | 必填 | 说明                                                         |
 | ------ | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [DividerStyle](#dividerstyle10对象说明)&nbsp;\|&nbsp;null | 是   | 分割线样式。<br/>DividerStyle: 分割线的样式；<br/>null: 不显示分割线。 |
+| value  | [DividerStyle](#dividerstyle10对象说明)&nbsp;\|&nbsp;null | 是   | 分割线样式，默认不显示分割线。<br/>DividerStyle: 分割线的样式；<br/>null: 不显示分割线。 |
 
 ### fadingEdge<sup>10+</sup>
 
@@ -215,7 +215,7 @@ barGridAlign(value: BarGridColumnOptions)
 
 | 名称          | 参数类型                                     | 必填   | 描述                                       |
 | ----------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| strokeWidth | [Length](ts-types.md#length)             | 是    | 分割线的线宽（不支持百分比设置）。                        |
+| strokeWidth | [Length](ts-types.md#length)             | 是    | 分割线的线宽（不支持百分比设置）。<br/>默认值：0.0<br/>单位：vp           |
 | color       | [ResourceColor](ts-types.md#resourcecolor) | 否    | 分割线的颜色。<br/>默认值：#33182431                |
 | startMargin | [Length](ts-types.md#length)             | 否    | 分割线与侧边栏顶端的距离（不支持百分比设置）。<br/>默认值：0.0<br/>单位：vp |
 | endMargin   | [Length](ts-types.md#length)             | 否    | 分割线与侧边栏底端的距离（不支持百分比设置）。<br/>默认值：0.0<br/>单位：vp |

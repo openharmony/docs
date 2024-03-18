@@ -68,7 +68,7 @@ scrollBarColor(color: Color | number | string)
 
 | 参数名 | 类型                                                         | 必填 | 说明           |
 | ------ | ------------------------------------------------------------ | ---- | -------------- |
-| color  | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;[Color](ts-appendix-enums.md#color) | 是   | 滚动条的颜色。 |
+| color  | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;[Color](ts-appendix-enums.md#color) | 是   | 滚动条的颜色。<br/>默认值：'\#182431'（40%不透明度）   |
 
 ### scrollBarWidth
 
