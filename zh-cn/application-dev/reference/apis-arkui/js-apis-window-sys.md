@@ -2030,6 +2030,42 @@ try {
 }
 ```
 
+### setTouchableAreas<sup>12+</sup>
+
+setTouchableAreas(rects: Array&lt;Rect&gt;): void
+
+实现设置窗口可触摸区域；不设置时默认整个窗口区域可触摸；设置窗口可触摸区域后，区域外触摸事件将被透传；如果窗口区域发生变化需要重新设置。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| rects | Array<[Rect](js-apis-window.md#rect7)> | 是   | 窗口可触摸区域。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |                       |
+
+**示例：**
+
+```ts
+try {
+  windowClass.setTouchableAreas([{left: 100, top: 100, width: 200, height:200},
+    {left: 400, top: 100, width: 200, height:200}]);
+} catch (exception) {
+  console.error('Failed to set touchable areas. Cause: ' + JSON.stringify(exception));
+}
+```
+
 ### raiseToAppTop<sup>10+</sup>
 
 raiseToAppTop(callback: AsyncCallback&lt;void&gt;): void
