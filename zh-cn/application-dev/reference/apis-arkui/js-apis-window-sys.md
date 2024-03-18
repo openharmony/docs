@@ -2719,7 +2719,7 @@ promise.then(()=> {
 
 setTitleButtonVisible(isMaximizeVisible: boolean, isMinimizeVisible: boolean, isSplitVisible: boolean): void;
 
-设置是否显示标题栏上的最大化、最小化、分屏按钮。
+设置标题栏上的最大化、最小化、分屏按钮是否可见。
 
 该接口设置按钮显示范围应限制在应用设置的supportWindowMode范围内。
 
