@@ -2715,9 +2715,9 @@ promise.then(()=> {
 });
 ```
 
-###  setTitleButtonShow<sup>12+</sup>
+###  setTitleButtonVisible<sup>12+</sup>
 
-setTitleButtonShow(isShowMaximize: boolean, isShowMinimize: boolean, isShowSplit: boolean): void;
+setTitleButtonVisible(isMaximizeVisible: boolean, isMinimizeVisible: boolean, isSplitVisible: boolean): void;
 
 设置是否显示标题栏上的最大化、最小化、分屏按钮。
 
@@ -2731,9 +2731,9 @@ setTitleButtonShow(isShowMaximize: boolean, isShowMinimize: boolean, isShowSplit
 
 | 参数名    | 类型    | 必填 | 说明                                          |
 | --------- | ------- | ---- | --------------------------------------------- |
-| isShowMaximize | boolean | 是   | 设置最大化按钮是否可见，true为可见，false为隐藏。 |
-| isShowMinimize | boolean | 是   | 设置最小化按钮是否可见，true为可见，false为隐藏。 |
-| isShowSplit | boolean | 是   | 设置分屏按钮是否可见，true为可见，false为隐藏。 |
+| isMaximizeVisible | boolean | 是   | 设置最大化按钮是否可见，true为可见，false为隐藏。 |
+| isMinimizeVisible | boolean | 是   | 设置最小化按钮是否可见，true为可见，false为隐藏。 |
+| isSplitVisible | boolean | 是   | 设置分屏按钮是否可见，true为可见，false为隐藏。 |
 
 **错误码：**
 
@@ -2747,7 +2747,7 @@ setTitleButtonShow(isShowMaximize: boolean, isShowMinimize: boolean, isShowSplit
 
 ```ts
 try {
-  let titleButtonArea = windowClass.setTitleButtonShow(false, false, false);
+  let titleButtonArea = windowClass.setTitleButtonVisible(false, false, false);
   console.info('Succeeded hide maximize, minimize, split title buttons');
 } catch (exception) {
   console.error('Failed to hide title buttons. Cause: ' + JSON.stringify(exception));
