@@ -601,7 +601,7 @@ struct MessageList {
           ListItem() {
             ...
           }
-          .swipeAction({ end: this.itemEnd.bind(this, index) }) // 设置侧滑属性
+          .swipeAction({ end: this.itemEnd(index) }) // 设置侧滑属性
         }, item => item.id.toString())
       }
     ...
