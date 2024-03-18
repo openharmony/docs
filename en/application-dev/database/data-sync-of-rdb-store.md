@@ -49,35 +49,35 @@ When data is added, deleted, or modified, a notification is sent to the subscrib
 
 Most of the APIs for cross-device data synchronization of RDB stores are executed asynchronously in callback or promise mode. The following table uses the callback-based APIs as an example. For more information about the APIs, see [RDB Store](../reference/apis/js-apis-data-relationalStore.md).
 
-| API| Description|
+| API| Description| 
 | -------- | -------- |
-| setDistributedTables(tables: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void | Sets the distributed tables to be synchronized.|
-| sync(mode: SyncMode, predicates: RdbPredicates, callback: AsyncCallback&lt;Array&lt;[string, number]&gt;&gt;): void | Synchronizes data across devices.|
-| on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;string&gt;&gt;): void | Subscribes to changes in the distributed data.|
-| off(event:'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;string&gt;&gt;): void | Unsubscribe from changes in the distributed data.|
-| obtainDistributedTableName(device: string, table: string, callback: AsyncCallback&lt;string&gt;): void; | Obtains the table name on the specified device based on the local table name.|
-| remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: Array&lt;string&gt; , callback: AsyncCallback&lt;ResultSet&gt;): void | Queries data from the RDB store of a remote device based on specified conditions.|
+| setDistributedTables(tables: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void | Sets the distributed tables to be synchronized.| 
+| sync(mode: SyncMode, predicates: RdbPredicates, callback: AsyncCallback&lt;Array&lt;[string, number]&gt;&gt;): void | Synchronizes data across devices.| 
+| on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;string&gt;&gt;): void | Subscribes to changes in the distributed data.| 
+| off(event:'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;string&gt;&gt;): void | Unsubscribe from changes in the distributed data.| 
+| obtainDistributedTableName(device: string, table: string, callback: AsyncCallback&lt;string&gt;): void; | Obtains the table name on the specified device based on the local table name.| 
+| remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: Array&lt;string&gt; , callback: AsyncCallback&lt;ResultSet&gt;): void | Queries data from the RDB store of a remote device based on specified conditions.| 
 
 
 ## How to Develop
 
 > **NOTE**
 >
-> The data on a device can be synchronized only to the devices whose data security labels are not higher than the security level of the device. For details, see [Access Control Mechanism in Cross-Device Synchronization](sync-app-data-across-devices-overview.md#access-control-mechanism-in-cross-device-synchronization).
+> The security level of the destination device (to which data is synchronized) cannot be higher than that of the source device. For details, see [Access Control Mechanism in Cross-Device Synchronization](access-control-by-device-and-data-level.md#access-control-mechanism-in-cross-device-synchronization).
 
 1. Import the module.
-
+     
    ```ts
    import relationalStore from '@ohos.data.relationalStore';
    ```
 
-2. Apply for required permissions.
+2. Request permissions.
 
-   1. Apply for the **ohos.permission.DISTRIBUTED_DATASYNC** permission. For details, see [Declaring Permissions in the Configuration File](../security/accesstoken-guidelines.md#declaring-permissions-in-the-configuration-file).
-   2. Display a dialog box to ask authorization from the user when the application is started for the first time. For details, see [Requesting User Authorization](../security/accesstoken-guidelines.md#requesting-user-authorization).
+   1. Declare the **ohos.permission.DISTRIBUTED_DATASYNC** permission. For details, see [Declaring Permissions](../security/AccessToken/declare-permissions.md).
+   2. Display a dialog box to ask for user authorization when the application is started for the first time. For details, see [Requesting User Authorization](../security/AccessToken/request-user-authorization.md).
 
 3. Create an RDB store and set a table for distributed synchronization.
-
+     
    ```ts
    import UIAbility from '@ohos.app.ability.UIAbility';
    import window from '@ohos.window';
@@ -89,7 +89,7 @@ Most of the APIs for cross-device data synchronization of RDB stores are execute
          name: "RdbTest.db",
          securityLevel: relationalStore.SecurityLevel.S1
        };
-
+          
        relationalStore.getRdbStore(this.context, STORE_CONFIG, (err: BusinessError, store: relationalStore.RdbStore) => {
          store.executeSql('CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)', (err) => {
            // Set the table for distributed synchronization.
@@ -102,7 +102,7 @@ Most of the APIs for cross-device data synchronization of RDB stores are execute
    ```
 
 4. Synchronize data across devices. After **sync()** is called to trigger a synchronization, data is synchronized from the local device to all other devices on the network.
-
+     
    ```ts
    // Construct the predicate object for synchronizing the distributed table.
    let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
@@ -124,7 +124,7 @@ Most of the APIs for cross-device data synchronization of RDB stores are execute
    ```
 
 5. Subscribe to changes in the distributed data. The data synchronization triggers the **observer** callback registered in **on()**. The input parameter of the callback is the ID of the device whose data changes.
-
+     
    ```ts
    let devices: string | undefined = undefined;
    try {
@@ -146,7 +146,7 @@ Most of the APIs for cross-device data synchronization of RDB stores are execute
    try {
      if(store != undefined) {
        (store as relationalStore.RdbStore).off('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, (storeObserver)=>{
-       }
+       });
      }
    } catch (err) {
      console.error('Failed to register observer. Code:${err.code},message:${err.message}');
@@ -157,9 +157,9 @@ Most of the APIs for cross-device data synchronization of RDB stores are execute
 
    > **NOTE**
    >
-   > The value of **deviceIds** can be obtained by [deviceManager.getAvailableDeviceListSync](../reference/apis/js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
+   > The value of **deviceIds** can be obtained by using [deviceManager.getAvailableDeviceListSync](../reference/apis/js-apis-distributedDeviceManager.md#getavailabledevicelistsync) method.
 
-
+     
    ```ts
    // Obtain device IDs.
    import deviceManager from '@ohos.distributedDeviceManager';
