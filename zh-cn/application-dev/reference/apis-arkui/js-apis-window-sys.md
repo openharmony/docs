@@ -2749,7 +2749,7 @@ setTitleButtonVisible(isMaximizeVisible: boolean, isMinimizeVisible: boolean, is
 ```ts
 try {
   let titleButtonArea = windowClass.setTitleButtonVisible(false, false, false);
-  console.info('Succeeded hide maximize, minimize, split title buttons');
+  console.info('Succeeded in hiding maximize, minimize, split title buttons');
 } catch (exception) {
   console.error('Failed to hide title buttons. Cause: ' + JSON.stringify(exception));
 }
