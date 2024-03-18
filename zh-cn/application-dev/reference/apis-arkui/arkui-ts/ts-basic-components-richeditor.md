@@ -5,8 +5,6 @@
 >  **说明：**
 >
 >  该组件从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
->
->  RichEditor[仅支持通过onDragStart事件](ts-universal-events-drag-drop.md)实现浮起等拖拽效果。
 
 
 ## 子组件
