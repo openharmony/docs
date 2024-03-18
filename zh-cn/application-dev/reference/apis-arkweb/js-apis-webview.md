@@ -5347,7 +5347,7 @@ struct WebComponent {
       Button('enableIntelligentTrackingPrevention')
         .onClick(() => {
           try {
-            this.controller.enableSafeBrowsing(true);
+            this.controller.enableIntelligentTrackingPrevention(true);
             console.log("enableIntelligentTrackingPrevention: true");
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
@@ -5537,7 +5537,7 @@ struct WebComponent {
 
   build() {
     Column() {
-      Button('removeIntelligentTrackingPreventionBypassingList')
+      Button('clearIntelligentTrackingPreventionBypassingList')
         .onClick(() => {
           web_webview.WebviewController.clearIntelligentTrackingPreventionBypassingList();
       })
