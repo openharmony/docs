@@ -2432,7 +2432,7 @@ export default class EntryAbility extends UIAbility {
         });
         // 获取应用主窗口。
         let mainWindow = null;
-        
+
         windowStage.getMainWindow((err, data) => {
             if (err.code) {
                 console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
@@ -2503,7 +2503,7 @@ export default class EntryAbility extends UIAbility {
         });
         // 获取应用主窗口。
         let mainWindow = null;
-        
+
         windowStage.getMainWindow((err, data) => {
             if (err.code) {
                 console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
@@ -3094,5 +3094,51 @@ try {
   });
 } catch (error) {
   console.error('HideWindowWithCustomAnimation err : ' + JSON.stringify(error));
+}
+```
+### getSnapshot<sup>12+</sup>
+
+getSnapshot(windowId: number): Promise<image.pixelMap>;
+
+获取指定窗口截图，使用Promise异步回调
+
+**系统接口：** 此接口为系统接口。
+**系统能力：** SystemCapability.windowManager.windowManager.Core
+
+**参数：**
+| 参数名   | 类型   | 必填  | 说明         |
+| -------- | ------ | ----- | ------------ |
+| windowId | number | 是    | 指定窗口Id。 |
+
+**返回值：**
+| 类型                    | 说明                            |
+| ----------------------- | ------------------------------- |
+| Promise<image.pixelMap> | Promise对象。返回指定窗口截图。 |
+
+**错误码：**
+以下错误码的详情介绍请参见[窗口错误码]（error code-window.md）。
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 801      | Capability not supported on this device.     |
+| 1300002  | This window state is abnormal.               |
+| 1300003  | This window manager service work abnormally. |
+| 1300004  | This operation is not access.                |
+
+**示例：**
+```ts
+import { BusinessError } from '@ohos.base';
+import image from '@ohos.multimedia.image';
+try {
+  let windowId: number = 40;
+  let promise = window.getSnapshot(windowId);
+  promise.then((promise: image.pixelMap) => {
+    console.info('Succeeded in getting snapshot window. Pixel bytes number:' + pixelMap.getPixelBytesNumber());
+    pixelMap.release();
+  }).catch((err: BusinessError) =>{
+    console.error('Failed to get snapshot. Cause:' + JSON.stringify(err));
+  });
+} catch (exception) {
+  console.error('Failed to get snapshot. Cause:' + JSON.stringify(exception));
 }
 ```
