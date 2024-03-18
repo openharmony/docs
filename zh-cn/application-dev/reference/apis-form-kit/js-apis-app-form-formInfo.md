@@ -37,7 +37,7 @@ import formInfo from '@ohos.app.form.formInfo';
 | scheduledUpdateTime        | string               | 是    | 否     | 卡片更新时间。     |
 | formConfigAbility | string               | 是    | 否     | 卡片配置ability。指定长按卡片弹出的选择框内，编辑选项所对应的ability。   |
 | updateDuration        | number       | 是    | 否     | 卡片更新周期。 |
-| defaultDimension  | number | 是    | 否     | 表示卡片规格                                       |
+| defaultDimension  | number | 是    | 否     | 卡片规格                                       |
 | supportDimensions    | Array&lt;number&gt;      | 是    | 否     | 卡片支持的规格。具体可选规格参考[FormDimension](#formdimension)   |
 | customizeData    | Record\<string, string>      | 是    | 否     | 卡片用户数据。         |
 | isDynamic<sup>10+</sup>      | boolean               | 是    | 否     | 卡片是否为动态卡片。<br/>仅ArkTS卡片区分动静态卡片，JS卡片均为动态卡片。               |
