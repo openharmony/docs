@@ -158,6 +158,7 @@ BottomTabBarStyle的构造函数。
 ### of<sup>10+</sup>
 
 static of(icon: ResourceStr, text: ResourceStr)
+
 BottomTabBarStyle的静态构造函数。
 
 **参数：**
