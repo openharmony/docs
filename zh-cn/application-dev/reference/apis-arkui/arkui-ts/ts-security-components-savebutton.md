@@ -80,9 +80,20 @@ SaveButton(option:SaveButtonOptions)
 
 不支持通用事件，仅支持以下事件：
 
-| 名称 | 功能描述 |
-| -------- | -------- |
-| onClick(event: (event: [ClickEvent](ts-universal-events-click.md#clickevent对象说明), result: [SaveButtonOnClickResult](#savebuttononclickresult枚举说明)) =&gt; void) | 点击动作触发该回调。<br/>result：存储权限的授权结果，授权时长为10秒，即触发点击后，可以在10秒之内不限制次数的调用特定媒体库接口，超出10秒的调用会鉴权失败。<br/>event：见ClickEvent对象说明。 |
+### onClick
+
+onClick(event: (event: ClickEvent, result: SaveButtonOnClickResult) =&gt; void)
+
+点击动作触发该回调
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                   | 必填 | 说明                   |
+|------------|------|-------|---------|
+| event  | [ClickEvent](ts-universal-events-click.md#clickevent对象说明) |是 |见ClickEvent对象说明|
+| result | [SaveButtonOnClickResult](#savebuttononclickresult枚举说明)| 是 | 存储权限的授权结果，授权时长为10秒，即触发点击后，可以在10秒之内不限制次数的调用特定媒体库接口，超出10秒的调用会鉴权失败。|
 
 
 ## 示例
