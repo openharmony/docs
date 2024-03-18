@@ -91,7 +91,7 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so)
     OH_AVScreenCapture_SetDataCallback(capture, OnBufferAvailable, userData);
     ```
 
-6. 调用StartScreenCapture方法开始进行屏幕录制。
+6. 调用StartScreenCapture()方法开始进行屏幕录制。
 
     ```c++
     OH_AVScreenCapture_StartScreenCapture(capture);
@@ -121,7 +121,7 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so)
     OH_NativeBuffer* buffer = OH_AVScreenCapture_AcquireVideoBuffer(capture, &fence, &timestamp, &damage);
     ```
 
-10. 调用ReleaseAudioBuffer方法释放音频buffer。
+10. 调用ReleaseAudioBuffer()方法释放音频buffer。
 
     ```c++
     OH_AVScreenCapture_ReleaseAudioBuffer(capture, type);
@@ -202,6 +202,13 @@ int main() {
     OH_AVScreenCapture_SetErrorCallback(capture, OnError, userData);
     OH_AVScreenCapture_SetStateCallback(capture, OnStateChange, userData);
     OH_AVScreenCapture_SetDataCallback(capture, OnBufferAvailable, userData);
+
+    // 可选 [过滤音频]
+    OH_AVScreenCapture_ContentFilter contentFilter= OH_AVScreenCapture_CreateContentFilter();
+    // 添加过滤通知音
+    OH_AVScreenCapture_ContentFilter_AddAudioContent(contentFilter, OH_SCREEN_CAPTURE_NOTIFICATION_AUDIO);
+    // 排除过滤器
+    //OH_AVScreenCapture_ExcludeContent(capture, contentFilter);
 
     // 初始化录屏，传入配置信息OH_AVScreenRecorderConfig
     OH_AudioCaptureInfo miccapinfo = {.audioSampleRate = 16000, .audioChannels = 2, .audioSource = OH_MIC};
