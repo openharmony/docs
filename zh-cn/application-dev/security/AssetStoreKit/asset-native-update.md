@@ -4,38 +4,38 @@
 
 接口文档链接：
 
-[int32_t OH_Asset_Update(const Asset_Attr *query, uint32_t queryCnt, const Asset_Attr *attributesToUpdate, uint32_t updateCnt)](../../reference/apis-asset-store-kit/_asset_api.md#oh_asset_update)
+可通过API文档查看更新关键资产的接口[OH_Asset_Update](../../reference/apis-asset-store-kit/_asset_api.md#oh_asset_update)的详细介绍。
 
-query的参数列表：
+在更新关键资产时，关键资产属性的内容参数如下表所示：
 
-| 属性名称（Asset_Tag）            | 属性内容（Asset_Value）                                       | 是否必选 | 说明                                             |
-| ------------------------------- | ------------------------------------------------------------ | -------- | ------------------------------------------------ |
-| ASSET_TAG_ALIAS                 | 类型为uint8[]，长度为1-256字节                               | 必选     | 关键资产别名，每条关键资产的唯一索引;            |
-| ASSET_TAG_ACCESSIBILITY         | 类型为uint32_t，取值范围详见[Asset_Accessibility](../../reference/apis-asset-store-kit/_asset_type.md#asset_accessibility) | 可选     | 基于锁屏状态的访问控制                                     |
-| ASSET_TAG_REQUIRE_PASSWORD_SET  | 类型为bool                                                   | 可选     | 是否仅在设置了锁屏密码的情况下，可访问关键资产     |
-| ASSET_TAG_AUTH_TYPE             | 类型为uint32_t，取值范围详见[Asset_AuthType](../../reference/apis-asset-store-kit/_asset_type.md#asset_authtype) | 可选     | 访问关键资产所需的用户认证类型                   |
-| ASSET_TAG_SYNC_TYPE             | 类型为uint32_t，取值范围详见[Asset_SyncType](../../reference/apis-asset-store-kit/_asset_type.md#asset_synctype) | 可选     | 关键资产支持的同步类型                           |
-| ASSET_TAG_IS_PERSISTENT         | 类型为bool                                                   | 可选     | 在应用卸载时是否需要保留关键资产                 |
-| ASSET_TAG_DATA_LABEL_CRITICAL_1 | 类型为uint8[]，长度为1-512字节                               | 可选     | 关键资产附属信息，内容由业务自定义且有完整性保护 |
-| ASSET_TAG_DATA_LABEL_CRITICAL_2 | 类型为uint8[]，长度为1-512字节                               | 可选     | 关键资产附属信息，内容由业务自定义且有完整性保护 |
-| ASSET_TAG_DATA_LABEL_CRITICAL_3 | 类型为uint8[]，长度为1-512字节                               | 可选     | 关键资产附属信息，内容由业务自定义且有完整性保护 |
-| ASSET_TAG_DATA_LABEL_CRITICAL_4 | 类型为uint8[]，长度为1-512字节                               | 可选     | 关键资产附属信息，内容由业务自定义且有完整性保护 |
-| ASSET_TAG_DATA_LABEL_NORMAL_1   | 类型为uint8[]，长度为1-512字节                               | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护 |
-| ASSET_TAG_DATA_LABEL_NORMAL_2   | 类型为uint8[]，长度为1-512字节                               | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护 |
-| ASSET_TAG_DATA_LABEL_NORMAL_3   | 类型为uint8[]，长度为1-512字节                               | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护 |
-| ASSET_TAG_DATA_LABEL_NORMAL_4   | 类型为uint8[]，长度为1-512字节                               | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护 |
+- **query的参数列表：**
 
+  | 属性名称（Asset_Tag）            | 属性内容（Asset_Value）                                       | 是否必选 | 说明                                             |
+  | ------------------------------- | ------------------------------------------------------------ | -------- | ------------------------------------------------ |
+  | ASSET_TAG_ALIAS                 | 类型为uint8[]，长度为1-256字节。                               | 必选     | 关键资产别名，每条关键资产的唯一索引。            |
+  | ASSET_TAG_ACCESSIBILITY         | 类型为uint32_t，取值范围详见[Asset_Accessibility](../../reference/apis-asset-store-kit/_asset_type.md#asset_accessibility)。 | 可选     | 基于锁屏状态的访问控制。                                     |
+  | ASSET_TAG_REQUIRE_PASSWORD_SET  | 类型为bool。                                                   | 可选     | 是否仅在设置了锁屏密码的情况下，可访问关键资产。     |
+  | ASSET_TAG_AUTH_TYPE             | 类型为uint32_t，取值范围详见[Asset_AuthType](../../reference/apis-asset-store-kit/_asset_type.md#asset_authtype)。 | 可选     | 访问关键资产所需的用户认证类型。                   |
+  | ASSET_TAG_SYNC_TYPE             | 类型为uint32_t，取值范围详见[Asset_SyncType](../../reference/apis-asset-store-kit/_asset_type.md#asset_synctype)。 | 可选     | 关键资产支持的同步类型。                           |
+  | ASSET_TAG_IS_PERSISTENT         | 类型为bool。                                                   | 可选     | 在应用卸载时是否需要保留关键资产。                 |
+  | ASSET_TAG_DATA_LABEL_CRITICAL_1 | 类型为uint8[]，长度为1-512字节。                               | 可选     | 关键资产附属信息，内容由业务自定义且有完整性保护。 |
+  | ASSET_TAG_DATA_LABEL_CRITICAL_2 | 类型为uint8[]，长度为1-512字节。                               | 可选     | 关键资产附属信息，内容由业务自定义且有完整性保护。 |
+  | ASSET_TAG_DATA_LABEL_CRITICAL_3 | 类型为uint8[]，长度为1-512字节。                               | 可选     | 关键资产附属信息，内容由业务自定义且有完整性保护。 |
+  | ASSET_TAG_DATA_LABEL_CRITICAL_4 | 类型为uint8[]，长度为1-512字节。                               | 可选     | 关键资产附属信息，内容由业务自定义且有完整性保护。 |
+  | ASSET_TAG_DATA_LABEL_NORMAL_1   | 类型为uint8[]，长度为1-512字节。                               | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护。 |
+  | ASSET_TAG_DATA_LABEL_NORMAL_2   | 类型为uint8[]，长度为1-512字节。                               | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护。 |
+  | ASSET_TAG_DATA_LABEL_NORMAL_3   | 类型为uint8[]，长度为1-512字节。                               | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护。 |
+  | ASSET_TAG_DATA_LABEL_NORMAL_4   | 类型为uint8[]，长度为1-512字节。                               | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护。 |
 
-attributesToUpdate的参数列表：
+- **attributesToUpdate的参数列表：**
 
-
-| 属性名称（Asset_Tag）| 属性内容（Asset_Value）          | 是否必选 | 说明                                             |
-| ------------------- | ------------------------------- | -------- | ------------------------------------------------ |
-| SECRET              | 类型为uint8[]，长度为1-1024字节 | 可选     | 关键资产明文                                     |
-| DATA_LABEL_NORMAL_1 | 类型为uint8[]，长度为1-512字节  | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护 |
-| DATA_LABEL_NORMAL_2 | 类型为uint8[]，长度为1-512字节  | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护 |
-| DATA_LABEL_NORMAL_3 | 类型为uint8[]，长度为1-512字节  | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护 |
-| DATA_LABEL_NORMAL_4 | 类型为uint8[]，长度为1-512字节  | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护 |
+  | 属性名称（Asset_Tag）| 属性内容（Asset_Value）          | 是否必选 | 说明                                             |
+  | ------------------- | ------------------------------- | -------- | ------------------------------------------------ |
+  | SECRET              | 类型为uint8[]，长度为1-1024字节。 | 可选     | 关键资产明文。                                     |
+  | DATA_LABEL_NORMAL_1 | 类型为uint8[]，长度为1-512字节。  | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护。 |
+  | DATA_LABEL_NORMAL_2 | 类型为uint8[]，长度为1-512字节。  | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护。 |
+  | DATA_LABEL_NORMAL_3 | 类型为uint8[]，长度为1-512字节。  | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护。 |
+  | DATA_LABEL_NORMAL_4 | 类型为uint8[]，长度为1-512字节。  | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护。 |
 
 ## 代码示例
 
@@ -69,7 +69,3 @@ void UpdateAsset() {
     }
 }
 ```
-
-## 约束和限制
-
-NA

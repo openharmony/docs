@@ -5,6 +5,7 @@
 
 提供ArkUI在Native侧的UI能力，如UI组件创建销毁、树节点操作，属性设置，事件监听等。
 
+
 **起始版本：** 12
 
 
@@ -15,30 +16,33 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [native_event.h](native__event_8h.md) | 提供ArkUI在Native侧的事件类型定义集合。<br>**库：** libace_ndk.z.so  | 
-| [native_interface.h](native__interface_8h.md) | 提供NativeModule接口的统一入口函数。<br>**库：** libace_ndk.z.so  | 
-| [native_node.h](native__node_8h.md) | 提供NativeNode接口的类型定义。<br>**库：** libace_ndk.z.so  | 
-| [native_type.h](native__type_8h.md) | 提供NativeModule公共的类型定义。<br>**库：** libace_ndk.z.so  | 
+| [native_event.h](native__event_8h.md) | 提供ArkUI在Native侧的事件类型定义集合。  <br>**库：** libace_ndk.z.so| 
+| [native_interface.h](native__interface_8h.md) | 提供NativeModule接口的统一入口函数。 <br>**库：** libace_ndk.z.so | 
+| [native_node.h](native__node_8h.md) | 提供NativeNode接口的类型定义。 <br>**库：** libace_ndk.z.so | 
+| [native_node_napi.h](native__node__napi_8h.md) | 提供ArkTS侧的FrameNode转换NodeHandle的方式。 <br>**库：** libace_ndk.z.so | 
+| [native_type.h](native__type_8h.md) | 提供NativeModule公共的类型定义。  <br>**库：** libace_ndk.z.so| 
+| [native_dialog.h](native__dialog_8h.md) | 提供ArkUI在Native侧的自定义弹窗接口定义集合。  | 
 
 
 ### 结构体
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| struct [ArkUI_NodeTouchPoint](_ark_u_i___node_touch_point.md) | 定义Touch事件触控点信息的数据结构。  | 
-| struct [ArkUI_NodeHistoricalTouchPoint](_ark_u_i___node_historical_touch_point.md) | 定义历史点信息的结构类型。  | 
-| struct [ArkUI_NodeTouchEvent](_ark_u_i___node_touch_event.md) | 定义Touch事件的结构类型。  | 
-| struct [ArkUI_AnyNativeAPI](_ark_u_i___any_native_a_p_i.md) | 定义任意版本的Native接口类型。  | 
-| struct [ArkUI_AttributeItem](_ark_u_i___attribute_item.md) | 定义**setAttribute**函数通用入参结构。  | 
-| struct [ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md) | 定义组件回调事件的参数类型。  | 
-| struct [ArkUI_StringAsyncEvent](_ark_u_i___string_async_event.md) | 定义组件回调事件使用字符串参数的类型。  | 
-| struct [ArkUI_NodeEvent](_ark_u_i___node_event.md) | 定义组件事件的通用结构类型。  | 
-| struct [ArkUI_NativeNodeAPI_1](_ark_u_i___native_node_a_p_i__1.md) | ArkUI提供的Native侧Node类型接口集合。  | 
-| union [ArkUI_NumberValue](union_ark_u_i___number_value.md) | ArkUI在native侧的数字类型定义。  | 
-| struct [ARKUI_TextPickerRangeContent](_a_r_k_u_i___text_picker_range_content.md) | 定义单列滑动数据选择器支持图片资源的输入结构体。  | 
-| struct [ARKUI_TextPickerCascadeRangeContent](_a_r_k_u_i___text_picker_cascade_range_content.md) | 定义多列带联动能力的滑动数据选择器的输入结构体。  | 
-| struct [ArkUI_ColorStop](_ark_u_i___color_stop.md) | 定义渐变色结构。  | 
-
+| struct&nbsp;&nbsp;[ArkUI_NodeTouchPoint](_ark_u_i___node_touch_point.md) | 定义Touch事件触控点信息的数据结构。  | 
+| struct&nbsp;&nbsp;[ArkUI_NodeHistoricalTouchPoint](_ark_u_i___node_historical_touch_point.md) | 定义历史点信息的结构类型。  | 
+| struct&nbsp;&nbsp;[ArkUI_NodeTouchEvent](_ark_u_i___node_touch_event.md) | 定义Touch事件的结构类型。  | 
+| struct&nbsp;&nbsp;[ArkUI_AnyNativeAPI](_ark_u_i___any_native_a_p_i.md) | 定义任意版本的Native接口类型。  | 
+| struct&nbsp;&nbsp;[ArkUI_AttributeItem](_ark_u_i___attribute_item.md) | 定义**setAttribute**函数通用入参结构。  | 
+| struct&nbsp;&nbsp;[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md) | 定义组件回调事件的参数类型。  | 
+| struct&nbsp;&nbsp;[ArkUI_StringAsyncEvent](_ark_u_i___string_async_event.md) | 定义组件回调事件使用字符串参数的类型。  | 
+| struct&nbsp;&nbsp;[ArkUI_NodeEvent](_ark_u_i___node_event.md) | 定义组件事件的通用结构类型。  | 
+| struct&nbsp;&nbsp;[ArkUI_NativeNodeAPI_1](_ark_u_i___native_node_a_p_i__1.md) | ArkUI提供的Native侧Node类型接口集合。  | 
+| union&nbsp;&nbsp;[ArkUI_NumberValue](union_ark_u_i___number_value.md) | ArkUI在native侧的数字类型定义。  | 
+| struct&nbsp;&nbsp;[ARKUI_TextPickerRangeContent](_a_r_k_u_i___text_picker_range_content.md) | 定义单列滑动数据选择器支持图片资源的输入结构体。  | 
+| struct&nbsp;&nbsp;[ARKUI_TextPickerCascadeRangeContent](_a_r_k_u_i___text_picker_cascade_range_content.md) | 定义多列带联动能力的滑动数据选择器的输入结构体。  | 
+| struct&nbsp;&nbsp;[ArkUI_ColorStop](_ark_u_i___color_stop.md) | 定义渐变色结构。  | 
+| struct&nbsp;&nbsp;[ArkUI_Rect](_ark_u_i___rect.md) | 定义遮罩屏蔽区域的范围结构体。  | 
+| struct&nbsp;&nbsp;[ArkUI_NativeDialogAPI_1](_ark_u_i___native_dialog_a_p_i__1.md) | ArkUI提供的Native侧自定义弹窗接口集合。  |
 
 
 ### 类型定义
@@ -46,6 +50,8 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | typedef struct ArkUI_Node \* [ArkUI_NodeHandle](#arkui_nodehandle) | 定义ArkUI native组件实例对象指针定义。  | 
+| typedef struct ArkUI_NativeDialog \* [ArkUI_NativeDialogHandle](#arkui_nativedialoghandle) | 定义ArkUI在Native侧的自定义弹窗控制器对象指针。  | 
+| typedef bool(\* [OnWillDismissEvent](#onwilldismissevent)) (int32_t reason) | 弹窗关闭的回调函数。  | 
 
 
 ### 枚举
@@ -55,11 +61,12 @@
 | [ArkUI_NodeToolType](#arkui_nodetooltype) { NODE_TOOL_TYPE_UNKNOWN = -1, NODE_TOOL_TYPE_FINGER = 0, NODE_TOOL_TYPE_STYLUS = 1 } | Touch事件的工具类型定义。  | 
 | [ArkUI_NodeSourceType](#arkui_nodesourcetype) { NODE_SOURCE_TYPE_UNKNOWN = -1, NODE_SOURCE_TYPE_TOUCH_SCREEN = 0, NODE_SOURCE_TYPE_STYLUS = 1, NODE_SOURCE_TYPE_TOUCHPAD = 2 } | 产生Touch事件的来源类型定义。  | 
 | [ArkUI_NodeTouchEventAction](#arkui_nodetoucheventaction) { NODE_ACTION_CANCEL = 0, NODE_ACTION_DOWN = 1, NODE_ACTION_MOVE = 2, NODE_ACTION_UP = 3 } | 定义触屏事件类型的枚举值。  | 
-| [ArkUI_NativeAPIVariantKind](#arkui_nativeapivariantkind) { ARKUI_NATIVE_NODE } | 定义Native接口集合类型。  | 
-| [ArkUI_NativeNodeAPIVersion](#arkui_nativenodeapiversion) { ARKUI_NATIVE_NODE_VERSION_1 } | 定义ARKUI_NATIVE_NODE类型支持的版本号信息。  | 
-| [ArkUI_NodeType](#arkui_nodetype) {<br/>ARKUI_NODE_CUSTOM = 0, ARKUI_NODE_TEXT = 1, ARKUI_NODE_SPAN = 2, ARKUI_NODE_IMAGE_SPAN = 3,<br/>ARKUI_NODE_IMAGE = 4, ARKUI_NODE_TOGGLE = 5, ARKUI_NODE_LOADING_PROGRESS = 6, ARKUI_NODE_TEXT_INPUT = 7,<br/>ARKUI_NODE_TEXT_AREA = 8, ARKUI_NODE_BUTTON = 9, ARKUI_NODE_PROGRESS = 10, ARKUI_NODE_CHECKBOX = 11,<br/>ARKUI_NODE_XCOMPONENT = 12, ARKUI_NODE_DATE_PICKER = 13, ARKUI_NODE_TIME_PICKER = 14, ARKUI_NODE_TEXT_PICKER = 15,<br/>ARKUI_NODE_CALENDAR_PICKER = 16, ARKUI_NODE_SLIDER = 17, ARKUI_NODE_STACK = MAX_NODE_SCOPE_NUM, ARKUI_NODE_SWIPER,<br/>ARKUI_NODE_SCROLL, ARKUI_NODE_LIST, ARKUI_NODE_LIST_ITEM, ARKUI_NODE_LIST_ITEM_GROUP,<br/>ARKUI_NODE_COLUMN, ARKUI_NODE_ROW, ARKUI_NODE_FLEX, ARKUI_NODE_REFRESH<br/>} | 提供ArkUI在Native侧可创建组件类型。  | 
-| [ArkUI_NodeAttributeType](#arkui_nodeattributetype) {<br/>NODE_WIDTH = 0, NODE_HEIGHT, NODE_BACKGROUND_COLOR, NODE_BACKGROUND_IMAGE,<br/>NODE_PADDING, NODE_ID, NODE_ENABLED, NODE_MARGIN,<br/>NODE_TRANSLATE, NODE_SCALE, NODE_ROTATE, NODE_BRIGHTNESS,<br/>NODE_SATURATION, NODE_BLUR, NODE_LINEAR_GRADIENT, NODE_ALIGNMENT,<br/>NODE_OPACITY, NODE_BORDER_WIDTH, NODE_BORDER_RADIUS, NODE_BORDER_COLOR,<br/>NODE_BORDER_STYLE, NODE_Z_INDEX, NODE_VISIBILITY, NODE_CLIP,<br/>NODE_CLIP_SHAPE, NODE_TRANSFORM, NODE_HIT_TEST_BEHAVIOR, NODE_POSITION,<br/>NODE_SHADOW, NODE_CUSTOM_SHADOW, NODE_BACKGROUND_IMAGE_SIZE, NODE_BACKGROUND_IMAGE_SIZE_WITH_STYLE,<br/>NODE_BACKGROUND_BLUR_STYLE, NODE_TRANSFORM_CENTER, NODE_OPACITY_TRANSITION, NODE_ROTATE_TRANSITION,<br/>NODE_SCALE_TRANSITION, NODE_TRANSLATE_TRANSITION, NODE_FOCUSABLE, NODE_DEFAULT_FOCUS,<br/>NODE_RESPONSE_REGION, NODE_OVERLAY, NODE_SWEEP_GRADIENT, NODE_RADIAL_GRADIENT,<br/>NODE_MASK, NODE_BLEND_MODE, NODE_DIRECTION, NODE_CONSTRAINT_SIZE,<br/>NODE_GRAY_SCALE, NODE_INVERT, NODE_SEPIA, NODE_CONTRAST,<br/>NODE_FOREGROUND_COLOR, NODE_OFFSET, NODE_MARK_ANCHOR, NODE_BACKGROUND_IMAGE_POSITION,<br/>NODE_ALIGN_RULES, NODE_ALIGN_SELF, NODE_FLEX_GROW, NODE_FLEX_SHRINK,<br/>NODE_FLEX_BASIS, NODE_ACCESSIBILITY_GROUP, NODE_ACCESSIBILITY_TEXT, NODE_ACCESSIBILITY_MODE,<br/>NODE_ACCESSIBILITY_DESCRIPTION, NODE_FOCUS_STATUS, NODE_TEXT_CONTENT = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_TEXT, NODE_FONT_COLOR,<br/>NODE_FONT_SIZE, NODE_FONT_STYLE, NODE_FONT_WEIGHT, NODE_TEXT_LINE_HEIGHT,<br/>NODE_TEXT_DECORATION, NODE_TEXT_CASE, NODE_TEXT_LETTER_SPACING, NODE_TEXT_MAX_LINES,<br/>NODE_TEXT_ALIGN, NODE_TEXT_OVERFLOW, NODE_FONT_FAMILY, NODE_TEXT_COPY_OPTION,<br/>NODE_TEXT_BASELINE_OFFSET, NODE_TEXT_TEXT_SHADOW, NODE_TEXT_MIN_FONT_SIZE, NODE_TEXT_MAX_FONT_SIZE,<br/>NODE_TEXT_FONT, NODE_TEXT_HEIGHT_ADAPTIVE_POLICY, NODE_TEXT_INDENT, NODE_SPAN_CONTENT = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_SPAN,<br/>NODE_IMAGE_SPAN_SRC = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_IMAGE_SPAN, NODE_IMAGE_SPAN_VERTICAL_ALIGNMENT, NODE_IMAGE_SRC = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_IMAGE, NODE_IMAGE_OBJECT_FIT,<br/>NODE_IMAGE_INTERPOLATION, NODE_IMAGE_OBJECT_REPEAT, NODE_IMAGE_COLOR_FILTER, NODE_IMAGE_AUTO_RESIZE,<br/>NODE_IMAGE_ALT, NODE_TOGGLE_SELECTED_COLOR = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_TOGGLE, NODE_TOGGLE_SWITCH_POINT_COLOR, NODE_LOADING_PROGRESS_COLOR = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_LOADING_PROGRESS,<br/>NODE_LOADING_PROGRESS_ENABLE_LOADING, NODE_TEXT_INPUT_PLACEHOLDER = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_TEXT_INPUT, NODE_TEXT_INPUT_TEXT, NODE_TEXT_INPUT_CARET_COLOR,<br/>NODE_TEXT_INPUT_CARET_STYLE, NODE_TEXT_INPUT_SHOW_UNDERLINE, NODE_TEXT_INPUT_MAX_LENGTH, NODE_TEXT_INPUT_ENTER_KEY_TYPE,<br/>NODE_TEXT_INPUT_PLACEHOLDER_COLOR, NODE_TEXT_INPUT_PLACEHOLDER_FONT, NODE_TEXT_INPUT_ENABLE_KEYBOARD_ON_FOCUS, NODE_TEXT_INPUT_TYPE,<br/>NODE_TEXT_INPUT_SELECTED_BACKGROUND_COLOR, NODE_TEXT_INPUT_SHOW_PASSWORD_ICON, NODE_TEXT_INPUT_EDITING, NODE_TEXT_INPUT_CANCEL_BUTTON,<br/>NODE_TEXT_AREA_PLACEHOLDER = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_TEXT_AREA, NODE_TEXT_AREA_TEXT, NODE_TEXT_AREA_MAX_LENGTH, NODE_TEXT_AREA_PLACEHOLDER_COLOR,<br/>NODE_TEXT_AREA_PLACEHOLDER_FONT, NODE_TEXT_AREA_CARET_COLOR, NODE_TEXT_AREA_EDITING, NODE_BUTTON_LABEL = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_BUTTON,<br/>NODE_PROGRESS_VALUE = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_PROGRESS, NODE_PROGRESS_TOTAL, NODE_PROGRESS_COLOR, NODE_PROGRESS_TYPE,<br/>NODE_CHECKBOX_SELECT = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_CHECKBOX, NODE_CHECKBOX_SELECT_COLOR, NODE_CHECKBOX_UNSELECT_COLOR, NODE_CHECKBOX_MARK,<br/>NODE_CHECKBOX_SHAPE, NODE_XCOMPONENT_ID = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_XCOMPONENT, NODE_XCOMPONENT_TYPE, NODE_XCOMPONENT_SURFACE_SIZE,<br/>NODE_DATE_PICKER_LUNAR = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_DATE_PICKER, NODE_DATE_PICKER_START, NODE_DATE_PICKER_END, NODE_DATE_PICKER_SELECTED,<br/>NODE_DATE_PICKER_DISAPPEAR_TEXT_STYLE, NODE_DATE_PICKER_TEXT_STYLE, NODE_DATE_PICKER_SELECTED_TEXT_STYLE, NODE_TIME_PICKER_SELECTED = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_TIME_PICKER,<br/>NODE_TIME_PICKER_USE_MILITARY_TIME, NODE_TIME_PICKER_DISAPPEAR_TEXT_STYLE, NODE_TIME_PICKER_TEXT_STYLE, NODE_TIME_PICKER_SELECTED_TEXT_STYLE,<br/>NODE_TEXT_PICKER_OPTION_RANGE = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_TEXT_PICKER, NODE_TEXT_PICKER_OPTION_SELECTED, NODE_TEXT_PICKER_OPTION_VALUE, NODE_TEXT_PICKER_DISAPPEAR_TEXT_STYLE,<br/>NODE_TEXT_PICKER_TEXT_STYLE, NODE_TEXT_PICKER_SELECTED_TEXT_STYLE, NODE_TEXT_PICKER_SELECTED_INDEX, NODE_TEXT_PICKER_CAN_LOOP,<br/>NODE_TEXT_PICKER_DEFAULT_PICKER_ITEM_HEIGHT, NODE_CALENDAR_PICKER_HINT_RADIUS = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_CALENDAR_PICKER, NODE_CALENDAR_PICKER_SELECTED_DATE, NODE_CALENDAR_PICKER_EDGE_ALIGNMENT,<br/>NODE_CALENDAR_PICKER_TEXT_STYLE, NODE_SLIDER_BLOCK_COLOR = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_SLIDER, NODE_SLIDER_TRACK_COLOR, NODE_SLIDER_SELECTED_COLOR,<br/>NODE_SLIDER_SHOW_STEPS, NODE_SLIDER_BLOCK_STYLE, NODE_SLIDER_VALUE, NODE_SLIDER_MIN_VALUE,<br/>NODE_SLIDER_MAX_VALUE, NODE_SLIDER_STEP, NODE_SLIDER_DIRECTION, NODE_SLIDER_REVERSE,<br/>NODE_SLIDER_STYLE, NODE_STACK_ALIGN_CONTENT = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_STACK, NODE_SCROLL_BAR_DISPLAY_MODE = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_SCROLL, NODE_SCROLL_BAR_WIDTH,<br/>NODE_SCROLL_BAR_COLOR, NODE_SCROLL_SCROLL_DIRECTION, NODE_SCROLL_EDGE_EFFECT, NODE_SCROLL_ENABLE_SCROLL_INTERACTION,<br/>NODE_SCROLL_FRICTION, NODE_SCROLL_SNAP, NODE_SCROLL_NESTED_SCROLL, NODE_SCROLL_OFFSET,<br/>NODE_SCROLL_EDGE, NODE_SCROLL_ENABLE_PAGING, NODE_LIST_DIRECTION = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_LIST, NODE_LIST_STICKY,<br/>NODE_LIST_SPACE, NODE_SWIPER_LOOP = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_SWIPER, NODE_SWIPER_AUTO_PLAY, NODE_SWIPER_SHOW_INDICATOR,<br/>NODE_SWIPER_INTERVAL, NODE_SWIPER_VERTICAL, NODE_SWIPER_DURATION, NODE_SWIPER_CURVE,<br/>NODE_SWIPER_ITEM_SPACE, NODE_SWIPER_INDEX, NODE_SWIPER_DISPLAY_COUNT, NODE_SWIPER_DISABLE_SWIPE,<br/>NODE_SWIPER_SHOW_DISPLAY_ARROW, NODE_LIST_ITEM_GROUP_SET_HEADER = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_LIST_ITEM_GROUP, NODE_LIST_ITEM_GROUP_SET_FOOTER, NODE_LIST_ITEM_GROUP_SET_DIVIDER,<br/>NODE_COLUMN_ALIGN_ITEMS = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_COLUMN, NODE_COLUMN_JUSTIFY_CONTENT, NODE_ROW_ALIGN_ITEMS = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_ROW, NODE_ROW_JUSTIFY_CONTENT,<br/>NODE_FLEX_OPTION = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_FLEX, NODE_REFRESH_REFRESHING = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_REFRESH<br/>} | 定义ArkUI在Native侧可以设置的属性样式集合。  | 
-| [ArkUI_NodeEventType](#arkui_nodeeventtype) {<br/>NODE_TOUCH_EVENT = 0, NODE_EVENT_ON_APPEAR, NODE_EVENT_ON_AREA_CHANGE, NODE_ON_FOCUS,<br/>NODE_ON_BLUR, NODE_ON_CLICK, NODE_IMAGE_ON_COMPLETE = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_IMAGE, NODE_IMAGE_ON_ERROR,<br/>NODE_IMAGE_ON_SVG_PLAY_FINISH, NODE_TOGGLE_ON_CHANGE = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_TOGGLE, NODE_TEXT_INPUT_ON_CHANGE = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_TEXT_INPUT, NODE_TEXT_INPUT_ON_SUBMIT,<br/>NODE_TEXT_INPUT_ON_CUT, NODE_TEXT_INPUT_ON_PASTE, NODE_TEXT_AREA_ON_CHANGE = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_TEXT_AREA, NODE_CHECKBOX_EVENT_ON_CHANGE = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_CHECKBOX,<br/>NODE_DATE_PICKER_EVENT_ON_DATE_CHANGE = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_DATE_PICKER, NODE_TIME_PICKER_EVENT_ON_CHANGE = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_TIME_PICKER, NODE_TEXT_PICKER_EVENT_ON_CHANGE = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_TEXT_PICKER, NODE_CALENDAR_PICKER_EVENT_ON_CHANGE = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_CALENDAR_PICKER,<br/>NODE_SLIDER_EVENT_ON_CHANGE = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_SLIDER, NODE_SCROLL_EVENT_ON_SCROLL = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_SCROLL, NODE_SCROLL_EVENT_ON_SCROLL_FRAME_BEGIN, NODE_SCROLL_EVENT_ON_SCROLL_START,<br/>NODE_SCROLL_EVENT_ON_SCROLL_STOP, NODE_SCROLL_EVENT_ON_SCROLL_EDGE, NODE_REFRESH_STATE_CHANGE = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_REFRESH, NODE_REFRESH_ON_REFRESH<br/>} | 提供NativeNode组件支持的事件类型定义。  | 
+| [HitTestMode](#hittestmode) { HTMDEFAULT = 0, HTMBLOCK, HTMTRANSPARENT, HTMNONE } | 定义触摸测试类型的枚举值。  | 
+| [ArkUI_NativeAPIVariantKind](#arkui_nativeapivariantkind) { ARKUI_NATIVE_NODE, ARKUI_NATIVE_DIALOG } | 定义Native接口集合类型。  | 
+| [ArkUI_NativeNodeAPIVersion](#arkui_nativenodeapiversion) { ARKUI_NATIVE_NODE_VERSION_1 = 1 } | 定义ARKUI_NATIVE_NODE类型支持的版本号信息。  | 
+| [ArkUI_NodeType](#arkui_nodetype) {<br/>ARKUI_NODE_CUSTOM = 0, ARKUI_NODE_TEXT = 1, ARKUI_NODE_SPAN = 2, ARKUI_NODE_IMAGE_SPAN = 3,<br/>ARKUI_NODE_IMAGE = 4, ARKUI_NODE_TOGGLE = 5, ARKUI_NODE_LOADING_PROGRESS = 6, ARKUI_NODE_TEXT_INPUT = 7,<br/>ARKUI_NODE_TEXT_AREA = 8, ARKUI_NODE_BUTTON = 9, ARKUI_NODE_PROGRESS = 10, ARKUI_NODE_CHECKBOX = 11,<br/>ARKUI_NODE_XCOMPONENT = 12, ARKUI_NODE_DATE_PICKER = 13, ARKUI_NODE_TIME_PICKER = 14, ARKUI_NODE_TEXT_PICKER = 15,<br/>ARKUI_NODE_CALENDAR_PICKER = 16, ARKUI_NODE_SLIDER = 17, ARKUI_NODE_STACK = MAX_NODE_SCOPE_NUM, ARKUI_NODE_SWIPER,<br/>ARKUI_NODE_SCROLL, ARKUI_NODE_LIST, ARKUI_NODE_LIST_ITEM, ARKUI_NODE_LIST_ITEM_GROUP,<br/>ARKUI_NODE_COLUMN, ARKUI_NODE_ROW, ARKUI_NODE_FLEX, ARKUI_NODE_REFRESH,<br/>ARKUI_NODE_WATER_FLOW<br/>} | 提供ArkUI在Native侧可创建组件类型。  | 
+| [ArkUI_NodeAttributeType](#arkui_nodeattributetype) {<br/>NODE_WIDTH = 0, NODE_HEIGHT, NODE_BACKGROUND_COLOR, NODE_BACKGROUND_IMAGE,<br/>NODE_PADDING, NODE_ID, NODE_ENABLED, NODE_MARGIN,<br/>NODE_TRANSLATE, NODE_SCALE, NODE_ROTATE, NODE_BRIGHTNESS,<br/>NODE_SATURATION, NODE_BLUR, NODE_LINEAR_GRADIENT, NODE_ALIGNMENT,<br/>NODE_OPACITY, NODE_BORDER_WIDTH, NODE_BORDER_RADIUS, NODE_BORDER_COLOR,<br/>NODE_BORDER_STYLE, NODE_Z_INDEX, NODE_VISIBILITY, NODE_CLIP,<br/>NODE_CLIP_SHAPE, NODE_TRANSFORM, NODE_HIT_TEST_BEHAVIOR, NODE_POSITION,<br/>NODE_SHADOW, NODE_CUSTOM_SHADOW, NODE_BACKGROUND_IMAGE_SIZE, NODE_BACKGROUND_IMAGE_SIZE_WITH_STYLE,<br/>NODE_BACKGROUND_BLUR_STYLE, NODE_TRANSFORM_CENTER, NODE_OPACITY_TRANSITION, NODE_ROTATE_TRANSITION,<br/>NODE_SCALE_TRANSITION, NODE_TRANSLATE_TRANSITION, NODE_MOVE_TRANSITION, NODE_FOCUSABLE,<br/>NODE_DEFAULT_FOCUS, NODE_RESPONSE_REGION, NODE_OVERLAY, NODE_SWEEP_GRADIENT,<br/>NODE_RADIAL_GRADIENT, NODE_MASK, NODE_BLEND_MODE, NODE_DIRECTION,<br/>NODE_CONSTRAINT_SIZE, NODE_GRAY_SCALE, NODE_INVERT, NODE_SEPIA,<br/>NODE_CONTRAST, NODE_FOREGROUND_COLOR, NODE_OFFSET, NODE_MARK_ANCHOR,<br/>NODE_BACKGROUND_IMAGE_POSITION, NODE_ALIGN_RULES, NODE_ALIGN_SELF, NODE_FLEX_GROW,<br/>NODE_FLEX_SHRINK, NODE_FLEX_BASIS, NODE_ACCESSIBILITY_GROUP, NODE_ACCESSIBILITY_TEXT,<br/>NODE_ACCESSIBILITY_MODE, NODE_ACCESSIBILITY_DESCRIPTION, NODE_FOCUS_STATUS, NODE_ASPECT_RATIO,<br/>NODE_TEXT_CONTENT = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_TEXT, NODE_FONT_COLOR, NODE_FONT_SIZE, NODE_FONT_STYLE,<br/>NODE_FONT_WEIGHT, NODE_TEXT_LINE_HEIGHT, NODE_TEXT_DECORATION, NODE_TEXT_CASE,<br/>NODE_TEXT_LETTER_SPACING, NODE_TEXT_MAX_LINES, NODE_TEXT_ALIGN, NODE_TEXT_OVERFLOW,<br/>NODE_FONT_FAMILY, NODE_TEXT_COPY_OPTION, NODE_TEXT_BASELINE_OFFSET, NODE_TEXT_TEXT_SHADOW,<br/>NODE_TEXT_MIN_FONT_SIZE, NODE_TEXT_MAX_FONT_SIZE, NODE_TEXT_FONT, NODE_TEXT_HEIGHT_ADAPTIVE_POLICY,<br/>NODE_TEXT_INDENT, NODE_TEXT_WORD_BREAK, NODE_TEXT_ELLIPSIS_MODE, NODE_SPAN_CONTENT = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_SPAN,<br/>NODE_SPAN_TEXT_BACKGROUND_STYLE, NODE_IMAGE_SPAN_SRC = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_IMAGE_SPAN, NODE_IMAGE_SPAN_VERTICAL_ALIGNMENT, NODE_IMAGE_SRC = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_IMAGE,<br/>NODE_IMAGE_OBJECT_FIT, NODE_IMAGE_INTERPOLATION, NODE_IMAGE_OBJECT_REPEAT, NODE_IMAGE_COLOR_FILTER,<br/>NODE_IMAGE_AUTO_RESIZE, NODE_IMAGE_ALT, NODE_IMAGE_DRAGGABLE, NODE_IMAGE_RENDER_MODE,<br/>NODE_TOGGLE_SELECTED_COLOR = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_TOGGLE, NODE_TOGGLE_SWITCH_POINT_COLOR, NODE_TOGGLE_VALUE, NODE_LOADING_PROGRESS_COLOR = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_LOADING_PROGRESS,<br/>NODE_LOADING_PROGRESS_ENABLE_LOADING, NODE_TEXT_INPUT_PLACEHOLDER = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_TEXT_INPUT, NODE_TEXT_INPUT_TEXT, NODE_TEXT_INPUT_CARET_COLOR,<br/>NODE_TEXT_INPUT_CARET_STYLE, NODE_TEXT_INPUT_SHOW_UNDERLINE, NODE_TEXT_INPUT_MAX_LENGTH, NODE_TEXT_INPUT_ENTER_KEY_TYPE,<br/>NODE_TEXT_INPUT_PLACEHOLDER_COLOR, NODE_TEXT_INPUT_PLACEHOLDER_FONT, NODE_TEXT_INPUT_ENABLE_KEYBOARD_ON_FOCUS, NODE_TEXT_INPUT_TYPE,<br/>NODE_TEXT_INPUT_SELECTED_BACKGROUND_COLOR, NODE_TEXT_INPUT_SHOW_PASSWORD_ICON, NODE_TEXT_INPUT_EDITING, NODE_TEXT_INPUT_CANCEL_BUTTON,<br/>NODE_TEXT_INPUT_TEXT_SELECTION, NODE_TEXT_AREA_PLACEHOLDER = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_TEXT_AREA, NODE_TEXT_AREA_TEXT, NODE_TEXT_AREA_MAX_LENGTH,<br/>NODE_TEXT_AREA_PLACEHOLDER_COLOR, NODE_TEXT_AREA_PLACEHOLDER_FONT, NODE_TEXT_AREA_CARET_COLOR, NODE_TEXT_AREA_EDITING,<br/>NODE_TEXT_AREA_TYPE, NODE_TEXT_AREA_SHOW_COUNTER, NODE_BUTTON_LABEL = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_BUTTON, NODE_PROGRESS_VALUE = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_PROGRESS,<br/>NODE_PROGRESS_TOTAL, NODE_PROGRESS_COLOR, NODE_PROGRESS_TYPE, NODE_CHECKBOX_SELECT = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_CHECKBOX,<br/>NODE_CHECKBOX_SELECT_COLOR, NODE_CHECKBOX_UNSELECT_COLOR, NODE_CHECKBOX_MARK, NODE_CHECKBOX_SHAPE,<br/>NODE_XCOMPONENT_ID = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_XCOMPONENT, NODE_XCOMPONENT_TYPE, NODE_XCOMPONENT_SURFACE_SIZE, NODE_DATE_PICKER_LUNAR = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_DATE_PICKER,<br/>NODE_DATE_PICKER_START, NODE_DATE_PICKER_END, NODE_DATE_PICKER_SELECTED, NODE_DATE_PICKER_DISAPPEAR_TEXT_STYLE,<br/>NODE_DATE_PICKER_TEXT_STYLE, NODE_DATE_PICKER_SELECTED_TEXT_STYLE, NODE_TIME_PICKER_SELECTED = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_TIME_PICKER, NODE_TIME_PICKER_USE_MILITARY_TIME,<br/>NODE_TIME_PICKER_DISAPPEAR_TEXT_STYLE, NODE_TIME_PICKER_TEXT_STYLE, NODE_TIME_PICKER_SELECTED_TEXT_STYLE, NODE_TEXT_PICKER_OPTION_RANGE = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_TEXT_PICKER,<br/>NODE_TEXT_PICKER_OPTION_SELECTED, NODE_TEXT_PICKER_OPTION_VALUE, NODE_TEXT_PICKER_DISAPPEAR_TEXT_STYLE, NODE_TEXT_PICKER_TEXT_STYLE,<br/>NODE_TEXT_PICKER_SELECTED_TEXT_STYLE, NODE_TEXT_PICKER_SELECTED_INDEX, NODE_TEXT_PICKER_CAN_LOOP, NODE_TEXT_PICKER_DEFAULT_PICKER_ITEM_HEIGHT,<br/>NODE_CALENDAR_PICKER_HINT_RADIUS = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_CALENDAR_PICKER, NODE_CALENDAR_PICKER_SELECTED_DATE, NODE_CALENDAR_PICKER_EDGE_ALIGNMENT, NODE_CALENDAR_PICKER_TEXT_STYLE,<br/>NODE_SLIDER_BLOCK_COLOR = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_SLIDER, NODE_SLIDER_TRACK_COLOR, NODE_SLIDER_SELECTED_COLOR, NODE_SLIDER_SHOW_STEPS,<br/>NODE_SLIDER_BLOCK_STYLE, NODE_SLIDER_VALUE, NODE_SLIDER_MIN_VALUE, NODE_SLIDER_MAX_VALUE,<br/>NODE_SLIDER_STEP, NODE_SLIDER_DIRECTION, NODE_SLIDER_REVERSE, NODE_SLIDER_STYLE,<br/>NODE_STACK_ALIGN_CONTENT = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_STACK, NODE_SCROLL_BAR_DISPLAY_MODE = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_SCROLL, NODE_SCROLL_BAR_WIDTH, NODE_SCROLL_BAR_COLOR,<br/>NODE_SCROLL_SCROLL_DIRECTION, NODE_SCROLL_EDGE_EFFECT, NODE_SCROLL_ENABLE_SCROLL_INTERACTION, NODE_SCROLL_FRICTION,<br/>NODE_SCROLL_SNAP, NODE_SCROLL_NESTED_SCROLL, NODE_SCROLL_OFFSET, NODE_SCROLL_EDGE,<br/>NODE_SCROLL_ENABLE_PAGING, NODE_LIST_DIRECTION = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_LIST, NODE_LIST_STICKY, NODE_LIST_SPACE,<br/>NODE_SWIPER_LOOP = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_SWIPER, NODE_SWIPER_AUTO_PLAY, NODE_SWIPER_SHOW_INDICATOR, NODE_SWIPER_INTERVAL,<br/>NODE_SWIPER_VERTICAL, NODE_SWIPER_DURATION, NODE_SWIPER_CURVE, NODE_SWIPER_ITEM_SPACE,<br/>NODE_SWIPER_INDEX, NODE_SWIPER_DISPLAY_COUNT, NODE_SWIPER_DISABLE_SWIPE, NODE_SWIPER_SHOW_DISPLAY_ARROW,<br/>NODE_SWIPER_EDGE_EFFECT_MODE, NODE_LIST_ITEM_GROUP_SET_HEADER = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_LIST_ITEM_GROUP, NODE_LIST_ITEM_GROUP_SET_FOOTER, NODE_LIST_ITEM_GROUP_SET_DIVIDER,<br/>NODE_COLUMN_ALIGN_ITEMS = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_COLUMN, NODE_COLUMN_JUSTIFY_CONTENT, NODE_ROW_ALIGN_ITEMS = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_ROW, NODE_ROW_JUSTIFY_CONTENT,<br/>NODE_FLEX_OPTION = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_FLEX, NODE_REFRESH_REFRESHING = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_REFRESH, NODE_REFRESH_CONTENT, NODE_WATER_FLOW_LAYOUT_DIRECTION = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_WATER_FLOW<br/>} | 定义ArkUI在Native侧可以设置的属性样式集合。  | 
+| [ArkUI_NodeEventType](#arkui_nodeeventtype) {<br/>NODE_TOUCH_EVENT = 0, NODE_EVENT_ON_APPEAR, NODE_EVENT_ON_DISAPPEAR, NODE_EVENT_ON_AREA_CHANGE,<br/>NODE_ON_FOCUS, NODE_ON_BLUR, NODE_ON_CLICK, NODE_IMAGE_ON_COMPLETE = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_IMAGE,<br/>NODE_IMAGE_ON_ERROR, NODE_IMAGE_ON_SVG_PLAY_FINISH, NODE_TOGGLE_ON_CHANGE = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_TOGGLE, NODE_TEXT_INPUT_ON_CHANGE = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_TEXT_INPUT,<br/>NODE_TEXT_INPUT_ON_SUBMIT, NODE_TEXT_INPUT_ON_CUT, NODE_TEXT_INPUT_ON_PASTE, NODE_TEXT_INPUT_ON_TEXT_SELECTION_CHANGE,<br/>NODE_TEXT_AREA_ON_CHANGE = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_TEXT_AREA, NODE_TEXT_AREA_ON_PASTE, NODE_TEXT_AREA_ON_TEXT_SELECTION_CHANGE, NODE_CHECKBOX_EVENT_ON_CHANGE = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_CHECKBOX,<br/>NODE_DATE_PICKER_EVENT_ON_DATE_CHANGE = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_DATE_PICKER, NODE_TIME_PICKER_EVENT_ON_CHANGE = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_TIME_PICKER, NODE_TEXT_PICKER_EVENT_ON_CHANGE = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_TEXT_PICKER, NODE_CALENDAR_PICKER_EVENT_ON_CHANGE = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_CALENDAR_PICKER,<br/>NODE_SLIDER_EVENT_ON_CHANGE = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_SLIDER, NODE_SWIPER_EVENT_ON_CHANGE = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_SWIPER, NODE_SWIPER_EVENT_ON_ANIMATION_START, NODE_SWIPER_EVENT_ON_ANIMATION_END,<br/>NODE_SWIPER_EVENT_ON_GESTURE_SWIPE, NODE_SCROLL_EVENT_ON_SCROLL = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_SCROLL, NODE_SCROLL_EVENT_ON_SCROLL_FRAME_BEGIN, NODE_SCROLL_EVENT_ON_SCROLL_START,<br/>NODE_SCROLL_EVENT_ON_SCROLL_STOP, NODE_SCROLL_EVENT_ON_SCROLL_EDGE, NODE_REFRESH_STATE_CHANGE = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_REFRESH, NODE_REFRESH_ON_REFRESH<br/>} | 提供NativeNode组件支持的事件类型定义。  | 
 | [ArkUI_NodeDirtyFlag](#arkui_nodedirtyflag) { NODE_NEED_MEASURE = 1, NODE_NEED_LAYOUT, NODE_NEED_RENDER } | 自定义组件调用&lt;b&gt;::markDirty是传递的藏区标识类型。  | 
 | [ArkUI_Alignment](#arkui_alignment) {<br/>ARKUI_ALIGNMENT_TOP_START = 0, ARKUI_ALIGNMENT_TOP, ARKUI_ALIGNMENT_TOP_END, ARKUI_ALIGNMENT_START,<br/>ARKUI_ALIGNMENT_CENTER, ARKUI_ALIGNMENT_END, ARKUI_ALIGNMENT_BOTTOM_START, ARKUI_ALIGNMENT_BOTTOM,<br/>ARKUI_ALIGNMENT_BOTTOM_END<br/>} | 定义布局对齐枚举值。  | 
 | [ArkUI_ImageRepeat](#arkui_imagerepeat) { ARKUI_IMAGE_REPEAT_NONE = 0, ARKUI_IMAGE_REPEAT_X, ARKUI_IMAGE_REPEAT_Y, ARKUI_IMAGE_REPEAT_XY } | 定义图片重复铺设枚举值。  | 
@@ -68,6 +75,7 @@
 | [ArkUI_TextAlignment](#arkui_textalignment) { ARKUI_TEXT_ALIGNMENT_START = 0, ARKUI_TEXT_ALIGNMENT_CENTER, ARKUI_TEXT_ALIGNMENT_END, ARKUI_TEXT_ALIGNMENT_JUSTIFY } | 定义字体水平对齐样式枚举值。  | 
 | [ArkUI_EnterKeyType](#arkui_enterkeytype) {<br/>ARKUI_ENTER_KEY_TYPE_GO = 2, ARKUI_ENTER_KEY_TYPE_SEARCH = 3, ARKUI_ENTER_KEY_TYPE_SEND, ARKUI_ENTER_KEY_TYPE_NEXT,<br/>ARKUI_ENTER_KEY_TYPE_DONE, ARKUI_ENTER_KEY_TYPE_PREVIOUS, ARKUI_ENTER_KEY_TYPE_NEW_LINE<br/>} | 定义单行文本输入法回车键类型枚举值。  | 
 | [ArkUI_TextInputType](#arkui_textinputtype) {<br/>ARKUI_TEXTINPUT_TYPE_NORMAL = 0, ARKUI_TEXTINPUT_TYPE_NUMBER = 2, ARKUI_TEXTINPUT_TYPE_PHONE_NUMBER = 3, ARKUI_TEXTINPUT_TYPE_EMAIL = 5,<br/>ARKUI_TEXTINPUT_TYPE_PASSWORD = 7, ARKUI_TEXTINPUT_TYPE_NUMBER_PASSWORD = 8, ARKUI_TEXTINPUT_TYPE_SCREEN_LOCK_PASSWORD = 9, ARKUI_TEXTINPUT_TYPE_USER_NAME = 10,<br/>ARKUI_TEXTINPUT_TYPE_NEW_PASSWORD = 11, ARKUI_TEXTINPUT_TYPE_NUMBER_DECIMAL = 12<br/>} | 定义单行文本输入法类型枚举值。  | 
+| [ArkUI_TextAreaType](#arkui_textareatype) { ARKUI_TEXTAREA_TYPE_NORMAL = 0, ARKUI_TEXTAREA_TYPE_NUMBER = 2, ARKUI_TEXTAREA_TYPE_PHONE_NUMBER = 3, ARKUI_TEXTAREA_TYPE_EMAIL = 5 } | 定义多行文本输入法类型枚举值。  | 
 | [ArkUI_CancelButtonStyle](#arkui_cancelbuttonstyle) { ARKUI_CANCELBUTTON_STYLE_CONSTANT = 0, ARKUI_CANCELBUTTON_STYLE_INVISIBLE, ARKUI_CANCELBUTTON_STYLE_INPUT } | 定义清除按钮样式枚举值。  | 
 | [ArkUI_XComponentType](#arkui_xcomponenttype) { ARKUI_XCOMPONENT_TYPE_SURFACE = 0, ARKUI_XCOMPONENT_TYPE_TEXTURE = 2 } | 定义XComponent类型枚举值。  | 
 | [ArkUI_ProgressType](#arkui_progresstype) {<br/>ARKUI_PROGRESS_TYPE_LINEAR = 0, ARKUI_PROGRESS_TYPE_RING, ARKUI_PROGRESS_TYPE_ECLIPSE, ARKUI_PROGRESS_TYPE_SCALE_RING,<br/>ARKUI_PROGRESS_TYPE_CAPSULE<br/>} | 定义进度条类型枚举值。  | 
@@ -120,6 +128,11 @@
 | [ArkUI_ClipType](#arkui_cliptype) { ARKUI_CLIP_TYPE_RECTANGLE = 0, ARKUI_CLIP_TYPE_CIRCLE, ARKUI_CLIP_TYPE_ELLIPSE, ARKUI_CLIP_TYPE_PATH } | 裁剪类型枚举。  | 
 | [ArkUI_ShapeType](#arkui_shapetype) { ARKUI_SHAPE_TYPE_RECTANGLE = 0, ARKUI_SHAPE_TYPE_CIRCLE, ARKUI_SHAPE_TYPE_ELLIPSE, ARKUI_SHAPE_TYPE_PATH } | 自定义形状。  | 
 | [ArkUI_LinearGradientDirection](#arkui_lineargradientdirection) {<br/>ARKUI_LINEAR_GRADIENT_DIRECTION_LEFT = 0, ARKUI_LINEAR_GRADIENT_DIRECTION_TOP, ARKUI_LINEAR_GRADIENT_DIRECTION_RIGHT, ARKUI_LINEAR_GRADIENT_DIRECTION_BOTTOM,<br/>ARKUI_LINEAR_GRADIENT_DIRECTION_LEFT_TOP, ARKUI_LINEAR_GRADIENT_DIRECTION_LEFT_BOTTOM, ARKUI_LINEAR_GRADIENT_DIRECTION_RIGHT_TOP, ARKUI_LINEAR_GRADIENT_DIRECTION_RIGHT_BOTTOM,<br/>ARKUI_LINEAR_GRADIENT_DIRECTION_NONE<br/>} | 定义渐变方向结构。  | 
+| [ArkUI_WordBreak](#arkui_wordbreak) { ARKUI_WORD_BREAK_NORMAL = 0, ARKUI_WORD_BREAK_BREAK_ALL, ARKUI_WORD_BREAK_BREAK_WORD } | 定义文本断行规则。  | 
+| [ArkUI_EllipsisMode](#arkui_ellipsismode) { ARKUI_ELLIPSIS_MODE_START = 0, ARKUI_ELLIPSIS_MODE_CENTER, ARKUI_ELLIPSIS_MODE_END } | 定义文本省略位置。  | 
+| [ArkUI_ImageRenderMode](#arkui_imagerendermode) { ARKUI_IMAGE_RENDER_MODE_ORIGINAL = 0, ARKUI_IMAGE_RENDER_MODE_TEMPLATE } | 定义图片渲染模式。  | 
+| [ArkUI_TransitionEdge](#arkui_transitionedge) { ARKUI_TRANSITION_EDGE_TOP = 0, ARKUI_TRANSITION_EDGE_BOTTOM, ARKUI_TRANSITION_EDGE_START, ARKUI_TRANSITION_EDGE_END } | 定义转场从边缘滑入和滑出的效果。  | 
+| [ArkUI_DismissReason](#arkui_dismissreason) { DIALOG_DISMISS_BACK_PRESS = 0, DIALOG_DISMISS_TOUCH_OUTSIDE } | 弹窗关闭的触发方式。  | 
 
 
 ### 函数
@@ -128,9 +141,46 @@
 | -------- | -------- |
 | [ArkUI_AnyNativeAPI](_ark_u_i___any_native_a_p_i.md) \* [OH_ArkUI_GetNativeAPI](#oh_arkui_getnativeapi) ([ArkUI_NativeAPIVariantKind](#arkui_nativeapivariantkind) type, int32_t version) | 获取指定版本的Native接口集合。  | 
 | [ArkUI_AnyNativeAPI](_ark_u_i___any_native_a_p_i.md) \* [OH_ArkUI_QueryModuleInterface](#oh_arkui_querymoduleinterface) ([ArkUI_NativeAPIVariantKind](#arkui_nativeapivariantkind) type, int32_t version) | 获取指定版本的Native模块接口集合。  | 
+| int32_t [OH_ArkUI_GetNodeHandleFromNapiValue](#oh_arkui_getnodehandlefromnapivalue) (napi_env env, napi_value frameNode, [ArkUI_NodeHandle](#arkui_nodehandle) \*handle) | 获取ArkTS侧创建的FrameNode节点对象映射到native侧的ArkUI_NodeHandle。  | 
+
+
+
+### 变量
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| int32_t [ArkUI_NativeDialogAPI_1::version](#version) | 结构体版本。  | 
+| ArkUI_NativeDialogHandle(\* [ArkUI_NativeDialogAPI_1::create](#create) )() | 创建自定义弹窗并返回指向自定义弹窗的指针。  | 
+| void(\* [ArkUI_NativeDialogAPI_1::dispose](#dispose) )(ArkUI_NativeDialogHandle handle) | 销毁自定义弹窗。  | 
+| int32_t(\* [ArkUI_NativeDialogAPI_1::setContent](#setcontent) )(ArkUI_NativeDialogHandle handle, ArkUI_NodeHandle content) | 挂载自定义弹窗内容。  | 
+| int32_t(\* [ArkUI_NativeDialogAPI_1::removeContent](#removecontent) )(ArkUI_NativeDialogHandle handle) | 卸载自定义弹窗内容。  | 
+| int32_t(\* [ArkUI_NativeDialogAPI_1::setContentAlignment](#setcontentalignment) )(ArkUI_NativeDialogHandle handle, int32_t alignment, float offsetX, float offsetY) | 为自定义弹窗设置对齐方式。  | 
+| int32_t(\* [ArkUI_NativeDialogAPI_1::resetContentAlignment](#resetcontentalignment) )(ArkUI_NativeDialogHandle handle) | 重置setContentAlignment方法设置的属性，使用系统默认的对齐方式。  | 
+| int32_t(\* [ArkUI_NativeDialogAPI_1::setModalMode](#setmodalmode) )(ArkUI_NativeDialogHandle handle, bool isModal) | 设置自定义弹窗是否开启模态样式的弹窗。  | 
+| int32_t(\* [ArkUI_NativeDialogAPI_1::setAutoCancel](#setautocancel) )(ArkUI_NativeDialogHandle handle, bool autoCancel) | 设置自定义弹窗是否允许点击遮罩层退出。  | 
+| int32_t(\* [ArkUI_NativeDialogAPI_1::setMask](#setmask) )(ArkUI_NativeDialogHandle handle, uint32_t maskColor, const ArkUI_Rect \*maskRect) | 设置自定义弹窗遮罩属性。  | 
+| int32_t(\* [ArkUI_NativeDialogAPI_1::setBackgroundColor](#setbackgroundcolor) )(ArkUI_NativeDialogHandle handle, uint32_t backgroundColor) | 设置弹窗背景色。  | 
+| int32_t(\* [ArkUI_NativeDialogAPI_1::setCornerRadius](#setcornerradius) )(ArkUI_NativeDialogHandle handle, float topLeft, float topRight, float bottomLeft, float bottomRight) | 设置弹窗背板圆角半径。  | 
+| int32_t(\* [ArkUI_NativeDialogAPI_1::setGridColumnCount](#setgridcolumncount) )(ArkUI_NativeDialogHandle handle, int32_t gridCount) | 弹窗宽度占栅格宽度的个数。  | 
+| int32_t(\* [ArkUI_NativeDialogAPI_1::enableCustomStyle](#enablecustomstyle) )(ArkUI_NativeDialogHandle handle, bool enableCustomStyle) | 弹窗容器样式是否自定义。  | 
+| int32_t(\* [ArkUI_NativeDialogAPI_1::enableCustomAnimation](#enablecustomanimation) )(ArkUI_NativeDialogHandle handle, bool enableCustomAnimation) | 弹窗容器是否使用自定义弹窗动画。  | 
+| int32_t(\* [ArkUI_NativeDialogAPI_1::registerOnWillDismiss](#registeronwilldismiss) )(ArkUI_NativeDialogHandle handle, [OnWillDismissEvent](#onwilldismissevent) eventHandler) | 当触发系统定义的返回操作、键盘ESC关闭交互操作时，如果注册该回调函数，则不会立刻关闭弹窗，是否关闭由用户自行决定。  | 
+| int32_t(\* [ArkUI_NativeDialogAPI_1::show](#show) )(ArkUI_NativeDialogHandle handle, bool showInSubWindow) | 显示自定义弹窗。 
 
 
 ## 类型定义说明
+
+
+### ArkUI_NativeDialogHandle
+
+```
+typedef struct ArkUI_NativeDialog* ArkUI_NativeDialogHandle
+```
+**描述：**
+
+定义ArkUI在Native侧的自定义弹窗控制器对象指针。
+
+**起始版本：** 12
 
 
 ### ArkUI_NodeHandle
@@ -145,6 +195,18 @@ typedef struct ArkUI_Node* ArkUI_NodeHandle
 **起始版本：** 12
 
 
+### OnWillDismissEvent
+
+```
+typedef bool(* OnWillDismissEvent) (int32_t reason)
+```
+**描述：**
+
+弹窗关闭的回调函数。
+
+**起始版本：** 12
+
+
 ## 枚举类型说明
 
 
@@ -155,16 +217,16 @@ enum ArkUI_AccessibilityMode
 ```
 **描述：**
 
-定义无障碍重要性。
+定义无障碍辅助服务模式。
 
 **起始版本：** 12
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKUI_ACCESSIBILITY_MODE_AUTO  | 根据组件不同会转换为“enabled”或者“disabled”。 |
-| ARKUI_ACCESSIBILITY_MODE_ENABLED  | 当前组件可被无障碍辅助服务所识别。 | 
-| ARKUI_ACCESSIBILITY_MODE_DISABLED  | 当前组件不可被无障碍辅助服务所识别。 | 
-| ARKUI_ACCESSIBILITY_MODE_DISABLED_FOR_DESCENDANTS  | 当前组件及其所有子组件不可被无障碍辅助服务所识别。 | 
+| ARKUI_ACCESSIBILITY_MODE_AUTO  | 根据组件不同会转换为“enabled”或者“disabled”。&nbsp;&nbsp; | 
+| ARKUI_ACCESSIBILITY_MODE_ENABLED  | 当前组件可被无障碍辅助服务所识别。&nbsp;&nbsp; | 
+| ARKUI_ACCESSIBILITY_MODE_DISABLED  | 当前组件不可被无障碍辅助服务所识别。&nbsp;&nbsp; | 
+| ARKUI_ACCESSIBILITY_MODE_DISABLED_FOR_DESCENDANTS  | 当前组件及其所有子组件不可被无障碍辅助服务所识别。&nbsp;&nbsp; | 
 
 
 ### ArkUI_AdaptiveColor
@@ -180,8 +242,8 @@ enum ArkUI_AdaptiveColor
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKUI_ADAPTIVE_COLOR_DEFAULT  | 不使用取色模糊。 | 
-| ARKUI_ADAPTIVE_COLOR_AVERAGE  | 使用取色模糊。 | 
+| ARKUI_ADAPTIVE_COLOR_DEFAULT  | 不使用取色模糊。&nbsp;&nbsp; | 
+| ARKUI_ADAPTIVE_COLOR_AVERAGE  | 使用取色模糊。&nbsp;&nbsp; | 
 
 
 ### ArkUI_Alignment
@@ -197,16 +259,15 @@ enum ArkUI_Alignment
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKUI_ALIGNMENT_TOP_START  | 顶部起始。 | 
-| ARKUI_ALIGNMENT_TOP  | 顶部居中。 | 
-| ARKUI_ALIGNMENT_TOP_END  | 顶部尾端。 | 
-| ARKUI_ALIGNMENT_START  | 起始端纵向居中。 | 
-| ARKUI_ALIGNMENT_CENTER  | 横向和纵向居中。 | 
-| ARKUI_ALIGNMENT_END  | 尾端纵向居中。 | 
-| ARKUI_ALIGNMENT_BOTTOM_START  | 底部起始端。 | 
-| ARKUI_ALIGNMENT_BOTTOM  | 底部横向居中。 | 
-| ARKUI_ALIGNMENT_BOTTOM_END  | 底部尾端。 | 
-
+| ARKUI_ALIGNMENT_TOP_START  | 顶部起始。&nbsp;&nbsp; | 
+| ARKUI_ALIGNMENT_TOP  | 顶部居中。&nbsp;&nbsp; | 
+| ARKUI_ALIGNMENT_TOP_END  | 顶部尾端。&nbsp;&nbsp; | 
+| ARKUI_ALIGNMENT_START  | 起始端纵向居中。&nbsp;&nbsp; | 
+| ARKUI_ALIGNMENT_CENTER  | 横向和纵向居中。&nbsp;&nbsp; | 
+| ARKUI_ALIGNMENT_END  | 尾端纵向居中。&nbsp;&nbsp; | 
+| ARKUI_ALIGNMENT_BOTTOM_START  | 底部起始端。&nbsp;&nbsp; | 
+| ARKUI_ALIGNMENT_BOTTOM  | 底部横向居中。&nbsp;&nbsp; | 
+| ARKUI_ALIGNMENT_BOTTOM_END  | 底部尾端。&nbsp;&nbsp; | 
 
 ### ArkUI_AnimationCurve
 
@@ -221,19 +282,19 @@ enum ArkUI_AnimationCurve
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKUI_CURVE_LINEAR  | 动画从头到尾的速度都是相同。 | 
-| ARKUI_CURVE_EASE  | 动画以低速开始，然后加快，在结束前变慢。 | 
-| ARKUI_CURVE_EASE_IN  | 动画以低速开始。 | 
-| ARKUI_CURVE_EASE_OUT  | 动画以低速结束。 | 
-| ARKUI_CURVE_EASE_IN_OUT  | 动画以低速开始和结束。 | 
-| ARKUI_CURVE_FAST_OUT_SLOW_IN  | 动画标准曲线。 | 
-| ARKUI_CURVE_LINEAR_OUT_SLOW_IN  | 动画减速曲线。 | 
-| ARKUI_CURVE_FAST_OUT_LINEAR_IN  | 动画加速曲线。 | 
-| ARKUI_CURVE_EXTREME_DECELERATION  | 动画急缓曲线。 | 
-| ARKUI_CURVE_SHARP  | 动画锐利曲线。 | 
-| ARKUI_CURVE_RHYTHM  | 动画节奏曲线。 | 
-| ARKUI_CURVE_SMOOTH  | 动画平滑曲线。 | 
-| ARKUI_CURVE_FRICTION  | 动画阻尼曲线。 | 
+| ARKUI_CURVE_LINEAR  | 动画从头到尾的速度都是相同。&nbsp;&nbsp; | 
+| ARKUI_CURVE_EASE  | 动画以低速开始，然后加快，在结束前变慢。&nbsp;&nbsp; | 
+| ARKUI_CURVE_EASE_IN  | 动画以低速开始。&nbsp;&nbsp; | 
+| ARKUI_CURVE_EASE_OUT  | 动画以低速结束。&nbsp;&nbsp; | 
+| ARKUI_CURVE_EASE_IN_OUT  | 动画以低速开始和结束。&nbsp;&nbsp; | 
+| ARKUI_CURVE_FAST_OUT_SLOW_IN  | 动画标准曲线。&nbsp;&nbsp; | 
+| ARKUI_CURVE_LINEAR_OUT_SLOW_IN  | 动画减速曲线。&nbsp;&nbsp; | 
+| ARKUI_CURVE_FAST_OUT_LINEAR_IN  | 动画加速曲线。&nbsp;&nbsp; | 
+| ARKUI_CURVE_EXTREME_DECELERATION  | 动画急缓曲线。&nbsp;&nbsp; | 
+| ARKUI_CURVE_SHARP  | 动画锐利曲线。&nbsp;&nbsp; | 
+| ARKUI_CURVE_RHYTHM  | 动画节奏曲线。&nbsp;&nbsp; | 
+| ARKUI_CURVE_SMOOTH  | 动画平滑曲线。&nbsp;&nbsp; | 
+| ARKUI_CURVE_FRICTION  | 动画阻尼曲线。&nbsp;&nbsp; | 
 
 
 ### ArkUI_AnimationPlayMode
@@ -249,10 +310,10 @@ enum ArkUI_AnimationPlayMode
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKUI_ANIMATION_PLAY_MODE_NORMAL  | 动画正向播放。 | 
-| ARKUI_ANIMATION_PLAY_MODE_REVERSE  | 动画反向播放。 | 
-| ARKUI_ANIMATION_PLAY_MODE_ALTERNATE  | 动画在奇数次（1、3、5...）正向播放，在偶数次（2、4、6...）反向播放。 | 
-| ARKUI_ANIMATION_PLAY_MODE_ALTERNATE_REVERSE  | 动画在奇数次（1、3、5...）反向播放，在偶数次（2、4、6...）正向播放。 | 
+| ARKUI_ANIMATION_PLAY_MODE_NORMAL  | 动画正向播放。&nbsp;&nbsp; | 
+| ARKUI_ANIMATION_PLAY_MODE_REVERSE  | 动画反向播放。&nbsp;&nbsp; | 
+| ARKUI_ANIMATION_PLAY_MODE_ALTERNATE  | 动画在奇数次（1、3、5...）正向播放，在偶数次（2、4、6...）反向播放。&nbsp;&nbsp; | 
+| ARKUI_ANIMATION_PLAY_MODE_ALTERNATE_REVERSE  | 动画在奇数次（1、3、5...）反向播放，在偶数次（2、4、6...）正向播放。&nbsp;&nbsp; | 
 
 
 ### ArkUI_Axis
@@ -268,8 +329,8 @@ enum ArkUI_Axis
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKUI_AXIS_VERTICAL  | 仅支持竖直方向滚动。 | 
-| ARKUI_AXIS_HORIZONTAL  | 仅支持水平方向滚动。 | 
+| ARKUI_AXIS_VERTICAL  | 仅支持竖直方向滚动。&nbsp;&nbsp; | 
+| ARKUI_AXIS_HORIZONTAL  | 仅支持水平方向滚动。&nbsp;&nbsp; | 
 
 
 ### ArkUI_BlendMode
@@ -285,36 +346,36 @@ enum ArkUI_BlendMode
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKUI_BLEND_MODE_NONE  | 将上层图像直接覆盖到下层图像上，不进行任何混合操作。 | 
-| ARKUI_BLEND_MODE_CLEAR  | 将源像素覆盖的目标像素清除为完全透明。 | 
-| ARKUI_BLEND_MODE_SRC  | r = s，只显示源像素。 | 
-| ARKUI_BLEND_MODE_DST  | r = d，只显示目标像素。 | 
-| ARKUI_BLEND_MODE_SRC_OVER  | r = s + (1 - sa) \* d，将源像素按照透明度进行混合，覆盖在目标像素上。 | 
-| ARKUI_BLEND_MODE_DST_OVER  | r = d + (1 - da) \* s，将目标像素按照透明度进行混合，覆盖在源像素上。 | 
-| ARKUI_BLEND_MODE_SRC_IN  | r = s \* da，只显示源像素中与目标像素重叠的部分。 | 
-| ARKUI_BLEND_MODE_DST_IN  | r = d \* sa，只显示目标像素中与源像素重叠的部分。 | 
-| ARKUI_BLEND_MODE_SRC_OUT  | r = s \* (1 - da)，只显示源像素中与目标像素不重叠的部分。 | 
-| ARKUI_BLEND_MODE_DST_OUT  | r = d \* (1 - sa)，只显示目标像素中与源像素不重叠的部分。 | 
-| ARKUI_BLEND_MODE_SRC_ATOP  | r = s \* da + d \* (1 - sa)，在源像素和目标像素重叠的地方绘制源像素，在源像素和目标像素不重叠的地方绘制目标像素。 | 
-| ARKUI_BLEND_MODE_DST_ATOP  | r = d \* sa + s \* (1 - da)，在源像素和目标像素重叠的地方绘制目标像素，在源像素和目标像素不重叠的地方绘制源像素。 | 
-| ARKUI_BLEND_MODE_XOR  | r = s \* (1 - da) + d \* (1 - sa)，只显示源像素与目标像素不重叠的部分。 | 
-| ARKUI_BLEND_MODE_PLUS  | r = min(s + d, 1)，将源像素值与目标像素值相加，并将结果作为新的像素值。 | 
-| ARKUI_BLEND_MODE_MODULATE  | r = s \* d，将源像素与目标像素进行乘法运算，并将结果作为新的像素值。 | 
-| ARKUI_BLEND_MODE_SCREEN  | r = s + d - s \* d，将两个图像的像素值相加，然后减去它们的乘积来实现混合。 | 
-| ARKUI_BLEND_MODE_OVERLAY  | 根据目标像素来决定使用MULTIPLY混合模式还是SCREEN混合模式。 | 
-| ARKUI_BLEND_MODE_DARKEN  | rc = s + d - max(s \* da, d \* sa), ra = kSrcOver，当两个颜色重叠时，较暗的颜色会覆盖较亮的颜色。 | 
-| ARKUI_BLEND_MODE_LIGHTEN  | rc = s + d - min(s \* da, d \* sa), ra = kSrcOver，将源图像和目标图像中的像素进行比较，选取两者中较亮的像素作为最终的混合结果。 | 
-| ARKUI_BLEND_MODE_COLOR_DODGE  | 使目标像素变得更亮来反映源像素。 | 
-| ARKUI_BLEND_MODE_COLOR_BURN  | 使目标像素变得更暗来反映源像素。 | 
-| ARKUI_BLEND_MODE_HARD_LIGHT  | 根据源像素的值来决定目标像素变得更亮或者更暗。根据源像素来决定使用MULTIPLY混合模式还是SCREEN混合模式。 | 
-| ARKUI_BLEND_MODE_SOFT_LIGHT  | 根据源像素来决定使用LIGHTEN混合模式还是DARKEN混合模式。 | 
-| ARKUI_BLEND_MODE_DIFFERENCE  | rc = s + d - 2 \* (min(s \* da, d \* sa)), ra = kSrcOver，对比源像素和目标像素，亮度更高的像素减去亮度更低的像素，产生高对比度的效果。 | 
-| ARKUI_BLEND_MODE_EXCLUSION  | rc = s + d - two(s \* d), ra = kSrcOver，对比源像素和目标像素，亮度更高的像素减去亮度更低的像素，产生柔和的效果。 | 
+| ARKUI_BLEND_MODE_NONE  | 将上层图像直接覆盖到下层图像上，不进行任何混合操作。&nbsp;&nbsp; | 
+| ARKUI_BLEND_MODE_CLEAR  | 将源像素覆盖的目标像素清除为完全透明。&nbsp;&nbsp; | 
+| ARKUI_BLEND_MODE_SRC  | r = s，只显示源像素。&nbsp;&nbsp; | 
+| ARKUI_BLEND_MODE_DST  | r = d，只显示目标像素。&nbsp;&nbsp; | 
+| ARKUI_BLEND_MODE_SRC_OVER  | r = s + (1 - sa) \* d，将源像素按照透明度进行混合，覆盖在目标像素上。&nbsp;&nbsp; | 
+| ARKUI_BLEND_MODE_DST_OVER  | r = d + (1 - da) \* s，将目标像素按照透明度进行混合，覆盖在源像素上。&nbsp;&nbsp; | 
+| ARKUI_BLEND_MODE_SRC_IN  | r = s \* da，只显示源像素中与目标像素重叠的部分。&nbsp;&nbsp; | 
+| ARKUI_BLEND_MODE_DST_IN  | r = d \* sa，只显示目标像素中与源像素重叠的部分。&nbsp;&nbsp; | 
+| ARKUI_BLEND_MODE_SRC_OUT  | r = s \* (1 - da)，只显示源像素中与目标像素不重叠的部分。&nbsp;&nbsp; | 
+| ARKUI_BLEND_MODE_DST_OUT  | r = d \* (1 - sa)，只显示目标像素中与源像素不重叠的部分。&nbsp;&nbsp; | 
+| ARKUI_BLEND_MODE_SRC_ATOP  | r = s \* da + d \* (1 - sa)，在源像素和目标像素重叠的地方绘制源像素，在源像素和目标像素不重叠的地方绘制目标像素。&nbsp;&nbsp; | 
+| ARKUI_BLEND_MODE_DST_ATOP  | r = d \* sa + s \* (1 - da)，在源像素和目标像素重叠的地方绘制目标像素，在源像素和目标像素不重叠的地方绘制源像素。&nbsp;&nbsp; | 
+| ARKUI_BLEND_MODE_XOR  | r = s \* (1 - da) + d \* (1 - sa)，只显示源像素与目标像素不重叠的部分。&nbsp;&nbsp; | 
+| ARKUI_BLEND_MODE_PLUS  | r = min(s + d, 1)，将源像素值与目标像素值相加，并将结果作为新的像素值。&nbsp;&nbsp; | 
+| ARKUI_BLEND_MODE_MODULATE  | r = s \* d，将源像素与目标像素进行乘法运算，并将结果作为新的像素值。&nbsp;&nbsp; | 
+| ARKUI_BLEND_MODE_SCREEN  | r = s + d - s \* d，将两个图像的像素值相加，然后减去它们的乘积来实现混合。&nbsp;&nbsp; | 
+| ARKUI_BLEND_MODE_OVERLAY  | 根据目标像素来决定使用MULTIPLY混合模式还是SCREEN混合模式。&nbsp;&nbsp; | 
+| ARKUI_BLEND_MODE_DARKEN  | rc = s + d - max(s \* da, d \* sa), ra = kSrcOver，当两个颜色重叠时，较暗的颜色会覆盖较亮的颜色。&nbsp;&nbsp; | 
+| ARKUI_BLEND_MODE_LIGHTEN  | rc = s + d - min(s \* da, d \* sa), ra = kSrcOver，将源图像和目标图像中的像素进行比较，选取两者中较亮的像素作为最终的混合结果。&nbsp;&nbsp; | 
+| ARKUI_BLEND_MODE_COLOR_DODGE  | 使目标像素变得更亮来反映源像素。&nbsp;&nbsp; | 
+| ARKUI_BLEND_MODE_COLOR_BURN  | 使目标像素变得更暗来反映源像素。&nbsp;&nbsp; | 
+| ARKUI_BLEND_MODE_HARD_LIGHT  | 根据源像素的值来决定目标像素变得更亮或者更暗。根据源像素来决定使用MULTIPLY混合模式还是SCREEN混合模式。&nbsp;&nbsp; | 
+| ARKUI_BLEND_MODE_SOFT_LIGHT  | 根据源像素来决定使用LIGHTEN混合模式还是DARKEN混合模式。&nbsp;&nbsp; | 
+| ARKUI_BLEND_MODE_DIFFERENCE  | rc = s + d - 2 \* (min(s \* da, d \* sa)), ra = kSrcOver，对比源像素和目标像素，亮度更高的像素减去亮度更低的像素，产生高对比度的效果。&nbsp;&nbsp; | 
+| ARKUI_BLEND_MODE_EXCLUSION  | rc = s + d - two(s \* d), ra = kSrcOver，对比源像素和目标像素，亮度更高的像素减去亮度更低的像素，产生柔和的效果。&nbsp;&nbsp; | 
 | ARKUI_BLEND_MODE_MULTIPLY  | r = s \* (1 - da) + d \* (1 - sa) + s \* d，将源图像与目标图像进行乘法混合，得到一张新的图像。 | 
-| ARKUI_BLEND_MODE_HUE  | 保留源图像的亮度和饱和度，但会使用目标图像的色调来替换源图像的色调。 | 
-| ARKUI_BLEND_MODE_SATURATION  | 保留目标像素的亮度和色调，但会使用源像素的饱和度来替换目标像素的饱和度。 | 
-| ARKUI_BLEND_MODE_COLOR  | 保留源像素的饱和度和色调，但会使用目标像素的亮度来替换源像素的亮度。 | 
-| ARKUI_BLEND_MODE_LUMINOSITY  | 保留目标像素的色调和饱和度，但会用源像素的亮度替换目标像素的亮度。 | 
+| ARKUI_BLEND_MODE_HUE  | 保留源图像的亮度和饱和度，但会使用目标图像的色调来替换源图像的色调。&nbsp;&nbsp; | 
+| ARKUI_BLEND_MODE_SATURATION  | 保留目标像素的亮度和色调，但会使用源像素的饱和度来替换目标像素的饱和度。&nbsp;&nbsp; | 
+| ARKUI_BLEND_MODE_COLOR  | 保留源像素的饱和度和色调，但会使用目标像素的亮度来替换源像素的亮度。&nbsp;&nbsp; | 
+| ARKUI_BLEND_MODE_LUMINOSITY  | 保留目标像素的色调和饱和度，但会用源像素的亮度替换目标像素的亮度。&nbsp;&nbsp; | 
 
 
 ### ArkUI_BlurStyle
@@ -330,19 +391,19 @@ enum ArkUI_BlurStyle
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKUI_BLUR_STYLE_THIN  | 轻薄材质模糊。 | 
-| ARKUI_BLUR_STYLE_REGULAR  | 普通厚度材质模糊。 | 
-| ARKUI_BLUR_STYLE_THICK  | 厚材质模糊。 | 
-| ARKUI_BLUR_STYLE_BACKGROUND_THIN  | 近距景深模糊。 | 
-| ARKUI_BLUR_STYLE_BACKGROUND_REGULAR  | 中距景深模糊。 | 
-| ARKUI_BLUR_STYLE_BACKGROUND_THICK  | 远距景深模糊。 | 
-| ARKUI_BLUR_STYLE_BACKGROUND_ULTRA_THICK  | 超远距景深模糊。 | 
-| ARKUI_BLUR_STYLE_NONE  | 关闭模糊。 | 
-| ARKUI_BLUR_STYLE_COMPONENT_ULTRA_THIN  | 组件超轻薄材质模糊。 | 
-| ARKUI_BLUR_STYLE_COMPONENT_THIN  | 组件轻薄材质模糊。 | 
-| ARKUI_BLUR_STYLE_COMPONENT_REGULAR  | 组件普通材质模糊。 | 
-| ARKUI_BLUR_STYLE_COMPONENT_THICK  | 组件厚材质模糊。 | 
-| ARKUI_BLUR_STYLE_COMPONENT_ULTRA_THICK  | 组件超厚材质模糊。 | 
+| ARKUI_BLUR_STYLE_THIN  | 轻薄材质模糊。&nbsp;&nbsp; | 
+| ARKUI_BLUR_STYLE_REGULAR  | 普通厚度材质模糊。&nbsp;&nbsp; | 
+| ARKUI_BLUR_STYLE_THICK  | 厚材质模糊。&nbsp;&nbsp; | 
+| ARKUI_BLUR_STYLE_BACKGROUND_THIN  | 近距景深模糊。&nbsp;&nbsp; | 
+| ARKUI_BLUR_STYLE_BACKGROUND_REGULAR  | 中距景深模糊。&nbsp;&nbsp; | 
+| ARKUI_BLUR_STYLE_BACKGROUND_THICK  | 远距景深模糊。&nbsp;&nbsp; | 
+| ARKUI_BLUR_STYLE_BACKGROUND_ULTRA_THICK  | 超远距景深模糊。&nbsp;&nbsp; | 
+| ARKUI_BLUR_STYLE_NONE  | 关闭模糊。&nbsp;&nbsp; | 
+| ARKUI_BLUR_STYLE_COMPONENT_ULTRA_THIN  | 组件超轻薄材质模糊。&nbsp;&nbsp; | 
+| ARKUI_BLUR_STYLE_COMPONENT_THIN  | 组件轻薄材质模糊。&nbsp;&nbsp; | 
+| ARKUI_BLUR_STYLE_COMPONENT_REGULAR  | 组件普通材质模糊。&nbsp;&nbsp; | 
+| ARKUI_BLUR_STYLE_COMPONENT_THICK  | 组件厚材质模糊。&nbsp;&nbsp; | 
+| ARKUI_BLUR_STYLE_COMPONENT_ULTRA_THICK  | 组件超厚材质模糊。&nbsp;&nbsp; | 
 
 
 ### ArkUI_BorderStyle
@@ -358,9 +419,9 @@ enum ArkUI_BorderStyle
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKUI_BORDER_STYLE_SOLID  | 显示为一条实线。 | 
-| ARKUI_BORDER_STYLE_DASHED  | 显示为一系列短的方形虚线。 | 
-| ARKUI_BORDER_STYLE_DOTTED  | 显示为一系列圆点。 | 
+| ARKUI_BORDER_STYLE_SOLID  | 显示为一条实线。&nbsp;&nbsp; | 
+| ARKUI_BORDER_STYLE_DASHED  | 显示为一系列短的方形虚线。&nbsp;&nbsp; | 
+| ARKUI_BORDER_STYLE_DOTTED  | 显示为一系列圆点。&nbsp;&nbsp; | 
 
 
 ### ArkUI_CalendarAlignment
@@ -376,9 +437,9 @@ enum ArkUI_CalendarAlignment
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKUI_CALENDAR_ALIGNMENT_START  | 选择器和入口组件左对齐方式。 | 
-| ARKUI_CALENDAR_ALIGNMENT_CENTER  | 选择器和入口组件居中对齐方式。 | 
-| ARKUI_CALENDAR_ALIGNMENT_END  | 选择器和入口组件右对齐方式。 | 
+| ARKUI_CALENDAR_ALIGNMENT_START  | 选择器和入口组件左对齐方式。&nbsp;&nbsp; | 
+| ARKUI_CALENDAR_ALIGNMENT_CENTER  | 选择器和入口组件居中对齐方式。&nbsp;&nbsp; | 
+| ARKUI_CALENDAR_ALIGNMENT_END  | 选择器和入口组件右对齐方式。&nbsp;&nbsp; | 
 
 
 ### ArkUI_CancelButtonStyle
@@ -394,9 +455,9 @@ enum ArkUI_CancelButtonStyle
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKUI_CANCELBUTTON_STYLE_CONSTANT  | 清除按钮常显样式。 | 
-| ARKUI_CANCELBUTTON_STYLE_INVISIBLE  | 清除按钮常隐样式。 | 
-| ARKUI_CANCELBUTTON_STYLE_INPUT  | 清除按钮输入样式。 | 
+| ARKUI_CANCELBUTTON_STYLE_CONSTANT  | 清除按钮常显样式。&nbsp;&nbsp; | 
+| ARKUI_CANCELBUTTON_STYLE_INVISIBLE  | 清除按钮常隐样式。&nbsp;&nbsp; | 
+| ARKUI_CANCELBUTTON_STYLE_INPUT  | 清除按钮输入样式。&nbsp;&nbsp; | 
 
 
 ### ArkUI_CheckboxShape
@@ -412,8 +473,8 @@ enum ArkUI_CheckboxShape
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ArkUI_CHECKBOX_SHAPE_CIRCLE  | 圆形。 | 
-| ArkUI_CHECKBOX_SHAPE_ROUNDED_SQUARE  | 圆角方形。 | 
+| ArkUI_CHECKBOX_SHAPE_CIRCLE  | 圆形。&nbsp;&nbsp; | 
+| ArkUI_CHECKBOX_SHAPE_ROUNDED_SQUARE  | 圆角方形。&nbsp;&nbsp; | 
 
 
 ### ArkUI_ClipType
@@ -429,10 +490,10 @@ enum ArkUI_ClipType
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKUI_CLIP_TYPE_RECTANGLE  | 矩形类型。 | 
-| ARKUI_CLIP_TYPE_CIRCLE  | 圆形类型。 | 
-| ARKUI_CLIP_TYPE_ELLIPSE  | 椭圆形类型。 | 
-| ARKUI_CLIP_TYPE_PATH  | 路径类型。 | 
+| ARKUI_CLIP_TYPE_RECTANGLE  | 矩形类型。&nbsp;&nbsp; | 
+| ARKUI_CLIP_TYPE_CIRCLE  | 圆形类型。&nbsp;&nbsp; | 
+| ARKUI_CLIP_TYPE_ELLIPSE  | 椭圆形类型。&nbsp;&nbsp; | 
+| ARKUI_CLIP_TYPE_PATH  | 路径类型。&nbsp;&nbsp; | 
 
 
 ### ArkUI_ColorMode
@@ -448,9 +509,9 @@ enum ArkUI_ColorMode
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKUI_COLOR_MODE_SYSTEM  | 跟随系统深浅色模式。 | 
-| ARKUI_COLOR_MODE_LIGHT  | 固定使用浅色模式。 | 
-| ARKUI_COLOR_MODE_DARK  | 固定使用深色模式。 | 
+| ARKUI_COLOR_MODE_SYSTEM  | 跟随系统深浅色模式。&nbsp;&nbsp; | 
+| ARKUI_COLOR_MODE_LIGHT  | 固定使用浅色模式。&nbsp;&nbsp; | 
+| ARKUI_COLOR_MODE_DARK  | 固定使用深色模式。&nbsp;&nbsp; | 
 
 
 ### ArkUI_ColorStrategy
@@ -466,9 +527,9 @@ enum ArkUI_ColorStrategy
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKUI_COLOR_STRATEGY_INVERT  | 前景色为控件背景色的反色。 | 
-| ARKUI_COLOR_STRATEGY_AVERAGE  | 控件背景阴影色为控件背景阴影区域的平均色。 | 
-| ARKUI_COLOR_STRATEGY_PRIMARY  | 控件背景阴影色为控件背景阴影区域的主色。 | 
+| ARKUI_COLOR_STRATEGY_INVERT  | 前景色为控件背景色的反色。&nbsp;&nbsp; | 
+| ARKUI_COLOR_STRATEGY_AVERAGE  | 控件背景阴影色为控件背景阴影区域的平均色。&nbsp;&nbsp; | 
+| ARKUI_COLOR_STRATEGY_PRIMARY  | 控件背景阴影色为控件背景阴影区域的主色。&nbsp;&nbsp; | 
 
 
 ### ArkUI_CopyOptions
@@ -484,10 +545,10 @@ enum ArkUI_CopyOptions
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKUI_COPY_OPTIONS_NONE  | 不支持复制。 | 
-| ARKUI_COPY_OPTIONS_IN_APP  | 支持应用内复制。 | 
-| ARKUI_COPY_OPTIONS_LOCAL_DEVICE  | 支持设备内复制。 | 
-| ARKUI_COPY_OPTIONS_CROSS_DEVICE  | 支持跨设备复制。 | 
+| ARKUI_COPY_OPTIONS_NONE  | 不支持复制。&nbsp;&nbsp; | 
+| ARKUI_COPY_OPTIONS_IN_APP  | 支持应用内复制。&nbsp;&nbsp; | 
+| ARKUI_COPY_OPTIONS_LOCAL_DEVICE  | 支持设备内复制。&nbsp;&nbsp; | 
+| ARKUI_COPY_OPTIONS_CROSS_DEVICE  | 支持跨设备复制。&nbsp;&nbsp; | 
 
 
 ### ArkUI_Direction
@@ -503,9 +564,9 @@ enum ArkUI_Direction
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKUI_DIRECTION_LTR  | 元素从左到右布局。 | 
-| ARKUI_DIRECTION_RTL  | 元素从右到左布局。 | 
-| ARKUI_DIRECTION_AUTO  | 使用系统默认布局方向。 | 
+| ARKUI_DIRECTION_LTR  | 元素从左到右布局。&nbsp;&nbsp; | 
+| ARKUI_DIRECTION_RTL  | 元素从右到左布局。&nbsp;&nbsp; | 
+| ARKUI_DIRECTION_AUTO  | 使用系统默认布局方向。&nbsp;&nbsp; | 
 
 
 ### ArkUI_EdgeEffect
@@ -521,9 +582,27 @@ enum ArkUI_EdgeEffect
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKUI_EDGE_EFFECT_SPRING  | 弹性物理动效，滑动到边缘后可以根据初始速度或通过触摸事件继续滑动一段距离，松手后回弹。 | 
-| ARKUI_EDGE_EFFECT_FADE  | 阴影效果，滑动到边缘后会有圆弧状的阴影。 | 
-| ARKUI_EDGE_EFFECT_NONE  | 滑动到边缘后无效果。 | 
+| ARKUI_EDGE_EFFECT_SPRING  | 弹性物理动效，滑动到边缘后可以根据初始速度或通过触摸事件继续滑动一段距离，松手后回弹。&nbsp;&nbsp; | 
+| ARKUI_EDGE_EFFECT_FADE  | 阴影效果，滑动到边缘后会有圆弧状的阴影。&nbsp;&nbsp; | 
+| ARKUI_EDGE_EFFECT_NONE  | 滑动到边缘后无效果。&nbsp;&nbsp; | 
+
+
+### ArkUI_EllipsisMode
+
+```
+enum ArkUI_EllipsisMode
+```
+**描述：**
+
+定义文本省略位置。
+
+**起始版本：** 12
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| ARKUI_ELLIPSIS_MODE_START  | 省略行首内容。&nbsp;&nbsp; | 
+| ARKUI_ELLIPSIS_MODE_CENTER  | 省略行中内容。&nbsp;&nbsp; | 
+| ARKUI_ELLIPSIS_MODE_END  | 省略行末内容。&nbsp;&nbsp; | 
 
 
 ### ArkUI_EnterKeyType
@@ -539,13 +618,13 @@ enum ArkUI_EnterKeyType
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKUI_ENTER_KEY_TYPE_GO  | 显示为开始样式。 | 
-| ARKUI_ENTER_KEY_TYPE_SEARCH  | 显示为搜索样式。 | 
-| ARKUI_ENTER_KEY_TYPE_SEND  | 显示为发送样式。 | 
-| ARKUI_ENTER_KEY_TYPE_NEXT  | 显示为下一个样式。 | 
-| ARKUI_ENTER_KEY_TYPE_DONE  | 显示为完成样式。 | 
-| ARKUI_ENTER_KEY_TYPE_PREVIOUS  | 显示为上一个样式。 | 
-| ARKUI_ENTER_KEY_TYPE_NEW_LINE  | 显示为换行样式。 | 
+| ARKUI_ENTER_KEY_TYPE_GO  | 显示为开始样式。&nbsp;&nbsp; | 
+| ARKUI_ENTER_KEY_TYPE_SEARCH  | 显示为搜索样式。&nbsp;&nbsp; | 
+| ARKUI_ENTER_KEY_TYPE_SEND  | 显示为发送样式。&nbsp;&nbsp; | 
+| ARKUI_ENTER_KEY_TYPE_NEXT  | 显示为下一个样式。&nbsp;&nbsp; | 
+| ARKUI_ENTER_KEY_TYPE_DONE  | 显示为完成样式。&nbsp;&nbsp; | 
+| ARKUI_ENTER_KEY_TYPE_PREVIOUS  | 显示为上一个样式。&nbsp;&nbsp; | 
+| ARKUI_ENTER_KEY_TYPE_NEW_LINE  | 显示为换行样式。&nbsp;&nbsp; | 
 
 
 ### ArkUI_FlexAlignment
@@ -561,12 +640,12 @@ enum ArkUI_FlexAlignment
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKUI_FLEX_ALIGNMENT_START  | 主轴方向首端对齐。 | 
-| ARKUI_FLEX_ALIGNMENT_CENTER  | 主轴方向中心对齐。 | 
-| ARKUI_FLEX_ALIGNMENT_END  | 主轴方向尾部对齐。 | 
-| ARKUI_FLEX_ALIGNMENT_SPACE_BETWEEN  | Flex主轴方向均匀分配弹性元素，相邻元素之间距离相同，第一个元素行首对齐，最后的元素行尾对齐。 | 
-| ARKUI_FLEX_ALIGNMENT_SPACE_AROUND  | Flex主轴方向均匀分配弹性元素，相邻元素之间距离相同，第一个元素到行首的距离时相邻元素间距离的一半。 | 
-| ARKUI_FLEX_ALIGNMENT_SPACE_EVENLY  | Flex主轴方向均匀分配弹性元素，相邻元素之间距离、第一个元素到行首的距离和最后的元素到行尾的距离均相等。 | 
+| ARKUI_FLEX_ALIGNMENT_START  | 主轴方向首端对齐。&nbsp;&nbsp; | 
+| ARKUI_FLEX_ALIGNMENT_CENTER  | 主轴方向中心对齐。&nbsp;&nbsp; | 
+| ARKUI_FLEX_ALIGNMENT_END  | 主轴方向尾部对齐。&nbsp;&nbsp; | 
+| ARKUI_FLEX_ALIGNMENT_SPACE_BETWEEN  | Flex主轴方向均匀分配弹性元素，相邻元素之间距离相同，第一个元素行首对齐，最后的元素行尾对齐。&nbsp;&nbsp; | 
+| ARKUI_FLEX_ALIGNMENT_SPACE_AROUND  | Flex主轴方向均匀分配弹性元素，相邻元素之间距离相同，第一个元素到行首的距离时相邻元素间距离的一半。&nbsp;&nbsp; | 
+| ARKUI_FLEX_ALIGNMENT_SPACE_EVENLY  | Flex主轴方向均匀分配弹性元素，相邻元素之间距离、第一个元素到行首的距离和最后的元素到行尾的距离均相等。&nbsp;&nbsp; | 
 
 
 ### ArkUI_FlexDirection
@@ -582,10 +661,10 @@ enum ArkUI_FlexDirection
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKUI_FLEX_DIRECTION_ROW  | 主轴与行方向一致。 | 
-| ARKUI_FLEX_DIRECTION_COLUMN  | 主轴与列方向一致。 | 
-| ARKUI_FLEX_DIRECTION_ROW_REVERSE  | 主轴与行方向相反。 | 
-| ARKUI_FLEX_DIRECTION_COLUMN_REVERSE  | 主轴与列方向相反。 | 
+| ARKUI_FLEX_DIRECTION_ROW  | 主轴与行方向一致。&nbsp;&nbsp; | 
+| ARKUI_FLEX_DIRECTION_COLUMN  | 主轴与列方向一致。&nbsp;&nbsp; | 
+| ARKUI_FLEX_DIRECTION_ROW_REVERSE  | 主轴与行方向相反。&nbsp;&nbsp; | 
+| ARKUI_FLEX_DIRECTION_COLUMN_REVERSE  | 主轴与列方向相反。&nbsp;&nbsp; | 
 
 
 ### ArkUI_FlexWrap
@@ -601,9 +680,9 @@ enum ArkUI_FlexWrap
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKUI_FLEX_WRAP_NO_WRAP  | 单行/单列布局，子项不能超出容器。 | 
-| ARKUI_FLEX_WRAP_WRAP  | 多行/多列布局，子项允许超出容器。 | 
-| ARKUI_FLEX_WRAP_WRAP_REVERSE  | 反向多行/多列布局，子项允许超出容器。 | 
+| ARKUI_FLEX_WRAP_NO_WRAP  | 单行/单列布局，子项不能超出容器。&nbsp;&nbsp; | 
+| ARKUI_FLEX_WRAP_WRAP  | 多行/多列布局，子项允许超出容器。&nbsp;&nbsp; | 
+| ARKUI_FLEX_WRAP_WRAP_REVERSE  | 反向多行/多列布局，子项允许超出容器。&nbsp;&nbsp; | 
 
 
 ### ArkUI_FontStyle
@@ -619,8 +698,8 @@ enum ArkUI_FontStyle
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKUI_FONT_STYLE_NORMAL  | 标准字体样式。 | 
-| ARKUI_FONT_STYLE_ITALIC  | 斜体字体样式。 | 
+| ARKUI_FONT_STYLE_NORMAL  | 标准字体样式。&nbsp;&nbsp; | 
+| ARKUI_FONT_STYLE_ITALIC  | 斜体字体样式。&nbsp;&nbsp; | 
 
 
 ### ArkUI_FontWeight
@@ -636,21 +715,21 @@ enum ArkUI_FontWeight
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKUI_FONT_WEIGHT_W100  | 100 | 
-| ARKUI_FONT_WEIGHT_W200  | 200 | 
-| ARKUI_FONT_WEIGHT_W300  | 300 | 
-| ARKUI_FONT_WEIGHT_W400  | 400 | 
-| ARKUI_FONT_WEIGHT_W500  | 500 | 
-| ARKUI_FONT_WEIGHT_W600  | 600 | 
-| ARKUI_FONT_WEIGHT_W700  | 700 | 
-| ARKUI_FONT_WEIGHT_W800  | 800 | 
-| ARKUI_FONT_WEIGHT_W900  | 900 | 
-| ARKUI_FONT_WEIGHT_BOLD  | 字体较粗。 | 
-| ARKUI_FONT_WEIGHT_NORMAL  | 字体粗细正常 | 
-| ARKUI_FONT_WEIGHT_BOLDER  | 字体非常粗。 | 
-| ARKUI_FONT_WEIGHT_LIGHTER  | 字体较细。 | 
-| ARKUI_FONT_WEIGHT_MEDIUM  | 字体粗细适中。 | 
-| ARKUI_FONT_WEIGHT_REGULAR  | 字体粗细正常 | 
+| ARKUI_FONT_WEIGHT_W100  | 100&nbsp;&nbsp; | 
+| ARKUI_FONT_WEIGHT_W200  | 200&nbsp;&nbsp; | 
+| ARKUI_FONT_WEIGHT_W300  | 300&nbsp;&nbsp; | 
+| ARKUI_FONT_WEIGHT_W400  | 400&nbsp;&nbsp; | 
+| ARKUI_FONT_WEIGHT_W500  | 500&nbsp;&nbsp; | 
+| ARKUI_FONT_WEIGHT_W600  | 600&nbsp;&nbsp; | 
+| ARKUI_FONT_WEIGHT_W700  | 700&nbsp;&nbsp; | 
+| ARKUI_FONT_WEIGHT_W800  | 800&nbsp;&nbsp; | 
+| ARKUI_FONT_WEIGHT_W900  | 900&nbsp;&nbsp; | 
+| ARKUI_FONT_WEIGHT_BOLD  | 字体较粗。&nbsp;&nbsp; | 
+| ARKUI_FONT_WEIGHT_NORMAL  | 字体粗细正常&nbsp;&nbsp; | 
+| ARKUI_FONT_WEIGHT_BOLDER  | 字体非常粗。&nbsp;&nbsp; | 
+| ARKUI_FONT_WEIGHT_LIGHTER  | 字体较细。&nbsp;&nbsp; | 
+| ARKUI_FONT_WEIGHT_MEDIUM  | 字体粗细适中。&nbsp;&nbsp; | 
+| ARKUI_FONT_WEIGHT_REGULAR  | 字体粗细正常&nbsp;&nbsp; | 
 
 
 ### ArkUI_HitTestMode
@@ -666,10 +745,10 @@ enum ArkUI_HitTestMode
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKUI_HIT_TEST_MODE_DEFAULT  | 默认触摸测试效果。 | 
-| ARKUI_HIT_TEST_MODE_BLOCK  | 自身响应触摸测试。 | 
-| ARKUI_HIT_TEST_MODE_TRANSPARENT  | 自身和子节点都响应触摸测试。 | 
-| ARKUI_HIT_TEST_MODE_NONE  | 自身不响应触摸测试。 | 
+| ARKUI_HIT_TEST_MODE_DEFAULT  | 默认触摸测试效果。&nbsp;&nbsp; | 
+| ARKUI_HIT_TEST_MODE_BLOCK  | 自身响应触摸测试。&nbsp;&nbsp; | 
+| ARKUI_HIT_TEST_MODE_TRANSPARENT  | 自身和子节点都响应触摸测试。&nbsp;&nbsp; | 
+| ARKUI_HIT_TEST_MODE_NONE  | 自身不响应触摸测试。&nbsp;&nbsp; | 
 
 
 ### ArkUI_HorizontalAlignment
@@ -685,9 +764,9 @@ enum ArkUI_HorizontalAlignment
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKUI_HORIZONTAL_ALIGNMENT_START  | 按照语言方向起始端对齐。 | 
-| ARKUI_HORIZONTAL_ALIGNMENT_CENTER  | 居中对齐，默认对齐方式。 | 
-| ARKUI_HORIZONTAL_ALIGNMENT_END  | 按照语言方向末端对齐。 | 
+| ARKUI_HORIZONTAL_ALIGNMENT_START  | 按照语言方向起始端对齐。&nbsp;&nbsp; | 
+| ARKUI_HORIZONTAL_ALIGNMENT_CENTER  | 居中对齐，默认对齐方式。&nbsp;&nbsp; | 
+| ARKUI_HORIZONTAL_ALIGNMENT_END  | 按照语言方向末端对齐。&nbsp;&nbsp; | 
 
 
 ### ArkUI_ImageInterpolation
@@ -703,10 +782,27 @@ enum ArkUI_ImageInterpolation
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKUI_IMAGE_INTERPOLATION_NONE  | 不使用图片插值。 | 
-| ARKUI_IMAGE_INTERPOLATION_LOW  | 低图片插值。 | 
-| ARKUI_IMAGE_INTERPOLATION_MEDIUM  | 中图片插值。 | 
-| ARKUI_IMAGE_INTERPOLATION_HIGH  | 高图片插值，插值质量最高。 | 
+| ARKUI_IMAGE_INTERPOLATION_NONE  | 不使用图片插值。&nbsp;&nbsp; | 
+| ARKUI_IMAGE_INTERPOLATION_LOW  | 低图片插值。&nbsp;&nbsp; | 
+| ARKUI_IMAGE_INTERPOLATION_MEDIUM  | 中图片插值。&nbsp;&nbsp; | 
+| ARKUI_IMAGE_INTERPOLATION_HIGH  | 高图片插值，插值质量最高。&nbsp;&nbsp; | 
+
+
+### ArkUI_ImageRenderMode
+
+```
+enum ArkUI_ImageRenderMode
+```
+**描述：**
+
+定义图片渲染模式。
+
+**起始版本：** 12
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| ARKUI_IMAGE_RENDER_MODE_ORIGINAL  | 原色渲染模式。&nbsp;&nbsp; | 
+| ARKUI_IMAGE_RENDER_MODE_TEMPLATE  | 黑白渲染模式。&nbsp;&nbsp; | 
 
 
 ### ArkUI_ImageRepeat
@@ -722,10 +818,10 @@ enum ArkUI_ImageRepeat
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKUI_IMAGE_REPEAT_NONE  | 不重复。 | 
-| ARKUI_IMAGE_REPEAT_X  | 在X轴方向重复。 | 
-| ARKUI_IMAGE_REPEAT_Y  | 在Y轴方向重复。 | 
-| ARKUI_IMAGE_REPEAT_XY  | 在X轴和Y轴方向重复。 | 
+| ARKUI_IMAGE_REPEAT_NONE  | 不重复。&nbsp;&nbsp; | 
+| ARKUI_IMAGE_REPEAT_X  | 在X轴方向重复。&nbsp;&nbsp; | 
+| ARKUI_IMAGE_REPEAT_Y  | 在Y轴方向重复。&nbsp;&nbsp; | 
+| ARKUI_IMAGE_REPEAT_XY  | 在X轴和Y轴方向重复。&nbsp;&nbsp; | 
 
 
 ### ArkUI_ImageSize
@@ -741,9 +837,9 @@ enum ArkUI_ImageSize
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKUI_IMAGE_SIZE_AUTO  | 保持原图的比例不变。 | 
-| ARKUI_IMAGE_SIZE_COVER  | 默认值，保持宽高比进行缩小或者放大，使得图片两边都大于或等于显示边界。 | 
-| ARKUI_IMAGE_SIZE_CONTAIN  | 保持宽高比进行缩小或者放大，使得图片完全显示在显示边界内。 | 
+| ARKUI_IMAGE_SIZE_AUTO  | 保持原图的比例不变。&nbsp;&nbsp; | 
+| ARKUI_IMAGE_SIZE_COVER  | 默认值，保持宽高比进行缩小或者放大，使得图片两边都大于或等于显示边界。&nbsp;&nbsp; | 
+| ARKUI_IMAGE_SIZE_CONTAIN  | 保持宽高比进行缩小或者放大，使得图片完全显示在显示边界内。&nbsp;&nbsp; | 
 
 
 ### ArkUI_ImageSpanAlignment
@@ -759,10 +855,10 @@ enum ArkUI_ImageSpanAlignment
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKUI_IMAGE_SPAN_ALIGNMENT_BASELINE  | 图片下边沿与文本BaseLine对齐。 | 
-| ARKUI_IMAGE_SPAN_ALIGNMENT_BOTTOM  | 图片下边沿与文本下边沿对齐。 | 
-| ARKUI_IMAGE_SPAN_ALIGNMENT_CENTER  | 图片中间与文本中间对齐。 | 
-| ARKUI_IMAGE_SPAN_ALIGNMENT_TOP  | 图片上边沿与文本上边沿对齐。 | 
+| ARKUI_IMAGE_SPAN_ALIGNMENT_BASELINE  | 图片下边沿与文本BaseLine对齐。&nbsp;&nbsp; | 
+| ARKUI_IMAGE_SPAN_ALIGNMENT_BOTTOM  | 图片下边沿与文本下边沿对齐。&nbsp;&nbsp; | 
+| ARKUI_IMAGE_SPAN_ALIGNMENT_CENTER  | 图片中间与文本中间对齐。&nbsp;&nbsp; | 
+| ARKUI_IMAGE_SPAN_ALIGNMENT_TOP  | 图片上边沿与文本上边沿对齐。&nbsp;&nbsp; | 
 
 
 ### ArkUI_ItemAlignment
@@ -778,12 +874,12 @@ enum ArkUI_ItemAlignment
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKUI_ITEM_ALIGNMENT_AUTO  | 使用Flex容器中默认配置。 | 
-| ARKUI_ITEM_ALIGNMENT_START  | 元素在Flex容器中，交叉轴方向首部对齐。 | 
-| ARKUI_ITEM_ALIGNMENT_CENTER  | 元素在Flex容器中，交叉轴方向居中对齐。 | 
-| ARKUI_ITEM_ALIGNMENT_END  | 元素在Flex容器中，交叉轴方向底部对齐。 | 
-| ARKUI_ITEM_ALIGNMENT_STRETCH  | 元素在Flex容器中，交叉轴方向拉伸填充。 | 
-| ARKUI_ITEM_ALIGNMENT_BASELINE  | 元素在Flex容器中，交叉轴方向文本基线对齐。 | 
+| ARKUI_ITEM_ALIGNMENT_AUTO  | 使用Flex容器中默认配置。&nbsp;&nbsp; | 
+| ARKUI_ITEM_ALIGNMENT_START  | 元素在Flex容器中，交叉轴方向首部对齐。&nbsp;&nbsp; | 
+| ARKUI_ITEM_ALIGNMENT_CENTER  | 元素在Flex容器中，交叉轴方向居中对齐。&nbsp;&nbsp; | 
+| ARKUI_ITEM_ALIGNMENT_END  | 元素在Flex容器中，交叉轴方向底部对齐。&nbsp;&nbsp; | 
+| ARKUI_ITEM_ALIGNMENT_STRETCH  | 元素在Flex容器中，交叉轴方向拉伸填充。&nbsp;&nbsp; | 
+| ARKUI_ITEM_ALIGNMENT_BASELINE  | 元素在Flex容器中，交叉轴方向文本基线对齐。&nbsp;&nbsp; | 
 
 
 ### ArkUI_LinearGradientDirection
@@ -799,15 +895,15 @@ enum ArkUI_LinearGradientDirection
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKUI_LINEAR_GRADIENT_DIRECTION_LEFT  | 向左渐变。 | 
-| ARKUI_LINEAR_GRADIENT_DIRECTION_TOP  | 向上渐变。 | 
-| ARKUI_LINEAR_GRADIENT_DIRECTION_RIGHT  | 向右渐变。 | 
-| ARKUI_LINEAR_GRADIENT_DIRECTION_BOTTOM  | 向下渐变。 | 
-| ARKUI_LINEAR_GRADIENT_DIRECTION_LEFT_TOP  | 向左上渐变。 | 
-| ARKUI_LINEAR_GRADIENT_DIRECTION_LEFT_BOTTOM  | 向左下渐变。 | 
-| ARKUI_LINEAR_GRADIENT_DIRECTION_RIGHT_TOP  | 向右上渐变。 | 
-| ARKUI_LINEAR_GRADIENT_DIRECTION_RIGHT_BOTTOM  | 向右下渐变。 | 
-| ARKUI_LINEAR_GRADIENT_DIRECTION_NONE  | 不渐变。 | 
+| ARKUI_LINEAR_GRADIENT_DIRECTION_LEFT  | 向左渐变。&nbsp;&nbsp; | 
+| ARKUI_LINEAR_GRADIENT_DIRECTION_TOP  | 向上渐变。&nbsp;&nbsp; | 
+| ARKUI_LINEAR_GRADIENT_DIRECTION_RIGHT  | 向右渐变。&nbsp;&nbsp; | 
+| ARKUI_LINEAR_GRADIENT_DIRECTION_BOTTOM  | 向下渐变。&nbsp;&nbsp; | 
+| ARKUI_LINEAR_GRADIENT_DIRECTION_LEFT_TOP  | 向左上渐变。&nbsp;&nbsp; | 
+| ARKUI_LINEAR_GRADIENT_DIRECTION_LEFT_BOTTOM  | 向左下渐变。&nbsp;&nbsp; | 
+| ARKUI_LINEAR_GRADIENT_DIRECTION_RIGHT_TOP  | 向右上渐变。&nbsp;&nbsp; | 
+| ARKUI_LINEAR_GRADIENT_DIRECTION_RIGHT_BOTTOM  | 向右下渐变。&nbsp;&nbsp; | 
+| ARKUI_LINEAR_GRADIENT_DIRECTION_NONE  | 不渐变。&nbsp;&nbsp; | 
 
 
 ### ArkUI_MaskType
@@ -823,11 +919,11 @@ enum ArkUI_MaskType
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKUI_MASK_TYPE_RECTANGLE  | 矩形类型。 | 
-| ARKUI_MASK_TYPE_CIRCLE  | 圆形类型。 | 
-| ARKUI_MASK_TYPE_ELLIPSE  | 椭圆形类型。 | 
-| ARKUI_MASK_TYPE_PATH  | 路径类型。 | 
-| ARKUI_MASK_TYPE_PROGRESS  | 进度类型。 | 
+| ARKUI_MASK_TYPE_RECTANGLE  | 矩形类型。&nbsp;&nbsp; | 
+| ARKUI_MASK_TYPE_CIRCLE  | 圆形类型。&nbsp;&nbsp; | 
+| ARKUI_MASK_TYPE_ELLIPSE  | 椭圆形类型。&nbsp;&nbsp; | 
+| ARKUI_MASK_TYPE_PATH  | 路径类型。&nbsp;&nbsp; | 
+| ARKUI_MASK_TYPE_PROGRESS  | 进度类型。&nbsp;&nbsp; | 
 
 
 ### ArkUI_NativeAPIVariantKind
@@ -843,7 +939,10 @@ enum ArkUI_NativeAPIVariantKind
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKUI_NATIVE_NODE  | UI组件相关接口类型。 | 
+| ARKUI_NATIVE_NODE  | UI组件相关接口类型。&nbsp;&nbsp; | 
+| ARKUI_NATIVE_DIALOG  | 弹窗相关接口类型.&nbsp;&nbsp; | 
+
+
 ### ArkUI_NativeNodeAPIVersion
 
 ```
@@ -857,7 +956,7 @@ enum ArkUI_NativeNodeAPIVersion
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKUI_NATIVE_NODE_VERSION_1  | ARKUI_NATIVE_NODE类型支持版本1的结构体[ArkUI_NativeNodeAPI_1](_ark_u_i___native_node_a_p_i__1.md)。 | 
+| ARKUI_NATIVE_NODE_VERSION_1  | ARKUI_NATIVE_NODE类型支持版本1的结构体[ArkUI_NativeNodeAPI_1](_ark_u_i___native_node_a_p_i__1.md)。&nbsp;&nbsp; | 
 
 
 ### ArkUI_NodeAttributeType
@@ -911,6 +1010,7 @@ enum ArkUI_NodeAttributeType
 | NODE_ROTATE_TRANSITION  | 转场时的旋转效果属性，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32 表示横向旋转分量。<br/>.value[1].f32 表示纵向的旋转分量。<br/>.value[2].f32 表示竖向的旋转分量。<br/>.value[3].f32 表示角度。<br/>.value[4].f32 表示视距，默认值：0.0f。<br/>.value[5].i32 表示动画时长，单位ms。<br/>.value[6].i32 表示动画曲线类型，取[ArkUI_AnimationCurve](#arkui_animationcurve)枚举值。<br/>.value[7]?.i32 表示动画延迟时长，单位ms。<br/>.value[8]?.i32 表示动画播放次数。<br/>.value[9]?.i32 表示动画播放模式，取[ArkUI_AnimationPlayMode](#arkui_animationplaymode)枚举值。<br/>.value[10]?.f32 表示动画播放速度。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32 表示横向旋转分量。<br/>.value[1].f32 表示纵向的旋转分量。<br/>.value[2].f32 表示竖向的旋转分量。<br/>.value[3].f32 表示角度。<br/>.value[4].f32 表示视距。<br/>.value[5].i32 表示动画时长，单位ms。<br/>.value[6].i32 表示动画曲线类型，取[ArkUI_AnimationCurve](#arkui_animationcurve)枚举值。<br/>.value[7].i32 表示动画延迟时长，单位ms。<br/>.value[8].i32 表示动画播放次数。<br/>.value[9].i32 表示动画播放模式，取[ArkUI_AnimationPlayMode](#arkui_animationplaymode)枚举值。<br/>.value[10].f32 表示动画播放速度。 | 
 | NODE_SCALE_TRANSITION  | 转场时的缩放效果属性，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32 横向放大倍数。<br/>.value[1].f32 纵向放大倍数。<br/>.value[2].f32 竖向放大倍数。<br/>.value[3].i32 表示动画时长，单位ms。<br/>.value[4].i32 表示动画曲线类型，取[ArkUI_AnimationCurve](#arkui_animationcurve)枚举值。<br/>.value[5]?.i32 表示动画延迟时长，单位ms。<br/>.value[6]?.i32 表示动画播放次数。<br/>.value[7]?.i32 表示动画播放模式，取[ArkUI_AnimationPlayMode](#arkui_animationplaymode)枚举值。<br/>.value[8]?.f32 表示动画播放速度。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32 横向放大倍数。<br/>.value[1].f32 纵向放大倍数。<br/>.value[2].f32 竖向放大倍数。<br/>.value[3].i32 表示动画时长，单位ms。<br/>.value[4].i32 表示动画曲线类型，取[ArkUI_AnimationCurve](#arkui_animationcurve)枚举值。<br/>.value[5].i32 表示动画延迟时长，单位ms。<br/>.value[6].i32 表示动画播放次数。<br/>.value[7].i32 表示动画播放模式，取[ArkUI_AnimationPlayMode](#arkui_animationplaymode)枚举值。<br/>.value[8].f32 表示动画播放速度。 | 
 | NODE_TRANSLATE_TRANSITION  | 转场时的平移效果属性，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>value[0].f32 表示横向平移距离值，单位为vp<br/>value[1].f32 表示纵向平移距离值，单位为vp<br/>value[2].f32 表示竖向平移距离值，单位为vp<br/>value[3].i32 表示动画时长，单位ms。<br/>value[4].i32 表示动画曲线类型，取[ArkUI_AnimationCurve](#arkui_animationcurve)枚举值。<br/>value[5]?.i32 表示动画延迟时长，单位ms。<br/>value[6]?.i32 表示动画播放次数。<br/>value[7]?.i32 表示动画播放模式，取[ArkUI_AnimationPlayMode](#arkui_animationplaymode)枚举值。<br/>value[8]?.f32 表示动画播放速度。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>value[0].f32 表示横向平移距离值，单位为vp<br/>value[1].f32 表示纵向平移距离值，单位为vp<br/>value[2].f32 表示竖向平移距离值，单位为vp<br/>value[3].i32 表示动画时长，单位ms。<br/>value[4].i32 表示动画曲线类型，取[ArkUI_AnimationCurve](#arkui_animationcurve)枚举值。<br/>value[5].i32 表示动画延迟时长，单位ms。<br/>value[6].i32 表示动画播放次数。<br/>value[7].i32 表示动画播放模式，取[ArkUI_AnimationPlayMode](#arkui_animationplaymode)枚举值。<br/>value[8].f32 表示动画播放速度。 | 
+| NODE_MOVE_TRANSITION  | 转场时从屏幕边缘滑入和滑出的效果属性，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>value[0].i32 参数类型[ArkUI_TransitionEdge](#arkui_transitionedge)<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>value[0].i32 参数类型[ArkUI_TransitionEdge](#arkui_transitionedge) | 
 | NODE_FOCUSABLE  | 获焦属性，支持属性设置，属性重置和属性获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].i32：参数类型为1或者0。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：参数类型为1或者0。 | 
 | NODE_DEFAULT_FOCUS  | 默认焦点属性，支持属性设置，属性重置和属性获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>value[0].i32：参数类型为1或者0。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>value[0].i32：参数类型为1或者0。 | 
 | NODE_RESPONSE_REGION  | 触摸热区属性，支持属性设置，属性重置和属性获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.data[0].f32：触摸点相对于组件左上角的x轴坐标,单位为vp。<br/>.data[1].f32：触摸点相对于组件左上角的y轴坐标,单位为vp。<br/>.data[2].f32：触摸热区的宽度 ，单位为。<br/>.data[3].f32：触摸热区的高度，单位为。<br/>.data[4...].f32:可以设置多个手势响应区域，顺序和上述一致。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.data[0].f32：触摸点相对于组件左上角的x轴坐标,单位为vp。<br/>.data[1].f32：触摸点相对于组件左上角的y轴坐标,单位为vp。<br/>.data[2].f32：触摸热区的宽度 ，单位为。<br/>.data[3].f32：触摸热区的高度，单位为。<br/>.data[4...].f32:可以设置多个手势响应区域，顺序和上述一致。 | 
@@ -939,6 +1039,7 @@ enum ArkUI_NodeAttributeType
 | NODE_ACCESSIBILITY_MODE  | 无障碍辅助服务模式，支持属性设置，属性重置和属性获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].i32：辅助服务模式，参数类型[ArkUI_AccessibilityMode](#arkui_accessibilitymode)。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：辅助服务模式，参数类型[ArkUI_AccessibilityMode](#arkui_accessibilitymode)。 | 
 | NODE_ACCESSIBILITY_DESCRIPTION  | 无障碍说明属性，支持属性设置，属性重置和属性获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.string：无障碍说明。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string：无障碍说明。 | 
 | NODE_FOCUS_STATUS  | 组件获取焦点属性，支持属性设置，属性获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].i32：参数类型为1或者0。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：参数类型为1或者0。 | 
+| NODE_ASPECT_RATIO  | 设置组件的宽高比，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：组件的宽高比，输入值为 width/height。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：组件的宽高比，width/height的比值。 | 
 | NODE_TEXT_CONTENT  | text组件设置文本内容属性，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string 表示文本内容<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string 表示文本内容 | 
 | NODE_FONT_COLOR  | 组件字体颜色属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32：字体颜色数值，0xargb格式，形如 0xFFFF0000 表示红色；<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32：字体颜色数值，0xargb格式； | 
 | NODE_FONT_SIZE  | 组件字体大小属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：字体大小数值，单位为fp；<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：字体大小数值，单位为fp； | 
@@ -960,7 +1061,10 @@ enum ArkUI_NodeAttributeType
 | NODE_TEXT_FONT  | Text样式，支持属性设置，属性重置和属性获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.string?：可选值 字体列表，使用多个字体，使用','进行分割。<br/>.value[0].f32：文本尺寸 单位FP。<br/>.value[1]?.i32：可选值，文本的字体粗细，参数类型[ArkUI_FontWeight](#arkui_fontweight)。 默认值为ARKUI_FONT_WEIGHT_NORMAL。<br/>.value[2]?.i32：可选值，字体样式，参数类型[ArkUI_FontStyle](#arkui_fontstyle)。 默认值为ARKUI_FONT_STYLE_NORMAL。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string：字体列表，使用多个字体，使用','进行分割。<br/>.value[0].f32：文本尺寸 单位FP。<br/>.value[1].i32：文本的字体粗细，参数类型[ArkUI_FontWeight](#arkui_fontweight)。 默认值为ARKUI_FONT_WEIGHT_NORMAL。<br/>.value[2].i32：字体样式，参数类型[ArkUI_FontStyle](#arkui_fontstyle)。 默认值为ARKUI_FONT_STYLE_NORMAL。 | 
 | NODE_TEXT_HEIGHT_ADAPTIVE_POLICY  | Text自适应高度的方式，支持属性设置，属性重置和属性获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].i32：参数类型[ArkUI_TextHeightAdaptivePolicy](#arkui_textheightadaptivepolicy)。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：参数类型[ArkUI_TextHeightAdaptivePolicy](#arkui_textheightadaptivepolicy)。 | 
 | NODE_TEXT_INDENT  | 文本首行缩进属性，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32: 表示首行缩进值。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32: 表示首行缩进值。 | 
+| NODE_TEXT_WORD_BREAK  | 文本断行规则属性，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32: 参数类型[ArkUI_WordBreak](#arkui_wordbreak)。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32: 参数类型[ArkUI_WordBreak](#arkui_wordbreak)。 | 
+| NODE_TEXT_ELLIPSIS_MODE  | 设置文本省略位置，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32: 参数类型[ArkUI_EllipsisMode](#arkui_ellipsismode)。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32: 参数类型[ArkUI_EllipsisMode](#arkui_ellipsismode)。 | 
 | NODE_SPAN_CONTENT  | 文本内容属性，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string 表示span的文本内容。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string 表示span的文本内容。 | 
+| NODE_SPAN_TEXT_BACKGROUND_STYLE  | 文本背景色属性，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32 表示文本背景颜色，0xargb格式，形如0xFFFF0000 表示红色。<br/>第二个参数为文本背景圆角设置，支持如下两种设置方式：<br/>1：.value[1].f32：四个方向的圆角半径统一设置，单位为vp。<br/>2: .value[1].f32：设置左上角圆角半径，单位为vp。<br/>.value[2].f32：设置右上角圆角半径，单位为vp。<br/>.value[3].f32：设置左下角圆角半径，单位为vp。<br/>.value[4].f32：设置右下角圆角半径，单位为vp。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32：文本背景颜色，0xargb格式。<br/>.value[1].f32：左上角圆角半径，单位为vp。<br/>.value[2].f32：右上角圆角半径，单位为vp。<br/>.value[3].f32：左下角圆角半径，单位为vp。<br/>.value[4].f32：右下角圆角半径，单位为vp。 | 
 | NODE_IMAGE_SPAN_SRC  | imageSpan组件图片地址属性，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string 表示imageSpan的图片地址<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string 表示imageSpan的图片地址 | 
 | NODE_IMAGE_SPAN_VERTICAL_ALIGNMENT  | 图片基于文本的对齐方式属性，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32 表示图片基于文本的对齐方式，取[ArkUI_ImageSpanAlignment](#arkui_imagespanalignment)枚举值。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32 表示图片基于文本的对齐方式，取[ArkUI_ImageSpanAlignment](#arkui_imagespanalignment)枚举值。 | 
 | NODE_IMAGE_SRC  | image组件设置图片地址属性，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string 表示image组件地址<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string 表示image组件地址 | 
@@ -970,8 +1074,11 @@ enum ArkUI_NodeAttributeType
 | NODE_IMAGE_COLOR_FILTER  | 图片滤镜效果属性，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32 ~ .value[19].i32 表示滤镜矩阵数组。<br/>.size 表示滤镜数组大小 5\*4。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32 ~ .value[19].i32 表示滤镜矩阵数组。<br/>.size 表示滤镜数组大小 5\*4。 | 
 | NODE_IMAGE_AUTO_RESIZE  | 图源自动缩放属性，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32 表示是否缩放布尔值。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32 表示是否缩放布尔值。 | 
 | NODE_IMAGE_ALT  | 占位图地址属性，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string 表示image组件占位图地址。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string 表示image组件占位图地址。 | 
+| NODE_IMAGE_DRAGGABLE  | 图片拖拽效果属性，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32 表示是否支持拖拽，设置为true表示支持。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32 表示是否支持拖拽。 | 
+| NODE_IMAGE_RENDER_MODE  | 图片渲染模式属性，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32 参数类型**ArkUI_ImageRenderMode**。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32 参数类型**ArkUI_ImageRenderMode**。 | 
 | NODE_TOGGLE_SELECTED_COLOR  | 组件打开状态的背景颜色属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32：背景色数值，0xargb格式，形如 0xFFFF0000 表示红色。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32：背景色数值，0xargb格式。 | 
 | NODE_TOGGLE_SWITCH_POINT_COLOR  | Switch类型的圆形滑块颜色属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32：圆形滑块颜色数值，0xargb格式，形如 0xFFFF0000 表示红色。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32：圆形滑块颜色数值，0xargb格式。 | 
+| NODE_TOGGLE_VALUE  | Switch类型的开关值，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：设置开关的值，true表示开启。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：设置开关的值。 | 
 | NODE_LOADING_PROGRESS_COLOR  | 加载进度条前景色属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32：前景颜色数值，0xargb格式，形如 0xFFFF0000 表示红色。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32：前景颜色数值，0xargb格式。 | 
 | NODE_LOADING_PROGRESS_ENABLE_LOADING  | LoadingProgress动画显示属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：false时不显示动画，true时可以显示动画；<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：0时不显示动画，1时可以显示动画。 | 
 | NODE_TEXT_INPUT_PLACEHOLDER  | 单行文本输入框的默认提示文本内容属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string：默认提示文本的内容。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string：默认提示文本的内容。 | 
@@ -989,6 +1096,7 @@ enum ArkUI_NodeAttributeType
 | NODE_TEXT_INPUT_SHOW_PASSWORD_ICON  | 密码输入模式时是否显示末尾图标属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：false表示不显示图标，true表示显示图标；<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：0表示不显示图标，1表示显示图标。 | 
 | NODE_TEXT_INPUT_EDITING  | 控制单行文本输入框编辑态属性，支持属性设置。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：false表示退出编辑态，true表示维持现状。<br/>属性获取方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：false表示退出编辑态，true表示维持现状。 | 
 | NODE_TEXT_INPUT_CANCEL_BUTTON  | 单行文本右侧清除按钮样式属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：按钮样式[ArkUI_CancelButtonStyle](#arkui_cancelbuttonstyle)，默认值为ARKUI_CANCELBUTTON_STYLE_INPUT；<br/>.value[1]?.f32：图标大小数值，单位为vp；<br/>.value[2]?.u32：按钮图标颜色数值，0xargb格式，形如 0xFFFF0000 表示红色；<br/>?.string：按钮图标地址，入参内容为图片本地地址，例如 /pages/icon.png。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：按钮样式[ArkUI_CancelButtonStyle](#arkui_cancelbuttonstyle)；<br/>.value[1].f32：图标大小数值，单位为vp；<br/>.value[2].u32：按钮图标颜色数值，0xargb格式；<br/>.string：按钮图标地址。 | 
+| NODE_TEXT_INPUT_TEXT_SELECTION  | 单行文本设置文本选中并高亮的区域，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：选中文本的起始位置；<br/>.value[1].i32：选中文本的终止位置；<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：选中文本的起始位置；<br/>.value[1].i32：选中文本的终止位置； | 
 | NODE_TEXT_AREA_PLACEHOLDER  | 多行文本输入框的默认提示文本内容属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string：默认提示文本的内容。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string：默认提示文本的内容。 | 
 | NODE_TEXT_AREA_TEXT  | 多行文本输入框的默认文本内容属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string：默认文本的内容。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string：默认文本的内容。 | 
 | NODE_TEXT_AREA_MAX_LENGTH  | 输入框支持的最大文本数属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：最大文本数的数字。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：最大文本数的数字。 | 
@@ -996,6 +1104,8 @@ enum ArkUI_NodeAttributeType
 | NODE_TEXT_AREA_PLACEHOLDER_FONT  | 无输入时默认提示文本的字体配置（包括大小、字重、样式、字体列表）属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0]?.f32：可选字体大小数值，默认值16.0，单位为fp；<br/>.value[1]?.i32：可选字体样式[ArkUI_FontStyle](#arkui_fontstyle)，默认值为ARKUI_FONT_STYLE_NORMAL；<br/>.value[2]?.i32：可选字体粗细样式[ArkUI_FontWeight](#arkui_fontweight)，默认值为ARKUI_FONT_WEIGHT_NORMAL；<br/>?.string: 字体族内容，多个字体族之间使用逗号分隔，形如“字重；字体族1，字体族2”。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：字体大小数值，单位为fp；<br/>.value[1].i32：字体样式[ArkUI_FontStyle](#arkui_fontstyle)；<br/>.value[2].i32：字体粗细样式[ArkUI_FontWeight](#arkui_fontweight)；<br/>.string: 字体族内容，多个字体族之间使用逗号分隔。 | 
 | NODE_TEXT_AREA_CARET_COLOR  | 光标颜色属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32：背景色数值，0xargb格式，形如 0xFFFF0000 表示红色。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32：背景色数值，0xargb格式。 | 
 | NODE_TEXT_AREA_EDITING  | 控制多行文本输入框编辑态属性，支持属性设置。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：false表示退出编辑态，true表示维持现状。<br/>属性获取方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：false表示退出编辑态，true表示维持现状。 | 
+| NODE_TEXT_AREA_TYPE  | 输入框的类型属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：输入框类型枚举[ArkUI_TextAreaType](#arkui_textareatype)，默认值为ARKUI_TEXTAREA_TYPE_NORMAL。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：输入框类型枚举[ArkUI_TextAreaType](#arkui_textareatype)。 | 
+| NODE_TEXT_AREA_SHOW_COUNTER  | 设置输入的字符数超过阈值时是否显示计数器并设置计数器样式，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：是否开启计数器，值为true时为开启。<br/>.value[1]?.f32：可输入字符数占最大字符限制的百分比值，超过此值时显示计数器，取值范围1-100，小数时向下取整。<br/>.value[2]?.i32：输入字符超出限制时是否高亮边框。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：是否开启计数器。<br/>.value[1].f32：可输入字符数占最大字符限制的百分比值，超过此值时显示计数器，取值范围1-100。<br/>.value[2].i32：输入字符超出限制时是否高亮边框，默认高亮。 | 
 | NODE_BUTTON_LABEL  | button按钮的文本内容属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string：默认文本的内容。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string：默认文本的内容。 | 
 | NODE_PROGRESS_VALUE  | 进度条的当前进度值属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：进度条当前值。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：进度条当前值。 | 
 | NODE_PROGRESS_TOTAL  | 进度条的总长属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：进度条总长。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：进度条总长。 | 
@@ -1074,6 +1184,7 @@ enum ArkUI_NodeAttributeType
 | NODE_SWIPER_DISPLAY_COUNT  | 设置Swiper一页内元素显示个数，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：子组件的索引值。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：子组件的索引值。 | 
 | NODE_SWIPER_DISABLE_SWIPE  | 设置Swiper禁用组件滑动切换功能，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：是否禁用组件滑动切换功能，0表示不禁用滑动切换功能，1表示禁用滑动切换功能，默认值为0。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：是否禁用组件滑动切换功能，0表示不禁用滑动切换功能，1表示禁用滑动切换功能，默认值为0。 | 
 | NODE_SWIPER_SHOW_DISPLAY_ARROW  | 设置Swiper是否显示导航点箭头，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：设置是否显示导航点箭头，参数类型[ArkUI_SwiperArrow](#arkui_swiperarrow)，<br/>默认值为ARKUI_SWIPER_ARROW_HIDE。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：设置是否显示导航点箭头，参数类型[ArkUI_SwiperArrow](#arkui_swiperarrow)，<br/>默认值为ARKUI_SWIPER_ARROW_HIDE。 | 
+| NODE_SWIPER_EDGE_EFFECT_MODE  | 设置Swiper的边缘滑动效果，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32: 边缘滑动效果，参数类型[ArkUI_EdgeEffect](#arkui_edgeeffect)，<br/>默认值为ARKUI_EDGE_EFFECT_SPRING。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32: 边缘滑动效果，参数类型[ArkUI_EdgeEffect](#arkui_edgeeffect)， | 
 | NODE_LIST_ITEM_GROUP_SET_HEADER  | 设置 ListItemGroup 头部组件，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.object：使用[ArkUI_NodeHandle](#arkui_nodehandle)对象作为ListItemGroup头部组件。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.object：使用[ArkUI_NodeHandle](#arkui_nodehandle)对象作为ListItemGroup头部组件。 | 
 | NODE_LIST_ITEM_GROUP_SET_FOOTER  | 设置 ListItemGroup 尾部组件，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.object：使用[ArkUI_NodeHandle](#arkui_nodehandle)对象作为ListItemGroup尾部组件。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.object：使用[ArkUI_NodeHandle](#arkui_nodehandle)对象作为ListItemGroup尾部组件。 | 
 | NODE_LIST_ITEM_GROUP_SET_DIVIDER  | 设置ListItem分割线样式，默认无分割线，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32： 颜色，0xargb类型；<br/>.value[1].f32： 分割线宽，单位vp；<br/>.value[2].f32： 分割线距离列表侧边起始端的距离，单位vp；<br/>.value[3].f32： 分割线距离列表侧边结束端的距离，单位vp。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32： 颜色，0xargb类型；<br/>.value[1].f32： 分割线宽，单位vp；<br/>.value[2].f32： 分割线距离列表侧边起始端的距离，单位vp；<br/>.value[3].f32： 分割线距离列表侧边结束端的距离，单位vp。 | 
@@ -1083,7 +1194,8 @@ enum ArkUI_NodeAttributeType
 | NODE_ROW_JUSTIFY_CONTENT  | 设置Row子组件在水平方向上的对齐格式，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：子组件在水平方向上的对齐格式，数据类型[ArkUI_FlexAlignment](#arkui_flexalignment)，<br/>默认值ARKUI_FLEX_ALIGNMENT_START。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：子组件在水平方向上的对齐格式，数据类型[ArkUI_FlexAlignment](#arkui_flexalignment)。 | 
 | NODE_FLEX_OPTION  | 设置Flex属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0]?.i32：子组件在Flex容器上排列的方向[ArkUI_FlexDirection](#arkui_flexdirection)，默认值为ARKUI_FLEX_DIRECTION_ROW；<br/>.value[1]?.i32：排列规则[ArkUI_FlexWrap](#arkui_flexwrap)，默认值为ARKUI_FLEX_WRAP_NO_WRAP；<br/>.value[2]?.i32：主轴上的对齐格式[ArkUI_FlexAlignment](#arkui_flexalignment)，默认值为ARKUI_FLEX_ALIGNMENT_START；<br/>.value[3]?.i32：交叉轴上的对齐格式[ArkUI_ItemAlignment](#arkui_itemalignment)，默认值为ARKUI_ITEM_ALIGNMENT_START；<br/>.value[4]?.i32： 交叉轴中有额外的空间时，多行内容的对齐方式[ArkUI_FlexAlignment](#arkui_flexalignment)，默认值为ARKUI_FLEX_ALIGNMENT_START；<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：子组件在Flex容器上排列的方向的枚举值；<br/>.value[1].i32：排列规则的枚举值；<br/>.value[2].i32：主轴上的对齐格式的枚举值；<br/>.value[3].i32：交叉轴上的对齐格式的枚举值；<br/>.value[4].i32： 交叉轴中有额外的空间时，多行内容的对齐方式的枚举值； | 
 | NODE_REFRESH_REFRESHING  | 设置组件是否正在刷新，支持属性设置，属性获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].i32：参数类型为1或者0。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：参数类型为1或者0。 | 
-
+| NODE_REFRESH_CONTENT  | 设置下拉区域的自定义内容，支持属性设置和重置。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.object：参数类型{\@Link ArkUI_NodeHandle}。 | 
+| NODE_WATER_FLOW_LAYOUT_DIRECTION  | 定义瀑布流组件布局主轴方向，支持属性设置、重置和获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].i32 主轴方向，参数类型{\@Link ArkUI_FlexDirection}。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32 主轴方向，参数类型{\@Link ArkUI_FlexDirection}。 | 
 
 ### ArkUI_NodeDirtyFlag
 
@@ -1099,8 +1211,8 @@ enum ArkUI_NodeDirtyFlag
 | 枚举值 | 描述 | 
 | -------- | -------- |
 | NODE_NEED_MEASURE  | 重新测算大小。<br/>该flag类型触发时，同时也默认会触发重新布局。 | 
-| NODE_NEED_LAYOUT  | 重新布局位置。 | 
-| NODE_NEED_RENDER  | 重新进行绘制。 | 
+| NODE_NEED_LAYOUT  | 重新布局位置。&nbsp;&nbsp; | 
+| NODE_NEED_RENDER  | 重新进行绘制。&nbsp;&nbsp; | 
 
 
 ### ArkUI_NodeEventType
@@ -1118,6 +1230,7 @@ enum ArkUI_NodeEventType
 | -------- | -------- |
 | NODE_TOUCH_EVENT  | 手势事件类型。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](_ark_u_i___node_event.md)对象中的联合体类型为**ArkUI_TouchEvent**。 | 
 | NODE_EVENT_ON_APPEAR  | 挂载事件。<br/>触发该事件的条件 ：组件挂载显示时触发此回调。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](_ark_u_i___node_event.md)对象中的联合体类型为[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)。<br/>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)中不包含参数。 | 
+| NODE_EVENT_ON_DISAPPEAR  | 卸载事件。<br/>触发该事件的条件 ：组件卸载时触发此回调。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](_ark_u_i___node_event.md)对象中的联合体类型为[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)。<br/>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)中不包含参数。 | 
 | NODE_EVENT_ON_AREA_CHANGE  | 组件区域变化事件<br/>触发该事件的条件：组件区域变化时触发该回调。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](_ark_u_i___node_event.md)对象中的联合体类型为[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)。<br/>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)中包含12个参数：<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].f32**：表示过去目标元素的宽度，类型为number，单位vp。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[1].f32**：表示过去目标元素的高度，类型为number，单位vp。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[2].f32**：表示过去目标元素左上角相对父元素左上角的位置的x轴坐标，类型为number，单位vp。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[3].f32**：表示过去目标元素左上角相对父元素左上角的位置的y轴坐标，类型为number，单位vp。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[4].f32**：表示过去目标元素目标元素左上角相对页面左上角的位置的x轴坐标，类型为number，单位vp。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[5].f32**：表示过去目标元素目标元素左上角相对页面左上角的位置的y轴坐标，类型为number，单位vp。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[6].f32**：表示最新目标元素的宽度，类型为number，单位vp。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[7].f32**：表示最新目标元素的高度，类型为number，单位vp。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[8].f32**：表示最新目标元素左上角相对父元素左上角的位置的x轴坐标，类型为number，单位vp。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[9].f32**：表示最新目标元素左上角相对父元素左上角的位置的y轴坐标，类型为number，单位vp。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[10].f32**：表示最新目标元素目标元素左上角相对页面左上角的位置的x轴坐标，类型为number，单位vp。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[11].f32**：表示最新目标元素目标元素左上角相对页面左上角的位置的y轴坐标，类型为number，单位vp。 | 
 | NODE_ON_FOCUS  | 获焦事件。<br/>触发该事件的条件：组件获焦时触发此回调。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](_ark_u_i___node_event.md)对象中的联合体类型为[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)。<br/>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)中不包含参数。 | 
 | NODE_ON_BLUR  | 失去焦点事件。<br/>触发该事件的条件：组件失去焦点时触发此回调。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](_ark_u_i___node_event.md)对象中的联合体类型为[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)。<br/>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)中不包含参数。 | 
@@ -1130,13 +1243,20 @@ enum ArkUI_NodeEventType
 | NODE_TEXT_INPUT_ON_SUBMIT  | textInput按下输入法回车键触发该事件。<br/>触发该事件的条件：按下输入法回车键。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](_ark_u_i___node_event.md)对象中的联合体类型为[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)。<br/>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)中包含1个参数：<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].i32**：输入法回车键类型。 | 
 | NODE_TEXT_INPUT_ON_CUT  | 长按输入框内部区域弹出剪贴板后，点击剪切板剪切按钮，触发该回调。<br/>触发该事件的条件：长按输入框内部区域弹出剪贴板后，点击剪切板剪切按钮。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](_ark_u_i___node_event.md)对象中的联合体类型为[ArkUI_StringAsyncEvent](_ark_u_i___string_async_event.md)。<br/>[ArkUI_StringAsyncEvent](_ark_u_i___string_async_event.md)中包含1个参数：<br/>**[ArkUI_StringAsyncEvent.pStr](_ark_u_i___string_async_event.md#pstr)**：剪切的文本内容。 | 
 | NODE_TEXT_INPUT_ON_PASTE  | 长按输入框内部区域弹出剪贴板后，点击剪切板粘贴按钮，触发该回调。<br/>触发该事件的条件：长按输入框内部区域弹出剪贴板后，点击剪切板粘贴按钮。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](_ark_u_i___node_event.md)对象中的联合体类型为[ArkUI_StringAsyncEvent](_ark_u_i___string_async_event.md)。<br/>[ArkUI_StringAsyncEvent](_ark_u_i___string_async_event.md)中包含1个参数：<br/>**[ArkUI_StringAsyncEvent.pStr](_ark_u_i___string_async_event.md#pstr)**：粘贴的文本内容。 | 
+| NODE_TEXT_INPUT_ON_TEXT_SELECTION_CHANGE  | 文本选择的位置发生变化时，触发该回调。<br/>触发该事件的条件：文本选择的位置发生变化时。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](_ark_u_i___node_event.md)对象中的联合体类型为[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)。<br/>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)中包含2个参数：<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].i32**：表示所选文本的起始位置。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[1].i32**：表示所选文本的结束位置。 | 
 | NODE_TEXT_AREA_ON_CHANGE  | 输入内容发生变化时，触发该回调。<br/>触发该事件的条件：输入内容发生变化时。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](_ark_u_i___node_event.md)对象中的联合体类型为[ArkUI_StringAsyncEvent](_ark_u_i___string_async_event.md)。<br/>[ArkUI_StringAsyncEvent](_ark_u_i___string_async_event.md)中包含1个参数：<br/>**[ArkUI_StringAsyncEvent.pStr](_ark_u_i___string_async_event.md#pstr)**：当前输入的文本内容。 | 
+| NODE_TEXT_AREA_ON_PASTE  | 长按输入框内部区域弹出剪贴板后，点击剪切板粘贴按钮，触发该回调。<br/>触发该事件的条件：长按输入框内部区域弹出剪贴板后，点击剪切板粘贴按钮。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](_ark_u_i___node_event.md)对象中的联合体类型为[ArkUI_StringAsyncEvent](_ark_u_i___string_async_event.md)。<br/>[ArkUI_StringAsyncEvent](_ark_u_i___string_async_event.md)中包含1个参数：<br/>**[ArkUI_StringAsyncEvent.pStr](_ark_u_i___string_async_event.md#pstr)**：粘贴的文本内容。 | 
+| NODE_TEXT_AREA_ON_TEXT_SELECTION_CHANGE  | 文本选择的位置发生变化时，触发该回调。<br/>触发该事件的条件：文本选择的位置发生变化时。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](_ark_u_i___node_event.md)对象中的联合体类型为[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)。<br/>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)中包含2个参数：<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].i32**：表示所选文本的起始位置。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[1].i32**：表示所选文本的结束位置。 | 
 | NODE_CHECKBOX_EVENT_ON_CHANGE  | 定义ARKUI_NODE_CHECKBOX当选中状态发生变化时，触发该回调。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](_ark_u_i___node_event.md)对象中的联合体类型为[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].i32**1:表示已选中, 0: 表示未选中 | 
 | NODE_DATE_PICKER_EVENT_ON_DATE_CHANGE  | 定义ARKUI_NODE_DATE_PICKER列表组件的滚动触摸事件枚举值。<br/>触发该事件的条件：选择日期时触发该事件。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](_ark_u_i___node_event.md)对象中的联合体类型为[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)。<br/>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)中包含3个参数：<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].i32**：表示选中时间的年。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[1].i32**：表示选中时间的月，取值范围：[0-11]。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[2].i32**：表示选中时间的天。 | 
 | NODE_TIME_PICKER_EVENT_ON_CHANGE  | 定义ARKUI_NODE_TIME_PICKER列表组件的滚动触摸事件枚举值。<br/>触发该事件的条件：选择时间时触发该事件。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](_ark_u_i___node_event.md)对象中的联合体类型为[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)。<br/>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)中包含2个参数：<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].i32**：表示选中时间的时，取值范围：[0-23]。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[1].i32**：表示选中时间的分，取值范围：[0-59]。 | 
 | NODE_TEXT_PICKER_EVENT_ON_CHANGE  | 定义ARKUI_NODE_TEXT_PICKER列表组件的滚动触摸事件枚举值。<br/>触发该事件的条件 ：选择时间时触发该事件。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](_ark_u_i___node_event.md)对象中的联合体类型为[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)。<br/>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)中包含1个参数：<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0...11].i32**表示选中数据的维度。 | 
 | NODE_CALENDAR_PICKER_EVENT_ON_CHANGE  | 定义NODE_CALENDAR_PICKER选中日期时触发的事件。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](_ark_u_i___node_event.md)对象中的联合体类型为[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)。<br/>**ArkUI_NodeComponent.data[0].u32**选中的年。<br/>**ArkUI_NodeComponent.data[1].u32**选中的月。<br/>**ArkUI_NodeComponent.data[2].u32**选中的日。 | 
 | NODE_SLIDER_EVENT_ON_CHANGE  | 定义ARKUI_NODE_SLIDER拖动或点击时触发事件回调。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](_ark_u_i___node_event.md)对象中的联合体类型为[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)。<br/>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)中包含2个参数：<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].f32**：当前滑动进度值。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[1].i32**：事件触发的相关状态值 | 
+| NODE_SWIPER_EVENT_ON_CHANGE  | 定义ARKUI_NODE_SWIPER当前元素索引变化时触发事件回调。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](_ark_u_i___node_event.md)对象中的联合体类型为[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)。<br/>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)中包含1个参数：<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].i32**：表示当前显示元素的索引。 | 
+| NODE_SWIPER_EVENT_ON_ANIMATION_START  | 定义ARKUI_NODE_SWIPER切换动画开始时触发回调。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](_ark_u_i___node_event.md)对象中的联合体类型为[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)。<br/>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)中包含5个参数：<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].i32**：表示当前显示元素的索引。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[1].i32**：表示切换动画目标元素的索引。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[2].f32**：表示主轴方向上当前显示元素相对Swiper起始位置的位移。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[3].f32**：表示主轴方向上目标元素相对Swiper起始位置的位移。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[4].f32**：表示离手速度。 | 
+| NODE_SWIPER_EVENT_ON_ANIMATION_END  | 定义ARKUI_NODE_SWIPER切换动画结束是触发回调。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](_ark_u_i___node_event.md)对象中的联合体类型为[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)。<br/>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)中包含2个参数：<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].i32**：表示当前显示元素的索引。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[1].f32**：表示主轴方向上当前显示元素相对Swiper起始位置的位移。 | 
+| NODE_SWIPER_EVENT_ON_GESTURE_SWIPE  | 定义ARKUI_NODE_SWIPER在页面跟手滑动过程中，逐帧触发该回调。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](_ark_u_i___node_event.md)对象中的联合体类型为[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)。<br/>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)中包含2个参数：<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].i32**：表示当前显示元素的索引。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[1].f32**：表示主轴方向上当前显示元素相对Swiper起始位置的位移。 | 
 | NODE_SCROLL_EVENT_ON_SCROLL  | 定义ARKUI_NODE_SCROLL滚动组件的滚动事件枚举值。<br/>触发该事件的条件 ：<br/>1、滚动组件触发滚动时触发，支持键鼠操作等其他触发滚动的输入设置。<br/>2、通过滚动控制器API接口调用。<br/>3、越界回弹。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](_ark_u_i___node_event.md)对象中的联合体类型为[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)。<br/>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)中包含2个参数：<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].f32**：表示距离上一次事件触发的X轴增量。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[1].f32**：表示距离上一次事件触发的Y轴增量。 | 
 | NODE_SCROLL_EVENT_ON_SCROLL_FRAME_BEGIN  | 定义ARKUI_NODE_SCROLL滚动组件的滚动帧始事件枚举值。<br/>触发该事件的条件 ：<br/>1、滚动组件触发滚动时触发，包括键鼠操作等其他触发滚动的输入设置。<br/>2、调用控制器接口时不触发。<br/>3、越界回弹不触发。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](_ark_u_i___node_event.md)对象中的联合体类型为[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)。<br/>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)中包含2个参数：<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].f32**：表示即将发生的滚动量。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[1].i32**：表示当前滚动状态。<br/>**[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)**中包含1个返回值：<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].f32**：事件处理函数中可根据应用场景计算实际需要的滚动量并存于data[0].f32中，Scroll将按照返回值的实际滚动量进行滚动。 | 
 | NODE_SCROLL_EVENT_ON_SCROLL_START  | 定义ARKUI_NODE_SCROLL滚动组件的滚动开始事件枚举值。<br/>触发该事件的条件 ：<br/>1、滚动组件开始滚动时触发，支持键鼠操作等其他触发滚动的输入设置。<br/>2、通过滚动控制器API接口调用后开始，带过渡动效。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](_ark_u_i___node_event.md)对象中的联合体类型为[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)。<br/>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)中不包含参数。 | 
@@ -1159,10 +1279,10 @@ enum ArkUI_NodeSourceType
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| NODE_SOURCE_TYPE_UNKNOWN  | 不支持的来源类型。 | 
-| NODE_SOURCE_TYPE_TOUCH_SCREEN  | 触摸屏。 | 
-| NODE_SOURCE_TYPE_STYLUS  | 手写笔。 | 
-| NODE_SOURCE_TYPE_TOUCHPAD  | 触控板。 | 
+| NODE_SOURCE_TYPE_UNKNOWN  | 不支持的来源类型。&nbsp;&nbsp; | 
+| NODE_SOURCE_TYPE_TOUCH_SCREEN  | 触摸屏。&nbsp;&nbsp; | 
+| NODE_SOURCE_TYPE_STYLUS  | 手写笔。&nbsp;&nbsp; | 
+| NODE_SOURCE_TYPE_TOUCHPAD  | 触控板。&nbsp;&nbsp; | 
 
 
 ### ArkUI_NodeToolType
@@ -1178,9 +1298,9 @@ Touch事件的工具类型定义。
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| NODE_TOOL_TYPE_UNKNOWN  | 不支持的工具类型。 | 
-| NODE_TOOL_TYPE_FINGER  | 手指。 | 
-| NODE_TOOL_TYPE_STYLUS  | 笔。 | 
+| NODE_TOOL_TYPE_UNKNOWN  | 不支持的工具类型。&nbsp;&nbsp; | 
+| NODE_TOOL_TYPE_FINGER  | 手指。&nbsp;&nbsp; | 
+| NODE_TOOL_TYPE_STYLUS  | 笔。&nbsp;&nbsp; | 
 
 
 ### ArkUI_NodeTouchEventAction
@@ -1196,10 +1316,10 @@ enum ArkUI_NodeTouchEventAction
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| NODE_ACTION_CANCEL  | 触摸取消。 | 
-| NODE_ACTION_DOWN  | 触摸按下。 | 
-| NODE_ACTION_MOVE  | 触摸移动。 | 
-| NODE_ACTION_UP  | 触摸抬起。 | 
+| NODE_ACTION_CANCEL  | 触摸取消。&nbsp;&nbsp; | 
+| NODE_ACTION_DOWN  | 触摸按下。&nbsp;&nbsp; | 
+| NODE_ACTION_MOVE  | 触摸移动。&nbsp;&nbsp; | 
+| NODE_ACTION_UP  | 触摸抬起。&nbsp;&nbsp; | 
 
 
 ### ArkUI_NodeType
@@ -1215,34 +1335,35 @@ enum ArkUI_NodeType
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKUI_NODE_CUSTOM  | 自定义节点。 | 
-| ARKUI_NODE_TEXT  | 文本。 | 
-| ARKUI_NODE_SPAN  | 文本段落。 | 
-| ARKUI_NODE_IMAGE_SPAN  | 文本图片段落。 | 
-| ARKUI_NODE_IMAGE  | 图片。 | 
-| ARKUI_NODE_TOGGLE  | 状态开关。 | 
-| ARKUI_NODE_LOADING_PROGRESS  | 等待图标。 | 
-| ARKUI_NODE_TEXT_INPUT  | 单行文本输入。 | 
-| ARKUI_NODE_TEXT_AREA  | 多行文本。 | 
-| ARKUI_NODE_BUTTON  | 按钮。 | 
-| ARKUI_NODE_PROGRESS  | 进度条。 | 
-| ARKUI_NODE_CHECKBOX  | 复选框。 | 
-| ARKUI_NODE_XCOMPONENT  | XComponent。 | 
-| ARKUI_NODE_DATE_PICKER  | 日期选择器组件。 | 
-| ARKUI_NODE_TIME_PICKER  | 时间选择组件。 | 
-| ARKUI_NODE_TEXT_PICKER  | 滑动选择文本内容的组件。 | 
-| ARKUI_NODE_CALENDAR_PICKER  | 日历选择器组件。 | 
-| ARKUI_NODE_SLIDER  | 滑动条组件 | 
-| ARKUI_NODE_STACK  | 堆叠容器。 | 
-| ARKUI_NODE_SWIPER  | 翻页容器。 | 
-| ARKUI_NODE_SCROLL  | 滚动容器。 | 
-| ARKUI_NODE_LIST  | 列表。 | 
-| ARKUI_NODE_LIST_ITEM  | 列表项。 | 
-| ARKUI_NODE_LIST_ITEM_GROUP  | 列表item分组。 | 
-| ARKUI_NODE_COLUMN  | 垂直布局容器。 | 
-| ARKUI_NODE_ROW  | 水平布局容器。 | 
-| ARKUI_NODE_FLEX  | 弹性布局容器。 | 
-| ARKUI_NODE_REFRESH  | 刷新组件。 | 
+| ARKUI_NODE_CUSTOM  | 自定义节点。&nbsp;&nbsp; | 
+| ARKUI_NODE_TEXT  | 文本。&nbsp;&nbsp; | 
+| ARKUI_NODE_SPAN  | 文本段落。&nbsp;&nbsp; | 
+| ARKUI_NODE_IMAGE_SPAN  | 文本图片段落。&nbsp;&nbsp; | 
+| ARKUI_NODE_IMAGE  | 图片。&nbsp;&nbsp; | 
+| ARKUI_NODE_TOGGLE  | 状态开关。&nbsp;&nbsp; | 
+| ARKUI_NODE_LOADING_PROGRESS  | 等待图标。&nbsp;&nbsp; | 
+| ARKUI_NODE_TEXT_INPUT  | 单行文本输入。&nbsp;&nbsp; | 
+| ARKUI_NODE_TEXT_AREA  | 多行文本。&nbsp;&nbsp; | 
+| ARKUI_NODE_BUTTON  | 按钮。&nbsp;&nbsp; | 
+| ARKUI_NODE_PROGRESS  | 进度条。&nbsp;&nbsp; | 
+| ARKUI_NODE_CHECKBOX  | 复选框。&nbsp;&nbsp; | 
+| ARKUI_NODE_XCOMPONENT  | XComponent。&nbsp;&nbsp; | 
+| ARKUI_NODE_DATE_PICKER  | 日期选择器组件。&nbsp;&nbsp; | 
+| ARKUI_NODE_TIME_PICKER  | 时间选择组件。&nbsp;&nbsp; | 
+| ARKUI_NODE_TEXT_PICKER  | 滑动选择文本内容的组件。&nbsp;&nbsp; | 
+| ARKUI_NODE_CALENDAR_PICKER  | 日历选择器组件。&nbsp;&nbsp; | 
+| ARKUI_NODE_SLIDER  | 滑动条组件&nbsp;&nbsp; | 
+| ARKUI_NODE_STACK  | 堆叠容器。&nbsp;&nbsp; | 
+| ARKUI_NODE_SWIPER  | 翻页容器。&nbsp;&nbsp; | 
+| ARKUI_NODE_SCROLL  | 滚动容器。&nbsp;&nbsp; | 
+| ARKUI_NODE_LIST  | 列表。&nbsp;&nbsp; | 
+| ARKUI_NODE_LIST_ITEM  | 列表项。&nbsp;&nbsp; | 
+| ARKUI_NODE_LIST_ITEM_GROUP  | 列表item分组。&nbsp;&nbsp; | 
+| ARKUI_NODE_COLUMN  | 垂直布局容器。&nbsp;&nbsp; | 
+| ARKUI_NODE_ROW  | 水平布局容器。&nbsp;&nbsp; | 
+| ARKUI_NODE_FLEX  | 弹性布局容器。&nbsp;&nbsp; | 
+| ARKUI_NODE_REFRESH  | 刷新组件。&nbsp;&nbsp; | 
+| ARKUI_NODE_WATER_FLOW  | 瀑布流容器。&nbsp;&nbsp; | 
 
 
 ### ArkUI_ObjectFit
@@ -1258,12 +1379,12 @@ enum ArkUI_ObjectFit
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKUI_OBJECT_FIT_CONTAIN  | 保持宽高比进行缩小或者放大，使得图片完全显示在显示边界内。 | 
-| ARKUI_OBJECT_FIT_COVER  | 保持宽高比进行缩小或者放大，使得图片两边都大于或等于显示边界。 | 
-| ARKUI_OBJECT_FIT_AUTO  | 自适应显示。 | 
-| ARKUI_OBJECT_FIT_FILL  | 不保持宽高比进行放大缩小，使得图片充满显示边界。 | 
-| ARKUI_OBJECT_FIT_SCALE_DOWN  | 保持宽高比显示，图片缩小或者保持不变。 | 
-| ARKUI_OBJECT_FIT_NONE  | 保持原有尺寸显示。 | 
+| ARKUI_OBJECT_FIT_CONTAIN  | 保持宽高比进行缩小或者放大，使得图片完全显示在显示边界内。&nbsp;&nbsp; | 
+| ARKUI_OBJECT_FIT_COVER  | 保持宽高比进行缩小或者放大，使得图片两边都大于或等于显示边界。&nbsp;&nbsp; | 
+| ARKUI_OBJECT_FIT_AUTO  | 自适应显示。&nbsp;&nbsp; | 
+| ARKUI_OBJECT_FIT_FILL  | 不保持宽高比进行放大缩小，使得图片充满显示边界。&nbsp;&nbsp; | 
+| ARKUI_OBJECT_FIT_SCALE_DOWN  | 保持宽高比显示，图片缩小或者保持不变。&nbsp;&nbsp; | 
+| ARKUI_OBJECT_FIT_NONE  | 保持原有尺寸显示。&nbsp;&nbsp; | 
 
 
 ### ArkUI_ProgressType
@@ -1279,11 +1400,11 @@ enum ArkUI_ProgressType
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKUI_PROGRESS_TYPE_LINEAR  | 线性样式。 | 
-| ARKUI_PROGRESS_TYPE_RING  | 环形无刻度样式。 | 
-| ARKUI_PROGRESS_TYPE_ECLIPSE  | 圆形样式。 | 
-| ARKUI_PROGRESS_TYPE_SCALE_RING  | 唤醒有刻度样式。 | 
-| ARKUI_PROGRESS_TYPE_CAPSULE  | 胶囊样式。 | 
+| ARKUI_PROGRESS_TYPE_LINEAR  | 线性样式。&nbsp;&nbsp; | 
+| ARKUI_PROGRESS_TYPE_RING  | 环形无刻度样式。&nbsp;&nbsp; | 
+| ARKUI_PROGRESS_TYPE_ECLIPSE  | 圆形样式。&nbsp;&nbsp; | 
+| ARKUI_PROGRESS_TYPE_SCALE_RING  | 唤醒有刻度样式。&nbsp;&nbsp; | 
+| ARKUI_PROGRESS_TYPE_CAPSULE  | 胶囊样式。&nbsp;&nbsp; | 
 
 
 ### ArkUI_ScrollBarDisplayMode
@@ -1299,9 +1420,9 @@ enum ArkUI_ScrollBarDisplayMode
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKUI_SCROLL_BAR_DISPLAY_MODE_OFF  | 不显示。 | 
-| ARKUI_SCROLL_BAR_DISPLAY_MODE_AUTO  | 按需显示(触摸时显示，2s后消失)。 | 
-| ARKUI_SCROLL_BAR_DISPLAY_MODE_ON  | 常驻显示。 | 
+| ARKUI_SCROLL_BAR_DISPLAY_MODE_OFF  | 不显示。&nbsp;&nbsp; | 
+| ARKUI_SCROLL_BAR_DISPLAY_MODE_AUTO  | 按需显示(触摸时显示，2s后消失)。&nbsp;&nbsp; | 
+| ARKUI_SCROLL_BAR_DISPLAY_MODE_ON  | 常驻显示。&nbsp;&nbsp; | 
 
 
 ### ArkUI_ScrollDirection
@@ -1317,9 +1438,9 @@ enum ArkUI_ScrollDirection
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKUI_SCROLL_DIRECTION_VERTICAL  | 仅支持竖直方向滚动。 | 
-| ARKUI_SCROLL_DIRECTION_HORIZONTAL  | 仅支持水平方向滚动。 | 
-| ARKUI_SCROLL_DIRECTION_NONE  | 禁止滚动。 | 
+| ARKUI_SCROLL_DIRECTION_VERTICAL  | 仅支持竖直方向滚动。&nbsp;&nbsp; | 
+| ARKUI_SCROLL_DIRECTION_HORIZONTAL  | 仅支持水平方向滚动。&nbsp;&nbsp; | 
+| ARKUI_SCROLL_DIRECTION_NONE  | 禁止滚动。&nbsp;&nbsp; | 
 
 
 ### ArkUI_ScrollEdge
@@ -1335,10 +1456,10 @@ enum ArkUI_ScrollEdge
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKUI_SCROLL_EDGE_TOP  | 竖直方向上边缘。 | 
-| ARKUI_SCROLL_EDGE_BOTTOM  | 竖直方向下边缘。 | 
-| ARKUI_SCROLL_EDGE_START  | 水平方向起始位置。 | 
-| ARKUI_SCROLL_EDGE_END  | 水平方向末尾位置。 | 
+| ARKUI_SCROLL_EDGE_TOP  | 竖直方向上边缘。&nbsp;&nbsp; | 
+| ARKUI_SCROLL_EDGE_BOTTOM  | 竖直方向下边缘。&nbsp;&nbsp; | 
+| ARKUI_SCROLL_EDGE_START  | 水平方向起始位置。&nbsp;&nbsp; | 
+| ARKUI_SCROLL_EDGE_END  | 水平方向末尾位置。&nbsp;&nbsp; | 
 
 
 ### ArkUI_ScrollNestedMode
@@ -1354,10 +1475,10 @@ enum ArkUI_ScrollNestedMode
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKUI_SCROLL_NESTED_MODE_SELF_ONLY  | 只自身滚动，不与父组件联动。 | 
-| ARKUI_SCROLL_NESTED_MODE_SELF_FIRST  | 自身先滚动，自身滚动到边缘以后父组件滚动。父组件滚动到边缘以后 如果父组件有边缘效果，则父组件触发边缘效果，否则子组件触发边缘效果。 | 
-| ARKUI_SCROLL_NESTED_MODE_PARENT_FIRST  | 父组件先滚动，父组件滚动到边缘以后自身滚动。 身滚动到边缘后，如果有边缘效果，会触发自身的边缘效果，否则触发父组件的边缘效果。 | 
-| ARKUI_SCROLL_NESTED_MODE_PARALLEL  | 自身和父组件同时滚动，自身和父组件都到达边缘以后 如果自身有边缘效果，则自身触发边缘效果，否则父组件触发边缘效果。 | 
+| ARKUI_SCROLL_NESTED_MODE_SELF_ONLY  | 只自身滚动，不与父组件联动。&nbsp;&nbsp; | 
+| ARKUI_SCROLL_NESTED_MODE_SELF_FIRST  | 自身先滚动，自身滚动到边缘以后父组件滚动。父组件滚动到边缘以后 如果父组件有边缘效果，则父组件触发边缘效果，否则子组件触发边缘效果。&nbsp;&nbsp; | 
+| ARKUI_SCROLL_NESTED_MODE_PARENT_FIRST  | 父组件先滚动，父组件滚动到边缘以后自身滚动。 身滚动到边缘后，如果有边缘效果，会触发自身的边缘效果，否则触发父组件的边缘效果。&nbsp;&nbsp; | 
+| ARKUI_SCROLL_NESTED_MODE_PARALLEL  | 自身和父组件同时滚动，自身和父组件都到达边缘以后 如果自身有边缘效果，则自身触发边缘效果，否则父组件触发边缘效果。&nbsp;&nbsp; | 
 
 
 ### ArkUI_ScrollSnapAlign
@@ -1373,10 +1494,10 @@ enum ArkUI_ScrollSnapAlign
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKUI_SCROLL_SNAP_ALIGN_NONE  | 默认无项目滚动对齐效果。 | 
-| ARKUI_SCROLL_SNAP_ALIGN_START  | 视图中的第一项将在列表的开头对齐。 | 
-| ARKUI_SCROLL_SNAP_ALIGN_CENTER  | 视图中的中间项将在列表中心对齐。 | 
-| ARKUI_SCROLL_SNAP_ALIGN_END  | 视图中的最后一项将在列表末尾对齐。 | 
+| ARKUI_SCROLL_SNAP_ALIGN_NONE  | 默认无项目滚动对齐效果。&nbsp;&nbsp; | 
+| ARKUI_SCROLL_SNAP_ALIGN_START  | 视图中的第一项将在列表的开头对齐。&nbsp;&nbsp; | 
+| ARKUI_SCROLL_SNAP_ALIGN_CENTER  | 视图中的中间项将在列表中心对齐。&nbsp;&nbsp; | 
+| ARKUI_SCROLL_SNAP_ALIGN_END  | 视图中的最后一项将在列表末尾对齐。&nbsp;&nbsp; | 
 
 
 ### ArkUI_ShadowStyle
@@ -1392,12 +1513,12 @@ enum ArkUI_ShadowStyle
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKUI_SHADOW_STYLE_OUTER_DEFAULT_XS  | 超小阴影。 | 
-| ARKUI_SHADOW_STYLE_OUTER_DEFAULT_SM  | 小阴影。 | 
-| ARKUI_SHADOW_STYLE_OUTER_DEFAULT_MD  | 中阴影。 | 
-| ARKUI_SHADOW_STYLE_OUTER_DEFAULT_LG  | 大阴影。 | 
-| ARKUI_SHADOW_STYLE_OUTER_FLOATING_SM  | 浮动小阴影。 | 
-| ARKUI_SHADOW_STYLE_OUTER_FLOATING_MD  | 浮动中阴影。 | 
+| ARKUI_SHADOW_STYLE_OUTER_DEFAULT_XS  | 超小阴影。&nbsp;&nbsp; | 
+| ARKUI_SHADOW_STYLE_OUTER_DEFAULT_SM  | 小阴影。&nbsp;&nbsp; | 
+| ARKUI_SHADOW_STYLE_OUTER_DEFAULT_MD  | 中阴影。&nbsp;&nbsp; | 
+| ARKUI_SHADOW_STYLE_OUTER_DEFAULT_LG  | 大阴影。&nbsp;&nbsp; | 
+| ARKUI_SHADOW_STYLE_OUTER_FLOATING_SM  | 浮动小阴影。&nbsp;&nbsp; | 
+| ARKUI_SHADOW_STYLE_OUTER_FLOATING_MD  | 浮动中阴影。&nbsp;&nbsp; | 
 
 
 ### ArkUI_ShadowType
@@ -1413,8 +1534,8 @@ enum ArkUI_ShadowType
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKUI_SHADOW_TYPE_COLOR  | 颜色。 | 
-| ARKUI_SHADOW_TYPE_BLUR  | 模糊。 | 
+| ARKUI_SHADOW_TYPE_COLOR  | 颜色。&nbsp;&nbsp; | 
+| ARKUI_SHADOW_TYPE_BLUR  | 模糊。&nbsp;&nbsp; | 
 
 
 ### ArkUI_ShapeType
@@ -1430,10 +1551,10 @@ enum ArkUI_ShapeType
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKUI_SHAPE_TYPE_RECTANGLE  | 矩形类型。 | 
-| ARKUI_SHAPE_TYPE_CIRCLE  | 圆形类型。 | 
-| ARKUI_SHAPE_TYPE_ELLIPSE  | 椭圆形类型。 | 
-| ARKUI_SHAPE_TYPE_PATH  | 路径类型。 | 
+| ARKUI_SHAPE_TYPE_RECTANGLE  | 矩形类型。&nbsp;&nbsp; | 
+| ARKUI_SHAPE_TYPE_CIRCLE  | 圆形类型。&nbsp;&nbsp; | 
+| ARKUI_SHAPE_TYPE_ELLIPSE  | 椭圆形类型。&nbsp;&nbsp; | 
+| ARKUI_SHAPE_TYPE_PATH  | 路径类型。&nbsp;&nbsp; | 
 
 
 ### ArkUI_SliderBlockStyle
@@ -1449,9 +1570,9 @@ enum ArkUI_SliderBlockStyle
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKUI_SLIDER_BLOCK_STYLE_DEFAULT  | 使用默认滑块（圆形）。 | 
-| ARKUI_SLIDER_BLOCK_STYLE_IMAGE  | 使用图片资源作为滑块。 | 
-| ARKUI_SLIDER_BLOCK_STYLE_SHAPE  | 使用自定义形状作为滑块。 | 
+| ARKUI_SLIDER_BLOCK_STYLE_DEFAULT  | 使用默认滑块（圆形）。&nbsp;&nbsp; | 
+| ARKUI_SLIDER_BLOCK_STYLE_IMAGE  | 使用图片资源作为滑块。&nbsp;&nbsp; | 
+| ARKUI_SLIDER_BLOCK_STYLE_SHAPE  | 使用自定义形状作为滑块。&nbsp;&nbsp; | 
 
 
 ### ArkUI_SliderDirection
@@ -1467,8 +1588,8 @@ enum ArkUI_SliderDirection
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKUI_SLIDER_DIRECTION_VERTICAL  | 方向为纵向。 | 
-| ARKUI_SLIDER_DIRECTION_HORIZONTAL  | 方向为横向。 | 
+| ARKUI_SLIDER_DIRECTION_VERTICAL  | 方向为纵向。&nbsp;&nbsp; | 
+| ARKUI_SLIDER_DIRECTION_HORIZONTAL  | 方向为横向。&nbsp;&nbsp; | 
 
 
 ### ArkUI_SliderStyle
@@ -1484,8 +1605,8 @@ enum ArkUI_SliderStyle
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKUI_SLIDER_STYLE_OUT_SET  | 滑块在滑轨上。 | 
-| ARKUI_SLIDER_STYLE_IN_SET  | 滑块在滑轨内。 | 
+| ARKUI_SLIDER_STYLE_OUT_SET  | 滑块在滑轨上。&nbsp;&nbsp; | 
+| ARKUI_SLIDER_STYLE_IN_SET  | 滑块在滑轨内。&nbsp;&nbsp; | 
 
 
 ### ArkUI_StickyStyle
@@ -1501,10 +1622,10 @@ enum ArkUI_StickyStyle
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKUI_STICKY_STYLE_NONE  | ListItemGroup的header不吸顶，footer不吸底。 | 
-| ARKUI_STICKY_STYLE_HEADER  | ListItemGroup的header吸顶，footer不吸底。 | 
-| ARKUI_STICKY_STYLE_FOOTER  | ListItemGroup的footer吸底，header不吸顶。 | 
-| ARKUI_STICKY_STYLE_BOTH  | ListItemGroup的footer吸底，header吸顶。 | 
+| ARKUI_STICKY_STYLE_NONE  | ListItemGroup的header不吸顶，footer不吸底。&nbsp;&nbsp; | 
+| ARKUI_STICKY_STYLE_HEADER  | ListItemGroup的header吸顶，footer不吸底。&nbsp;&nbsp; | 
+| ARKUI_STICKY_STYLE_FOOTER  | ListItemGroup的footer吸底，header不吸顶。&nbsp;&nbsp; | 
+| ARKUI_STICKY_STYLE_BOTH  | ListItemGroup的footer吸底，header吸顶。&nbsp;&nbsp; | 
 
 
 ### ArkUI_SwiperArrow
@@ -1520,9 +1641,9 @@ Swiper导航点箭头枚举值。
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKUI_SWIPER_ARROW_HIDE  | 不显示swiper中导航点箭头。 | 
-| ARKUI_SWIPER_ARROW_SHOW  | 显示swiper中导航点箭头。 | 
-| ARKUI_SWIPER_ARROW_SHOW_ON_HOVER  | 在hover状态下显示swiper中导航点箭头。 | 
+| ARKUI_SWIPER_ARROW_HIDE  | 不显示swiper中导航点箭头。&nbsp;&nbsp; | 
+| ARKUI_SWIPER_ARROW_SHOW  | 显示swiper中导航点箭头。&nbsp;&nbsp; | 
+| ARKUI_SWIPER_ARROW_SHOW_ON_HOVER  | 在hover状态下显示swiper中导航点箭头。&nbsp;&nbsp; | 
 
 
 ### ArkUI_TextAlignment
@@ -1538,10 +1659,29 @@ enum ArkUI_TextAlignment
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKUI_TEXT_ALIGNMENT_START  | 水平对齐首部。 | 
-| ARKUI_TEXT_ALIGNMENT_CENTER  | 水平居中对齐。 | 
-| ARKUI_TEXT_ALIGNMENT_END  | 水平对齐尾部。 | 
-| ARKUI_TEXT_ALIGNMENT_JUSTIFY  | 双端对齐。 | 
+| ARKUI_TEXT_ALIGNMENT_START  | 水平对齐首部。&nbsp;&nbsp; | 
+| ARKUI_TEXT_ALIGNMENT_CENTER  | 水平居中对齐。&nbsp;&nbsp; | 
+| ARKUI_TEXT_ALIGNMENT_END  | 水平对齐尾部。&nbsp;&nbsp; | 
+| ARKUI_TEXT_ALIGNMENT_JUSTIFY  | 双端对齐。&nbsp;&nbsp; | 
+
+
+### ArkUI_TextAreaType
+
+```
+enum ArkUI_TextAreaType
+```
+**描述：**
+
+定义多行文本输入法类型枚举值。
+
+**起始版本：** 12
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| ARKUI_TEXTAREA_TYPE_NORMAL  | 基本输入模式。&nbsp;&nbsp; | 
+| ARKUI_TEXTAREA_TYPE_NUMBER  | 纯数字模式。&nbsp;&nbsp; | 
+| ARKUI_TEXTAREA_TYPE_PHONE_NUMBER  | 电话号码输入模式。&nbsp;&nbsp; | 
+| ARKUI_TEXTAREA_TYPE_EMAIL  | 邮箱地址输入模式。&nbsp;&nbsp; | 
 
 
 ### ArkUI_TextCase
@@ -1557,9 +1697,9 @@ enum ArkUI_TextCase
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKUI_TEXT_CASE_NORMAL  | 保持原有大小写。 | 
-| ARKUI_TEXT_CASE_LOWER  | 文本全小写。 | 
-| ARKUI_TEXT_CASE_UPPER  | 文本全大写。 | 
+| ARKUI_TEXT_CASE_NORMAL  | 保持原有大小写。&nbsp;&nbsp; | 
+| ARKUI_TEXT_CASE_LOWER  | 文本全小写。&nbsp;&nbsp; | 
+| ARKUI_TEXT_CASE_UPPER  | 文本全大写。&nbsp;&nbsp; | 
 
 
 ### ArkUI_TextCopyOptions
@@ -1575,10 +1715,10 @@ enum ArkUI_TextCopyOptions
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKUI_TEXT_COPY_OPTIONS_NONE  | 不支持复制。 | 
-| ARKUI_TEXT_COPY_OPTIONS_IN_APP  | 支持应用内复制。 | 
-| ARKUI_TEXT_COPY_OPTIONS_LOCAL_DEVICE  | 支持设备内复制。 | 
-| ARKUI_TEXT_COPY_OPTIONS_CROSS_DEVICE  | 支持跨设备复制。 | 
+| ARKUI_TEXT_COPY_OPTIONS_NONE  | 不支持复制。&nbsp;&nbsp; | 
+| ARKUI_TEXT_COPY_OPTIONS_IN_APP  | 支持应用内复制。&nbsp;&nbsp; | 
+| ARKUI_TEXT_COPY_OPTIONS_LOCAL_DEVICE  | 支持设备内复制。&nbsp;&nbsp; | 
+| ARKUI_TEXT_COPY_OPTIONS_CROSS_DEVICE  | 支持跨设备复制。&nbsp;&nbsp; | 
 
 
 ### ArkUI_TextDecorationType
@@ -1594,10 +1734,10 @@ enum ArkUI_TextDecorationType
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKUI_TEXT_DECORATION_TYPE_NONE  | 不使用装饰线。 | 
-| ARKUI_TEXT_DECORATION_TYPE_UNDERLINE  | 文字下划线修饰。 | 
-| ARKUI_TEXT_DECORATION_TYPE_OVERLINE  | 文字上划线修饰。 | 
-| ARKUI_TEXT_DECORATION_TYPE_LINE_THROUGH  | 穿过文本的修饰线。 | 
+| ARKUI_TEXT_DECORATION_TYPE_NONE  | 不使用装饰线。&nbsp;&nbsp; | 
+| ARKUI_TEXT_DECORATION_TYPE_UNDERLINE  | 文字下划线修饰。&nbsp;&nbsp; | 
+| ARKUI_TEXT_DECORATION_TYPE_OVERLINE  | 文字上划线修饰。&nbsp;&nbsp; | 
+| ARKUI_TEXT_DECORATION_TYPE_LINE_THROUGH  | 穿过文本的修饰线。&nbsp;&nbsp; | 
 
 
 ### ArkUI_TextHeightAdaptivePolicy
@@ -1613,9 +1753,9 @@ enum ArkUI_TextHeightAdaptivePolicy
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKUI_TEXT_HEIGHT_ADAPTIVE_POLICY_MAX_LINES_FIRST  | 设置文本高度自适应方式为以MaxLines优先。 | 
-| ARKUI_TEXT_HEIGHT_ADAPTIVE_POLICY_MIN_FONT_SIZE_FIRST  | 设置文本高度自适应方式为以缩小字体优先。 | 
-| ARKUI_TEXT_HEIGHT_ADAPTIVE_POLICY_LAYOUT_CONSTRAINT_FIRST  | 设置文本高度自适应方式为以布局约束（高度）优先。 | 
+| ARKUI_TEXT_HEIGHT_ADAPTIVE_POLICY_MAX_LINES_FIRST  | 设置文本高度自适应方式为以MaxLines优先。&nbsp;&nbsp; | 
+| ARKUI_TEXT_HEIGHT_ADAPTIVE_POLICY_MIN_FONT_SIZE_FIRST  | 设置文本高度自适应方式为以缩小字体优先。&nbsp;&nbsp; | 
+| ARKUI_TEXT_HEIGHT_ADAPTIVE_POLICY_LAYOUT_CONSTRAINT_FIRST  | 设置文本高度自适应方式为以布局约束（高度）优先。&nbsp;&nbsp; | 
 
 
 ### ArkUI_TextInputType
@@ -1631,16 +1771,16 @@ enum ArkUI_TextInputType
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKUI_TEXTINPUT_TYPE_NORMAL  | 基本输入模式。 | 
-| ARKUI_TEXTINPUT_TYPE_NUMBER  | 纯数字模式。 | 
-| ARKUI_TEXTINPUT_TYPE_PHONE_NUMBER  | 电话号码输入模式。 | 
-| ARKUI_TEXTINPUT_TYPE_EMAIL  | 邮箱地址输入模式。 | 
-| ARKUI_TEXTINPUT_TYPE_PASSWORD  | 密码输入模式。 | 
-| ARKUI_TEXTINPUT_TYPE_NUMBER_PASSWORD  | 纯数字密码输入模式。 | 
-| ARKUI_TEXTINPUT_TYPE_SCREEN_LOCK_PASSWORD  | 锁屏应用密码输入模式。 | 
-| ARKUI_TEXTINPUT_TYPE_USER_NAME  | 用户名输入模式。 | 
-| ARKUI_TEXTINPUT_TYPE_NEW_PASSWORD  | 新密码输入模式。 | 
-| ARKUI_TEXTINPUT_TYPE_NUMBER_DECIMAL  | 带小数点的数字输入模式。 | 
+| ARKUI_TEXTINPUT_TYPE_NORMAL  | 基本输入模式。&nbsp;&nbsp; | 
+| ARKUI_TEXTINPUT_TYPE_NUMBER  | 纯数字模式。&nbsp;&nbsp; | 
+| ARKUI_TEXTINPUT_TYPE_PHONE_NUMBER  | 电话号码输入模式。&nbsp;&nbsp; | 
+| ARKUI_TEXTINPUT_TYPE_EMAIL  | 邮箱地址输入模式。&nbsp;&nbsp; | 
+| ARKUI_TEXTINPUT_TYPE_PASSWORD  | 密码输入模式。&nbsp;&nbsp; | 
+| ARKUI_TEXTINPUT_TYPE_NUMBER_PASSWORD  | 纯数字密码输入模式。&nbsp;&nbsp; | 
+| ARKUI_TEXTINPUT_TYPE_SCREEN_LOCK_PASSWORD  | 锁屏应用密码输入模式。&nbsp;&nbsp; | 
+| ARKUI_TEXTINPUT_TYPE_USER_NAME  | 用户名输入模式。&nbsp;&nbsp; | 
+| ARKUI_TEXTINPUT_TYPE_NEW_PASSWORD  | 新密码输入模式。&nbsp;&nbsp; | 
+| ARKUI_TEXTINPUT_TYPE_NUMBER_DECIMAL  | 带小数点的数字输入模式。&nbsp;&nbsp; | 
 
 
 ### ArkUI_TextOverflow
@@ -1656,10 +1796,10 @@ enum ArkUI_TextOverflow
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKUI_TEXT_OVERFLOW_NONE  | 文本超长时不裁剪显示。 | 
-| ARKUI_TEXT_OVERFLOW_CLIP  | 文本超长时进行裁剪显示。 | 
-| ARKUI_TEXT_OVERFLOW_ELLIPSIS  | 文本超长时显示不下的文本用省略号代替。 | 
-| ARKUI_TEXT_OVERFLOW_MARQUEE  | 文本超长时以跑马灯的方式展示。 | 
+| ARKUI_TEXT_OVERFLOW_NONE  | 文本超长时不裁剪显示。&nbsp;&nbsp; | 
+| ARKUI_TEXT_OVERFLOW_CLIP  | 文本超长时进行裁剪显示。&nbsp;&nbsp; | 
+| ARKUI_TEXT_OVERFLOW_ELLIPSIS  | 文本超长时显示不下的文本用省略号代替。&nbsp;&nbsp; | 
+| ARKUI_TEXT_OVERFLOW_MARQUEE  | 文本超长时以跑马灯的方式展示。&nbsp;&nbsp; | 
 
 
 ### ArkUI_TextPickerRangeType
@@ -1675,10 +1815,29 @@ enum ArkUI_TextPickerRangeType
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKUI_TEXTPICKER_RANGETYPE_SINGLE  | 单列数据选择器。 | 
-| ARKUI_TEXTPICKER_RANGETYPE_MULTI  | 多列数据选择器。 | 
-| ARKUI_TEXTPICKER_RANGETYPE_RANGE_CONTENT  | 支持图片资源的单列数据选择器。 | 
-| ARKUI_TEXTPICKER_RANGETYPE_CASCADE_RANGE_CONTENT  | 支持联动的多列数据选择器。 | 
+| ARKUI_TEXTPICKER_RANGETYPE_SINGLE  | 单列数据选择器。&nbsp;&nbsp; | 
+| ARKUI_TEXTPICKER_RANGETYPE_MULTI  | 多列数据选择器。&nbsp;&nbsp; | 
+| ARKUI_TEXTPICKER_RANGETYPE_RANGE_CONTENT  | 支持图片资源的单列数据选择器。&nbsp;&nbsp; | 
+| ARKUI_TEXTPICKER_RANGETYPE_CASCADE_RANGE_CONTENT  | 支持联动的多列数据选择器。&nbsp;&nbsp; | 
+
+
+### ArkUI_TransitionEdge
+
+```
+enum ArkUI_TransitionEdge
+```
+**描述：**
+
+定义转场从边缘滑入和滑出的效果。
+
+**起始版本：** 12
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| ARKUI_TRANSITION_EDGE_TOP  | 窗口的上边缘。&nbsp;&nbsp; | 
+| ARKUI_TRANSITION_EDGE_BOTTOM  | 窗口的下边缘。&nbsp;&nbsp; | 
+| ARKUI_TRANSITION_EDGE_START  | 窗口的左边缘。&nbsp;&nbsp; | 
+| ARKUI_TRANSITION_EDGE_END  | 窗口的右边缘。&nbsp;&nbsp; | 
 
 
 ### ArkUI_VerticalAlignment
@@ -1686,19 +1845,17 @@ enum ArkUI_TextPickerRangeType
 ```
 enum ArkUI_VerticalAlignment
 ```
-
 **描述：**
 
 定义垂直对齐方式。
-
 
 **起始版本：** 12
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKUI_VERTICAL_ALIGNMENT_TOP  | 顶部对齐。 | 
-| ARKUI_VERTICAL_ALIGNMENT_CENTER  | 居中对齐，默认对齐方式。 | 
-| ARKUI_VERTICAL_ALIGNMENT_BOTTOM  | 底部对齐。 | 
+| ARKUI_VERTICAL_ALIGNMENT_TOP  | 顶部对齐。&nbsp;&nbsp; | 
+| ARKUI_VERTICAL_ALIGNMENT_CENTER  | 居中对齐，默认对齐方式。&nbsp;&nbsp; | 
+| ARKUI_VERTICAL_ALIGNMENT_BOTTOM  | 底部对齐。&nbsp;&nbsp; | 
 
 
 ### ArkUI_Visibility
@@ -1714,9 +1871,27 @@ enum ArkUI_Visibility
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKUI_VISIBILITY_VISIBLE  | 显示。 | 
-| ARKUI_VISIBILITY_HIDDEN  | 隐藏，但参与布局进行占位。 | 
-| ARKUI_VISIBILITY_NONE  | 隐藏，但不参与布局，不进行占位。 | 
+| ARKUI_VISIBILITY_VISIBLE  | 显示。&nbsp;&nbsp; | 
+| ARKUI_VISIBILITY_HIDDEN  | 隐藏，但参与布局进行占位。&nbsp;&nbsp; | 
+| ARKUI_VISIBILITY_NONE  | 隐藏，但不参与布局，不进行占位。&nbsp;&nbsp; | 
+
+
+### ArkUI_WordBreak
+
+```
+enum ArkUI_WordBreak
+```
+**描述：**
+
+定义文本断行规则。
+
+**起始版本：** 12
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| ARKUI_WORD_BREAK_NORMAL  | CJK(中文、日文、韩文)文本可以在任意2个字符间断行，而Non-CJK文本（如英文等）只能在空白符处断行。&nbsp;&nbsp; | 
+| ARKUI_WORD_BREAK_BREAK_ALL  | 对于Non-CJK的文本，可在任意2个字符间断行。CJK(中文、日文、韩文)文本可以在任意2个字符间断行。&nbsp;&nbsp; | 
+| ARKUI_WORD_BREAK_BREAK_WORD  | 对于Non-CJK的文本可在任意2个字符间断行，一行文本中有断行破发点（如空白符）时，优先按破发点换行。 CJK(中文、日文、韩文)文本可以在任意2个字符间断行&nbsp;&nbsp; | 
 
 
 ### ArkUI_XComponentType
@@ -1732,8 +1907,45 @@ enum ArkUI_XComponentType
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKUI_XCOMPONENT_TYPE_SURFACE  | 用于EGL/OpenGLES和媒体数据写入，开发者定制绘制内容单独显示在屏幕上。 | 
-| ARKUI_XCOMPONENT_TYPE_TEXTURE  | 用于EGL/OpenGLES和媒体数据写入，开发者定制绘制内容和XComponent组件内容合成后展示在屏幕上。 | 
+| ARKUI_XCOMPONENT_TYPE_SURFACE  | 用于EGL/OpenGLES和媒体数据写入，开发者定制绘制内容单独显示在屏幕上。&nbsp;&nbsp; | 
+| ARKUI_XCOMPONENT_TYPE_TEXTURE  | 用于EGL/OpenGLES和媒体数据写入，开发者定制绘制内容和XComponent组件内容合成后展示在屏幕上。&nbsp;&nbsp; | 
+
+
+### HitTestMode
+
+```
+enum HitTestMode
+```
+**描述：**
+
+定义触摸测试类型的枚举值。
+
+**起始版本：** 12
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| HTMDEFAULT  | 默认触摸测试效果，自身和子节点都响应触摸测试，但会阻塞兄弟节点的触摸测试。&nbsp;&nbsp; | 
+| HTMBLOCK  | 自身响应触摸测试，阻塞子节点和兄弟节点的触摸测试。&nbsp;&nbsp; | 
+| HTMTRANSPARENT  | 自身和子节点都响应触摸测试，不会阻塞兄弟节点的触摸测试。&nbsp;&nbsp; | 
+| HTMNONE  | 自身不响应触摸测试，不会阻塞子节点和兄弟节点的触摸测试。&nbsp;&nbsp; | 
+
+
+
+### ArkUI_DismissReason
+
+```
+enum ArkUI_DismissReason
+```
+**描述：**
+
+弹窗关闭的触发方式。
+
+**起始版本：** 12
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| DIALOG_DISMISS_BACK_PRESS  | 系统定义的返回操作、键盘ESC触发。&nbsp;&nbsp; | 
+| DIALOG_DISMISS_TOUCH_OUTSIDE  | 点击遮障层触发。&nbsp;&nbsp; | 
 
 
 ## 函数说明
@@ -1759,7 +1971,31 @@ ArkUI_AnyNativeAPI* OH_ArkUI_GetNativeAPI (ArkUI_NativeAPIVariantKind type, int3
 
 **返回：**
 
-返回携带版本的Native接口抽象对象。 
+返回携带版本的Native接口抽象对象。
+
+
+### OH_ArkUI_GetNodeHandleFromNapiValue()
+
+```
+int32_t OH_ArkUI_GetNodeHandleFromNapiValue (napi_env env, napi_value frameNode, ArkUI_NodeHandle * handle )
+```
+**描述：**
+
+获取ArkTS侧创建的FrameNode节点对象映射到native侧的ArkUI_NodeHandle。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| env | napi的环境指针。  | 
+| frameNode | ArkTS侧创建的FrameNode对象。  | 
+| handle | ArkUI_NodeHandle指针。  | 
+
+**返回：**
+
+0 - 成功。 401 - 函数参数异常。
 
 
 ### OH_ArkUI_QueryModuleInterface()
@@ -1783,3 +2019,421 @@ ArkUI_AnyNativeAPI* OH_ArkUI_QueryModuleInterface (ArkUI_NativeAPIVariantKind ty
 **返回：**
 
 返回携带版本的Native接口抽象对象。 
+
+
+
+## 变量说明
+
+
+### close
+
+```
+int32_t(* ArkUI_NativeDialogAPI_1::close) (ArkUI_NativeDialogHandle handle)
+```
+**描述：**
+
+关闭自定义弹窗，如已关闭，则不生效。
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| handle | 指向自定义弹窗控制器的指针。  | 
+
+**返回：**
+
+返回错误码，0 - 成功， 401 - 参数错误。
+
+
+### create
+
+```
+ArkUI_NativeDialogHandle(* ArkUI_NativeDialogAPI_1::create) ()
+```
+**描述：**
+
+创建自定义弹窗并返回指向自定义弹窗的指针。
+
+**注解：**
+
+create方法需要在调用show方法之前调用。
+
+**返回：**
+
+返回指向自定义弹窗的指针，如创建失败，返回空指针。
+
+
+### dispose
+
+```
+void(* ArkUI_NativeDialogAPI_1::dispose) (ArkUI_NativeDialogHandle handle)
+```
+**描述：**
+
+销毁自定义弹窗。
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| handle | 指向自定义弹窗控制器的指针。  | 
+
+
+### enableCustomAnimation
+
+```
+int32_t(* ArkUI_NativeDialogAPI_1::enableCustomAnimation) (ArkUI_NativeDialogHandle handle, bool enableCustomAnimation)
+```
+**描述：**
+
+弹窗容器是否使用自定义弹窗动画。
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| handle | 指向自定义弹窗控制器的指针。  | 
+| enableCustomAnimation | true:使用自定义动画，关闭系统默认动画；false:使用系统默认动画。  | 
+
+**注解：**
+
+enableCustomAnimation方法需要在调用show方法之前调用。
+
+**返回：**
+
+返回错误码，0 - 成功， 401 - 参数错误。
+
+
+### enableCustomStyle
+
+```
+int32_t(* ArkUI_NativeDialogAPI_1::enableCustomStyle) (ArkUI_NativeDialogHandle handle, bool enableCustomStyle)
+```
+**描述：**
+
+弹窗容器样式是否自定义。
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| handle | 指向自定义弹窗控制器的指针。  | 
+| enableCustomStyle | true:宽度自适应子节点，圆角为0，弹窗背景色透明；false:高度自适应子节点，宽度由栅格系统定义, 圆角半径24vp。  | 
+
+**注解：**
+
+enableCustomStyle方法需要在调用show方法之前调用。
+
+**返回：**
+
+返回错误码，0 - 成功， 401 - 参数错误。
+
+
+### registerOnWillDismiss
+
+```
+int32_t(* ArkUI_NativeDialogAPI_1::registerOnWillDismiss) (ArkUI_NativeDialogHandle handle, OnWillDismissEvent eventHandler)
+```
+**描述：**
+
+当触发系统定义的返回操作、键盘ESC关闭交互操作时，如果注册该回调函数，则不会立刻关闭弹窗，是否关闭由用户自行决定。
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| handle | 指向自定义弹窗控制器的指针。  | 
+| eventHandler | 弹窗关闭的回调函数 参数类型{\@Link OnWillDismissEvent}。  | 
+
+**注解：**
+
+registerOnWillDismiss方法需要在调用show方法之前调用。
+
+**返回：**
+
+返回错误码，0 - 成功， 401 - 参数错误。
+
+
+### removeContent
+
+```
+int32_t(* ArkUI_NativeDialogAPI_1::removeContent) (ArkUI_NativeDialogHandle handle)
+```
+**描述：**
+
+卸载自定义弹窗内容。
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| handle | 指向自定义弹窗控制器的指针。  | 
+
+**注解：**
+
+removeContent方法需要在调用show方法之前调用。
+
+**返回：**
+
+返回错误码，0 - 成功， 401 - 参数错误。
+
+
+### resetContentAlignment
+
+```
+int32_t(* ArkUI_NativeDialogAPI_1::resetContentAlignment) (ArkUI_NativeDialogHandle handle)
+```
+**描述：**
+
+重置setContentAlignment方法设置的属性，使用系统默认的对齐方式。
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| handle | 指向自定义弹窗控制器的指针。  | 
+
+**注解：**
+
+resetContentAlignment方法需要在调用show方法之前调用。
+
+**返回：**
+
+返回错误码，0 - 成功， 401 - 参数错误。
+
+
+### setAutoCancel
+
+```
+int32_t(* ArkUI_NativeDialogAPI_1::setAutoCancel) (ArkUI_NativeDialogHandle handle, bool autoCancel)
+```
+**描述：**
+
+设置自定义弹窗是否允许点击遮罩层退出。
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| handle | 指向自定义弹窗控制器的指针。  | 
+| autoCancel | 设置是否允许点击遮罩层退出，true表示关闭弹窗，false表示不关闭弹窗。  | 
+
+**注解：**
+
+setAutoCancel方法需要在调用show方法之前调用。
+
+**返回：**
+
+返回错误码，0 - 成功， 401 - 参数错误。
+
+
+### setBackgroundColor
+
+```
+int32_t(* ArkUI_NativeDialogAPI_1::setBackgroundColor) (ArkUI_NativeDialogHandle handle, uint32_t backgroundColor)
+```
+**描述：**
+
+设置弹窗背景色。
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| handle | 指向自定义弹窗控制器的指针。  | 
+| backgroundColor | 设置弹窗背景颜色，0xargb格式。  | 
+
+**注解：**
+
+setBackgroundColor方法需要在调用show方法之前调用。
+
+**返回：**
+
+返回错误码，0 - 成功， 401 - 参数错误。
+
+
+### setContent
+
+```
+int32_t(* ArkUI_NativeDialogAPI_1::setContent) (ArkUI_NativeDialogHandle handle, ArkUI_NodeHandle content)
+```
+**描述：**
+
+挂载自定义弹窗内容。
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| handle | 指向自定义弹窗控制器的指针。  | 
+| content | 弹窗内容根节点指针。  | 
+
+**注解：**
+
+setContent方法需要在调用show方法之前调用。
+
+**返回：**
+
+返回错误码，0 - 成功， 401 - 参数错误。
+
+
+### setContentAlignment
+
+```
+int32_t(* ArkUI_NativeDialogAPI_1::setContentAlignment) (ArkUI_NativeDialogHandle handle, int32_t alignment, float offsetX, float offsetY)
+```
+**描述：**
+
+为自定义弹窗设置对齐方式。
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| handle | 指向自定义弹窗控制器的指针。  | 
+| alignment | 对齐方式，参数类型{\@Link ArkUI_Alignment}。  | 
+| offsetX | 弹窗的水平偏移量，浮点型。  | 
+| offsetY | 弹窗的垂直偏移量，浮点型。  | 
+
+**注解：**
+
+setContentAlignment方法需要在调用show方法之前调用。
+
+**返回：**
+
+返回错误码，0 - 成功， 401 - 参数错误。
+
+
+### setCornerRadius
+
+```
+int32_t(* ArkUI_NativeDialogAPI_1::setCornerRadius) (ArkUI_NativeDialogHandle handle, float topLeft, float topRight, float bottomLeft, float bottomRight)
+```
+**描述：**
+
+设置弹窗背板圆角半径。
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| handle | 指向自定义弹窗控制器的指针。  | 
+| topLeft | 设置弹窗背板左上角圆角半径。  | 
+| topRight | 设置弹窗背板右上角圆角半径。  | 
+| bottomLeft | 设置弹窗背板左下圆角半径。  | 
+| bottomRight | 设置弹窗背板右下角圆角半径。  | 
+
+**注解：**
+
+setCornerRadius方法需要在调用show方法之前调用。
+
+**返回：**
+
+返回错误码，0 - 成功， 401 - 参数错误。
+
+
+### setGridColumnCount
+
+```
+int32_t(* ArkUI_NativeDialogAPI_1::setGridColumnCount) (ArkUI_NativeDialogHandle handle, int32_t gridCount)
+```
+**描述：**
+
+弹窗宽度占栅格宽度的个数。
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| handle | 指向自定义弹窗控制器的指针。  | 
+| gridCount | 默认为按照窗口大小自适应，最大栅格数为系统最大栅格数。  | 
+
+**注解：**
+
+setGridColumnCount方法需要在调用show方法之前调用。
+
+**返回：**
+
+返回错误码，0 - 成功， 401 - 参数错误。
+
+
+### setMask
+
+```
+int32_t(* ArkUI_NativeDialogAPI_1::setMask) (ArkUI_NativeDialogHandle handle, uint32_t maskColor, const ArkUI_Rect *maskRect)
+```
+**描述：**
+
+设置自定义弹窗遮罩属性。
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| handle | 指向自定义弹窗控制器的指针。  | 
+| maskColor | 设置遮罩颜色，0xargb格式。  | 
+| maskRect | 遮蔽层区域范围的指针，遮蔽层区域内的事件不透传，在遮蔽层区域外的事件透传。参数类型{\@Link ArkUI_Rect}。  | 
+
+**注解：**
+
+setMask方法需要在调用show方法之前调用。
+
+**返回：**
+
+返回错误码，0 - 成功， 401 - 参数错误。
+
+
+### setModalMode
+
+```
+int32_t(* ArkUI_NativeDialogAPI_1::setModalMode) (ArkUI_NativeDialogHandle handle, bool isModal)
+```
+**描述：**
+
+设置自定义弹窗是否开启模态样式的弹窗。
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| handle | 指向自定义弹窗控制器的指针。  | 
+| isModal | 设置是否开启模态窗口，模态窗口有蒙层，非模态窗口无蒙层，为true时开启模态窗口。  | 
+
+**注解：**
+
+setModalMode方法需要在调用show方法之前调用。
+
+**返回：**
+
+返回错误码，0 - 成功， 401 - 参数错误。
+
+
+### show
+
+```
+int32_t(* ArkUI_NativeDialogAPI_1::show) (ArkUI_NativeDialogHandle handle, bool showInSubWindow)
+```
+**描述：**
+
+显示自定义弹窗。
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| handle | 指向自定义弹窗控制器的指针。  | 
+| showInSubWindow | 是否在子窗口显示弹窗。  | 
+
+**返回：**
+
+返回错误码，0 - 成功， 401 - 参数错误。
+
+
+### version
+
+```
+int32_t ArkUI_NativeDialogAPI_1::version
+```
+**描述：**
+
+结构体版本。

@@ -36,6 +36,7 @@ This module does not provide the pixel unit. The pixel unit to use is consistent
 | [drawing_pen.h](drawing__pen_8h.md) | Declares the functions related to the pen in the drawing module.| 
 | [drawing_point.h](drawing__point_8h.md) | Declares the functions related to the coordinate point in the drawing module.| 
 | [drawing_rect.h](drawing__rect_8h.md) | Declares the functions related to the rectangle in the drawing module.| 
+| [drawing_register_font.h](drawing__register__font_8h.md) | Declares the functions related to the font manager in the drawing module.| 
 | [drawing_round_rect.h](drawing__round__rect_8h.md) | Declares the functions related to the rounded rectangle in the drawing module.| 
 | [drawing_sampling_options.h](drawing__sampling__options_8h.md) | Declares the functions related to the sampling options in the drawing module. It is used for image or texture sampling.| 
 | [drawing_shader_effect.h](drawing__shader__effect_8h.md) | Declares the functions related to the shader effect in the drawing module.| 
@@ -302,6 +303,8 @@ This module does not provide the pixel unit. The pixel unit to use is consistent
 | void [OH_Drawing_PointDestroy](#oh_drawing_pointdestroy) ([OH_Drawing_Point](#oh_drawing_point) \*) | Destroys an **OH_Drawing_Point** object and reclaims the memory occupied by the object.| 
 | [OH_Drawing_Rect](#oh_drawing_rect) \* [OH_Drawing_RectCreate](#oh_drawing_rectcreate) (float left, float top, float right, float bottom) | Creates an **OH_Drawing_Rect** object.| 
 | void [OH_Drawing_RectDestroy](#oh_drawing_rectdestroy) ([OH_Drawing_Rect](#oh_drawing_rect) \*) | Destroys an **OH_Drawing_Rect** object and reclaims the memory occupied by the object.| 
+| uint32_t [OH_Drawing_RegisterFont](#oh_drawing_registerfont) ([OH_Drawing_FontCollection](#oh_drawing_fontcollection) \*, const char \*fontFamily, const char \*familySrc) | Registers a custom font with the font manager.| 
+| uint32_t [OH_Drawing_RegisterFontBuffer](#oh_drawing_registerfontbuffer) ([OH_Drawing_FontCollection](#oh_drawing_fontcollection) \*, const char \*fontFamily, uint8_t \*fontBuffer, size_t length) | Registers a font buffer with the font manager.|
 | [OH_Drawing_RoundRect](#oh_drawing_roundrect) \* [OH_Drawing_RoundRectCreate](#oh_drawing_roundrectcreate) (const [OH_Drawing_Rect](#oh_drawing_rect) \*, float xRad, float yRad) | Creates an **OH_Drawing_RoundRect** object.| 
 | void [OH_Drawing_RoundRectDestroy](#oh_drawing_roundrectdestroy) ([OH_Drawing_RoundRect](#oh_drawing_roundrect) \*) | Destroys an **OH_Drawing_RoundRect** object and reclaims the memory occupied by the object.| 
 | [OH_Drawing_SamplingOptions](#oh_drawing_samplingoptions) \* [OH_Drawing_SamplingOptionsCreate](#oh_drawing_samplingoptionscreate) ([OH_Drawing_FilterMode](#oh_drawing_filtermode), [OH_Drawing_MipmapMode](#oh_drawing_mipmapmode)) | Creates an **OH_Drawing_SamplingOptions** object.| 
@@ -311,7 +314,7 @@ This module does not provide the pixel unit. The pixel unit to use is consistent
 | [OH_Drawing_ShaderEffect](#oh_drawing_shadereffect) \* [OH_Drawing_ShaderEffectCreateSweepGradient](#oh_drawing_shadereffectcreatesweepgradient) (const [OH_Drawing_Point](#oh_drawing_point) \*centerPt, const uint32_t \*colors, const float \*pos, uint32_t size, [OH_Drawing_TileMode](#oh_drawing_tilemode)) | Creates an **OH_Drawing_ShaderEffect** object that generates a sweep gradient based on the center.| 
 | void [OH_Drawing_ShaderEffectDestroy](#oh_drawing_shadereffectdestroy) ([OH_Drawing_ShaderEffect](#oh_drawing_shadereffect) \*) | Destroys an **OH_Drawing_ShaderEffect** object and reclaims the memory occupied by the object.| 
 | [OH_Drawing_TextBlobBuilder](#oh_drawing_textblobbuilder) \* [OH_Drawing_TextBlobBuilderCreate](#oh_drawing_textblobbuildercreate) (void) | Creates an **OH_Drawing_TextBlobBuilder** object.| 
-| [OH_Drawing_TextBlob](#oh_drawing_textblob) \* [OH_Drawing_TextBlobCreateFromText](#oh_drawing_textblobcreatefromtext) (const void \*text, size_t byteLength, const [OH_Drawing_Font](#oh_drawing_font) \*, [OH_Drawing_TextEncoding](#oh_drawing_textencoding)) | Creates an **OH_Drawing_TextBlob** object from text.| 
+| [OH_Drawing_TextBlob](#oh_drawing_textblob) \* [OH_Drawing_TextBlobCreateFromText](#oh_drawing_textblobcreatefromtext) (const void \*text, size_t byteLength, const [OH_Drawing_Font](#oh_drawing_font) \*, [OH_Drawing_TextEncoding](#oh_drawing_textencoding)) | Creates an **OH_Drawing_TextBlob** object from the text.| 
 | [OH_Drawing_TextBlob](#oh_drawing_textblob) \* [OH_Drawing_TextBlobCreateFromPosText](#oh_drawing_textblobcreatefrompostext) (const void \*text, size_t byteLength, [OH_Drawing_Point2D](_o_h___drawing___point2_d.md) \*, const [OH_Drawing_Font](#oh_drawing_font) \*, [OH_Drawing_TextEncoding](#oh_drawing_textencoding)) | Creates an **OH_Drawing_TextBlob** object from the text and text position.| 
 | [OH_Drawing_TextBlob](#oh_drawing_textblob) \* [OH_Drawing_TextBlobCreateFromString](#oh_drawing_textblobcreatefromstring) (const char \*str, const [OH_Drawing_Font](#oh_drawing_font) \*, [OH_Drawing_TextEncoding](#oh_drawing_textencoding)) | Creates an **OH_Drawing_TextBlob** object from a string.| 
 | void [OH_Drawing_TextBlobGetBounds](#oh_drawing_textblobgetbounds) ([OH_Drawing_TextBlob](#oh_drawing_textblob) \*, [OH_Drawing_Rect](#oh_drawing_rect) \*) | Obtains the bounds of an **OH_Drawing_TextBlob** object.| 
@@ -770,7 +773,7 @@ typedef struct OH_Drawing_LineMetrics OH_Drawing_LineMetrics
 
 **Description**
 
-Desfines a struct that decribes the measurement information about a line of text.
+Defines a struct that describes the measurement information about a line of text.
 
 **Since**: 12
 
@@ -1902,7 +1905,7 @@ Creates an **OH_Drawing_Bitmap** object, with the address of the memory for stor
 | Name| Description| 
 | -------- | -------- |
 | [OH_Drawing_Image_Info](_o_h___drawing___image___info.md) | Pointer to an [OH_Drawing_Image_Info](_o_h___drawing___image___info.md) object.| 
-| pixels | Point to the start address of the memory for storing the bitmap pixels. You need to apply for the memory and ensure its validity.| 
+| pixels | Pointer to the start address of the memory for storing the bitmap pixels. You need to apply for the memory and ensure its validity.| 
 | rowBytes | Size of pixels per row.| 
 
 **Returns**
@@ -2822,7 +2825,7 @@ Obtains the bounds of the cropping region of a canvas. This function cannot be u
 | Name| Description| 
 | -------- | -------- |
 | OH_Drawing_Canvas | Pointer to an [OH_Drawing_Canvas](#oh_drawing_canvas) object.| 
-| OH_Drawing_Rect | Pointer to an [OH_Drawing_Rect](#oh_drawing_rect) object, which can be created by calling [OH_Drawing_RectCreate](#oh_drawing_rectcreate).| 
+| OH_Drawing_Rect | Pointer to an [OH_Drawing_Rect](#oh_drawing_rect) object, which is obtained by calling [OH_Drawing_RectCreate](#oh_drawing_rectcreate).| 
 
 
 ### OH_Drawing_CanvasGetSaveCount()
@@ -2869,7 +2872,7 @@ Obtains the 3x3 matrix of a canvas.
 | Name| Description| 
 | -------- | -------- |
 | OH_Drawing_Canvas | Pointer to an [OH_Drawing_Canvas](#oh_drawing_canvas) object.| 
-| OH_Drawing_Matrix | Pointer to an [OH_Drawing_Matrix](#oh_drawing_matrix) object, which can be created by calling [OH_Drawing_MatrixCreate](#oh_drawing_matrixcreate).| 
+| OH_Drawing_Matrix | Pointer to an [OH_Drawing_Matrix](#oh_drawing_matrix) object, which is obtained by calling [OH_Drawing_MatrixCreate](#oh_drawing_matrixcreate).| 
 
 
 ### OH_Drawing_CanvasGetWidth()
@@ -2894,7 +2897,7 @@ Obtains the canvas width.
 
 **Returns**
 
-Returns the canvas width, in pixels.
+Returns the canvas width, in px.
 
 
 ### OH_Drawing_CanvasReadPixels()
@@ -3108,7 +3111,7 @@ Sets the matrix status for a canvas.
 | Name| Description| 
 | -------- | -------- |
 | OH_Drawing_Canvas | Pointer to an [OH_Drawing_Canvas](#oh_drawing_canvas) object.| 
-| OH_Drawing_Matrix | Pointer to an [OH_Drawing_Matrix](#oh_drawing_matrix) object, which can be created by calling [OH_Drawing_MatrixCreate](#oh_drawing_matrixcreate).| 
+| OH_Drawing_Matrix | Pointer to an [OH_Drawing_Matrix](#oh_drawing_matrix) object, which is obtained by calling [OH_Drawing_MatrixCreate](#oh_drawing_matrixcreate).| 
 
 
 ### OH_Drawing_CanvasTranslate()
@@ -5025,7 +5028,7 @@ Adds an arc to a path as the start of a new contour. The arc added is part of th
 | OH_Drawing_Path | Pointer to an [OH_Drawing_Path](#oh_drawing_path) object.| 
 | OH_Drawing_Rect | Pointer to an [OH_Drawing_Rect](#oh_drawing_rect) object.| 
 | startAngle | Start angle of the arc, in degrees.| 
-| sweepAngle | Angle to sweep, in degrees. A positive number indicates clockwise sweep, and a negative number indicates counterclockwise sweep.| 
+| sweepAngle | Angle to sweep, in degrees. A positive number indicates a clockwise sweep, and a negative number indicates a counterclockwise sweep.| 
 
 
 ### OH_Drawing_PathAddPath()
@@ -5976,6 +5979,59 @@ Destroys an **OH_Drawing_Rect** object and reclaims the memory occupied by the o
 | -------- | -------- |
 | OH_Drawing_Rect | Pointer to an **OH_Drawing_Rect** object.| 
 
+### OH_Drawing_RegisterFont()
+
+```
+uint32_t OH_Drawing_RegisterFont (OH_Drawing_FontCollection* , const char* fontFamily, const char* familySrc )
+```
+
+**Description**
+
+Registers a custom font with the font manager.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 11
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| OH_Drawing_FontCollection | Pointer to an [OH_Drawing_FontCollection](#oh_drawing_fontcollection) object.| 
+| fontFamily | Pointer to the family name of the font to register.| 
+| familySrc | Pointer to the path of the font file.| 
+
+**Returns**
+
+Returns **0** if the font is registered; returns **1** if the file does not exist; returns **2** if the file fails to be opened; returns **3** if the file fails to be read; returns **4** if the file fails to be found; returns **5** if the file size fails to be obtained.
+
+
+### OH_Drawing_RegisterFontBuffer()
+
+```
+uint32_t OH_Drawing_RegisterFontBuffer (OH_Drawing_FontCollection* , const char* fontFamily, uint8_t* fontBuffer, size_t length )
+```
+
+**Description**
+
+Registers a font buffer with the font manager.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 11
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| OH_Drawing_FontCollection | Pointer to an [OH_Drawing_FontCollection](#oh_drawing_fontcollection) object.| 
+| fontFamily | Pointer to the family name of the font to register.| 
+| fontBuffer | Pointer to the buffer of the font file.| 
+| length | Length of the font file.| 
+
+**Returns**
+
+Returns **0** if the font is registered; returns **6** if the buffer size is zero; returns **7** if the font set is empty.
 
 ### OH_Drawing_RoundRectCreate()
 
@@ -7344,7 +7400,7 @@ OH_Drawing_TextBlob* OH_Drawing_TextBlobCreateFromText (const void* text, size_t
 
 **Description**
 
-Creates an **OH_Drawing_TextBlob** object from text.
+Creates an **OH_Drawing_TextBlob** object from the text.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -7404,7 +7460,7 @@ Obtains the bounds of an **OH_Drawing_TextBlob** object.
 | Name| Description| 
 | -------- | -------- |
 | OH_Drawing_TextBlob | Pointer to an [OH_Drawing_TextBlob](#oh_drawing_textblob) object.| 
-| OH_Drawing_Rect | Pointer to an [OH_Drawing_Rect](#oh_drawing_rect) object, which can be created by calling [OH_Drawing_RectCreate](#oh_drawing_rectcreate).| 
+| OH_Drawing_Rect | Pointer to an [OH_Drawing_Rect](#oh_drawing_rect) object, which is obtained by calling [OH_Drawing_RectCreate](#oh_drawing_rectcreate).| 
 
 
 ### OH_Drawing_TextStyleAddShadow()
@@ -8040,7 +8096,7 @@ Obtains the line metrics.
 
 **Returns**
 
-Returns the pointer to an [OH_Drawing_LineMetrics](_o_h___drawing___line_metrics.md) object.
+Returns the pointer to the [OH_Drawing_LineMetrics](_o_h___drawing___line_metrics.md) object.
 
 
 ### OH_Drawing_TypographyGetLineMetricsAt()
@@ -8094,7 +8150,7 @@ Obtains the line bounds.
 
 **Returns**
 
-Returns the pointer to an [OH_Drawing_Range](#oh_drawing_range) object.
+Returns the pointer to the [OH_Drawing_Range](#oh_drawing_range) object.
 
 
 ### OH_Drawing_TypographyGetLineWidth()
@@ -8299,7 +8355,7 @@ Obtains the text style.
 
 **Returns**
 
-Returns the pointer to to an [OH_Drawing_TextStyle](#oh_drawing_textstyle) object.
+Returns the pointer to the [OH_Drawing_TextStyle](#oh_drawing_textstyle) object.
 
 
 ### OH_Drawing_TypographyGetWordBoundary()

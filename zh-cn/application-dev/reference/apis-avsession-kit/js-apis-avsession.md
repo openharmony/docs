@@ -4142,11 +4142,12 @@ aVCastController.off('error')
 | isFavorite   | boolean                               | 否   | 是否收藏 |
 | activeItemId<sup>10+</sup> | number                  | 否   | 正在播放的媒体Id |
 | volume<sup>10+</sup> | number                  | 否   | 正在播放的媒体音量 |
-| extras<sup>10+</sup> | {[key: string]: Object}       | 否   | 自定义媒体数据 |
 | maxVolume<sup>11+</sup> | number                    | 否   | 最大音量 |
 | muted<sup>11+</sup>     | boolean                   | 否   | 当前静音状态，true表示静音 |
+| duration<sup>11+</sup>     | number                   | 否   | 当前媒体资源的时长 |
 | videoWidth<sup>11+</sup>  | number                  | 否   | 媒体资源的视频宽度，单位为像素（px）。 |
 | videoHeight<sup>11+</sup> |  number                 | 否   | 媒体资源的视频高度，单位为像素（px）。 |
+| extras<sup>10+</sup> | {[key: string]: Object}       | 否   | 自定义媒体数据 |
 
 ## PlaybackPosition<sup>10+</sup>
 

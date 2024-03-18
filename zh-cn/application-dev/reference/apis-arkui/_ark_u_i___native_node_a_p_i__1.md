@@ -58,9 +58,7 @@ int32_t(* ArkUI_NativeNodeAPI_1::addChild) (ArkUI_NodeHandle parent, ArkUI_NodeH
 
 **返回：**
 
-0：成功。
-
-401：函数参数异常。
+0 - 成功。 401 - 函数参数异常。
 
 
 ### createNode
@@ -145,9 +143,7 @@ int32_t(* ArkUI_NativeNodeAPI_1::insertChildAfter) (ArkUI_NodeHandle parent, Ark
 
 **返回：**
 
-0：成功。
-
-401：函数参数异常。
+0 - 成功。 401 - 函数参数异常。
 
 
 ### insertChildAt
@@ -156,6 +152,7 @@ int32_t(* ArkUI_NativeNodeAPI_1::insertChildAfter) (ArkUI_NodeHandle parent, Ark
 int32_t(* ArkUI_NativeNodeAPI_1::insertChildAt) (ArkUI_NodeHandle parent, ArkUI_NodeHandle child, int32_t position)
 ```
 **描述：**
+
 将组件挂载到某个父节点之下，挂载位置由**position**指定。
 
 当父组件已经挂载在窗口上显示时，必须在主线程上调用。
@@ -170,9 +167,7 @@ int32_t(* ArkUI_NativeNodeAPI_1::insertChildAt) (ArkUI_NodeHandle parent, ArkUI_
 
 **返回：**
 
-0：成功。
-
-401：函数参数异常。
+0 - 成功。 401 - 函数参数异常。
 
 
 ### insertChildBefore
@@ -196,9 +191,7 @@ int32_t(* ArkUI_NativeNodeAPI_1::insertChildBefore) (ArkUI_NodeHandle parent, Ar
 
 **返回：**
 
-0：成功。
-
-401：函数参数异常。
+0 - 成功。 401 - 函数参数异常。
 
 
 ### markDirty
@@ -280,9 +273,7 @@ int32_t(* ArkUI_NativeNodeAPI_1::removeChild) (ArkUI_NodeHandle parent, ArkUI_No
 
 **返回：**
 
-0：成功。
-
-401：函数参数异常。
+0 - 成功。 401 - 函数参数异常。
 
 
 ### resetAttribute
@@ -305,11 +296,7 @@ int32_t(* ArkUI_NativeNodeAPI_1::resetAttribute) (ArkUI_NodeHandle node, ArkUI_N
 
 **返回：**
 
-0：成功。
-
-401：函数参数异常。
-
-106102：系统中未找到Native接口的动态实现库。
+0 - 成功。 401 - 函数参数异常。 106102 - 系统中未找到Native接口的动态实现库。
 
 
 ### setAttribute
@@ -333,11 +320,7 @@ int32_t(* ArkUI_NativeNodeAPI_1::setAttribute) (ArkUI_NodeHandle node, ArkUI_Nod
 
 **返回：**
 
-0：成功。
-
-401：函数参数异常。
-
-106102：系统中未找到Native接口的动态实现库。
+0 - 成功。 401 - 函数参数异常。 106102 - 系统中未找到Native接口的动态实现库。
 
 
 ### unregisterNodeEvent
@@ -346,6 +329,7 @@ int32_t(* ArkUI_NativeNodeAPI_1::setAttribute) (ArkUI_NodeHandle node, ArkUI_Nod
 void(* ArkUI_NativeNodeAPI_1::unregisterNodeEvent) (ArkUI_NodeHandle node, ArkUI_NodeEventType eventType)
 ```
 **描述：**
+
 反注册节点事件函数。
 
 当组件已经挂载在窗口上显示时，必须在主线程上调用。

@@ -20,9 +20,9 @@ onShareForm?(formId: string): Record\<string, Object>
 
 卡片提供方接收卡片分享的通知接口。
 
-**系统接口**: 此接口为系统接口。
+**系统能力：** SystemCapability.Ability.Form
 
-**系统能力**：SystemCapability.Ability.Form
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -59,9 +59,9 @@ onAcquireFormData?(formId: string): Record\<string, Object>
 
 卡片提供方接收卡片请求自定义数据的通知接口。
 
-**系统接口**: 此接口为系统接口。
+**系统能力：** SystemCapability.Ability.Form
 
-**系统能力**：SystemCapability.Ability.Form
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 

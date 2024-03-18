@@ -666,6 +666,8 @@ getAlbums(type: AlbumType, subType: AlbumSubType, options: FetchOptions, callbac
 
 根据检索选项和相册类型获取相册，使用callback方式返回结果。
 
+该接口不支持获取隐藏相册，请使用[getHiddenAlbums](../apis-media-library-kit/js-apis-photoAccessHelper-sys.md#gethiddenalbums11)获得。
+
 获取相册前需先保证相册存在。
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
@@ -725,6 +727,8 @@ getAlbums(type: AlbumType, subType: AlbumSubType, callback: AsyncCallback&lt;Fet
 
 根据相册类型获取相册，使用callback方式返回结果。
 
+该接口不支持获取隐藏相册，请使用[getHiddenAlbums](../apis-media-library-kit/js-apis-photoAccessHelper-sys.md#gethiddenalbums11)获得。
+
 获取相册前需先保证相册存在。
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
@@ -774,6 +778,8 @@ async function example() {
 getAlbums(type: AlbumType, subType: AlbumSubType, options?: FetchOptions): Promise&lt;FetchResult&lt;Album&gt;&gt;;
 
 根据检索选项和相册类型获取相册，使用Promise方式返回结果。
+
+该接口不支持获取隐藏相册，请使用[getHiddenAlbums](../apis-media-library-kit/js-apis-photoAccessHelper-sys.md#gethiddenalbums11)获得。
 
 获取相册前需先保证相册存在。
 
@@ -838,6 +844,8 @@ getPhotoAlbums(options: AlbumFetchOptions, callback: AsyncCallback&lt;FetchResul
 
 获取相册，使用callback方式返回结果。
 
+该接口不支持获取隐藏相册，请使用[getHiddenAlbums](../apis-media-library-kit/js-apis-photoAccessHelper-sys.md#gethiddenalbums11)获得。
+
 此接口即将废弃，请使用[getAlbums<sup>10+</sup>](#getalbums10)的新接口。
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
@@ -893,6 +901,8 @@ async function example() {
 getPhotoAlbums(options: AlbumFetchOptions): Promise&lt;FetchResult&lt;Album&gt;&gt;;
 
 获取相册，使用Promise方式返回结果。
+
+该接口不支持获取隐藏相册，请使用[getHiddenAlbums](../apis-media-library-kit/js-apis-photoAccessHelper-sys.md#gethiddenalbums11)获得。
 
 此接口即将废弃，请使用[getAlbums<sup>10+</sup>](#getalbums10)的新接口。
 

@@ -33,22 +33,23 @@ setWindowPrivacyMode的API文档上注明接口调用需要ohos.permission.PRIVA
 调用setWindowPrivacyMode接口时如果未添加权限ohos.permission.PRIVACY_WINDOW，可以在回调中获取到错误码201，并及时处理。
 
 ```
-import Ability from '@ohos.application.Ability';
-import { BusinessError } from '@ohos.base';
+import { UIAbility }from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-class myAbility extends Ability {
-    onWindowStageCreate(windowStage) {
+export default class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage: window.WindowStage): void {
         console.log('onWindowStageCreate');
         let promise = windowStage.getMainWindow();
         promise.then((windowClass: window.Window)=>{
-            windowClass.setWindowPrivacyMode(true, (err)=> {
+            windowClass.setWindowPrivacyMode(true, (err: BusinessError)=> {
                 if (err.code) {
                     console.error('Failed to set the window to privacy mode. Cause:' + JSON.stringify(err));
                     return;
                 }
                 console.info('Succeeded in setting the window to privacy mode.');
             });
-        }).catch((err)=>{
+        }).catch((err: BusinessError)=>{
             console.log("Failed to get main window. Cause:" + JSON.stringify(err));
         })
     }

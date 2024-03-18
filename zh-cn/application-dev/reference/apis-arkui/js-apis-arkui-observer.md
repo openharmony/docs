@@ -24,6 +24,17 @@ NavDestination组件状态。
 | ON_SHOWN  | 0   | NavDestination组件显示。 |
 | ON_HIDDEN | 1   | NavDestination组件隐藏。 |
 
+## ScrollEventType<sup>12+</sup>
+
+滚动事件的类型。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称      | 值  | 说明                     |
+| --------- | --- | ------------------------ |
+| SCROLL_START  | 0   | 滚动事件开始。 |
+| SCROLL_STOP   | 1   | 滚动事件结束。 |
+
 ## RouterPageState
 
 routerPage生命周期触发时对应的状态
@@ -50,6 +61,18 @@ NavDestination组件信息。
 | name         | [ResourceStr](arkui-ts/ts-types.md#resourcestr) | 是   | NavDestination组件的名称。                   |
 | state        | [NavDestinationState](#navdestinationstate)        | 是   | NavDestination组件的状态。                   |
 
+## ScrollEventInfo<sup>12+</sup>
+
+ScrollEvent滚动信息。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称         | 类型                                               | 必填 | 说明                                         |
+| ------------ | -------------------------------------------------- | ---- | -------------------------------------------- |
+| id           | string                                             | 是   | 滚动组件的id。                               |
+| eventType    | [ScrollEventType](#scrolleventtype12)                | 是   | 滚动事件的类型。                             |
+| offset       | number                                             | 是   | 滚动组件的当前偏移量。                        |
+
 ## RouterPageInfo
 
 RouterPageInfo包含的信息。
@@ -63,6 +86,17 @@ RouterPageInfo包含的信息。
 | name         | string                                             | 是   | 触发生命周期的routerPage页面的名称。           |
 | path         | string                                             | 是   | 触发生命周期的routerPage页面的路径。           |
 | state        | [RouterPageState](#routerpagestate)                | 是   | 触发生命周期的routerPage页面的状态             |
+
+## DensityInfo<sup>12+</sup>
+
+屏幕像素密度变化回调包含的信息。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称    | 类型                                      | 必填 | 说明                                   |
+| ------- | ----------------------------------------- | ---- | -------------------------------------- |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 屏幕像素密度变化时页面对应的上下文信息 |
+| density | number                                    | 是   | 变化后的屏幕像素密度。                 |
 
 ## observer.on('navDestinationUpdate')
 
@@ -154,6 +188,145 @@ off(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callba
 observer.off('navDestinationUpdate', { navigationId: "testId" });
 ```
 
+## observer.on('scrollEvent')<sup>12+</sup>
+
+on(type: 'scrollEvent', callback: Callback\<ScrollEventInfo\>): void
+
+监听滚动事件的开始和结束。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                  | 必填 | 说明                                                                     |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------------------ |
+| type     | string                                                | 是   | 监听事件，固定为'scrollEvent'，即滚动事件的开始和结束。                   |
+| callback | Callback\<[ScrollEventInfo](#scrolleventinfo12)\>       | 否   | 回调函数。返回滚动事件的信息。                                           |
+
+**示例：**
+
+请参考[offscrollevent示例](#observeroffscrollevent12-1)
+
+## observer.off('scrollEvent')<sup>12+</sup>
+
+off(type: 'scrollEvent', callback?: Callback\<ScrollEventInfo\>): void
+
+取消监听滚动事件的开始和结束。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                  | 必填 | 说明                                                                     |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------------------ |
+| type     | string                                                | 是   | 监听事件，固定为'scrollEvent'，即滚动事件的开始和结束。                   |
+| callback | Callback\<[ScrollEventInfo](#scrolleventinfo12)\>       | 否   | 回调函数。返回滚动事件的信息。                                           |
+
+**示例：**
+
+请参考[offscrollevent示例](#observeroffscrollevent12-1)
+
+## observer.on('scrollEvent')<sup>12+</sup>
+
+on(type: 'scrollEvent', options: { id: string }, callback: Callback\<ScrollEventInfo\>): void
+
+监听滚动事件的开始和结束。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                                 | 必填 | 说明                                                                     |
+| -------- | -------------------------------------------------------------------- | ---- | ------------------------------------------------------------------------ |
+| type     | string                                                               | 是   | 监听事件，固定为'scrollEvent'，即滚动事件的开始和结束。                   |
+| options  | { id: string }                                                       | 是   | 指定监听的滚动组件的id。                                                 |
+| callback | Callback\<[ScrollEventInfo](#scrolleventinfo12)\>                      | 否   | 回调函数。返回滚动事件的信息。                                            |
+
+**示例：**
+
+请参考[offscrollevent示例](#observeroffscrollevent12-1)
+
+## observer.off('scrollEvent')<sup>12+</sup>
+
+off(type: 'scrollEvent', options: { id: string }, callback?: Callback\<ScrollEventInfo\>): void
+
+取消监听滚动事件的开始和结束。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                                 | 必填 | 说明                                                                     |
+| -------- | -------------------------------------------------------------------- | ---- | ------------------------------------------------------------------------ |
+| type     | string                                                               | 是   | 监听事件，固定为'scrollEvent'，即滚动事件的开始和结束。                   |
+| options  | { id: string }                                                       | 是   | 指定监听的滚动组件的id。                                                 |
+| callback | Callback\<[ScrollEventInfo](#scrolleventinfo12)\>                      | 否   | 回调函数。返回滚动事件的信息。                                            |
+
+**示例：**
+
+```ts
+import observer from '@ohos.arkui.observer'
+
+@Entry
+@Component
+struct Index {
+  scroller: Scroller = new Scroller();
+  options: observer.ObserverOptions = { id:"testId" };
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7]
+
+  build() {
+    Row() {
+      Column() {
+        Scroll(this.scroller) {
+          Column() {
+            ForEach(this.arr, (item: number) => {
+              Text(item.toString())
+                .width('90%')
+                .height(150)
+                .backgroundColor(0xFFFFFF)
+                .borderRadius(15)
+                .fontSize(16)
+                .textAlign(TextAlign.Center)
+                .margin({ top: 10 })
+            }, (item: string) => item)
+          }.width('100%')
+        }
+        .id("testId")
+        .height('80%')
+      }
+      .width('100%')
+
+      Row() {
+        Button('UIObserver on')
+          .onClick(() => {
+            observer.on('scrollEvent', (info) => {
+              console.info('scrollEventInfo', JSON.stringify(info));
+            });
+          })
+        Button('UIObserver off')
+          .onClick(() => {
+            observer.off('scrollEvent');
+          })
+      }
+
+      Row() {
+        Button('UIObserverWithId on')
+          .onClick(() => {
+            observer.on('scrollEvent', this.options, (info) => {
+              console.info('scrollEventInfo', JSON.stringify(info));
+            });
+          })
+        Button('UIObserverWithId off')
+          .onClick(() => {
+            observer.off('scrollEvent', this.options);
+          })
+      }
+    }
+    .height('100%')
+  }
+}
+```
+
 ## observer.on('routerPageUpdate')<sup>11+</sup>
 
 on(type: 'routerPageUpdate', context: UIAbilityContext | UIContext, callback: Callback\<RouterPageInfo\>): void
@@ -167,7 +340,7 @@ on(type: 'routerPageUpdate', context: UIAbilityContext | UIContext, callback: Ca
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 监听事件，固定为'routerPageUpdate'，即router中page页面的状态变化。 |
-| context  | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 上下文信息，用以指定监听页面的范围 |
+| context  | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)&nbsp;\|&nbsp;[UIContext](./js-apis-arkui-UIContext.md) | 是   | 上下文信息，用以指定监听页面的范围 |
 | callback | Callback\<[RouterPageInfo](#routerpageinfo)\>        | 是   | 回调函数。携带pageInfo，返回当前的page页面状态。                 |
 
 **示例：**
@@ -197,7 +370,7 @@ off(type: 'routerPageUpdate', context: UIAbilityContext | UIContext, callback?: 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 监听事件，固定为'routerPageUpdate'，即router中page页面的状态变化。 |
-| context  | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 上下文信息，用以指定监听页面的范围 |
+| context  | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)&nbsp;\|&nbsp;[UIContext](./js-apis-arkui-UIContext.md) | 是   | 上下文信息，用以指定监听页面的范围 |
 | callback | Callback\<[RouterPageInfo](#routerpageinfo)\>        | 否   | 需要被注销的回调函。                 |
 
 **示例：**
@@ -212,4 +385,101 @@ observer.off('routerPageUpdate', this.context, callBackFunc);
 // uiContext could be got by window's function: getUIContext()
 uiContext: UIContext | null = null;
 observer.off('routerPageUpdate', this.uiContext, callBackFunc);
+```
+
+## observer.on('densityUpdate')<sup>12+</sup>
+
+on(type: 'densityUpdate', context: UIContext, callback: Callback<DensityInfo>): void
+
+监听屏幕像素密度变化。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'densityUpdate'，即屏幕像素密度变化。 |
+| context  | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 上下文信息，用以指定监听页面的范围 |
+| callback | Callback\<[DensityInfo](#densityinfo12)\>        | 是   | 回调函数。携带densityInfo，返回变化后的屏幕像素密度。                 |
+
+**示例：**
+
+```ts
+import observer from '@ohos.arkui.observer';
+
+@Entry
+@Component
+struct Index {
+  @State density: number = 0;
+  @State message: string = '未注册监听'
+
+  densityUpdateCallback = (info: observer.DensityInfo) => {
+    this.density = info.density;
+    this.message = '变化后的DPI：' + this.density.toString();
+  }
+
+  build() {
+    Column() {
+      Text(this.message)
+        .fontSize(24)
+        .fontWeight(FontWeight.Bold)
+      Button('注册屏幕像素密度变化监听')
+        .onClick(() => {
+          this.message = '已注册监听'
+          observer.on('densityUpdate', this.getUIContext(), this.densityUpdateCallback);
+        })
+    }
+  }
+}
+```
+
+## observer.off('densityUpdate')<sup>12+</sup>
+
+off(type: 'densityUpdate', context: UIContext, callback?: Callback<DensityInfo>): void
+
+取消监听屏幕像素密度的变化。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                      | 必填 | 说明                                                  |
+| -------- | ----------------------------------------- | ---- | ----------------------------------------------------- |
+| type     | string                                    | 是   | 监听事件，固定为'densityUpdate'，即屏幕像素密度变化。 |
+| context  | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 上下文信息，用以指定监听页面的范围                    |
+| callback | Callback\<[DensityInfo](#densityinfo12)\>   | 否   | 需要被注销的回调函数。                                |
+
+```ts
+import observer from '@ohos.arkui.observer';
+
+@Entry
+@Component
+struct Index {
+  @State density: number = 0;
+  @State message: string = '未注册监听'
+
+  densityUpdateCallback = (info: observer.DensityInfo) => {
+    this.density = info.density;
+    this.message = '变化后的DPI：' + this.density.toString();
+  }
+
+  build() {
+    Column() {
+      Text(this.message)
+        .fontSize(24)
+        .fontWeight(FontWeight.Bold)
+      Button('注册屏幕像素密度变化监听')
+        .onClick(() => {
+          this.message = '已注册监听'
+          observer.on('densityUpdate', this.getUIContext(), this.densityUpdateCallback);
+        })
+      Button('解除注册屏幕像素密度变化监听')
+        .onClick(() => {
+          this.message = '未注册监听'
+          observer.off('densityUpdate', this.getUIContext(), this.densityUpdateCallback);
+        })
+    }
+  }
+}
 ```

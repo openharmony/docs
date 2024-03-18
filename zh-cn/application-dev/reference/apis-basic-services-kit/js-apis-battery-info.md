@@ -21,8 +21,8 @@ import batteryInfo from '@ohos.batteryInfo';
 
 | 名称      | 类型        | 可读 | 可写 |  说明     |
 | --------------- | ------------------- | ---- | ---- | ---------------------|
-| batterySOC                                | number                                         | 是   | 否   | 表示当前设备剩余电池电量百分比。                           |
-| chargingStatus                            | [BatteryChargeState](#batterychargestate)      | 是   | 否   | 表示当前设备电池的充电状态。                               |
+| batterySOC                                | number                                         | 是   | 否   | 表示当前设备剩余电池电量百分比，支持atomicservice<sup>12+</sup>。                           |
+| chargingStatus                            | [BatteryChargeState](#batterychargestate)      | 是   | 否   | 表示当前设备电池的充电状态，支持atomicservice<sup>12+</sup>。                               |
 | healthStatus                              | [BatteryHealthState](#batteryhealthstate)      | 是   | 否   | 表示当前设备电池的健康状态。                               |
 | pluggedType                               | [BatteryPluggedType](#batterypluggedtype)      | 是   | 否   | 表示当前设备连接的充电器类型。                             |
 | voltage                                   | number                                         | 是   | 否   | 表示当前设备电池的电压，单位微伏。                         |
@@ -30,6 +30,39 @@ import batteryInfo from '@ohos.batteryInfo';
 | batteryTemperature                        | number                                         | 是   | 否   | 表示当前设备电池的温度，单位0.1摄氏度。                    |
 | isBatteryPresent<sup>7+</sup>             | boolean                                        | 是   | 否   | 表示当前设备是否支持电池或者电池是否在位。                 |
 | batteryCapacityLevel<sup>9+</sup>         | [BatteryCapacityLevel](#batterycapacitylevel9) | 是   | 否   | 表示当前设备电池电量的等级。                               |
+
+**示例**：
+
+  ```ts
+  import batteryInfo from '@ohos.batteryInfo';
+
+  let batterySOCInfo: number = batteryInfo.batterySOC;
+  console.info("The batterySOCInfo is: " + batterySOCInfo);
+
+  let chargingStatusInfo = batteryInfo.chargingStatus;
+  console.info("The chargingStatusInfo is: " + chargingStatusInfo);
+
+  let healthStatusInfo = batteryInfo.healthStatus;
+  console.info("The healthStatusInfo is: " + healthStatusInfo);
+
+  let pluggedTypeInfo = batteryInfo.pluggedType;
+  console.info("The pluggedTypeInfo is: " + pluggedTypeInfo);
+
+  let voltageInfo: number = batteryInfo.voltage;
+  console.info("The voltageInfo is: " + voltageInfo);
+
+  let technologyInfo: string = batteryInfo.technology;
+  console.info("The technologyInfo is: " + technologyInfo);
+
+  let batteryTemperatureInfo: number = batteryInfo.batteryTemperature;
+  console.info("The batteryTemperatureInfo is: " + batteryTemperatureInfo);
+
+  let isBatteryPresentInfo: boolean = batteryInfo.isBatteryPresent;
+  console.info("The isBatteryPresentInfo is: " + isBatteryPresentInfo);
+
+  let batteryCapacityLevelInfo = batteryInfo.batteryCapacityLevel;
+  console.info("The batteryCapacityLevelInfo is: " + batteryCapacityLevelInfo);
+  ```
 
 ## BatteryPluggedType
 
@@ -46,7 +79,7 @@ import batteryInfo from '@ohos.batteryInfo';
 
 ## BatteryChargeState
 
-表示电池充电状态的枚举。
+表示电池充电状态的枚举，支持atomicservice<sup>12+</sup>。
 
 **系统能力**：SystemCapability.PowerManager.BatteryManager.Core
 

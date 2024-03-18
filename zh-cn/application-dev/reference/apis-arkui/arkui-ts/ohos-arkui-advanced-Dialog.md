@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```
-import { TipsDialog, SelectDialog, ConfirmDialog, AlertDialog, LoadingDialog } from '@ohos.arkui.advanced.Dialog'
+import { TipsDialog, SelectDialog, ConfirmDialog, AlertDialog, LoadingDialog, CustomContentDialog } from '@ohos.arkui.advanced.Dialog'
 ```
 
 
@@ -138,6 +138,27 @@ LoadingDialog({controller: CustomDialogController, content?: ResourceStr})
 | content | [ResourceStr](ts-types.md#resourcestr) | 否 | 加载弹出框内容。 | 
 
 
+## CustomContentDialog<sup>12+</sup>
+
+CustomContentDialog({controller: CustomDialogController, contentBuilder: () => void, primaryTitle?: ResourceStr, secondaryTitle?: ResourceStr, buttons?: ButtonOptions[]})
+
+自定义内容区弹出框，同时支持定义操作区按钮样式。
+
+**装饰器类型：**\@CustomDialog
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 名称 | 参数类型 | 必填 | 说明 | 
+| -------- | -------- | -------- | -------- |
+| controller | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | 是 | 弹出框控制器。 | 
+| contentBuilder | () => void | 是 | 弹出框内容。 |
+| primaryTitle | [ResourceStr](ts-types.md#resourcestr) | 否 | 弹出框标题。 |
+| secondaryTitle | [ResourceStr](ts-types.md#resourcestr) | 否 | 弹出框辅助文本。 |
+| buttons | Array<[ButtonOptions](#buttonoptions)> | 否 | 弹出框操作区按钮，最多支持4个按钮。 |
+
+
 ## ButtonOptions
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -148,7 +169,12 @@ LoadingDialog({controller: CustomDialogController, content?: ResourceStr})
 | action | ()&nbsp;=&gt;&nbsp;void | 否 | 按钮的点击事件。 | 
 | background | [ResourceColor](ts-types.md#resourcecolor) | 否 | 按钮的背景。 | 
 | fontColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 按钮的字体颜色。 | 
+| buttonStyle<sup>12+</sup> | [ButtonStyleMode](ts-basic-components-button.md#buttonstylemode11枚举说明) | 否 | 按钮的样式。<br/>默认值：2in1设备为ButtonStyleMode.NORMAL，其他设备为ButtonStyleMode.TEXTUAL。 | 
+| role<sup>12+</sup> | [ButtonRole](ts-basic-components-button.md#buttonrole12枚举说明) | 否 | 按钮的角色。<br/>默认值：ButtonRole.NORMAL。 |
 
+>  **说明：**
+>
+>  buttonStyle和role优先级高于fontColor和background。如果buttonStyle和role设置的是默认值，那么fontColor和background可生效。
 
 ## 事件
 不支持[通用事件](ts-universal-events-click.md)
@@ -403,3 +429,48 @@ struct Index {
 ```
 
 ![LoadingDialog](figures/LoadingDialog.png)
+
+
+### 示例6
+
+```ts
+import { CustomContentDialog } from '@ohos.arkui.advanced.Dialog'
+
+@Entry
+@Component
+struct Index {
+  dialogController: CustomDialogController = new CustomDialogController({
+    builder: CustomContentDialog({
+      primaryTitle: '标题',
+      secondaryTitle: '辅助文本',
+      contentBuilder: () => {
+        this.buildContent();
+      },
+      buttons: [{ value: '按钮1', buttonStyle: ButtonStyleMode.TEXTUAL, action: () => {
+        console.info('Callback when the button is clicked')
+      } }, { value: '按钮2', buttonStyle: ButtonStyleMode.TEXTUAL, role: ButtonRole.ERROR }],
+    }),
+  });
+
+  build() {
+    Column() {
+      Button("支持自定义内容弹出框")
+        .onClick(() => {
+          this.dialogController.open()
+        })
+    }
+    .width('100%')
+    .height('100%')
+    .justifyContent(FlexAlign.Center)
+  }
+
+  @Builder
+  buildContent(): void {
+    Column() {
+      Text('内容区')
+    }
+  }
+}
+```
+
+![custom_content_dialog](figures/advanced_dialog_custom_content_dialog.png)

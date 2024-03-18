@@ -25,6 +25,7 @@
 | struct&nbsp;&nbsp;[ARKUI_TextPickerRangeContent](_a_r_k_u_i___text_picker_range_content.md) | 定义单列滑动数据选择器支持图片资源的输入结构体。  | 
 | struct&nbsp;&nbsp;[ARKUI_TextPickerCascadeRangeContent](_a_r_k_u_i___text_picker_cascade_range_content.md) | 定义多列带联动能力的滑动数据选择器的输入结构体。  | 
 | struct&nbsp;&nbsp;[ArkUI_ColorStop](_ark_u_i___color_stop.md) | 定义渐变色结构。  | 
+| struct&nbsp;&nbsp;[ArkUI_Rect](_ark_u_i___rect.md) | 定义遮罩屏蔽区域的范围结构体。  | 
 
 
 ### 类型定义
@@ -32,6 +33,7 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | typedef struct ArkUI_Node \* [ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) | 定义ArkUI native组件实例对象指针定义。  | 
+| typedef struct ArkUI_NativeDialog \* [ArkUI_NativeDialogHandle](_ark_u_i___native_module.md#arkui_nativedialoghandle) | 定义ArkUI在Native侧的自定义弹窗控制器对象指针。  | 
 
 
 ### 枚举
@@ -45,6 +47,7 @@
 | [ArkUI_TextAlignment](_ark_u_i___native_module.md#arkui_textalignment) { [ARKUI_TEXT_ALIGNMENT_START](_ark_u_i___native_module.md) = 0, [ARKUI_TEXT_ALIGNMENT_CENTER](_ark_u_i___native_module.md), [ARKUI_TEXT_ALIGNMENT_END](_ark_u_i___native_module.md), [ARKUI_TEXT_ALIGNMENT_JUSTIFY](_ark_u_i___native_module.md) } | 定义字体水平对齐样式枚举值。  | 
 | [ArkUI_EnterKeyType](_ark_u_i___native_module.md#arkui_enterkeytype) {<br/>[ARKUI_ENTER_KEY_TYPE_GO](_ark_u_i___native_module.md) = 2, [ARKUI_ENTER_KEY_TYPE_SEARCH](_ark_u_i___native_module.md) = 3, [ARKUI_ENTER_KEY_TYPE_SEND](_ark_u_i___native_module.md), [ARKUI_ENTER_KEY_TYPE_NEXT](_ark_u_i___native_module.md),<br/>[ARKUI_ENTER_KEY_TYPE_DONE](_ark_u_i___native_module.md), [ARKUI_ENTER_KEY_TYPE_PREVIOUS](_ark_u_i___native_module.md), [ARKUI_ENTER_KEY_TYPE_NEW_LINE](_ark_u_i___native_module.md)<br/>} | 定义单行文本输入法回车键类型枚举值。  | 
 | [ArkUI_TextInputType](_ark_u_i___native_module.md#arkui_textinputtype) {<br/>[ARKUI_TEXTINPUT_TYPE_NORMAL](_ark_u_i___native_module.md) = 0, [ARKUI_TEXTINPUT_TYPE_NUMBER](_ark_u_i___native_module.md) = 2, [ARKUI_TEXTINPUT_TYPE_PHONE_NUMBER](_ark_u_i___native_module.md) = 3, [ARKUI_TEXTINPUT_TYPE_EMAIL](_ark_u_i___native_module.md) = 5,<br/>[ARKUI_TEXTINPUT_TYPE_PASSWORD](_ark_u_i___native_module.md) = 7, [ARKUI_TEXTINPUT_TYPE_NUMBER_PASSWORD](_ark_u_i___native_module.md) = 8, [ARKUI_TEXTINPUT_TYPE_SCREEN_LOCK_PASSWORD](_ark_u_i___native_module.md) = 9, [ARKUI_TEXTINPUT_TYPE_USER_NAME](_ark_u_i___native_module.md) = 10,<br/>[ARKUI_TEXTINPUT_TYPE_NEW_PASSWORD](_ark_u_i___native_module.md) = 11, [ARKUI_TEXTINPUT_TYPE_NUMBER_DECIMAL](_ark_u_i___native_module.md) = 12<br/>} | 定义单行文本输入法类型枚举值。  | 
+| [ArkUI_TextAreaType](_ark_u_i___native_module.md#arkui_textareatype) { [ARKUI_TEXTAREA_TYPE_NORMAL](_ark_u_i___native_module.md) = 0, [ARKUI_TEXTAREA_TYPE_NUMBER](_ark_u_i___native_module.md) = 2, [ARKUI_TEXTAREA_TYPE_PHONE_NUMBER](_ark_u_i___native_module.md) = 3, [ARKUI_TEXTAREA_TYPE_EMAIL](_ark_u_i___native_module.md) = 5 } | 定义多行文本输入法类型枚举值。  | 
 | [ArkUI_CancelButtonStyle](_ark_u_i___native_module.md#arkui_cancelbuttonstyle) { [ARKUI_CANCELBUTTON_STYLE_CONSTANT](_ark_u_i___native_module.md) = 0, [ARKUI_CANCELBUTTON_STYLE_INVISIBLE](_ark_u_i___native_module.md), [ARKUI_CANCELBUTTON_STYLE_INPUT](_ark_u_i___native_module.md) } | 定义清除按钮样式枚举值。  | 
 | [ArkUI_XComponentType](_ark_u_i___native_module.md#arkui_xcomponenttype) { [ARKUI_XCOMPONENT_TYPE_SURFACE](_ark_u_i___native_module.md) = 0, [ARKUI_XCOMPONENT_TYPE_TEXTURE](_ark_u_i___native_module.md) = 2 } | 定义XComponent类型枚举值。  | 
 | [ArkUI_ProgressType](_ark_u_i___native_module.md#arkui_progresstype) {<br/>[ARKUI_PROGRESS_TYPE_LINEAR](_ark_u_i___native_module.md) = 0, [ARKUI_PROGRESS_TYPE_RING](_ark_u_i___native_module.md), [ARKUI_PROGRESS_TYPE_ECLIPSE](_ark_u_i___native_module.md), [ARKUI_PROGRESS_TYPE_SCALE_RING](_ark_u_i___native_module.md),<br/>[ARKUI_PROGRESS_TYPE_CAPSULE](_ark_u_i___native_module.md)<br/>} | 定义进度条类型枚举值。  | 
@@ -97,3 +100,7 @@
 | [ArkUI_ClipType](_ark_u_i___native_module.md#arkui_cliptype) { [ARKUI_CLIP_TYPE_RECTANGLE](_ark_u_i___native_module.md) = 0, [ARKUI_CLIP_TYPE_CIRCLE](_ark_u_i___native_module.md), [ARKUI_CLIP_TYPE_ELLIPSE](_ark_u_i___native_module.md), [ARKUI_CLIP_TYPE_PATH](_ark_u_i___native_module.md) } | 裁剪类型枚举。  | 
 | [ArkUI_ShapeType](_ark_u_i___native_module.md#arkui_shapetype) { [ARKUI_SHAPE_TYPE_RECTANGLE](_ark_u_i___native_module.md) = 0, [ARKUI_SHAPE_TYPE_CIRCLE](_ark_u_i___native_module.md), [ARKUI_SHAPE_TYPE_ELLIPSE](_ark_u_i___native_module.md), [ARKUI_SHAPE_TYPE_PATH](_ark_u_i___native_module.md) } | 自定义形状。  | 
 | [ArkUI_LinearGradientDirection](_ark_u_i___native_module.md#arkui_lineargradientdirection) {<br/>[ARKUI_LINEAR_GRADIENT_DIRECTION_LEFT](_ark_u_i___native_module.md) = 0, [ARKUI_LINEAR_GRADIENT_DIRECTION_TOP](_ark_u_i___native_module.md), [ARKUI_LINEAR_GRADIENT_DIRECTION_RIGHT](_ark_u_i___native_module.md), [ARKUI_LINEAR_GRADIENT_DIRECTION_BOTTOM](_ark_u_i___native_module.md),<br/>[ARKUI_LINEAR_GRADIENT_DIRECTION_LEFT_TOP](_ark_u_i___native_module.md), [ARKUI_LINEAR_GRADIENT_DIRECTION_LEFT_BOTTOM](_ark_u_i___native_module.md), [ARKUI_LINEAR_GRADIENT_DIRECTION_RIGHT_TOP](_ark_u_i___native_module.md), [ARKUI_LINEAR_GRADIENT_DIRECTION_RIGHT_BOTTOM](_ark_u_i___native_module.md),<br/>[ARKUI_LINEAR_GRADIENT_DIRECTION_NONE](_ark_u_i___native_module.md)<br/>} | 定义渐变方向结构。  | 
+| [ArkUI_WordBreak](_ark_u_i___native_module.md#arkui_wordbreak) { [ARKUI_WORD_BREAK_NORMAL](_ark_u_i___native_module.md) = 0, [ARKUI_WORD_BREAK_BREAK_ALL](_ark_u_i___native_module.md), [ARKUI_WORD_BREAK_BREAK_WORD](_ark_u_i___native_module.md) } | 定义文本断行规则。  | 
+| [ArkUI_EllipsisMode](_ark_u_i___native_module.md#arkui_ellipsismode) { [ARKUI_ELLIPSIS_MODE_START](_ark_u_i___native_module.md) = 0, [ARKUI_ELLIPSIS_MODE_CENTER](_ark_u_i___native_module.md), [ARKUI_ELLIPSIS_MODE_END](_ark_u_i___native_module.md) } | 定义文本省略位置。  | 
+| [ArkUI_ImageRenderMode](_ark_u_i___native_module.md#arkui_imagerendermode) { [ARKUI_IMAGE_RENDER_MODE_ORIGINAL](_ark_u_i___native_module.md) = 0, [ARKUI_IMAGE_RENDER_MODE_TEMPLATE](_ark_u_i___native_module.md) } | 定义图片渲染模式。  | 
+| [ArkUI_TransitionEdge](_ark_u_i___native_module.md#arkui_transitionedge) { [ARKUI_TRANSITION_EDGE_TOP](_ark_u_i___native_module.md) = 0, [ARKUI_TRANSITION_EDGE_BOTTOM](_ark_u_i___native_module.md), [ARKUI_TRANSITION_EDGE_START](_ark_u_i___native_module.md), [ARKUI_TRANSITION_EDGE_END](_ark_u_i___native_module.md) } | 定义转场从边缘滑入和滑出的效果。  | 

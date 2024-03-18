@@ -20,16 +20,16 @@ deleteForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
 
 删除指定的卡片。调用此方法后，应用程序将无法使用该卡片，卡片管理器服务不再保留有关该卡片的信息。使用callback异步回调。
 
-**需要权限**：ohos.permission.REQUIRE_FORM
+**需要权限：** ohos.permission.REQUIRE_FORM
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
 | formId | string | 是   | 卡片标识。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当删除指定的卡片成功，error为undefined，否则为错误对象 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当删除指定的卡片成功，error为undefined，否则为错误对象。 |
 
 **示例：**
 
@@ -50,9 +50,9 @@ deleteForm(formId: string): Promise&lt;void&gt;
 
 删除指定的卡片。调用此方法后，应用程序将无法使用该卡片，卡片管理器服务不再保留有关该卡片的信息。使用Promise异步回调。
 
-**需要权限**：ohos.permission.REQUIRE_FORM
+**需要权限：** ohos.permission.REQUIRE_FORM
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
@@ -85,9 +85,9 @@ releaseForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
 
 释放指定的卡片。调用此方法后，应用程序将无法使用该卡片，但卡片管理器服务仍然保留有关该卡片的缓存信息和存储信息。使用callback异步回调。
 
-**需要权限**：ohos.permission.REQUIRE_FORM
+**需要权限：** ohos.permission.REQUIRE_FORM
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
@@ -117,9 +117,9 @@ releaseForm(formId: string, isReleaseCache: boolean, callback: AsyncCallback&lt;
 
 释放指定的卡片。调用此方法后，应用程序将无法使用该卡片，卡片管理器服务保留有关该卡片的存储信息，可以选择是否保留缓存信息。使用callback异步回调。
 
-**需要权限**：ohos.permission.REQUIRE_FORM
+**需要权限：** ohos.permission.REQUIRE_FORM
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
@@ -150,9 +150,9 @@ releaseForm(formId: string, isReleaseCache?: boolean): Promise&lt;void&gt;
 
 释放指定的卡片。调用此方法后，应用程序将无法使用该卡片，卡片管理器服务保留有关该卡片的存储信息，可以选择是否保留缓存信息。使用Promise异步回调。
 
-**需要权限**：ohos.permission.REQUIRE_FORM
+**需要权限：** ohos.permission.REQUIRE_FORM
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
@@ -186,9 +186,9 @@ requestForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
 
 请求卡片更新。使用callback异步回调。
 
-**需要权限**：ohos.permission.REQUIRE_FORM
+**需要权限：** ohos.permission.REQUIRE_FORM
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
@@ -216,9 +216,9 @@ requestForm(formId: string): Promise&lt;void&gt;
 
 请求卡片更新。使用Promise异步回调。
 
-**需要权限**：ohos.permission.REQUIRE_FORM
+**需要权限：** ohos.permission.REQUIRE_FORM
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
@@ -251,9 +251,9 @@ castTempForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
 
 将指定的临时卡片转换为普通卡片。使用callback异步回调。
 
-**需要权限**：ohos.permission.REQUIRE_FORM
+**需要权限：** ohos.permission.REQUIRE_FORM
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
@@ -281,9 +281,9 @@ castTempForm(formId: string): Promise&lt;void&gt;
 
 将指定的临时卡片转换为普通卡片。使用Promise异步回调。
 
-**需要权限**：ohos.permission.REQUIRE_FORM
+**需要权限：** ohos.permission.REQUIRE_FORM
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
@@ -316,9 +316,9 @@ notifyVisibleForms(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void
 
 向卡片框架发送通知以使指定的卡片可见。该方法调用成功后，会调用onVisibilityChange通知卡片提供方。使用callback异步回调。
 
-**需要权限**：ohos.permission.REQUIRE_FORM
+**需要权限：** ohos.permission.REQUIRE_FORM
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
@@ -346,9 +346,9 @@ notifyVisibleForms(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 
 向卡片框架发送通知以使指定的卡片可见。该方法调用成功后，会调用onVisibilityChange通知卡片提供方。使用Promise异步回调。
 
-**需要权限**：ohos.permission.REQUIRE_FORM
+**需要权限：** ohos.permission.REQUIRE_FORM
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
@@ -381,9 +381,9 @@ notifyInvisibleForms(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;vo
 
 向卡片框架发送通知以使指定的卡片不可见。该方法调用成功后，会调用onVisibilityChange通知卡片提供方。使用callback异步回调。
 
-**需要权限**：ohos.permission.REQUIRE_FORM
+**需要权限：** ohos.permission.REQUIRE_FORM
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
@@ -411,9 +411,9 @@ notifyInvisibleForms(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 
 向卡片框架发送通知以使指定的卡片不可见。该方法调用成功后，会调用onVisibilityChange通知卡片提供方。使用Promise异步回调。
 
-**需要权限**：ohos.permission.REQUIRE_FORM
+**需要权限：** ohos.permission.REQUIRE_FORM
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
@@ -446,9 +446,9 @@ enableFormsUpdate(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void&
 
 向卡片框架发送通知以使指定的卡片可以更新。该方法调用成功后，卡片刷新状态设置为使能，卡片可以接收来自卡片提供方的更新。使用callback异步回调。
 
-**需要权限**：ohos.permission.REQUIRE_FORM
+**需要权限：** ohos.permission.REQUIRE_FORM
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
@@ -476,9 +476,9 @@ enableFormsUpdate(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 
 向卡片框架发送通知以使指定的卡片可以更新。该方法调用成功后，卡片刷新状态设置为使能，卡片可以接收来自卡片提供方的更新。使用Promise异步回调。
 
-**需要权限**：ohos.permission.REQUIRE_FORM
+**需要权限：** ohos.permission.REQUIRE_FORM
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
@@ -511,9 +511,9 @@ disableFormsUpdate(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void
 
 向卡片框架发送通知以使指定的卡片不可以更新。该方法调用成功后，卡片刷新状态设置为去使能，卡片不可以接收来自卡片提供方的更新。使用callback异步回调。
 
-**需要权限**：ohos.permission.REQUIRE_FORM
+**需要权限：** ohos.permission.REQUIRE_FORM
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
@@ -541,9 +541,9 @@ disableFormsUpdate(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 
 向卡片框架发送通知以使指定的卡片不可以更新。该方法调用成功后，卡片刷新状态设置为去使能，卡片不可以接收来自卡片提供方的更新。使用Promise异步回调。
 
-**需要权限**：ohos.permission.REQUIRE_FORM
+**需要权限：** ohos.permission.REQUIRE_FORM
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
@@ -576,7 +576,7 @@ isSystemReady(callback: AsyncCallback&lt;void&gt;): void
 
 检查系统是否准备好。使用callback异步回调。
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
@@ -603,7 +603,7 @@ isSystemReady(): Promise&lt;void&gt;
 
 检查系统是否准备好。使用Promise异步回调。
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **返回值：**
 
@@ -630,9 +630,9 @@ getAllFormsInfo(callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): 
 
 获取设备上所有应用提供的卡片信息。使用callback异步回调。
 
-**需要权限**：ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
@@ -661,15 +661,15 @@ getAllFormsInfo(): Promise&lt;Array&lt;formInfo.FormInfo&gt;&gt;
 
 获取设备上所有应用提供的卡片信息。使用Promise异步回调。
 
-**需要权限**：ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **返回值：**
 
 | 类型          | 说明                                |
 | :------------ | :---------------------------------- |
-| Promise&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Promise对象，返回查询到的卡片信息。 |
+| Promise&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Promise对象。返回查询到的卡片信息。 |
 
 **示例：**
 
@@ -690,9 +690,9 @@ getFormsInfo(bundleName: string, callback: AsyncCallback&lt;Array&lt;formInfo.Fo
 
 获取设备上指定应用程序提供的卡片信息。使用callback异步回调。
 
-**需要权限**：ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
@@ -722,9 +722,9 @@ getFormsInfo(bundleName: string, moduleName: string, callback: AsyncCallback&lt;
 
 获取设备上指定应用程序提供的卡片信息。使用callback异步回调。
 
-**需要权限**：ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
@@ -755,9 +755,9 @@ getFormsInfo(bundleName: string, moduleName?: string): Promise&lt;Array&lt;formI
 
 获取设备上指定应用程序提供的卡片信息。使用Promise异步回调。
 
-**需要权限**：ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
@@ -770,7 +770,7 @@ getFormsInfo(bundleName: string, moduleName?: string): Promise&lt;Array&lt;formI
 
 | 类型          | 说明                                |
 | :------------ | :---------------------------------- |
-| Promise&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Promise对象，返回查询到的卡片信息。 |
+| Promise&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Promise对象。返回查询到的卡片信息。 |
 
 **示例：**
 
@@ -791,9 +791,9 @@ deleteInvalidForms(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;numb
 
 根据列表删除应用程序的无效卡片。使用callback异步回调。
 
-**需要权限**：ohos.permission.REQUIRE_FORM
+**需要权限：** ohos.permission.REQUIRE_FORM
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
@@ -823,9 +823,9 @@ deleteInvalidForms(formIds: Array&lt;string&gt;): Promise&lt;number&gt;
 
 根据列表删除应用程序的无效卡片。使用Promise异步回调。
 
-**需要权限**：ohos.permission.REQUIRE_FORM
+**需要权限：** ohos.permission.REQUIRE_FORM
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
@@ -837,7 +837,7 @@ deleteInvalidForms(formIds: Array&lt;string&gt;): Promise&lt;number&gt;
 
 | 类型          | 说明                                |
 | :------------ | :---------------------------------- |
-| Promise&lt;number&gt; | Promise对象，返回删除的卡片个数。 |
+| Promise&lt;number&gt; | Promise对象。返回删除的卡片个数。 |
 
 **示例：**
 
@@ -858,15 +858,15 @@ acquireFormState(want: Want, callback: AsyncCallback&lt;formInfo.FormStateInfo&g
 
 获取卡片状态。使用callback异步回调。
 
-**需要权限**：ohos.permission.REQUIRE_FORM 和 ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+**需要权限：** ohos.permission.REQUIRE_FORM 和 ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
-| want | [want](../apis-ability-kit/js-apis-application-want.md) | 是   | 查询卡片状态时携带的want信息。需要包含bundle名、ability名、module名、卡片名、卡片规格等。 |
+| want | [Want](../apis-ability-kit/js-apis-application-want.md) | 是   | 查询卡片状态时携带的want信息。需要包含bundle名、ability名、module名、卡片名、卡片规格等。 |
 | callback | AsyncCallback&lt;[formInfo.FormStateInfo](js-apis-application-formInfo.md#formstateinfo)&gt; | 是 | 回调函数。当获取卡片状态成功，error为undefined，data为获取到的卡片状态；否则为错误对象。 |
 
 **示例：**
@@ -901,21 +901,21 @@ acquireFormState(want: Want): Promise&lt;formInfo.FormStateInfo&gt;
 
 获取卡片状态。使用Promise异步回调。
 
-**需要权限**：ohos.permission.REQUIRE_FORM 和 ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+**需要权限：** ohos.permission.REQUIRE_FORM 和 ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
-| want   | [want](../apis-ability-kit/js-apis-application-want.md) | 是   | 查询卡片状态时携带的want信息。 |
+| want   | [Want](../apis-ability-kit/js-apis-application-want.md) | 是   | 查询卡片状态时携带的want信息。 |
 
 **返回值：**
 
 | 类型          | 说明                                |
 | :------------ | :---------------------------------- |
-| Promise&lt;[formInfo.FormStateInfo](js-apis-application-formInfo.md#formstateinfo)&gt; | Promise对象，返回卡片状态。 |
+| Promise&lt;[formInfo.FormStateInfo](js-apis-application-formInfo.md#formstateinfo)&gt; | Promise对象。返回卡片状态。 |
 
 **示例：**
 
@@ -951,14 +951,14 @@ on(type: 'formUninstall', callback: Callback&lt;string&gt;): void
 > 
 > 卡片卸载与卡片移除不同。当应用卸载时，对应的卡片会自动卸载。
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
 | type | string | 是   | 填写'formUninstall'，表示卡片卸载事件。 |
-| callback | Callback&lt;string&gt; | 是 | 回调函数。返回卡片标识。 |
+| callback | Callback&lt;string&gt; | 是 | 回调函数，返回卡片标识。 |
 
 **示例：**
 
@@ -980,14 +980,14 @@ off(type: 'formUninstall', callback?: Callback&lt;string&gt;): void
 > 
 > 卡片卸载与卡片移除不同。当应用卸载时，对应的卡片会自动卸载。
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
 | type | string | 是   | 填写'formUninstall'，表示卡片卸载事件。 |
-| callback | Callback&lt;string&gt; | 否 | 回调函数。返回卡片标识。缺省时，表示注销所有已注册事件回调。<br> 需与对应on('formUninstall')的callback一致。|
+| callback | Callback&lt;string&gt; | 否 | 回调函数，返回卡片标识。缺省时，表示注销所有已注册事件回调。<br> 需与对应on('formUninstall')的callback一致。|
 
 **示例：**
 
@@ -1005,9 +1005,9 @@ notifyFormsVisible(formIds: Array&lt;string&gt;, isVisible: boolean, callback: A
 
 通知卡片是否可见。使用callback异步回调。
 
-**需要权限**：ohos.permission.REQUIRE_FORM
+**需要权限：** ohos.permission.REQUIRE_FORM
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
@@ -1036,9 +1036,9 @@ notifyFormsVisible(formIds: Array&lt;string&gt;, isVisible: boolean): Promise&lt
 
 通知卡片是否可见。使用Promise异步回调。
 
-**需要权限**：ohos.permission.REQUIRE_FORM
+**需要权限：** ohos.permission.REQUIRE_FORM
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
@@ -1072,9 +1072,9 @@ notifyFormsEnableUpdate(formIds: Array&lt;string&gt;, isEnableUpdate: boolean, c
 
 通知卡片是否启用更新状态。使用callback异步回调。
 
-**需要权限**：ohos.permission.REQUIRE_FORM
+**需要权限：** ohos.permission.REQUIRE_FORM
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
@@ -1103,9 +1103,9 @@ notifyFormsEnableUpdate(formIds: Array&lt;string&gt;, isEnableUpdate: boolean): 
 
 通知卡片是否启用更新状态。使用Promise异步回调。
 
-**需要权限**：ohos.permission.REQUIRE_FORM
+**需要权限：** ohos.permission.REQUIRE_FORM
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 

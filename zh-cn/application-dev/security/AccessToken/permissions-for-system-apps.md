@@ -37,6 +37,18 @@
 
 **起始版本**：12
 
+### ohos.permission.ACCESS_MEDIALIB_THUMB_DB
+
+允许系统应用访问和修改媒体库数据库。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.AGENT_REQUIRE_FORM
 
 允许应用代理请求卡片。
@@ -2045,6 +2057,18 @@
 
 **起始版本**：11
 
+### ohos.permission.READ_FINDSERVICE
+
+允许系统应用读取“查找我的设备”开关状态。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.MANAGE_USB_CONFIG
 
 允许应用管理USB设备功能和端口。
@@ -2434,6 +2458,18 @@
 允许应用订阅通知面板显示或收起时发送的广播。
 
 **权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.CHANGE_DISPLAYMODE
+
+允许系统应用改变屏幕模式。
+
+**权限级别**：system_core
 
 **授权方式**：system_grant
 

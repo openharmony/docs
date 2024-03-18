@@ -162,54 +162,318 @@ type GetItemMainSizeByIndex = (index: number) => number
 
 ## 属性
 
-
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
-| 名称 | 参数类型 | 描述 |
-| -------- | -------- | -------- |
-| columnsTemplate | string | 设置当前瀑布流组件布局列的数量，不设置时默认1列。<br/>例如, '1fr 1fr 2fr' 是将父组件分3列，将父组件允许的宽分为4等份，第一列占1份，第二列占1份，第三列占2份。<br>可使用columnsTemplate('repeat(auto-fill,track-size)')根据给定的列宽track-size自动计算列数，其中repeat、auto-fill为关键字，track-size为可设置的宽度，支持的单位包括px、vp、%或有效数字，默认单位为vp，使用方法参见示例2。<br>默认值：'1fr' |
-| rowsTemplate | string | 设置当前瀑布流组件布局行的数量，不设置时默认1行。<br/>例如, '1fr 1fr 2fr'是将父组件分三行，将父组件允许的高分为4等份，第一行占1份，第二行占一份，第三行占2份。<br>可使用rowsTemplate('repeat(auto-fill,track-size)')根据给定的行高track-size自动计算行数，其中repeat、auto-fill为关键字，track-size为可设置的高度，支持的单位包括px、vp、%或有效数字，默认单位为vp。<br/>默认值：'1fr' |
-| itemConstraintSize | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) | 设置约束尺寸，子组件布局时，进行尺寸范围限制。               |
-| columnsGap | [Length](ts-types.md#length) |设置列与列的间距。 <br>默认值：0|
-| rowsGap | [Length](ts-types.md#length) |设置行与行的间距。<br> 默认值：0|
-| layoutDirection | [FlexDirection](ts-appendix-enums.md#flexdirection) |设置布局的主轴方向。<br/>默认值：FlexDirection.Column|
-| enableScrollInteraction<sup>10+</sup>  |  boolean  |   设置是否支持滚动手势，当设置为false时，无法通过手指或者鼠标滚动，但不影响控制器的滚动接口。<br/>默认值：true      |
-| nestedScroll<sup>10+</sup>                 | [NestedScrollOptions](ts-container-scroll.md#nestedscrolloptions10对象说明)         | 嵌套滚动选项。设置向前向后两个方向上的嵌套滚动模式，实现与父组件的滚动联动。 |
-| friction<sup>10+</sup> | number \| [Resource](ts-types.md#resource)    | 设置摩擦系数，手动划动滚动区域时生效，只对惯性滚动过程有影响，对惯性滚动过程中的链式效果有间接影响。<br/>默认值：非可穿戴设备为0.6，可穿戴设备为0.9<br/>**说明：** <br/>设置为小于等于0的值时，按默认值处理 |
-| cachedCount<sup>11+</sup> | number | 设置预加载的FlowItem的数量，只在LazyForEach中生效。 <br/> 默认值：1 <br/>**说明：** <br/>设置该属性后会缓存cachedCount个FlowItem。<br/>[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)超出显示和缓存范围的FlowItem会被释放。<br/>设置为小于0的值时，按默认值显示。|
-| scrollBar<sup>11+</sup>            | [BarState](ts-appendix-enums.md#barstate) | 设置滚动条状态。<br/>默认值：BarState.Off<br/>**说明：** <br/>滚动条位置和长度以已布局过的总高度和当前偏移为准，在瀑布流布局全部子节点之前随着滑动持续变化。 |
-| scrollBarWidth<sup>11+</sup> | string&nbsp;\|&nbsp;number         | 设置滚动条的宽度，不支持百分比设置。<br/>默认值：4<br/>单位：vp<br/>**说明：** <br/>如果滚动条的宽度超过其高度，则滚动条的宽度会变为默认值。 |
-| scrollBarColor<sup>11+</sup> | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;[Color](ts-appendix-enums.md#color)   | 设置滚动条的颜色。 |
-| edgeEffect<sup>11+</sup>     | value:[EdgeEffect](ts-appendix-enums.md#edgeeffect), <br/>options?:[EdgeEffectOptions<sup>11+</sup>](ts-container-scroll.md#edgeeffectoptions11对象说明)        | 设置边缘滑动效果。<br/>\- value：设置瀑布流组件的边缘滑动效果，支持弹簧效果和阴影效果。<br/>默认值：EdgeEffect.None <br/>\- options：设置组件内容大小小于组件自身时，是否开启滑动效果。<br/>默认值：false |
+### columnsTemplate
+
+columnsTemplate(value: string)
+
+设置当前瀑布流组件布局列的数量，不设置时默认1列。
+
+例如, '1fr 1fr 2fr' 是将父组件分3列，将父组件允许的宽分为4等份，第一列占1份，第二列占1份，第三列占2份。
+
+可使用columnsTemplate('repeat(auto-fill,track-size)')根据给定的列宽track-size自动计算列数，其中repeat、auto-fill为关键字，track-size为可设置的宽度，支持的单位包括px、vp、%或有效数字，默认单位为vp，使用方法参见示例2。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                                           |
+| ------ | ------ | ---- | ---------------------------------------------- |
+| value  | string | 是   | 当前瀑布流组件布局列的数量。<br/>默认值：'1fr' |
+
+### rowsTemplate
+
+rowsTemplate(value: string)
+
+设置当前瀑布流组件布局行的数量，不设置时默认1行。
+
+例如, '1fr 1fr 2fr'是将父组件分三行，将父组件允许的高分为4等份，第一行占1份，第二行占一份，第三行占2份。
+
+可使用rowsTemplate('repeat(auto-fill,track-size)')根据给定的行高track-size自动计算行数，其中repeat、auto-fill为关键字，track-size为可设置的高度，支持的单位包括px、vp、%或有效数字，默认单位为vp。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                                           |
+| ------ | ------ | ---- | ---------------------------------------------- |
+| value  | string | 是   | 当前瀑布流组件布局行的数量。<br/>默认值：'1fr' |
+
+### itemConstraintSize
+
+itemConstraintSize(value: ConstraintSizeOptions)
+
+设置约束尺寸，子组件布局时，进行尺寸范围限制。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                       | 必填 | 说明       |
+| ------ | ---------------------------------------------------------- | ---- | ---------- |
+| value  | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) | 是   | 约束尺寸。 |
+
+### columnsGap
+
+columnsGap(value: Length)
+
+设置列与列的间距。 
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                         | 必填 | 说明                          |
+| ------ | ---------------------------- | ---- | ----------------------------- |
+| value  | [Length](ts-types.md#length) | 是   | 列与列的间距。 <br/>默认值：0 |
+
+### rowsGap
+
+rowsGap(value: Length)
+
+设置行与行的间距。 
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                         | 必填 | 说明                          |
+| ------ | ---------------------------- | ---- | ----------------------------- |
+| value  | [Length](ts-types.md#length) | 是   | 行与行的间距。 <br/>默认值：0 |
+
+### layoutDirection
+
+layoutDirection(value: FlexDirection)
+
+设置布局的主轴方向。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                | 必填 | 说明                                              |
+| ------ | --------------------------------------------------- | ---- | ------------------------------------------------- |
+| value  | [FlexDirection](ts-appendix-enums.md#flexdirection) | 是   | 布局的主轴方向。<br/>默认值：FlexDirection.Column |
 
 layoutDirection优先级高于rowsTemplate和columnsTemplate。根据layoutDirection设置情况，分为以下三种设置模式:
 
 - layoutDirection设置纵向布局（FlexDirection.Column 或 FlexDirection.ColumnReverse）
 
-	此时columnsTemplate有效（如果未设置，取默认值）。例如columnsTemplate设置为"1fr 1fr"、rowsTemplate设置为"1fr 1fr 1fr"时，瀑布流组件纵向布局，辅轴均分成横向2列。
+  此时columnsTemplate有效（如果未设置，取默认值）。例如columnsTemplate设置为"1fr 1fr"、rowsTemplate设置为"1fr 1fr 1fr"时，瀑布流组件纵向布局，辅轴均分成横向2列。
 
 - layoutDirection设置横向布局（FlexDirection.Row 或 FlexDirection.RowReverse）
 
-	此时rowsTemplate有效（如果未设置，取默认值）。例如columnsTemplate设置为"1fr 1fr"、rowsTemplate设置为"1fr 1fr 1fr"时，瀑布流组件横向布局，辅轴均分成纵向3列。
+  此时rowsTemplate有效（如果未设置，取默认值）。例如columnsTemplate设置为"1fr 1fr"、rowsTemplate设置为"1fr 1fr 1fr"时，瀑布流组件横向布局，辅轴均分成纵向3列。
 
 - layoutDirection未设置布局方向
 
-	布局方向为layoutDirection的默认值：FlexDirection.Column，此时columnsTemplate有效。例如columnsTemplate设置为"1fr 1fr"、rowsTemplate设置为"1fr 1fr 1fr"时，瀑布流组件纵向布局，辅轴均分成横向2列。
+  布局方向为layoutDirection的默认值：FlexDirection.Column，此时columnsTemplate有效。例如columnsTemplate设置为"1fr 1fr"、rowsTemplate设置为"1fr 1fr 1fr"时，瀑布流组件纵向布局，辅轴均分成横向2列。
+
+### enableScrollInteraction<sup>10+</sup>
+
+enableScrollInteraction(value: boolean)
+
+设置是否支持滚动手势，当设置为false时，无法通过手指或者鼠标滚动，但不影响控制器的滚动接口。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                |
+| ------ | ------- | ---- | ----------------------------------- |
+| value  | boolean | 是   | 是否支持滚动手势。<br/>默认值：true |
+
+### nestedScroll<sup>10+</sup>
+
+nestedScroll(value: NestedScrollOptions)
+
+设置向前向后两个方向上的嵌套滚动模式，实现与父组件的滚动联动。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明           |
+| ------ | ------------------------------------------------------------ | ---- | -------------- |
+| value  | [NestedScrollOptions](ts-container-scroll.md#nestedscrolloptions10对象说明) | 是   | 嵌套滚动选项。 |
+
+### friction<sup>10+</sup>
+
+friction(value: number | Resource)
+
+设置摩擦系数，手动划动滚动区域时生效，只对惯性滚动过程有影响，对惯性滚动过程中的链式效果有间接影响。设置为小于等于0的值时，按默认值处理。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                 | 必填 | 说明                                                      |
+| ------ | ---------------------------------------------------- | ---- | --------------------------------------------------------- |
+| value  | number&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 摩擦系数。<br/>默认值：非可穿戴设备为0.6，可穿戴设备为0.9 |
+
+### cachedCount<sup>11+</sup>
+
+cachedCount(value: number)
+
+设置预加载的FlowItem的数量，只在LazyForEach中生效。设置该属性后会缓存cachedCount个FlowItem。[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)超出显示和缓存范围的FlowItem会被释放。设置为小于0的值时，按默认值显示。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                                     |
+| ------ | ------ | ---- | ---------------------------------------- |
+| value  | number | 是   | 预加载的FlowItem的数量。 <br/> 默认值：1 |
+
+### scrollBar<sup>11+</sup>
+
+scrollBar(barState: BarState)
+
+设置滚动条状态。滚动条位置和长度以已布局过的总高度和当前偏移为准，在瀑布流布局全部子节点之前随着滑动持续变化。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                      | 必填 | 说明                                  |
+| -------- | ----------------------------------------- | ---- | ------------------------------------- |
+| barState | [BarState](ts-appendix-enums.md#barstate) | 是   | 滚动条状态。<br/>默认值：BarState.Off |
+
+### scrollBarWidth<sup>11+</sup>
+
+scrollBarWidth(value: number | string)
+
+设置滚动条的宽度，不支持百分比设置。如果滚动条的宽度超过其高度，则滚动条的宽度会变为默认值。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                       | 必填 | 说明                                      |
+| ------ | -------------------------- | ---- | ----------------------------------------- |
+| value  | number&nbsp;\|&nbsp;string | 是   | 滚动条的宽度。<br/>默认值：4<br/>单位：vp |
+
+### scrollBarColor<sup>11+</sup>
+
+scrollBarColor(color: Color | number | string)
+
+设置滚动条的颜色。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明           |
+| ------ | ------------------------------------------------------------ | ---- | -------------- |
+| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Color](ts-appendix-enums.md#color) | 是   | 滚动条的颜色。 |
+
+### edgeEffect<sup>11+</sup>
+
+edgeEffect(value: EdgeEffect, options?: EdgeEffectOptions)
+
+设置边缘滑动效果。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名                | 类型                                                         | 必填 | 说明                                                         |
+| --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value                 | [EdgeEffect](ts-appendix-enums.md#edgeeffect)                | 是   | 设置瀑布流组件的边缘滑动效果，支持弹簧效果和阴影效果。<br/>默认值：EdgeEffect.None |
+| options<sup>11+</sup> | [EdgeEffectOptions](ts-container-scroll.md#edgeeffectoptions11对象说明) | 否   | 设置组件内容大小小于组件自身时，是否开启滑动效果。<br/>默认值：false |
+
+### flingSpeedLimit<sup>11+</sup>
+
+flingSpeedLimit(speedLimit: number)
+
+限制跟手滑动结束后，Fling动效开始时的最大初始速度。单位是vp/s。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名     | 类型   | 必填 | 说明                            |
+| ---------- | ------ | ---- | ------------------------------- |
+| speedLimit | number | 是   | Fling动效开始时的最大初始速度。 |
 
 ## 事件
 
-
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
 
+### onReachStart
 
-| 名称 | 功能描述 |
-| -------- | -------- |
-| onReachStart(event: () => void) | 瀑布流组件到达起始位置时触发。 |
-| onReachEnd(event: () => void)   | 瀑布流组件到底末尾位置时触发。 |
-| onScrollFrameBegin<sup>10+</sup>(event: (offset: number, state:  [ScrollState](ts-container-list.md#scrollstate枚举说明) => { offsetRemain：number }) | 瀑布流开始滑动时触发，事件参数传入即将发生的滑动量，事件处理函数中可根据应用场景计算实际需要的滑动量并作为事件处理函数的返回值返回，瀑布流将按照返回值的实际滑动量进行滑动。<br/>\- offset：即将发生的滑动量，单位vp。<br/>\- state：当前滑动状态。<br/>- offsetRemain：实际滑动量，单位vp。<br/>触发该事件的条件：手指拖动WaterFlow、WaterFlow惯性划动时每帧开始时触发；WaterFlow超出边缘回弹、使用滚动控制器和拖动滚动条的滚动不会触发。|
-| onScrollIndex<sup>11+</sup>(event: (first: number, last: number) => void) | 当前瀑布流显示的起始位置/终止位置的子组件发生变化时触发。瀑布流初始化时会触发一次。<br/>- first: 当前显示的WaterFlow起始位置的索引值。<br/>- last: 当前显示的瀑布流终止位置的索引值。<br/>瀑布流显示区域上第一个子组件/最后一个组件的索引值有变化就会触发。 |
-| onScrollStart<sup>11+</sup>(event: () => void) | 瀑布流滑动开始时触发。手指拖动瀑布流或瀑布流的滚动条触发的滑动开始时，会触发该事件。使用[Scroller](ts-container-scroll.md#scroller)滑动控制器触发的带动画的滑动，动画开始时会触发该事件。 |
-| onScrollStop<sup>11+</sup>(event: () => void)          | 瀑布流滑动停止时触发。手指拖动瀑布流或瀑布流的滚动条触发的滑动，手指离开屏幕并且滑动停止时会触发该事件；使用[Scroller](ts-container-scroll.md#scroller)滑动控制器触发的带动画的滑动，动画停止会触发该事件。 |
+onReachStart(event: () => void)
+
+瀑布流组件到达起始位置时触发。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### onReachEnd
+
+onReachEnd(event: () => void)
+
+瀑布流组件到底末尾位置时触发。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### onScrollFrameBegin<sup>10+</sup>
+
+onScrollFrameBegin(event: (offset: number, state: ScrollState) => { offsetRemain: number; })
+
+瀑布流开始滑动时触发，事件参数传入即将发生的滑动量，事件处理函数中可根据应用场景计算实际需要的滑动量并作为事件处理函数的返回值返回，瀑布流将按照返回值的实际滑动量进行滑动。
+
+触发该事件的条件：手指拖动WaterFlow、WaterFlow惯性划动时每帧开始时触发；WaterFlow超出边缘回弹、使用滚动控制器和拖动滚动条的滚动不会触发。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                    | 必填 | 说明                       |
+| ------ | ------------------------------------------------------- | ---- | -------------------------- |
+| offset | number                                                  | 是   | 即将发生的滑动量，单位vp。 |
+| state  | [ScrollState](ts-container-list.md#scrollstate枚举说明) | 是   | 当前滑动状态。             |
+
+**返回值：** 
+
+| 类型                     | 说明                 |
+| ------------------------ | -------------------- |
+| { offsetRemain: number } | 实际滑动量，单位vp。 |
+
+### onScrollIndex<sup>11+</sup>
+
+onScrollIndex(event: (first: number, last: number) => void)
+
+当前瀑布流显示的起始位置/终止位置的子组件发生变化时触发。瀑布流初始化时会触发一次。
+
+瀑布流显示区域上第一个子组件/最后一个组件的索引值有变化就会触发。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                                  |
+| ------ | ------ | ---- | ------------------------------------- |
+| first  | number | 是   | 当前显示的WaterFlow起始位置的索引值。 |
+| last   | number | 是   | 当前显示的瀑布流终止位置的索引值。    |
+
+### onScrollStart<sup>11+</sup>
+
+onScrollStart(event: () => void)
+
+瀑布流滑动开始时触发。手指拖动瀑布流或瀑布流的滚动条触发的滑动开始时，会触发该事件。使用[Scroller](ts-container-scroll.md#scroller)滑动控制器触发的带动画的滑动，动画开始时会触发该事件。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### onScrollStop<sup>11+</sup>
+
+onScrollStop(event: () => void)
+
+瀑布流滑动停止时触发。手指拖动瀑布流或瀑布流的滚动条触发的滑动，手指离开屏幕并且滑动停止时会触发该事件；使用[Scroller](ts-container-scroll.md#scroller)滑动控制器触发的带动画的滑动，动画停止会触发该事件。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### onScroll<sup>(deprecated)</sup>
 onScroll(event: (scrollOffset: number, scrollState: [ScrollState](ts-container-list.md#scrollstate枚举说明)) => void) 

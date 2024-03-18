@@ -1,6 +1,6 @@
 # WindowExtensionContext (System API)
 
-The **WindowExtensionContext** module, inherited from [ExtensionContext](../apis/js-apis-inner-application-extensionContext.md), is the context environment of the WindowExtensionAbility.
+The **WindowExtensionContext** module, inherited from [ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md), is the context environment of the WindowExtensionAbility.
 
 The **WindowExtensionContext** module provides the capabilities of the [WindowExtensionAbility](js-apis-application-windowExtensionAbility-sys.md), including starting the ability.
 
@@ -41,8 +41,8 @@ Starts an ability. This API uses an asynchronous callback to return the result.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](../apis/js-apis-app-ability-want.md)  | Yes| Want information about the target ability.|
-| options | [StartOptions](../apis/js-apis-app-ability-startOptions.md) | Yes| Parameters used for starting the ability.|
+| want | [Want](../apis-ability-kit/js-apis-app-ability-want.md)  | Yes| Want information about the target ability.|
+| options | [StartOptions](../apis-ability-kit/js-apis-app-ability-startOptions.md) | Yes| Parameters used for starting the ability.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
@@ -98,8 +98,8 @@ Starts an ability. This API uses a promise to return the result.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](../apis/js-apis-app-ability-want.md)  | Yes| Want information about the target ability, such as the ability name and bundle name.|
-| options | [StartOptions](../apis/js-apis-app-ability-startOptions.md) | No| Parameters used for starting the ability.|
+| want | [Want](../apis-ability-kit/js-apis-app-ability-want.md)  | Yes| Want information about the target ability, such as the ability name and bundle name.|
+| options | [StartOptions](../apis-ability-kit/js-apis-app-ability-startOptions.md) | No| Parameters used for starting the ability.|
 
 **Return value**
 

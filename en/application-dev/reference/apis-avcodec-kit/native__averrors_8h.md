@@ -3,7 +3,7 @@
 
 ## Overview
 
-The **native_averrors.h** file declares the error codes used by the multimedia subsystem.
+The **native_averrors.h** file declares the error codes used by the playback framework.
 
 **Library**: libnative_media_core.so
 

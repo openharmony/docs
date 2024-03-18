@@ -24,9 +24,9 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
 拉起一个应用的Ability。使用callback异步回调。
 
-**系统接口**：此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **错误码：**
 
@@ -84,9 +84,9 @@ startAbility(want: Want): Promise&lt;void&gt;
 
 拉起一个应用的Ability。使用Promise异步回调。
 
-**系统接口**：此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
@@ -147,9 +147,9 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number
 
 将一个Ability与服务类型的Ability绑定。
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口：** 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -228,9 +228,9 @@ disconnectServiceExtensionAbility(connection: number, callback: AsyncCallback&lt
 
 将一个Ability与绑定的服务类型的Ability解绑，断开连接之后需要将连接成功时返回的remote对象置空。
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口：** 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -288,9 +288,9 @@ disconnectServiceExtensionAbility(connection: number): Promise&lt;void&gt;
 
 将一个Ability与绑定的服务类型的Ability解绑，断开连接之后需要将连接成功时返回的remote对象置空(Promise形式返回结果)。
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口：** 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -302,7 +302,7 @@ disconnectServiceExtensionAbility(connection: number): Promise&lt;void&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise对象，无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 

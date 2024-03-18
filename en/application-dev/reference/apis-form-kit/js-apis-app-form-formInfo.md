@@ -109,6 +109,7 @@ Enumerates the widget parameters.
 | LAUNCH_REASON_KEY<sup>10+</sup>    | 'ohos.extra.param.key.form_launch_reason'   | Reason for creating the widget.  |
 | PARAM_FORM_CUSTOMIZE_KEY<sup>10+</sup>    | 'ohos.extra.param.key.form_customize'   | Custom data.  |
 | FORM_RENDERING_MODE_KEY<sup>11+</sup>    | 'ohos.extra.param.key.form_rendering_mode'   | Widget rendering mode. |
+| HOST_BG_INVERSE_COLOR_KEY<sup>12+</sup>    | 'ohos.extra.param.key.host_bg_inverse_color'   | Inverse background color of the widget client. |
 
 ##  FormDimension
 
@@ -124,6 +125,7 @@ Enumerates the widget dimensions.
 | Dimension_4_4      | 4   | 4 x 4.  |
 | Dimension_2_1      | 5   | 2 x 1.  |
 | DIMENSION_1_1<sup>11+<sup>      | 6   | 1 x 1.  |
+| DIMENSION_4_6<sup>12+<sup>      | 7   | 4 x 6.  |
 
 
 ## FormInfoFilter
@@ -159,5 +161,3 @@ Enumerates the reasons for creating a widget.
 | ----------- | ---- | ------------ |
 | FORM_DEFAULT | 1   | The widget is created by default.|
 | FORM_SHARE   | 2   | The widget is created for sharing.|
-
- <!--no_check--> 

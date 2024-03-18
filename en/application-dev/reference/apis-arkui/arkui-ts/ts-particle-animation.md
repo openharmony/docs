@@ -18,29 +18,29 @@ Not supported
 ## APIs
 
 ```typescript
-function Particle
-<
-  PARTICLE extends ParticleType,
-  COLOR_UPDATER extends ParticleUpdater,
-  OPACITY_UPDATER extends ParticleUpdater,
-  SCALE_UPDATER extends ParticleUpdater,
-  ACC_SPEED_UPDATER extends ParticleUpdater,
-  ACC_ANGLE_UPDATER extends ParticleUpdater,
-  SPIN_UPDATER extends ParticleUpdater
->(value: {
-  particles: Array<
+interface ParticleInterface {
+  <
+    PARTICLE extends ParticleType,
+    COLOR_UPDATER extends ParticleUpdater,
+    OPACITY_UPDATER extends ParticleUpdater,
+    SCALE_UPDATER extends ParticleUpdater,
+    ACC_SPEED_UPDATER extends ParticleUpdater,
+    ACC_ANGLE_UPDATER extends ParticleUpdater,
+    SPIN_UPDATER extends ParticleUpdater
+  >(value: {
+    particles: Array<
     ParticleOptions<
-      PARTICLE, 
-      COLOR_UPDATER, 
-      OPACITY_UPDATER, 
-      SCALE_UPDATER, 
-      ACC_SPEED_UPDATER, 
-      ACC_ANGLE_UPDATER, 
-      SPIN_UPDATER
+    PARTICLE,
+    COLOR_UPDATER,
+    OPACITY_UPDATER,
+    SCALE_UPDATER,
+    ACC_SPEED_UPDATER,
+    ACC_ANGLE_UPDATER,
+    SPIN_UPDATER
     >
-  >
-})
-
+    >;
+  }): ParticleAttribute;
+}
 ```
 
 **Parameters**
@@ -57,6 +57,31 @@ The [universal events](ts-universal-events-click.md) are supported.
 
 ## ParticleOptions
 
+```typescript
+interface ParticleOptions<
+  PARTICLE extends ParticleType,
+  COLOR_UPDATER extends ParticleUpdater,
+  OPACITY_UPDATER extends ParticleUpdater,
+  SCALE_UPDATER extends ParticleUpdater,
+  ACC_SPEED_UPDATER extends ParticleUpdater,
+  ACC_ANGLE_UPDATER extends ParticleUpdater,
+  SPIN_UPDATER extends ParticleUpdater
+> {
+  emitter: EmitterOptions<PARTICLE>;
+  color?: ParticleColorPropertyOptions<COLOR_UPDATER>;
+  opacity?: ParticlePropertyOptions<number, OPACITY_UPDATER>;
+  scale?: ParticlePropertyOptions<number, SCALE_UPDATER>;
+  velocity?: {
+    speed: [number, number];
+    angle: [number, number];
+  };
+  acceleration?: {
+    speed?: ParticlePropertyOptions<number, ACC_SPEED_UPDATER>;
+    angle?: ParticlePropertyOptions<number, ACC_ANGLE_UPDATER>;
+  };
+  spin?: ParticlePropertyOptions<number, SPIN_UPDATER>;
+}
+```
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -217,7 +242,7 @@ interface ParticlePropertyAnimation<T> {
 | to | T | Yes| Target value of the attribute. If the value is invalid, the default value will be used.|
 |startMillis|number | Yes| Start time of the animation.|
 |endMillis|number | Yes| End time of the animation.|
-|curve|[Curve](ts-appendix-enums.md#curve) \| [ICurve](../apis/js-apis-curve.md#icurve)| No| Animation curve.<br>Default value: **Curve.Linear**|
+|curve|[Curve](ts-appendix-enums.md#curve) \| [ICurve](../js-apis-curve.md#icurve)| No| Animation curve.<br>Default value: **Curve.Linear**|
 
 
 ## ParticleType
