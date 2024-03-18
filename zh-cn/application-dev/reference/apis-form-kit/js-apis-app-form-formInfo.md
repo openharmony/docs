@@ -16,7 +16,7 @@ import formInfo from '@ohos.app.form.formInfo';
 
 卡片配置信息。
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 | 名称        | 类型                 | 可读    | 可写    | 说明                                                         |
 | ----------- | -------- | -------- | -------------------- | ------------------------------------------------------------ |
@@ -47,7 +47,7 @@ import formInfo from '@ohos.app.form.formInfo';
 
 支持的卡片类型枚举。
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 | 名称        | 值   | 说明         |
 | ----------- | ---- | ------------ |
@@ -58,7 +58,7 @@ import formInfo from '@ohos.app.form.formInfo';
 
 卡片支持的颜色模式枚举。
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 | 名称        | 值   | 说明         |
 | ----------- | ---- | ------------ |
@@ -70,7 +70,7 @@ import formInfo from '@ohos.app.form.formInfo';
 
 卡片状态信息。
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 | 名称        | 类型                 | 可读    | 可写    | 说明                                                         |
 | ----------- | -------- | -------- | -------------------- | ------------------------------------------------------------ |
@@ -81,7 +81,7 @@ import formInfo from '@ohos.app.form.formInfo';
 
 卡片状态枚举。
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 | 名称        | 值   | 说明         |
 | ----------- | ---- | ------------ |
@@ -93,7 +93,7 @@ import formInfo from '@ohos.app.form.formInfo';
 
 卡片参数枚举。
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 | 名称        | 值   | 说明         |
 | ----------- | ---- | ------------ |
@@ -105,7 +105,7 @@ import formInfo from '@ohos.app.form.formInfo';
 | HEIGHT_KEY         | 'ohos.extra.param.key.form_height'   | 卡片高度。   |
 | TEMPORARY_KEY          | 'ohos.extra.param.key.form_temporary'   | 临时卡片。   |
 | ABILITY_NAME_KEY   | 'ohos.extra.param.key.ability_name'   | ability名称。  |
-| BUNDLE_NAME_KEY    | 'ohos.extra.param.key.bundle_name'   | 指示指定要获取的捆绑Bundle名称的键。 |
+| BUNDLE_NAME_KEY    | 'ohos.extra.param.key.bundle_name'   | Bundle名称。 |
 | LAUNCH_REASON_KEY<sup>10+</sup>    | 'ohos.extra.param.key.form_launch_reason'   | 卡片创建原因。   |
 | PARAM_FORM_CUSTOMIZE_KEY<sup>10+</sup>    | 'ohos.extra.param.key.form_customize'   | 自定义数据。   |
 | FORM_RENDERING_MODE_KEY<sup>11+</sup>    | 'ohos.extra.param.key.form_rendering_mode'   | 卡片渲染模式。  |
@@ -115,7 +115,7 @@ import formInfo from '@ohos.app.form.formInfo';
 
 定义卡片尺寸枚举。
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 | 名称        | 值   | 说明         |
 | ----------- | ---- | ------------ |
@@ -132,19 +132,19 @@ import formInfo from '@ohos.app.form.formInfo';
 
 卡片信息过滤器，仅将符合过滤器内要求的卡片信息返回。
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 | 名称        | 类型   | 必填         |说明         |
 | ----------- | ---- | ------------ |------------ |
-| bundleName    | string    |否    | 选填。仅保留含bundleName与提供值相符的卡片信息。<br>未填写时则不通过bundleName进行过滤。   |
-| moduleName    | string    |否    | 选填。仅保留含moduleName与提供值相符的卡片信息。<br>未填写时则不通过moduleName进行过滤。   |
-| supportedDimensions | Array<number> |否    | 选填。仅保留含supportedDimensions提供值相符的卡片信息。<br>未填写时则不通过supportedDimensions进行过滤。   |
+| bundleName    | string    |否    | 选填，仅保留含bundleName与提供值相符的卡片信息，<br>未填写时则不通过bundleName进行过滤。   |
+| moduleName    | string    |否    | 选填，仅保留含moduleName与提供值相符的卡片信息，<br>未填写时则不通过moduleName进行过滤。   |
+| supportedDimensions | Array<number> |否    | 选填，仅保留含supportedDimensions提供值相符的卡片信息，<br>未填写时则不通过supportedDimensions进行过滤。   |
 
 ## VisibilityType
 
 卡片当前可见类型枚举。
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 | 名称        |  值   | 说明         |
 | ----------- | ---- | ------------ |
@@ -157,7 +157,7 @@ import formInfo from '@ohos.app.form.formInfo';
 
 卡片创建原因枚举。
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 | 名称        |  值   | 说明         |
 | ----------- | ---- | ------------ |

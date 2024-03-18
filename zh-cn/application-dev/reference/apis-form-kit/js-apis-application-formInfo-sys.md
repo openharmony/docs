@@ -21,7 +21,7 @@ import formInfo from '@ohos.application.formInfo';
 
 卡片参数枚举。
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 | 名称        | 值   | 说明         |
 | ----------- | ---- | ------------ |
