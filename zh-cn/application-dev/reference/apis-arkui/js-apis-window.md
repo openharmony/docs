@@ -2802,6 +2802,78 @@ try {
 }
 ```
 
+### on('noInteractionDetect')<sup>11+</sup>
+
+on(type: 'noInteractionDetect', timeout: number, callback: Callback&lt;void&gt;): void
+
+开启本窗口长时间无交互的监听。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                       | 必填 | 说明                                                         |
+| -------- | --------------------------| ---- | ------------------------------------------------------------ |
+| type     | string                    | 是   | 监听事件，固定为'noInteractionDetect'，即本窗口长时间无交互的事件。 |
+| timeout     | number                    | 是   | 设置多久无交互时回调APP的时间，单位为秒(s)。 |
+| callback | Callback&lt;void&gt;      | 是   | 回调函数。当本窗口长时间无交互时的回调。  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 401 | Parameter error. |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |
+
+**示例：**
+
+```ts
+try {
+  windowClass.on('noInteractionDetect', 60, () => {
+    console.info('no interaction for a long time.');
+  });
+} catch (exception) {
+  console.error('Failed to register callback. Cause: ' + JSON.stringify(exception));
+}
+```
+
+### off('noInteractionDetect')<sup>11+</sup>
+
+off(type: 'noInteractionDetect', callback?: Callback&lt;void&gt;): void
+
+关闭本窗口长时间无交互的监听。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                        | 必填 | 说明                                   |
+| -------- |----------------------------| ---- |--------------------------------------|
+| type     | string                     | 是   | 监听事件，固定为'noInteractionDetect'，即本窗口长时间无交互的事件。 |
+| callback | Callback&lt;void&gt;    | 否   | 回调函数。完成关闭本窗口长时间无交互监控时的回调。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |
+
+**示例：**
+
+```ts
+try {
+  windowClass.off('noInteractionDetect');
+} catch (exception) {
+  console.error('Failed to unregister callback. Cause: ' + JSON.stringify(exception));
+}
+```
+
 ### on('windowStatusChange')<sup>11+</sup>
 
 on(type:  'windowStatusChange', callback: Callback&lt;WindowStatusType&gt;): void
