@@ -1313,9 +1313,9 @@ function callBackFunc(info:observer.RouterPageInfo) {};
 observer.off('routerPageUpdate', callBackFunc);
 ```
 
-### observer.on('densityUpdate')<sup>12+</sup>
+### on('densityUpdate')<sup>12+</sup>
 
-on(type: 'densityUpdate', callback: Callback<DensityInfo>): void
+on(type: 'densityUpdate', callback: Callback\<observer.DensityInfo\>): void
 
 监听屏幕像素密度变化。
 
@@ -1326,7 +1326,7 @@ on(type: 'densityUpdate', callback: Callback<DensityInfo>): void
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 监听事件，固定为'densityUpdate'，即屏幕像素密度变化。 |
-| callback | Callback\<[DensityInfo](./js-apis-arkui-observer.md#densityinfo12)\>        | 是   | 回调函数。携带densityInfo，返回变化后的屏幕像素密度。                 |
+| callback | Callback\<observer.[DensityInfo](./js-apis-arkui-observer.md#densityinfo12)\>        | 是   | 回调函数。携带densityInfo，返回变化后的屏幕像素密度。                 |
 
 ```ts
 import observer from '@ohos.arkui.observer';
@@ -1357,9 +1357,9 @@ struct Index {
 }
 ```
 
-### observer.off('densityUpdate')<sup>12+</sup>
+### off('densityUpdate')<sup>12+</sup>
 
-off(type: 'densityUpdate', callback?: Callback<DensityInfo>): void
+off(type: 'densityUpdate', callback?: Callback\<observer.DensityInfo\>): void
 
 取消监听屏幕像素密度的变化。
 
@@ -1367,10 +1367,10 @@ off(type: 'densityUpdate', callback?: Callback<DensityInfo>): void
 
 **参数：** 
 
-| 参数名   | 类型                                                         | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | 是   | 监听事件，固定为'densityUpdate'，即屏幕像素密度变化。 |
-| callback | Callback\<[DensityInfo](./js-apis-arkui-observer.md#densityinfo12)\>        | 否   | 需要被注销的回调函数。                  |
+| 参数名   | 类型                                                                 | 必填 | 说明                                                                                         |
+| -------- | -------------------------------------------------------------------- | ---- | -------------------------------------------------------------------------------------------- |
+| type     | string                                                               | 是   | 监听事件，固定为'densityUpdate'，即屏幕像素密度变化。                                        |
+| callback | Callback\<observer.[DensityInfo](./js-apis-arkui-observer.md#densityinfo12)\> | 否   | 需要被注销的回调函数。若不指定具体的回调函数，则注销该UIContext下所有densityUpdate事件监听。 |
 
 ```ts
 import observer from '@ohos.arkui.observer';
