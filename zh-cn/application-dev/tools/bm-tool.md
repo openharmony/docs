@@ -551,6 +551,6 @@ bm dump-dependencies -n com.ohos.app -m entry
 
 出现该问题的原因是应用当前使用的签名不符合HarmonyOS应用签名的要求。通常是由于当前使用的是OpenHarmony应用的签名，需替换为HarmonyOS应用的签名。
 
-请在[为应用/服务签名](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/signing-0000001587684945-V3)时勾选”Support HarmonyOS“，完成HarmonyOS应用签名后再次启动调试或者运行应用。
+请在[为应用/服务签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V1/signing-0000001587684945-V1)时勾选”Support HarmonyOS“，完成HarmonyOS应用签名后再次启动调试或者运行应用。
 
 ![示例图](figures/zh-cn_image_00000016359212311.png)
