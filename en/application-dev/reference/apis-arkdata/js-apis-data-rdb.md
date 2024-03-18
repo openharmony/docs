@@ -275,7 +275,7 @@ Defines the types of the key and value in a KV pair.
 
 ## SyncMode<sup>8+</sup>
 
-Defines the database synchronization mode.
+Defines the database sync mode.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -334,7 +334,7 @@ let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 
 inDevices(devices: Array&lt;string&gt;): RdbPredicates
 
-Sets an **RdbPredicates** to specify the remote devices to connect on the network during distributed database synchronization.
+Sets an **RdbPredicates** to specify the remote devices to connect on the network during distributed database sync.
 
 > **NOTE**
 >
@@ -386,7 +386,7 @@ predicates.inDevices(deviceIds);
 
 inAllDevices(): RdbPredicates
 
-Sets an **RdbPredicates** to specify all remote devices on the network to connect during distributed database synchronization.
+Sets an **RdbPredicates** to specify all remote devices on the network to connect during distributed database sync.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2040,9 +2040,9 @@ Synchronizes data between devices. This API uses an asynchronous callback to ret
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| mode | [SyncMode](#syncmode8) | Yes| Data synchronization mode. The value can be **push** or **pull**.|
+| mode | [SyncMode](#syncmode8) | Yes| Data sync mode. The value can be **push** or **pull**.|
 | predicates | [RdbPredicates](#rdbpredicates) | Yes| **RdbPredicates** object that specifies the data and devices to synchronize.|
-| callback | AsyncCallback&lt;Array&lt;[string, number]&gt;&gt; | Yes| Callback invoked to send the synchronization result to the caller. <br>**string** indicates the device ID. <br>**number** indicates the synchronization status of that device. The value **0** indicates a successful synchronization. Other values indicate a synchronization failure. |
+| callback | AsyncCallback&lt;Array&lt;[string, number]&gt;&gt; | Yes| Callback invoked to send the sync result to the caller. <br>**string** indicates the device ID. <br>**number** indicates the sync status of that device. The value **0** indicates a successful sync. Other values indicate a sync failure. |
 
 **Example**
 
@@ -2091,14 +2091,14 @@ Synchronizes data between devices. This API uses a promise to return the result.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| mode | [SyncMode](#syncmode8) | Yes| Data synchronization mode. The value can be **push** or **pull**.|
+| mode | [SyncMode](#syncmode8) | Yes| Data sync mode. The value can be **push** or **pull**.|
 | predicates | [RdbPredicates](#rdbpredicates) | Yes| **RdbPredicates** object that specifies the data and devices to synchronize.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;Array&lt;[string, number]&gt;&gt; | Promise used to send the synchronization result. <br>**string** indicates the device ID. <br>**number** indicates the synchronization status of that device. The value **0** indicates a successful synchronization. Other values indicate a synchronization failure. |
+| Promise&lt;Array&lt;[string, number]&gt;&gt; | Promise used to send the sync result. <br>**string** indicates the device ID. <br>**number** indicates the sync status of that device. The value **0** indicates a successful sync. Other values indicate a sync failure. |
 
 **Example**
 

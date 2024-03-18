@@ -30,7 +30,7 @@ Enumerates OpenHarmony uniform data types. Some data types are related. For exam
 | XML<sup>11+</sup>    | 'general.xml'                   | XML.<br>This type belongs to **TEXT**.               |
 | SOURCE_CODE<sup>11+</sup>                | 'general.source-code'                  | Base source code type.<br>This type belongs to **PLAIN_TEXT**.       |
 | SCRIPT<sup>11+</sup>    | 'general.script'                  | Source code in any scripting language.<br>This type belongs to **SOURCE_CODE**.  |
-| SHELL_SCRIPT<sup>11+</sup>               | 'general.shell-script'                  | Shell script.<br>This type belongs to **SCRIPT**.           |
+| SHELL_SCRIPT<sup>11+</sup>               | 'general.shell-script'                  | Shell script.<br>This type belongs to **SCRIPT**.           |    
 | CSH_SCRIPT<sup>11+</sup>      | 'general.csh-script'                 | C shell script.<br>This type belongs to **SHELL_SCRIPT**.   |
 | PERL_SCRIPT<sup>11+</sup> |'general.perl-script'               | Perl script.<br>This type belongs to **SHELL_SCRIPT**.      |
 | PHP_SCRIPT<sup>11+</sup>         | 'general.php-script'           | PHP script.<br>This type belongs to **SHELL_SCRIPT**.       |
