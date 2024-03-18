@@ -6,14 +6,14 @@
 ![hap-release](figures/hap-release.png)
 
 ## 开发
-开发者通过[DevEco Studio](https://developer.harmonyos.com/cn/develop/deveco-studio)工具按照业务的需要创建多个Module，在相应的Module中完成自身业务的开发。
+开发者通过[DevEco Studio](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V1/tools-overview-0000001558763037-V1)工具按照业务的需要创建多个Module，在相应的Module中完成自身业务的开发。
 
 ## 调试
-通过DevEco Studio编译打包，生成单个或者多个HAP，即可基于HAP进行调试。如需根据不同的部署环境、目标人群、运行环境等，将同一个HAP定制编译为不同版本，请参见[定制编译指导](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/customized-multi-targets-and-products-0000001430013853-V3?catalogVersion=V3)。
+通过DevEco Studio编译打包，生成单个或者多个HAP，即可基于HAP进行调试。如需根据不同的部署环境、目标人群、运行环境等，将同一个HAP定制编译为不同版本，请参见[定制编译指导](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V1/customized-multi-targets-and-products-0000001430013853-V1)。
 
 在调试前，需要先安装或更新HAP，以下介绍具体做法。
 
-**方法一：** 使用DevEco Studio进行调试，详见[应用程序包调试方法](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/ide_debug_device-0000001053822404-V3?catalogVersion=V3#section10491183521520)。
+**方法一：** 使用DevEco Studio进行调试，详见[应用程序包调试方法](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V1/ide_debug_device-0000001053822404-V1#section10491183521520)。
 
 **方法二：** 使用[hdc工具](../../device-dev/subsystems/subsys-toolchain-hdc-guide.md)(可通过OpenHarmony SDK获取，在SDK的toolchains目录下)进行调试。
    
