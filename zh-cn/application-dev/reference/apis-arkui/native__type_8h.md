@@ -33,7 +33,7 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | typedef struct ArkUI_Node \* [ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) | 定义ArkUI native组件实例对象指针定义。  | 
-| typedef struct ArkUI_NativeDialog \* [ArkUI_NativeDialogHandler](_ark_u_i___native_module.md#arkui_nativedialoghandler) | 定义ArkUI在Native侧的自定义弹窗控制器对象指针。  | 
+| typedef struct ArkUI_NativeDialog \* [ArkUI_NativeDialogHandle](_ark_u_i___native_module.md#arkui_nativedialoghandle) | 定义ArkUI在Native侧的自定义弹窗控制器对象指针。  | 
 
 
 ### 枚举
