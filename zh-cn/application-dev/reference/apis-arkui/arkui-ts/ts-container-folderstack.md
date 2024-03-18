@@ -56,7 +56,7 @@ enableAnimation(value: boolean)
 
 | 参数名 | 类型                                        | 必填 | 说明                                |
 | ------ | ------------------------------------------- | ---- | ----------------------------------- |
-| value  | [Alignment](ts-appendix-enums.md#alignment) | 是   | 是否使用默认动效。<br/>默认值：true |
+| value  | boolean | 是   | 是否使用默认动效。<br/>默认值：true |
 
 ### autoHalfFold
 

@@ -40,7 +40,7 @@ searchButton(value: string, option?: SearchButtonOptions)
 | 参数名 | 类型                                                  | 必填 | 说明                         |
 | ------ | ----------------------------------------------------- | ---- | ---------------------------- |
 | value  | string                                                | 是   | 搜索框末尾搜索按钮文本内容。 |
-| option | [SearchButtonOptions](#searchbuttonoptions10对象说明) | 否   | 配置搜索框文本样式。         |
+| option | [SearchButtonOptions](#searchbuttonoptions10对象说明) | 否   | 配置搜索框文本样式。<br />默认值：<br />{<br />fontSize: '16fp',<br />color: '#ff3f97e9'<br />}         |
 
 ### placeholderColor
 
@@ -141,7 +141,7 @@ cancelButton(value: { style?: CancelButtonStyle, icon?: IconOptions })
 | 参数名 | 类型                                              | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | style  | [CancelButtonStyle](#cancelbuttonstyle10枚举说明) | 否   | 右侧图标显示状态。<br />默认值：<br />style：CancelButtonStyle.INPUT |
-| icon   | [IconOptions](#iconoptions10对象说明)             | 否   | 右侧图标。                                                   |
+| icon   | [IconOptions](#iconoptions10对象说明)             | 否   | 右侧图标。<br />默认值：<br />{<br />fontSize: '16vp',<br />color: '#99ffffff',<br />src: ' '<br />}<br />当style为CancelButtonStyle.CONSTANT时，默认显示清除样式。                                                   |
 
 ### fontColor<sup>10+</sup>
 
@@ -237,8 +237,8 @@ type(value: SearchType)
 
 **参数：** 
 
-| 参数名 | 类型                                | 必填 | 说明                                       |
-| ------ | ----------------------------------- | ---- | ------------------------------------------ |
+| 参数名 | 类型                                | 必填 | 说明                        |
+| ------ | ----------------------------------- | ---- | -------------------------- |
 | value  | [SearchType](#searchtype11枚举说明) | 是   | 输入框类型。<br/>默认值：SearchType.Normal |
 
 ### maxLength<sup>11+</sup>
@@ -253,7 +253,7 @@ maxLength(value: number)
 
 | 参数名 | 类型                                | 必填 | 说明                   |
 | ------ | ----------------------------------- | ---- | ---------------------- |
-| value  | [SearchType](#searchtype11枚举说明) | 是   | 文本的最大输入字符数。 |
+| value  | number | 是   | 文本的最大输入字符数。 |
 
 ## IconOptions<sup>10+</sup>对象说明
 
