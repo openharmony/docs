@@ -2154,48 +2154,6 @@ static getTimePeriodName(hour:number, locale?: string): string
   }
   ```
 
-### getBestMatchLocale<sup>12+</sup>
-
-static getBestMatchLocale(locale: string, localeList: string[]): string
-
-在指定区域列表中获取与某个区域最佳匹配的区域。
-
-**系统能力**：SystemCapability.Global.I18n
-
-**参数：**
-
-| 参数名    | 类型     | 必填   | 说明                        |
-| ------ | ------ | ---- | ------------------------- |
-| locale | string | 是    | 待匹配的区域id，如：zh-Hans-CN。 |
-| localeList | string[] | 是   | 指定区域id列表。 |
-
-**返回值：**
-
-| 类型     | 说明                  |
-| ------ | ------------------- |
-| string | 与某个区域最佳匹配的区域id。当指定区域列表中没有匹配的区域时，返回空字串。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)。
-
-| 错误码ID  | 错误信息                   |
-| ------ | ---------------------- |
-| 890001 | param value not valid |
-
-**示例：**
-
-  ```ts
-  import { BusinessError } from '@ohos.base';
-
-  try {
-    let matchedLocaleId: string = I18n.I18NUtil.getBestMatchLocale("zh-Hans-CN", ["en-Latn-US", "en-GB", "zh-Hant-CN", "zh-Hans-MO"]);  // matchedLocaleId = "zh-Hans-MO"
-  } catch(error) {
-    let err: BusinessError = error as BusinessError;
-    console.error(`call I18NUtil.getBestMatchLocale failed, error code: ${err.code}, message: ${err.message}.`);
-  }
-  ```
-
 ## Normalizer<sup>10+</sup>
 
 ### getInstance<sup>10+</sup>
