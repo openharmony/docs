@@ -1687,6 +1687,54 @@ getOsAccountConstraintSourceTypes(localId: number, constraint: string): Promise&
   }
   ```
 
+### getOsAccountType<sup>12+</sup>
+
+getOsAccountType(localId: number): Promise&lt;OsAccountType&gt;;
+
+查询指定系统帐号的类型，使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明         |
+| ------- | ------ | ---- | ------------ |
+| localId     | number | 是   |  要查询的系统帐号ID。 |
+
+**返回值：**
+
+| 类型                  | 说明                                                         |
+| --------------------- | ------------------------------------------------------------ |
+| Promise&lt;[OsAccountType](js-apis-osAccount.md#osaccounttype)&gt; | Promise对象，返回指定系统帐号的类型。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息       |
+| -------- | ------------- |
+| 12300001 | System service exception. |
+| 12300003 | Account not found. |
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  try {
+    let localId: number = 100;
+    accountManager.getOsAccountType(localId).then((type: account_osAccount.OsAccountType) => {
+      console.info('getOsAccountType Type:' + type);
+    }).catch((err: BusinessError) => {
+      console.info('getOsAccountType errInfo:' + JSON.stringify(err));
+    });
+  } catch (e) {
+    console.info('getOsAccountType exception: ' + JSON.stringify(e));
+  }
+  ```
+
 ## UserAuth<sup>8+</sup>
 
 用户认证类。
@@ -4404,6 +4452,16 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
 | shortName<sup>12+</sup> | string | 否   | 系统帐号的短名称。<br>**系统接口：** 此接口为系统接口，默认为空。 |
+
+## OsAccountType
+
+表示系统帐号类型的枚举。
+
+**系统能力：** SystemCapability.Account.OsAccount。
+
+| 名称   | 值 | 说明         |
+| ------ | ------ | ----------- |
+| PRIVATE<sup>12+</sup> | 1024  | 隐私帐号。隐私账号只能有一个。<br>**系统接口：** 此接口为系统接口。   |
 
 ## DomainAccountInfo<sup>8+</sup>
 
