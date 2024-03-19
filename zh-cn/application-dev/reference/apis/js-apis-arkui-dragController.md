@@ -214,98 +214,6 @@ struct DragControllerPage {
 | touchPoint<sup>11+</sup>    | [TouchPoint](../arkui-ts/ts-types.md#touchpoint11)  | 否   | 配置跟手点坐标，不配置时，默认居中。      |
 | previewOptions<sup>11+</sup>| [DragPreviewOptions](../arkui-ts/ts-universal-attributes-drag-drop.md#dragpreviewoptions11)                                | 否   | 拖拽背板自定义配置。 |
 
-## DragStatus<sup>11+</sup>
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-拖拽开始和结束状态。
-
-| 名称          | 值                                                   | 说明                                     |
-| -----------   | ------------------------------------------------------| ---------------------------------------- |
-| STARTED       | 0                                                  | 拖拽已成功发起。         |
-| ENDED        | 1                                                  | 拖拽结束。               |
-
-## DragAndDropInfo<sup>11+</sup>
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-拖拽过程中监听到status改变时上报的数据。
-
-| 名称          | 类型                                                   | 必填 | 说明                                     |
-| -----------   | ------------------------------------------------------ | ---- | ---------------------------------------- |
-| status       | [DragStatus](#dragstatus11)                                                 | 是   | 当前拖拽状态（启动和结束）。         |
-| event        | [DragEvent](../arkui-ts/ts-universal-events-drag-drop.md#dragevent说明) | 否   | 当前状态所对应的拖拽事件。               |
-| extraParams| string                                                 | 否   | 设置拖拽事件额外信息，具体功能暂未实现。 |
-
-## DragAction<sup>11+</sup>
-
-监听状态改变，启动拖拽服务的对象。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-### startDrag<sup>11+</sup>
-
-startDrag(): Promise&lt;void&gt;
-
-启动拖拽服务，返回Promise对象，回调启动成功和失败的结果。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**错误码：**
-
-| 错误码ID | 错误信息      |
-| -------- | ------------- |
-| 100001   | if some internal handling failed. |
-
-**示例：**
-```ts
-dragAction.startDrag().then(()=>{}).catch((err:Error)=>{
-  console.log("start drag Error:" + err.message);
-})
-```
-
-### on('statusChange')<sup>11+</sup>
-
-on(type: 'statusChange', callback: Callback&lt;[DragAndDropInfo](#draganddropinfo11)&gt;): void
-
-注册监听拖拽状态改变事件。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-| 参数名     | 类型  | 必填    | 说明             |
-| ------ | ------ | ------- | ---------------- |
-|  type  | string | 是      | 监听事件，固定为'statusChange'，即注册监听拖拽状态改变事件。|
-|  callback  | Callback&lt;[DragAndDropInfo](#draganddropinfo11)&gt; | 是      | 回调函数，返回当前的[DragAndDropInfo](#draganddropinfo11)组件状态。|
-
-**示例：**
-```ts
-dragAction.on('statusChange', (dragAndDropInfo)=>{
-  console.info("Register to listen on drag status", JSON.stringify(dragAndDropInfo));
-})
-```
-
-### off('statusChange')<sup>11+</sup>
-
- off(type: 'statusChange', callback?: Callback&lt;[DragAndDropInfo](#draganddropinfo11)&gt;): void
-
-取消注册监听拖拽状态改变事件。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-| 参数名     | 类型  | 必填    | 说明             |
-| ------ | ------ | ------- | ---------------- |
-|  type  | string | 是      | 监听事件，固定为'statusChange'，即取消监听拖拽状态改变事件。|
-|  callback  | Callback&lt;[DragAndDropInfo](#draganddropinfo11)&gt; | 否      | 回调函数，返回当前的[DragAndDropInfo](#draganddropinfo11)组件状态， 不设置取消所有监听。|
-
-**示例：**
-```ts
-dragAction.off('statusChange', (dragAndDropInfo)=>{
-  console.info("Cancel listening on drag status", JSON.stringify(dragAndDropInfo));
-})
-```
-
 ## dragController.createDragAction<sup>11+</sup>
 
 createDragAction(customArray: Array&lt;CustomBuilder \| DragItemInfo&gt;, dragInfo: DragInfo): DragAction
@@ -414,6 +322,98 @@ struct DragControllerPage {
   }
 }
 ```
+
+## DragAction<sup>11+</sup>
+
+监听状态改变，启动拖拽服务的对象。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### startDrag<sup>11+</sup>
+
+startDrag(): Promise&lt;void&gt;
+
+启动拖拽服务，返回Promise对象，回调启动成功和失败的结果。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**错误码：**
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 100001   | if some internal handling failed. |
+
+**示例：**
+```ts
+dragAction.startDrag().then(()=>{}).catch((err:Error)=>{
+  console.log("start drag Error:" + err.message);
+})
+```
+
+### on('statusChange')<sup>11+</sup>
+
+on(type: 'statusChange', callback: Callback&lt;[DragAndDropInfo](#draganddropinfo11)&gt;): void
+
+注册监听拖拽状态改变事件。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+| 参数名     | 类型  | 必填    | 说明             |
+| ------ | ------ | ------- | ---------------- |
+|  type  | string | 是      | 监听事件，固定为'statusChange'，即注册监听拖拽状态改变事件。|
+|  callback  | Callback&lt;[DragAndDropInfo](#draganddropinfo11)&gt; | 是      | 回调函数，返回当前的[DragAndDropInfo](#draganddropinfo11)组件状态。|
+
+**示例：**
+```ts
+dragAction.on('statusChange', (dragAndDropInfo)=>{
+  console.info("Register to listen on drag status", JSON.stringify(dragAndDropInfo));
+})
+```
+
+### off('statusChange')<sup>11+</sup>
+
+ off(type: 'statusChange', callback?: Callback&lt;[DragAndDropInfo](#draganddropinfo11)&gt;): void
+
+取消注册监听拖拽状态改变事件。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+| 参数名     | 类型  | 必填    | 说明             |
+| ------ | ------ | ------- | ---------------- |
+|  type  | string | 是      | 监听事件，固定为'statusChange'，即取消监听拖拽状态改变事件。|
+|  callback  | Callback&lt;[DragAndDropInfo](#draganddropinfo11)&gt; | 否      | 回调函数，返回当前的[DragAndDropInfo](#draganddropinfo11)组件状态， 不设置取消所有监听。|
+
+**示例：**
+```ts
+dragAction.off('statusChange', (dragAndDropInfo)=>{
+  console.info("Cancel listening on drag status", JSON.stringify(dragAndDropInfo));
+})
+```
+## DragAndDropInfo<sup>11+</sup>
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+拖拽过程中监听到status改变时上报的数据。
+
+| 名称          | 类型                                                   | 必填 | 说明                                     |
+| -----------   | ------------------------------------------------------ | ---- | ---------------------------------------- |
+| status       | [DragStatus](#dragstatus11)                                                 | 是   | 当前拖拽状态（启动和结束）。         |
+| event        | [DragEvent](../arkui-ts/ts-universal-events-drag-drop.md#dragevent说明) | 否   | 当前状态所对应的拖拽事件。               |
+| extraParams| string                                                 | 否   | 设置拖拽事件额外信息，具体功能暂未实现。 |
+
+## DragStatus<sup>11+</sup>
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+拖拽开始和结束状态。
+
+| 名称          | 值                                                   | 说明                                     |
+| -----------   | ------------------------------------------------------| ---------------------------------------- |
+| STARTED       | 0                                                  | 拖拽已成功发起。         |
+| ENDED        | 1                                                  | 拖拽结束。               |
+
 ## AnimationOptions<sup>11+</sup>
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full

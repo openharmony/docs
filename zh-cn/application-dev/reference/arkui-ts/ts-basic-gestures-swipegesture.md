@@ -33,7 +33,7 @@ SwipeGesture(value?: { fingers?: number; direction?: SwipeDirection; speed?: num
 
 | 名称 | 功能描述 |
 | -------- | -------- |
-| onAction(event:(event?:&nbsp;[GestureEvent](ts-gesture-settings.md#gestureevent对象说明))&nbsp;=&gt;&nbsp;void) | Swipe手势识别成功回调。 |
+| onAction(event:(event:&nbsp;[GestureEvent](ts-gesture-settings.md#gestureevent对象说明))&nbsp;=&gt;&nbsp;void) | Swipe手势识别成功回调。 |
 
 ## 属性
 
@@ -65,7 +65,7 @@ struct SwipeGestureExample {
       // 单指竖直方向滑动时触发该事件
       .gesture(
       SwipeGesture({ direction: SwipeDirection.Vertical })
-        .onAction((event?: GestureEvent) => {
+        .onAction((event: GestureEvent) => {
           if (event) {
             this.speed = event.speed
             this.rotateAngle = event.angle
