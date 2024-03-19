@@ -30,7 +30,7 @@ import buffer from '@ohos.buffer';
 | 'ucs-2' | utf16le的别名。 |
 | 'base64' | 表示base64格式。 |
 | 'base64url' | 表示base64url格式。 |
-| 'latin1' | 表示ascii格式。 |
+| 'latin1' | iso-8859-1的别名, 向下兼容ascii格式。 |
 | 'binary' | 表示二进制格式。 |
 | 'hex' | 表示十六进制格式。 |
 
