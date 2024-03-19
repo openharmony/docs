@@ -10,9 +10,9 @@
 
 ArkUI框架对以下组件实现了默认的拖拽能力，支持对数据的拖出或拖入响应，开发者只需要将这些组件的[draggable](ts-universal-attributes-drag-drop.md)属性设置为true，即可使用默认拖拽能力。
 
-- 默认支持拖出能力的组件（可从组件上拖出数据）：Search、TextInput、TextArea、RichEditor、Text、Image、FormComponent、Hyperlink
+- 默认支持拖出能力的组件（可从组件上拖出数据）：[Search](ts-basic-components-search.md)、[TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md)、[RichEditor](ts-basic-components-richeditor.md)、[Text](ts-basic-components-text.md)、[Image](ts-basic-components-image.md)、[FormComponent](ts-basic-components-formcomponent-sys.md)、[Hyperlink](ts-container-hyperlink.md)
 
-- 默认支持拖入能力的组件（目标组件可响应拖入数据）：Search、TextInput、TextArea、Video
+- 默认支持拖入能力的组件（目标组件可响应拖入数据）：[Search](ts-basic-components-search.md)、[TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md)、[Video](ts-media-components-video.md)
 
 开发者也可以通过实现通用拖拽事件来自定义拖拽响应。
 
@@ -33,7 +33,7 @@ onDragStart(event: (event: DragEvent, extraParams?: string) => CustomBuilder | D
 | 参数名      | 类型                            | 必填 | 说明               |
 | ----------- | ------------------------------- | ---- | ------------------ |
 | event       | [DragEvent](#dragevent说明)     | 是   | 拖拽事件信息。     |
-| extraParams | [extraParams](#extraparams说明) | 否   | 拖拽事件额外信息。 |
+| extraParams | string | 否   | 拖拽事件额外信息。<br/>**说明：**<br/>需要解析为Json格式，参考[extraParams](#extraparams说明)说明。|
 
 **返回值：**
 
@@ -54,7 +54,7 @@ onDragEnter(event: (event: DragEvent, extraParams?: string) => void)
 | 参数名      | 类型                            | 必填 | 说明                           |
 | ----------- | ------------------------------- | ---- | ------------------------------ |
 | event       | [DragEvent](#dragevent说明)     | 是   | 拖拽事件信息，包括拖拽点坐标。 |
-| extraParams | [extraParams](#extraparams说明) | 否   | 拖拽事件额外信息。             |
+| extraParams | string | 否   | 拖拽事件额外信息。<br/>**说明：**<br/>需要解析为Json格式，参考[extraParams](#extraparams说明)说明。|
 
 ## onDragMove
 
@@ -69,7 +69,7 @@ onDragMove(event: (event: DragEvent, extraParams?: string) => void)
 | 参数名      | 类型                            | 必填 | 说明                           |
 | ----------- | ------------------------------- | ---- | ------------------------------ |
 | event       | [DragEvent](#dragevent说明)     | 是   | 拖拽事件信息，包括拖拽点坐标。 |
-| extraParams | [extraParams](#extraparams说明) | 否   | 拖拽事件额外信息。             |
+| extraParams | string | 否   | 拖拽事件额外信息。<br/>**说明：**<br/>需要解析为Json格式，参考[extraParams](#extraparams说明)说明。|
 
 ## onDragLeave
 
@@ -84,7 +84,7 @@ onDragLeave(event: (event: DragEvent, extraParams?: string) => void)
 | 参数名      | 类型                            | 必填 | 说明                           |
 | ----------- | ------------------------------- | ---- | ------------------------------ |
 | event       | [DragEvent](#dragevent说明)     | 是   | 拖拽事件信息，包括拖拽点坐标。 |
-| extraParams | [extraParams](#extraparams说明) | 否   | 拖拽事件额外信息。             |
+| extraParams | string | 否   | 拖拽事件额外信息。<br/>**说明：**<br/>需要解析为Json格式，参考[extraParams](#extraparams说明)说明。|
 
 ## onDrop
 
@@ -99,7 +99,7 @@ onDrop(event: (event: DragEvent, extraParams?: string) => void)
 | 参数名      | 类型                            | 必填 | 说明                           |
 | ----------- | ------------------------------- | ---- | ------------------------------ |
 | event       | [DragEvent](#dragevent说明)     | 是   | 拖拽事件信息，包括拖拽点坐标。 |
-| extraParams | [extraParams](#extraparams说明) | 否   | 拖拽事件额外信息。             |
+| extraParams | string | 否   | 拖拽事件额外信息。<br/>**说明：**<br/>需要解析为Json格式，参考[extraParams](#extraparams说明)说明。|
 
 ## onDragEnd
 
@@ -114,14 +114,14 @@ onDragEnd(event: (event: DragEvent, extraParams?: string) => void)
 | 参数名      | 类型                            | 必填 | 说明                           |
 | ----------- | ------------------------------- | ---- | ------------------------------ |
 | event       | [DragEvent](#dragevent说明)     | 是   | 拖拽事件信息，包括拖拽点坐标。 |
-| extraParams | [extraParams](#extraparams说明) | 否   | 拖拽事件额外信息。             |
+| extraParams | string | 否   | 拖拽事件额外信息。<br/>**说明：**<br/>需要解析为Json格式，参考[extraParams](#extraparams说明)说明。|
 
 ## DragItemInfo说明
 
 | 名称      | 类型                                     | 必填   | 描述                                |
 | --------- | ---------------------------------------- | ---- | --------------------------------- |
 | pixelMap  | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | 否    | 设置拖拽过程中显示的图片。                     |
-| builder   | [CustomBuilder](ts-types.md#custombuilder8) | 否    | 拖拽过程中显示自定义组件，如果设置了pixelMap，则忽略此值。<br /> **说明：** <br/>不支持全局builder。如果builder中使用了[Image](ts-basic-components-image.md)组件，应尽量开启同步加载，即配置Image的[syncLoad](ts-basic-components-image.md#属性)为true。该builder只用于生成当次拖拽中显示的图片，builder的修改不会同步到当前正在拖拽的图片，对builder的修改需要在下一次拖拽时生效。|
+| builder   | [CustomBuilder](ts-types.md#custombuilder8) | 否    | 拖拽过程中显示自定义组件，如果设置了pixelMap，则忽略此值。<br /> **说明：** <br/>不支持全局builder。如果builder中使用了[Image](ts-basic-components-image.md)组件，应尽量开启同步加载，即配置Image的[syncLoad](ts-basic-components-image.md#syncload8)为true。该builder只用于生成当次拖拽中显示的图片，builder的修改不会同步到当前正在拖拽的图片，对builder的修改需要在下一次拖拽时生效。|
 | extraInfo | string                                   | 否    | 拖拽项的描述。                           |
 
 
@@ -398,3 +398,4 @@ struct Index {
   }
 }
 ```
+![events-drag-drop](figures/events-drag-drop.png) 
