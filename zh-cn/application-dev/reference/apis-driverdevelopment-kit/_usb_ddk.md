@@ -1,11 +1,11 @@
-# UsbDDK
+# USB DDK
 
 
 ## 概述
 
 提供USB DDK接口，包括主机侧打开和关闭接口、管道同步异步读写通信、控制传输、中断传输等。
 
-\@syscap SystemCapability.Driver.USB.Extension
+**系统能力：** SystemCapability.Driver.USB.Extension
 
 **起始版本：**
 

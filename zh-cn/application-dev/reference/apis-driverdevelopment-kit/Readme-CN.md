@@ -8,7 +8,7 @@
 - C API
   - 模块
     - [HidDdk](_hid_ddk.md)
-    - [UsbDdk](_usb_ddk.md)
+    - [USB DDK](_usb_ddk.md)
   - 头文件
     - [usb_ddk_api.h](usb__ddk__api_8h.md)
     - [usb_ddk_types.h](usb__ddk__types_8h.md)
