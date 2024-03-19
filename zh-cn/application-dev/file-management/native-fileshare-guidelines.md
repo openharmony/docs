@@ -1,4 +1,4 @@
-# 文件授权访问开发指导(C/C++)
+# 文件授权访问(C/C++)
 
 ## 场景介绍
 
@@ -19,13 +19,11 @@ FileShare提供了支持基于URI的文件及目录授于持久化权限、权�
 
 ## 约束与限制
 
-使用文件分享的相关接口，需确认设备具有以下系统能力：SystemCapability.FileManagement.AppFileService.FolderAuthorization。
+- 使用文件分享的相关接口，需确认设备具有以下系统能力：SystemCapability.FileManagement.AppFileService.FolderAuthorization。
 
-在调用文件分享的相关接口前，需要申请权限："ohos.permission.FILE_ACCESS_PERSIST"，申请方式请参考[访问控制-申请应用权限](../security/AccessToken/determine-application-mode.md)。
+- 在调用文件分享的相关接口前，需要申请权限："ohos.permission.FILE_ACCESS_PERSIST"，申请方式请参考[访问控制-申请应用权限](../security/AccessToken/determine-application-mode.md)。
 
-该权限APL等级为system_basic，APL等级为normal的应用需要通过ACL的方式跨级别申请。
-
-接口入参policyNum最大上限为500
+- 该权限APL等级为system_basic，APL等级为normal的应用需要通过ACL的方式跨级别申请。
 
 ## 开发步骤
 
@@ -45,7 +43,7 @@ target_link_libraries(sample PUBLIC libohfileshare.so)
 #include <filemanagement/fileshare/oh_file_share.h>
 #include <iostream>
 ```
-1. 创建FileShare_PolicyInfo实例,调用OH_FileShare_PersistPermission接口，设置URI的持久化授权。
+1. 创建FileShare_PolicyInfo实例,调用OH_FileShare_PersistPermission接口，设置URI的持久化授权，接口入参policyNum最大上限为500。
     ```c++
     static const uint32_t POLICY_NUM = 2;
     char strTestPath1[] = "file://com.example.fileshare/data/storage/el2/base/files/test1.txt";
@@ -67,7 +65,7 @@ target_link_libraries(sample PUBLIC libohfileshare.so)
     }
     OH_FileShare_ReleasePolicyErrorResult(result, resultNum);
     ```
-2. 调用OH_FileShare_ActivatePermission接口，激活启用已授权过的URI。
+2. 调用OH_FileShare_ActivatePermission接口，激活启用已授权过的URI，接口入参policyNum最大上限为500。
     ```c++
     auto ret = OH_FileShare_ActivatePermission(policy, POLICY_NUM, &result, &resultNum);
     if (ret != ERR_OK) {
@@ -81,7 +79,7 @@ target_link_libraries(sample PUBLIC libohfileshare.so)
     }
     OH_FileShare_ReleasePolicyErrorResult(result, resultNum);
     ```
-3. 调用OH_FileShare_DeactivatePermission接口，停止已启用授权过URI的访问权限。
+3. 调用OH_FileShare_DeactivatePermission接口，停止已启用授权过URI的访问权限，接口入参policyNum最大上限为500。
     ```c++
     auto ret = OH_FileShare_DeactivatePermission(policy, POLICY_NUM, &result, &resultNum);
     if (ret != ERR_OK) {
@@ -95,7 +93,7 @@ target_link_libraries(sample PUBLIC libohfileshare.so)
     }
     OH_FileShare_ReleasePolicyErrorResult(result, resultNum);
     ```
-4. 调用OH_FileShare_RevokePermission接口，撤销已经授权的URI持久化权限。
+4. 调用OH_FileShare_RevokePermission接口，撤销已经授权的URI持久化权限，接口入参policyNum最大上限为500。
     ```c++
     auto ret = OH_FileShare_RevokePermission(policy, POLICY_NUM, &result, &resultNum);
     if (ret != ERR_OK) {
@@ -109,7 +107,7 @@ target_link_libraries(sample PUBLIC libohfileshare.so)
     }
     OH_FileShare_ReleasePolicyErrorResult(result, resultNum);
     ```
-5. 调用OH_FileShare_CheckPersistentPermission接口，检查URI持久化权限。
+5. 调用OH_FileShare_CheckPersistentPermission接口，检查URI持久化权限，接口入参policyNum最大上限为500。
     ```c++
     bool *result = nullptr;
     auto ret = OH_FileShare_CheckPersistentPermission(policy, POLICY_NUM, &result, &resultNum);
