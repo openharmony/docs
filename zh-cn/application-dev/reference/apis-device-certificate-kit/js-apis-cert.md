@@ -166,7 +166,7 @@ buffer数组的列表。
 | x509Cert | [X509Cert](#x509cert)    | 否 |  指定具体的证书对象。  |
 | validDate | string    | 否  |  指定证书有效期。  |
 | issuer | Uint8Array | 否  | 指定证书颁发者，为DER编码格式。 |
-| keyUsage | Array\<boolean> | 否  | 指定密钥用途。 |
+| keyUsage | Array\<boolean> | 否  | 指定是否需要匹配密钥用途。 |
 | serialNumber | bigint    | 否  |  指定证书的序列号。  |
 | subject | Uint8Array | 否  | 指定证书主题，DER编码格式。 |
 | publicKey | [DataBlob](#datablob) | 否  | 指定证书公钥，DER编码格式。 |
@@ -2034,7 +2034,7 @@ match(param: X509CertMatchParameters): boolean
 
 | 类型                  | 说明                                      |
 | --------------------- | ----------------------------------------- |
-| boolean | 当参数匹配时，该方法返回true；否则返回false。 |
+| boolean | 当参数匹配时，该方法返回true，否则返回false。 |
 
 **错误码：**
 
@@ -2515,7 +2515,7 @@ hasUnsupportedCriticalExtension(): boolean
 
 | 类型    | 说明                                                    |
 | ------- | ------------------------------------------------------- |
-| boolean | 当存在不支持的关键扩展时，该方法返回true；否则返回false |
+| boolean | 当存在不支持的关键扩展时，该方法返回true，否则返回false。 |
 
 **错误码：**
 
@@ -3559,7 +3559,7 @@ certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
 
 getLastUpdate() : string
 
-表示获取X509证书吊销列表最后一次更新日期。
+表示获取X509证书吊销列表最后一次更新日期，日期为ASN.1时间格式。
 
 > **说明：**
 >
@@ -3571,7 +3571,7 @@ getLastUpdate() : string
 
 | 类型   | 说明                                 |
 | ------ | ------------------------------------ |
-| string | 表示X509证书吊销列表最后一次更新日期 |
+| string | 表示X509证书吊销列表最后一次更新日期，日期为ASN.1时间格式。 |
 
 **错误码：**
 
@@ -3633,7 +3633,7 @@ certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
 
 getNextUpdate() : string
 
-表示获取证书吊销列表下一次更新的日期。
+表示获取证书吊销列表下一次更新的日期，日期为ASN.1时间格式。
 
 > **说明：**
 >
@@ -3645,7 +3645,7 @@ getNextUpdate() : string
 
 | 类型   | 说明                                 |
 | ------ | ------------------------------------ |
-| string | 表示X509证书吊销列表下一次更新的日期 |
+| string | 表示X509证书吊销列表下一次更新的日期，日期为ASN.1时间格式。 |
 
 **错误码：**
 
@@ -5014,7 +5014,7 @@ certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
 
 getLastUpdate() : string
 
-表示获取X509证书吊销列表最后一次更新日期。
+表示获取X509证书吊销列表最后一次更新日期，日期为ASN.1时间格式。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -5022,7 +5022,7 @@ getLastUpdate() : string
 
 | 类型   | 说明                                 |
 | ------ | ------------------------------------ |
-| string | 表示X509证书吊销列表最后一次更新日期 |
+| string | 表示X509证书吊销列表最后一次更新日期，日期为ASN.1时间格式。 |
 
 **错误码：**
 
@@ -5084,7 +5084,7 @@ certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
 
 getNextUpdate() : string
 
-表示获取证书吊销列表下一次更新的日期。
+表示获取证书吊销列表下一次更新的日期，日期为ASN.1时间格式。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -5092,7 +5092,7 @@ getNextUpdate() : string
 
 | 类型   | 说明                                 |
 | ------ | ------------------------------------ |
-| string | 表示X509证书吊销列表下一次更新的日期 |
+| string | 表示X509证书吊销列表下一次更新的日期，日期为ASN.1时间格式。 |
 
 **错误码：**
 
@@ -5897,7 +5897,7 @@ match(param: X509CRLMatchParameters): boolean
 
 | 类型                  | 说明                                      |
 | --------------------- | ----------------------------------------- |
-| boolean | 当参数匹配时，该方法返回true；否则返回false。 |
+| boolean | 当参数匹配时，该方法返回true，否则返回false。 |
 
 **错误码：**
 
@@ -6524,7 +6524,7 @@ certFramework.createX509Crl(encodingBlob, (err, x509Crl) => {
 
 getRevocationDate() : string
 
-表示获取证书被吊销的日期。
+表示获取证书被吊销的日期，日期为ASN.1时间格式。
 
 > **说明：**
 >
@@ -6536,7 +6536,7 @@ getRevocationDate() : string
 
 | 类型   | 说明                |
 | ------ | ------------------ |
-| string | 表示证书被吊销的日期 |
+| string | 表示证书被吊销的日期，日期为ASN.1时间格式。 |
 
 **错误码：**
 
@@ -6902,7 +6902,7 @@ certFramework.createX509CRL(encodingBlob, (err, x509CRL) => {
 
 getRevocationDate() : string
 
-表示获取证书被吊销的日期。
+表示获取证书被吊销的日期，日期为ASN.1时间格式。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -6910,7 +6910,7 @@ getRevocationDate() : string
 
 | 类型   | 说明                 |
 | ------ | -------------------- |
-| string | 表示证书被吊销的日期 |
+| string | 表示证书被吊销的日期，日期为ASN.1时间格式。 |
 
 **错误码：**
 
