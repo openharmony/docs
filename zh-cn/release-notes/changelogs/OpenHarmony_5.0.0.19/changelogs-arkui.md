@@ -33,3 +33,63 @@ AlertDialog、CustomDialog 起始支持版本为 API 7，ActionSheet、DatePicke
 **适配指导**
 
 默认样式变更调整，无需适配。
+
+## cl.arkui.2 linearGradient、sweepGradient、radialGradient通用属性及LinearGradient interface中的colors参数类型从Array&lt;any&gt;变更为Array&lt;[ResourceColor, number]&gt;
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+any类型过于宽泛，从api上没有引导开发者使用正确的参数类型。
+
+**变更影响**
+
+该变更为非兼容性变更。
+
+变更前：允许将linearGradient、sweepGradient、radialGradient通用属性及LinearGradient interface中的colors参数定义为Array&lt;any&gt;类型。
+
+变更后：如果使用了与Array&lt;[ResourceColor, number]&gt;不兼容的colors参数类型，如Array&lt;any&gt;，编译报错。
+
+**API Level**
+
+linearGradient、sweepGradient、radialGradient通用属性的起始支持版本为API 7，LinearGradient interface中的起始支持版本为API 9。
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.19开始。
+
+**适配指导**
+
+如果需要定义linearGradient、sweepGradient、radialGradient接口中使用的变量，colors参数的类型应准确定义为与Array&lt;[ResourceColor, number]&gt;兼容的类型。
+
+## cl.arkui.3 sweepGradient、radialGradient通用属性的center参数类型从Array&lt;any&gt;变更为[Length, Length]
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+any类型过于宽泛，从api上没有引导开发者使用正确的参数类型，也没有从api上约束center的长度为2。
+
+**变更影响**
+
+该变更为非兼容性变更。
+
+变更前：允许将sweepGradient、radialGradient通用属性的center参数类型定义为Array&lt;any&gt;类型。
+
+变更后：如果使用了与[Length, Length]不兼容的center参数类型，编译报错。
+
+**API Level**
+
+7
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.19开始。
+
+**适配指导**
+
+如果需要定义sweepGradient、radialGradient接口中使用的变量，center参数的类型应准确定义为与[Length, Length]兼容的类型。
