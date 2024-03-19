@@ -68,7 +68,7 @@
 #### 函数参数deviceId说明
 
 设备ID（deviceId）的获取可通过外设查询接口queryDevices()查询。
-具体请查阅[扩展外设管理开发指导](../../device/externaldevice-guidelines.md)。
+具体请查阅[扩展外设管理开发指导](../../device/driver/externaldevice-guidelines.md)。
 
 ## 枚举类型说明
 
