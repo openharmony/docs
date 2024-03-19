@@ -1471,6 +1471,36 @@ try {
 };
 ```
 
+### close<sup>12+</sup>
+
+close(): Promise &lt;void&gt;
+
+关闭DataShareHelper实例，调用后该实例失效。使用Promise异步回调。
+
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
+
+**返回值：**
+
+| 类型                | 说明                                   |
+| ------------------- | -------------------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)。
+
+| 错误码ID | 错误信息     |
+| -------- | ------------ |
+| 15700000 | Inner error. |
+
+**示例：**
+
+```ts
+if (dataShareHelper != undefined) {
+  (dataShareHelper as dataShare.DataShareHelper).close();
+}
+```
+
 ### normalizeUri
 
 normalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;): void
