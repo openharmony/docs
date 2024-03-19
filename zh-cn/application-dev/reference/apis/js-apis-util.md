@@ -421,7 +421,7 @@ let retStr = result.encoding;
 ```
 ### create<sup>9+</sup>
 
-create(encoding?: string, options?: { fatal?: boolean; ignoreBOM?: boolean }): TextDecoder
+static create(encoding?: string, options?: { fatal?: boolean; ignoreBOM?: boolean }): TextDecoder
 
 替代有参构造功能。
 
