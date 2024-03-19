@@ -2747,7 +2747,7 @@ getSerialNumberByOsAccountLocalId(localId: number): Promise&lt;number&gt;
 
 表示系统帐号信息。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount。
+**系统能力：** SystemCapability.Account.OsAccount
 
 | 名称                         | 类型                                                         | 必填 | 说明                              |
 | ------------------------------ | ------------------------------------------------------------ | ---- | --------------------------------- |
@@ -2771,7 +2771,7 @@ getSerialNumberByOsAccountLocalId(localId: number): Promise&lt;number&gt;
 
 表示域帐号信息。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount。
+**系统能力：** SystemCapability.Account.OsAccount
 
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |

@@ -4389,7 +4389,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
+**系统能力：** SystemCapability.Account.OsAccount
 
 | 名称    | 类型                                                          | 必填   | 说明                   |
 | -------- | ------------------------------------------------------------- | ----- | ----------------------- |
@@ -4402,7 +4402,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
+**系统能力：** SystemCapability.Account.OsAccount
 
 | 名称    | 类型                                             | 必填   | 说明                 |
 | -------- | ------------------------------------------------ | ----- | -------------------- |
@@ -4416,7 +4416,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
+**系统能力：** SystemCapability.Account.OsAccount
 
 | 名称         | 类型                         |  可读 | 可写 | 说明              |
 | ------------ | ---------------------------- | ----- | -----|----------------- |
@@ -4433,7 +4433,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
+**系统能力：** SystemCapability.Account.OsAccount
 
 | 名称        | 类型        | 必填   | 说明              |
 | ------------ | ----------- | ----- | ----------------- |
@@ -4447,7 +4447,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
+**系统能力：** SystemCapability.Account.OsAccount
 
 | 名称        | 类型                                     | 必填   | 说明              |
 | ------------ | ---------------------------------------- | ----- | ----------------- |
@@ -4461,7 +4461,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
+**系统能力：** SystemCapability.Account.OsAccount
 
 | 名称        | 类型        | 必填   | 说明              |
 | ------------ | ----------- | ----- | ----------------- |
@@ -4473,7 +4473,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
+**系统能力：** SystemCapability.Account.OsAccount
 
 | 名称        | 类型                                     | 必填   | 说明              |
 | ------------ | ---------------------------------------- | ----- | ------------------- |
@@ -4488,7 +4488,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
+**系统能力：** SystemCapability.Account.OsAccount
 
 | 名称           | 值 | 说明      |
 | ------------- | ------ | --------- |
@@ -4504,7 +4504,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
+**系统能力：** SystemCapability.Account.OsAccount
 
 | 名称           | 值 | 说明        |
 | -------------- | ----- | ----------- |
@@ -4516,7 +4516,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
+**系统能力：** SystemCapability.Account.OsAccount
 
 | 名称  | 值 | 说明             |
 | ----- | ----- | ---------------- |
@@ -4531,7 +4531,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
+**系统能力：** SystemCapability.Account.OsAccount
 
 | 名称       | 值 | 说明               |
 | ---------- | ----- | ------------------ |
@@ -4551,7 +4551,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
+**系统能力：** SystemCapability.Account.OsAccount
 
 | 名称  | 值 | 说明        |
 | ---- | ------ | ----------- |
@@ -4566,7 +4566,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
+**系统能力：** SystemCapability.Account.OsAccount
 
 | 名称       | 值 | 说明                     |
 | --------- | ------ | ------------------------ |
@@ -4578,7 +4578,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
+**系统能力：** SystemCapability.Account.OsAccount
 
 | 名称                    | 值 | 说明                                     |
 | ----------------------- | ----- | ---------------------------------------- |
@@ -4600,7 +4600,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
+**系统能力：** SystemCapability.Account.OsAccount
 
 | 名称                          | 值 | 说明                                     |
 | ----------------------------- | ----- | ---------------------------------------- |
@@ -4622,7 +4622,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
+**系统能力：** SystemCapability.Account.OsAccount
 
 | 名称                          | 值 | 说明                                            |
 | ----------------------------- | ----- | ----------------------------------------------- |
@@ -4639,7 +4639,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 表示系统帐号信息。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount。
+**系统能力：** SystemCapability.Account.OsAccount
 
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
@@ -4659,7 +4659,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 表示域帐号信息。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount。
+**系统能力：** SystemCapability.Account.OsAccount
 
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
@@ -4672,7 +4672,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount。
+**系统能力：** SystemCapability.Account.OsAccount
 
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
@@ -4685,7 +4685,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount。
+**系统能力：** SystemCapability.Account.OsAccount
 
 | 名称   | 值 | 说明         |
 | ------ | ------ | ------------ |
@@ -4700,7 +4700,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount。
+**系统能力：** SystemCapability.Account.OsAccount
 
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
@@ -4713,7 +4713,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount。
+**系统能力：** SystemCapability.Account.OsAccount
 
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
@@ -4728,7 +4728,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount。
+**系统能力：** SystemCapability.Account.OsAccount
 
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
@@ -4741,7 +4741,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount。
+**系统能力：** SystemCapability.Account.OsAccount
 
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
@@ -4753,7 +4753,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount。
+**系统能力：** SystemCapability.Account.OsAccount
 
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
@@ -4766,7 +4766,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount。
+**系统能力：** SystemCapability.Account.OsAccount
 
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
