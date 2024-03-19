@@ -89,6 +89,7 @@
 | int32_t [OH_NativeXComponent_SetNeedSoftKeyboard](#oh_nativexcomponent_setneedsoftkeyboard) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, bool isNeedSoftKeyboard) | 为此OH_NativeXComponent实例设置是否需要软键盘。  | 
 | int32_t [OH_NativeXComponent_RegisterSurfaceShowCallback](#oh_nativexcomponent_registersurfaceshowcallback)&nbsp;([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;void(\*callback)([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;void&nbsp;\*window)) | 为此OH_NativeXComponent实例注册surface显示回调，该回调在应用从后台返回前台时触发。|
 | int32_t [OH_NativeXComponent_RegisterSurfaceHideCallback](#oh_nativexcomponent_registersurfacehidecallback)&nbsp;([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;void(\*callback)([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;void&nbsp;\*window)) | 为此OH_NativeXComponent实例注册surface隐藏回调，该回调在应用从前台来到后台时触发。|
+| int32_t [OH_NativeXComponent_GetTouchEventSourceType](#oh_nativexcomponent_gettoucheventsourcetype) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, int32_t pointId, [OH_NativeXComponent_EventSourceType](#oh_nativexcomponent_eventsourcetype) \*sourceType) | 获取ArkUI XComponent触摸事件的输入设备类型。  |
 
 ### 变量
 
@@ -1452,6 +1453,36 @@ int32_t OH_NativeXComponent_RegisterSurfaceHideCallback (OH_NativeXComponent * c
 **返回:**
 
 返回执行的状态代码。
+
+**起始版本：**
+
+12
+
+### OH_NativeXComponent_GetTouchEventSourceType()
+
+```
+int32_t OH_NativeXComponent_GetTouchEventSourceType (OH_NativeXComponent* component, int32_t pointId, OH_NativeXComponent_EventSourceType* sourceType);
+```
+
+**描述:**
+
+获取ArkUI XComponent触摸事件的输入设备类型。
+
+**参数:**
+
+| 名称        | 描述                            |
+| --------- | ----------------------------- |
+| component | 表示指向OH_NativeXComponent实例的指针。 |
+| pointId  | 表示触摸点的id。<br/>**说明：**<br/>仅当传入的id为触发该touch事件的触点id时，可正确返回输入设备类型，否则返回OH_NATIVEXCOMPONENT_RESULT_BAD_PARAMETER。 |
+| sourceType  | 指示指向返回设备类型的指针。 |
+
+**返回:**
+
+OH_NATIVEXCOMPONENT_RESULT_SUCCESS - 成功。
+
+OH_NATIVEXCOMPONENT_RESULT_BAD_PARAMETER - 参数异常。
+
+OH_NATIVEXCOMPONENT_RESULT_FAILED - 其他错误。
 
 **起始版本：**
 
