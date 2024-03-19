@@ -2004,7 +2004,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| path | string | 是 | 文件路径位于调用方的缓存文件夹下的相对路径。 |
+| path | string | 是 | 文件路径：<br/>-位于调用方的缓存文件夹下的相对路径。<br/>-用户公共文件，如"file://media/Photo/path/to/file.img"。仅支持前端任务。 |
 | mimeType | string | 否 | 文件的mimetype通过文件名获取。 |
 | filename | string | 否 | 文件名，默认值通过路径获取。 |
 | extras | Object | 否 | 文件信息的附加内容。 |
