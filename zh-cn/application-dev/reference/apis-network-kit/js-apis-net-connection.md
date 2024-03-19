@@ -2053,7 +2053,7 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
       }
       netHandle.bindSocket(tcp, (error: BusinessError, data: void) => {
         if (error) {
-          cconsole.error(`Failed to bind socket. Code:${error.code}, message:${error.message}`);
+          console.error(`Failed to bind socket. Code:${error.code}, message:${error.message}`);
         } else {
           console.info(JSON.stringify(data));
         }
