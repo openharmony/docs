@@ -6,7 +6,7 @@ HSP（Harmony Shared Package）是动态共享包，按照使用场景可以分�
 > 由于当前暂不支持应用间HSP，提到HSP时特指应用内HSP。
 
 ## 创建HSP模块
-通过DevEco Studio创建一个HSP模块，详见[创建HSP模块](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/hsp-0000001521396322-V3#section7717162312546)，我们以创建一个名为`library`的HSP模块为例。基本的工程目录结构如下：
+通过DevEco Studio创建一个HSP模块，详见[创建HSP模块](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V1/hsp-0000001521396322-V1#section7717162312546)，我们以创建一个名为`library`的HSP模块为例。基本的工程目录结构如下：
 ```
 library
 ├── src
@@ -136,7 +136,7 @@ export { ResManager } from './ResManager';
 
 
 ## 引用HSP
-要使用HSP中的接口，首先需要在使用方的oh-package.json5中配置对它的依赖，详见[引用动态共享包](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/hsp-0000001521396322-V3#section6161154819195)。
+要使用HSP中的接口，首先需要在使用方的oh-package.json5中配置对它的依赖，详见[引用动态共享包](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V1/har-import-0000001547293682-V1)。
 依赖配置成功后，就可以像使用HAR一样调用HSP的对外接口了。 例如，上面的library已经导出了下面这些接口：
 
 ```ts
