@@ -51,7 +51,7 @@ fail返回值：
 export default class Network {
   getType() {
     network.getType({
-      success: (data) {
+      success: (data) => {
         console.log('success get network type:' + data.type);
       }
     });
@@ -91,7 +91,7 @@ fail返回值：
 export default class Network {
   subscribe() {
     network.subscribe({
-      success: (data) {
+      success: (data) => {
         console.log('success get network type:' + data.type);
       }
     });
