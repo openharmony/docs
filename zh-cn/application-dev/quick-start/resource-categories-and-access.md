@@ -227,9 +227,7 @@ plural.json文件的内容如下：
 
 ## 资源访问
 
-### 应用资源
-
-#### 单HAP包资源
+### 单HAP包应用资源
 
  - 通过```"$r"```或```"$rawfile"```引用资源。<br/>对于“color”、“float”、“string”、“plural”、“media”、“profile”等类型的资源，通过```"$r('app.type.name')"```形式引用。其中，app为resources目录中定义的资源；type为资源类型或资源的存放位置；name为资源名，开发者定义资源时确定。<br/>对于rawfile目录资源，通过```"$rawfile('filename')"```形式引用。其中，filename为rawfile目录下文件的相对路径，文件名需要包含后缀，路径开头不可以"/"开头。
 
@@ -261,13 +259,13 @@ plural.json文件的内容如下：
 
 - 通过本应用上下文获取ResourceManager后，调用不同[资源管理接口](../reference/apis-localization-kit/js-apis-resource-manager.md)访问不同资源。<br/>例如：getContext.resourceManager.getStringByNameSync('app.string.XXX') 可获取字符串资源；getContext.resourceManager.getRawFd('rawfilepath') 可获取Rawfile所在hap包的descriptor信息，访问rawfile文件时需{fd, offset, length}一起使用。
 
-#### 跨HAP/HSP包资源
+### 跨HAP/HSP包应用资源
 
-##### bundle不同，跨bundle访问（仅支持系统应用使用）
+#### bundle不同，跨bundle访问（仅支持系统应用使用）
 
 - 通过createModuleContext(bundleName, moduleName)接口创建对应HAP/HSP包的上下文，获取resourceManager对象后，调用不同[资源管理接口](../reference/apis-localization-kit/js-apis-resource-manager.md)访问不同资源。<br/>例如：getContext.createModuleContext(bundleName， moduleName).resourceManager.getStringByNameSync('app.string.XXX')。
 
-##### bundle相同，跨module访问
+#### bundle相同，跨module访问
 
 - 通过createModuleContext(moduleName)接口创建同应用中不同module的上下文，获取resourceManager对象后，调用不同接口访问不同资源。<br/>例如：getContext.createModuleContext(moduleName).resourceManager.getStringByNameSync('app.string.XXX')。
 
