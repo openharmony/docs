@@ -49,6 +49,28 @@ struct ComA {
 
  @LocalStorageLink,@LocalStorageProp,@StorageProp(),@StorageLink,@Provide,@Consume,@Watch key值需要准确定义。
 
+```
+// test.ts
+export let oneKey = 'string';
+// index.ets
+import { oneKey } from './test';
+@Entry
+@Component
+struct ComA {
+  @StorageProp(oneKey) storageProp: string = 'storageProp';
+  @StorageLink(oneKey) storageLink: string = 'storageLink';
+  @LocalStorageLink(oneKey) localStorageLink: string = 'localStorageLink';
+  @LocalStorageProp(oneKey) localStorageProp: string = 'localStorageProp';
+  @Provide(oneKey) provide: string = 'provide';
+  @Consume(oneKey) consume: number;
+
+  build() {
+  }
+}
+```
+
+
+
 
 ## cl.arkui.2 AppStorage,LocalStorage,PersistentStorage支持undefined和null
 
