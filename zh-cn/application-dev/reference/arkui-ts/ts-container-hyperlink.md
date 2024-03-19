@@ -33,7 +33,7 @@ Hyperlink(address: string | Resource, content?: string | Resource)
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
-| color | [ResourceColor](ts-types.md#resourcecolor) | 设置超链接文本的颜色。 |
+| color | [ResourceColor](ts-types.md#resourcecolor) | 设置超链接文本的颜色。<br />默认值：'#ff007dff' |
 
 ## 示例
 
