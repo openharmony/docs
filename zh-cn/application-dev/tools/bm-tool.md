@@ -327,7 +327,7 @@ bm dump-dependencies -n com.ohos.app -m entry
 **解决措施**
 
 该问题是由于安装未签名的HAP导致，需要开发者对开发的HAP进行签名之后再安装。
-1. 使用[自动签名](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/signing-0000001587684945-V3#section18815157237)。在连接设备后，重新为应用进行签名。
+1. 使用[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing-0000001587684945#section18815157237)。在连接设备后，重新为应用进行签名。
 1. 如果使用的是手动签名，对于OpenHarmony应用，请参考[OpenHarmony应用手动签名](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/hapsigntool-guidelines.md)
 
 ### 安装HAP时提示“code:9568347 error: install parse native so failed”错误
