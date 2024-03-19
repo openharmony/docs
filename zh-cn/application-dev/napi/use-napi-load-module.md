@@ -1,7 +1,7 @@
 # 使用NAPI接口在主线程中进行模块加载
 
 ## 场景介绍
-Node-API中的napi_load_module接口的功能在向主线程中进行模块的加载，当模块加载出来之后，可以使用函数napi_get_property获取模块导出的变量，也可以使用napi_get_named_property获取模块导出的函数，目前支持以下场景：
+Node-API中的napi_load_module接口的功能是在主线程中进行模块的加载，当模块加载出来之后，可以使用函数napi_get_property获取模块导出的变量，也可以使用napi_get_named_property获取模块导出的函数，目前支持以下场景：
 - 加载系统模块，例如@ohos.hilog
 - 加载ets目录下文件中的模块
 
@@ -36,8 +36,8 @@ static napi_value loadModule(napi_env env, napi_callback_info info) {
 }
 ```
 
-## 加载ArkTs文件中的模块使用示例
-当加载文件中的模块时，如以下ArkTs代码：
+## 加载ArkTS文件中的模块使用示例
+当加载文件中的模块时，如以下ArkTS代码：
 ```javascript
 //./src/main/ets/Test.ets
 let value = 123;
@@ -70,13 +70,12 @@ static napi_value loadModule(napi_env env, napi_callback_info info) {
     napi_value result;
     //1. 使用napi_load_module加载Test文件中的模块
     napi_status status = napi_load_module(env, "ets/Test", &result);
-    napi_call_function(env, result, infoFn, 3, args, nullptr);
 
-    napi_value infoFn;
+    napi_value testFn;
     //2. 使用napi_get_named_property获取test函数
-    napi_get_named_property(env, result, "test", &infoFn);
+    napi_get_named_property(env, result, "test", &testFn);
     //3. 使用napi_call_function调用函数test
-    napi_call_function(env, result, infoFn, 0, nullptr, nullptr);
+    napi_call_function(env, result, testFn, 0, nullptr, nullptr);
 
     napi_value value;
     napi_value key;
