@@ -4081,15 +4081,17 @@ try {
 
 setWindowMask(windowMask: Array&lt;Array&lt;number&gt;&gt;): Promise&lt;void&gt;;
 
-设置异形窗口的mask，使用Promise异步回调。
+设置异形窗口的掩码，用来描述异形窗口的异形形状，使用Promise异步回调。
 
 **系统能力：** SystemCapability.Window.SessionManager
+
+**需要权限：** ohos.permission.MASK_WINDOW
 
 **参数：**
 
 | 参数名       | 类型                          | 必填 | 说明                           |
 | :----------- | :---------------------------- | :--- | :----------------------------- |
-| windowMask | Array&lt;Array&lt;number&gt;&gt; | 是   | 异形窗口的mask。 |
+| windowMask | Array&lt;Array&lt;number&gt;&gt; | 是   | 异形窗口的掩码，该参数仅支持宽高为窗口宽高、取值为整数0和整数1的二维数组输入，整数0代表所在像素透明，整数1代表所在像素不透明，宽高不符合的二维数组或二维数组取值不为整数0和整数1的二维数组为非法参数。 |
 
 **返回值：**
 
