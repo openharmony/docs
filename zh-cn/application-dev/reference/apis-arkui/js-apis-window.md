@@ -7029,9 +7029,9 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-### setUseDefaultDensity()<sup>12+</sup>
+### setDefaultDensityEnabled()<sup>12+</sup>
 
-setUseDefaultDensity(isUseDefaultDensity: boolean): void
+setDefaultDensityEnabled(isDefaultDensityEnabled: boolean): void
 
 设置应用使用系统默认Density。
 
@@ -7043,7 +7043,7 @@ setUseDefaultDensity(isUseDefaultDensity: boolean): void
 
 | 参数名           | 类型    | 必填 | 说明                         |
 | ---------------- | ------- | ---- | ---------------------------- |
-| isUseDefaultDensity | boolean | 是   | 是否设置应用使用系统默认Density。true表示使用系统默认Density，窗口不跟随系统而产生重新布局；false表示不使用系统默认Density，窗口跟随系统显示大小变化重新布局。 |
+| isDefaultDensityEnabled | boolean | 是   | 是否设置应用使用系统默认Density。true表示使用系统默认Density，窗口不跟随系统而产生重新布局；false表示不使用系统默认Density，窗口跟随系统显示大小变化重新布局。 |
 
 **错误码：**
 
@@ -7066,9 +7066,9 @@ export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
     console.log('onWindowStageCreate');
     try {
-      windowStage.setUseDefaultDensity(true);
+      windowStage.setDefaultDensityEnabled(true);
     } catch (exception) {
-      console.error('Failed to set use default density. Cause:' + JSON.stringify(exception));
+      console.error('Failed to set default density enabled. Cause:' + JSON.stringify(exception));
     }
   }
 };
