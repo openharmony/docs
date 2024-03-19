@@ -9,7 +9,7 @@
 
 ## 接口
 
-TapGesture(value?: { count?: number, fingers?: number })
+TapGesture(value?: { count?: number; fingers?: number })
 
 **参数：**
 
@@ -46,7 +46,7 @@ struct TapGestureExample {
       Text('Click twice').fontSize(28)
         .gesture(
         TapGesture({ count: 2 })
-          .onAction((event?: GestureEvent) => {
+          .onAction((event: GestureEvent) => {
             if (event) {
               this.value = JSON.stringify(event.fingerList[0])
             }
