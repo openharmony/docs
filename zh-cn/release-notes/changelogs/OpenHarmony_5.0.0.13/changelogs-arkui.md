@@ -8,11 +8,11 @@
 
 **变更原因**
 
-该变更为不兼容性变更。
+现@LocalStorageLink,@LocalStorageProp,@StorageProp,@StorageLink,@Provide,@Consume,@Watch key 值写任意值不会校验，为了符合ts语法规则，现对@LocalStorageLink,@LocalStorageProp,@StorageProp,@StorageLink,@Provide,@Consume,@Watch key值未定义时进行校验，该变更为不兼容性变更。
 
 **变更影响**
 
-@LocalStorageLink,@LocalStorageProp,@StorageProp(),@StorageLink,@Provide,@Consume,@Watch key值不存在时，编译报错。
+@LocalStorageLink,@LocalStorageProp,@StorageProp,@StorageLink,@Provide,@Consume,@Watch key值不存在时，编译报错。
 
 **变更发生版本**
 
@@ -47,11 +47,17 @@ struct ComA {
 
 **适配指导**
 
- @LocalStorageLink,@LocalStorageProp,@StorageProp(),@StorageLink,@Provide,@Consume,@Watch key值需要准确定义。
+ @LocalStorageLink,@LocalStorageProp,@StorageProp,@StorageLink,@Provide,@Consume,@Watch key值需要准确定义。
 
 ```
 // test.ts
 export let oneKey = 'string';
+```
+
+
+
+```
+
 // index.ets
 import { oneKey } from './test';
 @Entry
