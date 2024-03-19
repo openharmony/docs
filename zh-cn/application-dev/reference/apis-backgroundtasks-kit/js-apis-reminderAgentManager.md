@@ -210,7 +210,7 @@ getValidReminders(callback: AsyncCallback<Array\<ReminderRequest>>): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback\<Array\<[ReminderRequest](#reminderrequest)>> | 是 | 回调函数，返回当前应用设置的所有有效的代理提醒。 |
+| callback | AsyncCallback\<Array\<[ReminderRequest](#reminderrequest)>> | 是 | 回调函数，返回当前应用设置的所有有效（未过期）的代理提醒。 |
 
 **错误码：**
 
@@ -274,7 +274,7 @@ getValidReminders(): Promise\<Array\<ReminderRequest>>
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<Array\<[ReminderRequest](#reminderrequest)>> | Promise对象，返回当前应用设置的所有有效的代理提醒。 |
+| Promise\<Array\<[ReminderRequest](#reminderrequest)>> | Promise对象，返回当前应用设置的所有有效（未过期）的代理提醒。 |
 
 **错误码：**
 
@@ -544,9 +544,9 @@ getAllValidReminders(): Promise\<Array\<ReminderInfo>>
 
 **返回值**：
 
-| 类型                                              | 说明                                                |
-| ------------------------------------------------- | --------------------------------------------------- |
-| Promise\<Array\<[ReminderInfo](#reminderinfo12)>> | Promise对象，返回当前应用设置的所有有效的代理提醒。 |
+| 类型                                              | 说明                                                         |
+| ------------------------------------------------- | ------------------------------------------------------------ |
+| Promise\<Array\<[ReminderInfo](#reminderinfo12)>> | Promise对象，返回当前应用设置的所有有效（未过期）的代理提醒。 |
 
 **示例**：
 
@@ -631,6 +631,7 @@ reminderAgentManager.getAllValidReminders().then((reminders: Array<reminderAgent
 | pkgName | string | 是 | 指明跳转目标的包名。 |
 | abilityName | string | 是 | 指明跳转目标的ability名称。 |
 | parameters<sup>12+</sup> | Record\<string, Object> | 否 | 需要传递到目标的参数。 |
+| uri<sup>12+</sup> | string | 否 | 指明跳转目标的uri信息。 |
 
 
 ## MaxScreenWantAgent
