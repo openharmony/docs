@@ -1,6 +1,6 @@
 # @ohos.application.AccessibilityExtensionAbility (辅助功能扩展能力)
 
-**AccessibilityExtensionAbility**基于ExtensionAbility框架，提供辅助功能业务的能力。
+AccessibilityExtensionAbility基于ExtensionAbility框架，提供辅助功能业务的能力。
 
 > **说明：**
 >
@@ -32,7 +32,7 @@ import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtens
 | --------- | ------------------------------------------------------------ |------------------------------------------------------------------------------|------------------------------------| ------------------------------------------------------------ |
 | eventType | [accessibility.EventType](js-apis-accessibility.md#eventtype) \| [accessibility.WindowUpdateType](js-apis-accessibility.md#windowupdatetype) \| [TouchGuideType](#touchguidetype) \| [GestureType](#gesturetype) \| [PageUpdateType](#pageupdatetype) | 是   | 否   | 具体事件类型。<br />EventType：无障碍事件类型；<br />WindowUpdateType：窗口变化类型；TouchGuideType：触摸浏览事件类型；<br />GestureType：手势事件类型；<br />PageUpdateType：页面刷新类型。当前版本暂不支持。 |
 | target    | [AccessibilityElement](js-apis-inner-application-accessibilityExtensionContext.md#accessibilityelement9) | 是                                                                            | 否                                  | 发生事件的目标组件。                                         |
-| timeStamp | number                                                       | 是                                                                            | 否                                  | 事件时间戳。                                                 |
+| timeStamp | number                                                       | 是                                                                            | 否                                  | 事件时间戳，单位是毫秒。                                                 |
 
 
 ## AccessibilityElement<sup>10+</sup>
