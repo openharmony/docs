@@ -193,6 +193,8 @@ typedef void(* OH_AudioRenderer_OutputDeviceChangeCallback) (OH_AudioRenderer *r
 
 输出音频流设备变更的回调函数。
 
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
 **起始版本：** 11
 
 **参数:**
