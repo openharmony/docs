@@ -220,9 +220,9 @@ interface ParticlePropertyUpdaterConfigs<T> {
 ```
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-|[ParticleUpdater.NONE]|void | Yes| The color does not change. The default value is **undefined**.|
+| [ParticleUpdater.NONE]|void | Yes| The attribute does not change. The default value is **undefined**.|
 | [ParticleUpdater.RANDOM] | [number, number] | Yes| The attribute changes randomly, with the per-second change difference being a value randomly generated from the range.<br>The target attribute value is obtained by applying the change difference to the current attribute value. For example, if the current attribute value is **0.2** and **config** is set to **[0.1,1.0]**, then:<br>1. When the random change difference is 0.5, the target attribute value is 0.2 + 0.5 = 0.7.<br>2. The change difference may also be a negative value. For example, if the current attribute value is **0.2** and **config** is set to **[-3.0,2.0]**, then when the random change difference is **-2.0**, the target attribute value is 0.2 - 2.0 = -1.8.<br>**NOTE**<br>**config** sets the value range of the change difference. While the change difference does not have a maximum or minimum value limit, the target attribute value does. Therefore, if the target attribute value is greater than the maximum attribute value, the maximum attribute value will be used instead; if the target attribute value is less than the minimum attribute value, the minimum attribute value will be used instead.<br>For example, if the value range of **opacity** is **[0.0,1.0]**, then if the target attribute value is greater than 1.0, **1.0** will be used instead.|
-|[ParticleUpdater.CURVE]|Array<[ParticlePropertyAnimation](#particlepropertyanimation)\<number\>> | Yes| The color changes with the animation curve. The array type indicates that multiple animation segments can be set for the current attribute, for example, 0-3000 ms, 3000-5000 ms, and 5000-8000 ms.|
+| [ParticleUpdater.CURVE]|Array<[ParticlePropertyAnimation](#particlepropertyanimation)\<number\>> | Yes| The attribute changes with the animation curve. The array type indicates that multiple animation segments can be set for the current attribute, for example, 0-3000 ms, 3000-5000 ms, and 5000-8000 ms.|
 
 
 
