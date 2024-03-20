@@ -41,7 +41,6 @@ int32_t (*OH_AudioRenderer_Callbacks_Struct::OH_AudioRenderer_OnError)(OH_AudioR
 
 该函数指针将指向用于处理音频播放错误结果的回调函数。
 
-**起始版本：** 10
 
 
 ### OH_AudioRenderer_OnInterruptEvent
@@ -54,8 +53,6 @@ int32_t (*OH_AudioRenderer_Callbacks_Struct::OH_AudioRenderer_OnInterruptEvent)(
 
 该函数指针将指向用于处理音频播放中断事件的回调函数。
 
-**起始版本：** 10
-
 
 ### OH_AudioRenderer_OnStreamEvent
 
@@ -66,8 +63,6 @@ int32_t (*OH_AudioRenderer_Callbacks_Struct::OH_AudioRenderer_OnStreamEvent)(OH_
 **描述**
 
 该函数指针将指向用于处理音频播放流事件的回调函数。
-
-**起始版本：** 10
 
 
 ### OH_AudioRenderer_OnWriteData

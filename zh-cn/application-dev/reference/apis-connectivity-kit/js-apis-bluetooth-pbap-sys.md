@@ -14,6 +14,9 @@ pbap模块提供了访问电话簿相关功能的方法。
 import pbap from '@ohos.bluetooth.pbap';
 ```
 
+## PbapServerProfile
+
+使用PbapServerProfile方法之前需要创建该类的实例进行操作，通过createPbapServerProfile()方法构造此实例。
 
 ### disconnect
 

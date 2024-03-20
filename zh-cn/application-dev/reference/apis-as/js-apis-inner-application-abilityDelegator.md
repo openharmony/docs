@@ -3,8 +3,8 @@
 AbilityDelegator提供添加用于监视指定ability的生命周期状态更改的[AbilityMonitor](js-apis-inner-application-abilityMonitor.md#abilitymonitor-1)对象的能力，包括对AbilityMonitor实例的添加、删除、等待ability到达OnCreate生命周期、设置等待时间等、获取指定ability的生命周期状态、获取当前应用顶部ability、启动指定ability等。
 
 > **说明：**
-> 
-> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。 
+>
+> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
 
@@ -14,7 +14,7 @@ import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry
 
 ## 使用说明
 
-通过AbilityDelegatorRegistry中[getAbilityDelegator](../apis/js-apis-app-ability-abilityDelegatorRegistry.md#abilitydelegatorregistrygetabilitydelegator)方法获取。此接口只能在测试环境下使用。
+通过AbilityDelegatorRegistry中[getAbilityDelegator](js-apis-app-ability-abilityDelegatorRegistry.md#abilitydelegatorregistrygetabilitydelegator)方法获取。此接口只能在测试环境下使用。
 ```ts
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 ```
@@ -25,7 +25,7 @@ import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry
 
 addAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<void>): void
 
-添加AbilityMonitor实例（callback形式）。
+添加AbilityMonitor实例（callback形式）。不支持多线程并发调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -42,7 +42,7 @@ addAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<void>): void
 | ------- | -------- |
 | 16000100 | AddAbilityMonitor failed. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -71,7 +71,7 @@ abilityDelegator.addAbilityMonitor(monitor, (error: BusinessError) => {
 
 addAbilityMonitor(monitor: AbilityMonitor): Promise\<void>
 
-添加AbilityMonitor实例（promise形式）。
+添加AbilityMonitor实例（promise形式）。不支持多线程并发调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -93,7 +93,7 @@ addAbilityMonitor(monitor: AbilityMonitor): Promise\<void>
 | ------- | -------- |
 | 16000100 | AddAbilityMonitor failed. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -121,7 +121,7 @@ abilityDelegator.addAbilityMonitor(monitor).then(() => {
 
 addAbilityMonitorSync(monitor: AbilityMonitor): void
 
-同步添加AbilityMonitor实例。
+同步添加AbilityMonitor实例。不支持多线程并发调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -137,7 +137,7 @@ addAbilityMonitorSync(monitor: AbilityMonitor): void
 | ------- | -------- |
 | 16000100 | AddAbilityMonitorSync failed. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -163,7 +163,7 @@ abilityDelegator.addAbilityMonitorSync(monitor);
 
 removeAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<void>): void
 
-删除已经添加的AbilityMonitor实例（callback形式）。
+删除已经添加的AbilityMonitor实例（callback形式）。不支持多线程并发调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -180,7 +180,7 @@ removeAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<void>): v
 | ------- | -------- |
 | 16000100 | RemoveAbilityMonitor failed. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -210,7 +210,7 @@ abilityDelegator.removeAbilityMonitor(monitor, (error: BusinessError) => {
 
 removeAbilityMonitor(monitor: AbilityMonitor): Promise\<void>
 
-删除已经添加的AbilityMonitor实例（promise形式）。
+删除已经添加的AbilityMonitor实例（promise形式）。不支持多线程并发调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -232,7 +232,7 @@ removeAbilityMonitor(monitor: AbilityMonitor): Promise\<void>
 | ------- | -------- |
 | 16000100 | RemoveAbilityMonitor failed. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 - 示例
 
@@ -261,7 +261,7 @@ abilityDelegator.removeAbilityMonitor(monitor).then(() => {
 
 removeAbilityMonitorSync(monitor: AbilityMonitor): void
 
-同步删除已经添加的AbilityMonitor实例。
+同步删除已经添加的AbilityMonitor实例。不支持多线程并发调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -277,7 +277,7 @@ removeAbilityMonitorSync(monitor: AbilityMonitor): void
 | ------- | -------- |
 | 16000100 | RemoveAbilityMonitorSync failed. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -304,7 +304,7 @@ abilityDelegator.removeAbilityMonitorSync(monitor);
 
 waitAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<UIAbility>): void
 
-等待与AbilityMonitor实例匹配的ability到达OnCreate生命周期，并返回ability实例（callback形式）。
+等待与AbilityMonitor实例匹配的ability到达OnCreate生命周期，并返回ability实例（callback形式）。不支持多线程并发调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -321,7 +321,7 @@ waitAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<UIAbility>)
 | ------- | -------- |
 | 16000100 | WaitAbilityMonitor failed. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -355,7 +355,7 @@ abilityDelegator.waitAbilityMonitor(monitor, (error : BusinessError, data : UIAb
 
 waitAbilityMonitor(monitor: AbilityMonitor, timeout: number, callback: AsyncCallback\<UIAbility>): void
 
-设置等待时间，等待与AbilityMonitor实例匹配的ability到达OnCreate生命周期，并返回ability实例（callback形式）。
+设置等待时间，等待与AbilityMonitor实例匹配的ability到达OnCreate生命周期，并返回ability实例（callback形式）。不支持多线程并发调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -373,7 +373,7 @@ waitAbilityMonitor(monitor: AbilityMonitor, timeout: number, callback: AsyncCall
 | ------- | -------- |
 | 16000100 | WaitAbilityMonitor failed. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -410,7 +410,7 @@ abilityDelegator.waitAbilityMonitor(monitor, timeout, (error : BusinessError, da
 
 waitAbilityMonitor(monitor: AbilityMonitor, timeout?: number): Promise\<UIAbility>
 
-设置等待时间，等待与AbilityMonitor实例匹配的ability到达OnCreate生命周期，并返回ability实例（promise形式）。
+设置等待时间，等待与AbilityMonitor实例匹配的ability到达OnCreate生命周期，并返回ability实例（promise形式）。不支持多线程并发调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -433,7 +433,7 @@ waitAbilityMonitor(monitor: AbilityMonitor, timeout?: number): Promise\<UIAbilit
 | ------- | -------- |
 | 16000100 | WaitAbilityMonitor failed. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -501,7 +501,7 @@ getAbilityState(ability: UIAbility): number
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
-| number | 指定ability的生命周期状态。状态枚举值使用[AbilityLifecycleState](../apis/js-apis-application-abilityDelegatorRegistry.md#abilitylifecyclestate)。 |
+| number | 指定ability的生命周期状态。状态枚举值使用[AbilityLifecycleState](js-apis-app-ability-abilityDelegatorRegistry.md#abilitylifecyclestate)。 |
 
 **示例：**
 
@@ -542,7 +542,7 @@ getCurrentTopAbility(callback: AsyncCallback\<UIAbility>): void
 | ------- | -------- |
 | 16000100 | GetCurrentTopAbility failed. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -581,7 +581,7 @@ getCurrentTopAbility(): Promise\<UIAbility>
 | ------- | -------- |
 | 16000100 | GetCurrentTopAbility failed. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -634,7 +634,7 @@ startAbility(want: Want, callback: AsyncCallback\<void>): void
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -695,7 +695,7 @@ startAbility(want: Want): Promise\<void>
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -737,7 +737,7 @@ doAbilityForeground(ability: UIAbility, callback: AsyncCallback\<void>): void
 | ------- | -------- |
 | 16000100 | DoAbilityForeground failed. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -785,7 +785,7 @@ doAbilityForeground(ability: UIAbility): Promise\<void>
 | ------- | -------- |
 | 16000100 | DoAbilityForeground failed. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -828,7 +828,7 @@ doAbilityBackground(ability: UIAbility, callback: AsyncCallback\<void>): void
 | ------- | -------- |
 | 16000100 | DoAbilityBackground failed. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -876,7 +876,7 @@ doAbilityBackground(ability: UIAbility): Promise\<void>
 | ------- | -------- |
 | 16000100 | DoAbilityBackground failed. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -1114,7 +1114,7 @@ finishTest(msg: string, code: number, callback: AsyncCallback\<void>): void
 | ------- | -------- |
 | 16000100 | FinishTest failed. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -1158,7 +1158,7 @@ finishTest(msg: string, code: number): Promise\<void>
 | ------- | -------- |
 | 16000100 | FinishTest failed. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -1195,7 +1195,7 @@ addAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\<vo
 | ------- | -------- |
 | 16000100 | AddAbilityStageMonitor failed. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -1240,7 +1240,7 @@ addAbilityStageMonitor(monitor: AbilityStageMonitor): Promise\<void>
 | ------- | -------- |
 | 16000100 | AddAbilityStageMonitor failed. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -1278,7 +1278,7 @@ addAbilityStageMonitorSync(monitor: AbilityStageMonitor): void
 | ------- | -------- |
 | 16000100 | AddAbilityStageMonitorSync failed. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -1315,7 +1315,7 @@ removeAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\
 | ------- | -------- |
 | 16000100 | RemoveAbilityStageMonitor failed. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -1360,7 +1360,7 @@ removeAbilityStageMonitor(monitor: AbilityStageMonitor): Promise\<void>
 | ------- | -------- |
 | 16000100 | RemoveAbilityStageMonitor failed. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -1398,7 +1398,7 @@ removeAbilityStageMonitorSync(monitor: AbilityStageMonitor): void
 | ------- | -------- |
 | 16000100 | removeAbilityStageMonitorSync failed. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -1435,7 +1435,7 @@ waitAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\<A
 | ------- | -------- |
 | 16000100 | WaitAbilityStageMonitor failed. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -1482,7 +1482,7 @@ waitAbilityStageMonitor(monitor: AbilityStageMonitor, timeout?: number): Promise
 | ------- | -------- |
 | 16000100 | WaitAbilityStageMonitor failed. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -1523,7 +1523,7 @@ waitAbilityStageMonitor(monitor: AbilityStageMonitor, timeout: number, callback:
 | ------- | -------- |
 | 16000100 | WaitAbilityStageMonitor failed. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -1564,7 +1564,7 @@ setMockList(mockList: Record\<string, string>): void
 | -------- | --------------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 

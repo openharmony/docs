@@ -5,7 +5,8 @@ AbilityDelegatorRegistry是[自动化测试框架使用指南](../../application
 > **说明：**
 > 
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> 本模块接口仅可在测试框架中使用。
+> 
+> 本模块接口仅可在[自动化测试框架arkxtest](../../application-test/arkxtest-guidelines.md)中使用。
 
 ## 导入模块
 

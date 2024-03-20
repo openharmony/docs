@@ -668,7 +668,7 @@ let retStr = result.encoding;
 ```
 ### create<sup>9+</sup>
 
-create(encoding?: string, options?: TextDecoderOptions): TextDecoder
+static create(encoding?: string, options?: TextDecoderOptions): TextDecoder
 
 替代有参构造功能。
 
@@ -872,6 +872,26 @@ TextEncoder的构造函数。
 
 ```ts
 let textEncoder = new util.TextEncoder("utf-8");
+```
+
+### create<sup>12+</sup>
+
+static create(encoding?: string): TextEncoder
+
+创建TextEncoder对象的方法。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ----- | ---- | ---- | ---- |
+| encoding | string | 否 | 编码格式，默认值为'utf-8'。 |
+
+**示例：**
+
+```ts
+let textEncoder = util.TextEncoder.create("utf-8");
 ```
 
 ### encodeInto<sup>9+</sup>
@@ -1139,7 +1159,7 @@ equals​(obj: Object): boolean
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| object | Object | 是 | 其他类型对象。 |
+| obj | Object | 是 | 其他类型对象。 |
 
 **返回值：**
 

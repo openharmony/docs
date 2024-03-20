@@ -337,6 +337,138 @@ getPositionToParent(): Position
 
 请参考[节点操作示例](#节点操作示例)。
 
+### dispose<sup>12+</sup>
+
+dispose(): void
+
+立即释放当前FrameNode。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**示例：**
+
+```ts
+import { FrameNode, NodeController, BuilderNode } from "@ohos.arkui.node"
+
+@Component
+struct TestComponent {
+  build() {
+    Column() {
+      Text('This is a BuilderNode.')
+        .fontSize(16)
+        .fontWeight(FontWeight.Bold)
+    }
+    .width('100%')
+    .backgroundColor(Color.Gray)
+  }
+
+  aboutToAppear() {
+    console.error('aboutToAppear');
+  }
+
+  aboutToDisappear() {
+    console.error('aboutToDisappear');
+  }
+}
+
+@Builder
+function buildComponent() {
+  TestComponent()
+}
+
+class MyNodeController extends NodeController {
+  private rootNode: FrameNode | null = null;
+  private builderNode: BuilderNode<[]> | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+    this.builderNode = new BuilderNode(uiContext, { selfIdealSize: { width: 200, height: 100 } });
+    this.builderNode.build(new WrappedBuilder(buildComponent));
+
+    const rootRenderNode = this.rootNode.getRenderNode();
+    if (rootRenderNode !== null) {
+      rootRenderNode.size = { width: 200, height: 200 };
+      rootRenderNode.backgroundColor = 0xff00ff00;
+      rootRenderNode.appendChild(this.builderNode!.getFrameNode()!.getRenderNode());
+    }
+
+    return this.rootNode;
+  }
+
+  disposeFrameNode() {
+    this.rootNode.removeChild(this.builderNode.getFrameNode());
+    this.builderNode.dispose();
+
+    this.rootNode.dispose();
+  }
+
+  removeBuilderNode() {
+    const rootRenderNode = this.rootNode.getRenderNode();
+    if (rootRenderNode !== null && this.builderNode !== null && this.builderNode.getFrameNode() !== null) {
+      rootRenderNode.removeChild(this.builderNode!.getFrameNode()!.getRenderNode());
+    }
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private myNodeController: MyNodeController = new MyNodeController();
+
+  build() {
+    Column({ space: 4 }) {
+      NodeContainer(this.myNodeController)
+      Button('FrameNode dispose')
+        .onClick(() => {
+          this.myNodeController.disposeFrameNode();
+        })
+        .width('100%')
+    }
+  }
+}
+```
+
+### commonAttribute<sup>12+</sup>
+
+get commonAttribute(): CommonAttribute
+
+获取FrameNode中持有的CommonAttribute接口，用于设置通用属性。
+
+仅可以修改通过命令式方式创建的节点的属性。
+
+不支持入参为[CustomBuilder](./arkui-ts/ts-types.md#custombuilder8)或Lamda表达式的属性，且不支持事件和手势。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                                                           | 说明                                                                                                             |
+| -------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| CommonAttribute | 获取FrameNode中持有的CommonAttribute接口，用于设置通用属性。|
+
+**示例：**
+
+请参考[基础事件示例](#基础事件示例)。
+
+### commonEvent<sup>12+</sup>
+
+get commonEvent(): UICommonEvent
+
+获取FrameNode中持有的UICommonEvent对象，用于设置基础事件。设置的基础事件与声明式定义的事件平行，参与事件竞争；设置的基础事件不覆盖原有的声明式事件。同时设置两个事件回调的时候，优先回调声明式事件。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                                                           | 说明                                                                                                             |
+| -------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| [UICommonEvent](./arkui-ts/ts-uicommonevent.md#设置事件回调) | UICommonEvent对象，用于设置基础事件。 |
+
+**示例：**
+
+请参考[基础事件示例](#基础事件示例)。
+
+
 ## 节点操作示例
 ```ts
 import { FrameNode, NodeController } from "@ohos.arkui.node"
@@ -542,76 +674,51 @@ struct Index {
 }
 ```
 
-### dispose<sup>12+</sup>
-
-dispose(): void
-
-立即释放当前FrameNode。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**示例：**
+## 基础事件示例
 
 ```ts
-import { FrameNode, NodeController, BuilderNode } from "@ohos.arkui.node"
-
-@Component
-struct TestComponent {
-  build() {
-    Column() {
-      Text('This is a BuilderNode.')
-        .fontSize(16)
-        .fontWeight(FontWeight.Bold)
-    }
-    .width('100%')
-    .backgroundColor(Color.Gray)
-  }
-
-  aboutToAppear() {
-    console.error('aboutToAppear');
-  }
-
-  aboutToDisappear() {
-    console.error('aboutToDisappear');
-  }
-}
-
-@Builder
-function buildComponent() {
-  TestComponent()
-}
+import { FrameNode, NodeController } from "@ohos.arkui.node"
 
 class MyNodeController extends NodeController {
-  private rootNode: FrameNode | null = null;
-  private builderNode: BuilderNode<[]> | null = null;
-
+  public rootNode: FrameNode | null = null;
   makeNode(uiContext: UIContext): FrameNode | null {
     this.rootNode = new FrameNode(uiContext);
-    this.builderNode = new BuilderNode(uiContext, { selfIdealSize: { width: 200, height: 100 } });
-    this.builderNode.build(new WrappedBuilder(buildComponent));
-
-    const rootRenderNode = this.rootNode.getRenderNode();
-    if (rootRenderNode !== null) {
-      rootRenderNode.size = { width: 200, height: 200 };
-      rootRenderNode.backgroundColor = 0xff00ff00;
-      rootRenderNode.appendChild(this.builderNode!.getFrameNode()!.getRenderNode());
-    }
-
+    this.rootNode.commonAttribute.width(100).height(100).backgroundColor(Color.Pink);
+    this.addCommonEvent(this.rootNode);
     return this.rootNode;
   }
 
-  disposeFrameNode() {
-    this.rootNode.removeChild(this.builderNode.getFrameNode());
-    this.builderNode.dispose();
-
-    this.rootNode.dispose();
-  }
-
-  removeBuilderNode() {
-    const rootRenderNode = this.rootNode.getRenderNode();
-    if (rootRenderNode !== null && this.builderNode !== null && this.builderNode.getFrameNode() !== null) {
-      rootRenderNode.removeChild(this.builderNode!.getFrameNode()!.getRenderNode());
-    }
+  addCommonEvent(buttonNode : FrameNode)
+  {
+    buttonNode.commonEvent.setOnHover(((isHover?: boolean, event?: HoverEvent):void => {
+      console.log( `isHover FrameNode: ${isHover}`);
+      console.log( `isHover FrameNode: ${JSON.stringify(event)}`);
+      event.stopPropagation();
+    }))
+    buttonNode.commonEvent.setOnClick((event)=>{
+      console.log(`Click FrameNode: ${JSON.stringify(event)}`)
+    })
+    buttonNode.commonEvent.setOnTouch((event)=>{
+      console.log(`touch FrameNode: ${JSON.stringify(event)}`)
+    })
+    buttonNode.commonEvent.setOnAppear(()=>{
+      console.log(`on Appear FrameNode`)
+    })
+    buttonNode.commonEvent.setOnDisappear(()=>{
+      console.log(`onDisAppear FrameNode`)
+    })
+    buttonNode.commonEvent.setOnFocus(()=>{
+      console.log(`onFocus FrameNode`)
+    })
+    buttonNode.commonEvent.setOnBlur(()=>{
+      console.log(`onBlur FrameNode`)
+    })
+    buttonNode.commonEvent.setOnKeyEvent((event)=>{
+      console.log(`Key FrameNode : ${JSON.stringify(event)}`)
+    })
+    buttonNode.commonEvent.setOnMouse((event)=>{
+      console.log(`Mouse FrameNode : ${JSON.stringify(event)}`)
+    })
   }
 }
 
@@ -619,16 +726,51 @@ class MyNodeController extends NodeController {
 @Component
 struct Index {
   private myNodeController: MyNodeController = new MyNodeController();
-
+  @State index : number = 0;
   build() {
-    Column({ space: 4 }) {
-      NodeContainer(this.myNodeController)
-      Button('FrameNode dispose')
-        .onClick(() => {
-          this.myNodeController.disposeFrameNode();
+    Column() {
+      Button("add CommonEvent to Text")
+        .onClick(()=>{
+          this.myNodeController!.addCommonEvent(this.myNodeController!.rootNode!.getParent()!.getPreviousSibling()!)
         })
-        .width('100%')
-    }
+      Text("this is a Text")
+        .fontSize(16)
+        .borderWidth(1)
+        .onHover(((isHover?: boolean, event?: HoverEvent):void => {
+          console.log( `isHover Text: ${isHover}`);
+          console.log( `isHover Text: ${JSON.stringify(event)}`);
+          event.stopPropagation();
+        }))
+        .onClick((event)=>{
+          console.log(`Click Text    : ${JSON.stringify(event)}`)
+        })
+        .onTouch((event)=>{
+          console.log(`touch Text    : ${JSON.stringify(event)}`)
+        })
+        .onAppear(()=>{
+          console.log(`on Appear Text`)
+        })
+        .onDisAppear(()=>{
+          console.log(`onDisAppear Text`)
+        })
+        .onFocus(()=>{
+          console.log(`onFocus Text`)
+        })
+        .onBlur(()=>{
+          console.log(`onBlur Text`)
+        })
+        .onKeyEvent((event)=>{
+          console.log(`Key Text    : ${JSON.stringify(event)}`)
+        })
+        .onMouse((event)=>{
+          console.log(`Mouse Text : ${JSON.stringify(event)}`)
+        })
+      NodeContainer(this.myNodeController)
+        .borderWidth(1)
+        .width(300)
+        .height(100)
+    }.width("100%")
   }
 }
 ```
+
