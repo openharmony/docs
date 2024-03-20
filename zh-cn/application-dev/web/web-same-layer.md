@@ -1,17 +1,6 @@
 # 同层渲染绘制
 
-同层渲染支持组件范围请参考[NodeRenderType](../reference/apis-arkui/js-apis-arkui-builderNode.md#noderendertype)说明
-
-开发者可通过[enableNativeEmbedMode()](../reference/apis-arkweb/ts-basic-components-web.md#enablenativeembedmode11)控制同层渲染开关。Html文件中需要显式使用embed标签，并且embed标签内type必须以“native/”开头。
-
-同层渲染的标签背景是白色的，只支持Web组件嵌套一层Web组件。
-
-开发者也可通过[registerNativeEmbedRule(tag: string, type: string)]指定tag标签和自定义类型。
-
-当前tag仅支持"embed"和"object"，type类型则可任意指定但两个string参数必须均为非空字串才会生效，其中tag字串使用全字符串匹配，type使用字符串前缀匹配，两个字符串参数均不区分大小写，web侧将会统一转成小写。
-若开发者不使用该接口或该接口接收的为非法字符串(eg:空字符串)时，内核将使用默认设置即"embed" + "native/"前缀模式，若指定类型与w3c定义的标准类型重合如registerNativeEmbedRule("object", "application/pdf")，
-我们将遵循w3c标准行为，不会将其识别为同层元素。
-
+同层渲染是Web内核为应用提供原生组件和Web元素渲染在同一层级的能力。支持的组件范围请参考[NodeRenderType](../reference/apis-arkui/js-apis-arkui-builderNode.md#noderendertype)说明，此标签的背景为白色，对于Web嵌套Web组件的形式只提供一层嵌套的支持。
 
 - 使用前请在module.json5添加如下权限。
   
@@ -21,7 +10,9 @@
 
 ## 绘制XComponent+AVPlayer和Button组件
 
-### 示例1：使用enableNativeEmbedMode默认场景
+### 使能同层渲染模式
+
+开发者可通过[enableNativeEmbedMode()](../reference/apis-arkweb/ts-basic-components-web.md#enablenativeembedmode11)控制同层渲染开关。Html文件中需要显式使用embed标签，并且embed标签内type必须以“native/”开头。
 
 - 应用侧代码组件使用示例。
 
@@ -364,8 +355,16 @@
   </body>
   </html>
   ```
+  
+  ![web-same-layer](figures/web-same-layer.png)
 
-### 示例2：使用enableNativeEmbedMode和registerNativeEmbedRule场景
+### 使能同层渲染模式并指定标签名和自定义类型
+
+开发者也可通过[registerNativeEmbedRule(tag: string, type: string)]指定tag标签和自定义类型。
+
+当前tag仅支持"embed"和"object"，type类型则可任意指定但这两个string参数必须均为非空字串才会生效，两个字符串参数均不区分大小写，web侧将会统一转成小写，其中tag字串使用全字符串匹配，type使用字符串前缀匹配。
+若开发者不使用该接口或该接口接收的为非法字符串(eg:空字符串)时，内核将使用默认设置即"embed" + "native/"前缀模式，若指定类型与w3c定义的标准类型重合如registerNativeEmbedRule("object", "application/pdf")，
+我们将遵循w3c标准行为，不会将其识别为同层元素。
 
 - 应用侧代码使用registerNativeEmbedRule示例。
 
@@ -400,8 +399,7 @@
 		  }
 		...
 	}
-	
-	省略号内容与示例1中相同。
+
   ```
 
 - 与registerNativeEmbedRule相对应的前端页面代码。
@@ -435,6 +433,10 @@
   ```
 
 ## 绘制TextInput组件并将同层元素Update上报的位置信息更新到组件侧
+
+同层元素的Update包括滚动、缩放、元素发生改变导致的重排等行为。由于同层元素的位置基于web组件坐标系，对于网页缩放这种并未真正改变元素的size的行为，只会有position的改变，宽高仍保持初始值。
+
+需要位置信息的组件如TextInput、TextArea等需将同层元素Update上报来的位置信息实时更新到组件侧。
 
 - 应用侧完整示例。
 
@@ -569,8 +571,7 @@
       .height('100%')
     }
   }
-  
-  省略号内容与示例1中相同。
+
   ```
 
 - 前述应用侧相对应的前端示例。
@@ -598,5 +599,3 @@
   </body>
   </html>
   ```
-
-  ![web-same-layer](figures/web-same-layer.png)
