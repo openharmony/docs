@@ -16,7 +16,7 @@
   - [WebGL](webgl/Readme-CN.md)
   - [媒体](media/Readme-CN.md)
   - [安全](security/Readme-CN.md)
-  - [网络与连接](network/Readme-CN.md)
+  - [网络管理](network/Readme-CN.md)
   - [基础通信](connectivity/Readme-CN.md)
   - [数据管理](database/Readme-CN.md)
   - [文件管理](file-management/Readme-CN.md)
