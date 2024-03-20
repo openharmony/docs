@@ -68,20 +68,20 @@ import accessibility from '@ohos.accessibility';
 | ----------------------- |--------------------|
 | click                   | 表示点击操作。            |
 | longClick               | 表示长按操作。            |
-| scrollForward           | 表示向前滚动操作。当前版本暂不支持。 |
-| scrollBackward          | 表示向后滚动操作。当前版本暂不支持。 |
-| focus                   | 表示获得焦点操作。当前版本暂不支持。 |
-| clearFocus              | 表示清除焦点操作。当前版本暂不支持。 |
+| scrollForward           | 表示向前滚动操作。 |
+| scrollBackward          | 表示向后滚动操作。 |
+| focus                   | 表示获得焦点操作。 |
+| clearFocus              | 表示清除焦点操作。 |
 | clearSelection          | 表示清除选择操作。当前版本暂不支持。 |
 | accessibilityFocus      | 表示获得无障碍焦点操作。       |
 | clearAccessibilityFocus | 表示清除无障碍焦点操作。       |
-| cut                     | 表示剪切操作。当前版本暂不支持。   |
-| copy                    | 表示复制操作。当前版本暂不支持。   |
-| paste                   | 表示粘贴操作。当前版本暂不支持。   |
+| cut                     | 表示剪切操作。   |
+| copy                    | 表示复制操作。   |
+| paste                   | 表示粘贴操作。   |
 | select                  | 表示选择操作。当前版本暂不支持。   |
 | setText                 | 表示设置文本操作。当前版本暂不支持。 |
 | delete                  | 表示删除操作。当前版本暂不支持。   |
-| setSelection            | 表示选择操作。当前版本暂不支持。   |
+| setSelection            | 表示选择操作。   |
 
 ## Capability
 
@@ -352,13 +352,13 @@ constructor(type: EventType, bundleName: string, triggerAction: Action)
 | accessibilityFocusClear | 描述清除无障碍焦点的事件。          |
 | click                   | 描述点击组件的事件。             |
 | longClick               | 描述长按组件的事件。             |
-| select                  | 描述选择组件的事件。当前版本暂不支持。    |
+| select                  | 描述选择组件的事件。    |
 | hoverEnter              | 描述悬停进入组件的事件。当前版本暂不支持。  |
 | hoverExit               | 描述悬停离开组件的事件。当前版本暂不支持。  |
 | focus                   | 描述组件获得焦点的事件。当前版本暂不支持。  |
-| textUpdate              | 描述组件文本已更改的事件。当前版本暂不支持。 |
+| textUpdate              | 描述组件文本已更改的事件。 |
 | textSelectionUpdate     | 描述选定文本已更改的事件。当前版本暂不支持。 |
-| scroll                  | 描述滚动视图的事件。当前版本暂不支持。    |
+| scroll                  | 描述滚动视图的事件。    |
 
 
 ## TextMoveUnit
@@ -743,7 +743,7 @@ isOpenAccessibilitySync(): boolean
 
 | 类型        | 说明                                  |
 | ----------- | ------------------------------------- |
-| boolean&gt; | 启用辅助功能返回true，否则返回false。 |
+| boolean | 启用辅助功能返回true，否则返回false。 |
 
 **示例：**
 
