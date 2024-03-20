@@ -4081,7 +4081,7 @@ try {
 
 setWindowMask(windowMask: Array&lt;Array&lt;number&gt;&gt;): Promise&lt;void&gt;;
 
-设置异形窗口的掩码，用来描述异形窗口的异形形状，使用Promise异步回调。
+设置异形窗口的掩码，使用Promise异步回调。异形窗口为非常规形状的窗口，掩码用于描述异形窗口的形状。此接口仅限子窗和全局悬浮窗可用，仅PC可用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
