@@ -5659,7 +5659,12 @@ struct WebComponent {
 
 static configCookieSync(url: string, value: string, incognito?: boolean): void
 
-为指定url设置单个cookie的值。
+为指定url设置cookie的值。
+
+> **说明：**
+>
+>configCookie中的url，可以指定域名的方式来使得页面内请求也附带上cookie。
+>同步cookie的时机建议在webview组件加载之前完成。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -5697,7 +5702,8 @@ struct WebComponent {
       Button('configCookieSync')
         .onClick(() => {
           try {
-            web_webview.WebCookieManager.configCookieSync('https://www.example.com', 'a=b');
+            // 设置多个cookie值时用','隔开，设置单个cookie值时不需要。
+            web_webview.WebCookieManager.configCookieSync('https://www.example.com', 'a=b,c=d,e=f');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
