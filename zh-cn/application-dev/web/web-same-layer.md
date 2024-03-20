@@ -1,6 +1,7 @@
 # 同层渲染绘制
 
-同层渲染是ArkWeb内核为应用提供原生组件和Web元素渲染在同一层级的能力。支持的组件范围请参考[NodeRenderType](../reference/apis-arkui/js-apis-arkui-builderNode.md#noderendertype)说明。
+同层渲染是ArkWeb内核为应用提供原生组件和Web元素渲染在同一层级的能力。支持的组件范围请参考[NodeRenderType](../reference/apis-arkui/js-apis-arkui-builderNode.md#noderendertype)说明。 
+
 同层标签区域的背景为白色，对于Web嵌套Web组件的形式只提供一层嵌套的支持。
 
 - 使用前请在module.json5添加如下权限。
@@ -361,9 +362,10 @@
 
 ### 使能同层渲染模式并指定标签名和自定义类型
 
-开发者也可通过[registerNativeEmbedRule(tag: string, type: string)](../reference/apis-arkweb/ts-basic-components-web.md#registerNativeEmbedRule)指定tag标签和自定义类型。
+开发者也可通过[registerNativeEmbedRule(tag: string, type: string)](../reference/apis-arkweb/ts-basic-components-web.md#registerNativeEmbedRule12)指定tag标签和自定义类型。
 
 当前tag仅支持"embed"和"object"，type类型则可任意指定但这两个string参数必须均为非空字串才会生效，两个字符串参数均不区分大小写，Web内核侧将会统一转成小写，其中tag字串使用全字符串匹配，type使用字符串前缀匹配。 
+
 若开发者不使用该接口或该接口接收的为非法字符串(如:空字符串)时，内核将使用默认设置即"embed" + "native/"前缀模式，若指定类型与w3c定义的标准类型重合如registerNativeEmbedRule("object", "application/pdf")，
 ArkWeb将遵循w3c标准行为，不会将其识别为同层元素。
 
