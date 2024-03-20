@@ -65,10 +65,10 @@ OAID会在下述场景中发生变化：
             hilog.info(0x0000, 'testTag', '%{public}s', 'request permission success');
             identifier.getOAID((err: BusinessError, data: string) => {
 			  if (err.code) {
-				hilog.error(0x0000, 'testTag', '%{public}s', `get oaid failed, error: ${err.code} ${err.message}`);
+			    hilog.error(0x0000, 'testTag', '%{public}s', `get oaid failed, error: ${err.code} ${err.message}`);
 			  } else {
-				const oaid: string = data;
-			    hilog.info(0x0000, 'testTag', '%{public}s', `get oaid by callback success, oaid: ${oaid}`);
+			    const oaid: string = data;
+				hilog.info(0x0000, 'testTag', '%{public}s', `get oaid by callback success, oaid: ${oaid}`);
 			  }
             });
           } else {
