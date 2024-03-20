@@ -2826,6 +2826,87 @@ decode(src: Uint8Array | string, options?: Type): Promise&lt;Uint8Array&gt;
   })
   ```
 
+## StringDecoder<sup>12+</sup>
+
+提供将二进制流解码为字符串的能力。支持的编码类型包括：utf-8、iso-8859-2、koi8-r、macintosh、windows-1250、windows-1251、gbk、gb18030、big5、utf-16be、utf-16le等。
+
+### constructor<sup>12+</sup>
+
+constructor(encoding?: string)
+
+StringDecoder的构造函数。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型                           | 必填 | 说明                              |
+| ------ | ------------------------------ | ---- | --------------------------------- |
+| encoding  | string | 否   | 输入数据的编码类型。默认值：'utf-8'。 |
+
+**示例：**
+
+  ```ts
+  let decoder = new util.StringDecoder();
+  ```
+
+### write<sup>12+</sup>
+
+write(chunk: string | Uint8Array): string
+
+返回一个解码后的字符串，确保Uint8Array末尾的任何不完整的多字节字符从返回的字符串中被过滤，并保存在一个内部的buffer中用于下次调用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型       | 必填 | 说明                |
+| ------ | ---------- | ---- | ------------------- |
+| chunk  | string \| Uint8Array | 是   | 需要解码的字符串。会根据输入的编码类型进行解码，参数为Uint8Array时会正常解码，参数为string类型时会原路返回。 |
+
+**返回值：**
+
+| 类型       | 说明                          |
+| ---------- | ----------------------------- |
+| string | 返回解码后的字符串。 |
+
+**示例：**
+
+  ```ts
+  let decoder = new util.StringDecoder('utf-8');
+  let input =  new Uint8Array([0xE4, 0xBD, 0xA0, 0xE5, 0xA5, 0xBD]);
+  const decoded = decoder.write(input);
+  console.info("decoder:", decoded);// 你好
+  ```
+
+### end<sup>12+</sup>
+
+end(chunk?: string | Uint8Array): string
+
+结束解码过程，以字符串形式返回存储在内部缓冲区中的任何剩余输入。
+
+**参数：**
+
+| 参数名 | 类型       | 必填 | 说明                |
+| ------ | ---------- | ---- | ------------------- |
+| chunk  | string \| Uint8Array | 否   | 需要解码的字符串。默认为undefined。 |
+
+**返回值：**
+
+| 类型       | 说明                          |
+| ---------- | ----------------------------- |
+| string | 返回解码后的字符串。 |
+
+**示例：**
+
+  ```ts
+  let decoder = new util.StringDecoder('utf-8');
+  let input = new Uint8Array([0xE4, 0xBD, 0xA0, 0xE5, 0xA5, 0xBD]);
+  const decoded = decoder.write(input.slice(0, 5));
+  const decodedend = decoder.end(input.slice(5));
+  console.info("decoded:", decoded);// 你
+  console.info("decodedend:", decodedend);// 好
+  ```
 
 ## Type<sup>10+</sup>
 
