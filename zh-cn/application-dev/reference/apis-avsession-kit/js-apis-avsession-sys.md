@@ -17,6 +17,10 @@
 import avSession from '@ohos.multimedia.avsession';
 ```
 
+## 使用说明
+
+本文档仅提供系统接口说明，以下接口的使用说明均需先创建实例，请参考公开接口[avSession.createAVSession](js-apis-avsession.md#avsessioncreateavsession10)的说明及示例，创建对应实例。
+
 ## avSession.getAllSessionDescriptors
 
 getAllSessionDescriptors(): Promise\<Array\<Readonly\<AVSessionDescriptor>>>
@@ -121,7 +125,7 @@ getHistoricalSessionDescriptors(maxSize?: number): Promise\<Array\<Readonly\<AVS
 
 | 参数名   | 类型    | 必填 | 说明                                                             |
 | -------- | ------ | ---- | -----------------------------------------------------------------|
-| maxSize  | number | 否   | 指定获取描述符数量的最大值，可选范围是0-10，不填则取默认值，默认值为3。|
+| maxSize  | number | 否   | 指定获取描述符数量的最大值，如果提供0或者不提供，则最大值由系统确定。|
 
 **返回值：**
 
@@ -172,7 +176,7 @@ getHistoricalSessionDescriptors(maxSize: number, callback: AsyncCallback\<Array\
 
 | 参数名   | 类型                                                                            | 必填 | 说明                                                             |
 | -------- | ------------------------------------------------------------------------------ | ---- | -----------------------------------------------------------------|
-| maxSize  | number                                                                         | 是   | 指定获取描述符数量的最大值，可选范围是0-10，不填则取默认值，默认值为3。|
+| maxSize  | number                                                                         | 否  | 指定获取描述符数量的最大值，如果提供0或者不提供，则最大值由系统确定。|
 | callback | AsyncCallback<Array<Readonly<[AVSessionDescriptor](#avsessiondescriptor)\>\>\> | 是   | 回调函数。返回所有会话描述的只读对象。                              |
 
 **错误码：**
@@ -856,7 +860,7 @@ sendSystemAVKeyEvent(event: KeyEvent, callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                                                         | 必填 | 说明                                  |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------- |
-| event    | [KeyEvent](../apis-input-kit/js-apis-keyevent.md) | 是   | 按键事件。                            |
+| event    | [KeyEvent](../apis-input-kit/js-apis-keyevent.md#keyevent) | 是   | 按键事件。                            |
 | callback | AsyncCallback\<void>                                         | 是   | 回调函数。当事件发送成功，err为undefined，否则返回错误对象。 |
 
 **错误码：**
@@ -902,7 +906,7 @@ sendSystemAVKeyEvent(event: KeyEvent): Promise\<void>
 
 | 参数名 | 类型                            | 必填 | 说明       |
 | ------ | ------------------------------- | ---- | ---------- |
-| event  | [KeyEvent](../apis-input-kit/js-apis-keyevent.md) | 是   | 按键事件。 |
+| event  | [KeyEvent](../apis-input-kit/js-apis-keyevent.md#keyevent) | 是   | 按键事件。 |
 
 **返回值：**
 
@@ -967,8 +971,6 @@ sendSystemControlCommand(command: AVControlCommand, callback: AsyncCallback\<voi
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
-
 let cmd : avSession.AVControlCommandType = 'play';
 // let cmd : avSession.AVControlCommandType = 'pause';
 // let cmd : avSession.AVControlCommandType = 'stop';
@@ -1031,7 +1033,6 @@ sendSystemControlCommand(command: AVControlCommand): Promise\<void>
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let cmd : avSession.AVControlCommandType = 'play';
@@ -1311,8 +1312,6 @@ on(type: 'deviceAvailable', callback: (device: OutputDeviceInfo) => void): void
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
-
 let castDevice: avSession.OutputDeviceInfo;
 avSession.on('deviceAvailable', (device: avSession.OutputDeviceInfo) => {
   castDevice = device;
@@ -1363,8 +1362,6 @@ on(type: 'deviceOffline', callback: (deviceId: string) => void): void
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
-
 let castDeviceId: string;
 avSession.on('deviceOffline', (deviceId: string) => {
   castDeviceId = deviceId;
@@ -1437,18 +1434,6 @@ let tag = "createNewSession";
 let context: Context = getContext(this);
 let sessionId: string = "";  //供后续函数入参使用
 
-avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
-  if (err) {
-    console.error(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
-  } else {
-    currentAVSession = data;
-    if (currentAVSession !== undefined) {
-      sessionId = currentAVSession.sessionId;
-    }
-    console.info(`CreateAVSession : SUCCESS : sessionId = ${sessionId}`);
-  }
-});
-
 let aVCastController: avSession.AVCastController;
 avSession.getAVCastController(sessionId , (err: BusinessError, avcontroller: avSession.AVCastController) => {
   if (err) {
@@ -1505,18 +1490,6 @@ let tag = "createNewSession";
 let context: Context = getContext(this);
 let sessionId: string = "";  //供后续函数入参使用
 
-avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
-  if (err) {
-    console.error(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
-  } else {
-    currentAVSession = data;
-    if (currentAVSession !== undefined) {
-      sessionId = currentAVSession.sessionId;
-    }
-    console.info(`CreateAVSession : SUCCESS : sessionId = ${sessionId}`);
-  }
-});
-
 let aVCastController: avSession.AVCastController;
 avSession.getAVCastController(sessionId).then((avcontroller: avSession.AVCastController) => {
   aVCastController = avcontroller;
@@ -1558,25 +1531,7 @@ startCasting(session: SessionToken, device: OutputDeviceInfo, callback: AsyncCal
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
-
-let currentAVSession: avSession.AVSession | undefined = undefined;
-let tag = "createNewSession";
-let context: Context = getContext(this);
-let sessionId: string = "";  //供后续函数入参使用
-
-avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
-  if (err) {
-    console.error(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
-  } else {
-    currentAVSession = data;
-    if (currentAVSession !== undefined) {
-      sessionId = currentAVSession.sessionId;
-    }
-    console.info(`CreateAVSession : SUCCESS : sessionId = ${sessionId}`);
-  }
-});
 
 let myToken: avSession.SessionToken = {
   sessionId: sessionId,
@@ -1635,25 +1590,7 @@ startCasting(session: SessionToken, device: OutputDeviceInfo): Promise\<void>
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
-
-let currentAVSession: avSession.AVSession | undefined = undefined;
-let tag = "createNewSession";
-let context: Context = getContext(this);
-let sessionId: string = "";  //供后续函数入参使用
-
-avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
-  if (err) {
-    console.error(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
-  } else {
-    currentAVSession = data;
-    if (currentAVSession !== undefined) {
-      sessionId = currentAVSession.sessionId;
-    }
-    console.info(`CreateAVSession : SUCCESS : sessionId = ${sessionId}`);
-  }
-});
 
 let myToken: avSession.SessionToken = {
   sessionId: sessionId,
@@ -1700,25 +1637,7 @@ stopCasting(session: SessionToken, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
-
-let currentAVSession: avSession.AVSession | undefined = undefined;
-let tag = "createNewSession";
-let context: Context = getContext(this);
-let sessionId: string = "";  //供后续函数入参使用
-
-avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
-  if (err) {
-    console.error(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
-  } else {
-    currentAVSession = data;
-    if (currentAVSession !== undefined) {
-      sessionId = currentAVSession.sessionId;
-    }
-    console.info(`CreateAVSession : SUCCESS : sessionId = ${sessionId}`);
-  }
-});
 
 let myToken: avSession.SessionToken = {
   sessionId: sessionId,
@@ -1765,25 +1684,7 @@ stopCasting(session: SessionToken): Promise\<void>
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
-
-let currentAVSession: avSession.AVSession | undefined = undefined;
-let tag = "createNewSession";
-let context: Context = getContext(this);
-let sessionId: string = "";  //供后续函数入参使用
-
-avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
-  if (err) {
-    console.error(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
-  } else {
-    currentAVSession = data;
-    if (currentAVSession !== undefined) {
-      sessionId = currentAVSession.sessionId;
-    }
-    console.info(`CreateAVSession : SUCCESS : sessionId = ${sessionId}`);
-  }
-});
 
 let myToken: avSession.SessionToken = {
   sessionId: sessionId,
@@ -2010,6 +1911,6 @@ aVCastController.off('videoSizeChange');
 | type         | [AVSessionType](js-apis-avsession.md#avsessiontype10)   | 是 | 是 | 会话类型    |
 | sessionTag   | string             | 是 | 是 | 会话的自定义名称    |
 | elementName  | [ElementName](../apis-ability-kit/js-apis-bundle-ElementName.md)  | 是 | 是 | 会话所属应用的信息（包含bundleName、abilityName等） |
-| isActive     | boolean             | 是 | 是 | 会话是否被激活                                      |
-| isTopSession | boolean             | 是 | 是 | 会话是否为最新的会话                                |
+| isActive     | boolean             | 是 | 是 | 会话是否被激活。 true：已被激活， false：没有被激活                                      |
+| isTopSession | boolean             | 是 | 是 | 会话是否为最新的会话。 true：是最新的会话， false：不是最新的会话                                |
 | outputDevice | [OutputDeviceInfo](js-apis-avsession.md#outputdeviceinfo10)    | 是 | 是 | 分布式设备相关信息   |
