@@ -94,24 +94,35 @@ update(table: string, values: ValuesBucket, predicates: dataSharePredicates.Data
 import dataSharePredicates from '@ohos.data.dataSharePredicates'
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 
-let key1 = "NAME";
-let key2 = "AGE";
-let key3 = "SALARY";
-let key4 = "CODES";
 let value1 = "Rose";
 let value2 = 22;
 let value3 = 200.5;
 let value4 = new Uint8Array([1, 2, 3, 4, 5]);
-const valueBucket: ValuesBucket = {
-  key1: value1,
-  key2: value2,
-  key3: value3,
-  key4: value4,
+
+// 以下三种方式可用
+const valueBucket1: ValuesBucket = {
+  'NAME': value1,
+  'AGE': value2,
+  'SALARY': value3,
+  'CODES': value4,
 };
+const valueBucket2: ValuesBucket = {
+  NAME: value1,
+  AGE: value2,
+  SALARY: value3,
+  CODES: value4,
+};
+const valueBucket3: ValuesBucket = {
+  "NAME": value1,
+  "AGE": value2,
+  "SALARY": value3,
+  "CODES": value4,
+};
+
 let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Lisa");
 if(store != undefined) {
-  (store as relationalStore.RdbStore).update("EMPLOYEE", valueBucket, predicates, (err, rows) => {
+  (store as relationalStore.RdbStore).update("EMPLOYEE", valueBucket1, predicates, (err, rows) => {
     if (err) {
       console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
       return;
@@ -163,24 +174,35 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 import { BusinessError } from "@ohos.base";
 
-let key1 = "NAME";
-let key2 = "AGE";
-let key3 = "SALARY";
-let key4 = "CODES";
 let value1 = "Rose";
 let value2 = 22;
 let value3 = 200.5;
 let value4 = new Uint8Array([1, 2, 3, 4, 5]);
-const valueBucket: ValuesBucket = {
-  key1: value1,
-  key2: value2,
-  key3: value3,
-  key4: value4,
+
+// 以下三种方式可用
+const valueBucket1: ValuesBucket = {
+  'NAME': value1,
+  'AGE': value2,
+  'SALARY': value3,
+  'CODES': value4,
 };
+const valueBucket2: ValuesBucket = {
+  NAME: value1,
+  AGE: value2,
+  SALARY: value3,
+  CODES: value4,
+};
+const valueBucket3: ValuesBucket = {
+  "NAME": value1,
+  "AGE": value2,
+  "SALARY": value3,
+  "CODES": value4,
+};
+
 let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Lisa");
 if(store != undefined) {
-  (store as relationalStore.RdbStore).update("EMPLOYEE", valueBucket, predicates).then(async (rows: Number) => {
+  (store as relationalStore.RdbStore).update("EMPLOYEE", valueBucket1, predicates).then(async (rows: Number) => {
     console.info(`Updated row count: ${rows}`);
   }).catch((err: BusinessError) => {
     console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
