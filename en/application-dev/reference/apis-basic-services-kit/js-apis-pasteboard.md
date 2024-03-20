@@ -1417,6 +1417,8 @@ getData( callback: AsyncCallback&lt;PasteData&gt;): void
 
 Obtains a **PasteData** object from the pasteboard. This API uses an asynchronous callback to return the result.
 
+**Required permissions**: ohos.permission.READ_PASTEBOARD
+
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
 **Parameters**
@@ -1453,6 +1455,8 @@ systemPasteboard.getData((err: BusinessError, pasteData: pasteboard.PasteData) =
 getData(): Promise&lt;PasteData&gt;
 
 Obtains a **PasteData** object from the pasteboard. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.READ_PASTEBOARD
 
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
@@ -1932,6 +1936,8 @@ try {
 getDataSync(): PasteData
 
 Reads data in the system pasteboard. This API returns the result synchronously.
+
+**Required permissions**: ohos.permission.READ_PASTEBOARD
 
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
