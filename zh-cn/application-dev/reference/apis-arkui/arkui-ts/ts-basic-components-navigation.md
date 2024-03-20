@@ -249,7 +249,7 @@ hideNavBar(value: boolean)
 
 navDestination(builder: (name: string, param: unknown) => void)
 
-创建NavDestination组件。使用builder函数，基于name和param构造NavDestination组件。builder中允许在NavDestination组件外包含一层自定义组件， 但自定义组件不允许设置属性和事件，否则仅显示空白。
+创建NavDestination组件。使用builder函数，基于name和param构造NavDestination组件。builder下只能有一个根节点。builder中允许在NavDestination组件外包含一层自定义组件， 但自定义组件不允许设置属性和事件，否则仅显示空白。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
