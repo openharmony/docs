@@ -12,7 +12,7 @@ SysCap，全称SystemCapability，即系统能力，指操作系统中每一个�
 
 ArKUI标准系统
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -20,7 +20,7 @@ ArKUI标准系统
 
 napi功能
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -28,7 +28,7 @@ napi功能
 
 libuv功能
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -36,7 +36,7 @@ libuv功能
 
 外观配置功能
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -44,7 +44,7 @@ libuv功能
 
 通用类型
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 是        |
 
@@ -52,7 +52,7 @@ libuv功能
 
 包管理服务
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -60,7 +60,7 @@ libuv功能
 
 包管理overlay特性
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -68,7 +68,7 @@ libuv功能
 
 分布式包管理服务
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -76,7 +76,7 @@ libuv功能
 
 Zlib压缩、解压缩工具
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -84,7 +84,7 @@ Zlib压缩、解压缩工具
 
 渲染Api与底层要换生平台窗口系统之间的接口
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -92,7 +92,7 @@ Zlib压缩、解压缩工具
 
 用于渲染高级2D和3D图形
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -100,7 +100,7 @@ Zlib压缩、解压缩工具
 
 用于渲染高级2D和3D图形
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -108,7 +108,7 @@ Zlib压缩、解压缩工具
 
 WebGL1.0 标准api
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -117,7 +117,7 @@ WebGL1.0 标准api
 
 窗口管理
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -125,7 +125,7 @@ WebGL1.0 标准api
 
 窗口管理
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -133,7 +133,7 @@ WebGL1.0 标准api
 
 公共事件
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -141,7 +141,7 @@ WebGL1.0 标准api
 
 通知
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -149,7 +149,7 @@ WebGL1.0 标准api
 
 后台代理提醒
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -157,7 +157,7 @@ WebGL1.0 标准api
 
 事件处理服务
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -165,7 +165,7 @@ WebGL1.0 标准api
 
 进程间通信
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -173,7 +173,7 @@ WebGL1.0 标准api
 
 软总线
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -181,7 +181,7 @@ WebGL1.0 标准api
 
 网络管理基础服务
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -189,7 +189,7 @@ WebGL1.0 标准api
 
 以太网连接
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -197,7 +197,7 @@ WebGL1.0 标准api
 
 网络共享
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -205,7 +205,7 @@ WebGL1.0 标准api
 
 mDNS服务
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -213,7 +213,7 @@ mDNS服务
 
 VPN
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -221,7 +221,7 @@ VPN
 
 基础网络协议栈能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 是        |
 
@@ -229,7 +229,7 @@ VPN
 
 WIFI基础能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -237,7 +237,7 @@ WIFI基础能力
 
 WIFI STA能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -245,7 +245,7 @@ WIFI STA能力
 
 WIFI AP能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -253,7 +253,7 @@ WIFI AP能力
 
 WIFI P2P能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -261,7 +261,7 @@ WIFI P2P能力
 
 蓝牙服务以及协议栈
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -269,7 +269,7 @@ WIFI P2P能力
 
 位置服务基础能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -277,7 +277,7 @@ WIFI P2P能力
 
 地理编码能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -285,7 +285,7 @@ WIFI P2P能力
 
 地理围栏能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -293,7 +293,7 @@ WIFI P2P能力
 
 GNSS硬件相关能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -301,7 +301,7 @@ GNSS硬件相关能力
 
 基本输入能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -309,7 +309,7 @@ GNSS硬件相关能力
 
 输入设备管理
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -317,7 +317,7 @@ GNSS硬件相关能力
 
 输入事件监听者
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -325,7 +325,7 @@ GNSS硬件相关能力
 
 输入事件消费者
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -333,7 +333,7 @@ GNSS硬件相关能力
 
 输入事件模拟者
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -341,7 +341,7 @@ GNSS硬件相关能力
 
 鼠标指针管理模块
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -349,7 +349,7 @@ GNSS硬件相关能力
 
 快捷键
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -357,7 +357,7 @@ GNSS硬件相关能力
 
 电池服务扩展能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -365,7 +365,7 @@ GNSS硬件相关能力
 
 显示能效管理
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -373,7 +373,7 @@ GNSS硬件相关能力
 
 温控服务
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -381,7 +381,7 @@ GNSS硬件相关能力
 
 系统电源管理服务核心能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -389,7 +389,7 @@ GNSS硬件相关能力
 
 电池服务核心能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -397,7 +397,7 @@ GNSS硬件相关能力
 
 系统电源管理服务扩展能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -405,7 +405,7 @@ GNSS硬件相关能力
 
 媒体基础能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -413,7 +413,7 @@ GNSS硬件相关能力
 
 媒体音频播放引擎能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -421,7 +421,7 @@ GNSS硬件相关能力
 
 媒体音频播录制引擎能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -429,7 +429,7 @@ GNSS硬件相关能力
 
 媒体视频播放引擎能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -437,7 +437,7 @@ GNSS硬件相关能力
 
 媒体视频录制引擎能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -445,7 +445,7 @@ GNSS硬件相关能力
 
 媒体编解码基础能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -453,7 +453,7 @@ GNSS硬件相关能力
 
 媒体音频编解码能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -461,7 +461,7 @@ GNSS硬件相关能力
 
 媒体音频解码能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -469,7 +469,7 @@ GNSS硬件相关能力
 
 媒体音频编码能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -477,7 +477,7 @@ GNSS硬件相关能力
 
 媒体视频解码能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -485,7 +485,7 @@ GNSS硬件相关能力
 
 媒体视频编码能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -493,7 +493,7 @@ GNSS硬件相关能力
 
 媒体解封装能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -501,7 +501,7 @@ GNSS硬件相关能力
 
 媒体封装能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -509,7 +509,7 @@ GNSS硬件相关能力
 
 媒体音视频播放引擎能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -517,7 +517,7 @@ GNSS硬件相关能力
 
 媒体音视频录制引擎能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -525,7 +525,7 @@ GNSS硬件相关能力
 
 获取视频缩略图能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -533,7 +533,7 @@ GNSS硬件相关能力
 
 获取媒体云数据能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -541,7 +541,7 @@ GNSS硬件相关能力
 
 快速修复
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -549,7 +549,7 @@ GNSS硬件相关能力
 
 命令行工具
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -557,7 +557,7 @@ GNSS硬件相关能力
 
 投播能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -565,7 +565,7 @@ GNSS硬件相关能力
 
 音频基础能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -573,7 +573,7 @@ GNSS硬件相关能力
 
 音频输出能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -581,7 +581,7 @@ GNSS硬件相关能力
 
 音频输入能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -589,7 +589,7 @@ GNSS硬件相关能力
 
 音频设备管理能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -597,7 +597,7 @@ GNSS硬件相关能力
 
 音频音量管理能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -605,7 +605,7 @@ GNSS硬件相关能力
 
 音频通信能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -613,7 +613,7 @@ GNSS硬件相关能力
 
 音频焦点
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -621,7 +621,7 @@ GNSS硬件相关能力
 
 拨号和回铃音播放
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -629,7 +629,7 @@ GNSS硬件相关能力
 
 系统音录制能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -637,7 +637,7 @@ GNSS硬件相关能力
 
 相机基础能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -645,7 +645,7 @@ GNSS硬件相关能力
 
 媒体数字版权管理
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -653,7 +653,7 @@ GNSS硬件相关能力
 
 图片基础能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -661,7 +661,7 @@ GNSS硬件相关能力
 
 图片源解码解析能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -669,7 +669,7 @@ GNSS硬件相关能力
 
 图片打包能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -677,7 +677,7 @@ GNSS硬件相关能力
 
 图片接收能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -685,7 +685,7 @@ GNSS硬件相关能力
 
 媒体库基础能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -693,7 +693,7 @@ GNSS硬件相关能力
 
 媒体库分布式能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -701,7 +701,7 @@ GNSS硬件相关能力
 
 系统声音管理，如铃声，通知，闹钟等
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -709,7 +709,7 @@ GNSS硬件相关能力
 
 蜂窝核心服务
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 否      | 否        |
 
@@ -717,7 +717,7 @@ GNSS硬件相关能力
 
 通话管理服务
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 否      | 否        |
 
@@ -725,7 +725,7 @@ GNSS硬件相关能力
 
 蜂窝通话服务
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 否      | 否        |
 
@@ -733,7 +733,7 @@ GNSS硬件相关能力
 
 蜂窝数据服务
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 否      | 否        |
 
@@ -741,7 +741,7 @@ GNSS硬件相关能力
 
 短彩信服务
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 否      | 否        |
 
@@ -749,7 +749,7 @@ GNSS硬件相关能力
 
 蜂窝网络状态注册服务
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 否      | 否        |
 
@@ -757,7 +757,7 @@ GNSS硬件相关能力
 
 国际化
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -765,7 +765,7 @@ GNSS硬件相关能力
 
 资源管理
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -773,7 +773,7 @@ GNSS硬件相关能力
 
 定制框架
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -781,7 +781,7 @@ GNSS硬件相关能力
 
 企业设备管理
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -789,7 +789,7 @@ GNSS硬件相关能力
 
 提供开发辅助应用的能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -797,7 +797,7 @@ GNSS硬件相关能力
 
 无障碍视觉辅助能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -805,7 +805,7 @@ GNSS硬件相关能力
 
 无障碍听觉辅助能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -813,7 +813,7 @@ GNSS硬件相关能力
 
 延迟任务调度
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -821,7 +821,7 @@ GNSS硬件相关能力
 
 长时任务管理
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -829,7 +829,7 @@ GNSS硬件相关能力
 
 短时任务管理
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -837,7 +837,7 @@ GNSS硬件相关能力
 
 应用使用信息统计
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -845,7 +845,7 @@ GNSS硬件相关能力
 
 应用使用活跃分组
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -853,7 +853,7 @@ GNSS硬件相关能力
 
 TS/JS语言基础库
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -861,7 +861,7 @@ TS/JS语言基础库
 
 流水日志
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -869,7 +869,7 @@ TS/JS语言基础库
 
 分布式追踪
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -877,7 +877,7 @@ TS/JS语言基础库
 
 事件打点
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -885,7 +885,7 @@ TS/JS语言基础库
 
 日志文件管理
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -893,7 +893,7 @@ TS/JS语言基础库
 
 检测模式
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -901,7 +901,7 @@ TS/JS语言基础库
 
 系统信息导出
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -909,7 +909,7 @@ TS/JS语言基础库
 
 应用事件打点
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -917,7 +917,7 @@ TS/JS语言基础库
 
 系统事件打点
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -925,7 +925,7 @@ TS/JS语言基础库
 
 调试调优
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -933,7 +933,7 @@ TS/JS语言基础库
 
 升级服务
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -941,7 +941,7 @@ TS/JS语言基础库
 
 分布式设备管理
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -949,7 +949,7 @@ TS/JS语言基础库
 
 设备互信认证
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -957,7 +957,7 @@ TS/JS语言基础库
 
 数据传输管控策略库
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -965,7 +965,7 @@ TS/JS语言基础库
 
 设备安全等级管理
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -973,7 +973,7 @@ TS/JS语言基础库
 
 设备密钥管理-核心能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 是        |
 
@@ -981,7 +981,7 @@ TS/JS语言基础库
 
 设备密钥管理扩展能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -989,7 +989,7 @@ TS/JS语言基础库
 
 关键资产存储能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -997,7 +997,7 @@ TS/JS语言基础库
 
 访问控制
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1005,7 +1005,7 @@ TS/JS语言基础库
 
 帐号
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1013,7 +1013,7 @@ TS/JS语言基础库
 
 应用帐号
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1021,7 +1021,7 @@ TS/JS语言基础库
 
 统一用户认证
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1029,7 +1029,7 @@ TS/JS语言基础库
 
 口令认证
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1037,7 +1037,7 @@ TS/JS语言基础库
 
 输入法框架
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1045,7 +1045,7 @@ TS/JS语言基础库
 
 剪贴板服务
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1053,7 +1053,7 @@ TS/JS语言基础库
 
 时间时区定时
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1061,7 +1061,7 @@ TS/JS语言基础库
 
 壁纸框架
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1069,7 +1069,7 @@ TS/JS语言基础库
 
 锁屏服务
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1077,7 +1077,7 @@ TS/JS语言基础库
 
 上传服务
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1085,7 +1085,7 @@ TS/JS语言基础库
 
 下载服务
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1093,7 +1093,7 @@ TS/JS语言基础库
 
 备份恢复
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1101,7 +1101,7 @@ TS/JS语言基础库
 
 空间统计
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1109,7 +1109,7 @@ TS/JS语言基础库
 
 卷管理
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1117,7 +1117,7 @@ TS/JS语言基础库
 
 文件加密能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1125,7 +1125,7 @@ TS/JS语言基础库
 
 基础文件IO接口
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1133,7 +1133,7 @@ TS/JS语言基础库
 
 环境相关接口
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1141,7 +1141,7 @@ TS/JS语言基础库
 
 分布式文件扩展接口
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1149,7 +1149,7 @@ TS/JS语言基础库
 
 应用文件分享
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1157,7 +1157,7 @@ TS/JS语言基础库
 
 用户文件访问服务
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1165,7 +1165,7 @@ TS/JS语言基础库
 
 公共用户文件管理基础能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1173,7 +1173,7 @@ TS/JS语言基础库
 
 公共目录图片视频管理能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1181,7 +1181,7 @@ TS/JS语言基础库
 
 云文件同步管理
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1189,7 +1189,7 @@ TS/JS语言基础库
 
 云文件同步能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1197,7 +1197,7 @@ TS/JS语言基础库
 
 usb服务
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1205,7 +1205,7 @@ usb服务
 
 传感器服务订阅
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1213,7 +1213,7 @@ usb服务
 
 小器件-振感
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1221,7 +1221,7 @@ usb服务
 
 系统基本信息
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1229,7 +1229,7 @@ usb服务
 
 关系型数据库核心能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1237,7 +1237,7 @@ usb服务
 
 分布式数据管理公共类型
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1245,7 +1245,7 @@ usb服务
 
 Key-Value型数据库核心能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1253,7 +1253,7 @@ Key-Value型数据库核心能力
 
 分布式Key-Value型数据库
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1261,7 +1261,7 @@ Key-Value型数据库核心能力
 
 分布式对象
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1269,7 +1269,7 @@ Key-Value型数据库核心能力
 
 偏好型数据存储核心能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1277,7 +1277,7 @@ Key-Value型数据库核心能力
 
 跨进程数据共享，基础能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1285,7 +1285,7 @@ Key-Value型数据库核心能力
 
 跨进程数据共享，数据消费者
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1293,7 +1293,7 @@ Key-Value型数据库核心能力
 
 跨进程数据共享，数据生产者
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1301,7 +1301,7 @@ Key-Value型数据库核心能力
 
 配置端云同步状态
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1309,7 +1309,7 @@ Key-Value型数据库核心能力
 
 数据侧手动调用的端云同步接口
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1317,7 +1317,7 @@ Key-Value型数据库核心能力
 
 云空间服务所需实现的接口
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1325,7 +1325,7 @@ Key-Value型数据库核心能力
 
 组件运行基础数据定义，主要包括组件通信数据的载体want、系统配置定义等
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1333,7 +1333,7 @@ Key-Value型数据库核心能力
 
 组件运行核心基础功能模块，包括应用初始化、无界面组件运行等
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1341,7 +1341,7 @@ Key-Value型数据库核心能力
 
 FA模型
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1349,7 +1349,7 @@ FA模型
 
 通用组件（有界面）
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1357,7 +1357,7 @@ FA模型
 
 任务管理
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1365,7 +1365,7 @@ FA模型
 
 命令行工具
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1373,7 +1373,7 @@ FA模型
 
 卡片管理
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1381,7 +1381,7 @@ FA模型
 
 分布式流转管理（continuationManager）接口定义，支持打开互联面板、更新流转状态
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1389,7 +1389,7 @@ FA模型
 
 日历日程管理
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1397,7 +1397,7 @@ FA模型
 
 联系人数据库
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 否      | 否        |
 
@@ -1405,7 +1405,7 @@ FA模型
 
 联系人
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 否      | 否        |
 
@@ -1413,7 +1413,7 @@ FA模型
 
 设置API
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1421,7 +1421,7 @@ FA模型
 
 UI测试框架能力支持
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1429,7 +1429,7 @@ UI测试框架能力支持
 
 webview组件
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1437,7 +1437,7 @@ webview组件
 
 OAID管理服务
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1445,7 +1445,7 @@ OAID管理服务
 
 广告服务
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1453,7 +1453,7 @@ OAID管理服务
 
 证书管理
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1461,7 +1461,7 @@ OAID管理服务
 
 加解密算法库框架-加解密基础能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1469,7 +1469,7 @@ OAID管理服务
 
 证书算法库框架-证书能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1477,7 +1477,7 @@ OAID管理服务
 
 包管理核心业务，包含包信息查询、安装卸载的核心能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1485,7 +1485,7 @@ OAID管理服务
 
 包管理提供的免安装特性
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1493,7 +1493,7 @@ OAID管理服务
 
 包管理提供的获取图标和label的特性
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1501,7 +1501,7 @@ OAID管理服务
 
 包管理提供的默认应用管理特性
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1509,7 +1509,7 @@ OAID管理服务
 
 包管理提供给Launcher的查询特性
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1517,7 +1517,7 @@ OAID管理服务
 
 包管理提供的拦截特性
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1525,7 +1525,7 @@ OAID管理服务
 
 快速修复
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1533,7 +1533,7 @@ OAID管理服务
 
 富设备广色域管理
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1541,7 +1541,7 @@ OAID管理服务
 
 能效资源申请接口
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1549,7 +1549,7 @@ OAID管理服务
 
 设备证明
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1557,7 +1557,7 @@ OAID管理服务
 
 上传下载
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1565,7 +1565,7 @@ OAID管理服务
 
 系统灭屏待机续航所需实现的接口
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1573,7 +1573,7 @@ OAID管理服务
 
 分布式数据管理--统一数据管理框架（UDMF）核心能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1581,7 +1581,7 @@ OAID管理服务
 
 录屏能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1589,7 +1589,7 @@ OAID管理服务
 
 音频池能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1597,7 +1597,7 @@ OAID管理服务
 
 空间音频管理能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1605,7 +1605,7 @@ OAID管理服务
 
 音振协同播放能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1613,7 +1613,7 @@ OAID管理服务
 
 提供3D能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1621,7 +1621,7 @@ OAID管理服务
 
 提供自绘制能力的接口
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1629,7 +1629,7 @@ OAID管理服务
 
 提供native层2D绘制能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1637,7 +1637,7 @@ OAID管理服务
 
 系统能力编解码
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1645,7 +1645,7 @@ OAID管理服务
 
 并发编程框架
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1653,7 +1653,7 @@ OAID管理服务
 
 提供本地窗口，供开发者自绘制（2D&3D）
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1661,7 +1661,7 @@ OAID管理服务
 
 提供图形Buffer(独立于本地窗口)
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1669,7 +1669,7 @@ OAID管理服务
 
 提供输出到OpenGLES纹理的Surface
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1677,7 +1677,7 @@ OAID管理服务
 
 提供系统垂直同步信号
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1685,7 +1685,7 @@ OAID管理服务
 
 显示能效管理
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1693,7 +1693,7 @@ OAID管理服务
 
 图像创建能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1701,7 +1701,7 @@ OAID管理服务
 
 WebGL2.0 标准api
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 是       | 是      | 否        |
 
@@ -1709,7 +1709,7 @@ WebGL2.0 标准api
 
 ArkUI小型系统
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 否       | 否      | 是        |
 
@@ -1717,7 +1717,7 @@ ArkUI小型系统
 
 位置服务轻设备能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 否       | 否      | 是        |
 
@@ -1725,7 +1725,7 @@ ArkUI小型系统
 
 轻设备电池服务能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 否       | 否      | 是        |
 
@@ -1733,7 +1733,7 @@ ArkUI小型系统
 
 轻量级基础文件IO接口
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 否       | 否      | 是        |
 
@@ -1741,7 +1741,7 @@ ArkUI小型系统
 
 轻量级系统基本信息
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 否       | 否      | 是        |
 
@@ -1749,7 +1749,7 @@ ArkUI小型系统
 
 轻设备系统显示能效管理
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 否       | 否      | 是        |
 
@@ -1757,7 +1757,7 @@ ArkUI小型系统
 
 NFC卡模拟服务
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 否       | 否      | 是        |
 
@@ -1765,7 +1765,7 @@ NFC卡模拟服务
 
 轻量级偏好型数据存储核心能力
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 否       | 否      | 是        |
 
@@ -1773,7 +1773,7 @@ NFC卡模拟服务
 
 轻量级传感器服务订阅
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 否       | 否      | 是        |
 
@@ -1781,6 +1781,6 @@ NFC卡模拟服务
 
 轻量级小器件-振感
 
-| default | tablet | wearable |
+| Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
 | 否       | 否      | 是        |
