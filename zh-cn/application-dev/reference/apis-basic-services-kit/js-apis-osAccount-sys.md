@@ -1516,7 +1516,7 @@ getBundleIdForUidSync(uid: number): number
 
 ### isMainOsAccount<sup>9+</sup>
 
-isMainOsAccount(callback: AsyncCallback&lt;boolean&gt;): void;
+isMainOsAccount(callback: AsyncCallback&lt;boolean&gt;): void
 
 查询当前进程是否处于主用户，使用callback异步回调。
 
@@ -1595,7 +1595,7 @@ isMainOsAccount(): Promise&lt;boolean&gt;;
 
 ### getOsAccountConstraintSourceTypes<sup>9+</sup>
 
-getOsAccountConstraintSourceTypes(localId: number, constraint: string, callback: AsyncCallback&lt;Array&lt;ConstraintSourceTypeInfo&gt;&gt;): void;
+getOsAccountConstraintSourceTypes(localId: number, constraint: string, callback: AsyncCallback&lt;Array&lt;ConstraintSourceTypeInfo&gt;&gt;): void
 
 查询指定系统帐号的指定约束来源信息，使用callback异步回调。
 
@@ -1778,7 +1778,7 @@ getAvailableStatus(authType: AuthType, authTrustLevel: AuthTrustLevel): number;
 
 ### getProperty<sup>8+</sup>
 
-getProperty(request: GetPropertyRequest, callback: AsyncCallback&lt;ExecutorProperty&gt;): void;
+getProperty(request: GetPropertyRequest, callback: AsyncCallback&lt;ExecutorProperty&gt;): void
 
 基于指定的请求信息获取属性。使用callback异步回调。
 
@@ -1882,7 +1882,7 @@ getProperty(request: GetPropertyRequest): Promise&lt;ExecutorProperty&gt;;
 
 ### setProperty<sup>8+</sup>
 
-setProperty(request: SetPropertyRequest, callback: AsyncCallback&lt;void&gt;): void;
+setProperty(request: SetPropertyRequest, callback: AsyncCallback&lt;void&gt;): void
 
 设置可用于初始化算法的属性。使用callback异步回调。
 
@@ -2103,7 +2103,7 @@ authUser(userId: number, challenge: Uint8Array, authType: AuthType, authTrustLev
 
 ### cancelAuth<sup>8+</sup>
 
-cancelAuth(contextID: Uint8Array): void;
+cancelAuth(contextID: Uint8Array): void
 
 取消指定的认证操作。
 
@@ -2167,7 +2167,7 @@ constructor()
 
 ### registerInputer<sup>8+</sup>
 
-registerInputer(inputer: IInputer): void;
+registerInputer(inputer: IInputer): void
 
 注册PIN码输入器。
 
@@ -2209,7 +2209,7 @@ registerInputer(inputer: IInputer): void;
 
 ### unregisterInputer<sup>8+</sup>
 
-unregisterInputer(): void;
+unregisterInputer(): void
 
 解注册PIN码输入器。
 
@@ -3123,7 +3123,7 @@ hasAccount(domainAccountInfo: DomainAccountInfo): Promise&lt;boolean&gt;
 
 ### updateAccountToken<sup>10+</sup>
 
-updateAccountToken(domainAccountInfo: DomainAccountInfo, token: Uint8Array, callback: AsyncCallback&lt;void&gt;): void;
+updateAccountToken(domainAccountInfo: DomainAccountInfo, token: Uint8Array, callback: AsyncCallback&lt;void&gt;): void
 
 更新指定域帐号的令牌，空令牌表示目标域帐号的令牌失效。使用callback异步回调。
 
@@ -3449,7 +3449,7 @@ constructor()
 
 ### openSession<sup>8+</sup>
 
-openSession(callback: AsyncCallback&lt;Uint8Array&gt;): void;
+openSession(callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 打开会话，获取挑战值。使用callback异步回调。
 
@@ -3526,7 +3526,7 @@ openSession(): Promise&lt;Uint8Array&gt;;
 
 ### addCredential<sup>8+</sup>
 
-addCredential(credentialInfo: CredentialInfo, callback: IIdmCallback): void;
+addCredential(credentialInfo: CredentialInfo, callback: IIdmCallback): void
 
 添加凭据，添加用户凭据信息，传入凭据添加方法和凭据信息（凭据类型，子类，如果添加用户的非密码凭据，则传入密码身份验证令牌），并获取结果/获取信息。
 
@@ -3587,7 +3587,7 @@ addCredential(credentialInfo: CredentialInfo, callback: IIdmCallback): void;
 
 ### updateCredential<sup>8+</sup>
 
-updateCredential(credentialInfo: CredentialInfo, callback: IIdmCallback): void;
+updateCredential(credentialInfo: CredentialInfo, callback: IIdmCallback): void
 
 更新凭据。使用callback异步回调。
 
@@ -3659,7 +3659,7 @@ updateCredential(credentialInfo: CredentialInfo, callback: IIdmCallback): void;
 
 ### closeSession<sup>8+</sup>
 
-closeSession(): void;
+closeSession(): void
 
 关闭会话，结束IDM操作。
 
@@ -3677,7 +3677,7 @@ closeSession(): void;
 
 ### cancel<sup>8+</sup>
 
-cancel(challenge: Uint8Array): void;
+cancel(challenge: Uint8Array): void
 
 根据挑战值取消条目。
 
@@ -3713,7 +3713,7 @@ cancel(challenge: Uint8Array): void;
 
 ### delUser<sup>8+</sup>
 
-delUser(token: Uint8Array, callback: IIdmCallback): void;
+delUser(token: Uint8Array, callback: IIdmCallback): void
 
 删除具有身份验证令牌的用户，使用callback方式异步返回结果。
 
@@ -3755,7 +3755,7 @@ delUser(token: Uint8Array, callback: IIdmCallback): void;
 
 ### delCred<sup>8+</sup>
 
-delCred(credentialId: Uint8Array, token: Uint8Array, callback: IIdmCallback): void;
+delCred(credentialId: Uint8Array, token: Uint8Array, callback: IIdmCallback): void
 
 删除用户凭据信息。
 
@@ -3801,7 +3801,7 @@ delCred(credentialId: Uint8Array, token: Uint8Array, callback: IIdmCallback): vo
 
 ### getAuthInfo<sup>8+</sup>
 
-getAuthInfo(callback: AsyncCallback&lt;Array&lt;EnrolledCredInfo&gt;&gt;): void;
+getAuthInfo(callback: AsyncCallback&lt;Array&lt;EnrolledCredInfo&gt;&gt;): void
 
 获取认证信息。使用callback异步回调。
 
@@ -3840,7 +3840,7 @@ getAuthInfo(callback: AsyncCallback&lt;Array&lt;EnrolledCredInfo&gt;&gt;): void;
 
 ### getAuthInfo<sup>8+</sup>
 
-getAuthInfo(authType: AuthType, callback: AsyncCallback&lt;Array&lt;EnrolledCredInfo&gt;&gt;): void;
+getAuthInfo(authType: AuthType, callback: AsyncCallback&lt;Array&lt;EnrolledCredInfo&gt;&gt;): void
 
 获取指定类型的认证信息。使用callback异步回调。
 
