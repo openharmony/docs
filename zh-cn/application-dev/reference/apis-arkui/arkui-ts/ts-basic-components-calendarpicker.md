@@ -42,7 +42,7 @@ edgeAlign(alignType: CalendarAlign, offset?: Offset)
 | 参数名    | 类型                                    | 必填 | 说明                                                         |
 | --------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
 | alignType | [CalendarAlign](#calendaralign枚举说明) | 是   | 对齐方式类型。<br/>默认值：CalendarAlign .END                |
-| offset    | [Offset](ts-types.md#offset)            | 是   | 按照对齐类型对齐后，选择器相对入口组件的偏移量。<br/>默认值：{dx: 0, dy: 0} |
+| offset    | [Offset](ts-types.md#offset)            | 否   | 按照对齐类型对齐后，选择器相对入口组件的偏移量。<br/>默认值：{dx: 0, dy: 0} |
 
 ### textStyle
 
