@@ -58,7 +58,7 @@ Libuv功能
 
 ## SystemCapability.BundleManager.BundleFramework.Overlay
 
-包管理overlay特性
+包管理overlay能力
 
 | Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
@@ -1483,7 +1483,7 @@ OAID管理服务
 
 ## SystemCapability.BundleManager.BundleFramework.FreeInstall
 
-包管理提供的免安装特性
+包管理提供的免安装能力
 
 | Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
@@ -1491,7 +1491,7 @@ OAID管理服务
 
 ## SystemCapability.BundleManager.BundleFramework.Resource
 
-包管理提供的获取图标和label的特性
+包管理提供的获取图标和label的能力
 
 | Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
@@ -1499,7 +1499,7 @@ OAID管理服务
 
 ## SystemCapability.BundleManager.BundleFramework.DefaultApp
 
-包管理提供的默认应用管理特性
+包管理提供的默认应用管理能力
 
 | Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
@@ -1507,7 +1507,7 @@ OAID管理服务
 
 ## SystemCapability.BundleManager.BundleFramework.Launcher
 
-包管理提供给Launcher的查询特性
+包管理提供给Launcher的查询能力
 
 | Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
@@ -1515,7 +1515,7 @@ OAID管理服务
 
 ## SystemCapability.BundleManager.BundleFramework.AppControl
 
-包管理提供的拦截特性
+包管理提供的拦截能力
 
 | Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
