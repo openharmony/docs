@@ -215,11 +215,11 @@ enum Asset_Tag
 | ASSET_TAG_DATA_LABEL_NORMAL_2  | 表示一个用户可自定义传入的字段，该字段可被更新，其值为bytes类型。 |
 | ASSET_TAG_DATA_LABEL_NORMAL_3  | 表示一个用户可自定义传入的字段，该字段可被更新，其值为bytes类型。 |
 | ASSET_TAG_DATA_LABEL_NORMAL_4  | 表示一个用户可自定义传入的字段，该字段可被更新，其值为bytes类型。 |
-| ASSET_TAG_RETURN_TYPE  | 表示查询关键资产时的返回类型，其值为uint32类型。 |
-| ASSET_TAG_RETURN_LIMIT  | 表示查询关键资产时的最大返回数量，其值为uint32类型。 |
-| ASSET_TAG_RETURN_OFFSET  | 表示查询关键资产时的偏移量，其值为uint32类型。 |
-| ASSET_TAG_RETURN_ORDERED_BY  | 表示查询关键资产时的排序依据，其值为uint32类型。 |
-| ASSET_TAG_CONFLICT_RESOLUTION  | 表示增加关键资产时的冲突处理策略，其值为uint32类型。 |
+| ASSET_TAG_RETURN_TYPE  | 表示查询关键资产时的返回类型，其值为uint32_t类型。 |
+| ASSET_TAG_RETURN_LIMIT  | 表示查询关键资产时的最大返回数量，其值为uint32_t类型。 |
+| ASSET_TAG_RETURN_OFFSET  | 表示查询关键资产时的偏移量，其值为uint32_t类型。 |
+| ASSET_TAG_RETURN_ORDERED_BY  | 表示查询关键资产时的排序依据，其值为uint32_t类型。 |
+| ASSET_TAG_CONFLICT_RESOLUTION  | 表示增加关键资产时的冲突处理策略，其值为uint32_t类型。 |
 
 
 ### Asset_TagType
