@@ -196,7 +196,7 @@ selected(index: number)
 
 | 参数名 | 类型   | 必填 | 说明                         |
 | ------ | ------ | ---- | ---------------------------- |
-| value  | number | 是   | 选中项索引值。<br/>默认值：0 |
+| index  | number | 是   | 选中项索引值。<br/>默认值：0 |
 
 ### popupPosition<sup>8+</sup>
 
@@ -266,7 +266,7 @@ popupItemBackgroundColor(value: ResourceColor)
 
 | 参数名 | 类型                     | 必填 | 说明                                            |
 | ------ | ------------------------ | ---- | ----------------------------------------------- |
-| value  | [Font](ts-types.md#font) | 是   | 提示弹窗非字母部分背景色。 <br/>默认值：#FFFFFFFF |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 提示弹窗非字母部分背景色。 <br/>默认值：#FFFFFFFF |
 
 ### autoCollapse<sup>11+</sup>   
 
