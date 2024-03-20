@@ -48,7 +48,7 @@ OAID会在下述场景中发生变化：
    }
    ```
 
-2. 在应用启动时触发动态授权弹框，向用户请求授权，用户授权成功后，。其中context的获取方式参见[各类Context的获取方式](../../application-models/application-context-stage.md)。示例代码如下所示：
+2. 在应用启动时触发动态授权弹框，向用户请求授权，用户授权成功后，调用getOAID方法获取OAID信息。其中context的获取方式参见[各类Context的获取方式](../../application-models/application-context-stage.md)。示例代码如下所示：
    ```
    import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
    import { BusinessError } from '@ohos.base';
