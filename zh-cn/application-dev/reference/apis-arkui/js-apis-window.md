@@ -4228,7 +4228,7 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-###  setWindowDecorHeight<sup>11+</sup>
+###  setWindowDecorHeight<sup>12+</sup>
 
 setWindowDecorHeight(height: number): void
 
@@ -4240,7 +4240,7 @@ setWindowDecorHeight(height: number): void
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| height | number | 是   | 设置的窗口标题栏高度。该参数为整数，取值范围为[48,112]，单位为vp。 |
+| height | number | 是   | 设置的窗口标题栏高度。该参数为整数，取值范围为[37,112]，单位为vp。 |
 
 **错误码：**
 
@@ -4261,7 +4261,7 @@ try {
 }
 ```
 
-###  getWindowDecorHeight<sup>11+</sup>
+###  getWindowDecorHeight<sup>12+</sup>
 
 getWindowDecorHeight(): number
 
@@ -4273,7 +4273,7 @@ getWindowDecorHeight(): number
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
-| number | 返回的窗口标题栏高度。该参数为整数，取值范围为[48,112]，单位为vp。 |
+| number | 返回的窗口标题栏高度。该参数为整数，取值范围为[37,112]，单位为vp。 |
 
 **错误码：**
 
