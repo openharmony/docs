@@ -27,7 +27,7 @@ WaterFlow(options?:  WaterFlowOptions)
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
-| options |  [WaterFlowOptions](#waterflowoptions对象说明)| 是 | 瀑布流组件参数。 |
+| options |  [WaterFlowOptions](#waterflowoptions对象说明)| 否 | 瀑布流组件参数。 |
 
 
 ## WaterFlowOptions对象说明
