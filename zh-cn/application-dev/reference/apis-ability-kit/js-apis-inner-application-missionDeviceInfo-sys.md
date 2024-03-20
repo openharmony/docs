@@ -1,6 +1,6 @@
 # MissionDeviceInfo (系统接口)
 
-可以作为[registerMissionListener](./js-apis-distributedMissionManager-sys.md#distributedmissionmanagerregistermissionlistener)的入参，表示注册监听时所需参数的枚举。
+可以作为[registerMissionListener](js-apis-distributedMissionManager-sys.md#distributedmissionmanagerregistermissionlistener)的入参，表示注册监听时所需参数的枚举。
 
 > **说明：**
 >

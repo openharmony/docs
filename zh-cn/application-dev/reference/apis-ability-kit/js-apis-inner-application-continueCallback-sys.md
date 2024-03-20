@@ -1,6 +1,6 @@
 # ContinueCallback (系统接口)
 
-表示跨设备迁移Mission完成后，返回迁移结果的回调函数，迁移Mission详见：[continueMission接口](../apis/js-apis-distributedMissionManager.md#distributedmissionmanagercontinuemission)。
+表示跨设备迁移Mission完成后，返回迁移结果的回调函数，迁移Mission详见：[continueMission接口](js-apis-distributedMissionManager-sys.md#distributedmissionmanagercontinuemission)。
 
 > **说明：**
 >
