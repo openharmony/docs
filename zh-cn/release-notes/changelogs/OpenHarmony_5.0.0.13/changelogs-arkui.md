@@ -8,7 +8,13 @@
 
 **变更原因**
 
-现@LocalStorageLink,@LocalStorageProp,@StorageProp,@StorageLink,@Provide,@Consume,@Watch key 值写任意值不会校验，为了符合ts语法规则，现对@LocalStorageLink,@LocalStorageProp,@StorageProp,@StorageLink,@Provide,@Consume,@Watch key值未定义时进行校验，该变更为不兼容性变更。
+部分状态变量装饰器的key值在使用未定义的变量时并未被校验，不符合TS语法规则，为了匹配TS语法规则，需要对这些状态变量装饰器的key值启动语法校验。
+
+涉及的装饰器包括：
+
+@LocalStorageLink,@LocalStorageProp,@StorageProp,@StorageLink,@Provide,@Consume,@Watch。
+
+此次修改为非兼容性修改。
 
 **变更影响**
 
