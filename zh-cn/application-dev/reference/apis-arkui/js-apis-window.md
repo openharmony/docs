@@ -1802,7 +1802,7 @@ try {
 
 getPreferredOrientation(): Orientation
 
-获取窗口的显示方向属性。
+主窗口调用，获取窗口的显示方向属性。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1823,11 +1823,30 @@ getPreferredOrientation(): Orientation
 **示例：**
 
 ```ts
-try {
-  let orientation = windowClass.getPreferredOrientation();
-} catch (exception) {
-  console.error('Failed to get window orientation. Cause:' + JSON.stringify(exception));
-}
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
+export default class EntryAbility extends UIAbility {
+  // ...
+
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+        return;
+      }
+      windowClass = data;
+      try {
+        let orientation = windowClass.getPreferredOrientation();
+      } catch (exception) {
+        console.error('Failed to get window orientation. Cause:' + JSON.stringify(exception));
+      }
+    });
+  }
+};
 ```
 
 ### getUIContext<sup>10+</sup>
