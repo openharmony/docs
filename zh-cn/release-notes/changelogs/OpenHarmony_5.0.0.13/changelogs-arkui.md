@@ -14,13 +14,13 @@
 
 @LocalStorageLink,@LocalStorageProp,@StorageProp,@StorageLink,@Provide,@Consume,@Watch。
 
-此次修改为非兼容性修改。
-
 **变更影响**
 
 @LocalStorageLink,@LocalStorageProp,@StorageProp,@StorageLink,@Provide,@Consume,@Watch key值不存在时，编译报错。
 
-**API Level**
+该变更为非兼容性修改。
+
+**起始API Level**
 
 @LocalStorageLink：API9，
 
