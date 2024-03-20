@@ -22,7 +22,21 @@
 
 **API Level**
 
-12 
+@LocalStorageLink：API9，
+
+@LocalStorageProp：API9，
+
+@StorageProp：API7，
+
+@StorageLink：API7，
+
+@Provide：API7，
+
+@Consume：API7，
+
+@Watch：API7。
+
+
 
 **变更发生版本**
 
