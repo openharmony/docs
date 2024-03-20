@@ -10,7 +10,7 @@ SysCap，全称SystemCapability，即系统能力，指操作系统中每一个�
 
 ## SystemCapability.ArkUI.ArkUI.Full
 
-ArKUI标准系统
+ArkUI组件能力
 
 | Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
@@ -18,7 +18,7 @@ ArKUI标准系统
 
 ## SystemCapability.ArkUI.ArkUI.Napi
 
-napi功能
+Napi功能
 
 | Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
@@ -26,7 +26,7 @@ napi功能
 
 ## SystemCapability.ArkUI.ArkUI.Libuv
 
-libuv功能
+Libuv功能
 
 | Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
@@ -379,7 +379,7 @@ GNSS硬件相关能力
 
 ## SystemCapability.PowerManager.PowerManager.Core
 
-系统电源管理服务核心能力
+系统电源管理服务基础能力
 
 | Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
@@ -387,7 +387,7 @@ GNSS硬件相关能力
 
 ## SystemCapability.PowerManager.BatteryManager.Core
 
-电池服务核心能力
+电池服务基础能力
 
 | Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
@@ -539,7 +539,7 @@ GNSS硬件相关能力
 
 ## SystemCapability.Multimedia.AVSession.Core
 
-快速修复
+媒体会话基础能力
 
 | Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
@@ -547,7 +547,7 @@ GNSS硬件相关能力
 
 ## SystemCapability.Multimedia.AVSession.Manager
 
-命令行工具
+媒体会话管理能力
 
 | Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
@@ -555,7 +555,7 @@ GNSS硬件相关能力
 
 ## SystemCapability.Multimedia.AVSession.AVCast
 
-投播能力
+媒体投播能力
 
 | Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
@@ -787,7 +787,7 @@ GNSS硬件相关能力
 
 ## SystemCapability.BarrierFree.Accessibility.Core
 
-提供开发辅助应用的能力
+无障碍基础能力
 
 | Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
@@ -971,7 +971,7 @@ TS/JS语言基础库
 
 ## SystemCapability.Security.Huks.Core
 
-设备密钥管理-核心能力
+设备密钥管理-基础能力
 
 | Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
@@ -1195,7 +1195,7 @@ TS/JS语言基础库
 
 ## SystemCapability.USB.USBManager
 
-usb服务
+USB服务
 
 | Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
@@ -1227,7 +1227,7 @@ usb服务
 
 ## SystemCapability.DistributedDataManager.RelationalStore.Core
 
-关系型数据库核心能力
+关系型数据库基础能力
 
 | Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
@@ -1243,7 +1243,7 @@ usb服务
 
 ## SystemCapability.DistributedDataManager.KVStore.Core
 
-Key-Value型数据库核心能力
+Key-Value型数据库基础能力
 
 | Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
@@ -1267,7 +1267,7 @@ Key-Value型数据库核心能力
 
 ## SystemCapability.DistributedDataManager.Preferences.Core
 
-偏好型数据存储核心能力
+偏好型数据存储基础能力
 
 | Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
@@ -1275,7 +1275,7 @@ Key-Value型数据库核心能力
 
 ## SystemCapability.DistributedDataManager.DataShare.Core
 
-跨进程数据共享，基础能力
+跨进程数据共享基础能力
 
 | Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
@@ -1475,7 +1475,7 @@ OAID管理服务
 
 ## SystemCapability.BundleManager.BundleFramework.Core
 
-包管理核心业务，包含包信息查询、安装卸载的核心能力
+包管理核心业务，包含包信息查询、安装卸载的基础能力
 
 | Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
@@ -1571,7 +1571,7 @@ OAID管理服务
 
 ## SystemCapability.DistributedDataManager.UDMF.Core
 
-分布式数据管理--统一数据管理框架（UDMF）核心能力
+分布式数据管理--统一数据管理框架（UDMF）基础能力
 
 | Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
@@ -1707,11 +1707,11 @@ WebGL2.0 标准api
 
 ## SystemCapability.ArkUI.ArkUI.Lite
 
-ArkUI小型系统
+轻量ArkUI组件能力
 
 | Default | Tablet | LiteWearable |
-| ------- | ------ | -------- |
-| 否       | 否      | 是        |
+|---------|--------| -------- |
+| 是       | 是      | 是        |
 
 ## SystemCapability.Location.Location.Lite
 
@@ -1763,7 +1763,7 @@ NFC卡模拟服务
 
 ## SystemCapability.DistributedDataManager.Preferences.Core.Lite
 
-轻量级偏好型数据存储核心能力
+轻量级偏好型数据存储基础能力
 
 | Default | Tablet | LiteWearable |
 | ------- | ------ | -------- |
