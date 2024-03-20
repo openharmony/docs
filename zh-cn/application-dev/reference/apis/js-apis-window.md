@@ -57,7 +57,7 @@ import window from '@ohos.window';
 | ---------- | -------------------------- | -- |-----------------------------------------------------------------------------|
 | name       | string                     | 是 | 窗口名字。                                                                       |
 | windowType | [WindowType](#windowtype7) | 是 | 窗口类型。                                                                       |
-| ctx        | [BaseContext](js-apis-inner-application-baseContext.md) | 否 | 当前应用上下文信息。不设置，则默认为空。<br>FA模型下不需要使用该参数，即可创建子窗口。<br>Stage模型下需要使用该参数，用于创建系统窗口。 |
+| ctx        | [BaseContext](js-apis-inner-application-baseContext.md) | 否 | 当前应用上下文信息。不设置，则默认为空。<br>FA模型下不需要使用该参数，即可创建子窗口，使用该参数时会报错。<br>Stage模型下必须使用该参数，用于创建悬浮窗、模态窗或系统窗口。 |
 | displayId  | number                     | 否 | 当前物理屏幕id。不设置，则默认为-1，该参数应为整数。                                             |
 | parentId   | number                     | 否 | 父窗口id。不设置，则默认为-1，该参数应为整数。                                                           |
 
