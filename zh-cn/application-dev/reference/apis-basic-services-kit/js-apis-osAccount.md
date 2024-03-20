@@ -2836,7 +2836,7 @@ getSerialNumberByOsAccountLocalId(localId: number): Promise&lt;number&gt;
 | constraint.autofill | 禁止使用自动填充服务 |
 | constraint.content.capture | 禁止捕获用户屏幕 |
 | constraint.content.suggestions | 禁止接收内容建议 |
-| constraint.os.account.start | 禁止切换用户 |
+| constraint.os.account.activate | 禁止前台启动用户 |
 | constraint.location.set | 禁止配置位置服务 |
 | constraint.airplane.mode.set | 禁止飞行模式 |
 | constraint.brightness.set | 禁止配置亮度 |
