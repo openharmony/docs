@@ -27,7 +27,7 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo, callback: 
 
 | 参数名   | 类型                                                         | 必填 | 说明                             |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------- |
-| custom   | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo说明) | 是   | 拖拽发起后跟手效果所拖拽的对象。<br/>**说明：** <br/>不支持全局builder。如果builder中使用了[Image](arkui-ts/ts-basic-components-image.md)组件，应尽量开启同步加载，即配置Image的[syncLoad](arkui-ts/ts-basic-components-image.md#属性)为true。该builder只用于生成当次拖拽中显示的图片，builder的修改不会同步到当前正在拖拽的图片，对builder的修改需要在下一次拖拽时生效。 |
+| custom   | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo说明) | 是   | 拖拽发起后跟手效果所拖拽的对象。<br/>**说明：** <br/>不支持全局builder。如果builder中使用了[Image](arkui-ts/ts-basic-components-image.md)组件，应尽量开启同步加载，即配置Image的[syncLoad](arkui-ts/ts-basic-components-image.md#syncload8)为true。该builder只用于生成当次拖拽中显示的图片，builder的修改不会同步到当前正在拖拽的图片，对builder的修改需要在下一次拖拽时生效。 |
 | dragInfo | [DragInfo](#draginfo)                                        | 是   | 拖拽信息。                       |
 | callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;{event: [DragEvent](arkui-ts/ts-universal-events-drag-drop.md#dragevent说明), extraParams: string}&gt; | 是   | 拖拽结束返回结果的回调<br/>- event：拖拽事件信息，仅包括拖拽结果。<br/>- extraParams：拖拽事件额外信息。          |
 
@@ -214,28 +214,114 @@ struct DragControllerPage {
 | touchPoint<sup>11+</sup>    | [TouchPoint](arkui-ts/ts-types.md#touchpoint11)  | 否   | 配置跟手点坐标，不配置时，默认居中。      |
 | previewOptions<sup>11+</sup>| [DragPreviewOptions](arkui-ts/ts-universal-attributes-drag-drop.md#dragpreviewoptions11)                                | 否   | 拖拽背板自定义配置。 |
 
-## DragStatus<sup>11+</sup>
+## dragController.createDragAction<sup>11+</sup>
+
+createDragAction(customArray: Array&lt;CustomBuilder \| DragItemInfo&gt;, dragInfo: DragInfo): DragAction
+
+创建拖拽的Action对象，需要显式指定拖拽背板图(可多个)，以及拖拽的数据，跟手点等信息；当通过一个已创建的 Action 对象发起的拖拽未结束时，无法再次创建新的 Action 对象，接口会抛出异常。
+
+**说明：** 建议控制传递的拖拽背板数量，传递过多容易导致拖起的效率问题。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-拖拽开始和结束状态。
+**参数：**
 
-| 名称          | 值                                                   | 说明                                     |
-| -----------   | ------------------------------------------------------| ---------------------------------------- |
-| STARTED       | 0                                                  | 拖拽已成功发起。         |
-| ENDED        | 1                                                  | 拖拽结束。               |
+| 参数名   | 类型                                                         | 必填 | 说明                             |
+| --------      | ------------------------------------------------------------ | ---- | -------------------------------- |
+| customArray  | Array&lt;[CustomBuilder](arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo说明)&gt; | 是   | 拖拽发起后跟手效果所拖拽的对象。 |
+| dragInfo | [DragInfo](#draginfo)                                        | 是   | 拖拽信息。                       |
 
-## DragAndDropInfo<sup>11+</sup>
+**返回值：** 
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+| 类型                                                   | 说明               |
+| ------------------------------------------------------ | ------------------ |
+| [DragAction](#dragaction11)| 创建拖拽Action对象，主要用于后面实现注册监听拖拽状态改变事件和启动拖拽服务。 |
 
-拖拽过程中监听到status改变时上报的数据。
+**错误码：**
 
-| 名称          | 类型                                                   | 必填 | 说明                                     |
-| -----------   | ------------------------------------------------------ | ---- | ---------------------------------------- |
-| status       | [DragStatus](#dragstatus11)                                                 | 是   | 当前拖拽状态（启动和结束）。         |
-| event        | [DragEvent](arkui-ts/ts-universal-events-drag-drop.md#dragevent说明) | 否   | 当前状态所对应的拖拽事件。               |
-| extraParams| string                                                 | 否   | 设置拖拽事件额外信息，具体功能暂未实现。 |
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 401      | If the parameters checking failed |
+| 100001   | If some internal handling failed |
+
+**示例：**
+
+```ts
+import dragController from "@ohos.arkui.dragController"
+import componentSnapshot from '@ohos.arkui.componentSnapshot';
+import image from '@ohos.multimedia.image';
+import UDC from '@ohos.data.unifiedDataChannel';
+
+@Entry
+@Component
+struct DragControllerPage {
+  @State pixmap: image.PixelMap | null = null
+  private dragAction: dragController.DragAction | null = null;
+  customBuilders:Array<CustomBuilder | DragItemInfo> = new Array<CustomBuilder | DragItemInfo>();
+  @Builder DraggingBuilder() {
+    Column() {
+      Text("DraggingBuilder")
+    }
+    .width(100)
+    .height(100)
+    .backgroundColor(Color.Blue)
+  }
+
+  build() {
+    Column() {
+
+      Column() {
+        Text("测试")
+      }
+      .width(100)
+      .height(100)
+      .backgroundColor(Color.Red)
+
+      Button('多对象dragAction customBuilder拖拽').onTouch((event?:TouchEvent) => {
+        if(event){
+          if (event.type == TouchType.Down) {
+            console.log("muti drag Down by listener");
+            this.customBuilders.splice(0, this.customBuilders.length);
+            this.customBuilders.push(()=>{this.DraggingBuilder()});
+            this.customBuilders.push(()=>{this.DraggingBuilder()});
+            this.customBuilders.push(()=>{this.DraggingBuilder()});
+            let text = new UDC.Text()
+            let unifiedData = new UDC.UnifiedData(text)
+            let dragInfo: dragController.DragInfo = {
+              pointerId: 0,
+              data: unifiedData,
+              extraParams: ''
+            }
+            try{
+              this.dragAction = dragController.createDragAction(this.customBuilders, dragInfo)
+            if(!this.dragAction){
+              console.log("listener dragAction is null");
+              return
+            }
+            this.dragAction.on('statusChange', (dragAndDropInfo: dragController.DragAndDropInfo)=>{
+              if (dragAndDropInfo.status == dragController.DragStatus.STARTED) {
+                console.log("drag has start");
+              } else if (dragAndDropInfo.status == dragController.DragStatus.ENDED){
+                console.log("drag has end");
+                if (!this.dragAction) {
+                  return
+                }
+                this.dragAction.off('statusChange')
+              }
+            })
+            this.dragAction.startDrag().then(()=>{}).catch((err:Error)=>{
+              console.log("start drag Error:" + err.message);
+            })
+            } catch(err) {
+              console.log("create dragAction Error:" + err.message);
+            }
+          }
+        }
+      }).margin({top:20})
+    }
+  }
+}
+```
 
 ## DragAction<sup>11+</sup>
 
@@ -295,7 +381,6 @@ struct DragControllerPage {
 }
 
 ```
-
 ### on('statusChange')<sup>11+</sup>
 
 on(type: 'statusChange', callback: Callback&lt;[DragAndDropInfo](#draganddropinfo11)&gt;): void
@@ -400,114 +485,29 @@ struct DragControllerPage {
 }
 ```
 
-## dragController.createDragAction<sup>11+</sup>
-
-createDragAction(customArray: Array&lt;CustomBuilder \| DragItemInfo&gt;, dragInfo: DragInfo): DragAction
-
-创建拖拽的Action对象，需要显式指定拖拽背板图(可多个)，以及拖拽的数据，跟手点等信息；当通过一个已创建的 Action 对象发起的拖拽未结束时，无法再次创建新的 Action 对象，接口会抛出异常。
-
-**说明：** 建议控制传递的拖拽背板数量，传递过多容易导致拖起的效率问题。
+## DragAndDropInfo<sup>11+</sup>
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：**
+拖拽过程中监听到status改变时上报的数据。
 
-| 参数名   | 类型                                                         | 必填 | 说明                             |
-| --------      | ------------------------------------------------------------ | ---- | -------------------------------- |
-| customArray  | Array&lt;[CustomBuilder](arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo说明)&gt; | 是   | 拖拽发起后跟手效果所拖拽的对象。 |
-| dragInfo | [DragInfo](#draginfo)                                        | 是   | 拖拽信息。                       |
+| 名称          | 类型                                                   | 必填 | 说明                                     |
+| -----------   | ------------------------------------------------------ | ---- | ---------------------------------------- |
+| status       | [DragStatus](#dragstatus11)                                                 | 是   | 当前拖拽状态（启动和结束）。         |
+| event        | [DragEvent](arkui-ts/ts-universal-events-drag-drop.md#dragevent说明) | 否   | 当前状态所对应的拖拽事件。               |
+| extraParams| string                                                 | 否   | 设置拖拽事件额外信息，具体功能暂未实现。 |
 
-**返回值：** 
+## DragStatus<sup>11+</sup>
 
-| 类型                                                   | 说明               |
-| ------------------------------------------------------ | ------------------ |
-| [DragAction](#dragaction11)| 创建拖拽Action对象，主要用于后面实现注册监听拖拽状态改变事件和启动拖拽服务。 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**错误码：**
+拖拽开始和结束状态。
 
-| 错误码ID | 错误信息      |
-| -------- | ------------- |
-| 401      | Invalid input parameter |
-| 100001   | If some internal handling failed |
+| 名称          | 值                                                   | 说明                                     |
+| -----------   | ------------------------------------------------------| ---------------------------------------- |
+| STARTED       | 0                                                  | 拖拽已成功发起。         |
+| ENDED        | 1                                                  | 拖拽结束。               |
 
-**示例：**
-
-```ts
-import dragController from "@ohos.arkui.dragController"
-import componentSnapshot from '@ohos.arkui.componentSnapshot';
-import image from '@ohos.multimedia.image';
-import UDC from '@ohos.data.unifiedDataChannel';
-
-@Entry
-@Component
-struct DragControllerPage {
-  @State pixmap: image.PixelMap | null = null
-  private dragAction: dragController.DragAction | null = null;
-  customBuilders:Array<CustomBuilder | DragItemInfo> = new Array<CustomBuilder | DragItemInfo>();
-  @Builder DraggingBuilder() {
-    Column() {
-      Text("DraggingBuilder")
-    }
-    .width(100)
-    .height(100)
-    .backgroundColor(Color.Blue)
-  }
-
-  build() {
-    Column() {
-
-      Column() {
-        Text("测试")
-      }
-      .width(100)
-      .height(100)
-      .backgroundColor(Color.Red)
-
-      Button('多对象dragAction customBuilder拖拽').onTouch((event?:TouchEvent) => {
-        if(event){
-          if (event.type == TouchType.Down) {
-            console.log("muti drag Down by listener");
-            this.customBuilders.splice(0, this.customBuilders.length);
-            this.customBuilders.push(()=>{this.DraggingBuilder()});
-            this.customBuilders.push(()=>{this.DraggingBuilder()});
-            this.customBuilders.push(()=>{this.DraggingBuilder()});
-            let text = new UDC.Text()
-            let unifiedData = new UDC.UnifiedData(text)
-            let dragInfo: dragController.DragInfo = {
-              pointerId: 0,
-              data: unifiedData,
-              extraParams: ''
-            }
-            try{
-              this.dragAction = dragController.createDragAction(this.customBuilders, dragInfo)
-            if(!this.dragAction){
-              console.log("listener dragAction is null");
-              return
-            }
-            this.dragAction.on('statusChange', (dragAndDropInfo: dragController.DragAndDropInfo)=>{
-              if (dragAndDropInfo.status == dragController.DragStatus.STARTED) {
-                console.log("drag has start");
-              } else if (dragAndDropInfo.status == dragController.DragStatus.ENDED){
-                console.log("drag has end");
-                if (!this.dragAction) {
-                  return
-                }
-                this.dragAction.off('statusChange')
-              }
-            })
-            this.dragAction.startDrag().then(()=>{}).catch((err:Error)=>{
-              console.log("start drag Error:" + err.message);
-            })
-            } catch(err) {
-              console.log("create dragAction Error:" + err.message);
-            }
-          }
-        }
-      }).margin({top:20})
-    }
-  }
-}
-```
 ## AnimationOptions<sup>11+</sup>
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
