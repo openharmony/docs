@@ -43,7 +43,7 @@ import reminderAgentManager from '@ohos.reminderAgentManager';
 
 > **说明**
 >
-> 从 API version 12 开始，uri 对所有应用开放。
+> 从API version12开始，uri对所有应用开放。
 
 **系统能力**：SystemCapability.Notification.ReminderAgent
 
