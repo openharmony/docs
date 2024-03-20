@@ -844,7 +844,7 @@ abilityManager.getForegroundUIAbilities().then((data: Array<abilityManager.Abili
 
 ## abilityManager.notifyDebugAssertResult<sup>12+</sup>
 
-notifyDebugAssertResult(requestAssertFaultId: string, status: UserStatus): Promise\<void>
+notifyDebugAssertResult(sessionId: string, status: UserStatus): Promise\<void>
 
 将断言调试结果通知应用程序。使用Promise异步回调。
 
@@ -880,14 +880,21 @@ notifyDebugAssertResult(requestAssertFaultId: string, status: UserStatus): Promi
 ```ts
 import abilityManager from '@ohos.app.ability.abilityManager';
 import { BusinessError } from '@ohos.base';
+import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
 import wantConstant from '@ohos.app.ability.wantConstant';
+import type Want from '@ohos.app.ability.Want';
+import type UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
 
-onSessionCreate(want, session) {
-    let sessionId = want.parameters[wantConstant.Params.ASSERT_FAULT_SESSION_ID];
-    abilityManager.notifyDebugAssertResult(sessionId, abilityManager.UserStatus.ASSERT_TERMINATE).then(() => {
-        console.log('notifyUserActionResult success.');
+export default class UiExtAbility extends UIExtensionAbility {
+  onSessionCreate(want: Want, session: UIExtensionContentSession): void {
+    let sessionId = want.parameters[wantConstant.Params.ASSERT_FAULT_SESSION_ID] as string,
+    let status = abilityManager.UserStatus.ASSERT_TERMINATE;
+    abilityManager.notifyDebugAssertResult(sessionId, status).then(() => {
+      console.log(TAG, 'notifyDebugAssertResult success.');
     }).catch((err: BusinessError) => {
-        console.error(`notifyUserActionResult failed, error: ${JSON.stringify(err)}`);
-    })
+      console.error(TAG, `notifyDebugAssertResult failed, error: ${JSON.stringify(err)}`);
+    });
+  }
 }
+
 ```
