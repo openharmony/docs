@@ -770,6 +770,44 @@ queryAllCreatedOsAccounts(): Promise&lt;Array&lt;OsAccountInfo&gt;&gt;
   }
   ```
 
+### getForegroundOsAccountLocalId<sup>12+</sup>
+
+getForegroundOsAccountLocalId(): Promise&lt;number&gt;;
+
+获取前台系统账号的ID。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**返回值：**
+
+| 类型                   | 说明                                                               |
+| ---------------------- | ----------------------------------------------------------------- |
+| Promise&lt;number&gt; | Promise对象。返回前台系统账号的ID。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息       |
+| -------- | ------------- |
+| 12300001 | System service exception. |
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  try {
+    accountManager.getForegroundOsAccountLocalId().then((localId: number) => {
+      console.log('getForegroundOsAccountLocalId, localId: ' + localId);
+    }).catch((err: BusinessError) => {
+      console.log('getForegroundOsAccountLocalId err: ' + JSON.stringify(err));
+    });
+  } catch (e) {
+    console.log('getForegroundOsAccountLocalId exception: ' + JSON.stringify(e));
+  }
+  ```
+
 ### createOsAccount
 
 createOsAccount(localName: string, type: OsAccountType, callback: AsyncCallback&lt;OsAccountInfo&gt;): void
@@ -1387,6 +1425,160 @@ off(type: 'activate' | 'activating', name: string, callback?: Callback&lt;number
   }
   ```
 
+### on<sup>12+</sup>
+
+on(type: 'switching', callback: Callback&lt;OsAccountSwitchEventData&gt;): void
+
+订阅系统帐号的前后台正在切换事件。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**参数：**
+
+| 参数名   | 类型                       | 必填 | 说明                                                         |
+| -------- | -------------------------- | ---- | ------------------------------------------------------------ |
+| type     | 'switching'                 | 是   | 订阅类型，switching表示订阅的是系统帐号的前后台正在切换事件。 |
+| callback | Callback&lt;[OsAccountSwitchEventData](#osaccountswitcheventdata12)&gt;     | 是   | 订阅系统帐号的前后台正在切换事件回调，表示切换前和切换后的系统帐号ID。    |
+
+**错误码：**
+
+| 错误码ID | 错误信息       |
+| -------- | ------------- |
+| 12300001 | System service exception. |
+| 12300002 | Invalid type. |
+
+**示例：**
+
+  ```ts
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  function onSwitchingCallback(eventData: account_osAccount.OsAccountSwitchEventData){
+    console.log('receive eventData:' + JSON.stringify(eventData));
+  }
+  try {
+    accountManager.on('switching', onSwitchingCallback);
+  } catch (e) {
+    console.log('receive eventData exception: ' + JSON.stringify(e));
+  }
+  ```
+
+### off<sup>12+</sup>
+
+off(type: 'switching', callback?: Callback&lt;OsAccountSwitchEventData&gt;): void
+
+取消订阅系统帐号的前后台正在切换事件。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**参数：**
+
+| 参数名   | 类型                       | 必填 | 说明                                                         |
+| -------- | -------------------------- | ---- | ------------------------------------------------------------ |
+| type     | 'switching'                 | 是   | 取消订阅类型，switching表示取消订阅的是系统帐号的前后台正在切换事件。 |
+| callback | Callback&lt;[OsAccountSwitchEventData](#osaccountswitcheventdata12)&gt;     | 否   | 取消订阅系统帐号的前后台正在切换事件回调，默认为空，表示取消该类型事件的所有回调。                      |
+
+**错误码：**
+
+| 错误码ID | 错误信息       |
+| -------- | ------------- |
+| 12300001 | System service exception. |
+| 12300002 | Invalid type. |
+
+**示例：**
+
+  ```ts
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  try {
+    accountManager.off('switching');
+  } catch (e) {
+    console.log('off exception: ' + JSON.stringify(e));
+  }
+  ```
+
+### on<sup>12+</sup>
+
+on(type: 'switched', callback: Callback&lt;OsAccountSwitchEventData&gt;): void
+
+订阅系统帐号的前后台切换结束事件。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**参数：**
+
+| 参数名   | 类型                       | 必填 | 说明                                                         |
+| -------- | -------------------------- | ---- | ------------------------------------------------------------ |
+| type     | 'switched'                 | 是   | 订阅类型，switched表示订阅的是系统帐号的前后台切换结束事件。 |
+| callback | Callback&lt;[OsAccountSwitchEventData](#osaccountswitcheventdata12)&gt;     | 是   | 订阅系统帐号的前后台切换结束事件回调，表示切换前和切换后的系统帐号ID。    |
+
+**错误码：**
+
+| 错误码ID | 错误信息       |
+| -------- | ------------- |
+| 12300001 | System service exception. |
+| 12300002 | Invalid type. |
+
+**示例：**
+
+  ```ts
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  function onSwitchedCallback(eventData: account_osAccount.OsAccountSwitchEventData){
+    console.log('receive eventData:' + JSON.stringify(eventData));
+  }
+  try {
+    accountManager.on('switched', onSwitchedCallback);
+  } catch (e) {
+    console.log('receive eventData exception: ' + JSON.stringify(e));
+  }
+  ```
+
+### off<sup>12+</sup>
+
+off(type: 'switched', callback?: Callback&lt;OsAccountSwitchEventData&gt;): void
+
+取消订阅系统帐号的前后台切换结束事件。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**参数：**
+
+| 参数名   | 类型                       | 必填 | 说明                                                         |
+| -------- | -------------------------- | ---- | ------------------------------------------------------------ |
+| type     | 'switched'                 | 是   | 取消订阅类型，switched表示取消订阅的是系统帐号的前后台切换结束事件。 |
+| callback | Callback&lt;[OsAccountSwitchEventData](#osaccountswitcheventdata12)&gt;     | 否   | 取消订阅系统帐号的前后台切换结束事件回调，默认为空，表示取消该类型事件的所有回调。                      |
+
+**错误码：**
+
+| 错误码ID | 错误信息       |
+| -------- | ------------- |
+| 12300001 | System service exception. |
+| 12300002 | Invalid type. |
+
+**示例：**
+
+  ```ts
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  try {
+    accountManager.off('switched');
+  } catch (e) {
+    console.log('off exception: ' + JSON.stringify(e));
+  }
+  ```
+
 ### getBundleIdForUid<sup>9+</sup>
 
 getBundleIdForUid(uid: number, callback: AsyncCallback&lt;number&gt;): void
@@ -1684,6 +1876,54 @@ getOsAccountConstraintSourceTypes(localId: number, constraint: string): Promise&
     });
   } catch (e) {
     console.info('getOsAccountConstraintSourceTypes exception: ' + JSON.stringify(e));
+  }
+  ```
+
+### getOsAccountType<sup>12+</sup>
+
+getOsAccountType(localId: number): Promise&lt;OsAccountType&gt;;
+
+查询指定系统帐号的类型，使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明         |
+| ------- | ------ | ---- | ------------ |
+| localId     | number | 是   |  要查询的系统帐号ID。 |
+
+**返回值：**
+
+| 类型                  | 说明                                                         |
+| --------------------- | ------------------------------------------------------------ |
+| Promise&lt;[OsAccountType](js-apis-osAccount.md#osaccounttype)&gt; | Promise对象，返回指定系统帐号的类型。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息       |
+| -------- | ------------- |
+| 12300001 | System service exception. |
+| 12300003 | Account not found. |
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  try {
+    let localId: number = 100;
+    accountManager.getOsAccountType(localId).then((type: account_osAccount.OsAccountType) => {
+      console.info('getOsAccountType Type:' + type);
+    }).catch((err: BusinessError) => {
+      console.info('getOsAccountType errInfo:' + JSON.stringify(err));
+    });
+  } catch (e) {
+    console.info('getOsAccountType exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -4149,7 +4389,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
+**系统能力：** SystemCapability.Account.OsAccount
 
 | 名称    | 类型                                                          | 必填   | 说明                   |
 | -------- | ------------------------------------------------------------- | ----- | ----------------------- |
@@ -4162,7 +4402,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
+**系统能力：** SystemCapability.Account.OsAccount
 
 | 名称    | 类型                                             | 必填   | 说明                 |
 | -------- | ------------------------------------------------ | ----- | -------------------- |
@@ -4176,7 +4416,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
+**系统能力：** SystemCapability.Account.OsAccount
 
 | 名称         | 类型                         |  可读 | 可写 | 说明              |
 | ------------ | ---------------------------- | ----- | -----|----------------- |
@@ -4193,7 +4433,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
+**系统能力：** SystemCapability.Account.OsAccount
 
 | 名称        | 类型        | 必填   | 说明              |
 | ------------ | ----------- | ----- | ----------------- |
@@ -4207,7 +4447,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
+**系统能力：** SystemCapability.Account.OsAccount
 
 | 名称        | 类型                                     | 必填   | 说明              |
 | ------------ | ---------------------------------------- | ----- | ----------------- |
@@ -4221,7 +4461,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
+**系统能力：** SystemCapability.Account.OsAccount
 
 | 名称        | 类型        | 必填   | 说明              |
 | ------------ | ----------- | ----- | ----------------- |
@@ -4233,7 +4473,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
+**系统能力：** SystemCapability.Account.OsAccount
 
 | 名称        | 类型                                     | 必填   | 说明              |
 | ------------ | ---------------------------------------- | ----- | ------------------- |
@@ -4248,7 +4488,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
+**系统能力：** SystemCapability.Account.OsAccount
 
 | 名称           | 值 | 说明      |
 | ------------- | ------ | --------- |
@@ -4264,7 +4504,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
+**系统能力：** SystemCapability.Account.OsAccount
 
 | 名称           | 值 | 说明        |
 | -------------- | ----- | ----------- |
@@ -4276,7 +4516,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
+**系统能力：** SystemCapability.Account.OsAccount
 
 | 名称  | 值 | 说明             |
 | ----- | ----- | ---------------- |
@@ -4291,7 +4531,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
+**系统能力：** SystemCapability.Account.OsAccount
 
 | 名称       | 值 | 说明               |
 | ---------- | ----- | ------------------ |
@@ -4311,7 +4551,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
+**系统能力：** SystemCapability.Account.OsAccount
 
 | 名称  | 值 | 说明        |
 | ---- | ------ | ----------- |
@@ -4326,7 +4566,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
+**系统能力：** SystemCapability.Account.OsAccount
 
 | 名称       | 值 | 说明                     |
 | --------- | ------ | ------------------------ |
@@ -4338,7 +4578,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
+**系统能力：** SystemCapability.Account.OsAccount
 
 | 名称                    | 值 | 说明                                     |
 | ----------------------- | ----- | ---------------------------------------- |
@@ -4360,7 +4600,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
+**系统能力：** SystemCapability.Account.OsAccount
 
 | 名称                          | 值 | 说明                                     |
 | ----------------------------- | ----- | ---------------------------------------- |
@@ -4382,7 +4622,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
+**系统能力：** SystemCapability.Account.OsAccount
 
 | 名称                          | 值 | 说明                                            |
 | ----------------------------- | ----- | ----------------------------------------------- |
@@ -4399,17 +4639,27 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 表示系统帐号信息。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount。
+**系统能力：** SystemCapability.Account.OsAccount
 
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
 | shortName<sup>12+</sup> | string | 否   | 系统帐号的短名称。<br>**系统接口：** 此接口为系统接口，默认为空。 |
 
+## OsAccountType
+
+表示系统帐号类型的枚举。
+
+**系统能力：** SystemCapability.Account.OsAccount。
+
+| 名称   | 值 | 说明         |
+| ------ | ------ | ----------- |
+| PRIVATE<sup>12+</sup> | 1024  | 隐私帐号。隐私账号只能有一个。<br>**系统接口：** 此接口为系统接口。   |
+
 ## DomainAccountInfo<sup>8+</sup>
 
 表示域帐号信息。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount。
+**系统能力：** SystemCapability.Account.OsAccount
 
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
@@ -4422,7 +4672,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount。
+**系统能力：** SystemCapability.Account.OsAccount
 
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
@@ -4435,7 +4685,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount。
+**系统能力：** SystemCapability.Account.OsAccount
 
 | 名称   | 值 | 说明         |
 | ------ | ------ | ------------ |
@@ -4450,7 +4700,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount。
+**系统能力：** SystemCapability.Account.OsAccount
 
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
@@ -4463,7 +4713,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount。
+**系统能力：** SystemCapability.Account.OsAccount
 
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
@@ -4478,7 +4728,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount。
+**系统能力：** SystemCapability.Account.OsAccount
 
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
@@ -4491,11 +4741,24 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount。
+**系统能力：** SystemCapability.Account.OsAccount
 
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
 | callerUid | number | 是   | 调用方唯一标识符 |
+
+## OsAccountSwitchEventData<sup>12+</sup>
+
+表示系统账号前后台开始切换和结束切换事件的数据结构。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+| 名称      | 类型   | 必填 | 说明       |
+| ----------- | ------ | ---- | ---------- |
+| fromAccountId | number | 是   | 切换前系统账号ID |
+| toAccountId | number | 是   | 切换后系统账号ID |
 
 ## CreateOsAccountOptions<sup>12+</sup>
 
@@ -4503,7 +4766,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount。
+**系统能力：** SystemCapability.Account.OsAccount
 
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |

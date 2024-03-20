@@ -255,7 +255,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     }
     ```
 
-7. 调用OH_AudioCodec_PushInputData()，写入待编码器的数据。
+7. 调用OH_AudioCodec_PushInputBuffer()，写入待编码器的数据。
    如果是结束，需要对flag标识成AVCODEC_BUFFER_FLAGS_EOS
 
    aac： 样点数(FRAME_SIZE)固定为1024

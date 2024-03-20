@@ -126,7 +126,7 @@ searchIcon(value: IconOptions)
 
 | 参数名 | 类型                                  | 必填 | 说明               |
 | ------ | ------------------------------------- | ---- | ------------------ |
-| value  | [IconOptions](#iconoptions10对象说明) | 是   | 左侧搜索图标样式。 |
+| value  | [IconOptions](#iconoptions10对象说明) | 是   | 左侧搜索图标样式。<br />默认值：<br />{<br />fontSize: '16vp',<br />color: '#99ffffff',<br />src: ' '<br />} |
 
 ### cancelButton<sup>10+</sup>
 
@@ -254,6 +254,20 @@ maxLength(value: number)
 | 参数名 | 类型                                | 必填 | 说明                   |
 | ------ | ----------------------------------- | ---- | ---------------------- |
 | value  | number | 是   | 文本的最大输入字符数。 |
+
+### enterKeyType<sup>12+</sup>
+
+enterKeyType(value: EnterKeyType)
+
+设置输入法回车键类型。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                  | 必填 | 说明                                             |
+| ------ | ------------------------------------- | ---- | ------------------------------------------------ |
+| value  | [EnterKeyType](ts-basic-components-textinput.md#enterkeytype枚举说明) | 是   | 输入法回车键类型。<br/>默认值：EnterKeyType.Search |
 
 ## IconOptions<sup>10+</sup>对象说明
 
@@ -619,6 +633,37 @@ struct SearchExample {
     }
   }
 }
-````
+```
 
 ![customKeyboard](figures/searchCustomKeyboard.png)
+
+### 示例4
+```ts
+// xxx.ets
+@Entry
+@Component
+struct SearchExample {
+  @State Text: string = ''
+  @State enterTypes: Array<EnterKeyType> = [EnterKeyType.Go, EnterKeyType.Search, EnterKeyType.Send, EnterKeyType.Done, EnterKeyType.Next, EnterKeyType.PREVIOUS, EnterKeyType.NEW_LINE]
+  @State index: number = 0
+  build() {
+    Column({ space: 20 }) {
+      Search({ placeholder: '请输入文本', value: this.Text })
+        .width(380)
+        .enterKeyType(this.enterTypes[this.index])
+        .onChange((value: string) => {
+          this.Text = value
+        })
+        .onSubmit((value: String) => {
+          console.log("trigger search onsubmit" + value);
+        })
+
+      Button('改变EnterKeyType').onClick(() => {
+        this.index = (this.index + 1) % this.enterTypes.length;
+      })
+    }.width('100%')
+  }
+}
+```
+
+![searchEnterKeyType](figures/searchEnterKey.gif)

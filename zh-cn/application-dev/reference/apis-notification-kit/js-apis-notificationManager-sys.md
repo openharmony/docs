@@ -3863,6 +3863,60 @@ notificationManager.setBadgeNumberByBundle(bundle, badgeNumber).then(() => {
 });
 ```
 
+## notificationManager.getSlotByBundle<sup>12+</sup>
+
+getSlotByBundle(bundle: BundleOption, slotType: SlotType): Promise\<Array\<NotificationSlot>>
+
+获取指定应用指定类型的通知渠道。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**系统接口**: 此接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型         | 必填 | 说明       |
+| ------ | ------------ | ---- | ---------- |
+| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 指定应用的包信息。 |
+| slotType | [SlotType](././js-apis-notificationManager.md#slottype) | 是   | 渠道类型。 |
+
+**返回值：**
+
+| 类型                                                        | 说明                                                         |
+| ----------------------------------------------------------- | ------------------------------------------------------------ |
+| Promise\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)> | 以Promise形式返回获取指定应用指定类型的通知渠道。 |
+
+**错误码：**
+
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+
+| 错误码ID | 错误信息                                 |
+| -------- | ---------------------------------------- |
+| 1600001  | Internal error.                          |
+| 1600002  | Marshalling or unmarshalling error.      |
+| 1600003  | Failed to connect service.               |
+| 17700001 | The specified bundle name was not found. |
+
+**示例：**
+
+```ts
+import Base from '@ohos.base';
+
+let bundle: notificationManager.BundleOption = {
+    bundle: "bundleName1",
+};
+
+let slotType = notificationManager.SlotType.LIVE_VIEW;
+
+notificationManager.getSlotByBundle(bundle, slotType).then((data: notificationManager.NotificationSlot) => {
+	console.info("getSlotByBundle success, data: " + JSON.stringify(data));
+}).catch((err: Base.BusinessError) => {
+    console.error(`getSlotByBundle fail: ${JSON.stringify(err)}`);
+});
+```
+
 ## DoNotDisturbDate
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
