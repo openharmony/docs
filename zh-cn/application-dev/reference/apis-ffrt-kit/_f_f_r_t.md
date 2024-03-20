@@ -91,7 +91,7 @@ FFRT（Function Flow运行时）是支持Function Flow编程模型的软件运�
 | FFRT_C_API ffrt_task_handle_t [ffrt_queue_submit_h](#ffrt_queue_submit_h) (ffrt_queue_t queue, [ffrt_function_header_t](ffrt__function__header__t.md)\* f, const [ffrt_task_attr_t](ffrt__task__attr__t.md)\* attr) | 提交一个任务到队列中调度执行，并返回任务句柄. | 
 | FFRT_C_API void [ffrt_queue_wait](#ffrt_queue_wait) (ffrt_task_handle_t handle) | 等待队列中一个任务执行完成. | 
 | FFRT_C_API int [ffrt_queue_cancel](#ffrt_queue_cancel) (ffrt_task_handle_t handle) | 取消队列中一个任务. | 
-| FFRT_C_API int [ffrt_usleep](#ffrt_usleep) (uint64_t usec) | 延迟usec微秒. | 
+| FFRT_C_API int [ffrt_usleep](#ffrt_usleep) (uint64_t usec) | 睡眠usec微秒. | 
 | FFRT_C_API void [ffrt_yield](#ffrt_yield) (void) | 当前任务主动放权，让其他任务有机会调度执行. | 
 | FFRT_C_API int [ffrt_task_attr_init](#ffrt_task_attr_init) ([ffrt_task_attr_t](ffrt__task__attr__t.md)\* attr) | 初始化任务属性. | 
 | FFRT_C_API void [ffrt_task_attr_set_name](#ffrt_task_attr_set_name) ([ffrt_task_attr_t](ffrt__task__attr__t.md)\* attr, const char\* name) | 设置任务名字. | 
@@ -117,17 +117,17 @@ FFRT（Function Flow运行时）是支持Function Flow编程模型的软件运�
 | -------- | -------- |
 | ffrt_function_t [ffrt_function_header_t::exec](#exec) | 任务执行函数 | 
 | ffrt_function_t [ffrt_function_header_t::destroy](#destroy) | 任务销毁函数 | 
-| uint64_t [ffrt_function_header_t::reserve](#reserve) [2] | 保留位 | 
+| uint64_t [ffrt_function_header_t::reserve](#reserve)[2] | 保留位 | 
 | [ffrt_dependence_type_t](#ffrt_dependence_type_t) [ffrt_dependence_t::type](#type) | 依赖类型 | 
 | const void\* [ffrt_dependence_t::ptr](#ptr) | 依赖数据地址 | 
 | uint32_t [ffrt_deps_t::len](#len) | 依赖数量 | 
 | const [ffrt_dependence_t](ffrt__dependence__t.md)\* [ffrt_deps_t::items](#items) | 依赖数据 | 
-| uint32_t [ffrt_task_attr_t::storage](#storage-46) [(ffrt_task_attr_storage_size + sizeof(uint32_t) - 1)/sizeof(uint32_t)] | 任务属性所占空间 | 
-| uint32_t [ffrt_queue_attr_t::storage](#storage-36) [(ffrt_queue_attr_storage_size + sizeof(uint32_t) - 1)/sizeof(uint32_t)] | 串行队列属性所占空间 | 
+| uint32_t [ffrt_task_attr_t::storage](#storage-46)[(ffrt_task_attr_storage_size + sizeof(uint32_t) - 1)/sizeof(uint32_t)] | 任务属性所占空间 | 
+| uint32_t [ffrt_queue_attr_t::storage](#storage-36)[(ffrt_queue_attr_storage_size + sizeof(uint32_t) - 1)/sizeof(uint32_t)] | 串行队列属性所占空间 | 
 | long [ffrt_condattr_t::storage](#storage-56) | FFRT条件变量属性所占空间 | 
 | long [ffrt_mutexattr_t::storage](#storage-66) | FFRT锁属性所占空间 | 
-| uint32_t [ffrt_mutex_t::storage](#storage-26) [(ffrt_mutex_storage_size + sizeof(uint32_t) - 1)/sizeof(uint32_t)] | FFRT互斥锁所占空间 | 
-| uint32_t [ffrt_cond_t::storage](#storage-16) [(ffrt_cond_storage_size + sizeof(uint32_t) - 1)/sizeof(uint32_t)] | FFRT条件变量所占空间 | 
+| uint32_t [ffrt_mutex_t::storage](#storage-26)[(ffrt_mutex_storage_size + sizeof(uint32_t) - 1)/sizeof(uint32_t)] | FFRT互斥锁所占空间 | 
+| uint32_t [ffrt_cond_t::storage](#storage-16)[(ffrt_cond_storage_size + sizeof(uint32_t) - 1)/sizeof(uint32_t)] | FFRT条件变量所占空间 | 
 
 
 ## 枚举类型说明
@@ -379,7 +379,7 @@ FFRT_C_API int ffrt_cond_timedwait (ffrt_cond_t* cond, ffrt_mutex_t* mutex, cons
 
 **返回：**
 
-等待后被成功唤醒返回ffrt_success, 等待超时返回ffrt_error_timedout. 等待失败ffrt_error_inval.
+等待后被成功唤醒返回ffrt_success, 等待超时返回ffrt_error_timedout. 等待失败返回ffrt_error_inval.
 
 
 ### ffrt_cond_wait()
@@ -1096,7 +1096,7 @@ FFRT_C_API int ffrt_this_task_update_qos (ffrt_qos_t qos)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| qos | 更新的qos，更新当前任务的qos. | 
+| qos | 当前任务待更新的qos. | 
 
 **返回：**
 
@@ -1111,7 +1111,7 @@ FFRT_C_API int ffrt_usleep (uint64_t usec)
 
 **描述**
 
-延迟usec微秒.
+睡眠usec微秒.
 
 **起始版本：** 10
 
@@ -1119,7 +1119,7 @@ FFRT_C_API int ffrt_usleep (uint64_t usec)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| usec | 延迟时间，单位微秒. | 
+| usec | 睡眠时间，单位微秒. | 
 
 **返回：**
 
