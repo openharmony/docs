@@ -63,14 +63,14 @@ OAID会在下述场景中发生变化：
         atManager.requestPermissionsFromUser(context, ["ohos.permission.APP_TRACKING_CONSENT"]).then((data) => {
           if (data.authResults[0] == 0) {
             hilog.info(0x0000, 'testTag', '%{public}s', 'request permission success');
-			identifier.getOAID((err: BusinessError, data: string) => {
+            identifier.getOAID((err: BusinessError, data: string) => {
 			  if (err.code) {
 				hilog.error(0x0000, 'testTag', '%{public}s', `get oaid failed, error: ${err.code} ${err.message}`);
 			  } else {
 				const oaid: string = data;
 			    hilog.info(0x0000, 'testTag', '%{public}s', `get oaid by callback success, oaid: ${oaid}`);
 			  }
-		     });
+            });
           } else {
             hilog.info(0x0000, 'testTag', '%{public}s', 'user rejected');
           }
