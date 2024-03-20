@@ -202,9 +202,8 @@
 3. 创建PixelMap。
      
    ```ts
-   imageSource.createPixelMap().then((image.PixelMap) => {
+   imageSource.createPixelMap().then((pixelMap: image.PixelMap) => {
       console.log("Succeeded in creating PixelMap")
-      const imageSource : image.ImageSource = image.createImageSource(rawFileDescriptor);
    }).catch((err : BusinessError) => {
       console.error("Failed to creating PixelMap")
    });

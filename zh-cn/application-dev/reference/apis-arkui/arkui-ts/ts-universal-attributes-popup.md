@@ -49,6 +49,7 @@ bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions)
 | radius<sup>11+</sup>             | [Dimension](ts-types.md#dimension10)                  | 否   | 设置气泡圆角半径。<br/>默认值：20.0_vp                          |
 | shadow<sup>11+</sup>             | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;[ShadowStyle](ts-universal-attributes-image-effect.md#shadowstyle10枚举说明)    | 否   | 设置气泡阴影。<br/>默认值：ShadowStyle.OUTER_DEFAULT_MD      |
 | backgroundBlurStyle<sup>11+</sup> | [BlurStyle](ts-appendix-enums.md#blurstyle9) | 否 | 设置气泡模糊背景参数。<br />默认值：BlurStyle.COMPONENT_ULTRA_THICK |
+| transition<sup>12+</sup> | [TransitionEffect](ts-transition-animation-component.md#transitioneffect10对象说明) | 否 | 自定义设置popup弹窗显示和退出的动画效果。<br/>**说明：**<br/>如果不设置，则使用默认的显示/退出动效。 |
 
 ## PopupMessageOptions<sup>10+</sup>类型说明
 
@@ -80,6 +81,7 @@ bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions)
 | shadow<sup>11+</sup>             | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;[ShadowStyle](ts-universal-attributes-image-effect.md#shadowstyle10枚举说明)    | 否   | 设置气泡阴影。<br/>默认值：ShadowStyle.OUTER_DEFAULT_MD      |
 | backgroundBlurStyle<sup>11+</sup> | [BlurStyle](ts-appendix-enums.md#blurstyle9) | 否 | 设置气泡模糊背景参数。<br />默认值：BlurStyle.COMPONENT_ULTRA_THICK |
 | focusable<sup>11+</sup> | boolean | 否 | 设置气泡弹出后是否获焦。<br />默认值：false |
+| transition<sup>12+</sup> | [TransitionEffect](ts-transition-animation-component.md#transitioneffect10对象说明) | 否 | 自定义设置popup弹窗显示和退出的动画效果。<br/>**说明：**<br/>如果不设置，则使用默认的显示/退出动效。 |
 
 ## 示例
 
@@ -273,3 +275,72 @@ struct PopupExample {
 ```
 
 ![](figures/popup_04.gif)
+
+### 示例4
+
+本示例通过transition实现了自定义气泡显示/退出动效。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct PopupExample {
+  @State handlePopup: boolean = false
+  @State customPopup: boolean = false
+
+  // popup构造器定义弹框内容
+  @Builder popupBuilder() {
+    Row() {
+      Text('Custom Popup with transitionEffect').fontSize(10)
+    }.height(50).padding(5)
+  }
+
+  build() {
+    Flex({ direction: FlexDirection.Column }) {
+      // PopupOptions 类型设置弹框内容
+      Button('PopupOptions')
+        .onClick(() => {
+          this.handlePopup = !this.handlePopup
+        })
+        .bindPopup(this.handlePopup, {
+          message: 'This is a popup with transitionEffect',
+          placementOnTop: true,
+          showInSubWindow: false,
+          onStateChange: (e) => {
+            console.info(JSON.stringify(e.isVisible))
+            if (!e.isVisible) {
+              this.handlePopup = false
+            }
+          },
+          // 设置弹窗显示动效为透明度动效与平移动效的组合效果，无退出动效
+          transition:TransitionEffect.asymmetric(
+            TransitionEffect.OPACITY.animation({ duration: 1000, curve: Curve.Ease }).combine(
+              TransitionEffect.translate({ x: 50, y: 50 })),
+            TransitionEffect.IDENTITY)
+        })
+        .position({ x: 100, y: 150 })
+
+      // CustomPopupOptions 类型设置弹框内容
+      Button('CustomPopupOptions')
+        .onClick(() => {
+          this.customPopup = !this.customPopup
+        })
+        .bindPopup(this.customPopup, {
+          builder: this.popupBuilder,
+          placement: Placement.Top,
+          showInSubWindow: false,
+          onStateChange: (e) => {
+            if (!e.isVisible) {
+              this.customPopup = false
+            }
+          },
+          // 设置弹窗显示动效与退出动效为缩放动效
+          transition:TransitionEffect.scale({ x: 1, y: 0 }).animation({ duration: 500, curve: Curve.Ease })
+        })
+        .position({ x: 80, y: 300 })
+    }.width('100%').padding({ top: 5 })
+  }
+}
+```
+
+![](figures/popup_05.gif)

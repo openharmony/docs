@@ -918,7 +918,7 @@ struct Zoo {
 
 The \@Prop decorated state variable must be initialized. If not initialized locally, the variable must be initialized from the parent component. If it has been initialized locally, initialization from the parent component is optional.
 
-[Nonexample]
+[Incorrect Usage]
 
 ```ts
 @Observed
