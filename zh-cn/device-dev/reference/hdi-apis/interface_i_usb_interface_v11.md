@@ -7,9 +7,9 @@
 
 上层USB服务调用相关功能接口，可以打开/关闭设备，获取设备描述符，批量读取/写入数据等。
 
-**起始版本：** 3.2
+**起始版本：** 5.0
 
-**相关模块：**[USB](_u_s_b_v11.md)
+**相关模块：**[USB](_u_s_b_v10.md)
 
 
 ## 汇总
@@ -30,13 +30,13 @@ IUsbInterface::GetDeviceSpeed ([in] struct UsbDev dev, [out] unsigned char speed
 **描述**
 获取设备的速度。
 
-**起始版本：** 3.2
+**起始版本：** 5.0
 
 **参数:**
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| dev | USB设备地址信息，详见[UsbDev](_usb_dev_v11.md)。  | 
+| dev | USB设备地址信息，详见[UsbDev](_usb_dev_v10.md)。  | 
 | speed | 输出设备的速度。 | 
 
 **返回：**
@@ -53,7 +53,7 @@ IUsbInterface::GetInterfaceActiveStatus ([in] struct UsbDev dev, [in] unsigned c
 **描述**
 获取接口是否激活。
 
-**起始版本：** 3.2
+**起始版本：** 5.0
 
 **参数:**
 
