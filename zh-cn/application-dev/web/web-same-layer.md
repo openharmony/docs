@@ -362,7 +362,7 @@
 
 ### 使能同层渲染模式并指定标签名和自定义类型
 
-开发者也可通过[registerNativeEmbedRule(tag: string, type: string)](../reference/apis-arkweb/ts-basic-components-web.md#registerNativeEmbedRule12)指定tag标签和自定义类型。
+开发者也可通过[registerNativeEmbedRule(tag: string, type: string)](../reference/apis-arkweb/ts-basic-components-web.md#registernativeembedrule12)指定tag标签和自定义类型。
 
 当前tag仅支持"embed"和"object"，type类型则可任意指定但这两个string参数必须均为非空字串才会生效，两个字符串参数均不区分大小写，Web内核侧将会统一转成小写，其中tag字串使用全字符串匹配，type使用字符串前缀匹配。 
 
