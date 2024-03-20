@@ -1800,7 +1800,7 @@ enableNativeEmbedMode(mode: boolean)
 ### registerNativeEmbedRule<sup>12+</sup>
 registerNativeEmbedRule(tag: string, type: string)
 
-注册使用同层渲染的标签及其类型，目前仅支持object和embed两种标签，type类型可任意指定非空字串，不区分大小写，若其与标准类型重叠，内核将其识别为非同层渲染，应用侧若未使用该接口，内核将默认使用embed标签和"native/"前缀的type类型元素为同层元素，该接口同样受enableNativeEmbedMode接口控制即未使能同层渲染则该接口无效。
+注册使用同层渲染的HTML标签名和类型。标签名仅支持使用object和embed。标签类型可使用任意非空字串，不区分大小写。若标准类型与object或embed的标准类型相同，ArkWeb内核将其识别为非同层标签。本接口同样受enableNativeEmbedMode接口控制，在未使能同层渲染时本接口无效。在不使用本接口的情况下，ArkWeb内核默认将"native/"前缀类型的embed标签识别为同层标签。
 
 **参数：**
 

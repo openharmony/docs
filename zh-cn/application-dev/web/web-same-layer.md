@@ -1,8 +1,8 @@
 # 同层渲染绘制
 
-同层渲染是ArkWeb内核为应用提供原生组件和Web元素渲染在同一层级的能力。支持的组件范围请参考[NodeRenderType](../reference/apis-arkui/js-apis-arkui-builderNode.md#noderendertype)说明。 
+同层渲染是ArkWeb组件为应用提供原生组件和Web元素渲染在同一层级的能力。支持的组件范围请参考[NodeRenderType](../reference/apis-arkui/js-apis-arkui-builderNode.md#noderendertype)说明。 
 
-同层标签区域的背景为白色，对于Web嵌套Web组件的形式只提供一层嵌套的支持。
+同层标签对应的元素区域的背景为白色，对于Web嵌套Web组件的形式只提供一层嵌套的支持。
 
 - 使用前请在module.json5添加如下权限。
   
@@ -194,7 +194,7 @@
                 // 获取embed标签的生命周期变化数据。
               .onNativeEmbedLifecycleChange((embed) => {
                 console.log("NativeEmbed surfaceId" + embed.surfaceId);
-                // 获取web侧embed元素的id。
+                // 获取web侧embed标签的id。
                 const componentId = embed.info?.id?.toString() as string
                 if (embed.status == NativeEmbedStatus.CREATE) {
                   console.log("NativeEmbed create" + JSON.stringify(embed.info))
@@ -364,10 +364,10 @@
 
 开发者也可通过[registerNativeEmbedRule(tag: string, type: string)](../reference/apis-arkweb/ts-basic-components-web.md#registernativeembedrule12)指定tag标签和自定义类型。
 
-当前tag仅支持"embed"和"object"，type类型则可任意指定但这两个string参数必须均为非空字串才会生效，两个字符串参数均不区分大小写，Web内核侧将会统一转成小写，其中tag字串使用全字符串匹配，type使用字符串前缀匹配。 
+当前tag仅支持"embed"和"object"，type类型则可任意指定，两个字符串参数均不区分大小写，ArkWeb内核侧将会统一转成小写，其中tag字串使用全字符串匹配，type使用字符串前缀匹配。 
 
-若开发者不使用该接口或该接口接收的为非法字符串(如:空字符串)时，内核将使用默认设置即"embed" + "native/"前缀模式，若指定类型与w3c定义的标准类型重合如registerNativeEmbedRule("object", "application/pdf")，
-ArkWeb将遵循w3c标准行为，不会将其识别为同层元素。
+若开发者不使用该接口或该接口接收的为非法字符串(如:空字符串)时，内核将使用默认设置即"embed" + "native/"前缀模式，若指定类型与w3c定义的object或embed标准类型重合如registerNativeEmbedRule("object", "application/pdf")，
+ArkWeb将遵循w3c标准行为，不会将其识别为同层标签。
 
 - 应用侧代码使用registerNativeEmbedRule示例。
 
@@ -394,9 +394,9 @@ ArkWeb将遵循w3c标准行为，不会将其识别为同层元素。
           Stack() {
             ...
             Web({ src: $rawfile("test.html"), controller: this.browserTabController })
-                // 配置同层渲染开关开启。
+               // 配置同层渲染开关开启。
               .enableNativeEmbedMode(true)
-			    // 注册同层标签为"object"，类型为"test"前缀。
+               // 注册同层标签为"object"，类型为"test"前缀。
               .registerNativeEmbedRule("object", "test")
               ...
 		  }
@@ -405,7 +405,7 @@ ArkWeb将遵循w3c标准行为，不会将其识别为同层元素。
 
   ```
 
-- 与registerNativeEmbedRule相对应的前端页面代码。
+- 与registerNativeEmbedRule相对应的前端页面代码，类型可使用"test"及以"test"为前缀的字串。
 
   ```html
 
@@ -435,11 +435,11 @@ ArkWeb将遵循w3c标准行为，不会将其识别为同层元素。
   </html>
   ```
 
-## 绘制TextInput组件并将同层元素Update上报的位置信息更新到组件侧
+## 绘制TextInput组件并将同层元素更新时上报的位置信息更新到组件侧
 
-同层元素的Update包括滚动、缩放、元素发生改变导致的重排等行为。由于同层元素的位置基于Web组件坐标系，对于网页缩放这种并未真正改变元素的size的行为，只会有position的改变，宽高仍保持初始值。
+触发同层元素更新的行为包括滚动、缩放、元素发生改变导致的重排等。由于同层元素的位置基于Web组件坐标系，对于网页缩放这种并未真正改变元素的size的行为，只会有position的改变，宽高仍保持初始值。
 
-需要位置信息的组件如TextInput、TextArea等需将同层元素Update上报来的位置信息实时更新到组件侧。
+需要位置信息的组件如TextInput、TextArea等需将同层元素更新上报来的位置信息实时更新到组件侧。
 
 - 应用侧完整示例。
 
