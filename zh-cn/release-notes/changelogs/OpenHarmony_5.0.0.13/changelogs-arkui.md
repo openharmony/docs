@@ -20,6 +20,10 @@
 
 @LocalStorageLink,@LocalStorageProp,@StorageProp,@StorageLink,@Provide,@Consume,@Watch key值不存在时，编译报错。
 
+**API Level**
+
+12 
+
 **变更发生版本**
 
 从OpenHarmony SDK 5.0.0.13开始。
