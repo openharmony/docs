@@ -137,7 +137,7 @@ inputFilter(value: ResourceStr, error?: (value: string) => void)
 
 copyOption(value: CopyOptions)
 
-设置输入的文本是否可复制。设置CopyOptions.None时，当前TextArea中的文字无法被复制或剪切，仅支持粘贴。
+设置输入的文本是否可复制。设置CopyOptions.None时，当前TextInput中的文字无法被复制或剪切，仅支持粘贴。
 
 copyOption对于拖拽，只限制是否选中，不涉及拖拽范围。
 
@@ -299,7 +299,7 @@ passwordIcon(value: PasswordIcon)
 
 enableKeyboardOnFocus(value: boolean)
 
-设置TextArea通过点击以外的方式获焦时，是否绑定输入法。
+设置TextInput通过点击以外的方式获焦时，是否绑定输入法。
 
 从API version 10开始，获焦默认绑定输入法。
 
@@ -351,7 +351,7 @@ maxLines(value: number)
 
 | 参数名 | 类型                                      | 必填 | 说明                                                         |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [BarState](ts-appendix-enums.md#barstate) | 是   | 内联输入风格编辑态时文本可显示的最大行数。<br/>默认值：3 <br/>取值范围：(0, +∞) |
+| value  | number | 是   | 内联输入风格编辑态时文本可显示的最大行数。<br/>默认值：3 <br/>取值范围：(0, +∞) |
 
 ### customKeyboard<sup>10+</sup>
 
@@ -367,7 +367,7 @@ customKeyboard(value: CustomBuilder)
 
 自定义键盘无法获取焦点，但是会拦截手势事件。
 
-默认在输入控件失去焦点时，关闭自定义键盘，开发者也可以通过[TextAreaController](ts-basic-components-textarea.md#textareacontroller8).[stopEditing](#stopediting10)方法控制键盘关闭。
+默认在输入控件失去焦点时，关闭自定义键盘，开发者也可以通过[TextInputController](#textinputcontroller8).[stopEditing](#stopediting10)方法控制键盘关闭。
 
 如果设备支持拍摄输入，设置自定义键盘后，该输入框会不支持拍摄输入。
 
