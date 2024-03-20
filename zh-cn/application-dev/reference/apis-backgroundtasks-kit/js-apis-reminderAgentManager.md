@@ -623,6 +623,10 @@ reminderAgentManager.getAllValidReminders().then((reminders: Array<reminderAgent
 
 跳转目标的ability信息。
 
+> **说明**
+>
+> 从 API version 12 开始，uri 对所有应用开放。
+
 **系统能力**：SystemCapability.Notification.ReminderAgent
 
 
@@ -631,7 +635,7 @@ reminderAgentManager.getAllValidReminders().then((reminders: Array<reminderAgent
 | pkgName | string | 是 | 指明跳转目标的包名。 |
 | abilityName | string | 是 | 指明跳转目标的ability名称。 |
 | parameters<sup>12+</sup> | Record\<string, Object> | 否 | 需要传递到目标的参数。 |
-| uri<sup>12+</sup> | string | 否 | 指明跳转目标的uri信息。 |
+| uri<sup>10+</sup> | string | 否 | 指明跳转目标的uri信息。 |
 
 
 ## MaxScreenWantAgent

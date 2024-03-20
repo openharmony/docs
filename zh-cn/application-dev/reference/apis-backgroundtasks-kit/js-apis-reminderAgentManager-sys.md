@@ -41,7 +41,9 @@ import reminderAgentManager from '@ohos.reminderAgentManager';
 
 跳转目标的ability信息。
 
-> **说明**：从 API version 12 开始，接口 uri 对所有应用开放。
+> **说明**
+>
+> 从 API version 12 开始，uri 对所有应用开放。
 
 **系统能力**：SystemCapability.Notification.ReminderAgent
 
