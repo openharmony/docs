@@ -1334,7 +1334,7 @@ off(type: 'deviceAvailable', callback?: (device: OutputDeviceInfo) => void): voi
 | 参数名    | 类型                    | 必填  |      说明                                               |
 | ------   | ---------------------- | ---- | ------------------------------------------------------- |
 | type     | string                 | 是    | 事件回调类型，支持事件`'deviceAvailable'`：设备发现回调。|
-| callback     | function                 | 否    | 用于返回设备信息。|
+| callback     | (device: OutputDeviceInfo) => void                 | 否    | 用于返回设备信息。|
 
 **示例：**
 
