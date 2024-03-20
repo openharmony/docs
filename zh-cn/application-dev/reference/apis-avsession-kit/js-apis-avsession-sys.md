@@ -125,7 +125,7 @@ getHistoricalSessionDescriptors(maxSize?: number): Promise\<Array\<Readonly\<AVS
 
 | 参数名   | 类型    | 必填 | 说明                                                             |
 | -------- | ------ | ---- | -----------------------------------------------------------------|
-| maxSize  | number | 否   | 指定获取描述符数量的最大值，如果提供0或者不提供，则最大值由系统确定。|
+| maxSize  | number | 否   | 指定获取描述符数量的最大值，可选范围是0-10，不填则取默认值，默认值为3。|
 
 **返回值：**
 
@@ -176,7 +176,7 @@ getHistoricalSessionDescriptors(maxSize: number, callback: AsyncCallback\<Array\
 
 | 参数名   | 类型                                                                            | 必填 | 说明                                                             |
 | -------- | ------------------------------------------------------------------------------ | ---- | -----------------------------------------------------------------|
-| maxSize  | number                                                                         | 否  | 指定获取描述符数量的最大值，如果提供0或者不提供，则最大值由系统确定。|
+| maxSize  | number                                                                         | 是  | 指定获取描述符数量的最大值，可选范围是0-10。|
 | callback | AsyncCallback<Array<Readonly<[AVSessionDescriptor](#avsessiondescriptor)\>\>\> | 是   | 回调函数。返回所有会话描述的只读对象。                              |
 
 **错误码：**
@@ -1307,7 +1307,7 @@ on(type: 'deviceAvailable', callback: (device: OutputDeviceInfo) => void): void
 | 参数名   | 类型                 | 必填 | 说明                                                         |
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
 | type     | string               | 是   | 事件回调类型，支持事件`'deviceAvailable'`，有设备被发现时触发回调。 |
-| callback | (device: OutputDeviceInfo) => void | 是   | 回调函数。当监听事件注册成功，err为undefined，否则返回错误对象。                                |
+| callback | (device: [OutputDeviceInfo](js-apis-avsession.md#outputdeviceinfo10) => void | 是   | 回调函数。当监听事件注册成功，err为undefined，否则返回错误对象。                                |
 
 **示例：**
 
@@ -1334,7 +1334,7 @@ off(type: 'deviceAvailable', callback?: (device: OutputDeviceInfo) => void): voi
 | 参数名    | 类型                    | 必填  |      说明                                               |
 | ------   | ---------------------- | ---- | ------------------------------------------------------- |
 | type     | string                 | 是    | 事件回调类型，支持事件`'deviceAvailable'`：设备发现回调。|
-| callback     | (device: OutputDeviceInfo) => void                 | 否    | 用于返回设备信息。|
+| callback     | (device: [OutputDeviceInfo](js-apis-avsession.md#outputdeviceinfo10) => void                 | 否    | 用于返回设备信息。|
 
 **示例：**
 
@@ -1911,6 +1911,6 @@ aVCastController.off('videoSizeChange');
 | type         | [AVSessionType](js-apis-avsession.md#avsessiontype10)   | 是 | 是 | 会话类型    |
 | sessionTag   | string             | 是 | 是 | 会话的自定义名称    |
 | elementName  | [ElementName](../apis-ability-kit/js-apis-bundle-ElementName.md)  | 是 | 是 | 会话所属应用的信息（包含bundleName、abilityName等） |
-| isActive     | boolean             | 是 | 是 | 会话是否被激活。 true：已被激活， false：没有被激活                                      |
-| isTopSession | boolean             | 是 | 是 | 会话是否为最新的会话。 true：是最新的会话， false：不是最新的会话                                |
+| isActive     | boolean             | 是 | 是 | 会话是否被激活。<br>true：已被激活。 <br>false：没有被激活。                                      |
+| isTopSession | boolean             | 是 | 是 | 会话是否为最新的会话。 <br>true：是最新的会话。<br>false：不是最新的会话。                |
 | outputDevice | [OutputDeviceInfo](js-apis-avsession.md#outputdeviceinfo10)    | 是 | 是 | 分布式设备相关信息   |
