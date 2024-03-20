@@ -41,7 +41,7 @@ SelectTitleBar({selected: number, options: Array&lt;SelectOption&gt;, menuItems?
 | subtitle | [ResourceStr](ts-types.md#resourcestr) | No| - | Subtitle.|
 | badgeValue | number | No| - | Badge.|
 | hidesBackButton | boolean                                                                     | No| - | Whether to hide the back arrow on the left.<br>Default value: **false** The value **true** means to hide the provider, and **false** means the opposite.|
-| onSelected | (index: number) =&gt; void                                   | No| - | Invoked when an option in the drop-down list box is selected. The index of the selected option is passed in.|
+| onSelected | (index: number) =&gt; void                                   | No| - | Callback invoked when an option in the drop-down menu is selected. The index of the selected option is passed in.|
 
 
 ## SelectTitleBarMenuItem
@@ -101,8 +101,8 @@ struct Index {
         SelectTitleBar({
           options: [
             { value: 'All photos' },
-            { value:'Local (device)' },
-            {"value":"Local (memory card)"}
+            { value: 'Local (device)' },
+            { value: 'Local (memory card)'}
           ],
           selected: 0,
           onSelected: (index) => promptAction.showToast({ message: 'page index ' + index }),
@@ -112,8 +112,8 @@ struct Index {
         SelectTitleBar({
           options: [
             { value: 'All photos' },
-            { value:'Local (device)' },
-            {"value":"Local (memory card)"}
+            { value: 'Local (device)' },
+            { value: 'Local (memory card)'}
           ],
           selected: 0,
           onSelected: (index) => promptAction.showToast({ message: 'page index ' + index }),
@@ -124,7 +124,7 @@ struct Index {
           options: [
             { value: 'All photos' },
             { value:'Local (device)' },
-            {"value":"Local (memory card)"}
+            { value:"Local (memory card)"}
           ],
           selected: 1,
           onSelected: (index) => promptAction.showToast({ message: 'page index ' + index }),
@@ -134,8 +134,8 @@ struct Index {
         SelectTitleBar({
           options: [
             { value: 'All photos' },
-            { value:'Local (device)' },
-            {"value":"Local (memory card)"}
+            { value: 'Local (device)' },
+            { value: 'Local (memory card)'}
           ],
           selected: 1,
           onSelected: (index) => promptAction.showToast({ message: 'page index ' + index }),
@@ -149,7 +149,7 @@ struct Index {
           options: [
             { value: 'All photos' },
             { value:'Local (device)' },
-            {"value":"Local (memory card)"}
+            { value: 'Local (memory card)'}
           ],
           selected: 0,
           onSelected: (index) => promptAction.showToast({ message: 'page index ' + index }),

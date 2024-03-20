@@ -6,7 +6,7 @@ The **DrawableDescriptor** module provides APIs for obtaining **pixelMap** objec
 >
 > The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> You can preview how this component looks on a real device. The preview is not yet available in the DevEco Studio Previewer.
+> You can preview how this component looks on a real device, but not in DevEco Studio Previewer.
 
 ## Modules to Import
 
@@ -31,7 +31,7 @@ Creates a **DrawableDescriptor** object when the passed resource ID or name belo
 
 Creates a **LayeredDrawableDescriptor** object when the passed resource ID or name belongs to a JSON file that contains foreground and background resources.
 
-The content of the **drawble.json** file is as follows:
+The **drawable.json** file is located under **entry/src/main/resources/base/media** in the project directory. Below shows the file content:
 
 ```json
 {
@@ -56,8 +56,8 @@ struct Index {
   build() {
     Row() {
       Column() {
-        Image((this.resManager.getDrawableDescriptor($r('app.media.icon').id) as LayeredDrawableDescriptor))
-        Image(((this.resManager.getDrawableDescriptor($r('app.media.icon')
+        Image((this.resManager.getDrawableDescriptor($r('app.media.drawable').id) as LayeredDrawableDescriptor))
+        Image(((this.resManager.getDrawableDescriptor($r('app.media.drawable')
           .id) as LayeredDrawableDescriptor).getForeground()).getPixelMap())
       }.height('50%')
     }.width('50%')
@@ -82,7 +82,7 @@ Obtains this **pixelMap** object.
   ```ts
 import { DrawableDescriptor, LayeredDrawableDescriptor } from '@ohos.arkui.drawableDescriptor'
 let resManager = getContext().resourceManager
-let pixmap: DrawableDescriptor = (resManager.getDrawableDescriptor($r('app.media.icon')
+let pixmap: DrawableDescriptor = (resManager.getDrawableDescriptor($r('app.media.drawable')
     .id)) as DrawableDescriptor;
 let pixmapNew: object = pixmap.getPixelMap()
   ```
@@ -104,7 +104,7 @@ Obtains the **pixelMap** object where the foreground, background, and mask are b
   ```ts
 import { DrawableDescriptor, LayeredDrawableDescriptor } from '@ohos.arkui.drawableDescriptor'
 let resManager = getContext().resourceManager
-let pixmap: LayeredDrawableDescriptor = (resManager.getDrawableDescriptor($r('app.media.icon')
+let pixmap: LayeredDrawableDescriptor = (resManager.getDrawableDescriptor($r('app.media.drawable')
     .id)) as LayeredDrawableDescriptor;
 let pixmapNew: object = pixmap.getPixelMap()
   ```
@@ -126,7 +126,7 @@ Obtains the **DrawableDescriptor** object of the foreground.
   ```ts
 import { DrawableDescriptor, LayeredDrawableDescriptor } from '@ohos.arkui.drawableDescriptor'
 let resManager = getContext().resourceManager
-let drawable: LayeredDrawableDescriptor = (resManager.getDrawableDescriptor($r('app.media.icon')
+let drawable: LayeredDrawableDescriptor = (resManager.getDrawableDescriptor($r('app.media.drawable')
     .id)) as LayeredDrawableDescriptor;
 let drawableNew: object =drawable.getForeground()
   ```
@@ -148,7 +148,7 @@ Obtains the **DrawableDescriptor** object of the background.
   ```ts
 import { DrawableDescriptor, LayeredDrawableDescriptor } from '@ohos.arkui.drawableDescriptor'
 let resManager = getContext().resourceManager
-let drawable: LayeredDrawableDescriptor = (resManager.getDrawableDescriptor($r('app.media.icon')
+let drawable: LayeredDrawableDescriptor = (resManager.getDrawableDescriptor($r('app.media.drawable')
     .id)) as LayeredDrawableDescriptor;
 let drawableNew: object =drawable.getBackground()
   ```
@@ -170,7 +170,7 @@ Obtains the **DrawableDescriptor** object of the mask.
   ```ts
 import { DrawableDescriptor, LayeredDrawableDescriptor } from '@ohos.arkui.drawableDescriptor'
 let resManager = getContext().resourceManager
-let drawable: LayeredDrawableDescriptor = (resManager.getDrawableDescriptor($r('app.media.icon')
+let drawable: LayeredDrawableDescriptor = (resManager.getDrawableDescriptor($r('app.media.drawable')
     .id)) as LayeredDrawableDescriptor;
 let drawableNew: object =drawable.getMask()
   ```
@@ -202,8 +202,12 @@ struct Index {
         Image($r('app.media.icon'))
           .width('200px').height('200px')
           .clip(new Path({commands:LayeredDrawableDescriptor.getMaskClipPath()}))
-      }.height('50%')
-    }.width('50%')
+        Text(`Obtain the built-in clip path parameters:`)
+          .fontWeight(800)
+        Text(JSON.stringify(LayeredDrawableDescriptor.getMaskClipPath()))
+          .padding({ left: 20, right: 20 })
+      }.height('100%').justifyContent(FlexAlign.Center)
+    }.width('100%')
   }
 }
   ```

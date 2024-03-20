@@ -42,7 +42,7 @@ Invoked when a page is hidden. This callback is used in the routing process or s
 
 onBackPress?(): void | boolean
 
-Invoked when a user clicks the back button. It works only for the custom components decorated by **@Entry**.
+Invoked when the user clicks the Back button. It works only for the custom components decorated by @Entry. The value **true** means that the page executes its own return logic instead of the , and **false** (default) means that the default return logic is used.
 
 
 ```ts
@@ -77,9 +77,7 @@ struct IndexComponent {
   }
 }
 ```
-
-![en-us_image_0000001563060749](figures/en-us_image_0000001563060749.png)
-
+![en-us_image_lifecycle](figures/en-us_image_lifecycle.gif)
 
 ## onLayout<sup>9+</sup>
 
@@ -129,22 +127,29 @@ Since API version 10, this API is supported in ArkTS widgets.
 
 ```ts
 // xxx.ets
+export class Message {
+  value: string | undefined;
+
+  constructor(value: string) {
+    this.value = value
+  }
+}
+
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Hello World'
   @State switch: boolean = true
 
   build() {
     Column() {
-      Button(this.message)
+      Button('Hello World')
         .fontSize(50)
         .fontWeight(FontWeight.Bold)
         .onClick(() => {
           this.switch = !this.switch
         })
       if (this.switch) {
-        Child()
+        Child({ message: new Message('Child') })
       }
     }
     .height("100%")
@@ -155,13 +160,16 @@ struct Index {
 @Reusable
 @Component
 struct Child {
-  aboutToReuse(params: Object) {
+  @State message: Message = new Message('AboutToReuse');
+
+  aboutToReuse(params: Record<string, ESObject>) {
     console.info("Recycle Child")
+    this.message = params.message as Message
   }
 
   build() {
     Column() {
-      Text("Child Component")
+      Text(this.message.value)
         .fontSize(20)
     }
     .borderWidth(2)

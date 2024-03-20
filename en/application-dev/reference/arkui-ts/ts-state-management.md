@@ -26,7 +26,7 @@ For details about how to use AppStorage on the UI, see [AppStorage: Application-
 
 ### link<sup>10+</sup>
 
-static link&lt;T&lt;(propName: string): SubscribedAbstractProperty&lt;T&lt;
+static link&lt;T&gt;(propName: string): SubscribedAbstractProperty&lt;T&gt;
 
 Establishes two-way data binding with the given attribute (specified by **propName**) in AppStorage. If the given attribute exists in AppStorage, the two-way bound data of the attribute in AppStorage is returned.
 
@@ -44,15 +44,15 @@ If the given attribute does not exist in AppStorage, **undefined** is returned.
 
 **Return value**
 
-| Type                                 | Description                                      |
-| ----------------------------------- | ---------------------------------------- |
+| Type                               | Description                                                        |
+| ----------------------------------- | ------------------------------------------------------------ |
 | SubscribedAbstractProperty&lt;T&gt; | Returns two-way bound data if specified attribute exists in AppStorage; returns **undefined** otherwise.|
 
-**Example:**
+**Example**
 ```ts
 AppStorage.setOrCreate('PropA', 47);
-let linkToPropA1:SubscribedAbstractProperty<number> = AppStorage.link('PropA');
-let linkToPropA2:SubscribedAbstractProperty<number> = AppStorage.link('PropA'); // linkToPropA2.get() == 47
+let linkToPropA1: SubscribedAbstractProperty<number> = AppStorage.link('PropA');
+let linkToPropA2: SubscribedAbstractProperty<number> = AppStorage.link('PropA'); // linkToPropA2.get() == 47
 linkToPropA1.set(48); // Two-way synchronization: linkToPropA1.get() == linkToPropA2.get() == 48
 ```
 
@@ -61,22 +61,22 @@ linkToPropA1.set(48); // Two-way synchronization: linkToPropA1.get() == linkToPr
 
 static setAndLink&lt;T&gt;(propName: string, defaultValue: T): SubscribedAbstractProperty&lt;T&gt;
 
-Works in a way similar to the **Link** API. If the given attribute exists in AppStorage, the two-way bound data of the attribute in AppStorage is returned. If the given attribute does not exist, it is created and initialized with **defaultValue** in AppStorage, and two-way bound data is returned.
+Works in a way similar to the **link** API. If the given attribute exists in AppStorage, the two-way bound data of the attribute in AppStorage is returned. If the given attribute does not exist, it is created and initialized with **defaultValue** in AppStorage, and two-way bound data is returned. The value of **defaultValue** must be of the T type and cannot be **undefined** or **null**.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
-| Name         | Type    | Mandatory  | Description                                    |
-| ------------ | ------ | ---- | ---------------------------------------- |
-| propName     | string | Yes   | Attribute name in AppStorage.                        |
-| defaultValue | T      | Yes   | Default value used to initialize the attribute with the specified attribute name in AppStorage.|
+| Name      | Type  | Mandatory| Description                                                    |
+| ------------ | ------ | ---- | ------------------------------------------------------------ |
+| propName     | string | Yes  | Attribute name in AppStorage.                                      |
+| defaultValue | T      | Yes  | Default value used to initialize the attribute with the specified attribute name in AppStorage. The value cannot be **undefined** or **null**.|
 
 **Return value**
 
 | Type                                 | Description                                      |
 | ----------------------------------- | ---------------------------------------- |
-| SubscribedAbstractProperty&lt;T&gt; | Instance of **SubscribedAbstractProperty&lt;T&gt;** and two-way bound data of the given attribute in AppStorage|
+| SubscribedAbstractProperty&lt;T&gt; | Instance of **SubscribedAbstractProperty&lt;T&gt;** and two-way bound data of the given attribute in AppStorage.|
 
 **Example**
 ```ts
@@ -102,8 +102,8 @@ Establishes one-way data binding with the given attribute (specified by **propNa
 
 **Return value**
 
-| Type                                 | Description                                      |
-| ----------------------------------- | ---------------------------------------- |
+| Type                               | Description                                                        |
+| ----------------------------------- | ------------------------------------------------------------ |
 | SubscribedAbstractProperty&lt;T&gt; | Returns one-way bound data if specified attribute exists in AppStorage; returns **undefined** otherwise.|
 
 **Example**
@@ -120,16 +120,16 @@ prop1.set(1); // one-way sync: prop1.get()=1; but prop2.get() == 47
 
 static setAndProp&lt;T&gt;(propName: string, defaultValue: T): SubscribedAbstractProperty&lt;T&gt;
 
-Works in a way similar to the **Prop** API. If the given attribute exists in AppStorage, the one-way bound data of the attribute in AppStorage is returned. If the given attribute does not exist, it is created and initialized with **defaultValue** in AppStorage, and one-way bound data is returned.
+Works in a way similar to the **prop** API. If the given attribute exists in AppStorage, the one-way bound data of the attribute in AppStorage is returned. If the given attribute does not exist, it is created and initialized with **defaultValue** in AppStorage, and one-way bound data is returned. The value of **defaultValue** must be of the T type and cannot be **undefined** or **null**.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
-| Name         | Type    | Mandatory  | Description                                    |
-| ------------ | ------ | ---- | ---------------------------------------- |
-| propName     | string | Yes   | Attribute name in AppStorage.                        |
-| defaultValue | T      | Yes   | Default value used to initialize the attribute with the specified attribute name in AppStorage.|
+| Name      | Type  | Mandatory| Description                                                    |
+| ------------ | ------ | ---- | ------------------------------------------------------------ |
+| propName     | string | Yes  | Attribute name in AppStorage.                                      |
+| defaultValue | T      | Yes  | Default value used to initialize the attribute with the specified attribute name in AppStorage. The value cannot be **undefined** or **null**.|
 
 **Return value**
 
@@ -186,11 +186,11 @@ Obtains the attribute with the specified attribute name in AppStorage. If the at
 
 **Return value**
 
-| Type                      | Description                                      |
-| ------------------------ | ---------------------------------------- |
+| Type                    | Description                                                       |
+| ------------------------ | ----------------------------------------------------------- |
 | T \| undefined | Returns the attribute with the specified attribute name in AppStorage; returns **undefined** if the attribute does not exist.|
 
-**Example:**
+**Example**
 ```ts
 AppStorage.setOrCreate('PropA', 47);
 let value: number = AppStorage.get('PropA') as number; // 47
@@ -214,8 +214,8 @@ Sets the value for the attribute with the specified attribute name in AppStorage
 
 **Return value**
 
-| Type     | Description                                      |
-| ------- | ---------------------------------------- |
+| Type   | Description                                                        |
+| ------- | ------------------------------------------------------------ |
 | boolean | Returns **true** if the operation is successful; return **false** if the attribute with the specified attribute name does not exist in AppStorage, or the value to set is **undefined** or **null**.  |
 
 **Example**
@@ -232,6 +232,8 @@ static setOrCreate&lt;T&gt;(propName: string, newValue: T): void
 
 Sets a new value for the attribute with the specified attribute name in AppStorage or, if the attribute does not exist, creates one with the specified attribute name and the set value.
 If the new value is the same as the existing value of the attribute with the specified attribute name, the state variable will not instruct the UI to update the value of the attribute. This **setOrCreate** method creates only one AppStorage key-value pair. To create multiple key-value pairs, call this method multiple times.
+
+The value of **newValue** cannot be **undefined** or **null**.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -254,7 +256,7 @@ static delete(propName: string): boolean
 
 Deletes the attribute with the specified attribute name from AppStorage under the prerequisite that the attribute does not have a subscriber. If there is a subscriber, **false** is returned. If the deletion is successful, **true** is returned.
 
-The subscribers of the attribute are attributes with the same name bound to APIs such as **Link** and **Prop**, **\@StorageLink('propName')**, and **\@StorageProp('propName')**. This means that if **\@StorageLink('propName')** and **\@StorageProp('propName')** are used in a custom component or if there is still a **SubscribedAbstractProperty** instance in sync with the attribute, the attribute cannot be deleted from AppStorage.
+The subscribers of the attribute are attributes with the same name bound to APIs such as **link** and **prop**, **\@StorageLink('propName')**, and **\@StorageProp('propName')**. This means that if @StorageLink('propName') and @StorageProp('propName') are used in a custom component or if there is still a **SubscribedAbstractProperty** instance in sync with the attribute, the attribute cannot be deleted from AppStorage.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -306,7 +308,7 @@ let keys: IterableIterator<string> = AppStorage.keys();
 
 static clear(): boolean
 
-Deletes all attributes from AppStorage under the prerequisite that none of the attributes has a subscriber. If any of the attributes has a subscriber, **false** is returned. If the deletion is successful, **true** is returned.
+Deletes all attributes from AppStorage under the prerequisite that none of the attributes has a subscriber. If any of the attributes has a subscriber, this API does not take effect and **false** is returned. If the deletion is successful, **true** is returned.
 
 For details about the subscriber, see [delete](#delete10).
 
@@ -314,8 +316,8 @@ For details about the subscriber, see [delete](#delete10).
 
 **Return value**
 
-| Type     | Description                                      |
-| ------- | ---------------------------------------- |
+| Type   | Description                                                        |
+| ------- | ------------------------------------------------------------ |
 | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
@@ -370,24 +372,23 @@ If the given attribute does not exist in AppStorage, **undefined** is returned.
 
 **Return value**
 
-| Type  | Description                                      |
-| ---- | ---------------------------------------- |
-| any  | Returns two-way bound data if specified attribute exists in AppStorage; returns **undefined** otherwise.|
+| Type                            | Description                                                        |
+| -------------------------------- | ------------------------------------------------------------ |
+| any | Returns two-way bound data if specified attribute exists in AppStorage; returns **undefined** otherwise.|
 
 **Example**
 ```ts
 AppStorage.SetOrCreate('PropA', 47);
-let linkToPropA1:SubscribedAbstractProperty<number> = AppStorage.Link('PropA');
-let linkToPropA2:SubscribedAbstractProperty<number> = AppStorage.Link('PropA'); // linkToPropA2.get() == 47
+let linkToPropA1: SubscribedAbstractProperty<number> = AppStorage.Link('PropA');
+let linkToPropA2: SubscribedAbstractProperty<number> = AppStorage.Link('PropA'); // linkToPropA2.get() == 47
 linkToPropA1.set(48); // Two-way synchronization: linkToPropA1.get() == linkToPropA2.get() == 48
 ```
-
 
 ### SetAndLink<sup>(deprecated)</sup>
 
 static SetAndLink&lt;T&gt;(propName: string, defaultValue: T): SubscribedAbstractProperty&lt;T&gt;
 
-Works in a way similar to the **Link** API. If the given attribute exists in AppStorage, the two-way bound data of the attribute in AppStorage is returned. If the given attribute does not exist, it is created and initialized with <b class="+ topic/ph hi-d/b " id="b537113298389">defaultValue</b> in AppStorage, and two-way bound data is returned.
+Works in a way similar to the **Link** API. If the given attribute exists in AppStorage, the two-way bound data of the attribute in AppStorage is returned. If the given attribute does not exist, it is created and initialized with **defaultValue** in AppStorage, and two-way bound data is returned. The value of **defaultValue** must be of the T type and cannot be **undefined** or **null**.
 
 > **NOTE**
 >
@@ -397,16 +398,16 @@ Works in a way similar to the **Link** API. If the given attribute exists in App
 
 **Parameters**
 
-| Name         | Type    | Mandatory  | Description                                    |
-| ------------ | ------ | ---- | ---------------------------------------- |
-| propName     | string | Yes   | Attribute name in AppStorage.                        |
-| defaultValue | T      | Yes   | Default value used to initialize the attribute with the specified attribute name in AppStorage.|
+| Name      | Type  | Mandatory| Description                                                    |
+| ------------ | ------ | ---- | ------------------------------------------------------------ |
+| propName     | string | Yes  | Attribute name in AppStorage.                                      |
+| defaultValue | T      | Yes  | Default value used to initialize the attribute with the specified attribute name in AppStorage. The value cannot be **undefined** or **null**.|
 
 **Return value**
 
 | Type                                 | Description                                      |
 | ----------------------------------- | ---------------------------------------- |
-| SubscribedAbstractProperty&lt;T&gt; | Instance of **SubscribedAbstractProperty&lt;T&gt;** and two-way bound data of the given attribute in AppStorage|
+| SubscribedAbstractProperty&lt;T&gt; | Instance of **SubscribedAbstractProperty&lt;T&gt;** and two-way bound data of the given attribute in AppStorage.|
 
 **Example**
 ```ts
@@ -414,6 +415,7 @@ AppStorage.SetOrCreate('PropA', 47);
 let link1: SubscribedAbstractProperty<number> = AppStorage.SetAndLink('PropB', 49); // Create PropB 49
 let link2: SubscribedAbstractProperty<number> = AppStorage.SetAndLink('PropA', 50); // PropA exists, remains 47
 ```
+
 
 ### Prop<sup>(deprecated)</sup>
 
@@ -437,24 +439,23 @@ Establishes one-way data binding with the given attribute (specified by **propNa
 
 **Return value**
 
-| Type  | Description                                      |
-| ---- | ---------------------------------------- |
-| any  | Returns one-way bound data if specified attribute exists in AppStorage; returns **undefined** otherwise.|
+| Type                            | Description                                                        |
+| -------------------------------- | ------------------------------------------------------------ |
+| any | Returns one-way bound data if specified attribute exists in AppStorage; returns **undefined** otherwise.|
 
 **Example**
 ```ts
 AppStorage.SetOrCreate('PropA', 47);
-let prop1:SubscribedAbstractProperty<number> = AppStorage.Prop('PropA');
-let prop2:SubscribedAbstractProperty<number> = AppStorage.Prop('PropA');
+let prop1: SubscribedAbstractProperty<number> = AppStorage.Prop('PropA');
+let prop2: SubscribedAbstractProperty<number> = AppStorage.Prop('PropA');
 prop1.set(1); // one-way sync: prop1.get()=1; but prop2.get() == 47
 ```
-
 
 ### SetAndProp<sup>(deprecated)</sup>
 
 static SetAndProp&lt;S&gt;(propName: string, defaultValue: S): SubscribedAbstractProperty&lt;S&gt;
 
-Works in a way similar to the **Prop** API. If the given attribute exists in AppStorage, the one-way bound data of the attribute in AppStorage is returned. If the given attribute does not exist, it is created and initialized with **defaultValue** in AppStorage, and one-way bound data is returned.
+Works in a way similar to the **Prop** API. If the given attribute exists in AppStorage, the one-way bound data of the attribute in AppStorage is returned. If the given attribute does not exist, it is created and initialized with **defaultValue** in AppStorage, and one-way bound data is returned. The value of **defaultValue** must be of the S type and cannot be **undefined** or **null**.
 
 > **NOTE**
 >
@@ -464,10 +465,10 @@ Works in a way similar to the **Prop** API. If the given attribute exists in App
 
 **Parameters**
 
-| Name         | Type    | Mandatory  | Description                                    |
-| ------------ | ------ | ---- | ---------------------------------------- |
-| propName     | string | Yes   | Attribute name in AppStorage.                        |
-| defaultValue | S      | Yes   | Default value used to initialize the attribute with the specified attribute name in AppStorage.|
+| Name      | Type  | Mandatory| Description                                                    |
+| ------------ | ------ | ---- | ------------------------------------------------------------ |
+| propName     | string | Yes  | Attribute name in AppStorage.                                      |
+| defaultValue | S      | Yes  | Default value used to initialize the attribute with the specified attribute name in AppStorage. The value cannot be **undefined** or **null**.|
 
 **Return value**
 
@@ -480,7 +481,6 @@ Works in a way similar to the **Prop** API. If the given attribute exists in App
 AppStorage.SetOrCreate('PropA', 47);
 let prop: SubscribedAbstractProperty<number> = AppStorage.SetAndProp('PropB', 49); // PropA -> 47, PropB -> 49
 ```
-
 
 ### Has<sup>(deprecated)</sup>
 
@@ -511,7 +511,6 @@ Checks whether the attribute with the specified attribute name exists in AppStor
 AppStorage.Has('simpleProp');
 ```
 
-
 ### Get<sup>(deprecated)</sup>
 
 static Get&lt;T&gt;(propName: string): T | undefined
@@ -532,8 +531,8 @@ Obtains the attribute with the specified attribute name in AppStorage. If the at
 
 **Return value**
 
-| Type                      | Description                                      |
-| ------------------------ | ---------------------------------------- |
+| Type                    | Description                                                        |
+| ------------------------ | ------------------------------------------------------------ |
 | T \| undefined | Returns the attribute with the specified attribute name in AppStorage; returns **undefined** if the attribute does not exist.|
 
 **Example**
@@ -541,7 +540,6 @@ Obtains the attribute with the specified attribute name in AppStorage. If the at
 AppStorage.SetOrCreate('PropA', 47);
 let value: number = AppStorage.Get('PropA') as number; // 47
 ```
-
 
 ### Set<sup>(deprecated)</sup>
 
@@ -564,8 +562,8 @@ Sets the value for the attribute with the specified attribute name in AppStorage
 
 **Return value**
 
-| Type     | Description                                      |
-| ------- | ---------------------------------------- |
+| Type   | Description                                                        |
+| ------- | ------------------------------------------------------------ |
 | boolean | Returns **true** if the operation is successful; return **false** if the attribute with the specified attribute name does not exist in AppStorage, or the value to set is **undefined** or **null**.  |
 
 **Example**
@@ -575,12 +573,13 @@ let res: boolean = AppStorage.Set('PropA', 47) // true
 let res1: boolean = AppStorage.Set('PropB', 47) // false
 ```
 
-
 ### SetOrCreate<sup>(deprecated)</sup>
 
 static SetOrCreate&lt;T&gt;(propName: string, newValue: T): void
 
 Sets a new value for the attribute with the specified attribute name in AppStorage or, if the attribute does not exist, creates one with the specified attribute name and default value.
+
+The value of **newValue** cannot be **undefined** or **null**.
 
 > **NOTE**
 >
@@ -600,14 +599,13 @@ Sets a new value for the attribute with the specified attribute name in AppStora
 AppStorage.SetOrCreate('simpleProp', 121);
 ```
 
-
 ### Delete<sup>(deprecated)</sup>
 
 static Delete(propName: string): boolean
 
 Deletes the attribute with the specified attribute name from AppStorage under the prerequisite that the attribute does not have a subscriber. If there is a subscriber, **false** is returned. If the deletion is successful, **true** is returned.
 
-The subscribers of the attribute are attributes with the same name bound to APIs such as **Link** and **Prop**, **\@StorageLink('propName')**, and **\@StorageProp('propName')**. This means that if **\@StorageLink('propName')** and **\@StorageProp('propName')** are used in a custom component or if there is still a **SubscribedAbstractProperty** instance in sync with the attribute, the attribute cannot be deleted from AppStorage.
+The subscribers of the attribute are attributes with the same name bound to APIs such as **Link** and **Prop**, **\@StorageLink('propName')**, and **\@StorageProp('propName')**. This means that if @StorageLink('propName') and @StorageProp('propName') are used in a custom component or if there is still a **SubscribedAbstractProperty** instance in sync with the attribute, the attribute cannot be deleted from AppStorage.
 
 > **NOTE**
 >
@@ -636,7 +634,6 @@ let res: boolean = AppStorage.Delete('PropA'); // false, PropA still has a subsc
 AppStorage.SetOrCreate('PropB', 48);
 let res1: boolean = AppStorage.Delete('PropB'); // true, PropB is deleted from AppStorage successfully
 ```
-
 
 ### Keys<sup>(deprecated)</sup>
 
@@ -691,9 +688,9 @@ let simple = AppStorage.staticClear();
 
 static Clear(): boolean
 
-Deletes all attributes from AppStorage under the prerequisite that none of the attributes has a subscriber. If any of the attributes has a subscriber, **false** is returned. If the deletion is successful, **true** is returned.
+Deletes all attributes from AppStorage under the prerequisite that none of the attributes has a subscriber. If any of the attributes has a subscriber, this API does not take effect and **false** is returned. If the deletion is successful, **true** is returned.
 
-For details about the subscriber, see [delete10+](#delete10).
+For details about the subscriber, see [delete](#delete10).
 
 > **NOTE**
 >
@@ -703,8 +700,8 @@ For details about the subscriber, see [delete10+](#delete10).
 
 **Return value**
 
-| Type     | Description                                      |
-| ------- | ---------------------------------------- |
+| Type   | Description                                                        |
+| ------- | ------------------------------------------------------------ |
 | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
@@ -796,7 +793,7 @@ Creates a **LocalStorage** instance and initializes it using the attributes and 
 
 **Example**
 ```ts
-let para:Record<string,number> = { 'PropA': 47 };
+let para: Record<string, number> = { 'PropA': 47 };
 let storage: LocalStorage = new LocalStorage(para);
 ```
 
@@ -845,13 +842,13 @@ Checks whether the attribute with the specified attribute name exists in LocalSt
 
 **Return value**
 
-| Type     | Description                                      |
-| ------- | ---------------------------------------- |
+| Type   | Description                                                        |
+| ------- | ------------------------------------------------------------ |
 | boolean | Returns **true** if the attribute with the specified attribute name exists in LocalStorage; returns **false** otherwise.|
 
 **Example**
 ```ts
-let para:Record<string,number> = { 'PropA': 47 };
+let para: Record<string, number> = { 'PropA': 47 };
 let storage: LocalStorage = new LocalStorage(para);
 storage.has('PropA'); // true
 ```
@@ -877,13 +874,13 @@ Obtains the attribute with the specified attribute name in LocalStorage.
 
 **Return value**
 
-| Type                      | Description                                      |
-| ------------------------ | ---------------------------------------- |
+| Type                    | Description                                                        |
+| ------------------------ | ------------------------------------------------------------ |
 | T \| undefined | Returns the attribute with the specified attribute name in LocalStorage; returns **undefined** if the attribute does not exist.|
 
 **Example**
 ```ts
-let para:Record<string,number> = { 'PropA': 47 };
+let para: Record<string, number> = { 'PropA': 47 };
 let storage: LocalStorage = new LocalStorage(para);
 let value: number = storage.get('PropA') as number; // 47
 ```
@@ -910,14 +907,14 @@ Sets a value for the attribute with the specified attribute name in LocalStorage
 
 **Return value**
 
-| Type     | Description                                      |
-| ------- | ---------------------------------------- |
+| Type   | Description                                                        |
+| ------- | ------------------------------------------------------------ |
 | boolean | Returns **true** if the operation is successful; return **false** if the attribute with the specified attribute name does not exist in LocalStorage, or the value to set is **undefined** or **null**.  |
 
 **Example**
 
 ```ts
-let para:Record<string,number> = { 'PropA': 47 };
+let para: Record<string, number> = { 'PropA': 47 };
 let storage: LocalStorage = new LocalStorage(para);
 let res: boolean = storage.set('PropA', 47); // true
 let res1: boolean = storage.set('PropB', 47); // false
@@ -946,18 +943,18 @@ If the new value is the same as the existing value of the attribute with the spe
 
 **Return value**
 
-| Type     | Description                                      |
-| ------- | ---------------------------------------- |
+| Type   | Description                                                        |
+| ------- | ------------------------------------------------------------ |
 | boolean | Returns **false** if **newValue** is set to **undefined** or **null**.<br>Updates the target attribute with the new value and returns **true** if the attribute exists in LocalStorage.<br>Creates an attribute with the specified attribute name and default value if the attribute does not exist in LocalStorage.|
 
 **Example**
 
 ```ts
-let para:Record<string,number> = { 'PropA': 47 };
+let para: Record<string, number> = { 'PropA': 47 };
 let storage: LocalStorage = new LocalStorage(para);
-let res: boolean =storage.setOrCreate('PropA', 121); // true
-let res1: boolean =storage.setOrCreate('PropB', 111); // true
-let res2: boolean =storage.setOrCreate('PropB', null); // false
+let res: boolean = storage.setOrCreate('PropA', 121); // true
+let res1: boolean = storage.setOrCreate('PropB', 111); // true
+let res2: boolean = storage.setOrCreate('PropB', null); // false
 ```
 
 
@@ -985,13 +982,13 @@ If the given attribute does not exist in LocalStorage, **undefined** is returned
 
 **Return value**
 
-| Type                                 | Description                                      |
-| ----------------------------------- | ---------------------------------------- |
-| SubscribedAbstractProperty&lt;T&gt; | Returns the **SubscribedAbstractProperty<T>** instance if the given attribute exists in AppStorage; returns **undefined** otherwise.|
+| Type                               | Description                                                        |
+| ----------------------------------- | ------------------------------------------------------------ |
+| SubscribedAbstractProperty&lt;T&gt; | Returns the **SubscribedAbstractProperty&lt;T&gt;** instance if the given attribute exists in LocalStorage; returns undefined otherwise.|
 
 **Example**
 ```ts
-let para:Record<string,number> = { 'PropA': 47 };
+let para: Record<string, number> = { 'PropA': 47 };
 let storage: LocalStorage = new LocalStorage(para);
 let linkToPropA1: SubscribedAbstractProperty<number> = storage.link('PropA');
 let linkToPropA2: SubscribedAbstractProperty<number> = storage.link('PropA'); // linkToPropA2.get() == 47
@@ -1003,7 +1000,7 @@ linkToPropA1.set(48); // Two-way synchronization: linkToPropA1.get() == linkToPr
 
 setAndLink&lt;T&gt;(propName: string, defaultValue: T): SubscribedAbstractProperty&lt;T&gt;
 
-Works in a way similar to the **Link** API. If the given attribute exists in LocalStorage, the two-way bound data of the attribute in LocalStorage is returned. If the given attribute does not exist, it is created and initialized with **defaultValue** in LocalStorage, and two-way bound data is returned.
+Works in a way similar to the **link** API. If the given attribute exists in LocalStorage, the two-way bound data of the attribute in AppStorage is returned. If the given attribute does not exist, it is created and initialized with **defaultValue** in LocalStorage, and two-way bound data is returned. The value of **defaultValue** must be of the T type and cannot be **undefined** or **null**.
 
 > **NOTE**
 >
@@ -1013,20 +1010,20 @@ Works in a way similar to the **Link** API. If the given attribute exists in Loc
 
 **Parameters**
 
-| Name         | Type    | Mandatory  | Description                                    |
-| ------------ | ------ | ---- | ---------------------------------------- |
-| propName     | string | Yes   | Attribute name in LocalStorage.                      |
-| defaultValue | T      | Yes   | Default value used to initialize the attribute with the specified attribute name in LocalStorage.|
+| Name      | Type  | Mandatory| Description                                                    |
+| ------------ | ------ | ---- | ------------------------------------------------------------ |
+| propName     | string | Yes  | Attribute name in LocalStorage.                                    |
+| defaultValue | T      | Yes  | Default value used to initialize the attribute with the specified attribute name in LocalStorage. The value cannot be **undefined** or **null**.|
 
 **Return value**
 
-| Type                                 | Description                                      |
-| ----------------------------------- | ---------------------------------------- |
-| SubscribedAbstractProperty&lt;T&gt; | Returns the **SubscribedAbstractProperty<T>** instance if the given attribute exists in AppStorage; returns **undefined** otherwise.|
+| Type                               | Description                                                        |
+| ----------------------------------- | ------------------------------------------------------------ |
+| SubscribedAbstractProperty&lt;T&gt; | Instance of **SubscribedAbstractProperty&lt;T&gt;** and two-way bound data of the given attribute in LocalStorage.|
 
 **Example**
 ```ts
-let para:Record<string,number> = { 'PropA': 47 };
+let para: Record<string, number> = { 'PropA': 47 };
 let storage: LocalStorage = new LocalStorage(para);
 let link1: SubscribedAbstractProperty<number> = storage.setAndLink('PropB', 49); // Create PropB 49
 let link2: SubscribedAbstractProperty<number> = storage.setAndLink('PropA', 50); // PropA exists, remains 47
@@ -1053,13 +1050,13 @@ Establishes one-way data binding with the given attribute in this **LocalStorage
 
 **Return value**
 
-| Type                                 | Description                                      |
-| ----------------------------------- | ---------------------------------------- |
+| Type                               | Description                                                        |
+| ----------------------------------- | ------------------------------------------------------------ |
 | SubscribedAbstractProperty&lt;S&gt; | Returns the **SubscribedAbstractProperty&lt;S&gt;** instance if the given attribute exists in LocalStorage; returns **undefined** otherwise.|
 
 **Example**
 ```ts
-let para:Record<string,number> = { 'PropA': 47 };
+let para: Record<string, number> = { 'PropA': 47 };
 let storage: LocalStorage = new LocalStorage(para);
 let prop1: SubscribedAbstractProperty<number> = storage.prop('PropA');
 let prop2: SubscribedAbstractProperty<number> = storage.prop('PropA');
@@ -1071,7 +1068,7 @@ prop1.set(1); // one-way sync: prop1.get()=1; but prop2.get() == 47
 
 setAndProp&lt;S&gt;(propName: string, defaultValue: S): SubscribedAbstractProperty&lt;S&gt;
 
-Establishes one-way data binding with the given attribute in this **LocalStorage** instance. If the given attribute exists, the one-way bound data of the attribute in LocalStorage is returned. If the given attribute does not exist, it is created and initialized with **defaultValue** in LocalStorage, and one-way bound data is returned.
+Works in a way similar to the **prop** API. If the given attribute exists in LocalStorage, the one-way bound data of the attribute in LocalStorage is returned. If the given attribute does not exist, it is created and initialized with **defaultValue** in LocalStorage, and one-way bound data is returned. The value of **defaultValue** must be of the S type and cannot be **undefined** or **null**.
 
 > **NOTE**
 >
@@ -1081,21 +1078,21 @@ Establishes one-way data binding with the given attribute in this **LocalStorage
 
 **Parameters**
 
-| Name         | Type    | Mandatory  | Description                                    |
-| ------------ | ------ | ---- | ---------------------------------------- |
-| propName     | string | Yes   | Attribute name in LocalStorage.                      |
-| defaultValue | S      | Yes   | Default value used to initialize the attribute with the specified attribute name in LocalStorage.|
+| Name      | Type  | Mandatory| Description                                                    |
+| ------------ | ------ | ---- | ------------------------------------------------------------ |
+| propName     | string | Yes  | Attribute name in LocalStorage.                                    |
+| defaultValue | S      | Yes  | Default value used to initialize the attribute with the specified attribute name in LocalStorage. The value cannot be **undefined** or **null**.|
 
 **Return value**
 
-| Type                                 | Description                                      |
-| ----------------------------------- | ---------------------------------------- |
-| SubscribedAbstractProperty&lt;S&gt; | Instance of **SubscribedAbstractProperty&lt;T&gt;** and one-way bound data of the given attribute in LocalStorage.|
+| Type                               | Description                                                        |
+| ----------------------------------- | ------------------------------------------------------------ |
+| SubscribedAbstractProperty&lt;S&gt; | Instance of **SubscribedAbstractProperty&lt;S&gt;** and one-way bound data of the given attribute in LocalStorage.|
 
 **Example**
 
 ```ts
-let para:Record<string,number> = { 'PropA': 47 };
+let para: Record<string, number> = { 'PropA': 47 };
 let storage: LocalStorage = new LocalStorage(para);
 let prop: SubscribedAbstractProperty<number> = storage.setAndProp('PropB', 49); // PropA -> 47, PropB -> 49
 ```
@@ -1105,9 +1102,9 @@ let prop: SubscribedAbstractProperty<number> = storage.setAndProp('PropB', 49); 
 
 delete(propName: string): boolean
 
-Deletes the attribute with the specified attribute name from LocalStorage under the prerequisite that the attribute does not have a subscriber. If the deletion is successful, **true** is returned.
+Deletes the attribute with the specified attribute name from LocalStorage under the prerequisite that the attribute does not have a subscriber. If there is a subscriber, **false** is returned. If the deletion is successful, **true** is returned.
 
-The subscribers of the attribute are attributes with the same name bound to the **Link** and **Prop** APIs, **\@LocalStorageLink('propName')**, and **\@LocalStorageProp('propName')**. This means that if **\@LocalStorageLink('propName')** and **\@LocalStorageProp('propName')** are used in a custom component or if there is still a **SubscribedAbstractProperty** instance (return type of the **link** and **prop** APIs) in sync with the attribute, the attribute cannot be deleted from LocalStorage.
+The subscribers of the attribute are attributes with the same name bound to APIs such as **link** and **prop**, and **\@StorageLink('propName')** and **\@StorageProp('propName')**. This means that if **@StorageLink('propName')** and **@StorageProp('propName')** are used in a custom component or if there is still a **SubscribedAbstractProperty** instance in sync with the attribute, the attribute cannot be deleted from LocalStorage.
 
 > **NOTE**
 >
@@ -1123,13 +1120,13 @@ The subscribers of the attribute are attributes with the same name bound to the 
 
 **Return value**
 
-| Type     | Description                                      |
-| ------- | ---------------------------------------- |
+| Type   | Description                                                        |
+| ------- | ------------------------------------------------------------ |
 | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 ```ts
-let para:Record<string,number> = { 'PropA': 47 };
+let para: Record<string, number> = { 'PropA': 47 };
 let storage: LocalStorage = new LocalStorage(para);
 storage.link<number>('PropA');
 let res: boolean = storage.delete('PropA'); // false, PropA still has a subscriber
@@ -1159,7 +1156,7 @@ Obtains all attribute names in LocalStorage.
 
 **Example**
 ```ts
-let para:Record<string,number> = { 'PropA': 47 };
+let para: Record<string, number> = { 'PropA': 47 };
 let storage: LocalStorage = new LocalStorage(para);
 let keys: IterableIterator<string> = storage.keys();
 ```
@@ -1179,13 +1176,13 @@ Obtains the number of attributes in LocalStorage.
 
 **Return value**
 
-| Type    | Description       |
-| ------ | --------- |
+| Type  | Description                        |
+| ------ | ---------------------------- |
 | number | Number of attributes in LocalStorage.|
 
 **Example**
 ```ts
-let para:Record<string,number> = { 'PropA': 47 };
+let para: Record<string, number> = { 'PropA': 47 };
 let storage: LocalStorage = new LocalStorage(para);
 let res: number = storage.size(); // 1
 ```
@@ -1195,8 +1192,9 @@ let res: number = storage.size(); // 1
 
 clear(): boolean
 
+Deletes all attributes from LocalStorage under the prerequisite that none of the attributes has a subscriber. If any of the attributes has a subscriber, this API does not take effect and **false** is returned. If the deletion is successful, **true** is returned.
 
-Deletes all attributes from LocalStorage under the prerequisite that none of the attributes has a subscriber. If any of the attributes has a subscriber, **false** is returned. If the deletion is successful, **true** is returned.
+For details about the subscriber, see [delete](#delete9).
 
 > **NOTE**
 >
@@ -1207,14 +1205,14 @@ Deletes all attributes from LocalStorage under the prerequisite that none of the
 **Return value**
 
 
-| Type     | Description                                      |
-| ------- | ---------------------------------------- |
+| Type   | Description                                                        |
+| ------- | ------------------------------------------------------------ |
 | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 
 **Example**
 ```ts
-let para:Record<string,number> = { 'PropA': 47 };
+let para: Record<string, number> = { 'PropA': 47 };
 let storage: LocalStorage = new LocalStorage(para);
 let res: boolean = storage.clear(); // true, there are no subscribers
 ```
@@ -1272,7 +1270,7 @@ Obtains attribute data synchronized from AppStorage or LocalStorage.
 **Example**
 ```ts
 AppStorage.setOrCreate('PropA', 47); 
-let prop1:SubscribedAbstractProperty<number> = AppStorage.prop('PropA');    
+let prop1: SubscribedAbstractProperty<number> = AppStorage.prop('PropA');    
 prop1.get(); //  prop1.get()=47
 ```
 
@@ -1281,7 +1279,7 @@ prop1.get(); //  prop1.get()=47
 
 abstract set(newValue: T): void
 
-Sets the attribute data synchronized from AppStorage or LocalStorage.
+Sets the attribute data synchronized from AppStorage or LocalStorage. The value of **newValue** must be of the T type and cannot be **undefined** or **null**.
 
 > **NOTE**
 >
@@ -1289,18 +1287,19 @@ Sets the attribute data synchronized from AppStorage or LocalStorage.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+
 **Parameters**
 
 
-| Name     | Type  | Mandatory  | Description   |
-| -------- | ---- | ---- | ------- |
-| newValue | T    | Yes   | Data to set.|
+| Name  | Type| Mandatory| Description                             |
+| -------- | ---- | ---- | ------------------------------------- |
+| newValue | T    | Yes  | Data to set. The value cannot be **undefined** or **null**.|
 
 
 **Example**
 ```ts
 AppStorage.setOrCreate('PropA', 47);
-let prop1:SubscribedAbstractProperty<number> = AppStorage.prop('PropA');
+let prop1: SubscribedAbstractProperty<number> = AppStorage.prop('PropA');
 prop1.set(1); //  prop1.get()=1
 ```
 
@@ -1308,7 +1307,7 @@ prop1.set(1); //  prop1.get()=1
 
 abstract aboutToBeDeleted(): void
 
-Cancels one-way or two-way synchronization between the **SubscribedAbstractProperty** instance and AppStorage or LocalStorage.
+Cancels one-way or two-way synchronization between the **SubscribedAbstractProperty** instance and AppStorage or LocalStorage, and invalidates the instance. After this API is called, the **SubscribedAbstractProperty** instance cannot be used to call the setter or getter.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -1317,7 +1316,6 @@ Cancels one-way or two-way synchronization between the **SubscribedAbstractPrope
 AppStorage.setOrCreate('PropA', 47);
 let link = AppStorage.setAndLink('PropB', 49); // PropA -> 47, PropB -> 49
 link.aboutToBeDeleted();
-link.set(50); // PropB -> 49, link.get() --> undefined
 ```
 
 
@@ -1326,15 +1324,16 @@ link.set(50); // PropB -> 49, link.get() --> undefined
 
 For details about how to use PersistentStorage on the UI, see [PersistentStorage: Application State Persistence](../../quick-start/arkts-persiststorage.md).
 
-
 ### PersistPropsOptions
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name      | Type                   | Mandatory| Description                                                    |
-| ------------ | ----------------------- | ---- | ------------------------------------------------------------ |
-| key          | string                  | Yes  | Attribute name.                                                    |
-| defaultValue | number\|string\|boolean \| Object | Yes  | Default value used to initialize the created attribute when the corresponding attribute is not found in PersistentStorage and AppStorage. The value cannot be **undefined** or **null**.|
+**Parameters**
+
+| Name      | Type                                 | Mandatory| Description                                                    |
+| ------------ | ------------------------------------- | ---- | ------------------------------------------------------------ |
+| key          | string                                | Yes  | Attribute name.                                                    |
+| defaultValue | number \| string \| boolean \| Object | Yes  | Default value used to initialize the created attribute when the corresponding attribute is not found in PersistentStorage and AppStorage. The value cannot be **undefined** or **null**.|
 
 
 ### persistProp<sup>10+</sup>
@@ -1357,10 +1356,10 @@ According to the preceding initialization process, if AppStorage contains the ma
 
 **Parameters**
 
-| Name         | Type    | Mandatory  | Description                                    |
-| ------------ | ------ | ---- | ---------------------------------------- |
-| key          | string | Yes   | Attribute name.                                    |
-| defaultValue | T      | Yes   | Default value used to initialize the created attribute. The value cannot be **undefined** or **null**.|
+| Name      | Type  | Mandatory| Description                                                    |
+| ------------ | ------ | ---- | ------------------------------------------------------------ |
+| key          | string | Yes  | Attribute name.                                                    |
+| defaultValue | T      | Yes  | Default value used to initialize the created attribute. The value cannot be **undefined** or **null**.|
 
 
 **Example**
@@ -1373,7 +1372,7 @@ For details about how to use persistProp, see [Accessing PersistentStorage Initi
 
 static deleteProp(key: string): void
 
-Performs the reverse operation of **PersistProp**. Specifically, this API deletes the attribute corresponding to the specified key from PersistentStorage. Subsequent AppStorage operations do not affect data in PersistentStorage.
+Performs the reverse operation of **persistProp**. Specifically, this API deletes the attribute corresponding to the specified key from PersistentStorage. Subsequent AppStorage operations do not affect data in PersistentStorage.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -1393,7 +1392,7 @@ PersistentStorage.deleteProp('highScore');
 
 static persistProps(props: PersistPropsOptions[]): void
 
-Works in a way similar to the **PersistProp** API, with the difference that it allows for persistence in batches and is therefore ideal for initialization during application startup.
+Works in a way similar to the **persistProp** API, with the difference that it allows for persistence in batches and is therefore ideal for initialization during application startup.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -1419,8 +1418,8 @@ Obtains an array of keys for all persistent attributes.
 
 **Return value**
 
-| Type                 | Description               |
-| ------------------- | ----------------- |
+| Type               | Description                              |
+| ------------------- | ---------------------------------- |
 | Array&lt;string&gt; | Array of keys of all persistent attributes.|
 
 **Example**
@@ -1454,10 +1453,10 @@ According to the preceding initialization process, if AppStorage contains the ma
 
 **Parameters**
 
-| Name         | Type    | Mandatory  | Description                                    |
-| ------------ | ------ | ---- | ---------------------------------------- |
-| key          | string | Yes   | Attribute name.                                    |
-| defaultValue | T      | Yes   | Default value used to initialize the created attribute. The value cannot be **undefined** or **null**.|
+| Name      | Type  | Mandatory| Description                                                    |
+| ------------ | ------ | ---- | ------------------------------------------------------------ |
+| key          | string | Yes  | Attribute name.                                                    |
+| defaultValue | T      | Yes  | Default value used to initialize the created attribute. The value cannot be **undefined** or **null**.|
 
 
 **Example**
@@ -1507,8 +1506,8 @@ Works in a way similar to the **PersistProp** API, with the difference that it a
 
 **Parameters**
 
-| Name    | Type                                             | Mandatory| Description                                                    |
-| ---------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| Name    | Type                              | Mandatory| Description                                                    |
+| ---------- | ---------------------------------- | ---- | ------------------------------------------------------------ |
 | properties | {key: string, defaultValue: any}[] | Yes  | Array of attributes to persist.<br>**key**: attribute name.<br>**defaultValue**: default value. The rules are the same as those of **PersistProp**.|
 
 **Example**
@@ -1532,8 +1531,8 @@ Obtains an array of keys for all persistent attributes.
 
 **Return value**
 
-| Type                 | Description               |
-| ------------------- | ----------------- |
+| Type               | Description                              |
+| ------------------- | ---------------------------------- |
 | Array&lt;string&gt; | Array of keys of all persistent attributes.|
 
 **Example**
@@ -1547,17 +1546,16 @@ let keys: Array<string> = PersistentStorage.Keys();
 
 For details about how to use Environment, see [Environment: Device Environment Query](../../quick-start/arkts-environment.md).
 
-
 ### EnvPropsOptions
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
-| Name      | Type                   | Mandatory| Description                                                    |
-| ------------ | ----------------------- | ---- | ------------------------------------------------------------ |
-| key          | string                  | Yes  | Environment variable name. For details about the value range, see [Built-in Environment Variables](#built-in-environment-variables).|
-| defaultValue | number\|string\|boolean | Yes  | Default value used if the value of the environment variable key is not found in AppStorage.|
+| Name      | Type                       | Mandatory| Description                                                    |
+| ------------ | --------------------------- | ---- | ------------------------------------------------------------ |
+| key          | string                      | Yes  | Environment variable name. For details about the value range, see [Built-in Environment Variables](#built-in-environment-variables).|
+| defaultValue | number \| string \| boolean | Yes  | Default value used if the value of the environment variable key is not found in AppStorage.|
 
 
 ### envProp<sup>10+</sup>
@@ -1568,24 +1566,24 @@ Saves the built-in environment variable key in environment to AppStorage. If the
 
 You are advised to call this API when the application is started.
 
-It is incorrect to use AppStorage to read environment variables without invoking **EnvProp** first.
+It is incorrect to use AppStorage to read environment variables without invoking **envProp** first.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
-| Name  | Type    | Mandatory  | Description                                   |
-| ----- | ------ | ---- | --------------------------------------- |
-| key   | string | Yes   | Environment variable name. For details about the value range, see [Built-in Environment Variables](#built-in-environment-variables).   |
-| value | S      | Yes   | Default value used if the value of the environment variable key is not found in AppStorage.|
+| Name| Type  | Mandatory| Description                                                    |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| key    | string | Yes  | Environment variable name. For details about the value range, see [Built-in Environment Variables](#built-in-environment-variables).|
+| value  | S      | Yes  | Default value used if the value of the environment variable key is not found in AppStorage.|
 
 **Return value**
 
-| Type     | Description                                      |
-| ------- | ---------------------------------------- |
+| Type   | Description                                                        |
+| ------- | ------------------------------------------------------------ |
 | boolean | Returns **false** if the attribute corresponding to the key exists in AppStorage; creates an attribute with the key and the default value and returns **true** otherwise.|
 
-**Example:**
+**Example**
 
 
 For details about how to use **envProp**, see [Accessing Environment Parameters from UI](../../quick-start/arkts-environment.md#accessing-environment-parameters-from-ui).
@@ -1595,7 +1593,7 @@ For details about how to use **envProp**, see [Accessing Environment Parameters 
 
 static envProps(props: EnvPropsOptions[]): void
 
-Works in a way similar to the **EnvProp** API, with the difference that it allows for initialization of multiple attributes in batches. You are advised to call this API during application startup to save system environment variables to AppStorage in batches.
+Works in a way similar to the [envProp](#envprop10) API, with the difference that it allows for initialization of multiple attributes in batches. You are advised to call this API during application startup to save system environment variables to AppStorage in batches.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -1657,15 +1655,15 @@ It is incorrect to use AppStorage to read environment variables without invoking
 
 **Parameters**
 
-| Name  | Type    | Mandatory  | Description                                   |
-| ----- | ------ | ---- | --------------------------------------- |
-| key   | string | Yes   | Environment variable name. For details about the value range, see [Built-in Environment Variables](#built-in-environment-variables).   |
-| value | S      | Yes   | Default value used if the value of the environment variable key is not found in AppStorage.|
+| Name| Type  | Mandatory| Description                                                    |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| key    | string | Yes  | Environment variable name. For details about the value range, see [Built-in Environment Variables](#built-in-environment-variables).|
+| value  | S      | Yes  | Default value used if the value of the environment variable key is not found in AppStorage.|
 
 **Return value**
 
-| Type     | Description                                      |
-| ------- | ---------------------------------------- |
+| Type   | Description                                                        |
+| ------- | ------------------------------------------------------------ |
 | boolean | Returns **false** if the attribute corresponding to the key exists in AppStorage; creates an attribute with the key and the default value and returns **true** otherwise.|
 
 **Example**
@@ -1690,9 +1688,9 @@ Works in a way similar to the [EnvProp](#envpropdeprecated) API, with the differ
 
 **Parameters**
 
-| Name  | Type                                      | Mandatory  | Description              |
-| ----- | ---------------------------------------- | ---- | ------------------ |
-| props | {key: string, defaultValue: any}[] | Yes   | Array of key-value pairs consisting of system environment variables and default values.|
+| Name| Type                                             | Mandatory| Description                            |
+| ------ | ------------------------------------------------- | ---- | ------------------------------------ |
+| props  | {key: string, defaultValue: any}[] | Yes  | Array of key-value pairs consisting of system environment variables and default values.|
 
 **Example**
 ```ts
@@ -1735,11 +1733,11 @@ let keys: Array<string> = Environment.Keys(); // accessibilityEnabled, languageC
 
 ## Built-in Environment Variables
 
-| key                  | Type             | Description                                      |
-| -------------------- | --------------- | ---------------------------------------- |
-| accessibilityEnabled | string          | Whether to enable accessibility.                            |
+| key                  | Type           | Description                                                        |
+| -------------------- | --------------- | ------------------------------------------------------------ |
+| accessibilityEnabled | string          | Whether to enable accessibility. If there is no value of **accessibilityEnabled** in the environment variables, the default value passed through APIs such as **envProp** and **envProps** is added to AppStorage.|
 | colorMode            | ColorMode       | Color mode. The options are as follows:<br>- **ColorMode.LIGHT**: light mode.<br>- **ColorMode.DARK**: dark mode.|
-| fontScale            | number          | Font scale.                                 |
-| fontWeightScale      | number          | Font weight scale.                                   |
+| fontScale            | number          | Font scale.                                              |
+| fontWeightScale      | number          | Font weight scale.                                                  |
 | layoutDirection      | LayoutDirection | Layout direction. The options are as follows:<br>- **LayoutDirection.LTR**: from left to right.<br>- **LayoutDirection.RTL**: from right to left.|
-| languageCode         | string          | Current system language. The value is in lowercase, for example, **zh**.                       |
+| languageCode         | string          | Current system language. The value is in lowercase, for example, **zh**.                            |

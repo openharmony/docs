@@ -114,6 +114,8 @@ Side navigation is seldom used in applications. It is more applicable to landsca
 
 To implement the side navigation bar, set the **vertical** attribute of the **\<Tabs>** component to **true**. By default, **vertical** is set to **false**, indicating that the content page and navigation bar are aligned vertically.
 
+
+
 ```ts
 Tabs({ barPosition: BarPosition.Start }) {
   // TabContent: Home, Discover, Recommended, and Me
@@ -218,9 +220,7 @@ The bottom navigation bar is generally used on the home page of an application. 
 By default, the system uses an underscore (_) to indicate the active tab. For a custom navigation bar, you need to implement the corresponding style to distinguish active tabs from inactive tabs.
 
 
-To customize the navigation bar, use the **tabBar** parameter and pass in to it custom function component styles in **CustomBuilder** mode. In this example, a custom function component **TabBuilder** is declared, and the input parameters include **title** (tab title), **targetIndex** (target index of the tab), **selectedImg** (image for the selected state), and **normalImg** (image for the unselected state). The UI display style is determined based on whether the value of **currentIndex** (index of the active tab) matches that of **targetIndex** (target index of the tab).
-
-
+To customize the navigation bar, use the **tabBar** parameter and pass in to it custom function component styles in **CustomBuilder** mode. In this example, a custom function component **tabBuilder** is declared, and the input parameters include **title** (tab title), **targetIndex** (target index of the tab), **selectedImg** (image for the selected state), and **normalImg** (image for the unselected state). The UI display style is determined based on whether the value of **currentIndex** (index of the active tab) matches that of **targetIndex** (target index of the tab).
 
 ```ts
 @Builder tabBuilder(title: string, targetIndex: number, selectedImg: Resource, normalImg: Resource) {
@@ -238,8 +238,6 @@ To customize the navigation bar, use the **tabBar** parameter and pass in to it 
 
 
 Pass the custom function component to the **tabBar** attribute corresponding to the tab content and transfer the corresponding parameters.
-
-
 
 ```ts
 TabContent() {
@@ -265,8 +263,6 @@ Non-custom navigation bars follow the default system switching logic. If you are
 
 
 To switch to a specified tab page, use **TabsController**, which is the controller of the **\<Tabs>** component. By using the **changeIndex** API of **TabsController**, you can set your application to display the tab content corresponding to the specified index.
-
-
 
 ```ts
 class Tmp{
@@ -298,8 +294,6 @@ private tabsController : TabsController = new TabsController()
 
 
 When using a custom navigation bar, pass the corresponding \@Builder in the **tabBar** attribute and transfer the corresponding parameters.
-
-
 
 ```ts
 Tabs({ barPosition: BarPosition.End, controller: this.tabsController }) {
@@ -334,8 +328,6 @@ For non-custom navigation bars, tabs and tab content are linked by default. For 
 
 
 To manually switch between the tabs, use the **onChange** API provided by the **\<Tabs>** component to listen for the index change and pass the index of the active tab to **currentIndex**.
-
-
 
 
 ```ts

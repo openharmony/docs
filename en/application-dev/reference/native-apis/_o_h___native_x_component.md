@@ -5,10 +5,9 @@
 
 Describes the surface and touch event held by the ArkUI XComponent, which can be used for the EGL/OpenGL ES and media data input and displayed on the ArkUI XComponent. For details, see [XComponent Development](../../napi/xcomponent-guidelines.md)
 
-**Since**
-
-8
-
+> **NOTE**
+>
+> The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 ## Summary
 
@@ -221,14 +220,14 @@ enum OH_NativeXComponent_EventSourceType
 
 Enumerates the touch event source types.
 
-| Value                                     | Description                 |
-| ---------------------------------------- | ------------------- |
-| OH_NATIVEXCOMPONENT_SOURCE_TYPE_UNKNOWN  | Unknown source type.          |
-| OH_NATIVEXCOMPONENT_SOURCE_TYPE_MOUSE    | Source that generates a mouse multi-click event.   |
-| OH_NATIVEXCOMPONENT_SOURCE_TYPE_TOUCHSCREEN | Source that generates a touchscreen multi-touch event.|
-| OH_NATIVEXCOMPONENT_SOURCE_TYPE_TOUCHPAD | Source that generates a touchpad multi-touch event.|
-| OH_NATIVEXCOMPONENT_SOURCE_TYPE_JOYSTICK | Source that generates a joystick multi-touch event.|
-| OH_NATIVEXCOMPONENT_SOURCE_TYPE_KEYBOARD | Source that generates a key event.     |
+| Value                                     | Description                                                  |
+| ------------------------------------------- | ------------------------------------------------------ |
+| OH_NATIVEXCOMPONENT_SOURCE_TYPE_UNKNOWN     | Unknown source type.                                    |
+| OH_NATIVEXCOMPONENT_SOURCE_TYPE_MOUSE       | Source that generates a mouse multi-click event.                      |
+| OH_NATIVEXCOMPONENT_SOURCE_TYPE_TOUCHSCREEN | Source that generates a touchscreen multi-touch event.                |
+| OH_NATIVEXCOMPONENT_SOURCE_TYPE_TOUCHPAD    | Source that generates a touchpad multi-touch event.                |
+| OH_NATIVEXCOMPONENT_SOURCE_TYPE_JOYSTICK    | Source that generates a joystick multi-touch event.                |
+| OH_NATIVEXCOMPONENT_SOURCE_TYPE_KEYBOARD<sup>10+</sup>    | Source that generates a key event.           |
 
 **Since**
 
@@ -1006,11 +1005,11 @@ Obtain the ID of ArkUI XComponent.
 
 **Parameters**
 
-| Name       | Description                                      |
-| --------- | ---------------------------------------- |
-| component | Pointer to the **OH_NativeXComponent** instance.           |
+| Name     | Description                                                        |
+| --------- | ------------------------------------------------------------ |
+| component | Pointer to the **OH_NativeXComponent** instance.                     |
 | id        | Pointer to the character buffer for storing the ID of the **OH_NativeXComponent** instance. Note that null terminators will be attached to the character buffer, so the size of the character buffer should be at least one unit greater than the length of the real ID. The recommended size is [OH_XCOMPONENT_ID_LEN_MAX + 1].|
-| size      | Pointer to the length of the ID.                            |
+| size      | Pointer to the ID length, which is used to receive the ID length information.                |
 
 **Returns**
 
@@ -1100,7 +1099,7 @@ Returns the status code of the execution.
 
 **Since**
 
-8
+10
 
 
 ### OH_NativeXComponent_RegisterCallback()

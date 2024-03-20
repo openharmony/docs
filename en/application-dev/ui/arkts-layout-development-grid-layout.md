@@ -101,74 +101,70 @@ In the **\<GridRow>**, **columns** is used to set the total number of columns in
 
 - The default value of **columns** is 12. If **columns** is not set, the responsive grid layout is divided into 12 columns at any breakpoint.
 
-
   ```ts
   @State bgColors: Color[] = [Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.Pink, Color.Grey, Color.Blue, Color.Brown,Color.Red, Color.Orange, Color.Yellow, Color.Green];
-  ...
-  GridRow() {
-    ForEach(this.bgColors, (item:Color, index?:number|undefined) => {
-      GridCol() {
-        Row() {
-          Text(`${index + 1}`)
-        }.width('100%').height('50')
-      }.backgroundColor(item)
-    })
-  }           
+    ...
+    GridRow() {
+      ForEach(this.bgColors, (item:Color, index?:number|undefined) => {
+        GridCol() {
+          Row() {
+            Text(`${index}`)
+          }.width('100%').height('50')
+        }.backgroundColor(item)
+      })
+    }           
   ```
 
   ![en-us_image_0000001563060709](figures/en-us_image_0000001563060709.png)
 
 - When **columns** is set to a number, the responsive grid layout is divided into the specified number of columns regardless of the screen size. The following example sets the number of grid layout columns to 4 and 8 in sequence, where a child component occupies one column by default.
 
-
   ```ts
-  class CurrTmp{
+  class CurrTmp {
     currentBp: string = 'unknown';
-    set(val:string){
+  
+    set(val: string) {
       this.currentBp = val
     }
   }
-  let BorderWH:Record<string,Color|number> = { 'color': Color.Blue, 'width': 2 }
+  
+  let BorderWH: Record<string, Color | number> = { 'color': Color.Blue, 'width': 2 }
   @State bgColors: Color[] = [Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.Pink, Color.Grey, Color.Blue, Color.Brown];
   @State currentBp: string = 'unknown';
   ...
   Row() {
     GridRow({ columns: 4 }) {
-      ForEach(this.bgColors, (item:Color, index?:number|undefined) => {
-        if(index){
-          GridCol() {
-            Row() {
-              Text(`${index.toString() + 1}`)
-            }.width('100%').height('50')
-          }.backgroundColor(item)
-        }
+      ForEach(this.bgColors, (item: Color, index?: number | undefined) => {
+        GridCol() {
+          Row() {
+            Text(`${index}`)
+          }.width('100%').height('50')
+        }.backgroundColor(item)
       })
     }
     .width('100%').height('100%')
-    .onBreakpointChange((breakpoint:string) => {
-      let CurrSet:CurrTmp = new CurrTmp()
+    .onBreakpointChange((breakpoint: string) => {
+      let CurrSet: CurrTmp = new CurrTmp()
       CurrSet.set(breakpoint)
     })
   }
   .height(160)
   .border(BorderWH)
   .width('90%')
-
+  
   Row() {
     GridRow({ columns: 8 }) {
-      ForEach(this.bgColors, (item:Color, index?:number|undefined) => {
-        if(index){
-          GridCol() {
-            Row() {
-              Text(`${index.toString() + 1}`)
-            }.width('100%').height('50')
-          }.backgroundColor(item)
-        }
+      ForEach(this.bgColors, (item: Color, index?: number | undefined) => {
+        GridCol() {
+          Row() {
+            Text(`${index}`)
+          }.width('100%').height('50')
+        }.backgroundColor(item)
       })
     }
     .width('100%').height('100%')
-    .onBreakpointChange((breakpoint:string) => {
-      let CurrSet:CurrTmp = new CurrTmp()
+    .onBreakpointChange((breakpoint: string) => {
+      let CurrSet: CurrTmp = new CurrTmp()
       CurrSet.set(breakpoint)
     })
   }
@@ -183,18 +179,18 @@ In the **\<GridRow>**, **columns** is used to set the total number of columns in
 
 
   ```ts
-  @State bgColors: Color[] = [Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.Pink, Color.Grey, Color.Blue, Color.Brown]
-  GridRow({ columns: { sm: 4, md: 8 }, breakpoints: { value: ['200vp', '300vp', '400vp', '500vp', '600vp'] } }) {
-    ForEach(this.bgColors, (item:Color, index?:number|undefined) => {
-      if(index){
-        GridCol() {
-          Row() {
-            Text(`${index.toString() + 1}`)
-          }.width('100%').height('50')
-        }.backgroundColor(item)
-      }
-    })
-  }
+    @State bgColors: Color[] = [Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.Pink, Color.Grey, Color.Blue, Color.Brown]
+    GridRow({ columns: { sm: 4, md: 8 }, breakpoints: { value: ['200vp', '300vp', '400vp', '500vp', '600vp'] } }) {
+      ForEach(this.bgColors, (item:Color, index?:number|undefined) => {
+        if(index){
+          GridCol() {
+            Row() {
+              Text(`${index.toString() + 1}`)
+            }.width('100%').height('50')
+          }.backgroundColor(item)
+        }
+      })
+    }
   ```
 
   ![en-us_image_0000001563060689](figures/en-us_image_0000001563060689.gif)
@@ -270,7 +266,6 @@ The **\<GridCol>** component is a child component of the **\<GridRow>** componen
   let Goffset:Record<string,number> = { 'xs': 1, 'sm': 2, 'md': 3, 'lg': 4 }
   GridCol({ offset: 2 }){}
   GridCol({ offset: { xs: 2, sm: 2, md: 2, lg: 2 } }){}
-  GridCol(){}.offset(2)
   GridCol(){}.offset(Goffset) 
   ```
 

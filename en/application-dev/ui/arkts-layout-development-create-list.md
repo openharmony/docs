@@ -565,7 +565,7 @@ Swipe menus are common in many applications. For example, a messaging applicatio
 
 ![en-us_image_0000001563060773](figures/en-us_image_0000001563060773.gif)
 
-The swipeAction attribute (../reference/arkui-ts/ts-container-listitem.md# attribute) of a list item can be used to implement the function of sliding a list item leftwards or rightwards. In initialization of the **swipeAction** attribute, the **SwipeActionOptions** parameter is mandatory, wherein the **start** parameter indicates the component that appears from the start edge when the list item is swiped right, and the **end** parameter indicates the component that appears from the end edge when the list item is swiped left.
+Swiping left or right on a list item can be implemented through the [swipeAction](../reference/arkui-ts/ts-container-listitem.md#attributes) attribute. In initialization of the **swipeAction** attribute, the **SwipeActionOptions** parameter is mandatory, wherein the **start** parameter indicates the component that appears from the start edge when the list item is swiped right, and the **end** parameter indicates the component that appears from the end edge when the list item is swiped left.
 
 In the example of the message list, the **end** parameter is set to a custom delete button. In initialization of the **end** attribute, the index of the sliding list item is passed to the delete button. When the user touches the delete button, the data corresponding to the list item is deleted based on the index.
 
@@ -688,7 +688,7 @@ The process of implementing the addition feature is as follows:
      @Link isEditMode: boolean
      @Link selectedItems: ToDo[]
      private toDoItem: ToDo = new ToDo("");
-
+   
      build() {
       Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
         // ...
@@ -716,20 +716,21 @@ The process of implementing the addition feature is as follows:
    //ToDoList.ets
    import { ToDo } from './ToDo';
    import { ToDoListItem } from './ToDoListItem';
+   
    @Entry
    @Component
    struct ToDoList {
      @State toDoData: ToDo[] = []
      @Watch('onEditModeChange') @State isEditMode: boolean = false
      @State selectedItems: ToDo[] = []
-     private availableThings: string[] = ['Reading', 'Fitness', 'Travel','Music','Movie', 'Singing']
-
+    private availableThings: string[] = ['Reading', 'Fitness', 'Travel','Music','Movie', 'Singing']
+   
      onEditModeChange() {
-       if(!this.isEditMode) {
+       if (!this.isEditMode) {
          this.selectedItems = []
        }
      }
-
+   
      build() {
        Column() {
          Row() {
@@ -739,43 +740,41 @@ The process of implementing the addition feature is as follows:
                .onClick(() => {
                  this.isEditMode = false;
                })
-               .margin({ left: 20, right: 20})
+               .margin({ left: 20, right: 20 })
            } else {
              Text('To-Do')
                .fontSize(36)
                .margin({ left: 40 })
-           Blank()
-           Text('+') // Provide an entry for adding a list item, that is, add a click event for the add button.
+             Blank()
+             Text('+') // Provide an entry for adding a list item, that is, add a click event for the add button.
                .onClick(() => {
                  TextPickerDialog.show({
                    range: this.availableThings,
                    onAccept: (value: TextPickerResult) => {
-                   let arr = Array.isArray(value.index) ? value.index : [value.index];
-                   for(let i = 0; i < arr.length; i++) {
-                      this.toDoData.push(new ToDo(this.availableThings[arr[i]])); // Add to-do list items (available items).
-                   }
-                 },
+                     let arr = Array.isArray(value.index) ? value.index : [value.index];
+                     for (let i = 0; i < arr.length; i++) {
+                       this.toDoData.push(new ToDo(this.availableThings[arr[i]])); // Add to-do list items (available items).
+                     }
+                   },
+                 })
                })
-             })
            }
-            List({ space: 10 }) {
-              ForEach(this.toDoData, (toDoItem: ToDo) => {
-                ListItem() {
-                  // Place each item of toDoData into the list item in the form of model.
-                  ToDoListItem({
-                    isEditMode: this.isEditMode,
-                    toDoItem: toDoItem,
-                    selectedItems: this.selectedItems })
-                }
-              }, (toDoItem: ToDo) => toDoItem.key.toString())
-            }
-          }
-        }
-      }
-    }
+           List({ space: 10 }) {
+             ForEach(this.toDoData, (toDoItem: ToDo) => {
+               ListItem() {
+                 // Place each item of toDoData into the list item in the form of model.
+                 ToDoListItem({
+                   isEditMode: this.isEditMode,
+                   toDoItem: toDoItem,
+                   selectedItems: this.selectedItems })
+               }
+             }, (toDoItem: ToDo) => toDoItem.key.toString())
+           }
+         }
+       }
+     }
+   }
    ```
-
-
 
 
 ### Deleting a List Item
@@ -802,14 +801,6 @@ The process of implementing the deletion feature is as follows:
         this.name = name;
       }
     }
-    class ToDoTmp {
-      isEditMode: boolean = false
-      selectedItems: Array<object> = []
-      toDoItem: ToDo[] = [];
-      toDoData: ToDo[] = [];
-    }
-    let toDoList: ToDoTmp = new ToDoTmp()
-    // ToDoListItem.ets
     ```
     ```ts
     // Implementation reference
@@ -820,15 +811,14 @@ The process of implementing the deletion feature is as follows:
     GestureGroup(GestureMode.Exclusive,
       LongPressGesture()
         .onAction(() => {
-          if (!toDoList.isEditMode) {
-            toDoList.isEditMode = true; // Enter the editing mode.
-            toDoList.selectedItems.push(toDoList.toDoItem); // Record the list items selected when long pressed.
+          if (!this.isEditMode) {
+            this.isEditMode = true; // Enter the editing mode.
           }
         })
       )
     )
     ```
-
+   
 2. Respond to the user's selection and record the list items to be deleted.
    In this to-do list example, the list items are selected or unselected according to the user's selection.
 
@@ -844,32 +834,24 @@ The process of implementing the deletion feature is as follows:
         this.name = name;
       }
     }
-    class ToDoTmp {
-      isEditMode: boolean = false
-      selectedItems: Array<object> = []
-      toDoItem: ToDo[] = [];
-      toDoData: ToDo[] = [];
-    }
-    let toDoList: ToDoTmp = new ToDoTmp()
-    // ToDoListItem.ets
     ```
     ```ts
     // Implementation reference
-    if (toDoList.isEditMode) {
+    if (this.isEditMode) {
       Checkbox()
         .onChange((isSelected) => {
           if (isSelected) {
-            toDoList.selectedItems.push(toDoList.toDoItem) // When an item is selected, record the selected item.
+            When this.selectedItems.push(toDoList.toDoItem) // this.selectedItems is selected, the selected list items are recorded. You can construct the list items based on the site requirements.
           } else {
-            let index = toDoList.selectedItems.indexOf(toDoList.toDoItem)
+            let index = this.selectedItems.indexOf(toDoList.toDoItem)
             if (index !== -1) {
-              toDoList.selectedItems.splice(index, 1) // When an item is deselected, delete the item from the selectedItems array.
+              this.selectedItems.splice(index, 1) // When an item is deselected, it is deleted from the selectedItems array.
             }
           }
         })
     }
     ```
-
+   
 3. Respond to the user's clicking the delete button and delete the corresponding items from the list.
 
     ```ts
@@ -884,25 +866,18 @@ The process of implementing the deletion feature is as follows:
         this.name = name;
       }
     }
-    class ToDoTmp {
-      isEditMode: boolean = false
-      selectedItems: Array<object> = []
-      toDoItem: ToDo[] = [];
-      toDoData: ToDo[] = [];
-    }
-    let toDoList: ToDoTmp = new ToDoTmp()
     ```
     ```ts
     // Implementation reference
     Button ('Delete')
       .onClick(() => {
-        // Delete the toDoData data corresponding to the selected list items.
-        let leftData = toDoList.toDoData.filter((item) => {
-          return toDoList.selectedItems.find((selectedItem) => selectedItem !== item);
-        })
-
-        toDoList.toDoData = leftData;
-        toDoList.isEditMode = false;
+        // this.toDoData is the to-do list item, which can be constructed based on service requirements. After an item is clicked, the corresponding data is removed.
+        let leftData = this.toDoData.filter((item) => {
+              return !this.selectedItems.find((selectedItem) => selectedItem == item);
+            })
+    
+        this.toDoData = leftData;
+        this.isEditMode = false;
       })
     ```
 

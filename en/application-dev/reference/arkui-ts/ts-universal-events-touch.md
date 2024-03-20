@@ -24,7 +24,7 @@ A touch event is triggered when a finger is pressed against, swipes on, or is li
 | stopPropagation      | () => void | Stops the event from bubbling upwards or downwards.|
 | timestamp<sup>8+</sup> | number | Timestamp of the event. It is the interval between the time when the event is triggered and the time when the system starts.<br>For example, if the system starts at 2023/10/12 11:33 and the touch event is triggered at 2023/10/12 11:34, then the returned timestamp value is 60,000,000,000 ns.<br>Unit: ns|
 | target<sup>8+</sup> | [EventTarget](ts-universal-events-click.md#eventtarget8) | Display area of the element that triggers the gesture event.|
-| source<sup>8+</sup> | [SourceType](ts-gesture-settings.md#sourcetype)| Event input device.|
+| source<sup>8+</sup> | [SourceType](ts-gesture-settings.md#sourcetype9)| Event input device.|
 
 
 ### getHistoricalPoints<sup>10+</sup>
@@ -46,14 +46,14 @@ Obtains all historical points of the current frame. The touch event frequency of
 | ------- | ------------------------------------------- | ------------------------------------- |
 | type    | [TouchType](ts-appendix-enums.md#touchtype) | Type of the touch event.                     |
 | id      | number                                      | Unique identifier of a finger.                     |
-| x       | number                                      | X coordinate of the touch point relative to the upper left corner of the component being touched.|
-| y       | number                                      | Y coordinate of the touch point relative to the upper left corner of the component being touched.|
-| windowX<sup>10+</sup>  | number                       | X coordinate of the touch point relative to the upper left corner of the application window.  |
-| windowY<sup>10+</sup>  | number                       | Y coordinate of the touch point relative to the upper left corner of the application window.  |
-| displayX<sup>10+</sup> | number                       | X coordinate of the touch point relative to the upper left corner of the application screen.  |
-| displayY<sup>10+</sup> | number                       | Y coordinate of the touch point relative to the upper left corner of the application screen.  |
-| screenX<sup>(deprecated)</sup> | number               | X coordinate of the touch point relative to the upper left corner of the application window.<br>This API is deprecated since API version 10. You are advised to use **windowX** instead.  |
-| screenY<sup>(deprecated)</sup> | number               | Y coordinate of the touch point relative to the upper left corner of the application window.<br>This API is deprecated since API version 10. You are advised to use **windowY** instead.  |
+| x       | number                                      | X coordinate of the touch point relative to the upper left corner of the component being touched. <br>Unit: vp|
+| y       | number                                      | Y coordinate of the touch point relative to the upper left corner of the component being touched. <br>Unit: vp|
+| windowX<sup>10+</sup>  | number                       | X coordinate of the touch point relative to the upper left corner of the application window. <br>Unit: vp  |
+| windowY<sup>10+</sup>  | number                       | Y coordinate of the touch point relative to the upper left corner of the application window. <br>Unit: vp  |
+| displayX<sup>10+</sup> | number                       | X coordinate of the touch point relative to the upper left corner of the application screen. <br>Unit: vp  |
+| displayY<sup>10+</sup> | number                       | Y coordinate of the touch point relative to the upper left corner of the application screen. <br>Unit: vp  |
+| screenX<sup>(deprecated)</sup> | number               | X coordinate of the touch point relative to the upper left corner of the application window. <br>Unit: vp<br>This API is deprecated since API version 10. You are advised to use **windowX** instead.  |
+| screenY<sup>(deprecated)</sup> | number               | Y coordinate of the touch point relative to the upper left corner of the application window. <br>Unit: vp<br>This API is deprecated since API version 10. You are advised to use **windowY** instead.  |
 
 ## HistoricalPoint<sup>10+</sup>
 

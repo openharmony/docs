@@ -16,20 +16,26 @@ Not supported
 
 ## APIs
 
-DataPanel(options:{values: number[], max?: number, type?: DataPanelType})
+DataPanel(options: DataPanelOptions)
 
 Since API version 9, this API is supported in ArkTS widgets.
 
 **Parameters**
 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| options |  [DataPanelOptions](#datapaneloptions)| Yes| Parameters of the data panel.|
+
+## DataPanelOptions
+
 | Name           | Type  | Mandatory | Description|
 | ----------------- | -------- | ----- | -------- |
 | values            | number[]   | Yes   | Data value list. A maximum of nine values are supported. If more than nine values are set, only the first nine ones are used. A value less than 0 evaluates to the value **0**.|
 | max               | number     | No   |   - When set to a value greater than 0, this parameter indicates the maximum value in the **values** list.<br>- When set to a value equal to or smaller than 0, this parameter indicates the sum of values in the **values** list. The values are displayed in proportion.<br>Default value: **100**|
-| type<sup>8+</sup> | [DataPanelType](#datapaneltype) | No| Type of the data panel (dynamic modification is not supported).<br>Default value: **DataPanelType.Circle**|
+| type<sup>8+</sup> | [DataPanelType](#datapaneltype8) | No| Type of the data panel (dynamic modification is not supported).<br>Default value: **DataPanelType.Circle**|
 
 
-## DataPanelType
+## DataPanelType<sup>8+</sup>
 
 Since API version 9, this API is supported in ArkTS widgets.
 

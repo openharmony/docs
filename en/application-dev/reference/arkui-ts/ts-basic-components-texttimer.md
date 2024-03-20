@@ -12,9 +12,15 @@ Not supported
 
 ## APIs
 
-TextTimer(options?: { isCountDown?: boolean, count?: number, controller?: TextTimerController })
+TextTimer(options?: TextTimerOptions)
 
 **Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| options |  [TextTimerOptions](#texttimeroptions)| No| Parameters of the **\<TextTimer>** component.|
+
+## TextTimerOptions
 
 | Name    | Type    | Mandatory | Description                  |
 | ----------- | -------- | -------- | -------- |
@@ -23,6 +29,8 @@ TextTimer(options?: { isCountDown?: boolean, count?: number, controller?: TextTi
 | controller  | [TextTimerController](#texttimercontroller) | No | **\<TextTimer>** controller.|
 
 ## Attributes
+
+Among the [universal attributes](ts-universal-attributes-size.md) and [universal text attributes](ts-universal-attributes-text-style.md), **fontColor**, **fontSize**, **fontStyle**, **fontWeight**, and **fontFamily** are supported. In addition, the following attributes are supported.
 
 | Name       | Type      | Description                            |
 | -------- | ---------------------- | ---------------------- |
