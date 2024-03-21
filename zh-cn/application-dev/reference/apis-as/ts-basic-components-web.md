@@ -1775,7 +1775,32 @@ struct WebComponent {
 </body>
 </html>
 ```
+### textAutosizing<sup>12+</sup>
+设置使能文本自动调整大小。
 
+**参数：**
+
+| 参数名  | 参数类型   | 必填   | 默认值  | 参数描述                                     |
+| ---- | ------ | ---- | ---- | ---------------------------------------- |
+| textAutosizing | boolean | 是    | true   | 文本自动调整大小。 |
+
+  **示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .textAutosizing(false)
+      }
+    }
+  }
+  ```
 ## 事件
 
 通用事件仅支持onAppear、onDisAppear、onBlur、onFocus、onDragEnd、onDragEnter、onDragStart、onDragMove、onDragLeave、onDrop、onHover、onMouse、onKeyEvent、onTouch、onVisibleAreaChange。
