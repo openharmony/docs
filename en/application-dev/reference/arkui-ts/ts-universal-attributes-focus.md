@@ -10,7 +10,7 @@ Focus control attributes set whether a component is focusable and how it partici
 
 focusable(value: boolean)
 
-Whether the current component is focusable.
+Specifies whether the current component is focusable.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -24,7 +24,7 @@ Whether the current component is focusable.
 
 tabIndex(index: number)
 
-Tab order of the component in sequential focus navigation with the **Tab** key.
+Sets the Tab order of the component in sequential focus navigation with the **Tab** key.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -38,7 +38,7 @@ Tab order of the component in sequential focus navigation with the **Tab** key.
 
 defaultFocus(value: boolean)
 
-Specifies whether to set the component as the default focus of the container.
+Specifies whether to set the component as the default focus of the page.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -66,7 +66,7 @@ Specifies whether to set the component as the default focus of the container.
 
 focusOnTouch(value: boolean)
 
-Whether the component is focusable on touch.
+Specifies whether the component is focusable on touch.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -74,9 +74,11 @@ Whether the component is focusable on touch.
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | Yes  | Whether the component is focusable on touch.<br>Default value: **false**<br>**NOTE**<br>The component is focusable only when it is touchable or clickable.|
+| value  | boolean | Yes  | Whether the component is focusable on touch.<br>Default value: **false**<br>**NOTE**<br>The component is focusable only when it is touchable.|
 
 ## focusControl<sup>9+</sup>
+
+Implements focus control.
 
 ### requestFocus<sup>9+</sup>
 

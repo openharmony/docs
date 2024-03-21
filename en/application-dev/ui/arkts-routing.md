@@ -21,7 +21,7 @@ The **Router** module provides two redirection modes: [router.pushUrl()](../refe
 
 >**NOTE**
 >
->- When creating a page, configure the route to this page by following instructions in [Building the Second Page](../quick-start/start-with-ets-stage.md).
+>- When creating a page, configure the route to this page by following instructions in [Building the Second Page](../quick-start/start-with-ets-stage.md#building-the-second-page).
 >
 >
 >- The maximum capacity of a page stack is 32 pages. If this limit is exceeded, the [router.clear()](../reference/apis/js-apis-router.md#routerclear) API can be called to clear the historical page stack and free the memory.
@@ -169,16 +169,20 @@ On the target page, you can call the [getParams()](../reference/apis/js-apis-rou
 
 ```ts
 import router from '@ohos.router';
-class infoTmp{
-  age:number = 0
+
+class InfoTmp {
+  age: number = 0
 }
-class rouTmp{
-  id:object = ()=>{}
-  info:infoTmp = new infoTmp()
+
+class RouTmp {
+  id: object = () => {
+  }
+  info: InfoTmp = new InfoTmp()
 }
-const params:rouTmp = router.getParams() as rouTmp; // Obtain the passed parameter object.
-const id:object = params.id // Obtain the value of the id attribute.
-const age:number = params.info.age; // Obtain the value of the age attribute.
+
+const params: RouTmp = router.getParams() as RouTmp; // Obtain the passed parameter object.
+const id: object = params.id // Obtain the value of the id attribute.
+const age: number = params.info.age // Obtain the value of the age attribute.
 ```
 
 
@@ -209,8 +213,10 @@ You can use any of the following methods to return to a page:
 
   This method allows you to return to the position of the previous page in the page stack. For this method to work, the previous page must exist in the page stack.
 
-- Method 2: Return to the specified page.
+- Method 2: Return to a specific page.
 
+
+  Return to the page through a common route.
 
   ```ts
   import router from '@ohos.router';
@@ -219,15 +225,38 @@ You can use any of the following methods to return to a page:
   });
   ```
 
+  Return to the page through a named route.
+
+  ```ts
+  import router from '@ohos.router';
+  router.back({
+    url: 'myPage' // myPage is the alias of the page to return to.
+  });
+  ```
+
   This method allows users to return to a page with the specified path. For this method to work, the target page must exist in the page stack.
 
-- Method 3: Return to the specified page and transfer custom parameter information.
+- Method 3: Return to a specific page and pass custom parameters.
 
+
+  Return to the page through a common route.
 
   ```ts
   import router from '@ohos.router';
   router.back({
     url: 'pages/Home',
+    params: {
+      info: 'From Home Page'
+    }
+  });
+  ```
+
+  Return to the page through a named route.
+
+  ```ts
+  import router from '@ohos.router';
+  router.back({
+    url: 'myPage', // myPage is the alias of the page to return to.
     params: {
       info: 'From Home Page'
     }
@@ -241,15 +270,23 @@ On the target page, call the **router.getParams()** API at the position where pa
 
 ```ts
 import router from '@ohos.router';
-onPageShow() {
-  const params:Record<string,Object> = {'':router.getParams()}; // Obtain the passed parameter object.
-  const info:Object = params['']; // Obtain the value of the info attribute.
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World';
+
+  onPageShow() {
+    const params: object = router.getParams(); // Obtain the passed parameter object.
+    console.log("params" + JSON.stringify(params));
+  }
+  ...
 }
 ```
 
 >**NOTE**
 >
->When the **router.back()** API is used to return to a specified page, the page is pushed to the top of the stack again, and all page stacks between the original top page (included) and the specified page (excluded) are destroyed.
+>When the **router.back()** API is used to return to a specified page, all pages between the top page (included) and the specified page (excluded) are pushed from the page stack and destroyed.
 >
 > If the **router.back()** method is used to return to the original page, the original page will not be created repeatedly. Therefore, the variable declared using \@State will not be declared repeatedly, and the **aboutToAppear()** lifecycle callback of the page will not be triggered. If you want to use the custom parameters transferred from the returned page on the original page, you can parse the parameters in the required position. For example, parameter parsing can be performed in the **onPageShow()** lifecycle callback.
 
@@ -365,6 +402,10 @@ When the user clicks the back button, the custom confirmation dialog box is disp
 
 To redirect to a [page in a shared package](../quick-start/shared-guide.md), you can use [router.pushNamedRoute()](../reference/apis/js-apis-router.md#routerpushnamedroute10).
 
+  **Figure 4** Named route redirection 
+
+![(figures/router-add-query-box-before-back.gif)](figures/namedroute-jump-to-mypage.gif)
+
 Before using the **Router** module, import it first.
 
 
@@ -377,9 +418,20 @@ In the target page in the [shared package](../quick-start/shared-guide.md), name
 ```ts
 // library/src/main/ets/pages/Index.ets
 // library is the custom name of the new shared package.
-@Entry({ routeName : 'myPage' })
+@Entry({ routeName: 'myPage' })
 @Component
 export struct MyComponent {
+  build() {
+    Row() {
+      Column() {
+        Text('Library Page')
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
 }
 ```
 
@@ -388,7 +440,7 @@ When the configuration is successful, import the named route page to the page fr
 ```ts
 import router from '@ohos.router';
 import { BusinessError } from '@ohos.base';
-const module = import('library/src/main/ets/pages/Index') // Import the named route page in the shared package.
+const module = import('library/src/main/ets/pages/Index');  // Import the named route page in the shared package.
 @Entry
 @Component
 struct Index {
