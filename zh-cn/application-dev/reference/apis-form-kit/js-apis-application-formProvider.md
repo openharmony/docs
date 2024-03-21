@@ -3,6 +3,7 @@
 FormProvider模块提供了卡片提供方相关接口的能力，开发者在开发卡片时，可通过该模块提供接口实现更新卡片，设置卡片更新时间，获取卡片信息，请求发布卡片等。
 
 > **说明：**
+>
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > 从API version 9 开始不再维护，建议使用[formProvider](js-apis-app-form-formProvider.md)替代。
 

@@ -122,6 +122,7 @@ import formInfo from '@ohos.app.form.formInfo';
 | Dimension_4_4      | 4   | 4 x 4 form。   |
 | Dimension_2_1      | 5   | 2 x 1 form。   |
 | DIMENSION_1_1      | 6   | 1 x 1 form。   |
+| DDIMENSION_6_4<sup>12+<sup>    | 7   | 6 x 4 form。   |
 
 
 ## FormInfoFilter
@@ -132,7 +133,9 @@ import formInfo from '@ohos.app.form.formInfo';
 
 | 名称        | 类型   | 必填         |说明         |
 | ----------- | ---- | ------------ |------------ |
-| moduleName    | string    |否    | 选填。仅保留moduleName与提供值相符的卡片信息。<br>未填写时则不通过moduleName进行过滤。   |
+| bundleName    | string    |否    | 选填。仅保留含bundleName与提供值相符的卡片信息。<br>未填写时则不通过bundleName进行过滤。   |
+| moduleName    | string    |否    | 选填。仅保留含moduleName与提供值相符的卡片信息。<br>未填写时则不通过moduleName进行过滤。   |
+| supportedDimensions | Array<number> |否    | 选填。仅保留含supportedDimensions提供值相符的卡片信息。<br>未填写时则不通过supportedDimensions进行过滤。   |
 
 ## VisibilityType
 

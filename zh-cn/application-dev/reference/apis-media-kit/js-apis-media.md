@@ -13,6 +13,8 @@
 
 - 获取音视频元数据（[AVMetadataExtractor](#avmetadataextractor11)<sup>11+</sup>）
 
+- 获取视频缩略图（[AVImageGenerator](#avimagegenerator12)<sup>12+</sup>）
+
 ## 导入模块
 
 ```ts
@@ -470,7 +472,7 @@ Codec MIME类型枚举。
 
 播放管理类，用于管理和播放媒体资源。在调用AVPlayer的方法前，需要先通过[createAVPlayer()](#mediacreateavplayer9)构建一个AVPlayer实例。
 
-Audio/Video播放demo可参考：[音频播放开发指导](../../media/using-avplayer-for-playback.md)、[视频播放开发指导](../../media/video-playback.md)。
+Audio/Video播放demo可参考：[音频播放开发指导](../../media/media/using-avplayer-for-playback.md)、[视频播放开发指导](../../media/media/video-playback.md)。
 
 ### 属性
 
@@ -1901,7 +1903,7 @@ avPlayer.off('audioOutputDeviceChangeWithInfo');
 
 ## AVPlayerState<sup>9+</sup>
 
-[AVPlayer](#avplayer9)的状态机，可通过state属性主动获取当前状态，也可通过监听[stateChange](#onstatechange9)事件上报当前状态，状态机之间的切换规则，可参考[音频播放开发指导](../../media/using-avplayer-for-playback.md)。
+[AVPlayer](#avplayer9)的状态机，可通过state属性主动获取当前状态，也可通过监听[stateChange](#onstatechange9)事件上报当前状态，状态机之间的切换规则，可参考[音频播放开发指导](../../media/media/using-avplayer-for-playback.md)。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -2023,7 +2025,7 @@ media.createAVPlayer((err: BusinessError, player: media.AVPlayer) => {
 
 音视频录制管理类，用于音视频媒体录制。在调用AVRecorder的方法前，需要先通过[createAVRecorder()](#mediacreateavrecorder9)构建一个AVRecorder实例。
 
-音视频录制demo可参考：[音频录制开发指导](../../media/using-avrecorder-for-recording.md)、[视频录制开发指导](../../media/video-recording.md)。
+音视频录制demo可参考：[音频录制开发指导](../../media/media/using-avrecorder-for-recording.md)、[视频录制开发指导](../../media/media/video-recording.md)。
 
 > **说明：**
 >
@@ -3347,7 +3349,7 @@ avRecorder.off('audioCapturerChange');
 
 元数据获取类，用于从媒体资源中获取元数据。在调用AVMetadataExtractor的方法前，需要先通过[createAVMetadataExtractor()](#mediacreateavmetadataextractor11)构建一个AVMetadataExtractor实例。
 
-获取音频或视频元数据的demo可参考：[获取音视频元数据开发指导](../../media/avmetadataextractor.md)。
+获取音频或视频元数据的demo可参考：[获取音视频元数据开发指导](../../media/media/avmetadataextractor.md)。
 
 ### 属性
 
@@ -5579,3 +5581,346 @@ audioRecorder.prepare(audioRecorderConfig);  // prepare不设置参数，触发'
 | AMR_NB   | 3    | 封装为AMR_NB格式。<br/>仅做接口定义，暂不支持使用。          |
 | AMR_WB   | 4    | 封装为AMR_WB格式。<br/>仅做接口定义，暂不支持使用。          |
 | AAC_ADTS | 6    | 封装为ADTS（Audio&nbsp;Data&nbsp;Transport&nbsp;Stream）格式，是AAC音频的传输流格式。 |
+
+
+## media.createAVImageGenerator<sup>12+</sup>
+
+createAVImageGenerator(callback: AsyncCallback\<AVImageGenerator>): void
+
+异步方式创建AVImageGenerator实例，通过注册回调函数获取返回值。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVImageGenerator
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填 | 说明                                                         |
+| -------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback\<[AVImageGenerator](#avimagegenerator12)> | 是   | 回调函数。异步返回AVImageGenerator实例，失败时返回null。可用于获取视频缩略图。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 5400101  | No memory. Returned by callback. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let avImageGenerator: media.AVImageGenerator;
+media.createAVImageGenerator((error: BusinessError, generator: media.AVImageGenerator) => {
+  if (generator != null) {
+    avImageGenerator = generator;
+    console.info('createAVImageGenerator success');
+  } else {
+    console.error(`createAVImageGenerator fail, error message:${error.message}`);
+  }
+});
+```
+
+## media.createAVImageGenerator<sup>12+</sup>
+
+createAVImageGenerator(): Promise\<AVImageGenerator>
+
+异步方式创建AVImageGenerator对象，通过Promise获取返回值。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVImageGenerator
+
+**返回值：**
+
+| 类型                            | 说明                                                         |
+| ------------------------------- | ------------------------------------------------------------ |
+| Promise\<[AVImageGenerator](#avimagegenerator12)> | Promise对象。异步返回AVImageGenerator实例，失败时返回null。可用于获取视频缩略图。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+
+| 错误码ID | 错误信息                      |
+| -------- | ----------------------------- |
+| 5400101  | No memory. Returned by promise. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let avImageGenerator: media.AVImageGenerator;
+media.createAVImageGenerator().then((generator: media.AVImageGenerator) => {
+  if (generator != null) {
+    avImageGenerator = generator;
+    console.info('createAVImageGenerator success');
+  } else {
+    console.error('createAVImageGenerator fail');
+  }
+}).catch((error: BusinessError) => {
+  console.error(`AVImageGenerator catchCallback, error message:${error.message}`);
+});
+```
+
+## AVImageGenerator<sup>12+</sup>
+
+视频缩略图获取类，用于从视频资源中获取缩略图。在调用AVImageGenerator的方法前，需要先通过[createAVImageGenerator()](#mediacreateavimagegenerator12)构建一个AVImageGenerator实例。
+
+获取视频缩略图的demo可参考：[获取视频缩略图开发指导](../../media/media/avimagegenerator.md)。
+
+### 属性
+
+**系统能力：** SystemCapability.Multimedia.Media.AVImageGenerator
+
+| 名称                                                | 类型                                                         | 可读 | 可写 | 说明                                                         |
+| --------------------------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
+| fdSrc<sup>11+</sup>                                  | [AVFileDescriptor](js-apis-media.md#avfiledescriptor9)                       | 是   | 是   | 媒体文件描述，通过该属性设置数据源。<br/> **使用示例**：<br/>假设一个连续存储的媒体文件，地址偏移:0，字节长度:100。其文件描述为 AVFileDescriptor { fd = 资源句柄; offset = 0; length = 100; }。 |
+
+### fetchFrameByTime<sup>12+</sup>
+
+fetchFrameByTime(timeUs: number, options: AVImageQueryOptions, param: PixelMapParams, callback: AsyncCallback\<image.PixelMap>): void
+
+异步方式获取视频缩略图。通过注册回调函数获取返回值。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVImageGenerator
+
+**参数：**
+
+| 参数名   | 类型                                         | 必填 | 说明                                |
+| -------- | -------------------------------------------- | ---- | ----------------------------------- |
+| timeUs | number                   | 是   | 需要获取的缩略图在视频中的时间点，单位为微秒（μs）。 |
+| options | [AVImageQueryOptions](#avimagequeryoptions12)     | 是   | 需要获取的缩略图时间点与视频帧的对应关系。 |
+| param | [PixelMapParams](#pixelmapparams12)     | 是   | 需要获取的缩略图的格式参数。 |
+| callback | AsyncCallback\<[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)>   | 是   | 回调函数，异步返回视频缩略图对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+
+| 错误码ID | 错误信息                                   |
+| -------- | ------------------------------------------ |
+| 5400102  | Operation not allowed. Returned by callback. |
+| 5400106  | Unsupported format. Returned by callback.  |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import media from '@ohos.multimedia.media';
+import image from '@ohos.multimedia.image';
+
+let avImageGenerator: media.AVImageGenerator | undefined = undefined;
+let pixel_map : image.PixelMap | undefined = undefined;
+
+// 初始化入参
+let timeUs: number = 0
+
+let queryOption: media.AVImageQueryOptions = media.AVImageQueryOptions.AV_IMAGE_QUERY_NEXT_SYNC
+
+let param: media.PixelMapParams = {
+  width : 300,
+  height : 300,
+}
+
+// 获取缩略图
+media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenerator) => {
+  if(generator != null){
+    avImageGenerator = generator;
+    console.info(`createAVImageGenerator success`);
+    avImageGenerator.fetchFrameByTime(timeUs, queryOption, param, (error: BusinessError, pixelMap) => {
+      if (error) {
+        console.error(`fetchFrameByTime callback failed, err = ${JSON.stringify(error)}`)
+        return
+      }
+      pixel_map = pixelMap;
+    });
+  } else {
+    console.error(`createAVImageGenerator fail, error message:${err.message}`);
+  };
+});
+```
+
+### fetchFrameByTime<sup>12+</sup>
+
+fetchFrameByTime(timeUs: number, options: AVImageQueryOptions, param: PixelMapParams): Promise<image.PixelMap>
+
+异步方式获取视频缩略图。通过Promise获取返回值。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVImageGenerator
+
+**参数：**
+
+| 参数名   | 类型                                         | 必填 | 说明                                |
+| -------- | -------------------------------------------- | ---- | ----------------------------------- |
+| timeUs | number                   | 是   | 需要获取的缩略图在视频中的时间点，单位为微秒（μs）。 |
+| options | [AVImageQueryOptions](#avimagequeryoptions12)     | 是   | 需要获取的缩略图时间点与视频帧的对应关系。 |
+| param | [PixelMapParams](#pixelmapparams12)    | 是   | 需要获取的缩略图的格式参数。 |
+
+**返回值：**
+
+| 类型           | 说明                                     |
+| -------------- | ---------------------------------------- |
+| Promise\<[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)> | Promise对象，异步返回视频缩略图对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 5400102  | Operation not allowed. Returned by promise. |
+| 5400106  | Unsupported format. Returned by promise.  |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import media from '@ohos.multimedia.media';
+import image from '@ohos.multimedia.image';
+
+let avImageGenerator: media.AVImageGenerator | undefined = undefined;
+let pixel_map : image.PixelMap | undefined = undefined;
+
+// 初始化入参
+let timeUs: number = 0
+
+let queryOption: media.AVImageQueryOptions = media.AVImageQueryOptions.AV_IMAGE_QUERY_NEXT_SYNC
+
+let param: media.PixelMapParams = {
+  width : 300,
+  height : 300,
+}
+
+// 获取缩略图
+media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenerator) => {
+  if(generator != null){
+    avImageGenerator = generator;
+    console.info(`createAVImageGenerator success`);
+    avImageGenerator.fetchFrameByTime(timeUs, queryOption, param).then((pixelMap: image.PixelMap) => {
+      pixel_map = pixelMap;
+    }).catch((error: BusinessError) => {
+      console.error(`fetchFrameByTime catchCallback, error message:${error.message}`);
+    });
+  } else {
+    console.error(`createAVImageGenerator fail, error message:${err.message}`);
+  };
+});
+```
+
+### release<sup>12+</sup>
+
+release(callback: AsyncCallback\<void>): void
+
+异步方式释放资源。通过注册回调函数获取返回值。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVImageGenerator
+
+**参数：**
+
+| 参数名   | 类型                                         | 必填 | 说明                                |
+| -------- | -------------------------------------------- | ---- | ----------------------------------- |
+| callback | AsyncCallback\<void>                   | 是   | 异步释放资源release方法的回调方法。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+
+| 错误码ID | 错误信息                                   |
+| -------- | ------------------------------------------ |
+| 5400102  | Operation not allowed. Returned by callback. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import media from '@ohos.multimedia.media';
+
+let avImageGenerator: media.AVImageGenerator | undefined = undefined;
+
+//释放资源
+media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenerator) => {
+  if(generator != null){
+    avImageGenerator = generator;
+    console.info(`createAVImageGenerator success`);
+    avImageGenerator.release((error: BusinessError) => {
+      if (error) {
+        console.error(`release failed, err = ${JSON.stringify(error)}`);
+        return;
+      }
+      console.info(`release success.`);
+    });
+  } else {
+    console.error(`createAVImageGenerator fail, error message:${err.message}`);
+  };
+});
+```
+
+### release<sup>12+</sup>
+
+release(): Promise\<void>
+
+异步方式释放资源。通过Promise获取返回值。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVImageGenerator
+
+**返回值：**
+
+| 类型           | 说明                                     |
+| -------------- | ---------------------------------------- |
+| Promise\<void> | 异步方式释放资源release方法的Promise返回值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 5400102  | Operation not allowed. Returned by promise. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import media from '@ohos.multimedia.media';
+
+let avImageGenerator: media.AVImageGenerator | undefined = undefined;
+
+//释放资源
+media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenerator) => {
+  if(generator != null){
+    avImageGenerator = generator;
+    console.info(`createAVImageGenerator success`);
+    avImageGenerator.release().then(() => {
+      console.info(`release success.`);
+    }).catch((error: BusinessError) => {
+      console.error(`release catchCallback, error message:${error.message}`);
+    });
+  } else {
+    console.error(`creatAVImageGenerator fail, error message:${err.message}`);
+  };
+});
+```
+
+## AVImageQueryOptions<sup>12+</sup>
+
+需要获取的缩略图时间点与视频帧的对应关系。
+
+在获取视频缩略图时，传入的时间点与实际取得的视频帧所在时间点不一定相等，需要指定传入的时间点与实际取得的视频帧的时间关系。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVImageGenerator
+
+| 名称                     | 值              | 说明                                                         |
+| ------------------------ | --------------- | ------------------------------------------------------------ |
+| AV_IMAGE_QUERY_NEXT_SYNC       | 0   | 表示选取传入时间点或之后的关键帧。                       |
+| AV_IMAGE_QUERY_PREVIOUS_SYNC        | 1    | 表示选取传入时间点或之前的关键帧。 |
+| AV_IMAGE_QUERY_CLOSEST_SYNC        | 2    | 表示选取离传入时间点最近的关键帧。                 |
+
+## PixelMapParams<sup>12+</sup>
+
+获取视频缩略图时，输出缩略图的格式参数。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVImageGenerator
+
+| 名称     | 类型   |  可读   |   可写    |  说明                   |
+| -------- | ------ |   ------| ------ | ---------------------- |
+| width     | number |  是   |  是   |  输出的缩略图宽度。         |
+| height | number |  是   |  是   | 输出的缩略图高度。 |

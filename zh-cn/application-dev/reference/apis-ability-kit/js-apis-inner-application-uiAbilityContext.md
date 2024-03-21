@@ -23,6 +23,7 @@ import common from '@ohos.app.ability.common';
 | abilityInfo | [AbilityInfo](js-apis-bundleManager-abilityInfo.md) | 是 | 否 | UIAbility的相关信息。 |
 | currentHapModuleInfo | [HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md) | 是 | 否 | 当前HAP的信息。 |
 | config | [Configuration](js-apis-app-ability-configuration.md) | 是 | 否 | 与UIAbility相关的配置信息，如语言、颜色模式等。 |
+| windowStage<sup>12+</sup> | [window.WindowStage](../apis-arkui/js-apis-window.md#windowstage9) | 是 | 否 | 当前WindowStage对象 。|
 
 > **关于示例代码的说明：**
 >
@@ -1561,7 +1562,8 @@ export default class EntryAbility extends UIAbility {
 reportDrawnCompleted(callback: AsyncCallback\<void>): void
 
 当页面加载完成（loadContent成功）时，为开发者提供打点功能（callback形式）。
- **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -1795,3 +1797,61 @@ hideAbility() : Promise\<void>
     console.error(`hideAbility fail, err: ${JSON.stringify(err)}`);
   })
   ```
+
+## UIAbilityContext.moveAbilityToBackground<sup>12+<sup>
+moveAbilityToBackground(): Promise\<void>
+
+将处于前台的Ability移动到后台。使用Promise异步回调。
+ 
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+| 16000061 | Operation not supported. |
+| 16000065 | The interface can be called only when ability is foreground. |
+| 16000066 | An ability cannot move to foreground or background in Wukong mode. |
+
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+
+**示例：**
+
+```ts
+import common from '@ohos.app.ability.common';
+import { BusinessError } from '@ohos.base';
+
+@Entry
+@Component
+struct Index {
+  @State moveAbilityToBackground: string = 'Move To Background'
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.moveAbilityToBackground)
+          .fontSize(30)
+          .fontWeight(FontWeight.Bold)
+          .onClick(() => {
+            let context = getContext(this) as common.UIAbilityContext;
+            context.moveAbilityToBackground().then(() => {
+              console.log(`moveAbilityToBackground success.`);
+            }).catch((err: BusinessError) => {
+              console.log(`moveAbilityToBackground error: ${JSON.stringify(err)}.`)
+            });
+          });
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```

@@ -40,6 +40,7 @@ bindMenu(isShow: boolean, content: Array<MenuElement&gt; | CustomBuilder, option
 | isShow<sup>11+</sup> | boolean                                                      | 是   | 支持开发者通过状态变量控制显隐，默认值为false，menu弹窗必须等待页面全部构建才能展示，因此不能在页面构建中设置为true，否则会导致显示位置及形状错误，当前不支持双向绑定。 |
 | content              | Array<[MenuElement](#menuelement)&gt;&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 是   | 配置菜单项图标和文本的数组，或者自定义组件。                 |
 | options              | [MenuOptions](#menuoptions10)                                | 否   | 配置弹出菜单的参数。                                         |
+| transition | [TransitionEffect](ts-transition-animation-component.md#transitioneffect10对象说明)<sup>10+</sup> | 否   | 设置菜单显示和退出的过渡效果。说明：详细描述见[TransitionEffect](ts-transition-animation-component.md#transitioneffect10对象说明)<sup>10+</sup>对象说明。 |
 
 ## bindContextMenu<sup>8+</sup>
 
@@ -61,7 +62,11 @@ bindContextMenu(content: CustomBuilder, responseType: ResponseType, options?: Co
 
 bindContextMenu(isShown: boolean, content: CustomBuilder, options?: ContextMenuOptions)
 
-给组件绑定菜单，触发方式为控制绑定的isShown；isShown为true，弹出菜单；isShown为false，隐藏菜单；弹出菜单项需要自定义。菜单弹出不跟随点击位置，只与placement设置有关。
+给组件绑定菜单，触发方式为控制绑定的isShown。
+
+isShown为true，弹出菜单。isShown为false，隐藏菜单。弹出菜单项需要自定义。
+
+菜单弹出不跟随点击位置，只与placement设置有关。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -69,9 +74,10 @@ bindContextMenu(isShown: boolean, content: CustomBuilder, options?: ContextMenuO
 
 | 参数名       | 类型                                               | 必填 | 说明                                         |
 | ------------ | -------------------------------------------------- | ---- | -------------------------------------------- |
-| isShown<sup>12+</sup> | boolean | 是   | 支持开发者通过状态变量控制显隐，默认值为false。menu需要在页面全部构建完成后才能弹窗展示，如果在页面构建前或构建中设置为true，可能导致显示位置及形状错误、无法正常弹出显示等问题。当前不支持双向绑定。             |
+| isShown | boolean | 是   | 支持开发者通过状态变量控制显隐，默认值为false。menu需要在页面全部构建完成后才能弹窗展示，如果在页面构建前或构建中设置为true，可能导致显示位置及形状错误、无法正常弹出显示等问题。当前不支持双向绑定。             |
 | content      | [CustomBuilder](ts-types.md#custombuilder8)        | 是   | 配置菜单项图标和文本的数组，或者自定义组件。 |
 | options      | [ContextMenuOptions](#contextmenuoptions10)                      | 否   | 配置弹出菜单的参数。                         |
+| transition | [TransitionEffect](ts-transition-animation-component.md#transitioneffect10对象说明)<sup>10+</sup> | 否   | 设置菜单显示和退出的过渡效果。说明：详细描述见[TransitionEffect](ts-transition-animation-component.md#transitioneffect10对象说明)<sup>10+</sup>对象说明。 |
 
 ## MenuElement
 
@@ -89,7 +95,7 @@ bindContextMenu(isShown: boolean, content: CustomBuilder, options?: ContextMenuO
 | 名称                          | 类型                                   | 必填 | 描述                                                         |
 | ----------------------------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
 | title                         | [ResourceStr](ts-types.md#resourcestr) | 否   | 菜单标题。<br>**说明：**<br/>仅在content设置为Array<[MenuElement](#menuelement)&gt; 时生效。 |
-| showInSubWindow<sup>11+</sup> | boolean                                | 否   | 是否在子窗口显示菜单。<br/>默认值：false。                     |
+| showInSubWindow<sup>11+</sup> | boolean                                | 否   | 是否在子窗口显示菜单。<br/>默认值：2in1设备为true，其他设备为false。                     |
 
 ## ContextMenuOptions<sup>10+</sup>
 
@@ -445,3 +451,71 @@ struct Index {
   }
 }
 ```
+
+### 示例8
+
+通过transition自定义菜单和预览的显示/退出动效属性
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct MenuExample {
+  @Builder MenuBuilder() {
+    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+      Text('Test menu item 1')
+        .fontSize(12)
+        .width(200)
+        .height(30)
+        .textAlign(TextAlign.Center)
+      Divider().height(10)
+      Text('Test menu item 2')
+        .fontSize(12)
+        .width(100)
+        .height(30)
+        .textAlign(TextAlign.Center)
+    }.width(100)
+  }
+  @Builder
+  MyPreview() {
+    Column() {
+      Image($r('app.media.icon'))
+        .width(50)
+        .height(50)
+    }
+  }
+  @State isShow:boolean = false
+  private iconStr: ResourceStr = $r("app.media.icon")
+
+  @Builder
+  MyMenu() {
+    Menu() {
+      MenuItem({ startIcon: this.iconStr, content: "菜单选项" })
+      MenuItem({ startIcon: this.iconStr, content: "菜单选项" })
+      MenuItem({ startIcon: this.iconStr, content: "菜单选项" })
+    }
+  }
+  build() {
+    Column() {
+      Button('LongPress bindContextMenu')
+        .margin({ top: 15 })
+        .bindContextMenu(
+          this.MenuBuilder,
+          ResponseType.LongPress,{
+          transition: TransitionEffect.OPACITY.animation({ duration: 4000, curve: Curve.Ease }).combine(
+            TransitionEffect.rotate({ z: 1, angle: 180 })),
+          preview: this.MyPreview,
+          previewAnimationOptions: {
+            scale: [0.8, 1.0],
+            transition: TransitionEffect.OPACITY.animation({ duration: 4000, curve: Curve.Ease }).combine(
+              TransitionEffect.rotate({ z: 1, angle: 180 }))
+          }
+        })
+    }
+    .width('100%')
+    .margin({ top: 5 })
+  }
+}
+```
+
+![preview-builder](figures/menu2.gif)

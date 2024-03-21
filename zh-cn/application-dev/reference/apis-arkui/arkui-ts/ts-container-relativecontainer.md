@@ -45,10 +45,33 @@ RelativeContainer()
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持如下属性：
 
-| 名称       | 参数类型      |  必填   | 描述                   |
-| -------- | ------- |  ---- | -------------------- |
-| guideLine<sup>11+</sup> | Array<[GuideLineStyle](#guidelinestyle11)> | 否    | 声明RelativeContaine容器内的辅助线，Array中每个项目即为一条guideline。 |
-| barrier<sup>11+</sup> | Array<[BarrierStyle](#barrierstyle11)> | 否    | 声明RelativeContaine容器内的屏障，Array中每个项目即为一条barrier。 |
+### guideLine<sup>11+</sup>
+
+guideLine(value: Array&lt;GuideLineStyle&gt;)
+
+设置RelativeContaine容器内的辅助线，Array中每个项目即为一条guideline。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                       | 必填 | 说明                             |
+| ------ | ------------------------------------------ | ---- | -------------------------------- |
+| value  | Array<[GuideLineStyle](#guidelinestyle11)> | 是   | RelativeContaine容器内的辅助线。 |
+
+### barrier<sup>11+</sup>
+
+barrier(value: Array&lt;BarrierStyle&gt;)
+
+设置RelativeContaine容器内的屏障，Array中每个项目即为一条barrier。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                   | 必填 | 说明                           |
+| ------ | -------------------------------------- | ---- | ------------------------------ |
+| value  | Array<[BarrierStyle](#barrierstyle11)> | 是   | RelativeContaine容器内的屏障。 |
 
 
 ## GuideLineStyle<sup>11+</sup>
@@ -60,8 +83,8 @@ guideLine参数，用于定义一条guideline的id、方向和位置。
 | 名称    | 类型      | 必填   | 描述                    |
 | ----- | ------- | ---- | --------------------- |
 | id  | string  | 是    | guideline的id，必须是唯一的并且不可与容器内组件重名。   |
-| direction | [Axis](ts-appendix-enums.md#axis) | 是    | 指定guideline的方向。 |
-| position | [GuideLinePosition](#guidelineposition11) | 是    | 指定guideline的位置。 |
+| direction | [Axis](ts-appendix-enums.md#axis) | 是    | 指定guideline的方向。<br />默认值：Axis.Vertical |
+| position | [GuideLinePosition](#guidelineposition11) | 是    | 指定guideline的位置。<br />默认值：<br />{<br />start: 0<br />} |
 
 ## GuideLinePosition<sup>11+</sup>
 
@@ -83,7 +106,7 @@ barrier参数，用于定义一条barrier的id、方向和生成时所依赖的�
 | 名称    | 类型      | 必填   | 描述                    |
 | ----- | ------- | ---- | --------------------- |
 | id  | string  | 是    | barrier的id，必须是唯一的并且不可与容器内组件重名。   |
-| direction | [BarrierDirection](ts-appendix-enums.md#barrierdirection11) | 是    | 指定barrier的方向。 |
+| direction | [BarrierDirection](ts-appendix-enums.md#barrierdirection11) | 是    | 指定barrier的方向。<br />默认值：BarrierDirection.LEFT |
 | referencedId | Array\<string> | 是    | 指定生成barrier所依赖的组件。 |
 
 ## 示例

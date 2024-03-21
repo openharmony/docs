@@ -47,7 +47,7 @@ A constructor used to create a **LightWeightMap** instance.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -76,7 +76,7 @@ Checks whether this container is empty (contains no element).
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -112,7 +112,7 @@ Checks whether this container contains all elements of the specified **LightWeig
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -152,7 +152,7 @@ Checks whether this container contains the specified key.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -189,7 +189,7 @@ Checks whether this container contains the specified value.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -219,7 +219,7 @@ Increases the capacity of this container.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -254,7 +254,7 @@ Obtains the value of the specified key in this container.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -292,7 +292,7 @@ Obtains the index of the first occurrence of an element with the specified key i
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -330,7 +330,7 @@ Obtains the index of the first occurrence of an element with the specified value
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -368,7 +368,7 @@ Obtains the key of an element at the specified position in this container.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -401,7 +401,7 @@ Adds all elements in a **LightWeightMap** instance to this container.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -440,7 +440,7 @@ Adds or updates an element in this container.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -476,7 +476,7 @@ Removes an element with the specified key from this container.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -514,7 +514,7 @@ Removes an element at the specified position from this container.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -553,7 +553,7 @@ Sets a value for an element at the specified position in this container.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -592,7 +592,7 @@ Obtains the value of an element at the specified position in this container.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -619,7 +619,7 @@ Clears this container and sets its length to **0**.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -651,7 +651,7 @@ Obtains an iterator that contains all the keys in this container.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -688,7 +688,7 @@ Obtains an iterator that contains all the values in this container.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -733,7 +733,7 @@ callbackFn
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -767,7 +767,7 @@ Obtains an iterator that contains all the elements in this container.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -804,7 +804,7 @@ Concatenates the elements in this container into a string and returns the string
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -839,7 +839,7 @@ Obtains an iterator, each item of which is a JavaScript object.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |

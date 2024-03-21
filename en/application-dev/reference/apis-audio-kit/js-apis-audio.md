@@ -829,7 +829,7 @@ setAudioParameter(key: string, value: string, callback: AsyncCallback&lt;void&gt
 
 Sets an audio parameter. This API uses an asynchronous callback to return the result.
 
-This API is used to extend the audio configuration based on the hardware capability. The supported audio parameters vary according to the device and can be obtained from the device manual. The example below is for reference only.
+This API is used to extend the audio configuration based on the hardware capability. The supported audio parameters vary according to the device and are not common parameters. Sample parameters are used in the sample code below.
 
 > **NOTE**
 >
@@ -867,7 +867,7 @@ setAudioParameter(key: string, value: string): Promise&lt;void&gt;
 
 Sets an audio parameter. This API uses a promise to return the result.
 
-This API is used to extend the audio configuration based on the hardware capability. The supported audio parameters vary according to the device and can be obtained from the device manual. The example below is for reference only.
+This API is used to extend the audio configuration based on the hardware capability. The supported audio parameters vary according to the device and are not common parameters. Sample parameters are used in the sample code below.
 
 > **NOTE**
 >

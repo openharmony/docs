@@ -42,7 +42,7 @@ CounterOptions定义Counter的类型及具体式样参数。
 | ----------- | ---------- | ------| --------------------------------- |
 | type | [CounterType](#countertype) | 是   | 指定当前Counter的类型。 |
 | numberOptions | [NumberStyleOptions](#numberstyleoptions) | 否    | 列表型和紧凑型counter的式样。 |
-| inlineOptions | [InlineStyleOptions](#inlinestyleoptions) | 否 | 数值型内联型counter的式样。   |
+| inlineOptions | [InlineStyleOptions](#inlinestyleoptions) | 否 | 普通数字内联调节型Counter的式样。 |
 | dateOptions | [DateStyleOptions](#datestyleoptions) | 否 | 日期型内联型counter的式样。 |
 
 选择不同的counter类型，需要选择对应的counter式样，其对应关系如下：
@@ -76,7 +76,7 @@ CommonOptions定义Counter的共通属性和事件。
 
 | 名称            | 类型                      | 必填 | 默认值 | 说明                                                         |
 | --------------- | ------------------------- | ---- | ------ | ------------------------------------------------------------ |
-| focusable       | boolean                   | 否   | true   | 设置Counter是否可以获焦。                                    |
+| focusable       | boolean                   | 否   | true   | 设置Counter是否可以获焦。<br/>**说明：** <br/>该属性对列表型、紧凑型Counter生效。 |
 | step            | number                    | 否   | 1      | 设置Counter的步长。<br/>取值范围：大于等于1的整数。          |
 | onHoverIncrease | (isHover: boolean) =>void | 否   | -      | 鼠标进入或退出Counter组件的增加按钮触发该回调。<br/>isHover：表示鼠标是否悬浮在组件上，鼠标进入时为true, 退出时为false。 |
 | onHoverDecrease | (isHover: boolean) =>void | 否   | -      | 鼠标进入或退出Counter组件的减小按钮触发该回调。<br/>isHover：表示鼠标是否悬浮在组件上，鼠标进入时为true, 退出时为false。 |

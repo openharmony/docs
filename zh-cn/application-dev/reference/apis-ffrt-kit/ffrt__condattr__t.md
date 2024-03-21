@@ -15,4 +15,4 @@ FFRT条件变量属性结构.
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| long [storage](_f_f_r_t.md#storage-56) |  | 
+| long [storage](_f_f_r_t.md#storage-56) | FFRT条件变量属性所占空间 | 

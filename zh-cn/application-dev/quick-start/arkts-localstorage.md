@@ -62,7 +62,7 @@ LocalStorage根据与\@Component装饰的组件的同步类型不同，提供了
 | 装饰器参数                   | key：常量字符串，必填（字符串需要有引号）。                  |
 | 允许装饰的变量类型               | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>API12及以上支持Map、Set、Date类型。嵌套类型的场景请参考[观察变化和行为表现](#观察变化和行为表现)。<br/>类型必须被指定，建议和LocalStorage中对应属性类型相同，否则会发生类型隐式转换，从而导致应用行为异常。<br/>不支持any，API12及以上支持undefined和null类型。<br/>API12及以上支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[LocalStorage支持联合类型](#localstorage支持联合类型)。 <br/>**注意**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScript类型校验，比如：`@LocalStorageProp("AA") a: number \| null = null`是推荐的，不推荐`@LocalStorageProp("AA") a: number = null`。 |
 | 同步类型                    | 单向同步：从LocalStorage的对应属性到组件的状态变量。组件本地的修改是允许的，但是LocalStorage中给定的属性一旦发生变化，将覆盖本地的修改。 |
-| 被装饰变量的初始值               | 必须指定，如果LocalStorage实例中不存在属性，则作为初始化默认值，并存入LocalStorage中。 |
+| 被装饰变量的初始值               | 必须指定，如果LocalStorage实例中不存在属性，则用该初始值初始化该属性，并存入LocalStorage中。 |
 
 
 ### 变量的传递/访问规则说明
@@ -85,7 +85,7 @@ LocalStorage根据与\@Component装饰的组件的同步类型不同，提供了
 
 - 当装饰的数据类型为boolean、string、number类型时，可以观察到数值的变化。
 
-- 当装饰的数据类型为class或者Object时，可以观察到赋值和属性赋值的变化，即Object.keys(observedObject)返回的所有属性。
+- 当装饰的数据类型为class或者Object时，可以观察到对象整体赋值和对象属性变化（详见[从ui内部使用localstorage](#从ui内部使用localstorage)）。
 
 - 当装饰的对象是array时，可以观察到数组添加、删除、更新数组单元的变化。
 
@@ -126,7 +126,7 @@ LocalStorage根据与\@Component装饰的组件的同步类型不同，提供了
 | 装饰器参数                   | key：常量字符串，必填（字符串需要有引号）。                  |
 | 允许装饰的变量类型               | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>API12及以上支持Map、Set、Date类型。嵌套类型的场景请参考[观察变化和行为表现](#观察变化和行为表现)。<br/>类型必须被指定，建议和LocalStorage中对应属性类型相同，否则会发生类型隐式转换，从而导致应用行为异常。<br/>不支持any，API12及以上支持undefined和null类型。<br/>API12及以上支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[LocalStorage支持联合类型](#localstorage支持联合类型)。 <br/>**注意**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScript类型校验，比如：`@LocalStorageLink("AA") a: number \| null = null`是推荐的，不推荐`@LocalStorageLink("AA") a: number = null`。 |
 | 同步类型                    | 双向同步：从LocalStorage的对应属性到自定义组件，从自定义组件到LocalStorage对应属性。 |
-| 被装饰变量的初始值               | 必须指定，如果LocalStorage实例中不存在属性，则作为初始化默认值，并存入LocalStorage中。 |
+| 被装饰变量的初始值               | 必须指定，如果LocalStorage实例中不存在属性，则用该初始值初始化该属性，并存入LocalStorage中。 |
 
 
 ### 变量的传递/访问规则说明
@@ -151,7 +151,7 @@ LocalStorage根据与\@Component装饰的组件的同步类型不同，提供了
 
 - 当装饰的数据类型为boolean、string、number类型时，可以观察到数值的变化。
 
-- 当装饰的数据类型为class或者Object时，可以观察到赋值和属性赋值的变化，即Object.keys(observedObject)返回的所有属性。
+- 当装饰的数据类型为class或者Object时，可以观察到对象整体赋值和对象属性变化（详见[从ui内部使用localstorage](#从ui内部使用localstorage)）。
 
 - 当装饰的对象是array时，可以观察到数组添加、删除、更新数组单元的变化。
 
@@ -204,21 +204,36 @@ link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
 - \@LocalStorageLink绑定LocalStorage对给定的属性，建立双向数据同步。
 
  ```ts
+class PropB {
+  code: number;
+
+  constructor(code: number) {
+    this.code = code;
+  }
+}
 // 创建新实例并使用给定对象初始化
 let para: Record<string, number> = { 'PropA': 47 };
 let storage: LocalStorage = new LocalStorage(para);
+storage.setOrCreate('PropB', new PropB(50));
 
 @Component
 struct Child {
   // @LocalStorageLink变量装饰器与LocalStorage中的'PropA'属性建立双向绑定
-  @LocalStorageLink('PropA') storageLink2: number = 1;
+  @LocalStorageLink('PropA') childLinkNumber: number = 1;
+  // @LocalStorageLink变量装饰器与LocalStorage中的'PropB'属性建立双向绑定
+  @LocalStorageLink('PropB') childLinkObject: PropB = new PropB(0);
 
   build() {
-    Button(`Child from LocalStorage ${this.storageLink2}`)
-      // 更改将同步至LocalStorage中的'PropA'以及Parent.storageLink1
-      .onClick(() => {
-        this.storageLink2 += 1
-      })
+    Column() {
+      Button(`Child from LocalStorage ${this.childLinkNumber}`) // 更改将同步至LocalStorage中的'PropA'以及Parent.parentLinkNumber
+        .onClick(() => {
+          this.childLinkNumber += 1;
+        })
+      Button(`Child from LocalStorage ${this.childLinkObject.code}`) // 更改将同步至LocalStorage中的'PropB'以及Parent.parentLinkObject.code
+        .onClick(() => {
+          this.childLinkObject.code += 1;
+        })
+    }
   }
 }
 // 使LocalStorage可从@Component组件访问
@@ -226,13 +241,20 @@ struct Child {
 @Component
 struct CompA {
   // @LocalStorageLink变量装饰器与LocalStorage中的'PropA'属性建立双向绑定
-  @LocalStorageLink('PropA') storageLink1: number = 1;
+  @LocalStorageLink('PropA') parentLinkNumber: number = 1;
+  // @LocalStorageLink变量装饰器与LocalStorage中的'PropB'属性建立双向绑定
+  @LocalStorageLink('PropB') parentLinkObject: PropB = new PropB(0);
 
   build() {
     Column({ space: 15 }) {
-      Button(`Parent from LocalStorage ${this.storageLink1}`) // initial value from LocalStorage will be 47, because 'PropA' initialized already
+      Button(`Parent from LocalStorage ${this.parentLinkNumber}`) // initial value from LocalStorage will be 47, because 'PropA' initialized already
         .onClick(() => {
-          this.storageLink1 += 1
+          this.parentLinkNumber += 1;
+        })
+
+      Button(`Parent from LocalStorage ${this.parentLinkObject.code}`) // initial value from LocalStorage will be 50, because 'PropB' initialized already
+        .onClick(() => {
+          this.parentLinkObject.code += 1;
         })
       // @Component子组件自动获得对CompA LocalStorage实例的访问权限。
       Child()
@@ -648,6 +670,169 @@ struct Child {
     Text(this.PropB)
       .fontSize(50)
       .fontWeight(FontWeight.Bold)
+  }
+}
+```
+
+
+### Navigation组件和LocalStorage联合使用
+
+可以通过传递不同的LocalStorage实例给自定义组件，从而实现在navigation跳转到不同的页面时，绑定不同的LocalStorage实例，显示对应绑定的值。
+
+本示例以\@LocalStorageLink为例，展示了：
+
+- 点击父组件中的Button "Next Page",创建并跳转到name为"pageOne"的子页面，Text显示信息为LocalStorage实例localStorageA中绑定的PropA的值，为"PropA"。
+
+- 继续点击页面上的Button "Next Page",创建并跳转到name为"pageTwo"的子页面，Text显示信息为LocalStorage实例localStorageB中绑定的PropB的值，为"PropB"。
+
+- 继续点击页面上的Button "Next Page",创建并跳转到name为"pageTree"的子页面，Text显示信息为LocalStorage实例localStorageC中绑定的PropC的值，为"PropC"。
+
+- 继续点击页面上的Button "Next Page",创建并跳转到name为"pageOne"的子页面，Text显示信息为LocalStorage实例localStorageA中绑定的PropA的值，为"PropA"。
+
+- NavigationContentMsgStack自定义组件中的Text组件，共享对应自定义组件树上LocalStorage实例绑定的PropA的值。
+
+
+```ts
+let localStorageA: LocalStorage = new LocalStorage();
+localStorageA.setOrCreate('PropA', 'PropA');
+
+let localStorageB: LocalStorage = new LocalStorage();
+localStorageB.setOrCreate('PropB', 'PropB');
+
+let localStorageC: LocalStorage = new LocalStorage();
+localStorageC.setOrCreate('PropC', 'PropC');
+
+@Entry
+@Component
+struct MyNavigationTestStack {
+  @Provide('pageInfo') pageInfo: NavPathStack = new NavPathStack();
+
+  @Builder
+  PageMap(name: string) {
+    if (name === 'pageOne') {
+      // 传递不同的LocalStorage实例
+      pageOneStack({}, localStorageA)
+    } else if (name === 'pageTwo') {
+      pageTwoStack({}, localStorageB)
+    } else if (name === 'pageThree') {
+      pageThreeStack({}, localStorageC)
+    }
+  }
+
+  build() {
+    Column({ space: 5 }) {
+      Navigation(this.pageInfo) {
+        Column() {
+          Button('Next Page', { stateEffect: true, type: ButtonType.Capsule })
+            .width('80%')
+            .height(40)
+            .margin(20)
+            .onClick(() => {
+              this.pageInfo.pushPath({ name: 'pageOne' }); //将name指定的NavDestination页面信息入栈
+            })
+        }
+      }.title('NavIndex')
+      .navDestination(this.PageMap)
+      .mode(NavigationMode.Stack)
+      .borderWidth(1)
+    }
+  }
+}
+
+@Component
+struct pageOneStack {
+  @Consume('pageInfo') pageInfo: NavPathStack;
+  @LocalStorageLink('PropA') PropA: string = 'Hello World';
+
+  build() {
+    NavDestination() {
+      Column() {
+        NavigationContentMsgStack()
+        // 显示绑定的LocalStorage中PropA的值'PropA'
+        Text(`${this.PropA}`)
+        Button('Next Page', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            this.pageInfo.pushPathByName('pageTwo', null);
+          })
+      }.width('100%').height('100%')
+    }.title('pageOne')
+    .onBackPressed(() => {
+      this.pageInfo.pop();
+      return true;
+    })
+  }
+}
+
+@Component
+struct pageTwoStack {
+  @Consume('pageInfo') pageInfo: NavPathStack;
+  @LocalStorageLink('PropB') PropB: string = 'Hello World';
+
+  build() {
+    NavDestination() {
+      Column() {
+        NavigationContentMsgStack()
+        // 绑定的LocalStorage中没有PropA,显示本地初始化的值 'Hello World'
+        Text(`${this.PropB}`)
+        Button('Next Page', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            this.pageInfo.pushPathByName('pageThree', null);
+          })
+
+      }.width('100%').height('100%')
+    }.title('pageTwo')
+    .onBackPressed(() => {
+      this.pageInfo.pop();
+      return true;
+    })
+  }
+}
+
+@Component
+struct pageThreeStack {
+  @Consume('pageInfo') pageInfo: NavPathStack;
+  @LocalStorageLink('PropC') PropC: string = 'pageThreeStack';
+
+  build() {
+    NavDestination() {
+      Column() {
+        NavigationContentMsgStack()
+
+        // 绑定的LocalStorage中没有PropA,显示本地初始化的值 'pageThreeStack'
+        Text(`${this.PropC}`)
+        Button('Next Page', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            this.pageInfo.pushPathByName('pageOne', null);
+          })
+
+      }.width('100%').height('100%')
+    }.title('pageThree')
+    .onBackPressed(() => {
+      this.pageInfo.pop();
+      return true;
+    })
+  }
+}
+
+@Component
+struct NavigationContentMsgStack {
+  @LocalStorageLink('PropA') PropA: string = 'Hello';
+
+  build() {
+    Column() {
+      Text(`${this.PropA}`)
+        .fontSize(30)
+        .fontWeight(FontWeight.Bold)
+    }
   }
 }
 ```

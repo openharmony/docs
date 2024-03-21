@@ -668,7 +668,7 @@ let retStr = result.encoding;
 ```
 ### create<sup>9+</sup>
 
-create(encoding?: string, options?: TextDecoderOptions): TextDecoder
+static create(encoding?: string, options?: TextDecoderOptions): TextDecoder
 
 替代有参构造功能。
 
@@ -837,7 +837,7 @@ TextEncoder用于将字符串编码为字节数组，支持多种编码格式，
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| encoding | string | 是 | 否 | 编码格式，默认值是'utf-8'。 |
+| encoding | string | 是 | 否 |  编码格式。<br/>-&nbsp;支持格式：utf-8、UTF-8、GBK、GB2312、gb2312、GB18030、gb18030、ibm866、iso-8859-2、iso-8859-3、iso-8859-4、iso-8859-5、iso-8859-6、iso-8859-7、iso-8859-8、iso-8859-8-i、iso-8859-10、iso-8859-13、iso-8859-14、iso-8859-15、koi8-r、koi8-u、macintosh、windows-874、windows-1250、windows-1251、windows-1252、windows-1253、windows-1254、windows-1255、windows-1256、windows-1257、windows-1258、gbk、gb18030、big5、euc-jp、iso-2022-jp、shift_jis、euc-kr。 <br/>-&nbsp; 默认值是：'utf-8'。 |
 
 
 ### constructor
@@ -872,6 +872,26 @@ TextEncoder的构造函数。
 
 ```ts
 let textEncoder = new util.TextEncoder("utf-8");
+```
+
+### create<sup>12+</sup>
+
+static create(encoding?: string): TextEncoder
+
+创建TextEncoder对象的方法。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ----- | ---- | ---- | ---- |
+| encoding | string | 否 | 编码格式，默认值为'utf-8'。 |
+
+**示例：**
+
+```ts
+let textEncoder = util.TextEncoder.create("utf-8");
 ```
 
 ### encodeInto<sup>9+</sup>
@@ -1139,7 +1159,7 @@ equals​(obj: Object): boolean
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| object | Object | 是 | 其他类型对象。 |
+| obj | Object | 是 | 其他类型对象。 |
 
 **返回值：**
 

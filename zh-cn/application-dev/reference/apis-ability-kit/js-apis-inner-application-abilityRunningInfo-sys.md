@@ -15,7 +15,7 @@ import abilitymanager from '@ohos.app.ability.abilityManager';
 
 ## 使用说明
 
-通过abilityManager中[getAbilityRunningInfos](../apis/js-apis-app-ability-abilityManager.md#getabilityrunninginfos)方法获取。
+通过abilityManager中[getAbilityRunningInfos](js-apis-app-ability-abilityManager-sys.md#getabilityrunninginfos)方法获取。
 
 ## 属性
 
@@ -30,7 +30,7 @@ import abilitymanager from '@ohos.app.ability.abilityManager';
 | uid | number | 是 | 否 | 用户ID。  |
 | processName | string | 是 | 否 | 进程名称。  |
 | startTime | number | 是 | 否 | Ability启动时间。  |
-| abilityState | [abilityManager.AbilityState](../apis/js-apis-app-ability-abilityManager.md#abilitystate) | 是 | 否 | Ability状态。  |
+| abilityState | [abilityManager.AbilityState](js-apis-app-ability-abilityManager-sys.md#abilitystate) | 是 | 否 | Ability状态。  |
 
 **示例：**
 

@@ -37,6 +37,18 @@
 
 **起始版本**：12
 
+### ohos.permission.ACCESS_MEDIALIB_THUMB_DB
+
+允许系统应用访问和修改媒体库数据库。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.AGENT_REQUIRE_FORM
 
 允许应用代理请求卡片。
@@ -48,6 +60,18 @@
 **ACL使能**：true
 
 **起始版本**：11
+
+### ohos.permission.MANAGE_VPN
+
+允许系统应用启动或停止VPN功能。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：API version 10-11为false；从API version 12开始为true
+
+**起始版本**：10
 
 ### ohos.permission.WAKEUP_VISION
 
@@ -2045,6 +2069,18 @@
 
 **起始版本**：11
 
+### ohos.permission.READ_FINDSERVICE
+
+允许系统应用读取“查找我的设备”开关状态。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.MANAGE_USB_CONFIG
 
 允许应用管理USB设备功能和端口。
@@ -2441,6 +2477,18 @@
 
 **起始版本**：12
 
+### ohos.permission.CHANGE_DISPLAYMODE
+
+允许系统应用改变屏幕模式。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ## system_grant，不允许ACL跨级申请
 
 以下权限的授权方式均为system_grant（系统授权），但不允许通过ACL的方式申请。
@@ -2591,18 +2639,6 @@
 
 **起始版本**：10
 
-### ohos.permission.MANAGE_VPN
-
-允许系统应用启动或停止VPN功能。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**ACL使能**：false
-
-**起始版本**：10
-
 ### ohos.permission.RESTRICT_APPLICATION_ACTIVE
 
 允许待机续航部件发布一个自定义的限网事件。
@@ -2674,6 +2710,42 @@
 **ACL使能**：false
 
 **起始版本**：11
+
+### ohos.permission.MIGRATE_DATA
+
+允许应用迁移传入路径下的数据到指定目录。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.ACCESS_DYNAMIC_ICON
+
+允许应用使用动态图标。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.CHANGE_BUNDLE_UNINSTALL_STATE
+
+允许系统应用改变指定应用的可卸载状态。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
 
 ## user_grant，允许ACL跨级申请
 

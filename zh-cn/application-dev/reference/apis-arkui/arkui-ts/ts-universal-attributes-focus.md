@@ -18,7 +18,7 @@ focusable(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | 设置当前组件是否可以获焦。<br/>**说明：**<br/>存在默认交互逻辑的组件例如Button、TextInput等，默认即为可获焦，Text、Image等组件则默认状态为不可获焦。不可获焦状态下，无法触发[焦点事件](ts-universal-focus-event.md)。 |
+| value  | boolean | 是   | 设置当前组件是否可以获焦。<br/>**说明：**<br/>存在默认交互逻辑的组件例如[Button](ts-basic-components-button.md)、[TextInput](ts-basic-components-textinput.md)等，默认即为可获焦，[Text](ts-basic-components-text.md)、[Image](ts-basic-components-image.md)等组件则默认状态为不可获焦。不可获焦状态下，无法触发[焦点事件](ts-universal-focus-event.md)。 |
 
 ## tabIndex<sup>9+</sup>
 
@@ -32,7 +32,7 @@ tabIndex(index: number)
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| index  | number | 是   | 自定义组件tab键走焦能力。若有配置了tabIndex大于0的组件，则tab键走焦只会在tabIndex大于0的组件内按照tabIndex的值从小到大并循环依次走焦。若没有配置tabIndex大于0的组件，则tabIndex等于0的组件按照组件预设的走焦规则走焦。<br />UiExtension组件未适配tabIndex，在含有UiExtension组件的页面使用tabIndex会导致走焦错乱。<br />- tabIndex >= 0：表示元素是可聚焦的，并且可以通过tab键走焦来访问到该元素。<br />- tabIndex < 0（通常是tabIndex = -1）：表示元素是可聚焦的，但是不能通过tab键走焦来访问到该元素。<br/>默认值：0 |
+| index  | number | 是   | 自定义组件tab键走焦能力。若有配置了tabIndex大于0的组件，则tab键走焦只会在tabIndex大于0的组件内按照tabIndex的值从小到大并循环依次走焦。若没有配置tabIndex大于0的组件，则tabIndex等于0的组件按照组件预设的走焦规则走焦。<br />[UiExtension](../js-apis-arkui-uiExtension.md)组件未适配tabIndex，在含有[UiExtension](../js-apis-arkui-uiExtension.md)组件的页面使用tabIndex会导致走焦错乱。<br />- tabIndex >= 0：表示元素是可聚焦的，并且可以通过tab键走焦来访问到该元素。<br />- tabIndex < 0（通常是tabIndex = -1）：表示元素是可聚焦的，但是不能通过tab键走焦来访问到该元素。<br/>默认值：0 |
 
 ## defaultFocus<sup>9+</sup>
 
@@ -100,7 +100,17 @@ requestFocus(value: string): boolean
 
 >  **说明：**
 >
->  支持焦点控制的组件：TextInput、TextArea、Search、Button、Text、Image、List、Grid。焦点事件当前仅支持在真机上显示运行效果。
+>  支持焦点控制的组件：[TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md)、[Search](ts-basic-components-search.md)、[Button](ts-basic-components-button.md)、[Text](ts-basic-components-text.md)、[Image](ts-basic-components-image.md)、[List](ts-container-list.md)、[Grid](ts-container-grid.md)。焦点事件当前仅支持在真机上显示运行效果。
+
+## clearFocus<sup>12+</sup>
+
+clearFocus(): void
+
+清除焦点，将焦点强制转移到页面根容器节点，焦点链路上其他节点失焦。
+
+>  **说明：**
+>
+>  调用该接口需要先获取[UIContext](../js-apis-arkui-UIContext.md)，具体使用方式可以参考[示例3](./ts-universal-attributes-focus.md#示例3)。
 
 ## 示例
 
@@ -261,7 +271,7 @@ struct FocusableExample {
 
 focusControl.requestFocus示例代码：
 
-使用focusContrl.requestFocus接口使指定组件获取焦点。
+使用focusControl.requestFocus接口使指定组件获取焦点。
 ```ts
 // requestFocus.ets
 import promptAction from '@ohos.promptAction';
@@ -341,3 +351,62 @@ struct RequestFocusExample {
 申请存在且可获焦的组件获焦：
 
 ![requestFocus3](figures/requestFocus3.png)
+
+### 示例3
+
+```ts
+
+@Entry
+@Component
+struct ClearFocusExample {
+  @State inputValue: string = ''
+  @State btColor: Color = Color.Blue
+
+  build() {
+    Column({ space: 20 }) {
+      Column({ space: 5 }) {
+        Button('button1')
+          .width(200)
+          .height(70)
+          .fontColor(Color.White)
+          .focusOnTouch(true)
+          .backgroundColor(Color.Blue)
+        Button('button2')
+          .width(200)
+          .height(70)
+          .fontColor(Color.White)
+          .focusOnTouch(true)
+          .backgroundColor(this.btColor)
+          .defaultFocus(true)
+          .onFocus(() => {
+            this.btColor = Color.Red
+          })
+          .onBlur(() => {
+            this.btColor = Color.Blue
+          })
+        Button('clearFocus')
+          .width(200)
+          .height(70)
+          .fontColor(Color.White)
+          .backgroundColor(Color.Blue)
+          .onClick(() => {
+            this.getUIContext().getFocusController().clearFocus()
+          })
+      }
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+
+```
+
+示意图：
+
+首次进入页面，Button2按钮获焦，背景颜色为红色
+
+![clearFocus1](figures/clearFocus1.jpg)
+
+点击ClearFocus按钮，清除焦点，Button2失焦，触发onBlur失焦回调将背景颜色变为蓝色。
+
+![clearFocus2](figures/clearFocus2.jpg)

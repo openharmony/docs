@@ -39,7 +39,7 @@ color(value: ResourceColor)
 
 | 参数名 | 类型                                       | 必填 | 说明                                |
 | ------ | ------------------------------------------ | ---- | ----------------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 文字颜色。<br/>默认值：0x99000000。 |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 文字颜色。<br/>默认值：0x99182431。 |
 
 ### selectedColor
 
@@ -53,7 +53,7 @@ selectedColor(value: ResourceColor)
 
 | 参数名 | 类型                                       | 必填 | 说明                                      |
 | ------ | ------------------------------------------ | ---- | ----------------------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 选中项文字颜色。<br/>默认值：0xFF254FF7。 |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 选中项文字颜色。<br/>默认值：0xFF007DFF。 |
 
 ### popupColor
 
@@ -67,7 +67,7 @@ popupColor(value: ResourceColor)
 
 | 参数名 | 类型                                       | 必填 | 说明                                        |
 | ------ | ------------------------------------------ | ---- | ------------------------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 提示弹窗文字颜色。<br/>默认值：0xFF254FF7。 |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 提示弹窗文字颜色。<br/>默认值：0xFF007DFF。 |
 
 ### selectedBackgroundColor
 
@@ -81,7 +81,7 @@ selectedBackgroundColor(value: ResourceColor)
 
 | 参数名 | 类型                                       | 必填 | 说明                                      |
 | ------ | ------------------------------------------ | ---- | ----------------------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 选中项背景颜色。<br/>默认值：0x1F0A59F7。 |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 选中项背景颜色。<br/>默认值：0x1A007DFF。 |
 
 ### popupBackground
 
@@ -103,7 +103,7 @@ usingPopup(value: boolean)
 
 设置是否使用提示弹窗。
 
-**系统能力： **SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
@@ -157,7 +157,7 @@ font(value: Font)
 
 itemSize(value: string&nbsp;|&nbsp;number)
 
-设置字母索引条默认字体样式。
+设置字母索引条字母区域大小。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -196,7 +196,7 @@ selected(index: number)
 
 | 参数名 | 类型   | 必填 | 说明                         |
 | ------ | ------ | ---- | ---------------------------- |
-| value  | number | 是   | 选中项索引值。<br/>默认值：0 |
+| index  | number | 是   | 选中项索引值。<br/>默认值：0 |
 
 ### popupPosition<sup>8+</sup>
 
@@ -204,7 +204,7 @@ popupPosition(value: Position)
 
 设置弹出窗口相对于索引器条上边框中点的位置。
 
-**系统能力： **SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
@@ -266,7 +266,7 @@ popupItemBackgroundColor(value: ResourceColor)
 
 | 参数名 | 类型                     | 必填 | 说明                                            |
 | ------ | ------------------------ | ---- | ----------------------------------------------- |
-| value  | [Font](ts-types.md#font) | 是   | 提示弹窗非字母部分背景色。 <br/>默认值：#FFFFFF |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 提示弹窗非字母部分背景色。 <br/>默认值：#FFFFFFFF |
 
 ### autoCollapse<sup>11+</sup>   
 

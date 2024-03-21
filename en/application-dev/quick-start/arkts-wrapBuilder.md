@@ -6,7 +6,7 @@
 
 > **NOTE**
 >
-> This decorator is supported since API version 11.
+> This API is supported since API version 11.
 
 ## Available APIs
 

@@ -36,6 +36,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | [drawing_pen.h](drawing__pen_8h.md) | 文件中定义了与画笔相关的功能函数。 | 
 | [drawing_point.h](drawing__point_8h.md) | 文件中定义了与坐标点相关的功能函数。 | 
 | [drawing_rect.h](drawing__rect_8h.md) | 文件中定义了与矩形相关的功能函数。 | 
+| [drawing_register_font.h](drawing__register__font_8h.md) | 定义绘制模块中字体管理器相关的函数。 | 
 | [drawing_round_rect.h](drawing__round__rect_8h.md) | 文件中定义了与圆角矩形相关的功能函数。 | 
 | [drawing_sampling_options.h](drawing__sampling__options_8h.md) | 文件中定义了与采样相关的功能函数。用于图片或者纹理等图像的采样。 | 
 | [drawing_shader_effect.h](drawing__shader__effect_8h.md) | 声明与绘图模块中的着色器对象相关的函数。 | 
@@ -171,7 +172,10 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | void [OH_Drawing_BitmapBuild](#oh_drawing_bitmapbuild) ([OH_Drawing_Bitmap](#oh_drawing_bitmap) \*, const uint32_t width, const uint32_t height, const [OH_Drawing_BitmapFormat](_o_h___drawing___bitmap_format.md) \*) | 用于初始化位图对象的宽度和高度，并且为该位图设置像素格式。 | 
 | uint32_t [OH_Drawing_BitmapGetWidth](#oh_drawing_bitmapgetwidth) ([OH_Drawing_Bitmap](#oh_drawing_bitmap) \*) | 用于获取指定位图的宽度。 | 
 | uint32_t [OH_Drawing_BitmapGetHeight](#oh_drawing_bitmapgetheight) ([OH_Drawing_Bitmap](#oh_drawing_bitmap) \*) | 用于获取指定位图的高度。 | 
+| [OH_Drawing_ColorFormat](#oh_drawing_colorformat)[OH_Drawing_BitmapGetColorFormat](#oh_drawing_bitmapgetcolorformat) ([OH_Drawing_Bitmap](#oh_drawing_bitmap) \*) | 用于获取指定位图的像素存储格式。 | 
+| [OH_Drawing_AlphaFormat](#oh_drawing_alphaformat)[OH_Drawing_BitmapGetAlphaFormat](#oh_drawing_bitmapgetalphaformat) ([OH_Drawing_Bitmap](#oh_drawing_bitmap)\*) | 用于获取指定位图的像素透明度分量。 | 
 | void \* [OH_Drawing_BitmapGetPixels](#oh_drawing_bitmapgetpixels) ([OH_Drawing_Bitmap](#oh_drawing_bitmap) \*) | 用于获取指定位图的像素地址，可以通过像素地址获取到位图的像素数据。 | 
+| void [OH_Drawing_BitmapGetImageInfo](#oh_drawing_bitmapgetimageinfo) ([OH_Drawing_Bitmap](#oh_drawing_bitmap)\*, [OH_Drawing_Image_Info](_o_h___drawing___image___info.md)\*) | 用于获取指定位图的信息。 | 
 | [OH_Drawing_Brush](#oh_drawing_brush) \* [OH_Drawing_BrushCreate](#oh_drawing_brushcreate) (void) | 用于创建一个画刷对象。 | 
 | void [OH_Drawing_BrushDestroy](#oh_drawing_brushdestroy) ([OH_Drawing_Brush](#oh_drawing_brush) \*) | 用于销毁画刷对象并回收该对象占有的内存。 | 
 | bool [OH_Drawing_BrushIsAntiAlias](#oh_drawing_brushisantialias) (const [OH_Drawing_Brush](#oh_drawing_brush) \*) | 用于获取画刷是否设置抗锯齿属性，如果为真则说明画刷会启用抗锯齿功能，在绘制图形时会对图形的边缘像素进行半透明的模糊处理。 | 
@@ -234,7 +238,8 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | [OH_Drawing_FontCollection](#oh_drawing_fontcollection) \* [OH_Drawing_CreateFontCollection](#oh_drawing_createfontcollection) (void) | 创建字体集对象[OH_Drawing_FontCollection](#oh_drawing_fontcollection)。 | 
 | void [OH_Drawing_DestroyFontCollection](#oh_drawing_destroyfontcollection) ([OH_Drawing_FontCollection](#oh_drawing_fontcollection) \*) | 释放被字体集对象占据的内存。 | 
 | void [OH_Drawing_DisableFontCollectionFallback](#oh_drawing_disablefontcollectionfallback) ([OH_Drawing_FontCollection](#oh_drawing_fontcollection) \*fontCollection) | 禁用备用字体。 | 
-| void [OH_Drawing_DisableFontCollectionSystemFont](#oh_drawing_disablefontcollectionsystemfont) ([OH_Drawing_FontCollection](#oh_drawing_fontcollection) \*fontCollection) | 禁用系统字体。 | 
+| void [OH_Drawing_DisableFontCollectionSystemFont](#oh_drawing_disablefontcollectionsystemfont) ([OH_Drawing_FontCollection](#oh_drawing_fontcollection) \*fontCollection) | 禁用系统字体。 |
+| [OH_Drawing_FontCollection](#oh_drawing_fontcollection) \* [OH_Drawing_CreateSharedFontCollection](#oh_drawing_createsharedfontcollection) (void) | 创建可共享的字体集对象[OH_Drawing_FontCollection](#oh_drawing_fontcollection)。 | 
 | [OH_Drawing_Image](#oh_drawing_image) \* [OH_Drawing_ImageCreate](#oh_drawing_imagecreate) (void) | 创建一个图片对象，描述了要绘制的二维像素数组。 | 
 | void [OH_Drawing_ImageDestroy](#oh_drawing_imagedestroy) ([OH_Drawing_Image](#oh_drawing_image) \*) | 销毁图片对象并回收该对象占有内存。 | 
 | bool [OH_Drawing_ImageBuildFromBitmap](#oh_drawing_imagebuildfrombitmap) ([OH_Drawing_Image](#oh_drawing_image) \*, [OH_Drawing_Bitmap](#oh_drawing_bitmap) \*) | 从位图构造图片对象内容，共享或复制位图像素。如果位图被标记为不可变状态， 像素内存是共享的，不是复制。 | 
@@ -254,6 +259,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | void [OH_Drawing_MatrixTranslate](#oh_drawing_matrixtranslate) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*, float dx, float dy) | 设置矩阵为单位矩阵，并平移(dx, dy)。 | 
 | void [OH_Drawing_MatrixScale](#oh_drawing_matrixscale) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*, float sx, float sy, float px, float py) | 设置矩阵为单位矩阵，并围绕位于(px, py)的旋转轴点，以sx和sy进行缩放。 | 
 | bool [OH_Drawing_MatrixInvert](#oh_drawing_matrixinvert) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*, [OH_Drawing_Matrix](#oh_drawing_matrix) \*inverse) | 将矩阵inverse设置为矩阵的倒数，并返回结果。 | 
+| bool [OH_Drawing_MatrixSetPolyToPoly](#oh_drawing_matrixsetpolytopoly) ([OH_Drawing_Matrix](#oh_drawing_matrix)\*, const [OH_Drawing_Point2D](_o_h___drawing___point2_d.md)\* src, const [OH_Drawing_Point2D](_o_h___drawing___point2_d.md)\* dst, uint32_t count) | 通过设置源点以及目标点，生成对应的变换矩阵。 源点以及目标点的个数要大于等于0，小于等于4。 | 
 | bool [OH_Drawing_MatrixIsEqual](#oh_drawing_matrixisequal) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*, [OH_Drawing_Matrix](#oh_drawing_matrix) \*other) | 判断两个矩阵是否相等。 | 
 | bool [OH_Drawing_MatrixIsIdentity](#oh_drawing_matrixisidentity) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*) | 判断矩阵是否是单位矩阵。 | 
 | void [OH_Drawing_MatrixDestroy](#oh_drawing_matrixdestroy) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*) | 用于销毁矩阵对象并回收该对象占有的内存。 | 
@@ -302,6 +308,8 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | void [OH_Drawing_PointDestroy](#oh_drawing_pointdestroy) ([OH_Drawing_Point](#oh_drawing_point) \*) | 用于销毁坐标点对象并回收该对象占有的内存。 | 
 | [OH_Drawing_Rect](#oh_drawing_rect) \* [OH_Drawing_RectCreate](#oh_drawing_rectcreate) (float left, float top, float right, float bottom) | 用于创建一个矩形对象。 | 
 | void [OH_Drawing_RectDestroy](#oh_drawing_rectdestroy) ([OH_Drawing_Rect](#oh_drawing_rect) \*) | 用于销毁矩形对象并回收该对象占有的内存。 | 
+| uint32_t [OH_Drawing_RegisterFont](#oh_drawing_registerfont) ([OH_Drawing_FontCollection](#oh_drawing_fontcollection) \*, const char \*fontFamily, const char \*familySrc) | 用于在字体管理器中注册自定义字体。 | 
+| uint32_t [OH_Drawing_RegisterFontBuffer](#oh_drawing_registerfontbuffer) ([OH_Drawing_FontCollection](#oh_drawing_fontcollection) \*, const char \*fontFamily, uint8_t \*fontBuffer, size_t length) | 用于在字体管理器中注册字体缓冲区。 |
 | [OH_Drawing_RoundRect](#oh_drawing_roundrect) \* [OH_Drawing_RoundRectCreate](#oh_drawing_roundrectcreate) (const [OH_Drawing_Rect](#oh_drawing_rect) \*, float xRad, float yRad) | 用于创建一个圆角矩形对象。 | 
 | void [OH_Drawing_RoundRectDestroy](#oh_drawing_roundrectdestroy) ([OH_Drawing_RoundRect](#oh_drawing_roundrect) \*) | 用于销毁圆角矩形对象并回收该对象占有的内存。 | 
 | [OH_Drawing_SamplingOptions](#oh_drawing_samplingoptions) \* [OH_Drawing_SamplingOptionsCreate](#oh_drawing_samplingoptionscreate) ([OH_Drawing_FilterMode](#oh_drawing_filtermode), [OH_Drawing_MipmapMode](#oh_drawing_mipmapmode)) | 创建一个采样选项对象。 | 
@@ -1930,6 +1938,54 @@ void OH_Drawing_BitmapDestroy (OH_Drawing_Bitmap* )
 | -------- | -------- |
 | OH_Drawing_Bitmap | 指向位图对象的指针。 | 
 
+### OH_Drawing_BitmapGetAlphaFormat()
+
+```
+OH_Drawing_AlphaFormat OH_Drawing_BitmapGetAlphaFormat (OH_Drawing_Bitmap * )
+```
+
+**描述**
+
+用于获取指定位图的像素透明度分量。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| OH_Drawing_Bitmap | 指向位图对象的指针。 | 
+
+**返回：**
+
+函数返回位图的像素透明度分量，支持格式参考[OH_Drawing_AlphaFormat](#oh_drawing_alphaformat)。
+
+
+### OH_Drawing_BitmapGetColorFormat()
+
+```
+OH_Drawing_ColorFormat OH_Drawing_BitmapGetColorFormat (OH_Drawing_Bitmap* )
+```
+
+**描述**
+
+用于获取指定位图的像素存储格式。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| OH_Drawing_Bitmap | 指向位图对象的指针。 | 
+
+**返回：**
+
+函数返回位图的像素存储格式，支持格式参考[OH_Drawing_ColorFormat](#oh_drawing_colorformat)。
 
 ### OH_Drawing_BitmapGetHeight()
 
@@ -1954,6 +2010,27 @@ uint32_t OH_Drawing_BitmapGetHeight (OH_Drawing_Bitmap* )
 **返回：**
 
 函数返回位图的高度。
+
+### OH_Drawing_BitmapGetImageInfo()
+
+```
+void OH_Drawing_BitmapGetImageInfo (OH_Drawing_Bitmap* , OH_Drawing_Image_Info*  )
+```
+
+**描述**
+
+用于获取指定位图的信息。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| OH_Drawing_Bitmap | 指向位图对象[OH_Drawing_Bitmap](#oh_drawing_bitmap)的指针。 | 
+| [OH_Drawing_Image_Info](_o_h___drawing___image___info.md) | 指向图片信息对象[OH_Drawing_Image_Info](_o_h___drawing___image___info.md)的指针。 | 
 
 
 ### OH_Drawing_BitmapGetPixels()
@@ -3400,6 +3477,23 @@ OH_Drawing_FontParser* OH_Drawing_CreateFontParser (void )
 
 返回指向已创建的字体解析对象[OH_Drawing_FontParser](#oh_drawing_fontparser)的指针。
 
+### OH_Drawing_CreateSharedFontCollection()
+
+```
+OH_Drawing_FontCollection* OH_Drawing_CreateSharedFontCollection (void)
+```
+
+**描述**
+
+创建可共享的字体集对象[OH_Drawing_FontCollection](#oh_drawing_fontcollection)。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 12
+
+**返回：**
+
+指向创建的字体集对象的指针。
 
 ### OH_Drawing_CreateTextShadow()
 
@@ -4932,6 +5026,32 @@ void OH_Drawing_MatrixSetMatrix (OH_Drawing_Matrix* , float scaleX, float skewX,
 | persp1 | Y轴透视系数。 | 
 | persp2 | 透视缩放系数。 | 
 
+### OH_Drawing_MatrixSetPolyToPoly()
+
+```
+bool OH_Drawing_MatrixSetPolyToPoly (OH_Drawing_Matrix* , const OH_Drawing_Point2D* src, const OH_Drawing_Point2D* dst, uint32_t count )
+```
+
+**描述**
+
+通过设置源点以及目标点，生成对应的变换矩阵。 源点以及目标点的个数要大于等于0，小于等于4。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| OH_Drawing_Matrix | 指向矩阵对象[OH_Drawing_Matrix](#oh_drawing_matrix)的指针。 | 
+| src | 源点数组。 | 
+| dst | 目标点数组，个数要与源点相等。 | 
+| count | 源点数组以及目标点数组的个数。 | 
+
+**返回：**
+
+函数返回是否可以生成对应矩阵以用来完成变换。true表示矩阵生成成功，false表示无法生成对应矩阵。
 
 ### OH_Drawing_MatrixTranslate()
 
@@ -5976,6 +6096,59 @@ void OH_Drawing_RectDestroy (OH_Drawing_Rect* )
 | -------- | -------- |
 | OH_Drawing_Rect | 指向矩形对象的指针。 | 
 
+### OH_Drawing_RegisterFont()
+
+```
+uint32_t OH_Drawing_RegisterFont (OH_Drawing_FontCollection* , const char* fontFamily, const char* familySrc )
+```
+
+**描述**
+
+用于在字体管理器中注册自定义字体。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| OH_Drawing_FontCollection | 指向[OH_Drawing_FontCollection](#oh_drawing_fontcollection)对象的指针。 | 
+| fontFamily | 指需要注册的字体的字体名称。 | 
+| familySrc | 指需要注册的字体文件的路径。 | 
+
+**返回：**
+
+返回错误代码，0为成功，1为文件不存在，2为打开文件失败，3为读取文件失败，4为寻找文件失败，5为获取大小失败。
+
+
+### OH_Drawing_RegisterFontBuffer()
+
+```
+uint32_t OH_Drawing_RegisterFontBuffer (OH_Drawing_FontCollection* , const char* fontFamily, uint8_t* fontBuffer, size_t length )
+```
+
+**描述**
+
+用于在字体管理器中注册字体缓冲区。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| OH_Drawing_FontCollection | 指向[OH_Drawing_FontCollection](#oh_drawing_fontcollection)对象的指针。 | 
+| fontFamily | 指需要注册的字体的字体名称。 | 
+| fontBuffer | 指需要注册的字体文件的缓冲区。 | 
+| length | 指需要注册的字体文件的长度。 | 
+
+**返回：**
+
+返回错误代码，0为成功，6为缓冲区大小为零，7为字体集合为空。
 
 ### OH_Drawing_RoundRectCreate()
 

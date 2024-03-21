@@ -28,8 +28,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [ArkUI_NativeAPIVariantKind](_ark_u_i___native_module.md#arkui_nativeapivariantkind) { [ARKUI_NATIVE_NODE](_ark_u_i___native_module.md) } | 定义Native接口集合类型。  | 
-| [ArkUI_NativeNodeAPIVersion](_ark_u_i___native_module.md#arkui_nativenodeapiversion) { [ARKUI_NATIVE_NODE_VERSION_1](_ark_u_i___native_module.md) } | 定义ARKUI_NATIVE_NODE类型支持的版本号信息。  | 
+| [ArkUI_NativeAPIVariantKind](_ark_u_i___native_module.md#arkui_nativeapivariantkind) { [ARKUI_NATIVE_NODE](_ark_u_i___native_module.md), [ARKUI_NATIVE_DIALOG](_ark_u_i___native_module.md) } | 定义Native接口集合类型。  | 
+| [ArkUI_NativeNodeAPIVersion](_ark_u_i___native_module.md#arkui_nativenodeapiversion) { [ARKUI_NATIVE_NODE_VERSION_1](_ark_u_i___native_module.md) = 1 } | 定义ARKUI_NATIVE_NODE类型支持的版本号信息。  | 
 
 
 ### 函数

@@ -143,12 +143,12 @@
 
 颜色类型，用于描述资源颜色类型。
 
-| 类型                                  | 说明                                       |
-| ----------------------------------- | ---------------------------------------- |
-| [Color](ts-appendix-enums.md#color) | 颜色枚举值。                                   |
-| number                              | HEX格式颜色，支持rgb。示例：0xffffff。               |
+| 类型                                | 说明                                                         |
+| ----------------------------------- | ------------------------------------------------------------ |
+| [Color](ts-appendix-enums.md#color) | 颜色枚举值。                                                 |
+| number                              | HEX格式颜色，支持rgb或者argb。示例：0xffffff，0xffff0000。   |
 | string                              | rgb或者argb格式颜色。示例：'#ffffff', '#ff000000', 'rgb(255, 100, 255)', 'rgba(255, 100, 255, 0.5)'。 |
-| [Resource](#resource)               | 使用引入资源的方式，引入系统资源或者应用资源中的颜色。              |
+| [Resource](#resource)               | 使用引入资源的方式，引入系统资源或者应用资源中的颜色。       |
 
 ## ColoringStrategy<sup>10+</sup>
 
@@ -200,6 +200,17 @@
 | ---- | ----------------- | ---- | --------------------------- |
 | x    | [Length](#length) | 否    | x轴坐标，作为返回值时，类型为number，单位vp。 |
 | y    | [Length](#length) | 否    | y轴坐标，作为返回值时，类型为number，单位vp。 |
+
+## Edges<sup>12+</sup>
+
+位置类型，表示相对四边的偏移量。同时设置top和bottom，仅top生效；同时设置left和right，仅left生效。
+
+| 名称   | 类型     | 必填   | 说明                          |
+| ---- | ------ | ---- | --------------------------- |
+| top    | [Dimension](#dimension10) | 否    | 相对顶边的偏移量 |
+| bottom    | [Dimension](#dimension10) | 否    | 相对底边的偏移量 |
+| left    | [Dimension](#dimension10) | 否    | 相对左边的偏移量 |
+| right    | [Dimension](#dimension10) | 否    | 相对右边的偏移量 |
 
 ## ConstraintSizeOptions
 
@@ -425,6 +436,22 @@ Tabs自定义切换动画执行过程中，返回给开发者的proxy对象。�
 
 函数回调：() => void
 
+## Callback<sup>12+</sup>
+
+Callback<T,V = void> = (T) => V;
+
+带参数的函数回调。
+
+## HoverCallback<sup>12+</sup>
+
+hover事件的回调类型。
+
+HoverCallback = (isHover: boolean, event: [HoverEvent](./ts-universal-mouse-key.md#hoverevent10对象说明)) => void
+
+| 名称            | 类型定义                   | 描述                                       |
+| ------------- | ---------------------- | ---------------------------------------- |
+| HoverCallback | (isHover: boolean, event: [HoverEvent](./ts-universal-mouse-key.md#hoverevent10对象说明)) => void | hover事件的回调。 |
+
 ## StyledStringValue<sup>12+</sup>
 
 样式对象类型，用于设置属性字符串的样式。
@@ -432,7 +459,3 @@ Tabs自定义切换动画执行过程中，返回给开发者的proxy对象。�
 | 名称   | 描述       |
 | ------ | ---------- |
 | TextStyle | 文本字体样式。 |
-
-
-
-

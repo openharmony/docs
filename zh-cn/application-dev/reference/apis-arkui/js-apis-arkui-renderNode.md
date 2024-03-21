@@ -494,7 +494,7 @@ struct Index {
       Button('getNextSibling')
         .onClick(() => {
           const child = renderNode.getChild(1);
-          const nextSibling = child.getNextSibling()
+          const nextSibling = child!.getNextSibling()
           if (child === null || nextSibling === null) {
             console.log('the child or nextChild is null');
           } else {
@@ -2190,6 +2190,66 @@ struct Index {
   build() {
     Row() {
       NodeContainer(this.myNodeController)
+    }
+  }
+}
+```
+
+### dispose<sup>12+</sup>
+
+dispose(): void
+
+立即释放当前RenderNode。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**示例：**
+
+```ts
+import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
+
+const renderNode = new RenderNode();
+renderNode.frame = { x: 0, y: 100, width: 100, height: 100 };
+renderNode.backgroundColor = 0xffff0000;
+
+class MyNodeController extends NodeController {
+  private rootNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+
+    const rootRenderNode = this.rootNode.getRenderNode();
+    if (rootRenderNode !== null) {
+      rootRenderNode.size = { width: 200, height: 200 };
+      rootRenderNode.backgroundColor = 0xff00ff00;
+      rootRenderNode.appendChild(renderNode);
+    }
+
+    return this.rootNode;
+  }
+
+  disposeRenderNode() {
+    const rootRenderNode = this.rootNode.getRenderNode();
+    if (rootRenderNode !== null) {
+      rootRenderNode.removeChild(renderNode);
+    }
+    renderNode.dispose();
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private myNodeController: MyNodeController = new MyNodeController();
+
+  build() {
+    Column({ space: 4 }) {
+      NodeContainer(this.myNodeController)
+      Button('RenderNode dispose')
+        .onClick(() => {
+          this.myNodeController.disposeRenderNode();
+        })
+        .width('100%')
     }
   }
 }

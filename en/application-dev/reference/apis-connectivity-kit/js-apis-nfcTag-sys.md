@@ -1,7 +1,6 @@
 # @ohos.nfc.tag (standard NFC Tags) (System API)
 
 The **tag** module provides APIs for operating and managing NFC tags. The following tag read modes are available:
-
 - Background mode: The device reads the tag by using NFC without starting any application, and then searches for applications based on the tag type. If only one application is matched, the card reading page of that application will be started. If multiple applications are matched, an application selector will be started, asking the user to select an application.
 - Foreground mode: A foreground application has priority to read the NFC tag discovered.
 
@@ -26,12 +25,6 @@ Defines the **TagInfo** object, which provides information about the tag technol
 
 | **Name**                     | **Type**                                                     | **Readable**| **Writable**| **Description**                                                                                    |
 | ----------------------------- | ------------------------------------------------------------- | -------- | -------- | -------------------------------------------------------------------------------------------- |
-| uid<sup>9+</sup>              | number[]                                                      | Yes      | No      | Tag unique identifier (UID), which consists of hexadecimal numbers ranging from **0x00** to **0xFF**.                                    |
-| technology<sup>9+</sup>       | number[]                                                      | Yes      | No      | Supported tag technologies. Each number is a constant indicating the supported technology.                                    |
-| supportedProfiles             | number[]                                                      | Yes      | No      | Supported profiles. This parameter is not supported since API version 9. Use [tag.TagInfo#technology](#taginfo) instead.           |
 | extrasData<sup>9+</sup>       | [PacMap](../apis-ability-kit/js-apis-inner-ability-dataAbilityHelper.md#pacmap)[] | Yes      | No      | Extended attribute value of the tag technology.<br>**System API**: This is a system API.                           |
 | tagRfDiscId<sup>9+</sup>      | number                                                        | Yes      | No      | ID allocated when the tag is discovered.<br>**System API**: This is a system API.                                 |
 | remoteTagService<sup>9+</sup> | [rpc.RemoteObject](../apis-ipc-kit/js-apis-rpc.md#remoteobject)               | Yes      | No      | Remote object of the NFC service process used for interface communication between the client and the service.<br>**System API**: This is a system API.|
-
-
-<!--no_check-->

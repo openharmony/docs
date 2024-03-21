@@ -22,7 +22,7 @@ grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: stri
 
 授权URI给指定应用。使用callback异步回调。
 
-默认仅允许授权属于应用自身的URI，若拥有权限ohos.permission.PROXY_AUTHORIZATION_URI则无限制。
+允许应用授权属于自身的URI, 若应用拥有ohos.permission.PROXY_AUTHORIZATION_URI权限, 则还允许授权不属于自身但具有访问权限的URI。
 **系统API**：该接口为系统接口，三方应用不支持调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
@@ -79,7 +79,7 @@ grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: stri
 
 授权URI给指定应用。使用Promise异步回调。
 
-默认仅允许授权属于应用自身的URI，若拥有权限ohos.permission.PROXY_AUTHORIZATION_URI则无限制。
+允许应用授权属于自身的URI, 若应用拥有ohos.permission.PROXY_AUTHORIZATION_URI权限, 则还允许授权不属于自身但具有访问权限的URI。
 **系统API**：该接口为系统接口，三方应用不支持调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
@@ -144,12 +144,10 @@ revokeUriPermission(uri: string, targetBundleName: string, callback: AsyncCallba
 
 撤销授权指定应用的URI。使用callback异步回调。
 
-默认仅允许撤销应用自身获得的其他应用URI，或应用授权给其他应用属于自身的URI。若拥有权限ohos.permission.PROXY_AUTHORIZATION_URI则无限制。
+允许应用撤销自身获得的其他应用URI权限，或授权给其他应用的URI权限。
 **系统API**：该接口为系统接口，三方应用不支持调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**需要权限:** ohos.permission.PROXY_AUTHORIZATION_URI
 
 **参数：**
 
@@ -188,13 +186,10 @@ revokeUriPermission(uri: string, targetBundleName: string): Promise&lt;number&gt
 撤销授权指定应用的URI。使用callback异步回调。
 
 
-默认仅允许撤销应用自身获得的其他应用URI，或应用授权给其他应用属于自身的URI。若拥有权限ohos.permission.PROXY_AUTHORIZATION_URI则无限制。
+允许应用撤销自身获得的其他应用URI权限，或授权给其他应用的URI权限。
 **系统API**：该接口为系统接口，三方应用不支持调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**需要权限:** ohos.permission.PROXY_AUTHORIZATION_URI
-
 
 **参数：**
 

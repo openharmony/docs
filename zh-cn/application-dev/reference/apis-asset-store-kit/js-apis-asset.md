@@ -2,7 +2,7 @@
 
 关键资产存储服务提供了用户短敏感数据的安全存储及管理能力。其中，短敏感数据可以是密码类（账号/密码）、Token类（应用凭据）、其他关键明文（如银行卡号）等长度较短的用户敏感数据。
 
->  **说明：**
+> **说明：**
 >
 > 本模块首批接口从API version 11 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
@@ -79,6 +79,63 @@ try {
 }
 ```
 
+## asset.addSync<sup>12+</sup>
+
+addSync(attributes: AssetMap): void
+
+新增一条关键资产，使用同步方式返回结果。
+
+**系统能力：** SystemCapability.Security.Asset
+
+| 参数名     | 类型     | 必填 | 说明                                                         |
+| ---------- | -------- | ---- | ------------------------------------------------------------ |
+| attributes | [AssetMap](#assetmap) | 是   | 待新增关键资产的属性集合，包括关键资产明文、访问控制属性、自定义数据等。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关键资产存储服务错误码](errorcode-asset.md)
+
+| 错误码ID | 错误信息                                                   |
+| -------- | ---------------------------------------------------------- |
+| 201      | The caller doesn't have the permission.                    |
+| 401      | The argument is invalid.                                   |
+| 24000001 | The ASSET Service is unavailable.                          |
+| 24000003 | The Asset already exists.                                  |
+| 24000005 | The screen lock status mismatches.                         |
+| 24000006 | Insufficient memory.                                       |
+| 24000007 | The Asset is corrupted.                                    |
+| 24000008 | The database operation is failed.                          |
+| 24000009 | The cryptography operation is failed.                      |
+| 24000010 | IPC communication is failed                                |
+| 24000011 | The operation of calling Bundle Manager Service is failed. |
+| 24000012 | The operation of calling OS Account Service is failed.     |
+| 24000013 | The operation of calling Access Token Service is failed.   |
+| 24000014 | The operation of file is failed.                           |
+| 24000015 | The operation of getting system time is failed.            |
+
+**示例代码：**
+
+```typescript
+import { asset } from '@kit.AssetStoreKit';
+import { util } from '@kit.ArkTS';
+
+function stringToArray(str: string): Uint8Array {
+  let textEncoder = new util.TextEncoder();
+  return textEncoder.encodeInto(str);
+}
+
+let attr: asset.AssetMap = new Map();
+attr.set(asset.Tag.SECRET, stringToArray('demo_pwd'));
+attr.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
+attr.set(asset.Tag.ACCESSIBILITY, asset.Accessibility.DEVICE_FIRST_UNLOCKED);
+attr.set(asset.Tag.DATA_LABEL_NORMAL_1, stringToArray('demo_label'));
+try {
+  asset.addSync(attr);
+} catch (error) {
+  console.error(`Failed to add Asset.`);
+}
+```
+
 ## asset.remove
 
 remove(query: AssetMap): Promise\<void>
@@ -134,6 +191,56 @@ try {
   }).catch(() => {
     console.error(`Failed to remove Asset.`);
   });
+} catch (error) {
+  console.error(`Failed to remove Asset.`);
+}
+```
+
+## asset.removeSync<sup>12+</sup>
+
+removeSync(query: AssetMap): void
+
+删除符合条件的一条或多条关键资产，使用同步方式。
+
+**系统能力：** SystemCapability.Security.Asset
+
+| 参数名 | 类型     | 必填 | 说明                                                   |
+| ------ | -------- | ---- | ------------------------------------------------------ |
+| query  | [AssetMap](#assetmap) | 是   | 待删除关键资产的搜索条件，如别名、访问控制属性、自定义数据等。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关键资产存储服务错误码](errorcode-asset.md)
+
+| 错误码ID | 错误信息                                                   |
+| -------- | ---------------------------------------------------------- |
+| 401      | The argument is invalid.                                   |
+| 24000001 | The ASSET Service is unavailable.                          |
+| 24000002 | The queried Asset can not be found.                        |
+| 24000006 | Insufficient memory.                                       |
+| 24000007 | The Asset is corrupted.                                    |
+| 24000008 | The database operation is failed.                          |
+| 24000009 | The cryptography operation is failed.                      |
+| 24000010 | IPC communication is failed                                |
+| 24000011 | The operation of calling Bundle Manager Service is failed. |
+| 24000012 | The operation of calling OS Account Service is failed.     |
+| 24000013 | The operation of calling Access Token Service is failed.   |
+
+**示例代码：**
+
+```typescript
+import { asset } from '@kit.AssetStoreKit';
+import { util } from '@kit.ArkTS';
+
+function stringToArray(str: string): Uint8Array {
+  let textEncoder = new util.TextEncoder();
+  return textEncoder.encodeInto(str);
+}
+
+let query: asset.AssetMap = new Map();
+query.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
+try {
+  asset.removeSync(query);
 } catch (error) {
   console.error(`Failed to remove Asset.`);
 }
@@ -204,6 +311,61 @@ try {
 }
 ```
 
+## asset.updateSync<sup>12+</sup>
+
+updateSync(query: AssetMap, attributesToUpdate: AssetMap): void
+
+更新符合条件的一条关键资产，使用同步方式返回结果。
+
+**系统能力：** SystemCapability.Security.Asset
+
+| 参数名             | 类型     | 必填 | 说明                                                         |
+| ------------------ | -------- | ---- | ------------------------------------------------------------ |
+| query              | [AssetMap](#assetmap) | 是   | 待更新关键资产的搜索条件，如关键资产别名、访问控制属性、自定义数据等。 |
+| attributesToUpdate | [AssetMap](#assetmap) | 是   | 待更新关键资产的属性集合，如关键资产明文、自定义数据等。       |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关键资产存储服务错误码](errorcode-asset.md)
+
+| 错误码ID | 错误信息                                                   |
+| -------- | ---------------------------------------------------------- |
+| 401      | The argument is invalid.                                   |
+| 24000001 | The ASSET Service is unavailable.                          |
+| 24000002 | The queried Asset can not be found.                        |
+| 24000005 | The screen lock status mismatches.                         |
+| 24000006 | Insufficient memory.                                       |
+| 24000007 | The Asset is corrupted.                                    |
+| 24000008 | The database operation is failed.                          |
+| 24000009 | The cryptography operation is failed.                      |
+| 24000010 | IPC communication is failed                                |
+| 24000011 | The operation of calling Bundle Manager Service is failed. |
+| 24000012 | The operation of calling OS Account Service is failed.     |
+| 24000013 | The operation of calling Access Token Service is failed.   |
+| 24000015 | The operation of getting system time is failed.            |
+
+**示例代码：**
+
+```typescript
+import { asset } from '@kit.AssetStoreKit';
+import { util } from '@kit.ArkTS';
+
+function stringToArray(str: string): Uint8Array {
+  let textEncoder = new util.TextEncoder();
+  return textEncoder.encodeInto(str);
+}
+
+let query: asset.AssetMap = new Map();
+query.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
+let attrsToUpdate: asset.AssetMap = new Map();
+attrsToUpdate.set(asset.Tag.SECRET, stringToArray('demo_pwd_new'));
+try {
+  asset.updateSync(query, attrsToUpdate);
+} catch (error) {
+  console.error(`Failed to update Asset.`);
+}
+```
+
 ## asset.preQuery
 
 preQuery(query: AssetMap): Promise\<Uint8Array>
@@ -262,6 +424,65 @@ try {
   }).catch (() => {
     console.error(`Failed to pre-query Asset.`);
   });
+} catch (error) {
+  console.error(`Failed to pre-query Asset.`);
+}
+```
+
+## asset.preQuerySync<sup>12+</sup>
+
+preQuerySync(query: AssetMap): Uint8Array
+
+查询的预处理，用于需要用户认证的关键资产。在用户认证成功后，应当随后调用[asset.querySync](#assetquerysync12)、[asset.postQuerySync](#assetpostquerysync12)。使用同步方式返回结果。
+
+**系统能力：** SystemCapability.Security.Asset
+
+| 参数名 | 类型     | 必填 | 说明                                                   |
+| ------ | -------- | ---- | ------------------------------------------------------ |
+| query  | [AssetMap](#assetmap) | 是   | 关键资产的查询条件，如别名、访问控制属性、自定义数据等。 |
+
+**返回值：**
+
+| 类型                | 说明                                                  |
+| ------------------- | ----------------------------------------------------- |
+| Uint8Array | 挑战值。<br>**说明：** 挑战值用于后续用户认证。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关键资产存储服务错误码](errorcode-asset.md)
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | The argument is invalid.                                     |
+| 24000001 | The ASSET Service is unavailable.                            |
+| 24000002 | The queried Asset can not be found.                          |
+| 24000005 | The screen lock status mismatches.                           |
+| 24000006 | Insufficient memory.                                         |
+| 24000007 | The Asset is corrupted.                                      |
+| 24000008 | The database operation is failed.                            |
+| 24000009 | The cryptography operation is failed.                        |
+| 24000010 | IPC communication is failed                                  |
+| 24000011 | The operation of calling Bundle Manager Service is failed.   |
+| 24000012 | The operation of calling OS Account Service is failed.       |
+| 24000013 | The operation of calling Access Token Service is failed.     |
+| 24000016 | The cache exceeds the limit.                                 |
+| 24000017 | The capability is not supported.                             |
+
+**示例代码：**
+
+```typescript
+import { asset } from '@kit.AssetStoreKit';
+import { util } from '@kit.ArkTS';
+
+function stringToArray(str: string): Uint8Array {
+  let textEncoder = new util.TextEncoder();
+  return textEncoder.encodeInto(str);
+}
+
+let query: asset.AssetMap = new Map();
+query.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
+try {
+  let challenge: Uint8Array = asset.preQuerySync(query);
 } catch (error) {
   console.error(`Failed to pre-query Asset.`);
 }
@@ -334,6 +555,72 @@ try {
 }
 ```
 
+## asset.querySync<sup>12+</sup>
+
+querySync(query: AssetMap): Array\<AssetMap>
+
+查询一条或多条符合条件的关键资产。若查询需要用户认证的关键资产，则需要在本函数前调用[asset.preQuerySync](#assetprequerysync12)，在本函数后调用[asset.postQuerySync](#assetpostquerysync12)，开发步骤请参考[开发指导](../../security/AssetStoreKit/asset-js-query-auth.md)。使用同步方式返回结果。
+
+**系统能力：** SystemCapability.Security.Asset
+
+| 参数名   | 类型                            | 必填 | 说明                                                         |
+| -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
+| query    | [AssetMap](#assetmap)           | 是   | 关键资产的查询条件，如别名、访问控制属性、自定义数据等。       |
+
+**返回值：**
+
+| 类型                     | 说明                                  |
+| ------------------------ | ------------------------------------- |
+| <Array\<AssetMap> | 查询结果列表。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关键资产存储服务错误码](errorcode-asset.md)
+
+| 错误码ID | 错误信息                                                   |
+| -------- | ---------------------------------------------------------- |
+| 401      | The argument is invalid.                                   |
+| 24000001 | The ASSET Service is unavailable.                          |
+| 24000002 | The queried Asset can not be found.                        |
+| 24000004 | The access to Asset is denied.                             |
+| 24000005 | The screen lock status mismatches.                         |
+| 24000006 | Insufficient memory.                                       |
+| 24000007 | The Asset is corrupted.                                    |
+| 24000008 | The database operation is failed.                          |
+| 24000009 | The cryptography operation is failed.                      |
+| 24000010 | IPC communication is failed                                |
+| 24000011 | The operation of calling Bundle Manager Service is failed. |
+| 24000012 | The operation of calling OS Account Service is failed.     |
+| 24000013 | The operation of calling Access Token Service is failed.   |
+| 24000017 | The capability is not supported.                           |
+
+**示例代码：**
+
+```typescript
+import { asset } from '@kit.AssetStoreKit';
+import { util } from '@kit.ArkTS';
+
+function stringToArray(str: string): Uint8Array {
+  let textEncoder = new util.TextEncoder();
+  return textEncoder.encodeInto(str);
+}
+
+let query: asset.AssetMap = new Map();
+query.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
+try {
+  let res: Array<asset.AssetMap> = asset.querySync(query);
+  let accessibility: number;
+  for (let i = 0; i < res.length; i++) {
+    // parse the attribute.
+    if (res[i] != null) {
+      accessibility = res[i].get(asset.Tag.ACCESSIBILITY) as number;
+    }
+  }
+} catch (error) {
+  console.error(`Failed to query Asset.`);
+}
+```
+
 ## asset.postQuery
 
 postQuery(handle: AssetMap): Promise\<void>
@@ -385,6 +672,47 @@ try {
 }
 ```
 
+## asset.postQuerySync<sup>12+</sup>
+
+postQuerySync(handle: AssetMap): void
+
+查询的后置处理，用于需要用户认证的关键资产。需与[asset.preQuerySync](#assetprequerysync12)函数成对出现。使用同步方式返回结果。
+
+**系统能力：** SystemCapability.Security.Asset
+
+| 参数名 | 类型     | 必填 | 说明                                                         |
+| ------ | -------- | ---- | ------------------------------------------------------------ |
+| handle | [AssetMap](#assetmap) | 是   | 待处理的查询句柄，当前包含[asset.preQuerySync](#assetprequerysync12)执行成功返回的挑战值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关键资产存储服务错误码](errorcode-asset.md)
+
+| 错误码ID | 错误信息                                                   |
+| -------- | ---------------------------------------------------------- |
+| 401      | The argument is invalid.                                   |
+| 24000001 | The ASSET Service is unavailable.                          |
+| 24000006 | Insufficient memory.                                       |
+| 24000010 | IPC communication is failed                                |
+| 24000011 | The operation of calling Bundle Manager Service is failed. |
+| 24000012 | The operation of calling OS Account Service is failed.     |
+| 24000013 | The operation of calling Access Token Service is failed.   |
+
+**示例代码：**
+
+```typescript
+import { asset } from '@kit.AssetStoreKit';
+
+let handle: asset.AssetMap = new Map();
+// 此处传入的new Uint8Array(32)仅作为示例，实际应传入asset.preQuerySync执行成功返回的挑战值
+handle.set(asset.Tag.AUTH_CHALLENGE, new Uint8Array(32));
+try {
+  asset.postQuerySync(handle)
+} catch (error) {
+  console.error(`Failed to post-query Asset.`);
+}
+```
+
 ## TagType
 
 枚举，关键资产属性支持的数据类型。
@@ -403,6 +731,10 @@ try {
 
 **系统能力：** SystemCapability.Security.Asset
 
+> **说明：**
+>
+> 以下为Tag类型的全量枚举值，每个接口可传的Tag枚举及对应的Value取值范围不同，详见[开发指南](../../security/AssetStoreKit/Readme-CN.md)。
+
 | 名称 | 值                                  | 说明                                                         |
 | ------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | SECRET                    | TagType.BYTES &#124; 0x01  | 关键资产明文                                                 |
@@ -414,7 +746,7 @@ try {
 | AUTH_CHALLENGE            | TagType.BYTES &#124; 0x07     | 用户认证的挑战值                                         |
 | AUTH_TOKEN                | TagType.BYTES &#124; 0x08    | 用户认证通过的授权令牌                                           |
 | SYNC_TYPE                 | TagType.NUMBER &#124; 0x10 | 关键资产支持的同步类型                                       |
-| IS_PERSISTENT             | TagType.BOOL &#124; 0x11                         | 在应用卸载时是否需要保留关键资产<br>**需要权限：** ohos.permission.STORE_PERSISTENT_DATA<br/>**备注：** 仅在调用[asset.add](#assetadd)函数并传入该属性时需要校验权限 |
+| IS_PERSISTENT             | TagType.BOOL &#124; 0x11                         | 在应用卸载时是否需要保留关键资产<br>**需要权限：** ohos.permission.STORE_PERSISTENT_DATA<br/>**备注：** 仅在调用[asset.add](#assetadd)或者[asset.addSync](#assetaddsync12)函数时可传入，且传入该属性时需要校验权限 |
 | DATA_LABEL_CRITICAL_1     | TagType.BYTES &#124; 0x20 | 关键资产附属信息，内容由业务自定义且**有完整性保护**             |
 | DATA_LABEL_CRITICAL_2 | TagType.BYTES &#124; 0x21 | 关键资产附属信息，内容由业务自定义且**有完整性保护** |
 | DATA_LABEL_CRITICAL_3 | TagType.BYTES &#124; 0x22 | 关键资产附属信息，内容由业务自定义且**有完整性保护** |

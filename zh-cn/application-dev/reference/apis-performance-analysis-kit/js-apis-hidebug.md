@@ -16,7 +16,7 @@ import hidebug from '@ohos.hidebug';
 
 getNativeHeapSize(): bigint
 
-获取本应用堆内存的总大小。
+获取内存分配器统计的进程持有的堆内存大小（含分配器元数据）。
 
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -24,7 +24,7 @@ getNativeHeapSize(): bigint
 
 | 类型   | 说明                        |
 | ------ | --------------------------- |
-| bigint | 返回本应用堆内存总大小，单位为Byte。 |
+| bigint | 内存分配器统计的进程持有的堆内存大小（含分配器元数据），单位为Byte。 |
 
 **示例：**
 
@@ -36,7 +36,7 @@ getNativeHeapSize(): bigint
 
 getNativeHeapAllocatedSize(): bigint
 
-获取本应用堆内存的已分配内存大小。
+获取内存分配器统计的进程业务分配的堆内存大小。
 
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -44,7 +44,7 @@ getNativeHeapAllocatedSize(): bigint
 
 | 类型   | 说明                              |
 | ------ | --------------------------------- |
-| bigint | 返回本应用堆内存的已分配内存，单位为Byte。 |
+| bigint | 返回内存分配器统计的进程业务分配的堆内存大小，单位为Byte。 |
 
 
 **示例：**
@@ -56,7 +56,7 @@ getNativeHeapAllocatedSize(): bigint
 
 getNativeHeapFreeSize(): bigint
 
-获取本应用堆内存的空闲内存大小。
+获取内存分配器持有的缓存内存大小。
 
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -64,7 +64,7 @@ getNativeHeapFreeSize(): bigint
 
 | 类型   | 说明                            |
 | ------ | ------------------------------- |
-| bigint | 返回本应用堆内存的空闲内存，单位为Byte。 |
+| bigint | 返回内存分配器持有的缓存内存大小，单位为Byte。 |
 
 **示例：**
   ```ts
@@ -177,7 +177,7 @@ getServiceDump(serviceid : number, fd : number, args : Array\<string>) : void
 
 获取系统服务信息。
 
-**需要权限**: ohos.permission.DUMP
+**需要权限**: ohos.permission.DUMP，仅系统应用可申请。
 
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -341,7 +341,8 @@ try {
 
 startProfiling(filename : string) : void
 
-> **说明：** 从 API Version 9 开始废弃，建议使用[hidebug.startJsCpuProfiling](#hidebugstartjscpuprofiling9)替代。
+> **说明：** 
+> 从 API Version 9 开始废弃，建议使用[hidebug.startJsCpuProfiling](#hidebugstartjscpuprofiling9)替代。
 
 启动虚拟机Profiling方法跟踪，`startProfiling()`方法的调用需要与`stopProfiling()`方法的调用一一对应，先开启后关闭，严禁使用`start->start->stop`，`start->stop->stop`，`start->start->stop->stop`等类似的顺序调用。
 
@@ -367,7 +368,8 @@ hidebug.stopProfiling();
 
 stopProfiling() : void
 
-> **说明：** 从 API Version 9 开始废弃，建议使用[hidebug.stopJsCpuProfiling](#hidebugstopjscpuprofiling9)替代。
+> **说明：**
+> 从 API Version 9 开始废弃，建议使用[hidebug.stopJsCpuProfiling](#hidebugstopjscpuprofiling9)替代。
 
 停止虚拟机Profiling方法跟踪，`stopProfiling()`方法的调用需要与`startProfiling()`方法的调用一一对应，先开启后关闭，严禁使用`start->start->stop`，`start->stop->stop`，`start->start->stop->stop`等类似的顺序调用。
 
@@ -387,7 +389,8 @@ hidebug.stopProfiling();
 
 dumpHeapData(filename : string) : void
 
-> **说明：** 从 API Version 9 开始废弃，建议使用[hidebug.dumpJsHeapData](#hidebugdumpjsheapdata9)替代。
+> **说明：**
+> 从 API Version 9 开始废弃，建议使用[hidebug.dumpJsHeapData](#hidebugdumpjsheapdata9)替代。
 
 虚拟机堆导出。
 
@@ -422,7 +425,7 @@ getAppVMMemoryInfo(): VMMemoryInfo
 **示例：**
 
   ```ts
-let vmMemory: VMMemoryInfo = hidebug.getAppVMMemoryInfo();
+let vmMemory: hidebug.VMMemoryInfo = hidebug.getAppVMMemoryInfo();
 hilog.info(0x0000, "example", "totalHeap = %{public}d", vmMemory.totalHeap);
 hilog.info(0x0000, "example", "heapUsed = %{public}d", vmMemory.heapUsed);
 hilog.info(0x0000, "example", "allArraySize = %{public}d", vmMemory.allArraySize);
@@ -447,7 +450,7 @@ getAppThreadCpuUsage(): ThreadCpuUsage[]
 **示例：**
 
   ```ts
-let appThreadCpuUsage = hidebug.getAppThreadCpuUsage();
+let appThreadCpuUsage: hidebug.ThreadCpuUsage[] = hidebug.getAppThreadCpuUsage();
 for (let ii = 0; ii < appThreadCpuUsage.length; ii++) {
     hilog.info(0x0000, "example", "threadId=%{public}d, cpuUsage=%{public}f", appThreadCpuUsage[ii].threadId,
     appThreadCpuUsage[ii].cpuUsage);
@@ -470,7 +473,7 @@ startAppTraceCapture(tags : number[], flag: TraceFlag, limitSize: number) : stri
 | -------- | ------   | ---- | ------------------------------------------------------------------------------------- |
 | tags     | number[] | 是   | 详情请见[tags](#tags12)                                                      |
 | flag     | TraceFlag| 是   | 详情请见[TraceFlag](#traceflag12)          |
-| limitSize| number   | 是   | 开启trace文件大小限制，单位为Byte                                                       |
+| limitSize| number   | 是   | 开启trace文件大小限制，单位为Byte，单个文件大小上限为500MB                                                       |
 
 **返回值：**
 
@@ -492,10 +495,10 @@ startAppTraceCapture(tags : number[], flag: TraceFlag, limitSize: number) : stri
 **示例：**
 
 ```ts
-let tags = [hidebug.tags.ABILITY_MANAGER, hidebug.tags.ACE];
-let flag = hidebug.TraceFlag.MAIN_THREAD;
-let limitSize = 1024 * 1024;
-let fileName = hidebug.startAppTraceCapture(tags, flag, limitSize);
+let tags: number[] = [hidebug.tags.ABILITY_MANAGER, hidebug.tags.ARKUI];
+let flag: hidebug.TraceFlag = hidebug.TraceFlag.MAIN_THREAD;
+let limitSize: number = 1024 * 1024;
+let fileName: string = hidebug.startAppTraceCapture(tags, flag, limitSize);
 // code block
 // ...
 // code block
@@ -524,10 +527,10 @@ stopAppTraceCapture() : void
 **示例：**
 
 ```ts
-let tags = [hidebug.tags.ABILITY_MANAGER, hidebug.tags.ACE];
-let flag = hidebug.TraceFlag.MAIN_THREAD;
-let limitSize = 1024 * 1024;
-let fileName = hidebug.startAppTraceCapture(tags, flag, limitSize);
+let tags: number[] = [hidebug.tags.ABILITY_MANAGER, hidebug.tags.ARKUI];
+let flag: hidebug.TraceFlag = hidebug.TraceFlag.MAIN_THREAD;
+let limitSize: number = 1024 * 1024;
+let fileName: string = hidebug.startAppTraceCapture(tags, flag, limitSize);
 // code block
 // ...
 // code block
@@ -675,7 +678,7 @@ getAppNativeMemInfo(): NativeMemInfo
 **示例**
 
 ```ts
-let nativeMemInfo: NativeMemInfo = hidebug.getAppNativeMemInfo();
+let nativeMemInfo: hidebug.NativeMemInfo = hidebug.getAppNativeMemInfo();
 
 hilog.info(0x0000, 'testTag', "pss = %{public}d", nativeMemInfo.pss);
 
@@ -724,7 +727,7 @@ getSystemMemInfo(): SystemMemInfo
 **示例**
 
 ```ts
-let systemMemInfo: SystemMemInfo = hidebug.getSystemMemInfo();
+let systemMemInfo: hidebug.SystemMemInfo = hidebug.getSystemMemInfo();
 
 hilog.info(0x0000, 'testTag', "totalMem = %{public}d", systemMemInfo.totalMem);
 

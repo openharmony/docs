@@ -279,6 +279,60 @@ config.off('enabledAccessibilityExtensionListChange', () => {
 });
 ```
 
+## on('installedAccessibilityListChange')<sup>12+</sup>
+
+on(type: 'installedAccessibilityListChange', callback: Callback&lt;void&gt;): void;
+
+需要权限：ohos.permission.READ_ACCESSIBILITY_CONFIG
+
+添加已安装的辅助扩展的列表变化监听，使用callback异步回调。
+
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 参数固定为installedAccessibilityListChange，监听已安装的辅助扩展的列表变化。 |
+| callback | Callback&lt;void&gt; | 是 | 回调函数，在已安装的辅助扩展的列表变化时通过此函数进行通知。 |
+
+**示例：**
+
+```ts
+import config from '@ohos.accessibility.config';
+
+config.on('installedAccessibilityListChange', () => {
+  console.info('subscribe installed accessibility extension list change state success');
+});
+```
+
+## off('installedAccessibilityListChange')<sup>12+</sup>
+
+off(type: 'installedAccessibilityListChange', callback?: Callback&lt;void&gt;): void;
+
+需要权限：ohos.permission.READ_ACCESSIBILITY_CONFIG
+
+取消已安装的辅助扩展的列表变化监听，使用callback异步回调。
+
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| type |  string | 是 | 参数固定为installedAccessibilityListChange，监听已安装的辅助扩展的列表变化。 |
+| callback | Callback&lt;void&gt; | 否 | 取消指定callback对象的事件响应。需与on('installedAccessibilityListChange')的callback一致。缺省时，表示注销所有已注册事件。 |
+
+**示例：**
+
+```ts
+import config from '@ohos.accessibility.config';
+
+config.off('installedAccessibilityListChange', () => {
+  console.info('Unsubscribe installed accessibility extension list change state success');
+});
+```
+
 ## Config
 
 用于属性的设置、获取与监听。

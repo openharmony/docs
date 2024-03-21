@@ -2169,6 +2169,12 @@ setDistributedEnable(enable: boolean): Promise\<void>
 | -------- | ------------------------ | ---- | -------------------------- |
 | enable   | boolean                  | 是   | 是否支持（true：支持，false：不支持）。 |
 
+**返回值：**
+
+| 类型              | 说明        | 
+|-----------------|-----------|
+| Promise\<void\> | 无返回结果的Promise对象。 | 
+
 **错误码：**
 
 错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
@@ -2264,6 +2270,12 @@ setDistributedEnableByBundle(bundle: BundleOption, enable: boolean): Promise\<vo
 | -------- | ------------------------ | ---- | -------------------------- |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)             | 是   | 应用的包。                |
 | enable   | boolean                  | 是   | 指定应用是否支持分布式通知（true：支持，false：不支持）。                  |
+
+**返回值：**
+
+| 类型              | 说明        | 
+|-----------------|-----------|
+| Promise\<void\> | 无返回结果的Promise对象。 | 
 
 **错误码：**
 
@@ -2632,6 +2644,7 @@ publishAsBundle(representativeBundle: BundleOption, request: NotificationRequest
 
 
 | 参数名               | 类型                                        | 必填 | 说明                                          |
+|----------------------|--------------------------------------------|------|-----------------------------------------------|
 | representativeBundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)  | 是   | 被代理应用的包信息。                            |
 | request              | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
 
@@ -2703,7 +2716,7 @@ cancelAsBundle(id: number, representativeBundle: string, userId: number, callbac
 | id                   | number        | 是   | 通知ID。                 |
 | representativeBundle | string        | 是   | 被代理应用的包名。       |
 | userId               | number        | 是   | 用户ID。       |
-| callback             | AsyncCallback | 是   | 取消代理通知的回调方法。 |
+| callback             | AsyncCallback\<void\> | 是   | 取消代理通知的回调方法。 |
 
 **错误码：**
 
@@ -2844,6 +2857,57 @@ notificationManager.cancelAsBundle(representativeBundle, 1).then(() => {
 	console.info("cancelAsBundle success");
 }).catch((err: Base.BusinessError) => {
     console.error(`cancelAsBundle fail: ${JSON.stringify(err)}`);
+});
+```
+
+## notificationManager.cancel<sup>12+</sup>
+
+cancel(representativeBundle: BundleOption, id: number): Promise\<void\>
+
+代理取消当前用户其他应用的通知。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**系统接口**: 此接口为系统接口。
+
+**参数：**
+
+| 参数名               | 类型   | 必填 | 说明               |
+| -------------------- | ------ | ---- | ------------------ |
+| representativeBundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 应用的包信息。           |
+|       id             | number | 是   | 通知ID。 |
+
+**返回值：**
+
+| 类型              | 说明        | 
+|-----------------|-----------|
+| Promise\<void\> | 无返回结果的Promise对象。 | 
+
+**错误码：**
+
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+| 1600007  | The notification is not exist.      |
+| 1600012  | No memory space.                    |
+
+**示例：**
+
+```ts
+import Base from '@ohos.base';
+
+let bundle: notificationManager.BundleOption = {
+  bundle: "bundleName"
+};
+let id: number = 1;
+notificationManager.cancel(bundle, id).then(() => {
+  console.info("cancel success");
+}).catch((err: Base.BusinessError) => {
+  console.error(`cancel fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -3389,7 +3453,7 @@ try{
   notificationManager.on('checkNotification',{
     contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_LIVE_VIEW,
     slotType: notificationManager.SlotType.LIVE_VIEW ,
-    extraKeys: ["event"],
+    extraInfoKeys: ["event"],
   },
     async (checkInfo)=>{
       return { code: 1, message: "INVALID_PARAMETERS"};
@@ -3550,7 +3614,7 @@ notificationManager.subscribeSystemLiveView(subscriber).then(() => {
 });
 ```
 
-## notificationManager.setDistributedEnableByBundle<sup>12+</sup>
+## notificationManager.setDistributedEnabledByBundle<sup>12+</sup>
 
 setDistributedEnabledByBundle(bundle: BundleOption, deviceType: string, enable: boolean): Promise<void>
 
@@ -3760,6 +3824,112 @@ notificationManager.isSmartReminderEnabled(deviceType).then((data: boolean) => {
 });
 ```
 
+## notificationManager.setBadgeNumberByBundle<sup>12+</sup>
+
+setBadgeNumberByBundle(bundle: bundleOption, badgeNumber: number): Promise\<void\>
+
+代理其他应用设定角标个数。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**系统接口**：此接口为系统接口。
+
+**参数：**
+
+| 参数名      | 类型   | 必填 | 说明       |
+| ----------- | ------ | ---- | ---------- |
+| bundle | [BundleOption](js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 指定应用的包信息。 |
+| badgeNumber | number | 是   | 角标个数。 |
+
+**返回值：**
+
+| 类型            | 说明                      |
+| --------------- | ------------------------- |
+| Promise\<void\> | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+| 1600012  | No memory space.                    |
+| 17700001 | The specified bundle name was not found.   |
+
+**示例：**
+
+```ts
+import Base from '@ohos.base';
+
+let bundle: notificationManager.BundleOption = {
+    bundle: 'com.example.bundleName',
+};
+let badgeNumber: number = 10;
+
+notificationManager.setBadgeNumberByBundle(bundle, badgeNumber).then(() => {
+    console.info('setBadgeNumberByBundle success');
+}).catch((err: Base.BusinessError) => {
+    console.error(`setBadgeNumberByBundle fail: ${JSON.stringify(err)}`);
+});
+```
+
+## notificationManager.getSlotByBundle<sup>12+</sup>
+
+getSlotByBundle(bundle: BundleOption, slotType: SlotType): Promise\<Array\<NotificationSlot>>
+
+获取指定应用指定类型的通知渠道。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**系统接口**: 此接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型         | 必填 | 说明       |
+| ------ | ------------ | ---- | ---------- |
+| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 指定应用的包信息。 |
+| slotType | [SlotType](././js-apis-notificationManager.md#slottype) | 是   | 渠道类型。 |
+
+**返回值：**
+
+| 类型                                                        | 说明                                                         |
+| ----------------------------------------------------------- | ------------------------------------------------------------ |
+| Promise\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)> | 以Promise形式返回获取指定应用指定类型的通知渠道。 |
+
+**错误码：**
+
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+
+| 错误码ID | 错误信息                                 |
+| -------- | ---------------------------------------- |
+| 1600001  | Internal error.                          |
+| 1600002  | Marshalling or unmarshalling error.      |
+| 1600003  | Failed to connect service.               |
+| 17700001 | The specified bundle name was not found. |
+
+**示例：**
+
+```ts
+import Base from '@ohos.base';
+
+let bundle: notificationManager.BundleOption = {
+    bundle: "bundleName1",
+};
+
+let slotType = notificationManager.SlotType.LIVE_VIEW;
+
+notificationManager.getSlotByBundle(bundle, slotType).then((data: notificationManager.NotificationSlot) => {
+	console.info("getSlotByBundle success, data: " + JSON.stringify(data));
+}).catch((err: Base.BusinessError) => {
+    console.error(`getSlotByBundle fail: ${JSON.stringify(err)}`);
+});
+```
+
 ## DoNotDisturbDate
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
@@ -3871,3 +4041,30 @@ notificationManager.isSmartReminderEnabled(deviceType).then((data: boolean) => {
 | 名称    | 类型                                  | 必填 | 说明                   |
 | ------- | ------------------------------------ | ---- | ---------------------- |
 | onResponse    | (notificationId: number, buttonOptions: ButtonOptions) => void;                         | 否   | 点击按钮的回调。 |
+
+
+## SlotType
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+
+| 名称                                | 值     | 说明                                                         |
+| ----------------------------------- | ------ | ------------------------------------------------------------ |
+| EMERGENCY_INFORMATION<sup>12+</sup> | 10     | 紧急事件。**系统接口**: 此接口为系统接口。                               |
+
+
+## NotificationControlFlagStatus<sup>12+</sup>
+每个bit位都可以控制通知的提示方式。当notificationControlFlags和下表中枚举值进行按位或操作，则表示关闭其提示方式。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+
+**系统接口**：此接口为系统接口。
+
+| 名称                                 | 值   | 说明     |
+| ------------------------------------ | ---- | -------- |
+| NOTIFICATION_STATUS_CLOSE_SOUND      | 1<<0 | 关闭声音提示功能。 |
+| NOTIFICATION_STATUS_CLOSE_LOCKSCREEN |  1<<1    |     关闭锁屏提示功能。     |
+| NOTIFICATION_STATUS_CLOSE_BANNER     |    1<<2   |     关闭横幅提示功能。     |
+| NOTIFICATION_STATUS_CLOSE_LIGHT_SCREEN     |   1<<3   |     关闭亮屏提示功能。     |
+| NOTIFICATION_STATUS_CLOSE_VIBRATION     |   1<<4   |     关闭振动提示功能。     |
+| NOTIFICATION_STATUS_CLOSE_STATUSBAR_ICON     |  1<<5    |     关闭状态栏图标提示功能。     |
+

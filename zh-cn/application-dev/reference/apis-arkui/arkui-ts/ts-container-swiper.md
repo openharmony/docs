@@ -39,27 +39,338 @@ Swiper(controller?: SwiperController)
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性，不支持[Menu控制](ts-universal-attributes-menu.md)。 
 
-| 名称                                    | 参数类型                                     | 描述                                       |
-| ------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| index                                 | number                                   | 设置当前在容器中显示的子组件的索引值。<br/>默认值：0<br/>**说明：** <br/>设置小于0或大于等于子组件数量时，按照默认值0处理。<br />从API version 10开始，该属性支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
-| autoPlay                              | boolean                                  | 子组件是否自动播放。<br/>默认值：false<br/>**说明：** <br/>loop为false时，自动轮播到最后一页时停止轮播。手势切换后不是最后一页时继续播放。 |
-| interval                              | number                                   | 使用自动播放时播放的时间间隔，单位为毫秒。<br/>默认值：3000       |
-| indicator                             | [DotIndicator](#dotindicator10)<sup>10+</sup>  \| [DigitIndicator](#digitindicator10)<sup>10+</sup>  \| boolean | 设置可选导航点指示器样式。<br/> \- DotIndicator：圆点指示器样式。<br/> \- DigitIndicator：数字指示器样式。<br/> \- boolean：是否启用导航点指示器。<br/>&nbsp;&nbsp;默认值：true<br/>&nbsp;&nbsp;默认类型：DotIndicator |
-| loop                                  | boolean                                  | 是否开启循环。<br>设置为true时表示开启循环，在LazyForEach懒循环加载模式下，加载的组件数量建议大于5个。<br/>默认值：true |
-| duration                              | number                                   | 子组件切换的动画时长，单位为毫秒。<br/>默认值：400            |
-| vertical                              | boolean                                  | 是否为纵向滑动。<br/>默认值：false                   |
-| itemSpace                             | number&nbsp;\|&nbsp;string               | 设置子组件与子组件之间间隙。<br/>默认值：0<br/>**说明：** <br/>不支持设置百分比。<br/>类型为number时，默认单位vp;类型为string时，需要显式指定像素单位，如'10px'。 |
-| displayMode                           | [SwiperDisplayMode](#swiperdisplaymode枚举说明) | 主轴方向上元素排列的模式，优先以displayCount设置的个数显示，displayCount未设置时本属性生效。<br/>默认值：SwiperDisplayMode.Stretch |
-| cachedCount<sup>8+</sup>              | number                                   | 设置预加载子组件个数。<br/>默认值：1 <br/>**说明：** <br/> 1、如果设置为按组翻页，即displayCount的swipeByGroup参数设为true，预加载时会以组为基本单位。例如，比如：cacheCount=1，swipeByGroup=true时，会将当前组的前面一组和后面一组的子组件都预加载。 |
-| disableSwipe<sup>8+</sup>             | boolean                                  | 禁用组件滑动切换功能。<br/>默认值：false                |
-| curve<sup>8+</sup>                    | [Curve](ts-appendix-enums.md#curve)  \| string   \| [ICurve](../js-apis-curve.md#icurve)<sup>10+</sup>| 设置Swiper的动画曲线，默认为线性曲线，常用曲线参考[Curve枚举说明](ts-appendix-enums.md#curve)，也可以通过[插值计算](../js-apis-curve.md)模块提供的接口创建自定义的插值曲线对象。<br/>默认值：Curve.Linear |
-| indicatorStyle<sup>(deprecated)</sup> | {<br/>left?:&nbsp;[Length](ts-types.md#length),<br/>top?:&nbsp;[Length](ts-types.md#length),<br/>right?:&nbsp;[Length](ts-types.md#length),<br/>bottom?:&nbsp;[Length](ts-types.md#length),<br/>size?:&nbsp;[Length](ts-types.md#length),<br/>mask?:&nbsp;boolean,<br/>color?:&nbsp;[ResourceColor](ts-types.md#resourcecolor),<br/>selectedColor?:&nbsp;[ResourceColor](ts-types.md#resourcecolor)<br/>} | 设置导航点样式：<br/>\- left: 设置导航点距离Swiper组件左边的距离。<br/>\- top: 设置导航点距离Swiper组件顶部的距离。<br/>\- right: 设置导航点距离Swiper组件右边的距离。<br/>\- bottom: 设置导航点距离Swiper组件底部的距离。<br/>\- size: 设置导航点的直径，不支持设置百分比。默认值：6vp。<br/>\- mask: 设置是否显示导航点蒙层样式。<br/>\- color: 设置导航点的颜色。<br/>\- selectedColor: 设置选中的导航点的颜色。 <br/>从API version 8开始支持，从API version 10开始不再维护，建议使用[indicator](#indicator10)代替。 |
-| displayCount<sup>8+</sup>   | value: number \| string \| <br />[SwiperAutoFill](#swiperautofill10)<sup>10+</sup>,<br/> swipeByGroup?: boolean<sup>11+</sup> | 设置Swiper视窗内元素显示个数。<br/> - value: 视窗内显示的子元素个数。<br/> - swipeByGroup：是否按组进行翻页。如果设为true，在翻页时会按组进行翻页，每组内子元素的数量为displayCount value的值;如果为false，则为默认翻页行为，即按照子元素进行翻页。<br/> 默认值：1<br/> **说明：** <br/> 1、字符串类型仅支持设置为'auto'，显示效果同SwiperDisplayMode.AutoLinear。<br/> 2、使用number类型且设置小于等于0时，按默认值1显示。<br/> 3、使用number类型时，子组件按照主轴均分Swiper宽度（减去displayCount-1个itemSpace）的方式进行主轴拉伸（收缩）布局。<br/> 4、使用SwiperAutoFill类型时，通过设置一个子组件最小宽度值minSize，会根据Swiper当前宽度和minSize值自动计算并更改一页内元素显示个数。当minSize为空或者小于等于0时，Swiper显示1列。<br/> 5、当按组进行翻页时，如果最后一组的子元素数量小于displayCount时，会使用占位子元素补齐。占位子元素只是用于布局占位，不显示任何内容。在占位子元素的位置会直接显示Swiper自身的背景样式。<br/> 6、在按组翻页时，判断翻页的拖拽距离阈值条件，会更新为Swiper自身宽度的一半。（按子元素翻页时，该阈值为子元素自身宽度的一半）  |
-| effectMode<sup>8+</sup>               | [EdgeEffect](ts-appendix-enums.md#edgeeffect) | 边缘滑动效果，loop = false时生效。 目前支持的滑动效果参见EdgeEffect的枚举说明。<br/>默认值：EdgeEffect.Spring<br/>**说明：** <br/>控制器接口调用时不生效回弹。 |
-| displayArrow<sup>10+</sup>            | value:[ArrowStyle](#arrowstyle10) \| boolean,<br/>isHoverShow?: boolean | 设置导航点箭头样式。<br/>-value: 支持设置箭头和底板样式，异常场景使用ArrowStyle对象中的默认值。<br/>\-isHoverShow：设置鼠标悬停时是否显示箭头。<br/>默认值：false<br/>**说明：**<br/>isHoverShow为false时，常驻显示箭头，支持点击翻页。<br/>isHoverShow为true时，只有在鼠标悬停时才会显示箭头，并支持点击翻页。 |
-| nextMargin<sup>10+</sup>    | <br/>[Length](ts-types.md#length)<br/> | 后边距，用于露出后一项的一小部分。<br/>默认值：0<br/>**说明：** <br/>仅当SwiperDisplayMode为STRETCH模式时生效。<br/>当主轴方向为横向布局时，nextmargin/prevmargin中任意一个大于子组件测算的宽度，nextmargin和prevmargin均不显示。<br/>当主轴方向为纵向布局时，nextmargin/prevmargin中任意一个大于子组件测算的高度，nextmargin和prevmargin均不显示。 |
-| prevMargin<sup>10+</sup>    | <br/>[Length](ts-types.md#length)<br/> | 前边距，用于露出前一项的一小部分。<br/>默认值：0<br/>**说明：** <br/>仅当SwiperDisplayMode为STRETCH模式时生效。<br/>当主轴方向为横向布局时，nextmargin/prevmargin中任意一个大于子组件测算的宽度，prevmargin和nextmargin均不显示。<br/>当主轴方向为纵向布局时，nextmargin/prevmargin中任意一个大于子组件测算的高度，nextmargin和prevmargin均不显示。 |
-| nestedScroll<sup>11+</sup>    | [SwiperNestedScrollMode](#swipernestedscrollmode11枚举说明) | 设置Swiper组件和父组件的嵌套滚动模式。<br/>默认值：SwiperNestedScrollMode.SELF_ONLY <br/>**说明：** <br/>loop为true时Swiper组件没有边缘，不会触发父组件嵌套滚动。|
+### index
+
+index(value: number)
+
+设置当前在容器中显示的子组件的索引值。设置小于0或大于等于子组件数量时，按照默认值0处理。
+
+从API version 10开始，该属性支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                                             |
+| ------ | ------ | ---- | ------------------------------------------------ |
+| value  | number | 是   | 当前在容器中显示的子组件的索引值。<br/>默认值：0 |
+
+### autoPlay
+
+autoPlay(value: boolean)
+
+设置子组件是否自动播放。
+
+loop为false时，自动轮播到最后一页时停止轮播。手势切换后不是最后一页时继续播放。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                   |
+| ------ | ------- | ---- | -------------------------------------- |
+| value  | boolean | 是   | 子组件是否自动播放。<br/>默认值：false |
+
+### interval
+
+interval(value: number)
+
+设置使用自动播放时播放的时间间隔。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                                                       |
+| ------ | ------ | ---- | ---------------------------------------------------------- |
+| value  | number | 是   | 自动播放时播放的时间间隔。<br/>默认值：3000<br/>单位：毫秒 |
+
+### indicator
+
+indicator(value: DotIndicator | DigitIndicator | boolean)
+
+设置可选导航点指示器样式。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [DotIndicator](#dotindicator10)<sup>10+</sup>&nbsp;\|&nbsp;[DigitIndicator](#digitindicator10)<sup>10+</sup>&nbsp;\|&nbsp;boolean | 是   | 可选导航点指示器样式。<br/> \- DotIndicator：圆点指示器样式。<br/> \- DigitIndicator：数字指示器样式。<br/> \- boolean：是否启用导航点指示器。<br/>&nbsp;&nbsp;默认值：true<br/>&nbsp;&nbsp;默认类型：DotIndicator |
+
+### loop
+
+loop(value: boolean)
+
+设置是否开启循环。设置为true时表示开启循环，在LazyForEach懒循环加载模式下，加载的组件数量建议大于5个。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                            |
+| ------ | ------- | ---- | ------------------------------- |
+| value  | boolean | 是   | 是否开启循环。<br/>默认值：true |
+
+### duration
+
+duration(value: number)
+
+设置子组件切换的动画时长。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                                                  |
+| ------ | ------ | ---- | ----------------------------------------------------- |
+| value  | number | 是   | 子组件切换的动画时长。<br/>默认值：400<br/>单位：毫秒 |
+
+### vertical
+
+vertical(value: boolean)
+
+设置是否为纵向滑动。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                               |
+| ------ | ------- | ---- | ---------------------------------- |
+| value  | boolean | 是   | 是否为纵向滑动。<br/>默认值：false |
+
+### itemSpace
+
+itemSpace(value: number | string)
+
+设置子组件与子组件之间间隙。不支持设置百分比。
+
+类型为number时，默认单位vp。类型为string时，需要显式指定像素单位，如'10px'。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                       | 必填 | 说明                                   |
+| ------ | -------------------------- | ---- | -------------------------------------- |
+| value  | number&nbsp;\|&nbsp;string | 是   | 子组件与子组件之间间隙。<br/>默认值：0 |
+
+### displayMode
+
+displayMode(value: SwiperDisplayMode)
+
+设置主轴方向上元素排列的模式，优先以displayCount设置的个数显示，displayCount未设置时本属性生效。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                            | 必填 | 说明                                                         |
+| ------ | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [SwiperDisplayMode](#swiperdisplaymode枚举说明) | 是   | 主轴方向上元素排列的模式。<br/>默认值：SwiperDisplayMode.Stretch |
+
+### cachedCount<sup>8+</sup>
+
+cachedCount(value: number)
+
+设置预加载子组件个数。如果设置为按组翻页，即displayCount的swipeByGroup参数设为true，预加载时会以组为基本单位。例如cacheCount=1，swipeByGroup=true时，会将当前组的前面一组和后面一组的子组件都预加载。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                             |
+| ------ | ------ | ---- | -------------------------------- |
+| value  | number | 是   | 预加载子组件个数。<br/>默认值：1 |
+
+### disableSwipe<sup>8+</sup>
+
+disableSwipe(value: boolean)
+
+设置禁用组件滑动切换功能。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                     |
+| ------ | ------- | ---- | ---------------------------------------- |
+| value  | boolean | 是   | 禁用组件滑动切换功能。<br/>默认值：false |
+
+### curve<sup>8+</sup>
+
+curve(value: Curve | string | ICurve)
+
+设置Swiper的动画曲线，默认为线性曲线，常用曲线参考[Curve枚举说明](ts-appendix-enums.md#curve)，也可以通过[插值计算](../js-apis-curve.md)模块提供的接口创建自定义的插值曲线对象。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                                        |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------- |
+| value  | [Curve](ts-appendix-enums.md#curve)&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[ICurve](../js-apis-curve.md#icurve)<sup>10+</sup> | 是   | Swiper的动画曲线。<br/>默认值：Curve.Linear |
+
+### indicatorStyle<sup>(deprecated)</sup>
+
+indicatorStyle(value?: IndicatorStyle)
+
+设置导航点样式。
+
+从API version 8开始支持，从API version 10开始不再维护，建议使用[indicator](#indicator10)代替。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                | 必填 | 说明         |
+| ------ | --------------------------------------------------- | ---- | ------------ |
+| value  | [IndicatorStyle](#indicatorstyledeprecated对象说明) | 否   | 导航点样式。 |
+
+### displayCount<sup>8+</sup>
+
+displayCount(value: number | string | SwiperAutoFill, swipeByGroup?: boolean)
+
+设置Swiper视窗内元素显示个数。
+
+字符串类型仅支持设置为'auto'，显示效果同SwiperDisplayMode.AutoLinear。
+
+使用number类型且设置小于等于0时，按默认值1显示。
+
+使用number类型时，子组件按照主轴均分Swiper宽度（减去displayCount-1个itemSpace）的方式进行主轴拉伸（收缩）布局。
+
+使用SwiperAutoFill类型时，通过设置一个子组件最小宽度值minSize，会根据Swiper当前宽度和minSize值自动计算并更改一页内元素显示个数。当minSize为空或者小于等于0时，Swiper显示1列。
+
+当按组进行翻页时，如果最后一组的子元素数量小于displayCount时，会使用占位子元素补齐。占位子元素只是用于布局占位，不显示任何内容。在占位子元素的位置会直接显示Swiper自身的背景样式。
+
+在按组翻页时，判断翻页的拖拽距离阈值条件，会更新为Swiper自身宽度的一半。（按子元素翻页时，该阈值为子元素自身宽度的一半）。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名                     | 类型                                                         | 必填 | 说明                                                         |
+| -------------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value                      | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[SwiperAutoFill](#swiperautofill10)<sup>10+</sup> | 是   | 视窗内显示的子元素个数。<br/> 默认值：1                      |
+| swipeByGroup<sup>11+</sup> | boolean                                                      | 否   | 是否按组进行翻页。如果设为true，在翻页时会按组进行翻页，每组内子元素的数量为displayCount value的值;如果为false，则为默认翻页行为，即按照子元素进行翻页。 |
+
+### effectMode<sup>8+</sup>
+
+effectMode(value: EdgeEffect)
+
+设置边缘滑动效果，loop = false时生效。 目前支持的滑动效果参见EdgeEffect的枚举说明。控制器接口调用时不生效回弹。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                          | 必填 | 说明                                         |
+| ------ | --------------------------------------------- | ---- | -------------------------------------------- |
+| value  | [EdgeEffect](ts-appendix-enums.md#edgeeffect) | 是   | 边缘滑动效果。<br/>默认值：EdgeEffect.Spring |
+
+### displayArrow<sup>10+</sup>
+
+displayArrow(value: ArrowStyle | boolean, isHoverShow?: boolean)
+
+设置导航点箭头样式。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名                     | 类型                                             | 必填 | 说明                                                         |
+| -------------------------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value                      | boolean&nbsp;\|&nbsp;[ArrowStyle](#arrowstyle10) | 是   | 支持设置箭头和底板样式，异常场景使用ArrowStyle对象中的默认值。 |
+| isHoverShow                | boolean                                          | 否   | 设置鼠标悬停时是否显示箭头。<br/>默认值：false<br/>**说明：**<br/>isHoverShow为false时，常驻显示箭头，支持点击翻页。<br/>isHoverShow为true时，只有在鼠标悬停时才会显示箭头，并支持点击翻页。 |
+
+### nextMargin<sup>10+</sup>
+
+nextMargin(value: Length)
+
+设置后边距，用于露出后一项的一小部分。仅当SwiperDisplayMode为STRETCH模式时生效。
+
+当主轴方向为横向布局时，nextmargin/prevmargin中任意一个大于子组件测算的宽度，nextmargin和prevmargin均不显示。
+
+当主轴方向为纵向布局时，nextmargin/prevmargin中任意一个大于子组件测算的高度，nextmargin和prevmargin均不显示。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                         | 必填 | 说明                   |
+| ------ | ---------------------------- | ---- | ---------------------- |
+| value  | [Length](ts-types.md#length) | 是   | 后边距。<br/>默认值：0 |
+
+### prevMargin<sup>10+</sup>
+
+prevMargin(value: Length)
+
+设置前边距，用于露出前一项的一小部分。仅当SwiperDisplayMode为STRETCH模式时生效。
+
+当主轴方向为横向布局时，nextmargin/prevmargin中任意一个大于子组件测算的宽度，nextmargin和prevmargin均不显示。
+
+当主轴方向为纵向布局时，nextmargin/prevmargin中任意一个大于子组件测算的高度，nextmargin和prevmargin均不显示。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                         | 必填 | 说明                   |
+| ------ | ---------------------------- | ---- | ---------------------- |
+| value  | [Length](ts-types.md#length) | 是   | 前边距。<br/>默认值：0 |
+
+### nestedScroll<sup>11+</sup>
+
+nestedScroll(value: SwiperNestedScrollMode)
+
+设置Swiper组件和父组件的嵌套滚动模式。loop为true时Swiper组件没有边缘，不会触发父组件嵌套滚动。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                        | 必填 | 说明                                                         |
+| ------ | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [SwiperNestedScrollMode](#swipernestedscrollmode11枚举说明) | 是   | Swiper组件和父组件的嵌套滚动模式。<br/>默认值：SwiperNestedScrollMode.SELF_ONLY |
+
+## IndicatorStyle<sup>(deprecated)</sup>对象说明
+
+| 名称          | 类型                                       | 必填 | 描述                                                 |
+| ------------- | ------------------------------------------ | ---- | ---------------------------------------------------- |
+| left          | [Length](ts-types.md#length)               | 否   | 设置导航点距离Swiper组件左边的距离。                 |
+| top           | [Length](ts-types.md#length)               | 否   | 设置导航点距离Swiper组件顶部的距离。                 |
+| right         | [Length](ts-types.md#length)               | 否   | 设置导航点距离Swiper组件右边的距离。                 |
+| bottom        | [Length](ts-types.md#length)               | 否   | 设置导航点距离Swiper组件底部的距离。                 |
+| size          | [Length](ts-types.md#length)               | 否   | 设置导航点的直径，不支持设置百分比。<br/>默认值：6vp |
+| mask          | boolean                                    | 否   | 设置是否显示导航点蒙层样式。                         |
+| color         | [ResourceColor](ts-types.md#resourcecolor) | 否   | 设置导航点的颜色。                                   |
+| selectedColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | 设置选中的导航点的颜色。                             |
 
 ## SwiperDisplayMode枚举说明
 
@@ -190,12 +501,75 @@ finishAnimation(callback?: () => void): void
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
 
-| 名称                                       | 功能描述                                     |
-| ---------------------------------------- | ---------------------------------------- |
-| onChange(event: (index: number) => void) | 当前显示的子组件索引变化时触发该事件,返回值为当前显示的子组件的索引值。<br/>-&nbsp;index:当前显示元素的索引。<br/>**说明：** <br>Swiper组件结合LazyForEach使用时，不能在onChange事件里触发子页面UI的刷新。 |
-| onAnimationStart<sup>9+</sup>(event: (index: number, targetIndex<sup>10+</sup>: number, extraInfo<sup>10+</sup>: [SwiperAnimationEvent](ts-types.md#swiperanimationevent10)) => void) | 切换动画开始时触发该回调。<br/>-&nbsp;index:当前显示元素的索引。<br/>-&nbsp;targetIndex:切换动画目标元素的索引。<br/>-&nbsp;extraInfo:动画相关信息，包括主轴方向上当前显示元素和目标元素相对Swiper起始位置的位移，以及离手速度。<br/>**说明：** <br/>参数为动画开始前的index值（不是最终结束动画的index值），多列Swiper时，index为最左侧组件的索引。 |
-| onAnimationEnd<sup>9+</sup>(event: (index: number, extraInfo: [SwiperAnimationEvent](ts-types.md#swiperanimationevent10)) => void) | 切换动画结束时触发该回调。<br/>-&nbsp;index:当前显示元素的索引。<br/>-&nbsp;extraInfo:动画相关信息，只返回主轴方向上当前显示元素相对于Swiper起始位置的位移。<br/>**说明：** <br/>当Swiper切换动效结束时触发，包括动画过程中手势中断，通过SwiperController调用finishAnimation。参数为动画结束后的index值，多列Swiper时，index为最左侧组件的索引。 |
-| onGestureSwipe<sup>10+</sup>(event: (index: number, extraInfo: [SwiperAnimationEvent](ts-types.md#swiperanimationevent10)) => void) | 在页面跟手滑动过程中，逐帧触发该回调。<br/>-&nbsp;index:当前显示元素的索引。<br/>-&nbsp;extraInfo:动画相关信息，只返回主轴方向上当前显示元素相对于Swiper起始位置的位移。<br/>**说明：** <br/>多列Swiper时，index为最左侧组件的索引。 |
+### onChange
+
+onChange(event: (index: number) => void)
+
+当前显示的子组件索引变化时触发该事件,返回值为当前显示的子组件的索引值。
+
+Swiper组件结合LazyForEach使用时，不能在onChange事件里触发子页面UI的刷新。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                 |
+| ------ | ------ | ---- | -------------------- |
+| index  | number | 是   | 当前显示元素的索引。 |
+
+### onAnimationStart<sup>9+</sup>
+
+onAnimationStart(event: (index: number, targetIndex: number, extraInfo: SwiperAnimationEvent) => void)
+
+切换动画开始时触发该回调。参数为动画开始前的index值（不是最终结束动画的index值），多列Swiper时，index为最左侧组件的索引。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名                    | 类型                                                       | 必填 | 说明                                                         |
+| ------------------------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| index                     | number                                                     | 是   | 当前显示元素的索引。                                         |
+| targetIndex<sup>10+</sup> | number                                                     | 是   | 切换动画目标元素的索引。                                     |
+| extraInfo<sup>10+</sup>   | [SwiperAnimationEvent](ts-types.md#swiperanimationevent10) | 是   | 动画相关信息，包括主轴方向上当前显示元素和目标元素相对Swiper起始位置的位移，以及离手速度。 |
+
+### onAnimationEnd<sup>9+</sup>
+
+onAnimationEnd(event: (index: number, extraInfo: SwiperAnimationEvent) => void)
+
+切换动画结束时触发该回调。
+
+当Swiper切换动效结束时触发，包括动画过程中手势中断，通过SwiperController调用finishAnimation。参数为动画结束后的index值，多列Swiper时，index为最左侧组件的索引。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名                  | 类型                                                       | 必填 | 说明                                                         |
+| ----------------------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| index                   | number                                                     | 是   | 当前显示元素的索引。                                         |
+| extraInfo<sup>10+</sup> | [SwiperAnimationEvent](ts-types.md#swiperanimationevent10) | 是   | 动画相关信息，只返回主轴方向上当前显示元素相对于Swiper起始位置的位移。 |
+
+### onGestureSwipe<sup>10+</sup>
+
+onGestureSwipe(event: (index: number, extraInfo: SwiperAnimationEvent) => void)
+
+在页面跟手滑动过程中，逐帧触发该回调。多列Swiper时，index为最左侧组件的索引。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名    | 类型                                                       | 必填 | 说明                                                         |
+| --------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| index     | number                                                     | 是   | 当前显示元素的索引。                                         |
+| extraInfo | [SwiperAnimationEvent](ts-types.md#swiperanimationevent10) | 是   | 动画相关信息，只返回主轴方向上当前显示元素相对于Swiper起始位置的位移。 |
 
 ## 示例
 
