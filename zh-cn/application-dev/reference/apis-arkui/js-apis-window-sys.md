@@ -2717,7 +2717,7 @@ promise.then(()=> {
 
 ###  setTitleButtonVisible<sup>12+</sup>
 
-setTitleButtonVisible(isMaximizeVisible: boolean, isMinimizeVisible: boolean, isSplitVisible: boolean): void;
+setTitleButtonVisible(isMaximizeVisible: boolean, isMinimizeVisible: boolean, isSplitVisible: boolean): void
 
 设置主窗标题栏上的最大化、最小化、分屏按钮是否可见。
 
