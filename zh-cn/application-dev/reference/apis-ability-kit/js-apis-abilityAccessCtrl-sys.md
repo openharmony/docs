@@ -299,6 +299,121 @@ try {
 }
 ```
 
+### setPermissionRequestToggleStatus<sup>12+</sup>
+
+setPermissionRequestToggleStatus(permissionName: Permissions, status: PermissionRequestToggleStatus): Promise&lt;void&gt;
+
+设置当前用户指定权限的弹窗开关状态。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.DISABLE_PERMISSION_DIALOG。
+
+**系统能力：** SystemCapability.Security.AccessToken
+
+**参数：**
+
+| 参数名    | 类型                | 必填 | 说明                          |
+| --------- | ------------------- | ---- | ------------------------------------------------------------ |
+| permissionName | Permissions              | 是   | 待设置弹窗开关状态的权限名称，合法的权限名取值可在[应用权限列表](../../security/AccessToken/permissions-for-all.md)中查询。 |
+| status | [PermissionRequestToggleStatus](#permissionrequesttogglestatus12)    | 是   | 指定权限的弹窗开关状态值。             |
+
+**返回值：**
+
+| 类型          | 说明                                |
+| :------------ | :---------------------------------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[访问控制错误码](errorcode-access-token.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 12100001 | The parameter is invalid. The string size of permissionName is larger than 256, or the status value is invalid. |
+| 12100003 | The specified permission does not exist. |
+| 12100007 | Service is abnormal. |
+
+**示例：**
+
+```ts
+import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
+import { BusinessError } from '@ohos.base';
+
+let atManager = abilityAccessCtrl.createAtManager();
+let permission: Permissions = 'ohos.permission.CAMERA';
+
+try {
+  atManager.setPermissionRequestToggleStatus(permission, abilityAccessCtrl.PermissionRequestToggleStatus.CLOSED).then((err) => {
+    console.info('toggle_status: Set closed successful');
+  }).catch((err: BusinessError) => {
+    console.error('toggle_status: Code is ${err.code}, message is ${err.message}');
+  });
+} catch (error) {
+  const err: BusinessError = error as BusinessError;
+  console.error('toggle_status: Code is ${err.code}, message is ${err.message}');
+}
+```
+
+### getPermissionRequestToggleStatus<sup>12+</sup>
+
+getPermissionRequestToggleStatus(permissionName: Permissions): Promise&lt;PermissionRequestToggleStatus&gt;
+
+获取当前用户指定权限的弹窗开关状态。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_SENSITIVE_PERMISSIONS。
+
+**系统能力：** SystemCapability.Security.AccessToken
+
+**参数：**
+
+| 参数名    | 类型                | 必填 | 说明                          |
+| --------- | ------------------- | ---- | ------------------------------------------------------------ |
+| permissionName | Permissions              | 是   | 待查询弹窗开关状态的权限名称，合法的权限名取值可在[应用权限列表](../../security/AccessToken/permissions-for-all.md)中查询。 |
+
+**返回值：**
+
+| 类型          | 说明                                |
+| :------------ | :---------------------------------- |
+| Promise&lt;[PermissionRequestToggleStatus](#permissionrequesttogglestatus12)&gt; | Promise对象。返回指定权限的弹窗开关状态值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[访问控制错误码](errorcode-access-token.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 12100001 | The parameter is invalid. The string size of permissionName is larger than 256. |
+| 12100003 | The specified permission does not exist. |
+| 12100007 | Service is abnormal. |
+
+**示例：**
+
+```ts
+import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
+import { BusinessError } from '@ohos.base';
+
+let atManager = abilityAccessCtrl.createAtManager();
+let permission: Permissions = 'ohos.permission.CAMERA';
+
+try {
+  atManager.getPermissionRequestToggleStatus(permission).then((res) => {
+    if (res == abilityAccessCtrl.PermissionRequestToggleStatus.CLOSED) {
+      console.info('toggle_status: The toggle status is close');
+    } else {
+      console.info('toggle_status: The toggle status is open');
+    }
+  }).catch((err: BusinessError) => {
+    console.error('toggle_status: Code is ${err.code}, message is ${err.message}');
+  });
+} catch (error) {
+  const err: BusinessError = error as BusinessError;
+  console.error('toggle_status: Code is ${err.code}, message is ${err.message}');
+}
+```
+
 ### getVersion<sup>9+</sup>
 
 getVersion(): Promise&lt;number&gt;
@@ -493,6 +608,17 @@ try {
 | ----------------------- | ------ | ----------------- |
 | PERMISSION_REVOKED_OPER | 0      | 表示权限取消操作。 |
 | PERMISSION_GRANTED_OPER | 1      | 表示权限授予操作。 |
+
+### PermissionRequestToggleStatus<sup>12+</sup>
+
+表示指定权限对应的弹窗开关状态的枚举。
+
+**系统能力：** SystemCapability.Security.AccessToken
+
+| 名称               |    值 | 说明        |
+| ------------------ | ----- | ----------- |
+| CLOSED  | 0    | 表示关闭状态。 |
+| OPEN | 1     | 表示开启状态。 |
 
 ### PermissionStateChangeInfo<sup>9+</sup>
 
