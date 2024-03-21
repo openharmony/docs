@@ -86,7 +86,7 @@ UDP与TCP流程大体类似，下面以TCP为例：
 6. 发送数据。
 
 7. Socket连接使用完毕后，主动关闭。
-   
+
 ```js
 import socket from '@ohos.net.socket'
 
@@ -170,7 +170,7 @@ setTimeout(() => {
 
 2. 绑定服务器IP和端口号。
 
-3. 双向认证上传客户端CA证书及数字证书；单向认证上传客户端CA证书。
+3. 双向认证上传客户端CA证书及数字证书；单向认证只上传CA证书，无需上传客户端证书。
 
 4. 创建一个TLSSocket连接，返回一个TLSSocket对象。
 
@@ -182,34 +182,9 @@ setTimeout(() => {
 
 ```js
 // 创建一个（双向认证）TLS Socket连接，返回一个TLS Socket对象。
-let tlsTwoWay = socket.constructTLSSocketInstance();
+import socket from '@ohos.net.socket';
 
-// 订阅TLS Socket相关的订阅事件
-tlsTwoWay.on('message', value => {
-  console.log("on message")
-  let buffer = value.message
-  let dataView = new DataView(buffer)
-  let str = ""
-  for (let i = 0; i < dataView.byteLength; ++i) {
-    str += String.fromCharCode(dataView.getUint8(i))
-  }
-  console.log("on connect received:" + str)
-});
-tlsTwoWay.on('connect', () => {
-  console.log("on connect")
-});
-tlsTwoWay.on('close', () => {
-  console.log("on close")
-});
-
-// 绑定本地IP地址和端口。
-tlsTwoWay.bind({ address: '192.168.xxx.xxx', port: xxxx, family: 1 }, err => {
-  if (err) {
-    console.log('bind fail');
-    return;
-  }
-  console.log('bind success');
-});
+let tlsTwoWay: socket.TLSSocket = socket.constructTLSSocketInstance();
 
 // 设置通信过程中使用参数
 let options = {
@@ -235,80 +210,52 @@ let options = {
   },
 };
 
-// 建立连接
-tlsTwoWay.connect(options, (err, data) => {
-  console.error(err);
-  console.log(data);
-});
-
-// 连接使用完毕后，主动关闭。取消相关事件的订阅。
-tlsTwoWay.close((err) => {
-  if (err) {
-    console.log("close callback error = " + err);
-  } else {
-    console.log("close success");
-  }
-  tlsTwoWay.off('message');
-  tlsTwoWay.off('connect');
-  tlsTwoWay.off('close');
-});
-
-// 创建一个（单向认证）TLS Socket连接，返回一个TLS Socket对象。
-let tlsOneWay = socket.constructTLSSocketInstance(); // One way authentication
-
-// 订阅TLS Socket相关的订阅事件
-tlsTwoWay.on('message', value => {
-  console.log("on message")
-  let buffer = value.message
-  let dataView = new DataView(buffer)
-  let str = ""
-  for (let i = 0; i < dataView.byteLength; ++i) {
-    str += String.fromCharCode(dataView.getUint8(i))
-  }
-  console.log("on connect received:" + str)
-});
-tlsTwoWay.on('connect', () => {
-  console.log("on connect")
-});
-tlsTwoWay.on('close', () => {
-  console.log("on close")
-});
-
 // 绑定本地IP地址和端口。
-tlsOneWay.bind({ address: '192.168.xxx.xxx', port: xxxx, family: 1 }, err => {
+tlsTwoWay.bind({ address: '192.168.xxx.xxx', port: xxxx, family: 1 }, err => {
   if (err) {
     console.log('bind fail');
     return;
   }
   console.log('bind success');
-});
+  // 订阅TLS Socket相关的订阅事件
+  tlsTwoWay.on('message', value => {
+    console.log("on message")
+    let buffer = value.message
+    let dataView = new DataView(buffer)
+    let str = ""
+    for (let i = 0; i < dataView.byteLength; ++i) {
+      str += String.fromCharCode(dataView.getUint8(i))
+    }
+    console.log("on connect received:" + str)
+  });
+  tlsTwoWay.on('connect', () => {
+    console.log("on connect")
+  });
+  tlsTwoWay.on('close', () => {
+    console.log("on close")
+  });
 
-// 设置通信过程中使用参数
-let oneWayOptions = {
-  address: {
-    address: "192.168.xxx.xxx",
-    port: xxxx,
-    family: 1,
-  },
-  secureOptions: {
-    ca: ["xxxx", "xxxx"],            // CA证书
-    cipherSuite: "AES256-SHA256",   // 密码套件
-  },
-};
+  // 建立连接
+  tlsTwoWay.connect(options).then(() => {
+    console.log('connect success');
 
-// 建立连接
-tlsOneWay.connect(oneWayOptions, (err, data) => {
-  console.error(err);
-  console.log(data);
-});
+    // 发送数据
+    let sendBuf = 'client send to server...';
+    tlsTwoWay.send(sendBuf).then(() => {
+      console.log('client send ok');
+    }).catch((err: Object) => {
+      console.error('client send err: ' + JSON.stringify(err));
+    })
+  }).catch((err: Object) => {
+    console.log('connect failed ' + JSON.stringify(err));
+  });
 
-// 连接使用完毕后，主动关闭。取消相关事件的订阅。
-tlsTwoWay.close((err) => {
-  if (err) {
-    console.log("close callback error = " + err);
-  } else {
-    console.log("close success");
-  }
+  // 连接使用完毕后，主动关闭。取消相关事件的订阅。
+  tlsTwoWay.close().then(() => {
+    console.log('close success');
+  }).catch((err: Object) => {
+    console.log('close failed ' + JSON.stringify(err));
+  });
   tlsTwoWay.off('message');
   tlsTwoWay.off('connect');
   tlsTwoWay.off('close');
