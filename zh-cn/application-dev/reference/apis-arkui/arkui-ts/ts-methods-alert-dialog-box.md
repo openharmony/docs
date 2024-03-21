@@ -289,8 +289,8 @@ struct AlertDialogExample {
               }
             }
           )
-        }).backgroundColor(0x317aff)
-    }.width('100%').margin({ top: 5 })
+        })
+    }.width('100%').margin({ top: 5 }).backgroundColor(0x317aff)
   }
 }
 ```
@@ -356,9 +356,9 @@ struct AlertDialogExample {
                   dismissDialog.dismiss()
                 }
             }
-          )
-        }).backgroundColor(0x317aff)
-    }.width('100%').margin({ top: 5 })
+          })
+        })
+    }.width('100%').margin({ top: 5 }).backgroundColor(0x317aff)
   }
 }
 ```
