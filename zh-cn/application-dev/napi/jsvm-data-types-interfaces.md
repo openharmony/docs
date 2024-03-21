@@ -58,13 +58,15 @@ typedef struct {
 
 - 用于表示JSVM-API执行时的上下文，Native侧函数入参，并传递给函数中的JSVM-API接口。
 
-- 退出Native侧插件时，JSVM_Env将变为无效。关于此事件的通知通过传递给OH_JSVM_SetInstanceData的回调函数进行传递。
+- 退出Native侧插件时，JSVM_Env将失效，该事件通过回调传递给OH_JSVM_SetInstanceData。
 
 - 禁止缓存JSVM_Env，禁止在不同Worker中传递JSVM_Env。
 
+- 在不同线程间共享JSVM_Env时，要保证在线程切换时在前一个线程中关闭env scope并在新的线程中打开新的env scope，以保证threadlocal变量的线程隔离。
+
 ### JSVM_ValueType
 
-描述JSVM_Value的类型。这通常对应于ECMAScript语言规范第6.1节中描述的类型。除了该部分中的类型外，JSVM_ValueType还可以用外部数据表示函数和对象。
+JSVM_Value的类型。包含了ECMAScript语言规范中定义的类型，其中JSVM_EXTERNAL表示外部数据类型。
 
 ```c++
 typedef enum {
@@ -83,7 +85,7 @@ typedef enum {
 
 ### JSVM_TypedarrayType
 
-这表示TypedArray的基本二进制标量数据类型。此枚举的元素对应于ECMAScript语言规范的第22.2节。
+TypedArray的基本二进制标量数据类型。
 
 ```c++
 typedef enum {
@@ -107,19 +109,19 @@ JSVM-API包含以下内存管理类型：
 
 **JSVM_HandleScope**
 
-JSVM_HandleScope数据类型是用来管理JavaScript对象的生命周期的。由OH_JSVM_OpenHandleScope接口创建，由OH_JSVM_CloseHandleScope接口关闭。它允许JavaScript对象在一定范围内保持活动状态，以便在JavaScript代码中使用。在创建JSVM_HandleScope时，所有在该范围内创建的JavaScript对象都会保持活动状态，直到结束。这样可以避免在JavaScript代码中使用已经被释放的对象，从而提高代码的可靠性和性能。
+JSVM_HandleScope数据类型是用来管理JavaScript对象的生命周期的。它允许JavaScript对象在一定范围内保持活动状态，以便在JavaScript代码中使用。在创建JSVM_HandleScope时，所有在该范围内创建的JavaScript对象都会保持活动状态，直到结束。这样可以避免在JavaScript代码中使用已经被释放的对象，从而提高代码的可靠性和性能
 
 **JSVM_EscapableHandleScope**
 
 - 由OH_JSVM_OpenEscapableHandleScope接口创建，由OH_JSVM_CloseEscapableHandleScope接口关闭。
 
-- 表示一种特殊类型的句柄范围，用于将在escapable_handle_scope范围内创建的值返回给父scope。
+- 表示一种特殊类型的句柄范围，用于将在JSVM_EscapableHandleScope范围内创建的值返回给父scope。
 
-- 用于OH_JSVM_EscapeHandle接口，将escape_handle_scope提升到JavaScript对象，以便在外部作用域使用。
+- 用于OH_JSVM_EscapeHandle接口，将JSVM_EscapableHandleScope提升到JavaScript对象，以便在外部作用域使用。
 
 **JSVM_Ref**
 
-这是指向JSVM_Value的指针。这允许用户管理JavaScript值的生存期，包括明确定义它们的最小生存期。
+指向JSVM_Value，允许用户管理JavaScript值的生命周期。
 
 **JSVM_TypeTag**
 
@@ -136,7 +138,7 @@ typedef struct {
 
 - 比OH_JSVM_Instanceof更强的类型检查，如果对象的原型被操纵，OH_JSVM_Instanceof可能会报告误报。
 
-- type_tag与OH_JSVM_Wrap结合非常有用，因为它确保从包装对象检索的指针可以安全地转换为与先前应用于JavaScript对象的类型标记相对应的Native类型。
+- JSVM_TypeTag 在与 OH_JSVM_Wrap 结合使用时最有用，因为它确保从包装对象检索的指针可以安全地转换为与先前应用于JavaScript对象的类型标记相对应的Native类型。
 
 ### 回调类型
 
@@ -144,11 +146,11 @@ JSVM-API包含以下回调类型：
 
 **JSVM_CallbackInfo**
 
-Native侧获取JS侧参数信息，传递给OH_JSVM_GetCbInfo，用于获取JS侧入参信息。
+表示用户定义的Native函数，暴露给JavaScript，即JS侧调用的接口；一般不在此Callback中创建Handle或者CallbackScope。
 
 **JSVM_CallbackStruct**
 
-用户提供的Native函数的回调函数指针和数据，这些函数将通过JSVM-API暴露给JavaScript。
+用户提供的Native函数的回调函数指针和数据，JSVM_CallbackStruct将通过JSVM-API暴露给JavaScript。
 
 ```c++
 typedef struct {
@@ -169,9 +171,8 @@ typedef JSVM_CallbackStruct* JSVM_Callback;
 
 **JSVM_Finalize**
 
-函数指针，用于传入OH_JSVM_SetInstanceData、OH_JSVM_CreateExternal、OH_JSVM_Wrap等接口。JSVM_Finalize在对象被回收时会被调用，可用于在JavaScript对象被垃圾回收时释放本机实例。
+函数指针，用于传入OH_JSVM_SetInstanceData、OH_JSVM_CreateExternal、OH_JSVM_Wrap等接口。JSVM_Finalize在对象被回收时会被调用，可用于在JavaScript对象被垃圾回收时释放Native对象。
 
-JSVM_Finalize可以用于确定何时回收具有外部数据的对象。
 写法如下：
 
 ```c++
@@ -207,52 +208,102 @@ typedef void (JSVM_Finalize)(JSVM_Env env, void finalizeData, void* finalizeHint
 创建及销毁JavaScript引擎实例，包含创建及销毁JS执行上下文环境
 
 ```c++
-static JSVM_Value test(JSVM_Env env, JSVM_CallbackInfo info)
-{
-    size_t argc = 2;
-    JSVM_Value args[2];
-    JSVM_CALL(env, OH_JSVM_GetCbInfo(env, info, &argc, args, NULL, NULL));
+bool VM_INIT = false;
 
-    bool isStrictEquals = false;
-    OH_JSVM_StrictEquals(env, args[0], args[1], &isStrictEquals);
+static JSVM_Value ConsoleInfo(JSVM_Env env, JSVM_CallbackInfo info) {
+    size_t argc = 1;
+    JSVM_Value args[1];
+    char log[256] = "";
+    size_t logLength;
+    OH_JSVM_GetCbInfo(env, info, &argc, args, NULL, NULL);
+
+    OH_JSVM_GetValueStringUtf8(env, args[0], log, 255, &logLength);
+    log[255] = 0;
+    OH_LOG_INFO(LOG_APP, "JSVM API TEST: %{public}s", log);
     return nullptr;
 }
 
-OH_JSVM_Init(nullptr);
+static JSVM_Value Add(JSVM_Env env, JSVM_CallbackInfo info) {
+    size_t argc = 2;
+    JSVM_Value args[2];
+    OH_JSVM_GetCbInfo(env, info, &argc, args, NULL, NULL);
+    double num1, num2;
+    env, OH_JSVM_GetValueDouble(env, args[0], &num1);
+    OH_JSVM_GetValueDouble(env, args[1], &num2);
+    JSVM_Value sum = nullptr;
+    OH_JSVM_CreateDouble(env, num1 + num2, &sum);
+    return sum;
+}
 
-JSVM_CreateVMOptions options;
-memset(&options, 0, sizeof(options));
+static napi_value MyJSVMDemo([[maybe_unused]] napi_env _env, [[maybe_unused]] napi_callback_info _info) {
+    std::thread t([]() {
+        if (!VM_INIT) {
+            // JSVM only need init once
+            JSVM_InitOptions initOptions;
+            memset(&initOptions, 0, sizeof(initOptions));
+            OH_JSVM_Init(&initOptions);
+            VM_INIT = true;
+        }
+        // create vm, and open vm scope
+        JSVM_VM vm;
+        JSVM_CreateVMOptions options;
+        memset(&options, 0, sizeof(options));
+        OH_JSVM_CreateVM(&options, &vm);
 
-JSVM_VM vm;
-OH_JSVM_CreateVM(&options, &vm);
+        JSVM_VMScope vmScope;
+        OH_JSVM_OpenVMScope(vm, &vmScope);
 
-JSVM_VM_Scope vmScope;
-OH_JSVM_OpenVMScope(vm, &vmScope);
+        JSVM_CallbackStruct param[] = {
+            {.data = nullptr, .callback = ConsoleInfo},
+            {.data = nullptr, .callback = Add},
+        };
+        JSVM_PropertyDescriptor descriptor[] = {
+            {"consoleinfo", NULL, &param[0], NULL, NULL, NULL, JSVM_DEFAULT},
+            {"add", NULL, &param[1], NULL, NULL, NULL, JSVM_DEFAULT},
+        };
+        // create env, register native method, and open env scope
+        JSVM_Env env;
+        OH_JSVM_CreateEnv(vm, sizeof(descriptor) / sizeof(descriptor[0]), descriptor, &env);
 
-JSVM_Env env;
-JSVM_CallbackStruct param[1];
-param[0].data = nullptr;
-param[0].callback = test;
-JSVM_PropertyDescriptor descriptor[] = {
-    {"test", NULL, &param[0], NULL, NULL, NULL, JSVM_DEFAULT},
-};
-OH_JSVM_CreateEnv(vm, sizeof(descriptor) / sizeof(descriptor[0]), descriptor, &env);
-JSVM_EnvScope envScope;
-OH_JSVM_OpenEnvScope(env, &envScope);
+        JSVM_EnvScope envScope;
+        OH_JSVM_OpenEnvScope(env, &envScope);
 
-JSVM_HandleScope handleScope;
-OH_JSVM_OpenHandleScope(env, &handleScope);
+        // open handle scope
+        JSVM_HandleScope handleScope;
+        OH_JSVM_OpenHandleScope(env, &handleScope);
 
-// 业务代码
-... ...
+        std::string sourceCodeStr = "\
+{\
+let value = add(4.96, 5.28);\
+consoleinfo('Result is:' + value);\
+}\
+";
+        // compile js script
+        JSVM_Value sourceCodeValue;
+        OH_JSVM_CreateStringUtf8(env, sourceCodeStr.c_str(), sourceCodeStr.size(), &sourceCodeValue);
+        JSVM_Script script;
+        OH_JSVM_CompileScript(env, sourceCodeValue, nullptr, 0, true, nullptr, &script);
+        JSVM_Value result;
+        // run js script
+        OH_JSVM_RunScript(env, script, &result);
+        JSVM_ValueType type;
+        OH_JSVM_Typeof(env, result, &type);
+        OH_LOG_INFO(LOG_APP, "JSVM API TEST type: %{public}d", type);
 
-OH_JSVM_CloseHandleScope(env, handleScope);
+        // exit vm and clean memory
+        OH_JSVM_CloseHandleScope(env, handleScope);
 
-OH_JSVM_CloseEnvScope(env, envScope);
-OH_JSVM_DestroyEnv(env);
+        OH_JSVM_CloseEnvScope(env, envScope);
+        OH_JSVM_DestroyEnv(env);
 
-OH_JSVM_CloseVMScope(vm, vmScope);
-OH_JSVM_DestroyVM(vm);
+        OH_JSVM_CloseVMScope(vm, vmScope);
+        OH_JSVM_DestroyVM(vm);
+    });
+
+    t.detach();
+
+    return nullptr;
+}
 ```
 
 ### 使用 JSVM-API 接口编译及执行 JS 代码
@@ -269,19 +320,212 @@ OH_JSVM_DestroyVM(vm);
 | OH_JSVM_RunScript| 执行编译脚本 |
 
 场景示例：
-编译及执行JS代码
+编译及执行JS代码(创建vm，注册function，执行js，销毁vm)。
 
 ```c++
-char* sourcecodestr = "let length = 5; let arr = new Array(length); arr[4] = 123;";
-JSVM_Value sourcecodevalue;
-OH_JSVM_CreateStringUtf8(env, sourcecodestr.c_str(), sourcecodestr.size(), &sourcecodevalue);
+#include <cstring>
+#include <fstream>
+#include <string>
+#include <vector>
 
-JSVM_Script script;
-OH_JSVM_CompileScript(env, sourcecodevalue, nullptr, 0, true, 0, &script);
-JSVM_Value result;
-OH_JSVM_RunScript(env, script, &result);
-int32_t runScriptResult;
-OH_JSVM_GetValueInt32(env, result, &runScriptResult); // runScriptResult: 123
+// 依赖libjsvm.so
+#include "ark_runtime/jsvm.h"
+
+using namespace std;
+
+static JSVM_Value Hello(JSVM_Env env, JSVM_CallbackInfo info) {
+    JSVM_Value output;
+    void* data = nullptr;
+    OH_JSVM_GetCbInfo(env, info, nullptr, nullptr, nullptr, &data);
+    OH_JSVM_CreateStringUtf8(env, (char*)data, strlen((char*)data), &output);
+    return output;
+}
+
+static JSVM_CallbackStruct hello_cb = { Hello, (void*)"Hello" };
+
+static string srcGlobal = R"JS(
+const concat = (...args) => args.reduce((a, b) => a + b);
+)JS";
+
+static void RunScript(JSVM_Env env, string& src,
+                       const uint8_t** dataPtr = nullptr,
+                       size_t* lengthPtr = nullptr) {
+    JSVM_HandleScope handleScope;
+    OH_JSVM_OpenHandleScope(env, &handleScope);
+
+    JSVM_Value jsSrc;
+    OH_JSVM_CreateStringUtf8(env, src.c_str(), src.size(), &jsSrc);
+
+    const uint8_t* data = dataPtr ? *dataPtr : nullptr;
+    size_t length = lengthPtr ? *lengthPtr : 0;
+    bool cacheRejected = true;
+    JSVM_Script script;
+    // 编译js代码
+    OH_JSVM_CompileScript(env, jsSrc, data, length, true, &cacheRejected, &script);
+    printf("Code cache is %s\n", cacheRejected ? "rejected" : "used");
+
+    JSVM_Value result;
+    // 执行js代码
+    OH_JSVM_RunScript(env, script, &result);
+
+    char resultStr[128];
+    size_t size;
+    OH_JSVM_GetValueStringUtf8(env, result, resultStr, 128, &size);
+    printf("%s\n", resultStr);
+    if (dataPtr && lengthPtr && *dataPtr == nullptr) {
+        // 将js源码编译出的脚本保存到cache，可以避免重复编译，带来性能提升
+        OH_JSVM_CreateCodeCache(env, script, dataPtr, lengthPtr);
+        printf("Code cache created with length = %ld\n", *lengthPtr);
+    }
+
+    OH_JSVM_CloseHandleScope(env, handleScope);
+}
+
+static void CreateSnapshot() {
+    JSVM_VM vm;
+    JSVM_CreateVMOptions options;
+    memset(&options, 0, sizeof(options));
+    options.isForSnapshotting = true;
+    OH_JSVM_CreateVM(&options, &vm);
+    JSVM_VMScope vmScope;
+    OH_JSVM_OpenVMScope(vm, &vmScope);
+
+    JSVM_Env env;
+    // 将native函数注册成js可调用的方法，hello_cb中记录该native方法的指针和参数等信息
+    JSVM_PropertyDescriptor descriptors[] = {
+        { "hello", NULL, &hello_cb, NULL, NULL, NULL, JSVM_DEFAULT }
+    };
+    OH_JSVM_CreateEnv(vm, 1, descriptors, &env);
+
+    JSVM_EnvScope envScope;
+    OH_JSVM_OpenEnvScope(env, &envScope);
+    // 执行js源码src，src中可以包含任何js语法。也可以调用已注册的native方法。
+    string src = srcGlobal + "concat(hello(), ', ', 'World from CreateSnapshot!');";
+    RunScript(env, src);
+
+    // 创建snapshot，将当前的env保存到字符串，可以在某个时机通过该字符串还原出env，避免重复定义该env中的属性，带来性能提升。
+    const char* blobData = nullptr;
+    size_t blobSize = 0;
+    JSVM_Env envs[1] = { env };
+    OH_JSVM_CreateSnapshot(vm, 1, envs, &blobData, &blobSize);
+    printf("Snapshot blob size = %ld\n", blobSize);
+
+    // 如果将snapshot保存到文件中，需要考虑应用中的文件读写权限
+    ofstream file("/data/storage/el2/base/files/blob.bin", ios::out | ios::binary | ios::trunc);
+    file.write(blobData, blobSize);
+    file.close();
+
+    OH_JSVM_CloseEnvScope(env, envScope);
+    OH_JSVM_DestroyEnv(env);
+    OH_JSVM_CloseVMScope(vm, vmScope);
+    OH_JSVM_DestroyVM(vm);
+}
+
+void RunWithoutSnapshot(const uint8_t** dataPtr, size_t* lengthPtr) {
+    // 创建虚拟机实例
+    JSVM_VM vm;
+    OH_JSVM_CreateVM(nullptr, &vm);
+    JSVM_VMScope vmScope;
+    OH_JSVM_OpenVMScope(vm, &vmScope);
+
+    JSVM_Env env;
+    // 将native函数注册成js可调用的方法，hello_cb中记录该native方法的指针和参数等信息
+    JSVM_PropertyDescriptor descriptors[] = {
+        { "hello", NULL, &hello_cb, NULL, NULL, NULL, JSVM_DEFAULT }
+    };
+    OH_JSVM_CreateEnv(vm, 1, descriptors, &env);
+    JSVM_EnvScope envScope;
+    OH_JSVM_OpenEnvScope(env, &envScope);
+    // 执行js源码src，src中可以包含任何js语法。也可以调用已注册的native方法。
+    auto src = srcGlobal + "concat(hello(), ', ', 'World', ' from RunWithoutSnapshot!')";
+    RunScript(env, src, dataPtr, lengthPtr);
+
+    OH_JSVM_CloseEnvScope(env, envScope);
+    OH_JSVM_DestroyEnv(env);
+    OH_JSVM_CloseVMScope(vm, vmScope);
+    OH_JSVM_DestroyVM(vm);
+}
+
+void RunWithSnapshot(const uint8_t **dataPtr, size_t *lengthPtr) {
+    // The lifetime of blobData must not be shorter than that of the vm.
+    // 如果从文件中读取snapshot，需要考虑应用中的文件读写权限
+    vector<char> blobData;
+    ifstream file("/data/storage/el2/base/files/blob.bin", ios::in | ios::binary | ios::ate);
+    size_t blobSize = file.tellg();
+    blobData.resize(blobSize);
+    file.seekg(0, ios::beg);
+    file.read(blobData.data(), blobSize);
+    file.close();
+
+    // 创建虚拟机实例
+    JSVM_VM vm;
+    JSVM_CreateVMOptions options;
+    memset(&options, 0, sizeof(options));
+    options.snapshotBlobData = blobData.data();
+    options.snapshotBlobSize = blobSize;
+    OH_JSVM_CreateVM(&options, &vm);
+    JSVM_VMScope vmScope;
+    OH_JSVM_OpenVMScope(vm, &vmScope);
+
+    // 从快照中创建env
+    JSVM_Env env;
+    OH_JSVM_CreateEnvFromSnapshot(vm, 0, &env);
+    JSVM_EnvScope envScope;
+    OH_JSVM_OpenEnvScope(env, &envScope);
+
+    // 执行js脚本，因为快照记录的env中定义了hello()，所以无需重新定义。dataPtr中如果保存了编译后的js脚本，就能直接执行js脚本，避免从源码重复编译。
+    string src = "concat(hello(), ', ', 'World', ' from RunWithSnapshot!')";
+    RunScript(env, src, dataPtr, lengthPtr);
+
+    OH_JSVM_CloseEnvScope(env, envScope);
+    OH_JSVM_DestroyEnv(env);
+    OH_JSVM_CloseVMScope(vm, vmScope);
+    OH_JSVM_DestroyVM(vm);
+}
+
+void PrintVmInfo() {
+    JSVM_VMInfo vmInfo;
+    OH_JSVM_GetVMInfo(&vmInfo);
+    printf("apiVersion: %d\n", vmInfo.apiVersion);
+    printf("engine: %s\n", vmInfo.engine);
+    printf("version: %s\n", vmInfo.version);
+    printf("cachedDataVersionTag: 0x%x\n", vmInfo.cachedDataVersionTag);
+}
+
+static intptr_t externals[] = {
+    (intptr_t)&hello_cb,
+    0,
+};
+
+int main(int argc, char *argv[]) {
+    if (argc <= 1) {
+        printf("Usage: %s gen-snapshot|use-snapshot|no-snapshot\n", argv[0]);
+        return 0;
+    }
+
+    JSVM_InitOptions initOptions;
+    memset(&initOptions, 0, sizeof(initOptions));
+    initOptions.externalReferences = externals;
+    // 初始化引擎，一个进程中只能初始化一次
+    OH_JSVM_Init(&initOptions);
+    PrintVmInfo();
+
+    if (argv[1] == string("gen-snapshot")) {
+        CreateSnapshot();
+        return 0;
+    }
+
+    // snapshot可以记录下某个时间的js执行环境，可以跨进程通过snapshot快速还原出js执行上下文环境，前提是保证snapshot数据的生命周期。
+    const auto useSnapshot = argv[1] == string("use-snapshot");
+    const auto run = useSnapshot ? RunWithSnapshot : RunWithoutSnapshot;
+    const uint8_t* data = nullptr;
+    size_t length = 0;
+    run(&data, &length);
+    run(&data, &length);
+    delete[] data;
+
+    return 0;
+}
 ```
 
 ### 异常处理
@@ -308,7 +552,7 @@ OH_JSVM_GetValueInt32(env, result, &runScriptResult); // runScriptResult: 123
 | OH_JSVM_CreateSyntaxError| 创建一个JS SyntaxError并返回 |
 
 场景示例：
-以TypeError为例。创建，判断，并抛出JS TypeError
+以TypeError为例。创建，判断，并抛出JS TypeError。
 
 ```c++
 JSVM_Value code = nullptr;
@@ -325,7 +569,7 @@ OH_JSVM_ThrowTypeError(env, nullptr, "type error1");
 使用OH_JSVM_GetAndClearLastException后将异常信息以字符串形式打印
 
 ```c++
-if (status != JSVM_OK)
+if (status != JSVM_OK) // 当执行失败出现异常时
 {
     bool isPending = false;
     if (JSVM_OK == OH_JSVM_IsExceptionPending((env), &isPending) && isPending)
@@ -352,9 +596,13 @@ if (status != JSVM_OK)
 }
 ```
 
-### 对象生命周期管理。
+### 对象生命周期管理
 
-在进行JSVM-API调用时，底层VM的堆中对象的句柄可以作为JSVM_Values返回。这些句柄必须保持对象处于“活动”状态，直到本机代码不再需要它们为止，否则可能会在本机代码使用完对象之前收集这些对象。当对象句柄被返回时，它们与一个“scope”相关联。默认作用域的寿命与本机方法调用的寿命相关联。结果是，默认情况下，句柄保持有效，并且与这些句柄关联的对象将在本机方法调用的生命周期内保持活动状态。然而，在许多情况下，句柄必须在比本机方法更短或更长的寿命内保持有效。下面的部分介绍了JSVM-API函数，这些函数可用于从默认值更改句柄的使用寿命。
+在调用JSVM-API接口时，底层VM堆中的对象可能会作为JSVM_Values返回句柄。这些句柄必须在Native方法退出或主动释放掉前，使其关联的对象处于“活动”状态，防止被引擎回收掉。
+
+当对象句柄被返回时，它们与一个“scope”相关联。默认作用域的生命周期与本机方法调用的生命周期相关联，这些句柄及关联的对象将在Native方法的生命周期内保持活动状态。
+
+然而，在许多情况下，句柄必须保持有效的时间范围并不与Native方法的生命周期相同。下面将介绍可用于更改句柄的生命周期的JSVM-API方法。
 
 #### 对象生命周期管理接口说明
 | 接口 | 功能说明 |
@@ -371,7 +619,7 @@ if (status != JSVM_OK)
 | OH_JSVM_GetReferenceValue| 返回由 OH_JSVM_CreateReference 创建的引用的对象 |
 
 场景示例：
-通过handlescope保护在scope范围内创建的对象在该范围内不被回收
+通过handlescope保护在scope范围内创建的对象在该范围内不被回收。
 
 ```c++
 JSVM_HandleScope scope;
@@ -384,20 +632,14 @@ OH_JSVM_CloseHandleScope(env, scope);
 通过escapable handlescope保护在scope范围内创建的对象在父作用域范围内不被回收
 
 ```c++
-static void func2(JSVM_Value *result)
-{
-    JSVM_EscapableHandleScope scope;
-    JSVM_Env env;
-    OH_JSVM_OpenEscapableHandleScope(env, &scope);
-    OH_JSVM_CreateObject(env, result);
-    OH_JSVM_CloseEscapableHandleScope(env, scope);
-}
-
-static void func1()
-{
-    JSVM_Value obj = nullptr;
-    func2(&obj);
-}
+JSVM_EscapableHandleScope scope;
+JSVM_CALL(env, OH_JSVM_OpenEscapableHandleScope(env, &scope));
+JSVM_Value output = NULL;
+JSVM_Value escapee = NULL;
+JSVM_CALL(env, OH_JSVM_CreateObject(env, &output));
+JSVM_CALL(env, OH_JSVM_EscapeHandle(env, scope, output, &escapee));
+JSVM_CALL(env, OH_JSVM_CloseEscapableHandleScope(env, scope));
+return escapee;
 ```
 
 通过CreateReference创建对象引用和释放
@@ -436,7 +678,7 @@ OH_JSVM_DeleteReference(env, reference);
 |OH_JSVM_CreateSymbol | 根据给定的描述符创建一个 Symbol 对象 |
 |OH_JSVM_SymbolFor | 在全局注册表中搜索具有给定描述的现有Symbol,如果该Symbol已经存在，它将被返回，否则将在注册表中创建一个新Symbol |
 |OH_JSVM_CreateTypedarray | 在现有的 ArrayBuffer 上创建一个 JavaScript TypedArray 对象,TypedArray 对象在底层数据缓冲区上提供类似数组的视图，其中每个元素都具有相同的底层二进制标量数据类型 |
-|OH_JSVM_CreateDataview | 在现有的 ArrayBuffer 上创建一个 JavaScript DataView 对象。DataView 对象在底层数据缓冲区上提供类似数组的视图 |
+|OH_JSVM_CreateDataview | 在现有的 ArrayBuffer 上创建一个 JavaScript DataView 对象,DataView 对象在底层数据缓冲区上提供类似数组的视图 |
 |OH_JSVM_CreateInt32 | 根据 Int32_t 类型对象创建 JavaScript number 对象 |
 |OH_JSVM_CreateUint32 | 根据 Uint32_t 类型对象创建 JavaScript number 对象 |
 |OH_JSVM_CreateInt64 | 根据 Int64_t 类型对象创建 JavaScript number 对象 |
@@ -499,7 +741,7 @@ OH_JSVM_CreateInt32(env, 10, &testNumber2);
 
 #### 场景介绍
 
-从JS类型获取C类型&获取JS类型信息
+从JS类型获取C类型&获取JS类型信息。
 
 #### 接口说明
 | 接口 | 功能说明 |
@@ -669,8 +911,8 @@ JS对象属性的增删获取和判断
 |OH_JSVM_SetNamedProperty | 用给定的属性的名称为目标对象设置属性，此方法等效于使用从作为 utf8Name 传入的字符串创建的 JSVM_Value 调用 OH_JSVM_SetNamedProperty |
 |OH_JSVM_GetNamedProperty | 用给定的属性的名称，检索目标对象的属性，此方法等效于使用从作为 utf8Name 传入的字符串创建的 JSVM_Value 调用 OH_JSVM_GetNamedProperty |
 |OH_JSVM_HasNamedProperty | 用给定的属性的名称，查询目标对象是否有此属性，此方法等效于使用从作为 utf8Name 传入的字符串创建的 JSVM_Value 调用 OH_JSVM_HasNamedProperty |
-|OH_JSVM_SetElement | 在给定对象的指定索引处，设置元素。 |
-|OH_JSVM_GetElement | 获取给定对象指定索引处的元素。 |
+|OH_JSVM_SetElement | 在给定对象的指定索引处设置元素 |
+|OH_JSVM_GetElement | 获取给定对象指定索引处的元素 |
 |OH_JSVM_HasElement | 若给定对象的指定索引处拥有属性，获取该元素 |
 |OH_JSVM_DeleteElement | 尝试删除给定对象的指定索引处的元素 |
 |OH_JSVM_DefineProperties |  批量的向给定对象中定义属性 |
@@ -700,37 +942,37 @@ OH_JSVM_GetProperty(env, myObject, key, &propResult);
 // 检查属性是否存在
 bool hasProperty = false;
 OH_JSVM_HasNamedProperty(env, myObject, "name", &hasProperty);
-if (hasProperty)
-{
     // 属性存在，做相应处理...
-    // 删除属性
-    OH_JSVM_DeleteProperty(env, myObject, key, &hasProperty);
-}
+    if (hasProperty)
+    {
+        // 获取对象的所有属性名
+        JSVM_Value propNames = nullptr;
+        OH_JSVM_GetPropertyNames(env, myObject, &propNames);
 
-// 获取对象的所有属性名
-JSVM_Value propNames = nullptr;
-OH_JSVM_GetPropertyNames(env, myObject, &propNames);
+        bool isArray = false;
+        OH_JSVM_IsArray(env, propNames, &isArray);
 
-bool isArray = false;
-OH_JSVM_IsArray(env, propNames, &isArray);
+        uint32_t arrayLength = 0;
+        OH_JSVM_GetArrayLength(env, propNames, &arrayLength);
+        // 遍历属性元素
+        for (uint32_t i = 0; i < arrayLength; i++)
+        {
+            bool hasElement = false;
+            OH_JSVM_HasElement(env, propNames, i, &hasElement);
 
-uint32_t arrayLength = 0;
-OH_JSVM_GetArrayLength(env, propNames, &arrayLength);
-// 遍历属性元素
-for (uint32_t i = 0; i < arrayLength; i++)
-{
-    bool hasElement = false;
-    OH_JSVM_HasElement(env, propNames, i, &hasElement);
+            JSVM_Value propName = nullptr;
+            OH_JSVM_GetElement(env, propNames, i, &propName);
 
-    JSVM_Value propName = nullptr;
-    OH_JSVM_GetElement(env, propNames, i, &propName);
+            bool hasProp = false;
+            OH_JSVM_HasProperty(env, myObject, propName, &hasProp);
 
-    bool hasProp = false;
-    OH_JSVM_HasProperty(env, myObject, propName, &hasProp);
+            JSVM_Value propValue = nullptr;
+            OH_JSVM_GetProperty(env, myObject, propName, &propValue);
+        }
+    }
 
-    JSVM_Value propValue = nullptr;
-    OH_JSVM_GetProperty(env, myObject, propName, &propValue);
-}
+// 删除属性
+OH_JSVM_DeleteProperty(env, myObject, key, &hasProperty);
 ```
 
 ### JS函数操作
@@ -760,7 +1002,7 @@ JSVM_Value SayHello(JSVM_Env env, JSVM_CallbackInfo info)
     return ret;
 }
 
-static JSVM_Value jsvmCreateFunction(JSVM_Env env, JSVM_CallbackInfo info)
+static JSVM_Value JsvmCreateFunction(JSVM_Env env, JSVM_CallbackInfo info)
 {
     JSVM_CallbackStruct param;
     param.data = nullptr;
@@ -768,8 +1010,6 @@ static JSVM_Value jsvmCreateFunction(JSVM_Env env, JSVM_CallbackInfo info)
 
     JSVM_Value funcValue = nullptr;
     JSVM_Status status = OH_JSVM_CreateFunction(env, "func", JSVM_AUTO_LENGTH, &param, &funcValue);
-    JSVM_Value value;
-    OH_JSVM_CreateInt32(env, 1, &value);
     return funcValue;
 }
 ```
@@ -777,16 +1017,23 @@ static JSVM_Value jsvmCreateFunction(JSVM_Env env, JSVM_CallbackInfo info)
 在C/C++侧获取并调用JS方法
 
 ```c++
-static JSVM_Value callFunction(JSVM_Env env, JSVM_CallbackInfo info)
+static JSVM_Value CallFunction(JSVM_Env env, JSVM_CallbackInfo info)
 {
     size_t argc = 1;
     JSVM_Value args[1];
-    OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr);
+    JSVM_CALL(env, OH_JSVM_GetCbInfo(env, info, &argc, args, NULL, NULL));
+
+    JSVM_ASSERT(env, argc >= 1, "Wrong number of arguments");
 
     JSVM_ValueType valuetype;
-    OH_JSVM_Typeof(env, args[0], &valuetype);
+    JSVM_CALL(env, OH_JSVM_Typeof(env, args[0], &valuetype));
+    JSVM_ASSERT(env, valuetype == JSVM_ValueType::JSVM_FUNCTION, "Wrong type of argment. Expects a string.");
+
+    JSVM_Value global;
+    JSVM_CALL(env, OH_JSVM_GetGlobal(env, &global));
+
     JSVM_Value ret;
-    OH_JSVM_CallFunction(env, nullptr, args[0], 0, nullptr, &ret);
+    JSVM_CALL(env, OH_JSVM_CallFunction(env, global, args[0], 0, nullptr, &ret));
     return ret;
 }
 ```
@@ -810,10 +1057,10 @@ static JSVM_Value callFunction(JSVM_Env env, JSVM_CallbackInfo info)
 |OH_JSVM_PostFinalizer | 安排在事件循环中异步调用 JSVM_Finalize 回调 |
 
 场景示例：
-对象绑定操作
+对象绑定操作。
 
 ```c++
-static JSVM_Value assertEqual(JSVM_Env env, JSVM_CallbackInfo info)
+static JSVM_Value AssertEqual(JSVM_Env env, JSVM_CallbackInfo info)
 {
     size_t argc = 2;
     JSVM_Value args[2];
@@ -824,58 +1071,64 @@ static JSVM_Value assertEqual(JSVM_Env env, JSVM_CallbackInfo info)
     return nullptr;
 }
 
-JSVM_InitOptions init_options;
-memset(&init_options, 0, sizeof(init_options));
-init_options.externalReferences = externals;
-if (aa == 0) {
-    OH_JSVM_Init(&init_options);
-    aa++;
+static napi_value TestWrap(napi_env env1, napi_callback_info info)
+{
+    OH_LOG_ERROR(LOG_APP, "testWrap start");
+    JSVM_InitOptions init_options;
+    memset(&init_options, 0, sizeof(init_options));
+    init_options.externalReferences = externals;
+    if (aa == 0) {
+        OH_JSVM_Init(&init_options);
+        aa++;
+    }
+    JSVM_VM vm;
+    JSVM_CreateVMOptions options;
+    memset(&options, 0, sizeof(options));
+    OH_JSVM_CreateVM(&options, &vm);
+    JSVM_VMScope vm_scope;
+    OH_JSVM_OpenVMScope(vm, &vm_scope);
+    JSVM_Env env;
+    JSVM_CallbackStruct param[1];
+    param[0].data = nullptr;
+    param[0].callback = AssertEqual;
+    JSVM_PropertyDescriptor descriptor[] = {
+        {"assertEqual", NULL, &param[0], NULL, NULL, NULL, JSVM_DEFAULT},
+    };
+    OH_JSVM_CreateEnv(vm, sizeof(descriptor) / sizeof(descriptor[0]), descriptor, &env);
+    JSVM_EnvScope envScope;
+    OH_JSVM_OpenEnvScope(env, &envScope);
+    JSVM_HandleScope handlescope;
+    OH_JSVM_OpenHandleScope(env, &handlescope);
+    JSVM_Value testClass = nullptr;
+    JSVM_CallbackStruct param1;
+    param1.data = nullptr;
+    param1.callback = [](JSVM_Env env, JSVM_CallbackInfo info) -> JSVM_Value {
+        JSVM_Value thisVar = nullptr;
+        OH_JSVM_GetCbInfo(env, info, nullptr, nullptr, &thisVar, nullptr);
+
+        return thisVar;
+    };
+    OH_JSVM_DefineClass(env, "TestClass", JSVM_AUTO_LENGTH, &param1, 0, nullptr, &testClass);
+
+    JSVM_Value instanceValue = nullptr;
+    OH_JSVM_NewInstance(env, testClass, 0, nullptr, &instanceValue);
+
+    const char *testStr = "test";
+    OH_JSVM_Wrap(
+        env, instanceValue, (void *)testStr, [](JSVM_Env env, void *data, void *hint) {}, nullptr, nullptr);
+    const char *tmpTestStr = nullptr;
+    OH_JSVM_Unwrap(env, instanceValue, (void **)&tmpTestStr);
+    const char *tmpTestStr1 = nullptr;
+    OH_JSVM_RemoveWrap(env, instanceValue, (void **)&tmpTestStr1);
+    OH_JSVM_Unwrap(env, instanceValue, (void **)&tmpTestStr1);
+    OH_JSVM_CloseHandleScope(env, handlescope);
+    OH_JSVM_CloseEnvScope(env, envScope);
+    OH_JSVM_DestroyEnv(env);
+    OH_JSVM_CloseVMScope(vm, vm_scope);
+    OH_JSVM_DestroyVM(vm);
+    OH_LOG_ERROR(LOG_APP, "testWrap pass");
+    return nullptr;
 }
-JSVM_VM vm;
-JSVM_CreateVMOptions options;
-memset(&options, 0, sizeof(options));
-OH_JSVM_CreateVM(&options, &vm);
-JSVM_VMScope vm_scope;
-OH_JSVM_OpenVMScope(vm, &vm_scope);
-JSVM_Env env;
-JSVM_CallbackStruct param[1];
-param[0].data = nullptr;
-param[0].callback = assertEqual;
-JSVM_PropertyDescriptor descriptor[] = {
-    {"assertEqual", NULL, &param[0], NULL, NULL, NULL, JSVM_DEFAULT},
-};
-OH_JSVM_CreateEnv(vm, sizeof(descriptor) / sizeof(descriptor[0]), descriptor, &env);
-JSVM_EnvScope envScope;
-OH_JSVM_OpenEnvScope(env, &envScope);
-JSVM_HandleScope handlescope;
-OH_JSVM_OpenHandleScope(env, &handlescope);
-JSVM_Value testClass = nullptr;
-JSVM_CallbackStruct param1;
-param1.data = nullptr;
-param1.callback = [](JSVM_Env env, JSVM_CallbackInfo info) -> JSVM_Value {
-    JSVM_Value thisVar = nullptr;
-    OH_JSVM_GetCbInfo(env, info, nullptr, nullptr, &thisVar, nullptr);
-
-    return thisVar;
-};
-OH_JSVM_DefineClass(env, "TestClass", JSVM_AUTO_LENGTH, &param1, 0, nullptr, &testClass);
-
-JSVM_Value instanceValue = nullptr;
-OH_JSVM_NewInstance(env, testClass, 0, nullptr, &instanceValue);
-
-const char *testStr = "test";
-OH_JSVM_Wrap(
-    env, instanceValue, (void *)testStr, [](JSVM_Env env, void *data, void *hint) {}, nullptr, nullptr);
-const char *tmpTestStr = nullptr;
-OH_JSVM_Unwrap(env, instanceValue, (void **)&tmpTestStr);
-const char *tmpTestStr1 = nullptr;
-OH_JSVM_RemoveWrap(env, instanceValue, (void **)&tmpTestStr1);
-OH_JSVM_Unwrap(env, instanceValue, (void **)&tmpTestStr1);
-OH_JSVM_CloseHandleScope(env, handlescope);
-OH_JSVM_CloseEnvScope(env, envScope);
-OH_JSVM_DestroyEnv(env);
-OH_JSVM_CloseVMScope(vm, vm_scope);
-OH_JSVM_DestroyVM(vm);
 ```
 
 ### 版本管理
@@ -891,7 +1144,7 @@ OH_JSVM_DestroyVM(vm);
 |OH_JSVM_GetVMInfo| 返回虚拟机的信息 |
 
 场景示例：
-获取当前版本信息
+获取当前版本信息。
 
 ```c++
 JSVM_VMInfo result;
@@ -904,7 +1157,7 @@ OH_JSVM_GetVersion(env, &versionId);
 
 #### 场景介绍
 
-内存管理。
+内存管理
 
 #### 接口说明
 | 接口 | 功能说明 |
@@ -913,7 +1166,7 @@ OH_JSVM_GetVersion(env, &versionId);
 |OH_JSVM_MemoryPressureNotification| 创建一个延迟对象和一个JavaScript promise |
 
 场景示例：
-内存管理
+内存管理。
 
 ```c++
 int64_t change = 1024 * 1024; // 分配1MB的内存
@@ -936,7 +1189,7 @@ Promise相关操作。
 |OH_JSVM_IsPromise| 查询Promise是否为原生Promise对象 |
 
 场景示例：
-Promise相关操作
+Promise相关操作。
 
 ```c++
 JSVM_Deferred deferred;
@@ -978,7 +1231,7 @@ JSON操作。
 |OH_JSVM_JsonStringify| 将对象字符串化，并返回成功转换后的字符串 |
 
 场景示例：
-解析JSON操作
+解析JSON操作。
 
 ```c++
 std::string sourcecodestr = "{\"name\": \"John\", \"age\": 30, \"city\": \"New York\"}" ;
@@ -1000,7 +1253,7 @@ OH_JSVM_JsonParse(env, jsonString, &result);
 |OH_JSVM_CreateSnapshot| 用于创建虚拟机的启动快照 |
 
 场景示例：
-创建虚拟机的启动快照
+创建虚拟机的启动快照。
 
 ```c++
 JSVM_VM vm;
@@ -1010,13 +1263,13 @@ OH_JSVM_CreateVM(&options, &vm);
 JSVM_Env env;
 JSVM_CallbackStruct param[1];
 param[0].data = nullptr;
-param[0].callback = assertEqual;
+param[0].callback = AssertEqual;
 JSVM_PropertyDescriptor descriptor[] = {
     {"test", nullptr, &param[0], nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
 OH_JSVM_CreateEnv(vm, sizeof(descriptor) / sizeof(descriptor[0]), descriptor, &env);
-const char *blob_data = nullptr;
-size_t blob_size = 0;
+const char *blobData = nullptr;
+size_t blobSize = 0;
 JSVM_Env envs[1] = {env};
-OH_JSVM_CreateSnapshot(vm, 1, envs, &blob_data, &blob_size);
+OH_JSVM_CreateSnapshot(vm, 1, envs, &blobData, &blobSize);
 ```

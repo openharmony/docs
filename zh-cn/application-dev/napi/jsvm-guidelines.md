@@ -1,17 +1,12 @@
 # JSVM-API开发规范
 
-
 ## 生命周期管理
-
 
 **【规则】** 合理使用OH_JSVM_OpenHandleScope和OH_JSVM_CloseHandleScope管理JSVM_Value的生命周期，做到生命周期最小化，避免发生内存泄漏问题。
 
-
 每个JSVM_Value属于特定的HandleScope，HandleScope通过OH_JSVM_OpenHandleScope和OH_JSVM_CloseHandleScope来建立和关闭，HandleScope关闭后，所属的JSVM_Value就会自动释放。
 
-
 **正确示例**：
-
 
 ```c++
 // 在for循环中频繁调用JSVM接口创建js对象时，要加handle_scope及时释放不再使用的资源。 
@@ -30,15 +25,11 @@ for (int i = 0; i < 100000; i++)
 }
 ```
 
-
 ## 上下文敏感
-
 
 **【规则】** 多引擎实例场景下，禁止通过JSVM-API跨引擎实例访问JS对象。
 
-
 引擎实例是一个独立运行环境，JS对象创建访问等操作必须在同一个引擎实例中进行。若在不同引擎实例中操作同一个对象，可能会引发程序崩溃。引擎实例在接口中体现为JSVM_Env。
-
 
 **错误示例**:
 
@@ -61,15 +52,11 @@ if (status != JSVM_OK)
 }
 ```
 
-
 所有的JS对象都隶属于具体的某一JSVM_Env，不可将env1的对象，设置到env2中的对象中。在env2中一旦访问到env1的对象，程序可能会发生崩溃。
-
 
 ## 异常处理
 
-
 **【建议】** JSVM-API接口调用发生异常需要及时处理，不能遗漏异常到后续逻辑，否则程序可能发生不可预期行为。
-
 
 **正确示例**：
 
@@ -97,15 +84,11 @@ if (status != JSVM_OK)
 }
 ```
 
-
 如上示例中，步骤1或者步骤2出现异常时，步骤3都不会正常进行。只有当方法的返回值是JSVM_OK时，才能保持继续正常运行；否则后续流程可能会出现不可预期的行为。
-
 
 ## 对象绑定
 
-
 **【规则】** 使用OH_JSVM_Wrap接口，如果最后一个参数result传递不为nullptr，需要开发者在合适的时机调用OH_JSVM_RemoveWrap函数主动删除创建的JSVM_Ref。
-
 
 OH_JSVM_Wrap接口定义如下：
 
@@ -122,9 +105,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_Wrap(JSVM_Env env,
 
 一般情况下，根据业务情况最后一个参数result可以直接传递为nullptr。
 
-
 **正确示例**：
-
 
 ```c++
 // 用法1：OH_JSVM_Wrap不需要接收创建的JSVM_Ref，最后一个参数传递nullptr，创建的JSVM_Ref是弱引用，由系统管理，不需要用户手动释放
