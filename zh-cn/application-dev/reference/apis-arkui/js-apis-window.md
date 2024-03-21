@@ -4228,7 +4228,7 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-###  setWindowDecorHeight<sup>12+</sup>
+###  setWindowDecorHeight<sup>11+</sup>
 
 setWindowDecorHeight(height: number): void
 
@@ -4261,7 +4261,7 @@ try {
 }
 ```
 
-###  getWindowDecorHeight<sup>12+</sup>
+###  getWindowDecorHeight<sup>11+</sup>
 
 getWindowDecorHeight(): number
 
