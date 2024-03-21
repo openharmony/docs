@@ -59,26 +59,26 @@ OAID会在下述场景中发生变化：
    function requestOAIDTrackingConsentPermissions(context: common.Context): void {
      // 进入页面时触发动态授权弹框，向用户请求授权广告跟踪权限
      const atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
-      try {
-        atManager.requestPermissionsFromUser(context, ["ohos.permission.APP_TRACKING_CONSENT"]).then((data) => {
-          if (data.authResults[0] == 0) {
-            hilog.info(0x0000, 'testTag', '%{public}s', 'request permission success');
-            identifier.getOAID((err: BusinessError, data: string) => {
-			  if (err.code) {
-			    hilog.error(0x0000, 'testTag', '%{public}s', `get oaid failed, error: ${err.code} ${err.message}`);
-			  } else {
-			    const oaid: string = data;
-				hilog.info(0x0000, 'testTag', '%{public}s', `get oaid by callback success, oaid: ${oaid}`);
-			  }
-            });
-          } else {
-            hilog.info(0x0000, 'testTag', '%{public}s', 'user rejected');
-          }
-        }).catch((err: BusinessError) => {
-          hilog.error(0x0000, 'testTag', '%{public}s', `request permission failed, error: ${err.code} ${err.message}`);
-        })
-      } catch(err) {
-        hilog.error(0x0000, 'testTag', '%{public}s', `catch err->${err.code}, ${err.message}`);
-      }
-    }
+     try {
+       atManager.requestPermissionsFromUser(context, ["ohos.permission.APP_TRACKING_CONSENT"]).then((data) => {
+         if (data.authResults[0] == 0) {
+           hilog.info(0x0000, 'testTag', '%{public}s', 'request permission success');
+           identifier.getOAID((err: BusinessError, data: string) => {
+			 if (err.code) {
+			   hilog.error(0x0000, 'testTag', '%{public}s', `get oaid failed, error: ${err.code} ${err.message}`);
+			 } else {
+			   const oaid: string = data;
+			   hilog.info(0x0000, 'testTag', '%{public}s', `get oaid by callback success, oaid: ${oaid}`);
+			 }
+           });
+         } else {
+           hilog.info(0x0000, 'testTag', '%{public}s', 'user rejected');
+         }
+       }).catch((err: BusinessError) => {
+         hilog.error(0x0000, 'testTag', '%{public}s', `request permission failed, error: ${err.code} ${err.message}`);
+       })
+     } catch(err) {
+       hilog.error(0x0000, 'testTag', '%{public}s', `catch err->${err.code}, ${err.message}`);
+     }
+   }
    ```
