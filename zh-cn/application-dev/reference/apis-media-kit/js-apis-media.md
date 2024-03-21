@@ -2281,7 +2281,7 @@ updateRotation(rotation: number): Promise\<void>
 
 | 类型             | 说明                             |
 | ---------------- | -------------------------------- |
-| Promise\<void> | 异步返回函数执行结果。 |!
+| Promise\<void> | 异步返回函数执行结果。 |
 
 **错误码：**
 
