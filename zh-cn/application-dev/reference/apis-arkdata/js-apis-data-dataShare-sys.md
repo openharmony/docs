@@ -505,7 +505,7 @@ off(event: 'dataChange', type:SubscriptionType, uri: string, callback?: AsyncCal
 | 参数名     | 类型                 | 必填 | 说明                    |
 | -------- | -------------------- | ---- | ------------------------ |
 | event     | string               | 是   | 取消订阅的事件/回调类型，支持的事件为'dataChange'。 |
-| type     | [SubscriptionType](js-apis-data-dataShare.md## SubscriptionType)| 是   | 表示数据更改时按指定数据路径通知变更。 |
+| type     | [SubscriptionType](js-apis-data-dataShare.md# SubscriptionType)| 是   | 表示数据更改时按指定数据路径通知变更。 |
 | uri      | string               | 是   | 表示指定的数据路径。 |
 | callback | AsyncCallback&lt;[ChangeInfo](js-apis-data-dataShare.md#ChangeInfo)&gt;| 否   | 表示指定取消订阅的callback通知。传入的callback必须和注册为同一个。 |
 
