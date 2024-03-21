@@ -298,6 +298,7 @@
   - [像素单位](arkui-ts/ts-pixel-units.md)
   - [枚举说明](arkui-ts/ts-appendix-enums.md)
   - [类型定义](arkui-ts/ts-types.md)
+  - [图像类型定义](arkui-ts/ts-image-common.md)
   - [设置事件回调](arkui-ts/ts-uicommonevent.md)
   - 已停止维护的组件
     - [AbilityComponent (系统接口)](arkui-ts/ts-container-ability-component-sys.md)
@@ -350,6 +351,7 @@
     - [页面路由错误码](errorcode-router.md)
     - [用户界面外观服务错误码](errorcode-uiappearance.md)
     - [拖拽事件错误码](errorcode-drag-event.md)
+    - [图像AI分析错误码](errorcode-image-analyzer.md)
   - 图形图像
     - [屏幕错误码](errorcode-display.md)
     - [窗口错误码](errorcode-window.md)
