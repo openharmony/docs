@@ -2719,7 +2719,7 @@ promise.then(()=> {
 
 setTitleButtonVisible(isMaximizeVisible: boolean, isMinimizeVisible: boolean, isSplitVisible: boolean): void;
 
-设置标题栏上的最大化、最小化、分屏按钮是否可见。
+设置主窗标题栏上的最大化、最小化、分屏按钮是否可见。
 
 该接口设置按钮显示范围应限制在应用设置的supportWindowMode范围内。
 
@@ -2747,11 +2747,33 @@ setTitleButtonVisible(isMaximizeVisible: boolean, isMinimizeVisible: boolean, is
 **示例：**
 
 ```ts
-try {
-  let titleButtonArea = windowClass.setTitleButtonVisible(false, false, false);
-  console.info('Succeeded in hiding maximize, minimize, split title buttons');
-} catch (exception) {
-  console.error('Failed to hide title buttons. Cause: ' + JSON.stringify(exception));
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    // 加载主窗口对应的页面
+    windowStage.loadContent('pages/Index', (err) => {
+      if (err.code) {
+        console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+        return;
+      }
+      console.info('Succeeded in loading the content.');
+    });
+
+    // 获取应用主窗口。
+    let mainWindow = null;
+    windowStage.getMainWindow((err, data) => {
+      if (err.code) {
+        console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+        return;
+      }
+      mainWindow = data;
+      console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+      // 调用setTitleButtonVisible接口,隐藏主窗标题栏最大化、最小化、分屏按钮。
+      mainWindow.setTitleButtonVisible(false,false,false);
+    })
+  }
 }
 ```
 
