@@ -61,7 +61,9 @@ Hardware: PC connected to a test device, such as a development board
 
 ### Writing a Unit Test Script
 
- The unit test script must contain the following basic elements:
+This section describes how to use the unit test framework to write a unit test script. For details about the functionality of the unit test framework, see [arkXtest](https://gitee.com/openharmony/testfwk_arkxtest/blob/master/README_en.md).
+
+The unit test script must contain the following basic elements:
 
 1. Import of the dependencies so that the dependent test APIs can be used.
 
@@ -106,9 +108,7 @@ export default function abilityTest() {
 
 ### Writing a UI Test Script
 
-To write a UI test script to complete the corresponding test activities, simply add the invoking of the UiTest interface (providing a link) to a unit test script.
-
-In this example, the UI test script is written based on the preceding unit test script. It implements the click operation on the started application page and checks whether the page changes as expected.
+To write a UI test script to complete the corresponding test activities, simply add the invoking of the UiTest API to a unit test script. For details about the available APIs, see [@ohos.UiTest](../../application-dev/reference/apis-test-kit/js-apis-uitest.md).<br>In this example, the UI test script is written based on the preceding unit test script. It implements the click operation on the started application page and checks whether the page changes as expected.
 
 1. Import the dependency.
 
@@ -233,7 +233,7 @@ The table below lists the keywords in **aa** test commands.
 | --bundleName  | -b           | Application bundle name.                        | - b com.test.example               |
 | --packageName | -p           | Application module name, which is applicable to applications developed in the FA model.          | - p com.test.example.entry         |
 | --moduleName  | -m           | Application module name, which is applicable to applications developed in the stage model.       | -m entry                           |
-| NA            | -s           | \<key, value> pair.| - s unittest OpenHarmonyTestRunner |
+| NA            | -s           | \<key, value> pair.| - s unittest /ets/testrunner/OpenHarmonyTestRunner |
 
 The framework supports multiple test case execution modes, which are triggered by the key-value pair following the **-s** keyword. The table below lists the available keys and values.
 
