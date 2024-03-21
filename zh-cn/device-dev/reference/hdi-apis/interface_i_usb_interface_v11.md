@@ -9,7 +9,7 @@
 
 **起始版本：** 5.0
 
-**相关模块：**[USB](_u_s_b_v11.md)
+**相关模块：**[USB](_u_s_b_v10.md)
 
 
 ## 汇总
@@ -19,8 +19,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [GetDeviceSpeed](#getdevicespeed) ([in] struct [UsbDev](_usb_dev_v11.md) dev, [out] unsigned char speed) | 获取设备的速度  | 
-| [GetInterfaceActiveStatus](#getinterfaceactivestatus) ([in] struct [UsbDev](_usb_dev_v11.md) dev, [in] unsigned char interfaceid, [out] bool unactived) | 获取接口是否激活 | 
+| [GetDeviceSpeed](#getdevicespeed) ([in] struct [UsbDev](_usb_dev_v10.md) dev, [out] unsigned char speed) | 获取设备的速度  | 
+| [GetInterfaceActiveStatus](#getinterfaceactivestatus) ([in] struct [UsbDev](_usb_dev_v10.md) dev, [in] unsigned char interfaceid, [out] bool unactived) | 获取接口是否激活 | 
 
 ### GetDeviceSpeed()
 
@@ -36,7 +36,7 @@ IUsbInterface::GetDeviceSpeed ([in] struct UsbDev dev, [out] unsigned char speed
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| dev | USB设备地址信息，详见[UsbDev](_usb_dev_v11.md)。  | 
+| dev | USB设备地址信息，详见[UsbDev](_usb_dev_v10.md)。  | 
 | speed | 输出设备的速度。 | 
 
 **返回：**
@@ -59,7 +59,7 @@ IUsbInterface::GetInterfaceActiveStatus ([in] struct UsbDev dev, [in] unsigned c
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| dev | USB设备地址信息，详见[UsbDev](_usb_dev_v11.md)。  | 
+| dev | USB设备地址信息，详见[UsbDev](_usb_dev_v10.md)。  | 
 | interfaceid | USB设备接口ID。  | 
 | unactived | USB设备接口是否激活,true表示未激活,false表示激活。 | 
 
