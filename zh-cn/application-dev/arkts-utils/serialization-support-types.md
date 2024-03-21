@@ -44,7 +44,7 @@ Context对象包含应用程序组件的上下文信息，它提供了一种访�
 
 RemoteObject对象的主要作用是实现远程通信的功能，它允许在不同的进程间传递对象的引用，使得不同进程之间可以共享对象的状态和方法，服务提供者必须继承此类，RemoteObject对象的创建可以参考[RemoteObject的实现](../reference/apis-ipc-kit/js-apis-rpc.md#remoteobject)。
 
-PixelMap对象可以读取或写入图像数据以及获取图像信息，常用于在应用或系统中显示图片。PixelMap对象的创建详查[创建PixelMap对象](../reference/apis-image-kit/js-apis-image.md##imagecreatepixelmap8)。
+PixelMap对象可以读取或写入图像数据以及获取图像信息，常用于在应用或系统中显示图片。PixelMap对象的创建详查[创建PixelMap对象](../reference/apis-image-kit/js-apis-image.md#imagecreatepixelmap8)。
 
 
 ## Sendable对象
