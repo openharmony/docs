@@ -2375,7 +2375,8 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 | --------------- | ---- | ----------- |
 | BEARER_CELLULAR | 0    | 蜂窝网络。  |
 | BEARER_WIFI     | 1    | Wi-Fi网络。 |
-| BEARER_ETHERNET | 3 | 以太网网络。 |
+| BEARER_ETHERNET | 3    | 以太网网络。 |
+| BEARER_VPN      | 4    | VPN网络。   |
 
 ## HttpProxy<sup>10+</sup>
 
