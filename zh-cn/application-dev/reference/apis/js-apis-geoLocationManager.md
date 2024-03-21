@@ -48,7 +48,7 @@ import geoLocationManager from '@ohos.geoLocationManager';
 
 ## ReverseGeoCodeRequest
 
-逆地理编码请求接口。
+逆地理编码请求参数。
 
 **系统能力**：SystemCapability.Location.Location.Geocoder
 
@@ -62,7 +62,7 @@ import geoLocationManager from '@ohos.geoLocationManager';
 
 ## GeoCodeRequest
 
-地理编码请求接口。
+地理编码请求参数。
 
 **系统能力**：SystemCapability.Location.Location.Geocoder
 
@@ -79,7 +79,7 @@ import geoLocationManager from '@ohos.geoLocationManager';
 
 ## GeoAddress
 
-地理编码类型。
+地理编码地址信息。
 
 **系统能力**：SystemCapability.Location.Location.Geocoder
 
@@ -108,7 +108,7 @@ import geoLocationManager from '@ohos.geoLocationManager';
 
 ## LocationRequest
 
-位置信息请求类型。
+位置信息请求参数。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
@@ -123,7 +123,7 @@ import geoLocationManager from '@ohos.geoLocationManager';
 
 ## CurrentLocationRequest
 
-当前位置信息请求类型。
+当前位置信息请求参数。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
@@ -252,7 +252,7 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 
 ## CountryCode
 
-国家码信息结构体，包含国家码字符串和国家码的来源信息。
+国家码信息，包含国家码字符串和国家码的来源信息。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
@@ -327,7 +327,7 @@ WiFi扫描信息，包含扫描到的WiFi热点的ssid、bssid和rssi等信息�
 
 ## LocationRequestPriority
 
-位置请求中位置信息优先级设置。
+位置请求中位置信息优先级类型。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
@@ -341,7 +341,7 @@ WiFi扫描信息，包含扫描到的WiFi热点的ssid、bssid和rssi等信息�
 
 ## LocationRequestScenario
 
-  位置请求中定位场景设置。
+  位置请求中定位场景类型。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
@@ -883,7 +883,7 @@ on(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): vo
   };
   
   wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-    let requestInfo:geoLocationManager.GeofenceRequest = {'scenario': 0x301, "geofence": {"latitude": 121, "longitude": 26, "radius": 100, "expiration": 10000}};
+    let requestInfo:geoLocationManager.GeofenceRequest = {'scenario': 0x301, "geofence": {"latitude": 31.12, "longitude": 121.11, "radius": 100, "expiration": 10000}};
     try {
         geoLocationManager.on('gnssFenceStatusChange', requestInfo, wantAgentObj);
     } catch (err) {
@@ -942,7 +942,7 @@ off(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): v
   };
   
   wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-    let requestInfo:geoLocationManager.GeofenceRequest = {'scenario': 0x301, "geofence": {"latitude": 121, "longitude": 26, "radius": 100, "expiration": 10000}};;
+    let requestInfo:geoLocationManager.GeofenceRequest = {'scenario': 0x301, "geofence": {"latitude": 31.12, "longitude": 121.11, "radius": 100, "expiration": 10000}};;
     try {
         geoLocationManager.on('gnssFenceStatusChange', requestInfo, wantAgentObj);
         geoLocationManager.off('gnssFenceStatusChange', requestInfo, wantAgentObj);
