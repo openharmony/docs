@@ -33,8 +33,8 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 |  typedef int [ffrt_qos_t](_f_f_r_t.md#类型定义) | qos类型.  | 
-|  typedef void(\* [ffrt_function_t](_f_f_r_t.md#类型定义)) (void \*) | 任务执行函数指针类型.  | 
-|  typedef void \* [ffrt_task_handle_t](_f_f_r_t.md#类型定义) | 并行任务句柄.  | 
+|  typedef void(\*[ffrt_function_t](_f_f_r_t.md#类型定义))(void\*) | 任务执行函数指针类型.  | 
+|  typedef void\* [ffrt_task_handle_t](_f_f_r_t.md#类型定义) | 并行任务句柄.  | 
 
 
 ### 枚举
