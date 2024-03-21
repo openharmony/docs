@@ -193,6 +193,8 @@ typedef void(* OH_AudioRenderer_OutputDeviceChangeCallback) (OH_AudioRenderer *r
 
 输出音频流设备变更的回调函数。
 
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
 **起始版本：** 11
 
 **参数:**
@@ -1618,7 +1620,10 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetFrameSizeInCallback(OH_AudioStrea
 
 **描述**
 
-设置每次回调的帧长，帧长至少为音频硬件一次处理的数据大小，并且小于内部缓冲容量的一半。
+用于播放时设置每次回调的帧长，帧长至少为音频硬件一次处理的数据大小，并且小于内部缓冲容量的一半。
+
+- 低时延播放：frameSize可设置为5、10、15、20，单位ms。
+- 普通通路播放：frameSize可设置为20-100，单位ms。
 
 **起始版本：** 11
 

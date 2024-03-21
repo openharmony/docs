@@ -201,6 +201,17 @@
 | x    | [Length](#length) | 否    | x轴坐标，作为返回值时，类型为number，单位vp。 |
 | y    | [Length](#length) | 否    | y轴坐标，作为返回值时，类型为number，单位vp。 |
 
+## Edges<sup>12+</sup>
+
+位置类型，表示相对四边的偏移量。同时设置top和bottom，仅top生效；同时设置left和right，仅left生效。
+
+| 名称   | 类型     | 必填   | 说明                          |
+| ---- | ------ | ---- | --------------------------- |
+| top    | [Dimension](#dimension10) | 否    | 相对顶边的偏移量 |
+| bottom    | [Dimension](#dimension10) | 否    | 相对底边的偏移量 |
+| left    | [Dimension](#dimension10) | 否    | 相对左边的偏移量 |
+| right    | [Dimension](#dimension10) | 否    | 相对右边的偏移量 |
+
 ## ConstraintSizeOptions
 
 设置约束尺寸，组件布局时，进行尺寸范围限制。

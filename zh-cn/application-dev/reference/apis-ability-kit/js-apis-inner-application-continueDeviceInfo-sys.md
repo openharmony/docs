@@ -1,6 +1,6 @@
 # ContinueDeviceInfo (系统接口)
 
-表示发起Mission迁移时所需参数的枚举，迁移Mission详见：[continueMission接口](../apis/js-apis-distributedMissionManager.md#distributedmissionmanagercontinuemission)。
+表示发起Mission迁移时所需参数的枚举，迁移Mission详见：[continueMission接口](js-apis-distributedMissionManager-sys.md#distributedmissionmanagercontinuemission)。
 
 > **说明：**
 > 

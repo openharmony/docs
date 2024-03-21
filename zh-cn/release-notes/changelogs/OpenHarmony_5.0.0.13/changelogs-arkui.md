@@ -8,11 +8,35 @@
 
 **变更原因**
 
-该变更为不兼容性变更。
+部分状态变量装饰器的key值在使用未定义的变量时并未被校验，不符合TS语法规则，为了匹配TS语法规则，需要对这些状态变量装饰器的key值启动语法校验。
+
+涉及的装饰器包括：
+
+@LocalStorageLink,@LocalStorageProp,@StorageProp,@StorageLink,@Provide,@Consume,@Watch。
 
 **变更影响**
 
-@LocalStorageLink,@LocalStorageProp,@StorageProp(),@StorageLink,@Provide,@Consume,@Watch key值不存在时，编译报错。
+@LocalStorageLink,@LocalStorageProp,@StorageProp,@StorageLink,@Provide,@Consume,@Watch key值不存在时，编译报错。
+
+该变更为非兼容性修改。
+
+**起始API Level**
+
+@LocalStorageLink：API9，
+
+@LocalStorageProp：API9，
+
+@StorageProp：API7，
+
+@StorageLink：API7，
+
+@Provide：API7，
+
+@Consume：API7，
+
+@Watch：API7。
+
+
 
 **变更发生版本**
 
@@ -47,7 +71,35 @@ struct ComA {
 
 **适配指导**
 
- @LocalStorageLink,@LocalStorageProp,@StorageProp(),@StorageLink,@Provide,@Consume,@Watch key值需要准确定义。
+ @LocalStorageLink,@LocalStorageProp,@StorageProp,@StorageLink,@Provide,@Consume,@Watch key值需要准确定义。
+
+```
+// test.ts
+export let oneKey = 'string';
+```
+
+
+
+```
+
+// index.ets
+import { oneKey } from './test';
+@Entry
+@Component
+struct ComA {
+  @StorageProp(oneKey) storageProp: string = 'storageProp';
+  @StorageLink(oneKey) storageLink: string = 'storageLink';
+  @LocalStorageLink(oneKey) localStorageLink: string = 'localStorageLink';
+  @LocalStorageProp(oneKey) localStorageProp: string = 'localStorageProp';
+  @Provide(oneKey) provide: string = 'provide';
+  @Consume(oneKey) consume: number;
+
+  build() {
+  }
+}
+```
+
+
 
 
 ## cl.arkui.2 AppStorage,LocalStorage,PersistentStorage支持undefined和null

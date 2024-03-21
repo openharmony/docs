@@ -147,7 +147,7 @@ editMode(value: boolean)
 
 | 参数名 | 类型   | 必填 | 说明                                               |
 | ------ | ------ | ---- | -------------------------------------------------- |
-| value  | number | 是   | 当前List组件是否处于可编辑模式。<br/>默认值：false |
+| value  | boolean | 是   | 当前List组件是否处于可编辑模式。<br/>默认值：false |
 
 ### edgeEffect
 
@@ -581,9 +581,9 @@ onItemMove(event: (from: number, to: number) => boolean)
 
 ### onItemDragStart<sup>8+</sup>
 
-开始拖拽列表元素时触发。
-
 onItemDragStart(event: (event: ItemDragInfo, itemIndex: number) => ((() => any) \| void)
+
+开始拖拽列表元素时触发。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -625,6 +625,8 @@ onItemDragMove(event: (event: ItemDragInfo, itemIndex: number, insertIndex: numb
 | insertIndex | number                                                    | 是   | 拖拽插入位置。 |
 
 ### onItemDragLeave<sup>8+</sup>
+
+onItemDragLeave(event: (event: ItemDragInfo, itemIndex: number) => void)
 
 拖拽离开列表元素时触发。
 

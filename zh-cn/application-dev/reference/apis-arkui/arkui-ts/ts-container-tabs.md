@@ -82,7 +82,7 @@ barMode(value: BarMode, options?: ScrollableBarModeOptions)
 
 | 参数名                | 类型                                                         | 必填 | 说明                                                         |
 | --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value                 | [BarMode](#barmode枚举说明)                                  | 是   | 布局模式。<br/>默认值：BarMode. Fixed                                                 |
+| value                 | [BarMode](#barmode枚举说明)                                  | 是   | 布局模式。<br/>默认值：BarMode.Fixed                                                 |
 | options<sup>10+</sup> | [ScrollableBarModeOptions](#scrollablebarmodeoptions10对象说明) | 否   | Scrollable模式下的TabBar的布局样式。<br/>**说明：** <br/>仅Scrollable模式下有效 |
 
 ### barWidth
@@ -103,7 +103,7 @@ barWidth(value: Length)
 
 barHeight(value: Length)
 
-设置TabBar的高度值。设置为小于0或大于Tabs宽度值时，按默认值显示。
+设置TabBar的高度值。设置为小于0或大于Tabs高度值时，按默认值显示。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

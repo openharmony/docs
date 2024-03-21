@@ -35,6 +35,7 @@
 4. 开启广播，对端设备扫描该广播。
 5. 关闭广播。
 6. 示例代码：
+
 ```ts
 import ble from '@ohos.bluetooth.ble';
 import { BusinessError } from '@ohos.base';
@@ -82,6 +83,7 @@ console.info('startAdvertising success');
 ble.stopAdvertising();
 console.info('stopAdvertising success');
 ```
+
 7. 错误码请参见[蓝牙服务子系统错误码](../../reference/apis-connectivity-kit/errorcode-bluetoothManager.md)。
 8. 如何验证：执行开启广播的用例代码，记录日志“startAdvertising success”，并且使用另外一部手机安装nrfConnect软件开启扫描，如果扫描到该广播，广播内容“Manufacturer data的值为:0x01020304，Service Data的值为:0x05060708”，表示开启广播成功。关闭广播后，扫描不到该内容的广播。
 
@@ -93,6 +95,7 @@ console.info('stopAdvertising success');
 5. 本端设备开启扫描，获取扫描结果。
 6. 关闭扫描。
 7. 示例代码:
+
 ```ts
 import ble from '@ohos.bluetooth.ble';
 import { BusinessError } from '@ohos.base';
@@ -120,5 +123,6 @@ ble.on('BLEDeviceFind', (data) => {
 ble.stopBLEScan();
 console.info('stopBleScan success');
 ```
+
 8. 错误码请参见[蓝牙服务子系统错误码](../../reference/apis-connectivity-kit/errorcode-bluetoothManager.md)。
 9. 如何验证：使用另外一部手机安装nrfConnect软件并且配置好广播，设备名称修改为“Jackistang”，开启广播。然后测试手机开启扫描，大概每隔0.5秒记录日志“BLE scan result =  = Jackistang”，则表示开启扫描成功。关闭扫描后，不会再有该记录日志产生。

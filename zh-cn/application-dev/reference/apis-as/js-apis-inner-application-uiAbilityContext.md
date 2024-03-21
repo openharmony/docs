@@ -69,7 +69,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -147,7 +147,7 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -235,7 +235,7 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -319,7 +319,7 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -402,7 +402,7 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -496,7 +496,7 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -563,7 +563,7 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
-错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -620,7 +620,7 @@ terminateSelf(): Promise&lt;void&gt;
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
-错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -678,7 +678,7 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;voi
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
-错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -754,7 +754,7 @@ terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
-错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -820,7 +820,7 @@ setMissionLabel(label: string, callback: AsyncCallback&lt;void&gt;): void
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
-错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -867,7 +867,7 @@ setMissionLabel(label: string): Promise&lt;void&gt;
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
-错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -913,7 +913,7 @@ setMissionContinueState(state: AbilityConstant.ContinueState, callback: AsyncCal
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
-错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -958,7 +958,7 @@ setMissionContinueState(state: AbilityConstant.ContinueState): Promise&lt;void&g
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
-错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -999,7 +999,7 @@ restoreWindowStage(localStorage: LocalStorage): void
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
-错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -1034,7 +1034,7 @@ isTerminating(): boolean
 | ------- | -------------------------------- |
 | 16000011 | The context does not exist. |
 
-错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -1054,7 +1054,8 @@ export default class EntryAbility extends UIAbility {
 reportDrawnCompleted(callback: AsyncCallback\<void>): void
 
 当页面加载完成（loadContent成功）时，为开发者提供打点功能（callback形式）。
- **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -1069,7 +1070,7 @@ reportDrawnCompleted(callback: AsyncCallback\<void>): void
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
-错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -1134,7 +1135,7 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
 
-错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -1191,7 +1192,7 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
 
-错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
