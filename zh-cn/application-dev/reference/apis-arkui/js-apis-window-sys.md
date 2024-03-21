@@ -857,19 +857,18 @@ window.getSnapshot(windowId: number): Promise<image.pixelMap>;
 **参数：**
 | 参数名   | 类型   | 必填  | 说明         |
 | -------- | ------ | ----- | ------------ |
-| windowId | number | 是    | 指定窗口Id。 |
+| windowId | number | 是    | 窗口Id,通过[getWindowProperties](js-apis-window.md#getwindowproperties9)接口获取到[properties](js-apis-window.md#windowproperties)后，再通过properties.id获取 |
 
 **返回值：**
 | 类型                    | 说明                            |
 | ----------------------- | ------------------------------- |
-| Promise<image.pixelMap> | Promise对象。返回指定窗口截图。 |
+| Promise<image.pixelMap> [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | Promise对象。返回指定窗口截图。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
 
 | 错误码ID | 错误信息                                     |
 | -------- | -------------------------------------------- |
-| 801      | Capability not supported on this device.     |
 | 1300002  | This window state is abnormal.               |
 | 1300003  | This window manager service work abnormally. |
 | 1300004  | This operation is not access.                |
@@ -879,16 +878,16 @@ window.getSnapshot(windowId: number): Promise<image.pixelMap>;
 import { BusinessError } from '@ohos.base';
 import image from '@ohos.multimedia.image';
 try {
-  let windowId: number = 40;
+  let windowId: number = window.Window.getWindowProperties().id;
   let promise = window.getSnapshot(windowId);
-  promise.then((promise: image.pixelMap) => {
+  promise.then((pixelMap: image.pixelMap) => {
     console.info('Succeeded in getting snapshot window. Pixel bytes number:' + pixelMap.getPixelBytesNumber());
     pixelMap.release();
   }).catch((err: BusinessError) =>{
     console.error('Failed to get snapshot. Cause:' + JSON.stringify(err));
   });
 } catch (exception) {
-  console.error('Failed to get snapshot. Cause:' + JSON.stringify(err));
+  console.error('Failed to get snapshot. Cause:' + JSON.stringify(exception));
 }
 ```
 
