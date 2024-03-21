@@ -368,15 +368,15 @@ dataShare.disableSilentProxy(context, uri).then(() => {
 
 ## ChangeType<sup>12+</sup>
 
-变更类型枚举。
+数据变更类型枚举。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataShare.Consumer
 
-| 名称      | 说明          |
-| --------- | ----------    |
-| INSERT    | 表示数据添加。|
-| DELETE    | 表示数据删除。|
-| UPDATE    | 表示数据更新。|
+| 名称     | 值          | 说明          |
+| ---------| ------------| --------------|
+| INSERT   | 0           | 表示数据添加。|
+| DELETE   | 1           | 表示数据删除。|
+| UPDATE   | 2           | 表示数据更新。|
 
 ## SubscriptionType<sup>12+</sup>
 
@@ -384,19 +384,19 @@ dataShare.disableSilentProxy(context, uri).then(() => {
 
 **系统能力：** SystemCapability.DistributedDataManager.DataShare.Consumer
 
-| 名称                         | 说明                         |
-| -----------------------------| ---------------------------- |
-| SUBSCRIPTION_TYPE_EXACT_URI  | 表示订阅确定的uri的数据变更。|
+| 名称                        | 值   | 说明                         |
+| ----------------------------|------| ---------------------------- |
+| SUBSCRIPTION_TYPE_EXACT_URI | 0    | 表示订阅确定的uri的数据变更。|
 
 ## ChangeInfo<sup>12+</sup>
 
-数据变更时通知的对象，包括数据变更类型、变化的uri、变更的数据内容。
+数据变更时通知用户具体变更的内容，包括数据变更类型、变化的uri、变更的数据内容。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
 | 名称       | 类型                                                         | 必填 | 说明           |
 | ---------- | ------------------------------------------------------------ | ---- | -------------- |
-| type       | [ChangeType](js-apis-data-dataShare.md#ChangeType)      | 是   | 通知变更的类型 |
+| type       | [ChangeType](js-apis-data-dataShare.md##ChangeType)      | 是   | 通知变更的类型 |
 | uri        | string                                                       | 是   | 指定uri。      |
 | values     | Array<[ValuesBucket]>(js-apis-data-valuesBucket.md#valuesbucket)    | 是   | 更新的数据。   |
 
@@ -434,9 +434,9 @@ if (dataShareHelper !== undefined) {
 
 ### on('dataChange')<sup>12+</sup>
 
-on(event: 'dataChange', type:SubscribeType, uri: string, callback: AsyncCallback&lt;ChangeInfo&gt;): void
+on(event: 'dataChange', type:SubscriptionType, uri: string, callback: AsyncCallback&lt;ChangeInfo&gt;): void
 
-订阅指定URI对应数据的数据变更事件。若用户（订阅者）已注册了观察者，当有其他用户触发了变更通知时（调用了下文中的notifyChange方法），订阅者将会接收到callback通知。使用callback异步回调。仅支持非静默访问。
+订阅指定URI对应数据的数据变更事件。若用户（订阅者）已注册了观察者，当有其他用户触发了变更通知时（调用了下文中的notifyChange方法），订阅者将会接收到callback通知，通知携带数据变更类型、变化的uri、变更的数据内容。使用callback异步回调。仅支持非静默访问。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -445,14 +445,13 @@ on(event: 'dataChange', type:SubscribeType, uri: string, callback: AsyncCallback
 | 参数名     | 类型                 | 必填 | 说明                    |
 | -------- | -------------------- | ---- | ------------------------ |
 | event     | string               | 是   | 订阅的事件/回调类型，支持的事件为'dataChange'，当数据更改时，触发该事件。 |
-| type     | [SubscribeType]js-apis-data-dataShare.md#SubscriptionType)| 是   | 表示数据更改时按指定数据路径通知变更。 |
+| type     | [SubscriptionType]js-apis-data-dataShare.md##SubscriptionType)| 是   | 表示数据更改时按指定数据路径通知变更。 |
 | uri      | string               | 是   | 表示指定的数据路径。 |
-| callback | AsyncCallback&lt;ChangeInfo&gt; | 是   | 回调函数。当有其他用户触发了变更通知时调用，err为undefined；否则不被触发或为错误对象。 |
+| callback | AsyncCallback&lt;[ChangeInfo]&gt(js-apis-data-dataShare.md##ChangeInfo); | 是   | 回调函数。当有其他用户触发了变更通知时调用，err为undefined；否则不被触发或为错误对象。|
 
 **示例：**
 
 ```ts
-
 let uri = ("datashare:///com.acts.datasharetest");
 export function callback(error,ChangeInfo) {
     console.info(' **** Observer callback **** error:' + error);
@@ -495,7 +494,7 @@ if (dataShareHelper != undefined) {
 
 ### off('dataChange')<sup>12+</sup>
 
-off(type: 'dataChange', uri: string, callback?: AsyncCallback&lt;void&gt;): void
+off(event: 'dataChange', type:SubscriptionType, uri: string, callback?: AsyncCallback&lt;ChangeInfo&gt): void
 
 取消订阅指定URI下指定callback对应的数据资源的变更通知。
 
@@ -506,9 +505,9 @@ off(type: 'dataChange', uri: string, callback?: AsyncCallback&lt;void&gt;): void
 | 参数名     | 类型                 | 必填 | 说明                    |
 | -------- | -------------------- | ---- | ------------------------ |
 | event     | string               | 是   | 取消订阅的事件/回调类型，支持的事件为'dataChange'。 |
-| type     | [SubscribeType]js-apis-data-dataShare.md#SubscriptionType)| 是   | 表示数据更改时按指定数据路径通知变更。 |
+| type     | [SubscriptionType]js-apis-data-dataShare.md##SubscriptionType)| 是   | 表示数据更改时按指定数据路径通知变更。 |
 | uri      | string               | 是   | 表示指定的数据路径。 |
-| callback | AsyncCallback&lt;ChangeInfo&gt; | 否   | 表示指定取消订阅的callback通知。传入的callback必须和注册为同一个。 |
+| callback | AsyncCallback&lt;[ChangeInfo]&gt(js-apis-data-dataShare.md##ChangeInfo);| 否   | 表示指定取消订阅的callback通知。传入的callback必须和注册为同一个。 |
 
 **示例：**
 
@@ -1761,7 +1760,7 @@ if (dataShareHelper != undefined) {
 
 notifyChange(data: ChangeInfo): Promise&lt;void&gt;
 
-通知已注册的观察者指定URI对应的数据资源已发生变更。使用Promise异步回调。暂不支持静默访问。
+通知已注册的观察者指定URI对应的数据资源已发生变更及变更内容。使用Promise异步回调。暂不支持静默访问。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -1775,12 +1774,12 @@ notifyChange(data: ChangeInfo): Promise&lt;void&gt;
 
 | 类型           | 说明                  |
 | -------------- | --------------------- |
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+| Promise&lt;void&gt; |  无返回结果的Promise对象。 |
 
 **示例：**
 
 ```ts
-import dataShare from '@ohos.data.dataShare'
+import dataShare from '@ohos.data.dataShare';
 import values  from '@ohos.data.ValuesBucket';
 
 let dsUri = ("datashare:///com.acts.datasharetest");
