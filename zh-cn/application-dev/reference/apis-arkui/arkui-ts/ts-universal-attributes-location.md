@@ -273,7 +273,6 @@ struct PositionExample2 {
 ![position.png](figures/position.png)
 
 ### 示例3
-offset属性使用Edges类型，根据自身四边偏移；position属性使用Edges类型，根据父组件四边设置位置。
 ```ts
 // xxx.ets
 @Entry
