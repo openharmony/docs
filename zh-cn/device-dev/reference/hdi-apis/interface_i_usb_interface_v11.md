@@ -59,7 +59,7 @@ IUsbInterface::GetInterfaceActiveStatus ([in] struct UsbDev dev, [in] unsigned c
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| dev | USB设备地址信息，详见[UsbDev](_usb_dev_v11.md)。  | 
+| dev | USB设备地址信息，详见[UsbDev](_usb_dev_v10.md)。  | 
 | interfaceid | USB设备接口ID。  | 
 | unactived | USB设备接口是否激活,true表示未激活,false表示激活。 | 
 
