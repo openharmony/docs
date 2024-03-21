@@ -19,8 +19,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [GetDeviceSpeed](#getdevicespeed) ([in] struct [UsbDev](_usb_dev_v10.md) dev, [out] unsigned char speed) | 获取设备的速度  | 
-| [GetInterfaceActiveStatus](#getinterfaceactivestatus) ([in] struct [UsbDev](_usb_dev_v10.md) dev, [in] unsigned char interfaceid, [out] bool unactived) | 获取接口是否激活 | 
+| [GetDeviceSpeed](#getdevicespeed) ([in] struct [UsbDev](_usb_dev_v10.md) dev, [out] unsigned char speed) | 获取设备的速度. | 
+| [GetInterfaceActiveStatus](#getinterfaceactivestatus) ([in] struct [UsbDev](_usb_dev_v10.md) dev, [in] unsigned char interfaceid, [out] bool unactived) | 获取接口是否激活. | 
 
 ### GetDeviceSpeed()
 
