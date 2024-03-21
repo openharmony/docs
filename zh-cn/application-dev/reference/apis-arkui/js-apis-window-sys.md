@@ -862,7 +862,7 @@ window.getSnapshot(windowId: number): Promise<image.pixelMap>;
 **返回值：**
 | 类型                    | 说明                            |
 | ----------------------- | ------------------------------- |
-| Promise<image.pixelMap> [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | Promise对象。返回指定窗口截图。 |
+| [image.pixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | Promise对象。返回指定窗口截图。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
