@@ -12,7 +12,7 @@ This topic walks you through on how to implement signing and signature verificat
 
 2. Initialize the key property set.
 
-3. Use [generateKeyItem](../../reference/apis/js-apis-huks.md#huksgeneratekeyitem9) to generate a key. For details, see [Key Generation](huks-key-generation-overview.md).
+3. Use [generateKeyItem](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksgeneratekeyitem9) to generate a key. For details, see [Key Generation](huks-key-generation-overview.md).
 
 Alternatively, you can [import a key](huks-key-import-overview.md).
 
@@ -23,11 +23,11 @@ Alternatively, you can [import a key](huks-key-import-overview.md).
 2. Obtain the plaintext to be signed.
 
 3. Obtain **HuksOptions**, which include the **properties** and **inData** fields.
-   Pass in the plaintext to be signed in **inData**, and [algorithm parameters](../../reference/apis/js-apis-huks.md#huksparam) in **properties**.
+   Pass in the plaintext to be signed in **inData**, and [algorithm parameters](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksparam) in **properties**.
 
-4. Use [initSession](../../reference/apis/js-apis-huks.md#huksinitsession9) to initialize a key session. The session handle is returned after the initialization.
+4. Use [initSession](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksinitsession9) to initialize a key session. The session handle is returned after the initialization.
 
-5. Use [finishSession](../../reference/apis/js-apis-huks.md#huksfinishsession9) to generate a signature.
+5. Use [finishSession](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksfinishsession9) to generate a signature.
 
 **Signature Verification**
 
@@ -36,17 +36,17 @@ Alternatively, you can [import a key](huks-key-import-overview.md).
 2. Obtain the signature to be verified.
 
 3. Obtain **HuksOptions**, which include the **properties** and **inData** fields.
-   Pass in the signature in **inData**, and [algorithm parameters](../../reference/apis/js-apis-huks.md#huksparam) in **properties**.
+   Pass in the signature in **inData**, and [algorithm parameters](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksparam) in **properties**.
 
-4. Use [initSession](../../reference/apis/js-apis-huks.md#huksinitsession9) to initialize a key session. The session handle is returned after the initialization.
+4. Use [initSession](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksinitsession9) to initialize a key session. The session handle is returned after the initialization.
 
-5. Use [updateSession](../../reference/apis/js-apis-huks.md#huksupdatesession9) to process data.
+5. Use [updateSession](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksupdatesession9) to process data.
 
-6. Use [finishSession](../../reference/apis/js-apis-huks.md#huksfinishsession9) to finish signature verification.
+6. Use [finishSession](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksfinishsession9) to finish signature verification.
 
 **Key Deletion**
 
-Use [deleteKeyItem](../../reference/apis/js-apis-huks.md#huksdeletekeyitem9) to delete the key that is not required. For details, see [Deleting a Key](huks-delete-key-arkts.md).
+Use [deleteKeyItem](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksdeletekeyitem9) to delete the key that is not required. For details, see [Deleting a Key](huks-delete-key-arkts.md).
 
 ```ts
 /*
