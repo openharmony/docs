@@ -2721,7 +2721,7 @@ setTitleButtonVisible(isMaximizeVisible: boolean, isMinimizeVisible: boolean, is
 
 设置主窗标题栏上的最大化、最小化、分屏按钮是否可见。
 
-该接口设置按钮显示范围应限制在应用设置的supportWindowMode[](../../quick-start/module-configuration-file.md#abilities标签)范围内。
+该接口设置按钮显示范围应限制在应用设置的[supportWindowMode](../../quick-start/module-configuration-file.md#abilities标签)范围内。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2749,19 +2749,26 @@ setTitleButtonVisible(isMaximizeVisible: boolean, isMinimizeVisible: boolean, is
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage): void {
     // 加载主窗口对应的页面
-    windowStage.loadContent('pages/Index', (err, data) => {
+    windowStage.loadContent('pages/Index', (err) => {
+      let mainWindow: window.Window | undefined = undefined;
       // 获取应用主窗口。
       windowStage.getMainWindow().then(
-        window => {
+        data => {
+          mainWindow = data;
           console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
           // 调用setTitleButtonVisible接口,隐藏主窗标题栏最大化、最小化、分屏按钮。
-          window.setTitleButtonVisible(false, false, false);
+          mainWindow.setTitleButtonVisible(false, false, false);
         }
-      );
+      ).catch((err: BusinessError) => {
+          if(err.code){
+            console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+          }
+      });
     });
   }
 }
