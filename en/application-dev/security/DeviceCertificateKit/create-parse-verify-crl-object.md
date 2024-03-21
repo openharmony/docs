@@ -1,36 +1,36 @@
 # CRL Development
 
 
-This topic walks you through on how to create a certificate revocation list (CRL) object, obtain CRL information, check whether a certificate has been revoked, and print the revocation date if the certificate has been revoked.
+This topic walks you through on how to create a certificate revocation list (CRL) instance, obtain CRL information, check whether a certificate has been revoked, and print the revocation date if the certificate has been revoked.
 
 
 ## How to Develop
 
-1. Import the [certFramework](../../reference/apis/js-apis-cert.md) and [cryptoFramework](../../reference/apis/js-apis-cryptoFramework.md) modules.
+1. Import the [certFramework](../../reference/apis-device-certificate-kit/js-apis-cert.md) and [cryptoFramework](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md) modules.
    ```ts
    import certFramework from '@ohos.security.cert';
    import cryptoFramework from '@ohos.security.cryptoFramework';
    ```
 
-2. Use [cryptoCert.createX509CRL](../../reference/apis/js-apis-cert.md#cryptocertcreatex509crl11) to create an X.509 CRL (**X509CRL**) object.
+2. Use [cryptoCert.createX509CRL](../../reference/apis-device-certificate-kit/js-apis-cert.md#cryptocertcreatex509crl11) to create an X.509 CRL instance.
 
 3. Obtain CRL information.
 
-   The following example shows how to obtain the CRL version and type. For more information, see [X509CRL](../../reference/apis/js-apis-cert.md#x509crl11).
+   The following example shows how to obtain the CRL version and type. For more information, see [X509CRL](../../reference/apis-device-certificate-kit/js-apis-cert.md#x509crl11).
 
-4. Create a **PublicKey** object.
+4. Create a **PublicKey** instance.
 
-   For details, see [convertKey](../../reference/apis/js-apis-cryptoFramework.md#convertkey-3).
+   For details, see [convertKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkey-3).
 
-5. Use [X509CRL.verify](../../reference/apis/js-apis-cert.md#verify11) to verify the signature.
+5. Use [X509CRL.verify](../../reference/apis-device-certificate-kit/js-apis-cert.md#verify11) to verify the signature.
 
-6. Use [cryptoCert.createX509Cert](../../reference/apis/js-apis-cert.md#cryptocertcreatex509cert) to create a certificate object based on the existing X.509 certificate data.
+6. Use [cryptoCert.createX509Cert](../../reference/apis-device-certificate-kit/js-apis-cert.md#cryptocertcreatex509cert) to create an **X509Cert** object based on the existing X.509 certificate data.
 
-7. Use [X509CRL.isRevoked](../../reference/apis/js-apis-cert.md#isrevoked11) to check whether the X.509 certificate has been revoked.
+7. Use [X509CRL.isRevoked](../../reference/apis-device-certificate-kit/js-apis-cert.md#isrevoked11) to check whether the X.509 certificate has been revoked.
 
-8. Use [X509CRL.getRevokedCert](../../reference/apis/js-apis-cert.md#getrevokedcert11) to obtain the revoked certificate.
+8. Use [X509CRL.getRevokedCert](../../reference/apis-device-certificate-kit/js-apis-cert.md#getrevokedcert11) to obtain the revoked certificate.
 
-9.  Use [X509CRLEntry.getRevocationDate](../../reference/apis/js-apis-cert.md#x509crlentry11) to obtain the date when the certificate was revoked.
+9.  Use [X509CRLEntry.getRevocationDate](../../reference/apis-device-certificate-kit/js-apis-cert.md#x509crlentry11) to obtain the date when the certificate was revoked.
 
 ```ts
 import certFramework from '@ohos.security.cert';
@@ -82,14 +82,14 @@ function crlSample(): void {
     encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
   };
 
-  // Create an X509CRL object.
+  // Create an X509CRL instance.
   certFramework.createX509CRL(encodingBlob, (err, x509Crl) => {
     if (err != null) {
-      // The X509CRL object fails to be created.
+      // The X509CRL instance fails to be created.
       console.error(`createX509Crl failed, errCode: ${err.code}, errMsg:${err.message} `);
       return;
     }
-    // The X509CRL object is successfully created.
+    // The X509CRL instance is successfully created.
     console.log('createX509CRL success');
 
     // Obtain the CRL version
@@ -97,7 +97,7 @@ function crlSample(): void {
     let revokedType = x509Crl.getType();
     console.log(`X509 CRL version: ${version}, type :${revokedType}`);
 
-    // Pass in the public key binary data to convertKey() of @ohos.security.cryptoFramework to obtain a public key object.
+    // Pass in the public key binary data to convertKey() of @ohos.security.cryptoFramework to obtain a public key instance.
     try {
       let keyGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024|PRIMES_3');
       console.log('createAsyKeyGenerator success');
@@ -125,7 +125,7 @@ function crlSample(): void {
       console.error(`get pubKey failed, errCode: ${e.code}, errMsg: ${e.message}` );
     }
 
-    // Use createX509Cert() of certFramework to create an X509Cert object.
+    // Use createX509Cert() of certFramework to create an X509Cert instance.
     let certBlob: certFramework.EncodingBlob = {
       data: textEncoder.encodeInto(certData),
       encodingFormat: certFramework.EncodingFormat.FORMAT_PEM

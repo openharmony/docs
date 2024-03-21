@@ -5,7 +5,8 @@ This **wifiext** module provides WLAN extension interfaces for non-universal pro
 > **NOTE**
 >
 > - The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> - The APIs described in this document are used only for non-universal products, such as routers.
+- The APIs described in this document are used only for non-universal products, such as routers.
+> - The APIs provided by this module are no longer mainained since API version 9. You are advised to use [@ohos.wifiManagerExt (WLAN Extension)](js-apis-wifiManagerExt.md).
 
 ## Modules to Import
 

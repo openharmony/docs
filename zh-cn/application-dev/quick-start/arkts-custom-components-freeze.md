@@ -115,11 +115,11 @@ struct TabContentTest {
         Tabs() {
           TabContent() {
             FreezeChild({ message: this.message })
-          }
+          }.tabBar('one')
 
           TabContent() {
             FreezeChild({ message: this.message })
-          }
+          }.tabBar('two')
         }
       }
       .width('100%')
@@ -149,7 +149,7 @@ struct FreezeChild {
 
 1.点击“change message”更改message的值，当前正在显示的TabContent组件中的@Watch中注册的方法onMessageUpdated被触发。
 
-2.点击切换另外的TabContent，TabContent状态由inactive变为active，对应的@Watch中注册的方法onMessageUpdated被触发。 
+2.点击“two”切换到另外的TabContent，TabContent状态由inactive变为active，对应的@Watch中注册的方法onMessageUpdated被触发。 
 
 3.再次点击“change message”更改message的值，仅当前显示的TabContent子组件中的@Watch中注册的方法onMessageUpdated被触发。
 
@@ -266,8 +266,7 @@ struct LforEachTest {
       List({ space: 3 }) {
         LazyForEach(this.data, (item: string) => {
           ListItem() {
-            FreezeChild({ message: this.message,
-              index: item })
+            FreezeChild({ message: this.message, index: item })
           }
         }, (item: string) => item)
       }.cachedCount(5).height(500)

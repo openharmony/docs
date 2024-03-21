@@ -13,7 +13,7 @@ A result set is a set of results returned by **query()**.
 
 **Since**: 10
 
-**Related modules**: [RDB](_r_d_b.md)
+**Related module**: [RDB](_r_d_b.md)
 
 
 ## Summary

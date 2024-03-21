@@ -98,7 +98,7 @@ Defines the content of a data change notification, including inserted data, upda
 
 ## SyncMode
 
-Enumerates the synchronization modes.
+Enumerates the sync modes.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -749,7 +749,7 @@ try {
 
 on(event: 'distributedDataServiceDie', deathCallback: Callback&lt;void&gt;): void
 
-Subscribes to the termination (death) of the distributed data service. If the service is terminated, you need to register the callbacks for data change notifications and synchronization complete notifications again. In addition, an error will be returned for a synchronization operation.
+Subscribes to the termination (death) of the distributed data service. If the service is terminated, you need to register the callbacks for data change notifications and sync complete notifications again. In addition, an error will be returned for a sync operation.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -2228,7 +2228,7 @@ try {
 
 ## SingleKVStore
 
-Implements data management in a single KV store, such as adding data, deleting data, and subscribing to data changes or data synchronization completion.
+Implements data management in a single KV store, such as adding data, deleting data, and subscribing to data changes or data sync completion.
 
 Before calling any method in **SingleKVStore**, you must use [getKVStore](#getkvstore) to obtain a **SingleKVStore** instance.
 
@@ -4308,7 +4308,7 @@ try {
 
 enableSync(enabled: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-Sets data synchronization, which can be enabled or disabled. This API uses an asynchronous callback to return the result.
+Sets data sync, which can be enabled or disabled. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -4316,7 +4316,7 @@ Sets data synchronization, which can be enabled or disabled. This API uses an as
 
 | Name  | Type                 | Mandatory| Description                                                     |
 | -------- | ------------------------- | ---- | --------------------------------------------------------- |
-| enabled  | boolean                   | Yes  | Whether to enable data synchronization. The value **true** means to enable data synchronization, and **false** means the opposite.|
+| enabled  | boolean                   | Yes  | Whether to enable data sync. The value **true** means to enable data sync, and **false** means the opposite.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.                                               |
 
 **Example**
@@ -4342,7 +4342,7 @@ try {
 
 enableSync(enabled: boolean): Promise&lt;void&gt;
 
-Sets data synchronization, which can be enabled or disabled. This API uses a promise to return the result.
+Sets data sync, which can be enabled or disabled. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -4350,7 +4350,7 @@ Sets data synchronization, which can be enabled or disabled. This API uses a pro
 
 | Name | Type| Mandatory| Description                                                     |
 | ------- | -------- | ---- | --------------------------------------------------------- |
-| enabled | boolean  | Yes  | Whether to enable data synchronization. The value **true** means to enable data synchronization, and **false** means the opposite.|
+| enabled | boolean  | Yes  | Whether to enable data sync. The value **true** means to enable data sync, and **false** means the opposite.|
 
 **Return value**
 
@@ -4379,7 +4379,7 @@ try {
 
 setSyncRange(localLabels: string[], remoteSupportLabels: string[], callback: AsyncCallback&lt;void&gt;): void
 
-Sets the data synchronization range. This API uses an asynchronous callback to return the result.
+Sets the data sync range. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -4387,8 +4387,8 @@ Sets the data synchronization range. This API uses an asynchronous callback to r
 
 | Name             | Type                 | Mandatory| Description                            |
 | ------------------- | ------------------------- | ---- | -------------------------------- |
-| localLabels         | string[]                  | Yes  | Synchronization labels set for the local device.        |
-| remoteSupportLabels | string[]                  | Yes  | Synchronization labels set for remote devices.|
+| localLabels         | string[]                  | Yes  | sync labels set for the local device.        |
+| remoteSupportLabels | string[]                  | Yes  | sync labels set for remote devices.|
 | callback            | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.                      |
 
 **Example**
@@ -4416,7 +4416,7 @@ try {
 
 setSyncRange(localLabels: string[], remoteSupportLabels: string[]): Promise&lt;void&gt;
 
-Sets the data synchronization range. This API uses a promise to return the result.
+Sets the data sync range. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -4424,8 +4424,8 @@ Sets the data synchronization range. This API uses a promise to return the resul
 
 | Name             | Type| Mandatory| Description                            |
 | ------------------- | -------- | ---- | -------------------------------- |
-| localLabels         | string[] | Yes  | Synchronization labels set for the local device.        |
-| remoteSupportLabels | string[] | Yes  | Synchronization labels set for remote devices.|
+| localLabels         | string[] | Yes  | sync labels set for the local device.        |
+| remoteSupportLabels | string[] | Yes  | sync labels set for remote devices.|
 
 **Return value**
 
@@ -4456,7 +4456,7 @@ try {
 
 setSyncParam(defaultAllowedDelayMs: number, callback: AsyncCallback&lt;void&gt;): void
 
-Sets the default delay allowed for KV store synchronization. This API uses an asynchronous callback to return the result.
+Sets the default delay allowed for KV store sync. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -4464,7 +4464,7 @@ Sets the default delay allowed for KV store synchronization. This API uses an as
 
 | Name               | Type                 | Mandatory| Description                                        |
 | --------------------- | ------------------------- | ---- | -------------------------------------------- |
-| defaultAllowedDelayMs | number                    | Yes  | Default delay allowed for database synchronization, in ms.|
+| defaultAllowedDelayMs | number                    | Yes  | Default delay allowed for database sync, in ms.|
 | callback              | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.                                  |
 
 **Example**
@@ -4491,7 +4491,7 @@ try {
 
 setSyncParam(defaultAllowedDelayMs: number): Promise&lt;void&gt;
 
-Sets the default delay allowed for KV store synchronization. This API uses a promise to return the result.
+Sets the default delay allowed for KV store sync. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -4499,7 +4499,7 @@ Sets the default delay allowed for KV store synchronization. This API uses a pro
 
 | Name               | Type| Mandatory| Description                                        |
 | --------------------- | -------- | ---- | -------------------------------------------- |
-| defaultAllowedDelayMs | number   | Yes  | Default delay allowed for database synchronization, in ms.|
+| defaultAllowedDelayMs | number   | Yes  | Default delay allowed for database sync, in ms.|
 
 **Return value**
 
@@ -4529,7 +4529,7 @@ try {
 
 sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 
-Synchronizes the KV store manually. For details about the synchronization modes of KV stores, see [Cross-Device Synchronization of KV Stores](../../database/data-sync-of-kv-store.md).
+Synchronizes the KV store manually. For details about the sync modes of KV stores, see [Cross-Device sync of KV Stores](../../database/data-sync-of-kv-store.md).
 > **NOTE**
 >
 > **deviceIds** is **networkId** in [DeviceBasicInfo](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#devicebasicinfo), which can be obtained by [deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
@@ -4543,7 +4543,7 @@ Synchronizes the KV store manually. For details about the synchronization modes 
 | Name   | Type             | Mandatory| Description                                          |
 | --------- | --------------------- | ---- | ---------------------------------------------- |
 | deviceIds | string[]              | Yes  | List of **networkId**s of the devices in the same networking environment to be synchronized.|
-| mode      | [SyncMode](#syncmode) | Yes  | Synchronization mode.                                    |
+| mode      | [SyncMode](#syncmode) | Yes  | sync mode.                                    |
 | delayMs   | number                | No  | Delay time allowed, in ms. The default value is **0**.    |
 
 **Error codes**
@@ -4614,7 +4614,7 @@ export default class EntryAbility extends UIAbility {
 
 sync(deviceIds: string[], query: Query, mode: SyncMode, delayMs?: number): void
 
-Synchronizes the KV store manually. This API returns the result synchronously. For details about the synchronization modes of KV stores, see [Cross-Device Synchronization of KV Stores](../../database/data-sync-of-kv-store.md).
+Synchronizes the KV store manually. This API returns the result synchronously. For details about the sync modes of KV stores, see [Cross-Device sync of KV Stores](../../database/data-sync-of-kv-store.md).
 > **NOTE**
 >
 > **deviceIds** is **networkId** in [DeviceBasicInfo](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#devicebasicinfo), which can be obtained by [deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
@@ -4628,7 +4628,7 @@ Synchronizes the KV store manually. This API returns the result synchronously. F
 | Name   | Type             | Mandatory| Description                                          |
 | --------- | --------------------- | ---- | ---------------------------------------------- |
 | deviceIds | string[]              | Yes  | List of **networkId**s of the devices in the same networking environment to be synchronized.|
-| mode      | [SyncMode](#syncmode) | Yes  | Synchronization mode.                                    |
+| mode      | [SyncMode](#syncmode) | Yes  | sync mode.                                    |
 | query     | [Query](#query)        | Yes  | **Query** object to match.                      |
 | delayMs   | number                | No  | Delay time allowed, in ms. The default value is **0**.    |
 
@@ -4743,7 +4743,7 @@ try {
 
 on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-Subscribes to synchronization complete events.
+Subscribes to sync complete events.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -4751,8 +4751,8 @@ Subscribes to synchronization complete events.
 
 | Name      | Type                                     | Mandatory| Description                                                  |
 | ------------ | --------------------------------------------- | ---- | ------------------------------------------------------ |
-| event        | string                                        | Yes  | Event type. The value is **syncComplete**, which indicates a synchronization complete event.|
-| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | Yes  | Callback invoked to return the synchronization complete event.            |
+| event        | string                                        | Yes  | Event type. The value is **syncComplete**, which indicates a sync complete event.|
+| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | Yes  | Callback invoked to return the sync complete event.            |
 
 **Example**
 
@@ -4838,7 +4838,7 @@ class KvstoreModel {
 
 off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-Unsubscribes from synchronization complete events.
+Unsubscribes from sync complete events.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -4846,8 +4846,8 @@ Unsubscribes from synchronization complete events.
 
 | Name      | Type                                     | Mandatory| Description                                                      |
 | ------------ | --------------------------------------------- | ---- | ---------------------------------------------------------- |
-| event        | string                                        | Yes  | Event type. The value is **syncComplete**, which indicates a synchronization complete event.|
-| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | No  | Callback for the synchronization complete event. If the callback is not specified, all callbacks for **syncComplete** will be unregistered. |
+| event        | string                                        | Yes  | Event type. The value is **syncComplete**, which indicates a sync complete event.|
+| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | No  | Callback for the sync complete event. If the callback is not specified, all callbacks for **syncComplete** will be unregistered. |
 
 **Example**
 

@@ -68,7 +68,7 @@ scrollBarColor(color: Color | number | string)
 
 | 参数名 | 类型                                                         | 必填 | 说明           |
 | ------ | ------------------------------------------------------------ | ---- | -------------- |
-| color  | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;[Color](ts-appendix-enums.md#color) | 是   | 滚动条的颜色。 |
+| color  | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;[Color](ts-appendix-enums.md#color) | 是   | 滚动条的颜色。<br/>默认值：'\#182431'（40%不透明度）   |
 
 ### scrollBarWidth
 
@@ -169,6 +169,20 @@ enablePaging(value: boolean)
 | ------ | ------- | ---- | ------------------------------------- |
 | value  | boolean | 是   | 是否支持划动翻页。 <br/>默认值：false |
 
+### flingSpeedLimit<sup>11+</sup>
+
+flingSpeedLimit(speedLimit: number)
+
+限制跟手滑动结束后，Fling动效开始时的最大初始速度。单位是vp/s。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名     | 类型   | 必填 | 说明                            |
+| ---------- | ------ | ---- | ------------------------------- |
+| speedLimit | number | 是   | Fling动效开始时的最大初始速度。 |
+
 ## ScrollDirection枚举说明
 | 名称       | 描述                     |
 | ---------- | ------------------------ |
@@ -236,8 +250,8 @@ onScroll(event: (xOffset: number, yOffset: number) => void)
 
 | 参数名  | 类型                                                      | 必填 | 说明                   |
 | ------- | --------------------------------------------------------- | ---- | ---------------------- |
-| xOffset     | number                                                  | 是   | 每帧滚动时竖直方向的偏移量，Scroll的内容向上滚动时偏移量为正，向下滚动时偏移量为负。<br/>单位vp。 |
-| yOffset     | number                                                  | 是   | 每帧滚动时水平方向的偏移量，Scroll的内容向左滚动时偏移量为正，向右滚动时偏移量为负。<br/>单位vp。 |
+| xOffset     | number                                                  | 是   | 每帧滚动时水平方向的偏移量，Scroll的内容向左滚动时偏移量为正，向右滚动时偏移量为负。<br/>单位vp。 |
+| yOffset     | number                                                  | 是   | 每帧滚动时竖直方向的偏移量，Scroll的内容向上滚动时偏移量为正，向下滚动时偏移量为负。<br/>单位vp。 |
 
 ### onWillScroll<sup>12+</sup>
 
@@ -293,8 +307,8 @@ Scroll滚动时触发的回调
 
 | 参数名      | 类型                                                    | 必填 | 说明                                                         |
 | ----------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| xOffset     | number                                                  | 是   | 每帧滚动时竖直方向的偏移量，Scroll中的内容向上滚动时偏移量为正，向下滚动时偏移量为负。<br/>单位vp。 |
-| yOffset     | number                                                  | 是   | 每帧滚动时水平方向的偏移量，Scroll中的内容向左滚动时偏移量为正，向右滚动时偏移量为负。<br/>单位vp。 |
+| xOffset     | number                                                  | 是   | 每帧滚动时水平方向的偏移量，Scroll中的内容向左滚动时偏移量为正，向右滚动时偏移量为负。<br/>单位vp。 |
+| yOffset     | number                                                  | 是   | 每帧滚动时竖直方向的偏移量，Scroll中的内容向上滚动时偏移量为正，向下滚动时偏移量为负。<br/>单位vp。 |
 | scrollState | [ScrollState](ts-container-list.md#scrollstate枚举说明) | 是  | 当前滚动状态。                                               |
 
 >  **说明：**

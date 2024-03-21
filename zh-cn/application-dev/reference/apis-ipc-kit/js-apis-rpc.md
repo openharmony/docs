@@ -809,7 +809,7 @@ writeLong(val: number): void
 
   | 参数名 | 类型   | 必填 | 说明             |
   | ------ | ------ | ---- | ---------------- |
-  | val    | number | 是   | 要写入的长整数值 |
+  | val    | number | 是   | 要写入的长整数值。 |
 
 **错误码：**
 
@@ -3331,7 +3331,7 @@ getRawDataCapacity(): number
   hilog.info(0x0000, 'testTag', 'RpcTest: sequence get RawDataCapacity result is ' + result);
   ```
 
-### writeRawData<sup>11+(deprecated)</sup>
+### writeRawData<sup>(deprecated)</sup>
 
 >从API version 11 开始不再维护，建议使用[writeRawDataBuffer](#writerawdatabuffer11)类替代。
 
@@ -3375,7 +3375,7 @@ writeRawData(rawData: number[], size: number): void
 
 ### writeRawDataBuffer<sup>11+</sup>
 
-writeRawDataBuffer(rawData: ArrayBuffer, size: number): void;
+writeRawDataBuffer(rawData: ArrayBuffer, size: number): void
 
 将原始数据写入MessageSequence对象。
 
@@ -3418,7 +3418,7 @@ writeRawDataBuffer(rawData: ArrayBuffer, size: number): void;
   }
   ```
 
-### readRawData<sup>11+(deprecated)</sup>
+### readRawData<sup>(deprecated)</sup>
 
 >从API version 11 开始不再维护，建议使用[readRawDataBuffer](#readrawdatabuffer11)类替代。
 
@@ -7737,7 +7737,7 @@ isObjectDead(): boolean
 
   | 类型    | 说明                                              |
   | ------- | ------------------------------------------------- |
-  | boolean | true：对应的对象已经死亡，false：对应的对象未死亡 |
+  | boolean | true：对应的对象已经死亡，false：对应的对象未死亡。 |
 
 **示例：**
 
@@ -9315,10 +9315,10 @@ attachLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
 
   | 名称       | 值  | 说明               |
   | ---------- | --- | ------------------ |
-  | PROT_EXEC  | 4   | 映射的内存可执行   |
-  | PROT_NONE  | 0   | 映射的内存不可访问 |
-  | PROT_READ  | 1   | 映射的内存可读     |
-  | PROT_WRITE | 2   | 映射的内存可写     |
+  | PROT_EXEC  | 4   | 映射的内存可执行。   |
+  | PROT_NONE  | 0   | 映射的内存不可访问。 |
+  | PROT_READ  | 1   | 映射的内存可读。     |
+  | PROT_WRITE | 2   | 映射的内存可写。     |
 
 ### create<sup>9+</sup>
 
@@ -9787,7 +9787,7 @@ writeDataToAshmem(buf: ArrayBuffer, size: number, offset: number): void
   | ------ | -------- | ---- | -------------------------------------------------- |
   | buf    | ArrayBuffer | 是   | 写入Ashmem对象的数据。                             |
   | size   | number   | 是   | 要写入的数据大小。                                 |
-  | offset | number   | 是   | 要写入的数据在此Ashmem对象关联的内存区间的起始位置 |
+  | offset | number   | 是   | 要写入的数据在此Ashmem对象关联的内存区间的起始位置。 |
 
 **错误码：**
 
@@ -9820,7 +9820,7 @@ writeDataToAshmem(buf: ArrayBuffer, size: number, offset: number): void
   }
   ```
 
-### writeAshmem<sup>11+(deprecated)</sup>
+### writeAshmem<sup>9+(deprecated)</sup>
 
 >从API version 11 开始不再维护，建议使用[writeDataToAshmem](#writedatatoashmem11)类替代。
 
@@ -9866,7 +9866,7 @@ writeAshmem(buf: number[], size: number, offset: number): void
 
 ### writeToAshmem<sup>8+(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[writeAshmem](#writeashmem11deprecated)类替代。
+>从API version 9 开始不再维护，建议使用[writeAshmem](#writeashmem9deprecated)类替代。
 
 writeToAshmem(buf: number[], size: number, offset: number): boolean
 
@@ -9880,7 +9880,7 @@ writeToAshmem(buf: number[], size: number, offset: number): boolean
   | ------ | -------- | ---- | -------------------------------------------------- |
   | buf    | number[] | 是   | 写入Ashmem对象的数据。                             |
   | size   | number   | 是   | 要写入的数据大小。                                 |
-  | offset | number   | 是   | 要写入的数据在此Ashmem对象关联的内存区间的起始位置 |
+  | offset | number   | 是   | 要写入的数据在此Ashmem对象关联的内存区间的起始位置。 |
 
 **返回值：**
 
@@ -9914,7 +9914,7 @@ readDataFromAshmem(size: number, offset: number): ArrayBuffer
   | 参数名 | 类型   | 必填 | 说明                                               |
   | ------ | ------ | ---- | -------------------------------------------------- |
   | size   | number | 是   | 要读取的数据的大小。                               |
-  | offset | number | 是   | 要读取的数据在此Ashmem对象关联的内存区间的起始位置 |
+  | offset | number | 是   | 要读取的数据在此Ashmem对象关联的内存区间的起始位置。 |
 
 **返回值：**
 
@@ -9962,7 +9962,7 @@ readDataFromAshmem(size: number, offset: number): ArrayBuffer
   }
   ```
 
-### readAshmem<sup>11+(deprecated)</sup>
+### readAshmem<sup>9+(deprecated)</sup>
 
 >从API version 11 开始不再维护，建议使用[readDataFromAshmem](#readdatafromashmem11)类替代。
 
@@ -9977,7 +9977,7 @@ readAshmem(size: number, offset: number): number[]
   | 参数名 | 类型   | 必填 | 说明                                               |
   | ------ | ------ | ---- | -------------------------------------------------- |
   | size   | number | 是   | 要读取的数据的大小。                               |
-  | offset | number | 是   | 要读取的数据在此Ashmem对象关联的内存区间的起始位置 |
+  | offset | number | 是   | 要读取的数据在此Ashmem对象关联的内存区间的起始位置。 |
 
 **返回值：**
 
@@ -10015,7 +10015,7 @@ readAshmem(size: number, offset: number): number[]
 
 ### readFromAshmem<sup>8+(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[readAshmem](#readashmem11deprecated)类替代。
+>从API version 9 开始不再维护，建议使用[readAshmem](#readashmem9deprecated)类替代。
 
 readFromAshmem(size: number, offset: number): number[]
 
@@ -10028,7 +10028,7 @@ readFromAshmem(size: number, offset: number): number[]
   | 参数名 | 类型   | 必填 | 说明                                               |
   | ------ | ------ | ---- | -------------------------------------------------- |
   | size   | number | 是   | 要读取的数据的大小。                               |
-  | offset | number | 是   | 要读取的数据在此Ashmem对象关联的内存区间的起始位置 |
+  | offset | number | 是   | 要读取的数据在此Ashmem对象关联的内存区间的起始位置。 |
 
 **返回值：**
 

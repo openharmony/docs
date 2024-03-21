@@ -2946,9 +2946,33 @@ completeTransition(isCompleted: boolean): void
 
 ## TransitionController<sup>9+</sup>
 
-属性转换控制器。
+属性转换控制器。使用其子接口之前得先创建系统窗口，参照示例代码。
 
 **系统接口：** 此接口为系统接口。
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | undefined = undefined;
+let config: window.Configuration = {
+  name: "systemTypeWindow",
+  windowType: window.WindowType.TYPE_PANEL, //根据需要自选系统窗口类型
+  ctx: this.context
+};
+try {
+  let promise = window.createWindow(config);
+  promise.then((data) => {
+    windowClass = data;
+    console.info('Succeeded in creating the window. Data:' + JSON.stringify(data));
+  }).catch((err: BusinessError) => {
+    console.error('Failed to create the Window. Cause:' + JSON.stringify(err));
+  });
+} catch (exception) {
+  console.error('Failed to create the window. Cause: ' + JSON.stringify(exception));
+}
+```
 
 ### animationForShown<sup>9+</sup>
 

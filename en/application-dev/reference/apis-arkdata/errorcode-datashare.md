@@ -23,16 +23,12 @@ The **DataShareHelper** class fails to be created.
 **Solution**
 
 1. Obtain the correct URI.
-
 2. Check that the context of the stage model is used.
-
 3. Check whether the client has the read or write permission on data. Perform the following steps:
-   
     (1) Obtain the data provider bundle name in the path of the URI. For example, the bundle name in uri = "datashareproxy://com.acts.ohos.data.datasharetest/test" is **com.acts.ohos.data.datasharetest**.
-    
     (2) Obtain the configuration based on the bundle name. For example, run **bm dump --bundle-name com.acts.ohos.data.datasharetest** to obtain the **DataShareExtension** configuration, and check whether the data consumer has **readPermission** or **writePermission**.
 
-## 15700011 Failed to Add or Delete a Template
+## 15700011 URI Not Exist
 
 **Error Message**
 
@@ -40,12 +36,12 @@ The uri does not exist.
 
 **Description**
 
-This error code is returned when a template fails to be added or deleted.
+This error code is generated when a template fails to be added or deleted, or an incorrect URI or path is passed in when silent access is enabled or disabled.
 
 **Possible Causes**
 
-1. The input parameter **uri** of **addTemplate()** is incorrect.
-2. The input parameter **uri** of **delTemplate()** is incorrect.
+1. The input URI is incorrect.
+2. The input URI is in incorrect format.
 
 **Solution**
 

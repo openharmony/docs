@@ -99,13 +99,13 @@ HiAppEvent模块提供应用事件打点功能。
 | [ParamList](#paramlist) [OH_HiAppEvent_AddStringArrayParam](#oh_hiappevent_addstringarrayparam) ([ParamList](#paramlist) list, const char \*name, const char \*const \*strs, int arrSize) | 添加一个字符串数组参数到参数列表中。  | 
 | int [OH_HiAppEvent_Write](#oh_hiappevent_write) (const char \*domain, const char \*name, enum [EventType](#eventtype) type, const [ParamList](#paramlist) list) | 实现对参数为列表类型的应用事件打点。  | 
 | bool [OH_HiAppEvent_Configure](#oh_hiappevent_configure) (const char \*name, const char \*value) | 实现应用事件打点的配置功能。  | 
-| [HiAppEvent_Watcher](#hiappevent_watcher) \* [OH_HiAppEvent_CreateWatcher](#oh_hiappevent_createwatcher) (const char \*name) | 创建一个用来监听app事件的监听器。  | 
+| [HiAppEvent_Watcher](#hiappevent_watcher) \* [OH_HiAppEvent_CreateWatcher](#oh_hiappevent_createwatcher) (const char \*name) | 创建一个用于监听app事件的监听器。  | 
 | void [OH_HiAppEvent_DestroyWatcher](#oh_hiappevent_destroywatcher) ([HiAppEvent_Watcher](#hiappevent_watcher) \*watcher) | 销毁已创建的监听器。  | 
-| int [OH_HiAppEvent_SetTriggerCondition](#oh_hiappevent_settriggercondition) ([HiAppEvent_Watcher](#hiappevent_watcher) \*watcher, int row, int size, int timeOut) | 用来设置监听器OH_HiAppEvent_OnTrigger回调的触发条件，分别可以从监视器新接收事件数量，新接收事件大小，onTrigger触发超时时间 设置触发条件，调用方应至少保证从一个方面设置触发条件。  | 
-| int [OH_HiAppEvent_SetAppEventFilter](#oh_hiappevent_setappeventfilter) ([HiAppEvent_Watcher](#hiappevent_watcher) \*watcher, const char \*domain, uint8_t eventTypes, const char \*const \*names, int namesLen) | 用来设置监听器需要监听的事件的类型。  | 
-| int [OH_HiAppEvent_SetWatcherOnTrigger](#oh_hiappevent_setwatcherontrigger) ([HiAppEvent_Watcher](#hiappevent_watcher) \*watcher, [OH_HiAppEvent_OnTrigger](#oh_hiappevent_ontrigger) onTrigger) | 用来设置监听器onTrigger回调的接口。  | 
-| int [OH_HiAppEvent_SetWatcherOnReceive](#oh_hiappevent_setwatcheronreceive) ([HiAppEvent_Watcher](#hiappevent_watcher) \*watcher, [OH_HiAppEvent_OnReceive](#oh_hiappevent_onreceive) onReceive) | 用来设置监听器onReceive回调函数的接口。当监听器监听到相应事件后，onReceive回调函数将被调用。  | 
-| int [OH_HiAppEvent_TakeWatcherData](#oh_hiappevent_takewatcherdata) ([HiAppEvent_Watcher](#hiappevent_watcher) \*watcher, uint32_t eventNum, [OH_HiAppEvent_OnTake](#oh_hiappevent_ontake) onTake) | 用来获取监听器收到后保存的事件。  | 
+| int [OH_HiAppEvent_SetTriggerCondition](#oh_hiappevent_settriggercondition) ([HiAppEvent_Watcher](#hiappevent_watcher) \*watcher, int row, int size, int timeOut) | 用于设置监听器OH_HiAppEvent_OnTrigger回调的触发条件，分别可以从监视器新接收事件数量，新接收事件大小，onTrigger触发超时时间 设置触发条件，调用方应至少保证从一个方面设置触发条件。  | 
+| int [OH_HiAppEvent_SetAppEventFilter](#oh_hiappevent_setappeventfilter) ([HiAppEvent_Watcher](#hiappevent_watcher) \*watcher, const char \*domain, uint8_t eventTypes, const char \*const \*names, int namesLen) | 用于设置监听器需要监听的事件的类型。  | 
+| int [OH_HiAppEvent_SetWatcherOnTrigger](#oh_hiappevent_setwatcherontrigger) ([HiAppEvent_Watcher](#hiappevent_watcher) \*watcher, [OH_HiAppEvent_OnTrigger](#oh_hiappevent_ontrigger) onTrigger) | 用于设置监听器onTrigger回调的接口。  | 
+| int [OH_HiAppEvent_SetWatcherOnReceive](#oh_hiappevent_setwatcheronreceive) ([HiAppEvent_Watcher](#hiappevent_watcher) \*watcher, [OH_HiAppEvent_OnReceive](#oh_hiappevent_onreceive) onReceive) | 用于设置监听器onReceive回调函数的接口。当监听器监听到相应事件后，onReceive回调函数将被调用。  | 
+| int [OH_HiAppEvent_TakeWatcherData](#oh_hiappevent_takewatcherdata) ([HiAppEvent_Watcher](#hiappevent_watcher) \*watcher, uint32_t eventNum, [OH_HiAppEvent_OnTake](#oh_hiappevent_ontake) onTake) | 用于获取监听器收到后保存的事件。  | 
 | int [OH_HiAppEvent_AddWatcher](#oh_hiappevent_addwatcher) ([HiAppEvent_Watcher](#hiappevent_watcher) \*watcher) | 添加监听器的接口，监听器开始监听系统消息。  | 
 | int [OH_HiAppEvent_RemoveWatcher](#oh_hiappevent_removewatcher) ([HiAppEvent_Watcher](#hiappevent_watcher) \*watcher) | 移除监听器的接口，监听器停止监听系统消息。  | 
 | void [OH_HiAppEvent_ClearData](#oh_hiappevent_cleardata) (void) | 清除所有监视器保存的所有事件。  | 
@@ -830,7 +830,7 @@ int OH_HiAppEvent_AddWatcher (HiAppEvent_Watcher * watcher)
 
 **返回：**
 
-Returns0  接口调用成功返回0，异常时返回负值。
+0：接口调用成功；-5：watcher入参空指针。
 
 
 ### OH_HiAppEvent_ClearData()
@@ -891,7 +891,7 @@ ParamList OH_HiAppEvent_CreateParamList (void )
 HiAppEvent_Watcher* OH_HiAppEvent_CreateWatcher (const char * name)
 ```
 **描述**
-创建一个用来监听app事件的监听器。
+创建一个用于监听app事件的监听器。
 
 注意：创建的监听器不再使用后必须通过调用OH_HiAppEvent_DestroyWatcher接口进行销毁。
 
@@ -907,7 +907,7 @@ HiAppEvent_Watcher* OH_HiAppEvent_CreateWatcher (const char * name)
 
 **返回：**
 
-返回指向的新建监听器的指针。
+接口调用成功时返回指向的新建监听器的指针，name参数异常时返回nullptr。
 
 
 ### OH_HiAppEvent_DestroyParamList()
@@ -970,7 +970,7 @@ int OH_HiAppEvent_RemoveWatcher (HiAppEvent_Watcher * watcher)
 
 **返回：**
 
-Returns0  接口调用成功返回0，异常时返回负值。
+0：接口调用成功；-5：watcher入参空指针；-6：还未调用OH_HiAppEvent_AddWatcher，操作顺序有误。
 
 
 ### OH_HiAppEvent_SetAppEventFilter()
@@ -979,7 +979,7 @@ Returns0  接口调用成功返回0，异常时返回负值。
 int OH_HiAppEvent_SetAppEventFilter (HiAppEvent_Watcher * watcher, const char * domain, uint8_t eventTypes, const char *const * names, int namesLen )
 ```
 **描述**
-用来设置监听器需要监听的事件的类型。
+用于设置监听器需要监听的事件的类型。
 
 该函数可以重复调用，可添加多个过滤规则，而非替换，监听器将收到满足任一过滤规则的事件的通知。
 
@@ -999,7 +999,7 @@ int OH_HiAppEvent_SetAppEventFilter (HiAppEvent_Watcher * watcher, const char * 
 
 **返回：**
 
-Returns0  设置成功时返回0，设置失败时返回负值。
+0：接口调用成功；-1：names参数异常；-4：domain参数异常；-5：watcher入参空指针。
 
 
 ### OH_HiAppEvent_SetTriggerCondition()
@@ -1008,7 +1008,7 @@ Returns0  设置成功时返回0，设置失败时返回负值。
 int OH_HiAppEvent_SetTriggerCondition (HiAppEvent_Watcher * watcher, int row, int size, int timeOut )
 ```
 **描述**
-用来设置监听器OH_HiAppEvent_OnTrigger回调的触发条件，分别可以从监视器新接收事件数量，新接收事件大小，onTrigger触发超时时间 设置触发条件，调用方应至少保证从一个方面设置触发条件。
+用于设置监听器OH_HiAppEvent_OnTrigger回调的触发条件，分别可以从监视器新接收事件数量，新接收事件大小，onTrigger触发超时时间 设置触发条件，调用方应至少保证从一个方面设置触发条件。
 
 \@SystemCapability.HiviewDFX.HiAppEvent
 
@@ -1025,7 +1025,7 @@ int OH_HiAppEvent_SetTriggerCondition (HiAppEvent_Watcher * watcher, int row, in
 
 **返回：**
 
-Returns0  设置成功时返回0，设置失败时返回负值。
+0：接口调用成功；-5：watcher入参空指针。
 
 
 ### OH_HiAppEvent_SetWatcherOnReceive()
@@ -1034,7 +1034,7 @@ Returns0  设置成功时返回0，设置失败时返回负值。
 int OH_HiAppEvent_SetWatcherOnReceive (HiAppEvent_Watcher * watcher, OH_HiAppEvent_OnReceive onReceive )
 ```
 **描述**
-用来设置监听器onReceive回调函数的接口。当监听器监听到相应事件后，onReceive回调函数将被调用。
+用于设置监听器onReceive回调函数的接口。当监听器监听到相应事件后，onReceive回调函数将被调用。
 
 \@SystemCapability.HiviewDFX.HiAppEvent
 
@@ -1049,7 +1049,7 @@ int OH_HiAppEvent_SetWatcherOnReceive (HiAppEvent_Watcher * watcher, OH_HiAppEve
 
 **返回：**
 
-Returns0  接口调用成功返回0，异常时返回负值。
+0：接口调用成功；-5：watcher入参空指针。
 
 
 ### OH_HiAppEvent_SetWatcherOnTrigger()
@@ -1058,7 +1058,7 @@ Returns0  接口调用成功返回0，异常时返回负值。
 int OH_HiAppEvent_SetWatcherOnTrigger (HiAppEvent_Watcher * watcher, OH_HiAppEvent_OnTrigger onTrigger )
 ```
 **描述**
-用来设置监听器onTrigger回调的接口。
+用于设置监听器onTrigger回调的接口。
 
 \@SystemCapability.HiviewDFX.HiAppEvent
 
@@ -1073,7 +1073,7 @@ int OH_HiAppEvent_SetWatcherOnTrigger (HiAppEvent_Watcher * watcher, OH_HiAppEve
 
 **返回：**
 
-Returns0  接口调用成功返回0，异常时返回负值。
+0：接口调用成功；-5：watcher入参空指针。
 
 
 ### OH_HiAppEvent_TakeWatcherData()
@@ -1082,7 +1082,7 @@ Returns0  接口调用成功返回0，异常时返回负值。
 int OH_HiAppEvent_TakeWatcherData (HiAppEvent_Watcher * watcher, uint32_t eventNum, OH_HiAppEvent_OnTake onTake )
 ```
 **描述**
-用来获取监听器收到后保存的事件。
+用于获取监听器收到后保存的事件。
 
 \@SystemCapability.HiviewDFX.HiAppEvent
 
@@ -1098,7 +1098,7 @@ int OH_HiAppEvent_TakeWatcherData (HiAppEvent_Watcher * watcher, uint32_t eventN
 
 **返回：**
 
-Returns0  接口调用成功返回0，异常时返回负值。
+0：接口调用成功；-5：watcher入参空指针；-6：还未调用OH_HiAppEvent_AddWatcher，操作顺序有误。
 
 
 ### OH_HiAppEvent_Write()

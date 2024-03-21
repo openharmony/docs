@@ -141,7 +141,7 @@ export struct VideoPlayer {
 
 ## 事件调用
 
-  Video组件回调事件主要为播放开始、暂停结束、播放失败、视频准备和操作进度条等事件，除此之外，Video组件也支持通用事件的调用，如点击、触摸等事件的调用。详细事件请参考[事件说明](../reference/apis-arkui/arkui-ts/ts-media-components-video.md#事件)。
+  Video组件回调事件主要为播放开始、暂停结束、播放失败、播放停止、视频准备和操作进度条等事件，除此之外，Video组件也支持通用事件的调用，如点击、触摸等事件的调用。详细事件请参考[事件说明](../reference/apis-arkui/arkui-ts/ts-media-components-video.md#事件)。
 
 ```ts
 @Entry
@@ -165,6 +165,9 @@ struct VideoPlayer{
         })
         .onError(() => {          //失败事件回调
           console.info("Video error.");
+        })
+        .onStop(() => {          //停止事件回调
+          console.info("Video stoped.");
         })
     }
   }
@@ -266,7 +269,7 @@ Video控制器主要用于控制视频的状态，包括播放、暂停、停止
 
 ## 其他说明
 
-Video组件已经封装好了视频播放的基础能力，开发者无需进行视频实例的创建，视频信息的设置获取，只需要设置数据源以及基础信息即可播放视频，相对扩展能力较弱。如果开发者想自定义视频播放，请参考[媒体系统播放音视频](../media/video-playback.md)。
+Video组件已经封装好了视频播放的基础能力，开发者无需进行视频实例的创建，视频信息的设置获取，只需要设置数据源以及基础信息即可播放视频，相对扩展能力较弱。如果开发者想自定义视频播放，请参考[媒体系统播放音视频](../media/media/video-playback.md)。
 
 ## 相关实例
 

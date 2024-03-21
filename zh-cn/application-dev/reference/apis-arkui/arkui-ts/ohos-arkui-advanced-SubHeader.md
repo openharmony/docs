@@ -29,7 +29,7 @@ import { SubHeader } from '@ohos.arkui.advanced.SubHeader'
 
 ## SubHeader
 
-SubHeader({primaryTitle?: ResourceStr, secondaryTitle?: ResourceStr, icon?: ResourceStr, select?: SelectOptions, operationType?: OperationType, operationItem?: Array&lt;OperationOption&gt;})
+SubHeader({icon?: ResourceStr, iconSymbolOptions?: SymbolOptions, primaryTitle?: ResourceStr, secondaryTitle?: ResourceStr, select?: SelectOptions, operationType?: OperationType, operationItem?: Array&lt;OperationOption&gt;, operationSymbolOptions?: Array&lt;SymbolOptions&gt;})
 
 **装饰器类型：**\@Component
 
@@ -41,12 +41,14 @@ SubHeader({primaryTitle?: ResourceStr, secondaryTitle?: ResourceStr, icon?: Reso
 
 | 名称 | 参数类型 | 必填 | 装饰器类型 | 说明 | 
 | -------- | -------- | -------- | -------- | -------- |
+| icon | [ResourceStr](ts-types.md#resourcestr) | 否 | \@Prop | 图标设置项。 | 
+| iconSymbolOptions<sup>12+</sup> | [SymbolOptions](#symboloptions12) | 否 | - | icon为[Symbol资源](ts-basic-components-symbolGlyph.md)时的设置项。 | 
 | primaryTitle | [ResourceStr](ts-types.md#resourcestr) | 否 | \@Prop | 标题内容。 | 
 | secondaryTitle | [ResourceStr](ts-types.md#resourcestr) | 否 | \@Prop | 副标题内容。 | 
-| icon | [ResourceStr](ts-types.md#resourcestr) | 否 | \@Prop | 图标设置项。 | 
 | select | [SelectOptions](#selectoptions) | 否 | - | select内容以及事件。 | 
 | operationType | [OperationType](#operationtype) | 否 | \@Prop | 操作区(右侧)元素样式。<br/>默认值：OperationType.BUTTON | 
 | operationItem | Array&lt;[OperationOption](#operationoption)&gt; | 否 | - | 操作区（右侧）的设置项。 | 
+| operationSymbolOptions<sup>12+</sup> | Array&lt;[SymbolOptions](#symboloptions12)&gt; | 否 | - | operationType为OperationType.ICON_GROUP，<br/>operationItem设置多个图标，图标为[Symbol资源](ts-basic-components-symbolGlyph.md)时的设置项。 | 
 
 
 ## OperationType
@@ -75,6 +77,16 @@ SubHeader({primaryTitle?: ResourceStr, secondaryTitle?: ResourceStr, icon?: Reso
 | -------- | -------- | -------- | -------- |
 | value | [ResourceStr](ts-types.md#resourcestr) | 是 | 文本内容。 | 
 | action | ()=&gt;void | 否 | 事件。 | 
+
+## SymbolOptions<sup>12+</sup>
+
+| 名称 | 类型 | 必填 | 说明 | 
+| -------- | -------- | -------- | -------- |
+| fontColor | [ResourceStr](ts-types.md#resourcestr) | 否 | 设置[Symbol资源](ts-basic-components-symbolGlyph.md)颜色。<br/>默认值：不同渲染策略下默认值不同。 | 
+| fontSize | number \|string \|[Resource](ts-types.md#Resource) | 否 | 设置[Symbol资源](ts-basic-components-symbolGlyph.md)大小。<br/>默认值：系统默认值。 | 
+| fontWeight | [FontWeight](ts-appendix-enums.md#fontweight)\|number \|string | 否 | 设置[Symbol资源](ts-basic-components-symbolGlyph.md)粗细。<br/>number类型取值[100,900]，取值间隔为100，默认为400，取值越大，字体越粗。<br/>string类型仅支持number类型取值的字符串形式，例如“400”，以及“bold”、“bolder”、“lighter”、“regular” 、“medium”分别对应FontWeight中相应的枚举值。<br/>默认值：FontWeight.Normal。 | 
+| renderingStrategy | [SymbolRenderingStrategy](ts-appendix-enums.md#symbolrenderingstrategy11) | 否 | 设置[Symbol资源](ts-basic-components-symbolGlyph.md)渲染策略。<br/>默认值：SymbolRenderingStrategy.SINGLE。<br/>**说明：**<br/>$r('sys.symbol.ohos_*')中引用的资源仅ohos_trash_circle、ohos_folder_badge_plus、ohos_lungs支持分层与多色模式。 | 
+| effectStrategy | [SymbolEffectStrategy](ts-appendix-enums.md#symboleffectstrategy11) | 否 | 设置[Symbol资源](ts-basic-components-symbolGlyph.md)动效策略。<br/>默认值：SymbolEffectStrategy.NONE。<br/>**说明：**<br/>$r('sys.symbol.ohos_*')中引用的资源仅ohos_wifi支持层级动效模式。 | 
 
 ## 事件
 支持[通用事件](ts-universal-events-click.md)
@@ -181,3 +193,89 @@ struct SubHeaderExample {
 ```
 
 ![子标题5](figures/zh-cn_image_2023072902.png)
+
+### 示例4
+
+```ts
+
+import promptAction from '@ohos.promptAction'
+import { OperationType, SubHeader } from '@ohos.arkui.advanced.SubHeader'
+
+@Entry
+@Component
+struct SubHeaderExample {
+  build() {
+    Column() {
+      SubHeader({
+        icon: $r('sys.symbol.ohos_wifi'),
+        iconSymbolOptions: {
+          effectStrategy: SymbolEffectStrategy.HIERARCHICAL,
+        },
+        secondaryTitle: '标题',
+        operationType: OperationType.BUTTON,
+        operationItem: [{ value: '操作',
+          action: () => {
+            promptAction.showToast({ message: 'demo' })
+          }
+        }]
+      })
+    }
+  }
+}
+```
+
+![子标题4](figures/zh-cn_image_subheader_example04.gif)
+
+### 示例5
+
+```ts
+import promptAction from '@ohos.promptAction'
+import { OperationType, SubHeader } from '@ohos.arkui.advanced.SubHeader'
+
+@Entry
+@Component
+struct SubHeaderExample {
+  build() {
+    Column() {
+      SubHeader({
+        select: {
+          options: [{ value: 'aaa' }, { value: 'bbb' }, { value: 'ccc' }],
+          value: 'selectdemo',
+          selected: 2,
+          onSelect: (index: number, value?: string) => {
+            promptAction.showToast({ message: 'demo' })
+          }
+        },
+        operationType: OperationType.ICON_GROUP,
+        operationItem: [{
+          value: $r('sys.symbol.ohos_lungs'),
+          action: () => {
+            promptAction.showToast({ message: 'icon1' })
+          }
+        }, {
+          value: $r('sys.symbol.ohos_lungs'),
+          action: () => {
+            promptAction.showToast({ message: 'icon2' })
+          }
+        }, {
+          value: $r('sys.symbol.ohos_lungs'),
+          action: () => {
+            promptAction.showToast({ message: 'icon3' })
+          }
+        }],
+        operationSymbolOptions: [{
+          fontWeight: FontWeight.Lighter,
+        }, {
+          renderingStrategy: SymbolRenderingStrategy.MULTIPLE_COLOR,
+          fontColor: [Color.Blue, Color.Grey, Color.Green],
+        }, {
+          renderingStrategy: SymbolRenderingStrategy.MULTIPLE_OPACITY,
+          fontColor: [Color.Blue, Color.Grey, Color.Green],
+        }]
+      })
+    }
+  }
+}
+```
+
+![子标题5](figures/zh-cn_image_subheader_example05.png)

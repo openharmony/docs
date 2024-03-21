@@ -16,7 +16,7 @@
 
 ## 接口
 
-Web(options: { src: ResourceStr, controller: WebviewController | WebController, incognitoMode? : boolean})
+Web(options: { src: ResourceStr, controller: WebviewController | WebController, renderMode? : RenderMode, incognitoMode? : boolean})
 
 > **说明：**
 >
@@ -29,6 +29,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController, 
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | src        | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)   | 是    | 网页资源地址。如果访问本地资源文件，请使用$rawfile或者resource协议。如果加载应用包外沙箱路径的本地资源文件，请使用file://沙箱文件路径。 |
 | controller | [WebviewController<sup>9+</sup>](js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | 是    | 控制器。从API Version 9开始，WebController不再维护，建议使用WebviewController替代。 |
+| renderMode<sup>12+</sup> | [RenderMode](#rendermode12枚举说明)| 否   | 表示当前Web组件的渲染方式，RenderMode.ASYNC_REDNER表示Web组件自渲染，RenderMode.SYNC_REDNER表示支持Web组件统一渲染能力，默认值RenderMode.ASYNC_REDNER |
 | incognitoMode<sup>11+</sup> | boolean | 否 | 表示当前创建的webview是否是隐私模式。true表示创建隐私模式的webview, false表示创建正常模式的webview。<br> 默认值：false |
 
 **示例：**
@@ -64,6 +65,24 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController, 
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller, incognitoMode: true })
+      }
+    }
+  }
+  ```
+
+Web组件统一渲染模式。
+
+   ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller, renderMode: RenderMode.SYNC_RENDER })
       }
     }
   }
@@ -1680,6 +1699,7 @@ layoutMode(mode: WebLayoutMode)
 > **说明：**
 >
 > 目前只支持两种web布局模式，分别为Web布局跟随系统WebLayoutMode.NONE和Web基于页面大小的自适应网页布局WebLayoutMode.FIT_CONTENT。默认为WebLayoutMode.NONE模式。
+> 选择WebLayoutMode.FIT_CONTENT时，如果网页内容宽或长度超过8000px，请在Web组件创建的时候指定RenderMode.SYNC_RENDER模式。
 
 **参数：**
 
@@ -1717,6 +1737,7 @@ nestedScroll(value: NestedScrollOptions)
 > - 设置向前向后两个方向上的嵌套滚动模式，实现与父组件的滚动联动。
 > - 支持设置不同的向前向后两个方向上的嵌套滚动模式。
 > - 默认scrollForward和scrollBackward模式为NestedScrollMode.SELF_FIRST。
+> - 目前支持嵌套滚动的容器为：Grid、List、Scroll、Swiper、Tabs、WaterFlow。
 
 **参数：**
 
@@ -4646,6 +4667,62 @@ onIntelligentTrackingPreventionResult(callback: OnIntelligentTrackingPreventionC
   }
   ```
 
+### onOverrideUrlLoading<sup>12+</sup>
+
+onOverrideUrlLoading(callback: OnOverrideUrlLoadingCallback)
+
+当URL将要加载到当前Web中时，让宿主应用程序有机会获得控制权，回调函数返回true将导致当前Web中止加载URL，而返回false则会导致Web继续照常加载URL。
+
+POST请求不会触发该回调。
+
+子frame和非HTTP(s)协议的跳转也会触发该回调。但是调用loadUrl(String)主动触发的跳转不会触发该回调。
+
+不要使用相同的URL调用loadUrl(String)方法，然后返回true。这样做会不必要地取消当前的加载并重新使用相同的URL开始新的加载。继续加载给定URL的正确方式是直接返回false，而不是调用loadUrl(String)。
+
+**参数：**
+
+| 参数名          | 类型                                                                         | 说明                    |
+| -------------- | --------------------------------------------------------------------------- | ---------------------- |
+| callback       | [OnOverrideUrlLoadingCallback](#onoverrideurlloadingcallback12) | onOverrideUrlLoading的回调。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src: $rawfile("index.html"), controller: this.controller })
+        .onOverrideUrlLoading((webResourceRequest: WebResourceRequest) => {
+            if (webResourceRequest && webResourceRequest.getRequestUrl() == "about:blank") {
+              return true;
+            }
+            return false;
+        })
+      }
+    }
+  }
+  ```
+
+  加载的html文件。
+  ```html
+  <!--index.html-->
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <title>测试网页</title>
+  </head>
+  <body>
+    <h1>onOverrideUrlLoading Demo</h1>
+    <a href="about:blank">Click here</a>访问about:blank。
+  </body>
+  </html>
+  ```
 ## ConsoleMessage
 
 Web组件获取控制台信息对象。示例代码参考[onConsole事件](#onconsole)。
@@ -6266,7 +6343,7 @@ registerJavaScriptProxy(options: { object: object, name: string, methodList: Arr
 
 | 参数名        | 参数类型            | 必填   | 默认值  | 参数描述                                     |
 | ---------- | --------------- | ---- | ---- | ---------------------------------------- |
-| object     | object          | 是    | -    | 参与注册的应用侧JavaScript对象。只能声明方法，不能声明属性 。其中方法的参数和返回类型只能为string，number，boolean |
+| object     | object          | 是    | -    | 参与注册的应用侧JavaScript对象。可以声明方法，也可以声明属性，但是不支持h5直接调用。其中方法的参数和返回类型只能为string，number，boolean |
 | name       | string          | 是    | -    | 注册对象的名称，与window中调用的对象名一致。注册后window对象可以通过此名字访问应用侧JavaScript对象。 |
 | methodList | Array\<string\> | 是    | -    | 参与注册的应用侧JavaScript对象的方法。                 |
 
@@ -6655,3 +6732,30 @@ type OnIntelligentTrackingPreventionCallback = (details: IntelligentTrackingPrev
 | 参数名   | 参数类型                                                                          | 参数描述                    |
 | ------- | -------------------------------------------------------------------------------- | ------------------------- |
 | details | [IntelligentTrackingPreventionDetails](#intelligenttrackingpreventiondetails12)  | 提供智能防跟踪拦截的详细信息。 |
+
+## OnOverrideUrlLoadingCallback<sup>12+</sup>
+
+type OnOverrideUrlLoadingCallback = (webResourceRequest: WebResourceRequest) => boolean
+
+onOverrideUrlLoading的回调。
+
+**参数：**
+
+| 参数名                | 参数类型                                           | 参数描述                |
+| -------------------- | ------------------------------------------------ | ------------------- |
+| webResourceRequest | [WebResourceRequest](#webresourcerequest)  | url请求的相关信息。 |
+
+**返回值：**
+
+| 类型      | 说明                       |
+| ------- | ------------------------ |
+| boolean | 返回true表示阻止此次加载，否则允许此次加载。 |
+
+## RenderMode<sup>12+</sup>枚举说明
+
+定义Web组件的渲染方式。
+
+| 名称                           | 值 | 描述           |
+| ----------------------------- | -- | ------------ |
+| ASYNC_RENDER                        | 0 | Web组件自渲染模式。   |
+| SYNC_RENDER                        | 1 | Web组件统一渲染模式。   |

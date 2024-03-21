@@ -72,7 +72,8 @@ try {
 | duration | number                                                       | 否   | 默认值1500ms，取值区间：1500ms-10000ms。若小于1500ms则取默认值，若大于10000ms则取上限值10000ms。 |
 | bottom   | string\| number                                              | 否   | 设置弹窗边框距离屏幕底部的位置。<br>默认值：80vp             |
 | showMode<sup>11+</sup>   | [ToastShowMode](#toastshowmode11)    | 否   | 设置弹窗是否显示在应用之上。<br>默认值：ToastShowMode.DEFAULT，默认显示在应用内。            |
-
+| alignment<sup>12+</sup>   | [Alignment](arkui-ts/ts-appendix-enums.md#alignment)    | 否   | 对齐方式。<br>默认值：undifined，默认底部偏上位置。
+| offset<sup>12+</sup>   | [Offset](arkui-ts/ts-types.md#offset)    | 否   | 在对齐方式上的偏移。<br>默认值：undifined，默认没有偏移。
 ### ToastShowMode<sup>11+</sup>
 
 设置弹窗显示模式，默认显示在应用内，支持显示在应用之上。
@@ -411,6 +412,20 @@ openCustomDialog(options: CustomDialogOptions): Promise&lt;number&gt;
 | ------- | --------------------------------------------- | ---- | ------------------ |
 | options | [CustomDialogOptions](#customdialogoptions11) | 是   | 自定义弹窗的内容。 |
 
+## CustomDialogOptions<sup>12+</sup>对象说明
+
+| 名称                           | 参数类型                                     | 必填   | 描述                                     |
+| ----------------------------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| backgroundColor | [ResourceColor](arkui-ts/ts-types.md#resourcecolor)  | 否 | 设置弹窗背板颜色。 |
+| cornerRadius | [BorderRadiuses](arkui-ts/ts-types.md#borderradiuses9) \| [Dimension](arkui-ts/ts-types.md#dimension10)  | 否 | 设置背板的圆角半径。<br />可分别设置4个圆角的半径。<br />默认值：{ topLeft: '24vp', topRight: '24vp', bottomLeft: '24vp', bottomRight: '24vp' } |
+| borderWidth | [Dimension](arkui-ts/ts-types.md#dimension10)&nbsp;\|&nbsp;[EdgeWidths](arkui-ts/ts-types.md#edgewidths9)  | 否 | 设置弹窗背板的边框宽度。 |
+| borderColor | [ResourceColor](arkui-ts/ts-types.md#resourcecolor)&nbsp;\|&nbsp;[EdgeColors](arkui-ts/ts-types.md#edgecolors9)  | 否 | 设置弹窗背板的边框颜色。<br/>默认值：Color.Black<br/> 如果使用borderColor属性，需要和borderWidth属性一起使用。 |
+| borderStyle | [BorderStyle](arkui-ts/ts-appendix-enums.md#borderstyle)&nbsp;\|&nbsp;[EdgeStyles](arkui-ts/ts-types.md#edgestyles9)  | 否 | 设置弹窗背板的边框样式。<br/>默认值：BorderStyle.Solid<br/> 如果使用borderStyle属性，需要和borderWidth属性一起使用。 |
+| width | [Dimension](arkui-ts/ts-types.md#dimension10)   | 否 | 设置弹窗背板的宽度。<br>width和gridCount同时设置时，width优先。 |
+| height | [Dimension](arkui-ts/ts-types.md#dimension10)   | 否 | 设置弹窗背板的高度。|
+| shadow | [ShadowOptions](arkui-ts/ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;[ShadowStyle](arkui-ts/ts-universal-attributes-image-effect.md#shadowstyle10枚举说明)   | 否 | 设置弹窗背板的阴影。 |
+
+
 **返回值：**
 
 | 类型                  | 说明                                  |
@@ -460,6 +475,16 @@ struct Index {
           .onClick(() => {
             promptAction.openCustomDialog({
               builder: customDialogBuilder.bind(this)
+              onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
+                console.info("reason" + JSON.stringify(dismissDialogAction.reason))
+                console.log("dialog onWillDismiss")
+                if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
+                  dismissDialogAction.dismiss()
+                }
+                if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
+                  dismissDialogAction.dismiss()
+                }
+              }
             }).then((dialogId: number) => {
               customDialogId = dialogId
             })
@@ -520,7 +545,6 @@ closeCustomDialog(dialogId: number): void
 | 名称    | 类型                                                    | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | builder | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) | 否   | 设置自定义弹窗的内容。<br/>**说明：** <br/>builder需要使用bind(this)。<br/>builder根节点宽高百分比相对弹框容器大小。<br/>builder非根节点宽高百分比相对父节点大小。 |
-| onWillDismiss<sup>12+</sup> | (dismissDialog:[DismissDialog](arkui-ts/ts-methods-alert-dialog-box.md#dismissdialog12类型说明)) => void | 否 | 交互式关闭回调函数。<br/>**说明：**<br/>1.当用户执行点击遮障层关闭、左滑/右滑、三键back、键盘ESC关闭交互操作时，如果注册该回调函数，则不会立刻关闭弹窗。在回调函数中可以通过reason得到阻拦关闭弹窗的操作类型，从而根据原因选择是否能关闭弹窗。当前组件返回的reason中，暂不支持CLOSE_BUTTON的枚举值。<br/>2.在onWillDismiss回调中，不能再做onWillDismiss拦截。 |
 
 ## BaseDialogOptions<sup>11+</sup>
 
@@ -535,6 +559,7 @@ closeCustomDialog(dialogId: number): void
 | offset          | [Offset](arkui-ts/ts-types.md#offset)                     | 否   | 弹窗相对alignment所在位置的偏移量。                          |
 | isModal         | boolean                                                      | 否   | 弹窗是否为模态窗口，模态窗口有蒙层，非模态窗口无蒙层。<br/>默认值：true，此时弹窗有蒙层。 |
 | showInSubWindow | boolean                                                      | 否   | 某弹框需要显示在主窗口之外时，是否在子窗口显示此弹窗。<br/>默认值：false，弹窗显示在应用内，而非独立子窗口。 |
+| onWillDismiss<sup>12+</sup> | Callback<[DismissDialogAction](arkui-ts/ts-methods-alert-dialog-box.md#dismissdialogaction12类型说明)> | 否 | 交互式关闭回调函数。<br/>**说明：**<br/>1.当用户执行点击遮障层关闭、左滑/右滑、三键back、键盘ESC关闭交互操作时，如果注册该回调函数，则不会立刻关闭弹窗。在回调函数中可以通过reason得到阻拦关闭弹窗的操作类型，从而根据原因选择是否能关闭弹窗。当前组件返回的reason中，暂不支持CLOSE_BUTTON的枚举值。<br/>2.在onWillDismiss回调中，不能再做onWillDismiss拦截。 |
 
 ## ActionMenuSuccessResponse
 

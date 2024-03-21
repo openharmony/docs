@@ -51,6 +51,6 @@ Notification Kit支持的通知样式：
 - 系统所有应用发布新通知的频次累计不能超过每秒10条，更新通知的频次累计不能超过每秒20条。
 
 ## 与相关Kit的关系
-- Notification Kit创建的通知会即时显示在通知中心等系统入口，如果开发者希望在应用退到后台或进程终止后仍然有一些提醒用户的定时类通知，例如购物类应用抢购提醒等，可通过[`BackGroundTask Kit`](../kit-readme/Readme-BackgroundTasks-Kit.md)创建，目前支持基于倒计时、日历、闹钟等类型的通知提醒功能。
+- Notification Kit创建的通知会即时显示在通知中心等系统入口，如果开发者希望在应用退到后台或进程终止后仍然有一些提醒用户的定时类通知，例如购物类应用抢购提醒等，可通过[`BackGroundTask Kit`](../reference/apis-backgroundtasks-kit/js-apis-backgroundTaskManager.md)创建，目前支持基于倒计时、日历、闹钟等类型的通知提醒功能。
 - 开发者可通过`Push Kit`远程推送用户通知到本地。
 - 开发者可通过[`Ability Kit`](../reference/apis-ability-kit/js-apis-app-ability-wantAgent.md#wantagentgetwantagent)设置用户点击通知后的行为意图。

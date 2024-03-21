@@ -1254,7 +1254,6 @@ sppCloseClientSocket(socket: number): void
 
 | 参数名    | 类型     | 必填   | 说明            |
 | ------ | ------ | ---- | ------------- |
-| 参数名    | 类型     | 必填   | 说明            |
 | socket | number | 是    | 客户端socket的id。 |
 
 **错误码**：
@@ -1463,6 +1462,8 @@ try {
 
 
 ## bluetoothManager.BLE
+
+BLE模块提供了对蓝牙操作和管理的方法。
 
 ### createGattServer<sup>(deprecated)</sup>
 
@@ -3305,7 +3306,7 @@ client端获取蓝牙低功耗设备的所有服务，即服务发现。
 
 ```js
 import { BusinessError } from '@ohos.base';
-// callkback 模式
+// callback 模式
 function getServices(code: BusinessError, gattServices: Array<bluetoothManager.GattService>) {
   if (code.code == 0) {
       let services: Array<bluetoothManager.GattService> = gattServices;
@@ -3698,7 +3699,6 @@ client端向低功耗蓝牙设备特定的描述符写入二进制数据。
 | 参数名        | 类型                              | 必填   | 说明                 |
 | ---------- | ------------------------------- | ---- | ------------------ |
 | descriptor | [BLEDescriptor](#bledescriptordeprecated) | 是    | 蓝牙设备描述符的二进制值及其它参数。 |
-| boolean | 写描述符操作成功返回true，操作失败返回false。 |
 
 **错误码**：
 

@@ -2053,7 +2053,7 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
       }
       netHandle.bindSocket(tcp, (error: BusinessError, data: void) => {
         if (error) {
-          cconsole.error(`Failed to bind socket. Code:${error.code}, message:${error.message}`);
+          console.error(`Failed to bind socket. Code:${error.code}, message:${error.message}`);
         } else {
           console.info(JSON.stringify(data));
         }
@@ -2439,7 +2439,7 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 | netHandle            | [NetHandle](#nethandle)                             | 是   |数据网络句柄(netHandle)。       |
 | connectionProperties | [ConnectionProperties](#connectionproperties)                  | 是   |网络连接属性。 |
 
-站## NetBlockStatusInfo<sup>11+</sup>
+## NetBlockStatusInfo<sup>11+</sup>
 
 获取网络状态信息
 

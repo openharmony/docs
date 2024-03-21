@@ -194,4 +194,3 @@ Most of the APIs for cross-device data synchronization of RDB stores are execute
      console.error("createDeviceManager errCode:" + code + ",errMessage:" + message);
    }
    ```
-<!--no_check-->

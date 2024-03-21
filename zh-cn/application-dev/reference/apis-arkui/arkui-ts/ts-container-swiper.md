@@ -247,7 +247,7 @@ indicatorStyle(value?: IndicatorStyle)
 
 | 参数名 | 类型                                                | 必填 | 说明         |
 | ------ | --------------------------------------------------- | ---- | ------------ |
-| value  | [IndicatorStyle](#indicatorstyledeprecated对象说明) | 是   | 导航点样式。 |
+| value  | [IndicatorStyle](#indicatorstyledeprecated对象说明) | 否   | 导航点样式。 |
 
 ### displayCount<sup>8+</sup>
 
@@ -307,7 +307,7 @@ displayArrow(value: ArrowStyle | boolean, isHoverShow?: boolean)
 | 参数名                     | 类型                                             | 必填 | 说明                                                         |
 | -------------------------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value                      | boolean&nbsp;\|&nbsp;[ArrowStyle](#arrowstyle10) | 是   | 支持设置箭头和底板样式，异常场景使用ArrowStyle对象中的默认值。 |
-| swipeByGroup<sup>11+</sup> | boolean                                          | 否   | 设置鼠标悬停时是否显示箭头。<br/>默认值：false<br/>**说明：**<br/>isHoverShow为false时，常驻显示箭头，支持点击翻页。<br/>isHoverShow为true时，只有在鼠标悬停时才会显示箭头，并支持点击翻页。 |
+| isHoverShow                | boolean                                          | 否   | 设置鼠标悬停时是否显示箭头。<br/>默认值：false<br/>**说明：**<br/>isHoverShow为false时，常驻显示箭头，支持点击翻页。<br/>isHoverShow为true时，只有在鼠标悬停时才会显示箭头，并支持点击翻页。 |
 
 ### nextMargin<sup>10+</sup>
 

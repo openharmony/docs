@@ -5,8 +5,6 @@
 >  **说明：**
 >
 >  该组件从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
->
->  RichEditor[仅支持通过onDragStart事件](ts-universal-events-drag-drop.md)实现浮起等拖拽效果。
 
 
 ## 子组件
@@ -325,6 +323,7 @@ onSelectionChange(callback:&nbsp;(value:&nbsp;RichEditorRange) => void)
 | offsetInSpan                  | [number, number]                         | 是    | 文本Span内容里有效内容的起始和结束位置。 |
 | valueResource<sup>11+</sup>   | [Resource](ts-types.md#resource)         | 否    | 组件SymbolSpan内容。        |
 | SymbolSpanStyle<sup>11+</sup> | [RichEditorSymbolSpanStyle](#richeditorsymbolspanstyle11) | 否    | 组件SymbolSpan样式信息。      |
+| paragraphStyle<sup>12+</sup>  | [RichEditorParagraphStyle](#richeditorparagraphstyle11)  | 否   | 段落样式。 |
 
 
 ## RichEditorSpanPosition
@@ -382,6 +381,13 @@ Span类型信息。
 | size          | [number, number]                         | 是    | 图片的宽度和高度。 |
 | verticalAlign | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) | 是    | 图片垂直对齐方式。 |
 | objectFit     | [ImageFit](ts-appendix-enums.md#imagefit) | 是    | 图片缩放类型。   |
+| layoutStyle<sup>12+</sup> | [RichEditorLayoutStyle](#richeditorlayoutstyle11)     | 否   | 图片布局风格。 |
+
+## RichEditorLayoutStyle<sup>11+</sup> 
+|名称	|类型	|必填|	描述|
+| -------------  | -----------------------            | ---- | ------------------------------------------------------------ |
+|margin	         |  [Dimension](ts-types.md#dimension10) \| [Margin](ts-types.md#margin)	                       |  否  |	外边距类型，用于描述组件不同方向的外边距。<br/>参数为Dimension类型时，四个方向外边距同时生效。|
+|borderRadius	   |  [Dimension](ts-types.md#dimension10) \| [BorderRadiuses](ts-types.md#borderradiuses9)  |  否  |	圆角类型，用于描述组件边框圆角半径。|
 
 ## RichEditorOptions
 
@@ -839,7 +845,7 @@ SymbolSpan样式选项。
 | size                      | [[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)] | 否    | 图片宽度和高度。                                 |
 | verticalAlign             | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) | 否    | 图片垂直对齐方式。<br/>默认值:ImageSpanAlignment.BASELINE |
 | objectFit                 | [ImageFit](ts-appendix-enums.md#imagefit) | 否    | 图片缩放类型。<br/> 默认值:ImageFit.Cover。         |
-| layoutStyle<sup>11+</sup> | {<br/>margin&nbsp;?:&nbsp;[Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[Margin](ts-types.md#margin),<br/> borderRadius&nbsp;?:&nbsp;[Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[BorderRadiuses](ts-types.md#borderradiuses9)<br/>} | 否    | 图片布局风格。<br/>                             |
+| layoutStyle<sup>11+</sup> | [RichEditorLayoutStyle](#richeditorlayoutstyle11) | 否    | 图片布局风格。<br/>                             |
 
 ## RichEditorSymbolSpanOptions<sup>11+</sup>
 

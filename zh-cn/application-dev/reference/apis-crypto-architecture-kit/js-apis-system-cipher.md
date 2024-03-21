@@ -32,7 +32,7 @@ import cipher from '@system.cipher';
 
 | 名称         | 类型                                 | 必填 | 说明                                                         |
 | -------------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
-| action         | string                               | 是   | 加密类型，可选项有：<br/>1. encrypt 加密<br/>2. decrypt 解密 |
+| action         | string                               | 是   | 加密类型，可选项有：<br/>1. encrypt 加密；<br/>2. decrypt 解密。 |
 | text           | string                               | 是   | 待加密或解密的文本内容。待加密的文本内容应该是一段普通文本，长度不能超过 keySize / 8 - 66，其中 keySize 是密钥的长度（例如密钥长度为 1024 时，text 不能超过 62 个字节）。待解密的文本内容应该是经过 base64 编码的一段二进制值。base64 编码使用默认风格。 |
 | key            | string                               | 是   | 加密的密钥，RSA的密钥。加密时key为公钥，解密时key为私钥。      |
 | transformation | string                               | 否   | RSA算法的填充项，默认为RSA/None/OAEPWithSHA256AndMGF1Padding。 |
@@ -48,7 +48,7 @@ import cipher from '@system.cipher';
 
 | 名称         | 类型                                 | 必填 | 说明                                                         |
 | -------------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
-| action         | string                               | 是   | 加密类型，可选项有：<br/>1. encrypt 加密<br/>2. decrypt 解密 |
+| action         | string                               | 是   | 加密类型，可选项有：<br/>1. encrypt 加密；<br/>2. decrypt 解密。 |
 | text           | string                               | 是   | 待加密或解密的文本内容。待加密的文本内容应该是一段普通文本。待解密的文本内容应该是经过 base64 编码的一段二进制值。base64 编码使用默认风格。 |
 | key            | string                               | 是   | 加密或解密使用到的密钥，经过 base64 编码后生成的字符串。 |
 | transformation | string                               | 否   | AES算法的加密模式和填充项，默认AES/CBC/PKCS5Padding。          |
@@ -71,7 +71,7 @@ RSA 算法加解密。
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| options | [CipherRsaOptions](#cipherrsaoptions) | 是 | rsa加解密需要设置的参数 |
+| options | [CipherRsaOptions](#cipherrsaoptions) | 是 | rsa加解密需要设置的参数。 |
 
 **示例：**
 
@@ -149,7 +149,7 @@ AES 算法加解密。
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| options | [CipherAesOptions](#cipheraesoptions) | 是 | aes加解密需要设置的参数 |
+| options | [CipherAesOptions](#cipheraesoptions) | 是 | aes加解密需要设置的参数。 |
 
 **示例：**
 

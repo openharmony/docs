@@ -23,6 +23,7 @@ import common from '@ohos.app.ability.common';
 | abilityInfo | [AbilityInfo](js-apis-bundleManager-abilityInfo.md) | 是 | 否 | UIAbility的相关信息。 |
 | currentHapModuleInfo | [HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md) | 是 | 否 | 当前HAP的信息。 |
 | config | [Configuration](js-apis-app-ability-configuration.md) | 是 | 否 | 与UIAbility相关的配置信息，如语言、颜色模式等。 |
+| windowStage<sup>12+</sup> | [window.WindowStage](../apis-arkui/js-apis-window.md#windowstage9) | 是 | 否 | 当前WindowStage对象 。|
 
 > **关于示例代码的说明：**
 >
@@ -1561,7 +1562,8 @@ export default class EntryAbility extends UIAbility {
 reportDrawnCompleted(callback: AsyncCallback\<void>): void
 
 当页面加载完成（loadContent成功）时，为开发者提供打点功能（callback形式）。
- **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 

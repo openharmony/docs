@@ -11,6 +11,7 @@
     - [@ohos.arkui.node(自定义节点)](js-apis-arkui-node.md)
     - [@ohos.arkui.observer (无感监听)](js-apis-arkui-observer.md)
     - [@ohos.arkui.UIContext (UIContext)](js-apis-arkui-UIContext.md)
+    - [@ohos.arkui.uiExtension (uiExtension)](js-apis-arkui-uiExtension.md)
     - [@ohos.curves (插值计算)](js-apis-curve.md)
     - [@ohos.font (注册自定义字体)](js-apis-font.md)
     - [@ohos.matrix4 (矩阵变换)](js-apis-matrix4.md)
@@ -23,6 +24,7 @@
     - [postCardAction](js-apis-postCardAction.md)
     - [@ohos.arkui.drawableDescriptor (DrawableDescriptor)(系统接口)](js-apis-arkui-drawableDescriptor-sys.md)
     - [@ohos.arkui.performanceMonitor (性能监测)(系统接口)](js-apis-arkui-performancemonitor-sys.md)  
+    - [@ohos.arkui.uiExtension (uiExtension)(系统接口)](js-apis-arkui-uiExtension-sys.md)
     - [@ohos.deviceStatus.dragInteraction (拖拽)(系统接口)](js-apis-devicestatus-draginteraction-sys.md)
     - [@ohos.pluginComponent (PluginComponentManager)(系统接口)](js-apis-plugincomponent-sys.md)
     - [@ohos.uiAppearance (用户界面外观)(系统接口)](js-apis-uiappearance-sys.md)
@@ -92,6 +94,7 @@
       - [焦点控制](arkui-ts/ts-universal-attributes-focus.md)
       - [悬浮态效果](arkui-ts/ts-universal-attributes-hover-effect.md)
       - [组件标识](arkui-ts/ts-universal-attributes-component-id.md)
+      - [复用标识](arkui-ts/ts-universal-attributes-reuse-id.md)
       - [多态样式](arkui-ts/ts-universal-attributes-polymorphic-style.md)
       - [分布式迁移标识](arkui-ts/ts-universal-attributes-restoreId.md)
       - [前景色设置](arkui-ts/ts-universal-attributes-foreground-color.md)
@@ -100,6 +103,7 @@
       - [无障碍属性](arkui-ts/ts-universal-attributes-accessibility.md)
       - [动态属性设置](arkui-ts/ts-universal-attributes-attribute-modifier.md)
       - [外描边设置](arkui-ts/ts-universal-attributes-outline.md)
+      - [自定义绘制](arkui-ts/ts-universal-attributes-draw-modifier.md)
       - 触摸交互控制
         - [触摸热区设置](arkui-ts/ts-universal-attributes-touch-target.md)
         - [触摸测试控制](arkui-ts/ts-universal-attributes-hit-test-behavior.md)
@@ -189,6 +193,7 @@
     - [Column](arkui-ts/ts-container-column.md)
     - [ColumnSplit](arkui-ts/ts-container-columnsplit.md)
     - [Counter](arkui-ts/ts-container-counter.md)
+    - [EmbeddedComponent](arkui-ts/ts-container-embedded-component.md)
     - [Flex](arkui-ts/ts-container-flex.md)
     - [FlowItem](arkui-ts/ts-container-flowitem.md)
     - [FolderStack](arkui-ts/ts-container-folderstack.md)
@@ -293,6 +298,8 @@
   - [像素单位](arkui-ts/ts-pixel-units.md)
   - [枚举说明](arkui-ts/ts-appendix-enums.md)
   - [类型定义](arkui-ts/ts-types.md)
+  - [图像类型定义](arkui-ts/ts-image-common.md)
+  - [设置事件回调](arkui-ts/ts-uicommonevent.md)
   - 已停止维护的组件
     - [AbilityComponent (系统接口)](arkui-ts/ts-container-ability-component-sys.md)
     - [GridContainer](arkui-ts/ts-container-gridcontainer.md)
@@ -306,6 +313,7 @@
     - [ArkUI_EventModule](_ark_u_i___event_module.md)
   - 头文件和结构体
     - 头文件
+      - [native_dialog.h](native__dialog_8h.md)
       - [native_event.h](native__event_8h.md)
       - [native_interface.h](native__interface_8h.md)
       - [native_interface_xcomponent.h](native__interface__xcomponent_8h.md)
@@ -318,6 +326,7 @@
       - [ArkUI_AnyNativeAPI](_ark_u_i___any_native_a_p_i.md)
       - [ArkUI_AttributeItem](_ark_u_i___attribute_item.md)
       - [ArkUI_ColorStop](_ark_u_i___color_stop.md)
+      - [ArkUI_NativeDialogAPI_1](_ark_u_i___native_dialog_a_p_i__1.md)
       - [ArkUI_NativeNodeAPI_1](_ark_u_i___native_node_a_p_i__1.md)
       - [ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)
       - [ArkUI_NodeEvent](_ark_u_i___node_event.md)
@@ -342,6 +351,7 @@
     - [页面路由错误码](errorcode-router.md)
     - [用户界面外观服务错误码](errorcode-uiappearance.md)
     - [拖拽事件错误码](errorcode-drag-event.md)
+    - [图像AI分析错误码](errorcode-image-analyzer.md)
   - 图形图像
     - [屏幕错误码](errorcode-display.md)
     - [窗口错误码](errorcode-window.md)

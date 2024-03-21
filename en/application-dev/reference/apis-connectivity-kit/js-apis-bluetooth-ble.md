@@ -1160,7 +1160,7 @@ Unsubscribes from BLE advertising status.
 | Name     | Type                                                                   | Mandatory  | Description                                                     |
 | -------- | ------------------------------------------------------------------------- | ----- | ---------------------------------------------------------- |
 | type     | string                                                                    | Yes   | Event type. The value is **advertisingStateChange**, which indicates the advertising status change.       |
-| callback | Callback&lt;[AdvertisingStateChangeInfo](#advertisingstatechangeinfo11)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregister all callbacks for **type**. |
+| callback | Callback&lt;[AdvertisingStateChangeInfo](#advertisingstatechangeinfo11)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**.|
 
 **Error codes**
 
@@ -1233,7 +1233,7 @@ try {
 
 off(type: 'BLEDeviceFind', callback?: Callback&lt;Array&lt;ScanResult&gt;&gt;): void
 
-Unsubscribes from the BLE device discovery events.
+Unsubscribes from BLE device discovery events.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
@@ -1244,7 +1244,7 @@ Unsubscribes from the BLE device discovery events.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value is **BLEDeviceFind**, which indicates an event of discovering a BLE device.       |
-| callback | Callback&lt;Array&lt;[ScanResult](#scanresult)&gt;&gt; | No   | Callback for the **BLEDeviceFind** event. If this parameter is not set, this API unregister all callbacks for **type**.|
+| callback | Callback&lt;Array&lt;[ScanResult](#scanresult)&gt;&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**.|
 
 **Error codes**
 
@@ -1372,6 +1372,7 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 import { BusinessError } from '@ohos.base';
 let server: ble.GattServer = ble.createGattServer();
 try {
+    // Before removeService is called, the server and the client must be paired and connected.
     server.removeService('00001810-0000-1000-8000-00805F9B34FB');
 } catch (err) {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
@@ -1629,7 +1630,7 @@ Unsubscribes from characteristic read request events.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value is **characteristicRead**, which indicates a characteristic read request event.   |
-| callback | Callback&lt;[CharacteristicReadRequest](#characteristicreadrequest)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregister all callbacks for **type**. |
+| callback | Callback&lt;[CharacteristicReadRequest](#characteristicreadrequest)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**.|
 
 **Example**
 
@@ -1705,7 +1706,7 @@ Unsubscribes from characteristic write request events.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value is **characteristicWrite**, which indicates a characteristic write request event.  |
-| callback | Callback&lt;[CharacteristicWriteRequest](#characteristicwriterequest)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregister all callbacks for **type**. |
+| callback | Callback&lt;[CharacteristicWriteRequest](#characteristicwriterequest)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**.|
 
 **Example**
 
@@ -1778,7 +1779,7 @@ Unsubscribes from descriptor read request events.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value is **descriptorRead**, which indicates a descriptor read request event.       |
-| callback | Callback&lt;[DescriptorReadRequest](#descriptorreadrequest)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregister all callbacks for **type**. |
+| callback | Callback&lt;[DescriptorReadRequest](#descriptorreadrequest)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**.|
 
 **Example**
 
@@ -1854,7 +1855,7 @@ Unsubscribes from descriptor write request events.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value is **descriptorWrite**, which indicates a descriptor write request event.      |
-| callback | Callback&lt;[DescriptorWriteRequest](#descriptorwriterequest)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregister all callbacks for **type**. |
+| callback | Callback&lt;[DescriptorWriteRequest](#descriptorwriterequest)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**.|
 
 **Example**
 
@@ -1919,7 +1920,7 @@ Unsubscribes from BLE connection state changes.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value is **connectionStateChange**, which indicates BLE connection state changes.|
-| callback | Callback&lt;[BLEConnectionChangeState](#bleconnectionchangestate)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregister all callbacks for **type**. |
+| callback | Callback&lt;[BLEConnectionChangeState](#bleconnectionchangestate)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**.|
 
 **Example**
 
@@ -1981,7 +1982,7 @@ Unsubscribes from MTU status changes for the server.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value is **BLEMtuChange**, which indicates MTU status changes. If this parameter is not set correctly, the callback cannot be unregistered. |
-| callback | Callback&lt;number&gt; | No   | Callback to unregister. If this parameter is not set, this API unregister all callbacks for **type**. |
+| callback | Callback&lt;number&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**.|
 
 **Example**
 
@@ -3137,7 +3138,7 @@ Unsubscribes from BLE characteristic changes.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value is **BLECharacteristicChange**, which indicates characteristic value changes. |
-| callback | Callback&lt;[BLECharacteristic](#blecharacteristic)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregister all callbacks for **type**. |
+| callback | Callback&lt;[BLECharacteristic](#blecharacteristic)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**.|
 
 **Example**
 
@@ -3201,7 +3202,7 @@ Unsubscribes from BLE connection state changes.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value is **BLEConnectionStateChange**, which indicates BLE connection state changes. |
-| callback | Callback&lt;[BLEConnectionChangeState](#bleconnectionchangestate)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregister all callbacks for **type**. |
+| callback | Callback&lt;[BLEConnectionChangeState](#bleconnectionchangestate)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**.|
 
 **Example**
 
@@ -3230,7 +3231,7 @@ Subscribes to MTU status changes for the client.
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | Yes   | Event type. The value is **BLEMtuChange**, which indicates MTU status changes. If this parameter is not set correctly, the callback cannot be registered. |
+| type     | string                                   | Yes   | Event type. The value is **BLEMtuChange**, which indicates MTU status changes. If this parameter is not set correctly, the callback cannot be registered.|
 | callback | Callback&lt;number&gt; | Yes   | Callback invoked to return the number of MTU bytes.|
 
 **Example**
@@ -3263,7 +3264,7 @@ Unsubscribes from MTU status changes for the client.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value is **BLEMtuChange**, which indicates MTU status changes. If this parameter is not set correctly, the callback cannot be unregistered. |
-| callback | Callback&lt;number&gt; | No   | Callback to unregister. If this parameter is not set, this API unregister all callbacks for **type**. |
+| callback | Callback&lt;number&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**.|
 
 **Example**
 
@@ -3572,6 +3573,7 @@ Defines the scan configuration parameters.
 | interval  | number                  | Yes   | Yes   | Delay in reporting the scan result. The default value is **0**.                   |
 | dutyMode  | [ScanDuty](#scanduty)   | Yes   | Yes   | Scan duty. The default value is SCAN_MODE_LOW_POWER.       |
 | matchMode | [MatchMode](#matchmode) | Yes   | Yes   | Hardware filtering match mode. The default value is **MATCH_MODE_AGGRESSIVE**.|
+| phyType<sup>12+</sup> | [PhyType](#phytype12) | Yes   | Yes   | Physical layer (PHY) type used in scanning.|
 
 
 ## GattProperties<a name="GattProperties"></a>
@@ -3637,3 +3639,14 @@ Enumerates the advertising statuses.
 | ENABLED<sup>11+</sup>   | 2    | The BLE advertising is enabled temporarily.      |
 | DISABLED<sup>11+</sup>  | 3    | The BLE advertising is disabled temporarily.      |
 | STOPPED<sup>11+</sup>    | 4    | The BLE advertising is stopped.      |
+
+## PhyType<sup>12+</sup>
+
+Enumerates the PHY types used in scanning.
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+| Name     | Value   | Description                          |
+| --------  | ---- | ------------------------------ |
+| PHY_LE_1M<sup>12+</sup>   | 1    | 1 M PHY.      |
+| PHY_LE_ALL_SUPPORTED<sup>12+</sup>   | 255    | PHY mode supported by the Bluetooth profile used in scanning.   |

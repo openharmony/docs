@@ -31,7 +31,7 @@ The following describes certificate specifications.
 
 ### Certificate Chain Validation
 
-The certificate chain validator does not verify the certificate validity period because the device system time is always untrusted. To check the validity of a certificate, use [checkValidityWithDate()](../../reference/apis/js-apis-cert.md#checkvaliditywithdate) of **X509Cert**. 
+The certificate chain validator does not verify the certificate validity period because the device system time is always untrusted. To check the validity of a certificate, use [checkValidityWithDate()](../../reference/apis-device-certificate-kit/js-apis-cert.md#checkvaliditywithdate) of **X509Cert**.
 
 
 ### Certificate Format
@@ -77,11 +77,9 @@ The certificate framework provides the following classes.
 
 | Name| Class| Description|
 | -------- | -------- | -------- |
-| X.509 certificate| [X509Cert](../../reference/apis/js-apis-cert.md#x509cert) | Provides APIs for parsing, serializing, and signing an X.509 certificate, verifying an X.509 certificate signature, and obtaining certificate information.|
-| Certificate extension| [CertExtension](../../reference/apis/js-apis-cert.md#certextension10) | Provides APIs for obtaining X.509 certificate extensions, such as CA and CRL distribution points.|
-| X.509 CRL| [X509CRL](../../reference/apis/js-apis-cert.md#x509crl11) | Provides APIs for parsing and serializing an X.509 CRL and obtaining X.509 CRL information. |
-| Certificate chain validator| [CertChainValidator](../../reference/apis/js-apis-cert.md#certchainvalidator) | Provides APIs for validating a certificate chain (excluding the certificate validity period) and obtaining the certificate chain algorithm.|
-| Certificate and CRL collection| [CertCRLCollection](../../reference/apis/js-apis-cert.md#certcrlcollection11) | Provides APIs for obtaining information about the certificate and CRL collection.|
-| X.509 certificate chain| [X509CertChain](../../reference/apis/js-apis-cert.md#x509certchain11) | Provides APIs for obtaining the certificate list and validating a certificate chain.|
-
-
+| X.509 certificate| [X509Cert](../../reference/apis-device-certificate-kit/js-apis-cert.md#x509cert) | Provides APIs for parsing, serializing, and signing an X.509 certificate, verifying an X.509 certificate signature, and obtaining certificate information.|
+| Certificate extension| [CertExtension](../../reference/apis-device-certificate-kit/js-apis-cert.md#certextension10) | Provides APIs for obtaining X.509 certificate extensions, such as CA and CRL distribution points.|
+| X.509 CRL| [X509CRL](../../reference/apis-device-certificate-kit/js-apis-cert.md#x509crl11) | Provides APIs for parsing and serializing an X.509 CRL, and obtaining X.509 CRL information.|
+| Certificate chain validator| [CertChainValidator](../../reference/apis-device-certificate-kit/js-apis-cert.md#certchainvalidator) | Provides APIs for validating a certificate chain (excluding the certificate validity period) and obtaining the certificate chain algorithm.|
+| Certificate and CRL collection| [CertCRLCollection](../../reference/apis-device-certificate-kit/js-apis-cert.md#certcrlcollection11) | Provides APIs for obtaining information about the certificate and CRL collection.|
+| X.509 certificate chain| [X509CertChain](../../reference/apis-device-certificate-kit/js-apis-cert.md#x509certchain11) | Provides APIs for obtaining the certificate list and validating a certificate chain.|
