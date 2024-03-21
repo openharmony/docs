@@ -887,12 +887,15 @@ import type UIExtensionContentSession from '@ohos.app.ability.UIExtensionContent
 
 export default class UiExtAbility extends UIExtensionAbility {
   onSessionCreate(want: Want, session: UIExtensionContentSession): void {
-    let sessionId = want.parameters[wantConstant.Params.ASSERT_FAULT_SESSION_ID] as string,
+    let sessionId:string = '';
+    if(want.parameters){
+      sessionId  = want.parameters[wantConstant.Params.ASSERT_FAULT_SESSION_ID] as string;
+    }
     let status = abilityManager.UserStatus.ASSERT_TERMINATE;
     abilityManager.notifyDebugAssertResult(sessionId, status).then(() => {
-      console.log(TAG, 'notifyDebugAssertResult success.');
+      console.log('notifyDebugAssertResult success.');
     }).catch((err: BusinessError) => {
-      console.error(TAG, `notifyDebugAssertResult failed, error: ${JSON.stringify(err)}`);
+      console.error(`notifyDebugAssertResult failed, error: ${JSON.stringify(err)}`);
     });
   }
 }
