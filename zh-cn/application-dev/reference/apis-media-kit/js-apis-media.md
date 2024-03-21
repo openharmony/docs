@@ -2269,13 +2269,19 @@ avRecorder.getInputSurface().then((surfaceId: string) => {
 
 updateRotation(rotation: number): Promise\<void>
 
-更新视频旋转角度
+更新视频旋转角度。
 
 应当注意，填入的角度仅能为 [0, 90, 180, 270] 四个角度中的一个。
 
 当且仅当[prepare()](#prepare9-3)事件成功触发后，且在[start()](#start9)之前，才能调用updateRotation方法。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                        |
+| -------- | -------------------- | ---- | --------------------------- |
+| rotation | number | 是   | 旋转角度，取值仅支持0、90、180、270度。 |
 
 **返回值：**
 
