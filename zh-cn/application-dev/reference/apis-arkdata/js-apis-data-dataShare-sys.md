@@ -398,7 +398,7 @@ dataShare.disableSilentProxy(context, uri).then(() => {
 | ---------- | ------------------------------------------------------------ | ---- | -------------- |
 | type       | [ChangeType](js-apis-data-dataShare.md##ChangeType)      | 是   | 通知变更的类型 |
 | uri        | string                                                       | 是   | 指定uri。      |
-| values     | Array<[ValuesBucket]>(js-apis-data-valuesBucket.md#valuesbucket)    | 是   | 更新的数据。   |
+| values     | Array&lt;[ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)&gt;| 是   | 更新的数据。   |
 
 ## DataShareHelper
 
@@ -445,9 +445,9 @@ on(event: 'dataChange', type:SubscriptionType, uri: string, callback: AsyncCallb
 | 参数名     | 类型                 | 必填 | 说明                    |
 | -------- | -------------------- | ---- | ------------------------ |
 | event     | string               | 是   | 订阅的事件/回调类型，支持的事件为'dataChange'，当数据更改时，触发该事件。 |
-| type     | [SubscriptionType]js-apis-data-dataShare.md##SubscriptionType)| 是   | 表示数据更改时按指定数据路径通知变更。 |
+| type     | [SubscriptionType](js-apis-data-dataShare.md#SubscriptionType)| 是   | 表示数据更改时按指定数据路径通知变更。 |
 | uri      | string               | 是   | 表示指定的数据路径。 |
-| callback | AsyncCallback&lt;[ChangeInfo]&gt(js-apis-data-dataShare.md##ChangeInfo); | 是   | 回调函数。当有其他用户触发了变更通知时调用，err为undefined；否则不被触发或为错误对象。|
+| callback | AsyncCallback&lt;[ChangeInfo](js-apis-data-dataShare.md#ChangeInfo)&gt; | 是   | 回调函数。当有其他用户触发了变更通知时调用，err为undefined；否则不被触发或为错误对象。|
 
 **示例：**
 
@@ -505,9 +505,9 @@ off(event: 'dataChange', type:SubscriptionType, uri: string, callback?: AsyncCal
 | 参数名     | 类型                 | 必填 | 说明                    |
 | -------- | -------------------- | ---- | ------------------------ |
 | event     | string               | 是   | 取消订阅的事件/回调类型，支持的事件为'dataChange'。 |
-| type     | [SubscriptionType]js-apis-data-dataShare.md##SubscriptionType)| 是   | 表示数据更改时按指定数据路径通知变更。 |
+| type     | [SubscriptionType](js-apis-data-dataShare.md## SubscriptionType)| 是   | 表示数据更改时按指定数据路径通知变更。 |
 | uri      | string               | 是   | 表示指定的数据路径。 |
-| callback | AsyncCallback&lt;[ChangeInfo]&gt(js-apis-data-dataShare.md##ChangeInfo);| 否   | 表示指定取消订阅的callback通知。传入的callback必须和注册为同一个。 |
+| callback | AsyncCallback&lt;[ChangeInfo](js-apis-data-dataShare.md#ChangeInfo)&gt;| 否   | 表示指定取消订阅的callback通知。传入的callback必须和注册为同一个。 |
 
 **示例：**
 
