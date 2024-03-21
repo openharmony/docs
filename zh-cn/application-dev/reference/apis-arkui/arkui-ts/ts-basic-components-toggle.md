@@ -71,6 +71,31 @@ switchPointColor(color: ResourceColor)
 | ------ | ------------------------------------------ | ---- | -------------------------- |
 | value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | Switch类型的圆形滑块颜色。<br/>默认值：'#ffffffff' |
 
+### switchStyle<sup>12+</sup>
+
+switchStyle(value: SwitchStyle)
+
+设置Switch类型的样式。仅对type为ToggleType.Switch生效。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                | 必填 | 说明             |
+| ------ | --------------------------------------------------- | ---- | ---------------- |
+| value  | [SwitchStyle<sup>12+</sup>](#switchstyle12对象说明) | 否   | Switch样式风格。 |
+
+### SwitchStyle<sup>12+</sup>对象说明
+
+| 名称              | 类型                                        | 必填 | 说明                               |
+| ----------------- | ------------------------------------------- | ---- | ---------------------------------- |
+| pointRadius       | number \|  [Resource](ts-types.md#resource) | 否   | 设置Switch类型的圆形滑块半径。     |
+| unselectedColor   | [ResourceColor](ts-types.md#resourcecolor)  | 否   | 设置Switch类型关闭状态的背景颜色。 |
+| pointColor        | [ResourceColor](ts-types.md#resourcecolor)  | 否   | 设置Switch类型的圆形滑块颜色。     |
+| trackBorderRadius | number \|  [Resource](ts-types.md#resource) | 否   | 设置Switch类型的滑轨的圆角。       |
+
 ## 事件
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
