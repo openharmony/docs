@@ -63,7 +63,7 @@ Web组件支持使用DevTools工具调试前端页面。DevTools是一个 Web前
      ![debug-effect](figures/debug-effect.png)
 
 
-5. 多应用调试请在调试地址内Devices中的Configure添加多个端口号以同时调试多个应用：
+5. 多应用调试请在调试地址内Devices中的configure添加多个端口号以同时调试多个应用：
 
      **图2** 添加端口号效果图  
 
