@@ -19,8 +19,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [GetDeviceSpeed](#getdevicespeed) ([in] struct [UsbDev](_usb_dev_v10.md) dev, [out] unsigned char speed) | 获取设备的速度. | 
-| [GetInterfaceActiveStatus](#getinterfaceactivestatus) ([in] struct [UsbDev](_usb_dev_v10.md) dev, [in] unsigned char interfaceid, [out] bool unactived) | 获取接口是否激活. | 
+| [GetDeviceSpeed](#getdevicespeed) ([in] struct [UsbDev](_usb_dev_v10.md) dev, [out] unsigned char speed) | 获取设备的速度。 | 
+| [GetInterfaceActiveStatus](#getinterfaceactivestatus) ([in] struct [UsbDev](_usb_dev_v10.md) dev, [in] unsigned char interfaceid, [out] bool unactived) | 获取接口是否激活。 | 
 
 ### GetDeviceSpeed()
 
@@ -41,9 +41,14 @@ IUsbInterface::GetDeviceSpeed ([in] struct UsbDev dev, [out] unsigned char speed
 
 **返回：**
 
-1-6 表示返回对应不同的速度。
-
-0 表示获取失败。
+0：表示UNKONOW。
+1: 表示低速传输。
+2：表示全速传输。
+3：表示高速传输。
+4：表示无线传输。
+5：表示急速传输。
+6：表示超速传输。
+其他值表示操作失败。
 
 ### GetInterfaceActiveStatus()
 
@@ -65,6 +70,6 @@ IUsbInterface::GetInterfaceActiveStatus ([in] struct UsbDev dev, [in] unsigned c
 
 **返回：**
 
-0 表示操作成功。
-
-非零值 表示操作失败。
+0 表示接口激活。
+1 表示接口未激活。
+非0和1 表示操作失败。
