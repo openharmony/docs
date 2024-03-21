@@ -29,7 +29,7 @@ Core模块提供用于播放框架的基础骨干能力，包含内存、错误�
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| struct&nbsp;&nbsp;[OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) | 定义OH_AVCodec的缓冲区描述信息。 | 
+| struct&nbsp;&nbsp;[OH_AVCodecBufferAttr](#oh_avcodecbufferattr) | 定义OH_AVCodec的缓冲区描述信息。 | 
 
 
 ### 类型定义
@@ -42,7 +42,7 @@ Core模块提供用于播放框架的基础骨干能力，包含内存、错误�
 | typedef struct [OH_AVBuffer](#oh_avbuffer) [OH_AVBuffer](#oh_avbuffer) | 为媒体内存接口定义native层对象。 | 
 | typedef struct [OH_NativeBuffer](#oh_nativebuffer) [OH_NativeBuffer](#oh_nativebuffer) | 为图形内存接口定义native层对象。 | 
 | typedef enum [OH_AVCodecBufferFlags](#oh_avcodecbufferflags-1) [OH_AVCodecBufferFlags](#oh_avcodecbufferflags) | 枚举OH_AVCodec缓冲区标记的类别。 | 
-| typedef struct [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) [OH_AVCodecBufferAttr](#oh_avcodecbufferattr) | 定义OH_AVCodec的缓冲区描述信息。 | 
+| typedef struct [OH_AVCodecBufferAttr](#oh_avcodecbufferattr) [OH_AVCodecBufferAttr](#oh_avcodecbufferattr) | 定义OH_AVCodec的缓冲区描述信息。 | 
 | typedef enum [OH_AVErrCode](#oh_averrcode-1) [OH_AVErrCode](#oh_averrcode) | 音视频错误码。 | 
 | typedef struct [OH_AVFormat](#oh_avformat) [OH_AVFormat](#oh_avformat) | 为媒体格式接口定义native层对象。 | 
 | typedef enum [OH_AVPixelFormat](#oh_avpixelformat-1) [OH_AVPixelFormat](#oh_avpixelformat) | 视频像素格式的枚举类。 | 
@@ -67,8 +67,8 @@ Core模块提供用于播放框架的基础骨干能力，包含内存、错误�
 | -------- | -------- |
 | [OH_AVBuffer](#oh_avbuffer) \* [OH_AVBuffer_Create](#oh_avbuffer_create) (int32_t capacity) | 创建OH_AVBuffer实例。 需要注意的是，返回值指向的创建OH_AVBuffer的实例需要调用者手动释放，请参阅[OH_AVBuffer_Destroy](#oh_avbuffer_destroy)。 | 
 | [OH_AVErrCode](#oh_averrcode) [OH_AVBuffer_Destroy](#oh_avbuffer_destroy) ([OH_AVBuffer](#oh_avbuffer) \*buffer) | 释放OH_AVBuffer实例指针的资源。 | 
-| [OH_AVErrCode](#oh_averrcode) [OH_AVBuffer_GetBufferAttr](#oh_avbuffer_getbufferattr) ([OH_AVBuffer](#oh_avbuffer) \*buffer, [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) \*attr) | 获取数据缓冲区的高频属性参数。 | 
-| [OH_AVErrCode](#oh_averrcode) [OH_AVBuffer_SetBufferAttr](#oh_avbuffer_setbufferattr) ([OH_AVBuffer](#oh_avbuffer) \*buffer, const [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) \*attr) | 设置数据缓冲区的高频属性参数。 | 
+| [OH_AVErrCode](#oh_averrcode) [OH_AVBuffer_GetBufferAttr](#oh_avbuffer_getbufferattr) ([OH_AVBuffer](#oh_avbuffer) \*buffer, [OH_AVCodecBufferAttr](#oh_avcodecbufferattr) \*attr) | 获取数据缓冲区的高频属性参数。 | 
+| [OH_AVErrCode](#oh_averrcode) [OH_AVBuffer_SetBufferAttr](#oh_avbuffer_setbufferattr) ([OH_AVBuffer](#oh_avbuffer) \*buffer, const [OH_AVCodecBufferAttr](#oh_avcodecbufferattr) \*attr) | 设置数据缓冲区的高频属性参数。 | 
 | [OH_AVFormat](#oh_avformat) \* [OH_AVBuffer_GetParameter](#oh_avbuffer_getparameter) ([OH_AVBuffer](#oh_avbuffer) \*buffer) | 获取数据缓冲区的随帧参数。 | 
 | [OH_AVErrCode](#oh_averrcode) [OH_AVBuffer_SetParameter](#oh_avbuffer_setparameter) ([OH_AVBuffer](#oh_avbuffer) \*buffer, const [OH_AVFormat](#oh_avformat) \*format) | 设置数据缓冲区的随帧参数。 | 
 | uint8_t \* [OH_AVBuffer_GetAddr](#oh_avbuffer_getaddr) ([OH_AVBuffer](#oh_avbuffer) \*buffer) | 获取数据缓冲区的虚拟地址。 | 
@@ -271,7 +271,7 @@ enum OH_AmbAttributeSet
 
 **描述**
 
-高保真立体声混响设置.
+高保真立体声混响设置。
 
 用int64整数来表示高保真立体声混响属性。
 
@@ -583,7 +583,7 @@ OH_AVErrCode OH_AVBuffer_GetBufferAttr (OH_AVBuffer *buffer, OH_AVCodecBufferAtt
 | 名称 | 描述 | 
 | -------- | -------- |
 | buffer | 指向OH_AVBuffer实例的指针。 | 
-| attr | 指向[OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md)实例的指针。 | 
+| attr | 指向[OH_AVCodecBufferAttr](#oh_avcodecbufferattr)实例的指针。 | 
 
 **返回：**
 
@@ -684,7 +684,7 @@ OH_AVErrCode OH_AVBuffer_SetBufferAttr (OH_AVBuffer *buffer, const OH_AVCodecBuf
 | 名称 | 描述 | 
 | -------- | -------- |
 | buffer | 指向OH_AVBuffer实例的指针。 | 
-| attr | 指向[OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md)实例的指针。 | 
+| attr | 指向[OH_AVCodecBufferAttr](#oh_avcodecbufferattr)实例的指针。 | 
 
 **返回：**
 
