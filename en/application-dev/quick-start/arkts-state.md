@@ -62,7 +62,7 @@ Not all changes to state variables cause UI updates. Only changes that can be ob
   this.count = 1;
   ```
 
-- When the decorated variable is of the class or Object type, its value change and value changes of all its properties, that is, the properties that **Object.keys(observedObject)** returns. Below is an example.
+- When the decorated variable is of the class or Object type, its value change and value changes of all its properties, that is, the properties that **Object.keys(observedObject)** returns, can be observed. Below is an example.
     Declare the **ClassA** and **Model** classes.
 
     ```ts
@@ -433,7 +433,7 @@ struct Index {
         Text(this.viewModel.isSuccess ? 'success' : 'failed')
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
-          .onClick(()=>{
+          .onClick(() => {
             this.viewModel.query()
           })
       }.width('100%')
@@ -446,24 +446,26 @@ export class TestModel {
   model: Model
 
   constructor() {
-    this.model = new Model(()=>{
+    this.model = new Model(() => {
       this.isSuccess = true
       console.log(`this.isSuccess: ${this.isSuccess}`)
     })
   }
+
   query() {
     this.model.query()
   }
 }
 
 export class Model {
-  callback: ()=>void
+  callback: () => void
 
-  constructor(cb: ()=>void) {
+  constructor(cb: () => void) {
     this.callback = cb
   }
-  query(){
-      this.callback()
+
+  query() {
+    this.callback()
   }
 }
 ```

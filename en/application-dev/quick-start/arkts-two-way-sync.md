@@ -1,10 +1,15 @@
 # $$ Syntax: Two-Way Synchronization of Built-in Components
 
 
-The $$ operator provides a TS variable by-reference to a built-in component so that the variable value and the internal state of that component are kept in sync.
+The $$ operator provides a TypeScript variable by-reference to a built-in component so that the variable value and the internal state of that component are kept in sync.
 
 
 What the internal state is depends on the component. For example, for the [\<TextInput>](../reference/arkui-ts/ts-basic-components-textinput.md) component, it is the **text** parameter.
+
+
+> **NOTE**
+>
+> $$ is also used for [by-reference parameter passing for the @Builder decorator](arkts-builder.md#by-reference-parameter-passing). Pay attention to the differences between the two usages.
 
 
 ## Rules of Use

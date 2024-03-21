@@ -1,7 +1,7 @@
 # \@Observed and \@ObjectLink Decorators: Observing Attribute Changes in Nested Class Objects
 
 
-The aforementioned decorators can observe only the changes of the first layer. However, in real-world application development, an application may encapsulate its own data model based on development requirements. However, in the case of multi-layer nesting, for example, a two-dimensional array, an array item class, or a class insider another class as an attribute, the attribute changes at the second layer cannot be observed. This is where the \@Observed and \@ObjectLink decorators come in handy.
+The aforementioned decorators can observe only the changes of the first layer. However, in real-world application development, an application may encapsulate its own data model. In this case, for multi-layer nesting, for example, a two-dimensional array, an array item class, or a class inside another class as an attribute, the attribute changes at the second layer cannot be observed. This is where the \@Observed and \@ObjectLink decorators come in handy.
 
 
 > **NOTE**
@@ -20,7 +20,7 @@ The aforementioned decorators can observe only the changes of the first layer. H
 - Using \@Observed alone has no effect. It needs to be used with \@ObjectLink for two-way synchronization or with [\@Prop](arkts-prop.md) for one-way synchronization.
 
 
-## Restrictions
+## Constraints
 
 - Using \@Observed to decorate a class changes the original prototype chain of the class. Using \@Observed and other class decorators to decorate the same class may cause problems.
 
@@ -124,7 +124,7 @@ this.b.a.c = 5
 
 - Replacement of array items for the data source of an array and changes of class attributes for the data source of a class. For details, see [Object Array](#object-array).
 
-For an instance of the class that inherits **Date**, the value changes of **Date** attributes can be observed. In addition, you can call the following APIs to update **Date** attributes: setFullYear, setMonth, setDate, setHours, setMinutes, setSeconds, setMilliseconds, setTime, setUTCFullYear, setUTCMonth, setUTCDate, setUTCHours, setUTCMinutes, setUTCSeconds, setUTCMilliseconds.
+For an instance of the class that extends **Date**, the value changes of **Date** attributes can be observed. In addition, you can call the following APIs to update **Date** attributes: **setFullYear**, **setMonth**, **setDate**, **setHours**, **setMinutes**, **setSeconds**, **setMilliseconds**, **setTime**, **setUTCFullYear**, **setUTCMonth**, **setUTCDate**, **setUTCHours**, **setUTCMinutes**, **setUTCSeconds**, and **setUTCMilliseconds**.
 
 ```ts
 @Observed
@@ -195,12 +195,16 @@ struct ViewB {
 2. Attribute update: When the attribute of the \@Observed decorated class is updated, the system uses the setter and getter of the proxy, traverses the \@ObjectLink decorated wrapped objects that depend on it, and notifies the data update.
 
 
-## Application Scenarios
+## Use Scenarios
 
 
 ### Nested Object
 
 The following is the data structure of a nested class object.
+
+> **NOTE**
+>
+> **NextID** is used to generate a unique, persistent key for each array item during [ForEach rendering](./arkts-rendering-control-foreach.md), so as to identify the corresponding component.
 
 
 ```ts
@@ -272,19 +276,21 @@ struct ViewC {
             console.log('this.c.c:' + this.c.c)
           })
       }
-    .width(300)
+      .width(300)
+    }
   }
-}
 }
 
 @Entry
 @Component
 struct ViewB {
   @State b: ClassB = new ClassB(new ClassA(0));
-  @State child : ClassD = new ClassD(new ClassC(0));
+  @State child: ClassD = new ClassD(new ClassC(0));
+
   build() {
     Column() {
-      ViewC({ label: 'ViewC #3', c: this.child.c})
+      ViewC({ label: 'ViewC #3',
+        c: this.child.c })
       Button(`ViewC: this.child.c.c add 10`)
         .backgroundColor('#ff7fcf58')
         .onClick(() => {
@@ -304,7 +310,7 @@ Event handles in **ViewB**:
 
 - this.child.c = new ClassA(0) and this.b = new ClassB(new ClassA(0)): Change to the \@State decorated variable **b** and its attributes.
 
-- this.child.c.c = ... : Change at the second layer. Though [@State](arkts-state.md#observed-changes) cannot observe changes at the second layer, the change of an attribute of \@Observed decorated ClassA, which is attribute **c** in this example, can be observed by \@ObjectLink.
+- this.child.c.c = ...: Change at the second layer. Though \@State cannot observe changes at the second layer, the change of an attribute of \@Observed decorated ClassA, which is attribute **c** in this example, can be observed by \@ObjectLink.
 
 
 Event handle in **ViewC**:
@@ -321,6 +327,19 @@ An object array is a frequently used data structure. The following example shows
 
 
 ```ts
+let NextID: number = 1;
+
+@Observed
+class ClassA {
+  public id: number;
+  public c: number;
+
+  constructor(c: number) {
+    this.id = NextID++;
+    this.c = c;
+  }
+}
+
 @Component
 struct ViewA {
   // The type of @ObjectLink of the child component ViewA is ClassA.
@@ -329,7 +348,7 @@ struct ViewA {
 
   build() {
     Row() {
-      Button(`ViewA [${this.label}] this.a.c = ${this.a.c} +1`)
+      Button(`ViewA [${this.label}] this.a.c = ${this.a ? this.a.c : "undefined"}`)
         .onClick(() => {
           this.a.c += 1;
         })
@@ -365,7 +384,11 @@ struct ViewB {
         })
       Button(`ViewB: shift`)
         .onClick(() => {
-          this.arrA.shift()
+          if (this.arrA.length > 0) {
+            this.arrA.shift()
+          } else {
+            console.log("length <= 0")
+          }
         })
       Button(`ViewB: chg item property in middle`)
         .onClick(() => {
@@ -381,14 +404,14 @@ struct ViewB {
 ```
 
 - this.arrA[Math.floor(this.arrA.length/2)] = new ClassA(..): The change of this state variable triggers two updates.
-  1. ForEach: The value assignment of the array item causes the change of [itemGenerator](arkts-rendering-control-foreach.md#api-description) of **ForEach**. Therefore, the array item is identified as changed, and the item builder of **ForEach** is executed to create a **ViewA** component instance.
-  2. ViewA({ label: ViewA this.arrA[first], a: this.arrA[0] }): The preceding update changes the first element in the array. Therefore, the **ViewA** component instance bound to **this.arrA[0]** is updated.
+  1. ForEach: The value assignment of the array item causes the change of [itemGenerator](arkts-rendering-control-foreach.md#available-apis) of **ForEach**. Therefore, the array item is identified as changed, and the item builder of **ForEach** is executed to create a **ViewA** component instance.
+  2. ViewA({ label: `ViewA this.arrA[last]`, a: this.arrA[this.arrA.length-1] }): The preceding update changes the second element in the array. Therefore, the **ViewA** component instance bound to **this.arrA[1]** is updated.
 
 - this.arrA.push(new ClassA(0)): The change of this state variable triggers two updates with different effects.
-  1. ForEach: The newly added **ClassA** object is unknown to the **ForEach** [itemGenerator](arkts-rendering-control-foreach.md#api-description). The item builder of **ForEach** will be executed to create a **ViewA** component instance.
+  1. ForEach: The newly added **ClassA** object is unknown to the **ForEach** [itemGenerator](arkts-rendering-control-foreach.md#available-apis). The item builder of **ForEach** will be executed to create a **ViewA** component instance.
   2. ViewA({ label: ViewA this.arrA[last], a: this.arrA[this.arrA.length-1] }): The last item of the array is changed. As a result, the second **View A** component instance is changed. For **ViewA({ label: ViewA this.arrA[first], a: this.arrA[0] })**, a change to the array does not trigger a change to the array item, so the first **View A** component instance is not refreshed.
 
-- this.arrA[Math.floor (this.arrA.length/2)].c: [@State](arkts-state.md#observed-changes) cannot observe changes at the second layer. However, as **ClassA** is decorated by \@Observed, the change of its attributes will be observed by \@ObjectLink.
+- this.arrA[Math.floor(this.arrA.length/2)].c: @State cannot observe changes at the second layer. However, as **ClassA** is decorated by \@Observed, the change of its attributes will be observed by \@ObjectLink.
 
 
 ### Two-Dimensional Array
@@ -690,25 +713,35 @@ The following example uses \@Observed/\@ObjectLink to observe property changes f
 ```ts
 class ClassA {
   a: number;
+
   constructor(a: number) {
     this.a = a;
   }
-  getA() : number {
-    return this.a; }
-  setA( a: number ) : void {
-    this.a = a; }
+
+  getA(): number {
+    return this.a;
+  }
+
+  setA(a: number): void {
+    this.a = a;
+  }
 }
 
 @Observed
 class ClassC {
   c: number;
+
   constructor(c: number) {
     this.c = c;
   }
-  getC() : number {
-    return this.c; }
-  setC(c : number) : void {
-    this.c = c; }
+
+  getC(): number {
+    return this.c;
+  }
+
+  setC(c: number): void {
+    this.c = c;
+  }
 }
 
 class ClassB extends ClassA {
@@ -721,57 +754,64 @@ class ClassB extends ClassA {
     this.c = new ClassC(c);
   }
 
-  getB() : number {
-    return this.b; }
-  setB(b : number) : void {
-    this.b = b; }
-  getC() : number {
-    return this.c.getC(); }
-  setC(c : number) : void {
-    return this.c.setC(c); }
+  getB(): number {
+    return this.b;
+  }
+
+  setB(b: number): void {
+    this.b = b;
+  }
+
+  getC(): number {
+    return this.c.getC();
+  }
+
+  setC(c: number): void {
+    return this.c.setC(c);
+  }
 }
 
 @Component
 struct ViewClassC {
+  @ObjectLink c: ClassC;
 
-    @ObjectLink c : ClassC;
-    build() {
-        Column({space:10}) {
-            Text(`c: ${this.c.getC()}`)
-            Button("Change C")
-                .onClick(() => {
-                    this.c.setC(this.c.getC()+1);
-                })
-        }
+  build() {
+    Column({ space: 10 }) {
+      Text(`c: ${this.c.getC()}`)
+      Button("Change C")
+        .onClick(() => {
+          this.c.setC(this.c.getC() + 1);
+        })
     }
+  }
 }
 
 @Entry
 @Component
 struct MyView {
-    @State b : ClassB = new ClassB(10, 20, 30);
+  @State b: ClassB = new ClassB(10, 20, 30);
 
-    build() {
-        Column({space:10}) {
-            Text(`a: ${this.b.a}`)
-             Button("Change ClassA.a")
-            .onClick(() => {
-                this.b.a +=1;
-            })
+  build() {
+    Column({ space: 10 }) {
+      Text(`a: ${this.b.a}`)
+      Button("Change ClassA.a")
+        .onClick(() => {
+          this.b.a += 1;
+        })
 
-            Text(`b: ${this.b.b}`)
-            Button("Change ClassB.b")
-            .onClick(() => {
-                this.b.b += 1;
-            })
+      Text(`b: ${this.b.b}`)
+      Button("Change ClassB.b")
+        .onClick(() => {
+          this.b.b += 1;
+        })
 
-            ViewClassC({c: this.b.c})   // Equivalent to Text(`c: ${this.b.c.c}`)
-            Button("Change ClassB.ClassC.c")
-            .onClick(() => {
-                this.b.c.c += 1;
-            })
-        }
-     }
+      ViewClassC({ c: this.b.c }) // Equivalent to Text(`c: ${this.b.c.c}`)
+      Button("Change ClassB.ClassC.c")
+        .onClick(() => {
+          this.b.c.c += 1;
+        })
+    }
+  }
 }
 ```
 
@@ -1274,4 +1314,160 @@ The following figure shows the copy relationship.
 
 
 ![en-us_image_0000001653949465](figures/en-us_image_0000001653949465.png)
-<!--no_check-->
+
+### Member Variable Changes in the @Observed Decorated Class Constructor Not Taking Effect
+
+In state management, @Observed decorated classes are wrapped with a proxy. When a member variable of a class is changed in a component, the proxy intercepts the change. When the value in the data source is changed, the proxy notifies the bound component of the change. In this way, the change can be observed and trigger UI re-rendering. If the value change of a member variable occurs in the class constructor, the change does not pass through the proxy (because the change occurs in the data source). Therefore, even if the change is successful with a timer in the class constructor, the UI cannot be re-rendered.
+
+[Nonexample]
+
+```ts
+@Observed
+class RenderClass {
+  waitToRender: boolean = false;
+
+  constructor() {
+    setTimeout(() => {
+      this.waitToRender = true;
+      console.log("change waitToRender to " + this.waitToRender);
+    }, 1000)
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  @State @Watch('renderClassChange') renderClass: RenderClass = new RenderClass();
+  @State textColor: Color = Color.Black;
+
+  renderClassChange() {
+    console.log("Render Class Change waitToRender is " + this.renderClass.waitToRender);
+  }
+
+  build() {
+    Row() {
+      Column() {
+        Text("Render Class waitToRender is " + this.renderClass.waitToRender)
+          .fontSize(20)
+          .fontColor(this.textColor)
+        Button("Show")
+          .onClick(() => {
+            // It is not recommended to use other state variables to forcibly re-render the UI. This example is used to check whether the value of waitToRender is updated.
+            this.textColor = Color.Red;
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+In the preceding example, a timer is used in the constructor of **RenderClass**. Though the value of **waitToRender** changes 1 second later, the UI is not re-rendered. After the button is clicked to forcibly refresh the **\<Text>** component, you can see that the value of **waitToRender** is changed to **true**.
+
+[Example]
+
+```ts
+@Observed
+class RenderClass {
+  waitToRender: boolean = false;
+
+  constructor() {
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  @State @Watch('renderClassChange') renderClass: RenderClass = new RenderClass();
+
+  renderClassChange() {
+    console.log("Render Class Change waitToRender is " + this.renderClass.waitToRender);
+  }
+
+  onPageShow() {
+    setTimeout(() => {
+      this.renderClass.waitToRender = true;
+      console.log("change waitToRender to " + this.renderClass.waitToRender);
+    }, 1000)
+  }
+
+  build() {
+    Row() {
+      Column() {
+        Text("Render Class Wait To Render is " + this.renderClass.waitToRender)
+          .fontSize(20)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+In the preceding example, the timer is moved to the component. In this case, the page content changes from "Render Class Change waitToRender is false" to "Render Class Change waitToRender is true" when the timer is triggered.
+
+In sum, it is recommended that you change the class members decorated by @Observed in components to implement UI re-rendering.
+
+### Using the static Method for Initialization in an @Observed Decorated Class
+
+In an @Observed decorated class, avoid using the static method for initialization, because it will cause the @Observed implementation to be bypassed, as a result of which, the class object cannot be wrapped in a proxy and the UI is not re-rendered.
+
+```ts
+@Entry
+@Component
+struct MainPage {
+  @State viewModel: ViewModel = ViewModel.build();
+
+  build() {
+    Column() {
+      Button("Click")
+        .onClick((event) => {
+          this.viewModel.subViewModel.isShow = !this.viewModel.subViewModel.isShow;
+        })
+      SubComponent({ viewModel: this.viewModel.subViewModel })
+    }
+    .padding({ top: 60 })
+    .width('100%')
+    .alignItems(HorizontalAlign.Center)
+  }
+}
+
+@Component
+struct SubComponent {
+  @ObjectLink viewModel: SubViewModel;
+
+  build() {
+    Column() {
+      if (this.viewModel.isShow) {
+        Text("click to take effect");
+      }
+    }
+  }
+}
+
+class ViewModel {
+  subViewModel: SubViewModel = SubViewModel.build(); // Create a static method.
+
+  static build() {
+    console.log("ViewModel build()")
+    return new ViewModel();
+  }
+}
+
+@Observed
+class SubViewModel {
+  isShow?: boolean = false;
+
+  static build() {
+    // Only the static method in SubViewModel can be used to create objects, which affects linkage.
+    console.log("SubViewModel build()")
+    let viewModel = new SubViewModel();
+    return viewModel;
+  }
+}
+```
+
+In the preceding example, the static method is used for initialization in the custom component **ViewModel**. In this case, when you click **Click**, **click to take effect** is not displayed on the page.
+
+In conclusion, avoid using the static method for initialization in an @Observed decorated class.

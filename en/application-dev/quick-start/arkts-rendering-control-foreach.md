@@ -210,10 +210,10 @@ struct ArticleList {
 
   build() {
     Column() {
-      ForEach(this.simpleList, (item: string) => {
+      ForEach(this.simpleList, (item: number) => {
         ArticleSkeletonView()
           .margin({ top: 20 })
-      }, (item: string) => item)
+      }, (item: number) => item.toString())
     }
     .padding(20)
     .width('100%')
@@ -540,9 +540,9 @@ struct ChildItem {
 }
 ```
 
-The following figure shows the initial screen (on the left) and the screen after **Insert Item After First Item** is clicked (on the right).
+The following figure shows the initial screen and the screen after **Insert Item After First Item** is clicked.
 
-**Figure 8** Rendering result not as expecte
+**Figure 8** Rendering result not as expected
 
 ![ForEach-UnexpectedRenderingResult](figures/ForEach-UnexpectedRenderingResult.gif)
 
@@ -600,7 +600,7 @@ struct ChildItem {
 }
 ```
 
-The following figure shows the initial screen (on the left) and the screen after **Insert Item After First Item** is clicked (on the right).
+The following figure shows the initial screen and the screen after **Insert Item After First Item** is clicked.
 
 **Figure 9** Deteriorated rendering performance
 

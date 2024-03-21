@@ -1,7 +1,7 @@
 # \@Provide and \@Consume Decorators: Two-Way Synchronization with Descendant Components
 
 
-\@Provide and \@Consume are used for two-way data synchronization with descendant components in scenarios where state data needs to be transferred between multiple levels. They do not involve passing a variable from component to component multiple times.
+\@Provide and \@Consume are used for two-way data synchronization with descendant components when state data needs to be transferred between multiple levels. They do not involve passing a variable from component to component multiple times.
 
 
 An \@Provide decorated state variable exists in the ancestor component and is said to be "provided" to descendent components. An \@Consume decorated state variable is used in a descendent component. It is linked to ("consumes") the provided state variable in its ancestor component.
@@ -34,7 +34,7 @@ An \@Provide decorated state variable exists in the ancestor component and is sa
 ```
 
 
-When \@Provide and \@Consume are bound through the same variable name or variable alias, the variables decorated by \@Provide and \@Consume are in a one-to-many relationship. A custom component, including its child components, cannot contain multiple \@Provide decorated variables under the same name or alias. Otherwise, a runtime error will occur.
+When \@Provide and \@Consume are bound through the same variable name or variable alias, the variables decorated by \@Provide and \@Consume are in a one-to-many relationship. A custom component, including its child components, should not contain multiple \@Provide decorated variables under the same name or alias. Otherwise, a runtime error will occur.
 
 
 ## Decorator Description
@@ -51,7 +51,7 @@ The rules of \@State also apply to \@Provide. The difference is that \@Provide a
 | \@Consume Decorator| Description                                      |
 | -------------- | ---------------------------------------- |
 | Decorator parameters         | Alias: constant string, optional.<br>If the alias is specified, the alias name is used for matching with the \@Provide decorated variable. Otherwise, the variable name is used.|
-| Synchronization type          | from the \@Provide decorated variable to all \@Consume decorated variables; and the other way around. The two-way synchronization behaviour is the same as that of the combination of \@State and \@Link.|
+| Synchronization type          | Two-way: from the \@Provide decorated variable to all \@Consume decorated variables; and the other way around. The two-way synchronization behaviour is the same as that of the combination of \@State and \@Link.|
 | Allowed variable types     | Object, class, string, number, Boolean, enum, and array of these types.<br>Date type.<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>**any** is not supported. The **undefined** and **null** values are not allowed.<br>The type must be specified. The type of the provided and the consumed variables must be the same.<br>**NOTE**<br>An \@Consume decorated variable must have a matching \@Provide decorated variable with the corresponding attribute and alias on its parent or ancestor node. |
 | Initial value for the decorated variable     | Forbidden.                              |
 
@@ -104,7 +104,6 @@ The rules of \@State also apply to \@Provide. The difference is that \@Provide a
 ```ts
 @Component
 struct CompD {
-
   @Consume selectedDate: Date;
 
   build() {
@@ -130,7 +129,6 @@ struct CompD {
 @Entry
 @Component
 struct CompA {
-
   @Provide selectedDate: Date = new Date('2021-08-08')
 
   build() {
@@ -227,49 +225,63 @@ struct CompA {
 }
 ```
 
-## Union Type @Provide and @Consume
 
-@Provide and @Consume support **undefined**, **null**, and union types. In the following example, the type of **count** is string | undefined. If the attribute or type of **count** is changed when the button in the **Parent** component is clicked, the change will be synced to the child component.
+## FAQs
+
+### \@Provide Not Defined Error in the Case of a \@BuilderParam Trailing Closure
+
+In the following example, when **CustomWidget** executes **this.builder()** to create the child component **CustomWidgetChild**, **this** points to **HomePage**. As such, the \@Provide decorated variable of **CustomWidget** cannot be found, and an error is thrown. In light of this, exercise caution with **this** when using \@BuilderParam.
+
+Nonexample:
 
 ```ts
-@Component
-struct Child {
-  // The @Consume decorated variable is bound to the @Provide decorated variable in its ancestor component Ancestors under the same attribute name.
-  @Consume count: string | undefined;
-
-  build() {
-    Column() {
-      Text(`count(${this.count})`)
-      Button(`count(${this.count}), Child`)
-        .onClick(() => this.count = 'Ancestors')
-    }
-    .width('50%')
-  }
-}
-
-@Component
-struct Parent {
-  build() {
-    Row({ space: 5 }) {
-      Child()
-    }
-  }
+class Tmp {
+  a: string = ''
 }
 
 @Entry
 @Component
-struct Ancestors {
-  // The @Provide decorated variable count of the union type is provided by the entry component Ancestors for its descendant components.
-  @Provide count: string | undefined = 'Child';
-
+struct HomePage {
+  @Builder
+  builder2($$: Tmp) {
+    Text(`${$$.a}Test`)
+  }
   build() {
     Column() {
-      Button(`count(${this.count}), Child`)
-        .onClick(() => this.count = undefined)
-      Parent()
+      CustomWidget() {
+        CustomWidgetChild({ builder: this.builder2 })
+      }
+    }
+  }
+}
+@Component
+struct CustomWidget {
+  @Provide('a') a: string = 'abc';
+  @BuilderParam
+  builder: () => void;
+  build() {
+    Column() {
+      Button('Hello').onClick((x) => {
+        if (this.a == 'ddd') {
+          this.a = 'abc';
+        }
+        else {
+          this.a = 'ddd';
+        }
+      })
+      this.builder()
+    }
+  }
+}
+@Component
+struct CustomWidgetChild {
+  @Consume('a') a: string;
+  @BuilderParam
+  builder: ($$: Tmp) => void;
+  build() {
+    Column() {
+      this.builder({ a: this.a })
     }
   }
 }
 ```
-
-<!--no_check-->
