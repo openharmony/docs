@@ -31,6 +31,7 @@
 3. 开启蓝牙。
 4. 关闭蓝牙。
 5. 示例代码：
+
 ```ts
 import access from '@ohos.bluetooth.access';
 import { BusinessError } from '@ohos.base';
@@ -107,6 +108,7 @@ access.on('stateChange', (data) => {
   console.info("bluetooth statues: " + btStateMessage);
 })
 ```
+
 6. 错误码请参见[蓝牙服务子系统错误码](../../reference/apis-connectivity-kit/errorcode-bluetoothManager.md)。
 7. 如何验证：
 执行开启蓝牙代码，记录日志“bluetooth statues: STATE_ON”，则表示开启蓝牙成功。执行关闭蓝牙代码，记录日志“bluetooth statues: STATE_OFF”，则表示蓝牙关闭成功。
