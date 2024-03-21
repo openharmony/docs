@@ -2273,7 +2273,7 @@ updateRotation(rotation: number): Promise\<void>
 
 应当注意，填入的角度仅能为 [0, 90, 180, 270] 四个角度中的一个。
 
-需在[prepare()](#prepare9-3)事件成功触发后，才能调用updateRotation方法。
+需在[prepare()](#prepare9-3)事件成功触发后，以及在[start()](#start9)之前，才能调用updateRotation方法。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
