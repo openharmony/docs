@@ -847,7 +847,7 @@ image.createPixelMap(color, initializationOptions).then((pixelMap: image.PixelMa
 ```
 ## window.getSnapshot<sup>12+</sup>
 
-window.getSnapshot(windowId: number): Promise<image.pixelMap>;
+window.getSnapshot(windowId: number): Promise<image.PixelMap>;
 
 获取指定窗口截图，使用Promise异步回调
 
@@ -862,7 +862,7 @@ window.getSnapshot(windowId: number): Promise<image.pixelMap>;
 **返回值：**
 | 类型                    | 说明                            |
 | ----------------------- | ------------------------------- |
-| [image.pixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | Promise对象。返回指定窗口截图。 |
+| Promise<[image.PixelMap]>(../apis-image-kit/js-apis-image.md#pixelmap7) | Promise对象。返回指定窗口截图。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
@@ -880,7 +880,7 @@ import image from '@ohos.multimedia.image';
 try {
   let windowId: number = window.Window.getWindowProperties().id;
   let promise = window.getSnapshot(windowId);
-  promise.then((pixelMap: image.pixelMap) => {
+  promise.then((pixelMap: image.PixelMap) => {
     console.info('Succeeded in getting snapshot window. Pixel bytes number:' + pixelMap.getPixelBytesNumber());
     pixelMap.release();
   }).catch((err: BusinessError) =>{
