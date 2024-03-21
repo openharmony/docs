@@ -252,7 +252,7 @@ setScreenOffTime(timeout: number): void
 
 | 参数名    | 类型     | 必填   | 说明    |
 | ------ | ------ | ---- | ----- |
-| timeout | number | 是    | 熄屏超时时间。 |
+| timeout | number | 是    | 熄屏超时时间，单位是毫秒，大于0代表熄屏超时时间，-1代表恢复默认超时时间，其它是无效值。 |
 
 **错误码：**
 
@@ -263,6 +263,7 @@ setScreenOffTime(timeout: number): void
 | 4900101 | If connecting to the service failed. |
 | 201 | If the permission is denied. |
 | 202 | If the system permission is denied. |
+| 1 | Other unknown reason. |
 
 **示例：**
 
