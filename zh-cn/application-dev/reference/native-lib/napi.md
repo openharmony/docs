@@ -178,3 +178,5 @@ OpenHarmony的N-API组件对Node-API的接口进行了重新实现，底层对�
 |FUNC|napi_create_object_with_properties|使用给定的napi_property_descriptor创建js `Object`。descriptor的键名必须为 string，且不可转为number。|11|
 |FUNC|napi_create_object_with_named_properties|使用给定的napi_value和键名创建js `Object`。键名必须为 string，且不可转为number。|11|
 |FUNC|napi_coerce_to_native_binding_object|强制将js `Object`和Native对象绑定。|11|
+|FUNC|napi_run_event_loop|触发底层的事件循环。|12|
+|FUNC|napi_stop_event_loop|停止底层的事件循环。|12|
