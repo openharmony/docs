@@ -5,19 +5,11 @@
 
 视频编码参数。
 
-> **说明：** 
-> 
-> 预留接口，将在后续版本提供。
+**系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
-**系统能力**：SystemCapability.Multimedia.Media.AVScreenCapture
+**起始版本：** 10
 
-**起始版本：**
-
-10
-
-**相关模块:**
-
-[AVScreenCapture](_a_v_screen_capture.md)
+**相关模块：**[AVScreenCapture](_a_v_screen_capture.md)
 
 
 ## 汇总
@@ -27,9 +19,9 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [videoCodec](#videocodec) | [OH_VideoCodecFormat](_a_v_screen_capture.md#oh_videocodecformat)<br/>视频采集编码格式。 | 
-| [videoBitrate](#videobitrate) | int32_t<br/>视频采集比特率。 | 
-| [videoFrameRate](#videoframerate) | int32_t<br/>视频采集帧率。 | 
+| [OH_VideoCodecFormat](_a_v_screen_capture.md#oh_videocodecformat) [videoCodec](#videocodec) | 视频采集编码格式。 | 
+| int32_t [videoBitrate](#videobitrate) | 视频采集比特率。 | 
+| int32_t [videoFrameRate](#videoframerate) | 视频采集帧率。 | 
 
 
 ## 结构体成员变量说明
@@ -41,7 +33,7 @@
 int32_t OH_VideoEncInfo::videoBitrate
 ```
 
-**描述:**
+**描述**
 
 视频采集比特率。
 
@@ -52,7 +44,7 @@ int32_t OH_VideoEncInfo::videoBitrate
 OH_VideoCodecFormat OH_VideoEncInfo::videoCodec
 ```
 
-**描述:**
+**描述**
 
 视频采集编码格式。
 
@@ -63,6 +55,6 @@ OH_VideoCodecFormat OH_VideoEncInfo::videoCodec
 int32_t OH_VideoEncInfo::videoFrameRate
 ```
 
-**描述:**
+**描述**
 
 视频采集帧率。
