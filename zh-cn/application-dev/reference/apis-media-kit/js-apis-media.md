@@ -2265,15 +2265,15 @@ avRecorder.getInputSurface().then((surfaceId: string) => {
 });
 ```
 
-### updateRecordRotation<sup>12+</sup>
+### updateRotation<sup>12+</sup>
 
-updateRecordRotation(rotation: number): Promise\<void>
+updateRotation(rotation: number): Promise\<void>
 
 更新视频旋转角度
 
-应当注意，填入的角度仅能为 [ 0, 90, 180, 270 ] 四个角度中的一个。
+应当注意，填入的角度仅能为 [0, 90, 180, 270] 四个角度中的一个。
 
-需在[prepare()](#prepare9-3)事件成功触发后，才能调用updateRecordRotation方法。
+需在[prepare()](#prepare9-3)事件成功触发后，才能调用updateRotation方法。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
@@ -2281,7 +2281,7 @@ updateRecordRotation(rotation: number): Promise\<void>
 
 | 类型             | 说明                             |
 | ---------------- | -------------------------------- |
-| Promise\<string> | 异步返回函数执行结果。 |
+| Promise\<void> | 异步返回函数执行结果。 |!
 
 **错误码：**
 
@@ -2289,6 +2289,7 @@ updateRecordRotation(rotation: number): Promise\<void>
 
 | 错误码ID | 错误信息                               |
 | -------- | -------------------------------------- |
+|   401    | Parameter error. Return by callback.   |
 | 5400102  | Operate not permit. Return by promise. |
 | 5400103  | IO error. Return by promise.           |
 | 5400105  | Service died. Return by promise.       |
@@ -2300,10 +2301,10 @@ import { BusinessError } from '@ohos.base';
 
 let rotation = 90
 
-avRecorder.updateRecordRotation(rotation).then(() => {
-  console.info('updateRecordRotation success');
+avRecorder.updateRotation(rotation).then(() => {
+  console.info('updateRotation success');
 }).catch((err: BusinessError) => {
-  console.error('updateRecordRotation failed and catch error is ' + err.message);
+  console.error('updateRotation failed and catch error is ' + err.message);
 });
 ```
 
