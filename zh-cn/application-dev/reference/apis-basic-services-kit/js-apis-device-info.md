@@ -29,7 +29,7 @@ import deviceInfo from '@ohos.deviceInfo';
 | productModel | string | 是 | 否 | 认证型号。 |
 | softwareModel | string | 是 | 否 | 内部软件子型号。 |
 | hardwareModel | string | 是 | 否 | 硬件版本号。 |
-| hardwareProfile | string | 是 | 否 | 硬件Profile。 |
+| hardwareProfile<sup>(deprecated) </sup> | string | 是 | 否 | 硬件Profile。<br/>**说明**：<br/>从API version 6 开始支持，从API version 9 开始废弃。 |
 | serial | string | 是 | 否 | 设备序列号,仅限系统应用使用。<br/>**使用权限**：ohos.permission.sec.ACCESS_UDID |
 | bootloaderVersion | string | 是 | 否 | Bootloader版本号。 |
 | abiList | string | 是 | 否 | 应用二进制接口（Abi）列表。 |
@@ -55,6 +55,7 @@ import deviceInfo from '@ohos.deviceInfo';
 | distributionOSVersion<sup>10+</sup> | String | 是 | 否 | 发行版系统版本号。 |
 | distributionOSApiVersion<sup>10+</sup> | number| 是 | 否 | 发行版系统api版本。 |
 | distributionOSReleaseType<sup>10+</sup> | String | 是 | 否 | 发行版系统类型。 |
+| ODID<sup>12+</sup> | String | 是 | 否 | 开发者匿名设备标识符。 |
 
 **示例**
 
@@ -162,5 +163,8 @@ import deviceInfo from '@ohos.deviceInfo';
 
     let distributionOSReleaseType: string = deviceinfo.distributionOSReleaseType
     console.info('the value of the deviceinfo distributionOSReleaseType is :' + distributionOSReleaseType);
+
+    let odid: string = deviceinfo.ODID;
+    console.info('the value of the deviceinfo odid is :' + odid);
 
 ```
