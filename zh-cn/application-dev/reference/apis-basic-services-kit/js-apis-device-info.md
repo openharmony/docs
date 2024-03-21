@@ -29,7 +29,7 @@ import deviceInfo from '@ohos.deviceInfo';
 | productModel | string | 是 | 否 | 认证型号。 |
 | softwareModel | string | 是 | 否 | 内部软件子型号。 |
 | hardwareModel | string | 是 | 否 | 硬件版本号。 |
-| hardwareProfile<sup>(deprecated) </sup> | string | 是 | 否 | 硬件Profile。<br/>说明<br/>>从API version 6 开始支持，从API version 9 开始废弃。 |
+| hardwareProfile<sup>(deprecated) </sup> | string | 是 | 否 | 硬件Profile。<br/>**说明**：<br/>>从API version 6 开始支持，从API version 9 开始废弃。 |
 | serial | string | 是 | 否 | 设备序列号,仅限系统应用使用。<br/>**使用权限**：ohos.permission.sec.ACCESS_UDID |
 | bootloaderVersion | string | 是 | 否 | Bootloader版本号。 |
 | abiList | string | 是 | 否 | 应用二进制接口（Abi）列表。 |
