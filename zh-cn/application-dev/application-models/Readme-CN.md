@@ -21,8 +21,6 @@
       - [WindowExtensionAbility（仅对系统应用开放）](windowextensionability.md)
       - [EnterpriseAdminExtensionAbility](enterprise-extensionAbility.md)
       - [DriverExtensionAbility](driverextensionability.md)
-    - 服务卡片开发指导（Stage模型）
-      - [服务卡片概述](service-widget-overview.md)
     - [AbilityStage组件容器](abilitystage.md)
     - [应用上下文Context](application-context-stage.md)
     - 信息传递载体Want
