@@ -237,6 +237,32 @@ typedef bool(* OnWillDismissEvent) (int32_t reason)
 **起始版本：** 12
 
 
+### ArkUI_GestureDirectionMask
+
+```
+typedef uint32_t ArkUI_GestureDirectionMask
+```
+**描述：**
+
+定义滑动手势方向集合。
+
+**起始版本：** 12
+
+
+### ArkUI_GestureEventActionTypeMask
+
+```
+typedef uint32_t ArkUI_GestureEventActionTypeMask
+```
+**描述：**
+
+定义手势事件类型集合
+
+例：ArkUI_GestureEventActionTypeMask actions = GESTURE_EVENT_ACTION_ACCEPT | GESTURE_EVENT_ACTION_UPDATE;
+
+**起始版本：** 12
+
+
 ## 枚举类型说明
 
 
@@ -1978,6 +2004,140 @@ enum ArkUI_DismissReason
 | DIALOG_DISMISS_TOUCH_OUTSIDE  | 点击遮障层触发。&nbsp;&nbsp; | 
 
 
+### ArkUI_GestureDirection
+
+```
+enum ArkUI_GestureDirection
+```
+**描述：**
+
+定义滑动手势方向。
+
+**起始版本：** 12
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| GESTURE_DIRECTION_ALL  | 所有方向。&nbsp;&nbsp; | 
+| GESTURE_DIRECTION_HORIZONTAL  | 水平方向。&nbsp;&nbsp; | 
+| GESTURE_DIRECTION_VERTICAL  | 竖直方向。&nbsp;&nbsp; | 
+| GESTURE_DIRECTION_LEFT  | 向左方向。&nbsp;&nbsp; | 
+| GESTURE_DIRECTION_RIGHT  | 向右方向。&nbsp;&nbsp; | 
+| GESTURE_DIRECTION_UP  | 向上方向。&nbsp;&nbsp; | 
+| GESTURE_DIRECTION_DOWN  | 向下方向。&nbsp;&nbsp; | 
+| GESTURE_DIRECTION_NONE  | 任何方向都不触发手势事件。&nbsp;&nbsp; | 
+
+
+### ArkUI_GestureEventActionType
+
+```
+enum ArkUI_GestureEventActionType
+```
+**描述：**
+
+定义手势事件类型。
+
+**起始版本：** 12
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| GESTURE_EVENT_ACTION_ACCEPT  | 手势事件触发。&nbsp;&nbsp; | 
+| GESTURE_EVENT_ACTION_UPDATE  | 手势事件更新。&nbsp;&nbsp; | 
+| GESTURE_EVENT_ACTION_END  | 手势事件结束。&nbsp;&nbsp; | 
+| GESTURE_EVENT_ACTION_CANCEL  | 手势事件取消。&nbsp;&nbsp; | 
+
+
+### ArkUI_GestureInterruptResult
+
+```
+enum ArkUI_GestureInterruptResult
+```
+**描述：**
+
+定义手势打断结果。
+
+**起始版本：** 12
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| GESTURE_INTERRUPT_RESULT_CONTINUE  | 手势继续。&nbsp;&nbsp; | 
+| GESTURE_INTERRUPT_RESULT_REJECT  | 手势打断。&nbsp;&nbsp; | 
+
+
+### ArkUI_GestureMask
+
+```
+enum ArkUI_GestureMask
+```
+**描述：**
+
+定义手势屏蔽模式
+
+**起始版本：** 12
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| NORMAL_GESTURE_MASK  | 不屏蔽子组件的手势，按照默认手势识别顺序进行识别。&nbsp;&nbsp; | 
+| IGNORE_INTERNAL_GESTURE_MASK  | 屏蔽子组件的手势，包括子组件上系统内置的手势。&nbsp;&nbsp; | 
+
+
+### ArkUI_GesturePriority
+
+```
+enum ArkUI_GesturePriority
+```
+**描述：**
+
+定义手势事件模式
+
+**起始版本：** 12
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| NORMAL  | 正常手势。&nbsp;&nbsp; | 
+| PRIORITY  | 高优先级手势。&nbsp;&nbsp; | 
+| PARALLEL  | 并发手势。&nbsp;&nbsp; | 
+
+
+### ArkUI_GestureRecognizerType
+
+```
+enum ArkUI_GestureRecognizerType
+```
+**描述：**
+
+定义手势类型
+
+**起始版本：** 12
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| TAP_GESTURE  | 敲击手势。&nbsp;&nbsp; | 
+| LONG_PRESS_GESTURE  | 长按手势。&nbsp;&nbsp; | 
+| PAN_GESTURE  | 拖动手势。&nbsp;&nbsp; | 
+| PINCH_GESTURE  | 捏合手势。&nbsp;&nbsp; | 
+| ROTATION_GESTURE  | 旋转手势。&nbsp;&nbsp; | 
+| SWIPE_GESTURE  | 滑动手势。&nbsp;&nbsp; | 
+| GROUP_GESTURE  | 手势组合。&nbsp;&nbsp; | 
+
+
+### ArkUI_GroupGestureMode
+
+```
+enum ArkUI_GroupGestureMode
+```
+**描述：**
+
+定义手势组事件模式。
+
+**起始版本：** 12
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| PARALLEL_GROUP  | 并发手势模式，注册的手势同时识别，直到所有手势识别结束，手势识别互相不影响。&nbsp;&nbsp; | 
+| EXCLUSIVE_GROUP  | 互斥手势模式，注册的手势同时识别，若有一个手势识别成功，则结束手势识别。&nbsp;&nbsp; | 
+
+
+
 ## 函数说明
 
 
@@ -2467,3 +2627,377 @@ int32_t ArkUI_NativeDialogAPI_1::version
 **描述：**
 
 结构体版本。
+
+
+### OH_ArkUI_GestureEvent_GetActionType()
+
+```
+ArkUI_GestureEventActionType OH_ArkUI_GestureEvent_GetActionType (const ArkUI_GestureEvent * event)
+```
+**描述：**
+
+返回手势事件类型。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 手势事件。  | 
+
+**返回：**
+
+手势事件类型。
+
+
+### OH_ArkUI_GestureEvent_GetRawInputEvent()
+
+```
+const ArkUI_UIInputEvent* OH_ArkUI_GestureEvent_GetRawInputEvent (const ArkUI_GestureEvent * event)
+```
+**描述：**
+
+返回手势输入。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 手势事件。  | 
+
+**返回：**
+
+手势事件的原始输入事件。
+
+
+### OH_ArkUI_GestureInterruptInfo_GetGestureEvent()
+
+```
+ArkUI_GestureEvent* OH_ArkUI_GestureInterruptInfo_GetGestureEvent (const ArkUI_GestureInterruptInfo * event)
+```
+**描述：**
+
+返回打断的手势事件数据。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 打断回调事件。  | 
+
+**返回：**
+
+打断的手势事件数据。
+
+
+### OH_ArkUI_GestureInterruptInfo_GetRecognizer()
+
+```
+ArkUI_GestureRecognizer* OH_ArkUI_GestureInterruptInfo_GetRecognizer (const ArkUI_GestureInterruptInfo * event)
+```
+**描述：**
+
+返回被打断的手势指针。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 打断回调事件。  | 
+
+**返回：**
+
+被打断的手势指针。
+
+
+### OH_ArkUI_GestureInterruptInfo_GetSystemFlag()
+
+```
+bool OH_ArkUI_GestureInterruptInfo_GetSystemFlag (const ArkUI_GestureInterruptInfo * event)
+```
+**描述：**
+
+判断是否组件内置手势。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 手势打断回调事件。  | 
+
+**返回：**
+
+true: 系统内置手势； false: 非系统内置手势。
+
+
+### OH_ArkUI_LongPress_GetRepeatCount()
+
+```
+int32_t OH_ArkUI_LongPress_GetRepeatCount (const ArkUI_GestureEvent * event)
+```
+**描述：**
+
+返回长按手势定时触发次数。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 手势事件。  | 
+
+**返回：**
+
+长按手势定时触发次数。
+
+
+### OH_ArkUI_PanGesture_GetOffsetX()
+
+```
+float OH_ArkUI_PanGesture_GetOffsetX (const ArkUI_GestureEvent * event)
+```
+**描述：**
+
+滑动手势返回当前手势事件x轴相对偏移量。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 手势事件。  | 
+
+**返回：**
+
+当前手势事件x轴相对偏移量，单位为px。
+
+
+### OH_ArkUI_PanGesture_GetOffsetY()
+
+```
+float OH_ArkUI_PanGesture_GetOffsetY (const ArkUI_GestureEvent * event)
+```
+**描述：**
+
+滑动手势返回当前手势事件y轴相对偏移量。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 手势事件。  | 
+
+**返回：**
+
+当前手势事件y轴相对偏移量，单位为px。
+
+
+### OH_ArkUI_PanGesture_GetVelocity()
+
+```
+float OH_ArkUI_PanGesture_GetVelocity (const ArkUI_GestureEvent * event)
+```
+**描述：**
+
+滑动手势返回手势主方向速度。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 手势事件。  | 
+
+**返回：**
+
+当前手势主方向速度，为xy轴方向速度的平方和的算数平方根，单位px/秒。
+
+
+### OH_ArkUI_PanGesture_GetVelocityX()
+
+```
+float OH_ArkUI_PanGesture_GetVelocityX (const ArkUI_GestureEvent * event)
+```
+**描述：**
+
+滑动手势返回当前手势的x轴方向速度。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 手势事件。  | 
+
+**返回：**
+
+当前手势的x轴方向速度，单位px/秒。
+
+
+### OH_ArkUI_PanGesture_GetVelocityY()
+
+```
+float OH_ArkUI_PanGesture_GetVelocityY (const ArkUI_GestureEvent * event)
+```
+**描述：**
+
+滑动手势返回当前手势的y轴方向速度。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 手势事件。  | 
+
+**返回：**
+
+当前手势的y轴方向速度，单位px/秒。
+
+
+### OH_ArkUI_PinchGesture_GetCenterX()
+
+```
+float OH_ArkUI_PinchGesture_GetCenterX (const ArkUI_GestureEvent * event)
+```
+**描述：**
+
+捏合手势中心点相对于当前组件元素左上角x轴坐标。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 手势事件。  | 
+
+**返回：**
+
+捏合手势中心点相对于当前组件元素左上角x轴坐标，单位为px。
+
+
+### OH_ArkUI_PinchGesture_GetCenterY()
+
+```
+float OH_ArkUI_PinchGesture_GetCenterY (const ArkUI_GestureEvent * event)
+```
+**描述：**
+
+捏合手势中心点相对于当前组件元素左上角y轴坐标。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 手势事件。  | 
+
+**返回：**
+
+捏合手势中心点相对于当前组件元素左上角y轴坐标，单位为px。
+
+
+### OH_ArkUI_PinchGesture_GetScale()
+
+```
+float OH_ArkUI_PinchGesture_GetScale (const ArkUI_GestureEvent * event)
+```
+**描述：**
+
+捏合手势返回当前手势事件缩放信息。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 手势事件。  | 
+
+**返回：**
+
+缩放比例。
+
+
+### OH_ArkUI_RotationGesture_GetAngle()
+
+```
+float OH_ArkUI_RotationGesture_GetAngle (const ArkUI_GestureEvent * event)
+```
+**描述：**
+
+旋转手势返回当前手势事件角度信息。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 手势事件。  | 
+
+**返回：**
+
+旋转角度。
+
+
+### OH_ArkUI_SwipeGesture_GetAngle()
+
+```
+float OH_ArkUI_SwipeGesture_GetAngle (const ArkUI_GestureEvent * event)
+```
+**描述：**
+
+滑动手势返回当前手势事件角度信息。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 手势事件。  | 
+
+**返回：**
+
+滑动手势的角度，即两根手指间的线段与水平方向的夹角变化的度数。
+
+
+### OH_ArkUI_SwipeGesture_GetVelocity()
+
+```
+float OH_ArkUI_SwipeGesture_GetVelocity (const ArkUI_GestureEvent * event)
+```
+**描述：**
+
+滑动手势场景中所有手指滑动平均速度。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 手势事件。  | 
+
+**返回：**
+
+滑动手势速度，即所有手指滑动的平均速度，单位为px/秒。
