@@ -879,6 +879,7 @@ import { BusinessError } from '@ohos.base';
 import image from '@ohos.multimedia.image';
 try {
   // windowClass的获取需放在targetWindow之上
+  let windowClass: window.Window = window.findWindow("test");
   let targetWindow: window.Window = windowClass;
   let windowId: number = targetWindow.getWindowProperties().id;
   let promise = window.getSnapshot(windowId);
