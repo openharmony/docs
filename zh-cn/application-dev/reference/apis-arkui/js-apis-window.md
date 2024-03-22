@@ -3157,7 +3157,7 @@ private SetUIContent(windowClass: window.Window) {
 
 setWindowBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void
 
-设置屏幕亮度值，使用callback异步回调。
+允许应用窗口设置屏幕亮度值，使用callback异步回调。
 
 当前屏幕亮度规格：窗口设置屏幕亮度生效时，控制中心不可以调整系统屏幕亮度，窗口恢复默认系统亮度之后，控制中心可以调整系统屏幕亮度。
 
@@ -3203,7 +3203,7 @@ try {
 
 setWindowBrightness(brightness: number): Promise&lt;void&gt;
 
-设置屏幕亮度值，使用Promise异步回调。
+允许应用窗口设置屏幕亮度值，使用Promise异步回调。
 
 当前屏幕亮度规格：窗口设置屏幕亮度生效时，控制中心不可以调整系统屏幕亮度，窗口恢复默认系统亮度之后，控制中心可以调整系统屏幕亮度。
 
