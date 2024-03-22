@@ -3866,7 +3866,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 * 该示例分为两个模块：
   * 键盘布局
     * 在Index中完成键盘的总体布局。在components中自定不同的按键组件。
-    * 参考接口：[ArkTs声明式开发范式](kit-readme/Readme-ArkUI.md)
+    * 参考接口：[ArkTs声明式开发范式](ui/Readme-CN.md)
   * 输入法控制
     * 使用[@ohos.request](reference/apis-basic-services-kit/js-apis-request.md)中API 10接口agent.create创建上传任务，调用@ohos.request中的Task相关接口实现上传任务的创建、取消、进度加载，前台任务只支持单文件下载，后台任务支持多文件下载。使用[@ohos.file.fs](reference/apis-core-file-kit/js-apis-file-fs.md)完成指定路径的创建和查询已下载的文件。
     * 参考接口：[@ohos.inputMethodEngine](reference/apis-ime-kit/js-apis-inputmethodengine.md)
@@ -5148,12 +5148,12 @@ return formInfo.FormState.READY }。
 
 ##### 介绍
 
-本示例展示了[AccessibilityExtensionAbility](application-models/accessibilityextensionability.md)的简单应用，使用多个辅助功能接口，启动或关闭无障碍扩展服务，实现了一些快捷的交互方式。
+本示例展示了[AccessibilityExtensionAbility](accessibility/accessibilityextensionability.md)的简单应用，使用多个辅助功能接口，启动或关闭无障碍扩展服务，实现了一些快捷的交互方式。
 
 ##### 使用
 
 1. 在启动无障碍扩展服务前，需退出当前应用保证界面节点正常生成；
-2. 启动关闭无障碍扩展服务可参考[AccessibilityExtensionAbility开发指南](application-models/accessibilityextensionability.md), 服务连接状态将显示在屏幕上;
+2. 启动关闭无障碍扩展服务可参考[AccessibilityExtensionAbility开发指南](accessibility/accessibilityextensionability.md), 服务连接状态将显示在屏幕上;
 3. 启动无障碍扩展服务后，在设备屏幕上绘画右划后再下划的手势`rightThenDown`获取当前界面全部节点，之后绘画左划后再下划的手势`leftThenDown`打印所有节点的指定信息；
 4. 在设备屏幕上绘画左划手势`left`对按钮`获焦`进行聚焦，之后可通过绘画右划手势`right`取消对按钮聚焦；
 5. 在设备屏幕上绘画下划手势`down`，触发对按钮`未点击/已点击`的点击动作。
