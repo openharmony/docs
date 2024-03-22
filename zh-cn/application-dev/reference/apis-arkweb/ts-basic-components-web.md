@@ -1737,7 +1737,8 @@ nestedScroll(value: NestedScrollOptions)
 > - 设置向前向后两个方向上的嵌套滚动模式，实现与父组件的滚动联动。
 > - 支持设置不同的向前向后两个方向上的嵌套滚动模式。
 > - 默认scrollForward和scrollBackward模式为NestedScrollMode.SELF_FIRST。
-> - 目前支持嵌套滚动的容器为：Grid、List、Scroll、Swiper、Tabs、WaterFlow。
+> - 支持嵌套滚动的容器：Grid、List、Scroll、Swiper、Tabs、WaterFlow。
+> - 支持嵌套滚动的输入事件：使用手势、鼠标、触控板。
 
 **参数：**
 
