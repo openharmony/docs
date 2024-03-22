@@ -8,7 +8,7 @@
 
 ## onClick
 
-onClick(event: (event: ClickEvent) => void)
+onClick(event: (event: ClickEvent) => void): T
 
 点击动作触发该回调。
 
@@ -21,6 +21,12 @@ onClick(event: (event: ClickEvent) => void)
 | 参数名 | 类型                              | 必填 | 说明                 |
 | ------ | --------------------------------- | ---- | -------------------- |
 | event  | [ClickEvent](#clickevent对象说明) | 是   | 获得[ClickEvent](#clickevent对象说明)对象。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
 
 ## ClickEvent对象说明
 

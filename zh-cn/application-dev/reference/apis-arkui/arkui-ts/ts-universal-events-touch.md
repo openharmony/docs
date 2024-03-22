@@ -8,7 +8,7 @@
 
 ## onTouch
 
-onTouch(event: (event: TouchEvent) => void)
+onTouch(event: (event: TouchEvent) => void): T
 
 手指触摸动作触发该回调。
 
@@ -21,6 +21,12 @@ onTouch(event: (event: TouchEvent) => void)
 | 参数名 | 类型                              | 必填 | 说明                 |
 | ------ | --------------------------------- | ---- | -------------------- |
 | event  | [TouchEvent](#touchevent对象说明) | 是   | 获得TouchEvent对象。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
 
 ## TouchEvent对象说明
 
