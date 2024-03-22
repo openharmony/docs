@@ -313,7 +313,7 @@ Defines the mouse event data.
 
 | Name       | Type  | Readable  | Writable  | Description     |
 | --------- | ------ | ---- | ---- | ------- |
-| mouseEvent | [MouseEvent](js-apis-mouseevent.md) | Yes   |  No| Mouse event data.  |
+| mouseEvent | [MouseEvent](js-apis-mouseevent.md#mouseevent) | Yes   |  No| Mouse event data.  |
 
 ## TouchEventData<sup>11+</sup>
 
@@ -323,4 +323,4 @@ Defines the touchscreen event data.
 
 | Name       | Type  | Readable  | Writable  | Description     |
 | --------- | ------ | ---- | ---- | ------- |
-| touchEvent | [TouchEvent](js-apis-touchevent.md) | Yes   |  No| Touchscreen event data  |
+| touchEvent | [TouchEvent](js-apis-touchevent.md#touchevent) | Yes   |  No| Touchscreen event data  |

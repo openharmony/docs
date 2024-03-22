@@ -39,7 +39,7 @@ ws.on('open', (err:BusinessError, value: Object) => {
     }
   });
 });
-ws.on('message',(BusinessError<void>, value: string | ArrayBuffer) => {
+ws.on('message',(error: BusinessError, value: string | ArrayBuffer) => {
   console.log("on message, message:" + value);
   // When receiving the `bye` message (the actual message name may differ) from the server, the client proactively disconnects from the server.
   if (value === 'bye') {
@@ -760,6 +760,58 @@ let ws = webSocket.createWebSocket();
 ws.off('dataEnd');
 ```
 
+### on('headerReceive')<sup>12+</sup>
+
+on(type: 'headerReceive', callback: Callback\<ResponseHeaders\>): void
+
+Registers an observer for HTTP Response Header events. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  |        Type      | Mandatory|                Description                   |
+| -------- | ---------------- | ---- | -------------------------------------- |
+| type     | string           | Yes  | Event type. The value is **headerReceive**.|
+| callback | Callback\<ResponseHeaders\> | Yes  | Callback used to return the result.                            |
+
+**Example**
+
+```ts
+import webSocket from '@ohos.net.webSocket';
+
+let ws = webSocket.createWebSocket();
+ws.on('headerReceive', (data) => {
+  console.log("on headerReceive " + JSON.stringify(data));
+});
+```
+
+### off('headerReceive')<sup>12+</sup>
+
+off(type: 'headerReceive', callback?: Callback\<ResponseHeaders\>): void
+
+Unregisters the observer for HTTP Response Header events. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+> You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  |        Type      | Mandatory|                Description                   |
+| -------- | ---------------- | ---- | -------------------------------------- |
+| type     | string           | Yes  | Event type. The value is **headerReceive**.|
+| callback | Callback\<ResponseHeaders\> | No  | Callback used to return the result.                          |
+
+**Example**
+
+```ts
+import webSocket from '@ohos.net.webSocket';
+let ws = webSocket.createWebSocket();
+ws.off('headerReceive');
+```
+
 ## WebSocketRequestOptions
 
 Defines the optional parameters carried in the request for establishing a WebSocket connection.
@@ -820,7 +872,19 @@ Represents the result obtained from the **close** event reported when the WebSoc
 | code   | number | Yes  | Error code for closing the connection.|
 | reason | string | Yes  | Error cause for closing the connection.|
 
-## Result Codes for Closing a WebSocket Connection
+## ResponseHeaders<sup>12+</sup>
+
+Enumerates the response headers sent by the server.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+| Type  | Mandatory| Description                                                        |
+| ------ | ---- | ------------------------------------------------------------ |
+| [k:string]:string | No  | The header data type is key-value pair.|
+| string[] | No  | The header data type is string.|
+| undefined | No  | The header data type is **undefined**.|
+
+## Result Codes for Connection Closing
 
 You can customize the result codes sent to the server. The result codes in the following table are for reference only.
 

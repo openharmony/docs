@@ -6,7 +6,7 @@ In most cases, multi-language users may set the system language to one language 
 
 ## How to Develop
 
-To obtain the preferred language that has been set, use [getAppPreferredLanguage](../reference/apis/js-apis-i18n.md#getapppreferredlanguage9).
+For details about how to use related APIs, see [getAppPreferredLanguage](../reference/apis-localization-kit/js-apis-i18n.md#getapppreferredlanguage9).
 
 The following uses date and time formatting as an example to illustrate how the preferred language works.
 

@@ -1076,7 +1076,7 @@ Specifies the type and value range of the optional parameters in the HTTP reques
 | extraData      | string \| Object \| ArrayBuffer | No  | Additional data for sending a request. This parameter is not used by default.<br>- If the HTTP request uses a POST or PUT method, this field serves as the content of the HTTP request and is encoded in UTF-8 format. If **content-Type** is **application/x-www-form-urlencoded**, the data in the request body must be encoded in the format of **key1=value1&key2=value2&key3=value3** after URL transcoding and this field is usually in the String format. If **content-Type** is **text/xml**, this field is usually in the String format. If **content-Type** is **application/json**, this field is usually in the Object format. If **content-Type** is **application/octet-stream**, this field is usually in the ArrayBuffer format. If **content-Type** is **multipart/form-data** and the content to be uploaded is a file, this field is usually in the ArrayBuffer format. The preceding information is for reference only and may vary according to the actual situation.<br>- If the HTTP request uses the GET, OPTIONS, DELETE, TRACE, or CONNECT method, this parameter serves as a supplement to HTTP request parameters. Parameters of the string type need to be encoded before being passed to the HTTP request. Parameters of the object type do not need to be precoded and will be directly concatenated to the URL. Parameters of the ArrayBuffer type will not be concatenated to the URL.|
 | expectDataType<sup>9+</sup>  | [HttpDataType](#httpdatatype9)  | No  | Type of the returned data. This parameter is not used by default. If this parameter is set, the system returns the specified type of data preferentially.|
 | usingCache<sup>9+</sup>      | boolean                         | No  | Whether to use the cache. The default value is **true**. The cache takes effect with the current process. The new cache will replace the old one. |
-| priority<sup>9+</sup>        | number                          | No  | Priority. The value range is [1,1000]. The default value is **1**.                          |
+| priority<sup>9+</sup>        | number                          | No  | Priority of concurrent HTTP/HTTPS requests. A larger value indicates a higher priority. The value range is [1,1000]. The default value is **1**.                          |
 | header                       | Object                          | No  | HTTP request header. The default value is **{'content-Type': 'application/json'}**.  |
 | readTimeout                  | number                          | No  | Read timeout duration. The default value is **60000**, in ms.<br>The value **0** indicates no timeout.|
 | connectTimeout               | number                          | No  | Connection timeout interval. The default value is **60000**, in ms.             |
@@ -1242,7 +1242,7 @@ Defines the type of multi-form data.
 
 createHttpResponseCache(cacheSize?: number): HttpResponseCache
 
-Creates a default object to store responses to HTTP access requests.
+Creates an **HttpResponseCache** object that stores the response data of HTTP requests. You can call the **flush** or **delete** method as needed in the object. **cacheSize** specifies the cache size.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -1367,7 +1367,7 @@ import { BusinessError } from '@ohos.base';
 let httpRequest = http.createHttp();
 httpRequest.request("EXAMPLE_URL").then(data => {
   const httpResponseCache = http.createHttpResponseCache();
-  httpResponseCache.delete(err => {
+  httpResponseCache.delete((err: BusinessError) => {
     try {
       if (err) {
         console.error('fail: ' + err);
@@ -1409,11 +1409,11 @@ httpRequest.request("EXAMPLE_URL").then(data => {
   const httpResponseCache = http.createHttpResponseCache();
   httpResponseCache.delete().then(() => {
     console.log("success");
-  }).catch(err => {
+  }).catch((err: BusinessError) => {
     console.error("fail");
   });
   httpRequest.destroy();
-}).catch(error => {
+}).catch((error: BusinessError) => {
   console.error("errocode" + JSON.stringify(error));
 });
 ```
@@ -1453,5 +1453,3 @@ Enumerates certificate types.
 | PEM | PEM certificate.|
 | DER | DER certificate.|
 | P12 | P12 certificate.|
-
-<!--no_check-->

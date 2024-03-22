@@ -126,14 +126,17 @@ import { BusinessError } from '@ohos.base';
 
 let exclusionStr = "192.168,baidu.com";
 let exclusionArray = exclusionStr.split(',');
-connection.setGlobalHttpProxy({
-  host: "192.168.xx.xxx",
-  port: 8080,
-  exclusionList: exclusionArray
-} as connection.HttpProxy).then(() => {
-  console.info("success");
-}).catch((error: BusinessError) => {
-  console.info(JSON.stringify(error));
+let httpProxy: connection.HttpProxy = {
+    host: "192.168.xx.xxx",
+    port: 8080,
+    exclusionList: exclusionArray
+}
+connection.setGlobalHttpProxy(httpProxy, (err: BusinessError) => {
+    if (err) {
+        console.error(`setGlobalHttpProxy failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`setGlobalHttpProxy success.`);
 });
 ```
 

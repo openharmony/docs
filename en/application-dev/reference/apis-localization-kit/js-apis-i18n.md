@@ -859,10 +859,10 @@ Checks whether a given date is a weekend in the calendar.
 **Example**
   ```ts
   let calendar: I18n.Calendar = I18n.getCalendar("zh-Hans");
-  calendar.set(2021, 11, 11, 8, 0, 0); // set time to 2021.11.11 08:00:00
-  calendar.isWeekend(); // false
+  calendar.set(2021, 11, 11, 8, 0, 0); // set time to 2021.12.11 08:00:00
+  calendar.isWeekend(); // true
   let date: Date = new Date(2011, 11, 6, 9, 0, 0);
-  calendar.isWeekend(date); // true
+  calendar.isWeekend(date); // false
   ```
 
 
@@ -2247,7 +2247,7 @@ Normalizes text strings.
 **Example**
   ```ts
   let normalizer: I18n.Normalizer = I18n.Normalizer.getInstance(I18n.NormalizerMode.NFC);
-  let normalizedText: string = normalizer.normalize('\u1E9B\u0323'); // normalizedText = \u1E9B\u0323
+  let normalizedText: string = normalizer.normalize('\u1E9B\u0323'); // normalizedText = ẛ̣
   ```
 
 

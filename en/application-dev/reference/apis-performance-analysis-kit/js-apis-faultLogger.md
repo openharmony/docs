@@ -34,7 +34,7 @@ Defines the data structure of the fault log information.
 | pid | number | Yes| Process ID of the faulty process.|
 | uid | number | Yes| User ID of the faulty process.|
 | type | [FaultType](#faulttype) | Yes| Fault type.|
-| timestamp | number | Yes| Second-level timestamp when the log was generated.|
+| timestamp | number | Yes| Millisecond-level timestamp when the log was generated.|
 | reason | string | Yes| Reason for the fault.|
 | module | string | Yes| Module on which the fault occurred.|
 | summary | string | Yes| Summary of the fault.|
