@@ -256,7 +256,7 @@ font(value: Font)
 
 | 参数名 | 类型    | 必填 | 说明       |
 | ------ | ------- | ---- | ---------- |
-| value  | boolean | 是   | 文本样式。 |
+| value  | [Font](ts-types.md#font) | 是   | 文本样式。 |
 
 ### textShadow<sup>10+</sup>
 
