@@ -96,7 +96,7 @@ struct Parent {
   @State label: string = 'Hello';
   build() {
     Column() {
-      // 在Parent组件中调用ABuilder的时候，将this.label引用传递给ABuilder
+      // 在Parent组件中调用overBuilder的时候，将this.label引用传递给overBuilder
       overBuilder({ paramA1: this.label })
       Button('Click me').onClick(() => {
         // 点击“Click me”后，UI从“Hello”刷新为“ArkUI”
