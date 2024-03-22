@@ -1,4 +1,6 @@
-# @ohos.data.cloudData (端云协同与端云共享)(系统接口)
+# @ohos.data.cloudData (端云服务)(系统接口)
+
+端云服务提供端云协同、端云共享和端云策略。
 
 端云协同提供结构化数据（RDB Store）端云同步的能力。即：云作为数据的中心节点，通过与云的数据同步，实现数据云备份、同帐号设备间的数据一致性。
 
@@ -8,7 +10,7 @@
 
 端云共享邀请码是指： 共享发起后，在共享的服务端会生成当前共享操作的邀请码，并将该邀请码附加到当前共享邀请中，通过push消息推送到被邀请者的设备端，被邀请者可以通过该邀请码进行邀请的确认。
 
-该模块提供以下端云协同相关的常用功能：
+该模块提供以下端云服务相关的常用功能：
 
 - [Config](#config)：提供配置端云协同的方法，包括云同步打开、关闭、清理数据、数据变化通知。
 - [sharing<sup>11+</sup>](#sharing11)：提供端云共享的方法，包括发起共享、取消共享、退出共享、更改共享数据权限、查找共享参与者、确认邀请、更改已确认的邀请、查找共享资源。
@@ -17,7 +19,7 @@
 >
 > - 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
-> - 本模块接口为系统接口。
+> - 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.data.cloudData (端云服务)](js-apis-data-cloudData.md)。
 >
 > - 使用本模块需要实现云服务功能。
 
@@ -64,6 +66,19 @@ interface ExtraData {
 }
 
 ```
+
+## StatisticInfo<sup>12+</sup>
+
+返回数据，携带端云同步统计信息所需要的信息。
+
+**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Config
+
+| 名称      | 类型   | 必填 | 说明                                                  |
+| --------- | ------ | ---- |-----------------------------------------------------|
+| table   | string | 是   | 查询的表名。如返回值为"cloud_notes"，表示查询结果是表名为"cloud_notes"的同步信息。 |
+| inserted   | number | 是   | 本地新增且云端还未同步数据的条数，如返回值为2，表示本地新增2条数据且云端还未同步。          |
+| updated   | number | 是   | 云端同步之后本地或云端修改还未同步的条数，如返回值为2，表示本地或云端修改还有2条数据未同步。     |
+| normal | number | 是   | 端云一致的数据。如返回值为2，表示本地与云端一致的数据为2条。                     |
 
 ## Config
 
@@ -514,6 +529,80 @@ try {
   let error = e as BusinessError;
   console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
 }
+```
+
+### queryStatistics<sup>12+</sup>
+
+static queryStatistics(accountId: string, bundleName: string, storeId?: string): Promise&lt;Record&lt;string, Array&lt;StatisticInfo&gt;&gt;&gt;
+
+查询端云统计信息，返回未同步、已同步且端云信息一致和已同步且端云信息不一致的统计信息，使用Promise异步回调。
+
+**需要权限**：ohos.permission.CLOUDDATA_CONFIG
+
+**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Config
+
+**参数：**
+
+| 参数名  | 类型      | 必填 | 说明                                |
+| ------- |---------| ---- |-----------------------------------|
+| accountId | string  | 是   | 具体打开的云帐号ID。                       |
+| bundleName | string  | 是   | 应用包名。                             |
+| storeId  | string  | 否   | 数据库名称。默认值为空字符串，此时将查询当前应用所有的本地数据库。 |
+
+**返回值：**
+
+| 类型                                                                                   | 说明                     |
+|--------------------------------------------------------------------------------------| ------------------------ |
+| Promise&lt;Record&lt;string, Array&lt;[StatisticInfo](#statisticinfo12)&gt;&gt;&gt; | 返回表名以及统计信息结果集。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+const accountId:string = "accountId";
+const bundleName:string = "bundleName";
+const storeId:string = "storeId";
+
+cloudData.Config.queryStatistics(accountId, bundleName, storeId).then((result) => {
+    console.info(`Succeeded in querying statistics. Info is ${JSON.stringify(result)}`);
+}).catch((err: BusinessError) => {
+    console.error(`Failed to query statistics. Error code is ${err.code}, message is ${err.message}`);
+});
+```
+
+### setGlobalCloudStrategy<sup>12+</sup>
+static setGlobalCloudStrategy(strategy: StrategyType, param?: Array&lt;commonType.ValueType&gt;): Promise&lt;void&gt;
+
+设置全局云同步策略，使用Promise异步回调。
+
+**需要权限**：ohos.permission.CLOUDDATA_CONFIG
+
+**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Config
+
+**参数：**
+
+| 参数名     | 类型                                                                     | 必填 | 说明                |
+| ---------- |------------------------------------------------------------------------| ---- |-------------------|
+| strategy  | [StrategyType](js-apis-data-cloudData.md#strategytype)    | 是   | 配置的策略类型。          |
+| param | Array&lt;[commonType.ValueType](js-apis-data-commonType.md#valuetype)&gt; | 否   | 策略参数。不填写默认为空，默认取消所有配置。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**示例：**
+
+```ts
+import {BusinessError} from '@ohos.base';
+
+cloudData.Config.setGlobalCloudStrategy(cloudData.StrategyType.NETWORK, [cloudData.NetWorkStrategy.WIFI]).then(() => {
+    console.info('Succeeded in setting the global cloud strategy');
+}).catch((err: BusinessError) => {
+    console.error(`Failed to set global cloud strategy. Code: ${err.code}, message: ${err.message}`);
+});
 ```
 
 ###  clear
