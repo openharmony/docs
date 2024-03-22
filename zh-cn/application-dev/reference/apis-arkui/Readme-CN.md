@@ -301,6 +301,7 @@
     - [类型定义](arkui-ts/ts-types.md)
     - [图像类型定义](arkui-ts/ts-image-common.md)
     - [设置事件回调](arkui-ts/ts-uicommonevent.md)
+    - [属性字符串](arkui-ts/ts-universal-styled-string.md)
     - 已停止维护的组件
       - [AbilityComponent (系统接口)](arkui-ts/ts-container-ability-component-sys.md)
       - [GridContainer](arkui-ts/ts-container-gridcontainer.md)
