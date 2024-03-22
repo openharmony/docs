@@ -656,7 +656,7 @@ enum AudioChannelSet : uint64_t
 | BOTTOM_FRONT_CENTER | 下方中前声道 | 
 | BOTTOM_FRONT_LEFT | 下方左前声道 | 
 | BOTTOM_FRONT_RIGHT | 下方右前声道 | 
-| AMBISONICS_ACN0 | 零阶立体声声道数r 0 | 
+| AMBISONICS_ACN0 | 零阶立体声声道数 0 | 
 | AMBISONICS_ACN1 | 一阶立体声声道数 1 | 
 | AMBISONICS_ACN2 | 一阶立体声声道数 2 | 
 | AMBISONICS_ACN3 | 一阶立体声声道数 3 | 
@@ -671,7 +671,7 @@ enum AudioChannelSet : uint64_t
 | AMBISONICS_ACN8 | 二阶立体声声道数 8 | 
 | AMBISONICS_ACN9 | 三阶立体声声道数 9 | 
 | AMBISONICS_ACN10 | 三阶立体声声道数 10 | 
-| AMBISONICS_ACN11 | 三阶立体声声道数 11. | 
+| AMBISONICS_ACN11 | 三阶立体声声道数 11 | 
 | AMBISONICS_ACN12 | 三阶立体声声道数 12 | 
 | AMBISONICS_ACN13 | 三阶立体声声道数 13 | 
 | AMBISONICS_ACN14 | 三阶立体声声道数 14 | 
