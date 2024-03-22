@@ -19,8 +19,8 @@ Triggered when the mouse pointer enters or leaves the component.
 
 | Name             | Type                               | Mandatory| Description                                                        |
 | ------------------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| isHover             | boolean                             | No  | Whether the mouse cursor hovers over the component. The value **true** means that the mouse cursor enters the component, and the value **false** means that the mouse cursor leaves the component.|
-| event<sup>10+</sup> | [HoverEvent](#hoverevent10) | No  | Bubbling of the blocking event.                                      |
+| isHover             | boolean                             | Yes  | Whether the mouse cursor hovers over the component. The value **true** means that the mouse cursor enters the component, and the value **false** means that the mouse cursor leaves the component.|
+| event<sup>10+</sup> | [HoverEvent](#hoverevent10) | Yes  | Bubbling of the blocking event.                                      |
 
 ## onMouse
 
@@ -34,7 +34,7 @@ Triggered when the component is clicked by a mouse button or the mouse pointer m
 
 | Name | Type                             | Mandatory| Description                                                        |
 | ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
-| onMouse | [MouseEvent](#mouseevent) | No  | Timestamp, mouse button, action, coordinates of the clicked point on the entire screen, and coordinates of the clicked point relative to the component when the event is triggered.|
+| onMouse | [MouseEvent](#mouseevent) | Yes  | Timestamp, mouse button, action, coordinates of the clicked point on the entire screen, and coordinates of the clicked point relative to the component when the event is triggered.|
 
 
 ## MouseEvent

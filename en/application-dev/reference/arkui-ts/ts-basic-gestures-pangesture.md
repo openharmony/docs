@@ -65,7 +65,7 @@ PanGestureOptions(value?: { fingers?: number; direction?: PanDirection; distance
 | onActionStart(event: (event?: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Invoked when a pan gesture is recognized.|
 | onActionUpdate(event: (event?: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Invoked when the pan gesture status is updated.<br>If **fingerList** contains multiple fingers, this callback updates the location information of only one finger each time.|
 | onActionEnd(event: (event?: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Invoked when the finger used for a pan gesture is lift.|
-| onActionCancel(event: () =&gt; void) | Invoked when a tap cancellation event is received after a pan gesture is recognized.|
+| onActionCancel(event: () =&gt; void) | Invoked when a tap cancellation event is received after a pan gesture is recognized.<br>**NOTE**<br>This event is triggered when the window loses focus.|
 
 ## Attributes
 

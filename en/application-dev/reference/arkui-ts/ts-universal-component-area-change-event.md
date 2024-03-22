@@ -6,12 +6,20 @@ The area change event is triggered when the component's size, position, or any o
 >
 >  The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
+## onAreaChange
 
-## Events
+onAreaChange(event: (oldValue: Area, newValue: Area) => void)
 
-| Name                                                        | Bubbling Supported| Description                                                    |
-| ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
-| onAreaChange(event: (oldValue: [Area](ts-types.md#area8), newValue: [Area](ts-types.md#area8)) =&gt; void) | No      | Triggered when the component area changes in size or position due to layout updates. This event is not triggered for render attribute changes caused by re-rendering, such as changes of **translate** and **offset**.<br>- [Area](ts-types.md#area8): returns the target width and height of the component and the target coordinates of the component relative to the parent component and the upper left corner of the page.|
+Triggered when the component area changes in size or position due to layout updates. This event is not triggered for render attribute changes caused by re-rendering, such as changes of **translate** and **offset**.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description                                                        |
+| -------- | ------------------------- | ---- | ------------------------------------------------------------ |
+| oldValue | [Area](ts-types.md#area8) | Yes  | Width and height of the target element as well as its coordinates relative to the parent element and the upper left corner of the page before the change.|
+| newValue | [Area](ts-types.md#area8) | Yes  | Width and height of the target element as well as its coordinates relative to the parent element and the upper left corner of the page after the change.|
 
 
 ## Example
@@ -27,7 +35,9 @@ struct AreaExample {
   build() {
     Column() {
       Text(this.value)
-        .backgroundColor(Color.Green).margin(30).fontSize(20)
+        .backgroundColor(Color.Green)
+        .margin(30)
+        .fontSize(20)
         .onClick(() => {
           this.value = this.value + 'Text'
         })

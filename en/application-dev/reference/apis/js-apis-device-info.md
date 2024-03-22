@@ -5,11 +5,12 @@ The **deviceInfo** module provides product information.
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> Some parameters whose return value is the default value are not yet available.
 
 ## Modules to Import
 
 ```ts
-import deviceInfo from '@ohos.deviceInfo'
+import deviceInfo from '@ohos.deviceInfo';
 ```
 
 ## Attributes
@@ -20,7 +21,7 @@ import deviceInfo from '@ohos.deviceInfo'
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| deviceType | string | Yes| No| Device type.|
+| deviceType | string | Yes| No| Device type. It is used only for query purposes, but not for service code development.|
 | manufacture | string | Yes| No| Device manufacturer.|
 | brand | string | Yes| No| Device brand.|
 | marketName | string | Yes| No| Marketing name.|
@@ -29,7 +30,7 @@ import deviceInfo from '@ohos.deviceInfo'
 | softwareModel | string | Yes| No| Software model.|
 | hardwareModel | string | Yes| No| Hardware model.|
 | hardwareProfile | string | Yes| No| Hardware profile.|
-| serial | string | Yes| No| Device serial number.<br>**Required permissions**: ohos.permission.sec.ACCESS_UDID|
+| serial | string | Yes| No| Device serial number.<br>**Constraints**: This API is available for system applications only.|
 | bootloaderVersion | string | Yes| No| Bootloader version.|
 | abiList | string | Yes| No| Application binary interface (Abi) list.|
 | securityPatchTag | string | Yes| No| Security patch tag.|
@@ -49,7 +50,7 @@ import deviceInfo from '@ohos.deviceInfo'
 | buildHost | string | Yes| No| Build host.|
 | buildTime | string | Yes| No| Build time.|
 | buildRootHash | string | Yes| No| Build root hash.|
-| udid<sup>7+</sup> | string | Yes| No| Device UDID.<br>**Required permissions**: ohos.permission.sec.ACCESS_UDID|
+| udid<sup>7+</sup> | string | Yes| No| Device UDID.<br>**Constraints**: This API is available for system applications only.|
 | distributionOSName<sup>10+</sup> | String | Yes| No| Name of the distribution OS.|
 | distributionOSVersion<sup>10+</sup> | String | Yes| No| Version number of the distribution OS.|
 | distributionOSApiVersion<sup>10+</sup> | number| Yes| No| API version of the distribution OS.|
@@ -58,7 +59,7 @@ import deviceInfo from '@ohos.deviceInfo'
 **Example**
 
 ```ts
-    import deviceinfo from '@ohos.deviceInfo'
+    import deviceinfo from '@ohos.deviceInfo';
 
     let deviceTypeInfo: string = deviceinfo.deviceType;
     console.info('the value of the deviceType is :' + deviceTypeInfo);

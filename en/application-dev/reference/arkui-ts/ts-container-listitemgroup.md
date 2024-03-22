@@ -20,14 +20,20 @@ This component supports the **[\<ListItem>](ts-container-listitem.md)** child co
 
 ## APIs
 
-ListItemGroup(options?: {header?: CustomBuilder, footer?: CustomBuilder, space?: number | string, style?: ListItemGroupStyle})
+ListItemGroup(options?: ListItemGroupOptions)
 
 **Parameters**
 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| options |  [ListItemGroupOptions](#listitemgroupoptions)| Yes| Parameters of the list item group.|
+
+## ListItemGroupOptions
+
 | Name             | Type                                           | Mandatory| Description                                                    |
 | ------------------- | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| header              | [CustomBuilder](ts-types.md#custombuilder8)         | No  | Header of the list item group.                                 |
-| footer              | [CustomBuilder](ts-types.md#custombuilder8)         | No  | Footer of the list item group.                                 |
+| header              | [CustomBuilder](ts-types.md#custombuilder8)         | No  | Header of the list item group.<br>**NOTE**<br>Only one child component can be placed.                                 |
+| footer              | [CustomBuilder](ts-types.md#custombuilder8)         | No  | Footer of the list item group.<br>**NOTE**<br>Only one child component can be placed.                                 |
 | space               | number \| string                          | No  | Spacing between list items. This parameter is valid only between list items, but not between the header and list item or between the footer and list item.|
 | style<sup>10+</sup> | [ListItemGroupStyle](#listitemgroupstyle10) | No  | Style of the list item group.<br>Default value: **ListItemGroupStyle.NONE**<br>If this parameter is set to **ListItemGroupStyle.NONE**, no style is applied.<br>If this parameter is set to **ListItemGroupStyle.CARD**, the default card style is applied, but only when **ListItemStyle.CARD** is set for [\<ListItem>](ts-container-listitem.md).<br>In the default card style, list items can be in focus, hover, press, selected, or disable style depending on their state.<br>**NOTE**<br>In the default card style, the parent **\<List>** component has its **listDirection** attribute fixed at **Axis.Vertical** and its **alignListItem** attribute defaulted at **ListItemAlign.Center**; the **header** and **footer** parameters cannot be set for the list item group.<br>If **ListItemGroupStyle.CARD** is set and **ListItemStyle.CARD** is not, only some card styles and functions are available.|
 
@@ -39,10 +45,10 @@ ListItemGroup(options?: {header?: CustomBuilder, footer?: CustomBuilder, space?:
 
 ## ListItemGroupStyle<sup>10+</sup>
 
-| Name| Description              |
-| ---- | ------------------ |
-| NONE | No style.          |
-| CARD | Default card style.|
+| Name| Value | Description              |
+| ---- | ---- | ------------------ |
+| NONE | 0 | No style.          |
+| CARD | 1 | Default card style.|
 
 > **NOTE**
 >
@@ -178,7 +184,7 @@ struct ListItemGroupExample2 {
       }
       .width('100%')
       .multiSelectable(true)
-      .backgroundColor(0xDCDCDC) // List in light blue
+      .backgroundColor(0xDCDCDC)
     }
     .width('100%')
     .padding({ top: 5 })

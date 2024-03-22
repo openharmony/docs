@@ -18,7 +18,7 @@ Triggered when a key event occurs.
 
 | Name| Type                         | Mandatory| Description              |
 | ------ | ----------------------------- | ---- | ------------------ |
-| event  | [KeyEvent](#keyevent) | No  | **KeyEvent** object.|
+| event  | [KeyEvent](#keyevent) | Yes  | **KeyEvent** object.|
 
 
 ## KeyEvent

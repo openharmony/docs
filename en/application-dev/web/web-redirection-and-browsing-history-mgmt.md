@@ -55,7 +55,7 @@ In the following example, the frontend page **route.html** is loaded on to the a
         Web({ src: $rawfile('route.html'), controller: this.webviewController })
           .onUrlLoadIntercept((event) => {
             if (event) {
-              let url: string = event.data as string;
+              let url: string = event.data.getRequestUrl();
               if (url.indexOf('native://') === 0) {
                 // Redirect to another page.
                 router.pushUrl({ url:url.substring(9) })
@@ -121,7 +121,7 @@ In the following example, when a user clicks the link on the frontend page **cal
   
     build() {
       Column() {
-        Web({ src: $rawfile('xxx.html'), controller: this.webviewController})
+        Web({ src: $rawfile('call.html'), controller: this.webviewController})
           .onUrlLoadIntercept((event) => {
             if (event) {
               let url: string = event.data as string;

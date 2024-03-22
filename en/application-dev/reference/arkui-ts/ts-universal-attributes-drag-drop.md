@@ -80,10 +80,10 @@ Sets how the drag preview is processed when the component is dragged.
 
 ## DragPreviewMode<sup>11+</sup>
 
-| Name| Description|
-| -------- | -------- |
-| AUTO  | The system automatically changes the position of the dragged point based on the scenario and automatically scales the background image based on set rules.|
-| DISABLE_SCALE  | The system does not scale the background image.|
+| Name| Value| Description|
+| -------- | ------- | -------- |
+| AUTO  | 0 | The system automatically changes the position of the dragged point based on the scenario and automatically scales the background image based on set rules.|
+| DISABLE_SCALE  | 1 | The system does not scale the background image.|
 
 ## Example
 ### Example 1

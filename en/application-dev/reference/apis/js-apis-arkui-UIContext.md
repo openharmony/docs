@@ -1,6 +1,6 @@
 # @ohos.arkui.UIContext (UIContext)
 
-In the stage model, a window stage or window can use the **loadContent** API to load pages, create a UI instance, and render page content to the associated window. Naturally, UI instances and windows are associated on a one-by-one basis. Some global UI APIs are executed in the context of certain UI instances. When calling these APIs, you must identify the UI context, and consequently UI instance, by tracing the call chain. If these APIs are called on a non-UI page or in some asynchronous callback, the current UI context may fail to be identified, resulting in API execution errors.
+In the stage model, a window stage or window can use the [loadContent](./js-apis-window.md#loadcontent9) API to load pages, create a UI instance, and render page content to the associated window. Naturally, UI instances and windows are associated on a one-by-one basis. Some global UI APIs are executed in the context of certain UI instances. When calling these APIs, you must identify the UI context, and consequently UI instance, by tracing the call chain. If these APIs are called on a non-UI page or in some asynchronous callback, the current UI context may fail to be identified, resulting in API execution errors.
 
 **@ohos.window** adds the [getUIContext](./js-apis-window.md#getuicontext10) API in API version 10 for obtaining the **UIContext** object of a UI instance. The API provided by the **UIContext** object can be directly applied to the corresponding UI instance.
 
@@ -8,7 +8,7 @@ In the stage model, a window stage or window can use the **loadContent** API to 
 >
 > The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> You can preview how this component looks on a real device. The preview is not yet available in the DevEco Studio Previewer.
+> You can preview how this component looks on a real device, but not in DevEco Studio Previewer.
 
 ## UIContext
 
@@ -273,30 +273,15 @@ uiContext.showAlertDialog(
 
 showActionSheet(value: ActionSheetOptions): void
 
-Defines and shows the action sheet.
+Shows an action sheet in the given settings.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**ActionSheetOptions parameters**
+**Parameters**
 
-| Name       | Type                                      | Mandatory  | Description                                      |
-| ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| title      | [Resource](../arkui-ts/ts-types.md#resource) \| string | Yes   | Title of the dialog box.                                   |
-| message    | [Resource](../arkui-ts/ts-types.md#resource) \| string | Yes   | Content of the dialog box.                                   |
-| autoCancel | boolean                                  | No   | Whether to close the dialog box when the overlay is clicked.<br>Default value: **true**              |
-| confirm    | {<br>value: [ResourceStr](../arkui-ts/ts-types.md#resourcestr),<br>action: () =&gt; void<br>} | No   | Text content of the confirm button and callback upon button clicking.<br>Default value:<br>**value**: button text.<br>**action**: callback upon button clicking.|
-| cancel     | () =&gt; void                  | No   | Callback invoked when the dialog box is closed after the overlay is clicked.                      |
-| alignment  | [DialogAlignment](../arkui-ts/ts-methods-alert-dialog-box.md#dialogalignment) | No   | Alignment mode of the dialog box in the vertical direction.<br>Default value: **DialogAlignment.Bottom**|
-| offset     | {<br>dx: [Length](../arkui-ts/ts-types.md#length),<br>dy: [Length](../arkui-ts/ts-types.md#length)<br>} | No   | Offset of the dialog box relative to the alignment position.{<br>dx: 0,<br>dy: 0<br>} |
-| sheets     | Array&lt;SheetInfo&gt;                   | Yes   | Options in the dialog box. Each option supports the image, text, and callback.            |
-
-**SheetInfo parameters**
-
-| Name   | Type                                      | Mandatory  | Description            |
-| ------ | ---------------------------------------- | ---- | -------------- |
-| title  | [ResourceStr](../arkui-ts/ts-types.md#resourcestr) | Yes   | Text of the option.      |
-| icon   | [ResourceStr](../arkui-ts/ts-types.md#resourcestr) | No   | Sheet icon. By default, no icon is displayed.|
-| action | ()=&gt;void                              | Yes   | Callback when the sheet is selected.      |
+| Name| Type                                                        | Mandatory| Description                |
+| ------ | ------------------------------------------------------------ | ---- | -------------------- |
+| value  | [ActionSheetOptions](../arkui-ts/ts-methods-action-sheet.md#actionsheetoptions) | Yes  | Parameters of the action sheet.|
 
 **Example**
 
@@ -343,26 +328,15 @@ uiContext.showActionSheet({
 
 showDatePickerDialog(options: DatePickerDialogOptions): void
 
-Shows a date picker dialog box.
+Shows a date picker dialog box in the given settings.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**DatePickerDialogOptions parameters**
+**Parameters**
 
-| Name               | Type                                      | Mandatory  | Description                                    |
-| ------------------ | ---------------------------------------- | ---- | -------------------------------------- |
-| start              | Date                                     | No   | Start date of the picker.<br>Default value: **Date('1970-1-1')**  |
-| end                | Date                                     | No   | End date of the picker.<br>Default value: **Date('2100-12-31')**|
-| selected           | Date                                     | No   | Selected date.<br>Default value: current system date             |
-| lunar              | boolean                                  | No   | Whether to display the lunar calendar.<br>Default value: **false**              |
-| showTime           | boolean                                  | No   | Whether to display the time item.<br>Default value: **false**                |
-| useMilitaryTime    | boolean                                  | No   | Whether to display time in 24-hour format.<br>Default value: **false**           |
-| disappearTextStyle | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10) | No   | Font color, font size, and font width for the top and bottom items.        |
-| textStyle          | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10) | No   | Font color, font size, and font width of all items except the top, bottom, and selected items.    |
-| selectedTextStyle  | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10) | No   | Font color, font size, and font width of the selected item.                   |
-| onAccept           | (value: [DatePickerResult](../arkui-ts/ts-basic-components-datepicker.md#datepickerresult)) => void | No   | Callback invoked when the OK button in the dialog box is clicked.                   |
-| onCancel           | () => void                               | No   | Callback invoked when the Cancel button in the dialog box is clicked.                   |
-| onChange           | (value: [DatePickerResult](../arkui-ts/ts-basic-components-datepicker.md#datepickerresult)) => void | No   | Callback invoked when the selected item in the picker changes.            |
+| Name | Type                                                        | Mandatory| Description                          |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------ |
+| options | [DatePickerDialogOptions](../arkui-ts/ts-methods-datepicker-dialog.md#datepickerdialogoptions) | Yes  | Parameters of the date picker dialog box.|
 
 **Example**
 
@@ -390,22 +364,15 @@ uiContext.showDatePickerDialog({
 
 showTimePickerDialog(options: TimePickerDialogOptions): void
 
-Shows a time picker dialog box.
+Shows a time picker dialog box in the given settings.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**TimePickerDialogOptions parameters**
+**Parameters**
 
-| Name               | Type                                      | Mandatory  | Description                                  |
-| ------------------ | ---------------------------------------- | ---- | ------------------------------------ |
-| selected           | Date                                     | No   | Selected time.<br>Default value: current system time           |
-| useMilitaryTime    | boolean                                  | No   | Whether to display time in 24-hour format. The 12-hour format is used by default.<br>Default value: **false**|
-| disappearTextStyle | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10) | No   | Font color, font size, and font width for the top and bottom items.      |
-| textStyle          | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10) | No   | Font color, font size, and font width of all items except the top, bottom, and selected items.  |
-| selectedTextStyle  | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10) | No   | Font color, font size, and font width of the selected item.                 |
-| onAccept           | (value: [TimePickerResult](../arkui-ts/ts-basic-components-timepicker.md#timepickerresult)) => void | No   | Callback invoked when the OK button in the dialog box is clicked.                 |
-| onCancel           | () => void                               | No   | Callback invoked when the Cancel button in the dialog box is clicked.                 |
-| onChange           | (value: [TimePickerResult](../arkui-ts/ts-basic-components-timepicker.md#timepickerresult)) => void | No   | Callback invoked when the selected time changes.           |
+| Name | Type                                                        | Mandatory| Description                          |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------ |
+| options | [TimePickerDialogOptions](../arkui-ts/ts-methods-timepicker-dialog.md#timepickerdialogoptions) | Yes  | Parameters of the time picker dialog box.|
 
 **Example**
 
@@ -456,24 +423,15 @@ struct TimePickerDialogExample {
 
 showTextPickerDialog(options: TextPickerDialogOptions): void
 
-Shows a text picker in the given settings.
+Shows a text picker dialog box in the given settings.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**TextPickerDialogOptions parameters**
+**Parameters**
 
-| Name                    | Type                                      | Mandatory  | Description                                      |
-| ----------------------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| range                   | string[] \| [Resource](../arkui-ts/ts-types.md#resource)\|[TextPickerRangeContent](../arkui-ts/ts-basic-components-textpicker.md#textpickerrangecontent10)[] | Yes   | Data selection range of the picker. This parameter cannot be set to an empty array. If set to an empty array, it will not be displayed.   |
-| selected                | number                                   | No   | Index of the selected item.<br>Default value: **0**                     |
-| value                   | string                                   | No   | Text of the selected item. This parameter does not take effect when the **selected** parameter is set. If the value is not within the range, the first item in the range is used instead.|
-| defaultPickerItemHeight | number \| string                         | No   | Height of the picker item.                            |
-| disappearTextStyle      | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10) | No   | Font color, font size, and font width for the top and bottom items.          |
-| textStyle               | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10) | No   | Font color, font size, and font width of all items except the top, bottom, and selected items.      |
-| selectedTextStyle       | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10) | No   | Font color, font size, and font width of the selected item.                     |
-| onAccept                | (value: [TextPickerResult](../arkui-ts/ts-methods-textpicker-dialog.md#textpickerresult)) => void | No   | Callback invoked when the OK button in the dialog box is clicked.                     |
-| onCancel                | () => void                               | No   | Callback invoked when the Cancel button in the dialog box is clicked.                     |
-| onChange                | (value: [TextPickerResult](../arkui-ts/ts-methods-textpicker-dialog.md#textpickerresult)) => void | No   | Callback invoked when the selected item changes.                |
+| Name | Type                                                        | Mandatory| Description                          |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------ |
+| options | [TextPickerDialogOptions](../arkui-ts/ts-methods-textpicker-dialog.md#textpickerdialogoptions) | Yes  | Parameters of the text picker dialog box.|
 
 **Example**
 
@@ -683,7 +641,7 @@ Obtains an **AtomicServiceBar** object, which can be used to set the properties 
 
 |Type|Description|
 |----|----|
-|Nullable<[AtomicServiceBar](#atomicservicebar)>| Returns the **AtomicServerBar** type if the service is an atomic service; returns **undefined** type otherwise.|
+|Nullable<[AtomicServiceBar](#atomicservicebar11)>| Returns the **AtomicServerBar** type if the service is an atomic service; returns **undefined** type otherwise.|
 
 **Example**
 
@@ -717,7 +675,7 @@ Obtains the **DragController** object, which can be used to create and initiate 
 
 |Type|Description|
 |----|----|
-|[DragController](js-apis-arkui-dragController.md#dragController)| **DragController** object.|
+|[DragController](js-apis-arkui-dragController.md)| **DragController** object.|
 
 **Example**
 
@@ -795,7 +753,7 @@ Obtains information about a system font based on the font name.
 
 | Type                                  | Description     |
 | ------------------------------------ | ------- |
-| [FontInfo](js-apis-font.md#fontinfo) | Information about the system font.|
+| [font.FontInfo](js-apis-font.md#fontinfo10) | Information about the system font.|
 
 **Example**
 
@@ -863,7 +821,7 @@ Creates an observer for the specified component.
 
 | Type                                      | Description                       |
 | ---------------------------------------- | ------------------------- |
-| [ComponentObserver](js-apis-arkui-inspector.md#componentobserver) | Component observer, which is used to register or unregister listeners for completion of component layout or drawing.|
+| [inspector.ComponentObserver](js-apis-arkui-inspector.md#componentobserver) | Component observer, which is used to register or unregister listeners for completion of component layout or drawing.|
 
 **Example**
 
@@ -997,7 +955,7 @@ Sets the media query criteria and returns the corresponding listening handle.
 
 | Type                | Description                    |
 | ------------------ | ---------------------- |
-| MediaQueryListener | Listening handle to a media event, which is used to register or unregister the listening callback.|
+| [mediaQuery.MediaQueryListener](js-apis-mediaquery.md#mediaquerylistener) | Listening handle to a media event, which is used to register or unregister the listening callback.|
 
 **Example**
 
@@ -2322,7 +2280,6 @@ Executes dragging, by passing in the object to be dragged and the dragging infor
 
 | ID| Error Message     |
 | -------- | ------------- |
-| 401      | Invalid input parameter |
 | 100001   | If some internal handing failed. |
 
 **Example**
@@ -2404,7 +2361,6 @@ Executes dragging, by passing in the object to be dragged and the dragging infor
 
 | ID| Error Message     |
 | -------- | ------------- |
-| 401      | Invalid input parameter |
 | 100001   | If some internal handing failed. |
 
 **Example**
@@ -2514,7 +2470,6 @@ Creates a **DragAction** object, by explicitly specifying one or more drag previ
 
 | ID| Error Message     |
 | -------- | ------------- |
-| 401      | Invalid input parameter |
 | 100001   | If some internal handing failed. |
 
 **Example**

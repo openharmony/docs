@@ -1,7 +1,7 @@
 # Layout Overview
 
 
-In declarative UI, page layout is the art of organizing custom components sequentially over a page. A well-designed layout can help you present information intuitively and effectively.
+In the declarative UI, page layout is the art of organizing custom components sequentially over a page. A well-designed layout can help you present information intuitively and effectively.
 
 
 You design page layout by leveraging specific components or attributes to control the size and position of components on pages. The design process involves the following steps:
@@ -33,18 +33,18 @@ You can use layout-related container components to create a specific layout. For
 
 ![layout-element-omposition](figures/layout-element-omposition.png)
 
-- Component area (blue block): size of the component, subject to the [width](../reference/arkui-ts/ts-universal-attributes-size.md) and [height](../reference/arkui-ts/ts-universal-attributes-size.md) attributes.
+- Component area (blue block): size of the component, subject to the [width](../reference/arkui-ts/ts-universal-attributes-size.md#width) and [height](../reference/arkui-ts/ts-universal-attributes-size.md#height) attributes.
 
-- Component content area (yellow block): size of the component area minus the [border](../reference/arkui-ts/ts-universal-attributes-size.md) of the component. It serves as the layout constraint for calculating the size of the component content (or child component).
+- Component content area (yellow block): size of the component area minus the [border](../reference/arkui-ts/ts-universal-attributes-size.md#border) of the component. It serves as the layout constraint for calculating the size of the component content (or child component).
 
 - Component content (green block): size of the component content, for example, size of the text content in the component. The component content may not match the component content area. For example, if fixed width and height values are set, the component content area is the size obtained with the width and height minus the paddings and border. The component content is the size calculated by the layout engine, which may be less than the component content area. When the component content and component content area do not match, the[align](../reference/arkui-ts/ts-universal-attributes-location.md) attribute takes effect, which defines the alignment mode of the component content in the component content area, for example, center aligned.
 
-- Component layout bounds (dotted lines): component area plus the [margins](../reference/arkui-ts/ts-universal-attributes-size.md) (if supplied).
+- Component layout bounds (dotted lines): component area plus the [margins](../reference/arkui-ts/ts-universal-attributes-size.md#margin) (if supplied).
 
 
 ## Layout Selection
 
-The declarative UI provides eight common layouts. Choose a layout that best suits the use case.
+The declarative UI provides the following common layouts. Choose a layout that best suits the use case.
 
 | Layout                                                        | Description                                                    |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -65,15 +65,15 @@ Attributes such as **position** and **offset** affect the position of the layout
 
 | Positioning Capability| Description                                    | Implementation                                    |
 | ---- | ---------------------------------------- | ---------------------------------------- |
-| Absolute positioning| Absolute positioning is poor in adaptability to devices of different sizes, and is prone to screen adaptation errors.    | Use [position](../reference/arkui-ts/ts-universal-attributes-location.md) to implement absolute positioning and set the offset position of the upper left corner of an element relative to the upper left corner of the parent container. When laying out components, this attribute does not affect the layout of the parent component. It only adjusts the component position during drawing.|
-| Relative positioning| Relative positioning keeps an element in the normal document flow, while allowing you to move it around relative to its original location.| You can use [offset](../reference/arkui-ts/ts-universal-attributes-location.md) to implement relative positioning and set the offset of an element relative to itself. This attribute does not affect the layout of the parent component. It only adjusts the component position during drawing.|
+| Absolute positioning| Absolute positioning is poor in adaptability to devices of different sizes, and is prone to screen adaptation errors.    | Use [position](../reference/arkui-ts/ts-universal-attributes-location.md#position) to implement absolute positioning and set the offset position of the upper left corner of an element relative to the upper left corner of the parent container. When laying out components, this attribute does not affect the layout of the parent component. It only adjusts the component position during drawing.|
+| Relative positioning| Relative positioning keeps an element in the normal document flow, while allowing you to move it around relative to its original location.| You can use [offset](../reference/arkui-ts/ts-universal-attributes-location.md#offset) to implement relative positioning and set the offset of an element relative to itself. This attribute does not affect the layout of the parent component. It only adjusts the component position during drawing.|
 
 
 ## Constraints on Child Components
 
 | Constraint| Description                                    | Implementation                                    |
 | --------- | ---------------------------------------- | ---------------------------------------- |
-| Stretching       | When the size of a container component changes, the increased or decreased amount of space is allocated to the specified area in the container component.     | [flexGrow](../reference/arkui-ts/ts-universal-attributes-flex-layout.md) and [flexShrink](../reference/arkui-ts/ts-universal-attributes-flex-layout.md) attributes:<br>1. **flexGrow** defines the grow factor of a flex item.<br>2. **flexShrink** defines the shrink factor of a flex item.|
-| Scaling       | The width and height of a child component change with the container component, with its aspect ratio fixed at the preset value.| The [aspectRatio](../reference/arkui-ts/ts-universal-attributes-layout-constraints.md) attribute specifies the aspect ratio of the current component. The formula is as follows: aspectRatio = width/height.|
-| Proportion       | The proportion capability indicates that the width and height of child components change with the parent container component based on the preset proportion.         | Two implementation modes are available with the universal attributes:<br>1. Set the width and height of the child components to a percentage of the width and height of the parent component.<br>2. Use the [layoutWeight](../reference/arkui-ts/ts-universal-attributes-size.md) attribute to enable the child components to adaptively occupy the remaining space.|
-| Hiding       | The hiding capability refers to that the visibility of a child component in a container component is subject to its preset display priority and the size of the container component. Child components with the same display priority are displayed or hidden at the same time.| The [displayPriority](../reference/arkui-ts/ts-universal-attributes-layout-constraints.md) attribute is used to control component visibility.|
+| Stretching       | When the size of a container component changes, the increased or decreased amount of space is allocated to the specified area in the container component.     | [flexGrow](../reference/arkui-ts/ts-universal-attributes-flex-layout.md#flexgrow) and [flexShrink](../reference/arkui-ts/ts-universal-attributes-flex-layout.md#flexshrink) attributes:<br>1. **flexGrow** defines the grow factor of a flex item.<br>2. **flexShrink** defines the shrink factor of a flex item.|
+| Scaling       | The width and height of a child component change with the container component, with its aspect ratio fixed at the preset value.| The [aspectRatio](../reference/arkui-ts/ts-universal-attributes-layout-constraints.md#aspectratio) attribute specifies the aspect ratio of the current component. The formula is as follows: aspectRatio = width/height.|
+| Proportion       | The proportion capability indicates that the width and height of child components change with the parent container component based on the preset proportion.         | Two implementation modes are available with the universal attributes:<br>1. Set the width and height of the child components to a percentage of the width and height of the parent component.<br>2. Use the [layoutWeight](../reference/arkui-ts/ts-universal-attributes-size.md#layoutweight) attribute to enable the child components to adaptively occupy the remaining space.|
+| Hiding       | The hiding capability refers to that the visibility of a child component in a container component is subject to its preset display priority and the size of the container component. Child components with the same display priority are displayed or hidden at the same time.| The [displayPriority](../reference/arkui-ts/ts-universal-attributes-layout-constraints.md#displaypriority) attribute is used to control component visibility.|

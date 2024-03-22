@@ -106,7 +106,7 @@ Progress indicators come in five styles. When creating a progress indicator, you
 
 ## Example Scenario
 
-In this example, the progress of the **\<Progress>** component is updated by clicking the button. After the button is clicked, the value of **progressValue** is incremented and passed to the **\<Progress>** component, which is then updated accordingly.
+In this example, the progress of the **\<Progress>** component is updated by clicking the button. After the button is clicked, the value of **progressValue** is incremented and passed by the **value** attribute to the **\<Progress>** component, which is then updated accordingly.
 
 ```ts
 @Entry

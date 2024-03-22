@@ -1,6 +1,6 @@
 # Touch Event
 
-A touch event is triggered when a finger is pressed, slides, or is lifted from a component.
+A touch event is triggered when a finger is pressed against, swipes on, or is lifted from a component.
 
 > **NOTE**
 >
@@ -20,7 +20,7 @@ Invoked when a touch event is triggered.
 
 | Name| Type                             | Mandatory| Description                |
 | ------ | --------------------------------- | ---- | -------------------- |
-| event  | [TouchEvent](#touchevent) | No  | **TouchEvent** object.|
+| event  | [TouchEvent](#touchevent) | Yes  | **TouchEvent** object.|
 
 ## TouchEvent
 

@@ -14,15 +14,31 @@ Not supported
 
 ## APIs
 
-TimePicker(options?: {selected?: Date})
+TimePicker(options?: TimePickerOptions)
 
 Creates a time picker, which is in 24-hour format by default.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
-| Name  | Type| Mandatory| Description                                                    |
-| -------- | -------- | ---- | ------------------------------------------------------------ |
-| selected | Date     | No  | Time of the selected item.<br>Default value: current system time<br>Since API version 10, this parameter supports [$$](../../quick-start/arkts-two-way-sync.md) for two-way binding of variables.|
+| Name | Type                                           | Mandatory| Description                    |
+| ------- | ----------------------------------------------- | ---- | ------------------------ |
+| options | [TimePickerOptions](#timepickeroptions) | No  | Parameters of the time picker.|
+
+## TimePickerOptions
+
+| Name                | Type                                         | Mandatory| Description                                                        |
+| -------------------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
+| selected             | Date                                          | No  | Time of the selected item.<br>Default value: current system time<br>Since API version 10, this parameter supports [$$](../../quick-start/arkts-two-way-sync.md) for two-way binding of variables.|
+| format<sup>11+</sup> | [TimePickerFormat](#timepickerformat) | No  | Time format.                            |
+
+## TimePickerFormat
+
+| Name              | Description                    |
+| ------------------ | ------------------------ |
+| HOUR_MINUTE        | Display hours and minutes.      |
+| HOUR_MINUTE_SECOND | Display hours, minutes, and seconds.|
 
 ## Attributes
 
@@ -34,6 +50,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | disappearTextStyle<sup>10+</sup> | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10) | Font color, font size, and font width for the top and bottom items.<br>Default value:<br>{<br>color: '#ff182431',<br>font: {<br>size: '14fp', <br>weight: FontWeight.Regular<br>}<br>} |
 | textStyle<sup>10+</sup>          | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10) | Font color, font size, and font width of all items except the top, bottom, and selected items.<br>Default value:<br>{<br>color: '#ff182431',<br>font: {<br>size: '16fp', <br>weight: FontWeight.Regular<br>}<br>} |
 | selectedTextStyle<sup>10+</sup>  | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10) | Font color, font size, and font width of the selected item.<br>Default value:<br>{<br>color: '#ff007dff',<br>font: {<br>size: '20vp', <br>weight: FontWeight.Medium<br>}<br>} |
+| loop<sup>11+</sup>               | boolean                                                      | Whether to enable loop mode.<br>Default value: **true**<br>The value **true** means to enable loop mode, and **false** means the opposite.|
 
 ## Events
 
@@ -47,10 +64,11 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 
 Describes a time in 24-hour format.
 
-| Name  | Type| Description                               |
-| ------ | -------- | ----------------------------------- |
-| hour   | number   | Hour portion of the selected time.<br>Value range: [0-23]|
-| minute | number   | Minute portion of the selected time.<br>Value range: [0-59]|
+| Name                | Type| Description                               |
+| -------------------- | -------- | ----------------------------------- |
+| hour                 | number   | Hour portion of the selected time.<br>Value range: [0-23]|
+| minute               | number   | Minute portion of the selected time.<br>Value range: [0-59]|
+| second<sup>11+</sup> | number   | Second portion of the selected time.<br>Value range: [0-59]|
 
 
 ## Example

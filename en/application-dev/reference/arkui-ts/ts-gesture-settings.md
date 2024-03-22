@@ -46,7 +46,7 @@ The component binds gesture objects of different **GestureType** instances throu
 
 | Name| Description|
 | -------- | -------- |
-| onAction((event?:GestureEvent) =&gt; void) | Callback invoked when a tap gesture is recognized.|
+| onAction((event:GestureEvent) =&gt; void) | Callback invoked when a tap gesture is recognized.|
 
 ## GestureEvent
 | Name| Type| Description|
@@ -59,14 +59,14 @@ The component binds gesture objects of different **GestureType** instances throu
 | pinchCenterX | number | X coordinate of the center of the pinch gesture, in vp, relative to the original area of the current component. This attribute is used for the **PinchGesture** event.|
 | pinchCenterY | number | Y coordinate of the center of the pinch gesture, in vp, relative to the original area of the current component. This attribute is used for the **PinchGesture** event.|
 | speed<sup>8+</sup> | number | Swipe gesture speed, that is, the average swipe speed of all fingers relative to the original area of the current component. The unit is vp/s. This attribute is used for the **SwipeGesture** event.|
-| fingerList<sup>8+</sup> | [FingerInfo](#fingerinfo)[] | Information about all fingers that trigger the gesture event.<br>**NOTE**<br>The index of a finger corresponds to its position, that is, the ID of a finger in **fingerList[index]** refers to its index. If a finger is pressed first and does not participate in triggering of the current gesture, its position in **fingerList** is left empty.|
+| fingerList<sup>8+</sup> | [FingerInfo](#fingerinfo8)[] | Information about all fingers that trigger the gesture event.<br>**NOTE**<br>The index of a finger corresponds to its position, that is, the ID of a finger in **fingerList[index]** refers to its index. If a finger is pressed first and does not participate in triggering of the current gesture, its position in **fingerList** is left empty.|
 | timestamp<sup>8+</sup> | number | Timestamp of the event.|
 | target<sup>8+</sup> | [EventTarget](ts-universal-events-click.md#eventtarget8) | Display area of the element that triggers the gesture event.|
 | source<sup>8+</sup> | [SourceType](#sourcetype) | Event input device.|
 | pressure<sup>9+</sup> | number | Press pressure.|
 | tiltX<sup>9+</sup> | number | Angle between the projection of the stylus on the device plane and the x-axis.|
 | tiltY<sup>9+</sup> | number | Angle between the projection of the stylus on the device plane and the y-axis.|
-| sourceTool<sup>9+</sup> | [SourceTool](#sourcetool) | Event input source.|
+| sourceTool<sup>9+</sup> | [SourceTool](#sourcetool9) | Event input source.|
 | velocityX<sup>10+</sup> | number | Velocity along the x-axis. This parameter is used in [PanGesture](ts-basic-gestures-pangesture.md). The origin of the coordinate axis is the upper left corner of the screen. The velocity is positive if the movement is from left to right, and it is negative if the movement is from right to left.|
 | velocityY<sup>10+</sup> | number | Velocity along the y-axis. This parameter is used in [PanGesture](ts-basic-gestures-pangesture.md). The origin of the coordinate axis is the upper left corner of the screen. The velocity is positive if the movement is from top to bottom, and it is negative if the movement is from bottom to top.|
 | velocity<sup>10+</sup> | number | Velocity along the main axis. This parameter is used in [PanGesture](ts-basic-gestures-pangesture.md). The value is the arithmetic square root of the sum of squares of the velocity along the x- and y-axis.|
@@ -78,16 +78,16 @@ The component binds gesture objects of different **GestureType** instances throu
 | Mouse | Mouse.|
 | TouchScreen | Touchscreen.|
 
-## FingerInfo
+## FingerInfo<sup>8+</sup>
 | Name| Type| Description|
 | -------- | -------- | -------- |
 | id | number | Index of a finger.|
-| globalX | number | X-coordinate relative to the upper left corner of the application window.|
-| globalY | number | Y-coordinate relative to the upper left corner of the application window.|
+| globalX | number | X coordinate relative to the upper left corner of the application window.|
+| globalY | number | Y coordinate relative to the upper left corner of the application window.|
 | localX | number | X coordinate relative to the upper left corner of the current component's original area.|
 | localY | number | Y coordinate relative to the upper left corner of the current component's original area.|
 
-## SourceTool
+## SourceTool<sup>9+</sup>
 | Name| Description|
 | -------- | -------- |
 | Unknown | Unknown input source.|

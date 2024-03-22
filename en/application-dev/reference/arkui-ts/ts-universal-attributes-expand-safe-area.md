@@ -1,6 +1,6 @@
 # Safe Area
 
-A safe area refers to the display area that isn't covered by a status bar, navigation bar, or other components that the system includes in its non-safe-area. By default, all the content you develop is placed in the safe area. If necessary, you can expand a component's safe area through the **expandSafeArea attribute** ¨C without changing the layout, and specify how to avoid the virtual keyboard through the **setKeyboardAvoidMode** attribute.
+A safe area refers to the display area that isn't covered by a status bar, navigation bar, or other components that the system includes in its non-safe-area. By default, all the content you develop is placed in the safe area. If necessary, you can expand a component's safe area through the **expandSafeArea attribute** - without changing the layout, and specify how to avoid the virtual keyboard through the **setKeyboardAvoidMode** attribute.
 
 > **NOTE**
 >

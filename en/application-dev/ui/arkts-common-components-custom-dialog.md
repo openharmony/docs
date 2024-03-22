@@ -44,7 +44,8 @@ A custom dialog box is a dialog box you customize by using APIs of the **CustomD
    ```ts
    @Entry
    @Component
-   struct CustomDialogUser {dialogController: CustomDialogController = new CustomDialogController({
+   struct CustomDialogUser {
+     dialogController: CustomDialogController = new CustomDialogController({
        builder: CustomDialogExample(),
      })
    
@@ -69,7 +70,7 @@ Custom dialog boxes can be used for data interactions to complete a series of re
 
 1. Add buttons in the \@CustomDialog decorator structure and add data functions.
 
-     ```ts
+   ```ts
    @CustomDialog
    struct CustomDialogExample {
      cancel?: () => void
@@ -83,18 +84,22 @@ Custom dialog boxes can be used for data interactions to complete a series of re
            Button('cancel')
              .onClick(() => {
                this.controller.close()
-               if(this.cancel) this.cancel()
+               if (this.cancel) {
+                 this.cancel()
+               }
              }).backgroundColor(0xffffff).fontColor(Color.Black)
            Button('confirm')
              .onClick(() => {
                this.controller.close()
-               if(this.confirm) this.confirm()
+               if (this.confirm) {
+                 this.confirm()
+               }
              }).backgroundColor(0xffffff).fontColor(Color.Red)
          }.margin({ bottom: 10 })
        }
      }
    }
-     ```
+   ```
 
 2. Receive the page in the builder and create corresponding function operations.
 
@@ -102,35 +107,96 @@ Custom dialog boxes can be used for data interactions to complete a series of re
    @Entry
    @Component
    struct CustomDialogUser {
-     dialogController: CustomDialogController = new CustomDialogController({
-       builder: CustomDialogExample({
-         cancel: this.onCancel,
-         confirm: this.onAccept,
-       }),
-     })
+       dialogController: CustomDialogController = new CustomDialogController({
+         builder: CustomDialogExample({
+           cancel: this.onCancel,
+           confirm: this.onAccept,
+         }),
+       })
    
-     onCancel() {
-       console.info('Callback when the first button is clicked')
-     }
+       onCancel() {
+         console.info('Callback when the first button is clicked')
+       }
    
-     onAccept() {
-       console.info('Callback when the second button is clicked')
-     }
+       onAccept() {
+         console.info('Callback when the second button is clicked')
+       }
    
-     build() {
-       Column() {
-         Button('Click Me')
-           .onClick(() => {
-             this.dialogController.open()
-           })
-       }.width('100%').margin({ top: 5 })
+       build() {
+         Column() {
+           Button('click me')
+             .onClick(() => {
+               this.dialogController.open()
+            })
+         }.width('100%').margin({ top: 5 })
+       }
      }
-   }
-     ```
+   ```
 
       ![en-us_image_0000001511421320](figures/en-us_image_0000001511421320.png)
 
-## Sample Code
+## Defining the Custom Dialog Box Animation
+
+You can define the custom dialog box animation, including its duration and speed, through **openAnimation**.
+
+```ts
+@CustomDialog
+struct CustomDialogExample {
+  controller?: CustomDialogController
+
+  build() {
+    Column() {
+      Text('Whether to change a text?').fontSize(16).margin({ bottom: 10 })
+    }
+  }
+}
+
+@Entry
+@Component
+struct CustomDialogUser {
+  @State textValue: string = ''
+  @State inputValue: string = 'click me'
+  dialogController: CustomDialogController | null = new CustomDialogController({
+    builder: CustomDialogExample(),
+    openAnimation: {
+      duration: 1200,
+      curve: Curve.Friction,
+      delay: 500,
+      playMode: PlayMode.Alternate,
+      onFinish: () => {
+        console.info('play end')
+      }
+    },
+    autoCancel: true,
+    alignment: DialogAlignment.Bottom,
+    offset: { dx: 0, dy: -20 },
+    gridCount: 4,
+    customStyle: false,
+    backgroundColor: 0xd9ffffff,
+    cornerRadius: 10,
+  })
+
+  // Set dialogController to null when the custom component is about to be destroyed.
+  aboutToDisappear() {
+    this.dialogController = null // Set dialogController to null.
+  }
+
+  build() {
+    Column() {
+      Button(this.inputValue)
+        .onClick(() => {
+          if (this.dialogController != null) {
+            this.dialogController.open()
+          }
+        }).backgroundColor(0x317aff)
+    }.width('100%').margin({ top: 5 })
+  }
+}
+```
+
+![openAnimator](figures/openAnimator.gif)
+
+## Example
 
 ```ts
 @CustomDialog
@@ -146,12 +212,16 @@ struct CustomDialogExample {
         Button('cancel')
           .onClick(() => {
             this.controller.close()
-            if (this.cancel) this.cancel()
+            if (this.cancel) {
+              this.cancel()
+            }
           }).backgroundColor(0xffffff).fontColor(Color.Black)
         Button('confirm')
           .onClick(() => {
             this.controller.close()
-            if (this.confirm) this.confirm()
+            if (this.confirm) {
+              this.confirm()
+            }
           }).backgroundColor(0xffffff).fontColor(Color.Red)
       }.margin({ bottom: 10 })
     }
@@ -178,7 +248,7 @@ struct CustomDialogUser {
 
   build() {
     Column() {
-      Button('Click Me')
+      Button('click me')
         .onClick(() => {
           this.dialogController.open()
         })
