@@ -45,7 +45,7 @@ struct RefreshExample {
           .margin(10)
       }
       .onStateChange((refreshStatus: RefreshStatus) => {
-        console.info('Refresh onStatueChange state is ' + refreshStatus)
+        console.info('Refresh onStateChange state is ' + refreshStatus)
       })
       .onRefreshing(() => {
         setTimeout(() => {
