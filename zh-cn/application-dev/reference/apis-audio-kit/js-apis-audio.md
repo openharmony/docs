@@ -421,7 +421,10 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | SAMPLE_RATE_44100 | 44100  | 采样率为44100。 |
 | SAMPLE_RATE_48000 | 48000  | 采样率为48000。 |
 | SAMPLE_RATE_64000 | 64000  | 采样率为64000。 |
+| SAMPLE_RATE_88200<sup>12+</sup> | 88200  | 采样率为88200。 |
 | SAMPLE_RATE_96000 | 96000  | 采样率为96000。 |
+| SAMPLE_RATE_176400<sup>12+</sup> | 176400  | 采样率为176400。 |
+| SAMPLE_RATE_192000<sup>12+</sup> | 192000  | 采样率为192000。 |
 
 ## AudioEncodingType<sup>8+</sup>
 
