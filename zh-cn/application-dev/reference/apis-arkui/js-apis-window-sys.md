@@ -878,7 +878,9 @@ window.getSnapshot(windowId: number): Promise<image.PixelMap>;
 import { BusinessError } from '@ohos.base';
 import image from '@ohos.multimedia.image';
 try {
-  let windowId: number = window.getWindowProperties().id;
+  // windowClass的获取需放在targetWindow之上
+  let targetWindow: window.Window = windowClass;
+  let windowId: number = targetWindow.getWindowProperties().id;
   let promise = window.getSnapshot(windowId);
   promise.then((pixelMap: image.PixelMap) => {
     console.info('Succeeded in getting snapshot window. Pixel bytes number:' + pixelMap.getPixelBytesNumber());
