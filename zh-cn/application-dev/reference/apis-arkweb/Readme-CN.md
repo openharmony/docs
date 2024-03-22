@@ -8,12 +8,14 @@
 - C API
   - 模块
     - [Web](_web.md)
-    - [ArkWeb网络拦截](arkweb_scheme_handler.md)
   - 头文件和结构体
     - 头文件
       - [native_interface_arkweb.h](native__interface__arkweb_8h.md)
       - [arkweb_interface.h](arkweb__interface_8h.md)
       - [arkweb_type.h](arkweb__type_8h.md)
+      - [arkweb_error_code.h](arkweb__error__code_8h.md)
+      - [arkweb_net_error_list.h](arkweb__net__error__list_8h.md)
+      - [arkweb_scheme_handler.h](arkweb__scheme__handler_8h.md)
     - 结构体
       - [ArkWeb_AnyNativeAPI](_ark_web___any_native_a_p_i.md)
       - [ArkWeb_ComponentAPI](_ark_web___component_a_p_i.md)
@@ -24,6 +26,3 @@
       - [ArkWeb_ProxyObject](_ark_web___proxy_object.md)
 - 错误码
   - [Webview错误码](errorcode-webview.md)
-  - [ArkWeb NDK接口异常错误码](arkweb_error_code.md)
-  - [ArkWeb网络协议栈错误码](arkweb_net_error_list.md)
-
