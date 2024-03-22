@@ -319,6 +319,7 @@
     - 头文件
       - [native_dialog.h](native__dialog_8h.md)
       - [native_event.h](native__event_8h.md)
+      - [native_gesture.h](native__gesture_8h.md)
       - [native_interface.h](native__interface_8h.md)
       - [native_interface_xcomponent.h](native__interface__xcomponent_8h.md)
       - [native_node.h](native__node_8h.md)
@@ -331,6 +332,7 @@
       - [ArkUI_AttributeItem](_ark_u_i___attribute_item.md)
       - [ArkUI_ColorStop](_ark_u_i___color_stop.md)
       - [ArkUI_NativeDialogAPI_1](_ark_u_i___native_dialog_a_p_i__1.md)
+      - [ArkUI_NativeGestureAPI_1](_ark_u_i___native_gesture_a_p_i__1.md)
       - [ArkUI_NativeNodeAPI_1](_ark_u_i___native_node_a_p_i__1.md)
       - [ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)
       - [ArkUI_NodeEvent](_ark_u_i___node_event.md)
