@@ -85,8 +85,6 @@ aboutToReuse?(params: { [key: string]: unknown }): void
 
 当一个可复用的自定义组件从复用缓存中重新加入到节点树时，触发aboutToReuse生命周期回调，并将组件的构造参数传递给aboutToReuse。
 
-从API version 10开始，该接口支持在ArkTS卡片中使用。
-
 **参数：**
 
 | 参数名    | 类型                         | 说明         |
