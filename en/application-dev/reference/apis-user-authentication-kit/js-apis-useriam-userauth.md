@@ -13,6 +13,15 @@ The **userIAM.userAuth** module provides user authentication capabilities in ide
 import userIAM_userAuth from '@ohos.userIAM.userAuth';
 ```
 
+## Constant
+
+Represents the maximum period for which the device unlocking result can be reused.
+
+**System capability**: SystemCapability.UserIAM.UserAuth.Core
+
+| Name       | Value  | Description      |
+| ----------- | ---- | ---------- |
+| MAX_ALLOWABLE_REUSE_DURATION<sup>12+</sup>    | 300000   | Maximum period for which the device unlocking result can be reused. The value is **300,000** ms.|
 ## AuthParam<sup>10+</sup>
 
 Defines the user authentication parameters.
@@ -24,6 +33,7 @@ Defines the user authentication parameters.
 | challenge      | Uint8Array                         | Yes  | Challenge value, which is used to prevent replay attacks. It cannot exceed 32 bytes and can be passed in **Uint8Array([])** format.|
 | authType       | [UserAuthType](#userauthtype8)[]   | Yes  | Authentication type list, which specifies the types of authentication provided on the user authentication page.          |
 | authTrustLevel | [AuthTrustLevel](#authtrustlevel8) | Yes  | Authentication trust level.                                              |
+| reuseUnlockResult<sup>12+</sup> | [ReuseUnlockResult](#reuseunlockresult12) | No  |Device unlocking result that can be reused.|
 
 ## WidgetParam<sup>10+</sup>
 
@@ -47,7 +57,7 @@ Defines the user authentication result. If the authentication is successful, the
 | result   | number                         | Yes  | User authentication result. If the operation is successful, **SUCCESS** is returned. If the operation fails, an error code is returned. For details, see [UserAuthResultCode](#userauthresultcode9).|
 | token    | Uint8Array                     | No  | Token that has passed the authentication.                |
 | authType | [UserAuthType](#userauthtype8) | No  | Type of the authentication.                          |
-
+| enrolledState<sup>12+</sup> | [EnrolledState](#enrolledstate12) | No  |  Enrolled credential information.        |
 
 ## IAuthCallback<sup>10+</sup>
 
@@ -67,7 +77,7 @@ Called to return the authentication result. If the authentication is successful,
 | ------ | ----------------------------------- | ---- | ---------- |
 | result | [UserAuthResult](#userauthresult10) | Yes  | Authentication result.|
 
-**Example**
+**Example 1**
 
 ```ts
 import userAuth from '@ohos.userIAM.userAuth';
@@ -76,6 +86,39 @@ const authParam : userAuth.AuthParam = {
   challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
   authType: [userAuth.UserAuthType.PIN],
   authTrustLevel: userAuth.AuthTrustLevel.ATL1,
+};
+const widgetParam :userAuth.WidgetParam = {
+  title:'Enter password',
+};
+try {
+  let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
+  console.log('get userAuth instance success');
+  // The authentication result is returned by onResult only after the authentication is started by start() of UserAuthInstance.
+  userAuthInstance.on('result', {
+    onResult (result) {
+      console.log('userAuthInstance callback result = ' + JSON.stringify(result));
+    }
+  });
+  console.log('auth on success');
+} catch (error) {
+  console.error('auth catch error: ' + JSON.stringify(error));
+}
+```
+
+**Example 2**
+
+```ts
+import userAuth from '@ohos.userIAM.userAuth';
+
+let reuseUnlockResult: userAuth.ReuseUnlockResult = {
+  reuseMode: userAuth.ReuseMode.AUTH_TYPE_RELEVANT,
+  reuseDuration: 300000,
+}
+const authParam : userAuth.AuthParam = {
+  challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
+  authType: [userAuth.UserAuthType.PIN],
+  authTrustLevel: userAuth.AuthTrustLevel.ATL1,
+  reuseUnlockResult: reuseUnlockResult,
 };
 const widgetParam :userAuth.WidgetParam = {
   title:'Enter password',
@@ -1357,3 +1400,83 @@ Enumerates the authentication results.
 | LOCKED             | 7      | The user account is locked because the number of authentication failures has reached the threshold.|
 | NOT_ENROLLED       | 8      | No authentication credential is registered.          |
 | GENERAL_ERROR      | 100    | Other errors.                |
+
+## userAuth.getEnrolledState<sup>12+</sup>
+
+getEnrolledState(authType : UserAuthType): EnrolledStated
+
+Obtains information about the credentials enrolled.
+
+**Required permissions**: ohos.permission.ACCESS_BIOMETRIC
+
+**System capability**: SystemCapability.UserIAM.UserAuth.Core
+
+**Parameters**
+
+| Name        | Type                              | Mandatory| Description                      |
+| -------------- | ---------------------------------- | ---- | -------------------------- |
+| authType       | [UserAuthType](#userauthtype8)     | Yes  | Authentication type.|
+
+**Return value**
+
+| Type                 | Description                                                        |
+| --------------------- | ------------------------------------------------------------ |
+| [EnrolledState](#enrolledstate12) | Information about the enrolled credentials.|
+
+**Error codes**
+
+For details about the error codes, see [User Authentication Error Codes](errorcode-useriam.md).
+
+| ID| Error Message|
+| -------- | ------- |
+| 201 | Permission verification failed. |
+| 401 | Incorrect parameters. |
+| 12500002 | General operation error. |
+| 12500005 | The authentication type is not supported. |
+| 12500010 | The type of credential has not been enrolled. |
+
+**Example**
+
+```ts
+import userAuth from '@ohos.userIAM.userAuth';
+
+try {
+  let enrolledState = userAuth.getEnrolledState(userAuth.UserAuthType.FACE);
+  console.info('get current enrolled state success, enrolledState = ' + JSON.stringify(enrolledState));
+} catch (error) {
+  console.error('get current enrolled state failed, error = ' + JSON.stringify(error));
+}
+```
+
+## EnrolledState<sup>12+</sup>
+
+Represents information about the enrolled credentials.
+
+**System capability**: SystemCapability.UserIAM.UserAuth.Core
+
+| Name        | Type  | Readable/Writable| Description                |
+| ------------ | ---------- | ---- | -------------------- |
+| credentialDigest       | number | Yes  | Digest of the registered credentials.      |
+| credentialCount        | number | Yes  | Number of enrolled credentials.      |
+
+## ReuseMode<sup>12+</sup>
+
+Represents the mode for reusing the device unlocking result.
+
+**System capability**: SystemCapability.UserIAM.UserAuth.Core
+
+| Name       | Value  | Description      |
+| ----------- | ---- | ---------- |
+| AUTH_TYPE_RELEVANT    | 1   | The device unlocking result can be reused only within the specified period when the authentication type matches one of the specified authentication types.|
+| AUTH_TYPE_IRRELEVANT  | 2   | The device unlocking result can be reused within the specified period irrespective of the authentication type.|
+
+## ReuseUnlockResult<sup>12+</sup>
+
+Represents the device unlocking result.
+
+**System capability**: SystemCapability.UserIAM.UserAuth.Core
+
+| Name        | Type  | Mandatory| Description                |
+| ------------ | ---------- | ---- | -------------------- |
+| reuseMode        | [ReuseMode](#reusemode12) | Yes  | Mode for reusing the device unlocking result.      |
+| reuseDuration    | number | Yes  | Period for which the device unlocking result can be reused. <br>Value range: 0 to [MAX_ALLOWABLE_REUSE_DURATION](#constant)|

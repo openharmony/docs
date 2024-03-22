@@ -23,14 +23,14 @@ You can set **WidgetParam.navigationButtonText** to specify the text displayed o
 > The lock screen password authentication and custom authentication are mutually exclusive.
 
 
-| Authentication Type| Switch to Custom Authentication|
+| Authentication Type| Switch to Custom Authentication| 
 | -------- | -------- |
-| Lock screen password authentication| × |
-| Facial authentication| √ |
-| Fingerprint authentication| √ |
-| Facial + lock screen password authentication| × |
-| Fingerprint + lock screen password authentication| × |
-| Facial + fingerprint + lock screen password authentication| × |
+| Lock screen password authentication| × | 
+| Facial authentication| √ | 
+| Fingerprint authentication| √ | 
+| Facial + lock screen password authentication| × | 
+| Fingerprint + lock screen password authentication| × | 
+| Facial + fingerprint + lock screen password authentication| × | 
 
 
 ## Development Example
@@ -40,7 +40,8 @@ To implement the switchover from a system-supported authentication type to a cus
 The following example only covers how to configure the page for switching to the custom authentication page. You need to implement the process of starting the related page based on the comments in the sample code.
 
 ```ts
-import userIAM_userAuth from '@ohos.userIAM.userAuth'; 
+import type {BusinessError} from '@ohos.base';
+import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
 const authParam: userIAM_userAuth.AuthParam = {
   challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
@@ -72,6 +73,6 @@ try {
   console.log('auth start success');
 } catch (error) {
   const err: BusinessError = error as BusinessError;
-  console.log('auth catch error. Code is ${err.code}, message is ${err.message}`);
+  console.log(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
 }
 ```
