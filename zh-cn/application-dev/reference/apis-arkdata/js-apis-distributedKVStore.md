@@ -462,7 +462,7 @@ const options: distributedKVStore.Options = {
   securityLevel: distributedKVStore.SecurityLevel.S2,
 }
 try {
-  kvManager.getKVStore('storeId', options, async (err: BusinessError, store: distributedKVStore.SingleKVStore) => {
+  kvManager.getKVStore('storeId', options, async (err: BusinessError, store: distributedKVStore.SingleKVStore | null) => {
     if (err != undefined) {
       console.error(`Failed to get KVStore.code is ${err.code},message is ${err.message}`);
       return;
@@ -583,7 +583,7 @@ const options: distributedKVStore.Options = {
   securityLevel: distributedKVStore.SecurityLevel.S2,
 }
 try {
-  kvManager.getKVStore('store', options, async (err: BusinessError, store: distributedKVStore.SingleKVStore) => {
+  kvManager.getKVStore('store', options, async (err: BusinessError, store: distributedKVStore.SingleKVStore | null) => {
     if (err != undefined) {
       console.error(`Failed to get KVStore.code is ${err.code},message is ${err.message}`);
       return;
