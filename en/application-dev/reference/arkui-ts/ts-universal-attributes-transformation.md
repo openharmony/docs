@@ -18,7 +18,7 @@ Transformation attributes allow you to rotate, translate, scale, or transform a 
 
 > **NOTE**
 >
-> If both the **rotate** and **scale** attributes are set for a component, the values of **centerX** and **centerY** conflict. In this case, the one that is set later in time prevails.
+> If the **rotate** and **scale** attributes are both set for a component, the values of **centerX** and **centerY** conflict. In this case, the one that is set later in time prevails.
 
 ## Example
 

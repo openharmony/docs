@@ -21,7 +21,7 @@ AlphabetIndexer(value: {arrayValue: Array&lt;string&gt;, selected: number})
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | arrayValue | Array&lt;string&gt; | Yes| Array of strings to be displayed in the alphabetic index bar. The value cannot be null.|
-| selected   | number              | Yes   | Index of the initially selected item. If the value exceeds the value range, the default value 0 is used.<br>Since API version 10, this parameter supports [$$](../../quick-start/arkts-two-way-sync.md) for two-way binding of variables.|
+| selected   | number              | Yes   | Index of the initially selected item. If the value exceeds the value range, the default value 0 is used.<br>Since API version 10, this parameter supports two-way binding through [$$](../../quick-start/arkts-two-way-sync.md).|
 
 ## Attributes
 
@@ -40,8 +40,8 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | font                    | [Font](ts-types.md#font) | Default font style of the alphabetic index bar.<br>Default value:<br>{<br>size:'12.0fp',<br> style:FontStyle.Normal,<br> weight:FontWeight.Normal,<br> family:'HarmonyOS Sans'<br>}                      |
 | itemSize                | string \| number            | Size of an item in the alphabetic index bar. The item is a square, and the side length needs to be set. This attribute cannot be set to a percentage.<br>Default value: **16.0**<br>Unit: vp|
 | alignStyle              | value: [IndexerAlign](#indexeralign),<br>offset<sup>10+</sup>?: [Length](ts-types.md#length) | Alignment style of the alphabetic index bar.<br>**value**: alignment of the alphabetic index bar with the pop-up window, which can be left-aligned or right-aligned.<br>Default value: **IndexerAlign.Right**<br>**offset**: spacing between the pop-up window and the alphabetic index bar. A value greater than or equal to 0 is valid. If this parameter is set to a value less than 0 or is not set, the spacing is the same as **popupPosition.x**. If this parameter and **popupPosition** are set at the same time, **offset** takes effect in the horizontal direction and **popupPosition.y** takes effect in the vertical direction.|
-| selected | number | Index of the selected item.<br>Default value: **0**<br>Since API version 10, this parameter supports [$$](../../quick-start/arkts-two-way-sync.md) for two-way binding of variables.|
-| popupPosition | [Position](ts-types.md#position8) | Position of the pop-up window relative to the center of the indexer bar's top border.<br>Default value: **{x:60.0, y:48.0}**|
+| selected<sup>8+</sup> | number | Index of the selected item.<br>Default value: **0**<br>Since API version 10, this parameter supports two-way binding through [$$](../../quick-start/arkts-two-way-sync.md).|
+| popupPosition<sup>8+</sup> | [Position](ts-types.md#position8) | Position of the pop-up window relative to the center of the indexer bar's top border.<br>Default value: **{x:60.0, y:48.0}**|
 | popupSelectedColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | Color of the selected text excluding the initial letter in the pop-up window.<br>Default value: **#FF182431**|
 | popupUnselectedColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | Color of the unselected text in the pop-up window.<br>Default value: **#FF182431**|
 | popupItemFont<sup>10+</sup> | [Font](ts-types.md#font) | Font of the text excluding the initial letter in the pop-up window.<br>Default value:<br>{<br>size:24,<br>weight:FontWeight.Medium<br>}|

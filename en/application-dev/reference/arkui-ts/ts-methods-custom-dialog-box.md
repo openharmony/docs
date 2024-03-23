@@ -54,7 +54,7 @@ Defines a custom dialog box.
 ### Objects to Import
 
 ```ts
-let dialogController : CustomDialogController = new CustomDialogController(CustomDialogControllerOptions)
+dialogController : CustomDialogController | null = new CustomDialogController(CustomDialogControllerOptions)
 ```
 > **NOTE**
 >
@@ -158,8 +158,8 @@ struct CustomDialogUser {
   @State inputValue: string = 'Click Me'
   dialogController: CustomDialogController | null = new CustomDialogController({
     builder: CustomDialogExample({
-      cancel: this.onCancel,
-      confirm: this.onAccept,
+      cancel: ()=> { this.onCancel() },
+      confirm: ()=> { this.onAccept() },
       textValue: $textValue,
       inputValue: $inputValue
     }),

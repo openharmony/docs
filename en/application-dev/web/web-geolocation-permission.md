@@ -37,6 +37,35 @@ In the following example, when a user clicks the **Get Location** button on the 
   ```ts
   // xxx.ets
   import web_webview from '@ohos.web.webview';
+  import common from '@ohos.app.ability.common';
+  import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
+  import geoLocationManager from '@ohos.geoLocationManager';
+
+  let context = getContext(this) as common.UIAbilityContext;
+  let atManager = abilityAccessCtrl.createAtManager();
+
+  try{
+    atManager.requestPermissionsFromUser(context, ["ohos.permission.APPROXIMATELY_LOCATION"], (err, data) => {
+      let requestInfo: geoLocationManager.LocationRequest = {
+        'priority': 0x203,
+        'scenario': 0x300,
+        'maxAccuracy': 0
+      };
+      let locationChange = (location: geoLocationManager.Location):void => {
+        if(location){
+          console.log('locationChanger: location=' + JSON.stringify(location));
+        }
+      };
+      try{
+        geoLocationManager.on('locationChange', requestInfo, locationChange);
+        geoLocationManager.off('locationChange', locationChange);
+      } catch (err) {
+        console.error("errCode:" + err.code + ", errMessage:" + err.message);
+      }
+    })
+  } catch (err) {
+    console.error("err:", err);
+  }
 
   @Entry
   @Component

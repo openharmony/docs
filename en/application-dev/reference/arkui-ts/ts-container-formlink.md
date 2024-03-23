@@ -19,15 +19,15 @@ This component supports only one child component.
 
 ## APIs
 
-FormLink(value: {
-  action: string;
-  moduleName?: string;
-  bundleName?: string;
-  abilityName: string;
-  params: Object;
-})
+FormLink(options: FormLinkOptions)
 
 **Parameters**
+
+| Name      | Type                           | Mandatory  | Description  |
+| --------- | ------------------------------- | ---- | ------ |
+| options | [FormLinkOptions](#formlinkoptions) | Yes   | Widget information.|
+
+## FormLinkOptions
 
 | Name     | Type| Mandatory| Description                                                    |
 | ----------- | -------- | ---- | ------------------------------------------------------------ |

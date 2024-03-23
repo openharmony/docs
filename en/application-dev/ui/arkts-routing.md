@@ -440,7 +440,7 @@ When the configuration is successful, import the named route page to the page fr
 ```ts
 import router from '@ohos.router';
 import { BusinessError } from '@ohos.base';
-const module = import('library/src/main/ets/pages/Index');  // Import the named route page in the shared package.
+import('library/src/main/ets/pages/Index');  // Import the named route page in the shared package.
 @Entry
 @Component
 struct Index {

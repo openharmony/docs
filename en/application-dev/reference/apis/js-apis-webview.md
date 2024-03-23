@@ -2,7 +2,7 @@
 
 # @ohos.web.webview (Webview)
 
-The **Webview** module provides APIs for web control. It can be used with the [<Web\>](../arkui-ts/ts-basic-components-web.md) component, which can be used to display web pages.
+The **Webview** module provides APIs for web control. It can work with the [<Web\>](../arkui-ts/ts-basic-components-web.md) component, which can be used to display web pages.
 
 > **NOTE**
 >
@@ -277,14 +277,14 @@ struct WebComponent {
           try {
             console.log("In ArkTS side send true start");
             if (this.nativePort) {
+              this.message.setType(1);
               this.message.setString("helloFromEts");
-              this.message.setType(2);
               this.nativePort.postMessageEventExt(this.message);
             }
           }
           catch (error) {
             let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.log("In ArkTS side send message catch error:" + e.code + ", msg:" + e.message);
+            console.error(`In ArkTS side send message catch error, ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
         Button('SendToH5 setNumber').margin({
@@ -296,13 +296,14 @@ struct WebComponent {
           try {
             console.log("In ArkTS side send true start");
             if (this.nativePort) {
+              this.message.setType(2);
               this.message.setNumber(12345);
               this.nativePort.postMessageEventExt(this.message);
             }
           }
           catch (error) {
             let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.log("In ArkTS side send message catch error:" + e.code + ", msg:" + e.message);
+            console.error(`In ArkTS side send message catch error, ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
         Button('SendToH5 setBoolean').margin({
@@ -313,13 +314,14 @@ struct WebComponent {
           try {
             console.log("In ArkTS side send true start");
             if (this.nativePort) {
+              this.message.setType(3);
               this.message.setBoolean(true);
               this.nativePort.postMessageEventExt(this.message);
             }
           }
           catch (error) {
             let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.log("In ArkTS side send message catch error:" + e.code + ", msg:" + e.message);
+            console.error(`In ArkTS side send message catch error, ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
         Button('SendToH5 setArrayBuffer').margin({
@@ -330,13 +332,14 @@ struct WebComponent {
           try {
             console.log("In ArkTS side send true start");
             if (this.nativePort) {
+              this.message.setType(4);
               this.message.setArrayBuffer(this.testObjtest.test("Name=test&Password=test"));
               this.nativePort.postMessageEventExt(this.message);
             }
           }
           catch (error) {
             let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.log("In ArkTS side send message catch error:" + e.code + ", msg:" + e.message);
+            console.error(`In ArkTS side send message catch error, ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
         Button('SendToH5 setArray').margin({
@@ -348,13 +351,14 @@ struct WebComponent {
           try {
             console.log("In ArkTS side send true start");
             if (this.nativePort) {
+              this.message.setType(5);
               this.message.setArray([1,2,3]);
               this.nativePort.postMessageEventExt(this.message);
             }
           }
           catch (error) {
             let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.log("In ArkTS side send message catch error:" + e.code + ", msg:" + e.message);
+            console.error(`In ArkTS side send message catch error, ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
         Button('SendToH5 setError').margin({
@@ -369,11 +373,12 @@ struct WebComponent {
           }
           catch (error) {
             if (this.nativePort) {
+              this.message.setType(6);
               this.message.setError(error);
               this.nativePort.postMessageEventExt(this.message);
             }
             let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.log("In ArkTS side send message catch error:" + e.code + ", msg:" + e.message);
+            console.error(`In ArkTS side send message catch error, ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
 
@@ -1045,7 +1050,7 @@ struct WebComponent {
 
 accessBackward(): boolean
 
-Checks whether moving to the previous page can be performed on the current page.
+Checks whether going to the previous page can be performed on the current page.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -1143,6 +1148,7 @@ struct WebComponent {
 onActive(): void
 
 Invoked to instruct the **\<Web>** component to enter the active foreground state.
+<br>The application can interact with the user while in the active foreground state, and it remains in this state until the focus is moved away from it due to some event (for example, an incoming call is received or the device screen is turned off).
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -1187,7 +1193,7 @@ struct WebComponent {
 
 onInactive(): void
 
-Invoked to instruct the **\<Web>** component to enter the inactive state.
+Invoked to instruct the **\<Web>** component to enter the inactive state. You can implement the behavior to perform after the application loses focus.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -1606,7 +1612,8 @@ struct WebComponent {
               'test()',
               (error, result) => {
                 if (error) {
-                  console.info(`run JavaScript error: ` + JSON.stringify(error))
+                  let e: business_error.BusinessError = error as business_error.BusinessError;
+                  console.error(`run JavaScript error, ErrorCode: ${e.code},  Message: ${e.message}`);
                   return;
                 }
                 if (result) {
@@ -1777,7 +1784,8 @@ struct WebComponent {
               'test()',
               (error, result) => {
                 if (error) {
-                  console.info(`run JavaScript error: ` + JSON.stringify(error))
+                  let e: business_error.BusinessError = error as business_error.BusinessError;
+                  console.error(`run JavaScript error, ErrorCode: ${e.code},  Message: ${e.message}`);
                   return;
                 }
                 if (result) {
@@ -2901,7 +2909,7 @@ struct WebComponent {
 }
 ```
 
-You can customize the user agent based on the default user agent.
+You can define a custom user agent based on the default user agent.
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
@@ -2916,7 +2924,7 @@ struct WebComponent {
   aboutToAppear():void {
     web_webview.once('webInited', () => {
       try {
-        // Customize the user agent on the application side.
+        // Define a custom user agent on the application side.
         this.ua = this.controller.getUserAgent() + 'xxx';
       } catch(error) {
         let e:business_error.BusinessError = error as business_error.BusinessError;
@@ -3082,7 +3090,8 @@ struct WebComponent {
           try {
             this.controller.storeWebArchive("/data/storage/el2/base/", true, (error, filename) => {
               if (error) {
-                console.info(`save web archive error: ` + JSON.stringify(error))
+                let e: business_error.BusinessError = error as business_error.BusinessError;
+                console.error(`save web archive error, ErrorCode: ${e.code},  Message: ${e.message}`);
                 return;
               }
               if (filename != null) {
@@ -3154,7 +3163,7 @@ struct WebComponent {
                 }
               })
               .catch((error:business_error.BusinessError) => {
-                console.log('error: ' + JSON.stringify(error));
+                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
               })
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
@@ -3762,7 +3771,8 @@ struct WebComponent {
           try {
             this.controller.hasImage((error, data) => {
               if (error) {
-                console.info(`hasImage error: ` + JSON.stringify(error))
+                let e: business_error.BusinessError = error as business_error.BusinessError;
+                console.error(`hasImage error, ErrorCode: ${e.code},  Message: ${e.message}`);
                 return;
               }
               console.info("hasImage: " + data);
@@ -4062,7 +4072,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 **Example**
 
-1. To perform operations on files, you must import the file management module. For details, see [File Management](./js-apis-file-fs.md).
+1. To perform operations on files, you must first import the **fs** module. For details, see [File Management](./js-apis-file-fs.md).
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
@@ -4139,7 +4149,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 **Example**
 
-1. To perform operations on files, you must import the file management module. For details, see [File Management](./js-apis-file-fs.md).
+1. To perform operations on files, you must first import the **fs** module. For details, see [File Management](./js-apis-file-fs.md).
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
@@ -4984,7 +4994,8 @@ struct WebComponent {
           try {
             web_webview.WebCookieManager.saveCookieAsync((error) => {
               if (error) {
-                console.log("error: " + error);
+                let e: business_error.BusinessError = error as business_error.BusinessError;
+                console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
               }
             })
           } catch (error) {
@@ -5456,7 +5467,8 @@ struct WebComponent {
           try {
             web_webview.WebStorage.getOrigins((error, origins) => {
               if (error) {
-                console.log('error: ' + JSON.stringify(error));
+                let e: business_error.BusinessError = error as business_error.BusinessError;
+                console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
                 return;
               }
               for (let i = 0; i < origins.length; i++) {
@@ -5588,7 +5600,8 @@ struct WebComponent {
           try {
             web_webview.WebStorage.getOriginQuota(this.origin, (error, quota) => {
               if (error) {
-                console.log('error: ' + JSON.stringify(error));
+                let e: business_error.BusinessError = error as business_error.BusinessError;
+                console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
                 return;
               }
               console.log('quota: ' + quota);
@@ -5719,7 +5732,8 @@ struct WebComponent {
           try {
             web_webview.WebStorage.getOriginUsage(this.origin, (error, usage) => {
               if (error) {
-                console.log('error: ' + JSON.stringify(error));
+                let e: business_error.BusinessError = error as business_error.BusinessError;
+                console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
                 return;
               }
               console.log('usage: ' + usage);
@@ -6196,7 +6210,8 @@ struct WebComponent {
           try {
             web_webview.GeolocationPermissions.getAccessibleGeolocation(this.origin, (error, result) => {
               if (error) {
-                console.log('getAccessibleGeolocationAsync error: ' + JSON.stringify(error));
+                let e: business_error.BusinessError = error as business_error.BusinessError;
+                console.error(`getAccessibleGeolocationAsync error, ErrorCode: ${e.code},  Message: ${e.message}`);
                 return;
               }
               console.log('getAccessibleGeolocationAsync result: ' + result);
@@ -6262,7 +6277,7 @@ struct WebComponent {
               .then(result => {
                 console.log('getAccessibleGeolocationPromise result: ' + result);
               }).catch((error : business_error.BusinessError) => {
-              console.log('getAccessibleGeolocationPromise error: ' + JSON.stringify(error));
+              console.error(`getAccessibleGeolocationPromise error, ErrorCode: ${error.code},  Message: ${error.message}`);
             });
           } catch (error) {
             let e: business_error.BusinessError = error as business_error.BusinessError;
@@ -6308,7 +6323,7 @@ struct WebComponent {
           try {
             web_webview.GeolocationPermissions.getStoredGeolocation((error, origins) => {
               if (error) {
-                console.error(`getStoredGeolocationAsync error, ErrorCode: ${e.code},  Message: ${e.message}`);
+                console.error(`getStoredGeolocationAsync error, ErrorCode: ${error.code},  Message: ${error.message}`);
                 return;
               }
               let origins_str: string = origins.join();
@@ -7032,5 +7047,5 @@ Describes the mode in which the **\<Web>** component uses HTTPDNS.
 | Name         | Value| Description                                     |
 | ------------- | -- |----------------------------------------- |
 | OFF                                  | 0 |HTTPDNS is not used. This value can be used to revoke the previously used HTTPDNS configuration.|
-| AUTO                                 | 1 |HTTPDNS is used in automatic mode. When the specified HTTPDNS server is unavailable for resolution, the component will fall back to the system DNS server.|
+| AUTO                                 | 1 |HTTPDNS is used in automatic mode. If the specified HTTPDNS server is unavailable for resolution, the component falls back to the system DNS server.|
 | SECURE_ONLY                          | 2 |The specified HTTPDNS server is forcibly used for DNS resolution.|

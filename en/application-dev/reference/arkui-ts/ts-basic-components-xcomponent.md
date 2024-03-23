@@ -138,36 +138,39 @@ Obtains the context of an **\<XComponent>** object. This API works only when **t
 
 | Type    | Description                                      |
 | ------ | ---------------------------------------- |
-| Object | Context of the **\<XComponent>** object. The APIs contained in the context are defined by developers.|
+| Object | Context of the **\<XComponent>** object. The APIs contained in the context are defined by developers. The context is passed in as the first parameter of the **onLoad** callback.|
 
 
 ## Example
 
-You can preview how this component looks on a real device. The preview is not yet available in the DevEco Studio Previewer.
+You can preview how this component looks on a real device, but not in the DevEco Studio Previewer.
 
 ```ts
 // xxx.ets
 @Entry
 @Component
 struct PreviewArea {
-  private surfaceId : string =''
-  xcomponentController: XComponentController = new XComponentController()
+  private surfaceId: string = ''
+  private xComponentContext: Record<string, () => void> = {}
+  xComponentController: XComponentController = new XComponentController()
+
   build() {
     Row() {
       XComponent({
         id: 'xcomponent',
-        type: 'surface',
-        controller: this.xcomponentController
+        type: XComponentType.SURFACE,
+        controller: this.xComponentController
       })
         .onLoad(() => {
-          this.xcomponentController.setXComponentSurfaceSize({surfaceWidth:1920,surfaceHeight:1080});
-          this.surfaceId = this.xcomponentController.getXComponentSurfaceId()
+          this.xComponentController.setXComponentSurfaceSize({ surfaceWidth: 1920, surfaceHeight: 1080 })
+          this.surfaceId = this.xComponentController.getXComponentSurfaceId()
+          this.xComponentContext = this.xComponentController.getXComponentContext() as Record<string, () => void>
         })
         .width('640px')
         .height('480px')
     }
     .backgroundColor(Color.Black)
-    .position({x: 0, y: 48})
+    .position({ x: 0, y: 48 })
   }
 }
 ```

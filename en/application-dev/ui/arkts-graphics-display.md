@@ -38,6 +38,8 @@ Data sources of the archived type can be classified into local resources, online
 
   To use online images, first apply for the **ohos.permission.INTERNET** permission. For details, see [Applying for Permissions](../security/accesstoken-guidelines.md). Then, in the **\<Image>** component, set **src** to the URL of the online image.
 
+  If an online image has been loaded before, the **\<Image>** component can obtain it from the cache, instead of having to request it from the Internet again. For details about the image cache, see [setImageCacheCount, setImageRawDataCacheSize, and setImageFileCacheSize](../reference/apis/js-apis-system-app.md#setimagecachecount7).
+
   ```ts
   Image('https://www.example.com/example.JPG') // Replace the URL with the actual URL.
   ```
