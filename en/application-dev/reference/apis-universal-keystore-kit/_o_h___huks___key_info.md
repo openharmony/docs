@@ -3,14 +3,11 @@
 
 ## Overview
 
-Defines the key information structure.
+Defines the struct of key information.
 
-**Since:**
-9
+**Since**: 9
 
-**Related Modules:**
-
-[HuksTypeApi](_huks_type_api.md)
+**Related module**: [HuksTypeApi](_huks_type_api.md)
 
 
 ## Summary
@@ -18,30 +15,30 @@ Defines the key information structure.
 
 ### Member Variables
 
-| Name | Description | 
+| Name| Description|
 | -------- | -------- |
-| [alias](#alias) | Alias of the key.  | 
-| [paramSet](#paramset) | Pointer to the key parameter set.  | 
+| struct [OH_Huks_Blob](_o_h___huks___blob.md) [alias](#alias) | Alias of the key. |
+| struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \* [paramSet](#paramset) | Pointer to the key parameter set. |
 
 
-## Member Variable Description 
+## Member Variable Description
 
 
 ### alias
 
-  
 ```
 struct OH_Huks_Blob OH_Huks_KeyInfo::alias
 ```
-**Description**<br>
+**Description**
+
 Alias of the key.
 
 
 ### paramSet
 
-  
 ```
 struct OH_Huks_ParamSet* OH_Huks_KeyInfo::paramSet
 ```
-**Description**<br>
+**Description**
+
 Pointer to the key parameter set.

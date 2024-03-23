@@ -3,14 +3,11 @@
 
 ## Overview
 
-Defines the structure for storing data.
+Defines the struct of a binary large object (BLOB).
 
-**Since:**
-9
+**Since**: 9
 
-**Related Modules:**
-
-[HuksTypeApi](_huks_type_api.md)
+**Related module**: [HuksTypeApi](_huks_type_api.md)
 
 
 ## Summary
@@ -18,30 +15,30 @@ Defines the structure for storing data.
 
 ### Member Variables
 
-| Name | Description | 
+| Name| Description|
 | -------- | -------- |
-| [size](#size) | Data size.  | 
-| [data](#data) | Pointer to the memory in which the data is stored.  | 
+| uint32_t [size](#size) | Size of the BLOB object. |
+| uint8_t \* [data](#data) | Pointer to the memory in which the data is stored. |
 
 
-## Member Variable Description 
+## Member Variable Description
 
 
 ### data
 
-  
 ```
 uint8_t* OH_Huks_Blob::data
 ```
-**Description**<br>
+**Description**
+
 Pointer to the memory in which the data is stored.
 
 
 ### size
 
-  
 ```
 uint32_t OH_Huks_Blob::size
 ```
-**Description**<br>
-Data size.
+**Description**
+
+Size of the data.

@@ -3,14 +3,11 @@
 
 ## Overview
 
-Defines the structure of an RSA key.
+Defines the struct of an RSA key.
 
-**Since:**
-9
+**Since**: 9
 
-**Related Modules:**
-
-[HuksTypeApi](_huks_type_api.md)
+**Related module**: [HuksTypeApi](_huks_type_api.md)
 
 
 ## Summary
@@ -18,63 +15,63 @@ Defines the structure of an RSA key.
 
 ### Member Variables
 
-| Name | Description | 
+| Name| Description|
 | -------- | -------- |
-| [keyAlg](#keyalg) |Algorithm of the key.  | 
-| [keySize](#keysize) | Length of the key.  | 
-| [nSize](#nsize) | Length of the n value.  | 
-| [eSize](#esize) | Length of the e value.  | 
-| [dSize](#dsize) | Length of the d value.  | 
+| enum [OH_Huks_KeyAlg](_huks_type_api.md#oh_huks_keyalg) [keyAlg](#keyalg) | Algorithm of the key. |
+| uint32_t [keySize](#keysize) | Length of the key. |
+| uint32_t [nSize](#nsize) | Length of **n**. |
+| uint32_t [eSize](#esize) | Length of **e**. |
+| uint32_t [dSize](#dsize) | Length of **d**. |
 
 
-## Member Variable Description 
+## Member Variable Description
 
 
 ### dSize
 
-  
 ```
 uint32_t OH_Huks_KeyMaterialRsa::dSize
 ```
-**Description**<br>
-Length of the d value.
+**Description**
+
+Length of **d**.
 
 
 ### eSize
 
-  
 ```
 uint32_t OH_Huks_KeyMaterialRsa::eSize
 ```
-**Description**<br>
-Length of the e value.
+**Description**
+
+Length of **e**.
 
 
 ### keyAlg
 
-  
 ```
 enum OH_Huks_KeyAlg OH_Huks_KeyMaterialRsa::keyAlg
 ```
-**Description**<br>
+**Description**
+
 Algorithm of the key.
 
 
 ### keySize
 
-  
 ```
 uint32_t OH_Huks_KeyMaterialRsa::keySize
 ```
-**Description**<br>
+**Description**
+
 Length of the key.
 
 
 ### nSize
 
-  
 ```
 uint32_t OH_Huks_KeyMaterialRsa::nSize
 ```
-**Description**<br>
-Length of the n value.
+**Description**
+
+Length of **n**.
