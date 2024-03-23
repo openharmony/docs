@@ -602,7 +602,7 @@ Grid边缘效果为弹簧效果时，划动经过末尾位置时触发一次，�
 
 ### onScrollFrameBegin<sup>10+</sup>
 
-onScrollFrameBegin(event: (offset: number, state:  ScrollState => { offsetRemain: number })
+onScrollFrameBegin(event: (offset: number, state:  ScrollState) => { offsetRemain: number })
 
 网格开始滑动时触发，事件参数传入即将发生的滑动量，事件处理函数中可根据应用场景计算实际需要的滑动量并作为事件处理函数的返回值返回，网格将按照返回值的实际滑动量进行滑动。
 
