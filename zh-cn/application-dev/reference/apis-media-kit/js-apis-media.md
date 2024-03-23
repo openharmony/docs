@@ -2265,6 +2265,53 @@ avRecorder.getInputSurface().then((surfaceId: string) => {
 });
 ```
 
+### updateRotation<sup>12+</sup>
+
+updateRotation(rotation: number): Promise\<void>
+
+更新视频旋转角度。
+
+当且仅当[prepare()](#prepare9-3)事件成功触发后，且在[start()](#start9)之前，才能调用updateRotation方法。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                        |
+| -------- | -------------------- | ---- | --------------------------- |
+| rotation | number | 是   | 旋转角度，取值仅支持0、90、180、270度。 |
+
+**返回值：**
+
+| 类型             | 说明                             |
+| ---------------- | -------------------------------- |
+| Promise\<void> | 异步返回函数执行结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+
+| 错误码ID | 错误信息                               |
+| -------- | -------------------------------------- |
+|   401    | Parameter error. Return by callback.   |
+| 5400102  | Operate not permit. Return by promise. |
+| 5400103  | IO error. Return by promise.           |
+| 5400105  | Service died. Return by promise.       |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let rotation = 90
+
+avRecorder.updateRotation(rotation).then(() => {
+  console.info('updateRotation success');
+}).catch((err: BusinessError) => {
+  console.error('updateRotation failed and catch error is ' + err.message);
+});
+```
+
 ### start<sup>9+</sup>
 
 start(callback: AsyncCallback\<void>): void
