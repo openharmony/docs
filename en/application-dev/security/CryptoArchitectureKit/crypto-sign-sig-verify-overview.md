@@ -41,7 +41,7 @@ In the following table, the options included in the square brackets ([]) are mut
 
 | Asymmetric Key Type| Padding Mode| MD Algorithm| API Version| 
 | -------- | -------- | -------- | -------- |
-| RSA512 | PKCS1 | [MD5\|SHA1\|SHA224\|SHA256\|SHA384] | 9+ | 
+| RSA512 | PKCS1 | [MD5\|SHA1\|SHA224\|SHA256] | 9+ | 
 | RSA768 | PKCS1 | [MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | 9+ | 
 | RSA1024 | PKCS1 | [MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | 9+ | 
 | RSA2048 | PKCS1 | [MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | 9+ | 
@@ -120,6 +120,59 @@ The following table lists the parameters that can be set or obtained when the PS
 | mgf1_md | PSS_MGF1_MD_STR | √ | - | 
 | saltLen | PSS_SALT_LEN_NUM | √ | √ | 
 | trailer_field | PSS_TRAILER_FIELD_NUM | √ | - | 
+
+
+### Signing Mode OnlySign
+
+The Crypto framework provides RSA signing without MD.
+
+When creating an RSA asymmetric signing (**Sign**) instance, you need to specify the signing specifications in a string parameter. The string parameter consists of the asymmetric key type, padding mode, MD algorithm, and signing mode with a vertical bar (|) in between.
+
+In the following table, the options included in the square brackets ([]) are mutually exclusive. You can use only one of them in a string parameter. For example, if the asymmetric key type is **RSA2048**, the padding mode is **PKCS1**, the MD algorithm is **SHA256**, and the signing mode is **OnlySign**, the string parameter is **RSA2048|PKCS1|SHA256|OnlySign**.
+
+> **NOTE**
+> When the RSA is used for signing only, the length of the data to be signed must meet the following requirements:
+>
+> 1. If the padding mode is **PKCS1** and no MD algorithm is set (**NoHash**), the data must be less than the RSA key length minus 11 (PKCS #1 padding length).
+> 2. If the padding mode is **PKCS1** and an MD algorithm is set, the data to be signed must be the MD data.
+> 3. If no padding mode is set (**NoPadding**) and no MD algorithm is set (**NoHash**), the length of the data to be signed must be the same as that of the RSA key.
+
+| Asymmetric Key Type| Padding Mode| MD Algorithm| Signing Mode| API Version| 
+| -------- | -------- | -------- | -------- | -------- | 
+| RSA512 | PKCS1 | [NoHash\|MD5\|SHA1\|SHA224\|SHA256] | OnlySign | 12+ | 
+| RSA768 | PKCS1 | [NoHash\|MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | OnlySign | 12+ | 
+| RSA1024 | PKCS1 | [NoHash\|MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | OnlySign | 12+ | 
+| RSA2048 | PKCS1 | [NoHash\|MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | OnlySign | 12+ | 
+| RSA3072 | PKCS1 | [NoHash\|MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | OnlySign | 12+ | 
+| RSA4096 | PKCS1 | [NoHash\|MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | OnlySign | 12+ | 
+| RSA8192 | PKCS1 | [NoHash\|MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | OnlySign | 12+ | 
+| [RSA512\|RSA768\|RSA1024\|RSA2048\|RSA3072\|RSA4096\|RSA8192\|RSA] | NoPadding | NoHash | OnlySign | 12+ | 
+| RSA | PKCS1 | MD algorithm that meets the length requirements| OnlySign | 12+ | 
+
+As indicated by the last row in the preceding table, you can specify the RSA key type without the key length to ensure compatibility with the key generated based on the key parameter. In this case, the signing operation varies depending on the actual key length.
+
+
+### Signature Verification Mode Recover
+
+The Crypto framework provides the functionality of recovering the original data based on an RSA signature.
+
+When creating an RSA signature verification (**Verify**) instance, you need to specify the algorithm specifications in a string parameter. The string parameter consists of the asymmetric key type, padding mode, MD algorithm, and signature verification mode with a vertical bar (|) in between.
+
+In the following table, the options included in the square brackets ([]) are mutually exclusive. You can use only one of them in a string parameter. For example, if the asymmetric key type is **RSA2048**, the padding mode is **PKCS1**, the MD algorithm is **SHA256**, and the signature verification mode is **Recover**, the string parameter is **RSA2048|PKCS1|SHA256|Recover**.
+
+| Asymmetric Key Type| Padding Mode| MD Algorithm| Signature Verification Mode| API Version| 
+| -------- | -------- | -------- | -------- | -------- | 
+| RSA512 | PKCS1 | [NoHash\|MD5\|SHA1\|SHA224\|SHA256] | Recover | 12+ | 
+| RSA768 | PKCS1 | [NoHash\|MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | Recover | 12+ | 
+| RSA1024 | PKCS1 | [NoHash\|MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | Recover | 12+ | 
+| RSA2048 | PKCS1 | [NoHash\|MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | Recover | 12+ | 
+| RSA3072 | PKCS1 | [NoHash\|MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | Recover | 12+ | 
+| RSA4096 | PKCS1 | [NoHash\|MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | Recover | 12+ | 
+| RSA8192 | PKCS1 | [NoHash\|MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | Recover | 12+ | 
+| [RSA512\|RSA768\|RSA1024\|RSA2048\|RSA3072\|RSA4096\|RSA8192\|RSA] | NoPadding | NoHash | Recover | 12+ | 
+| RSA | PKCS1 | MD algorithm that meets the length requirements| Recover | 12+ | 
+
+As indicated by the last row in the preceding table, you can specify the RSA key type without the key length to ensure compatibility with the key generated based on the key parameter. In this case, the signature restore operation varies depending on the actual key length.
 
 
 ## ECDSA
