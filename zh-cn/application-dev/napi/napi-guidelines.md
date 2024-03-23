@@ -1,5 +1,63 @@
 # Node-API开发规范
 
+## 获取JS传入参数及其数量
+
+**【规则】** 当传入napi_get_cb_info的argv不为nullptr时，argv的长度必须大于等于传入argc声明的大小。
+
+当argv不为nullptr时，napi_get_cb_info会根据argc声明的数量将JS实际传入的参数写入argv。如果argc小于等于实际JS传入参数的数量，该接口仅会将声明的argc数量的参数写入argv；而当argc大于实际参数数量时，该接口会在argv的尾部填充undefined。
+
+**错误示例**
+
+```cpp
+static napi_value IncorrectDemo1(napi_env env, napi_callbackk_info info) {
+    // argc 未正确的初始化，其值为不确定的随机值，导致 argv 的长度可能小于 argc 声明的数量，数据越界。
+    size_t argc;
+    napi_value argv[10] = {nullptr};
+    napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr);
+    return nullptr;
+}
+
+static napi_value IncorrectDemo2(napi_env env, napi_callback_info info) {
+    // argc 声明的数量大与 argv 实际初始化的长度，导致 napi_get_cb_info 接口在写入 argv 时数据越界。
+    size_t argc = 5;
+    napi_value argv[3] = {nullptr};
+    napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr);
+    return nullptr;
+}
+```
+
+**正确示例**
+
+```cpp
+static napi_value GetArgvDemo1(napi_env env, napi_callback_info info) {
+    size_t argc = 0;
+    // argv 传入 nullptr 来获取传入参数真实数量
+    napi_get_cb_info(env, info, &argc, nullptr, nullptr, nullptr);
+    // JS 传入参数为0，不执行后续逻辑
+    if (argc == 0) {
+        return nullptr;
+    }
+    // 创建数组用以获取JS传入的参数
+    napi_value* argv = new napi_value[argc]; 
+    napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr);
+    // 业务代码
+    // ... ...
+    // argv 为 new 创建的对象，在使用完成后手动释放
+    delete argv;
+    return nullptr;
+}
+
+static napi_value GetArgvDemo2(napi_env env, napi_callback_info info) {
+    size_t argc = 2;
+    napi_value* argv[2] = {nullptr}; 
+    // napi_get_cb_info 会向 argv 中写入 argc 个 JS 传入参数或 undefined
+    napi_get_cb_info(env, info, &argc, nullptr, nullptr, nullptr);
+    // 业务代码
+    // ... ...
+    return nullptr;
+}
+```
+
 ## 生命周期管理
 
 **【规则】** 合理使用napi_open_handle_scope和napi_close_handle_scope管理napi_value的生命周期，做到生命周期最小化，避免发生内存泄漏问题。
@@ -217,7 +275,7 @@ napi_create_arraybuffer等同于JS代码中的`new ArrayBuffer(size)`，其生�
 **【建议】** 尽可能的减少数据转换次数，避免不必要的复制。
 
 - **减少数据转换次数：** 频繁的数据转换可能会导致性能下降，可以通过批量处理数据或者使用更高效的数据结构来优化性能；
-- **避免不必要的数据复制：** 在进行数据转换时，可以使用N-API提供的接口来直接访问原始数据，而不是创建新的副本；
+- **避免不必要的数据复制：** 在进行数据转换时，可以使用Node-API提供的接口来直接访问原始数据，而不是创建新的副本；
 - **使用缓存：** 如果某些数据在多次转换中都会被使用到，可以考虑使用缓存来避免重复的数据转换。缓存可以减少不必要的计算，提高性能。
 
 ## 其它

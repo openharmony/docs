@@ -27,7 +27,7 @@ import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry
 
 addAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<void>): void
 
-添加AbilityMonitor实例（callback形式）。
+添加AbilityMonitor实例（callback形式）。不支持多线程并发调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -73,7 +73,7 @@ abilityDelegator.addAbilityMonitor(monitor, (error: BusinessError) => {
 
 addAbilityMonitor(monitor: AbilityMonitor): Promise\<void>
 
-添加AbilityMonitor实例（promise形式）。
+添加AbilityMonitor实例（promise形式）。不支持多线程并发调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -123,7 +123,7 @@ abilityDelegator.addAbilityMonitor(monitor).then(() => {
 
 addAbilityMonitorSync(monitor: AbilityMonitor): void
 
-同步添加AbilityMonitor实例。
+同步添加AbilityMonitor实例。不支持多线程并发调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -212,7 +212,7 @@ abilityDelegator.removeAbilityMonitor(monitor, (error: BusinessError) => {
 
 removeAbilityMonitor(monitor: AbilityMonitor): Promise\<void>
 
-删除已经添加的AbilityMonitor实例（promise形式）。
+删除已经添加的AbilityMonitor实例（promise形式）。不支持多线程并发调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -263,7 +263,7 @@ abilityDelegator.removeAbilityMonitor(monitor).then(() => {
 
 removeAbilityMonitorSync(monitor: AbilityMonitor): void
 
-同步删除已经添加的AbilityMonitor实例。
+同步删除已经添加的AbilityMonitor实例。不支持多线程并发调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -306,7 +306,7 @@ abilityDelegator.removeAbilityMonitorSync(monitor);
 
 waitAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<UIAbility>): void
 
-等待与AbilityMonitor实例匹配的ability到达OnCreate生命周期，并返回ability实例（callback形式）。
+等待与AbilityMonitor实例匹配的ability到达OnCreate生命周期，并返回ability实例（callback形式）。不支持多线程并发调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -357,7 +357,7 @@ abilityDelegator.waitAbilityMonitor(monitor, (error : BusinessError, data : UIAb
 
 waitAbilityMonitor(monitor: AbilityMonitor, timeout: number, callback: AsyncCallback\<UIAbility>): void
 
-设置等待时间，等待与AbilityMonitor实例匹配的ability到达OnCreate生命周期，并返回ability实例（callback形式）。
+设置等待时间，等待与AbilityMonitor实例匹配的ability到达OnCreate生命周期，并返回ability实例（callback形式）。不支持多线程并发调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -412,7 +412,7 @@ abilityDelegator.waitAbilityMonitor(monitor, timeout, (error : BusinessError, da
 
 waitAbilityMonitor(monitor: AbilityMonitor, timeout?: number): Promise\<UIAbility>
 
-设置等待时间，等待与AbilityMonitor实例匹配的ability到达OnCreate生命周期，并返回ability实例（promise形式）。
+设置等待时间，等待与AbilityMonitor实例匹配的ability到达OnCreate生命周期，并返回ability实例（promise形式）。不支持多线程并发调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 

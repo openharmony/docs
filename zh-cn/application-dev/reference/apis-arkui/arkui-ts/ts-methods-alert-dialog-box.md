@@ -314,7 +314,7 @@ struct AlertDialogExample {
 struct AlertDialogExample {
   build() {
     Column({ space: 5 }) {
-        Button('one button dialog')
+      Button('one button dialog')
         .onClick(() => {
           AlertDialog.show(
             {
@@ -354,7 +354,7 @@ struct AlertDialogExample {
               cancel: () => {
                 console.info('Closed callbacks')
               },
-              onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
+              onWillDismiss: (dismissDialogAction: DismissDialogAction) => {
                 console.info("reason=" + JSON.stringify(dismissDialogAction.reason))
                 console.log("dialog onWillDismiss")
                 if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
@@ -363,10 +363,10 @@ struct AlertDialogExample {
                 if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
                   dismissDialogAction.dismiss()
                 }
-            }
-          )
-        }).backgroundColor(0x317aff)
-    }.width('100%').margin({ top: 5 })
+              }
+            })
+        })
+    }.width('100%').margin({ top: 5 }).backgroundColor(0x317aff)
   }
 }
 ```

@@ -3,7 +3,7 @@
 
 ## 概述
 
-提供ArkUI在Native侧的UI能力，如UI组件创建销毁、树节点操作，属性设置，事件监听等。
+提供ArkUI在Native侧的UI能力，如UI组件创建销毁、树节点操作，属性设置，事件监听，注册手势回调等。
 
 
 **起始版本：** 12
@@ -21,7 +21,9 @@
 | [native_node.h](native__node_8h.md) | 提供NativeNode接口的类型定义。 <br>**库：** libace_ndk.z.so | 
 | [native_node_napi.h](native__node__napi_8h.md) | 提供ArkTS侧的FrameNode转换NodeHandle的方式。 <br>**库：** libace_ndk.z.so | 
 | [native_type.h](native__type_8h.md) | 提供NativeModule公共的类型定义。  <br>**库：** libace_ndk.z.so| 
-| [native_dialog.h](native__dialog_8h.md) | 提供ArkUI在Native侧的自定义弹窗接口定义集合。  | 
+| [native_dialog.h](native__dialog_8h.md) | 提供ArkUI在Native侧的自定义弹窗接口定义集合。  <br>**库：** libace_ndk.z.so| 
+| [native_gesture.h](native__gesture_8h.md) | 提供NativeGesture接口的类型定义。  <br>**库：** libace_ndk.z.so| 
+
 
 
 ### 结构体
@@ -43,6 +45,7 @@
 | struct&nbsp;&nbsp;[ArkUI_ColorStop](_ark_u_i___color_stop.md) | 定义渐变色结构。  | 
 | struct&nbsp;&nbsp;[ArkUI_Rect](_ark_u_i___rect.md) | 定义遮罩屏蔽区域的范围结构体。  | 
 | struct&nbsp;&nbsp;[ArkUI_NativeDialogAPI_1](_ark_u_i___native_dialog_a_p_i__1.md) | ArkUI提供的Native侧自定义弹窗接口集合。  |
+| struct&nbsp;&nbsp;[ArkUI_NativeGestureAPI_1](_ark_u_i___native_gesture_a_p_i__1.md) | 手势模块接口集合。  | 
 
 
 ### 类型定义
@@ -52,6 +55,9 @@
 | typedef struct ArkUI_Node \* [ArkUI_NodeHandle](#arkui_nodehandle) | 定义ArkUI native组件实例对象指针定义。  | 
 | typedef struct ArkUI_NativeDialog \* [ArkUI_NativeDialogHandle](#arkui_nativedialoghandle) | 定义ArkUI在Native侧的自定义弹窗控制器对象指针。  | 
 | typedef bool(\* [OnWillDismissEvent](#onwilldismissevent)) (int32_t reason) | 弹窗关闭的回调函数。  | 
+| typedef uint32_t [ArkUI_GestureEventActionTypeMask](#arkui_gestureeventactiontypemask) | 定义手势事件类型集合  | 
+| typedef uint32_t [ArkUI_GestureDirectionMask](#arkui_gesturedirectionmask) | 定义滑动手势方向集合。  | 
+
 
 
 ### 枚举
@@ -62,7 +68,7 @@
 | [ArkUI_NodeSourceType](#arkui_nodesourcetype) { NODE_SOURCE_TYPE_UNKNOWN = -1, NODE_SOURCE_TYPE_TOUCH_SCREEN = 0, NODE_SOURCE_TYPE_STYLUS = 1, NODE_SOURCE_TYPE_TOUCHPAD = 2 } | 产生Touch事件的来源类型定义。  | 
 | [ArkUI_NodeTouchEventAction](#arkui_nodetoucheventaction) { NODE_ACTION_CANCEL = 0, NODE_ACTION_DOWN = 1, NODE_ACTION_MOVE = 2, NODE_ACTION_UP = 3 } | 定义触屏事件类型的枚举值。  | 
 | [HitTestMode](#hittestmode) { HTMDEFAULT = 0, HTMBLOCK, HTMTRANSPARENT, HTMNONE } | 定义触摸测试类型的枚举值。  | 
-| [ArkUI_NativeAPIVariantKind](#arkui_nativeapivariantkind) { ARKUI_NATIVE_NODE, ARKUI_NATIVE_DIALOG } | 定义Native接口集合类型。  | 
+| [ArkUI_NativeAPIVariantKind](#arkui_nativeapivariantkind) { ARKUI_NATIVE_NODE, ARKUI_NATIVE_GESTURE,ARKUI_NATIVE_DIALOG } | 定义Native接口集合类型。  | 
 | [ArkUI_NativeNodeAPIVersion](#arkui_nativenodeapiversion) { ARKUI_NATIVE_NODE_VERSION_1 = 1 } | 定义ARKUI_NATIVE_NODE类型支持的版本号信息。  | 
 | [ArkUI_NodeType](#arkui_nodetype) {<br/>ARKUI_NODE_CUSTOM = 0, ARKUI_NODE_TEXT = 1, ARKUI_NODE_SPAN = 2, ARKUI_NODE_IMAGE_SPAN = 3,<br/>ARKUI_NODE_IMAGE = 4, ARKUI_NODE_TOGGLE = 5, ARKUI_NODE_LOADING_PROGRESS = 6, ARKUI_NODE_TEXT_INPUT = 7,<br/>ARKUI_NODE_TEXT_AREA = 8, ARKUI_NODE_BUTTON = 9, ARKUI_NODE_PROGRESS = 10, ARKUI_NODE_CHECKBOX = 11,<br/>ARKUI_NODE_XCOMPONENT = 12, ARKUI_NODE_DATE_PICKER = 13, ARKUI_NODE_TIME_PICKER = 14, ARKUI_NODE_TEXT_PICKER = 15,<br/>ARKUI_NODE_CALENDAR_PICKER = 16, ARKUI_NODE_SLIDER = 17, ARKUI_NODE_STACK = MAX_NODE_SCOPE_NUM, ARKUI_NODE_SWIPER,<br/>ARKUI_NODE_SCROLL, ARKUI_NODE_LIST, ARKUI_NODE_LIST_ITEM, ARKUI_NODE_LIST_ITEM_GROUP,<br/>ARKUI_NODE_COLUMN, ARKUI_NODE_ROW, ARKUI_NODE_FLEX, ARKUI_NODE_REFRESH,<br/>ARKUI_NODE_WATER_FLOW<br/>} | 提供ArkUI在Native侧可创建组件类型。  | 
 | [ArkUI_NodeAttributeType](#arkui_nodeattributetype) {<br/>NODE_WIDTH = 0, NODE_HEIGHT, NODE_BACKGROUND_COLOR, NODE_BACKGROUND_IMAGE,<br/>NODE_PADDING, NODE_ID, NODE_ENABLED, NODE_MARGIN,<br/>NODE_TRANSLATE, NODE_SCALE, NODE_ROTATE, NODE_BRIGHTNESS,<br/>NODE_SATURATION, NODE_BLUR, NODE_LINEAR_GRADIENT, NODE_ALIGNMENT,<br/>NODE_OPACITY, NODE_BORDER_WIDTH, NODE_BORDER_RADIUS, NODE_BORDER_COLOR,<br/>NODE_BORDER_STYLE, NODE_Z_INDEX, NODE_VISIBILITY, NODE_CLIP,<br/>NODE_CLIP_SHAPE, NODE_TRANSFORM, NODE_HIT_TEST_BEHAVIOR, NODE_POSITION,<br/>NODE_SHADOW, NODE_CUSTOM_SHADOW, NODE_BACKGROUND_IMAGE_SIZE, NODE_BACKGROUND_IMAGE_SIZE_WITH_STYLE,<br/>NODE_BACKGROUND_BLUR_STYLE, NODE_TRANSFORM_CENTER, NODE_OPACITY_TRANSITION, NODE_ROTATE_TRANSITION,<br/>NODE_SCALE_TRANSITION, NODE_TRANSLATE_TRANSITION, NODE_MOVE_TRANSITION, NODE_FOCUSABLE,<br/>NODE_DEFAULT_FOCUS, NODE_RESPONSE_REGION, NODE_OVERLAY, NODE_SWEEP_GRADIENT,<br/>NODE_RADIAL_GRADIENT, NODE_MASK, NODE_BLEND_MODE, NODE_DIRECTION,<br/>NODE_CONSTRAINT_SIZE, NODE_GRAY_SCALE, NODE_INVERT, NODE_SEPIA,<br/>NODE_CONTRAST, NODE_FOREGROUND_COLOR, NODE_OFFSET, NODE_MARK_ANCHOR,<br/>NODE_BACKGROUND_IMAGE_POSITION, NODE_ALIGN_RULES, NODE_ALIGN_SELF, NODE_FLEX_GROW,<br/>NODE_FLEX_SHRINK, NODE_FLEX_BASIS, NODE_ACCESSIBILITY_GROUP, NODE_ACCESSIBILITY_TEXT,<br/>NODE_ACCESSIBILITY_MODE, NODE_ACCESSIBILITY_DESCRIPTION, NODE_FOCUS_STATUS, NODE_ASPECT_RATIO,<br/>NODE_TEXT_CONTENT = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_TEXT, NODE_FONT_COLOR, NODE_FONT_SIZE, NODE_FONT_STYLE,<br/>NODE_FONT_WEIGHT, NODE_TEXT_LINE_HEIGHT, NODE_TEXT_DECORATION, NODE_TEXT_CASE,<br/>NODE_TEXT_LETTER_SPACING, NODE_TEXT_MAX_LINES, NODE_TEXT_ALIGN, NODE_TEXT_OVERFLOW,<br/>NODE_FONT_FAMILY, NODE_TEXT_COPY_OPTION, NODE_TEXT_BASELINE_OFFSET, NODE_TEXT_TEXT_SHADOW,<br/>NODE_TEXT_MIN_FONT_SIZE, NODE_TEXT_MAX_FONT_SIZE, NODE_TEXT_FONT, NODE_TEXT_HEIGHT_ADAPTIVE_POLICY,<br/>NODE_TEXT_INDENT, NODE_TEXT_WORD_BREAK, NODE_TEXT_ELLIPSIS_MODE, NODE_SPAN_CONTENT = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_SPAN,<br/>NODE_SPAN_TEXT_BACKGROUND_STYLE, NODE_IMAGE_SPAN_SRC = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_IMAGE_SPAN, NODE_IMAGE_SPAN_VERTICAL_ALIGNMENT, NODE_IMAGE_SRC = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_IMAGE,<br/>NODE_IMAGE_OBJECT_FIT, NODE_IMAGE_INTERPOLATION, NODE_IMAGE_OBJECT_REPEAT, NODE_IMAGE_COLOR_FILTER,<br/>NODE_IMAGE_AUTO_RESIZE, NODE_IMAGE_ALT, NODE_IMAGE_DRAGGABLE, NODE_IMAGE_RENDER_MODE,<br/>NODE_TOGGLE_SELECTED_COLOR = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_TOGGLE, NODE_TOGGLE_SWITCH_POINT_COLOR, NODE_TOGGLE_VALUE, NODE_LOADING_PROGRESS_COLOR = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_LOADING_PROGRESS,<br/>NODE_LOADING_PROGRESS_ENABLE_LOADING, NODE_TEXT_INPUT_PLACEHOLDER = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_TEXT_INPUT, NODE_TEXT_INPUT_TEXT, NODE_TEXT_INPUT_CARET_COLOR,<br/>NODE_TEXT_INPUT_CARET_STYLE, NODE_TEXT_INPUT_SHOW_UNDERLINE, NODE_TEXT_INPUT_MAX_LENGTH, NODE_TEXT_INPUT_ENTER_KEY_TYPE,<br/>NODE_TEXT_INPUT_PLACEHOLDER_COLOR, NODE_TEXT_INPUT_PLACEHOLDER_FONT, NODE_TEXT_INPUT_ENABLE_KEYBOARD_ON_FOCUS, NODE_TEXT_INPUT_TYPE,<br/>NODE_TEXT_INPUT_SELECTED_BACKGROUND_COLOR, NODE_TEXT_INPUT_SHOW_PASSWORD_ICON, NODE_TEXT_INPUT_EDITING, NODE_TEXT_INPUT_CANCEL_BUTTON,<br/>NODE_TEXT_INPUT_TEXT_SELECTION, NODE_TEXT_AREA_PLACEHOLDER = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_TEXT_AREA, NODE_TEXT_AREA_TEXT, NODE_TEXT_AREA_MAX_LENGTH,<br/>NODE_TEXT_AREA_PLACEHOLDER_COLOR, NODE_TEXT_AREA_PLACEHOLDER_FONT, NODE_TEXT_AREA_CARET_COLOR, NODE_TEXT_AREA_EDITING,<br/>NODE_TEXT_AREA_TYPE, NODE_TEXT_AREA_SHOW_COUNTER, NODE_BUTTON_LABEL = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_BUTTON, NODE_PROGRESS_VALUE = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_PROGRESS,<br/>NODE_PROGRESS_TOTAL, NODE_PROGRESS_COLOR, NODE_PROGRESS_TYPE, NODE_CHECKBOX_SELECT = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_CHECKBOX,<br/>NODE_CHECKBOX_SELECT_COLOR, NODE_CHECKBOX_UNSELECT_COLOR, NODE_CHECKBOX_MARK, NODE_CHECKBOX_SHAPE,<br/>NODE_XCOMPONENT_ID = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_XCOMPONENT, NODE_XCOMPONENT_TYPE, NODE_XCOMPONENT_SURFACE_SIZE, NODE_DATE_PICKER_LUNAR = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_DATE_PICKER,<br/>NODE_DATE_PICKER_START, NODE_DATE_PICKER_END, NODE_DATE_PICKER_SELECTED, NODE_DATE_PICKER_DISAPPEAR_TEXT_STYLE,<br/>NODE_DATE_PICKER_TEXT_STYLE, NODE_DATE_PICKER_SELECTED_TEXT_STYLE, NODE_TIME_PICKER_SELECTED = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_TIME_PICKER, NODE_TIME_PICKER_USE_MILITARY_TIME,<br/>NODE_TIME_PICKER_DISAPPEAR_TEXT_STYLE, NODE_TIME_PICKER_TEXT_STYLE, NODE_TIME_PICKER_SELECTED_TEXT_STYLE, NODE_TEXT_PICKER_OPTION_RANGE = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_TEXT_PICKER,<br/>NODE_TEXT_PICKER_OPTION_SELECTED, NODE_TEXT_PICKER_OPTION_VALUE, NODE_TEXT_PICKER_DISAPPEAR_TEXT_STYLE, NODE_TEXT_PICKER_TEXT_STYLE,<br/>NODE_TEXT_PICKER_SELECTED_TEXT_STYLE, NODE_TEXT_PICKER_SELECTED_INDEX, NODE_TEXT_PICKER_CAN_LOOP, NODE_TEXT_PICKER_DEFAULT_PICKER_ITEM_HEIGHT,<br/>NODE_CALENDAR_PICKER_HINT_RADIUS = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_CALENDAR_PICKER, NODE_CALENDAR_PICKER_SELECTED_DATE, NODE_CALENDAR_PICKER_EDGE_ALIGNMENT, NODE_CALENDAR_PICKER_TEXT_STYLE,<br/>NODE_SLIDER_BLOCK_COLOR = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_SLIDER, NODE_SLIDER_TRACK_COLOR, NODE_SLIDER_SELECTED_COLOR, NODE_SLIDER_SHOW_STEPS,<br/>NODE_SLIDER_BLOCK_STYLE, NODE_SLIDER_VALUE, NODE_SLIDER_MIN_VALUE, NODE_SLIDER_MAX_VALUE,<br/>NODE_SLIDER_STEP, NODE_SLIDER_DIRECTION, NODE_SLIDER_REVERSE, NODE_SLIDER_STYLE,<br/>NODE_STACK_ALIGN_CONTENT = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_STACK, NODE_SCROLL_BAR_DISPLAY_MODE = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_SCROLL, NODE_SCROLL_BAR_WIDTH, NODE_SCROLL_BAR_COLOR,<br/>NODE_SCROLL_SCROLL_DIRECTION, NODE_SCROLL_EDGE_EFFECT, NODE_SCROLL_ENABLE_SCROLL_INTERACTION, NODE_SCROLL_FRICTION,<br/>NODE_SCROLL_SNAP, NODE_SCROLL_NESTED_SCROLL, NODE_SCROLL_OFFSET, NODE_SCROLL_EDGE,<br/>NODE_SCROLL_ENABLE_PAGING, NODE_LIST_DIRECTION = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_LIST, NODE_LIST_STICKY, NODE_LIST_SPACE,<br/>NODE_SWIPER_LOOP = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_SWIPER, NODE_SWIPER_AUTO_PLAY, NODE_SWIPER_SHOW_INDICATOR, NODE_SWIPER_INTERVAL,<br/>NODE_SWIPER_VERTICAL, NODE_SWIPER_DURATION, NODE_SWIPER_CURVE, NODE_SWIPER_ITEM_SPACE,<br/>NODE_SWIPER_INDEX, NODE_SWIPER_DISPLAY_COUNT, NODE_SWIPER_DISABLE_SWIPE, NODE_SWIPER_SHOW_DISPLAY_ARROW,<br/>NODE_SWIPER_EDGE_EFFECT_MODE, NODE_LIST_ITEM_GROUP_SET_HEADER = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_LIST_ITEM_GROUP, NODE_LIST_ITEM_GROUP_SET_FOOTER, NODE_LIST_ITEM_GROUP_SET_DIVIDER,<br/>NODE_COLUMN_ALIGN_ITEMS = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_COLUMN, NODE_COLUMN_JUSTIFY_CONTENT, NODE_ROW_ALIGN_ITEMS = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_ROW, NODE_ROW_JUSTIFY_CONTENT,<br/>NODE_FLEX_OPTION = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_FLEX, NODE_REFRESH_REFRESHING = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_REFRESH, NODE_REFRESH_CONTENT, NODE_WATER_FLOW_LAYOUT_DIRECTION = MAX_NODE_SCOPE_NUM \* ARKUI_NODE_WATER_FLOW<br/>} | 定义ArkUI在Native侧可以设置的属性样式集合。  | 
@@ -133,6 +139,13 @@
 | [ArkUI_ImageRenderMode](#arkui_imagerendermode) { ARKUI_IMAGE_RENDER_MODE_ORIGINAL = 0, ARKUI_IMAGE_RENDER_MODE_TEMPLATE } | 定义图片渲染模式。  | 
 | [ArkUI_TransitionEdge](#arkui_transitionedge) { ARKUI_TRANSITION_EDGE_TOP = 0, ARKUI_TRANSITION_EDGE_BOTTOM, ARKUI_TRANSITION_EDGE_START, ARKUI_TRANSITION_EDGE_END } | 定义转场从边缘滑入和滑出的效果。  | 
 | [ArkUI_DismissReason](#arkui_dismissreason) { DIALOG_DISMISS_BACK_PRESS = 0, DIALOG_DISMISS_TOUCH_OUTSIDE } | 弹窗关闭的触发方式。  | 
+| [ArkUI_GestureEventActionType](#arkui_gestureeventactiontype) { GESTURE_EVENT_ACTION_ACCEPT = 0x01, GESTURE_EVENT_ACTION_UPDATE = 0x02, GESTURE_EVENT_ACTION_END = 0x04, GESTURE_EVENT_ACTION_CANCEL = 0x08 } | 定义手势事件类型。  | 
+| [ArkUI_GesturePriority](#arkui_gesturepriority) { NORMAL = 0, PRIORITY = 1, PARALLEL = 2 } | 定义手势事件模式  | 
+| [ArkUI_GroupGestureMode](#arkui_groupgesturemode) { SEQUENTIAL_GROUP = 0, PARALLEL_GROUP = 1, EXCLUSIVE_GROUP = 2 } | 定义手势组事件模式。  | 
+| [ArkUI_GestureDirection](#arkui_gesturedirection) {<br/>GESTURE_DIRECTION_ALL = 0b1111, GESTURE_DIRECTION_HORIZONTAL = 0b0011, GESTURE_DIRECTION_VERTICAL = 0b1100, GESTURE_DIRECTION_LEFT = 0b0001,<br/>GESTURE_DIRECTION_RIGHT = 0b0010, GESTURE_DIRECTION_UP = 0b0100, GESTURE_DIRECTION_DOWN = 0b1000, GESTURE_DIRECTION_NONE = 0<br/>} | 定义滑动手势方向。  | 
+| [ArkUI_GestureMask](#arkui_gesturemask) { NORMAL_GESTURE_MASK = 0, IGNORE_INTERNAL_GESTURE_MASK } | 定义手势屏蔽模式  | 
+| [ArkUI_GestureRecognizerType](#arkui_gesturerecognizertype) {<br/>TAP_GESTURE = 0, LONG_PRESS_GESTURE, PAN_GESTURE, PINCH_GESTURE,<br/>ROTATION_GESTURE, SWIPE_GESTURE, GROUP_GESTURE<br/>} | 定义手势类型  | 
+| [ArkUI_GestureInterruptResult](#arkui_gestureinterruptresult) { GESTURE_INTERRUPT_RESULT_CONTINUE = 0, GESTURE_INTERRUPT_RESULT_REJECT } | 定义手势打断结果。  | 
 
 
 ### 函数
@@ -142,6 +155,23 @@
 | [ArkUI_AnyNativeAPI](_ark_u_i___any_native_a_p_i.md) \* [OH_ArkUI_GetNativeAPI](#oh_arkui_getnativeapi) ([ArkUI_NativeAPIVariantKind](#arkui_nativeapivariantkind) type, int32_t version) | 获取指定版本的Native接口集合。  | 
 | [ArkUI_AnyNativeAPI](_ark_u_i___any_native_a_p_i.md) \* [OH_ArkUI_QueryModuleInterface](#oh_arkui_querymoduleinterface) ([ArkUI_NativeAPIVariantKind](#arkui_nativeapivariantkind) type, int32_t version) | 获取指定版本的Native模块接口集合。  | 
 | int32_t [OH_ArkUI_GetNodeHandleFromNapiValue](#oh_arkui_getnodehandlefromnapivalue) (napi_env env, napi_value frameNode, [ArkUI_NodeHandle](#arkui_nodehandle) \*handle) | 获取ArkTS侧创建的FrameNode节点对象映射到native侧的ArkUI_NodeHandle。  | 
+| bool [OH_ArkUI_GestureInterruptInfo_GetSystemFlag](#oh_arkui_gestureinterruptinfo_getsystemflag) (const ArkUI_GestureInterruptInfo \*event) | 判断是否组件内置手势。  | 
+| ArkUI_GestureRecognizer \* [OH_ArkUI_GestureInterruptInfo_GetRecognizer](#oh_arkui_gestureinterruptinfo_getrecognizer) (const ArkUI_GestureInterruptInfo \*event) | 返回被打断的手势指针。  | 
+| ArkUI_GestureEvent \* [OH_ArkUI_GestureInterruptInfo_GetGestureEvent](#oh_arkui_gestureinterruptinfo_getgestureevent) (const ArkUI_GestureInterruptInfo \*event) | 返回打断的手势事件数据。  | 
+| [ArkUI_GestureEventActionType](#arkui_gestureeventactiontype)[OH_ArkUI_GestureEvent_GetActionType](#oh_arkui_gestureevent_getactiontype) (const ArkUI_GestureEvent \*event) | 返回手势事件类型。  | 
+| const ArkUI_UIInputEvent \* [OH_ArkUI_GestureEvent_GetRawInputEvent](#oh_arkui_gestureevent_getrawinputevent) (const ArkUI_GestureEvent \*event) | 返回手势输入。  | 
+| int32_t [OH_ArkUI_LongPress_GetRepeatCount](#oh_arkui_longpress_getrepeatcount) (const ArkUI_GestureEvent \*event) | 返回长按手势定时触发次数。  | 
+| float [OH_ArkUI_PanGesture_GetVelocity](#oh_arkui_pangesture_getvelocity) (const ArkUI_GestureEvent \*event) | 滑动手势返回手势主方向速度。  | 
+| float [OH_ArkUI_PanGesture_GetVelocityX](#oh_arkui_pangesture_getvelocityx) (const ArkUI_GestureEvent \*event) | 滑动手势返回当前手势的x轴方向速度。  | 
+| float [OH_ArkUI_PanGesture_GetVelocityY](#oh_arkui_pangesture_getvelocityy) (const ArkUI_GestureEvent \*event) | 滑动手势返回当前手势的y轴方向速度。  | 
+| float [OH_ArkUI_PanGesture_GetOffsetX](#oh_arkui_pangesture_getoffsetx) (const ArkUI_GestureEvent \*event) | 滑动手势返回当前手势事件x轴相对偏移量。  | 
+| float [OH_ArkUI_PanGesture_GetOffsetY](#oh_arkui_pangesture_getoffsety) (const ArkUI_GestureEvent \*event) | 滑动手势返回当前手势事件y轴相对偏移量。  | 
+| float [OH_ArkUI_SwipeGesture_GetAngle](#oh_arkui_swipegesture_getangle) (const ArkUI_GestureEvent \*event) | 滑动手势返回当前手势事件角度信息。  | 
+| float [OH_ArkUI_SwipeGesture_GetVelocity](#oh_arkui_swipegesture_getvelocity) (const ArkUI_GestureEvent \*event) | 滑动手势场景中所有手指滑动平均速度。  | 
+| float [OH_ArkUI_RotationGesture_GetAngle](#oh_arkui_rotationgesture_getangle) (const ArkUI_GestureEvent \*event) | 旋转手势返回当前手势事件角度信息。  | 
+| float [OH_ArkUI_PinchGesture_GetScale](#oh_arkui_pinchgesture_getscale) (const ArkUI_GestureEvent \*event) | 捏合手势返回当前手势事件缩放信息。  | 
+| float [OH_ArkUI_PinchGesture_GetCenterX](#oh_arkui_pinchgesture_getcenterx) (const ArkUI_GestureEvent \*event) | 捏合手势中心点相对于当前组件元素左上角x轴坐标。  | 
+| float [OH_ArkUI_PinchGesture_GetCenterY](#oh_arkui_pinchgesture_getcentery) (const ArkUI_GestureEvent \*event) | 捏合手势中心点相对于当前组件元素左上角y轴坐标。  | 
 
 
 
@@ -203,6 +233,32 @@ typedef bool(* OnWillDismissEvent) (int32_t reason)
 **描述：**
 
 弹窗关闭的回调函数。
+
+**起始版本：** 12
+
+
+### ArkUI_GestureDirectionMask
+
+```
+typedef uint32_t ArkUI_GestureDirectionMask
+```
+**描述：**
+
+定义滑动手势方向集合。
+
+**起始版本：** 12
+
+
+### ArkUI_GestureEventActionTypeMask
+
+```
+typedef uint32_t ArkUI_GestureEventActionTypeMask
+```
+**描述：**
+
+定义手势事件类型集合
+
+例：ArkUI_GestureEventActionTypeMask actions = GESTURE_EVENT_ACTION_ACCEPT | GESTURE_EVENT_ACTION_UPDATE;
 
 **起始版本：** 12
 
@@ -940,6 +996,7 @@ enum ArkUI_NativeAPIVariantKind
 | 枚举值 | 描述 | 
 | -------- | -------- |
 | ARKUI_NATIVE_NODE  | UI组件相关接口类型。&nbsp;&nbsp; | 
+| ARKUI_NATIVE_GESTURE | 手势相关接口类型。&nbsp;&nbsp; |
 | ARKUI_NATIVE_DIALOG  | 弹窗相关接口类型.&nbsp;&nbsp; | 
 
 
@@ -1948,6 +2005,140 @@ enum ArkUI_DismissReason
 | DIALOG_DISMISS_TOUCH_OUTSIDE  | 点击遮障层触发。&nbsp;&nbsp; | 
 
 
+### ArkUI_GestureDirection
+
+```
+enum ArkUI_GestureDirection
+```
+**描述：**
+
+定义滑动手势方向。
+
+**起始版本：** 12
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| GESTURE_DIRECTION_ALL  | 所有方向。&nbsp;&nbsp; | 
+| GESTURE_DIRECTION_HORIZONTAL  | 水平方向。&nbsp;&nbsp; | 
+| GESTURE_DIRECTION_VERTICAL  | 竖直方向。&nbsp;&nbsp; | 
+| GESTURE_DIRECTION_LEFT  | 向左方向。&nbsp;&nbsp; | 
+| GESTURE_DIRECTION_RIGHT  | 向右方向。&nbsp;&nbsp; | 
+| GESTURE_DIRECTION_UP  | 向上方向。&nbsp;&nbsp; | 
+| GESTURE_DIRECTION_DOWN  | 向下方向。&nbsp;&nbsp; | 
+| GESTURE_DIRECTION_NONE  | 任何方向都不触发手势事件。&nbsp;&nbsp; | 
+
+
+### ArkUI_GestureEventActionType
+
+```
+enum ArkUI_GestureEventActionType
+```
+**描述：**
+
+定义手势事件类型。
+
+**起始版本：** 12
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| GESTURE_EVENT_ACTION_ACCEPT  | 手势事件触发。&nbsp;&nbsp; | 
+| GESTURE_EVENT_ACTION_UPDATE  | 手势事件更新。&nbsp;&nbsp; | 
+| GESTURE_EVENT_ACTION_END  | 手势事件结束。&nbsp;&nbsp; | 
+| GESTURE_EVENT_ACTION_CANCEL  | 手势事件取消。&nbsp;&nbsp; | 
+
+
+### ArkUI_GestureInterruptResult
+
+```
+enum ArkUI_GestureInterruptResult
+```
+**描述：**
+
+定义手势打断结果。
+
+**起始版本：** 12
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| GESTURE_INTERRUPT_RESULT_CONTINUE  | 手势继续。&nbsp;&nbsp; | 
+| GESTURE_INTERRUPT_RESULT_REJECT  | 手势打断。&nbsp;&nbsp; | 
+
+
+### ArkUI_GestureMask
+
+```
+enum ArkUI_GestureMask
+```
+**描述：**
+
+定义手势屏蔽模式
+
+**起始版本：** 12
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| NORMAL_GESTURE_MASK  | 不屏蔽子组件的手势，按照默认手势识别顺序进行识别。&nbsp;&nbsp; | 
+| IGNORE_INTERNAL_GESTURE_MASK  | 屏蔽子组件的手势，包括子组件上系统内置的手势。&nbsp;&nbsp; | 
+
+
+### ArkUI_GesturePriority
+
+```
+enum ArkUI_GesturePriority
+```
+**描述：**
+
+定义手势事件模式
+
+**起始版本：** 12
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| NORMAL  | 正常手势。&nbsp;&nbsp; | 
+| PRIORITY  | 高优先级手势。&nbsp;&nbsp; | 
+| PARALLEL  | 并发手势。&nbsp;&nbsp; | 
+
+
+### ArkUI_GestureRecognizerType
+
+```
+enum ArkUI_GestureRecognizerType
+```
+**描述：**
+
+定义手势类型
+
+**起始版本：** 12
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| TAP_GESTURE  | 敲击手势。&nbsp;&nbsp; | 
+| LONG_PRESS_GESTURE  | 长按手势。&nbsp;&nbsp; | 
+| PAN_GESTURE  | 拖动手势。&nbsp;&nbsp; | 
+| PINCH_GESTURE  | 捏合手势。&nbsp;&nbsp; | 
+| ROTATION_GESTURE  | 旋转手势。&nbsp;&nbsp; | 
+| SWIPE_GESTURE  | 滑动手势。&nbsp;&nbsp; | 
+| GROUP_GESTURE  | 手势组合。&nbsp;&nbsp; | 
+
+
+### ArkUI_GroupGestureMode
+
+```
+enum ArkUI_GroupGestureMode
+```
+**描述：**
+
+定义手势组事件模式。
+
+**起始版本：** 12
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| PARALLEL_GROUP  | 并发手势模式，注册的手势同时识别，直到所有手势识别结束，手势识别互相不影响。&nbsp;&nbsp; | 
+| EXCLUSIVE_GROUP  | 互斥手势模式，注册的手势同时识别，若有一个手势识别成功，则结束手势识别。&nbsp;&nbsp; | 
+
+
+
 ## 函数说明
 
 
@@ -1966,7 +2157,7 @@ ArkUI_AnyNativeAPI* OH_ArkUI_GetNativeAPI (ArkUI_NativeAPIVariantKind type, int3
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| type | ArkUI提供的Native接口集合大类，例如UI组件接口类：ARKUI_NATIVE_NODE。  | 
+| type | ArkUI提供的Native接口集合大类，例如UI组件接口类：ARKUI_NATIVE_NODE, 手势类：ARKUI_NATIVE_GESTURE。  | 
 | version | native接口结构体的版本信息，通过结构体定义的后缀获得，如版本1的UI组件结构体：ArkUI_NativeNodeAPI_1。  | 
 
 **返回：**
@@ -2013,8 +2204,8 @@ ArkUI_AnyNativeAPI* OH_ArkUI_QueryModuleInterface (ArkUI_NativeAPIVariantKind ty
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| type | ArkUI提供的Native接口集合大类，例如UI组件接口类：ARKUI_NATIVE_NODE。  | 
-| version | native接口结构体的版本信息，通过结构体支持的版本枚举获得，如ARKUI_NATIVE_NODE的可用版本[ArkUI_NativeNodeAPIVersion](#arkui_nativenodeapiversion)。  | 
+| type | ArkUI提供的Native接口集合大类，例如UI组件接口类：ARKUI_NATIVE_NODE, 手势类：ARKUI_NATIVE_GESTURE。  | 
+| version | native接口结构体的版本信息，通过结构体支持的版本枚举获得，如ARKUI_NATIVE_NODE的可用版本[ArkUI_NativeNodeAPIVersion](#arkui_nativenodeapiversion)。 ARKUI_NATIVE_GESTURE的可用版本是1。 | 
 
 **返回：**
 
@@ -2437,3 +2628,377 @@ int32_t ArkUI_NativeDialogAPI_1::version
 **描述：**
 
 结构体版本。
+
+
+### OH_ArkUI_GestureEvent_GetActionType()
+
+```
+ArkUI_GestureEventActionType OH_ArkUI_GestureEvent_GetActionType (const ArkUI_GestureEvent * event)
+```
+**描述：**
+
+返回手势事件类型。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 手势事件。  | 
+
+**返回：**
+
+手势事件类型。
+
+
+### OH_ArkUI_GestureEvent_GetRawInputEvent()
+
+```
+const ArkUI_UIInputEvent* OH_ArkUI_GestureEvent_GetRawInputEvent (const ArkUI_GestureEvent * event)
+```
+**描述：**
+
+返回手势输入。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 手势事件。  | 
+
+**返回：**
+
+手势事件的原始输入事件。
+
+
+### OH_ArkUI_GestureInterruptInfo_GetGestureEvent()
+
+```
+ArkUI_GestureEvent* OH_ArkUI_GestureInterruptInfo_GetGestureEvent (const ArkUI_GestureInterruptInfo * event)
+```
+**描述：**
+
+返回打断的手势事件数据。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 打断回调事件。  | 
+
+**返回：**
+
+打断的手势事件数据。
+
+
+### OH_ArkUI_GestureInterruptInfo_GetRecognizer()
+
+```
+ArkUI_GestureRecognizer* OH_ArkUI_GestureInterruptInfo_GetRecognizer (const ArkUI_GestureInterruptInfo * event)
+```
+**描述：**
+
+返回被打断的手势指针。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 打断回调事件。  | 
+
+**返回：**
+
+被打断的手势指针。
+
+
+### OH_ArkUI_GestureInterruptInfo_GetSystemFlag()
+
+```
+bool OH_ArkUI_GestureInterruptInfo_GetSystemFlag (const ArkUI_GestureInterruptInfo * event)
+```
+**描述：**
+
+判断是否组件内置手势。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 手势打断回调事件。  | 
+
+**返回：**
+
+true: 系统内置手势； false: 非系统内置手势。
+
+
+### OH_ArkUI_LongPress_GetRepeatCount()
+
+```
+int32_t OH_ArkUI_LongPress_GetRepeatCount (const ArkUI_GestureEvent * event)
+```
+**描述：**
+
+返回长按手势定时触发次数。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 手势事件。  | 
+
+**返回：**
+
+长按手势定时触发次数。
+
+
+### OH_ArkUI_PanGesture_GetOffsetX()
+
+```
+float OH_ArkUI_PanGesture_GetOffsetX (const ArkUI_GestureEvent * event)
+```
+**描述：**
+
+滑动手势返回当前手势事件x轴相对偏移量。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 手势事件。  | 
+
+**返回：**
+
+当前手势事件x轴相对偏移量，单位为px。
+
+
+### OH_ArkUI_PanGesture_GetOffsetY()
+
+```
+float OH_ArkUI_PanGesture_GetOffsetY (const ArkUI_GestureEvent * event)
+```
+**描述：**
+
+滑动手势返回当前手势事件y轴相对偏移量。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 手势事件。  | 
+
+**返回：**
+
+当前手势事件y轴相对偏移量，单位为px。
+
+
+### OH_ArkUI_PanGesture_GetVelocity()
+
+```
+float OH_ArkUI_PanGesture_GetVelocity (const ArkUI_GestureEvent * event)
+```
+**描述：**
+
+滑动手势返回手势主方向速度。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 手势事件。  | 
+
+**返回：**
+
+当前手势主方向速度，为xy轴方向速度的平方和的算数平方根，单位px/秒。
+
+
+### OH_ArkUI_PanGesture_GetVelocityX()
+
+```
+float OH_ArkUI_PanGesture_GetVelocityX (const ArkUI_GestureEvent * event)
+```
+**描述：**
+
+滑动手势返回当前手势的x轴方向速度。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 手势事件。  | 
+
+**返回：**
+
+当前手势的x轴方向速度，单位px/秒。
+
+
+### OH_ArkUI_PanGesture_GetVelocityY()
+
+```
+float OH_ArkUI_PanGesture_GetVelocityY (const ArkUI_GestureEvent * event)
+```
+**描述：**
+
+滑动手势返回当前手势的y轴方向速度。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 手势事件。  | 
+
+**返回：**
+
+当前手势的y轴方向速度，单位px/秒。
+
+
+### OH_ArkUI_PinchGesture_GetCenterX()
+
+```
+float OH_ArkUI_PinchGesture_GetCenterX (const ArkUI_GestureEvent * event)
+```
+**描述：**
+
+捏合手势中心点相对于当前组件元素左上角x轴坐标。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 手势事件。  | 
+
+**返回：**
+
+捏合手势中心点相对于当前组件元素左上角x轴坐标，单位为px。
+
+
+### OH_ArkUI_PinchGesture_GetCenterY()
+
+```
+float OH_ArkUI_PinchGesture_GetCenterY (const ArkUI_GestureEvent * event)
+```
+**描述：**
+
+捏合手势中心点相对于当前组件元素左上角y轴坐标。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 手势事件。  | 
+
+**返回：**
+
+捏合手势中心点相对于当前组件元素左上角y轴坐标，单位为px。
+
+
+### OH_ArkUI_PinchGesture_GetScale()
+
+```
+float OH_ArkUI_PinchGesture_GetScale (const ArkUI_GestureEvent * event)
+```
+**描述：**
+
+捏合手势返回当前手势事件缩放信息。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 手势事件。  | 
+
+**返回：**
+
+缩放比例。
+
+
+### OH_ArkUI_RotationGesture_GetAngle()
+
+```
+float OH_ArkUI_RotationGesture_GetAngle (const ArkUI_GestureEvent * event)
+```
+**描述：**
+
+旋转手势返回当前手势事件角度信息。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 手势事件。  | 
+
+**返回：**
+
+旋转角度。
+
+
+### OH_ArkUI_SwipeGesture_GetAngle()
+
+```
+float OH_ArkUI_SwipeGesture_GetAngle (const ArkUI_GestureEvent * event)
+```
+**描述：**
+
+滑动手势返回当前手势事件角度信息。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 手势事件。  | 
+
+**返回：**
+
+滑动手势的角度，即两根手指间的线段与水平方向的夹角变化的度数。
+
+
+### OH_ArkUI_SwipeGesture_GetVelocity()
+
+```
+float OH_ArkUI_SwipeGesture_GetVelocity (const ArkUI_GestureEvent * event)
+```
+**描述：**
+
+滑动手势场景中所有手指滑动平均速度。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 手势事件。  | 
+
+**返回：**
+
+滑动手势速度，即所有手指滑动的平均速度，单位为px/秒。

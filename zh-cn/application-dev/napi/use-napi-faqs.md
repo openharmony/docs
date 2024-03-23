@@ -1,5 +1,4 @@
-# OpenHarmony Node-API常见问题
-
+# Node-API常见问题
 
 ## ArkTS/JS侧import xxx from libxxx.so后，使用xxx报错显示undefined/not callable
 
@@ -17,7 +16,6 @@
 
    注意，32位系统路径为/system/lib，64位系统路径为/system/lib64。
 
-
 ## 接口执行结果非预期，日志显示occur exception need return
 
 部分Node-API接口在调用结束前会进行检查，检查虚拟机中是否存在JS异常。如果存在异常，则会打印出occur exception need return日志，并打印出检查点所在的行号，以及对应的Node-API接口名称。
@@ -30,31 +28,32 @@
 - 将该异常继续向上抛到ArkTS层，在ArkTS层进行捕获。
   发生异常时，可以选择走异常分支， 确保不再走多余的Native逻辑 ，直接返回到ArkTS层。
 
-
 ## napi_value和napi_ref的生命周期有何区别
 
 - native_value由HandleScope管理，一般开发者不需要自己加HandleScope（uv_queue_work的complete callback除外）。
 
 - napi_ref由开发者自己管理，需要手动delete。
 
-
 ## Node-API接口返回值不是napi_ok时，如何排查定位
 
 Node-API接口正常执行后，会返回一个napi_ok的状态枚举值，若napi接口返回值不为napi_ok，可从以下几个方面进行排查。
 
 - Node-API接口执行前一般会进行入参校验，首先进行的是判空校验。在代码中体现为：
-  ```
+
+  ```cpp
   CHECK_ENV： env判空校验
   CHECK_ARG：其它入参判空校验
   ```
 
 - 某些Node-API接口还有入参类型校验。比如napi_get_value_double接口是获取JS number对应的C double值，首先就要保证的是：JS value类型为number，因此可以看到相关校验。
-  ```
+
+  ```cpp
   RETURN_STATUS_IF_FALSE(env, nativeValue->TypeOf() == NATIVE_NUMBER, napi_number_expected);
   ```
 
 - 还有一些接口会对其执行结果进行校验。比如napi_call_function这个接口，其功能是执行一个JS function，当JS function中出现异常时，Node-API将会返回napi_pending_exception的状态值。
-  ```
+
+  ```cpp
   auto resultValue = engine->CallFunction(nativeRecv, nativeFunc, nativeArgv, argc); 
   RETURN_STATUS_IF_FALSE(env, resultValue != nullptr, napi_pending_exception)
   ```

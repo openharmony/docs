@@ -26,7 +26,7 @@ ListItemGroup(options?: ListItemGroupOptions)
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
-| options |  [ListItemGroupOptions](#listitemgroupoptions对象说明)| 是 | 列表item分组组件参数。 |
+| options |  [ListItemGroupOptions](#listitemgroupoptions对象说明)| 否 | 列表item分组组件参数。 |
 
 ## ListItemGroupOptions对象说明
 

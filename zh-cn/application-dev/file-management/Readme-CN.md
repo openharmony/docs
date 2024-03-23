@@ -5,7 +5,8 @@
   - [应用文件概述](app-file-overview.md)
   - [应用沙箱目录](app-sandbox-directory.md)
   - 应用文件访问与管理
-    - [应用文件访问](app-file-access.md)
+    - [应用文件访问(ArkTS)](app-file-access.md)
+    - [应用文件访问(C/C++)](native-fileio-guidelines.md)
     - [应用文件上传下载](app-file-upload-download.md)
     - [应用及文件系统空间统计](app-fs-space-statistics.md)
   - [向应用沙箱推送文件](send-file-to-app-sandbox.md)
@@ -14,12 +15,13 @@
     - [应用数据备份恢复概述](app-file-backup-overview.md)
     - [应用接入数据备份恢复](app-file-backup-extension.md)
     - [应用触发数据备份/恢复（仅对系统应用开放）](app-file-backup.md)
-  - [文件授权访问(ArkTs)](app-file-authorization.md)
+  - [文件授权访问(ArkTS)](app-file-authorization.md)
   - [文件授权访问(C/C++)](native-fileshare-guidelines.md)
 - 用户文件
   - [用户文件概述](user-file-overview.md)
   - [用户文件uri介绍](user-file-uri-intro.md)
   - [FileUri开发指导(C/C++)](native-fileuri-guidelines.md)
+  - [获取用户目录环境(C/C++)](native-environment-guidelines.md)
   - 选择与保存用户文件（FilePicker）
     - [选择用户文件](select-user-file.md)
     - [保存用户文件](save-user-file.md)

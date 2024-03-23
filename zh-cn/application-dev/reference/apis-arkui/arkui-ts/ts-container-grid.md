@@ -233,7 +233,7 @@ editMode(value: boolean)
 
 | 参数名 | 类型   | 必填 | 说明                                     |
 | ------ | ------ | ---- | ---------------------------------------- |
-| value  | number | 是   | Grid是否进入编辑模式。<br/>默认值：flase |
+| value  | boolean | 是   | Grid是否进入编辑模式。<br/>默认值：false |
 
 ### layoutDirection<sup>8+</sup>
 
@@ -498,9 +498,9 @@ onItemDragEnter(event: (event: ItemDragInfo) => void)
 
 ### onItemDragMove<sup>8+</sup>
 
-拖拽在网格元素范围内移动时触发。
-
 onItemDragMove(event: (event: ItemDragInfo, itemIndex: number, insertIndex: number) => void)
+
+拖拽在网格元素范围内移动时触发。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

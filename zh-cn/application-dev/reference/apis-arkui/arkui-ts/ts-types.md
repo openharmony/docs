@@ -451,3 +451,11 @@ HoverCallback = (isHover: boolean, event: [HoverEvent](./ts-universal-mouse-key.
 | 名称            | 类型定义                   | 描述                                       |
 | ------------- | ---------------------- | ---------------------------------------- |
 | HoverCallback | (isHover: boolean, event: [HoverEvent](./ts-universal-mouse-key.md#hoverevent10对象说明)) => void | hover事件的回调。 |
+
+## StyledStringValue<sup>12+</sup>
+
+样式对象类型，用于设置属性字符串的样式。
+
+| 名称   | 描述       |
+| ------ | ---------- |
+| TextStyle | 文本字体样式。 |

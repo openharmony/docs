@@ -1,6 +1,6 @@
 # @ohos.app.ability.abilityDelegatorRegistry (AbilityDelegatorRegistry)
 
-AbilityDelegatorRegistry是[自动化测试框架使用指南](../../application-test/arkxtest-guidelines.md)模块，该模块用于获取[AbilityDelegator](../apis-ability-kit/js-apis-inner-application-abilityDelegator.md)和[AbilityDelegatorArgs](../apis-ability-kit/js-apis-inner-application-abilityDelegatorArgs.md)对象，其中[AbilityDelegator](../apis-ability-kit/js-apis-inner-application-abilityDelegator.md)对象提供添加用于监视指定ability的生命周期状态更改的[AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1)对象的能力，[AbilityDelegatorArgs](../apis-ability-kit/js-apis-inner-application-abilityDelegatorArgs.md)对象提供获取当前测试参数的能力。
+AbilityDelegatorRegistry是[自动化测试框架使用指南](../../application-test/arkxtest-guidelines.md)模块，该模块用于获取[AbilityDelegator](js-apis-inner-application-abilityDelegator.md)和[AbilityDelegatorArgs](js-apis-inner-application-abilityDelegatorArgs.md)对象，其中[AbilityDelegator](js-apis-inner-application-abilityDelegator.md)对象提供添加用于监视指定ability的生命周期状态更改的[AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1)对象的能力，[AbilityDelegatorArgs](js-apis-inner-application-abilityDelegatorArgs.md)对象提供获取当前测试参数的能力。
 
 > **说明：**
 > 
@@ -16,7 +16,7 @@ import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry
 
 ## AbilityLifecycleState
 
-Ability生命周期状态，该类型为枚举，可配合[AbilityDelegator](../apis-ability-kit/js-apis-inner-application-abilityDelegator.md)的[getAbilityState(ability)](../apis-ability-kit/js-apis-inner-application-abilityDelegator.md#getabilitystate9)方法返回不同ability生命周期。
+Ability生命周期状态，该类型为枚举，可配合[AbilityDelegator](js-apis-inner-application-abilityDelegator.md)的[getAbilityState(ability)](js-apis-inner-application-abilityDelegator.md#getabilitystate9)方法返回不同ability生命周期。
 
 **系统能力** ：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
@@ -32,7 +32,7 @@ Ability生命周期状态，该类型为枚举，可配合[AbilityDelegator](../
 
 getAbilityDelegator(): AbilityDelegator
 
-获取应用程序的[AbilityDelegator](../apis-ability-kit/js-apis-inner-application-abilityDelegator.md)对象，该对象能够使用调度测试框架的相关功能。
+获取应用程序的[AbilityDelegator](js-apis-inner-application-abilityDelegator.md)对象，该对象能够使用调度测试框架的相关功能。
 
 **系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
@@ -40,7 +40,7 @@ getAbilityDelegator(): AbilityDelegator
 
 | 类型                                                         | 说明                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [AbilityDelegator](../apis-ability-kit/js-apis-inner-application-abilityDelegator.md) | [AbilityDelegator](../apis-ability-kit/js-apis-inner-application-abilityDelegator.md)对象。可以用来调度测试框架相关功能。 |
+| [AbilityDelegator](js-apis-inner-application-abilityDelegator.md) | [AbilityDelegator](js-apis-inner-application-abilityDelegator.md)对象。可以用来调度测试框架相关功能。 |
 
 **示例：**
 
@@ -67,7 +67,7 @@ abilityDelegator.startAbility(want, (err) => {
 
 getArguments(): AbilityDelegatorArgs
 
-获取单元测试参数[AbilityDelegatorArgs](../apis-ability-kit/js-apis-inner-application-abilityDelegatorArgs.md)对象。
+获取单元测试参数[AbilityDelegatorArgs](js-apis-inner-application-abilityDelegatorArgs.md)对象。
 
 **系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
@@ -75,7 +75,7 @@ getArguments(): AbilityDelegatorArgs
 
 | 类型                                                         | 说明                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [AbilityDelegatorArgs](../apis-ability-kit/js-apis-inner-application-abilityDelegatorArgs.md) | [AbilityDelegatorArgs](../apis-ability-kit/js-apis-inner-application-abilityDelegatorArgs.md)对象。可以用来获取测试参数。 |
+| [AbilityDelegatorArgs](js-apis-inner-application-abilityDelegatorArgs.md) | [AbilityDelegatorArgs](js-apis-inner-application-abilityDelegatorArgs.md)对象。可以用来获取测试参数。 |
 
 **示例：**
 
