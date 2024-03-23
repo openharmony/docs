@@ -645,7 +645,7 @@ enum DRM_CertificateStatus
 | CERT_STATUS_PROVISIONED | 设备已安装设备证书 | 
 | CERT_STATUS_NOT_PROVISIONED | 设备未安装设备证书 | 
 | CERT_STATUS_EXPIRED | 设备证书过期 | 
-| CERT_STATUS_INVALID | 无效设备证书 | 
+| CERT_STATUS_INVALID | 设备证书无效 | 
 | CERT_STATUS_UNAVAILABLE | 设备证书不可用 | 
 
 

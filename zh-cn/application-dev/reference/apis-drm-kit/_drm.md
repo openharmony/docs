@@ -32,7 +32,7 @@
 | struct&nbsp;&nbsp;[DRM_KeysInfo](_d_r_m___keys_info.md) | 媒体密钥信息。 | 
 | struct&nbsp;&nbsp;[DRM_MediaKeyStatus](_d_r_m___media_key_status.md) | 媒体密钥状态。 | 
 | struct&nbsp;&nbsp;[DRM_PsshInfo](_d_r_m___pssh_info.md) | uuid的PSSH信息。 | 
-| struct&nbsp;&nbsp;[DRM_MediaKeySystemInfo](_d_r_m___media_key_system_info.md) | 用于播放器从媒体源获取媒体密钥系统信息。 | 
+| struct&nbsp;&nbsp;[DRM_MediaKeySystemInfo](_d_r_m___media_key_system_info.md) | 播放器从媒体源获取媒体密钥系统信息。 | 
 | struct&nbsp;&nbsp;[MediaKeySession_Callback](_media_key_session___callback.md) | MediaKeySession_Callback结构体，用于监听密钥过期、密钥更改等事件。 | 
 
 
@@ -80,7 +80,7 @@
 | typedef struct [DRM_KeysInfo](_d_r_m___keys_info.md) [DRM_KeysInfo](#drm_keysinfo) | 媒体密钥信息。 | 
 | typedef struct [DRM_MediaKeyStatus](_d_r_m___media_key_status.md) [DRM_MediaKeyStatus](#drm_mediakeystatus) | 媒体密钥状态。 | 
 | typedef struct [DRM_PsshInfo](_d_r_m___pssh_info.md) [DRM_PsshInfo](#drm_psshinfo) | uuid的PSSH信息。 | 
-| typedef struct [DRM_MediaKeySystemInfo](_d_r_m___media_key_system_info.md) [DRM_MediaKeySystemInfo](#drm_mediakeysysteminfo) | 用于播放器从媒体源获取媒体密钥系统信息。 | 
+| typedef struct [DRM_MediaKeySystemInfo](_d_r_m___media_key_system_info.md) [DRM_MediaKeySystemInfo](#drm_mediakeysysteminfo) | 播放器从媒体源获取媒体密钥系统信息。 | 
 | typedef void(\* [DRM_MediaKeySystemInfoCallback](#drm_mediakeysysteminfocallback)) ([DRM_MediaKeySystemInfo](_d_r_m___media_key_system_info.md) \*mediaKeySystemInfo) | 应用程序为从媒体源获取媒体密钥系统信息而设置的回调。 | 
 | typedef struct [MediaKeySystem](#mediakeysystem) [MediaKeySystem](#mediakeysystem) | 媒体密钥系统结构。 | 
 | typedef struct [MediaKeySession](#mediakeysession) [MediaKeySession](#mediakeysession) | 媒体密钥会话结构。 | 
@@ -158,20 +158,20 @@
 | uint32_t [DRM_Statistics::statisticsCount](#statisticscount) | 度量计数。 | 
 | char [DRM_Statistics::statisticsName](#statisticsname) [[MAX_STATISTICS_COUNT](#max_statistics_count)][[MAX_STATISTICS_NAME_LEN](#max_statistics_name_len)] | 度量信息名称集合。 | 
 | char [DRM_Statistics::statisticsDescription](#statisticsdescription) [[MAX_STATISTICS_COUNT](#max_statistics_count)][[MAX_STATISTICS_BUFFER_LEN](#max_statistics_buffer_len)] | 度量信息描述集合。 | 
-| uint32_t [DRM_OfflineMediakeyIdArray::idsCount](#idscount) | ID计数 | 
-| int32_t [DRM_OfflineMediakeyIdArray::idsLen](#idslen) [[MAX_OFFLINE_MEDIA_KEY_ID_COUNT](#max_offline_media_key_id_count)] | ID长度集合 | 
-| uint8_t [DRM_OfflineMediakeyIdArray::ids](#ids) [[MAX_OFFLINE_MEDIA_KEY_ID_COUNT](#max_offline_media_key_id_count)][[MAX_OFFLINE_MEDIA_KEY_ID_LEN](#max_offline_media_key_id_len)] | ID数据集合 | 
+| uint32_t [DRM_OfflineMediakeyIdArray::idsCount](#idscount) | ID计数。 | 
+| int32_t [DRM_OfflineMediakeyIdArray::idsLen](#idslen) [[MAX_OFFLINE_MEDIA_KEY_ID_COUNT](#max_offline_media_key_id_count)] | ID长度集合。 | 
+| uint8_t [DRM_OfflineMediakeyIdArray::ids](#ids) [[MAX_OFFLINE_MEDIA_KEY_ID_COUNT](#max_offline_media_key_id_count)][[MAX_OFFLINE_MEDIA_KEY_ID_LEN](#max_offline_media_key_id_len)] | ID数据集合。 | 
 | uint32_t [DRM_KeysInfo::keysInfoCount](#keysinfocount) | 钥匙计数。 | 
-| uint8_t [DRM_KeysInfo::keyId](#keyid) [[MAX_KEY_INFO_COUNT](#max_key_info_count)][[MAX_KEY_ID_LEN](#max_key_id_len)] | 密钥ID集合 | 
+| uint8_t [DRM_KeysInfo::keyId](#keyid) [[MAX_KEY_INFO_COUNT](#max_key_info_count)][[MAX_KEY_ID_LEN](#max_key_id_len)] | 密钥ID集合。 | 
 | char [DRM_KeysInfo::statusValue](#statusvalue-12) [[MAX_KEY_INFO_COUNT](#max_key_info_count)][[MAX_KEY_STATUS_VALUE_LEN](#max_key_status_value_len)] | 关键状态值。 | 
 | uint32_t [DRM_MediaKeyStatus::statusCount](#statuscount) | 状态计数。 | 
 | char [DRM_MediaKeyStatus::statusName](#statusname) [[MAX_MEDIA_KEY_STATUS_COUNT](#max_media_key_status_count)][[MAX_MEDIA_KEY_STATUS_NAME_LEN](#max_media_key_status_name_len)] | 状态名数组。 | 
 | char [DRM_MediaKeyStatus::statusValue](#statusvalue-22) [[MAX_MEDIA_KEY_STATUS_COUNT](#max_media_key_status_count)][[MAX_MEDIA_KEY_STATUS_VALUE_LEN](#max_media_key_status_value_len)] | 状态值数组。 | 
-| uint8_t [DRM_PsshInfo::uuid](#uuid) [[DRM_UUID_LEN](#drm_uuid_len)] | Uuid. | 
+| uint8_t [DRM_PsshInfo::uuid](#uuid) [[DRM_UUID_LEN](#drm_uuid_len)] | Uuid。 | 
 | int32_t [DRM_PsshInfo::dataLen](#datalen-22) | PSSH数据长度。 | 
 | uint8_t [DRM_PsshInfo::data](#data-22) [[MAX_PSSH_DATA_LEN](#max_pssh_data_len)] | uint8_t PSSH数据。 | 
 | uint32_t [DRM_MediaKeySystemInfo::psshCount](#psshcount) | PSSH计数。 | 
-| [DRM_PsshInfo](_d_r_m___pssh_info.md) [DRM_MediaKeySystemInfo::psshInfo](#psshinfo) [[MAX_PSSH_INFO_COUNT](#max_pssh_info_count)] | PSSH信息. | 
+| [DRM_PsshInfo](_d_r_m___pssh_info.md) [DRM_MediaKeySystemInfo::psshInfo](#psshinfo) [[MAX_PSSH_INFO_COUNT](#max_pssh_info_count)] | PSSH信息。 | 
 | [MediaKeySession_EventCallback](#mediakeysession_eventcallback) [MediaKeySession_Callback::eventCallback](#eventcallback) | 正常事件回调，如密钥过期等。 | 
 | [MediaKeySession_KeyChangeCallback](#mediakeysession_keychangecallback) [MediaKeySession_Callback::keyChangeCallback](#keychangecallback) | 密钥更改事件的密钥更改回调。 | 
 
@@ -588,7 +588,7 @@ typedef struct DRM_MediaKeySystemInfoDRM_MediaKeySystemInfo
 
 **描述**
 
-用于播放器从媒体源获取媒体密钥系统信息。
+播放器从媒体源获取媒体密钥系统信息。
 
 **起始版本：** 11
 
@@ -818,7 +818,7 @@ enum DRM_CertificateStatus
 | CERT_STATUS_PROVISIONED | 设备已安装设备证书 | 
 | CERT_STATUS_NOT_PROVISIONED | 设备未安装设备证书 | 
 | CERT_STATUS_EXPIRED | 设备证书过期 | 
-| CERT_STATUS_INVALID | 无效设备证书 | 
+| CERT_STATUS_INVALID | 设备证书无效 | 
 | CERT_STATUS_UNAVAILABLE | 设备证书不可用 | 
 
 
@@ -864,7 +864,7 @@ DRM错误码。
 | DRM_ERR_OK | 操作成功完成。 | 
 | DRM_CAPI_ERR_BASE | 基础错误。 | 
 | DRM_ERR_NO_MEMORY | 内存不足。 | 
-| DRM_ERR_OPERATION_NOT_PERMITTED | 不支持的操作。 | 
+| DRM_ERR_OPERATION_NOT_PERMITTED | 不允许的操作。 | 
 | DRM_ERR_INVALID_VAL | 无效参数。 | 
 | DRM_ERR_IO | IO 错误。 | 
 | DRM_ERR_TIMEOUT | 网络超时。 | 
@@ -2017,7 +2017,7 @@ DRM_MediaKeyType DRM_MediaKeyRequestInfo::type
 
 **描述**
 
-密钥类型
+密钥类型。
 
 
 ### type [2/2]
@@ -2039,4 +2039,4 @@ uint8_t DRM_PsshInfo::uuid[DRM_UUID_LEN]
 
 **描述**
 
-Uuid.
+Uuid。
