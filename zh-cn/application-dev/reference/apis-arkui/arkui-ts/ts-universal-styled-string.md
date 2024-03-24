@@ -9,8 +9,9 @@
 ## 规则说明
 
 * 当组件样式和属性字符串中的样式冲突时，冲突部分以属性字符串设置的样式为准，未冲突部分则生效组件的样式。
-* 当属性字符串和[Span](./ts-basic-components-span.md)类组件冲突时，属性字符串优先级高，即当Text组件中绑定了属性字符串，忽略[Text](./ts-basic-components-text.md)组件下包含[Span](./ts-basic-components-span.md)的情况。
+* 当属性字符串和[Text](./ts-basic-components-text.md)子组件冲突时，属性字符串优先级高，即当Text组件中绑定了属性字符串，忽略[Text](./ts-basic-components-text.md)组件下包含[Span](./ts-basic-components-span.md)等子组件的情况。
 * 属性字符串不支持和其他类型文本入参动态切换。
+* 不支持@State修饰。
 
 ## StyledString
 
@@ -24,14 +25,6 @@ StyledString(value: string , styles?: Array\<StyleOptions>)
 | -------- | -------- | -------- | -------- |
 | value | string | 是 | 属性字符串文本内容。|
 | styles | Array<[StyleOptions](#styleoptions对象说明)> | 否 | 属性字符串初始化选项。<br/>**说明：** <br/>start为异常值时，按默认值0处理。<br/>当start的值合法且length为异常值时，length的值为属性字符串长度与start的值的差值。<br/>StyledStringKey与StyledStringValue不匹配时，不生效。<br/>styledKey参数无默认值。<br/>styledValue入参合法时，styledKey传入undefined时，此时样式不生效。 |
-
->  **说明：**
->
-> 当start和length越界或者必填传入undefined时，会抛出异常；
->
-> 当styledKey和styledValue传入异常值或者两者对应关系不匹配时，会抛出异常。
-> 
-> 不支持@State修饰。
 
 ### getString
 
@@ -73,7 +66,7 @@ equals(other: StyledString): boolean
 
 | 参数名  | 类型                              | 必填 | 说明                                                         |
 | ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
-| other | StyledString | 是   | StyledString类型的比较对象。 |
+| other | [StyledString](#styledstring) | 是   | StyledString类型的比较对象。 |
 
 **返回值：**
 
@@ -100,7 +93,7 @@ subStyledString(start: number , length?: number): StyledString
 
 | 类型              |       说明       |
 | ------- | --------------------------------- | 
-| StyledString | 子属性字符串。<br/>**说明：** <br/>当start为合法入参时，length的默认值是被查询属性字符串对象的长度与start的值的差。 |
+| [StyledString](#styledstring) | 子属性字符串。<br/>**说明：** <br/>当start为合法入参时，length的默认值是被查询属性字符串对象的长度与start的值的差。<br/>当start和length越界或者必填传入undefined时，会抛出异常。|
 
 ### getStyles
 
@@ -122,19 +115,18 @@ getStyles(start: number , length: number , styledKey?: StyledStringKey): Array\<
 
 | 类型              |       说明       |
 | ------- | --------------------------------- | 
-| Array<[SpanStyle](#spanstyle对象说明)>String | 各样式对象的数组。<br/>**说明：** <br/>当指定范围属性字符串未设置任何样式，则返回空数组。 |
+| Array<[SpanStyle](#spanstyle对象说明)> | 各样式对象的数组。<br/>**说明：** <br/>当指定范围属性字符串未设置任何样式，则返回空数组。<br/>当start和length越界或者必填传入undefined时，会抛出异常；<br/>当styledKey传入异常值或undefined时，会抛出异常。 |
 
 ## MutableStyledString
 
 继承于[StyledString](#styledstring)类。
 
->  **说明：**
+>  **以下接口异常入参处理统一说明：**
 >
 > 当start和length越界或者必填传入undefined时，会抛出异常；
 >
 > 当styledKey和styledValue传入异常值或者两者对应关系不匹配时，会抛出异常。
 > 
-> 不支持@State修饰。
 
 ### replaceString
 
@@ -180,7 +172,7 @@ removeString(start: number , length: number): void
 | 参数名  | 类型                              | 必填 | 说明                                                         |
 | ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
 | start | number | 是   | 指定范围的下标。 |
-| length | string | 是   | 指定范围的长度。 |
+| length | number | 是   | 指定范围的长度。 |
 
 ### replaceStyle
 
@@ -214,6 +206,8 @@ setStyle(spanStyle: SpanStyle): void
 
 清除指定范围内容的指定类型样式。
 
+被清空样式类型对象属性使用的是对应[Text](./ts-basic-components-text.md)组件属性的设置值，若Text组件未设置值，则使用对应Text组件属性的默认值。
+
 removeStyle(start: number , length: number , styledKey: StyledStringKey): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -223,12 +217,14 @@ removeStyle(start: number , length: number , styledKey: StyledStringKey): void
 | 参数名  | 类型                              | 必填 | 说明                                                         |
 | ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
 | start | number | 是   | 指定范围开始位置的下标。 |
-| length | string | 是   | 指定范围的长度。 |
-| styledKey | [StyledStringKey](ts-appendix-enums.md#styledstringkey12) | 是   | 样式类型枚举值。<br/>**说明：** <br/>被清空样式类型对象属性使用的是对应[Text](./ts-basic-components-text.md)组件属性的设置值，若Text组件未设置值，则使用对应Text组件属性的默认值。 |
+| length | number | 是   | 指定范围的长度。 |
+| styledKey | [StyledStringKey](ts-appendix-enums.md#styledstringkey12) | 是   | 样式类型枚举值。 |
 
 ### removeStyles
 
 清除指定范围内容的所有样式。
+
+被清空样式类型对象属性使用的是对应[Text](./ts-basic-components-text.md)组件属性的设置值，若Text组件未设置值，则使用对应Text组件属性的默认值。
 
 removeStyles(start: number , length: number): void
 
@@ -239,7 +235,7 @@ removeStyles(start: number , length: number): void
 | 参数名  | 类型                              | 必填 | 说明                                                         |
 | ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
 | start | number | 是   | 指定范围开始位置的下标。 |
-| length | string | 是   | 指定范围的长度。<br/>**说明：** <br/>被清空样式类型对象属性使用的是对应[Text](./ts-basic-components-text.md)组件属性的设置值，若Text组件未设置值，则使用对应Text组件属性的默认值。 |
+| length | number | 是   | 指定范围的长度。 |
 
 ### clearStyles
 
@@ -265,11 +261,11 @@ replaceStyledString(start: number , length: number , other: StyledString): void
 | ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
 | start | number | 是   | 指定范围开始位置的下标。 |
 | length | number | 是   | 指定范围的长度。 |
-| other | StyledString | 是   | 新的属性字符串对象。 |
+| other | [StyledString](#styledstring) | 是   | 新的属性字符串对象。 |
 
 ### insertStyledString
 
-在指定位置后插入新的属性字符串。
+在指定位置插入新的属性字符串。
 
 insertStyledString(start: number , other: StyledString): void
 
@@ -279,8 +275,8 @@ insertStyledString(start: number , other: StyledString): void
 
 | 参数名  | 类型                              | 必填 | 说明                                                         |
 | ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
-| start | number | 是   | 指定范围开始插入位置的下标。 |
-| other | StyledString | 是   | 新的属性字符串对象。|
+| start | number | 是   | 开始插入位置的下标。 |
+| other | [StyledString](#styledstring) | 是   | 新的属性字符串对象。|
 
 ### appendStyledString
 
@@ -294,7 +290,7 @@ appendStyledString(other: StyledString): void
 
 | 参数名  | 类型                              | 必填 | 说明                                                         |
 | ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
-| other | StyledString | 是   | 新的属性字符串对象。|
+| other | [StyledString](#styledstring) | 是   | 新的属性字符串对象。|
 
 ## StyleOptions对象说明
 
@@ -344,7 +340,7 @@ readonly fontColor?: ResourceColor
 
 | 类型              |说明       |
 | ------- | --------------------------------- | 
-| ResourceColor | 属性字符串的文本颜色。 |
+| [ResourceColor](ts-types.md#resourcecolor) | 属性字符串的文本颜色。 |
 
 ## TextStyleInterface对象说明
 
