@@ -2,34 +2,27 @@
 
 ## Build
 
- 1. Check that Gradle 7.1 or later has been installed.
 
-    ```shell 
-    gradle -v
-    ```
+1. Check that Maven 3 of the correct version has been installed and configured.
   
- 2. Download the code, open the file directory **developtools_hapsigner/hapsigntool**, and run the following command to build the code:
+        mvn -version
 
-    ```shell    
-    gradle build 
-    ```
-     Or
-    ```shell
-    gradle jar
-    ```
-    
- 3. Check that **hap-sign-tool.jar** (binary files) is generated in the **./hap_sign_tool/build/libs** directory.
+2. Download the code, open **developtools_hapsigner/hapsigntool**, and run the following command to build the package:         
+   
+        mvn package
+
+3. You can find the binary file generated in the **./hap_sign_tool/target** directory.
 
 ## How to Development
 
 ### When to Use
 
-The OpenHarmony system has a built-in KeyStore (KS) file named **OpenHarmony.p12**. This file contains the root CA certificate, intermediate CA certificate, and end-entity certificate information. The hapsigner tool signs the OpenHarmony applications based on this KS file.
+The OpenHarmony system has a built-in KeyStore (KS) file named **OpenHarmony.p12**. This file contains the root CA certificate, intermediate CA certificate, and entity certificate information. The hapsigner tool signs OpenHarmony apps based on this file.
 
-The usage of hapsigner varies depending on whether an application signing certificate is available. 
+The usage of hapsigner varies depending on whether an app signing certificate is available. 
 
-- If no signing certificate is available for your application, you can use this tool to generate a key pair for signing, generate an application signing certificate, sign the profile, and sign the application.
-- If a signing certificate is available for your application, you need to sign the profile, and use the application signing certificate and the local KS file (containing the corresponding key) to sign your application.
+- If no signing certificate is available for your app, you can use this tool to generate a key pair for signing, generate an app signing certificate, sign the profile, and sign the app.
+- If a signing certificate is available for your app, you can directly sign the profile, and use the app signing certificate and the local KS file (containing the corresponding key) to sign your app.
 
 ### Command Description
 
@@ -52,7 +45,7 @@ The usage of hapsigner varies depending on whether an application signing certif
          ├── -keyAlias          # Key alias. It is mandatory.
          ├── -keyPwd            # Key password. It is optional.
          ├── -keyAlg            # Key algorithm, which can be RSA or ECC. It is mandatory.
-         ├── -keySize           # Key length. It is mandatory. The key length is 2048, 3072, or 4096 bits if RSA is used and is NIST-P-256 or NIST-P-384 if ECC is used.
+         ├── -keySize           # Key length. It is mandatory. The key length is 2048, 3072, or 4096 bits for an RSA key and is NIST-P-256 or NIST-P-384 for an ECC key.
          ├── -keystoreFile      # KS file, in JKS or P12 format. It is mandatory.
          ├── -keystorePwd       # KS password. It is optional.
      ```
@@ -72,11 +65,11 @@ The usage of hapsigner varies depending on whether an application signing certif
 5. Generate a root CA or intermediate CA certificate.
 
      ```
-     generate-ca: Generate a root CA or intermediate CA certificate. If the key does not exist, generate a key together with the certificate.
+     generate-ca: Generate a root CA or intermediate CA certificate. If there is no key, generate a key together with the certificate.
          ├── -keyAlias                        # Key alias. It is mandatory.
          ├── -keyPwd                          # Key password. It is optional.
          ├── -keyAlg                          # Key algorithm, which can be RSA or ECC. It is mandatory.
-         ├── -keySize                         # Key length. It is mandatory. The key length is 2048, 3072, or 4096 bits if RSA is used and is NIST-P-256 or NIST-P-384 if ECC is used.
+         ├── -keySize                         # Key length. It is mandatory. The key length is 2048, 3072, or 4096 bits for an RSA key and is NIST-P-256 or NIST-P-384 for an ECC key.
          ├── -issuer                          # Issuer of the certificate. It is optional. It indicates a root CA certificate if not specified.
          ├── -issuerKeyAlias                  # Key alias of the issuer. It is optional. It indicates a root CA certificate if not specified.
          ├── -issuerKeyPwd                    # Key password of the issuer. It is optional.
@@ -91,10 +84,10 @@ The usage of hapsigner varies depending on whether an application signing certif
          ├── -outFile                         # File to generate. It is optional. The file is output to the console if this parameter is not specified.
      ```
 
-6. Generate an application debug or release certificate.
+6. Generate a debug or release certificate for an app.
 
      ```
-     generate-app-cert: Generate an application debug or release certificate.
+     generate-app-cert: Generate a debug or release certificate for an app.
          ├── -keyAlias                        # Key alias. It is mandatory.
          ├── -keyPwd                          # Key password. It is optional.
          ├── -issuer                          # Issuer of the certificate. It is mandatory.
@@ -109,14 +102,14 @@ The usage of hapsigner varies depending on whether an application signing certif
          ├── -keystorePwd                     # KS password. It is optional.
          ├── -outForm                         # Format of the certificate to generate. It is optional. The value can be cert or certChain. The default value is certChain.
          ├── -rootCaCertFile                  # Root CA certificate, which is mandatory when outForm is certChain.
-         ├── -subCaCertFile                   # Intermediate CA certificate, which is mandatory when outForm is certChain.
+         ├── -subCaCertFile                   # Intermediate CA certificate file, which is mandatory when outForm is certChain.
          ├── -outFile                         # Certificate file (certificate or certificate chain) to generate. It is optional. The file is output to the console if this parameter is not specified.
      ```
 
-7. Generate a profile debug or release certificate.
+7. Generate a debug or release certificate for a profile.
 
      ```
-     generate-profile-cert: Generate a profile debug or release certificate.
+     generate-profile-cert: Generate a debug or release certificate for a profile.
          ├── -keyAlias                        # Key alias. It is mandatory.
          ├── -keyPwd                          # Key password. It is optional.
          ├── -issuer                          # Issuer of the certificate. It is mandatory.
@@ -131,7 +124,7 @@ The usage of hapsigner varies depending on whether an application signing certif
          ├── -keystorePwd                     # KS password. It is optional.
          ├── -outForm                         # Format of the certificate to generate. It is optional. The value can be cert or certChain. The default value is certChain.
          ├── -rootCaCertFile                  # Root CA certificate, which is mandatory when outForm is certChain.
-         ├── -subCaCertFile                   # Intermediate CA certificate, which is mandatory when outForm is certChain.
+         ├── -subCaCertFile                   # Intermediate CA certificate file, which is mandatory when outForm is certChain.
          ├── -outFile                         # Certificate file (certificate or certificate chain) to generate. It is optional. The file is output to the console if this parameter is not specified.
      ```
 
@@ -146,7 +139,7 @@ The usage of hapsigner varies depending on whether an application signing certif
          ├── -issuerKeyPwd                      # Key password of the issuer. It is optional.
          ├── -subject                           # Certificate subject. It is mandatory.
          ├── -validity                          # Validity period of the certificate. It is optional. The default value is 1095 days.
-         ├── -keyUsage                          # Usages of the key. It is mandatory. The key usages include digitalSignature, nonRepudiation, keyEncipherment,
+         ├── -keyUsage                          # Usages of the key. It is mandatory. The value can be one or more of digitalSignature, nonRepudiation, keyEncipherment,
          ├                                        dataEncipherment, keyAgreement, certificateSignature, crlSignature,
          ├                                        encipherOnly, and decipherOnly. Use a comma (,) to separate multiple values.
          ├── -keyUsageCritical                  # Whether keyUsage is a critical option. It is optional. The default value is true.
@@ -172,68 +165,70 @@ The usage of hapsigner varies depending on whether an application signing certif
          ├── -mode            # Signing mode, which can be localSign or remoteSign. It is mandatory.
          ├── -keyAlias        # Key alias. It is mandatory.
          ├── -keyPwd          # Key password. It is optional.
-         ├── -profileCertFile # Profile signing certificate (certificate chain, in the end-entity certificate, intermediate CA certificate, and root certificate order). It is mandatory.
-         ├── -inFile          # Raw profile template in JSON format (developtools_hapsigner/autosign/UnsgnedReleasedProfileTemplate.json). It is mandatory.
+         ├── -profileCertFile # Profile signing certificate (certificate chain, in the entity certificate, intermediate CA certificate, and root certificate order). It is mandatory.
+         ├── -inFile          # Profile to be signed, in JSON format (developtools_hapsigner/autosign/UnsgnedReleasedProfileTemplate.json). It is mandatory.
          ├── -signAlg         # Signing algorithm, which can be SHA256withECDSA or SHA384withECDSA. It is mandatory.
-         ├── -keystoreFile    # KS file, in JKS or P12 format. It is mandatory if the signing mode is localSign.
+         ├── -keystoreFile    # KS file, in JKS or P12 format. It is mandatory if mode is localSign.
          ├── -keystorePwd     # KS password. It is optional.
          ├── -outFile         # Signed profile to generate, in p7b format. This parameter is mandatory.
      ```
 
-10. Verify the signature of the profile.
+10. Verify the signature of a profile.
 
      ```
      verify-profile: Verify the profile signature.
-         ├── -inFile        # Signed profile in p7b format. This parameter is mandatory.
-         ├── -outFile       # Verification result file (including the verification result and profile content), in json format. It is optional. The file is output to the console if this parameter is not specified.
+         ├── -inFile       # Signed profile in p7b format. This parameter is mandatory.
+         ├── -outFile      # Verification result file (containing the verification result and profile content), in JSON format. It is optional. The file is output to the console if this parameter is not specified.
      ```
 
-11. Sign a HAP and a debugging tool.
+11. Sign an app package or a debug tool.
 
       ```
-      sign-app: Sign a HAP and a debugging tool.
+     sign-app: Sign an app package or a binary tool.
           ├── -mode          # Signing mode, which can be localSign, remoteSign, or remoteResign. It is mandatory.
           ├── -keyAlias      # Key alias. It is mandatory.
           ├── -keyPwd        # Key password. It is optional.
-          ├── -appCertFile   # Application signing certificate (certificate chain, in the end-entity certificate, intermediate CA certificate, and root certificate order). It is mandatory.
-          ├── -profileFile   # Signed profile in p7b format. This parameter is mandatory.
-          ├── -profileSigned # Whether the profile is signed. The value 1 means the profile is signed, and value 0 means the opposite. The default value is 1. This parameter is optional.
-          ├── -inForm        # Format of the file to be signed. The value can be zip, elf, or bin. The default value is zip. This parameter is optional.
-          ├── -inFile        # Raw application package, in HAP or .bin format. It is mandatory.
+          ├── -appCertFile   # App signing certificate (certificate chain, in the entity certificate, intermediate CA certificate, and root certificate order). It is mandatory.
+          ├── -profileFile   # Name of the signed provisioning profile. When profileSigned is 1, the file is in p7b format. When profileSigned is 0, the file is in JSON format. This parameter is mandatory if an app package is to be signed, and optional if a binary tool is to be signed.
+          ├── -profileSigned # Whether to sign the profile. The value 1 means to sign the profile, and value 0 means the opposite. The default value is 1. This parameter is optional.
+          ├── -inForm        # Format of the file to be signed. The value is zip for an app package in ZIP format, elf for a binary tool, and bin for an app package in BIN format. The default value is zip. This parameter is optional.
+          ├── -inFile        # File to be signed, which can be an app package, an elf file, or a bin file. This parameter is mandatory.
           ├── -signAlg       # Signing algorithm, which can be SHA256withECDSA or SHA384withECDSA. It is mandatory.
-          ├── -keystoreFile  # KS file, in JKS or P12 format. It is mandatory if the signing mode is localSign.
+          ├── -keystoreFile  # KS file, in JKS or P12 format. It is mandatory if mode is localSign.
           ├── -keystorePwd   # KS password. It is optional.
-          ├── -outFile       # Signed HAP file to generate. It is mandatory.
-          ├── -signCode      # Whether to enable code signing. The value 1 means to enable code signing; the value 0 means the opposite. The default value is 1. This parameter is optional.
+          ├── -outFile       # Signed app package to generate. It is mandatory.
+          ├── -signCode      # Whether to enable code signing. The value 1 means to enable code signing, and the value 0 means the opposite. This parameter is optional. By default, code signing is enabled for .hap, .hsp, .hqf, and .elf files. To disable code signing, set this parameter to 0.
       ```
 
-12. Verify the signature of a HAP and debugging tool.
+12. Verify the signature of an app package or a debug tool.
 
-      ```
-      verify-app: Verify the signature of a HAP and debugging tool.
-          ├── -inFile          # Signed application file, in HAP or bin format. It is mandatory.
-          ├── -outCertchain    # Signed certificate chain file. It is mandatory.
-          ├── -outProfile      # Profile of the application. It is mandatory.
-          ├── -inForm          # Format of the file to be signed. The value can be zip, elf, or bin. The default value is zip. This parameter is optional.
-      ```
+    ```
+    verify-app: Verify the signature of an app package or a binary tool.
+         ├── -inFile          # Signed file, which can be an app package, an elf file, or a bin file. This parameter is mandatory.
+         ├── -outCertchain    # Signed certificate chain file. It is mandatory.
+         ├── -outProfile      # Profile of the app. It is mandatory.
+         ├── -inForm          # Format of the file to be verified. The value is zip for an app package in ZIP format, elf for a binary tool, and bin for an app package in BIN format. The default value is zip. This parameter is optional.
+    ```
+
+    
 
 ### Signing Procedure
-The process of signing a HAP is as follows:
+The process of signing an app package is as follows:
 
-1. Generate a key pair for an application signing certificate.
-2. Generate an application signing certificate.
+1. Generate a key pair for an app signing certificate.
+2. Generate an app signing certificate.
 3. Sign the profile.
-4. Sign the HAP.
+4. Sign the app package.
 
 
-> **NOTE**
+> **NOTE**<br>
 >
 > - For security purposes, use ECC to generate the key pair in step 1. Avoid using RSA.
-> - You are advised to place the HAP to be signed, profile, **OpenHarmony.p12**, root CA certificate, intermediate CA certificate, and hapsigner in the same directory for easy operation. The following files exist in [**developtools_hapsigner/autosign/result**](https://gitee.com/openharmony/developtools_hapsigner/tree/master/autosign/result):<br>- **OpenHarmony.p12** (OpenHarmony keystore file)<br>- **rootCA.cer** (root CA certificate)<br>- **subCA.cer** (intermediate CA certificate)<br>- **OpenHarmonyProfileRelease.pem** (profile signing certificate)
+> - You are advised to place the app package to be signed, profile, **OpenHarmony.p12**, root CA certificate, intermediate CA certificate, and hapsigner in the same directory for easy operation. The following files are stored in [**developtools_hapsigner/autosign/result**](https://gitee.com/openharmony/developtools_hapsigner/tree/master/autosign/result):<br>- OpenHarmony keystore file **OpenHarmony.p12**<br>- Root CA certificate **rootCA.cer**<br>- intermediate CA certificate **subCA.cer**<br>- Profile signing certificate **OpenHarmonyProfileRelease.pem**
 
-1. **Generate a key pair for the application signing certificate.**
+1. **Generate a key pair for the app signing certificate.**
 
-   Generate a key pair and save it to the KS.
+   Generate a key pair for signing and save it to the KS.
 
    Example:
 
@@ -243,23 +238,23 @@ The process of signing a HAP is as follows:
    
    > **NOTE**
    > 
-   > Record the values of **keyAlias**, **keyStorePwd**, and **keyPwd**. These values will be used when the application signing certificate is generated and the HAP is signed.
+   > Record the **keyAlias**, **keyStorePwd**, and **keyPwd** values, which will be used when the app signing certificate is generated and the app package is signed.
 
    The command parameters are described as follows:
 
    ```
-   generate-keypair: Generate a key pair for the application signing certificate.
-       ├── -keyAlias         # Alias of the key used to generate the application signing certificate. It is stored in the OpenHarmony.p12 file. This parameter is mandatory.
+   generate-keypair: Generate a key pair for the app signing certificate.
+       ├── -keyAlias         # Alias of the key used to generate the app signing certificate. It is stored in the OpenHarmony.p12 file. This parameter is mandatory.
        ├── -keyAlg           # Key algorithm. It is mandatory. ECC is recommended.
-       ├── -keySize          # Key length. It is NIST-P-256/NIST-P-384 if ECC is used. This parameter is mandatory.
+       ├── -keySize          # Key length. It is NIST-P-256 or NIST-P-384 for an ECC key. This parameter is mandatory.
        ├── -keyStoreFile     # KS file. OpenHarmony.p12 is recommended. This parameter is mandatory.
-       ├── -keyStorePwd      # KS password. It is mandatory. The default password 123456 for OpenHarmony.p12.
+       ├── -keyStorePwd      # KS password. It is mandatory. The default password is 123456 for OpenHarmony.p12.
        ├── -keyPwd           # Key password. It is optional. If this parameter is not specified, the generated key pair has no password.
    ```
 
-2. **Generate an application signing certificate.**
+2. **Generate an app signing certificate.**
 
-   Use the local intermediate CA certificate to issue an application signing certificate.
+   Use the local intermediate CA certificate to issue an app signing certificate.
 
    Example:
 
@@ -270,16 +265,16 @@ The process of signing a HAP is as follows:
    The command parameters are described as follows:
 
    ```
-   generate-app-cert: Generate an application signing certificate.
+   generate-app-cert: Generate an app signing certificate.
        ├── -keyAlias         # Key alias, which must be the same as that in the previous step.
        ├── -signAlg          # Signing algorithm, which can be SHA256withECDSA or SHA384withECDSA. It is mandatory.
        ├── -issuer           # Issuer of the certificate. Enter the issuer of the intermediate CA certificate. It is mandatory and cannot be changed.
-       ├── -issuerKeyAlias   # Key alias of the issuer. Enter the alias of the intermediate CA certificate key. This parameter is mandatory and cannot be changed.
+       ├── -issuerKeyAlias   # Alias of the issuer key. Enter the alias of the intermediate CA certificate key. This parameter is mandatory and cannot be changed.
        ├── -subject          # Subject of the certificate. Enter the subject in the same sequence specified in the command. This parameter is mandatory.
        ├── -issuerKeyPwd     # Key password of the issuer. Enter the key password of the intermediate CA certificate. It is mandatory and cannot be changed. In this example, it is 123456. 
        ├── -keystoreFile     # KS file. Use OpenHarmony.p12. It is mandatory and cannot be changed.
-       ├── -rootCaCertFile   # Root certificate. It is mandatory and cannot be changed.
-       ├── -subCaCertFile    # Intermediate CA certificate. This parameter is mandatory and cannot be modified.
+       ├── -rootCaCertFile   # Root CA certificate. It is mandatory and cannot be changed.
+       ├── -subCaCertFile    # Intermediate CA certificate provided. This parameter is mandatory and cannot be modified.
        ├── -outForm          # Format of the certificate file to generate. certChain is recommended.
        ├── -outFile          # File to generate. It is optional. The file is output to the console if this parameter is not specified.
        ├── -keyPwd           # Key password. It is optional. It is the key password set when the key pair is generated. 
@@ -305,16 +300,16 @@ The process of signing a HAP is as follows:
        ├── -signAlg          # Signing algorithm, which can be SHA256withECDSA or SHA384withECDSA. It is mandatory.
        ├── -mode             # Signing mode, which must be localSign. It is mandatory.
        ├── -profileCertFile  # Profile signing certificate. Use the certificate provided. It is mandatory and cannot be changed.
-       ├── -inFile           # Raw profile template in JSON format (developtools_hapsigner/autosign/UnsgnedReleasedProfileTemplate.json). It is mandatory.
+       ├── -inFile           # Profile to be signed, in JSON format (developtools_hapsigner/autosign/UnsgnedReleasedProfileTemplate.json). It is mandatory.
        ├── -keystoreFile     # KS file. Use OpenHarmony.p12. It is mandatory and cannot be changed.
        ├── -outFile          # Signed profile to generate, in p7b format. This parameter is mandatory.
        ├── -keyPwd           # Key password. The default key password in OpenHarmony.p12 is 123456.
        ├── -keystorePwd      # KS password. The default key password in OpenHarmony.p12 is 123456.
    ```
 
-4. **Sign the HAP.**
+4. **Sign the app package.**
 
-   Use the application signature key to sign the HAP.
+   Sign the app package with the app signing key.
 
    Example:
 
@@ -323,23 +318,23 @@ The process of signing a HAP is as follows:
    ```
    > **NOTE**
    >
-   > The following parameters are used when there is no application signing certificate available. If the application signing certificate is available, the following parameters must be modified.
-   > -**keyAlias**: Enter the key alias of the application signing certificate. This parameter is mandatory. <br/>
-   > -**appCertFile**: Enter the application signing certificate. This parameter is mandatory.<br/>
-   > -**keystoreFile**: Enter the KS file of the application signing certificate. This parameter is mandatory. <br/>
+   > The following parameters are used when there is no app signing certificate available. If the app signing certificate is available, the following parameters must be modified:
+   > -**keyAlias**: Enter the key alias of the app signing certificate. This parameter is mandatory. <br/>
+   > -**appCertFile**: Enter the app signing certificate. This parameter is mandatory.<br/>
+   > -**keystoreFile**: Enter the KS file of the app signing certificate. This parameter is mandatory. <br/>
    > -**keyPwd**: Enter the key password in the KS file. <br/>
    > -**keystorePwd**: Enter the KS password in the KS file.
 
    The command parameters are described as follows:
 
    ```
-   sign-app: Sign a HAP.
+   sign-app: Sign an app package.
        ├──-keyAlias          # Key alias, which must be the same as the alias of the key pair generated. This parameter is mandatory.
        ├── -signAlg          # Signing algorithm, which can be SHA256withECDSA or SHA384withECDSA. It is mandatory.
        ├── -mode             # Signing mode, which must be localSign. It is mandatory.
-       ├── -appCertFile      # Application signing certificate (certificate chain, in the end-entity certificate, intermediate CA certificate, and root certificate order). Enter the application signing certificate generated in step 2. This parameter is mandatory.
+       ├── -appCertFile      # App signing certificate (certificate chain, in the entity certificate, intermediate CA certificate, and root certificate order). Enter the app signing certificate generated in step 2. This parameter is mandatory.
        ├── -profileFile      # Signed profile in p7b format. Enter the profile generated. This parameter is mandatory.
-       ├── -inFile           # Raw application package. It is mandatory.
+       ├──  -inFile          # App package to be signed. This parameter is mandatory.
        ├── -keystoreFile     # KS file, which must be the same as the KS file generated. It is mandatory and cannot be changed.
        ├── -outFile          # Signed file to generate. It is mandatory.
        ├── -keyPwd           # Key password, which must be the actual key password.
@@ -349,15 +344,15 @@ The process of signing a HAP is as follows:
 
 ## FAQs
 
-1. When the application signing certificate is generated, the console displays the result but no file is output.
+1. The console displays the app signing certificate generated but no file is output.
 
    - **Symptom**
 
-     When the tool is used to generate an application signing certificate, the certificate content is displayed on the console and no certificate is generated.  
+     When the tool is used to generate an app signing certificate, the certificate content is displayed on the console but no certificate is generated.  
 
    - **Possible Causes**
    
-     The path in the **outFile** parameter is incorrect, or the hyphen (-) in **-outFile** is not an English character.
+     The path specified by **outFile** is incorrect, or the hyphen (-) in **-outFile** is not an English character.
    
    - **Solution**
    
@@ -381,17 +376,17 @@ The process of signing a HAP is as follows:
 
      (2) The profile signing certificate is not a certificate chain.
 
-     (3) The certificate subject is in incorrect sequence, or the **-issuerKeyAlias** parameter set to generate the application signing certificate is incorrect.
+     (3) The certificate subject is in incorrect sequence, or the **-issuerKeyAlias** parameter set to generate the app signing certificate is incorrect.
 
    - **Solution**
 
-     (1) Check that the certificate chain is in ascending or descending order of seniority.
+     (1) Check that the certificates in the certificate chain are in ascending or descending order of seniority.
 
      (2) Check that the certificate is a certificate chain.
 
      (3) Check that the certificate subject is in the C, O, OU, and CN order.
 
-3. An error message is displayed when the tool is used to sign a HAP.
+3. Incorrect SignAlg is displayed when an app package is signed.
 
    - **Symptom**
 
@@ -403,9 +398,9 @@ The process of signing a HAP is as follows:
 
    - **Solution**
 
-     Use ECC to generate a key pair for the application or profile signing certificate. Use SHA256withECDSA or SHA384withECDSA as the HAP signing algorithm.
+     Use ECC to generate the key pair for an app or profile signing certificate. Use SHA256withECDSA or SHA384withECDSA as the app signing algorithm.
 
-4. A HAP fails to be signed, and a message is displayed indicating that the CN field of the certificate is empty.
+4. Failed to sign an app package because CN of the certificate is empty.
 
    - **Symptom**
 
@@ -413,8 +408,8 @@ The process of signing a HAP is as follows:
 
    - **Possible Causes**
 
-     The HAP signing certificate used does not contain the CN field.
+     The app signing certificate used does not contain the CN field.
 
    - **Solution**
 
-     The CN field of the HAP signing certificate cannot be empty. Generate a certificate in correct format.
+     The CN field of the app signing certificate cannot be empty. Generate a certificate in correct format.

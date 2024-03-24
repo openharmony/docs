@@ -10,7 +10,7 @@ The DLP file can be accessed only after a device-cloud synergy authentication (n
 
 When an application accesses a DLP file, the system automatically installs a DLP sandbox application for the application. As a twin application of the application, the sandbox application inherits data and configuration from the application, but is isolated from the application. The twin application is running in a DLP sandbox environment, which is restricted from external access to prevent data leakage. Each time a DLP file is opened, a sandbox application is generated. The sandbox applications are also isolated from each other. When an application is closed, its sandbox application will be automatically uninstalled and the temporary data generated during the sandbox will be cleared.
 
-Normally, the application is unaware of the sandbox and accesses the file in plaintext, like accessing a common file. However, the DLP sandbox restricts the application from accessing external resources (such as the network, clipboard, and Bluetooth). For better user experience, you need to make adaptation for your application. For example, for a read-only file, you'd better hide the **Save** button and disable automatic network connection.
+Normally, the application is unaware of the sandbox and accesses the file in plaintext, like accessing a common file. However, the DLP sandbox restricts the application from accessing external resources (such as the network, clipboard, screenshot, screen recording, and Bluetooth). For better user experience, you need to make adaptation for your application. For example, for a read-only file, you'd better hide the **Save** button and disable automatic network connection.
 
 ## Sandbox Restrictions
 
@@ -22,7 +22,6 @@ For an application in the DLP sandbox state, the permissions granted to the appl
 | ohos.permission.INTERNET |Allows an application to access the Internet.|  Unavailable| Unavailable|
 | ohos.permission.DISTRIBUTED_DATASYNC | Allows an application to exchange user data (such as images, music, videos, and application data) with another device.| Unavailable| Unavailable|
 | ohos.permission.WRITE_MEDIA | Allows an application to read and write media assets, such as images, videos, and audio clips.| Unavailable| Available|
-| ohos.permission.CAPTURE_SCREEN | Allows an application to take screenshots.| Unavailable| Available|
 | ohos.permission.NFC_TAG | Allows an application to use NFC.| Unavailable| Available|
 
 ## Available APIs
@@ -48,7 +47,7 @@ For an application in the DLP sandbox state, the permissions granted to the appl
 
 ## How to Develop
 
-1. Import the [dlpPermission](../../reference/apis/js-apis-dlppermission.md) module.
+1. Import the [dlpPermission](../../reference/apis-data-loss-prevention-kit/js-apis-dlppermission.md) module.
 
    ```ts
    import dlpPermission from '@ohos.dlpPermission';
@@ -136,7 +135,7 @@ For an application in the DLP sandbox state, the permissions granted to the appl
    import dlpPermission from '@ohos.dlpPermission';
    import fs from '@ohos.file.fs';
    import { BusinessError } from '@ohos.base';
-   
+
    let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
    let file = fs.openSync(uri);
    try {
@@ -248,7 +247,7 @@ For an application in the DLP sandbox state, the permissions granted to the appl
     import UIAbility from '@ohos.app.ability.UIAbility'
     import Want from '@ohos.app.ability.Want';
     import { BusinessError } from '@ohos.base';
-    
+
     try {
       let context = getContext () as common.UIAbilityContext; // Obtain the UIAbility context.
       let want: Want = {
@@ -263,5 +262,19 @@ For an application in the DLP sandbox state, the permissions granted to the appl
       }); // Start the DLP manager application.
     } catch (err) {
       console.error('error', err.code, err.message); // Report an error upon a failure.
+    }
+    ```
+
+14. Check whether the current system provides the DLP feature.
+    ```ts
+    import dlpPermission from '@ohos.dlpPermission';
+    import { BusinessError } from '@ohos.base';
+
+    async checkIsDLPFeatureProvided() {
+      dlpPermission.isDLPFeatureProvided().then((res) => {git
+        console.info('res', JSON.stringify(res));
+      }).catch((err: BusinessError) => {
+        console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Report an error upon a failure.
+      });
     }
     ```
