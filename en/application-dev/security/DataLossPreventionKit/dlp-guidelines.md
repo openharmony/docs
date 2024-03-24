@@ -29,7 +29,7 @@ For an application in the DLP sandbox state, the permissions granted to the appl
 
 | API| Description|
 | -------- | -------- |
-| isDLPFile(fd: number): Promise&lt;boolean&gt; <br> isDLPFile(fd: number, callback: AsyncCallback&lt;boolean&gt;): void| Checks whether a file is a DLP file.|
+| isDLPFile(fd: number): Promise&lt;boolean&gt; <br>isDLPFile(fd: number, callback: AsyncCallback&lt;boolean&gt;): void| Checks whether a file is a DLP file.|
 | getDLPPermissionInfo(): Promise&lt;DLPPermissionInfo&gt; <br>getDLPPermissionInfo(callback: AsyncCallback&lt;DLPPermissionInfo&gt;): void  | Obtains the permission type of this sandbox application.|
 | getOriginalFileName(fileName: string): string | Obtains the original name of a DLP file.|
 | getDLPSuffix(): string | Obtains the file name extension of a DLP file.|
@@ -37,10 +37,10 @@ For an application in the DLP sandbox state, the permissions granted to the appl
 | off(type: 'openDLPFile', listener?: Callback&lt;AccessedDLPFileInfo&gt;): void | Unsubscribes from the file open event of a DLP file.|
 | isInSandbox(): Promise&lt;boolean&gt; <br>isInSandbox(callback: AsyncCallback&lt;boolean&gt;): void | Checks whether this application is running in a sandbox.|
 | getDLPSupportedFileTypes(): Promise&lt;Array&lt;string&gt;&gt;<br>getDLPSupportedFileTypes(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void | Obtains the file name extension types that can be added with .dlp.|
-| setRetentionState(docUris: Array&lt;string&gt;): Promise&lt;void&gt; <br> setRetentionState(docUris: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void | Sets the retention state for the sandbox application. The sandbox application in the retention state will not be automatically uninstalled when the DLP file is closed.|
-| cancelRetentionState(docUris: Array&lt;string&gt;): Promise&lt;void&gt;<br> cancelRetentionState(docUris: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void | Cancels the retention state for the sandbox application.|
-| getRetentionSandboxList(bundleName?: string): Promise&lt;Array&lt;RetentionSandboxInfo&gt;&gt; <br> getRetentionSandboxList(bundleName: string, callback: AsyncCallback&lt;Array&lt;RetentionSandboxInfo&gt;&gt;): void  <br> getRetentionSandboxList(callback: AsyncCallback&lt;Array&lt;RetentionSandboxInfo&gt;&gt;): void| Obtains the sandbox applications in the retention state.|
-| getDLPFileAccessRecords(): Promise&lt;Array&lt;AccessedDLPFileInfo&gt;&gt; <br> getDLPFileAccessRecords(callback: AsyncCallback&lt;Array&lt;AccessedDLPFileInfo&gt;&gt;): void | Obtains the DLP files that are accessed recently.|
+| setRetentionState(docUris: Array&lt;string&gt;): Promise&lt;void&gt; <br>setRetentionState(docUris: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void | Sets the retention state for the sandbox application. The sandbox application in the retention state will not be automatically uninstalled when the DLP file is closed.|
+| cancelRetentionState(docUris: Array&lt;string&gt;): Promise&lt;void&gt;<br>cancelRetentionState(docUris: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void | Cancels the retention state for the sandbox application.|
+| getRetentionSandboxList(bundleName?: string): Promise&lt;Array&lt;RetentionSandboxInfo&gt;&gt; <br>getRetentionSandboxList(bundleName: string, callback: AsyncCallback&lt;Array&lt;RetentionSandboxInfo&gt;&gt;): void  <br>getRetentionSandboxList(callback: AsyncCallback&lt;Array&lt;RetentionSandboxInfo&gt;&gt;): void| Obtains the sandbox applications in the retention state.|
+| getDLPFileAccessRecords(): Promise&lt;Array&lt;AccessedDLPFileInfo&gt;&gt; <br>getDLPFileAccessRecords(callback: AsyncCallback&lt;Array&lt;AccessedDLPFileInfo&gt;&gt;): void | Obtains the DLP files that are accessed recently.|
 |setSandboxAppConfig(configInfo: string): Promise&lt;void&gt;|Sets sandbox application configuration.|
 |getSandboxAppConfig(): Promise&lt;string&gt;|Obtains the sandbox application configuration.|
 |cleanSandboxAppConfig(): Promise&lt;void&gt;|Cleans the sandbox application configuration.|
@@ -48,7 +48,7 @@ For an application in the DLP sandbox state, the permissions granted to the appl
 
 ## How to Develop
 
-1. Import the [dlpPermission](../../reference/apis/js-apis-dlppermission.md) module.
+1. Import the [dlpPermission](../../reference/apis-data-loss-prevention-kit/js-apis-dlppermission.md) module.
 
    ```ts
    import dlpPermission from '@ohos.dlpPermission';
@@ -136,7 +136,7 @@ For an application in the DLP sandbox state, the permissions granted to the appl
    import dlpPermission from '@ohos.dlpPermission';
    import fs from '@ohos.file.fs';
    import { BusinessError } from '@ohos.base';
-   
+
    let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
    let file = fs.openSync(uri);
    try {
@@ -248,7 +248,7 @@ For an application in the DLP sandbox state, the permissions granted to the appl
     import UIAbility from '@ohos.app.ability.UIAbility'
     import Want from '@ohos.app.ability.Want';
     import { BusinessError } from '@ohos.base';
-    
+
     try {
       let context = getContext () as common.UIAbilityContext; // Obtain the UIAbility context.
       let want: Want = {

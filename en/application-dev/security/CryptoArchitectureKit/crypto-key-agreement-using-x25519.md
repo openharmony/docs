@@ -6,12 +6,12 @@ For details about the algorithm specifications, see [X25519](crypto-key-agreemen
 
 ## How to Develop
 
-1. Use [cryptoFramework.createAsyKeyGenerator](../../reference/apis/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygenerator), [AsyKeyGenerator.generateKeyPair](../../reference/apis/js-apis-cryptoFramework.md#generatekeypair-1), and [AsyKeyGenerator.convertKey](../../reference/apis/js-apis-cryptoFramework.md#convertkey-3) to generate an X25519 asymmetric key pair (**KeyPair**).
+1. Use [cryptoFramework.createAsyKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygenerator), [AsyKeyGenerator.generateKeyPair](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatekeypair-1), and [AsyKeyGenerator.convertKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkey-3) to generate an X25519 asymmetric key pair (**KeyPair**).
    In addition to the example in this topic, [X25519](crypto-asym-key-generation-conversion-spec.md#x25519) and [Randomly Generating an Asymmetric Key Pair](crypto-generate-asym-key-pair-randomly.md) may help you better understand how to generate an X25519 asymmetric key pair. Note that the input parameters in the reference documents may be different from those in the example below.
 
-2. Use [cryptoFramework.createKeyAgreement](../../reference/apis/js-apis-cryptoFramework.md#cryptoframeworkcreatekeyagreement) with the string parameter **'X25519'** to create an X25519 key agreement (**KeyAgreement**) instance.
+2. Use [cryptoFramework.createKeyAgreement](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatekeyagreement) with the string parameter **'X25519'** to create an X25519 key agreement (**KeyAgreement**) instance.
 
-3. Use [KeyAgreement.generateSecret](../../reference/apis/js-apis-cryptoFramework.md#generatesecret-1) to perform key agreement with the specified private key (**KeyPair.pubKey**) and public key (**KeyPair.priKey**), and return the shared secret.
+3. Use [KeyAgreement.generateSecret](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatesecret-1) to perform key agreement with the specified private key (**KeyPair.pubKey**) and public key (**KeyPair.priKey**), and return the shared secret.
 
 Example: Perform key agreement using **await**.
 ```ts

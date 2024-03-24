@@ -7,11 +7,11 @@ This topic describes how to obtain properties of a key. Before the operation, en
 ## How to Develop
 
 1. Set parameters.
-   - **keyAlias**: key alias encapsulated in a [OH_Huks_Blob](../../reference/native-apis/_o_h___huks___blob.md) struct. The value cannot exceed 64 bytes.
+   - **keyAlias**: key alias encapsulated in an [OH_Huks_Blob](../../reference/apis-universal-keystore-kit/_o_h___huks___blob.md) struct. The maximum length of the key alias is 64 bytes.
    - **paramSetIn**: This parameter is reserved. Leave it empty.
-   - **paramSetOut**: result set used to hold the key properties obtained. It is an object of the [OH_Huks_ParamSet](../../reference/native-apis/_o_h___huks___param_set.md) type. Ensure that there is enough memory for storing the key properties obtained.
+   - **paramSetOut**: result set used to hold the key properties obtained. It is an object of the [OH_Huks_ParamSet](../../reference/apis-universal-keystore-kit/_o_h___huks___param_set.md) type. Ensure that there is enough memory for storing the key properties obtained.
 
-2. Use [OH_Huks_GetKeyItemParamSet](../../reference/native-apis/_huks_key_api.md#oh_huks_getkeyitemparamset) to obtain key properties.
+2. Use [OH_Huks_GetKeyItemParamSet](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_getkeyitemparamset) to obtain key properties.
 
 3. Check the return value. If the operation is successful, obtain the key properties from **paramSetOut**. If the operation fails, an error code is returned.
 

@@ -8,10 +8,10 @@ This topic describes how to obtain properties of a key. Before the operation, en
 
 1. Set the key alias (**keyAlias**), which cannot exceed 64 bytes.
 
-2. Use [getKeyItemProperties](../../reference/apis/js-apis-huks.md#huksgetkeyitemproperties9) to obtain the properties of the key based on **keyAlias** and **options**.
+2. Use [getKeyItemProperties](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksgetkeyitemproperties9) to obtain the properties of the key based on **keyAlias** and **options**. 
    **options** is a reserved parameter and is left empty currently.
 
-3. The **properties** field in the [HuksReturnResult](../../reference/apis/js-apis-huks.md#huksreturnresult9) object returned provides the key properties obtained.
+3. You can find the key properties in the **properties** field in the [HuksReturnResult](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksreturnresult9) object.
 
 ```ts
 import huks from '@ohos.security.huks';
