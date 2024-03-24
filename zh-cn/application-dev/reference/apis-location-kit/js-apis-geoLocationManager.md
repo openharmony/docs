@@ -5,6 +5,7 @@
 > **说明：**
 >
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块能力仅支持WGS-84坐标系。
 
 ## 申请权限
 
@@ -48,7 +49,7 @@ import geoLocationManager from '@ohos.geoLocationManager';
 
 ## ReverseGeoCodeRequest
 
-逆地理编码请求接口。
+逆地理编码请求参数。
 
 **系统能力**：SystemCapability.Location.Location.Geocoder
 
@@ -62,7 +63,7 @@ import geoLocationManager from '@ohos.geoLocationManager';
 
 ## GeoCodeRequest
 
-地理编码请求接口。
+地理编码请求参数。
 
 **系统能力**：SystemCapability.Location.Location.Geocoder
 
@@ -79,7 +80,7 @@ import geoLocationManager from '@ohos.geoLocationManager';
 
 ## GeoAddress
 
-地理编码类型。
+地理编码地址信息。
 
 **系统能力**：SystemCapability.Location.Location.Geocoder
 
@@ -107,7 +108,7 @@ import geoLocationManager from '@ohos.geoLocationManager';
 
 ## LocationRequest
 
-位置信息请求类型。
+位置信息请求参数。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
@@ -122,7 +123,7 @@ import geoLocationManager from '@ohos.geoLocationManager';
 
 ## CurrentLocationRequest
 
-当前位置信息请求类型。
+当前位置信息请求参数。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
@@ -190,7 +191,7 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 
 ## LocationCommand
 
-扩展命令结构体。
+扩展命令参数。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
@@ -202,7 +203,7 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 
 ## Location
 
-位置信息类型。
+位置信息。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
@@ -224,7 +225,7 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 
 ## CountryCode
 
-国家码信息结构体，包含国家码字符串和国家码的来源信息。
+国家码信息，包含国家码字符串和国家码的来源信息。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
@@ -235,7 +236,7 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 
 ## LocationRequestPriority
 
-位置请求中位置信息优先级设置。
+位置请求中位置信息优先级类型。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
@@ -249,7 +250,7 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 
 ## LocationRequestScenario
 
-  位置请求中定位场景设置。
+  位置请求中定位场景类型。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
@@ -462,7 +463,7 @@ on(type: 'cachedGnssLocationsChange', request: CachedGnssLocationsRequest, callb
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。type为“cachedGnssLocationsChange”，表示GNSS缓存定位结果上报。 |
   | request |  [CachedGnssLocationsRequest](#cachedgnsslocationsrequest) | 是 | GNSS缓存功能配置参数 |
-  | callback | Callback&lt;Array&lt;Location&gt;&gt; | 是 | 接收GNSS缓存位置上报。 |
+  | callback | Callback&lt;Array&lt;[Location](#location)&gt;&gt; | 是 | 接收GNSS缓存位置上报。 |
 
 **错误码**：
 
@@ -506,7 +507,7 @@ off(type: 'cachedGnssLocationsChange', callback?: Callback&lt;Array&lt;Location&
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。type为“cachedGnssLocationsChange”，表示GNSS缓存定位结果上报。 |
-  | callback | Callback&lt;Array&lt;Location&gt;&gt; | 否 | 需要取消订阅的回调函数。若无此参数，则取消当前类型的所有订阅。 |
+  | callback | Callback&lt;Array&lt;[Location](#location)&gt;&gt; | 否 | 需要取消订阅的回调函数。若无此参数，则取消当前类型的所有订阅。 |
 
 **错误码**：
 
@@ -761,7 +762,7 @@ on(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): vo
   };
   
   wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-    let requestInfo:geoLocationManager.GeofenceRequest = {'scenario': 0x301, "geofence": {"latitude": 121, "longitude": 26, "radius": 100, "expiration": 10000}};
+    let requestInfo:geoLocationManager.GeofenceRequest = {'scenario': 0x301, "geofence": {"latitude": 31.12, "longitude": 121.11, "radius": 100, "expiration": 10000}};
     try {
         geoLocationManager.on('gnssFenceStatusChange', requestInfo, wantAgentObj);
     } catch (err) {
@@ -820,7 +821,7 @@ off(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): v
   };
   
   wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-    let requestInfo:geoLocationManager.GeofenceRequest = {'scenario': 0x301, "geofence": {"latitude": 121, "longitude": 26, "radius": 100, "expiration": 10000}};;
+    let requestInfo:geoLocationManager.GeofenceRequest = {'scenario': 0x301, "geofence": {"latitude": 31.12, "longitude": 121.11, "radius": 100, "expiration": 10000}};;
     try {
         geoLocationManager.on('gnssFenceStatusChange', requestInfo, wantAgentObj);
         geoLocationManager.off('gnssFenceStatusChange', requestInfo, wantAgentObj);
@@ -1031,7 +1032,7 @@ getCurrentLocation(request?: CurrentLocationRequest): Promise&lt;Location&gt;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | [Location](#location) | 返回位置信息。 |
+  | Promise&lt;[Location](#location)&gt; | 以Promise形式返回位置信息。 |
 
 **错误码**：
 
@@ -1199,7 +1200,7 @@ getAddressesFromLocation(request: ReverseGeoCodeRequest): Promise&lt;Array&lt;Ge
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Array&lt;[GeoAddress](#geoaddress)&gt; | 返回地理描述信息。 |
+  | Promise&lt;Array&lt;[GeoAddress](#geoaddress)&gt;&gt; | 以Promise形式返回地理描述信息。 |
 
 **错误码**：
 
@@ -1292,7 +1293,7 @@ getAddressesFromLocationName(request: GeoCodeRequest): Promise&lt;Array&lt;GeoAd
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Array&lt;[GeoAddress](#geoaddress)&gt; | 返回地理编码查询结果。 |
+  | Promise&lt;Array&lt;[GeoAddress](#geoaddress)&gt;&gt; | 以Promise形式返回地理编码查询结果。 |
 
 **错误码**：
 
@@ -1415,7 +1416,7 @@ getCachedGnssLocationsSize(): Promise&lt;number&gt;;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | number | 返回GNSS缓存位置的个数。 |
+  | Promise&lt;number&gt; | 以Promise形式返回GNSS缓存位置的个数。 |
 
 **错误码**：
 
@@ -1501,7 +1502,7 @@ flushCachedGnssLocations(): Promise&lt;void&gt;;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | void | 无返回值。 |
+  | Promise&lt;void&gt; | 返回Promise对象。 |
 
 **错误码**：
 
@@ -1590,7 +1591,7 @@ sendCommand(command: LocationCommand): Promise&lt;void&gt;;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | void | 无返回值。 |
+  | Promise&lt;void&gt; | 返回Promise对象。 |
 
 **错误码**：
 
@@ -1674,7 +1675,7 @@ getCountryCode(): Promise&lt;CountryCode&gt;;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | [CountryCode](#countrycode) | 用来接收国家码。 |
+  | Promise&lt;[CountryCode](#countrycode)&gt; | 以Promise形式返回国家码。 |
 
 **错误码**：
 

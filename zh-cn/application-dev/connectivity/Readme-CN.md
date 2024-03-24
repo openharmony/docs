@@ -1,17 +1,9 @@
-# 网络与连接
+# Connectivity Kit（短距通信服务）
 
-- 网络管理
-  - [网络管理开发概述](net-mgmt-overview.md)
-  - [HTTP数据请求](http-request.md)
-  - [WebSocket连接](websocket-connection.md)
-  - [Socket连接](socket-connection.md)
-  - [网络共享](net-sharing.md)
-  - [以太网连接](net-ethernet.md)
-  - [网络连接管理](net-connection-manager.md)
-  - [MDNS管理](net-mdns.md)
-  - [流量管理](net-statistics.md)
-  - [VPN管理](net-vpn.md)
-- IPC与RPC通信
-  - [IPC与RPC通信概述](ipc-rpc-overview.md)
-  - [IPC与RPC通信开发指导](ipc-rpc-development-guideline.md)
-  - [远端状态订阅开发实例](subscribe-remote-state.md)
+- [Connectivity Kit简介](connectivity-kit-intro.md)
+- 蓝牙
+  - [蓝牙服务开发概述](bluetooth/bluetooth-overview.md)
+  - [蓝牙设置](bluetooth/br-development-guide.md)
+  - [广播与扫描](bluetooth/ble-development-guide.md)
+  - [通用属性协议](bluetooth/gatt-development-guide.md)
+  - [串行通信](bluetooth/spp-development-guide.md)

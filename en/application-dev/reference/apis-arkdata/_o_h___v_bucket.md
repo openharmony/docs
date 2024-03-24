@@ -5,13 +5,9 @@
 
 Defines the types of the key and value in a KV pair.
 
-**Since**
+**Since**: 10
 
-10
-
-**Related Modules**
-
-[RDB](_r_d_b.md)
+**Related module**: [RDB](_r_d_b.md)
 
 
 ## Summary

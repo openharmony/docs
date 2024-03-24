@@ -5,6 +5,7 @@
 > **说明：**
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > 从API Version 9开始，该接口不再维护，推荐使用新接口[geoLocationManager](js-apis-geoLocationManager.md)。
+> 本模块能力仅支持WGS-84坐标系。
 
 ## 申请权限
 
@@ -424,7 +425,7 @@ on(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent): void;
   };
   
   wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-    let requestInfo:geolocation.GeofenceRequest = {'priority': 0x201, 'scenario': 0x301, "geofence": {"latitude": 121, "longitude": 26, "radius": 100, "expiration": 10000}};
+    let requestInfo:geolocation.GeofenceRequest = {'priority': 0x201, 'scenario': 0x301, "geofence": {"latitude": 31.12, "longitude": 121.11, "radius": 100, "expiration": 10000}};
     geolocation.on('fenceStatusChange', requestInfo, wantAgentObj);
   });
   ```
@@ -472,7 +473,7 @@ off(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent): void;
   };
   
   wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-    let requestInfo:geolocation.GeofenceRequest = {'priority': 0x201, 'scenario': 0x301, "geofence": {"latitude": 121, "longitude": 26, "radius": 100, "expiration": 10000}};
+    let requestInfo:geolocation.GeofenceRequest = {'priority': 0x201, 'scenario': 0x301, "geofence": {"latitude": 31.12, "longitude": 121.11, "radius": 100, "expiration": 10000}};
     geolocation.on('fenceStatusChange', requestInfo, wantAgentObj);
     geolocation.off('fenceStatusChange', requestInfo, wantAgentObj);
   });
@@ -577,7 +578,7 @@ getCurrentLocation(request?: CurrentLocationRequest): Promise&lt;Location&gt;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  |[Location](#locationdeprecated)| 返回位置信息。 |
+  | Promise&lt;[Location](#locationdeprecated)&gt; | 以Promise形式返回位置信息。 |
 
 
 **示例**
@@ -643,7 +644,7 @@ getLastLocation(): Promise&lt;Location&gt;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  |  [Location](#locationdeprecated)|返回上次位置信息。 |
+  | Promise&lt;[Location](#locationdeprecated)&gt; | 以Promise形式返回上次位置信息。 |
 
 
 **示例**
@@ -707,7 +708,7 @@ isLocationEnabled(): Promise&lt;boolean&gt;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | boolean|返回位置服务是否可用的状态。 |
+  | Promise&lt;boolean&gt; | 以Promise形式返回位置服务是否可用的状态。 |
 
 **示例**
 
@@ -770,7 +771,7 @@ requestEnableLocation(): Promise&lt;boolean&gt;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | boolean|返回位置服务是否可用。 |
+  | Promise&lt;boolean&gt; | 以Promise形式返回位置服务是否可用的状态。 |
 
 **示例**
 
@@ -833,7 +834,7 @@ isGeoServiceAvailable(): Promise&lt;boolean&gt;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  |boolean| 返回地理编码服务是否可用的状态。 |
+  | Promise&lt;boolean&gt; | 以Promise形式返回地理编码服务是否可用的状态。 |
 
 **示例**
 
@@ -904,7 +905,7 @@ getAddressesFromLocation(request: ReverseGeoCodeRequest): Promise&lt;Array&lt;Ge
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Array&lt;[GeoAddress](#geoaddressdeprecated)&gt;|返回地理描述信息。 |
+  | Promise&lt;Array&lt;[GeoAddress](#geoaddressdeprecated)&gt;&gt; | 以Promise形式返回地理描述信息。 |
 
 **示例**
 
@@ -976,7 +977,7 @@ getAddressesFromLocationName(request: GeoCodeRequest): Promise&lt;Array&lt;GeoAd
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Array&lt;[GeoAddress](#geoaddressdeprecated)&gt;|设置接收地理编码请求的回调参数。 |
+  | Promise&lt;Array&lt;[GeoAddress](#geoaddressdeprecated)&gt;&gt; | 以Promise形式返回地理编码请求的结果。 |
 
 **示例**
 
@@ -1042,7 +1043,7 @@ getCachedGnssLocationsSize(): Promise&lt;number&gt;;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | number|返回GNSS缓存位置的个数。 |
+  | Promise&lt;number&gt; | 以Promise形式返回GNSS缓存位置的个数。 |
 
 **示例**
 
@@ -1107,7 +1108,7 @@ flushCachedGnssLocations(): Promise&lt;boolean&gt;;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  |boolean| 清空所有GNSS缓存位置是否成功。 |
+  | Promise&lt;boolean&gt;| 以Promise形式返回清空所有GNSS缓存位置结果。 |
 
 **示例**
 
@@ -1180,7 +1181,7 @@ sendCommand(command: LocationCommand): Promise&lt;boolean&gt;;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  |boolean| 表示命令发送成功或失败。 |
+  | Promise&lt;boolean&gt; | 以Promise形式返回命令发送成功或失败结果。 |
 
 **示例**
 
@@ -1195,7 +1196,7 @@ sendCommand(command: LocationCommand): Promise&lt;boolean&gt;;
 
 ## ReverseGeoCodeRequest<sup>(deprecated)</sup>
 
-逆地理编码请求接口。
+逆地理编码请求参数。
 
 > **说明：**<br/>
 > 从API version 9开始废弃，建议使用[geoLocationManager.ReverseGeoCodeRequest](js-apis-geoLocationManager.md#reversegeocoderequest)替代。
@@ -1214,7 +1215,7 @@ sendCommand(command: LocationCommand): Promise&lt;boolean&gt;;
 
 ## GeoCodeRequest<sup>(deprecated)</sup>
 
-地理编码请求接口。
+地理编码请求参数。
 
 > **说明：**<br/>
 > 从API version 9开始废弃，建议使用[geoLocationManager.GeoCodeRequest](js-apis-geoLocationManager.md#geocoderequest)替代。
@@ -1236,7 +1237,7 @@ sendCommand(command: LocationCommand): Promise&lt;boolean&gt;;
 
 ## GeoAddress<sup>(deprecated)</sup>
 
-地理编码类型。
+地理编码地址信息。
 
 > **说明：**<br/>
 > 从API version 9开始废弃，建议使用[geoLocationManager.GeoAddress](js-apis-geoLocationManager.md#geoaddress)替代。
@@ -1269,7 +1270,7 @@ sendCommand(command: LocationCommand): Promise&lt;boolean&gt;;
 
 ## LocationRequest<sup>(deprecated)</sup>
 
-位置信息请求类型。
+位置信息请求参数。
 
 > **说明：**<br/>
 > 从API version 9开始废弃，建议使用[geoLocationManager.LocationRequest](js-apis-geoLocationManager.md#locationrequest)替代。
@@ -1289,7 +1290,7 @@ sendCommand(command: LocationCommand): Promise&lt;boolean&gt;;
 
 ## CurrentLocationRequest<sup>(deprecated)</sup>
 
-当前位置信息请求类型。
+当前位置信息请求参数。
 
 > **说明：**<br/>
 > 从API version 9开始废弃，建议使用[geoLocationManager.CurrentLocationRequest](js-apis-geoLocationManager.md#currentlocationrequest)替代。
@@ -1387,7 +1388,7 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 
 ## LocationCommand<sup>(deprecated)</sup>
 
-扩展命令结构体。
+扩展命令参数。
 
 > **说明：**<br/>
 > 从API version 8开始支持。
@@ -1405,7 +1406,7 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 
 ## Location<sup>(deprecated)</sup>
 
-位置信息类型。
+位置信息。
 
 > **说明：**<br/>
 > 从API version 9开始废弃，建议使用[geoLocationManager.Location](js-apis-geoLocationManager.md#location)替代。
@@ -1449,7 +1450,7 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 
 ## LocationRequestPriority<sup>(deprecated)</sup>
 
-位置请求中位置信息优先级设置。
+位置请求中位置信息优先级类型。
 
 > **说明：**<br/>
 > 从API version 9开始废弃，建议使用[geoLocationManager.LocationRequestPriority](js-apis-geoLocationManager.md#locationrequestpriority)替代。
@@ -1468,7 +1469,7 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 
 ## LocationRequestScenario<sup>(deprecated)</sup>
 
-  位置请求中定位场景设置。
+  位置请求中定位场景类型。
 
 > **说明：**<br/>
 > 从API version 9开始废弃，建议使用[geoLocationManager.LocationRequestScenario](js-apis-geoLocationManager.md#locationrequestscenario)替代。
