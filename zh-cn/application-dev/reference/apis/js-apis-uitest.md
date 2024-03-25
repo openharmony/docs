@@ -2654,12 +2654,12 @@ mouseLongClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Prom
 
 **参数：**
 
-| 参数名 | 类型                          | 必填 | 说明                |
-| ------ | ----------------------------- | ---- | ------------------- |
-| p      | [Point](#point9)              | 是   | 鼠标长按的坐标。    |
-| btnId  | [MouseButton](#mousebutton10) | 是   | 按下的鼠标按钮。    |
-| key1   | number                        | 否   | 指定的第一个key值。 |
-| key2   | number                        | 否   | 指定的第二个key值。 |
+| 参数名 | 类型                          | 必填 | 说明                           |
+| ------ | ----------------------------- | ---- | ------------------------------ |
+| p      | [Point](#point9)              | 是   | 鼠标长按的坐标。               |
+| btnId  | [MouseButton](#mousebutton10) | 是   | 按下的鼠标按钮。               |
+| key1   | number                        | 否   | 指定的第一个key值。默认值为0。 |
+| key2   | number                        | 否   | 指定的第二个key值。默认值为0。 |
 
 **错误码：**
 
