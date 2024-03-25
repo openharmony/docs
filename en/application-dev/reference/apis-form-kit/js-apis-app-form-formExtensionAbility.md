@@ -90,9 +90,9 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 
 ## onUpdateForm
 
-onUpdateForm(formId: string): void
+onUpdateForm(formId: string, wantParams?: Record<string, Object>): void
 
-Called to notify the widget provider that a widget is being updated. After obtaining the latest data, your application should call [updateForm](js-apis-app-form-formProvider.md#updateform) of **formProvider** to update the widget data.
+Called to notify the widget provider that a widget is being updated, with update parameters carried. After obtaining the latest data, your application should call [updateForm](js-apis-app-form-formProvider.md#updateform) of **formProvider** to update the widget data.
 
 **System capability**: SystemCapability.Ability.Form
 
@@ -101,6 +101,7 @@ Called to notify the widget provider that a widget is being updated. After obtai
 | Name| Type  | Mandatory| Description              |
 | ------ | ------ | ---- | ------------------ |
 | formId | string | Yes  | ID of the widget that requests to be updated.|
+| wantParams<sup>12+</sup> | Record<string, Object> | No  | Parameters used for the update.|
 
 **Example**
 
@@ -111,8 +112,9 @@ import formProvider from '@ohos.app.form.formProvider';
 import Base from '@ohos.base';
 
 export default class MyFormExtensionAbility extends FormExtensionAbility {
-  onUpdateForm(formId: string) {
-    console.log(`FormExtensionAbility onUpdateForm, formId: ${formId}`);
+  onUpdateForm(formId: string, wantParams?: Record<string, Object>) {
+    console.log(`FormExtensionAbility onUpdateForm, formId: ${formId},
+        wantPara: ${wantParams?.['ohos.extra.param.key.host_bg_inverse_color']}`);
     let param: Record<string, string> = {
       'temperature': '22c',
       'time': '22:00'
@@ -293,8 +295,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 };
 ```
 
-
-## onStop
+## onStop<sup>12+</sup>
 
 onStop?(): void
 

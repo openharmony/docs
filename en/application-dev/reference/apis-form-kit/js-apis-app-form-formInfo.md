@@ -37,7 +37,7 @@ Defines the widget information.
 | scheduledUpdateTime        | string               | Yes   | No    | Time when the widget was updated.    |
 | formConfigAbility | string               | Yes   | No    | Configuration ability of the widget, that is, the ability corresponding to the option in the selection box displayed when the widget is long pressed.  |
 | updateDuration        | number       | Yes   | No    | Update period of the widget.|
-| defaultDimension  | number | Yes   | No    | Default dimension of the widget.                                      |
+| defaultDimension  | number | Yes   | No    | Widget specifications.                                      |
 | supportDimensions    | Array&lt;number&gt;      | Yes   | No    | Dimensions supported by the widget. For details, see [FormDimension](#formdimension).  |
 | customizeData    | Record\<string, string>      | Yes   | No    | Custom data of the widget.        |
 | isDynamic<sup>10+</sup>      | boolean               | Yes   | No    | Whether the widget is a dynamic widget.<br>ArkTS widgets are classified into dynamic and static widgets. JS widgets are all dynamic widgets.              |
@@ -105,7 +105,7 @@ Enumerates the widget parameters.
 | HEIGHT_KEY         | 'ohos.extra.param.key.form_height'   | Widget height.  |
 | TEMPORARY_KEY          | 'ohos.extra.param.key.form_temporary'   | Temporary widget.  |
 | ABILITY_NAME_KEY   | 'ohos.extra.param.key.ability_name'   | Ability name. |
-| BUNDLE_NAME_KEY    | 'ohos.extra.param.key.bundle_name'   | Key that specifies the target bundle name.|
+| BUNDLE_NAME_KEY    | 'ohos.extra.param.key.bundle_name'   | Bundle name.|
 | LAUNCH_REASON_KEY<sup>10+</sup>    | 'ohos.extra.param.key.form_launch_reason'   | Reason for creating the widget.  |
 | PARAM_FORM_CUSTOMIZE_KEY<sup>10+</sup>    | 'ohos.extra.param.key.form_customize'   | Custom data.  |
 | FORM_RENDERING_MODE_KEY<sup>11+</sup>    | 'ohos.extra.param.key.form_rendering_mode'   | Widget rendering mode. |
@@ -125,7 +125,7 @@ Enumerates the widget dimensions.
 | Dimension_4_4      | 4   | 4 x 4.  |
 | Dimension_2_1      | 5   | 2 x 1.  |
 | DIMENSION_1_1<sup>11+<sup>      | 6   | 1 x 1.  |
-| DIMENSION_4_6<sup>12+<sup>      | 7   | 4 x 6.  |
+| DIMENSION_6_4<sup>12+<sup>      | 7   | 6 x 4.  |
 
 
 ## FormInfoFilter
@@ -136,7 +136,9 @@ Defines the widget information filter. Only the widget information that meets th
 
 | Name       | Type  | Mandatory        |Description        |
 | ----------- | ---- | ------------ |------------ |
-| moduleName    | string    |No   | Optional. Only the information about the widget whose **moduleName** is the same as the provided value is returned.<br>If this parameter is not set, **moduleName** is not used for filtering.  |
+| bundleName    | string    |No   | Only the information about the widget whose **bundleName** is the same as the provided value is returned.<br>If this parameter is not set, **bundleName** is not used for filtering.  |
+| moduleName    | string    |No   | Only the information about the widget whose **moduleName** is the same as the provided value is returned.<br>If this parameter is not set, **moduleName** is not used for filtering.  |
+| supportedDimensions | Array<number> |No   | Only the information about the widget whose **supportedDimensions** is the same as the provided value is returned.<br>If this parameter is not set, **supportedDimensions** is not used for filtering.  |
 
 ## VisibilityType
 

@@ -3,6 +3,7 @@
 The **FormProvider** module provides APIs related to the widget provider. You can use the APIs to update a widget, set the next refresh time for a widget, obtain widget information, and request a widget release.
 
 > **NOTE**
+>
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > This topic describes only system APIs provided by the module. For details about its public APIs, see [@ohos.app.form.formProvider (formProvider)](./js-apis-app-form-formProvider.md).
 
@@ -27,7 +28,7 @@ Requests to publish a widget carrying data to the widget host (usually the home 
 
 | Name| Type                                                                   | Mandatory| Description            |
 | ------ | ---------------------------------------------------------------------- | ---- | ---------------- |
-| want | [Want](../apis-ability-kit/js-apis-app-ability-want.md)                           | Yes  | Request used for publishing. The following fields must be included:<br>Information about the target widget.<br>**abilityName**: ability of the target widget.<br>**parameters**:<br>'ohos.extra.param.key.form_dimension'<br>'ohos.extra.param.key.form_name'<br>'ohos.extra.param.key.module_name' |
+| want | [Want](../apis-ability-kit/js-apis-app-ability-want.md)                           | Yes  | Publish request, which must contain the following fields:<br>Information about the target widget.<br>**abilityName**: ability of the target widget.<br>**parameters**:<br>'ohos.extra.param.key.form_dimension'<br>'ohos.extra.param.key.form_name'<br>'ohos.extra.param.key.module_name' |
 | formBindingData | [formBindingData.FormBindingData](js-apis-app-form-formBindingData.md#formbindingdata) | Yes  | Data used for creating the widget.|
 | callback | AsyncCallback&lt;string&gt; | Yes| Callback used to return the widget ID.|
 
@@ -91,7 +92,7 @@ Requests to publish a widget to the widget host (usually the home screen). This 
 
 | Name  | Type                               | Mandatory| Description                                                        |
 | -------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| want     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Request used for publishing. The following fields must be included:<br>Information about the target widget.<br>**abilityName**: ability of the target widget.<br>**parameters**:<br>'ohos.extra.param.key.form_dimension'<br>'ohos.extra.param.key.form_name'<br>'ohos.extra.param.key.module_name' |
+| want     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Publish request, which must contain the following fields:<br>Information about the target widget.<br>**abilityName**: ability of the target widget.<br>**parameters**:<br>'ohos.extra.param.key.form_dimension'<br>'ohos.extra.param.key.form_name'<br>'ohos.extra.param.key.module_name' |
 | callback | AsyncCallback&lt;string&gt;         | Yes  |  Callback used to return the widget ID.|
 
 **Error codes**
@@ -148,7 +149,7 @@ Requests to publish a widget to the widget host (usually the home screen). This 
 
 | Name         | Type                                                        | Mandatory| Description                                                        |
 | --------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| want            | [Want](../apis-ability-kit/js-apis-app-ability-want.md)                          | Yes  | Request used for publishing. The following fields must be included:<br>Information about the target widget.<br>**abilityName**: ability of the target widget.<br>**parameters**:<br>'ohos.extra.param.key.form_dimension'<br>'ohos.extra.param.key.form_name'<br>'ohos.extra.param.key.module_name' |
+| want            | [Want](../apis-ability-kit/js-apis-app-ability-want.md)                          | Yes  | Publish request, which must contain the following fields:<br>Information about the target widget.<br>**abilityName**: ability of the target widget.<br>**parameters**:<br>'ohos.extra.param.key.form_dimension'<br>'ohos.extra.param.key.form_name'<br>'ohos.extra.param.key.module_name' |
 | formBindingData | [formBindingData.FormBindingData](js-apis-app-form-formBindingData.md#formbindingdata) | No  | Data used for creating the widget. By default, no value is passed, indicating that no data is provided.                                     |
 
 **Return value**
