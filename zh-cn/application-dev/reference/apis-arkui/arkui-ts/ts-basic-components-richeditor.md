@@ -2771,6 +2771,7 @@ struct TextExample7 {
 }
 ```
 ### 示例11
+caretColor和selectedBackgroundColor使用示例
 ``` ts
 @Entry
 @Component
