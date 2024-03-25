@@ -8,7 +8,7 @@ Node-API是用于封装JavaScript能力为Native插件的API，独立于底层Ja
 
 Node-API可以去除底层的JavaScript引擎的差异，提供一套稳定的接口。
 
-OpenHarmony的N-API组件对Node-API的接口进行了重新实现，底层对接了ArkJS等引擎。当前支持Node-API标准库中的部分接口。
+OpenHarmony的Node-API组件对Node-API的接口进行了重新实现，底层对接了ArkJS等引擎。当前支持Node-API标准库中的部分接口。
 
 ## 已从Node-API组件标准库中导出的符号列表
 

@@ -128,6 +128,7 @@ napi_create_async_work是Node-API接口之一，用于创建一个异步工作�
        // 将接收到的参数保存到callbackData
        napi_get_value_double(env, args[0], &asyncContext->args[0]);
        napi_get_value_double(env, args[1], &asyncContext->args[1]);
+       // 将传入的callback转换为napi_ref延长其生命周期，防止被GC掉
        napi_create_reference(env, args[2], 1, &asyncContext->callbackRef);
        napi_value resourceName = nullptr;
        napi_create_string_utf8(env, "asyncWorkCallback", NAPI_AUTO_LENGTH, &resourceName);
