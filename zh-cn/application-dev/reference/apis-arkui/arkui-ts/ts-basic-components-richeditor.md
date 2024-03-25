@@ -719,7 +719,7 @@ SymbolSpan样式选项。
 
 ## LeadingMarginPlaceholder<sup>11+</sup>
 
-前导边距占位符，用于表示文本段落左侧与页面边缘之间的距离。
+前导边距占位符，用于表示文本段落左侧与组件边缘之间的距离。
 
 | 名称       | 类型                                       | 必填   | 描述             |
 | -------- | ---------------------------------------- | ---- | -------------- |
@@ -843,7 +843,7 @@ SymbolSpan样式选项。
 
 | 名称             | 类型          | 必填   | 描述                            |
 | -------------- | ----------- | ---- | ----------------------------- |
-| preventDefault | () => void | 否    | 用户自定义粘贴事件。<br/> 存在时会覆盖系统粘贴事件。 |
+| preventDefault | () => void | 否    | 阻止系统默认粘贴事件。 |
 
 ## RichEditorGesture<sup>11+</sup>
 
@@ -2713,3 +2713,32 @@ struct TextExample7 {
   }
 }
 ```
+### 示例11
+preventDefault使用示例
+```ts
+@Entry
+@Component
+struct RichEditorDemo {
+  controller: RichEditorController = new RichEditorController();
+  options: RichEditorOptions = { controller: this.controller };
+
+  build() {
+    Column({ space: 2 }) {
+      RichEditor(this.options)
+        .onReady(() => {
+          this.controller.addTextSpan('RichEditor preventDefault')
+        })
+        .onPaste((event?: PasteEvent) => {
+          if (event != undefined && event.preventDefault) {
+            event.preventDefault();
+          }
+        })
+        .borderWidth(1)
+        .borderColor(Color.Green)
+        .width('100%')
+        .height('40%')
+    }
+  }
+}
+```
+![PreventDefaultExample](figures/richEditorPreventDefault.gif)
