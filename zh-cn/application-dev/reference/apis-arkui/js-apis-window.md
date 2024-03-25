@@ -4085,8 +4085,6 @@ setWindowMask(windowMask: Array&lt;Array&lt;number&gt;&gt;): Promise&lt;void&gt;
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-**需要权限：** ohos.permission.MASK_WINDOW
-
 **参数：**
 
 | 参数名       | 类型                          | 必填 | 说明                           |
