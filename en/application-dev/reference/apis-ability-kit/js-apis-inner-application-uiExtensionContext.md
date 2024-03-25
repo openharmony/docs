@@ -148,7 +148,7 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 
 startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;): void
 
-Starts an ability. This API uses an asynchronous callback to return the result when the ability is terminated. The following situations may be possible for a started ability:
+Starts an ability and obtains the result when the ability is terminated. This API uses an asynchronous callback to return the result. The following situations may be possible for a started ability:
  - Normally, you can call [terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult) to terminate the ability. The result is returned to the caller.
  - If an exception occurs, for example, the ability is killed, an error message, in which **resultCode** is **-1**, is returned to the caller.
  - If different applications call this API to start an ability that uses the singleton mode and then call [terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult) to terminate the ability, the normal result is returned to the last caller, and an exception message, in which **resultCode** is **-1**, is returned to others.
@@ -193,7 +193,7 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 
 startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback&lt;AbilityResult&gt;): void
 
-Starts an ability with the start options specified. This API uses an asynchronous callback to return the result when the ability is terminated. The following situations may be possible for a started ability:
+Starts an ability with the start options specified and obtains the result when the ability is terminated. This API uses an asynchronous callback to return the result. The following situations may be possible for a started ability:
  - Normally, you can call [terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult) to terminate the ability. The result is returned to the caller.
  - If an exception occurs, for example, the ability is killed, an error message, in which **resultCode** is **-1**, is returned to the caller.
  - If different applications call this API to start an ability that uses the singleton mode and then call [terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult) to terminate the ability, the normal result is returned to the last caller, and an exception message, in which **resultCode** is **-1**, is returned to others.
@@ -237,7 +237,7 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 
 startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityResult&gt;
 
-Starts an ability. This API uses a promise to return the result when the ability is terminated. The following situations may be possible for a started ability:
+Starts an ability and obtains the result when the ability is terminated. This API uses a promise to return the result. The following situations may be possible for a started ability:
  - Normally, you can call [terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult) to terminate the ability. The result is returned to the caller.
  - If an exception occurs, for example, the ability is killed, an error message, in which **resultCode** is **-1**, is returned to the caller.
  - If different applications call this API to start an ability that uses the singleton mode and then call [terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult) to terminate the ability, the normal result is returned to the last caller, and an exception message, in which **resultCode** is **-1**, is returned to others.
@@ -290,7 +290,7 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 
 connectServiceExtensionAbility(want: Want, options: ConnectOptions): number
 
-Connects this ability to an ability that uses the **AbilityInfo.AbilityType.SERVICE** template.
+Connects this ability to a ServiceExtensionAbility.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -305,7 +305,7 @@ Connects this ability to an ability that uses the **AbilityInfo.AbilityType.SERV
 
 | Type| Description|
 | -------- | -------- |
-| number | Result code of the ability connection.|
+| number | Result code of the connection.|
 
 **Error codes**
 

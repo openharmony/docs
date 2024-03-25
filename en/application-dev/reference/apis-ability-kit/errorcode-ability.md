@@ -49,7 +49,7 @@ The ability with the specified type does not support the API invocation.
 1. Pass in correct values of **bundleName**, **moduleName**, and **abilityName** in **want**.
 2. Call APIs based on the ability type. For example, call [startServiceExtensionAbility](js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextstartserviceextensionability) to start the ServiceExtensionAbility, or call [connectServiceExtensionAbility()](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability) to connect to the ServiceExtensionAbility.
 
-## 16000003 Nonexistent ID
+## 16000003 ID Not Exist
 
 **Error Message**
 
@@ -85,6 +85,24 @@ Visibility verification fails.
 
 1. Check whether [exported](../../quick-start/module-configuration-file.md#abilities) under the **Ability** field in the **module.json5** file of the ability is set to **true**. If this parameter is set to **true**, the ability can be started by other applications. If this parameter is set to **false**, the ability cannot be started by other applications.
 2. To start the ability for which **exported** is set to **false**, the caller must request the [ohos.permission.START_INVISIBLE_ABILITY](../../security/AccessToken/permissions-for-system-apps.md#ohospermissionstart_invisible_ability) permission.
+
+## 16000005 Process Permission Verification Failure
+
+**Error Message**
+
+The specified process does not have the permission.
+
+**Description**
+
+This error code is reported when the specified process fails permission verification.
+
+**Possible Causes**
+
+Permission verification for the specified process fails.
+
+**Solution**
+
+Check whether the permission of the specified process is correct.
 
 ## 16000006 Cross-User Operation Is Not Allowed
 
@@ -176,7 +194,7 @@ The continuation flag is not allowed for the API call.
 
 Remove the continuation flag.
 
-## 16000011 Nonexistent Context
+## 16000011 Context Not Exist
 
 **Error Message**
 
@@ -501,6 +519,50 @@ The number of created subprocesses has reached the upper limit.
 **Solution**
 
 Limit the number of created subprocesses. The maximum number is 128.
+
+## 16000100 Failed to Call AbilityMonitor APIs to Listen for Ability Lifecycle Changes
+
+**Error Message**
+
+ - AddAbilityMonitor failed.
+
+ - AddAbilityMonitorSync failed.
+
+ - RemoveAbilityMonitor failed.
+
+ - RemoveAbilityMonitorSync failed.
+
+ - WaitAbilityMonitor failed.
+
+ - GetCurrentTopAbility failed.
+
+ - DoAbilityForeground failed.
+
+ - DoAbilityBackground failed.
+
+ - FinishTest failed.
+
+ - AddAbilityStageMonitor failed.
+
+ - AddAbilityStageMonitorSync failed.
+
+ - RemoveAbilityStageMonitor failed.
+
+ - RemoveAbilityStageMonitorSync failed.
+
+ - WaitAbilityStageMonitor failed.
+
+**Description**
+
+This error code is reported when an AbilityMonitor API for monitoring the lifecycle change of a specified ability fails to be executed.
+
+**Possible Causes**
+
+Creating an **AbilityDelegatorRegistry** instance fails.
+
+**Solution**
+
+Check whether an **AbilityDelegatorRegistry** instance is created.
 
 ## 16000101 shell Command Failure
 
@@ -925,5 +987,3 @@ When you try to cancel a quick fix task for an application, the application has 
 **Solution**
 
 Wait until the quick fix task is complete.
-
- <!--no_check--> 

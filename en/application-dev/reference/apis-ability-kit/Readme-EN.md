@@ -88,8 +88,6 @@
       - [context](js-apis-inner-app-context.md)
       - [processInfo](js-apis-inner-app-processInfo.md)
     - application
-      - [abilityDelegator](js-apis-inner-application-abilityDelegator.md)
-      - [abilityDelegatorArgs](js-apis-inner-application-abilityDelegatorArgs.md)
       - [abilityMonitor](js-apis-inner-application-abilityMonitor.md)
       - [AbilityStageContext](js-apis-inner-application-abilityStageContext.md)
       - [abilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md)
@@ -102,7 +100,6 @@
       - [ExtensionContext](js-apis-inner-application-extensionContext.md)
       - [ProcessInformation](js-apis-inner-application-processInformation.md)
       - [ProcessRunningInfo](js-apis-inner-application-processRunningInfo.md)
-      - [shellCmdResult](js-apis-inner-application-shellCmdResult.md)
       - [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md)
       - [UIExtensionContext](js-apis-inner-application-uiExtensionContext.md)
       - [AbilityForegroundStateObserver (System API)](js-apis-inner-application-abilityForegroundStateObserver-sys)
