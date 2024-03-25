@@ -53,7 +53,7 @@ DevEco Studio可参考其官网介绍进行[下载](https://developer.harmonyos.
 
 ### 编写单元测试脚本
 
-本章节主要描述单元测试框架支持能力，以及能力的使用方法。
+本章节主要描述单元测试框架支持能力，以及能力的使用方法, 具体请参考[单元测试框架功能特性](https://gitee.com/openharmony/testfwk_arkxtest/blob/master/README_zh.md#%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E6%A1%86%E6%9E%B6%E5%8A%9F%E8%83%BD%E7%89%B9%E6%80%A7)。
 
 在单元测试框架，测试脚本需要包含如下基本元素:
 
@@ -100,7 +100,7 @@ export default function abilityTest() {
 
 ### 编写UI测试脚本
 
-本章节主要介绍UI测试框架支持能力，以及对应能力API的使用方法。<br>UI测试基于单元测试，UI测试脚本在单元测试脚本上增加了对UiTest接口（提供链接）调用，进而完成对应的测试活动。<br>如下的示例代码是在上面的单元测试脚本基础上增量编写，实现的是在启动的应用页面上进行点击操作，然后检测当前页面变化是否为预期变化。
+本章节主要介绍UI测试框架支持能力，以及对应能力API的使用方法。<br>UI测试基于单元测试，UI测试脚本在单元测试脚本上增加了对UiTest接口,具体请参考[API文档](../../application-dev/reference/apis-test-kit/js-apis-uitest.md)。<br>如下的示例代码是在上面的单元测试脚本基础上增量编写，实现的是在启动的应用页面上进行点击操作，然后检测当前页面变化是否为预期变化。
 
 1.增加依赖导包。
 
