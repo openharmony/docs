@@ -20,7 +20,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 | -------- | ---------------------------------------- | ---- | ------------------------------ |
 | width    | number                                   | Yes   | Width of the offscreen canvas, in vp.                       |
 | height   | number                                   | Yes   | Height of the offscreen canvas, in vp.                       |
-| settings | [RenderingContextSettings](ts-canvasrenderingcontext2d.md#renderingcontextsettings) | No   | See RenderingContextSettings.|
+| settings | [RenderingContextSettings](ts-canvasrenderingcontext2d.md#renderingcontextsettings) | No   | Settings of the **OffscreenCanvasRenderingContext2D** object. For details, see **RenderingContextSettings**.|
 
 
 ## Attributes
@@ -940,8 +940,8 @@ Since API version 9, this API is supported in ArkTS widgets.
 | ------ | ------ | ---- | ---- | ------------- |
 | x      | number | Yes   | 0    | X coordinate of the upper left corner of the rectangle, in vp.|
 | y      | number | Yes   | 0    | Y coordinate of the upper left corner of the rectangle, in vp.|
-| width  | number | Yes   | 0    | Width of the rectangle, in vp.     |
-| height | number | Yes   | 0    | Height of the rectangle, in vp.     |
+| w      | number | Yes   | 0    | Width of the rectangle, in vp.     |
+| h      | number | Yes   | 0    | Height of the rectangle, in vp.     |
 
  **Example**
 
@@ -1198,27 +1198,9 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Type         | Description                                      |
 | ----------- | ---------------------------------------- |
-| TextMetrics | **TextMetrics** object.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| [TextMetrics](ts-canvasrenderingcontext2d.md#textmetrics) | **TextMetrics** object.<br>Since API version 9, this API is supported in ArkTS widgets.|
 
-**TextMetrics** attributes
-
-| Name                      | Type    | Description                                      |
-| ------------------------ | ------ | ---------------------------------------- |
-| width                    | number | Width of the text, in vp.                                 |
-| height                   | number | Height of the text, in vp.                                 |
-| actualBoundingBoxAscent  | number | Distance from the horizontal line specified by the **CanvasRenderingContext2D.textBaseline** attribute to the top of the bounding rectangle used to render the text. The current value is **0**. The unit is vp.|
-| actualBoundingBoxDescent | number | Distance from the horizontal line specified by the **CanvasRenderingContext2D.textBaseline** attribute to the bottom of the bounding rectangle used to render the text. The current value is **0**. The unit is vp.|
-| actualBoundingBoxLeft    | number | Distance parallel to the baseline from the alignment point determined by the **CanvasRenderingContext2D.textAlign** attribute to the left side of the bounding rectangle of the text. The current value is **0**. The unit is vp.|
-| actualBoundingBoxRight   | number | Distance parallel to the baseline from the alignment point determined by the **CanvasRenderingContext2D.textAlign** attribute to the right side of the bounding rectangle of the text. The current value is **0**. The unit is vp.|
-| alphabeticBaseline       | number | Distance from the horizontal line specified by the **CanvasRenderingContext2D.textBaseline** attribute to the alphabetic baseline of the line box. The current value is **0**. The unit is vp.|
-| emHeightAscent           | number | Distance from the horizontal line specified by the **CanvasRenderingContext2D.textBaseline** attribute to the top of the em square in the line box. The current value is **0**. The unit is vp.|
-| emHeightDescent          | number | Distance from the horizontal line specified by the **CanvasRenderingContext2D.textBaseline** attribute to the bottom of the em square in the line box. The current value is **0**. The unit is vp.|
-| fontBoundingBoxAscent    | number | Distance from the horizontal line specified by the **CanvasRenderingContext2D.textBaseline** attribute to the top of the highest bounding rectangle of all the fonts used to render the text. The current value is **0**. The unit is vp.|
-| fontBoundingBoxDescent   | number | Distance from the horizontal line specified by the **CanvasRenderingContext2D.textBaseline** attribute to the bottom of the bounding rectangle of all the fonts used to render the text. The current value is **0**. The unit is vp.|
-| hangingBaseline          | number | Distance from the horizontal line specified by the **CanvasRenderingContext2D.textBaseline** attribute to the hanging baseline of the line box. The current value is **0**. The unit is vp.|
-| ideographicBaseline      | number | Distance from the horizontal line specified by the **CanvasRenderingContext2D.textBaseline** attribute to the ideographic baseline of the line box. The current value is **0**. The unit is vp.|
-
- **Example**
+**Example**
 
   ```ts
   // xxx.ets
@@ -1512,13 +1494,13 @@ Since API version 9, this API is supported in ArkTS widgets.
 | Name        | Type                                      | Mandatory  | Default Value | Description                                      |
 | ---------- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
 | image      | [ImageBitmap](ts-components-canvas-imagebitmap.md) | Yes   | null | Source image. For details, see **ImageBitmap**.                 |
-| repetition | string                                   | Yes   | ""  | Repetition mode. The value can be **'repeat'**, **'repeat-x'**, **'repeat-y'**, **'no-repeat'**, **'clamp'**, or **'mirror'**.|
+| repetition | string \| null                                   | Yes   | ""  | Repetition mode. The value can be **'repeat'**, **'repeat-x'**, **'repeat-y'**, **'no-repeat'**, **'clamp'**, or **'mirror'**.|
 
 **Return value**
 
 | Type                                      | Description                     |
 | ---------------------------------------- | ----------------------- |
-| [CanvasPattern](ts-components-canvas-canvaspattern.md#canvaspattern) | Created pattern for image filling based on a specified source image and repetition mode.|
+| [CanvasPattern](ts-components-canvas-canvaspattern.md#canvaspattern) \| null | Created pattern for image filling based on a specified source image and repetition mode.|
 
  **Example**
 
@@ -1939,7 +1921,6 @@ Since API version 9, this API is supported in ArkTS widgets.
 | -------- | -------------- | ---- | --------- | ---------------------------------------- |
 | path     | [Path2D](ts-components-canvas-path2d.md)         | Yes   |           | A **Path2D** path to fill.                             |
 | fillRule | [CanvasFillRule](ts-canvasrenderingcontext2d.md#canvasfillrule) | No   | "nonzero" | Rule by which to determine whether a point is inside or outside the area to fill.<br>The options are **"nonzero"** and **"evenodd"**.|
-
 
 **Example**  
 
@@ -2561,7 +2542,7 @@ Since API version 9, this API is supported in ArkTS widgets, except that **Pixel
 
 createImageData(sw: number, sh: number): ImageData
 
-Creates an **ImageData** object with the same width and height of the current **ImageData** object. For details, see [ImageData](ts-components-canvas-imagedata.md). The example is the same as that of **putImageData**.
+Creates an  [ImageData](ts-components-canvas-imagedata.md) object with the same width and height of this **ImageData** object. The example is the same as that of **putImageData**.
 
 Since API version 9, this API is supported in ArkTS widgets.
 
@@ -2575,7 +2556,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 createImageData(imageData: ImageData): ImageData
 
-Creates an **[ImageData](ts-components-canvas-imagedata.md)** object by copying an existing **ImageData** object. The example is the same as that of **putImageData**.
+Creates an [ImageData](ts-components-canvas-imagedata.md) object by copying an existing **ImageData** object. The example is the same as that of **putImageData**.
 
 Since API version 9, this API is supported in ArkTS widgets.
 
@@ -2595,7 +2576,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 getPixelMap(sx: number, sy: number, sw: number, sh: number): PixelMap
 
-Obtains the **[PixelMap](../apis/js-apis-image.md#pixelmap7)** object created with the pixels within the specified area on the canvas.
+Obtains the [PixelMap](../apis/js-apis-image.md#pixelmap7) object created with the pixels within the specified area on the canvas.
 
  **Parameters**
 
@@ -2618,7 +2599,7 @@ Obtains the **[PixelMap](../apis/js-apis-image.md#pixelmap7)** object created wi
   // xxx.ets
   @Entry
   @Component
-  struct GetImageData {
+  struct GetPixelMap {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
@@ -2657,23 +2638,14 @@ Draws the input [PixelMap](../apis/js-apis-image.md#pixelmap7) object on the can
 
 | Name  | Type    | Mandatory  | Default Value | Description             |
 | ---- | ------ | ---- | ---- | --------------- |
-| sx   | number | Yes   | 0    | X coordinate of the upper left corner of the output area, in vp.|
-| sy   | number | Yes   | 0    | Y coordinate of the upper left corner of the output area, in vp.|
-| sw   | number | Yes   | 0    | Width of the output area, in vp.    |
-| sh   | number | Yes   | 0    | Height of the output area, in vp.    |
-
-**Return value**
-
-| Type                                      | Description          |
-| ---------------------------------------- | ------------ |
-| [PixelMap](../apis/js-apis-image.md#pixelmap7) | **PixelMap** object.|
+|  value  | [PixelMap](../apis/js-apis-image.md#pixelmap7) | No   |  null   | **PixelMap** object that contains pixel values.|
 
 
 ### getImageData
 
 getImageData(sx: number, sy: number, sw: number, sh: number): ImageData
 
-Obtains the **[ImageData](ts-components-canvas-imagedata.md)** object created with the pixels within the specified area on the canvas.
+Obtains the [ImageData](ts-components-canvas-imagedata.md) object created with the pixels within the specified area on the canvas. This API involves time-consuming memory copy. Therefore, avoid frequent calls to it.
 
 Since API version 9, this API is supported in ArkTS widgets.
 
@@ -3103,6 +3075,12 @@ Since API version 9, this API is supported in ArkTS widgets.
 | x1   | number | Yes   | 0    | X coordinate of the end point, in vp.|
 | y1   | number | Yes   | 0    | Y coordinate of the end point, in vp.|
 
+**Return value**
+
+| Type    | Description       |
+| ------ | --------- |
+| [CanvasGradient](ts-components-canvas-canvasgradient.md) | New **CanvasGradient** object used to create a gradient on the offscreen canvas.|
+
  **Example**
 
   ```ts
@@ -3160,6 +3138,12 @@ Since API version 9, this API is supported in ArkTS widgets.
 | y1   | number | Yes   | 0    | Y coordinate of the center of the end circle, in vp.        |
 | r1   | number | Yes   | 0    | Radius of the end circle, in vp. The value must be a non-negative finite number.|
 
+**Return value**
+
+| Type    | Description       |
+| ------ | --------- |
+| [CanvasGradient](ts-components-canvas-canvasgradient.md) | New **CanvasGradient** object  used to create a gradient on the offscreen canvas.|
+
   **Example** 
 
   ```ts
@@ -3215,6 +3199,11 @@ Creates a conic gradient.
 | -------- | ------------------------ |
 | [CanvasGradient](ts-components-canvas-canvasgradient.md) | Returns a gradient object.|
 
+**Return value**
+
+| Type    | Description       |
+| ------ | --------- |
+| [CanvasGradient](ts-components-canvas-canvasgradient.md) | New **CanvasGradient** object  used to create a gradient on the offscreen canvas.|
 
 **Example**
 

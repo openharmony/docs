@@ -18,7 +18,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name     | Type                                    | Mandatory  | Description                                    |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| settings | [RenderingContextSettings](#renderingcontextsettings) | No   | See [RenderingContextSettings](#renderingcontextsettings).|
+| settings | [RenderingContextSettings](#renderingcontextsettings) | No   | Settings of the **CanvasRenderingContext2D** object. For details, see [RenderingContextSettings](#renderingcontextsettings).|
 
 
 ### RenderingContextSettings
@@ -851,6 +851,7 @@ struct WidthExample {
 
 ## Methods
 
+Calls to the following methods on hidden pages will result in cache data. Therefore, avoid frequently refreshing the canvas on hidden pages.
 
 ### fillRect
 
@@ -866,8 +867,8 @@ Since API version 9, this API is supported in ArkTS widgets.
 | ------ | ------ | ---- | ---- | ------------- |
 | x      | number | Yes   | 0    | X coordinate of the upper left corner of the rectangle, in vp.|
 | y      | number | Yes   | 0    | Y coordinate of the upper left corner of the rectangle, in vp.|
-| width  | number | Yes   | 0    | Width of the rectangle, in vp.|
-| height | number | Yes   | 0    | Height of the rectangle, in vp.|
+| w      | number | Yes   | 0    | Width of the rectangle, in vp.|
+| h      | number | Yes   | 0    | Height of the rectangle, in vp.|
 
 **Example**
 
@@ -1104,28 +1105,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Type         | Description                                      |
 | ----------- | ---------------------------------------- |
-| TextMetrics | **TextMetrics** object.<br>Since API version 9, this API is supported in ArkTS widgets.|
-
-**TextMetrics**
-
-| Attribute                      | Type    | Description                                      |
-| ------------------------ | ------ | ---------------------------------------- |
-| width                    | number | Width of the text, in vp.                                 |
-| height                   | number | Height of the text, in vp.                                 |
-| actualBoundingBoxAscent  | number | Distance from the horizontal line specified by the **CanvasRenderingContext2D.textBaseline** attribute to the top of the bounding rectangle used to render the text. The current value is **0**. The unit is vp.|
-| actualBoundingBoxDescent | number | Distance from the horizontal line specified by the **CanvasRenderingContext2D.textBaseline** attribute to the bottom of the bounding rectangle used to render the text. The current value is **0**. The unit is vp.|
-| actualBoundingBoxLeft    | number | Distance parallel to the baseline from the alignment point determined by the **CanvasRenderingContext2D.textAlign** attribute to the left side of the bounding rectangle of the text. The current value is **0**. The unit is vp.|
-| actualBoundingBoxRight   | number | Distance parallel to the baseline from the alignment point determined by the **CanvasRenderingContext2D.textAlign** attribute to the right side of the bounding rectangle of the text. The current value is **0**. The unit is vp.|
-| alphabeticBaseline       | number | Distance from the horizontal line specified by the **CanvasRenderingContext2D.textBaseline** attribute to the alphabetic baseline of the line box. The current value is **0**. The unit is vp.|
-| emHeightAscent           | number | Distance from the horizontal line specified by the **CanvasRenderingContext2D.textBaseline** attribute to the top of the em square in the line box. The current value is **0**. The unit is vp.|
-| emHeightDescent          | number | Distance from the horizontal line specified by the **CanvasRenderingContext2D.textBaseline** attribute to the bottom of the em square in the line box. The current value is **0**. The unit is vp.|
-| fontBoundingBoxAscent    | number | Distance from the horizontal line specified by the **CanvasRenderingContext2D.textBaseline** attribute to the top of the highest bounding rectangle of all the fonts used to render the text. The current value is **0**. The unit is vp.|
-| fontBoundingBoxDescent   | number | Distance from the horizontal line specified by the **CanvasRenderingContext2D.textBaseline** attribute to the bottom of the bounding rectangle of all the fonts used to render the text. The current value is **0**. The unit is vp.|
-| hangingBaseline          | number | Distance from the horizontal line specified by the **CanvasRenderingContext2D.textBaseline** attribute to the hanging baseline of the line box. The current value is **0**. The unit is vp.|
-| ideographicBaseline      | number | Distance from the horizontal line specified by the **CanvasRenderingContext2D.textBaseline** attribute to the ideographic baseline of the line box. The current value is **0**. The unit is vp.|
-
-  
-
+| [TextMetrics](#textmetrics) | **TextMetrics** object.<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 **Example**
 
@@ -2409,7 +2389,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 getPixelMap(sx: number, sy: number, sw: number, sh: number): PixelMap
 
-Obtains the **[PixelMap](../apis/js-apis-image.md#pixelmap7)** object created with the pixels within the specified area on the canvas.
+Obtains the [PixelMap](../apis/js-apis-image.md#pixelmap7) object created with the pixels within the specified area on the canvas. This API involves time-consuming memory copy. Therefore, avoid frequent calls to it.
 
 **Parameters**
 
@@ -2432,7 +2412,7 @@ Obtains the **[PixelMap](../apis/js-apis-image.md#pixelmap7)** object created wi
   // xxx.ets
   @Entry
   @Component
-  struct GetImageData {
+  struct GetPixelMap {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private img:ImageBitmap = new ImageBitmap("/images/star.png")
@@ -2461,7 +2441,7 @@ Obtains the **[PixelMap](../apis/js-apis-image.md#pixelmap7)** object created wi
 
 getImageData(sx: number, sy: number, sw: number, sh: number): ImageData
 
-Obtains the **[ImageData](ts-components-canvas-imagedata.md)** object created with the pixels within the specified area on the canvas.
+Obtains the [ImageData](ts-components-canvas-imagedata.md) object created with the pixels within the specified area on the canvas. This API involves time-consuming memory copy. Therefore, avoid frequent calls to it.
 
 Since API version 9, this API is supported in ArkTS widgets.
 
@@ -2875,6 +2855,12 @@ Since API version 9, this API is supported in ArkTS widgets.
 | x1   | number | Yes   | 0    | X coordinate of the end point, in vp.|
 | y1   | number | Yes   | 0    | Y coordinate of the end point, in vp.|
 
+**Return value**
+
+| Type    | Description       |
+| ------ | --------- |
+| [CanvasGradient](ts-components-canvas-canvasgradient.md) | New **CanvasGradient** object  used to create a gradient on the canvas.|
+
 **Example**
 
   ```ts
@@ -2928,6 +2914,12 @@ Since API version 9, this API is supported in ArkTS widgets.
 | y1   | number | Yes   | 0    | Y coordinate of the center of the end circle, in vp.|
 | r1   | number | Yes   | 0    | Radius of the end circle, in vp. The value must be a non-negative finite number.|
 
+**Return value**
+
+| Type    | Description       |
+| ------ | --------- |
+| [CanvasGradient](ts-components-canvas-canvasgradient.md) | New **CanvasGradient** object  used to create a gradient on the canvas.|
+
 **Example**
 
   ```ts
@@ -2977,10 +2969,9 @@ Creates a conic gradient.
 
 **Return value**
 
-| Type      | Description                      |
-| -------- | ------------------------ |
-| [CanvasGradient](ts-components-canvas-canvasgradient.md) | Gradient object.|
-
+| Type    | Description       |
+| ------ | --------- |
+| [CanvasGradient](ts-components-canvas-canvasgradient.md) | New **CanvasGradient** object  used to create a gradient on the canvas.|
 
 **Example**
 
@@ -3089,3 +3080,21 @@ Since API version 9, this API is supported in ArkTS widgets.
 | low    | Low quality. |
 | medium | Medium quality. |
 | high   | High quality. |
+
+## TextMetrics
+
+| Attribute                      | Type    | Description                                      |
+| ------------------------ | ------ | ---------------------------------------- |
+| width                    | number | Width of the text. Read-only.                                 |
+| height                   | number | Height of the text. Read-only.                                 |
+| actualBoundingBoxAscent  | number | Distance from the horizontal line specified by the [CanvasRenderingContext2D.textBaseline](#canvastextbaseline) attribute to the top of the bounding rectangle used to render the text. Read-only. The current value is **0**.|
+| actualBoundingBoxDescent | number | Distance from the horizontal line specified by the [CanvasRenderingContext2D.textBaseline](#canvastextbaseline) attribute to the bottom of the bounding rectangle used to render the text. Read-only. The current value is **0**.|
+| actualBoundingBoxLeft    | number | Distance parallel to the baseline from the alignment point determined by the [CanvasRenderingContext2D.textAlign](#canvastextalign) attribute to the left side of the bounding rectangle of the text. Read-only. The current value is **0**.|
+| actualBoundingBoxRight   | number | Distance parallel to the baseline from the alignment point determined by the [CanvasRenderingContext2D.textAlign](#canvastextalign) attribute to the right side of the bounding rectangle of the text. Read-only. The current value is **0**.|
+| alphabeticBaseline       | number | Distance from the horizontal line specified by the [CanvasRenderingContext2D.textBaseline](#canvastextbaseline) attribute to the alphabetic baseline of the line box. The current value is **0**. Read-only. The current value is **0**.|
+| emHeightAscent           | number | Distance from the horizontal line specified by the [CanvasRenderingContext2D.textBaseline](#canvastextbaseline) attribute to the top of the em square in the line box. The current value is **0**. Read-only. The current value is **0**.|
+| emHeightDescent          | number | Distance from the horizontal line specified by the [CanvasRenderingContext2D.textBaseline](#canvastextbaseline) attribute to the bottom of the em square in the line box. The current value is **0**. Read-only. The current value is **0**.|
+| fontBoundingBoxAscent    | number | Distance from the horizontal line specified by the [CanvasRenderingContext2D.textBaseline](#canvastextbaseline) attribute to the top of the highest bounding rectangle of all the fonts used to render the text. Read-only. The current value is **0**.|
+| fontBoundingBoxDescent   | number | Distance from the horizontal line specified by the [CanvasRenderingContext2D.textBaseline](#canvastextbaseline) attribute to the bottom of the bounding rectangle of all the fonts used to render the text. Read-only. The current value is **0**.|
+| hangingBaseline          | number | Distance from the horizontal line specified by the [CanvasRenderingContext2D.textBaseline](#canvastextbaseline) attribute to the hanging baseline of the line box. Read-only. The current value is **0**.|
+| ideographicBaseline      | number | Distance from the horizontal line specified by the [CanvasRenderingContext2D.textBaseline](#canvastextbaseline) attribute to the ideographic baseline of the line box. Read-only. The current value is **0**.|

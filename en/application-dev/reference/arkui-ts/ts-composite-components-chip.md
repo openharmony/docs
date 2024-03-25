@@ -14,7 +14,7 @@ Not supported
 
 Chip({options:ChipOptions})
 
-**Decorator**: @Component
+**Decorator**: @Builder
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -30,17 +30,17 @@ Defines the type and style parameters of the chip.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name           | Type                                   | Mandatory| Description                                                        |
-| --------------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| size            | [ChipSize](#chipsize) \| SizeOptions    | No  | Size of the chip.<br>Default value: **ChipSize**: **ChipSize.NORMAL**<br>   If of the SizeOptions type, this parameter cannot be set in percentage.|
-| enabled         | boolean                                 | No  | Whether the chip can be selected.<br>Default value: **true**                        |
-| prefixIcon      | [PrefixIconOptions](#prefixiconoptions) | No  | Prefix icon of the chip.                                              |
-| label           | [LabelOptions](#labeloptions)           | Yes  | Text of the chip.                                                  |
-| suffixIcon      | [SuffixIconOptions](#suffixiconoptions) | No  | Suffix icon of the chip.                                              |
-| backgroundColor | ResourceColor                           | No  | Background color of the chip.<br>Default value: **$r('sys.float.ohos_id_color_button_normal')**|
-| borderRadius    | Dimension                               | No  | Border radius of the chip. This parameter cannot be set in percentage.<br>Default value: **$r('sys.float.ohos_id_corner_radius_button')**|
-| allowClose      | boolean                                 | No  | Whether to show the deletion icon.<br>Default value: **true**                       |
-| onClose         | ()=>void                                | No  | Event triggered when the close icon is clicked.                                      |
+| Name           | Type                                                        | Mandatory| Description                                                        |
+| --------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| size            | [ChipSize](#chipsize) \| [SizeOptions](ts-types.md#sizeoptions) | No  | Size of the chip.<br>Default value: **ChipSize**: **ChipSize.NORMAL**<br>   If of the SizeOptions type, this parameter cannot be set in percentage.|
+| enabled         | boolean                                                      | No  | Whether the chip can be selected.<br>Default value: **true**                        |
+| prefixIcon      | [PrefixIconOptions](#prefixiconoptions)                      | No  | Prefix icon of the chip.                                              |
+| label           | [LabelOptions](#labeloptions)                                | Yes  | Text of the chip.                                                  |
+| suffixIcon      | [SuffixIconOptions](#suffixiconoptions)                      | No  | Suffix icon of the chip.                                              |
+| backgroundColor | [ResourceColor](ts-types.md#resourcecolor)                   | No  | Background color of the chip.<br>Default value: **$r('sys.float.ohos_id_color_button_normal')**|
+| borderRadius    | [Dimension](ts-types.md#dimension10)                         | No  | Border radius of the chip. This parameter cannot be set in percentage.<br>Default value: **$r('sys.float.ohos_id_corner_radius_button')**|
+| allowClose      | boolean                                                      | No  | Whether to show the deletion icon.<br>Default value: **true**                       |
+| onClose         | ()=>void                                                     | No  | Event triggered when the close icon is clicked.                                      |
 
 > **NOTE**
 >
@@ -56,24 +56,25 @@ Defines the type and style parameters of the chip.
 
 Defines the size type of the chip.
 
-| Name  | Description              |
-| ------ | ------------------ |
-| NORMAL | Normal size.|
-| SMALL  | Small size. |
+| Name  | Value      | Description              |
+| ------ | -------- | ------------------ |
+| NORMAL | "NORMAL" | Normal size.|
+| SMALL  | "SMALL"  | Small size. |
 
 ## IconCommonOptions
 
 Defines the common icon attributes of the chip.
 
-| Name     | Type         | Mandatory| Description                                                        |
-| --------- | ------------- | ---- | ------------------------------------------------------------ |
-| src       | ResourceStr   | Yes  | Icon source, which can be a specific image path or an image reference.                                    |
-| size      | SizeOptions   | No  | Icon size. This parameter cannot be set in percentage.<br>Default value: **{width: 16,height: 16}**|
-| fillColor | ResourceColor | No  | Icon fill color.                                              |
+| Name     | Type                                      | Mandatory| Description                                                        |
+| --------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
+| src       | [ResourceStr](ts-types.md#resourcestr)     | Yes  | Icon source, which can be a specific image path or an image reference.                                    |
+| size      | [SizeOptions](ts-types.md#sizeoptions)     | No  | Icon size. This parameter cannot be set in percentage.<br>Default value: **{width: 16,height: 16}**|
+| fillColor | [ResourceColor](ts-types.md#resourcecolor) | No  | Icon fill color.                                              |
 
 > **NOTE**
 >
 > **fillColor** takes effect only when the icon format is **svg**.
+>
 
 ## PrefixIconOptions
 
@@ -95,22 +96,22 @@ Inherited from [IconCommonOptions](#iconcommonoptions).
 
 Defines the text attributes of the chip.
 
-| Name       | Type                                     | Mandatory| Description                                                        |
-| ----------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| text        | string                                    | Yes  | Text content.                                              |
-| fontSize    | Dimension                                 | No  | Font size. This parameter cannot be set in percentage.<br>Default value: **$r('sys.float.ohos_id_text_size_button3')**|
-| fontColor   | ResourceColor                             | No  | Font color.<br>Default value: **$r('sys.color.ohos_id_color_text_primary')**|
-| fontFamily  | string                                    | No  | Font family.<br>Default value: **"HarmonyOS Sans"**                   |
-| labelMargin | [LabelMarginOptions](#labelmarginoptions) | No  | Spacing between the text and the left and right icons.                                  |
+| Name       | Type                                      | Mandatory| Description                                                        |
+| ----------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
+| text        | string                                     | Yes  | Text content.                                              |
+| fontSize    | [Dimension](ts-types.md#dimension10)       | No  | Font size. This parameter cannot be set in percentage.<br>Default value: **$r('sys.float.ohos_id_text_size_button3')**|
+| fontColor   | [ResourceColor](ts-types.md#resourcecolor) | No  | Font color.<br>Default value: **$r('sys.color.ohos_id_color_text_primary')**|
+| fontFamily  | string                                     | No  | Font family.<br>Default value: **"HarmonyOS Sans"**                   |
+| labelMargin | [LabelMarginOptions](#labelmarginoptions)  | No  | Spacing between the text and the left and right icons.                                  |
 
 ## LabelMarginOptions
 
 Defines the spacing between the text and the left and right icons.
 
-| Name | Type     | Mandatory| Description                                                    |
-| ----- | --------- | ---- | -------------------------------------------------------- |
-| left  | Dimension | No  | Spacing between the text and the left icon. This parameter cannot be set in percentage.<br>Default value: **6vp**|
-| right | Dimension | No  | Spacing between the text and the right icon. This parameter cannot be set in percentage.<br>Default value: **6vp**|
+| Name | Type                                | Mandatory| Description                                                    |
+| ----- | ------------------------------------ | ---- | -------------------------------------------------------- |
+| left  | [Dimension](ts-types.md#dimension10) | No  | Spacing between the text and the left icon. This parameter cannot be set in percentage.<br>Default value: **6vp**|
+| right | [Dimension](ts-types.md#dimension10) | No  | Spacing between the text and the right icon. This parameter cannot be set in percentage.<br>Default value: **6vp**|
 
 
 ## Example

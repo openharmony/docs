@@ -300,7 +300,7 @@ If an application needs to perform a large number of computing or I/O operations
 
 Although N-API itself does not support concurrent operations with multithreading, it does allow for some data interactions in a multi-thread environment, where thread security would be a concern. In a multi-thread environment, you can use **napi_create_threadsafe_function** to create a thread-safe function and then call the function in any thread.
 
-*Application scenario*: When there are other threads on the native side and JavaScript functions need to be called based on the completion results of these threads, these threads must communicate with the main thread on the native side so that JavaScript functions can be called in the main thread. Thread-safe functions provide a simplified way to avoid inter-thread communication and to return to the main thread to call JavaScript functions.
+**Use scenario**: When there are other threads on the native side and JavaScript functions need to be called based on the completion results of these threads, these threads must communicate with the main thread on the native side so that JavaScript functions can be called in the main thread. Thread-safe functions provide a simplified way to avoid inter-thread communication and to return to the main thread to call JavaScript functions.
 
 ### How to Use
 

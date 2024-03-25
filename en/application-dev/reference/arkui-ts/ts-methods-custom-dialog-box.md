@@ -30,7 +30,7 @@ Defines a custom dialog box.
 | Name                          | Type                                    | Mandatory  | Description                                    |
 | ----------------------------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | builder                       | [CustomDialog](../../ui/arkts-common-components-custom-dialog.md) | Yes   | Builder of the custom dialog box content.                             |
-| cancel                        | () =&gt; void                  | No   | Callback invoked when the dialog box is closed after the Back key, the ESC key, or the mask is clicked.|
+| cancel                        | () =&gt; void                  | No   | Callback invoked when the dialog box is closed after the Back button or mask is touched or the Esc key is pressed.|
 | autoCancel                    | boolean                                  | No   | Whether to close the dialog box when the overlay is clicked. The value **true** means to close the dialog box when the overlay is clicked, and **false** means the opposite.<br>Default value: **true**|
 | alignment                     | [DialogAlignment](ts-methods-alert-dialog-box.md#dialogalignment) | No   | Alignment mode of the dialog box in the vertical direction.<br>Default value: **DialogAlignment.Default**|
 | offset                        | [Offset](ts-types.md#offset)             | No   | Offset of the dialog box relative to the alignment position.                  |

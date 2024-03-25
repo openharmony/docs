@@ -23,7 +23,7 @@ Not supported
 ## Attributes
 The [universal attributes](ts-universal-attributes-size.md) are supported.
 
-## APIs
+## ToolBar
 
 Toolbar({toolBarList: ToolBarOptions, activateIndex?: number, controller: TabsController})
 
@@ -33,34 +33,30 @@ Toolbar({toolBarList: ToolBarOptions, activateIndex?: number, controller: TabsCo
 
 **Parameters**
 
-| Name| Type| Mandatory| Description| 
-| -------- | -------- | -------- | -------- |
-| toolBarList | [ToolBarOptions](#toolbaroptions) | Yes| Toolbar list.| 
-| activateIndex | number | No| Index of the active option.<br>Default value: **1**| 
-| controller | [TabsController](ts-container-tabs.md#tabscontroller) | Yes| Style of the filter.| 
+| Name| Type| Mandatory| Decorator      | Description                 | 
+| -------- | -------- | -------- |-------------|---------------------|
+| toolBarList | [ToolBarOptions](#toolbaroptions) | Yes| @ObjectLink | Toolbar list.             | 
+| activateIndex | number | No| @Prop       | Index of the active option.<br>Default value: **1**| 
+| controller | [TabsController](ts-container-tabs.md#tabscontroller) | Yes| -           | Style of the filter.          | 
 
 
 ## ToolBarOptions
 
-Inherited from **Array\<ToolBarOption>**.
-
-**ToolBarOption**
-
 | Name| Type| Mandatory| Description| 
 | -------- | -------- | -------- | -------- |
 | content | [ResourceStr](ts-types.md#resourcestr) | Yes| Text of the toolbar option.| 
-| action | void | No| Click event of the toolbar option.| 
+| action | () =&gt; void | No| Click event of the toolbar option.| 
 | icon | [Resource](ts-types.md#resource) | No| Icon of the toolbar option.| 
 | state | [ItemState](#itemstate) | No| Status of the toolbar option.<br>Default value: **ENABLE**| 
 
 
 ## ItemState
 
-| Name| Description| 
-| -------- | -------- |
-| ENABLE | The toolbar option is enabled.| 
-| DISABLE | The toolbar option is disabled.| 
-| ACTIVATE | The toolbar option is activated.| 
+| Name| Value| Description| 
+| -------- | -------- | -------- |
+| ENABLE | 1 | The toolbar option is enabled.| 
+| DISABLE | 2 | The toolbar option is disabled.| 
+| ACTIVATE | 3 | The toolbar option is activated.| 
 
 ## Events
 The [universal events](ts-universal-events-click.md) are supported.
@@ -123,20 +119,6 @@ struct Index {
   build() {
     Row() {
       Stack() {
-        Column(){
-          Button ("Delete Item")
-            .width(96)
-            .height(40)
-            .onClick(() => {
-              this.toolbarList.pop()
-            })
-          Button ("Add Item")
-            .width(96)
-            .height(40)
-            .onClick(() => {
-              this.toolbarList.push(this.toolbarList[1])
-            })
-        }.margin({bottom: 300})
         Column() {
           ToolBar({
             activateIndex: 2,

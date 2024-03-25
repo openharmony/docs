@@ -11,7 +11,7 @@ Different from private events, universal events can be bound to most components.
 | swipe<sup>5+</sup> | SwipeEvent | Triggered when a user quickly swipes on the component. |
 
 
-  **Table 1** SwipeEvent (inherited from BaseEvent)
+SwipeEvent (inherited from BaseEvent)
 
 | Attribute| Type| Description |
 | -------- | -------- | -------- |

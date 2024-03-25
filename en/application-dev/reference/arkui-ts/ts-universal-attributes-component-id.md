@@ -23,7 +23,7 @@ getInspectorByKey(id: string): string
 
 Obtains all attributes of the component with the specified ID, excluding the information about child components.
 
-This API is used only for test purposes.
+This API is used only for test purposes. It is time consuming and not recommended.
 
 **Parameters**
 
@@ -35,7 +35,7 @@ This API is used only for test purposes.
 
 | Type       | Description            |
 | -------| -------------- |
-| string | JSON string of the component attribute list.|
+| string | JSON string of the component attribute list.<br>**NOTE**<br> The string includes the tag, ID, location (relative to the coordinates in the upper left corner of the window), and other information of the component used for testing.|
 
 ### getInspectorTree<sup>9+</sup>
 
@@ -43,7 +43,7 @@ getInspectorTree(): Object
 
 Obtains the component tree and component attributes.
 
-This API is used only for test purposes.
+This API is used only for test purposes. It is time consuming and not recommended.
 
 **Return value**
 
@@ -57,7 +57,7 @@ sendEventByKey(id: string, action: number, params: string): boolean
 
 Sends an event to the component with the specified ID.
 
-This API is used only for test purposes.
+This API is used only for test purposes. It is time consuming and not recommended.
 
 **Parameters**
 
@@ -79,7 +79,7 @@ sendTouchEvent(event: TouchObject): boolean
 
 Sends a touch event.
 
-This API is used only for test purposes.
+This API is used only for test purposes. It is time consuming and not recommended.
 
 **Parameters**
 
@@ -99,7 +99,7 @@ sendKeyEvent(event: KeyEvent): boolean
 
 Sends a key event.
 
-This API is used only for test purposes.
+This API is used only for test purposes. It is time consuming and not recommended.
 
 **Parameters**
 
@@ -119,7 +119,7 @@ sendMouseEvent(event: MouseEvent): boolean
 
 Sends a mouse event.
 
-This API is used only for test purposes.
+This API is used only for test purposes. It is time consuming and not recommended.
 
 **Parameters**
 

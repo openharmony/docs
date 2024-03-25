@@ -35,13 +35,13 @@ SelectTitleBar({selected: number, options: Array&lt;SelectOption&gt;, menuItems?
 
 | Name| Type| Mandatory| Decorator| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| selected | number | Yes| \@Prop | Index of the currently selected option.|
+| selected | number | Yes| \@Prop | Index of the currently selected option.<br>The index of the first option is 0. If this attribute is not set, the default value **-1** will be used.|
 | options | Array&lt;[SelectOption](ts-basic-components-select.md#selectoption)&gt; | Yes| - | Options in the drop-down menu.|
 | menuItems | Array&lt;[SelectTitleBarMenuItem](#selecttitlebarmenuitem)&gt; | No| - | List of menu items on the right of the title bar.|
 | subtitle | [ResourceStr](ts-types.md#resourcestr) | No| - | Subtitle.|
 | badgeValue | number | No| - | Badge.|
-| hidesBackButton | boolean | No| - | Whether to hide the Back button.|
-| onSelected | (index:&nbsp;number)&nbsp;=&gt;&nbsp;void | No| - | Callback invoked when an option in the drop-down menu is selected. The index of the selected option is passed in.|
+| hidesBackButton | boolean                                                                     | No| - | Whether to hide the back arrow on the left.<br>Default value: **false** The value **true** means to hide the provider, and **false** means the opposite.|
+| onSelected | (index: number) =&gt; void                                   | No| - | Callback invoked when an option in the drop-down menu is selected. The index of the selected option is passed in.|
 
 
 ## SelectTitleBarMenuItem
@@ -49,7 +49,7 @@ SelectTitleBar({selected: number, options: Array&lt;SelectOption&gt;, menuItems?
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | [ResourceStr](ts-types.md#resourcestr) | Yes| Icon.|
-| isEnabled | boolean | Yes| Whether to enable the item. |
+| isEnabled | boolean | No| Whether to enable the item.<br>Default value: **false**<br>The value **true** means to enable the item, and **false** means the opposite.| 
 | action | ()&nbsp;=&gt;&nbsp;void | No| Action to perform.|
 
 ## Events
@@ -61,27 +61,37 @@ The [universal events](ts-universal-events-click.md) are not supported.
 import { SelectTitleBar } from "@ohos.arkui.advanced.SelectTitleBar"
 import promptAction from '@ohos.promptAction'
 
-class menuItems {
+interface menuItems {
   value: Resource;
-  isEnabled: boolean;
-  action: () => void
-
-  constructor(value: Resource,isEnabled: boolean,action: () => void) {
-    this.value = value
-    this.isEnabled = isEnabled
-    this.action = action
-  }
-}
+  isEnabled?: boolean;
+  action?: () => void
+}  
 
 @Entry
 @Component
 struct Index {
   private  menuItems:Array<menuItems> =
   [
-    new menuItems($r('app.media.ic_public_save'),true,() => promptAction.showToast({ message: "show toast index 1" })),
-    new menuItems($r('app.media.ic_public_reduce'),true,() => promptAction.showToast({ message: "show toast index 2" })),
-    new menuItems($r('app.media.ic_public_edit'),true,() => promptAction.showToast({ message: "show toast index 3" })),
-    new menuItems($r('app.media.ic_public_reduce'),true,() => promptAction.showToast({ message: "show toast index 4" }))
+    {
+      value:$r('app.media.ic_public_save'),
+      isEnabled:true,
+      action:() => promptAction.showToast({ message: "show toast index 1" })
+    },
+    {
+      value:$r('app.media.ic_public_reduce'),
+      isEnabled:true,
+      action:() => promptAction.showToast({ message: "show toast index 2" })
+    },
+    {
+      value:$r('app.media.ic_public_edit'),
+      isEnabled:true,
+      action:() => promptAction.showToast({ message: "show toast index 3" })
+    },
+    {
+      value:$r('app.media.ic_public_reduce'),
+      isEnabled:true,
+      action:() => promptAction.showToast({ message: "show toast index 4" })
+    }
   ]
 
   build() {
@@ -91,8 +101,8 @@ struct Index {
         SelectTitleBar({
           options: [
             { value: 'All photos' },
-            { value:'Local (device)' },
-            {"value":"Local (memory card)"}
+            { value: 'Local (device)' },
+            { value: 'Local (memory card)'}
           ],
           selected: 0,
           onSelected: (index) => promptAction.showToast({ message: 'page index ' + index }),
@@ -102,8 +112,8 @@ struct Index {
         SelectTitleBar({
           options: [
             { value: 'All photos' },
-            { value:'Local (device)' },
-            {"value":"Local (memory card)"}
+            { value: 'Local (device)' },
+            { value: 'Local (memory card)'}
           ],
           selected: 0,
           onSelected: (index) => promptAction.showToast({ message: 'page index ' + index }),
@@ -114,7 +124,7 @@ struct Index {
           options: [
             { value: 'All photos' },
             { value:'Local (device)' },
-            {"value":"Local (memory card)"}
+            { value:"Local (memory card)"}
           ],
           selected: 1,
           onSelected: (index) => promptAction.showToast({ message: 'page index ' + index }),
@@ -124,8 +134,8 @@ struct Index {
         SelectTitleBar({
           options: [
             { value: 'All photos' },
-            { value:'Local (device)' },
-            {"value":"Local (memory card)"}
+            { value: 'Local (device)' },
+            { value: 'Local (memory card)'}
           ],
           selected: 1,
           onSelected: (index) => promptAction.showToast({ message: 'page index ' + index }),
@@ -139,7 +149,7 @@ struct Index {
           options: [
             { value: 'All photos' },
             { value:'Local (device)' },
-            {"value":"Local (memory card)"}
+            { value: 'Local (memory card)'}
           ],
           selected: 0,
           onSelected: (index) => promptAction.showToast({ message: 'page index ' + index }),

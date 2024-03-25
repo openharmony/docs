@@ -42,6 +42,7 @@ In the following example, when a user clicks the **runJavaScript** button on the
           .onClick(() => {
              this.webviewController.runJavaScript('htmlTest()');
           })
+        Web({ src: $rawfile('index.html'), controller: this.webviewController})
       }
     }
   }

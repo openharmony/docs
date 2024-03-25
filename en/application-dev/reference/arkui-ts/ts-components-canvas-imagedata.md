@@ -16,9 +16,9 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name    | Type               | Description                                      |
 | ------ | ----------------- | ---------------------------------------- |
-| width  | number            | Actual width of the rectangle on the canvas, in pixels.<br>Since API version 9, this API is supported in ArkTS widgets.|
-| height | number            | Actual height of the rectangle on the canvas, in pixels.<br>Since API version 9, this API is supported in ArkTS widgets.|
-| data   | Uint8ClampedArray | A one-dimensional array of color values. The values range from 0 to 255.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| width  | number            | Actual width of the rectangle on the canvas, in pixels. Read-only.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| height | number            | Actual height of the rectangle on the canvas, in pixels. Read-only.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| data   | Uint8ClampedArray | A one-dimensional array of color values. Read-only. The values range from 0 to 255.<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 >  **NOTE**
 >

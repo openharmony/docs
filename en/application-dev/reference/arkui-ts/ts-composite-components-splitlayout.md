@@ -26,7 +26,7 @@ The [universal attributes](ts-universal-attributes-size.md) are not supported.
 
 ## SplitLayout
 
-SplitLayout({mainImage: Resource, primaryText: string, secondaryText?: string, tertiaryText?: string})
+SplitLayout({mainImage: Resource, primaryText: string, secondaryText?: string, tertiaryText?: string, container: () =&gt; void })
 
 **Decorator**: @Component
 
@@ -34,13 +34,13 @@ SplitLayout({mainImage: Resource, primaryText: string, secondaryText?: string, t
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| mainImage | [ResourceStr](ts-types.md#resourcestr) | Yes| Image.|
-| primaryText | [ResourceStr](ts-types.md#resourcestr) | Yes| Title.|
-| secondaryText | [ResourceStr](ts-types.md#resourcestr) | No| Subtitle.|
-| tertiaryText | [ResourceStr](ts-types.md#resourcestr) | No| Auxiliary text.|
-| container | () =&gt; void | Yes| Container in the component.|
+| Name| Type| Mandatory| Decorator       | Description    |
+| -------- | -------- | -------- |---------------|--------|
+| mainImage | [ResourceStr](ts-types.md#resourcestr) | Yes| -             | Image. |
+| primaryText | [ResourceStr](ts-types.md#resourcestr) | Yes| @Prop         | Title. |
+| secondaryText | [ResourceStr](ts-types.md#resourcestr) | No| @Prop         | Subtitle.|
+| tertiaryText | [ResourceStr](ts-types.md#resourcestr) | No| @Prop         | Auxiliary text. |
+| container | () =&gt; void | Yes| @BuilderParam | Container in the component.|
 
 ## Events
 The [universal events](ts-universal-events-click.md) are not supported.
@@ -53,8 +53,6 @@ import { SplitLayout } from '@ohos.arkui.advanced.SplitLayout'
 @Component
 struct Index {
   @State demoImage: Resource = $r("app.media.music")
-  @State primaryText: string = "Title"
-  @State secondaryText: string = "Subtitle"
 
   build() {
       Column() {

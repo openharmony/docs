@@ -233,7 +233,7 @@ Provides the data reported when the state changes during dragging.
 
 | Name         | Type                                                  | Mandatory| Description                                    |
 | -----------   | ------------------------------------------------------ | ---- | ---------------------------------------- |
-| status       | DragStatus                                                 | Yes  | Current dragging state (started or ended).        |
+| status       | [DragStatus](#dragstatus11)                                                 | Yes  | Current dragging state (started or ended).        |
 | event        | [DragEvent](../arkui-ts/ts-universal-events-drag-drop.md#dragevent) | No  | Drag event corresponding to the current state.              |
 | extraParams| string                                                 | No  | Additional information about the drag action. Not supported currently.|
 
@@ -279,7 +279,7 @@ Subscribes to drag state changes.
 **Example**
 ```ts
 dragAction.on('statusChange', (dragAndDropInfo)=>{
-  console.info("Register to listen on drag status", JSON.stringify(dragAndDropInfo);
+  console.info("Register to listen on drag status", JSON.stringify(dragAndDropInfo));
 })
 ```
 
@@ -300,7 +300,7 @@ Unsubscribes from drag state changes.
 **Example**
 ```ts
 dragAction.off('statusChange', (dragAndDropInfo)=>{
-  console.info("Cancel listening on drag status", JSON.stringify(dragAndDropInfo)
+  console.info("Cancel listening on drag status", JSON.stringify(dragAndDropInfo));
 })
 ```
 
@@ -485,8 +485,7 @@ Applies an animation to the background mask color changes. This API does not wor
   ```ts
 
 import UDC from '@ohos.data.unifiedDataChannel';
-import dragController from "@ohos.arkui.dragController"
-import componentSnapshot from '@ohos.arkui.componentSnapshot';
+import dragController from "@ohos.arkui.dragController";
 import image from '@ohos.multimedia.image';
 import curves from '@ohos.curves';
 import { BusinessError } from '@ohos.base';

@@ -12,13 +12,21 @@ Not supported
 
 ## APIs
 
-CheckboxGroup(options?: { group?: string })
+CheckboxGroup(options?: CheckboxGroupOptions)
 
 Creates a check box group so that you can select or deselect all check boxes in the group at the same time. Check boxes and the check box group that share a group name belong to the same group.
 
-Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
+
+| Name | Type                                                 | Mandatory| Description                |
+| ------- | ----------------------------------------------------- | ---- | -------------------- |
+| options | [CheckboxGroupOptions](#checkboxgroupoptions) | No  | Check box group parameters.|
+
+## CheckboxGroupOptions
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -31,7 +39,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | Name| Type| Description|
 | -------- | -------- | -------- |
 | selectAll | boolean | Whether to select all.<br>Default value: **false**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>If the **select** attribute is set for a [\<Checkbox>](ts-basic-components-checkbox.md) component in the same group, the setting of the **\<Checkbox>** has a higher priority.<br>Since API version 10, this attribute supports [$$](../../quick-start/arkts-two-way-sync.md) for two-way binding of variables.|
-| selectedColor | [ResourceColor](ts-types.md#resourcecolor) | Color of the selected check box.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| selectedColor | [ResourceColor](ts-types.md#resourcecolor) | Color of the selected check box.<br>**NOTE**<br>Default value: **$r('sys.color.ohos_id_color_text_primary_activated')**<br>An invalid value is handled as the default value.<br>Since API version 9, this API is supported in ArkTS widgets.|
 | unselectedColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | Border color of the check box when it is not selected.|
 | mark<sup>10+</sup> | [MarkStyle](#markstyle10) | Internal icon style of the check box.|
 

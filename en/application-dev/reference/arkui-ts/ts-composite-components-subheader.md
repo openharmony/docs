@@ -62,7 +62,7 @@ SubHeader({primaryTitle?: ResourceStr, secondaryTitle?: ResourceStr, icon?: Reso
 | options | Array&lt;[SelectOption](ts-basic-components-select.md#selectoption)&gt; | Yes| Value of an option in the drop-down list box.| 
 | selected | number | No| Index of the initial selected option in the drop-down list.<br>The index of the first option is 0.<br>If this attribute is not set,<br>the default value **-1** is used, indicating that the option is not selected.| 
 | value | string | No| Text content of the drop-down list button itself.| 
-| onSelect | callback: (index: number, value?: string) =&gt; void | No| Invoked when an option in the drop-down list box is selected.<br>- **index**: index of the selected option.<br>- **value**: value of the selected option.| 
+| onSelect | (index: number, value?: string) =&gt; void | No| Invoked when an option in the drop-down list box is selected.<br>- **index**: index of the selected option.<br>- **value**: value of the selected option.| 
 
 
 ## OperationOption

@@ -1,7 +1,7 @@
 # @ohos.arkui.advanced.SelectionMenu (Context Menu on Selection)
 
 
-The context menu on selection is a component that can be bound to the **\<RichEditor>** component through **bindSelectionMenu**. It is recommended that this menu be displayed by right-clicking or by selecting text with a mouse device. This component cannot be used independently.
+The context menu on selection is a component that can be bound to the **\<RichEditor>** component through [bindSelectionMenu](./ts-basic-components-richeditor.md#attributes). It is recommended that this menu be displayed by right-clicking or by selecting text with a mouse device. This component cannot be used independently.
 
 
 > **NOTE**
@@ -23,7 +23,7 @@ Not supported
 
 SelectionMenu(options: SelectionMenuOptions)
 
-Defines a custom context menu on selection. When the input parameter is empty, the sizes of the menu and its content area are 0. This means that, if the **\<RichEditor>** component is bound to **SelectionMenu({})**, no context menu is displayed the component is right-clicked.
+Defines a custom context menu on selection. When the input parameter is empty, the sizes of the menu and its content area are 0. In this case, no context menu is displayed when the bound [\<RichEditor>](ts-basic-components-richeditor.md) component is right-clicked.
 
 **Decorator**: @Builder
 
@@ -31,9 +31,9 @@ Defines a custom context menu on selection. When the input parameter is empty, t
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name| Type| Mandatory| Description| 
 | -------- | -------- | -------- | -------- |
-| options | [SelectionMenuOptions](#selectionmenuoptions) | Yes| Options of the context menu on selection.|
+| options | [SelectionMenuOptions](#selectionmenuoptions) | Yes| Options of the context menu on selection.| 
 
 ## SelectionMenuOptions
 
@@ -43,15 +43,15 @@ Defines the options of the context menu on selection.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name| Type| Mandatory| Description|
+| Name| Type| Mandatory| Description| 
 | -------- | -------- | -------- | -------- |
-| editorMenuOptions | Array&lt;[EditorMenuOptions](#editormenuoptions)&gt; | No| Edit menu.<br>If **editorMenuOptions** is not set, the edit menu is not displayed.<br>When both **action** and **builder** in **EditorMenuOptions** are configured, clicking the edit icon will trigger both.<br>By default, the context menu is not closed when the edit menu icon is clicked. You can configure **closeSelectionMenu** of **RichEditorController** in **action** to enable the menu to be closed.|
-| expandedMenuOptions | Array&lt;[ExpandedMenuOptions](#expandedmenuoptions)&gt; | No| Extended drop-down menu.<br>If **controller** is left empty, the extended drop-down menu is not displayed.<br>The options configured for **ExpandedMenuOptions** are displayed in the **More** menu option.|
-| controller | [RichEditorController](ts-basic-components-richeditor.md#richeditorcontroller) | No| Rich text editor controller. If **controller** is set, the default system menu (including the cut, copy, and paste options) is displayed, and the preset menu features are provided.<br>If **controller** is left empty, **ExpandedMenuOptions** does not take effect, and the **More** menu option is not displayed.<br>By default, only rich text can be copied and pasted. You can define the **onCopy** and **onPaste** APIs for mixed display of text and images. If a custom **onCopy** \| **onPaste** API is defined, the default copy and paste feature is ineffective; instead, the custom function is called.<br>**NOTE**<br> When the preset copy option is selected, the custom context menu on selection is hidden, while the selected text is still highlighted.<br> When the preset paste option is selected, the style of the copied text is retained, whether the text is pasted to a blank area or not.<br> When the **copyOptions** attribute of the [\<RichEditor>](ts-basic-components-richeditor.md) component is set to **CopyOptions.None**, the preset copy and cut features are not restricted.|
-| onCopy | (event?: [EditorEventInfo](#editoreventinfo))&nbsp;=&gt;&nbsp;void | No| Event callback to take the place of the preset copy menu option.<br>It is effective only when the **controller** parameter is set and the preset menu is available.<br>**NOTE**<br> **event** indicates the returned information.|
-| onPaste | (event?: [EditorEventInfo](#editoreventinfo))&nbsp;=&gt;&nbsp;void | No| Event callback to take the place of the preset paste menu option.<br>It is effective only when the **controller** parameter is set and the preset menu is available.<br>**NOTE**<br> **event** indicates the returned information. |
-| onCut | (event?: [EditorEventInfo](#editoreventinfo))&nbsp;=&gt;&nbsp;void | No| Event callback to take the place of the preset cut menu option.<br>It is effective only when the **controller** parameter is set and the preset menu is available.<br>**NOTE**<br>**event** indicates the returned information.|
-| onSelectAll | (event?: [EditorEventInfo](#editoreventinfo))&nbsp;=&gt;&nbsp;void | No| Event callback to take the place of the preset select-all menu option.<br>It is effective only when the **controller** parameter is set and the preset menu is available.<br>**NOTE**<br>**event** indicates the returned information.|
+| editorMenuOptions | Array&lt;[EditorMenuOptions](#editormenuoptions)&gt; | No| Edit menu.<br>If **editorMenuOptions** is not set, the edit menu is not displayed.<br>When both **action** and **builder** in **EditorMenuOptions** are configured, clicking the edit icon will trigger both.<br>By default, the context menu is not closed when the edit menu icon is clicked. You can configure **closeSelectionMenu** of **RichEditorController** in **action** to enable the menu to be closed.| 
+| expandedMenuOptions | Array&lt;[ExpandedMenuOptions](#expandedmenuoptions)&gt; | No| Expanded drop-down menu.<br>If this parameter is left empty, the expanded drop-down menu is not displayed.<br>The options configured for **ExpandedMenuOptions** are displayed in the **More** menu option, and clicking **More** shows the expanded drop-down menu.| 
+| controller | [RichEditorController](ts-basic-components-richeditor.md#richeditorcontroller) | No| Rich text editor controller. If **controller** is set, the default system menu (including the cut, copy, and paste options) is displayed, and the preset menu features are provided.<br>If **controller** is left empty, the **More** menu option is not displayed. If **expandedMenuOptions** is not empty, the expanded drop-down menu is displayed.<br>By default, only rich text can be copied and pasted. To support mixture of text and imagery, define custom **onCopy** and **onPaste** APIs . If a custom **onCopy** \| **onPaste** API is defined, the default copy and paste feature is ineffective, and the custom function is called instead.<br>**NOTE**<br> When the preset copy option is selected, the custom context menu on selection is hidden, while the selected text is still highlighted.<br> When the preset select-all option is selected, the custom context menu on selection is hidden, while all text is highlighted.<br> When the preset paste option is selected, the style of the copied text is retained, whether the text is pasted to a blank area or not.<br> When the **copyOptions** attribute of the [\<RichEditor>](ts-basic-components-richeditor.md) component is set to **CopyOptions.None**, the preset copy and cut features are not restricted.| 
+| onCopy | (event?: [EditorEventInfo](#editoreventinfo)) =&gt; void | No| Event callback to take the place of the preset copy menu option.<br>It is effective only when the **controller** parameter is set and the preset menu is available.<br>**NOTE**<br> **event** indicates the returned information.| 
+| onPaste | (event?: [EditorEventInfo](#editoreventinfo)) =&gt; void | No| Event callback to take the place of the preset paste menu option.<br>It is effective only when the **controller** parameter is set and the preset menu is available.<br>**NOTE**<br> **event** indicates the returned information.| 
+| onCut | (event?: [EditorEventInfo](#editoreventinfo)) =&gt; void | No| Event callback to take the place of the preset cut menu option.<br>It is effective only when the **controller** parameter is set and the preset menu is available.<br>**NOTE**<br>**event** indicates the returned information.| 
+| onSelectAll | (event?: [EditorEventInfo](#editoreventinfo)) =&gt; void | No| Event callback to take the place of the preset select-all menu option.<br>It is effective only when the **controller** parameter is set and the preset menu is available.<br>**NOTE**<br>**event** indicates the returned information.|
 
 
 ## EditorMenuOptions
@@ -62,9 +62,9 @@ Describes the edit menu options.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| icon | [ResourceStr](ts-types.md#resourcestr) | Yes| Icon.|
-| builder | ()&nbsp;=&gt;&nbsp;void | No| Builder of the custom component displayed upon click. It must be used with @Builder for building the custom component.|
-| action | ()&nbsp;=&gt;&nbsp;void | No| Action triggered when the menu option is clicked.|
+| icon | [ResourceStr](ts-types.md#resourcestr) | Yes| Icon.| 
+| builder | () =&gt; void | No| Builder of the custom component displayed upon click. It must be used with @Builder for building the custom component.| 
+| action | () =&gt; void | No| Action triggered when the menu option is clicked.| 
 
 
 ## ExpandedMenuOptions
@@ -75,9 +75,9 @@ This API is extended from [MenuItemOptions](ts-basic-components-menuitem.md#menu
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name| Type| Mandatory| Description|
+| Name| Type| Mandatory| Description| 
 | -------- | -------- | -------- | -------- |
-| action | ()&nbsp;=&gt;&nbsp;void | No| Action triggered when the menu option is clicked.|
+| action | () =&gt; void | No| Action triggered when the menu option is clicked.| 
 
 ## EditorEventInfo
 
@@ -85,9 +85,9 @@ Provides the information about the selected content.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name| Type| Description|
-| -------- | -------- | -------- |
-| content | [RichEditorSelection](ts-basic-components-richeditor.md#richeditorselection) | Information about the selected content.|
+| Name| Type| Mandatory| Description| 
+| -------- | -------- | -------- | -------- |
+| content | [RichEditorSelection](ts-basic-components-richeditor.md#richeditorselection) | No| Information about the selected content.|
 
 ## Attributes
 
@@ -380,9 +380,8 @@ struct Index {
           this.start = value.selection[0]
           this.end = value.selection[1]
         })
-        .bindSelectionMenu(RichEditorSpanType.TEXT, this.MyMenu2, RichEditorResponseType.LONG_PRESS)
-        .bindSelectionMenu(RichEditorSpanType.TEXT, this.MyMenu3, RichEditorResponseType.RIGHT_CLICK)
-        .bindSelectionMenu(RichEditorSpanType.TEXT, this.MyMenu, RichEditorResponseType.SELECT)
+        .bindSelectionMenu(RichEditorSpanType.TEXT, this.MyMenu3(), RichEditorResponseType.RIGHT_CLICK)
+        .bindSelectionMenu(RichEditorSpanType.TEXT, this.MyMenu2(), RichEditorResponseType.SELECT)
         .borderWidth(1)
         .borderColor(Color.Red)
         .width(200)

@@ -4,7 +4,7 @@ With the attribute modifier, you can dynamically set component attributes, compl
 
 >  **NOTE**
 >
->  This feature is supported since API version 11. Updates will be marked with a superscript to indicate their earliest API version.
+>  This feature is supported since API Version 11. Updates will be marked with a superscript to indicate their earliest API version.
 
 ## attributeModifier
 
@@ -18,7 +18,7 @@ Creates an attribute modifier.
 
 | Name  | Type                 | Mandatory| Description                                                        |
 | -------- | --------------------- | ---- | ------------------------------------------------------------ |
-| modifier | AttributeModifier\<T> | Yes  | Modifier for dynamically setting attributes on the current component. The **if/else** syntax is supported.<br>**modifier**: attribute modifier. You need to customize classes to implement the **AttributeModifier** API.<br> Currently, this API only works with the **backgroundColor** attribute of the **\<Button>** component.|
+| modifier | AttributeModifier\<T> | Yes  | Modifier for dynamically setting attributes on the current component. The **if/else** syntax is supported.<br>**modifier**: attribute modifier. You need to customize classes to implement the **AttributeModifier** API.|
 
 ## AttributeModifier\<T>
 
@@ -56,6 +56,14 @@ In the preceding APIs, **instance** indicates the component type. You can custom
 | Name            | Description                                                        |
 | -------------------- | ------------------------------------------------------------ |
 | instance |Component attribute class, which identifies the type of component to which attributes will be applied, for example, **ButtonAttribute** for the **\<Button>** component and **TextAttribute** of the **\<Text>** component.|
+
+**Value range of the instance parameter**
+
+AlphabetIndexerAttribute, BadgeAttribute, BlankAttribute, ButtonAttribute, CalendarPickerAttribute, CanvasAttribute, CheckboxAttribute, CheckboxGroupAttribute, CircleAttribute, ColumnAttribute, ColumnSplitAttribute, ShapeAttribute, CommonAttribute, CounterAttribute, DataPanelAttribute, DatePickerAttribute, DividerAttribute, EffectComponentAttribute, EllipseAttribute, FlexAttribute, FlowItemAttribute, FormComponentAttribute, FormLinkAttribute, GaugeAttribute, GridAttribute, GridColAttribute, ColumnAttribute, GridItemAttribute, GridRowAttribute, HyperlinkAttribute, ImageAttribute, ImageAnimatorAttribute, ImageSpanAttribute, LineAttribute, ListAttribute, ListItemAttribute, ListItemGroupAttribute, LoadingProgressAttribute, MarqueeAttribute, MenuAttribute, MenuItemAttribute, MenuItemGroupAttribute, NavDestinationAttribute, NavigationAttribute, NavigatorAttribute, NavRouterAttribute, PanelAttribute, PathAttribute, PatternLockAttribute, PluginComponentAttribute, PolygonAttribute, PolylineAttribute, ProgressAttribute, QRCodeAttribute, RadioAttribute, RatingAttribute, RectAttribute, RefreshAttribute, RelativeContainerAttribute, RemoteWindowAttribute, RichEditorAttribute, RichTextAttribute, RowAttribute, RowSplitAttribute, ScrollAttribute, ScrollBarAttribute, SearchAttribute, SelectAttribute, ShapeAttribute, SideBarContainerAttribute, SliderAttribute, SpanAttribute, StackAttribute, StepperAttribute, StepperItemAttribute, SwiperAttribute, TabContentAttribute, TabsAttribute, TextAttribute, TextAreaAttribute, TextClockAttribute, TextInputAttribute, TextPickerAttribute, TextTimerAttribute, TimePickerAttribute, ToggleAttribute, UIExtensionComponentAttribute, VideoAttribute, WaterFlowAttribute, WebAttribute, XComponentAttribute
+
+**Supported attributes**
+
+Attributes whose input parameters are [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) or Lambda expressions are not supported. Events and gestures are not supported.
 
 ## Example
 

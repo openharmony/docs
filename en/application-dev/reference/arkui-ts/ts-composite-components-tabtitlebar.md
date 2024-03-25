@@ -1,7 +1,7 @@
 # @ohos.arkui.advanced.TabTitleBar (Tab Title Bar)
 
 
-The tab title bar is used to switch between tabs pages It is applicable only to level-1 pages.
+The tab title bar is used to switch between tabs pages. It is applicable only to level-1 pages.
 
 
 > **NOTE**
@@ -38,7 +38,7 @@ TabTitleBar({tabItems: Array&lt;TabTitleBarTabItem&gt;, menuItems?: Array&lt;Tab
 | -------- | -------- | -------- | -------- | -------- |
 | tabItems | Array&lt;[TabTitleBarTabItem](#tabtitlebartabitem)&gt; | Yes| - | List of tab items on the left of the title bar.| 
 | menuItems | Array&lt;[TabTitleBarMenuItem](#tabtitlebarmenuitem)&gt; | No| - | List of menu items on the right of the title bar.| 
-| swiperContent | ()&nbsp;=&gt;&nbsp;void | Yes| \@BuilderParam | Constructor for page content pertaining to the tab list.| 
+| swiperContent | () =&gt; void | Yes| \@BuilderParam | Constructor for page content pertaining to the tab list.| 
 
 
 ## TabTitleBarMenuItem
@@ -46,8 +46,8 @@ TabTitleBar({tabItems: Array&lt;TabTitleBarTabItem&gt;, menuItems?: Array&lt;Tab
 | Name| Type| Mandatory| Description| 
 | -------- | -------- | -------- | -------- |
 | value | [ResourceStr](ts-types.md#resourcestr) | Yes| Icon.| 
-| isEnabled | boolean | Yes| Whether to enable the item.<br> Default value: **true**<br> The value **true** means to enable the item, and **false** means the opposite.| 
-| action | ()&nbsp;=&gt;&nbsp;void | No| Action to perform.| 
+| isEnabled | boolean | No| Whether to enable the item.<br> Default value: **true**<br> The value **true** means to enable the item, and **false** means the opposite.| 
+| action | () =&gt; void | No| Action to perform.| 
 
 
 ## TabTitleBarTabItem
@@ -75,15 +75,11 @@ class tabItem {
     this.icon = icon
   }
 }
-class menuItem{
+
+interface menuItem {
   value: ResourceStr;
   isEnabled?: boolean;
-  action?: ()=>void;
-  constructor(value: ResourceStr,isEnabled?: boolean,action?: ()=>void) {
-    this.value = value;
-    this.isEnabled = isEnabled;
-    this.action = action;
-  }
+  action?: () => void
 }
 
 @Entry
@@ -130,12 +126,21 @@ struct Index {
 
   private readonly tabItems: Array<tabItem> = [new tabItem('Tab 1'),new tabItem('Tab 2'),new tabItem('Tab 3'),new tabItem("Happy",$r('app.media.emoji_happy')),new tabItem('Tab 4')]
   private  readonly menuItems: Array<menuItem> = [
-    new menuItem($r('app.media.ic_public_reduce'),true,
-      () => promptAction.showToast({ message: "on item click! index 0" })),
-    new menuItem($r('app.media.ic_public_edit'),true,
-      () => promptAction.showToast({ message: "on item click! index 1" })),
-    new menuItem($r('app.media.ic_public_save'),true,
-      () => promptAction.showToast({ message: "on item click! index 2" }))
+    {
+      value: $r('app.media.ic_public_reduce'),
+      isEnabled: true,
+      action: () => promptAction.showToast({ message: "on item click! index 0" })
+    },
+    {
+      value: $r('app.media.ic_public_edit'),
+      isEnabled: true,
+      action: () => promptAction.showToast({ message: "on item click! index 1" })
+    },
+    {
+      value: $r('app.media.ic_public_save'),
+      isEnabled: true,
+      action: () => promptAction.showToast({ message: "on item click! index 2" })
+    },
   ]
 
   build() {

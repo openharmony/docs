@@ -53,7 +53,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | Name      | Type      | Description      |
 | ---------- | ---------------------------------------- | -------- |
 | snapAlign  | [ScrollSnapAlign](ts-container-list.md#scrollsnapalign10)   | Alignment mode for the scroll snap position.<br>**NOTE**<br>1. Default value: **ScrollSnapAlign.NONE**<br>2. This API takes effect only when **snapPagination** is set to **Dimension**. **Array\<Dimension\>** is not supported.|
-| snapPagination | Dimension \| Array\<Dimension\> | Snap points for the **\<Scroll>** component. Each snap point defines the offset from an edge to which the **\<Scroll>** component can scroll.<br>**NOTE**<br>1. A value of the **Dimension** type indicates the size per page. The system automatically works out the position of each snap point based on the value. For example, if the value is **500**, the position of the snap point is [0,500,1000,1500, ...].<br>2. A value of the **Array\<Dimension\>** type indicates an array of snap point positions defined by **Dimension**. The range of each dimension is [0, scrollable distance]. Point 0 and the bottom of the scrollable distance automatically become the snap points.<br>3. If this attribute is not set or **Dimension** is set to a value less than or equal to 0, the value is regarded as an abnormal value. In this case, there is no scroll snapping. When the value is of the **Array\<Dimension\>** type, the items in the array must be monotonically increasing.<br>4. When the value is a percentage, the actual size is the product of the viewport of the **\<Scroll>** component and the percentage value.|
+| snapPagination | [Dimension](ts-types.md#dimension10) \| Array\<Dimension\> | Snap points for the **\<Scroll>** component. Each snap point defines the offset from an edge to which the **\<Scroll>** component can scroll.<br>**NOTE**<br>1. A value of the **Dimension** type indicates the size per page. The system automatically works out the position of each snap point based on the value. For example, if the value is **500**, the position of the snap point is [0,500,1000,1500, ...].<br>2. A value of the **Array\<Dimension\>** type indicates an array of snap point positions defined by **Dimension**. The range of each dimension is [0, scrollable distance]. Point 0 and the bottom of the scrollable distance automatically become the snap points.<br>3. If this attribute is not set or **Dimension** is set to a value less than or equal to 0, the value is regarded as an abnormal value. In this case, there is no scroll snapping. When the value is of the **Array\<Dimension\>** type, the items in the array must be monotonically increasing.<br>4. When the value is a percentage, the actual size is the product of the viewport of the **\<Scroll>** component and the percentage value.|
 | enableSnapToStart | boolean   | Whether to enable the snap to start feature. When scroll snapping is defined for the **\<Scroll>** component, setting this attribute to **false** enables the component to scroll between the start edge and the first snap point.<br>**NOTE**<br>1. Default value: **true**<br>2. This attribute takes effect only when **snapPagination** is set to a value of the **Array\<Dimension\>** type; it does not work with values of the **Dimension** type.|
 | enableSnapToEnd | boolean   | Whether to enable the snap to end feature. When scroll snapping is defined for the **\<Scroll>** component, setting this attribute to **false** enables the component to scroll between the end edge and the last snap point.<br>**NOTE**<br>1. Default value: **true**<br>2. This attribute takes effect only when **snapPagination** is set to a value of the **Array\<Dimension\>** type; it does not work with values of the **Dimension** type.|
 
@@ -61,8 +61,8 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name                                                        | Description                                                    |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| onScrollFrameBegin<sup>9+</sup>(event: (offset: number, state: [ScrollState](ts-container-list.md#scrollstate)) => { offsetRemain: number; }) | Triggered when each frame scrolling starts. The input parameters indicate the amount by which the **\<Scroll>** component will scroll. The event handler then works out the amount by which the component needs to scroll based on the real-world situation and returns the result.<br>\- **offset**: amount to scroll by.<br>\- **state**: current scrolling status.<br>- **offsetRemain**: actual amount by which the component scrolls.<br>**NOTE**<br>1. This event is triggered when scrolling is started by the **\<Scroll>** component or other input settings, such as keyboard and mouse operations.<br>2. This event is not triggered when the controller API is called.<br>3. This event does not support the out-of-bounds bounce effect.<br>**NOTE**<br>The value of **offsetRemain** can be a negative value.<br>If the **onScrollFrameBegine** event and **scrollBy** method are used to implement nested scrolling, set the **edgeEffect** attribute of the scrollable child component to **None**. For example, if a **\<List>** is nested in the **\<Scroll>** component, **edgeEffect** of the **\<List>** must be set to **EdgeEffect.None**.|
-| onScroll(event: (xOffset: number, yOffset: number) => void)  | Triggered to return the horizontal and vertical offsets during scrolling when the specified scroll event occurs.<br>**NOTE**<br>1. This event is triggered when scrolling is started by the **\<Scroll>** component or other input settings, such as keyboard and mouse operations.<br>2. This event is triggered when the controller API is called.<br>3. This event supports the out-of-bounds bounce effect.|
+| onScrollFrameBegin<sup>9+</sup>(event: (offset: number, state: [ScrollState](ts-container-list.md#scrollstate)) => { offsetRemain: number; }) | Triggered when each frame scrolling starts. The input parameters indicate the amount by which the **\<Scroll>** component will scroll. The event handler then works out the amount by which the component needs to scroll based on the real-world situation and returns the result.<br>\- **offset**: amount to scroll by, in vp.<br>\- **state**: current scrolling status.<br>- **offsetRemain**: actual amount by which the component scrolls, in vp.<br>**NOTE**<br>1. This event is triggered when scrolling is started by the **\<Scroll>** component or other input settings, such as keyboard and mouse operations.<br>2. This event is not triggered when the controller API is called.<br>3. This event does not support the out-of-bounds bounce effect.<br>4. This event is not triggered when the scroll bar is dragged.<br>**NOTE**<br>The value of **offsetRemain** can be a negative value.<br>If the **onScrollFrameBegin** event and **scrollBy** method are used to implement nested scrolling, set the **edgeEffect** attribute of the scrollable child component to **None**. For example, if a **\<List>** is nested in the **\<Scroll>** component, **edgeEffect** of the **\<List>** must be set to **EdgeEffect.None**.|
+| onScroll(event: (xOffset: number, yOffset: number) => void)  | Triggered to return the horizontal and vertical offsets, in vp, during scrolling when the specified scroll event occurs.<br>**NOTE**<br>1. This event is triggered when scrolling is started by the **\<Scroll>** component or other input settings, such as keyboard and mouse operations.<br>2. This event is triggered when the controller API is called.<br>3. This event supports the out-of-bounds bounce effect.|
 | onScrollEdge(event: (side: Edge) => void)                    | Triggered when scrolling reaches the edge.<br>**NOTE**<br>1. This event is triggered when scrolling reaches the edge after being started by the **\<Scroll>** component or other input settings, such as keyboard and mouse operations.<br>2. This event is triggered when the controller API is called.<br>3. This event supports the out-of-bounds bounce effect.|
 | onScrollEnd<sup>(deprecated) </sup>(event: () => void)       | Triggered when scrolling stops.<br>This event is deprecated since API version 9. Use the **onScrollStop** event instead.<br>**NOTE**<br>1. This event is triggered when scrolling is stopped by the **\<Scroll>** component or other input settings, such as keyboard and mouse operations.<br>2. This event is triggered when the controller API is called, accompanied by a transition animation.|
 | onScrollStart<sup>9+</sup>(event: () => void)                | Triggered when scrolling starts and is initiated by the user's finger dragging the **\<Scroll>** component or its scrollbar. This event is also triggered when the animation contained in the scrolling triggered by [Scroller](#scroller) starts.<br>**NOTE**<br>1. This event is triggered when scrolling is started by the **\<Scroll>** component or other input settings, such as keyboard and mouse operations.<br>2. This event is triggered when the controller API is called, accompanied by a transition animation.|
@@ -116,32 +116,32 @@ Scrolls to the edge of the container, regardless of the scroll axis direction. *
 | value | [Edge](ts-appendix-enums.md#edge) | Yes   | Edge position to scroll to.|
 
 
-### scrollPage
+### scrollPage<sup>9+</sup>
 
-scrollPage(value: { next: boolean, direction?: Axis }): void
+scrollPage(value: { next: boolean }): void
 
 Scrolls to the next or previous page.
 
 **Parameters**
 
+| Name                           | Type                         | Mandatory| Description                                                   |
+| --------------------------------- | --------------------------------- | ---- | ----------------------------------------------------------- |
+| next                              | boolean                           | Yes  | Whether to turn to the next page. The value **true** means to scroll to the next page, and **false** means to scroll to the previous page.        |
+
+### scrollPage<sup>(deprecated)</sup>
+
 | Name      | Type   | Mandatory  | Description                          |
 | --------- | ------- | ---- | ------------------------------ |
 | next      | boolean | Yes   | Whether to turn to the next page. The value **true** means to scroll to the next page, and **false** means to scroll to the previous page.|
-| direction<sup>(deprecated) </sup> | [Axis](ts-appendix-enums.md#axis)    | No   | Scrolling direction: horizontal or vertical.<br> This API is deprecated since API version 9.               |
-
+| direction | [Axis](ts-appendix-enums.md#axis)    | No   | Scrolling direction: horizontal or vertical.<br> This API is deprecated since API version 9.               |
 
 ### currentOffset
 
-currentOffset(): { xOffset: number, yOffset: number }
+currentOffset(): OffsetResult
 
-
-Obtains the scrolling offset.
-
-**Return value**
-
-| Type                                                      | Description                                                        |
-| ---------------------------------------------------------- | ------------------------------------------------------------ |
-| {<br>xOffset: number,<br>yOffset: number<br>} | **xOffset**: horizontal scrolling offset.<br>**yOffset**: vertical scrolling offset.<br>**NOTE**<br>The unit of the return value is vp.|
+| Type | Description|
+| -------- | -------- |
+|  [OffsetResult<sup>11+</sup>](#offsetresult11) | Obtains the scrolling offset.<br>**NOTE**<br>If **Scroller** is not bound to a container component or the container component is released abnormally, the return value for **currentOffset** is null.|
 
 
 ### scrollToIndex
@@ -181,8 +181,8 @@ Scrolls by the specified amount.
 
 | Name  | Type  | Mandatory  | Description             |
 | ----- | ------ | ---- | ----------------- |
-| dx | Length | Yes   | Amount to scroll by in the horizontal direction. The percentage format is not supported.|
-| dy | Length | Yes   | Amount to scroll by in the vertical direction. The percentage format is not supported.|
+| dx | [Length](ts-types.md#length) | Yes   | Amount to scroll by in the horizontal direction. The percentage format is not supported.|
+| dy | [Length](ts-types.md#length) | Yes   | Amount to scroll by in the vertical direction. The percentage format is not supported.|
 
 ### isAtEnd<sup>10+</sup>
 
@@ -227,6 +227,13 @@ Obtains the size and position of a child component.
 | -------------------  | -------- |
 | [RectResult](ts-types.md#rectresult10) | Size and position of the child component relative to the component.|
 
+## OffsetResult<sup>11+</sup>
+
+| Name| Type                                                      | Description                                                        |
+| --------------|-------------------------------------------- | ------------------------------------------------------------ |
+| xOffset | number | Horizontal scrolling offset.<br>The unit of the return value is vp.|
+| yOffset | number | Vertical scrolling offset.<br>The unit of the return value is vp.|
+
 ## ScrollAlign<sup>10+</sup>
 
 | Name    | Description                            |
@@ -236,13 +243,13 @@ Obtains the size and position of a child component.
 | END  | The end edge of the list item is flush with the end edge of the list.|
 | AUTO  | The list item is automatically aligned.<br>If the list item is fully contained within the display area, no adjustment is performed. Otherwise, the list item is aligned so that its start or end edge is flush with the start or end edge of the list, whichever requires a shorter scrolling distance.|
 
-## NestedScrollOptions<sup>10+ </sup>
+## NestedScrollOptions<sup>10+</sup>
 | Name  | Type  | Description             |
 | ----- | ------ | ----------------- |
 | scrollForward | NestedScrollMode | Nested scrolling option when the component scrolls forward.|
 | scrollBackward | NestedScrollMode |  Nested scrolling option when the component scrolls backward.|
 
-## NestedScrollMode<sup>10+ </sup>
+## NestedScrollMode<sup>10+</sup>
 | Name    | Description                            |
 | ------ | ------------------------------ |
 | SELF_ONLY   | The scrolling is contained within the component, and no scroll chaining occurs, that is, the parent component does not scroll when the component scrolling reaches the boundary. |
@@ -250,7 +257,7 @@ Obtains the size and position of a child component.
 | PARENT_FIRST  | The parent component scrolls first, and when it hits the boundary, the component scrolls. When the component hits the boundary, its edge effect is displayed. If no edge effect is specified for the component, the edge effect of the parent component is displayed instead.|
 | PARALLEL  | The component and its parent component scroll at the same time. When both the component and its parent component hit the boundary, the edge effect of the component is displayed. If no edge effect is specified for the component, the edge effect of the parent component is displayed instead.|
 
-## EdgeEffectOptions<sup>11+ </sup>
+## EdgeEffectOptions<sup>11+</sup>
 | Name  | Type  | Description             |
 | ----- | ------ | ----------------- |
 | alwaysEnabled | boolean | Whether to enable the scroll effect when the component content is smaller than the component itself.|

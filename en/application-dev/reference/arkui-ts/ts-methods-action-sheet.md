@@ -12,13 +12,21 @@ An action sheet is a dialog box that displays actions a user can take.
 
 ## ActionSheet.show
 
-show(value: { title: string | Resource, subtitle: Resource, message: string | Resource, confirm?: {enabled?: boolean, defaultFocus?: boolean, style?: DialogButtonStyle, value: string | Resource, action:() => void}, cancel?:()=>void, sheets: Array&lt;SheetInfo&gt;, autoCancel?:boolean, alignment?: DialogAlignment, offset?: { dx: number | string | Resource; dy: number | string | Resource } })
+show(value: ActionSheetOptions)
 
-Defines and shows the action sheet.
+Shows an action sheet in the given settings.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
-| Name       | Type                   | Mandatory | Description                         |
+| Name| Type                                             | Mandatory| Description.                    |
+| ------ | ------------------------------------------------- | ---- | ------------------------ |
+| value  | [ActionSheetOptions](#actionsheetoptions) | Yes  | Parameters of the action sheet.|
+
+## ActionSheetOptions
+
+| Name     | Type                   | Mandatory | Description                         |
 | ---------- | -------------------------- | ------- | ----------------------------- |
 | title      | [Resource](ts-types.md#resource) \| string | Yes    |  Title of the dialog box.|
 | subtitle<sup>10+</sup> | [ResourceStr](ts-types.md#resourcestr) | No| Subtitle of the dialog box.|
@@ -27,7 +35,7 @@ Defines and shows the action sheet.
 | confirm    | {<br>enabled<sup>10+</sup>?: boolean,<br>defaultFocus<sup>10+</sup>?: boolean,<br>style<sup>10+</sup>?: [DialogButtonStyle](#dialogbuttonstyle10),<br>value: [ResourceStr](ts-types.md#resourcestr),<br>action: () =&gt; void<br>} | No | Information about the confirm button.<br>**enabled**: whether to respond when the button is clicked.<br>Default value: **true**<br>**defaultFocus**: whether the button is the default focus.<br>Default value: **false**<br>**style**: button style.<br>Default value: **DialogButtonStyle.DEFAULT**<br>**value**: button text.<br>**action**: callback upon button clicking.|
 | cancel     | () =&gt; void           | No    | Callback invoked when the dialog box is closed after the overlay is clicked.  |
 | alignment  | [DialogAlignment](ts-methods-alert-dialog-box.md#dialogalignment) | No    |  Alignment mode of the dialog box in the vertical direction.<br>Default value: **DialogAlignment.Bottom**|
-| offset     | {<br>dx: [Length](ts-types.md#length),<br>dy: [Length](ts-types.md#length)<br>} | No     | Offset of the dialog box relative to the alignment position.{<br>dx: 0,<br>dy: 0<br>} |
+| offset     | {<br>dx: [Length](ts-types.md#length),<br>dy: [Length](ts-types.md#length)<br>} | No     | Offset of the dialog box relative to the alignment position.<br>Default value:<br>1. When alignment is set to **Top**, **TopStart**, or **TopEnd**: {dx: 0,dy: "40vp"}<br>2. When **alignment** is set to any other value: {dx: 0,dy: "-40vp"}|
 | sheets     | Array&lt;[SheetInfo](#sheetinfo)&gt; | Yes      | Options in the dialog box. Each option supports the image, text, and callback.|
 | maskRect<sup>10+</sup> | [Rectangle](ts-methods-alert-dialog-box.md#rectangle8) | No    | Mask area of the dialog box. Events outside the mask area are transparently transmitted, and events within the mask area are not.<br>Default value: **{ x: 0, y: 0, width: '100%', height: '100%' }**|
 | showInSubWindow<sup>11+</sup> | boolean | No| Whether to show the dialog box in a sub-window when the dialog box needs to be displayed outside the main window.<br>Default value: **false**, indicating that the dialog box is not displayed in the subwindow<br>**NOTE**<br>A dialog box whose **showInSubWindow** attribute is **true** cannot trigger the display of another dialog box whose **showInSubWindow** attribute is also **true**.|
