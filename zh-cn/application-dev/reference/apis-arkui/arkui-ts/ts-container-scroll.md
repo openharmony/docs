@@ -183,6 +183,20 @@ flingSpeedLimit(speedLimit: number)
 | ---------- | ------ | ---- | ------------------------------- |
 | speedLimit | number | 是   | Fling动效开始时的最大初始速度。 |
 
+### initialOffset<sup>12+</sup>
+
+initialOffset(value: OffsetOptions)
+
+设置初始滚动偏移量。只在首次布局时生效，后续动态修改该属性值不生效。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                  |
+| ------ | ------- | ---- | ------------------------------------- |
+| value  | [OffsetOptions](#offsetoptions12对象说明)  | 是   |当输入的大小为百分比时，初始滚动偏移量为Scroll组件主轴方向大小与百分比数值之积。|
+
 ## ScrollDirection枚举说明
 | 名称       | 描述                     |
 | ---------- | ------------------------ |
@@ -597,6 +611,12 @@ getItemRect(index: number): RectResult
 | --------- | -------- | ---- | ------------------------------------------------------------ |
 | next      | boolean  | 是   | 是否向下翻页。true表示向下翻页，false表示向上翻页。          |
 | animation | boolean  | 否   | 是否开启翻页动画效果。true有动画，false无动画。<br />默认值：false。 |
+
+## OffsetOptions<sup>12+</sup>对象说明
+| 参数名   | 类型  | 必填 | 描述              |
+| ----- | ------| ------- | ----------------- |
+| xOffset | [Dimension](ts-types.md#dimension10) | 否 |水平滑动偏移<br/>默认值：0 |
+| yOffset | [Dimension](ts-types.md#dimension10) | 否 |垂直滑动偏移<br/>默认值：0|
 
 ## 示例
 ### 示例1
