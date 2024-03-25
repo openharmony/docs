@@ -1,12 +1,13 @@
-# UIAbilityContext
+# EmbeddableUIAbilityContext
 
-**UIAbilityContext**, inherited from [Context](js-apis-inner-application-context.md), provides the context environment for [UIAbility](js-apis-app-ability-uiAbility.md) that needs to store its status. **UIAbilityContext** provides UIAbility-related configuration and APIs for operating UIAbilities and ServiceExtensionAbilities. For example, you can use the APIs to start a UIAbility, terminate a UIAbility to which the UIAbilityContext belongs, and start, terminate, connect to, or disconnect from a ServiceExtensionAbility.
+**EmbeddableUIAbilityContext**, inherited from [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md), provides the context environment for the [EmbeddableUIAbility](js-apis-app-ability-embeddableUIAbility.md) that needs to store its status. **EmbeddableUIAbilityContext** provides EmbeddableUIAbility-related configuration and APIs for operating EmbeddableUIAbilities and ServiceExtensionAbilities. For example, you can use the APIs to start an EmbeddableUIAbility, terminate an EmbeddableUIAbility to which the EmbeddableUIAbilityContext belongs, and start, terminate, connect to, or disconnect from a ServiceExtensionAbility.
 
 > **NOTE**
 >
->  - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>  - The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >  - The APIs of this module can be used only in the stage model.
 >  - The APIs of this module must be used in the main thread, but not in sub-threads such as Worker and TaskPool.
+>  - The APIs of this module can be used only in atomic services.
 
 ## Modules to Import
 
@@ -23,13 +24,12 @@ import common from '@ohos.app.ability.common';
 | abilityInfo | [AbilityInfo](js-apis-bundleManager-abilityInfo.md) | Yes| No| UIAbility information.|
 | currentHapModuleInfo | [HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md) | Yes| No| HAP information.|
 | config | [Configuration](js-apis-app-ability-configuration.md) | Yes| No| UIAbility configuration, such as the language and color mode.|
-| windowStage<sup>12+</sup> | [window.WindowStage](../apis-arkui/js-apis-window.md#windowstage9) | Yes| No| **WindowStage** object.|
 
 > **NOTE**
 >
-> In the sample code provided in this topic, **this.context** is used to obtain the UIAbilityContext, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+> In the sample code provided in this topic, **this.context** is used to obtain the EmbeddableUIAbilityContext, where **this** indicates an EmbeddableUIAbility instance inherited from **EmbeddableUIAbility**.
 
-## UIAbilityContext.startAbility
+## EmbeddableUIAbilityContext.startAbility
 
 startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
@@ -48,7 +48,7 @@ Observe the following when using this API:
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the ability is started, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -75,12 +75,12 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
-export default class EntryAbility extends UIAbility {
-  
+export default class EntryAbility extends EmbeddableUIAbility {
+
   onForeground() {
     let want: Want = {
       bundleName: 'com.example.myapplication',
@@ -107,7 +107,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.startAbility
+## EmbeddableUIAbilityContext.startAbility
 
 startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void
 
@@ -126,7 +126,7 @@ Observe the following when using this API:
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md)  | Yes| Want information about the target ability.|
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | Yes| Parameters used for starting the ability.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes|  Callback used to return the result. If the ability is started, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -146,22 +146,19 @@ Observe the following when using this API:
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
-| 16000067 | Start options check failed. |
-| 16000068 | Ability already running. |
 | 16200001 | The caller has been released. |
-| 16300003 | The target application is not self application. |
 
 For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
 import Want from '@ohos.app.ability.Want';
 import StartOptions from '@ohos.app.ability.StartOptions';
 import { BusinessError } from '@ohos.base';
 
-export default class EntryAbility extends UIAbility {
+export default class EntryAbility extends EmbeddableUIAbility {
 
   onForeground() {
     let want: Want = {
@@ -193,7 +190,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.startAbility
+## EmbeddableUIAbilityContext.startAbility
 
 startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 
@@ -217,7 +214,7 @@ Observe the following when using this API:
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -237,22 +234,19 @@ Observe the following when using this API:
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
-| 16000067 | Start options check failed. |
-| 16000068 | Ability already running. |
 | 16200001 | The caller has been released. |
-| 16300003 | The target application is not self application. |
 
 For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
 import Want from '@ohos.app.ability.Want';
 import StartOptions from '@ohos.app.ability.StartOptions';
 import { BusinessError } from '@ohos.base';
 
-export default class EntryAbility extends UIAbility {
+export default class EntryAbility extends EmbeddableUIAbility {
 
   onForeground() {
     let want: Want = {
@@ -283,14 +277,16 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.startAbilityForResult
+## EmbeddableUIAbilityContext.startAbilityForResult
 
 startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;): void
 
-Starts an ability. This API uses an asynchronous callback to return the result when the ability is terminated. The following situations may be possible for a started ability:
- - Normally, you can call [terminateSelfWithResult](../apis/#uiabilitycontextterminateselfwithresult) to terminate the ability. The result is returned to the caller.
+Starts an ability and obtains the result when the ability is terminated. This API uses an asynchronous callback to return the result.
+
+The following situations may be possible for a started ability:
+ - Normally, you can call [terminateSelfWithResult](#embeddableuiabilitycontextterminateselfwithresult) to terminate the ability. The result is returned to the caller.
  - If an exception occurs, for example, the ability is killed, an error message, in which **resultCode** is **-1**, is returned to the caller.
- - If different applications call this API to start an ability that uses the singleton mode and then call [terminateSelfWithResult](../apis/#uiabilitycontextterminateselfwithresult) to terminate the ability, the normal result is returned to the last caller, and an error message, in which **resultCode** is **-1**, is returned to others.
+ - If different applications call this API to start an ability that uses the singleton mode and then call [terminateSelfWithResult](#embeddableuiabilitycontextterminateselfwithresult) to terminate the ability, the normal result is returned to the last caller, and an exception message, in which **resultCode** is **-1**, is returned to others.
 
 Observe the following when using this API:
  - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
@@ -331,12 +327,12 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
 import common from '@ohos.app.ability.common';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
-export default class EntryAbility extends UIAbility {
+export default class EntryAbility extends EmbeddableUIAbility {
 
   onForeground() {
     let want: Want = {
@@ -347,15 +343,15 @@ export default class EntryAbility extends UIAbility {
 
     try {
       this.context.startAbilityForResult(want, (err: BusinessError, result: common.AbilityResult) => {
-        if (err.code) { 
+        if (err.code) {
           // Process service logic errors.
           console.error(`startAbilityForResult failed, code is ${err.code}, message is ${err.message}`);
           return;
-        } 
+        }
         // Carry out normal service processing.
         console.info('startAbilityForResult succeed');
       });
-    } catch (err) { 
+    } catch (err) {
       // Process input parameter errors.
       let code = (err as BusinessError).code;
       let message = (err as BusinessError).message;
@@ -365,14 +361,16 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.startAbilityForResult
+## EmbeddableUIAbilityContext.startAbilityForResult
 
 startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback&lt;AbilityResult&gt;): void
 
-Starts an ability with the start options specified. This API uses an asynchronous callback to return the result when the ability is terminated. The following situations may be possible for a started ability:
- - Normally, you can call [terminateSelfWithResult](../apis/#uiabilitycontextterminateselfwithresult) to terminate the ability. The result is returned to the caller.
+Starts an ability with the start options specified and obtains the result when the ability is terminated. This API uses an asynchronous callback to return the result.
+
+The following situations may be possible for a started ability:
+ - Normally, you can call [terminateSelfWithResult](#embeddableuiabilitycontextterminateselfwithresult) to terminate the ability. The result is returned to the caller.
  - If an exception occurs, for example, the ability is killed, an error message, in which **resultCode** is **-1**, is returned to the caller.
- - If different applications call this API to start an ability that uses the singleton mode and then call [terminateSelfWithResult](../apis/#uiabilitycontextterminateselfwithresult) to terminate the ability, the normal result is returned to the last caller, and an error message, in which **resultCode** is **-1**, is returned to others.
+ - If different applications call this API to start an ability that uses the singleton mode and then call [terminateSelfWithResult](#embeddableuiabilitycontextterminateselfwithresult) to terminate the ability, the normal result is returned to the last caller, and an exception message, in which **resultCode** is **-1**, is returned to others.
 
 Observe the following when using this API:
  - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
@@ -414,13 +412,13 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
 import common from '@ohos.app.ability.common';
 import Want from '@ohos.app.ability.Want';
 import StartOptions from '@ohos.app.ability.StartOptions';
 import { BusinessError } from '@ohos.base';
 
-export default class EntryAbility extends UIAbility {
+export default class EntryAbility extends EmbeddableUIAbility {
 
   onForeground() {
     let want: Want = {
@@ -453,14 +451,16 @@ export default class EntryAbility extends UIAbility {
 ```
 
 
-## UIAbilityContext.startAbilityForResult
+## EmbeddableUIAbilityContext.startAbilityForResult
 
 startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityResult&gt;
 
-Starts an ability. This API uses a promise to return the result when the ability is terminated. The following situations may be possible for a started ability:
- - Normally, you can call [terminateSelfWithResult](../apis/#uiabilitycontextterminateselfwithresult) to terminate the ability. The result is returned to the caller.
+Starts an ability and obtains the result when the ability is terminated. This API uses a promise to return the result.
+
+The following situations may be possible for a started ability:
+ - Normally, you can call [terminateSelfWithResult](#embeddableuiabilitycontextterminateselfwithresult) to terminate the ability. The result is returned to the caller.
  - If an exception occurs, for example, the ability is killed, an error message, in which **resultCode** is **-1**, is returned to the caller.
- - If different applications call this API to start an ability that uses the singleton mode and then call [terminateSelfWithResult](../apis/#uiabilitycontextterminateselfwithresult) to terminate the ability, the normal result is returned to the last caller, and an error message, in which **resultCode** is **-1**, is returned to others.
+ - If different applications call this API to start an ability that uses the singleton mode and then call [terminateSelfWithResult](#embeddableuiabilitycontextterminateselfwithresult) to terminate the ability, the normal result is returned to the last caller, and an exception message, in which **resultCode** is **-1**, is returned to others.
 
 Observe the following when using this API:
  - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
@@ -508,13 +508,13 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
 import common from '@ohos.app.ability.common';
 import Want from '@ohos.app.ability.Want';
 import StartOptions from '@ohos.app.ability.StartOptions';
 import { BusinessError } from '@ohos.base';
 
-export default class EntryAbility extends UIAbility {
+export default class EntryAbility extends EmbeddableUIAbility {
 
   onForeground() {
     let want: Want = {
@@ -545,7 +545,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.terminateSelf
+## EmbeddableUIAbilityContext.terminateSelf
 
 terminateSelf(callback: AsyncCallback&lt;void&gt;): void
 
@@ -557,7 +557,7 @@ Terminates this ability. This API uses an asynchronous callback to return the re
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the ability is terminated, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -575,10 +575,10 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
 import { BusinessError } from '@ohos.base';
 
-export default class EntryAbility extends UIAbility {
+export default class EntryAbility extends EmbeddableUIAbility {
 
   onForeground() {
     try {
@@ -602,7 +602,7 @@ export default class EntryAbility extends UIAbility {
 ```
 
 
-## UIAbilityContext.terminateSelf
+## EmbeddableUIAbilityContext.terminateSelf
 
 terminateSelf(): Promise&lt;void&gt;
 
@@ -614,7 +614,7 @@ Terminates this ability. This API uses a promise to return the result.
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -632,10 +632,10 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
 import { BusinessError } from '@ohos.base';
 
-export default class EntryAbility extends UIAbility {
+export default class EntryAbility extends EmbeddableUIAbility {
 
   onForeground() {
     try {
@@ -659,11 +659,11 @@ export default class EntryAbility extends UIAbility {
 ```
 
 
-## UIAbilityContext.terminateSelfWithResult
+## EmbeddableUIAbilityContext.terminateSelfWithResult
 
 terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;void&gt;): void
 
-Terminates this ability. If the ability is started by calling [startAbilityForResult](../apis/#uiabilitycontextstartabilityforresult), the result is returned to the caller in the form of an asynchronous callback when **terminateSelfWithResult** is called. Otherwise, no result is returned to the caller when **terminateSelfWithResult** is called.
+Terminates this ability. If the ability is started by calling [startAbilityForResult](#embeddableuiabilitycontextstartabilityforresult), the result is returned to the caller in the form of an asynchronous callback when **terminateSelfWithResult** is called. Otherwise, no result is returned to the caller when **terminateSelfWithResult** is called. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -672,7 +672,7 @@ Terminates this ability. If the ability is started by calling [startAbilityForRe
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | Yes| Information returned to the caller.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the ability is terminated, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -690,12 +690,12 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
 import common from '@ohos.app.ability.common';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
-export default class EntryAbility extends UIAbility {
+export default class EntryAbility extends EmbeddableUIAbility {
 
   onForeground() {
     let want: Want = {
@@ -730,11 +730,11 @@ export default class EntryAbility extends UIAbility {
 ```
 
 
-## UIAbilityContext.terminateSelfWithResult
+## EmbeddableUIAbilityContext.terminateSelfWithResult
 
 terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;
 
-Terminates this ability. If the ability is started by calling [startAbilityForResult](../apis/#uiabilitycontextstartabilityforresult), the result is returned to the caller in the form of a promise when **terminateSelfWithResult** is called. Otherwise, no result is returned to the caller when **terminateSelfWithResult** is called.
+Terminates this ability. If the ability is started by calling [startAbilityForResult](#embeddableuiabilitycontextstartabilityforresult), the result is returned to the caller in the form of an asynchronous callback when **terminateSelfWithResult** is called. Otherwise, no result is returned to the caller when **terminateSelfWithResult** is called. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -748,7 +748,7 @@ Terminates this ability. If the ability is started by calling [startAbilityForRe
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -766,12 +766,12 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
 import common from '@ohos.app.ability.common';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
-export default class EntryAbility extends UIAbility {
+export default class EntryAbility extends EmbeddableUIAbility {
 
   onForeground() {
     let want: Want = {
@@ -805,7 +805,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.connectServiceExtensionAbility
+## EmbeddableUIAbilityContext.connectServiceExtensionAbility
 
 connectServiceExtensionAbility(want: Want, options: ConnectOptions): number
 
@@ -846,13 +846,13 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
 import common from '@ohos.app.ability.common';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 import rpc from '@ohos.rpc';
 
-export default class EntryAbility extends UIAbility {
+export default class EntryAbility extends EmbeddableUIAbility {
 
   onForeground() {
     let want: Want = {
@@ -886,7 +886,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.disconnectServiceExtensionAbility
+## EmbeddableUIAbilityContext.disconnectServiceExtensionAbility
 
 disconnectServiceExtensionAbility(connection: number): Promise\<void>
 
@@ -904,7 +904,7 @@ Disconnects this ability from a ServiceExtensionAbility and after the successful
 
 | Type| Description|
 | -------- | -------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
@@ -918,11 +918,11 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
 import { BusinessError } from '@ohos.base';
 import rpc from '@ohos.rpc';
 
-export default class EntryAbility extends UIAbility {
+export default class EntryAbility extends EmbeddableUIAbility {
 
   onForeground() {
     // connection is the return value of connectServiceExtensionAbility.
@@ -949,7 +949,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.disconnectServiceExtensionAbility
+## EmbeddableUIAbilityContext.disconnectServiceExtensionAbility
 
 disconnectServiceExtensionAbility(connection: number, callback: AsyncCallback\<void>): void
 
@@ -962,7 +962,7 @@ Disconnects this ability from a ServiceExtensionAbility and after the successful
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | connection | number | Yes| Digital code of the connected ServiceExtensionAbility, that is, connectionId returned by **connectServiceExtensionAbility**.|
-| callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes| Callback used to return the result. If the disconnection is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -976,11 +976,11 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
 import { BusinessError } from '@ohos.base';
 import rpc from '@ohos.rpc';
 
-export default class EntryAbility extends UIAbility {
+export default class EntryAbility extends EmbeddableUIAbility {
 
   onForeground() {
     // connection is the return value of connectServiceExtensionAbility.
@@ -1009,11 +1009,11 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.startAbilityByCall
+## EmbeddableUIAbilityContext.startAbilityByCall
 
 startAbilityByCall(want: Want): Promise&lt;Caller&gt;
 
-Starts an ability in the foreground or background in the cross-device scenario and obtains the caller object for communicating with the ability.
+Starts an ability in the foreground or background in the cross-device scenario and obtains the caller object for communicating with the ability. This API uses a promise to return the result.
 
 Observe the following when using this API:
  - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
@@ -1023,7 +1023,7 @@ Observe the following when using this API:
 
 > **NOTE**
 >
-> In versions earlier than API version 11, the permission **ohos.permission.ABILITY_BACKGROUND_COMMUNICATION** is required. Since API version 11, only the permission **ohos.permission.DISTRIBUTED_DATASYNC** is required.
+> This API is available only for the EmbeddableUIAbility in redirection startup mode.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1031,7 +1031,7 @@ Observe the following when using this API:
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | Yes| Information about the ability to start, including **abilityName**, **moduleName**, **bundleName**, **deviceId** (optional), and **parameters** (optional). If **deviceId** is left blank or null, the local ability is started. If **parameters** is left blank or null, the ability is started in the background.|
+| want | [Want](js-apis-app-ability-want.md) | Yes| Information about the ability to start, including **abilityName**, **moduleName**, **bundleName**, **deviceId** (optional), and **parameters** (optional). If **deviceId** is left blank or null, the local UIAbility is started. If **parameters** is left blank or null, the ability is started in the background.|
 
 **Return value**
 
@@ -1062,12 +1062,12 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 Start an ability in the background.
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
 import { Caller } from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
-export default class EntryAbility extends UIAbility {
+export default class EntryAbility extends EmbeddableUIAbility {
 
   onForeground() {
     let caller: Caller;
@@ -1103,12 +1103,12 @@ export default class EntryAbility extends UIAbility {
 Start an ability in the foreground.
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
 import { Caller } from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
-export default class EntryAbility extends UIAbility {
+export default class EntryAbility extends EmbeddableUIAbility {
 
   onForeground() {
     let caller: Caller;
@@ -1144,7 +1144,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.setMissionLabel
+## EmbeddableUIAbilityContext.setMissionLabel
 
 setMissionLabel(label: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -1152,12 +1152,16 @@ Sets a label for this ability in the mission. This API uses an asynchronous call
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
+> **NOTE**
+>
+> This API is available only for the EmbeddableUIAbility in redirection startup mode.
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | label | string | Yes| Label of the ability to set.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -1171,12 +1175,12 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
 import Want from '@ohos.app.ability.Want';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import { BusinessError } from '@ohos.base';
 
-export default class EntryAbility extends UIAbility {
+export default class EntryAbility extends EmbeddableUIAbility {
 
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     this.context.setMissionLabel('test', (result: BusinessError) => {
@@ -1186,13 +1190,17 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.setMissionLabel
+## EmbeddableUIAbilityContext.setMissionLabel
 
 setMissionLabel(label: string): Promise&lt;void&gt;
 
 Sets a label for this ability in the mission. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+> **NOTE**
+>
+> This API is available only for the EmbeddableUIAbility in redirection startup mode.
 
 **Parameters**
 
@@ -1204,7 +1212,7 @@ Sets a label for this ability in the mission. This API uses a promise to return 
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -1218,12 +1226,12 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 **Example**
 
   ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
 import Want from '@ohos.app.ability.Want';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import { BusinessError } from '@ohos.base';
 
-export default class EntryAbility extends UIAbility {
+export default class EntryAbility extends EmbeddableUIAbility {
 
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     this.context.setMissionLabel('test').then(() => {
@@ -1237,7 +1245,7 @@ export default class EntryAbility extends UIAbility {
 }
   ```
 
-## UIAbilityContext.setMissionContinueState<sup>10+</sup>
+## EmbeddableUIAbilityContext.setMissionContinueState
 
 setMissionContinueState(state: AbilityConstant.ContinueState, callback: AsyncCallback&lt;void&gt;): void
 
@@ -1245,12 +1253,16 @@ Sets the mission continuation state of this ability. This API uses an asynchrono
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
+> **NOTE**
+>
+> This API is available only for the EmbeddableUIAbility in redirection startup mode.
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | state | [AbilityConstant.ContinueState](js-apis-app-ability-abilityConstant.md#abilityconstantcontinuestate10) | Yes| Mission continuation state.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -1264,11 +1276,11 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import { BusinessError } from '@ohos.base';
 
-export default class EntryAbility extends UIAbility {
+export default class EntryAbility extends EmbeddableUIAbility {
   onForeground() {
     this.context.setMissionContinueState(AbilityConstant.ContinueState.INACTIVE, (result: BusinessError) => {
       console.info(`setMissionContinueState: ${JSON.stringify(result)}`);
@@ -1277,13 +1289,17 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.setMissionContinueState<sup>10+</sup>
+## EmbeddableUIAbilityContext.setMissionContinueState
 
 setMissionContinueState(state: AbilityConstant.ContinueState): Promise&lt;void&gt;
 
 Sets the mission continuation state of this ability. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+> **NOTE**
+>
+> This API is available only for the EmbeddableUIAbility in redirection startup mode.
 
 **Parameters**
 
@@ -1295,7 +1311,7 @@ Sets the mission continuation state of this ability. This API uses a promise to 
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -1309,11 +1325,11 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import { BusinessError } from '@ohos.base';
 
-export default class EntryAbility extends UIAbility {
+export default class EntryAbility extends EmbeddableUIAbility {
   onForeground() {
     this.context.setMissionContinueState(AbilityConstant.ContinueState.INACTIVE).then(() => {
       console.info('success');
@@ -1324,13 +1340,17 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.restoreWindowStage
+## EmbeddableUIAbilityContext.restoreWindowStage
 
 restoreWindowStage(localStorage: LocalStorage): void
 
 Restores the WindowStage data in the ability.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+> **NOTE**
+>
+> This API is available only for the EmbeddableUIAbility in redirection startup mode.
 
 **Parameters**
 
@@ -1350,9 +1370,9 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
 
-export default class EntryAbility extends UIAbility {
+export default class EntryAbility extends EmbeddableUIAbility {
   onForeground() {
     let storage = new LocalStorage();
     this.context.restoreWindowStage(storage);
@@ -1360,13 +1380,17 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.isTerminating
+## EmbeddableUIAbilityContext.isTerminating
 
 isTerminating(): boolean
 
 Checks whether this ability is in the terminating state.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+> **NOTE**
+>
+> This API is available only for the EmbeddableUIAbility in redirection startup mode.
 
 **Return value**
 
@@ -1385,9 +1409,9 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
 
-export default class EntryAbility extends UIAbility {
+export default class EntryAbility extends EmbeddableUIAbility {
   onForeground() {
     let isTerminating: boolean = this.context.isTerminating();
     console.info(`ability state is ${isTerminating}`);
@@ -1395,11 +1419,11 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.requestDialogService
+## EmbeddableUIAbilityContext.requestDialogService
 
 requestDialogService(want: Want, result: AsyncCallback&lt;dialogRequest.RequestResult&gt;): void
 
-Starts a ServiceExtensionAbility that supports modal dialog boxes. After the ServiceExtensionAbility is started, the application displays a modal dialog box. You can call [setRequestResult](js-apis-app-ability-dialogRequest.md#requestcallbacksetrequestresult) to obtain the result.
+Starts a ServiceExtensionAbility that supports modal dialog boxes. After the ServiceExtensionAbility is started, the application displays a modal dialog box. You can call [setRequestResult](js-apis-app-ability-dialogRequest.md#requestcallbacksetrequestresult) to obtain the result. This API uses an asynchronous callback to return the result.
 
 Observe the following when using this API:
  - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
@@ -1408,12 +1432,16 @@ Observe the following when using this API:
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
+> **NOTE**
+>
+> This API is available only for the EmbeddableUIAbility in redirection startup mode.
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want |[Want](js-apis-app-ability-want.md) | Yes| Want information for starting the ServiceExtensionAbility.|
-| result | AsyncCallback&lt;[dialogRequest.RequestResult](js-apis-app-ability-dialogRequest.md#requestresult)&gt; | Yes| Callback used to return the result.|
+| result | AsyncCallback&lt;[dialogRequest.RequestResult](js-apis-app-ability-dialogRequest.md#requestresult)&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and data is the obtained modal dialog box request result. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -1440,12 +1468,12 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
 import dialogRequest from '@ohos.app.ability.dialogRequest';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
-export default class EntryAbility extends UIAbility {
+export default class EntryAbility extends EmbeddableUIAbility {
   onForeground() {
     let want: Want = {
       deviceId: '',
@@ -1473,11 +1501,11 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-  ## UIAbilityContext.requestDialogService
+  ## EmbeddableUIAbilityContext.requestDialogService
 
 requestDialogService(want: Want): Promise&lt;dialogRequest.RequestResult&gt;
 
-Starts a ServiceExtensionAbility that supports modal dialog boxes. After the ServiceExtensionAbility is started, the application displays a modal dialog box. You can call [setRequestResult](js-apis-app-ability-dialogRequest.md#requestcallbacksetrequestresult) to obtain the result, which is returned to the caller in promise mode.
+Starts a ServiceExtensionAbility that supports modal dialog boxes. After the ServiceExtensionAbility is started, the application displays a modal dialog box. You can call [setRequestResult](js-apis-app-ability-dialogRequest.md#requestcallbacksetrequestresult) to obtain the result. This API uses a promise to return the result.
 
 Observe the following when using this API:
  - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
@@ -1485,6 +1513,10 @@ Observe the following when using this API:
  - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+> **NOTE**
+>
+> This API is available only for the EmbeddableUIAbility in redirection startup mode.
 
 **Parameters**
 
@@ -1497,7 +1529,7 @@ Observe the following when using this API:
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;[dialogRequest.RequestResult](js-apis-app-ability-dialogRequest.md)&gt; | Promise used to return the result.
+| Promise&lt;[dialogRequest.RequestResult](js-apis-app-ability-dialogRequest.md)&gt; | Promise used to return the modal dialog box request result.|
 
 **Error codes**
 
@@ -1524,12 +1556,12 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
 import dialogRequest from '@ohos.app.ability.dialogRequest';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
-export default class EntryAbility extends UIAbility {
+export default class EntryAbility extends EmbeddableUIAbility {
 
   onForeground() {
     let want: Want = {
@@ -1557,19 +1589,18 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.reportDrawnCompleted<sup>10+</sup>
+## EmbeddableUIAbilityContext.reportDrawnCompleted
 
 reportDrawnCompleted(callback: AsyncCallback\<void>): void
 
 Reports an event indicating that page loading is complete (**loadContent()** is successfully called). This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+ **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to report that page loading is complete.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the event is reported, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -1583,11 +1614,11 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 **Example**
 
   ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
 import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
 
-export default class EntryAbility extends UIAbility {
+export default class EntryAbility extends EmbeddableUIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
@@ -1615,7 +1646,7 @@ export default class EntryAbility extends UIAbility {
 };
   ```
 
-## UIAbilityContext.startAbilityByType<sup>11+</sup>
+## EmbeddableUIAbilityContext.startAbilityByType
 
 startAbilityByType(type: string, wantParam: Record<string, Object>,
     abilityStartCallback: AbilityStartCallback, callback: AsyncCallback\<void>) : void
@@ -1624,6 +1655,10 @@ Implicitly starts a given type of UIExtensionAbility. This API uses an asynchron
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
+> **NOTE**
+>
+> This API is available only for the EmbeddableUIAbility in redirection startup mode.
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
@@ -1631,7 +1666,7 @@ Implicitly starts a given type of UIExtensionAbility. This API uses an asynchron
 | type | string | Yes| Type of the UIExtensionAbility to start.|
 | wantParam | Record&lt;string,&nbsp;Object&gt; | Yes| Extended parameter.|
 | abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | Yes| Callback to be invoked when the startup fails.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the UIExtensionAbility is started, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -1649,7 +1684,7 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 
   ```ts
   import common from '@ohos.app.ability.common';
-  let context = getContext(this) as common.UIAbilityContext;
+  let context = getContext(this) as common.EmbeddableUIAbilityContext;
   let wantParam: Record<string, Object> = {
     'time':'2023-10-23 20:45',
   };
@@ -1667,7 +1702,7 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
   });
   ```
 
-## UIAbilityContext.startAbilityByType<sup>11+</sup>
+## EmbeddableUIAbilityContext.startAbilityByType
 
 startAbilityByType(type: string, wantParam: Record<string, Object>,
     abilityStartCallback: AbilityStartCallback) : Promise\<void>
@@ -1675,6 +1710,10 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 Implicitly starts a given type of UIExtensionAbility. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+> **NOTE**
+>
+> This API is available only for the EmbeddableUIAbility in redirection startup mode.
 
 **Parameters**
 
@@ -1707,7 +1746,7 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
   ```ts
   import common from '@ohos.app.ability.common';
   import { BusinessError } from '@ohos.base';
-  let context = getContext(this) as common.UIAbilityContext;
+  let context = getContext(this) as common.EmbeddableUIAbilityContext;
   let wantParam: Record<string, Object> = {
     'time':'2023-10-23 20:45',
   };
@@ -1722,16 +1761,19 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
     console.error(`startAbilityByType fail, err: ${JSON.stringify(err)}`);
   })
   ```
-
-## UIAbilityContext.showAbility<sup>12+</sup>
+## EmbeddableUIAbilityContext.showAbility
 
 showAbility() : Promise\<void>
 
 Shows the current ability. This API uses a promise to return the result. It takes effect only on tablets.
 
-To call this API, the current ability must be started through [UIAbilityContext.startAbility](#uiabilitycontextstartability-1), in which [options.processMode](js-apis-app-ability-contextConstant.md#contextconstantprocessmode12) must be set to **NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM**.
+To call this API, the current ability must be started through [EmbeddableUIAbilityContext.startAbility](#embeddableuiabilitycontextstartability), in which [options.processMode](js-apis-app-ability-contextConstant.md#contextconstantprocessmode12) must be set to **NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM**.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+> **NOTE**
+>
+> This API is available only for the EmbeddableUIAbility in redirection startup mode.
 
 **Return value**
 
@@ -1753,22 +1795,26 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
   ```ts
   import common from '@ohos.app.ability.common';
   import { BusinessError } from '@ohos.base';
-  let context = getContext(this) as common.UIAbilityContext;
+  let context = getContext(this) as common.EmbeddableUIAbilityContext;
   context.showAbility().then(() => {
     console.log(`showAbility success`);
   }).catch((err: BusinessError) => {
     console.error(`showAbility fail, err: ${JSON.stringify(err)}`);
   })
   ```
-## UIAbilityContext.hideAbility<sup>12+</sup>
+## EmbeddableUIAbilityContext.hideAbility
 
 hideAbility() : Promise\<void>
 
 Hides the current ability. This API uses a promise to return the result. It takes effect only on tablets.
 
-To call this API, the current ability must be started through [UIAbilityContext.startAbility](#uiabilitycontextstartability-1), in which [options.processMode](js-apis-app-ability-contextConstant.md#contextconstantprocessmode12) must be set to **NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM**.
+To call this API, the current ability must be started through [EmbeddableUIAbilityContext.startAbility](#embeddableuiabilitycontextstartability), in which [options.processMode](js-apis-app-ability-contextConstant.md#contextconstantprocessmode12) must be set to **NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM**.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+> **NOTE**
+>
+> This API is available only for the EmbeddableUIAbility in redirection startup mode.
 
 **Return value**
 
@@ -1790,7 +1836,7 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
   ```ts
   import common from '@ohos.app.ability.common';
   import { BusinessError } from '@ohos.base';
-  let context = getContext(this) as common.UIAbilityContext;
+  let context = getContext(this) as common.EmbeddableUIAbilityContext;
   context.hideAbility().then(() => {
     console.log(`hideAbility success`);
   }).catch((err: BusinessError) => {
@@ -1798,12 +1844,16 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
   })
   ```
 
-## UIAbilityContext.moveAbilityToBackground<sup>12+<sup>
+## EmbeddableUIAbilityContext.moveAbilityToBackground
 moveAbilityToBackground(): Promise\<void>
 
 Moves this ability from the foreground to the background. This API uses a promise to return the result.
- 
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+> **NOTE**
+>
+> This API is available only for the EmbeddableUIAbility in redirection startup mode.
 
 **Return value**
 
@@ -1841,7 +1891,7 @@ struct Index {
           .fontSize(30)
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
-            let context = getContext(this) as common.UIAbilityContext;
+            let context = getContext(this) as common.EmbeddableUIAbilityContext;
             context.moveAbilityToBackground().then(() => {
               console.log(`moveAbilityToBackground success.`);
             }).catch((err: BusinessError) => {
