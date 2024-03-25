@@ -2465,6 +2465,18 @@
 
 **起始版本**: 12
 
+### ohos.permission.WRITE_ACCOUNT_LOGIN_STATE
+
+允许用户帐号往数据管理服务写入自己的登录状态。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.SUBSCRIBE_NOTIFICATION_WINDOW_STATE
 
 允许应用订阅通知面板显示或收起时发送的广播。

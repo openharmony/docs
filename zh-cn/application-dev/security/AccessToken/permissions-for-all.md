@@ -366,6 +366,18 @@
 
 **起始版本**：11
 
+### ohos.permission.READ_ACCOUNT_LOGIN_STATE
+
+允许应用读取用户帐号的登录状态。
+
+**权限级别**：normal
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.ACCESS_SERVICE_NAVIGATION_INFO
 
 允许应用访问导航信息服务。
