@@ -201,7 +201,7 @@ avPlayer.off('error')
 
 prepare(callback: AsyncCallback\<void>): void
 
-通过回调方式准备播放音频，需在stateChange事件成功触发至initialized状态后，才能调用。
+通过回调方式准备播放音频，需在stateChange事件成功触发至initialized/stopped状态后，才能调用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -236,7 +236,7 @@ avPlayer.prepare((err: BusinessError) => {
 
 prepare(): Promise\<void>
 
-通过Promise方式准备播放音频，需在stateChange事件成功触发至initialized状态后，才能调用。
+通过Promise方式准备播放音频，需在stateChange事件成功触发至initialized/stopped状态后，才能调用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
