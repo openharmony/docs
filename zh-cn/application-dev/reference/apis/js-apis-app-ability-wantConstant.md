@@ -16,7 +16,7 @@ import wantConstant from '@ohos.app.ability.wantConstant';
 
 want的Params操作的常量。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityBase
+**系统能力**：SystemCapability.Ability.AbilityBase
 
 | 名称                    | 值                                 | 说明                                                                           |
 | ----------------------- | ---------------------------------- | ------------------------------------------------------------------------------ |
@@ -38,7 +38,7 @@ want的Params操作的常量。
 
 Flags说明。用于表示处理Want的方式。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityBase
+**系统能力**：SystemCapability.Ability.AbilityBase
 
 | 名称                                 | 值       | 说明                                                         |
 | ------------------------------------ | ---------- | ------------------------------------------------------------ |

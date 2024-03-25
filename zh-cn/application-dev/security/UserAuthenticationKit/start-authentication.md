@@ -30,9 +30,12 @@
 
 - 标注1：用户认证界面的标题（WidgetParam.title），最大长度为500字符。应用可在此配置符合场景的字符串。
 
-- 标注2：导航按键上显示的文本（WidgetParam.navigationButtonText），最大长度为60字符。仅在单指纹、单人脸场景下支持配置。默认配置为点击后从生物认证切换到锁屏密码认证。
+- 标注2：导航按键上显示的文本（WidgetParam.navigationButtonText），最大长度为60字符。仅在单指纹、单人脸场景下支持配置。
+   
+  当生物认证失败后，将出现该按钮，点击后从生物认证切换到应用自定义认证。
 
 - 如图所示，认证控件的显示形式（WidgetParam.windowMode）为弹窗。
+  
   认证控件分为弹窗、全屏两种显示形式，如下图所示，左侧为默认的弹窗样式，右侧为全屏样式。
 
   当前仅系统应用可以选择和使用全屏类型的认证界面。
@@ -71,7 +74,8 @@
 示例代码为发起用户认证，采用认证可信等级≥ATL3的人脸+锁屏密码认证，获取认证结果：
 
 ```ts
-import userIAM_userAuth from '@ohos.userIAM.userAuth'; 
+import type {BusinessError} from '@ohos.base';
+import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
 // 设置认证参数
 const authParam: userIAM_userAuth.AuthParam = {
@@ -100,6 +104,6 @@ try {
   console.log('auth start success');
 } catch (error) {
   const err: BusinessError = error as BusinessError;
-  console.log('auth catch error. Code is ${err.code}, message is ${err.message}`);
+  console.log(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
 }
 ```

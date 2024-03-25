@@ -1,13 +1,15 @@
 # @ohos.nfc.cardEmulation (标准NFC-cardEmulation)
 
 本模块主要提供NFC卡模拟业务，包括判断支持哪种卡模拟类型，HCE卡模拟的业务实现等。
+HCE(Host Card Emulation)，称为基于主机的卡模拟，表示不依赖安全单元芯片，应用程序模拟NFC卡片，可以通过NFC服务和NFC读卡器通信。
 
 > **说明：**
 >
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-## **基于Host卡模拟和AID列表的声明定义**
 
-开发基于Host卡模拟相关应用时，需要在应用的属性配置文件中，声明与NFC相关的属性值，比如，在module.json5文件中，声明下面属性值：
+## HCE卡模拟和AID列表的声明定义
+
+开发HCE卡模拟相关应用时，需要在应用的属性配置文件中，声明与NFC相关的属性值，比如，在module.json5文件中，声明下面属性值：
 ```json
 {
   "module": {
@@ -45,7 +47,7 @@
 }
 ```
 > **注意：**
->1. 声明"actions"字段的内容填写，必须是"ohos.nfc.cardemulation.action.HOST_APDU_SERVICE"，不能更改。
+>1. 声明"actions"字段的内容填写，必须包含"ohos.nfc.cardemulation.action.HOST_APDU_SERVICE"，不能更改。
 >2. 声明aid时，name必须为payment-aid，或者other-aid。填写错误会造成解析失败。
 >3. 声明权限时"requestPermissions"中的"name"字段的内容填写，必须是"ohos.permission.NFC_CARD_EMULATION"，不能更改。
 
@@ -96,7 +98,7 @@ isSupported(feature: number): boolean
 
 | 参数名     | 类型     | 必填   | 说明                                       |
 | ------- | ------ | ---- | ---------------------------------------- |
-| feature | number | 是    | 卡模拟类型值，详细请见[FeatureType](#featuretype)枚举值。 |
+| feature | number | 是    | 卡模拟类型值，详细请见[FeatureType](#featuretypedeprecated)枚举值。 |
 
 **返回值：**
 
@@ -108,7 +110,7 @@ isSupported(feature: number): boolean
 
 hasHceCapability(): boolean
 
-判断是否支持HCE功能。
+判断设备是否支持HCE卡模拟功能。
 
 **系统能力：** SystemCapability.Communication.NFC.CardEmulation
 
@@ -119,6 +121,22 @@ hasHceCapability(): boolean
 | **类型**  | **说明**                           |
 | ------- | -------------------------------- |
 | boolean | true: 支持HCE，&nbsp;false: 不支持HCE。 |
+
+**示例：**
+
+```js
+import cardEmulation from '@ohos.nfc.cardEmulation';
+
+let isHceSupported = cardEmulation.isSupported(cardEmulation.FeatureType.HCE);
+if (!isHceSupported) {
+    console.log('this device is not supported for HCE, ignore it.');
+}
+
+let hasHceCap = cardEmulation.hasHceCapability();
+if (!hasHceCap) {
+    console.log('this device hasHceCapability false, ignore it.');
+}
+```
 
 ## isDefaultService<sup>9+</sup>
 
@@ -133,9 +151,9 @@ isDefaultService(elementName: ElementName, type: CardType): boolean
 **参数：**
 
 | 参数名         | 类型                                       | 必填   | 说明                      |
-| ----------- | ---------------------------------------- | ---- | ----------------------- |
-| elementName | [ElementName](js-apis-bundleManager-elementName.md#elementname) | 是    | 应用的描述，由Bundle名称和组件名称组成。 |
-| type        | [CardType](#cardtype9)                   | 是    | 卡模拟业务类型。                |
+| ----------- | ---------------------------------------- | ---- |-------------------------|
+| elementName | [ElementName](js-apis-bundleManager-elementName.md#elementname) | 是    | 所属应用声明NFC卡模拟能力的页面信息（至少包含bundleName、abilityName这两项的赋值），不可以为空。 |
+| type        | [CardType](#cardtype9)                   | 是    | 卡模拟业务类型。目前只支持默认支付应用查询。   |
 
 **返回值：**
 
@@ -143,11 +161,21 @@ isDefaultService(elementName: ElementName, type: CardType): boolean
 | ------- | ------------------------------------ |
 | boolean | true: 是默认支付应用，&nbsp;false: 不是默认支付应用。 |
 
+**示例：**
+```js
+import cardEmulation from '@ohos.nfc.cardEmulation';
+let elementName : bundleManager.ElementName;
+
+// init elementName here, bundleName and abilityName are required.
+
+let isDefaultService = cardEmulation.isDefaultService(elementName, cardEmulation.CardType.PAYMENT);
+// do something according to the isDefaultService value
+```
 ## getPaymentServices<sup>11+</sup>
 
 getPaymentServices(): [AbilityInfo](js-apis-bundleManager-abilityInfo.md)[]
 
-获取所有支付服务。
+获取所有支付类型的服务列表。如果应用程序声明支持HCE功能，并且声明了"payment-aid"，则会包含在列表里面，参考[HCE卡模拟和AID列表的声明定义](#hce卡模拟和aid列表的声明定义)。
 
 **系统接口：** 此接口为系统接口。
 
@@ -159,11 +187,22 @@ getPaymentServices(): [AbilityInfo](js-apis-bundleManager-abilityInfo.md)[]
 
 | **类型**  | **说明**                               |
 | ------- | ------------------------------------ |
-| [AbilityInfo](js-apis-bundleManager-abilityInfo.md)[] | 返回所有支付服务。 |
+| [AbilityInfo](js-apis-bundleManager-abilityInfo.md)[] | 返回所有支付类型的服务。 |
+
+**示例：**
+```js
+import cardEmulation from '@ohos.nfc.cardEmulation';
+
+let paymentServices = cardEmulation.getPaymentServices();
+if (paymentServices == undefined || paymentServices.length == 0) {
+  console.log('paymentServices is null.');
+}
+
+```
 
 ## HceService<sup>8+</sup>
 
-提供HCE卡模拟的实现，主要包括接收对端读卡设备的APDU数据，并响应APDU数据到对端读卡设备。使用HCE相关接口前，必须先判断设备是否支持HCE卡模拟能力。暂不支持使用，仅做接口声明。
+提供HCE卡模拟的实现，主要包括接收对端读卡设备的APDU数据，并响应APDU数据到对端读卡设备。使用HCE相关接口前，必须先判断设备是否支持HCE卡模拟能力。
 
 ### startHCE<sup>(deprecated)</sup>
 
@@ -204,7 +243,7 @@ start(elementName: [ElementName](js-apis-bundleManager-elementName.md#elementnam
 
 | 参数名  | 类型     | 必填 | 说明                    |
 | ------- | -------- | ---- | ----------------------- |
-| elementName | [ElementName](js-apis-bundleManager-elementName.md#elementname) | 是   | 服务能力的元素名称。 |
+| elementName | [ElementName](js-apis-bundleManager-elementName.md#elementname) | 是   | 所属应用声明NFC卡模拟能力的页面信息（至少包含bundleName、abilityName这两项的赋值），不可以为空。 |
 | aidList | string[] | 是   | 动态注册卡模拟的AID列表，允许为空。 |
 
 **错误码：**
@@ -219,7 +258,7 @@ start(elementName: [ElementName](js-apis-bundleManager-elementName.md#elementnam
 
 stopHCE(): boolean
 
-停止HCE业务功能。包括退出当前应用前台优先，释放动态注册的AID列表。暂不支持使用，仅做接口声明。
+停止HCE业务功能。包括退出当前应用前台优先，释放动态注册的AID列表，释放[hceCmd](#on8)的订阅。
 
 > **说明：**
 > 从 API version 8 开始支持，从 API version 9 开始废弃，建议使用[stop](#stop9)替代。
@@ -234,12 +273,15 @@ stopHCE(): boolean
 | ------- | -------------------------------------- |
 | boolean | true: 禁用HCE功能或HCE已禁用，&nbsp;false: 禁用失败。 |
 
+**示例：**
+
+示例请参见[on](#on8)接口的示例。
 
 ### stop<sup>9+</sup>
 
 stop(elementName: [ElementName](js-apis-bundleManager-elementName.md#elementname)): void
 
-停止HCE业务功能。包括退出当前应用前台优先，释放动态注册的AID列表。暂不支持使用，仅做接口声明。
+停止HCE业务功能。包括取消APDU数据接收的订阅，退出当前应用前台优先，释放动态注册的AID列表。应用程序需要在HCE卡模拟页面的onDestroy函数里调用该接口。
 
 **需要权限：** ohos.permission.NFC_CARD_EMULATION
 
@@ -249,7 +291,7 @@ stop(elementName: [ElementName](js-apis-bundleManager-elementName.md#elementname
 
 | 参数名  | 类型     | 必填 | 说明                    |
 | ------- | -------- | ---- | ----------------------- |
-| elementName | [ElementName](js-apis-bundleManager-elementName.md#elementname) | 是   | 服务能力的元素名称。 |
+| elementName | [ElementName](js-apis-bundleManager-elementName.md#elementname) | 是   | 所属应用声明NFC卡模拟能力的页面信息（至少包含bundleName、abilityName这两项的赋值），不可以为空。 |
 
 **错误码：**
 
@@ -261,9 +303,9 @@ stop(elementName: [ElementName](js-apis-bundleManager-elementName.md#elementname
 
 ### on<sup>8+</sup>
 
-on(type: "hceCmd", callback: AsyncCallback<number[]>): void
+on(type: "hceCmd", callback: AsyncCallback\<number[]>): void
 
-订阅回调，用于接收对端读卡设备发送的APDU数据。
+订阅回调，用于接收对端读卡设备发送的APDU数据。应用程序需要在HCE卡模拟页面的onCreate函数里面调用该订阅函数。
 
 **需要权限：** ohos.permission.NFC_CARD_EMULATION
 
@@ -273,21 +315,40 @@ on(type: "hceCmd", callback: AsyncCallback<number[]>): void
 
 | 参数名   | 类型                    | 必填 | 说明                                         |
 | -------- | ----------------------- | ---- | -------------------------------------------- |
-| type     | string                  | 是   | 固定填"hceCmd"字符串。                         |
-| callback | AsyncCallback<number[]> | 是   | 订阅的事件回调，入参是符合APDU协议的数据，每个number十六进制表示，范围是0x00~0xFF。 |
+| type     | string                  | 是   | 要订阅的回调类型，固定填"hceCmd"字符串。                         |
+| callback | AsyncCallback\<number[]> | 是   | 订阅的事件回调，入参是符合APDU协议的数据，每个number十六进制表示，范围是0x00~0xFF。 |
 
 **示例：**
 ```js
+import UIAbility from '@ohos.app.ability.UIAbility';
+import hilog from '@ohos.hilog';
 import cardEmulation from '@ohos.nfc.cardEmulation';
 import { AsyncCallback } from '@ohos.base';
+import { ElementName } from './bundleManager/ElementName'
 
 let hceService: cardEmulation.HceService = new cardEmulation.HceService();
+let element: ElementName;
 
-const apduCallback: AsyncCallback<number[]> = (err, data) => {
-  //handle the data and err
-  console.log("got apdu data");
-};
-hceService.on('hceCmd', apduCallback);
+export default class EntryAbility extends UIAbility {
+  onCreate(want, launchParam) {
+    hilog.info(0x0000, 'testHce', '%{public}s', 'Ability onCreate');
+    element = {
+      bundleName: want.bundleName,
+      abilityName: want.abilityName,
+      moduleName: want.moduleName
+    }
+    const apduCallback: AsyncCallback<number[]> = (err, data) => {
+      //handle the data and err
+      console.log("got apdu data");
+    };
+    hceService.on('hceCmd', apduCallback);
+  }
+  onDestroy() {
+    hilog.info(0x0000, 'testHce', '%{public}s', 'Ability onDestroy');
+    hceService.stop(element)
+  }
+  // other life cycle method...
+}
 ```
 
 
@@ -314,7 +375,7 @@ sendResponse(responseApdu: number[]): void
 
 transmit(response: number[]): Promise\<void>
 
-发送APDU数据到对端读卡设备，使用Promise异步回调。
+发送APDU数据到对端读卡设备，使用Promise异步回调。应用程序必须在[on](#on8)收到读卡设备发送的APDU数据后，才调用该接口响应数据。
 
 **需要权限：** ohos.permission.NFC_CARD_EMULATION
 
@@ -330,7 +391,7 @@ transmit(response: number[]): Promise\<void>
 
 | **类型**  | **说明**                                 |
 | ------- | -------------------------------------- |
-| Promise\<void> | 表示异步回调完成。 |
+| Promise\<void> | 以Promise形式异步返回发送APDU数据的结果。 |
 
 **错误码：**
 
@@ -343,7 +404,7 @@ transmit(response: number[]): Promise\<void>
 **示例：**
 ```js
 import cardEmulation from '@ohos.nfc.cardEmulation';
-import { AsyncCallback } from '@ohos.base';
+import { BusinessError  } from '@ohos.base';
 
 let hceService: cardEmulation.HceService = new cardEmulation.HceService();
 
@@ -351,9 +412,9 @@ let hceService: cardEmulation.HceService = new cardEmulation.HceService();
 const responseData = [0x1, 0x2];
 hceService.transmit(responseData).then(() => {
   // handle the transmit promise
-  console.log("send data.");
+  console.log("transmit Promise success.");
 }).catch((err: BusinessError) => {
-  console.log("send data error:", err);
+  console.log("transmit Promise error:", err);
 });
 ```
 
@@ -361,7 +422,7 @@ hceService.transmit(responseData).then(() => {
 
 transmit(response: number[], callback: AsyncCallback\<void>): void
 
-发送APDU数据到对端读卡设备。暂不支持使用，仅做接口声明。
+发送APDU数据到对端读卡设备，使用Callback异步回调。应用程序必须在[on](#on8)收到读卡设备发送的APDU数据后，才调用该接口响应数据。
 
 **需要权限：** ohos.permission.NFC_CARD_EMULATION
 
@@ -372,7 +433,7 @@ transmit(response: number[], callback: AsyncCallback\<void>): void
 | 参数名  | 类型     | 必填 | 说明                    |
 | ------- | -------- | ---- | ----------------------- |
 | response | number[] | 是   | 发送到对端读卡设备的符合APDU协议的数据，每个number十六进制表示，范围是0x00~0xFF。 |
-| callback | AsyncCallback\<void> | 是   | 回调函数void |
+| callback | AsyncCallback\<void> | 是   | 以callback形式异步返回发送APDU数据的结果。 |
 
 **错误码：**
 
@@ -383,26 +444,26 @@ transmit(response: number[], callback: AsyncCallback\<void>): void
 | 3100301 | Card emulation running state is abnormal in service. |
 
 **示例：**
-
 ```js
 import cardEmulation from '@ohos.nfc.cardEmulation';
-import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 
-let isHceSupported = cardEmulation.isSupported(cardEmulation.FeatureType.HCE);
-if (!isHceSupported) {
-    console.log('this device is not supported for HCE, ignore it.');
+let hceService: cardEmulation.HceService = new cardEmulation.HceService();
+
+// the data app wanna send, just a example data
+try {
+  const responseData = [0x1, 0x2];
+
+  hceService.transmit(responseData, (err : BusinessError)=> {
+    if (err) {
+      console.error("transmit AsyncCallback err Code: ${err.code}, message: ${err.message}");
+    } else {
+      console.log("transmit AsyncCallback success.");
+    }
+  });
+} catch (busiError) {
+  console.error("transmit AsyncCallback catch Code: ${(busiError as Businsess).code}, " +
+    "message: ${(busiError as Businsess).message}");
 }
-
-let hasHceCap = cardEmulation.hasHceCapability();
-if (!hasHceCap) {
-    console.log('this device hasHceCapability false, ignore it.');
-}
-
-let elementName: bundleManager.ElementName = {
-    bundleName : "com.example.myapplication",
-    abilityName : "EntryAbility",
-};
-let isDefaultService = cardEmulation.isDefaultService(elementName, cardEmulation.CardType.PAYMENT);
-console.log('is the app is default service for this card type: ' + isDefaultService);
 ```
 

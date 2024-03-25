@@ -21,9 +21,9 @@ import ActionExtensionAbility from '@ohos.app.ability.ActionExtensionAbility';
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| context | [UIExtensionContext](js-apis-inner-application-uiExtensionContext.md) | 是 | 否 | 上下文。 |
+| context | [UIExtensionContext](js-apis-inner-application-uiExtensionContext.md) | 否 | 否 | 上下文。 |
 
 ## ActionExtensionAbility.onCreate
 
@@ -32,6 +32,10 @@ onCreate(): void
 ActionExtensionAbility创建时回调，执行初始化业务逻辑操作。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**示例：**
+
+参见[创建ActionExtensionAbility](#创建actionextensionability)。
 
 ## ActionExtensionAbility.onSessionCreate
 
@@ -48,6 +52,34 @@ onSessionCreate(want: Want, session: UIExtensionContentSession): void
 | want | [Want](js-apis-app-ability-want.md) | 是 | 当前ActionExtensionAbility的Want类型信息，包括ability名称、bundle名称等。 |
 | session | [UIExtensionContentSession](js-apis-app-ability-uiExtensionContentSession.md) | 是 | ActionExtensionAbility界面内容相关信息。 |
 
+**示例：**
+
+参见[创建ActionExtensionAbility](#创建actionextensionability)。
+
+## ActionExtensionAbility.onForeground
+
+onForeground(): void
+
+ActionExtensionAbility生命周期回调，当ActionExtensionAbility从后台转到前台时触发。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**示例：**
+
+参见[创建ActionExtensionAbility](#创建actionextensionability)。
+
+## ActionExtensionAbility.onBackground
+
+onBackground(): void
+
+ActionExtensionAbility生命周期回调，当ActionExtensionAbility从前台转到后台时触发。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**示例：**
+
+参见[创建ActionExtensionAbility](#创建actionextensionability)。
+
 ## ActionExtensionAbility.onSessionDestroy
 
 onSessionDestroy(session: UIExtensionContentSession): void
@@ -62,30 +94,28 @@ onSessionDestroy(session: UIExtensionContentSession): void
 | -------- | -------- | -------- | -------- |
 | session | [UIExtensionContentSession](js-apis-app-ability-uiExtensionContentSession.md) | 是 | ActionExtensionAbility界面内容相关信息。 |
 
-## ActionExtensionAbility.onForeground
+**示例：**
 
-onForeground(): void;
-
-ActionExtensionAbility生命周期回调，当ActionExtensionAbility从后台转到前台时触发。
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
-
-## ActionExtensionAbility.onBackground
-
-onBackground(): void;
-
-ActionExtensionAbility生命周期回调，当ActionExtensionAbility从前台转到后台时触发。
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+参见[创建ActionExtensionAbility](#创建actionextensionability)。
 
 ## ActionExtensionAbility.onDestroy
 
-onDestroy(): void | Promise&lt;void&gt;;
+onDestroy(): void | Promise&lt;void&gt;
 
-ActionExtensionAbility生命周期回调，在销毁时回调，执行资源清理等操作。
+ActionExtensionAbility生命周期回调，在ActionExtensionAbility销毁时回调，执行资源清理等操作。
 在执行完onDestroy生命周期回调后，应用可能会退出，从而可能导致onDestroy中的异步函数未能正确执行，比如异步写入数据库。可以使用异步生命周期，以确保异步onDestroy完成后再继续后续的生命周期。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**返回值：**
+
+| 类型                                  | 说明                            |
+| ------------------------------------- | ------------------------------- |
+| void&nbsp;\|&nbsp;Promise&lt;void&gt; | 无返回结果或无返回结果的Promise对象。 |
+
+**示例：**
+
+参见[创建ActionExtensionAbility](#创建actionextensionability)。
 
 ## 创建ActionExtensionAbility
 
@@ -93,59 +123,58 @@ ActionExtensionAbility生命周期回调，在销毁时回调，执行资源清�
 
 1. 在工程Module对应的ets目录下，右键选择“New &gt; Directory”，新建一个目录并命名为ActionExtAbility。
 
-2. 在ActionExtAbility目录，右键选择“New &gt; ArkTS File”，新建一个文件并命名为ActionExtAbility.ets。
+2. 在actionextability目录，右键选择“New &gt; ArkTS File”，新建一个文件并命名为ActionExtAbility.ets。
 
     ```text
     ├── ets
-    │ ├── ActionExtAbility
+    │ ├── actionextability
     │ │   ├── ActionExtAbility.ets
     └
     ```
 
 3. ActionExtAbility.ets文件中，增加导入ActionExtensionAbility的依赖包，自定义类继承ActionExtensionAbility并实现生命周期回调。
 
-   ```ts
-   import ActionExtensionAbility from '@ohos.app.ability.ActionExtensionAbility';
-   import Want from '@ohos.app.ability.Want';
-   import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+    ```ts
+    import ActionExtensionAbility from '@ohos.app.ability.ActionExtensionAbility';
+    import Want from '@ohos.app.ability.Want';
+    import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
 
-   const TAG: string = "[ActionExtAbility]";
+    const TAG: string = "[ActionExtAbility]";
 
-   export default class ActionExtAbility extends ActionExtensionAbility {
-     storage: LocalStorage;
-     message: string;
-     onCreate() {
-       console.info(TAG, `onCreate`);
-     }
+    export default class ActionExtAbility extends ActionExtensionAbility {
+      onCreate() {
+        console.info(TAG, `onCreate`);
+      }
 
-     onForeground() {
-       console.info(TAG, `ononForeground`);
-     }
+      onSessionCreate(want: Want, session: UIExtensionContentSession) {
+        console.info(TAG, `onSessionCreate, want: ${want.abilityName}`);
+        if (want.parameters) {
+          let obj: Record<string, UIExtensionContentSession | object> = {
+            'session': session,
+            'messages': want.parameters.shareMessages
+          }
+          let storage: LocalStorage = new LocalStorage(obj);
+          session.loadContent('pages/Index', storage);
+        }
+      }
 
-     onBackground() {
-       console.info(TAG, `onBackground`);
-     }
+      onForeground() {
+        console.info(TAG, `ononForeground`);
+      }
 
-     onSessionCreate(want: Want, session: UIExtensionContentSession) {
-       console.info(TAG, `onSessionCreate, want: ${want.abilityName}`);
-       this.message = want.parameters.shareMessages.toString();
-       let localStorageData: Record<string, UIExtensionContentSession | string> = {
-         'session': session,
-         'messages': this.message
-       };
-       this.storage = new LocalStorage(localStorageData);
-       session.loadContent('pages/Index', this.storage);
-     }
+      onBackground() {
+        console.info(TAG, `onBackground`);
+      }
 
-     onSessionDestroy(session: UIExtensionContentSession) {
-       console.info(TAG, `onSessionDestroy`);
-     }
+      onSessionDestroy(session: UIExtensionContentSession) {
+        console.info(TAG, `onSessionDestroy`);
+      }
 
-     onDestroy() {
-       console.info(TAG, `onDestroy`);
-     }
-   }
-   ```
+      onDestroy() {
+        console.info(TAG, `onDestroy`);
+      }
+    }
+    ```
 
 4. 在工程Module对应的[module.json5配置文件](../../quick-start/module-configuration-file.md)中注册ActionExtensionAbility，type标签需要设置为“action”，srcEntry标签表示当前ExtensionAbility组件所对应的代码路径。
 
@@ -160,7 +189,7 @@ ActionExtensionAbility生命周期回调，在销毁时回调，执行资源清�
            "description": "action",
            "type": "action",
            "exported": true,
-           "srcEntry": "./ets/ActionExtAbility/ActionExtAbility.ets"
+           "srcEntry": "./ets/actionextability/ActionExtAbility.ets"
          }
        ]
      }

@@ -114,11 +114,14 @@ isWifiActive(): boolean
 	}
 ```
 
-## wifiManager.scan<sup>9+</sup>
+## wifiManager.scan<sup>9+</sup><sup>(deprecated)</sup>
 
 scan(): void
 
 启动WLAN扫描。
+
+> **说明：**
+> 从 API version 9开始支持，从API version 10开始废弃。建议使用[wifiManager.startScan](#wifimanagerstartscan10)代替。
 
 **需要权限：** ohos.permission.SET_WIFI_INFO、ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
 
@@ -175,11 +178,14 @@ startScan(): void
 		console.error("failed:" + JSON.stringify(error));
 	}
 ```
-## wifiManager.getScanResults<sup>9+</sup>
+## wifiManager.getScanResults<sup>9+</sup><sup>(deprecated)</sup>
 
 getScanResults(): Promise&lt;Array&lt;WifiScanInfo&gt;&gt;
 
 获取扫描结果，使用Promise异步回调。
+
+> **说明：**
+> 从 API version 9开始支持，从API version 10开始废弃。建议使用[wifiManager.getScanInfoList](#wifimanagergetscaninfolist10)代替。
 
 **需要权限：** ohos.permission.GET_WIFI_INFO 和 (ohos.permission.GET_WIFI_PEERS_MAC 或(ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION))
 
@@ -199,11 +205,14 @@ getScanResults(): Promise&lt;Array&lt;WifiScanInfo&gt;&gt;
 | -------- | -------- |
 | 2501000  | Operation failed.|
 
-## wifiManager.getScanResults<sup>9+</sup>
+## wifiManager.getScanResults<sup>9+</sup><sup>(deprecated)</sup>
 
 getScanResults(callback: AsyncCallback&lt;Array&lt;WifiScanInfo&gt;&gt;): void
 
 获取扫描结果，使用callback异步回调。
+
+> **说明：**
+> 从 API version 9开始支持，从API version 10开始废弃。建议使用[wifiManager.getScanInfoList](#wifimanagergetscaninfolist10)代替。
 
 **需要权限：** ohos.permission.GET_WIFI_INFO 和 (ohos.permission.GET_WIFI_PEERS_MAC 或 (ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION))
 
@@ -267,11 +276,14 @@ getScanResults(callback: AsyncCallback&lt;Array&lt;WifiScanInfo&gt;&gt;): void
   });
 ```
 
-## wifiManager.getScanResultsSync<sup>9+</sup>
+## wifiManager.getScanResultsSync<sup>9+</sup><sup>(deprecated)</sup>
 
 getScanResultsSync(): &nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo9)&gt;
 
 获取扫描结果，使用同步方式返回结果。
+
+> **说明：**
+> 从 API version 9开始支持，从API version 10开始废弃。建议使用[wifiManager.getScanInfoList](#wifimanagergetscaninfolist10)代替。
 
 **需要权限：** ohos.permission.GET_WIFI_INFO 和 (ohos.permission.GET_WIFI_PEERS_MAC 或 (ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION))
 
@@ -388,9 +400,9 @@ WLAN热点信息。
 | capabilities | string | 是 | 否 | 热点能力。 |
 | securityType | [WifiSecurityType](#wifisecuritytype9) | 是 | 否 | WLAN加密类型。 |
 | rssi | number | 是 | 否 | 热点的信号强度(dBm)。 |
-| band | number | 是 | 否 | WLAN接入点的频段。 |
+| band | number | 是 | 否 | WLAN接入点的频段，1:2.4GHZ；2:5GHZ。 |
 | frequency | number | 是 | 否 | WLAN接入点的频率。 |
-| channelWidth | number | 是 | 否 | WLAN接入点的带宽。 |
+| channelWidth | number | 是 | 否 | WLAN接入点的带宽，具体定义参见[WifiChannelWidth](#wifichannelwidth9)。 |
 | centerFrequency0 | number | 是 | 否 | 热点的中心频率。 |
 | centerFrequency1 | number | 是 | 否 | 热点的中心频率。如果热点使用两个不重叠的WLAN信道，则返回两个中心频率，分别用centerFrequency0和centerFrequency1表示。 |
 | infoElems | Array&lt;[WifiInfoElem](#wifiinfoelem9)&gt; | 是 | 否 | 信息元素。 |
@@ -417,8 +429,8 @@ wifi 设备地址（mac/bssid）类型。
 | **名称** | **值** | **说明** |
 | -------- | -------- | -------- |
 | WIFI_SEC_TYPE_INVALID | 0 | 无效加密类型。 |
-| WIFI_SEC_TYPE_OPEN | 1 | 开放加密类型。 |
-| WIFI_SEC_TYPE_WEP | 2 | Wired&nbsp;Equivalent&nbsp;Privacy&nbsp;(WEP)加密类型。 |
+| WIFI_SEC_TYPE_OPEN | 1 | 开放加密类型。候选网络配置不支持该加密类型。 |
+| WIFI_SEC_TYPE_WEP | 2 | Wired&nbsp;Equivalent&nbsp;Privacy&nbsp;(WEP)加密类型。候选网络配置不支持该加密类型。 |
 | WIFI_SEC_TYPE_PSK | 3 | Pre-shared&nbsp;key&nbsp;(PSK)加密类型。 |
 | WIFI_SEC_TYPE_SAE | 4 | Simultaneous&nbsp;Authentication&nbsp;of&nbsp;Equals&nbsp;(SAE)加密类型。 |
 | WIFI_SEC_TYPE_EAP | 5 | EAP加密类型。 |
@@ -1212,7 +1224,7 @@ getSignalLevel(rssi: number, band: number): number
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | rssi | number | 是 | 热点的信号强度(dBm)。 |
-  | band | number | 是 | WLAN接入点的频段。 |
+  | band | number | 是 | WLAN接入点的频段，1:2.4GHZ；2:5GHZ。 |
 
 **返回值：**
 
@@ -1251,7 +1263,7 @@ getLinkedInfo(): Promise&lt;WifiLinkedInfo&gt;
 
 **需要权限：** ohos.permission.GET_WIFI_INFO 。 
 
- 获取 macAddress 还需申请ohos.permission.GET_WIFI_LOCAL_MAC权限，无该权限时，macAddress 返回空字符串。
+当macType是1 - 设备MAC地址时，获取 macAddress 还需申请ohos.permission.GET_WIFI_LOCAL_MAC权限，无该权限时，macAddress 返回空字符串。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
@@ -1278,7 +1290,7 @@ getLinkedInfo(callback: AsyncCallback&lt;WifiLinkedInfo&gt;): void
 
 **需要权限：** ohos.permission.GET_WIFI_INFO 。 
 
-获取 macAddress 还需申请ohos.permission.GET_WIFI_LOCAL_MAC权限，无该权限时，macAddress 返回空字符串。
+当macType是1 - 设备MAC地址时，获取 macAddress 还需申请ohos.permission.GET_WIFI_LOCAL_MAC权限，无该权限时，macAddress 返回空字符串。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
@@ -1329,7 +1341,7 @@ getLinkedInfo(callback: AsyncCallback&lt;WifiLinkedInfo&gt;): void
 | bssid | string | 是 | 否 | 热点的BSSID。 |
 | networkId | number | 是 | 否 | 网络配置ID。 <br /> **系统接口：** 此接口为系统接口。 |
 | rssi | number | 是 | 否 | 热点的信号强度(dBm)。 |
-| band | number | 是 | 否 | WLAN接入点的频段。 |
+| band | number | 是 | 否 | WLAN接入点的频段，1:2.4GHZ；2:5GHZ。 |
 | linkSpeed | number | 是 | 否 | WLAN接入点的上行速度。 |
 | rxLinkSpeed<sup>10+</sup> | number | 是 | 否 | WLAN接入点的下行速度。 |
 | maxSupportedTxLinkSpeed<sup>10+</sup> | number | 是 | 否 | 当前支持的最大上行速率。 |
@@ -1491,10 +1503,24 @@ isFeatureSupported(featureId: number): boolean
 
 **参数：**
 
-
   | **参数名** | **类型** | 必填 | **说明** |
   | -------- | -------- | -------- | -------- |
   | featureId | number | 是 | 特性ID值。 |
+
+**特性ID值枚举：**
+
+| 枚举值 | 说明 |
+| -------- | -------- |
+| 0x0001 | 基础结构模式特性。 |
+| 0x0002 | 5&nbsp;GHz带宽特性。 |
+| 0x0004 | GAS/ANQP特性。 |
+| 0x0008 | Wifi-Direct特性。 |
+| 0x0010 | Soft&nbsp;AP特性。 |
+| 0x0040 | Wi-Fi&nbsp;AWare组网特性。 |
+| 0x8000 | AP&nbsp;STA共存特性。 |
+| 0x8000000 | WPA3-Personal&nbsp;SAE特性。 |
+| 0x10000000 | WPA3-Enterprise&nbsp;Suite-B |
+| 0x20000000 | 增强开放特性。 | 
 
 **返回值：**
 
@@ -1614,14 +1640,14 @@ IP信息。
 | primaryDns | number | 是 | 否 | 主DNS服务器IP地址。 |
 | secondDns | number | 是 | 否 | 备DNS服务器IP地址。 |
 | serverIp | number | 是 | 否 | DHCP服务端IP地址。 |
-| leaseDuration | number | 是 | 否 | IP地址租用时长。 |
+| leaseDuration | number | 是 | 否 | IP地址租用时长，单位：秒。 |
 
 
 ## wifiManager.getIpv6Info<sup>10+</sup>
 
 getIpv6Info(): Ipv6Info
 
-获取IP信息。
+获取IPV6信息。
 
 **需要权限：** ohos.permission.GET_WIFI_INFO
 
@@ -2629,6 +2655,8 @@ getP2pLinkedInfo(): Promise&lt;WifiP2pLinkedInfo&gt;
 
 **需要权限：** ohos.permission.GET_WIFI_INFO
 
+获取 groupOwnerAddr 还需申请ohos.permission.GET_WIFI_LOCAL_MAC权限，无该权限时，groupOwnerAddr 返回全零地址。
+
 **系统能力：** SystemCapability.Communication.WiFi.P2P
 
 **返回值：**
@@ -2653,6 +2681,8 @@ getP2pLinkedInfo(callback: AsyncCallback&lt;WifiP2pLinkedInfo&gt;): void
 获取P2P连接信息，使用callback异步回调。
 
 **需要权限：** ohos.permission.GET_WIFI_INFO
+
+获取 groupOwnerAddr 还需申请ohos.permission.GET_WIFI_LOCAL_MAC权限，无该权限时，groupOwnerAddr 返回全零地址。
 
 **系统能力：** SystemCapability.Communication.WiFi.P2P
 
@@ -2698,7 +2728,7 @@ getP2pLinkedInfo(callback: AsyncCallback&lt;WifiP2pLinkedInfo&gt;): void
 | -------- | -------- | -------- | -------- | -------- |
 | connectState | [P2pConnectState](#p2pconnectstate9) | 是 | 否 | P2P连接状态。 |
 | isGroupOwner | boolean | 是 | 否 | 是否是群主。 |
-| groupOwnerAddr | string | 是 | 否 | 群组MAC地址。 
+| groupOwnerAddr | string | 是 | 否 | 群组IP地址。 
 
 
 ## P2pConnectState<sup>9+</sup>

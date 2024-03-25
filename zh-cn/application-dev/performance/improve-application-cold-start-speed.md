@@ -168,9 +168,7 @@ export default class MyAbilityStage extends AbilityStage {
 
 在应用启动流程中，系统会执行Ability的生命周期回调函数。因此，不建议在这些回调函数中执行耗时过长的操作，耗时操作建议通过异步任务延迟处理或者放到其他线程执行。
 
-在这些生命周期回调里，推荐开发者只做必要的操作，详情可以参考：[UIAbility组件生命周期](../application-models/uiability-lifecycle.md)
-
-以下为示例代码：
+在这些生命周期回调里，推荐开发者只做必要的操作，下面以UIAbility为例进行说明。关于UIAbility组件生命周期的详细说明，参见[UIAbility组件生命周期](../application-models/uiability-lifecycle.md)。
 
 ```ts
 const LARGE_NUMBER = 10000000;

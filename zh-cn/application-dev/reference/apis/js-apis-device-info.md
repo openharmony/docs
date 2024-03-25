@@ -21,7 +21,7 @@ import deviceInfo from '@ohos.deviceInfo';
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| deviceType | string | 是 | 否 | 设备类型。 |
+| deviceType | string | 是 | 否 | 设备类型，只允许查询，结果不能用于业务代码开发。 |
 | manufacture | string | 是 | 否 | 设备厂家名称。 |
 | brand | string | 是 | 否 | 设备品牌名称。 |
 | marketName | string | 是 | 否 | 外部产品系列。 |
@@ -30,7 +30,7 @@ import deviceInfo from '@ohos.deviceInfo';
 | softwareModel | string | 是 | 否 | 内部软件子型号。 |
 | hardwareModel | string | 是 | 否 | 硬件版本号。 |
 | hardwareProfile | string | 是 | 否 | 硬件Profile。 |
-| serial | string | 是 | 否 | 设备序列号。<br/>**需要权限**：ohos.permission.sec.ACCESS_UDID |
+| serial | string | 是 | 否 | 设备序列号。<br/>**使用权限**：仅限系统应用使用 |
 | bootloaderVersion | string | 是 | 否 | Bootloader版本号。 |
 | abiList | string | 是 | 否 | 应用二进制接口（Abi）列表。 |
 | securityPatchTag | string | 是 | 否 | 安全补丁级别。 |
@@ -50,7 +50,7 @@ import deviceInfo from '@ohos.deviceInfo';
 | buildHost | string | 是 | 否 | 构建主机。 |
 | buildTime | string | 是 | 否 | 构建时间。 |
 | buildRootHash | string | 是 | 否 | 构建版本Hash。 |
-| udid<sup>7+</sup> | string | 是 | 否 | 设备Udid。<br/>**需要权限**：ohos.permission.sec.ACCESS_UDID|
+| udid<sup>7+</sup> | string | 是 | 否 | 设备Udid。<br/>**使用权限**：仅限系统应用使用|
 | distributionOSName<sup>10+</sup> | String | 是 | 否 | 发行版系统名称。 |
 | distributionOSVersion<sup>10+</sup> | String | 是 | 否 | 发行版系统版本号。 |
 | distributionOSApiVersion<sup>10+</sup> | number| 是 | 否 | 发行版系统api版本。 |

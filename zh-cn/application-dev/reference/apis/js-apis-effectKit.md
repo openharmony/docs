@@ -116,7 +116,7 @@ createColorPicker(source: image.PixelMap, region: Array\<number>): Promise\<Colo
 | 参数名     | 类型         | 必填 | 说明                       |
 | -------- | ----------- | ---- | -------------------------- |
 | source   | [image.PixelMap](js-apis-image.md#pixelmap7) | 是   |  image模块创建的PixelMap实例。可通过图片解码或直接创建获得，具体可见[图片开发指导](../../media/image-overview.md)。 |
-| region   | Array\<number> | 是   |  指定图片的取色区域。<br>数组元素个数为4，取值范围为[0, 1]，数组元素分别表示图片区域的左、上、右、下位置，图片最左侧和最上侧对应位置0，最右侧和最下侧对应位置1。数组第三个元素需大于第一个元素，第四个元素需大于第二个元素。<br>此参数不填时，默认值为[0, 0, 1, 1]，表示取色区域为全图。 |
+| region   | Array\<number> | 是   |  指定图片的取色区域。<br>数组元素个数为4，取值范围为[0, 1]，数组元素分别表示图片区域的左、上、右、下位置，图片最左侧和最上侧对应位置0，最右侧和最下侧对应位置1。数组第三个元素需大于第一个元素，第四个元素需大于第二个元素。|
 
 **返回值：**
 
@@ -142,7 +142,7 @@ let opts : image.InitializationOptions = {
 }
 
 image.createPixelMap(color, opts).then((pixelMap) => {
-  effectKit.createColorPicker(pixelMap).then(colorPicker => {
+  effectKit.createColorPicker(pixelMap, [0, 0, 1, 1]).then(colorPicker => {
     console.info("color picker=" + colorPicker);
   }).catch( (reason : BusinessError) => {
     console.error("error=" + reason.message);
@@ -204,7 +204,7 @@ createColorPicker(source: image.PixelMap, region:Array\<number>, callback: Async
 | 参数名     | 类型                | 必填 | 说明                       |
 | -------- | ------------------ | ---- | -------------------------- |
 | source   | [image.PixelMap](js-apis-image.md#pixelmap7) | 是  |image模块创建的PixelMap实例。可通过图片解码或直接创建获得，具体可见[图片开发指导](../../media/image-overview.md)。  |
-| region   | Array\<number> | 是   |  指定图片的取色区域。<br>数组元素个数为4，取值范围为[0, 1]，数组元素分别表示图片区域的左、上、右、下位置，图片最左侧和最上侧对应位置0，最右侧和最下侧对应位置1。数组第三个元素需大于第一个元素，第四个元素需大于第二个元素。<br>此参数不填时，默认值为[0, 0, 1, 1]，表示取色区域为全图。 |
+| region   | Array\<number> | 是   |  指定图片的取色区域。<br>数组元素个数为4，取值范围为[0, 1]，数组元素分别表示图片区域的左、上、右、下位置，图片最左侧和最上侧对应位置0，最右侧和最下侧对应位置1。数组第三个元素需大于第一个元素，第四个元素需大于第二个元素。|
 | callback | AsyncCallback\<[ColorPicker](#colorpicker)> | 是  | 回调函数。返回创建的ColorPicker实例。 |
 
 **示例：**
@@ -223,7 +223,7 @@ let opts : image.InitializationOptions = {
   }
 }
 image.createPixelMap(color, opts).then((pixelMap) => {
-  effectKit.createColorPicker(pixelMap, (error, colorPicker) => {
+  effectKit.createColorPicker(pixelMap, [0, 0, 1, 1], (error, colorPicker) => {
     if (error) {
       console.error('Failed to create color picker.');
     } else {

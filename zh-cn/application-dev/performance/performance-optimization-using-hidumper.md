@@ -217,7 +217,7 @@ struct VisibilityComponent {
     ...
 ```
 对比三种情况的组件数可以发现：
-* 当使用visibility属性控制组件显影时，该组件通过改变Visible属性实现功能，但组件的其他结构依然会被创建。
+* 当使用visibility属性控制组件显隐时，该组件通过改变Visible属性实现功能，但组件的其他结构依然会被创建。
 * 当visibility属性为Hidden时，组件虽然不会显示，但仍然在页面中占用实际位置。
 
 ## HiDumper查看内存信息

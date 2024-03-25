@@ -33,7 +33,7 @@ restoreDefault(): void
 
 
 ```ts
-// cursorControlTest.ets
+// xxx.ets
 import pointer from '@ohos.multimodalInput.pointer';
 
 @Entry

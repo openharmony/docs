@@ -27,9 +27,9 @@ import childProcessManager from '@ohos.app.ability.childProcessManager';
 
 ## childProcessManager.startChildProcess
 
-startChildProcess(srcEntry: string, startMode: StartMode): Promise&lt;number&gt;;
+startChildProcess(srcEntry: string, startMode: StartMode): Promise&lt;number&gt;
 
-启动子进程，并调用子进程的入口方法，以Promise方式返回执行结果。创建子进程成功会返回子进程pid，但并不代表入口方法调用成功，具体结果以入口方法是否调用成功为准。子进程中不支持再次调用该方法创建子进程。
+启动子进程，并调用子进程的入口方法。创建子进程成功会返回子进程pid，但并不代表入口方法调用成功，具体结果以入口方法是否调用成功为准。子进程中不支持再次调用该方法创建子进程。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -37,14 +37,14 @@ startChildProcess(srcEntry: string, startMode: StartMode): Promise&lt;number&gt;
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | srcEntry | string | 是 | 子进程源文件相对路径（源文件需要放在src/main中，详见下方示例代码）。目前只支持源文件放在entry类型的模块中。 |
+  | srcEntry | string | 是 | 子进程源文件路径（源文件需要放在src/main中，详见下方示例代码）。目前只支持源文件放在entry类型的模块中。 |
   | startMode | [StartMode](#childprocessmanagerstartmode) | 是 | 子进程启动模式。 |
 
 **返回值：**
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;number&gt; | 以Promise的形式返回子进程pid。 |
+  | Promise&lt;number&gt; | Promise对象，返回子进程pid。 |
 
 **错误码**：
 
@@ -90,9 +90,9 @@ try {
 
 ## childProcessManager.startChildProcess
 
-startChildProcess(srcEntry: string, startMode: StartMode, callback: AsyncCallback&lt;number&gt;): void;
+startChildProcess(srcEntry: string, startMode: StartMode, callback: AsyncCallback&lt;number&gt;): void
 
-启动子进程，并调用子进程的入口方法，以Callback方式返回执行结果。创建子进程成功会返回子进程pid，但并不代表入口方法调用成功，具体结果以入口方法是否调用成功为准。子进程中不支持再次调用该方法创建子进程。
+启动子进程，并调用子进程的入口方法。创建子进程成功会返回子进程pid，但并不代表入口方法调用成功，具体结果以入口方法是否调用成功为准。子进程中不支持再次调用该方法创建子进程。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -100,9 +100,9 @@ startChildProcess(srcEntry: string, startMode: StartMode, callback: AsyncCallbac
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | srcEntry | string | 是 | 子进程源文件相对路径（源文件需要放在src/main中，详见下方示例代码）。目前只支持源文件放在entry类型的模块中。 |
+  | srcEntry | string | 是 | 子进程源文件路径（源文件需要放在src/main中，详见下方示例代码）。目前只支持源文件放在entry类型的模块中。 |
   | startMode | [StartMode](#childprocessmanagerstartmode) | 是 | 子进程启动模式。 |
-  | callback | AsyncCallback&lt;number&gt; | 是 | 以callback的形式返回子进程pid。 |
+  | callback | AsyncCallback&lt;number&gt; | 是 | 回调函数。当子进程启动成功，err为undefined，data为获取到的子进程pid；否则为错误对象。 |
 
 **错误码**：
 

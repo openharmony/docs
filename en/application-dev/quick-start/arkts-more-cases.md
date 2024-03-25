@@ -895,18 +895,27 @@ let t: C = { value: 123 };
 
 ## arkts-no-in
 
+### Using Object.keys to Determine Whether an Attribute Exists
+
 **Before adaptation**
 
 ```typescript
-let arr = [10, 20, 30, 40];
-let isIn = 5 in arr;
+function test(str: string, obj: Record<string, Object>) {
+  return str in obj;
+}
 ```
 
 **After adaptation**
 
 ```typescript
-let arr = [10, 20, 30, 40];
-let isIn = 5 < arr.length;
+function test(str: string, obj: Record<string, Object>) {
+  for (let i of Object.keys(obj)) {
+    if (i == str) {
+      return true;
+    }
+  }
+  return false;
+}
 ```
 
 ## arkts-no-destruct-assignment

@@ -124,8 +124,9 @@ struct Tests {
 }
 ```
 
+## Matrix4Transit
 
-## matrix4.copy
+### copy
 
 copy(): Matrix4Transit
 
@@ -140,6 +141,7 @@ Matrix的拷贝函数，可以拷贝一份当前的矩阵对象。
 | --------------------------------- | -------------------- |
 | [Matrix4Transit](#matrix4transit) | 当前矩阵的拷贝对象。 |
 
+
 **示例：**
 
 ```ts
@@ -149,158 +151,29 @@ import matrix4 from '@ohos.matrix4'
 @Entry
 @Component
 struct Test {
-  private matrix1 = matrix4.identity().translate({ x: 100 })
+  private matrix1 = matrix4.identity().translate({ x: 200 })
   // 对matrix1的拷贝矩阵做scale操作，不影响到matrix1
-  private matrix2 = this.matrix1.copy().scale({ x: 2 })
+  private matrix2 = this.matrix1.copy().scale({ x: 1.5 })
 
   build() {
     Column() {
-      Image($r("app.media.bg1"))
+      Image($r("app.media.test"))
         .width("40%")
         .height(100)
         .transform(this.matrix1)
-      Image($r("app.media.bg2"))
+      Image($r("app.media.test"))
         .width("40%")
         .height(100)
         .margin({ top: 50 })
         .transform(this.matrix2)
-    }
+    }.alignItems(HorizontalAlign.Center)
+    .height('100%')
+    .justifyContent(FlexAlign.Center)
   }
 }
 ```
 
-![zh-cn_image_0000001219744181](figures/zh-cn_image_0000001219744181.png)
-
-## matrix4.invert<sup>(deprecated)</sup>
-
-invert(): Matrix4Transit
-
-Matrix的逆函数，可以返回一个当前矩阵对象的逆矩阵，即效果正好相反。
-
-该接口从Api 10开始废弃。
-
-**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
-
-**返回值：**
-
-| 类型                              | 说明                   |
-| --------------------------------- | ---------------------- |
-| [Matrix4Transit](#matrix4transit) | 当前矩阵的逆矩阵对象。 |
-
-## matrix4.combine<sup>(deprecated)</sup>
-
-combine(options: Matrix4Transit): Matrix4Transit
-
-Matrix的叠加函数，可以将两个矩阵的效果叠加起来生成一个新的矩阵对象。
-
-该接口从Api 10开始废弃。
-
-**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型                              | 必填 | 说明               |
-| ------ | --------------------------------- | ---- | ------------------ |
-| option | [Matrix4Transit](#matrix4transit) | 是   | 待叠加的矩阵对象。 |
-
-**返回值：**
-
-| 类型                              | 说明                   |
-| --------------------------------- | ---------------------- |
-| [Matrix4Transit](#matrix4transit) | 叠加后的矩阵对象。 |
-
-## matrix4.translate<sup>(deprecated)</sup>
-
-translate(options: TranslateOption): Matrix4Transit
-
-Matrix的平移函数，可以为当前矩阵增加x轴/y轴/z轴平移效果。
-
-该接口从Api 10开始废弃。
-
-**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型                                | 必填 | 说明           |
-| ------ | ----------------------------------- | ---- | -------------- |
-| option | [TranslateOption](#translateoption) | 是   | 设置平移参数。 |
-
-**返回值：**
-
-| 类型                              | 说明                   |
-| --------------------------------- | ---------------------- |
-| [Matrix4Transit](#matrix4transit) | 平移后的矩阵对象。 |
-
-## matrix4.scale<sup>(deprecated)</sup>
-
-scale(options: ScaleOption): Matrix4Transit
-
-Matrix的缩放函数，可以为当前矩阵增加x轴/y轴/z轴缩放效果。
-
-该接口从Api 10开始废弃。
-
-**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型                        | 必填 | 说明           |
-| ------ | --------------------------- | ---- | -------------- |
-| option | [ScaleOption](#scaleoption) | 是   | 设置缩放参数。 |
-
-**返回值：**
-
-| 类型                              | 说明                   |
-| --------------------------------- | ---------------------- |
-| [Matrix4Transit](#matrix4transit) | 缩放后的矩阵对象。 |
-
-## matrix4.rotate<sup>(deprecated)</sup>
-
-rotate(options: RotateOption): Matrix4Transit
-
-Matrix的旋转函数，可以为当前矩阵增加x轴/y轴/z轴旋转效果。
-
-该接口从Api 10开始废弃。
-
-**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型                          | 必填 | 说明           |
-| ------ | ----------------------------- | ---- | -------------- |
-| option | [RotateOption](#rotateoption) | 是   | 设置旋转参数。 |
-
-**返回值：**
-
-| 类型                              | 说明                   |
-| --------------------------------- | ---------------------- |
-| [Matrix4Transit](#matrix4transit) | 旋转后的矩阵对象。 |
-
-## matrix4.transformPoint<sup>(deprecated)</sup>
-
-transformPoint(options: [number, number]): [number, number]
-
-Matrix的坐标点转换函数，可以将当前的变换效果作用到一个坐标点上。
-
-该接口从Api 10开始废弃。
-
-**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型             | 必填 | 说明               |
-| ------ | ---------------- | ---- | ------------------ |
-| option | [number, number] | 是   | 需要转换的坐标点。 |
-
-**返回值：**
-
-| 类型             | 说明                        |
-| ---------------- | --------------------------- |
-| [number, number] | 返回矩阵变换后的Point对象。 |
-
-
-## Matrix4Transit
-
-
+![zh-cn_image_0000001219744181](figures/h-cn_image_0000001219744185.png)
 ### combine
 
 combine(options: Matrix4Transit): Matrix4Transit
@@ -623,3 +496,195 @@ struct Test {
 | angle   | number | 否   | 旋转角度。<br/>默认值：0                                |
 | centerX | number | 否   | 变换中心点x轴坐标。<br/>默认值：0                       |
 | centerY | number | 否   | 变换中心点y轴坐标。<br/>默认值：0                       |
+
+
+
+
+## matrix4.copy<sup>(deprecated)</sup>
+
+copy(): Matrix4Transit
+
+
+Matrix的拷贝函数，可以拷贝一份当前的矩阵对象。
+
+> **说明：**
+>
+> 从API version 10开始废弃。建议使用[Matrix4Transit.copy](#copy)替代。
+
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                              | 说明                 |
+| --------------------------------- | -------------------- |
+| [Matrix4Transit](#matrix4transit) | 当前矩阵的拷贝对象。 |
+
+**示例：**
+
+```ts
+// xxx.ets
+import matrix4 from '@ohos.matrix4'
+
+@Entry
+@Component
+struct Test {
+  private matrix1 = matrix4.identity().translate({ x: 100 })
+  // 对matrix1的拷贝矩阵做scale操作，不影响到matrix1
+  private matrix2 = this.matrix1.copy().scale({ x: 2 })
+
+  build() {
+    Column() {
+      Image($r("app.media.bg1"))
+        .width("40%")
+        .height(100)
+        .transform(this.matrix1)
+      Image($r("app.media.bg2"))
+        .width("40%")
+        .height(100)
+        .margin({ top: 50 })
+        .transform(this.matrix2)
+    }
+  }
+}
+```
+
+![zh-cn_image_0000001219744181](figures/zh-cn_image_0000001219744181.png)
+
+## matrix4.invert<sup>(deprecated)</sup>
+
+invert(): Matrix4Transit
+
+Matrix的逆函数，可以返回一个当前矩阵对象的逆矩阵，即效果正好相反。
+
+> **说明：**
+>
+> 从API version 10开始废弃。建议使用[Matrix4Transit.invert](#invert)替代。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                              | 说明                   |
+| --------------------------------- | ---------------------- |
+| [Matrix4Transit](#matrix4transit) | 当前矩阵的逆矩阵对象。 |
+
+## matrix4.combine<sup>(deprecated)</sup>
+
+combine(options: Matrix4Transit): Matrix4Transit
+
+Matrix的叠加函数，可以将两个矩阵的效果叠加起来生成一个新的矩阵对象。
+
+> **说明：**
+>
+> 从API version 10开始废弃。建议使用[Matrix4Transit.combine](#combine)替代。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                              | 必填 | 说明               |
+| ------ | --------------------------------- | ---- | ------------------ |
+| option | [Matrix4Transit](#matrix4transit) | 是   | 待叠加的矩阵对象。 |
+
+**返回值：**
+
+| 类型                              | 说明                   |
+| --------------------------------- | ---------------------- |
+| [Matrix4Transit](#matrix4transit) | 叠加后的矩阵对象。 |
+
+## matrix4.translate<sup>(deprecated)</sup>
+
+translate(options: TranslateOption): Matrix4Transit
+
+Matrix的平移函数，可以为当前矩阵增加x轴/y轴/z轴平移效果。
+
+> **说明：**
+>
+> 从API version 10开始废弃。建议使用[Matrix4Transit.translate](#translate)替代。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                | 必填 | 说明           |
+| ------ | ----------------------------------- | ---- | -------------- |
+| option | [TranslateOption](#translateoption) | 是   | 设置平移参数。 |
+
+**返回值：**
+
+| 类型                              | 说明                   |
+| --------------------------------- | ---------------------- |
+| [Matrix4Transit](#matrix4transit) | 平移后的矩阵对象。 |
+
+## matrix4.scale<sup>(deprecated)</sup>
+
+scale(options: ScaleOption): Matrix4Transit
+
+Matrix的缩放函数，可以为当前矩阵增加x轴/y轴/z轴缩放效果。
+
+> **说明：**
+>
+> 从API version 10开始废弃。建议使用[Matrix4Transit.scale](#scale)替代。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                        | 必填 | 说明           |
+| ------ | --------------------------- | ---- | -------------- |
+| option | [ScaleOption](#scaleoption) | 是   | 设置缩放参数。 |
+
+**返回值：**
+
+| 类型                              | 说明                   |
+| --------------------------------- | ---------------------- |
+| [Matrix4Transit](#matrix4transit) | 缩放后的矩阵对象。 |
+
+## matrix4.rotate<sup>(deprecated)</sup>
+
+rotate(options: RotateOption): Matrix4Transit
+
+Matrix的旋转函数，可以为当前矩阵增加x轴/y轴/z轴旋转效果。
+
+> **说明：**
+>
+> 从API version 10开始废弃。建议使用[Matrix4Transit.rotate](#rotate)替代。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                          | 必填 | 说明           |
+| ------ | ----------------------------- | ---- | -------------- |
+| option | [RotateOption](#rotateoption) | 是   | 设置旋转参数。 |
+
+**返回值：**
+
+| 类型                              | 说明                   |
+| --------------------------------- | ---------------------- |
+| [Matrix4Transit](#matrix4transit) | 旋转后的矩阵对象。 |
+
+## matrix4.transformPoint<sup>(deprecated)</sup>
+
+transformPoint(options: [number, number]): [number, number]
+
+Matrix的坐标点转换函数，可以将当前的变换效果作用到一个坐标点上。
+
+> **说明：**
+>
+> 从API version 10开始废弃。建议使用[Matrix4Transit.transformPoint](#transformpoint)替代。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型             | 必填 | 说明               |
+| ------ | ---------------- | ---- | ------------------ |
+| option | [number, number] | 是   | 需要转换的坐标点。 |
+
+**返回值：**
+
+| 类型             | 说明                        |
+| ---------------- | --------------------------- |
+| [number, number] | 返回矩阵变换后的Point对象。 |

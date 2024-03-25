@@ -20,3 +20,5 @@
 - [使用Web组件打印前端页面](web-print.md)
 - [使用Web组件的下载能力](web-download.md)
 - [使用预连接和预加载能力加速web页面的访问](web-predictor.md)
+- [webRTC拉起摄像头和麦克风](web-rtc.md)
+- [同层渲染绘制Video和Button组件](web-same-layer.md)

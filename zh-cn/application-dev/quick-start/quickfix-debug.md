@@ -28,7 +28,7 @@
 
 ## 生成快速修复文件
 ### 快速修复ArkTS文件的代码
-* 在DevEco Studio中修改ArkTS文件后，编译HAP，可以在工程目录下找到对应的abc文件，如`build\default\cache\default\LegacyCompileETS\jsbundle\temporary\pages\index.abc`。
+* 在DevEco Studio中修改ArkTS文件后，编译HAP，可以在工程目录下找到对应的abc文件，如`build\default\intermediates\loader_out\default\ets\modules.abc`。
 
 ### 快速修复C++中的代码
 
@@ -55,7 +55,7 @@ $ java -jar app_packing_tool.jar --mode hqf --json-path patch.json --lib-path li
 | mode  | 打包的模式。  | 必选|
 | json-path|patch.json的路径。|必选|
 | lib-path|.so快速修复文件所在的文件夹路径，该路径可参考[快速修复包结构](quickfix-principles.md#快速修复包结构)。|可选|
-| ets-path|.abc快速修复文件所在的文件夹路径。|可选|
+| ets-path|.abc快速修复文件所在的文件夹路径。|必选|
 
 ## 快速修复包的签名
 

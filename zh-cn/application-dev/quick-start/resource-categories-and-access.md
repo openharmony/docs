@@ -88,19 +88,19 @@ en_US和zh_CN是默认存在的两个限定词目录，其余限定词目录需�
 
 #### resfile目录
 
-支持创建多层子目录，子目录名称可以自定义，文件夹内可以自由放置各类资源文件。<br/>目录中的资源文件会被直接打包进应用，不经过编译，也不会被赋予资源文件ID。应用安装后，resfile资源会被解压到应用沙箱路径，通过Context属性[resourceDir](../reference/apis/js-apis-inner-application-context.md#属性)获取到resfile资源目录后，可通过文件路径访问。
+支持创建多层子目录，子目录名称可以自定义，文件夹内可以自由放置各类资源文件。<br/>目录中的资源文件会被直接打包进应用，不经过编译，也不会被赋予资源文件ID。应用安装后，resfile资源会被解压到应用沙箱路径，通过Context属性[resourceDir](../reference/apis-ability-kit/js-apis-inner-application-context.md#属性)获取到resfile资源目录后，可通过文件路径访问。
 
 ### 资源组目录
 
-资源组目类型包括element、media、profile，用于存放特定类型的资源文件。
+资源组目录包括element、media、profile三种类型的资源文件，用于存放特定类型资源。
 
   表3 资源组目录说明
 
 | 目录类型    | 说明                                     | 资源文件                                     |
 | --------- | ---------------------------------------- | ---------------------------------------- |
-| element | 表示元素资源，以下每一类数据都采用相应的JSON文件来表征（目录下仅支持文件类型）。<br/>-&nbsp;boolean，布尔型<br/>-&nbsp;color，颜色<br/>-&nbsp;float，浮点型<br/>-&nbsp;intarray，整型数组<br/>-&nbsp;integer，整型<br/>-&nbsp;pattern，样式<br/>-&nbsp;plural，复数形式<br/>-&nbsp;strarray，字符串数组<br/>-&nbsp;string，字符串 | element目录中的文件名称建议与下面的文件名保持一致。每个文件中只能包含同一类型的数据。<br/>-&nbsp;boolean.json<br/>-&nbsp;color.json<br/>-&nbsp;float.json<br/>-&nbsp;intarray.json<br/>-&nbsp;integer.json<br/>-&nbsp;pattern.json<br/>-&nbsp;plural.json<br/>-&nbsp;strarray.json<br/>-&nbsp;string.json |
-| media   | 表示媒体资源，包括图片、音频、视频等非文本格式的文件（目录下只支持文件类型）。<br/>图片和音视频的类型说明间表4和表5。              | 文件名可自定义，例如：icon.png。                     |
-| profile  | 表示自定义配置文件，其文件内容可[通过包管理接口](../reference/apis/js-apis-bundleManager.md#bundlemanagergetprofilebyability)获取（目录下只支持文件类型）。       | 文件名可自定义，例如：test_profile.json。           |
+| element | 表示元素资源，以下每一类数据都采用相应的JSON文件来表征（目录下仅支持文件类型）。<br/>-&nbsp;boolean，布尔型<br/>-&nbsp;color，颜色<br/>-&nbsp;float，浮点型，范围是-2^128-2^128<br/>-&nbsp;intarray，整型数组<br/>-&nbsp;integer，整型，范围是-2^31-2^31-1<br/>-&nbsp;pattern，样式（仅支持系统应用使用）<br/>-&nbsp;plural，复数形式<br/>-&nbsp;strarray，字符串数组<br/>-&nbsp;string，字符串 <br/>-&nbsp;theme，主题（仅支持系统应用使用）| element目录中的文件名称建议与下面的文件名保持一致。每个文件中只能包含同一类型的数据。<br/>-&nbsp;boolean.json<br/>-&nbsp;color.json<br/>-&nbsp;float.json<br/>-&nbsp;intarray.json<br/>-&nbsp;integer.json<br/>-&nbsp;pattern.json<br/>-&nbsp;plural.json<br/>-&nbsp;strarray.json<br/>-&nbsp;string.json |
+| media   | 表示媒体资源，包括图片、音频、视频等非文本格式的文件（目录下只支持文件类型）。<br/>图片和音视频的类型说明见表4和表5。              | 文件名可自定义，例如：icon.png。                     |
+| profile  | 表示自定义配置文件，其文件内容可[通过包管理接口](../reference/apis-ability-kit/js-apis-bundleManager.md#bundlemanagergetprofilebyability)获取（目录下只支持文件类型）。       | 文件名可自定义，例如：test_profile.json。           |
 
 **媒体资源类型说明**
 
@@ -119,15 +119,12 @@ en_US和zh_CN是默认存在的两个限定词目录，其余限定词目录需�
 
 | 格式                                   | 支持的文件类型         |
 | ------------------------------------ | --------------- |
-| H.263                                | .3gp <br>.mp4   |
-| H.264 AVC <br> Baseline Profile (BP) | .3gp <br>.mp4   |
-| MPEG-4 SP                            | .3gp            |
-| VP8                                  | .webm <br> .mkv |
+| H.264 AVC |.3gp |
+| Baseline Profile (BP) | .mp4   |
 
 **资源文件示例**
 
 color.json文件的内容如下：
-
 
 ```json
 {
@@ -146,7 +143,6 @@ color.json文件的内容如下：
 
 float.json文件的内容如下：
 
-
 ```json
 {
     "float":[
@@ -163,7 +159,6 @@ float.json文件的内容如下：
 ```
 
 string.json文件的内容如下：
-
 
 ```json
 {
@@ -185,7 +180,6 @@ string.json文件的内容如下：
 ```
 
 plural.json文件的内容如下：
-
 
 ```json
 {
@@ -235,49 +229,48 @@ plural.json文件的内容如下：
 
 ### 应用资源
 
-- 对于应用资源，在工程中，通过```"$r('app.type.name')"```形式引用。其中，app为应用内resources目录中定义的资源；type为资源类型或资源的存放位置，取值包含“color”、“float”、“string”、“plural”、“media”；name为资源命名，由开发者定义资源时确定。
+#### 单HAP包资源
 
-- 对于rawfile目录资源，通过```"$rawfile('filename')"```形式引用。其中，filename为rawfile目录下文件的相对路径，文件名需要包含后缀，路径开头不可以以"/"开头。
+ - 通过```"$r"```或```"$rawfile"```引用资源。<br/>对于“color”、“float”、“string”、“plural”、“media”、“profile”等类型的资源，通过```"$r('app.type.name')"```形式引用。其中，app为resources目录中定义的资源；type为资源类型或资源的存放位置；name为资源名，开发者定义资源时确定。<br/>对于rawfile目录资源，通过```"$rawfile('filename')"```形式引用。其中，filename为rawfile目录下文件的相对路径，文件名需要包含后缀，路径开头不可以"/"开头。
 
-- 对于rawfile目录的descriptor，可通过资源管理的[getRawFd](../reference/apis/js-apis-resource-manager.md#getrawfd9)接口引用，其返回值descriptor.fd为hap包的fd。此时，访问rawfile文件需要结合{fd, offset, length}一起使用。
+  > **说明：**
+  >
+  > rawfile的native的访问方式请参考[Rawfile开发指导](../napi/rawfile-guidelines.md)。
 
-- 对于resfile目录资源，只提供资源目录获取，可直接通过资源路径操作文件。
-
-> **说明：**
-> 
-> 资源描述符不能拼接使用，仅支持普通字符串如`'app.type.name'`。
->
-> `$r`返回值为Resource对象，可通过[getStringValue](../reference/apis/js-apis-resource-manager.md#getstringvalue9) 方法获取对应的字符串。
-
-[资源组目录](#资源组目录)下的“资源文件示例”显示了.json文件内容，包含color.json文件、string.json文件和plural.json文件，访问应用资源时需先了解.json文件的使用规范。<br/>资源的具体使用方法如下：
+  [资源组目录](#资源组目录)下的“资源文件示例”显示了.json文件内容，包含color.json文件、string.json文件和plural.json文件，访问应用资源时需先了解.json文件的使用规范。<br/>资源的具体使用方法如下：
 
 ```ts
-Text($r('app.string.string_hello'))
-  .fontColor($r('app.color.color_hello'))
-  .fontSize($r('app.float.font_hello'))
+Text('Hello')
+  .fontColor($r('sys.color.ohos_id_color_emphasize'))
+  .fontSize($r('sys.float.ohos_id_text_size_headline1'))
+  .fontFamily($r('sys.string.ohos_id_text_font_family_medium'))
+  .backgroundColor($r('sys.color.ohos_id_color_palette_aux1'))
 
-Text($r('app.string.string_world'))
-  .fontColor($r('app.color.color_world'))
-  .fontSize($r('app.float.font_world'))
-
-// 引用string.json资源。Text中$r的第一个参数指定string资源，第二个参数用于替换string.json文件中的%s。
-// 如下示例代码value为"We will arrive at five of the clock"。
-Text($r('app.string.message_arrive', "five of the clock"))
-  .fontColor($r('app.color.color_hello'))
-  .fontSize($r('app.float.font_hello'))
-
-// 引用plural$资源。Text中$r的第一个指定plural资源，第二个参数用于指定单复数（在中文，单复数均使用other。在英文，one：代表单数，取值为1；other：代表复数，取值为大于等于1的整数），第三个参数用于替换%d
-// 如下示例代码为复数，value为"5 apples"。
-Text($r('app.plural.eat_apple', 5, 5))
-  .fontColor($r('app.color.color_world'))
-  .fontSize($r('app.float.font_world'))
-
-Image($r('app.media.my_background_image'))  // media资源的$r引用
-
-Image($rawfile('test.png'))                 // rawfile$r引用rawfile目录下图片
-
-Image($rawfile('newDir/newTest.png'))       // rawfile$r引用rawfile目录下图片
+Image($r('sys.media.ohos_app_icon'))
+  .border({
+    color: $r('sys.color.ohos_id_color_palette_aux1'),
+    radius: $r('sys.float.ohos_id_corner_radius_button'), width: 2
+  })
+  .margin({
+    top: $r('sys.float.ohos_id_elements_margin_horizontal_m'),
+    bottom: $r('sys.float.ohos_id_elements_margin_horizontal_l')
+  })
+  .height(200)
+  .width(300)
 ```
+
+- 通过本应用上下文获取ResourceManager后，调用不同[资源管理接口](../reference/apis-localization-kit/js-apis-resource-manager.md)访问不同资源。<br/>例如：getContext.resourceManager.getStringByNameSync('app.string.XXX') 可获取字符串资源；getContext.resourceManager.getRawFd('rawfilepath') 可获取Rawfile所在hap包的descriptor信息，访问rawfile文件时需{fd, offset, length}一起使用。
+
+#### 跨HAP/HSP包资源
+
+##### bundle不同,跨bundle访问（仅支持系统应用使用）
+
+- 通过createModuleContext(bundleName, moduleName)接口创建对应HAP/HSP包的上下文，获取resourceManager对象后，调用不同[资源管理接口](../reference/apis-localization-kit/js-apis-resource-manager.md)访问不同资源。<br/>例如：getContext.createModuleContext(bundleName， moduleName).resourceManager.getStringByNameSync('app.string.XXX')。
+
+##### bundle相同，跨module访问
+
+- 通过createModuleContext(moduleName)接口创建同应用中不同module的上下文，获取resourceManager对象后，调用不同接口访问不同资源。<br/>例如：getContext.createModuleContext(moduleName).resourceManager.getStringByNameSync('app.string.XXX')。
+
 
 ### 系统资源
 
@@ -290,6 +283,8 @@ Image($rawfile('newDir/newTest.png'))       // rawfile$r引用rawfile目录下�
 > - 仅声明式开发范式支持使用系统资源。
 >
 > - 对于系统预置应用，建议使用系统资源；对于三方应用，可以根据需要选择使用系统资源或自定义应用资源。
+>
+> - 界面加载的系统资源字体进行显示时，可以在配置中system/etc/fontconfig.json文件查看。默认字体为HarmonyOS Sans。
 
 ```ts
 Text('Hello')
@@ -331,13 +326,13 @@ overylay是一种资源替换机制，针对不同品牌、产品的显示风格
 
 1、对应的overlay资源包需要放在对应应用安装路径下。如应用com.example.overlay的安装路径：data/app/el1/bundle/public/com.example.overlay/。
 
-2、应用通过[addResource(path)](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-resource-manager.md#addresource10)，实现资源覆盖；通过[removeResource(path)](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-resource-manager.md#removeresource10)，实现overlay删除。overlay资源路径需经过元能力的getContext().BundleCodeDir获取此应用对应的沙箱根目录，由应用的沙箱根目录+overlay的hsp名称组成。如：let path = getContext().bundleCodeDir + "hsp名"，其对应沙箱路径为：/data/storage/el1/bundle/enter-release-signed.hsp。
+2、应用通过[addResource(path)](../reference/apis-localization-kit/js-apis-resource-manager.md#addresource10)，实现资源覆盖；通过[removeResource(path)](../reference/apis-localization-kit/js-apis-resource-manager.md#removeresource10)，实现overlay删除。overlay资源路径需经过元能力的getContext().BundleCodeDir获取此应用对应的沙箱根目录，由应用的沙箱根目录+overlay的hsp名称组成。如：let path = getContext().bundleCodeDir + "hsp名"，其对应沙箱路径为：/data/storage/el1/bundle/enter-release-signed.hsp。
 
 - 静态overlay配置方式
 
 在IDE中创建应用工程时，module的配置文件module.json5中包含targetModuleName和targetPriority字段时，该module将会在安装阶段被识别为overlay特征的module。overlay特征的module一般是为设备上存在的非overlay特征的module提供覆盖的资源文件，以便于targetModuleName指向的module在运行阶段可以使用overlay资源文件展示不同的颜色，标签，主题等等。
 
-该功能默认使能，其使能及去使能请参考[包管理接口](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-overlay.md)。
+该功能默认使能，其使能及去使能请参考[包管理接口](../reference/apis-ability-kit/js-apis-overlay.md)。
 
 ## 相关实例
 

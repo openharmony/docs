@@ -24,16 +24,14 @@
 
 ## 开发步骤
 
-1. [请求通知授权](notification-enable.md)。获得用户授权后，才能使用通知功能。
-
-2. 导入模块。
+1. 导入模块。
    
    ```ts
    import notificationManager from '@ohos.notificationManager';
    import Base from '@ohos.base';
    ```
 
-3. 发布通知 。
+2. 发布通知。
 
    - 系统实况窗类型通知继承了普通文本类型的字段，新增了类型标识符、胶囊、按钮、时间和进度，该类型的具体字段描述参考[NotificationSystemLiveViewContent](../reference/apis/js-apis-inner-notification-notificationContent.md#notificationsystemliveviewcontent)。
      
@@ -124,8 +122,6 @@
           bundleNames: ["bundleName1"],
           userId: 123
         };
-        // 订阅通知
-        notificationSubscribe.subscribe(notificationSubscriber, info, subscribeCallback);
         // 订阅系统实况窗(按钮)
         notificationManager.subscribeSystemLiveView(systemLiveViewSubscriber);
         // 发布通知
@@ -190,7 +186,7 @@
         isOngoing: true,
         isUnremovable: false,
         autoDeletedTime: 500,
-        wantAgent: await WantAgent.getWantAgent(WantAgentInfo),
+        wantAgent: await WantAgent.getWantAgent(wantAgentInfo),
         extraInfo: {
           'testKey': 'testValue'
         },

@@ -21,7 +21,7 @@ Search(options?: { value?: string, placeholder?: ResourceStr, icon?: string, con
 | value       | string                                               | 否   | 设置当前显示的搜索文本内容。<br />从API version 10开始，该参数支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
 | placeholder | [ResourceStr](ts-types.md#resourcestr)<sup>10+</sup> | 否   | 设置无输入时的提示文本。                                     |
 | icon        | string                                               | 否   | 设置搜索图标路径，默认使用系统搜索图标。<br/>**说明：** <br/>icon的数据源支持本地图片和网络图片。<br/>-&nbsp;支持的图片格式包括png、jpg、bmp、svg、gif和pixelmap。<br/>-&nbsp;支持Base64字符串。格式data:image/[png\|jpeg\|bmp\|webp];base64,[base64 data], 其中[base64 data]为Base64字符串数据。<br/>如果与属性searchIcon同时设置，则searchIcon优先。 |
-| controller  | SearchController                                     | 否   | 设置Search组件控制器。                                       |
+| controller  | [SearchController](#searchcontroller) | 否   | 设置Search组件控制器。                                       |
 
 ## 属性
 
@@ -29,14 +29,14 @@ Search(options?: { value?: string, placeholder?: ResourceStr, icon?: string, con
 
 | 名称                    | 参数类型                                         | 描述                                           |
 | ----------------------- | ------------------------------------------------ | ---------------------------------------------- |
-| searchButton<sup>10+</sup> | value: string,<br />option?: [SearchButtonOptions](#searchbuttonoptions10对象说明)            | 搜索框末尾搜索按钮文本内容，默认无搜索按钮。               |
+| searchButton | value: string,<br />option<sup>10+</sup>?: [SearchButtonOptions](#searchbuttonoptions10对象说明)            | 搜索框末尾搜索按钮文本内容，默认无搜索按钮。<br />默认值：<br />SearchButtonOptions：{<br />fontSize: '16fp',<br />color: '#ff3f97e9'<br />}                |
 | placeholderColor        | [ResourceColor](ts-types.md#resourcecolor)       | 设置placeholder文本颜色。<br />默认值：'#99182431'。   |
 | placeholderFont         | [Font](ts-types.md#font)                         | 设置placeholder文本样式，包括字体大小，字体粗细，字体族，字体风格。目前仅支持默认字体族。                         |
 | textFont                | [Font](ts-types.md#font)                         | 设置搜索框内输入文本样式，包括字体大小，字体粗细，字体族，字体风格。目前仅支持默认字体族。                           |
 | textAlign               | [TextAlign](ts-appendix-enums.md#textalign)      | 设置文本在搜索框中的对齐方式。目前支持的对齐方式有：Start、Center、End。<br/>默认值：TextAlign.Start    |
 | copyOption<sup>9+</sup> | [CopyOptions](ts-appendix-enums.md#copyoptions9) | 设置输入的文本是否可复制。<br />默认值：CopyOptions.LocalDevice，支持设备内复制。<br/>设置CopyOptions.None时，当前Search中的文字无法被复制或剪切，仅支持粘贴。<br/>**说明：** <br/>copyOption对于拖拽，只限制是否选中，不涉及拖拽范围。 |
-| searchIcon<sup>10+</sup>   | [IconOptions](#iconoptions10对象说明)                                                  | 设置左侧搜索图标样式。                                       |
-| cancelButton<sup>10+</sup> | {<br/>style? : [CancelButtonStyle](#cancelbuttonstyle10枚举说明)<br/>icon?: [IconOptions](#iconoptions10对象说明) <br/>} | 设置右侧清除按钮样式。<br />默认值：<br />{<br />style：CancelButtonStyle.INPUT<br />} |
+| searchIcon<sup>10+</sup>   | [IconOptions](#iconoptions10对象说明)                                                  | 设置左侧搜索图标样式。<br />默认值：<br />{<br />fontSize: '16vp',<br />color: '#99ffffff',<br />src: ' '<br />}                                       |
+| cancelButton<sup>10+</sup> | {<br/>style? : [CancelButtonStyle](#cancelbuttonstyle10枚举说明)<br/>icon?: [IconOptions](#iconoptions10对象说明) <br/>} | 设置右侧清除按钮样式。<br />默认值：<br />{<br />style: CancelButtonStyle.INPUT,<br />icon: {<br />fontSize: '16vp',<br />color: '#99ffffff',<br />src: ' '<br />}<br />}<br />当style为CancelButtonStyle.CONSTANT时，默认显示清除样式。 |
 | fontColor<sup>10+</sup>    | [ResourceColor](ts-types.md#resourcecolor)                   | 设置输入文本的字体颜色。<br />默认值：'#FF182431'。<br />**说明：**<br />[文本通用属性](ts-universal-attributes-text-style.md)fontSize、fontStyle、fontWeight和fontFamily在textFont属性中设置。 |
 | caretStyle<sup>10+</sup>  | [CaretStyle](#caretstyle10对象说明)                                                  | 设置光标样式。<br />默认值：<br />{<br />width: '1.5vp',<br />color: '#007DFF'<br />} |
 | enableKeyboardOnFocus<sup>10+</sup> | boolean | Search获焦时，是否绑定输入法<br/>默认值：true。从API version 10开始，获焦默认绑定输入法。 |
@@ -79,10 +79,10 @@ Search(options?: { value?: string, placeholder?: ResourceStr, icon?: string, con
 
 | 名称                 | 描述            |
 | ------------------ | ------------- |
-| Normal   | 基本输入模式。<br/>支持输入数字、字母、下划线、空格、特殊字符。 |
-| Email    | 邮箱地址输入模式。支持数字，字母，下划线，以及@字符（只能存在一个@字符）。 |
-| Number   | 纯数字输入模式。      |
-| PhoneNumber | 电话号码输入模式。<br/>支持输入数字、+ 、-、*、#，长度不限。 |
+| NORMAL   | 基本输入模式。<br/>支持输入数字、字母、下划线、空格、特殊字符。 |
+| EMAIL    | 邮箱地址输入模式。支持数字，字母，下划线，以及@字符（只能存在一个@字符）。 |
+| NUMBER   | 纯数字输入模式。      |
+| PHONE_NUMBER | 电话号码输入模式。<br/>支持输入数字、+ 、-、*、#，长度不限。 |
 
 ## 事件
 
@@ -96,7 +96,7 @@ Search(options?: { value?: string, placeholder?: ResourceStr, icon?: string, con
 | onCut(callback: (value: string) => void)                     | 长按搜索框弹出剪切板之后，点击剪切板的剪切按钮触发该回调。<br> -value: 剪切的文本内容。 |
 | onPaste(callback: (value: string, event<sup>11+</sup>: [PasteEvent](ts-basic-components-richeditor.md#pasteevent11)) => void) | 长按搜索框弹出剪切板之后，点击剪切板的粘贴按钮触发该回调。<br> - value: 粘贴的文本内容。<br/> - event: 用户自定义的粘贴事件。|
 | onTextSelectionChange(callback: (selectionStart: number, selectionEnd: number) => void)<sup>10+</sup> | 文本选择的位置发生变化时，触发该回调。<br />selectionStart：文本选择区域起始位置，文本框中文字的起始位置为0。<br />selectionEnd：文本选择区域结束位置。 |
-| onContentScroll(callback: (totalOffsetX: number, totalOffsetY: number) => void)<sup>10+</sup> | 文本内容滚动时，触发该回调。<br />totalOffsetX：文本在内容区的横坐标偏移。<br />totalOffsetY：文本在内容区的纵坐标偏移。 |
+| onContentScroll(callback: (totalOffsetX: number, totalOffsetY: number) => void)<sup>10+</sup> | 文本内容滚动时，触发该回调。<br />totalOffsetX：文本在内容区的横坐标偏移，单位px。<br />totalOffsetY：文本在内容区的纵坐标偏移，单位px。 |
 
 ## SearchController
 
@@ -144,7 +144,7 @@ getTextContentRect(): RectResult
 
 ### RectResult<sup>10+</sup>
 
-位置和大小。
+位置和大小，单位均为像素。
 
 | 参数      | 类型     | 描述 |
 | ------- | ------ | ----------------------- |
@@ -241,12 +241,13 @@ struct SearchExample {
 @Entry
 @Component
 struct SearchExample {
+  @State changeValue: string = ''
   @State submitValue: string = ''
 
   build() {
     Column() {
       Text('onSubmit:' + this.submitValue).fontSize(18).margin(15)
-      Search({ placeholder: 'Type to search...' })
+      Search({ value: this.changeValue, placeholder: 'Type to search...' })
         .searchButton('SEARCH')
         .searchIcon({
           src: $r('app.media.search')
@@ -266,6 +267,9 @@ struct SearchExample {
         .textFont({ size: 14, weight: 400 })
         .onSubmit((value: string) => {
           this.submitValue = value
+        })
+        .onChange((value: string) => {
+          this.changeValue = value
         })
         .margin(20)
     }.width('100%')

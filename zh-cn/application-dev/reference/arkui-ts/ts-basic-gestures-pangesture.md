@@ -19,7 +19,7 @@ PanGesture(value?: { fingers?: number; direction?: PanDirection; distance?: numb
 | -------- | -------- | -------- | -------- |
 | fingers | number | 否 | 用于指定触发拖动的最少手指数，最小为1指，&nbsp;最大取值为10指。<br/>默认值：1<br/>取值范围：[1,10]<br/>**说明：** <br/>当设置的值小于1或不设置时，会被转化为默认值。 |
 | direction | [PanDirection](#pandirection枚举说明) | 否 | 用于指定触发拖动的手势方向，此枚举值支持逻辑与(&amp;)和逻辑或（\|）运算。<br/>默认值：PanDirection.All |
-| distance | number | 否 | 用于指定触发拖动手势事件的最小拖动距离，单位为vp。<br/>默认值：5<br/>**说明：**<br/>[Tabs组件](ts-container-tabs.md)滑动与该拖动手势事件同时存在时，可将distance值设为1，使拖动更灵敏，避免造成事件错乱。<br/>当设定的值小于等于0时，按默认值5处理。 |
+| distance | number | 否 | 用于指定触发拖动手势事件的最小拖动距离，单位为vp。<br/>默认值：5<br/>**说明：**<br/>[Tabs组件](ts-container-tabs.md)滑动与该拖动手势事件同时存在时，可将distance值设为1，使拖动更灵敏，避免造成事件错乱。<br/>当设定的值小于0时，按默认值5处理。 |
 
 ## PanDirection枚举说明
 
@@ -37,7 +37,7 @@ PanGesture(value?: { fingers?: number; direction?: PanDirection; distance?: numb
 
 ## PanGestureOptions
 
-通过PanGestureOptions对象接口可以动态修改滑动手势识别器的属性，从而避免通过状态变量修改属性（状态变量修改会导致UI刷新）。
+通过PanGestureOptions对象接口可以动态修改平移手势识别器的属性，从而避免通过状态变量修改属性（状态变量修改会导致UI刷新）。
 
 PanGestureOptions(value?: { fingers?: number; direction?: PanDirection; distance?: number })
 
@@ -62,9 +62,9 @@ PanGestureOptions(value?: { fingers?: number; direction?: PanDirection; distance
 
 | 名称 | 功能描述 |
 | -------- | -------- |
-| onActionStart(event:&nbsp;(event?:&nbsp;[GestureEvent](ts-gesture-settings.md#gestureevent对象说明))&nbsp;=&gt;&nbsp;void) | Pan手势识别成功回调。 |
-| onActionUpdate(event:&nbsp;(event?:&nbsp;[GestureEvent](ts-gesture-settings.md#gestureevent对象说明))&nbsp;=&gt;&nbsp;void) | Pan手势移动过程中回调。<br/>fingerList为多根手指时，该回调监听每次只会更新一根手指的位置信息。 |
-| onActionEnd(event:&nbsp;(event?:&nbsp;[GestureEvent](ts-gesture-settings.md#gestureevent对象说明))&nbsp;=&gt;&nbsp;void) | Pan手势识别成功，手指抬起后触发回调。 |
+| onActionStart(event:&nbsp;(event:&nbsp;[GestureEvent](ts-gesture-settings.md#gestureevent对象说明))&nbsp;=&gt;&nbsp;void) | Pan手势识别成功回调。 |
+| onActionUpdate(event:&nbsp;(event:&nbsp;[GestureEvent](ts-gesture-settings.md#gestureevent对象说明))&nbsp;=&gt;&nbsp;void) | Pan手势移动过程中回调。<br/>fingerList为多根手指时，该回调监听每次只会更新一根手指的位置信息。 |
+| onActionEnd(event:&nbsp;(event:&nbsp;[GestureEvent](ts-gesture-settings.md#gestureevent对象说明))&nbsp;=&gt;&nbsp;void) | Pan手势识别成功，手指抬起后触发回调。 |
 | onActionCancel(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | Pan手势识别成功，接收到触摸取消事件触发回调。<br/>**说明：** <br/>在窗口失焦的时候会触发。 |
 
 ## 属性
@@ -99,16 +99,16 @@ struct PanGestureExample {
       // 左右拖动触发该手势事件
       .gesture(
       PanGesture(this.panOption)
-        .onActionStart((event?: GestureEvent) => {
+        .onActionStart((event: GestureEvent) => {
           console.info('Pan start')
         })
-        .onActionUpdate((event?: GestureEvent) => {
+        .onActionUpdate((event: GestureEvent) => {
           if (event) {
             this.offsetX = this.positionX + event.offsetX
             this.offsetY = this.positionY + event.offsetY
           }
         })
-        .onActionEnd(() => {
+        .onActionEnd((event: GestureEvent) => {
           this.positionX = this.offsetX
           this.positionY = this.offsetY
           console.info('Pan end')

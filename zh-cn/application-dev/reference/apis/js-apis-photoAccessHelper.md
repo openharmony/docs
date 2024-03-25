@@ -3987,6 +3987,7 @@ requestPhoto(callback: AsyncCallback&lt;image.PixelMap&gt;): string
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import image from '@ohos.multimedia.image'
 
 async function example() {
   try {
@@ -4051,6 +4052,7 @@ requestPhoto(options: RequestPhotoOptions, callback: AsyncCallback&lt;image.Pixe
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import image from '@ohos.multimedia.image'
 
 async function example() {
   try {
@@ -4114,6 +4116,7 @@ cancelPhotoRequest(requestId: string): void
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import image from '@ohos.multimedia.image'
 
 async function example() {
   try {

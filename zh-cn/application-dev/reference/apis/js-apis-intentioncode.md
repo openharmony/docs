@@ -31,5 +31,5 @@ import IntentionCode from '@ohos.multimodalInput.intentionCode';
 | INTENTION_MENU                   |  9 | 菜单                            |
 | INTENTION_PAGE_UP                |  11 | 上一页                         |
 | INTENTION_PAGE_DOWN              |  12 | 下一页                         |
-| INTENTION_ZOOM_OUT               |  13 | 放大键                         |
-| INTENTION_ZOOM_IN                |  14 | 缩小键                         |
+| INTENTION_ZOOM_OUT               |  13 | 缩小键                         |
+| INTENTION_ZOOM_IN                |  14 | 放大键                         |

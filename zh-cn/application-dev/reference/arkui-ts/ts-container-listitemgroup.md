@@ -26,14 +26,14 @@ ListItemGroup(options?: ListItemGroupOptions)
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
-| options |  [ListItemGroupOptions](#listitemgroupoptions对象说明)| 是 | 列表item分组组件参数。 |
+| options |  [ListItemGroupOptions](#listitemgroupoptions对象说明)| 否 | 列表item分组组件参数。 |
 
 ## ListItemGroupOptions对象说明
 
 | 参数名              | 参数类型                                            | 必填 | 参数描述                                                     |
 | ------------------- | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| header              | [CustomBuilder](ts-types.md#custombuilder8)         | 否   | 设置ListItemGroup头部组件。                                  |
-| footer              | [CustomBuilder](ts-types.md#custombuilder8)         | 否   | 设置ListItemGroup尾部组件。                                  |
+| header              | [CustomBuilder](ts-types.md#custombuilder8)         | 否   | 设置ListItemGroup头部组件。<br/>**说明：**<br/>只能放单个子组件。                                  |
+| footer              | [CustomBuilder](ts-types.md#custombuilder8)         | 否   | 设置ListItemGroup尾部组件。<br/>**说明：**<br/>只能放单个子组件。                                  |
 | space               | number&nbsp;\|&nbsp;string                          | 否   | 列表项间距。只作用于ListItem与ListItem之间，不作用于header与ListItem、footer与ListItem之间。 |
 | style<sup>10+</sup> | [ListItemGroupStyle](#listitemgroupstyle10枚举说明) | 否   | 设置List组件卡片样式。<br/>默认值: ListItemGroupStyle.NONE<br/>设置为ListItemGroupStyle.NONE时无样式。<br/>设置为ListItemGroupStyle.CARD时，必须配合[ListItem](ts-container-listitem.md)的ListItemStyle.CARD同时使用，显示默认卡片样式。 <br/>卡片样式下, 为卡片内的列表选项提供了默认的focus、hover、press、selected和disable样式。<br/>**说明：**<br/>当前卡片模式下，不支持listDirection属性设置，使用默认Axis.Vertical排列方向。<br/>当前卡片模式下，List属性alignListItem默认为ListItemAlign.Center，居中对齐显示。<br/>当前卡片模式下，ListItemGroup不支持设置头部组件header和尾部组件footer。<br/>若仅设置ListItemGroupStyle.CARD，未设置ListItemStyle.CARD时，只显示部分卡片样式及功能。 |
 

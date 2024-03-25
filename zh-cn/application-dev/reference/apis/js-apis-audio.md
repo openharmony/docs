@@ -790,7 +790,7 @@ async function createTonePlayerBefore(){
 | rendererInfo | [AudioRendererInfo](#audiorendererinfo8) | 是   | 表示渲染器信息。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Renderer |
 | privacyType<sup>10+</sup> | [AudioPrivacyType](#audioprivacytype) | 否 | 表示音频流是否可以被其他应用录制，默认值为0。<br/>**系统能力：** SystemCapability.Multimedia.Audio.PlaybackCapture |
 
-## AudioPrivacyType<sup>10+</sup><a name="audioprivacytype"></a>
+## AudioPrivacyType<sup>10+</sup>
 
 枚举类型，用于标识对应播放音频流是否支持被其他应用录制。
 
@@ -943,7 +943,7 @@ async function createTonePlayerBefore(){
 | capturerInfo                        | [AudioCapturerInfo](#audiocapturerinfo)                   | 是   | 表示采集器信息。 <br/>**系统能力：** SystemCapability.Multimedia.Audio.Capturer        |
 | playbackCaptureConfig<sup>10+</sup> | [AudioPlaybackCaptureConfig](#audioplaybackcaptureconfig) | 否   | 音频内录的配置信息。<br/>**系统能力：** SystemCapability.Multimedia.Audio.PlaybackCapture |
 
-## AudioCapturerInfo<sup>8+</sup><a name="audiocapturerinfo"></a>
+## AudioCapturerInfo<sup>8+</sup>
 
 描述音频采集器信息。
 
@@ -954,7 +954,7 @@ async function createTonePlayerBefore(){
 | source        | [SourceType](#sourcetype) | 是   | 音源类型。       |
 | capturerFlags | number                    | 是   | 音频采集器标志。<br>0代表普通音频采集器，1代表低时延音频采集器。ArkTS接口暂不支持低时延音频采集器。 |
 
-## SourceType<sup>8+</sup><a name="sourcetype"></a>
+## SourceType<sup>8+</sup>
 
 枚举，音源类型。
 
@@ -968,7 +968,7 @@ async function createTonePlayerBefore(){
 | SOURCE_TYPE_VOICE_CALL<sup>11+</sup>            | 4 | 通话录音的音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core<br/>**需要权限：** ohos.permission.RECORD_VOICE_CALL <br/> 此接口为系统接口|
 | SOURCE_TYPE_VOICE_COMMUNICATION              | 7      | 语音通话场景的音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
 
-## AudioPlaybackCaptureConfig<sup>10+</sup><a name="audioplaybackcaptureconfig"></a>
+## AudioPlaybackCaptureConfig<sup>10+</sup>
 
 播放音频流录制（内录）的配置信息。
 
@@ -978,7 +978,7 @@ async function createTonePlayerBefore(){
 | ------------- | --------------------------------------------- | ---- | -------------------------------- |
 | filterOptions | [CaptureFilterOptions](#capturefilteroptions) | 是   | 需要录制的播放音频流的筛选信息。 |
 
-## CaptureFilterOptions<sup>10+</sup><a name="capturefilteroptions"></a>
+## CaptureFilterOptions<sup>10+</sup>
 
 待录制的播放音频流的筛选信息。
 
@@ -992,7 +992,7 @@ async function createTonePlayerBefore(){
 | ------ | ---------------------------------- | ---- | ------------------------------------------------------------ |
 | usages | Array<[StreamUsage](#streamusage)> | 是   | 指定需要录制的播放音频流的[StreamUsage](#streamusage)类型。可同时指定0个或多个StreamUsage。Array为空时，默认录制StreamUsage为STREAM_USAGE_MEDIA的播放音频流。 |
 
-## AudioScene<sup>8+</sup><a name="audioscene"></a>
+## AudioScene<sup>8+</sup>
 
 枚举，音频场景。
 
@@ -1028,7 +1028,7 @@ setAudioParameter(key: string, value: string, callback: AsyncCallback&lt;void&gt
 
 音频参数设置，使用callback方式异步返回结果。
 
-本接口的使用场景为根据硬件设备支持能力扩展音频配置。在不同的设备平台上，所支持的音频参数会存在差异。示例代码内使用样例参数，实际支持的音频配置参数见具体设备平台的资料描述。
+接口用于为根据硬件设备支持能力扩展音频配置。支持的参数与产品、设备强相关，非通用参数，示例代码内使用样例参数。
 
 **需要权限：** ohos.permission.MODIFY_AUDIO_SETTINGS
 
@@ -1062,7 +1062,7 @@ setAudioParameter(key: string, value: string): Promise&lt;void&gt;
 
 音频参数设置，使用Promise方式异步返回结果。
 
-本接口的使用场景为根据硬件设备支持能力扩展音频配置。在不同的设备平台上，所支持的音频参数会存在差异。示例代码内使用样例参数，实际支持的音频配置参数见具体设备平台的资料描述。
+接口用于为根据硬件设备支持能力扩展音频配置。支持的参数与产品、设备强相关，非通用参数，示例代码内使用样例参数。
 
 **需要权限：** ohos.permission.MODIFY_AUDIO_SETTINGS
 
@@ -1162,10 +1162,10 @@ setAudioScene\(scene: AudioScene, callback: AsyncCallback<void\>\): void
 
 **参数：**
 
-| 参数名   | 类型                                 | 必填 | 说明                 |
-| :------- | :----------------------------------- | :--- | :------------------- |
-| scene    | <a href="#audioscene">AudioScene</a> | 是   | 音频场景模式。       |
-| callback | AsyncCallback<void\>                 | 是   | 回调函数。当设置音频场景模式成功，err为undefined，否则为错误对象。 |
+| 参数名   | 类型                         | 必填 | 说明                 |
+| :------- |:---------------------------| :--- | :------------------- |
+| scene    | [AudioScene](#audioscene8) | 是   | 音频场景模式。       |
+| callback | AsyncCallback<void\>       | 是   | 回调函数。当设置音频场景模式成功，err为undefined，否则为错误对象。 |
 
 **示例：**
 
@@ -1195,7 +1195,7 @@ setAudioScene\(scene: AudioScene\): Promise<void\>
 
 | 参数名 | 类型                                 | 必填 | 说明           |
 | :----- | :----------------------------------- | :--- | :------------- |
-| scene  | <a href="#audioscene">AudioScene</a> | 是   | 音频场景模式。 |
+| scene  | [AudioScene](#audioscene8) | 是   | 音频场景模式。 |
 
 **返回值：**
 
@@ -1227,7 +1227,7 @@ getAudioScene\(callback: AsyncCallback<AudioScene\>\): void
 
 | 参数名   | 类型                                                | 必填 | 说明                         |
 | :------- | :-------------------------------------------------- | :--- | :--------------------------- |
-| callback | AsyncCallback<<a href="#audioscene">AudioScene</a>> | 是   | 回调函数。当获取音频场景模式成功，err为undefined，data为获取到的音频场景模式；否则为错误对象。 |
+| callback | AsyncCallback<[AudioScene](#audioscene8)> | 是   | 回调函数。当获取音频场景模式成功，err为undefined，data为获取到的音频场景模式；否则为错误对象。 |
 
 **示例：**
 
@@ -1255,7 +1255,7 @@ getAudioScene\(\): Promise<AudioScene\>
 
 | 类型                                          | 说明                         |
 | :-------------------------------------------- | :--------------------------- |
-| Promise<<a href="#audioscene">AudioScene</a>> | Promise对象，返回音频场景模式。 |
+| Promise<[AudioScene](#audioscene8)> | Promise对象，返回音频场景模式。 |
 
 **示例：**
 
@@ -1281,7 +1281,7 @@ getAudioSceneSync\(\): AudioScene
 
 | 类型                                          | 说明                         |
 | :-------------------------------------------- | :--------------------------- |
-| <a href="#audioscene">AudioScene</a> | 音频场景模式。 |
+| [AudioScene](#audioscene8) | 音频场景模式。 |
 
 **示例：**
 
@@ -9439,8 +9439,8 @@ console.info(`Info address: ${info.deviceDescriptors[0].address}`);
 console.info(`Info samplerates: ${info.deviceDescriptors[0].sampleRates[0]}`);
 console.info(`Info channelcounts: ${info.deviceDescriptors[0].channelCounts[0]}`);
 console.info(`Info channelmask: ${info.deviceDescriptors[0].channelMasks[0]}`);
-if (deviceDescriptors[0].encodingTypes) {
-  console.info(`Device encodingTypes: ${deviceDescriptors[0].encodingTypes[0]}`);
+if (info.deviceDescriptors[0].encodingTypes) {
+  console.info(`Device encodingTypes: ${info.deviceDescriptors[0].encodingTypes[0]}`);
 }
 ```
 
@@ -9615,7 +9615,7 @@ audioCapturer.off('inputDeviceChange');
 
 on(type: 'audioCapturerChange', callback: Callback\<AudioCapturerChangeInfo>): void
 
-订阅监听录音流配置变化，使用callback方式返回结果。
+订阅监听录音流配置变化，使用callback方式返回结果。订阅内部是异步实现，是非精确回调，在录音流配置变化的同时注册回调，收到的返回结果存在变化可能性。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -9624,7 +9624,7 @@ on(type: 'audioCapturerChange', callback: Callback\<AudioCapturerChangeInfo>): v
 | 参数名   | 类型                       | 必填 | 说明                                        |
 | :------- | :------------------------- | :--- | :------------------------------------------ |
 | type     | string                     | 是   | 事件回调类型，支持的事件为：'audioCapturerChange'。 |
-| callback | Callback\<[AudioCapturerChangeInfo](#audiocapturerchangeinfo9)> | 是   | 回调函数，返回监听的录音流配置变化。 |
+| callback | Callback\<[AudioCapturerChangeInfo](#audiocapturerchangeinfo9)> | 是   | 回调函数，录音流配置或状态变化时返回监听的录音流当前配置和状态信息。 |
 
 **错误码：**
 
@@ -9657,7 +9657,7 @@ off(type: 'audioCapturerChange', callback?: Callback\<AudioCapturerChangeInfo>):
 | 参数名   | 类型                       | 必填 | 说明                                        |
 | :------- | :------------------------- | :--- | :------------------------------------------ |
 | type     | string                     | 是   | 事件回调类型，支持的事件为：'audioCapturerChange'。 |
-| callback | Callback\<[AudioCapturerChangeInfo](#audiocapturerchangeinfo9)> | 否   | 回调函数，返回取消监听的录音流配置变化。 |
+| callback | Callback\<[AudioCapturerChangeInfo](#audiocapturerchangeinfo9)> | 否   | 回调函数，返回取消监听的录音流配置或状态变化。 |
 
 **错误码：**
 

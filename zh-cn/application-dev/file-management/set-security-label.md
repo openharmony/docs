@@ -28,6 +28,7 @@ API详细介绍请参见[ohos.file.securityLabel](../reference/apis/js-apis-file
 import securityLabel from '@ohos.file.securityLabel';
 import { BusinessError } from '@ohos.base';
 import common from '@ohos.app.ability.common';
+import fs from '@ohos.file.fs';
 
 // 获取需要设备数据等级的文件沙箱路径
 let context = getContext(this) as common.UIAbilityContext; // 获取UIAbilityContext信息

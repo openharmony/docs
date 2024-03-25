@@ -5996,18 +5996,18 @@ aVCastController.off('error')
 
 | 名称            | 类型                      | 必填 | 说明                                                                  |
 | --------------- |-------------------------| ---- |---------------------------------------------------------------------|
-| assetId         | string                  | 是   | 媒体ID。                                                               |
+| assetId         | string                  | 是   | 媒体ID。歌曲的唯一标识，由应用自定义。                      |
 | title           | string                  | 否   | 标题。                                                                 |
 | artist          | string                  | 否   | 艺术家。                                                                |
 | author          | string                  | 否   | 专辑作者。                                                               |
 | avQueueName<sup>11+</sup>     | string                  | 否   | 歌单（歌曲列表）名称。<br/>此接口为系统接口。<br>  |
 | avQueueId<sup>11+</sup>       | string                  | 否   | 歌单（歌曲列表）唯一标识Id。                                                               |
-| avQueueImage<sup>11+</sup>    | image.PixelMap[image.PixelMap](js-apis-image.md#pixelmap7) &#124; string | 否   | 歌单（歌曲列表）封面图，图片的像素数据或者图片路径地址(本地路径或网络路径)。  |                       
+| avQueueImage<sup>11+</sup>    | [image.PixelMap](js-apis-image.md#pixelmap7) &#124; string | 否   | 歌单（歌曲列表）封面图，图片的像素数据或者图片路径地址(本地路径或网络路径)。  |                       
 | album           | string                  | 否   | 专辑名称。                                                               |
 | writer          | string                  | 否   | 词作者。                                                                |
 | composer        | string                  | 否   | 作曲者。                                                                |
 | duration        | number                  | 否   | 媒体时长，单位毫秒（ms）。                                                  |
-| mediaImage      | image.PixelMap &#124; string | 否   | 图片的像素数据或者图片路径地址(本地路径或网络路径)。                             |
+| mediaImage      | [image.PixelMap](js-apis-image.md#pixelmap7) &#124; string | 否   | 图片的像素数据或者图片路径地址(本地路径或网络路径)。                             |
 | publishDate     | Date                    | 否   | 发行日期。                                                               |
 | subtitle        | string                  | 否   | 子标题。                                                                |
 | description     | string                  | 否   | 媒体描述。                                                               |

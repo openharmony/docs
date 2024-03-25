@@ -63,10 +63,11 @@ Button(label: ResourceStr, options?: ButtonOptions)
 | 名称          | 参数类型           | 描述                                |
 | ----------- | ----------- | --------------------------------- |
 | type        | [ButtonType](#buttontype枚举说明) | 设置Button样式。<br/>默认值：ButtonType.Capsule<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| fontSize    | [Length](ts-types.md#length) | 设置文本显示字号。<br/>默认值：'16fp' |
+| value  | [Length](ts-types.md#length) | 是   | 文本显示字号。<br/>默认值：若controlSize的值为：controlSize.NORMAL，取'16fp'，若controlSize的值为：controlSize.SMALL，取'12fp' |
 | fontColor   | [ResourceColor](ts-types.md#resourcecolor) | 设置文本显示颜色。<br/>默认值：'\#ffffff' |
 | fontWeight  | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | 设置文本的字体粗细，number类型取值[100, 900]，取值间隔为100，取值越大，字体越粗。<br>默认值：400 \| FontWeight.Normal |
 | fontStyle   | [FontStyle](ts-appendix-enums.md#fontstyle) | 设置文本的字体样式。<br>默认值：FontStyle.Normal。 |
+| fontFamily | [Resource](ts-types.md#resource)&nbsp;\|&nbsp;string | 字体列表。默认字体'HarmonyOS Sans'，当前支持'HarmonyOS Sans'字体和[注册自定义字体](../js-apis-font.md)。 |
 | stateEffect | boolean     | 按钮按下时是否开启按压态显示效果，当设置为false时，按压效果关闭。<br/>默认值：true<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | labelStyle<sup>10+</sup> | [LabelStyle](#labelstyle10对象说明) | 设置Button组件label文本和字体的样式。 |
 | buttonStyle<sup>11+</sup> | [ButtonStyleMode](#buttonstylemode11枚举说明) | 设置Button组件的样式和重要程度。<br>默认值:ButtonStyleMode.EMPHASIZED。 |
@@ -97,7 +98,7 @@ Button(label: ResourceStr, options?: ButtonOptions)
 | maxLines             | number                                                       | 否   | 设置Label文本的最大行数。默认情况下，文本是自动折行的，如果指定此参数，则文本最多不会超过指定的行。如果有多余的文本，可以通过overflow来指定截断方式。<br>默认值：1 |
 | minFontSize          | number \| [ResourceStr](ts-types.md#resourcestr)             | 否   | 设置Label文本最小显示字号。需配合maxFontSize以及maxLines或布局大小限制使用。 |
 | maxFontSize          | number \| [ResourceStr](ts-types.md#resourcestr)             | 否   | 设置Label文本最大显示字号。需配合minFontSize以及maxLines或布局大小限制使用。 |
-| heightAdaptivePolicy | [TextHeightAdaptivePolicy](ts-appendix-enums.md#textheightadaptivepolicy10) | 否   | 设置Label文本自适应高度的方式。                             |
+| heightAdaptivePolicy | [TextHeightAdaptivePolicy](ts-appendix-enums.md#textheightadaptivepolicy10) | 否   | 设置Label文本自适应高度的方式。<br>默认值：TextHeightAdaptivePolicy.MAX_LINES_FIRST。                             |
 | font                 | [Font](ts-types.md#font)                                     | 否   | 设置Label文本字体样式。<br>默认值：默认值参考[Font](ts-types.md#font)。     |
 
 ## ButtonStyleMode<sup>11+</sup>枚举说明

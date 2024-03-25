@@ -36,6 +36,10 @@ buffer数组，提供blob数据类型。
 | ---- | ---------- | ---- | ---- | ------ |
 | data | Uint8Array | 是   | 是   | 数据。 |
 
+> **说明：**
+>
+> Uint8Array类型数据表示8位无符号整数的数组。
+
 ## cryptoFramework.createRandom
 
 createRandom(): Random

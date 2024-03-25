@@ -30,12 +30,28 @@ Metadata主要是通过一个TAG（Key），去找对应的Data，用于传递�
    }
    ```
 
-3. 调用[Session.start](../reference/apis/js-apis-camera.md#start-4)方法开启metadata数据输出，再通过监听事件metadataObjectsAvailable回调拿到数据，接口调用失败时，会返回相应错误码，错误码类型参见[Camera错误码](../reference/apis/js-apis-camera.md#cameraerrorcode)。
-     
+3. 调用[Session.start](../reference/apis/js-apis-camera.md#start10)方法开启metadata数据输出，再通过监听事件metadataObjectsAvailable回调拿到数据，接口调用失败时，会返回相应错误码，错误码类型参见[Camera错误码](../reference/apis/js-apis-camera.md#cameraerrorcode)。
+
+   previewOutput获取方式请参考[相机预览开发步骤](camera-preview.md#开发步骤)。
    ```ts
-   async function startMetadataOutput(input: camera.CameraInput, previewOutput: camera.PreviewOutput, metadataOutput: camera.MetadataOutput, session: camera.Session): Promise<void> {
+   async function startMetadataOutput(previewOutput: camera.PreviewOutput, metadataOutput: camera.MetadataOutput, cameraManager: camera.CameraManager): Promise<void> {
+     let cameraArray: Array<camera.CameraDevice> = [];
+     cameraArray = cameraManager.getSupportedCameras();
+     if (cameraArray.length == 0) {
+       console.error('no camera.');
+       return;
+     }
+     let cameraInput: camera.CameraInput | undefined = undefined;
+     cameraInput = cameraManager.createCameraInput(cameraArray[0]);
+     if (cameraInput === undefined) {
+       console.error('cameraInput is undefined');
+       return;
+     }
+     // 打开相机
+     await cameraInput.open();
+     let session: camera.CaptureSession = cameraManager.createCaptureSession();
      session.beginConfig();
-     session.addInput(input);
+     session.addInput(cameraInput);
      session.addOutput(previewOutput);
      session.addOutput(metadataOutput);
      await session.commitConfig();
@@ -43,7 +59,7 @@ Metadata主要是通过一个TAG（Key），去找对应的Data，用于传递�
    }
    ```
 
-4. 调用[Session.stop](../reference/apis/js-apis-camera.md#stop-4)方法停止输出metadata数据，接口调用失败会返回相应错误码，错误码类型参见[Camera错误码](../reference/apis/js-apis-camera.md#cameraerrorcode)。
+4. 调用[Session.stop](../reference/apis/js-apis-camera.md#stop10)方法停止输出metadata数据，接口调用失败会返回相应错误码，错误码类型参见[Camera错误码](../reference/apis/js-apis-camera.md#cameraerrorcode)。
      
    ```ts
    function stopMetadataOutput(session: camera.Session): void {

@@ -112,7 +112,7 @@ isPointerVisible(callback: AsyncCallback&lt;boolean&gt;): void
 
 | 参数名       | 类型                           | 必填   | 说明             |
 | -------- | ---------------------------- | ---- | -------------- |
-| callback | AsyncCallback&lt;boolean&gt; | 是    | 回调函数，异步返回鼠标指针显示或隐藏状态。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是    | 回调函数，异步返回鼠标指针状态，true为显示，false为隐藏。 |
 
 **示例**：
 
@@ -556,7 +556,7 @@ try {
 
 getMousePrimaryButton(callback: AsyncCallback&lt;PrimaryButton&gt;): void
 
-获取鼠标主键，使用AsyncCallback异步方式返回结果。
+获取当前鼠标主键，使用AsyncCallback异步方式返回结果。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -2305,7 +2305,7 @@ setCustomCursor(windowId: number, pixelMap: image.PixelMap, focusX?: number, foc
 import image from '@ohos.multimedia.image';
 import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
-const svgFileData = await getContext().resourceManager.getMediaContent($r("app.media.icon"));
+const svgFileData = getContext().resourceManager.getMediaContent($r("app.media.icon"));
 const svgBuffer = svgFileData.buffer;
 let svgImagesource: image.ImageSource = image.createImageSource(svgBuffer);
 let svgDecodingOptions: image.DecodingOptions = {desiredSize: { width: 50, height:50 }};
@@ -2346,7 +2346,7 @@ setCustomCursorSync(windowId: number, pixelMap: image.PixelMap, focusX?: number,
 import image from '@ohos.multimedia.image';
 import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
-const svgFileData = await getContext().resourceManager.getMediaContent($r("app.media.icon"));
+const svgFileData = getContext().resourceManager.getMediaContent($r("app.media.icon"));
 const svgBuffer = svgFileData.buffer;
 let svgImagesource: image.ImageSource = image.createImageSource(svgBuffer);
 let svgDecodingOptions: image.DecodingOptions = {desiredSize: { width: 50, height:50 }};

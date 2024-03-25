@@ -1,6 +1,6 @@
 # 管理通知角标
 
-针对应用未读的通知，系统提供了角标设置接口，将未读通知个数显示在桌面图标的右上角角标上。
+针对未读的通知，系统提供了角标设置接口，将未读通知个数显示在桌面图标的右上角角标上。
 
 通知增加时，角标上显示的未读通知个数需要增加。
 
@@ -9,13 +9,13 @@
 
 ## 接口说明
 
-1. 通知服务提供了两种增加角标数的方法：
+- 增加角标数，支持如下两种方法：
 
    - 发布通知时，在[NotificationRequest](../reference/apis/js-apis-inner-notification-notificationRequest.md#notificationrequest)的badgeNumber字段里携带，桌面收到通知后，在原角标数上累加、呈现。
 
-   - 调用接口[`setBadgeNumber()`](../reference/apis/js-apis-notificationManager.md#notificationmanagersetbadgenumber10)设置，桌面按设置的角标数呈现。
+   - 调用接口[setBadgeNumber()](../reference/apis/js-apis-notificationManager.md#notificationmanagersetbadgenumber10)设置，桌面按设置的角标数呈现。
 
-2. 角标数减少，目前仅支持通过[`setBadgeNumber()`](../reference/apis/js-apis-notificationManager.md#notificationmanagersetbadgenumber10)设置。
+- 减少角标数，目前仅支持通过[setBadgeNumber()](../reference/apis/js-apis-notificationManager.md#notificationmanagersetbadgenumber10)设置。
 
   | **接口名** | **描述** |
   | -------- | -------- |

@@ -41,7 +41,7 @@ sendData(data: Record\<string, Object>): void
 
 setReceiveDataCallback(callback: (data: Record\<string, Object>) => void): void
 
-设置从UIExtensionComponent控件接收数据的回调方法。
+设置从UIExtensionComponent控件接收数据的回调方法。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -51,7 +51,7 @@ setReceiveDataCallback(callback: (data: Record\<string, Object>) => void): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | (data: Record\<string, Object>) => void | 是 | 接收数据的回调方法。 |
+| callback | (data: Record\<string, Object>) => void | 是 | 回调函数，返回接收的数据。 |
 
 **错误码：**
 
@@ -63,9 +63,9 @@ setReceiveDataCallback(callback: (data: Record\<string, Object>) => void): void
 
 ## UIExtensionContentSession.setReceiveDataForResultCallback<sup>11+</sup>
 
-setReceiveDataForResultCallback(callback: (data: { [key: string]: Object }) => { [key: string]: Object }): void
+setReceiveDataForResultCallback(callback: (data: Record<string, Object>) => Record<string, Object>): void
 
-设置从UIExtensionComponent控件接收数据带返回值的回调方法。
+设置从UIExtensionComponent控件接收数据带返回值的回调方法。使用callback异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -76,7 +76,7 @@ setReceiveDataForResultCallback(callback: (data: { [key: string]: Object }) => {
 
 | 参数名 | 类型 | 必填 | 说明             |
 | -------- | -------- | -------- |----------------|
-| callback | (data: { [key: string]: Object }) => { [key: string]: Object } | 是 | 接收数据带返回值的回调方法。 |
+| callback | (data: { [key: string]: Object }) => { [key: string]: Object } | 是 | 回调函数，返回带返回值的接收的数据。 |
 
 **错误码：**
 
@@ -88,7 +88,7 @@ setReceiveDataForResultCallback(callback: (data: { [key: string]: Object }) => {
 
 ## UIExtensionContentSession.loadContent
 
-loadContent(path: string, storage?: LocalStorage): void;
+loadContent(path: string, storage?: LocalStorage): void
 
 为当前UIExtensionComponent控件对应的窗口加载与LocalStorage相关联的具体页面内容。
 
@@ -111,9 +111,9 @@ loadContent(path: string, storage?: LocalStorage): void;
 
 ## UIExtensionContentSession.startAbility
 
-startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
+startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
-启动Ability（callback形式）。
+启动Ability。使用callback异步回调。
 
 使用规则：
  - 对应UIExtensionComponent控件所在的应用需要处于前台获焦状态。
@@ -130,7 +130,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动结果。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当启动成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -156,9 +156,9 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 
 ## UIExtensionContentSession.startAbility
 
-startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void;
+startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void
 
-启动Ability（callback形式）。
+启动Ability。使用callback异步回调。
 
 使用规则：
  - 对应UIExtensionComponent控件所在的应用需要处于前台获焦状态。
@@ -176,7 +176,7 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md)  | 是 | 启动Ability的want信息。 |
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | 是 | 启动Ability所携带的参数。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动结果。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当启动成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -200,9 +200,9 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 
 ## UIExtensionContentSession.startAbility
 
-startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;;
+startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 
-启动Ability（promise形式）。
+启动Ability。使用Promise异步回调。
 
 使用规则：
  - 对应UIExtensionComponent控件所在的应用需要处于前台获焦状态。
@@ -225,7 +225,7 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise形式返回启动结果。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -251,9 +251,11 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;;
 
 ## UIExtensionContentSession.startAbilityForResult
 
-startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;): void;
+startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;): void
 
-启动一个Ability，在Ability终止后返回结果给调用方(callback形式)。Ability的终止方式包括以下几种情况:
+启动一个Ability，在Ability终止后返回结果给调用方。使用callback异步回调。
+
+Ability的终止方式包括以下几种情况:
  - 正常情况下可通过调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)接口使之终止并且返回结果给调用方。
  - 异常情况下比如杀死Ability会返回异常信息给调用方, 异常信息中resultCode为-1。
  - 如果被启动的Ability模式是单实例模式, 不同应用多次调用该接口启动这个Ability，当这个Ability调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方, 其它调用方返回异常信息, 异常信息中resultCode为-1。
@@ -273,7 +275,7 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want |[Want](js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
-| callback | AsyncCallback&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | 是 | 执行结果回调函数。 |
+| callback | AsyncCallback&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | 是 | 回调函数。当Ability启动并终止成功，err为undefined，data为获取到的结果码和数据；否则为错误对象。 |
 
 **错误码：**
 
@@ -299,9 +301,11 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 
 ## UIExtensionContentSession.startAbilityForResult
 
-startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback&lt;AbilityResult&gt;): void;
+startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback&lt;AbilityResult&gt;): void
 
-启动一个Ability，在Ability终止后返回结果给调用方(callback形式)。Ability的终止方式包括以下几种情况:
+启动一个Ability，在Ability终止后返回结果给调用方。使用callback异步回调。
+
+Ability的终止方式包括以下几种情况:
  - 正常情况下可通过调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)接口使之终止并且返回结果给调用方。
  - 异常情况下比如杀死Ability会返回异常信息给调用方，异常信息中resultCode为-1。
  - 如果被启动的Ability模式是单实例模式, 不同应用多次调用该接口启动这个Ability，当这个Ability调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方，其它调用方返回异常信息, 异常信息中resultCode为-1。
@@ -322,7 +326,7 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 | -------- | -------- | -------- | -------- |
 | want |[Want](js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | 是 | 启动Ability所携带的参数。 |
-| callback | AsyncCallback&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | 是 | 执行结果回调函数。 |
+| callback | AsyncCallback&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | 是 | 回调函数。当Ability启动并终止成功，err为undefined，data为获取到的结果码和数据；否则为错误对象。 |
 
 **错误码：**
 
@@ -346,9 +350,11 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 
 ## UIExtensionContentSession.startAbilityForResult
 
-startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityResult&gt;;
+startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityResult&gt;
 
-启动一个Ability，在Ability终止后返回结果给调用方(promise形式)。Ability的终止方式包括以下几种情况:
+启动一个Ability，在Ability终止后返回结果给调用方。使用Promise异步回调。
+
+Ability的终止方式包括以下几种情况:
  - 正常情况下可通过调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)接口使之终止并且返回结果给调用方。
  - 异常情况下比如杀死Ability会返回异常信息给调用方, 异常信息中resultCode为-1。
  - 如果被启动的Ability模式是单实例模式, 不同应用多次调用该接口启动这个Ability，当这个Ability调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方, 其它调用方返回异常信息, 异常信息中resultCode为-1。
@@ -375,7 +381,7 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | Promise形式返回执行结果。 |
+| Promise&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | Promise对象，返回结果码和数据。 |
 
 **错误码：**
 
@@ -401,9 +407,9 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
 
 ## UIExtensionContentSession.terminateSelf
 
-terminateSelf(callback: AsyncCallback&lt;void&gt;): void;
+terminateSelf(callback: AsyncCallback&lt;void&gt;): void
 
-停止UIExtensionContentSession对应的窗口界面对象（callback形式）。
+停止UIExtensionContentSession对应的窗口界面对象。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -411,13 +417,13 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;void&gt; | 是 | 停止UIExtensionContentSession对应的窗口界面对象的回调函数。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当停止UIExtensionContentSession对应的窗口界面对象成功，err为undefined，否则为错误对象。 |
 
 ## UIExtensionContentSession.terminateSelf
 
-terminateSelf(): Promise&lt;void&gt;;
+terminateSelf(): Promise&lt;void&gt;
 
-停止UIExtensionContentSession对应的窗口界面对象（promise形式）。
+停止UIExtensionContentSession对应的窗口界面对象。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -425,13 +431,13 @@ terminateSelf(): Promise&lt;void&gt;;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | promise形式返回停止UIExtensionContentSession对应的窗口界面对象。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 ## UIExtensionContentSession.terminateSelfWithResult
 
-terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;void&gt;): void;
+terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;void&gt;): void
 
-停止UIExtensionContentSession对应的窗口界面对象，并将结果返回给UIExtensionComponent控件（callback形式）。
+停止UIExtensionContentSession对应的窗口界面对象，并将结果返回给UIExtensionComponent控件。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -440,13 +446,13 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;voi
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | 是 | 返回给UIExtensionComponent控件的信息。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回停止结果。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当停止成功，err为undefined，否则为错误对象。 |
 
 ## UIExtensionContentSession.terminateSelfWithResult
 
-terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;;
+terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;
 
-停止UIExtensionContentSession对应的窗口界面对象，并将结果返回给UIExtensionComponent控件（promise形式）。
+停止UIExtensionContentSession对应的窗口界面对象，并将结果返回给UIExtensionComponent控件。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -460,7 +466,7 @@ terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | promise形式返回停止结果。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 ## UIExtensionContentSession.setWindowBackgroundColor
 
@@ -490,7 +496,7 @@ setWindowBackgroundColor(color: string): void
 
 setWindowPrivacyMode(isPrivacyMode: boolean): Promise&lt;void&gt;
 
-设置窗口是否为隐私模式，使用Promise异步回调。设置为隐私模式的窗口，窗口内容将无法被截屏或录屏。
+设置窗口是否为隐私模式。设置为隐私模式的窗口，窗口内容将无法被截屏或录屏。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
@@ -506,13 +512,13 @@ setWindowPrivacyMode(isPrivacyMode: boolean): Promise&lt;void&gt;
 
 | 类型 | 说明 |
 | ------------------- | ------------------------ |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 ## UIExtensionContentSession.setWindowPrivacyMode
 
 setWindowPrivacyMode(isPrivacyMode: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置窗口是否为隐私模式，使用callback异步回调。设置为隐私模式的窗口，窗口内容将无法被截屏或录屏。
+设置窗口是否为隐私模式。设置为隐私模式的窗口，窗口内容将无法被截屏或录屏。使用callback异步回调。
 
 **系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
@@ -523,12 +529,12 @@ setWindowPrivacyMode(isPrivacyMode: boolean, callback: AsyncCallback&lt;void&gt;
 | 参数名 | 类型 | 必填 | 说明 |
 | ------------- | ------------------------- | -- | ------------------------------------------------------ |
 | isPrivacyMode | boolean                   | 是 | 窗口是否为隐私模式。true表示模式开启；false表示模式关闭。  |
-| callback      | AsyncCallback&lt;void&gt; | 是 | 回调函数。                                              |
+| callback      | AsyncCallback&lt;void&gt; | 是 | 回调函数。当设置成功，err为undefined，否则为错误对象。 |
 
 ## UIExtensionContentSession.startAbilityByType<sup>11+</sup>
 
 startAbilityByType(type: string, wantParam: Record<string, Object>,
-    abilityStartCallback: AbilityStartCallback, callback: AsyncCallback\<void>): void;
+    abilityStartCallback: AbilityStartCallback, callback: AsyncCallback\<void>): void
 
 通过type隐式启动UIExtensionAbility。使用callback异步回调。
 
@@ -540,8 +546,8 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 显示拉起的UIExtensionAbility类型。 |
 | wantParam | {[key: string]: any} | 是 | 表示扩展参数。 |
-| abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | 是 | 启动失败后的回调。 |
-| callback | AsyncCallback\<void> | 是 | 回调函数，返回接口调用是否成功。 |
+| abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | 是 | 回调函数，返回启动失败后的详细错误信息。 |
+| callback | AsyncCallback\<void> | 是 |回调函数。当启动Ability成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -558,7 +564,7 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 ## UIExtensionContentSession.startAbilityByType<sup>11+</sup>
 
 startAbilityByType(type: string, wantParam: Record<string, Object>,
-    abilityStartCallback: AbilityStartCallback): Promise\<void>;
+    abilityStartCallback: AbilityStartCallback): Promise\<void>
 
 通过type隐式启动UIExtensionAbility。使用Promise异步回调。
 
@@ -570,13 +576,13 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 显示拉起的UIExtensionAbility类型。 |
 | wantParam | {[key: string]: Object} | 是 | 表示扩展参数。 |
-| abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | 是 | 启动失败后的回调。 |
+| abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | 是 | 回调函数，返回启动失败后的详细错误信息。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<void> | Promise对象无返回值。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -594,7 +600,7 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 
 startAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void
 
-初始Ability将自己的caller信息（如BundleName、AbilityName等）置于want参数中，传递给中间层的ExtensionAbility。当ExtensionAbility通过该接口拉起另外一个Ability，被拉起的Ability可以从onCreate生命周期获取到初始Ability的caller信息。
+初始Ability将自己的caller信息（如BundleName、AbilityName等）置于want参数中，传递给中间层的ExtensionAbility。当ExtensionAbility通过该接口拉起另外一个Ability，被拉起的Ability可以从onCreate生命周期获取到初始Ability的caller信息。使用callback异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -634,7 +640,7 @@ startAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void
 
 startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback\<void>): void
 
-初始Ability将自己的caller信息（如BundleName、AbilityName等）置于want参数中，传递给中间层的ExtensionAbility。当ExtensionAbility通过该接口拉起另外一个Ability，被拉起的Ability可以从onCreate生命周期获取到初始Ability的caller信息。
+初始Ability将自己的caller信息（如BundleName、AbilityName等）置于want参数中，传递给中间层的ExtensionAbility。当ExtensionAbility通过该接口拉起另外一个Ability，被拉起的Ability可以从onCreate生命周期获取到初始Ability的caller信息。使用callback异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -673,7 +679,7 @@ startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback\
 
 startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>
 
-初始Ability将自己的caller信息（如BundleName、AbilityName等）置于want参数中，传递给中间层的ExtensionAbility。当ExtensionAbility通过该接口拉起另外一个Ability，被拉起的Ability可以从onCreate生命周期获取到初始Ability的caller信息。
+初始Ability将自己的caller信息（如BundleName、AbilityName等）置于want参数中，传递给中间层的ExtensionAbility。当ExtensionAbility通过该接口拉起另外一个Ability，被拉起的Ability可以从onCreate生命周期获取到初始Ability的caller信息。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -713,3 +719,68 @@ startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>
 | 16200001 | The caller has been released. |
 
 错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+
+## UIExtensionContentSession.getUIExtensionHostWindowProxy<sup>11+</sup>
+
+getUIExtensionHostWindowProxy(): uiExtensionHost.UIExtensionHostWindowProxy
+
+获取当前UIExtension对应的窗口对象，用于通知宽高、位置、避让信息等。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| uiExtensionHost.UIExtensionHostWindowProxy | 窗口对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 16000050 | Internal error. |
+
+**示例：**
+
+```ts
+import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility'
+import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession'
+import Want from '@ohos.app.ability.Want';
+import uiExtensionHost from '@ohos.uiExtensionHost';
+
+const TAG: string = '[UIExtAbility]'
+export default class UIExtAbility extends UIExtensionAbility {
+
+  onCreate() {
+    console.log(TAG, `UIExtAbility onCreate`)
+  }
+
+  onForeground() {
+    console.log(TAG, `UIExtAbility onForeground`)
+  }
+
+  onBackground() {
+    console.log(TAG, `UIExtAbility onBackground`)
+  }
+
+  onDestroy() {
+    console.log(TAG, `UIExtAbility onDestroy`)
+  }
+
+  onSessionCreate(want: Want, session: UIExtensionContentSession) {
+    let extensionHostWindow = session.getUIExtensionHostWindowProxy();
+      let data: Record<string, UIExtensionContentSession | uiExtensionHost.UIExtensionHostWindowProxy> = {
+      'session': session,
+      'extensionHostWindow': extensionHostWindow
+    }
+    let storage: LocalStorage = new LocalStorage(data);
+    session.loadContent('pages/extension', storage);
+  }
+  onSessionDestroy(session: UIExtensionContentSession) {
+    console.log(TAG, `UIExtAbility onSessionDestroy`)
+  }
+}
+```
+错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。

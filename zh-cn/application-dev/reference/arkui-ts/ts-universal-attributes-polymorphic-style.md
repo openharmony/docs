@@ -26,7 +26,7 @@ stateStyles(value: StateStyles)
 
 ## StateStyles接口说明
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+从API version 9开始，该接口支持在ArkTS卡片中使用。只支持[通用属性](ts-universal-attributes-size.md)。
 
 | 状态名称 | 类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |
@@ -159,9 +159,9 @@ struct StyleExample {
 // xxx.ets
 @Entry
 @Component
-@Observed
 struct Index {
   @State value: boolean = false
+  @State value2: boolean = false
 
   @Styles
   normalStyles(): void{
@@ -178,6 +178,7 @@ struct Index {
     Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
       Column() {
         Text('Radio1')
+          .fontSize(25)
         Radio({ value: 'Radio1', group: 'radioGroup1' })
           .checked(this.value)
           .height(50)
@@ -192,24 +193,26 @@ struct Index {
             selected: this.selectStyles,
           })
       }
+      .margin(30)
 
       Column() {
         Text('Radio2')
+          .fontSize(25)
         Radio({ value: 'Radio2', group: 'radioGroup2' })
-          .checked($$this.value)
+          .checked($$this.value2)
           .height(50)
           .width(50)
           .borderWidth(0)
           .borderRadius(30)
-          .onClick(() => {
-            this.value = !this.value
-          })
           .stateStyles({
             normal: this.normalStyles,
             selected: this.selectStyles,
           })
       }
+      .margin(30)
     }.padding({ top: 30 })
   }
 }
 ```
+
+![selected](figures/selected.gif)

@@ -20,7 +20,7 @@ onTouch(event: (event: TouchEvent) => void)
 
 | 参数名 | 类型                              | 必填 | 说明                 |
 | ------ | --------------------------------- | ---- | -------------------- |
-| event  | [TouchEvent](#touchevent对象说明) | 否   | 获得TouchEvent对象。 |
+| event  | [TouchEvent](#touchevent对象说明) | 是   | 获得TouchEvent对象。 |
 
 ## TouchEvent对象说明
 
@@ -54,14 +54,14 @@ getHistoricalPoints(): Array&lt;HistoricalPoint&gt;
 | ------- | ------------------------------------------- | ------------------------------------- |
 | type    | [TouchType](ts-appendix-enums.md#touchtype) | 触摸事件的类型。                      |
 | id      | number                                      | 手指唯一标识符。                      |
-| x       | number                                      | 触摸点相对于被触摸元素原始区域左上角的X坐标。 |
-| y       | number                                      | 触摸点相对于被触摸元素原始区域左上角的Y坐标。 |
-| windowX<sup>10+</sup>  | number                       | 触摸点相对于应用窗口左上角的X坐标。   |
-| windowY<sup>10+</sup>  | number                       | 触摸点相对于应用窗口左上角的Y坐标。   |
-| displayX<sup>10+</sup> | number                       | 触摸点相对于应用屏幕左上角的X坐标。   |
-| displayY<sup>10+</sup> | number                       | 触摸点相对于应用屏幕左上角的Y坐标。   |
-| screenX<sup>(deprecated)</sup> | number               | 触摸点相对于应用窗口左上角的X坐标。<br>从API version 10开始不再维护，建议使用windowX代替。   |
-| screenY<sup>(deprecated)</sup> | number               | 触摸点相对于应用窗口左上角的Y坐标。<br>从API version 10开始不再维护，建议使用windowX代替。   |
+| x       | number                                      | 触摸点相对于被触摸元素原始区域左上角的X坐标。<br/>单位：vp |
+| y       | number                                      | 触摸点相对于被触摸元素原始区域左上角的Y坐标。<br/>单位：vp |
+| windowX<sup>10+</sup>  | number                       | 触摸点相对于应用窗口左上角的X坐标。<br/>单位：vp   |
+| windowY<sup>10+</sup>  | number                       | 触摸点相对于应用窗口左上角的Y坐标。<br/>单位：vp   |
+| displayX<sup>10+</sup> | number                       | 触摸点相对于应用屏幕左上角的X坐标。<br/>单位：vp   |
+| displayY<sup>10+</sup> | number                       | 触摸点相对于应用屏幕左上角的Y坐标。<br/>单位：vp   |
+| screenX<sup>(deprecated)</sup> | number               | 触摸点相对于应用窗口左上角的X坐标。<br/>单位：vp <br>从API version 10开始不再维护，建议使用windowX代替。   |
+| screenY<sup>(deprecated)</sup> | number               | 触摸点相对于应用窗口左上角的Y坐标。<br/>单位：vp <br>从API version 10开始不再维护，建议使用windowX代替。   |
 
 ## HistoricalPoint<sup>10+</sup>对象说明
 

@@ -808,7 +808,7 @@ for (let item of numbers) {
 
 // 使用方法二：
 let iter = arrayList[Symbol.iterator]();
-let temp: IteratorResult<number> = iter.next().value;
+let temp: IteratorResult<number> = iter.next();
 while(!temp.done) {
     console.log(`value:${temp.value}`);
     temp = iter.next();

@@ -25,7 +25,7 @@ HAP信息，系统应用可以通过[bundleManager.getBundleInfo](js-apis-bundle
 | deviceTypes                       | Array\<string>                                               | 是   | 否   | 可以运行模块的设备类型。   |
 | installationFree                  | boolean                                                      | 是   | 否   | 模块是否支持免安装。       |
 | hashValue                         | string                                                       | 是   | 否   | 模块的Hash值。              |
-| moduleType                        | [ModuleType](js-apis-bundleManager.md#moduletype)            | 是   | 否   | 标识当前模块的类型。      |
+| type                              | [ModuleType](js-apis-bundleManager.md#moduletype)            | 是   | 否   | 标识当前模块的类型。      |
 | preloads                          | Array\<[PreloadItem](#preloaditem)>                          | 是   | 否   | 元服务中模块的预加载列表。|
 | dependencies                      | Array\<[Dependency](#dependency)>                            | 是   | 否   | 模块运行依赖的动态共享库列表。  |
 | fileContextMenu                   | string                                                       | 是   | 否   | 模块的右键菜单配置。      |

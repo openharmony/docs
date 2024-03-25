@@ -68,12 +68,27 @@
    }
    ```
 
-4. 使能。通过[Session.start](../reference/apis/js-apis-camera.md#start-4)方法输出预览流，接口调用失败会返回相应错误码，错误码类型参见[CameraErrorCode](../reference/apis/js-apis-camera.md#cameraerrorcode)。
+4. 使能。通过[Session.start](../reference/apis/js-apis-camera.md#start10)方法输出预览流，接口调用失败会返回相应错误码，错误码类型参见[CameraErrorCode](../reference/apis/js-apis-camera.md#cameraerrorcode)。
      
    ```ts
-   async function startPreviewOutput(input: camera.CameraInput, previewOutput: camera.PreviewOutput, session: camera.Session): Promise<void> {
+   async function startPreviewOutput(cameraManager: camera.CameraManager, previewOutput: camera.PreviewOutput): Promise<void> {
+     let cameraArray: Array<camera.CameraDevice> = [];
+     cameraArray = cameraManager.getSupportedCameras();
+     if (cameraArray.length == 0) {
+       console.error('no camera.');
+       return;
+     }
+     let cameraInput: camera.CameraInput | undefined = undefined;
+     cameraInput = cameraManager.createCameraInput(cameraArray[0]);
+     if (cameraInput === undefined) {
+       console.error('cameraInput is undefined');
+       return;
+     }
+     // 打开相机
+     await cameraInput.open();
+     let session: camera.CaptureSession = cameraManager.createCaptureSession();
      session.beginConfig();
-     session.addInput(input);
+     session.addInput(cameraInput);
      session.addOutput(previewOutput);
      await session.commitConfig();
      await session.start();

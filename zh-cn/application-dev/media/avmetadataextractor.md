@@ -33,7 +33,7 @@
 import media from '@ohos.multimedia.media'
 import image from '@ohos.multimedia.image'
 import type common from '@ohos.app.ability.common';
-import fileIo from '@ohos.fileio';
+import fs from '@ohos.file.fs';
 
 const TAG = 'MetadataDemo'
 @Entry
@@ -135,14 +135,14 @@ struct Index {
     console.info(TAG, `release success.`)
   }
 
-  // 在以下demo中，使用fileIo文件系统打开沙箱地址获取媒体文件地址，设置dataSrc属性，获取音频元信息并打印，
+  // 在以下demo中，使用fs文件系统打开沙箱地址获取媒体文件地址，设置dataSrc属性，获取音频元信息并打印，
   // 获取音频专辑封面并通过Image控件显示在屏幕上。
   async testFetchMetadataFromDataSrc() {
     let context = getContext(this) as common.UIAbilityContext
     // 通过UIAbilityContext获取沙箱地址filesDir（以Stage模型为例）
     let filePath: string = context.filesDir + '/cover.mp3';
-    let fd: number = fileIo.openSync(filePath, 0o0)
-    let fileSize: number = fileIo.statSync(filePath).size;
+    let fd: number = fs.openSync(filePath, 0o0).fd;
+    let fileSize: number = fs.statSync(filePath).size;
     // 设置dataSrc描述符，通过callback从文件中获取资源，写入buffer中
     let dataSrc: media.AVDataSrcDescriptor = {
       fileSize: fileSize,
@@ -158,7 +158,7 @@ struct Index {
           position: number | undefined = pos;
         }
         let options = new Option();
-        let num = fileIo.readSync(fd, buffer, options)
+        let num = fs.readSync(fd, buffer, options)
         console.info(TAG, 'readAt end, num: ' + num)
         if (num > 0 && fileSize >= pos) {
           return num;

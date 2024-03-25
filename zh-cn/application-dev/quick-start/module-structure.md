@@ -432,8 +432,8 @@ skills示例：
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
-| name | 标识JS&nbsp;Component的名字。该标签不可缺省，默认值为default。 | 字符串 | 不可缺省。 |
-| pages | 标识JS&nbsp;Component的页面用于列举JS&nbsp;Component中每个页面的路由信息[页面路径+页面名称]。该标签不可缺省，取值为数组，数组第一个元素代表JS&nbsp;FA首页。 | 字符串数组 | 不可缺省。 |
+| name | 标识JS&nbsp;Component的名字。 | 字符串 | 不可缺省。 |
+| pages | 标识JS&nbsp;Component的页面用于列举JS&nbsp;Component中每个页面的路由信息，格式为“页面路径+页面名称”。其中，页面路径是以当前Ability的srcPath字段取值为基准，例如srcPath取值为EntryAbility，则JS Component页面路径需要从EntryAbility的下一层开始描述。该标签取值为数组，数组第一个元素代表JS&nbsp;FA首页。 | 字符串数组 | 不可缺省。 |
 | window | 用于定义与显示窗口相关的配置。 | 对象 | 可缺省，缺省值见表15。 |
 | type | 标识JS应用的类型。取值范围如下：<br/>normal：标识该JS&nbsp;Component为应用实例。<br/>form：标识该JS&nbsp;Component为卡片实例。 | 字符串 | 可缺省，缺省值为"normal"。 |
 |mode | 定义JS组件的开发模式。 | 对象 | 可缺省，缺省值为空。 |
@@ -462,16 +462,20 @@ js示例：
 ```json
 "js": [
   {
-    "name": "default",
+    "name": ".EntryAbility",
     "pages": [
-      "pages/index/index",
+      "pages/index",
       "pages/detail/detail"
     ],
     "window": {
       "designWidth": 720,
       "autoDesignWidth": false
     },
-    "type": "form"
+    "type": "form",
+    "mode": {
+      "syntax": "ets",
+      "type": "pageAbility"
+    }
   }
 ]
 ```

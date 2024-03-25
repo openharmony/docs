@@ -37,7 +37,7 @@ AppStorage中的属性可以被双向同步，数据可以是存在于本地或�
 | 装饰器参数              | key：常量字符串，必填（字符串需要有引号）。                  |
 | 允许装饰的变量类型      | Object、&nbsp;class、string、number、boolean、enum类型，以及这些类型的数组。嵌套类型的场景请参考[观察变化和行为表现](#观察变化和行为表现)。<br/>类型必须被指定，建议和AppStorage中对应属性类型相同，否则会发生类型隐式转换，从而导致应用行为异常。不支持any，不允许使用undefined和null。 |
 | 同步类型                | 单向同步：从AppStorage的对应属性到组件的状态变量。<br/>组件本地的修改是允许的，但是AppStorage中给定的属性一旦发生变化，将覆盖本地的修改。 |
-| 被装饰变量的初始值      | 必须指定，如果AppStorage实例中不存在属性，则作为初始化默认值，并存入AppStorage中。 |
+| 被装饰变量的初始值      | 必须指定，如果AppStorage实例中不存在属性，则用该初始值初始化该属性，并存入AppStorage中。 |
 
 
 ### 变量的传递/访问规则说明
@@ -62,7 +62,7 @@ AppStorage中的属性可以被双向同步，数据可以是存在于本地或�
 
 - 当装饰的数据类型为boolean、string、number类型时，可以观察到数值的变化。
 
-- 当装饰的数据类型为class或者Object时，可以观察到赋值和属性赋值的变化，即Object.keys(observedObject)返回的所有属性。
+- 当装饰的数据类型为class或者Object时，可以观察到对象整体赋值和对象属性变化（详见[从ui内部使用appstorage和localstorage](#从ui内部使用appstorage和localstorage)）。
 
 - 当装饰的对象是array时，可以观察到数组添加、删除、更新数组单元的变化。
 
@@ -95,7 +95,7 @@ AppStorage中的属性可以被双向同步，数据可以是存在于本地或�
 | 装饰器参数              | key：常量字符串，必填（字符串需要有引号）。                  |
 | 允许装饰的变量类型          | Object、class、string、number、boolean、enum类型，以及这些类型的数组。嵌套类型的场景请参考[观察变化和行为表现](#观察变化和行为表现)。<br/>类型必须被指定，建议和AppStorage中对应属性类型相同，否则会发生类型隐式转换，从而导致应用行为异常。不支持any，不允许使用undefined和null。 |
 | 同步类型               | 双向同步：从AppStorage的对应属性到自定义组件，从自定义组件到AppStorage对应属性。 |
-| 被装饰变量的初始值          | 必须指定，如果AppStorage实例中不存在属性，则作为初始化默认值，并存入AppStorage中。 |
+| 被装饰变量的初始值          | 必须指定，如果AppStorage实例中不存在属性，则用该初始值初始化该属性，并存入AppStorage中。 |
 
 
 ### 变量的传递/访问规则说明
@@ -120,7 +120,7 @@ AppStorage中的属性可以被双向同步，数据可以是存在于本地或�
 
 - 当装饰的数据类型为boolean、string、number类型时，可以观察到数值的变化。
 
-- 当装饰的数据类型为class或者Object时，可以观察到赋值和属性赋值的变化，即Object.keys(observedObject)返回的所有属性。
+- 当装饰的数据类型为class或者Object时，可以观察到对象整体赋值和对象属性变化（详见[从ui内部使用appstorage和localstorage](#从ui内部使用appstorage和localstorage)）。
 
 - 当装饰的对象是array时，可以观察到数组添加、删除、更新数组单元的变化。
 
@@ -174,23 +174,49 @@ prop.get() // == 49
 
 
 ```ts
+class PropB {
+  code: number;
+
+  constructor(code: number) {
+    this.code = code;
+  }
+}
+
 AppStorage.setOrCreate('PropA', 47);
+AppStorage.setOrCreate('PropB', new PropB(50));
 let storage = new LocalStorage();
-storage.setOrCreate('PropA',48);
+storage.setOrCreate('PropA', 48);
+storage.setOrCreate('PropB', new PropB(100));
 
 @Entry(storage)
 @Component
 struct CompA {
-  @StorageLink('PropA') storLink: number = 1;
-  @LocalStorageLink('PropA') localStorLink: number = 1;
+  @StorageLink('PropA') storageLink: number = 1;
+  @LocalStorageLink('PropA') localStorageLink: number = 1;
+  @StorageLink('PropB') storageLinkObject: PropB = new PropB(1);
+  @LocalStorageLink('PropB') localStorageLinkObject: PropB = new PropB(1);
 
   build() {
     Column({ space: 20 }) {
-      Text(`From AppStorage ${this.storLink}`)
-        .onClick(() => this.storLink += 1)
+      Text(`From AppStorage ${this.storageLink}`)
+        .onClick(() => {
+          this.storageLink += 1;
+        })
 
-      Text(`From LocalStorage ${this.localStorLink}`)
-        .onClick(() => this.localStorLink += 1)
+      Text(`From LocalStorage ${this.localStorageLink}`)
+        .onClick(() => {
+          this.localStorageLink += 1;
+        })
+
+      Text(`From AppStorage ${this.storageLinkObject.code}`)
+        .onClick(() => {
+          this.storageLinkObject.code += 1;
+        })
+
+      Text(`From LocalStorage ${this.localStorageLinkObject.code}`)
+        .onClick(() => {
+          this.localStorageLinkObject.code += 1;
+        })
     }
   }
 }
@@ -394,7 +420,7 @@ export struct TapImage {
 
 以上通知事件逻辑简单，也可以简化成三元表达式。
 
-```
+```ts
 // xxx.ets
 class ViewData {
   title: string;

@@ -16,7 +16,7 @@ UIAbility的生命周期包括Create、Foreground、Background、Destroy四个�
 
 ### Create状态
 
-Create状态为在应用加载过程中，UIAbility实例创建完成时触发，系统会调用`onCreate()`回调。可以在该回调中进行应用初始化操作，例如变量定义资源加载等，用于后续的UI展示。
+Create状态为在应用加载过程中，UIAbility实例创建完成时触发，系统会调用`onCreate()`回调。可以在该回调中进行页面初始化操作，例如变量定义资源加载等，用于后续的UI展示。
 
 
 ```ts
@@ -26,7 +26,7 @@ import type Want from '@ohos.app.ability.Want';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-    // 应用初始化
+    // 页面初始化
   }
   // ...
 }
@@ -91,8 +91,7 @@ export default class EntryAbility extends UIAbility {
 >
 > WindowStage的相关使用请参见[窗口开发指导](../windowmanager/application-window-stage.md)。
 
-对应于`onWindowStageCreate()`回调。在UIAbility实例销毁之前，则会先进入`onWindowStageDestroy()`回调，可以在该回调中释放UI资源。例如在`onWindowStageDestroy()`中注销获焦/失焦等WindowStage事件。
-
+对应于`onWindowStageCreate()`回调。在UIAbility实例销毁之前，则会先进入`onWindowStageDestroy()`回调，可以在该回调中释放UI资源。
 
 ```ts
 import Logger from '../utils/Logger';
@@ -111,16 +110,6 @@ export default class EntryAbility extends UIAbility {
 
   onWindowStageDestroy() {
     // 释放UI资源
-    // 例如在onWindowStageDestroy()中注销获焦/失焦等WindowStage事件
-    try {
-      if (this.windowStage) {
-        this.windowStage.off('windowStageEvent');
-      }
-    } catch (err) {
-      let code = (err as BusinessError).code;
-      let message = (err as BusinessError).message;
-      Logger.error(`Failed to disable the listener for windowStageEvent. Code is ${code}, message is ${message}`);
-    };
   }
 }
 ```

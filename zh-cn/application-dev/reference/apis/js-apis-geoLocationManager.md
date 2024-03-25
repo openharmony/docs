@@ -30,7 +30,11 @@ API9及之后的版本，需要申请ohos.permission.APPROXIMATELY_LOCATION或�
 | 大于等于9 | ohos.permission.APPROXIMATELY_LOCATION | 成功 | 获取到模糊位置，精确度为5公里。 |
 | 大于等于9 | ohos.permission.APPROXIMATELY_LOCATION和ohos.permission.LOCATION | 成功 | 获取到精准位置，精准度在米级别。 |
 
-如果应用在后台运行时也需要访问设备位置，除需要将应用声明为允许后台运行外，还必须申请ohos.permission.LOCATION_IN_BACKGROUND权限，这样应用在切入后台之后，系统可以继续上报位置信息。
+如果应用在后台运行时也需要访问设备位置，需要申请ohos.permission.LOCATION_IN_BACKGROUND权限或申请LOCATION类型的长时任务，这样应用在切入后台之后，系统可以继续上报位置信息。
+
+应用如需使用ohos.permission.LOCATION_IN_BACKGROUND权限，需要在设置界面由用户手动授予，具体授权方式可参考[ohos.permission.LOCATION_IN_BACKGROUND权限说明](../../security/AccessToken/permissions-for-all.md#ohospermissionlocation_in_background)。
+
+长时任务申请可参考[长时任务](../../task-management/continuous-task.md)。
 
 开发者可以在应用配置文件中声明所需要的权限，具体可参考[向用户申请授权](../../security/AccessToken/request-user-authorization.md)。
 
@@ -44,7 +48,7 @@ import geoLocationManager from '@ohos.geoLocationManager';
 
 ## ReverseGeoCodeRequest
 
-逆地理编码请求接口。
+逆地理编码请求参数。
 
 **系统能力**：SystemCapability.Location.Location.Geocoder
 
@@ -58,7 +62,7 @@ import geoLocationManager from '@ohos.geoLocationManager';
 
 ## GeoCodeRequest
 
-地理编码请求接口。
+地理编码请求参数。
 
 **系统能力**：SystemCapability.Location.Location.Geocoder
 
@@ -75,7 +79,7 @@ import geoLocationManager from '@ohos.geoLocationManager';
 
 ## GeoAddress
 
-地理编码类型。
+地理编码地址信息。
 
 **系统能力**：SystemCapability.Location.Location.Geocoder
 
@@ -104,7 +108,7 @@ import geoLocationManager from '@ohos.geoLocationManager';
 
 ## LocationRequest
 
-位置信息请求类型。
+位置信息请求参数。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
@@ -119,7 +123,7 @@ import geoLocationManager from '@ohos.geoLocationManager';
 
 ## CurrentLocationRequest
 
-当前位置信息请求类型。
+当前位置信息请求参数。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
@@ -248,7 +252,7 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 
 ## CountryCode
 
-国家码信息结构体，包含国家码字符串和国家码的来源信息。
+国家码信息，包含国家码字符串和国家码的来源信息。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
@@ -323,7 +327,7 @@ WiFi扫描信息，包含扫描到的WiFi热点的ssid、bssid和rssi等信息�
 
 ## LocationRequestPriority
 
-位置请求中位置信息优先级设置。
+位置请求中位置信息优先级类型。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
@@ -337,7 +341,7 @@ WiFi扫描信息，包含扫描到的WiFi热点的ssid、bssid和rssi等信息�
 
 ## LocationRequestScenario
 
-  位置请求中定位场景设置。
+  位置请求中定位场景类型。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
@@ -580,7 +584,7 @@ on(type: 'cachedGnssLocationsChange', request: CachedGnssLocationsRequest, callb
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。type为“cachedGnssLocationsChange”，表示GNSS缓存定位结果上报。 |
   | request |  [CachedGnssLocationsRequest](#cachedgnsslocationsrequest) | 是 | GNSS缓存功能配置参数 |
-  | callback | Callback&lt;boolean&gt; | 是 | 接收GNSS缓存位置上报。 |
+  | callback | Callback&lt;Array&lt;Location&gt;&gt; | 是 | 接收GNSS缓存位置上报。 |
 
 **错误码**：
 
@@ -624,7 +628,7 @@ off(type: 'cachedGnssLocationsChange', callback?: Callback&lt;Array&lt;Location&
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。type为“cachedGnssLocationsChange”，表示GNSS缓存定位结果上报。 |
-  | callback | Callback&lt;boolean&gt; | 否 | 需要取消订阅的回调函数。若无此参数，则取消当前类型的所有订阅。 |
+  | callback | Callback&lt;Array&lt;Location&gt;&gt; | 否 | 需要取消订阅的回调函数。若无此参数，则取消当前类型的所有订阅。 |
 
 **错误码**：
 
@@ -879,7 +883,7 @@ on(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): vo
   };
   
   wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-    let requestInfo:geoLocationManager.GeofenceRequest = {'scenario': 0x301, "geofence": {"latitude": 121, "longitude": 26, "radius": 100, "expiration": 10000}};
+    let requestInfo:geoLocationManager.GeofenceRequest = {'scenario': 0x301, "geofence": {"latitude": 31.12, "longitude": 121.11, "radius": 100, "expiration": 10000}};
     try {
         geoLocationManager.on('gnssFenceStatusChange', requestInfo, wantAgentObj);
     } catch (err) {
@@ -938,7 +942,7 @@ off(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): v
   };
   
   wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-    let requestInfo:geoLocationManager.GeofenceRequest = {'scenario': 0x301, "geofence": {"latitude": 121, "longitude": 26, "radius": 100, "expiration": 10000}};;
+    let requestInfo:geoLocationManager.GeofenceRequest = {'scenario': 0x301, "geofence": {"latitude": 31.12, "longitude": 121.11, "radius": 100, "expiration": 10000}};;
     try {
         geoLocationManager.on('gnssFenceStatusChange', requestInfo, wantAgentObj);
         geoLocationManager.off('gnssFenceStatusChange', requestInfo, wantAgentObj);
@@ -1154,7 +1158,7 @@ getCurrentLocation(request: CurrentLocationRequest, callback: AsyncCallback&lt;L
   let requestInfo:geoLocationManager.CurrentLocationRequest = {'priority': geoLocationManager.LocationRequestPriority.FIRST_FIX, 'scenario': geoLocationManager.LocationRequestScenario.UNSET,'maxAccuracy': 0};
   let locationChange = (err:BusinessError.BusinessError, location:geoLocationManager.Location):void => {
       if (err) {
-          console.log('locationChanger: err=' + JSON.stringify(err));
+          console.error('locationChanger: err=' + JSON.stringify(err));
       }
       if (location) {
           console.log('locationChanger: location=' + JSON.stringify(location));
@@ -1201,7 +1205,7 @@ getCurrentLocation(callback: AsyncCallback&lt;Location&gt;): void;
   import BusinessError from "@ohos.base";
   let locationChange = (err:BusinessError.BusinessError, location:geoLocationManager.Location) => {
       if (err) {
-          console.log('locationChanger: err=' + JSON.stringify(err));
+          console.error('locationChanger: err=' + JSON.stringify(err));
       }
       if (location) {
           console.log('locationChanger: location=' + JSON.stringify(location));
@@ -1233,9 +1237,9 @@ getCurrentLocation(request?: CurrentLocationRequest): Promise&lt;Location&gt;
 
 **返回值**：
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | Promise&lt;[Location](#location)&gt;  | [Location](#location) | NA | 返回位置信息。 |
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | [Location](#location) | 返回位置信息。 |
 
 **错误码**：
 
@@ -1258,7 +1262,7 @@ getCurrentLocation(request?: CurrentLocationRequest): Promise&lt;Location&gt;
           console.log('current location: ' + JSON.stringify(result));
       })  
       .catch((error:number) => {
-          console.log('promise, getCurrentLocation: error=' + JSON.stringify(error));
+          console.error('promise, getCurrentLocation: error=' + JSON.stringify(error));
       });
   } catch (err) {
       console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
@@ -1278,9 +1282,9 @@ getLastLocation(): Location
 
 **返回值**：
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | Location  | [Location](#location) | NA | 位置信息。 |
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | [Location](#location) | 位置信息。 |
 
 **错误码**：
 
@@ -1315,9 +1319,9 @@ isLocationEnabled(): boolean
 
 **返回值**：
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | boolean  | boolean | NA | 位置服务是否已经使能。 |
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | boolean | 位置服务是否已经使能。 |
 
 **错误码**：
 
@@ -1372,9 +1376,9 @@ enableLocation(callback: AsyncCallback&lt;void&gt;): void;
   import geoLocationManager from '@ohos.geoLocationManager';
   import BusinessError from "@ohos.base";
   try {
-      geoLocationManager.enableLocation((err, data) => {
+      geoLocationManager.enableLocation((err) => {
           if (err) {
-              console.log('enableLocation: err=' + JSON.stringify(err));
+              console.error('enableLocation: err=' + JSON.stringify(err));
           }
       });
   } catch (err) {
@@ -1397,9 +1401,9 @@ enableLocation(): Promise&lt;void&gt;
 
 **返回值**：
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | Promise&lt;void&gt;  | void | NA | 返回错误码信息。 |
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | void | 无返回值。 |
 
 **错误码**：
 
@@ -1415,11 +1419,11 @@ enableLocation(): Promise&lt;void&gt;
   import geoLocationManager from '@ohos.geoLocationManager';
   import BusinessError from "@ohos.base";
   try {
-      geoLocationManager.enableLocation().then((result) => {
+      geoLocationManager.enableLocation().then(() => {
           console.log('promise, enableLocation succeed');
       })
       .catch((error:number) => {
-          console.log('promise, enableLocation: error=' + JSON.stringify(error));
+          console.error('promise, enableLocation: error=' + JSON.stringify(error));
       });
   } catch (err) {
       console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
@@ -1492,7 +1496,7 @@ getAddressesFromLocation(request: ReverseGeoCodeRequest, callback: AsyncCallback
   try {
       geoLocationManager.getAddressesFromLocation(reverseGeocodeRequest, (err, data) => {
           if (err) {
-              console.log('getAddressesFromLocation: err=' + JSON.stringify(err));
+              console.error('getAddressesFromLocation: err=' + JSON.stringify(err));
           }
           if (data) {
               console.log('getAddressesFromLocation: data=' + JSON.stringify(data));
@@ -1520,9 +1524,9 @@ getAddressesFromLocation(request: ReverseGeoCodeRequest): Promise&lt;Array&lt;Ge
 
 **返回值**：
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | Promise&lt;Array&lt;[GeoAddress](#geoaddress)&gt;&gt;  | Array&lt;[GeoAddress](#geoaddress)&gt; | NA | 返回地理描述信息。 |
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Array&lt;[GeoAddress](#geoaddress)&gt; | 返回地理描述信息。 |
 
 **错误码**：
 
@@ -1544,7 +1548,7 @@ getAddressesFromLocation(request: ReverseGeoCodeRequest): Promise&lt;Array&lt;Ge
           console.log('getAddressesFromLocation: ' + JSON.stringify(data));
       })
       .catch((error:number) => {
-          console.log('promise, getAddressesFromLocation: error=' + JSON.stringify(error));
+          console.error('promise, getAddressesFromLocation: error=' + JSON.stringify(error));
       });
   } catch (err) {
       console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
@@ -1585,7 +1589,7 @@ getAddressesFromLocationName(request: GeoCodeRequest, callback: AsyncCallback&lt
   try {
       geoLocationManager.getAddressesFromLocationName(geocodeRequest, (err, data) => {
           if (err) {
-              console.log('getAddressesFromLocationName: err=' + JSON.stringify(err));
+              console.error('getAddressesFromLocationName: err=' + JSON.stringify(err));
           }
           if (data) {
               console.log('getAddressesFromLocationName: data=' + JSON.stringify(data));
@@ -1613,9 +1617,9 @@ getAddressesFromLocationName(request: GeoCodeRequest): Promise&lt;Array&lt;GeoAd
 
 **返回值**：
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | Promise&lt;Array&lt;[GeoAddress](#geoaddress)&gt;&gt;  | Array&lt;[GeoAddress](#geoaddress)&gt; | NA | 返回地理编码查询结果。 |
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Array&lt;[GeoAddress](#geoaddress)&gt; | 返回地理编码查询结果。 |
 
 **错误码**：
 
@@ -1637,7 +1641,7 @@ getAddressesFromLocationName(request: GeoCodeRequest): Promise&lt;Array&lt;GeoAd
           console.log('getAddressesFromLocationName: ' + JSON.stringify(result));
       })
       .catch((error:number) => {
-          console.log('promise, getAddressesFromLocationName: error=' + JSON.stringify(error));
+          console.error('promise, getAddressesFromLocationName: error=' + JSON.stringify(error));
       });
   } catch (err) {
       console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
@@ -1654,9 +1658,9 @@ isGeocoderAvailable(): boolean;
 
 **返回值**：
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | boolean  | boolean | NA | 返回（逆）地理编码服务是否可用。 |
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | boolean | 返回（逆）地理编码服务是否可用。 |
 
 **错误码**：
 
@@ -1712,7 +1716,7 @@ getCachedGnssLocationsSize(callback: AsyncCallback&lt;number&gt;): void;
   try {
       geoLocationManager.getCachedGnssLocationsSize((err, size) => {
           if (err) {
-              console.log('getCachedGnssLocationsSize: err=' + JSON.stringify(err));
+              console.error('getCachedGnssLocationsSize: err=' + JSON.stringify(err));
           }
           if (size) {
               console.log('getCachedGnssLocationsSize: size=' + JSON.stringify(size));
@@ -1736,9 +1740,9 @@ getCachedGnssLocationsSize(): Promise&lt;number&gt;;
 
 **返回值**：
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | Promise&lt;number&gt;  | number | NA | 返回GNSS缓存位置的个数。 |
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | number | 返回GNSS缓存位置的个数。 |
 
 **错误码**：
 
@@ -1759,7 +1763,7 @@ getCachedGnssLocationsSize(): Promise&lt;number&gt;;
           console.log('promise, getCachedGnssLocationsSize: ' + JSON.stringify(result));
       }) 
       .catch((error:number) => {
-          console.log('promise, getCachedGnssLocationsSize: error=' + JSON.stringify(error));
+          console.error('promise, getCachedGnssLocationsSize: error=' + JSON.stringify(error));
       });
   } catch (err) {
       console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
@@ -1799,9 +1803,9 @@ flushCachedGnssLocations(callback: AsyncCallback&lt;void&gt;): void;
   import geoLocationManager from '@ohos.geoLocationManager';
   import BusinessError from "@ohos.base";
   try {
-      geoLocationManager.flushCachedGnssLocations((err, result) => {
+      geoLocationManager.flushCachedGnssLocations((err) => {
           if (err) {
-              console.log('flushCachedGnssLocations: err=' + JSON.stringify(err));
+              console.error('flushCachedGnssLocations: err=' + JSON.stringify(err));
           }
       });
   } catch (err) {
@@ -1822,9 +1826,9 @@ flushCachedGnssLocations(): Promise&lt;void&gt;;
 
 **返回值**：
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | Promise&lt;void&gt;  | void | NA | 接收错误码。 |
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | void | 无返回值。 |
 
 **错误码**：
 
@@ -1842,11 +1846,11 @@ flushCachedGnssLocations(): Promise&lt;void&gt;;
   import geoLocationManager from '@ohos.geoLocationManager';
   import BusinessError from "@ohos.base";
   try {
-      geoLocationManager.flushCachedGnssLocations().then((result) => {
+      geoLocationManager.flushCachedGnssLocations().then(() => {
           console.log('promise, flushCachedGnssLocations success');
       })
       .catch((error:number) => {
-          console.log('promise, flushCachedGnssLocations: error=' + JSON.stringify(error));
+          console.error('promise, flushCachedGnssLocations: error=' + JSON.stringify(error));
       });
   } catch (err) {
       console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
@@ -1884,9 +1888,9 @@ sendCommand(command: LocationCommand, callback: AsyncCallback&lt;void&gt;): void
   import BusinessError from "@ohos.base";
   let requestInfo:geoLocationManager.LocationCommand = {'scenario': 0x301, 'command': "command_1"};
   try {
-      geoLocationManager.sendCommand(requestInfo, (err, result) => {
+      geoLocationManager.sendCommand(requestInfo, (err) => {
           if (err) {
-              console.log('sendCommand: err=' + JSON.stringify(err));
+              console.error('sendCommand: err=' + JSON.stringify(err));
           }
       });
   } catch (err) {
@@ -1911,9 +1915,9 @@ sendCommand(command: LocationCommand): Promise&lt;void&gt;;
 
 **返回值**：
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | Promise&lt;void&gt;  | void | NA | 接收错误码。 |
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | void | 无返回值。 |
 
 **错误码**：
 
@@ -1930,11 +1934,11 @@ sendCommand(command: LocationCommand): Promise&lt;void&gt;;
   import BusinessError from "@ohos.base";
   let requestInfo:geoLocationManager.LocationCommand = {'scenario': 0x301, 'command': "command_1"};
   try {
-      geoLocationManager.sendCommand(requestInfo).then((result) => {
+      geoLocationManager.sendCommand(requestInfo).then(() => {
           console.log('promise, sendCommand success');
       })  
       .catch((error:number) => {
-          console.log('promise, sendCommand: error=' + JSON.stringify(error));
+          console.error('promise, sendCommand: error=' + JSON.stringify(error));
       });
   } catch (err) {
       console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
@@ -1973,7 +1977,7 @@ getCountryCode(callback: AsyncCallback&lt;CountryCode&gt;): void;
   try {
       geoLocationManager.getCountryCode((err, result) => {
           if (err) {
-              console.log('getCountryCode: err=' + JSON.stringify(err));
+              console.error('getCountryCode: err=' + JSON.stringify(err));
           }
           if (result) {
               console.log('getCountryCode: result=' + JSON.stringify(result));
@@ -1995,9 +1999,9 @@ getCountryCode(): Promise&lt;CountryCode&gt;;
 
 **返回值**：
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | Promise&lt;[CountryCode](#countrycode)&gt; | [CountryCode](#countrycode) | NA | 用来接收国家码。 |
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | [CountryCode](#countrycode) | 用来接收国家码。 |
 
 **错误码**：
 
@@ -2019,7 +2023,7 @@ getCountryCode(): Promise&lt;CountryCode&gt;;
           console.log('promise, getCountryCode: result=' + JSON.stringify(result));
       })
       .catch((error:number) => {
-          console.log('promise, getCountryCode: error=' + JSON.stringify(error));
+          console.error('promise, getCountryCode: error=' + JSON.stringify(error));
       });
   } catch (err) {
       console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
@@ -2267,9 +2271,9 @@ isLocationPrivacyConfirmed(type: LocationPrivacyType): boolean;
 
 **返回值**：
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | boolean  | boolean | NA | 表示用户是否同意定位服务隐私申明。 |
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | boolean | 表示用户是否同意定位服务隐私申明。 |
 
 **错误码**：
 
@@ -2352,9 +2356,9 @@ getLocatingRequiredData(config: LocatingRequiredDataConfig): Promise&lt;Array&lt
 
 **返回值**：
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | Promise&lt;Array&lt;[LocatingRequiredData](#locatingrequireddata10)&gt;&gt;  | [LocatingRequiredData](#locatingrequireddata10) | NA | 用来接收定位业务所需数据，包含WiFi蓝牙扫描信息。 |
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | [LocatingRequiredData](#locatingrequireddata10) | 用来接收定位业务所需数据，包含WiFi蓝牙扫描信息。 |
 
 **错误码**：
 
@@ -2375,7 +2379,7 @@ getLocatingRequiredData(config: LocatingRequiredDataConfig): Promise&lt;Array&lt
           console.log('getLocatingRequiredData return: ' + JSON.stringify(result));
       })  
       .catch((error:number) => {
-          console.log('promise, getLocatingRequiredData: error=' + JSON.stringify(error));
+          console.error('promise, getLocatingRequiredData: error=' + JSON.stringify(error));
       });
   } catch (err) {
       console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);

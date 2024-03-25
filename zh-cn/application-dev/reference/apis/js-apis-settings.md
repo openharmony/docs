@@ -302,7 +302,7 @@ import settings from '@ohos.settings';
 
 // 更新数据项亮度的值（该数据项在数据库中已存在，故setValue方法将更新该数据项的值）
 const context: Context =  getContext(this);
-settings.setValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100', domainName.DEVICE_SHARED).then((status) => {
+settings.setValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100', settings.domainName.DEVICE_SHARED).then((status) => {
   console.log(`callback:return whether value is set.`)
 });
 ```
@@ -404,7 +404,7 @@ import settings from '@ohos.settings';
 
 // 更新数据项亮度的值（该数据项在数据库中已存在，故getValue方法将更新该数据项的值）
 const context: Context =  getContext(this);
-settings.getValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, domainName.DEVICE_SHARED).then((value) => {
+settings.getValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, settings.domainName.DEVICE_SHARED).then((value) => {
   console.log(`Promise:value -> $ {JSON.stringify(value)}`);
 });
 ```
@@ -476,7 +476,7 @@ import settings from '@ohos.settings';
 
 // 更新数据项亮度的值（该数据项在数据库中已存在）
 const context: Context =  getContext(this);
-let value = settings.getValueSync(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100',  domainName.DEVICE_SHARED);
+let value = settings.getValueSync(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100',  settings.domainName.DEVICE_SHARED);
 ```
 
 ## settings.setValueSync<sup>10+</sup>
@@ -553,7 +553,7 @@ import settings from '@ohos.settings';
 
 // 更新数据项亮度的值（该数据项在数据库中已存在，故setValueSync方法将更新该数据项的值）
 const context: Context =  getContext(this);
-let ret = settings.setValueSync(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100', domainName.DEVICE_SHARED);
+let ret = settings.setValueSync(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100', settings.domainName.DEVICE_SHARED);
 ```
 
 ## settings.registerKeyObserver<sup>11+</sup>
@@ -588,7 +588,7 @@ registerKeyObserver(context: Context, name: string, domainName: string, observer
 import settings from '@ohos.settings';
 
 const context: Context =  getContext(this);
-settings.registerKeyObserver(context, settings.display.SCREEN_BRIGHTNESS_STATUS, domainName.DEVICE_SHARED, (err, value) => {
+settings.registerKeyObserver(context, settings.display.SCREEN_BRIGHTNESS_STATUS, settings.domainName.DEVICE_SHARED, (err, value) => {
   if(err){
     console.error('Failed to get the setting.${err.message}');
     return;
@@ -626,8 +626,7 @@ unregisterKeyObserver(context: Context, name: string, domainName: string): boole
 import settings from '@ohos.settings';
 
 const context: Context =  getContext(this);
-const context: Context =  getContext(this);
-let ret = settings.setValueSync(context, settings.display.SCREEN_BRIGHTNESS_STATUS,  domainName.DEVICE_SHARED);
+let ret = settings.setValueSync(context, settings.display.SCREEN_BRIGHTNESS_STATUS,  settings.domainName.DEVICE_SHARED);
 ```
 
 ## settings.enableAirplaneMode

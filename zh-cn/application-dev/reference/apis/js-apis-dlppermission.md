@@ -141,11 +141,12 @@ import dlpPermission from '@ohos.dlpPermission';
 import { BusinessError } from '@ohos.base';
 
 try {
-  let inSandbox: boolean = await dlpPermission.isInSandbox(); // 是否在沙箱内
-  if (inSandbox) {
-    let res: Promise<dlpPermission.DLPPermissionInfo> = dlpPermission.getDLPPermissionInfo(); // 获取当前权限信息
-    console.info('res', JSON.stringify(res));
-  }
+  dlpPermission.isInSandbox().then((inSandbox) => { // 是否在沙箱内
+    if (inSandbox) {
+      let res: Promise<dlpPermission.DLPPermissionInfo> = dlpPermission.getDLPPermissionInfo(); // 获取当前权限信息
+      console.info('res', JSON.stringify(res));
+    }
+  });
 } catch (err) {
   console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
 }
@@ -184,16 +185,17 @@ import fs from '@ohos.file.fs';
 import { BusinessError } from '@ohos.base';
 
 try {
-  let inSandbox: boolean = await dlpPermission.isInSandbox(); // 是否在沙箱内
-  if (inSandbox) {
-    dlpPermission.getDLPPermissionInfo((err, res) => {
-      if (err != undefined) {
-        console.error('getDLPPermissionInfo error,', err.code, err.message);
-      } else {
-        console.info('res', JSON.stringify(res));
-      }
-    }); // 获取当前权限信息
-  }
+  dlpPermission.isInSandbox().then((inSandbox) => { // 是否在沙箱内
+    if (inSandbox) {
+      dlpPermission.getDLPPermissionInfo((err, res) => {
+        if (err != undefined) {
+          console.error('getDLPPermissionInfo error,', err.code, err.message);
+        } else {
+          console.info('res', JSON.stringify(res));
+        }
+      }); // 获取当前权限信息
+    }
+  });
 } catch (err) {
   console.error('getDLPPermissionInfo error,', (err as BusinessError).code, (err as BusinessError).message);
 }
@@ -558,10 +560,11 @@ import { BusinessError } from '@ohos.base';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 try {
-  let inSandbox: boolean = await dlpPermission.isInSandbox(); // 是否在沙箱内
-  if (inSandbox) {
-    dlpPermission.setRetentionState([uri]); // 设置沙箱保留
-  }
+  dlpPermission.isInSandbox().then((inSandbox) => { // 是否在沙箱内
+    if (inSandbox) {
+      dlpPermission.setRetentionState([uri]); // 设置沙箱保留
+    }
+  });
 } catch (err) {
   console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
 }

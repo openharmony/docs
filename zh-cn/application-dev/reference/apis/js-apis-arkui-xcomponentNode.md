@@ -48,9 +48,9 @@ XComponentNode加载完成时触发该回调。
 
 **参数:**
 
-| 参数名   | 参数类型   | 必填   | 描述                                       |
-| ----- | ------ | ---- | ---------------------------------------- |
-| event | object | 否    | 获取XComponent实例对象的context，context上挂载的方法由开发者在c++层定义。 |
+| 参数名 | 类型 | 必填 | 说明                                                         |
+| ------ | -------- | ---- | ------------------------------------------------------------ |
+| event  | object   | 否   | 获取XComponent实例对象的context，context上挂载的方法由开发者在c++层定义。 |
 
 ### onDestroy
 
@@ -70,7 +70,7 @@ changeRenderType(type: NodeRenderType): boolean
 
 **参数:**
 
-| 参数名 | 参数类型                                                     | 必填 | 描述               |
+| 参数名 | 类型                                                     | 必填 | 说明             |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
 | type   | [NodeRenderType](./js-apis-arkui-builderNode.md#noderendertype) | 是 | 需要修改的渲染类型。 |
 
@@ -78,7 +78,7 @@ changeRenderType(type: NodeRenderType): boolean
 
 | 类型 | 描述                   |
 | ---- | ---------------------- |
-| bool | 修改渲染类型是否成功。 |
+| boolean | 修改渲染类型是否成功。 |
 
 ## 示例
 

@@ -1,7 +1,7 @@
 # @ohos.arkui.advanced.SelectionMenu(文本选择菜单)
 
 
-文本选择菜单，适用于富文本组件通过bindSelectionMenu绑定自定义文本选择菜单，建议绑定鼠标右键或者鼠标选中方式弹出，不支持作为普通组件单独使用。
+文本选择菜单，适用于富文本组件通过[bindSelectionMenu](./ts-basic-components-richeditor.md#属性)绑定自定义文本选择菜单，建议绑定鼠标右键或者鼠标选中方式弹出，不支持作为普通组件单独使用。
 
 
 > **说明：**
@@ -23,7 +23,7 @@ import { SelectionMenu, EditorMenuOptions, ExpandedMenuOptions, EditorEventInfo,
 
 SelectionMenu(options: SelectionMenuOptions)
 
-入参为空时，文本选择菜单组件SelectionMenu内容区大小及组件大小为零。表现例如，富文本组件RichEditor使用bindSelectionMenu接口绑定一个SelectionMenu({})的右键菜单，则右键富文本组件区域时无任何菜单弹出。
+入参为空时，文本选择菜单组件SelectionMenu内容区大小及组件大小为零。表现例如，富文本组件[RichEditor](ts-basic-components-richeditor.md)使用[bindSelectionMenu](ts-basic-components-richeditor.md#属性)接口绑定一个SelectionMenu的右键菜单，则右键富文本组件区域时无任何菜单弹出。
 
 **装饰器类型：**\@Builder
 
@@ -47,11 +47,11 @@ SelectionMenuOptions定义SelectionMenu的可选菜单类型项及其具体配�
 | -------- | -------- | -------- | -------- |
 | editorMenuOptions | Array&lt;[EditorMenuOptions](#editormenuoptions)&gt; | 否 | 编辑菜单。<br/>editorMenuOptions未配置时，不显示编辑菜单。<br/>同时配置EditorMenuOptions中action和builder时，点击图标会同时响应。<br/>点击编辑菜单图标默认不关闭整个菜单，应用可以通过action接口配置RichEditorController的closeSelectionMenu主动关闭菜单。 | 
 | expandedMenuOptions | Array&lt;[ExpandedMenuOptions](#expandedmenuoptions)&gt; | 否 | 扩展下拉菜单。<br/>expandedMenuOptions参数为空时无更多按钮，不显示扩展下拉菜单。<br/>expandedMenuOptions参数不为空时显示更多按钮，配置菜单项收起在更多按钮中，点击更多按钮展示。 | 
-| controller | [RichEditorController](ts-basic-components-richeditor.md#richeditorcontroller) | 否 | 富文本控制器不为空时显示默认系统菜单（包含剪切复制粘贴等部分）且默认菜单功能内置。<br/>controller为空时不显示更多按钮，expandedMenuOptions参数不为空则显示下拉菜单中。<br/>系统默认只支持复制粘贴富文本文本内容,图文混排需要应用自定义onCopy、onPaste接口。应用自行配置onCopy \| onPaste接口时，系统菜单默认复制粘贴失效，调用应用自定义函数。 <br/>**说明：**<br/> 点击自定义文本选择菜单内置复制功能选项后，自定义菜单消失选中文本高亮保留。<br/> 点击自定义文本选择菜单内置全选功能选项后，自定义菜单消失文本全选高亮。<br/> 点击自定义文本选择菜单内置粘贴功能选项后，空白处粘贴或者选中文本替换粘贴均是保留被复制文本的样式。<br/> 当富文本组件[RichEditor](ts-basic-components-richeditor.md)的copyOptions属性设置为`CopyOptions.None`时，内置的复制剪切功能不会被限制。| 
-| onCopy | (event?: [EditorEventInfo](#editoreventinfo))&nbsp;=&gt;&nbsp;void | 否 | 替代内置系统菜单复制项的事件回调。<br/>生效前提是一定要有controller参数,有系统默认菜单才能替换内置复制功能。<br/>**说明：**<br/> event为返回信息。| 
-| onPaste | (event?: [EditorEventInfo](#editoreventinfo))&nbsp;=&gt;&nbsp;void | 否 | 替代内置系统菜单粘贴项的事件回调。<br/>生效前提是一定要有controller参数,有系统默认菜单才能替换内置粘贴功能。<br/>**说明：**<br/> event为返回信息。 | 
-| onCut | (event?: [EditorEventInfo](#editoreventinfo))&nbsp;=&gt;&nbsp;void | 否 | 替代内置系统菜单剪切项的事件回调。<br/>生效前提是一定要有controller参数,有系统默认菜单才能替换内置剪切功能。<br/>**说明：**<br/>event为返回信息。| 
-| onSelectAll | (event?: [EditorEventInfo](#editoreventinfo))&nbsp;=&gt;&nbsp;void | 否 | 替代内置系统菜单全选项的事件回调。<br/>生效前提是一定要有controller参数,有系统默认菜单才能替换内置全选功能。<br/>**说明：**<br/>event为返回信息。|
+| controller | [RichEditorController](ts-basic-components-richeditor.md#richeditorcontroller) | 否 | 富文本控制器不为空时显示默认系统菜单（包含剪切复制粘贴等部分）且默认菜单功能内置。<br/>controller为空时不显示更多按钮，expandedMenuOptions参数不为空则显示下拉菜单中。<br/>系统默认只支持复制粘贴富文本文本内容，图文混排需要应用自定义onCopy、onPaste接口。应用自行配置onCopy \| onPaste接口时，系统菜单默认复制粘贴失效，调用应用自定义函数。 <br/>**说明：**<br/> 点击自定义文本选择菜单内置复制功能选项后，自定义菜单消失选中文本高亮保留。<br/> 点击自定义文本选择菜单内置全选功能选项后，自定义菜单消失文本全选高亮。<br/> 点击自定义文本选择菜单内置粘贴功能选项后，空白处粘贴或者选中文本替换粘贴均是保留被复制文本的样式。<br/> 当富文本组件[RichEditor](ts-basic-components-richeditor.md)的copyOptions属性设置为`CopyOptions.None`时，内置的复制剪切功能不会被限制。| 
+| onCopy | (event?: [EditorEventInfo](#editoreventinfo))&nbsp;=&gt;&nbsp;void | 否 | 替代内置系统菜单复制项的事件回调。<br/>生效前提是一定要有controller参数，有系统默认菜单才能替换内置复制功能。<br/>**说明：**<br/> event为返回信息。| 
+| onPaste | (event?: [EditorEventInfo](#editoreventinfo))&nbsp;=&gt;&nbsp;void | 否 | 替代内置系统菜单粘贴项的事件回调。<br/>生效前提是一定要有controller参数，有系统默认菜单才能替换内置粘贴功能。<br/>**说明：**<br/> event为返回信息。 | 
+| onCut | (event?: [EditorEventInfo](#editoreventinfo))&nbsp;=&gt;&nbsp;void | 否 | 替代内置系统菜单剪切项的事件回调。<br/>生效前提是一定要有controller参数，有系统默认菜单才能替换内置剪切功能。<br/>**说明：**<br/>event为返回信息。| 
+| onSelectAll | (event?: [EditorEventInfo](#editoreventinfo))&nbsp;=&gt;&nbsp;void | 否 | 替代内置系统菜单全选项的事件回调。<br/>生效前提是一定要有controller参数，有系统默认菜单才能替换内置全选功能。<br/>**说明：**<br/>event为返回信息。|
 
 
 ## EditorMenuOptions
@@ -85,9 +85,9 @@ SelectionMenuOptions定义SelectionMenu的可选菜单类型项及其具体配�
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型 | 说明 | 
-| -------- | -------- | -------- |
-| content | [RichEditorSelection](ts-basic-components-richeditor.md#richeditorselection) | 选中内容信息。|
+| 名称 | 类型 | 必填 | 说明 | 
+| -------- | -------- | -------- | -------- |
+| content | [RichEditorSelection](ts-basic-components-richeditor.md#richeditorselection) | 否 | 选中内容信息。|
 
 ## 属性
 

@@ -70,8 +70,8 @@ registerSource(audioUri: string, hapticUri: string): Promise&lt;number&gt;
 
 | 参数名   | 类型                                      | 必填 | 说明                     |
 | -------- | ---------------------------------------- | ---- | ------------------------ |
-| audioUri  | string                                  | 是   | 音频资源的Uri。对普通时延模式，音频资源支持可参考[media.AVPlayer](js-apis-media.md#avplayer9)；对低时延模式，音频资源支持可参考[SoundPool](js-apis-inner-multimedia-soundPool.md#soundpool)。           |
-| hapticUri | string                                  | 是   | 振动资源的Uri。振动资源支持可参考[vibrator](js-apis-vibrator.md#hapticfiledescriptor10)。         |
+| audioUri  | string                                  | 是   | 音频资源的Uri。对普通时延模式，音频资源格式和路径格式的支持可参考[media.AVPlayer](js-apis-media.md#avplayer9)；对低时延模式，音频资源格式支持可参考[SoundPool](js-apis-inner-multimedia-soundPool.md#soundpool)。，路径格式需满足[文件管理模块open函数](js-apis-file-fs.md#fsopen)的要求。对两种时延模式，均建议传入文件的绝对路径。           |
+| hapticUri | string                                  | 是   | 振动资源的Uri。振动资源格式支持可参考[vibrator](js-apis-vibrator.md#hapticfiledescriptor10)，路径格式需满足[文件管理模块open函数](js-apis-file-fs.md#fsopen)的要求。建议传入文件的绝对路径。         |
 
 **返回值：**
 
@@ -227,10 +227,14 @@ createPlayer(id: number, options?: AudioHapticPlayerOptions): Promise&lt;AudioHa
 import { BusinessError } from '@ohos.base';
 
 let options: audioHaptic.AudioHapticPlayerOptions = {muteAudio: false, muteHaptics: false};
+let audioHapticPlayerInstance: audioHaptic.AudioHapticPlayer | undefined = undefined;
 
-let audioHapticPlayerInstance: audioHaptic.AudioHapticPlayer =
-  await audioHapticManagerInstance.createPlayer(id, options);
-console.info(`Create the audio haptic player successfully.`);
+audioHapticManagerInstance.createPlayer(id, options).then((value: audioHaptic.AudioHapticPlayer) => {
+  audioHapticPlayerInstance = value;
+  console.info(`Create the audio haptic player successfully.`);
+}).catch ((err: BusinessError) => {
+  console.error(`Failed to create the audio haptic player. ${err}`);
+});
 ```
 
 ## AudioHapticType

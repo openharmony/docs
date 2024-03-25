@@ -205,8 +205,7 @@ export default struct  Post {
             this.onAvatarClicked(this.index);
           })
           // 对头像绑定共享元素转场的id
-          // @ts-ignore
-          .geometryTransition(this.index.toString(), true)
+          .geometryTransition(this.index.toString(), {follow:true})
           .transition(TransitionEffect.OPACITY.animation({ duration: 350, curve: Curve.Friction }))
 
         Text(this.data.name)

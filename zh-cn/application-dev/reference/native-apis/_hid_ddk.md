@@ -25,28 +25,28 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [Hid_EmitItem](_hid___emit_item.md) | struct<br/>事件信息。  | 
-| [Hid_Device](_hid___device.md) | struct<br/>设备基本信息。  | 
-| [Hid_EventTypeArray](_hid___event_type_array.md) | struct<br/>事件类型编码数组。  | 
-| [Hid_KeyCodeArray](_hid___key_code_array.md) | struct<br/>键值属性数组。  | 
-| [Hid_AbsAxesArray](_hid___abs_axes_array.md) | struct<br/>绝对坐标属性数组。  | 
-| [Hid_RelAxesArray](_hid___rel_axes_array.md) | struct<br/>相对坐标属性数组。  | 
-| [Hid_MscEventArray](_hid___msc_event_array.md) | struct<br/>其它特殊事件属性数组。  | 
-| [Hid_EventProperties](_hid___event_properties.md) | struct<br/>设备关注事件属性。  | 
+| [Hid_EmitItem](_hid___emit_item.md) | 事件信息。  | 
+| [Hid_Device](_hid___device.md) | 设备基本信息。  | 
+| [Hid_EventTypeArray](_hid___event_type_array.md) | 事件类型编码数组。  | 
+| [Hid_KeyCodeArray](_hid___key_code_array.md) | 键值属性数组。  | 
+| [Hid_AbsAxesArray](_hid___abs_axes_array.md) | 绝对坐标属性数组。  | 
+| [Hid_RelAxesArray](_hid___rel_axes_array.md) | 相对坐标属性数组。  | 
+| [Hid_MscEventArray](_hid___msc_event_array.md) | 其它特殊事件属性数组。  | 
+| [Hid_EventProperties](_hid___event_properties.md) | 设备关注事件属性。  | 
 
 
 ### 类型定义
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [Hid_EmitItem](#hid_emititem) | typedef struct [Hid_EmitItem](_hid___emit_item.md)<br/>事件信息。  | 
-| [Hid_Device](#hid_device) | typedef struct [Hid_Device](_hid___device.md)<br/>设备基本信息。  | 
-| [Hid_EventTypeArray](#hid_eventtypearray) | typedef struct [Hid_EventTypeArray](_hid___event_type_array.md)<br/>事件类型编码数组。  | 
-| [Hid_KeyCodeArray](#hid_keycodearray) | typedef struct [Hid_KeyCodeArray](_hid___key_code_array.md)<br/>键值属性数组。  | 
-| [Hid_AbsAxesArray](#hid_absaxesarray) | typedef struct [Hid_AbsAxesArray](_hid___abs_axes_array.md)<br/>绝对坐标属性数组。  | 
-| [Hid_RelAxesArray](#hid_relaxesarray) | typedef struct [Hid_RelAxesArray](_hid___rel_axes_array.md)<br/>相对坐标属性数组。  | 
-| [Hid_MscEventArray](#hid_msceventarray) | typedef struct [Hid_MscEventArray](_hid___msc_event_array.md)<br/>其它特殊事件属性数组。  | 
-| [Hid_EventProperties](#hid_eventproperties) | typedef struct [Hid_EventProperties](_hid___event_properties.md)<br/>设备关注事件属性。  | 
+| [Hid_EmitItem](#hid_emititem) | 事件信息。  | 
+| [Hid_Device](#hid_device) | 设备基本信息。  | 
+| [Hid_EventTypeArray](#hid_eventtypearray) | 事件类型编码数组。  | 
+| [Hid_KeyCodeArray](#hid_keycodearray) | 键值属性数组。  | 
+| [Hid_AbsAxesArray](#hid_absaxesarray) | 绝对坐标属性数组。  | 
+| [Hid_RelAxesArray](#hid_relaxesarray) | 相对坐标属性数组。  | 
+| [Hid_MscEventArray](#hid_msceventarray) | 其它特殊事件属性数组。  | 
+| [Hid_EventProperties](#hid_eventproperties) | 设备关注事件属性。  | 
 
 
 ### 枚举
@@ -67,44 +67,44 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OH_Hid_CreateDevice](#oh_hid_createdevice) ([Hid_Device](_hid___device.md) \*hidDevice, [Hid_EventProperties](_hid___event_properties.md) \*hidEventProperties) | int32_t<br/>创建设备。  | 
-| [OH_Hid_EmitEvent](#oh_hid_emitevent) (int32_t deviceId, const [Hid_EmitItem](_hid___emit_item.md) items[], uint16_t length) | int32_t<br/>向指定设备发送事件列表。  | 
-| [OH_Hid_DestroyDevice](#oh_hid_destroydevice) (int32_t deviceId) | int32_t<br/>销毁设备。  | 
+| [OH_Hid_CreateDevice](#oh_hid_createdevice) ([Hid_Device](_hid___device.md) \*hidDevice, [Hid_EventProperties](_hid___event_properties.md) \*hidEventProperties) | 创建设备。  | 
+| [OH_Hid_EmitEvent](#oh_hid_emitevent) (int32_t deviceId, const [Hid_EmitItem](_hid___emit_item.md) items[], uint16_t length) | 向指定设备发送事件列表。  | 
+| [OH_Hid_DestroyDevice](#oh_hid_destroydevice) (int32_t deviceId) | 销毁设备。  | 
 
 
 ### 变量
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [Hid_EmitItem::type](#type) | uint16_t<br/>事件类型  | 
-| [Hid_EmitItem::code](#code) | uint16_t<br/>事件编码  | 
-| [Hid_EmitItem::value](#value) | uint32_t<br/>事件值  | 
-| [Hid_Device::deviceName](#devicename) | const char \*<br/>设备名称  | 
-| [Hid_Device::vendorId](#vendorid) | uint16_t<br/>厂商ID  | 
-| [Hid_Device::productId](#productid) | uint16_t<br/>产品ID  | 
-| [Hid_Device::version](#version) | uint16_t<br/>版本号  | 
-| [Hid_Device::bustype](#bustype) | uint16_t<br/>总线类型  | 
-| [Hid_Device::properties](#properties) | [Hid_DeviceProp](#hid_deviceprop) \*<br/>设备特性  | 
-| [Hid_Device::propLength](#proplength) | uint16_t<br/>设备特性数量  | 
-| [Hid_EventTypeArray::hidEventType](#hideventtype) | [Hid_EventType](#hid_eventtype) \*<br/>事件类型编码  | 
-| [Hid_EventTypeArray::length](#length-15) | uint16_t<br/>数组长度  | 
-| [Hid_KeyCodeArray::hidKeyCode](#hidkeycode) | [Hid_KeyCode](#hid_keycode) \*<br/>键值编码  | 
-| [Hid_KeyCodeArray::length](#length-25) | uint16_t<br/>数组长度  | 
-| [Hid_AbsAxesArray::hidAbsAxes](#hidabsaxes) | [Hid_AbsAxes](#hid_absaxes) \*<br/>绝对坐标属性编码  | 
-| [Hid_AbsAxesArray::length](#length-35) | uint16_t<br/>数组长度  | 
-| [Hid_RelAxesArray::hidRelAxes](#hidrelaxes) | [Hid_RelAxes](#hid_relaxes) \*<br/>相对坐标属性编码  | 
-| [Hid_RelAxesArray::length](#length-45) | uint16_t<br/>数组长度  | 
-| [Hid_MscEventArray::hidMscEvent](#hidmscevent) | [Hid_MscEvent](#hid_mscevent) \*<br/>其它特殊事件属性编码  | 
-| [Hid_MscEventArray::length](#length-55) | uint16_t<br/>数组长度  | 
-| [Hid_EventProperties::hidEventTypes](#hideventtypes) | struct [Hid_EventTypeArray](_hid___event_type_array.md)<br/>事件类型属性编码数组  | 
-| [Hid_EventProperties::hidKeys](#hidkeys) | struct [Hid_KeyCodeArray](_hid___key_code_array.md)<br/>键值属性编码数组  | 
-| [Hid_EventProperties::hidAbs](#hidabs) | struct [Hid_AbsAxesArray](_hid___abs_axes_array.md)<br/>绝对坐标属性编码数组  | 
-| [Hid_EventProperties::hidRelBits](#hidrelbits) | struct [Hid_RelAxesArray](_hid___rel_axes_array.md)<br/>相对坐标属性编码数组  | 
-| [Hid_EventProperties::hidMiscellaneous](#hidmiscellaneous) | struct [Hid_MscEventArray](_hid___msc_event_array.md)<br/>其它特殊事件属性编码数组  | 
-| [Hid_EventProperties::hidAbsMax](#hidabsmax) [64] | int32_t<br/>绝对坐标属性最大值  | 
-| [Hid_EventProperties::hidAbsMin](#hidabsmin) [64] | int32_t<br/>绝对坐标属性最小值  | 
-| [Hid_EventProperties::hidAbsFuzz](#hidabsfuzz) [64] | int32_t<br/>绝对坐标属性模糊值  | 
-| [Hid_EventProperties::hidAbsFlat](#hidabsflat) [64] | int32_t<br/>绝对坐标属性固定值  | 
+| [Hid_EmitItem::type](#type) | 事件类型  | 
+| [Hid_EmitItem::code](#code) | 事件编码  | 
+| [Hid_EmitItem::value](#value) | 事件值  | 
+| [Hid_Device::deviceName](#devicename) | 设备名称  | 
+| [Hid_Device::vendorId](#vendorid) | 厂商ID  | 
+| [Hid_Device::productId](#productid) | 产品ID  | 
+| [Hid_Device::version](#version) | 版本号  | 
+| [Hid_Device::bustype](#bustype) | 总线类型  | 
+| [Hid_Device::properties](#properties) | 设备特性  | 
+| [Hid_Device::propLength](#proplength) | 设备特性数量  | 
+| [Hid_EventTypeArray::hidEventType](#hideventtype) | 事件类型编码  | 
+| [Hid_EventTypeArray::length](#length-15) | 数组长度  | 
+| [Hid_KeyCodeArray::hidKeyCode](#hidkeycode) | 键值编码  | 
+| [Hid_KeyCodeArray::length](#length-25) | 数组长度  | 
+| [Hid_AbsAxesArray::hidAbsAxes](#hidabsaxes) | 绝对坐标属性编码  | 
+| [Hid_AbsAxesArray::length](#length-35) | 数组长度  | 
+| [Hid_RelAxesArray::hidRelAxes](#hidrelaxes) | 相对坐标属性编码  | 
+| [Hid_RelAxesArray::length](#length-45) | 数组长度  | 
+| [Hid_MscEventArray::hidMscEvent](#hidmscevent) | 其它特殊事件属性编码  | 
+| [Hid_MscEventArray::length](#length-55) | 数组长度  | 
+| [Hid_EventProperties::hidEventTypes](#hideventtypes) | 事件类型属性编码数组  | 
+| [Hid_EventProperties::hidKeys](#hidkeys) | 键值属性编码数组  | 
+| [Hid_EventProperties::hidAbs](#hidabs) | 绝对坐标属性编码数组  | 
+| [Hid_EventProperties::hidRelBits](#hidrelbits) | 相对坐标属性编码数组  | 
+| [Hid_EventProperties::hidMiscellaneous](#hidmiscellaneous) | 其它特殊事件属性编码数组  | 
+| [Hid_EventProperties::hidAbsMax](#hidabsmax) [64] | 绝对坐标属性最大值  | 
+| [Hid_EventProperties::hidAbsMin](#hidabsmin) [64] | 绝对坐标属性最小值  | 
+| [Hid_EventProperties::hidAbsFuzz](#hidabsfuzz) [64] | 绝对坐标属性模糊值  | 
+| [Hid_EventProperties::hidAbsFlat](#hidabsflat) [64] | 绝对坐标属性固定值  | 
 
 
 ## 类型定义说明
@@ -409,7 +409,7 @@ enum Hid_KeyCode
 | HID_BTN_TOOL_PEN  | 画笔 | 
 | HID_BTN_TOOL_RUBBER  | 橡皮擦 | 
 | HID_BTN_TOOL_BRUSH  | 笔刷 | 
-| HID_BTN_TOOL_PENCIL  | 钢笔 | 
+| HID_BTN_TOOL_PENCIL  | 铅笔 | 
 | HID_BTN_TOOL_AIRBRUSH  | 喷枪 | 
 | HID_BTN_TOOL_FINGER  | 手指 | 
 | HID_BTN_TOOL_MOUSE  | 鼠标 | 

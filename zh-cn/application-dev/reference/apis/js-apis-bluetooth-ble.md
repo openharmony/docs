@@ -701,7 +701,7 @@ try {
 
 disableAdvertising(advertisingDisableParams: AdvertisingDisableParams, callback: AsyncCallback&lt;void&gt;): void
 
-临时启动BLE广播。
+临时停止BLE广播。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -802,7 +802,7 @@ try {
 
 disableAdvertising(advertisingDisableParams: AdvertisingDisableParams): Promise&lt;void&gt;
 
-开始发送BLE广播。
+临时停止BLE广播。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -3460,7 +3460,7 @@ try {
 
 ## AdvertiseData
 
-描述BLE广播数据包的内容。
+描述BLE广播数据包的内容，广播包数据长度为31个字节。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3469,7 +3469,7 @@ try {
 | serviceUuids    | Array&lt;string&gt;                      | 是    | 是    | 表示要广播的服务&nbsp;UUID&nbsp;列表。 |
 | manufactureData | Array&lt;[ManufactureData](#manufacturedata)&gt; | 是    | 是    | 表示要广播的广播的制造商信息列表。           |
 | serviceData     | Array&lt;[ServiceData](#servicedata)&gt; | 是    | 是    | 表示要广播的服务数据列表。               |
-| includeDeviceName | boolean                  | 是    | 是    | 表示是否携带设备名，可选参数。        |
+| includeDeviceName | boolean                  | 是    | 是    | 表示是否携带设备名，可选参数。注意带上设备名时广播包长度不能超出31个字节。        |
 
 ## AdvertisingParams<sup>11+</sup>
 

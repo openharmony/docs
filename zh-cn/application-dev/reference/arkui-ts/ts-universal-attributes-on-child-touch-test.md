@@ -1,6 +1,6 @@
 # 自定义事件分发
 
-ArkUI在处理触屏事件时，会在触屏事件触发前进行按压点和组件区域的触摸测试，来收集需要响应触屏事件的组件，再基于触摸测试结果分发相应的触屏事件。在父节点，开发者可以通过onChildTouchTest决定如何让子节点去做触摸测试，影响子组件的触摸测试，最终影响后续的触屏事件分发，具体影响参考[TouchTestStrategt](#touchteststrategy枚举说明)枚举说明。
+ArkUI在处理触屏事件时，会在触屏事件触发前进行按压点和组件区域的触摸测试，来收集需要响应触屏事件的组件，再基于触摸测试结果分发相应的触屏事件。在父节点，开发者可以通过onChildTouchTest决定如何让子节点去做触摸测试，影响子组件的触摸测试，最终影响后续的触屏事件分发，具体影响参考[TouchTestStrategy](#touchteststrategy枚举说明)枚举说明。
 
 >  **说明：**
 >  - 从API Version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
@@ -8,7 +8,7 @@ ArkUI在处理触屏事件时，会在触屏事件触发前进行按压点和组
 
 ## onChildTouchTest
 
-onChildTouchTest(event: (value: Array&lt;TouchTestInfo&gt;) => TouchResult 
+onChildTouchTest(event: (value: Array&lt;TouchTestInfo&gt;) => TouchResult)
 
 当前组件可通过设置回调来自定义子节点如何去做触摸测试。
 
@@ -18,7 +18,7 @@ onChildTouchTest(event: (value: Array&lt;TouchTestInfo&gt;) => TouchResult
 
 | 参数名 | 类型                                       | 必填 | 说明                   |
 | ------ | ------------------------------------------ | ---- | ---------------------- |
-| value  | Array<[TouchTestInfo>](#touchtestinfo说明) | 否   | 包含子节点信息的数组。 |
+| value  | Array<[TouchTestInfo>](#touchtestinfo说明) | 是   | 包含子节点信息的数组。 |
 
 **返回值：** 
 
@@ -47,7 +47,7 @@ onChildTouchTest(event: (value: Array&lt;TouchTestInfo&gt;) => TouchResult
 
 | 名称      | 类型                                     | 必填   | 描述                                |
 | --------- | --------- | ---- |--------------------------------------- |
-| strategy  | [TouchTestStrategy](##TouchTestStrategy枚举说明) | 是    | 事件派发策略。                     |
+| strategy  | [TouchTestStrategy](#touchteststrategy枚举说明) | 是    | 事件派发策略。                     |
 | id ?   | string | 否    | 通过id属性设置的组件id。<br>当strategy为TouchTestStrategy.DEFUALT时，id是可选的；当strategy是TouchTestStrategy.FORWARD_COMPEITION或TouchTestStrategy.FORWARD时，id是必需的（如果没有返回id，则当成TouchTestStrategy.DEFAULT处理）。 |
 
 ## TouchTestStrategy枚举说明

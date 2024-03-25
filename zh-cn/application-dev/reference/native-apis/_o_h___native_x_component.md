@@ -5,9 +5,9 @@
 
 描述ArkUI XComponent持有的surface和触摸事件，该事件可用于EGL/OpenGLES和媒体数据输入，并显示在ArkUI XComponent上，具体使用请参考[XComponent开发指导](../../napi/xcomponent-guidelines.md)。
 
-**起始版本:**
-
-8
+> **说明：**
+>
+> 该模块从API Version 8 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 汇总
@@ -225,14 +225,14 @@ enum OH_NativeXComponent_EventSourceType
 
 触摸事件源类型。
 
-| 枚举值                                      | 描述                  |
-| ---------------------------------------- | ------------------- |
-| OH_NATIVEXCOMPONENT_SOURCE_TYPE_UNKNOWN  | 未知的输入源类型。           |
-| OH_NATIVEXCOMPONENT_SOURCE_TYPE_MOUSE    | 表示输入源生成鼠标多点触摸事件。    |
-| OH_NATIVEXCOMPONENT_SOURCE_TYPE_TOUCHSCREEN | 表示输入源生成一个触摸屏多点触摸事件。 |
-| OH_NATIVEXCOMPONENT_SOURCE_TYPE_TOUCHPAD | 表示输入源生成一个触摸板多点触摸事件。 |
-| OH_NATIVEXCOMPONENT_SOURCE_TYPE_JOYSTICK | 表示输入源生成一个操纵杆多点触摸事件。 |
-| OH_NATIVEXCOMPONENT_SOURCE_TYPE_KEYBOARD | 表示输入源生成一个键盘事件。      |
+| 枚举值                                      | 描述                                                   |
+| ------------------------------------------- | ------------------------------------------------------ |
+| OH_NATIVEXCOMPONENT_SOURCE_TYPE_UNKNOWN     | 未知的输入源类型。                                     |
+| OH_NATIVEXCOMPONENT_SOURCE_TYPE_MOUSE       | 表示输入源生成鼠标多点触摸事件。                       |
+| OH_NATIVEXCOMPONENT_SOURCE_TYPE_TOUCHSCREEN | 表示输入源生成一个触摸屏多点触摸事件。                 |
+| OH_NATIVEXCOMPONENT_SOURCE_TYPE_TOUCHPAD    | 表示输入源生成一个触摸板多点触摸事件。                 |
+| OH_NATIVEXCOMPONENT_SOURCE_TYPE_JOYSTICK    | 表示输入源生成一个操纵杆多点触摸事件。                 |
+| OH_NATIVEXCOMPONENT_SOURCE_TYPE_KEYBOARD<sup>10+</sup>    | 表示输入源生成一个键盘事件。            |
 
 **起始版本：**
 
@@ -1010,11 +1010,11 @@ int32_t OH_NativeXComponent_GetXComponentId (OH_NativeXComponent * component, ch
 
 **参数:**
 
-| 名称        | 描述                                       |
-| --------- | ---------------------------------------- |
-| component | 表示指向OH_NativeXComponent实例的指针。            |
+| 名称      | 描述                                                         |
+| --------- | ------------------------------------------------------------ |
+| component | 表示指向OH_NativeXComponent实例的指针。                      |
 | id        | 指示用于保存此OH_NativeXComponent实例的ID的字符缓冲区。&nbsp;请注意，空终止符将附加到字符缓冲区，因此字符缓冲区的大小应至少比真实id长度大一个单位。&nbsp;建议字符缓冲区的大小为[OH_XCOMPONENT_ID_LEN_MAX&nbsp;+&nbsp;1]。 |
-| size      | 指示指向id长度的指针。                             |
+| size      | 指示指向id长度的指针，用于接收id的长度信息。                 |
 
 **返回:**
 
@@ -1104,7 +1104,7 @@ int32_t OH_NativeXComponent_RegisterBlurEventCallback (OH_NativeXComponent * com
 
 **起始版本：**
 
-8
+10
 
 
 ### OH_NativeXComponent_RegisterCallback()
@@ -1213,7 +1213,7 @@ int32_t OH_NativeXComponent_RegisterMouseEventCallback (OH_NativeXComponent * co
 ### OH_NativeXComponent_RegisterOnFrameCallback()
 
 ```
-int32_t OH_NativeXComponent_RegisterOnFrameCallback (OH_NativeXComponent * component, void(*)(OH_NativeXComponent *component, uint64_t timestamp, uint64_t targetTimestamp) callback )
+int32_t OH_NativeXComponent_RegisterOnFrameCallback (OH_NativeXComponent* component, void (*callback)(OH_NativeXComponent *component, uint64_t timestamp, uint64_t targetTimestamp))
 ```
 **描述**
 

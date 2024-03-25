@@ -2,39 +2,30 @@
 
 - [应用开发导读](application-dev-guide.md)
 - 入门
-  - 快速入门
-    - [开发准备](quick-start/start-overview.md)
-    - [构建第一个ArkTS应用（Stage模型）](quick-start/start-with-ets-stage.md)
-  - 开发基础知识
-    - 应用程序包基础知识
-      - [应用程序包概述](quick-start/application-package-overview.md)
-      - 应用程序包结构
-        - [Stage模型应用程序包结构](quick-start/application-package-structure-stage.md)
-        - [FA模型应用程序包结构](quick-start/application-package-structure-fa.md)
-      - 应用程序包多HAP机制
-        - [多HAP机制设计目标](quick-start/multi-hap-objective.md)
-        - [多HAP构建视图](quick-start/multi-hap-build-view.md)
-        - [多HAP的开发调试与发布部署流程](quick-start/multi-hap-release-deployment.md)
-        - [多HAP使用规则](quick-start/multi-hap-rules.md)
-        - [多HAP运行机制及数据通信方式](quick-start/multi-hap-principles.md)
-      - [应用程序包安装和卸载流程](quick-start/application-package-install-uninstall.md)
-      - [应用程序包更新流程](quick-start/application-package-update.md)
-      - 共享包
-        - [共享包概述](quick-start/shared-guide.md)
-        - [HAR](quick-start/har-package.md)
-        - [HSP](quick-start/in-app-hsp.md)
-      - 应用程序包快速修复
-        - [快速修复概述](quick-start/quickfix-principles.md)
-        - [快速修复命令行调试开发指导](quick-start/quickfix-debug.md)
-    - 应用配置文件（Stage模型）
-      - [应用配置文件概述（Stage模型）](quick-start/application-configuration-file-overview-stage.md)
-      - [app.json5配置文件](quick-start/app-configuration-file.md)
-      - [module.json5配置文件](quick-start/module-configuration-file.md)
-    - 应用配置文件（FA模型）
-      - [应用配置文件概述（FA模型）](quick-start/application-configuration-file-overview-fa.md)
-      - [app对象内部结构](quick-start/app-structure.md)
-      - [deviceConfig内部结构](quick-start/deviceconfig-structure.md)
-      - [module对象内部结构](quick-start/module-structure.md)
+ - 开发基础知识
+  - 应用程序包基础知识
+    - [应用程序包概述](quick-start/application-package-overview.md)
+    - 应用程序包结构
+      - [Stage模型应用程序包结构](quick-start/application-package-structure-stage.md)
+      - [FA模型应用程序包结构](quick-start/application-package-structure-fa.md)
+    - 应用程序包开发与使用
+      - [HAP](quick-start/hap-package.md)
+      - [HAR](quick-start/har-package.md)
+      - [HSP](quick-start/in-app-hsp.md)
+      - [动态import](quick-start/arkts-dynamic-import.md)
+    - [应用程序包安装卸载与更新](quick-start/application-package-install-uninstall.md)
+    - 应用程序包快速修复
+      - [快速修复概述](quick-start/quickfix-principles.md)
+      - [快速修复命令行调试开发指导](quick-start/quickfix-debug.md)
+  - 应用配置文件（Stage模型）
+    - [应用配置文件概述（Stage模型）](quick-start/application-configuration-file-overview-stage.md)
+    - [app.json5配置文件](quick-start/app-configuration-file.md)
+    - [module.json5配置文件](quick-start/module-configuration-file.md)
+  - 应用配置文件（FA模型）
+    - [应用配置文件概述（FA模型）](quick-start/application-configuration-file-overview-fa.md)
+    - [app对象内部结构](quick-start/app-structure.md)
+    - [deviceConfig内部结构](quick-start/deviceconfig-structure.md)
+    - [module对象内部结构](quick-start/module-structure.md)
   - [资源分类与访问](quick-start/resource-categories-and-access.md)
   - 学习ArkTS语言
     - [初识ArkTS语言](quick-start/arkts-get-started.md)

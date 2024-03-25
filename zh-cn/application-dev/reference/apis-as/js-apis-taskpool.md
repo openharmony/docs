@@ -67,7 +67,7 @@ taskpool.execute(printArgs, 100).then((value: Object) => { // 100: test number
 
 execute(task: Task, priority?: Priority): Promise\<Object>
 
-将创建好的任务放入taskpool内部任务队列等待，等待分发到工作线程执行。当前执行模式可尝试调用cancel进行任务取消。
+将创建好的任务放入taskpool内部任务队列等待，等待分发到工作线程执行。当前执行模式可尝试调用cancel进行任务取消。该任务不可以是任务组任务和串行队列任务。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -103,9 +103,17 @@ function printArgs(args: number): number {
     return args;
 }
 
-let task: taskpool.Task = new taskpool.Task(printArgs, 100); // 100: test number
-taskpool.execute(task).then((value: Object) => {
-  console.info("taskpool result: " + value);
+let task1: taskpool.Task = new taskpool.Task(printArgs, 100); // 100: test number
+let task2: taskpool.Task = new taskpool.Task(printArgs, 200); // 200: test number
+let task3: taskpool.Task = new taskpool.Task(printArgs, 300); // 300: test number
+taskpool.execute(task1, taskpool.Priority.LOW).then((value: Object) => {
+  console.info("taskpool result1: " + value);
+});
+taskpool.execute(task2, taskpool.Priority.MEDIUM).then((value: Object) => {
+  console.info("taskpool result2: " + value);
+});
+taskpool.execute(task3, taskpool.Priority.HIGH).then((value: Object) => {
+  console.info("taskpool result3: " + value);
 });
 ```
 
@@ -171,7 +179,7 @@ taskpool.execute(taskGroup2).then((res: Array<Object>) => {
 
 executeDelayed(delayTime: number, task: Task, priority?: Priority): Promise\<Object>
 
-延时执行任务。
+延时执行任务。该任务不可以是任务组任务或串行队列任务。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -267,24 +275,32 @@ function inspectStatus(arg: number): number {
   return arg + 1;
 }
 
-let task1: taskpool.Task = new taskpool.Task(inspectStatus, 100); // 100: test number
-let task2: taskpool.Task = new taskpool.Task(inspectStatus, 200); // 200: test number
-let task3: taskpool.Task = new taskpool.Task(inspectStatus, 300); // 300: test number
-let task4: taskpool.Task = new taskpool.Task(inspectStatus, 400); // 400: test number
-let task5: taskpool.Task = new taskpool.Task(inspectStatus, 500); // 500: test number
-let task6: taskpool.Task = new taskpool.Task(inspectStatus, 600); // 600: test number
-taskpool.execute(task1).then((res: Object)=>{
-  console.info("taskpool test result: " + res);
-});
-taskpool.execute(task2);
-taskpool.execute(task3);
-taskpool.execute(task4);
-taskpool.execute(task5);
-taskpool.execute(task6);
-// 1s后取消task
-setTimeout(()=>{
-  taskpool.cancel(task1);
-}, 1000);
+function concurrntFunc() {
+  let task1: taskpool.Task = new taskpool.Task(inspectStatus, 100); // 100: test number
+  let task2: taskpool.Task = new taskpool.Task(inspectStatus, 200); // 200: test number
+  let task3: taskpool.Task = new taskpool.Task(inspectStatus, 300); // 300: test number
+  let task4: taskpool.Task = new taskpool.Task(inspectStatus, 400); // 400: test number
+  let task5: taskpool.Task = new taskpool.Task(inspectStatus, 500); // 500: test number
+  let task6: taskpool.Task = new taskpool.Task(inspectStatus, 600); // 600: test number
+  taskpool.execute(task1).then((res: Object)=>{
+    console.info("taskpool test result: " + res);
+  });
+  taskpool.execute(task2);
+  taskpool.execute(task3);
+  taskpool.execute(task4);
+  taskpool.execute(task5);
+  taskpool.execute(task6);
+  // 1s后取消task
+  setTimeout(()=>{
+    try {
+      taskpool.cancel(task1);
+    } catch (e) {
+      console.error(`taskpool: cancel error code: ${e.code}, info: ${e.message}`);
+    }
+  }, 1000);
+}
+
+concurrntFunc();
 ```
 
 ## taskpool.cancel<sup>10+</sup>
@@ -322,23 +338,27 @@ function printArgs(args: number): number {
   return args;
 }
 
-let taskGroup1: taskpool.TaskGroup = new taskpool.TaskGroup();
-taskGroup1.addTask(printArgs, 10); // 10: test number
-let taskGroup2: taskpool.TaskGroup = new taskpool.TaskGroup();
-taskGroup2.addTask(printArgs, 100); // 100: test number
-taskpool.execute(taskGroup1).then((res: Array<Object>)=>{
-  console.info("taskGroup1 res is:" + res);
-});
-taskpool.execute(taskGroup2).then((res: Array<Object>)=>{
-  console.info("taskGroup2 res is:" + res);
-});
-setTimeout(()=>{
-  try {
-    taskpool.cancel(taskGroup2);
-  } catch (e) {
-    console.error("taskGroup.cancel occur error:" + e);
-  }
-}, 1000);
+function concurrntFunc() {
+  let taskGroup1: taskpool.TaskGroup = new taskpool.TaskGroup();
+  taskGroup1.addTask(printArgs, 10); // 10: test number
+  let taskGroup2: taskpool.TaskGroup = new taskpool.TaskGroup();
+  taskGroup2.addTask(printArgs, 100); // 100: test number
+  taskpool.execute(taskGroup1).then((res: Array<Object>)=>{
+    console.info("taskGroup1 res is:" + res);
+  });
+  taskpool.execute(taskGroup2).then((res: Array<Object>)=>{
+    console.info("taskGroup2 res is:" + res);
+  });
+  setTimeout(()=>{
+    try {
+      taskpool.cancel(taskGroup2);
+    } catch (e) {
+      console.error(`taskpool: cancel error code: ${e.code}, info: ${e.message}`);
+    }
+  }, 1000);
+}
+
+concurrntFunc();
 ```
 
 
@@ -346,7 +366,7 @@ setTimeout(()=>{
 
 getTaskPoolInfo(): TaskPoolInfo
 
-获取任务池内部信息。
+获取任务池内部信息，包含线程信息和任务信息。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -364,7 +384,7 @@ let taskpoolInfo: taskpool.TaskPoolInfo = taskpool.getTaskPoolInfo();
 
 ## Priority
 
-表示所创建任务（Task）的优先级。
+表示所创建任务（Task）执行时的优先级。
 
 **系统能力：**  SystemCapability.Utils.Lang
 
@@ -588,6 +608,9 @@ let view1: Uint8Array = new Uint8Array(buffer1);
 
 console.info("testTransfer view byteLength: " + view.byteLength);
 console.info("testTransfer view1 byteLength: " + view1.byteLength);
+// 执行结果为：
+// testTransfer view byteLength: 8
+// testTransfer view1 byteLength: 16
 
 let task: taskpool.Task = new taskpool.Task(testTransfer, view, view1);
 task.setTransferList([view.buffer, view1.buffer]);
@@ -596,8 +619,11 @@ taskpool.execute(task).then((res: Object)=>{
 }).catch((e: string)=>{
   console.error("test catch: " + e);
 })
-console.info("testTransfer view byteLength: " + view.byteLength);
-console.info("testTransfer view1 byteLength: " + view1.byteLength);
+console.info("testTransfer view2 byteLength: " + view.byteLength);
+console.info("testTransfer view3 byteLength: " + view1.byteLength);
+// 经过transfer转移之后值为0，执行结果为：
+// testTransfer view2 byteLength: 0
+// testTransfer view3 byteLength: 0
 ```
 
 
@@ -616,7 +642,7 @@ setCloneList(cloneList: Object[] | ArrayBuffer[]): void
 
 | 参数名    | 类型                      | 必填 | 说明                                          |
 | --------- | ------------------------ | ---- | --------------------------------------------- |
-| cloneList | Object[] \| ArrayBuffer[]  | 是 | - 传入数组的类型必须为[SendableClass](../../arkts-utils/arkts-sendable.md#sendableclass)或ArrayBuffer。<br/>- 所有传入cloneList的对象持有的SendableClass实例或ArrayBuffer类型对象，在线程间传输的行为都会变成拷贝，即修改传输后的对象不会对原有对象产生任何影响。 |
+| cloneList | Object[] \| ArrayBuffer[]  | 是 | - 传入数组的类型必须为[SendableClass](../../arkts-utils/arkts-sendable.md#基本概念)或ArrayBuffer。<br/>- 所有传入cloneList的对象持有的SendableClass实例或ArrayBuffer类型对象，在线程间传输的行为都会变成拷贝，即修改传输后的对象不会对原有对象产生任何影响。 |
 
 **错误码：**
 
@@ -822,7 +848,7 @@ async function testFunc(): Promise<void> {
     task.onReceiveData(pringLog);
     await taskpool.execute(task);
   } catch (e) {
-    console.info(`taskpool: error code: ${e.code}, info: ${e.message}`);
+    console.error(`taskpool: error code: ${e.code}, info: ${e.message}`);
   }
 }
 
@@ -833,7 +859,7 @@ testFunc();
 
 addDependency(...tasks: Task[]): void
 
-为当前任务添加对其他任务的依赖。使用该方法前需要先构造Task。
+为当前任务添加对其他任务的依赖。使用该方法前需要先构造Task。该任务不可以是任务组任务、串行队列任务和已执行的任务。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -866,17 +892,6 @@ function delay(args: number): number {
 let task1:taskpool.Task = new taskpool.Task(delay, 100);
 let task2:taskpool.Task = new taskpool.Task(delay, 200);
 let task3:taskpool.Task = new taskpool.Task(delay, 200);
-
-console.info("dependency: start execute first")
-taskpool.execute(task1).then(()=>{
-  console.info("dependency: first task1 success")
-})
-taskpool.execute(task2).then(()=>{
-  console.info("dependency: first task2 success")
-})
-taskpool.execute(task3).then(()=>{
-  console.info("dependency: first task3 success")
-})
 
 console.info("dependency: add dependency start");
 task1.addDependency(task2);
@@ -1047,7 +1062,7 @@ taskGroup.addTask(printArgs, 100); // 100: test number
 
 addTask(task: Task): void
 
-将创建好的任务添加到任务组中。使用该方法前需要先构造TaskGroup。
+将创建好的任务添加到任务组中。使用该方法前需要先构造TaskGroup。任务组不可以添加其他任务组任务、串行队列任务、有依赖关系的任务和已执行的任务。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1115,7 +1130,7 @@ let runner: taskpool.SequenceRunner = new taskpool.SequenceRunner();
 
 execute(task: Task): Promise\<Object>
 
-执行串行任务。使用该方法前需要先构造SequenceRunner。
+执行串行任务。使用该方法前需要先构造SequenceRunner。串行队列不可以执行任务组任务、其他串行队列任务、有依赖关系的任务和已执行的任务。
 
 > **说明：**
 >
@@ -1250,7 +1265,7 @@ async function seqRunner()
 ## 其他说明
 
 ### 序列化支持类型
-序列化支持类型包括：All Primitive Type(不包括symbol)、Date、String、RegExp、Array、Map、Set、Object、ArrayBuffer、TypedArray。
+序列化支持类型包括：All Primitive Type(不包括symbol)、Date、String、RegExp、Array、Map、Set、Object、ArrayBuffer、TypedArray。详情可见[TaskPool和Worker支持的序列化类型](../../arkts-utils/serialization-support-types.md)。
 
 ### 简单使用
 
@@ -1396,7 +1411,12 @@ async function taskpoolCancel(): Promise<void> {
   });
   // 1s后取消task
   setTimeout(()=>{
-    taskpool.cancel(task);}, 1000);
+    try {
+      taskpool.cancel(task);
+    } catch (e) {
+      console.error(`taskpool: cancel error code: ${e.code}, info: ${e.message}`);
+    }
+  }, 1000);
 }
 
 taskpoolCancel();
@@ -1436,7 +1456,7 @@ async function taskpoolCancel(): Promise<void> {
     try {
       taskpool.cancel(task); // 任务已执行,取消失败
     } catch (e) {
-      console.error("taskpool.cancel occur error:" + e);
+      console.error(`taskpool: cancel error code: ${e.code}, info: ${e.message}`);
     }
   }, 3000); // 延时3s，确保任务已执行
 }
@@ -1481,7 +1501,11 @@ async function taskpoolGroupCancelTest(): Promise<void> {
     console.error("taskpool execute error is:" + e);
   });
 
-  taskpool.cancel(taskGroup2);
+  try {
+    taskpool.cancel(taskGroup2);
+  } catch (e) {
+    console.error(`taskpool: cancel error code: ${e.code}, info: ${e.message}`);
+  }
 }
 
 taskpoolGroupCancelTest()

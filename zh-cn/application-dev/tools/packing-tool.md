@@ -13,60 +13,39 @@
 
 
     ```
-    java -jar app_packing_tool.jar --mode hap --json-path <option> --resources-path <option> --ets-path <option> --index-path <option> --pack-info-path <option> --out-path <option> --force true
+    java -jar app_packing_tool.jar --mode hap --json-path <option> --resources-path <option> --ets-path <option> --index-path <option> --pack-info-path <option> --out-path <option> --force true --compress-level 5
     ```
 
 - FA模型示例：
 
 
     ```
-    java -jar app_packing_tool.jar --mode hap --json-path <option> --maple-so-path [option] --profile-path [option] --maple-so-dir [option] --dex-path [option] --lib-path [option] --resources-path [option] --index-path [option] --out-path <option> --force [option]
+    java -jar app_packing_tool.jar --mode hap --json-path <option> --maple-so-path [option] --profile-path [option] --maple-so-dir [option] --dex-path [option] --lib-path [option] --resources-path [option] --index-path [option] --out-path <option> --force [option] --compress-level 5
     ```
 
 **表1** HAP打包指令参数说明
 
-| 指令               | 是否必选项 | 选项                   | 描述                                                        | 备注         |
-|------------------|-------|----------------------|-----------------------------------------------------------|------------|
-| --mode           | 是     | hap                  | 打包类型。                                                     | NA         |
-| --json-path      | 是     | NA                   | .json文件路径.FA模型文件名必须为config.json；Stage模型文件名必须为module.json。 | NA         |
-| --profile-path   | 否     | NA                   | CAPABILITY.profile文件路径。                                   | NA         |
-| --maple-so-path  | 否     | NA                   | maple so文件输入路径，so文件路径，文件名必须以.so为后缀。如果是多个so需要用“，”分隔。       | NA         |
-| --maple-so-dir   | 否     | NA                   | maple so目录输入路径。                                           | NA         |
-| --dex-path       | 否     | NA                   | dex文件路径，文件名必须以.dex为后缀。如果是多个dex需要用“，”分隔。 <br/>dex文件路径也可以为目录。 | NA         |
-| --lib-path       | 否     | NA                   | lib库文件路径。                                                 | NA         |
-| --resources-path | 否     | NA                   | resources资源包路径。                                           | NA         |
-| --index-path     | 否     | NA                   | .index文件路径，文件名必须为resources.index。                         | NA         |
-| --pack-info-path | 否     | NA                   | pack.info文件路径，文件名必须为pack.info。                            | NA         |
-| --rpcid-path     | 否     | NA                   | rpcid.sc文件路径，文件名必须为rpcid.sc。                              | NA         |
-| --js-path        | 否     | NA                   | 存放js文件目录路径。                                               | 仅stage模型生效 |
-| --ets-path       | 否     | NA                   | 存放ets文件目录路径。                                              | 仅stage模型生效 |
-| --out-path       | 是     | NA                   | 目标文件路径，文件名必须以.hap为后缀。                                     | NA         |
-| --force          | 否     | true或者false          | 默认值为false，如果为true，表示当目标文件存在时，强制删除。                        | NA         |
-| --an-path        | 否     | NA                   | 存放an文件的路径。                                                | 仅stage模型生效 |
-| --ap-path        | 否     | NA                   | 存放ap文件的路径。                                                | 仅stage模型生效 |
-| --dir-list       | 否     | NA                   | 可指定目标文件夹列表，将其打入HAP包内。                              | NA         |
-
-## HAR打包指令
-
-开发者可以使用打包工具的jar包对应用进行打包，通过传入打包选项、文件路径，生成所需的HAR包。
-
-示例：
-
-```
-java -jar app_packing_tool.jar --mode har --json-path [option] --jar-path [option]--lib-path [option] --resources-path [option] --out-path [option] --force [option]
-```
-
-**表2** HAR打包指令参数说明
-
-| 指令              | 是否必选项 | 选项          | 描述                                                        |
-|-----------------|-------|-------------|-----------------------------------------------------------|
-| --mode          | 是     | har         | 打包类型。                                                     |
-| --json-path     | 是     | NA          | .json文件路径，FA模型文件名必须为config.json；stage模型文件名必须为module.json。 |
-| --jar-path      | 否     | NA          | jar文件路径，文件名必须以.jar为后缀。如果是多个jar需要用“，”分隔。<br/>jar文件路径也可以为目录。 |
-| --lib-path      | 否     | NA          | lib库文件路径。                                                 |
-| --resource-path | 是     | NA          | resources资源包路径。                                           |
-| --out-path      | 是     | NA          | 目标文件路径，文件名必须以.har为后缀。                                     |
-| --force         | 否     | true或者false | 默认值为false，如果为true，表示当目标文件存在时，强制删除。                        |
+| 指令             | 是否必选项 | 选项          | 描述                                                         | 备注            |
+| ---------------- | ---------- | ------------- | ------------------------------------------------------------ | --------------- |
+| --mode           | 是         | hap           | 打包类型。                                                   | NA              |
+| --json-path      | 是         | NA            | .json文件路径.FA模型文件名必须为config.json；Stage模型文件名必须为module.json。 | NA              |
+| --profile-path   | 否         | NA            | CAPABILITY.profile文件路径。                                 | NA              |
+| --maple-so-path  | 否         | NA            | maple so文件输入路径，so文件路径，文件名必须以.so为后缀。如果是多个so需要用“，”分隔。 | NA              |
+| --maple-so-dir   | 否         | NA            | maple so目录输入路径。                                       | NA              |
+| --dex-path       | 否         | NA            | dex文件路径，文件名必须以.dex为后缀。如果是多个dex需要用“，”分隔。 <br/>dex文件路径也可以为目录。 | NA              |
+| --lib-path       | 否         | NA            | lib库文件路径。                                              | NA              |
+| --resources-path | 否         | NA            | resources资源包路径。                                        | NA              |
+| --index-path     | 否         | NA            | .index文件路径，文件名必须为resources.index。                | NA              |
+| --pack-info-path | 否         | NA            | pack.info文件路径，文件名必须为pack.info。                   | NA              |
+| --rpcid-path     | 否         | NA            | rpcid.sc文件路径，文件名必须为rpcid.sc。                     | NA              |
+| --js-path        | 否         | NA            | 存放js文件目录路径。                                         | 仅stage模型生效 |
+| --ets-path       | 否         | NA            | 存放ets文件目录路径。                                        | 仅stage模型生效 |
+| --out-path       | 是         | NA            | 目标文件路径，文件名必须以.hap为后缀。                       | NA              |
+| --force          | 否         | true或者false | 默认值为false，如果为true，表示当目标文件存在时，强制删除。  | NA              |
+| --an-path        | 否         | NA            | 存放an文件的路径。                                           | 仅stage模型生效 |
+| --ap-path        | 否         | NA            | 存放ap文件的路径。                                           | 仅stage模型生效 |
+| --dir-list       | 否         | NA            | 可指定目标文件夹列表，将其打入HAP包内。                      | NA              |
+| --compress-level | 否         | number        | 压缩等级，默认值1，可选等级1-9。在应用配置compressNativeLibs参数为true的情况下生效，数值越大压缩率越高、压缩速度越慢。 | NA  |
 
 ## HSP打包指令
 
@@ -74,25 +53,26 @@ HSP包实现了多个HAP对文件的共享，开发者可以使用打包工具�
 
 示例：
 ```
-java -jar path\app_packing_tool.jar --mode hsp --json-path <option> --resources-path <option> --ets-path <option> --index-path <option> --pack-info-path <option> --out-path path\out\library.hsp --force true
+java -jar path\app_packing_tool.jar --mode hsp --json-path <option> --resources-path <option> --ets-path <option> --index-path <option> --pack-info-path <option> --out-path path\out\library.hsp --force true --compress-level 5
 ```
 
-**表3** HSP打包指令参数说明
+**表2** HSP打包指令参数说明
 
-| 指令               | 是否必选项 | 选项          | 描述                                                        |
-|------------------|-------|-------------|-----------------------------------------------------------|
-| --mode           | 是     | hsp         | 打包类型。                                                     |
-| --json-path      | 是     | NA          | .json文件路径，文件名必须为module.json。                              |
-| --profile-path   | 否     | NA          | CAPABILITY.profile文件路径。                                   |
-| --dex-path       | 否     | NA          | 1.dex文件路径，文件名必须以.dex为后缀。如果是多个dex需要用“，”分隔。<br/>2.dex文件路径也可以为目录。 |
-| --lib-path       | 否     | NA          | lib库文件路径。                                                 |
-| --resources-path | 否     | NA          | resources资源包路径。                                           |
-| --index-path     | 否     | NA          | .index文件路径，文件名必须为resources.index。                         |
-| --pack-info-path | 否     | NA          | pack.info文件路径，文件名必须为pack.info。                            |
-| --js-path        | 否     | NA          | 存放js文件目录路径。                                               |
-| --ets-path       | 否     | NA          | 存放ets文件目录路径。                                              |
-| --out-path       | 是     | NA          | 目标文件路径，文件名必须以.hsp为后缀。                                     |
-| --force          | 否     | true或者false | 默认值为false，如果为true，表示当目标文件存在时，强制删除。             
+| 指令             | 是否必选项 | 选项          | 描述                                                         |
+| ---------------- | ---------- | ------------- | ------------------------------------------------------------ |
+| --mode           | 是         | hsp           | 打包类型。                                                   |
+| --json-path      | 是         | NA            | .json文件路径，文件名必须为module.json。                     |
+| --profile-path   | 否         | NA            | CAPABILITY.profile文件路径。                                 |
+| --dex-path       | 否         | NA            | 1.dex文件路径，文件名必须以.dex为后缀。如果是多个dex需要用“，”分隔。<br/>2.dex文件路径也可以为目录。 |
+| --lib-path       | 否         | NA            | lib库文件路径。                                              |
+| --resources-path | 否         | NA            | resources资源包路径。                                        |
+| --index-path     | 否         | NA            | .index文件路径，文件名必须为resources.index。                |
+| --pack-info-path | 否         | NA            | pack.info文件路径，文件名必须为pack.info。                   |
+| --js-path        | 否         | NA            | 存放js文件目录路径。                                         |
+| --ets-path       | 否         | NA            | 存放ets文件目录路径。                                        |
+| --out-path       | 是         | NA            | 目标文件路径，文件名必须以.hsp为后缀。                       |
+| --force          | 否         | true或者false | 默认值为false，如果为true，表示当目标文件存在时，强制删除。  |
+| --compress-level | 否         | number        | 压缩等级，默认值1，可选等级1-9。在应用配置compressNativeLibs参数为true的情况下生效，数值越大压缩率越高、压缩速度越慢。 |
 
 ## App打包指令
 
@@ -104,10 +84,10 @@ java -jar path\app_packing_tool.jar --mode hsp --json-path <option> --resources-
 示例：
 
 ```
-java -jar app_packing_tool.jar --mode app --hap-path <option> --hsp-path <option> --out-path <option> --signature-path [option] --certificate-path [option] --pack-info [option]--force [option]
+java -jar app_packing_tool.jar --mode app --hap-path <option> --hsp-path <option> --out-path <option> --signature-path [option] --certificate-path [option] --pack-info-path [option] --force [option]
 ```
 
-**表4** App打包指令参数说明
+**表3** App打包指令参数说明
 
 | 指令                 | 是否必选项 | 选项          | 描述                                                           |
 |--------------------|-------|-------------|--------------------------------------------------------------|
@@ -134,7 +114,7 @@ java -jar app_packing_tool.jar --mode app --hap-path <option> --hsp-path <option
 java -jar app_packing_tool.jar --mode multiApp --hap-list [option] --hsp-list [option] --app-list [option] --out-path <option>
 ```
 
-**表5** 多工程打包指令参数说明
+**表4** 多工程打包指令参数说明
 
 | 指令         | 是否必选项 | 选项        | 描述                                                                                                  |
 |------------|-------|-----------|-----------------------------------------------------------------------------------------------------|
@@ -157,14 +137,14 @@ HQF包适用于应用存在一些问题，需要紧急修复的场景。开发�
 java -jar app_packing_tool.jar --mode hqf --json-path <option> --lib-path <option> --ets-path <option> --out-path <option>
 ```
 
-**表6** HQF打包指令参数说明
+**表5** HQF打包指令参数说明
 
 | 指令          | 是否必选项 | 选项          | 描述                                 |
 |-------------|-------|-------------|------------------------------------|
 | --mode      | 是     | hqf         | 打包类型。                              |
 | --json-path | 是     | NA          | .json文件路径，文件名必须为patch.json。        |
 | --lib-path  | 否     | NA          | lib库文件的路径。                         |
-| --ets-path  | 是     | NA          | 存放ets文件目录路径。                       |
+| --ets-path  | 否     | NA          | 存放ets文件目录路径。                       |
 | --out-path  | 是     | NA          | 目标文件路径，文件名必须以.hqf为后缀。              |
 | --force     | 否     | true或者false | 默认值为false，如果为true，表示当目标文件存在时，强制删除。 |
 
@@ -178,7 +158,7 @@ APPQF包由一个或多个HQF文件组成。这些HQF包在应用市场会从APP
 java -jar app_packing_tool.jar --mode appqf --hqf-list <option> --out-path <option>
 ```
 
-**表7** APPQF打包指令参数说明
+**表6** APPQF打包指令参数说明
 
 | 指令         | 是否必选项 | 选项          | 描述                                 |
 |------------|-------|-------------|------------------------------------|
@@ -199,7 +179,7 @@ java -jar app_packing_tool.jar --mode appqf --hqf-list <option> --out-path <opti
 java -jar path\app_packing_tool.jar --mode versionNormalize --input-list 1.hap,2.hsp --version-code 1000001 --version-name 1.0.1 --out-path path\out\
 ```
 
-**表8** versionNormalize指令参数说明
+**表7** versionNormalize指令参数说明
 
 | 指令             | 是否必选项 | 选项               | 描述                                                                |
 |----------------|-------|------------------|-------------------------------------------------------------------|

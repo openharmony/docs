@@ -86,6 +86,24 @@ Can not start invisible component.
 1. Stage模型下，拉起应用时抛出16000004异常，表示被拉应用调用失败，需要检查被拉应用module.json5的Ability字段的[exported](../../quick-start/module-configuration-file.md#abilities标签)配置是否为true。该配置字段为true，表示可以被其他应用调用；该配置字段为false，表示不可以被其他应用调用。
 2. 若应用需要拉起exported为false的ability，请申请[ohos.permission.START_INVISIBLE_ABILITY](../../security/AccessToken/permissions-for-system-apps.md#ohospermissionstart_invisible_ability)权限。
 
+## 16000005 指定的进程权限校验失败
+
+**错误信息**
+
+The specified process does not have the permission.
+
+**错误描述**
+
+当指定的进程权限校验失败时，方法将返回该错误码。
+
+**可能原因**
+
+指定的进程权限校验失败。
+
+**处理步骤**
+
+确认指定进程的权限是否正确。
+
 ## 16000006 不允许跨用户操作
 
 **错误信息**
@@ -501,6 +519,50 @@ The number of child process exceeds upper bound.
 **处理步骤**
 
 确认创建的子进程数量是否已经达到上限。子进程数量上限为128个。
+
+## 16000100 监听Ability生命周期变化的AbilityMonitor方法执行失败
+
+**错误信息**
+
+ - AddAbilityMonitor failed.
+
+ - AddAbilityMonitorSync failed.
+
+ - RemoveAbilityMonitor failed.
+
+ - RemoveAbilityMonitorSync failed.
+
+ - WaitAbilityMonitor failed.
+
+ - GetCurrentTopAbility failed.
+
+ - DoAbilityForeground failed.
+
+ - DoAbilityBackground failed.
+
+ - FinishTest failed.
+
+ - AddAbilityStageMonitor failed.
+
+ - AddAbilityStageMonitorSync failed.
+
+ - RemoveAbilityStageMonitor failed.
+
+ - RemoveAbilityStageMonitorSync failed.
+
+ - WaitAbilityStageMonitor failed.
+
+**错误描述**
+
+当监听指定Ability的生命周期变化的AbilityMonitor方法执行失败时，返回该错误码。
+
+**可能原因**
+
+创建AbilityDelegatorRegistry实例执行失败。
+
+**处理步骤**
+
+检查是否成功创建了AbilityDelegatorRegistry实例。
 
 ## 16000101 执行shell命令失败
 

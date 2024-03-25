@@ -99,12 +99,10 @@ getFileAssets(options: MediaFetchOptions, callback: AsyncCallback&lt;FetchFileRe
 
 ```ts
 async function example() {
-  let fileKeyObj = mediaLibrary.FileKey;
-  let imageType = mediaLibrary.MediaType.IMAGE;
   // 创建文件获取选项，此处参数为获取image类型的文件资源。
   let imagesFetchOp: mediaLibrary.MediaFetchOptions = {
-    selections: fileKeyObj.MEDIA_TYPE + '= ?',
-    selectionArgs: [imageType.toString()],
+    selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ?',
+    selectionArgs: [mediaLibrary.MediaType.IMAGE.toString()],
   };
   // 获取文件资源，使用callback方式返回异步结果。
   media.getFileAssets(imagesFetchOp, async (error, fetchFileResult) => {
@@ -179,12 +177,10 @@ getFileAssets(options: MediaFetchOptions): Promise&lt;FetchFileResult&gt;
 import { BusinessError } from '@ohos.base';
 
 async function example() {
-  let fileKeyObj = mediaLibrary.FileKey;
-  let imageType = mediaLibrary.MediaType.IMAGE;
   // 创建文件获取选项，此处参数为获取image类型的文件资源。
   let imagesFetchOp: mediaLibrary.MediaFetchOptions = {
-    selections: fileKeyObj.MEDIA_TYPE + '= ?',
-    selectionArgs: [imageType.toString()],
+    selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ?',
+    selectionArgs: [mediaLibrary.MediaType.IMAGE.toString()],
   };
   // 获取文件资源，使用Promise方式返回结果。
   media.getFileAssets(imagesFetchOp).then(async (fetchFileResult) => {

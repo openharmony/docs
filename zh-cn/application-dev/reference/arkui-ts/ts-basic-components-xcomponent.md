@@ -136,9 +136,9 @@ getXComponentContext(): Object
 
 **返回值:**
 
-| 类型     | 描述                                       |
-| ------ | ---------------------------------------- |
-| Object | 获取XComponent实例对象的context，context包含的具体接口方法由开发者自定义。 |
+| 类型   | 描述                                                         |
+| ------ | ------------------------------------------------------------ |
+| Object | 获取XComponent实例对象的context，context包含的具体接口方法由开发者自定义，context内容与onLoad回调中的第一个参数一致。 |
 
 
 ## 示例
@@ -150,24 +150,27 @@ getXComponentContext(): Object
 @Entry
 @Component
 struct PreviewArea {
-  private surfaceId : string =''
-  xcomponentController: XComponentController = new XComponentController()
+  private surfaceId: string = ''
+  private xComponentContext: Record<string, () => void> = {}
+  xComponentController: XComponentController = new XComponentController()
+
   build() {
     Row() {
       XComponent({
         id: 'xcomponent',
-        type: 'surface',
-        controller: this.xcomponentController
+        type: XComponentType.SURFACE,
+        controller: this.xComponentController
       })
         .onLoad(() => {
-          this.xcomponentController.setXComponentSurfaceSize({surfaceWidth:1920,surfaceHeight:1080});
-          this.surfaceId = this.xcomponentController.getXComponentSurfaceId()
+          this.xComponentController.setXComponentSurfaceSize({ surfaceWidth: 1920, surfaceHeight: 1080 })
+          this.surfaceId = this.xComponentController.getXComponentSurfaceId()
+          this.xComponentContext = this.xComponentController.getXComponentContext() as Record<string, () => void>
         })
         .width('640px')
         .height('480px')
     }
     .backgroundColor(Color.Black)
-    .position({x: 0, y: 48})
+    .position({ x: 0, y: 48 })
   }
 }
 ```

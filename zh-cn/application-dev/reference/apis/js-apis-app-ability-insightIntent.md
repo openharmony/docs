@@ -33,7 +33,7 @@ import insightIntent from '@ohos.app.ability.insightIntent';
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| code | number | 是 | 意图调用返回的错误码。 |
-| result | Record<string, Object> | 是 | 意图调用返回的结果。 |
+| 名称 | 类型 | 只读 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| code | number | 否 | 是 | 意图调用返回的错误码。 |
+| result | Record<string, Object> | 否 | 否 | 意图调用返回的结果。 |

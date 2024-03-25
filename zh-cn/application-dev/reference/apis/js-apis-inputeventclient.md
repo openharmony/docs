@@ -87,7 +87,12 @@ try {
     keyDownDuration: 0,
     isIntercepted: false
   }
-  let eventDown: inputEventClient.KeyEventData = { KeyEvent: backKeyDown }
+
+  class EventDown {
+    KeyEvent: inputEventClient.KeyEvent | null = null
+  }
+
+  let eventDown: EventDown = { KeyEvent: backKeyDown }
   inputEventClient.injectKeyEvent(eventDown);
 
   let backKeyUp: inputEventClient.KeyEvent = {
@@ -96,7 +101,12 @@ try {
     keyDownDuration: 0,
     isIntercepted: false
   };
-  let eventUp: inputEventClient.KeyEventData = { KeyEvent: backKeyUp }
+
+  class EventUp {
+    KeyEvent: inputEventClient.KeyEvent | null = null
+  }
+
+  let eventUp: EventUp = { KeyEvent: backKeyUp }
   inputEventClient.injectKeyEvent(eventUp);
 } catch (error) {
   console.log(`Failed to inject KeyEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
@@ -280,10 +290,10 @@ try {
 
 | 名称        | 类型   | 可读   | 可写   | 说明      |
 | --------- | ------ | ---- | ---- | ------- |
-| isPressed       | boolean | 是    |  否 | 按键是否按下。<br>ture表示按键按下，false表示按键抬起。   |
+| isPressed       | boolean | 是    |  否 | 按键是否按下。<br>true表示按键按下，false表示按键抬起。   |
 | keyCode         | number  | 是    |  否 | 按键键码值。当前仅支持返回键/KEYCODE_BACK键。 |
 | keyDownDuration | number  | 是    |  否 | 按键按下持续时间，单位为微秒（μs）。           |
-| isIntercepted   | boolean | 是    |  否 | 按键是否可以被拦截。<br>ture表示可以被拦截，false表示不可被拦截。 |
+| isIntercepted   | boolean | 是    |  否 | 按键是否可以被拦截。<br>true表示可以被拦截，false表示不可被拦截。 |
 
 ## KeyEventData<sup>11+</sup>
 
@@ -303,7 +313,7 @@ try {
 
 | 名称        | 类型   | 可读   | 可写   | 说明      |
 | --------- | ------ | ---- | ---- | ------- |
-| mouseEvent | [MouseEvent](../apis/js-apis-mouseevent.md) | 是    |  否 | 鼠标注入描述信息。   |
+| mouseEvent | [MouseEvent](../apis/js-apis-mouseevent.md#mouseevent) | 是    |  否 | 鼠标注入描述信息。   |
 
 ## TouchEventData<sup>11+</sup>
 
@@ -313,5 +323,5 @@ try {
 
 | 名称        | 类型   | 可读   | 可写   | 说明      |
 | --------- | ------ | ---- | ---- | ------- |
-| touchEvent | [TouchEvent](../apis/js-apis-touchevent.md) | 是    |  否 | 触摸屏注入描述信息。   |
+| touchEvent | [TouchEvent](../apis/js-apis-touchevent.md#touchevent) | 是    |  否 | 触摸屏注入描述信息。   |
 

@@ -21,13 +21,19 @@ PasteButton()
 默认创建带有图标、文本、背景的粘贴按钮。
 
 ### PasteButton
-PasteButton(option:{icon?: PasteIconStyle, text?: PasteDescription, buttonType?: ButtonType})
+PasteButton(option:PasteButtonOptions)
 
 创建包含指定元素的粘贴按钮。
 
 **参数：**
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
+| -------- | -------- | -------- | -------- |
+| option | [PasteButtonOptions](#pastebuttonoptions) | 否 | 创建包含指定元素的粘贴按钮。 |
+
+## PasteButtonOptions
+
+| 名称 | 类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |
 | icon | [PasteIconStyle](#pasteiconstyle枚举说明) | 否 | 设置粘贴按钮的图标风格。<br/>不传入该参数表示没有图标，icon和text至少存在一个。 |
 | text | [PasteDescription](#pastedescription枚举说明) | 否 | 设置粘贴按钮的文本描述。<br/>不传入该参数表示没有文字描述，icon和text至少存在一个。 |

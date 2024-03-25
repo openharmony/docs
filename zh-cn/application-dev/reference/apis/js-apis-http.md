@@ -1075,7 +1075,7 @@ httpRequest.off("dataSendProgress");
 | method         | [RequestMethod](#requestmethod)               | 否   | 请求方式，默认为GET。                                                   |
 | extraData      | string \| Object \| ArrayBuffer | 否   | 发送请求的额外数据，默认无此字段。<br />当HTTP请求为POST、PUT等方法时，此字段为HTTP请求的content，以UTF-8编码形式作为请求体。当'content-Type'为'application/x-www-form-urlencoded'时，请求提交的信息主体数据应在key和value进行URL转码后按照键值对"key1=value1&key2=value2&key3=value3"的方式进行编码，该字段对应的类型通常为String；当'content-Type'为'text/xml'时，该字段对应的类型通常为String；当'content-Type'为'application/json'时，该字段对应的类型通常为Object；当'content-Type'为'application/octet-stream'时，该字段对应的类型通常为ArrayBuffer；当'content-Type'为'multipart/form-data'且需上传的字段为文件时，该字段对应的类型通常为ArrayBuffer。以上信息仅供参考，并可能根据具体情况有所不同。<br />- 当HTTP请求为GET、OPTIONS、DELETE、TRACE、CONNECT等方法时，此字段为HTTP请求参数的补充。开发者需传入Encode编码后的string类型参数，Object类型的参数无需预编码，参数内容会拼接到URL中进行发送；ArrayBuffer类型的参数不会做拼接处理。 |
 | expectDataType<sup>9+</sup>  | [HttpDataType](#httpdatatype9)  | 否   | 指定返回数据的类型，默认无此字段。如果设置了此参数，系统将优先返回指定的类型。 |
-| usingCache<sup>9+</sup>      | boolean                         | 否   | 是否使用缓存，默认为true。   |
+| usingCache<sup>9+</sup>      | boolean                         | 否   | 是否使用缓存，默认为true，请求时优先读取缓存。 缓存跟随当前进程生效。新缓存会替换旧缓存。   |
 | priority<sup>9+</sup>        | number                          | 否   | 优先级，范围[1,1000]，默认是1。                           |
 | header                       | Object                          | 否   | HTTP请求头字段。默认{'content-Type': 'application/json'}。   |
 | readTimeout                  | number                          | 否   | 读取超时时间。单位为毫秒（ms），默认为60000ms。<br />设置为0表示不会出现超时情况。 |
@@ -1267,12 +1267,21 @@ import http from '@ohos.net.http';
 import { BusinessError } from '@ohos.base';
 
 let httpResponseCache = http.createHttpResponseCache();
-httpResponseCache.flush((err: BusinessError) => {
-  if (err) {
-    console.info('flush fail');
-    return;
+let httpRequest = http.createHttp();
+httpRequest.request("EXAMPLE_URL", (err: BusinessError, data: http.HttpResponse) => {
+  if (!err) {
+    httpResponseCache.flush((err: BusinessError) => {
+      if (err) {
+        console.error('flush fail');
+      }
+      console.info('flush success');
+    });
+    httpRequest.destroy();
+  } else {
+    console.error('error:' + JSON.stringify(err));
+    // 当该请求使用完毕时，开发者务必调用destroy方法主动销毁该JavaScript Object。
+    httpRequest.destroy();
   }
-  console.info('flush success');
 });
 ```
 
@@ -1296,11 +1305,18 @@ flush(): Promise\<void\>
 import http from '@ohos.net.http';
 import { BusinessError } from '@ohos.base';
 
+let httpRequest = http.createHttp();
 let httpResponseCache = http.createHttpResponseCache();
-httpResponseCache.flush().then(() => {
-  console.info('flush success');
-}).catch((err: BusinessError) => {
-  console.info('flush fail');
+let promise = httpRequest.request("EXAMPLE_URL");
+
+promise.then((data: http.HttpResponse) => {
+  httpResponseCache.flush().then(() => {
+    console.error('flush success');
+  }).catch((err: BusinessError) => {
+    console.info('flush fail');
+  });
+}).catch((err: Error) => {
+  console.error('error:' + JSON.stringify(err));
 });
 ```
 
@@ -1324,13 +1340,23 @@ delete(callback: AsyncCallback\<void\>): void
 import http from '@ohos.net.http';
 import { BusinessError } from '@ohos.base';
 
-let httpResponseCache = http.createHttpResponseCache();
-httpResponseCache.delete((err: BusinessError) => {
-  if (err) {
-    console.info('delete fail');
-    return;
-  }
-  console.info('delete success');
+let httpRequest = http.createHttp();
+httpRequest.request("EXAMPLE_URL").then(data => {
+  const httpResponseCache = http.createHttpResponseCache();
+  httpResponseCache.delete(err => {
+    try {
+      if (err) {
+        console.error('fail: ' + err);
+      } else {
+        console.info('success');
+      }
+    } catch (err) {
+      console.error('error: ' + err);
+    }
+  });
+  httpRequest.destroy();
+}).catch(error => {
+  console.error("errocode" + JSON.stringify(error));
 });
 ```
 
@@ -1354,11 +1380,17 @@ delete(): Promise\<void\>
 import http from '@ohos.net.http';
 import { BusinessError } from '@ohos.base';
 
-let httpResponseCache = http.createHttpResponseCache();
-httpResponseCache.delete().then(() => {
-  console.info('delete success');
-}).catch((err: Error) => {
-  console.info('delete fail');
+let httpRequest = http.createHttp();
+httpRequest.request("EXAMPLE_URL").then(data => {
+  const httpResponseCache = http.createHttpResponseCache();
+  httpResponseCache.delete().then(() => {
+    console.log("success");
+  }).catch(err => {
+    console.error("fail");
+  });
+  httpRequest.destroy();
+}).catch(error => {
+  console.error("errocode" + JSON.stringify(error));
 });
 ```
 

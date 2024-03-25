@@ -2,13 +2,16 @@
 
 ## 场景介绍
 
-开发者可以通过本指导了解在OpenHarmony应用中，如何使用Native PurgeableMemory接口操作purgeable内存。功能包括purgeable内存申请、释放。
+OpenHarmony提供Purgeable Memory内存管理机制，开发者可以使用相关接口创建PurgeableMemory对象，从而管理purgeable内存。
 
 
-针对Purgeable Memory，常见的开发场景如下：
+开发者可以通过本指导了解在OpenHarmony应用中，如何使用Native层相关接口操作purgeable内存。功能包括purgeable内存的申请、释放等。
 
-* 通过`Purgeable Memory`提供的`NAPI`接口申请PurgeableMemory对象，并将数据内容写入PurgeableMemory对象。
-* 使用完毕后释放
+
+针对Purgeable Memory内存管理机制，常见的开发场景如下：
+
+* 通过该机制提供的`NAPI`接口申请管理PurgeableMemory对象，并将数据内容写入该对象。
+* 使用完毕后释放。
 
 ## 接口说明
 
@@ -29,7 +32,7 @@
 
 以下步骤描述了在**OpenHarmony**中如何使用`Purgeable Memory`提供的`NAPI`接口，申请PurgeableMemory对象，并将内容写入PurgeableMemory对象后，对相应对象进行读写访问。
 
-1. 声明PurgeableMemory对象创建规则
+1. 声明PurgeableMemory对象创建规则。
     ```c++
     // 声明构建函数的参数
     struct ParaData{
@@ -64,7 +67,7 @@
         return ret;
     }
     ```
-2. 创建PurgeableMemory对象
+2. 创建PurgeableMemory对象。
     ```c++
     // 声明一个4MB的PurgeableMemory对象大小
     #define DATASIZE (4 * 1024 * 1024)
@@ -76,7 +79,7 @@
     OH_PurgeableMemory* pPurgmem = OH_PurgeableMemory_Create(DATASIZE, FactorialFunc, &pdata);
     ```
 
-3. 读访问PurgeableMemory对象
+3. 读访问PurgeableMemory对象。
     ```c++
     //业务定义对象类型
     class ReqObj;
@@ -94,7 +97,7 @@
     OH_PurgeableMemory_EndRead(pPurgmem);
     ```
 
-4. 写访问PurgeableMemory对象
+4. 写访问PurgeableMemory对象。
     ```c++
      //业务定义对象类型
     class ReqObj;
@@ -115,7 +118,7 @@
     OH_PurgeableMemory_EndWrite(pPurgmem);
     ```
 
-5. 销毁PurgeableMemory对象
+5. 销毁PurgeableMemory对象。
     ```c++
     // 销毁对象
     OH_PurgeableMemory_Destroy(pPurgmem);

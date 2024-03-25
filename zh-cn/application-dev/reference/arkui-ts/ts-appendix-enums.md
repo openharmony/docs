@@ -31,7 +31,7 @@
 | --------- | ------------------------------- |
 | Contain   | 保持宽高比进行缩小或者放大，使得图片完全显示在显示边界内。   |
 | Cover     | 保持宽高比进行缩小或者放大，使得图片两边都大于或等于显示边界。 |
-| Auto      | 自适应显示。                           |
+| Auto      | 图像会根据其自身尺寸和组件的尺寸进行适当缩放，以在保持比例的同时填充视图。 |
 | Fill      | 不保持宽高比进行放大缩小，使得图片充满显示边界。        |
 | ScaleDown | 保持宽高比显示，图片缩小或者保持不变。             |
 | None      | 保持原有尺寸显示。                       |
@@ -310,7 +310,7 @@
 | Start    | 元素在Flex容器中，交叉轴方向首部对齐。                    |
 | Center   | 元素在Flex容器中，交叉轴方向居中对齐。                    |
 | End      | 元素在Flex容器中，交叉轴方向底部对齐。                    |
-| Stretch  | 元素在Flex容器中，交叉轴方向拉伸填充。容器为Flex且设置Wrap为FlexWrap.Wrap或FlexWrap.WrapReverse时，元素拉伸到与当前行/列交叉轴长度最长的元素尺寸。其余情况在元素未设置尺寸时，拉伸到容器尺寸。 |
+| Stretch  | 元素在Flex容器中，交叉轴方向拉伸填充。容器为Flex且设置Wrap为FlexWrap.Wrap或FlexWrap.WrapReverse时，元素拉伸到与当前行/列交叉轴长度最长的元素尺寸。其余情况下，无论元素尺寸是否设置，均拉伸到容器尺寸。 |
 | Baseline | 元素在Flex容器中，交叉轴方向文本基线对齐。                  |
 
 ## FlexDirection
@@ -671,10 +671,10 @@ Nullable\<T> {
 背景效果参数。
 | 名称        |   类型         |   必填 |  说明                        |
 | ----         |  ----         |   ---- | --------------------------  |
-| radius       | number        |   是   |   背景光源半径，取值范围：[0, +∞)，默认为0。     |
-| saturation   | number        |   否   |   背景光源饱和度，取值范围：[0, +∞)，默认为0。     |
-| brightness   | number        |   否   |   背景光源亮度，取值范围：[0, +∞)，默认为0。       |
-| color        | [Color](ts-appendix-enums.md#color)        |   否   |   背景光源颜色，默认透明色。  |
+| radius       | number        |   是   |   模糊半径，取值范围：[0, +∞)，默认为0。     |
+| saturation   | number        |   否   |   饱和度，取值范围：[0, +∞)，默认为0。     |
+| brightness   | number        |   否   |   亮度，取值范围：[0, +∞)，默认为0。       |
+| color        | [Color](ts-appendix-enums.md#color)        |   否   |   颜色，默认透明色。  |
 | adaptiveColor | [AdaptiveColor](ts-appendix-enums.md#adaptivecolor10) |   否  | 背景模糊效果使用的取色模式,默认为DEFAULT。   |
 | blurOptions  | [BlurOptions](ts-appendix-enums.md#bluroptions11) |   否   |   灰阶模糊参数，默认为[0,0]。  |
 ## EllipsisMode<sup>11+</sup>
@@ -750,3 +750,12 @@ Nullable\<T> {
 | SINGLE  | 统一作为一层，设置一种颜色（默认值）。 |
 | MULTIPLE_COLOR  |    每层都可设置颜色。           |
 |  MULTIPLE_OPACITY   | 设置一种颜色，然后每层有不同的透明度。  |
+
+## BlendApplyType<sup>11+</sup>
+
+指示如何将指定的混合模式应用于视图的内容。
+
+| 名称           | 描述                                                             |
+| ---------------| ---------------------------------------------------------------- |
+| FAST           |   在目标图像上按顺序混合视图的内容。                        |
+| OFFSCREEN      |   将此组件和子组件内容绘制到离屏画布上，然后整体进行混合。    |

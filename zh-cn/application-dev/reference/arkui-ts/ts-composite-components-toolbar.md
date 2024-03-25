@@ -45,7 +45,7 @@ Toolbar({toolBarList: ToolBarOptions, activateIndex?: number, controller: TabsCo
 | 名称 | 类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
 | content | [ResourceStr](ts-types.md#resourcestr) | 是 | 工具栏子项的文本。 | 
-| action | void | 否 | 工具栏子项点击事件。 | 
+| action | ()&nbsp;=&gt;&nbsp;void | 否 | 工具栏子项点击事件。 | 
 | icon | [Resource](ts-types.md#resource) | 否 | 工具栏子项的图标。 | 
 | state | [ItemState](#itemstate) | 否 | 工具栏子项的状态，默认为ENABLE。 | 
 

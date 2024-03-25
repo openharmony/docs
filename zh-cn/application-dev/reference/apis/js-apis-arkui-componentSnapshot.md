@@ -34,7 +34,7 @@ get(id: string, callback: AsyncCallback<image.PixelMap>): void
 | 参数名      | 类型                                  | 必填   | 说明                                       |
 | -------- | ----------------------------------- | ---- | ---------------------------------------- |
 | id       | string                              | 是    | 目标组件的[组件标识](../arkui-ts/ts-universal-attributes-component-id.md#组件标识) |
-| callback | [AsyncCallback](js-apis-base.md#asynccallback)&lt;image.PixelMap&gt; | 是    | 截图返回结果的回调。                               |
+| callback | [AsyncCallback](js-apis-base.md#asynccallback)&lt;image.[PixelMap](js-apis-image.md#pixelmap7)&gt; | 是    | 截图返回结果的回调。                               |
 
 **错误码：** 
 
@@ -104,7 +104,7 @@ get(id: string): Promise<image.PixelMap>
 
 | 类型                            | 说明       |
 | ----------------------------- | -------- |
-| Promise&lt;image.PixelMap&gt; | 截图返回的结果。 |
+| Promise&lt;image.[PixelMap](js-apis-image.md#pixelmap7)&gt; | 截图返回的结果。 |
 
 **错误码：** 
 
@@ -161,7 +161,7 @@ createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap
 >
 > 由于需要等待组件构建、渲染成功，离屏截图的回调有500ms以内的延迟。
 >
-> 部分执行耗时任务的组件可能无法及时在截图前加载完成，因此会截取不到加载成功后的图像。例如：加载网络图片的Image组件、Web组件。
+> 部分执行耗时任务的组件可能无法及时在截图前加载完成，因此会截取不到加载成功后的图像。例如：加载网络图片的[Image](../arkui-ts/ts-basic-components-image.md)组件、[Web](../arkui-ts/ts-basic-components-web.md)组件。
 
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -171,7 +171,7 @@ createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap
 | 参数名      | 类型                                       | 必填   | 说明         |
 | -------- | ---------------------------------------- | ---- | ---------- |
 | builder  | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) | 是    | 自定义组件构建函数。<br/>**说明：** 不支持全局builder。|
-| callback | [AsyncCallback](js-apis-base.md#asynccallback)&lt;image.PixelMap&gt;      | 是    | 截图返回结果的回调。支持在回调中获取离屏组件绘制区域坐标和大小。 |
+| callback | [AsyncCallback](js-apis-base.md#asynccallback)&lt;image.[PixelMap](js-apis-image.md#pixelmap7)&gt;      | 是    | 截图返回结果的回调。支持在回调中获取离屏组件绘制区域坐标和大小。 |
 
 **错误码：** 
 
@@ -248,7 +248,7 @@ createFromBuilder(builder: CustomBuilder): Promise<image.PixelMap>
 >
 > 由于需要等待组件构建、渲染成功，离屏截图的回调有500ms以内的延迟。
 >
-> 部分执行耗时任务的组件可能无法及时在截图前加载完成，因此会截取不到加载成功后的图像。例如：加载网络图片的Image组件、Web组件。
+> 部分执行耗时任务的组件可能无法及时在截图前加载完成，因此会截取不到加载成功后的图像。例如：加载网络图片的[Image](../arkui-ts/ts-basic-components-image.md)组件、[Web](../arkui-ts/ts-basic-components-web.md)组件。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -262,7 +262,7 @@ createFromBuilder(builder: CustomBuilder): Promise<image.PixelMap>
 
 | 类型                            | 说明       |
 | ----------------------------- | -------- |
-| Promise&lt;image.PixelMap&gt; | 截图返回的结果。 |
+| Promise&lt;image.[PixelMap](js-apis-image.md#pixelmap7)&gt; | 截图返回的结果。 |
 
 **错误码：** 
 

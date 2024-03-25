@@ -78,6 +78,7 @@
 - ArkUI API参考
     - UI界面
       - [@ohos.animator (动画)](js-apis-animator.md)
+      - [@ohos.arkui.drawableDescriptor (DrawableDescriptor)](js-apis-arkui-drawableDescriptor.md)
       - [@ohos.arkui.UIContext (UIContext)](js-apis-arkui-UIContext.md)
       - [@ohos.arkui.componentUtils (componentUtils)](js-apis-arkui-componentUtils.md)
       - [@ohos.curves (插值计算)](js-apis-curve.md)
@@ -87,13 +88,15 @@
       - [@ohos.promptAction (弹窗)](js-apis-promptAction.md)
       - [@ohos.router (页面路由)](js-apis-router.md)
       - [getContext](js-apis-getContext.md)
-      - [postCardAction](js-apis-postCardAction.md)
-      - [@ohos.router (页面路由)](js-apis-router.md)    
+      - [postCardAction](js-apis-postCardAction.md) 
     - 图形图像
       - [@ohos.display (屏幕属性)](js-apis-display.md)
       - [@ohos.window (窗口)](js-apis-window.md)
 - ArkWeb API参考
-  - [@ohos.web.webview (Webview)](js-apis-webview.md)
+  - ArkTS API
+    - [@ohos.web.webview (Webview)](js-apis-webview.md)
+  - ArkTS组件
+    - [Web](ts-basic-components-web.md)
 - Basic Services Kit API参考
   - [@ohos.base (公共回调信息)](js-apis-base.md)
   - [@ohos.commonEventManager (公共事件模块)(推荐)](js-apis-commonEventManager.md)

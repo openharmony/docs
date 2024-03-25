@@ -190,7 +190,7 @@ context.verifyPermission('com.context.permission', {pid:1}).then((data) => {
 
 ## Context.requestPermissionsFromUser<sup>7+</sup>
 
-requestPermissionsFromUser(permissions: Array\<string>, requestCode: number, resultCallback: AsyncCallback<[PermissionRequestResult](#permissionrequestresult7)>): void
+requestPermissionsFromUser(permissions: Array\<string>, requestCode: number, resultCallback: AsyncCallback\<[PermissionRequestResult](#permissionrequestresult7)>): void
 
 从系统请求某些权限（callback形式）。
 
@@ -202,7 +202,7 @@ requestPermissionsFromUser(permissions: Array\<string>, requestCode: number, res
 | -------------- | ---------------------------------------- | ---- | ----------------------------------- |
 | permissions    | Array\<string>                           | 是    | 指示要请求的权限列表。此参数不能为null。              |
 | requestCode    | number                                   | 是    | 指示要传递给PermissionRequestResult的请求代码。 |
-| resultCallback | AsyncCallback<[PermissionRequestResult](#permissionrequestresult7)> | 是    | 返回授权结果信息。                           |
+| resultCallback | AsyncCallback\<[PermissionRequestResult](#permissionrequestresult7)> | 是    | 返回授权结果信息。                           |
 
 **示例：**
 
@@ -529,12 +529,17 @@ setDisplayOrientation(orientation: bundle.DisplayOrientation): Promise\<void>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
+**参数：**
+
+| 参数名                                       | 类型                                       | 必填   | 说明                                       |
+| ---------------------------------------- | ---------------------------------------- | ---- | ------------ |
+| orientation                              | [bundle.DisplayOrientation](js-apis-bundleManager.md#displayorientation) | 是    | 表示屏幕显示方向。                                |
+
 **返回值：**
 
-| 类型                                       | 说明                                       |
-| ---------------------------------------- | ---------------------------------------- |
-| orientation                              | [bundle.DisplayOrientation](js-apis-bundleManager.md#displayorientation) |
-| Promise\<void> | 表示屏幕显示方向。                                |
+| 类型             | 说明               |
+| -------------- | ---------------- |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 

@@ -56,7 +56,7 @@ ThreadWorker构造函数。
 
 | 参数名    | 类型                            | 必填 | 说明                                                         |
 | --------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| scriptURL | string                          | 是   | Worker执行脚本的路径。<br/>在FA和Stage模型下，DevEco Studio新建Worker工程路径分别存在以下两种情况：<br/>(a) worker脚本所在目录与pages目录同级。<br/>(b) worker脚本所在目录与pages目录不同级。 |
+| scriptURL | string                          | 是   | Worker线程文件的路径。<br/>路径规则详细参考[文件路径注意事项](../../arkts-utils/worker-introduction.md#文件路径注意事项)。 |
 | options   | [WorkerOptions](#workeroptions) | 否   | Worker构造的选项。                                           |
 
 **错误码：**
@@ -70,78 +70,20 @@ ThreadWorker构造函数。
 
 **示例：**
 
+此处以在Stage模型中Ability加载Worker文件为例，使用Library加载Worker线程文件的场景参考[文件路径注意事项](../../arkts-utils/worker-introduction.md#文件路径注意事项)。
+
 ```ts
 import worker from '@ohos.worker';
 
-// worker线程创建
-// FA模型-目录同级（entry模块下，workers目录与pages目录同级）
-const workerFAModel01 = new worker.ThreadWorker("workers/worker.ts", {name:"first worker in FA model"});
-// FA模型-目录不同级（entry模块下，workers目录与pages目录的父目录同级）
-const workerFAModel02 = new worker.ThreadWorker("../workers/worker.ts");
+// 主要说明以下两种场景：
 
-// Stage模型-目录同级（entry模块下，workers目录与pages目录同级）
-const workerStageModel01 = new worker.ThreadWorker('entry/ets/workers/worker.ts', {name:"first worker in Stage model"});
-// Stage模型-目录不同级（entry模块下，workers目录是pages目录的子目录）
-const workerStageModel02 = new worker.ThreadWorker('entry/ets/pages/workers/worker.ts');
+// 场景1： worker文件所在路径："entry/src/main/ets/workers/worker.ets"
+const workerStageModel01 = new worker.ThreadWorker('entry/ets/workers/worker.ets', {name:"first worker in Stage model"});
 
-// 理解Stage模型scriptURL的"entry/ets/workers/worker.ts"：
-// entry: 为module.json5文件中module的name属性对应的值，ets: 表明当前使用的语言。
-// scriptURL与worker文件所在的workers目录层级有关，与new worker所在文件无关。
+// 场景2： worker文件所在路径："phone/src/main/ets/ThreadFile/workers/worker.ets"
+const workerStageModel02 = new worker.ThreadWorker('phone/ets/ThreadFile/workers/worker.ets');
 ```
 
-同时，需在工程的模块级build-profile.json5文件的buildOption属性中添加配置信息，主要分为下面两种情况：
-
-(1) 目录同级
-
-FA模型:
-
-```json
-  "buildOption": {
-    "sourceOption": {
-      "workers": [
-        "./src/main/ets/entryability/workers/worker.ts"
-      ]
-    }
-  }
-```
-
-Stage模型:
-
-```json
-  "buildOption": {
-    "sourceOption": {
-      "workers": [
-        "./src/main/ets/workers/worker.ts"
-      ]
-    }
-  }
-```
-
-(2) 目录不同级
-
-FA模型:
-
-```json
-  "buildOption": {
-    "sourceOption": {
-      "workers": [
-        "./src/main/ets/workers/worker.ts"
-      ]
-    }
-  }
-```
-
-Stage模型:
-
-```json
-  "buildOption": {
-    "sourceOption": {
-      "workers": [
-        "./src/main/ets/pages/workers/worker.ts"
-      ]
-    }
-  }
-```
 
 ### postMessage<sup>9+</sup>
 
@@ -170,7 +112,7 @@ postMessage(message: Object, transfer: ArrayBuffer[]): void
 **示例：**
 
 ```ts
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 
 let buffer = new ArrayBuffer(8);
 workerInstance.postMessage(buffer, [buffer]);
@@ -203,7 +145,7 @@ postMessage(message: Object, options?: PostMessageOptions): void
 **示例：**
 
 ```ts
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 
 workerInstance.postMessage("hello world");
 
@@ -238,7 +180,7 @@ on(type: string, listener: WorkerEventListener): void
 **示例：**
 
 ```ts
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 workerInstance.on("alert", (e)=>{
     console.log("alert listener callback");
 })
@@ -272,7 +214,7 @@ once(type: string, listener: WorkerEventListener): void
 **示例：**
 
 ```ts
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 workerInstance.once("alert", (e)=>{
     console.log("alert listener callback");
 })
@@ -306,7 +248,7 @@ off(type: string, listener?: WorkerEventListener): void
 **示例：**
 
 ```ts
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 //使用on接口、once接口或addEventListener接口创建“alert”事件，使用off接口删除事件。
 workerInstance.off("alert");
 ```
@@ -336,7 +278,7 @@ registerGlobalCallObject(instanceName: string, globalCallObject: Object): void
 
 **示例：**
 ```ts
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 class TestObj {
   private message : string = "this is a message from TestObj"
   public getMessage() : string {
@@ -376,7 +318,7 @@ unregisterGlobalCallObject(instanceName?: string): void
 
 **示例：**
 ```ts
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 class TestObj {
   private message : string = "this is a message from TestObj"
   public getMessage() : string {
@@ -414,7 +356,7 @@ terminate(): void
 **示例：**
 
 ```ts
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 workerInstance.terminate();
 ```
 
@@ -439,7 +381,7 @@ onexit?: (code: number) =&gt; void
 **示例：**
 
 ```ts
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 workerInstance.onexit = (code) => {
  console.log("onexit");
 }
@@ -475,7 +417,7 @@ onerror?: (err: ErrorEvent) =&gt; void
 ```ts
 import worker, { ErrorEvent } from '@ohos.worker';
 
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 workerInstance.onerror = (err: ErrorEvent) => {
   console.log("onerror" + err.message);
 }
@@ -504,7 +446,7 @@ onmessage?: (event: MessageEvents) =&gt; void
 ```ts
 import worker, { MessageEvents } from '@ohos.worker';
 
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 workerInstance.onmessage = (e: MessageEvents): void => {
  // e : MessageEvents, 用法如下：
  // let data = e.data;
@@ -535,7 +477,7 @@ onmessageerror?: (event: MessageEvents) =&gt; void
 ```ts
 import worker, { MessageEvents } from '@ohos.worker';
 
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 workerInstance.onmessageerror = (err: MessageEvents) => {
   console.log("onmessageerror");
 }
@@ -568,7 +510,7 @@ addEventListener(type: string, listener: WorkerEventListener): void
 **示例：**
 
 ```ts
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 workerInstance.addEventListener("alert", (e)=>{
     console.log("alert listener callback");
 })
@@ -601,7 +543,7 @@ removeEventListener(type: string, callback?: WorkerEventListener): void
 **示例：**
 
 ```ts
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 workerInstance.addEventListener("alert", (e)=>{
     console.log("alert listener callback");
 })
@@ -640,7 +582,7 @@ dispatchEvent(event: Event): boolean
 **示例：**
 
 ```ts
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 
 workerInstance.dispatchEvent({type:"eventType", timeStamp:0}); //timeStamp暂未支持。
 ```
@@ -650,7 +592,7 @@ workerInstance.dispatchEvent({type:"eventType", timeStamp:0}); //timeStamp暂未
 ```ts
 import worker, { MessageEvents } from '@ohos.worker';
 
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 
 //用法一:
 workerInstance.on("alert_on", (e)=>{
@@ -709,7 +651,7 @@ removeAllListener(): void
 **示例：**
 
 ```ts
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 workerInstance.addEventListener("alert", (e)=>{
     console.log("alert listener callback");
 })
@@ -747,7 +689,7 @@ addEventListener(type: string, listener: WorkerEventListener): void
 **示例：**
 
 ```ts
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 workerInstance.addEventListener("alert", (e)=>{
     console.log("alert listener callback");
 })
@@ -780,7 +722,7 @@ removeEventListener(type: string, callback?: WorkerEventListener): void
 **示例：**
 
 ```ts
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 workerInstance.addEventListener("alert", (e)=>{
     console.log("alert listener callback");
 })
@@ -819,7 +761,7 @@ dispatchEvent(event: Event): boolean
 **示例：**
 
 ```ts
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 
 workerInstance.dispatchEvent({type:"eventType", timeStamp:0}); //timeStamp暂未支持。
 ```
@@ -829,7 +771,7 @@ workerInstance.dispatchEvent({type:"eventType", timeStamp:0}); //timeStamp暂未
 ```ts
 import worker, { MessageEvents } from '@ohos.worker';
 
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 
 //用法一:
 workerInstance.on("alert_on", (e)=>{
@@ -888,7 +830,7 @@ removeAllListener(): void
 **示例：**
 
 ```ts
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 workerInstance.addEventListener("alert", (e)=>{
     console.log("alert listener callback");
 })
@@ -930,15 +872,15 @@ Worker线程通过转移对象所有权的方式向宿主线程发送消息。
 // main thread
 import worker, { MessageEvents } from '@ohos.worker';
 
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 workerInstance.postMessage("hello world");
 workerInstance.onmessage = (e: MessageEvents): void => {
-    console.log("receive data from worker.ts");
+    console.log("receive data from worker.ets");
 }
 ```
 
 ```ts
-// worker.ts
+// worker.ets
 import worker, { MessageEvents } from '@ohos.worker';
 
 const workerPort = worker.workerPort;
@@ -978,15 +920,15 @@ Worker线程通过转移对象所有权或者拷贝数据的方式向宿主线�
 // main thread
 import worker, { MessageEvents } from '@ohos.worker';
 
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 workerInstance.postMessage("hello world");
 workerInstance.onmessage = (e: MessageEvents): void => {
-    console.log("receive data from worker.ts");
+    console.log("receive data from worker.ets");
 }
 ```
 
 ```ts
-// worker.ts
+// worker.ets
 import worker, { MessageEvents } from '@ohos.worker';
 
 const workerPort = worker.workerPort;
@@ -1032,7 +974,7 @@ Worker线程调用注册在宿主线程上某个对象的指定方法，调用�
 
 **示例：**
 ```ts
-// worker.ts
+// worker.ets
 import worker, { MessageEvents } from '@ohos.worker';
 
 const workerPort = worker.workerPort;
@@ -1078,11 +1020,11 @@ close(): void
 // main thread
 import worker from '@ohos.worker';
 
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 ```
 
 ```ts
-// worker.ts
+// worker.ets
 import worker, { MessageEvents } from '@ohos.worker';
 
 const workerPort = worker.workerPort;
@@ -1115,12 +1057,12 @@ onmessage?: (this: ThreadWorkerGlobalScope, ev: MessageEvents) =&gt; void
 // main thread
 import worker from '@ohos.worker';
 
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 workerInstance.postMessage("hello world");
 ```
 
 ```ts
-// worker.ts
+// worker.ets
 import worker, { MessageEvents } from '@ohos.worker';
 
 const workerPort = worker.workerPort;
@@ -1153,18 +1095,16 @@ onmessageerror?: (this: ThreadWorkerGlobalScope, ev: MessageEvents) =&gt; void
 // main thread
 import worker from '@ohos.worker';
 
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 ```
 
 ```ts
+// worker.ets
 import worker, { MessageEvents } from '@ohos.worker';
-
-// worker.ts
-import worker from '@ohos.worker';
 
 const workerPort = worker.workerPort;
 workerPort.onmessageerror = (err: MessageEvents) => {
-    console.log("worker.ts onmessageerror");
+    console.log("worker.ets onmessageerror");
 }
 ```
 
@@ -1201,7 +1141,7 @@ workerPort.onmessageerror = (err: MessageEvents) => {
 **示例：**
 
 ```ts
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 workerInstance.addEventListener("alert", (e)=>{
     console.log("alert listener callback");
 })
@@ -1236,16 +1176,16 @@ onerror?: (ev: ErrorEvent) =&gt; void
 // main thread
 import worker from '@ohos.worker';
 
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts")
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets")
 ```
 
 ```ts
-// worker.ts
+// worker.ets
 import worker, { ErrorEvent } from '@ohos.worker';
 
 const workerPort = worker.workerPort
 workerPort.onerror = (err: ErrorEvent) => {
-    console.log("worker.ts onerror" + err.message)
+    console.log("worker.ets onerror" + err.message)
 }
 ```
 
@@ -1276,7 +1216,7 @@ RestrictedWorker构造函数。使用以下方法前，均需先构造Restricted
 
 | 参数名    | 类型                            | 必填 | 说明                                                         |
 | --------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| scriptURL | string                          | 是   | Worker执行脚本的路径。<br/>DevEco Studio新建Worker线程文件的路径存在以下两种情况：<br/>(a) Worker线程文件所在目录与pages目录同级。<br/>(b) Worker线程文件所在目录与pages目录不同级。 |
+| scriptURL | string                          | 是   | Worker线程文件的路径，路径规则详细参考[文件路径注意事项](../../arkts-utils/worker-introduction.md#文件路径注意事项)。 |
 | options   | [WorkerOptions](#workeroptions) | 否   | RestrictedWorker构造的选项。                                           |
 
 **错误码：**
@@ -1290,80 +1230,21 @@ RestrictedWorker构造函数。使用以下方法前，均需先构造Restricted
 
 **示例：**
 
+此处以在Stage模型中Ability加载Worker文件为例，使用Library加载Worker线程文件的场景参考[文件路径注意事项](../../arkts-utils/worker-introduction.md#文件路径注意事项)。
+
+受限的Worker线程文件只允许导入Worker模块，不允许导入任何其他API，以下为示例代码：
+
 ```ts
 import worker from '@ohos.worker';
 
-// worker线程创建
-// FA模型-目录同级（entry模块下，workers目录与pages目录同级）
-const workerFAModel01 = new worker.RestrictedWorker("workers/worker.ts", {name:"first worker in FA model"});
-// FA模型-目录不同级（entry模块下，workers目录与pages目录的父目录同级）
-const workerFAModel02 = new worker.RestrictedWorker("../workers/worker.ts");
+// 主要说明以下两种场景：
 
-// Stage模型-目录同级（entry模块下，workers目录与pages目录同级）
-const workerStageModel01 = new worker.RestrictedWorker('entry/ets/workers/worker.ts', {name:"first worker in Stage model"});
-// Stage模型-目录不同级（entry模块下，workers目录是pages目录的子目录）
-const workerStageModel02 = new worker.RestrictedWorker('entry/ets/pages/workers/worker.ts');
+// 场景1： worker文件所在路径："entry/src/main/ets/workers/worker.ets"
+const workerStageModel01 = new worker.RestrictedWorker('entry/ets/workers/worker.ets', {name:"first worker in Stage model"});
 
-// 理解Stage模型scriptURL的"entry/ets/workers/worker.ts"：
-// entry: 为module.json5文件中module的name属性对应的值，ets: 表明当前使用的语言。
-// scriptURL与worker文件所在的workers目录层级有关，与new worker所在文件无关。
+// 场景2： worker文件所在路径："phone/src/main/ets/ThreadFile/workers/worker.ets"
+const workerStageModel02 = new worker.RestrictedWorker('phone/ets/ThreadFile/workers/worker.ets');
 ```
-
-同时，需在工程的模块级build-profile.json5文件的buildOption属性中添加配置信息，主要分为下面两种情况：
-
-(1) 目录同级
-
-FA模型:
-
-```json
-  "buildOption": {
-    "sourceOption": {
-      "workers": [
-        "./src/main/ets/entryability/workers/worker.ts"
-      ]
-    }
-  }
-```
-
-Stage模型:
-
-```json
-  "buildOption": {
-    "sourceOption": {
-      "workers": [
-        "./src/main/ets/workers/worker.ts"
-      ]
-    }
-  }
-```
-
-(2) 目录不同级
-
-FA模型:
-
-```json
-  "buildOption": {
-    "sourceOption": {
-      "workers": [
-        "./src/main/ets/workers/worker.ts"
-      ]
-    }
-  }
-```
-
-Stage模型:
-
-```json
-  "buildOption": {
-    "sourceOption": {
-      "workers": [
-        "./src/main/ets/pages/workers/worker.ts"
-      ]
-    }
-  }
-```
-
-受限的Worker线程文件只允许导入Worker模块，不允许导入任何其他API，以下为示例代码：
 
 ```ts
 // 受限worker线程文件
@@ -1402,76 +1283,24 @@ Worker构造函数。
 
 | 参数名    | 类型                            | 必填 | 说明                                                         |
 | --------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| scriptURL | string                          | 是   | Worker执行脚本的路径。<br/>在FA和Stage模型下，DevEco Studio新建Worker工程路径分别存在以下两种情况：<br/>(a) worker脚本所在目录与pages目录同级。<br/>(b) worker脚本所在目录与pages目录不同级。 |
+| scriptURL | string                          | 是   | Worker线程文件的路径，路径规则详细参考[文件路径注意事项](../../arkts-utils/worker-introduction.md#文件路径注意事项)。 |
 | options   | [WorkerOptions](#workeroptions) | 否   | Worker构造的选项。                                           |
 
 **示例：**
 
+此处以在Stage模型中Ability加载Worker文件为例，使用Library加载Worker线程文件的场景参考[文件路径注意事项](../../arkts-utils/worker-introduction.md#文件路径注意事项)。
+
+
 ```ts
 import worker from '@ohos.worker';
 
-// worker线程创建
+// 主要说明以下两种场景：
 
-// FA模型-目录同级
-const workerFAModel01 = new worker.Worker("workers/worker.ts", {name:"first worker in FA model"});
-// FA模型-目录不同级（以workers目录放置pages目录前一级为例）
-const workerFAModel02 = new worker.Worker("../workers/worker.ts");
+// 场景1： worker文件所在路径："entry/src/main/ets/workers/worker.ets"
+const workerStageModel01 = new worker.ThreadWorker('entry/ets/workers/worker.ets', {name:"first worker in Stage model"});
 
-// Stage模型-目录同级
-const workerStageModel01 = new worker.Worker('entry/ets/workers/worker.ts', {name:"first worker in Stage model"});
-// Stage模型-目录不同级（以workers目录放置pages目录后一级为例）
-const workerStageModel02 = new worker.Worker('entry/ets/pages/workers/worker.ts');
-
-// 理解Stage模型scriptURL的"entry/ets/workers/worker.ts"：
-// entry: 为module.json5文件中module的name属性对应的值；
-// ets: 表明当前使用的语言。
-```
-同时，需在工程的模块级build-profile.json5文件的buildOption属性中添加配置信息，主要分为下面两种情况：
-
-(1) 目录同级
-
-FA模型:
-
-```json
-  "buildOption": {
-    "sourceOption": {
-      "workers": [
-        "./src/main/ets/entryability/workers/worker.ts"
-      ]
-    }
-  }
-```
-Stage模型:
-```json
-  "buildOption": {
-    "sourceOption": {
-      "workers": [
-        "./src/main/ets/workers/worker.ts"
-      ]
-    }
-  }
-```
-(2) 目录不同级
-
-FA模型:
-```json
-  "buildOption": {
-    "sourceOption": {
-      "workers": [
-        "./src/main/ets/workers/worker.ts"
-      ]
-    }
-  }
-```
-Stage模型:
-```json
-  "buildOption": {
-    "sourceOption": {
-      "workers": [
-        "./src/main/ets/pages/workers/worker.ts"
-      ]
-    }
-  }
+// 场景2： worker文件所在路径："phone/src/main/ets/ThreadFile/workers/worker.ets"
+const workerStageModel02 = new worker.ThreadWorker('phone/ets/ThreadFile/workers/worker.ets');
 ```
 
 ### postMessage<sup>(deprecated)</sup>
@@ -1495,7 +1324,7 @@ postMessage(message: Object, transfer: ArrayBuffer[]): void
 **示例：**
 
 ```ts
-const workerInstance = new worker.Worker("workers/worker.ts");
+const workerInstance = new worker.Worker("workers/worker.ets");
 
 let buffer = new ArrayBuffer(8);
 workerInstance.postMessage(buffer, [buffer]);
@@ -1522,7 +1351,7 @@ postMessage(message: Object, options?: PostMessageOptions): void
 **示例：**
 
 ```ts
-const workerInstance = new worker.Worker("workers/worker.ts");
+const workerInstance = new worker.Worker("workers/worker.ets");
 
 workerInstance.postMessage("hello world");
 
@@ -1552,7 +1381,7 @@ on(type: string, listener: EventListener): void
 **示例：**
 
 ```ts
-const workerInstance = new worker.Worker("workers/worker.ts");
+const workerInstance = new worker.Worker("workers/worker.ets");
 workerInstance.on("alert", (e)=>{
     console.log("alert listener callback");
 })
@@ -1580,7 +1409,7 @@ once(type: string, listener: EventListener): void
 **示例：**
 
 ```ts
-const workerInstance = new worker.Worker("workers/worker.ts");
+const workerInstance = new worker.Worker("workers/worker.ets");
 workerInstance.once("alert", (e)=>{
     console.log("alert listener callback");
 })
@@ -1608,7 +1437,7 @@ off(type: string, listener?: EventListener): void
 **示例：**
 
 ```ts
-const workerInstance = new worker.Worker("workers/worker.ts");
+const workerInstance = new worker.Worker("workers/worker.ets");
 //使用on接口、once接口或addEventListener接口创建“alert”事件，使用off接口删除事件。
 workerInstance.off("alert");
 ```
@@ -1628,7 +1457,7 @@ terminate(): void
 **示例：**
 
 ```ts
-const workerInstance = new worker.Worker("workers/worker.ts");
+const workerInstance = new worker.Worker("workers/worker.ets");
 workerInstance.terminate();
 ```
 
@@ -1647,7 +1476,7 @@ onexit?: (code: number) =&gt; void
 **示例：**
 
 ```ts
-const workerInstance = new worker.Worker("workers/worker.ts");
+const workerInstance = new worker.Worker("workers/worker.ets");
 workerInstance.onexit = (code) => {
     console.log("onexit");
 }
@@ -1677,7 +1506,7 @@ onerror?: (err: ErrorEvent) =&gt; void
 ```ts
 import worker, { ErrorEvent } from '@ohos.worker';
 
-const workerInstance = new worker.Worker("workers/worker.ts");
+const workerInstance = new worker.Worker("workers/worker.ets");
 workerInstance.onerror = (err: ErrorEvent) => {
   console.log("onerror" + err.message);
 }
@@ -1700,7 +1529,7 @@ onmessage?: (event: MessageEvent) =&gt; void
 ```ts
 import worker from '@ohos.worker';
 
-const workerInstance = new worker.Worker("workers/worker.ts");
+const workerInstance = new worker.Worker("workers/worker.ets");
 workerInstance.onmessage = (e): void => {
     console.log("onmessage");
 }
@@ -1723,7 +1552,7 @@ onmessageerror?: (event: MessageEvent) =&gt; void
 ```ts
 import worker from '@ohos.worker';
 
-const workerInstance = new worker.Worker("workers/worker.ts");
+const workerInstance = new worker.Worker("workers/worker.ets");
 workerInstance.onmessageerror = (err) => {
     console.log("onmessageerror");
 }
@@ -1755,7 +1584,7 @@ addEventListener(type: string, listener: EventListener): void
 **示例：**
 
 ```ts
-const workerInstance = new worker.Worker("workers/worker.ts");
+const workerInstance = new worker.Worker("workers/worker.ets");
 workerInstance.addEventListener("alert", (e)=>{
     console.log("alert listener callback");
 })
@@ -1783,7 +1612,7 @@ removeEventListener(type: string, callback?: EventListener): void
 **示例：**
 
 ```ts
-const workerInstance = new worker.Worker("workers/worker.ts");
+const workerInstance = new worker.Worker("workers/worker.ets");
 workerInstance.addEventListener("alert", (e)=>{
     console.log("alert listener callback");
 })
@@ -1817,7 +1646,7 @@ dispatchEvent(event: Event): boolean
 **示例：**
 
 ```ts
-const workerInstance = new worker.Worker("workers/worker.ts");
+const workerInstance = new worker.Worker("workers/worker.ets");
 
 workerInstance.dispatchEvent({type:"eventType", timeStamp:0}); //timeStamp暂未支持。
 ```
@@ -1825,7 +1654,7 @@ workerInstance.dispatchEvent({type:"eventType", timeStamp:0}); //timeStamp暂未
 分发事件（dispatchEvent）可与监听接口（on、once、addEventListener）搭配使用，示例如下：
 
 ```ts
-const workerInstance = new worker.Worker("workers/worker.ts");
+const workerInstance = new worker.Worker("workers/worker.ets");
 
 //用法一:
 workerInstance.on("alert_on", (e)=>{
@@ -1877,7 +1706,7 @@ removeAllListener(): void
 **示例：**
 
 ```ts
-const workerInstance = new worker.Worker("workers/worker.ts");
+const workerInstance = new worker.Worker("workers/worker.ets");
 workerInstance.addEventListener("alert", (e)=>{
     console.log("alert listener callback");
 })
@@ -1934,15 +1763,15 @@ Worker线程通过转移对象所有权的方式向宿主线程发送消息。
 // main thread
 import worker from '@ohos.worker';
 
-const workerInstance = new worker.Worker("workers/worker.ts");
+const workerInstance = new worker.Worker("workers/worker.ets");
 workerInstance.postMessage("hello world");
 workerInstance.onmessage = (e): void => {
     // let data = e.data;
-    console.log("receive data from worker.ts");
+    console.log("receive data from worker.ets");
 }
 ```
 ```ts
-// worker.ts
+// worker.ets
 import worker from '@ohos.worker';
 
 const workerPort = worker.workerPort;
@@ -1977,15 +1806,15 @@ Worker线程通过转移对象所有权或者拷贝数据的方式向宿主线�
 // main thread
 import worker from '@ohos.worker';
 
-const workerInstance = new worker.Worker("workers/worker.ts");
+const workerInstance = new worker.Worker("workers/worker.ets");
 workerInstance.postMessage("hello world");
 workerInstance.onmessage = (e): void => {
     // let data = e.data;
-    console.log("receive data from worker.ts");
+    console.log("receive data from worker.ets");
 }
 ```
 ```ts
-// worker.ts
+// worker.ets
 import worker from '@ohos.worker';
 
 const parentPort = worker.parentPort;
@@ -2012,10 +1841,10 @@ close(): void
 // main thread
 import worker from '@ohos.worker';
 
-const workerInstance = new worker.Worker("workers/worker.ts");
+const workerInstance = new worker.Worker("workers/worker.ets");
 ```
 ```ts
-// worker.ts
+// worker.ets
 import workerfrom '@ohos.worker';
 
 const parentPort = worker.parentPort;
@@ -2042,11 +1871,11 @@ onmessage?: (this: DedicatedWorkerGlobalScope, ev: MessageEvent) =&gt; void
 // main thread
 import worker from '@ohos.worker';
 
-const workerInstance = new worker.Worker("workers/worker.ts");
+const workerInstance = new worker.Worker("workers/worker.ets");
 workerInstance.postMessage("hello world");
 ```
 ```ts
-// worker.ts
+// worker.ets
 import worker from '@ohos.worker';
 
 const parentPort = worker.parentPort;
@@ -2073,15 +1902,15 @@ DedicatedWorkerGlobalScope的onmessageerror属性表示当Worker对象接收到�
 // main thread
 import worker from '@ohos.worker';
 
-const workerInstance = new worker.Worker("workers/worker.ts");
+const workerInstance = new worker.Worker("workers/worker.ets");
 ```
 ```ts
-// worker.ts
+// worker.ets
 import worker from '@ohos.worker';
 
 const parentPort = worker.parentPort;
 parentPort.onmessageerror = (e) => {
-    console.log("worker.ts onmessageerror")
+    console.log("worker.ets onmessageerror")
 }
 ```
 
@@ -2135,7 +1964,7 @@ parentPort.onmessageerror = (e) => {
 **示例：**
 
 ```ts
-const workerInstance = new worker.Worker("workers/worker.ts");
+const workerInstance = new worker.Worker("workers/worker.ets");
 workerInstance.addEventListener("alert", (e)=>{
     console.log("alert listener callback");
 })
@@ -2202,15 +2031,15 @@ WorkerGlobalScope的onerror属性表示Worker在执行过程中发生异常被�
 // main thread
 import worker from '@ohos.worker';
 
-const workerInstance = new worker.Worker("workers/worker.ts")
+const workerInstance = new worker.Worker("workers/worker.ets")
 ```
 ```ts
-// worker.ts
+// worker.ets
 import worker, { ErrorEvent } from '@ohos.worker';
 
 const parentPort = worker.parentPort
 parentPort.onerror = (err: ErrorEvent) => {
-    console.log("worker.ts onerror" + err.message)
+    console.log("worker.ets onerror" + err.message)
 }
 ```
 
@@ -2229,7 +2058,7 @@ parentPort.onerror = (err: ErrorEvent) => {
 // main thread
 import worker, { MessageEvents } from '@ohos.worker';
 
-const workerInstance = new worker.ThreadWorker("workers/worker.ts");
+const workerInstance = new worker.ThreadWorker("workers/worker.ets");
 workerInstance.postMessage("message from main thread to worker");
 workerInstance.onmessage = (d: MessageEvents): void => {
   // 当worker线程传递obj2时，data即为obj2。data没有Init、SetName的方法
@@ -2237,7 +2066,7 @@ workerInstance.onmessage = (d: MessageEvents): void => {
 }
 ```
 ```ts
-// worker.ts
+// worker.ets
 import worker, { MessageEvents, ErrorEvent } from '@ohos.worker';
 
 const workerPort = worker.workerPort;
@@ -2248,7 +2077,7 @@ class MyModel {
     }
 }
 workerPort.onmessage = (d: MessageEvents): void => {
-  console.log("worker.ts onmessage");
+  console.log("worker.ets onmessage");
   let data: string = d.data;
   let func1 = () => {
     console.log("post message is function");
@@ -2262,10 +2091,10 @@ workerPort.onmessage = (d: MessageEvents): void => {
   workerPort.postMessage(obj2);     // 传递obj2不会发生序列化错误
 }
 workerPort.onmessageerror = () => {
-    console.log("worker.ts onmessageerror");
+    console.log("worker.ets onmessageerror");
 }
 workerPort.onerror = (err: ErrorEvent) => {
-    console.log("worker.ts onerror" + err.message);
+    console.log("worker.ets onerror" + err.message);
 }
 ```
 
@@ -2284,7 +2113,7 @@ Actor并发模型的交互原理：各个Actor并发地处理主线程任务，�
 import worker, { MessageEvents, ErrorEvent } from '@ohos.worker';
 
 // 主线程中创建Worker对象
-const workerInstance = new worker.ThreadWorker("workers/worker.ts");
+const workerInstance = new worker.ThreadWorker("workers/worker.ets");
 
 // 主线程向worker线程传递信息
 workerInstance.postMessage("123");
@@ -2309,7 +2138,7 @@ workerInstance.onerror = (err: ErrorEvent) => {
 }
 ```
 ```ts
-// worker.ts
+// worker.ets
 import worker, { MessageEvents, ErrorEvent } from '@ohos.worker';
 
 // 创建worker线程中与主线程通信的对象
@@ -2319,7 +2148,7 @@ const workerPort = worker.workerPort
 workerPort.onmessage = (e: MessageEvents): void => {
     // data：主线程发送的信息
     let data: string = e.data;
-    console.log("worker.ts onmessage");
+    console.log("worker.ets onmessage");
 
     // worker线程向主线程发送信息
     workerPort.postMessage("123")
@@ -2327,7 +2156,7 @@ workerPort.onmessage = (e: MessageEvents): void => {
 
 // worker线程发生error的回调
 workerPort.onerror = (err: ErrorEvent) => {
-    console.log("worker.ts onerror");
+    console.log("worker.ets onerror");
 }
 ```
 build-profile.json5 配置 :
@@ -2335,7 +2164,7 @@ build-profile.json5 配置 :
   "buildOption": {
     "sourceOption": {
       "workers": [
-        "./src/main/ets/entryability/workers/worker.ts"
+        "./src/main/ets/entryability/workers/worker.ets"
       ]
     }
   }
@@ -2346,7 +2175,7 @@ build-profile.json5 配置 :
 import worker, { MessageEvents, ErrorEvent } from '@ohos.worker';
 
 // 主线程中创建Worker对象
-const workerInstance = new worker.ThreadWorker("entry/ets/pages/workers/worker.ts");
+const workerInstance = new worker.ThreadWorker("entry/ets/pages/workers/worker.ets");
 
 // 主线程向worker线程传递信息
 workerInstance.postMessage("123");
@@ -2370,7 +2199,7 @@ workerInstance.onerror = (err: ErrorEvent) => {
 }
 ```
 ```ts
-// worker.ts
+// worker.ets
 import worker, { MessageEvents, ErrorEvent } from '@ohos.worker';
 
 // 创建worker线程中与主线程通信的对象
@@ -2380,7 +2209,7 @@ const workerPort = worker.workerPort
 workerPort.onmessage = (e: MessageEvents): void => {
     // data：主线程发送的信息
     let data: string = e.data;
-    console.log("worker.ts onmessage");
+    console.log("worker.ets onmessage");
 
     // worker线程向主线程发送信息
     workerPort.postMessage("123")
@@ -2388,7 +2217,7 @@ workerPort.onmessage = (e: MessageEvents): void => {
 
 // worker线程发生error的回调
 workerPort.onerror = (err: ErrorEvent) => {
-    console.log("worker.ts onerror" + err.message);
+    console.log("worker.ets onerror" + err.message);
 }
 ```
 build-profile.json5 配置:
@@ -2396,7 +2225,7 @@ build-profile.json5 配置:
   "buildOption": {
     "sourceOption": {
       "workers": [
-        "./src/main/ets/pages/workers/worker.ts"
+        "./src/main/ets/pages/workers/worker.ets"
       ]
     }
   }

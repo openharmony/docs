@@ -228,9 +228,9 @@ console.info(`result: ${vector2.getFirstElement()}`); // 访问元素
 // Deque
 import Deque from '@ohos.util.Deque'; // 导入Deque模块
 
-let deque1: Deque<string> = new Deque;
+let deque1: Deque<string> = new Deque();
 deque1.insertFront('a');
-let deque2: Deque<number> = new Deque;
+let deque2: Deque<number> = new Deque();
 deque2.insertFront(1); // 增加元素
 console.info(`result: ${deque1[0]}`); // 访问元素
 deque1[0] = 'one'; // 修改元素
@@ -250,11 +250,11 @@ console.info(`result: ${stack2.length}`);
 // List
 import List from '@ohos.util.List'; // 导入List模块
 
-let list1: List<string> = new List;
+let list1: List<string> = new List();
 list1.add('a');
-let list2: List<number> = new List;
+let list2: List<number> = new List();
 list2.add(1);
-let list3: List<Array<number>> = new List;
+let list3: List<Array<number>> = new List();
 let b2 = [1, 2, 3];
 list3.add(b2); // 增加元素
 console.info(`result: ${list1[0]}`); // 访问元素

@@ -18,8 +18,8 @@ onAreaChange(event: (oldValue: Area, newValue: Area) => void)
 
 | 参数名   | 类型                      | 必填 | 说明                                                         |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| oldValue | [Area](ts-types.md#area8) | 否   | 返回目标元素变化之前的宽高以及目标元素相对父元素和页面左上角的坐标位置。 |
-| newValue | [Area](ts-types.md#area8) | 否   | 返回目标元素变化之后的宽高以及目标元素相对父元素和页面左上角的坐标位置。 |
+| oldValue | [Area](ts-types.md#area8) | 是   | 返回目标元素变化之前的宽高以及目标元素相对父元素和页面左上角的坐标位置。 |
+| newValue | [Area](ts-types.md#area8) | 是   | 返回目标元素变化之后的宽高以及目标元素相对父元素和页面左上角的坐标位置。 |
 
 
 ## 示例
@@ -35,7 +35,9 @@ struct AreaExample {
   build() {
     Column() {
       Text(this.value)
-        .backgroundColor(Color.Green).margin(30).fontSize(20)
+        .backgroundColor(Color.Green)
+        .margin(30)
+        .fontSize(20)
         .onClick(() => {
           this.value = this.value + 'Text'
         })

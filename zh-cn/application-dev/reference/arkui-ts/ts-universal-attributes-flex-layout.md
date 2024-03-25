@@ -3,7 +3,7 @@
 >  **说明：**
 >  - 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
->  - 仅当父组件是 Flex、Column、Row 、GridRow（仅针对alignSelf）时生效。
+>  - 仅当父组件是 [Flex](ts-container-flex.md)、[Column](ts-container-column.md)、[Row](ts-container-row.md)、[GridRow](ts-container-gridrow.md)（仅针对[alignSelf](#alignself)）时生效。
 
 ## flexBasis
 
@@ -51,7 +51,7 @@ flexShrink(value: number)
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | 是   | 设置父容器压缩尺寸分配给此属性所在组件的比例。<br/>父容器为Row、Column时，默认值：0<br/> 父容器为Flex时，默认值：1 |
+| value  | number | 是   | 设置父容器压缩尺寸分配给此属性所在组件的比例。<br/>父容器为[Column](ts-container-column.md)、[Row](ts-container-row.md)时，默认值：0<br/> 父容器为[Flex](ts-container-flex.md)时，默认值：1 |
 
 ## alignSelf
 
@@ -67,7 +67,7 @@ alignSelf(value: ItemAlign)
 
 | 参数名 | 类型                                        | 必填 | 说明                                                         |
 | ------ | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [ItemAlign](ts-appendix-enums.md#itemalign) | 是   | 子组件在父容器交叉轴的对齐格式，会覆盖Flex、Column、Row、GridRow布局容器中的alignItems设置。<br/>GridCol可以绑定alignsSelf属性来改变它自身在交叉轴方向上的布局。<br/>默认值：ItemAlign.Auto |
+| value  | [ItemAlign](ts-appendix-enums.md#itemalign) | 是   | 子组件在父容器交叉轴的对齐格式，会覆盖[Flex](ts-container-flex.md)、[Column](ts-container-column.md)、[Row](ts-container-row.md)、[GridRow](ts-container-gridrow.md)布局容器中的alignItems设置。<br/>[GridCol](./ts-container-gridcol.md)可以绑定alignsSelf属性来改变它自身在交叉轴方向上的布局。<br/>默认值：ItemAlign.Auto |
 
 
 ## 示例

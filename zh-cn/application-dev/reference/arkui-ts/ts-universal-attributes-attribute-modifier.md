@@ -18,7 +18,7 @@ attributeModifier(modifier:&nbsp;AttributeModifier\<T>)
 
 | 参数名   | 类型                  | 必填 | 说明                                                         |
 | -------- | --------------------- | ---- | ------------------------------------------------------------ |
-| modifier | AttributeModifier\<T> | 是   | 在当前组件上，动态设置属性方法，支持使用if/else语法。<br/>modifier: 属性修改器，开发者需要自定义class实现AttributeModifier接口。 <br/> 当前仅支持Button组件的backgroundColor属性。 |
+| modifier | AttributeModifier\<T> | 是   | 在当前组件上，动态设置属性方法，支持使用if/else语法。<br/>modifier: 属性修改器，开发者需要自定义class实现AttributeModifier接口。 |
 
 ## AttributeModifier\<T>
 
@@ -32,7 +32,7 @@ applyNormalAttribute(instance: T) : void
 ### applyPressedAttribute
 applyPressedAttribute(instance: T) : void
 
-组件按下状态的样式。
+组件按压状态的样式。
 
 ### applyFocusedAttribute
 applyFocusedAttribute(instance: T) : void
@@ -56,6 +56,14 @@ applySelectedAttribute(instance: T) : void
 | 参数             | 描述                                                         |
 | -------------------- | ------------------------------------------------------------ |
 | instance |组件的属性类，用来标识进行属性设置的组件的类型，比如Button组件的ButtonAttribute，Text组件的TextAttribute等。|
+
+**instance参数支持范围:**
+
+AlphabetIndexerAttribute、BadgeAttribute、BlankAttribute、ButtonAttribute、CalendarPickerAttribute、CanvasAttribute、CheckboxAttribute、CheckboxGroupAttribute、CircleAttribute、ColumnAttribute、ColumnSplitAttribute、ShapeAttribute、CommonAttribute、CounterAttribute、DataPanelAttribute、DatePickerAttribute、DividerAttribute、EffectComponentAttribute、EllipseAttribute、FlexAttribute、FlowItemAttribute、FormComponentAttribute、FormLinkAttribute、GaugeAttribute、GridAttribute、GridColAttribute、ColumnAttribute、GridItemAttribute、GridRowAttribute、HyperlinkAttribute、ImageAttribute、ImageAnimatorAttribute、ImageSpanAttribute、LineAttribute、ListAttribute、ListItemAttribute、ListItemGroupAttribute、LoadingProgressAttribute、MarqueeAttribute、MenuAttribute、MenuItemAttribute、MenuItemGroupAttribute、NavDestinationAttribute、NavigationAttribute、NavigatorAttribute、NavRouterAttribute、PanelAttribute、PathAttribute、PatternLockAttribute、PluginComponentAttribute、PolygonAttribute、PolylineAttribute、ProgressAttribute、QRCodeAttribute、RadioAttribute、RatingAttribute、RectAttribute、RefreshAttribute、RelativeContainerAttribute、RemoteWindowAttribute、RichEditorAttribute、RichTextAttribute、RowAttribute、RowSplitAttribute、ScrollAttribute、ScrollBarAttribute、SearchAttribute、SelectAttribute、ShapeAttribute、SideBarContainerAttribute、SliderAttribute、SpanAttribute、StackAttribute、StepperAttribute、StepperItemAttribute、SwiperAttribute、TabContentAttribute、TabsAttribute、TextAttribute、TextAreaAttribute、TextClockAttribute、TextInputAttribute、TextPickerAttribute、TextTimerAttribute、TimePickerAttribute、ToggleAttribute、UIExtensionComponentAttribute、VideoAttribute、WaterFlowAttribute、WebAttribute、XComponentAttribute
+
+**属性支持范围:**
+
+不支持入参为[CustomBuilder](../arkui-ts/ts-types.md#custombuilder8)或Lamda表达式的属性，且不支持事件和手势。
 
 ## 示例
 

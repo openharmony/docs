@@ -3,7 +3,7 @@
 HSP（Harmony Shared Package）是动态共享包，可以包含代码、C++库、资源和配置文件，通过HSP可以实现应用内的代码和资源的共享。HSP不支持独立发布，而是跟随其宿主应用的APP包一起发布，与宿主应用同进程，具有相同的包名和生命周期。
 > **说明：**
 > 
-> 当前暂不支持应用间HSP，提到HSP时都指的是应用内HSP。
+> 仅支持应用内HSP，不支持应用间HSP。
 
 ## 使用场景
 - 多个HAP/HSP共用的代码和资源放在同一个HSP中，可以提高代码、资源的可重用性和可维护性，同时编译打包时也只保留一份HSP代码和资源，能够有效控制应用包大小。
@@ -18,7 +18,7 @@ HSP（Harmony Shared Package）是动态共享包，可以包含代码、C++库�
 
 
 ## 创建
-通过DevEco Studio创建一个HSP模块，详见[创建HSP模块](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/hsp-0000001521396322-V3#section7717162312546)，我们以创建一个名为`library`的HSP模块为例。基本的工程目录结构如下：
+通过DevEco Studio创建一个HSP模块，详见[创建HSP模块](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-hsp-0000001521396322#section7717162312546)，我们以创建一个名为`library`的HSP模块为例。基本的工程目录结构如下：
 ```
 library
 ├── src
@@ -49,7 +49,6 @@ export struct MyTitleBar {
         .fontFamily('HarmonyHeiTi')
         .fontWeight(FontWeight.Bold)
         .fontSize(32)
-        .fontWeight(700)
         .fontColor($r('app.color.text_color'))
     }
     .width('100%')
@@ -157,7 +156,7 @@ export { ResManager } from './ResManager';
 介绍如何引用HSP中的接口，以及如何通过页面路由实现HSP的pages页面跳转与返回。
 
 ### 引用HSP中的接口
-要使用HSP中的接口，首先需要在使用方的oh-package.json5中配置对它的依赖，详见[引用动态共享包](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/hsp-0000001521396322-V3#section6161154819195)。
+要使用HSP中的接口，首先需要在使用方的oh-package.json5中配置对它的依赖，详见[引用动态共享包](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-har-import-0000001547293682)。
 依赖配置成功后，就可以像使用HAR一样调用HSP的对外接口了。例如，上面的library已经导出了下面这些接口：
 
 ```ts
@@ -368,7 +367,6 @@ struct Index3 { // 路径为：`library/src/main/ets/pages/Back.ets
           .fontFamily('HarmonyHeiTi')
           .fontWeight(FontWeight.Bold)
           .fontSize(32)
-          .fontWeight(700)
           .fontColor($r('app.color.text_color'))
           .margin({ top: '32px' })
           .width('624px')

@@ -868,10 +868,10 @@ startAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void;
 **示例：**
 
 ```ts
-import extension from '@ohos.app.ability.ServiceExtensionAbility';
+import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
 import Want from '@ohos.app.ability.Want';
 
-export default class EntryAbility extends extension {
+export default class EntryAbility extends ServiceExtensionAbility {
   onCreate(want: Want) {
     // want包含启动该应用的Caller信息
     let localWant: Want = want;
@@ -938,11 +938,11 @@ startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback\
 **示例：**
 
 ```ts
-import extension from '@ohos.app.ability.ServiceExtensionAbility';
+import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
 import Want from '@ohos.app.ability.Want';
 import StartOptions from '@ohos.app.ability.StartOptions';
 
-export default class EntryAbility extends extension {
+export default class EntryAbility extends ServiceExtensionAbility {
   onCreate(want: Want) {
     // want包含启动该应用的Caller信息
     let localWant: Want = want;
@@ -1020,12 +1020,12 @@ startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>;
 **示例：**
 
 ```ts
-import extension from '@ohos.app.ability.ServiceExtensionAbility';
+import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
 import Want from '@ohos.app.ability.Want';
 import StartOptions from '@ohos.app.ability.StartOptions';
 import { BusinessError } from '@ohos.base';
 
-export default class EntryAbility extends extension {
+export default class EntryAbility extends ServiceExtensionAbility {
   onCreate(want: Want) {
     // want包含启动该应用的Caller信息
     let localWant: Want = want;
@@ -2169,7 +2169,7 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.requestModalUIExtension<sup>11+<sup>
 
-requestModalUIExtension(want: Want): Promise\<void>
+requestModalUIExtension(pickerWant: Want): Promise\<void>
 
 应用拉起一个UIExtension模态弹窗，拉起方与被拉起方的信息由want携带。根据want所携带的拉起方bundleName与前台应用的bundleName是否一致，来判断拉起模态窗口的类型。使用Promise形式异步回调。
 
@@ -2188,7 +2188,7 @@ requestModalUIExtension(want: Want): Promise\<void>
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md)  | 是 | 拉起UIExtension的want信息。 |
+| pickerWant | [Want](js-apis-app-ability-want.md)  | 是 | 拉起UIExtension的want信息。 |
 
 **返回值：**
 
@@ -2217,7 +2217,7 @@ import { BusinessError } from '@ohos.base';
 class EntryAbility extends ServiceExtensionAbility {
 
   onCreate() {
-    let want: Want = {
+    let pickerWant: Want = {
       bundleName: 'com.example.myapplication',
       abilityName: 'requestModalUIExtension',
       moduleName: 'requestModalUIExtension',
@@ -2227,7 +2227,7 @@ class EntryAbility extends ServiceExtensionAbility {
     };
 
     try {
-      this.context.requestModalUIExtension(want)
+      this.context.requestModalUIExtension(pickerWant)
         .then(() => {
           // 执行正常业务
           console.info('requestModalUIExtension succeed');
@@ -2248,7 +2248,7 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.requestModalUIExtension<sup>11+<sup>
 
-requestModalUIExtension(want: Want, callback: AsyncCallback\<void>): void
+requestModalUIExtension(pickerWant: Want, callback: AsyncCallback\<void>): void
 
 应用拉起一个UIExtension模态弹窗，拉起方与被拉起方的信息由want携带。根据want所携带的拉起方bundleName与前台应用的bundleName是否一致，来判断拉起模态窗口的类型。使用callback形式异步回调。
 
@@ -2267,7 +2267,7 @@ requestModalUIExtension(want: Want, callback: AsyncCallback\<void>): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md)  | 是 | 拉起UIExtension的want信息。 |
+| pickerWant | [Want](js-apis-app-ability-want.md)  | 是 | 拉起UIExtension的want信息。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当拉起UIExtension成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
@@ -2290,7 +2290,7 @@ import { BusinessError } from '@ohos.base';
 
 class EntryAbility extends ServiceExtensionAbility {
   onCreate() {
-     let want: Want = {
+     let pickerWant: Want = {
       bundleName: 'com.example.myapplication',
       abilityName: 'requestModalUIExtension',
       moduleName: 'requestModalUIExtension',
@@ -2300,7 +2300,7 @@ class EntryAbility extends ServiceExtensionAbility {
     };
 
     try {
-      this.context.requestModalUIExtension(want, (err: BusinessError) => {
+      this.context.requestModalUIExtension(pickerWant, (err: BusinessError) => {
         if (err.code) { 
           // 处理业务逻辑错误
           console.error(`requestModalUIExtension failed, code is ${err.code}, message is ${err.message}`);

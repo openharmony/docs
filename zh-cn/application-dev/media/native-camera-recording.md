@@ -72,7 +72,7 @@
 
 5. 开始录像。
    
-   先通过videoOutput的start()方法启动录像输出流，再通过avRecorder的start()方法开始录像。
+   通过videoOutput的OH_VideoOutput_Start()方法启动录像输出流。
 
    ```c++
       // 启动录像输出流
@@ -81,26 +81,11 @@
         OH_LOG_ERROR(LOG_APP, "OH_VideoOutput_Start failed.");
       }
    ```
-   ```ts
-     // 开始录像 
-     try {
-       await videoRecorder.start();
-     } catch (error) {
-       console.error(`videoRecorder start error: ${JSON.stringify(err)}`);
-     }
-   ```
 
 6. 停止录像。
      
-   先通过avRecorder的stop()方法停止录像，再通过videoOutput的stop()方法停止录像输出流。
-   ```ts
-     // 停止录像 
-     try {
-       await videoRecorder.stop();
-     } catch (error) {
-       console.error(`videoRecorder stop error: ${JSON.stringify(err)}`);
-     }
-   ```
+   通过videoOutput的OH_VideoOutput_Stop()方法停止录像输出流。
+
    ```c++
       // 停止录像输出流
       ret = OH_VideoOutput_Stop(videoOutput);

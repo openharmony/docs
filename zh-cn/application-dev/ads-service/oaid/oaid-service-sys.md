@@ -9,6 +9,15 @@
 
 媒体App、广告平台、三方监测平台等开发者，可获取设备上的OAID，您可基于OAID进行个性化广告推荐或广告转化归因分析。
 
+OAID是基于华为自有算法生成的32位类UUID（Universally Unique Identifier）标识符，格式为xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx。
+
+OAID的特性：
+- OAID是设备级标识符，同一台设备上不同的App获取到的OAID值一样。
+- OAID的获取受应用的跟踪开关影响：当应用的跟踪开关开启时，该应用可获取到OAID；当应用的跟踪开关关闭时，该应用仅能获取到全0的OAID。
+- 同一台设备上首个应用开启应用跟踪开关时，会首次生成OAID。
+
+OAID会在下述场景中发生变化：
+- 用户恢复手机出厂设置。
 
 ### 接口说明
 

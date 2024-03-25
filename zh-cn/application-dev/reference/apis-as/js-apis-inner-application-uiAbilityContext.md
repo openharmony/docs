@@ -1026,7 +1026,7 @@ isTerminating(): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| bool | true：ability当前处于terminating状态；false：不处于terminating状态。 |
+| boolean | true：ability当前处于terminating状态；false：不处于terminating状态。 |
 
 **错误码：**
 
@@ -1120,7 +1120,7 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 显示拉起的UIExtensionAbility类型。 |
-| wantParam | {[key: string]: any} | 是 | 表示扩展参数。 |
+| wantParam | Record&lt;string,&nbsp;Object&gt; | 是 | 表示扩展参数。 |
 | abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | 是 | 启动失败后的回调。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，返回接口调用是否成功的结果。 |
 
@@ -1172,7 +1172,7 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 显示拉起的UIExtensionAbility类型。 |
-| wantParam | {[key: string]: Object} | 是 | 表示扩展参数。 |
+| wantParam | Record&lt;string,&nbsp;Object&gt; | 是 | 表示扩展参数。 |
 | abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | 是 | 启动失败后的回调。 |
 
 **返回值：**

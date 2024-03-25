@@ -10,34 +10,12 @@
 
 ## 接口
 
-animation(value: {duration?: number, tempo?: number, curve?: string | Curve | ICurve, delay?:number, iterations?: number, playMode?: PlayMode, onFinish?: () => void, finishCallbackType?: FinishCallbackType, expectedFrameRateRange?: ExpectedFrameRateRange})
-
+animation(value:AnimateParam)
 
 **参数：**
-
-| 名称         | 参数类型                                     | 必填   | 描述                                       |
-| ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| duration   | number                                   | 否    | 动画时长，单位为毫秒。<br/>默认值：1000<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>- 在ArkTS卡片上最大动画持续时间为1000毫秒。<br/>-&nbsp;设置小于0的值时按0处理。<br/>-&nbsp;设置浮点型类型的值时，向下取整。例如，设置值为1.2，按照1处理。 |
-| tempo      | number                                   | 否    | 动画播放速度。数值越大，动画播放速度越快，数值越小，播放速度越慢。<br/>值为0时，表示不存在动画。<br/>默认值：1<br/>**说明：** <br/>当设置小于0的值时按值为1处理。 |
-| curve      | string&nbsp;\|&nbsp;[Curve](ts-appendix-enums.md#curve)&nbsp;\|&nbsp;[ICurve](../apis/js-apis-curve.md#icurve)<sup>9+</sup> | 否    | 设置动画曲线。<br/>默认值：Curve.EaseInOut<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| delay      | number                                   | 否    | 动画延迟播放时间。单位为毫秒，默认不延时播放。<br/>默认值：0<br/>取值范围：(-∞, +∞)<br/>**说明：** <br/>-&nbsp;delay>=0为延迟播放，delay<0表示提前播放。对于delay<0的情况：当delay的绝对值小于实际动画时长，动画将在开始后第一帧直接运动到delay绝对值的时刻的状态；当delay的绝对值大于等于实际动画时长，动画将在开始后第一帧直接运动到终点状态。其中实际动画时长等于单次动画时长乘以动画播放次数。<br/>-&nbsp;设置浮点型类型的值时，向下取整。例如，设置值为1.2，按照1处理。 |
-| iterations | number                                   | 否    | 动画播放次数。<br/>默认值：1<br/>取值范围：[-1, +∞)<br/>**说明：** <br/>设置为-1时表示无限次播放。设置为0时表示无动画效果。 |
-| playMode   | [PlayMode](ts-appendix-enums.md#playmode) | 否    | 动画播放模式，默认播放完成后重头开始播放。<br/>默认值：PlayMode.Normal<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>相关使用约束请参考PlayMode说明。 |
-| onFinish   | () => void                               | 否    | 结束回调，动画播放完成时触发。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>当iterations设置为-1时，动画效果无限循环不会停止，所以不会触发此回调。 |
-| finishCallbackType<sup>11+</sup>   | [FinishCallbackType](ts-appendix-enums.md#finishcallbacktype11) | 否    | 在动画中定义onFinish回调的类型。<br/>默认值：FinishCallbackType.REMOVED<br/>从API version 11开始，该接口支持在ArkTS卡片中使用。 |
-| expectedFrameRateRange <sup>11+</sup>   | [ExpectedFrameRateRange ](#expectedframeraterange) | 否 |设置动画的期望帧率。 |
-
-## ExpectedFrameRateRange <sup>11+</sup>
-| 名称  | 类型     | 说明      |
-|-----|--------|---------|
-| min | number | 期望的最小帧率。 |
-| max | number | 期望的最大帧率。 |
-| expected | number | 期望的最优帧率。 |
-
-> **PlayMode说明：**
-> - PlayMode推荐使用PlayMode.Normal和PlayMode.Alternate，此场景下动画的第一轮是正向播放的。如使用PlayMode.Reverse和PlayMode.AlternateReverse，则动画的第一轮是逆向播放的，在动画刚开始时会跳变到终止状态，然后逆向播放动画。
-> - 使用PlayMode.Alternate或PlayMode.AlternateReverse时，开发者应保证动画最终状态和状态变量的取值一致，即应保证动画的最后一轮是正向播放的。使用PlayMode.Alternate时，iterations应为奇数。使用PlayMode.AlternateReverse时，iterations应为偶数。
-> - 不推荐使用PlayMode.Reverse，此场景下不仅会导致动画刚开始就跳变到终止状态，也会导致动画最终状态和状态变量的取值不同。
+| 参数    | 类型                                | 是否必填 | 描述                                    |
+| ----- | --------------------------------- | ---- | ------------------------------------- |
+| value | [AnimateParam](ts-explicit-animation.md#animateparam对象说明) | 是    | 设置动画效果相关参数。                           |
 
 ## 示例
 ```ts

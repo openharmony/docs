@@ -57,7 +57,7 @@ this.objLink= ...
 >
 > - \@Prop装饰的变量和数据源的关系是是单向同步，\@Prop装饰的变量在本地拷贝了数据源，所以它允许本地更改，如果父组件中的数据源有更新，\@Prop装饰的变量本地的修改将被覆盖；
 >
-> - \@ObjectLink装饰的变量和数据源的关系是双向同步，\@ObjectLink装饰的变量相当于指向数据源的指针。禁止对\@ObjectLink装饰的变量赋值，如果一旦发生\@ObjectLink装饰的变量的赋值，则同步链将被打断。因为\@ObjectLink修饰的变量通过数据源（Object）引用来初始化。对于实现双向数据同步的@ObjectLink，赋值相当于更新父组件中的数组项或者class的属性，TypeScript/JavaScript不能实现，会发生运行时报错。
+> - \@ObjectLink装饰的变量和数据源的关系是双向同步，\@ObjectLink装饰的变量相当于指向数据源的指针。禁止对\@ObjectLink装饰的变量赋值，如果一旦发生\@ObjectLink装饰的变量的赋值，则同步链将被打断。因为\@ObjectLink装饰的变量通过数据源（Object）引用来初始化。对于实现双向数据同步的@ObjectLink，赋值相当于更新父组件中的数组项或者class的属性，TypeScript/JavaScript不能实现，会发生运行时报错。
 
 
 ## 变量的传递/访问规则说明
@@ -280,19 +280,21 @@ struct ViewC {
             console.log('this.c.c:' + this.c.c)
           })
       }
-    .width(300)
+      .width(300)
+    }
   }
-}
 }
 
 @Entry
 @Component
 struct ViewB {
   @State b: ClassB = new ClassB(new ClassA(0));
-  @State child : ClassD = new ClassD(new ClassC(0));
+  @State child: ClassD = new ClassD(new ClassC(0));
+
   build() {
     Column() {
-      ViewC({ label: 'ViewC #3', c: this.child.c})
+      ViewC({ label: 'ViewC #3',
+        c: this.child.c })
       Button(`ViewC: this.child.c.c add 10`)
         .backgroundColor('#ff7fcf58')
         .onClick(() => {
@@ -329,6 +331,19 @@ ViewC中的事件句柄：
 
 
 ```ts
+let NextID: number = 1;
+
+@Observed
+class ClassA {
+  public id: number;
+  public c: number;
+
+  constructor(c: number) {
+    this.id = NextID++;
+    this.c = c;
+  }
+}
+
 @Component
 struct ViewA {
   // 子组件ViewA的@ObjectLink的类型是ClassA
@@ -373,7 +388,7 @@ struct ViewB {
         })
       Button(`ViewB: shift`)
         .onClick(() => {
-          if (this.arrA.length > 0){
+          if (this.arrA.length > 0) {
             this.arrA.shift()
           } else {
             console.log("length <= 0")
@@ -498,6 +513,7 @@ struct IndexPage {
 @Observed
 class ClassA {
   public a: MyMap<number, string>;
+
   constructor(a: MyMap<number, string>) {
     this.a = a;
   }
@@ -506,12 +522,11 @@ class ClassA {
 
 @Observed
 export class MyMap<K, V> extends Map<K, V> {
-
   public name: string;
 
   constructor(name?: string, args?: [K, V][]) {
     super(args);
-    this.name = name ? name: "My Map";
+    this.name = name ? name : "My Map";
   }
 
   getName() {
@@ -527,7 +542,7 @@ struct MapSampleNested {
   build() {
     Row() {
       Column() {
-        MapSampleNestedChild({myMap: this.message.a})
+        MapSampleNestedChild({ myMap: this.message.a })
       }
       .width('100%')
     }
@@ -548,16 +563,16 @@ struct MapSampleNestedChild {
           Divider()
         })
 
-        Button('set new one').onClick(() =>{
+        Button('set new one').onClick(() => {
           this.myMap.set(4, "d")
         })
-        Button('clear').onClick(() =>{
+        Button('clear').onClick(() => {
           this.myMap.clear()
         })
-        Button('replace the first one').onClick(() =>{
+        Button('replace the first one').onClick(() => {
           this.myMap.set(0, "aa")
         })
-        Button('delete the first one').onClick(() =>{
+        Button('delete the first one').onClick(() => {
           this.myMap.delete(0)
         })
       }
@@ -580,6 +595,7 @@ struct MapSampleNestedChild {
 @Observed
 class ClassA {
   public a: MySet<number>;
+
   constructor(a: MySet<number>) {
     this.a = a;
   }
@@ -587,13 +603,12 @@ class ClassA {
 
 
 @Observed
-export class MySet<T> extends Set<T>  {
-
+export class MySet<T> extends Set<T> {
   public name: string;
 
   constructor(name?: string, args?: T[]) {
     super(args);
-    this.name = name ? name: "My Set";
+    this.name = name ? name : "My Set";
   }
 
   getName() {
@@ -604,12 +619,12 @@ export class MySet<T> extends Set<T>  {
 @Entry
 @Component
 struct SetSampleNested {
-  @State message: ClassA = new ClassA( new MySet("Set", [0, 1, 2 ,3,4 ]));
+  @State message: ClassA = new ClassA(new MySet("Set", [0, 1, 2, 3, 4]));
 
   build() {
     Row() {
       Column() {
-        SetSampleNestedChild({mySet: this.message.a})
+        SetSampleNestedChild({ mySet: this.message.a })
       }
       .width('100%')
     }
@@ -628,13 +643,13 @@ struct SetSampleNestedChild {
           Text(`${item}`).fontSize(30)
           Divider()
         })
-        Button('set new one').onClick(() =>{
+        Button('set new one').onClick(() => {
           this.mySet.add(5)
         })
-        Button('clear').onClick(() =>{
+        Button('clear').onClick(() => {
           this.mySet.clear()
         })
-        Button('delete the first one').onClick(() =>{
+        Button('delete the first one').onClick(() => {
           this.mySet.delete(0)
         })
       }
@@ -932,7 +947,7 @@ struct MyView {
 
 - 为了观察到嵌套于内部的ClassC的属性，需要做如下改变：
   - 构造一个子组件，用于单独渲染ClassC的实例。 该子组件可以使用\@ObjectLink c : ClassC或\@Prop c : ClassC。通常会使用\@ObjectLink，除非子组件需要对其ClassC对象进行本地修改。
-  - 嵌套的ClassC必须用\@Observed修饰。当在ClassB中创建ClassC对象时（本示例中的ClassB(10, 20, 30）)，它将被包装在ES6代理中，当ClassC属性更改时（this.b.c.c += 1），该代码将修改通知到\@ObjectLink变量。
+  - 嵌套的ClassC必须用\@Observed装饰。当在ClassB中创建ClassC对象时（本示例中的ClassB(10, 20, 30）)，它将被包装在ES6代理中，当ClassC属性更改时（this.b.c.c += 1），该代码将修改通知到\@ObjectLink变量。
 
 【正例】
 
@@ -942,25 +957,35 @@ struct MyView {
 ```ts
 class ClassA {
   a: number;
+
   constructor(a: number) {
     this.a = a;
   }
-  getA() : number {
-    return this.a; }
-  setA( a: number ) : void {
-    this.a = a; }
+
+  getA(): number {
+    return this.a;
+  }
+
+  setA(a: number): void {
+    this.a = a;
+  }
 }
 
 @Observed
 class ClassC {
   c: number;
+
   constructor(c: number) {
     this.c = c;
   }
-  getC() : number {
-    return this.c; }
-  setC(c : number) : void {
-    this.c = c; }
+
+  getC(): number {
+    return this.c;
+  }
+
+  setC(c: number): void {
+    this.c = c;
+  }
 }
 
 class ClassB extends ClassA {
@@ -973,57 +998,64 @@ class ClassB extends ClassA {
     this.c = new ClassC(c);
   }
 
-  getB() : number {
-    return this.b; }
-  setB(b : number) : void {
-    this.b = b; }
-  getC() : number {
-    return this.c.getC(); }
-  setC(c : number) : void {
-    return this.c.setC(c); }
+  getB(): number {
+    return this.b;
+  }
+
+  setB(b: number): void {
+    this.b = b;
+  }
+
+  getC(): number {
+    return this.c.getC();
+  }
+
+  setC(c: number): void {
+    return this.c.setC(c);
+  }
 }
 
 @Component
 struct ViewClassC {
+  @ObjectLink c: ClassC;
 
-    @ObjectLink c : ClassC;
-    build() {
-        Column({space:10}) {
-            Text(`c: ${this.c.getC()}`)
-            Button("Change C")
-                .onClick(() => {
-                    this.c.setC(this.c.getC()+1);
-                })
-        }
+  build() {
+    Column({ space: 10 }) {
+      Text(`c: ${this.c.getC()}`)
+      Button("Change C")
+        .onClick(() => {
+          this.c.setC(this.c.getC() + 1);
+        })
     }
+  }
 }
 
 @Entry
 @Component
 struct MyView {
-    @State b : ClassB = new ClassB(10, 20, 30);
+  @State b: ClassB = new ClassB(10, 20, 30);
 
-    build() {
-        Column({space:10}) {
-            Text(`a: ${this.b.a}`)
-             Button("Change ClassA.a")
-            .onClick(() => {
-                this.b.a +=1;
-            })
+  build() {
+    Column({ space: 10 }) {
+      Text(`a: ${this.b.a}`)
+      Button("Change ClassA.a")
+        .onClick(() => {
+          this.b.a += 1;
+        })
 
-            Text(`b: ${this.b.b}`)
-            Button("Change ClassB.b")
-            .onClick(() => {
-                this.b.b += 1;
-            })
+      Text(`b: ${this.b.b}`)
+      Button("Change ClassB.b")
+        .onClick(() => {
+          this.b.b += 1;
+        })
 
-            ViewClassC({c: this.b.c})   // Text(`c: ${this.b.c.c}`)的替代写法
-            Button("Change ClassB.ClassC.c")
-            .onClick(() => {
-                this.b.c.c += 1;
-            })
-        }
-     }
+      ViewClassC({ c: this.b.c }) // Text(`c: ${this.b.c.c}`)的替代写法
+      Button("Change ClassB.ClassC.c")
+        .onClick(() => {
+          this.b.c.c += 1;
+        })
+    }
+  }
 }
 ```
 
@@ -1257,7 +1289,7 @@ struct ParentComp {
 
 ### \@Prop与\@ObjectLink的差异
 
-在下面的示例代码中，\@ObjectLink修饰的变量是对数据源的引用，即在this.value.subValue和this.subValue都是同一个对象的不同引用，所以在点击CounterComp的click handler，改变this.value.subCounter.counter，this.subValue.counter也会改变，对应的组件Text(`this.subValue.counter: ${this.subValue.counter}`)会刷新。
+在下面的示例代码中，\@ObjectLink装饰的变量是对数据源的引用，即在this.value.subValue和this.subValue都是同一个对象的不同引用，所以在点击CounterComp的click handler，改变this.value.subCounter.counter，this.subValue.counter也会改变，对应的组件Text(`this.subValue.counter: ${this.subValue.counter}`)会刷新。
 
 
 ```ts
@@ -1539,20 +1571,23 @@ class RenderClass {
   waitToRender: boolean = false;
 
   constructor() {
-    setTimeout(()=>{
+    setTimeout(() => {
       this.waitToRender = true;
       console.log("change waitToRender to " + this.waitToRender);
-    },1000)
+    }, 1000)
   }
 }
+
 @Entry
 @Component
 struct Index {
   @State @Watch('renderClassChange') renderClass: RenderClass = new RenderClass();
   @State textColor: Color = Color.Black;
+
   renderClassChange() {
     console.log("Render Class Change waitToRender is " + this.renderClass.waitToRender);
   }
+
   build() {
     Row() {
       Column() {
@@ -1584,19 +1619,23 @@ class RenderClass {
   constructor() {
   }
 }
+
 @Entry
 @Component
 struct Index {
   @State @Watch('renderClassChange') renderClass: RenderClass = new RenderClass();
+
   renderClassChange() {
     console.log("Render Class Change waitToRender is " + this.renderClass.waitToRender);
   }
+
   onPageShow() {
     setTimeout(() => {
       this.renderClass.waitToRender = true;
       console.log("change waitToRender to " + this.renderClass.waitToRender);
-    },1000)
+    }, 1000)
   }
+
   build() {
     Row() {
       Column() {
@@ -1613,3 +1652,66 @@ struct Index {
 上文的示例代码将定时器修改移入到组件内，此时界面显示时会先显示“Render Class Change waitToRender is false”。待定时器触发时，界面刷新显示“Render Class Change waitToRender is true”。
 
 因此，更推荐开发者在组件中对@Observed装饰的类成员变量进行修改实现刷新。
+
+### 在@Observed装饰的类内使用static方法进行初始化
+
+在@Observed装饰的类内，尽量避免使用static方法进行初始化，在创建时会绕过Observed的实现，导致无法被代理，UI不刷新。
+
+```ts
+@Entry
+@Component
+struct MainPage {
+  @State viewModel: ViewModel = ViewModel.build();
+
+  build() {
+    Column() {
+      Button("Click")
+        .onClick((event) => {
+          this.viewModel.subViewModel.isShow = !this.viewModel.subViewModel.isShow;
+        })
+      SubComponent({ viewModel: this.viewModel.subViewModel })
+    }
+    .padding({ top: 60 })
+    .width('100%')
+    .alignItems(HorizontalAlign.Center)
+  }
+}
+
+@Component
+struct SubComponent {
+  @ObjectLink viewModel: SubViewModel;
+
+  build() {
+    Column() {
+      if (this.viewModel.isShow) {
+        Text("click to take effect");
+      }
+    }
+  }
+}
+
+class ViewModel {
+  subViewModel: SubViewModel = SubViewModel.build(); //内部静态方法创建
+
+  static build() {
+    console.log("ViewModel build()")
+    return new ViewModel();
+  }
+}
+
+@Observed
+class SubViewModel {
+  isShow?: boolean = false;
+
+  static build() {
+    //只有在SubViewModel内部的静态方法创建对象，会影响关联
+    console.log("SubViewModel build()")
+    let viewModel = new SubViewModel();
+    return viewModel;
+  }
+}
+```
+
+上文的示例中，在自定义组件ViewModel中使用static方法进行初始化，此时点击Click按钮，页面中并不会显示click to take effect。
+
+因此，不推荐开发者在自定义的类装饰器内使用static方法进行初始化。

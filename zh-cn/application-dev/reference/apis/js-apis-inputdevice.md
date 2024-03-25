@@ -181,7 +181,7 @@ on(type: "change", listener: Callback&lt;DeviceListener&gt;): void
 
 | 参数名       | 类型                                       | 必填   | 说明          |
 | -------- | ---------------------------------------- | ---- | ----------- |
-| type     | string                                   | 是    | 输入设备的事件类型。  |
+| type     | string                                   | 是    | 输入设备的事件【鼠标、键盘、触摸屏等】类型。 |
 | listener | Callback&lt;[DeviceListener](#devicelistener9)&gt; | 是    | 回调函数，异步上报输入设备热插拔事件。 |
 
 **示例**：
@@ -220,7 +220,7 @@ off(type: "change", listener?: Callback&lt;DeviceListener&gt;): void
 
 | 参数名       | 类型                                       | 必填   | 说明          |
 | -------- | ---------------------------------------- | ---- | ----------- |
-| type     | string                                   | 是    | 输入设备的事件类型。  |
+| type     | string                                   | 是    | 输入设备的事件【鼠标、键盘、触摸屏等】类型。  |
 | listener | Callback&lt;[DeviceListener](#devicelistener9)&gt; | 否    | 取消监听的回调函数。 |
 
 **示例**：

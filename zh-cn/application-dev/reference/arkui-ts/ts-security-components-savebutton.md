@@ -22,13 +22,19 @@ SaveButton()
 默认创建带有图标、文本、背景的保存按钮。
 
 ### SaveButton
-SaveButton(option:{icon?: SaveIconStyle, text?: SaveDescription, buttonType?: ButtonType})
+SaveButton(option:SaveButtonOptions)
 
 创建包含指定元素的保存按钮。
 
 **参数：**
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
+| -------- | -------- | -------- | -------- |
+| option | [SaveButtonOptions](#savebuttonoptions) | 否 | 创建包含指定元素的保存按钮。 |
+
+## SaveButtonOptions
+
+| 名称 | 类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |
 | icon | [SaveIconStyle](#saveiconstyle枚举说明) | 否 | 设置保存按钮的图标风格<br/>不传入该参数表示没有图标，icon和text至少存在一个。 |
 | text | [SaveDescription](#savedescription枚举说明) | 否 | 设置保存按钮的文本描述<br/>不传入该参数表示没有文字描述，icon和text至少存在一个。 |

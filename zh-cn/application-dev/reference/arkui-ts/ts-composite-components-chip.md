@@ -156,7 +156,7 @@ struct Index {
 ```
 
 
-![](figures/chip1.jpeg)
+![](figures/chip1.png)
 
 ### 示例2
 
@@ -193,7 +193,7 @@ struct Index {
 ```
 
 
-![](figures/chip2.jpeg)
+![](figures/chip2.png)
 
 ### 示例3
 
@@ -233,4 +233,4 @@ struct Index {
 ```
 
 
-![](figures/chip3.jpeg)
+![](figures/chip3.png)

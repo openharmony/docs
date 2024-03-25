@@ -40,7 +40,7 @@ CheckboxGroup(options?: CheckboxGroupOptions)
 | -------- | -------- | -------- |
 | selectAll | boolean | 设置是否全选。<br/>默认值：false，若同组的[Checkbox](ts-basic-components-checkbox.md)设置了select属性，则Checkbox的优先级高。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>若同组的[Checkbox](ts-basic-components-checkbox.md)显式设置了select属性，则Checkbox的优先级高。<br />从API version 10开始，该属性支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
 | selectedColor | [ResourceColor](ts-types.md#resourcecolor) | 设置被选中或部分选中状态的颜色。<br/>默认值：$r('sys.color.ohos_id_color_text_primary_activated')。<br/>异常值按照默认值处理。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| unselectedColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 设置非选中状态边框颜色。 |
+| unselectedColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 设置非选中状态边框颜色。<br/>默认值：'#33ffffff'。 |
 | mark<sup>10+</sup> | [MarkStyle](#markstyle10对象说明) | 多选框内部图标样式。 |
 
 ## 事件
@@ -75,8 +75,8 @@ CheckboxGroup(options?: CheckboxGroupOptions)
 | 名称        | 类型                                       | 必填 | 默认值      | 描述                                                         |
 | ----------- | ------------------------------------------ | ---- | ----------- | ------------------------------------------------------------ |
 | strokeColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | Color.White | 内部图标颜色。                                               |
-| size        | number&nbsp;\|&nbsp;string                 | 否   | -           | 内部图标大小，单位vp。默认大小与多选框群组组件宽度设置值一致。<br />不支持百分比形式设置。当设置为非法值时，按照默认值处理。 |
-| strokeWidth | number&nbsp;\|&nbsp;string                 | 否   | 2           | 内部图标粗细，单位vp。不支持百分比形式设置。当设置为非法值时，按照默认值处理。 |
+| size        | [Length](ts-types.md#length)               | 否   | -           | 内部图标大小，单位vp。默认大小与多选框群组组件宽度设置值一致。<br />不支持百分比形式设置。当设置为非法值时，按照默认值处理。 |
+| strokeWidth | [Length](ts-types.md#length)               | 否   | 2           | 内部图标粗细，单位vp。不支持百分比形式设置。当设置为非法值时，按照默认值处理。 |
 
 ## 示例
 

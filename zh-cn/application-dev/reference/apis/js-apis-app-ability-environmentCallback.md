@@ -17,7 +17,7 @@ import EnvironmentCallback from '@ohos.app.ability.EnvironmentCallback';
 
 ## EnvironmentCallback.onConfigurationUpdated
 
-onConfigurationUpdated(config: Configuration): void;
+onConfigurationUpdated(config: Configuration): void
 
 注册系统环境变化的监听后，在系统环境变化时触发回调。
 
@@ -29,9 +29,13 @@ onConfigurationUpdated(config: Configuration): void;
   | -------- | -------- | -------- | -------- |
   | config | [Configuration](js-apis-app-ability-configuration.md) | 是 | 变化后的Configuration对象。 |
 
+**示例：**
+
+参见[EnvironmentCallback使用](#environmentcallback使用)。
+
 ## EnvironmentCallback.onMemoryLevel
 
-onMemoryLevel(level: AbilityConstant.MemoryLevel): void;
+onMemoryLevel(level: AbilityConstant.MemoryLevel): void
 
 注册系统环境变化的监听后，在系统内存变化时触发回调。
 
@@ -41,10 +45,16 @@ onMemoryLevel(level: AbilityConstant.MemoryLevel): void;
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | level | [AbilityConstant.MemoryLevel](js-apis-app-ability-abilityConstant.md#abilityconstantmemorylevel) | 是 | 回调返回内存微调级别，显示当前内存使用状态。| 
+  | level | [AbilityConstant.MemoryLevel](js-apis-app-ability-abilityConstant.md#abilityconstantmemorylevel) | 是 | 回调返回内存微调级别，显示当前内存使用状态。|
 
 **示例：**
-    
+
+参见[EnvironmentCallback使用](#environmentcallback使用)。
+
+## EnvironmentCallback使用
+
+**示例：**
+
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import EnvironmentCallback from '@ohos.app.ability.EnvironmentCallback';
@@ -69,6 +79,7 @@ export default class MyAbility extends UIAbility {
         callbackId = applicationContext.on('environment', environmentCallback);
         console.log(`registerEnvironmentCallback number: ${JSON.stringify(callbackId)}`);
     }
+
     onDestroy() {
         let applicationContext = this.context.getApplicationContext();
         applicationContext.off('environment', callbackId, (error, data) => {

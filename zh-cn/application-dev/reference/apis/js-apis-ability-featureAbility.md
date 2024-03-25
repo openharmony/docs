@@ -765,24 +765,13 @@ import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from '@ohos.base';
 import window from '@ohos.window';
 
-class FeatureAbilityClass {
-    onActive: () => void
-}
-
-let featureAbilityObj: FeatureAbilityClass =  {
-  onActive() {
-    console.info("onActive");
-    featureAbility.getWindow((error: BusinessError, data: window.Window) => {
-      if (error && error.code !== 0) {
+featureAbility.getWindow((error: BusinessError, data: window.Window) => {
+    if (error && error.code !== 0) {
         console.error(`getWindow fail, error: ${JSON.stringify(error)}`);
-      } else {
+    } else {
         console.log(`getWindow success, data: ${typeof(data)}`);
-      }
-    });
-  }
-}
-
-export default featureAbilityObj
+    }
+});
 ```
 
 ## featureAbility.getWindow<sup>7+</sup>
@@ -808,17 +797,11 @@ import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from '@ohos.base';
 import window from '@ohos.window';
 
-export default {
-
-  onActive() {
-    console.info("onActive");
-    featureAbility.getWindow().then((data: window.Window) => {
-        console.log(`getWindow success, data: ${typeof(data)}`);
-    }).catch((error: BusinessError)=>{
-        console.error(`getWindow fail, error: ${JSON.stringify(error)}`);
-    });
-  }
-}
+featureAbility.getWindow().then((data: window.Window) => {
+    console.log(`getWindow success, data: ${typeof(data)}`);
+}).catch((error: BusinessError)=>{
+    console.error(`getWindow fail, error: ${JSON.stringify(error)}`);
+});
 ```
 
 ## AbilityWindowConfiguration
@@ -831,7 +814,7 @@ export default {
 featureAbility.AbilityWindowConfiguration.WINDOW_MODE_UNDEFINED
 ```
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.FAModel
+**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
 | 名称                                     | 值   | 说明                                       |
 | ---------------------------------------- | ---- | ---------------------------------------- |
@@ -854,7 +837,7 @@ featureAbility.AbilityWindowConfiguration.WINDOW_MODE_UNDEFINED
 featureAbility.AbilityStartSetting.BOUNDS_KEY
 ```
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.FAModel
+**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
 | 名称                           | 值              | 说明                                       |
 | ---------------------------- | --------------- | ---------------------------------------- |
@@ -862,11 +845,11 @@ featureAbility.AbilityStartSetting.BOUNDS_KEY
 | WINDOW_MODE_KEY<sup>7+</sup> | 'windowMode'    | 窗口显示模式属性的参数名。|
 | DISPLAY_ID_KEY<sup>7+</sup>  | 'displayId'     | 窗口显示设备ID属性的参数名。 |
 
-## ErrorCode<sup>7+<sup>
+## ErrorCode<sup>7+</sup>
 
 定义启动Ability时返回的错误码。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.FAModel
+**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
 | 名称                             | 值    | 说明                                       |
 | ------------------------------ | ---- | ---------------------------------------- |
@@ -879,7 +862,7 @@ featureAbility.AbilityStartSetting.BOUNDS_KEY
 
 表示数据的操作类型。DataAbility批量操作数据时可以通过该枚举值指定操作类型
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.FAModel
+**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
 | 名称                       | 值    | 说明                                       |
 | ------------------------ | ---- | ---------------------------------------- |

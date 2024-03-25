@@ -17,11 +17,11 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| context | [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md) | 是 | 否 | 上下文。 |
-| launchWant | [Want](js-apis-app-ability-want.md) | 是 | 否 | UIAbility启动时的参数。 |
-| lastRequestWant | [Want](js-apis-app-ability-want.md) | 是 | 否 | UIAbility最后请求时的参数。|
+| context | [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md) | 否 | 是 | 上下文。 |
+| launchWant | [Want](js-apis-app-ability-want.md) | 否 | 是 | UIAbility启动时的参数。 |
+| lastRequestWant | [Want](js-apis-app-ability-want.md) | 否 | 是 | UIAbility最后请求时的参数。|
 
 ## UIAbility.onCreate
 
@@ -134,9 +134,15 @@ onWindowStageRestore(windowStage: window.WindowStage): void
 
 onDestroy(): void | Promise&lt;void&gt;
 
-UIAbility生命周期回调，在销毁时回调，执行资源清理等操作。
+UIAbility生命周期回调，在销毁时回调，执行资源清理等操作。使用同步回调或Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| void&nbsp;\|&nbsp;Promise&lt;void&gt; | 无返回结果或无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -285,6 +291,12 @@ onDump(params: Array\<string>): Array\<string>
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | params | Array\<string> | 是 | 表示命令形式的参数。|
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Array\<string> | 转储信息数组。|
 
 **示例：**
 

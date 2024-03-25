@@ -131,16 +131,16 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 
 onChangeFormVisibility(newStatus: Record\<string, number>): void
 
-卡片提供方接收修改可见性的通知接口。  
+卡片提供方接收修改可见性的通知接口。
 该接口仅对系统应用生效，且需要将formVisibleNotify配置为true。
 
 **系统能力**：SystemCapability.Ability.Form
 
 **参数：**
 
-| 参数名    | 类型                      | 必填 | 说明                         |
-| --------- | ------------------------- | ---- | ---------------------------- |
-| newStatus | Record\<string, number> | 是   | 请求修改的卡片标识和可见状态。 |
+| 参数名  | 类型   | 必填 | 说明                   |
+| ------- | ------ | ---- | ---------------------- |
+| newStatus  | Record\<string, number> | 是   | 请求修改的卡片标识和可见状态。 |
 
 **示例：**
 
@@ -150,8 +150,8 @@ import formBindingData from '@ohos.app.form.formBindingData';
 import formProvider from '@ohos.app.form.formProvider';
 import Base from '@ohos.base';
 
-// 由于arkTs中无Object.keys，且无法使用for..in...
-// 若报arkTs问题，请将此方法单独抽离至一个ts文件中并暴露，在需要用到的ets文件中引入使用
+// ArkTS规范中ets文件无法使用Object.keys和for..in...获取Object的key值，请使用自定义函数getObjKeys代替。
+// 使用时请将此函数单独抽离至一个ts文件中并导出，在需要用到的ets文件中导入此函数后使用。
 function getObjKeys(obj: Object): string[] {
   let keys = Object.keys(obj);
   return keys;
@@ -306,12 +306,12 @@ onShareForm?(formId: string): Record\<string, Object>
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| formId | string | 是   | 卡片标识。 |
+| formId | string | 是 | 卡片标识。 |
 
 **返回值：**
 
-| 类型                                                         | 说明                                                        |
-| ------------------------------------------------------------ | ----------------------------------------------------------- |
+| 类型                   | 说明                                         |
+| ---------------------- | -------------------------------------------- |
 | Record\<string, Object> | 卡片要分享的数据，由开发者自行决定传入的键值对。 |
 
 **示例：**
@@ -331,7 +331,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 };
 ```
 
-## onAcquireFormData<sup>10+</sup>
+## onAcquireFormData<sup>10+<sup>
 
 onAcquireFormData?(formId: string): Record\<string, Object>
 
@@ -345,12 +345,12 @@ onAcquireFormData?(formId: string): Record\<string, Object>
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| formId | string | 是   | 卡片标识。 |
+| formId | string | 是 | 卡片标识。 |
 
 **返回值：**
 
-| 类型                                                         | 说明                                                        |
-| ------------------------------------------------------------ | ----------------------------------------------------------- |
+| 类型                   | 说明                                         |
+| ---------------------- | -------------------------------------------- |
 | Record\<string, Object> | 卡片的自定义数据，由开发者自行决定传入的键值对。 |
 
 **示例：**

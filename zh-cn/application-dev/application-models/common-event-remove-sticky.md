@@ -23,7 +23,6 @@
    ```ts
    import Base from '@ohos.base';
    import commonEventManager from '@ohos.commonEventManager';
-   import Logger from '../utils/Logger';
 
    const TAG: string = 'ProcessModel';
    ```
@@ -38,11 +37,11 @@
    commonEventManager.removeStickyCommonEvent('usual.event.SCREEN_OFF', (err: Base.BusinessError) => {
      // sticky_event粘性公共事件名
      if (err) {
-       Logger.error(TAG, `Failed to remove sticky common event. Code is ${err.code}, message is ${err.message}`);
+       console.error(TAG, `Failed to remove sticky common event. Code is ${err.code}, message is ${err.message}`);
        return;
      }
      ...
-     Logger.info(TAG, `Succeeded in removeing sticky event.`);
+     console.info(TAG, `Succeeded in removeing sticky event.`);
    });
    ```
 

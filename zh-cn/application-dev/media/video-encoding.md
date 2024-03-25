@@ -1,26 +1,26 @@
 # 视频编码(C/C++)
 
-开发者可以调用本模块的Native API接口，完成视频编码，即将未压缩的音视频数据压缩成音视频码流。
+开发者可以调用本模块的Native API接口，完成视频编码，即将未压缩的视频数据压缩成视频码流。
 
 当前支持的编码能力如下：
 
-| 容器规格 | 视频编码类型                 | 音频编码类型     |
-| -------- | ---------------------------- | ---------------- |
-| mp4      | HEVC（H.265）、 AVC（H.264） | AAC、MPEG（MP3） |
-| m4a      | HEVC（H.265）、 AVC（H.264） | AAC              |
+| 容器规格 | 视频编码类型                 |
+| -------- | ---------------------------- |
+| mp4      | HEVC（H.265）、 AVC（H.264） |
+| m4a      | HEVC（H.265）、 AVC（H.264） |
 
 ## Surface输入与Buffer输入
 
 两者的数据来源不同。
 
-Surface输入包含了像素数据、像素格式等信息，如相机模块直接传入的录制视频流等。更适用于实时采集等场景。
+Surface输入是指用OHNativeWindow来传递输入数据，可以与其他模块对接，例如相机模块。
 
-Buffer输入是指一块内存区域，一般为字节数组或指向内存的指针。更适用于从文件中读取音视频数据，或是实时流式传输等场景。
+Buffer输入是指一块预先分配好的内存区域，调用者需要将原始数据拷贝进这块内存区域中。更适用于从文件中读取视频数据等场景。
 
 在接口调用的过程中，两种方式的接口调用方式基本一致，但存在以下差异点：
 
-1. Buffer模式下，应用调用OH_VideoEncoder_PushInputData()输入数据；Surface模式下，应用应在编码器启动前调用OH_VideoEncoder_GetSurface()，获取Surface用于传递视频数据。
-2. Buffer模式下，应用调用OH_VideoEncoder_PushInputData()传入结束flag，编码器读取到尾帧后，停止编码；Surface模式下，需要调用OH_VideoEncoder_NotifyEndOfStream()通知编码器输入流结束。
+1. Buffer模式下，应用调用OH_VideoEncoder_PushInputBuffer()输入数据；Surface模式下，应用应在编码器启动前调用OH_VideoEncoder_GetSurface()，获取OHNativeWindow用于传递视频数据。
+2. Buffer模式下，应用调用OH_VideoEncoder_PushInputBuffer()传入结束flag，编码器读取到尾帧后，停止编码；Surface模式下，需要调用OH_VideoEncoder_NotifyEndOfStream()通知编码器输入流结束。
 
 两种模式的开发步骤详细说明请参考：[Buffer模式](#buffer模式)和[Surface模式](#surface模式)。
 
@@ -82,8 +82,8 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
    注册回调函数指针集合OH_AVCodecAsyncCallback，包括：
 
    - 编码器运行错误
-   - 码流信息变化，如声道变化等。
-   - 运行过程中需要新的输入数据，即编码器已准备好，可以输入PCM数据。
+   - 码流信息变化，如格式变化等。
+   - 运行过程中需要新的输入数据，即编码器已准备好，可以输入YUV/RGB数据。
    - 运行过程中产生了新的输出数据，即编码完成。
 
    开发者可以通过处理该回调报告的信息，确保编码器正常运转。
@@ -151,11 +151,43 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
    constexpr uint32_t DEFAULT_HEIGHT = 240;
    // 配置视频像素格式（必须）
    constexpr OH_AVPixelFormat DEFAULT_PIXELFORMAT = AV_PIXEL_FORMAT_YUVI420;
+   // 配置视频帧速率
+   double frameRate = 30.0;
+   // 配置视频YUV值范围标志
+   bool rangeFlag = false;
+   // 配置视频原色
+   int32_t primary = static_cast<int32_t>(OH_ColorPrimary::COLOR_PRIMARY_BT709);
+   // 配置传输特性
+   int32_t transfer = static_cast<int32_t>(OH_TransferCharacteristic::TRANSFER_CHARACTERISTIC_BT709);
+   // 配置最大矩阵系数
+   int32_t matrix = static_cast<int32_t>(OH_MatrixCoefficient::MATRIX_COEFFICIENT_IDENTITY);
+   // 配置编码Profile
+   int32_t profile = static_cast<int32_t>(OH_AVCProfile::AVC_PROFILE_BASELINE);
+   // 配置编码比特率模式
+   int32_t rateMode = static_cast<int32_t>(OH_VideoEncodeBitrateMode::CBR);
+   // 配置关键帧的间隔，单位为毫秒
+   int32_t iFrameInterval = 23000;
+   // 配置所需的编码质量。只有在恒定质量模式下配置的编码器才支持此配置
+   int32_t quality = 0;
+   // 配置比特率
+   int64_t bitRate = 3000000;
+   
    OH_AVFormat *format = OH_AVFormat_Create();
    // 写入format
    OH_AVFormat_SetIntValue(format, OH_MD_KEY_WIDTH, DEFAULT_WIDTH);
    OH_AVFormat_SetIntValue(format, OH_MD_KEY_HEIGHT, DEFAULT_HEIGHT);
    OH_AVFormat_SetIntValue(format, OH_MD_KEY_PIXEL_FORMAT, DEFAULT_PIXELFORMAT);
+   OH_AVFormat_SetDoubleValue(format, OH_MD_KEY_FRAME_RATE, frameRate);
+   OH_AVFormat_SetIntValue(format, OH_MD_KEY_RANGE_FLAG, rangeFlag);
+   OH_AVFormat_SetIntValue(format, OH_MD_KEY_COLOR_PRIMARIES, primary);
+   OH_AVFormat_SetIntValue(format, OH_MD_KEY_TRANSFER_CHARACTERISTICS, transfer);
+   OH_AVFormat_SetIntValue(format, OH_MD_KEY_MATRIX_COEFFICIENTS, matrix);
+
+   OH_AVFormat_SetIntValue(format, OH_MD_KEY_I_FRAME_INTERVAL, iFrameInterval);
+   OH_AVFormat_SetIntValue(format, OH_MD_KEY_PROFILE, profile);
+   OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE, rateMode);
+   OH_AVFormat_SetLongValue(format, OH_MD_KEY_BITRATE, bitRate);
+   OH_AVFormat_SetIntValue(format, OH_MD_KEY_QUALITY, quality);
    // 配置编码器
    int32_t ret = OH_VideoEncoder_Configure(videoEnc, format);
    if (ret != AV_ERR_OK) {
@@ -193,43 +225,11 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
    }
    ```
 
-7. （可选）动态配置编码器实例。
+7. （可选）在运行过程中动态配置编码器参数。
 
    ```c++
    OH_AVFormat *format = OH_AVFormat_Create();
-   // 配置视频帧速率
-   double frameRate = 30.0;
-   // 配置视频YUV值范围标志
-   bool rangeFlag = false;
-   // 配置视频原色
-   int32_t primary = static_cast<int32_t>(OH_ColorPrimary::COLOR_PRIMARY_BT709);
-   // 配置传输特性
-   int32_t transfer = static_cast<int32_t>(OH_TransferCharacteristic::TRANSFER_CHARACTERISTIC_BT709);
-   // 配置最大矩阵系数
-   int32_t matrix = static_cast<int32_t>(OH_MatrixCoefficient::MATRIX_COEFFICIENT_IDENTITY);
-   // 配置编码Profile
-   int32_t profile = static_cast<int32_t>(OH_AVCProfile::AVC_PROFILE_BASELINE);
-   // 配置编码比特率模式
-   int32_t rateMode = static_cast<int32_t>(OH_VideoEncodeBitrateMode::CBR);
-   // 配置关键帧的间隔，单位为毫秒
-   int32_t iFrameInterval = 23000;
-   // 配置所需的编码质量。只有在恒定质量模式下配置的编码器才支持此配置
-   int32_t quality = 0;
-   // 配置比特率
-   int64_t bitRate = 3000000;
-   // 写入format
-   OH_AVFormat_SetDoubleValue(format, OH_MD_KEY_FRAME_RATE, frameRate);
-   OH_AVFormat_SetIntValue(format, OH_MD_KEY_RANGE_FLAG, rangeFlag);
-   OH_AVFormat_SetIntValue(format, OH_MD_KEY_COLOR_PRIMARIES, primary);
-   OH_AVFormat_SetIntValue(format, OH_MD_KEY_TRANSFER_CHARACTERISTICS, transfer);
-   OH_AVFormat_SetIntValue(format, OH_MD_KEY_MATRIX_COEFFICIENTS, matrix);
-
-   OH_AVFormat_SetIntValue(format, OH_MD_KEY_I_FRAME_INTERVAL, iFrameInterval);
-   OH_AVFormat_SetIntValue(format, OH_MD_KEY_PROFILE, profile);
-   OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE, rateMode);
-   OH_AVFormat_SetLongValue(format, OH_MD_KEY_BITRATE, bitRate);
-   OH_AVFormat_SetIntValue(format, OH_MD_KEY_QUALITY, quality);
-
+   OH_AVFormat_SetIntValue(format, OH_MD_KEY_REQUEST_I_FRAME, true); //目前仅支持动态请求IDR帧
    int32_t ret = OH_VideoEncoder_SetParameter(videoEnc, format);
    if (ret != AV_ERR_OK) {
        // 异常处理
@@ -453,22 +453,19 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
 4. 调用OH_VideoEncoder_Configure()配置编码器。
 
-   目前支持的所有格式都必须配置以下选项：视频帧宽度、视频帧高度、视频像素格式。示例中的变量如下：
-
-   - DEFAULT_WIDTH：320像素宽度；
-   - DEFAULT_HEIGHT：240像素高度；
-
+   与buffer模式相同，此处不再赘述。
    ```c++
    // 配置视频帧宽度（必须）
    constexpr uint32_t DEFAULT_WIDTH = 320; 
    // 配置视频帧高度（必须）
    constexpr uint32_t DEFAULT_HEIGHT = 240;
+   // 配置视频像素格式（必须）
+   constexpr OH_AVPixelFormat DEFAULT_PIXELFORMAT = AV_PIXEL_FORMAT_YUVI420;
+
    OH_AVFormat *format = OH_AVFormat_Create();
-   // 写入format
    OH_AVFormat_SetIntValue(format, OH_MD_KEY_WIDTH, DEFAULT_WIDTH);
    OH_AVFormat_SetIntValue(format, OH_MD_KEY_HEIGHT, DEFAULT_HEIGHT);
    OH_AVFormat_SetIntValue(format, OH_MD_KEY_PIXEL_FORMAT, DEFAULT_PIXELFORMAT);
-   // 配置编码器
    int32_t ret = OH_VideoEncoder_Configure(videoEnc, format);
    if (ret != AV_ERR_OK) {
        // 异常处理
@@ -513,43 +510,11 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
    }
    ```
 
-8. （可选）动态配置编码器实例。
+8. （可选）在运行过程中动态配置编码器参数。
 
    ```c++
    OH_AVFormat *format = OH_AVFormat_Create();
-   // 配置视频帧速率
-   double frameRate = 30.0;
-   // 配置视频YUV值范围标志
-   bool rangeFlag = false;
-   // 配置视频原色
-   int32_t primary = static_cast<int32_t>(OH_ColorPrimary::COLOR_PRIMARY_BT709);
-   // 配置传输特性
-   int32_t transfer = static_cast<int32_t>(OH_TransferCharacteristic::TRANSFER_CHARACTERISTIC_BT709);
-   // 配置最大矩阵系数
-   int32_t matrix = static_cast<int32_t>(OH_MatrixCoefficient::MATRIX_COEFFICIENT_IDENTITY);
-   // 配置编码Profile
-   int32_t profile = static_cast<int32_t>(OH_AVCProfile::AVC_PROFILE_BASELINE);
-   // 配置编码比特率模式
-   int32_t rateMode = static_cast<int32_t>(OH_VideoEncodeBitrateMode::CBR);
-   // 配置关键帧的间隔，单位为毫秒
-   int32_t iFrameInterval = 23000;
-   // 配置所需的编码质量。只有在恒定质量模式下配置的编码器才支持此配置
-   int32_t quality = 0;
-   // 配置比特率
-   int64_t bitRate = 3000000;
-   // 写入format
-   OH_AVFormat_SetDoubleValue(format, OH_MD_KEY_FRAME_RATE, frameRate);
-   OH_AVFormat_SetIntValue(format, OH_MD_KEY_RANGE_FLAG, rangeFlag);
-   OH_AVFormat_SetIntValue(format, OH_MD_KEY_COLOR_PRIMARIES, primary);
-   OH_AVFormat_SetIntValue(format, OH_MD_KEY_TRANSFER_CHARACTERISTICS, transfer);
-   OH_AVFormat_SetIntValue(format, OH_MD_KEY_MATRIX_COEFFICIENTS, matrix);
-
-   OH_AVFormat_SetIntValue(format, OH_MD_KEY_I_FRAME_INTERVAL, iFrameInterval);
-   OH_AVFormat_SetIntValue(format, OH_MD_KEY_PROFILE, profile);
-   OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE, rateMode);
-   OH_AVFormat_SetLongValue(format, OH_MD_KEY_BITRATE, bitRate);
-   OH_AVFormat_SetIntValue(format, OH_MD_KEY_QUALITY, quality);
-
+   OH_AVFormat_SetIntValue(format, OH_MD_KEY_REQUEST_I_FRAME, true); //目前仅支持动态请求IDR帧
    int32_t ret = OH_VideoEncoder_SetParameter(videoEnc, format);
    if (ret != AV_ERR_OK) {
        // 异常处理

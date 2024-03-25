@@ -6,3 +6,4 @@
   - [请求动画绘制帧率](displaysync-animation.md)
   - [请求UI绘制帧率](displaysync-ui.md)
   - [请求自绘制内容绘制帧率](displaysync-xcomponent.md)
+- [使用Drawing实现图形绘制与显示](drawing-js-guidelines.md)

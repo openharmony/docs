@@ -70,7 +70,7 @@ grayscale(value: number)
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | 是   | 为当前组件添加灰度效果。值定义为灰度转换的比例，入参1.0则完全转为灰度图像，入参则0.0图像无变化，入参在0.0和1.0之间时，效果呈线性变化。（百分比)<br/>默认值：0.0<br/>取值范围：[0, 1]<br/>**说明：**<br/>设置小于0的值时，按值为0处理，设置大于1的值时，按值为1处理。 |
+| value  | number | 是   | 为当前组件添加灰度效果。值定义为灰度转换的比例，入参1.0则完全转为灰度图像，入参则0.0图像无变化，入参在0.0和1.0之间时，效果呈线性变化。（百分比)<br/>默认值：0.0<br/>取值范围：[0.0, 1.0]<br/>**说明：**<br/>设置小于0.0的值时，按值为0.0处理，设置大于1.0的值时，按值为1.0处理。 |
 
 ## brightness
 
@@ -102,7 +102,7 @@ saturate(value: number)
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | 是   | 为当前组件添加饱和度效果，饱和度为颜色中的含色成分和消色成分(灰)的比例，入参为1时，显示原图像，大于1时含色成分越大，饱和度越大，小于1时消色成分越大，饱和度越小。（百分比）<br/>默认值：1.0<br/>取值范围：[0, +∞)<br/>**说明：**<br/>设置小于0的值时，按值为0处理。 |
+| value  | number | 是   | 为当前组件添加饱和度效果，饱和度为颜色中的含色成分和消色成分(灰)的比例，入参为1时，显示原图像，大于1时含色成分越大，饱和度越大，小于1时消色成分越大，饱和度越小。（百分比）<br/>默认值：1.0<br/>推荐取值范围：[0, 50)<br/>**说明：**<br/>设置小于0的值时，按值为0处理。 |
 
 ## contrast
 
@@ -118,7 +118,7 @@ contrast(value: number)
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | 是   | 为当前组件添加对比度效果，入参为对比度的值。值为1时，显示原图，大于1时，值越大对比度越高，图像越清晰醒目，小于1时，值越小对比度越低，当对比度为0时，图像变为全灰。（百分比）<br/>默认值：1.0<br/>取值范围：[0, +∞)<br/>**说明：**<br/>设置小于0的值时，按值为0处理。 |
+| value  | number | 是   | 为当前组件添加对比度效果，入参为对比度的值。值为1时，显示原图，大于1时，值越大对比度越高，图像越清晰醒目，小于1时，值越小对比度越低，当对比度为0时，图像变为全灰。（百分比）<br/>默认值：1.0<br/>推荐取值范围：[0, 10)<br/>**说明：**<br/>设置小于0的值时，按值为0处理。 |
 
 ## invert
 
@@ -134,7 +134,7 @@ invert(value: number | InvertOptions)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | number&nbsp;\|&nbsp;[InvertOptions](#invertoptions11对象说明)<sup>11+</sup> | 是   | 反转输入的图像。<br/>入参对象为number时,入参为图像反转的比例，值为1时完全反转，值为0则图像无变化。（百分比）<br/>取值范围：[0, 1]<br/>设置小于0的值时，按值为0处理。<br/>入参对象为 InvertOptions时 对比背景颜色和threshold，当背景颜色的的灰度值大于threshold时反色取high值，当背景颜色灰度值小于threshold时反色取low值。 |
+| value  | number&nbsp;\|&nbsp;[InvertOptions](#invertoptions11对象说明)<sup>11+</sup> | 是   | 反转输入的图像。<br/>入参对象为number时,入参为图像反转的比例，值为1时完全反转，值为0则图像无变化。（百分比）<br/>取值范围：[0, 1]<br/>设置小于0的值时，按值为0处理。<br/>入参对象为 InvertOptions时，对比背景颜色灰度值和阈值区间，背景颜色灰度值小于阈值区间时反色取high值，当背景颜色灰度值大于阈值区间时反色取low值，背景颜色灰度值在阈值区间内取值由high线性渐变到low。 |
 
 ## sepia
 
@@ -168,7 +168,7 @@ hueRotate(value: number | string)
 | ------ | -------------------------- | ---- | ------------------------------------------------------------ |
 | value  | number&nbsp;\|&nbsp;string | 是   | 色相旋转效果，输入参数为旋转角度。<br/>默认值：'0deg'<br/>取值范围：(-∞, +∞)<br/>**说明：**<br/>色调旋转360度会显示原始颜色。先将色调旋转180 度，然后再旋转-180度会显示原始颜色。数据类型为number时，值为90和'90deg'效果一致。 |
 
-## colorBlend<sup>8+</sup>
+## colorBlend<sup>7+</sup>
 
 colorBlend(value: Color | string | Resource)
 
@@ -276,7 +276,7 @@ blendMode(value: BlendMode, type?: BlendApplyType)
 | 参数名 | 类型                            | 必填 | 说明                                                         |
 | ------ | ------------------------------- | ---- | ------------------------------------------------------------ |
 | value  | [BlendMode](#blendmode11枚举说明)  | 是   | 混合模式。<br/>默认值：BlendMode.NONE   |
-| type   | [BlendApplyType](#blendapplytype11对象说明)  |    否    | blendMode实现方式是否离屏。<br/>BlendApplyType.FAST：不离屏。<br/>BlendApplyType.OFFSCREEN：会先将当前组件（含子组件）的内容绘制到离屏画布上，再用指定的混合模式与下方画布已有内容进行混合。<br/>默认值：BlendApplyType.FAST     |
+| type   | [BlendApplyType](ts-appendix-enums.md#blendapplytype11)  |    否    | blendMode实现方式是否离屏。<br/>默认值：BlendApplyType.FAST<br/>**说明：**<br/>1. 设置BlendApplyType.FAST时，不离屏。<br/>2. 设置BlendApplyType.OFFSCREEN时，会先将当前组件（含子组件）的内容绘制到离屏画布上，再用指定的混合模式与下方画布已有内容进行混合。     |
 
 ## useShadowBatching<sup>11+</sup> 
 
@@ -292,7 +292,7 @@ useShadowBatching(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | 控件内部子节点的阴影进行同层绘制，同层元素阴影重叠。<br/>默认值：false<br/>**说明：**<br/>1. 默认不开启，如果子节点的阴影半径较大，会对节点的各自阴影会互相重叠。 当开启时，元素的阴影将不会重叠。<br/>2. 不推荐useShadowBatching嵌套使用，如果嵌套使用，只会对当前的子节点生效，无法递推。 |
+| value  | boolean | 是   | 控件内部子节点的阴影进行同层绘制，同层元素阴影重叠。<br/>默认值：false<br/>**说明：**<br/>1. 默认不开启，如果子节点的阴影半径较大，节点的各自阴影会互相重叠。 当开启时，元素的阴影将不会重叠。<br/>2. 不推荐useShadowBatching嵌套使用，如果嵌套使用，只会对当前的子节点生效，无法递推。 |
 
 ## ShadowOptions对象说明
 
@@ -304,7 +304,7 @@ useShadowBatching(value: boolean)
 | ------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | radius  | number \| [Resource](ts-types.md#resource) | 是    | 阴影模糊半径。<br/>取值范围：[0, +∞)<br/>**说明：** <br/>设置小于0的值时，按值为0处理。 |
 | type<sup>10+</sup> | [ShadowType<sup>10+</sup>](ts-appendix-enums.md#shadowtype10)  |      否    | 阴影类型。<br/>默认为COLOR。        |
-| color   | [Color](ts-appendix-enums.md#color) \| string \| [Resource](ts-types.md#resource)\| [ColoringStrategy<sup>10+</sup> ](ts-types.md#coloringstrategy10) | 否    | 阴影的颜色。<br/>默认为黑色。 <br/>**说明：** <br/>从API version 11开始，该接口支持使用[ColoringStrategy<sup>10+</sup>](ts-types.md#coloringstrategy10)实现智能取色，智能取色功能不支持在ArkTS卡片、[textShadow](ts-basic-components-text.md#属性)中使用。<br/>当前仅支持平均取色和主色取色，智能取色区域为shadow绘制区域。<br/>支持使用'average'字符串触发智能平均取色模式，支持使用'primary'字符串触发智能主色模式。                       |
+| color   | [Color](ts-appendix-enums.md#color) \| string \| [Resource](ts-types.md#resource)\| [ColoringStrategy<sup>10+</sup> ](ts-types.md#coloringstrategy10) | 否    | 阴影的颜色。<br/>默认为黑色。 <br/>**说明：** <br/>从API version 11开始，该接口支持使用ColoringStrategy实现智能取色，智能取色功能不支持在ArkTS卡片、[textShadow](ts-basic-components-text.md#属性)中使用。<br/>当前仅支持平均取色和主色取色，智能取色区域为shadow绘制区域。<br/>支持使用'average'字符串触发智能平均取色模式，支持使用'primary'字符串触发智能主色模式。                       |
 | offsetX | number \| [Resource](ts-types.md#resource) | 否    | 阴影的X轴偏移量。<br/>默认为0。                      |
 | offsetY | number \| [Resource](ts-types.md#resource) | 否    | 阴影的Y轴偏移量。<br/>默认为0。                      |
 | fill<sup>11+</sup>     | boolean                                    | 否    | 阴影是否内部填充。<br/>默认为false。<br/>**说明：**<br/>[textShadow](ts-basic-components-text.md#属性)中该字段不生效                 |
@@ -359,19 +359,18 @@ useShadowBatching(value: boolean)
 | COLOR           | 保留源像素的饱和度和色调，但会使用目标像素的亮度来替换源像素的亮度。                                   |
 | LUMINOSITY      | 保留目标像素的色调和饱和度，但会用源像素的亮度替换目标像素的亮度。                                     |
 
-## BlendApplyType<sup>11+</sup>对象说明
-
-| 名称           | 描述                                                             |
-| ---------------| ------                                                          |
-| FAST           |   在目标图像上按顺序混合视图的内容。                        |
-| OFFSCREEN      |   将此控件和子控件内容绘制到离屏画布上，然后整体进行混合。    |
-
 ## LinearGradientBlurOptions<sup>10+</sup>对象说明
 
 | 名称          | 类型                                                        | 说明                                                         |
 | ------------- | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| fractionStops | Array\<FractionStop>                                    | 数组中保存的每一个二元数组（取值0-1，小于0则为0，大于0则为1）表示[模糊程度, 模糊位置]；模糊位置需严格递增，开发者传入的数据不符合规范会记录日志，渐变模糊数组中二元数组个数必须大于等于2，否则渐变模糊不生效。 |
+| fractionStops | Array\<[FractionStop](#fractionstop)>                                    | 数组中保存的每一个二元数组（取值0-1，小于0则为0，大于0则为1）表示[模糊程度, 模糊位置]；模糊位置需严格递增，开发者传入的数据不符合规范会记录日志，渐变模糊数组中二元数组个数必须大于等于2，否则渐变模糊不生效。 |
 | direction     | [GradientDirection](ts-appendix-enums.md#gradientdirection) | 渐变模糊方向。<br/>默认值：<br/>GradientDirection.Bottom |
+
+## FractionStop
+
+FractionStop = [ number, number ]
+
+定义模糊段。元组中的第一个元素表示分数。该值的范围为[0,1]。值1表示不透明，0表示完全透明。第二个元素表示停止位置。该值的范围为[0,1]。值1表示区域结束位置，0表示区域开始位置。
 
 ## InvertOptions<sup>11+</sup>对象说明
 
@@ -379,10 +378,10 @@ useShadowBatching(value: boolean)
 
 | 名称            |  类型  | 必填  | 说明                                       |
 | -------------- | ------ | ----- | ------------------------------------------ |
-| low            | number | 是    | 背景色小于二分插值时的取值。                  |
-| high           | number | 是    | 背景色大于等于二分插值时的取值。              |
-| threshold      | number | 是    | 二分插值。                                  |
-| thresholdRange | number | 是    | 二分差值智能取色范围。<br/>**说明：**<br/>二分差值上下偏移thresholdRange区间内取均色作为新的threshold。|
+| low            | number | 是    | 背景颜色灰度值大于阈值区间时的取值。                  |
+| high           | number | 是    | 背景颜色灰度值小于阈值区间时的取值。              |
+| threshold      | number | 是    | 灰度阈值。                                  |
+| thresholdRange | number | 是    | 阈值范围。<br/>**说明：**<br/>灰度阈值上下偏移thresholdRange构成阈值区间，背景颜色灰度值在区间内取值由high线性渐变到low。|
 
 ## 示例
 
@@ -782,7 +781,8 @@ struct Index {
 <br/>不同的混合模式搭配是否需要离屏从而产生不同的效果。
 
 ### 示例11
-blendMode搭配backgroundEffect实现文字图形异形渐变效果。
+blendMode搭配backgroundEffect实现文字异形模糊效果。<br/>
+如果出现漏线问题，开发者应首先确保两个blendMode所在组件大小严格相同。如果确认相同，可能是组件边界落在浮点数坐标上导致，可尝试设置[pixelRound](ts-universal-attributes-layout-constraints.md#pixelRound11)通用属性，使产生的白线、暗线两侧的组件边界对齐到整数像素坐标上。
 
 ```ts
 // xxx.ets
@@ -842,6 +842,12 @@ struct Index {
             }
           }
           .blendMode(BlendMode.DST_IN, BlendApplyType.OFFSCREEN)
+          .pixelRound({
+            start: PixelRoundCalcPolicy.FORCE_FLOOR ,
+            top: PixelRoundCalcPolicy.FORCE_FLOOR ,
+            end: PixelRoundCalcPolicy.FORCE_CEIL,
+            bottom: PixelRoundCalcPolicy.FORCE_CEIL
+          })
         }
         .blendMode(BlendMode.SRC_OVER, BlendApplyType.OFFSCREEN)
         .backgroundEffect({
@@ -851,6 +857,12 @@ struct Index {
           color: this.getVolumeDialogWindowColor()
         })
         .justifyContent(FlexAlign.Center)
+        .pixelRound({
+          start: PixelRoundCalcPolicy.FORCE_FLOOR ,
+          top: PixelRoundCalcPolicy.FORCE_FLOOR ,
+          end: PixelRoundCalcPolicy.FORCE_CEIL,
+          bottom: PixelRoundCalcPolicy.FORCE_CEIL
+        })
       }
     }
   }

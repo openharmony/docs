@@ -55,7 +55,7 @@ bindContextMenu(content: CustomBuilder, responseType: ResponseType, options?: Co
 | ------------ | -------------------------------------------------- | ---- | -------------------------------------------- |
 | content      | [CustomBuilder](ts-types.md#custombuilder8)        | 是   | 配置菜单项图标和文本的数组，或者自定义组件。 |
 | responseType | [ResponseType](ts-appendix-enums.md#responsetype8) | 是   | 菜单弹出条件，长按或者右键点击。             |
-| options      | [MenuOptions](#menuoptions10)                      | 否   | 配置弹出菜单的参数。                         |
+| options      | [ContextMenuOptions](#contextmenuoptions10)                      | 否   | 配置弹出菜单的参数。                         |
 
 ## MenuElement
 
@@ -70,10 +70,10 @@ bindContextMenu(content: CustomBuilder, responseType: ResponseType, options?: Co
 
 继承自[ContextMenuOptions](#contextmenuoptions10)。
 
-| 名称                          | 类型    | 必填 | 描述                                                         |
-| ----------------------------- | ------- | ---- | ------------------------------------------------------------ |
-| title                         | string  | 否   | 菜单标题。<br>**说明：** <br/>仅在content设置为Array<[MenuElement](#menuelement)&gt; 时生效。 |
-| showInSubWindow<sup>11+</sup> | boolean | 否   | 是否在子窗口显示菜单。                                       |
+| 名称                          | 类型                                   | 必填 | 描述                                                         |
+| ----------------------------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
+| title                         | [ResourceStr](ts-types.md#resourcestr) | 否   | 菜单标题。<br>**说明：**<br/>仅在content设置为Array<[MenuElement](#menuelement)&gt; 时生效。 |
+| showInSubWindow<sup>11+</sup> | boolean                                | 否   | 是否在子窗口显示菜单。<br/>默认值：2in1设备为true，其他设备为false。                     |
 
 ## ContextMenuOptions<sup>10+</sup>
 
@@ -90,7 +90,7 @@ bindContextMenu(content: CustomBuilder, responseType: ResponseType, options?: Co
 | aboutToAppear              | ()&nbsp;=&gt;&nbsp;void                                      | 否   | 菜单显示动效前的事件回调。                                       |
 | aboutToDisappear           | ()&nbsp;=&gt;&nbsp;void                                      | 否   | 菜单退出动效前的事件回调。                                       |
 | backgroundColor<sup>11+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 否 | 弹窗背板颜色。<br/>默认值：Color.Transparent |
-| backgroundBlurStyle<sup>11+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 否 | 弹窗背板模糊材质。<br/>默认值：BlurStyle.COMPONENT_ULTRA_THICK |
+| backgroundBlurStyle<sup>11+</sup> | [BlurStyle](ts-appendix-enums.md#blurstyle9) | 否 | 弹窗背板模糊材质。<br/>默认值：BlurStyle.COMPONENT_ULTRA_THICK |
 
 ## ContextMenuAnimationOptions<sup>11+</sup>
 

@@ -6,8 +6,8 @@
 
 | 封装格式 | 视频编解码类型        | 音频编解码类型   | 封面类型       |
 | -------- | --------------------- | ---------------- | -------------- |
-| mp4      | MPEG-4、 AVC（H.264） | AAC、MPEG（MP3） | jpeg、png、bmp |
-| m4a      | MPEG-4、 AVC（H.264） | AAC              | jpeg、png、bmp |
+| mp4      | AVC（H.264） | AAC、MPEG（MP3） | jpeg、png、bmp |
+| m4a      | AVC（H.264） | AAC              | jpeg、png、bmp |
 
 **适用场景**
 
@@ -107,7 +107,7 @@ target_link_libraries(sample PUBLIC libnative_media_avmuxer.so)
    uint8_t *buffer = ...; // 编码config data，如果没有可以不传
    size_t size = ...;  // 编码config data的长度，根据实际情况配置
    OH_AVFormat *formatVideo = OH_AVFormat_Create();
-   OH_AVFormat_SetStringValue(formatVideo, OH_MD_KEY_CODEC_MIME, OH_AVCODEC_MIMETYPE_VIDEO_MPEG4); // 必填
+   OH_AVFormat_SetStringValue(formatVideo, OH_MD_KEY_CODEC_MIME, OH_AVCODEC_MIMETYPE_VIDEO_AVC); // 必填
    OH_AVFormat_SetIntValue(formatVideo, OH_MD_KEY_WIDTH, 1280); // 必填
    OH_AVFormat_SetIntValue(formatVideo, OH_MD_KEY_HEIGHT, 720); // 必填
    OH_AVFormat_SetBuffer(formatVideo, OH_MD_KEY_CODEC_CONFIG, buffer, size); // 非必须
@@ -125,7 +125,7 @@ target_link_libraries(sample PUBLIC libnative_media_avmuxer.so)
    int videoTrackId = -1;
    uint8_t *buffer = ...; // 编码config data，如果没有可以不传
    size_t size = ...;  // 编码config data的长度，根据实际情况配置
-   OH_AVFormat *formatVideo = OH_AVFormat_CreateVideoFormat(OH_AVCODEC_MIMETYPE_VIDEO_MPEG4, 1280, 720);
+   OH_AVFormat *formatVideo = OH_AVFormat_CreateVideoFormat(OH_AVCODEC_MIMETYPE_VIDEO_AVC, 1280, 720);
    OH_AVFormat_SetBuffer(formatVideo, OH_MD_KEY_CODEC_CONFIG, buffer, size); // 非必须
    
    int ret = OH_AVMuxer_AddTrack(muxer, &videoTrackId, formatVideo);

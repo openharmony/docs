@@ -12,6 +12,7 @@
   - [ArkTS语言基础类库](arkts-utils/Readme-CN.md)
   - [Web](web/Readme-CN.md)
   - [通知](notification/Readme-CN.md)
+  - [卡片开发服务](form/Readme-CN.md)
   - [窗口管理](windowmanager/Readme-CN.md)
   - [WebGL](webgl/Readme-CN.md)
   - [媒体](media/Readme-CN.md)

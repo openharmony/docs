@@ -26,7 +26,7 @@ Radio(options: RadioOptions)
 
 | 参数名  | 类型                                  | 必填 | 描述               |
 | ------- | ------------------------------------- | ---- | ------------------ |
-| options | [RadioOptions](#radiooptions对象说明) | 否   | 配置单选框的参数。 |
+| options | [RadioOptions](#radiooptions对象说明) | 是   | 配置单选框的参数。 |
 
 ## RadioOptions对象说明
 

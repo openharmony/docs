@@ -31,55 +31,55 @@ class EntryAbility extends AccessibilityExtensionAbility {
 
 ### 属性
 
-| 名称                   | 类型                                                                  | 说明                  |
-|----------------------|---------------------------------------------------------------------| ------------------- |
-| accessibilityFocused | boolean                                                             |   accessibility焦点状态。   |
-| bundleName           | string                                                              | 应用包名。 |
-| checkable            | boolean                                                             | 元素是否可查。 |
-| checked              | boolean                                                             | 元素是否被检查。 |
-| children             | Array&lt;[AccessibilityElement](#accessibilityelement9)&gt;         | 所有子元素。 |
-| clickable            | boolean                                                             | 是否可点击。 |
-| componentId          | number                                                              | 元素所属的组件ID。 |
-| componentType        | string                                                              | 元素所属的组件类型。 |
-| contents             | Array&lt;string&gt;                                                 | 内容。 |
-| currentIndex         | number                                                              | 当前项的索引。 |
-| description          | string                                                              | 元素的描述信息。 |
-| editable             | boolean                                                             | 元素是否可编辑。 |
-| endIndex             | number                                                              | 屏幕最后显示项的列表索引。 |
-| error                | string                                                              | 错误状态字符串。 |
-| focusable            | boolean                                                             | 元素是否可聚焦。 |
-| hintText             | string                                                              | 提示文本。 |
-| inputType            | number                                                              | 输入文本的类型。 |
-| inspectorKey         | string                                                              | 检查键。 |
-| isActive             | boolean                                                             | 元素是否处于活动状态。 |
-| isEnable             | boolean                                                             | 元素是否启用。 |
-| isHint               | boolean                                                             | 元素是否为提示状态。 |
-| isFocused            | boolean                                                             | 元素是否聚焦。 |
-| isPassword           | boolean                                                             | 元素是否为密码。 |
-| isVisible            | boolean                                                             | 元素是否可见。 |
-| itemCount            | number                                                              | 项目的总数。 |
-| lastContent          | string                                                              | 最后的内容。 |
-| layer                | number                                                              | 该元素的显示层。 |
-| longClickable        | boolean                                                             | 元素是否可长单击。 |
-| pageId               | number                                                              | 页码id。 |
-| parent               | [AccessibilityElement](#accessibilityelement9)                      | 元素的父元素。 |
-| pluralLineSupported  | boolean                                                             | 元素是否支持多行文本。 |
-| rect                 | [Rect](#rect)                                                       | 元素的面积。 |
-| resourceName         | string                                                              | 元素的资源名称。 |
-| rootElement          | [AccessibilityElement](#accessibilityelement9)                      | 窗口元素的根元素。 |
-| screenRect           | [Rect](#rect)                                                       | 元素的显示区域。 |
-| scrollable           | boolean                                                             | 元素是否可滚动。 |
-| selected             | boolean                                                             | 元素是否被选中。 |
-| startIndex           | number                                                              | 在屏幕上的第一个项目的列表索引。 |
-| text                 | string                                                              | 元素的文本。 |
-| textLengthLimit      | string                                                              | 元素文本的最大长度限制。 |
-| textMoveUnit         | [accessibility.TextMoveUnit](js-apis-accessibility.md#textmoveunit) | 文本被读取时的移动单位。 |
-| triggerAction        | [accessibility.Action](js-apis-accessibility.md#action)             | 触发元素事件的动作。 |
-| type                 | [WindowType](#windowtype)                                           | 元素的窗口类型。 |
-| valueMax             | number                                                              | 最大值。 |
-| valueMin             | number                                                              | 最小值。 |
-| valueNow             | number                                                              | 当前值。 |
-| windowId             | number                                                              | 窗口id。 |
+| 名称                   | 类型                                                                | 可读  | 可写  | 说明                  |
+|----------------------|-------------------------------------------------------------------|-----|-----| ------------------- |
+| accessibilityFocused | boolean                                                           | 是   | 否   |   accessibility焦点状态。   |
+| bundleName           | string                                                            | 是   | 否   | 应用包名。 |
+| checkable            | boolean                                                           | 是   | 否   | 元素是否可查。 |
+| checked              | boolean                                                           | 是   | 否   | 元素是否被检查。 |
+| children             | Array&lt;[AccessibilityElement](#accessibilityelement9)&gt;       | 是   | 否   | 所有子元素。 |
+| clickable            | boolean                                                           | 是   | 否   | 是否可点击。 |
+| componentId          | number                                                            | 是   | 否   | 元素所属的组件ID。 |
+| componentType        | string                                                            | 是   | 否   | 元素所属的组件类型。 |
+| contents             | Array&lt;string&gt;                                               | 是   | 否   | 内容。 |
+| currentIndex         | number                                                            | 是   | 否   | 当前项的索引。 |
+| description          | string                                                            | 是   | 否   | 元素的描述信息。 |
+| editable             | boolean                                                           | 是   | 否   | 元素是否可编辑。 |
+| endIndex             | number                                                            | 是   | 否   | 屏幕最后显示项的列表索引。 |
+| error                | string                                                            | 是   | 否   | 错误状态字符串。 |
+| focusable            | boolean                                                           | 是   | 否   | 元素是否可聚焦。 |
+| hintText             | string                                                            | 是   | 否   | 提示文本。 |
+| inputType            | number                                                            | 是   | 否   | 输入文本的类型。 |
+| inspectorKey         | string                                                            | 是   | 否   | 检查键。 |
+| isActive             | boolean                                                           | 是   | 否   | 元素是否处于活动状态。 |
+| isEnable             | boolean                                                           | 是   | 否   | 元素是否启用。 |
+| isHint               | boolean                                                           | 是   | 否   | 元素是否为提示状态。 |
+| isFocused            | boolean                                                           | 是   | 否   | 元素是否聚焦。 |
+| isPassword           | boolean                                                           | 是   | 否   | 元素是否为密码。 |
+| isVisible            | boolean                                                           | 是   | 否   | 元素是否可见。 |
+| itemCount            | number                                                            | 是   | 否   | 项目的总数。 |
+| lastContent          | string                                                            | 是   | 否   | 最后的内容。 |
+| layer                | number                                                            | 是   | 否   | 该元素的显示层。 |
+| longClickable        | boolean                                                           | 是   | 否   | 元素是否可长单击。 |
+| pageId               | number                                                            | 是   | 否   | 页码id。 |
+| parent               | [AccessibilityElement](#accessibilityelement9)                    | 是   | 否   | 元素的父元素。 |
+| pluralLineSupported  | boolean                                                           | 是   | 否   | 元素是否支持多行文本。 |
+| rect                 | [Rect](#rect)                                                     | 是   | 否   | 元素的面积。 |
+| resourceName         | string                                                            | 是   | 否   | 元素的资源名称。 |
+| rootElement          | [AccessibilityElement](#accessibilityelement9)                    | 是   | 否   | 窗口元素的根元素。 |
+| screenRect           | [Rect](#rect)                                                     | 是   | 否   | 元素的显示区域。 |
+| scrollable           | boolean                                                           | 是   | 否   | 元素是否可滚动。 |
+| selected             | boolean                                                           | 是   | 否   | 元素是否被选中。 |
+| startIndex           | number                                                            | 是   | 否   | 在屏幕上的第一个项目的列表索引。 |
+| text                 | string                                                            | 是   | 否   | 元素的文本。 |
+| textLengthLimit      | string                                                            | 是   | 否   | 元素文本的最大长度限制。 |
+| textMoveUnit         | [accessibility.TextMoveUnit](js-apis-accessibility.md#textmoveunit) | 是   | 否   | 文本被读取时的移动单位。 |
+| triggerAction        | [accessibility.Action](js-apis-accessibility.md#action)           | 是   | 否   | 触发元素事件的动作。 |
+| type                 | [WindowType](#windowtype)                                         | 是   | 否   | 元素的窗口类型。 |
+| valueMax             | number                                                            | 是   | 否   | 最大值。 |
+| valueMin             | number                                                            | 是   | 否   | 最小值。|
+| valueNow             | number                                                            | 是   | 否   | 当前值。 |
+| windowId             | number                                                            | 是   | 否   | 窗口id。 |
 
 
 
@@ -233,7 +233,10 @@ getFocusElement(isAccessibilityFocus?: boolean): Promise\<AccessibilityElement>;
 import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
 import { BusinessError } from '@ohos.base';
 
+let rootElement: AccessibilityElement;
+
 axContext.getFocusElement().then((data: AccessibilityElement) => {
+  rootElement = data;
   console.log(`Succeeded in get focus element,${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
   console.error(`failed to get focus element, Code is ${err.code}, message is ${err.message}`);
@@ -268,11 +271,14 @@ getFocusElement(callback: AsyncCallback\<AccessibilityElement>): void;
 import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
 import { BusinessError } from '@ohos.base';
 
+let rootElement: AccessibilityElement;
+
 axContext.getFocusElement((err: BusinessError, data: AccessibilityElement) => {
-  if (err) {
+  if (err && err.code) {
     console.error(`failed to get focus element, Code is ${err.code}, message is ${err.message}`);
     return;
   }
+  rootElement = data;
   console.info(`Succeeded in get focus element, ${JSON.stringify(data)}`);
 });
 ```
@@ -289,7 +295,7 @@ getFocusElement(isAccessibilityFocus: boolean, callback: AsyncCallback\<Accessib
 
 | 参数名                  | 类型                                       | 必填   | 说明                |
 | -------------------- | ---------------------------------------- | ---- | ----------------- |
-| isAccessibilityFocus | boolean                                  | 是    | 获取的是否是无障碍焦点元素。    |
+| isAccessibilityFocus | boolean                                  | 是    | 获取的是否是无障碍焦点元素，True表示是，False表示否。    |
 | callback             | AsyncCallback&lt;[AccessibilityElement](#accessibilityelement9)&gt; | 是    | 回调函数，返回当前对应的焦点元素。 |
 
 **错误码：**
@@ -307,12 +313,14 @@ import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAb
 import { BusinessError } from '@ohos.base';
 
 let isAccessibilityFocus = true;
+let rootElement: AccessibilityElement;
 
 axContext.getFocusElement(isAccessibilityFocus, (err: BusinessError, data: AccessibilityElement)=> {
-  if (err) {
+  if (err && err.code) {
     console.error(`failed to get focus element, Code is ${err.code}, message is ${err.message}`);
     return;
   }
+  rootElement = data;
   console.info(`Succeeded in get focus element, ${JSON.stringify(data)}`);
 });
 ```
@@ -351,7 +359,10 @@ getWindowRootElement(windowId?: number): Promise\<AccessibilityElement>;
 import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
 import { BusinessError } from '@ohos.base';
 
+let rootElement: AccessibilityElement;
+
 axContext.getWindowRootElement().then((data: AccessibilityElement) => {
+  rootElement = data;
   console.log(`Succeeded in get root element of the window, ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
   console.error(`failed to get root element of the window, Code is ${err.code}, message is ${err.message}`);
@@ -386,11 +397,14 @@ getWindowRootElement(callback: AsyncCallback\<AccessibilityElement>): void;
 import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
 import { BusinessError } from '@ohos.base';
 
+let rootElement: AccessibilityElement;
+
 axContext.getWindowRootElement((err: BusinessError, data: AccessibilityElement) => {
-  if (err) {
+  if (err && err.code) {
     console.error(`failed to get root element of the window, Code is ${err.code}, message is ${err.message}`);
     return;
   }
+  rootElement = data;
   console.info(`Succeeded in get root element of the window, ${JSON.stringify(data)}`);
 });
 ```
@@ -425,12 +439,14 @@ import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAb
 import { BusinessError } from '@ohos.base';
 
 let windowId = 10;
+let rootElement: AccessibilityElement;
 
 axContext.getWindowRootElement(windowId, (err: BusinessError, data: AccessibilityElement) => {
-  if (err) {
+  if (err && err.code) {
     console.error(`failed to get root element of the window, Code is ${err.code}, message is ${err.message}`);
     return;
   }
+  rootElement = data;
   console.info(`Succeeded in get root element of the window, ${JSON.stringify(data)}`);
 });
 ```
@@ -505,7 +521,7 @@ import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAb
 import { BusinessError } from '@ohos.base';
 
 axContext.getWindows((err: BusinessError, data: AccessibilityElement[]) => {
-  if (err) {
+  if (err && err.code) {
     console.error(`failed to get windows, Code is ${err.code}, message is ${err.message}`);
     return;
   }
@@ -544,7 +560,7 @@ import { BusinessError } from '@ohos.base';
 
 let displayId = 10;
 axContext.getWindows(displayId, (err: BusinessError, data: AccessibilityElement[]) => {
-  if (err) {
+  if (err && err.code) {
     console.error(`failed to get windows, Code is ${err.code}, message is ${err.message}`);
     return;
   }
@@ -716,8 +732,7 @@ attributeNames\<T extends keyof ElementAttributeValues>() : Promise\<Array\<T>>;
 import { ElementAttributeKeys } from '@ohos.application.AccessibilityExtensionAbility';
 import { BusinessError } from '@ohos.base';
 
-let rootElement: AccessibilityElement;// rootElement是AccessibilityElement的实例
-
+// rootElement是AccessibilityElement的实例
 rootElement.attributeNames().then((data: ElementAttributeKeys[]) => {
   console.log(`Succeeded in get attribute names, ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
@@ -745,10 +760,9 @@ attributeNames\<T extends keyof ElementAttributeValues>(callback: AsyncCallback\
 import { ElementAttributeKeys } from '@ohos.application.AccessibilityExtensionAbility';
 import { BusinessError } from '@ohos.base';
 
-let rootElement: AccessibilityElement;// rootElement是AccessibilityElement的实例
-
+// rootElement是AccessibilityElement的实例
 rootElement.attributeNames((err: BusinessError, data: ElementAttributeKeys[]) => {
-  if (err) {
+  if (err && err.code) {
     console.error(`failed to get attribute names, Code is ${err.code}, message is ${err.message}`);
     return;
   }
@@ -793,8 +807,8 @@ import { ElementAttributeKeys } from '@ohos.application.AccessibilityExtensionAb
 import { BusinessError } from '@ohos.base';
 
 let attributeName: ElementAttributeKeys = 'bundleName';
-let rootElement: AccessibilityElement;// rootElement是AccessibilityElement的实例
 
+// rootElement是AccessibilityElement的实例
 rootElement.attributeValue(attributeName).then((data: string) => {
   console.log(`Succeeded in get attribute value by name, ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
@@ -833,10 +847,10 @@ import { ElementAttributeKeys } from '@ohos.application.AccessibilityExtensionAb
 import { BusinessError } from '@ohos.base';
 
 let attributeName: ElementAttributeKeys = 'bundleName';
-let rootElement: AccessibilityElement;// rootElement是AccessibilityElement的实例
 
+// rootElement是AccessibilityElement的实例
 rootElement.attributeValue(attributeName, (err: BusinessError, data: string) => {
-  if (err) {
+  if (err && err.code) {
     console.error(`failed to get attribute value, Code is ${err.code}, message is ${err.message}`);
     return;
   }
@@ -863,8 +877,7 @@ actionNames(): Promise\<Array\<string>>;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let rootElement: AccessibilityElement;// rootElement是AccessibilityElement的实例
-
+// rootElement是AccessibilityElement的实例
 rootElement.actionNames().then((data: string[]) => {
   console.log(`Succeeded in get action names, ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
@@ -889,10 +902,9 @@ actionNames(callback: AsyncCallback\<Array\<string>>): void;
 **示例：**
 
 ```ts
-let rootElement: AccessibilityElement;// rootElement是AccessibilityElement的实例
-
+// rootElement是AccessibilityElement的实例
 rootElement.actionNames((err: BusinessError, data: string[]) => {
-  if (err) {
+  if (err && err.code) {
     console.error(`failed to get action names, Code is ${err.code}, message is ${err.message}`);
     return;
   }
@@ -935,8 +947,8 @@ performAction(actionName: string, parameters?: object): Promise\<void>;
 import { BusinessError } from '@ohos.base';
 
 let actionName = 'action';
-let rootElement: AccessibilityElement;// rootElement是AccessibilityElement的实例
 
+// rootElement是AccessibilityElement的实例
 rootElement.performAction(actionName).then(() => {
   console.info(`Succeeded in perform action,actionName is ${actionName}`);
 }).catch((err: BusinessError) => {
@@ -973,10 +985,10 @@ performAction(actionName: string, callback: AsyncCallback\<void>): void;
 import { BusinessError } from '@ohos.base';
 
 let actionName = 'action';
-let rootElement: AccessibilityElement;// rootElement是AccessibilityElement的实例
 
+// rootElement是AccessibilityElement的实例
 rootElement.performAction(actionName, (err: BusinessError) => {
-  if (err) {
+  if (err && err.code) {
     console.error(`failed to perform action, Code is ${err.code}, message is ${err.message}`);
     return;
   }
@@ -1015,10 +1027,10 @@ import { BusinessError } from '@ohos.base';
 
 let actionName = 'action';
 let parameters: object = [];
-let rootElement: AccessibilityElement;// rootElement是AccessibilityElement的实例
 
+// rootElement是AccessibilityElement的实例
 rootElement.performAction(actionName, parameters, (err: BusinessError) => {
-  if (err) {
+  if (err && err.code) {
     console.error(`failed to perform action, Code is ${err.code}, message is ${err.message}`);
     return;
   }
@@ -1053,8 +1065,8 @@ findElement(type: 'content', condition: string): Promise\<Array\<AccessibilityEl
 import { BusinessError } from '@ohos.base';
 
 let condition = 'keyword';
-let rootElement: AccessibilityElement;// rootElement是AccessibilityElement的实例
 
+// rootElement是AccessibilityElement的实例
 rootElement.findElement('content', condition).then((data: AccessibilityElement[]) => {
   console.log(`Succeeded in find element, ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
@@ -1084,10 +1096,10 @@ findElement(type: 'content', condition: string, callback: AsyncCallback\<Array\<
 import { BusinessError } from '@ohos.base';
 
 let condition = 'keyword';
-let rootElement: AccessibilityElement;// rootElement是AccessibilityElement的实例
 
+// rootElement是AccessibilityElement的实例
 rootElement.findElement('content', condition, (err: BusinessError, data: AccessibilityElement[])=>{
-  if (err) {
+  if (err && err.code) {
     console.error(`failed to find element, Code is ${err.code}, message is ${err.message}`);
     return;
   }
@@ -1123,8 +1135,8 @@ import { FocusType } from '@ohos.application.AccessibilityExtensionAbility';
 import { BusinessError } from '@ohos.base';
 
 let condition: FocusType = 'normal';
-let rootElement: AccessibilityElement;// rootElement是AccessibilityElement的实例
 
+// rootElement是AccessibilityElement的实例
 rootElement.findElement('focusType', condition).then((data: AccessibilityElement) => {
   console.log(`Succeeded in find element,${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
@@ -1155,10 +1167,10 @@ import { FocusType } from '@ohos.application.AccessibilityExtensionAbility';
 import { BusinessError } from '@ohos.base';
 
 let condition: FocusType = 'normal';
-let rootElement: AccessibilityElement;// rootElement是AccessibilityElement的实例
 
+// rootElement是AccessibilityElement的实例
 rootElement.findElement('focusType', condition, (err: BusinessError, data: AccessibilityElement)=>{
-  if (err) {
+  if (err && err.code) {
     console.error(`failed to find element, Code is ${err.code}, message is ${err.message}`);
     return;
   }
@@ -1194,8 +1206,8 @@ import { FocusDirection } from '@ohos.application.AccessibilityExtensionAbility'
 import { BusinessError } from '@ohos.base';
 
 let condition: FocusDirection = 'up';
-let rootElement: AccessibilityElement;// rootElement是AccessibilityElement的实例
 
+// rootElement是AccessibilityElement的实例
 rootElement.findElement('focusDirection', condition).then((data: AccessibilityElement) => {
   console.log(`Succeeded in find element, ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
@@ -1226,10 +1238,10 @@ import { FocusDirection } from '@ohos.application.AccessibilityExtensionAbility'
 import { BusinessError } from '@ohos.base';
 
 let condition: FocusDirection = 'up';
-let rootElement: AccessibilityElement;// rootElement是AccessibilityElement的实例
 
+// rootElement是AccessibilityElement的实例
 rootElement.findElement('focusDirection', condition, (err: BusinessError, data: AccessibilityElement) =>{
-  if (err) {
+  if (err && err.code) {
     console.error(`failed to find element, Code is ${err.code}, message is ${err.message}`);
     return;
   }

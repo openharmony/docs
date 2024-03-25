@@ -28,20 +28,18 @@ create(): DisplaySync
 **示例：**
 
 ```ts
-private backDisplaySyncBigger: displaySync.DisplaySync = displaySync.create();
+let backDisplaySync: displaySync.DisplaySync = displaySync.create();
 ```
-
 ## IntervalInfo
 
-帧率信息。
+开发者可以从订阅函数中获取帧绘制的时间戳信息，包含当前帧到达的时间timestamp和下一帧预期到达的时间targetTimestamp。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称             | 类型                                      | 只读 | 必填 | 说明                                       |
 | ---------------- | ----------------------------------------- | ---- | ---- | ------------------------------------------ |
-| timestamp      | number | 是   | 否   | 当前帧到达的时间。 |
-| targetTimestamp | number| 是   | 否   | 下一帧预期到达的时间。 |
-
+| timestamp      | number | 是   | 否   | 当前帧到达的时间（单位：纳秒）。 |
+| targetTimestamp | number| 是   | 否   | 下一帧预期到达的时间（单位：纳秒）。 |
 
 ## DisplaySync
 
@@ -61,7 +59,7 @@ setExpectedFrameRateRange(rateRange: ExpectedFrameRateRange) : void
 
 | 参数名           | 类型                                       | 必填 | 说明                          |
 | --------------- | ------------------------------------------ | ---- | -----------------------------|
-| rateRange       | [ExpectedFrameRateRange](../arkui-ts/ts-animatorproperty.md#expectedframeraterange)| 是   | 设置DisplaySync期望的帧率。|
+| rateRange       | [ExpectedFrameRateRange](../arkui-ts/ts-explicit-animation.md#expectedframeraterange11)| 是   | 设置DisplaySync期望的帧率。|
 
 
 **示例：**
@@ -72,7 +70,9 @@ let range : ExpectedFrameRateRange = {
   min:0,
   max:120
 };
-this.backDisplaySyncBigger.setExpectedFrameRateRange(range)
+
+// 设置DisplaySync期望的帧率
+backDisplaySync?.setExpectedFrameRateRange(range)
 ```
 
 ### on('frame')
@@ -94,13 +94,12 @@ on(type: 'frame', callback: Callback\<IntervalInfo\>): void
 **示例：**
 
 ```ts
-let _this = this
-let bigger = (frameInfo: displaySync.IntervalInfo) => {
-_this.drawFirstSize += 1;
-    console.info(_this.TAG, 'bigger:' + frameInfo.timestamp + ' TargetTimeStamp: ' + frameInfo.targetTimestamp);
+let callback = (frameInfo: displaySync.IntervalInfo) => {
+    console.info("DisplaySync", 'TimeStamp:' + frameInfo.timestamp + ' TargetTimeStamp: ' + frameInfo.targetTimestamp);
 }
-this.backDisplaySyncBigger.setExpectedFrameRateRange(range)
-this.backDisplaySyncBigger.on("frame", bigger)
+
+// 注册订阅函数
+backDisplaySync?.on("frame", callback)
 ```
 
 ### off('frame')
@@ -122,12 +121,14 @@ off(type: 'frame', callback\?: Callback\<IntervalInfo\>): void
 **示例：**
 
 ```ts
-let _this = this
-let bigger = (frameInfo: displaySync.IntervalInfo) => {
-_this.drawFirstSize += 1;
-    console.info(_this.TAG, 'bigger:' + frameInfo.timestamp + ' TargetTimeStamp: ' + frameInfo.targetTimestamp);
+let callback = (frameInfo: displaySync.IntervalInfo) => {
+    console.info("DisplaySync", 'TimeStamp:' + frameInfo.timestamp + ' TargetTimeStamp: ' + frameInfo.targetTimestamp);
 }
-this.backDisplaySyncBigger.off("frame", bigger)
+
+backDisplaySync?.on("frame", callback)
+
+// 取消订阅函数
+backDisplaySync?.off("frame", callback)
 ```
 
 ### start
@@ -141,12 +142,22 @@ start(): void
 **示例：**
 
 ```ts
-Button('StartBigger')
-        .fontSize(30)
-        .fontColor(Color.Black)
-        .onClick(() => {
-          this.backDisplaySyncBigger.start()
-        })
+let range : ExpectedFrameRateRange = {
+  expected: 10,
+  min:0,
+  max:120
+};
+
+backDisplaySync?.setExpectedFrameRateRange(range)
+
+let callback = (frameInfo: displaySync.IntervalInfo) => {
+    console.info("DisplaySync", 'TimeStamp:' + frameInfo.timestamp + ' TargetTimeStamp: ' + frameInfo.targetTimestamp);
+}
+
+backDisplaySync?.on("frame", callback)
+
+// 开始每帧回调
+backDisplaySync?.start()
 ```
 
 ### stop
@@ -162,10 +173,24 @@ stop(): void
 **示例：**
 
 ```ts
-Button('StopBigger')
-        .fontSize(30)
-        .fontColor(Color.Black)
-        .onClick(() => {
-          this.backDisplaySyncBigger.stop()
-        })
+let range : ExpectedFrameRateRange = {
+  expected: 10,
+  min:0,
+  max:120
+};
+
+backDisplaySync?.setExpectedFrameRateRange(range)
+
+let callback = (frameInfo: displaySync.IntervalInfo) => {
+    console.info("DisplaySync", 'TimeStamp:' + frameInfo.timestamp + ' TargetTimeStamp: ' + frameInfo.targetTimestamp);
+}
+
+backDisplaySync?.on("frame", callback)
+
+backDisplaySync?.start()
+
+// ...
+
+// 停止每帧回调
+backDisplaySync?.stop()
 ```

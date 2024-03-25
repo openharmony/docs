@@ -48,7 +48,7 @@ try {
 
 onException?(errObject: Error): void;
 
-将在应用运行异常时调用。
+将在js运行时引发用户未捕获的异常时调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -56,7 +56,7 @@ onException?(errObject: Error): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| errObject | Error | 是 | 有关异常事件名字、消息和错误堆栈信息的对象。 |
+| errObject | Error | 否 | 有关异常事件名字、消息和错误堆栈信息的对象。 |
 
 **示例：**
 

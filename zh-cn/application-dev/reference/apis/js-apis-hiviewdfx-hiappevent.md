@@ -475,6 +475,8 @@ addWatcher(watcher: Watcher): AppEventPackageHolder
 **示例：**
 
 ```ts
+import hilog from '@ohos.hilog';
+
 // 1. 如果观察者传入了回调的相关参数，则可以选择在自动触发的回调函数中对订阅事件进行处理
 hiAppEvent.addWatcher({
   name: "watcher1",

@@ -1787,7 +1787,7 @@ start(callback: AsyncCallback\<void\>): void
 开始输出预览流，通过注册回调函数获取结果。
 
 > **说明：**
->从 API version 10开始支持，从API version 11开始废弃。建议使用[Session.start](#start-4)替代。
+>从 API version 10开始支持，从API version 11开始废弃。建议使用[Session.start](#start10)替代。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -1828,7 +1828,7 @@ start(): Promise\<void\>
 开始输出预览流，通过Promise获取结果。
 
 > **说明：**
->从 API version 10开始支持，从API version 11开始废弃。建议使用[Session.start](#start-5)替代。
+>从 API version 10开始支持，从API version 11开始废弃。建议使用[Session.start](#start10)替代。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -1868,7 +1868,7 @@ stop(callback: AsyncCallback\<void\>): void
 停止输出预览流，通过注册回调函数获取结果。
 
 > **说明：**
->从 API version 10开始支持，从API version 11开始废弃。建议使用[Session.stop](#stop-4)替代。
+>从 API version 10开始支持，从API version 11开始废弃。建议使用[Session.stop](#stop10)替代。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -1901,7 +1901,7 @@ stop(): Promise\<void\>
 停止输出预览流，通过Promise获取结果。
 
 > **说明：**
->从 API version 10开始支持，从API version 11开始废弃。建议使用[Session.stop](#stop-5)替代。
+>从 API version 10开始支持，从API version 11开始废弃。建议使用[Session.stop](#stop10)替代。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2038,7 +2038,7 @@ on(type: 'error', callback: ErrorCallback): void
 
 | 参数名     | 类型         | 必填 | 说明                       |
 | -------- | --------------| ---- | ------------------------ |
-| type     | string        | 是   | 监听事件，固定为'error'，previewOutput创建成功可监听。预览接口使用错误时触发该事件，比如调用[Session.start](#start-5)，[CameraOutput.release](#release-1)等接口发生错误时返回对应错误信息。 |
+| type     | string        | 是   | 监听事件，固定为'error'，previewOutput创建成功可监听。预览接口使用错误时触发该事件，比如调用[Session.start](#start10)，[CameraOutput.release](#release-1)等接口发生错误时返回对应错误信息。 |
 | callback | ErrorCallback | 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。  |
 
 **示例：**
@@ -2082,7 +2082,7 @@ function unregisterPreviewOutputError(previewOutput: camera.PreviewOutput): void
 
 addDeferredSurface(surfaceId: string): void
 
-配置延迟预览的Surface，可以在[commitConfig](#commitconfig10)配流和[Session.start](#start-4)启流之后运行。
+配置延迟预览的Surface，可以在[commitConfig](#commitconfig10)配流和[Session.start](#start10)启流之后运行。
 
 **系统接口：** 此接口为系统接口。
 
@@ -6005,7 +6005,7 @@ function getActiveVideoStabilizationMode(videoSession: camera.VideoSession): cam
 
 setVideoStabilizationMode(mode: VideoStabilizationMode): void
 
-设置视频防抖模式。需要先检查设备是否支持对应的防抖模式，可以通过[isVideoStabilizationModeSupported](#isvideostabilizationmodesupported)方法判断所设置的模式是否支持。
+设置视频防抖模式。需要先检查设备是否支持对应的防抖模式，可以通过[isVideoStabilizationModeSupported](#isvideostabilizationmodesupported10)方法判断所设置的模式是否支持。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 

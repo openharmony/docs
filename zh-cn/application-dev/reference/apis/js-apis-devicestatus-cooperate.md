@@ -14,7 +14,7 @@
 import cooperate from '@ohos.cooperate';
 ```
 
-## cooperate.prepareCooperate<sup>(11+)</sup>
+## cooperate.prepareCooperate<sup>11+</sup>
 
 prepareCooperate(callback: AsyncCallback&lt;void&gt;): void;
 
@@ -47,7 +47,7 @@ try {
 }
 ```
 
-## cooperate.prepareCooperate<sup>(11+)</sup>
+## cooperate.prepareCooperate<sup>11+</sup>
 
 prepareCooperate(): Promise&lt;void&gt;;
 
@@ -80,7 +80,7 @@ try {
 
 
 
-## cooperate.unprepareCooperate<sup>(11+)</sup>
+## cooperate.unprepareCooperate<sup>11+</sup>
 
 unprepareCooperate(callback: AsyncCallback&lt;void&gt;): void;
 
@@ -111,7 +111,7 @@ try {
 }
 ```
 
-## cooperate.unprepareCooperate<sup>(11+)</sup>
+## cooperate.unprepareCooperate<sup>11+</sup>
 
 unprepareCooperate(): Promise&lt;void&gt;;
 
@@ -144,7 +144,7 @@ try {
 
 
 
-## cooperate.activateCooperate<sup>(11+)</sup>
+## cooperate.activateCooperate<sup>11+</sup>
 
 activateCooperate(targetNetworkId: string, inputDeviceId: number, callback: AsyncCallback&lt;void&gt;): void;
 
@@ -189,7 +189,7 @@ try {
 }
 ```
 
-## cooperate.activateCooperate<sup>(11+)</sup>
+## cooperate.activateCooperate<sup>11+</sup>
 
 activateCooperate(targetNetworkId: string, inputDeviceId: number): Promise&lt;void&gt;;
 
@@ -239,7 +239,7 @@ try {
 
 
 
-## cooperate.deactivateCooperate<sup>(11+)</sup>
+## cooperate.deactivateCooperate<sup>11+</sup>
 
 deactivateCooperate(isUnchained: boolean, callback: AsyncCallback&lt;void&gt;): void;
 
@@ -273,7 +273,7 @@ try {
 }
 ```
 
-## cooperate.deactivateCooperate<sup>(11+)</sup>
+## cooperate.deactivateCooperate<sup>11+</sup>
 
 deactivateCooperate(isUnchained: boolean): Promise&lt;void&gt;;
 
@@ -312,7 +312,7 @@ try {
 
 
 
-## cooperate.getCooperateSwitchState<sup>(11+)</sup>
+## cooperate.getCooperateSwitchState<sup>11+</sup>
 
 getCooperateSwitchState(networkId: string, callback: AsyncCallback&lt;boolean&gt;): void;
 
@@ -347,7 +347,7 @@ try {
 }
 ```
 
-## cooperate.getCooperateSwitchState<sup>(11+)</sup>
+## cooperate.getCooperateSwitchState<sup>11+</sup>
 
 getCooperateSwitchState(networkId: string): Promise&lt;boolean&gt;;
 
@@ -387,7 +387,7 @@ try {
 
 
 
-## on('cooperateMessage')<sup>(11+)</sup>
+## on('cooperateMessage')<sup>11+</sup>
 
 on(type: 'cooperateMessage', callback: Callback&lt;CooperateMessage&gt;): void;
 
@@ -420,7 +420,7 @@ try {
 
 
 
-## off('cooperateMessage')<sup>(11+)</sup>
+## off('cooperateMessage')<sup>11+</sup>
 
 off(type: 'cooperateMessage', callback?: Callback&lt;CooperateMessage&gt;): void;
 
@@ -473,35 +473,35 @@ try {
 
 
 
-## CooperateMessage<sup>(11+)</sup>
+## CooperateMessage<sup>11+</sup>
 
 键鼠穿越的消息。
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
 
-| 名称                      | 类型           | 可读 | 可写 | 说明                     |
-| ------------------------- | -------------- | ---- | ---- | ------------------------ |
-| networkId<sup>(11+)</sup> | string         | 是   | 否   | 键鼠穿越目标设备描述符。 |
-| state<sup>(11+)</sup>     | CooperateState | 是   | 否   | 键鼠穿越的状态。         |
+| 名称      | 类型           | 可读 | 可写 | 说明                     |
+| --------- | -------------- | ---- | ---- | ------------------------ |
+| networkId | string         | 是   | 否   | 键鼠穿越目标设备描述符。 |
+| state     | CooperateState | 是   | 否   | 键鼠穿越的状态。         |
 
 
 
-## CooperateState<sup>(11+)</sup>
+## CooperateState<sup>11+</sup>
 
 键鼠穿越的状态。
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
 
-| 名称                                           | 类型   | 可读 | 可写 | 说明                   |
-| ---------------------------------------------- | ------ | ---- | ---- | ---------------------- |
-| COOPERATE_PREPARE<sup>(11+)</sup>              | number | 是   | 否   | 表示准备键鼠穿越。     |
-| COOPERATE_UNPREPARE<sup>(11+)</sup>            | number | 是   | 否   | 表示取消键鼠穿越准备。 |
-| COOPERATE_ACTIVATE<sup>(11+)</sup>             | number | 是   | 否   | 表示启动键鼠穿越。     |
-| COOPERATE_ACTIVATE_SUCCESS<sup>(11+)</sup>     | number | 是   | 否   | 表示键鼠穿越启动成功。 |
-| COOPERATE_ACTIVATE_FAILURE<sup>(11+)</sup>     | number | 是   | 否   | 表示键鼠穿越启动失败。 |
-| COOPERATE_DEACTIVATE_SUCCESS<sup>(11+)</sup>   | number | 是   | 否   | 表示键鼠穿越停止成功。 |
-| COOPERATE_DEACTIVATE_FAILURE<sup>(11+)</sup>   | number | 是   | 否   | 表示键鼠穿越停止失败。 |
-| COOPERATE_SESSION_DISCONNECTED<sup>(11+)</sup> | number | 是   | 否   | 表示键鼠穿越会话断开。 |
+| 名称                           | 类型   | 可读 | 可写 | 说明                   |
+| ------------------------------ | ------ | ---- | ---- | ---------------------- |
+| COOPERATE_PREPARE              | number | 是   | 否   | 表示准备键鼠穿越。     |
+| COOPERATE_UNPREPARE            | number | 是   | 否   | 表示取消键鼠穿越准备。 |
+| COOPERATE_ACTIVATE             | number | 是   | 否   | 表示启动键鼠穿越。     |
+| COOPERATE_ACTIVATE_SUCCESS     | number | 是   | 否   | 表示键鼠穿越启动成功。 |
+| COOPERATE_ACTIVATE_FAIL        | number | 是   | 否   | 表示键鼠穿越启动失败。 |
+| COOPERATE_DEACTIVATE_SUCCESS   | number | 是   | 否   | 表示键鼠穿越停止成功。 |
+| COOPERATE_DEACTIVATE_FAIL      | number | 是   | 否   | 表示键鼠穿越停止失败。 |
+| COOPERATE_SESSION_DISCONNECTED | number | 是   | 否   | 表示键鼠穿越会话断开。 |
 
 
 

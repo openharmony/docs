@@ -134,15 +134,15 @@ let characteristicUuid = 'xxx';
 let descriptorUuid = 'xxx';
 let descriptorValue = new Uint8Array('xxx'.length).buffer;
 let characteristicValue = new Uint8Array('xxx'.length).buffer;
-let descriptors = [];
-let descriptor = {
+let descriptors: Array<ble.BLEDescriptor> = new Array<ble.BLEDescriptor>();
+let descriptor: ble.BLEDescriptor = {
   serviceUuid: serviceUuid,
   characteristicUuid: characteristicUuid,
   descriptorUuid: descriptorUuid,
   descriptorValue: descriptorValue
 }
 descriptors.push(descriptor);
-let bleCharacteristicDataIn = {
+let bleCharacteristicDataIn: ble.BLECharacteristic = {
   serviceUuid: serviceUuid,
   characteristicUuid: characteristicUuid,
   characteristicValue: characteristicValue,
@@ -162,7 +162,7 @@ clientDevice.readCharacteristicValue(bleCharacteristicDataIn, (err, bleCharacter
 });
 
 // 读取描述符
-let descriptorIn = {
+let descriptorIn: ble.BLEDescriptor = {
   serviceUuid: serviceUuid,
   characteristicUuid: characteristicUuid,
   descriptorUuid: descriptorUuid,
@@ -182,16 +182,16 @@ clientDevice.readDescriptorValue(descriptorIn, (err, descriptorOut) => {
 });
 
 // 写入特征值
-function string2ArrayBuffer(str) {
+let string2ArrayBuffer: (str: string) => ArrayBuffer = (str: string): ArrayBuffer => {
   let array = new Uint8Array(str.length);
-  for (var i = 0; i < str.length; i++) {
+  for (let i = 0; i < str.length; i++) {
     array[i] = str.charCodeAt(i);
   }
   return array.buffer;
 }
 
 let bufferCCC = string2ArrayBuffer('V');
-let characteristic = {
+let characteristic: ble.BLECharacteristic = {
   serviceUuid: serviceUuid,
   characteristicUuid: characteristicUuid,
   characteristicValue: bufferCCC,
@@ -235,17 +235,17 @@ import { BusinessError } from '@ohos.base';
 let gattServerInstance = ble.createGattServer();
 
 // 添加services
-function string2ArrayBuffer(str) {
+let string2ArrayBuffer: (str: string) => ArrayBuffer = (str: string): ArrayBuffer => {
   let array = new Uint8Array(str.length);
-  for (var i = 0; i < str.length; i++) {
+  for (let i = 0; i < str.length; i++) {
     array[i] = str.charCodeAt(i);
   }
   return array.buffer;
 }
 
-var characteristicsArray = new Array();
-var descriptorsArray = new Array();
-var characteristics1 = {
+let characteristicsArray: Array<ble.BLECharacteristic> = new Array(8);
+let descriptorsArray: Array<ble.BLEDescriptor> = new Array<ble.BLEDescriptor>();
+let characteristics1: ble.BLECharacteristic = {
   serviceUuid: '0000aaaa-0000-1000-8000-00805f9b34fb',
   characteristicUuid: '00002a10-0000-1000-8000-00805f9b34fb',
   characteristicValue: string2ArrayBuffer('I am charac1'),
@@ -253,13 +253,13 @@ var characteristics1 = {
 };
 characteristicsArray.push(characteristics1);
 
-var descriptors1 = {
+let descriptors1: ble.BLEDescriptor = {
   serviceUuid: '0000aaaa-0000-1000-8000-00805f9b34fb',
   characteristicUuid: '00002a10-0000-1000-8000-00805f9b34fb',
   descriptorUuid: '00002904-0000-1000-8000-00805f9b34fb',
   descriptorValue: string2ArrayBuffer('I am Server Descriptor1')
 }
-var descriptors2 = {
+let descriptors2: ble.BLEDescriptor = {
   serviceUuid: '0000aaaa-0000-1000-8000-00805f9b34fb',
   characteristicUuid: '00002a10-0000-1000-8000-00805f9b34fb',
   descriptorUuid: '00002905-0000-1000-8000-00805f9b34fb',
@@ -268,7 +268,7 @@ var descriptors2 = {
 descriptorsArray.push(descriptors1);
 descriptorsArray.push(descriptors2);
 
-var service = {
+let service: ble.GattService = {
   serviceUuid: '0000aaaa-0000-1000-8000-00805f9b34fb',
   isPrimary: true,
   characteristics: characteristicsArray
@@ -282,8 +282,8 @@ gattServerInstance.on('characteristicWrite', (characteristicWriteReq) => {
   let transId = characteristicWriteReq.transId;
   let offset = characteristicWriteReq.offset;
   let needRsp = characteristicWriteReq.needRsp;
-  let arrayBufferCCC = string2ArrayBuffer('characteristicWriteForResponse');
-  let serverResponse = {
+  let arrayBufferCCC: ArrayBuffer = string2ArrayBuffer('characteristicWriteForResponse');
+  let serverResponse: ble.ServerResponse = {
     deviceId: deviceId,
     transId: transId,
     status: 0,
@@ -304,7 +304,7 @@ gattServerInstance.on('characteristicWrite', (characteristicWriteReq) => {
   let characteristicUuid = characteristicWriteReq.characteristicUuid;
   let serviceUuid = characteristicWriteReq.serviceUuid;
   let deviceId = characteristicWriteReq.deviceId;
-  let notifyCharacteristic = {
+  let notifyCharacteristic: ble.NotifyCharacteristic = {
     serviceUuid: serviceUuid,
     characteristicUuid: characteristicUuid,
     characteristicValue: string2ArrayBuffer('Value4notifyCharacteristic'),

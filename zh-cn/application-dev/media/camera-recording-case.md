@@ -100,7 +100,7 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
     audioSampleRate: 48000,
     fileFormat: media.ContainerFormatType.CFT_MPEG_4,
     videoBitrate: 2000000,
-    videoCodec: media.CodecMimeType.VIDEO_MPEG4,
+    videoCodec: media.CodecMimeType.VIDEO_AVC,
     videoFrameWidth: videoSize.width,
     videoFrameHeight: videoSize.height,
     videoFrameRate: 30
@@ -234,7 +234,7 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
   if (previewOutput === undefined) {
     return;
   }
-  // 向会话中添加预览输入流
+  // 向会话中添加预览输出流
   try {
     videoSession.addOutput(previewOutput);
   } catch (error) {

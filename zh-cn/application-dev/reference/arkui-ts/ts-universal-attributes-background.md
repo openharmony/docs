@@ -119,7 +119,7 @@ backgroundEffect(options: BackgroundEffectOptions)
 
 | 参数名  | 类型                                                         | 必填 | 说明                                       |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------ |
-| options | [BackgroundEffectOptions](ts-appendix-enums.md#backgroundeffectoptions11) | 否   | 设置组件背景属性包括：饱和度，亮度，颜色。 |
+| options | [BackgroundEffectOptions](ts-appendix-enums.md#backgroundeffectoptions11) | 是   | 设置组件背景属性包括：饱和度，亮度，颜色。 |
 
 ## backgroundBrightness<sup>11+</sup> 
 

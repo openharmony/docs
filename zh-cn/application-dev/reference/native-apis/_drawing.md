@@ -5,6 +5,8 @@
 
 Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能函数。
 
+本模块不提供像素单位，和应用上下文环境保持一致。如果处于ArkUI开发环中，采用框架默认像素单位vp。像素单位请参考[像素单位说明文档](../arkui-ts/ts-pixel-units.md)。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 8
@@ -31,6 +33,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | [drawing_pen.h](drawing__pen_8h.md) | 文件中定义了与画笔相关的功能函数。 |
 | [drawing_point.h](drawing__point_8h.md) | 文件中定义了与坐标点相关的功能函数。 |
 | [drawing_rect.h](drawing__rect_8h.md) | 文件中定义了与矩形相关的功能函数。 |
+| [drawing_register_font.h](drawing__register__font_8h.md) | 定义绘制模块中字体管理器相关的函数。 | 
 | [drawing_round_rect.h](drawing__round__rect_8h.md) | 文件中定义了与圆角矩形相关的功能函数。 |
 | [drawing_shader_effect.h](drawing__shader__effect_8h.md) | 声明与绘图模块中的着色器对象相关的函数。 |
 | [drawing_text_blob.h](drawing__text__blob_8h.md) | 文件中定义了与文字相关的功能函数。 |
@@ -197,10 +200,14 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | void [OH_Drawing_PenSetCap](#oh_drawing_pensetcap) ([OH_Drawing_Pen](#oh_drawing_pen) \*, [OH_Drawing_PenLineCapStyle](#oh_drawing_penlinecapstyle)) | 用于设置画笔笔帽样式。 |
 | [OH_Drawing_PenLineJoinStyle](#oh_drawing_penlinejoinstyle)[OH_Drawing_PenGetJoin](#oh_drawing_pengetjoin) (const [OH_Drawing_Pen](#oh_drawing_pen) \*) | 用于获取画笔绘制折线转角的样式。 |
 | void [OH_Drawing_PenSetJoin](#oh_drawing_pensetjoin) ([OH_Drawing_Pen](#oh_drawing_pen) \*, [OH_Drawing_PenLineJoinStyle](#oh_drawing_penlinejoinstyle)) | 用于设置画笔绘制转角的样式。 |
+| void [OH_Drawing_PenSetShaderEffect](#oh_drawing_pensetshadereffect) ([OH_Drawing_Pen](#oh_drawing_pen) \*, [OH_Drawing_ShaderEffect](#oh_drawing_shadereffect) \*) | 设置画笔着色器效果。 |
+| void [OH_Drawing_PenSetFilter](#oh_drawing_pensetfilter) ([OH_Drawing_Pen](#oh_drawing_pen) \*, [OH_Drawing_Filter](#oh_drawing_filter) \*) | 设置画笔滤波器。 |
 | [OH_Drawing_Point](#oh_drawing_point) \* [OH_Drawing_PointCreate](#oh_drawing_pointcreate) (float x, float y) | 用于创建一个坐标点对象。 |
 | void [OH_Drawing_PointDestroy](#oh_drawing_pointdestroy) ([OH_Drawing_Point](#oh_drawing_point) \*) | 用于销毁坐标点对象并回收该对象占有的内存。 |
 | [OH_Drawing_Rect](#oh_drawing_rect) \* [OH_Drawing_RectCreate](#oh_drawing_rectcreate) (float left, float top, float right, float bottom) | 用于创建一个矩形对象。 |
 | void [OH_Drawing_RectDestroy](#oh_drawing_rectdestroy) ([OH_Drawing_Rect](#oh_drawing_rect) \*) | 用于销毁矩形对象并回收该对象占有的内存。 |
+| uint32_t [OH_Drawing_RegisterFont](#oh_drawing_registerfont) ([OH_Drawing_FontCollection](#oh_drawing_fontcollection) \*, const char \*fontFamily, const char \*familySrc) | 用于在字体管理器中注册自定义字体。 | 
+| uint32_t [OH_Drawing_RegisterFontBuffer](#oh_drawing_registerfontbuffer) ([OH_Drawing_FontCollection](#oh_drawing_fontcollection) \*, const char \*fontFamily, uint8_t \*fontBuffer, size_t length) | 用于在字体管理器中注册字体缓冲区。 | 
 | [OH_Drawing_RoundRect](#oh_drawing_roundrect) \* [OH_Drawing_RoundRectCreate](#oh_drawing_roundrectcreate) (const [OH_Drawing_Rect](#oh_drawing_rect) \*, float xRad, float yRad) | 用于创建一个圆角矩形对象。 |
 | void [OH_Drawing_RoundRectDestroy](#oh_drawing_roundrectdestroy) ([OH_Drawing_RoundRect](#oh_drawing_roundrect) \*) | 用于销毁圆角矩形对象并回收该对象占有的内存。 |
 | [OH_Drawing_ShaderEffect](#oh_drawing_shadereffect) \* [OH_Drawing_ShaderEffectCreateLinearGradient](#oh_drawing_shadereffectcreatelineargradient) (const [OH_Drawing_Point](#oh_drawing_point) \*startPt, const [OH_Drawing_Point](#oh_drawing_point) \*endPt, const uint32_t \*colors, const float \*pos, uint32_t size, [OH_Drawing_TileMode](#oh_drawing_tilemode)) | 创建着色器，在两个指定点之间生成线性渐变。 |
@@ -240,7 +247,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | void [OH_Drawing_TypographyPaint](#oh_drawing_typographypaint) ([OH_Drawing_Typography](#oh_drawing_typography) \*, [OH_Drawing_Canvas](#oh_drawing_canvas) \*, double, double) | 显示文本。 |
 | double [OH_Drawing_TypographyGetMaxWidth](#oh_drawing_typographygetmaxwidth) ([OH_Drawing_Typography](#oh_drawing_typography) \*) | 获取最大宽度。 |
 | double [OH_Drawing_TypographyGetHeight](#oh_drawing_typographygetheight) ([OH_Drawing_Typography](#oh_drawing_typography) \*) | 获取高度。 |
-| double [OH_Drawing_TypographyGetLongestLine](#oh_drawing_typographygetlongestline) ([OH_Drawing_Typography](#oh_drawing_typography) \*) | 获取最长行。 |
+| double [OH_Drawing_TypographyGetLongestLine](#oh_drawing_typographygetlongestline) ([OH_Drawing_Typography](#oh_drawing_typography) \*) | 获取最长行的宽度，建议实际使用时将返回值向上取整。当文本内容为空时，返回float的最小值，即：-340282346638528859811704183484516925440.000000。 |
 | double [OH_Drawing_TypographyGetMinIntrinsicWidth](#oh_drawing_typographygetminintrinsicwidth) ([OH_Drawing_Typography](#oh_drawing_typography) \*) | 获取最小固有宽度。 |
 | double [OH_Drawing_TypographyGetMaxIntrinsicWidth](#oh_drawing_typographygetmaxintrinsicwidth) ([OH_Drawing_Typography](#oh_drawing_typography) \*) | 获取最大固有宽度。 |
 | double [OH_Drawing_TypographyGetAlphabeticBaseline](#oh_drawing_typographygetalphabeticbaseline) ([OH_Drawing_Typography](#oh_drawing_typography) \*) | 获取字母文字基线。 |
@@ -1409,7 +1416,7 @@ void OH_Drawing_BrushSetFilter (OH_Drawing_Brush * , OH_Drawing_Filter *  )
 | 名称 | 描述 |
 | -------- | -------- |
 | OH_Drawing_Brush | 指向画刷对象的指针。 |
-| OH_Drawing_Filter | 表示指向滤波器对象的指针。 |
+| OH_Drawing_Filter | 表示指向滤波器对象的指针，为空表示清空画刷滤波器。 |
 
 
 ### OH_Drawing_BrushSetShaderEffect()
@@ -3530,6 +3537,26 @@ void OH_Drawing_PenSetColor (OH_Drawing_Pen * , uint32_t color )
 | OH_Drawing_Pen | 指向画笔对象的指针。 |
 | color | 描述颜色的32位（ARGB）变量。 |
 
+### OH_Drawing_PenSetFilter()
+
+```
+void OH_Drawing_PenSetFilter (OH_Drawing_Pen* , OH_Drawing_Filter*  )
+```
+
+**描述**
+
+设置画笔滤波器。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| OH_Drawing_Pen | 指向画笔对象[OH_Drawing_Pen](#oh_drawing_pen)的指针。 |
+| OH_Drawing_Filter | 指向滤波器[OH_Drawing_Filter](#oh_drawing_filter)的指针，为空表示清空画笔滤波器。 |
 
 ### OH_Drawing_PenSetJoin()
 
@@ -3574,6 +3601,26 @@ void OH_Drawing_PenSetMiterLimit (OH_Drawing_Pen * , float miter )
 | OH_Drawing_Pen | 指向画笔对象的指针。 |
 | miter | 描述尖角限制值的变量。 |
 
+### OH_Drawing_PenSetShaderEffect()
+
+```
+void OH_Drawing_PenSetShaderEffect (OH_Drawing_Pen* , OH_Drawing_ShaderEffect*  )
+```
+
+**描述**
+
+设置画笔着色器效果。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| OH_Drawing_Pen | 指向画笔对象[OH_Drawing_Pen](#oh_drawing_pen)的指针。 |
+| OH_Drawing_ShaderEffect | 指向着色器对象[OH_Drawing_ShaderEffect](#oh_drawing_shadereffect)的指针。 |
 
 ### OH_Drawing_PenSetWidth()
 
@@ -3740,6 +3787,59 @@ void OH_Drawing_RoundRectDestroy (OH_Drawing_RoundRect * )
 | -------- | -------- |
 | OH_Drawing_RoundRect | 指向圆角矩形对象的指针。 |
 
+### OH_Drawing_RegisterFont()
+
+```
+uint32_t OH_Drawing_RegisterFont (OH_Drawing_FontCollection* , const char* fontFamily, const char* familySrc )
+```
+
+**描述**
+
+用于在字体管理器中注册自定义字体。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| OH_Drawing_FontCollection | 指向[OH_Drawing_FontCollection](#oh_drawing_fontcollection)对象的指针。 | 
+| fontFamily | 指需要注册的字体的字体名称。 | 
+| familySrc | 指需要注册的字体文件的路径。 | 
+
+**返回：**
+
+返回错误代码，0为成功，1为文件不存在，2为打开文件失败，3为读取文件失败，4为寻找文件失败，5为获取大小失败。
+
+
+### OH_Drawing_RegisterFontBuffer()
+
+```
+uint32_t OH_Drawing_RegisterFontBuffer (OH_Drawing_FontCollection* , const char* fontFamily, uint8_t* fontBuffer, size_t length )
+```
+
+**描述**
+
+用于在字体管理器中注册字体缓冲区。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| OH_Drawing_FontCollection | 指向[OH_Drawing_FontCollection](#oh_drawing_fontcollection)对象的指针。 | 
+| fontFamily | 指需要注册的字体的字体名称。 | 
+| fontBuffer | 指需要注册的字体文件的缓冲区。 | 
+| length | 指需要注册的字体文件的长度。 | 
+
+**返回：**
+
+返回错误代码，0为成功，6为缓冲区大小为零，7为字体集合为空。
 
 ### OH_Drawing_SetTextStyleBaseLine()
 
@@ -4747,7 +4847,7 @@ double OH_Drawing_TypographyGetLongestLine (OH_Drawing_Typography * )
 
 **描述**
 
-获取最长行。
+获取最长行的宽度，建议实际使用时将返回值向上取整。当文本内容为空时，返回float的最小值，即：-340282346638528859811704183484516925440.000000
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -4761,7 +4861,7 @@ double OH_Drawing_TypographyGetLongestLine (OH_Drawing_Typography * )
 
 **返回：**
 
-返回最长行。
+返回最长行的宽度。
 
 
 ### OH_Drawing_TypographyGetMaxIntrinsicWidth()

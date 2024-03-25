@@ -688,7 +688,7 @@ ListItem() {
      @Link isEditMode: boolean
      @Link selectedItems: ToDo[]
      private toDoItem: ToDo = new ToDo("");
-
+   
      build() {
       Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
         // ...
@@ -716,6 +716,7 @@ ListItem() {
    //ToDoList.ets
    import { ToDo } from './ToDo';
    import { ToDoListItem } from './ToDoListItem';
+   
    @Entry
    @Component
    struct ToDoList {
@@ -723,13 +724,13 @@ ListItem() {
      @Watch('onEditModeChange') @State isEditMode: boolean = false
      @State selectedItems: ToDo[] = []
      private availableThings: string[] = ['读书', '运动', '旅游', '听音乐', '看电影', '唱歌']
-
+   
      onEditModeChange() {
-       if(!this.isEditMode) {
+       if (!this.isEditMode) {
          this.selectedItems = []
        }
      }
-
+   
      build() {
        Column() {
          Row() {
@@ -739,43 +740,41 @@ ListItem() {
                .onClick(() => {
                  this.isEditMode = false;
                })
-               .margin({ left: 20, right: 20})
+               .margin({ left: 20, right: 20 })
            } else {
              Text('待办')
                .fontSize(36)
                .margin({ left: 40 })
-           Blank()
-           Text('+')   //提供新增列表项入口，即给新增按钮添加点击事件
+             Blank()
+             Text('+') //提供新增列表项入口，即给新增按钮添加点击事件
                .onClick(() => {
                  TextPickerDialog.show({
                    range: this.availableThings,
                    onAccept: (value: TextPickerResult) => {
-                   let arr = Array.isArray(value.index) ? value.index : [value.index];
-                   for(let i = 0; i < arr.length; i++) {
-                      this.toDoData.push(new ToDo(this.availableThings[arr[i]])); // 新增列表项数据toDoData(可选事项)
-                   }
-                 },
+                     let arr = Array.isArray(value.index) ? value.index : [value.index];
+                     for (let i = 0; i < arr.length; i++) {
+                       this.toDoData.push(new ToDo(this.availableThings[arr[i]])); // 新增列表项数据toDoData(可选事项)
+                     }
+                   },
+                 })
                })
-             })
            }
-            List({ space: 10 }) {
-              ForEach(this.toDoData, (toDoItem: ToDo) => {
-                ListItem() {
-                  // 将toDoData的每个数据放入到以model的形式放进ListItem里
-                  ToDoListItem({
-                    isEditMode: this.isEditMode,
-                    toDoItem: toDoItem,
-                    selectedItems: this.selectedItems })
-                }
-              }, (toDoItem: ToDo) => toDoItem.key.toString())
-            }
-          }
-        }
-      }
-    }
+           List({ space: 10 }) {
+             ForEach(this.toDoData, (toDoItem: ToDo) => {
+               ListItem() {
+                 // 将toDoData的每个数据放入到以model的形式放进ListItem里
+                 ToDoListItem({
+                   isEditMode: this.isEditMode,
+                   toDoItem: toDoItem,
+                   selectedItems: this.selectedItems })
+               }
+             }, (toDoItem: ToDo) => toDoItem.key.toString())
+           }
+         }
+       }
+     }
+   }
    ```
-
-
 
 
 ### 删除列表项
@@ -802,14 +801,6 @@ ListItem() {
         this.name = name;
       }
     }
-    class ToDoTmp {
-      isEditMode: boolean = false
-      selectedItems: Array<object> = []
-      toDoItem: ToDo[] = [];
-      toDoData: ToDo[] = [];
-    }
-    let toDoList: ToDoTmp = new ToDoTmp()
-    // ToDoListItem.ets
     ```
     ```ts
     // 实现参考
@@ -820,15 +811,14 @@ ListItem() {
     GestureGroup(GestureMode.Exclusive,
       LongPressGesture()
         .onAction(() => {
-          if (!toDoList.isEditMode) {
-            toDoList.isEditMode = true; //进入编辑模式
-            toDoList.selectedItems.push(toDoList.toDoItem); // 记录长按时选中的列表项
+          if (!this.isEditMode) {
+            this.isEditMode = true; //进入编辑模式
           }
         })
       )
     )
     ```
-
+   
 2. 需要响应用户的选择交互，记录要删除的列表项数据。
    在待办列表中，通过勾选框的勾选或取消勾选，响应用户勾选列表项变化，记录所有选择的列表项。
 
@@ -844,32 +834,24 @@ ListItem() {
         this.name = name;
       }
     }
-    class ToDoTmp {
-      isEditMode: boolean = false
-      selectedItems: Array<object> = []
-      toDoItem: ToDo[] = [];
-      toDoData: ToDo[] = [];
-    }
-    let toDoList: ToDoTmp = new ToDoTmp()
-    // ToDoListItem.ets
     ```
     ```ts
     // 实现参考
-    if (toDoList.isEditMode) {
+    if (this.isEditMode) {
       Checkbox()
         .onChange((isSelected) => {
           if (isSelected) {
-            toDoList.selectedItems.push(toDoList.toDoItem) // 勾选时，记录选中的列表项
+            this.selectedItems.push(toDoList.toDoItem) // this.selectedItems为勾选时，记录选中的列表项，可根据实际场景构造
           } else {
-            let index = toDoList.selectedItems.indexOf(toDoList.toDoItem)
+            let index = this.selectedItems.indexOf(toDoList.toDoItem)
             if (index !== -1) {
-              toDoList.selectedItems.splice(index, 1) // 取消勾选时，则将此项从selectedItems中删除
+              this.selectedItems.splice(index, 1) // 取消勾选时，则将此项从selectedItems中删除
             }
           }
         })
     }
     ```
-
+   
 3. 需要响应用户点击删除按钮事件，删除列表中对应的选项。
 
     ```ts
@@ -884,25 +866,18 @@ ListItem() {
         this.name = name;
       }
     }
-    class ToDoTmp {
-      isEditMode: boolean = false
-      selectedItems: Array<object> = []
-      toDoItem: ToDo[] = [];
-      toDoData: ToDo[] = [];
-    }
-    let toDoList: ToDoTmp = new ToDoTmp()
     ```
     ```ts
     // 实现参考
     Button('删除')
       .onClick(() => {
-        // 删除选中的列表项对应的toDoData数据
-        let leftData = toDoList.toDoData.filter((item) => {
-          return toDoList.selectedItems.find((selectedItem) => selectedItem !== item);
-        })
-
-        toDoList.toDoData = leftData;
-        toDoList.isEditMode = false;
+        // this.toDoData为待办的列表项，可根据实际场景构造。点击后删除选中的列表项对应的toDoData数据
+        let leftData = this.toDoData.filter((item) => {
+              return !this.selectedItems.find((selectedItem) => selectedItem == item);
+            })
+    
+        this.toDoData = leftData;
+        this.isEditMode = false;
       })
     ```
 

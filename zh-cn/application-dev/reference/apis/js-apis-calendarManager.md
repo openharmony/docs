@@ -38,22 +38,65 @@ getCalendarManager(context : Context): CalendarManager
 **示例**：
 
 ```typescript
-// 获取context
-// 获取calendarManager
-// !!!以下代码中的class EntryAbility extends UIAbility，onWindowStageCreate在工程main/ets/entryability/EntryAbility.ets中，测试ohosTest/ets/testability/TestAbility.ets中有，可直接使用
-// calendarMgr需在主线程中获取，worker线程会获取失败
-// 请在调用getCalendarManager接口之前确定已经手动申请成功ohos.permission.WRITE_CALENDAR和ohos.permission.READ_CALENDAR权限，否则会影响后续函数调用
+// 获取上下文mContext
+// 获取日历管理器calendarMgr
+// 该文件为系统生成，目录：entry/src/main/ets/entryability/EntryAbility.ets
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import hilog from '@ohos.hilog';
 import UIAbility from '@ohos.app.ability.UIAbility';
-import common from '@ohos.app.ability.common';
+import Want from '@ohos.app.ability.Want';
 import window from '@ohos.window';
+import calendarManager from '@ohos.calendarManager';
+import common from '@ohos.app.ability.common';
+import abilityAccessCtrl, { PermissionRequestResult, Permissions } from '@ohos.abilityAccessCtrl';
+import { BusinessError } from '@ohos.base';
 
-export let mContext : common.UIAbilityContext | null = null;
-export let calendarMgr : calendarManager.CalendarManager | null = null;
-class EntryAbility extends UIAbility {
-  onWindowStageCreate(windowStage: window.WindowStage){
+export let calendarMgr: calendarManager.CalendarManager | null = null;
+export let mContext: common.UIAbilityContext | null = null;
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+  }
+
+  onDestroy(): void {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onDestroy');
+  }
+
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    // Main window is created, set main page for this ability
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+
+    windowStage.loadContent('pages/Index', (err, data) => {
+      if (err.code) {
+        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        return;
+      }
+      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+    });
     mContext = this.context;
-    // 在此函数调用前确保已获取日历所需权限
-    calendarMgr = calendarManager.getCalendarManager(mContext);
+    const permissions: Permissions[] = ['ohos.permission.READ_CALENDAR', 'ohos.permission.WRITE_CALENDAR'];
+    let atManager = abilityAccessCtrl.createAtManager();
+    atManager.requestPermissionsFromUser(mContext, permissions).then((result: PermissionRequestResult) => {
+      console.log(`get Permission success, result: ${JSON.stringify(result)}`);
+      calendarMgr = calendarManager.getCalendarManager(mContext);
+    }).catch((error: BusinessError) => {
+      console.error(`get Permission error, error: ${JSON.stringify(error)}`);
+    })
+  }
+
+  onWindowStageDestroy(): void {
+    // Main window is destroyed, release UI related resources
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageDestroy');
+  }
+
+  onForeground(): void {
+    // Ability has brought to foreground
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onForeground');
+  }
+
+  onBackground(): void {
+    // Ability has back to background
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onBackground');
   }
 }
 ```
@@ -69,7 +112,7 @@ createCalendar(calendarAccount: CalendarAccount, callback: AsyncCallback\<Calend
 
 根据日历帐户信息，创建一个Calendar对象，使用callback异步回调。
 
-**需要权限**： ohos.permission.WRITE_CALENDAR or ohos.permission.WRITE_WHOLE_CALENDAR
+**需要权限**： ohos.permission.WRITE_CALENDAR
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
@@ -84,7 +127,8 @@ createCalendar(calendarAccount: CalendarAccount, callback: AsyncCallback\<Calend
 
 ```typescript
 import { BusinessError } from '@ohos.base';
-import { calendarMgr } from '../testability/TestAbility'; // 路径适用于测试模块
+import { calendarMgr } from '../entryability/EntryAbility';
+import calendarManager from '@ohos.calendarManager';
 
 let calendar: calendarManager.Calendar | undefined = undefined;
 const calendarAccount: calendarManager.CalendarAccount = {
@@ -111,7 +155,7 @@ createCalendar(calendarAccount: CalendarAccount): Promise\<Calendar>
 
 根据日历帐户信息，创建一个Calendar对象，使用Promise异步回调。
 
-**需要权限**： ohos.permission.WRITE_CALENDAR or ohos.permission.WRITE_WHOLE_CALENDAR
+**需要权限**： ohos.permission.WRITE_CALENDAR
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
@@ -131,7 +175,8 @@ createCalendar(calendarAccount: CalendarAccount): Promise\<Calendar>
 
 ```typescript
 import { BusinessError } from '@ohos.base';
-import { calendarMgr } from '../testability/TestAbility'; // 路径适用于测试模块
+import { calendarMgr } from '../entryability/EntryAbility';
+import calendarManager from '@ohos.calendarManager';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
 const calendarAccount: calendarManager.CalendarAccount = {
@@ -153,7 +198,7 @@ deleteCalendar(calendar: Calendar, callback: AsyncCallback\<void>): void
 
 删除指定Calendar对象，使用callback异步回调。
 
-**需要权限**： ohos.permission.WRITE_CALENDAR or ohos.permission.WRITE_WHOLE_CALENDAR
+**需要权限**： ohos.permission.WRITE_CALENDAR
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
@@ -168,31 +213,32 @@ deleteCalendar(calendar: Calendar, callback: AsyncCallback\<void>): void
 
 ```typescript
 import { BusinessError } from '@ohos.base';
-import { calendarMgr } from '../testability/TestAbility'; // 路径适用于测试模块
+import { calendarMgr } from '../entryability/EntryAbility';
+import calendarManager from '@ohos.calendarManager';
 
 const calendarAccount: calendarManager.CalendarAccount = {
   name: 'DeleteMyCalendarByCallBack',
   type: calendarManager.CalendarType.LOCAL
 };
-await calendarMgr?.createCalendar(calendarAccount).then((data: calendarManager.Calendar) => {
+calendarMgr?.createCalendar(calendarAccount).then((data: calendarManager.Calendar) => {
   console.info(`Succeeded to create calendar, data -> ${JSON.stringify(data)}`);
+  calendarMgr?.getCalendar(calendarAccount, (err: BusinessError, data: calendarManager.Calendar) => {
+    if (err) {
+      console.error(`Failed to get calendar, err -> ${JSON.stringify(err)}`);
+    } else {
+      console.info(`Succeeded to get calendar, data -> ${JSON.stringify(data)}`);
+      calendarMgr?.deleteCalendar(data, (err1: BusinessError) => {
+        if (err1) {
+          console.error(`Failed to delete calendar, err -> ${JSON.stringify(err1)}`);
+        } else {
+          console.info("Succeeded to delete calendar");
+        }
+      });
+    }
+  });
 }).catch((error: BusinessError) => {
   console.error(`Failed to create calendar, error -> ${JSON.stringify(error)}`);
 })
-calendarMgr?.getCalendar(calendarAccount, (err: BusinessError, data: calendarManager.Calendar) => {
-  if (err) {
-    console.error(`Failed to get calendar, err -> ${JSON.stringify(err)}`);
-  } else {
-    console.info(`Succeeded to get calendar, data -> ${JSON.stringify(data)}`);
-    calendarMgr?.deleteCalendar(data, (err1: BusinessError) => {
-      if (err1) {
-        console.error(`Failed to delete calendar, err -> ${JSON.stringify(err1)}`);
-      } else {
-        console.info("Succeeded to delete calendar");
-      }
-    });
-  }
-});
 ```
 
 ### deleteCalendar
@@ -201,7 +247,7 @@ deleteCalendar(calendar: Calendar): Promise\<void>
 
 删除指定Calendar对象，使用Promise异步回调。
 
-**需要权限**： ohos.permission.WRITE_CALENDAR or ohos.permission.WRITE_WHOLE_CALENDAR
+**需要权限**： ohos.permission.WRITE_CALENDAR
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
@@ -221,27 +267,28 @@ deleteCalendar(calendar: Calendar): Promise\<void>
 
 ```typescript
 import { BusinessError } from '@ohos.base';
-import { calendarMgr } from '../testability/TestAbility'; // 路径适用于测试模块
+import { calendarMgr } from '../entryability/EntryAbility';
+import calendarManager from '@ohos.calendarManager';
 
 const calendarAccount: calendarManager.CalendarAccount = {
   name: 'DeleteMyCalendarByPromise',
   type: calendarManager.CalendarType.LOCAL
 };
-await calendarMgr?.createCalendar(calendarAccount).then((data: calendarManager.Calendar) => {
+calendarMgr?.createCalendar(calendarAccount).then((data: calendarManager.Calendar) => {
   console.info(`Succeeded to create calendar, data -> ${JSON.stringify(data)}`);
+  calendarMgr?.getCalendar(calendarAccount).then((data: calendarManager.Calendar) => {
+    console.info(`Succeeded to get calendar, data -> ${JSON.stringify(data)}`);
+    calendarMgr?.deleteCalendar(data).then(() => {
+      console.info("Succeeded to delete calendar");
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to delete calendar: err -> ${JSON.stringify(err)}`);
+    });
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get calendar: err -> ${JSON.stringify(err)}`);
+  });
 }).catch((error: BusinessError) => {
   console.error(`Failed to create calendar, error -> ${JSON.stringify(error)}`);
 })
-calendarMgr?.getCalendar(calendarAccount).then((data: calendarManager.Calendar) => {
-  console.info(`Succeeded to get calendar, data -> ${JSON.stringify(data)}`);
-  calendarMgr?.deleteCalendar(data).then(() => {
-    console.info("Succeeded to delete calendar");
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to delete calendar: err -> ${JSON.stringify(err)}`);
-  });
-}).catch((err: BusinessError) => {
-  console.error(`Failed to get calendar: err -> ${JSON.stringify(err)}`);
-});
 ```
 
 ### getCalendar
@@ -250,7 +297,7 @@ getCalendar(callback: AsyncCallback\<Calendar>): void
 
 获取默认Calendar对象，默认Calendar是日历存储首次运行时创建的，若创建Event时不关注其Calendar归属，则无须通过[createCalendar()](#createcalendar)创建Calendar，直接使用默认Calendar，使用callback异步回调。
 
-**需要权限**：ohos.permission.READ_CALENDAR or ohos.permission.READ_WHOLE_CALENDAR
+**需要权限**：ohos.permission.READ_CALENDAR
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
@@ -264,7 +311,8 @@ getCalendar(callback: AsyncCallback\<Calendar>): void
 
 ```typescript
 import { BusinessError } from '@ohos.base';
-import { calendarMgr } from '../testability/TestAbility'; // 路径适用于测试模块
+import { calendarMgr } from '../entryability/EntryAbility';
+import calendarManager from '@ohos.calendarManager';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
 calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => {
@@ -283,7 +331,7 @@ getCalendar(calendarAccount: CalendarAccount, callback: AsyncCallback\<Calendar>
 
 获取指定Calendar对象，使用callback异步回调。
 
-**需要权限**： ohos.permission.READ_CALENDAR or ohos.permission.READ_WHOLE_CALENDAR
+**需要权限**： ohos.permission.READ_CALENDAR
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
@@ -298,26 +346,27 @@ getCalendar(calendarAccount: CalendarAccount, callback: AsyncCallback\<Calendar>
 
 ```typescript
 import { BusinessError } from '@ohos.base';
-import { calendarMgr } from '../testability/TestAbility'; // 路径适用于测试模块
+import { calendarMgr } from '../entryability/EntryAbility';
+import calendarManager from '@ohos.calendarManager';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
 const calendarAccount: calendarManager.CalendarAccount = {
   name: 'MyCalendar',
   type: calendarManager.CalendarType.LOCAL
 };
-await calendarMgr?.createCalendar(calendarAccount).then((data: calendarManager.Calendar) => {
+calendarMgr?.createCalendar(calendarAccount).then((data: calendarManager.Calendar) => {
   console.info(`Succeeded to create calendar, data -> ${JSON.stringify(data)}`);
+  calendarMgr?.getCalendar(calendarAccount, (err: BusinessError, data: calendarManager.Calendar) => {
+    if (err) {
+      console.error(`Failed to get calendar, err -> ${JSON.stringify(err)}`);
+    } else {
+      console.info(`Succeeded to get calendar data -> ${JSON.stringify(data)}`);
+      calendar = data;
+    }
+  });
 }).catch((error: BusinessError) => {
   console.error(`Failed to create calendar, error -> ${JSON.stringify(error)}`);
 })
-calendarMgr?.getCalendar(calendarAccount, (err: BusinessError, data: calendarManager.Calendar) => {
-  if (err) {
-    console.error(`Failed to get calendar, err -> ${JSON.stringify(err)}`);
-  } else {
-    console.info(`Succeeded to get calendar data -> ${JSON.stringify(data)}`);
-    calendar = data;
-  }
-});
 ```
 
 ### getCalendar
@@ -326,7 +375,7 @@ getCalendar(calendarAccount?: CalendarAccount): Promise\<Calendar>
 
 获取默认Calendar对象或者指定Calendar对象，使用Promise异步回调。
 
-**需要权限**： ohos.permission.READ_CALENDAR or ohos.permission.READ_WHOLE_CALENDAR
+**需要权限**： ohos.permission.READ_CALENDAR
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
@@ -346,7 +395,8 @@ getCalendar(calendarAccount?: CalendarAccount): Promise\<Calendar>
 
 ```typescript
 import { BusinessError } from '@ohos.base';
-import { calendarMgr } from '../testability/TestAbility'; // 路径适用于测试模块
+import { calendarMgr } from '../entryability/EntryAbility';
+import calendarManager from '@ohos.calendarManager';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
 calendarMgr?.getCalendar().then((data: calendarManager.Calendar) => {
@@ -363,7 +413,7 @@ getAllCalendars(callback: AsyncCallback\<Calendar[]>): void
 
 获取当前应用所有创建的Calendar对象以及默认Calendar对象，使用callback异步回调。
 
-**需要权限**：ohos.permission.READ_CALENDAR or ohos.permission.READ_WHOLE_CALENDAR
+**需要权限**：ohos.permission.READ_CALENDAR
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
@@ -377,7 +427,8 @@ getAllCalendars(callback: AsyncCallback\<Calendar[]>): void
 
 ```typescript
 import { BusinessError } from '@ohos.base';
-import { calendarMgr } from '../testability/TestAbility'; // 路径适用于测试模块
+import { calendarMgr } from '../entryability/EntryAbility';
+import calendarManager from '@ohos.calendarManager';
 
 calendarMgr?.getAllCalendars((err: BusinessError, data: calendarManager.Calendar[]) => {
   if (err) {
@@ -398,7 +449,7 @@ getAllCalendars(): Promise\<Calendar[]>
 
 获取当前应用所有创建的Calendar对象以及默认Calendar对象，使用Promise异步回调。
 
-**需要权限**： ohos.permission.READ_CALENDAR or ohos.permission.WRITE_WHOLE_CALENDAR
+**需要权限**： ohos.permission.READ_CALENDAR
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
@@ -412,7 +463,8 @@ getAllCalendars(): Promise\<Calendar[]>
 
 ```typescript
 import { BusinessError } from '@ohos.base';
-import { calendarMgr } from '../testability/TestAbility'; // 路径适用于测试模块
+import { calendarMgr } from '../entryability/EntryAbility';
+import calendarManager from '@ohos.calendarManager';
 
 calendarMgr?.getAllCalendars().then((data: calendarManager.Calendar[]) => {
   console.info(`Succeeded to get all calendars, data -> ${JSON.stringify(data)}`);
@@ -456,7 +508,8 @@ addEvent(event: Event, callback: AsyncCallback\<number>): void
 
 ```typescript
 import { BusinessError } from '@ohos.base';
-import { calendarMgr } from '../testability/TestAbility'; // 路径适用于测试模块
+import { calendarMgr } from '../entryability/EntryAbility';
+import calendarManager from '@ohos.calendarManager';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
 const date = new Date();
@@ -465,7 +518,7 @@ const event: calendarManager.Event = {
   startTime: date.getTime(),
   endTime: date.getTime() + 60 * 60 * 1000
 };
-await calendarMgr?.getCalendar().then((data: calendarManager.Calendar) => {
+calendarMgr?.getCalendar().then((data: calendarManager.Calendar) => {
   console.info(`Succeeded to get calendar, data -> ${JSON.stringify(data)}`);
   calendar = data;
   calendar.addEvent(event, (err: BusinessError, data: number): void => {
@@ -504,7 +557,8 @@ addEvent(event: Event): Promise\<number>
 
 ```typescript
 import { BusinessError } from '@ohos.base';
-import { calendarMgr } from '../testability/TestAbility'; // 路径适用于测试模块
+import { calendarMgr } from '../entryability/EntryAbility';
+import calendarManager from '@ohos.calendarManager';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
 const date = new Date();
@@ -547,7 +601,8 @@ addEvents(events: Event[], callback: AsyncCallback\<void>): void
 
 ```typescript
 import { BusinessError } from '@ohos.base';
-import { calendarMgr } from '../testability/TestAbility'; // 路径适用于测试模块
+import { calendarMgr } from '../entryability/EntryAbility';
+import calendarManager from '@ohos.calendarManager';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
 const date = new Date();
@@ -604,7 +659,8 @@ addEvents(events: Event[]): Promise\<void>
 
 ```typescript
 import { BusinessError } from '@ohos.base';
-import { calendarMgr } from '../testability/TestAbility'; // 路径适用于测试模块
+import { calendarMgr } from '../entryability/EntryAbility';
+import calendarManager from '@ohos.calendarManager';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
 const date = new Date();
@@ -654,7 +710,8 @@ deleteEvent(id: number, callback: AsyncCallback\<void>): void
 
 ```typescript
 import { BusinessError } from '@ohos.base';
-import { calendarMgr } from '../testability/TestAbility'; // 路径适用于测试模块
+import { calendarMgr } from '../entryability/EntryAbility';
+import calendarManager from '@ohos.calendarManager';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
 let id: number = 0;
@@ -680,7 +737,7 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
       if (err) {
         console.error(`Failed to delete event, err -> ${JSON.stringify(err)}`);
       } else {
-        console.info("Succeeded to delete event");
+        console.info(`Succeeded to delete event, err -> ${JSON.stringify(err)}`);
       }
     });
   }
@@ -711,7 +768,8 @@ deleteEvent(id: number): Promise\<void>
 
 ```typescript
 import { BusinessError } from '@ohos.base';
-import { calendarMgr } from '../testability/TestAbility'; // 路径适用于测试模块
+import { calendarMgr } from '../entryability/EntryAbility';
+import calendarManager from '@ohos.calendarManager';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
 let id: number = 0;
@@ -761,7 +819,8 @@ deleteEvents(ids: number[], callback: AsyncCallback\<void>): void
 
 ```typescript
 import { BusinessError } from '@ohos.base';
-import { calendarMgr } from '../testability/TestAbility'; // 路径适用于测试模块
+import { calendarMgr } from '../entryability/EntryAbility';
+import calendarManager from '@ohos.calendarManager';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
 let id1: number = 0;
@@ -830,7 +889,8 @@ deleteEvents(ids: number[]): Promise\<void>
 
 ```typescript
 import { BusinessError } from '@ohos.base';
-import { calendarMgr } from '../testability/TestAbility'; // 路径适用于测试模块
+import { calendarMgr } from '../entryability/EntryAbility';
+import calendarManager from '@ohos.calendarManager';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
 let id1: number = 0;
@@ -892,7 +952,8 @@ updateEvent(event: Event, callback: AsyncCallback\<void>): void
 
 ```typescript
 import { BusinessError } from '@ohos.base';
-import { calendarMgr } from '../testability/TestAbility'; // 路径适用于测试模块
+import { calendarMgr } from '../entryability/EntryAbility';
+import calendarManager from '@ohos.calendarManager';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
 const date = new Date();
@@ -951,7 +1012,8 @@ updateEvent(event: Event): Promise\<void>
 
 ```typescript
 import { BusinessError } from '@ohos.base';
-import { calendarMgr } from '../testability/TestAbility'; // 路径适用于测试模块
+import { calendarMgr } from '../entryability/EntryAbility';
+import calendarManager from '@ohos.calendarManager';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
 const date = new Date();
@@ -1002,7 +1064,8 @@ getEvents(callback: AsyncCallback\<Event[]>): void
 
 ```typescript
 import { BusinessError } from '@ohos.base';
-import { calendarMgr } from '../testability/TestAbility'; // 路径适用于测试模块
+import { calendarMgr } from '../entryability/EntryAbility';
+import calendarManager from '@ohos.calendarManager';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
 calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => {
@@ -1042,7 +1105,8 @@ getEvents(eventFilter: EventFilter, eventKey: (keyof Event)[], callback: AsyncCa
 
 ```typescript
 import { BusinessError } from '@ohos.base';
-import { calendarMgr } from '../testability/TestAbility'; // 路径适用于测试模块
+import { calendarMgr } from '../entryability/EntryAbility';
+import calendarManager from '@ohos.calendarManager';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
 let id1: number = 0;
@@ -1111,7 +1175,8 @@ getEvents(eventFilter?: EventFilter, eventKey?: (keyof Event)[]): Promise\<Event
 
 ```typescript
 import { BusinessError } from '@ohos.base';
-import { calendarMgr } from '../testability/TestAbility'; // 路径适用于测试模块
+import { calendarMgr } from '../entryability/EntryAbility';
+import calendarManager from '@ohos.calendarManager';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
 const date = new Date();
@@ -1159,7 +1224,9 @@ getConfig(): CalendarConfig
 **示例**：
 
 ```typescript
-import { calendarMgr } from '../testability/TestAbility'; // 路径适用于测试模块
+import { calendarMgr } from '../entryability/EntryAbility';
+import calendarManager from '@ohos.calendarManager';
+import { BusinessError } from '@ohos.base';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
 calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => {
@@ -1193,7 +1260,8 @@ setConfig(config: CalendarConfig, callback: AsyncCallback\<void>): void
 
 ```typescript
 import { BusinessError } from '@ohos.base';
-import { calendarMgr } from '../testability/TestAbility'; // 路径适用于测试模块
+import { calendarMgr } from '../entryability/EntryAbility';
+import calendarManager from '@ohos.calendarManager';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
 const config: calendarManager.CalendarConfig = {
@@ -1241,7 +1309,8 @@ setConfig(config: CalendarConfig): Promise\<void>
 
 ```typescript
 import { BusinessError } from '@ohos.base';
-import { calendarMgr } from '../testability/TestAbility'; // 路径适用于测试模块
+import { calendarMgr } from '../entryability/EntryAbility';
+import calendarManager from '@ohos.calendarManager';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
 const config: calendarManager.CalendarConfig = {
@@ -1280,7 +1349,9 @@ getAccount(): CalendarAccount
 **示例**：
 
 ```typescript
-import { calendarMgr } from '../testability/TestAbility'; // 路径适用于测试模块
+import { calendarMgr } from '../entryability/EntryAbility';
+import calendarManager from '@ohos.calendarManager';
+import { BusinessError } from '@ohos.base';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
 calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => {
@@ -1396,7 +1467,8 @@ static filterById(ids: number[]): EventFilter
 
 ```typescript
 import { BusinessError } from '@ohos.base';
-import { calendarMgr } from '../testability/TestAbility'; // 路径适用于测试模块
+import { calendarMgr } from '../entryability/EntryAbility';
+import calendarManager from '@ohos.calendarManager';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
 let id1: number = 0;
@@ -1465,7 +1537,8 @@ static filterByTime(start: number, end: number): EventFilter
 
 ```typescript
 import { BusinessError } from '@ohos.base';
-import { calendarMgr } from '../testability/TestAbility'; // 路径适用于测试模块
+import { calendarMgr } from '../entryability/EntryAbility';
+import calendarManager from '@ohos.calendarManager';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
 const event1: calendarManager.Event = {
@@ -1528,7 +1601,8 @@ static filterByTitle(title: string): EventFilter
 
 ```typescript
 import { BusinessError } from '@ohos.base';
-import { calendarMgr } from '../testability/TestAbility'; // 路径适用于测试模块
+import { calendarMgr } from '../entryability/EntryAbility';
+import calendarManager from '@ohos.calendarManager';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
 const event: calendarManager.Event = {

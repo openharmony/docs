@@ -17,7 +17,6 @@
 
    ```ts
    import hilog from '@ohos.hilog';
-   import Logger from '../utils/Logger';
    import UIAbility from '@ohos.app.ability.UIAbility';
    import type window from '@ohos.window';
    import type { Context } from '@ohos.abilityAccessCtrl';
@@ -45,7 +44,7 @@
        // ...
        
      eventFunc(argOne: Context, argTwo: Context): void {
-       Logger.info(TAG, '1. ' + `${argOne}, ${argTwo}`);
+       hilog.info(DOMAIN_NUMBER, TAG, '1. ' + `${argOne}, ${argTwo}`);
        return;
      }
    }

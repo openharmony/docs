@@ -57,7 +57,7 @@ import window from '@ohos.window';
 | ---------- | -------------------------- | -- |-----------------------------------------------------------------------------|
 | name       | string                     | 是 | 窗口名字。                                                                       |
 | windowType | [WindowType](#windowtype7) | 是 | 窗口类型。                                                                       |
-| ctx        | [BaseContext](js-apis-inner-application-baseContext.md) | 否 | 当前应用上下文信息。不设置，则默认为空。<br>FA模型下不需要使用该参数，即可创建子窗口。<br>Stage模型下需要使用该参数，用于创建系统窗口。 |
+| ctx        | [BaseContext](js-apis-inner-application-baseContext.md) | 否 | 当前应用上下文信息。不设置，则默认为空。<br>FA模型下不需要使用该参数，即可创建子窗口，使用该参数时会报错。<br>Stage模型下必须使用该参数，用于创建悬浮窗、模态窗或系统窗口。 |
 | displayId  | number                     | 否 | 当前物理屏幕id。不设置，则默认为-1，该参数应为整数。                                             |
 | parentId   | number                     | 否 | 父窗口id。不设置，则默认为-1，该参数应为整数。                                                           |
 
@@ -137,7 +137,7 @@ import window from '@ohos.window';
 | AUTO_ROTATION_LANDSCAPE               | 7    | 表示传感器自动横向旋转模式。 |
 | AUTO_ROTATION_RESTRICTED              | 8    | 表示受开关控制的自动旋转模式。 |
 | AUTO_ROTATION_PORTRAIT_RESTRICTED     | 9    | 表示受开关控制的自动竖向旋转模式。 |
-| AUTO_ROTATION_LANDSCAPE_RESTRICTED    | 10   | 表述受开关控制的自动横向旋转模式。 |
+| AUTO_ROTATION_LANDSCAPE_RESTRICTED    | 10   | 表示受开关控制的自动横向旋转模式。 |
 | LOCKED                                | 11   | 表示锁定模式。 |
 
 ## BlurStyle<sup>9+</sup>
@@ -387,8 +387,9 @@ import { BusinessError } from '@ohos.base';
 
 let windowClass: window.Window | undefined = undefined;
 let config: window.Configuration = {
-  name: "alertWindow",
-  windowType: window.WindowType.TYPE_SYSTEM_ALERT
+  name: "test",
+  windowType: window.WindowType.TYPE_DIALOG,
+  ctx: this.context
 };
 try {
   window.createWindow(config, (err: BusinessError, data) => {
@@ -444,8 +445,9 @@ import { BusinessError } from '@ohos.base';
 
 let windowClass: window.Window | undefined = undefined;
 let config: window.Configuration = {
-  name: "alertWindow",
-  windowType: window.WindowType.TYPE_SYSTEM_ALERT
+  name: "test",
+  windowType: window.WindowType.TYPE_DIALOG,
+  ctx: this.context
 };
 try {
   let promise = window.createWindow(config);
@@ -493,7 +495,7 @@ findWindow(name: string): Window
 ```ts
 let windowClass: window.Window | undefined = undefined;
 try {
-  windowClass = window.findWindow('alertWindow');
+  windowClass = window.findWindow('test');
 } catch (exception) {
   console.error('Failed to find the Window. Cause: ' + JSON.stringify(exception));
 }
@@ -1523,7 +1525,7 @@ find(id: string, callback: AsyncCallback&lt;Window&gt;): void
 import { BusinessError } from '@ohos.base';
 
 let windowClass: window.Window | undefined = undefined;
-window.find('alertWindow', (err: BusinessError, data) => {
+window.find('test', (err: BusinessError, data) => {
   const errCode: number = err.code;
   if (errCode) {
     console.error('Failed to find the Window. Cause: ' + JSON.stringify(err));
@@ -1564,7 +1566,7 @@ find(id: string): Promise&lt;Window&gt;
 import { BusinessError } from '@ohos.base';
 
 let windowClass: window.Window | undefined = undefined;
-let promise = window.find('alertWindow');
+let promise = window.find('test');
 promise.then((data) => {
   windowClass = data;
   console.info('Succeeded in finding the window. Data: ' + JSON.stringify(data));
@@ -1750,7 +1752,7 @@ export default class EntryAbility extends UIAbility {
 
 当前窗口实例，窗口管理器管理的基本单元。
 
-下列API示例中都需先使用[getLastWindow()](#windowgetlastwindow9)、[createWindow()](#windowcreatewindow9)、[findWindow()](#windowfindwindow9)中的任一方法获取到Window实例，再通过此实例调用对应方法。
+下列API示例中都需先使用[getLastWindow()](#windowgetlastwindow9)、[createWindow()](#windowcreatewindow9)、[findWindow()](#windowfindwindow9)中的任一方法获取到Window实例（windowClass），再通过此实例调用对应方法。
 
 ### hide<sup>7+</sup>
 
@@ -1781,7 +1783,6 @@ hide (callback: AsyncCallback&lt;void&gt;): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 windowClass.hide((err: BusinessError) => {
   const errCode: number = err.code;
   if (errCode) {
@@ -1821,7 +1822,6 @@ hide(): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 let promise = windowClass.hide();
 promise.then(() => {
   console.info('Succeeded in hiding the window.');
@@ -1861,7 +1861,6 @@ hideWithAnimation(callback: AsyncCallback&lt;void&gt;): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 windowClass.hideWithAnimation((err: BusinessError) => {
   const errCode: number = err.code;
   if (errCode) {
@@ -1903,7 +1902,6 @@ hideWithAnimation(): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 let promise = windowClass.hideWithAnimation();
 promise.then(() => {
   console.info('Succeeded in hiding the window with animation.');
@@ -1939,7 +1937,6 @@ showWindow(callback: AsyncCallback&lt;void&gt;): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 windowClass.showWindow((err: BusinessError) => {
   const errCode: number = err.code;
   if (errCode) {
@@ -1977,7 +1974,6 @@ showWindow(): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 let promise = windowClass.showWindow();
 promise.then(() => {
   console.info('Succeeded in showing the window.');
@@ -2017,7 +2013,6 @@ showWithAnimation(callback: AsyncCallback&lt;void&gt;): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 windowClass.showWithAnimation((err: BusinessError) => {
   const errCode: number = err.code;
   if (errCode) {
@@ -2059,7 +2054,6 @@ showWithAnimation(): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 let promise = windowClass.showWithAnimation();
 promise.then(() => {
   console.info('Succeeded in showing the window with animation.');
@@ -2096,7 +2090,6 @@ destroyWindow(callback: AsyncCallback&lt;void&gt;): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 windowClass.destroyWindow((err) => {
   const errCode: number = err.code;
   if (errCode) {
@@ -2135,7 +2128,6 @@ destroyWindow(): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 let promise = windowClass.destroyWindow();
 promise.then(() => {
   console.info('Succeeded in destroying the window.');
@@ -2177,7 +2169,6 @@ moveWindowTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void
 import { BusinessError } from '@ohos.base';
 
 try {
-  let windowClass: window.Window = window.findWindow("test");
   windowClass.moveWindowTo(300, 300, (err: BusinessError) => {
     const errCode: number = err.code;
     if (errCode) {
@@ -2229,7 +2220,6 @@ moveWindowTo(x: number, y: number): Promise&lt;void&gt;
 import { BusinessError } from '@ohos.base';
 
 try {
-  let windowClass: window.Window = window.findWindow("test");
   let promise = windowClass.moveWindowTo(300, 300);
   promise.then(() => {
     console.info('Succeeded in moving the window.');
@@ -2283,7 +2273,6 @@ resize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): void
 import { BusinessError } from '@ohos.base';
 
 try {
-  let windowClass: window.Window = window.findWindow("test");
   windowClass.resize(500, 1000, (err: BusinessError) => {
     const errCode: number = err.code;
     if (errCode) {
@@ -2344,7 +2333,6 @@ resize(width: number, height: number): Promise&lt;void&gt;
 import { BusinessError } from '@ohos.base';
 
 try {
-  let windowClass: window.Window = window.findWindow("test");
   let promise = windowClass.resize(500, 1000);
   promise.then(() => {
     console.info('Succeeded in changing the window size.');
@@ -2389,7 +2377,6 @@ import { BusinessError } from '@ohos.base';
 
 let mode = window.WindowMode.FULLSCREEN;
 try {
-  let windowClass: window.Window = window.findWindow("test");
   windowClass.setWindowMode(mode, (err: BusinessError) => {
     const errCode: number = err.code;
     if (errCode) {
@@ -2441,7 +2428,6 @@ import { BusinessError } from '@ohos.base';
 
 let mode = window.WindowMode.FULLSCREEN;
 try {
-  let windowClass: window.Window = window.findWindow("test");
   let promise = windowClass.setWindowMode(mode);
   promise.then(() => {
     console.info('Succeeded in setting the window mode.');
@@ -2479,7 +2465,6 @@ getWindowProperties(): WindowProperties
 
 ```ts
 try {
-  let windowClass: window.Window = window.findWindow("test");
   let properties = windowClass.getWindowProperties();
 } catch (exception) {
   console.error('Failed to obtain the window properties. Cause: ' + JSON.stringify(exception));
@@ -2519,7 +2504,6 @@ getWindowAvoidArea(type: AvoidAreaType): AvoidArea
 ```ts
 let type = window.AvoidAreaType.TYPE_SYSTEM;
 try {
-  let windowClass: window.Window = window.findWindow("test");
   let avoidArea = windowClass.getWindowAvoidArea(type);
 } catch (exception) {
   console.error('Failed to obtain the area. Cause:' + JSON.stringify(exception));
@@ -2559,7 +2543,6 @@ import { BusinessError } from '@ohos.base';
 
 let isLayoutFullScreen = true;
 try {
-  let windowClass: window.Window = window.findWindow("test");
   windowClass.setWindowLayoutFullScreen(isLayoutFullScreen, (err: BusinessError) => {
     const errCode: number = err.code;
     if (errCode) {
@@ -2611,7 +2594,6 @@ import { BusinessError } from '@ohos.base';
 
 let isLayoutFullScreen = true;
 try {
-  let windowClass: window.Window = window.findWindow("test");
   let promise = windowClass.setWindowLayoutFullScreen(isLayoutFullScreen);
   promise.then(() => {
     console.info('Succeeded in setting the window layout to full-screen mode.');
@@ -2655,7 +2637,6 @@ import { BusinessError } from '@ohos.base';
 
 let names: Array<'status' | 'navigation'> = [];
 try {
-  let windowClass: window.Window = window.findWindow("test");
   windowClass.setWindowSystemBarEnable(names, (err: BusinessError) => {
     const errCode: number = err.code;
     if (errCode) {
@@ -2706,7 +2687,6 @@ import { BusinessError } from '@ohos.base';
 
 let names: Array<'status' | 'navigation'> = [];
 try {
-  let windowClass: window.Window = window.findWindow("test");
   let promise = windowClass.setWindowSystemBarEnable(names);
   promise.then(() => {
     console.info('Succeeded in setting the system bar to be invisible.');
@@ -2755,7 +2735,6 @@ setSpecificSystemBarEnabled(name: SpecificSystemBar, enable: boolean): Promise&l
 import { BusinessError } from '@ohos.base';
 
 try {
-  let windowClass: window.Window = window.findWindow("test");
   let promise = windowClass.setSpecificSystemBarEnabled('navigationIndicator', false);
   promise.then(() => {
     console.info('Succeeded in setting the system bar to be invisible.');
@@ -2804,7 +2783,6 @@ let SystemBarProperties: window.SystemBarProperties = {
   navigationBarContentColor: '#00ffff'
 };
 try {
-  let windowClass: window.Window = window.findWindow("test");
   windowClass.setWindowSystemBarProperties(SystemBarProperties, (err: BusinessError) => {
     const errCode: number = err.code;
     if (errCode) {
@@ -2860,7 +2838,6 @@ let SystemBarProperties: window.SystemBarProperties = {
   navigationBarContentColor: '#00ffff'
 };
 try {
-  let windowClass: window.Window = window.findWindow("test");
   let promise = windowClass.setWindowSystemBarProperties(SystemBarProperties);
   promise.then(() => {
     console.info('Succeeded in setting the system bar properties.');
@@ -2902,7 +2879,6 @@ import { BusinessError } from '@ohos.base';
 
 let orientation = window.Orientation.AUTO_ROTATION;
 try {
-  let windowClass: window.Window = window.findWindow("test");
   windowClass.setPreferredOrientation(orientation, (err: BusinessError) => {
     const errCode: number = err.code;
     if (errCode) {
@@ -2951,7 +2927,6 @@ import { BusinessError } from '@ohos.base';
 
 let orientation = window.Orientation.AUTO_ROTATION;
 try {
-  let windowClass: window.Window = window.findWindow("test");
   let promise = windowClass.setPreferredOrientation(orientation);
   promise.then(() => {
     console.info('Succeeded in setting the window orientation.');
@@ -3006,7 +2981,7 @@ export default class EntryAbility extends UIAbility {
       }
       console.info('Succeeded in loading the content.');
       // 获取应用主窗口。
-      let windowClass: window.Window = window.findWindow("test");
+      let windowClass: window.Window | undefined = undefined;
       windowStage.getMainWindow((err: BusinessError, data) => {
         let errCode: number = err.code;
         if (errCode) {
@@ -3054,8 +3029,7 @@ setUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void
 import { BusinessError } from '@ohos.base';
 
 try {
-  let windowClass: window.Window = window.findWindow("test");
-  windowClass.setUIContent('pages/page2/page2', (err: BusinessError) => {
+  windowClass.setUIContent('pages/page2/page3', (err: BusinessError) => {
     const errCode: number = err.code;
     if (errCode) {
       console.error('Failed to load the content. Cause:' + JSON.stringify(err));
@@ -3103,8 +3077,7 @@ setUIContent(path: string): Promise&lt;void&gt;
 import { BusinessError } from '@ohos.base';
 
 try {
-  let windowClass: window.Window = window.findWindow("test");
-  let promise = windowClass.setUIContent('pages/page2/page2');
+  let promise = windowClass.setUIContent('pages/page2/page3');
   promise.then(() => {
     console.info('Succeeded in loading the content.');
   }).catch((err: BusinessError) => {
@@ -3154,7 +3127,6 @@ export default class EntryAbility extends UIAbility {
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     console.info('onWindowStageCreate');
-    let windowClass: window.Window = window.findWindow("test");
     let storage: LocalStorage = new LocalStorage();
     storage.setOrCreate('storageSimpleProp', 121);
     try {
@@ -3222,7 +3194,6 @@ export default class EntryAbility extends UIAbility {
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     console.info('onWindowStageCreate');
-    let windowClass: window.Window = window.findWindow("test");
     let storage: LocalStorage = new LocalStorage();
     storage.setOrCreate('storageSimpleProp', 121);
     try {
@@ -3522,7 +3493,6 @@ isWindowShowing(): boolean
 
 ```ts
 try {
-  let windowClass: window.Window = window.findWindow("test");
   let data = windowClass.isWindowShowing();
   console.info('Succeeded in checking whether the window is showing. Data: ' + JSON.stringify(data));
 } catch (exception) {
@@ -3549,7 +3519,6 @@ on(type:  'windowSizeChange', callback: Callback&lt;Size&gt;): void
 
 ```ts
 try {
-  let windowClass: window.Window = window.findWindow("test");
   windowClass.on('windowSizeChange', (data) => {
     console.info('Succeeded in enabling the listener for window size changes. Data: ' + JSON.stringify(data));
   });
@@ -3577,7 +3546,6 @@ off(type: 'windowSizeChange', callback?: Callback&lt;Size&gt;): void
 
 ```ts
 try {
-  let windowClass: window.Window = window.findWindow("test");
   windowClass.off('windowSizeChange');
 } catch (exception) {
   console.error('Failed to disable the listener for window size changes. Cause: ' + JSON.stringify(exception));
@@ -3603,7 +3571,6 @@ on(type: 'avoidAreaChange', callback: Callback&lt;{ type: AvoidAreaType, area: A
 
 ```ts
 try {
-  let windowClass: window.Window = window.findWindow("test");
   windowClass.on('avoidAreaChange', (data) => {
     console.info('Succeeded in enabling the listener for system avoid area changes. type:' +
     JSON.stringify(data.type) + ', area: ' + JSON.stringify(data.area));
@@ -3632,7 +3599,6 @@ off(type: 'avoidAreaChange', callback?: Callback&lt;{ type: AvoidAreaType, area:
 
 ```ts
 try {
-  let windowClass: window.Window = window.findWindow("test");
   windowClass.off('avoidAreaChange');
 } catch (exception) {
   console.error('Failed to disable the listener for system avoid area changes. Cause: ' + JSON.stringify(exception));
@@ -3658,7 +3624,6 @@ on(type: 'keyboardHeightChange', callback: Callback&lt;number&gt;): void
 
 ```ts
 try {
-  let windowClass: window.Window = window.findWindow("test");
   windowClass.on('keyboardHeightChange', (data) => {
     console.info('Succeeded in enabling the listener for keyboard height changes. Data: ' + JSON.stringify(data));
   });
@@ -3686,7 +3651,6 @@ off(type: 'keyboardHeightChange', callback?: Callback&lt;number&gt;): void
 
 ```ts
 try {
-  let windowClass: window.Window = window.findWindow("test");
   windowClass.off('keyboardHeightChange');
 } catch (exception) {
   console.error('Failed to disable the listener for keyboard height changes. Cause: ' + JSON.stringify(exception));
@@ -3712,7 +3676,6 @@ on(type: 'touchOutside', callback: Callback&lt;void&gt;): void
 
 ```ts
 try {
-  let windowClass: window.Window = window.findWindow("test");
   windowClass.on('touchOutside', () => {
     console.info('touch outside');
   });
@@ -3740,7 +3703,6 @@ off(type: 'touchOutside', callback?: Callback&lt;void&gt;): void
 
 ```ts
 try {
-  let windowClass: window.Window = window.findWindow("test");
   windowClass.off('touchOutside');
 } catch (exception) {
   console.error('Failed to unregister callback. Cause: ' + JSON.stringify(exception));
@@ -3766,7 +3728,6 @@ on(type: 'screenshot', callback: Callback&lt;void&gt;): void
 
 ```ts
 try {
-  let windowClass: window.Window = window.findWindow("test");
   windowClass.on('screenshot', () => {
     console.info('screenshot happened');
   });
@@ -3793,7 +3754,6 @@ off(type: 'screenshot', callback?: Callback&lt;void&gt;): void
 **示例：**
 
 ```ts
-let windowClass: window.Window = window.findWindow("test");
 let callback = () => {
   console.info('screenshot happened');
 };
@@ -3829,7 +3789,6 @@ on(type: 'dialogTargetTouch', callback: Callback&lt;void&gt;): void
 **示例：**
 
 ```ts
-let windowClass: window.Window = window.findWindow("test");
 try {
   windowClass.on('dialogTargetTouch', () => {
     console.info('touch dialog target');
@@ -3857,7 +3816,6 @@ off(type: 'dialogTargetTouch', callback?: Callback&lt;void&gt;): void
 **示例：**
 
 ```ts
-let windowClass: window.Window = window.findWindow("test");
 try {
   windowClass.off('dialogTargetTouch');
 } catch (exception) {
@@ -3883,7 +3841,6 @@ on(type: 'windowEvent', callback: Callback&lt;WindowEventType&gt;): void
 **示例：**
 
 ```ts
-let windowClass: window.Window = window.findWindow("test");
 try {
   windowClass.on('windowEvent', (data) => {
     console.info('Window event happened. Event:' + JSON.stringify(data));
@@ -3911,7 +3868,6 @@ off(type: 'windowEvent', callback?: Callback&lt;WindowEventType &gt;): void
 **示例：**
 
 ```ts
-let windowClass: window.Window = window.findWindow("test");
 try {
   windowClass.off('windowEvent');
 } catch (exception) {
@@ -3947,7 +3903,6 @@ on(type: 'windowVisibilityChange', callback: Callback&lt;boolean&gt;): void
 
 ```ts
 try {
-  let windowClass: window.Window = window.findWindow("test");
   windowClass.on('windowVisibilityChange', (boolean) => {
     console.info('Window visibility changed, isVisible=' + boolean);
   });
@@ -3984,7 +3939,6 @@ off(type: 'windowVisibilityChange', callback?: Callback&lt;boolean&gt;): void
 
 ```ts
 try {
-  let windowClass: window.Window = window.findWindow("test");
   windowClass.off('windowVisibilityChange');
 } catch (exception) {
   console.error('Failed to unregister callback. Cause: ' + JSON.stringify(exception));
@@ -4010,7 +3964,6 @@ on(type:  'windowStatusChange', callback: Callback&lt;WindowStatusType&gt;): voi
 
 ```ts
 try {
-  let windowClass: window.Window = window.findWindow("test");
   windowClass.on('windowStatusChange', (WindowStatusType) => {
       console.info('Succeeded in enabling the listener for window status changes. Data: ' + JSON.stringify(WindowStatusType));
   });
@@ -4038,7 +3991,6 @@ off(type: 'windowStatusChange', callback?: Callback&lt;WindowStatusType&gt;): vo
 
 ```ts
 try {
-  let windowClass: window.Window = window.findWindow("test");
   windowClass.off('windowStatusChange');
 } catch (exception) {
   console.error('Failed to disable the listener for window status changes. Cause: ' + JSON.stringify(exception));
@@ -4058,7 +4010,7 @@ on(type: 'windowTitleButtonRectChange', callback: Callback&lt;TitleButtonRect&gt
 | 参数名   | 类型                                                  | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                                | 是   | 监听事件，固定为'windowTitleButtonRectChange'，即标题栏上的最小化、最大化、关闭按钮矩形区域变化事件。 |
-| callback | Callback&lt;[TitleButtonRect](#titlebuttonrect11)&gt; | 否   | 回调函数。返回当前标题栏上的最小化、最大化、关闭按钮矩形区域。 |
+| callback | Callback&lt;[TitleButtonRect](#titlebuttonrect11)&gt; | 是   | 回调函数。返回当前标题栏上的最小化、最大化、关闭按钮矩形区域。 |
 
 **错误码：**
 
@@ -4072,7 +4024,6 @@ on(type: 'windowTitleButtonRectChange', callback: Callback&lt;TitleButtonRect&gt
 
 ```ts
 try {
-  let windowClass: window.Window = window.findWindow("test");
   windowClass.on('windowTitleButtonRectChange', (titleButtonRect) => {
       console.info('Succeeded in enabling the listener for window title buttons area changes. Data: ' + JSON.stringify(titleButtonRect));
   });
@@ -4108,7 +4059,6 @@ off(type: 'windowTitleButtonRectChange', callback?: Callback&lt;TitleButtonRect&
 
 ```ts
 try {
-  let windowClass: window.Window = window.findWindow("test");
   windowClass.off('windowTitleButtonRectChange');
 } catch (exception) {
   console.error('Failed to disable the listener for window title buttons area changes. Cause: ' + JSON.stringify(exception));
@@ -4457,7 +4407,6 @@ isWindowSupportWideGamut(callback: AsyncCallback&lt;boolean&gt;): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 windowClass.isWindowSupportWideGamut((err: BusinessError, data) => {
   const errCode: number = err.code;
   if (errCode) {
@@ -4495,7 +4444,6 @@ isWindowSupportWideGamut(): Promise&lt;boolean&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 let promise = windowClass.isWindowSupportWideGamut();
 promise.then((data) => {
   console.info('Succeeded in checking whether the window support WideGamut. Data: ' + JSON.stringify(data));
@@ -4532,7 +4480,6 @@ setWindowColorSpace(colorSpace:ColorSpace, callback: AsyncCallback&lt;void&gt;):
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 try {
   windowClass.setWindowColorSpace(window.ColorSpace.WIDE_GAMUT, (err: BusinessError) => {
     const errCode: number = err.code;
@@ -4580,7 +4527,6 @@ setWindowColorSpace(colorSpace:ColorSpace): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 try {
   let promise = windowClass.setWindowColorSpace(window.ColorSpace.WIDE_GAMUT);
   promise.then(() => {
@@ -4618,7 +4564,6 @@ getWindowColorSpace(): ColorSpace
 **示例：**
 
 ```ts
-let windowClass: window.Window = window.findWindow("test");
 let colorSpace = windowClass.getWindowColorSpace();
 ```
 
@@ -4647,12 +4592,22 @@ setWindowBackgroundColor(color: string): void
 **示例：**
 
 ```ts
-let color: string = '#00ff33';
-let windowClass: window.Window = window.findWindow("test");
-try {
-  windowClass.setWindowBackgroundColor(color);
-} catch (exception) {
-  console.error('Failed to set the background color. Cause: ' + JSON.stringify(exception));
+import { BusinessError } from '@ohos.base';
+
+private SetUIContent(windowClass: window.Window) {
+    windowClass.setUIContent("pages/ButtonWindow",(err: BusinessError) => {
+      if (err.code) {
+        console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+        return;
+      }
+      console.info('Succeeded in loading the content.');
+      let color: string = '#00ff33';
+      try {
+        windowClass.setWindowBackgroundColor(color);
+      } catch (exception) {
+        console.error('Failed to set the background color. Cause: ' + JSON.stringify(exception));
+      };
+    });
 }
 ```
 
@@ -4688,7 +4643,6 @@ setWindowBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): vo
 import { BusinessError } from '@ohos.base';
 
 let brightness: number = 1;
-let windowClass: window.Window = window.findWindow("test");
 try {
   windowClass.setWindowBrightness(brightness, (err: BusinessError) => {
     const errCode: number = err.code;
@@ -4740,7 +4694,6 @@ setWindowBrightness(brightness: number): Promise&lt;void&gt;
 import { BusinessError } from '@ohos.base';
 
 let brightness: number = 1;
-let windowClass: window.Window = window.findWindow("test");
 try {
   let promise = windowClass.setWindowBrightness(brightness);
   promise.then(() => {
@@ -4783,7 +4736,6 @@ setWindowFocusable(isFocusable: boolean, callback: AsyncCallback&lt;void&gt;): v
 import { BusinessError } from '@ohos.base';
 
 let isFocusable: boolean = true;
-let windowClass: window.Window = window.findWindow("test");
 try {
   windowClass.setWindowFocusable(isFocusable, (err: BusinessError) => {
     const errCode: number = err.code;
@@ -4833,7 +4785,6 @@ setWindowFocusable(isFocusable: boolean): Promise&lt;void&gt;
 import { BusinessError } from '@ohos.base';
 
 let isFocusable: boolean = true;
-let windowClass: window.Window = window.findWindow("test");
 try {
   let promise = windowClass.setWindowFocusable(isFocusable);
   promise.then(() => {
@@ -4876,7 +4827,6 @@ setWindowKeepScreenOn(isKeepScreenOn: boolean, callback: AsyncCallback&lt;void&g
 import { BusinessError } from '@ohos.base';
 
 let isKeepScreenOn: boolean = true;
-let windowClass: window.Window = window.findWindow("test");
 try {
   windowClass.setWindowKeepScreenOn(isKeepScreenOn, (err: BusinessError) => {
     const errCode: number = err.code;
@@ -4926,7 +4876,6 @@ setWindowKeepScreenOn(isKeepScreenOn: boolean): Promise&lt;void&gt;
 import { BusinessError } from '@ohos.base';
 
 let isKeepScreenOn: boolean = true;
-let windowClass: window.Window = window.findWindow("test");
 try {
   let promise = windowClass.setWindowKeepScreenOn(isKeepScreenOn);
   promise.then(() => {
@@ -4968,7 +4917,6 @@ setWakeUpScreen(wakeUp: boolean): void
 
 ```ts
 let wakeUp: boolean = true;
-let windowClass: window.Window = window.findWindow("test");
 try {
   windowClass.setWakeUpScreen(wakeUp);
 } catch (exception) {
@@ -5007,7 +4955,6 @@ setWindowPrivacyMode(isPrivacyMode: boolean, callback: AsyncCallback&lt;void&gt;
 import { BusinessError } from '@ohos.base';
 
 let isPrivacyMode: boolean = true;
-let windowClass: window.Window = window.findWindow("test");
 try {
   windowClass.setWindowPrivacyMode(isPrivacyMode, (err: BusinessError) => {
     const errCode: number = err.code;
@@ -5058,7 +5005,6 @@ setWindowPrivacyMode(isPrivacyMode: boolean): Promise&lt;void&gt;
 import { BusinessError } from '@ohos.base';
 
 let isPrivacyMode: boolean = true;
-let windowClass: window.Window = window.findWindow("test");
 try {
   let promise = windowClass.setWindowPrivacyMode(isPrivacyMode);
   promise.then(() => {
@@ -5095,7 +5041,6 @@ setSnapshotSkip(isSkip: boolean): void
 | 1300002 | This window state is abnormal. |
 
 ```ts
-let windowClass: window.Window = window.findWindow("test");
 let isSkip: boolean = true;
 try {
   windowClass.setSnapshotSkip(isSkip);
@@ -5134,7 +5079,6 @@ setWindowTouchable(isTouchable: boolean, callback: AsyncCallback&lt;void&gt;): v
 import { BusinessError } from '@ohos.base';
 
 let isTouchable = true;
-let windowClass: window.Window = window.findWindow("test");
 try {
   windowClass.setWindowTouchable(isTouchable, (err: BusinessError) => {
     const errCode: number = err.code;
@@ -5184,7 +5128,6 @@ setWindowTouchable(isTouchable: boolean): Promise&lt;void&gt;
 import { BusinessError } from '@ohos.base';
 
 let isTouchable: boolean = true;
-let windowClass: window.Window = window.findWindow("test");
 try {
   let promise = windowClass.setWindowTouchable(isTouchable);
   promise.then(() => {
@@ -5229,7 +5172,6 @@ setForbidSplitMove(isForbidSplitMove: boolean, callback: AsyncCallback&lt;void&g
 import { BusinessError } from '@ohos.base';
 
 let isForbidSplitMove: boolean = true;
-let windowClass: window.Window = window.findWindow("test");
 try {
   windowClass.setForbidSplitMove(isForbidSplitMove, (err: BusinessError) => {
     const errCode: number = err.code;
@@ -5281,7 +5223,6 @@ setForbidSplitMove(isForbidSplitMove: boolean): Promise&lt;void&gt;
 import { BusinessError } from '@ohos.base';
 
 let isForbidSplitMove: boolean = true;
-let windowClass: window.Window = window.findWindow("test");
 try {
   let promise = windowClass.setForbidSplitMove(isForbidSplitMove);
   promise.then(() => {
@@ -5322,7 +5263,6 @@ snapshot(callback: AsyncCallback&lt;image.PixelMap&gt;): void
 import { BusinessError } from '@ohos.base';
 import image from '@ohos.multimedia.image';
 
-let windowClass: window.Window = window.findWindow("test");
 windowClass.snapshot((err: BusinessError, pixelMap: image.PixelMap) => {
   const errCode: number = err.code;
   if (errCode) {
@@ -5362,7 +5302,6 @@ snapshot(): Promise&lt;image.PixelMap&gt;
 import { BusinessError } from '@ohos.base';
 import image from '@ohos.multimedia.image';
 
-let windowClass: window.Window = window.findWindow("test");
 let promise = windowClass.snapshot();
 promise.then((pixelMap: image.PixelMap) => {
   console.info('Succeeded in snapshotting window. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
@@ -5400,7 +5339,6 @@ opacity(opacity: number): void
 **示例：**
 
 ```ts
-let windowClass: window.Window = window.findWindow("test");
 try {
   windowClass.opacity(0.5);
 } catch (exception) {
@@ -5436,7 +5374,6 @@ scale(scaleOptions: ScaleOptions): void
 **示例：**
 
 ```ts
-let windowClass: window.Window = window.findWindow("test");
 let obj: window.ScaleOptions = {
   x: 2.0,
   y: 1.0,
@@ -5478,7 +5415,6 @@ rotate(rotateOptions: RotateOptions): void
 **示例：**
 
 ```ts
-let windowClass: window.Window = window.findWindow("test");
 let obj: window.RotateOptions = {
   x: 1.0,
   y: 1.0,
@@ -5521,7 +5457,6 @@ translate(translateOptions: TranslateOptions): void
 **示例：**
 
 ```ts
-let windowClass: window.Window = window.findWindow("test");
 let obj: window.TranslateOptions = {
   x: 100.0,
   y: 0.0,
@@ -5593,7 +5528,6 @@ setBlur(radius: number): void
 **示例：**
 
 ```ts
-let windowClass: window.Window = window.findWindow("test");
 try {
   windowClass.setBlur(4.0);
 } catch (exception) {
@@ -5629,7 +5563,6 @@ setBackdropBlur(radius: number): void
 **示例：**
 
 ```ts
-let windowClass: window.Window = window.findWindow("test");
 try {
   windowClass.setBackdropBlur(4.0);
 } catch (exception) {
@@ -5665,7 +5598,6 @@ setBackdropBlurStyle(blurStyle: BlurStyle): void
 **示例：**
 
 ```ts
-let windowClass: window.Window = window.findWindow("test");
 try {
   windowClass.setBackdropBlurStyle(window.BlurStyle.THIN);
 } catch (exception) {
@@ -5704,7 +5636,6 @@ setShadow(radius: number, color?: string, offsetX?: number, offsetY?: number): v
 **示例：**
 
 ```ts
-let windowClass: window.Window = window.findWindow("test");
 try {
   windowClass.setShadow(4.0, '#FF00FF00', 2, 3);
 } catch (exception) {
@@ -5740,7 +5671,6 @@ setCornerRadius(cornerRadius: number): void
 **示例：**
 
 ```ts
-let windowClass: window.Window = window.findWindow("test");
 try {
   windowClass.setCornerRadius(4.0);
 } catch (exception) {
@@ -5780,7 +5710,6 @@ raiseToAppTop(callback: AsyncCallback&lt;void&gt;): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 windowClass.raiseToAppTop((err: BusinessError) => {
   const errCode: number = err.code;
   if (errCode) {
@@ -5823,7 +5752,6 @@ raiseToAppTop(): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 let promise = windowClass.raiseToAppTop();
 promise.then(() => {
   console.info('Succeeded in raising the window to app top.');
@@ -5867,7 +5795,6 @@ setAspectRatio(ratio: number): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 try {
   let ratio = 1.0;
   let promise = windowClass.setAspectRatio(ratio);
@@ -5912,7 +5839,6 @@ setAspectRatio(ratio: number, callback: AsyncCallback&lt;void&gt;): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 try {
   let ratio = 1.0;
   windowClass.setAspectRatio(ratio, (err: BusinessError) => {
@@ -5958,7 +5884,6 @@ resetAspectRatio(): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 try {
   let promise = windowClass.resetAspectRatio();
   promise.then(() => {
@@ -6001,7 +5926,6 @@ resetAspectRatio(callback: AsyncCallback&lt;void&gt;): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 try {
     windowClass.resetAspectRatio((err: BusinessError) => {
         const errCode: number = err.code;
@@ -6053,7 +5977,6 @@ setWaterMarkFlag(enable: boolean): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 try {
   let enable = true;
   let promise = windowClass.setWaterMarkFlag(enable);
@@ -6099,7 +6022,6 @@ setWaterMarkFlag(enable: boolean, callback: AsyncCallback&lt;void&gt;): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 try {
   let enable: boolean = true;
   windowClass.setWaterMarkFlag(enable, (err: BusinessError) => {
@@ -6145,8 +6067,7 @@ raiseAboveTarget(windowId: number, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```js
-// 将windowClass调整到targetWindow之上
-let windowClass: window.Window | undefined = undefined;
+// windowClass的获取需放在targetWindow之上
 let targetWindow: window.Window = windowClass;
 let properties = targetWindow.getWindowProperties();
 let targetId = properties.id;
@@ -6195,8 +6116,7 @@ raiseAboveTarget(windowId: number): Promise&lt;void&gt;
 **示例：**
 
 ```js
-// 将windowClass调整到targetWindow之上
-let windowClass: window.Window | undefined = undefined;
+// windowClass的获取需放在targetWindow之上
 let targetWindow: window.Window = windowClass;
 let properties = targetWindow.getWindowProperties();
 let targetId = properties.id;
@@ -6241,7 +6161,6 @@ setRaiseByClickEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): vo
 
 ```js
 let enabled = false;
-let windowClass: window.Window = window.findWindow("test");
 windowClass.setRaiseByClickEnabled(enabled, (err) => {
     if (err.code) {
         console.error('Failed to disable the raise-by-click function. Cause: ' + JSON.stringify(err));
@@ -6290,7 +6209,6 @@ setRaiseByClickEnabled(enable: boolean): Promise&lt;void&gt;
 
 ```js
 let enabled = false;
-let windowClass: window.Window = window.findWindow("test");
 let promise = windowClass.setRaiseByClickEnabled(enabled);
 promise.then(()=> {
     console.info('Succeeded in disabling the raise-by-click function.');
@@ -6332,7 +6250,6 @@ minimize(callback: AsyncCallback&lt;void&gt;): void
 ```js
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 windowClass.minimize((err: BusinessError) => {
   const errCode: number = err.code;
   if (errCode) {
@@ -6377,7 +6294,6 @@ minimize(): Promise&lt;void&gt;
 ```js
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 let promise = windowClass.minimize();
 promise.then(() => {
   console.info('Succeeded in minimizing the window.');
@@ -6414,7 +6330,6 @@ recover(): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 let promise = windowClass.recover();
 promise.then(() => {
   console.info('Succeeded in recovering the window.');
@@ -6729,7 +6644,6 @@ getWindowLimits(): WindowLimits
 
 ```ts
 try {
-  let windowClass: window.Window = window.findWindow("test");
   let windowLimits = windowClass.getWindowLimits();
 } catch (exception) {
   console.error('Failed to obtain the window limits of window. Cause: ' + JSON.stringify(exception));
@@ -6777,7 +6691,6 @@ try {
     minWidth: 500,
     minHeight: 400
   };
-  let windowClass: window.Window = window.findWindow("test");
   let promise = windowClass.setWindowLimits(windowLimits);
     promise.then((data) => {
     console.info('Succeeded in changing the window limits. Cause:' + JSON.stringify(data));
@@ -6828,7 +6741,6 @@ setSingleFrameComposerEnabled(enable: boolean): Promise&lt;void&gt;
 import { BusinessError } from '@ohos.base';
 
 let enable = true;
-let windowClass: window.Window = window.findWindow("test");
 let promise = windowClass.setSingleFrameComposerEnabled(enable);
 promise.then(()=> {
     console.info('Succeeded in enabling the single-frame-composer function.');
@@ -6910,7 +6822,7 @@ export default class EntryAbility extends UIAbility {
       }
       console.info('Succeeded in loading the content.');
       // 获取应用主窗口。
-      let mainWindow: window.Window = window.findWindow("test");
+      let mainWindow: window.Window | undefined = undefined;
       windowStage.getMainWindow((err: BusinessError, data) => {
         let errCode: number = err.code;
         if (errCode) {
@@ -6958,7 +6870,6 @@ setWindowDecorHeight(height: number): void
 
 ```ts
 let height: number = 50;
-let windowClass: window.Window = window.findWindow("test");
 try {
   windowClass.setWindowDecorHeight(height);
 } catch (exception) {
@@ -6991,7 +6902,6 @@ getWindowDecorHeight(): number
 **示例：**
 
 ```ts
-let windowClass: window.Window = window.findWindow("test");
 try {
   let height = windowClass.getWindowDecorHeight();
 } catch (exception) {
@@ -7024,7 +6934,6 @@ getTitleButtonRect(): TitleButtonRect
 **示例：**
 
 ```ts
-let windowClass: window.Window = window.findWindow("test");
 try {
   let titleButtonArea = windowClass.getTitleButtonRect();
   console.info('Succeeded in obtaining the area of title buttons. Data: ' + JSON.stringify(titleButtonArea));
@@ -7056,7 +6965,6 @@ show(callback: AsyncCallback&lt;void&gt;): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 windowClass.show((err: BusinessError) => {
   const errCode: number = err.code;
   if (errCode) {
@@ -7090,7 +6998,6 @@ show(): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 let promise = windowClass.show();
 promise.then(() => {
   console.info('Succeeded in showing the window.');
@@ -7122,7 +7029,6 @@ destroy(callback: AsyncCallback&lt;void&gt;): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 windowClass.destroy((err: BusinessError) => {
   const errCode: number = err.code;
   if (err.code) {
@@ -7156,7 +7062,6 @@ destroy(): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 let promise = windowClass.destroy();
 promise.then(() => {
   console.info('Succeeded in destroying the window.');
@@ -7192,7 +7097,6 @@ moveTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 windowClass.moveTo(300, 300, (err: BusinessError) => {
   const errCode: number = err.code;
   if (errCode) {
@@ -7235,7 +7139,6 @@ moveTo(x: number, y: number): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 let promise = windowClass.moveTo(300, 300);
 promise.then(() => {
   console.info('Succeeded in moving the window.');
@@ -7280,7 +7183,6 @@ resetSize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): v
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 windowClass.resetSize(500, 1000, (err: BusinessError) => {
   const errCode: number = err.code;
   if (errCode) {
@@ -7332,7 +7234,6 @@ resetSize(width: number, height: number): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 let promise = windowClass.resetSize(500, 1000);
 promise.then(() => {
   console.info('Succeeded in changing the window size.');
@@ -7367,7 +7268,6 @@ setWindowType(type: WindowType, callback: AsyncCallback&lt;void&gt;): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 let type = window.WindowType.TYPE_APP;
 windowClass.setWindowType(type, (err: BusinessError) => {
   const errCode: number = err.code;
@@ -7410,7 +7310,6 @@ setWindowType(type: WindowType): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 let type = window.WindowType.TYPE_APP;
 let promise = windowClass.setWindowType(type);
 promise.then(() => {
@@ -7443,7 +7342,6 @@ getProperties(callback: AsyncCallback&lt;WindowProperties&gt;): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 windowClass.getProperties((err: BusinessError, data) => {
   const errCode: number = err.code;
   if (errCode) {
@@ -7477,7 +7375,6 @@ getProperties(): Promise&lt;WindowProperties&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 let promise = windowClass.getProperties();
 promise.then((data) => {
   console.info('Succeeded in obtaining the window properties. Data: ' + JSON.stringify(data));
@@ -7510,7 +7407,6 @@ getAvoidArea(type: [AvoidAreaType](#avoidareatype7), callback: AsyncCallback&lt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 let type = window.AvoidAreaType.TYPE_SYSTEM;
 windowClass.getAvoidArea(type, (err: BusinessError, data) => {
   const errCode: number = err.code;
@@ -7551,7 +7447,6 @@ getAvoidArea(type: [AvoidAreaType](#avoidareatype7)): Promise&lt;[AvoidArea](#av
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 let type = window.AvoidAreaType.TYPE_SYSTEM;
 let promise = windowClass.getAvoidArea(type);
 promise.then((data) => {
@@ -7587,7 +7482,6 @@ setFullScreen(isFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 let isFullScreen: boolean = true;
 windowClass.setFullScreen(isFullScreen, (err: BusinessError) => {
   const errCode: number = err.code;
@@ -7630,7 +7524,6 @@ setFullScreen(isFullScreen: boolean): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 let isFullScreen: boolean = true;
 let promise = windowClass.setFullScreen(isFullScreen);
 promise.then(() => {
@@ -7666,7 +7559,6 @@ setLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&lt;void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 let isLayoutFullScreen: boolean = true;
 windowClass.setLayoutFullScreen(isLayoutFullScreen, (err: BusinessError) => {
   const errCode: number = err.code;
@@ -7709,7 +7601,6 @@ setLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 let isLayoutFullScreen: boolean = true;
 let promise = windowClass.setLayoutFullScreen(isLayoutFullScreen);
 promise.then(() => {
@@ -7744,7 +7635,6 @@ setSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncCallbac
 // 此处以不显示导航栏、状态栏为例
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 let names: Array<'status' | 'navigation'> = [];
 windowClass.setSystemBarEnable(names, (err: BusinessError) => {
   const errCode: number = err.code;
@@ -7786,7 +7676,6 @@ setSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void&gt;
 // 此处以不显示导航栏、状态栏为例
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 let names: Array<'status' | 'navigation'> = [];
 let promise = windowClass.setSystemBarEnable(names);
 promise.then(() => {
@@ -7827,7 +7716,6 @@ let SystemBarProperties: window.SystemBarProperties = {
   statusBarContentColor: '#ffffff',
   navigationBarContentColor: '#00ffff'
 };
-let windowClass: window.Window = window.findWindow("test");
 windowClass.setSystemBarProperties(SystemBarProperties, (err) => {
   const errCode: number = err.code;
   if (errCode) {
@@ -7874,7 +7762,6 @@ let SystemBarProperties: window.SystemBarProperties = {
   statusBarContentColor: '#ffffff',
   navigationBarContentColor: '#00ffff'
 };
-let windowClass: window.Window = window.findWindow("test");
 let promise = windowClass.setSystemBarProperties(SystemBarProperties);
 promise.then(() => {
   console.info('Succeeded in setting the system bar properties.');
@@ -7907,8 +7794,7 @@ loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
-windowClass.loadContent('pages/page2/page2', (err: BusinessError) => {
+windowClass.loadContent('pages/page2/page3', (err: BusinessError) => {
   const errCode: number = err.code;
   if (errCode) {
     console.error('Failed to load the content. Cause:' + JSON.stringify(err));
@@ -7947,8 +7833,7 @@ loadContent(path: string): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
-let promise = windowClass.loadContent('pages/page2/page2');
+let promise = windowClass.loadContent('pages/page2/page3');
 promise.then(() => {
   console.info('Succeeded in loading the content.');
 }).catch((err: BusinessError) => {
@@ -7979,7 +7864,6 @@ isShowing(callback: AsyncCallback&lt;boolean&gt;): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 windowClass.isShowing((err: BusinessError, data) => {
   const errCode: number = err.code;
   if (errCode) {
@@ -8013,7 +7897,6 @@ isShowing(): Promise&lt;boolean&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 let promise = windowClass.isShowing();
 promise.then((data) => {
   console.info('Succeeded in checking whether the window is showing. Data: ' + JSON.stringify(data));
@@ -8044,7 +7927,6 @@ on(type: 'systemAvoidAreaChange', callback: Callback&lt;AvoidArea&gt;): void
 **示例：**
 
 ```ts
-let windowClass: window.Window = window.findWindow("test");
 windowClass.on('systemAvoidAreaChange', (data) => {
   console.info('Succeeded in enabling the listener for system avoid area changes. Data: ' + JSON.stringify(data));
 });
@@ -8072,7 +7954,6 @@ off(type: 'systemAvoidAreaChange', callback?: Callback&lt;AvoidArea&gt;): void
 **示例：**
 
 ```ts
-let windowClass: window.Window = window.findWindow("test");
 windowClass.off('systemAvoidAreaChange');
 ```
 
@@ -8099,7 +7980,6 @@ isSupportWideGamut(callback: AsyncCallback&lt;boolean&gt;): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 windowClass.isSupportWideGamut((err: BusinessError, data) => {
   const errCode: number = err.code;
   if (errCode) {
@@ -8133,7 +8013,6 @@ isSupportWideGamut(): Promise&lt;boolean&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 let promise = windowClass.isSupportWideGamut();
 promise.then((data) => {
   console.info('Succeeded in checking whether the window support WideGamut. Data: ' + JSON.stringify(data));
@@ -8166,7 +8045,6 @@ setColorSpace(colorSpace:ColorSpace, callback: AsyncCallback&lt;void&gt;): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 windowClass.setColorSpace(window.ColorSpace.WIDE_GAMUT, (err: BusinessError) => {
   const errCode: number = err.code;
   if (errCode) {
@@ -8206,7 +8084,6 @@ setColorSpace(colorSpace:ColorSpace): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 let promise = windowClass.setColorSpace(window.ColorSpace.WIDE_GAMUT);
 promise.then(() => {
   console.info('Succeeded in setting window colorspace.');
@@ -8238,7 +8115,6 @@ getColorSpace(callback: AsyncCallback&lt;ColorSpace&gt;): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 windowClass.getColorSpace((err: BusinessError, data) => {
   const errCode: number = err.code;
   if (errCode) {
@@ -8272,7 +8148,6 @@ getColorSpace(): Promise&lt;ColorSpace&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 let promise = windowClass.getColorSpace();
 promise.then((data) => {
   console.info('Succeeded in getting window color space. Cause:' + JSON.stringify(data));
@@ -8305,7 +8180,6 @@ setBackgroundColor(color: string, callback: AsyncCallback&lt;void&gt;): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 let color: string = '#00ff33';
 windowClass.setBackgroundColor(color, (err: BusinessError) => {
   const errCode: number = err.code;
@@ -8346,7 +8220,6 @@ setBackgroundColor(color: string): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 let color: string = '#00ff33';
 let promise = windowClass.setBackgroundColor(color);
 promise.then(() => {
@@ -8382,7 +8255,6 @@ setBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 let brightness: number = 1;
 windowClass.setBrightness(brightness, (err: BusinessError) => {
   const errCode: number = err.code;
@@ -8425,7 +8297,6 @@ setBrightness(brightness: number): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 let brightness: number = 1;
 let promise = windowClass.setBrightness(brightness);
 promise.then(() => {
@@ -8459,7 +8330,6 @@ setDimBehind(dimBehindValue: number, callback: AsyncCallback&lt;void&gt;): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 windowClass.setDimBehind(0.5, (err: BusinessError) => {
   const errCode: number = err.code;
   if (errCode) {
@@ -8499,7 +8369,6 @@ setDimBehind(dimBehindValue: number): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 let promise = windowClass.setDimBehind(0.5);
 promise.then(() => {
   console.info('Succeeded in setting the dimness.');
@@ -8532,7 +8401,6 @@ setFocusable(isFocusable: boolean, callback: AsyncCallback&lt;void&gt;): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 let isFocusable: boolean = true;
 windowClass.setFocusable(isFocusable, (err: BusinessError) => {
   const errCode: number = err.code;
@@ -8573,7 +8441,6 @@ setFocusable(isFocusable: boolean): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 let isFocusable: boolean = true;
 let promise = windowClass.setFocusable(isFocusable);
 promise.then(() => {
@@ -8607,7 +8474,6 @@ setKeepScreenOn(isKeepScreenOn: boolean, callback: AsyncCallback&lt;void&gt;): v
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 let isKeepScreenOn: boolean = true;
 windowClass.setKeepScreenOn(isKeepScreenOn, (err: BusinessError) => {
   const errCode: number = err.code;
@@ -8648,7 +8514,6 @@ setKeepScreenOn(isKeepScreenOn: boolean): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 let isKeepScreenOn: boolean = true;
 let promise = windowClass.setKeepScreenOn(isKeepScreenOn);
 promise.then(() => {
@@ -8767,7 +8632,6 @@ setPrivacyMode(isPrivacyMode: boolean, callback: AsyncCallback&lt;void&gt;): voi
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 let isPrivacyMode: boolean = true;
 windowClass.setPrivacyMode(isPrivacyMode, (err: BusinessError) => {
   const errCode: number = err.code;
@@ -8808,7 +8672,6 @@ setPrivacyMode(isPrivacyMode: boolean): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 let isPrivacyMode: boolean = true;
 let promise = windowClass.setPrivacyMode(isPrivacyMode);
 promise.then(() => {
@@ -8888,7 +8751,6 @@ setTouchable(isTouchable: boolean): Promise&lt;void&gt;
 import { BusinessError } from '@ohos.base';
 
 let isTouchable = true;
-let windowClass: window.Window = window.findWindow("test");
 let promise = windowClass.setTouchable(isTouchable);
 promise.then(() => {
   console.info('Succeeded in setting the window to be touchable.');
@@ -9976,7 +9838,6 @@ completeTransition(isCompleted: boolean): void
 **示例：**
 
 ```ts
-let windowClass: window.Window | undefined = undefined;
 (context: window.TransitionContext) => {
   let toWindow: window.Window = context.toWindow;
   animateTo({

@@ -66,7 +66,8 @@ let serviceDataUnit: ble.ServiceData = {
 let advData: ble.AdvertiseData = {
   serviceUuids: ["00001888-0000-1000-8000-00805f9b34fb"],
   manufactureData: [manufactureDataUnit],
-  serviceData: [serviceDataUnit]
+  serviceData: [serviceDataUnit],
+  includeDeviceName: false // 表示是否携带设备名，可选参数。注意带上设备名时广播包长度不能超出31个字节。
 };
 let advResponse: ble.AdvertiseData = {
   serviceUuids: ["00001888-0000-1000-8000-00805f9b34fb"],

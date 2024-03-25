@@ -132,7 +132,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
     this.context.startAbility(want).then(() => {
       console.info('StartAbility Success');
     }).catch((error: Base.BusinessError) => {
-      console.error('StartAbility failed, error.code: ${error.code}, error.message: ${error.message}');
+      console.error(`StartAbility failed, error.code: ${error.code}, error.message: ${error.message}`);
     });
   }
 };

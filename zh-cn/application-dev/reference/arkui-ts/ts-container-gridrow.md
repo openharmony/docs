@@ -27,10 +27,10 @@ GridRow(option?: GridRowOptions)
 ## GridRowOptions对象说明
 | 参数名 |类型|必填|说明|
 |-----|-----|----|----|
-|columns| number \| [GridRowColumnOption](#gridrowcolumnoption) |  否  |设置布局列数。|
-|gutter|[Length](ts-types.md#length) \| [GutterOption](#gutteroption)|   否  |栅格布局间距。|
-|breakpoints|[BreakPoints](#breakpoints)|  否  |设置断点值的断点数列以及基于窗口或容器尺寸的相应参照。|
-|direction|[GridRowDirection](#gridrowdirection枚举说明)|   否  |栅格布局排列方向。|
+|columns| number \| [GridRowColumnOption](#gridrowcolumnoption) |  否  |设置布局列数。<br />默认值：12 |
+|gutter|[Length](ts-types.md#length) \| [GutterOption](#gutteroption)|   否  |栅格布局间距。<br />默认值：0 |
+|breakpoints|[BreakPoints](#breakpoints)|  否  |设置断点值的断点数列以及基于窗口或容器尺寸的相应参照。<br />默认值：<br />{<br />value: ["320vp", "600vp", "840vp"],<br />reference: BreakpointsReference.WindowSize<br />} |
+|direction|[GridRowDirection](#gridrowdirection枚举说明)|   否  |栅格布局排列方向。<br />默认值：GridRowDirection.Row |
 
 ## GutterOption
 

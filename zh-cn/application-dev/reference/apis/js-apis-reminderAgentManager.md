@@ -497,7 +497,7 @@ reminderAgentManager.removeNotificationSlot(notification.SlotType.CONTENT_INFORM
 
 removeNotificationSlot(slotType: notification.SlotType): Promise\<void>
 
-删除目标NotificationSlot（通知槽）。使用Promise异步回调。
+删除目标NotificationSlot（通知槽），使用Promise异步回调。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 

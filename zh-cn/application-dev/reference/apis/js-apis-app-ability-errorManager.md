@@ -13,7 +13,7 @@ import errorManager from '@ohos.app.ability.errorManager';
 
 ## ErrorManager.on
 
-on(type: 'error', observer: ErrorObserver): number;
+on(type: 'error', observer: ErrorObserver): number
 
 注册错误观测器。注册后可以捕获到应用产生的js crash，应用崩溃时进程不会退出。
 
@@ -70,7 +70,7 @@ try {
 
 ## ErrorManager.off
 
-off(type: 'error', observerId: number,  callback: AsyncCallback\<void>): void;
+off(type: 'error', observerId: number,  callback: AsyncCallback\<void>): void
 
 注销错误观测器。
 
@@ -116,7 +116,7 @@ try {
 
 ## ErrorManager.off
 
-off(type: 'error', observerId: number): Promise\<void>;
+off(type: 'error', observerId: number): Promise\<void>
 
 注销错误观测器。
 

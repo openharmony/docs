@@ -50,9 +50,9 @@ import font from '@ohos.font';
 struct FontExample {
   @State message: string = 'Hello World'
 
-  // iconFont示例，假设****为指定icon的Unicode
-  @State unicode: string = '\u****'
-  @State codePoint: string = String.fromCharCode(0x****)
+  // iconFont示例，假设0000为指定icon的Unicode，实际需要开发者从注册的iconFont的ttf文件里面获取Unicode
+  @State unicode: string = '\u0000'
+  @State codePoint: string = String.fromCharCode(0x0000)
 
   aboutToAppear() {
     // familyName和familySrc都支持string
@@ -100,6 +100,10 @@ struct FontExample {
   }
 }
 ```
+> **说明：** 
+>
+> 若需全局使用自定义字体，请在EntryAbility.ets文件的[onWindowStageCreate](js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate)生命周期中，通过[windowStage.loadContent](js-apis-window.md#loadcontent9)回调注册。
+
 ## font.getSystemFontList<sup>10+</sup>
 
 getSystemFontList(): Array\<string>
@@ -168,8 +172,8 @@ getFontByName(fontName: string): FontInfo
 | fullName       | string  | 是 | 系统字体的名称。           |
 | family         | string  | 是 | 系统字体的字体家族。       |
 | subfamily      | string  | 是 | 系统字体的子字体家族。      |
-| weight         | number  | 是 | 系统字体的粗细程度。        |
-| width          | number  | 是 | 系统字体的宽窄风格属性。    |
+| weight         | number  | 是 | 系统字体的粗细程度，单位px。        |
+| width          | number  | 是 | 系统字体的宽窄风格属性，单位px。    |
 | italic         | boolean | 是 | 系统字体是否倾斜。          |
 | monoSpace      | boolean | 是 | 系统字体是否紧凑。         |
 | symbolic       | boolean | 是 | 系统字体是否支持符号字体。  |
@@ -224,7 +228,7 @@ getUIFontConfig() : UIFontConfig
 | -------------- | ------- | ------------------------- | ------------------------- |
 | fontDir        | Array\<string>  | 是 | 系统字体文件所在的路径。      |
 | generic | Array\<[UIFontGenericInfo](#uifontgenericinfo11)>  | 是 | 系统所支持的通用字体集列表。 |
-| fallbackGroups       | Array\<[UIFallbackGroupInfo](#uifallbackgroupinfo11)>  | 是 | 备用字体集。           |
+| fallbackGroups       | Array\<[UIFontFallbackGroupInfo](#uifontfallbackgroupinfo11)>  | 是 | 备用字体集。           |
 
 ## UIFontGenericInfo<sup>11+</sup>
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -234,7 +238,7 @@ getUIFontConfig() : UIFontConfig
 | alias        | Array\<[UIFontAliasInfo](#uifontaliasinfo11)>  | 是 | 别名列表。 |
 | adjust       | Array\<[UIFontAdjustInfo](#uifontadjustinfo11)>  | 否 | 字体原本的weight值对应需显示的值。 |
 
-## UIFallbackGroupInfo<sup>11+</sup>
+## UIFontFallbackGroupInfo<sup>11+</sup>
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 | 名称            | 类型    | 必填  | 说明                       |
 | -------------- | ------- | ------------------------- | ------------------------- |
@@ -259,8 +263,8 @@ getUIFontConfig() : UIFontConfig
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 | 名称            | 类型    | 必填  | 说明                       |
 | -------------- | ------- | ------------------------- | ------------------------- |
-| language       | number  | 是 | 字体集所支持的语言类型，语言格式为bcp47。    |
-| family         | number  | 是 | 字体集名，字体文件中指定的"family"值。 |
+| language       | string  | 是 | 字体集所支持的语言类型，语言格式为bcp47。    |
+| family         | string  | 是 | 字体集名，字体文件中指定的"family"值。 |
 
 **示例：**
 

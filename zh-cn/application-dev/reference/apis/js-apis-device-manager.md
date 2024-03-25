@@ -80,7 +80,7 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 | deviceType             | [DeviceType](#devicetype) | 是    | 设备类型。    |
 | networkId<sup>8+</sup> | string                    | 是    | 设备网络标识。  |
 | range<sup>9+</sup>     | number                    | 是    | 发现设备的距离。  |
-| authForm<sup>10+</sup> | [AuthForm](#authform)     | 是    | 设备认证类型  |
+| authForm<sup>10+</sup> | [AuthForm](#authform10)     | 是    | 设备认证类型。  |
 
 ## DeviceType
 
@@ -92,13 +92,13 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 
 | 名称           | 值  | 说明   |
 | ------------ | ---- | ---- |
-| SPEAKER      | 0x0A | 智能音箱 |
-| PHONE        | 0x0E | 手机   |
-| TABLET       | 0x11 | 平板   |
-| WEARABLE     | 0x6D | 智能穿戴 |
-| TV           | 0x9C | 智慧屏  |
-| CAR          | 0x83 | 车    |
-| UNKNOWN_TYPE | 0    | 未知设备 |
+| SPEAKER      | 0x0A | 智能音箱。 |
+| PHONE        | 0x0E | 手机。   |
+| TABLET       | 0x11 | 平板。   |
+| WEARABLE     | 0x6D | 智能穿戴。 |
+| TV           | 0x9C | 智慧屏。  |
+| CAR          | 0x83 | 车。    |
+| UNKNOWN_TYPE | 0    | 未知设备。 |
 
 ## AuthForm<sup>10+</sup>
 
@@ -110,10 +110,10 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 
 | 名称                 | 值  | 说明             |
 | ------------------- | ---- | --------------- |
-| INVALID_TYPE        | -1   | 设备没有认证 |
-| PEER_TO_PEER        | 0    | 无账号设备点对点认证   |
-| IDENTICAL_ACCOUNT   | 1    | 设备同账号认证   |
-| ACROSS_ACCOUNT      | 2    | 设备跨账号认证 |
+| INVALID_TYPE        | -1   | 设备没有认证。 |
+| PEER_TO_PEER        | 0    | 无账号设备点对点认证。   |
+| IDENTICAL_ACCOUNT   | 1    | 设备同账号认证。   |
+| ACROSS_ACCOUNT      | 2    | 设备跨账号认证。 |
 
 ## DeviceStateChangeAction
 
@@ -847,7 +847,7 @@ publishDeviceDiscovery(publishInfo: PublishInfo): void
 
   | 参数名          | 类型                        | 必填 | 说明    |
   | ------------- | ------------------------------- | ---- | ----- |
-  | publishInfo   | [PublishInfo](#publishinfo)     | 是   | 发布设备发现信息。 |
+  | publishInfo   | [PublishInfo](#publishinfo9)     | 是   | 发布设备发现信息。 |
 
 **错误码：**
 
@@ -1099,13 +1099,13 @@ verifyAuthInfo(authInfo: AuthInfo, callback: AsyncCallback&lt;{deviceId: string,
 
   interface ExtraInfo {
     authType: number;
-    token: numbe;
+    token: number;
   }
 
   interface AuthInfo {
     authType: number;
     token: number;
-    extraInfo: ExtraInf;
+    extraInfo: ExtraInfo;
   }
 
   class Data {

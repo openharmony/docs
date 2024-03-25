@@ -820,7 +820,7 @@ doAbilityBackground(ability: UIAbility, callback: AsyncCallback\<void>): void
 | 参数名   | 类型                    | 必填 | 说明                                                    |
 | -------- | ----------------------- | ---- | ------------------------------------------------------- |
 | ability  | UIAbility                 | 是   | 指定Ability对象。                                         |
-| callback | AsyncCallback\<void> | 是   | 表示指定的回调方法。<br/>\- true：成功<br/>\- false：失败 |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当调度指定ability生命周期状态到Background状态成功，err为undefined，否则为错误对象。  |
 
 **错误码**：
 
@@ -868,7 +868,7 @@ doAbilityBackground(ability: UIAbility): Promise\<void>
 
 | 类型              | 说明                                                         |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<boolean> | 以Promise形式返回执行结果。<br/>\- true：成功<br/>\- false：失败 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。                            |
 
 **错误码**：
 

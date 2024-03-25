@@ -16,7 +16,7 @@ import ChildProcess from '@ohos.app.ability.ChildProcess';
 
 ## ChildProcess.onStart
 
-onStart(): void;
+onStart(): void
 
 子进程的入口方法，通过[childProcessManager](js-apis-app-ability-childProcessManager.md)启动子进程后调用。
 

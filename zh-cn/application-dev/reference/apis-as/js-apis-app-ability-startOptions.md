@@ -17,9 +17,9 @@ import StartOptions from '@ohos.app.ability.StartOptions';
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 只读 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| displayId | number | 否 | 屏幕ID。默认是0，表示当前屏幕。 |
+| displayId | number | 否 | 否 | 屏幕ID。默认是0，表示当前屏幕。 |
 
 **示例：**
 

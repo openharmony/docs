@@ -10,7 +10,7 @@ Drawing绘制的内容无法直接在屏幕上显示，需要借用XComponent以
 
 Drawing常用接口如下表所示，详细的接口说明请参考[Drawing](../reference/native-apis/_drawing.md)。
 
-| 接口名 | 描述 | 
+| 接口名 | 描述 |
 | -------- | -------- |
 | OH_Drawing_BitmapCreate (void) | 创建一个位图对象。 |
 | OH_Drawing_BitmapBuild (OH_Drawing_Bitmap *, const uint32_t width, const uint32_t height, const OH_Drawing_BitmapFormat *) | 初始化位图对象的宽度和高度，并且为该位图设置像素格式。 |
@@ -340,7 +340,15 @@ libnative_drawing.so
 
 ### 文本绘制开发步骤
 
-以下步骤描述了如何使用Native Drawing模块的文字显示功能：
+Native Drawing模块关于文本绘制提供两类API接口：
+
+- 一类是具有定制排版能力的接口：如OH_Drawing_Typography，OH_Drawing_TypographyStyle，OH_Drawing_TextStyle等类型。支撑用户设置排版风格和文本风格，可调用OH_Drawing_TypographyHandlerAddText添加文本并调用OH_Drawing_TypographyLayout和OH_Drawing_TypographyPaint对文本进行排版和绘制。
+- 另一类是不具有定制排版能力的接口：如OH_Drawing_Font，OH_Drawing_TextBlob，OH_Drawing_RunBuffer等类型。支撑具备自排版能力的用户将排版结果构造为OH_Drawing_TextBlob并调用OH_Drawing_CanvasDrawTextBlob绘制OH_Drawing_TextBlob描述的文本块。
+
+以下分别提供了如何使用这两类API接口以实现文本绘制的具体步骤。
+
+#### 使用定制排版能力实现文本绘制
+
 1. **创建画布和bitmap实例**。
 
     ```c++
@@ -376,19 +384,30 @@ libnative_drawing.so
     OH_Drawing_SetTextStyleFontWeight(txtStyle, FONT_WEIGHT_400);
     OH_Drawing_SetTextStyleBaseLine(txtStyle, TEXT_BASELINE_ALPHABETIC);
     OH_Drawing_SetTextStyleFontHeight(txtStyle, 1);
-    // 设置字体类型等
-    const char* fontFamilies[] = {"Roboto"};
-    OH_Drawing_SetTextStyleFontFamilies(txtStyle, 1, fontFamilies);
+    OH_Drawing_FontCollection* fontCollection = OH_Drawing_CreateFontCollection();
+    // 注册自定义字体
+    const char* fontFamily = "myFamilyName"; // myFamilyName为自定义字体的family name
+    const char* fontPath = "/data/storage/el2/base/haps/entry/files/myFontFile.ttf"; // 设置自定义字体所在的沙箱路径
+    OH_Drawing_RegisterFont(fontCollection, fontFamily, fontPath);
+    // 设置系统字体类型
+    const char* systemFontFamilies[] = {"Roboto"};
+    OH_Drawing_SetTextStyleFontFamilies(txtStyle, 1, systemFontFamilies);
     OH_Drawing_SetTextStyleFontStyle(txtStyle, FONT_STYLE_NORMAL);
     OH_Drawing_SetTextStyleLocale(txtStyle, "en");
+    // 设置自定义字体类型
+    auto txtStyle2 = OH_Drawing_CreateTextStyle();
+    OH_Drawing_SetTextStyleFontSize(txtStyle2, fontSize);
+    const char* myFontFamilies[] = {"myFamilyName"}; //如果已经注册自定义字体，填入自定义字体的family name使用自定义字体
+    OH_Drawing_SetTextStyleFontFamilies(txtStyle2, 1, myFontFamilies);
     ```
 
 4. **生成最终文本显示效果**。
 
     ```c++
     OH_Drawing_TypographyCreate* handler = OH_Drawing_CreateTypographyHandler(typoStyle,
-        OH_Drawing_CreateFontCollection());
+        fontCollection);
     OH_Drawing_TypographyHandlerPushTextStyle(handler, txtStyle);
+    OH_Drawing_TypographyHandlerPushTextStyle(handler, txtStyle2);
     // 设置文字内容
     const char* text = "Hello World Drawing\n";
     OH_Drawing_TypographyHandlerAddText(handler, text);
@@ -402,6 +421,78 @@ libnative_drawing.so
     // 将文本绘制到画布上
     OH_Drawing_TypographyPaint(typography, cCanvas_, position[0], position[1]);
     ```
+5. **释放变量**。
+
+    ```c++
+    OH_Drawing_DestroyTypography(typography);
+    OH_Drawing_DestroyTypographyHandler(handler);
+    OH_Drawing_DestroyFontCollection(fontCollection);
+    OH_Drawing_DestroyTextStyle(txtStyle);
+    OH_Drawing_DestroyTextStyle(txtStyle2);
+    OH_Drawing_DestroyTypographyStyle(typoStyle);
+    ```
+
+#### 使用非定制排版能力实现文本绘制
+
+1. **创建画布和bitmap实例**。
+
+    ```c++
+    // 创建bitmap
+    cBitmap_ = OH_Drawing_BitmapCreate();
+    OH_Drawing_BitmapFormat cFormat {COLOR_FORMAT_RGBA_8888, ALPHA_FORMAT_OPAQUE};
+    // width的值必须为bufferHandle->stride / 4
+    OH_Drawing_BitmapBuild(cBitmap_, width_, height_, &cFormat);
+    // 创建canvas
+    cCanvas_ = OH_Drawing_CanvasCreate();
+    OH_Drawing_CanvasBind(cCanvas_, cBitmap_);
+    OH_Drawing_CanvasClear(cCanvas_, OH_Drawing_ColorSetArgb(0xFF, 0xFF, 0xFF, 0xFF));
+    ```
+
+2. **应用具备自排版能力的文本绘制**。
+
+    ```c++
+    // 创建字体，并设置文字大小
+    OH_Drawing_Font* font = OH_Drawing_FontCreate();
+    OH_Drawing_FontSetTextSize(font, 40);
+    // 创建文本构造器
+    OH_Drawing_TextBlobBuilder* builder = OH_Drawing_TextBlobBuilderCreate();
+    // 申请一块内存
+    const OH_Drawing_RunBuffer* runBuffer = OH_Drawing_TextBlobBuilderAllocRunPos(builder, font, count, nullptr);
+    // glyphs、posX和posY是开发者自排版产生的数据，使用该数据填充内存
+    for (int idx = 0; idx < count; idx++) {
+        runBuffer->glyphs[idx] = glyphs[idx];
+        runBuffer->pos[idx * 2] = posX[idx];
+        runBuffer->pos[idx * 2 + 1] = posY[idx];
+    }
+    // 通过文本构造器创建文本
+    OH_Drawing_TextBlob* textBlob = OH_Drawing_TextBlobBuilderMake(builder);
+    // 释放内存
+    OH_Drawing_TextBlobBuilderDestroy(builder);
+    ```
+
+3. **设置画笔和画刷样式**。
+
+    ```c++
+    // 创建一个画刷Brush对象，Brush对象用于形状的填充
+    cBrush_ = OH_Drawing_BrushCreate();
+    OH_Drawing_BrushSetColor(cBrush_, OH_Drawing_ColorSetArgb(0xFF, 0x00, 0x00, 0x00));
+
+    // 将Brush画刷设置到canvas中
+    OH_Drawing_CanvasAttachBrush(cCanvas_, cBrush_);
+    ```
+
+4. **生成最终文本显示效果**。
+
+    ```c++
+    // 设置文本在画布上绘制的起始位置
+    double position[2] = {width_ / 5.0, height_ / 2.0};
+    // 将文本绘制到画布上
+    OH_Drawing_CanvasDrawTextBlob(canvas_, textBlob, position[0], position[1]);
+    // 释放内存
+    OH_Drawing_TextBlobDestroy(textBlob);
+    OH_Drawing_FontDestroy(font);
+    ```
+
 ### 绘制内容送显
 
 前面我们已经通过Drawing API实现了Path绘制以及文字绘制。现在需要将其呈现在Native Window上。

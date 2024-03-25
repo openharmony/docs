@@ -343,7 +343,7 @@ ThreadWorker构造函数。
 
 | 参数名    | 类型                            | 必填 | 说明                                                         |
 | --------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| scriptURL | string                          | 是   | Worker执行脚本的路径。<br/>DevEco Studio新建Worker工程路径分别存在以下两种情况：<br/>(a) worker脚本所在目录与pages目录同级。<br/>(b) worker脚本所在目录与pages目录不同级。 |
+| scriptURL | string                          | 是   | Worker线程文件的路径。<br/>路径规则详细参考[文件路径注意事项](../../arkts-utils/worker-introduction.md#文件路径注意事项)。 |
 | options   | [WorkerOptions](#workeroptions) | 否   | Worker构造的选项。                                           |
 
 **错误码：**
@@ -357,46 +357,20 @@ ThreadWorker构造函数。
 
 **示例：**
 
+此处以在Stage模型中Ability加载Worker文件为例，使用Library加载Worker线程文件的场景参考[文件路径注意事项](../../arkts-utils/worker-introduction.md#文件路径注意事项)。
+
 ```ts
 import worker from '@ohos.worker';
 
-// worker线程创建
+// 主要说明以下两种场景：
 
-// 目录同级（entry模块下，workers目录与pages目录同级）
-const workerInstance = new worker.ThreadWorker('entry/ets/workers/worker.ts', {name:"first worker"});
-// 目录不同级（entry模块下，workers目录是pages目录的子目录）
-const workerInstance = new worker.ThreadWorker('entry/ets/pages/workers/worker.ts');
+// 场景1： worker文件所在路径："entry/src/main/ets/workers/worker.ets"
+const workerStageModel01 = new worker.ThreadWorker('entry/ets/workers/worker.ets', {name:"first worker in Stage model"});
 
-// 理解scriptURL的"entry/ets/workers/worker.ts"：
-// entry: 为module.json5文件中module的name属性对应的值，ets: 表明当前使用的语言。
-// scriptURL与worker文件所在的workers目录层级有关，与new worker所在文件无关。
+// 场景2： worker文件所在路径："phone/src/main/ets/ThreadFile/workers/worker.ets"
+const workerStageModel02 = new worker.ThreadWorker('phone/ets/ThreadFile/workers/worker.ets');
 ```
 
-同时，需在工程的模块级build-profile.json5文件的buildOption属性中添加配置信息，主要分为下面两种情况：
-
-(1) 目录同级
-
-```json
-  "buildOption": {
-    "sourceOption": {
-      "workers": [
-        "./src/main/ets/workers/worker.ts"
-      ]
-    }
-  }
-```
-
-(2) 目录不同级
-
-```json
-  "buildOption": {
-    "sourceOption": {
-      "workers": [
-        "./src/main/ets/pages/workers/worker.ts"
-      ]
-    }
-  }
-```
 
 ### postMessage<sup>9+</sup>
 

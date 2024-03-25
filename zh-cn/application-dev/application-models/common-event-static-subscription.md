@@ -23,13 +23,12 @@
    ```ts
    import StaticSubscriberExtensionAbility from '@ohos.application.StaticSubscriberExtensionAbility';
    import type commonEventManager from '@ohos.commonEventManager';
-   import Logger from '../utils/Logger';
    
    const TAG: string = 'StaticSubscriber';
    
    export default class StaticSubscriber extends StaticSubscriberExtensionAbility {
      onReceiveEvent(event: commonEventManager.CommonEventData): void {
-       Logger.info(TAG, 'onReceiveEvent, event: ' + event.event);
+       console.info(TAG, 'onReceiveEvent, event: ' + event.event);
        ...
      }
    }

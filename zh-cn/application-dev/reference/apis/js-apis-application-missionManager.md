@@ -170,11 +170,10 @@ getMissionInfo(deviceId: string, missionId: number, callback: AsyncCallback&lt;M
 
   ```ts
   import missionManager from '@ohos.application.missionManager';
-  import { BusinessError } from '@ohos.base';
 
-  let allMissions=missionManager.getMissionInfos('',10).catch((err: BusinessError) => {
-    console.log(`${err}`);});
-  missionManager.getMissionInfo('', allMissions[0].missionId, (error, mission) => {
+  let missionId: number = 0;
+
+  missionManager.getMissionInfo('', missionId, (error, mission) => {
     if (error.code) {
       console.error(`getMissionInfo failed, error.code: ${error.code}, error.message: ${error.message}`);
       return;

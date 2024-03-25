@@ -16,7 +16,7 @@ import wantConstant from '@ohos.ability.wantConstant';
 
 want操作的常数。用于表示要执行的通用操作。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityBase
+**系统能力**：SystemCapability.Ability.AbilityBase
 
 | 名称      | 值          | 说明     |
 | ------------ | ------------------ | ---------------------- |
@@ -52,7 +52,7 @@ want操作的常数。用于表示要执行的通用操作。
 
 want实体的常数。用于表示目标Ability额外的类别信息。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityBase
+**系统能力**：SystemCapability.Ability.AbilityBase
 
 | 名称      | 值          | 说明     |
 | ------------ | ------------------ | ---------------------- |
@@ -67,7 +67,7 @@ want实体的常数。用于表示目标Ability额外的类别信息。
 
 Flags说明。用于表示处理Want的方式。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityBase
+**系统能力**：SystemCapability.Ability.AbilityBase
 
 | 名称                                 | 值       | 说明                                                         |
 | ------------------------------------ | ---------- | ------------------------------------------------------------ |

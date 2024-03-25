@@ -28,12 +28,12 @@ TimePicker(options?: TimePickerOptions)
 
 ## TimePickerOptions对象说明
 
-| 名称                 | 类型                                          | 必填 | 说明                                                         |
-| -------------------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| selected             | Date                                          | 否   | 设置选中项的时间。<br/>默认值：当前系统时间<br />从API version 10开始，该参数支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
-| format<sup>11+</sup> | [TimePickerFormat](#timepickerformat枚举说明) | 否   | 指定需要显示的TimePicker的格式。                             |
+| 名称                 | 类型                                            | 必填 | 说明                                                         |
+| -------------------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
+| selected             | Date                                            | 否   | 设置选中项的时间。<br/>默认值：当前系统时间<br />从API version 10开始，该参数支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
+| format<sup>11+</sup> | [TimePickerFormat](#timepickerformat11枚举说明) | 否   | 指定需要显示的TimePicker的格式。<br/>默认值：TimePickerFormat.HOUR_MINUTE |
 
-## TimePickerFormat枚举说明
+## TimePickerFormat<sup>11+</sup>枚举说明
 
 | 名称               | 说明                     |
 | ------------------ | ------------------------ |
@@ -93,7 +93,7 @@ struct TimePickerExample {
       })
         .useMilitaryTime(this.isMilitaryTime)
         .onChange((value: TimePickerResult) => {
-          if(value.hour) {
+          if(value.hour >= 0) {
             this.selectedTime.setHours(value.hour, value.minute)
             console.info('select current date is: ' + JSON.stringify(value))
           }

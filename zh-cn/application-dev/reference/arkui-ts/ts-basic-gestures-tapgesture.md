@@ -15,7 +15,7 @@ TapGesture(value?: { count?: number, fingers?: number })
 
 | 参数名称 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
-| count | number | 否 | 识别的连续点击次数。当设置的值小于1或不设置时，会被转化为默认值。<br/>默认值：1<br/>**说明：**<br/>1. 当配置多击时，上一次的最后一根手指抬起和下一次的第一根手指按下的超时时间为300毫秒。<br/>2. 当上次点击的位置与当前点击的位置距离超过60px时，手势识别失败。|
+| count | number | 否 | 识别的连续点击次数。当设置的值小于1或不设置时，会被转化为默认值。<br/>默认值：1<br/>**说明：**<br/>1. 当配置多击时，上一次的最后一根手指抬起和下一次的第一根手指按下的超时时间为300毫秒。<br/>2. 当上次点击的位置与当前点击的位置距离超过60vp时，手势识别失败。|
 | fingers | number | 否 | 触发点击的手指数，最小为1指，&nbsp;最大为10指。当设置小于1的值或不设置时，会被转化为默认值。<br/>默认值：1<br/>**说明：**<br/>1. 当配置多指时，第一根手指按下后300毫秒内未有足够的手指数按下，手势识别失败，第一根手指抬起后300毫秒内未有足够的手指抬起，手势识别失败。<br/>2. 实际点击手指数超过配置值，手势识别成功。 |
 
 
@@ -23,7 +23,7 @@ TapGesture(value?: { count?: number, fingers?: number })
 
 | 名称 | 功能描述 |
 | -------- | -------- |
-| onAction(event: (event?:&nbsp;[GestureEvent](ts-gesture-settings.md#gestureevent对象说明))&nbsp;=&gt;&nbsp;void) | Tap手势识别成功回调。 |
+| onAction(event: (event:&nbsp;[GestureEvent](ts-gesture-settings.md#gestureevent对象说明))&nbsp;=&gt;&nbsp;void) | Tap手势识别成功回调。 |
 
 ## 属性
 
@@ -46,7 +46,7 @@ struct TapGestureExample {
       Text('Click twice').fontSize(28)
         .gesture(
         TapGesture({ count: 2 })
-          .onAction((event?: GestureEvent) => {
+          .onAction((event: GestureEvent) => {
             if (event) {
               this.value = JSON.stringify(event.fingerList[0])
             }

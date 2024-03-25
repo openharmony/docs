@@ -108,11 +108,12 @@ Worker传输信息序列化异常。
 
 **可能原因**
 
-传输信息不属于合法的可序列化对象。
+传输数据包含不支持序列化及外部引入的类型，导致序列化失败。
 
 **处理步骤**
 
-确保传输信息属于Worker支持的合法序列化对象。
+确保传输信息属于Worker支持的合法序列化对象，支持的序列化类型详查[序列化类型](../../arkts-utils/serialization-support-types.md
+)。
 
 ## 10200007 Worker文件路径异常
 
@@ -354,7 +355,7 @@ The method to be called is not callable or is an async method or a generator.
 
 **错误信息**
 
-The global call exceededs the timeout.
+The global call exceeds the timeout.
 
 **错误描述**
 

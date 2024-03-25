@@ -279,9 +279,9 @@ showActionSheet(value: ActionSheetOptions): void
 
 **参数：** 
 
-| 参数名 | 类型                                                         | 必填 | 描述                 |
+| 参数名 | 类型                                                         | 必填 | 说明                 |
 | ------ | ------------------------------------------------------------ | ---- | -------------------- |
-| value  | [ActionSheetOptions](../arkui-ts/ts-methods-action-sheet.md#actionsheetshow) | 是   | 配置列表弹窗的参数。 |
+| value  | [ActionSheetOptions](../arkui-ts/ts-methods-action-sheet.md#actionsheetoptions对象说明) | 是   | 配置列表弹窗的参数。 |
 
 **示例：**
 
@@ -334,9 +334,9 @@ showDatePickerDialog(options: DatePickerDialogOptions): void
 
 **参数：** 
 
-| 参数名 | 类型                                                         | 必填 | 描述                 |
-| ------ | ------------------------------------------------------------ | ---- | -------------------- |
-| value  | [DatePickerDialogOptions](../arkui-ts/ts-methods-datepicker-dialog.md#datepickerdialogshow) | 是   | 配置列表弹窗的参数。 |
+| 参数名  | 类型                                                         | 必填 | 说明                           |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------ |
+| options | [DatePickerDialogOptions](../arkui-ts/ts-methods-datepicker-dialog.md#datepickerdialogoptions对象说明) | 是   | 配置日期滑动选择器弹窗的参数。 |
 
 **示例：**
 
@@ -370,9 +370,9 @@ showTimePickerDialog(options: TimePickerDialogOptions): void
 
 **参数：** 
 
-| 参数名 | 类型                                                         | 必填 | 描述                 |
-| ------ | ------------------------------------------------------------ | ---- | -------------------- |
-| value  | [TimePickerDialogOptions](../arkui-ts/ts-methods-timepicker-dialog.md#timepickerdialogshow) | 是   | 配置列表弹窗的参数。 |
+| 参数名  | 类型                                                         | 必填 | 说明                           |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------ |
+| options | [TimePickerDialogOptions](../arkui-ts/ts-methods-timepicker-dialog.md#timepickerdialogoptions对象说明) | 是   | 配置时间滑动选择器弹窗的参数。 |
 
 **示例：**
 
@@ -429,9 +429,9 @@ showTextPickerDialog(options: TextPickerDialogOptions): void
 
 **参数：** 
 
-| 参数名 | 类型                                                         | 必填 | 描述                 |
-| ------ | ------------------------------------------------------------ | ---- | -------------------- |
-| value  | [TextPickerDialogOptions](../arkui-ts/ts-methods-textpicker-dialog.md#textpickerdialogshow) | 是   | 配置列表弹窗的参数。 |
+| 参数名  | 类型                                                         | 必填 | 说明                           |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------ |
+| options | [TextPickerDialogOptions](../arkui-ts/ts-methods-textpicker-dialog.md#textpickerdialogoptions对象说明) | 是   | 配置文本滑动选择器弹窗的参数。 |
 
 **示例：**
 
@@ -695,7 +695,7 @@ getDragPreview(): dragController.DragPreview
 
 | 类型                                                         | 说明                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [dragController.DragPreview](js-apis-arkui-dragController.md#dragController#dragpreview11) | 一个代表拖拽背板的对象，提供背板样式设置的接口，在OnDrop和OnDragEnd回调中使用不生效。 |
+| [dragController.DragPreview](js-apis-arkui-dragController.md#dragpreview11) | 一个代表拖拽背板的对象，提供背板样式设置的接口，在OnDrop和OnDragEnd回调中使用不生效。 |
 
 **错误码：** 通用错误码请参考[通用错误码说明文档](../errorcodes/errorcode-universal.md)。
 
@@ -1008,7 +1008,7 @@ let listener = mediaquery.matchMediaSync('(orientation: landscape)'); //监听�
 
 pushUrl(options: router.RouterOptions): Promise&lt;void&gt;
 
-跳转到应用内的指定页面。
+跳转到应用内的指定页面，通过Promise获取跳转异常的返回结果。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1111,7 +1111,7 @@ router.pushUrl({
 
 pushUrl(options: router.RouterOptions, mode: router.RouterMode): Promise&lt;void&gt;
 
-跳转到应用内的指定页面。
+跳转到应用内的指定页面，通过Promise获取跳转异常的返回结果。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1226,7 +1226,7 @@ routerF.pushUrl({
 
 replaceUrl(options: router.RouterOptions): Promise&lt;void&gt;
 
-用应用内的某个页面替换当前页面，并销毁被替换的页面。
+用应用内的某个页面替换当前页面，并销毁被替换的页面，通过Promise获取跳转异常的返回结果。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1321,7 +1321,7 @@ router.replaceUrl({
 
 replaceUrl(options: router.RouterOptions, mode: router.RouterMode): Promise&lt;void&gt;
 
-用应用内的某个页面替换当前页面，并销毁被替换的页面。
+用应用内的某个页面替换当前页面，并销毁被替换的页面，通过Promise获取跳转异常的返回结果。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1428,7 +1428,7 @@ routerF.replaceUrl({
 
 pushNamedRoute(options: router.NamedRouterOptions): Promise&lt;void&gt;
 
-跳转到指定的命名路由页面。
+跳转到指定的命名路由页面，通过Promise获取跳转异常的返回结果。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1530,7 +1530,7 @@ router.pushNamedRoute({
 
 pushNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode): Promise&lt;void&gt;
 
-跳转到指定的命名路由页面。
+跳转到指定的命名路由页面，通过Promise获取跳转异常的返回结果。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1645,7 +1645,7 @@ routerF.pushNamedRoute({
 
 replaceNamedRoute(options: router.NamedRouterOptions): Promise&lt;void&gt;
 
-用指定的命名路由页面替换当前页面，并销毁被替换的页面。
+用指定的命名路由页面替换当前页面，并销毁被替换的页面，通过Promise获取跳转异常的返回结果。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1740,7 +1740,7 @@ router.replaceNamedRoute({
 
 replaceNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode): Promise&lt;void&gt;
 
-用指定的命名路由页面替换当前页面，并销毁被替换的页面。
+用指定的命名路由页面替换当前页面，并销毁被替换的页面，通过Promise获取跳转异常的返回结果。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2122,7 +2122,7 @@ try {
 
 showDialog(options: promptAction.ShowDialogOptions): Promise&lt;promptAction.ShowDialogSuccessResponse&gt;
 
-创建并显示对话框，对话框响应后同步返回结果。
+创建并显示对话框，对话框响应后同步返回结果，通过Promise获取对话框响应结果。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -2296,7 +2296,7 @@ try {
 
 showActionMenu(options: promptAction.ActionMenuOptions): Promise&lt;promptAction.ActionMenuSuccessResponse&gt;
 
-创建并显示操作菜单，菜单响应后同步返回结果。
+创建并显示操作菜单，通过Promise获取菜单响应结果。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2367,7 +2367,7 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: dragController.DragI
 
 | 参数名   | 类型                                                         | 必填 | 说明                             |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------- |
-| custom   | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](../arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo说明) | 是   | 拖拽发起后跟手效果所拖拽的对象。 <br/> **说明：** <br/>不支持全局builder。如果builder中使用了[Image](../arkui-ts/ts-basic-components-image.md)组件，应尽量开启同步加载，即配置Image的[syncLoad](../arkui-ts/ts-basic-components-image.md#属性)为true。 |
+| custom   | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](../arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo说明) | 是   | 拖拽发起后跟手效果所拖拽的对象。 <br/> **说明：** <br/>不支持全局builder。如果builder中使用了[Image](../arkui-ts/ts-basic-components-image.md)组件，应尽量开启同步加载，即配置Image的[syncLoad](../arkui-ts/ts-basic-components-image.md#属性)为true。该builder只用于生成当次拖拽中显示的图片，builder的修改不会同步到当前正在拖拽的图片，对builder的修改需要在下一次拖拽时生效。 |
 | dragInfo | [dragController.DragInfo](js-apis-arkui-dragController.md#draginfo)                                        | 是   | 拖拽信息。                       |
 | callback | [AsyncCallback](./js-apis-base.md#asynccallback)&lt;{event: [DragEvent](../arkui-ts/ts-universal-events-drag-drop.md#dragevent说明), extraParams: string}&gt; | 是   | 拖拽结束返回结果的回调<br/>- event：拖拽事件信息，仅包括拖拽结果。<br/>- extraParams：拖拽事件额外信息。          |
 
@@ -2553,7 +2553,7 @@ createDragAction(customArray: Array&lt;CustomBuilder \| DragItemInfo&gt;, dragIn
 | 参数名   | 类型                                                         | 必填 | 说明                             |
 | --------      | ------------------------------------------------------------ | ---- | -------------------------------- |
 | customArray  | Array&lt;[CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](../arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo说明)&gt; | 是   | 拖拽发起后跟手效果所拖拽的对象。 |
-| dragInfo | [dragController.DragInfo](js-apis-arkui-dragController.md#dragInfo)                                 | 是   | 拖拽信息。                       |
+| dragInfo | [dragController.DragInfo](js-apis-arkui-dragController.md#draginfo)                                | 是   | 拖拽信息。                       |
 
 **返回值：**
 

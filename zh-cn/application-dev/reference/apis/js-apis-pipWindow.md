@@ -127,7 +127,7 @@ promise.then((data : pipWindow.PiPController) => {
 
 ## PiPActionEventType
 
-画中画控制事件类型，支持以下三种。
+画中画控制事件类型，支持以下四种。
 
 **系统能力：** SystemCapability.Window.SessionManager
 

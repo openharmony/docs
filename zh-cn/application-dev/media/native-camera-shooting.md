@@ -32,7 +32,7 @@
 
 4. 创建拍照输出流。
    
-   根据传入的SurfaceId，通过OH_CameraManager_GetSupportedCameraOutputCapability()方法，可获取当前设备支持的拍照输出流，通过OH_CameraManager_CreatePhotoOutput()方法传入支持的某一个输出流及步骤二获取的SurfaceId创建拍照输出流。
+   根据传入的SurfaceId，通过OH_CameraManager_GetSupportedCameraOutputCapability()方法，可获取当前设备支持的拍照输出流，通过OH_CameraManager_CreatePhotoOutput()方法传入支持的某一个输出流及步骤3获取的SurfaceId创建拍照输出流。
 
    ```c++
     NDKCamera::NDKCamera(char *str)
@@ -211,7 +211,7 @@
     }
   ```
 
-- 通过注册固定的onFrameEnd回调函数获取监听拍照结束结果，photoOutput创建成功时即可监听，该事件返回结果为拍照完全结束后的相关信息[Camera_CaptureEndInfo]。
+- 通过注册固定的onFrameEnd回调函数获取监听拍照结束结果，photoOutput创建成功时即可监听。
     
   ```c++
     void PhotoOutputOnFrameEnd(Camera_PhotoOutput* photoOutput, int32_t frameCount)

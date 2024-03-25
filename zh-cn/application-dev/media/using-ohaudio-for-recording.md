@@ -76,8 +76,8 @@ OH_AudioStreamBuilder_Destroy(builder);
 3. 设置音频回调函数
 
     ```c++
-    //具体实现请参考录制播放实例
     OH_AudioCapturer_Callbacks callbacks;
+    //设置输入音频流的回调
     OH_AudioStreamBuilder_SetCapturerCallback(builder, callbacks, nullptr);
     ```
 

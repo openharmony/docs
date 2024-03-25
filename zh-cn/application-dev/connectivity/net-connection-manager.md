@@ -17,7 +17,6 @@
 ## 约束
 
 - 开发语言：JS
-- 系统：linux内核
 - 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 场景介绍
@@ -70,7 +69,7 @@
 ## 接收指定网络的状态变化通知
 
 1. 声明接口调用所需要的权限：ohos.permission.GET_NETWORK_INFO。
-此权限级别为system_basic，在申请权限前，请保证符合[权限使用的基本原则](../security/AccessToken/app-permission-mgmt-overview.md#权限使用的基本原则)。然后参考[访问控制-声明权限](../security/AccessToken/declare-permissions.md)声明对应权限。
+此权限级别为normal，在申请权限前，请保证符合[权限使用的基本原则](../security/AccessToken/app-permission-mgmt-overview.md#权限使用的基本原则)。然后参考[访问控制-声明权限](../security/AccessToken/declare-permissions.md)声明对应权限。
 
 1. 从@ohos.net.connection.d.ts中导入connection命名空间。
 
@@ -127,7 +126,7 @@ conn.unregister((err: BusinessError, data: void) => {
 ### 开发步骤
 
 1. 声明接口调用所需要的权限：ohos.permission.GET_NETWORK_INFO。
-此权限级别为system_basic，在申请权限前，请保证符合[权限使用的基本原则](../security/AccessToken/app-permission-mgmt-overview.md#权限使用的基本原则)。然后参考[访问控制-声明权限](../security/AccessToken/declare-permissions.md)声明对应权限。
+此权限级别为normal，在申请权限前，请保证符合[权限使用的基本原则](../security/AccessToken/app-permission-mgmt-overview.md#权限使用的基本原则)。然后参考[访问控制-声明权限](../security/AccessToken/declare-permissions.md)声明对应权限。
 
 2. 从@ohos.net.connection.d.ts中导入connection命名空间。
 
@@ -176,7 +175,7 @@ connection.getAllNets((err: BusinessError, data: connection.NetHandle[]) => {
 ### 开发步骤
 
 1. 声明接口调用所需要的权限：ohos.permission.GET_NETWORK_INFO。
-此权限级别为system_basic，在申请权限前，请保证符合[权限使用的基本原则](../security/AccessToken/app-permission-mgmt-overview.md#权限使用的基本原则)。然后参考[访问控制-声明权限](../security/AccessToken/declare-permissions.md)声明对应权限。
+此权限级别为normal，在申请权限前，请保证符合[权限使用的基本原则](../security/AccessToken/app-permission-mgmt-overview.md#权限使用的基本原则)。然后参考[访问控制-声明权限](../security/AccessToken/declare-permissions.md)声明对应权限。
 
 2. 从@ohos.net.connection.d.ts中导入connection命名空间。
 
@@ -303,7 +302,7 @@ connection.getAllNets((err: BusinessError, data: connection.NetHandle[]) => {
 ### 开发步骤
 
 1. 声明接口调用所需要的权限：ohos.permission.INTERNET
-此权限级别为system_basic，在申请权限前，请保证符合[权限使用的基本原则](../security/AccessToken/app-permission-mgmt-overview.md#权限使用的基本原则)。然后参考[访问控制-声明权限](../security/AccessToken/declare-permissions.md)声明对应权限。
+此权限级别为normal，在申请权限前，请保证符合[权限使用的基本原则](../security/AccessToken/app-permission-mgmt-overview.md#权限使用的基本原则)。然后参考[访问控制-声明权限](../security/AccessToken/declare-permissions.md)声明对应权限。
 
 2. 从@ohos.net.connection.d.ts中导入connection命名空间。
 

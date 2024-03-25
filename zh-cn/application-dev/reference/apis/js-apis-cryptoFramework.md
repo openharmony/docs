@@ -36,6 +36,10 @@ buffer数组，提供blob数据类型。
 | ---- | ---------- | ---- | ---- | ------ |
 | data | Uint8Array | 是   | 是   | 数据。 |
 
+> **说明：**
+>
+> Uint8Array类型数据表示8位无符号整数的数组。
+
 ## ParamsSpec
 
 加解密参数，在进行对称加解密时需要构造其子类对象，并将子类对象传入[init()](#init-2)方法。
@@ -130,9 +134,9 @@ buffer数组，提供blob数据类型。
 | DSA_G_BN | 103 | DSA算法的参数g。 |
 | DSA_SK_BN | 104 | DSA算法的私钥sk。 |
 | DSA_PK_BN | 105 | DSA算法的公钥pk。 |
-| ECC_FP_P_BN | 201 | DSA算法中表示椭圆曲线Fp域的素数p。 |
-| ECC_A_BN | 202 | DSA算法中椭圆曲线的第一个系数a。 |
-| ECC_B_BN | 203 | DSA算法中椭圆曲线的第二个系数b。 |
+| ECC_FP_P_BN | 201 | ECC算法中表示椭圆曲线Fp域的素数p。 |
+| ECC_A_BN | 202 | ECC算法中椭圆曲线的第一个系数a。 |
+| ECC_B_BN | 203 | ECC算法中椭圆曲线的第二个系数b。 |
 | ECC_G_X_BN | 204 | ECC算法中基点g的x坐标。 |
 | ECC_G_Y_BN | 205 | ECC算法中基点g的y坐标。 |
 | ECC_N_BN | 206 | ECC算法中基点g的阶n。 |

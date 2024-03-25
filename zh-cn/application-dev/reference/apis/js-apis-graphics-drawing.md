@@ -4,7 +4,9 @@ drawing模块提供了基本的绘制能力，如绘制矩形、圆形、点、�
 
 > **说明：**
 >
-> 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> - 本模块不提供像素单位，和应用上下文环境保持一致。如果处于ArkUI开发环境中，采用框架默认像素单位vp。像素单位请参考[像素单位说明文档](../arkui-ts/ts-pixel-units.md)。
 
 ## 导入模块
 
@@ -74,8 +76,8 @@ moveTo(x: number, y: number) : void
 
 | 参数名 | 类型   | 必填 | 说明                    |
 | ------ | ------ | ---- | ----------------------- |
-| x      | number | 是   | 起始点的x轴坐标，整数。 |
-| y      | number | 是   | 起始点的y轴坐标，整数。 |
+| x      | number | 是   | 起始点的x轴坐标，该参数为浮点数。 |
+| y      | number | 是   | 起始点的y轴坐标，该参数为浮点数。 |
 
 **示例：**
 
@@ -97,8 +99,8 @@ lineTo(x: number, y: number) : void
 
 | 参数名 | 类型   | 必填 | 说明                    |
 | ------ | ------ | ---- | ----------------------- |
-| x      | number | 是   | 目标点的x轴坐标，整数。 |
-| y      | number | 是   | 目标点的y轴坐标，整数。 |
+| x      | number | 是   | 目标点的x轴坐标，该参数为浮点数。 |
+| y      | number | 是   | 目标点的y轴坐标，该参数为浮点数。 |
 
 **示例：**
 
@@ -121,12 +123,12 @@ arcTo(x1: number, y1: number, x2: number, y2: number, startDeg: number, sweepDeg
 
 | 参数名   | 类型   | 必填 | 说明                       |
 | -------- | ------ | ---- | -------------------------- |
-| x1       | number | 是   | 矩形左上角的x坐标，整数。  |
-| y1       | number | 是   | 矩形左上角的y坐标，整数。  |
-| x2       | number | 是   | 矩形右下角的x坐标，整数。  |
-| y2       | number | 是   | 矩形右下角的y坐标，整数。  |
-| startDeg | number | 是   | 起始角度，单位为度，整数。 |
-| sweepDeg | number | 是   | 扫描度数，单位为度，整数。 |
+| x1       | number | 是   | 矩形左上角的x坐标，该参数为浮点数。 |
+| y1       | number | 是   | 矩形左上角的y坐标，该参数为浮点数。 |
+| x2       | number | 是   | 矩形右下角的x坐标，该参数为浮点数。 |
+| y2       | number | 是   | 矩形右下角的y坐标，该参数为浮点数。 |
+| startDeg | number | 是   | 起始角度，单位为度，该参数为浮点数。 |
+| sweepDeg | number | 是   | 扫描度数，单位为度，该参数为浮点数。 |
 
 **示例：**
 
@@ -149,10 +151,10 @@ quadTo(ctrlX: number, ctrlY: number, endX: number, endY: number): void
 
 | 参数名 | 类型   | 必填 | 说明                  |
 | ------ | ------ | ---- | --------------------- |
-| ctrlX  | number | 是   | 控制点的x坐标，整数。 |
-| ctrlY  | number | 是   | 控制点的y坐标，整数。 |
-| endX   | number | 是   | 目标点的x坐标，整数。 |
-| endY   | number | 是   | 目标点的y坐标，整数。 |
+| ctrlX  | number | 是   | 控制点的x坐标，该参数为浮点数。 |
+| ctrlY  | number | 是   | 控制点的y坐标，该参数为浮点数。 |
+| endX   | number | 是   | 目标点的x坐标，该参数为浮点数。 |
+| endY   | number | 是   | 目标点的y坐标，该参数为浮点数。 |
 
 **示例：**
 
@@ -175,12 +177,12 @@ cubicTo(ctrlX1: number, ctrlY1: number, ctrlX2: number, ctrlY2: number, endX: nu
 
 | 参数名 | 类型   | 必填 | 说明                        |
 | ------ | ------ | ---- | --------------------------- |
-| ctrlX1 | number | 是   | 第一个控制点的x坐标，整数。 |
-| ctrlY1 | number | 是   | 第一个控制点的y坐标，整数。 |
-| ctrlX2 | number | 是   | 第二个控制点的x坐标，整数。 |
-| ctrlY2 | number | 是   | 第二个控制点的y坐标，整数。 |
-| endX   | number | 是   | 目标点的x坐标，整数。       |
-| endY   | number | 是   | 目标点的y坐标，整数。       |
+| ctrlX1 | number | 是   | 第一个控制点的x坐标，该参数为浮点数。 |
+| ctrlY1 | number | 是   | 第一个控制点的y坐标，该参数为浮点数。 |
+| ctrlX2 | number | 是   | 第二个控制点的x坐标，该参数为浮点数。 |
+| ctrlY2 | number | 是   | 第二个控制点的y坐标，该参数为浮点数。 |
+| endX   | number | 是   | 目标点的x坐标，该参数为浮点数。 |
+| endY   | number | 是   | 目标点的y坐标，该参数为浮点数。 |
 
 **示例：**
 
@@ -270,6 +272,10 @@ drawRect(rect: common2D.Rect): void
 
 用于绘制一个矩形，默认使用黑色填充。
 
+> **说明：**
+>
+> 矩形的左上角点的坐标值如果大于右下角的坐标值，可以绘制出矩形；如果左上角和右下角在同一x轴或者y轴，可以绘制出一条直线；如果左上角和右下角是同一点，不会绘制任何内容。
+
 **系统能力**：SystemCapability.Graphics.Drawing
 
 **参数：**
@@ -286,6 +292,7 @@ import drawing from "@ohos.graphics.drawing"
 import common2D from "@ohos.graphics.common2D"
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
+    const canvas = context.canvas;
     const pen = new drawing.Pen();
     pen.setStrokeWidth(5);
     pen.setColor({alpha: 255, red: 255, green: 0, blue: 0});
@@ -308,9 +315,9 @@ drawCircle(x: number, y: number, radius: number): void
 
 | 参数名 | 类型   | 必填 | 说明                |
 | ------ | ------ | ---- | ------------------- |
-| x      | number | 是   | 圆心的x坐标，整数。 |
-| y      | number | 是   | 圆心的y坐标，整数。 |
-| radius | number | 是   | 圆的半径，整数。    |
+| x      | number | 是   | 圆心的x坐标，该参数为浮点数。 |
+| y      | number | 是   | 圆心的y坐标，该参数为浮点数。 |
+| radius | number | 是   | 圆的半径，该参数为浮点数。 |
 
 **示例：**
 
@@ -319,6 +326,7 @@ import { RenderNode, DrawContext } from "@ohos.arkui.node"
 import drawing from "@ohos.graphics.drawing"
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
+    const canvas = context.canvas;
     const pen = new drawing.Pen();
     pen.setStrokeWidth(5);
     pen.setColor({alpha: 255, red: 255, green: 0, blue: 0});
@@ -342,8 +350,8 @@ drawImage(pixelmap: image.PixelMap, left: number, top: number): void
 | 参数名   | 类型                                         | 必填 | 说明                            |
 | -------- | -------------------------------------------- | ---- | ------------------------------- |
 | pixelmap | [image.PixelMap](js-apis-image.md#pixelmap7) | 是   | 图片的PixelMap                  |
-| left     | number                                       | 是   | 图片位置的左上角x轴坐标，整数。 |
-| top      | number                                       | 是   | 图片位置的左上角y轴坐标，整数。 |
+| left     | number                                       | 是   | 图片位置的左上角x轴坐标，该参数为浮点数。 |
+| top      | number                                       | 是   | 图片位置的左上角y轴坐标，该参数为浮点数。 |
 
 **示例：**
 
@@ -357,7 +365,7 @@ class DrawingRenderNode extends RenderNode {
   async draw(context : DrawContext) {
     const canvas = context.canvas;
     if (this.pixelMap != null) {
-      canvas.drawImage(pixelMap, 0, 0);
+      canvas.drawImage(this.pixelMap, 0, 0);
     }
   }
 }
@@ -386,6 +394,7 @@ import drawing from "@ohos.graphics.drawing"
 import common2D from "@ohos.graphics.common2D"
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
+    const canvas = context.canvas;
     let color: common2D.Color = {
       alpha : 255,
       red: 0,
@@ -409,8 +418,8 @@ drawPoint(x: number, y: number): void
 
 | 参数名 | 类型   | 必填 | 说明                |
 | ------ | ------ | ---- | ------------------- |
-| x      | number | 是   | 点的x轴坐标，整数。 |
-| y      | number | 是   | 点的y轴坐标，整数。 |
+| x      | number | 是   | 点的x轴坐标，该参数为浮点数。 |
+| y      | number | 是   | 点的y轴坐标，该参数为浮点数。 |
 
 **示例：**
 
@@ -419,6 +428,7 @@ import { RenderNode, DrawContext } from "@ohos.arkui.node"
 import drawing from "@ohos.graphics.drawing"
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
+    const canvas = context.canvas;
     const pen = new drawing.Pen();
     pen.setStrokeWidth(5);
     pen.setColor({alpha: 255, red: 255, green: 0, blue: 0});
@@ -450,6 +460,7 @@ import { RenderNode, DrawContext } from "@ohos.arkui.node"
 import drawing from "@ohos.graphics.drawing"
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
+    const canvas = context.canvas;
     const pen = new drawing.Pen();
     pen.setStrokeWidth(5);
     pen.setColor({alpha: 255, red: 255, green: 0, blue: 0});
@@ -468,7 +479,7 @@ class DrawingRenderNode extends RenderNode {
 
 drawLine(x0: number, y0: number, x1: number, y1: number): void
 
-用于画一条直线段，从指定的起点到指点的终点。
+用于画一条直线段，从指定的起点到指点的终点。如果直线段的起点和终点是同一个点，无法绘制。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -476,10 +487,10 @@ drawLine(x0: number, y0: number, x1: number, y1: number): void
 
 | 参数名 | 类型   | 必填 | 说明                    |
 | ------ | ------ | ---- | ----------------------- |
-| x0     | number | 是   | 线段起点的X坐标，整数。 |
-| y0     | number | 是   | 线段起点的Y坐标，整数。 |
-| x1     | number | 是   | 线段终点的X坐标，整数。 |
-| y1     | number | 是   | 线段终点的Y坐标，整数。 |
+| x0     | number | 是   | 线段起点的X坐标，该参数为浮点数。 |
+| y0     | number | 是   | 线段起点的Y坐标，该参数为浮点数。 |
+| x1     | number | 是   | 线段终点的X坐标，该参数为浮点数。 |
+| y1     | number | 是   | 线段终点的Y坐标，该参数为浮点数。 |
 
 **示例：**
 
@@ -488,6 +499,7 @@ import { RenderNode, DrawContext } from "@ohos.arkui.node"
 import drawing from "@ohos.graphics.drawing"
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
+    const canvas = context.canvas;
     const pen = new drawing.Pen();
     pen.setStrokeWidth(5);
     pen.setColor({alpha: 255, red: 255, green: 0, blue: 0});
@@ -511,8 +523,8 @@ drawTextBlob(blob: TextBlob, x: number, y: number): void
 | 参数名 | 类型                  | 必填 | 说明                                       |
 | ------ | --------------------- | ---- | ------------------------------------------ |
 | blob   | [TextBlob](#textblob) | 是   | TextBlob对象。                             |
-| x      | number                | 是   | 所绘制出的文字的边界框左上角横坐标，整数。 |
-| y      | number                | 是   | 所绘制出的文字的边界框左上角纵坐标，整数。 |
+| x      | number                | 是   | 所绘制出的文字的边界框左上角横坐标，该参数为浮点数。 |
+| y      | number                | 是   | 所绘制出的文字的边界框左上角纵坐标，该参数为浮点数。 |
 
 **示例：**
 
@@ -521,6 +533,7 @@ import { RenderNode, DrawContext } from "@ohos.arkui.node"
 import drawing from "@ohos.graphics.drawing"
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
+    const canvas = context.canvas;
     const brush = new drawing.Brush();
     brush.setColor({alpha: 255, red: 255, green: 0, blue: 0});
     const font = new drawing.Font();
@@ -528,7 +541,7 @@ class DrawingRenderNode extends RenderNode {
     const textBlob = drawing.TextBlob.makeFromString("drawing", font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
     canvas.attachBrush(brush);
     canvas.drawTextBlob(textBlob, 20, 20);
-    canvas.detachBrush(brush);
+    canvas.detachBrush();
   }
 }
 ```
@@ -554,6 +567,7 @@ import { RenderNode, DrawContext } from "@ohos.arkui.node"
 import drawing from "@ohos.graphics.drawing"
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
+    const canvas = context.canvas;
     const pen = new drawing.Pen();
     pen.setStrokeWidth(5);
     pen.setColor({alpha: 255, red: 255, green: 0, blue: 0});
@@ -585,11 +599,12 @@ import { RenderNode, DrawContext } from "@ohos.arkui.node"
 import drawing from "@ohos.graphics.drawing"
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
+    const canvas = context.canvas;
     const brush = new drawing.Brush();
     brush.setColor({alpha: 255, red: 255, green: 0, blue: 0});
     canvas.attachBrush(brush);
     canvas.drawRect({ left : 0, right : 0, top : 10, bottom : 10 });
-    canvas.detachBrush(brush);
+    canvas.detachBrush();
   }
 }
 ```
@@ -609,6 +624,7 @@ import { RenderNode, DrawContext } from "@ohos.arkui.node"
 import drawing from "@ohos.graphics.drawing"
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
+    const canvas = context.canvas;
     const pen = new drawing.Pen();
     pen.setStrokeWidth(5);
     pen.setColor({alpha: 255, red: 255, green: 0, blue: 0});
@@ -634,11 +650,12 @@ import { RenderNode, DrawContext } from "@ohos.arkui.node"
 import drawing from "@ohos.graphics.drawing"
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
+    const canvas = context.canvas;
     const brush = new drawing.Brush();
     brush.setColor({alpha: 255, red: 255, green: 0, blue: 0});
     canvas.attachBrush(brush);
     canvas.drawRect({ left : 0, right : 0, top : 10, bottom : 10 });
-    canvas.detachBrush(brush);
+    canvas.detachBrush();
   }
 }
 ```
@@ -651,9 +668,9 @@ class DrawingRenderNode extends RenderNode {
 
 | 名称      | 类型   | 可读 | 可写 | 说明                      |
 | --------- | ------ | ---- | ---- | ------------------------- |
-| glyph     | number | 是   | 是   | 存储文字的索引。          |
-| positionX | number | 是   | 是   | 文本的起点x轴坐标，整数。 |
-| positionY | number | 是   | 是   | 文本的起点y轴坐标，整数。 |
+| glyph     | number | 是   | 是   | 存储文字的索引，该参数为整数，传入浮点类型时向下取整。 |
+| positionX | number | 是   | 是   | 文本的起点x轴坐标，该参数为浮点数。 |
+| positionY | number | 是   | 是   | 文本的起点y轴坐标，该参数为浮点数。 |
 
 ## TextEncoding
 
@@ -701,6 +718,7 @@ import { RenderNode, DrawContext } from "@ohos.arkui.node"
 import drawing from "@ohos.graphics.drawing"
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
+    const canvas = context.canvas;
     const brush = new drawing.Brush();
     brush.setColor({alpha: 255, red: 255, green: 0, blue: 0});
     const font = new drawing.Font();
@@ -708,7 +726,7 @@ class DrawingRenderNode extends RenderNode {
     const textBlob = drawing.TextBlob.makeFromString("drawing", font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
     canvas.attachBrush(brush);
     canvas.drawTextBlob(textBlob, 20, 20);
-    canvas.detachBrush(brush);
+    canvas.detachBrush();
   }
 }
 ```
@@ -743,21 +761,22 @@ import drawing from "@ohos.graphics.drawing"
 import common2D from "@ohos.graphics.common2D"
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
+    const canvas = context.canvas;
     const font = new drawing.Font();
     font.setSize(20);
-    let runBuffer : Array<drawing.TexBlobRunBuffer> = [
+    let runBuffer : Array<drawing.TextBlobRunBuffer> = [
       { glyph: 65, positionX: 0, positionY: 0 },
-      { glphy: 227, positionX: 14.9, positionY: 0 },
-      { glphy: 283, postionX: 25.84, positionY: 0 },
-      { glphy: 283, positionX: 30.62, positionY: 0 },
-      { glphy: 299, positionX: 35.4, positionY: 0}
+      { glyph: 227, positionX: 14.9, positionY: 0 },
+      { glyph: 283, positionX: 25.84, positionY: 0 },
+      { glyph: 283, positionX: 30.62, positionY: 0 },
+      { glyph: 299, positionX: 35.4, positionY: 0}
     ];
     const textBlob = drawing.TextBlob.makeFromRunBuffer(runBuffer, font, null);
     const brush = new drawing.Brush();
     brush.setColor({alpha: 255, red: 255, green: 0, blue: 0});
     canvas.attachBrush(brush);
     canvas.drawTextBlob(textBlob, 20, 20);
-    canvas.detachBrush(brush);
+    canvas.detachBrush();
   }
 }
 ```
@@ -781,6 +800,8 @@ bounds(): common2D.Rect
 ```ts
 import drawing from "@ohos.graphics.drawing"
 import common2D from "@ohos.graphics.common2D"
+const font = new drawing.Font();
+font.setSize(20);
 const textBlob = drawing.TextBlob.makeFromString("drawing", font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
 textBlob.bounds();
 ```
@@ -894,7 +915,7 @@ setSize(textSize: number): void
 
 | 参数名   | 类型   | 必填 | 说明             |
 | -------- | ------ | ---- | ---------------- |
-| textSize | number | 是   | 字体大小，整数。 |
+| textSize | number | 是   | 字体大小，该参数为浮点数。 |
 
 **示例：**
 
@@ -916,7 +937,7 @@ getSize(): number
 
 | 类型   | 说明             |
 | ------ | ---------------- |
-| number | 字体大小，整数。 |
+| number | 字体大小，浮点数。 |
 
 **示例：**
 
@@ -999,6 +1020,10 @@ measureText(text: string, encoding: TextEncoding): number
 
 测量文本的宽度。
 
+> **说明：**
+>
+> 此接口用于测量原始字符串的文本宽度，若想测量排版后的文本宽度，建议使用[measure.measureText](js-apis-measure.md#measuremeasuretext)替代。
+
 **系统能力**：SystemCapability.Graphics.Drawing
 
 **参数：**
@@ -1012,14 +1037,14 @@ measureText(text: string, encoding: TextEncoding): number
 
 | 类型   | 说明             |
 | ------ | ---------------- |
-| number | 文本的像素宽度。 |
+| number | 文本的宽度，浮点数。 |
 
 **示例：**
 
 ```ts
 import drawing from "@ohos.graphics.drawing"
 let font = new drawing.Font();
-font.measureText();
+font.measureText("drawing", drawing.TextEncoding.TEXT_ENCODING_UTF8);
 ```
 
 ## FontMetrics
@@ -1030,11 +1055,11 @@ font.measureText();
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| top     | number | 是   | 是   | 文字最高处到基线之间的最大像素距离。                         |
-| ascent  | number | 是   | 是   | 文字最高处到基线之间的像素距离。                             |
-| descent | number | 是   | 是   | 基线到文字最低处之间的像素距离。                             |
-| bottom  | number | 是   | 是   | 基线到文字最低处之间的最大像素距离。                         |
-| leading | number | 是   | 是   | 行间距，从上一行文字descent到下一行文字ascent之间的像素距离。 |
+| top     | number | 是   | 是   | 文字最高处到基线之间的最大距离，浮点数。                         |
+| ascent  | number | 是   | 是   | 文字最高处到基线之间的距离，浮点数。                             |
+| descent | number | 是   | 是   | 基线到文字最低处之间的距离，浮点数。                             |
+| bottom  | number | 是   | 是   | 基线到文字最低处之间的最大距离，浮点数。                         |
+| leading | number | 是   | 是   | 行间距，从上一行文字descent到下一行文字ascent之间的距离，浮点数。 |
 
 ## ColorFilter
 
@@ -1205,7 +1230,7 @@ setStrokeWidth(width: number) : void
 
 | 参数名 | 类型   | 必填 | 说明             |
 | ------ | ------ | ---- | ---------------- |
-| width  | number | 是   | 表示线宽的整数。 |
+| width  | number | 是   | 表示线宽，该参数为浮点数。 |
 
 **示例：**
 
@@ -1249,7 +1274,7 @@ setAlpha(alpha: number) : void
 
 | 参数名 | 类型   | 必填 | 说明                                     |
 | ------ | ------ | ---- | ---------------------------------------- |
-| alpha  | number | 是   | 用于表示透明度的[0, 255]区间内的整数值。 |
+| alpha  | number | 是   | 用于表示透明度的[0, 255]区间内的整数值，传入浮点类型时向下取整。 |
 
 **示例：**
 
@@ -1278,7 +1303,7 @@ setColorFilter(filter: ColorFilter) : void
 ```ts
 import drawing from "@ohos.graphics.drawing"
 const pen = new drawing.Pen();
-let colorFilter = draw.ColorFilter.createLinearToSRGBGamma();
+let colorFilter = drawing.ColorFilter.createLinearToSRGBGamma();
 pen.setColorFilter(colorFilter);
 ```
 
@@ -1388,7 +1413,7 @@ setAlpha(alpha: number) : void
 
 | 参数名 | 类型   | 必填 | 说明                                     |
 | ------ | ------ | ---- | ---------------------------------------- |
-| alpha  | number | 是   | 用于表示透明度的[0, 255]区间内的整数值。 |
+| alpha  | number | 是   | 用于表示透明度的[0, 255]区间内的整数值，传入浮点类型时向下取整。 |
 
 **示例：**
 
@@ -1417,7 +1442,7 @@ setColorFilter(filter: ColorFilter) : void
 ```ts
 import drawing from "@ohos.graphics.drawing"
 const brush = new drawing.Brush();
-let colorFilter = draw.ColorFilter.createLinearToSRGBGamma();
+let colorFilter = drawing.ColorFilter.createLinearToSRGBGamma();
 brush.setColorFilter(colorFilter);
 ```
 

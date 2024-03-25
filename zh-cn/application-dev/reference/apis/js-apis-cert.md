@@ -2290,7 +2290,7 @@ getEntry(valueType: ExtensionEntryType, oid : DataBlob) : DataBlob
 
 | 参数名    | 类型                                      | 必填 | 说明                             |
 | --------- | ----------------------------------------- | ---- | -------------------------------- |
-| valueType | [ExtensionEntryType](#extensionentrytype) | 是   | 表示证书扩展域段获取的类型       |
+| valueType | [ExtensionEntryType](#extensionentrytype10) | 是   | 表示证书扩展域段获取的类型       |
 | oid       | [DataBlob](#datablob)                     | 是   | 表示证书扩展域段获取的对象标识符 |
 
 **返回值**：
@@ -2482,7 +2482,7 @@ createX509Crl(inStream : EncodingBlob, callback : AsyncCallback\<X509Crl>) : voi
 | 参数名   | 类型                                | 必填 | 说明                           |
 | -------- | ----------------------------------- | ---- | ------------------------------ |
 | inStream | [EncodingBlob](#encodingblob)       | 是   | 表示证书吊销列表序列化数据     |
-| callback | AsyncCallback\<[X509Crl](#x509crl)> | 是   | 回调函数。表示证书吊销列表对象 |
+| callback | AsyncCallback\<[X509Crl](#x509crldeprecated)> | 是   | 回调函数。表示证书吊销列表对象 |
 
 **错误码：**
 
@@ -2553,7 +2553,7 @@ createX509Crl(inStream : EncodingBlob) : Promise\<X509Crl>
 
 | 类型                          | 说明                 |
 | ----------------------------- | -------------------- |
-| Promise\<[X509Crl](#x509crl)> | 表示证书吊销列表对象 |
+| Promise\<[X509Crl](#x509crldeprecated)> | 表示证书吊销列表对象 |
 
 **错误码：**
 
@@ -4305,7 +4305,7 @@ certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
     try {
       let sigAlgParams = x509Crl.getSignatureAlgParams();
     } catch (err) {
-      let e: BusinessError = error as BusinessError;
+      let e: BusinessError = err as BusinessError;
       console.error('getSignatureAlgParams failed, errCode: ' + e.code + ', errMsg: ' + e.message);
     }
   }
@@ -5646,7 +5646,7 @@ certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
     try {
       let sigAlgParams = x509CRL.getSignatureAlgParams();
     } catch (err) {
-      let e: BusinessError = error as BusinessError;
+      let e: BusinessError = err as BusinessError;
       console.error('getSignatureAlgParams failed, errCode: ' + e.code + ', errMsg: ' + e.message);
     }
   }
@@ -7205,7 +7205,7 @@ async function createX509Cert(): Promise<certFramework.X509Cert> {
   try {
     x509Cert = await certFramework.createX509Cert(encodingBlob);
   } catch (err) {
-    let e: BusinessError = error as BusinessError;
+    let e: BusinessError = err as BusinessError;
     console.error('createX509Cert failed, errCode: ' + e.code + ', errMsg: ' + e.message);
   }
   return x509Cert;
@@ -7296,7 +7296,7 @@ async function createX509Cert(): Promise<certFramework.X509Cert> {
   try {
     x509Cert = await certFramework.createX509Cert(encodingBlob);
   } catch (err) {
-    let e: BusinessError = error as BusinessError;
+    let e: BusinessError = err as BusinessError;
     console.error('createX509Cert failed, errCode: ' + e.code + ', errMsg: ' + e.message);
   }
   return x509Cert;
@@ -7392,7 +7392,7 @@ async function createX509CRL(): Promise<certFramework.X509CRL> {
   try {
     x509CRL = await certFramework.createX509CRL(encodingBlob);
   } catch (err) {
-    let e: BusinessError = error as BusinessError;
+    let e: BusinessError = err as BusinessError;
     console.error('createX509CRL failed, errCode: ' + e.code + ', errMsg: ' + e.message);
   }
   return x509CRL;
@@ -7509,7 +7509,7 @@ async function createX509CRL(): Promise<certFramework.X509CRL> {
   try {
     x509CRL = await certFramework.createX509CRL(encodingBlob);
   } catch (err) {
-    let e: BusinessError = error as BusinessError;
+    let e: BusinessError = err as BusinessError;
     console.error('createX509CRL failed, errCode: ' + e.code + ', errMsg: ' + e.message);
   }
   return x509CRL;

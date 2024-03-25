@@ -14,7 +14,7 @@
    import common from '@ohos.app.ability.common';
    ```
 
-2. 通过[getCameraManager](../reference/apis/js-apis-camera.md#getcameramanager)方法，获取cameraManager对象。
+2. 通过[getCameraManager](../reference/apis/js-apis-camera.md#cameragetcameramanager)方法，获取cameraManager对象。
 
    Context获取方式请参考：[获取UIAbility的上下文信息](../application-models/uiability-usage.md#获取uiability的上下文信息)。
 

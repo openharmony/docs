@@ -147,7 +147,7 @@ Navigation组件通过mode属性设置页面的显示模式。
 
 ## 设置菜单栏
 
-菜单栏位于Navigation组件的右上角，开发者可以通过menus属性进行设置。menus支持Array&lt;[NavigationMenuItem](../reference/arkui-ts/ts-basic-components-navigation.md#navigationmenuitem类型说明)&gt;和CustomBuilder两种参数类型。使用Array&lt;NavigationMenuItem&gt;类型时，竖屏最多支持显示3个图标，横屏最多支持显示5个图标，多余的图标会被放入自动生成的更多图标。
+菜单栏位于Navigation组件的右上角，开发者可以通过menus属性进行设置。menus支持Array&lt;[NavigationMenuItem](../reference/arkui-ts/ts-basic-components-navigation.md#navigationmenuitem10类型说明)&gt;和CustomBuilder两种参数类型。使用Array&lt;NavigationMenuItem&gt;类型时，竖屏最多支持显示3个图标，横屏最多支持显示5个图标，多余的图标会被放入自动生成的更多图标。
 
 **图5** 设置了3个图标的菜单栏  
 
@@ -208,3 +208,130 @@ Navigation() {
 }
 .toolbarConfiguration(TooBar)
 ```
+
+## 设置子页面的类型
+
+NavDestination作为子页面的根容器，用于显示Navigation的内容区，其mode属性可以设置子页面的类型。
+
+- 标准类型
+
+  NavDestination组件默认为标准类型，此时mode属性为NavDestinationMode.STANDARD。标准类型NavDestination的生命周期跟随NavPathStack栈中标准Destination变化而改变。
+
+- 弹窗类型
+
+  **图8** 弹窗类型的页面示意图
+
+  ![dialog_navdes_1](figures/dialog_navdes_1.png)
+
+  将mode属性设置为NavDestinationMode.DIALOG，此时NavDestination组件是弹窗类型，整个组件透明。通过给组件添加背景等，实现想要的弹窗效果。
+
+  ```ts
+  // Index.ets
+  @Component
+  struct Page01 {
+
+    @Consume('pageInfos') pageInfos: NavPathStack;
+
+    build() {
+      NavDestination() {
+        Button('push Page01')
+          .width('80%')
+          .onClick(() => {
+            this.pageInfos.pushPathByName('Page01', '');
+          })
+          .margin({top: 10, bottom: 10})
+        Button('push Dialog01')
+          .width('80%')
+          .onClick(() => {
+            this.pageInfos.pushPathByName('Dialog01', '');
+          })
+          .margin({top: 10, bottom: 10})
+      }
+      .title('Page01')
+    }
+  }
+
+  @Component
+  struct Dialog01 {
+
+    @Consume('pageInfos') pageInfos: NavPathStack;
+
+    build() {
+      NavDestination() {
+        Stack() {
+          Column()
+            .width('100%')
+            .height('100%')
+            .backgroundColor(Color.Gray)
+            .opacity(0.1)
+            .onClick(() => {
+              this.pageInfos.pop();
+            })
+          // Add controls for business processing
+          Column() {
+            Text('Dialog01')
+              .fontSize(30)
+              .fontWeight(2)
+            Button('push Page01')
+              .width('80%')
+              .onClick(() => {
+                this.pageInfos.pushPathByName('Page01', '');
+              })
+              .margin({top: 10, bottom: 10})
+            Button('push Dialog01')
+              .width('80%')
+              .onClick(() => {
+                this.pageInfos.pushPathByName('Dialog01', '');
+              })
+              .margin({top: 10, bottom: 10})
+            Button('pop')
+              .width('80%')
+              .onClick(() => {
+                this.pageInfos.pop();
+              })
+              .margin({top: 10, bottom: 10})
+          }
+          .padding(10)
+          .width(250)
+          .backgroundColor(Color.White)
+          .borderRadius(10)
+        }
+      }
+      .hideTitleBar(true)
+      // Set the mode property of this NavDestination to DIALOG
+      .mode(NavDestinationMode.DIALOG)
+    }
+  }
+
+  @Entry
+  @Component
+  struct Index {
+    @Provide('NavPathStack') pageInfos: NavPathStack = new NavPathStack()
+    isLogin: boolean = false;
+
+    @Builder
+    PagesMap(name: string) {
+      if (name == 'Page01') {
+        Page01()
+      } else if (name == 'Dialog01') {
+        Dialog01()
+      }
+    }
+
+    build() {
+      Navigation(this.pageInfos) {
+        Button('push Page01')
+          .width('80%')
+          .onClick(() => {
+            this.pageInfos.pushPathByName('Page01', '');
+          })
+      }
+      .mode(NavigationMode.Stack)
+      .titleMode(NavigationTitleMode.Mini)
+      .title('主页')
+      .navDestination(this.PagesMap)
+    }
+  }
+  ```
+
+  ![dialog_navdes_2](figures/dialog_navdes_2.png)

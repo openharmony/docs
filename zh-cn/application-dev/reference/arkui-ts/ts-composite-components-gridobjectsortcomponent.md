@@ -31,7 +31,6 @@ GridObjectSortComponent({options: GridObjectSortComponentOptions, dataList: Arra
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-
 **参数**：
 
 
@@ -39,9 +38,9 @@ GridObjectSortComponent({options: GridObjectSortComponentOptions, dataList: Arra
 | -------- | -------------------------------- | ---------- | ---- | ------------ |
 | options  | [GridObjectSortComponentOptions](#gridobjectsortcomponentoptions) | @Prop      | 是   | 组件配置信息。 |
 | dataList | Array<[GridObjectSortComponentItem](#gridobjectsortcomponentitem)> | -     | 是   | 传入的数据，最大长度为50，数据长度超过50，只会取前50的数据。 |
-| onSave | (select: Array<[GridObjectSortComponentItem](#gridobjectsortcomponentitem)>, unselect: Array<[GridObjectSortComponentItem](#gridobjectsortcomponentitem)>) | - | 否 | 保存编辑排序的回调函数，返回编辑后的数据。 |
-| onCancel | () => void | - | 否 | 取消保存数据的回调。 |
-| build | () => void | - | 是 | 构建函数。 |
+| onSave | (select: Array<[GridObjectSortComponentItem](#gridobjectsortcomponentitem)>, unselect: Array<[GridObjectSortComponentItem](#gridobjectsortcomponentitem)>)  => void | - | 是 | 保存编辑排序的回调函数，返回编辑后的数据。 |
+| onCancel | () => void | - | 是 | 取消保存数据的回调。 |
+| build() | void | - | 是 | 构建函数。 |
 
 
 ##  GridObjectSortComponentOptions

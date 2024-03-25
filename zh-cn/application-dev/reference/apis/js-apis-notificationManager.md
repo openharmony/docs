@@ -1970,7 +1970,7 @@ import Base from '@ohos.base';
 let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
-notificationManager.getSlotFlagsByBundle(bundle).then(() => {
+notificationManager.getSlotFlagsByBundle(bundle).then((data : number) => {
 	console.info("getSlotFlagsByBundle success, data: " + JSON.stringify(data));
 }).catch((err: Base.BusinessError) => {
     console.error(`getSlotFlagsByBundle fail: ${JSON.stringify(err)}`);
@@ -2447,6 +2447,7 @@ getActiveNotificationByFilter(filter: NotificationFilter, callback: AsyncCallbac
 
 ```ts
 import Base from '@ohos.base';
+import notificationSubscribe from '@ohos.notificationSubscribe';
 
 let bundleOption: notificationManager.BundleOption = {
   bundle: "bundleName1",
@@ -2508,6 +2509,7 @@ getActiveNotificationByFilter(filter: NotificationFilter): Promise\<Notification
 
 ```ts
 import Base from '@ohos.base';
+import notificationSubscribe from '@ohos.notificationSubscribe';
 
 let bundleOption: notificationManager.BundleOption = {
   bundle: "bundleName1",
@@ -2521,7 +2523,7 @@ let filter: notificationManager.NotificationFilter = {
     notificationKey: notificationKey,
     extraInfoKeys: ['event']
 }
-notificationManager.getActiveNotificationByFilter().then((filter: notificationRequest.NotificationFilter, data: notificationManager.NotificationRequest) => {
+notificationManager.getActiveNotificationByFilter(filter).then((data: notificationManager.NotificationRequest) => {
 	console.info("getActiveNotificationByFilter success, data: " + JSON.stringify(data));
 }).catch((err: Base.BusinessError) => {
     console.error(`getActiveNotificationByFilter fail: ${JSON.stringify(err)}`);
@@ -3538,6 +3540,12 @@ setDistributedEnable(enable: boolean): Promise\<void>
 | -------- | ------------------------ | ---- | -------------------------- |
 | enable   | boolean                  | 是   | 是否支持（true：支持，false：不支持）。 |
 
+**返回值：**
+
+| 类型              | 说明        | 
+|-----------------|-----------|
+| Promise\<void\> | 无返回结果的Promise对象。 | 
+
 **错误码：**
 
 错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
@@ -3618,6 +3626,12 @@ isDistributedEnabled(): Promise\<boolean>
 | 类型               | 说明                                          |
 | ------------------ | --------------------------------------------- |
 | Promise\<boolean\> | Promise方式返回设备是否支持分布式通知的结果（true：支持，false：不支持）。 |
+
+**返回值：**
+
+| 类型              | 说明        | 
+|-----------------|-----------|
+| Promise\<void\> | 无返回结果的Promise对象。 | 
 
 **错误码：**
 
@@ -4086,7 +4100,7 @@ cancelAsBundle(id: number, representativeBundle: string, userId: number, callbac
 | id                   | number        | 是   | 通知ID。                 |
 | representativeBundle | string        | 是   | 被代理应用的包名。       |
 | userId               | number        | 是   | 用户ID。       |
-| callback             | AsyncCallback | 是   | 取消代理通知的回调方法。 |
+| callback             | AsyncCallback\<void\> | 是   | 取消代理通知的回调方法。 |
 
 **错误码：**
 
@@ -4712,30 +4726,17 @@ on(type: 'checkNotification', checkRequest: NotificationCheckRequest, callback: 
 ```ts
 import Base from '@ohos.base';
 
-public static async check(checkInfo : notificationManager.NotificationCheckInfo): Promise<NotificationCheckResult> {
-    console.info(`====>OnCheckNotification info: ${JSON.stringify(info)}`);
-    const { contentType, slotType, bundleName, userId, extraInfos } = checkInfo;
-    if(contentType != NOTIFICATION_CONTENT_LIVE_VIEW){
-        let result: notificationManager.NotificationCheckResult =  { code: 1, message: "INVALID_PARAMETERS"};
-        return result;
-    } else {
-        let result: notificationManager.NotificationCheckResult =  { code: 0, message: "SUCCESS"};
-        return result;
-    }
-}
-
-try {
-    notificationManager.on(
-      "checkNotification",
-      {
-        contentType: ContentType.NOTIFICATION_CONTENT_LIVE_VIEW,
-        slotType: SlotType.LIVE_VIEW ,
-        extraInfoKeys: ["event"],
-      },
-      check
-    );
+try{
+  notificationManager.on('checkNotification',{
+    contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_LIVE_VIEW,
+    slotType: notificationManager.SlotType.LIVE_VIEW ,
+    extraInfoKeys: ["event"],
+  },
+    async (checkInfo)=>{
+      return { code: 1, message: "INVALID_PARAMETERS"};
+  },);
 } catch (error) {
-    console.info(`notificationManager.on error: ${JSON.stringify(error as Base.BusinessError)}`);
+  console.error(`notificationManager.on error: ${JSON.stringify(error as Base.BusinessError)}`);
 }
 ```
 

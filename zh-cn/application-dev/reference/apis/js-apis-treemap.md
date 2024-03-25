@@ -40,7 +40,7 @@ import TreeMap from '@ohos.util.TreeMap';
 
 constructor(comparator?:(firstValue: K, secondValue: K) => boolean)
 
-TreeMap的构造函数。
+TreeMap的构造函数，支持通过比较函数对元素进行升序或降序排序。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -48,7 +48,7 @@ TreeMap的构造函数。
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| comparator | function | 否 | 用户自定义的比较函数，默认值为hole（一个空白占位符），表示没有提供比较函数。 |
+| comparator | function | 否 | 用户自定义的比较函数，可通过比较关系对元素进行排序。默认值为hole（一个空白占位符），表示不提供比较函数。 |
 
 **错误码：**
 
@@ -61,7 +61,39 @@ TreeMap的构造函数。
 **示例：**
 
 ```ts
+//构造函数
 let treeMap : TreeMap<number, number> = new TreeMap();
+```
+
+```ts
+//使用comparator firstValue < secondValue，表示期望结果为升序排序。反之firstValue > secondValue，表示为降序排序。
+let treeMap : TreeMap<string,string> = new TreeMap<string,string>((firstValue: string, secondValue: string) : boolean => {return firstValue > secondValue});
+treeMap.set("aa","3");
+treeMap.set("dd","1");
+treeMap.set("cc","2");
+treeMap.set("bb","4");
+let numbers = Array.from(treeMap.keys())
+for (let item of numbers) {
+  console.log("treeMap:" + item);
+}
+```
+
+```ts
+//当插入自定义类型时，则必须要提供比较函数。
+ class TestEntry{
+   public id: number = 0;
+ }
+ let ts1: TreeMap<TestEntry, string> = new TreeMap<TestEntry, string>((t1: TestEntry, t2: TestEntry): boolean => {return t1.id < t2.id;});
+ let entry1: TestEntry = {
+   id: 0
+ };
+ let entry2: TestEntry = {
+   id: 1
+ }
+ ts1.set(entry1, "0");
+ ts1.set(entry2, "1");
+ console.log("treeMap: ", ts1.length);
+
 ```
 
 
@@ -718,11 +750,11 @@ while(!t.done) {
 }
 
 // 使用方法二：
-let iter = treeMap[Symbol.iterator]();
-let temp: IteratorResult<Object[]> = iter.next().value;
-while(temp != undefined) {
-  console.log("key:" + temp[0]);
-  console.log("value:" + temp[1]);
-  temp = iter.next().value;
-}
+ let iter = treeMap[Symbol.iterator]();
+ let temp: IteratorResult<Object[]> = iter.next();
+ while(!temp.done) {
+   console.log("key:" + temp.value[0]);
+   console.log("value:" + temp.value[1]);
+   temp = iter.next();
+ }
 ```

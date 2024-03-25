@@ -75,9 +75,9 @@ ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 | icon | [OperateIcon](#operateicon) | 否 | 右侧元素的第一个图标，大小为24\*24dp。 | 
 | subIcon | [OperateIcon](#operateicon) | 否 | 右侧元素的第二个图标，大小为24\*24dp。 | 
 | button | [OperateButton](#operatebutton) | 否 | 右侧元素为按钮。 | 
-| switch | [OperateCheck](#operatecheck) | 否 | 右侧元素为开关(Switch)。 | 
-| checkbox | [OperateCheck](#operatecheck) | 否 | 右侧元素为多选框(CheckBox)，大小为24\*24dp。 | 
-| radio | [OperateCheck](#operatecheck) | 否 | 右侧元素为单选(Radio)，大小为24\*24dp。 | 
+| switch | [OperateCheck](#operatecheck) | 否 | 右侧元素为开关。 | 
+| checkbox | [OperateCheck](#operatecheck) | 否 | 右侧元素为多选框，大小为24\*24dp。 | 
+| radio | [OperateCheck](#operatecheck) | 否 | 右侧元素为单选，大小为24\*24dp。 | 
 | image | [ResourceStr](ts-types.md#resourcestr) | 否 | 右侧元素为图片，大小为48\*48dp。 | 
 | text | [ResourceStr](ts-types.md#resourcestr) | 否 | 右侧元素为文字。 | 
 

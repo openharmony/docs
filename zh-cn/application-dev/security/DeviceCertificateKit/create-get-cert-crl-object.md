@@ -63,6 +63,7 @@ async function createX509Cert(): Promise<certFramework.X509Cert> {
     'Qw==\n' +
     '-----END CERTIFICATE-----\n';
 
+  let textEncoder = new util.TextEncoder();
   let encodingBlob: certFramework.EncodingBlob = {
     data: textEncoder.encodeInto(certData),
     // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER

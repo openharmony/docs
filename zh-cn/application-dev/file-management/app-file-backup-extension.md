@@ -10,7 +10,7 @@ BackupExtensionAbility，是[Stage模型](../application-models/stage-model-deve
 | ----------- | ---------------------- | --------------------------------------------- | ----------------------------------------------------------------- |
 | application | BundleVersion          | code: number                                  | 应用版本号。                                                      |
 | application | BundleVersion          | name: string                                  | 应用版本名称。                                                    |
-| application | BackupExtensionAbility | onBackup(): void                              | 由Extension机制提供的，应由应用开发者扩展实现的触发备份后的回调。 |
+| application | BackupExtensionAbility | onBackup(): void                              | 由Extension机制提供的，应由应用开发者扩展实现的触发备份前的回调。 |
 | application | BackupExtensionAbility | onRestore(bundleVersion: BundleVersion): void | 由Extension机制提供的，应由应用开发者扩展实现的触发恢复后的回调。 |
 | application | BackupExtensionAbility | context: ExtensionContext                     | BackupExtensionAbility的上下文环境，继承自Context。               |
 
@@ -81,20 +81,18 @@ BackupExtensionAbility，是[Stage模型](../application-models/stage-model-deve
 
     ```ts
     import BackupExtensionAbility, {BundleVersion} from '@ohos.application.BackupExtensionAbility';
-
+    import Logger from '../common/Logger';
+    
     const TAG = `FileBackupExtensionAbility`;
     export default class BackupExtension extends  BackupExtensionAbility {
-    async onBackup ()   {
-        console.log(TAG, `onBackup ok`);
-        console.log(TAG, `filesDir is ${JSON.stringify(this.context.filesDir)}`);
-        console.log(TAG, `onBackup end`);
-    }
+      async onBackup ()   {
+        Logger.info(TAG, `onBackup ok`);
+      }
 
-    async onRestore (bundleVersion : BundleVersion) {
-        console.log(TAG, `onRestore ok ${JSON.stringify(bundleVersion)}`);
-        console.log(TAG, `filesDir is ${JSON.stringify(this.context.filesDir)}`);
-        console.log(TAG, `onRestore end`);
-    }
+      async onRestore (bundleVersion : BundleVersion) {
+        Logger.info(TAG, `onRestore ok ${JSON.stringify(bundleVersion)}`);
+        Logger.info(TAG, `onRestore end`);
+      }
     }
     ```
 
@@ -126,11 +124,13 @@ BackupExtensionAbility，是[Stage模型](../application-models/stage-model-deve
     "data/storage/el1/database/",
     "data/storage/el1/base/files/",
     "data/storage/el1/base/preferences/",
-    "data/storage/el1/base/haps/",
+    "data/storage/el1/base/haps/<module-name>/files/",
+    "data/storage/el1/base/haps/<module-name>/preferences/",
     "data/storage/el2/database/",
     "data/storage/el2/base/files/",
     "data/storage/el2/base/preferences/",
-    "data/storage/el2/base/haps/",
+    "data/storage/el2/base/haps/<module-name>/files/",
+    "data/storage/el2/base/haps/<module-name>/preferences/",
     "data/storage/el2/distributedfiles/"
     ]
 }

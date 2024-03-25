@@ -295,7 +295,7 @@ javaScriptProxy(javaScriptProxy: { object: object, name: string, methodList: Arr
 
 | 参数名        | 参数类型                                     | 必填   | 默认值  | 参数描述                                     |
 | ---------- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
-| object     | object                                   | 是    | -    | 参与注册的对象。只能声明方法，不能声明属性。                   |
+| object     | object                                   | 是    | -    | 参与注册的对象。可以声明方法，也可以声明属性，但是不支持h5直接调用。                   |
 | name       | string                                   | 是    | -    | 注册对象的名称，与window中调用的对象名一致。                |
 | methodList | Array\<string\>                          | 是    | -    | 参与注册的应用侧JavaScript对象的方法。                 |
 | controller | [WebviewController<sup>9+</sup>](../apis/js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | 是    | -    | 控制器。从API Version 9开始，WebController不再维护，建议使用WebviewController替代。 |
@@ -1716,7 +1716,7 @@ nestedScroll(value: NestedScrollOptions)
 >
 > - 设置向前向后两个方向上的嵌套滚动模式，实现与父组件的滚动联动。
 > - 支持设置不同的向前向后两个方向上的嵌套滚动模式。
-> - 默认模式为NestedScrollOptions.SELF_FIRST。
+> - 默认scrollForward和scrollBackward模式为NestedScrollMode.SELF_FIRST。
 
 **参数：**
 
@@ -3219,7 +3219,7 @@ onPermissionRequest(callback: (event?: { request: PermissionRequest }) => void)
         audio: true
       };
       //获取video摄像头区域
-      let video = document.getElementByld("video");
+      let video = document.getElementById("video");
       //返回的Promise对象
       let promise = navigator.mediaDevices.getUserMedia(constraints);
       //then()异步，调用MediaStream对象作为参数
@@ -4361,8 +4361,10 @@ onSafeBrowsingCheckResult(callback: OnSafeBrowsingCheckResultCallback)
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
-        .onSafeBrowsingCheckResult((details: OnSafeBrowsingCheckResultCallback) => {
-            console.log("onSafeBrowsingCheckResult: [threatType]= " + details.threatType);
+        .onSafeBrowsingCheckResult((callback) => {
+            let jsonData = JSON.stringify(callback)
+            let json:OnSafeBrowsingCheckResultCallback = JSON.parse(jsonData)
+            console.log("onSafeBrowsingCheckResult: [threatType]= " + json.threatType);
         })
       }
     }
@@ -5354,11 +5356,11 @@ invoke(origin: string, allow: boolean, retain: boolean): void
 
 | 名称    | 值 | 描述    |
 | ----- | -- | ---- |
-| Debug | 0 | 调试级别。 |
-| Error | 1 | 错误级别。 |
+| Debug | 1 | 调试级别。 |
+| Error | 4 | 错误级别。 |
 | Info  | 2 | 消息级别。 |
-| Log   | 3 | 日志级别。 |
-| Warn  | 4 | 警告级别。 |
+| Log   | 5 | 日志级别。 |
+| Warn  | 3 | 警告级别。 |
 
 ## RenderExitReason<sup>9+</sup>枚举说明
 
@@ -5376,7 +5378,7 @@ onRenderExited接口返回的渲染进程退出的具体原因。
 
 | 名称        | 值 | 描述                                 |
 | ---------- | -- | ---------------------------------- |
-| All        | 0 | 允许加载HTTP和HTTPS混合内容。所有不安全的内容都可以被加载。 |
+| All        | undefined | 允许加载HTTP和HTTPS混合内容。所有不安全的内容都可以被加载。 |
 | Compatible | 1 | 混合内容兼容性模式，部分不安全的内容可能被加载。           |
 | None       | 2 | 不允许加载HTTP和HTTPS混合内容。               |
 
@@ -5438,8 +5440,8 @@ onSslErrorEventReceive接口返回的SSL错误的具体原因。
 | 名称                          | 值 | 描述            | 备注                         |
 | --------------------------- | --------------- | ------------- | -------------------------- |
 | MidiSysex                   | TYPE_MIDI_SYSEX | MIDI SYSEX资源。 | 目前仅支持权限事件上报，MIDI设备的使用还未支持。 |
-| VIDEO_CAPTURE<sup>10+</sup> | TYPE_VIDEO_CAPTURE | 视频捕获资源，例如相机。  |                            |
-| AUDIO_CAPTURE<sup>10+</sup> | TYPE_AUDIO_CAPTURE | 音频捕获资源，例如麦克风。 |                            |
+| VIDEO_CAPTURE<sup>10+</sup> | undefined | 视频捕获资源，例如相机。  |                            |
+| AUDIO_CAPTURE<sup>10+</sup> | undefined | 音频捕获资源，例如麦克风。 |                            |
 
 ## WebDarkMode<sup>9+</sup>枚举说明
 
@@ -6305,7 +6307,7 @@ saveCookie()
 | 名称          | 类型             | 必填   | 描述                    |
 | ----------- | -------------- | ---- | --------------------- |
 | script      | string         | 是    | 需要注入、执行的JavaScript脚本。 |
-| scriptRules | Array\<string> | 是    | 一组允许来源的匹配规则。          |
+| scriptRules | Array\<string> | 是    | 一组允许来源的匹配规则。<br>1.如果需要允许所有来源的网址，使用通配符“ * ”。<br>2.如果需要精确匹配，则描述网站地址，如"https:\//www\.example.com"。<br>3.如果模糊匹配网址，可以使用“ * ”通配符替代，如"https://*.example.com"。不允许使用"x. * .y.com"、" * foobar.com"等。<br>4.如果来源是ip地址，则使用规则2。          |
 
 ## WebNavigationType<sup>11+</sup>
 

@@ -41,7 +41,7 @@
 
 
 ```ts
-onHover(event: (isHover?: boolean) => void)
+onHover(event: (isHover: boolean) => void)
 ```
 
 
@@ -329,7 +329,7 @@ onKeyEvent(event: (event?: KeyEvent) => void)
 ```
 
 
-按键事件回调，当绑定该方法的组件处于[获焦状态](arkts-common-events-focus-event.md)下，外设键盘的按键事件会触发该API的回调响应，回调参数为[KeyEvent](../reference/arkui-ts/ts-universal-events-key.md)，可由该参数获得当前按键事件的按键行为（[KeyType](../reference/arkui-ts/ts-appendix-enums.md#keytype)）、键码（[keyCode](../reference/apis/js-apis-keycode.md)）、按键英文名称（keyText）、事件来源设备类型（[KeySource](../reference/arkui-ts/ts-appendix-enums.md#keysource)）、事件来源设备id（deviceId）、元键按压状态（metaKey）、时间戳（timestamp）、阻止冒泡设置（stopPropagation）。
+按键事件回调，当绑定该方法的组件处于[获焦状态](arkts-common-events-focus-event.md)下，外设键盘的按键事件会触发该API的回调响应，回调参数为[KeyEvent](../reference/arkui-ts/ts-universal-events-key.md#keyevent对象说明)，可由该参数获得当前按键事件的按键行为（[KeyType](../reference/arkui-ts/ts-appendix-enums.md#keytype)）、键码（[keyCode](../reference/apis/js-apis-keycode.md)）、按键英文名称（keyText）、事件来源设备类型（[KeySource](../reference/arkui-ts/ts-appendix-enums.md#keysource)）、事件来源设备id（deviceId）、元键按压状态（metaKey）、时间戳（timestamp）、阻止冒泡设置（stopPropagation）。
 
 
 

@@ -34,7 +34,7 @@
 ```
 
 
-\@Provide和\@Consume通过相同的变量名或者相同的变量别名绑定时，\@Provide修饰的变量和\@Consume修饰的变量是一对多的关系。不允许在同一个自定义组件内，包括其子组件中声明多个同名或者同别名的\@Provide装饰的变量，@Provide的属性名或别名需要唯一且确定，如果声明多个同名或者同别名的@Provide装饰的变量，会发生运行时报错。
+\@Provide和\@Consume通过相同的变量名或者相同的变量别名绑定时，\@Provide装饰的变量和\@Consume装饰的变量是一对多的关系。不允许在同一个自定义组件内，包括其子组件中声明多个同名或者同别名的\@Provide装饰的变量，@Provide的属性名或别名需要唯一且确定，如果声明多个同名或者同别名的@Provide装饰的变量，会发生运行时报错。
 
 
 ## 装饰器说明
@@ -45,8 +45,8 @@
 | -------------- | ---------------------------------------- |
 | 装饰器参数          | 别名：常量字符串，可选。<br/>如果指定了别名，则通过别名来绑定变量；如果未指定别名，则通过变量名绑定变量。 |
 | 同步类型           | 双向同步。<br/>从\@Provide变量到所有\@Consume变量以及相反的方向的数据同步。双向同步的操作与\@State和\@Link的组合相同。 |
-| 允许装饰的变量类型      | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date类型。<br/>API11及以上支持Map、Set类型。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>API11及以上支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[@Provide_and_Consume支持联合类型实例](#provide_and_consume支持联合类型实例)。 <br/>**注意**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScipt类型校验，比如：`@Provide a : string \| undefined = undefiend`是推荐的，不推荐`@Provide a: string = undefined`。
-<br/>支持AkrUI框架定义的联合类型Length、ResourceStr、ResourceColor类型。<br/>不支持any。| 必须指定类型。<br/>\@Provide变量的\@Consume变量的类型必须相同。|
+| 允许装饰的变量类型      | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date类型。<br/>API11及以上支持Map、Set类型。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>API11及以上支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[@Provide_and_Consume支持联合类型实例](#provide_and_consume支持联合类型实例)。 <br/>**注意**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScript类型校验，比如：`@Provide a : string \| undefined = undefined`是推荐的，不推荐`@Provide a: string = undefined`。
+<br/>支持ArkUI框架定义的联合类型Length、ResourceStr、ResourceColor类型。<br/>不支持any。| 必须指定类型。<br/>\@Provide变量的\@Consume变量的类型必须相同。|
 | 被装饰变量的初始值      | 必须指定。                                    |
 | 支持allowOverride参数          | 允许重写，只要声明了allowOverride，则别名和属性名都可以被Override。示例见\@Provide支持allowOverride参数。 |
 
@@ -54,8 +54,8 @@
 | -------------- | ---------------------------------------- |
 | 装饰器参数          | 别名：常量字符串，可选。<br/>如果提供了别名，则必须有\@Provide的变量和其有相同的别名才可以匹配成功；否则，则需要变量名相同才能匹配成功。 |
 | 同步类型           | 双向：从\@Provide变量（具体请参见\@Provide）到所有\@Consume变量，以及相反的方向。双向同步操作与\@State和\@Link的组合相同。 |
-| 允许装饰的变量类型      | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date类型。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>API11及以上支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[@Provide_and_Consume支持联合类型实例](#provide_and_consume支持联合类型实例)。 <br/>**注意**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScipt类型校验，比如：`@Consume a : string \| undefined`。
-<br/>支持AkrUI框架定义的联合类型Length、ResourceStr、ResourceColor类型。<br/>不支持any。| 必须指定类型。<br/>\@Provide变量和\@Consume变量的类型必须相同。<br/>\@Consume装饰的变量，在其父组件或者祖先组件上，必须有对应的属性和别名的\@Provide装饰的变量。 |
+| 允许装饰的变量类型      | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date类型。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>API11及以上支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[@Provide_and_Consume支持联合类型实例](#provide_and_consume支持联合类型实例)。 <br/>**注意**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScript类型校验，比如：`@Consume a : string \| undefined`。
+<br/>支持ArkUI框架定义的联合类型Length、ResourceStr、ResourceColor类型。<br/>不支持any。| 必须指定类型。<br/>\@Provide变量和\@Consume变量的类型必须相同。<br/>\@Consume装饰的变量，在其父组件或者祖先组件上，必须有对应的属性和别名的\@Provide装饰的变量。 |
 | 被装饰变量的初始值      | 无，禁止本地初始化。                               |
 
 
@@ -107,7 +107,6 @@
 ```ts
 @Component
 struct CompD {
-
   @Consume selectedDate: Date;
 
   build() {
@@ -133,7 +132,6 @@ struct CompD {
 @Entry
 @Component
 struct CompA {
-
   @Provide selectedDate: Date = new Date('2021-08-08')
 
   build() {
@@ -248,25 +246,25 @@ struct Child {
   @Consume message: Map<number, string>
 
   build() {
-    Column(){
+    Column() {
       ForEach(Array.from(this.message.entries()), (item: [number, string]) => {
         Text(`${item[0]}`).fontSize(30)
         Text(`${item[1]}`).fontSize(30)
         Divider()
       })
-      Button('Consume init map').onClick(() =>{
+      Button('Consume init map').onClick(() => {
         this.message = new Map([[0, "a"], [1, "b"], [3, "c"]])
       })
-      Button('Consume set new one').onClick(() =>{
+      Button('Consume set new one').onClick(() => {
         this.message.set(4, "d")
       })
-      Button('Consume clear').onClick(() =>{
+      Button('Consume clear').onClick(() => {
         this.message.clear()
       })
-      Button('Consume replace the first item').onClick(() =>{
+      Button('Consume replace the first item').onClick(() => {
         this.message.set(0, "aa")
       })
-      Button('Consume delete the first item').onClick(() =>{
+      Button('Consume delete the first item').onClick(() => {
         this.message.delete(0)
       })
     }
@@ -282,7 +280,7 @@ struct MapSample {
   build() {
     Row() {
       Column() {
-        Button('Provide init map').onClick(() =>{
+        Button('Provide init map').onClick(() => {
           this.message = new Map([[0, "a"], [1, "b"], [3, "c"], [4, "d"]])
         })
         Child()
@@ -313,16 +311,16 @@ struct Child {
         Text(`${item[0]}`).fontSize(30)
         Divider()
       })
-      Button('Consume init set').onClick(() =>{
-        this.message = new Set([0, 1, 2 ,3,4 ])
+      Button('Consume init set').onClick(() => {
+        this.message = new Set([0, 1, 2, 3, 4])
       })
-      Button('Consume set new one').onClick(() =>{
+      Button('Consume set new one').onClick(() => {
         this.message.add(5)
       })
-      Button('Consume clear').onClick(() =>{
+      Button('Consume clear').onClick(() => {
         this.message.clear()
       })
-      Button('Consume delete the first one').onClick(() =>{
+      Button('Consume delete the first one').onClick(() => {
         this.message.delete(0)
       })
     }
@@ -331,17 +329,16 @@ struct Child {
 }
 
 
-
 @Entry
 @Component
 struct SetSample {
-  @Provide message: Set<number> = new Set([0, 1, 2 ,3,4 ])
+  @Provide message: Set<number> = new Set([0, 1, 2, 3, 4])
 
   build() {
     Row() {
       Column() {
-        Button('Provide init set').onClick(() =>{
-          this.message = new Set([0, 1, 2 ,3, 4, 5 ])
+        Button('Provide init set').onClick(() => {
+          this.message = new Set([0, 1, 2, 3, 4, 5])
         })
         Child()
       }
@@ -434,7 +431,8 @@ struct GrandSon {
 
 @Component
 struct Child {
-  @Provide({allowOverride : "reviewVotes"}) reviewVotes: number = 10;
+  @Provide({ allowOverride: "reviewVotes" }) reviewVotes: number = 10;
+
   build() {
     Row({ space: 5 }) {
       GrandSon()
@@ -444,7 +442,8 @@ struct Child {
 
 @Component
 struct Parent {
-  @Provide({allowOverride : "reviewVotes"}) reviewVotes: number = 20;
+  @Provide({ allowOverride: "reviewVotes" }) reviewVotes: number = 20;
+
   build() {
     Child()
   }
@@ -477,7 +476,7 @@ struct GrandParent {
 
 ### \@BuilderParam尾随闭包情况下\@Provide未定义错误
 
-在此场景下，CustomWidget执行this.builder()创建子组件CustomWidgetChild时，this指向的是HomePage。因此找不到CustomWidget的\@Provide变量，所以下面示例会报找不到\@Provide错误，和\@BuidlerParam连用的时候要谨慎this的指向。
+在此场景下，CustomWidget执行this.builder()创建子组件CustomWidgetChild时，this指向的是HomePage。因此找不到CustomWidget的\@Provide变量，所以下面示例会报找不到\@Provide错误，和\@BuilderParam连用的时候要谨慎this的指向。
 
 错误示例：
 
@@ -485,10 +484,10 @@ struct GrandParent {
 class Tmp {
   a: string = ''
 }
+
 @Entry
 @Component
 struct HomePage {
-
   @Builder
   builder2($$: Tmp) {
     Text(`${$$.a}测试`)
@@ -505,7 +504,7 @@ struct HomePage {
 
 @Component
 struct CustomWidget {
-  @Provide('a') a: string='abc';
+  @Provide('a') a: string = 'abc';
   @BuilderParam
   builder: () => void;
 

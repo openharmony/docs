@@ -5,11 +5,11 @@
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
-使用WebSocket建立服务器与客户端的双向连接，需要先通过<span name="createWebSocket">[createWebSocket](#websocketcreatewebsocket)</span>方法创建<span name="WebSocket">[WebSocket](#websocket)</span>对象，然后通过<span name="connect">[connect](#connected)</span>方法连接到服务器。
-当连接成功后，客户端会收到<span name="open">[open](#onopen)</span>事件的回调，之后客户端就可以通过<span name="sended">[send](#send)</span>方法与服务器进行通信。
-当服务器发信息给客户端时，客户端会收到<span name="message">[message](#onmessage)</span>事件的回调。当客户端不要此连接时，可以通过调用<span name="closed">[close](#close)</span>方法主动断开连接，之后客户端会收到<span name="closes">[close](#onclose)</span>事件的回调。
+使用WebSocket建立服务器与客户端的双向连接，需要先通过[createWebSocket](#websocketcreatewebsocket6)方法创建[WebSocket](#websocket6)对象，然后通过[connect](#connect6)方法连接到服务器。
+当连接成功后，客户端会收到[open](#onopen6)事件的回调，之后客户端就可以通过[send](#send6)方法与服务器进行通信。
+当服务器发信息给客户端时，客户端会收到[message](#onmessage6)事件的回调。当客户端不要此连接时，可以通过调用[close](#close6)方法主动断开连接，之后客户端会收到[close](#onclose6)事件的回调。
 
-若在上述任一过程中发生错误，客户端会收到<span name="error">[error](#onerror)</span>事件的回调。
+若在上述任一过程中发生错误，客户端会收到[error](#onerror6)事件的回调。
 
 ## 导入模块
 
@@ -74,7 +74,7 @@ ws.connect(defaultIpAddress, (err: BusinessError, value: boolean) => {
 });
 ```
 
-## <span name="websocketcreatewebsocket">webSocket.createWebSocket<sup>6+</sup></span>
+## webSocket.createWebSocket<sup>6+</sup>
 
 createWebSocket(): WebSocket
 
@@ -86,7 +86,7 @@ createWebSocket(): WebSocket
 
 | 类型                                | 说明                                                         |
 | :---------------------------------- | :----------------------------------------------------------- |
-| [WebSocket](#websocket) | 返回一个WebSocket对象，里面包括connect、send、close、on和off方法。 |
+| [WebSocket](#websocket6) | 返回一个WebSocket对象，里面包括connect、send、close、on和off方法。 |
 
 **示例：**
 
@@ -94,11 +94,11 @@ createWebSocket(): WebSocket
 let ws: webSocket = webSocket.createWebSocket();
 ```
 
-## <span name="websocket">WebSocket<sup>6+</sup></span>
+## WebSocket<sup>6+</sup>
 
-在调用WebSocket的方法前，需要先通过[webSocket.createWebSocket](#websocketcreatewebsocket)创建一个WebSocket。
+在调用WebSocket的方法前，需要先通过[webSocket.createWebSocket](#websocketcreatewebsocket6)创建一个WebSocket。
 
-### <span name="connected">connect<sup>6+</sup></span>
+### connect<sup>6+</sup>
 
 connect(url: string, callback: AsyncCallback\<boolean\>): void
 
@@ -240,7 +240,7 @@ promise.then((value: boolean) => {
 });
 ```
 
-### <span name="send">send<sup>6+</sup></span>
+### send<sup>6+</sup>
 
 send(data: string | ArrayBuffer, callback: AsyncCallback\<boolean\>): void
 
@@ -330,7 +330,7 @@ ws.connect(url, (err: BusinessError, value: boolean) => {
 });
 ```
 
-### <span name="close">close<sup>6+</sup></span>
+### close<sup>6+</sup>
 
 close(callback: AsyncCallback\<boolean\>): void
 
@@ -463,7 +463,7 @@ promise.then((value: boolean) => {
 });
 ```
 
-### <span name="onopen">on('open')<sup>6+</sup></span>
+### on('open')<sup>6+</sup>
 
 on(type: 'open', callback: AsyncCallback\<Object\>): void
 
@@ -531,7 +531,7 @@ ws.on('open', callback1);
 ws.off('open', callback1);
 ```
 
-### <span name="onmessage">on('message')<sup>6+</sup></spam>
+### on('message')<sup>6+</sup>
 
 on(type: 'message', callback: AsyncCallback\<string | ArrayBuffer\>): void
 
@@ -589,7 +589,7 @@ let ws = webSocket.createWebSocket();
 ws.off('message');
 ```
 
-### <span name="onclose">on('close')<sup>6+</sup></span>
+### on('close')<sup>6+</sup>
 
 on(type: 'close', callback: AsyncCallback\<CloseResult\>): void
 
@@ -643,7 +643,7 @@ let ws = webSocket.createWebSocket();
 ws.off('close');
 ```
 
-### <span name="onerror">on('error')<sup>6+</sup></span>
+### on('error')<sup>6+</sup>
 
 on(type: 'error', callback: ErrorCallback): void
 

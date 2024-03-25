@@ -169,15 +169,18 @@ export class AudioRecorderDemo {
   // 开始录制对应的流程
   async startRecordingProcess() {
     if (this.avRecorder != undefined) {
-      // 1.创建录制实例
-      this.avRecorder = await media.createAVRecorder();
-      this.setAudioRecorderCallback();
-      // 2.获取录制文件fd赋予avConfig里的url；参考FilePicker文档
-      // 3.配置录制参数完成准备工作
-      await this.avRecorder.prepare(this.avConfig);
-      // 4.开始录制
-      await this.avRecorder.start();
+      await this.avRecorder.release();
+      this.avRecorder = undefined;
     }
+    // 1.创建录制实例
+    this.avRecorder = await media.createAVRecorder();
+    this.setAudioRecorderCallback();
+    // 2.获取录制文件fd赋予avConfig里的url；参考FilePicker文档
+
+    // 3.配置录制参数完成准备工作
+    await this.avRecorder.prepare(this.avConfig);
+    // 4.开始录制
+    await this.avRecorder.start();
   }
 
   // 暂停录制对应的流程
@@ -206,6 +209,7 @@ export class AudioRecorderDemo {
       await this.avRecorder.reset();
       // 3.释放录制实例
       await this.avRecorder.release();
+      this.avRecorder = undefined;
       // 4.关闭录制文件fd
     }
   }

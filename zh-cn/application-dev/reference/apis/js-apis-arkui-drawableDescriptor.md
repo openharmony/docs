@@ -31,7 +31,7 @@ constructor()
 
 当传入资源id或name为包含前景和背景资源的json文件时，生成LayeredDrawableDescriptor对象。
 
-drawble.json文件如下：
+drawable.json位于项目工程entry/src/main/resources/base/media目录下。定义请参考：
 
 ```json
 {
@@ -56,8 +56,8 @@ struct Index {
   build() {
     Row() {
       Column() {
-        Image((this.resManager.getDrawableDescriptor($r('app.media.icon').id) as LayeredDrawableDescriptor))
-        Image(((this.resManager.getDrawableDescriptor($r('app.media.icon')
+        Image((this.resManager.getDrawableDescriptor($r('app.media.drawable').id) as LayeredDrawableDescriptor))
+        Image(((this.resManager.getDrawableDescriptor($r('app.media.drawable')
           .id) as LayeredDrawableDescriptor).getForeground()).getPixelMap())
       }.height('50%')
     }.width('50%')
@@ -82,7 +82,7 @@ getPixelMap(): image.PixelMap;
   ```ts
 import { DrawableDescriptor, LayeredDrawableDescriptor } from '@ohos.arkui.drawableDescriptor'
 let resManager = getContext().resourceManager
-let pixmap: DrawableDescriptor = (resManager.getDrawableDescriptor($r('app.media.icon')
+let pixmap: DrawableDescriptor = (resManager.getDrawableDescriptor($r('app.media.drawable')
     .id)) as DrawableDescriptor;
 let pixmapNew: object = pixmap.getPixelMap()
   ```
@@ -104,7 +104,7 @@ getPixelMap(): image.PixelMap;
   ```ts
 import { DrawableDescriptor, LayeredDrawableDescriptor } from '@ohos.arkui.drawableDescriptor'
 let resManager = getContext().resourceManager
-let pixmap: LayeredDrawableDescriptor = (resManager.getDrawableDescriptor($r('app.media.icon')
+let pixmap: LayeredDrawableDescriptor = (resManager.getDrawableDescriptor($r('app.media.drawable')
     .id)) as LayeredDrawableDescriptor;
 let pixmapNew: object = pixmap.getPixelMap()
   ```
@@ -126,9 +126,9 @@ getForeground(): DrawableDescriptor;
   ```ts
 import { DrawableDescriptor, LayeredDrawableDescriptor } from '@ohos.arkui.drawableDescriptor'
 let resManager = getContext().resourceManager
-let drawable: LayeredDrawableDescriptor = (resManager.getDrawableDescriptor($r('app.media.icon')
+let drawable: LayeredDrawableDescriptor = (resManager.getDrawableDescriptor($r('app.media.drawable')
     .id)) as LayeredDrawableDescriptor;
-let drawableNew: object =drawable.getForeground()
+let drawableNew: object = drawable.getForeground()
   ```
 
 ## LayeredDrawableDescriptor.getBackground
@@ -148,9 +148,9 @@ getBackground(): DrawableDescriptor;
   ```ts
 import { DrawableDescriptor, LayeredDrawableDescriptor } from '@ohos.arkui.drawableDescriptor'
 let resManager = getContext().resourceManager
-let drawable: LayeredDrawableDescriptor = (resManager.getDrawableDescriptor($r('app.media.icon')
+let drawable: LayeredDrawableDescriptor = (resManager.getDrawableDescriptor($r('app.media.drawable')
     .id)) as LayeredDrawableDescriptor;
-let drawableNew: object =drawable.getBackground()
+let drawableNew: object = drawable.getBackground()
   ```
 
 ## LayeredDrawableDescriptor.getMask
@@ -170,9 +170,9 @@ getMask(): DrawableDescriptor;
   ```ts
 import { DrawableDescriptor, LayeredDrawableDescriptor } from '@ohos.arkui.drawableDescriptor'
 let resManager = getContext().resourceManager
-let drawable: LayeredDrawableDescriptor = (resManager.getDrawableDescriptor($r('app.media.icon')
+let drawable: LayeredDrawableDescriptor = (resManager.getDrawableDescriptor($r('app.media.drawable')
     .id)) as LayeredDrawableDescriptor;
-let drawableNew: object =drawable.getMask()
+let drawableNew: object = drawable.getMask()
   ```
 ## LayeredDrawableDescriptor.getMaskClipPath
 static getMaskClipPath(): string

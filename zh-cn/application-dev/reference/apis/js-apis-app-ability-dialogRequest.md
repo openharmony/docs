@@ -102,10 +102,10 @@ export default class EntryAbility extends UIAbility {
 
 | 名称 | 类型   | 必填 | 说明                        |
 | ---- | ------ | ---- | --------------------------- |
-| left  | number | 否   | 弹框边框的左上角的X坐标。 |
-| top  | number | 否   | 弹框边框的左上角的Y坐标。 |
-| width  | number | 否   | 弹框的宽度。 |
-| height  | number | 否   | 弹框的高度。 |
+| left  | number | 是   | 弹框边框的左上角的X坐标。 |
+| top  | number | 是   | 弹框边框的左上角的Y坐标。 |
+| width  | number | 是   | 弹框的宽度。 |
+| height  | number | 是   | 弹框的高度。 |
 
 ## RequestInfo
 
@@ -159,10 +159,10 @@ export default class EntryAbility extends UIAbility {
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| result | [ResultCode](#resultcode) | 是 | 是 | 表示结果码。 |
-| want<sup>10+</sup> | [ResultWant](js-apis-app-ability-want.md)  | 是 | 是 | 表示Want类型信息，如ability名称，包名等。 |
+| result | [ResultCode](#resultcode) | 否 | 是 | 表示结果码。 |
+| want<sup>10+</sup> | [ResultWant](js-apis-app-ability-want.md)  | 否 | 否 | 表示Want类型信息，如ability名称，包名等。 |
 
 ## RequestCallback
 
@@ -172,7 +172,7 @@ export default class EntryAbility extends UIAbility {
 
 ### RequestCallback.setRequestResult
 
-setRequestResult(result: RequestResult): void;
+setRequestResult(result: RequestResult): void
 
 设置请求结果
 

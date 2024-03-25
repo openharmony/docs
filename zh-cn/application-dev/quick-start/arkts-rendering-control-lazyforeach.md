@@ -10,8 +10,8 @@ LazyForEach从提供的数据源中按需迭代数据，并在每次迭代过程
 ```ts
 LazyForEach(
     dataSource: IDataSource,             // 需要进行数据迭代的数据源
-    itemGenerator: (item: any, index?: number) => void,  // 子组件生成函数
-    keyGenerator?: (item: any, index?: number) => string // 键值生成函数
+    itemGenerator: (item: any, index: number) => void,  // 子组件生成函数
+    keyGenerator?: (item: any, index: number) => string // 键值生成函数
 ): void
 ```
 
@@ -585,7 +585,7 @@ struct MyComponent {
 }
 ```
 
-当我们点击`LazyForEach`的子组件时，首先调用数据源`data`的`deleteData`方法，该方法会删除数据源对应索引处的数据并调用`notifyDatDelete`方法。在`notifyDataDelete`方法内会又调用`listener.onDataDelete`方法，该方法会通知`LazyForEach`在该处有数据删除，`LazyForEach`便会在该索引处删除对应子组件。
+当我们点击`LazyForEach`的子组件时，首先调用数据源`data`的`deleteData`方法，该方法会删除数据源对应索引处的数据并调用`notifyDataDelete`方法。在`notifyDataDelete`方法内会又调用`listener.onDataDelete`方法，该方法会通知`LazyForEach`在该处有数据删除，`LazyForEach`便会在该索引处删除对应子组件。
 
 运行效果如下图所示。
 

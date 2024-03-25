@@ -25,13 +25,13 @@
 
 ### 类型定义
 
-| 名称 | 描述 | 
-| -------- | -------- |
-| typedef struct OH_AudioStreamBuilderStruct [OH_AudioStreamBuilder](_o_h_audio.md#oh_audiostreambuilder) | 声明音频流的构造器。  | 
-| typedef struct OH_AudioRendererStruct [OH_AudioRenderer](_o_h_audio.md#oh_audiorenderer) | 声明输出音频流。  | 
-| typedef struct OH_AudioCapturerStruct [OH_AudioCapturer](_o_h_audio.md#oh_audiocapturer) | 声明输入音频流。  | 
-| typedef struct [OH_AudioRenderer_Callbacks_Struct](_o_h___audio_renderer___callbacks___struct.md)[OH_AudioRenderer_Callbacks](_o_h_audio.md#oh_audiorenderer_callbacks) | 声明输出音频流的回调函数指针。  | 
-| typedef struct [OH_AudioCapturer_Callbacks_Struct](_o_h___audio_capturer___callbacks___struct.md)[OH_AudioCapturer_Callbacks](_o_h_audio.md#oh_audiocapturer_callbacks) | 声明输入音频流的回调函数指针。  | 
+| 名称                                                                                                                                                                       | 描述 | 
+|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------| -------- |
+| typedef struct OH_AudioStreamBuilderStruct [OH_AudioStreamBuilder](_o_h_audio.md#oh_audiostreambuilder)                                                                  | 声明音频流的构造器。  | 
+| typedef struct OH_AudioRendererStruct [OH_AudioRenderer](_o_h_audio.md#oh_audiorenderer)                                                                                 | 声明输出音频流。  | 
+| typedef struct OH_AudioCapturerStruct [OH_AudioCapturer](_o_h_audio.md#oh_audiocapturer)                                                                                 | 声明输入音频流。  | 
+| typedef struct [OH_AudioRenderer_Callbacks_Struct](_o_h___audio_renderer___callbacks___struct.md) [OH_AudioRenderer_Callbacks](_o_h_audio.md#oh_audiorenderer_callbacks) | 声明输出音频流的回调函数指针。  | 
+| typedef struct [OH_AudioCapturer_Callbacks_Struct](_o_h___audio_capturer___callbacks___struct.md) [OH_AudioCapturer_Callbacks](_o_h_audio.md#oh_audiocapturer_callbacks) | 声明输入音频流的回调函数指针。  | 
 
 
 ### 枚举
@@ -47,5 +47,5 @@
 | [OH_AudioStream_State](_o_h_audio.md#oh_audiostream_state) {<br/>AUDIOSTREAM_STATE_INVALID = -1,<br/>AUDIOSTREAM_STATE_NEW = 0,<br/>AUDIOSTREAM_STATE_PREPARED = 1,<br/>AUDIOSTREAM_STATE_RUNNING = 2,<br/>AUDIOSTREAM_STATE_STOPPED = 3,<br/>AUDIOSTREAM_STATE_RELEASED = 4,<br/>AUDIOSTREAM_STATE_PAUSED = 5<br/>} | 定义音频流的状态。 | 
 | [OH_AudioStream_SourceType](_o_h_audio.md#oh_audiostream_sourcetype) {<br/>AUDIOSTREAM_SOURCE_TYPE_INVALID = -1,<br/>AUDIOSTREAM_SOURCE_TYPE_MIC = 0,<br/>AUDIOSTREAM_SOURCE_TYPE_VOICE_RECOGNITION = 1,<br/>AUDIOSTREAM_SOURCE_TYPE_PLAYBACK_CAPTURE = 2,<br/>AUDIOSTREAM_SOURCE_TYPE_VOICE_COMMUNICATION = 7<br/>} | 定义音频流使用场景。 | 
 | [OH_AudioStream_Event](_o_h_audio.md#oh_audiostream_event) {<br/>AUDIOSTREAM_EVENT_ROUTING_CHANGED = 0<br/>} | 定义音频事件。 | 
-| [OH_AudioInterrupt_ForceType](_o_h_audio.md#oh_audiointerrupt_forcetype) {<br/>AUDIOSTREAM_INTERRUPT_FORCE = 0,<br/>AUDIOSTREAM_INTERRUPT_SHAR = 1<br/>} | 定义音频中断类型。 | 
+| [OH_AudioInterrupt_ForceType](_o_h_audio.md#oh_audiointerrupt_forcetype) {<br/>AUDIOSTREAM_INTERRUPT_FORCE = 0,<br/>AUDIOSTREAM_INTERRUPT_SHARE = 1<br/>} | 定义音频中断类型。 | 
 | [OH_AudioInterrupt_Hint](_o_h_audio.md#oh_audiointerrupt_hint) {<br/>AUDIOSTREAM_INTERRUPT_HINT_NONE = 0,<br/>AUDIOSTREAM_INTERRUPT_HINT_RESUME = 1,<br/>AUDIOSTREAM_INTERRUPT_HINT_PAUSE = 2,<br/>AUDIOSTREAM_INTERRUPT_HINT_STOP = 3,<br/>AUDIOSTREAM_INTERRUPT_HINT_DUCK = 4,<br/>AUDIOSTREAM_INTERRUPT_HINT_UNDUCK = 5<br/>} | 定义音频中断类型。 | 

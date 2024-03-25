@@ -13,7 +13,7 @@
 import systemTime from '@ohos.systemTime';
 ```
 
-## systemTime.setTime<sup>(deprecated)</sup>
+## systemTime.setTime
 
 setTime(time : number, callback : AsyncCallback&lt;void&gt;) : void
 
@@ -59,7 +59,7 @@ try {
 }
 ```
 
-## systemTime.setTime<sup>(deprecated)</sup>
+## systemTime.setTime
 
 setTime(time : number) : Promise&lt;void&gt;
 
@@ -108,7 +108,7 @@ try {
 }
 ```
 
-## systemTime.getCurrentTime<sup>(deprecated)</sup>
+## systemTime.getCurrentTime<sup>8+</sup>
 
 getCurrentTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 
@@ -150,7 +150,7 @@ try {
 }
 ```
 
-## systemTime.getCurrentTime<sup>(deprecated)</sup>
+## systemTime.getCurrentTime<sup>8+</sup>
 
 getCurrentTime(callback: AsyncCallback&lt;number&gt;): void
 
@@ -191,7 +191,7 @@ try {
 }
 ```
 
-## systemTime.getCurrentTime<sup>(deprecated)</sup>
+## systemTime.getCurrentTime<sup>8+</sup>
 
 getCurrentTime(isNano?: boolean): Promise&lt;number&gt;
 
@@ -236,7 +236,7 @@ try {
 }
 ```
 
-## systemTime.getRealActiveTime<sup>(deprecated)</sup>
+## systemTime.getRealActiveTime<sup>8+</sup>
 
 getRealActiveTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 
@@ -278,7 +278,7 @@ try {
 }
 ```
 
-## systemTime.getRealActiveTime<sup>(deprecated)</sup>
+## systemTime.getRealActiveTime<sup>8+</sup>
 
 getRealActiveTime(callback: AsyncCallback&lt;number&gt;): void
 
@@ -319,7 +319,7 @@ try {
 }
 ```
 
-## systemTime.getRealActiveTime<sup>(deprecated)</sup>
+## systemTime.getRealActiveTime<sup>8+</sup>
 
 getRealActiveTime(isNano?: boolean): Promise&lt;number&gt;
 
@@ -364,7 +364,7 @@ try {
 }
 ```
 
-## systemTime.getRealTime<sup>(deprecated)</sup>
+## systemTime.getRealTime<sup>8+</sup>
 
 getRealTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 
@@ -406,7 +406,7 @@ try {
 }
 ```
 
-## systemTime.getRealTime<sup>(deprecated)</sup>
+## systemTime.getRealTime<sup>8+</sup>
 
 getRealTime(callback: AsyncCallback&lt;number&gt;): void
 
@@ -447,7 +447,7 @@ try {
 }
 ```
 
-## systemTime.getRealTime<sup>(deprecated)</sup>
+## systemTime.getRealTime<sup>8+</sup>
 
 getRealTime(isNano?: boolean): Promise&lt;number&gt;
 
@@ -492,7 +492,7 @@ try {
 }
 ```
 
-## systemTime.setDate<sup>(deprecated)</sup>
+## systemTime.setDate
 
 setDate(date: Date, callback: AsyncCallback&lt;void&gt;): void
 
@@ -537,7 +537,7 @@ try {
 }
 ```
 
-## systemTime.setDate<sup>(deprecated)</sup>
+## systemTime.setDate
 
 setDate(date: Date): Promise&lt;void&gt;
 
@@ -585,7 +585,7 @@ try {
 }
 ```
 
-## systemTime.getDate<sup>(deprecated)</sup>
+## systemTime.getDate<sup>8+</sup>
 
 getDate(callback: AsyncCallback&lt;Date&gt;): void
 
@@ -626,7 +626,7 @@ try {
 }
 ```
 
-## systemTime.getDate<sup>(deprecated)</sup>
+## systemTime.getDate<sup>8+</sup>
 
 getDate(): Promise&lt;Date&gt;
 
@@ -665,7 +665,7 @@ try {
 }
 ```
 
-## systemTime.setTimezone<sup>(deprecated)</sup>
+## systemTime.setTimezone
 
 setTimezone(timezone: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -709,7 +709,7 @@ try {
 }
 ```
 
-## systemTime.setTimezone<sup>(deprecated)</sup>
+## systemTime.setTimezone
 
 setTimezone(timezone: string): Promise&lt;void&gt;
 
@@ -756,7 +756,7 @@ try {
 }
 ```
 
-## systemTime.getTimezone<sup>(deprecated)</sup>
+## systemTime.getTimezone<sup>8+</sup>
 
 getTimezone(callback: AsyncCallback&lt;string&gt;): void
 
@@ -797,7 +797,7 @@ try {
 }
 ```
 
-## systemTime.getTimezone<sup>(deprecated)</sup>
+## systemTime.getTimezone<sup>8+</sup>
 
 getTimezone(): Promise&lt;string&gt;
 

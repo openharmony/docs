@@ -21,7 +21,7 @@
 
 ## 限制条件
 
-- \@Prop修饰复杂类型时是深拷贝，在拷贝的过程中除了基本类型、Map、Set、Date、Array外，都会丢失类型。例如[PixelMap](../reference/apis/js-apis-image.md#pixelmap7)等通过NAPI提供的复杂类型，由于有部分实现在Native侧，因此无法在ArkTS侧通过深拷贝获得完整的数据。
+- \@Prop装饰变量时会进行深拷贝，在拷贝的过程中除了基本类型、Map、Set、Date、Array外，都会丢失类型。例如[PixelMap](../reference/apis/js-apis-image.md#pixelmap7)等通过NAPI提供的复杂类型，由于有部分实现在Native侧，因此无法在ArkTS侧通过深拷贝获得完整的数据。
 
 - \@Prop装饰器不能在\@Entry装饰的自定义组件中使用。
 
@@ -33,7 +33,7 @@
 | 装饰器参数       | 无                                        |
 | 同步类型        | 单向同步：对父组件状态变量值的修改，将同步给子组件\@Prop装饰的变量，子组件\@Prop变量的修改不会同步到父组件的状态变量上。嵌套类型的场景请参考[观察变化](#观察变化)。 |
 | 允许装饰的变量类型   | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>不支持any，支持undefined和null。<br/>支持Date类型。<br/>API11及以上支持Map、Set类型。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>API11及以上支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[Prop支持联合类型实例](#prop支持联合类型实例)。 <br/>**注意**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScipt类型校验，比如：`@Prop a : string \| undefined = undefined`是推荐的，不推荐`@Prop a: string = undefined`。 |
-| 支持AkrUI框架定义的联合类型Length、ResourceStr、ResourceColor类型。| 必须指定类型。<br/>\@Prop和[数据源](arkts-state-management-overview.md#基本概念)类型需要相同，有以下三种情况：<br/>-&nbsp;\@Prop装饰的变量和\@State以及其他装饰器同步时双方的类型必须相同，示例请参考[父组件@State到子组件@Prop简单数据类型同步](#父组件state到子组件prop简单数据类型同步)。<br/>-&nbsp;\@Prop装饰的变量和\@State以及其他装饰器装饰的数组的项同步时 ，\@Prop的类型需要和\@State装饰的数组的数组项相同，比如\@Prop&nbsp;:&nbsp;T和\@State&nbsp;:&nbsp;Array&lt;T&gt;，示例请参考[父组件@State数组中的项到子组件@Prop简单数据类型同步](#父组件state数组项到子组件prop简单数据类型同步)；<br/>-&nbsp;当父组件状态变量为Object或者class时，\@Prop装饰的变量和父组件状态变量的属性类型相同，示例请参考[从父组件中的@State类对象属性到@Prop简单类型的同步](#从父组件中的state类对象属性到prop简单类型的同步)。 |
+| 支持AkrUI框架定义的联合类型Length、ResourceStr、ResourceColor类型。| 必须指定类型。<br/>\@Prop和[数据源](arkts-state-management-overview.md#基本概念)类型需要相同，有以下三种情况：<br/>-&nbsp;\@Prop装饰的变量和\@State以及其他装饰器同步时双方的类型必须相同，示例请参考[父组件@State到子组件@Prop简单数据类型同步](#父组件state到子组件prop简单数据类型同步)。<br/>-&nbsp;\@Prop装饰的变量和\@State以及其他装饰器装饰的数组的项同步时 ，\@Prop的类型需要和\@State装饰的数组的数组项相同，比如\@Prop&nbsp;:&nbsp;T和\@State&nbsp;:&nbsp;Array&lt;T&gt;，示例请参考[父组件@State数组中的项到子组件@Prop简单数据类型同步](#父组件state数组项到子组件prop简单数据类型同步)。<br/>-&nbsp;当父组件状态变量为Object或者class时，\@Prop装饰的变量和父组件状态变量的属性类型相同，示例请参考[从父组件中的@State类对象属性到@Prop简单类型的同步](#从父组件中的state类对象属性到prop简单类型的同步)。 |
 | 嵌套传递层数        | 在组件复用场景，建议@Prop深度嵌套数据不要超过5层，嵌套太多会导致深拷贝占用的空间过大以及GarbageCollection(垃圾回收)，引起性能问题，此时更建议使用[\@ObjectLink](arkts-observed-and-objectlink.md)。 |
 | 被装饰变量的初始值   | 允许本地初始化。如果在API 11中和[\@Require](arkts-require.md)结合使用，则必须父组件构造传参。 |
 
@@ -171,7 +171,7 @@ struct ParentComponent {
         selected: this.parentSelectedDate
       })
 
-      DateComponent({selectedDate:this.parentSelectedDate})
+      DateComponent({ selectedDate: this.parentSelectedDate })
     }
 
   }
@@ -193,6 +193,10 @@ struct ParentComponent {
 2. 更新：
    1. 子组件\@Prop更新时，更新仅停留在当前子组件，不会同步回父组件；
    2. 当父组件的数据源更新时，子组件的\@Prop装饰的变量将被来自父组件的数据源重置，所有\@Prop装饰的本地的修改将被父组件的更新覆盖。
+
+> **说明：**
+>
+> \@Prop装饰的数据更新依赖其所属自定义组件的重新渲染，所以在应用进入后台后，\@Prop无法刷新，推荐使用\@Link代替。
 
 
 ## 使用场景
@@ -282,36 +286,38 @@ struct Child {
   build() {
     Text(`${this.value}`)
       .fontSize(50)
-      .onClick(()=>{this.value++})
+      .onClick(() => {
+        this.value++
+      })
   }
 }
 
 @Entry
 @Component
 struct Index {
-  @State arr: number[] = [1,2,3];
+  @State arr: number[] = [1, 2, 3];
 
   build() {
     Row() {
       Column() {
-        Child({value: this.arr[0]})
-        Child({value: this.arr[1]})
-        Child({value: this.arr[2]})
+        Child({ value: this.arr[0] })
+        Child({ value: this.arr[1] })
+        Child({ value: this.arr[2] })
 
         Divider().height(5)
 
-        ForEach(this.arr, 
+        ForEach(this.arr,
           (item: number) => {
-            Child({value: item})
-          }, 
+            Child({ value: item })
+          },
           (item: string) => item.toString()
         )
         Text('replace entire arr')
-        .fontSize(50)
-        .onClick(()=>{
-          // 两个数组都包含项“3”。
-          this.arr = this.arr[0] == 1 ? [3,4,5] : [1,2,3];
-        })
+          .fontSize(50)
+          .onClick(() => {
+            // 两个数组都包含项“3”。
+            this.arr = this.arr[0] == 1 ? [3, 4, 5] : [1, 2, 3];
+          })
       }
     }
   }
@@ -411,7 +417,7 @@ struct Library {
 
 ### 从父组件中的\@State数组项到\@Prop class类型的同步
 
-在下面的示例中，更改了\@State 修饰的allBooks数组中Book对象上的属性，但点击“Mark read for everyone”无反应。这是因为该属性是第二层的嵌套属性，\@State装饰器只能观察到第一层属性，不会观察到此属性更改，所以框架不会更新ReaderComp。
+在下面的示例中，更改了\@State 装饰的allBooks数组中Book对象上的属性，但点击“Mark read for everyone”无反应。这是因为该属性是第二层的嵌套属性，\@State装饰器只能观察到第一层属性，不会观察到此属性更改，所以框架不会更新ReaderComp。
 
 ```ts
 let nextId: number = 1;
@@ -740,25 +746,25 @@ struct Child {
   @Prop value: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]])
 
   build() {
-    Column(){
+    Column() {
       ForEach(Array.from(this.value.entries()), (item: [number, string]) => {
         Text(`${item[0]}`).fontSize(30)
         Text(`${item[1]}`).fontSize(30)
         Divider()
       })
-      Button('child init map').onClick(() =>{
+      Button('child init map').onClick(() => {
         this.value = new Map([[0, "a"], [1, "b"], [3, "c"]])
       })
-      Button('child set new one').onClick(() =>{
+      Button('child set new one').onClick(() => {
         this.value.set(4, "d")
       })
-      Button('child clear').onClick(() =>{
+      Button('child clear').onClick(() => {
         this.value.clear()
       })
-      Button('child replace the first one').onClick(() =>{
+      Button('child replace the first one').onClick(() => {
         this.value.set(0, "aa")
       })
-      Button('child delete the first one').onClick(() =>{
+      Button('child delete the first one').onClick(() => {
         this.value.delete(0)
       })
     }
@@ -774,7 +780,7 @@ struct MapSample2 {
   build() {
     Row() {
       Column() {
-        Child({value:this.message})
+        Child({ value: this.message })
       }
       .width('100%')
     }
@@ -794,7 +800,7 @@ struct MapSample2 {
 ```ts
 @Component
 struct Child {
-  @Prop message: Set<number> = new Set([0, 1, 2 ,3,4 ])
+  @Prop message: Set<number> = new Set([0, 1, 2, 3, 4])
 
   build() {
     Column() {
@@ -802,16 +808,16 @@ struct Child {
         Text(`${item[0]}`).fontSize(30)
         Divider()
       })
-      Button('init set').onClick(() =>{
-        this.message = new Set([0, 1, 2 ,3,4 ])
+      Button('init set').onClick(() => {
+        this.message = new Set([0, 1, 2, 3, 4])
       })
-      Button('set new one').onClick(() =>{
+      Button('set new one').onClick(() => {
         this.message.add(5)
       })
-      Button('clear').onClick(() =>{
+      Button('clear').onClick(() => {
         this.message.clear()
       })
-      Button('delete the first one').onClick(() =>{
+      Button('delete the first one').onClick(() => {
         this.message.delete(0)
       })
     }
@@ -820,16 +826,15 @@ struct Child {
 }
 
 
-
 @Entry
 @Component
 struct SetSample11 {
-  @State message: Set<number> = new Set([0, 1, 2 ,3,4 ])
+  @State message: Set<number> = new Set([0, 1, 2, 3, 4])
 
   build() {
     Row() {
       Column() {
-        Child({message:this.message})
+        Child({ message: this.message })
       }
       .width('100%')
     }
@@ -979,6 +984,7 @@ struct PropChild1 {
       })
   }
 }
+
 @Component
 struct PropChild2 {
   @Prop testNum: ClassA = new ClassA(1); // 进行本地初始化
@@ -1002,7 +1008,7 @@ struct Parent {
         .onClick(() => {
           this.testNum[0].c += 1;
         })
-        
+
       // @PropChild1本地没有初始化，必须从父组件初始化
       PropChild1({ testNum: this.testNum[0] })
       // @PropChild2本地进行了初始化，可以不从父组件初始化，也可以从父组件初始化

@@ -49,10 +49,10 @@ class MyNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
-  private MyNodeController: MyNodeController = new MyNodeController();
+  private myNodeController: MyNodeController = new MyNodeController();
   build() {
     Row() {
-      NodeContainer(this.MyNodeController)
+      NodeContainer(this.myNodeController)
     }
   }
 }
@@ -99,10 +99,10 @@ class MyNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
-  private MyNodeController: MyNodeController = new MyNodeController();
+  private myNodeController: MyNodeController = new MyNodeController();
   build() {
     Row() {
-      NodeContainer(this.MyNodeController)
+      NodeContainer(this.myNodeController)
     }
   }
 }
@@ -155,10 +155,10 @@ class MyNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
-  private MyNodeController: MyNodeController = new MyNodeController();
+  private myNodeController: MyNodeController = new MyNodeController();
   build() {
     Row() {
-      NodeContainer(this.MyNodeController)
+      NodeContainer(this.myNodeController)
     }
   }
 }
@@ -208,11 +208,142 @@ class MyNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
-  private MyNodeController: MyNodeController = new MyNodeController();
+  private myNodeController: MyNodeController = new MyNodeController();
   build() {
     Row() {
-      NodeContainer(this.MyNodeController)
+      NodeContainer(this.myNodeController)
     }
+  }
+}
+```
+### clearChildren
+
+clearChildren(): void
+
+清除当前RenderNode的所有子节点。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**示例：**
+
+```ts
+import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
+
+const renderNode = new RenderNode();
+for (let i = 0; i < 10; i++) {
+  let childNode = new RenderNode();
+  childNode.size = {width: i*10 ,height : i*10};
+  childNode.position = {x: i*10 ,y : i*10};
+  childNode.backgroundColor = 0xFF0000FF - 0X11 * i;
+  renderNode.appendChild(childNode);
+}
+
+class MyNodeController extends NodeController {
+  private rootNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+
+    const rootRenderNode = this.rootNode.getRenderNode();
+    if (rootRenderNode !== null) {
+      rootRenderNode.appendChild(renderNode);
+    }
+
+    return this.rootNode;
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private myNodeController: MyNodeController = new MyNodeController();
+  build() {
+    Column() {
+      NodeContainer(this.myNodeController)
+        .borderWidth(1)
+        .width(200)
+        .height(300)
+      Button("clearChildren")
+        .onClick(()=>{
+          renderNode.clearChildren();
+        })
+    }.width("100%")
+  }
+}
+```
+
+### getChild
+
+getChild(index: number): RenderNode | null
+
+获取当前节点指定位置的子节点。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型    | 必填 | 说明               |
+| ------- | ------- | ---- | ------------------ |
+| index | number | 是   | 需要查询的子节点的序列号。 |
+
+**返回值：**
+
+| 类型                              | 说明                                                       |
+| --------------------------------- | ---------------------------------------------------------- |
+| [RenderNode](#rendernode) \| null | 子节点。若该RenderNode不包含所查询的子节点，则返回空对象null。 |
+
+**示例：**
+
+```ts
+import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
+
+const renderNode = new RenderNode();
+for (let i = 0; i < 10; i++) {
+  let childNode = new RenderNode();
+  childNode.size = {width: i*10 ,height : i*10};
+  childNode.position = {x: i*10 ,y : i*10};
+  childNode.backgroundColor = 0xFF0000FF - 0X11 * i;
+  renderNode.appendChild(childNode);
+}
+
+class MyNodeController extends NodeController {
+  private rootNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+
+    const rootRenderNode = this.rootNode.getRenderNode();
+    if (rootRenderNode !== null) {
+      rootRenderNode.appendChild(renderNode);
+    }
+
+    return this.rootNode;
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private myNodeController: MyNodeController = new MyNodeController();
+  build() {
+    Column() {
+      NodeContainer(this.myNodeController)
+        .borderWidth(1)
+        .width(200)
+        .height(300)
+      Button("getChild")
+        .onClick(()=>{
+          for (let i = 0; i < 11; i++) {
+            let childNode : RenderNode | null = renderNode.getChild(i);
+            if(childNode == null){
+              console.log(`the ${i} of renderNode's childNode is null`);
+            } else {
+              console.log(`the ${i} of renderNode's childNode has a size of {${childNode.size.width},${childNode.size.height}}`);
+            }
+          }
+
+        })
+    }.width("100%")
   }
 }
 ```
@@ -260,10 +391,10 @@ class MyNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
-  private MyNodeController: MyNodeController = new MyNodeController();
+  private myNodeController: MyNodeController = new MyNodeController();
   build() {
     Row() {
-      NodeContainer(this.MyNodeController)
+      NodeContainer(this.myNodeController)
     }
   }
 }
@@ -314,10 +445,10 @@ class MyNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
-  private MyNodeController: MyNodeController = new MyNodeController();
+  private myNodeController: MyNodeController = new MyNodeController();
   build() {
     Row() {
-      NodeContainer(this.MyNodeController)
+      NodeContainer(this.myNodeController)
     }
   }
 }
@@ -368,10 +499,10 @@ class MyNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
-  private MyNodeController: MyNodeController = new MyNodeController();
+  private myNodeController: MyNodeController = new MyNodeController();
   build() {
     Row() {
-      NodeContainer(this.MyNodeController)
+      NodeContainer(this.myNodeController)
     }
   }
 }
@@ -416,10 +547,10 @@ class MyNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
-  private MyNodeController: MyNodeController = new MyNodeController();
+  private myNodeController: MyNodeController = new MyNodeController();
   build() {
     Row() {
-      NodeContainer(this.MyNodeController)
+      NodeContainer(this.myNodeController)
     }
   }
 }
@@ -462,10 +593,10 @@ class MyNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
-  private MyNodeController: MyNodeController = new MyNodeController();
+  private myNodeController: MyNodeController = new MyNodeController();
   build() {
     Row() {
-      NodeContainer(this.MyNodeController)
+      NodeContainer(this.myNodeController)
     }
   }
 }
@@ -510,10 +641,10 @@ class MyNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
-  private MyNodeController: MyNodeController = new MyNodeController();
+  private myNodeController: MyNodeController = new MyNodeController();
   build() {
     Row() {
-      NodeContainer(this.MyNodeController)
+      NodeContainer(this.myNodeController)
     }
   }
 }
@@ -556,10 +687,10 @@ class MyNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
-  private MyNodeController: MyNodeController = new MyNodeController();
+  private myNodeController: MyNodeController = new MyNodeController();
   build() {
     Row() {
-      NodeContainer(this.MyNodeController)
+      NodeContainer(this.myNodeController)
     }
   }
 }
@@ -604,10 +735,10 @@ class MyNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
-  private MyNodeController: MyNodeController = new MyNodeController();
+  private myNodeController: MyNodeController = new MyNodeController();
   build() {
     Row() {
-      NodeContainer(this.MyNodeController)
+      NodeContainer(this.myNodeController)
     }
   }
 }
@@ -650,10 +781,10 @@ class MyNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
-  private MyNodeController: MyNodeController = new MyNodeController();
+  private myNodeController: MyNodeController = new MyNodeController();
   build() {
     Row() {
-      NodeContainer(this.MyNodeController)
+      NodeContainer(this.myNodeController)
     }
   }
 }
@@ -698,10 +829,10 @@ class MyNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
-  private MyNodeController: MyNodeController = new MyNodeController();
+  private myNodeController: MyNodeController = new MyNodeController();
   build() {
     Row() {
-      NodeContainer(this.MyNodeController)
+      NodeContainer(this.myNodeController)
     }
   }
 }
@@ -744,10 +875,10 @@ class MyNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
-  private MyNodeController: MyNodeController = new MyNodeController();
+  private myNodeController: MyNodeController = new MyNodeController();
   build() {
     Row() {
-      NodeContainer(this.MyNodeController)
+      NodeContainer(this.myNodeController)
     }
   }
 }
@@ -792,10 +923,10 @@ class MyNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
-  private MyNodeController: MyNodeController = new MyNodeController();
+  private myNodeController: MyNodeController = new MyNodeController();
   build() {
     Row() {
-      NodeContainer(this.MyNodeController)
+      NodeContainer(this.myNodeController)
     }
   }
 }
@@ -838,10 +969,10 @@ class MyNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
-  private MyNodeController: MyNodeController = new MyNodeController();
+  private myNodeController: MyNodeController = new MyNodeController();
   build() {
     Row() {
-      NodeContainer(this.MyNodeController)
+      NodeContainer(this.myNodeController)
     }
   }
 }
@@ -886,10 +1017,10 @@ class MyNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
-  private MyNodeController: MyNodeController = new MyNodeController();
+  private myNodeController: MyNodeController = new MyNodeController();
   build() {
     Row() {
-      NodeContainer(this.MyNodeController)
+      NodeContainer(this.myNodeController)
     }
   }
 }
@@ -932,10 +1063,10 @@ class MyNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
-  private MyNodeController: MyNodeController = new MyNodeController();
+  private myNodeController: MyNodeController = new MyNodeController();
   build() {
     Row() {
-      NodeContainer(this.MyNodeController)
+      NodeContainer(this.myNodeController)
     }
   }
 }
@@ -980,10 +1111,10 @@ class MyNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
-  private MyNodeController: MyNodeController = new MyNodeController();
+  private myNodeController: MyNodeController = new MyNodeController();
   build() {
     Row() {
-      NodeContainer(this.MyNodeController)
+      NodeContainer(this.myNodeController)
     }
   }
 }
@@ -1026,10 +1157,10 @@ class MyNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
-  private MyNodeController: MyNodeController = new MyNodeController();
+  private myNodeController: MyNodeController = new MyNodeController();
   build() {
     Row() {
-      NodeContainer(this.MyNodeController)
+      NodeContainer(this.myNodeController)
     }
   }
 }
@@ -1074,10 +1205,10 @@ class MyNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
-  private MyNodeController: MyNodeController = new MyNodeController();
+  private myNodeController: MyNodeController = new MyNodeController();
   build() {
     Row() {
-      NodeContainer(this.MyNodeController)
+      NodeContainer(this.myNodeController)
     }
   }
 }
@@ -1120,10 +1251,10 @@ class MyNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
-  private MyNodeController: MyNodeController = new MyNodeController();
+  private myNodeController: MyNodeController = new MyNodeController();
   build() {
     Row() {
-      NodeContainer(this.MyNodeController)
+      NodeContainer(this.myNodeController)
     }
   }
 }
@@ -1168,10 +1299,10 @@ class MyNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
-  private MyNodeController: MyNodeController = new MyNodeController();
+  private myNodeController: MyNodeController = new MyNodeController();
   build() {
     Row() {
-      NodeContainer(this.MyNodeController)
+      NodeContainer(this.myNodeController)
     }
   }
 }
@@ -1214,10 +1345,10 @@ class MyNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
-  private MyNodeController: MyNodeController = new MyNodeController();
+  private myNodeController: MyNodeController = new MyNodeController();
   build() {
     Row() {
-      NodeContainer(this.MyNodeController)
+      NodeContainer(this.myNodeController)
     }
   }
 }
@@ -1262,10 +1393,10 @@ class MyNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
-  private MyNodeController: MyNodeController = new MyNodeController();
+  private myNodeController: MyNodeController = new MyNodeController();
   build() {
     Row() {
-      NodeContainer(this.MyNodeController)
+      NodeContainer(this.myNodeController)
     }
   }
 }
@@ -1308,10 +1439,10 @@ class MyNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
-  private MyNodeController: MyNodeController = new MyNodeController();
+  private myNodeController: MyNodeController = new MyNodeController();
   build() {
     Row() {
-      NodeContainer(this.MyNodeController)
+      NodeContainer(this.myNodeController)
     }
   }
 }
@@ -1361,10 +1492,10 @@ class MyNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
-  private MyNodeController: MyNodeController = new MyNodeController();
+  private myNodeController: MyNodeController = new MyNodeController();
   build() {
     Row() {
-      NodeContainer(this.MyNodeController)
+      NodeContainer(this.myNodeController)
     }
   }
 }
@@ -1415,10 +1546,10 @@ class MyNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
-  private MyNodeController: MyNodeController = new MyNodeController();
+  private myNodeController: MyNodeController = new MyNodeController();
   build() {
     Row() {
-      NodeContainer(this.MyNodeController)
+      NodeContainer(this.myNodeController)
     }
   }
 }
@@ -1463,10 +1594,10 @@ class MyNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
-  private MyNodeController: MyNodeController = new MyNodeController();
+  private myNodeController: MyNodeController = new MyNodeController();
   build() {
     Row() {
-      NodeContainer(this.MyNodeController)
+      NodeContainer(this.myNodeController)
     }
   }
 }
@@ -1509,10 +1640,10 @@ class MyNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
-  private MyNodeController: MyNodeController = new MyNodeController();
+  private myNodeController: MyNodeController = new MyNodeController();
   build() {
     Row() {
-      NodeContainer(this.MyNodeController)
+      NodeContainer(this.myNodeController)
     }
   }
 }
@@ -1558,10 +1689,10 @@ class MyNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
-  private MyNodeController: MyNodeController = new MyNodeController();
+  private myNodeController: MyNodeController = new MyNodeController();
   build() {
     Row() {
-      NodeContainer(this.MyNodeController)
+      NodeContainer(this.myNodeController)
     }
   }
 }
@@ -1605,10 +1736,10 @@ class MyNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
-  private MyNodeController: MyNodeController = new MyNodeController();
+  private myNodeController: MyNodeController = new MyNodeController();
   build() {
     Row() {
-      NodeContainer(this.MyNodeController)
+      NodeContainer(this.myNodeController)
     }
   }
 }
@@ -1654,10 +1785,10 @@ class MyNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
-  private MyNodeController: MyNodeController = new MyNodeController();
+  private myNodeController: MyNodeController = new MyNodeController();
   build() {
     Row() {
-      NodeContainer(this.MyNodeController)
+      NodeContainer(this.myNodeController)
     }
   }
 }
@@ -1699,10 +1830,10 @@ class MyNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
-  private MyNodeController: MyNodeController = new MyNodeController();
+  private myNodeController: MyNodeController = new MyNodeController();
   build() {
     Row() {
-      NodeContainer(this.MyNodeController)
+      NodeContainer(this.myNodeController)
     }
   }
 }
@@ -1751,10 +1882,10 @@ class MyNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
-  private MyNodeController: MyNodeController = new MyNodeController();
+  private myNodeController: MyNodeController = new MyNodeController();
   build() {
     Row() {
-      NodeContainer(this.MyNodeController)
+      NodeContainer(this.myNodeController)
     }
   }
 }
@@ -1798,10 +1929,10 @@ class MyNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
-  private MyNodeController: MyNodeController = new MyNodeController();
+  private myNodeController: MyNodeController = new MyNodeController();
   build() {
     Row() {
-      NodeContainer(this.MyNodeController)
+      NodeContainer(this.myNodeController)
     }
   }
 }
@@ -1850,10 +1981,10 @@ class MyNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
-  private MyNodeController: MyNodeController = new MyNodeController();
+  private myNodeController: MyNodeController = new MyNodeController();
   build() {
     Row() {
-      NodeContainer(this.MyNodeController)
+      NodeContainer(this.myNodeController)
     }
   }
 }
@@ -1897,10 +2028,10 @@ class MyNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
-  private MyNodeController: MyNodeController = new MyNodeController();
+  private myNodeController: MyNodeController = new MyNodeController();
   build() {
     Row() {
-      NodeContainer(this.MyNodeController)
+      NodeContainer(this.myNodeController)
     }
   }
 }
@@ -1956,10 +2087,10 @@ class MyNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
-  private MyNodeController: MyNodeController = new MyNodeController();
+  private myNodeController: MyNodeController = new MyNodeController();
   build() {
     Row() {
-      NodeContainer(this.MyNodeController)
+      NodeContainer(this.myNodeController)
     }
   }
 }

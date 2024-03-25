@@ -27,6 +27,9 @@
 
 - \@Styles可以定义在组件内或全局，在全局定义时需在方法名前面添加function关键字，组件内定义时则不需要添加function关键字。
 
+> **说明：**
+> 只能在当前文件内使用，不支持export
+
   ```ts
   // 全局
   @Styles function functionName() { ... }
@@ -92,7 +95,7 @@ struct FancyUse {
     Column({ space: 10 }) {
       // 使用全局的@Styles封装的样式
       Text('FancyA')
-        .globalFancy ()
+        .globalFancy()
         .fontSize(30)
       // 使用组件内的@Styles封装的样式
       Text('FancyB')

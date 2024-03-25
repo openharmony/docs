@@ -52,7 +52,7 @@ getResourceManager(callback: AsyncCallback&lt;ResourceManager&gt;): void
       console.error("error is " + error);
       return;
     }
-    mgr.getStringValue(0x1000000, (error: BusinessError, value: string) => {
+    mgr.getStringValue($r('app.string.text').id, (error: BusinessError, value: string) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -61,7 +61,6 @@ getResourceManager(callback: AsyncCallback&lt;ResourceManager&gt;): void
     });
   });
   ```
-注：示例代码中的0x1000000表示资源对应的id, 其可在编译后的文件ResourceTable.txt中找到。
 
 ## resourceManager.getResourceManager
 
@@ -109,7 +108,7 @@ getResourceManager(): Promise&lt;ResourceManager&gt;
   import { BusinessError } from '@ohos.base';
 
   resourceManager.getResourceManager().then((mgr: resourceManager.ResourceManager) => {
-    mgr.getStringValue(0x1000000, (error: BusinessError, value: string) => {
+    mgr.getStringValue($r('app.string.text').id, (error: BusinessError, value: string) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -120,7 +119,6 @@ getResourceManager(): Promise&lt;ResourceManager&gt;
     console.error("error is " + error);
   });
   ```
-注：示例代码中的0x1000000表示资源对应的id, 其可在编译后的文件ResourceTable.txt中找到。
 
 ## resourceManager.getResourceManager
 
@@ -4412,7 +4410,7 @@ getRawFileList(path: string): Promise&lt;Array\<string\>&gt;
 
 getRawFdSync(path: string): RawFileDescriptor
 
-用户获取resources/rawfile目录下对应rawfile文件的descriptor。
+用户获取resources/rawfile目录下对应rawfile文件所在hap的descriptor信息。
 
 **系统能力：** SystemCapability.Global.ResourceManager
 
@@ -4426,7 +4424,7 @@ getRawFdSync(path: string): RawFileDescriptor
 
 | 类型                        | 说明          |
 | ------------------------- | ----------- |
-| [RawFileDescriptor](#rawfiledescriptor8) | rawfile文件的descriptor。 |
+| [RawFileDescriptor](#rawfiledescriptor8) | rawfile文件所在hap的descriptor信息。 |
 
 **错误码：**
 
@@ -4453,7 +4451,7 @@ getRawFdSync(path: string): RawFileDescriptor
 
 getRawFd(path: string, callback: AsyncCallback&lt;RawFileDescriptor&gt;): void
 
-用户获取resources/rawfile目录下对应rawfile文件的descriptor，使用callback异步回调。
+用户获取resources/rawfile目录下对应rawfile文件所在hap的descriptor信息，使用callback异步回调。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -4462,7 +4460,7 @@ getRawFd(path: string, callback: AsyncCallback&lt;RawFileDescriptor&gt;): void
 | 参数名      | 类型                                       | 必填   | 说明                               |
 | -------- | ---------------------------------------- | ---- | -------------------------------- |
 | path     | string                                   | 是    | rawfile文件路径。                      |
-| callback | AsyncCallback&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | 是    | 返回获取的rawfile文件的descriptor。 |
+| callback | AsyncCallback&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | 是    | 返回获取的rawfile文件所在hap的descriptor信息。 |
 
 **错误码：**
 
@@ -4498,7 +4496,7 @@ getRawFd(path: string, callback: AsyncCallback&lt;RawFileDescriptor&gt;): void
 
 getRawFd(path: string): Promise&lt;RawFileDescriptor&gt;
 
-用户获取resources/rawfile目录下对应rawfile文件的descriptor，使用Promise异步回调。
+用户获取resources/rawfile目录下对应rawfile文件所在hap的descriptor信息，使用Promise异步回调。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -4512,7 +4510,7 @@ getRawFd(path: string): Promise&lt;RawFileDescriptor&gt;
 
 | 类型                                       | 说明                  |
 | ---------------------------------------- | ------------------- |
-| Promise&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | rawfile文件descriptor。 |
+| Promise&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | rawfile文件所在hap的descriptor信息。 |
 
 **错误码：**
 
@@ -4546,7 +4544,7 @@ getRawFd(path: string): Promise&lt;RawFileDescriptor&gt;
 
 closeRawFdSync(path: string): void
 
-用户关闭resources/rawfile目录下rawfile文件的descriptor。
+用户关闭resources/rawfile目录下rawfile文件所在hap的descriptor信息。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -4581,7 +4579,7 @@ closeRawFdSync(path: string): void
 
 closeRawFd(path: string, callback: AsyncCallback&lt;void&gt;): void
 
-用户关闭resources/rawfile目录下rawfile文件的descriptor，使用callback异步回调。
+用户关闭resources/rawfile目录下rawfile文件所在hap的descriptor信息，使用callback异步回调。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -4621,7 +4619,7 @@ closeRawFd(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 closeRawFd(path: string): Promise&lt;void&gt;
 
-用户关闭resources/rawfile目录下rawfile文件的descriptor，使用Promise异步回调。
+用户关闭resources/rawfile目录下rawfile文件所在hap的descriptor信息，使用Promise异步回调。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -5129,7 +5127,7 @@ getString(resId: number, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
   ```ts
   resourceManager.getResourceManager((error, mgr) => {
-      mgr.getString($r('app.string.test').id, (error: BusinessError, value: string) => {
+      mgr.getString($r('app.string.test').id, (error: Error, value: string) => {
           if (error != null) {
               console.error("error is " + error);
           } else {
@@ -5196,7 +5194,7 @@ getStringArray(resId: number, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;
 **示例：** 
   ```ts
   resourceManager.getResourceManager((error, mgr) => {
-      mgr.getStringArray($r('app.strarray.test').id, (error: BusinessError, value: Array<string>) => {
+      mgr.getStringArray($r('app.strarray.test').id, (error: Error, value: Array<string>) => {
           if (error != null) {
               console.error("error is " + error);
           } else {
@@ -5263,7 +5261,7 @@ getMedia(resId: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
 **示例：** 
   ```ts
   resourceManager.getResourceManager((error, mgr) => {
-      mgr.getMedia($r('app.media.test').id, (error: BusinessError, value: Uint8Array) => {
+      mgr.getMedia($r('app.media.test').id, (error: Error, value: Uint8Array) => {
           if (error != null) {
               console.error("error is " + error);
           } else {
@@ -5329,7 +5327,7 @@ getMediaBase64(resId: number, callback: AsyncCallback&lt;string&gt;): void
 **示例：** 
   ```ts
   resourceManager.getResourceManager((error, mgr) => {
-      mgr.getMediaBase64($r('app.media.test').id, ((error: BusinessError, value: string) => {
+      mgr.getMediaBase64($r('app.media.test').id, ((error: Error, value: string) => {
           if (error != null) {
               console.error("error is " + error);
           } else {
@@ -5442,7 +5440,7 @@ getPluralString(resId: number, num: number, callback: AsyncCallback&lt;string&gt
 **示例：** 
   ```ts
   resourceManager.getResourceManager((error, mgr) => {
-      mgr.getPluralString($r("app.plural.test").id, 1, (error: BusinessError, value: string) => {
+      mgr.getPluralString($r("app.plural.test").id, 1, (error: Error, value: string) => {
           if (error != null) {
               console.error("error is " + error);
           } else {
@@ -5473,7 +5471,7 @@ getRawFile(path: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 **示例：** 
   ```ts
   resourceManager.getResourceManager((error, mgr) => {
-      mgr.getRawFile("test.txt", (error: BusinessError, value: Uint8Array) => {
+      mgr.getRawFile("test.txt", (error: Error, value: Uint8Array) => {
           if (error != null) {
               console.error("error is " + error);
           } else {
@@ -5542,7 +5540,7 @@ getRawFileDescriptor(path: string, callback: AsyncCallback&lt;RawFileDescriptor&
   import resourceManager from '@ohos.resourceManager';
 
   resourceManager.getResourceManager((error, mgr) => {
-      mgr.getRawFileDescriptor("test.txt", (error: BusinessError, value: resourceManager.RawFileDescriptor) => {
+      mgr.getRawFileDescriptor("test.txt", (error: Error, value: resourceManager.RawFileDescriptor) => {
           if (error != null) {
               console.error("error is " + error);
           } else {
@@ -5603,6 +5601,8 @@ closeRawFileDescriptor(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 **参数：** 
 
+
+
 | 参数名      | 类型                        | 必填   | 说明          |
 | -------- | ------------------------- | ---- | ----------- |
 | path     | string                    | 是    | rawfile文件路径 |
@@ -5611,7 +5611,7 @@ closeRawFileDescriptor(path: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：** 
   ```ts
   resourceManager.getResourceManager((error, mgr) => {
-      mgr.closeRawFileDescriptor("test.txt", (error: BusinessError) => {
+      mgr.closeRawFileDescriptor("test.txt", (error: Error) => {
           if (error != null) {
               console.error("error is " + error);
           }

@@ -30,7 +30,7 @@ createAppAccountManager(): AppAccountManager
 
 **示例：**
   ```ts
-  let appAccountManager = account_appAccount.createAppAccountManager();
+  let appAccountManager: account_appAccount.AppAccountManager = account_appAccount.createAppAccountManager();
   ```
 
 ## AppAccountManager
@@ -4872,7 +4872,7 @@ onResult: (code: number, result?: AuthResult) =&gt; void
   ```ts
   import { BusinessError } from '@ohos.base';
   
-  let appAccountManager = account_appAccount.createAppAccountManager();
+  let appAccountManager: account_appAccount.AppAccountManager = account_appAccount.createAppAccountManager();
   let sessionId = '1234';
   appAccountManager.getAuthCallback(sessionId).then((callback: account_appAccount.AuthCallback) => {
       let result: account_appAccount.AuthResult = {
@@ -4950,7 +4950,7 @@ onRequestContinued?: () =&gt; void
   ```ts
   import { BusinessError } from '@ohos.base';
   
-  let appAccountManager = account_appAccount.createAppAccountManager();
+  let appAccountManager: account_appAccount.AppAccountManager = account_appAccount.createAppAccountManager();
   let sessionId = '1234';
   appAccountManager.getAuthCallback(sessionId).then((callback: account_appAccount.AuthCallback) => {
     if (callback.onRequestContinued != undefined) {
@@ -4989,7 +4989,7 @@ onResult: (code: number, result: {[key: string]: any}) =&gt; void
   ```ts
   import { BusinessError } from '@ohos.base';
   
-  let appAccountManager = account_appAccount.createAppAccountManager();
+  let appAccountManager: account_appAccount.AppAccountManager = account_appAccount.createAppAccountManager();
   let sessionId = '1234';
   appAccountManager.getAuthenticatorCallback(sessionId).then((callback: account_appAccount.AuthenticatorCallback) => {
       callback.onResult(account_appAccount.ResultCode.SUCCESS, {

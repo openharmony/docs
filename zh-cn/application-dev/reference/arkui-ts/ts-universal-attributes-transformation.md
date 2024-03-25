@@ -36,7 +36,7 @@ translate(value: TranslateOptions)
 
 | 参数名 | 类型                                          | 必填 | 说明                                                         |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [TranslateOptions](#translateoptions对象说明) | 是   | 可使组件在以组件左上角为坐标原点的坐标系中进行移动（坐标系如下图所示）。其中，x，y，z的值分别表示在对应轴移动的距离，值为正时表示向对应轴的正向移动，值为负时表示向对应轴的反向移动。移动距离支持数字和字符串（比如'10px'，‘10%’）两种类型。<br/>默认值:<br/>{<br/>x:&nbsp;0,<br/>y:&nbsp;0,<br/>z:&nbsp;0<br/>}<br/>![coordinates](figures/coordinates.png) |
+| value  | [TranslateOptions](#translateoptions对象说明) | 是   | 可使组件在以组件左上角为坐标原点的坐标系中进行移动（坐标系如下图所示）。其中，x，y，z的值分别表示在对应轴移动的距离，值为正时表示向对应轴的正向移动，值为负时表示向对应轴的反向移动。移动距离支持数字和字符串（比如'10px'，‘10%’）两种类型。<br/>默认值:<br/>{<br/>x:&nbsp;0,<br/>y:&nbsp;0,<br/>z:&nbsp;0<br/>}<br/>![coordinates](figures/coordinates.png))<br/>**说明：**<br/>z轴方向移动时由于观察点位置不变，z的值接近观察点组件会有放大效果，远离则缩小。<br/>![coordinateNode](figures/coordinateNote.png)  |
 
 ## scale
 
@@ -72,26 +72,26 @@ transform(value: Matrix4Transit)
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-| 名称                      | 类型                       | 说明                                                         |
-| ------------------------- | -------------------------- | ------------------------------------------------------------ |
-| x                         | number                     | 旋转轴向量x坐标。                                            |
-| y                         | number                     | 旋转轴向量y坐标。                                            |
-| z                         | number                     | 旋转轴向量z坐标。                                            |
-| angle                     | number                     | 旋转角度。取值为正时相对于旋转轴方向顺时针转动，取值为负时相对于旋转轴方向逆时针转动。取值可为string类型，如'90deg'。 |
-| centerX                   | number&nbsp;\|&nbsp;string | 变换中心点x轴坐标。                                          |
-| centerY                   | number&nbsp;\|&nbsp;string | 变换中心点y轴坐标。                                          |
-| centerZ<sup>10+</sup>     | number                     | z轴锚点，即3D旋转中心点的z轴分量。                           |
-| perspective<sup>10+</sup> | number                     | 视距，即视点到z=0平面的距离。<br/>旋转轴和旋转中心点都基于坐标系设定，组件发生位移时，坐标系不会随之移动。 |
+| 名称                      | 类型                       | 必填 | 说明                                                         |
+| ------------------------- | -------------------------- | ---- | ------------------------------------------------------------ |
+| x                         | number                     | 否   | 旋转轴向量x坐标。                                            |
+| y                         | number                     | 否   | 旋转轴向量y坐标。                                            |
+| z                         | number                     | 否   | 旋转轴向量z坐标。                                            |
+| angle                     | number&nbsp;\|&nbsp;string | 是   | 旋转角度。取值为正时相对于旋转轴方向顺时针转动，取值为负时相对于旋转轴方向逆时针转动。取值可为string类型，如'90deg'。 |
+| centerX                   | number&nbsp;\|&nbsp;string | 否   | 变换中心点x轴坐标。                                          |
+| centerY                   | number&nbsp;\|&nbsp;string | 否   | 变换中心点y轴坐标。                                          |
+| centerZ<sup>10+</sup>     | number                     | 否   | z轴锚点，即3D旋转中心点的z轴分量。                           |
+| perspective<sup>10+</sup> | number                     | 否   | 视距，即视点到z=0平面的距离。<br/>旋转轴和旋转中心点都基于坐标系设定，组件发生位移时，坐标系不会随之移动。 |
 
 ## TranslateOptions对象说明
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-| 名称 | 类型                       | 说明            |
-| ---- | -------------------------- | --------------- |
-| x    | number&nbsp;\|&nbsp;string | x轴的平移距离。 |
-| y    | number&nbsp;\|&nbsp;string | y轴的平移距离。 |
-| z    | number&nbsp;\|&nbsp;string | z轴的平移距离。 |
+| 名称 | 类型                       | 必填 | 说明            |
+| ---- | -------------------------- | ---- | --------------- |
+| x    | number&nbsp;\|&nbsp;string | 否   | x轴的平移距离。 |
+| y    | number&nbsp;\|&nbsp;string | 否   | y轴的平移距离。 |
+| z    | number&nbsp;\|&nbsp;string | 否   | z轴的平移距离。 |
 
 ## ScaleOptions对象说明
 
@@ -103,11 +103,11 @@ transform(value: Matrix4Transit)
 | y       | number                     | 否   | y轴的缩放倍数。y>1时以y轴方向放大，0<y<1时以y轴方向缩小，y<0时沿y轴反向并缩放。 |
 | z       | number                     | 否   | z轴的缩放倍数。z>1时以z轴方向放大，0<z<1时以z轴方向缩小，z<0时沿z轴反向并缩放。 |
 | centerX | number&nbsp;\|&nbsp;string | 否   | 变换中心点x轴坐标。                                          |
-| centerY | number&nbsp;\|string       | 否   | 变换中心点y轴坐标。                                          |
+| centerY | number&nbsp;\|&nbsp;string | 否   | 变换中心点y轴坐标。                                          |
 
 > **说明：**
 >
-> 当组件同时设置了rotate和scale属性时，centerX和centerY的取值会发生冲突，此时centerX和centerY的值以后设定属性的值为准。
+> 当组件同时设置了rotate和scale属性时，centerX和centerY的取值会发生冲突，此时centerX和centerY的值以最后设定的属性的值为准。
 
 ## 示例
 

@@ -48,19 +48,19 @@ Image组件加载图片失败或图片尺寸为0时，图片组件大小自动�
 | matchTextDirection               | boolean                                                 | 设置图片是否跟随系统语言方向，在RTL语言环境下显示镜像翻转显示效果。<br/>默认值：false<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | fitOriginalSize                  | boolean                                                 | 图片组件尺寸未设置时，其显示尺寸是否跟随图源尺寸。<br/>默认值：false<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | fillColor                        | [ResourceColor](ts-types.md#resourcecolor)              | 设置填充颜色，设置后填充颜色会覆盖在图片上。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br>**说明：** <br>仅对svg图源生效，设置后会替换svg图片的填充颜色。 |
-| autoResize                       | boolean                                                 | 设置图片解码过程中是否对图源自动缩放。设置为true时，组件会根据显示区域的尺寸决定用于绘制的图源尺寸，有利于减少内存占用。如原图大小为1920x1080，而显示区域大小为200x200，则图片会降采样解码到200x200的尺寸，大幅度节省图片占用的内存。<br/>默认值：false<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 <br>**说明：** <br>降采样解码时图片的部分信息丢失，因此可能会导致图片质量的下降（如：出现锯齿），这时可以选择把autoResize设为false，按原图尺寸解码，提升显示效果。|
+| autoResize                       | boolean                                                 | 设置图片解码过程中是否对图源自动缩放。设置为true时，组件会根据显示区域的尺寸决定用于绘制的图源尺寸，有利于减少内存占用。如原图大小为1920x1080，而显示区域大小为200x200，则图片会降采样解码到200x200的尺寸，大幅度节省图片占用的内存。<br/>默认值：false<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 <br>**说明：** <br>降采样解码时图片的部分信息丢失，因此可能会导致图片质量的下降（如：出现锯齿），这时可以选择把autoResize设为false，按原图尺寸解码，提升显示效果，但会增加内存占用。<br>原图尺寸和显示尺寸不匹配时，图片都会出现些许的失真、模糊。最佳清晰度配置建议：<br>图片缩小显示时：.autoResize(false) + .interpolation(.Medium)<br>图片放大显示时：.interpolation(.High) |
 | syncLoad<sup>8+</sup>            | boolean                                                 | 设置是否同步加载图片，默认是异步加载。同步加载时阻塞UI线程，不会显示占位图。<br/>默认值：false<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br>**说明：**<br>建议加载尺寸较小的本地图片时将syncLoad设为true，因为耗时较短，在主线程上执行即可。 |
 | copyOption<sup>9+</sup>          | [CopyOptions](ts-appendix-enums.md#copyoptions9)        | 设置图片是否可复制。<br>当copyOption设置为非CopyOptions.None时，支持使用长按、鼠标右击、快捷组合键'CTRL+C'等方式进行复制。<br>默认值：CopyOptions.None<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br>**说明：**<br>svg图片不支持复制。 |
-| colorFilter<sup>9+</sup>         | [ColorFilter](ts-types.md#colorfilter9)                 | 给图像设置颜色滤镜效果，入参为一个的4x5的RGBA转换矩阵。<br/>矩阵第一行表示R（红色）的向量值，第二行表示G（绿色）的向量值，第三行表示B（蓝色）的向量值，第四行表示A（透明度）的向量值，4行分别代表不同的RGBA的向量值。<br>当矩阵对角线值为1，其余值为0时，保持图片原有色彩。<br> **计算规则：**<br>如果输入的滤镜矩阵为：<br>![image-matrix-1](figures/image-matrix-1.jpg)<br>像素点为[R, G, B, A]<br>则过滤后的颜色为 [R’, G’, B’, A’]<br>![image-matrix-2](figures/image-matrix-2.jpg)<br>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| draggable<sup>9+</sup> | boolean                                                 | 设置组件默认拖拽效果，设置为true时，组件可拖拽。<br>不能和[onDragStart](ts-universal-events-drag-drop.md)事件同时使用。<br/>默认值：false<br>**说明：**<br />API version 9的默认值为false，API version 10的默认值为true。 |
+| colorFilter<sup>9+</sup>         | [ColorFilter](ts-types.md#colorfilter9)                 | 给图像设置颜色滤镜效果，入参为一个的4x5的RGBA转换矩阵。<br/>矩阵第一行表示R（红色）的向量值，第二行表示G（绿色）的向量值，第三行表示B（蓝色）的向量值，第四行表示A（透明度）的向量值，4行分别代表不同的RGBA的向量值。<br>当矩阵对角线值为1，其余值为0时，保持图片原有色彩。<br> **计算规则：**<br>如果输入的滤镜矩阵为：<br>![image-matrix-1](figures/image-matrix-1.jpg)<br>像素点为[R, G, B, A]<br>则过滤后的颜色为 [R’, G’, B’, A’]<br>![image-matrix-2](figures/image-matrix-2.jpg)<br>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>svg类型图源不支持该属性。 |
+| draggable<sup>9+</sup> | boolean                                                 | 设置组件默认拖拽效果，设置为true时，组件可拖拽。<br>不能和[onDragStart](ts-universal-events-drag-drop.md#ondragstart)事件同时使用。<br/>默认值：false<br>**说明：**<br />API version 9的默认值为false，API version 10的默认值为true。 |
 | enableAnalyzer<sup>11+</sup> | boolean                                                 | 设置组件支持AI分析，设置为true时，组件可进行AI分析。<br>不能和[overlay](ts-universal-attributes-overlay.md)属性同时使用，两者同时设置时overlay中CustomBuilder属性将失效。<br/>默认值：false<br>**说明：**<br/> 该特性依赖设备能力。 <br/> 分析图像要求是静态非矢量图，即svg、gif等图像类型不支持分析，支持传入[PixelMap](../apis/js-apis-image.md#pixelmap7)进行分析，目前仅支持[RGBA_8888](../apis/js-apis-image.md#pixelmapformat7)类型，使用方式见[示例](#使用pixelmap开启图像分析)。 <br/> alt占位图不支持分析，objectRepeat属性仅在ImageRepeat.NoRepeat下支持分析，隐私遮罩属性[obscured](ts-universal-attributes-obscured.md)打开时不支持分析。<br/> 基于完整原始图像进行分析，设置clip、margin、borderRadius、position和objectFit属性导致图像显示不完整，或使用renderMode设置蒙层，仍基于完整原始图像进行分析。<br/> copyOption属性不影响AI分析功能。 |
 | analyzerConfig<sup>11+</sup> | [ImageAnalyzerConfig](#imageanalyzerconfig11)                                                 | 设置AI分析类型，包括主体识别和文字识别功能，默认全部开启。<br>**说明：**<br /> 分析类型不支持动态修改。<br>**系统接口：**<br /> 此接口为系统接口。|
-| edgeAntialiasing<sup>11+</sup> | number                                                 | 设置SVG图源抗锯齿效果，仅对svg图源生效。<br/>取值范围：$[0.333, 1.333]$，有效数字保留小数点后3位。<br/>默认值：$0$。 <br>**系统接口：**<br /> 此接口为系统接口。|
+| edgeAntialiasing<sup>11+</sup> | number                                                 | 设置SVG图源抗锯齿效果，仅对svg图源生效。<br/>取值范围：$[0.333, 1.333]$，有效数字保留小数点后3位。<br/>默认值：$0$。 <br>**系统接口：**<br /> 此接口为系统接口。<br>**说明：**<br />适用于超低分辨率设备（PPI低于200的设备）的SVG图源的锯齿优化，存在一定的性能影响，请谨慎使用。 <br>**系统接口：**<br /> 此接口为系统接口。|
 |resizable<sup>11+</sup> | [ResizableOptions](#resizableoptions11) | 设置图像拉伸时可调整大小的图像选项。<br> **说明：**<br /> 1. 拉伸对拖拽缩略图以及占位图有效。<br>2. 设置合法的 [ResizableOptions](#resizableoptions11) 时，objectRepeat 属性设置不生效。<br>3. 当设置 top +bottom 大于原图的高或者 left + right 大于原图的宽时 [ResizableOptions](#resizableoptions11) 属性设置不生效。<br/>|
 
 >  **说明：**
 >
->  - 使用快捷组合键对Image组件复制时，Image组件必须处于[获焦状态](../../ui/arkts-common-events-focus-event.md#设置组件是否获焦)。Image组件默认不获焦，需将[focusable](ts-universal-attributes-focus.md)属性设置为true，即可使用TAB键将焦点切换到组件上，再将[focusOnTouch](ts-universal-attributes-focus.md)属性设置为true，即可实现点击获焦。
+>  - 使用快捷组合键对Image组件复制时，Image组件必须处于[获焦状态](../../ui/arkts-common-events-focus-event.md#设置组件是否获焦)。Image组件默认不获焦，需将[focusable](ts-universal-attributes-focus.md#focusable)属性设置为true，即可使用TAB键将焦点切换到组件上，再将[focusOnTouch](ts-universal-attributes-focus.md#focusontouch9)属性设置为true，即可实现点击获焦。
 >  - 图片设置为svg图源时，当前支持的标签是svg、rect、circle、ellipse、path、line、polyline和polygon。
 
 ## ImageInterpolation
@@ -104,7 +104,18 @@ Image组件加载图片失败或图片尺寸为0时，图片组件大小自动�
 
 | 参数名               | 类型   | 说明                      |
 | -------------------- | ------ | ------------------------- |
-| slice  | [EdgeWidths](ts-types.md#edgewidths9) | 边框宽度类型，用于描述组件边框不同方向的宽度。<br>**说明：**<br>只有当bottom和right同时大于0时，该属性生效。|
+| slice  | [EdgeWidths](#edgewidths参数说明) | 边框宽度类型，用于描述组件边框不同方向的宽度。<br>**说明：**<br>只有当bottom和right同时大于0时，该属性生效。|
+
+## EdgeWidths参数说明
+
+| 名称 | 类型 | 必填 | 说明 |
+| --------- |-----------|-----------|-----------|
+|  top    |  number  |  否  | 图片顶部拉伸时保持不变距离。<br>默认值：0<br>单位：vp |           
+|  right  |  number  |  否  | 图片右部拉伸时保持不变距离。<br>默认值：0<br>单位：vp |
+|  bottom |  number  |  否  | 图片底部拉伸时保持不变距离。<br>默认值：0<br>单位：vp |
+|  left   |  number  |  否  | 图片左部拉伸时保持不变距离。<br>默认值：0<br>单位：vp |
+
+![edgewidths](figures/edgewidths.png)
 
 ## 事件
 
@@ -133,9 +144,9 @@ onComplete(callback: (event?: { width: number, height: number, componentWidth: n
 | contentOffsetY<sup>10+</sup> | number | 实际绘制内容相对于组件自身的y轴偏移。<br/>单位：像素<br/>**说明：**<br/>仅在loadingStatus返回1时有效。 |
 
 
-### onError
+### onError<sup>9+</sup>
 
-onError(callback: [ImageErrorCallback](#imageerrorcallback11))
+onError(callback: [ImageErrorCallback](#imageerrorcallback9))
 
 图片加载异常时触发该回调。
 
@@ -145,7 +156,7 @@ onError(callback: [ImageErrorCallback](#imageerrorcallback11))
 
 | 参数名               | 类型   | 说明                      |
 | -------------------- | ------ | ------------------------- |
-| callback       | [ImageErrorCallback](#imageerrorcallback11) | 图片加载异常时触发的回调。 |
+| callback       | [ImageErrorCallback](#imageerrorcallback9) | 图片加载异常时触发的回调。 |
 
 ### onFinish
 
@@ -157,17 +168,17 @@ onFinish(event: () =&gt; void)
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-## ImageErrorCallback<sup>11+</sup>
+## ImageErrorCallback<sup>9+</sup>
 
-type ImageErrorCallback = (error: [ImageError](#imageerror11)) => void
+type ImageErrorCallback = (error: [ImageError](#imageerror9)) => void
 
 图片加载异常时触发的回调。
 
 | 参数名               | 类型   | 说明                      |
 | -------------------- | ------ | ------------------------- |
-| error       | [ImageError](#imageerror11) | 图片加载异常时触发回调的返回对象。 |
+| error       | [ImageError](#imageerror9) | 图片加载异常时触发回调的返回对象。 |
 
-## ImageError<sup>11+</sup>
+## ImageError<sup>9+</sup>
 
 图片加载异常时触发回调的返回对象。
 

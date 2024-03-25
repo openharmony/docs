@@ -441,7 +441,7 @@ export struct MyComponent {
 ```ts
 import router from '@ohos.router';
 import { BusinessError } from '@ohos.base';
-const module = import('library/src/main/ets/pages/Index');  // 引入共享包中的命名路由页面
+import('library/src/main/ets/pages/Index');  // 引入共享包中的命名路由页面
 @Entry
 @Component
 struct Index {
@@ -475,6 +475,17 @@ struct Index {
   }
 }
 ```
+
+>**说明：**
+>
+>使用命名路由方式跳转时，需要在当前应用包的oh-package.json5文件中配置依赖。例如：
+>
+>```ts
+>"dependencies": {
+>    "@ohos/library": "file:../library",
+>    ...
+> }
+>```
 
 ## 相关实例
 
