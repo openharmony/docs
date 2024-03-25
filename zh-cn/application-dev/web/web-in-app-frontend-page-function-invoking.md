@@ -7,7 +7,24 @@
 在下面的示例中，点击应用侧的“runJavaScript”按钮时，来触发前端页面的htmlTest()方法。
 
 
-- 前端页面代码。
+- 前端页面有参。
+  
+  ```html
+  <!-- index.html -->
+  <!DOCTYPE html>
+  <html>
+  <body>
+  <script>
+      var param = "JavaScript Hello World!";
+      function htmlTest(param) {
+          console.log(param);
+      }
+  </script>
+  </body>
+  </html>
+  ```
+
+- 前端页面无参。
   
   ```html
   <!-- index.html -->
@@ -35,11 +52,17 @@
   struct WebComponent {
     webviewController: web_webview.WebviewController = new web_webview.WebviewController();
   
+    aboutToAppear() {
+      // 配置Web开启调试模式
+      web_webview.WebviewController.setWebDebuggingAccess(true);
+    }
+
     build() {
       Column() {
         Button('runJavaScript')
           .onClick(() => {
-             this.webviewController.runJavaScript('htmlTest()');
+            // 前端页面函数无参时，将param删除。
+            this.webviewController.runJavaScript('htmlTest(param)');
           })
         Web({ src: $rawfile('index.html'), controller: this.webviewController})
       }
