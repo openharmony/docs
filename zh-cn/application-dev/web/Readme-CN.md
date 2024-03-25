@@ -18,7 +18,7 @@
 - [自定义页面请求响应](web-resource-interception-request-mgmt.md)
 - [使用Web组件打印前端页面](web-print.md)
 - [使用Web组件的下载能力](web-download.md)
-- [使用预连接和预加载能力加速web页面的访问](web-predictor.md)
+- [加速Web页面的访问](web-predictor.md)
 - [拦截Web组件发起的网络请求](web-scheme-handler.md)
 - [同层渲染绘制Video和Button组件](web-same-layer.md)
 - [使用智能防跟踪功能](web-intelligent-tracking-prevention.md)
