@@ -775,7 +775,7 @@ SymbolSpan样式选项。
 
 ## LeadingMarginPlaceholder<sup>11+</sup>
 
-前导边距占位符，用于表示文本段落左侧与页面边缘之间的距离。
+前导边距占位符，用于表示文本段落左侧与组件边缘之间的距离。
 
 | 名称       | 类型                                       | 必填   | 描述             |
 | -------- | ---------------------------------------- | ---- | -------------- |
@@ -2951,4 +2951,4 @@ struct RichEditorDemo {
   }
 }
 ```
-![AddBuilderSpanExample](figures/richEditorPreventDefault.gif)
+![PreventDefaultExample](figures/richEditorPreventDefault.gif)
