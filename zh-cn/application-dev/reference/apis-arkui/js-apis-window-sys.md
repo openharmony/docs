@@ -847,7 +847,7 @@ image.createPixelMap(color, initializationOptions).then((pixelMap: image.PixelMa
 ```
 ## window.getSnapshot<sup>12+</sup>
 
-window.getSnapshot(windowId: number): Promise<image.PixelMap>;
+window.getSnapshot(windowId: number): Promise<image.PixelMap>
 
 获取指定窗口截图，使用Promise异步回调
 
@@ -857,12 +857,12 @@ window.getSnapshot(windowId: number): Promise<image.PixelMap>;
 **参数：**
 | 参数名   | 类型   | 必填  | 说明         |
 | -------- | ------ | ----- | ------------ |
-| windowId | number | 是    | 窗口Id,通过[getWindowProperties](js-apis-window.md#getwindowproperties9)接口获取到[properties](js-apis-window.md#windowproperties)后，再通过properties.id获取 |
+| windowId | number | 是    | 窗口Id。可通过[getWindowProperties](js-apis-window.md#getwindowproperties9)接口获取到相关窗口属性，其中属性id即对应为窗口ID。 |
 
 **返回值：**
 | 类型                    | 说明                            |
 | ----------------------- | ------------------------------- |
-| Promise<[image.PixelMap]>(../apis-image-kit/js-apis-image.md#pixelmap7) | Promise对象。返回指定窗口截图。 |
+| Promise<[image.PixelMap(../apis-image-kit/js-apis-image.md#pixelmap7)]> | Promise对象。返回指定窗口截图。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
@@ -878,10 +878,8 @@ window.getSnapshot(windowId: number): Promise<image.PixelMap>;
 import { BusinessError } from '@ohos.base';
 import image from '@ohos.multimedia.image';
 try {
-  // windowClass的获取需放在targetWindow之上
-  let windowClass: window.Window = window.findWindow("test");
-  let targetWindow: window.Window = windowClass;
-  let windowId: number = targetWindow.getWindowProperties().id;
+  // 此处仅示意，请使用getWindowProperties获取对应窗口ID再进行使用
+  let windowId: number = 40;
   let promise = window.getSnapshot(windowId);
   promise.then((pixelMap: image.PixelMap) => {
     console.info('Succeeded in getting snapshot window. Pixel bytes number:' + pixelMap.getPixelBytesNumber());
