@@ -12,11 +12,11 @@ OpenHarmony 5.0.0.18 版本相较于OpenHarmony 之前的版本，剪贴板子�
 
 **变更原因** 
 
-新需求
+新规格，应用使用自定义控件后台访问剪贴板需要申请ohos.permission.READ_PASTEBOARD。
 
 **变更影响**
 
-该变更为兼容性变更。
+非兼容性变更，需要使用者进行适配。
 
 变更前：业务访问剪贴板数据不会校验ohos.permission.READ_PASTEBOARD权限。
 
