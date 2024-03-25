@@ -231,6 +231,7 @@ import advertising from '@ohos.advertising';
 import hilog from '@ohos.hilog'; 
 import common from '@ohos.app.ability.common';
 
+@Entry
 @Component
 export struct ShowAd {
   private context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
@@ -337,7 +338,7 @@ Defines the requested ad content.
 | shown | boolean | No| Whether the ad is shown.<br>- **true**: The ad is shown.<br>- **false**: The ad is not shown.| 
 | clicked | boolean | No| Whether the ad is clicked.<br>- **true**: The ad is clicked.<br>- **false**: The ad is not clicked.| 
 | rewardVerifyConfig | Map&lt;string, string&gt; | No| Server verification parameter.<br>{<br>customData: "test",<br>userId: "12345"<br>} | 
-| [key: string] | Object | No| Custom parameter.<br>- **isFullScreen**: The value is of the Boolean type. This parameter is used for splash ads to specify whether such an ad is in full-screen mode. The value **true** means that the ad is in full-screen mode, and **false** means that the ad is in half-screen mode.|
+| [key: string] | Object | No| Custom parameters.<br>- **isFullScreen**: The value is of the Boolean type. This parameter is used for splash ads to specify whether such an ad is in full-screen mode. The value **true** means that the ad is in full-screen mode, and **false** means that the ad is in half-screen mode.|
 
 
 ## AdDisplayOptions
@@ -356,7 +357,7 @@ Defines the ad display parameters.
 | useMobileDataReminder | boolean | No| Whether to display a dialog box to notify users when they use mobile data to play videos or download applications.<br>- **true**: A dialog box is displayed.<br>- **false**: No dialog box is displayed.| 
 | mute | boolean | No| Whether to mute the ad video.<br>- **true**: The ad video is muted.<br>- **false**: The ad video is not muted.| 
 | audioFocusType | number | No| Type of the scenario where the audio focus is obtained during video playback.<br>- **0**: The focus is obtained when the video is played in mute or non-mute mode.<br>- **1**: The focus is not obtained when the video is played in mute mode.<br>- **2**: The focus is not obtained when the video is played in mute or non-mute mode.| 
-| [key: string] | number \| boolean \| string \| undefined | No| Custom parameter.<br>- **refreshTime**: The value is of the number type, in ms. The value is in the range [30000, 120000]. This parameter is optional for the AutoAdComponent module and specifies the interval at which the ads rotate. If this parameter is set, ads are rotated at the interval specified by this parameter. Otherwise, ads are not rotated and only the first ad in the ad response is displayed.|
+| [key: string] | number \| boolean \| string \| undefined | No| Custom parameters.<br>- **refreshTime**: The value is of the number type, in ms. The value is in the range [30000, 120000]. This parameter is optional for the AutoAdComponent module and specifies the interval at which the ads rotate. If this parameter is set, ads are rotated at the interval specified by this parameter. Otherwise, ads are not rotated and only the first ad in the ad response is displayed.|
 
 
 ## AdInteractionListener

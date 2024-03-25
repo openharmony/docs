@@ -5,7 +5,7 @@ The AutoAdComponent module provides the capability of displaying carousel ads.
 
 
 > **NOTE**
->
+> 
 > The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -30,12 +30,12 @@ Shows a non-full-screen ad.
 **Parameters**
 
 
-| Name| Type| Mandatory| Description|
+| Name| Type| Mandatory| Description| 
 | -------- | -------- | -------- | -------- |
-| adParam | advertising.[AdRequestParams](js-apis-advertising.md#adrequestparams) | Yes| Ad request parameters.|
-| adOptions | advertising.[AdOptions](js-apis-advertising.md#adoptions) | Yes| Ad configuration.|
-| displayOptions | advertising.[AdDisplayOptions](js-apis-advertising.md#addisplayoptions) | Yes| Ad display parameters.|
-| interactionListener | advertising.[AdInteractionListener](js-apis-advertising.md#adinteractionlistener) | Yes| Ad status change callback.|
+| adParam | advertising.[AdRequestParams](js-apis-advertising.md#adrequestparams) | Yes| Ad request parameters.| 
+| adOptions | advertising.[AdOptions](js-apis-advertising.md#adoptions) | Yes| Ad configuration.| 
+| displayOptions | advertising.[AdDisplayOptions](js-apis-advertising.md#addisplayoptions) | Yes| Ad display parameters.| 
+| interactionListener | advertising.[AdInteractionListener](js-apis-advertising.md#adinteractionlistener) | Yes| Ad status change callback.| 
 
 
 **Example**
@@ -44,6 +44,7 @@ import advertising from '@ohos.advertising';
 import { AutoAdComponent } from '@ohos.advertising.AutoAdComponent';
 import hilog from '@ohos.hilog'; 
 
+@Entry
 @Component
 export struct ShowCarouselAd {
   private adRequestParam: advertising.AdRequestParams = {
