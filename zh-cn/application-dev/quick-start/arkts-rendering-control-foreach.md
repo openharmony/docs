@@ -155,7 +155,7 @@ struct Parent {
           })
 
         ForEach(this.simpleList, (item: string) => {
-          ChildItem({ item: item })
+          ChildItem({ 'item': item } as Record<string, string>)
             .margin({ top: 20 })
         }, (item: string) => item)
       }
