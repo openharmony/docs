@@ -5103,6 +5103,47 @@ getSymbolByName(resName: string) : number;
   }
   ```
 
+### isRawDir<sup>12+</sup>
+
+isRawDir(path: string) : bool
+
+用户判断指定路径是否是rawfile下的目录，使用同步方式返回。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：**
+
+| 参数名     | 类型     | 必填   | 说明   |
+| ------- | ------ | ---- | ---- |
+| path | string | 是    | rawfile路径。 |
+
+**返回值：**
+
+| 类型     | 说明         |
+| ------ | ---------- |
+| bool |是否是rawfile下的目录。<br>true：表示是rawfile下的目录 <br>false：表示不是rawfile下的目录|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001005  | If the resource not found by path.          |
+
+**示例：**
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  try {
+    this.context.resourceManager.isRawDir("test.txt");
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`isRawDir failed, error code: ${code}, message: ${message}.`);
+  }
+  ```
+
 ### getString<sup>(deprecated)</sup>
 
 getString(resId: number, callback: AsyncCallback&lt;string&gt;): void
