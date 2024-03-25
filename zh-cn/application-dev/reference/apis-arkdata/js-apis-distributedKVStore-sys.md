@@ -70,9 +70,9 @@ import { BusinessError } from '@ohos.base';
 try {
   let v8Arr: distributedKVStore.Entry[] = [];
   let arr = new Uint8Array([4, 5, 6, 7]);
-  let vb1: distributedKVStore.Entry = { key: "name_1", value: 32 }
-  let vb2: distributedKVStore.Entry = { key: "name_2", value: arr };
-  let vb3: distributedKVStore.Entry = { key: "name_3", value: "lisi" };
+  let vb1: distributedKVStore.Entry = { key: "name_1", value: {type: distributedKVStore.ValueType.INTEGER, value: 32} }
+  let vb2: distributedKVStore.Entry = { key: "name_2", value: {type: distributedKVStore.ValueType.BYTE_ARRAY, value: arr} };
+  let vb3: distributedKVStore.Entry = { key: "name_3", value: {type: distributedKVStore.ValueType.STRING, value: "lisi"} };
 
   v8Arr.push(vb1);
   v8Arr.push(vb2);
@@ -137,9 +137,9 @@ import { BusinessError } from '@ohos.base';
 try {
   let v8Arr: distributedKVStore.Entry[] = [];
   let arr = new Uint8Array([4, 5, 6, 7]);
-  let vb1: distributedKVStore.Entry = { key: "name_1", value: 32 }
-  let vb2: distributedKVStore.Entry = { key: "name_2", value: arr };
-  let vb3: distributedKVStore.Entry = { key: "name_3", value: "lisi" };
+  let vb1: distributedKVStore.Entry = { key: "name_1", value: {type: distributedKVStore.ValueType.INTEGER, value: 32} }
+  let vb2: distributedKVStore.Entry = { key: "name_2", value: {type: distributedKVStore.ValueType.BYTE_ARRAY, value: arr} };
+  let vb3: distributedKVStore.Entry = { key: "name_3", value: {type: distributedKVStore.ValueType.STRING, value: "lisi"} };
 
   v8Arr.push(vb1);
   v8Arr.push(vb2);
