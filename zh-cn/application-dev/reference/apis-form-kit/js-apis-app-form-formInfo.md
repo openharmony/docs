@@ -152,7 +152,6 @@ import formInfo from '@ohos.app.form.formInfo';
 | FORM_VISIBLE | 1   | 表示卡片为可见。 |
 | FORM_INVISIBLE   | 2   | 表示卡片为不可见。 |
 
-
 ## LaunchReason<sup>10+</sup>
 
 卡片创建原因枚举。
@@ -163,3 +162,13 @@ import formInfo from '@ohos.app.form.formInfo';
 | ----------- | ---- | ------------ |
 | FORM_DEFAULT | 1   | 表示卡片创建原因为默认创建。 |
 | FORM_SHARE   | 2   | 表示卡片创建原因为共享创建。 |
+
+## ConfigurationUpdateFlags<sup>12+</sup>
+
+卡片配置信息允许更新开关，将允许更新的配置字段对应填充。
+
+**系统能力**：SystemCapability.Ability.Form
+
+| 名称        | 类型   | 必填         |说明         |
+| ----------- | ---- | ------------ |------------ |
+| fontEnabled    | boolean    |否    | 选填。是否允许卡片字体跟随系统调整。   |
