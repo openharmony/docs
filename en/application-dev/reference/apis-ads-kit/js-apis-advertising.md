@@ -92,6 +92,8 @@ function requestAd(context: common.Context): void {
   const adOptions: advertising.AdOptions = {
     // Set the maximum ad content rating.
     adContentClassification: 'A',
+    // Optional custom parameter, which specifies whether ads can be downloaded while mobile data is in use. The value 1 means that ads can be downloaded while mobile data is in use, and 0 means the opposite.
+    allowMobileTraffic: 0,
   };
   // Listener for the ad loading status.
   const adLoaderListener: advertising.AdLoadListener = {
@@ -168,6 +170,8 @@ function requestMultiAd(context: common.Context): void {
   const adOptions: advertising.AdOptions = {
     // Set the maximum ad content rating.
     adContentClassification: 'A',
+    // Optional custom parameter, which specifies whether ads can be downloaded while mobile data is in use. The value 1 means that ads can be downloaded while mobile data is in use, and 0 means the opposite.
+    allowMobileTraffic: 0,
   };
   // Listener for the ad loading status.
   const multiSlotsAdLoaderListener: advertising.MultiSlotsAdLoadListener = {
@@ -231,6 +235,7 @@ import advertising from '@ohos.advertising';
 import hilog from '@ohos.hilog'; 
 import common from '@ohos.app.ability.common';
 
+@Entry
 @Component
 export struct ShowAd {
   private context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
@@ -273,7 +278,7 @@ Defines the ad configuration.
 | tagForChildProtection | number | No| Whether to process the ad request according to the Children's Online Privacy Protection Act (COPPA).<br>- **-1**: You do not want to specify whether the ad content needs to be COPPA-compliant.<br>- **0**: The ad content does not need to be COPPA-compliant.<br>- **1**: The ad content must be COPPA-compliant (no ad will be returned for this ad request).| 
 | adContentClassification | string | No| Maximum ad content rating.<br>- **W**: content suitable for toddlers and older audiences.<br>- **PI**: content suitable for kids and older audiences.<br>- **J**: content suitable for teenagers and older audiences.<br>- **A**: content only suitable for adults.| 
 | nonPersonalizedAd | number | No| Whether to request non-personalized ads.<br>- **0**: request for personalized and non-personalized ads.<br>- **1**: request for non-personalized ads.| 
-| [key: string] | number \| boolean \| string \| undefined | No| Custom parameters.<br> - **totalDuration**: The value is of the number type, in seconds. This parameter is mandatory for roll ads and is used to set the total duration of roll ads.<br> - **placementAdCountDownDesc**: The value is of the string type. This parameter is optional for roll ads and is used to set the countdown description of roll ads. This parameter must be encoded using the **encodeURI()** API. If this parameter is set, the countdown description is displayed. Otherwise, only the countdown is displayed.|
+| [key: string] | number \| boolean \| string \| undefined | No| Custom parameters.<br> - **totalDuration**: The value is of the number type, in seconds. This parameter is mandatory for roll ads and is used to set the total duration of roll ads.<br> - **placementAdCountDownDesc**: The value is of the string type. This parameter is optional for roll ads and is used to set the countdown description of roll ads. This parameter must be encoded using the **encodeURI()** API. If this parameter is set, the countdown description is displayed. Otherwise, only the countdown is displayed.<br> - **allowMobileTraffic**: The value is of the number type. This parameter is optional. It specifies whether ads can be downloaded while mobile data is in use. The value **1** means that ads can be downloaded while mobile data is in use, and **0** means the opposite.|
 
 
 ## AdRequestParams
@@ -337,7 +342,7 @@ Defines the requested ad content.
 | shown | boolean | No| Whether the ad is shown.<br>- **true**: The ad is shown.<br>- **false**: The ad is not shown.| 
 | clicked | boolean | No| Whether the ad is clicked.<br>- **true**: The ad is clicked.<br>- **false**: The ad is not clicked.| 
 | rewardVerifyConfig | Map&lt;string, string&gt; | No| Server verification parameter.<br>{<br>customData: "test",<br>userId: "12345"<br>} | 
-| [key: string] | Object | No| Custom parameter.<br>- **isFullScreen**: The value is of the Boolean type. This parameter is used for splash ads to specify whether such an ad is in full-screen mode. The value **true** means that the ad is in full-screen mode, and **false** means that the ad is in half-screen mode.|
+| [key: string] | Object | No| Custom parameters.<br>- **isFullScreen**: The value is of the Boolean type. This parameter is used for splash ads to specify whether such an ad is in full-screen mode. The value **true** means that the ad is in full-screen mode, and **false** means that the ad is in half-screen mode.|
 
 
 ## AdDisplayOptions
@@ -356,7 +361,7 @@ Defines the ad display parameters.
 | useMobileDataReminder | boolean | No| Whether to display a dialog box to notify users when they use mobile data to play videos or download applications.<br>- **true**: A dialog box is displayed.<br>- **false**: No dialog box is displayed.| 
 | mute | boolean | No| Whether to mute the ad video.<br>- **true**: The ad video is muted.<br>- **false**: The ad video is not muted.| 
 | audioFocusType | number | No| Type of the scenario where the audio focus is obtained during video playback.<br>- **0**: The focus is obtained when the video is played in mute or non-mute mode.<br>- **1**: The focus is not obtained when the video is played in mute mode.<br>- **2**: The focus is not obtained when the video is played in mute or non-mute mode.| 
-| [key: string] | number \| boolean \| string \| undefined | No| Custom parameter.<br>- **refreshTime**: The value is of the number type, in ms. The value is in the range [30000, 120000]. This parameter is optional for the AutoAdComponent module and specifies the interval at which the ads rotate. If this parameter is set, ads are rotated at the interval specified by this parameter. Otherwise, ads are not rotated and only the first ad in the ad response is displayed.|
+| [key: string] | number \| boolean \| string \| undefined | No| Custom parameters.<br>- **refreshTime**: The value is of the number type, in ms. The value is in the range [30000, 120000]. This parameter is optional for the AutoAdComponent module and specifies the interval at which the ads rotate. If this parameter is set, ads are rotated at the interval specified by this parameter. Otherwise, ads are not rotated and only the first ad in the ad response is displayed.|
 
 
 ## AdInteractionListener
