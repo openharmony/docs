@@ -215,6 +215,21 @@ typedef enum {
 | napi_qos_default | 默认 |
 | napi_qos_user_initiated | 高等级，用户触发并且可见进展，例如打开文档。 |
 
+### 事件循环模式
+napi提供了运行底层事件循环的两种模式, 其定义如下：
+
+```c
+typedef enum {
+    napi_event_mode_default = 0,
+    napi_event_mode_nowait = 1,
+} napi_event_mode;
+```
+
+| 事件循环运行模式 | 解释说明 |
+| -------- | -------- |
+| napi_event_mode_default | 阻塞式的运行底层事件循环，直到循环中没有任何任务时退出事件循环。 |
+| napi_event_mode_nowait | 非阻塞式的运行底层事件循环，尝试去处理一个任务，处理完之后退出事件循环；如果事件循环中没有任务，立刻退出事件循环。 |
+
 ## 支持的Node-API接口
 
 Node-API接口在Node.js提供的原生模块基础上扩展，目前支持部分接口，具体可见下文。
@@ -444,6 +459,8 @@ Node-API接口在Node.js提供的原生模块基础上扩展，目前支持部�
 | napi_create_object_with_properties | 使用给定的napi_property_descriptor创建js Object。descriptor的键名必须为 string，且不可转为number。 |
 | napi_create_object_with_named_properties | 使用给定的napi_value和键名创建js Object。键名必须为 string，且不可转为number。 |
 | napi_coerce_to_native_binding_object | 强制将js Object和Native对象绑定。 |
+| napi_run_event_loop | 触发底层的事件循环。|
+| napi_stop_event_loop | 停止底层的事件循环。|
 
 #### napi_queue_async_work_with_qos
 
@@ -499,6 +516,16 @@ napi_status napi_coerce_to_native_binding_object(napi_env env,
                                                  napi_native_binding_attach_callback attach_cb,
                                                  void* native_object,
                                                  void* hint);  
+```
+
+#### napi_run_event_loop
+```c
+napi_status napi_run_event_loop(napi_env env, napi_event_mode mode);
+```
+
+#### napi_stop_event_loop
+```c
+napi_status napi_stop_event_loop(napi_env env);
 ```
 
 ### 环境生命周期

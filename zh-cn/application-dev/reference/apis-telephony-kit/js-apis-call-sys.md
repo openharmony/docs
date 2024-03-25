@@ -4632,7 +4632,7 @@ import { BusinessError } from '@ohos.base';
 
 call.inputDialerSpecialCode('2846579', (err: BusinessError) => {
     if (err) {
-        console.error(`inputDialerSpecialCode fail, err->${JSON.stringify(error)}`);
+        console.error(`inputDialerSpecialCode fail, err->${JSON.stringify(err)}`);
     } else {
         console.log(`inputDialerSpecialCode success`);
     }

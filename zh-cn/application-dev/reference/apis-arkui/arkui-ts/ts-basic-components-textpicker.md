@@ -47,6 +47,14 @@ TextPicker(options?: TextPickerOptions)
 | ------ | -------------------------------------------------------- | ---- | ---------- |
 | text   | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本信息。 |
 | children   | [TextCascadePickerRangeContent](#textcascadepickerrangecontent10类型说明)[] | 否   | 联动数据。 |
+## DividerOptions<sup>12+</sup>类型说明
+
+| 参数名      | 参数类型      | 必填 | 参数描述                                                       |
+| ----------- | ------------- | ---- | -------------------------------------------------------------- |
+| strokeWidth | [Dimension](ts-types.md#dimension10)     | 否   | 分割线的线宽（默认单位vp），也可指定单位为px，不支持"百分比"类型。 |
+| startMargin | [Dimension](ts-types.md#dimension10)      | 否   | 分割线与TextPicker侧边起始端的距离（默认单位vp），也可指定单位为px，不支持“百分比”类型。|
+| endMargin   | [Dimension](ts-types.md#dimension10)     | 否   | 分割线与TextPicker侧边结束端的距离（默认单位vp），也可指定单位为px，不支持“百分比”类型。|
+| color       | [ResourceColor](ts-types.md#resourcecolor)  | 否   | 分割线的颜色。
 
 ## 属性
 
@@ -135,6 +143,19 @@ canLoop(value: boolean)
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
 | value  | boolean | 是   | 是否可循环滚动。<br/>true：可循环，false：不可循环。<br/>默认值：true |
+
+### divider<sup>12+</sup>
+
+divider(value: DividerOptions | null)
+
+设置分割线样式，不设置该属性则按“默认值”展示分割线。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+| 参数名 | 类型    | 必填 | 说明                                                                  |
+| ------ | ------- | ---- | --------------------------------------------------------------------- |
+| divider  | [DividerOptions](#divideroptions12类型说明) \| null | 否   | 1.设置DividerOptions，则按设置的样式显示分割线。<br/>默认值：<br/>{<br/>strokeWidth: '2px', <br/>startMargin: 0, <br/>endMargin: 0, <br/>color: '#33000000'<br/>}<br/>2.设置为null不显示分割线。 |
 
 ## 事件
 
@@ -264,3 +285,51 @@ struct TextPickerExample {
 ```
 
 ![textpicker](figures/textpicker1.gif)
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TextPickerExample {
+  private select: number = 1
+  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4']
+
+  build() {
+    Column() {
+      TextPicker({ range: this.fruits, selected: this.select })
+        .onChange((value: string | string[], index: number | number[]) => {
+          console.info('Picker item changed, value: ' + value + ', index: ' + index)
+        })
+        .disappearTextStyle({color: Color.Red, font: {size: 15, weight: FontWeight.Lighter}})
+        .textStyle({color: Color.Black, font: {size: 20, weight: FontWeight.Normal}})
+        .selectedTextStyle({color: Color.Blue, font: {size: 30, weight: FontWeight.Bolder}})
+        .divider(null)
+    }.width('100%').height('100%')
+  }
+}
+```
+![textpicker](figures/textpicker2.gif)
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TextPickerExample {
+  private select: number = 1
+  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4']
+
+  build() {
+    Column() {
+      TextPicker({ range: this.fruits, selected: this.select })
+        .onChange((value: string | string[], index: number | number[]) => {
+          console.info('Picker item changed, value: ' + value + ', index: ' + index)
+        })
+        .disappearTextStyle({color: Color.Red, font: {size: 15, weight: FontWeight.Lighter}})
+        .textStyle({color: Color.Black, font: {size: 20, weight: FontWeight.Normal}})
+        .selectedTextStyle({color: Color.Blue, font: {size: 30, weight: FontWeight.Bolder}})
+        .divider({ strokeWidth: 10, color: Color.Red, startMargin: 10, endMargin: 20 } as DividerOptions)
+    }.width('100%').height('100%')
+  }
+}
+```
+![textpicker](figures/textpicker3.gif)

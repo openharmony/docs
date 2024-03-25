@@ -357,8 +357,8 @@ Span类型信息。
 | fontWeight | number                                   | 是    | 字体粗细。        |
 | fontFamily | string                                   | 是    | 字体列表。        |
 | decoration | {<br/>type:&nbsp;[TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br/>color:&nbsp;[ResourceColor](ts-types.md#resourcecolor)<br/>} | 是    | 文本装饰线样式及其颜色。 |
-| lineHeight<sup>12+</sup> | number       | 是    | 文本行高。          |
-| letterSpacing<sup>12+</sup>| number       | 是    | 文本字符间距。    |
+| lineHeight<sup>12+</sup> | number       | 否    | 文本行高。          |
+| letterSpacing<sup>12+</sup>| number       | 否    | 文本字符间距。    |
 
 ## RichEditorImageSpanResult
 
@@ -2801,3 +2801,124 @@ struct RichEditorDemo {
 }
 ```
 ![SetCaretAndSelectedBackgroundColorExample](figures/rich_editor_caret_color.gif)
+
+### 示例12
+lineHeight和letterSpacing使用示例
+```ts
+@Entry
+@Component
+struct RichEditorDemo03 {
+  controller: RichEditorController = new RichEditorController();
+  options: RichEditorOptions = { controller: this.controller };
+  @State start: number = -1;
+  @State end: number = -1;
+  @State LH:number = 50
+  @State LS:number = 20
+
+  build() {
+    Column() {
+      Scroll(){
+        Column(){
+          Row() {
+            Button("行高++").onClick(()=>{
+              this.LH = this.LH + 5
+              this.controller.updateSpanStyle({
+                start: this.start,
+                end: this.end,
+                textStyle:
+                {
+                  lineHeight: this.LH
+                }
+              })
+            })
+            Button("行高--").onClick(()=>{
+              this.LH = this.LH - 5
+              this.controller.updateSpanStyle({
+                start: this.start,
+                end: this.end,
+                textStyle:
+                {
+                  lineHeight: this.LH
+                }
+              })
+            })
+            Button("字符间距++").onClick(()=>{
+              this.LS = this.LS + 5
+              this.controller.updateSpanStyle({
+                start: this.start,
+                end: this.end,
+                textStyle:
+                {
+                  letterSpacing: this.LS
+                }
+              })
+            })
+            Button("字符间距--").onClick(()=>{
+              this.LS = this.LS - 5
+              this.controller.updateSpanStyle({
+                start: this.start,
+                end: this.end,
+                textStyle:
+                {
+                  letterSpacing: this.LS
+                }
+              })
+            })
+          }
+        }
+      }.borderWidth(1)
+      .borderColor(Color.Red)
+      .width("100%")
+      .height("20%")
+      .margin({top: 20})
+
+      Scroll(){
+        Column() {
+          Text("LineHeight:" + this.LH).width("100%")
+          Text("LetterSpacing:" + this.LS).width("100%")
+        }
+      }
+      .borderWidth(1)
+      .borderColor(Color.Red)
+      .width("100%")
+      .height("20%")
+      .margin({bottom: 20})
+
+      Column() {
+        RichEditor(this.options).clip(true).padding(10)
+          .onReady(() => {
+            this.controller.addTextSpan("012345",
+              {
+                style:
+                {
+                  fontColor: Color.Orange,
+                  fontSize: 30,
+                  lineHeight: this.LH,
+                  letterSpacing: this.LS
+                }
+              })
+            this.controller.addTextSpan("6789",
+              {
+                style:
+                {
+                  fontColor: Color.Black,
+                  fontSize: 30,
+                  lineHeight: this.LH,
+                  letterSpacing: this.LS
+                }
+              })
+          })
+          .borderWidth(1)
+          .borderColor(Color.Green)
+          .width(400)
+          .height(400)
+      }
+      .borderWidth(1)
+      .borderColor(Color.Red)
+      .width("100%")
+      .height("60%")
+    }
+  }
+}
+```
+![AddBuilderSpanExample](figures/richEditorLineHeightAndLetterSpacing.png)
