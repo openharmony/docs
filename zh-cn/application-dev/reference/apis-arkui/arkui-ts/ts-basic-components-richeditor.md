@@ -151,7 +151,7 @@ placeholder(value: ResourceStr, style?: PlaceholderStyle)
 
 caretColor(value: ResourceColor)
 
-设置输入框光标颜色。
+设置输入框光标、手柄颜色。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -159,7 +159,7 @@ caretColor(value: ResourceColor)
 
 | 参数名 | 类型                                       | 必填 | 说明                                   |
 | ------ | ------------------------------------------ | ---- | -------------------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 输入框光标颜色。<br/>默认值：'#0A59F7' |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 输入框光标、手柄颜色。<br/>默认值：'#007DFF' |
 
 ### selectedBackgroundColor<sup>12+</sup>
 
@@ -2770,3 +2770,34 @@ struct TextExample7 {
   }
 }
 ```
+### 示例11
+caretColor和selectedBackgroundColor使用示例
+``` ts
+@Entry
+@Component
+struct RichEditorDemo {
+  @State color: Color|string = ""
+  controller: RichEditorController = new RichEditorController();
+  build() {
+    Column() {
+      Row(){
+        Button("改为红色").onClick(() => {
+          this.color = Color.Red
+        })
+      }.margin({top:50})
+      RichEditor({ controller: this.controller })
+        .onReady(()=>{
+          this.controller.addTextSpan('测试文字测试文字测试文字测试文字测试文字测试文字')
+        })
+        .width("100%")
+        .border({ width: 1, radius: 5 })
+        .key('RichEditor')
+        .caretColor(this.color)  //光标颜色
+        .selectedBackgroundColor(this.color)  //选中背景色
+        .margin({top:50})
+    }
+    .width('100%')
+  }
+}
+```
+![SetCaretAndSelectedBackgroundColorExample](figures/rich_editor_caret_color.gif)
