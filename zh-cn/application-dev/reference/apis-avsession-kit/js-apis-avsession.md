@@ -152,8 +152,6 @@ avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSe
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
-
 let sessionId: string = currentAVSession.sessionId;
 let sessionType: avSession.AVSessionType = currentAVSession.sessionType;
 ```
@@ -190,7 +188,6 @@ setAVMetadata(data: AVMetadata): Promise\<void>
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let metadata: avSession.AVMetadata = {
@@ -243,7 +240,6 @@ setAVMetadata(data: AVMetadata, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let metadata: avSession.AVMetadata = {
@@ -303,7 +299,6 @@ setCallMetadata(data: CallMetadata): Promise\<void>
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let calldata: avSession.CallMetadata = {
@@ -345,13 +340,15 @@ setCallMetadata(data: CallMetadata, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
+import image from '@ohos.multimedia.image';
 import { BusinessError } from '@ohos.base';
 
+let imageSource= await image.createImageSource(value.buffer);
+let imagePixel = await imageSource.createPixelMap({desiredSize:{width: 150, height: 150}});
 let calldata: avSession.CallMetadata = {
   name: "xiaoming",
   phoneNumber: "111xxxxxxxx",
-  avatar: "xxx.jpg",
+  avatar: imagePixel,
 };
 currentAVSession.setCallMetadata(calldata, (err: BusinessError) => {
   if (err) {
@@ -394,7 +391,6 @@ setAVCallState(state: AVCallState): Promise\<void>
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let calldata: avSession.AVCallState = {
@@ -435,7 +431,6 @@ setAVCallState(state: AVCallState, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let avcalldata: avSession.AVCallState = {
@@ -483,7 +478,6 @@ setAVPlaybackState(state: AVPlaybackState): Promise\<void>
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let playbackState: avSession.AVPlaybackState = {
@@ -528,7 +522,6 @@ setAVPlaybackState(state: AVPlaybackState, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let PlaybackState: avSession.AVPlaybackState = {
@@ -725,7 +718,6 @@ dispatchSessionEvent(event: string, args: {[key: string]: Object}): Promise\<voi
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let currentAVSession: avSession.AVSession | undefined = undefined;
@@ -781,7 +773,6 @@ dispatchSessionEvent(event: string, args: {[key: string]: Object}, callback: Asy
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let currentAVSession: avSession.AVSession | undefined = undefined;
@@ -840,7 +831,6 @@ setAVQueueItems(items: Array\<AVQueueItem>): Promise\<void>
 import image from '@ohos.multimedia.image';
 import resourceManager from '@ohos.resourceManager';
 import { BusinessError } from '@ohos.base';
-import avSession from '@ohos.multimedia.avsession';
 
 async function setAVQueueItems() {
   let value = await resourceManager.getSystemResourceManager().getRawFileContent('IMAGE_URI');
@@ -909,7 +899,6 @@ setAVQueueItems(items: Array\<AVQueueItem>, callback: AsyncCallback\<void>): voi
 import image from '@ohos.multimedia.image';
 import resourceManager from '@ohos.resourceManager';
 import { BusinessError } from '@ohos.base';
-import avSession from '@ohos.multimedia.avsession';
 
 async function setAVQueueItems() {
   let value = await resourceManager.getSystemResourceManager().getRawFileContent('IMAGE_URI');
@@ -1067,7 +1056,6 @@ setExtras(extras: {[key: string]: Object}): Promise\<void>
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let currentAVSession: avSession.AVSession | undefined = undefined;
@@ -1121,7 +1109,6 @@ setExtras(extras: {[key: string]: Object}, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let currentAVSession: avSession.AVSession | undefined = undefined;
@@ -2139,7 +2126,7 @@ on(type: 'commonCommand', callback: (command: string, args: {[key: string]: Obje
 
 ```ts
 import { BusinessError } from '@ohos.base';
-import avSession from '@ohos.multimedia.avsession';
+
 let currentAVSession: avSession.AVSession | undefined = undefined;
 let tag = "createNewSession";
 let context: Context = getContext(this);
@@ -3052,7 +3039,6 @@ sendControlCommand(command: AVCastControlCommand): Promise\<void>
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let avCommand: avSession.AVCastControlCommand = {command:'play'};
@@ -3092,7 +3078,6 @@ sendControlCommand(command: AVCastControlCommand, callback: AsyncCallback\<void>
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let avCommand: avSession.AVCastControlCommand = {command:'play'};
@@ -3132,7 +3117,6 @@ prepare(item: AVQueueItem, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 // 设置播放参数，开始播放
@@ -3197,7 +3181,6 @@ prepare(item: AVQueueItem): Promise\<void>
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 // 设置播放参数，开始播放
@@ -3252,7 +3235,6 @@ start(item: AVQueueItem, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 // 设置播放参数，开始播放
@@ -3317,7 +3299,6 @@ start(item: AVQueueItem): Promise\<void>
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 // 设置播放参数，开始播放
@@ -4170,7 +4151,7 @@ aVCastController.off('error')
 | --------------- |-------------------------| ---- |---------------------------------------------------------------------|
 | name            | string                  | 否    | 来电人姓名（别名）。    |                                                                                                                      
 | phoneNumber     | string                  | 否    | 来电电话号码            |                                                   
-| avatar          | image.PixelMap[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)          | 否    | 来电人头像。            |                                                   
+| avatar          | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)          | 否    | 来电人头像。            |                                                   
 
 ## AVCallState<sup>11+</sup>
 
@@ -5225,7 +5206,6 @@ sendControlCommand(command: AVControlCommand): Promise\<void>
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let avCommand: avSession.AVControlCommand = {command:'play'};
@@ -5271,7 +5251,6 @@ sendControlCommand(command: AVControlCommand, callback: AsyncCallback\<void>): v
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let avCommand: avSession.AVControlCommand = {command:'play'};
@@ -5324,7 +5303,6 @@ sendCommonCommand(command: string, args: {[key: string]: Object}): Promise\<void
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let avSessionController: avSession.AVSessionController | undefined = undefined;
@@ -5393,7 +5371,6 @@ sendCommonCommand(command: string, args: {[key: string]: Object}, callback: Asyn
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 let avSessionController: avSession.AVSessionController | undefined = undefined;
 let currentAVSession: avSession.AVSession | undefined = undefined;
@@ -5454,7 +5431,6 @@ getExtras(): Promise\<{[key: string]: Object}>
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let avSessionController: avSession.AVSessionController | undefined = undefined;
@@ -5515,7 +5491,6 @@ getExtras(callback: AsyncCallback\<{[key: string]: Object}>): void
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let avSessionController: avSession.AVSessionController | undefined = undefined;
@@ -6094,7 +6069,6 @@ on(type: 'sessionEvent', callback: (sessionEvent: string, args: {[key:string]: O
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let avSessionController: avSession.AVSessionController | undefined = undefined;
@@ -6305,7 +6279,6 @@ on(type: 'extrasChange', callback: (extras: {[key:string]: Object}) => void): vo
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let avSessionController: avSession.AVSessionController | undefined = undefined;
