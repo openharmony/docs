@@ -1,7 +1,6 @@
 - Performance
   - [Application Performance Improvement Overview](performance-overview.md)
   - ArkTS High-Performance Programming
-    - [High-Performance Programming Practices and Tools](high-performance-programming.md)
     - [Efficient Concurrent Programming](efficient-concurrent-programming.md)
     - [Secure and Efficient N-API Development](develop-Native-modules-using-NAPI-safely-and-efficiently.md)
   - Reducing Frame Freezing
