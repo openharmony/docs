@@ -2467,7 +2467,7 @@
 
 ### ohos.permission.WRITE_ACCOUNT_LOGIN_STATE
 
-允许华为帐号往数据管理服务写入自己的登录状态。
+允许用户帐号往数据管理服务写入自己的登录状态。
 
 **权限级别**：system_basic
 

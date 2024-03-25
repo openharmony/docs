@@ -368,7 +368,7 @@
 
 ### ohos.permission.READ_ACCOUNT_LOGIN_STATE
 
-允许应用读取华为帐号的登录状态。
+允许应用读取用户帐号的登录状态。
 
 **权限级别**：normal
 
