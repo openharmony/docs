@@ -21,6 +21,92 @@ import userIAM_userAuth from '@ohos.userIAM.userAuth';
 | 名称        | 值   | 说明       |
 | ----------- | ---- | ---------- |
 | MAX_ALLOWABLE_REUSE_DURATION<sup>12+</sup>    | 300000   | 复用设备解锁结果最大有效时长，值为300000毫秒。 |
+
+## EnrolledState<sup>12+</sup>
+
+表示用户注册凭据的状态。
+
+**系统能力**：SystemCapability.UserIAM.UserAuth.Core
+
+| 名称         | 类型    | 可读 | 可写 | 说明                 |
+| ------------ | ---------- | ---- | ---- | -------------------- |
+| credentialDigest       | number | 是   |  否 | 注册的凭据摘要，在凭据增加时随机生成。|
+| credentialCount        | number | 是   |  否 | 注册的凭据数量。       |
+
+## ReuseMode<sup>12+</sup>
+
+表示复用设备解锁结果的模式。
+
+**系统能力**：SystemCapability.UserIAM.UserAuth.Core
+
+| 名称        | 值   | 说明       |
+| ----------- | ---- | ---------- |
+| AUTH_TYPE_RELEVANT    | 1   | 与认证类型相关，只有当设备解锁结果在有效时间内，并且设备解锁的认证类型匹配上本次认证指定认证类型之一时，可以复用该结果。 |
+| AUTH_TYPE_IRRELEVANT  | 2   | 与认证类型无关，只要解锁认证结果在有效时间内，就可以重复使用。 |
+
+## ReuseUnlockResult<sup>12+</sup>
+
+表示复用设备解锁结果。
+> **说明**：
+>
+> 如果锁屏解锁后，在有效时间内凭据发生了变化，锁屏认证结果依然可以复用，认证结果中返回当前实际的EnrolledState。若复用锁屏认证结果
+> 时，凭据已经被完全删除，则返回的EnrolledState中credentialCount和credentialDigest均为0。
+
+
+**系统能力**：SystemCapability.UserIAM.UserAuth.Core
+
+| 名称         | 类型   | 必填 | 说明                 |
+| ------------ | ---------- | ---- | -------------------- |
+| reuseMode        | [ReuseMode](#reusemode12) | 是   | 复用设备解锁结果的模式。       |
+| reuseDuration    | number | 是   | 允许复用设备解锁结果的有效时长，有效时长的值应大于0，最大值为[MAX_ALLOWABLE_REUSE_DURATION](#常量)。 |
+
+## userAuth.getEnrolledState<sup>12+</sup>
+
+getEnrolledState(authType : UserAuthType): EnrolledState
+
+查询凭据注册的状态，用于感知用户注册凭据变化。
+
+**需要权限**：ohos.permission.ACCESS_BIOMETRIC
+
+**系统能力**：SystemCapability.UserIAM.UserAuth.Core
+
+**参数：**
+
+| 参数名         | 类型                               | 必填 | 说明                       |
+| -------------- | ---------------------------------- | ---- | -------------------------- |
+| authType       | [UserAuthType](#userauthtype8)     | 是   | 认证类型。|
+
+**返回值：**
+
+| 类型                  | 说明                                                         |
+| --------------------- | ------------------------------------------------------------ |
+| [EnrolledState](#enrolledstate12) | 当查询成功时，返回用户注册凭据的状态。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[用户认证错误码](errorcode-useriam.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ------- |
+| 201 | Permission verification failed. |
+| 401 | Incorrect parameters. |
+| 12500002 | General operation error. |
+| 12500005 | The authentication type is not supported. |
+| 12500010 | The type of credential has not been enrolled. |
+
+**示例：**
+
+```ts
+import userAuth from '@ohos.userIAM.userAuth';
+
+try {
+  let enrolledState = userAuth.getEnrolledState(userAuth.UserAuthType.FACE);
+  console.info('get current enrolled state success, enrolledState = ' + JSON.stringify(enrolledState));
+} catch (error) {
+  console.error('get current enrolled state failed, error = ' + JSON.stringify(error));
+}
+```
+
 ## AuthParam<sup>10+</sup>
 
 用户认证相关参数。
@@ -413,7 +499,7 @@ try {
 > **说明：**
 > 从 API version 9 开始支持，从 API version 11 开始废弃。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth.Core
+**系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
 | 名称         | 类型   | 必填 | 说明                 |
 | ------------ | ---------- | ---- | -------------------- |
@@ -429,7 +515,7 @@ try {
 > **说明：**
 > 从 API version 9 开始支持，从 API version 11 开始废弃。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth.Core。
+**系统能力**：SystemCapability.UserIAM.UserAuth.Core。
 
 | 名称         | 类型   | 必填 | 说明                 |
 | ------------ | ---------- | ---- | -------------------- |
@@ -443,7 +529,7 @@ try {
 > **说明：**
 > 从 API version 9 开始支持，从 API version 11 开始废弃，请使用[UserAuthResult](#userauthresult10)替代。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth.Core。
+**系统能力**：SystemCapability.UserIAM.UserAuth.Core。
 
 | 取值类型    | 说明                       |
 | --------- | ----------------------- |
@@ -457,7 +543,7 @@ try {
 > **说明：**
 > 从 API version 9 开始支持，从 API version 11 开始废弃。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth.Core。
+**系统能力**：SystemCapability.UserIAM.UserAuth.Core。
 
 | 取值类型       | 说明                    |
 | ---------- | ----------------------- |
@@ -1399,84 +1485,4 @@ try {
 | LOCKED             | 7      | 认证失败次数过多，已锁定。 |
 | NOT_ENROLLED       | 8      | 未录入认证凭据。           |
 | GENERAL_ERROR      | 100    | 其他错误。                 |
-
-## userAuth.getEnrolledState<sup>12+</sup>
-
-getEnrolledState(authType : UserAuthType): EnrolledStated
-
-查询凭据注册的状态，感知用户注册凭据变化。
-
-**需要权限**：ohos.permission.ACCESS_BIOMETRIC
-
-**系统能力**：SystemCapability.UserIAM.UserAuth.Core
-
-**参数：**
-
-| 参数名         | 类型                               | 必填 | 说明                       |
-| -------------- | ---------------------------------- | ---- | -------------------------- |
-| authType       | [UserAuthType](#userauthtype8)     | 是   | 认证类型。|
-
-**返回值：**
-
-| 类型                  | 说明                                                         |
-| --------------------- | ------------------------------------------------------------ |
-| [EnrolledState](#enrolledstate12) | 当查询成功时，返回用户注册凭据的状态。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[用户认证错误码](errorcode-useriam.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | ------- |
-| 201 | Permission verification failed. |
-| 401 | Incorrect parameters. |
-| 12500002 | General operation error. |
-| 12500005 | The authentication type is not supported. |
-| 12500010 | The type of credential has not been enrolled. |
-
-**示例：**
-
-```ts
-import userAuth from '@ohos.userIAM.userAuth';
-
-try {
-  let enrolledState = userAuth.getEnrolledState(userAuth.UserAuthType.FACE);
-  console.info('get current enrolled state success, enrolledState = ' + JSON.stringify(enrolledState));
-} catch (error) {
-  console.error('get current enrolled state failed, error = ' + JSON.stringify(error));
-}
-```
-
-## EnrolledState<sup>12+</sup>
-
-表示用户注册凭据的状态。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth.Core。
-
-| 名称         | 类型   | 可读/可写 | 说明                 |
-| ------------ | ---------- | ---- | -------------------- |
-| credentialDigest       | number | 是   | 注册的凭据摘要。       |
-| credentialCount        | number | 是   | 注册的凭据数量。       |
-
-## ReuseMode<sup>12+</sup>
-
-表示复用设备解锁结果的模式。
-
-**系统能力**：SystemCapability.UserIAM.UserAuth.Core
-
-| 名称        | 值   | 说明       |
-| ----------- | ---- | ---------- |
-| AUTH_TYPE_RELEVANT    | 1   | 与认证类型相关，只有当设备解锁结果在有效时间内，并且设备解锁的认证类型匹配上本次认证指定认证类型之一时，可以复用该结果。 |
-| AUTH_TYPE_IRRELEVANT  | 2   | 与认证类型无关，只要解锁认证结果在有效时间内，就可以重复使用。 |
-
-## ReuseUnlockResult<sup>12+</sup>
-
-表示复用设备解锁结果。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth.Core。
-
-| 名称         | 类型   | 必填 | 说明                 |
-| ------------ | ---------- | ---- | -------------------- |
-| reuseMode        | [ReuseMode](#reusemode12) | 是   | 复用设备解锁结果的模式。       |
-| reuseDuration    | number | 是   | 允许复用设备解锁结果的有效时长，有效时长的值应大于0，最大值为[MAX_ALLOWABLE_REUSE_DURATION](#常量)。 |
 
