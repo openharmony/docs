@@ -127,7 +127,7 @@ java -jar app_unpacking_tool.jar --mode <option> --appqf-path <options> --out-pa
 
 ## Package Parsing APIs
 
-The package parsing APIs are used to parse an HAP, APP, or HSP file and obtain information such as the configuration file.
+The package parsing APIs are used by the application market to parse an HAP, APP, or HSP file and obtain information such as the configuration file.
 
 ### Available APIs
 
