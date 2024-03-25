@@ -1797,7 +1797,7 @@ struct ChildComponent {
           .onClick(() => {
             item.message.message += '0';
           })
-        }, (item: StringData, index: number) => item.toString() + index.toString())
+        }, (item: StringData, index: number) => JSON.stringify(item) + index.toString())
       }.cachedCount(5)
     }
   }
@@ -1941,7 +1941,7 @@ struct ChildComponent {
           .onClick(() => {
             item.message = new NestedString(item.message.message + '0');
           })
-        }, (item: StringData, index: number) => item.toString() + index.toString())
+        }, (item: StringData, index: number) => JSON.stringify(item) + index.toString())
       }.cachedCount(5)
     }
   }
