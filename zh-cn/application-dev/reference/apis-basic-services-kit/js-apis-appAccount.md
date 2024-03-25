@@ -2769,7 +2769,7 @@ setAuthenticatorProperties(owner: string, callback: AuthCallback): void
 
 | 参数名    | 类型                  | 必填  | 说明                     |
 | -------- | --------------------- | ----- | ----------------------- |
-| owner    | string                | 是    | 认证器的所有者。          |
+| owner    | string                | 是    | 认证器的所有者的包名。          |
 | callback | [AuthCallback](#authcallback9) | 是    | 回调函数，返回设置属性的结果。 |
 
 **错误码：**
@@ -2814,7 +2814,7 @@ setAuthenticatorProperties(owner: string, options: SetPropertiesOptions, callbac
 
 | 参数名    | 类型                  | 必填  | 说明                     |
 | -------- | --------------------- | ----- | ----------------------- |
-| owner    | string                | 是    | 认证器的所有者。          |
+| owner    | string                | 是    | 认证器的所有者的包名。          |
 | options  | [SetPropertiesOptions](#setpropertiesoptions9)  | 是    | 设置属性的选项。          |
 | callback | [AuthCallback](#authcallback9) | 是    | 认证器回调，返回设置属性的结果。 |
 
@@ -3664,7 +3664,7 @@ getAllAccounts(owner: string): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 
 | 参数名   | 类型     | 必填   | 说明     |
 | ----- | ------ | ---- | ------ |
-| owner | string | 是    | 应用包名称。 |
+| owner | string | 是    | 应用帐号所有者的包名。 |
 
 **返回值：**
 
@@ -4719,7 +4719,7 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 | 名称     | 类型     | 必填   | 说明         |
 | ------- | ------ | ---- | ---------- |
-| owner   | string | 是    | 认证器的所有者包名。 |
+| owner   | string | 是    | 认证器的所有者的包名。 |
 | iconId  | number | 是    | 认证器的图标标识。  |
 | labelId | number | 是    | 认证器的标签标识。  |
 
@@ -4806,7 +4806,7 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 | ACTION_VERIFY_CREDENTIAL<sup>9+</sup>    | 'verifyCredential' | 表示操作，验证凭据。  |
 | ACTION_SET_AUTHENTICATOR_PROPERTIES<sup>9+</sup> | 'setAuthenticatorProperties' | 表示操作，设置认证器属性。      |
 | KEY_NAME                         | 'name'                 | 表示键名，应用帐号的名称。  |
-| KEY_OWNER                        | 'owner'                | 表示键名，应用帐号所有者。|
+| KEY_OWNER                        | 'owner'                | 表示键名，应用帐号所有者的包名。|
 | KEY_TOKEN                        | 'token'                | 表示键名，令牌。         |
 | KEY_ACTION                       | 'action'               | 表示键名，操作。         |
 | KEY_AUTH_TYPE                    | 'authType'             | 表示键名，鉴权类型。     |
