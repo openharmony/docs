@@ -1767,7 +1767,7 @@ notifyChange(data: ChangeInfo): Promise&lt;void&gt;
 
 | 参数名 | 类型   | 必填 | 说明                 |
 | ---- | ------ | ---- | -------------------- |
-| data  | [ChangeInfo](js-apis-data-dataShare.md#ChangeInfo) | 是   | 表示数据变更类型、变化的uri、变更的数据内容。 |
+| data  | [ChangeInfo](#changeinfo12) | 是   | 表示数据变更类型、变化的uri、变更的数据内容。 |
 
 **返回值：**
 
