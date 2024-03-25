@@ -3965,7 +3965,7 @@ import { BusinessError } from '@ohos.base';
 
 let files = ["BK001", "BK002"];
 try {
-  kvStore.deleteBackup(files, (err: BusinessError, data: [string, number]) => {
+  kvStore.deleteBackup(files, (err: BusinessError, data: [string, number][]) => {
     if (err) {
       console.error(`Failed to delete Backup.code is ${err.code},message is ${err.message}`);
     } else {
@@ -4005,7 +4005,7 @@ import { BusinessError } from '@ohos.base';
 
 let files = ["BK001", "BK002"];
 try {
-  kvStore.deleteBackup(files).then((data: [string, number]) => {
+  kvStore.deleteBackup(files).then((data: [string, number][]) => {
     console.info(`Succeed in deleting Backup.data=${data}`);
   }).catch((err: BusinessError) => {
     console.error(`Failed to delete Backup.code is ${err.code},message is ${err.message}`);
@@ -4580,7 +4580,7 @@ export default class EntryAbility extends UIAbility {
       }
       try {
         if (kvStore != null) {
-          kvStore.on('syncComplete', (data: [string, number]) => {
+          kvStore.on('syncComplete', (data: [string, number][]) => {
             console.info('Sync dataChange');
           });
           if (kvStore != null) {
@@ -4666,7 +4666,7 @@ export default class EntryAbility extends UIAbility {
       }
       try {
         if (kvStore != null) {
-          kvStore.on('syncComplete', (data: [string, number]) => {
+          kvStore.on('syncComplete', (data: [string, number][]) => {
             console.info('Sync dataChange');
           });
           if (kvStore != null) {
@@ -4763,7 +4763,7 @@ import { BusinessError } from '@ohos.base';
 const KEY_TEST_FLOAT_ELEMENT = 'key_test_float';
 const VALUE_TEST_FLOAT_ELEMENT = 321.12;
 try {
-  kvStore.on('syncComplete', (data: [string, number]) => {
+  kvStore.on('syncComplete', (data: [string, number][]) => {
     console.info(`syncComplete ${data}`);
   });
   kvStore.put(KEY_TEST_FLOAT_ELEMENT, VALUE_TEST_FLOAT_ELEMENT).then(() => {
@@ -4911,7 +4911,7 @@ getSecurityLevel(callback: AsyncCallback&lt;SecurityLevel&gt;): void
 import { BusinessError } from '@ohos.base';
 
 try {
-  kvStore.getSecurityLevel((err: BusinessError, data: SecurityLevel) => {
+  kvStore.getSecurityLevel((err: BusinessError, data: distributedKVStore.SecurityLevel) => {
     if (err != undefined) {
       console.error(`Failed to get SecurityLevel.code is ${err.code},message is ${err.message}`);
       return;
@@ -4952,7 +4952,7 @@ getSecurityLevel(): Promise&lt;SecurityLevel&gt;
 import { BusinessError } from '@ohos.base';
 
 try {
-  kvStore.getSecurityLevel().then((data: SecurityLevel) => {
+  kvStore.getSecurityLevel().then((data: distributedKVStore.SecurityLevel) => {
     console.info('Succeeded in getting securityLevel');
   }).catch((err: BusinessError) => {
     console.error(`Failed to get SecurityLevel.code is ${err.code},message is ${err.message}`);
