@@ -6,18 +6,34 @@ OpenHarmony 5.0.0.18 版本相较于OpenHarmony 之前的版本，剪贴板子�
 
 增加了访问getData()接口时所需的权限。
 
+**访问级别**
+
+公开接口
+
+**变更原因** 
+
+新需求
+
 **变更影响**
 
-5.0.0.18及后续版本中，业务需要申请ohos.permission.READ_PASTEBOARD权限，用于访问剪贴板内容。
+该变更为兼容性变更。
 
-**关键接口/组件变更**
+变更前：业务访问剪贴板数据不会校验ohos.permission.READ_PASTEBOARD权限。
 
-getData()
+变更后：业务在使用非安全控件访问剪贴板数据时，如未申请ohos.permission.READ_PASTEBOARD权限，访问会被拦截。
 
-API 12之前，业务访问剪贴板数据不会校验ohos.permission.READ_PASTEBOARD权限。
+**起始API Level** 
 
-API 12及之后，业务在使用非安全控件访问剪贴板数据时，如没有ohos.permission.READ_PASTEBOARD权限，访问会被拦截。
+9
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.18开始。
+
+**变更的接口/组件**
+
+getData()/剪贴板服务（pasteboard_service）
 
 **适配指导**
 
-按新的语义进行适配。
+业务需要按需申请ohos.permission.READ_PASTEBOARD权限以访问剪贴板。
