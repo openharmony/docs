@@ -1,4 +1,4 @@
-# @ohos.distributedDeviceManager (设备管理)
+# @ohos.distributedDeviceManager (设备管理)(系统接口)
 
 本模块提供分布式设备管理能力。
 
