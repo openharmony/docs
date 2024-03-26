@@ -792,7 +792,7 @@ constructor(bundleName: string)
 
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
-| bundleName | string | 是   | 需要同步和订阅同步进度事件的捆绑包的名称|
+| bundleName | string | 是   | 应用包名|
 
 **错误码：**
 
@@ -1378,7 +1378,7 @@ registerChange(uri: string, forChildUri: boolean, callback: Callback&gtChangeDat
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
 | uri | string | 是   | 待下载文件uri。 |
-| forChildUri | boolean | 是   | 监控子uri。|
+| forChildUri | boolean | 是   | 是否监控子目录和文件。|
 | callback | Callback&gtChangeData&gt | 是   | 返回更改的数据。 |
 
 **错误码：**
@@ -1436,7 +1436,7 @@ unregisterChange(uri: string): void
 | NOTIFY_ADD |  0 | 文件已新建 |
 | NOTIFY_UPDATE |  1 | 文件已修改 |
 | NOTIFY_REMOVE |  2 | 文件已被删除 |
-| NOTIFY_RENAME |  3 | 文件已被重命名 |
+| NOTIFY_RENAME |  3 | 文件被重命名或者移动 |
 
 ## ChangeData<sup>12+</sup>
 
