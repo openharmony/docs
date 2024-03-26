@@ -778,6 +778,37 @@ constructor()
   let fileSync = new cloudSync.FileSync()
   ```
 
+### constructor<sup>12+</sup>
+
+constructor(bundleName: string)
+
+端云同步流程的构造函数，用于获取FileSync类的实例。
+
+**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**系统接口：** 该接口为系统接口。
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明 |
+| ---------- | ------ | ---- | ---- |
+| bundleName | string | 是   | 需要同步和订阅同步进度事件的捆绑包的名称|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。
+
+| 错误码ID                     | 错误信息        |
+| ---------------------------- | ---------- |
+| 202 | Permission verification failed, application which is not a system application uses system API. |
+| 401 | The input parameter is invalid. |
+
+**示例：**
+
+  ```ts
+  let fileSync = new cloudSync.FileSync("path/to/your/file")
+  ```
+
 ### on<sup>11+</sup>
 
 on(event: 'progress', callback: Callback\<SyncProgress>): void
@@ -1297,6 +1328,130 @@ getFileSyncState(uri: Array&lt;string&gt;, callback: AsyncCallback&lt;Array&lt;F
   });
   ```
 
+## cloudSync.getFileSyncState<sup>12+</sup>
+
+getFileSyncState(uri: string): FileSyncState
+
+返回给定文件的同步状态。
+
+**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**系统接口：** 该接口为系统接口。
+
+**返回值：**
+
+| 类型                  | 说明             |
+| --------------------- | ---------------- |
+| FileSyncState | 返回给定文件的同步状态。 |
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明 |
+| ---------- | ------ | ---- | ---- |
+| uri | string | 是   | 待下载文件uri。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。
+
+| 错误码ID                     | 错误信息        |
+| ---------------------------- | ---------- |
+| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 202 | Permission verification failed, application which is not a system application uses system API. |
+| 401 | The input parameter is invalid. |
+| 13600001  | IPC error. |
+| 13900002  | No such file or directory. |
+| 14000002  | Invalid uri. |
+
+## cloudSync.registerChange<sup>12+</sup>
+
+registerChange(uri: string, forChildUri: boolean, callback: Callback&gtChangeData&gt): void
+
+指定uri的注册更改通知。
+
+**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**系统接口：** 该接口为系统接口。
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明 |
+| ---------- | ------ | ---- | ---- |
+| uri | string | 是   | 待下载文件uri。 |
+| forChildUri | boolean | 是   | 监控子uri。|
+| callback | Callback&gtChangeData&gt | 是   | 返回更改的数据。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。
+
+| 错误码ID                     | 错误信息        |
+| ---------------------------- | ---------- |
+| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 202 | Permission verification failed, application which is not a system application uses system API. |
+| 401 | The input parameter is invalid. |
+| 13600001  | IPC error. |
+| 13900002  | No such file or directory. |
+| 14000002  | Invalid uri. |
+
+## cloudSync.unregisterChange<sup>12+</sup>
+
+unregisterChange(uri: string): void
+
+取消注册更改通知到指定的uri。
+
+**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**系统接口：** 该接口为系统接口。
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明 |
+| ---------- | ------ | ---- | ---- |
+| uri | string | 是   | 待下载文件uri。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。
+
+| 错误码ID                     | 错误信息        |
+| ---------------------------- | ---------- |
+| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 202 | Permission verification failed, application which is not a system application uses system API. |
+| 401 | The input parameter is invalid. |
+| 13600001  | IPC error. |
+| 13900002  | No such file or directory. |
+| 14000002  | Invalid uri. |
+
+## NotifyType<sup>12+</sup>
+
+数据更改，为枚举类型。
+
+**系统能力**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**系统接口：** 该接口为系统接口。
+
+| 名称 |  值|  说明 |
+| ----- |  ---- |  ---- |
+| NOTIFY_ADD |  0 | 文件已新建 |
+| NOTIFY_UPDATE |  1 | 文件已修改 |
+| NOTIFY_REMOVE |  2 | 文件已被删除 |
+| NOTIFY_RENAME |  3 | 文件已被重命名 |
+
+## ChangeData<sup>12+</sup>
+
+定义变更数据。
+
+**系统能力**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**系统接口：** 该接口为系统接口。
+
+| 名称     | 类型   | 必填 | 说明 |
+| ---------- | ------ | ---- | ---- |
+| type | NotifyType | 是   | 更改的通知类型|
+| isDir | Boolean | 是   | 指示更改的uri是否为目录|
+| uris | Array&gtstring&gt | 是   | 更改的uris|
+
 ## FileSyncState<sup>11+</sup>
 
 端云文件同步状态，为枚举类型。
@@ -1311,3 +1466,6 @@ getFileSyncState(uri: Array&lt;string&gt;, callback: AsyncCallback&lt;Array&lt;F
 | DOWNLOADING |  1 | 下行同步中 |
 | COMPLETED |  2 | 同步成功 |
 | STOPPED |  3 | 同步已停止 |
+| TO_BE_UPLOADED<sup>12+</sup> |  4 | 正在等待上行 |
+| UPLOAD_SUCCESS<sup>12+</sup> |  5 | 文件已成功上行 |
+| UPLOAD_FAILED<sup>12+</sup> |  6 | 文件上行失败 |
