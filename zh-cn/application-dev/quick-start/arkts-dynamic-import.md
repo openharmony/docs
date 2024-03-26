@@ -81,9 +81,9 @@ import('harlibrary').then((ns:ESObject) => {
 | 本地工程模块   | 动态import HAR模块文件路径     | 暂不支持动态import变量表达式 |
 | 远程包         | 动态import远程HAR模块名        | -                            |
 | 远程包         | 动态import ohpm包名            | -                            |
-| 系统API        | 动态import @system.*           | -                            |
-| 系统API        | 动态import @ohos.*             | -                            |
-| 系统API        | 动态import @arkui-x.*          | -                            |
+| API        | 动态import @system.*           | -                            |
+| API        | 动态import @ohos.*             | -                            |
+| API        | 动态import @arkui-x.*          | -                            |
 | 模块Native库   | 动态import libNativeLibrary.so | -                            |
 
 注：
