@@ -157,7 +157,7 @@
 
 4. 获取并得到指定类型的键值型数据库。
 
-   1. 声明需要创建的分布式数据库ID描述。
+   1. 声明需要创建的分布式数据库ID描述（例如示例代码中的'storeId'）。
    2. 创建分布式数据库，建议关闭自动同步功能（autoSync:false），方便后续对同步功能进行验证，需要同步时主动调用sync接口。
 
      
@@ -302,7 +302,7 @@
 
 针对键值型数据库开发，有以下相关实例可供参考：
 
-- [分布式组网认证（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/DistributedAppDev/DistributedAuthentication)
+- [分布式组网认证（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/DistributedAppDev/DistributedAuthentication)
 
 - [分布式数据管理（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/DistributedAppDev/Kvstore)
 
