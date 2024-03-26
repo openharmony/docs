@@ -20,8 +20,8 @@ import { DrawContext, Size, Offset, Position, Pivot, Scale, Translation, Matrix4
 
 | 名称   | 类型   | 可读 | 可写 | 说明                   |
 | ------ | ------ | ---- | ---- | ---------------------- |
-| width  | number | 是   | 是   | 组件的宽度，单位为vp。 |
-| height | number | 是   | 是   | 组件的高度，单位为vp。 |
+| width  | number | 是   | 是   | 组件大小的宽度，单位为vp。 |
+| height | number | 是   | 是   | 组件大小的高度，单位为vp。 |
 
 ## Position
 
@@ -77,8 +77,8 @@ import { DrawContext, Size, Offset, Position, Pivot, Scale, Translation, Matrix4
 
 | 名称 | 类型   | 可读 | 可写 | 说明                         |
 | ---- | ------ | ---- | ---- | ---------------------------- |
-| x    | number | 是   | 是   | 水平方向的平移量，单位为vp。 |
-| y    | number | 是   | 是   | 垂直方向的平移量，单位为vp。 |
+| x    | number | 是   | 是   | 水平方向的平移量，单位为px。 |
+| y    | number | 是   | 是   | 垂直方向的平移量，单位为px。 |
 
 ## Rotation
 
@@ -100,8 +100,8 @@ import { DrawContext, Size, Offset, Position, Pivot, Scale, Translation, Matrix4
 
 | 名称 | 类型   | 可读 | 可写 | 说明                        |
 | ---- | ------ | ---- | ---- | --------------------------- |
-| x    | number | 是   | 是   | x轴方向的偏移量，单位为vp。 |
-| y    | number | 是   | 是   | y轴方向的偏移量，单位为vp。 |
+| x    | number | 是   | 是   | x轴方向的偏移量，单位为px。 |
+| y    | number | 是   | 是   | y轴方向的偏移量，单位为px。 |
 
 ## Matrix4
 
@@ -244,10 +244,10 @@ Corners\<T>
 
 | 名称        | 类型                | 可读 | 可写 | 说明                             |
 | ----------- | ------------------- | ---- | ---- | -------------------------------- |
-| topLeft     | [Vector2](#vector2) | 是   | 是   | 左上边框的圆角度数，单位为vp。   |
-| topRight    | [Vector2](#vector2) | 是   | 是   | 右上上边框的圆角度数，单位为vp。 |
-| bottomLeft  | [Vector2](#vector2) | 是   | 是   | 左下边框的圆角度数，单位为vp。   |
-| bottomRight | [Vector2](#vector2) | 是   | 是   | 右下边框的圆角度数，单位为vp。   |
+| topLeft     | [Vector2](#vector2) | 是   | 是   | 左上边框的圆角度数，单位为px。   |
+| topRight    | [Vector2](#vector2) | 是   | 是   | 右上上边框的圆角度数，单位为px。 |
+| bottomLeft  | [Vector2](#vector2) | 是   | 是   | 左下边框的圆角度数，单位为px。   |
+| bottomRight | [Vector2](#vector2) | 是   | 是   | 右下边框的圆角度数，单位为px。   |
 
 ## BorderRadiuses<sup>12+</sup>
 
@@ -270,10 +270,10 @@ Corners\<T>
 
 | 名称   | 类型   | 可读 | 可写 | 说明                     |
 | ------ | ------ | ---- | ---- | ------------------------ |
-| left   | number | 是   | 是   | 左部边的位置，单位为vp。 |
-| top    | number | 是   | 是   | 顶部边的位置，单位为vp。 |
-| right  | number | 是   | 是   | 右部边的位置，单位为vp。 |
-| bottom | number | 是   | 是   | 底部边的位置，单位为vp。 |
+| left   | number | 是   | 是   | 左部边的位置，单位为px。 |
+| top    | number | 是   | 是   | 顶部边的位置，单位为px。 |
+| right  | number | 是   | 是   | 右部边的位置，单位为px。 |
+| bottom | number | 是   | 是   | 底部边的位置，单位为px。 |
 
 ## RoundRect<sup>12+</sup>
 
@@ -294,9 +294,9 @@ Corners\<T>
 
 | 名称    | 类型   | 可读 | 可写 | 说明                      |
 | ------- | ------ | ---- | ---- | ------------------------- |
-| centerX | number | 是   | 是   | 圆心x轴的位置，单位为vp。 |
-| centerY | number | 是   | 是   | 圆心y轴的位置，单位为vp。 |
-| radius  | number | 是   | 是   | 圆形的半径，单位为vp。    |
+| centerX | number | 是   | 是   | 圆心x轴的位置，单位为px。 |
+| centerY | number | 是   | 是   | 圆心y轴的位置，单位为px。 |
+| radius  | number | 是   | 是   | 圆形的半径，单位为px。    |
 
 ## CommandPath<sup>12+</sup>
 
@@ -340,7 +340,7 @@ setRectShape(rect: Rect): void
 import { RenderNode, ShapeMask, FrameNode, NodeController } from "@ohos.arkui.node";
 
 const mask = new ShapeMask();
-mask.setRectShape({ left: 0, right: 150, top: 0, bottom: 150 });
+mask.setRectShape({ left: 0, right: vp2px(150), top: 0, bottom: vp2px(150) });
 mask.fillColor = 0X55FF0000;
 
 const renderNode = new RenderNode();
@@ -398,7 +398,7 @@ import { RenderNode, ShapeMask, FrameNode, NodeController, RoundRect } from "@oh
 
 const mask = new ShapeMask();
 const roundRect: RoundRect = {
-  rect: { left: 0, top: 0, right: 150, bottom: 150 },
+  rect: { left: 0, top: 0, right: vp2px(150), bottom: vp2px(150) },
   corners: {
     topLeft: { x: 32, y: 32 },
     topRight: { x: 32, y: 32 },
@@ -463,7 +463,7 @@ setCircleShape(circle: Circle): void
 import { RenderNode, ShapeMask, FrameNode, NodeController } from "@ohos.arkui.node";
 
 const mask = new ShapeMask();
-mask.setCircleShape({ centerY: 75, centerX: 75, radius: 75 });
+mask.setCircleShape({ centerY: vp2px(75), centerX: vp2px(75), radius: vp2px(75) });
 mask.fillColor = 0X55FF0000;
 
 const renderNode = new RenderNode();
@@ -520,7 +520,7 @@ setOvalShape(oval: Rect): void
 import { RenderNode, ShapeMask, FrameNode, NodeController } from "@ohos.arkui.node";
 
 const mask = new ShapeMask();
-mask.setOvalShape({ left: 0, right: 150, top: 0, bottom: 100 });
+mask.setOvalShape({ left: 0, right: vp2px(150), top: 0, bottom: vp2px(100) });
 mask.fillColor = 0X55FF0000;
 
 const renderNode = new RenderNode();
@@ -616,9 +616,9 @@ struct Index {
 
 ### fillColor<sup>12+</sup>
 
-遮罩的填充颜色，使用ARGB格式。
-
 fillColor: number
+
+遮罩的填充颜色，使用ARGB格式。默认值为`0XFF000000`。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -669,7 +669,7 @@ struct Index {
 
 strokeColor: number
 
-遮罩的边框颜色，使用ARGB格式。
+遮罩的边框颜色，使用ARGB格式。默认值为`0XFF000000`。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -721,7 +721,7 @@ struct Index {
 
 strokeWidth: number
 
-遮罩的边框宽度，单位为vp。
+遮罩的边框宽度，单位为px。默认值为0。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

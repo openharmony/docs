@@ -1,4 +1,4 @@
-# HidDdk
+# HID DDK
 
 
 ## 概述
@@ -7,8 +7,9 @@
 
 **系统能力：** SystemCapability.Driver.HID.Extension
 
-**起始版本：** 11
+**起始版本：** 
 
+11
 
 ## 汇总
 
@@ -409,7 +410,7 @@ enum Hid_KeyCode
 | HID_BTN_TOOL_PEN  | 画笔 | 
 | HID_BTN_TOOL_RUBBER  | 橡皮擦 | 
 | HID_BTN_TOOL_BRUSH  | 笔刷 | 
-| HID_BTN_TOOL_PENCIL  | 钢笔 | 
+| HID_BTN_TOOL_PENCIL  | 铅笔 | 
 | HID_BTN_TOOL_AIRBRUSH  | 喷枪 | 
 | HID_BTN_TOOL_FINGER  | 手指 | 
 | HID_BTN_TOOL_MOUSE  | 鼠标 | 

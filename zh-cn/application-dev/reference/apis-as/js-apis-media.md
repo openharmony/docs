@@ -121,7 +121,7 @@ media.createAVPlayer().then((audio: media.AVPlayer) => {
 
 播放管理类，用于管理和播放媒体资源。在调用AVPlayer的方法前，需要先通过[createAVPlayer()](#mediacreateavplayer9)构建一个AVPlayer实例。
 
-Audio播放demo可参考：[音频播放开发指导](../../media/using-avplayer-for-playback.md)。
+Audio播放demo可参考：[音频播放开发指导](../../media/media/using-avplayer-for-playback.md)。
 
 ### 属性
 
@@ -773,7 +773,7 @@ avPlayer.off('timeUpdate')
 
 ## AVPlayerState<sup>9+</sup>
 
-[AVPlayer](#avplayer9)的状态机，可通过state属性主动获取当前状态，也可通过监听stateChange事件上报当前状态，状态机之间的切换规则，可参考[音频播放开发指导](../../media/using-avplayer-for-playback.md)。
+[AVPlayer](#avplayer9)的状态机，可通过state属性主动获取当前状态，也可通过监听stateChange事件上报当前状态，状态机之间的切换规则，可参考[音频播放开发指导](../../media/media/using-avplayer-for-playback.md)。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 

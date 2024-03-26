@@ -235,7 +235,8 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | [OH_Drawing_FontCollection](#oh_drawing_fontcollection) \* [OH_Drawing_CreateFontCollection](#oh_drawing_createfontcollection) (void) | 创建字体集对象[OH_Drawing_FontCollection](#oh_drawing_fontcollection)。 | 
 | void [OH_Drawing_DestroyFontCollection](#oh_drawing_destroyfontcollection) ([OH_Drawing_FontCollection](#oh_drawing_fontcollection) \*) | 释放被字体集对象占据的内存。 | 
 | void [OH_Drawing_DisableFontCollectionFallback](#oh_drawing_disablefontcollectionfallback) ([OH_Drawing_FontCollection](#oh_drawing_fontcollection) \*fontCollection) | 禁用备用字体。 | 
-| void [OH_Drawing_DisableFontCollectionSystemFont](#oh_drawing_disablefontcollectionsystemfont) ([OH_Drawing_FontCollection](#oh_drawing_fontcollection) \*fontCollection) | 禁用系统字体。 | 
+| void [OH_Drawing_DisableFontCollectionSystemFont](#oh_drawing_disablefontcollectionsystemfont) ([OH_Drawing_FontCollection](#oh_drawing_fontcollection) \*fontCollection) | 禁用系统字体。 |
+| [OH_Drawing_FontCollection](#oh_drawing_fontcollection) \* [OH_Drawing_CreateSharedFontCollection](#oh_drawing_createsharedfontcollection) (void) | 创建可共享的字体集对象[OH_Drawing_FontCollection](#oh_drawing_fontcollection)。 | 
 | [OH_Drawing_Image](#oh_drawing_image) \* [OH_Drawing_ImageCreate](#oh_drawing_imagecreate) (void) | 创建一个图片对象，描述了要绘制的二维像素数组。 | 
 | void [OH_Drawing_ImageDestroy](#oh_drawing_imagedestroy) ([OH_Drawing_Image](#oh_drawing_image) \*) | 销毁图片对象并回收该对象占有内存。 | 
 | bool [OH_Drawing_ImageBuildFromBitmap](#oh_drawing_imagebuildfrombitmap) ([OH_Drawing_Image](#oh_drawing_image) \*, [OH_Drawing_Bitmap](#oh_drawing_bitmap) \*) | 从位图构造图片对象内容，共享或复制位图像素。如果位图被标记为不可变状态， 像素内存是共享的，不是复制。 | 
@@ -245,9 +246,9 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | [OH_Drawing_MaskFilter](#oh_drawing_maskfilter) \* [OH_Drawing_MaskFilterCreateBlur](#oh_drawing_maskfiltercreateblur) ([OH_Drawing_BlurType](#oh_drawing_blurtype) blurType, float sigma, bool respectCTM) | 创建具有模糊效果的模板滤波器。 | 
 | void [OH_Drawing_MaskFilterDestroy](#oh_drawing_maskfilterdestroy) ([OH_Drawing_MaskFilter](#oh_drawing_maskfilter) \*) | 销毁模板滤波器对象，并收回该对象占用的内存。 | 
 | [OH_Drawing_Matrix](#oh_drawing_matrix) \* [OH_Drawing_MatrixCreate](#oh_drawing_matrixcreate) (void) | 用于创建一个矩阵对象。 | 
-| [OH_Drawing_Matrix](#oh_drawing_matrix) \* [OH_Drawing_MatrixCreateRotation](#oh_drawing_matrixcreaterotation) (float deg, float x, float y) | 创建一个带旋转属性的矩阵对象。 该矩阵对象为：单位矩阵在(x, y)旋转点以度为单位进行旋转。 | 
-| [OH_Drawing_Matrix](#oh_drawing_matrix) \* [OH_Drawing_MatrixCreateScale](#oh_drawing_matrixcreatescale) (float sx, float sy, float px, float py) | 创建一个带缩放属性的矩阵对象。 该矩阵对象为：单位矩阵在(px, py)旋转点以sx和sy为缩放因子进行缩放。 | 
-| [OH_Drawing_Matrix](#oh_drawing_matrix) \* [OH_Drawing_MatrixCreateTranslation](#oh_drawing_matrixcreatetranslation) (float dx, float dy) | 创建一个带平移属性的矩阵对象。 |
+| [OH_Drawing_Matrix](#oh_drawing_matrix) \* [OH_Drawing_MatrixCreateRotation](#oh_drawing_matrixcreaterotation) (float deg, float x, float y) | 创建一个带旋转属性的矩阵对象。 该矩阵对象为：单位矩阵在(x, y)旋转点以度为单位进行旋转后得到的矩阵。 | 
+| [OH_Drawing_Matrix](#oh_drawing_matrix) \* [OH_Drawing_MatrixCreateScale](#oh_drawing_matrixcreatescale) (float sx, float sy, float px, float py) | 创建一个带缩放属性的矩阵对象。 该矩阵对象为：单位矩阵在(px, py)旋转点以sx和sy为缩放因子进行缩放后得到的矩阵。 | 
+| [OH_Drawing_Matrix](#oh_drawing_matrix) \* [OH_Drawing_MatrixCreateTranslation](#oh_drawing_matrixcreatetranslation) (float dx, float dy) | 创建一个带平移属性的矩阵对象。该矩阵对象为：单位矩阵平移(dx,dy)后得到的矩阵。 |
 | void [OH_Drawing_MatrixSetMatrix](#oh_drawing_matrixsetmatrix) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*, float scaleX, float skewX, float transX, float skewY, float scaleY, float transY, float persp0, float persp1, float persp2) | 用于给矩阵对象设置参数。 | 
 | void [OH_Drawing_MatrixConcat](#oh_drawing_matrixconcat) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*total, const [OH_Drawing_Matrix](#oh_drawing_matrix) \*a, const [OH_Drawing_Matrix](#oh_drawing_matrix) \*b) | 将矩阵total设置为矩阵a乘以矩阵b。 | 
 | float [OH_Drawing_MatrixGetValue](#oh_drawing_matrixgetvalue) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*, int index) | 获取矩阵给定索引位的值。索引范围0-8。 | 
@@ -2231,7 +2232,7 @@ void OH_Drawing_BrushSetFilter (OH_Drawing_Brush* , OH_Drawing_Filter*  )
 | 名称 | 描述 | 
 | -------- | -------- |
 | OH_Drawing_Brush | 指向画刷对象的指针。 | 
-| OH_Drawing_Filter | 表示指向滤波器对象的指针。 | 
+| OH_Drawing_Filter | 表示指向滤波器对象的指针，为空表示清空画刷滤波器。 | 
 
 
 ### OH_Drawing_BrushSetShaderEffect()
@@ -3403,6 +3404,23 @@ OH_Drawing_FontParser* OH_Drawing_CreateFontParser (void )
 
 返回指向已创建的字体解析对象[OH_Drawing_FontParser](#oh_drawing_fontparser)的指针。
 
+### OH_Drawing_CreateSharedFontCollection()
+
+```
+OH_Drawing_FontCollection* OH_Drawing_CreateSharedFontCollection (void)
+```
+
+**描述**
+
+创建可共享的字体集对象[OH_Drawing_FontCollection](#oh_drawing_fontcollection)。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 12
+
+**返回：**
+
+指向创建的字体集对象的指针。
 
 ### OH_Drawing_CreateTextShadow()
 
@@ -4663,7 +4681,7 @@ OH_Drawing_Matrix* OH_Drawing_MatrixCreateRotation (float deg, float x, float y 
 
 **描述**
 
-创建一个带旋转属性的矩阵对象。 该矩阵对象为：单位矩阵在(x, y)旋转点以度为单位进行旋转。
+创建一个带旋转属性的矩阵对象。 该矩阵对象为：单位矩阵在(x, y)旋转点以度为单位进行旋转后得到的矩阵。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -4687,7 +4705,7 @@ OH_Drawing_Matrix* OH_Drawing_MatrixCreateScale (float sx, float sy, float px, f
 
 **描述**
 
-创建一个带缩放属性的矩阵对象。 该矩阵对象为：单位矩阵在(px, py)旋转点以sx和sy为缩放因子进行缩放。
+创建一个带缩放属性的矩阵对象。 该矩阵对象为：单位矩阵在(px, py)旋转点以sx和sy为缩放因子进行缩放后得到的矩阵。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -4715,7 +4733,7 @@ OH_Drawing_Matrix* OH_Drawing_MatrixCreateTranslation (float dx, float dy )
 
 **描述**
 
-创建一个带平移属性的矩阵对象。
+创建一个带平移属性的矩阵对象。该矩阵对象为：单位矩阵平移(dx,dy)后得到的矩阵。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -5051,7 +5069,7 @@ void OH_Drawing_PathAddPath (OH_Drawing_Path* , const OH_Drawing_Path* src, cons
 | -------- | -------- |
 | OH_Drawing_Path | 指向当前路径对象[OH_Drawing_Path](#oh_drawing_path)的指针。 | 
 | src | 指向原路径对象[OH_Drawing_Path](#oh_drawing_path)的指针。 | 
-| OH_Drawing_Matrix | 指向矩阵对象[OH_Drawing_Matrix](#oh_drawing_matrix)的指针。 | 
+| OH_Drawing_Matrix | 指向矩阵对象[OH_Drawing_Matrix](#oh_drawing_matrix)的指针，为空表示单位矩阵。 | 
 
 
 ### OH_Drawing_PathAddRect()
@@ -5771,7 +5789,7 @@ void OH_Drawing_PenSetFilter (OH_Drawing_Pen* , OH_Drawing_Filter*  )
 | 名称 | 描述 | 
 | -------- | -------- |
 | OH_Drawing_Pen | 指向画笔对象[OH_Drawing_Pen](#oh_drawing_pen)的指针。 | 
-| OH_Drawing_Filter | 指向滤波器[OH_Drawing_Filter](#oh_drawing_filter)的指针。 | 
+| OH_Drawing_Filter | 指向滤波器[OH_Drawing_Filter](#oh_drawing_filter)的指针，为空表示清空画笔滤波器。 | 
 
 
 ### OH_Drawing_PenSetJoin()

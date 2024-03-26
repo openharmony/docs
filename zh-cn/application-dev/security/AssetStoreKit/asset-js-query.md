@@ -2,34 +2,34 @@
 
 ## 接口介绍
 
-接口文档链接：
+可通过API文档查询新增关键资产的异步接口[query(query: AssetMap)](../../reference/apis-asset-store-kit/js-apis-asset.md#assetquery)、同步接口[querySync(query: AssetMap)](../../reference/apis-asset-store-kit/js-apis-asset.md#assetquerysync12)的详细介绍。
 
-[query(query: AssetMap): Promise\<Array\<AssetMap>>](../../reference/apis-asset-store-kit/js-apis-asset.md#assetquery)
-
-[querySync(query: AssetMap): Array\<AssetMap>](../../reference/apis-asset-store-kit/js-apis-asset.md#assetquerysync12)
-
-参数列表：
+在查询关键资产时，关键资产属性的内容（AssetMap）参数如下表所示：
 
 | 属性名称（Tag）        | 属性内容（Value）                                             | 是否必选  | 说明                                                         |
 | --------------------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
-| ALIAS                 | 类型为Uint8Array，长度为1-256字节                            | 可选     | 关键资产别名，每条关键资产的唯一索引;                        |
-| ACCESSIBILITY         | 类型为number，取值范围详见[Accessibility](../../reference/apis-asset-store-kit/js-apis-asset.md#accessibility) | 可选     | 基于锁屏状态的访问控制                                                 |
-| REQUIRE_PASSWORD_SET  | 类型为bool                                                   | 可选     | 是否仅在设置了锁屏密码的情况下，可访问关键资产                 |
-| AUTH_TYPE             | 类型为number，取值范围详见[AuthType](../../reference/apis-asset-store-kit/js-apis-asset.md#authtype) | 可选     | 访问关键资产所需的用户认证类型                               |
-| SYNC_TYPE             | 类型为number，取值范围详见[SyncType](../../reference/apis-asset-store-kit/js-apis-asset.md#synctype) | 可选     | 关键资产支持的同步类型                                       |
-| IS_PERSISTENT         | 类型为bool                                                   | 可选     | 在应用卸载时是否需要保留关键资产                             |
-| DATA_LABEL_CRITICAL_1 | 类型为Uint8Array，长度为1-512字节                            | 可选     | 关键资产附属信息，内容由业务自定义且有完整性保护             |
-| DATA_LABEL_CRITICAL_2 | 类型为Uint8Array，长度为1-512字节                            | 可选     | 关键资产附属信息，内容由业务自定义且有完整性保护             |
-| DATA_LABEL_CRITICAL_3 | 类型为Uint8Array，长度为1-512字节                            | 可选     | 关键资产附属信息，内容由业务自定义且有完整性保护             |
-| DATA_LABEL_CRITICAL_4 | 类型为Uint8Array，长度为1-512字节                            | 可选     | 关键资产附属信息，内容由业务自定义且有完整性保护             |
-| DATA_LABEL_NORMAL_1   | 类型为Uint8Array，长度为1-512字节                            | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护             |
-| DATA_LABEL_NORMAL_2   | 类型为Uint8Array，长度为1-512字节                            | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护             |
-| DATA_LABEL_NORMAL_3   | 类型为Uint8Array，长度为1-512字节                            | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护             |
-| DATA_LABEL_NORMAL_4   | 类型为Uint8Array，长度为1-512字节                            | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护             |
-| RETURN_TYPE           | 类型为number，取值范围详见[ReturnType](../../reference/apis-asset-store-kit/js-apis-asset.md#returntype) | 可选     | 关键资产查询返回的结果类型                                         |
-| RETURN_LIMIT          | 类型为number                                                 | 可选     | 关键资产查询返回的结果数量                                         |
-| RETURN_OFFSET         | 类型为number，取值范围：1-65536                              | 可选     | 关键资产查询返回的结果偏移量<br>**说明：** 用于分批查询场景，指定从第几个开始返回                                 |
-| RETURN_ORDERED_BY     | 类型为number，取值范围：asset.Tag.DATA_LABEL_xxx             | 可选     | 关键资产查询返回的结果排序依据，仅支持按照附属信息排序<br>**说明：** 默认按照关键资产新增的顺序返回。 |
+| ALIAS                 | 类型为Uint8Array，长度为1-256字节。                            | 可选     | 关键资产别名，每条关键资产的唯一索引。                       |
+| ACCESSIBILITY         | 类型为number，取值范围详见[Accessibility](../../reference/apis-asset-store-kit/js-apis-asset.md#accessibility)。 | 可选     | 基于锁屏状态的访问控制。                                |
+| REQUIRE_PASSWORD_SET  | 类型为bool。                                                   | 可选     | 是否仅在设置了锁屏密码的情况下，可访问关键资产。                 |
+| AUTH_TYPE             | 类型为number，取值范围详见[AuthType](../../reference/apis-asset-store-kit/js-apis-asset.md#authtype)。 | 可选     | 访问关键资产所需的用户认证类型。                               |
+| SYNC_TYPE             | 类型为number，取值范围详见[SyncType](../../reference/apis-asset-store-kit/js-apis-asset.md#synctype)。 | 可选     | 关键资产支持的同步类型。                                      |
+| IS_PERSISTENT         | 类型为bool。                                                   | 可选     | 在应用卸载时是否需要保留关键资产。                             |
+| DATA_LABEL_CRITICAL_1 | 类型为Uint8Array，长度为1-512字节。                            | 可选     | 关键资产附属信息，内容由业务自定义且有完整性保护。             |
+| DATA_LABEL_CRITICAL_2 | 类型为Uint8Array，长度为1-512字节。                            | 可选     | 关键资产附属信息，内容由业务自定义且有完整性保护。             |
+| DATA_LABEL_CRITICAL_3 | 类型为Uint8Array，长度为1-512字节。                            | 可选     | 关键资产附属信息，内容由业务自定义且有完整性保护。             |
+| DATA_LABEL_CRITICAL_4 | 类型为Uint8Array，长度为1-512字节。                            | 可选     | 关键资产附属信息，内容由业务自定义且有完整性保护。             |
+| DATA_LABEL_NORMAL_1   | 类型为Uint8Array，长度为1-512字节。                            | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护。             |
+| DATA_LABEL_NORMAL_2   | 类型为Uint8Array，长度为1-512字节。                            | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护。             |
+| DATA_LABEL_NORMAL_3   | 类型为Uint8Array，长度为1-512字节。                            | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护。             |
+| DATA_LABEL_NORMAL_4   | 类型为Uint8Array，长度为1-512字节。                            | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护。             |
+| RETURN_TYPE           | 类型为number，取值范围详见[ReturnType](../../reference/apis-asset-store-kit/js-apis-asset.md#returntype)。 | 可选     | 关键资产查询返回的结果类型。             |
+| RETURN_LIMIT          | 类型为number。                                                 | 可选     | 关键资产查询返回的结果数量。                                         |
+| RETURN_OFFSET         | 类型为number，取值范围：1-65536。                              | 可选     | 关键资产查询返回的结果偏移量。<br>**说明：** 用于分批查询场景，指定从第几个开始返回。                                 |
+| RETURN_ORDERED_BY     | 类型为number，取值范围：asset.Tag.DATA_LABEL_xxx。             | 可选     | 关键资产查询返回的结果排序依据，仅支持按照附属信息排序。<br>**说明：** 默认按照关键资产新增的顺序返回。 |
+
+## 约束和限制
+
+批量查询出的关键资产需要通过IPC通道传输给业务，受IPC缓冲区大小限制，建议对查询超过40条关键资产时，进行分批查询，且每次查询数量不超过40条。
 
 ## 代码示例
 
@@ -137,9 +137,3 @@ try {
   console.error(`Failed to query Asset.`);
 }
 ```
-
-## 约束和限制
-
-* 批量查询关键资产
-
-批量查询出的关键资产需要通过IPC通道传输给业务，受IPC缓冲区大小限制，建议对查询超过40条关键资产时，进行分批查询，且每次查询数量不超过40条。

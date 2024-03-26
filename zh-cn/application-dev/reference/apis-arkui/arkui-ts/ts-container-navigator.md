@@ -51,7 +51,7 @@ active(value: boolean)
 
 params(value: object)
 
-设置路由组件是否处于激活状态，处于激活状态时，会生效相应的路由操作。
+设置跳转时传递到目标页面的数据。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

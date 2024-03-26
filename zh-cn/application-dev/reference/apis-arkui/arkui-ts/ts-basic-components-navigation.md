@@ -249,7 +249,7 @@ hideNavBar(value: boolean)
 
 navDestination(builder: (name: string, param: unknown) => void)
 
-创建NavDestination组件。使用builder函数，基于name和param构造NavDestination组件。builder中允许在NavDestination组件外包含一层自定义组件， 但自定义组件不允许设置属性和事件，否则仅显示空白。
+创建NavDestination组件。使用builder函数，基于name和param构造NavDestination组件。builder下只能有一个根节点。builder中允许在NavDestination组件外包含一层自定义组件， 但自定义组件不允许设置属性和事件，否则仅显示空白。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -328,6 +328,20 @@ onNavBarStateChange(callback: (isVisible: boolean) =&gt; void)
 | 参数名    | 类型    | 必填 | 说明                                           |
 | --------- | ------- | ---- | ---------------------------------------------- |
 | isVisible | boolean | 是   | isVisible为true时表示显示，为false时表示隐藏。 |
+
+### onNavigationModeChange<sup>11+</sup>
+
+onNavigationModeChange(callback: (mode: NavigationMode) =&gt; void) 
+
+当Navigation首次显示或者单双栏状态发生变化时触发该回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名    | 类型    | 必填 | 说明                                           |
+| --------- | ------- | ---- | ---------------------------------------------- |
+| mode | [NavigationMode](#navigationmode9枚举说明) | 是   | NavigationMode.Split: 当前Navigation显示为双栏;<br/>NavigationMode.Stack: 当前Navigation显示为单栏。 |
 
 ### customNavContentTransition<sup>11+</sup>
 
@@ -596,7 +610,7 @@ pop(result: Object, animated?: boolean): NavPathInfo | undefined
 
 popToName(name: string, animated?: boolean): number
 
-回退路由栈到由栈顶开始第一个名为name的NavDestination页面。
+回退路由栈到由栈底开始第一个名为name的NavDestination页面。
 
 **参数：**
 
@@ -609,13 +623,13 @@ popToName(name: string, animated?: boolean): number
 
 | 类型     | 说明                                       |
 | ------ | ---------------------------------------- |
-| number | 如果栈中存在名为name的NavDestination页面，则返回由栈顶开始第一个名为name的NavDestination页面的索引，否则返回-1。 |
+| number | 如果栈中存在名为name的NavDestination页面，则返回由栈底开始第一个名为name的NavDestination页面的索引，否则返回-1。 |
 
 ### popToName<sup>11+</sup>
 
 popToName(name: string, result: Object, animated?: boolean): number
 
-回退路由栈到由栈顶开始第一个名为name的NavDestination页面，并触发onPop回调传入页面处理结果。
+回退路由栈到由栈底开始第一个名为name的NavDestination页面，并触发onPop回调传入页面处理结果。
 
 **参数：**
 
@@ -629,7 +643,7 @@ popToName(name: string, result: Object, animated?: boolean): number
 
 | 类型     | 说明                                       |
 | ------ | ---------------------------------------- |
-| number | 如果栈中存在名为name的NavDestination页面，则返回由栈顶开始第一个名为name的NavDestination页面的索引，否则返回-1。 |
+| number | 如果栈中存在名为name的NavDestination页面，则返回由栈底开始第一个名为name的NavDestination页面的索引，否则返回-1。 |
 
 ### popToIndex<sup>10+</sup>
 
@@ -662,7 +676,7 @@ popToIndex(index: number, result: Object, animated?: boolean): void
 
 moveToTop(name: string, animated?: boolean): number
 
-将由栈顶开始第一个名为name的NavDestination页面移到栈顶。
+将由栈底开始第一个名为name的NavDestination页面移到栈顶。
 
 **参数：**
 
@@ -675,7 +689,7 @@ moveToTop(name: string, animated?: boolean): number
 
 | 类型     | 说明                                       |
 | ------ | ---------------------------------------- |
-| number | 如果栈中存在名为name的NavDestination页面，则返回由栈顶开始第一个名为name的NavDestination页面的当前索引，否则返回-1。 |
+| number | 如果栈中存在名为name的NavDestination页面，则返回由栈底开始第一个名为name的NavDestination页面的当前索引，否则返回-1。 |
 
 ### moveIndexToTop<sup>10+</sup>
 

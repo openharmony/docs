@@ -494,7 +494,7 @@ struct Index {
       Button('getNextSibling')
         .onClick(() => {
           const child = renderNode.getChild(1);
-          const nextSibling = child.getNextSibling()
+          const nextSibling = child!.getNextSibling()
           if (child === null || nextSibling === null) {
             console.log('the child or nextChild is null');
           } else {
@@ -711,7 +711,7 @@ struct Index {
 
 set opacity(value: number)
 
-设置当前RenderNode的不透明度。
+设置当前RenderNode的不透明度。若输入的数值小于0，会被视为0。若输入的数值大于1，会被视为1。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1935,7 +1935,7 @@ set borderWidth(width: Edges\<number>)
 
 | 参数名 | 类型                                                | 必填 | 说明                   |
 | ------ | --------------------------------------------------- | ---- | ---------------------- |
-| width  | [Edges\<number>](./js-apis-arkui-graphics.md#edges12) | 是   | RenderNode的边框宽度。 |
+| width  | [Edges\<number>](./js-apis-arkui-graphics.md#edges12) | 是   | RenderNode的边框宽度，单位为vp。 |
 
 get borderWidth(): Edges\<number>
 
@@ -1947,7 +1947,7 @@ get borderWidth(): Edges\<number>
 
 | 类型                                                | 说明                   |
 | --------------------------------------------------- | ---------------------- |
-| [Edges\<number>](./js-apis-arkui-graphics.md#edges12) | RenderNode的边框宽度。 |
+| [Edges\<number>](./js-apis-arkui-graphics.md#edges12) | RenderNode的边框宽度，默认所有边框宽度为0vp。 |
 
 **示例：**
 
@@ -2013,7 +2013,7 @@ get borderColor(): Edges\<number>
 
 | 类型                                                | 说明                   |
 | --------------------------------------------------- | ---------------------- |
-| [Edges\<number>](./js-apis-arkui-graphics.md#edges12) | RenderNode的边框颜色。 |
+| [Edges\<number>](./js-apis-arkui-graphics.md#edges12) | RenderNode的边框颜色，默认所有边框颜色为0XFF000000。 |
 
 **示例：**
 
@@ -2068,7 +2068,7 @@ set borderRadius(radius: BorderRadiuses)
 
 | 参数名 | 类型                                                         | 必填 | 说明                   |
 | ------ | ------------------------------------------------------------ | ---- | ---------------------- |
-| radius | [BorderRadiuses](./js-apis-arkui-graphics.md#borderradiuses) | 是   | RenderNode的边框圆角。 |
+| radius | [BorderRadiuses](./js-apis-arkui-graphics.md#borderradiuses) | 是   | RenderNode的边框圆角，单位为vp。 |
 
 
 get borderRadius(): BorderRadiuses
@@ -2081,7 +2081,7 @@ get borderRadius(): BorderRadiuses
 
 | 类型                                                         | 说明                   |
 | ------------------------------------------------------------ | ---------------------- |
-| [BorderRadiuses](./js-apis-arkui-graphics.md#borderradiuses) | RenderNode的边框圆角。 |
+| [BorderRadiuses](./js-apis-arkui-graphics.md#borderradiuses) | RenderNode的边框圆角，默认所有边框圆角为0vp。 |
 
 **示例：**
 

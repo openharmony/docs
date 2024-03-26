@@ -1,6 +1,6 @@
 # @ohos.application.abilityDelegatorRegistry (AbilityDelegatorRegistry)
 
-AbilityDelegatorRegistry模块提供用于存储已注册的[AbilityDelegator](../apis-ability-kit/js-apis-inner-application-abilityDelegator.md)和[AbilityDelegatorArgs](../apis-ability-kit/js-apis-inner-application-abilityDelegatorArgs.md)对象的全局寄存器的能力，包括获取应用程序的AbilityDelegator对象、获取单元测试参数AbilityDelegatorArgs对象。该模块中的接口只能用于测试框架中。
+AbilityDelegatorRegistry模块提供用于存储已注册的[AbilityDelegator](js-apis-inner-application-abilityDelegator.md)和[AbilityDelegatorArgs](js-apis-inner-application-abilityDelegatorArgs.md)对象的全局寄存器的能力，包括获取应用程序的AbilityDelegator对象、获取单元测试参数AbilityDelegatorArgs对象。该模块中的接口只能用于测试框架中。
 
 > **说明：**
 > 
@@ -38,7 +38,7 @@ getAbilityDelegator(): AbilityDelegator
 
 | 类型                                                         | 说明                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [AbilityDelegator](../apis-ability-kit/js-apis-inner-application-abilityDelegator.md) | [AbilityDelegator](../apis-ability-kit/js-apis-inner-application-abilityDelegator.md)对象。可以用来调度测试框架相关功能。 |
+| [AbilityDelegator](js-apis-inner-application-abilityDelegator.md) | [AbilityDelegator](js-apis-inner-application-abilityDelegator.md)对象。可以用来调度测试框架相关功能。 |
 
 **示例：**
 
@@ -60,7 +60,7 @@ getArguments(): AbilityDelegatorArgs
 
 | 类型                                                         | 说明                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [AbilityDelegatorArgs](../apis-ability-kit/js-apis-inner-application-abilityDelegatorArgs.md) | [AbilityDelegatorArgs](../apis-ability-kit/js-apis-inner-application-abilityDelegatorArgs.md)对象。可以用来获取测试参数。 |
+| [AbilityDelegatorArgs](js-apis-inner-application-abilityDelegatorArgs.md) | [AbilityDelegatorArgs](js-apis-inner-application-abilityDelegatorArgs.md)对象。可以用来获取测试参数。 |
 
 **示例：**
 

@@ -6239,7 +6239,7 @@ tls.getSignatureAlgorithms().then((data: Array<string>) => {
 
 ### send<sup>9+</sup>
 
-send(data: string, callback: AsyncCallback\<void\>): void
+send(data: string \| ArrayBuffer, callback: AsyncCallback\<void\>): void
 
 在TLSSocket通信连接成功之后，向服务端发送消息，使用callback方式作为异步方法。
 
@@ -6249,7 +6249,7 @@ send(data: string, callback: AsyncCallback\<void\>): void
 
 | 参数名    | 类型                          | 必填 | 说明            |
 | -------- | -----------------------------| ---- | ---------------|
-|   data   | string                       | 是   | 发送的数据内容。   |
+|   data   | string \| ArrayBuffer                      | 是   | 发送的数据内容。   |
 | callback | AsyncCallback\<void\>         | 是   | 回调函数,返回TLSSocket发送数据的结果。失败返回错误码、错误信息。 |
 
 **错误码：**
@@ -6280,7 +6280,7 @@ tls.send("xxxx", (err: BusinessError) => {
 
 ### send<sup>9+</sup>
 
-send(data: string): Promise\<void\>
+send(data: string \| ArrayBuffer): Promise\<void\>
 
 在TLSSocket通信连接成功之后，向服务端发送消息，使用Promise方式作为异步方法。
 
@@ -6290,7 +6290,7 @@ send(data: string): Promise\<void\>
 
 | 参数名    | 类型                          | 必填 | 说明            |
 | -------- | -----------------------------| ---- | ---------------|
-|   data   | string                       | 是   | 发送的数据内容。   |
+|   data   | string \| ArrayBuffer                       | 是   | 发送的数据内容。   |
 
 **错误码：**
 
@@ -6418,7 +6418,7 @@ TLS安全相关操作，其中ca证书为必选参数，其他参数为可选参
 
 | 名称                 | 类型                                                    | 必填 | 说明                                |
 | --------------------- | ------------------------------------------------------ | --- |----------------------------------- |
-| ca                    | string \| Array\<string\>                               | 是 | 服务端的ca证书，用于认证校验服务端的数字证书。|
+| ca                    | string \| Array\<string\> | 否 | 服务端的ca证书，用于认证校验服务端的数字证书。默认为系统预置CA证书<sup>12+</sup>。 |
 | cert                  | string                                                  | 否 | 本地客户端的数字证书。                 |
 | key                   | string                                                  | 否 | 本地数字证书的私钥。                   |
 | password                | string                                                  | 否 | 读取私钥的密码。                      |
@@ -7386,7 +7386,7 @@ TLSSocketConnection连接，即TLSSocket客户端与服务端的连接。在调�
 
 ### send<sup>10+</sup>
 
-send(data: string, callback: AsyncCallback\<void\>): void
+send(data: string \| ArrayBuffer, callback: AsyncCallback\<void\>): void
 
 在TLSSocketServer通信连接成功之后，向客户端发送消息，使用callback方式作为异步方法。
 
@@ -7396,7 +7396,7 @@ send(data: string, callback: AsyncCallback\<void\>): void
 
 | 参数名   | 类型                  | 必填 | 说明                                             |
 | -------- | --------------------- | ---- | ------------------------------------------------ |
-| data     | string                | 是   | TLSSocketServer发送数据所需要的参数。            |
+| data     | string \| ArrayBuffer                | 是   | TLSSocketServer发送数据所需要的参数。            |
 | callback | AsyncCallback\<void\> | 是   | 回调函数，成功返回空，失败返回错误码、错误信息。 |
 
 **错误码：**
@@ -7452,7 +7452,7 @@ tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
 
 ### send<sup>10+</sup>
 
-send(data: string): Promise\<void\>
+send(data: string \| ArrayBuffer): Promise\<void\>
 
 在TLSSocketServer通信连接成功之后，向服务端发送消息，使用Promise方式作为异步方法。
 
@@ -7462,7 +7462,7 @@ send(data: string): Promise\<void\>
 
 | 参数名 | 类型   | 必填 | 说明                                  |
 | ------ | ------ | ---- | ------------------------------------- |
-| data   | string | 是   | TLSSocketServer发送数据所需要的参数。 |
+| data   | string \| ArrayBuffer | 是   | TLSSocketServer发送数据所需要的参数。 |
 
 **返回值：**
 

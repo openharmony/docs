@@ -100,7 +100,7 @@ static napi_module nativerenderModule = {
 extern "C" __attribute__((constructor)) void RegisterModule(void)
 {
     // 注册so模块
-    napi_module_register(&nativerenderModule);c
+    napi_module_register(&nativerenderModule);
 }
 ```
 
@@ -201,7 +201,7 @@ XComponent({ id: 'xcomponentId1', type: 'surface', libraryname: 'nativerender' }
   >    ```
   >
   > 2. 使用XComponent组件加载，本质也是使用了NAPI机制来加载。
-  >    该加载方式和import加载方式的区别在于，在加载动态库是会将XComponent的NativeXComponent实例暴露到应用的native层中，从而让开发者可以使用XComponent的NDK接口。
+  >    该加载方式和import加载方式的区别在于，在加载动态库时会将XComponent的NativeXComponent实例暴露到应用的native层中，从而让开发者可以使用XComponent的NDK接口。
 
 - onLoad事件
   - 触发时刻：XComponent准备好surface后触发。

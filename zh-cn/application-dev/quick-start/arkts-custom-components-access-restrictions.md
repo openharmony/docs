@@ -77,6 +77,7 @@ Property 'regular_value' is private and can not be initialized through the compo
 @Entry
 @Component
 struct AccessRestrictions {
+  @Provide consume_value: string = "Hello";
   build() {
     Column() {
       ComponentChild()
@@ -118,9 +119,11 @@ Property 'consume_value' can not be decorated with both @Consume and public.
 @Entry
 @Component
 struct AccessRestrictions {
+  @State link_value: string = "Hello";
+  @State objectLink_value: ComponentObj = new ComponentObj();
   build() {
     Column() {
-      ComponentChild({link_value: "Hello", objectLink_value: new ComponentObj()})
+      ComponentChild({link_value: this.link_value, objectLink_value: this.objectLink_value})
     }
     .width('100%')
   }

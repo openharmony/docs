@@ -58,7 +58,19 @@ ws.on('close', (err: BusinessError, value: webSocket.CloseResult) => {
 ws.on('error', (err: BusinessError) => {
   console.log("on error, error:" + JSON.stringify(err));
 });
-ws.connect(defaultIpAddress, (err: BusinessError, value: boolean) => {
+ws.connect(defaultIpAddress, {
+  header:{
+      name1: 'value1',
+      name2: 'value2',
+      name2: 'value3'
+  },
+  proxy: {
+      host: '192.168.0.150',
+      port: 8888,
+      exclusionList: []
+  },
+  protocol: 'my-protocol',
+  }, (err: BusinessError, value: boolean) => {
   if (!err) {
     console.log("connect success");
   } else {
@@ -759,6 +771,8 @@ ws.off('dataEnd');
 | header | Object | 否   | 建立WebSocket连接可选参数，代表建立连接时携带的HTTP头信息。参数内容自定义，也可以不指定。 |
 | caPath<sup>11+</sup> | string | 否   | 如果设置了此参数，系统将使用用户指定路径的CA证书，(开发者需保证该路径下CA证书的可访问性)，否则将使用系统预设CA证书，系统预设CA证书位置：/etc/ssl/certs/cacert.pem。证书路径为沙箱映射路径（开发者可通过Global.getContext().filesDir获取应用沙箱路径）。目前仅支持格式为pem的文本证书。 |
 | clientCert<sup>11+</sup> | [ClientCert](#clientcert11) | 否   | 支持传输客户端证书。 |
+| proxy<sup>12+</sup> | ProxyConfiguration | 否 | 通信过程中的代理信息，默认使用系统网络代理。 |
+| protocol<sup>12+</sup> | string | 否 | 自定义Sec-WebSocket-Protocol字段，默认为""。              |
 
 ## ClientCert<sup>11+</sup>
 
@@ -771,6 +785,18 @@ ws.off('dataEnd');
 | certPath   | string  | 是   | 证书路径。 |
 | keyPath | string | 是   | 证书秘钥的路径。 |
 | keyPassword | string | 否   | 证书秘钥的密码。 |
+
+## ProxyConfiguration<sup>12+</sup>
+
+网络代理配置信息
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+| 名称    | 类型   | 必填 | 说明                      |
+| ------ | ------ | --- |------------------------- |
+| 'system' | string | 否  |  使用系统默认网络代理。 |
+| 'no-proxy' | string | 否  |  不使用网络代理。 |
+| HttpProxy | Object | 否  | 使用指定的网络代理。 |
 
 ## WebSocketCloseOptions
 

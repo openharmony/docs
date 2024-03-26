@@ -812,7 +812,7 @@ getAppBriefInfo(): Promise<Record<string, AppBriefInfo>>
 
 | 类型                                                         | 说明                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| Promise&lt;Record&lt;string, [AppBriefInfo](#AppBriefInfo)&gt;&gt;&gt; | Promise对象，返回与bundleName和 [AppBriefInfo](#AppBriefInfo)相对应的键值对。 |
+| Promise&lt;Record&lt;string, [AppBriefInfo](#appbriefinfo)&gt;&gt;&gt; | Promise对象，返回与bundleName和 [AppBriefInfo](#appbriefinfo)相对应的键值对。 |
 
 **示例：**
 

@@ -276,7 +276,7 @@ export struct ShowAd {
 | -------- | -------- | -------- | -------- |
 | tagForChildProtection | number | 否 | 设置儿童保护标签。<br/>- -1：您不希望表明您的广告内容是否需要符合COPPA的规定。<br/>- 0：表明您的广告内容不需要符合COPPA的规定。<br/>- 1：表明您的广告内容需要符合COPPA的规定（该广告请求无法获取到任何广告）。 | 
 | adContentClassification | string | 否 | 设置广告内容分级上限。<br/>- W：适合幼儿及以上年龄段观众的内容。<br/>- PI：适合少儿及以上年龄段观众的内容。<br/>- J：适合青少年及以上年龄段观众的内容。<br/>- A：仅适合成人观众的内容。 | 
-| nonPersonalizedAd | number | 否 | 设置是否请求非个性化广告。<br/>- 0：请求个性化广告与非个性化广告。<br/>- 1：请求非个性化广告。 | 
+| nonPersonalizedAd | number | 否 | 设置是否只请求非个性化广告。<br/>- 0：请求个性化广告与非个性化广告。<br/>- 1：只请求非个性化广告。 | 
 | [key: string] | number \| boolean \| string \| undefined | 否 | 自定义参数。<br/> - totalDuration：类型number，单位：s。贴片广告必填自定义参数，用于设置贴片广告展示时长。<br/> - placementAdCountDownDesc：类型string。贴片广告可选自定义参数，用于设置贴片广告倒计时文案，该参数需要使用encodeURI()方法编码。填写了该参数，则展示倒计时文案，否则只展示倒计时。<br/> - allowMobileTraffic：类型number。可选自定义参数，设置是否允许使用流量下载广告素材。0：不允许，1：允许 |
 
 
@@ -374,4 +374,4 @@ export struct ShowAd {
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| onStatusChanged | function(status: string, ad: advertising.[Advertisement](#advertisement), data: string): void | 是 | 广告展示回调。<br/>1. status：广告展示状态，取值<br/>onAdOpen（打开广告）、onAdClose（关闭广告）、onAdReward（获得奖励）、onAdClick（点击广告）、onVideoPlayBegin（广告视频开始播放）、onVideoPlayEnd（广告视频播放结束）<br/>1. ad：发生状态变化的广告内容。<br/>2. data：扩展信息。 | 
+| onStatusChanged | function(status: string, ad: advertising.[Advertisement](#advertisement), data: string): void | 是 | 广告展示回调。<br/>1. status：广告展示状态，取值<br/>onAdOpen（打开广告回调）、onAdClose（关闭广告回调）、onAdClick（点击广告回调）、onVideoPlayBegin（广告视频开始播放回调）、onVideoPlayEnd（广告视频播放结束回调）、onAdLoad（广告加载成功回调）、onAdFail（广告加载失败回调）、onMediaProgress（广告播放进度回调）、onMediaStart（广告开始播放回调）、onMediaPause（广告暂停播放回调）、onMediaStop（广告停止播放回调）、onMediaComplete（广告播放完成回调）、onMediaError（广告播放失败回调）、onLandscape（竖屏状态下点击全屏按钮回调）、onPortrait（全屏状态下点击返回按钮回调）、onVipClicked（贴片广告点击跳过文案回调）<br/>1. ad：发生状态变化的广告内容。<br/>2. data：扩展信息。 | 

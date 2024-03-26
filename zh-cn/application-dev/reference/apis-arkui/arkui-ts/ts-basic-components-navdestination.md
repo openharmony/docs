@@ -44,7 +44,7 @@ title(value: string | CustomBuilder | NavDestinationCommonTitle | NavDestination
 
 hideTitleBar(value: boolean)
 
-设置是否显示标题栏。
+设置是否隐藏标题栏。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -52,7 +52,7 @@ hideTitleBar(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | 是否显示标题栏。<br/>默认值：false<br/>true:&nbsp;隐藏标题栏。<br/>false:&nbsp;显示标题栏。 |
+| value  | boolean | 是   | 是否隐藏标题栏。<br/>默认值：false<br/>true:&nbsp;隐藏标题栏。<br/>false:&nbsp;显示标题栏。 |
 
 ### mode <sup>11+</sup>
 
@@ -85,8 +85,8 @@ backButtonIcon(value: ResourceStr | PixelMap)
 ## NavDestinationMode枚举说明 <sup>11+</sup>
 | 名称   | 描述                                       |
 | ---- | ---------------------------------------- |
-| STANDARD | 标准类型NavDestination的生命周期跟随NavPathStack栈中标准Destination变化而改变。                       |
-| DIALOG | 默认透明。不影响其他NavDestination的生命周期。    |
+| STANDARD | 标准模式的NavDestination。                       |
+| DIALOG | 默认透明，进出页面栈不影响下层NavDestination的生命周期，不支持系统转场动画。    |
 
 ## 事件
 

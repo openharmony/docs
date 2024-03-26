@@ -242,10 +242,6 @@ blockSize(value: SizeOptions)
 
 设置滑块大小。
 
-当参数style的值设置为[SliderStyle](#sliderstyle枚举说明).OutSet时为{width: 16, height: 16}，当参数style的值设置为[SliderStyle](#sliderstyle枚举说明).InSet时为{width: 12, height: 12}。
-
-当设置的bolckSize的宽高值不相等时，取较小值的尺寸，当设置的宽高值中有一个或两个都小于等于0的时候，取默认值。
-
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -254,7 +250,7 @@ blockSize(value: SizeOptions)
 
 | 参数名 | 类型                                   | 必填 | 说明       |
 | ------ | -------------------------------------- | ---- | ---------- |
-| value  | [SizeOptions](ts-types.md#sizeoptions) | 是   | 滑块大小。 |
+| value  | [SizeOptions](ts-types.md#sizeoptions) | 是   | 滑块大小。<br/>默认值：当参数style的值设置为[SliderStyle](#sliderstyle枚举说明).OutSet时为{width: 16, height: 16}，当参数style的值设置为[SliderStyle](#sliderstyle枚举说明).InSet时为{width: 12, height: 12}。<br/>当设置的bolckSize的宽高值不相等时，取较小值的尺寸，当设置的宽高值中有一个或两个都小于等于0的时候，取默认值。 |
 
 ### blockStyle<sup>10+</sup>
 

@@ -13,8 +13,9 @@ UiTest提供模拟UI操作的能力，供开发者在测试场景使用，主要
 - [UiDriver<sup>(deprecated)</sup>](#uidriverdeprecated)：入口类，提供控件匹配/查找，按键注入，坐标点击/滑动，截图等能力。从API version 9开始不再维护，建议使用[Driver<sup>9+</sup>](#driver9)。
 
 > **说明：**
->
-> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+ > - 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+ > - 本模块接口在[自动化测试脚本](../../application-test/arkxtest-guidelines.md)中使用。
+
 
 ## 导入模块
 
@@ -1282,7 +1283,7 @@ scrollToTop(speed?: number): Promise\<void>
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| speed  | number | 否   | 滑动速率，范围：200-15000，不在范围内设为默认值为600，单位：像素点/秒。 |
+| speed  | number | 否   | 滑动速率，范围：200-40000，不在范围内设为默认值为600，单位：像素点/秒。 |
 
 **错误码：**
 
@@ -1316,7 +1317,7 @@ scrollToBottom(speed?: number): Promise\<void>
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| speed  | number | 否   | 滑动速率，范围：200-15000，不在范围内设为默认值为600，单位：像素点/秒。 |
+| speed  | number | 否   | 滑动速率，范围：200-40000，不在范围内设为默认值为600，单位：像素点/秒。 |
 
 **错误码：**
 
@@ -1797,11 +1798,11 @@ Driver对象通过给定的key值，找到对应组合键并点击。例如，Ke
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明                |
-| ------ | ------ | ---- | ------------------- |
-| key0   | number | 是   | 指定的第一个key值。 |
-| key1   | number | 是   | 指定的第二个key值。 |
-| key2   | number | 否   | 指定的第三个key值。 |
+| 参数名 | 类型   | 必填 | 说明                           |
+| ------ | ------ | ---- | ------------------------------ |
+| key0   | number | 是   | 指定的第一个key值。            |
+| key1   | number | 是   | 指定的第二个key值。            |
+| key2   | number | 否   | 指定的第三个key值。默认值为0。 |
 
 **错误码：**
 
@@ -1937,7 +1938,7 @@ Driver对象采取如下操作：从起始坐标点滑向目的坐标点。
 | starty | number | 是   | 以number的形式传入起始点的纵坐标信息。                       |
 | endx   | number | 是   | 以number的形式传入目的点的横坐标信息。                       |
 | endy   | number | 是   | 以number的形式传入目的点的纵坐标信息。                       |
-| speed  | number | 否   | 滑动速率，范围：200-15000，不在范围内设为默认值为600，单位：像素点/秒。 |
+| speed  | number | 否   | 滑动速率，范围：200-40000，不在范围内设为默认值为600，单位：像素点/秒。 |
 
 **错误码：**
 
@@ -1973,7 +1974,7 @@ Driver对象采取如下操作：从起始坐标点拖拽至目的坐标点。
 | starty | number | 是   | 以number的形式传入起始点的纵坐标信息。                       |
 | endx   | number | 是   | 以number的形式传入目的点的横坐标信息。                       |
 | endy   | number | 是   | 以number的形式传入目的点的纵坐标信息。                       |
-| speed  | number | 否   | 滑动速率，范围：200-15000，不在范围内设为默认值为600，单位：像素点/秒。 |
+| speed  | number | 否   | 滑动速率，范围：200-40000，不在范围内设为默认值为600，单位：像素点/秒。 |
 
 **错误码：**
 
@@ -2331,7 +2332,7 @@ injectMultiPointerAction(pointers: PointerMatrix, speed?: number): Promise\<bool
 | 参数名   | 类型                             | 必填 | 说明                                                         |
 | -------- | -------------------------------- | ---- | ------------------------------------------------------------ |
 | pointers | [PointerMatrix](#pointermatrix9) | 是   | 滑动轨迹，包括操作手指个数和滑动坐标序列。                   |
-| speed    | number                           | 否   | 滑动速率，范围：200-15000，不在范围内设为默认值为600，单位：像素点/秒。 |
+| speed    | number                           | 否   | 滑动速率，范围：200-40000，不在范围内设为默认值为600，单位：像素点/秒。 |
 
 **返回值：**
 
@@ -2446,12 +2447,12 @@ mouseClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Promise\
 
 **参数：**
 
-| 参数名 | 类型                          | 必填 | 说明                |
-| ------ | ----------------------------- | ---- | ------------------- |
-| p      | [Point](#point9)              | 是   | 鼠标点击的坐标。    |
-| btnId  | [MouseButton](#mousebutton10) | 是   | 按下的鼠标按钮。    |
-| key1   | number                        | 否   | 指定的第一个key值。 |
-| key2   | number                        | 否   | 指定的第二个key值。 |
+| 参数名 | 类型                          | 必填 | 说明                           |
+| ------ | ----------------------------- | ---- | ------------------------------ |
+| p      | [Point](#point9)              | 是   | 鼠标点击的坐标。               |
+| btnId  | [MouseButton](#mousebutton10) | 是   | 按下的鼠标按钮。               |
+| key1   | number                        | 否   | 指定的第一个key值。默认值为0。 |
+| key2   | number                        | 否   | 指定的第二个key值。默认值为0。 |
 
 **错误码：**
 
@@ -2486,8 +2487,8 @@ mouseScroll(p: Point, down: boolean, d: number, key1?: number, key2?: number): P
 | p      | [Point](#point9) | 是   | 鼠标点击的坐标。                                            |
 | down   | boolean          | 是   | 滚轮滑动方向是否向下，true表示向下滑动，false表示向上滚动。 |
 | d      | number           | 是   | 鼠标滚轮滚动的格数，每格对应目标点位移120个像素点。         |
-| key1   | number           | 否   | 指定的第一个key值。                                         |
-| key2   | number           | 否   | 指定的第二个key值。                                         |
+| key1   | number           | 否   | 指定的第一个key值。默认值为0。                              |
+| key2   | number           | 否   | 指定的第二个key值。默认值为0。                              |
 
 **错误码：**
 
@@ -2586,8 +2587,8 @@ mouseScroll(p: Point, down: boolean, d: number, key1?: number, key2?: number, sp
 | p      | [Point](#point9) | 是   | 鼠标点击的坐标。                                             |
 | down   | boolean          | 是   | 滚轮滑动方向是否向下，true表示向下滑动，false表示向上滚动。  |
 | d      | number           | 是   | 鼠标滚轮滚动的格数，每格对应目标点位移120个像素点。          |
-| key1   | number           | 否   | 指定的第一个key值。                                          |
-| key2   | number           | 否   | 指定的第二个key值。                                          |
+| key1   | number           | 否   | 指定的第一个key值。默认值为0。                               |
+| key2   | number           | 否   | 指定的第二个key值。默认值为0。                               |
 | speed  | number           | 否   | 鼠标滚轮滚动的速度，范围：1-500，不在范围内设为默认值为20，单位：格/秒。 |
 
 **错误码：**
@@ -2618,12 +2619,12 @@ mouseDoubleClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Pr
 
 **参数：**
 
-| 参数名 | 类型                          | 必填 | 说明                |
-| ------ | ----------------------------- | ---- | ------------------- |
-| p      | [Point](#point9)              | 是   | 鼠标双击的坐标。    |
-| btnId  | [MouseButton](#mousebutton10) | 是   | 按下的鼠标按钮。    |
-| key1   | number                        | 否   | 指定的第一个key值。 |
-| key2   | number                        | 否   | 指定的第二个key值。 |
+| 参数名 | 类型                          | 必填 | 说明                           |
+| ------ | ----------------------------- | ---- | ------------------------------ |
+| p      | [Point](#point9)              | 是   | 鼠标双击的坐标。               |
+| btnId  | [MouseButton](#mousebutton10) | 是   | 按下的鼠标按钮。               |
+| key1   | number                        | 否   | 指定的第一个key值。默认值为0。 |
+| key2   | number                        | 否   | 指定的第二个key值。默认值为0。 |
 
 **错误码：**
 
@@ -2653,12 +2654,12 @@ mouseLongClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Prom
 
 **参数：**
 
-| 参数名 | 类型                          | 必填 | 说明                |
-| ------ | ----------------------------- | ---- | ------------------- |
-| p      | [Point](#point9)              | 是   | 鼠标长按的坐标。    |
-| btnId  | [MouseButton](#mousebutton10) | 是   | 按下的鼠标按钮。    |
-| key1   | number                        | 否   | 指定的第一个key值。 |
-| key2   | number                        | 否   | 指定的第二个key值。 |
+| 参数名 | 类型                          | 必填 | 说明                           |
+| ------ | ----------------------------- | ---- | ------------------------------ |
+| p      | [Point](#point9)              | 是   | 鼠标长按的坐标。               |
+| btnId  | [MouseButton](#mousebutton10) | 是   | 按下的鼠标按钮。               |
+| key1   | number                        | 否   | 指定的第一个key值。默认值为0。 |
+| key2   | number                        | 否   | 指定的第二个key值。默认值为0。 |
 
 **错误码：**
 
@@ -2692,7 +2693,7 @@ mouseMoveWithTrack(from: Point, to: Point, speed?: number): Promise\<void>
 | ------ | ---------------- | ---- | ------------------------------------------------------------ |
 | from   | [Point](#point9) | 是   | 起始点坐标。                                                 |
 | to     | [Point](#point9) | 是   | 终点坐标。                                                   |
-| speed  | number           | 否   | 滑动速率，范围：200-15000，不在范围内设为默认值为600，单位：像素点/秒。 |
+| speed  | number           | 否   | 滑动速率，范围：200-40000，不在范围内设为默认值为600，单位：像素点/秒。 |
 
 **错误码：**
 
@@ -2726,7 +2727,7 @@ mouseDrag(from: Point, to: Point, speed?: number): Promise\<void>
 | ------ | ---------------- | ---- | ------------------------------------------------------------ |
 | from   | [Point](#point9) | 是   | 起始点坐标。                                                 |
 | to     | [Point](#point9) | 是   | 终点坐标。                                                   |
-| speed  | number           | 否   | 滑动速率，范围：200-15000，不在范围内设为默认值为600，单位：像素点/秒。 |
+| speed  | number           | 否   | 滑动速率，范围：200-40000，不在范围内设为默认值为600，单位：像素点/秒。 |
 
 **错误码：**
 

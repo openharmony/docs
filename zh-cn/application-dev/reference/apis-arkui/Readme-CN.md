@@ -90,6 +90,7 @@
       - [焦点控制](arkui-ts/ts-universal-attributes-focus.md)
       - [悬浮态效果](arkui-ts/ts-universal-attributes-hover-effect.md)
       - [组件标识](arkui-ts/ts-universal-attributes-component-id.md)
+      - [复用标识](arkui-ts/ts-universal-attributes-reuse-id.md)
       - [多态样式](arkui-ts/ts-universal-attributes-polymorphic-style.md)
       - [分布式迁移标识](arkui-ts/ts-universal-attributes-restoreId.md)
       - [前景色设置](arkui-ts/ts-universal-attributes-foreground-color.md)

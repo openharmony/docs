@@ -64,14 +64,16 @@ declare const Reusable: ClassDecorator;
 **示例：**
 
 ```ts
-private dataArray: string[] = [];
-  private listener: DataChangeListener;
+// xxx.ets
+class MyDataSource implements IDataSource {
+  private dataArray: string[] = [];
+  private listener: DataChangeListener | undefined;
 
   public totalCount(): number {
     return this.dataArray.length;
   }
 
-  public getData(index: number): any {
+  public getData(index: number): string {
     return this.dataArray[index];
   }
 
@@ -80,7 +82,7 @@ private dataArray: string[] = [];
   }
 
   public reloadListener(): void {
-    this.listener.onDataReloaded();
+    this.listener?.onDataReloaded();
   }
 
   public registerDataChangeListener(listener: DataChangeListener): void {
@@ -88,7 +90,7 @@ private dataArray: string[] = [];
   }
 
   public unregisterDataChangeListener(listener: DataChangeListener): void {
-    this.listener = null;
+    this.listener = undefined;
   }
 }
 
@@ -109,7 +111,7 @@ struct MyComponent {
         ListItem() {
           ReusableChildComponent({ item: item })
         }
-      }, item => item)
+      }, (item: string) => item)
     }
     .width('100%')
     .height('100%')
@@ -121,7 +123,7 @@ struct MyComponent {
 struct ReusableChildComponent {
   @State item: string = ''
 
-  aboutToReuse(params) {
+  aboutToReuse(params: ESObject) {
     this.item = params.item;
   }
 
@@ -137,7 +139,7 @@ struct ReusableChildComponent {
 
 ## 相关实例
 
-以下为购物示例，对比使用组件复用前后，应用侧创建自定义组件的收益以及前后的代码写法对比。
+以下为购物片段示例代码，对比使用组件复用前后，应用侧创建自定义组件的收益以及前后的代码写法对比。
 
 ### 复用前后代码对比
 

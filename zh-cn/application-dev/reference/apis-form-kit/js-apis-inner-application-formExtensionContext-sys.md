@@ -35,7 +35,6 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 | 401 | If the input parameter is not valid parameter. |
 | 16500050 | An IPC connection error happened. |
 | 16500100 | Failed to obtain the configuration information. |
-| 16500101 | The application is not a system application. |
 | 16501000 | An internal functional error occurred. |
 
 以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
@@ -107,7 +106,6 @@ startAbility(want: Want): Promise&lt;void&gt;
 | 401 | If the input parameter is not valid parameter. |
 | 16500050 | An IPC connection error happened. |
 | 16500100 | Failed to obtain the configuration information. |
-| 16500101 | The application is not a system application. |
 | 16501000 | An internal functional error occurred. |
 
 以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。

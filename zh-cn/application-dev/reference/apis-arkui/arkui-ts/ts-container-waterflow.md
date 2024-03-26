@@ -27,7 +27,7 @@ WaterFlow(options?:  WaterFlowOptions)
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
-| options |  [WaterFlowOptions](#waterflowoptions对象说明)| 是 | 瀑布流组件参数。 |
+| options |  [WaterFlowOptions](#waterflowoptions对象说明)| 否 | 瀑布流组件参数。 |
 
 
 ## WaterFlowOptions对象说明
@@ -195,6 +195,20 @@ layoutDirection优先级高于rowsTemplate和columnsTemplate。根据layoutDirec
 - layoutDirection未设置布局方向
 
 	布局方向为layoutDirection的默认值：FlexDirection.Column，此时columnsTemplate有效。例如columnsTemplate设置为"1fr 1fr"、rowsTemplate设置为"1fr 1fr 1fr"时，瀑布流组件纵向布局，辅轴均分成横向2列。
+
+### flingSpeedLimit<sup>11+</sup>
+
+flingSpeedLimit(speedLimit: number)
+
+限制跟手滑动结束后，Fling动效开始时的最大初始速度。单位是vp/s。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名     | 类型   | 必填 | 说明                            |
+| ---------- | ------ | ---- | ------------------------------- |
+| speedLimit | number | 是   | Fling动效开始时的最大初始速度。 |
 
 ## 事件
 

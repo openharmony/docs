@@ -3443,7 +3443,7 @@ try {
 | rssi     | number      | 是    | 否    | 表示扫描到的设备的rssi值。                    |
 | data     | ArrayBuffer | 是    | 否    | 表示扫描到的设备发送的广播包。                    |
 | deviceName | string | 是    | 否    | 表示扫描到的设备名称。                    |
-| connectable  | boolean | 是    | 否    | 表示扫描到的设备是否可连接。                    |
+| connectable  | boolean | 是    | 否    | 表示扫描到的设备是否可连接。true表示可连接，false表示不可连接。                    |
 
 
 ## AdvertiseSetting
@@ -3454,9 +3454,9 @@ try {
 
 | 名称          | 类型    | 可读   | 可写   | 说明                                       |
 | ----------- | ------- | ---- | ---- | ---------------------------------------- |
-| interval    | number  | 是    | 是    | 表示广播间隔，最小值设置32个slot表示20ms，最大值设置16384个slot，默认值设置为1600个slot表示1s。 |
+| interval    | number  | 是    | 是    | 表示广播间隔，最小值设置160个slot表示100ms，最大值设置16384个slot，默认值设置为1600个slot表示1s。 |
 | txPower     | number  | 是    | 是    | 表示发送功率，最小值设置-127，最大值设置1，默认值设置-7，单位dbm。推荐值：高档（1），中档（-7），低档（-15）。   |
-| connectable | boolean | 是    | 是    | 表示是否是可连接广播，默认值设置为true。                   |
+| connectable | boolean | 是    | 是    | 表示是否是可连接广播，默认值设置为true，表示可连接，false表示不可连接。                   |
 
 
 ## AdvertiseData
@@ -3470,7 +3470,7 @@ try {
 | serviceUuids    | Array&lt;string&gt;                      | 是    | 是    | 表示要广播的服务&nbsp;UUID&nbsp;列表。 |
 | manufactureData | Array&lt;[ManufactureData](#manufacturedata)&gt; | 是    | 是    | 表示要广播的广播的制造商信息列表。           |
 | serviceData     | Array&lt;[ServiceData](#servicedata)&gt; | 是    | 是    | 表示要广播的服务数据列表。               |
-| includeDeviceName | boolean                  | 是    | 是    | 表示是否携带设备名，可选参数。注意带上设备名时广播包长度不能超出31个字节。        |
+| includeDeviceName | boolean     | 是    | 是    | 表示是否携带设备名，可选参数。true表示携带，false或未设置此参数表示不携带。注意带上设备名时广播包长度不能超出31个字节。        |
 
 ## AdvertisingParams<sup>11+</sup>
 
@@ -3483,7 +3483,7 @@ try {
 | advertisingSettings<sup>11+</sup> | AdvertiseSetting                | 是    | 是    | 表示发送广播的相关参数。    |
 | advertisingData<sup>11+</sup>    | [AdvertiseData](#advertisedata) | 是    | 是    | 表示广播的数据包内容。      |
 | advertisingResponse<sup>11+</sup> | [AdvertiseData](#advertisedata) | 是    | 是    | 表示回复扫描请求的响应内容。 |
-| duration<sup>11+</sup>            | number                          | 是    | 是    | 表示发送广播持续的时间。     |
+| duration<sup>11+</sup>    | number   | 是    | 是    | 表示发送广播持续的时间。单位为10ms，有效范围为1(10ms)到65535(655350ms)，如果未指定此参数或者将其设置为0，则会连续发送广播。    |
 
 ## AdvertisingEnableParams<sup>11+</sup>
 
@@ -3494,7 +3494,7 @@ try {
 | 名称                | 类型                   | 可读  | 可写  | 说明                      |
 | ------------------- | --------------------- | ----- | ----- | ------------------------ |
 | advertisingId<sup>11+</sup>       | number                | 是    | 是    | 表示当前广播的ID标识。     |
-| duration<sup>11+</sup>            | number                | 是    | 是    | 表示发送广播持续的时间。    |
+| duration<sup>11+</sup>            | number                | 是    | 是    | 表示发送广播持续的时间。单位为10ms，有效范围为1(10ms)到65535(655350ms)，如果未指定此参数或者将其设置为0，则会连续发送广播。   |
 
 ## AdvertisingDisableParams<sup>11+</sup>
 
@@ -3547,19 +3547,19 @@ try {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称                                     | 类型    | 可读 | 可写 | 说明                                                         |
-| ---------------------------------------- | ----------- | ---- | ---- | ------------------------------------------------------------ |
-| deviceId                                 | string      | 是   | 是   | 表示过滤的BLE设备地址，例如："XX:XX:XX:XX:XX:XX"。           |
-| name                                     | string      | 是   | 是   | 表示过滤的BLE设备名。                                        |
-| serviceUuid                              | string      | 是   | 是   | 表示过滤包含该UUID服务的设备，例如：00001888-0000-1000-8000-00805f9b34fb。 |
-| serviceUuidMask             | string      | 是   | 是   | 表示过滤包含该UUID服务掩码的设备，例如：FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF。 |
-| serviceSolicitationUuid     | string      | 是   | 是   | 表示过滤包含该UUID服务请求的设备，例如：00001888-0000-1000-8000-00805F9B34FB。 |
-| serviceSolicitationUuidMask | string      | 是   | 是   | 表示过滤包含该UUID服务请求掩码的设备，例如：FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF。 |
-| serviceData                 | ArrayBuffer | 是   | 是   | 表示过滤包含该服务相关数据的设备，例如：[0x90,0x00,0xF1,0xF2]。 |
-| serviceDataMask             | ArrayBuffer | 是   | 是   | 表示过滤包含该服务相关数据掩码的设备，例如：[0xFF,0xFF,0xFF,0xFF]。 |
-| manufactureId               | number      | 是   | 是   | 表示过滤包含该制造商ID的设备，例如：0x0006。                 |
-| manufactureData             | ArrayBuffer | 是   | 是   | 表示过滤包含该制造商相关数据的设备，例如：[0x1F,0x2F,0x3F]。 |
-| manufactureDataMask         | ArrayBuffer | 是   | 是   | 表示过滤包含该制造商相关数据掩码的设备，例如：[0xFF,0xFF,0xFF]。 |
+| 参数名                                     | 类型    | 必填  | 说明                                                         |
+| ------------------------------------------ | -------- | ---- | ------------------------------------------------------------ |
+| deviceId                                 | string      | 否    | 表示过滤的BLE设备地址，例如："XX:XX:XX:XX:XX:XX"。           |
+| name                                     | string      | 否    | 表示过滤的BLE设备名。                                        |
+| serviceUuid                              | string      | 否    | 表示过滤包含该UUID服务的设备，例如：00001888-0000-1000-8000-00805f9b34fb。 |
+| serviceUuidMask             | string      | 否     | 表示过滤包含该UUID服务掩码的设备，例如：FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF。 |
+| serviceSolicitationUuid     | string      | 否     | 表示过滤包含该UUID服务请求的设备，例如：00001888-0000-1000-8000-00805F9B34FB。 |
+| serviceSolicitationUuidMask | string      | 否     | 表示过滤包含该UUID服务请求掩码的设备，例如：FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF。 |
+| serviceData                 | ArrayBuffer | 否     | 表示过滤包含该服务相关数据的设备，例如：[0x90,0x00,0xF1,0xF2]。 |
+| serviceDataMask             | ArrayBuffer | 否     | 表示过滤包含该服务相关数据掩码的设备，例如：[0xFF,0xFF,0xFF,0xFF]。 |
+| manufactureId               | number      | 否     | 表示过滤包含该制造商ID的设备，例如：0x0006。                 |
+| manufactureData             | ArrayBuffer | 否     | 表示过滤包含该制造商相关数据的设备，例如：[0x1F,0x2F,0x3F]。 |
+| manufactureDataMask         | ArrayBuffer | 否     | 表示过滤包含该制造商相关数据掩码的设备，例如：[0xFF,0xFF,0xFF]。 |
 
 
 ## ScanOptions

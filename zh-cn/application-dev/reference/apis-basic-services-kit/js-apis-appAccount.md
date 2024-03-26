@@ -39,7 +39,7 @@ createAppAccountManager(): AppAccountManager
 
 ### createAccount<sup>9+</sup>
 
-createAccount(name: string, callback: AsyncCallback&lt;void&gt;): void;
+createAccount(name: string, callback: AsyncCallback&lt;void&gt;): void
 
 根据帐号名创建应用帐号。使用callback异步回调。
 
@@ -2300,7 +2300,7 @@ queryAuthenticatorInfo(owner: string, callback: AsyncCallback&lt;AuthenticatorIn
 
 | 参数名      | 类型                                     | 必填   | 说明          |
 | -------- | -------------------------------------- | ---- | ----------- |
-| owner    | string                                 | 是    | 应用包名。 |
+| owner    | string                                 | 是    | 应用帐号所有者的包名。 |
 | callback | AsyncCallback&lt;[AuthenticatorInfo](#authenticatorinfo8)&gt; | 是    | 回调函数。当获取成功时，err为null，data为认证器信息对象；否则为错误对象。    |
 
 **错误码：**
@@ -2342,7 +2342,7 @@ queryAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 | 参数名   | 类型     | 必填   | 说明          |
 | ----- | ------ | ---- | ----------- |
-| owner | string | 是    | 应用包名。 |
+| owner | string | 是    | 应用帐号所有者的包名。 |
 
 **返回值：**
 
@@ -2377,7 +2377,7 @@ queryAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 ### checkAccountLabels<sup>9+</sup>
 
-checkAccountLabels(name: string, owner: string, labels: Array&lt;string&gt;, callback: AsyncCallback&lt;boolean&gt;): void;
+checkAccountLabels(name: string, owner: string, labels: Array&lt;string&gt;, callback: AsyncCallback&lt;boolean&gt;): void
 
 检查指定应用帐号是否满足特定的标签集合。使用callback异步回调。该方法依赖目标应用的认证器提供标签检查的能力。
 
@@ -2388,7 +2388,7 @@ checkAccountLabels(name: string, owner: string, labels: Array&lt;string&gt;, cal
 | 参数名         | 类型                       | 必填  | 说明             |
 | -------------- | ------------------------- | ----- | --------------- |
 | name           | string                    | 是    | 应用帐号的名称。  |
-| owner          | string                    | 是    | 应用帐号的所有者。|
+| owner          | string                    | 是    | 应用帐号所有者的包名。|
 | labels         | Array&lt;string&gt;       | 是    | 标签数组。       |
 | callback       | AsyncCallback&lt;boolean&gt; | 是    | 回调函数。当检查成功时，err为null，data为true表示满足特定的标签集合，data为false表示不满足；否则为错误对象。  |
 
@@ -2436,7 +2436,7 @@ checkAccountLabels(name: string, owner: string, labels: Array&lt;string&gt;): Pr
 | 参数名         | 类型                       | 必填  | 说明             |
 | -------------- | ------------------------- | ----- | --------------- |
 | name           | string                    | 是    | 应用帐号的名称。  |
-| owner          | string                    | 是    | 应用帐号的所有者。|
+| owner          | string                    | 是    | 应用帐号所有者的包名。|
 | labels         | Array&lt;string&gt;       | 是    | 标签数组。       |
 
 **返回值：**
@@ -2575,7 +2575,7 @@ selectAccountsByOptions(options: SelectAccountsOptions, callback: AsyncCallback&
 
 | 参数名         | 类型                                 | 必填  | 说明             |
 | -------------- | ----------------------------------- | ----- | --------------- |
-| options        | SelectAccountsOptions               | 是    | 选择帐号的选项。  |
+| options        | [SelectAccountsOptions](#selectaccountsoptions9)               | 是    | 选择帐号的选项。  |
 | callback       | AsyncCallback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | 是    | 回调函数。当根据选项选择请求方可访问的帐号列表时，err为null，data为可访问的帐号信息对象；否则为错误对象。  |
 
 **错误码：**
@@ -2660,7 +2660,7 @@ selectAccountsByOptions(options: SelectAccountsOptions): Promise&lt;Array&lt;App
 
 ### verifyCredential<sup>9+</sup>
 
-verifyCredential(name: string, owner: string, callback: AuthCallback): void;
+verifyCredential(name: string, owner: string, callback: AuthCallback): void
 
 验证指定帐号的凭据。使用callback异步回调。
 
@@ -2707,7 +2707,7 @@ verifyCredential(name: string, owner: string, callback: AuthCallback): void;
 
 ### verifyCredential<sup>9+</sup>
 
-verifyCredential(name: string, owner: string, options: VerifyCredentialOptions, callback: AuthCallback): void;
+verifyCredential(name: string, owner: string, options: VerifyCredentialOptions, callback: AuthCallback): void
 
 验证用户凭据。使用callback异步回调。
 
@@ -2759,7 +2759,7 @@ verifyCredential(name: string, owner: string, options: VerifyCredentialOptions, 
 
 ### setAuthenticatorProperties<sup>9+</sup>
 
-setAuthenticatorProperties(owner: string, callback: AuthCallback): void;
+setAuthenticatorProperties(owner: string, callback: AuthCallback): void
 
 设置指定应用的认证器属性。使用callback异步回调。
 
@@ -2769,7 +2769,7 @@ setAuthenticatorProperties(owner: string, callback: AuthCallback): void;
 
 | 参数名    | 类型                  | 必填  | 说明                     |
 | -------- | --------------------- | ----- | ----------------------- |
-| owner    | string                | 是    | 认证器的所有者。          |
+| owner    | string                | 是    | 认证器的所有者的包名。          |
 | callback | [AuthCallback](#authcallback9) | 是    | 回调函数，返回设置属性的结果。 |
 
 **错误码：**
@@ -2804,7 +2804,7 @@ setAuthenticatorProperties(owner: string, callback: AuthCallback): void;
 
 ### setAuthenticatorProperties<sup>9+</sup>
 
-setAuthenticatorProperties(owner: string, options: SetPropertiesOptions, callback: AuthCallback): void;
+setAuthenticatorProperties(owner: string, options: SetPropertiesOptions, callback: AuthCallback): void
 
 设置认证器属性。使用callback异步回调。
 
@@ -2814,7 +2814,7 @@ setAuthenticatorProperties(owner: string, options: SetPropertiesOptions, callbac
 
 | 参数名    | 类型                  | 必填  | 说明                     |
 | -------- | --------------------- | ----- | ----------------------- |
-| owner    | string                | 是    | 认证器的所有者。          |
+| owner    | string                | 是    | 认证器的所有者的包名。          |
 | options  | [SetPropertiesOptions](#setpropertiesoptions9)  | 是    | 设置属性的选项。          |
 | callback | [AuthCallback](#authcallback9) | 是    | 认证器回调，返回设置属性的结果。 |
 
@@ -3664,7 +3664,7 @@ getAllAccounts(owner: string): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 
 | 参数名   | 类型     | 必填   | 说明     |
 | ----- | ------ | ---- | ------ |
-| owner | string | 是    | 应用包名称。 |
+| owner | string | 是    | 应用帐号所有者的包名。 |
 
 **返回值：**
 
@@ -4719,7 +4719,7 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 | 名称     | 类型     | 必填   | 说明         |
 | ------- | ------ | ---- | ---------- |
-| owner   | string | 是    | 认证器的所有者包名。 |
+| owner   | string | 是    | 认证器的所有者的包名。 |
 | iconId  | number | 是    | 认证器的图标标识。  |
 | labelId | number | 是    | 认证器的标签标识。  |
 
@@ -4806,7 +4806,7 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 | ACTION_VERIFY_CREDENTIAL<sup>9+</sup>    | 'verifyCredential' | 表示操作，验证凭据。  |
 | ACTION_SET_AUTHENTICATOR_PROPERTIES<sup>9+</sup> | 'setAuthenticatorProperties' | 表示操作，设置认证器属性。      |
 | KEY_NAME                         | 'name'                 | 表示键名，应用帐号的名称。  |
-| KEY_OWNER                        | 'owner'                | 表示键名，应用帐号所有者。|
+| KEY_OWNER                        | 'owner'                | 表示键名，应用帐号所有者的包名。|
 | KEY_TOKEN                        | 'token'                | 表示键名，令牌。         |
 | KEY_ACTION                       | 'action'               | 表示键名，操作。         |
 | KEY_AUTH_TYPE                    | 'authType'             | 表示键名，鉴权类型。     |
@@ -5125,7 +5125,7 @@ authenticate(name: string, authType: string, callerBundleName: string, options: 
 
 ### verifyCredential<sup>9+</sup>
 
-verifyCredential(name: string, options: VerifyCredentialOptions, callback: AuthCallback): void;
+verifyCredential(name: string, options: VerifyCredentialOptions, callback: AuthCallback): void
 
 验证应用帐号的凭据，并使用callback异步回调返回结果。
 
@@ -5141,7 +5141,7 @@ verifyCredential(name: string, options: VerifyCredentialOptions, callback: AuthC
 
 ### setProperties<sup>9+</sup>
 
-setProperties(options: SetPropertiesOptions, callback: AuthCallback): void;
+setProperties(options: SetPropertiesOptions, callback: AuthCallback): void
 
 设置认证器属性，并使用callback异步回调返回结果。
 
@@ -5156,7 +5156,7 @@ setProperties(options: SetPropertiesOptions, callback: AuthCallback): void;
 
 ### checkAccountLabels<sup>9+</sup>
 
-checkAccountLabels(name: string, labels: Array&lt;string&gt;, callback: AuthCallback): void;
+checkAccountLabels(name: string, labels: Array&lt;string&gt;, callback: AuthCallback): void
 
 检查帐号标签，并使用callback异步回调返回结果。
 
@@ -5172,7 +5172,7 @@ checkAccountLabels(name: string, labels: Array&lt;string&gt;, callback: AuthCall
 
 ### checkAccountRemovable<sup>9+</sup>
 
-checkAccountRemovable(name: string, callback: AuthCallback): void;
+checkAccountRemovable(name: string, callback: AuthCallback): void
 
 判断帐号是否可以删除，并使用callback异步回调返回结果。
 

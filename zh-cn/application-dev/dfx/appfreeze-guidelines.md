@@ -21,9 +21,9 @@
 
     DevEco Studio会收集设备的故障日志并归档到FaultLog下。具体可参考[DevEco Studio使用指南-FaultLog](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V2/ide-debug-hilog-0000001172459337-V2#section974519209435)。
 
-- 方式三：通过faultlogger接口获取
+- 方式三：通过hiappevent接口获取
 
-    faultlogger对外提供了故障查询接口，可以查询各种故障信息，详见[@ohos.faultLogger (故障日志获取)](../reference/apis-performance-analysis-kit/js-apis-faultLogger.md)。
+    hiappevent对外提供订阅系统卡死事件，可以查询卡死事件信息，详见[订阅系统事件（卡死事件）](hiappevent-watcher-freeze-events.md)。
 
 ## 应用无响应检测能力点
 
@@ -32,9 +32,8 @@
 | 故障类型 | 说明 |
 | -------- | -------- |
 | THREAD_BLOCK_6S | 应用主线程卡死超时 |
-| APPLICATION_BLOCK_INPUT | 用户输入响应超时 |
+| APP_INPUT_BLOCK | 用户输入响应超时 |
 | LIFECYCLE_TIMEOUT | Ability生命周期切换超时 |
-| APP_LIFECYCLE_TIMEOUT | App生命周期切换超时 |
 
 ### THREAD_BLOCK_6S 应用主线程卡死超时
 
@@ -181,11 +180,11 @@ THREAD_BLOCK_6S：
 
 ### 日志主干特异性信息(用户输入响应超时)
 
-Reason是APPLICATION_BLOCK_INPUT,表明用户点击事件超过10s没有得到反馈。
+Reason是_INPUT_BLOCK，表明用户点击事件超过5s没有得到反馈。
 
 MSG信息是这个事件的说明：用户的输入没有得到响应。
 
-APPLICATION_BLOCK_INPUT的日志信息可以参考[通用日志信息](#日志主干通用信息)进行分析。需特别说明的是，一般情况下用户输入无响应大概率主线程也会卡死。可以结合两个日志的三个堆栈、两个BinderCatcher信息，进行对比查看。如果没有主线程卡死的日志，说明有可能在输入事件之前有大量的细碎的其他事件，细碎的事件不足以卡死主线程，但是数量比较多导致用户的输入事件响应不过来。
+APP_INPUT_BLOCK的日志信息可以参考[通用日志信息](#日志主干通用信息)进行分析。需特别说明的是，一般情况下用户输入无响应大概率主线程也会卡死。可以结合两个日志的三个堆栈、两个BinderCatcher信息，进行对比查看。如果没有主线程卡死的日志，说明有可能在输入事件之前有大量的细碎的其他事件，细碎的事件不足以卡死主线程，但是数量比较多导致用户的输入事件响应不过来。
 
 ### 日志主干特异性信息(生命周期切换超时)
 
@@ -200,3 +199,13 @@ LIFECYCLE_TIMEOUT：
 ![appfreeze_20230310105873](figures/appfreeze_20230310105873.png)
 
 其他的日志信息可以参考[通用日志信息](#日志主干通用信息)进行分析。需要特别说明的是，一般情况下生命周期切换大概率主线程也会卡死。可以结合两个日志的三个堆栈、两个BinderCatcher信息，进行对比查看。
+
+## 应用退出
+
+当应用发生以下故障时，为了保证可恢复，会杀死应用。
+
+| 故障类型 | 说明 |
+| -------- | -------- |
+| THREAD_BLOCK_6S | 应用主线程卡死超时 |
+| APP_INPUT_BLOCK | 用户输入响应超时 |
+| LIFECYCLE_TIMEOUT | Ability生命周期切换超时 |

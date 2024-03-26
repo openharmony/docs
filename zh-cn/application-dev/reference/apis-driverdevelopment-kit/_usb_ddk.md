@@ -1,11 +1,11 @@
-# UsbDDK
+# USB DDK
 
 
 ## 概述
 
 提供USB DDK接口，包括主机侧打开和关闭接口、管道同步异步读写通信、控制传输、中断传输等。
 
-\@syscap SystemCapability.Driver.USB.Extension
+**系统能力：** SystemCapability.Driver.USB.Extension
 
 **起始版本：**
 
@@ -68,7 +68,7 @@
 #### 函数参数deviceId说明
 
 设备ID（deviceId）的获取可通过外设查询接口queryDevices()查询。
-具体请查阅[扩展外设管理开发指导](../../device/externaldevice-guidelines.md)。
+具体请查阅[扩展外设管理开发指导](../../device/driver/externaldevice-guidelines.md)。
 
 ## 枚举类型说明
 

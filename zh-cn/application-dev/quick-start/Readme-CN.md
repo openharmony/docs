@@ -13,6 +13,7 @@
       - [HAP](hap-package.md)
       - [HAR](har-package.md)
       - [HSP](in-app-hsp.md)
+      - [动态import](arkts-dynamic-import.md)
     - [应用程序包安装卸载与更新](application-package-install-uninstall.md)
     - 应用程序包快速修复
       - [快速修复概述](quickfix-principles.md)
