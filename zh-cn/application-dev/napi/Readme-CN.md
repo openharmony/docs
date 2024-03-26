@@ -10,7 +10,7 @@
 - 代码开发
     - [代码开发概述](develop-code-overview.md)
     - 使用Node-API实现跨语言交互
-        - [OpenHarmony Node-API简介](napi-introduction.md)
+        - [OpenHarmony Node-API简介](napi-introduction.md )
         - [Node-API支持的数据类型和接口](napi-data-types-interfaces.md)
         - [Node-API开发规范](napi-guidelines.md)
         - [使用Node-API实现跨语言交互开发流程](use-napi-process.md)
