@@ -686,3 +686,1079 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CallFunction (JSVM_Env env, JSVM_Value recv, JSV
 成功则返回JSVM_OK，失败可能返回JSVM_PENDING_EXCEPTION或JSVM_GENERIC_FAILURE。
 
 
+### OH_JSVM_CheckObjectTypeTag()
+
+```
+JSVM_EXTERN JSVM_Status OH_JSVM_CheckObjectTypeTag (JSVM_Env env, JSVM_Value value, const JSVM_TypeTag * typeTag, bool * result )
+```
+
+**描述**
+
+将类型标签typeTag与JavaScript对象或外部值上的标签作对比。如果找到相同标签， 设置result为true，否则为false。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| env | 调用JSVM-API的环境。 | 
+| value | 待检查类型标记的JavaScript对象或外部值。 | 
+| typeTag | 用于比较在对象上找到的任何标签的标签。 | 
+| result | 表示指定的类型标记是否与对象上的类型标记匹配。如果在对象上找不到该类型标记，也会返回false。 | 
+
+**返回：**
+
+成功则返回JSVM_OK，失败可能返回JSVM_GENERIC_FAILURE。
+
+
+### OH_JSVM_CloseEnvScope()
+
+```
+JSVM_EXTERN JSVM_Status OH_JSVM_CloseEnvScope (JSVM_Env env, JSVM_EnvScope scope )
+```
+
+**描述**
+
+关闭环境作用域。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| env | 目标环境，JSVM-API接口将在该环境下调用。 | 
+| scope | 将要关闭的环境作用域。 | 
+
+**返回：**
+
+成功则返回JSVM_OK。
+
+
+### OH_JSVM_CloseEscapableHandleScope()
+
+```
+JSVM_EXTERN JSVM_Status OH_JSVM_CloseEscapableHandleScope (JSVM_Env env, JSVM_EscapableHandleScope scope )
+```
+
+**描述**
+
+关闭传入的作用域。必须按照创建作用域的相反顺序关闭作用域。 即使存在挂起的JavaScript异常，也可以调用此JSVM_API。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| env | 调用JSVM-API的环境。 | 
+| scope | 表示要关闭的作用域。 | 
+
+**返回：**
+
+成功则返回JSVM_OK，失败可能返回JSVM_HANDLE_SCOPE_MISMATCH。
+
+
+### OH_JSVM_CloseHandleScope()
+
+```
+JSVM_EXTERN JSVM_Status OH_JSVM_CloseHandleScope (JSVM_Env env, JSVM_HandleScope scope )
+```
+
+**描述**
+
+关闭传入的作用域。必须按照创建作用域的相反顺序关闭作用域。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| env | 调用JSVM-API的环境。 | 
+| scope | 表示要关闭的作用域。 | 
+
+**返回：**
+
+成功则返回JSVM_OK。
+
+
+### OH_JSVM_CloseVMScope()
+
+```
+JSVM_EXTERN JSVM_Status OH_JSVM_CloseVMScope (JSVM_VM vm, JSVM_VMScope scope )
+```
+
+**描述**
+
+关闭虚拟机实例的虚拟机作用域。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| vm | 目标虚拟机实例。 | 
+| scope | 将要关闭的虚拟机作用域。 | 
+
+**返回：**
+
+成功则返回JSVM_OK。
+
+
+### OH_JSVM_CoerceToBool()
+
+```
+JSVM_EXTERN JSVM_Status OH_JSVM_CoerceToBool (JSVM_Env env, JSVM_Value value, JSVM_Value * result )
+```
+
+**描述**
+
+实现抽象操作ToBoolean()。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| env | 调用JSVM-API的环境。 | 
+| value | 要强制转换的JavaScript值。 | 
+| result | 代表强制的JavaScript Boolean。 | 
+
+**返回：**
+
+成功则返回JSVM_OK。
+
+
+### OH_JSVM_CoerceToNumber()
+
+```
+JSVM_EXTERN JSVM_Status OH_JSVM_CoerceToNumber (JSVM_Env env, JSVM_Value value, JSVM_Value * result )
+```
+
+**描述**
+
+实现抽象操作ToNumber()。 如果传入的值是对象，则函数可能会运行JavaScript代码。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| env | 调用JSVM-API的环境。 | 
+| value | 要强制转换的JavaScript值。 | 
+| result | 代表强制的JavaScript number。 | 
+
+**返回：**
+
+成功则返回JSVM_OK。
+
+
+### OH_JSVM_CoerceToObject()
+
+```
+JSVM_EXTERN JSVM_Status OH_JSVM_CoerceToObject (JSVM_Env env, JSVM_Value value, JSVM_Value * result )
+```
+
+**描述**
+
+实现抽象操作ToObject()。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| env | 调用JSVM-API的环境。 | 
+| value | 要强制转换的JavaScript值。 | 
+| result | 代表强制的JavaScript object。 | 
+
+**返回：**
+
+成功则返回JSVM_OK。
+
+
+### OH_JSVM_CoerceToString()
+
+```
+JSVM_EXTERN JSVM_Status OH_JSVM_CoerceToString (JSVM_Env env, JSVM_Value value, JSVM_Value * result )
+```
+
+**描述**
+
+实现抽象操作ToString()。 如果传入的值是对象，则函数可能会运行JavaScript代码。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| env | 调用JSVM-API的环境。 | 
+| value | 要强制转换的JavaScript值。 | 
+| result | 代表强制的JavaScript string。 | 
+
+**返回：**
+
+成功则返回JSVM_OK。
+
+
+### OH_JSVM_CompileScript()
+
+```
+JSVM_EXTERN JSVM_Status OH_JSVM_CompileScript (JSVM_Env env, JSVM_Value script, const uint8_t * cachedData, size_t cacheDataLength, bool eagerCompile, bool * cacheRejected, JSVM_Script * result )
+```
+
+**描述**
+
+编译一串JavaScript代码，并返回编译后的脚本。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| env | 目标环境，JSVM-API接口将在该环境下调用。 | 
+| script | 包含要编译的脚本的JavaScript代码。 | 
+| cachedData | 可选。脚本的代码缓存数据。 | 
+| cacheDataLength | cachedData数组的长度。 | 
+| eagerCompile | 是否立即编译脚本。 | 
+| cacheRejected | 代码缓存是否被编译拒绝。 | 
+| result | 编译后的脚本。 | 
+
+**返回：**
+
+成功则返回JSVM_OK，失败可能返回JSVM_STRING_EXPECTED或JSVM_GENERIC_FAILURE。
+
+
+### OH_JSVM_CreateArray()
+
+```
+JSVM_EXTERN JSVM_Status OH_JSVM_CreateArray (JSVM_Env env, JSVM_Value * result )
+```
+
+**描述**
+
+返回对应于JavaScript Array类型的JSVM-API值。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| env | 调用JSVM-API的环境。 | 
+| result | 代表JavaScript Array的JSVM_Value。 | 
+
+**返回：**
+
+成功则返回JSVM_OK。
+
+
+### OH_JSVM_CreateArraybuffer()
+
+```
+JSVM_EXTERN JSVM_Status OH_JSVM_CreateArraybuffer (JSVM_Env env, size_t byteLength, void ** data, JSVM_Value * result )
+```
+
+**描述**
+
+返回JavaScript ArrayBuffer类型对应的JSVM-API值。ArrayBuffer用于 表示固定长度的二进制数据缓冲区。通常用作TypedArray对象的后备缓冲区。 分配的ArrayBuffer有一个底层字节缓冲区，其大小由传入的length参数决定。 底层缓冲区可选择返回给调用方，调用方可直接操作该缓冲区。 此缓冲区只能直接从native代码写入。如果想从JavaScript写入该缓冲区， 需创建TypedArray或DataView对象。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| env | 调用JSVM-API的环境。 | 
+| byteLength | 要创建的数组缓冲区的字节长度。 | 
+| data | 指向ArrayBuffer的底层字节缓冲区的指针。data可以选择性地通过传递NULL来忽略。 | 
+| result | 代表JavaScript ArrayBuffer的JSVM_Value。 | 
+
+**返回：**
+
+成功则返回JSVM_OK。
+
+
+### OH_JSVM_CreateArrayWithLength()
+
+```
+JSVM_EXTERN JSVM_Status OH_JSVM_CreateArrayWithLength (JSVM_Env env, size_t length, JSVM_Value * result )
+```
+
+**描述**
+
+返回对应于JavaScript Array类型的JSVM-API值。Array 的长度属性设置为传入的长度参数。但是，不保证底层缓冲区在创建 数组时由VM预先分配。该行为留给底层VM实现。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| env | 调用JSVM-API的环境。 | 
+| length | 数组的初始长度。 | 
+| result | 代表JavaScript Array的JSVM_Value。 | 
+
+**返回：**
+
+成功则返回JSVM_OK。
+
+
+### OH_JSVM_CreateBigintInt64()
+
+```
+JSVM_EXTERN JSVM_Status OH_JSVM_CreateBigintInt64 (JSVM_Env env, int64_t value, JSVM_Value * result )
+```
+
+**描述**
+
+将C int64_t类型的值转换为JavaScript BigInt类型。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| env | 调用JSVM-API的环境。 | 
+| value | 要在JavaScript中表现的整数值。 | 
+| result | 表示JavaScript BigInt类型的JSVM_Value。 | 
+
+**返回：**
+
+成功则返回JSVM_OK。
+
+
+### OH_JSVM_CreateBigintUint64()
+
+```
+JSVM_EXTERN JSVM_Status OH_JSVM_CreateBigintUint64 (JSVM_Env env, uint64_t value, JSVM_Value * result )
+```
+
+**描述**
+
+将C uint64_t类型的值转换为JavaScript BigInt类型。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| env | 调用JSVM-API的环境。 | 
+| value | 要在JavaScript中表示的无符号整数值。 | 
+| result | 代表JavaScript BigInt类型的JSVM_Value。 | 
+
+**返回：**
+
+成功则返回JSVM_OK。
+
+
+### OH_JSVM_CreateBigintWords()
+
+```
+JSVM_EXTERN JSVM_Status OH_JSVM_CreateBigintWords (JSVM_Env env, int signBit, size_t wordCount, const uint64_t * words, JSVM_Value * result )
+```
+
+**描述**
+
+将一组无符号64位字转换为单个BigInt值。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| env | 调用JSVM-API的环境。 | 
+| signBit | 确定生成的BigInt是正数还是负数。 | 
+| wordCount | words数组的长度。 | 
+| words | uint64_t little-endian 64位字数组。 | 
+| result | 代表JavaScript BigInt类型的JSVM_Value。 | 
+
+**返回：**
+
+成功则返回JSVM_OK，失败可能返回JSVM_INVALID_ARG或JSVM_GENERIC_FAILURE。
+
+
+### OH_JSVM_CreateCodeCache()
+
+```
+JSVM_EXTERN JSVM_Status OH_JSVM_CreateCodeCache (JSVM_Env env, JSVM_Script script, const uint8_t ** data, size_t * length )
+```
+
+**描述**
+
+为编译后的脚本创建代码缓存。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| env | 目标环境，JSVM-API接口将在该环境下调用。 | 
+| script | 目标编译脚本。 | 
+| data | 代码缓存的数据。 | 
+| length | 代码缓存数据的长度。 | 
+
+**返回：**
+
+成功则返回JSVM_OK，失败可能返回JSVM_GENERIC_FAILURE。
+
+
+### OH_JSVM_CreateDataview()
+
+```
+JSVM_EXTERN JSVM_Status OH_JSVM_CreateDataview (JSVM_Env env, size_t length, JSVM_Value arraybuffer, size_t byteOffset, JSVM_Value * result )
+```
+
+**描述**
+
+基于已有的ArrayBuffer对象，创建一个JavaScript DataView对象。DataView 对象在底层数据缓冲区上提供了一个类似数组的视图，其中的元素可以具有不同的大小和类型。 要求：二进制的length + byteOffset 小于或等于传入的数组的大小（以字节为单位）。否则，将抛出范围错误（RangeError）。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| env | 调用JSVM-API的环境。 | 
+| length | DataView中的元素个数。 | 
+| arraybuffer | 位于DataView底层的ArrayBuffer。 | 
+| byteOffset | ArrayBuffer中的字节偏移量，指示投影DataView的开始位置。 | 
+| result | 表示JavaScript DataView对象的JSVM_Value。 | 
+
+**返回：**
+
+成功则返回JSVM_OK，失败可能返回JSVM_PENDING_EXCEPTION。
+
+
+### OH_JSVM_CreateDate()
+
+```
+JSVM_EXTERN JSVM_Status OH_JSVM_CreateDate (JSVM_Env env, double time, JSVM_Value * result )
+```
+
+**描述**
+
+分配一个JavaScript Date对象。此API不处理闰秒。 这是因为ECMAScript遵循POSIX时间规范，对闰秒进行忽略。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| env | 调用JSVM-API的环境。 | 
+| time | 自1970年1月1日UTC以来的ECMAScript时间值（以毫秒为单位）。 | 
+| result | 表示JavaScript Date对象的JSVM_Value。 | 
+
+**返回：**
+
+成功则返回JSVM_OK，失败可能返回JSVM_GENERIC_FAILURE。
+
+
+### OH_JSVM_CreateDouble()
+
+```
+JSVM_EXTERN JSVM_Status OH_JSVM_CreateDouble (JSVM_Env env, double value, JSVM_Value * result )
+```
+
+**描述**
+
+将C double类型的值转换为JavaScript number类型。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| env | 调用JSVM-API的环境。 | 
+| value | 要在JavaScript中表现的双精度值。 | 
+| result | 代表JavaScript number类型的JSVM_Value。 | 
+
+**返回：**
+
+成功则返回JSVM_OK。
+
+
+### OH_JSVM_CreateEnv()
+
+```
+JSVM_EXTERN JSVM_Status OH_JSVM_CreateEnv (JSVM_VM vm, size_t propertyCount, const JSVM_PropertyDescriptor * properties, JSVM_Env * result )
+```
+
+**描述**
+
+基于新环境上下文的可选属性，创建一个新环境。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| vm | 虚拟机实例，新环境将在该实例中创建。 | 
+| propertyCount | 属性数组中元素的个数。 | 
+| properties | 属性描述符的数组。 | 
+| result | 创建的新环境。 | 
+
+**返回：**
+
+成功则返回JSVM_OK。
+
+
+### OH_JSVM_CreateEnvFromSnapshot()
+
+```
+JSVM_EXTERN JSVM_Status OH_JSVM_CreateEnvFromSnapshot (JSVM_VM vm, size_t index, JSVM_Env * result )
+```
+
+**描述**
+
+基于虚拟机的起始快照，创建一个新的环境。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| vm | 虚拟机实例，新环境将在该实例中创建。 | 
+| index | 环境在快照中的索引。 | 
+| result | 创建的新环境。 | 
+
+**返回：**
+
+成功则返回JSVM_OK，失败可能返回JSVM_GENERIC_FAILURE。
+
+
+### OH_JSVM_CreateError()
+
+```
+JSVM_EXTERN JSVM_Status OH_JSVM_CreateError (JSVM_Env env, JSVM_Value code, JSVM_Value msg, JSVM_Value * result )
+```
+
+**描述**
+
+返回带有所提供文本的JavaScript Error。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| env | 调用JSVM-API的环境。 | 
+| code | 可选的JSVM_Value，带有与错误关联的错误代码的字符串。 | 
+| msg | 引用JavaScript string用作Error的消息。 | 
+| result | 表示创建的错误。 | 
+
+**返回：**
+
+成功则返回JSVM_OK，失败可能返回JSVM_STRING_EXPECTED。
+
+
+### OH_JSVM_CreateExternal()
+
+```
+JSVM_EXTERN JSVM_Status OH_JSVM_CreateExternal (JSVM_Env env, void * data, JSVM_Finalize finalizeCb, void * finalizeHint, JSVM_Value * result )
+```
+
+**描述**
+
+分配一个带有外部数据的JavaScript值。这用于通过JavaScript代码传递外部数据。 后续可以使用OH_JSVM_GetValueExternal由native代码检索。 该API添加了一个JSVM_Finalize回调，当刚刚创建的JavaScript对象被垃圾回收时将调用该回调。 创建的值不是一个对象，因此不支持附加属性。它被认为是一个独特的值类型： 使用外部值调用OH_JSVM_Typeof()会生成JSVM_EXTERNAL。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| env | 调用JSVM-API的环境。 | 
+| data | 指向外部数据的原始指针。 | 
+| finalizeCb | 收集外部值时调用的可选回调。JSVM_Finalize提供了更多详细信息。 | 
+| finalizeHint | 在收集期间传递给最终回调的可选提示。 | 
+| result | 表示外部值的JSVM_Value。 | 
+
+**返回：**
+
+成功则返回JSVM_OK。
+
+
+### OH_JSVM_CreateFunction()
+
+```
+JSVM_EXTERN JSVM_Status OH_JSVM_CreateFunction (JSVM_Env env, const char * utf8name, size_t length, JSVM_Callback cb, JSVM_Value * result )
+```
+
+**描述**
+
+支持在native代码中创建函数对象，这是从JavaScript调用native代码的主要机制。 在此调用之后，新创建的函数在脚本中不再自动可见。相反，必须在JavaScript可见的任何对象上显示设置属性， 才能从脚本访问该函数。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| env | 调用JSVM-API的环境。 | 
+| utf8Name | 编码为UTF8的函数的可选名称。这在JavaScript中是可见的， 作为新函数对象的name属性。 | 
+| length | utf8name的长度（以字节为单位）或JSVM_AUTO_LENGTH（如果以 null 结尾）。 | 
+| cb | 调用此函数对象时应调用的native函数。详情请参考JSVM_Callback。 | 
+| result | 表示新创建函数的JavaScript函数对象。 | 
+
+**返回：**
+
+成功则返回JSVM_OK。
+
+
+### OH_JSVM_CreateInt32()
+
+```
+JSVM_EXTERN JSVM_Status OH_JSVM_CreateInt32 (JSVM_Env env, int32_t value, JSVM_Value * result )
+```
+
+**描述**
+
+将C int32_t类型的值转换为JavaScript number类型。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| env | 调用JSVM-API的环境。 | 
+| value | 要在JavaScript中表示的整数值。 | 
+| result | 表示JavaScript number类型的JSVM_Value。 | 
+
+**返回：**
+
+成功则返回JSVM_OK。
+
+
+### OH_JSVM_CreateInt64()
+
+```
+JSVM_EXTERN JSVM_Status OH_JSVM_CreateInt64 (JSVM_Env env, int64_t value, JSVM_Value * result )
+```
+
+**描述**
+
+将C int64_t类型的值转换为JavaScript number类型。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| env | 调用JSVM-API的环境。 | 
+| value | 要在JavaScript中表示的整数值。 | 
+| result | 代表JavaScript number类型的JSVM_Value。 | 
+
+**返回：**
+
+成功则返回JSVM_OK。
+
+
+### OH_JSVM_CreateObject()
+
+```
+JSVM_EXTERN JSVM_Status OH_JSVM_CreateObject (JSVM_Env env, JSVM_Value * result )
+```
+
+**描述**
+
+分配一个默认的JavaScript对象。该函数功能等同于在JavaScript中执行new Object()。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| env | 调用JSVM-API的环境。 | 
+| result | 表示JavaScript对象的JSVM_Value。 | 
+
+**返回：**
+
+成功则返回JSVM_OK。
+
+
+### OH_JSVM_CreatePromise()
+
+```
+JSVM_EXTERN JSVM_Status OH_JSVM_CreatePromise (JSVM_Env env, JSVM_Deferred * deferred, JSVM_Value * promise )
+```
+
+**描述**
+
+创建一个延迟对象和一个JavaScript promise。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| env | 调用JSVM-API的环境。 | 
+| deferred | 一个新创建的延迟对象，后续可以传递给OH_JSVM_ResolveDeferred()或 [OH_JSVM_RejectDeferred()](#oh_jsvm_rejectdeferred)以解析resp。或拒绝相关的Promise。 | 
+| promise | 与延迟对象关联的JavaScript Promise。 | 
+
+**返回：**
+
+成功则返回JSVM_OK，失败可能返回JSVM_GENERIC_FAILURE。
+
+
+### OH_JSVM_CreateRangeError()
+
+```
+JSVM_EXTERN JSVM_Status OH_JSVM_CreateRangeError (JSVM_Env env, JSVM_Value code, JSVM_Value msg, JSVM_Value * result )
+```
+
+**描述**
+
+返回带有所提供文本的JavaScript RangeError。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| env | 调用JSVM-API的环境。 | 
+| code | 可选的JSVM_Value，带有与错误关联的错误代码的字符串。 | 
+| msg | 引用JavaScript string用作Error的消息。 | 
+| result | 表示创建的错误。 | 
+
+**返回：**
+
+成功则返回JSVM_OK，失败可能返回JSVM_STRING_EXPECTED。
+
+
+### OH_JSVM_CreateReference()
+
+```
+JSVM_EXTERN JSVM_Status OH_JSVM_CreateReference (JSVM_Env env, JSVM_Value value, uint32_t initialRefcount, JSVM_Ref * result )
+```
+
+**描述**
+
+对传入的值创建一个具有指定引用计数的新引用。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| env | 调用JSVM-API的环境。 | 
+| value | 正在为其创建引用的JSVM_Value。 | 
+| initialRefcount | 新引用的初始引用计数。 | 
+| result | 指向新的引用。 | 
+
+**返回：**
+
+成功则返回JSVM_OK。
+
+
+### OH_JSVM_CreateSnapshot()
+
+```
+JSVM_EXTERN JSVM_Status OH_JSVM_CreateSnapshot (JSVM_VM vm, size_t contextCount, const JSVM_Env * contexts, const char ** blobData, size_t * blobSize )
+```
+
+**描述**
+
+创建虚拟机的启动快照。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| vm | 目标环境，API接口将在该环境下调用。 | 
+| contextCount | 上下文个数。 | 
+| contexts | 要添加到快照的上下文数组。 | 
+| blobData | 快照数据。 | 
+| blobSize | 快照数据的大小。 | 
+
+**返回：**
+
+成功则返回JSVM_OK，失败可能返回JSVM_GENERIC_FAILURE。
+
+
+### OH_JSVM_CreateStringLatin1()
+
+```
+JSVM_EXTERN JSVM_Status OH_JSVM_CreateStringLatin1 (JSVM_Env env, const char * str, size_t length, JSVM_Value * result )
+```
+
+**描述**
+
+将采用ISO-8859-1编码的C字符串转换为JavaScript string值。 复制原生字符串。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| env | 调用JSVM-API的环境。 | 
+| str | 表示ISO-8859-1编码的字符串的字符缓冲区。 | 
+| length | 字符串的长度，以字节为单位。如果它以null结尾，则为JSVM_AUTO_LENGTH。 | 
+| result | 表示JavaScript字符串的JSVM_Value。 | 
+
+**返回：**
+
+成功则返回JSVM_OK。
+
+
+### OH_JSVM_CreateStringUtf16()
+
+```
+JSVM_EXTERN JSVM_Status OH_JSVM_CreateStringUtf16 (JSVM_Env env, const char16_t * str, size_t length, JSVM_Value * result )
+```
+
+**描述**
+
+将采用UTF16-LE编码的C字符串转换为JavaScript字符串值。 复制原生字符串。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| env | 调用JSVM-API的环境。 | 
+| str | 表示UTF16-LE编码的字符串的字符缓冲区。 | 
+| length | 以两字节代码单元表示的字符串长度，如果它以null终止，则为JSVM_AUTO_LENGTH。 | 
+| result | 代表JavaScript string的JSVM_Value。 | 
+
+**返回：**
+
+成功则返回JSVM_OK。
+
+
+### OH_JSVM_CreateStringUtf8()
+
+```
+JSVM_EXTERN JSVM_Status OH_JSVM_CreateStringUtf8 (JSVM_Env env, const char * str, size_t length, JSVM_Value * result )
+```
+
+**描述**
+
+从UTF8编码的C字符串创建JavaScript string值。 复制原生字符串。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| env | 调用JSVM-API的环境。 | 
+| str | 表示UTF8编码字符串的字符缓冲区。 | 
+| length | 字符串的长度，以字节为单位。如果字符串以null结尾，则为JSVM_AUTO_LENGTH。 | 
+| result | 代表JavaScript字符串的JSVM_Value。 | 
+
+**返回：**
+
+成功则返回JSVM_OK。
+
+
+### OH_JSVM_CreateSymbol()
+
+```
+JSVM_EXTERN JSVM_Status OH_JSVM_CreateSymbol (JSVM_Env env, JSVM_Value description, JSVM_Value * result )
+```
+
+**描述**
+
+从UTF8 编码的C字符串创建JavaScript symbol值。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| env | 调用JSVM-API的环境。 | 
+| description | 可选的JSVM_Value，它指的是要设置为符号描述的JavaScript string。 | 
+| result | 代表JavaScript symbol的JSVM_Value。 | 
+
+**返回：**
+
+成功则返回JSVM_OK，失败可能返回JSVM_STRING_EXPECTED。
+
+
+### OH_JSVM_CreateSyntaxError()
+
+```
+JSVM_EXTERN JSVM_Status OH_JSVM_CreateSyntaxError (JSVM_Env env, JSVM_Value code, JSVM_Value msg, JSVM_Value * result )
+```
+
+**描述**
+
+返回带有所提供文本的JavaScript SyntaxError。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| env | 调用JSVM-API的环境。 | 
+| code | 可选的JSVM_Value，带有与错误关联的错误代码的字符串。 | 
+| msg | 引用JavaScript string用作Error的消息。 | 
+| result | 表示创建的错误。 | 
+
+**返回：**
+
+成功则返回JSVM_OK，失败可能返回JSVM_STRING_EXPECTED。
+
+
+### OH_JSVM_CreateTypedarray()
+
+```
+JSVM_EXTERN JSVM_Status OH_JSVM_CreateTypedarray (JSVM_Env env, JSVM_TypedarrayType type, size_t length, JSVM_Value arraybuffer, size_t byteOffset, JSVM_Value * result )
+```
+
+**描述**
+
+基于已有的ArrayBuffer对象，创建一个JavaScript TypedArray对象。TypedArray 对象在底层数据缓冲区上提供了一个类似数组的视图，其中每个元素都具有 相同的底层二进制标量数据类型。要求：（length\* 元素大小）+ byteOffset 小于等于传入的数组的大小（以字节为单位）。否则，将抛出范围错误（RangeError）。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| env | 调用JSVM-API的环境。 | 
+| type | TypedArray中元素的标量数据类型。 | 
+| length | TypedArray中的元素个数。 | 
+| arraybuffer | ArrayBuffer是类型化数组的基础。 | 
+| byteOffset | ArrayBuffer中开始投影TypedArray的字节偏移量。 | 
+| result | 表示JavaScript TypedArray的JSVM_Value。 | 
+
+**返回：**
+
+成功则返回JSVM_OK，失败可能返回JSVM_INVALID_ARG。
+
+
+### OH_JSVM_CreateTypeError()
+
+```
+JSVM_EXTERN JSVM_Status OH_JSVM_CreateTypeError (JSVM_Env env, JSVM_Value code, JSVM_Value msg, JSVM_Value * result )
+```
+
+**描述**
+
+返回带有所提供文本的JavaScript TypeError。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| env | 调用JSVM-API的环境。 | 
+| code | 可选的JSVM_Value，带有与错误关联的错误代码的字符串。 | 
+| msg | 引用JavaScript string用作Error的消息。 | 
+| result | 表示创建的错误。 | 
+
+**返回：**
+
+成功则返回JSVM_OK，失败可能返回JSVM_STRING_EXPECTED。
+
+
+### OH_JSVM_CreateUint32()
+
+```
+JSVM_EXTERN JSVM_Status OH_JSVM_CreateUint32 (JSVM_Env env, uint32_t value, JSVM_Value * result )
+```
+
+**描述**
+
+将C uint32_t类型的值转换为JavaScript number类型。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| env | 调用JSVM-API的环境。 | 
+| value | 要在JavaScript中表示的无符号整数值。 | 
+| result | 表示JavaScript number类型的JSVM_Value。 | 
+
+**返回：**
+
+成功则返回JSVM_OK。
+
+
+### OH_JSVM_CreateVM()
+
+```
+JSVM_EXTERN JSVM_Status OH_JSVM_CreateVM (const JSVM_CreateVMOptions * options, JSVM_VM * result )
+```
+
+**描述**
+
+创建一个虚拟机实例。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 用于创建虚拟机实例的选项。 | 
+| result | 新的虚拟机实例。 | 
+
+**返回：**
+
+成功则返回JSVM_OK，失败可能返回JSVM_INVALID_ARG。
+
+
+### OH_JSVM_DefineClass()
+
+```
+JSVM_EXTERN JSVM_Status OH_JSVM_DefineClass (JSVM_Env env, const char * utf8name, size_t length, JSVM_Callback constructor, size_t propertyCount, const JSVM_PropertyDescriptor * properties, JSVM_Value * result )
+```
+
+**描述**
+
+定义一个JavaScript类。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| env | 调用JSVM-API的环境。 | 
+| utf8name | JavaScript构造函数的名称，建议在包装C++类时使用C++类名。 | 
+| length | utf8name的长度（以字节为单位）或JSVM_AUTO_LENGTH（如果以 null 结尾）。 | 
+| constructor | 用于创建类的构造函数的回调函数。包装C++类时，此方法必须是符合JSVM_Callback。 callback签名的静态成员。不能使用C++类构造函数。详情请参考JSVM_Callback。 | 
+| propertyCount | properties数组参数中的项数。 | 
+| properties | 类的属性描述符，用于定义类的属性和方法。 | 
+| result | 表示类的构造函数的JSVM_Value。 | 
+
+**返回：**
+
+成功则返回JSVM_OK。
+
+
