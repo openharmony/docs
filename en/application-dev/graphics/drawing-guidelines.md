@@ -354,7 +354,15 @@ Follow the steps below to draw a 2D graphic by using the canvas and pen of the n
 
 ### Drawing Text
 
-Follow the steps below to use the text drawing feature of the native drawing module.
+The native drawing module provides two types of APIs for text drawing:
+
+- APIs with the typography customization capability. Example APIs are **OH_Drawing_Typography**, **OH_Drawing_TypographyStyle**, and **OH_Drawing_TextStyle**. This type of API allows you to set the typography style and text style. You can call **OH_Drawing_TypographyHandlerAddText** to add text, and call **OH_Drawing_TypographyLayout** and **OH_Drawing_TypographyPaint** to typeset and draw the text.
+- APIs that do not support typography customization. Example APIs are **OH_Drawing_Font**, **OH_Drawing_TextBlob**, and **OH_Drawing_RunBuffer**. An application that has its own typography capability can construct the typography result as an **OH_Drawing_TextBlob** and then call **OH_Drawing_CanvasDrawTextBlob** to draw the text block described in the **OH_Drawing_TextBlob**.
+
+The following describes how to use the two types of APIs to implement text drawing.
+
+#### Using APIs with Typography Customization to Draw Text
+
 1. **Create a bitmap and a canvas.**
 
     ```c++
@@ -390,19 +398,30 @@ Follow the steps below to use the text drawing feature of the native drawing mod
     OH_Drawing_SetTextStyleFontWeight(txtStyle, FONT_WEIGHT_400);
     OH_Drawing_SetTextStyleBaseLine(txtStyle, TEXT_BASELINE_ALPHABETIC);
     OH_Drawing_SetTextStyleFontHeight(txtStyle, 1);
-    // Set the font families.
-    const char* fontFamilies[] = {"Roboto"};
-    OH_Drawing_SetTextStyleFontFamilies(txtStyle, 1, fontFamilies);
+    OH_Drawing_FontCollection* fontCollection = OH_Drawing_CreateFontCollection();
+    // Register the customized font.
+    const char* fontFamily = "myFamilyName"; // myFamilyName is the family name of the customized font.
+    const char* fontPath = "/data/storage/el2/base/haps/entry/files/myFontFile.ttf"; // Set the sandbox path where the customized font is located.
+    OH_Drawing_RegisterFont(fontCollection, fontFamily, fontPath);
+    // Set the system font type.
+    const char* systemFontFamilies[] = {"Roboto"};
+    OH_Drawing_SetTextStyleFontFamilies(txtStyle, 1, systemFontFamilies);
     OH_Drawing_SetTextStyleFontStyle(txtStyle, FONT_STYLE_NORMAL);
     OH_Drawing_SetTextStyleLocale(txtStyle, "en");
+    // Set the customized font type.
+    auto txtStyle2 = OH_Drawing_CreateTextStyle();
+    OH_Drawing_SetTextStyleFontSize(txtStyle2, fontSize);
+    const char* myFontFamilies[] = {"myFamilyName"}; // If a customized font has been registered, enter the family name of the customized font to use the customized font.
+    OH_Drawing_SetTextStyleFontFamilies(txtStyle2, 1, myFontFamilies);
     ```
 
 4. **Generate the final text display effect.**
 
     ```c++
     OH_Drawing_TypographyCreate* handler = OH_Drawing_CreateTypographyHandler(typoStyle,
-        OH_Drawing_CreateFontCollection());
+        fontCollection);
     OH_Drawing_TypographyHandlerPushTextStyle(handler, txtStyle);
+    OH_Drawing_TypographyHandlerPushTextStyle(handler, txtStyle2);
     // Set the text content.
     const char* text = "Hello World Drawing\n";
     OH_Drawing_TypographyHandlerAddText(handler, text);
@@ -416,6 +435,78 @@ Follow the steps below to use the text drawing feature of the native drawing mod
     // Draw the text on the canvas.
     OH_Drawing_TypographyPaint(typography, cCanvas_, position[0], position[1]);
     ```
+5. **Release the variables.**
+
+    ```c++
+    OH_Drawing_DestroyTypography(typography);
+    OH_Drawing_DestroyTypographyHandler(handler);
+    OH_Drawing_DestroyFontCollection(fontCollection);
+    OH_Drawing_DestroyTextStyle(txtStyle);
+    OH_Drawing_DestroyTextStyle(txtStyle2);
+    OH_Drawing_DestroyTypographyStyle(typoStyle);
+    ```
+
+#### Using APIs Without Typography Customization to Draw Text
+
+1. **Create a bitmap and a canvas.**
+
+    ```c++
+    // Create a bitmap.
+    cBitmap_ = OH_Drawing_BitmapCreate();
+    OH_Drawing_BitmapFormat cFormat {COLOR_FORMAT_RGBA_8888, ALPHA_FORMAT_OPAQUE};
+    // The width must be bufferHandle->stride / 4.
+    OH_Drawing_BitmapBuild(cBitmap_, width_, height_, &cFormat);
+    // Create a canvas.
+    cCanvas_ = OH_Drawing_CanvasCreate();
+    OH_Drawing_CanvasBind(cCanvas_, cBitmap_);
+    OH_Drawing_CanvasClear(cCanvas_, OH_Drawing_ColorSetArgb(0xFF, 0xFF, 0xFF, 0xFF));
+    ```
+
+2. **Refer to the code snippet below for the application that has its own typography capability.**
+
+    ```c++
+    // Create a font and set the font size.
+    OH_Drawing_Font* font = OH_Drawing_FontCreate();
+    OH_Drawing_FontSetTextSize(font, 40);
+    // Create a text blob builder.
+    OH_Drawing_TextBlobBuilder* builder = OH_Drawing_TextBlobBuilderCreate();
+    // Apply for a memory block.
+    const OH_Drawing_RunBuffer* runBuffer = OH_Drawing_TextBlobBuilderAllocRunPos(builder, font, count, nullptr);
+    // glyphs, posX, and posY are data generated during typography. The data is used to fill in the memory.
+    for (int idx = 0; idx < count; idx++) {
+        runBuffer->glyphs[idx] = glyphs[idx];
+        runBuffer->pos[idx * 2] = posX[idx];
+        runBuffer->pos[idx * 2 + 1] = posY[idx];
+    }
+    // Create the text blob using the text blob builder.
+    OH_Drawing_TextBlob* textBlob = OH_Drawing_TextBlobBuilderMake(builder);
+    // Release the memory.
+    OH_Drawing_TextBlobBuilderDestroy(builder);
+    ```
+
+4. **Set the pen and brush styles.**
+
+    ```c++
+    // Create a brush object and set the color.
+    cBrush_ = OH_Drawing_BrushCreate();
+    OH_Drawing_BrushSetColor(cBrush_, OH_Drawing_ColorSetArgb(0xFF, 0x00, 0x00, 0x00));
+
+    // Attach the brush to the canvas.
+    OH_Drawing_CanvasAttachBrush(cCanvas_, cBrush_);
+    ```
+
+5. **Generate the final text display effect.**
+
+    ```c++
+    // Set the start position for drawing the text on the canvas.
+    double position[2] = {width_ / 5.0, height_ / 2.0};
+    // Draw the text on the canvas.
+    OH_Drawing_CanvasDrawTextBlob(canvas_, textBlob, position[0], position[1]);
+    // Release the memory.
+    OH_Drawing_TextBlobDestroy(textBlob);
+    OH_Drawing_FontDestroy(font);
+    ```
+
 ### Displaying the Graphics and Text Drawn
 
 You have drawn a pentagon and text by using the native drawing APIs. Now you need to display them on the screen by using the native Window APIs.
@@ -575,9 +666,8 @@ The preceding code is the C++ code at the native layer. To call the code, use th
         }
     }
     ```
-    
     The following figure shows the drawing and display effect.
-    
+
     | Home page                                | Pentagon drawn                                        | Text drawn                                           |
     | ------------------------------------ |-----------------------------------------------| --------------------------------------------------- |
     | ![main](./figures/drawIndex.jpg) | ![Draw Path](./figures/drawPath.jpg) | ![Draw Text](./figures/drawText.jpg) |

@@ -38,7 +38,7 @@ libnative_window.so
 
 1. **获取OHNativeWindow实例**。
 
-    可在[`OH_NativeXComponent_Callback`](../reference/native-apis/_o_h___native_x_component___callback.md)提供的接口中获取OHNativeWindow，下面提供一份代码示例。XComponent模块的具体使用方法请参考[XComponent开发指导](../ui/napi-xcomponent-guidelines.md)。
+    可在[OH_NativeXComponent_Callback](../reference/apis-arkui/_o_h___native_x_component___callback.md)提供的接口中获取OHNativeWindow，下面提供一份代码示例。XComponent模块的具体使用方法请参考[XComponent开发指导](../ui/napi-xcomponent-guidelines.md)。
     1. 在xxx.ets中添加一个XComponent组件。
         ```ts
         XComponent({ id: 'xcomponentId', type: 'surface', libraryname: 'entry'})

@@ -800,6 +800,8 @@ Obtains the rectangular bounding box of the text blob.
 ```ts
 import drawing from "@ohos.graphics.drawing"
 import common2D from "@ohos.graphics.common2D"
+const font = new drawing.Font();
+font.setSize(20);
 const textBlob = drawing.TextBlob.makeFromString("drawing", font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
 textBlob.bounds();
 ```
@@ -1042,7 +1044,7 @@ Measures the text width.
 ```ts
 import drawing from "@ohos.graphics.drawing"
 let font = new drawing.Font();
-font.measureText();
+font.measureText("drawing", drawing.TextEncoding.TEXT_ENCODING_UTF8);
 ```
 
 ## FontMetrics
@@ -1440,7 +1442,7 @@ Sets a color filter for this brush.
 ```ts
 import drawing from "@ohos.graphics.drawing"
 const brush = new drawing.Brush();
-let colorFilter = draw.ColorFilter.createLinearToSRGBGamma();
+let colorFilter = drawing.ColorFilter.createLinearToSRGBGamma();
 brush.setColorFilter(colorFilter);
 ```
 

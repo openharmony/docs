@@ -188,7 +188,7 @@ WMV当前是不支持，支持的格式有AAC、MPEG(MP3)、Flac、Vorbis。
 
 **参考资料**
 
-soundpool支持的格式与底层一致，支持的格式可以参考文档：[音频解码](../media/audio-decoding.md)
+soundpool支持的格式与底层一致，支持的格式可以参考文档：[音频解码](../media/avcodec/audio-decoding.md)
 
 ## 如何读取相机的预览图？(API 10)
 
@@ -224,7 +224,7 @@ soundpool支持的格式与底层一致，支持的格式可以参考文档：[�
 
 **解决措施**
 
-支持通过OHAudio C API接口AudioCapturer使用系统低时延采集，具体实现参考：[使用OHAudio开发音频录制功能(C/C++)](../media/using-ohaudio-for-recording.md)。
+支持通过OHAudio C API接口AudioCapturer使用系统低时延采集，具体实现参考：[使用OHAudio开发音频录制功能(C/C++)](../media/audio/using-ohaudio-for-recording.md)。
 
 **参考资料**
 
@@ -239,8 +239,8 @@ soundpool支持的格式与底层一致，支持的格式可以参考文档：[�
 
 **参考资料**
 
-1. [Media Kit](../media/media-kit-intro.md)
-2. [AVPlayer](../media/using-avplayer-for-playback.md)
+1. [Media Kit](../media/media/media-kit-intro.md)
+2. [AVPlayer](../media/media/using-avplayer-for-playback.md)
 
 ## 音频播放器AVPlayer如何在后台进行播放？(API 10)
 
@@ -251,7 +251,7 @@ soundpool支持的格式与底层一致，支持的格式可以参考文档：[�
 **参考资料**
 
 1. [长时任务](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/TaskManagement/ContinuousTask)
-2. [应用接入AVSession场景介绍](../media/avsession-access-scene.md)
+2. [应用接入AVSession场景介绍](../media/avsession/avsession-access-scene.md)
 
 ## 三方应用为什么无法创建相册？(API 10)
 

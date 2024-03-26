@@ -46,22 +46,6 @@ Enumerates the predefined configuration options.
 | CONFIG_SESSION_MAX         | 'maxSessionNum'    | Maximum number of sessions supported by the device.    |
 | CONFIG_SESSION_CURRENT   | 'currentSessionNum'    | Number of current sessions.    |
 
-## ListenerType
-
-Enumerates the types of events that can be subscribed to.
-
-**System capability**: SystemCapability.Multimedia.Drm.Core
-
-| Name                      | Value  | Description           |
-| ------------------------- | ---- | ------------    |
-| LISTENER_DRM_EVENT        | 200    | DRM event.  |
-| LISTENER_PROVISION_REQUIRED    | 201    | Event indicating that the application needs to request a device certificate.    |
-| LISTENER_KEY_REQUIRED     | 202    | Event indicating that the application needs to request a media key.    |
-| LISTENER_KEY_EXPIRED      | 203    | Event indicating that the media key expires.      |
-| LISTENER_VENDOR_DEFINED   | 204    | Vendor-defined event.    |
-| LISTENER_EXPIRATION_UPDATE    | 206    | Event indicating that the media key updates on expiry.    |
-| LISTENER_KEY_CHANGE    | 207    | Event indicating that the media key changes.    |
-
 ## MediaKeyType
 
 Enumerates the media key types.
@@ -298,7 +282,7 @@ import drm from '@ohos.multimedia.drm';
 import { BusinessError } from '@ohos.base';
 
 try {
-  bool Supported = drm.isMediaKeySystemSupported("com.clearplay.drm");
+  let Supported = drm.isMediaKeySystemSupported("com.clearplay.drm");
 } catch (err) {
   let error = err as BusinessError;
   console.error(`isMediaKeySystemSupported ERROR: ${error}`);  
@@ -344,10 +328,10 @@ import drm from '@ohos.multimedia.drm';
 import { BusinessError } from '@ohos.base';
 
 try {
-  bool Supported = drm.isMediaKeySystemSupported2("com.clearplay.drm", "video/mp4");
+  let Supported = drm.isMediaKeySystemSupported("com.clearplay.drm", "video/mp4");
 } catch (err) {
   let error = err as BusinessError;
-  console.error(`isMediaKeySystemSupported2 ERROR: ${error}`);  
+  console.error(`isMediaKeySystemSupported ERROR: ${error}`);
 }
 ```
 
@@ -390,10 +374,10 @@ import drm from '@ohos.multimedia.drm';
 import { BusinessError } from '@ohos.base';
 
 try {
-  bool Supported = drm.isMediaKeySystemSupported3("com.clearplay.drm", "video/mp4", drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
+  let Supported = drm.isMediaKeySystemSupported("com.clearplay.drm", "video/mp4", drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
 } catch (err) {
   let error = err as BusinessError;
-  console.error(`isMediaKeySystemSupported3 ERROR: ${error}`);
+  console.error(`isMediaKeySystemSupported ERROR: ${error}`);
 }
 
 ```
@@ -520,7 +504,7 @@ import drm from '@ohos.multimedia.drm';
 import { BusinessError } from '@ohos.base';
 
 let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
-var configValue = new Uint8Array([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
+let configValue = new Uint8Array([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
 try {
   mediaKeysystem.setConfigurationByteArray("configName", configValue);
 } catch (err) {
@@ -606,7 +590,7 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 import drm from '@ohos.multimedia.drm';
 import { BusinessError } from '@ohos.base';
 
-let mediaKeysystem: drm.StatisticKeyValue[] = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 try {
   let statisticKeyValue: StatisticKeyValue[] = mediaKeysystem.getStatistics();
 } catch (err) {
@@ -646,7 +630,7 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 import drm from '@ohos.multimedia.drm';
 import { BusinessError } from '@ohos.base';
 
-let mediaKeysystem: drm.mediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 try {
   let maxLevel: drm.ContentProtectionLevel = mediaKeysystem.getMaxContentProtectionLevel();
 } catch (err) {
@@ -725,7 +709,7 @@ import drm from '@ohos.multimedia.drm';
 import { BusinessError } from '@ohos.base';
 
 let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
-var keySystemResponse = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
+let keySystemResponse = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
 mediaKeysystem.processKeySystemResponse(keySystemResponse).then(() => {
   console.log("processKeySystemResponse");
 }).catch((err: BusinessError) => {
@@ -803,7 +787,7 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 import drm from '@ohos.multimedia.drm';
 
 function registerkeySystemRequired(mediaKeysystem: drm.MediaKeySystem): void {
-  mediaKeysystem.on('keySystemRequired', (eventInfo: EventInfo) => {
+  mediaKeysystem.on('keySystemRequired', (eventInfo: drm.EventInfo) => {
     console.log('keySystemRequired' + 'extra:' + eventInfo.extraInfo + ' data:' + eventInfo.info);
   });
 }
@@ -883,7 +867,7 @@ try {
   let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
 } catch (err) {
   let error = err as BusinessError;
-  console.error(`getCertificateStatus ERROR: ${error}`);
+  console.error(`createMediaKeySession ERROR: ${error}`);
 }
 
 ```
@@ -1005,7 +989,7 @@ import drm from '@ohos.multimedia.drm';
 import { BusinessError } from '@ohos.base';
 
 let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
-var mediaKeyIdString = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
+let mediaKeyIdString = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
 try {
   let configValue: drm.OfflineMediaKeyStatus = mediaKeysystem.getOfflineMediaKeyStatus(mediaKeyIdString);
 } catch (err) {
@@ -1046,7 +1030,7 @@ import drm from '@ohos.multimedia.drm';
 import { BusinessError } from '@ohos.base';
 
 let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
-var mediaKeyIdString = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
+let mediaKeyIdString = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
 try {
   mediaKeysystem.clearOfflineMediaKeys(mediaKeyIdString);
 } catch (err) {
@@ -1133,11 +1117,11 @@ import { BusinessError } from '@ohos.base';
 
 let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
-var OptionsData = [
+let OptionsData = [
     {name : "optionalsDataNameA", value : "optionalsDataValueA"},
     {name : "optionalsDataNameB", value : "optionalsDataValueB"},
 ];
-var uint8pssh = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
+let uint8pssh = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
 mediaKeySession.generateMediaKeyRequest("video/mp4", uint8pssh, 0, OptionsData).then((mediaKeyRequest: drm.MediaKeyRequest) =>{
   console.log('generateMediaKeyRequest' + mediaKeyRequest);
 }).catch((err: BusinessError) => {
@@ -1183,7 +1167,7 @@ import { BusinessError } from '@ohos.base';
 
 let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
-var mediaKeyResponse = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
+let mediaKeyResponse = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
 mediaKeySession.processMediaKeyResponse(mediaKeyResponse).then((mediaKeyId: Uint8Array) => {
   console.log('processMediaKeyResponse:' + mediaKeyId);
 }).catch((err: BusinessError) => {
@@ -1303,12 +1287,13 @@ import { BusinessError } from '@ohos.base';
 
 let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
-var Request = new Uint8Array([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
+let Request = new Uint8Array([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
 mediaKeySession.processMediaKeyResponse(Request).then((mediaKeyId: Uint8Array) => {
   console.log('processMediaKeyResponse:' + mediaKeyId);
 }).catch((err: BusinessError) => {
   console.error(`processMediaKeyResponse: ERROR: ${err}`);
 });
+let mediaKeyId = new Uint8Array([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
 mediaKeySession.generateOfflineReleaseRequest(mediaKeyId).then((offlineReleaseRequest: Uint8Array) => {
   console.log('generateOfflineReleaseRequest:' + offlineReleaseRequest);
 }).catch((err: BusinessError) => {
@@ -1349,13 +1334,14 @@ import { BusinessError } from '@ohos.base';
 
 let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
-var offlineReleaseRequest = new Uint8Array([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
+let offlineReleaseRequest = new Uint8Array([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
 mediaKeySession.processMediaKeyResponse(offlineReleaseRequest).then((mediaKeyId: Uint8Array) => {
   console.log('processMediaKeyResponse:' + mediaKeyId);
 }).catch((err: BusinessError) => {
   console.error(`processMediaKeyResponse: ERROR: ${err}`);
 });
-var response = new Uint8Array([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
+let mediaKeyId = new Uint8Array([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
+let response = new Uint8Array([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
 mediaKeySession.processOfflineReleaseResponse(mediaKeyId, response).then(() => {
   console.log('processOfflineReleaseResponse');
 }).catch((err: BusinessError) => {
@@ -1396,8 +1382,8 @@ import { BusinessError } from '@ohos.base';
 
 let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
-var response = new Uint8Array ([0x00,0x00]);
-var mediaKeyId = new Uint8Array ([0x00,0x00]);
+let response = new Uint8Array ([0x00,0x00]);
+let mediaKeyId = new Uint8Array ([0x00,0x00]);
 mediaKeySession.processOfflineReleaseResponse(mediaKeyId, response).then(() => {
   console.log('processOfflineReleaseResponse');
 }).catch((err: BusinessError) => {
@@ -1445,7 +1431,7 @@ try {
   let contentProtectionLevel: drm.ContentProtectionLevel = mediaKeySession.getContentProtectionLevel();
 } catch (err) {
   let error = err as BusinessError;
-  console.error(`clearMediaKeys ERROR: ${error}`);
+  console.error(`getContentProtectionLevel ERROR: ${error}`);
 }
 
 ```
@@ -1492,7 +1478,7 @@ try {
   let status: boolean = mediaKeySession.requireSecureDecoderModule("mimeType");
 } catch (err) {
   let error = err as BusinessError;
-  console.error(`clearMediaKeys ERROR: ${error}`);
+  console.error(`requireSecureDecoderModule ERROR: ${error}`);
 }
 
 ```
@@ -1526,8 +1512,8 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-function registerKeyRequired(mediaKeysystem: drm.MediaKeySystem): void {
-    MediaKeySystem.on('keyRequired', (eventInfo: EventInfo) => {
+function registerKeyRequired(mediaKeysession: drm.MediaKeySession): void {
+    mediaKeysession.on('keyRequired', (eventInfo: drm.EventInfo) => {
         console.log('keyRequired' + 'extra:' + eventInfo.extraInfo + ' data:' + eventInfo.info);
     });
 }
@@ -1562,8 +1548,8 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-function unregisterKeyRequired(mediaKeysystem: drm.MediaKeySystem): void {
-  mediaKeysystem.off('keyRequired');
+function unregisterKeyRequired(mediaKeysession: drm.MediaKeySession): void {
+  mediaKeysession.off('keyRequired');
 }
 ```
 
@@ -1596,8 +1582,8 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-function registerKeyExpired(mediaKeysystem: drm.MediaKeySystem): void {
-    mediaKeysystem.on('keyExpired', (eventInfo: EventInfo) => {
+function registerKeyExpired(mediaKeysession: drm.MediaKeySession): void {
+    mediaKeysession.on('keyExpired', (eventInfo: drm.EventInfo) => {
         console.log('keyExpired' + 'extra:' + eventInfo.extraInfo + ' data:' + eventInfo.info);
     });
 }
@@ -1632,8 +1618,8 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-function unregisterKeyExpired(mediaKeysystem: drm.MediaKeySystem): void {
-  mediaKeysystem.off('keyExpired');
+function unregisterKeyExpired(mediaKeysession: drm.MediaKeySession): void {
+  mediaKeysession.off('keyExpired');
 }
 ```
 
@@ -1666,8 +1652,8 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-function registerVendorDefinedt(mediaKeysystem: drm.MediaKeySystem): void {
-    mediaKeysystem.on('vendorDefined', (eventInfo: EventInfo) => {
+function registerVendorDefinedt(mediaKeysession: drm.MediaKeySession): void {
+    mediaKeysession.on('vendorDefined', (eventInfo: drm.EventInfo) => {
         console.log('vendorDefined' + 'extra:' + eventInfo.extraInfo + ' data:' + eventInfo.info);
     });
 }
@@ -1702,14 +1688,14 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-function unregisterVendorDefined(mediaKeysystem: drm.MediaKeySystem): void {
-  mediaKeysystem.off('vendorDefined');
+function unregisterVendorDefined(mediaKeysession: drm.MediaKeySession): void {
+  mediaKeysession.off('vendorDefined');
 }
 ```
 
 ### on('expirationUpdated')
 
-on(type: 'expirationUpdate', callback: (eventInfo: EventInfo) => void): void
+on(type: 'expirationUpdate', callback: (eventInfo: drm.EventInfo) => void): void
 
 Subscribes to events indicating that the media key updates on expiry. This API uses a callback to return the result.
 
@@ -1736,8 +1722,8 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-function registerExpirationUpdated(mediaKeysystem: drm.MediaKeySystem): void {
-    mediaKeysystem.on('expirationUpdated', (eventInfo: EventInfo) => {
+function registerExpirationUpdated(mediaKeysession: drm.MediaKeySession): void {
+    mediaKeysession.on('expirationUpdated', (eventInfo: drm.EventInfo) => {
         console.log('expirationUpdated' + 'extra:' + eventInfo.extraInfo + ' data:' + eventInfo.info);
     });
 }
@@ -1772,8 +1758,8 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-function unregisterExpirationUpdated(mediaKeysystem: drm.MediaKeySystem): void {
-    mediaKeysystem.off('expirationUpdated');
+function unregisterExpirationUpdated(mediaKeysession: drm.MediaKeySession): void {
+    mediaKeysession.off('expirationUpdated');
 }
 ```
 
@@ -1806,8 +1792,8 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-function registerkeysChange(mediaKeysystem: drm.MediaKeySystem): void {
-    mediaKeysystem.on('keysChange', (eventInfo: EventInfo) => {
+function registerkeysChange(mediaKeysession: drm.MediaKeySession): void {
+    mediaKeysession.on('keysChange', (eventInfo: drm.EventInfo) => {
         console.log('keysChange' + 'extra:' + eventInfo.extraInfo + ' data:' + eventInfo.info);
     });
 }
@@ -1842,8 +1828,8 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-function unregisterkeyChange(mediaKeysystem: drm.MediaKeySystem): void {
-    mediaKeysystem.off('keysChange');
+function unregisterkeyChange(mediaKeysession: drm.MediaKeySession): void {
+    mediaKeysession.off('keysChange');
 }
 ```
 

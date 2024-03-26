@@ -26,11 +26,17 @@ This component is a custom component. Some basic knowledge of [@Component](../..
 
 ## Attributes
 
-The [universal attributes](../arkui-ts/ts-universal-attributes-size.md) are supported.
+In addition to the [universal attributes](../apis-arkui/arkui-ts/ts-universal-attributes-size.md), the following attributes are supported.
+
+| Name| Type| Description|
+| -------- | -------- | -------- |
+| normalColor | Color &#124; number &#124; string | Color of the component in normal state.|
+| activeColor | Color &#124; number &#124; string | Color of the component when audio and video are successfully casted to another device.|
+| onStateChange | (state: [AVCastPickerState](js-apis-avCastPickerParam.md)) => void | Callback invoked when the casting state changes.|
 
 ## Events
 
-The [universal events](../arkui-ts/ts-universal-events-click.md) are supported.
+The [universal events](../apis-arkui/arkui-ts/ts-universal-events-click.md) are supported.
 
 ## Example
 
@@ -38,14 +44,23 @@ The following is an example of using **AVCastPicker**:
 
 ```ts
 import AVCastPicker from '@ohos.multimedia.avCastPicker'
+import { AVCastPickerState } from '@ohos.multimedia.avCastPickerParam'
 
 @Entry
 @Component
 struct Index {
+  private onStateChange(state: AVCastPickerState) {
+    if (state == AVCastPickerState.STATE_APPEARING) {
+      console.log('The picker starts showing.')
+    } else if (state == AVCastPickerState.STATE_DISAPPEARING) {
+      console.log('The picker finishes presenting.')
+    }
+  }
+
   build() {
     Row() {
       Column() {
-        AVCastPicker()
+        AVCastPicker({ normalColor: Color.Red, activeColor: Color.Blue, onStateChange: this.onStateChange })
           .width('40vp')
           .height('40vp')
           .border({ width: 1, color: Color.Red })

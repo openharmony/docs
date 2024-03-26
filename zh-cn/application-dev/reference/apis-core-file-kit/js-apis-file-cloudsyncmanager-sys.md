@@ -210,7 +210,7 @@ notifyDataChange(userId: number, extraData: ExtraData): Promise&lt;void&gt;
 
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
-| userId | number | 是   | 账号Id|
+| userId | number | 是   | 用户Id|
 | extraData | ExtraData | 是   | 云端数据变更信息|
 
 **返回值：**

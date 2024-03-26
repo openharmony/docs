@@ -55,7 +55,7 @@ Navigation(pathInfos: NavPathStack)
 | mode<sup>9+</sup>                  | [NavigationMode](#navigationmode9枚举说明)    | 导航栏的显示模式。<br/>默认值：NavigationMode.Auto<br/>自适应：基于组件宽度自适应单栏和双栏。<br/>**说明：** <br/>支持Stack、Split与Auto模式。 |
 | backButtonIcon<sup>9+</sup>        | string \| [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) \| [Resource](ts-types.md#resource) | 设置标题栏中返回键图标。 |
 | hideNavBar<sup>9+</sup>            | boolean                                  | 是否隐藏导航栏。设置为true时，隐藏Navigation的导航栏，包括标题栏、内容区和工具栏。如果此时路由栈中存在NavDestination页面，则直接显示栈顶NavDestination页面，反之显示空白。从API Version 9开始到API Version 10仅在双栏模式下生效。从API Version 11开始在单栏、双栏与自适应模式均生效。<br/>默认值：false |
-| navDestination<sup>10+</sup>       | builder: (name: string, param: unknown) => void | 创建NavDestination组件。<br/>**说明：** <br/>使用builder函数，基于name和param构造NavDestination组件。builder中允许在NavDestination组件外包含一层自定义组件， 但自定义组件不允许设置属性和事件，否则仅显示空白。 |
+| navDestination<sup>10+</sup>       | builder: (name: string, param: unknown) => void | 创建NavDestination组件。<br/>**说明：** <br/>使用builder函数，基于name和param构造NavDestination组件。builder下只能有一个根节点。builder中允许在NavDestination组件外包含一层自定义组件， 但自定义组件不允许设置属性和事件，否则仅显示空白。 |
 | navBarWidthRange<sup>10+</sup>     | [[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)] | 导航栏最小和最大宽度（双栏模式下生效）。<br/>默认值：最小默认值 240，最大默认值为组件宽度的40% ，且不大于 432，如果只设置一个值，则未设置的值按照默认值计算。<br/>单位：vp<br/>规则：优先级规则详见说明。|
 | minContentWidth<sup>10+</sup>      | [Dimension](ts-types.md#dimension10)     | 导航栏内容区最小宽度（双栏模式下生效）。<br/>默认值：360<br/>单位：vp<br/>规则：优先级规则详见说明。<br/>Auto模式断点计算：默认600vp，minNavBarWidth(240vp) + minContentWidth (360vp) |
 
@@ -322,7 +322,7 @@ pop(result: Object, animated?: boolean): NavPathInfo | undefined
 
 popToName(name: string, animated?: boolean): number
 
-回退路由栈到由栈顶开始第一个名为name的NavDestination页面。
+回退路由栈到由栈底开始第一个名为name的NavDestination页面。
 
 **参数：**
 
@@ -335,13 +335,13 @@ popToName(name: string, animated?: boolean): number
 
 | 类型     | 说明                                       |
 | ------ | ---------------------------------------- |
-| number | 如果栈中存在名为name的NavDestination页面，则返回由栈顶开始第一个名为name的NavDestination页面的索引，否则返回-1。 |
+| number | 如果栈中存在名为name的NavDestination页面，则返回由栈底开始第一个名为name的NavDestination页面的索引，否则返回-1。 |
 
 ### popToName<sup>11+</sup>
 
 popToName(name: string, result: Object, animated?: boolean): number
 
-回退路由栈到由栈顶开始第一个名为name的NavDestination页面，并触发onPop回调传入页面处理结果。
+回退路由栈到由栈底开始第一个名为name的NavDestination页面，并触发onPop回调传入页面处理结果。
 
 **参数：**
 
@@ -355,7 +355,7 @@ popToName(name: string, result: Object, animated?: boolean): number
 
 | 类型     | 说明                                       |
 | ------ | ---------------------------------------- |
-| number | 如果栈中存在名为name的NavDestination页面，则返回由栈顶开始第一个名为name的NavDestination页面的索引，否则返回-1。 |
+| number | 如果栈中存在名为name的NavDestination页面，则返回由栈底开始第一个名为name的NavDestination页面的索引，否则返回-1。 |
 
 ### popToIndex<sup>10+</sup>
 
@@ -388,7 +388,7 @@ popToIndex(index: number, result: Object, animated?: boolean): void
 
 moveToTop(name: string, animated?: boolean): number
 
-将由栈顶开始第一个名为name的NavDestination页面移到栈顶。
+将由栈底开始第一个名为name的NavDestination页面移到栈顶。
 
 **参数：**
 
@@ -401,7 +401,7 @@ moveToTop(name: string, animated?: boolean): number
 
 | 类型     | 说明                                       |
 | ------ | ---------------------------------------- |
-| number | 如果栈中存在名为name的NavDestination页面，则返回由栈顶开始第一个名为name的NavDestination页面的当前索引，否则返回-1。 |
+| number | 如果栈中存在名为name的NavDestination页面，则返回由栈底开始第一个名为name的NavDestination页面的当前索引，否则返回-1。 |
 
 ### moveIndexToTop<sup>10+</sup>
 

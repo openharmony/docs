@@ -33,12 +33,14 @@ The CodecBase module provides the variables, attributes, and functions for basic
 
 | Name| Description| 
 | -------- | -------- |
-| typedef void(\* [OH_AVCodecOnError](#oh_avcodeconerror)) (OH_AVCodec \*codec, int32_t errorCode, void \*userData) | Defines the pointer to the function that is called to report error information when an error occurs during the running of an **OH_AVCodec** instance.| 
-| typedef void(\* [OH_AVCodecOnStreamChanged](#oh_avcodeconstreamchanged)) (OH_AVCodec \*codec, OH_AVFormat \*format, void \*userData) | Defines the pointer to the function that is called to report the new stream description when the output stream changes.| 
-| typedef void(\* [OH_AVCodecOnNeedInputData](#oh_avcodeconneedinputdata)) (OH_AVCodec \*codec, uint32_t index, OH_AVMemory \*data, void \*userData) | Defines the pointer to the function that is called when new input data is required during the running of an **OH_AVCodec** instance. The function carries a buffer to fill in new input data.| 
-| typedef void(\* [OH_AVCodecOnNewOutputData](#oh_avcodeconnewoutputdata)) (OH_AVCodec \*codec, uint32_t index, OH_AVMemory \*data, [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) \*attr, void \*userData) | Defines the pointer to the function that is called when new output data is generated during the running of an **OH_AVCodec** instance. The function carries a buffer filled with new output data.| 
-| typedef void(\* [OH_AVCodecOnNeedInputBuffer](#oh_avcodeconneedinputbuffer)) (OH_AVCodec \*codec, uint32_t index, OH_AVBuffer \*buffer, void \*userData) | Defines the pointer to the function that is called when new input data is required during the running of an **OH_AVCodec** instance. The function carries a buffer to fill in new input data.| 
-| typedef void(\* [OH_AVCodecOnNewOutputBuffer](#oh_avcodeconnewoutputbuffer)) (OH_AVCodec \*codec, uint32_t index, OH_AVBuffer \*buffer, void \*userData) | Defines the pointer to the function that is called when new output data is generated during the running of an **OH_AVCodec** instance. The function carries a buffer filled with new output data.| 
+| typedef struct NativeWindow [OHNativeWindow](#ohnativewindow) | Defines a struct that describes a native object for the graphics interface. | 
+| typedef struct [OH_AVCodec](#oh_avcodec) [OH_AVCodec](#oh_avcodec) | Defines a struct that describes a native object for the audio and video codec interface. | 
+| typedef void(\* [OH_AVCodecOnError](#oh_avcodeconerror)) ([OH_AVCodec](#oh_avcodec) \*codec, int32_t errorCode, void \*userData) | Defines the pointer to the function that is called to report error information when an error occurs during the running of an **OH_AVCodec** instance.| 
+| typedef void(\* [OH_AVCodecOnStreamChanged](#oh_avcodeconstreamchanged)) ([OH_AVCodec](#oh_avcodec) \*codec, [OH_AVFormat](_core.md#oh_avformat) \*format, void \*userData) | Defines the pointer to the function that is called to report the new stream description when the output stream changes.| 
+| typedef void(\* [OH_AVCodecOnNeedInputData](#oh_avcodeconneedinputdata)) ([OH_AVCodec](#oh_avcodec) \*codec, uint32_t index, [OH_AVMemory](_core.md#oh_avmemory) \*data, void \*userData) | Defines the pointer to the function that is called when new input data is required during the running of an **OH_AVCodec** instance. The function carries a buffer to fill in new input data.| 
+| typedef void(\* [OH_AVCodecOnNewOutputData](#oh_avcodeconnewoutputdata)) ([OH_AVCodec](#oh_avcodec) \*codec, uint32_t index, [OH_AVMemory](_core.md#oh_avmemory) \*data, [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) \*attr, void \*userData) | Defines the pointer to the function that is called when new output data is generated during the running of an **OH_AVCodec** instance. The function carries a buffer filled with new output data.| 
+| typedef void(\* [OH_AVCodecOnNeedInputBuffer](#oh_avcodeconneedinputbuffer)) ([OH_AVCodec](#oh_avcodec) \*codec, uint32_t index, [OH_AVBuffer](_core.md#oh_avbuffer) \*buffer, void \*userData) | Defines the pointer to the function that is called when new input data is required during the running of an **OH_AVCodec** instance. The function carries a buffer to fill in new input data.| 
+| typedef void(\* [OH_AVCodecOnNewOutputBuffer](#oh_avcodeconnewoutputbuffer)) ([OH_AVCodec](#oh_avcodec) \*codec, uint32_t index, [OH_AVBuffer](_core.md#oh_avbuffer) \*buffer, void \*userData) | Defines the pointer to the function that is called when new output data is generated during the running of an **OH_AVCodec** instance. The function carries a buffer filled with new output data.| 
 | typedef struct [OH_AVCodecAsyncCallback](_o_h___a_v_codec_async_callback.md) [OH_AVCodecAsyncCallback](#oh_avcodecasynccallback) | Defines all the asynchronous callback function pointers of an **OH_AVCodec** instance.| 
 | typedef struct [OH_AVCodecCallback](_o_h___a_v_codec_callback.md) [OH_AVCodecCallback](#oh_avcodeccallback) | Defines all the asynchronous callback function pointers of an **OH_AVCodec** instance.| 
 | typedef enum [OH_MediaType](#oh_mediatype-1) [OH_MediaType](#oh_mediatype) | Defines an enum that enumerates the media types.| 
@@ -105,15 +107,15 @@ The CodecBase module provides the variables, attributes, and functions for basic
 | const char \* [OH_MD_KEY_AUDIO_SAMPLE_FORMAT](#oh_md_key_audio_sample_format) | Defines the pointer to the original audio format. The value type is uint32_t.| 
 | const char \* [OH_MD_KEY_FRAME_RATE](#oh_md_key_frame_rate) | Defines the pointer to the video frame rate. The value type is double.| 
 | const char \* [OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE](#oh_md_key_video_encode_bitrate_mode) | Defines the pointer to the video encoding bit rate mode. The value type is int32_t. For details, see [OH_VideoEncodeBitrateMode](_video_encoder.md#oh_videoencodebitratemode).| 
-| const char \* [OH_MD_KEY_PROFILE](#oh_md_key_profile) | Defines the pointer to the encoding template. The value type is number. For details, see [OH_HEVCProfile](#oh_hevcprofile) and [OH_AACProfile](#oh_aacprofile).| 
+| const char \* [OH_MD_KEY_PROFILE](#oh_md_key_profile) | Defines the pointer to the encoding grading. The value type is int32_t. For details, see [OH_HEVCProfile](#oh_hevcprofile) and [OH_AACProfile](#oh_aacprofile).| 
 | const char \* [OH_MD_KEY_AUD_CHANNEL_COUNT](#oh_md_key_aud_channel_count) | Defines the pointer to the number of audio channels. The value type is uint32_t.| 
 | const char \* [OH_MD_KEY_AUD_SAMPLE_RATE](#oh_md_key_aud_sample_rate) | Defines the pointer to the audio sampling rate. The value type is uint32_t.| 
 | const char \* [OH_MD_KEY_I_FRAME_INTERVAL](#oh_md_key_i_frame_interval) | Defines the pointer to the key frame interval, in milliseconds. The value type is int32_t.| 
 | const char \* [OH_MD_KEY_ROTATION](#oh_md_key_rotation) | Defines the pointer to the rotation angle of the surface. The value type is int32_t, and the value range is {0, 90, 180, 270}. The default value is 0.| 
-| const char \* [OH_MD_KEY_RANGE_FLAG](#oh_md_key_range_flag) | Defines the pointer to the video YUV value range flag. The value type is Boolean.| 
-| const char \* [OH_MD_KEY_COLOR_PRIMARIES](#oh_md_key_color_primaries) | Defines the pointer to the video primary color. The value type is int32_t. For details, see [OH_ColorPrimary](#oh_colorprimary).| 
-| const char \* [OH_MD_KEY_TRANSFER_CHARACTERISTICS](#oh_md_key_transfer_characteristics) | Defines the pointer to the video transfer characteristics. The value type is int32_t. For details, see [OH_TransferCharacteristic](#oh_transfercharacteristic).| 
-| const char \* [OH_MD_KEY_MATRIX_COEFFICIENTS](#oh_md_key_matrix_coefficients) | Defines the pointer to the video matrix coefficient. The value type is int32_t. For details, see [OH_MatrixCoefficient](#oh_matrixcoefficient).| 
+| const char \* [OH_MD_KEY_RANGE_FLAG](#oh_md_key_range_flag) | Defines the pointer to the video YUV value range flag. The value type is Boolean. The value **true** means a full range, and **false** means a limited range.| 
+| const char \* [OH_MD_KEY_COLOR_PRIMARIES](#oh_md_key_color_primaries) | Defines the pointer to the video primary color. The value type is int32_t. For details, see [OH_ColorPrimary](#oh_colorprimary). The video primary color complies with Table 2 in the H.273 standard.| 
+| const char \* [OH_MD_KEY_TRANSFER_CHARACTERISTICS](#oh_md_key_transfer_characteristics) | Defines the pointer to the video transfer characteristics. The value type is int32_t. For details, see [OH_TransferCharacteristic](#oh_transfercharacteristic). The video transfer characteristics comply with Table 3 in the H.273 standard.| 
+| const char \* [OH_MD_KEY_MATRIX_COEFFICIENTS](#oh_md_key_matrix_coefficients) | Defines the pointer to the video matrix coefficient. The value type is int32_t. For details, see [OH_MatrixCoefficient](#oh_matrixcoefficient). The video matrix coefficient complies with Table 4 in the H.273 standard.| 
 | const char \* [OH_MD_KEY_REQUEST_I_FRAME](#oh_md_key_request_i_frame) | Defines the pointer to the request for immediate encoding of I-frames. The value type is Boolean.| 
 | const char \* [OH_MD_KEY_QUALITY](#oh_md_key_quality) | Defines the pointer to the required encoding quality. The value type is uint32_t. This key applies only to encoders configured in constant quality mode.| 
 | const char \* [OH_MD_KEY_CODEC_CONFIG](#oh_md_key_codec_config) | Defines the pointer to the codec-specific data. The value type is uint8_t.| 
@@ -159,6 +161,18 @@ typedef enum OH_AACProfile OH_AACProfile
 Defines an enum that enumerates the AAC profiles.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
+
+**Since**: 9
+
+
+### OH_AVCodec
+
+```
+typedef struct OH_AVCodec OH_AVCodec
+```
+**Description**
+
+Defines a struct that describes a native object for the audio and video codec interface.
 
 **Since**: 9
 
@@ -514,6 +528,18 @@ Defines an enum that enumerates the transfer characteristics.
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
 **Since**: 10
+
+
+### OHNativeWindow
+
+```
+typedef struct NativeWindow OHNativeWindow
+```
+**Description**
+
+Defines a struct that describes a native object for the graphics interface.
+
+**Since**: 9
 
 
 ## Enum Description
@@ -1415,7 +1441,7 @@ const char* OH_MD_KEY_COLOR_PRIMARIES
 
 **Description**
 
-Defines the pointer to the video primary color. The value type is int32_t. For details, see [OH_ColorPrimary](#oh_colorprimary).
+Defines the pointer to the video primary color. The value type is int32_t. For details, see [OH_ColorPrimary](#oh_colorprimary). The video primary color complies with Table 2 in the H.273 standard.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -1625,7 +1651,7 @@ const char* OH_MD_KEY_MATRIX_COEFFICIENTS
 
 **Description**
 
-Defines the pointer to the video matrix coefficient. The value type is int32_t. For details, see [OH_MatrixCoefficient](#oh_matrixcoefficient).
+Defines the pointer to the video matrix coefficient. The value type is int32_t. For details, see [OH_MatrixCoefficient](#oh_matrixcoefficient). The video matrix coefficient complies with Table 4 in the H.273 standard.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -1670,7 +1696,7 @@ const char* OH_MD_KEY_PROFILE
 
 **Description**
 
-Defines the pointer to the encoding template. The value type is number. For details, see [OH_HEVCProfile](#oh_hevcprofile) and [OH_AACProfile](#oh_aacprofile).
+Defines the pointer to the encoding grading. The value type is int32_t. For details, see [OH_HEVCProfile](#oh_hevcprofile) and [OH_AACProfile](#oh_aacprofile).
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -1700,7 +1726,7 @@ const char* OH_MD_KEY_RANGE_FLAG
 
 **Description**
 
-Defines the pointer to the video YUV value range flag. The value type is Boolean.
+Defines the pointer to the video YUV value range flag. The value type is Boolean. The value **true** means a full range, and **false** means a limited range.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -1835,7 +1861,7 @@ const char* OH_MD_KEY_TRANSFER_CHARACTERISTICS
 
 **Description**
 
-Defines the pointer to the video transfer characteristics. The value type is int32_t. For details, see [OH_TransferCharacteristic](#oh_transfercharacteristic).
+Defines the pointer to the video transfer characteristics. The value type is int32_t. For details, see [OH_TransferCharacteristic](#oh_transfercharacteristic). The video transfer characteristics comply with Table 3 in the H.273 standard.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 

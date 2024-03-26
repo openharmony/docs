@@ -181,7 +181,7 @@ THREAD_BLOCK_6S：
 
 ### 日志主干特异性信息(用户输入响应超时)
 
-Reason是APP_INPUT_BLOCK,表明用户点击事件超过5s没有得到反馈。
+Reason是APP_INPUT_BLOCK，表明用户点击事件超过5s没有得到反馈。
 
 MSG信息是这个事件的说明：用户的输入没有得到响应。
 

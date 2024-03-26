@@ -24,7 +24,7 @@ import distributedKVStore from '@ohos.data.distributedKVStore';
 
 ## SingleKVStore
 
-Implements data management in a single KV store, such as adding data, deleting data, and subscribing to data changes or data synchronization completion.
+Implements data management in a single KV store, such as adding data, deleting data, and subscribing to data changes or data sync completion.
 
 Before calling **SingleKVStore** APIs, you need to use [getKVStore](js-apis-distributedKVStore.md#getkvstore) to create a **SingleKVStore** instance.
 

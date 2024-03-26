@@ -17,6 +17,14 @@ The **native_avbuffer.h** file declares the functions of the media struct **AVBu
 ## Summary
 
 
+### Types
+
+| Name| Description| 
+| -------- | -------- |
+| typedef struct [OH_AVBuffer](_core.md#oh_avbuffer) [OH_AVBuffer](_core.md#oh_avbuffer) | Defines a struct that describes a native object for the media memory interface. | 
+| typedef struct [OH_NativeBuffer](_core.md#oh_nativebuffer) [OH_NativeBuffer](_core.md#oh_nativebuffer) | Defines a struct that describes a native object for the graphics memory interface. | 
+
+
 ### Functions
 
 | Name| Description| 
@@ -29,4 +37,4 @@ The **native_avbuffer.h** file declares the functions of the media struct **AVBu
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVBuffer_SetParameter](_core.md#oh_avbuffer_setparameter) (OH_AVBuffer \*buffer, const OH_AVFormat \*format) | Sets the frame parameter for a data buffer.| 
 | uint8_t \* [OH_AVBuffer_GetAddr](_core.md#oh_avbuffer_getaddr) (OH_AVBuffer \*buffer) | Obtains the virtual address of a data buffer.| 
 | int32_t [OH_AVBuffer_GetCapacity](_core.md#oh_avbuffer_getcapacity) (OH_AVBuffer \*buffer) | Obtains the capacity of a data buffer.| 
-| OH_NativeBuffer \* [OH_AVBuffer_GetNativeBuffer](_core.md#oh_avbuffer_getnativebuffer) (OH_AVBuffer \*buffer) | Obtains the pointer of an **OH_NativeBuffer** instance.| 
+| OH_NativeBuffer \* [OH_AVBuffer_GetNativeBuffer](_core.md#oh_avbuffer_getnativebuffer) (OH_AVBuffer \*buffer) | Obtains the pointer to an **OH_NativeBuffer** instance.| 

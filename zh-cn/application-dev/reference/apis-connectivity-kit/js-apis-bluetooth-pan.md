@@ -40,10 +40,3 @@ try {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
-
-
-## PanProfile
-
-使用PanProfile方法之前需要创建该类的实例进行操作，通过createPanProfile()方法构造此实例。
-
-

@@ -1,4 +1,4 @@
-# @ohos.distributedDeviceManager (设备管理)
+# @ohos.distributedDeviceManager (设备管理)(系统接口)
 
 本模块提供分布式设备管理能力。
 
@@ -31,7 +31,7 @@ import deviceManager from '@ohos.distributedDeviceManager';
 
 replyUiAction(action: number, actionResult: string): void;
 
-回复用户ui操作行为。此接口只能被devicemanager的PIN码hap使用。
+回复用户UI操作行为。此接口只能被devicemanager的PIN码hap使用。
 
 **需要权限**：ohos.permission.ACCESS_SERVICE_DM
 
@@ -85,8 +85,8 @@ on(type: 'replyResult', callback: Callback&lt;{ param: string}&gt;): void;
 
   | 参数名      | 类型                             | 必填 | 说明                            |
   | -------- | ------------------------------------ | ---- | ------------------------------ |
-  | type     | string                                | 是  | 注册的设备管理器 ui 状态回调，以便在状态改变时通知应用，固定为replyResult。 |
-  | callback | Callback&lt;{&nbsp;param:&nbsp;string}&gt; | 是  | 指示要注册的设备管理器 ui 状态回调，返回ui状态。        |
+  | type     | string                                | 是  | 注册的设备管理器 UI 状态回调，以便在状态改变时通知应用，固定为replyResult。 |
+  | callback | Callback&lt;{&nbsp;param:&nbsp;string}&gt; | 是  | 指示要注册的设备管理器 UI 状态回调，返回UI状态。        |
 
 **示例：**
 
@@ -131,8 +131,8 @@ off(type: 'replyResult', callback?: Callback&lt;{ param: string}&gt;): void;
 
   | 参数名      | 类型                              | 必填 | 说明                            |
   | -------- | ------------------------------------- | ---- | ------------------------------ |
-  | type     | string                                | 是   | 取消注册的设备管理器 ui 状态回调，固定为replyResult。 |
-  | callback | Callback&lt;{&nbsp;param:&nbsp;string}&gt; | 否   | 指示要取消注册的设备管理器 ui 状态，返回UI状态。 |
+  | type     | string                                | 是   | 取消注册的设备管理器 UI 状态回调，固定为replyResult。 |
+  | callback | Callback&lt;{&nbsp;param:&nbsp;string}&gt; | 否   | 指示要取消注册的设备管理器 UI 状态，返回UI状态。 |
 
 **示例：**
 

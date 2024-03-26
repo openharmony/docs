@@ -79,7 +79,7 @@ Related data is not found when **deleteKVStore()**, **sync()**, or **get()** is 
 The possible causes are as follows:
 1. The KV store to delete does not exist or has been deleted.
 2. The data queried does not exist or has been deleted.
-3. The KV store specified for the data synchronization operation does not exist or has been deleted.
+3. The KV store specified for the data sync operation does not exist or has been deleted.
 
 **Solution**
 

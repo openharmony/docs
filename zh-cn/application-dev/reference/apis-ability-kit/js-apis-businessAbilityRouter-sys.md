@@ -66,7 +66,7 @@ queryBusinessAbilityInfo(filter: BusinessAbilityFilter, callback: AsyncCallback\
 | 参数名       | 类型     | 必填   | 说明                                    |
 | ----------- | ------ | ---- | --------------------------------------- |
 | filter | [BusinessAbilityFilter](#businessabilityfilter) | 是    | 支持按业务类型过滤的对象。 |
-| callback | AsyncCallback\<Array\<[BusinessAbilityInfo](../apis/js-apis-bundleManager-businessAbilityInfo.md#businessabilityinfo)\>\> | 是 | 回调函数。返回查询到的ability信息，否则为错误对象。 |
+| callback | AsyncCallback\<Array\<[BusinessAbilityInfo](js-apis-bundleManager-businessAbilityInfo-sys.md#businessabilityinfo)\>\> | 是 | 回调函数。返回查询到的ability信息，否则为错误对象。 |
 
 **示例：**
 
@@ -112,7 +112,7 @@ queryBusinessAbilityInfo(filter: BusinessAbilityFilter): Promise\<Array\<Busines
 
 | 类型                                                         | 说明                                        |
 | ------------------------------------------------------------ | ------------------------------------------- |
-| Promise\<Array\<[BusinessAbilityInfo](../apis/js-apis-bundleManager-businessAbilityInfo.md#businessabilityinfo)\>\> | Promise对象，返回符合过滤条件的ability信息。 |
+| Promise\<Array\<[BusinessAbilityInfo](js-apis-bundleManager-businessAbilityInfo-sys.md#businessabilityinfo)\>\> | Promise对象，返回符合过滤条件的ability信息。 |
 
 **示例：**
 

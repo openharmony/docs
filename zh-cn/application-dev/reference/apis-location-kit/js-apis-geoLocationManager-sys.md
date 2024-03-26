@@ -49,7 +49,7 @@ import geoLocationManager from '@ohos.geoLocationManager';
 
 ## GeoAddress
 
-地理编码类型。
+地理编码地址信息。
 
 **系统能力**：SystemCapability.Location.Location.Geocoder
 
@@ -60,7 +60,7 @@ import geoLocationManager from '@ohos.geoLocationManager';
 
 ## Location
 
-位置信息类型。
+位置信息。
 
 **系统能力**：SystemCapability.Location.Location.Core
 

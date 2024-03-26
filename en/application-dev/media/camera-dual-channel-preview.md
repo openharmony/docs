@@ -166,14 +166,13 @@ The figure below shows the recommended API calling process of the dual-channel p
          nextImage.getComponent(image.ComponentType.JPEG, (err: BusinessError, imgComponent: image.Component) => {
            if (err || imgComponent === undefined) {
              console.error('getComponent failed');
-             return;
            }
-           if (imgComponent.byteBuffer as ArrayBuffer) {
+           if (imgComponent && imgComponent.byteBuffer as ArrayBuffer) {
              // do something...
            } else {
              console.error('byteBuffer is null');
-             return;
            }
+           nextImage.release();
          })
        })
      })

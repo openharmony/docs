@@ -40,6 +40,7 @@ The **OHAudio** module provides C APIs of the audio module.
 | typedef struct OH_AudioCapturerStruct [OH_AudioCapturer](#oh_audiocapturer)                                                                                 | Defines an audio capturer.| 
 | typedef struct [OH_AudioRenderer_Callbacks_Struct](_o_h___audio_renderer___callbacks___struct.md) [OH_AudioRenderer_Callbacks](#oh_audiorenderer_callbacks) | Defines a pointer to the callback functions related to an audio renderer.| 
 | typedef struct [OH_AudioCapturer_Callbacks_Struct](_o_h___audio_capturer___callbacks___struct.md) [OH_AudioCapturer_Callbacks](#oh_audiocapturer_callbacks) | Defines a pointer to the callback functions related to an audio capturer.| 
+| typedef void(\* [OH_AudioRenderer_OutputDeviceChangeCallback](#oh_audiorenderer_outputdevicechangecallback)) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer, void \*userData, [OH_AudioStream_DeviceChangeReason](#oh_audiostream_devicechangereason) reason) | Defines a callback invoked when the audio stream device changes.| 
 
 
 ### Enums
@@ -55,8 +56,9 @@ The **OHAudio** module provides C APIs of the audio module.
 | [OH_AudioStream_State](#oh_audiostream_state) {<br>AUDIOSTREAM_STATE_INVALID = -1,<br>AUDIOSTREAM_STATE_NEW = 0,<br>AUDIOSTREAM_STATE_PREPARED = 1,<br>AUDIOSTREAM_STATE_RUNNING = 2,<br>AUDIOSTREAM_STATE_STOPPED = 3,<br>AUDIOSTREAM_STATE_RELEASED = 4,<br>AUDIOSTREAM_STATE_PAUSED = 5<br>} | Enumerates the audio stream states.| 
 | [OH_AudioStream_SourceType](#oh_audiostream_sourcetype) {<br>AUDIOSTREAM_SOURCE_TYPE_INVALID = -1,<br>AUDIOSTREAM_SOURCE_TYPE_MIC = 0,<br>AUDIOSTREAM_SOURCE_TYPE_VOICE_RECOGNITION = 1,<br>AUDIOSTREAM_SOURCE_TYPE_PLAYBACK_CAPTURE = 2,<br>AUDIOSTREAM_SOURCE_TYPE_VOICE_COMMUNICATION = 7<br>} | Enumerates the usage scenarios of audio streams.| 
 | [OH_AudioStream_Event](#oh_audiostream_event) {<br>AUDIOSTREAM_EVENT_ROUTING_CHANGED = 0<br>} | Enumerates the audio stream events.| 
-| [OH_AudioInterrupt_ForceType](#oh_audiointerrupt_forcetype) {<br>AUDIOSTREAM_INTERRUPT_FORCE = 0,<br>AUDIOSTREAM_INTERRUPT_SHAR = 1<br>} | Enumerates the types of force that causes audio interruption.| 
+| [OH_AudioInterrupt_ForceType](#oh_audiointerrupt_forcetype) {<br>AUDIOSTREAM_INTERRUPT_FORCE = 0,<br>AUDIOSTREAM_INTERRUPT_SHARE = 1<br>} | Enumerates the types of force that causes audio interruption.| 
 | [OH_AudioInterrupt_Hint](#oh_audiointerrupt_hint) {<br>AUDIOSTREAM_INTERRUPT_HINT_NONE = 0,<br>AUDIOSTREAM_INTERRUPT_HINT_RESUME = 1,<br>AUDIOSTREAM_INTERRUPT_HINT_PAUSE = 2,<br>AUDIOSTREAM_INTERRUPT_HINT_STOP = 3,<br>AUDIOSTREAM_INTERRUPT_HINT_DUCK = 4,<br>AUDIOSTREAM_INTERRUPT_HINT_UNDUCK = 5<br>} | Enumerates the hints provided along with audio interruption.| 
+| [OH_AudioStream_DeviceChangeReason](#oh_audiostream_devicechangereason) {<br>REASON_UNKNOWN = 0,<br>REASON_NEW_DEVICE_AVAILABLE = 1,<br>REASON_OLD_DEVICE_UNAVAILABLE = 2,<br>REASON_OVERRODE = 3<br>} | Enumerates the reasons for audio stream device changes.| 
 
 
 ### Functions
@@ -95,6 +97,8 @@ The **OHAudio** module provides C APIs of the audio module.
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioRenderer_GetFramesWritten](#oh_audiorenderer_getframeswritten)([OH_AudioRenderer](#oh_audiorenderer) \*renderer, int64_t \*frames)                                                       | Obtains the number of frames that have been written since the stream was created.| 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioRenderer_GetTimestamp](#oh_audiorenderer_gettimestamp)([OH_AudioRenderer](#oh_audiorenderer) \*renderer, clockid_t clockId, int64_t \*framePosition, int64_t \*timestamp)                | Obtains the timestamp and position information of an audio output stream.| 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioRenderer_GetFrameSizeInCallback](#oh_audiorenderer_getframesizeincallback)([OH_AudioRenderer](#oh_audiorenderer) \*renderer, int32_t \*frameSize)                                        | Obtains the frame size in the callback.| 
+| [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioRenderer_GetSpeed](#oh_audiorenderer_getspeed) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer, float \*speed) | Obtains the audio renderer rate.| 
+| [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioRenderer_SetSpeed](#oh_audiorenderer_setspeed) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer, float speed) | Sets the audio renderer rate.| 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioStreamBuilder_Create](#oh_audiostreambuilder_create)([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*\*builder, [OH_AudioStream_Type](#oh_audiostream_type) type)                        | Creates an audio stream builder, which can be an audio renderer or capturer.| 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioStreamBuilder_Destroy](#oh_audiostreambuilder_destroy)([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder)                                                                        | Destroys an audio stream builder.| 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioStreamBuilder_SetSamplingRate](#oh_audiostreambuilder_setsamplingrate)([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, int32_t rate)                                          | Sets the sampling rate of an audio stream.| 
@@ -105,6 +109,7 @@ The **OHAudio** module provides C APIs of the audio module.
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioStreamBuilder_SetRendererInfo](#oh_audiostreambuilder_setrendererinfo)([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, [OH_AudioStream_Usage](#oh_audiostream_usage) usage)   | Sets the usage scenario of an audio renderer.| 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioStreamBuilder_SetCapturerInfo](#oh_audiostreambuilder_setcapturerinfo)([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, [OH_AudioStream_SourceType](#oh_audiostream_sourcetype) sourceType) | Sets the usage scenario of an audio capturer.| 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioStreamBuilder_SetRendererCallback](#oh_audiostreambuilder_setrenderercallback)([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, [OH_AudioRenderer_Callbacks](#oh_audiorenderer_callbacks) callbacks, void \*userData) | Sets callbacks for an audio renderer.| 
+| [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioStreamBuilder_SetRendererOutputDeviceChangeCallback](#oh_audiostreambuilder_setrendereroutputdevicechangecallback) ([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, [OH_AudioRenderer_OutputDeviceChangeCallback](#oh_audiorenderer_outputdevicechangecallback) callback, void \*userData) | Sets the callback invoked when the audio stream device changes.|
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioStreamBuilder_SetCapturerCallback](#oh_audiostreambuilder_setcapturercallback)([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, [OH_AudioCapturer_Callbacks](#oh_audiocapturer_callbacks) callbacks, void \*userData) | Sets callbacks for an audio capturer.| 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioStreamBuilder_GenerateRenderer](#oh_audiostreambuilder_generaterenderer)([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, [OH_AudioRenderer](#oh_audiorenderer) \*\*audioRenderer) | Creates an audio renderer instance.| 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioStreamBuilder_GenerateCapturer](#oh_audiostreambuilder_generatecapturer)([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, [OH_AudioCapturer](#oh_audiocapturer) \*\*audioCapturer) | Creates an audio capturer instance.| 
@@ -178,6 +183,27 @@ Defines a pointer to the callback functions related to an audio renderer.
 **Since**: 10
 
 
+### OH_AudioRenderer_OutputDeviceChangeCallback
+
+```
+typedef void(* OH_AudioRenderer_OutputDeviceChangeCallback) (OH_AudioRenderer *renderer, void *userData, OH_AudioStream_DeviceChangeReason reason)
+```
+
+**Description**
+
+Defines a callback invoked when the audio stream device changes.
+
+**Since**: 11
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| renderer | Pointer to an audio renderer instance created by [OH_AudioStreamBuilder_GenerateRenderer](#oh_audiostreambuilder_generaterenderer).| 
+| userData | Pointer to the application data passed through the callback functions.| 
+| reason | Enumerates the reasons for audio stream device changes.| 
+
+
 ### OH_AudioStreamBuilder
 
 ```
@@ -217,7 +243,7 @@ This enum is used to describe audio interruption events.
 | Value| Description| 
 | -------- | -------- |
 | AUDIOSTREAM_INTERRUPT_FORCE | The system changes the audio status.| 
-| AUDIOSTREAM_INTERRUPT_SHAR | The application changes the audio status.| 
+| AUDIOSTREAM_INTERRUPT_SHARE | The application changes the audio status.| 
 
 
 ### OH_AudioInterrupt_Hint
@@ -244,6 +270,28 @@ This enum is used to describe audio interruption events.
 | AUDIOSTREAM_INTERRUPT_HINT_STOP | Stopped/Stop the playback.| 
 | AUDIOSTREAM_INTERRUPT_HINT_DUCK | Ducked the playback.| 
 | AUDIOSTREAM_INTERRUPT_HINT_UNDUCK | Unducked the playback.| 
+
+
+### OH_AudioStream_DeviceChangeReason
+
+```
+enum OH_AudioStream_DeviceChangeReason
+```
+
+**Description**
+
+Enumerates the reasons for audio stream device changes.
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
+
+**Since**: 11
+
+| Value| Description| 
+| -------- | -------- |
+| REASON_UNKNOWN | Unknown reason.| 
+| REASON_NEW_DEVICE_AVAILABLE | A new device is available.| 
+| REASON_OLD_DEVICE_UNAVAILABLE | The old device is unavailable. When this reason is reported, the application should consider pausing audio playback.| 
+| REASON_OVERRODE | The user or system forcibly changes the device.| 
 
 
 ### OH_AudioStream_EncodingType
@@ -1140,6 +1188,32 @@ Obtains the sampling rate of an audio renderer.
 Returns **AUDIOSTREAM_SUCCESS** if the operation is successful; returns an error code otherwise.
 
 
+### OH_AudioRenderer_GetSpeed()
+
+```
+OH_AudioStream_Result OH_AudioRenderer_GetSpeed (OH_AudioRenderer * renderer, float * speed )
+```
+
+**Description**
+
+Obtains the audio renderer rate.
+
+**Since**: 11
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| renderer | Pointer to an audio renderer instance created by [OH_AudioStreamBuilder_GenerateRenderer](#oh_audiostreambuilder_generaterenderer).| 
+| speed | Pointer to the variable that holds the renderer rate (used as the return value).| 
+
+**Returns**
+
+Returns **AUDIOSTREAM_SUCCESS** if the operation is successful; returns an error code otherwise.
+
+
 ### OH_AudioRenderer_GetStreamId()
 
 ```
@@ -1238,6 +1312,32 @@ Releases an audio renderer.
 | Name| Description| 
 | -------- | -------- |
 | renderer | Pointer to an audio renderer instance created by [OH_AudioStreamBuilder_GenerateRenderer](#oh_audiostreambuilder_generaterenderer).| 
+
+**Returns**
+
+Returns **AUDIOSTREAM_SUCCESS** if the operation is successful; returns an error code otherwise.
+
+
+### OH_AudioRenderer_SetSpeed()
+
+```
+OH_AudioStream_Result OH_AudioRenderer_SetSpeed (OH_AudioRenderer * renderer, float speed )
+```
+
+**Description**
+
+Sets the audio renderer rate.
+
+**Since**: 11
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| renderer | Pointer to an audio renderer instance created by [OH_AudioStreamBuilder_GenerateRenderer](#oh_audiostreambuilder_generaterenderer).| 
+| speed | Playback speed, which ranges from 0.25 to 4.0.| 
 
 **Returns**
 
@@ -1603,6 +1703,33 @@ Sets the usage scenario of an audio renderer.
 | -------- | -------- |
 | builder | Pointer to an audio stream builder instance created by **OH_AudioStreamBuilder_Create()**.| 
 | usage | Usage scenario of the audio renderer.| 
+
+**Returns**
+
+Returns **AUDIOSTREAM_SUCCESS** if the operation is successful; returns an error code otherwise.
+
+
+### OH_AudioStreamBuilder_SetRendererOutputDeviceChangeCallback()
+
+```
+OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererOutputDeviceChangeCallback (OH_AudioStreamBuilder * builder, OH_AudioRenderer_OutputDeviceChangeCallback callback, void * userData )
+```
+
+**Description**
+
+Sets the callback invoked when the audio stream device changes.
+
+**Since**: 11
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| builder | Pointer to an audio stream builder instance created by **OH_AudioStreamBuilder_Create()**.| 
+| callbacks | Callback that will be used to process events related to audio stream device changes.| 
+| userData | Pointer to the application data passed through the callback functions.| 
 
 **Returns**
 
