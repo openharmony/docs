@@ -1762,3 +1762,105 @@ JSVM_EXTERN JSVM_Status OH_JSVM_DefineClass (JSVM_Env env, const char * utf8name
 成功则返回JSVM_OK。
 
 
+### OH_JSVM_DefineProperties()
+
+```
+JSVM_EXTERN JSVM_Status OH_JSVM_DefineProperties (JSVM_Env env, JSVM_Value object, size_t propertyCount, const JSVM_PropertyDescriptor * properties )
+```
+
+**描述**
+
+通过此方法可以在给定对象上高效定义多个属性， 这些属性使用属性描述符进行定义。通过一个属性描述符的数组， 此API将为对象依次设置数组中的属性。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| env | 调用JSVM-API的环境。 | 
+| object | 待进行属性检索的对象。 | 
+| propertyCount | properties数组中的元素数。 | 
+| properties | 属性描述符的数组。 | 
+
+**返回：**
+
+成功则返回JSVM_OK，失败可能返回JSVM_INVALID_ARG或JSVM_GENERIC_FAILURE。
+
+
+### OH_JSVM_DeleteElement()
+
+```
+JSVM_EXTERN JSVM_Status OH_JSVM_DeleteElement (JSVM_Env env, JSVM_Value object, uint32_t index, bool * result )
+```
+
+**描述**
+
+尝试从object中删除指定index处的元素。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| env | 调用JSVM-API的环境。 | 
+| object | 待查询的对象。 | 
+| index | 要删除的属性的索引。 | 
+| result | 表示元素删除是否成功。 | 
+
+**返回：**
+
+成功则返回JSVM_OK，失败可能返回JSVM_GENERIC_FAILURE。
+
+
+### OH_JSVM_DeleteProperty()
+
+```
+JSVM_EXTERN JSVM_Status OH_JSVM_DeleteProperty (JSVM_Env env, JSVM_Value object, JSVM_Value key, bool * result )
+```
+
+**描述**
+
+尝试从object中删除key自己的属性。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| env | 调用JSVM-API的环境。 | 
+| object | 待查询的对象。 | 
+| key | 待删除的属性名。 | 
+| result | 表示属性删除是否成功。result可以选择性地通过传递NULL来忽略。 | 
+
+**返回：**
+
+成功则返回JSVM_OK，失败可能返回JSVM_GENERIC_FAILURE。
+
+
+### OH_JSVM_DeleteReference()
+
+```
+JSVM_EXTERN JSVM_Status OH_JSVM_DeleteReference (JSVM_Env env, JSVM_Ref ref )
+```
+
+**描述**
+
+删除传入的引用。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| env | 调用JSVM-API的环境。 | 
+| ref | 需删除的JSVM_Ref。 | 
+
+**返回：**
+
+成功则返回JSVM_OK。
+
+
