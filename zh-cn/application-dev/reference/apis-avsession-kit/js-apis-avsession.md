@@ -345,6 +345,9 @@ import resourceManager from '@ohos.resourceManager';
 import { BusinessError } from '@ohos.base';
 
 async function setCallMetadata() {
+  let value = await resourceManager.getSystemResourceManager().getRawFileContent('IMAGE_URI');
+  let imageSource= await image.createImageSource(value.buffer);
+  let imagePixel = await imageSource.createPixelMap({desiredSize:{width: 150, height: 150}});
   let calldata: avSession.CallMetadata = {
     name: "xiaoming",
     phoneNumber: "111xxxxxxxx",
