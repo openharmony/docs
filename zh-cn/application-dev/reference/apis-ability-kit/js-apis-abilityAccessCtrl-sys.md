@@ -64,15 +64,11 @@ import { BusinessError } from '@ohos.base';
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
 let permissionFlags: number = 1;
-try {
-    atManager.grantUserGrantedPermission(tokenID, 'ohos.permission.READ_AUDIO', permissionFlags).then(() => {
-        console.log('grantUserGrantedPermission success');
-    }).catch((err: BusinessError) => {
-        console.log(`grantUserGrantedPermission fail, err->${JSON.stringify(err)}`);
-    });
-} catch(err) {
-    console.log(`catch err->${JSON.stringify(err)}`);
-}
+atManager.grantUserGrantedPermission(tokenID, 'ohos.permission.READ_AUDIO', permissionFlags).then(() => {
+  console.log('grantUserGrantedPermission success');
+}).catch((err: BusinessError) => {
+  console.log(`grantUserGrantedPermission fail, err->${JSON.stringify(err)}`);
+});
 ```
 
 ### grantUserGrantedPermission
@@ -117,17 +113,13 @@ import { BusinessError } from '@ohos.base';
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
 let permissionFlags: number = 1;
-try {
-    atManager.grantUserGrantedPermission(tokenID, 'ohos.permission.READ_AUDIO', permissionFlags, (err: BusinessError, data: void) => {
-        if (err) {
-            console.log(`grantUserGrantedPermission fail, err->${JSON.stringify(err)}`);
-        } else {
-            console.log('grantUserGrantedPermission success');
-        }
-    });
-} catch(err) {
-    console.log(`catch err->${JSON.stringify(err)}`);
-}
+atManager.grantUserGrantedPermission(tokenID, 'ohos.permission.READ_AUDIO', permissionFlags, (err: BusinessError, data: void) => {
+  if (err) {
+    console.log(`grantUserGrantedPermission fail, err->${JSON.stringify(err)}`);
+  } else {
+    console.log('grantUserGrantedPermission success');
+  }
+});
 ```
 
 ### revokeUserGrantedPermission
@@ -177,15 +169,11 @@ import { BusinessError } from '@ohos.base';
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
 let permissionFlags: number = 1;
-try {
-    atManager.revokeUserGrantedPermission(tokenID, 'ohos.permission.READ_AUDIO', permissionFlags).then(() => {
-        console.log('revokeUserGrantedPermission success');
-    }).catch((err: BusinessError) => {
-        console.log(`revokeUserGrantedPermission fail, err->${JSON.stringify(err)}`);
-    });
-} catch(err) {
-    console.log(`catch err->${JSON.stringify(err)}`);
-}
+atManager.revokeUserGrantedPermission(tokenID, 'ohos.permission.READ_AUDIO', permissionFlags).then(() => {
+  console.log('revokeUserGrantedPermission success');
+}).catch((err: BusinessError) => {
+  console.log(`revokeUserGrantedPermission fail, err->${JSON.stringify(err)}`);
+});
 ```
 
 ### revokeUserGrantedPermission
@@ -230,17 +218,13 @@ import { BusinessError } from '@ohos.base';
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
 let permissionFlags: number = 1;
-try {
-    atManager.revokeUserGrantedPermission(tokenID, 'ohos.permission.READ_AUDIO', permissionFlags, (err: BusinessError, data: void) => {
-        if (err) {
-            console.log(`revokeUserGrantedPermission fail, err->${JSON.stringify(err)}`);
-        } else {
-            console.log('revokeUserGrantedPermission success');
-        }
-    });
-} catch(err) {
-    console.log(`catch err->${JSON.stringify(err)}`);
-}
+atManager.revokeUserGrantedPermission(tokenID, 'ohos.permission.READ_AUDIO', permissionFlags, (err: BusinessError, data: void) => {
+  if (err) {
+    console.log(`revokeUserGrantedPermission fail, err->${JSON.stringify(err)}`);
+  } else {
+    console.log('revokeUserGrantedPermission success');
+  }
+});
 ```
 
 ### getPermissionFlags
@@ -288,15 +272,11 @@ import { BusinessError } from '@ohos.base';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
-try {
-    atManager.getPermissionFlags(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS').then((data: number) => {
-        console.log(`getPermissionFlags success, data->${JSON.stringify(data)}`);
-    }).catch((err: BusinessError) => {
-        console.log(`getPermissionFlags fail, err->${JSON.stringify(err)}`);
-    });
-} catch(err) {
-    console.log(`catch err->${JSON.stringify(err)}`);
-}
+atManager.getPermissionFlags(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS').then((data: number) => {
+  console.log(`getPermissionFlags success, data->${JSON.stringify(data)}`);
+}).catch((err: BusinessError) => {
+  console.log(`getPermissionFlags fail, err->${JSON.stringify(err)}`);
+});
 ```
 
 ### setPermissionRequestToggleStatus<sup>12+</sup>
@@ -343,16 +323,11 @@ import { BusinessError } from '@ohos.base';
 let atManager = abilityAccessCtrl.createAtManager();
 let permission: Permissions = 'ohos.permission.CAMERA';
 
-try {
-  atManager.setPermissionRequestToggleStatus(permission, abilityAccessCtrl.PermissionRequestToggleStatus.CLOSED).then((err) => {
-    console.info('toggle_status: Set closed successful');
-  }).catch((err: BusinessError) => {
-    console.error('toggle_status: Code is ${err.code}, message is ${err.message}');
-  });
-} catch (error) {
-  const err: BusinessError = error as BusinessError;
+atManager.setPermissionRequestToggleStatus(permission, abilityAccessCtrl.PermissionRequestToggleStatus.CLOSED).then((err) => {
+  console.info('toggle_status: Set closed successful');
+}).catch((err: BusinessError) => {
   console.error('toggle_status: Code is ${err.code}, message is ${err.message}');
-}
+});
 ```
 
 ### getPermissionRequestToggleStatus<sup>12+</sup>
@@ -398,20 +373,15 @@ import { BusinessError } from '@ohos.base';
 let atManager = abilityAccessCtrl.createAtManager();
 let permission: Permissions = 'ohos.permission.CAMERA';
 
-try {
-  atManager.getPermissionRequestToggleStatus(permission).then((res) => {
-    if (res == abilityAccessCtrl.PermissionRequestToggleStatus.CLOSED) {
-      console.info('toggle_status: The toggle status is close');
-    } else {
-      console.info('toggle_status: The toggle status is open');
-    }
-  }).catch((err: BusinessError) => {
-    console.error('toggle_status: Code is ${err.code}, message is ${err.message}');
-  });
-} catch (error) {
-  const err: BusinessError = error as BusinessError;
-  console.error('toggle_status: Code is ${err.code}, message is ${err.message}');
-}
+atManager.getPermissionRequestToggleStatus(permission).then((res) => {
+  if (res == abilityAccessCtrl.PermissionRequestToggleStatus.CLOSED) {
+    console.info('toggle_status: The toggle status is close');
+  } else {
+    console.info('toggle_status: The toggle status is open');
+  }
+}).catch((err: BusinessError) => {
+console.error('toggle_status: Code is ${err.code}, message is ${err.message}');
+});
 ```
 
 ### getVersion<sup>9+</sup>
@@ -478,15 +448,11 @@ import { BusinessError } from '@ohos.base';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
-try {
-    atManager.getPermissionsStatus(tokenID, ['ohos.permission.CAMERA']).then((data: abilityAccessCtrl.PermissionStatus) => {
-        console.log(`getPermissionsStatus success, data->${JSON.stringify(data)}`);
-    }).catch((err: BusinessError) => {
-        console.log(`getPermissionsStatus fail, err->${JSON.stringify(err)}`);
-    });
-} catch(err) {
-    console.log(`catch err->${JSON.stringify(err)}`);
-}
+atManager.getPermissionsStatus(tokenID, ['ohos.permission.CAMERA']).then((data: abilityAccessCtrl.PermissionStatus) => {
+  console.log(`getPermissionsStatus success, data->${JSON.stringify(data)}`);
+}).catch((err: BusinessError) => {
+  console.log(`getPermissionsStatus fail, err->${JSON.stringify(err)}`);
+});
 ```
 
 ### on<sup>9+</sup>
