@@ -106,7 +106,7 @@ TextPicker布局绘制逻辑与DatePicker、TimePicker不一致, 当组件高度
 
 **变更发生版本**
 
-从OpenHarmony SDK 5.0.0.17 开始。
+从OpenHarmony SDK 5.0.0.17 开始, API 12及后续版本生效。
 
 **变更的接口/组件**
 
