@@ -2,6 +2,9 @@
 
 HiAppEvent提供接口用于订阅系统崩溃事件。
 
+> **说明：**
+> 若应用崩溃导致应用退出，需要再次点击设备桌面的“应用图标”运行应用工程，等待一分钟左右获取到崩溃事件。
+
 ## 接口说明
 
 API接口的具体使用说明（参数使用限制、具体取值范围等）请参考[应用事件打点API文档](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-hiappevent.md)。
@@ -28,6 +31,8 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 | exception | object | 异常信息，详见exception属性。NativeCrash类型的崩溃事件详见exception属性（NativeCrash类型）。 |
 | hilog | string[] | 日志信息。|
 | threads | object[] | 全量线程调用栈，详见thread属性。仅NativeCrash类型的崩溃事件提供。 |
+| external_log<sup>12+</sup> | string[] | 故障日志文件路径。 |
+| log_over_limit<sup>12+</sup> | boolean | 生成的日志文件与已存在的日志文件总大小是否超过5M上限。true表示超过上限，日志写入失败；false表示未超过上限。 |
 
 **exception属性：**
 
@@ -118,6 +123,9 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.exception=${JSON.stringify(eventInfo.params['exception'])}`);
             // 开发者可以获取到崩溃事件发生时日志信息
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.hilog.size=${eventInfo.params['hilog'].length}`);
+            // 开发者可以获取到崩溃事件发生时的故障日志文件
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.external_log=${JSON.stringify(eventInfo.params['external_log'])}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.log_over_limit=${eventInfo.params['log_over_limit']}`);
           }
         }
       }
@@ -143,14 +151,16 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    HiAppEvent eventInfo.domain=OS
    HiAppEvent eventInfo.name=APP_CRASH
    HiAppEvent eventInfo.eventType=1
-   HiAppEvent eventInfo.params.time=1701836127566
+   HiAppEvent eventInfo.params.time=1711440614001
    HiAppEvent eventInfo.params.crash_type=JsError
    HiAppEvent eventInfo.params.foreground=true
    HiAppEvent eventInfo.params.bundle_version=1.0.0
    HiAppEvent eventInfo.params.bundle_name=com.example.myapplication
-   HiAppEvent eventInfo.params.pid=2027
+   HiAppEvent eventInfo.params.pid=2043
    HiAppEvent eventInfo.params.uid=20010043
    HiAppEvent eventInfo.params.uuid=...
-   HiAppEvent eventInfo.params.exception={"message":"Unexpected Text in JSON\\n","name":"SyntaxError\\n","stack":"\\n    at anonymous (entry/src/main/ets/pages/Index.ets:60:34)\\n"}
-   HiAppEvent eventInfo.params.hilog.size=100
+   HiAppEvent eventInfo.params.exception={"message":"Unexpected Text in JSON","name":"SyntaxError","stack":"at anonymous (entry/src/main/ets/pages/Index.ets:55:34)"}
+   HiAppEvent eventInfo.params.hilog.size=90
+   HiAppEvent eventInfo.params.external_log=["/data/storage/el2/log/hiappevent/APP_CRASH_1711440614112_2043.log"]
+   HiAppEvent eventInfo.params.log_over_limit=false
    ```
