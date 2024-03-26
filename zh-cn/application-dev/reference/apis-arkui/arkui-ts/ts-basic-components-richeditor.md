@@ -27,7 +27,7 @@ RichEditor(value: RichEditorOptions)
 
 ## 属性
 
-支持[通用属性](ts-universal-attributes-size.md)。
+除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
 >  **说明：**
 >
@@ -435,7 +435,7 @@ selectionStart和selectionEnd均为-1时表示全选。
 
 getSelection(): RichEditorSelection
 
-获取选中文本内容。
+获取选中文本内容。如果未选中内容，返回光标所在span信息。
 
 使用[示例](ts-composite-components-selectionmenu.md#示例)。
 
@@ -522,7 +522,7 @@ SymbolSpan样式选项。
 
 ## LeadingMarginPlaceholder<sup>11+</sup>
 
-前导边距跨度。
+前导边距占位符，用于表示文本段落左侧与组件边缘之间的距离。
 
 | 名称       | 类型                                       | 必填   | 描述             |
 | -------- | ---------------------------------------- | ---- | -------------- |
@@ -536,7 +536,7 @@ SymbolSpan样式选项。
 | 名称    | 类型                                       | 必填   | 描述      |
 | ----- | ---------------------------------------- | ---- | ------- |
 | style | [RichEditorParagraphStyle](#richeditorparagraphstyle11) | 是    | 段落样式。   |
-| range | \[number, number\]                       | 是    | 段落起始位置。 |
+| range | \[number, number\]                       | 是    | 段落起始和结束位置。 |
 
 ## RichEditorTextSpanOptions
 
@@ -561,7 +561,7 @@ SymbolSpan样式选项。
 | fontWeight               | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | 否    | 字体粗细。<br/>number类型取值[100,900]，取值间隔为100，默认为400，取值越大，字体越粗。<br/>string类型仅支持number类型取值的字符串形式，例如“400”，以及“bold”、“bolder”、“lighter”、“regular” 、“medium”分别对应FontWeight中相应的枚举值。<br/>默认值：FontWeight.Normal。 |
 | fontFamily               | [ResourceStr](ts-types.md#resourcestr) | 否    | 设置字体列表。默认字体'HarmonyOS Sans'，当前支持'HarmonyOS Sans'字体和[注册自定义字体](../js-apis-font.md)。 <br/>默认字体:'HarmonyOS Sans'。 |
 | decoration               | {<br/>type:&nbsp;[TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br/>color?:&nbsp;[ResourceColor](ts-types.md#resourcecolor)<br/>} | 否    | 设置文本装饰线样式及其颜色。<br />默认值：{<br/>type:&nbsp;TextDecorationType.None,<br/>color：Color.Black<br/>}。 |
-| textShadow<sup>11+</sup> | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;Array&lt;[ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)> | 是    | 设置文字阴影效果。该接口支持以数组形式入参，实现多重文字阴影。<br/>**说明：**<br/>不支持fill字段, 不支持智能取色模式。 |
+| textShadow<sup>11+</sup> | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;Array&lt;[ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)> | 否    | 设置文字阴影效果。该接口支持以数组形式入参，实现多重文字阴影。<br/>**说明：**<br/>不支持fill字段, 不支持智能取色模式。 |
 
 
 ## RichEditorImageSpanOptions
@@ -638,7 +638,7 @@ SymbolSpan样式选项。
 
 | 名称             | 类型          | 必填   | 描述                            |
 | -------------- | ----------- | ---- | ----------------------------- |
-| preventDefault | () => void | 否    | 用户自定义粘贴事件。<br/> 存在时会覆盖系统粘贴事件。 |
+| preventDefault | () => void | 否    | 阻止系统默认粘贴事件。 |
 
 ## RichEditorGesture<sup>11+</sup>
 
@@ -2508,3 +2508,32 @@ struct TextExample7 {
   }
 }
 ```
+### 示例11
+preventDefault使用示例
+```ts
+@Entry
+@Component
+struct RichEditorDemo {
+  controller: RichEditorController = new RichEditorController();
+  options: RichEditorOptions = { controller: this.controller };
+
+  build() {
+    Column({ space: 2 }) {
+      RichEditor(this.options)
+        .onReady(() => {
+          this.controller.addTextSpan('RichEditor preventDefault')
+        })
+        .onPaste((event?: PasteEvent) => {
+          if (event != undefined && event.preventDefault) {
+            event.preventDefault();
+          }
+        })
+        .borderWidth(1)
+        .borderColor(Color.Green)
+        .width('100%')
+        .height('40%')
+    }
+  }
+}
+```
+![PreventDefaultExample](figures/richEditorPreventDefault.gif)

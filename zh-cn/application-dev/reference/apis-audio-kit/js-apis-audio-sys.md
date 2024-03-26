@@ -317,7 +317,7 @@ import { BusinessError } from '@ohos.base';
 
 let kvpairs = {} as Record<string, string>;
 kvpairs = {
-  key_example: 'value_example'
+  'key_example': 'value_example'
 }
 audioManager.setExtraParameters('key_example', kvpairs).then(() => {
   console.info('Promise returned to indicate a successful setting of the extra parameters.');
@@ -1912,10 +1912,10 @@ on(type: 'spatializationEnabledChange', callback: Callback<boolean\>): void
 
 **参数：**
 
-| 参数名   | 类型                                                 | 必填 | 说明                                       |
-| :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
+| 参数名   | 类型                                                 | 必填 | 说明                                           |
+| :------- | :--------------------------------------------------- | :--- |:---------------------------------------------|
 | type     | string                                               | 是   | 订阅的事件的类型。支持事件：'spatializationEnabledChange'。 |
-| callback | Callback<boolean\> | 是   | Callback对象，返回空间音频渲染开关状态。 |
+| callback | Callback<boolean\> | 是   | Callback对象，返回空间音频渲染开关状态，true为打开，false为关闭。    |
 
 **错误码：**
 
@@ -1952,7 +1952,7 @@ off(type: 'spatializationEnabledChange', callback?: Callback<boolean\>): void
 | 参数名   | 类型                                                | 必填 | 说明                                       |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
 | type     | string                                              | 是   | 订阅的事件的类型。支持事件：'spatializationEnabledChange'。 |
-| callback | Callback<boolean\> | 否   | Callback对象，返回空间音频渲染开关状态。 |
+| callback | Callback<boolean\> | 否   | Callback对象，返回空间音频渲染开关状态，true为打开，false为关闭。 |
 
 **错误码：**
 
@@ -2118,7 +2118,7 @@ on(type: 'headTrackingEnabledChange', callback: Callback<boolean\>): void
 | 参数名   | 类型                                                 | 必填 | 说明                                       |
 | :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
 | type     | string                                               | 是   | 订阅的事件的类型。支持事件：'headTrackingEnabledChange'。 |
-| callback | Callback<boolean\> | 是   | Callback对象，返回头动跟踪开关状态。 |
+| callback | Callback<boolean\> | 是   | Callback对象，返回头动跟踪开关状态，true为打开，false为关闭。 |
 
 **错误码：**
 
@@ -2155,7 +2155,7 @@ off(type: 'headTrackingEnabledChange', callback?: Callback<boolean\>): void
 | 参数名   | 类型                                                | 必填 | 说明                                       |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
 | type     | string                                              | 是   | 订阅的事件的类型。支持事件：'headTrackingEnabledChange'。 |
-| callback | Callback<boolean\> | 否   | Callback对象，返回头动跟踪开关状态。 |
+| callback | Callback<boolean\> | 否   | Callback对象，返回头动跟踪开关状态，true为打开，false为关闭。 |
 
 **错误码：**
 

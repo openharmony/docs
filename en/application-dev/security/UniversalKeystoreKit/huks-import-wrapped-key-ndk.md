@@ -560,7 +560,7 @@ static napi_value ImportWrappedKey(napi_env env, napi_callback_info info) {
 
 ## Verification
 
-Use [OH_Huks_IsKeyItemExist](../../reference/native-apis/_huks_key_api.md#oh_huks_iskeyitemexist) to check whether the key exists. If the key exists, the key is successfully imported.
+Use [OH_Huks_IsKeyItemExist](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_iskeyitemexist) to check whether the key exists. If the key exists, the key is successfully imported.
 
 ```c++
 #include "huks/native_huks_api.h"

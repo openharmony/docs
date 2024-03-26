@@ -288,3 +288,27 @@ libc++_shared.so被打包到应用目录下了，每个应用都有一份独立�
 **参考链接**
 
 [使用Node-API接口进行线程安全开发](../napi/use-napi-thread-safety.md)
+
+## 由napi_create_object创建，或者作为参数传下来的JS对象，如果想持久持有，需要怎么做？(API 10)
+
+**问题描述**
+
+以及，怎么主动销毁或减少引用计数？
+
+**解决方案**
+
+持久持有一个对象，可以通过napi_create_reference创建一个强引用，然后将这个ref保存下来使用；主动销毁可以使用napi_delete_reference，减少或者增加引用计数可以通过napi_reference_unref或者napi_reference_ref。
+
+## 在ArkTS层往C++层注册一个对象或函数，C++层可以按需往这个回调上进行扔消息同步到上层应用么？(API 11)
+
+**问题描述**
+
+以及，在注册对象或函数时，napi_env是否可以被长时持有？扔消息同步到上层应用时，是否需要在特定线程？
+
+**解决方案**
+
+纯在ArkTS侧不可以往C++层注册对象或者函数，开发者需要回到C++层自己处理；env可以长期持有，不过使用env时，需要在特定的线程，使用env时需要在创建该env的ArkTS线程使用。
+
+**参考资料**
+
+1. [Native与ArkTS对象绑定](../napi/use-napi-object-wrap.md)

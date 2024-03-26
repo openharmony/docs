@@ -5,7 +5,8 @@
 > **说明：**
 >
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.geoLocationManager (位置服务)](js-apis-geoLocationManager.md)
+> 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.geoLocationManager (位置服务)](js-apis-geoLocationManager.md)。
+> 本模块能力仅支持WGS-84坐标系。
 
 ## 申请权限
 
@@ -48,7 +49,7 @@ import geoLocationManager from '@ohos.geoLocationManager';
 
 ## GeoAddress
 
-地理编码类型。
+地理编码地址信息。
 
 **系统能力**：SystemCapability.Location.Location.Geocoder
 
@@ -59,7 +60,7 @@ import geoLocationManager from '@ohos.geoLocationManager';
 
 ## Location
 
-位置信息类型。
+位置信息。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
@@ -328,7 +329,7 @@ enableLocation(): Promise&lt;void&gt;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | void | 无返回值。 |
+  | Promise&lt;void&gt; | 返回Promise对象。 |
 
 **错误码**：
 
@@ -714,7 +715,7 @@ getLocatingRequiredData(config: LocatingRequiredDataConfig): Promise&lt;Array&lt
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | [LocatingRequiredData](#locatingrequireddata10) | 用来接收定位业务所需数据，包含WiFi蓝牙扫描信息。 |
+  | Promise&lt;Array&lt;[LocatingRequiredData](#locatingrequireddata10)&gt;&gt; | 以Promise形式返回定位业务所需数据，包含WiFi蓝牙扫描信息。 |
 
 **错误码**：
 

@@ -186,7 +186,7 @@ Different distributed table types are set for the same database table.
 
 **Possible Causes**
 
-The database table is set with different [distributed table types](../apis/js-apis-data-relationalStore.md#distributedtype10).
+The same database table is set with different [DistributedType](js-apis-data-relationalStore.md#distributedtype10).
 
 **Solution**
 

@@ -6,7 +6,7 @@ Advanced Notification Manager（通知管理工具，简称anm）是实现通知
 >
 > 在使用本工具前，开发者需要先获取[hdc工具](../../device-dev/subsystems/subsys-toolchain-hdc-guide.md)，执行hdc shell。
 
-### help
+## help
 
 * **介绍**
 
@@ -18,7 +18,7 @@ Advanced Notification Manager（通知管理工具，简称anm）是实现通知
   anm help
   ```
 
-### dump
+## dump
 
 * **介绍**
 
@@ -48,7 +48,7 @@ Advanced Notification Manager（通知管理工具，简称anm）是实现通知
   ```
   ![anm-dump-A](figures/anm-dump-A.png)
 
-### Setting
+## Setting
 
 > **说明：**
 > 

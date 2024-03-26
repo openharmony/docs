@@ -29,10 +29,10 @@ AlphabetIndexer(value: {arrayValue: Array&lt;string&gt;, selected: number})
 
 | 名称                  | 参数类型     | 描述                                                                    |
 | ----------------------- | --------------------| ------------------------------------------------------------------|
-| color                   | [ResourceColor](ts-types.md#resourcecolor)       | 设置文字颜色。<br/>默认值：0x99000000。                           |
-| selectedColor           | [ResourceColor](ts-types.md#resourcecolor)     | 设置选中项文字颜色。<br/>默认值：0xFF254FF7。                           |
-| popupColor              | [ResourceColor](ts-types.md#resourcecolor)        | 设置提示弹窗文字颜色。<br/>默认值：0xFF254FF7。                         |
-| selectedBackgroundColor | [ResourceColor](ts-types.md#resourcecolor)       | 设置选中项背景颜色。<br/>默认值：0x1F0A59F7。                           |
+| color                   | [ResourceColor](ts-types.md#resourcecolor)       | 设置文字颜色。<br/>默认值：0x99182431。                           |
+| selectedColor           | [ResourceColor](ts-types.md#resourcecolor)     | 设置选中项文字颜色。<br/>默认值：0xFF007DFF。                           |
+| popupColor              | [ResourceColor](ts-types.md#resourcecolor)        | 设置提示弹窗文字颜色。<br/>默认值：0xFF007DFF。                         |
+| selectedBackgroundColor | [ResourceColor](ts-types.md#resourcecolor)       | 设置选中项背景颜色。<br/>默认值：0x1A007DFF。                           |
 | popupBackground         | [ResourceColor](ts-types.md#resourcecolor)        | 设置提示弹窗背景色。<br/>默认值：0xFFFFFFFF。                            |
 | usingPopup              | boolean                                  | 设置是否使用提示弹窗。<br/>默认值：false。                         |
 | selectedFont            | [Font](ts-types.md#font) | 设置选中项文字样式。<br/>默认值：<br/>{<br/>size:'12.0fp',<br/> style:FontStyle.Normal,<br/> weight:FontWeight.Normal,<br/> family:'HarmonyOS Sans'<br/>}                          |
@@ -45,7 +45,7 @@ AlphabetIndexer(value: {arrayValue: Array&lt;string&gt;, selected: number})
 | popupSelectedColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 设置提示弹窗非字母部分选中文字色。 <br/>默认值：#FF182431 |
 | popupUnselectedColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 设置提示弹窗非字母部分未选中文字色。 <br/>默认值：#FF182431 |
 | popupItemFont<sup>10+</sup> | [Font](ts-types.md#font) | 设置提示弹窗非字母部分字体样式。 <br/>默认值：<br/>{<br/>size:24,<br/>weight:FontWeight.Medium<br/>}|
-| popupItemBackgroundColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 设置提示弹窗非字母部分背景色。 <br/>默认值：#FFFFFF |
+| popupItemBackgroundColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 设置提示弹窗非字母部分背景色。 <br/>默认值：#FFFFFFFF |
 | autoCollapse<sup>11+</sup>             | boolean                                  | 设置是否使用自适应折叠模式。<br/>默认值：false。<br/>**说明：**<br />- 如果字符串首字符为“#”，除去首字符。<br/>当剩余字符数 $\leq$ 9时，选择全显示模式。<br/>当9 < 剩余字符数 $\leq$ 13时，根据索引条高度自适应选择全显示模式或者短折叠模式。<br/>当剩余字符数 > 13时，根据索引条高度自适应选择短折叠模式或者长折叠模式。<br />- 如果字符串首字符不为“#”。<br/>当所有字符数 $\leq$ 9时，选择全显示模式。 <br/>当9 < 所有字符数 $\leq$ 13时，根据索引条高度自适应选择全显示模式或者短折叠模式。<br/>当所有字符数 > 13时，根据索引条高度自适应选择短折叠模式或者长折叠模式。
 
 ## IndexerAlign枚举说明

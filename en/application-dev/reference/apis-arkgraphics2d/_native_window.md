@@ -24,9 +24,9 @@ The **NativeWindow** module provides the **NativeWindow** capability for connect
 
 | Name| Description|
 | -------- | -------- |
-| [Region](_region.md) | Defines the rectangle (dirty region) where the content is to be updated in the local **OHNativeWindow**.|
-| [OHHDRMetaData](_o_h_h_d_r_meta_data.md) | Defines the HDR metadata.|
-| [OHExtDataHandle](_o_h_ext_data_handle.md) | Defines the extended data handle.|
+| [Region](_region.md) | Describes the rectangle (dirty region) where the content is to be updated in the local **OHNativeWindow**.|
+| [OHHDRMetaData](_o_h_h_d_r_meta_data.md) | Describes the HDR metadata.|
+| [OHExtDataHandle](_o_h_ext_data_handle.md) | Describes the extended data handle.|
 
 
 ### Types
@@ -35,7 +35,7 @@ The **NativeWindow** module provides the **NativeWindow** capability for connect
 | -------- | -------- |
 | [OHNativeWindow](#ohnativewindow) | Provides the capability of accessing the **OHNativeWindow**.|
 | [OHNativeWindowBuffer](#ohnativewindowbuffer) | Provides the capability of accessing the **OHNativeWindowBuffer**.|
-| [Region](#region) | Defines the rectangle (dirty region) where the content is to be updated in the local **OHNativeWindow**.|
+| [Region](#region) | Describes the rectangle (dirty region) where the content is to be updated in the local **OHNativeWindow**.|
 
 
 ### Enums

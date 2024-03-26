@@ -3,7 +3,7 @@
 
 ## Overview
 
-Data (distributed data manager) supports persistence of various structured data on a single device, and data synchronization and sharing between a device and the cloud. It defines a series of data types for operations, such as data addition, deletion, modification, and query.
+Data (distributed data manager) supports persistence of various structured data on a single device, and data sync and sharing between a device and the cloud. It defines a series of data types for operations, such as data addition, deletion, modification, and query.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 

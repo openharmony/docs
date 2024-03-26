@@ -10,12 +10,12 @@ This topic walks you through on how to randomly generate an ECC key. For details
    - The key alias cannot exceed 64 bytes.
    - For the keys generated for different services, HUKS isolates the storage paths based on the service identity information to prevent conflicts caused by the same key alias.
 
-2. Initialize the key property set. Construct the key property set **paramSet** by using [OH_Huks_InitParamSet](../../reference/native-apis/_huks_param_set_api.md#oh_huks_initparamset), [OH_Huks_AddParams](../../reference/native-apis/_huks_param_set_api.md#oh_huks_addparams) and [OH_Huks_BuildParamSet](../../reference/native-apis/_huks_param_set_api.md#oh_huks_buildparamset).
-   **paramSet** must contain [OH_Huks_KeyAlg](../../reference/native-apis/_huks_type_api.md#oh_huks_keyalg), [OH_Huks_KeySize](../../reference/native-apis/_huks_type_api.md#oh_huks_keysize), and [OH_Huks_KeyPurpose](../../reference/native-apis/_huks_type_api.md#oh_huks_keypurpose).
+2. Initialize the key property set. Construct the key property set **paramSet** using [OH_Huks_InitParamSet](../../reference/apis-universal-keystore-kit/_huks_param_set_api.md#oh_huks_initparamset), [OH_Huks_AddParams](../../reference/apis-universal-keystore-kit/_huks_param_set_api.md#oh_huks_addparams), and [OH_Huks_BuildParamSet](../../reference/apis-universal-keystore-kit/_huks_param_set_api.md#oh_huks_buildparamset).
+   ** paramSet** must contain [OH_Huks_KeyAlg](../../reference/apis-universal-keystore-kit/_huks_type_api.md#oh_huks_keyalg), [OH_Huks_KeySize](../../reference/apis-universal-keystore-kit/_huks_type_api.md#oh_huks_keysize), and [OH_Huks_KeyPurpose](../../reference/apis-universal-keystore-kit/_huks_type_api.md#oh_huks_keypurpose).
 
-3. Use [OH_Huks_GenerateKeyItem](../../reference/native-apis/_huks_key_api.md#oh_huks_generatekeyitem) to generate a key based on the key alias and key properties specified.
+3. Use [OH_Huks_GenerateKeyItem](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_generatekeyitem) to generate a key based on the key alias and key properties specified.
 
-> **NOTE**
+> **NOTE**<br>
 > If the service uses the same key alias to call the HUKS API to generate a key again, HUKS will generate a new key and overwrite the historical key file.
 
 ```c++

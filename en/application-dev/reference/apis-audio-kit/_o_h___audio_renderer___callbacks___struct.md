@@ -27,6 +27,10 @@ The **OH_AudioRenderer_Callbacks_Struct** struct defines a pointer to the callba
 
 ## Member Variable Description
 
+> **NOTE**
+>
+> No enumerated values are defined as the return values of the following callbacks. In the current version, no processing specific to the return value is provided. To support expansion in later versions, the default value **0** is used.
+
 
 ### OH_AudioRenderer_OnError
 

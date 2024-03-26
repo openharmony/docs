@@ -656,7 +656,7 @@ Obtains **image.PixelMap** of the source image to which the filter linked list i
 
 > **NOTE**
 >
-> This API is supported since API version 9 and deprecated since API version 10. You are advised to use [getEffectPixelMap](#geteffectpixelmap11) instead.
+> This API is supported since API version 9 and deprecated since API version 11. You are advised to use [getEffectPixelMap](#geteffectpixelmap11) instead.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 

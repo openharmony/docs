@@ -421,6 +421,6 @@ Closes this result set.
   promiseClose.then((resultSet) => {
       resultSet.close();
   }).catch((err) => {
-      console.log('Failed to close the resultset');
+      console.log('resultset close failed');
   });
   ```

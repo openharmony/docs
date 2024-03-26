@@ -1416,7 +1416,7 @@ void OH_Drawing_BrushSetFilter (OH_Drawing_Brush * , OH_Drawing_Filter *  )
 | 名称 | 描述 |
 | -------- | -------- |
 | OH_Drawing_Brush | 指向画刷对象的指针。 |
-| OH_Drawing_Filter | 表示指向滤波器对象的指针。 |
+| OH_Drawing_Filter | 表示指向滤波器对象的指针，为空表示清空画刷滤波器。 |
 
 
 ### OH_Drawing_BrushSetShaderEffect()
@@ -3556,7 +3556,7 @@ void OH_Drawing_PenSetFilter (OH_Drawing_Pen* , OH_Drawing_Filter*  )
 | 名称 | 描述 |
 | -------- | -------- |
 | OH_Drawing_Pen | 指向画笔对象[OH_Drawing_Pen](#oh_drawing_pen)的指针。 |
-| OH_Drawing_Filter | 指向滤波器[OH_Drawing_Filter](#oh_drawing_filter)的指针。 |
+| OH_Drawing_Filter | 指向滤波器[OH_Drawing_Filter](#oh_drawing_filter)的指针，为空表示清空画笔滤波器。 |
 
 
 ### OH_Drawing_PenSetJoin()

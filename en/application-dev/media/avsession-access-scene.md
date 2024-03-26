@@ -85,7 +85,6 @@ The application can call **setAVMetadata()** to set AVSession metadata to the sy
     });
    }
 ```
-
 ### Setting Lyrics
 
 The controller provides the UI to show lyrics. The application only needs to set the lyrics content. The controller parses the lyrics content and displays it based on the playback progress.
@@ -113,26 +112,10 @@ The controller provides the UI to show lyrics. The application only needs to set
   }
 ```
 
-### Setting Historical Playlists
+### Display Tags of Media Assets
+The controller displays a special type identifier for long-duration media assets. Currently, only the AudioVivid identifier is displayed.
 
-To access a historical playlist, the application must access the InsightIntent framework to support the MUSIC_PLAYBACK capability (by registering the PlayMusicList InsightIntent in background mode) and implement the corresponding InsightIntent APIs. For details, see the InsightIntent framework.
-
-After the PlayMusicList InsightIntent in background mode is registered, when the system starts to play a historical playlist, the application obtains the playlist startup parameters from the InsightIntent APIs.
-
-A music application can call **setAVMetadata()** to set a playlist, which consists of the following information:
-
-- **avQueueName**: name of the playlist.
-- **avQueueId**: unique ID of the playlist.
-- **avQueueImage**: image of the playlist.
-
-After a playlist is set, users can control the playback of the playlist in the controller. The system sends the unique ID of the playlist to the application.
-
-After the playlist starts to play, the application listens for control commands from AVSession.
-
-Pay attention to the following:
-1. Accessing a historical playlist is equivalent to cold start in the background.
-2. If the application registers only the PlayMusicList InsightIntent in background mode but does not set a playlist through **setAVMetadata()**, background playback of the PlayMusicList InsightIntent without a unique playlist ID must be supported. In this case, the system starts the playback, and the application determines the actual content to play.
-3. If the application registers the PlayMusicList InsightIntent in background mode and sets a playlist through **setAVMetadata()**, the corresponding playlist will be played in cold start in the background.
+The application notifies the system of the display tag of the media asset through the AVMetadata during the access, and the controller displays the tag when the media asset is being played.
 
 ```ts
   import AVSessionManager from '@ohos.multimedia.avsession';
@@ -143,20 +126,18 @@ Pay attention to the following:
     let type: AVSessionManager.AVSessionType = 'audio';
     let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
 
-    // Set a playlist to AVSession.
+    // Set the media audio source information to AVSession.
     let metadata: AVSessionManager.AVMetadata = {
-      // The following content is specified by the application.
-      assetId: '0', 
-      avQueueName: 'myQueue',
-      avQueueId: 'myQueue123',
-      avQueueImage: "PIXELMAP_OBJECT",
+      assetId: '0',
+      // The display tag of the audio source is AudioVivid.
+      displayTags: AVSessionManager.DisplayTag.TAG_AUDIO_VIVID,
     };
     session.setAVMetadata(metadata).then(() => {
       console.info(`SetAVMetadata successfully`);
     }).catch((err: BusinessError) => {
       console.error(`Failed to set AVMetadata. Code: ${err.code}, message: ${err.message}`);
     });
-    // Report the playback state. For details, see the content below.
+
   }
 ```
 
@@ -165,6 +146,7 @@ Pay attention to the following:
 ### Setting General State Information
 
 The application can call [setAVPlaybackState()](../reference/apis-avsession-kit/js-apis-avsession.md#setavplaybackstate10) to set the playback state information to the system so that the information can be displayed in the controller.
+
 Generally, the playback state information includes the playback state, position, speed, buffered time, loop mode, media item being played (activeItemId), custom media data (extras), and whether the media asset is favorited (isFavorite). It changes during the playback.
 
 ```ts
@@ -238,6 +220,7 @@ Certain special processing is required when setting the progress bar.
 1. Songs that can be previewed
 
     If a VIP song can be previewed, the application should set the preview duration of the song, rather than the total duration.
+
     If only the preview duration is set, when the user triggers progress control in the controller, the application receives the relative timestamp within the preview duration, rather than that within the total duration. The application needs to calculate the absolute timestamp from the very beginning of the song.
 
 2. Songs that do not support preview

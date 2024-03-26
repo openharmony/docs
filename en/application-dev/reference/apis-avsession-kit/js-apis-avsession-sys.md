@@ -37,7 +37,7 @@ Obtains the descriptors of all sessions. This API uses a promise to return the r
 
 **Error codes**
 
-For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -80,7 +80,7 @@ Obtains the descriptors of all sessions. This API uses an asynchronous callback 
 
 **Error codes**
 
-For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -131,7 +131,7 @@ Obtains the descriptors of all historical sessions. This API uses a promise to r
 
 **Error codes**
 
-For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -177,7 +177,7 @@ Obtains the descriptors of all historical sessions. This API uses an asynchronou
 
 **Error codes**
 
-For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -231,7 +231,7 @@ Obtains all the historical playlists. This API uses a promise to return the resu
 
 **Error codes**
 
-For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -271,7 +271,7 @@ Obtains all the historical playlists. This API uses an asynchronous callback to 
 
 **Error codes**
 
-For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -317,7 +317,7 @@ Creates a session controller based on the session ID. Multiple session controlle
 
 **Error codes**
 
-For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -359,7 +359,7 @@ Creates a session controller based on the session ID. Multiple session controlle
 
 **Error codes**
 
-For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -411,7 +411,7 @@ Before calling this API, import the **ohos.multimedia.audio** module to obtain t
 
 **Error codes**
 
-For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -468,7 +468,7 @@ Before calling this API, import the **ohos.multimedia.audio** module to obtain t
 
 **Error codes**
 
-For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -530,7 +530,7 @@ Starts an application to play a media asset. This API uses a promise to return t
 
 **Error codes**
 
-For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -586,7 +586,7 @@ Subscribes to session creation events.
 
 **Error codes**
 
-For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -624,7 +624,7 @@ Subscribes to session destruction events.
 
 **Error codes**
 
-For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -661,7 +661,7 @@ Subscribes to top session change events.
 
 **Error codes**
 
-For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -698,7 +698,7 @@ Unsubscribes from session creation events.
 
 **Error codes**
 
-For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -731,7 +731,7 @@ Unsubscribes from session destruction events.
 
 **Error codes**
 
-For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -764,7 +764,7 @@ Unsubscribes from top session change events.
 
 **Error codes**
 
-For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -795,7 +795,7 @@ Subscribes to session service death events. Upon receiving this event, the appli
 
 **Error codes**
 
-For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -828,7 +828,7 @@ Unsubscribes from session service death events.
 
 **Error codes**
 
-For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -856,12 +856,12 @@ Sends a system key event to the top session. This API uses an asynchronous callb
 
 | Name  | Type                                                        | Mandatory| Description                                 |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------- |
-| event    | [KeyEvent](../apis/js-apis-keyevent.md) | Yes  | Key event.                           |
+| event    | [KeyEvent](../apis-input-kit/js-apis-keyevent.md) | Yes  | Key event.                           |
 | callback | AsyncCallback\<void>                                         | Yes  | Callback used to return the result. If the event is sent, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
-For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -902,7 +902,7 @@ Sends a system key event to the top session. This API uses a promise to return t
 
 | Name| Type                           | Mandatory| Description      |
 | ------ | ------------------------------- | ---- | ---------- |
-| event  | [KeyEvent](../apis/js-apis-keyevent.md) | Yes  | Key event.|
+| event  | [KeyEvent](../apis-input-kit/js-apis-keyevent.md) | Yes  | Key event.|
 
 **Return value**
 
@@ -912,7 +912,7 @@ Sends a system key event to the top session. This API uses a promise to return t
 
 **Error codes**
 
-For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -956,7 +956,7 @@ Sends a system control command to the top session. This API uses an asynchronous
 
 **Error codes**
 
-For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1020,7 +1020,7 @@ Sends a system control command to the top session. This API uses a promise to re
 
 **Error codes**
 
-For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1420,7 +1420,7 @@ This API can be called on both the local and remote devices. You can use the API
 
 **Error codes**
 
-For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1488,7 +1488,7 @@ This API can be called on both the local and remote devices. You can use the API
 
 **Error codes**
 
-For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1548,7 +1548,7 @@ Starts casting. This API uses an asynchronous callback to return the result.
 
 **Error codes**
 
-For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1625,7 +1625,7 @@ Starts casting. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1691,7 +1691,7 @@ Stops castings. This API uses an asynchronous callback to return the result.
 
 **Error codes**
 
-For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1756,7 +1756,7 @@ Stops castings. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1817,7 +1817,7 @@ Sets the surface ID for playback, which is used at the cast receiver (sink). Thi
 
 **Error codes**
 
-For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1863,7 +1863,7 @@ Sets the surface ID for playback, which is used at the cast receiver (sink). Thi
 
 **Error codes**
 
-For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1913,7 +1913,7 @@ Subscribes to video size change events.
 
 **Error codes**
 
-For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------- |
@@ -1946,7 +1946,7 @@ Unsubscribes from video size changes.
 
 **Error codes**
 
-For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------- |
@@ -2009,7 +2009,7 @@ Declares the session descriptor.
 | sessionId    | string    | Yes| Yes | Session ID.     |
 | type         | [AVSessionType](js-apis-avsession.md#avsessiontype10)   | Yes| Yes| Session type.   |
 | sessionTag   | string             | Yes| Yes| Custom session name.   |
-| elementName  | [ElementName](../apis/js-apis-bundle-ElementName.md)  | Yes| Yes| Information about the application to which the session belongs, including the bundle name and ability name.|
+| elementName  | [ElementName](../apis-ability-kit/js-apis-bundle-ElementName.md)  | Yes| Yes| Information about the application to which the session belongs, including the bundle name and ability name.|
 | isActive     | boolean             | Yes| Yes| Whether the session is activated.                                     |
 | isTopSession | boolean             | Yes| Yes| Whether the session is the top session.                               |
 | outputDevice | [OutputDeviceInfo](js-apis-avsession.md#outputdeviceinfo10)    | Yes| Yes| Information about the output device.  |

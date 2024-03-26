@@ -10,8 +10,8 @@ LazyForEach从提供的数据源中按需迭代数据，并在每次迭代过程
 ```ts
 LazyForEach(
     dataSource: IDataSource,             // 需要进行数据迭代的数据源
-    itemGenerator: (item: any, index?: number) => void,  // 子组件生成函数
-    keyGenerator?: (item: any, index?: number) => string // 键值生成函数
+    itemGenerator: (item: any, index: number) => void,  // 子组件生成函数
+    keyGenerator?: (item: any, index: number) => string // 键值生成函数
 ): void
 ```
 
@@ -21,8 +21,8 @@ LazyForEach(
 | 参数名        | 参数类型                                               | 必填 | 参数描述                                                     |
 | ------------- | ------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | dataSource    | [IDataSource](#idatasource类型说明)                    | 是   | LazyForEach数据源，需要开发者实现相关接口。                  |
-| itemGenerator | (item:&nbsp;any， index?:number)&nbsp;=&gt;&nbsp;void  | 是   | 子组件生成函数，为数组中的每一个数据项创建一个子组件。<br/>**说明：**<br/>item是当前数据项，index是数据项索引值。<br/>itemGenerator的函数体必须使用大括号{...}。itemGenerator每次迭代只能并且必须生成一个子组件。itemGenerator中可以使用if语句，但是必须保证if语句每个分支都会创建一个相同类型的子组件。itemGenerator中不允许使用ForEach和LazyForEach语句。 |
-| keyGenerator  | (item:&nbsp;any, index?:number)&nbsp;=&gt;&nbsp;string | 否   | 键值生成函数，用于给数据源中的每一个数据项生成唯一且固定的键值。当数据项在数组中的位置更改时，其键值不得更改，当数组中的数据项被新项替换时，被替换项的键值和新项的键值必须不同。键值生成器的功能是可选的，但是，为了使开发框架能够更好地识别数组更改，提高性能，建议提供。如将数组反向时，如果没有提供键值生成器，则LazyForEach中的所有节点都将重建。<br/>**说明：**<br/>item是当前数据项，index是数据项索引值。<br/>数据源中的每一个数据项生成的键值不能重复。 |
+| itemGenerator | (item:&nbsp;any， index:number)&nbsp;=&gt;&nbsp;void  | 是   | 子组件生成函数，为数组中的每一个数据项创建一个子组件。<br/>**说明：**<br/>item是当前数据项，index是数据项索引值。<br/>itemGenerator的函数体必须使用大括号{...}。itemGenerator每次迭代只能并且必须生成一个子组件。itemGenerator中可以使用if语句，但是必须保证if语句每个分支都会创建一个相同类型的子组件。itemGenerator中不允许使用ForEach和LazyForEach语句。 |
+| keyGenerator  | (item:&nbsp;any, index:number)&nbsp;=&gt;&nbsp;string | 否   | 键值生成函数，用于给数据源中的每一个数据项生成唯一且固定的键值。当数据项在数组中的位置更改时，其键值不得更改，当数组中的数据项被新项替换时，被替换项的键值和新项的键值必须不同。键值生成器的功能是可选的，但是，为了使开发框架能够更好地识别数组更改，提高性能，建议提供。如将数组反向时，如果没有提供键值生成器，则LazyForEach中的所有节点都将重建。<br/>**说明：**<br/>item是当前数据项，index是数据项索引值。<br/>数据源中的每一个数据项生成的键值不能重复。 |
 
 ## IDataSource类型说明
 
@@ -77,7 +77,7 @@ interface DataChangeListener {
 - LazyForEach在每次迭代中，必须创建且只允许创建一个子组件。
 - 生成的子组件必须是允许包含在LazyForEach父容器组件中的子组件。
 - 允许LazyForEach包含在if/else条件渲染语句中，也允许LazyForEach中出现if/else条件渲染语句。
-- 键值生成器必须针对每个数据生成唯一的值，如果键值相同，将导致键值相同的UI组件被框架忽略，从而无法在父容器内显示。
+- 键值生成器必须针对每个数据生成唯一的值，如果键值相同，将导致键值相同的UI组件渲染出现问题。
 - LazyForEach必须使用DataChangeListener对象来进行更新，第一个参数dataSource使用状态变量时，状态变量改变不会触发LazyForEach的UI刷新。
 - 为了高性能渲染，通过DataChangeListener对象的onDataChange方法来更新UI时，需要生成不同于原来的键值来触发组件刷新。
 
@@ -1797,7 +1797,7 @@ struct ChildComponent {
           .onClick(() => {
             item.message.message += '0';
           })
-        }, (item: StringData, index: number) => item.toString() + index.toString())
+        }, (item: StringData, index: number) => JSON.stringify(item) + index.toString())
       }.cachedCount(5)
     }
   }
@@ -1941,7 +1941,7 @@ struct ChildComponent {
           .onClick(() => {
             item.message = new NestedString(item.message.message + '0');
           })
-        }, (item: StringData, index: number) => item.toString() + index.toString())
+        }, (item: StringData, index: number) => JSON.stringify(item) + index.toString())
       }.cachedCount(5)
     }
   }
