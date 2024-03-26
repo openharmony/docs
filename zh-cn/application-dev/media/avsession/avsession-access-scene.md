@@ -36,19 +36,19 @@ AVSession在构造方法中支持不同的类型参数，由 [AVSessionType](../
 使用代码示例：
 
 ```ts
-  import AVSessionManager from '@ohos.multimedia.avsession';
+import AVSessionManager from '@ohos.multimedia.avsession';
 
-  // 开始创建并激活媒体会话
-  // 创建session
-  let context: Context = getContext(this);
-  async function createSession() {
-  let type: AVSessionManager.AVSessionType = 'audio';
-  let session = await AVSessionManager.createAVSession(context,'SESSION_NAME', type);
+// 开始创建并激活媒体会话
+// 创建session
+let context: Context = getContext(this);
+async function createSession() {
+let type: AVSessionManager.AVSessionType = 'audio';
+let session = await AVSessionManager.createAVSession(context,'SESSION_NAME', type);
 
-  // 激活接口要在元数据、控制命令注册完成之后再执行
-  await session.activate();
-    console.info(`session create done : sessionId : ${session.sessionId}`);
-  }
+// 激活接口要在元数据、控制命令注册完成之后再执行
+await session.activate();
+  console.info(`session create done : sessionId : ${session.sessionId}`);
+}
 ```
 
 ## 创建后台任务
@@ -57,7 +57,6 @@ AVSession在构造方法中支持不同的类型参数，由 [AVSessionType](../
 
 对媒体类播放来说，需要申请[AUDIO_PLAYBACK BackgroundMode](../../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md#backgroundmode)的长时任务。
 
-
 ## 设置元数据
 
 ### 通用元数据
@@ -65,26 +64,27 @@ AVSession在构造方法中支持不同的类型参数，由 [AVSessionType](../
 应用可以通过setAVMetadata把会话的一些元数据信息设置给系统，从而在播控中心界面进行展示，包括不限制：当前媒体的ID（assetId），上一首媒体的ID（previousAssetId），下一首媒体的ID（nextAssetId），标题（title），专辑作者（author），专辑名称（album），词作者（writer），媒体时长（duration）等。
 
 ```ts
-  import AVSessionManager from '@ohos.multimedia.avsession';
-  import { BusinessError } from '@ohos.base';
+import AVSessionManager from '@ohos.multimedia.avsession';
+import { BusinessError } from '@ohos.base';
 
-  let context: Context = getContext(this);
-  async function setSessionInfo() {
-    // 假设已经创建了一个session，如何创建session可以参考之前的案例
-    let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', 'audio');
-    // 设置必要的媒体信息
-    let metadata: AVSessionManager.AVMetadata = {
-      assetId: '0', // 由应用指定，用于标识应用媒体库里的媒体
-      title: 'TITLE',
-      artist: 'ARTIST'
-    };
-    session.setAVMetadata(metadata).then(() => {
-      console.info(`SetAVMetadata successfully`);
-    }).catch((err: BusinessError) => {
-      console.error(`Failed to set AVMetadata. Code: ${err.code}, message: ${err.message}`);
-    });
-   }
+let context: Context = getContext(this);
+async function setSessionInfo() {
+  // 假设已经创建了一个session，如何创建session可以参考之前的案例
+  let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', 'audio');
+  // 设置必要的媒体信息
+  let metadata: AVSessionManager.AVMetadata = {
+    assetId: '0', // 由应用指定，用于标识应用媒体库里的媒体
+    title: 'TITLE',
+    artist: 'ARTIST'
+  };
+  session.setAVMetadata(metadata).then(() => {
+    console.info(`SetAVMetadata successfully`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to set AVMetadata. Code: ${err.code}, message: ${err.message}`);
+  });
+ }
 ```
+
 ### 歌词
 
 对于长音频来说，播控中心提供了歌词的展示页面，对于应用来说，接入也比较简单，只需要把歌词内容设置给系统。播控中心会解析歌词内容，并根据播放进度进行同步的刷新。
@@ -109,13 +109,14 @@ AVSession在构造方法中支持不同的类型参数，由 [AVSessionType](../
     }).catch((err: BusinessError) => {
       console.error(`Failed to set AVMetadata. Code: ${err.code}, message: ${err.message}`);
     });
-
   }
 ```
 
 ### 媒体资源金标
+
 对于长音频，播控中心提供了媒体资源金标的展示，媒体资源金标又可称为应用媒体音频音源的标识，目前暂时只支持展示AudioVivid标识。
 对于应用来说，接入只需要在AVMetadata中通知系统，当前播放音频的音源标识，播控就会同步展示。
+
 ```ts
   import AVSessionManager from '@ohos.multimedia.avsession';
   import { BusinessError } from '@ohos.base';
@@ -137,7 +138,6 @@ AVSession在构造方法中支持不同的类型参数，由 [AVSessionType](../
     }).catch((err: BusinessError) => {
       console.error(`Failed to set AVMetadata. Code: ${err.code}, message: ${err.message}`);
     });
-
   }
 ```
 
@@ -398,47 +398,47 @@ async function unregisterSessionListener() {
 应用如果支持进度显示，进一步也可以支持进度控制。应用需要响应seek的控制命令，那么当用户在播控中心的界面上进行拖动操作时，应用就会收到对应的回调。参考实现：
 
 ```ts
-  import AVSessionManager from '@ohos.multimedia.avsession';
+import AVSessionManager from '@ohos.multimedia.avsession';
 
-  let context: Context = getContext(this);
-  async function setListener() {
-    // 假设已经创建了一个session，如何创建session可以参考之前的案例
-    let type: AVSessionManager.AVSessionType = 'audio';
-    let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
+let context: Context = getContext(this);
+async function setListener() {
+ // 假设已经创建了一个session，如何创建session可以参考之前的案例
+ let type: AVSessionManager.AVSessionType = 'audio';
+ let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
 
-    session.on('seek', (time: number) => {
-      console.info(`on seek , the time is ${JSON.stringify(time)}`);
+ session.on('seek', (time: number) => {
+   console.info(`on seek , the time is ${JSON.stringify(time)}`);
 
-      // 由于应用内seek可能会触发较长的缓冲等待，一般先把状态设置为 Buffering
-      let playbackState: AVSessionManager.AVPlaybackState = {
-        state: AVSessionManager.PlaybackState.PLAYBACK_STATE_BUFFERING, // 缓冲状态
-      };
-      session.setAVPlaybackState(playbackState, (err) => {
-        if (err) {
-          console.error(`Failed to set AVPlaybackState. Code: ${err.code}, message: ${err.message}`);
-        } else {
-          console.info(`SetAVPlaybackState successfully`);
-        }
-      });
+   // 由于应用内seek可能会触发较长的缓冲等待，一般先把状态设置为 Buffering
+   let playbackState: AVSessionManager.AVPlaybackState = {
+     state: AVSessionManager.PlaybackState.PLAYBACK_STATE_BUFFERING, // 缓冲状态
+   };
+   session.setAVPlaybackState(playbackState, (err) => {
+     if (err) {
+       console.error(`Failed to set AVPlaybackState. Code: ${err.code}, message: ${err.message}`);
+     } else {
+       console.info(`SetAVPlaybackState successfully`);
+     }
+   });
 
-      // 应用响应seek命令，使用应用内播放器完成seek实现
+   // 应用响应seek命令，使用应用内播放器完成seek实现
 
-      // 应用内更新新的位置后，也需要同步更新状态给系统
-      playbackState.state = AVSessionManager.PlaybackState.PLAYBACK_STATE_PLAY; // 播放状态
-      playbackState.position = {
-        elapsedTime: 4000, // 已经播放的位置，以ms为单位
-        updateTime: 34000, // 应用更新当前位置的时间戳，以ms为单位
-      }
-      session.setAVPlaybackState(playbackState, (err) => {
-        if (err) {
-          console.error(`Failed to set AVPlaybackState. Code: ${err.code}, message: ${err.message}`);
-        } else {
-          console.info(`SetAVPlaybackState successfully`);
-        }
-      });
+   // 应用内更新新的位置后，也需要同步更新状态给系统
+   playbackState.state = AVSessionManager.PlaybackState.PLAYBACK_STATE_PLAY; // 播放状态
+   playbackState.position = {
+     elapsedTime: 4000, // 已经播放的位置，以ms为单位
+     updateTime: 34000, // 应用更新当前位置的时间戳，以ms为单位
+   }
+   session.setAVPlaybackState(playbackState, (err) => {
+     if (err) {
+       console.error(`Failed to set AVPlaybackState. Code: ${err.code}, message: ${err.message}`);
+     } else {
+       console.info(`SetAVPlaybackState successfully`);
+     }
+   });
 
-    });
-  }
+ });
+}
 ```
 
 ## 适配媒体通知

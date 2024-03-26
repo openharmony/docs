@@ -4,21 +4,21 @@ This topic walks you through on how to filter certificates or CRLs based on a [C
 
 ## How to Develop
 
-1. Import the [certFramework](../../reference/apis/js-apis-cert.md) module.
+1. Import the [certFramework](../../reference/apis-device-certificate-kit/js-apis-cert.md) module.
 
    ```ts
    import certFramework from '@ohos.security.cert';
    ```
 
-2. Use [cryptoCert.createX509Cert](../../reference/apis/js-apis-cert.md#cryptocertcreatex509cert) to create an X.509 certificate instance.
+2. Use [cryptoCert.createX509Cert](../../reference/apis-device-certificate-kit/js-apis-cert.md#cryptocertcreatex509cert) to create an X.509 certificate instance.
 
-3. Use [cryptoCert.createX509CRL](../../reference/apis/js-apis-cert.md#cryptocertcreatex509crl11) to create an X.509 CRL instance.
+3. Use [cryptoCert.createX509CRL](../../reference/apis-device-certificate-kit/js-apis-cert.md#cryptocertcreatex509crl11) to create an X.509 CRL instance.
 
-4. Use [cryptoCert.createCertCRLCollection](../../reference/apis/js-apis-cert.md#cryptocertcreatecertcrlcollection11) to create a [CertCRLCollection](../../reference/apis/js-apis-cert.md#certcrlcollection11) instance.
+4. Use [cryptoCert.createCertCRLCollection](../../reference/apis-device-certificate-kit/js-apis-cert.md#cryptocertcreatecertcrlcollection11) to create a [CertCRLCollection](../../reference/apis-device-certificate-kit/js-apis-cert.md#certcrlcollection11) instance.
 
-5. Use [CertCRLCollection.selectCerts](../../reference/apis/js-apis-cert.md#selectcerts11) to search for all certificates that match [X509CertMatchParameters](../../reference/apis/js-apis-cert.md#x509certmatchparameters11).
+5. Use [CertCRLCollection.selectCerts](../../reference/apis-device-certificate-kit/js-apis-cert.md#selectcerts11) to search for all certificates that match [X509CertMatchParameters](../../reference/apis-device-certificate-kit/js-apis-cert.md#x509certmatchparameters11).
 
-6. Use [CertCRLCollection.selectCRLs](../../reference/apis/js-apis-cert.md#selectcrls11) to search for all CRLs that match [X509CRLMatchParameters](../../reference/apis/js-apis-cert.md#x509crlmatchparameters11).
+6. Use [CertCRLCollection.selectCRLs](../../reference/apis-device-certificate-kit/js-apis-cert.md#selectcrls11) to search for all CRLs that match [X509CRLMatchParameters](../../reference/apis-device-certificate-kit/js-apis-cert.md#x509crlmatchparameters11).
 
 ```ts
 import certFramework from '@ohos.security.cert';
@@ -63,6 +63,7 @@ async function createX509Cert(): Promise<certFramework.X509Cert> {
     'Qw==\n' +
     '-----END CERTIFICATE-----\n';
 
+  let textEncoder = new util.TextEncoder();
   let encodingBlob: certFramework.EncodingBlob = {
     data: textEncoder.encodeInto(certData),
     // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
