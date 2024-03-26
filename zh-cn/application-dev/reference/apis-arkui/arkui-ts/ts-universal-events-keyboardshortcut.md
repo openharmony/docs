@@ -50,13 +50,15 @@ keyboardShortcut(value: string | FunctionKey, keys: Array\<ModifierKey>, action?
 
 ## 快捷键使用注意事项
 
+快捷键是对系统按键的响应，优先于普通的按键事件`OnKeyEvent`，按键事件触发的逻辑详见[按键事件](../../../ui/arkts-common-events-device-input-event.md#按键事件)
+
 | 场景                                       | 快捷键处理逻辑                            | 例子                                       |
 | ---------------------------------------- | ---------------------------------- | ---------------------------------------- |
 | 所有支持onClick事件的组件                         | 支持自定义组合键                           | 无                                        |
 | 自定义组合键要求                                 | 控制键Ctrl、Shift、Alt及它们的组合加上其它可输入字符按键 | Button('button1').keyboardShortcut('a',[ModifierKey.CTRL]) |
 | 多个不同组件设置相同组合键                            | 只响应结点树上的第一个组件，其它组件不响应快捷键。          | Button('button1').keyboardShortcut('a',[ModifierKey.CTRL])<br />Button('button2').keyboardShortcut('a',[ModifierKey.CTRL]) |
 | 无论组件是否获得焦点                               | 只要窗口获焦快捷键就会响应                      | 无                                        |
-| 绑定单个快捷键时候，通过keyboardShortcut接口value值或者是keys值或两者都是空的情况下。<br />绑定多个快捷键的时候无法取消快捷键。 | 取消快捷键的设置                           | Button('button1').keyboardShortcut('',[ModifierKey.CTRL])<br />Button('button2').keyboardShortcut('a',[l])<br />Button('button3').keyboardShortcut('',[]) |
+| 绑定单个快捷键时候，通过keyboardShortcut接口value值或者是keys值或两者都是空的情况下。<br />绑定多个快捷键的时候无法取消快捷键。 | 取消快捷键的设置                           | Button('button1').keyboardShortcut('',[ModifierKey.CTRL])<br />Button('button2').keyboardShortcut('a',[])<br />Button('button3').keyboardShortcut('',[]) |
 | 独立pipeline子窗口、主窗口共存的情况下                  | 获焦的窗口响应快捷键                         | 无                                        |
 | keyboardShortcut接口中的keys命令中ctrl、shift、alt | 不区分左右键都响应                          | Button('button1').keyboardShortcut('a',[ModifierKey.CTRL, ModifierKey.ALT]) |
 | keyboardShortcut接口中的value单个字符            | 不区分大小写都响应                          | Button('button1').keyboardShortcut('a',[ModifierKey.CTRL])<br />Button('button2').keyboardShortcut('A',[ModifierKey.CTRL]) |
@@ -81,6 +83,8 @@ keyboardShortcut(value: string | FunctionKey, keys: Array\<ModifierKey>, action?
 | TAB键           |  [Image](ts-basic-components-image.md)、[TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md) |
 
 ## 示例
+
+### 示例1
 
 设置组件的快捷键，同时按控制键+对应的字符可以触发组件响应快捷键，并触发onClick事件或自定义事件。
 
@@ -117,6 +121,39 @@ struct Index {
           this.message = "I clicked Button 4";
           console.log("I clicked user callback.");
         }).keyboardShortcut(FunctionKey.F3, [])
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### 示例2
+
+通过按键注册和解注册快捷键绑定
+
+```ts
+@Entry
+@Component
+struct Index {
+  @State message: string = 'disable'
+  @State shortCutEnable: boolean = false
+  @State keyValue: string = ''
+
+  build() {
+    Row() {
+      Column() {
+        Text('Ctrl+A is ' + this.message)
+        Button("Test short cut").onClick((event) => {
+          this.message = "I clicked Button";
+          console.log("I clicked");
+        }).keyboardShortcut(this.keyValue, [ModifierKey.CTRL])
+        Button(this.message + 'shortCut').onClick((event) => {
+          this.shortCutEnable = !this.shortCutEnable;
+          this.message = this.shortCutEnable ? 'disable' : 'enable';
+          this.keyValue = this.shortCutEnable ? 'a' : '';
+        })
       }
       .width('100%')
     }

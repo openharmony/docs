@@ -1,43 +1,42 @@
-# Ê¹ÓÃNAPI½Ó¿ÚÔÚC++ĞÂ´´½¨µÄÏß³ÌÖĞ½øĞĞÄ£¿é¼ÓÔØ
+# ä½¿ç”¨NAPIæ¥å£åœ¨C++æ–°åˆ›å»ºçš„çº¿ç¨‹ä¸­è¿›è¡Œæ¨¡å—åŠ è½½
 
-Node-APIÖĞµÄnapi_load_module_with_info½Ó¿ÚµÄ¹¦ÄÜÊÇÔÚC++ĞÂ´´½¨µÄÏß³ÌÖĞ½øĞĞÄ£¿éµÄ¼ÓÔØ£¬µ±Ä£¿é¼ÓÔØ³öÀ´Ö®ºó£¬¿ÉÒÔÊ¹ÓÃº¯Êınapi_get_property»ñÈ¡Ä£¿éµ¼³öµÄ±äÁ¿£¬Ò²¿ÉÒÔÊ¹ÓÃnapi_get_named_property»ñÈ¡Ä£¿éµ¼³öµÄº¯Êı£¬Ä¿Ç°Ö§³ÖÒÔÏÂ³¡¾°£º
-- ¼ÓÔØÏµÍ³Ä£¿é
-- ¼ÓÔØetsÄ¿Â¼ÏÂÎÄ¼şÖĞµÄÄ£¿é
-- ¼ÓÔØHAR°ü(¾²Ì¬¹²Ïí°ü)
-- ¼ÓÔØ±¾µØso¿â
+Node-APIä¸­çš„napi_load_module_with_infoæ¥å£çš„åŠŸèƒ½æ˜¯æ”¯æŒåœ¨C++æ–°åˆ›å»ºçš„çº¿ç¨‹ä¸­è¿›è¡Œæ¨¡å—çš„åŠ è½½ï¼Œå½“æ¨¡å—åŠ è½½å‡ºæ¥ä¹‹åï¼Œå¯ä»¥ä½¿ç”¨å‡½æ•°napi_get_propertyè·å–æ¨¡å—å¯¼å‡ºçš„å˜é‡ï¼Œä¹Ÿå¯ä»¥ä½¿ç”¨napi_get_named_propertyè·å–æ¨¡å—å¯¼å‡ºçš„å‡½æ•°
 
-## ¼ÓÔØÏµÍ³Ä£¿éÊ¹ÓÃÊ¾Àı
+## å‡½æ•°è¯´æ˜
 ```cpp
-static napi_value loadModule(napi_env env, napi_callback_info info) {
-    //1. Ê¹ÓÃnapi_load_module¼ÓÔØÄ£¿é@ohos.hilog
-    napi_value result;
-    napi_status status = napi_load_module_with_info(env, "@ohos.hilog", nullptr, &result);
-    
-    //2. Ê¹ÓÃnapi_get_named_property»ñÈ¡infoº¯Êı
-    napi_value infoFn;
-    napi_get_named_property(env, result, "info", &infoFn);
-    
-    napi_value tag;
-    std::string formatStr = "test";
-    napi_create_string_utf8(env, formatStr.c_str(), formatStr.size(), &tag);
-    
-    napi_value outputString;
-    std::string str = "Hello OpenHarmony";
-    napi_create_string_utf8(env, str.c_str(), str.size(), &outputString);
-    
-    napi_value flag;
-    napi_create_int32(env, 0, &flag);
-
-    napi_value args[3] = {flag, tag, outputString};
-    //3. Ê¹ÓÃnapi_call_functionµ÷ÓÃinfoº¯Êı
-    napi_call_function(env, result, infoFn, 3, args, nullptr);
-    return result
-}
+napi_status napi_load_module_with_info(napi_env env,
+                                       const char* path,
+                                       const char* module_info,
+                                       napi_value* result);
 ```
+| å‚æ•°            | è¯´æ˜          |
+| :------------- | :----------------------------- | 
+| env            | å½“å‰çš„è™šæ‹Ÿæœºç¯å¢ƒ       | 
+| path          | åŠ è½½çš„æ–‡ä»¶è·¯å¾„æˆ–è€…æ¨¡å—å          | 
+| module_info   | bundleName/moduleNameçš„è·¯å¾„æ‹¼æ¥       | 
+| result         | åŠ è½½çš„æ¨¡å—          | 
 
-## ¼ÓÔØArkTsÎÄ¼şÖĞµÄÄ£¿éÊ¹ÓÃÊ¾Àı
+æ³¨ï¼š
 
-µ±¼ÓÔØÎÄ¼şÖĞµÄÄ£¿éÊ±£¬ÈçÒÔÏÂArkTS´úÂë£º
+1. bundleNameè¡¨ç¤ºAppScope/app.json5ä¸­é…ç½®çš„å·¥ç¨‹å
+2. moduleNameæŒ‡çš„æ˜¯å¾…åŠ è½½æ¨¡å—æ‰€åœ¨çš„HAPä¸‹module.json5ä¸­é…ç½®çš„åå­—
+
+## napi_load_module_with_infoæ”¯æŒçš„åœºæ™¯
+
+| åœºæ™¯            | è¯¦ç»†åˆ†ç±»           | è¯´æ˜                         |
+| :------------- | :----------------------------- | :--------------------------- |
+| æœ¬åœ°å·¥ç¨‹æ¨¡å—   | åŠ è½½æ¨¡å—å†…æ–‡ä»¶è·¯å¾„       | è¦æ±‚è·¯å¾„ä»¥moduleNameå¼€å¤´             |
+| æœ¬åœ°å·¥ç¨‹æ¨¡å—   | åŠ è½½HARæ¨¡å—å           | -                            |
+| è¿œç¨‹åŒ…         | åŠ è½½è¿œç¨‹HARæ¨¡å—å        | -                            |
+| è¿œç¨‹åŒ…         | åŠ è½½ohpmåŒ…å            | -                            |
+| API        |    åŠ è½½@ohos.* æˆ– @system.*          | -                            |
+| æ¨¡å—Nativeåº“   | åŠ è½½libNativeLibrary.so | -                            |
+
+## ä½¿ç”¨ç¤ºä¾‹
+
+- **åŠ è½½æ¨¡å—å†…æ–‡ä»¶è·¯å¾„**
+
+å½“åŠ è½½æ–‡ä»¶ä¸­çš„æ¨¡å—æ—¶ï¼Œå¦‚ä»¥ä¸‹ArkTSä»£ç ï¼š
 ```javascript
 //./src/main/ets/Test.ets
 let value = 123;
@@ -47,7 +46,7 @@ function test() {
 export {value, test};
 ```
 
-1. ĞèÒªÔÚ¹¤³ÌµÄbuild-profile.json5ÎÄ¼şÖĞ½øĞĞÒÔÏÂÅäÖÃ
+1. éœ€è¦åœ¨å·¥ç¨‹çš„build-profile.json5æ–‡ä»¶ä¸­è¿›è¡Œä»¥ä¸‹é…ç½®
 ```json
 {
     "buildOption" : {
@@ -63,34 +62,33 @@ export {value, test};
 ```
 
 
-2. Ê¹ÓÃnapi_load_module_with_info¼ÓÔØTestÎÄ¼ş£¬µ÷ÓÃº¯ÊıtestÒÔ¼°»ñÈ¡±äÁ¿value
+2. ä½¿ç”¨napi_load_module_with_infoåŠ è½½Testæ–‡ä»¶ï¼Œè°ƒç”¨å‡½æ•°testä»¥åŠè·å–å˜é‡value
 
 ```cpp
 static napi_value loadModule(napi_env env, napi_callback_info info) {
     napi_value result;
-    //1. Ê¹ÓÃnapi_load_module¼ÓÔØTestÎÄ¼şÖĞµÄÄ£¿é
+    //1. ä½¿ç”¨napi_load_moduleåŠ è½½Testæ–‡ä»¶ä¸­çš„æ¨¡å—
     napi_status status = napi_load_module_with_info(env, "entry/src/main/ets/Test", "com.example.application/entry", &result);
 
     napi_value testFn;
-    //2. Ê¹ÓÃnapi_get_named_property»ñÈ¡testº¯Êı
+    //2. ä½¿ç”¨napi_get_named_propertyè·å–testå‡½æ•°
     napi_get_named_property(env, result, "test", &testFn);
-    //3. Ê¹ÓÃnapi_call_functionµ÷ÓÃº¯Êıtest
+    //3. ä½¿ç”¨napi_call_functionè°ƒç”¨å‡½æ•°test
     napi_call_function(env, result, testFn, 0, nullptr, nullptr);
 
     napi_value value;
     napi_value key;
     std::string keyStr = "value";
     napi_create_string_utf8(env, keyStr.c_str(), keyStr.size(), &key);
-    //4. Ê¹ÓÃnapi_get_property»ñÈ¡±äÁ¿value
+    //4. ä½¿ç”¨napi_get_propertyè·å–å˜é‡value
     napi_get_property(env, result, key, &value);
     return result
 }
 ```
 
-## ¼ÓÔØHAR°ü(¾²Ì¬¹²Ïí°ü)
+- **åŠ è½½HARæ¨¡å—å**
 
-### ¼ÓÔØ±¾µØHAR°ü,
-HAR°üIndex.etsÎÄ¼şÈçÏÂ
+HARåŒ…Index.etsæ–‡ä»¶å¦‚ä¸‹
 ```javascript
 //library Index.ets
 let value = 123;
@@ -99,7 +97,7 @@ function test() {
 }
 export {value, test};
 ```
-1. ÔÚ¼ÓÔØ±¾µØHAR°üÊ±£¬Ê×ÏÈĞèÒªÔÚoh-package.json5ÎÄ¼şÖĞÅäÖÃdependenciesÏî
+1. åœ¨åŠ è½½æœ¬åœ°HARåŒ…æ—¶ï¼Œé¦–å…ˆéœ€è¦åœ¨oh-package.json5æ–‡ä»¶ä¸­é…ç½®dependenciesé¡¹
 ```json
 {
     "dependencies": {
@@ -107,7 +105,7 @@ export {value, test};
     }
 }
 ```
-2. Æä´Î£¬»¹ĞèÒªÔÚbuild-profile.json5ÖĞ½øÏîÅäÖÃ
+2. å…¶æ¬¡ï¼Œè¿˜éœ€è¦åœ¨build-profile.json5ä¸­è¿›é¡¹é…ç½®
 ```json
 {
     "buildOption" : {
@@ -122,31 +120,71 @@ export {value, test};
 }
 ```
 
-3. ÓÃnapi_load_module_with_info¼ÓÔØlibrary£¬µ÷ÓÃº¯ÊıtestÒÔ¼°»ñÈ¡±äÁ¿value
+3. ç”¨napi_load_module_with_infoåŠ è½½libraryï¼Œè°ƒç”¨å‡½æ•°testä»¥åŠè·å–å˜é‡value
 ```cpp
 static napi_value loadModule(napi_env env, napi_callback_info info) {
     napi_value result;
-    //1. Ê¹ÓÃnapi_load_module¼ÓÔØTestÎÄ¼şÖĞµÄÄ£¿é
+    //1. ä½¿ç”¨napi_load_moduleåŠ è½½Testæ–‡ä»¶ä¸­çš„æ¨¡å—
     napi_status status = napi_load_module_with_info(env, "library", "com.example.application/entry", &result);
 
     napi_value testFn;
-    //2. Ê¹ÓÃnapi_get_named_property»ñÈ¡testº¯Êı
+    //2. ä½¿ç”¨napi_get_named_propertyè·å–testå‡½æ•°
     napi_get_named_property(env, result, "test", &testFn);
-    //3. Ê¹ÓÃnapi_call_functionµ÷ÓÃº¯Êıtest
+    //3. ä½¿ç”¨napi_call_functionè°ƒç”¨å‡½æ•°test
     napi_call_function(env, result, testFn, 0, nullptr, nullptr);
 
     napi_value value;
     napi_value key;
     std::string keyStr = "value";
     napi_create_string_utf8(env, keyStr.c_str(), keyStr.size(), &key);
-    //4. Ê¹ÓÃnapi_get_property»ñÈ¡±äÁ¿value
+    //4. ä½¿ç”¨napi_get_propertyè·å–å˜é‡value
     napi_get_property(env, result, key, &value);
     return result
 }
 ```
-### ¼ÓÔØµÚÈı·½HAR°ü
 
-1. ÔÚ¼ÓÔØµÚÈı·½HAR°üÊ±£¬Ê×ÏÈĞèÒªÔÚoh-package.json5ÎÄ¼şÖĞÅäÖÃdependenciesÏî
+- **åŠ è½½è¿œç¨‹HARæ¨¡å—å**
+1. åœ¨è¿œç¨‹HARæ¨¡å—åæ—¶ï¼Œé¦–å…ˆéœ€è¦åœ¨oh-package.json5æ–‡ä»¶ä¸­é…ç½®dependenciesé¡¹
+```json
+{
+    "dependencies": {
+        "@ohos/hypium": "1.0.16"
+    }
+}
+```
+2. å…¶æ¬¡ï¼Œè¿˜éœ€è¦åœ¨build-profile.json5ä¸­è¿›é¡¹é…ç½®
+```json
+{
+    "buildOption" : {
+        "arkOptions" : {
+            "runtimeOnly" : {
+                "packages": [
+                    "@ohos/hypium"
+                ]
+            }
+        }
+    }
+}
+```
+3. ç”¨napi_load_module_with_infoåŠ è½½@ohos/hypiumï¼Œè·å–DEFAULTå˜é‡
+```cpp
+static napi_value loadModule(napi_env env, napi_callback_info info) {
+    napi_value result;
+    //1. ä½¿ç”¨napi_load_moduleåŠ è½½@ohos/hypium
+    napi_status status = napi_load_module_with_info(env, "@ohos/hypium", "com.example.application/entry", &result);
+
+    napi_value key;
+    std::string keyStr = "DEFAULT";
+    napi_create_string_utf8(env, keyStr.c_str(), keyStr.size(), &key);
+    //2. ä½¿ç”¨napi_get_propertyè·å–DEFAULTå˜é‡
+    napi_value defaultValue;
+    napi_get_property(env, result, key, &defaultValue);
+    return result
+}
+```
+
+- **åŠ è½½ohpmåŒ…å**
+1. åœ¨åŠ è½½ohpmåŒ…æ—¶ï¼Œé¦–å…ˆéœ€è¦åœ¨oh-package.json5æ–‡ä»¶ä¸­é…ç½®dependenciesé¡¹
 ```json
 {
     "dependencies": {
@@ -154,7 +192,7 @@ static napi_value loadModule(napi_env env, napi_callback_info info) {
     }
 }
 ```
-2. Æä´Î£¬»¹ĞèÒªÔÚbuild-profile.json5ÖĞ½øÏîÅäÖÃ
+2. å…¶æ¬¡ï¼Œè¿˜éœ€è¦åœ¨build-profile.json5ä¸­è¿›é¡¹é…ç½®
 ```json
 {
     "buildOption" : {
@@ -169,24 +207,24 @@ static napi_value loadModule(napi_env env, napi_callback_info info) {
 }
 ```
 
-3. ÓÃnapi_load_module_with_info¼ÓÔØjson5£¬µ÷ÓÃº¯Êıstringify
+3. ç”¨napi_load_module_with_infoåŠ è½½json5ï¼Œè°ƒç”¨å‡½æ•°stringify
 ```cpp
 static napi_value loadModule(napi_env env, napi_callback_info info) {
     napi_value result;
-    //1. Ê¹ÓÃnapi_load_module¼ÓÔØjson5
+    //1. ä½¿ç”¨napi_load_moduleåŠ è½½json5
     napi_status status = napi_load_module_with_info(env, "json5", "com.example.application/entry", &result);
 
     napi_value key;
     std::string keyStr = "default";
     napi_create_string_utf8(env, keyStr.c_str(), keyStr.size(), &key);
-    //2. Ê¹ÓÃnapi_get_property»ñÈ¡default¶ÔÏó
+    //2. ä½¿ç”¨napi_get_propertyè·å–defaultå¯¹è±¡
     napi_value defaultValue;
     napi_get_property(env, result, key, &defaultValue);
 
     napi_value stringifyFn;
-    //3. Ê¹ÓÃnapi_get_named_property»ñÈ¡stringifyº¯Êı
+    //3. ä½¿ç”¨napi_get_named_propertyè·å–stringifyå‡½æ•°
     napi_get_named_property(env, defaultValue, "stringify", &stringifyFn);
-    //4. Ê¹ÓÃnapi_call_functionµ÷ÓÃº¯Êıstringify
+    //4. ä½¿ç”¨napi_call_functionè°ƒç”¨å‡½æ•°stringify
     napi_value argStr;
     std::string info = "call json5 stringify";
     napi_create_string_utf8(env, info.c_str(), info.size(), &argStr);
@@ -198,14 +236,44 @@ static napi_value loadModule(napi_env env, napi_callback_info info) {
 }
 ```
 
-## ¼ÓÔØ±¾µØso¿â
-libentry.soµÄindex.d.tsÎÄ¼şÈçÏÂ
+- **åŠ è½½APIæ¨¡å—**
+
+```cpp
+static napi_value loadModule(napi_env env, napi_callback_info info) {
+    //1. ä½¿ç”¨napi_load_moduleåŠ è½½æ¨¡å—@ohos.hilog
+    napi_value result;
+    napi_status status = napi_load_module_with_info(env, "@ohos.hilog", nullptr, &result);
+    
+    //2. ä½¿ç”¨napi_get_named_propertyè·å–infoå‡½æ•°
+    napi_value infoFn;
+    napi_get_named_property(env, result, "info", &infoFn);
+    
+    napi_value tag;
+    std::string formatStr = "test";
+    napi_create_string_utf8(env, formatStr.c_str(), formatStr.size(), &tag);
+    
+    napi_value outputString;
+    std::string str = "Hello OpenHarmony";
+    napi_create_string_utf8(env, str.c_str(), str.size(), &outputString);
+    
+    napi_value flag;
+    napi_create_int32(env, 0, &flag);
+
+    napi_value args[3] = {flag, tag, outputString};
+    //3. ä½¿ç”¨napi_call_functionè°ƒç”¨infoå‡½æ•°
+    napi_call_function(env, result, infoFn, 3, args, nullptr);
+    return result
+}
+```
+
+- **æ¨¡å—Nativeåº“**
+libentry.soçš„index.d.tsæ–‡ä»¶å¦‚ä¸‹
 ```javascript
 //index.d.ts
 export const add: (a: number, b: number) => number;
 
 ```
-1. ÔÚ¼ÓÔØ±¾µØso¿âÊ±£¬Ê×ÏÈĞèÒªÔÚoh-package.json5ÎÄ¼şÖĞÅäÖÃdependenciesÏî
+1. åœ¨åŠ è½½æœ¬åœ°soåº“æ—¶ï¼Œé¦–å…ˆéœ€è¦åœ¨oh-package.json5æ–‡ä»¶ä¸­é…ç½®dependenciesé¡¹
 ```json
 {
     "dependencies": {
@@ -213,7 +281,7 @@ export const add: (a: number, b: number) => number;
     }
 }
 ```
-2. Æä´Î£¬»¹ĞèÒªÔÚbuild-profile.json5ÖĞ½øÏîÅäÖÃ
+2. å…¶æ¬¡ï¼Œè¿˜éœ€è¦åœ¨build-profile.json5ä¸­è¿›é¡¹é…ç½®
 ```json
 {
     "buildOption" : {
@@ -228,15 +296,15 @@ export const add: (a: number, b: number) => number;
 }
 ```
 
-3. ÓÃnapi_load_module_with_info¼ÓÔØlibentry.so£¬µ÷ÓÃº¯Êıadd
+3. ç”¨napi_load_module_with_infoåŠ è½½libentry.soï¼Œè°ƒç”¨å‡½æ•°add
 ```cpp
 static napi_value loadModule(napi_env env, napi_callback_info info) {
     napi_value result;
-    //1. Ê¹ÓÃnapi_load_module¼ÓÔØlibentry.so
+    //1. ä½¿ç”¨napi_load_moduleåŠ è½½libentry.so
     napi_status status = napi_load_module_with_info(env, "libentry.so", "com.example.application/entry", &result);
 
     napi_value addFn;
-    //2. Ê¹ÓÃnapi_get_named_property»ñÈ¡addº¯Êı
+    //2. ä½¿ç”¨napi_get_named_propertyè·å–addå‡½æ•°
     napi_get_named_property(env, result, "add", &result);
     
     napi_value a;
@@ -244,7 +312,7 @@ static napi_value loadModule(napi_env env, napi_callback_info info) {
     napi_create_int32(env, 2, &a);
     napi_create_int32(env, 3, &b);
     napi_value args[1] = {a, b};
-    //3. Ê¹ÓÃnapi_call_functionµ÷ÓÃº¯Êıadd
+    //3. ä½¿ç”¨napi_call_functionè°ƒç”¨å‡½æ•°add
     napi_value returnValue;
     napi_call_function(env, result, addFn, 2, args, &returnValue);
     return result

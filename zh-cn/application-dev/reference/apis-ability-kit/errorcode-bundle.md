@@ -782,3 +782,81 @@ Failed to delete abc.
 
 **处理步骤**<br/>
 请传递有效的.abc文件的路径。
+
+## 17700301 扩展资源添加失败
+**错误信息**<br/>
+AddExtResource failed.
+
+**错误描述**<br/>
+扩展资源添加失败。
+
+**可能原因**<br/>
+hsp文件不存在或者不可信。
+
+**处理步骤**<br/>
+请传递正确且可信hsp文件路径。
+
+## 17700302 扩展资源删除失败
+**错误信息**<br/>
+RemoveExtResource failed.
+
+**错误描述**<br/>
+扩展资源删除失败。
+
+**可能原因**<br/>
+moduleName对应的hsp不存在。
+
+**处理步骤**<br/>
+请传递有效的moduleName。
+
+## 17700303 扩展资源查询失败
+**错误信息**<br/>
+GetExtResource failed.
+
+**错误描述**<br/>
+扩展资源查询失败。
+
+**可能原因**<br/>
+bundleName没有hsp。
+
+**处理步骤**<br/>
+请传递有效的bundleName。
+
+## 17700304 动态图标使能失败
+**错误信息**<br/>
+EnableDynamicIcon failed.
+
+**错误描述**<br/>
+动态图标使能失败。
+
+**可能原因**<br/>
+hsp包没有正确的图标资源。
+
+**处理步骤**<br/>
+使能动态图标前确保moduleName对应的hsp有效且包含图标资源。
+
+## 17700305 动态图标去使能失败
+**错误信息**<br/>
+DisableDynamicIcon failed.
+
+**错误描述**<br/>
+动态图标去使能失败。
+
+**可能原因**<br/>
+bundleName没有动态图标。
+
+**处理步骤**<br/>
+去使能动态图标前确保bundleName存在动态图标。
+
+## 17700306 动态图标查询失败
+**错误信息**<br/>
+GetDynamicIcon failed.
+
+**错误描述**<br/>
+动态图标查询失败。
+
+**可能原因**<br/>
+bundleName没有动态图标。
+
+**处理步骤**<br/>
+查询动态图标前确保bundleName存在动态图标。

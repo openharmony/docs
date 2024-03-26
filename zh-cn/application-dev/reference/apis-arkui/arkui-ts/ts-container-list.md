@@ -206,7 +206,7 @@ multiSelectable(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | 是否开启鼠标框选。<br/>默认值：false，关闭框选。true，开启框选。。 |
+| value  | boolean | 是   | 是否开启鼠标框选。<br/>默认值：false，关闭框选。true，开启框选。 |
 
 ### lanes<sup>9+</sup>
 
@@ -581,7 +581,7 @@ onItemMove(event: (from: number, to: number) => boolean)
 
 ### onItemDragStart<sup>8+</sup>
 
-onItemDragStart(event: (event: ItemDragInfo, itemIndex: number) => ((() => any) \| void)
+onItemDragStart(event: (event: ItemDragInfo, itemIndex: number) => ((() => any) \| void))
 
 开始拖拽列表元素时触发。
 

@@ -810,7 +810,7 @@ OH_AudioStream_Result OH_AudioCapturer_GetTimestamp(OH_AudioCapturer *capturer, 
 | 名称 | 描述 | 
 | -------- | -------- |
 | capturer | 指向[OH_AudioStreamBuilder_GenerateCapturer](#oh_audiostreambuilder_generatecapturer)创建的音频流实例。 | 
-| clockId | CLOCK_MONOTONIC。 | 
+| clockId | 时钟标识符，使用CLOCK_MONOTONIC。 | 
 | framePosition | 指向要接收位置的变量的指针。 | 
 | timestamp | 指向接收时间戳的变量的指针。 | 
 
@@ -1265,7 +1265,7 @@ OH_AudioStream_Result OH_AudioRenderer_GetTimestamp(OH_AudioRenderer *renderer, 
 | 名称 | 描述 | 
 | -------- | -------- |
 | renderer | 指向[OH_AudioStreamBuilder_GenerateRenderer](#oh_audiostreambuilder_generaterenderer)创建的音频流实例。 | 
-| clockId | CLOCK_MONOTONIC | 
+| clockId | 时钟标识符，使用CLOCK_MONOTONIC。 | 
 | framePosition | 指向要接收位置的变量的指针。 | 
 | timestamp | 指向接收时间戳的变量的指针。 | 
 
@@ -1622,8 +1622,8 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetFrameSizeInCallback(OH_AudioStrea
 
 用于播放时设置每次回调的帧长，帧长至少为音频硬件一次处理的数据大小，并且小于内部缓冲容量的一半。
 
-- 低时延播放：frameSize可设置为5、10、15、20，单位ms。
-- 普通通路播放：frameSize可设置为20-100，单位ms。
+- 低时延播放：frameSize可设置为5ms、10ms、15ms、20ms音频数据对应的帧长。
+- 普通通路播放：frameSize可设置为20ms-100ms音频数据对应的帧长。
 
 **起始版本：** 11
 

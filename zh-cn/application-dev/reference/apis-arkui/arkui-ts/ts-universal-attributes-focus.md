@@ -247,23 +247,23 @@ struct FocusableExample {
 ```
 示意图：
 
-首次按下TAB键，焦点切换到defaultFocus绑定的组件上：
+首次进入，焦点默认在defaultFocus绑定的TextInput组件上：
 
 ![defaultFocus](figures/defaultFocus.png)
 
-第二次按TAB键，焦点切换到tabIndex(1)的容器上，且自动走到其内部的groupDefaultFocus绑定的组件上：
+首次按TAB键，焦点切换到tabIndex(1)的容器上，且自动走到其内部的groupDefaultFocus绑定的组件上：
 
 ![groupDefaultFocus1](figures/groupDefaultFocus1.png)
 
-第三次按TAB键，焦点切换到tabIndex(2)的容器上，且自动走到其内部的groupDefaultFocus绑定的组件上：
+第二次按TAB键，焦点切换到tabIndex(2)的容器上，且自动走到其内部的groupDefaultFocus绑定的组件上：
 
 ![groupDefaultFocus2](figures/groupDefaultFocus2.png)
 
-第四次按TAB键，焦点切换到tabIndex(3)的容器上，且自动走到其内部的groupDefaultFocus绑定的组件上：
+第三次按TAB键，焦点切换到tabIndex(3)的容器上，且自动走到其内部的groupDefaultFocus绑定的组件上：
 
 ![groupDefaultFocus3](figures/groupDefaultFocus3.png)
 
-点击绑定了focusOnTouch的组件，组件自身获焦：
+点击绑定了focusOnTouch的组件，组件自身获焦，焦点框被清除，再按下Tab键显示焦点框：
 
 ![focusOnTouch](figures/focusOnTouch.png)
 

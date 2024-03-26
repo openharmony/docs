@@ -1844,8 +1844,80 @@ struct WebComponent {
 </body>
 </html>
 ```
+### metaViewport<sup>12+</sup>
 
+metaViewport(enable: boolean)
 
+设置mete标签的viewport属性是否可用。
+
+> **说明：**
+>
+> - 设置false不支持meta标签viewport属性，将不解析viewport属性，进行默认布局。
+> - 设置true支持meta标签viewport属性，将解析viewport属性，并根据viewport属性布局。
+> - 如果设置为异常值将无效。
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                         |
+| ------ | -------- | ---- | ------ | -------------------------------- |
+| enable | boolean  | 是   | true   | 是否支持mete标签的viewport属性。 |
+
+**示例：**
+
+  ```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController()
+  build() {
+    Column() {
+      Web({ src: $rawfile('index.html'), controller: this.controller })
+        .metaViewport(true)
+    }
+  }
+}
+  ```
+
+```html
+<!doctype html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+	<p>hello world, 你好世界!</p>
+</body>
+</html>
+```
+### textAutosizing<sup>12+</sup>
+设置使能文本自动调整大小。
+
+**参数：**
+
+| 参数名  | 参数类型   | 必填   | 默认值  | 参数描述                                     |
+| ---- | ------ | ---- | ---- | ---------------------------------------- |
+| textAutosizing | boolean | 是    | true   | 文本自动调整大小。 |
+
+  **示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .textAutosizing(false)
+      }
+    }
+  }
+  ```
 ## 事件
 
 通用事件仅支持[onAppear](../apis-arkui/arkui-ts/ts-universal-events-show-hide.md#onappear)、[onDisAppear](../apis-arkui/arkui-ts/ts-universal-events-show-hide.md#ondisappear)、[onBlur](../apis-arkui/arkui-ts/ts-universal-focus-event.md#onblur)、[onFocus](../apis-arkui/arkui-ts/ts-universal-focus-event.md#onfocus)、[onDragEnd](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragend)、[onDragEnter](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragenter)、[onDragStart](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragstart)、[onDragMove](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragmove)、[onDragLeave](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragleave)、[onDrop](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondrop)、[onHover](../apis-arkui/arkui-ts/ts-universal-mouse-key.md#onhover)、[onMouse](../apis-arkui/arkui-ts/ts-universal-mouse-key.md#onmouse)、[onKeyEvent](../apis-arkui/arkui-ts/ts-universal-events-key.md#onkeyevent)、[onTouch](../apis-arkui/arkui-ts/ts-universal-events-touch.md#ontouch)、[onVisibleAreaChange](../apis-arkui/arkui-ts/ts-universal-component-visible-area-change-event.md#onvisibleareachange)。
@@ -2962,7 +3034,8 @@ onHttpAuthRequest(callback: (event?: { handler: HttpAuthHandler, host: string, r
 
 onSslErrorEventReceive(callback: (event: { handler: SslErrorHandler, error: SslError }) => void)
 
-通知用户加载资源时发生SSL错误。
+通知用户加载资源时发生SSL错误，只支持主资源。
+如果需要支持子资源，请使用[OnSslErrorEvent](#onsslerrorevent12)接口。
 
 **参数：**
 
@@ -2987,6 +3060,64 @@ onSslErrorEventReceive(callback: (event: { handler: SslErrorHandler, error: SslE
           .onSslErrorEventReceive((event) => {
             AlertDialog.show({
               title: 'onSslErrorEventReceive',
+              message: 'text',
+              primaryButton: {
+                value: 'confirm',
+                action: () => {
+                  event.handler.handleConfirm()
+                }
+              },
+              secondaryButton: {
+                value: 'cancel',
+                action: () => {
+                  event.handler.handleCancel()
+                }
+              },
+              cancel: () => {
+                event.handler.handleCancel()
+              }
+            })
+          })
+      }
+    }
+  }
+  ```
+
+### onSslErrorEvent<sup>12+</sup>
+
+onSslErrorEvent(callback: OnSslErrorEventCallback)
+
+通知用户加载资源（主资源+子资源）时发生SSL错误，如果只想处理主资源的SSL错误，请用isMainFrame字段进行区分。
+
+**参数：**
+
+| 参数名     | 参数类型                                 | 参数描述           |
+| ------- | ------------------------------------ | -------------- |
+| callback | [OnSslErrorEventCallback](#onsslerroreventcallback12) | 通知用户加载资源时发生SSL错误。 |
+|
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onSslErrorEvent((event: SslErrorEvent) => {
+            console.log("onSslErrorEvent url: " + event.url)
+            console.log("onSslErrorEvent error: " + event.error)
+            console.log("onSslErrorEvent originalUrl: " + event.originalUrl)
+            console.log("onSslErrorEvent referrer: " + event.referrer)
+            console.log("onSslErrorEvent isFatalError: " + event.isFatalError)
+            console.log("onSslErrorEvent isMainFrame: " + event.isMainFrame)
+            AlertDialog.show({
+              title: 'onSslErrorEvent',
               message: 'text',
               primaryButton: {
                 value: 'confirm',
@@ -6629,6 +6760,31 @@ Web组件进入全屏时触发的回调。
 | 参数名      | 参数类型                      | 参数描述              |
 | ---------- | ---------------------------- | ------------------- |
 | event | [FullScreenEnterEvent](#fullscreenenterevent12)  | Web组件进入全屏的回调事件详情。 |
+
+## SslErrorEvent<sup>12+</sup>
+
+用户加载资源时发生SSL错误时触发的回调详情。
+
+| 参数名     | 参数类型                                 | 参数描述           |
+| ------- | ------------------------------------ | -------------- |
+| handler | [SslErrorHandler](#sslerrorhandler9) | 通知Web组件用户操作行为。 |
+| error   | [SslError](#sslerror9枚举说明)           | 错误码。           |
+| url   | string           | url地址。           |
+| originalUrl   | string          | 请求的原始url地址。           |
+| referrer   | string          | referrer url地址。           |
+| isFatalError   | boolean           | 是否是致命错误。           |
+| isMainFrame   | boolean          | 是否是主资源。           |
+
+
+## OnSslErrorEventCallback<sup>12+</sup>
+
+type OnSslErrorEventCallback = (sslErrorEvent: SslErrorEvent) => void
+
+用户加载资源时发生SSL错误时触发的回调。
+
+| 参数名      | 参数类型                      | 参数描述              |
+| ---------- | ---------------------------- | ------------------- |
+| sslErrorEvent | [SslErrorEvent](#sslerrorevent12)  | 用户加载资源时发生SSL错误时触发的回调详情。 |
 
 ## NativeEmbedStatus<sup>11+</sup>
 

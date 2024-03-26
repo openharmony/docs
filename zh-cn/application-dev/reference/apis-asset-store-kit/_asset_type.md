@@ -199,13 +199,13 @@ enum Asset_Tag
 | -------- | -------- |
 | ASSET_TAG_SECRET  | 表示用户敏感数据，如口令、令牌等，其值为bytes类型。 |
 | ASSET_TAG_ALIAS  | 表示一个关键资产的标识，其值为bytes类型。 |
-| ASSET_TAG_ACCESSIBILITY  | 表示关键资产何时可访问，其值为uint32类型。 |
+| ASSET_TAG_ACCESSIBILITY  | 表示关键资产何时可访问，其值为uint32_t类型。 |
 | ASSET_TAG_REQUIRE_PASSWORD_SET  | 表示关键资产是否在设备是否设置了锁屏密码时可用，其值为bool类型。 |
-| ASSET_TAG_AUTH_TYPE  | 表示关键资产需要的用户认证类型，其值为uint32类型。 |
-| ASSET_TAG_AUTH_VALIDITY_PERIOD  | 表示用户认证的有效时间，其值为uint32类型，单位为秒。 |
+| ASSET_TAG_AUTH_TYPE  | 表示关键资产需要的用户认证类型，其值为uint32_t类型。 |
+| ASSET_TAG_AUTH_VALIDITY_PERIOD  | 表示用户认证的有效时间，其值为uint32_t类型，单位为秒。 |
 | ASSET_TAG_AUTH_CHALLENGE  | 表示认证时防重放用的挑战值，其值为bytes类型。 |
 | ASSET_TAG_AUTH_TOKEN  | 表示用户认证后获取到的认证令牌，其值为bytes类型。 |
-| ASSET_TAG_SYNC_TYPE  | 表示关键资产的同步类型，其值为uint32类型。 |
+| ASSET_TAG_SYNC_TYPE  | 表示关键资产的同步类型，其值为uint32_t类型。 |
 | ASSET_TAG_IS_PERSISTENT  | 表示关键资产是否需持久化存储，其值为bool类型。<br>仅在调用OH_Asset_Add函数时传入该属性需要校验权限。<br>**需要权限：** ohos.permission.STORE_PERSISTENT_DATA |
 | ASSET_TAG_DATA_LABEL_CRITICAL_1  | 表示一个用户可自定义传入的字段，该字段不可被更新，其值为bytes类型。 |
 | ASSET_TAG_DATA_LABEL_CRITICAL_2  | 表示一个用户可自定义传入的字段，该字段不可被更新，其值为bytes类型。 |
@@ -215,11 +215,11 @@ enum Asset_Tag
 | ASSET_TAG_DATA_LABEL_NORMAL_2  | 表示一个用户可自定义传入的字段，该字段可被更新，其值为bytes类型。 |
 | ASSET_TAG_DATA_LABEL_NORMAL_3  | 表示一个用户可自定义传入的字段，该字段可被更新，其值为bytes类型。 |
 | ASSET_TAG_DATA_LABEL_NORMAL_4  | 表示一个用户可自定义传入的字段，该字段可被更新，其值为bytes类型。 |
-| ASSET_TAG_RETURN_TYPE  | 表示查询关键资产时的返回类型，其值为uint32类型。 |
-| ASSET_TAG_RETURN_LIMIT  | 表示查询关键资产时的最大返回数量，其值为uint32类型。 |
-| ASSET_TAG_RETURN_OFFSET  | 表示查询关键资产时的偏移量，其值为uint32类型。 |
-| ASSET_TAG_RETURN_ORDERED_BY  | 表示查询关键资产时的排序依据，其值为uint32类型。 |
-| ASSET_TAG_CONFLICT_RESOLUTION  | 表示增加关键资产时的冲突处理策略，其值为uint32类型。 |
+| ASSET_TAG_RETURN_TYPE  | 表示查询关键资产时的返回类型，其值为uint32_t类型。 |
+| ASSET_TAG_RETURN_LIMIT  | 表示查询关键资产时的最大返回数量，其值为uint32_t类型。 |
+| ASSET_TAG_RETURN_OFFSET  | 表示查询关键资产时的偏移量，其值为uint32_t类型。 |
+| ASSET_TAG_RETURN_ORDERED_BY  | 表示查询关键资产时的排序依据，其值为uint32_t类型。 |
+| ASSET_TAG_CONFLICT_RESOLUTION  | 表示增加关键资产时的冲突处理策略，其值为uint32_t类型。 |
 
 
 ### Asset_TagType

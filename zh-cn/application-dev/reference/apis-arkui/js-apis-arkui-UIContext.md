@@ -1278,6 +1278,156 @@ struct Index {
 }
 ```
 
+### observer.on('willDraw')<sup>12+</sup>
+
+on(type: 'willDraw', callback: Callback\<void\>): void
+
+监听每一帧绘制指令下发情况。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'willDraw'，即是否将要绘制。 |
+| callback | Callback\<void\>        | 是   | 回调函数。                 |
+
+```ts
+import observer from '@ohos.arkui.observer';
+
+@Entry
+@Component
+struct Index {
+  willDrawCallback = () => {
+    console.log("willDraw指令下发");
+  }
+  build() {
+    Column() {
+      Button('注册绘制指令下发监听')
+        .onClick(() => {
+          this.getUIContext().getUIObserver().on('willDraw', this.willDrawCallback);
+        })
+    }
+  }
+}
+```
+
+### observer.off('willDraw')<sup>12+</sup>
+
+off(type: 'willDraw', callback?: Callback\<void\>): void
+
+取消监听每一帧绘制指令下发情况。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'willDraw'，即是否将要绘制。 |
+| callback | Callback\<void\>        | 否   | 需要被注销的回调函数。                  |
+
+```ts
+import observer from '@ohos.arkui.observer';
+
+@Entry
+@Component
+struct Index {
+  willDrawCallback = () => {
+    console.log("willDraw指令下发")
+  }
+
+  build() {
+    Column() {
+      Button('注册绘制指令下发监听')
+        .onClick(() => {
+          this.getUIContext().getUIObserver().on('willDraw', this.willDrawCallback);
+        })
+      Button('解除注册绘制指令下发监听')
+        .onClick(() => {
+          this.getUIContext().getUIObserver().off('willDraw', this.willDrawCallback);
+        })
+    }
+  }
+}
+```
+
+### observer.on('didLayout')<sup>12+</sup>
+
+on(type: 'didLayout', callback: Callback\<void\>): void
+
+监听每一帧布局完成情况。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'didLayout'，即是否布局完成。 |
+| callback | Callback\<void\>        | 是   | 回调函数。                 |
+
+```ts
+import observer from '@ohos.arkui.observer';
+
+@Entry
+@Component
+struct Index {
+  didLayoutCallback = () => {
+    console.log("layout布局完成");
+  }
+  build() {
+    Column() {
+      Button('注册布局完成监听')
+        .onClick(() => {
+          this.getUIContext().getUIObserver().on('didLayout', this.didLayoutCallback);
+        })
+    }
+  }
+}
+```
+
+### observer.off('didLayout')<sup>12+</sup>
+
+off(type: 'didLayout', callback?: Callback\<void\>): void
+
+取消监听每一帧布局完成情况。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'didLayout'，即是否将要绘制。 |
+| callback | Callback\<void\>        | 否   | 需要被注销的回调函数。                  |
+
+```ts
+import observer from '@ohos.arkui.observer';
+
+@Entry
+@Component
+struct Index {
+  didLayoutCallback = () => {
+    console.log("layout布局完成")
+  }
+
+  build() {
+    Column() {
+      Button('注册布局完成监听')
+        .onClick(() => {
+          this.getUIContext().getUIObserver().on('didLayout', this.didLayoutCallback);
+        })
+      Button('解除注册注册布局完成监听')
+        .onClick(() => {
+          this.getUIContext().getUIObserver().off('didLayout', this.didLayoutCallback);
+        })
+    }
+  }
+}
+```
+
 ## MediaQuery
 
 以下API需先使用UIContext中的[getMediaQuery()](#getmediaquery)方法获取到MediaQuery对象，再通过该对象调用对应方法。

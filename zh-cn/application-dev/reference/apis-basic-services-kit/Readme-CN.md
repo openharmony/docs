@@ -88,6 +88,7 @@
         - [@ohos.usb (USB管理)(系统接口)](js-apis-usb-deprecated-sys.md)
         - [@ohos.systemParameter (系统属性)(系统接口)](js-apis-system-parameter-sys.md)
         - [@ohos.systemTime (系统时间、时区)(系统接口)](js-apis-system-time-sys.md)
+        - [@ohos.systemTime(系统时间、时区)](js-apis-time.md)
         
 - 错误码
     - [USB服务错误码](errorcode-usb.md)

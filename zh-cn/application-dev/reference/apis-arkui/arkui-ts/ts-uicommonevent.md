@@ -102,7 +102,7 @@ setOnHover(callback: HoverCallback | undefined): void;
 
 | 参数名 | 类型   | 必填 | 说明                       |
 | ------ | ------ | ---- | -------------------------- |
-| callback  | [HoverCallback](./ts-types.md#hove#callback12)  \| undefined | 是   | onHover事件的回调函数。 |
+| callback  | [HoverCallback](./ts-types.md#hovercallback12)  \| undefined | 是   | onHover事件的回调函数。 |
 
 ### setOnMouse
 

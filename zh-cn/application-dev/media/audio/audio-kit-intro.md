@@ -42,7 +42,7 @@ Audio Kit（音频服务），针对提供场景化的音频播放、录制接�
 
 在开发音频应用之前，还需要了解什么是音频流，它是OpenHarmony音频系统中的关键概念，在之后的章节中会多次提及。
 
-音频流，是音频系统中对一个具备音频格式和音频使用场景信息的独立音频数据处理单元的定义，可以表示播放，也可以表示录制，并且具备独立音量调节和音频设备路由切换能力。
+音频流，是指音频系统中一个具备音频格式和音频使用场景信息的独立音频数据处理单元。可以表示播放，也可以表示录制，并且具备独立音量调节和音频设备路由切换能力。
 
 音频流基础信息通过[AudioStreamInfo](../../reference/apis-audio-kit/js-apis-audio.md#audiostreaminfo8)表示，包含采样、声道、位宽、编码信息，是创建音频播放或录制流的必要参数，描述了音频数据的基本属性。在配置时开发者需要保证基础信息与传输的音频数据是相匹配的，音频系统才能正确处理数据。
 
@@ -68,7 +68,7 @@ audio模块下的接口支持PCM编码，包括AudioRenderer、AudioCapturer、T
 
 音频格式说明：
 
-- 支持的常用的音频采样率（Hz）：8000、11025、12000、16000、22050、24000、32000、44100、48000、64000、96000，具体参考枚举[AudioSamplingRate](../../reference/apis-audio-kit/js-apis-audio.md#audiosamplingrate8)。
+- 支持的常用的音频采样率（Hz）：8000、11025、12000、16000、22050、24000、32000、44100、48000、64000、88200<sup>12+</sup>、96000，176400<sup>12+</sup>、192000<sup>12+</sup>具体参考枚举[AudioSamplingRate](../../reference/apis-audio-kit/js-apis-audio.md#audiosamplingrate8)。
   不同设备支持的采样率规格会存在差异。
 
 - 支持单声道、双声道，具体参考[AudioChannel](../../reference/apis-audio-kit/js-apis-audio.md#audiochannel8)。

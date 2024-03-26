@@ -180,7 +180,7 @@ import drm from '@ohos.multimedia.drm';
 
 ## KeysInfo
 
-许可证状态
+许可证信息
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -191,7 +191,7 @@ import drm from '@ohos.multimedia.drm';
 
 ## MediaKeySystemInfo
 
-用于指示媒体源的drm信息。
+指示媒体源的drm信息。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -591,7 +591,7 @@ import { BusinessError } from '@ohos.base';
 
 let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 try {
-  let statisticKeyValue: StatisticKeyValue[] = mediaKeysystem.getStatistics();
+  let statisticKeyValue: drm.StatisticKeyValue[] = mediaKeysystem.getStatistics();
 } catch (err) {
   let error = err as BusinessError;
   console.error(`getConfigurationByteArray ERROR: ${error}`);
@@ -643,7 +643,7 @@ try {
 
 generateKeySystemRequest(): Promise<ProvisionRequest\>
 
-生成获取mediaKeySystem设备证书的请求
+生成获取mediaKeySystem设备证书的请求。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -768,8 +768,8 @@ on(type: 'keySystemRequired', callback: (eventInfo: EventInfo) => void): void
 
 | 参数名      | 类型                  | 必填 | 说明                                  |
 | -------- | -------------------- | ---- | ------------------------------------- |
-| type     | string               | 是   | 监听事件，固定为'keySystemRequired'，MediaKeySystem实例创建成功可监听。设备证书请求时触发该事件并返回 |
-| callback | Callback\<[EventInfo](#eventinfo)\> | 是   | 回调函数，用于获取结果。只要有该事件返回就证明需要请求设备证书                 |
+| type     | string               | 是   | 监听事件，固定为'keySystemRequired'，MediaKeySystem实例创建成功可监听。设备证书请求时触发该事件并返回。 |
+| callback | Callback\<[EventInfo](#eventinfo)\> | 是   | 回调函数，用于获取结果，只要有该事件返回就证明需要请求设备证书。                 |
 
 **错误码：**
 
@@ -796,7 +796,7 @@ function registerkeySystemRequired(mediaKeysystem: drm.MediaKeySystem): void {
 
 off(type: 'keySystemRequired', callback?: (eventInfo: EventInfo) => void): void
 
-注销监听设备证书请求。
+注销监听设备证书请求，注销设备证书请求事件回调函数。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -805,7 +805,7 @@ off(type: 'keySystemRequired', callback?: (eventInfo: EventInfo) => void): void
 | 参数名      | 类型                  | 必填 | 说明                                  |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | 是   | 监听事件，固定为'keySystemRequired'，MediaKeySystem实例创建成功可监听。 |
-| callback | Callback\<[EventInfo](#eventinfo)\> | 否   | 回调函数，可选                |
+| callback | Callback\<[EventInfo](#eventinfo)\> | 否   | 回调函数，可选。                |
 
 **错误码：**
 
@@ -955,7 +955,7 @@ try {
 
 getOfflineMediaKeyStatus(mediaKeyId: Uint8Array): OfflineMediaKeyStatus
 
-获取离线许可证状态返回。
+获取离线许可证返回状态。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -1118,7 +1118,7 @@ let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay
 let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
 let OptionsData = [
     {name : "optionalsDataNameA", value : "optionalsDataValueA"},
-    {name : "optionalsDataNameB", value : "optionalsDataValueB"},
+    {name : "optionalsDataNameB", value : "optionalsDataValueB"}
 ];
 let uint8pssh = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
 mediaKeySession.generateMediaKeyRequest("video/mp4", uint8pssh, 0, OptionsData).then((mediaKeyRequest: drm.MediaKeyRequest) =>{
@@ -1522,7 +1522,7 @@ function registerKeyRequired(mediaKeysession: drm.MediaKeySession): void {
 
 off(type: 'keyRequired', callback?: (eventInfo: EventInfo) => void): void
 
-注销监听密钥请求事件。
+注销监听密钥请求事件，注销密钥请求事件回调函数。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -1592,7 +1592,7 @@ function registerKeyExpired(mediaKeysession: drm.MediaKeySession): void {
 
 off(type: 'keyExpired', callback?: (eventInfo: EventInfo) => void): void
 
-注销监听密钥过期事件。
+注销监听密钥过期事件，注销密钥过期事件回调函数。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -1662,7 +1662,7 @@ function registerVendorDefinedt(mediaKeysession: drm.MediaKeySession): void {
 
 off(type: 'vendorDefined', callback?: (eventInfo: EventInfo) => void): void
 
-注销监听第三方定义事件。
+注销监听第三方定义事件，注销第三方定义事件回调函数。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -1732,7 +1732,7 @@ function registerExpirationUpdate(mediaKeysession: drm.MediaKeySession): void {
 
 off(type: 'expirationUpdate', callback?: (eventInfo: EventInfo) => void): void
 
-注销监听过期更新事件。
+注销监听过期更新事件，注销过期更新事件回调函数。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -1792,8 +1792,8 @@ on(type: 'keysChange', callback: (keyInfo: KeysInfo[], newKeyAvailable: boolean)
 import drm from '@ohos.multimedia.drm';
 
 function registerkeysChange(mediaKeysession: drm.MediaKeySession): void {
-    mediaKeysession.on('keysChange', (eventInfo: drm.EventInfo) => {
-        console.log('keysChange' + 'extra:' + eventInfo.extraInfo + ' data:' + eventInfo.info);
+    mediaKeysession.on('keysChange', (keyInfo: drm.KeysInfo[], newKeyAvailable: boolean) => {
+        console.log('keysChange' + 'keyId:' + keyInfo.keyId + ' data:' + keyInfo.value);
     });
 }
 ```
@@ -1802,7 +1802,7 @@ function registerkeysChange(mediaKeysession: drm.MediaKeySession): void {
 
 off(type: 'keysChange', callback?: (keyInfo: KeysInfo[], newKeyAvailable: boolean) => void): void
 
-注销监听密钥变化事件。
+注销监听密钥变化事件，注销密钥变化事件回调函数。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 

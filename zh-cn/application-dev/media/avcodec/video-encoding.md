@@ -210,7 +210,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     int32_t ret;
     // 获取需要输入的Surface，以进行编码
     OHNativeWindow *nativeWindow;
-    ret =  OH_VideoEncoder_GetSurface(videoEnc, &nativeWindow);
+    ret = OH_VideoEncoder_GetSurface(videoEnc, &nativeWindow);
     if (ret != AV_ERR_OK) {
         // 异常处理
     }

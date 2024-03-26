@@ -2465,6 +2465,18 @@
 
 **起始版本**: 12
 
+### ohos.permission.WRITE_ACCOUNT_LOGIN_STATE
+
+允许用户帐号往数据管理服务写入自己的登录状态。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.SUBSCRIBE_NOTIFICATION_WINDOW_STATE
 
 允许应用订阅通知面板显示或收起时发送的广播。
@@ -2482,6 +2494,54 @@
 允许系统应用改变屏幕模式。
 
 **权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.MIGRATE_DATA
+
+允许应用迁移传入路径下的数据到指定目录。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.ACCESS_DYNAMIC_ICON
+
+允许应用使用动态图标。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.CHANGE_BUNDLE_UNINSTALL_STATE
+
+允许系统应用改变指定应用的可卸载状态。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.MANAGE_STYLUS_EVENT
+
+允许系统应用使用手写笔系统能力。
+
+**权限级别**：system_basic
 
 **授权方式**：system_grant
 
@@ -2710,42 +2770,6 @@
 **ACL使能**：false
 
 **起始版本**：11
-
-### ohos.permission.MIGRATE_DATA
-
-允许应用迁移传入路径下的数据到指定目录。
-
-**权限级别**：system_core
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：12
-
-### ohos.permission.ACCESS_DYNAMIC_ICON
-
-允许应用使用动态图标。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：12
-
-### ohos.permission.CHANGE_BUNDLE_UNINSTALL_STATE
-
-允许系统应用改变指定应用的可卸载状态。
-
-**权限级别**：system_core
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：12
 
 ## user_grant，允许ACL跨级申请
 

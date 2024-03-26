@@ -105,8 +105,7 @@ struct SubHeaderExample {
     Column() {
       SubHeader({
         icon: $r('app.media.ic_public_community_messages'),
-        secondaryTitle: '子标题',
-        primaryTitle: '子标题',
+        secondaryTitle: '二级标题',
         operationType: OperationType.BUTTON,
         operationItem: [{ value: '操作',
           action: () => {
@@ -119,7 +118,7 @@ struct SubHeaderExample {
 }
 ```
 
-![子标题3](figures/zh-cn_image_202307291.png)
+![子标题1](figures/zh-cn_image_subheader_example01.png)
 
 ### 示例2
 
@@ -133,8 +132,8 @@ struct SubHeaderExample {
   build() {
     Column() {
       SubHeader({
-        primaryTitle: '标题',
-        secondaryTitle: '副文本副文本副文本副文本',
+        primaryTitle: '一级标题',
+        secondaryTitle: '二级标题',
         operationType: OperationType.TEXT_ARROW,
         operationItem: [{ value: '更多',
           action: () => {
@@ -147,7 +146,7 @@ struct SubHeaderExample {
 }
 ```
 
-![zh-cn_image_0000001664546481](figures/zh-cn_image_0000001664546481.png)
+![子标题2](figures/zh-cn_image_subheader_example02.png)
 
 ### 示例3
 

@@ -148,13 +148,14 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     constexpr uint32_t DEFAULT_WIDTH = 320; 
     // 配置视频帧高度（必须）
     constexpr uint32_t DEFAULT_HEIGHT = 240;
-    // 配置视频颜色格式（可选）
+    // 配置视频颜色格式（必须）
     constexpr OH_AVPixelFormat DEFAULT_PIXELFORMAT = AV_PIXEL_FORMAT_NV12;
 
     OH_AVFormat *format = OH_AVFormat_Create();
     // 写入format
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_WIDTH, DEFAULT_WIDTH);
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_HEIGHT, DEFAULT_HEIGHT);
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_PIXEL_FORMAT, DEFAULT_PIXELFORMAT);
     // 配置解码器
     int32_t ret = OH_VideoDecoder_Configure(videoDec, format);
     if (ret != AV_ERR_OK) {
@@ -165,9 +166,11 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
 5. 设置Surface。本例中的nativeWindow，需要从XComponent组件获取，获取方式请参考 [XComponent](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)。
 
+    Surface模式，开发者可以在解码过程中执行该步骤，即动态切换Surface。
+
     ```c++
     // 配置送显窗口参数
-    int32_t ret = OH_VideoDecoder_SetSurface(videoDec, window);    // 从 XComponent 获取 window 
+    int32_t ret = OH_VideoDecoder_SetSurface(videoDec, window);    // 从 XComponent 获取 window
     ```
 
 6. （可选）OH_VideoDecoder_SetParameter()动态配置解码器surface参数。
@@ -290,7 +293,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     if (isRender) {
         // 显示并释放已完成处理的信息，index为对应buffer队列下标
         ret = OH_VideoDecoder_RenderOutputBuffer(videoDec, index);
-    } else  {
+    } else {
         // 释放已完成处理的信息
         ret = OH_VideoDecoder_FreeOutputBuffer(videoDec, index);
     }
@@ -475,7 +478,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     constexpr uint32_t DEFAULT_WIDTH = 320; 
     // 配置视频帧高度（必须）
     constexpr uint32_t DEFAULT_HEIGHT = 240;
-    // 配置视频颜色格式（可选）
+    // 配置视频颜色格式（必须）
     constexpr OH_AVPixelFormat DEFAULT_PIXELFORMAT = AV_PIXEL_FORMAT_NV12;
 
     OH_AVFormat *format = OH_AVFormat_Create();

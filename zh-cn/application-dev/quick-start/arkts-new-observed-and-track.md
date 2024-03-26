@@ -349,6 +349,7 @@ struct Index {
 * 点击Button("change length")，length是被\@track装饰的属性，它的变化可以触发关联的UI组件，即UINode (1)的刷新，并输出"isRender id: 1"的日志。
 * 自定义组件Page中的son是常规变量，因此点击Button("assign Son")并不会观测到变化。
 * 当点击Button("assign Son")后，再点击Button("change length")并不会引起UI刷新。因为此时son的地址改变，其关联的UI组件并没有关联到最新的son。
+
 ```ts
 @observed
 class Pencil {
@@ -404,6 +405,7 @@ struct Page {
 
 
 * 创建类Son和类Cousin的实例，点击Button('change Son age')和Button('change Cousin age')可以触发UI的刷新。
+
 ```ts
 @observed
 class GrandFather {
@@ -577,6 +579,7 @@ struct Index {
 
 * \@track装饰对象数组personList以及Person类中的age属性，因此当personList、age改变时均可以观测到变化。
 * 点击Text组件更改age时，Text组件会刷新。
+
 ```ts
 let nextId: number = 0;
 
@@ -645,6 +648,7 @@ struct Index {
 ### \@track装饰Map类型
 * 被\@track装饰的Map类型属性可以观测到调用API带来的变化，包括 set、clear、delete。
 * 因为Info类被\@observed装饰且属性memberMap被\@track装饰，点击Button('init map')对memberMap赋值也可以观测到变化。
+
 ```ts
 @observed
 class Info {
