@@ -386,3 +386,41 @@
     console.error(`ERROR: ${error}`);
   }
   ```
+
+### 设置空间音频渲染场景类型
+
+系统应用开发者可以通过[setSpatializationSceneType](../../reference/apis-audio-kit/js-apis-audio-sys.md#setspatializationscenetype12)接口设置空间音频渲染场景类型，可以选择默认场景、音乐场景、电影场景或有声读物场景，默认为默认场景。
+
+在使用此功能前，应用需要先申请权限`ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS`，申请方式请参考：[申请应用权限](../../security/AccessToken/determine-application-mode.md#system_basic等级的应用申请权限)。
+
+空间音频渲染场景类型AudioSpatializationSceneType的具体信息可以参考[AudioSpatializationSceneType](../../reference/apis-audio-kit/js-apis-audio-sys.md#audiospatializationscenetype12)。
+
+  ```ts
+  import audio from '@ohos.multimedia.audio';
+  import { BusinessError } from '@ohos.base';
+  try {
+    audioSpatializationManager.setSpatializationSceneType(audio.AudioSpatializationSceneType.DEFAULT);
+    console.info(`AudioSpatializationManager setSpatializationSceneType success`);
+  } catch (err) {
+    let error = err as BusinessError;
+    console.error(`ERROR: ${error}`);
+  }
+  ```
+
+### 查询空间音频渲染场景类型
+
+系统应用开发者可以通过[getSpatializationSceneType](../../reference/apis-audio-kit/js-apis-audio-sys.md#getspatializationscenetype12)接口查询当前空间音频渲染场景类型。该接口将返回setSpatializationSceneType()接口中成功设置的值，默认为默认场景。
+
+空间音频渲染场景类型AudioSpatializationSceneType的具体信息可以参考[AudioSpatializationSceneType](../../reference/apis-audio-kit/js-apis-audio-sys.md#audiospatializationscenetype12)。
+
+  ```ts
+  import audio from '@ohos.multimedia.audio';
+  import { BusinessError } from '@ohos.base';
+  try {
+    let spatializationSceneType: AudioSpatializationSceneType = audioSpatializationManager.getSpatializationSceneType();
+    console.info(`AudioSpatializationManager spatializationSceneType: ${spatializationSceneType}`);
+  } catch (err) {
+    let error = err as BusinessError;
+    console.error(`ERROR: ${error}`);
+  }
+  ```
