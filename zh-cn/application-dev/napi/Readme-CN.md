@@ -10,40 +10,35 @@
 - 代码开发
   - [代码开发概述](develop-code-overview.md)
   - C/C++标准库
-      - [C/C++标准库机制概述](c-cpp-overview.md)
+     - [C/C++标准库机制概述](c-cpp-overview.md)
   - 使用Node-API实现跨语言交互
-      - [OpenHarmony Node-API简介](napi-introduction.md)
-      - [Node-API支持的数据类型和接口](napi-data-types-interfaces.md)
-      - [Node-API开发规范](napi-guidelines.md)
-      - [使用Node-API实现跨语言交互开发流程](use-napi-process.md)
-      - Node-API典型使用场景
-          - [使用Node-API接口进行异步任务开发](use-napi-asynchronous-task.md)
-          - [使用Node-API接口进行线程安全开发](use-napi-thread-safety.md)
-          - [Native与ArkTS对象绑定](use-napi-object-wrap.md)
-          - [非ArkTS线程调用ArkTS函数](use-uv-queue-work.md)
-          - [使用NAPI接口在主线程中进行模块加载](use-napi-load-module.md)
-      - [OpenHarmony Node-API常见问题](use-napi-faqs.md)
+     - [OpenHarmony Node-API简介](napi-introduction.md)
+     - [Node-API支持的数据类型和接口](napi-data-types-interfaces.md)
+     - [Node-API开发规范](napi-guidelines.md)
+     - [使用Node-API实现跨语言交互开发流程](use-napi-process.md)
+     - Node-API典型使用场景
+       - [使用Node-API接口进行异步任务开发](use-napi-asynchronous-task.md)
+       - [使用Node-API接口进行线程安全开发](use-napi-thread-safety.md)
+       - [Native与ArkTS对象绑定](use-napi-object-wrap.md)
+       - [非ArkTS线程调用ArkTS函数](use-uv-queue-work.md)
+       - [使用NAPI接口在主线程中进行模块加载](use-napi-load-module.md)
+     - [OpenHarmony Node-API常见问题](use-napi-faqs.md)
   - 使用JSVM-API实现JS与C/C++语言交互
-      - [JSVM-API支持的数据类型和接口](jsvm-data-types-interfaces.md)
-      - [JSVM-API开发规范](jsvm-guidelines.md)
+     - [JSVM-API支持的数据类型和接口](jsvm-data-types-interfaces.md)
+     - [JSVM-API开发规范](jsvm-guidelines.md)
   - 资源管理
-      - [Rawfile开发指导](rawfile-guidelines.md)
+     - [Rawfile开发指导](rawfile-guidelines.md)
   - 资源调度
-      - [FFRT开发指导](ffrt-guidelines.md)
-  - AI
-      - [使用MindSpore Lite引擎进行模型推理](mindspore-lite-guidelines.md)
-      - [使用MindSpore Lite引擎进行端侧训练](mindspore-lite-train-guidelines.md)
-      - [使用MindSpore Lite进行离线模型的转换及推理](mindspore-lite-offline-model-guidelines.md)
-      - [Neural Network Runtime对接AI推理框架开发指导](neural-network-runtime-guidelines.md)
+     - [FFRT开发指导](ffrt-guidelines.md)
   - 内存管理
-      - [Purgeable memory开发指导](purgeable-memory-guidelines.md)
+     - [Purgeable memory开发指导](purgeable-memory-guidelines.md)
   - 设备管理
-      - [USB DDK开发指导](usb-ddk-guidelines.md)
-      - [HID DDK开发指导](hid-ddk-guidelines.md)
+     - [USB DDK开发指导](usb-ddk-guidelines.md)
+     - [HID DDK开发指导](hid-ddk-guidelines.md)
   - 包管理
-      - [NativeBundle开发指导](native-bundle-guidelines.md)
+     - [NativeBundle开发指导](native-bundle-guidelines.md)
   - 网络管理
-      - [NetConnection开发指导](native-netmanager-guidelines.md)
+     - [NetConnection开发指导](native-netmanager-guidelines.md)
 - 调试和性能分析
   - [调试和性能分析概述](debug-performance-profiling-overview.md)
   - [通过DevEco Studio调试](debug-ide.md)
