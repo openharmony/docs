@@ -51,7 +51,7 @@ libnative_buffer.so
 
 1. **初始化EGL环境**。
 
-   这里提供一份初始化EGL环境的代码示例。
+   这里提供一份初始化EGL环境的代码示例。XComponent模块的具体使用方法请参考[XComponent开发指导](../ui/napi-xcomponent-guidelines.md)。
    ```c++
    #include <iostream>
    #include <string>
@@ -68,6 +68,9 @@ libnative_buffer.so
    EGLContext eglContext_ = EGL_NO_CONTEXT;
    EGLDisplay eglDisplay_ = EGL_NO_DISPLAY;
    static inline EGLConfig config_;
+   static inline EGLSurface eglsurface_;
+   // 从XComponent中获取到的OHNativeWindow
+   OHNativeWindow *eglNativeWindow_;
    
    // 检查egl扩展
    static bool CheckEglExtension(const char *extensions, const char *extension) {
@@ -156,8 +159,14 @@ libnative_buffer.so
            std::cout << "Failed to create egl context %{public}x, error:" << eglGetError() << std::endl;
        }
    
+       // 创建eglSurface
+       eglSurface_ = eglCreateWindowSurface(eglDisplay_, config_, eglNativeWindow_, context_attribs);
+       if (eglSurface_ == EGL_NO_SURFACE) {
+           std::cout << "Failed to create egl surface %{public}x, error:" << eglGetError() << std::endl;
+       }
+   
        // 关联上下文
-       eglMakeCurrent(eglDisplay_, EGL_NO_SURFACE, EGL_NO_SURFACE, eglContext_);
+       eglMakeCurrent(eglDisplay_, eglSurface_, eglSurface_, eglContext_);
    
        // EGL环境初始化完成
        std::cout << "Create EGL context successfully, version" << major << "." << minor << std::endl;
@@ -257,6 +266,12 @@ libnative_buffer.so
    ret = OH_NativeImage_GetTransformMatrix(image, matrix);
    if (ret != 0) {
        std::cout << "OH_NativeImage_GetTransformMatrix failed" << std::endl;
+   }
+   
+   // 对update绑定到对应textureId的纹理做对应的opengl后处理后，将纹理上屏
+   EGLBoolean eglRet = eglSwapBuffers(eglDisplay_, eglSurface_);
+   if (eglRet == EGL_FALSE) {
+       std::cout << "eglSwapBuffers failed" << std::endl;
    }
    ```
 
