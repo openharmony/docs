@@ -212,7 +212,6 @@
         - [使用保存控件](security/AccessToken/savebutton.md)
         - [使用位置控件](security/AccessToken/locationbutton.md)
   - Accessibility Kit（无障碍开发服务）
-    无障碍开发服务
       - [Accessibility Kit简介](accessibility/accessibilityKit.md)
       - [AccessibilityExtensionAbility](accessibility/accessibilityextensionability.md)
   - Ads Kit
