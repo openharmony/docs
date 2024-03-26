@@ -760,13 +760,13 @@ The scheme of the specified link is not in the querySchemes.
 ## 17700057 指定的应用不是预置应用
 
 **错误信息**<br/>
-Failed to uninstall and recover the HAP because the HAP is not pre-installed.
+Failed to uninstall updates because the HAP is not pre-installed.
 
 **错误描述**<br/>
-调用installer模块中的uninstallAndRecover接口时，指定的应用不是预置应用。
+调用installer模块中的uninstallUpdates接口时，指定的应用不是预置应用。
 
 **可能原因**<br/>
-指定的应用不是预置应用，无法调用uninstallAndRecover接口。
+指定的应用不是预置应用，无法调用uninstallUpdates接口。
 
 **处理步骤**<br/>
 确认指定的应用是否为预置应用。
