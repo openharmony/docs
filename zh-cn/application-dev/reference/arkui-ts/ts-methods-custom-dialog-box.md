@@ -129,7 +129,6 @@ struct CustomDialogExample {
         })
         .margin(20)
     }.borderRadius(10)
-    // 如果需要使用border属性或cornerRadius属性，请和borderRadius属性一起使用。
   }
 }
 
@@ -150,8 +149,7 @@ struct CustomDialogUser {
     alignment: DialogAlignment.Bottom,
     offset: { dx: 0, dy: -20 },
     gridCount: 4,
-    customStyle: false,
-    cornerRadius: 10,
+    customStyle: false
   })
 
   // 在自定义组件即将析构销毁时将dialogControlle置空
