@@ -2,10 +2,13 @@
 
 ## When to Use
 
-You can use the native purgeable memory APIs to apply for and release purgeable memory.
+OpenHarmony provides Purgeable Memory management, which enables you to use related APIs to create **PurgeableMemory** objects to manage purgeable memory.
 
 
-The following scenarios are common for native purgeable memory development:
+You can use the native APIs to apply for and release purgeable memory.
+
+
+The following scenarios are common for the development of purgeable memory management:
 
 * Apply for a **PurgeableMemory** object and write data to the object.
 * Release the **PurgeableMemory** object when it is no longer required.
