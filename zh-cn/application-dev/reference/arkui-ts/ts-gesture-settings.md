@@ -51,15 +51,15 @@
 | 名称 | 类型 | 描述 |
 | -------- | -------- | -------- |
 | repeat | boolean | 是否为重复触发事件，用于LongPressGesture手势触发场景。 |
-| offsetX | number | 手势事件x轴相对当前组件元素原始区域的偏移量，单位为vp，用于PanGesture手势触发场景，从左向右滑动offsetX为正，反之为负。 |
-| offsetY | number | 手势事件y轴相对当前组件元素原始区域的偏移量，单位为vp，用于PanGesture手势触发场景，从上向下滑动offsetY为正，反之为负。 |
+| offsetX | number | 手势事件偏移量X，单位为vp，用于PanGesture手势触发场景，从左向右滑动offsetX为正，反之为负。 |
+| offsetY | number | 手势事件偏移量Y，单位为vp，用于PanGesture手势触发场景，从上向下滑动offsetY为正，反之为负。 |
 | angle | number | 用于RotationGesture手势触发场景时，表示旋转角度。<br/>用于SwipeGesture手势触发场景时，表示滑动手势的角度，即两根手指间的线段与水平方向的夹角变化的度数。<br/>**说明：**<br/>角度计算方式：滑动手势被识别到后，连接两根手指之间的线被识别为起始线条，随着手指的滑动，手指之间的线条会发生旋转，根据起始线条两端点和当前线条两端点的坐标，使用反正切函数分别计算其相对于水平方向的夹角，最后arctan2(cy2-cy1,cx2-cx1)-arctan2(y2-y1,x2-x1)为旋转的角度。以起始线条为坐标系，顺时针旋转为0到180度，逆时针旋转为-180到0度。 |
 | scale | number | 缩放比例，用于PinchGesture手势触发场景。 |
-| pinchCenterX | number | 捏合手势中心点相对于当前组件元素原始区域左上角x轴坐标，单位为vp，用于PinchGesture手势触发场景。 |
-| pinchCenterY | number | 捏合手势中心点相对于当前组件元素原始区域左上角y轴坐标，单位为vp，用于PinchGesture手势触发场景。 |
+| pinchCenterX | number | 捏合手势中心点的x轴坐标，单位为vp，用于PinchGesture手势触发场景。 |
+| pinchCenterY | number | 捏合手势中心点的y轴坐标，单位为vp，用于PinchGesture手势触发场景。 |
 | speed<sup>8+</sup> | number | 滑动手势速度，即所有手指相对当前组件元素原始区域滑动的平均速度，单位为vp/秒，用于SwipeGesture手势触发场景。 |
 | fingerList<sup>8+</sup> | [FingerInfo](#fingerinfo对象说明8)[] | 触发事件的所有手指信息，用于手势触发场景。<br/>**说明：**<br/>手指索引编号与位置对应，即fingerList[index]的id为index。先按下且未参与当前手势触发的手指在fingerList中对应位置为空。 |
-| timestamp<sup>8+</sup> | number | 事件时间戳。 |
+| timestamp<sup>8+</sup> | number | 事件时间戳。<br/>**说明：**<br/>单位：纳秒 |
 | target<sup>8+</sup> | [EventTarget](ts-universal-events-click.md#eventtarget8对象说明) | 触发手势事件的元素对象显示区域。 |
 | source<sup>8+</sup> | [SourceType](#sourcetype枚举说明) | 事件输入设备。 |
 | pressure<sup>9+</sup> | number | 按压的压力大小。 |
@@ -110,7 +110,7 @@ struct GestureSettingsExample {
         Text('TapGesture:' + this.priorityTestValue).fontSize(28)
           .gesture(
             TapGesture()
-              .onAction(() => {
+              .onAction((event: GestureEvent) => {
                 this.priorityTestValue += '\nText'
               }))
       }
@@ -122,7 +122,7 @@ struct GestureSettingsExample {
       // 设置为priorityGesture时，点击文本会忽略Text组件的TapGesture手势事件，优先识别父组件Column的TapGesture手势事件
       .priorityGesture(
         TapGesture()
-          .onAction((event?: GestureEvent) => {
+          .onAction((event: GestureEvent) => {
             this.priorityTestValue += '\nColumn'
           }), GestureMask.IgnoreInternal)
 
@@ -130,7 +130,7 @@ struct GestureSettingsExample {
         Text('TapGesture:' + this.parallelTestValue).fontSize(28)
           .gesture(
             TapGesture()
-              .onAction(() => {
+              .onAction((event: GestureEvent) => {
                 this.parallelTestValue += '\nText'
               }))
       }
@@ -142,7 +142,7 @@ struct GestureSettingsExample {
       // 设置为parallelGesture时，点击文本会同时触发子组件Text与父组件Column的TapGesture手势事件
       .parallelGesture(
         TapGesture()
-          .onAction((event?: GestureEvent) => {
+          .onAction((event: GestureEvent) => {
             this.parallelTestValue += '\nColumn'
           }), GestureMask.Normal)
     }

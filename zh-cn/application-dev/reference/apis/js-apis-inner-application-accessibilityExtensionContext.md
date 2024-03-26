@@ -295,7 +295,7 @@ getFocusElement(isAccessibilityFocus: boolean, callback: AsyncCallback\<Accessib
 
 | 参数名                  | 类型                                       | 必填   | 说明                |
 | -------------------- | ---------------------------------------- | ---- | ----------------- |
-| isAccessibilityFocus | boolean                                  | 是    | 获取的是否是无障碍焦点元素。    |
+| isAccessibilityFocus | boolean                                  | 是    | 获取的是否是无障碍焦点元素，True表示是，False表示否。    |
 | callback             | AsyncCallback&lt;[AccessibilityElement](#accessibilityelement9)&gt; | 是    | 回调函数，返回当前对应的焦点元素。 |
 
 **错误码：**

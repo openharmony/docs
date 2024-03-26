@@ -100,7 +100,7 @@ static napi_module nativerenderModule = {
 extern "C" __attribute__((constructor)) void RegisterModule(void)
 {
     // 注册so模块
-    napi_module_register(&nativerenderModule);c
+    napi_module_register(&nativerenderModule);
 }
 ```
 

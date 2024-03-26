@@ -100,8 +100,6 @@ onPlaceChildren?(selfLayoutInfo: GeometryInfo, children: Array&lt;Layoutable&gt;
 
 ArkUI框架会在自定义组件布局时，将该自定义组件的子节点自身的尺寸范围通过onPlaceChildren传递给该自定义组件。不允许在onPlaceChildren函数中改变状态变量。
 
-从API version 10开始，该接口支持在ArkTS卡片中使用。
-
 **参数：**
 
 | 参数名            | 类型                                                         | 说明               |
@@ -131,8 +129,6 @@ onMeasureSize?(selfLayoutInfo: GeometryInfo, children: Array&lt;Measurable&gt;, 
 
 ArkUI框架会在自定义组件确定尺寸时，将该自定义组件的节点信息和尺寸范围通过onMeasureSize传递给该开发者。不允许在onMeasureSize函数中改变状态变量。
 
-从API version 10开始，该接口支持在ArkTS卡片中使用。
-
 **参数：**
 
 | 参数名            | 类型                                                         | 说明               |
@@ -146,8 +142,6 @@ ArkUI框架会在自定义组件确定尺寸时，将该自定义组件的节点
 aboutToReuse?(params: { [key: string]: unknown }): void
 
 当一个可复用的自定义组件从复用缓存中重新加入到节点树时，触发aboutToReuse生命周期回调，并将组件的构造参数传递给aboutToReuse。
-
-从API version 10开始，该接口支持在ArkTS卡片中使用。
 
 **参数：**
 
@@ -303,8 +297,6 @@ struct CustomLayout {
 
 父组件布局信息。
 
-从API version 10开始支持，该接口支持在ArkTS卡片中使用。
-
 | 属性          | 属性类型      | 描述                  |
 |-------------|-----------|---------------------|
 | borderWidth | [EdgeWidth](ts-types.md#edgewidths9) | 父组件边框宽度。<br>单位：vp            |
@@ -318,8 +310,6 @@ struct CustomLayout {
 
 子组件布局信息。
 
-从API version 10开始支持，该接口支持在ArkTS卡片中使用。
-
 | 属性         | 属性类型                                                    | 描述                  |
 |------------|---------------------------------------------------------|---------------------|
 | measureResult| [MeasureResult](#measureresult10)      | 子组件测量后的尺寸信息。   <br>单位：vp     |
@@ -329,8 +319,6 @@ struct CustomLayout {
 
 子组件位置信息。
 
-从API version 10开始支持，该接口支持在ArkTS卡片中使用。
-
 | 属性         | 属性类型                                                                             | 描述                                    |
 |------------|----------------------------------------------------------------------------------|---------------------------------------|
 | measure    | (childConstraint: [ConstraintSizeOptions](ts-types.md#constraintsizeoptions))&nbsp;=&gt;&nbsp;[MeasureResult](#measureresult10) | 调用此方法对子组件的尺寸范围进行限制。<br/>返回值：子组件测量后的尺寸。 |
@@ -338,8 +326,6 @@ struct CustomLayout {
 ## MeasureResult<sup>10+</sup>
 
 测量后的组件布局信息。
-
-从API version 10开始，该接口支持在ArkTS卡片中使用。
 
 | 属性     | 属性类型   | 描述    |
 |--------|--------|-------|
@@ -351,8 +337,6 @@ struct CustomLayout {
 
 组件尺寸信息。
 
-从API version 10开始，该接口支持在ArkTS卡片中使用。
-
 | 属性     | 属性类型   | 描述    |
 |--------|--------|-------|
 | width  | number | 测量后的宽。<br>单位：vp |
@@ -362,10 +346,9 @@ struct CustomLayout {
 >
 >- 自定义布局暂不支持LazyForEach写法。
 >- 使用builder形式的自定义布局创建，自定义组件的build()方法内只允许存在this.builder()，即示例的推荐用法。
->- 子组件设置的尺寸信息，除aspectRatio之外，优先级小于onMeasureSize设置的尺寸信息。
->- 子组件设置的位置信息，除offset、position之外，优先级小于onPlaceChildren设置的位置信息。
+>- 父容器（自定义组件）上设置的尺寸信息，除aspectRatio之外，优先级小于onMeasureSize设置的尺寸信息。
+>- 子组件设置的位置信息，offset、position、markAnchor优先级大于onPlaceChildren设置的位置信息，其他位置设置属性不生效。
 >- 使用自定义布局方法时，需要同时调用onMeasureSize和onPlaceChildren方法，否则可能出现布局异常。
->- 调用onPlaceChildren后，影响子组件布局位置的部分通用属性将失效，如align等。
 
 ```
 // xxx.ets

@@ -32,7 +32,7 @@ Scroll(scroller?: Scroller)
 | -------------- | ---------------------------------------- | --------- |
 | scrollable     | [ScrollDirection](#scrolldirection枚举说明)                        | 设置滚动方向。<br/>默认值：ScrollDirection.Vertical |
 | scrollBar      | [BarState](ts-appendix-enums.md#barstate) | 设置滚动条状态。<br/>默认值：BarState.Auto<br/>**说明：** <br/>如果容器组件无法滚动，则滚动条不显示。如果容器组件的子组件大小为无穷大，则滚动条不支持拖动和伴随滚动。 |
-| scrollBarColor | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;[Color](ts-appendix-enums.md#color)   | 设置滚动条的颜色。 |
+| scrollBarColor | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;[Color](ts-appendix-enums.md#color)   | 设置滚动条的颜色。<br/>默认值：'\#182431'（40%不透明度） |
 | scrollBarWidth | string&nbsp;\|&nbsp;number         | 设置滚动条的宽度，不支持百分比设置。<br/>默认值：4<br/>单位：vp<br/>**说明：** <br/>如果滚动条的宽度超过其高度，则滚动条的宽度会变为默认值。 |
 | scrollSnap<sup>10+</sup>     | [ScrollSnapOptions](#scrollsnapoptions10)                     | 设置Scroll组件的限位滚动模式。 |
 | edgeEffect     | value:[EdgeEffect](ts-appendix-enums.md#edgeeffect),<br/>options?:[EdgeEffectOptions<sup>11+</sup>](#edgeeffectoptions11对象说明)        | 设置边缘滑动效果。<br/>\- value：设置Scroll组件的边缘滑动效果，支持弹簧效果和阴影效果。<br/>默认值：EdgeEffect.None <br/>\- options：设置组件内容大小小于组件自身时，是否开启滑动效果。<br/>默认值：true |

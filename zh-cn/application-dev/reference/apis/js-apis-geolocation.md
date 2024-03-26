@@ -424,7 +424,7 @@ on(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent): void;
   };
   
   wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-    let requestInfo:geolocation.GeofenceRequest = {'priority': 0x201, 'scenario': 0x301, "geofence": {"latitude": 121, "longitude": 26, "radius": 100, "expiration": 10000}};
+    let requestInfo:geolocation.GeofenceRequest = {'priority': 0x201, 'scenario': 0x301, "geofence": {"latitude": 31.12, "longitude": 121.11, "radius": 100, "expiration": 10000}};
     geolocation.on('fenceStatusChange', requestInfo, wantAgentObj);
   });
   ```
@@ -472,7 +472,7 @@ off(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent): void;
   };
   
   wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-    let requestInfo:geolocation.GeofenceRequest = {'priority': 0x201, 'scenario': 0x301, "geofence": {"latitude": 121, "longitude": 26, "radius": 100, "expiration": 10000}};
+    let requestInfo:geolocation.GeofenceRequest = {'priority': 0x201, 'scenario': 0x301, "geofence": {"latitude": 31.12, "longitude": 121.11, "radius": 100, "expiration": 10000}};
     geolocation.on('fenceStatusChange', requestInfo, wantAgentObj);
     geolocation.off('fenceStatusChange', requestInfo, wantAgentObj);
   });
@@ -1195,7 +1195,7 @@ sendCommand(command: LocationCommand): Promise&lt;boolean&gt;;
 
 ## ReverseGeoCodeRequest<sup>(deprecated)</sup>
 
-逆地理编码请求接口。
+逆地理编码请求参数。
 
 > **说明：**<br/>
 > 从API version 9开始废弃，建议使用[geoLocationManager.ReverseGeoCodeRequest](js-apis-geoLocationManager.md#reversegeocoderequest)替代。
@@ -1214,7 +1214,7 @@ sendCommand(command: LocationCommand): Promise&lt;boolean&gt;;
 
 ## GeoCodeRequest<sup>(deprecated)</sup>
 
-地理编码请求接口。
+地理编码请求参数。
 
 > **说明：**<br/>
 > 从API version 9开始废弃，建议使用[geoLocationManager.GeoCodeRequest](js-apis-geoLocationManager.md#geocoderequest)替代。
@@ -1236,7 +1236,7 @@ sendCommand(command: LocationCommand): Promise&lt;boolean&gt;;
 
 ## GeoAddress<sup>(deprecated)</sup>
 
-地理编码类型。
+地理编码地址信息。
 
 > **说明：**<br/>
 > 从API version 9开始废弃，建议使用[geoLocationManager.GeoAddress](js-apis-geoLocationManager.md#geoaddress)替代。
@@ -1269,7 +1269,7 @@ sendCommand(command: LocationCommand): Promise&lt;boolean&gt;;
 
 ## LocationRequest<sup>(deprecated)</sup>
 
-位置信息请求类型。
+位置信息请求参数。
 
 > **说明：**<br/>
 > 从API version 9开始废弃，建议使用[geoLocationManager.LocationRequest](js-apis-geoLocationManager.md#locationrequest)替代。
@@ -1289,7 +1289,7 @@ sendCommand(command: LocationCommand): Promise&lt;boolean&gt;;
 
 ## CurrentLocationRequest<sup>(deprecated)</sup>
 
-当前位置信息请求类型。
+当前位置信息请求参数。
 
 > **说明：**<br/>
 > 从API version 9开始废弃，建议使用[geoLocationManager.CurrentLocationRequest](js-apis-geoLocationManager.md#currentlocationrequest)替代。
@@ -1405,7 +1405,7 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 
 ## Location<sup>(deprecated)</sup>
 
-位置信息类型。
+位置信息。
 
 > **说明：**<br/>
 > 从API version 9开始废弃，建议使用[geoLocationManager.Location](js-apis-geoLocationManager.md#location)替代。
@@ -1449,7 +1449,7 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 
 ## LocationRequestPriority<sup>(deprecated)</sup>
 
-位置请求中位置信息优先级设置。
+位置请求中位置信息优先级类型。
 
 > **说明：**<br/>
 > 从API version 9开始废弃，建议使用[geoLocationManager.LocationRequestPriority](js-apis-geoLocationManager.md#locationrequestpriority)替代。
@@ -1468,7 +1468,7 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 
 ## LocationRequestScenario<sup>(deprecated)</sup>
 
-  位置请求中定位场景设置。
+  位置请求中定位场景类型。
 
 > **说明：**<br/>
 > 从API version 9开始废弃，建议使用[geoLocationManager.LocationRequestScenario](js-apis-geoLocationManager.md#locationrequestscenario)替代。

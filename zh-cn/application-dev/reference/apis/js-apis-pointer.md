@@ -112,7 +112,7 @@ isPointerVisible(callback: AsyncCallback&lt;boolean&gt;): void
 
 | 参数名       | 类型                           | 必填   | 说明             |
 | -------- | ---------------------------- | ---- | -------------- |
-| callback | AsyncCallback&lt;boolean&gt; | 是    | 回调函数，异步返回鼠标指针显示或隐藏状态。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是    | 回调函数，异步返回鼠标指针状态，true为显示，false为隐藏。 |
 
 **示例**：
 
@@ -556,7 +556,7 @@ try {
 
 getMousePrimaryButton(callback: AsyncCallback&lt;PrimaryButton&gt;): void
 
-获取鼠标主键，使用AsyncCallback异步方式返回结果。
+获取当前鼠标主键，使用AsyncCallback异步方式返回结果。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 

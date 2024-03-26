@@ -18,7 +18,7 @@ focusable(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | 设置当前组件是否可以获焦。<br/>**说明：**<br/>存在默认交互逻辑的组件例如Button、TextInput等，默认即为可获焦，Text、Image等组件则默认状态为不可获焦。不可获焦状态下，无法触发[焦点事件](ts-universal-focus-event.md)。 |
+| value  | boolean | 是   | 设置当前组件是否可以获焦。<br/>**说明：**<br/>存在默认交互逻辑的组件例如[Button](ts-basic-components-button.md)、[TextInput](ts-basic-components-textinput.md)等，默认即为可获焦，[Text](ts-basic-components-text.md)、[Image](ts-basic-components-image.md)等组件则默认状态为不可获焦。不可获焦状态下，无法触发[焦点事件](ts-universal-focus-event.md)。 |
 
 ## tabIndex<sup>9+</sup>
 
@@ -100,7 +100,7 @@ requestFocus(value: string): boolean
 
 >  **说明：**
 >
->  支持焦点控制的组件：TextInput、TextArea、Search、Button、Text、Image、List、Grid。焦点事件当前仅支持在真机上显示运行效果。
+>  支持焦点控制的组件：[TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md)、[Search](ts-basic-components-search.md)、[Button](ts-basic-components-button.md)、[Text](ts-basic-components-text.md)、[Image](ts-basic-components-image.md)、[List](ts-container-list.md)、[Grid](ts-container-grid.md)。焦点事件当前仅支持在真机上显示运行效果。
 
 ## 示例
 
@@ -237,23 +237,23 @@ struct FocusableExample {
 ```
 示意图：
 
-首次按下TAB键，焦点切换到defaultFocus绑定的组件上：
+首次进入，焦点默认在defaultFocus绑定的TextInput组件上：
 
 ![defaultFocus](figures/defaultFocus.png)
 
-第二次按TAB键，焦点切换到tabIndex(1)的容器上，且自动走到其内部的groupDefaultFocus绑定的组件上：
+第一次按TAB键，焦点切换到tabIndex(1)的容器上，且自动走到其内部的groupDefaultFocus绑定的组件上：
 
 ![groupDefaultFocus1](figures/groupDefaultFocus1.png)
 
-第三次按TAB键，焦点切换到tabIndex(2)的容器上，且自动走到其内部的groupDefaultFocus绑定的组件上：
+第二次按TAB键，焦点切换到tabIndex(2)的容器上，且自动走到其内部的groupDefaultFocus绑定的组件上：
 
 ![groupDefaultFocus2](figures/groupDefaultFocus2.png)
 
-第四次按TAB键，焦点切换到tabIndex(3)的容器上，且自动走到其内部的groupDefaultFocus绑定的组件上：
+第三次按TAB键，焦点切换到tabIndex(3)的容器上，且自动走到其内部的groupDefaultFocus绑定的组件上：
 
 ![groupDefaultFocus3](figures/groupDefaultFocus3.png)
 
-点击绑定了focusOnTouch的组件，组件自身获焦：
+点击绑定了focusOnTouch的组件，组件自身获焦，焦点框被清除，再按下Tab键显示焦点框：
 
 ![focusOnTouch](figures/focusOnTouch.png)
 
@@ -261,7 +261,7 @@ struct FocusableExample {
 
 focusControl.requestFocus示例代码：
 
-使用focusContrl.requestFocus接口使指定组件获取焦点。
+使用focusControl.requestFocus接口使指定组件获取焦点。
 ```ts
 // requestFocus.ets
 import promptAction from '@ohos.promptAction';

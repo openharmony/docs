@@ -21,7 +21,7 @@ Toggle(options: { type: ToggleType, isOn?: boolean })
 
 | 参数名 | 参数类型 | 必填   | 参数描述           |
 | ---- | ---------- | -----| -------------- |
-| type | [ToggleType](#toggletype枚举说明) | 是   | 开关的样式。 |
+| type | [ToggleType](#toggletype枚举说明) | 是   | 开关的样式。<br/>默认值：ToggleType.Switch。 |
 | isOn | boolean    | 否   | 开关是否打开，true：打开，false：关闭。<br/>默认值：false<br />从API version 10开始，该参数支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
 
 
@@ -31,9 +31,9 @@ Toggle(options: { type: ToggleType, isOn?: boolean })
 
 | 名称       | 描述                 |
 | -------- | ---------------- |
-| Checkbox | 提供单选框样式。<br>**说明：**<br/>API version 11开始，Checkbox默认样式由圆角方形变为圆形。<br/>[通用属性margin](ts-universal-attributes-size.md)的默认值为：<br>{<br>&nbsp;top: '14px',<br>&nbsp;right: '14px',<br>&nbsp;bottom: '14px',<br>&nbsp;left: '14px'<br> } |
-| Button   | 提供状态按钮样式，如果子组件有文本设置，则相应的文本内容会显示在按钮内部。       |
-| Switch   | 提供开关样式。<br>**说明：**<br/>[通用属性margin](ts-universal-attributes-size.md)默认值为：<br>{<br/>&nbsp;top: '6px',<br/>&nbsp;right: '14px',<br/>&nbsp;bottom: '6px',<br/>&nbsp;left: '14px'<br/> } |
+| Checkbox | 提供单选框样式。<br>**说明：**<br/>API version 11开始，Checkbox默认样式由圆角方形变为圆形。<br/>[通用属性margin](ts-universal-attributes-size.md)的默认值为：<br>{<br>&nbsp;top: '14px',<br>&nbsp;right: '14px',<br>&nbsp;bottom: '14px',<br>&nbsp;left: '14px'<br> }。<br/>默认尺寸为:<br>{width:'20vp', height:'20vp'}。|
+| Button   | 提供状态按钮样式，如果子组件有文本设置，则相应的文本内容会显示在按钮内部。<br/>默认尺寸为:高为28vp，宽无默认值。       |
+| Switch   | 提供开关样式。<br>**说明：**<br/>[通用属性margin](ts-universal-attributes-size.md)默认值为：<br>{<br/>&nbsp;top: '6px',<br/>&nbsp;right: '14px',<br/>&nbsp;bottom: '6px',<br/>&nbsp;left: '14px'<br/> }。<br/>默认尺寸为:<br>{width:'36vp', height:'20vp'}。|
 
 ## 属性
 
@@ -41,8 +41,8 @@ Toggle(options: { type: ToggleType, isOn?: boolean })
 
 | 名称                | 参数                           | 参数描述                  |
 | ---------------- | --------------------------- | ---------------------- |
-| selectedColor    | [ResourceColor](ts-types.md#resourcecolor)  | 设置组件打开状态的背景颜色。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
-| switchPointColor | [ResourceColor](ts-types.md#resourcecolor)  | 设置Switch类型的圆形滑块颜色。<br/>**说明：**<br/>仅对type为ToggleType.Switch生效。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| selectedColor    | [ResourceColor](ts-types.md#resourcecolor)  | 设置组件打开状态的背景颜色。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>默认值：'#ff007dff'。|
+| switchPointColor | [ResourceColor](ts-types.md#resourcecolor)  | 设置Switch类型的圆形滑块颜色。<br/>**说明：**<br/>仅对type为ToggleType.Switch生效。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>默认值：'#ffffffff'。 |
 
 ## 事件
 

@@ -608,7 +608,7 @@ bindTarget(deviceId: string, bindParam: {[key:&nbsp;string]:&nbsp;Object} , call
   | 参数名     | 类型                                                | 必填  | 说明         |
   | ---------- | --------------------------------------------------- | ----- | ------------ |
   | deviceId   | string                                              | 是    | 设备标识。   |
-  | bindParam  | {[key:&nbsp;string]:&nbsp;Object}                             | 是    | 认证参数。由开发者自行决定传入的键值对。默认会携带以下key值：<br>bindType 此值是绑定的类型，必填。 <br />-1：PIN码。<br />-2：二维码。<br />-3：NFC。 <br />-4：无交互。<br>targetPkgName 绑定目标的包名。<br>appName 尝试绑定目标的应用程序名称。<br>appOperation 应用程序要绑定目标的原因。<br>customDescription 操作的详细说明。   |
+  | bindParam  | {[key:&nbsp;string]:&nbsp;Object}                             | 是    | 认证参数。由开发者自行决定传入的键值对。默认会携带以下key值：<br>bindType 此值是绑定的类型，必填。2、3和4为预埋功能，暂未支持。 <br />-1：PIN码。<br />-2：二维码。<br />-3：NFC。 <br />-4：无交互。<br>targetPkgName 绑定目标的包名。<br>appName 尝试绑定目标的应用程序名称。<br>appOperation 应用程序要绑定目标的原因。<br>customDescription 操作的详细说明。   |
   | callback   | AsyncCallback&lt;{deviceId:&nbsp;string,&nbsp;}&gt; | 是    | 认证结果回调。 |
 
 **错误码：**
@@ -697,7 +697,7 @@ unbindTarget(deviceId: string): void;
 
 replyUiAction(action: number, actionResult: string): void;
 
-回复用户ui操作行为。此接口只能被devicemanager的PIN码hap使用。
+回复用户UI操作行为。此接口只能被devicemanager的PIN码hap使用。
 
 **需要权限**：ohos.permission.ACCESS_SERVICE_DM
 
@@ -751,8 +751,8 @@ on(type: 'replyResult', callback: Callback&lt;{ param: string}&gt;): void;
 
   | 参数名      | 类型                             | 必填 | 说明                            |
   | -------- | ------------------------------------ | ---- | ------------------------------ |
-  | type     | string                                | 是  | 注册的设备管理器 ui 状态回调，以便在状态改变时通知应用，固定为replyResult。 |
-  | callback | Callback&lt;{&nbsp;param:&nbsp;string}&gt; | 是  | 指示要注册的设备管理器 ui 状态回调，返回ui状态。        |
+  | type     | string                                | 是  | 注册的设备管理器 UI 状态回调，以便在状态改变时通知应用，固定为replyResult。 |
+  | callback | Callback&lt;{&nbsp;param:&nbsp;string}&gt; | 是  | 指示要注册的设备管理器 UI 状态回调，返回UI状态。        |
 
 **示例：**
 
@@ -797,8 +797,8 @@ off(type: 'replyResult', callback?: Callback&lt;{ param: string}&gt;): void;
 
   | 参数名      | 类型                              | 必填 | 说明                            |
   | -------- | ------------------------------------- | ---- | ------------------------------ |
-  | type     | string                                | 是   | 取消注册的设备管理器 ui 状态回调，固定为replyResult。 |
-  | callback | Callback&lt;{&nbsp;param:&nbsp;string}&gt; | 否   | 指示要取消注册的设备管理器 ui 状态，返回UI状态。 |
+  | type     | string                                | 是   | 取消注册的设备管理器 UI 状态回调，固定为replyResult。 |
+  | callback | Callback&lt;{&nbsp;param:&nbsp;string}&gt; | 否   | 指示要取消注册的设备管理器 UI 状态，返回UI状态。 |
 
 **示例：**
 
