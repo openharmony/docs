@@ -460,7 +460,7 @@ struct Index {
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
             promptAction.openCustomDialog({
-              builder: customDialogBuilder.bind(this)
+              builder: customDialogBuilder.bind(this),
               onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
                 console.info("reason" + JSON.stringify(dismissDialogAction.reason))
                 console.log("dialog onWillDismiss")
