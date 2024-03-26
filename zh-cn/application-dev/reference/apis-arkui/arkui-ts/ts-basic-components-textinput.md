@@ -699,7 +699,7 @@ caretPosition(value:&nbsp;number): void
 | value | number | 是    | 从字符串开始到光标所在位置的字符长度。 |
 ### setTextSelection<sup>10+</sup>
 
-setTextSelection(selectionStart:&nbsp;number, selectionEnd:&nbsp;number): void
+setTextSelection(selectionStart:&nbsp;number, selectionEnd:&nbsp;number, options?:&nbsp;SelectionOptions): void
 
 设置文本选择区域并高亮显示。
 
@@ -709,9 +709,28 @@ setTextSelection(selectionStart:&nbsp;number, selectionEnd:&nbsp;number): void
 | -------------- | ------ | ---- | ------------------------- |
 | selectionStart | number | 是    | 文本选择区域起始位置，文本框中文字的起始位置为0。 |
 | selectionEnd   | number | 是    | 文本选择区域结束位置。               |
+| options<sup>12+</sup>   | [SelectionOptions](#selectionoptions12) | 否    | 选中文字时的配置。<br />在RichEditor组件中已有定义。<br />默认值：MenuPolicy::DEFAULT。 |
 >  **说明：**
 >
 >  如果selectionStart或selectionEnd被赋值为undefined时，当作0处理。
+##  SelectionOptions<sup>12+</sup>
+
+setTextSelection选中文字时的配置。
+
+| 名称       | 类型                        | 必填 | 说明             |
+| ---------- | --------------------------- | ---- | ---------------- |
+| menuPolicy | [MenuPolicy](#menupolicy12) | 否   | 菜单弹出的策略。 |
+
+## MenuPolicy<sup>12+</sup>
+
+菜单弹出的策略。
+
+| 名称    | 描述                     |
+| ------- | ------------------------ |
+| DEFAULT | 按照底层默认逻辑决定是否弹出菜单。 |
+| NEVER   | 始终不弹出菜单。         |
+| ALWAYS  | 始终弹出菜单。           |
+
 ### stopEditing<sup>10+</sup>
 
 stopEditing(): void

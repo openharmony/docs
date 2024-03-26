@@ -73,15 +73,11 @@ import { BusinessError } from '@ohos.base';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
-try {
-    atManager.checkAccessToken(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS').then((data: abilityAccessCtrl.GrantStatus) => {
-        console.log(`checkAccessToken success, data->${JSON.stringify(data)}`);
-    }).catch((err: BusinessError) => {
-        console.log(`checkAccessToken fail, err->${JSON.stringify(err)}`);
-    });
-} catch(err) {
-    console.log(`catch err->${JSON.stringify(err)}`);
-}
+atManager.checkAccessToken(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS').then((data: abilityAccessCtrl.GrantStatus) => {
+  console.log(`checkAccessToken success, data->${JSON.stringify(data)}`);
+}).catch((err: BusinessError) => {
+  console.log(`checkAccessToken fail, err->${JSON.stringify(err)}`);
+});
 ```
 
 ### verifyAccessTokenSync<sup>9+</sup>
@@ -120,8 +116,13 @@ import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
-let data: abilityAccessCtrl.GrantStatus = atManager.verifyAccessTokenSync(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS');
-console.log(`data->${JSON.stringify(data)}`);
+try {
+  let data: abilityAccessCtrl.GrantStatus = atManager.verifyAccessTokenSync(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS');
+  console.log(`data->${JSON.stringify(data)}`);
+} catch(err) {
+  console.log(`catch err->${JSON.stringify(err)}`);
+}
+
 ```
 
 ### verifyAccessToken<sup>9+</sup>
@@ -158,15 +159,11 @@ import { BusinessError } from '@ohos.base';
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
 let permissionName: Permissions = 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS';
-try {
-    atManager.verifyAccessToken(tokenID, permissionName).then((data: abilityAccessCtrl.GrantStatus) => {
-        console.log(`promise: data->${JSON.stringify(data)}`);
-    }).catch((err: BusinessError) => {
-        console.log(`verifyAccessToken fail, err->${JSON.stringify(err)}`);
-    });
-}catch(err) {
-    console.log(`catch err->${JSON.stringify(err)}`);
-}
+atManager.verifyAccessToken(tokenID, permissionName).then((data: abilityAccessCtrl.GrantStatus) => {
+  console.log(`promise: data->${JSON.stringify(data)}`);
+}).catch((err: BusinessError) => {
+  console.log(`verifyAccessToken fail, err->${JSON.stringify(err)}`);
+});
 ```
 
 ### requestPermissionsFromUser<sup>9+</sup>
@@ -210,17 +207,17 @@ import { BusinessError } from '@ohos.base';
 import common from '@ohos.app.ability.common';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
-try {
-    let context: Context = getContext(this) as common.UIAbilityContext;
-    atManager.requestPermissionsFromUser(context, ['ohos.permission.CAMERA'], (err: BusinessError, data: PermissionRequestResult)=>{
+let context: Context = getContext(this) as common.UIAbilityContext;
+atManager.requestPermissionsFromUser(context, ['ohos.permission.CAMERA'], (err: BusinessError, data: PermissionRequestResult) => {
+  if (err) {
+    console.log(`requestPermissionsFromUser fail, err->${JSON.stringify(err)}`);
+  } else {
     console.info('data:' + JSON.stringify(data));
     console.info('data permissions:' + data.permissions);
     console.info('data authResults:' + data.authResults);
     console.info('data dialogShownResults:' + data.dialogShownResults);
-    });
-} catch(err) {
-    console.log(`catch err->${JSON.stringify(err)}`);
-}
+  }
+});
 ```
 
 ### requestPermissionsFromUser<sup>9+</sup>
@@ -269,19 +266,15 @@ import { BusinessError } from '@ohos.base';
 import common from '@ohos.app.ability.common';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
-try {
-    let context: Context = getContext(this) as common.UIAbilityContext;
-    atManager.requestPermissionsFromUser(context, ['ohos.permission.CAMERA']).then((data: PermissionRequestResult) => {
-        console.info('data:' + JSON.stringify(data));
-        console.info('data permissions:' + data.permissions);
-        console.info('data authResults:' + data.authResults);
-        console.info('data dialogShownResults:' + data.dialogShownResults);
-    }).catch((err: BusinessError) => {
-        console.info('data:' + JSON.stringify(err));
-    })
-} catch(err) {
-    console.log(`catch err->${JSON.stringify(err)}`);
-}
+let context: Context = getContext(this) as common.UIAbilityContext;
+atManager.requestPermissionsFromUser(context, ['ohos.permission.CAMERA']).then((data: PermissionRequestResult) => {
+  console.info('data:' + JSON.stringify(data));
+  console.info('data permissions:' + data.permissions);
+  console.info('data authResults:' + data.authResults);
+  console.info('data dialogShownResults:' + data.dialogShownResults);
+}).catch((err: BusinessError) => {
+  console.info('data:' + JSON.stringify(err));
+});
 ```
 
 ### verifyAccessToken<sup>(deprecated)</sup>
@@ -317,15 +310,11 @@ import { BusinessError } from '@ohos.base';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
-try {
-    atManager.verifyAccessToken(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS').then((data: abilityAccessCtrl.GrantStatus) => {
-        console.log(`promise: data->${JSON.stringify(data)}`);
-    }).catch((err: BusinessError) => {
-        console.log(`verifyAccessToken fail, err->${JSON.stringify(err)}`);
-    });
-}catch(err) {
-    console.log(`catch err->${JSON.stringify(err)}`);
-}
+atManager.verifyAccessToken(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS').then((data: abilityAccessCtrl.GrantStatus) => {
+  console.log(`promise: data->${JSON.stringify(data)}`);
+}).catch((err: BusinessError) => {
+  console.log(`verifyAccessToken fail, err->${JSON.stringify(err)}`);
+});
 ```
 
 ### checkAccessTokenSync<sup>10+</sup>
