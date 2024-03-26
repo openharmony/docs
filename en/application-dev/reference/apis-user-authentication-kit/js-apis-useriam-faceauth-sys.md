@@ -46,7 +46,7 @@ let faceAuthManager = new userIAM_faceAuth.FaceAuthManager();
 
 setSurfaceId(surfaceId: string): void;
 
-Sets an [XComponent surface ID](../arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid) for the face preview page in the face enrollment process. This API must be used with [AddCredential](./js-apis-osAccount.md#addcredential8).
+Sets an [XComponent surface ID](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid) for the face preview page in the face enrollment process. This API must be used with [addCredential](../apis-basic-services-kit/js-apis-osAccount-sys.md#addcredential8).
 
 **System capability**: SystemCapability.UserIAM.UserAuth.FaceAuth
 
@@ -58,9 +58,9 @@ Sets an [XComponent surface ID](../arkui-ts/ts-basic-components-xcomponent.md#ge
 
 | Name        | Type                              | Mandatory| Description                      |
 | -------------- | ---------------------------------- | ---- | -------------------------- |
-| surfaceId       | string     | Yes  | ID of the surface held by the [XComponent](../arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid).|
+| surfaceId       | string     | Yes  | ID of the surface held by [XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid).|
 
-For details about the following error codes, see [User Authentication Error Codes](../errorcodes/errorcode-useriam.md).
+For details about the error codes, see [User Authentication Error Codes](errorcode-useriam.md).
 
 **Error codes**
 
@@ -85,4 +85,3 @@ try {
   console.error('set surface id failed, error = ' + error);
 }
 ```
-<!--no_check-->

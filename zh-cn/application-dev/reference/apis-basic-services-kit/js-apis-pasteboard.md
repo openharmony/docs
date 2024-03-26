@@ -1417,6 +1417,8 @@ getData( callback: AsyncCallback&lt;PasteData&gt;): void
 
 读取系统剪贴板内容，使用callback异步回调。
 
+**需要权限**：ohos.permission.READ_PASTEBOARD
+
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **参数：**
@@ -1830,6 +1832,8 @@ getDataSource(): string
 
 获取数据来源。
 
+**需要权限**：ohos.permission.READ_PASTEBOARD
+
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **返回值：**
@@ -1932,6 +1936,8 @@ try {
 getDataSync(): PasteData
 
 读取系统剪贴板内容, 此接口为同步接口。
+
+**需要权限**：ohos.permission.READ_PASTEBOARD
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 

@@ -151,7 +151,7 @@ placeholder(value: ResourceStr, style?: PlaceholderStyle)
 
 caretColor(value: ResourceColor)
 
-设置输入框光标颜色。
+设置输入框光标、手柄颜色。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -159,7 +159,7 @@ caretColor(value: ResourceColor)
 
 | 参数名 | 类型                                       | 必填 | 说明                                   |
 | ------ | ------------------------------------------ | ---- | -------------------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 输入框光标颜色。<br/>默认值：'#0A59F7' |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 输入框光标、手柄颜色。<br/>默认值：'#007DFF' |
 
 ### selectedBackgroundColor<sup>12+</sup>
 
@@ -357,8 +357,8 @@ Span类型信息。
 | fontWeight | number                                   | 是    | 字体粗细。        |
 | fontFamily | string                                   | 是    | 字体列表。        |
 | decoration | {<br/>type:&nbsp;[TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br/>color:&nbsp;[ResourceColor](ts-types.md#resourcecolor)<br/>} | 是    | 文本装饰线样式及其颜色。 |
-| lineHeight<sup>12+</sup> | number       | 是    | 文本行高。          |
-| letterSpacing<sup>12+</sup>| number       | 是    | 文本字符间距。    |
+| lineHeight<sup>12+</sup> | number       | 否    | 文本行高。          |
+| letterSpacing<sup>12+</sup>| number       | 否    | 文本字符间距。    |
 
 ## RichEditorImageSpanResult
 
@@ -775,7 +775,7 @@ SymbolSpan样式选项。
 
 ## LeadingMarginPlaceholder<sup>11+</sup>
 
-前导边距占位符，用于表示文本段落左侧与页面边缘之间的距离。
+前导边距占位符，用于表示文本段落左侧与组件边缘之间的距离。
 
 | 名称       | 类型                                       | 必填   | 描述             |
 | -------- | ---------------------------------------- | ---- | -------------- |
@@ -900,7 +900,7 @@ SymbolSpan样式选项。
 
 | 名称             | 类型          | 必填   | 描述                            |
 | -------------- | ----------- | ---- | ----------------------------- |
-| preventDefault | () => void | 否    | 用户自定义粘贴事件。<br/> 存在时会覆盖系统粘贴事件。 |
+| preventDefault | () => void | 否    | 阻止系统默认粘贴事件。 |
 
 ## RichEditorGesture<sup>11+</sup>
 
@@ -2770,3 +2770,185 @@ struct TextExample7 {
   }
 }
 ```
+### 示例11
+caretColor和selectedBackgroundColor使用示例
+``` ts
+@Entry
+@Component
+struct RichEditorDemo {
+  @State color: Color|string = ""
+  controller: RichEditorController = new RichEditorController();
+  build() {
+    Column() {
+      Row(){
+        Button("改为红色").onClick(() => {
+          this.color = Color.Red
+        })
+      }.margin({top:50})
+      RichEditor({ controller: this.controller })
+        .onReady(()=>{
+          this.controller.addTextSpan('测试文字测试文字测试文字测试文字测试文字测试文字')
+        })
+        .width("100%")
+        .border({ width: 1, radius: 5 })
+        .key('RichEditor')
+        .caretColor(this.color)  //光标颜色
+        .selectedBackgroundColor(this.color)  //选中背景色
+        .margin({top:50})
+    }
+    .width('100%')
+  }
+}
+```
+![SetCaretAndSelectedBackgroundColorExample](figures/rich_editor_caret_color.gif)
+
+### 示例12
+lineHeight和letterSpacing使用示例
+```ts
+@Entry
+@Component
+struct RichEditorDemo03 {
+  controller: RichEditorController = new RichEditorController();
+  options: RichEditorOptions = { controller: this.controller };
+  @State start: number = -1;
+  @State end: number = -1;
+  @State LH:number = 50
+  @State LS:number = 20
+
+  build() {
+    Column() {
+      Scroll(){
+        Column(){
+          Row() {
+            Button("行高++").onClick(()=>{
+              this.LH = this.LH + 5
+              this.controller.updateSpanStyle({
+                start: this.start,
+                end: this.end,
+                textStyle:
+                {
+                  lineHeight: this.LH
+                }
+              })
+            })
+            Button("行高--").onClick(()=>{
+              this.LH = this.LH - 5
+              this.controller.updateSpanStyle({
+                start: this.start,
+                end: this.end,
+                textStyle:
+                {
+                  lineHeight: this.LH
+                }
+              })
+            })
+            Button("字符间距++").onClick(()=>{
+              this.LS = this.LS + 5
+              this.controller.updateSpanStyle({
+                start: this.start,
+                end: this.end,
+                textStyle:
+                {
+                  letterSpacing: this.LS
+                }
+              })
+            })
+            Button("字符间距--").onClick(()=>{
+              this.LS = this.LS - 5
+              this.controller.updateSpanStyle({
+                start: this.start,
+                end: this.end,
+                textStyle:
+                {
+                  letterSpacing: this.LS
+                }
+              })
+            })
+          }
+        }
+      }.borderWidth(1)
+      .borderColor(Color.Red)
+      .width("100%")
+      .height("20%")
+      .margin({top: 20})
+
+      Scroll(){
+        Column() {
+          Text("LineHeight:" + this.LH).width("100%")
+          Text("LetterSpacing:" + this.LS).width("100%")
+        }
+      }
+      .borderWidth(1)
+      .borderColor(Color.Red)
+      .width("100%")
+      .height("20%")
+      .margin({bottom: 20})
+
+      Column() {
+        RichEditor(this.options).clip(true).padding(10)
+          .onReady(() => {
+            this.controller.addTextSpan("012345",
+              {
+                style:
+                {
+                  fontColor: Color.Orange,
+                  fontSize: 30,
+                  lineHeight: this.LH,
+                  letterSpacing: this.LS
+                }
+              })
+            this.controller.addTextSpan("6789",
+              {
+                style:
+                {
+                  fontColor: Color.Black,
+                  fontSize: 30,
+                  lineHeight: this.LH,
+                  letterSpacing: this.LS
+                }
+              })
+          })
+          .borderWidth(1)
+          .borderColor(Color.Green)
+          .width(400)
+          .height(400)
+      }
+      .borderWidth(1)
+      .borderColor(Color.Red)
+      .width("100%")
+      .height("60%")
+    }
+  }
+}
+```
+![AddBuilderSpanExample](figures/richEditorLineHeightAndLetterSpacing.png)
+
+### 示例13
+preventDefault使用示例
+```ts
+@Entry
+@Component
+struct RichEditorDemo {
+  controller: RichEditorController = new RichEditorController();
+  options: RichEditorOptions = { controller: this.controller };
+
+  build() {
+    Column({ space: 2 }) {
+      RichEditor(this.options)
+        .onReady(() => {
+          this.controller.addTextSpan('RichEditor preventDefault')
+        })
+        .onPaste((event?: PasteEvent) => {
+          if (event != undefined && event.preventDefault) {
+            event.preventDefault();
+          }
+        })
+        .borderWidth(1)
+        .borderColor(Color.Green)
+        .width('100%')
+        .height('40%')
+    }
+  }
+}
+```
+![PreventDefaultExample](figures/richEditorPreventDefault.gif)

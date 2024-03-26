@@ -3,14 +3,11 @@
 
 ## Overview
 
-Defines the structure of the certificate chain.
+Defines the struct of a certificate chain.
 
-**Since:**
-9
+**Since**: 9
 
-**Related Modules:**
-
-[HuksTypeApi](_huks_type_api.md)
+**Related module**: [HuksTypeApi](_huks_type_api.md)
 
 
 ## Summary
@@ -18,30 +15,30 @@ Defines the structure of the certificate chain.
 
 ### Member Variables
 
-| Name | Description | 
+| Name| Description|
 | -------- | -------- |
-| [certs](#certs) | Pointer to the certificate data.  | 
-| [certsCount](#certscount) | Number of certificates.  | 
+| struct [OH_Huks_Blob](_o_h___huks___blob.md) \* [certs](#certs) | Pointer to the certificate data. |
+| uint32_t [certsCount](#certscount) | Number of certificates in the certificate chain. |
 
 
-## Member Variable Description 
+## Member Variable Description
 
 
 ### certs
 
-  
 ```
 struct OH_Huks_Blob* OH_Huks_CertChain::certs
 ```
-**Description**<br>
+**Description**
+
 Pointer to the certificate data.
 
 
 ### certsCount
 
-  
 ```
 uint32_t OH_Huks_CertChain::certsCount
 ```
-**Description**<br>
-Number of certificates.
+**Description**
+
+Number of certificates in the certificate chain.

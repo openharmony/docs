@@ -184,6 +184,7 @@ notifyDataChange(accountId: string, bundleName: string, callback: AsyncCallback&
     }
   });
   ```
+
 ## ExtraData<sup>11+</sup>
 
 云端数据变更信息。
@@ -195,8 +196,7 @@ notifyDataChange(accountId: string, bundleName: string, callback: AsyncCallback&
 | eventId | string | 是   | 变更事件id|
 | extraData | ExtraData | 是   | 云端数据变更信息|
 
-
-## cloudSyncManager.notifyDataChange<sup>11+</sup> 
+## cloudSyncManager.notifyDataChange<sup>11+</sup>
 
 notifyDataChange(userId: number, extraData: ExtraData): Promise&lt;void&gt;
 
@@ -210,7 +210,7 @@ notifyDataChange(userId: number, extraData: ExtraData): Promise&lt;void&gt;
 
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
-| userId | number | 是   | 账号Id|
+| userId | number | 是   | 用户Id|
 | extraData | ExtraData | 是   | 云端数据变更信息|
 
 **返回值：**

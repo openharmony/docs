@@ -20,8 +20,8 @@ import { DrawContext, Size, Offset, Position, Pivot, Scale, Translation, Matrix4
 
 | 名称   | 类型   | 可读 | 可写 | 说明                   |
 | ------ | ------ | ---- | ---- | ---------------------- |
-| width  | number | 是   | 是   | 组件的宽度，单位为vp。 |
-| height | number | 是   | 是   | 组件的高度，单位为vp。 |
+| width  | number | 是   | 是   | 组件大小的宽度，单位为vp。 |
+| height | number | 是   | 是   | 组件大小的高度，单位为vp。 |
 
 ## Position
 
@@ -77,8 +77,8 @@ import { DrawContext, Size, Offset, Position, Pivot, Scale, Translation, Matrix4
 
 | 名称 | 类型   | 可读 | 可写 | 说明                         |
 | ---- | ------ | ---- | ---- | ---------------------------- |
-| x    | number | 是   | 是   | 水平方向的平移量，单位为vp。 |
-| y    | number | 是   | 是   | 垂直方向的平移量，单位为vp。 |
+| x    | number | 是   | 是   | 水平方向的平移量，单位为px。 |
+| y    | number | 是   | 是   | 垂直方向的平移量，单位为px。 |
 
 ## Rotation
 

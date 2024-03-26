@@ -654,8 +654,8 @@ lock(): Promise&lt;Result&lt;LockInfo&gt;&gt;
 
 ```ts
 export default class MyCloudDB implements cloudExtension.CloudDB {
-  let  test_time = 10;
-  let  test_lockId = 1;
+  let test_time: number = 10;
+  let test_lockId: number = 1;
   // ...
   async lock(): Promise<cloudExtension.Result<cloudExtension.LockInfo>> {
     console.info(`DB lock`);
@@ -698,8 +698,8 @@ heartbeat(lockId: number): Promise&lt;Result&lt;LockInfo&gt;&gt;
 
 ```ts
 export default class MyCloudDB implements cloudExtension.CloudDB {
-  let  test_lockId = 1;
-  let  test_time = 10;
+  let test_lockId: number = 1;
+  let test_time: number = 10;
   // ...
   async heartbeat(lockId: number): Promise<cloudExtension.Result<cloudExtension.LockInfo>> {
     console.info(`heartbeat lock`);
@@ -780,8 +780,8 @@ getServiceInfo(): Promise<ServiceInfo&gt;
 ```ts
 import rpc from '@ohos.rpc';
 
-let test_Space = 100;
-let test_userId = 1;
+let test_space: number = 100;
+let test_userId: number = 1;
 
 export default class MyCloudService implements cloudExtension.CloudService {
   constructor() {}
@@ -792,8 +792,8 @@ export default class MyCloudService implements cloudExtension.CloudService {
     return {
       enableCloud: true,
       id: "test_id",
-      totalSpace: test_Space,
-      remainingSpace: test_Space,
+      totalSpace: test_space,
+      remainingSpace: test_space,
       user: test_userId,
     };
   }
@@ -903,7 +903,7 @@ subscribe(subInfo: Record&lt;string, Array&lt;Database&gt;&gt;, expirationTime: 
 **示例：**
 
 ```ts
-let test_time = 10;
+let test_time: number = 10;
 export default class MyCloudService implements cloudExtension.CloudService {
   constructor() {
   }
@@ -1110,9 +1110,9 @@ download(table: string, gid: string, prefix: string, assets: Array&lt;CloudAsset
 export default class MyAssetLoader implements cloudExtension.AssetLoader {
   async download(table: string, gid: string, prefix: string, assets: Array<cloudExtension.CloudAsset>): Promise<Array<cloudExtension.Result<cloudExtension.CloudAsset>>> {
     console.info(`download asset loader, table: ${table}, gid: ${gid}, prefix: ${prefix}`);
-    let downloadres = Array<cloudExtension.Result<cloudExtension.CloudAsset>>();
+    let downloadRes = Array<cloudExtension.Result<cloudExtension.CloudAsset>>();
     // ...
-    return downloadres;
+    return downloadRes;
   }
 }
 ```
@@ -1145,9 +1145,9 @@ upload(table: string, gid: string, assets: Array&lt;CloudAsset&gt;): Promise&lt;
 export default class MyAssetLoader implements cloudExtension.AssetLoader {
   async upload(table: string, gid: string, assets: Array<cloudExtension.CloudAsset>): Promise<Array<cloudExtension.Result<cloudExtension.CloudAsset>>> {
     console.info(`upload asset loader, table: ${table}, gid: ${gid}`);
-    let uploadres = Array<cloudExtension.Result<cloudExtension.CloudAsset>>();
+    let uploadRes = Array<cloudExtension.Result<cloudExtension.CloudAsset>>();
     // ...
-    return uploadres;
+    return uploadRes;
   }
     // ...
 }
@@ -1616,10 +1616,10 @@ import rpc from '@ohos.rpc';
 import cloudData from '@ohos.data.cloudData';
 
 type Participant = cloudData.sharing.Participant;
-let test_lockId = 1;
-let test_time = 10;
-let test_Space = 100;
-let test_userId = 1;
+let test_lockId: number = 1;
+let test_time: number = 10;
+let test_space: number = 100;
+let test_userId: number = 1;
 
 class MyCloudDB implements cloudExtension.CloudDB {
   async generateId(count: number): Promise<cloudExtension.Result<Array<string>>> {
@@ -1716,16 +1716,16 @@ class MyCloudDB implements cloudExtension.CloudDB {
 class MyAssetLoader implements cloudExtension.AssetLoader {
   async download(table: string, gid: string, prefix: string, assets: Array<cloudExtension.CloudAsset>): Promise<Array<cloudExtension.Result<cloudExtension.CloudAsset>>> {
     console.info(`download asset loader, table: ${table}, gid: ${gid}, prefix: ${prefix}`);
-    let downloadres = Array<cloudExtension.Result<cloudExtension.CloudAsset>>();
+    let downloadRes = Array<cloudExtension.Result<cloudExtension.CloudAsset>>();
     // ...
-    return downloadres;
+    return downloadRes;
   }
 
   async upload(table: string, gid: string, assets: Array<cloudExtension.CloudAsset>): Promise<Array<cloudExtension.Result<cloudExtension.CloudAsset>>> {
     console.info(`upload asset loader, table: ${table}, gid: ${gid}`);
-    let uploadres = Array<cloudExtension.Result<cloudExtension.CloudAsset>>();
+    let uploadRes = Array<cloudExtension.Result<cloudExtension.CloudAsset>>();
     // ...
-    return uploadres;
+    return uploadRes;
   }
 }
 
@@ -1921,8 +1921,8 @@ class MyCloudService implements cloudExtension.CloudService {
     return {
       enableCloud: true,
       id: "test_id",
-      totalSpace: test_Space,
-      remainingSpace: test_Space,
+      totalSpace: test_space,
+      remainingSpace: test_space,
       user: test_userId,
     };
   }

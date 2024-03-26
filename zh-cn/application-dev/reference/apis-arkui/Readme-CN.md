@@ -301,14 +301,15 @@
     - [类型定义](arkui-ts/ts-types.md)
     - [图像类型定义](arkui-ts/ts-image-common.md)
     - [设置事件回调](arkui-ts/ts-uicommonevent.md)
+    - [属性字符串](arkui-ts/ts-universal-styled-string.md)
     - 已停止维护的组件
       - [AbilityComponent (系统接口)](arkui-ts/ts-container-ability-component-sys.md)
       - [GridContainer](arkui-ts/ts-container-gridcontainer.md)
       - [Panel](arkui-ts/ts-container-panel.md)
     - 已停止维护的接口
       - [点击控制](arkui-ts/ts-universal-attributes-click.md)
-  - [兼容JS的类Web开发范式-ArkUI.Full](arkui-js/Readme-CN.md)    
-  - [兼容JS的类Web开发范式-ArkUI.Lite](arkui-js-lite/Readme-CN.md)
+  - [兼容JS的类Web开发范式 (ArkUI.Full)](arkui-js/Readme-CN.md)    
+  - [兼容JS的类Web开发范式 (ArkUI.Lite)](arkui-js-lite/Readme-CN.md)
   - [JS服务卡片UI组件参考](js-service-widget-ui/Readme-CN.md)
 - C API
   - 模块
@@ -319,6 +320,7 @@
     - 头文件
       - [native_dialog.h](native__dialog_8h.md)
       - [native_event.h](native__event_8h.md)
+      - [native_gesture.h](native__gesture_8h.md)
       - [native_interface.h](native__interface_8h.md)
       - [native_interface_xcomponent.h](native__interface__xcomponent_8h.md)
       - [native_node.h](native__node_8h.md)
@@ -331,6 +333,7 @@
       - [ArkUI_AttributeItem](_ark_u_i___attribute_item.md)
       - [ArkUI_ColorStop](_ark_u_i___color_stop.md)
       - [ArkUI_NativeDialogAPI_1](_ark_u_i___native_dialog_a_p_i__1.md)
+      - [ArkUI_NativeGestureAPI_1](_ark_u_i___native_gesture_a_p_i__1.md)
       - [ArkUI_NativeNodeAPI_1](_ark_u_i___native_node_a_p_i__1.md)
       - [ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)
       - [ArkUI_NodeEvent](_ark_u_i___node_event.md)

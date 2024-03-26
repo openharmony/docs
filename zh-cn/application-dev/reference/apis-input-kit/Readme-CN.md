@@ -18,5 +18,12 @@
   - [@ohos.multimodalInput.inputMonitor (输入监听)(系统接口)](js-apis-inputmonitor-sys.md)
   - 已停止维护的接口
     - [@ohos.multimodalInput.inputDeviceCooperate (键鼠穿越)(系统接口)](js-apis-cooperate-sys.md)
+- C API
+  - 模块
+    - [Input](input.md)
+  - 头文件和结构体
+    - 头文件
+        - [oh_input_manager.h](oh__input__manager_8h.md)
+        - [oh_key_code.h](oh__key__code_8h.md)
 - 错误码
   - [键鼠穿越管理错误码](errorcode-multimodalinput.md)

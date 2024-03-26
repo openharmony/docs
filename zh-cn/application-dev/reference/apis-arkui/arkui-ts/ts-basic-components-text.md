@@ -13,7 +13,7 @@
 
 ## 接口
 
-Text(content?: string | Resource, value?: TextOptions)
+Text(content?: string | Resource | StyledString , value?: TextOptions)
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -21,7 +21,7 @@ Text(content?: string | Resource, value?: TextOptions)
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
-| content | string \| [Resource](ts-types.md#resource) | 否 | 文本内容。包含子组件Span时不生效，显示Span内容，并且此时text组件的样式不生效。<br/>默认值：' ' |
+| content | string \| [Resource](ts-types.md#resource) \| [StyledString](./ts-universal-styled-string.md) | 否 | 文本内容。包含子组件Span时不生效，显示Span内容，并且此时text组件的样式不生效。<br/>[StyledString](./ts-universal-styled-string.md#styledstring)的子类[MutableStyledString](./ts-universal-styled-string.md#mutablestyledstring)也可以作为入参值。<br/>默认值：' ' |
 | value<sup>11+</sup> | [TextOptions](#textoptions11) | 否 | 文本组件初始化选项。|
 
 ## 属性
@@ -61,6 +61,8 @@ textOverflow(value: { overflow: TextOverflow })
 当overflow设置为TextOverflow.None、TextOverflow.Clip、TextOverflow.Ellipsis时，需配合maxLines使用，单独设置不生效。设置TextOverflow.None与TextOverflow.Clip效果一样。
 
 当overflow设置为TextOverflow.MARQUEE时，文本在一行内滚动显示，设置maxLines及copyOption属性均不生效，此时不支持ImageSpan组件，并且在文本不可滚动时，设置textAlign属性生效；在文本可滚动时，设置textAlign属性不生效。
+
+从API version 12开始，当overflow设置为TextOverflow.MARQUEE时，支持ImageSpan组件，文本和图片在一行内滚动显示。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -256,7 +258,7 @@ font(value: Font)
 
 | 参数名 | 类型    | 必填 | 说明       |
 | ------ | ------- | ---- | ---------- |
-| value  | boolean | 是   | 文本样式。 |
+| value  | [Font](ts-types.md#font) | 是   | 文本样式。 |
 
 ### textShadow<sup>10+</sup>
 

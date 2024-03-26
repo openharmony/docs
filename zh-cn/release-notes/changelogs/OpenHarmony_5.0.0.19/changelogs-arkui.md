@@ -124,3 +124,43 @@ any类型过于宽泛，从api上没有引导开发者使用正确的参数类�
 **适配指导**
 
 快捷键的按键集合严格对应所需要的按键。
+
+## cl.arkui.5 TextInput、TextArea、Search文本手柄颜色和文本选中底板颜色显示样式变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+该变更为兼容性变更。
+
+**变更影响**
+
+a) TextInput、TextArea、Search文本手柄颜色，显示样式变更
+
+变更前：TextInput、TextArea、Search文本手柄颜色，显示为默认颜色。
+
+变更后：TextInput、TextArea、Search文本手柄颜色，显示为光标颜色。
+
+b) TextInput、TextArea、Search文本选中底板颜色显示样式变更
+
+变更前：TextInput、TextArea、Search文本选中底板颜色，未设置颜色，显示为默认颜色，默认透明度20%。
+
+变更后：TextInput、TextArea、Search文本选中底板颜色，未设置颜色，显示为光标颜色，透明度在光标颜色透明度的基础上叠加20%。
+
+如下图所示为变更前后效果对比：
+
+![handler color change](figures/handler_color_changelog.png)
+
+**API Level**
+
+TextInput起始支持版本为 API 7，TextArea、Search起始支持版本为 API 8
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.19开始。
+
+**适配指导**
+
+默认样式变更调整，无需适配。
