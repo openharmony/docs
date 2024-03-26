@@ -13,17 +13,17 @@
 
 
 ```
-// 在for循环中频繁调用napi接口创建js对象时，要加handle_scope及时释放不再使用的资源。 
+// 在for循环中频繁调用napi接口创建js对象时，要加handle_scope及时释放不再使用的资源。
 // 下面例子中，每次循环结束局部变量res的生命周期已结束，因此加scope及时释放其持有的js对象，防止内存泄漏
-for (int i = 0; i < 100000; i++) { 
-    napi_handle_scope scope = nullptr;   
-    napi_open_handle_scope(env, &scope); 
-    if (scope == nullptr) { 
-        return; 
-    } 
-    napi_value res; 
-    napi_create_object(env, &res); 
-    napi_close_handle_scope(env, scope); 
+for (int i = 0; i < 100000; i++) {
+    napi_handle_scope scope = nullptr;
+    napi_open_handle_scope(env, &scope);
+    if (scope == nullptr) {
+        return;
+    }
+    napi_value res;
+    napi_create_object(env, &res);
+    napi_close_handle_scope(env, scope);
 }
 ```
 
@@ -40,19 +40,19 @@ for (int i = 0; i < 100000; i++) {
 
 
 ```
-// 线程1执行，在env1创建string对象，值为"bar"、 
+// 线程1执行，在env1创建string对象，值为"bar"、
 napi_create_string_utf8(env1, "bar", NAPI_AUTO_LENGTH, &string);
 // 线程2执行，在env2创建object对象，并将上述的string对象设置到object对象中
-napi_status status = napi_create_object(env2, &object); 
-if (status != napi_ok) { 
-    napi_throw_error(env, ...); 
-    return; 
-} 
+napi_status status = napi_create_object(env2, &object);
+if (status != napi_ok) {
+    napi_throw_error(env, ...);
+    return;
+}
 
-status = napi_set_named_property(env2, object, "foo", string); 
-if (status != napi_ok) { 
-    napi_throw_error(env, ...); 
-    return; 
+status = napi_set_named_property(env2, object, "foo", string);
+if (status != napi_ok) {
+    napi_throw_error(env, ...);
+    return;
 }
 ```
 
@@ -70,22 +70,22 @@ if (status != napi_ok) {
 
 ```
 // 1.创建对象
-napi_status status = napi_create_object(env, &object); 
-if (status != napi_ok) { 
-    napi_throw_error(env, ...); 
+napi_status status = napi_create_object(env, &object);
+if (status != napi_ok) {
+    napi_throw_error(env, ...);
     return;
-} 
-// 2.创建属性值 
-status = napi_create_string_utf8(env, "bar", NAPI_AUTO_LENGTH, &string); 
-if (status != napi_ok) { 
-    napi_throw_error(env, ...); 
-    return; 
-} 
-// 3.将步骤2的结果设置为对象object属性foo的值 
-status = napi_set_named_property(env, object, "foo", string); 
-if (status != napi_ok) { 
-    napi_throw_error(env, ...); 
-    return; 
+}
+// 2.创建属性值
+status = napi_create_string_utf8(env, "bar", NAPI_AUTO_LENGTH, &string);
+if (status != napi_ok) {
+    napi_throw_error(env, ...);
+    return;
+}
+// 3.将步骤2的结果设置为对象object属性foo的值
+status = napi_set_named_property(env, object, "foo", string);
+if (status != napi_ok) {
+    napi_throw_error(env, ...);
+    return;
 }
 ```
 
@@ -105,36 +105,36 @@ if (status != napi_ok) {
 
 
 ```
-void callbackTest(CallbackContext* context) 
-{ 
-    uv_loop_s* loop = nullptr; 
-    napi_get_uv_event_loop(context->env, &loop); 
-    uv_work_t* work = new uv_work_t; 
-    context->retData = 1; 
-    work->data = (void*)context; 
-    uv_queue_work( 
-        loop, work, [](uv_work_t* work) {}, 
-        // using callback function back to JS thread 
-        [](uv_work_t* work, int status) { 
-            CallbackContext* context = (CallbackContext*)work->data; 
-            napi_handle_scope scope = nullptr; napi_open_handle_scope(context->env, &scope); 
-            if (scope == nullptr) { 
-                return; 
-            } 
-            napi_value callback = nullptr; 
-            napi_get_reference_value(context->env, context->callbackRef, &callback); 
-            napi_value retArg; 
-            napi_create_int32(context->env, context->retData, &retArg); 
-            napi_value ret; 
-            napi_call_function(context->env, nullptr, callback, 1, &retArg, &ret); 
-            napi_delete_reference(context->env, context->callbackRef); 
-            napi_close_handle_scope(context->env, scope); 
-            if (work != nullptr) { 
-                delete work; 
-            } 
-            delete context; 
-        } 
-    ); 
+void callbackTest(CallbackContext* context)
+{
+    uv_loop_s* loop = nullptr;
+    napi_get_uv_event_loop(context->env, &loop);
+    uv_work_t* work = new uv_work_t;
+    context->retData = 1;
+    work->data = (void*)context;
+    uv_queue_work(
+        loop, work, [](uv_work_t* work) {},
+        // using callback function back to JS thread
+        [](uv_work_t* work, int status) {
+            CallbackContext* context = (CallbackContext*)work->data;
+            napi_handle_scope scope = nullptr; napi_open_handle_scope(context->env, &scope);
+            if (scope == nullptr) {
+                return;
+            }
+            napi_value callback = nullptr;
+            napi_get_reference_value(context->env, context->callbackRef, &callback);
+            napi_value retArg;
+            napi_create_int32(context->env, context->retData, &retArg);
+            napi_value ret;
+            napi_call_function(context->env, nullptr, callback, 1, &retArg, &ret);
+            napi_delete_reference(context->env, context->callbackRef);
+            napi_close_handle_scope(context->env, scope);
+            if (work != nullptr) {
+                delete work;
+            }
+            delete context;
+        }
+    );
 }
 ```
 
@@ -156,17 +156,16 @@ napi_wrap(napi_env env, napi_value js_object, void* native_object, napi_finalize
 **正确示例**：
 
 ```
-// 用法1：napi_wrap不需要接收创建的napi_ref，最后一个参数传递nullptr，创建的napi_ref是弱引用，由系统管理，不需要用户手动释放 
-napi_wrap(env, jsobject, nativeObject, cb, nullptr, nullptr)； 
+// 用法1：napi_wrap不需要接收创建的napi_ref，最后一个参数传递nullptr，创建的napi_ref是弱引用，由系统管理，不需要用户手动释放
+napi_wrap(env, jsobject, nativeObject, cb, nullptr, nullptr)；
 
-// 用法2：napi_wrap需要接收创建的napi_ref，最后一个参数不为nullptr，返回的napi_ref是强引用，需要用户手动释放，否则会内存泄漏 
-napi_ref result; 
-napi_wrap(env, jsobject, nativeObject, cb, nullptr, &result)； 
-// 当js_object和result后续不再使用时，及时调用napi_remove_wrap释放result 
-napi_value result1; 
+// 用法2：napi_wrap需要接收创建的napi_ref，最后一个参数不为nullptr，返回的napi_ref是强引用，需要用户手动释放，否则会内存泄漏
+napi_ref result;
+napi_wrap(env, jsobject, nativeObject, cb, nullptr, &result)；
+// 当js_object和result后续不再使用时，及时调用napi_remove_wrap释放result
+napi_value result1;
 napi_remove_wrap(env, jsobject, result1);
 ```
-
 
 ## 数据转换
 
@@ -175,6 +174,72 @@ napi_remove_wrap(env, jsobject, result1);
 - **减少数据转换次数：** 频繁的数据转换可能会导致性能下降，可以通过批量处理数据或者使用更高效的数据结构来优化性能；
 - **避免不必要的数据复制：** 在进行数据转换时，可以使用N-API提供的接口来直接访问原始数据，而不是创建新的副本；
 - **使用缓存：** 如果某些数据在多次转换中都会被使用到，可以考虑使用缓存来避免重复的数据转换。缓存可以减少不必要的计算，提高性能。
+
+## 模块注册与模块命名
+
+**【规则】**
+nm_register_func对应的函数需要加上修饰符static，防止与其他so里的符号冲突。
+
+模块注册的入口，即使用__attribute__((constructor))修饰函数的函数名需要确保与其他模块不同。
+
+模块实现中.nm_modname字段需要与模块名完全匹配，区分大小写。
+
+**错误示例**
+以下代码为模块名为nativerender时的错误示例
+```cpp
+EXTERN_C_START
+napi_value Init(napi_env env, napi_value exports)
+{
+    // ...
+    return exports;
+}
+EXTERN_C_END
+
+static napi_module nativeModule = {
+    .nm_version = 1,
+    .nm_flags = 0,
+    .nm_filename = nullptr,
+    //没有在nm_register_func对应的函数加上static
+    .nm_register_func = Init,
+    // 模块实现中.nm_modname字段没有与模块名完全匹配，会导致多线程场景模块加载失败
+    .nm_modname = "entry",
+    .nm_priv = nullptr,
+    .reserved = { 0 },
+};
+
+//模块注册的入口函数名为RegisterModule，容易与其他模块重复。
+extern "C" __attribute__((constructor)) void RegisterModule()
+{
+    napi_module_register(&nativeModule);
+}
+```
+
+**正确示例**：
+以下代码为模块名为nativerender时的正确示例
+```cpp
+EXTERN_C_START
+static napi_value Init(napi_env env, napi_value exports)
+{
+    // ...
+    return exports;
+}
+EXTERN_C_END
+
+static napi_module nativeModule = {
+    .nm_version = 1,
+    .nm_flags = 0,
+    .nm_filename = nullptr,
+    .nm_register_func = Init,
+    .nm_modname = "nativerender",
+    .nm_priv = nullptr,
+    .reserved = { 0 },
+};
+
+extern "C" __attribute__((constructor)) void RegisterNativeRenderModule()
+{
+    napi_module_register(&nativeModule);
+}
+```
 
 ## 其它
 
