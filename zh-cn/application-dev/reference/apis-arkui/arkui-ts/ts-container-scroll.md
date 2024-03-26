@@ -446,6 +446,19 @@ scrollEdge(value: Edge): void
 | ----- | ---- | ---- | --------- |
 | value | [Edge](ts-appendix-enums.md#edge) | 是    | 滚动到的边缘位置。 |
 
+### fling<sup>12+</sup>
+
+fling(velocity: number): void
+
+
+滚动类组件开启按传入的初始速度进行惯性滚动。
+
+**参数：**
+
+| 参数名   | 参数类型 | 必填 | 参数描述                                                     |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| velocity | number   | 是   | 惯性滚动的初始速度值。单位：vp/s<br/>**说明：**<br/>velocity值设置为0，视为异常值，本次滚动不生效。如果值为正数，则向下滚动；如果值为负数，则向上滚动。 |
+
 ### scrollPage<sup>9+</sup>
 
 scrollPage(value:   ScrollPageOptions)
@@ -869,3 +882,50 @@ struct Index {
 }
 ```
 ![NestedScrollSnap](figures/NestedScrollSnap.gif)
+
+### 示例5
+
+```ts
+@Entry
+@Component
+//滚动控制器新增按给定速度执行惯性滚动的函数fling
+struct ListExample {
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+  scrollerForList: Scroller = new Scroller()
+  build() {
+    Column() {
+      Button('Fling-1000')
+        .height('5%')
+        .onClick(() => {
+          this.scrollerForList.fling(-1000)
+        })
+      Button('Fling3000')
+        .height('5%')
+        .onClick(() => {
+          this.scrollerForList.fling(3000)
+        })
+      List({ space: 20, initialIndex: 0, scroller: this.scrollerForList }) {
+        ForEach(this.arr, (item: number) => {
+          ListItem() {
+            Text('' + item)
+              .width('100%').height(100).fontSize(16)
+              .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
+          }
+        }, (item: string) => item)
+      }
+      .listDirection(Axis.Vertical) // 排列方向
+      .scrollBar(BarState.Off)
+      .friction(0.9)
+      .divider({ strokeWidth: 2, color: 0xFFFFFF, startMargin: 20, endMargin: 20 }) // 每行之间的分界线
+      .edgeEffect(EdgeEffect.Spring) // 边缘效果设置为Spring
+      .width('90%')
+    }
+    .width('100%')
+    .height('100%')
+    .backgroundColor(0xDCDCDC)
+    .padding({ top: 5 })
+  }
+}
+```
+
+![scroller_fling](figures/scroller_fling.gif)
