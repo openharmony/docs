@@ -175,7 +175,7 @@ caretStyle(value: CaretStyle)
 
 enableKeyboardOnFocus(value: boolean)
 
-设置当Search组件获焦时，是否绑定输入法。
+设置Search通过点击以外的方式获焦时，是否绑定输入法。
 
 从API version 10开始，获焦默认绑定输入法。
 
