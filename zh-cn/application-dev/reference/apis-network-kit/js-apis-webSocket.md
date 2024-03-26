@@ -67,7 +67,7 @@ ws.connect(defaultIpAddress, {
   proxy: {
       host: '192.168.0.150',
       port: 8888,
-      excludeList: []
+      exclusionList: []
   },
   protocol: 'my-protocol',
   }, (err: BusinessError, value: boolean) => {
