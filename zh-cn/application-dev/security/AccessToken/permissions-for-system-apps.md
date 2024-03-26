@@ -2501,6 +2501,42 @@
 
 **起始版本**：12
 
+### ohos.permission.MIGRATE_DATA
+
+允许应用迁移传入路径下的数据到指定目录。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.ACCESS_DYNAMIC_ICON
+
+允许应用使用动态图标。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.CHANGE_BUNDLE_UNINSTALL_STATE
+
+允许系统应用改变指定应用的可卸载状态。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ## system_grant，不允许ACL跨级申请
 
 以下权限的授权方式均为system_grant（系统授权），但不允许通过ACL的方式申请。
@@ -2722,42 +2758,6 @@
 **ACL使能**：false
 
 **起始版本**：11
-
-### ohos.permission.MIGRATE_DATA
-
-允许应用迁移传入路径下的数据到指定目录。
-
-**权限级别**：system_core
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：12
-
-### ohos.permission.ACCESS_DYNAMIC_ICON
-
-允许应用使用动态图标。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：12
-
-### ohos.permission.CHANGE_BUNDLE_UNINSTALL_STATE
-
-允许系统应用改变指定应用的可卸载状态。
-
-**权限级别**：system_core
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：12
 
 ## user_grant，允许ACL跨级申请
 
