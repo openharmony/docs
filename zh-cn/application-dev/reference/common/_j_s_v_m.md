@@ -218,3 +218,471 @@
 | JSVM_EXTERN [JSVM_Status](#jsvm_status)[OH_JSVM_CreateSnapshot](#oh_jsvm_createsnapshot) ([JSVM_VM](#jsvm_vm) vm, size_t contextCount, const [JSVM_Env](#jsvm_env) \*contexts, const char \*\*blobData, size_t \*blobSize) | 创建虚拟机的启动快照。 | 
 
 
+## 宏定义说明
+
+
+### JSVM_AUTO_LENGTH
+
+```
+#define JSVM_AUTO_LENGTH   SIZE_MAX
+```
+
+**描述**
+
+自动长度。
+
+**起始版本：** 11
+
+
+## 类型定义说明
+
+
+### JSVM_Callback
+
+```
+typedef JSVM_CallbackStruct* JSVM_Callback
+```
+
+**描述**
+
+用户提供的native函数的函数指针类型，这些函数通过JSVM-API接口暴露给JavaScript。
+
+**起始版本：** 11
+
+
+### JSVM_CallbackInfo
+
+```
+typedef struct JSVM_CallbackInfo__* JSVM_CallbackInfo
+```
+
+**描述**
+
+表示传递给回调函数的不透明数据类型。可用于获取调用该函数的上下文的附加信息。
+
+**起始版本：** 11
+
+
+### JSVM_Deferred
+
+```
+typedef struct JSVM_Deferred__* JSVM_Deferred
+```
+
+**描述**
+
+表示Promise延迟对象。
+
+**起始版本：** 11
+
+
+### JSVM_Env
+
+```
+typedef struct JSVM_Env__* JSVM_Env
+```
+
+**描述**
+
+表示虚拟机特定状态的上下文环境，需要在调用native函数时作为参数传递， 并且传递给后续任何的JSVM-API嵌套调用。
+
+**起始版本：** 11
+
+
+### JSVM_EnvScope
+
+```
+typedef struct JSVM_EnvScope__* JSVM_EnvScope
+```
+
+**描述**
+
+表示用于控制附加到当前虚拟机实例的环境。只有当线程通过 OH_JSVM_OpenEnvScope进入该环境的JSVM_EnvScope后，该环境才 对线程的虚拟机实例可用。
+
+**起始版本：** 11
+
+
+### JSVM_EscapableHandleScope
+
+```
+typedef struct JSVM_EscapableHandleScope__* JSVM_EscapableHandleScope
+```
+
+**描述**
+
+表示一种特殊类型的handle scope，用于将在特定handle scope内创建的值返回到父作用域。
+
+**起始版本：** 11
+
+
+### JSVM_Finalize
+
+```
+typedef void(JSVM_CDECL* JSVM_Finalize) (JSVM_Env env, void *finalizeData, void *finalizeHint)
+```
+
+**描述**
+
+函数指针类型，当native类型对象或数据与JS对象被关联时，传入该指针。该函数将会 在关联的JS对象被GC回收时被调用，用以执行native的清理动作。
+
+**起始版本：** 11
+
+
+### JSVM_HandleScope
+
+```
+typedef struct JSVM_HandleScope__* JSVM_HandleScope
+```
+
+**描述**
+
+表示JavaScript值的作用域，用于控制和修改在特定范围内创建的对象的生命周期。 通常，JSVM-API值是在JSVM_HandleScope的上下文中创建的。当从JavaScript调用native方法时， 将存在默认JSVM_HandleScope。如果用户没有显式创建新的JSVM_HandleScope，将在默认 JSVM_HandleScope中创建JSVM-API值。对于native方法执行之外的任何代码调用（例如，在libuv回调调用期间）， 模块需要在调用任何可能导致创建JavaScript值的函数之前创建一个作用域。JSVM_HandleScope是使用 OH_JSVM_OpenHandleScope创建的，并使用OH_JSVM_CloseHandleScope销毁的。 关闭作用域代表向GC指示在JSVM_HandleScope作用域的生命周期内创建的所有JSVM_Value将不再从当前堆的栈帧中引用。
+
+**起始版本：** 11
+
+
+### JSVM_Ref
+
+```
+typedef struct JSVM_Ref__* JSVM_Ref
+```
+
+**描述**
+
+表示JavaScript值的引用。
+
+**起始版本：** 11
+
+
+### JSVM_Script
+
+```
+typedef struct JSVM_Script__* JSVM_Script
+```
+
+**描述**
+
+表示一段JavaScript代码。
+
+**起始版本：** 11
+
+
+### JSVM_Value
+
+```
+typedef struct JSVM_Value__* JSVM_Value
+```
+
+**描述**
+
+表示JavaScript值。
+
+**起始版本：** 11
+
+
+### JSVM_VM
+
+```
+typedef struct JSVM_VM__* JSVM_VM
+```
+
+**描述**
+
+表示JavaScript虚拟机实例。
+
+**起始版本：** 11
+
+
+### JSVM_VMScope
+
+```
+typedef struct JSVM_VMScope__* JSVM_VMScope
+```
+
+**描述**
+
+表示JavaScript虚拟机作用域。
+
+**起始版本：** 11
+
+
+## 枚举类型说明
+
+
+### JSVM_KeyCollectionMode
+
+```
+enum JSVM_KeyCollectionMode
+```
+
+**描述**
+
+限制查找属性的范围。
+
+**起始版本：** 11
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| JSVM_KEY_INCLUDE_PROTOTYPES | 也包含对象原型链上的属性。 | 
+| JSVM_KEY_OWN_ONLY | 仅包含对象自身属性。 | 
+
+
+### JSVM_KeyConversion
+
+```
+enum JSVM_KeyConversion
+```
+
+**描述**
+
+键转换选项。
+
+**起始版本：** 11
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| JSVM_KEY_KEEP_NUMBERS | 将返回整数索引的数字。 | 
+| JSVM_KEY_NUMBERS_TO_STRINGS | 将整数索引转换为字符串。 | 
+
+
+### JSVM_KeyFilter
+
+```
+enum JSVM_KeyFilter
+```
+
+**描述**
+
+属性过滤器，可以通过使用or来构造一个复合过滤器。
+
+**起始版本：** 11
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| JSVM_KEY_ALL_PROPERTIES | 所有属性的键。 | 
+| JSVM_KEY_WRITABLE | 可写的键。 | 
+| JSVM_KEY_ENUMERABLE | 可枚举的键。 | 
+| JSVM_KEY_CONFIGURABLE | 可配置的键。 | 
+| JSVM_KEY_SKIP_STRINGS | 排除字符串类型的键。 | 
+| JSVM_KEY_SKIP_SYMBOLS | 排除符号类型的键。 | 
+
+
+### JSVM_MemoryPressureLevel
+
+```
+enum JSVM_MemoryPressureLevel
+```
+
+**描述**
+
+内存压力水平。
+
+**起始版本：** 11
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| JSVM_MEMORY_PRESSURE_LEVEL_NONE | 无压力。 | 
+| JSVM_MEMORY_PRESSURE_LEVEL_MODERATE | 中等压力。 | 
+| JSVM_MEMORY_PRESSURE_LEVEL_CRITICAL | 临界压力。 | 
+
+
+### JSVM_PropertyAttributes
+
+```
+enum JSVM_PropertyAttributes
+```
+
+**描述**
+
+用于控制JavaScript对象属性的行为。
+
+**起始版本：** 11
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| JSVM_DEFAULT | 没有在属性上设置显式属性。 | 
+| JSVM_WRITABLE | 该属性是可写的。 | 
+| JSVM_ENUMERABLE | 该属性是可枚举的。 | 
+| JSVM_CONFIGURABLE | 该属性是可配置的。 | 
+| JSVM_STATIC | 该属性将被定义为类的静态属性，而不是默认的实例属性。这仅由OH_JSVM_DefineClass使用。 | 
+| JSVM_DEFAULT_METHOD | 就像JS类中的方法一样，该属性是可配置和可写的，但不可枚举。 | 
+| JSVM_DEFAULT_JSPROPERTY | 就像JavaScript中通过赋值设置的属性一样，属性是可写、可枚举和可配置的。 | 
+
+
+### JSVM_Status
+
+```
+enum JSVM_Status
+```
+
+**描述**
+
+表示JSVM-API调用成功或失败的完整状态码。
+
+**起始版本：** 11
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| JSVM_OK | 成功状态。 | 
+| JSVM_INVALID_ARG | 无效的状态。 | 
+| JSVM_OBJECT_EXPECTED | 期待传入对象类型。 | 
+| JSVM_STRING_EXPECTED | 期望传入字符串类型。 | 
+| JSVM_NAME_EXPECTED | 期望传入名字类型。 | 
+| JSVM_FUNCTION_EXPECTED | 期待传入函数类型。 | 
+| JSVM_NUMBER_EXPECTED | 期待传入数字类型。 | 
+| JSVM_BOOLEAN_EXPECTED | 期待传入布尔类型。 | 
+| JSVM_ARRAY_EXPECTED | 期待传入数组类型。 | 
+| JSVM_GENERIC_FAILURE | 泛型失败状态。 | 
+| JSVM_PENDING_EXCEPTION | 挂起异常状态。 | 
+| JSVM_CANCELLED | 取消状态。 | 
+| JSVM_ESCAPE_CALLED_TWICE | 转义调用了两次。 | 
+| JSVM_HANDLE_SCOPE_MISMATCH | 句柄作用域不匹配。 | 
+| JSVM_CALLBACK_SCOPE_MISMATCH | 回调作用域不匹配。 | 
+| JSVM_QUEUE_FULL | 队列满。 | 
+| JSVM_CLOSING | 关闭中。 | 
+| JSVM_BIGINT_EXPECTED | 期望传入Bigint类型。 | 
+| JSVM_DATE_EXPECTED | 期望传入日期类型。 | 
+| JSVM_ARRAYBUFFER_EXPECTED | 期望传入ArrayBuffer类型。 | 
+| JSVM_DETACHABLE_ARRAYBUFFER_EXPECTED | 可分离的数组缓冲区预期状态。 | 
+| JSVM_WOULD_DEADLOCK | 将死锁状态。 | 
+| JSVM_NO_EXTERNAL_BUFFERS_ALLOWED | 不允许外部缓冲区。 | 
+| JSVM_CANNOT_RUN_JS | 不能执行JS。 | 
+
+
+### JSVM_TypedarrayType
+
+```
+enum JSVM_TypedarrayType
+```
+
+**描述**
+
+描述TypedArray的类型。
+
+**起始版本：** 11
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| JSVM_INT8_ARRAY | int8类型。 | 
+| JSVM_UINT8_ARRAY | uint8类型。 | 
+| JSVM_UINT8_CLAMPED_ARRAY | uint8固定类型。 | 
+| JSVM_INT16_ARRAY | int16类型。 | 
+| JSVM_UINT16_ARRAY | uint16类型。 | 
+| JSVM_INT32_ARRAY | int32类型。 | 
+| JSVM_UINT32_ARRAY | uint32类型。 | 
+| JSVM_FLOAT32_ARRAY | float32类型。 | 
+| JSVM_FLOAT64_ARRAY | float64类型。 | 
+| JSVM_BIGINT64_ARRAY | bigint64类型。 | 
+| JSVM_BIGUINT64_ARRAY | biguint64类型。 | 
+
+
+### JSVM_ValueType
+
+```
+enum JSVM_ValueType
+```
+
+**描述**
+
+描述JSVM_Value的类型。
+
+**起始版本：** 11
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| JSVM_UNDEFINED | 未定义类型。 | 
+| JSVM_NULL | Null类型。 | 
+| JSVM_BOOLEAN | 布尔类型。 | 
+| JSVM_NUMBER | 数字类型。 | 
+| JSVM_STRING | 字符串类型。 | 
+| JSVM_SYMBOL | 符号类型。 | 
+| JSVM_OBJECT | 对象类型。 | 
+| JSVM_FUNCTION | 函数类型。 | 
+| JSVM_EXTERNAL | 外部类型。 | 
+| JSVM_BIGINT | bigint类型。 | 
+
+
+## 函数说明
+
+
+### OH_JSVM_AddFinalizer()
+
+```
+JSVM_EXTERN JSVM_Status OH_JSVM_AddFinalizer (JSVM_Env env, JSVM_Value jsObject, void * finalizeData, JSVM_Finalize finalizeCb, void * finalizeHint, JSVM_Ref * result )
+```
+
+**描述**
+
+为JavaScript对象添加JSVM_Finalize回调，当JavaScript对象被垃圾回收时调用该回调函数。 可以在单个JavaScript对象上多次调用OH_JSVM_AddFinalizer。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| env | 调用JSVM-API的环境。 | 
+| jsObject | 关联native数据的JavaScript对象。 | 
+| finalizeData | 要传递给finalizeCb的可选数据。 | 
+| finalizeCb | 当JavaScript对象被垃圾回收时，将用于释放native 数据的原生回调。JSVM_Finalize提供了更多详细信息。 | 
+| finalizeHint | 传递给finalize回调的可选上下文提示。 | 
+| result | 可选的对JavaScript对象的引用。 | 
+
+**返回：**
+
+成功则返回JSVM_OK，失败可能返回JSVM_INVALID_ARG。
+
+
+### OH_JSVM_AdjustExternalMemory()
+
+```
+JSVM_EXTERN JSVM_Status OH_JSVM_AdjustExternalMemory (JSVM_Env env, int64_t changeInBytes, int64_t * result )
+```
+
+**描述**
+
+此函数将因JavaScript对象而保持活跃的外部分配的内存大小通知给底层虚拟机。 注册外部分配的内存将比其他方式更频繁地触发全局垃圾回收。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| env | 调用JSVM-API的环境。 | 
+| changeInBytes | 因JavaScript对象而保持活动状态的外部分配内存的变化。 | 
+| result | 调整值。 | 
+
+**返回：**
+
+成功则返回JSVM_OK。
+
+
+### OH_JSVM_CallFunction()
+
+```
+JSVM_EXTERN JSVM_Status OH_JSVM_CallFunction (JSVM_Env env, JSVM_Value recv, JSVM_Value func, size_t argc, const JSVM_Value * argv, JSVM_Value * result )
+```
+
+**描述**
+
+支持从native代码调用JavaScript函数对象， 这是从native代码回调到JavaScript的主要机制。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| env | 调用JSVM-API的环境。 | 
+| recv | 传递给被调用函数的this值。 | 
+| func | 表示将调用的JavaScript函数。 | 
+| argc | argv数组中的元素个数。 | 
+| argv | JSVM_values数组，表示将作为参数传递给函数的JavaScript值。 | 
+| result | 表示返回的JavaScript对象。 | 
+
+**返回：**
+
+成功则返回JSVM_OK，失败可能返回JSVM_PENDING_EXCEPTION或JSVM_GENERIC_FAILURE。
+
+
