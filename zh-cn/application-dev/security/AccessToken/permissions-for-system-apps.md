@@ -2759,6 +2759,18 @@
 
 **起始版本**：12
 
+### ohos.permission.MANAGE_STYLUS_EVENT
+
+允许系统应用使用手写笔系统能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ## user_grant，允许ACL跨级申请
 
 以下权限的授权方式均为user_grant（用户授权），且允许通过ACL的方式申请。
