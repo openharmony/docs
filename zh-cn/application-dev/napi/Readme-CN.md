@@ -29,6 +29,7 @@
     - [Node-API简介](jsvm-introduction.md)
     - [JSVM-API支持的数据类型和接口](jsvm-data-types-interfaces.md)
     - [JSVM-API开发规范](jsvm-guidelines.md)
+      [使用JSVM-API进行JS代码的调试调优](jsvm-debugger-cpuprofiler-heapsnapshot.md)
   - 资源管理
     - [Rawfile开发指导](rawfile-guidelines.md)
   - 资源调度
