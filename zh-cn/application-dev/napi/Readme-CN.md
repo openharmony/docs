@@ -12,7 +12,7 @@
   - C/C++标准库
     - [C/C++标准库机制概述](c-cpp-overview.md)
   - 使用Node-API实现跨语言交互
-    - [OpenHarmony Node-API简介](napi-introduction.md)
+    - [Node-API简介](napi-introduction.md)
     - [Node-API支持的数据类型和接口](napi-data-types-interfaces.md)
     - [Node-API开发规范](napi-guidelines.md)
     - [使用Node-API实现跨语言交互开发流程](use-napi-process.md)
@@ -22,7 +22,7 @@
       - [Native与ArkTS对象绑定](use-napi-object-wrap.md)
       - [非ArkTS线程调用ArkTS函数](use-uv-queue-work.md)
       - [使用NAPI接口在主线程中进行模块加载](use-napi-load-module.md)
-    - [OpenHarmony Node-API常见问题](use-napi-faqs.md)
+    - [Node-API常见问题](use-napi-faqs.md)
   - 使用JSVM-API实现JS与C/C++语言交互
     - [JSVM-API支持的数据类型和接口](jsvm-data-types-interfaces.md)
     - [JSVM-API开发规范](jsvm-guidelines.md)
