@@ -1,13 +1,12 @@
-# Key attestation Overview and Algorithm Specifications
+# Key Attestation Overview and Algorithm Specifications
 
 
 HUKS provides attestation for the public keys of asymmetric key pairs.
 
 
-HUKS issues a certificate for the public key of an asymmetric key pair stored in HUKS using the public key infrastructure (PKI) certificate chain technology. The certificate can prove the validity of the public key. The service can use the root CA certificate provided by the system to verify the key certificates issued by HUKS level by level to ensure that the public key and private key in the certificates are from a trusted hardware device and stored in HUKS.
+HUKS issues a certificate for the public key of an asymmetric key pair stored in HUKS using the public key infrastructure (PKI) certificate chain technology. The certificate can prove the validity of the public key. The service can use the root CA certificate provided by the system to verify the key certificates issued by HUKS level by level to ensure that the public key and private key in the certificates are from a trusted hardware device and stored in HUKS. 
 
-
-The process is as follows:
+The key attestation process is as follows:
 
 
 1. The service transfers the key alias and properties to HUKS.
