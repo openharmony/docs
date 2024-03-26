@@ -8,7 +8,7 @@
     - [使用命令行CMake构建NDK工程](build-with-ndk-cmake.md)
     - [在NDK工程中使用预构建库](build-with-ndk-prebuilts.md)
 - 代码开发
-    - [代码开发概述](develop-code-overview.md)
+    - [代码开发概述](develop-code-overview.md )
     - 使用Node-API实现跨语言交互
         - [OpenHarmony Node-API简介](napi-introduction.md)
         - [Node-API支持的数据类型和接口](napi-data-types-interfaces.md)
