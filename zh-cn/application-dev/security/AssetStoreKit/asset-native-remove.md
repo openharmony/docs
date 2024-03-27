@@ -32,7 +32,7 @@
 ```c
 #include <string.h>
 
-#include "asset_api.h"
+#include "asset/asset_api.h"
 
 void RemoveAsset() {
     static const char *ALIAS = "demo_alias";
