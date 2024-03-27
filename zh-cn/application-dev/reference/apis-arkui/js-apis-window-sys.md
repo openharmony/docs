@@ -2721,7 +2721,7 @@ setTitleButtonVisible(isMaximizeVisible: boolean, isMinimizeVisible: boolean, is
 
 设置主窗标题栏上的最大化、最小化、分屏按钮是否可见。
 
-此接口仅对在当前场景下可见的标题栏按钮（最大化、最小化、分屏）生效。
+此接口仅支持2in1设备且仅对在当前场景下可见的标题栏按钮（最大化、最小化、分屏）生效。
 
 **系统接口：** 此接口为系统接口。
 
