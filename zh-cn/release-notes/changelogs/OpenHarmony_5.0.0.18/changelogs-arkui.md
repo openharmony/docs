@@ -8,7 +8,7 @@
 
 **变更原因**
 
-ArkUI目前有两套路由框架，Router和Navigation，其中基于UX新的转场设计，Navigation上实现了新的规范效果，Router没有实现新的UX设计效果，还保留了老的转场效果。
+ArkUI目前有两套路由框架，Router和Navigation。其中基于UX新的转场设计，Navigation上实现了新的规范效果，Router没有实现新的UX设计效果，还保留了老的转场效果。
 当前有生态应用依然在使用Router路由，会导致应用使用不同路由框架时，系统转场效果差异较大的体验问题。
 
 **变更影响**
