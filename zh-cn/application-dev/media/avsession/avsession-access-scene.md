@@ -91,6 +91,7 @@ async function setSessionInfo() {
 
 ```ts
 import AVSessionManager from '@ohos.multimedia.avsession';
+import { BusinessError } from '@ohos.base';
 
 let context: Context = getContext(this);
 async function setListener() {
@@ -103,12 +104,11 @@ async function setListener() {
     assetId: '0',
     lyric: 'http://www.test.lyric',
   };
-  session.setAVMetadata(metadata).then(() => {
+   session.setAVMetadata(metadata).then(() => {
     console.info(`SetAVMetadata successfully`);
   }).catch((err: BusinessError) => {
     console.error(`Failed to set AVMetadata. Code: ${err.code}, message: ${err.message}`);
   });
-
 }
 ```
 
@@ -119,6 +119,7 @@ async function setListener() {
 
 ```ts
 import AVSessionManager from '@ohos.multimedia.avsession';
+import { BusinessError } from '@ohos.base';
 
 let context: Context = getContext(this);
 async function setListener() {
@@ -137,7 +138,6 @@ async function setListener() {
   }).catch((err: BusinessError) => {
     console.error(`Failed to set AVMetadata. Code: ${err.code}, message: ${err.message}`);
   });
-
 }
 ```
 
@@ -163,8 +163,8 @@ async function setSessionInfo() {
     state:AVSessionManager.PlaybackState.PLAYBACK_STATE_PAUSE,
     isFavorite:false
   };
-  session.setAVPlaybackState(playbackState, (err) => {
-   if (err) {
+  session.setAVPlaybackState(playbackState, (err: BusinessError) => {
+    if (err) {
       console.error(`Failed to set AVPlaybackState. Code: ${err.code}, message: ${err.message}`);
     } else {
       console.info(`SetAVPlaybackState successfully`);
@@ -192,7 +192,7 @@ async function setListener() {
     position: {
       elapsedTime: 1000, // 已经播放的位置，以ms为单位
       updateTime: 30000, // 应用更新当前位置的时间戳，以ms为单位
-    }
+    },
     speed: 1.0, // 可选，默认是1.0，播放的倍速，按照应用内支持的speed进行设置，系统不做校验
     bufferedTime: 14000, // 可选，资源缓存的时间，以ms为单位
     duration: 23000, // 资源的时长，以ms为单位
@@ -295,6 +295,7 @@ async function unregisterSessionListener() {
 
 ```ts
 import AVSessionManager from '@ohos.multimedia.avsession';
+import { BusinessError } from '@ohos.base';
 
 let context: Context = getContext(this);
 async function unregisterSessionListener() {
@@ -330,27 +331,27 @@ async function unregisterSessionListener() {
 
 ```ts
 import AVSessionManager from '@ohos.multimedia.avsession';
+import { BusinessError } from '@ohos.base';
 
 let context: Context = getContext(this);
 async function setListener() {
- // 假设已经创建了一个session，如何创建session可以参考之前的案例
- let type: AVSessionManager.AVSessionType = 'audio';
- let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
- session.on('toggleFavorite', (assetId) => {
-   console.info(`on toggleFavorite `);
-   // 应用收到收藏命令，进行收藏处理
+  // 假设已经创建了一个session，如何创建session可以参考之前的案例
+  let type: AVSessionManager.AVSessionType = 'audio';
+  let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
+  session.on('toggleFavorite', (assetId) => {
+    console.info(`on toggleFavorite `);
+    // 应用收到收藏命令，进行收藏处理
 
-   // 应用内完成或者取消收藏，把新的收藏状态设置给AVSession
-   let playbackState: avSession.AVPlaybackState = {
-     isFavorite:true,
-   };
-   session.setAVPlaybackState(playbackState).then(() => {
-     console.info(`SetAVPlaybackState successfully`);
-   }).catch((err: BusinessError) => {
-     console.info(`SetAVPlaybackState BusinessError: code: ${err.code}, message: ${err.message}`);
-   });
-
- });
+    // 应用内完成或者取消收藏，把新的收藏状态设置给AVSession
+    let playbackState: AVSessionManager.AVPlaybackState = {
+      isFavorite:true,
+    };
+    session.setAVPlaybackState(playbackState).then(() => {
+      console.info(`SetAVPlaybackState successfully`);
+    }).catch((err: BusinessError) => {
+      console.info(`SetAVPlaybackState BusinessError: code: ${err.code}, message: ${err.message}`);
+    });
+  });
 }
 ```
 
@@ -364,30 +365,29 @@ async function setListener() {
 
 ```ts
 import AVSessionManager from '@ohos.multimedia.avsession';
+import { BusinessError } from '@ohos.base';
 
 let context: Context = getContext(this);
 async function setListener() {
- // 假设已经创建了一个session，如何创建session可以参考之前的案例
- let type: AVSessionManager.AVSessionType = 'audio';
- let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
+  // 假设已经创建了一个session，如何创建session可以参考之前的案例
+  let type: AVSessionManager.AVSessionType = 'audio';
+  let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
 
- // 应用启动时，需要把应用内的循环模式设置给AVSession
- let metadata: AVSessionManager.AVMetadata = {
-   assetId: '0', // 由应用指定，用于标识应用媒体库里的媒体
-   loopMode: AVSessionManager.LoopMode.LOOP_MODE_SINGLE,
- };
- session.setAVMetadata(metadata).then(() => {
-   console.info(`SetAVMetadata successfully`);
- }).catch((err: BusinessError) => {
-   console.error(`Failed to set AVMetadata. Code: ${err.code}, message: ${err.message}`);
- });
+  // 应用启动时，需要把应用内的循环模式设置给AVSession
+  let playBackState: AVSessionManager.AVPlayBackState= {
+    loopMode: AVSessionManager.LoopMode.LOOP_MODE_SINGLE,
+  };
+  session.setAVPlayBackState(playBackState).then(() => {
+    console.info(`set AVPlayBackStatesuccessfully`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to set AVPlayBackState. Code: ${err.code}, message: ${err.message}`);
+  });
 
- // 应用注册循环模式的控制监听
- session.on('setLoopMode', (mode) => {
-   console.info(`on setLoopMode ${mode}`);
-   // 应用收到设置循环模式后，切换对应的循环模式
- });
-
+  // 应用注册循环模式的控制监听
+  session.on('setLoopMode', (mode) => {
+    console.info(`on setLoopMode ${mode}`);
+    // 应用收到设置循环模式后，切换对应的循环模式
+  });
 }
 ```
 
