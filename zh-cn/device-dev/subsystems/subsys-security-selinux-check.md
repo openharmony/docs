@@ -285,7 +285,7 @@ developer_only(`
 | 否 | 是 | developer_only内 |
 | 是 | 否 | developer_only外 |
 
-## 新增ioctl的权限策略检查
+## ioctl的权限策略检查
 
 ### 检查说明
 
@@ -293,6 +293,14 @@ developer_only(`
 
 ### 编译拦截
 
+```text
+ check ioctl rule in user mode failed.
+ violation list (allow scontext tcontext:tclass ioctl)
+    allow wifi_host data_service_el1_file:file ioctl;
+    allow wifi_host dev_hdfwifi:chr_file ioctl;
+    allow write_updater updater_block_file:blk_file ioctl;
+ please add "allowxperm" rule based on the above list.
+```
 
 ### 拦截原因
 
@@ -314,7 +322,7 @@ allow init data_app_el1_file:dir { ioctl };
 allowxperm init data_app_el1_file:dir ioctl { 0x6613 };
 ```
 
-## 新增 permissive 主体类型的权限检查
+## permissive 主体类型的权限检查
 
 ### 检查说明
 
@@ -322,13 +330,20 @@ allowxperm init data_app_el1_file:dir ioctl { 0x6613 };
 
 ### 编译拦截
 
-
+```text
+ check permissive rule in user mode failed.
+ violation list (scontext):
+    sa_subsys_dfx_service
+ There are two solutions:
+    1. Add the above list to whitelist file 'permissive_whitelist.json' under 'base/security/selinux_adapter/sepolicy' in 'user' mode.
+    2. Change the policy to avoid violating rule.
+```
 
 ### 拦截原因
 
 检查规则中存在新增的 permissive 主体类型
 
 ### 修复方法
+1. 删除不必要的 permissive 定义
+2. 经评审通过后添加主体类型到 type 定义的仓库目录下白名单 sepolicy/whitelist/permissive_whitelist.json 中。如文件缺失，参考创建文件并录入type。https://gitee.com/openharmony/security_selinux_adapter/blob/master/sepolicy/whitelist/permissive_whitelist.json
 
-经评审通过后添加主体类型到 type 定义的仓库目录下白名单 sepolicy/whitelist/permissive_whitelist.json 中。
-如文件缺失，参考创建文件并录入type。https://gitee.com/openharmony/security_selinux_adapter/blob/master/sepolicy/whitelist/permissive_whitelist.json
