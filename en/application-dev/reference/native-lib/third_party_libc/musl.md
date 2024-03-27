@@ -72,12 +72,12 @@ EGL is an interface between Khronos rendering APIs (such as OpenGL ES and OpenVG
 
 ## OpenGL ES
 
-OpenGL is a cross-platform software interface for 3D graphics processing. [OpenGL ES](https://www.khronos.org/opengles/) is a OpenGL specification for embedded devices. OpenHarmony supports OpenGL ES 3.0.
+OpenGL is a cross-platform software interface for 3D graphics processing. [OpenGL ES](https://www.khronos.org/opengles/) is a OpenGL specification for embedded devices. OpenHarmony supports OpenGL ES 3.2.
 
 **Capabilities**
 
-OpenGL ES 3.0
+OpenGL ES 3.2
 
 **Symbols Exported from the Standard Library**
 
-[OpenGL ES 3.0 Symbols Exported from Native APIs](../third_party_opengl/openglesv3-symbol.md)
+[OpenGL ES 3.2 Symbols Exported from Native APIs](../third_party_opengl/openglesv3-symbol.md)
