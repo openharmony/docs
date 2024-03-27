@@ -20,7 +20,7 @@ FormExtensionContext.startAbility接口中，错误码16500101已不再使用
 
 **变更发生版本**
 
-从OpenHarmony SDK 5.0.0.16开始。
+从OpenHarmony SDK 5.0.0.17开始。
 
 **变更的接口/组件**
 
