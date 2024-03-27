@@ -44,7 +44,7 @@
 ```c
 #include <string.h>
 
-#include "asset_api.h"
+#include "asset/asset_api.h"
 
 void UpdateAsset() {
     static const char *ALIAS = "demo_alias";
