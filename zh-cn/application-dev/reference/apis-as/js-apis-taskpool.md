@@ -67,7 +67,7 @@ taskpool.execute(printArgs, 100).then((value: Object) => { // 100: test number
 
 execute(task: Task, priority?: Priority): Promise\<Object>
 
-将创建好的任务放入taskpool内部任务队列等待，等待分发到工作线程执行。当前执行模式可以设置任务优先级和尝试调用cancel进行任务取消。该任务不可以是任务组任务和串行队列任务。该任务可以多次调用execute执行。
+将创建好的任务放入taskpool内部任务队列等待，等待分发到工作线程执行。当前执行模式可以设置任务优先级和尝试调用cancel进行任务取消。该任务不可以是任务组任务和串行队列任务。若该任务非长时任务，可以多次调用执行，长时任务仅支持执行一次。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -179,7 +179,7 @@ taskpool.execute(taskGroup2).then((res: Array<Object>) => {
 
 executeDelayed(delayTime: number, task: Task, priority?: Priority): Promise\<Object>
 
-延时执行任务。当前执行模式可以设置任务优先级和尝试调用cancel进行任务取消。该任务不可以是任务组任务和串行队列任务。该任务可以多次调用executeDelayed执行。
+延时执行任务。当前执行模式可以设置任务优先级和尝试调用cancel进行任务取消。该任务不可以是任务组任务和串行队列任务。若该任务非长时任务，可以多次调用executeDelayed执行，长时任务仅支持执行一次。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -361,6 +361,43 @@ function concurrntFunc() {
 concurrntFunc();
 ```
 
+## taskpool.terminateTask<sup>12+</sup>
+
+terminateTask(longTask: LongTask): void
+
+中止任务池中的长时任务，在长时任务执行完成后调用。中止后，执行长时任务的线程可能会被回收。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型          | 必填 | 说明                 |
+| ------ | ------------- | ---- | -------------------- |
+| longTask   | [LongTask](#longtask12) | 是   | 需要中止的长时任务。 |
+
+**示例：**
+
+```ts
+@Concurrent
+function longTask(arg: number): number {
+  let t: number = Date.now();
+  while (Date.now() - t < arg) {
+    continue;
+  }
+  console.info("longTask has been executed.");
+  return arg;
+}
+
+function concurrntFunc() {
+  let task1: taskpool.LongTask = new taskpool.LongTask(longTask, 1000); // 1000: sleep time
+  taskpool.execute(task1).then((res: Object)=>{
+    taskpool.terminateTask(task1);
+    console.info("taskpool longTask result: " + res);
+  });
+}
+
+concurrntFunc();
+```
 
 ## taskpool.getTaskPoolInfo<sup>10+</sup>
 
@@ -985,6 +1022,24 @@ taskpool.execute(task3).then(() => {
 | ioDuration<sup>11+</sup>     | number    | 是   | 否   | 执行任务异步IO耗时。                                    |
 | cpuDuration<sup>11+</sup>    | number    | 是   | 否   | 执行任务CPU耗时。                                    |
 
+## LongTask<sup>12+</sup>
+
+表示长时任务。LongTask继承自[Task](#task)。  
+长时任务不设置执行时间上限，长时间运行不会触发超时异常，但不支持在任务组（TaskGroup）执行和多次执行。  
+执行长时任务的线程一直存在，直到执行完成后调用[terminateTask](#taskpoolterminatetask12)，该线程会在空闲时被回收。
+
+**示例：**
+
+```ts
+@Concurrent
+function printArgs(args: string): string {
+  console.info("printArgs: " + args);
+  return args;
+}
+
+let task: taskpool.LongTask = new taskpool.LongTask(printArgs, "this is my first LongTask");
+```
+
 ## TaskGroup<sup>10+</sup>
 
 表示任务组，一次执行一组任务，适用于执行一组有关联的任务。如果所有任务正常执行，异步执行完毕后返回所有任务结果的数组，数组中元素的顺序与[addTask](#addtask10-1)的顺序相同；如果任意任务失败，则会抛出对应异常。任务组可以多次执行，但执行后不能新增任务。使用[constructor](#constructor10)方法构造TaskGroup。
@@ -1065,7 +1120,7 @@ taskGroup.addTask(printArgs, 100); // 100: test number
 
 addTask(task: Task): void
 
-将创建好的任务添加到任务组中。使用该方法前需要先构造TaskGroup。任务组不可以添加其他任务组任务、串行队列任务、有依赖关系的任务和已执行的任务。
+将创建好的任务添加到任务组中。使用该方法前需要先构造TaskGroup。任务组不可以添加其他任务组任务、串行队列任务、有依赖关系的任务、长时任务和已执行的任务。
 
 **系统能力：** SystemCapability.Utils.Lang
 
