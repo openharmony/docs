@@ -17,15 +17,13 @@
         - Typical Scenarios
             - [Asynchronous Task Development Using Node-API](use-napi-asynchronous-task.md)
             - [Thread Safety Development Using Node-API](use-napi-thread-safety.md)
-        - [OpenHarmony Node-API FAQs](use-napi-faqs.md)
+            - [Wrapping a Native Object in an ArkTS Object](use-napi-object-wrap.md)
+            - [Calling Back ArkTS APIs in a Non-ArkTS Thread](use-uv-queue-work.md)
+        - [Node-API FAQs](use-napi-faqs.md)
     - Resource Management
         - [Raw File Development](rawfile-guidelines.md)
     - Resource Scheduling
         - [FFRT Development](ffrt-guidelines.md)
-    - AI
-        - [Using MindSpore Lite for Model Inference](mindspore-lite-guidelines.md)
-        - [Using MindSpore Lite for Offline Model Conversion and Inference](mindspore-lite-offline-model-guidelines.md)
-        - [Connecting the Neural Network Runtime to an AI Inference Framework](neural-network-runtime-guidelines.md)
     - Memory Management
         - [Purgeable Memory Development](purgeable-memory-guidelines.md)
     - Device Management
