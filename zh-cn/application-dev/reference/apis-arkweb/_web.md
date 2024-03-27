@@ -55,9 +55,9 @@
 | typedef void(\* [ArkWeb_OnJavaScriptCallback](#arkweb_onjavascriptcallback)) (const char \*webTag, const [ArkWeb_JavaScriptBridgeData](_ark_web___java_script_bridge_data.md) \*data, void \*userData) | 注入的JavaScript执行完成的回调。  | 
 | typedef void(\* [ArkWeb_OnJavaScriptProxyCallback](#arkweb_onjavascriptproxycallback)) (const char \*webTag, const [ArkWeb_JavaScriptBridgeData](_ark_web___java_script_bridge_data.md) \*dataArray, size_t arraySize, void \*userData) | Proxy方法被执行的回调。  | 
 | typedef void(\* [ArkWeb_OnComponentCallback](#arkweb_oncomponentcallback)) (const char \*webTag, void \*userData) | 组件事件通知相关的通用回调。  | 
-| typedef enum [ArkWeb_ErrorCode](#arkweb_errorcode)[ArkWeb_ErrorCode](#arkweb_errorcode) | 定义ArkWeb NDK接口异常错误码。  | 
-| typedef enum [ArkWeb_NetError](#arkweb_neterror)[ArkWeb_NetError](#arkweb_neterror) | 定义ArkWeb网络协议栈错误码。  | 
-| typedef enum [ArkWeb_CustomSchemeOption](#arkweb_customschemeoption)[ArkWeb_CustomSchemeOption](#arkweb_customschemeoption) | custom scheme的配置信息。  | 
+| typedef enum [ArkWeb_ErrorCode](#arkweb_errorcode) [ArkWeb_ErrorCode](#arkweb_errorcode) | 定义ArkWeb NDK接口异常错误码。  | 
+| typedef enum [ArkWeb_NetError](#arkweb_neterror) [ArkWeb_NetError](#arkweb_neterror) | 定义ArkWeb网络协议栈错误码。  | 
+| typedef enum [ArkWeb_CustomSchemeOption](#arkweb_customschemeoption) [ArkWeb_CustomSchemeOption](#arkweb_customschemeoption) | custom scheme的配置信息。  | 
 | typedef struct ArkWeb_SchemeHandler_ [ArkWeb_SchemeHandler](#arkweb_schemehandler) | 该类用于拦截指定scheme的请求。  | 
 | typedef struct ArkWeb_ResourceHandler_ [ArkWeb_ResourceHandler](#arkweb_resourcehandler) | 用于被拦截的URL请求。可以通过ArkWeb_ResourceHandler发送自定义请求头以及自定义请求体。  | 
 | typedef struct ArkWeb_Response_ [ArkWeb_Response](#arkweb_response) | 为被拦截的请求构造一个ArkWeb_Response。  | 
@@ -89,9 +89,9 @@
 | void [OH_NativeArkWeb_RegisterJavaScriptProxy](#oh_nativearkweb_registerjavascriptproxy) (const char \*webTag, const char \*objName, const char \*\*methodList, [NativeArkWeb_OnJavaScriptProxyCallback](#nativearkweb_onjavascriptproxycallback) \*callback, int32_t size, bool needRefresh) | 注册应用侧的对象及回调函数。  | 
 | void [OH_NativeArkWeb_UnregisterJavaScriptProxy](#oh_nativearkweb_unregisterjavascriptproxy) (const char \*webTag, const char \*objName) | 删除已注册的对象及回调函数。  | 
 | void [OH_NativeArkWeb_SetJavaScriptProxyValidCallback](#oh_nativearkweb_setjavascriptproxyvalidcallback) (const char \*webTag, [NativeArkWeb_OnValidCallback](#nativearkweb_onvalidcallback) callback) | 设置对象可注册的回调函数。  | 
-| [NativeArkWeb_OnValidCallback](#nativearkweb_onvalidcallback)[OH_NativeArkWeb_GetJavaScriptProxyValidCallback](#oh_nativearkweb_getjavascriptproxyvalidcallback) (const char \*webTag) | 获取对象可注册的回调函数。  | 
+| [NativeArkWeb_OnValidCallback](#nativearkweb_onvalidcallback) [OH_NativeArkWeb_GetJavaScriptProxyValidCallback](#oh_nativearkweb_getjavascriptproxyvalidcallback) (const char \*webTag) | 获取对象可注册的回调函数。  | 
 | void [OH_NativeArkWeb_SetDestroyCallback](#oh_nativearkweb_setdestroycallback) (const char \*webTag, [NativeArkWeb_OnDestroyCallback](#nativearkweb_ondestroycallback) callback) | 设置组件销毁的回调函数。 | 
-| [NativeArkWeb_OnDestroyCallback](#nativearkweb_ondestroycallback)[OH_NativeArkWeb_GetDestroyCallback](#oh_nativearkweb_getdestroycallback) (const char \*webTag) | 获取组件销毁的回调函数。  |
+| [NativeArkWeb_OnDestroyCallback](#nativearkweb_ondestroycallback) [OH_NativeArkWeb_GetDestroyCallback](#oh_nativearkweb_getdestroycallback) (const char \*webTag) | 获取组件销毁的回调函数。  |
 | [ArkWeb_AnyNativeAPI](_ark_web___any_native_a_p_i.md) \* OH_ArkWeb_GetNativeAPI ([ArkWeb_NativeAPIVariantKind](#arkweb_nativeapivariantkind) type) |  根据传入的API类型，获取对应的Native API结构体。| 
 | void [OH_ArkWebRequestHeaderList_Destroy](#oh_arkwebrequestheaderlist_destroy) ([ArkWeb_RequestHeaderList](#arkweb_requestheaderlist) \*requestHeaderList) | 销毁ArkWeb_RequestHeaderList对象。  | 
 | int32_t [OH_ArkWebRequestHeaderList_GetSize](#oh_arkwebrequestheaderlist_getsize) (const [ArkWeb_RequestHeaderList](#arkweb_requestheaderlist) \*requestHeaderList) | 获取请求头列表的大小。  | 
@@ -134,7 +134,7 @@
 | int32_t [OH_ArkWebResponse_SetUrl](#oh_arkwebresponse_seturl) ([ArkWeb_Response](#arkweb_response) \*response, const char \*url) | 设置经过重定向或由于HSTS而改变后的解析URL，设置后会触发跳转。  | 
 | void [OH_ArkWebResponse_GetUrl](#oh_arkwebresponse_geturl) (const [ArkWeb_Response](#arkweb_response) \*response, char \*\*url) | 获取经过重定向或由于HSTS而更改后的解析URL。  | 
 | int32_t [OH_ArkWebResponse_SetError](#oh_arkwebresponse_seterror) ([ArkWeb_Response](#arkweb_response) \*response, [ArkWeb_NetError](#arkweb_neterror) errorCode) | 给ArkWeb_Response对象设置一个错误码。  | 
-| [ArkWeb_NetError](#arkweb_neterror)[OH_ArkWebResponse_GetError](#oh_arkwebresponse_geterror) (const [ArkWeb_Response](#arkweb_response) \*response) | 获取ArkWeb_Response的错误码。  | 
+| [ArkWeb_NetError](#arkweb_neterror) [OH_ArkWebResponse_GetError](#oh_arkwebresponse_geterror) (const [ArkWeb_Response](#arkweb_response) \*response) | 获取ArkWeb_Response的错误码。  | 
 | int32_t [OH_ArkWebResponse_SetStatus](#oh_arkwebresponse_setstatus) ([ArkWeb_Response](#arkweb_response) \*response, int status) | 为ArkWeb_Response对象设置一个HTTP状态码。  | 
 | int [OH_ArkWebResponse_GetStatus](#oh_arkwebresponse_getstatus) (const [ArkWeb_Response](#arkweb_response) \*response) | 获取ArkWeb_Response的HTTP状态码。  | 
 | int32_t [OH_ArkWebResponse_SetStatusText](#oh_arkwebresponse_setstatustext) ([ArkWeb_Response](#arkweb_response) \*response, const char \*statusText) | 为ArkWeb_Response设置状态文本。  | 
@@ -284,7 +284,7 @@ custom scheme的配置信息。
 ### ArkWeb_ErrorCode
 
 ```
-typedef enum ArkWeb_ErrorCodeArkWeb_ErrorCode
+typedef enum ArkWeb_ErrorCode ArkWeb_ErrorCode
 ```
 **描述：**
 
@@ -355,7 +355,7 @@ typedef void(* ArkWeb_HttpBodyStreamReadCallback) (const ArkWeb_HttpBodyStream *
 ### ArkWeb_NetError
 
 ```
-typedef enum ArkWeb_NetErrorArkWeb_NetError
+typedef enum ArkWeb_NetError ArkWeb_NetError
 ```
 **描述：**
 
