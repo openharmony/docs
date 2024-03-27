@@ -309,20 +309,33 @@ developer_only(`
 
 ### 修复方法
 
-拦截日志中 user mode 表示该策略是user和开发者模式共用的基线，另外 developer mode 则表示该策略仅作为开发者模式下的基线。
+1. 根据avc日志对ioctl的ioctlcmd进行限制。例如，有下面的avc日志：
+    ```text
+    #avc:  denied  { ioctl } for  pid=1 comm="init" path="/data/app/el1/bundle/public" dev="mmcblk0p11" ino=652804 ioctlcmd=0x6613 scontext=u:r:init:s0 tcontext=u:object_r:data_app_el1_file:s0 tclass=dir permissive=0
+    ```
+    根据该avc日志配置了允许ioctl的SELinux策略：
+    ```text
+    allow init data_app_el1_file:dir { ioctl };
+    ```
+    同时，还需要根据avc日志中的`ioctlcmd=0x6613`字段，在相同user或开发者模式基线下添加allowxperm，进一步限制ioctl的开放范围：
+    ```text
+    allowxperm init data_app_el1_file:dir ioctl { 0x6613 };
+    ```
+    
+2. 将拦截日志中的 "scontext tcontext tclass" 字符添加到仓库目录下白名单 sepolicy/whitelist/ioctl_xperm_whitelist.json 中。
+    拦截日志中 user mode 表示该策略是user和开发者模式共用的基线，另外 developer mode 则表示该策略仅作为开发者模式下的基线。
+    ```text
+    {
+        "whitelist": {
+            "user": [
+                "wifi_host data_service_el1_file file"
+            ],
+            "developer": [
+            ]
+        }
+    }
+    ```
 
-根据avc日志对ioctl的ioctlcmd进行限制。例如，有下面的avc日志：
-```text
-#avc:  denied  { ioctl } for  pid=1 comm="init" path="/data/app/el1/bundle/public" dev="mmcblk0p11" ino=652804 ioctlcmd=0x6613 scontext=u:r:init:s0 tcontext=u:object_r:data_app_el1_file:s0 tclass=dir permissive=0
-```
-根据该avc日志配置了允许ioctl的SELinux策略：
-```text
-allow init data_app_el1_file:dir { ioctl };
-```
-同时，还需要根据avc日志中的`ioctlcmd=0x6613`字段，进一步限制ioctl的开放范围：
-```text
-allowxperm init data_app_el1_file:dir ioctl { 0x6613 };
-```
 
 ## permissive 主体类型的权限检查
 
@@ -349,15 +362,15 @@ allowxperm init data_app_el1_file:dir ioctl { 0x6613 };
 
 1. 删除不必要的 permissive 定义。
 2. 添加主体类型到 type 定义的仓库目录下白名单 sepolicy/whitelist/permissive_whitelist.json 中。如文件缺失，参考创建文件并录入主体列表。https://gitee.com/openharmony/security_selinux_adapter/blob/master/sepolicy/whitelist/permissive_whitelist.json。
-拦截日志中 user mode 表示该策略是user和开发者模式共用的基线，另外 developer mode 则表示该策略仅作为开发者模式下的基线，相应添加到白名单文件
-```text
-{
-    "whitelist": {
-        "user": [
-            "sa_subsys_dfx_service"
-        ],
-        "developer": [
-        ]
+    拦截日志中 user mode 表示该策略是user和开发者模式共用的基线，另外 developer mode 则表示该策略仅作为开发者模式下的基线，相应添加到白名单文件
+    ```text
+    {
+        "whitelist": {
+            "user": [
+                "sa_subsys_dfx_service"
+            ],
+            "developer": [
+            ]
+        }
     }
-}
-```
+    ```
