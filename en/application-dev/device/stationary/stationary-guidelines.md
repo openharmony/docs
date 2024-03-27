@@ -5,7 +5,7 @@
 
 An application can call the **Stationary** module to obtain the device status, for example, whether the device is absolutely or relatively still.
 
-For details about the APIs, see [Stationary](../reference/apis-multimodalawareness-kit/js-apis-stationary.md).
+For details about the APIs, see [Stationary](../../reference/apis-multimodalawareness-kit/js-apis-stationary.md).
 
 ## Device Status Type Parameters
 
@@ -113,5 +113,3 @@ If the relative stationary and absolute stationary capabilities are required, yo
       console.error('stationary off failed:' + message);
    }
    ```
-
- <!--no_check--> 
