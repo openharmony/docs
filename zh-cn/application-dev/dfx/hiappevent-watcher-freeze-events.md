@@ -2,6 +2,9 @@
 
 HiAppEvent提供接口用于订阅系统卡死事件。
 
+> **说明：**
+> 若应用卡死导致应用退出，需要再次点击设备桌面的“应用图标”运行应用工程，等待一分钟左右获取到卡死事件。
+
 ## 接口说明
 
 API接口的具体使用说明（参数使用限制、具体取值范围等）请参考[应用事件打点API文档](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-hiappevent.md)。
@@ -33,6 +36,8 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 | peer_binder | string[] | binder调用信息。 |
 | threads | object[] | 全量线程调用栈，详见thread属性。 |
 | memory | object | 内存信息，详见memory属性。 |
+| external_log<sup>12+</sup> | string[] | 故障日志文件路径。 |
+| log_over_limit<sup>12+</sup> | boolean | 生成的日志文件与已存在的日志文件总大小是否超过5M上限。true表示超过上限，日志写入失败；false表示未超过上限。 |
 
 **exception属性：**
 
@@ -126,6 +131,9 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.threads.size=${eventInfo.params['threads'].length}`);
             // 开发者可以获取到卡死事件发生时内存信息
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.memory=${JSON.stringify(eventInfo.params['memory'])}`);
+            // 开发者可以获取到卡死事件发生时的故障日志文件
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.external_log=${JSON.stringify(eventInfo.params['external_log'])}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.log_over_limit=${eventInfo.params['log_over_limit']}`);
           }
         }
       }
@@ -153,20 +161,22 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    HiAppEvent eventInfo.domain=OS
    HiAppEvent eventInfo.name=APP_FREEZE
    HiAppEvent eventInfo.eventType=1
-   HiAppEvent eventInfo.params.time=1702553728887
+   HiAppEvent eventInfo.params.time=1711440881768
    HiAppEvent eventInfo.params.foreground=true
    HiAppEvent eventInfo.params.bundle_version=1.0.0
    HiAppEvent eventInfo.params.bundle_name=com.example.myapplication
    HiAppEvent eventInfo.params.process_name=com.example.myapplication
-   HiAppEvent eventInfo.params.pid=2978
+   HiAppEvent eventInfo.params.pid=3197
    HiAppEvent eventInfo.params.uid=20010043
    HiAppEvent eventInfo.params.uuid=...
    HiAppEvent eventInfo.params.exception={"message":"App main thread is not response!","name":"THREAD_BLOCK_6S"}
-   HiAppEvent eventInfo.params.hilog.size=7
-   HiAppEvent eventInfo.params.event_handler.size=3
-   HiAppEvent eventInfo.params.event_handler_size_3s=2
-   HiAppEvent eventInfo.params.event_handler_size_6s=3
+   HiAppEvent eventInfo.params.hilog.size=77
+   HiAppEvent eventInfo.params.event_handler.size=6
+   HiAppEvent eventInfo.params.event_handler_size_3s=5
+   HiAppEvent eventInfo.params.event_handler_size_6s=6
    HiAppEvent eventInfo.params.peer_binder.size=0
-   HiAppEvent eventInfo.params.threads.size=22
-   HiAppEvent eventInfo.params.memory={"pss":0,"rss":0,"sys_avail_mem":947700,"sys_free_mem":441064,"sys_total_mem":1992724,"vss":0}
+   HiAppEvent eventInfo.params.threads.size=28
+   HiAppEvent eventInfo.params.memory={"pss":0,"rss":0,"sys_avail_mem":1361464,"sys_free_mem":796232,"sys_total_mem":1992340,"vss":0}
+   HiAppEvent eventInfo.params.external_log=["/data/storage/el2/log/hiappevent/APP_FREEZE_1711440899240_3197.log"]
+   HiAppEvent eventInfo.params.log_over_limit=false
    ```
