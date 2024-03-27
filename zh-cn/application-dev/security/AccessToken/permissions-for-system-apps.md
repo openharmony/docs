@@ -1925,6 +1925,54 @@
 
 **起始版本**：11
 
+### ohos.permission.GET_PRIVACY_INDICATOR
+
+允许系统应用获取隐私权限事件提醒信息详情。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.SET_PRIVACY_INDICATOR
+
+允许系统应用控制隐私权限事件提醒的呈现状态。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.GET_SUPER_PRIVACY
+
+此权限用于保护超级隐私模式状态获取。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.SET_SUPER_PRIVACY
+
+此权限用于设置进入或退出超级隐私模式，从而禁用或者恢复设备Mic Cam和位置的使用
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.ACCESS_PASSWORDVAULT_ABILITY
 
 允许系统应用或系统服务拉起密码保险箱能力。
