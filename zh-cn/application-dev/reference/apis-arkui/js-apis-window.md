@@ -4429,6 +4429,82 @@ try {
 }
 ```
 
+###  enableLandscapeMultiWindow<sup>12+</sup>
+
+enableLandscapeMultiWindow(): Promise&lt;void&gt;
+
+在开启多窗动态布局下，配置支持横屏悬浮窗。
+
+此接口只有在module.json5配置文件中[abilities](../../quick-start/module-configuration-file.md#abilities标签)标签中的preferMultiWindowOrientation属性为landscape_auto时才生效。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 1300002 | This window state is abnormal.               |
+| 1300003 | This window manager service works abnormally. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let promise = windowClass.enableLandscapeMultiWindow();
+promise.then(() => {
+    console.info('Succeeded in making multi-window become landscape.');
+}).catch((err: BusinessError) => {
+    console.error('Failed to make multi-window become landscape. Cause: ' + JSON.stringify(err));
+});
+```
+
+###  disableLandscapeMultiWindow<sup>12+</sup>
+
+disableLandscapeMultiWindow(): Promise&lt;void&gt;
+
+在开启多窗动态布局下，配置支持竖屏悬浮窗。
+
+此接口只有在module.json5配置文件中[abilities](../../quick-start/module-configuration-file.md#abilities标签)标签中的preferMultiWindowOrientation属性为landscape_auto时才生效。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 1300002 | This window state is abnormal.               |
+| 1300003 | This window manager service works abnormally. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let promise = windowClass.disableLandscapeMultiWindow();
+promise.then(() => {
+    console.info('Succeeded in making multi-window become not landscape.');
+}).catch((err: BusinessError) => {
+    console.error('Failed to make multi-window become not landscape. Cause: ' + JSON.stringify(err));
+});
+```
+
 ### show<sup>(deprecated)</sup>
 
 show(callback: AsyncCallback&lt;void&gt;): void
@@ -5942,7 +6018,7 @@ setOutsideTouchable(touchable: boolean, callback: AsyncCallback&lt;void&gt;): vo
 > **说明：**
 >
 > 从 API version 7开始支持，从API version 9开始废弃。
-> 
+>
 > 从 API version 9开始，系统默认允许点击子窗口之外的区域，此接口不再支持使用，也不再提供替代接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -5983,7 +6059,7 @@ setOutsideTouchable(touchable: boolean): Promise&lt;void&gt;
 > **说明：**
 >
 > 从 API version 7开始支持，从API version 9开始废弃。
-> 
+>
 > 从 API version 9开始，系统默认允许点击子窗口之外的区域，此接口不再支持使用，也不再提供替代接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
