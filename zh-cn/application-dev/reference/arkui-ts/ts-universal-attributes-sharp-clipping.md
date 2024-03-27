@@ -179,4 +179,4 @@ struct ProgressMaskExample {
 }
 ```
 
-![progressMask](figures/progressMask.PNG)
+![progressMask](figures/progressMask.gif)
