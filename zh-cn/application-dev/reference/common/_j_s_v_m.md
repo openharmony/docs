@@ -6,7 +6,9 @@
 提供标准的JavaScript引擎能力。
 
 功能概述： 标准JS引擎是严格遵守Ecmascript规范的JavaScript代码执行引擎。 支持Ecmascript规范定义的标准库，提供完备的C++交互JS的native API。 通过jit加速代码执行，为应用提供安全、高效的JS执行能力。 标准JS引擎的能力通过一套稳定的ABI，即JSVM-API提供。JSVM-API支持动态链接到不同版本的JS引擎库， 从而为开发者屏蔽掉不同引擎接口的差异。JSVM-API提供引擎生命周期管理、JS context管理、 JS代码执行、JS/C++互操作、执行环境快照、codecache等能力。
+
 使用平台：arm64平台。
+
 使用方法：链接SDK中的libjsvm.so，并在C++代码中包含ark_runtime/jsvm.h头文件。
 
 通过API接口为开发者提供独立、标准、完整的JavaScript引擎能力， 包括管理引擎生命周期、编译运行JS代码、实现JS/C++跨语言调用、拍摄快照等。
@@ -30,6 +32,7 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | struct&nbsp;&nbsp;[JSVM_CallbackStruct](_j_s_v_m___callback_struct.md) | 用户提供的native函数的回调函数指针和数据，这些函数通过JSVM-API接口暴露给JavaScript。 | 
+| struct&nbsp;&nbsp;[JSVM_HeapStatistics](_j_s_v_m___heap_statistics.md) | Heapstatisics结构体，用于保存有关JavaScript堆内存使用情况的统计信息。 | 
 | struct&nbsp;&nbsp;[JSVM_InitOptions](_j_s_v_m___init_options.md) | 初始化选项，用于初始化JavaScript虚拟机。 | 
 | struct&nbsp;&nbsp;[JSVM_CreateVMOptions](_j_s_v_m___create_v_m_options.md) | 创建JavaScript虚拟机的选项。 | 
 | struct&nbsp;&nbsp;[JSVM_VMInfo](_j_s_v_m___v_m_info.md) | JavaScript虚拟机信息。 | 
@@ -42,18 +45,26 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
+| **JSVM_VERSION_EXPERIMENTAL**&nbsp;&nbsp;&nbsp;2147483647 |  | 
+| **JSVM_VERSION**&nbsp;&nbsp;&nbsp;8 |  | 
+| **JSVM_EXTERN**&nbsp;&nbsp;&nbsp;__attribute__((visibility("default"))) |  | 
 | [JSVM_AUTO_LENGTH](#jsvm_auto_length)&nbsp;&nbsp;&nbsp;SIZE_MAX | 自动长度。 | 
+| **EXTERN_C_START** |  | 
+| **EXTERN_C_END** |  | 
+| **JSVM_CDECL** |  | 
 
 
 ### 类型定义
 
 | 名称 | 描述 | 
 | -------- | -------- |
+| typedef uint16_t **char16_t** |  | 
 | typedef struct JSVM_VM__ \* [JSVM_VM](#jsvm_vm) | 表示JavaScript虚拟机实例。 | 
 | typedef struct JSVM_VMScope__ \* [JSVM_VMScope](#jsvm_vmscope) | 表示JavaScript虚拟机作用域。 | 
 | typedef struct JSVM_EnvScope__ \* [JSVM_EnvScope](#jsvm_envscope) | 表示用于控制附加到当前虚拟机实例的环境。只有当线程通过 OH_JSVM_OpenEnvScope进入该环境的JSVM_EnvScope后，该环境才 对线程的虚拟机实例可用。 | 
 | typedef struct JSVM_Script__ \* [JSVM_Script](#jsvm_script) | 表示一段JavaScript代码。 | 
 | typedef struct JSVM_Env__ \* [JSVM_Env](#jsvm_env) | 表示虚拟机特定状态的上下文环境，需要在调用native函数时作为参数传递， 并且传递给后续任何的JSVM-API嵌套调用。 | 
+| typedef struct JSVM_CpuProfiler__ \* [JSVM_CpuProfiler](#jsvm_cpuprofiler) | 表示一个JavaScript CPU时间性能分析器。 | 
 | typedef struct JSVM_Value__ \* [JSVM_Value](#jsvm_value) | 表示JavaScript值。 | 
 | typedef struct JSVM_Ref__ \* [JSVM_Ref](#jsvm_ref) | 表示JavaScript值的引用。 | 
 | typedef struct JSVM_HandleScope__ \* [JSVM_HandleScope](#jsvm_handlescope) | 表示JavaScript值的作用域，用于控制和修改在特定范围内创建的对象的生命周期。 通常，JSVM-API值是在JSVM_HandleScope的上下文中创建的。当从JavaScript调用native方法时， 将存在默认JSVM_HandleScope。如果用户没有显式创建新的JSVM_HandleScope，将在默认 JSVM_HandleScope中创建JSVM-API值。对于native方法执行之外的任何代码调用（例如，在libuv回调调用期间）， 模块需要在调用任何可能导致创建JavaScript值的函数之前创建一个作用域。JSVM_HandleScope是使用 OH_JSVM_OpenHandleScope创建的，并使用OH_JSVM_CloseHandleScope销毁的。 关闭作用域代表向GC指示在JSVM_HandleScope作用域的生命周期内创建的所有JSVM_Value将不再从当前堆的栈帧中引用。 | 
@@ -62,6 +73,7 @@
 | typedef struct JSVM_Deferred__ \* [JSVM_Deferred](#jsvm_deferred) | 表示Promise延迟对象。 | 
 | typedef [JSVM_CallbackStruct](_j_s_v_m___callback_struct.md) \* [JSVM_Callback](#jsvm_callback) | 用户提供的native函数的函数指针类型，这些函数通过JSVM-API接口暴露给JavaScript。 | 
 | typedef void(JSVM_CDECL \* [JSVM_Finalize](#jsvm_finalize)) ([JSVM_Env](#jsvm_env) env, void \*finalizeData, void \*finalizeHint) | 函数指针类型，当native类型对象或数据与JS对象被关联时，传入该指针。该函数将会 在关联的JS对象被GC回收时被调用，用以执行native的清理动作。 | 
+| typedef bool(JSVM_CDECL \* [JSVM_OutputStream](#jsvm_outputstream)) (const char \*data, int size, void \*streamData) | ASCII输出流回调的函数指针类型。参数data是指输出的数据指针。参数size是指输出的数据大小。 空数据指针指示流的结尾。参数streamData是指与回调一起传递给API函数的指针，该API函数向输出流生成数据。回 调返回true表示流可以继续接受数据。否则，它将中止流。 | 
 
 
 ### 枚举
@@ -92,6 +104,7 @@
 | JSVM_EXTERN [JSVM_Status](#jsvm_status)[OH_JSVM_DestroyEnv](#oh_jsvm_destroyenv) ([JSVM_Env](#jsvm_env) env) | 销毁环境。 | 
 | JSVM_EXTERN [JSVM_Status](#jsvm_status)[OH_JSVM_OpenEnvScope](#oh_jsvm_openenvscope) ([JSVM_Env](#jsvm_env) env, [JSVM_EnvScope](#jsvm_envscope) \*result) | 打开一个新的环境作用域。 | 
 | JSVM_EXTERN [JSVM_Status](#jsvm_status)[OH_JSVM_CloseEnvScope](#oh_jsvm_closeenvscope) ([JSVM_Env](#jsvm_env) env, [JSVM_EnvScope](#jsvm_envscope) scope) | 关闭环境作用域。 | 
+| JSVM_EXTERN [JSVM_Status](#jsvm_status)[OH_JSVM_GetVM](#oh_jsvm_getvm) ([JSVM_Env](#jsvm_env) env, [JSVM_VM](#jsvm_vm) \*result) | 将检索给定环境的虚拟机实例。 | 
 | JSVM_EXTERN [JSVM_Status](#jsvm_status)[OH_JSVM_CompileScript](#oh_jsvm_compilescript) ([JSVM_Env](#jsvm_env) env, [JSVM_Value](#jsvm_value) script, const uint8_t \*cachedData, size_t cacheDataLength, bool eagerCompile, bool \*cacheRejected, [JSVM_Script](#jsvm_script) \*result) | 编译一串JavaScript代码，并返回编译后的脚本。 | 
 | JSVM_EXTERN [JSVM_Status](#jsvm_status)[OH_JSVM_CreateCodeCache](#oh_jsvm_createcodecache) ([JSVM_Env](#jsvm_env) env, [JSVM_Script](#jsvm_script) script, const uint8_t \*\*data, size_t \*length) | 为编译后的脚本创建代码缓存。 | 
 | JSVM_EXTERN [JSVM_Status](#jsvm_status)[OH_JSVM_RunScript](#oh_jsvm_runscript) ([JSVM_Env](#jsvm_env) env, [JSVM_Script](#jsvm_script) script, [JSVM_Value](#jsvm_value) \*result) | 执行一串JavaScript代码并返回其结果，其中包含以下注意事项： 与eval不同的是，该函数不允许脚本访问当前词法作用域，因此也不允许访问模块作用域， 这意味着require等伪全局变量将不可用。 脚本可以访问全局作用域。 脚本中的函数和var声明将被添加到全局对象。 使用let和const的变量声明将全局可见，但不会被添加到全局对象。 this的值在脚本内是global。 | 
@@ -216,6 +229,13 @@
 | JSVM_EXTERN [JSVM_Status](#jsvm_status)[OH_JSVM_JsonParse](#oh_jsvm_jsonparse) ([JSVM_Env](#jsvm_env) env, [JSVM_Value](#jsvm_value) jsonString, [JSVM_Value](#jsvm_value) \*result) | 解析JSON字符串，并返回成功解析的值。 | 
 | JSVM_EXTERN [JSVM_Status](#jsvm_status)[OH_JSVM_JsonStringify](#oh_jsvm_jsonstringify) ([JSVM_Env](#jsvm_env) env, [JSVM_Value](#jsvm_value) jsonObject, [JSVM_Value](#jsvm_value) \*result) | 将对象字符串化，并返回成功转换后的字符串。 | 
 | JSVM_EXTERN [JSVM_Status](#jsvm_status)[OH_JSVM_CreateSnapshot](#oh_jsvm_createsnapshot) ([JSVM_VM](#jsvm_vm) vm, size_t contextCount, const [JSVM_Env](#jsvm_env) \*contexts, const char \*\*blobData, size_t \*blobSize) | 创建虚拟机的启动快照。 | 
+| JSVM_EXTERN [JSVM_Status](#jsvm_status)[OH_JSVM_GetHeapStatistics](#oh_jsvm_getheapstatistics) ([JSVM_VM](#jsvm_vm) vm, [JSVM_HeapStatistics](_j_s_v_m___heap_statistics.md) \*result) | 返回一组虚拟机堆的统计数据。 | 
+| JSVM_EXTERN [JSVM_Status](#jsvm_status)[OH_JSVM_StartCpuProfiler](#oh_jsvm_startcpuprofiler) ([JSVM_VM](#jsvm_vm) vm, [JSVM_CpuProfiler](#jsvm_cpuprofiler) \*result) | 创建并启动一个CPU profiler。 | 
+| JSVM_EXTERN [JSVM_Status](#jsvm_status)[OH_JSVM_StopCpuProfiler](#oh_jsvm_stopcpuprofiler) ([JSVM_VM](#jsvm_vm) vm, [JSVM_CpuProfiler](#jsvm_cpuprofiler) profiler, [JSVM_OutputStream](#jsvm_outputstream) stream, void \*streamData) | 停止CPU profiler并将结果输出到流。 | 
+| JSVM_EXTERN [JSVM_Status](#jsvm_status)[OH_JSVM_TakeHeapSnapshot](#oh_jsvm_takeheapsnapshot) ([JSVM_VM](#jsvm_vm) vm, [JSVM_OutputStream](#jsvm_outputstream) stream, void \*streamData) | 获取当前堆快照并将其输出到流。 | 
+| JSVM_EXTERN [JSVM_Status](#jsvm_status)[OH_JSVM_OpenInspector](#oh_jsvm_openinspector) ([JSVM_Env](#jsvm_env) env, const char \*host, uint16_t port) | 在指定的主机和端口上激活inspector，将用来调试JS代码。 | 
+| JSVM_EXTERN [JSVM_Status](#jsvm_status)[OH_JSVM_CloseInspector](#oh_jsvm_closeinspector) ([JSVM_Env](#jsvm_env) env) | 尝试关闭剩余的所有inspector连接。 | 
+| JSVM_EXTERN [JSVM_Status](#jsvm_status)[OH_JSVM_WaitForDebugger](#oh_jsvm_waitfordebugger) ([JSVM_Env](#jsvm_env) env, bool breakNextLine) | 等待主机与inspector建立socket连接，连接建立后程序将继续运行。 发送Runtime.runIfWaitingForDebugger命令。 | 
 
 
 ## 宏定义说明
@@ -261,6 +281,19 @@ typedef struct JSVM_CallbackInfo__* JSVM_CallbackInfo
 表示传递给回调函数的不透明数据类型。可用于获取调用该函数的上下文的附加信息。
 
 **起始版本：** 11
+
+
+### JSVM_CpuProfiler
+
+```
+typedef struct JSVM_CpuProfiler__* JSVM_CpuProfiler
+```
+
+**描述**
+
+表示一个JavaScript CPU时间性能分析器。
+
+**起始版本：** 12
 
 
 ### JSVM_Deferred
@@ -339,6 +372,19 @@ typedef struct JSVM_HandleScope__* JSVM_HandleScope
 表示JavaScript值的作用域，用于控制和修改在特定范围内创建的对象的生命周期。 通常，JSVM-API值是在JSVM_HandleScope的上下文中创建的。当从JavaScript调用native方法时， 将存在默认JSVM_HandleScope。如果用户没有显式创建新的JSVM_HandleScope，将在默认 JSVM_HandleScope中创建JSVM-API值。对于native方法执行之外的任何代码调用（例如，在libuv回调调用期间）， 模块需要在调用任何可能导致创建JavaScript值的函数之前创建一个作用域。JSVM_HandleScope是使用 OH_JSVM_OpenHandleScope创建的，并使用OH_JSVM_CloseHandleScope销毁的。 关闭作用域代表向GC指示在JSVM_HandleScope作用域的生命周期内创建的所有JSVM_Value将不再从当前堆的栈帧中引用。
 
 **起始版本：** 11
+
+
+### JSVM_OutputStream
+
+```
+typedef bool(JSVM_CDECL* JSVM_OutputStream) (const char *data, int size, void *streamData)
+```
+
+**描述**
+
+ASCII输出流回调的函数指针类型。参数data是指输出的数据指针。参数size是指输出的数据大小。 空数据指针指示流的结尾。参数streamData是指与回调一起传递给API函数的指针，该API函数向输出流生成数据。回 调返回true表示流可以继续接受数据。否则，它将中止流。
+
+**起始版本：** 12
 
 
 ### JSVM_Ref
@@ -778,6 +824,29 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CloseHandleScope (JSVM_Env env, JSVM_HandleScope
 | -------- | -------- |
 | env | 调用JSVM-API的环境。 | 
 | scope | 表示要关闭的作用域。 | 
+
+**返回：**
+
+成功则返回JSVM_OK。
+
+
+### OH_JSVM_CloseInspector()
+
+```
+JSVM_EXTERN JSVM_Status OH_JSVM_CloseInspector (JSVM_Env env)
+```
+
+**描述**
+
+尝试关闭剩余的所有inspector连接。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| env | 调用JSVM-API的环境。 | 
 
 **返回：**
 
@@ -2219,6 +2288,30 @@ JSVM_EXTERN JSVM_Status OH_JSVM_GetGlobal (JSVM_Env env, JSVM_Value * result )
 成功则返回JSVM_OK。
 
 
+### OH_JSVM_GetHeapStatistics()
+
+```
+JSVM_EXTERN JSVM_Status OH_JSVM_GetHeapStatistics (JSVM_VM vm, JSVM_HeapStatistics * result )
+```
+
+**描述**
+
+返回一组虚拟机堆的统计数据。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| vm | 返回堆统计信息的虚拟机。 | 
+| result | 堆统计数据。 | 
+
+**返回：**
+
+成功则返回JSVM_OK。
+
+
 ### OH_JSVM_GetInstanceData()
 
 ```
@@ -2824,6 +2917,30 @@ JSVM_EXTERN JSVM_Status OH_JSVM_GetVersion (JSVM_Env env, uint32_t * result )
 | -------- | -------- |
 | env | 调用JSVM-API的环境。 | 
 | result | 支持的最高版本的JSVM-API。 | 
+
+**返回：**
+
+成功则返回JSVM_OK。
+
+
+### OH_JSVM_GetVM()
+
+```
+JSVM_EXTERN JSVM_Status OH_JSVM_GetVM (JSVM_Env env, JSVM_VM * result )
+```
+
+**描述**
+
+将检索给定环境的虚拟机实例。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| env | 目标环境，JSVM-API接口将在该环境下调用。 | 
+| result | 给定环境的虚拟机实例。 | 
 
 **返回：**
 
@@ -3451,6 +3568,31 @@ JSVM_EXTERN JSVM_Status OH_JSVM_OpenHandleScope (JSVM_Env env, JSVM_HandleScope 
 成功则返回JSVM_OK。
 
 
+### OH_JSVM_OpenInspector()
+
+```
+JSVM_EXTERN JSVM_Status OH_JSVM_OpenInspector (JSVM_Env env, const char * host, uint16_t port )
+```
+
+**描述**
+
+在指定的主机和端口上激活inspector，将用来调试JS代码。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| env | 调用JSVM-API的环境。 | 
+| host | 要监听inspector连接的主机IP地址。 | 
+| port | 要监听inspector连接的端口。 | 
+
+**返回：**
+
+成功则返回JSVM_OK。失败则返回JSVM_PENDING_EXCEPTION。
+
+
 ### OH_JSVM_OpenVMScope()
 
 ```
@@ -3729,6 +3871,56 @@ JSVM_EXTERN JSVM_Status OH_JSVM_SetProperty (JSVM_Env env, JSVM_Value object, JS
 成功则返回JSVM_OK，失败可能返回JSVM_GENERIC_FAILURE。
 
 
+### OH_JSVM_StartCpuProfiler()
+
+```
+JSVM_EXTERN JSVM_Status OH_JSVM_StartCpuProfiler (JSVM_VM vm, JSVM_CpuProfiler * result )
+```
+
+**描述**
+
+创建并启动一个CPU profiler。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| vm | 启动CPU profiler的虚拟机。 | 
+| result | 指向CPU profiler的指针。 | 
+
+**返回：**
+
+成功则返回JSVM_OK。
+
+
+### OH_JSVM_StopCpuProfiler()
+
+```
+JSVM_EXTERN JSVM_Status OH_JSVM_StopCpuProfiler (JSVM_VM vm, JSVM_CpuProfiler profiler, JSVM_OutputStream stream, void * streamData )
+```
+
+**描述**
+
+停止CPU profiler并将结果输出到流。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| vm | 启动CPU profiler的虚拟机。 | 
+| profiler | 要停止的CPU profiler。 | 
+| stream | 接收数据的输出流回调。 | 
+| streamData | 传递给输出流回调的可选数据。例如，可以是一个文件流，用来将输出流回调中传递的采样数据写入文件。 | 
+
+**返回：**
+
+成功则返回JSVM_OK。
+
+
 ### OH_JSVM_StrictEquals()
 
 ```
@@ -3775,6 +3967,31 @@ JSVM_EXTERN JSVM_Status OH_JSVM_SymbolFor (JSVM_Env env, const char * utf8descri
 | utf8description | UTF-8 C 字符串，表示用作符号描述的文本。 | 
 | length | 描述字符串的长度，以字节为单位。如果字符串以null结尾，则为JSVM_AUTO_LENGTH。 | 
 | result | 表示JavaScript 符号的JSVM_Value。 | 
+
+**返回：**
+
+成功则返回JSVM_OK。
+
+
+### OH_JSVM_TakeHeapSnapshot()
+
+```
+JSVM_EXTERN JSVM_Status OH_JSVM_TakeHeapSnapshot (JSVM_VM vm, JSVM_OutputStream stream, void * streamData )
+```
+
+**描述**
+
+获取当前堆快照并将其输出到流。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| vm | 将被获取堆快照的虚拟机。 | 
+| stream | 接收数据的输出流回调。 | 
+| streamData | 传递给输出流回调的可选数据。例如，可以是一个文件流，用来将输出流回调中传递的采样数据写入文件。 | 
 
 **返回：**
 
@@ -3978,6 +4195,30 @@ JSVM_EXTERN JSVM_Status OH_JSVM_Unwrap (JSVM_Env env, JSVM_Value jsObject, void 
 **返回：**
 
 成功则返回JSVM_OK，如果jsObject传入的不是一个对象，失败返回JSVM_INVALID_ARG。
+
+
+### OH_JSVM_WaitForDebugger()
+
+```
+JSVM_EXTERN JSVM_Status OH_JSVM_WaitForDebugger (JSVM_Env env, bool breakNextLine )
+```
+
+**描述**
+
+等待主机与inspector建立socket连接，连接建立后程序将继续运行。 发送Runtime.runIfWaitingForDebugger命令。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| env | 调用JSVM-API的环境。 | 
+| breakNextLine | 是否在下一行JavaScript代码中中断。传递“是”，后续将暂停在运行下一行JS代码时，继续运行需要开发者通过调试器的调试按钮控制JS的执行。 | 
+
+**返回：**
+
+成功则返回JSVM_OK。失败则返回JSVM_GENERIC_FAILURE。
 
 
 ### OH_JSVM_Wrap()
