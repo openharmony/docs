@@ -341,9 +341,9 @@ allowxperm init data_app_el1_file:dir ioctl { 0x6613 };
 
 ### 拦截原因
 
-检查规则中存在新增的 permissive 主体类型
+规则中存在新增的 permissive 主体类型。
 
 ### 修复方法
-1. 删除不必要的 permissive 定义
-2. 经评审通过后添加主体类型到 type 定义的仓库目录下白名单 sepolicy/whitelist/permissive_whitelist.json 中。如文件缺失，参考创建文件并录入type。https://gitee.com/openharmony/security_selinux_adapter/blob/master/sepolicy/whitelist/permissive_whitelist.json
+1. 删除不必要的 permissive 定义。
+2. 经评审通过后添加主体类型到 type 定义的仓库目录下白名单 sepolicy/whitelist/permissive_whitelist.json 中。如文件缺失，参考创建文件并录入主体列表。https://gitee.com/openharmony/security_selinux_adapter/blob/master/sepolicy/whitelist/permissive_whitelist.json。
 
