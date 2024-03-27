@@ -640,7 +640,7 @@ avPlayer.off('error')
 
 prepare(callback: AsyncCallback\<void>): void
 
-Prepares for audio and video playback. This API uses an asynchronous callback to return the result. It can be called only when the AVPlayer is in the initialized/stopped state. The state changes can be detected by subscribing to the [stateChange](#onstatechange9) event.
+Prepares for audio and video playback. This API uses an asynchronous callback to return the result. It can be called only when the AVPlayer is in the initialized state. The state changes can be detected by subscribing to the [stateChange](#onstatechange9) event.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
@@ -677,7 +677,7 @@ avPlayer.prepare((err: BusinessError) => {
 
 prepare(): Promise\<void>
 
-Prepares for audio and video playback. This API uses a promise to return the result. It can be called only when the AVPlayer is in the initialized/stopped state. The state changes can be detected by subscribing to the [stateChange](#onstatechange9) event.
+Prepares for audio and video playback. This API uses a promise to return the result. It can be called only when the AVPlayer is in the initialized state. The state changes can be detected by subscribing to the [stateChange](#onstatechange9) event.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
