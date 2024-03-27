@@ -1,20 +1,19 @@
-# @ohos.app.ability.UIAbility (UIAbility)
+# @ohos.app.ability.EmbeddableUIAbility (Embeddable UIAbility)
 
-UIAbility is an application component that has the UI. The UIAbility module, inherited from [Ability](js-apis-app-ability-ability.md), provides lifecycle callbacks such as component creation, destruction, and foreground/background switching. It also provides the following capabilities related to component collaboration:
-
-- [Caller](#caller): an object returned by [startAbilityByCall](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilitybycall). The CallerAbility (caller) uses this object to communicate with the CalleeAbility (callee).
-- [Callee](#callee): an internal object of UIAbility. The CalleeAbility (callee) uses this object to communicate with the CallerAbility (caller).
+The EmbeddableUIAbility module provides the UIAbility that can be started in embedded mode for atomic services. It inherits from [UIAbility](js-apis-app-ability-uiAbility.md) and supports two startup modes: redirection startup and embedded startup.
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
 > The APIs of this module can be used only in the stage model.
+>
+> The APIs of this module can be used only in atomic services.
 
 ## Modules to Import
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
 ```
 
 ## Attributes
@@ -23,16 +22,16 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 
 | Name| Type| Read-only| Mandatory| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| context | [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md) | No| Yes| Context of the UIAbility.|
-| launchWant | [Want](js-apis-app-ability-want.md) | No| Yes| Parameters for starting the UIAbility.|
-| lastRequestWant | [Want](js-apis-app-ability-want.md) | No| Yes| Parameters carried in the last request.|
-| callee | [Callee](#callee) | No| Yes| Object that invokes the stub service.|
+| context | [EmbeddableUIAbilityContext](js-apis-inner-application-EmbeddableUIAbilityContext.md) | No| Yes| Context of the UIAbility.|
+| launchWant | [Want](js-apis-app-ability-want.md) | No| No| Parameters for starting the EmbeddableUIAbility. This parameter is available only for the EmbeddableUIAbility in redirection startup mode.|
+| lastRequestWant | [Want](js-apis-app-ability-want.md) | No| No| Parameters carried in the last request. This parameter is available only for the EmbeddableUIAbility in redirection startup mode.|
+| callee | [Callee](#callee) | No| No| Object that invokes the stub service. This parameter is available only for the EmbeddableUIAbility in redirection startup mode.|
 
-## UIAbility.onCreate
+## EmbeddableUIAbility.onCreate
 
 onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void
 
-Called to initialize the service logic when a UIAbility instance in the completely closed state is created. In other words, a UIAbility instance enters this lifecycle callback from a [cold start](../../application-models/uiability-intra-device-interaction.md#cold-starting-uiability). This API returns the result synchronously and does not support asynchronous callback.
+Called to initialize the service logic when an EmbeddableUIAbility instance in the completely closed state is created.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -40,17 +39,17 @@ Called to initialize the service logic when a UIAbility instance in the complete
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | Yes| Want information, including the ability name and bundle name.|
-| launchParam | [AbilityConstant.LaunchParam](js-apis-app-ability-abilityConstant.md#abilityconstantlaunchparam) | Yes| Parameters for starting the UIAbility, and the reason for the last abnormal exit.|
+| want | [Want](js-apis-app-ability-want.md) | Yes| Want information of the EmbeddableUIAbility, including the ability name and bundle name.|
+| launchParam | [AbilityConstant.LaunchParam](js-apis-app-ability-abilityConstant.md#abilityconstantlaunchparam) | No| Parameters for starting the EmbeddableUIAbility, and the reason for the last abnormal exit. This parameter is available only for the EmbeddableUIAbility in redirection startup mode.|
 
 **Example**
 
   ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
+  import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
   import Want from '@ohos.app.ability.Want';
 
-  class MyUIAbility extends UIAbility {
+  class MyEmbeddableUIAbility extends EmbeddableUIAbility {
       onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
           console.log(`onCreate, want: ${want.abilityName}`);
       }
@@ -58,11 +57,11 @@ Called to initialize the service logic when a UIAbility instance in the complete
   ```
 
 
-## UIAbility.onWindowStageCreate
+## EmbeddableUIAbility.onWindowStageCreate
 
 onWindowStageCreate(windowStage: window.WindowStage): void
 
-Called when a **WindowStage** is created for this UIAbility.
+Called when a **WindowStage** is created for this EmbeddableUIAbility.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -75,10 +74,10 @@ Called when a **WindowStage** is created for this UIAbility.
 **Example**
 
   ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
+  import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
   import window from '@ohos.window';
 
-  class MyUIAbility extends UIAbility {
+  class MyEmbeddableUIAbility extends EmbeddableUIAbility {
       onWindowStageCreate(windowStage: window.WindowStage) {
           console.log('onWindowStageCreate');
       }
@@ -86,20 +85,20 @@ Called when a **WindowStage** is created for this UIAbility.
   ```
 
 
-## UIAbility.onWindowStageDestroy
+## EmbeddableUIAbility.onWindowStageDestroy
 
 onWindowStageDestroy(): void
 
-Called when the **WindowStage** is destroyed for this UIAbility.
+Called when the **WindowStage** is destroyed for this EmbeddableUIAbility.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **Example**
 
   ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
+  import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
 
-  class MyUIAbility extends UIAbility {
+  class MyEmbeddableUIAbility extends EmbeddableUIAbility {
       onWindowStageDestroy() {
           console.log('onWindowStageDestroy');
       }
@@ -107,11 +106,11 @@ Called when the **WindowStage** is destroyed for this UIAbility.
   ```
 
 
-## UIAbility.onWindowStageRestore
+## EmbeddableUIAbility.onWindowStageRestore
 
 onWindowStageRestore(windowStage: window.WindowStage): void
 
-Called when the **WindowStage** is restored during the migration of this UIAbility, which is a multi-instance ability.
+Called when the **WindowStage** is restored during the migration of this EmbeddableUIAbility, which is a multi-instance ability. This API is valid only when the EmbeddableUIAbility in started in redirection startup mode.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -124,10 +123,10 @@ Called when the **WindowStage** is restored during the migration of this UIAbili
 **Example**
 
   ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
+  import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
   import window from '@ohos.window';
 
-  class MyUIAbility extends UIAbility {
+  class MyEmbeddableUIAbility extends EmbeddableUIAbility {
       onWindowStageRestore(windowStage: window.WindowStage) {
           console.log('onWindowStageRestore');
       }
@@ -135,15 +134,15 @@ Called when the **WindowStage** is restored during the migration of this UIAbili
   ```
 
 
-## UIAbility.onDestroy
+## EmbeddableUIAbility.onDestroy
 
 onDestroy(): void | Promise&lt;void&gt;
 
-Called to clear resources when this UIAbility is destroyed. This API returns the result synchronously or uses a promise to return the result.
+Called to clear resources when this EmbeddableUIAbility is being destroyed. This API returns the result synchronously or uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-**Return value**
+**Returns**
 
 | Type| Description|
 | -------- | -------- |
@@ -153,9 +152,9 @@ Called to clear resources when this UIAbility is destroyed. This API returns the
 
 
   ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
+  import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
 
-  class MyUIAbility extends UIAbility {
+  class MyEmbeddableUIAbility extends EmbeddableUIAbility {
       onDestroy() {
           console.log('onDestroy');
       }
@@ -165,9 +164,9 @@ Called to clear resources when this UIAbility is destroyed. This API returns the
 After the **onDestroy()** lifecycle callback is executed, the application may exit. Consequently, the asynchronous function (for example, asynchronously writing data to the database) in **onDestroy()** may fail to be executed. You can use the asynchronous lifecycle to ensure that the subsequent lifecycle continues only after the asynchronous function in **onDestroy()** finishes the execution.
 
   ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
 
-class MyUIAbility extends UIAbility {
+class MyEmbeddableUIAbility extends EmbeddableUIAbility {
     async onDestroy() {
         console.log('onDestroy');
         // Call the asynchronous function.
@@ -175,20 +174,20 @@ class MyUIAbility extends UIAbility {
 }
   ```
 
-## UIAbility.onForeground
+## EmbeddableUIAbility.onForeground
 
 onForeground(): void
 
-Called when this UIAbility is switched from the background to the foreground. This API returns the result synchronously and does not support asynchronous callback.
+Called when this EmbeddableUIAbility is switched from the background to the foreground.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **Example**
 
   ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
+  import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
 
-  class MyUIAbility extends UIAbility {
+  class MyEmbeddableUIAbility extends EmbeddableUIAbility {
       onForeground() {
           console.log('onForeground');
       }
@@ -196,20 +195,20 @@ Called when this UIAbility is switched from the background to the foreground. Th
   ```
 
 
-## UIAbility.onBackground
+## EmbeddableUIAbility.onBackground
 
 onBackground(): void
 
-Called when this UIAbility is switched from the foreground to the background. This API returns the result synchronously and does not support asynchronous callback.
+Called when this EmbeddableUIAbility is switched from the foreground to the background.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **Example**
 
   ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
+  import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
 
-  class MyUIAbility extends UIAbility {
+  class MyEmbeddableUIAbility extends EmbeddableUIAbility {
       onBackground() {
           console.log('onBackground');
       }
@@ -217,13 +216,14 @@ Called when this UIAbility is switched from the foreground to the background. Th
   ```
 
 
-## UIAbility.onContinue
+## EmbeddableUIAbility.onContinue
 
 onContinue(wantParam: Record&lt;string, Object&gt;): AbilityConstant.OnContinueResult
 
-Called to save data during the UIAbility migration preparation process.
+Called to save data during the EmbeddableUIAbility migration preparation process. This API is valid only when the EmbeddableUIAbility in started in redirection startup mode.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+
 
 **Parameters**
 
@@ -231,7 +231,7 @@ Called to save data during the UIAbility migration preparation process.
 | -------- | -------- | -------- | -------- |
 | wantParam | Record&lt;string,&nbsp;Object&gt; | Yes| **want** parameter.|
 
-**Return value**
+**Returns**
 
 | Type| Description|
 | -------- | -------- |
@@ -240,10 +240,10 @@ Called to save data during the UIAbility migration preparation process.
 **Example**
 
   ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
+  import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
-  class MyUIAbility extends UIAbility {
+  class MyEmbeddableUIAbility extends EmbeddableUIAbility {
       onContinue(wantParams: Record<string, Object>) {
           console.log('onContinue');
           wantParams['myData'] = 'my1234567';
@@ -253,11 +253,11 @@ Called to save data during the UIAbility migration preparation process.
   ```
 
 
-## UIAbility.onNewWant
+## EmbeddableUIAbility.onNewWant
 
 onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void
 
-Called when a UIAbility instance that has undergone the following states is started again: started in the foreground, running in the foreground, and switched to the background. In other words, a UIAbility instance enters this lifecycle callback from a [hot start](../../application-models/uiability-intra-device-interaction.md#hot-starting-uiability).
+Called when an EmbeddableUIAbility instance that has undergone the following states is started again: started in the foreground, running in the foreground, and switched to the background. This API is valid only when the EmbeddableUIAbility in started in redirection startup mode.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -266,16 +266,16 @@ Called when a UIAbility instance that has undergone the following states is star
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | Yes| Want information, such as the ability name and bundle name.|
-| launchParam | [AbilityConstant.LaunchParam](js-apis-app-ability-abilityConstant.md#abilityconstantlaunchparam) | Yes| Reason for the UIAbility startup and the last abnormal exit.|
+| launchParam | [AbilityConstant.LaunchParam](js-apis-app-ability-abilityConstant.md#abilityconstantlaunchparam) | Yes| Reason for the EmbeddableUIAbility startup and the last abnormal exit.|
 
 **Example**
 
   ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
+  import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
   import Want from '@ohos.app.ability.Want';
 
-  class MyUIAbility extends UIAbility {
+  class MyEmbeddableUIAbility extends EmbeddableUIAbility {
       onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam) {
           console.log(`onNewWant, want: ${want.abilityName}`);
           console.log(`onNewWant, launchParam: ${JSON.stringify(launchParam)}`);
@@ -283,11 +283,11 @@ Called when a UIAbility instance that has undergone the following states is star
   }
   ```
 
-## UIAbility.onDump
+## EmbeddableUIAbility.onDump
 
 onDump(params: Array\<string>): Array\<string>
 
-Called to dump the client information. This API can be used to dump non-sensitive information.
+Called to dump the client information. This API can be used to dump non-sensitive information. This API is valid only when the EmbeddableUIAbility in started in redirection startup mode.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -297,7 +297,7 @@ Called to dump the client information. This API can be used to dump non-sensitiv
 | -------- | -------- | -------- | -------- |
 | params | Array\<string> | Yes| Parameters in the form of a command.|
 
-**Return value**
+**Returns**
 
 | Type| Description|
 | -------- | -------- |
@@ -306,9 +306,9 @@ Called to dump the client information. This API can be used to dump non-sensitiv
 **Example**
 
   ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
+  import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
 
-  class MyUIAbility extends UIAbility {
+  class MyEmbeddableUIAbility extends EmbeddableUIAbility {
       onDump(params: Array<string>) {
           console.log(`dump, params: ${JSON.stringify(params)}`);
           return ['params'];
@@ -317,11 +317,11 @@ Called to dump the client information. This API can be used to dump non-sensitiv
   ```
 
 
-## UIAbility.onSaveState
+## EmbeddableUIAbility.onSaveState
 
 onSaveState(reason: AbilityConstant.StateType, wantParam: Record&lt;string, Object&gt;): AbilityConstant.OnSaveResult
 
-Called when the framework automatically saves the UIAbility state in the case of an application fault. This API is used together with [appRecovery](js-apis-app-ability-appRecovery.md). If automatic state saving is enabled, **onSaveState** is called to save the state of this UIAbility.
+Called when the framework automatically saves the EmbeddableUIAbility state in the case of an application fault. This API is used together with [appRecovery](js-apis-app-ability-appRecovery.md). If automatic state saving is enabled, **onSaveState** is called to save the state of this UIAbility. This API is valid only when the EmbeddableUIAbility in started in redirection startup mode.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -329,22 +329,22 @@ Called when the framework automatically saves the UIAbility state in the case of
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| reason | [AbilityConstant.StateType](js-apis-app-ability-abilityConstant.md#abilityconstantstatetype) | Yes| Reason for triggering the callback to save the UIAbility state.|
+| reason | [AbilityConstant.StateType](js-apis-app-ability-abilityConstant.md#abilityconstantstatetype) | Yes| Reason for triggering the callback to save the EmbeddableUIAbility state.|
 | wantParam | Record&lt;string,&nbsp;Object&gt; | Yes| **want** parameter.|
 
-**Return value**
+**Returns**
 
 | Type| Description|
 | -------- | -------- |
-| [AbilityConstant.OnSaveResult](js-apis-app-ability-abilityConstant.md#abilityconstantonsaveresult) | Whether the UIAbility state is saved.|
+| [AbilityConstant.OnSaveResult](js-apis-app-ability-abilityConstant.md#abilityconstantonsaveresult) | Whether the EmbeddableUIAbility state is saved.|
 
 **Example**
 
   ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
-class MyUIAbility extends UIAbility {
+class MyEmbeddableUIAbility extends EmbeddableUIAbility {
     onSaveState(reason: AbilityConstant.StateType, wantParam: Record<string, Object>) {
         console.log('onSaveState');
         wantParam['myData'] = 'my1234567';
@@ -353,11 +353,11 @@ class MyUIAbility extends UIAbility {
 }
   ```
 
-## UIAbility.onShare<sup>10+</sup>
+## EmbeddableUIAbility.onShare
 
 onShare(wantParam: Record&lt;string, Object&gt;): void
 
-Called by this UIAbility to set data to share in the cross-device sharing scenario.
+Called by this EmbeddableUIAbility to set data to share in the cross-device sharing scenario. This API is valid only when the EmbeddableUIAbility in started in redirection startup mode.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -370,10 +370,10 @@ Called by this UIAbility to set data to share in the cross-device sharing scenar
 **Example**
 
   ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
-class MyUIAbility extends UIAbility {
+class MyEmbeddableUIAbility extends EmbeddableUIAbility {
     onShare(wantParams: Record<string, Object>) {
         console.log('onShare');
         wantParams['ohos.extra.param.key.shareUrl'] = 'example.com';
@@ -381,33 +381,33 @@ class MyUIAbility extends UIAbility {
 }
   ```
 
-## UIAbility.onPrepareToTerminate<sup>10+</sup>
+## EmbeddableUIAbility.onPrepareToTerminate
 
 onPrepareToTerminate(): boolean
 
-Called when this UIAbility is about to terminate in case that the system parameter **persist.sys.prepare_terminate** is set to **true**. You can define an operation in this callback to determine whether to continue terminating the UIAbility. If a confirmation from the user is required, you can define a pre-termination operation in the callback and use it together with [terminateSelf](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself), for example, displaying a dialog box to ask the user whether to terminate the UIAbility. The UIAbility termination process is canceled when **persist.sys.prepare_terminate** is set to **true**.
+Called when this EmbeddableUIAbility is about to terminate in case that the system parameter **persist.sys.prepare_terminate** is set to **true**. You can define an operation in this callback to determine whether to continue terminating the EmbeddableUIAbility. This API is valid only when the EmbeddableUIAbility in started in redirection startup mode.
 
 **Required permissions**: ohos.permission.PREPARE_APP_TERMINATE
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-**Return value**
+**Returns**
 
 | Type| Description|
 | -- | -- |
-| boolean | Whether to terminate the UIAbility. The value **true** means that the termination process is canceled and the UIAbility is not terminated. The value **false** means to continue terminating the UIAbility.|
+| boolean | Whether to terminate the EmbeddableUIAbility. The value **true** means that the termination process is canceled and the EmbeddableUIAbility is not terminated. The value **false** means to continue terminating the EmbeddableUIAbility.|
 
 **Example**
 
   ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
+  import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
   import Want from '@ohos.app.ability.Want';
   import { BusinessError } from '@ohos.base';
 
-  export default class EntryAbility extends UIAbility {
+  export default class EntryAbility extends EmbeddableUIAbility {
     onPrepareToTerminate() {
       // Define a pre-termination operation,
-      // for example, starting another UIAbility and performing asynchronous termination based on the startup result.
+      // for example, starting another EmbeddableUIAbility and performing asynchronous termination based on the startup result.
       let want: Want = {
         bundleName: "com.example.myapplication",
         moduleName: "entry",
@@ -415,7 +415,7 @@ Called when this UIAbility is about to terminate in case that the system paramet
       }
       this.context.startAbilityForResult(want)
         .then((result)=>{
-          // Obtain the startup result and terminate the current UIAbility when resultCode in the return value is 0.
+          // Obtain the startup result and terminate the current EmbeddableUIAbility when resultCode in the return value is 0.
           console.log('startAbilityForResult success, resultCode is ' + result.resultCode);
           if (result.resultCode === 0) {
             this.context.terminateSelf();
@@ -426,31 +426,31 @@ Called when this UIAbility is about to terminate in case that the system paramet
           this.context.terminateSelf();
         })
 
-      return true; // The pre-termination operation is defined. The value true means that the UIAbility termination process is canceled.
+      return true; // The pre-termination operation is defined. The value true means that the EmbeddableUIAbility termination process is canceled.
     }
   }
   ```
 
-## UIAbility.onBackPressed<sup>10+</sup>
+## EmbeddableUIAbility.onBackPressed
 
 onBackPressed(): boolean
 
-Called when an operation of going back to a previous page is triggered on this UIAbility. The return value determines whether to destroy the UIAbility instance. By default, the UIAbility instance is destroyed. This API returns the result synchronously and does not support asynchronous callback.
+Called when an operation of going back to the previous page is triggered on this EmbeddableUIAbility. The return value determines whether to destroy the EmbeddableUIAbility instance. By default, the EmbeddableUIAbility instance is destroyed. This API is valid only when the EmbeddableUIAbility in started in redirection startup mode.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-**Return value**
+**Returns**
 
 | Type| Description|
 | -- | -- |
-| boolean | The value **true** means that the UIAbility instance will be moved to the background and will not be destroyed, and **false** means that the UIAbility instance will be destroyed.|
+| boolean | The value **true** means that the EmbeddableUIAbility instance will be moved to the background and will not be destroyed, and **false** means that the EmbeddableUIAbility instance will be destroyed.|
 
 **Example**
 
   ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
+  import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
 
-  export default class EntryAbility extends UIAbility {
+  export default class EntryAbility extends EmbeddableUIAbility {
     onBackPressed() {
       return true;
     }
@@ -459,13 +459,13 @@ Called when an operation of going back to a previous page is triggered on this U
 
 ## Caller
 
-Implements sending of parcelable data to the target UIAbility when the CallerAbility invokes the target UIAbility (CalleeAbility).
+Implements sending of parcelable data to the target EmbeddableUIAbility when the CallerAbility invokes the target EmbeddableUIAbility (CalleeAbility).
 
 ### Caller.call
 
 call(method: string, data: rpc.Parcelable): Promise&lt;void&gt;
 
-Sends parcelable data to the target UIAbility. This API uses a promise to return the result.
+Sends parcelable data to the target EmbeddableUIAbility. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -476,7 +476,7 @@ Sends parcelable data to the target UIAbility. This API uses a promise to return
 | method | string | Yes| Notification message string negotiated between the two UIAbilities. The message is used to instruct the callee to register a function to receive the parcelable data.|
 | data | [rpc.Parcelable](../apis-ipc-kit/js-apis-rpc.md#parcelable9) | Yes| Parcelable data. You need to customize the data.|
 
-**Return value**
+**Returns**
 
 | Type| Description|
 | -------- | -------- |
@@ -495,8 +495,8 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 **Example**
 
   ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import { Caller } from '@ohos.app.ability.UIAbility';
+  import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
+  import { Caller } from '@ohos.app.ability.EmbeddableUIAbility';
   import { BusinessError } from '@ohos.base';
   import window from '@ohos.window';
   import rpc from '@ohos.rpc';
@@ -524,11 +524,11 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
   };
   let method = 'call_Function'; // Notification message string negotiated by the two UIAbilities.
   let caller: Caller;
-  export default class MainUIAbility extends UIAbility {
+  export default class MainEmbeddableUIAbility extends EmbeddableUIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
       this.context.startAbilityByCall({
         bundleName: 'com.example.myservice',
-        abilityName: 'MainUIAbility',
+        abilityName: 'MainEmbeddableUIAbility',
         deviceId: ''
       }).then((obj) => {
         caller = obj;
@@ -552,7 +552,7 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 
 callWithResult(method: string, data: rpc.Parcelable): Promise&lt;rpc.MessageSequence&gt;
 
-Sends parcelable data to the target UIAbility and obtains the parcelable data returned by the target UIAbility. This API uses a promise to return the result.
+Sends parcelable data to the target EmbeddableUIAbility and obtains the parcelable data returned by the target EmbeddableUIAbility. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -563,11 +563,11 @@ Sends parcelable data to the target UIAbility and obtains the parcelable data re
 | method | string | Yes| Notification message string negotiated between the two UIAbilities. The message is used to instruct the callee to register a function to receive the parcelable data.|
 | data | [rpc.Parcelable](../apis-ipc-kit/js-apis-rpc.md#parcelable9) | Yes| Parcelable data. You need to customize the data.|
 
-**Return value**
+**Returns**
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;[rpc.MessageSequence](../apis-ipc-kit/js-apis-rpc.md#messagesequence9)&gt; | Promise used to return the parcelable data from the target UIAbility.|
+| Promise&lt;[rpc.MessageSequence](../apis-ipc-kit/js-apis-rpc.md#messagesequence9)&gt; | Promise used to return the parcelable data from the target EmbeddableUIAbility.|
 
 **Error codes**
 
@@ -582,8 +582,8 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 **Example**
 
   ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import { Caller } from '@ohos.app.ability.UIAbility';
+  import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
+  import { Caller } from '@ohos.app.ability.EmbeddableUIAbility';
   import { BusinessError } from '@ohos.base';
   import window from '@ohos.window';
   import rpc from '@ohos.rpc';
@@ -611,11 +611,11 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
   };
   let method = 'call_Function';
   let caller: Caller;
-  export default class MainUIAbility extends UIAbility {
+  export default class MainEmbeddableUIAbility extends EmbeddableUIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
       this.context.startAbilityByCall({
         bundleName: 'com.example.myservice',
-        abilityName: 'MainUIAbility',
+        abilityName: 'MainEmbeddableUIAbility',
         deviceId: ''
       }).then((obj) => {
         caller = obj;
@@ -641,7 +641,7 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 
 release(): void
 
-Releases the caller interface of the target UIAbility.
+Releases the caller interface of the target EmbeddableUIAbility.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -657,17 +657,17 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 **Example**
 
   ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import { Caller } from '@ohos.app.ability.UIAbility';
+  import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
+  import { Caller } from '@ohos.app.ability.EmbeddableUIAbility';
   import { BusinessError } from '@ohos.base';
   import window from '@ohos.window';
 
   let caller: Caller;
-  export default class MainUIAbility extends UIAbility {
+  export default class MainEmbeddableUIAbility extends EmbeddableUIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
       this.context.startAbilityByCall({
         bundleName: 'com.example.myservice',
-        abilityName: 'MainUIAbility',
+        abilityName: 'MainEmbeddableUIAbility',
         deviceId: ''
       }).then((obj) => {
         caller = obj;
@@ -687,7 +687,7 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 
  onRelease(callback: OnReleaseCallback): void
 
-Called when the stub on the target UIAbility is disconnected. This API uses an asynchronous callback to return the result.
+Called when the stub on the target EmbeddableUIAbility is disconnected. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -708,17 +708,17 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 **Example**
 
   ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import { Caller } from '@ohos.app.ability.UIAbility';
+  import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
+  import { Caller } from '@ohos.app.ability.EmbeddableUIAbility';
   import { BusinessError } from '@ohos.base';
   import window from '@ohos.window';
 
   let caller: Caller;
-  export default class MainUIAbility extends UIAbility {
+  export default class MainEmbeddableUIAbility extends EmbeddableUIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
       this.context.startAbilityByCall({
         bundleName: 'com.example.myservice',
-        abilityName: 'MainUIAbility',
+        abilityName: 'MainEmbeddableUIAbility',
         deviceId: ''
       }).then((obj) => {
           caller = obj;
@@ -736,11 +736,11 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
   }
   ```
 
-### Caller.onRemoteStateChange<sup>10+</sup>
+### Caller.onRemoteStateChange
 
 onRemoteStateChange(callback: OnRemoteStateChangeCallback): void
 
-Called when the remote UIAbility state changes in the collaboration scenario. This API uses an asynchronous callback to return the result.
+Called when the remote EmbeddableUIAbility state changes in the collaboration scenario. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -748,7 +748,7 @@ Called when the remote UIAbility state changes in the collaboration scenario. Th
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | [OnRemoteStateChangeCallback](#onremotestatechangecallback10) | Yes| Callback used to return the result.|
+| callback | [OnRemoteStateChangeCallback](#onremotestatechangecallback) | Yes| Callback used to return the result.|
 
 **Error codes**
 
@@ -761,18 +761,18 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 **Example**
 
   ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import { Caller } from '@ohos.app.ability.UIAbility';
+  import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
+  import { Caller } from '@ohos.app.ability.EmbeddableUIAbility';
   import { BusinessError } from '@ohos.base';
   import window from '@ohos.window';
 
   let caller: Caller;
   let dstDeviceId: string;
-  export default class MainAbility extends UIAbility {
+  export default class MainAbility extends EmbeddableUIAbility {
       onWindowStageCreate(windowStage: window.WindowStage) {
           this.context.startAbilityByCall({
               bundleName: 'com.example.myservice',
-              abilityName: 'MainUIAbility',
+              abilityName: 'MainEmbeddableUIAbility',
               deviceId: dstDeviceId
           }).then((obj) => {
               caller = obj;
@@ -794,7 +794,7 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 
 on(type: 'release', callback: OnReleaseCallback): void
 
-Called when the stub on the target UIAbility is disconnected. This API uses an asynchronous callback to return the result.
+Called when the stub on the target EmbeddableUIAbility is disconnected. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -816,17 +816,17 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 **Example**
 
   ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import { Caller } from '@ohos.app.ability.UIAbility';
+  import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
+  import { Caller } from '@ohos.app.ability.EmbeddableUIAbility';
   import { BusinessError } from '@ohos.base';
   import window from '@ohos.window';
 
   let caller: Caller;
-  export default class MainUIAbility extends UIAbility {
+  export default class MainEmbeddableUIAbility extends EmbeddableUIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
       this.context.startAbilityByCall({
         bundleName: 'com.example.myservice',
-        abilityName: 'MainUIAbility',
+        abilityName: 'MainEmbeddableUIAbility',
         deviceId: ''
       }).then((obj) => {
           caller = obj;
@@ -848,7 +848,7 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 
 off(type: 'release', callback: OnReleaseCallback): void
 
-Deregisters a callback that is invoked when the stub on the target UIAbility is disconnected. This capability is reserved. This API uses an asynchronous callback to return the result.
+Deregisters a callback that is invoked when the stub on the target EmbeddableUIAbility is disconnected. This capability is reserved. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -862,17 +862,17 @@ Deregisters a callback that is invoked when the stub on the target UIAbility is 
 **Example**
 
   ```ts
-  import UIAbility, { OnReleaseCallback } from '@ohos.app.ability.UIAbility';
-  import { Caller } from '@ohos.app.ability.UIAbility';
+  import EmbeddableUIAbility, { OnReleaseCallback } from '@ohos.app.ability.EmbeddableUIAbility';
+  import { Caller } from '@ohos.app.ability.EmbeddableUIAbility';
   import { BusinessError } from '@ohos.base';
   import window from '@ohos.window';
 
   let caller: Caller;
-  export default class MainUIAbility extends UIAbility {
+  export default class MainEmbeddableUIAbility extends EmbeddableUIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
       this.context.startAbilityByCall({
         bundleName: 'com.example.myservice',
-        abilityName: 'MainUIAbility',
+        abilityName: 'MainEmbeddableUIAbility',
         deviceId: ''
       }).then((obj) => {
           caller = obj;
@@ -896,7 +896,7 @@ Deregisters a callback that is invoked when the stub on the target UIAbility is 
 
 off(type: 'release'): void
 
-Deregisters a callback that is invoked when the stub on the target UIAbility is disconnected. This capability is reserved.
+Deregisters a callback that is invoked when the stub on the target EmbeddableUIAbility is disconnected. This capability is reserved.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -909,17 +909,17 @@ Deregisters a callback that is invoked when the stub on the target UIAbility is 
 **Example**
 
   ```ts
-  import UIAbility, { OnReleaseCallback } from '@ohos.app.ability.UIAbility';
-  import { Caller } from '@ohos.app.ability.UIAbility';
+  import EmbeddableUIAbility, { OnReleaseCallback } from '@ohos.app.ability.EmbeddableUIAbility';
+  import { Caller } from '@ohos.app.ability.EmbeddableUIAbility';
   import { BusinessError } from '@ohos.base';
   import window from '@ohos.window';
 
   let caller: Caller;
-  export default class MainUIAbility extends UIAbility {
+  export default class MainEmbeddableUIAbility extends EmbeddableUIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
       this.context.startAbilityByCall({
         bundleName: 'com.example.myservice',
-        abilityName: 'MainUIAbility',
+        abilityName: 'MainEmbeddableUIAbility',
         deviceId: ''
       }).then((obj) => {
           caller = obj;
@@ -947,7 +947,7 @@ Implements callbacks for caller notification registration and deregistration.
 
 on(method: string, callback: CalleeCallback): void
 
-Registers a caller notification callback, which is invoked when the target UIAbility registers a function.
+Registers a caller notification callback, which is invoked when the target EmbeddableUIAbility registers a function.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -970,7 +970,7 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 **Example**
 
   ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
+  import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
   import Want from '@ohos.app.ability.Want';
   import rpc from '@ohos.rpc';
@@ -1003,7 +1003,7 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
       pdata.readParcelable(msg);
       return new MyMessageAble('test1', 'Callee test');
   }
-  export default class MainUIAbility extends UIAbility {
+  export default class MainEmbeddableUIAbility extends EmbeddableUIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
       console.log('Callee onCreate is called');
       try {
@@ -1019,7 +1019,7 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 
 off(method: string): void
 
-Deregisters a caller notification callback, which is invoked when the target UIAbility registers a function.
+Deregisters a caller notification callback, which is invoked when the target EmbeddableUIAbility registers a function.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -1042,12 +1042,12 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 **Example**
 
   ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
+  import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
   import Want from '@ohos.app.ability.Want';
 
   let method = 'call_Function';
-  export default class MainUIAbility extends UIAbility {
+  export default class MainEmbeddableUIAbility extends EmbeddableUIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
       console.log('Callee onCreate is called');
       try {
@@ -1062,7 +1062,7 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 ## OnReleaseCallback
 
 
-Defines the callback that is invoked when the stub on the target UIAbility is disconnected.
+Defines the callback that is invoked when the stub on the target EmbeddableUIAbility is disconnected.
 
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
@@ -1071,10 +1071,10 @@ Defines the callback that is invoked when the stub on the target UIAbility is di
 
 | Name| Type| Mandatory| Description|
 | --- | ----- | --- | -------- |
-| msg | string | Yes| Message used for disconnection.| 
+| msg | string | Yes| Message used for disconnection.|
 
 
-## OnRemoteStateChangeCallback<sup>10+</sup>
+## OnRemoteStateChangeCallback
 
 
 Defines the callback that is invoked when the remote UIAbility state changes in the collaboration scenario.
@@ -1086,7 +1086,7 @@ Defines the callback that is invoked when the remote UIAbility state changes in 
 
 | Name| Type| Mandatory| Description|
 | --- | ----- | --- | -------- |
-| msg | string | Yes| Message used for disconnection.| 
+| msg | string | Yes| Message used for disconnection.|
 
 
 ## CalleeCallback
@@ -1103,7 +1103,7 @@ Defines the callback of the registration message notification of the UIAbility.
 | --- | ----- | --- | -------- |
 | indata | [rpc.MessageSequence](../apis-ipc-kit/js-apis-rpc.md#messagesequence9) | Yes| Data to be transferred.|
 
-**Return value**
+**Returns**
 
 | Type  | Description                                 |
 | ------------ | ------------------------------------- |

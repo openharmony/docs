@@ -1,6 +1,6 @@
 # ProcessInfo
 
-The **ProcessInfo** module defines process information. You can use [getProcessInfo](../apis/js-apis-inner-app-context.md#contextgetprocessinfo7) to obtain information about the processes running on the current ability.
+The ProcessInfo module defines process information. You can use [getProcessInfo](js-apis-inner-app-context.md#contextgetprocessinfo7) to obtain information about the processes running on the current ability.
 
 > **NOTE**
 > 

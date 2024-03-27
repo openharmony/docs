@@ -21,7 +21,7 @@ Before calling any APIs in **ApplicationContext**, obtain an **ApplicationContex
 
 on(type: 'abilityLifecycle', callback: AbilityLifecycleCallback): number
 
-Registers a listener to monitor the ability lifecycle of the application.
+Registers a listener to monitor the ability lifecycle of the application. Multi-thread concurrent calls are not supported.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -84,7 +84,7 @@ export default class EntryAbility extends UIAbility {
         }
         // 1. Obtain applicationContext through the context attribute.
         let applicationContext = this.context.getApplicationContext();
-        // 2. Use applicationContext.on to subscribe to the 'abilityLifecycle' event.
+        // 2. Use applicationContext.on() to subscribe to the 'abilityLifecycle' event.
         lifecycleId = applicationContext.on('abilityLifecycle', AbilityLifecycleCallback);
         console.log(`registerAbilityLifecycleCallback lifecycleId: ${lifecycleId}`);
     }
@@ -95,7 +95,7 @@ export default class EntryAbility extends UIAbility {
 
 off(type: 'abilityLifecycle', callbackId: number,  callback: AsyncCallback\<void>): void
 
-Deregisters the listener that monitors the ability lifecycle of the application.
+Deregisters the listener that monitors the ability lifecycle of the application. Multi-thread concurrent calls are not supported.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -120,7 +120,7 @@ export default class EntryAbility extends UIAbility {
         console.log(`stage applicationContext: ${applicationContext}`);
         applicationContext.off('abilityLifecycle', lifecycleId, (error, data) => {
             if (error) {
-                console.error(`unregisterAbilityLifecycleCallback fail, err: ${JSON.stringify(error)}`);    
+                console.error(`unregisterAbilityLifecycleCallback fail, err: ${JSON.stringify(error)}`);
             } else {
                 console.log(`unregisterAbilityLifecycleCallback success, data: ${JSON.stringify(data)}`);
             }
@@ -133,7 +133,7 @@ export default class EntryAbility extends UIAbility {
 
 off(type: 'abilityLifecycle', callbackId: number): Promise\<void>
 
-Deregisters the listener that monitors the ability lifecycle of the application.
+Deregisters the listener that monitors the ability lifecycle of the application. Multi-thread concurrent calls are not supported.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -170,7 +170,7 @@ export default class MyAbility extends Ability {
 
 on(type: 'environment', callback: EnvironmentCallback): number
 
-Registers a listener for system environment changes. This API uses an asynchronous callback to return the result.
+Registers a listener for system environment changes. This API uses an asynchronous callback to return the result. Multi-thread concurrent calls are not supported.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -219,7 +219,7 @@ export default class EntryAbility extends UIAbility {
 
 off(type: 'environment', callbackId: number,  callback: AsyncCallback\<void>): void
 
-Deregisters the listener for system environment changes. This API uses an asynchronous callback to return the result.
+Deregisters the listener for system environment changes. This API uses an asynchronous callback to return the result. Multi-thread concurrent calls are not supported.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -256,7 +256,7 @@ export default class EntryAbility extends UIAbility {
 
 off(type: 'environment', callbackId: number): Promise\<void\>
 
-Deregisters the listener for system environment changes.
+Deregisters the listener for system environment changes. Multi-thread concurrent calls are not supported.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -292,7 +292,7 @@ export default class MyAbility extends Ability {
 
 on(type: 'applicationStateChange', callback: ApplicationStateChangeCallback): void
 
-Registers a listener for application foreground/background state changes. This API uses an asynchronous callback to return the result.
+Registers a listener for application foreground/background state changes. This API uses an asynchronous callback to return the result. Multi-thread concurrent calls are not supported.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -334,7 +334,7 @@ export default class MyAbility extends UIAbility {
 
 off(type: 'applicationStateChange', callback?: ApplicationStateChangeCallback): void
 
-Deregisters all the listeners for application foreground/background state changes.
+Deregisters all the listeners for application foreground/background state changes. Multi-thread concurrent calls are not supported.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -658,5 +658,49 @@ export default class MyAbility extends UIAbility {
             }
         });
     }
+}
+```
+
+## ApplicationContext.restartApp<sup>12+</sup>
+
+restartApp(want: Want): void
+
+Restarts the application and starts the specified UIAbility. The **onDestroy** callback is not triggered during the restart.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+| Name       | Type    | Mandatory| Description                      |
+| ------------- | -------- | ---- | -------------------------- |
+| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the UIAbility to start. No verification is performed on the bundle name passed in.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000050 | Internal error. |
+| 16000063 | The target to restart does not belong to the current app or is not a UIAbility. |
+| 16000064 | Restart too frequently. Try again at least 10s later. |
+
+For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+
+**Example**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import Want from '@ohos.app.ability.Want';
+export default class MyAbility extends UIAbility {
+  onBackground() {
+    let applicationContext = this.context.getApplicationContext();
+    let want : Want = {
+      bundleName: 'com.example.myapp',
+      abilityName: 'EntryAbility'
+    };
+    try {
+      applicationContext.restartApp(want);
+    } catch (error) {
+      console.error(`restartApp fail, error: ${JSON.stringify(error)}`);
+    }
+  }
 }
 ```
