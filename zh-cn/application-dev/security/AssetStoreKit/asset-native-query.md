@@ -41,7 +41,7 @@
 ```c
 #include <string.h>
 
-#include "asset_api.h"
+#include "asset/asset_api.h"
 
 void QueryAsset() {
     static const char *ALIAS = "demo_alias";
@@ -71,7 +71,7 @@ void QueryAsset() {
 ```c
 #include <string.h>
 
-#include "asset_api.h"
+#include "asset/asset_api.h"
 
 void QueryAttributes() {
     static const char *ALIAS = "demo_alias";
@@ -101,7 +101,7 @@ void QueryAttributes() {
 ```c
 #include <string.h>
 
-#include "asset_api.h"
+#include "asset/asset_api.h"
 
 void BatchQuery() {
     static const char *LABEL = "demo_label";

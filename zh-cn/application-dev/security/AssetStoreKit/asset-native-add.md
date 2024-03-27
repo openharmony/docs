@@ -44,7 +44,7 @@
 ```c
 #include <string.h>
 
-#include "asset_api.h"
+#include "asset/asset_api.h"
 
 void AddAsset() {
     static const char *SECRET = "demo_pwd";
