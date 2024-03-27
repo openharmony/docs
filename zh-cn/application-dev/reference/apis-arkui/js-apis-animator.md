@@ -266,6 +266,42 @@ animatorResult.onrepeat = ()=> {
 }
 ```
 
+### setExpectedFrameRateRange<sup>12+</sup>
+
+setExpectedFrameRateRange: (rateRange: ExpectedFrameRateRange): void
+
+设置期望的帧率范围。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名           | 类型                                       | 必填 | 说明                          |
+| --------------- | ------------------------------------------ | ---- | -----------------------------|
+| rateRange       | [ExpectedFrameRateRange](../apis-arkui/arkui-ts/ts-explicit-animation.md#expectedframeraterange11)| 是   | 设置期望的帧率范围。|
+
+**示例：**
+
+```ts
+import animator, { AnimatorResult } from '@ohos.animator';
+let animatorResult: AnimatorResult | undefined = animator.create({
+  duration: 2000,
+  easing: "ease",
+  delay: 0,
+  fill: "forwards",
+  direction: "normal",
+  iterations: 1,
+  begin: 100,
+  end: 200
+})
+let expectedFrameRate: ExpectedFrameRateRange = {
+  min: 0,
+  max: 120,
+  expected: 30
+}
+animatorResult.setExpectedFrameRateRange(expectedFrameRate);
+```
+
 
 
 ## AnimatorOptions
