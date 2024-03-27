@@ -6547,7 +6547,7 @@ try {
     const query = new distributedKVStore.Query();
     query.prefixKey("batch_test");
     if (kvStore != null) {
-      kvStore.getResultSize('localDeviceId', query, async (err: BusinessError, resultSize: BusinessError) => {
+      kvStore.getResultSize('localDeviceId', query, async (err: BusinessError, resultSize: number) => {
         if (err != undefined) {
           console.error(`Failed to get resultSize.code is ${err.code},message is ${err.message}`);
           return;
