@@ -270,7 +270,7 @@ Proxy方法被执行的回调。
 ### ArkWeb_CustomSchemeOption
 
 ```
-typedef enum ArkWeb_CustomSchemeOptionArkWeb_CustomSchemeOption
+typedef enum ArkWeb_CustomSchemeOption ArkWeb_CustomSchemeOption
 ```
 **描述：**
 
