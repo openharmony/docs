@@ -2441,6 +2441,30 @@
 
 **起始版本**：12
 
+### ohos.permission.WRITE_GTOKEN_POLICY
+
+允许系统应用写入应用管控策略。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.READ_GTOKEN_POLICY
+
+允许系统应用读取应用管控策略。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.NOTIFY_DEBUG_ASSERT_RESULT
 
 允许应用设置断言调试结果。
