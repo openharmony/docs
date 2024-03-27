@@ -9,7 +9,9 @@
     - [Building an NDK Project with Prebuilt Libraries](build-with-ndk-prebuilts.md)
 - Code Development
     - [Development Overview](develop-code-overview.md)
-    - Node-API Development
+  - C/C++ Standard Library
+    - [C/C++ Mechanisms](c-cpp-overview.md)
+  - Using Node-API
         - [OpenHarmony Node-API Overview](napi-introduction.md)
         - [Node-API Data Types and APIs](napi-data-types-interfaces.md)
         - [Node-API Development Specifications](napi-guidelines.md)
@@ -17,15 +19,16 @@
         - Typical Scenarios
             - [Asynchronous Task Development Using Node-API](use-napi-asynchronous-task.md)
             - [Thread Safety Development Using Node-API](use-napi-thread-safety.md)
+            - [Wrapping a Native Object in an ArkTS Object](use-napi-object-wrap.md)
+      - [Calling Back ArkTS APIs in a Non-ArkTS Thread](use-uv-queue-work.md)
+            - [Creating an ArkTs Runtime Environment Using Node-API](use-napi-ark-runtime.md)
+            - [Loading a Module in the Main Thread Using Node-API](use-napi-load-module.md)
+            - [Running or Stopping an Event Loop in an Asynchronous Thread Using Extended Node-API](use-napi-event-loop.md)
         - [OpenHarmony Node-API FAQs](use-napi-faqs.md)
     - Resource Management
         - [Raw File Development](rawfile-guidelines.md)
     - Resource Scheduling
         - [FFRT Development](ffrt-guidelines.md)
-    - AI
-        - [Using MindSpore Lite for Model Inference](mindspore-lite-guidelines.md)
-        - [Using MindSpore Lite for Offline Model Conversion and Inference](mindspore-lite-offline-model-guidelines.md)
-        - [Connecting the Neural Network Runtime to an AI Inference Framework](neural-network-runtime-guidelines.md)
     - Memory Management
         - [Purgeable Memory Development](purgeable-memory-guidelines.md)
     - Device Management
