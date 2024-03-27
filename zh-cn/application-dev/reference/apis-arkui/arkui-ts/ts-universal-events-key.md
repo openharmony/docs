@@ -8,7 +8,7 @@
 
 ## onKeyEvent
 
-onKeyEvent(event: (event: KeyEvent) => void)
+onKeyEvent(event: (event: KeyEvent) => void): T
 
 绑定该方法的组件获焦后，按键动作触发该回调。
 
@@ -20,6 +20,11 @@ onKeyEvent(event: (event: KeyEvent) => void)
 | ------ | ----------------------------- | ---- | ------------------ |
 | event  | [KeyEvent](#keyevent对象说明) | 是   | 获得KeyEvent对象。 |
 
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
 
 ## KeyEvent对象说明
 
