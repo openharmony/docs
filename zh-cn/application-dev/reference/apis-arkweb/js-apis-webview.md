@@ -4896,6 +4896,58 @@ struct WebComponent {
 }
 ```
 
+### prefetchResource<sup>12+</sup>
+
+static prefetchResource(request: RequestInfo, additionalHeaders?: Array\<WebHeader>, cacheKey?: string, cacheValidTime?: number): void
+
+根据指定的请求信息和附加的http请求头去预获取资源请求，存入内存缓存，并指定其缓存key和有效期，以加快加载速度。目前仅支持Content-Type为application/x-www-form-urlencoded的post请求。最多可以预获取6个post请求。如果要预获取第7个，请清除不需要的post请求缓存，否则会自动清除最早预获取的post缓存。
+
+**系统能力：**  SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名             | 类型                             |  必填  | 说明                                                              |
+| ------------------| ------------------------------- | ---- | ------------------------------------------------------------------ |
+| request           | [RequestInfo](#requestinfo12)   | 是   | 预获取请求的信息。                                                      |
+| additionalHeaders | Array\<[WebHeader](#webheader)> | 否   | 预获取请求的附加HTTP请求头。                                             |
+| cacheKey          | string                          | 否   | 预获取请求的内存缓存key。默认取url作为key。                                |
+| cacheValidTime    | number                          | 否   | 预获取请求的内存缓存有效期。取值范围：(0, 2147483647]。单位：秒。默认值：300秒。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md).
+
+| 错误码ID  | 错误信息                                                      |
+| -------- | ------------------------------------------------------------ |
+| 17100002 | Invalid url.                                                 |
+
+**示例：**
+
+```ts
+// xxx.ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import web_webview from '@ohos.web.webview';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import Want from '@ohos.app.ability.Want';
+
+export default class EntryAbility extends UIAbility {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+        console.log("EntryAbility onCreate");
+        web_webview.WebviewController.initializeWebEngine();
+        // 预获取时，需要將"https://www.example1.com/post?e=f&g=h"替换成真实要访问的网站地址。
+        web_webview.WebviewController.prefetchResource(
+          {url:"https://www.example1.com/post?e=f&g=h",
+          method:"POST",
+          formData:"a=x&b=y",},
+          [{headerKey:"c",
+            headerValue:"z",},],
+          "KeyX", 500);
+        AppStorage.setOrCreate("abilityWant", want);
+        console.log("EntryAbility onCreate done");
+    }
+}
+```
+
 ### prepareForPageLoad<sup>10+</sup>
 
 static prepareForPageLoad(url: string, preconnectable: boolean, numSockets: number): void
@@ -8992,6 +9044,18 @@ Web组件返回的请求/响应头对象。
 | ----------- | ------ | -----|------|------------------- |
 | headerKey   | string | 是 | 是 | 请求/响应头的key。   |
 | headerValue | string | 是 | 是 | 请求/响应头的value。 |
+
+## RequestInfo<sup>12+</sup>
+
+Web组件发送的资源请求信息。
+
+**系统能力：**: SystemCapability.Web.Webview.Core
+
+| 名称      | 类型   | 可读 | 可写 |说明        |
+| ---------| ------ | -----|------|--------  |
+| url      | string | 是 | 是 | 请求的链接。    |
+| method   | string | 是 | 是 | 请求的方法。    |
+| formData | string | 是 | 是 | 请求的表单数据。 |
 
 ## WebHitTestType
 
