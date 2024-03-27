@@ -1,6 +1,5 @@
 # Asynchronous Task Development Using Node-API
 
-
 ## When to Use
 
 For a time-consuming operation, you can use **napi_create_async_work** to create an asynchronous work object to prevent the main thread from being blocked while ensuring the performance and response of your application. You can use asynchronous work objects in the following scenarios:
@@ -15,11 +14,15 @@ For a time-consuming operation, you can use **napi_create_async_work** to create
 
 You can use a promise or a callback to implement asynchronous calls. To use a callback, you must pass in the callback.
 
+![](figures/napi_async_work.png)
 
 ## Example (Promise)
 
+![](figures/napi_async_work_with_promise.png)
+
 1. Use **napi_create_async_work** to create an asynchronous work object, and use **napi_queue_async_work** to add the object to a queue.
-   ```
+
+   ```cpp
    struct CallbackData {
        napi_async_work asyncWork = nullptr;
        napi_deferred deferred = nullptr;
@@ -54,7 +57,8 @@ You can use a promise or a callback to implement asynchronous calls. To use a ca
    ```
 
 2. Define the first callback of the asynchronous work object. This callback is executed in a worker thread to process specific service logic.
-   ```
+
+   ```cpp
    static void ExecuteCB(napi_env env, void *data)
    {
        CallbackData *callbackData = reinterpret_cast<CallbackData *>(data);
@@ -63,7 +67,8 @@ You can use a promise or a callback to implement asynchronous calls. To use a ca
    ```
 
 3. Define the second callback of the asynchronous work object. This callback is executed in the main thread to return the result to the ArkTS side.
-   ```
+
+   ```cpp
    static void CompleteCB(napi_env env, napi_status status, void *data)
    {
        CallbackData *callbackData = reinterpret_cast<CallbackData *>(data);
@@ -81,7 +86,8 @@ You can use a promise or a callback to implement asynchronous calls. To use a ca
    ```
 
 4. Initialize the module and call the API of ArkTS.
-   ```
+
+   ```cpp
    // Initialize the module.
    static napi_value Init(napi_env env, napi_value exports)
    {
@@ -99,11 +105,13 @@ You can use a promise or a callback to implement asynchronous calls. To use a ca
    );
    ```
 
-
 ## Example (Callback)
 
+![](figures/napi_async_work_with_callback.png)
+
 1. Use **napi_create_async_work** to create an asynchronous work object, and use **napi_queue_async_work** to add the object to a queue.
-   ```
+
+   ```cpp
    struct CallbackData {
      napi_async_work asyncWork = nullptr;
      napi_ref callbackRef = nullptr;
@@ -133,7 +141,8 @@ You can use a promise or a callback to implement asynchronous calls. To use a ca
    ```
 
 2. Define the first callback of the asynchronous work object. This callback is executed in a worker thread to process specific service logic.
-   ```
+
+   ```cpp
    static void ExecuteCB(napi_env env, void *data) 
    {
        CallbackData *callbackData = reinterpret_cast<CallbackData *>(data);
@@ -142,7 +151,8 @@ You can use a promise or a callback to implement asynchronous calls. To use a ca
    ```
 
 3. Define the second callback of the asynchronous work object. This callback is executed in the main thread to return the result to the ArkTS side.
-   ```
+
+   ```cpp
    static void CompleteCB(napi_env env, napi_status status, void *data) 
    {
        CallbackData *callbackData = reinterpret_cast<CallbackData *>(data);
@@ -163,7 +173,8 @@ You can use a promise or a callback to implement asynchronous calls. To use a ca
    ```
 
 4. Initialize the module and call the API of ArkTS.
-   ```
+
+   ```cpp
    // Initialize the module.
    static napi_value Init(napi_env env, napi_value exports)
    {
