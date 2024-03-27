@@ -58,7 +58,6 @@ Defines a list of data arrays.
 | ---------- | ------ | --------- |
 | FORMAT_DER | 0      | Distinguished Encoding Rules (DER) format.|
 | FORMAT_PEM | 1      | Privacy-Enhanced Mail (PEM) format.|
-| FORMAT_PKCS7<sup>11+</sup> | 2 | PKCS7 format.|
 
 ## CertItemType<sup>10+</sup>
 
@@ -145,7 +144,7 @@ Defines the parameters used to match a certificate. If no parameter is specified
 
 ## X509CRLMatchParameters<sup>11+</sup>
 
-Defines the parameters used to match a CRL. If no parameter is specified, all CRLs are matched.
+Represents the parameters used to match a CRL. If no parameter is specified, all CRLs are matched.
 
 
 **System capability**: SystemCapability.Security.Cert
@@ -154,41 +153,6 @@ Defines the parameters used to match a CRL. If no parameter is specified, all CR
 | -------------- | --------------------------------- | ---- | ------------------ |
 | issuer | Array\<Uint8Array> | No | Issuers of the certificates. At least one issuer must be matched.|
 | x509Cert | [X509Cert](#x509cert)        | No | Certificate object used to determine whether the certificate is in the CRL.|
-
-## X509TrustAnchor<sup>11+</sup>
-
-Represents an X.509 trust anchor, which is used to verify the certificate chain. The certificate or public key in the trust anchor is used as the trusted root to verify the certificate chain.
-
-**System capability**: SystemCapability.Security.Cert
-
-| Name     | Type                 | Readable| Writable| Description                       |
-| --------- | --------------------- | ---- | ---- | --------------------------- |
-| CACert    | [X509Cert](#x509cert) | Yes  | Yes  | Trusted CA certificate.             |
-| CAPubKey  | Uint8Array            | Yes  | Yes  | Public key of the trusted CA certificate, in DER format.|
-| CASubject | Uint8Array            | Yes  | Yes  | Subject of the trusted CA certificate, in DER format.|
-
-## CertChainValidationParameters<sup>11+</sup>
-
-Defines the parameters for certificate chain validation.
-
-**System capability**: SystemCapability.Security.Cert
-
-| Name        | Type                                             | Mandatory| Description                                  |
-| ------------ | ------------------------------------------------- | ---- | -------------------------------------- |
-| date         | string                                            | No  | Validity period of the certificate to validate.            |
-| trustAnchors | Array\<[X509TrustAnchor](#x509trustanchor11)>     | Yes  | List of trusted anchors.                      |
-| certCRLs     | Array\<[CertCRLCollection](#certcrlcollection11)> | No  | Check whether the certificate is in a CRL.|
-
-## CertChainValidationResult<sup>11+</sup>
-
-Represents the return value of certificate chain validation.
-
-**System capability**: SystemCapability.Security.Cert
-
-| Name       | Type                                 | Readable| Writable| Description          |
-| ----------- | ------------------------------------- | ---- | ---- | -------------- |
-| trustAnchor | [X509TrustAnchor](#x509trustanchor11) | Yes  | No  | Trust anchor.  |
-| entityCert  | [X509Cert](#x509cert)                 | Yes  | No  | Entity certificate.|
 
 ## cryptoCert.createX509Cert
 
@@ -496,7 +460,7 @@ Obtains the serialized X.509 certificate data. This API uses an asynchronous cal
 
 | Name  | Type                                         | Mandatory| Description                            |
 | -------- | --------------------------------------------- | ---- | -------------------------------- |
-| callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | Yes  | Callback invoked to return the serialized X.509 certificate data obtained. |
+| callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | Yes  | Callback invoked to return the serialized X.509 certificate data obtained.|
 
 **Error codes**
 
@@ -2004,16 +1968,16 @@ async function createX509Cert(): Promise<certFramework.X509Cert> {
 async function matchX509Cert() {
   const x509Cert = await createX509Cert();
   try {
-    // The value should be assigned by the service side.
+    // The values must be assigned based on the service.
     const param: certFramework.X509CertMatchParameters = {
       x509Cert,
       validDate: '20231121074700Z',
-      issuer: new Uint8Array([0x30, 0x64, 0x31]), // The values need to be assigned by the service side.
+      issuer: new Uint8Array([0x30, 0x64, 0x31]), // The values must be assigned based on the service.
       keyUsage: [false, false, false, false, false, false, true, true, true],
       serialNumber: BigInt('232100834349818463'),
-      subject: new Uint8Array([0x30, 0x6c, 0x31]), // The values need to be assigned by the service side.
+      subject: new Uint8Array([0x30, 0x6c, 0x31]), // The values must be assigned based on the service.
       publicKey: {
-        data: new Uint8Array([0x30, 0x82, 0x01]) // The values need to be assigned by the service side.
+        data: new Uint8Array([0x30, 0x82, 0x01]) // The values must be assigned based on the service.
       },
       publicKeyAlgID: '1.2.840.113549.1.1.1'
     };
@@ -2226,7 +2190,7 @@ Obtains the OIDs of the certificate extensions.
 
 | Type                   | Description                            |
 | ----------------------- | -------------------------------- |
-| [DataArray](#dataarray) | A list of the OIDs obtained. |
+| [DataArray](#dataarray) | A list of the OIDs obtained.|
 
 **Error codes**
 
@@ -2482,7 +2446,7 @@ Creates an **X509Crl** instance. This API uses an asynchronous callback to retur
 | Name  | Type                               | Mandatory| Description                          |
 | -------- | ----------------------------------- | ---- | ------------------------------ |
 | inStream | [EncodingBlob](#encodingblob)       | Yes  | Serialized certificate revocation list (CRL) data.    |
-| callback | AsyncCallback\<[X509Crl](#x509crl)> | Yes  | Callback invoked to return the **X509Crl** instance created. |
+| callback | AsyncCallback\<[X509Crl](#x509crl)> | Yes  | Callback invoked to return the **X509Crl** instance created.|
 
 **Error codes**
 
@@ -3814,7 +3778,7 @@ Obtains the revoked X.509 certificates. This API uses an asynchronous callback t
 
 | Name  | Type                                                | Mandatory| Description                            |
 | -------- | ---------------------------------------------------- | ---- | -------------------------------- |
-| callback | AsyncCallback<Array\<[X509CrlEntry](#x509crlentry)>> | Yes  | Callback invoked to return a list of revoked X.509 certificates. |
+| callback | AsyncCallback<Array\<[X509CrlEntry](#x509crlentry)>> | Yes  | Callback invoked to return a list of revoked X.509 certificates.|
 
 **Error codes**
 
@@ -4305,7 +4269,7 @@ certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
     try {
       let sigAlgParams = x509Crl.getSignatureAlgParams();
     } catch (err) {
-      let e: BusinessError = error as BusinessError;
+      let e: BusinessError = err as BusinessError;
       console.error('getSignatureAlgParams failed, errCode: ' + e.code + ', errMsg: ' + e.message);
     }
   }
@@ -5249,7 +5213,7 @@ Obtains the revoked X.509 certificates. This API uses an asynchronous callback t
 
 | Name  | Type                                                  | Mandatory| Description                            |
 | -------- | ------------------------------------------------------ | ---- | -------------------------------- |
-| callback | AsyncCallback<Array\<[X509CRLEntry](#x509crlentry11)>> | Yes  | Callback invoked to return a list of revoked X.509 certificates. |
+| callback | AsyncCallback<Array\<[X509CRLEntry](#x509crlentry11)>> | Yes  | Callback invoked to return a list of revoked X.509 certificates.|
 
 **Error codes**
 
@@ -5646,7 +5610,7 @@ certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
     try {
       let sigAlgParams = x509CRL.getSignatureAlgParams();
     } catch (err) {
-      let e: BusinessError = error as BusinessError;
+      let e: BusinessError = err as BusinessError;
       console.error('getSignatureAlgParams failed, errCode: ' + e.code + ', errMsg: ' + e.message);
     }
   }
@@ -5968,7 +5932,7 @@ Provides APIs for certificate chain validator operations.
 validate(certChain : CertChainData, callback : AsyncCallback\<void>) : void
 
 Validates an X.509 certificate chain. This API uses an asynchronous callback to return the result.
-The certificate chain validator does not verify the certificate validity period because the system time on the device is untrusted. To check the validity period of a certificate, use the [checkValidityWithDate()](#checkvaliditywithdate) API of the **X509Cert** class. For details, see [Certificate Specifications](../../security/cert-overview.md#certificate-specifications).
+The certificate chain validator does not verify the certificate validity period because the system time on the device is untrusted. To check the validity period of a certificate, use the [checkValidityWithDate()](#checkvaliditywithdate) API of the **X509Cert** class. For details, see [Certificate Specifications](../../security/DeviceCertificateKit/certificate-framework-overview.md#certificate-specifications).
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -6032,7 +5996,7 @@ try {
 validate(certChain : CertChainData) : Promise\<void>
 
 Validates the X.509 certificate chain. This API uses a promise to return the result.
-The certificate chain validator does not verify the certificate validity period because the system time on the device is untrusted. To check the validity period of a certificate, use the [checkValidityWithDate()](#checkvaliditywithdate) API of the **X509Cert** class. For details, see [Certificate Specifications](../../security/cert-overview.md#certificate-specifications).
+The certificate chain validator does not verify the certificate validity period because the system time on the device is untrusted. To check the validity period of a certificate, use the [checkValidityWithDate()](#checkvaliditywithdate) API of the **X509Cert** class. For details, see [Certificate Specifications](../../security/DeviceCertificateKit/certificate-framework-overview.md#certificate-specifications).
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -6123,7 +6087,6 @@ try {
 }
 ```
 
-
 ## X509CrlEntry<sup>(deprecated)</sup>
 
 Provides APIs for operating the revoked certificates.
@@ -6148,7 +6111,7 @@ Obtains the serialized data of the revoked certificate. This API uses an asynchr
 
 | Name  | Type                                         | Mandatory| Description                                |
 | -------- | --------------------------------------------- | ---- | ------------------------------------ |
-| callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | Yes  | Callback invoked to return the serialized data of the revoked certificate obtained. |
+| callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | Yes  | Callback invoked to return the serialized data of the revoked certificate obtained.|
 
 **Error codes**
 
@@ -6527,7 +6490,7 @@ Obtains the serialized data of the revoked certificate. This API uses an asynchr
 
 | Name  | Type                                         | Mandatory| Description                                |
 | -------- | --------------------------------------------- | ---- | ------------------------------------ |
-| callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | Yes  | Callback invoked to return the serialized data of the revoked certificate obtained. |
+| callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | Yes  | Callback invoked to return the serialized data of the revoked certificate obtained.|
 
 **Error codes**
 
@@ -7206,7 +7169,7 @@ async function createX509Cert(): Promise<certFramework.X509Cert> {
   try {
     x509Cert = await certFramework.createX509Cert(encodingBlob);
   } catch (err) {
-    let e: BusinessError = error as BusinessError;
+    let e: BusinessError = err as BusinessError;
     console.error('createX509Cert failed, errCode: ' + e.code + ', errMsg: ' + e.message);
   }
   return x509Cert;
@@ -7297,7 +7260,7 @@ async function createX509Cert(): Promise<certFramework.X509Cert> {
   try {
     x509Cert = await certFramework.createX509Cert(encodingBlob);
   } catch (err) {
-    let e: BusinessError = error as BusinessError;
+    let e: BusinessError = err as BusinessError;
     console.error('createX509Cert failed, errCode: ' + e.code + ', errMsg: ' + e.message);
   }
   return x509Cert;
@@ -7393,7 +7356,7 @@ async function createX509CRL(): Promise<certFramework.X509CRL> {
   try {
     x509CRL = await certFramework.createX509CRL(encodingBlob);
   } catch (err) {
-    let e: BusinessError = error as BusinessError;
+    let e: BusinessError = err as BusinessError;
     console.error('createX509CRL failed, errCode: ' + e.code + ', errMsg: ' + e.message);
   }
   return x509CRL;
@@ -7510,7 +7473,7 @@ async function createX509CRL(): Promise<certFramework.X509CRL> {
   try {
     x509CRL = await certFramework.createX509CRL(encodingBlob);
   } catch (err) {
-    let e: BusinessError = error as BusinessError;
+    let e: BusinessError = err as BusinessError;
     console.error('createX509CRL failed, errCode: ' + e.code + ', errMsg: ' + e.message);
   }
   return x509CRL;
@@ -7567,716 +7530,4 @@ async function selectCRLs() {
     }
   });
 }
-```
-
-## cryptoCert.createX509CertChain<sup>11+</sup>
-
-createX509CertChain(inStream: EncodingBlob): Promise\<X509CertChain>
-
-Creates an X.509 certificate chain instance. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.Security.Cert
-
-**Parameters**
-
-| Name  | Type                         | Mandatory| Description                |
-| -------- | ----------------------------- | ---- | -------------------- |
-| inStream | [EncodingBlob](#encodingblob) | Yes  | X.509 certificate serialization data.|
-
-**Return value**
-
-| Type                           | Description            |
-| ------------------------------- | ---------------- |
-| Promise\<[X509CertChain](#x509certchain11)> | Promise used to return the **X509CertChain** object created.|
-
-**Error codes**
-
-For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
-
-| ID| Error Message     |
-| -------- | ------------- |
-| 19020001 | memory error. |
-| 19030001 | crypto operation error. |
-
-**Example**
-
-```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
-
-// Convert the string into a Uint8Array.
-function stringToUint8Array(str: string): Uint8Array {
-  let arr: Array<number> = [];
-  for (let i = 0, j = str.length; i < j; i++) {
-    arr.push(str.charCodeAt(i));
-  }
-  return new Uint8Array(arr);
-}
-
-async function createX509CertChain(): Promise<certFramework.X509CertChain> {
-  let certChainData = "-----BEGIN CERTIFICATE-----\n" +
-    "MIID6jCCAtKgAwIBAgIIIM2q/TmRoLcwDQYJKoZIhvcNAQELBQAwWjELMAkGA1UE\n" +
-    "BhMCRU4xEDAOBgNVBAgTB0VuZ2xhbmQxDzANBgNVBAcTBkxvbmRvbjEMMAoGA1UE\n" +
-    "ChMDdHMyMQwwCgYDVQQLEwN0czIxDDAKBgNVBAMTA3RzMjAeFw0yMzEyMDUwNzM5\n" +
-    "MDBaFw0yNDEwMzEyMzU5MDBaMGExCzAJBgNVBAYTAkNOMRAwDgYDVQQIEwdKaWFu\n" +
-    "Z3N1MRAwDgYDVQQHEwdOYW5qaW5nMQwwCgYDVQQKEwN0czMxDDAKBgNVBAsTA3Rz\n" +
-    "MzESMBAGA1UEAxMJMTI3LjAuMC4xMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIB\n" +
-    "CgKCAQEAtt+2QxUevbolYLp51QGcUpageI4fwGLIqv4fj4aoVnHFOOBqVOVpfCLR\n" +
-    "p26LFV/F8ebwPyo8YEBKSwXzMD1573rMSbaH9BalscH5lZYAbetXoio6YRvzlcmc\n" +
-    "rVvLBNMeVnxY86xHpo0MTNyP7W024rZsxWO98xFQVdoiaBC+7+midlisx2Y+7u0j\n" +
-    "zT9GjeUP6JLdLFUZJKUPSTK3jVzw9v1eZQZKYoNfU6vFMd6ndtwW6qEnwpzmmX/U\n" +
-    "T+p5ThAMH593zszlz330nTSXBjIsGkyvOz9gSB0Z0LAuJj06XUNhGL5xKJYKbdI3\n" +
-    "8MFQFJKvRHfgTAvVsvAvpBUM2DuBKwIDAQABo4GsMIGpMAkGA1UdEwQCMAAwHQYD\n" +
-    "VR0OBBYEFDfsHTMZwoA6eaDFlBUyDpka+sYtMAsGA1UdDwQEAwID+DAnBgNVHSUE\n" +
-    "IDAeBggrBgEFBQcDAQYIKwYBBQUHAwIGCCsGAQUFBwMEMBQGA1UdEQQNMAuCCTEy\n" +
-    "Ny4wLjAuMTARBglghkgBhvhCAQEEBAMCBkAwHgYJYIZIAYb4QgENBBEWD3hjYSBj\n" +
-    "ZXJ0aWZpY2F0ZTANBgkqhkiG9w0BAQsFAAOCAQEAp5vTvXrt8ZpgRJVtzv9ss0lJ\n" +
-    "izp1fJf+ft5cDXrs7TSD5oHrSW2vk/ZieIMhexU4LFwhs4OE7jK6pgI48Dseqxx7\n" +
-    "B/KktxhVMJUmVXd9Ayjp6f+BtZlIk0cArPuoXToXjsV8caTGBXHRdzxpAk/w9syc\n" +
-    "GYrbH9TrdNMuTizOb+k268oKXUageZNxHmd7YvOXkcNgrd29jzwXKDYYiUa1DISz\n" +
-    "DnYaJOgPt0B/5izhoWNK7GhJDy9KEuLURcTSWFysbbnljwO9INPT9MmlS83PdAgN\n" +
-    "iS8VXF4pce1W9U5jH7d7k0JDVSXybebe1iPFphsZpYM/NE+jap+mPy1nTCbf9g==\n" +
-    "-----END CERTIFICATE-----\n" +
-    "-----BEGIN CERTIFICATE-----\n" +
-    "MIIC0zCCAoWgAwIBAgIIXpLoPpQVWnkwBQYDK2VwMFoxCzAJBgNVBAYTAkVOMRAw\n" +
-    "DgYDVQQIEwdFbmdsYW5kMQ8wDQYDVQQHEwZMb25kb24xDDAKBgNVBAoTA3RzMTEM\n" +
-    "MAoGA1UECxMDdHMxMQwwCgYDVQQDEwN0czEwHhcNMjMxMjA1MDczNzAwWhcNMjQw\n" +
-    "OTAxMjM1OTAwWjBaMQswCQYDVQQGEwJFTjEQMA4GA1UECBMHRW5nbGFuZDEPMA0G\n" +
-    "A1UEBxMGTG9uZG9uMQwwCgYDVQQKEwN0czIxDDAKBgNVBAsTA3RzMjEMMAoGA1UE\n" +
-    "AxMDdHMyMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtt+2QxUevbol\n" +
-    "YLp51QGcUpageI4fwGLIqv4fj4aoVnHFOOBqVOVpfCLRp26LFV/F8ebwPyo8YEBK\n" +
-    "SwXzMD1573rMSbaH9BalscH5lZYAbetXoio6YRvzlcmcrVvLBNMeVnxY86xHpo0M\n" +
-    "TNyP7W024rZsxWO98xFQVdoiaBC+7+midlisx2Y+7u0jzT9GjeUP6JLdLFUZJKUP\n" +
-    "STK3jVzw9v1eZQZKYoNfU6vFMd6ndtwW6qEnwpzmmX/UT+p5ThAMH593zszlz330\n" +
-    "nTSXBjIsGkyvOz9gSB0Z0LAuJj06XUNhGL5xKJYKbdI38MFQFJKvRHfgTAvVsvAv\n" +
-    "pBUM2DuBKwIDAQABo28wbTAMBgNVHRMEBTADAQH/MB0GA1UdDgQWBBQ37B0zGcKA\n" +
-    "OnmgxZQVMg6ZGvrGLTALBgNVHQ8EBAMCAQYwEQYJYIZIAYb4QgEBBAQDAgAHMB4G\n" +
-    "CWCGSAGG+EIBDQQRFg94Y2EgY2VydGlmaWNhdGUwBQYDK2VwA0EAuasLBe55YgvF\n" +
-    "b4wmHeohylc9r8cFGS1LNQ5UcSn3sGqMYf6ehnef16NLuCW6upHCs8Sui4iAMvsP\n" +
-    "uKPWR9dKBA==\n" +
-    "-----END CERTIFICATE-----\n" +
-    "-----BEGIN CERTIFICATE-----\n"  +
-    "MIIB3zCCAZGgAwIBAgIIWQvOEDl+ya4wBQYDK2VwMFoxCzAJBgNVBAYTAkVOMRAw\n" +
-    "DgYDVQQIEwdFbmdsYW5kMQ8wDQYDVQQHEwZMb25kb24xDDAKBgNVBAoTA3RzMTEM\n" +
-    "MAoGA1UECxMDdHMxMQwwCgYDVQQDEwN0czEwHhcNMjMxMjA1MDAwMDAwWhcNMjQx\n" +
-    "MjA0MjM1OTU5WjBaMQswCQYDVQQGEwJFTjEQMA4GA1UECBMHRW5nbGFuZDEPMA0G\n" +
-    "A1UEBxMGTG9uZG9uMQwwCgYDVQQKEwN0czExDDAKBgNVBAsTA3RzMTEMMAoGA1UE\n" +
-    "AxMDdHMxMCowBQYDK2VwAyEAuxadj1ww0LqPN24zr28jcSOlSWAe0QdLyRF+ZgG6\n" +
-    "klKjdTBzMBIGA1UdEwEB/wQIMAYBAf8CARQwHQYDVR0OBBYEFNSgpoQvfxR8A1Y4\n" +
-    "St8NjOHkRpm4MAsGA1UdDwQEAwIBBjARBglghkgBhvhCAQEEBAMCAAcwHgYJYIZI\n" +
-    "AYb4QgENBBEWD3hjYSBjZXJ0aWZpY2F0ZTAFBgMrZXADQQAblBgoa72X/K13WOvc\n" +
-    "KW0fqBgFKvLy85hWD6Ufi61k4ProQiZzMK+0+y9jReKelPx/zRdCCgSbQroAR2mV\n" +
-    "xjoE\n" +
-    "-----END CERTIFICATE-----\n";
-
-  // Certificate chain binary data, which must be set based on the service.
-  let encodingBlob: certFramework.EncodingBlob = {
-    data: stringToUint8Array(certChainData),
-    // Set the encoding format, which can be FORMAT_PEM, FORMAT_DER, or FORMAT_PKCS7.
-    encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
-  };
-  let x509CertChain: certFramework.X509CertChain = {} as certFramework.X509CertChain;
-  try {
-    x509CertChain = await certFramework.createX509CertChain(encodingBlob);
-  } catch (error) {
-    let e: BusinessError = error as BusinessError;
-    console.error('createX509CertChain failed, errCode: ' + e.code + ', errMsg: ' + e.message);
-  }
-  return x509CertChain;
-}
-
-createX509CertChain();
-```
-
-## cryptoCert.createX509CertChain<sup>11+</sup>
-
-createX509CertChain(inStream: EncodingBlob, callback: AsyncCallback\<X509CertChain>): void
-
-Creates an X.509 certificate chain instance. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Security.Cert
-
-**Parameters**
-
-| Name  | Type                                 | Mandatory| Description                      |
-| -------- | ------------------------------------- | ---- | -------------------------- |
-| inStream | [EncodingBlob](#encodingblob)         | Yes  | X.509 certificate serialization data.       |
-| callback | AsyncCallback\<[X509CertChain](#x509certchain11)> | Yes  | Callback invoked to return the **X509CertChain** object created.|
-
-**Error codes**
-
-For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
-
-| ID| Error Message     |
-| -------- | ------------- |
-| 19020001 | memory error. |
-| 19030001 | crypto operation error. |
-
-**Example**
-
-```ts
-import certFramework from '@ohos.security.cert';
-
-// Convert the string into a Uint8Array.
-function stringToUint8Array(str: string): Uint8Array {
-  let arr: Array<number> = [];
-  for (let i = 0, j = str.length; i < j; i++) {
-    arr.push(str.charCodeAt(i));
-  }
-  return new Uint8Array(arr);
-}
-
-let certChainData = "-----BEGIN CERTIFICATE-----\n" +
-  "MIID6jCCAtKgAwIBAgIIIM2q/TmRoLcwDQYJKoZIhvcNAQELBQAwWjELMAkGA1UE\n" +
-  "BhMCRU4xEDAOBgNVBAgTB0VuZ2xhbmQxDzANBgNVBAcTBkxvbmRvbjEMMAoGA1UE\n" +
-  "ChMDdHMyMQwwCgYDVQQLEwN0czIxDDAKBgNVBAMTA3RzMjAeFw0yMzEyMDUwNzM5\n" +
-  "MDBaFw0yNDEwMzEyMzU5MDBaMGExCzAJBgNVBAYTAkNOMRAwDgYDVQQIEwdKaWFu\n" +
-  "Z3N1MRAwDgYDVQQHEwdOYW5qaW5nMQwwCgYDVQQKEwN0czMxDDAKBgNVBAsTA3Rz\n" +
-  "MzESMBAGA1UEAxMJMTI3LjAuMC4xMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIB\n" +
-  "CgKCAQEAtt+2QxUevbolYLp51QGcUpageI4fwGLIqv4fj4aoVnHFOOBqVOVpfCLR\n" +
-  "p26LFV/F8ebwPyo8YEBKSwXzMD1573rMSbaH9BalscH5lZYAbetXoio6YRvzlcmc\n" +
-  "rVvLBNMeVnxY86xHpo0MTNyP7W024rZsxWO98xFQVdoiaBC+7+midlisx2Y+7u0j\n" +
-  "zT9GjeUP6JLdLFUZJKUPSTK3jVzw9v1eZQZKYoNfU6vFMd6ndtwW6qEnwpzmmX/U\n" +
-  "T+p5ThAMH593zszlz330nTSXBjIsGkyvOz9gSB0Z0LAuJj06XUNhGL5xKJYKbdI3\n" +
-  "8MFQFJKvRHfgTAvVsvAvpBUM2DuBKwIDAQABo4GsMIGpMAkGA1UdEwQCMAAwHQYD\n" +
-  "VR0OBBYEFDfsHTMZwoA6eaDFlBUyDpka+sYtMAsGA1UdDwQEAwID+DAnBgNVHSUE\n" +
-  "IDAeBggrBgEFBQcDAQYIKwYBBQUHAwIGCCsGAQUFBwMEMBQGA1UdEQQNMAuCCTEy\n" +
-  "Ny4wLjAuMTARBglghkgBhvhCAQEEBAMCBkAwHgYJYIZIAYb4QgENBBEWD3hjYSBj\n" +
-  "ZXJ0aWZpY2F0ZTANBgkqhkiG9w0BAQsFAAOCAQEAp5vTvXrt8ZpgRJVtzv9ss0lJ\n" +
-  "izp1fJf+ft5cDXrs7TSD5oHrSW2vk/ZieIMhexU4LFwhs4OE7jK6pgI48Dseqxx7\n" +
-  "B/KktxhVMJUmVXd9Ayjp6f+BtZlIk0cArPuoXToXjsV8caTGBXHRdzxpAk/w9syc\n" +
-  "GYrbH9TrdNMuTizOb+k268oKXUageZNxHmd7YvOXkcNgrd29jzwXKDYYiUa1DISz\n" +
-  "DnYaJOgPt0B/5izhoWNK7GhJDy9KEuLURcTSWFysbbnljwO9INPT9MmlS83PdAgN\n" +
-  "iS8VXF4pce1W9U5jH7d7k0JDVSXybebe1iPFphsZpYM/NE+jap+mPy1nTCbf9g==\n" +
-  "-----END CERTIFICATE-----\n" +
-  "-----BEGIN CERTIFICATE-----\n" +
-  "MIIC0zCCAoWgAwIBAgIIXpLoPpQVWnkwBQYDK2VwMFoxCzAJBgNVBAYTAkVOMRAw\n" +
-  "DgYDVQQIEwdFbmdsYW5kMQ8wDQYDVQQHEwZMb25kb24xDDAKBgNVBAoTA3RzMTEM\n" +
-  "MAoGA1UECxMDdHMxMQwwCgYDVQQDEwN0czEwHhcNMjMxMjA1MDczNzAwWhcNMjQw\n" +
-  "OTAxMjM1OTAwWjBaMQswCQYDVQQGEwJFTjEQMA4GA1UECBMHRW5nbGFuZDEPMA0G\n" +
-  "A1UEBxMGTG9uZG9uMQwwCgYDVQQKEwN0czIxDDAKBgNVBAsTA3RzMjEMMAoGA1UE\n" +
-  "AxMDdHMyMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtt+2QxUevbol\n" +
-  "YLp51QGcUpageI4fwGLIqv4fj4aoVnHFOOBqVOVpfCLRp26LFV/F8ebwPyo8YEBK\n" +
-  "SwXzMD1573rMSbaH9BalscH5lZYAbetXoio6YRvzlcmcrVvLBNMeVnxY86xHpo0M\n" +
-  "TNyP7W024rZsxWO98xFQVdoiaBC+7+midlisx2Y+7u0jzT9GjeUP6JLdLFUZJKUP\n" +
-  "STK3jVzw9v1eZQZKYoNfU6vFMd6ndtwW6qEnwpzmmX/UT+p5ThAMH593zszlz330\n" +
-  "nTSXBjIsGkyvOz9gSB0Z0LAuJj06XUNhGL5xKJYKbdI38MFQFJKvRHfgTAvVsvAv\n" +
-  "pBUM2DuBKwIDAQABo28wbTAMBgNVHRMEBTADAQH/MB0GA1UdDgQWBBQ37B0zGcKA\n" +
-  "OnmgxZQVMg6ZGvrGLTALBgNVHQ8EBAMCAQYwEQYJYIZIAYb4QgEBBAQDAgAHMB4G\n" +
-  "CWCGSAGG+EIBDQQRFg94Y2EgY2VydGlmaWNhdGUwBQYDK2VwA0EAuasLBe55YgvF\n" +
-  "b4wmHeohylc9r8cFGS1LNQ5UcSn3sGqMYf6ehnef16NLuCW6upHCs8Sui4iAMvsP\n" +
-  "uKPWR9dKBA==\n" +
-  "-----END CERTIFICATE-----\n" +
-  "-----BEGIN CERTIFICATE-----\n"  +
-  "MIIB3zCCAZGgAwIBAgIIWQvOEDl+ya4wBQYDK2VwMFoxCzAJBgNVBAYTAkVOMRAw\n" +
-  "DgYDVQQIEwdFbmdsYW5kMQ8wDQYDVQQHEwZMb25kb24xDDAKBgNVBAoTA3RzMTEM\n" +
-  "MAoGA1UECxMDdHMxMQwwCgYDVQQDEwN0czEwHhcNMjMxMjA1MDAwMDAwWhcNMjQx\n" +
-  "MjA0MjM1OTU5WjBaMQswCQYDVQQGEwJFTjEQMA4GA1UECBMHRW5nbGFuZDEPMA0G\n" +
-  "A1UEBxMGTG9uZG9uMQwwCgYDVQQKEwN0czExDDAKBgNVBAsTA3RzMTEMMAoGA1UE\n" +
-  "AxMDdHMxMCowBQYDK2VwAyEAuxadj1ww0LqPN24zr28jcSOlSWAe0QdLyRF+ZgG6\n" +
-  "klKjdTBzMBIGA1UdEwEB/wQIMAYBAf8CARQwHQYDVR0OBBYEFNSgpoQvfxR8A1Y4\n" +
-  "St8NjOHkRpm4MAsGA1UdDwQEAwIBBjARBglghkgBhvhCAQEEBAMCAAcwHgYJYIZI\n" +
-  "AYb4QgENBBEWD3hjYSBjZXJ0aWZpY2F0ZTAFBgMrZXADQQAblBgoa72X/K13WOvc\n" +
-  "KW0fqBgFKvLy85hWD6Ufi61k4ProQiZzMK+0+y9jReKelPx/zRdCCgSbQroAR2mV\n" +
-  "xjoE\n" +
-  "-----END CERTIFICATE-----\n";
-
-// Certificate chain binary data, which must be set based on the service.
-let encodingBlob: certFramework.EncodingBlob = {
-  data: stringToUint8Array(certChainData),
-  // Set the encoding format, which can be FORMAT_PEM, FORMAT_DER, or FORMAT_PKCS7.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
-};
-
-certFramework.createX509CertChain(encodingBlob, (err, certChain) => {
-  if (err != null) {
-    console.error('createX509CertChain failed, errCode: ' + err.code + ', errMsg: ' + err.message);
-  } else {
-    console.log('createX509CertChain success');
-  }
-});
-```
-
-## cryptoCert.createX509CertChain<sup>11+</sup>
-
-createX509CertChain(certs: Array\<X509Cert>): X509CertChain
-
-Creates an X.509 certificate chain object based on the specified certificates. This API returns the result synchronously.
-
-**System capability**: SystemCapability.Security.Cert
-
-**Parameters**
-
-| Name  | Type                 | Mandatory| Description                      |
-| -------- | -------------------- | ---- | -------------------------- |
-| certs    | Array\<[X509Cert](#x509cert)> | Yes  | Array of X.509 certificates.|
-
-**Return value**
-
-| Type                             | Description                |
-| --------------------------------- | -------------------- |
-| [X509CertChain](#x509certchain11) | **X509CertChain** object created.|
-
-**Error codes**
-
-For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
-
-| ID| Error Message     |
-| -------- | ------------- |
-| 19020001 | memory error. |
-| 19030001 | crypto operation error. |
-
-**Example**
-
-```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
-
-// Convert the string into a Uint8Array.
-function stringToUint8Array(str: string): Uint8Array {
-  let arr: Array<number> = [];
-  for (let i = 0, j = str.length; i < j; i++) {
-    arr.push(str.charCodeAt(i));
-  }
-  return new Uint8Array(arr);
-}
-
-async function createX509Cert(): Promise<certFramework.X509Cert> {
-  let certData = '-----BEGIN CERTIFICATE-----\n' +
-    'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
-    'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
-    'RXhhbXBsZSBSb290IENBMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEHjG74yMI\n' +
-    'ueO7z3T+dyuEIrhxTg2fqgeNB3SGfsIXlsiUfLTatUsU0i/sePnrKglj2H8Abbx9\n' +
-    'PK0tsW/VgqwDIDAKBggqhkjOPQQDAgNJADBGAiEApVZno/Z7WyDc/muRN1y57uaY\n' +
-    'Mjrgnvp/AMdE8qmFiDwCIQCrIYdHVO1awaPgcdALZY+uLQi6mEs/oMJLUcmaag3E\n' +
-    'Qw==\n' +
-    '-----END CERTIFICATE-----\n';
-
-  // Certificate binary data, which must be set based on the service.
-  let encodingBlob: certFramework.EncodingBlob = {
-    data: stringToUint8Array(certData),
-    // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-    encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
-  };
-
-  let x509Cert: certFramework.X509Cert = {} as certFramework.X509Cert;
-  try {
-    x509Cert = await certFramework.createX509Cert(encodingBlob);
-  } catch (error) {
-    let e: BusinessError = error as BusinessError;
-    console.error('createX509Cert failed, errCode: ' + e.code + ', errMsg: ' + e.message);
-  }
-  return x509Cert;
-}
-
-async function createX509CertChain(): Promise<certFramework.X509CertChain> {
-  const x509Cert = await createX509Cert();
-  let x509CertChain: certFramework.X509CertChain = {} as certFramework.X509CertChain;
-  try {
-    x509CertChain = certFramework.createX509CertChain([x509Cert]);
-  } catch (error) {
-    let e: BusinessError = error as BusinessError;
-    console.error('createX509CertChain failed, errCode: ' + e.code + ', errMsg: ' + e.message);
-  }
-  return x509CertChain;
-}
-
-createX509CertChain();
-```
-
-## X509CertChain<sup>11+</sup>
-
-Provides APIs for managing the X.509 certificate chain.
-
-### getCertList<sup>11+</sup>
-
-getCertList(): Array\<X509Cert>
-
-Obtains the X.509 certificate list.
-
-**System capability**: SystemCapability.Security.Cert
-
-**Return value**
-
-| Type          | Description       |
-| -------------- | ----------- |
-| Array\<[X509Cert](#x509cert)> | X.509 certificate list obtained.|
-
-**Error codes**
-
-For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
-
-| ID| Error Message               |
-| -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19030001 | crypto operation error. |
-
-**Example**
-
-```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
-
-// Convert the string into a Uint8Array.
-function stringToUint8Array(str: string): Uint8Array {
-  let arr: Array<number> = [];
-  for (let i = 0, j = str.length; i < j; i++) {
-    arr.push(str.charCodeAt(i));
-  }
-  return new Uint8Array(arr);
-}
-
-let certChainData = "-----BEGIN CERTIFICATE-----\n" +
-  "MIID6jCCAtKgAwIBAgIIIM2q/TmRoLcwDQYJKoZIhvcNAQELBQAwWjELMAkGA1UE\n" +
-  "BhMCRU4xEDAOBgNVBAgTB0VuZ2xhbmQxDzANBgNVBAcTBkxvbmRvbjEMMAoGA1UE\n" +
-  "ChMDdHMyMQwwCgYDVQQLEwN0czIxDDAKBgNVBAMTA3RzMjAeFw0yMzEyMDUwNzM5\n" +
-  "MDBaFw0yNDEwMzEyMzU5MDBaMGExCzAJBgNVBAYTAkNOMRAwDgYDVQQIEwdKaWFu\n" +
-  "Z3N1MRAwDgYDVQQHEwdOYW5qaW5nMQwwCgYDVQQKEwN0czMxDDAKBgNVBAsTA3Rz\n" +
-  "MzESMBAGA1UEAxMJMTI3LjAuMC4xMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIB\n" +
-  "CgKCAQEAtt+2QxUevbolYLp51QGcUpageI4fwGLIqv4fj4aoVnHFOOBqVOVpfCLR\n" +
-  "p26LFV/F8ebwPyo8YEBKSwXzMD1573rMSbaH9BalscH5lZYAbetXoio6YRvzlcmc\n" +
-  "rVvLBNMeVnxY86xHpo0MTNyP7W024rZsxWO98xFQVdoiaBC+7+midlisx2Y+7u0j\n" +
-  "zT9GjeUP6JLdLFUZJKUPSTK3jVzw9v1eZQZKYoNfU6vFMd6ndtwW6qEnwpzmmX/U\n" +
-  "T+p5ThAMH593zszlz330nTSXBjIsGkyvOz9gSB0Z0LAuJj06XUNhGL5xKJYKbdI3\n" +
-  "8MFQFJKvRHfgTAvVsvAvpBUM2DuBKwIDAQABo4GsMIGpMAkGA1UdEwQCMAAwHQYD\n" +
-  "VR0OBBYEFDfsHTMZwoA6eaDFlBUyDpka+sYtMAsGA1UdDwQEAwID+DAnBgNVHSUE\n" +
-  "IDAeBggrBgEFBQcDAQYIKwYBBQUHAwIGCCsGAQUFBwMEMBQGA1UdEQQNMAuCCTEy\n" +
-  "Ny4wLjAuMTARBglghkgBhvhCAQEEBAMCBkAwHgYJYIZIAYb4QgENBBEWD3hjYSBj\n" +
-  "ZXJ0aWZpY2F0ZTANBgkqhkiG9w0BAQsFAAOCAQEAp5vTvXrt8ZpgRJVtzv9ss0lJ\n" +
-  "izp1fJf+ft5cDXrs7TSD5oHrSW2vk/ZieIMhexU4LFwhs4OE7jK6pgI48Dseqxx7\n" +
-  "B/KktxhVMJUmVXd9Ayjp6f+BtZlIk0cArPuoXToXjsV8caTGBXHRdzxpAk/w9syc\n" +
-  "GYrbH9TrdNMuTizOb+k268oKXUageZNxHmd7YvOXkcNgrd29jzwXKDYYiUa1DISz\n" +
-  "DnYaJOgPt0B/5izhoWNK7GhJDy9KEuLURcTSWFysbbnljwO9INPT9MmlS83PdAgN\n" +
-  "iS8VXF4pce1W9U5jH7d7k0JDVSXybebe1iPFphsZpYM/NE+jap+mPy1nTCbf9g==\n" +
-  "-----END CERTIFICATE-----\n" +
-  "-----BEGIN CERTIFICATE-----\n" +
-  "MIIC0zCCAoWgAwIBAgIIXpLoPpQVWnkwBQYDK2VwMFoxCzAJBgNVBAYTAkVOMRAw\n" +
-  "DgYDVQQIEwdFbmdsYW5kMQ8wDQYDVQQHEwZMb25kb24xDDAKBgNVBAoTA3RzMTEM\n" +
-  "MAoGA1UECxMDdHMxMQwwCgYDVQQDEwN0czEwHhcNMjMxMjA1MDczNzAwWhcNMjQw\n" +
-  "OTAxMjM1OTAwWjBaMQswCQYDVQQGEwJFTjEQMA4GA1UECBMHRW5nbGFuZDEPMA0G\n" +
-  "A1UEBxMGTG9uZG9uMQwwCgYDVQQKEwN0czIxDDAKBgNVBAsTA3RzMjEMMAoGA1UE\n" +
-  "AxMDdHMyMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtt+2QxUevbol\n" +
-  "YLp51QGcUpageI4fwGLIqv4fj4aoVnHFOOBqVOVpfCLRp26LFV/F8ebwPyo8YEBK\n" +
-  "SwXzMD1573rMSbaH9BalscH5lZYAbetXoio6YRvzlcmcrVvLBNMeVnxY86xHpo0M\n" +
-  "TNyP7W024rZsxWO98xFQVdoiaBC+7+midlisx2Y+7u0jzT9GjeUP6JLdLFUZJKUP\n" +
-  "STK3jVzw9v1eZQZKYoNfU6vFMd6ndtwW6qEnwpzmmX/UT+p5ThAMH593zszlz330\n" +
-  "nTSXBjIsGkyvOz9gSB0Z0LAuJj06XUNhGL5xKJYKbdI38MFQFJKvRHfgTAvVsvAv\n" +
-  "pBUM2DuBKwIDAQABo28wbTAMBgNVHRMEBTADAQH/MB0GA1UdDgQWBBQ37B0zGcKA\n" +
-  "OnmgxZQVMg6ZGvrGLTALBgNVHQ8EBAMCAQYwEQYJYIZIAYb4QgEBBAQDAgAHMB4G\n" +
-  "CWCGSAGG+EIBDQQRFg94Y2EgY2VydGlmaWNhdGUwBQYDK2VwA0EAuasLBe55YgvF\n" +
-  "b4wmHeohylc9r8cFGS1LNQ5UcSn3sGqMYf6ehnef16NLuCW6upHCs8Sui4iAMvsP\n" +
-  "uKPWR9dKBA==\n" +
-  "-----END CERTIFICATE-----\n" +
-  "-----BEGIN CERTIFICATE-----\n"  +
-  "MIIB3zCCAZGgAwIBAgIIWQvOEDl+ya4wBQYDK2VwMFoxCzAJBgNVBAYTAkVOMRAw\n" +
-  "DgYDVQQIEwdFbmdsYW5kMQ8wDQYDVQQHEwZMb25kb24xDDAKBgNVBAoTA3RzMTEM\n" +
-  "MAoGA1UECxMDdHMxMQwwCgYDVQQDEwN0czEwHhcNMjMxMjA1MDAwMDAwWhcNMjQx\n" +
-  "MjA0MjM1OTU5WjBaMQswCQYDVQQGEwJFTjEQMA4GA1UECBMHRW5nbGFuZDEPMA0G\n" +
-  "A1UEBxMGTG9uZG9uMQwwCgYDVQQKEwN0czExDDAKBgNVBAsTA3RzMTEMMAoGA1UE\n" +
-  "AxMDdHMxMCowBQYDK2VwAyEAuxadj1ww0LqPN24zr28jcSOlSWAe0QdLyRF+ZgG6\n" +
-  "klKjdTBzMBIGA1UdEwEB/wQIMAYBAf8CARQwHQYDVR0OBBYEFNSgpoQvfxR8A1Y4\n" +
-  "St8NjOHkRpm4MAsGA1UdDwQEAwIBBjARBglghkgBhvhCAQEEBAMCAAcwHgYJYIZI\n" +
-  "AYb4QgENBBEWD3hjYSBjZXJ0aWZpY2F0ZTAFBgMrZXADQQAblBgoa72X/K13WOvc\n" +
-  "KW0fqBgFKvLy85hWD6Ufi61k4ProQiZzMK+0+y9jReKelPx/zRdCCgSbQroAR2mV\n" +
-  "xjoE\n" +
-  "-----END CERTIFICATE-----\n";
-
-// Certificate chain binary data, which must be set based on the service.
-let encodingBlob: certFramework.EncodingBlob = {
-  data: stringToUint8Array(certChainData),
-  // Set the encoding format, which can be FORMAT_PEM, FORMAT_DER, or FORMAT_PKCS7.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
-};
-
-certFramework.createX509CertChain(encodingBlob, (err, certChain) => {
-  if (err != null) {
-    console.error('createX509CertChain failed, errCode: ' + err.code + ', errMsg: ' + err.message);
-  } else {
-    console.log('createX509CertChain success');
-    try {
-      let certList = certChain.getCertList();
-    } catch (err) {
-      let e: BusinessError = err as BusinessError;
-      console.error('X509CertChain getCertList failed, errCode: ' + e.code + ', errMsg: ' + e.message);
-    }
-  }
-});
-```
-
-### validate<sup>11+</sup>
-
-validate(param: CertChainValidationParameters): Promise\<CertChainValidationResult>
-
-Validates a certificate chain. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.Security.Cert
-
-**Parameters**
-
-| Name   | Type                           | Mandatory| Description           |
-| --------- | ------------------------------- | ---- | ----------------- |
-| param | [CertChainValidationParameters](#certchainvalidationparameters11) | Yes  | Parameters for validating the X.509 certificate chain.|
-
-**Return value**
-
-| Type                                                        | Description                             |
-| ------------------------------------------------------------ | --------------------------------- |
-| Promise\<[CertChainValidationResult](#certchainvalidationresult11)> | Promise used to return the result.|
-
-**Error codes**
-
-For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
-
-| ID| Error Message               |
-| -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error. |
-| 19030001 | crypto operation error.           |
-| 19030002 | the certificate signature verification failed. |
-| 19030003 | the certificate has not taken effect.           |
-| 19030004 | the certificate has expired. |
-| 19030005 | failed to obtain the certificate issuer.           |
-| 19030006 | the key cannot be used for signing a certificate. |
-| 19030007 | the key cannot be used for digital signature.      |
-
-**Example**
-
-```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
-
-// Convert the string into a Uint8Array.
-function stringToUint8Array(str: string): Uint8Array {
-  let arr: Array<number> = [];
-  for (let i = 0, j = str.length; i < j; i++) {
-    arr.push(str.charCodeAt(i));
-  }
-  return new Uint8Array(arr);
-}
-
-async function createX509CertChain(): Promise<certFramework.X509CertChain> {
-  let certChainData = "-----BEGIN CERTIFICATE-----\n" +
-    "MIID6jCCAtKgAwIBAgIIIM2q/TmRoLcwDQYJKoZIhvcNAQELBQAwWjELMAkGA1UE\n" +
-    "BhMCRU4xEDAOBgNVBAgTB0VuZ2xhbmQxDzANBgNVBAcTBkxvbmRvbjEMMAoGA1UE\n" +
-    "ChMDdHMyMQwwCgYDVQQLEwN0czIxDDAKBgNVBAMTA3RzMjAeFw0yMzEyMDUwNzM5\n" +
-    "MDBaFw0yNDEwMzEyMzU5MDBaMGExCzAJBgNVBAYTAkNOMRAwDgYDVQQIEwdKaWFu\n" +
-    "Z3N1MRAwDgYDVQQHEwdOYW5qaW5nMQwwCgYDVQQKEwN0czMxDDAKBgNVBAsTA3Rz\n" +
-    "MzESMBAGA1UEAxMJMTI3LjAuMC4xMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIB\n" +
-    "CgKCAQEAtt+2QxUevbolYLp51QGcUpageI4fwGLIqv4fj4aoVnHFOOBqVOVpfCLR\n" +
-    "p26LFV/F8ebwPyo8YEBKSwXzMD1573rMSbaH9BalscH5lZYAbetXoio6YRvzlcmc\n" +
-    "rVvLBNMeVnxY86xHpo0MTNyP7W024rZsxWO98xFQVdoiaBC+7+midlisx2Y+7u0j\n" +
-    "zT9GjeUP6JLdLFUZJKUPSTK3jVzw9v1eZQZKYoNfU6vFMd6ndtwW6qEnwpzmmX/U\n" +
-    "T+p5ThAMH593zszlz330nTSXBjIsGkyvOz9gSB0Z0LAuJj06XUNhGL5xKJYKbdI3\n" +
-    "8MFQFJKvRHfgTAvVsvAvpBUM2DuBKwIDAQABo4GsMIGpMAkGA1UdEwQCMAAwHQYD\n" +
-    "VR0OBBYEFDfsHTMZwoA6eaDFlBUyDpka+sYtMAsGA1UdDwQEAwID+DAnBgNVHSUE\n" +
-    "IDAeBggrBgEFBQcDAQYIKwYBBQUHAwIGCCsGAQUFBwMEMBQGA1UdEQQNMAuCCTEy\n" +
-    "Ny4wLjAuMTARBglghkgBhvhCAQEEBAMCBkAwHgYJYIZIAYb4QgENBBEWD3hjYSBj\n" +
-    "ZXJ0aWZpY2F0ZTANBgkqhkiG9w0BAQsFAAOCAQEAp5vTvXrt8ZpgRJVtzv9ss0lJ\n" +
-    "izp1fJf+ft5cDXrs7TSD5oHrSW2vk/ZieIMhexU4LFwhs4OE7jK6pgI48Dseqxx7\n" +
-    "B/KktxhVMJUmVXd9Ayjp6f+BtZlIk0cArPuoXToXjsV8caTGBXHRdzxpAk/w9syc\n" +
-    "GYrbH9TrdNMuTizOb+k268oKXUageZNxHmd7YvOXkcNgrd29jzwXKDYYiUa1DISz\n" +
-    "DnYaJOgPt0B/5izhoWNK7GhJDy9KEuLURcTSWFysbbnljwO9INPT9MmlS83PdAgN\n" +
-    "iS8VXF4pce1W9U5jH7d7k0JDVSXybebe1iPFphsZpYM/NE+jap+mPy1nTCbf9g==\n" +
-    "-----END CERTIFICATE-----\n" +
-    "-----BEGIN CERTIFICATE-----\n" +
-    "MIIC0zCCAoWgAwIBAgIIXpLoPpQVWnkwBQYDK2VwMFoxCzAJBgNVBAYTAkVOMRAw\n" +
-    "DgYDVQQIEwdFbmdsYW5kMQ8wDQYDVQQHEwZMb25kb24xDDAKBgNVBAoTA3RzMTEM\n" +
-    "MAoGA1UECxMDdHMxMQwwCgYDVQQDEwN0czEwHhcNMjMxMjA1MDczNzAwWhcNMjQw\n" +
-    "OTAxMjM1OTAwWjBaMQswCQYDVQQGEwJFTjEQMA4GA1UECBMHRW5nbGFuZDEPMA0G\n" +
-    "A1UEBxMGTG9uZG9uMQwwCgYDVQQKEwN0czIxDDAKBgNVBAsTA3RzMjEMMAoGA1UE\n" +
-    "AxMDdHMyMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtt+2QxUevbol\n" +
-    "YLp51QGcUpageI4fwGLIqv4fj4aoVnHFOOBqVOVpfCLRp26LFV/F8ebwPyo8YEBK\n" +
-    "SwXzMD1573rMSbaH9BalscH5lZYAbetXoio6YRvzlcmcrVvLBNMeVnxY86xHpo0M\n" +
-    "TNyP7W024rZsxWO98xFQVdoiaBC+7+midlisx2Y+7u0jzT9GjeUP6JLdLFUZJKUP\n" +
-    "STK3jVzw9v1eZQZKYoNfU6vFMd6ndtwW6qEnwpzmmX/UT+p5ThAMH593zszlz330\n" +
-    "nTSXBjIsGkyvOz9gSB0Z0LAuJj06XUNhGL5xKJYKbdI38MFQFJKvRHfgTAvVsvAv\n" +
-    "pBUM2DuBKwIDAQABo28wbTAMBgNVHRMEBTADAQH/MB0GA1UdDgQWBBQ37B0zGcKA\n" +
-    "OnmgxZQVMg6ZGvrGLTALBgNVHQ8EBAMCAQYwEQYJYIZIAYb4QgEBBAQDAgAHMB4G\n" +
-    "CWCGSAGG+EIBDQQRFg94Y2EgY2VydGlmaWNhdGUwBQYDK2VwA0EAuasLBe55YgvF\n" +
-    "b4wmHeohylc9r8cFGS1LNQ5UcSn3sGqMYf6ehnef16NLuCW6upHCs8Sui4iAMvsP\n" +
-    "uKPWR9dKBA==\n" +
-    "-----END CERTIFICATE-----\n" +
-    "-----BEGIN CERTIFICATE-----\n"  +
-    "MIIB3zCCAZGgAwIBAgIIWQvOEDl+ya4wBQYDK2VwMFoxCzAJBgNVBAYTAkVOMRAw\n" +
-    "DgYDVQQIEwdFbmdsYW5kMQ8wDQYDVQQHEwZMb25kb24xDDAKBgNVBAoTA3RzMTEM\n" +
-    "MAoGA1UECxMDdHMxMQwwCgYDVQQDEwN0czEwHhcNMjMxMjA1MDAwMDAwWhcNMjQx\n" +
-    "MjA0MjM1OTU5WjBaMQswCQYDVQQGEwJFTjEQMA4GA1UECBMHRW5nbGFuZDEPMA0G\n" +
-    "A1UEBxMGTG9uZG9uMQwwCgYDVQQKEwN0czExDDAKBgNVBAsTA3RzMTEMMAoGA1UE\n" +
-    "AxMDdHMxMCowBQYDK2VwAyEAuxadj1ww0LqPN24zr28jcSOlSWAe0QdLyRF+ZgG6\n" +
-    "klKjdTBzMBIGA1UdEwEB/wQIMAYBAf8CARQwHQYDVR0OBBYEFNSgpoQvfxR8A1Y4\n" +
-    "St8NjOHkRpm4MAsGA1UdDwQEAwIBBjARBglghkgBhvhCAQEEBAMCAAcwHgYJYIZI\n" +
-    "AYb4QgENBBEWD3hjYSBjZXJ0aWZpY2F0ZTAFBgMrZXADQQAblBgoa72X/K13WOvc\n" +
-    "KW0fqBgFKvLy85hWD6Ufi61k4ProQiZzMK+0+y9jReKelPx/zRdCCgSbQroAR2mV\n" +
-    "xjoE\n" +
-    "-----END CERTIFICATE-----\n";
-
-  // Certificate chain binary data, which must be set based on the service.
-  let encodingBlob: certFramework.EncodingBlob = {
-    data: stringToUint8Array(certChainData),
-    // Set the encoding format, which can be FORMAT_PEM, FORMAT_DER, or FORMAT_PKCS7.
-    encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
-  };
-  let x509CertChain: certFramework.X509CertChain = {} as certFramework.X509CertChain;
-  try {
-    x509CertChain = await certFramework.createX509CertChain(encodingBlob);
-  }
-  catch (error) {
-    let e: BusinessError = error as BusinessError;
-    console.error('createX509CertChain failed, errCode: ' + e.code + ', errMsg: ' + e.message);
-  }
-  return x509CertChain;
-}
-
-async function validate() {
-  const certChain = await createX509CertChain();
-  // Certificate chain validation data, which must be assigned based on the service.
-  const param: certFramework.CertChainValidationParameters = {
-    date: '20231212080000Z',
-    trustAnchors: [{
-        CAPubKey: new Uint8Array([0x30, 0x2a, 0x30, 0x05, 0x06, 0x03, 0x2b, 0x65, 0x70, 0x03, 0x21, 0x00, 0xbb, 0x16,0x9d, 0x8f, 0x5c, 0x30, 0xd0, 0xba, 0x8f, 0x37, 0x6e, 0x33, 0xaf, 0x6f, 0x23, 0x71, 0x23, 0xa5, 0x49, 0x60,0x1e, 0xd1, 0x07, 0x4b, 0xc9, 0x11, 0x7e, 0x66, 0x01, 0xba, 0x92, 0x52]),
-        CASubject: new Uint8Array([0x30, 0x5a, 0x31, 0x0b, 0x30, 0x09, 0x06, 0x03, 0x55, 0x04, 0x06, 0x13, 0x02, 0x45,0x4e, 0x31, 0x10, 0x30, 0x0e, 0x06, 0x03, 0x55, 0x04, 0x08, 0x13, 0x07, 0x45, 0x6e, 0x67, 0x6c, 0x61, 0x6e,0x64, 0x31, 0x0f, 0x30, 0x0d, 0x06, 0x03, 0x55, 0x04, 0x07, 0x13, 0x06, 0x4c, 0x6f, 0x6e, 0x64, 0x6f, 0x6e,0x31, 0x0c, 0x30, 0x0a, 0x06, 0x03, 0x55, 0x04, 0x0a, 0x13, 0x03, 0x74, 0x73, 0x31, 0x31, 0x0c, 0x30, 0x0a,0x06, 0x03, 0x55, 0x04, 0x0b, 0x13, 0x03, 0x74, 0x73, 0x31, 0x31, 0x0c, 0x30, 0x0a, 0x06, 0x03, 0x55, 0x04,0x03, 0x13, 0x03, 0x74, 0x73, 0x31]),
-    }]
-  }
-  try {
-    const validationRes = await certChain.validate(param);
-    console.log('X509CertChain validate success');
-  }
-  catch (err) {
-    console.error('X509CertChain validate failed');
-  }
-}
-
-validate();
-```
-
-### validate<sup>11+</sup>
-
-validate(param: CertChainValidationParameters, callback: AsyncCallback\<CertChainValidationResult>): void
-
-Validates a certificate chain. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Security.Cert
-
-**Parameters**
-
-| Name   | Type                           | Mandatory| Description     |
-| --------- | ------------------------------- | ---- | ------------ |
-| param | [CertChainValidationParameters](#certchainvalidationparameters11) | Yes  | Parameters for validating the X.509 certificate chain.|
-| callback  | AsyncCallback\<[CertChainValidationResult](#certchainvalidationresult11)> | Yes  | Callback invoked to return the certificate chain validation result.|
-
-**Error codes**
-
-For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
-
-| ID| Error Message               |
-| -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error. |
-| 19030001 | crypto operation error.           |
-| 19030002 | the certificate signature verification failed. |
-| 19030003 | the certificate has not taken effect.           |
-| 19030004 | the certificate has expired. |
-| 19030005 | failed to obtain the certificate issuer.           |
-| 19030006 | the key cannot be used for signing a certificate. |
-| 19030007 | the key cannot be used for digital signature.      |
-
-**Example**
-
-```ts
-import certFramework from '@ohos.security.cert';
-
-// Convert the string into a Uint8Array.
-function stringToUint8Array(str: string): Uint8Array {
-  let arr: Array<number> = [];
-  for (let i = 0, j = str.length; i < j; i++) {
-    arr.push(str.charCodeAt(i));
-  }
-  return new Uint8Array(arr);
-}
-
-let certChainData = "-----BEGIN CERTIFICATE-----\n" +
-  "MIID6jCCAtKgAwIBAgIIIM2q/TmRoLcwDQYJKoZIhvcNAQELBQAwWjELMAkGA1UE\n" +
-  "BhMCRU4xEDAOBgNVBAgTB0VuZ2xhbmQxDzANBgNVBAcTBkxvbmRvbjEMMAoGA1UE\n" +
-  "ChMDdHMyMQwwCgYDVQQLEwN0czIxDDAKBgNVBAMTA3RzMjAeFw0yMzEyMDUwNzM5\n" +
-  "MDBaFw0yNDEwMzEyMzU5MDBaMGExCzAJBgNVBAYTAkNOMRAwDgYDVQQIEwdKaWFu\n" +
-  "Z3N1MRAwDgYDVQQHEwdOYW5qaW5nMQwwCgYDVQQKEwN0czMxDDAKBgNVBAsTA3Rz\n" +
-  "MzESMBAGA1UEAxMJMTI3LjAuMC4xMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIB\n" +
-  "CgKCAQEAtt+2QxUevbolYLp51QGcUpageI4fwGLIqv4fj4aoVnHFOOBqVOVpfCLR\n" +
-  "p26LFV/F8ebwPyo8YEBKSwXzMD1573rMSbaH9BalscH5lZYAbetXoio6YRvzlcmc\n" +
-  "rVvLBNMeVnxY86xHpo0MTNyP7W024rZsxWO98xFQVdoiaBC+7+midlisx2Y+7u0j\n" +
-  "zT9GjeUP6JLdLFUZJKUPSTK3jVzw9v1eZQZKYoNfU6vFMd6ndtwW6qEnwpzmmX/U\n" +
-  "T+p5ThAMH593zszlz330nTSXBjIsGkyvOz9gSB0Z0LAuJj06XUNhGL5xKJYKbdI3\n" +
-  "8MFQFJKvRHfgTAvVsvAvpBUM2DuBKwIDAQABo4GsMIGpMAkGA1UdEwQCMAAwHQYD\n" +
-  "VR0OBBYEFDfsHTMZwoA6eaDFlBUyDpka+sYtMAsGA1UdDwQEAwID+DAnBgNVHSUE\n" +
-  "IDAeBggrBgEFBQcDAQYIKwYBBQUHAwIGCCsGAQUFBwMEMBQGA1UdEQQNMAuCCTEy\n" +
-  "Ny4wLjAuMTARBglghkgBhvhCAQEEBAMCBkAwHgYJYIZIAYb4QgENBBEWD3hjYSBj\n" +
-  "ZXJ0aWZpY2F0ZTANBgkqhkiG9w0BAQsFAAOCAQEAp5vTvXrt8ZpgRJVtzv9ss0lJ\n" +
-  "izp1fJf+ft5cDXrs7TSD5oHrSW2vk/ZieIMhexU4LFwhs4OE7jK6pgI48Dseqxx7\n" +
-  "B/KktxhVMJUmVXd9Ayjp6f+BtZlIk0cArPuoXToXjsV8caTGBXHRdzxpAk/w9syc\n" +
-  "GYrbH9TrdNMuTizOb+k268oKXUageZNxHmd7YvOXkcNgrd29jzwXKDYYiUa1DISz\n" +
-  "DnYaJOgPt0B/5izhoWNK7GhJDy9KEuLURcTSWFysbbnljwO9INPT9MmlS83PdAgN\n" +
-  "iS8VXF4pce1W9U5jH7d7k0JDVSXybebe1iPFphsZpYM/NE+jap+mPy1nTCbf9g==\n" +
-  "-----END CERTIFICATE-----\n" +
-  "-----BEGIN CERTIFICATE-----\n" +
-  "MIIC0zCCAoWgAwIBAgIIXpLoPpQVWnkwBQYDK2VwMFoxCzAJBgNVBAYTAkVOMRAw\n" +
-  "DgYDVQQIEwdFbmdsYW5kMQ8wDQYDVQQHEwZMb25kb24xDDAKBgNVBAoTA3RzMTEM\n" +
-  "MAoGA1UECxMDdHMxMQwwCgYDVQQDEwN0czEwHhcNMjMxMjA1MDczNzAwWhcNMjQw\n" +
-  "OTAxMjM1OTAwWjBaMQswCQYDVQQGEwJFTjEQMA4GA1UECBMHRW5nbGFuZDEPMA0G\n" +
-  "A1UEBxMGTG9uZG9uMQwwCgYDVQQKEwN0czIxDDAKBgNVBAsTA3RzMjEMMAoGA1UE\n" +
-  "AxMDdHMyMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtt+2QxUevbol\n" +
-  "YLp51QGcUpageI4fwGLIqv4fj4aoVnHFOOBqVOVpfCLRp26LFV/F8ebwPyo8YEBK\n" +
-  "SwXzMD1573rMSbaH9BalscH5lZYAbetXoio6YRvzlcmcrVvLBNMeVnxY86xHpo0M\n" +
-  "TNyP7W024rZsxWO98xFQVdoiaBC+7+midlisx2Y+7u0jzT9GjeUP6JLdLFUZJKUP\n" +
-  "STK3jVzw9v1eZQZKYoNfU6vFMd6ndtwW6qEnwpzmmX/UT+p5ThAMH593zszlz330\n" +
-  "nTSXBjIsGkyvOz9gSB0Z0LAuJj06XUNhGL5xKJYKbdI38MFQFJKvRHfgTAvVsvAv\n" +
-  "pBUM2DuBKwIDAQABo28wbTAMBgNVHRMEBTADAQH/MB0GA1UdDgQWBBQ37B0zGcKA\n" +
-  "OnmgxZQVMg6ZGvrGLTALBgNVHQ8EBAMCAQYwEQYJYIZIAYb4QgEBBAQDAgAHMB4G\n" +
-  "CWCGSAGG+EIBDQQRFg94Y2EgY2VydGlmaWNhdGUwBQYDK2VwA0EAuasLBe55YgvF\n" +
-  "b4wmHeohylc9r8cFGS1LNQ5UcSn3sGqMYf6ehnef16NLuCW6upHCs8Sui4iAMvsP\n" +
-  "uKPWR9dKBA==\n" +
-  "-----END CERTIFICATE-----\n" +
-  "-----BEGIN CERTIFICATE-----\n"  +
-  "MIIB3zCCAZGgAwIBAgIIWQvOEDl+ya4wBQYDK2VwMFoxCzAJBgNVBAYTAkVOMRAw\n" +
-  "DgYDVQQIEwdFbmdsYW5kMQ8wDQYDVQQHEwZMb25kb24xDDAKBgNVBAoTA3RzMTEM\n" +
-  "MAoGA1UECxMDdHMxMQwwCgYDVQQDEwN0czEwHhcNMjMxMjA1MDAwMDAwWhcNMjQx\n" +
-  "MjA0MjM1OTU5WjBaMQswCQYDVQQGEwJFTjEQMA4GA1UECBMHRW5nbGFuZDEPMA0G\n" +
-  "A1UEBxMGTG9uZG9uMQwwCgYDVQQKEwN0czExDDAKBgNVBAsTA3RzMTEMMAoGA1UE\n" +
-  "AxMDdHMxMCowBQYDK2VwAyEAuxadj1ww0LqPN24zr28jcSOlSWAe0QdLyRF+ZgG6\n" +
-  "klKjdTBzMBIGA1UdEwEB/wQIMAYBAf8CARQwHQYDVR0OBBYEFNSgpoQvfxR8A1Y4\n" +
-  "St8NjOHkRpm4MAsGA1UdDwQEAwIBBjARBglghkgBhvhCAQEEBAMCAAcwHgYJYIZI\n" +
-  "AYb4QgENBBEWD3hjYSBjZXJ0aWZpY2F0ZTAFBgMrZXADQQAblBgoa72X/K13WOvc\n" +
-  "KW0fqBgFKvLy85hWD6Ufi61k4ProQiZzMK+0+y9jReKelPx/zRdCCgSbQroAR2mV\n" +
-  "xjoE\n" +
-  "-----END CERTIFICATE-----\n";
-
-// Certificate chain binary data, which must be set based on the service.
-let encodingBlob: certFramework.EncodingBlob = {
-  data: stringToUint8Array(certChainData),
-  // Set the encoding format, which can be FORMAT_PEM, FORMAT_DER, or FORMAT_PKCS7.
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
-};
-
-// Certificate chain validation data, which must be assigned based on the service.
-let param: certFramework.CertChainValidationParameters = {
-  date: '20231212080000Z',
-  trustAnchors: [{
-    CAPubKey: new Uint8Array([0x30, 0x2a, 0x30, 0x05, 0x06, 0x03, 0x2b, 0x65, 0x70, 0x03, 0x21, 0x00, 0xbb, 0x16,0x9d, 0x8f, 0x5c, 0x30, 0xd0, 0xba, 0x8f, 0x37, 0x6e, 0x33, 0xaf, 0x6f, 0x23, 0x71, 0x23, 0xa5, 0x49, 0x60,0x1e, 0xd1, 0x07, 0x4b, 0xc9, 0x11, 0x7e, 0x66, 0x01, 0xba, 0x92, 0x52]),
-    CASubject: new Uint8Array([0x30, 0x5a, 0x31, 0x0b, 0x30, 0x09, 0x06, 0x03, 0x55, 0x04, 0x06, 0x13, 0x02, 0x45,0x4e, 0x31, 0x10, 0x30, 0x0e, 0x06, 0x03, 0x55, 0x04, 0x08, 0x13, 0x07, 0x45, 0x6e, 0x67, 0x6c, 0x61, 0x6e,0x64, 0x31, 0x0f, 0x30, 0x0d, 0x06, 0x03, 0x55, 0x04, 0x07, 0x13, 0x06, 0x4c, 0x6f, 0x6e, 0x64, 0x6f, 0x6e,0x31, 0x0c, 0x30, 0x0a, 0x06, 0x03, 0x55, 0x04, 0x0a, 0x13, 0x03, 0x74, 0x73, 0x31, 0x31, 0x0c, 0x30, 0x0a,0x06, 0x03, 0x55, 0x04, 0x0b, 0x13, 0x03, 0x74, 0x73, 0x31, 0x31, 0x0c, 0x30, 0x0a, 0x06, 0x03, 0x55, 0x04,0x03, 0x13, 0x03, 0x74, 0x73, 0x31]),
-  }]
-};
-
-certFramework.createX509CertChain(encodingBlob, (err, certChain) => {
-  if (err != null) {
-    console.error('createX509CertChain failed, errCode: ' + err.code + ', errMsg: ' + err.message);
-  } else {
-    console.log('createX509CertChain success');
-    certChain.validate(param, (error, validationRes) => {
-      if (error != null) {
-        console.error('X509CertChain validate failed, errCode: ' + error.code + ', errMsg: ' + error.message);
-      } else {
-        console.log('X509CertChain validate success');
-      }
-    });
-  }
-});
 ```
