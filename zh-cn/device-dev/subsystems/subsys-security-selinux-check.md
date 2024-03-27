@@ -284,3 +284,51 @@ developer_only(`
 | 是 | 是 | developer_only外 |
 | 否 | 是 | developer_only内 |
 | 是 | 否 | developer_only外 |
+
+## 新增ioctl的权限策略检查
+
+### 检查说明
+
+涉及配置ioctl相关的SELinux策略时，除了配置allow规则以外，还需要根据avc日志对ioctl的ioctlcmd进行限制，否则会导致所有的ioctlcmd权限都被开放，不满足权限最小化原则。
+
+### 编译拦截
+
+
+### 拦截原因
+
+以上列表中 allow 规则访问权限包含了 ioctl，但未限定 ioctl 权限参数 。
+仅添加allow scontext tcontext:tclass ioctl规则会导致主体有对tcontext:tclass所有ioctl的权限，权限过大被编译拦截，需添加具体的allowxperm对ioctl权限精细化管控，达到权限最小化。
+
+### 修复方法
+
+根据avc日志对ioctl的ioctlcmd进行限制。例如，有下面的avc日志：
+```text
+#avc:  denied  { ioctl } for  pid=1 comm="init" path="/data/app/el1/bundle/public" dev="mmcblk0p11" ino=652804 ioctlcmd=0x6613 scontext=u:r:init:s0 tcontext=u:object_r:data_app_el1_file:s0 tclass=dir permissive=0
+```
+根据该avc日志配置了允许ioctl的SELinux策略：
+```text
+allow init data_app_el1_file:dir { ioctl };
+```
+同时，还需要根据avc日志中的`ioctlcmd=0x6613`字段，进一步限制ioctl的开放范围：
+```text
+allowxperm init data_app_el1_file:dir ioctl { 0x6613 };
+```
+
+## 新增 permissive 主体类型的权限检查
+
+### 检查说明
+
+增加 permissive 的主体类型，会放开其访问所有客体的权限。
+
+### 编译拦截
+
+
+
+### 拦截原因
+
+检查规则中存在新增的 permissive 主体类型
+
+### 修复方法
+
+经评审通过后添加主体类型到 type 定义的仓库目录下白名单 sepolicy/whitelist/permissive_whitelist.json 中。
+如文件缺失，参考创建文件并录入type。https://gitee.com/openharmony/security_selinux_adapter/blob/master/sepolicy/whitelist/permissive_whitelist.json
