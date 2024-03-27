@@ -1951,7 +1951,7 @@
 
 ### ohos.permission.GET_SUPER_PRIVACY
 
-此权限用于保护超级隐私模式状态获取。
+允许获取超级隐私模式的状态。
 
 **权限级别**：system_basic
 
@@ -1963,7 +1963,7 @@
 
 ### ohos.permission.SET_SUPER_PRIVACY
 
-此权限用于设置进入或退出超级隐私模式，从而禁用或者恢复设备Mic Cam和位置的使用
+允许设置超级隐私模式的状态。
 
 **权限级别**：system_core
 
