@@ -91,8 +91,8 @@ promise.then((data : pipWindow.PiPController) => {
 | 名称                  | 类型                                                                    | 必填  | 说明                                                                                                                                                                                                                                                                                                                                           |
 |---------------------|-----------------------------------------------------------------------|-----|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | context             | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md)               | 是   | 表示上下文环境。                                                                                                                                                                                                                                                                                                                                     |
-| componentController | [XComponentController](arkui-ts/ts-basic-components-xcomponent.md) | 是   | 表示原始[XComponent](../../ui/arkts-common-components-xcomponent.md)控制器。                                                                                                                                                                                                                                                                         |
-| navigationId        | string                                                                | 否   | 当前page导航id。<br/>1、UIAbility使用[Navigation](arkui-ts/ts-basic-components-navigation.md)管理页面，需要设置Navigation控件的id属性，并将该id设置给画中画控制器，确保还原场景下能够从画中画窗口恢复到原页面。<br/>2、UIAbility使用[Router](js-apis-router.md)管理页面时（画中画场景不推荐该导航方式），无需设置navigationId。注意：该场景下启动画中画后，不要进行页面切换，否则还原场景可能出现异常。<br/>3、UIAbility只有单页面时，无需设置navigationId，还原场景下也能够从画中画窗口恢复到原页面。 |
+| componentController | [XComponentController](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md) | 是   | 表示原始[XComponent](../../ui/arkts-common-components-xcomponent.md)控制器。                                                                                                                                                                                                                                                                         |
+| navigationId        | string                                                                | 否   | 当前page导航id。<br/>1、UIAbility使用[Navigation](../apis-arkui/arkui-ts/ts-basic-components-navigation.md)管理页面，需要设置Navigation控件的id属性，并将该id设置给画中画控制器，确保还原场景下能够从画中画窗口恢复到原页面。<br/>2、UIAbility使用[Router](js-apis-router.md)管理页面时（画中画场景不推荐该导航方式），无需设置navigationId。注意：该场景下启动画中画后，不要进行页面切换，否则还原场景可能出现异常。<br/>3、UIAbility只有单页面时，无需设置navigationId，还原场景下也能够从画中画窗口恢复到原页面。 |
 | templateType        | [PiPTemplateType](#piptemplatetype)                                   | 否   | 模板类型，用以区分视频播放、视频通话或视频会议。                                                                                                                                                                                                                                                                                                                     |
 | contentWidth        | number                                                                | 否   | 原始内容宽度，单位为px。用于确定画中画窗口比例。                                                                                                                                                                                                                                                                                                                    |
 | contentHeight       | number                                                                | 否   | 原始内容高度，单位为px。用于确定画中画窗口比例。                                                                                                                                                                                                                                                                                                                    |
@@ -202,7 +202,7 @@ startPiP(): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+以下错误码的详细介绍请参见[窗口错误码](../apis-arkui/errorcode-window.md)。
 
 | 错误码ID      | 错误信息                                                   |
 |------------|--------------------------------------------------------|
@@ -238,7 +238,7 @@ stopPiP(): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+以下错误码的详细介绍请参见[窗口错误码](../apis-arkui/errorcode-window.md)。
 
 | 错误码ID   | 错误信息                             |
 |---------|----------------------------------|
