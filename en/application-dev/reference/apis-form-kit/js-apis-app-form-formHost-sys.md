@@ -5,7 +5,6 @@ The **formHost** module provides APIs related to the widget host, which is an ap
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
->
 > The APIs provided by this module are system APIs.
 
 ## Modules to Import
@@ -1265,6 +1264,65 @@ try {
   });
 } catch(error) {
   console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+}
+```
+
+## getFormsInfo<sup>12+</sup>
+
+getFormsInfo(filter: formInfo.FormInfoFilter): Promise&lt;Array&lt;formInfo.FormInfo&gt;&gt;
+
+Obtains the widget information provided by a given application on the device. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**System capability**: SystemCapability.Ability.Form
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description   |
+| ------ | ------ | ---- | ------- |
+| filter | [formInfo.FormInfoFilter](js-apis-app-form-formInfo.md#forminfofilter) | Yes| Filter criterion.|
+
+**Return value**
+
+| Type         | Description                               |
+| :------------ | :---------------------------------- |
+| Promise&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Promise used to return the information obtained.|
+
+**Error codes**
+
+| Error Code ID| Error Message|
+| -------- | -------- |
+| 201 | Permissions denied. |
+| 202 | The application is not a system application.  |
+| 401 | If the input parameter is not valid parameter.  |
+| 16500050 | An IPC connection error happened.  |
+| 16500060 | A service connection error happened, please try again later.  |
+| 16500100 | Failed to obtain the configuration information. |
+| 16501000 | An internal functional error occurred. |
+
+For details about the error codes, see [Form Error Codes](errorcode-form.md).
+
+**Example**
+
+```ts
+import Base from '@ohos.base';
+import formInfo from '@ohos.app.form.formInfo';
+import formHost from '@ohos.app.form.formHost';
+
+const filter: formInfo.FormInfoFilter = {
+  bundleName: 'ohos.samples.FormApplication',
+  moduleName: 'entry',
+  supportedDimensions: [FormDimension.Dimension_1_2, FormDimension.Dimension_2_2, FormDimension.Dimension_2_4]
+};
+try {
+  formHost.getFormsInfo(filter).then((data: formInfo.FormInfo[]) => {
+    console.log(`formHost getFormsInfo, data: ${JSON.stringify(data)}`);
+  }).catch((error: Base.BusinessError) => {
+    console.error(`promise error, code: ${error.code}, message: ${error.message})`);
+  });
+} catch (error) {
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message})`);
 }
 ```
 
@@ -2630,3 +2688,52 @@ try {
 }
 ```
 ## 
+
+## updateFormLocation<sup>12+</sup>
+updateFormLocation(formId: string, location: formInfo.FormLocation): void;
+
+Updates the widget location.
+
+**Model restriction**: This API can be used only in the stage model.
+
+**Required permissions**: ohos.permission.REQUIRE_FORM
+
+**System capability**: SystemCapability.Ability.Form
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description   |
+| ------ | ------ | ---- | ------- |
+| formId | string | Yes  | Widget ID.|
+| location |[FormLocation](js-apis-app-form-formInfo-sys.md#formlocation) | Yes| Widget location.|
+
+**Error codes**
+
+| Error Code ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permissions denied.                                          |
+| 202      | caller is not system app.                                    |
+| 401      | If the input parameter is not valid parameter.               |
+| 16500050 | An IPC connection error happened.                            |
+| 16500060 | A service connection error happened, please try again later. |
+| 16501000 | An internal functional error occurred.                       |
+| 16501001 | The ID of the form to be operated does not exist.            |
+| 16501003 | The form can not be operated by the current application.     |
+
+For details about the error codes, see [Form Error Codes](errorcode-form.md).
+
+**Example**
+
+```ts
+import formHost from '@ohos.app.form.formHost';
+import formInfo from '@ohos.app.form.formInfo';
+import Base from '@ohos.base';
+
+try {
+  let formId: string = '12400633174999288';
+  formHost.updateFormLocation(formId, formInfo.FormLocation.SCREEN_LOCK);
+} catch (error) {
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+}
+```
+##
