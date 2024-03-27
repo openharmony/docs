@@ -688,36 +688,39 @@ class MyNodeController extends NodeController {
     return this.rootNode;
   }
 
-  addCommonEvent(buttonNode : FrameNode)
+  addCommonEvent(frameNode : FrameNode)
   {
-    buttonNode.commonEvent.setOnHover(((isHover?: boolean, event?: HoverEvent):void => {
+    frameNode.commonEvent.setOnHover(((isHover?: boolean, event?: HoverEvent):void => {
       console.log( `isHover FrameNode: ${isHover}`);
       console.log( `isHover FrameNode: ${JSON.stringify(event)}`);
       event.stopPropagation();
     }))
-    buttonNode.commonEvent.setOnClick((event)=>{
+    frameNode.commonEvent.setOnClick((event)=>{
       console.log(`Click FrameNode: ${JSON.stringify(event)}`)
     })
-    buttonNode.commonEvent.setOnTouch((event)=>{
+    frameNode.commonEvent.setOnTouch((event)=>{
       console.log(`touch FrameNode: ${JSON.stringify(event)}`)
     })
-    buttonNode.commonEvent.setOnAppear(()=>{
+    frameNode.commonEvent.setOnAppear(()=>{
       console.log(`on Appear FrameNode`)
     })
-    buttonNode.commonEvent.setOnDisappear(()=>{
+    frameNode.commonEvent.setOnDisappear(()=>{
       console.log(`onDisAppear FrameNode`)
     })
-    buttonNode.commonEvent.setOnFocus(()=>{
+    frameNode.commonEvent.setOnFocus(()=>{
       console.log(`onFocus FrameNode`)
     })
-    buttonNode.commonEvent.setOnBlur(()=>{
+    frameNode.commonEvent.setOnBlur(()=>{
       console.log(`onBlur FrameNode`)
     })
-    buttonNode.commonEvent.setOnKeyEvent((event)=>{
-      console.log(`Key FrameNode : ${JSON.stringify(event)}`)
+    frameNode.commonEvent.setOnKeyEvent((event)=>{
+      console.log(`Key FrameNode: ${JSON.stringify(event)}`)
     })
-    buttonNode.commonEvent.setOnMouse((event)=>{
-      console.log(`Mouse FrameNode : ${JSON.stringify(event)}`)
+    frameNode.commonEvent.setOnMouse((event)=>{
+      console.log(`Mouse FrameNode: ${JSON.stringify(event)}`)
+    })
+    frameNode.commonEvent.setOnSizeChange((oldValue: SizeOptions, newValue: SizeOptions) => {
+      console.info(`onSizeChange FrameNode: oldValue is ${JSON.stringify(oldValue)} value is ${JSON.stringify(newValue)}`)
     })
   }
 }
@@ -765,6 +768,9 @@ struct Index {
         .onMouse((event)=>{
           console.log(`Mouse Text : ${JSON.stringify(event)}`)
         })
+        .onSizeChange((oldValue: SizeOptions, newValue: SizeOptions) => {
+          console.info(`onSizeChange Text: oldValue is ${JSON.stringify(oldValue)} value is ${JSON.stringify(newValue)}`)
+        })
       NodeContainer(this.myNodeController)
         .borderWidth(1)
         .width(300)
@@ -773,4 +779,3 @@ struct Index {
   }
 }
 ```
-
