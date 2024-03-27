@@ -348,7 +348,7 @@ allowxperm init data_app_el1_file:dir ioctl { 0x6613 };
 ### 修复方法
 
 1. 删除不必要的 permissive 定义。
-2. 经评审通过后添加主体类型到 type 定义的仓库目录下白名单 sepolicy/whitelist/permissive_whitelist.json 中。如文件缺失，参考创建文件并录入主体列表。https://gitee.com/openharmony/security_selinux_adapter/blob/master/sepolicy/whitelist/permissive_whitelist.json。
+2. 添加主体类型到 type 定义的仓库目录下白名单 sepolicy/whitelist/permissive_whitelist.json 中。如文件缺失，参考创建文件并录入主体列表。https://gitee.com/openharmony/security_selinux_adapter/blob/master/sepolicy/whitelist/permissive_whitelist.json。
 拦截日志中 user mode 表示该策略是user和开发者模式共用的基线，另外 developer mode 则表示该策略仅作为开发者模式下的基线，相应添加到白名单文件
 ```text
 {
