@@ -18,7 +18,7 @@ foregroundBlurStyle(value: BlurStyle, options?: ForegroundBlurStyleOptions)
 
 | 参数名  | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value   | [BlurStyle](ts-appendix-enums.md#blurstyle9)                 | 是   | 内容模糊样式。模糊样式由模糊半径、蒙版颜色、蒙版透明度、饱和度、亮度五个参数组成。 |
+| value   | [BlurStyle](ts-appendix-enums.md#blurstyle9)                 | 是   | 内容模糊样式。 |
 | options | [ForegroundBlurStyleOptions](#foregroundblurstyleoptions对象说明) | 否   | 可选参数，内容模糊选项。                                     |
 
 ## ForegroundBlurStyleOptions对象说明
@@ -30,8 +30,7 @@ foregroundBlurStyle(value: BlurStyle, options?: ForegroundBlurStyleOptions)
 | --------------------------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | colorMode     | [ThemeColorMode](ts-appendix-enums.md#themecolormode10) | 否   | 内容模糊效果使用的深浅色模式。<br/>默认值：ThemeColorMode.System |
 | adaptiveColor | [AdaptiveColor](ts-appendix-enums.md#adaptivecolor10)   | 否   | 内容模糊效果使用的取色模式。<br/>默认值：AdaptiveColor.Default |
-| scale | number   | 否   | 内容模糊效果程度。此参数为系统接口。<br/>默认值：1.0 <br/>取值范围：[0.0, 1.0]<br/>|
-| blurOptions<sup>11+</sup> | [BlurOptions](ts-appendix-enums.md#bluroptions11)         | 否    | 灰阶模糊参数。           |
+| blurOptions<sup>11+</sup> | [BlurOptions](ts-appendix-enums.md#bluroptions11)         | 否    | 灰阶模糊参数。<br/>默认值：grayScale: [0,0] |
 
 
 
@@ -49,7 +48,7 @@ struct ForegroundBlurStyleDemo {
       Image($r('app.media.bg'))
         .width(300)
         .height(350)
-        .foregroundBlurStyle(BlurStyle.Thin, { colorMode: ThemeColorMode.LIGHT, adaptiveColor: AdaptiveColor.DEFAULT, scale: 1.0 })
+        .foregroundBlurStyle(BlurStyle.Thin, { colorMode: ThemeColorMode.LIGHT, adaptiveColor: AdaptiveColor.DEFAULT })
     }
     .height('100%')
     .width('100%')
