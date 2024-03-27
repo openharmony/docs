@@ -1751,6 +1751,99 @@ try {
 }
 ```
 
+### setWindowPrivacyMode<sup>9+</sup>
+
+setWindowPrivacyMode(isPrivacyMode: boolean, callback: AsyncCallback&lt;void&gt;): void
+
+设置窗口是否为隐私模式，使用callback异步回调。设置为隐私模式的窗口，窗口内容将无法被截屏或录屏。此接口可用于禁止截屏/录屏的场景。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**需要权限：** ohos.permission.PRIVACY_WINDOW
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------------- | ------------------------- | -- | ------------------------------------------------------ |
+| isPrivacyMode | boolean                   | 是 | 窗口是否为隐私模式。true表示模式开启；false表示模式关闭。  |
+| callback      | AsyncCallback&lt;void&gt; | 是 | 回调函数。                                              |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let isPrivacyMode: boolean = true;
+try {
+  windowClass.setWindowPrivacyMode(isPrivacyMode, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to set the window to privacy mode. Cause:' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in setting the window to privacy mode.');
+  });
+} catch (exception) {
+  console.error('Failed to set the window to privacy mode. Cause:' + JSON.stringify(exception));
+}
+```
+
+### setWindowPrivacyMode<sup>9+</sup>
+
+setWindowPrivacyMode(isPrivacyMode: boolean): Promise&lt;void&gt;
+
+设置窗口是否为隐私模式，使用Promise异步回调。设置为隐私模式的窗口，窗口内容将无法被截屏或录屏。此接口可用于禁止截屏/录屏的场景。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**需要权限：** ohos.permission.PRIVACY_WINDOW
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------------- | ------- | -- | ----------------------------------------------------- |
+| isPrivacyMode | boolean | 是 | 窗口是否为隐私模式。true表示模式开启；false表示模式关闭。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| ------------------- | ------------------------ |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let isPrivacyMode: boolean = true;
+try {
+  let promise = windowClass.setWindowPrivacyMode(isPrivacyMode);
+  promise.then(() => {
+    console.info('Succeeded in setting the window to privacy mode.');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to set the window to privacy mode. Cause: ' + JSON.stringify(err));
+  });
+} catch (exception) {
+  console.error('Failed to set the window to privacy mode. Cause:' + JSON.stringify(exception));
+}
+```
+
 ## WindowStageEventType<sup>9+</sup>
 
 WindowStage生命周期。

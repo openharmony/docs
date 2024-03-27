@@ -91,6 +91,7 @@
       - [postCardAction](js-apis-postCardAction.md)
     - 图形图像
       - [@ohos.display (屏幕属性)](js-apis-display.md)
+      - [@ohos.PiPWindow (画中画窗口)](js-apis-pipWindow.md)
       - [@ohos.window (窗口)](js-apis-window.md)
 - ArkWeb API参考
   - ArkTS API
