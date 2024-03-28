@@ -493,7 +493,7 @@ if (dataShareHelper != undefined) {
 
 ### off('dataChange')<sup>12+</sup>
 
-off(event: 'dataChange', type:SubscriptionType, uri: string, callback?: AsyncCallback&lt;ChangeInfo&gt): void
+off(event: 'dataChange', type:SubscriptionType, uri: string, callback?: AsyncCallback&lt;ChangeInfo&gt;): void
 
 取消订阅指定URI下指定callback对应的数据资源的变更通知。仅支持非静默访问。
 
