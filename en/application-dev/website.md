@@ -954,15 +954,19 @@
       - [Proper State Management](performance/proper_state_management.md)
       - [Precisely Controlling Render Scope](performance/precisely-control-render-scope.md)
       - [Reducing Frame Loss](performance/reduce-animation-frame-loss.md)
+      - [Reasonably Using Multithreaded Shared Memory](performance/thread_memory_shared.md)
     - Improving Application Startup and Response Times
       - [Speeding Up Application Cold Start](performance/improve-application-cold-start-speed.md)
       - [Speeding Up Application Response](performance/improve-application-response.md)
       - [Flex Layout Performance Improvement](performance/flex-development-performance-boost.md)
       - [Reducing Nesting](performance/reduce-view-nesting-levels.md)
       - [Proper IPC Usage](performance/reasonable-using-ipc.md)
+      - [Improving File Upload and Download Performance](performance/improve-file-upload-and-download-performance.md)
       - [More Performance Improvement Methods](performance/arkts-performance-improvement-recommendation.md)
-    - Profiling Tools
+      - [Reasonably Running Background Tasks](performance/reasonable-running-backgroundTask.md)
+   - Profiling Tools
       - [CPU Profiler](performance/application-performance-analysis.md)
+      - [Typical Traces](performance/common-trace-using-instructions.md)
 - Tools
   - [DevEco Studio (OpenHarmony) User Guide](quick-start/deveco-studio-user-guide-for-openharmony.md)
   - Debugging Tools
