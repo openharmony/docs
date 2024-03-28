@@ -293,6 +293,7 @@ developer_only(`
 
 ### 编译拦截
 
+配置的 allow 规则访问权限包含了 ioctl，但未限定 ioctl 权限参数时，会触发编译报错，关键报错信息`check ioctl rule in user mode failed.`，报错如下：
 ```text
  check ioctl rule in user mode failed.
  violation list (allow scontext tcontext:tclass ioctl)
@@ -304,11 +305,11 @@ developer_only(`
 
 ### 拦截原因
 
-以上列表中 allow 规则访问权限包含了 ioctl，但未限定 ioctl 权限参数 。
-仅添加allow scontext tcontext:tclass ioctl规则会导致主体有对tcontext:tclass所有ioctl的权限，权限过大被编译拦截，需添加具体的allowxperm对ioctl权限精细化管控，达到权限最小化。
+仅添加`allow scontext tcontext:tclass ioctl`规则会导致主体有对tcontext:tclass所有ioctl的权限，权限过大被编译拦截，需添加具体的allowxperm对ioctl权限精细化管控，达到权限最小化。
 
 ### 修复方法
 
+有以下两种修复方式：
 1. 根据avc日志对ioctl的ioctlcmd进行限制。例如，有下面的avc日志：
     ```text
     #avc:  denied  { ioctl } for  pid=1 comm="init" path="/data/app/el1/bundle/public" dev="mmcblk0p11" ino=652804 ioctlcmd=0x6613 scontext=u:r:init:s0 tcontext=u:object_r:data_app_el1_file:s0 tclass=dir permissive=0
@@ -322,8 +323,8 @@ developer_only(`
     allowxperm init data_app_el1_file:dir ioctl { 0x6613 };
     ```
     
-2. 将拦截日志中的 "scontext tcontext tclass" 字符添加到仓库目录下白名单 sepolicy/whitelist/ioctl_xperm_whitelist.json 中。
-    拦截日志中 user mode 表示该策略是user和开发者模式共用的基线，另外 developer mode 则表示该策略仅作为开发者模式下的基线。
+2. 将拦截日志中的 "scontext tcontext tclass" 字符添加到`//base/security/selinux_adapter/sepolicy/`下白名单 `ioctl_xperm_whitelist.json` 中，修改该白名单需要评估合理性。
+    拦截日志中 `user mode` 表示该策略是user和开发者模式共用的基线，另外 `developer mode` 则表示该策略仅作为开发者模式下的基线，相应添加到白名单列表中。
     ```text
     {
         "whitelist": {
@@ -341,10 +342,11 @@ developer_only(`
 
 ### 检查说明
 
-增加 permissive 的主体类型，会放开其访问所有客体的权限。
+增加 permissive 的主体类型，会放开其访问所有客体的权限，不满足权限最小化原则。
 
 ### 编译拦截
 
+在策略文件中增加 `permissive scontext;` 后，会触发编译报错，关键报错信息 `check permissive rule in user mode failed.`，报错如下：
 ```text
  check permissive rule in user mode failed.
  violation list (scontext):
@@ -360,9 +362,10 @@ developer_only(`
 
 ### 修复方法
 
+有以下两种修复方式：
 1. 删除不必要的 permissive 定义。
-2. 添加主体类型到 type 定义的仓库目录下白名单 sepolicy/whitelist/permissive_whitelist.json 中。如文件缺失，参考创建文件并录入主体列表。https://gitee.com/openharmony/security_selinux_adapter/blob/master/sepolicy/whitelist/permissive_whitelist.json。
-    拦截日志中 user mode 表示该策略是user和开发者模式共用的基线，另外 developer mode 则表示该策略仅作为开发者模式下的基线，相应添加到白名单文件
+2. 添加主体类型scontext到 `//base/security/selinux_adapter/sepolicy/` 下白名单 `permissive_whitelist.json` 中，修改该白名单需要评估合理性。
+    拦截日志中 `user mode` 表示该策略是user和开发者模式共用的基线，另外 `developer mode` 则表示该策略仅作为开发者模式下的基线，相应添加到白名单文件。
     ```text
     {
         "whitelist": {
