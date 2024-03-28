@@ -39,13 +39,13 @@ The widget provider consists of the following modules:
 - Communication adapter: provided by the SDK for communication with the Widget Manager. It pushes update data to the Widget Manager.
 
 > **NOTE**
->
+> 
 > You only need to develop the widget provider. The system automatically handles the work of the widget host and Widget Manager.
 
 
 ## Available APIs
 
-The **FormExtensionAbility** class has the following APIs. For details, see [FormExtensionAbility](../reference/apis/js-apis-app-form-formExtensionAbility.md).
+The **FormExtensionAbility** class has the following APIs. For details, see [FormExtensionAbility](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md).
 
 | Name                                                                                             | Description|
 | -------- | -------- |
@@ -58,7 +58,7 @@ The **FormExtensionAbility** class has the following APIs. For details, see [For
 | onConfigurationUpdate(newConfig: Configuration): void                                  | Called when the configuration of the environment where the widget is running is being updated.|
 | onShareForm?(formId: string): Record&lt;string, Object&gt;                        | Called to notify the widget provider that the widget host is sharing the widget data.|
 
-The **FormProvider** class has the following APIs. For details, see [FormProvider](../reference/apis/js-apis-app-form-formProvider.md).
+The **FormProvider** class has the following APIs. For details, see [FormProvider](../reference/apis-form-kit/js-apis-app-form-formProvider.md).
 
 | Name| Description|
 | -------- | -------- |
@@ -67,7 +67,7 @@ The **FormProvider** class has the following APIs. For details, see [FormProvide
 | updateForm(formId: string, formBindingData: formBindingData.FormBindingData, callback: AsyncCallback&lt;void&gt;): void | Updates a widget. This API uses an asynchronous callback to return the result.|
 | updateForm(formId: string, formBindingData: formBindingData.FormBindingData): Promise&lt;void&gt; | Updates a widget. This API uses a promise to return the result.|
 
-The **FormBindingData** class has the following APIs. For details, see [FormBindingData](../reference/apis/js-apis-app-form-formBindingData.md).
+The **FormBindingData** class has the following APIs. For details, see [FormBindingData](../reference/apis-form-kit/js-apis-app-form-formBindingData.md).
 
 | Name| Description|
 | -------- | -------- |
@@ -76,7 +76,7 @@ The **FormBindingData** class has the following APIs. For details, see [FormBind
 
 ## How to Develop
 
-The widget provider development based on the [stage model](stage-model-development-overview.md) involves the following key steps:
+The widget provider development based on the [stage model](../application-models/stage-model-development-overview.md) involves the following key steps:
 
 - [Creating a FormExtensionAbility Instance](#creating-a-formextensionability-instance): Develop the lifecycle callback functions of FormExtensionAbility.
 

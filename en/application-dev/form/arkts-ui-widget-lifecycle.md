@@ -1,7 +1,7 @@
 # Widget Lifecycle Management
 
 
-When creating an ArkTS widget, you need to implement the [FormExtensionAbility](../reference/apis/js-apis-app-form-formExtensionAbility.md) lifecycle APIs.
+When creating an ArkTS widget, you need to implement the [FormExtensionAbility](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md) lifecycle APIs.
 
 
 1. Import related modules to **EntryFormAbility.ets**.
@@ -13,7 +13,7 @@ When creating an ArkTS widget, you need to implement the [FormExtensionAbility](
    import formProvider from '@ohos.app.form.formProvider';
    ```
 
-2. In **EntryFormAbility.ets**, implement the [[FormExtensionAbility](../reference/apis/js-apis-app-form-formExtensionAbility.md) lifecycle APIs, including **onAddForm**, whose **want** parameter can be used to obtain the widget information through [FormParam](../reference/apis/js-apis-app-form-formInfo.md#formparam).
+2. In **EntryFormAbility.ets**, implement the [FormExtensionAbility](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md) lifecycle APIs, including **onAddForm**, whose **want** parameter can be used to obtain the widget information through [FormParam](../reference/apis-form-kit/js-apis-app-form-formInfo.md#formparam).
    
    ```typescript
    import formInfo from '@ohos.app.form.formInfo';
@@ -85,4 +85,4 @@ When creating an ArkTS widget, you need to implement the [FormExtensionAbility](
 
 > **NOTE**
 >
-> The FormExtensionAbility cannot reside in the background. It persists for 5 seconds after the lifecycle callback is completed and exist if no new lifecycle callback is invoked during this time frame. This means that continuous tasks cannot be processed in the widget lifecycle callbacks. For the service logic that may take more than 5 seconds to complete, it is recommended that you [start the application](arkts-ui-widget-event-uiability.md) for processing. After the processing is complete, use [updateForm()](../reference/apis/js-apis-app-form-formProvider.md#updateform) to notify the widget of the update.
+> The FormExtensionAbility cannot reside in the background. It persists for 5 seconds after the lifecycle callback is completed and exist if no new lifecycle callback is invoked during this time frame. This means that continuous tasks cannot be processed in the widget lifecycle callbacks. For the service logic that may take more than 5 seconds to complete, it is recommended that you [start the application](arkts-ui-widget-event-uiability.md) for processing. After the processing is complete, use [updateForm()](../reference/apis-form-kit/js-apis-app-form-formProvider.md#updateform) to notify the widget of the update.
