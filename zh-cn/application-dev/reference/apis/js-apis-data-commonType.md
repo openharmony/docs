@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import { commonType } from '@ohos.data.commonType';
+import commonType from '@ohos.data.commonType';
 ```
 
 ## AssetStatus
