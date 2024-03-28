@@ -19,6 +19,7 @@
       - [使用Node-API接口进行线程安全开发](use-napi-thread-safety.md)
       - [Native与ArkTS对象绑定](use-napi-object-wrap.md)
       - [非ArkTS线程调用ArkTS函数](use-uv-queue-work.md)
+      - [使用Node-API接口在C++新创建的线程中进行模块加载](use-napi-load-module-with-info.md)
     - [Node-API常见问题](use-napi-faqs.md)
   - 使用JSVM-API实现JS与C/C++语言交互
     - [JSVM-API支持的数据类型和接口](jsvm-data-types-interfaces.md)
