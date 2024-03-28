@@ -6,11 +6,11 @@
 
 业务接入方需在本应用模块下的module.json5配置文件中配置相应的action和metadata，供安全隐私中心菜单接入框架扫描、解析。
 
-开发者可参考以下步骤，完成安全隐私框架的接入。
+开发者可参考以下步骤，完成对安全隐私框架的接入。
 
 ## 新增元数据资源配置文件
 
-业务接入方需要新增一个元数据资源配置json文件，用于承载接入安全隐私框架的方式、调整的Ability等内容，具体字段说明如表所示：
+业务接入方需要新增一个元数据资源配置json文件，用于承载接入安全隐私框架的方式、跳转的Ability等内容，具体字段说明如表所示：
 
 | key值（属性名称） | value值                                                      | 是否必填 | 说明                                              |
 | ----------------- | ------------------------------------------------------------ | -------- | ------------------------------------------------- |
@@ -18,10 +18,10 @@
 | mainTitleResource | 入口菜单显示的主标题字串的资源名                             | 是       | -                                                 |
 | dstAbilityMode    | - 0： 表示被拉起的ability为UIAbility。<br />- 1： 表示被拉起的ability为UIExtensionAbility。 | 是       | -                                                 |
 | dstAbilityName    | 跳转的目标Ability。<br />- 当dstAbilityMode为0时，该ability为UIAbility。<br />- 当dstAbilityMode为1时，该ability需继承自UIExtensionAbility，接入方在此ability中加载自身页面。 | 是       | -                                                 |
-| dstBundleName     | 跳转的目的bundle名。                                         | 是       | -                                                 |
+| dstBundleName     | 跳转的目的bundle名称。                                         | 是       | -                                                 |
 | displayUserConfig | - ONLY_PRIMARY_USER：仅主用户展示。<br />- ONLY_SUB_USER：仅子用户展示。 | 否       | 如果不填，默认为向所有用户展示。                  |
 
-文档中以新建一个security_privacy.json文件为例，json文件的名称可由开发者自定义。
+本文档中以新建一个security_privacy.json文件为例，来指导业务接入方完成配置，实际的json文件的名称可由开发者自定义。
 
 此文件需放置在对应模块的`"resource/rawfile/xxx.json"`中。
 
@@ -37,7 +37,7 @@
 
 ## 修改应用配置文件
 
-module.json5配置文件中，承载了UIAbility组件和ExtensionAbility组件的描述信息、应用运行过程中所需的权限信息。接入安全隐私框架需将相关字段配置到module.json5中。
+各模块的module.json5配置文件中，承载了该模块UIAbility组件和ExtensionAbility组件的描述信息、应用运行过程中所需的权限等信息。接入安全隐私框架需将一下相关字段配置到module.json5中。
 
 ### 配置action
 
@@ -55,9 +55,9 @@ module.json5配置文件中，承载了UIAbility组件和ExtensionAbility组件�
 
 ### 配置metadata
 
-在module.json5文件的“ metadata ”标签中，新增一个“ name ”为“ metadata.access.privacy.center ”的条目。
+在module.json5文件的“ metadata ”标签中，新增“ name ”为“ metadata.access.privacy.center ”、“ value ”为元数据json文件名称的条目。
 
-“ value ”中写入上一步新增的元数据json文件名称，需将此文件放置在对应模块的`"resource/rawfile/xxx.json"`中。
+元数据json文件即为上一步新增的`"resource/rawfile/xxx.json"`。
 
 > **说明：**
 >
