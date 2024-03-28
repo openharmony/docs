@@ -1877,6 +1877,30 @@
 
 **起始版本**：11
 
+### ohos.permission.LAUNCH_SPAMSHIELD_PAGE
+
+允许应用访问骚扰拦截页面。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.ACCESS_SPAMSHIELD_SERVICE
+
+允许应用访问骚扰拦截能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.ACCESS_SECURITY_PRIVACY_CENTER
 
 允许业务接入安全隐私中心。
