@@ -42,11 +42,11 @@
 新增一条密码是demo_pwd，别名是demo_alias，附属信息是demo_label的数据，该数据在用户首次解锁设备后可被访问。
 
 1. 在CMake脚本中链接相关动态库
-```typescript
+```txt
 target_link_libraries(entry PUBLIC libasset_ndk.z.so)
 ```
 
-2. 在cpp文件添加业务代码
+2. 参考如下示例代码，进行业务功能开发
 ```c
 #include <string.h>
 
