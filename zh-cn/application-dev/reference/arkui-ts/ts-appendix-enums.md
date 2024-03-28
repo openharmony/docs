@@ -748,7 +748,7 @@ Nullable\<T> {
 | 名称     | 描述                            |
 | ------ | ----------------------------- |
 | SINGLE  | 统一作为一层，设置一种颜色（默认值）。 |
-| MULTIPLE_COLOR  |    每层都可设置颜色。           |
+| MULTIPLE_COLOR  |    每层都可设置颜色。<br/> 仅支持设置颜色，不透明度设置不生效。           |
 |  MULTIPLE_OPACITY   | 设置一种颜色，然后每层有不同的透明度。  |
 
 ## BlendApplyType<sup>11+</sup>
