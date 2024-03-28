@@ -1428,7 +1428,7 @@ allowWindowOpenMethod(flag: boolean)
 
 设置网页是否可以通过JavaScript自动打开新窗口。
 
-该属性为true时，可通过JavaScript自动打开新窗口。该属性为false时，用户行为仍可通过JavaScript自动打开新窗口，但非用户行为不能通过JavaScript自动打开新窗口。此处的用户行为是指用户在5秒内请求打开新窗口（window.open）。
+该属性为true时，可通过JavaScript自动打开新窗口。该属性为false时，用户行为仍可通过JavaScript自动打开新窗口，但非用户行为不能通过JavaScript自动打开新窗口。此处的用户行为是指，在用户对Web组件进行点击等操作后，同时在5秒内请求打开新窗口（window.open）的行为。
 
 该属性仅在[javaScriptAccess](#javascriptaccess)开启时生效。
 
