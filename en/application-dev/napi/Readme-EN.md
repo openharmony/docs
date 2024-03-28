@@ -11,6 +11,7 @@
     - [Development Overview](develop-code-overview.md)
     - Node-API Development
         - [OpenHarmony Node-API Overview](napi-introduction.md)
+        - [Node-API Data Types and APIs](napi-data-types-interfaces.md)
         - [Node-API Development Specifications](napi-guidelines.md)
         - [Node-API Development Process](use-napi-process.md)
         - Typical Scenarios

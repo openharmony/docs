@@ -5,12 +5,9 @@
 
 **[Rule]** Properly use **napi_open_handle_scope** and **napi_close_handle_scope** to minimize the lifecycle of **napi_value** and avoid memory leakage.
 
-
 Each **napi_value** belongs to a specific **HandleScope**, which is opened and closed by **napi_open_handle_scope** and **napi_close_handle_scope**, respectively. After a **HandleScope** is closed, its **napi_value** is automatically released.
 
-
-**Example (correct)**:
-
+**Example (recommended)**
 
 ```
 // When the Node-API interface is frequently called to create JS objects in the for loop, use handle_scope to release resources in a timely manner when they are no longer used.
@@ -27,17 +24,13 @@ for (int i = 0; i < 100000; i++) {
 }
 ```
 
-
 ## Context Sensitive
 
 **[Rule]** Do not use Node-API to access JS objects across engine instances.
 
-
 An engine instance is an independent running environment. Operations such as creating and accessing a JS object must be performed in the same engine instance. If an object is operated in different engine instances, the application may crash. An engine instance is represented as a value of **napi_env** in APIs.
 
-
-**Example (incorrect)**:
-
+**Example (not recommended)**
 
 ```
 // Create a string object with value of "bar" in env1.
@@ -56,17 +49,13 @@ if (status != napi_ok) {
 }
 ```
 
-
 JS objects belong to a specific **napi_env**. Therefore, you cannot set an object of env1 to an object of env2. If the object of env1 is accessed in env2, the application may crash.
-
 
 ## Exception Handling
 
 **[Suggestion]** Any exception occurred in a Node-API call should be handled in a timely manner. Otherwise, unexpected behavior may occur.
 
-
-**Example (correct)**:
-
+**Example (recommended)**
 
 ```
 // 1. Create an object.
@@ -89,20 +78,15 @@ if (status != napi_ok) {
 }
 ```
 
-
 In this example, if an exception occurs in step 1 or step 2, step 3 will not be performed. Step 3 will be performed only when napi_ok is returned in steps 1 and 2.
-
 
 ## Asynchronous Tasks
 
 **[Rule]** When the **uv_queue_work** method is called to throw a work to a JS thread for execution, use **napi_handle_scope** to manage the lifecycle of **napi_value** created by the JS callback.
 
-
 The Node-API framework will not be used when the **uv_queue_work** method is called. In this case, you must use **napi_handle_scope** to manage the lifecycle of **napi_value**.
 
-
-**Example (correct)**:
-
+**Example (recommended)**
 
 ```
 void callbackTest(CallbackContext* context) 
@@ -138,8 +122,7 @@ void callbackTest(CallbackContext* context)
 }
 ```
 
-
-## Object Binding
+## Object Wrapping
 
 **[Rule]** If the value of the last parameter **result** is not **nullptr** in **napi_wrap()** , use **napi_remove_wrap()** at a proper time to delete the created **napi_ref**.
 
@@ -153,13 +136,13 @@ When the last parameter **result** is not null, the Node-API framework creates a
 
 Generally, you can directly pass in **nullptr** for the last parameter **result**.
 
-**Example (correct)**:
+**Example (recommended)**
 
 ```
-// Usage 1: Pass in nullptr via the last parameter in napi_wrap. In this case, the created napi_ref is a weak reference, which is managed by the system and does not need manual release.
+// Case 1: Pass in nullptr via the last parameter in napi_wrap. In this case, the created napi_ref is a weak reference, which is managed by the system and does not need manual release.
 napi_wrap(env, jsobject, nativeObject, cb, nullptr, nullptr);
 
-// Usage 2: The last parameter in napi_wrap is not nullptr. In this case, the returned napi_ref is a strong reference and needs to be manually released. Otherwise, memory leakage may occur.
+// Case 2: The last parameter in napi_wrap is not nullptr. In this case, the returned napi_ref is a strong reference and needs to be manually released. Otherwise, memory leakage may occur.
 napi_ref result; 
 napi_wrap(env, jsobject, nativeObject, cb, nullptr, &result);
 // When js_object and result are no longer used, call napi_remove_wrap to release result.
@@ -167,6 +150,14 @@ napi_value result1;
 napi_remove_wrap(env, jsobject, result1);
 ```
 
+
+## Data Conversion
+
+**[Suggestion]** Minimize the number of data conversions and avoid unnecessary replication.
+
+- Frequent data conversion affects performance. You are advised to use batch data processing or optimize the data structs to improve performance.
+- During data conversion, use Node-API to access the original data instead of creating a copy.
+- For the data that may be used in multiple conversions, store it in a buffer to avoid repeated data conversions. In this way, unnecessary calculations can be reduced, leading to better performance.
 
 ## Others
 
@@ -178,9 +169,9 @@ The **napi_get_arraybuffer_info** interface is defined as follows:
 napi_get_arraybuffer_info(napi_env env, napi_value arraybuffer, void** data, size_t* byte_length)
 ```
 
-The parameter **data** specifies the buffer header pointer of ArrayBuffer. This buffer can be read and written in the given range but cannot be released. The buffer memory is managed by the ArrayBuffer Allocator in the engine and is released with the lifecycle of the JS object **ArrayBuffer**.
+The parameter **data** specifies the buffer header pointer to ArrayBuffer. This buffer can be read and written in the given range but cannot be released. The buffer memory is managed by the ArrayBuffer Allocator in the engine and is released with the lifecycle of the JS object **ArrayBuffer**.
 
-**Example (incorrect)**:
+**Example (not recommended)**
 
 ```
 void* arrayBufferPtr = nullptr;
