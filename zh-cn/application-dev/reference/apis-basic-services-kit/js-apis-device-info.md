@@ -14,6 +14,8 @@ import deviceInfo from '@ohos.deviceInfo';
 ```
 
 ## 属性
+> **说明：**
+> 未特殊说明的字段，数据长度最大值为4096字节。
 
 **系统能力**：SystemCapability.Startup.SystemInfo。
 
@@ -50,7 +52,7 @@ import deviceInfo from '@ohos.deviceInfo';
 | buildHost | string | 是 | 否 | 构建主机。 |
 | buildTime | string | 是 | 否 | 构建时间。 |
 | buildRootHash | string | 是 | 否 | 构建版本Hash。 |
-| udid<sup>7+</sup> | string | 是 | 否 | 设备Udid,仅限系统应用使用。<br/>**使用权限**：ohos.permission.sec.ACCESS_UDID |
+| udid<sup>7+</sup> | string | 是 | 否 | 设备Udid,仅限系统应用使用。<br/>**说明**：数据长度为65字节。<br/>**使用权限**：ohos.permission.sec.ACCESS_UDID |
 | distributionOSName<sup>10+</sup> | String | 是 | 否 | 发行版系统名称。 |
 | distributionOSVersion<sup>10+</sup> | String | 是 | 否 | 发行版系统版本号。 |
 | distributionOSApiVersion<sup>10+</sup> | number| 是 | 否 | 发行版系统api版本。 |
