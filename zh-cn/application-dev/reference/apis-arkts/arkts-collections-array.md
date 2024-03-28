@@ -30,7 +30,7 @@ import { collections } from '@kit.ArkTS';
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| length | number | 是 | 否 | ArrayList的元素个数。 |
+| length | number | 是 | 是 | Array的元素个数。 |
 
 
 ### constructor
@@ -56,7 +56,7 @@ constructor();
 **示例：**
 
 ```ts
-let arkTSArray = new ArkTSArray();
+let array = new collections.Array<number>();
 ```
 
 ### constructor
@@ -90,10 +90,10 @@ constructor(first: T, ...left: T[]);
 **示例：**
 
 ```ts
-let arkTSArray = new ArkTSArray(1, 2, 3, 4);
+let array = new collections.Array<number>(1, 2, 3, 4);
 ```
 
-### static from
+### from
 
 **静态方法**
 
@@ -129,8 +129,8 @@ static from<T>(arrayLike: ArrayLike<T>): Array<T>;
 **示例：**
 
 ```ts
-let arrayLike = { '0': 'a', '1': 'b', '2': 'c', length: 3 };
-let arkTSArray = ArkTSArray.from(arrayLike);
+let arrayLike = [1, 3, 5];
+let array = collections.Array.from<number>(arrayLike);
 ```
 
 ### length
@@ -148,10 +148,10 @@ length: number;
 **示例：**
 
 ```ts
-let arkTSArray = new ArkTSArray(1, 2, 3);
-console.log(arkTSArray.length); // 输出：3
-arkTSArray.length = 5;
-console.log(arkTSArray.length); // 输出：5
+let array = new collections.Array<number>(1, 2, 3);
+console.log(array.length); // 输出：3
+array.length = 5;
+console.log(array.length); // 输出：5
 ```
 
 ### pop
@@ -184,8 +184,8 @@ pop(): T | undefined;
 **示例：**
 
 ```ts
-let arkTSArray = new ArkTSArray(1, 2, 3);
-let lastElement = arkTSArray.pop(); // 返回3，数组变为[1, 2]
+let array = new collections.Array<number>(1, 2, 3);
+let lastElement = array.pop(); // 返回3，数组变为[1, 2]
 ```
 
 ### push
@@ -225,8 +225,8 @@ push(...items: T[]): number;
 **示例：**
 
 ```ts
-let arkTSArray = new ArkTSArray(1, 2, 3);
-let newLength = arkTSArray.push(4, 5); // 返回5，数组变为[1, 2, 3, 4, 5]
+let array = new collections.Array<number>(1, 2, 3);
+let length = array.push(4, 5); // 返回5，数组变为[1, 2, 3, 4, 5]
 ```
 
 ### join
@@ -266,8 +266,8 @@ join(separator?: string): string;
 **示例：**
 
 ```ts
-let arkTSArray = new ArkTSArray('a', 'b', 'c');
-let joinedString = arkTSArray.join('-'); // 返回 "a-b-c"
+let array = new collections.Array<string>('a', 'b', 'c');
+let joinedString = array.join('-'); // 返回 "a-b-c"
 ```
 
 ### shift
@@ -300,8 +300,8 @@ shift(): T | undefined;
 **示例：**
 
 ```ts
-let arkTSArray = new ArkTSArray(1, 2, 3);
-let firstElement = arkTSArray.shift(); // 返回1，数组变为[2, 3]
+let array = new collections.Array<number>(1, 2, 3);
+let firstElement = array.shift(); // 返回1，数组变为[2, 3]
 ```
 
 ### unshift
@@ -341,8 +341,8 @@ unshift(...items: T[]): number;
 **示例：**
 
 ```ts
-let arkTSArray = new ArkTSArray(1, 2, 3);
-let newLength = arkTSArray.unshift(0); // 返回4，数组变为[0, 1, 2, 3]
+let array = new collections.Array<number>(1, 2, 3);
+let newLength = array.unshift(0); // 返回4，数组变为[0, 1, 2, 3]
 ```
 
 ### slice
@@ -382,8 +382,8 @@ slice(start?: number, end?: number): Array<T>;
 **示例：**
 
 ```ts
-let arkTSArray = new ArkTSArray(1, 2, 3, 4, 5);
-let slicedArray = arkTSArray.slice(1, 3); // 返回[2, 3]，数组保持不变
+let array = new collections.Array<number>(1, 2, 3, 4, 5);
+let slicedArray = array.slice(1, 3); // 返回[2, 3]，数组保持不变
 ```
 
 ### sort
@@ -419,6 +419,14 @@ sort(compareFn?: (a: T, b: T) => number): Array<T>;
 | 401 | Parameter error. |
 | 10200011 | The sort method cannot be bound. |
 | 10200201 | Concurrent modification error
+
+**示例：**
+
+```ts
+let array = new collections.Array<number>(1, 3, 5, 4, 1);
+array.sort((a: number, b: number) => a - b); // [1, 2, 3, 4, 5]
+array.sort((a: number, b: number) => b - a); // [5, 4, 3, 2, 1]
+```
 
 ### indexOf
 
@@ -458,8 +466,8 @@ indexOf(searchElement: T, fromIndex?: number): number;
 **示例：**
 
 ```ts
-let arkTSArray = new ArkTSArray('a', 'b', 'c');
-let index = arkTSArray.indexOf('b'); // 返回1，因为'b'在索引1的位置
+let array = new collections.Array<string>('a', 'b', 'c');
+let index = array.indexOf('b'); // 返回1，因为'b'在索引1的位置
 ```
 
 ### forEach
@@ -499,8 +507,8 @@ forEach(callbackFn: (value: T, index: number, array: Array<T>) => void): void;
 **示例：**
 
 ```ts
-let arkTSArray = new ArkTSArray('a', 'b', 'c');
-arkTSArray.forEach((value, index, array) => {
+let array = new collections.Array<string>('a', 'b', 'c');
+array.forEach((value, index, array) => {
   console.log(`Element ${value} at index ${index}`);
 });
 ```
@@ -542,11 +550,11 @@ map<U>(callbackFn: (value: T, index: number, array: Array<T>) => U): Array<U>;
 **示例：**
 
 ```ts
-let arkTSArray = new ArkTSArray('a', 'b', 'c');
-let mappedArray = arkTSArray.map((value, index, array) => {
+let array = new collections.Array<string>('a', 'b', 'c');
+let mappedArray = array.map((value, index, array) => {
   return value.toUpperCase(); // 将每个字符串元素转换为大写
 });
-console.log(mappedArray); // 输出: ['A', 'B', 'C']
+console.log("" + mappedArray); // 输出: ['A', 'B', 'C']
 ```
 
 在这个示例中，`map` 方法将原始数组中的每个字符串元素转换为大写形式，并返回一个新数组，其中包含转换后的字符串。
@@ -588,8 +596,8 @@ filter(predicate: (value: T, index: number, array: Array<T>) => boolean): Array<
 **示例：**
 
 ```ts
-let arkTSArray = new ArkTSArray(1, 2, 3, 4, 5);
-let filteredArray = arkTSArray.filter(value => value % 2 === 0); // 返回[2, 4]，只包含偶数
+let array = new collections.Array<number>(1, 2, 3, 4, 5);
+let filteredArray = array.filter((value : number) => value % 2 === 0); // 返回[2, 4]，只包含偶数
 ```
 
 ### reduce
@@ -629,8 +637,8 @@ reduce(callbackFn: (previousValue: T, currentValue: T, currentIndex: number, arr
 **示例：**
 
 ```ts
-let arkTSArray = new ArkTSArray(1, 2, 3, 4, 5);
-let reducedValue = arkTSArray.reduce((accumulator, value) => accumulator + value); // 返回15，累加所有元素
+let array = new collections.Array<number>(1, 2, 3, 4, 5);
+let reducedValue = array.reduce((accumulator, value) => accumulator + value); // 返回15，累加所有元素
 ```
 ### reduce<U>
 
@@ -670,8 +678,8 @@ reduce<U>(callbackFn: (previousValue: U, currentValue: T, currentIndex: number, 
 **示例：**
 
 ```ts
-let arkTSArray = new ArkTSArray(1, 2, 3, 4, 5);
-let reducedValue = arkTSArray.reduce<number>((accumulator, value) => accumulator + value, 0); // 返回15，累加所有元素，初始值为0
+let array = new collections.Array(1, 2, 3, 4, 5);
+let reducedValue = array.reduce<number>((accumulator: number, value: number) => accumulator + value, 0); // 返回15，累加所有元素，初始值为0
 ```
 
 在这个示例中，`reduce` 方法使用一个初始值为0的累加器，并将其与数组中的每个元素相加，最终返回累加后的总和。
@@ -713,8 +721,8 @@ at(index: number): T | undefined;
 **示例：**
 
 ```ts
-let arkTSArray = new ArkTSArray(1, 2, 3, 4, 5);
-let elementAtIndex = arkTSArray.at(2); // 返回3，因为索引是从0开始的
+let array = new collections.Array<number>(1, 2, 3, 4, 5);
+let elementAtIndex = array.at(2); // 返回3，因为索引是从0开始的
 ```
 
 ### entries
@@ -747,9 +755,9 @@ entries(): IterableIterator<[number, T]>;
 **示例：**
 
 ```ts
-let arkTSArray = new ArkTSArray(1, 2, 3, 4, 5);
-let iterator = arkTSArray.entries();
-let [key, value] = iterator.next().value; // 输出：[0, 1]，第一个元素的键值对
+let array = new collections.Array<number>(1, 2, 3, 4, 5);
+let iterator = array.entries();
+console.log(iterator.next().value); // 输出：[0, 1]，第一个元素的键值对
 ```
 
 ### keys
@@ -782,9 +790,11 @@ keys(): IterableIterator<number>;
 **示例：**
 
 ```ts
-let arkTSArray = new ArkTSArray(1, 2, 3, 4, 5);
-let iterator = arkTSArray.keys();
-let key = iterator.next().value; // 输出：0，第一个元素的键
+let array = new collections.Array<number>(1, 2, 3, 4, 5);
+let iterator = array.keys();
+for (const key of iterator) {
+  console.log("" + key); // 依次输出 0,1,2,3,4
+}
 ```
 
 ### values
@@ -817,9 +827,11 @@ values(): IterableIterator<T>;
 **示例：**
 
 ```ts
-let arkTSArray = new ArkTSArray(1, 2, 3, 4, 5);
-let iterator = arkTSArray.values();
-let value = iterator.next().value; // 输出：1，第一个元素的值
+let array = new collections.Array<number>(1, 2, 3, 4, 5);
+let iterator = array.values();
+for(const value of iterator) {
+  console.log("" + value); // 依次输出 1,2,3,4,5
+}
 ```
 
 ### find
@@ -859,8 +871,8 @@ find(predicate: (value: T, index: number, obj: Array<T>) => boolean): T | undefi
 **示例：**
 
 ```ts
-let arkTSArray = new ArkTSArray(1, 2, 3, 4, 5);
-let foundValue = arkTSArray.find(value => value % 2 === 0); // 返回4，第一个偶数元素
+let array = new collections.Array<number>(1, 2, 3, 4, 5);
+let foundValue = array.find((value: number) => value % 2 === 0); // 返回4，第一个偶数元素
 ```
 
 ### includes
@@ -901,8 +913,8 @@ includes(searchElement: T, fromIndex?: number): boolean;
 **示例：**
 
 ```ts
-let arkTSArray = new ArkTSArray(1, 2, 3, 4, 5);
-let includesResult = arkTSArray.includes(3); // 返回true，因为数组中包含3
+let array = new collections.Array<number>(1, 2, 3, 4, 5);
+let includesResult = array.includes(3); // 返回true，因为数组中包含3
 ```
 
 ### findIndex
@@ -942,8 +954,8 @@ findIndex(predicate: (value: T, index: number, obj: Array<T>) => boolean): numbe
 **示例：**
 
 ```ts
-let arkTSArray = new ArkTSArray(1, 2, 3, 4, 5);
-let foundIndex = arkTSArray.findIndex(value => value % 2 === 0); // 返回1，因为2是第一个偶数元素
+let array = new collections.Array<number>(1, 2, 3, 4, 5);
+let foundIndex = array.findIndex((value: number) => value % 2 === 0); // 返回1，因为2是第一个偶数元素
 ```
 
 ### fill
@@ -985,6 +997,6 @@ fill(value: T, start?: number, end?: number): Array<T>;
 **示例：**
 
 ```ts
-let arkTSArray = new ArkTSArray(1, 2, 3, 4, 5);
-arkTSArray.fill(0, 1, 3); // 返回[1, 0, 0, 4, 5]，因为1到3的索引范围内的元素被替换为0
+let array = new collections.Array(1, 2, 3, 4, 5);
+array.fill(0, 1, 3); // 返回[1, 0, 0, 4, 5]，因为1到3的索引范围内的元素被替换为0
 ```
