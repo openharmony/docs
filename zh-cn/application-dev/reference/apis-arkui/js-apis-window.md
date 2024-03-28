@@ -2831,20 +2831,20 @@ on(type: 'noInteractionDetected', timeout: number, callback: Callback&lt;void&gt
 
 ```ts
 callback: () => void = (): void => {
-  hilog.info(0x0000, 'testTag', 'no interaction in 60s');
+  console.info('no interaction in 60s');
 }
 
 onWindowStageCreate(windowStage: window.WindowStage) {
   windowStage.getMainWindow().then((win: window.Window) => {
+    let windowClass = win;
     if (canIUse("SystemCapability.Window.SessionManager")) {
       try {
-        win.on('noInteractionDetected', 60, this.callback);
+        windowClass.on('noInteractionDetected', 60, this.callback);
       } catch (exception) {
         console.error('Failed to register callback. Cause: ' + JSON.stringify(exception));
       }
     }
   });
-  windowStage.loadContent('pages/Index', (err, data) => {});
 }
 ```
 
@@ -2861,7 +2861,7 @@ off(type: 'noInteractionDetected', callback?: Callback&lt;void&gt;): void
 | 参数名   | 类型                        | 必填 | 说明                                   |
 | -------- |----------------------------| ---- |--------------------------------------|
 | type     | string                     | 是   | 监听事件，固定为'noInteractionDetected'，即本窗口在指定超时时间内无交互的事件。 |
-| callback | Callback&lt;void&gt;    | 否   | 回调函数,当本窗口在指定超时时间内无交互事件时的回调。如果传入参数，则关闭该监听。如果未传入参数，则关闭所有本窗口在指定超时时间内无交互事件的监听。 |
+| callback | Callback&lt;void&gt;    | 否   | 回调函数，当本窗口在指定超时时间内无交互事件时的回调。如果传入参数，则关闭该监听。如果未传入参数，则关闭所有本窗口在指定超时时间内无交互事件的监听。 |
 
 **错误码：**
 
@@ -2876,20 +2876,20 @@ off(type: 'noInteractionDetected', callback?: Callback&lt;void&gt;): void
 
 ```ts
 callback: () => void = (): void => {
-  hilog.info(0x0000, 'testTag', 'no interaction in 60s');
+  console.info('no interaction in 60s');
 }
 
 onWindowStageCreate(windowStage: window.WindowStage) {
   windowStage.getMainWindow().then((win: window.Window) => {
+    let windowClass = win;
     if (canIUse("SystemCapability.Window.SessionManager")) {
       try {
-        win.off('noInteractionDetected', this.callback);
+        windowClass.off('noInteractionDetected', this.callback);
       } catch (exception) {
         console.error('Failed to unregister callback. Cause: ' + JSON.stringify(exception));
       }
     }
   });
-  windowStage.loadContent('pages/Index', (err, data) => {});
 }
 ```
 
