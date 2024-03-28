@@ -46,6 +46,7 @@
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
@@ -60,10 +61,11 @@ attrsToUpdate.set(asset.Tag.DATA_LABEL_NORMAL_1, stringToArray('demo_label_new')
 try {
   asset.update(query, attrsToUpdate).then(() => {
     console.info(`Asset updated successfully.`);
-  }).catch(() => {
-    console.error(`Failed to update Asset.`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to update Asset. Code is ${err.code}, message is ${err.message}`);
   });
 } catch (error) {
-  console.error(`Failed to update Asset.`);
+  let err = error as BusinessError;
+  console.error(`Failed to update Asset. Code is ${err.code}, message is ${err.message}`);
 }
 ```
