@@ -23,4 +23,5 @@
 - [同层渲染绘制Video和Button组件](web-same-layer.md)
 - [使用智能防跟踪功能](web-intelligent-tracking-prevention.md)
 - [webRTC拉起摄像头和麦克风](web-rtc.md)
+- [解决Web组件本地资源跨域问题](web-cross-origin.md)
 - [使用Devtools工具调试前端页面](web-debugging-with-devtools.md)
