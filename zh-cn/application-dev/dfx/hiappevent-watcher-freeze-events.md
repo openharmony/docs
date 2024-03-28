@@ -1,11 +1,9 @@
 # 卡死事件
 
 HiAppEvent提供接口用于订阅系统卡死事件。
-
+- [订阅卡死事件（ArkTS）](hiappevent-watcher-freeze-events-napi.md#订阅卡死事件arkts)
 > **说明：**
 > 若应用卡死导致应用退出，需要再次点击设备桌面的“应用图标”运行应用工程，等待一分钟左右获取到卡死事件。
-
-- [订阅卡死事件（ArkTs）](hiappevent-watcher-freeze-events-napi.md#订阅卡死事件arkts)
 
 ## 接口说明
 
