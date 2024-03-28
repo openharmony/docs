@@ -15,7 +15,7 @@ import deviceInfo from '@ohos.deviceInfo';
 
 ## 属性
 > **说明：**
-> 未特殊说明的字段，数据长度最大值为4096字节。
+> 未特殊说明的字段，数据长度最大值为96字节。
 
 **系统能力**：SystemCapability.Startup.SystemInfo。
 
