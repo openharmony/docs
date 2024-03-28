@@ -38,6 +38,12 @@
 
 查询别名是demo_alias的关键资产明文。
 
+1. 在CMake脚本中链接相关动态库
+```typescript
+target_link_libraries(entry PUBLIC libasset_ndk.z.so)
+```
+
+2. 在cpp文件添加业务代码
 ```c
 #include <string.h>
 
@@ -68,6 +74,12 @@ void QueryAsset() {
 
 查询别名是demo_alias的关键资产属性。
 
+1. 在CMake脚本中链接相关动态库
+```typescript
+target_link_libraries(entry PUBLIC libasset_ndk.z.so)
+```
+
+2. 在cpp文件添加业务代码
 ```c
 #include <string.h>
 
@@ -98,6 +110,12 @@ void QueryAttributes() {
 
 批量查询附属信息是demo_label的关键资产属性，从第5条满足条件的结果开始返回，一共返回10条，且返回结果以DATA_LABEL_NORMAL_1属性内容排序。
 
+1. 在CMake脚本中链接相关动态库
+```typescript
+target_link_libraries(entry PUBLIC libasset_ndk.z.so)
+```
+
+2. 在cpp文件添加业务代码
 ```c
 #include <string.h>
 
