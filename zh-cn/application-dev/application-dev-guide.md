@@ -16,7 +16,7 @@
 
 首先，提供了支撑OpenHarmony应用的两个重要框架：
 
-- 应用程序的框架：[应用模型](application-models/application-model-composition.md)
+- 应用程序的框架：[应用模型](application-models.md)
 - UI的框架：[UI开发](ui/arkui-overview.md)
 
 所有应用都应该在这两个框架的基础之上进行功能的开发。

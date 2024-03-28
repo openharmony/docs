@@ -92,6 +92,3 @@ import Want from '@ohos.app.ability.Want';
   // ...
   ```
   
-- 更多详细说明和示例请参见： [应用模型](../apis/../../application-models/application-model-composition.md)的信息传递载体Want
-
-  <!--no_check-->

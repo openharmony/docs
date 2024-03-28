@@ -59,7 +59,7 @@ $ java -jar app_packing_tool.jar --mode hqf --json-path patch.json --lib-path li
 
 ## 快速修复包的签名
 
-签名与HAP签名相同，将上述生成的entry-default-unsigned.hqf包，通过[签名工具](../security/hapsigntool-guidelines.md)进行签名。可以使用本地OpenHarmony SDK路径的`toolchains`文件夹下的`hap-sign-tool.jar`，命令如下：
+签名与HAP签名相同，将上述生成的entry-default-unsigned.hqf包，通过签名工具进行签名。可以使用本地OpenHarmony SDK路径的`toolchains`文件夹下的`hap-sign-tool.jar`，命令如下：
 
 ```shell
 $ java -jar hap-sign-tool.jar sign-app -keyAlias "OpenHarmony Application Release" -signAlg "SHA256withECDSA" -mode "localSign" -appCertFile "OpenHarmonyApplication.pem" -profileFile "ohos_provision_release.p7b" -inFile "entry-default-unsigned.hqf" -keystoreFile "OpenHarmony.p12" -outFile "entry-signed-release.hqf" -keyPwd "123456" -keystorePwd "123456"
