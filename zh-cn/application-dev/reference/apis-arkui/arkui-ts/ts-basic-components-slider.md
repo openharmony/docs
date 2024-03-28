@@ -46,6 +46,7 @@ Slider(options?: SliderOptions)
 | -------- | -------- |
 | OutSet | 滑块在滑轨上。 |
 | InSet | 滑块在滑轨内。 |
+| NONE<sup>12+</sup> | 无滑块 |
 
 ## 属性
 
@@ -235,6 +236,22 @@ trackBorderRadius(value: Length)
 | 参数名 | 类型                         | 必填 | 说明                             |
 | ------ | ---------------------------- | ---- | -------------------------------- |
 | value  | [Length](ts-types.md#length) | 是   | 底板圆角半径。<br/>默认值：'2vp' |
+
+### selectedBorderRadius<sup>12+</sup>
+
+selectedBorderRadius(value: Length)
+
+设置已滑动部分（高亮）圆角半径。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                         | 必填 | 说明                             |
+| ------ | ---------------------------- | ---- | -------------------------------- |
+| value  | [Dimension](ts-types.md#dimension10)| 是   | 已选择部分圆角半径。<br/>默认值：style值为SliderStyle.InSet或SliderStyle.OutSet时，跟随底板圆角；style值为SliderStyle.NONE时，为0。|
 
 ### blockSize<sup>10+</sup>
 
@@ -426,6 +443,7 @@ Begin和End状态当手势点击时都会触发，Moving和Click状态当value�
 struct SliderExample {
   @State outSetValueOne: number = 40
   @State inSetValueOne: number = 40
+  @State noneValueOne: number = 40
   @State outSetValueTwo: number = 40
   @State inSetValueTwo: number = 40
   @State vOutSetValueOne: number = 40
@@ -504,6 +522,26 @@ struct SliderExample {
       }
       .width('80%')
 
+      Text('none slider').fontSize(9).fontColor(0xCCCCCC).width('90%').margin(15)
+      Row() {
+        Slider({
+          value: this.noneValueOne,
+          min: 0,
+          max: 100,
+          style: SliderStyle.NONE
+        })
+          .blockColor('#191970')
+          .trackColor('#ADD8E6')
+          .selectedColor('#4169E1')
+          .showTips(true)
+          .onChange((value: number, mode: SliderChangeMode) => {
+            this.noneValueOne = value
+            console.info('value:' + value + 'mode:' + mode.toString())
+          })
+        Text(this.noneValueOne.toFixed(0)).fontSize(12)
+      }
+      .width('80%')
+
       Row() {
         Column() {
           Text('vertical outset slider').fontSize(9).fontColor(0xCCCCCC).width('50%').margin(15)
@@ -573,7 +611,7 @@ struct SliderExample {
 }
 ```
 
-![zh-cn_image_0000001179613854](figures/zh-cn_image_0000001179613854.gif)
+![slider](figures/slider.gif)
 
 ### 示例2
 
@@ -601,6 +639,10 @@ struct SliderExample {
       Slider({ style: SliderStyle.InSet, value: 40 })
         .trackBorderRadius(2)
       Divider()
+      Text('selected').fontSize(9).fontColor(0xCCCCCC).margin(15).width('90%')
+      Slider({ style: SliderStyle.InSet, value: 40 })
+        .selectedBorderRadius(2)
+      Divider()
       Text('blockStyle').fontSize(9).fontColor(0xCCCCCC).margin(15).width('90%')
       Slider({ style: SliderStyle.OutSet, value: 40 })
         .blockStyle({ type: SliderBlockType.DEFAULT })
@@ -622,4 +664,4 @@ struct SliderExample {
 }
 ```
 
-![](figures/slider_2.png)
+![slider_2](figures/slider_2.png)
