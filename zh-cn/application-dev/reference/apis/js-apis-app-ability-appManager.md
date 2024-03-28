@@ -182,7 +182,7 @@ getAppMemorySize(): Promise\<number>
 
 ```ts
 import appManager from '@ohos.app.ability.appManager';
-import { BusinessError} from '@ohos.base'
+import { BusinessError } from '@ohos.base';
 
 appManager.getAppMemorySize().then((data) => {
     console.log(`The size of app memory is: ${JSON.stringify(data)}`);
