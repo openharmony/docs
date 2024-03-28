@@ -238,6 +238,20 @@ maxLines(value: number)
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | value  | number | 是   | 内联输入风格编辑态时文本可显示的最大行数。<br/>默认值：3 <br/>取值范围：(0, +∞) |
 
+### wordBreak<sup>12+</sup>
+
+wordBreak(value: WordBreak)
+
+设置文本断行规则。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                          | 必填 | 说明                                          |
+| ------ | --------------------------------------------- | ---- | --------------------------------------------- |
+| value  | [WordBreak](ts-appendix-enums.md#wordbreak11) | 是   | 断行规则。 <br />默认值：WordBreak.BREAK_WORD |
+
 ### customKeyboard<sup>10+</sup>
 
 customKeyboard(value: CustomBuilder)
@@ -737,3 +751,53 @@ struct TextInputExample {
 ```
 
 ![TextAreaEnterKeyType](figures/area_enterkeytype.gif)
+
+
+### 示例6
+示例展示设置不同wordBreak属性的TextInput样式。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TextAreaExample {
+  build() {
+    Column() {
+      Text("属性WordBreakType为NORMAL的样式：").fontSize(16).fontColor(0xFF0000)
+      TextArea({
+        text: 'This is set wordBreak to WordBreak text Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu.'
+      })
+        .fontSize(16)
+        .border({ width: 1 })
+        .maxLines(2)
+        .wordBreak(WordBreak.NORMAL)
+      Text("英文文本，属性WordBreakType为BREAK_ALL的样式：").fontSize(16).fontColor(0xFF0000)
+      TextArea({
+        text: 'This is set wordBreak to WordBreak text Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu.'
+      })
+        .fontSize(16)
+        .border({ width: 1 })
+        .maxLines(2)
+        .wordBreak(WordBreak.BREAK_ALL)
+      Text("中文文本，属性WordBreakType为BREAK_ALL的样式：").fontSize(16).fontColor(0xFF0000)
+      TextArea({
+        text: '多行文本输入框组件，当输入的文本内容超过组件宽度时会自动换行显示。\n高度未设置时，组件无默认高度，自适应内容高度。宽度未设置时，默认撑满最大宽度。'
+      })
+        .fontSize(16)
+        .border({ width: 1 })
+        .maxLines(2)
+        .wordBreak(WordBreak.BREAK_ALL)
+      Text("属性WordBreakType为BREAK_WORD的样式：").fontSize(16).fontColor(0xFF0000)
+      TextArea({
+        text: 'This is set wordBreak to WordBreak text Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu.'
+      })
+        .fontSize(16)
+        .border({ width: 1 })
+        .maxLines(2)
+        .wordBreak(WordBreak.BREAK_WORD)
+    }
+  }
+}
+```
+
+![TextAreaWordBreak](figures/TextAreaWordBreak.jpeg)
