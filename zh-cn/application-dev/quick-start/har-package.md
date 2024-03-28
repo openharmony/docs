@@ -14,7 +14,7 @@ HAR（Harmony Archive）是静态共享包，可以包含代码、C++库、资�
 - HAR可以依赖其他HAR，但不支持循环依赖，也不支持依赖传递。
 
 ## 创建
-通过DevEco Studio创建一个HAR模块，详见[创建库模块](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-har-0000001547134226#section643521083015)。
+通过DevEco Studio创建一个HAR模块，详见[创建库模块](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/creating_har_api9-0000001518082393-V3#section143510369612)。
 
 
 ## 开发
@@ -132,7 +132,7 @@ HAR模块编译打包时会把资源打包到HAR中。在编译构建HAP时，De
 
 介绍如何配置HAR依赖，并引用HAR的ArkUI组件、接口、资源。
 
-引用HAR前，需要先配置对HAR的依赖，详见[引用HAR文件和资源](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-har-import-0000001547293682)。
+引用HAR前，需要先配置对HAR的依赖，详见[引用HAR文件和资源](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/creating_har_api9-0000001518082393-V3#section611662614153)。
 
 ### 引用HAR的ArkUI组件
 
@@ -333,7 +333,7 @@ HAR可以作为二方库和三方库提供给其他应用使用，如果需要�
 
 ## 发布
 
-详见[发布HAR](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-har-publish-0000001597973129)。
+详见[发布HAR](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/creating_har_api9-0000001518082393-V3#section1213451811512)。
 
 ## 相关实例
 
