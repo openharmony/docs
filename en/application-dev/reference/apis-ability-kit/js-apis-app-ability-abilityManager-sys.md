@@ -694,7 +694,7 @@ try {
 
 off(type: 'abilityForegroundState', observer?: AbilityForegroundStateObserver): void
 
-Deregisters the observer used to listen for ability start or exit events.
+Unregisters the observer used to listen for ability start or exit events.
 
 **System API**: This is a system API.
 
@@ -764,7 +764,7 @@ Obtains the information about the UIAbilities of an application that is running 
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback\<Array\<[AbilityStateData](js-apis-inner-application-abilityStateData-sys.md)>>  | Yes|Callback used to return the API call result and the UIAbility information. You can perform error handling or custom processing in this callback.|
+  | callback | AsyncCallback\<Array\<[AbilityStateData](js-apis-inner-application-abilityStateData-sys.md)>>  | Yes|Callback used to return the API call result and the UIAbility information. You can perform error handling or custom processing in it.|
 
 **Error codes**
 
@@ -805,7 +805,7 @@ Obtains the information about the UIAbilities of an application that is running 
 
 | Type| Description|
 | -------- | -------- |
-| Promise\<Array\<[AbilityStateData](js-apis-inner-application-abilityStateData-sys.md)>> | Promise used to return the API call result and the UIAbility information. You can perform error handling or custom processing in this callback.|
+| Promise\<Array\<[AbilityStateData](js-apis-inner-application-abilityStateData-sys.md)>> | Promise used to return the API call result and the UIAbility information. You can perform error handling or custom processing in it.|
 
 **Error codes**
 

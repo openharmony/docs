@@ -1,6 +1,6 @@
 # @ohos.app.ability.UIAbility (UIAbility)
 
-UIAbility is an application component that has the UI. The **UIAbility** module, inherited from [Ability](js-apis-app-ability-ability.md), provides lifecycle callbacks such as component creation, destruction, and foreground/background switching. It also provides the following capabilities related to component collaboration:
+UIAbility is an application component that has the UI. The UIAbility module, inherited from [Ability](js-apis-app-ability-ability.md), provides lifecycle callbacks such as component creation, destruction, and foreground/background switching. It also provides the following capabilities related to component collaboration:
 
 - [Caller](#caller): an object returned by [startAbilityByCall](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilitybycall). The CallerAbility (caller) uses this object to communicate with the CalleeAbility (callee).
 - [Callee](#callee): an internal object of UIAbility. The CalleeAbility (callee) uses this object to communicate with the CallerAbility (caller).
@@ -25,7 +25,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 | -------- | -------- | -------- | -------- | -------- |
 | context | [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md) | No| Yes| Context of the UIAbility.|
 | launchWant | [Want](js-apis-app-ability-want.md) | No| Yes| Parameters for starting the UIAbility.|
-| lastRequestWant | [Want](js-apis-app-ability-want.md) | No| Yes| Parameters used when the UIAbility was started last time.|
+| lastRequestWant | [Want](js-apis-app-ability-want.md) | No| Yes| Parameters carried in the last request.|
 | callee | [Callee](#callee) | No| Yes| Object that invokes the stub service.|
 
 ## UIAbility.onCreate
@@ -40,7 +40,7 @@ Called to initialize the service logic when a UIAbility instance in the complete
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | Yes| Information related to this UIAbility, including the ability name and bundle name.|
+| want | [Want](js-apis-app-ability-want.md) | Yes| Want information, including the ability name and bundle name.|
 | launchParam | [AbilityConstant.LaunchParam](js-apis-app-ability-abilityConstant.md#abilityconstantlaunchparam) | Yes| Parameters for starting the UIAbility, and the reason for the last abnormal exit.|
 
 **Example**
@@ -139,7 +139,7 @@ Called when the **WindowStage** is restored during the migration of this UIAbili
 
 onDestroy(): void | Promise&lt;void&gt;
 
-Called when this UIAbility is destroyed to clear resources. This API returns the result synchronously or uses a promise to return the result.
+Called to clear resources when this UIAbility is destroyed. This API returns the result synchronously or uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -459,13 +459,13 @@ Called when an operation of going back to a previous page is triggered on this U
 
 ## Caller
 
-Implements sending of sequenceable data to the target ability when the CallerAbility invokes the target ability (CalleeAbility).
+Implements sending of parcelable data to the target UIAbility when the CallerAbility invokes the target UIAbility (CalleeAbility).
 
 ### Caller.call
 
 call(method: string, data: rpc.Parcelable): Promise&lt;void&gt;
 
-Sends sequenceable data to the target ability. This API uses a promise to return the result.
+Sends parcelable data to the target UIAbility. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -473,7 +473,7 @@ Sends sequenceable data to the target ability. This API uses a promise to return
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| method | string | Yes| Notification message string negotiated between the two abilities. The message is used to instruct the callee to register a function to receive the sequenceable data.|
+| method | string | Yes| Notification message string negotiated between the two UIAbilities. The message is used to instruct the callee to register a function to receive the parcelable data.|
 | data | [rpc.Parcelable](../apis-ipc-kit/js-apis-rpc.md#parcelable9) | Yes| Parcelable data. You need to customize the data.|
 
 **Return value**
@@ -552,7 +552,7 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 
 callWithResult(method: string, data: rpc.Parcelable): Promise&lt;rpc.MessageSequence&gt;
 
-Sends sequenceable data to the target ability and obtains the sequenceable data returned by the target ability. This API uses a promise to return the result.
+Sends parcelable data to the target UIAbility and obtains the parcelable data returned by the target UIAbility. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -560,14 +560,14 @@ Sends sequenceable data to the target ability and obtains the sequenceable data 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| method | string | Yes| Notification message string negotiated between the two abilities. The message is used to instruct the callee to register a function to receive the sequenceable data.|
+| method | string | Yes| Notification message string negotiated between the two UIAbilities. The message is used to instruct the callee to register a function to receive the parcelable data.|
 | data | [rpc.Parcelable](../apis-ipc-kit/js-apis-rpc.md#parcelable9) | Yes| Parcelable data. You need to customize the data.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;[rpc.MessageSequence](../apis-ipc-kit/js-apis-rpc.md#messagesequence9)&gt; | Promise used to return the sequenceable data from the target ability.|
+| Promise&lt;[rpc.MessageSequence](../apis-ipc-kit/js-apis-rpc.md#messagesequence9)&gt; | Promise used to return the parcelable data from the target UIAbility.|
 
 **Error codes**
 
@@ -641,7 +641,7 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 
 release(): void
 
-Releases the caller interface of the target ability.
+Releases the caller interface of the target UIAbility.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -687,7 +687,7 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 
  onRelease(callback: OnReleaseCallback): void
 
-Called when the stub on the target ability is disconnected. This API uses an asynchronous callback to return the result.
+Called when the stub on the target UIAbility is disconnected. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -740,7 +740,7 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 
 onRemoteStateChange(callback: OnRemoteStateChangeCallback): void
 
-Called when the remote ability state changes in the collaboration scenario. This API uses an asynchronous callback to return the result.
+Called when the remote UIAbility state changes in the collaboration scenario. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -794,7 +794,7 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 
 on(type: 'release', callback: OnReleaseCallback): void
 
-Called when the stub on the target ability is disconnected. This API uses an asynchronous callback to return the result.
+Called when the stub on the target UIAbility is disconnected. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -848,7 +848,7 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 
 off(type: 'release', callback: OnReleaseCallback): void
 
-Deregisters a callback that is invoked when the stub on the target ability is disconnected. This capability is reserved. This API uses an asynchronous callback to return the result.
+Deregisters a callback that is invoked when the stub on the target UIAbility is disconnected. This capability is reserved. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -896,7 +896,7 @@ Deregisters a callback that is invoked when the stub on the target ability is di
 
 off(type: 'release'): void
 
-Deregisters a callback that is invoked when the stub on the target ability is disconnected. This capability is reserved.
+Deregisters a callback that is invoked when the stub on the target UIAbility is disconnected. This capability is reserved.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -947,7 +947,7 @@ Implements callbacks for caller notification registration and deregistration.
 
 on(method: string, callback: CalleeCallback): void
 
-Registers a caller notification callback, which is invoked when the target ability registers a function.
+Registers a caller notification callback, which is invoked when the target UIAbility registers a function.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -955,7 +955,7 @@ Registers a caller notification callback, which is invoked when the target abili
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| method | string | Yes| Notification message string negotiated between the two abilities.|
+| method | string | Yes| Notification message string negotiated between the two UIAbilities.|
 | callback | [CalleeCallback](#calleecallback) | Yes| JS notification synchronization callback of the [rpc.MessageSequence](../apis-ipc-kit/js-apis-rpc.md#messagesequence9) type. The callback must return at least one empty [rpc.Parcelable](../apis-ipc-kit/js-apis-rpc.md#parcelable9) object. Otherwise, the function execution fails.|
 
 **Error codes**
@@ -1019,7 +1019,7 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 
 off(method: string): void
 
-Deregisters a caller notification callback, which is invoked when the target ability registers a function.
+Deregisters a caller notification callback, which is invoked when the target UIAbility registers a function.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -1071,13 +1071,13 @@ Defines the callback that is invoked when the stub on the target UIAbility is di
 
 | Name| Type| Mandatory| Description|
 | --- | ----- | --- | -------- |
-| msg | string | Yes| Message used for disconnection.|
+| msg | string | Yes| Message used for disconnection.| 
 
 
 ## OnRemoteStateChangeCallback<sup>10+</sup>
 
 
-Defines the callback that is invoked when the remote ability state changes in the collaboration scenario.
+Defines the callback that is invoked when the remote UIAbility state changes in the collaboration scenario.
 
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
@@ -1086,7 +1086,7 @@ Defines the callback that is invoked when the remote ability state changes in th
 
 | Name| Type| Mandatory| Description|
 | --- | ----- | --- | -------- |
-| msg | string | Yes| Message used for disconnection.|
+| msg | string | Yes| Message used for disconnection.| 
 
 
 ## CalleeCallback
@@ -1108,5 +1108,3 @@ Defines the callback of the registration message notification of the UIAbility.
 | Type  | Description                                 |
 | ------------ | ------------------------------------- |
 | [rpc.Parcelable](../apis-ipc-kit/js-apis-rpc.md#parcelable9) | Returned data object.|
-
- <!--no_check--> 
