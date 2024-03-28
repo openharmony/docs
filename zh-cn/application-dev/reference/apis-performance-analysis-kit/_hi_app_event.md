@@ -1093,7 +1093,7 @@ int OH_HiAppEvent_TakeWatcherData (HiAppEvent_Watcher * watcher, uint32_t eventN
 | 名称 | 描述 | 
 | -------- | -------- |
 | watcher | 指向监听器的指针（即OH_HiAppEvent_CreateWatcher接口返回的指针）。  | 
-| eventNum | 需要获取的事件数量。  | 
+| eventNum | 当输入值小于等于0时，取全部已保存事件；当输入值大于0时，按照事件发生时间倒序排列，取指定数量的已保存事件。  | 
 | onTake | 回调函数指针，事件通过调用该函数返回事件信息。  | 
 
 **返回：**
