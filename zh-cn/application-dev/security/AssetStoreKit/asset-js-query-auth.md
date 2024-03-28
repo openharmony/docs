@@ -72,6 +72,7 @@
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
 import userAuth from '@ohos.userIAM.userAuth';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
@@ -106,8 +107,8 @@ async function userAuthenticate(challenge: Uint8Array): Promise<Uint8Array> {
         }
       });
       userAuthInstance.start();
-    } catch (error) {
-      console.error(`User identity authentication failed.`);
+    } catch (err) {
+      console.error(`User identity authentication failed. Code is ${err.code}, message is ${err.message}`);
       reject();
     }
   })
@@ -123,8 +124,8 @@ function preQueryAsset(): Promise<Uint8Array> {
       }).catch(() => {
         reject();
       })
-    } catch (error) {
-      console.error(`Failed to pre-query Asset.`);
+    } catch (err) {
+      console.error(`Failed to pre-query Asset. Code is ${err.code}, message is ${err.message}`);
       reject();
     }
   });
@@ -136,8 +137,8 @@ async function postQueryAsset(challenge: Uint8Array) {
   try {
     await asset.postQuery(handle);
     console.info(`Succeeded in post-querying Asset.`);
-  } catch (error) {
-    console.error(`Failed to post-query Asset.`);
+  } catch (err) {
+    console.error(`Failed to post-query Asset. Code is ${err.code}, message is ${err.message}`);
   }
 }
 
@@ -166,8 +167,8 @@ async function queryAsset() {
       // step5. preQuery成功，后续操作失败，也需要调用asset.postQuery进行查询的后置处理。
       postQueryAsset(challenge);
     }
-  }).catch (() => {
-    console.error(`Failed to pre-query Asset.`);
+  }).catch ((err: BusinessError) => {
+    console.error(`Failed to pre-query Asset. Code is ${err.code}, message is ${err.message}`);
   })
 }
 ```

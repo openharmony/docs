@@ -44,6 +44,7 @@
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
@@ -67,11 +68,11 @@ try {
       // parse uint8array to string
       let secretStr: string = arrayToString(secret);
     }
-  }).catch (() => {
-    console.error(`Failed to query Asset.`);
+  }).catch ((err: BusinessError) => {
+    console.error(`Failed to query Asset. Code is ${err.code}, message is ${err.message}`);
   });
-} catch (error) {
-  console.error(`Failed to query Asset.`);
+} catch (err) {
+  console.error(`Failed to query Asset. Code is ${err.code}, message is ${err.message}`);
 }
 ```
 
@@ -82,6 +83,7 @@ try {
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
@@ -97,11 +99,11 @@ try {
       // parse the attribute.
       let accessibility: number = res[i].get(asset.Tag.ACCESSIBILITY) as number;
     }
-  }).catch (() => {
-    console.error(`Failed to query Asset.`);
+  }).catch ((err: BusinessError) => {
+    console.error(`Failed to query Asset. Code is ${err.code}, message is ${err.message}`);
   });
-} catch (error) {
-  console.error(`Failed to query Asset.`);
+} catch (err) {
+  console.error(`Failed to query Asset. Code is ${err.code}, message is ${err.message}`);
 }
 ```
 
@@ -112,6 +114,7 @@ try {
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
@@ -130,10 +133,10 @@ try {
       // parse the attribute.
       let accessibility: number = res[i].get(asset.Tag.ACCESSIBILITY) as number;
     }
-  }).catch (() => {
-    console.error(`Failed to query Asset.`);
+  }).catch ((err: BusinessError) => {
+    console.error(`Failed to query Asset. Code is ${err.code}, message is ${err.message}`);
   });
-} catch (error) {
-  console.error(`Failed to query Asset.`);
+} catch (err) {
+  console.error(`Failed to query Asset. Code is ${err.code}, message is ${err.message}`);
 }
 ```
