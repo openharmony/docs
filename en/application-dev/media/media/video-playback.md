@@ -256,6 +256,16 @@ export class AVPlayerDemo {
     this.isSeek = false; // The seek operation is not supported.
     avPlayer.url = 'http://xxx.xxx.xxx.xxx:xx/xx/index.m3u8'; // Play live webcasting streams using HLS.
   }
+
+  // The following demonstration demonstrates how to pre download by setting the network address through setMediaSource.
+  async preDownloadDemo() {
+    // Create an AVPlayer instance.
+    let avPlayer: media.AVPlayer = await media.createAVPlayer();
+    let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx",  {"aa" : "bb", "cc" : "dd"});
+    let playbackStrategy : media.PlaybackStrategy = {preferredWidth: 1, preferredHeight: 2, preferredBufferDuration: 3, preferredHdr: false};
+    // Set mediaSource and playbackStrategy.
+    avPlayer.setMediaSource(mediaSource, playbackStrategy)
+  }
 }
 ```
 
