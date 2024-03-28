@@ -70,6 +70,7 @@
         - [@ohos.base (公共回调信息)](js-apis-base.md)
         - [@ohos.settings (设置数据项名称)](js-apis-settings.md)
         - [@ohos.wallpaper (壁纸)](js-apis-wallpaper.md)
+        - [@ohos.configPolicy (配置策略)(系统接口)](js-apis-configPolicy-sys.md)
         - [@ohos.settings (设置数据项名称)(系统接口)](js-apis-settings-sys.md)
         - [@ohos.systemDateTime (系统时间、时区)(系统接口)](js-apis-system-date-time-sys.md)
         - [@ohos.systemDateTime (系统时间、时区)](js-apis-date-time.md)
