@@ -1,4 +1,4 @@
-# Widget Data Interaction Overview
+# Widget Data Interaction
 
 The ArkTS widget framework provides the **updateForm()** and **requestForm()** APIs to proactively trigger widget updates. You can use [LocalStorageProp](../quick-start/arkts-localstorage.md#localstorageprop) to check the widget data to be updated.
 
@@ -16,5 +16,3 @@ The following are the typical use cases of widget updates:
 - [Updating Widget Content Through a Proxy](arkts-ui-widget-update-by-proxy.md)
 - [Updating Local and Online Images in the Widget](arkts-ui-widget-image-update.md)
 - [Updating Widget Content by State](arkts-ui-widget-update-by-status.md)
-- [Updating Widget Content by Widget Host (for System Applications Only)](arkts-ui-widget-content-update.md)
-
