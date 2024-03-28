@@ -7,10 +7,11 @@
 - HiAppEvent使用指导
   - [HiAppEvent介绍](hiappevent-intro.md)
   - 事件订阅
-    - [订阅应用事件](hiappevent-watcher-app-events.md)
-    - [订阅系统事件（崩溃事件）](hiappevent-watcher-crash-events.md)
-    - [订阅系统事件（卡死事件）](hiappevent-watcher-freeze-events.md)
-    - [订阅系统事件（资源泄漏事件）](hiappevent-watcher-resourceleak-events.md)
+    - [应用事件](hiappevent-watcher-app-events.md)
+    - 系统事件
+      - [崩溃事件](hiappevent-watcher-crash-events.md)
+      - [卡死事件](hiappevent-watcher-freeze-events.md)
+      - [资源泄漏事件](hiappevent-watcher-resourceleak-events.md)
   - [事件上报](hiappevent-event-reporting.md)
 - HiTraceMeter使用指导
   - [使用HiTraceMeter跟踪性能（ArkTS/JS）](hitracemeter-guidelines-arkts.md)
