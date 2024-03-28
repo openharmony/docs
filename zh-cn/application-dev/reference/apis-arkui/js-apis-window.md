@@ -4483,7 +4483,7 @@ try {
 
 enableLandscapeMultiWindow(): Promise&lt;void&gt;
 
-在开启多窗动态布局下，配置支持横屏悬浮窗。
+在开启多窗动态布局下，配置支持横向悬浮窗。
 
 此接口只有在module.json5配置文件中[abilities](../../quick-start/module-configuration-file.md#abilities标签)标签中的preferMultiWindowOrientation属性为landscape_auto时才生效。
 
@@ -4521,7 +4521,7 @@ promise.then(() => {
 
 disableLandscapeMultiWindow(): Promise&lt;void&gt;
 
-在开启多窗动态布局下，配置支持竖屏悬浮窗。
+在开启多窗动态布局下，配置支持竖向悬浮窗。
 
 此接口只有在module.json5配置文件中[abilities](../../quick-start/module-configuration-file.md#abilities标签)标签中的preferMultiWindowOrientation属性为landscape_auto时才生效。
 
