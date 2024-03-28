@@ -1,6 +1,6 @@
-# 使用NAPI接口在C++新创建的线程中进行模块加载
+# 使用Node-API接口进行模块加载
 
-Node-API中的napi_load_module_with_info接口的功能是支持在C++新创建的线程中进行模块的加载，当模块加载出来之后，可以使用函数napi_get_property获取模块导出的变量，也可以使用napi_get_named_property获取模块导出的函数
+Node-API中的napi_load_module_with_info接口的功能是进行模块的加载，当模块加载出来之后，可以使用函数napi_get_property获取模块导出的变量，也可以使用napi_get_named_property获取模块导出的函数，该函数可以在[新创建的ArkTs基础运行时环境](use-napi-ark-runtime.md)中使用
 
 ## 函数说明
 ```cpp
@@ -17,9 +17,9 @@ napi_status napi_load_module_with_info(napi_env env,
 | result         | 加载的模块          | 
 
 注：
-
 1. bundleName表示AppScope/app.json5中配置的工程名
 2. moduleName指的是待加载模块所在的HAP下module.json5中配置的名字
+3. [napi_load_module](use-napi-load-module.md)只局限于在主线程中进行模块加载
 
 ## napi_load_module_with_info支持的场景
 
@@ -67,7 +67,7 @@ export {value, test};
 ```cpp
 static napi_value loadModule(napi_env env, napi_callback_info info) {
     napi_value result;
-    //1. 使用napi_load_module加载Test文件中的模块
+    //1. 使用napi_load_module_with_info加载Test文件中的模块
     napi_status status = napi_load_module_with_info(env, "entry/src/main/ets/Test", "com.example.application/entry", &result);
 
     napi_value testFn;
@@ -124,7 +124,7 @@ export {value, test};
 ```cpp
 static napi_value loadModule(napi_env env, napi_callback_info info) {
     napi_value result;
-    //1. 使用napi_load_module加载Test文件中的模块
+    //1. 使用napi_load_module_with_info加载Test文件中的模块
     napi_status status = napi_load_module_with_info(env, "library", "com.example.application/entry", &result);
 
     napi_value testFn;
@@ -170,7 +170,7 @@ static napi_value loadModule(napi_env env, napi_callback_info info) {
 ```cpp
 static napi_value loadModule(napi_env env, napi_callback_info info) {
     napi_value result;
-    //1. 使用napi_load_module加载@ohos/hypium
+    //1. 使用napi_load_module_with_info加载@ohos/hypium
     napi_status status = napi_load_module_with_info(env, "@ohos/hypium", "com.example.application/entry", &result);
 
     napi_value key;
@@ -211,7 +211,7 @@ static napi_value loadModule(napi_env env, napi_callback_info info) {
 ```cpp
 static napi_value loadModule(napi_env env, napi_callback_info info) {
     napi_value result;
-    //1. 使用napi_load_module加载json5
+    //1. 使用napi_load_module_with_info加载json5
     napi_status status = napi_load_module_with_info(env, "json5", "com.example.application/entry", &result);
 
     napi_value key;
@@ -240,7 +240,7 @@ static napi_value loadModule(napi_env env, napi_callback_info info) {
 
 ```cpp
 static napi_value loadModule(napi_env env, napi_callback_info info) {
-    //1. 使用napi_load_module加载模块@ohos.hilog
+    //1. 使用napi_load_module_with_info加载模块@ohos.hilog
     napi_value result;
     napi_status status = napi_load_module_with_info(env, "@ohos.hilog", nullptr, &result);
     
@@ -267,6 +267,7 @@ static napi_value loadModule(napi_env env, napi_callback_info info) {
 ```
 
 - **模块Native库**
+
 libentry.so的index.d.ts文件如下
 ```javascript
 //index.d.ts
@@ -300,7 +301,7 @@ export const add: (a: number, b: number) => number;
 ```cpp
 static napi_value loadModule(napi_env env, napi_callback_info info) {
     napi_value result;
-    //1. 使用napi_load_module加载libentry.so
+    //1. 使用napi_load_module_with_info加载libentry.so
     napi_status status = napi_load_module_with_info(env, "libentry.so", "com.example.application/entry", &result);
 
     napi_value addFn;
