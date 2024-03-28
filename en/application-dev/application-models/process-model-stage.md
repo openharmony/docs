@@ -28,3 +28,5 @@ The system provides the following inter-process communication (IPC) mechanism:
 
 
 [Common Events](../basic-services/common-event/common-event-overview.md): This mechanism is used in one-to-many communication scenarios. Multiple subscribers may receive events at the same time.
+
+ <!--no_check--> 

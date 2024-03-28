@@ -49,3 +49,5 @@ You do not need to care when to add or delete a widget. The lifecycle of the For
 > **NOTE**
 >
 > For an application, all ExtensionAbility components of the same type run in an independent process, whereas the UIAbility, ServiceExtensionAbility, and DataShareExtensionAbility components run in another independent process. For details, see [Process Model (Stage Model)](process-model-stage.md).
+
+ <!--no_check--> 
