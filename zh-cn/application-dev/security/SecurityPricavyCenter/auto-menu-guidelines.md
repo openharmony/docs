@@ -14,9 +14,9 @@
 
 | key值（属性名称） | value值                                                      | 是否必填 | 说明                                              |
 | ----------------- | ------------------------------------------------------------ | -------- | ------------------------------------------------- |
-| displayedMode     | - list：代表列表方式接入。<br />- card ：代表卡片方式接入，当前版本暂不支持。 | 是       | 目前仅支持列表展示，输入card/list均按照列表展示。 |
+| displayedMode     | - list：代表列表方式接入。<br />- card：代表卡片方式接入，当前版本暂不支持。 | 是       | 目前仅支持列表展示，输入card/list均按照列表展示。 |
 | mainTitleResource | 入口菜单显示的主标题字串的资源名                             | 是       | -                                                 |
-| dstAbilityMode    | - 0： 表示被拉起的ability为UiAbility。<br />- 1:   表示被拉起的ability为UiExtensionAbility。 | 是       | -                                                 |
+| dstAbilityMode    | - 0： 表示被拉起的ability为UIAbility。<br />- 1： 表示被拉起的ability为UIExtensionAbility。 | 是       | -                                                 |
 | dstAbilityName    | 跳转的目标Ability。<br />- 当dstAbilityMode为0时，该ability为UIAbility。<br />- 当dstAbilityMode为1时，该ability需继承自UIExtensionAbility，接入方在此ability中加载自身页面。 | 是       | -                                                 |
 | dstBundleName     | 跳转的目的bundle名。                                         | 是       | -                                                 |
 | displayUserConfig | - ONLY_PRIMARY_USER：仅主用户展示。<br />- ONLY_SUB_USER：仅子用户展示。 | 否       | 如果不填，默认为向所有用户展示。                  |
