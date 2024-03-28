@@ -79,7 +79,7 @@ import drm from '@ohos.multimedia.drm';
 | CERT_STATUS_PROVISIONED        | 0    | 设备已安装设备证书   |
 | CERT_STATUS_NOT_PROVISIONED   | 1    | 设备未安装设备证书     |
 | CERT_STATUS_EXPIRED    | 2    | 设备证书过期       |
-| CERT_STATUS_INVALID  | 3    | 无效设备证书     |
+| CERT_STATUS_INVALID  | 3    | 设备证书无效     |
 | CERT_STATUS_UNAVAILABLE  | 4    | 设备证书不可用     |
 
 ## MediaKeyRequestType
