@@ -75,7 +75,8 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to add Asset. Code is ${err.code}, message is ${err.message}`);
   })
-} catch (err) {
+} catch (error) {
+  let err = error as BusinessError;
   console.error(`Failed to add Asset. Code is ${err.code}, message is ${err.message}`);
 }
 ```
@@ -119,6 +120,7 @@ addSync(attributes: AssetMap): void
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
@@ -132,7 +134,8 @@ attr.set(asset.Tag.ACCESSIBILITY, asset.Accessibility.DEVICE_FIRST_UNLOCKED);
 attr.set(asset.Tag.DATA_LABEL_NORMAL_1, stringToArray('demo_label'));
 try {
   asset.addSync(attr);
-} catch (err) {
+} catch (error) {
+  let err = error as BusinessError;
   console.error(`Failed to add Asset. Code is ${err.code}, message is ${err.message}`);
 }
 ```
@@ -193,7 +196,8 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to remove Asset. Code is ${err.code}, message is ${err.message}`);
   });
-} catch (err) {
+} catch (error) {
+  let err = error as BusinessError;
   console.error(`Failed to remove Asset. Code is ${err.code}, message is ${err.message}`);
 }
 ```
@@ -233,6 +237,7 @@ removeSync(query: AssetMap): void
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
@@ -243,7 +248,8 @@ let query: asset.AssetMap = new Map();
 query.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
 try {
   asset.removeSync(query);
-} catch (err) {
+} catch (error) {
+  let err = error as BusinessError;
   console.error(`Failed to remove Asset. Code is ${err.code}, message is ${err.message}`);
 }
 ```
@@ -309,7 +315,8 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to update Asset. Code is ${err.code}, message is ${err.message}`);
   });
-} catch (err) {
+} catch (error) {
+  let err = error as BusinessError;
   console.error(`Failed to update Asset. Code is ${err.code}, message is ${err.message}`);
 }
 ```
@@ -352,6 +359,7 @@ updateSync(query: AssetMap, attributesToUpdate: AssetMap): void
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
@@ -364,7 +372,8 @@ let attrsToUpdate: asset.AssetMap = new Map();
 attrsToUpdate.set(asset.Tag.SECRET, stringToArray('demo_pwd_new'));
 try {
   asset.updateSync(query, attrsToUpdate);
-} catch (err) {
+} catch (error) {
+  let err = error as BusinessError;
   console.error(`Failed to update Asset. Code is ${err.code}, message is ${err.message}`);
 }
 ```
@@ -428,7 +437,8 @@ try {
   }).catch ((err: BusinessError) => {
     console.error(`Failed to pre-query Asset. Code is ${err.code}, message is ${err.message}`);
   });
-} catch (err) {
+} catch (error) {
+  let err = error as BusinessError;
   console.error(`Failed to pre-query Asset. Code is ${err.code}, message is ${err.message}`);
 }
 ```
@@ -477,6 +487,7 @@ preQuerySync(query: AssetMap): Uint8Array
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
@@ -487,7 +498,8 @@ let query: asset.AssetMap = new Map();
 query.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
 try {
   let challenge: Uint8Array = asset.preQuerySync(query);
-} catch (err) {
+} catch (error) {
+  let err = error as BusinessError;
   console.error(`Failed to pre-query Asset. Code is ${err.code}, message is ${err.message}`);
 }
 ```
@@ -555,7 +567,8 @@ try {
   }).catch ((err: BusinessError) => {
     console.error(`Failed to query Asset. Code is ${err.code}, message is ${err.message}`);
   });
-} catch (err) {
+} catch (error) {
+  let err = error as BusinessError;
   console.error(`Failed to query Asset. Code is ${err.code}, message is ${err.message}`);
 }
 ```
@@ -604,6 +617,7 @@ querySync(query: AssetMap): Array\<AssetMap>
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
@@ -621,7 +635,8 @@ try {
       accessibility = res[i].get(asset.Tag.ACCESSIBILITY) as number;
     }
   }
-} catch (err) {
+} catch (error) {
+  let err = error as BusinessError;
   console.error(`Failed to query Asset. Code is ${err.code}, message is ${err.message}`);
 }
 ```
@@ -673,7 +688,8 @@ try {
   }).catch ((err: BusinessError) => {
     console.error(`Failed to post-query Asset. Code is ${err.code}, message is ${err.message}`);
   });
-} catch (err) {
+} catch (error) {
+  let err = error as BusinessError;
   console.error(`Failed to post-query Asset. Code is ${err.code}, message is ${err.message}`);
 }
 ```
@@ -708,13 +724,15 @@ postQuerySync(handle: AssetMap): void
 
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let handle: asset.AssetMap = new Map();
 // 此处传入的new Uint8Array(32)仅作为示例，实际应传入asset.preQuerySync执行成功返回的挑战值
 handle.set(asset.Tag.AUTH_CHALLENGE, new Uint8Array(32));
 try {
   asset.postQuerySync(handle)
-} catch (err) {
+} catch (error) {
+  let err = error as BusinessError;
   console.error(`Failed to post-query Asset. Code is ${err.code}, message is ${err.message}`);
 }
 ```

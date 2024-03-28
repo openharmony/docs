@@ -107,7 +107,8 @@ async function userAuthenticate(challenge: Uint8Array): Promise<Uint8Array> {
         }
       });
       userAuthInstance.start();
-    } catch (err) {
+    } catch (error) {
+      let err = error as BusinessError;
       console.error(`User identity authentication failed. Code is ${err.code}, message is ${err.message}`);
       reject();
     }
@@ -124,7 +125,8 @@ function preQueryAsset(): Promise<Uint8Array> {
       }).catch(() => {
         reject();
       })
-    } catch (err) {
+    } catch (error) {
+      let err = error as BusinessError;
       console.error(`Failed to pre-query Asset. Code is ${err.code}, message is ${err.message}`);
       reject();
     }
@@ -137,7 +139,8 @@ async function postQueryAsset(challenge: Uint8Array) {
   try {
     await asset.postQuery(handle);
     console.info(`Succeeded in post-querying Asset.`);
-  } catch (err) {
+  } catch (error) {
+    let err = error as BusinessError;
     console.error(`Failed to post-query Asset. Code is ${err.code}, message is ${err.message}`);
   }
 }
