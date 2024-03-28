@@ -5,7 +5,7 @@ particleAbility模块提供了操作Data和Service类型的Ability的能力，�
 > **说明：**
 > 
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
-> 本模块接口仅可在FA模型下使用。Stage模型下需使用[ServiceExtensionAbility模块](js-apis-app-ability-serviceExtensionAbility-sys.md)和[ServiceExtensionContext模块](js-apis-inner-application-serviceExtensionContext-sys.md)。
+> 本模块接口仅可在FA模型下使用。
 
 ## 使用限制
 
@@ -30,7 +30,7 @@ startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<void>): 
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[ServiceExtensionContext.startAbility](js-apis-inner-application-serviceExtensionContext-sys.md#serviceextensioncontextstartability)。
+**说明**：本接口仅可在FA模型下使用。
 
 **参数：**
 
@@ -82,7 +82,7 @@ startAbility(parameter: StartAbilityParameter): Promise\<void>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[ServiceExtensionContext.startAbility](js-apis-inner-application-serviceExtensionContext-sys.md#serviceextensioncontextstartability-1)。
+**说明**：本接口仅可在FA模型下使用。
 
 **参数：**
 
@@ -129,7 +129,7 @@ terminateSelf(callback: AsyncCallback\<void>): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[ServiceExtensionContext.terminateSelf](js-apis-inner-application-serviceExtensionContext-sys.md#serviceextensioncontextterminateself)。
+**说明**：本接口仅可在FA模型下使用。
 
 **参数：**
 
@@ -159,7 +159,7 @@ terminateSelf(): Promise\<void>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[ServiceExtensionContext.terminateSelf](js-apis-inner-application-serviceExtensionContext-sys.md#serviceextensioncontextterminateself-1)。
+**说明**：本接口仅可在FA模型下使用。
 
 **返回值：**
 
@@ -193,7 +193,7 @@ acquireDataAbilityHelper(uri: string): DataAbilityHelper
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[dataShare.createDataShareHelper](../apis-arkdata/js-apis-data-dataShare-sys.md#datasharecreatedatasharehelper)。
+**说明**：本接口仅可在FA模型下使用。
 
 **参数：**
 
@@ -227,7 +227,7 @@ startBackgroundRunning(id: number, request: NotificationRequest, callback: Async
 
 **系统能力**：SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
-**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[backgroundTaskManager.startBackgroundRunning](../apis-backgroundtasks-kit/js-apis-backgroundTaskManager.md#backgroundtaskmanagerstartbackgroundrunning8)。
+**说明**：本接口仅可在FA模型下使用。
 
 **参数：**
 
@@ -293,7 +293,7 @@ startBackgroundRunning(id: number, request: NotificationRequest): Promise&lt;voi
 
 **系统能力**：SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
-**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[backgroundTaskManager.startBackgroundRunning](../apis-backgroundtasks-kit/js-apis-backgroundTaskManager.md#backgroundtaskmanagerstartbackgroundrunning8-1)。
+**说明**：本接口仅可在FA模型下使用。
 
 **参数：**
 
@@ -358,7 +358,7 @@ cancelBackgroundRunning(callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**：SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
-**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[backgroundTaskManager.stopBackgroundRunning](../apis-backgroundtasks-kit/js-apis-backgroundTaskManager.md#backgroundtaskmanagerstopbackgroundrunning8)。
+**说明**：本接口仅可在FA模型下使用。
 
  **参数：**
 
@@ -392,7 +392,7 @@ cancelBackgroundRunning(): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
-**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[backgroundTaskManager.stopBackgroundRunning](../apis-backgroundtasks-kit/js-apis-backgroundTaskManager.md#backgroundtaskmanagerstopbackgroundrunning8-1)。
+**说明**：本接口仅可在FA模型下使用。
 
 **返回值：**
 
@@ -428,7 +428,7 @@ connectAbility(request: Want, options:ConnectOptions): number
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[ServiceExtensionContext.connectServiceExtensionAbility](js-apis-inner-application-serviceExtensionContext-sys.md#serviceextensioncontextconnectserviceextensionability)。
+**说明**：本接口仅可在FA模型下使用。
 
 **参数：**
 
@@ -483,7 +483,7 @@ disconnectAbility(connection: number, callback:AsyncCallback\<void>): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[ServiceExtensionContext.disconnectServiceExtensionAbility](js-apis-inner-application-serviceExtensionContext-sys.md#serviceextensioncontextdisconnectserviceextensionability)。
+**说明**：本接口仅可在FA模型下使用。
 
 **参数：**
 
@@ -530,7 +530,7 @@ disconnectAbility(connection: number): Promise\<void>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[ServiceExtensionContext.disconnectServiceExtensionAbility](js-apis-inner-application-serviceExtensionContext-sys.md#serviceextensioncontextdisconnectserviceextensionability-1)。
+**说明**：本接口仅可在FA模型下使用。
 
 **返回值：**
 
