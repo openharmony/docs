@@ -28,7 +28,7 @@
     let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
     fs.writeSync(file.fd, 'Create file success');
     fs.closeSync(file);
-   } catch (error) {
+   } catch (error: BusinessError) {
     let err: BusinessError = error as BusinessError;
     console.error(`Failed to createFile. Code: ${err.code}, message: ${err.message}`);
    }
@@ -48,7 +48,7 @@
       let err: BusinessError = error as BusinessError;
       console.info(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
     })
-   } catch (error) {
+   } catch (error: BusinessError) {
     let err: BusinessError = error as BusinessError;
     console.error(`Failed to getData. Code: ${err.code}, message: ${err.message}`);
    }
@@ -91,7 +91,7 @@
       let err: BusinessError = error as BusinessError;
       console.info(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
     })
-   } catch (error) {
+   } catch (error: BusinessError) {
     let err: BusinessError = error as BusinessError;
     console.error(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
    }
