@@ -99,7 +99,7 @@ verifyPermission(permission: string, options: PermissionOptions, callback: Async
 | 参数名         | 类型                                      | 必填   | 说明                   |
 | ---------- | --------------------------------------- | ---- | -------------------- |
 | permission | string                                  | 是    | 指定权限的名称。             |
-| options    | [PermissionOptions](../apis/#permissionoptions7) | 是    | 权限选项。                |
+| options    | [PermissionOptions](#permissionoptions7) | 是    | 权限选项。                |
 | callback   | AsyncCallback\<number>                  | 是    | 返回权限验证结果，0有权限，-1无权限。 |
 
 **示例：**
@@ -167,7 +167,7 @@ verifyPermission(permission: string, options?: PermissionOptions): Promise\<numb
 | 参数名         | 类型                                      | 必填   | 说明       |
 | ---------- | --------------------------------------- | ---- | -------- |
 | permission | string                                  | 是    | 指定权限的名称。 |
-| options    | [PermissionOptions](../apis/#permissionoptions7) | 否    | 权限选项。    |
+| options    | [PermissionOptions](#permissionoptions7) | 否    | 权限选项。    |
 
 **返回值：**
 
@@ -190,7 +190,7 @@ context.verifyPermission('com.context.permission', {pid:1}).then((data) => {
 
 ## Context.requestPermissionsFromUser<sup>7+</sup>
 
-requestPermissionsFromUser(permissions: Array\<string>, requestCode: number, resultCallback: AsyncCallback<[PermissionRequestResult](../apis/#permissionrequestresult7)>): void
+requestPermissionsFromUser(permissions: Array\<string>, requestCode: number, resultCallback: AsyncCallback<[PermissionRequestResult](#permissionrequestresult7)>): void
 
 从系统请求某些权限（callback形式）。
 
@@ -202,7 +202,7 @@ requestPermissionsFromUser(permissions: Array\<string>, requestCode: number, res
 | -------------- | ---------------------------------------- | ---- | ----------------------------------- |
 | permissions    | Array\<string>                           | 是    | 指示要请求的权限列表。此参数不能为null。              |
 | requestCode    | number                                   | 是    | 指示要传递给PermissionRequestResult的请求代码。 |
-| resultCallback | AsyncCallback<[PermissionRequestResult](../apis/#permissionrequestresult7)> | 是    | 返回授权结果信息。                           |
+| resultCallback | AsyncCallback<[PermissionRequestResult](#permissionrequestresult7)> | 是    | 返回授权结果信息。                           |
 
 **示例：**
 
@@ -230,7 +230,7 @@ context.requestPermissionsFromUser(
 
 ## Context.requestPermissionsFromUser<sup>7+</sup>
 
-requestPermissionsFromUser(permissions: Array\<string>, requestCode: number): Promise\<[PermissionRequestResult](../apis/#permissionrequestresult7)>
+requestPermissionsFromUser(permissions: Array\<string>, requestCode: number): Promise\<[PermissionRequestResult](#permissionrequestresult7)>
 
 从系统请求某些权限（promise形式）。
 
@@ -247,7 +247,7 @@ requestPermissionsFromUser(permissions: Array\<string>, requestCode: number): Pr
 
 | 类型                                                           | 说明             |
 | ------------------------------------------------------------- | ---------------- |
-| Promise\<[PermissionRequestResult](../apis/#permissionrequestresult7)> | 返回授权结果信息。 |
+| Promise\<[PermissionRequestResult](#permissionrequestresult7)> | 返回授权结果信息。 |
 
 **示例：**
 
