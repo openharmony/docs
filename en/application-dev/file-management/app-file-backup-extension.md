@@ -101,7 +101,7 @@ For details about how to use the APIs of BackupExtensionAbility, see [BackupExte
 | Field            | Type  | Mandatory| Description                                                                                                                                                                                           |
 | -------------------- | ---------- | ---- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | allowToBackupRestore | Boolean    | Yes  | Whether to enable backup and restore. The default value is **false**.                                                                                                                                                                |
-| includes             | String array| No  | Files and directories to be backed up in the application sandbox directory.<br>The value is an array of pattern strings, which can contain shell-style wildcards such as *, ?, and [.<br>The pattern string that does not start with a slash (/) indicates a relative path.<br>If **includes** is not specified, the backup and restore framework uses the **includes** default (as listed in the code snippet below).|
+| includes             | String array| No  | Files and directories to be backed up in the application sandbox directory.<br>The pattern string that does not start with a slash (/) indicates a relative path.<br>If **includes** is not specified, the backup and restore framework uses the **includes** default (as listed in the code snippet below).|
 | excludes             | String array| No  | Items in **includes** that do not need to be backed up. The value is in the same format as **includes**.<br>If **excludes** is not configured, the backup and restore framework uses an empty array by default.                                             |
 | fullBackupOnly       | Boolean    | No  | Whether to use the default restore directory of the application. The default value is **false**. If the value is **true**, data is decompressed under **/data/storage/el2/backup/restore/** during the data restore process.<br>If the value is **false** or is not specified, data is decompressed under **/**.  |
 | restoreDeps          | String    | No  | Names of the applications, on which the application restore depends. Use commas (,) to separate multiple applications. The default value is "".                                                                                                          |
@@ -112,7 +112,7 @@ For details about how to use the APIs of BackupExtensionAbility, see [BackupExte
 > - If **fullBackupOnly** is set to **false**, the restored files will overwrite the file with the same name in the directory.
 > - If **fullBackupOnly** is set to **true**, the restored data is decompressed in the **/data/storage/el2/backup/restore/** directory. You can access the data via **OnRestore** to restore it.
 >
-> You can set **fullBackupOnly** based on service requirements. If **fullBackupOnly** is set to **true**, you need to implement the data restore logic in **OnRestore**. If the application backup path is **data/storage/el2/base/files/A/**, the data restored will be decompressed to the **/data/storage/el2/backup/restore/data/storage/el2/base/files/A/** directory.
+> You can set **fullBackupOnly** based on service requirements. If **fullBackupOnly** is set to **true**, you need to implement the data restore logic in **OnRestore**. For example, if the application backup path is **data/storage/el2/base/files/A/**, the data restored will be decompressed to the **/data/storage/el2/backup/restore/data/storage/el2/base/files/A/** directory.
 >
 
 **includes** default:
@@ -134,4 +134,3 @@ For details about how to use the APIs of BackupExtensionAbility, see [BackupExte
     ]
 }
 ```
-
