@@ -9682,7 +9682,7 @@ struct WebComponent {
 | isLocal<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme是否将使用与应用于“FILE”的安全规则相同的安全规则来处理。           |
 | isDisplayIsolated<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme的内容是否只能从相同scheme的其他内容中显示或访问。           |
 | isSecure<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme是否将使用与应用于“https”的安全规则相同的安全规则来处理。           |
-| isCspBypassing<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme可以绕过内容安全策略（CSP）检查。在大多数情况下，当设置ARKWEB_SCHEME_OPTION_STANDARD时，不应设置此值。           |
+| isCspBypassing<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme可以绕过内容安全策略（CSP）检查。在大多数情况下，当设置isStandard为true时，不应设置此值。         |
 
 ## SecureDnsMode<sup>10+</sup>
 
