@@ -6,7 +6,7 @@ The **router** capability of the **postCardAction** API can be used in a widget 
 
 > **NOTE**
 >
-> This topic describes development for dynamic widgets. For static widgets, see [FormLink](../reference/arkui-ts/ts-container-formlink.md).
+> This topic describes development for dynamic widgets. For static widgets, see [FormLink](../reference/apis-arkui/arkui-ts/ts-container-formlink.md).
 
 
 Generally, a button is used to start a page. Below is an example:

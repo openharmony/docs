@@ -82,7 +82,7 @@ The **FormProvider** class has the following APIs. For details, see [FormProvide
 | updateForm(formId: string, formBindingData: FormBindingData): Promise&lt;void&gt;; | Updates a widget. This API uses a promise to return the result.|
 
 
-The **FormBindingData** class has the following APIs. For details, see [FormBindingData](../reference/apis-form-kit//js-apis-app-form-formBindingData.md).
+The **FormBindingData** class has the following APIs. For details, see [FormBindingData](../reference/apis-form-kit/js-apis-app-form-formBindingData.md).
 
 
 | API| Description|
@@ -92,7 +92,7 @@ The **FormBindingData** class has the following APIs. For details, see [FormBind
 
 ## How to Develop
 
-The widget provider development based on the [FA model](fa-model-development-overview.md) involves the following key steps:
+The widget provider development based on the [FA model](../application-models/fa-model-development-overview.md) involves the following key steps:
 
 - [Implementing Widget Lifecycle Callbacks](#implementing-widget-lifecycle-callbacks): Develop the **FormAbility** lifecycle callback functions.
 
