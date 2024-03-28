@@ -1,12 +1,10 @@
 # @ohos.file.picker (Picker)
 
-**picker** encapsulates APIs such as **PhotoViewPicker**, **DocumentViewPicker**, and **AudioViewPicker** to provide capabilities for selecting and saving images and videos, audio clips, or documents. The application can select the picker as required. The APIs of this module must be called in UIAbility. Otherwise, the **photoPicker** or **FilePicker** application cannot be started.
-
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
-
+**picker** encapsulates APIs such as **PhotoViewPicker**, **DocumentViewPicker**, and **AudioViewPicker** to provide capabilities for selecting and saving images and videos, audio clips, or documents. The application can select the picker as required. The APIs of this module must be called in UIAbility. Otherwise, the **photoPicker** or **FilePicker** application cannot be started.
 
 ## Modules to Import
 
@@ -832,12 +830,12 @@ Defines the options for selecting documents.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
-| Name                   | Type               | Mandatory| Description                                      |
-| ----------------------- | ------------------- | ---- |------------------------------------------|
-| maxSelectNumber<sup>10+</sup>       | number  | No  | Maximum number of documents or folders that can be selected.<br>Value range: 1 to 500            |
-| defaultFilePathUri<sup>10+</sup>    | string  | No  | Path of the document or directory to select.                           |
-| fileSuffixFilters<sup>10+</sup>     | Array&lt;string&gt; | No  | File name extension types to select. Use a comma (,) to separate multiple file name extensions.|
-| selectMode<sup>11+</sup>         | [DocumentSelectMode](#documentselectmode)         | No  | Asset types to select, for example, file, folder, or both. This parameter is supported by specific devices only.    |
+| Name                   | Type                                         | Mandatory| Description                                      |
+| :---------------------- |---------------------------------------------| ---- |------------------------------------------|
+| maxSelectNumber<sup>10+</sup>       | number  | No  |Maximum number of documents or folders that can be selected.<br>Value range: 1 to 500<br>(Only certain devices support selection of folders, and only one folder can be selected at a time.)|
+| defaultFilePathUri<sup>10+</sup>    | string                                      | No  | Path of the document or directory to select.                           |
+| fileSuffixFilters<sup>10+</sup>     | Array&lt;string&gt;                         | No  | File name extension types to select. Use a comma (,) to separate multiple file name extensions.|
+| selectMode<sup>11+</sup>         | [DocumentSelectMode](#documentselectmode11) | No  | Asset types to select, for example, file, folder, or both. This parameter is supported by specific devices only.<br>**System capability**: SystemCapability.FileManagement.UserFileService.FolderSelection|
 
 
 ## DocumentSaveOptions

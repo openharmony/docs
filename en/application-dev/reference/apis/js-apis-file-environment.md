@@ -62,7 +62,7 @@ Obtains the root directory of the storage. This API uses an asynchronous callbac
 
 | Name  | Type                       | Mandatory| Description                            |
 | -------- | --------------------------- | ---- | -------------------------------- |
-| callback | AsyncCallback&lt;string&gt; | Yes  | Asynchronous callback invoked to return the root directory of the storage.|
+| callback | AsyncCallback&lt;string&gt; | Yes  | Callback invoked to return the root directory of the storage.|
 
 **Error codes**
 
@@ -136,7 +136,7 @@ Obtains the root directory of user files. This API uses an asynchronous callback
 
 | Name  | Type                       | Mandatory| Description                            |
 | -------- | --------------------------- | ---- | -------------------------------- |
-| callback | AsyncCallback&lt;string&gt; | Yes  | Asynchronous callback used to return the root directory of user files.|
+| callback | AsyncCallback&lt;string&gt; | Yes  | Callback invoked to return the root directory of user files.|
 
 **Error codes**
 
