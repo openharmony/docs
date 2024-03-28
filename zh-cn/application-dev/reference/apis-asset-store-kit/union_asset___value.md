@@ -31,7 +31,7 @@
 Asset_Blob Asset_Value::blob
 ```
 **描述**
-该字段用于传入bool类型的关键资产。
+该字段用于传入bytes类型的关键资产。
 
 
 ### boolean
@@ -40,7 +40,7 @@ Asset_Blob Asset_Value::blob
 bool Asset_Value::boolean
 ```
 **描述**
-该字段用于传入bytes类型的关键资产。
+该字段用于传入bool类型的关键资产。
 
 
 ### u32
