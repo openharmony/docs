@@ -35,9 +35,13 @@ import { collections } from '@kit.ArkTS';
 
 ### constructor
 
-constructor()
+**构造函数**
 
-ArrayList的构造函数。
+```typescript
+constructor();
+```
+
+创建一个ArkTS Array的构造函数。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -47,20 +51,23 @@ ArrayList的构造函数。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200012 | The ArrayList's constructor cannot be directly invoked. |
+| 10200012 | The Array's constructor cannot be directly invoked. |
 
 **示例：**
 
 ```ts
-let arrayList: ArrayList<string | number> = new ArrayList();
+let arkTSArray = new ArkTSArray();
 ```
 
+### constructor
 
-### add
+**构造函数**
 
-add(element: T): boolean
+```typescript
+constructor(first: T, ...left: T[]);
+```
 
-在ArrayList尾部插入元素。
+创建一个ArkTS Array的构造函数，并初始化数组的元素。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -68,13 +75,47 @@ add(element: T): boolean
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| element | T | 是 | 待插入的元素。 |
+| first | T | 是 | 初始化ArkTS Array的第一个元素。 |
+| left | T[] | 否 | 初始化ArkTS Array的剩余元素。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. |
+| 10200012 | The Array's constructor cannot be directly invoked. |
+
+**示例：**
+
+```ts
+let arkTSArray = new ArkTSArray(1, 2, 3, 4);
+```
+
+### static from
+
+**静态方法**
+
+```typescript
+static from<T>(arrayLike: ArrayLike<T>): Array<T>;
+```
+
+从一个类数组对象创建一个新的ArkTS数组。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| arrayLike | ArrayLike<T> | 是 | 要转换为ArkTS数组的类数组对象。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 插入成功返回true，失败返回false。 |
+| Array<T> | 新创建的ArkTS数组实例。 |
 
 **错误码：**
 
@@ -82,78 +123,54 @@ add(element: T): boolean
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200011 | The add method cannot be bound. |
+| 401 | Parameter error. |
+| 10200011 | The from method cannot be bound. |
 
 **示例：**
 
 ```ts
-class C1 {
-  name: string = ""
-  age: string = ""
-}
-let arrayList: ArrayList<string | number | boolean | Array<number> | C1> = new ArrayList();
-let result1 = arrayList.add("a");
-let arrayList1: ArrayList<number> = new ArrayList();
-let result2 = arrayList.add(1);
-let b = [1, 2, 3];
-let result3 = arrayList.add(b);
-let c : C1 = {name: "Dylon", age: "13"}
-let result4 = arrayList.add(c);
-let result5 = arrayList.add(false);
+let arrayLike = { '0': 'a', '1': 'b', '2': 'c', length: 3 };
+let arkTSArray = ArkTSArray.from(arrayLike);
 ```
 
-### insert
+### length
 
-insert(element: T, index: number): void
+**属性**
 
-在长度范围内任意位置插入指定元素。
+```typescript
+length: number;
+```
+
+获取或设置ArkTS数组的长度。这个数值是ArkTS数组中最高索引值加一。
 
 **系统能力：** SystemCapability.Utils.Lang
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| element | T | 是 | 被插入的元素。 |
-| index | number | 是 | 被插入的位置索引。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 10200011 | The insert method cannot be bound. |
-| 10200001 | The value of index is out of range. |
 
 **示例：**
 
 ```ts
-let arrayList: ArrayList<number | string | boolean> = new ArrayList();
-arrayList.insert("A", 0);
-arrayList.insert(0, 1);
-arrayList.insert(true, 2);
+let arkTSArray = new ArkTSArray(1, 2, 3);
+console.log(arkTSArray.length); // 输出：3
+arkTSArray.length = 5;
+console.log(arkTSArray.length); // 输出：5
 ```
 
-### has
+### pop
 
-has(element: T): boolean
+**方法**
 
-判断此ArrayList中是否含有该指定元素。
+```typescript
+pop(): T | undefined;
+```
+
+从ArkTS数组中移除最后一个元素并返回它。如果数组为空，则返回undefined，并且数组不发生变化。
 
 **系统能力：** SystemCapability.Utils.Lang
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| element | T | 是 | 指定元素。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 返回true表示包含指定元素，否则返回false。 |
+| T \| undefined | 从数组中移除的元素；如果数组为空，则返回undefined。 |
 
 **错误码：**
 
@@ -161,21 +178,25 @@ has(element: T): boolean
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200011 | The has method cannot be bound. |
+| 10200011 | The pop method cannot be bound. |
+| 10200201 | Concurrent modification error. |
 
 **示例：**
 
 ```ts
-let arrayList: ArrayList<string> = new ArrayList();
-arrayList.add("squirrel");
-let result: boolean = arrayList.has("squirrel");
+let arkTSArray = new ArkTSArray(1, 2, 3);
+let lastElement = arkTSArray.pop(); // 返回3，数组变为[1, 2]
 ```
 
-### getIndexOf
+### push
 
-getIndexOf(element: T): number
+**方法**
 
-返回指定元素第一次出现时的下标值，查找失败返回-1。
+```typescript
+push(...items: T[]): number;
+```
+
+在ArkTS数组的末尾添加一个或多个元素，并返回新的数组长度。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -183,13 +204,13 @@ getIndexOf(element: T): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| element | T | 是 | 指定元素。 |
+| items | T[] | 是 | 要添加到数组末尾的一个或多个元素。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 返回指定元素第一次出现时的下标值，查找失败返回-1。 |
+| number | 数组的新长度。 |
 
 **错误码：**
 
@@ -197,27 +218,26 @@ getIndexOf(element: T): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200011 | The getIndexOf method cannot be bound. |
+| 401 | Parameter error. |
+| 10200011 | The push method cannot be bound. |
+| 10200201 | Concurrent modification error. |
 
 **示例：**
 
 ```ts
-let arrayList: ArrayList<number> = new ArrayList();
-arrayList.add(2);
-arrayList.add(4);
-arrayList.add(5);
-arrayList.add(2);
-arrayList.add(1);
-arrayList.add(2);
-arrayList.add(4);
-let result: number = arrayList.getIndexOf(2);
+let arkTSArray = new ArkTSArray(1, 2, 3);
+let newLength = arkTSArray.push(4, 5); // 返回5，数组变为[1, 2, 3, 4, 5]
 ```
 
-### getLastIndexOf
+### join
 
-getLastIndexOf(element: T): number
+**方法**
 
-返回指定元素最后一次出现时的下标值，查找失败返回-1。
+```typescript
+join(separator?: string): string;
+```
+
+将ArkTS数组的所有元素连接成一个字符串，元素之间可以用指定的分隔符分隔。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -225,13 +245,13 @@ getLastIndexOf(element: T): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| element | T | 是 | 指定元素。 |
+| separator | string | 否 | 用于分隔数组元素的字符串。如果省略，则使用逗号分隔。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 返回指定元素最后一次出现时的下标值，查找失败返回-1。 |
+| string | 包含所有数组元素连接成的字符串。如果数组为空，则返回空字符串。 |
 
 **错误码：**
 
@@ -239,41 +259,34 @@ getLastIndexOf(element: T): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200011 | The getLastIndexOf method cannot be bound. |
+| 401 | Parameter error. |
+| 10200011 | The join method cannot be bound. |
+| 10200201 | Concurrent modification error. |
 
 **示例：**
 
 ```ts
-let arrayList: ArrayList<number> = new ArrayList();
-arrayList.add(2);
-arrayList.add(4);
-arrayList.add(5);
-arrayList.add(2);
-arrayList.add(1);
-arrayList.add(2);
-arrayList.add(4);
-let result: number = arrayList.getLastIndexOf(2);
+let arkTSArray = new ArkTSArray('a', 'b', 'c');
+let joinedString = arkTSArray.join('-'); // 返回 "a-b-c"
 ```
 
-### removeByIndex
+### shift
 
-removeByIndex(index: number): T
+**方法**
 
-根据元素的下标值查找元素，返回元素后将其删除。
+```typescript
+shift(): T | undefined;
+```
+
+从ArkTS数组中移除第一个元素并返回它。如果数组为空，则返回undefined，并且数组不发生变化。
 
 **系统能力：** SystemCapability.Utils.Lang
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| index | number | 是 | 指定元素的下标值。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| T | 返回删除的元素。 |
+| T \| undefined | 从数组中移除的元素；如果数组为空，则返回undefined。 |
 
 **错误码：**
 
@@ -281,26 +294,25 @@ removeByIndex(index: number): T
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200011 | The removeByIndex method cannot be bound. |
-| 10200001 | The value of index is out of range. |
+| 10200011 | The shift method cannot be bound. |
+| 10200201 | Concurrent modification error. |
 
 **示例：**
 
 ```ts
-let arrayList: ArrayList<number> = new ArrayList();
-arrayList.add(2);
-arrayList.add(4);
-arrayList.add(5);
-arrayList.add(2);
-arrayList.add(4);
-let result: number = arrayList.removeByIndex(2);
+let arkTSArray = new ArkTSArray(1, 2, 3);
+let firstElement = arkTSArray.shift(); // 返回1，数组变为[2, 3]
 ```
 
-### remove
+### unshift
 
-remove(element: T): boolean
+**方法**
 
-删除查找到的第一个指定的元素。
+```typescript
+unshift(...items: T[]): number;
+```
+
+在ArkTS数组的开头插入一个或多个元素，并返回新的数组长度。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -308,13 +320,13 @@ remove(element: T): boolean
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| element | T | 是 | 指定元素。 |
+| items | T[] | 是 | 要插入到数组开头的元素。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 删除成功返回true，失败返回false。 |
+| number | 数组的新长度。 |
 
 **错误码：**
 
@@ -322,33 +334,40 @@ remove(element: T): boolean
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200011 | The remove method cannot be bound. |
+| 401 | Parameter error. |
+| 10200011 | The unshift method cannot be bound. |
+| 10200201 | Concurrent modification error. |
 
 **示例：**
 
 ```ts
-let arrayList: ArrayList<number> = new ArrayList();
-arrayList.add(2);
-arrayList.add(4);
-arrayList.add(5);
-arrayList.add(4);
-let result: boolean = arrayList.remove(2);
+let arkTSArray = new ArkTSArray(1, 2, 3);
+let newLength = arkTSArray.unshift(0); // 返回4，数组变为[0, 1, 2, 3]
 ```
 
-### removeByRange
+### slice
 
-removeByRange(fromIndex: number, toIndex: number): void
+**方法**
 
-从一段范围内删除元素，包括起始值但不包括终止值。
+```typescript
+slice(start?: number, end?: number): Array<T>;
+```
+
+返回一个新的数组，该数组是原始ArkTS数组的切片。
 
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
-
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| fromIndex | number | 是 | 起始下标。 |
-| toIndex | number | 是 | 终止下标。 |
+| start | number | 否 | 开始索引。如果省略，则从数组的第一个元素开始。 |
+| end | number | 否 | 结束索引（不包括该元素）。如果省略，则切片到数组的最后一个元素。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Array<T> | 包含原始数组切片的新数组。 |
 
 **错误码：**
 
@@ -356,116 +375,26 @@ removeByRange(fromIndex: number, toIndex: number): void
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200011 | The removeByRange method cannot be bound. |
-| 10200001 | The value of fromIndex or toIndex is out of range. |
+| 401 | Parameter error. |
+| 10200011 | The slice method cannot be bound. |
+| 10200201 | Concurrent modification error. |
 
 **示例：**
 
 ```ts
-let arrayList: ArrayList<number> = new ArrayList();
-arrayList.add(2);
-arrayList.add(4);
-arrayList.add(5);
-arrayList.add(4);
-arrayList.removeByRange(2, 4);
-```
-
-### replaceAllElements
-
-replaceAllElements(callbackFn: (value: T, index?: number, arrlist?: ArrayList&lt;T&gt;) => T,
-thisArg?: Object): void
-
-用户操作ArrayList中的元素，用操作后的元素替换原元素并返回操作后的元素。
-
-**系统能力：** SystemCapability.Utils.Lang
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| callbackFn | function | 是 | 回调函数。 |
-| thisArg | Object | 否 | callbackfn被调用时用作this值，默认值为当前实例对象。 |
-
-callbackfn的参数说明：
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| value | T | 是 | 当前遍历到的元素。 |
-| index | number | 否 | 当前遍历到的下标值，默认值为0。 |
-| arrlist | ArrayList&lt;T&gt; | 否 | 当前调用replaceAllElements方法的实例对象，默认值为当前实例对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 10200011 | The replaceAllElements method cannot be bound. |
-
-**示例：**
-
-```ts
-let arrayList: ArrayList<number> = new ArrayList();
-arrayList.add(2);
-arrayList.add(4);
-arrayList.add(5);
-arrayList.add(4);
-arrayList.replaceAllElements((value: number): number => {
-  // 用户操作逻辑根据实际场景进行添加。
-  return value;
-});
-```
-
-### forEach
-
-forEach(callbackFn: (value: T, index?: number, arrlist?: ArrayList&lt;T&gt;) => void,
-thisArg?: Object): void
-
-通过回调函数来遍历ArrayList实例对象上的元素以及元素对应的下标。
-
-**系统能力：** SystemCapability.Utils.Lang
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| callbackFn | function | 是 | 回调函数。 |
-| thisArg | Object | 否 | callbackfn被调用时用作this值，默认值为当前实例对象。 |
-
-callbackfn的参数说明：
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| value | T | 是 | 当前遍历到的元素。 |
-| index | number | 否 | 当前遍历到的下标值，默认值为0。 |
-| arrlist | ArrayList&lt;T&gt; | 否 | 当前调用forEach方法的实例对象，默认值为当前实例对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 10200011 | The forEach method cannot be bound. |
-
-**示例：**
-
-```ts
-let arrayList: ArrayList<number> = new ArrayList();
-arrayList.add(2);
-arrayList.add(4);
-arrayList.add(5);
-arrayList.add(4);
-arrayList.forEach((value: number, index?: number) => {
-  console.log("value:" + value, "index:" + index);
-});
+let arkTSArray = new ArkTSArray(1, 2, 3, 4, 5);
+let slicedArray = arkTSArray.slice(1, 3); // 返回[2, 3]，数组保持不变
 ```
 
 ### sort
 
-sort(comparator?: (firstValue: T, secondValue: T) => number): void
+**方法**
 
-对ArrayList中的元素排序。
+```typescript
+sort(compareFn?: (a: T, b: T) => number): Array<T>;
+```
+
+原地对ArkTS数组进行排序，并返回排序后的数组。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -473,14 +402,13 @@ sort(comparator?: (firstValue: T, secondValue: T) => number): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| comparator | function | 否 | 回调函数，默认为升序排序的回调函数。 |
+| compareFn | function | 否 | 用于确定元素顺序的函数。如果省略，则使用升序排序。 |
 
-comparator的参数说明：
+**返回值：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| firstValue | T | 是 | 前一项元素。 |
-| secondValue | T | 是 | 后一项元素。 |
+| 类型 | 说明 |
+| -------- | -------- |
+| Array<T> | 排序后的数组。 |
 
 **错误码：**
 
@@ -488,26 +416,19 @@ comparator的参数说明：
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401 | Parameter error. |
 | 10200011 | The sort method cannot be bound. |
+| 10200201 | Concurrent modification error
 
-**示例：**
+### indexOf
 
-```ts
-let arrayList: ArrayList<number> = new ArrayList();
-arrayList.add(2);
-arrayList.add(4);
-arrayList.add(5);
-arrayList.add(4);
-arrayList.sort((a: number, b: number) => a - b);
-arrayList.sort((a: number, b: number) => b - a);
-arrayList.sort();
+**方法**
+
+```typescript
+indexOf(searchElement: T, fromIndex?: number): number;
 ```
 
-### subArrayList
-
-subArrayList(fromIndex: number, toIndex: number): ArrayList&lt;T&gt;
-
-根据下标截取ArrayList中的一段元素，并返回这一段ArrayList实例，包括起始值但不包括终止值。
+返回在ArkTS数组中搜索元素首次出现的索引，如果不存在则返回-1。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -515,14 +436,14 @@ subArrayList(fromIndex: number, toIndex: number): ArrayList&lt;T&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| fromIndex | number | 是 | 起始下标。 |
-| toIndex | number | 是 | 终止下标。 |
+| searchElement | T | 是 | 要搜索的值。 |
+| fromIndex | number | 否 | 开始搜索的索引。如果省略，则从数组的第一个元素开始。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| ArrayList&lt;T&gt; | 返回ArrayList对象实例。 |
+| number | 搜索元素首次出现的索引；如果不存在，则返回-1。 |
 
 **错误码：**
 
@@ -530,185 +451,26 @@ subArrayList(fromIndex: number, toIndex: number): ArrayList&lt;T&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200011 | The subArrayList method cannot be bound. |
-| 10200001 | The value of fromIndex or toIndex is out of range. |
+| 401 | Parameter error. |
+| 10200011 | The indexOf method cannot be bound. |
+| 10200201 | Concurrent modification error. |
 
 **示例：**
 
 ```ts
-let arrayList: ArrayList<number> = new ArrayList();
-arrayList.add(2);
-arrayList.add(4);
-arrayList.add(5);
-arrayList.add(4);
-let result: ArrayList<number> = arrayList.subArrayList(2, 4);
+let arkTSArray = new ArkTSArray('a', 'b', 'c');
+let index = arkTSArray.indexOf('b'); // 返回1，因为'b'在索引1的位置
 ```
 
-### clear
+### forEach
 
-clear(): void
+**方法**
 
-清除ArrayList中的所有元素，并把length置为0。
-
-**系统能力：** SystemCapability.Utils.Lang
-
-**错误码：**
-
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 10200011 | The clear method cannot be bound. |
-
-**示例：**
-
-```ts
-let arrayList: ArrayList<number> = new ArrayList();
-arrayList.add(2);
-arrayList.add(4);
-arrayList.add(5);
-arrayList.add(4);
-arrayList.clear();
+```typescript
+forEach(callbackFn: (value: T, index: number, array: Array<T>) => void): void;
 ```
 
-### clone
-
-clone(): ArrayList&lt;T&gt; 
-
-克隆一个与ArrayList相同的实例，并返回克隆后的实例。修改克隆后的实例并不会影响原实例。
-
-**系统能力：** SystemCapability.Utils.Lang
-
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| ArrayList&lt;T&gt; | 返回ArrayList对象实例。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 10200011 | The clone method cannot be bound. |
-
-**示例：**
-
-```ts
-let arrayList: ArrayList<number> = new ArrayList();
-arrayList.add(2);
-arrayList.add(4);
-arrayList.add(5);
-arrayList.add(4);
-let result:  ArrayList<number> = arrayList.clone();
-```
-
-### getCapacity
-
-getCapacity(): number
-
-获取当前实例的容量大小。
-
-**系统能力：** SystemCapability.Utils.Lang
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| number | 返回arraylist的容量大小。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 10200011 | The getCapacity method cannot be bound. |
-
-**示例：**
-
-```ts
-let arrayList: ArrayList<number> = new ArrayList();
-arrayList.add(2);
-arrayList.add(4);
-arrayList.add(5);
-arrayList.add(4);
-let result: number = arrayList.getCapacity();
-```
-
-### convertToArray
-
-convertToArray(): Array&lt;T&gt;
-
-把当前ArrayList实例转换成数组，并返回转换后的数组。
-
-**系统能力：** SystemCapability.Utils.Lang
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| Array&lt;T&gt; | 返回数组类型。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 10200011 | The convertToArray method cannot be bound. |
-
-**示例：**
-
-```ts
-let arrayList: ArrayList<number> = new ArrayList();
-arrayList.add(2);
-arrayList.add(4);
-arrayList.add(5);
-arrayList.add(4);
-let result: Array<number> = arrayList.convertToArray();
-```
-
-### isEmpty
-
-isEmpty(): boolean
-
-判断该ArrayList是否为空。
-
-**系统能力：** SystemCapability.Utils.Lang
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| boolean | 为空返回true，不为空返回false。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 10200011 | The isEmpty method cannot be bound. |
-
-**示例：**
-
-```ts
-let arrayList: ArrayList<number> = new ArrayList();
-arrayList.add(2);
-arrayList.add(4);
-arrayList.add(5);
-arrayList.add(4);
-let result: boolean = arrayList.isEmpty();
-```
-
-### increaseCapacityTo
-
-increaseCapacityTo(newCapacity: number): void
-
-如果传入的新容量大于或等于ArrayList中的元素个数，将容量变更为新容量。
+对数组中的每个元素执行提供的回调函数。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -716,7 +478,13 @@ increaseCapacityTo(newCapacity: number): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| newCapacity | number | 是 | 新容量。 |
+| callbackFn | function | 是 | 用于对每个元素执行的回调函数。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| void | 没有返回值。 |
 
 **错误码：**
 
@@ -724,56 +492,240 @@ increaseCapacityTo(newCapacity: number): void
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200011 | The increaseCapacityTo method cannot be bound. |
+| 401 | Parameter error. |
+| 10200011 | The forEach method cannot be bound. |
+| 10200201 | Concurrent modification error. |
 
 **示例：**
 
 ```ts
-let arrayList: ArrayList<number> = new ArrayList();
-arrayList.add(2);
-arrayList.add(4);
-arrayList.add(5);
-arrayList.add(4);
-arrayList.increaseCapacityTo(2);
-arrayList.increaseCapacityTo(8);
+let arkTSArray = new ArkTSArray('a', 'b', 'c');
+arkTSArray.forEach((value, index, array) => {
+  console.log(`Element ${value} at index ${index}`);
+});
 ```
 
-### trimToCurrentLength
+### map
 
-trimToCurrentLength(): void
+**方法**
 
-把容量限制为当前的length大小。
+```typescript
+map<U>(callbackFn: (value: T, index: number, array: Array<T>) => U): Array<U>;
+```
+
+对数组中的每个元素执行提供的回调函数，并返回一个新的数组，该数组包含回调函数的结果。
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| callbackFn | function | 是 | 用于对每个元素执行的回调函数。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Array<U> | 包含回调函数结果的新数组。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200011 | The trimToCurrentLength method cannot be bound. |
+| 401 | Parameter error. |
+| 10200011 | The map method cannot be bound. |
+| 10200201 | Concurrent modification error. |
 
 **示例：**
 
 ```ts
-let arrayList: ArrayList<number> = new ArrayList();
-arrayList.add(2);
-arrayList.add(4);
-arrayList.add(5);
-arrayList.add(4);
-arrayList.trimToCurrentLength();
+let arkTSArray = new ArkTSArray('a', 'b', 'c');
+let mappedArray = arkTSArray.map((value, index, array) => {
+  return value.toUpperCase(); // 将每个字符串元素转换为大写
+});
+console.log(mappedArray); // 输出: ['A', 'B', 'C']
 ```
 
-### [Symbol.iterator]
+在这个示例中，`map` 方法将原始数组中的每个字符串元素转换为大写形式，并返回一个新数组，其中包含转换后的字符串。
 
-[Symbol.iterator]\(): IterableIterator&lt;T&gt;
+### filter
 
-返回一个迭代器，迭代器的每一项都是一个 JavaScript 对象，并返回该对象。
+**方法**
 
-> **说明：**
->
-> 本接口不支持在.ets文件中使用
+```typescript
+filter(predicate: (value: T, index: number, array: Array<T>) => boolean): Array<T>;
+```
+
+返回一个新数组，其中包含通过指定回调函数测试的所有元素。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| predicate | function | 是 | 一个接受三个参数的函数，用于测试每个元素是否应该包含在新数组中。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Array<T> | 包含通过测试的元素的新数组。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. |
+| 10200011 | The filter method cannot be bound. |
+| 10200201 | Concurrent modification error. |
+
+**示例：**
+
+```ts
+let arkTSArray = new ArkTSArray(1, 2, 3, 4, 5);
+let filteredArray = arkTSArray.filter(value => value % 2 === 0); // 返回[2, 4]，只包含偶数
+```
+
+### reduce
+
+**方法**
+
+```typescript
+reduce(callbackFn: (previousValue: T, currentValue: T, currentIndex: number, array: Array<T>) => T): T;
+```
+
+对数组中的每个元素执行回调函数，将其结果作为累加值（accumulator），并返回最终的结果。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| callbackFn | function | 是 | 一个接受四个参数的函数，用于对每个元素执行操作，并将结果作为累加值传递给下一个元素。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 回调函数执行后的最终结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. |
+| 10200011 | The reduce method cannot be bound. |
+| 10200201 | Concurrent modification error. |
+
+**示例：**
+
+```ts
+let arkTSArray = new ArkTSArray(1, 2, 3, 4, 5);
+let reducedValue = arkTSArray.reduce((accumulator, value) => accumulator + value); // 返回15，累加所有元素
+```
+### reduce<U>
+
+**方法**
+
+```typescript
+reduce<U>(callbackFn: (previousValue: U, currentValue: T, currentIndex: number, array: Array<T>) => U, initialValue: U): U;
+```
+
+与 `reduce` 方法类似，但它接受一个初始值作为第三个参数，用于在数组遍历开始前初始化累加器。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| callbackFn | function | 是 | 一个接受四个参数的函数，用于对每个元素执行操作，并将结果作为累加值传递给下一个元素。 |
+| initialValue | U | 是 | 用于初始化累加器的值。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| U | 回调函数执行后的最终结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. |
+| 10200011 | The reduce method cannot be bound. |
+| 10200201 | Concurrent modification error. |
+
+**示例：**
+
+```ts
+let arkTSArray = new ArkTSArray(1, 2, 3, 4, 5);
+let reducedValue = arkTSArray.reduce<number>((accumulator, value) => accumulator + value, 0); // 返回15，累加所有元素，初始值为0
+```
+
+在这个示例中，`reduce` 方法使用一个初始值为0的累加器，并将其与数组中的每个元素相加，最终返回累加后的总和。
+
+### at
+
+**方法**
+
+```typescript
+at(index: number): T | undefined;
+```
+
+返回数组中指定索引位置的元素。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| index | number | 是 | 零基索引，表示要检索的元素位置。负索引从数组末尾开始计数。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T \| undefined | 返回指定索引处的元素；如果索引超出范围或无效，则返回undefined。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. |
+| 10200011 | The at method cannot be bound. |
+| 10200201 | Concurrent modification error. |
+
+**示例：**
+
+```ts
+let arkTSArray = new ArkTSArray(1, 2, 3, 4, 5);
+let elementAtIndex = arkTSArray.at(2); // 返回3，因为索引是从0开始的
+```
+
+### entries
+
+**方法**
+
+```typescript
+entries(): IterableIterator<[number, T]>;
+```
+
+返回一个新的可迭代对象，该对象包含数组中每个元素的键值对。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -781,7 +733,7 @@ arrayList.trimToCurrentLength();
 
 | 类型 | 说明 |
 | -------- | -------- |
-| IterableIterator&lt;T&gt; | 返回一个迭代器。 |
+| IterableIterator<[number, T]> | 包含数组中每个元素的键值对的可迭代迭代器。 |
 
 **错误码：**
 
@@ -789,28 +741,250 @@ arrayList.trimToCurrentLength();
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200011 | The Symbol.iterator method cannot be bound. |
+| 10200011 | The entries method cannot be bound. |
+| 10200201 | Concurrent modification error. |
 
 **示例：**
 
 ```ts
-let arrayList: ArrayList<number> = new ArrayList();
-arrayList.add(2);
-arrayList.add(4);
-arrayList.add(5);
-arrayList.add(4);
+let arkTSArray = new ArkTSArray(1, 2, 3, 4, 5);
+let iterator = arkTSArray.entries();
+let [key, value] = iterator.next().value; // 输出：[0, 1]，第一个元素的键值对
+```
 
-// 使用方法一：
-let numbers: Array<number> = arrayList.convertToArray()
-for (let item of numbers) {
-  console.log(`value : ${item}`);
-}
+### keys
 
-// 使用方法二：
-let iter = arrayList[Symbol.iterator]();
-let temp: IteratorResult<number> = iter.next();
-while(!temp.done) {
-    console.log(`value:${temp.value}`);
-    temp = iter.next();
-}
+**方法**
+
+```typescript
+keys(): IterableIterator<number>;
+```
+
+返回一个新的可迭代对象，该对象包含数组中每个元素的键。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| IterableIterator<number> | 包含数组中每个元素的键的可迭代迭代器。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The keys method cannot be bound. |
+| 10200201 | Concurrent modification error. |
+
+**示例：**
+
+```ts
+let arkTSArray = new ArkTSArray(1, 2, 3, 4, 5);
+let iterator = arkTSArray.keys();
+let key = iterator.next().value; // 输出：0，第一个元素的键
+```
+
+### values
+
+**方法**
+
+```typescript
+values(): IterableIterator<T>;
+```
+
+返回一个新的可迭代对象，该对象包含数组中每个元素的值。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| IterableIterator<T> | 包含数组中每个元素的值的可迭代迭代器。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The values method cannot be bound. |
+| 10200201 | Concurrent modification error. |
+
+**示例：**
+
+```ts
+let arkTSArray = new ArkTSArray(1, 2, 3, 4, 5);
+let iterator = arkTSArray.values();
+let value = iterator.next().value; // 输出：1，第一个元素的值
+```
+
+### find
+
+**方法**
+
+```typescript
+find(predicate: (value: T, index: number, obj: Array<T>) => boolean): T | undefined;
+```
+
+返回数组中第一个满足指定测试函数的元素的值，如果所有元素都不满足，则返回undefined。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| predicate | function | 是 | 一个接受三个参数的函数，用于测试每个元素是否满足条件。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T \| undefined | 第一个满足条件的元素的值；如果所有元素都不满足条件，则返回undefined。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. |
+| 10200011 | The find method cannot be bound. |
+| 10200201 | Concurrent modification error. |
+
+**示例：**
+
+```ts
+let arkTSArray = new ArkTSArray(1, 2, 3, 4, 5);
+let foundValue = arkTSArray.find(value => value % 2 === 0); // 返回4，第一个偶数元素
+```
+
+### includes
+
+**方法**
+
+```typescript
+includes(searchElement: T, fromIndex?: number): boolean;
+```
+
+判断数组是否包含指定的元素，并返回一个布尔值。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| searchElement | T | 是 | 要搜索的元素。 |
+| fromIndex | number | 否 | 开始搜索的索引。如果省略，则从数组的第一个元素开始。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| boolean | 如果数组包含指定的元素，则返回true；否则返回false。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. |
+| 10200011 | The includes method cannot be bound. |
+| 10200201 | Concurrent modification error. |
+
+**示例：**
+
+```ts
+let arkTSArray = new ArkTSArray(1, 2, 3, 4, 5);
+let includesResult = arkTSArray.includes(3); // 返回true，因为数组中包含3
+```
+
+### findIndex
+
+**方法**
+
+```typescript
+findIndex(predicate: (value: T, index: number, obj: Array<T>) => boolean): number;
+```
+
+返回数组中第一个满足指定测试函数的元素的索引，如果所有元素都不满足，则返回-1。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| predicate | function | 是 | 一个接受三个参数的函数，用于测试每个元素是否满足条件。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| number | 第一个满足条件的元素的索引；如果所有元素都不满足条件，则返回-1。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. |
+| 10200011 | The findIndex method cannot be bound. |
+| 10200201 | Concurrent modification error. |
+
+**示例：**
+
+```ts
+let arkTSArray = new ArkTSArray(1, 2, 3, 4, 5);
+let foundIndex = arkTSArray.findIndex(value => value % 2 === 0); // 返回1，因为2是第一个偶数元素
+```
+
+### fill
+
+**方法**
+
+```typescript
+fill(value: T, start?: number, end?: number): Array<T>;
+```
+
+使用指定的值填充数组中指定范围的所有元素。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| value | T | 是 | 要填充的值。 |
+| start | number | 否 | 开始填充的索引。如果省略，则从数组的第一个元素开始。 |
+| end | number | 否 | 结束填充的索引。如果省略，则填充到数组的最后一个元素。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Array<T> | 填充后的数组。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. |
+| 10200011 | The fill method cannot be bound. |
+| 10200201 | Concurrent modification error. |
+
+**示例：**
+
+```ts
+let arkTSArray = new ArkTSArray(1, 2, 3, 4, 5);
+arkTSArray.fill(0, 1, 3); // 返回[1, 0, 0, 4, 5]，因为1到3的索引范围内的元素被替换为0
 ```
