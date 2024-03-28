@@ -32,8 +32,8 @@ Regex is not allowed in the secondary directory under data, check '/data/log(/.*
 
 主要有两种修复方式：
 
-1. 将不满足的路径`/data/log/(.*)?`添加到`//base/security/selinux_adapter/sepolicy/`下的白名单文件`data_regex_whitelist.txt`中，修改该白名单需要评估安全性和合理性，审慎修改。
-2. 修改data二级目录中不合理的正则表达式，以满足要求，例如，改成以下形式，则是合法的：
+- 方式一：将不满足的路径`/data/log/(.*)?`添加到`//base/security/selinux_adapter/sepolicy/`下的白名单文件`data_regex_whitelist.txt`中，修改该白名单需要评估安全性和合理性，审慎修改。
+- 方式二：修改data二级目录中不合理的正则表达式，以满足要求，例如，改成以下形式，则是合法的：
     ```text
     /data/log                       u:object_r:data_log:s0
     /data/log/(.*)?                 u:object_r:data_log:s0
@@ -82,8 +82,8 @@ partition label is not allow to use, check '/data/log u:object_r:data_file:s0' f
 
 主要有两种修复方式：
 
-1. 将不满足的路径及标签`'/data/log   u:object_r:data_file:s0'`添加到`//base/security/selinux_adapter/sepolicy/`下的白名单文件`partition_label_use_whitelist.txt`中，修改该白名单需要评估安全性和合理性，审慎修改。
-2. 更改`/data/log`的不合理标签，使用自定义标签，以满足要求，例如，改成以下形式，则是合法的：
+- 方式一：将不满足的路径及标签`'/data/log   u:object_r:data_file:s0'`添加到`//base/security/selinux_adapter/sepolicy/`下的白名单文件`partition_label_use_whitelist.txt`中，修改该白名单需要评估安全性和合理性，审慎修改。
+- 方式二：更改`/data/log`的不合理标签，使用自定义标签，以满足要求，例如，改成以下形式，则是合法的：
     ```text
     /data/log    u:object_r:data_log:s0
     ```
@@ -142,7 +142,7 @@ allow appspawn appspawn_exec:file { execute execute_no_trans };
 
 主要有两种修复方式：
 
-1. 将不合理的主体和客体组合添加到`//base/security/selinux_adapter/sepolicy/`下的白名单文件`perm_group_whitelist.json`中，修改该白名单需要评估合理性，审慎添加，该文件如下：
+- 方式一：将不合理的主体和客体组合添加到`//base/security/selinux_adapter/sepolicy/`下的白名单文件`perm_group_whitelist.json`中，修改该白名单需要评估合理性，审慎添加，该文件如下：
     ```text
     {
         "whitelist": [
@@ -167,7 +167,7 @@ allow appspawn appspawn_exec:file { execute execute_no_trans };
     | 否 | 是 | developer |
     | 是 | 否 | user，且需删除当前主客体在developer字段中的白名单 |
 
-2. 修改不合理的策略，以满足要求，例如，更改方案，避免同时申请这两个权限。
+- 方式二：修改不合理的策略，以满足要求，例如，更改方案，避免同时申请这两个权限。
 
 ### 删除冗余的白名单
 
@@ -246,7 +246,7 @@ developer_only(`
 
 主要有两种修复方式：
 
-1. 将报错中`"actual rule"`字段的cil策略，作为新基线添加到`//base/security/selinux_adapter/sepolicy/`下的基线文件`xx.baseline`中，`xx`为违反基线的进程标签。修改该基线文件需要评估安全性和合理性，审慎修改。其中，基线的填写位置参考下表：
+- 方式一：将报错中`"actual rule"`字段的cil策略，作为新基线添加到`//base/security/selinux_adapter/sepolicy/`下的基线文件`xx.baseline`中，`xx`为违反基线的进程标签。修改该基线文件需要评估安全性和合理性，审慎修改。其中，基线的填写位置参考下表：
 
     **表3** 篡改高危进程基线检查基线更新位置与报错对应关系
     | user基线报错 | developer基线报错 | 更新基线是否需要在developer_only内 |
@@ -255,7 +255,7 @@ developer_only(`
     | 否 | 是 | 是 |
     | 是 | 否 | 将developer_only内的基线挪到外部 |
 
-2. 修改不合理的策略，以满足要求，例如，更改方案，避免违反基线。
+- 方式二：修改不合理的策略，以满足要求，例如，更改方案，避免违反基线。
 
 ### 删除冗余的基线
 
@@ -309,8 +309,8 @@ developer_only(`
 
 ### 修复方法
 
-有以下两种修复方式：
-1. 根据avc日志对ioctl的ioctlcmd进行限制。例如，有下面的avc日志：
+主要有两种修复方式：
+- 方式一：根据avc日志对ioctl的ioctlcmd进行限制。例如，有下面的avc日志：
     ```text
     #avc:  denied  { ioctl } for  pid=1 comm="init" path="/data/app/el1/bundle/public" dev="mmcblk0p11" ino=652804 ioctlcmd=0x6613 scontext=u:r:init:s0 tcontext=u:object_r:data_app_el1_file:s0 tclass=dir permissive=0
     ```
@@ -323,7 +323,7 @@ developer_only(`
     allowxperm init data_app_el1_file:dir ioctl { 0x6613 };
     ```
     
-2. 将拦截日志中的 "scontext tcontext tclass" 字符添加到`//base/security/selinux_adapter/sepolicy/`下白名单 `ioctl_xperm_whitelist.json` 中，修改该白名单需要评估合理性。
+- 方式二：将拦截日志中的 "scontext tcontext tclass" 字符添加到`//base/security/selinux_adapter/sepolicy/`下白名单 `ioctl_xperm_whitelist.json` 中，修改该白名单需要评估合理性。
     拦截日志中 `user mode` 表示该策略是user和开发者模式共用的基线，另外 `developer mode` 则表示该策略仅作为开发者模式下的基线，相应添加到白名单列表中。
     ```text
     {
@@ -362,9 +362,9 @@ developer_only(`
 
 ### 修复方法
 
-有以下两种修复方式：
-1. 删除不必要的 permissive 定义。
-2. 添加主体类型scontext到 `//base/security/selinux_adapter/sepolicy/` 下白名单 `permissive_whitelist.json` 中，修改该白名单需要评估合理性。
+主要有两种修复方式：
+- 方式一：删除不必要的 permissive 定义。
+- 方式二：添加主体类型scontext到 `//base/security/selinux_adapter/sepolicy/` 下白名单 `permissive_whitelist.json` 中，修改该白名单需要评估合理性。
     拦截日志中 `user mode` 表示该策略是user和开发者模式共用的基线，另外 `developer mode` 则表示该策略仅作为开发者模式下的基线，相应添加到白名单文件。
     ```text
     {
