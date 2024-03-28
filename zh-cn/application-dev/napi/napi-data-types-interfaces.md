@@ -63,7 +63,7 @@ typedef struct {
 
 - 用于表示Node-API执行时的上下文，Native侧函数入参，并传递给函数中的Node-API接口。
 
-- 退出Native侧插件时，napi_env将失效，该事件通过回调传递给napi_add_env_cleanup_hook和napi_set_instance_data。
+- napi_env与JS线程绑定，JS线程退出后，napi_env将失效。
 
 - 禁止缓存napi_env，禁止在不同Worker中传递napi_env。
 
