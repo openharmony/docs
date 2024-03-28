@@ -1589,6 +1589,18 @@
 
 **起始版本**：11
 
+### ohos.permission.GET_BLUETOOTH_PEERS_MAC
+
+允许应用获取外设的蓝牙真实MAC地址。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.USE_USER_IDM
 
 允许应用访问系统身份凭据信息。
