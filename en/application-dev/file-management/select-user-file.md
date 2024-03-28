@@ -2,7 +2,7 @@
 
 You can use [FilePicker](../reference/apis/js-apis-file-picker.md) to implement the capabilities required for sharing and saving user files such as images and videos.
 
-The **FilePicker** provides the following interfaces by file type:
+**FilePicker** provides the following interfaces by file type:
 
 - [PhotoViewPicker](../reference/apis/js-apis-file-picker.md#photoviewpicker): used to select and save images or videos.
 
@@ -16,9 +16,8 @@ The **FilePicker** provides the following interfaces by file type:
 
    ```ts
    import picker from '@ohos.file.picker';
-   import fs from '@ohos.file.fs';
    ```
-
+   
 2. Create a **photoSelectOptions** instance.
 
    ```ts
@@ -33,9 +32,9 @@ The **FilePicker** provides the following interfaces by file type:
    photoSelectOptions.maxSelectNumber = 5; // Set the maximum number of images to select.
    ```
 
-4. Create a **photoPicker** instance and call [select()](../reference/apis/js-apis-file-picker.md#select) to open the **FilePicker** page for the user to select files. After the user selects files, a [PhotoSelectResult](../reference/apis/js-apis-file-picker.md#photoselectresult) object is returned.<br>
+4. Create a **photoViewPicker** instance and call [select()](../reference/apis/js-apis-file-picker.md#select) to open the **FilePicker** page for the user to select files. After the user selects files, a [PhotoSelectResult](../reference/apis/js-apis-file-picker.md#photoselectresult) object is returned.
    
-   The permission on the URIs returned in **PhotoSelectResult** is read-only. Further file operations can be performed based on the file URI. Note that the URI cannot be directly used in the **picker** callback to open a file. You need to define a global variable to save the URI and use a button to trigger the operation for opening the file.
+   <br>The permission on the URIs returned in **PhotoSelectResult** is read-only. Further file operations can be performed based on the file URI. Note that the URI cannot be directly used in the **picker** callback to open a file. You need to define a global variable to save the URI and use a button to trigger file opening.
 
    ```ts
    let URI = null;
@@ -48,21 +47,31 @@ The **FilePicker** provides the following interfaces by file type:
    })
    ```
 
-5. After the application UI is returned from **FilePicker**, use a button to trigger the application's API. Use [fs.openSync()](../reference/apis/js-apis-file-fs.md#fsopensync) to open the file based on the URI and obtain the FD. Note that the **mode** parameter of **fs.openSync()** must be **fs.OpenMode.READ_ONLY**.
+5. After the application UI is returned from **Gallery**, use a button to trigger the application's API. Use [fs.openSync](../reference/apis/js-apis-file-fs.md#fsopensync) to open each file based on the URI and obtain the FD. Use [fs.readSync](../reference/apis/js-apis-file-fs.md#readsync) to read the file, and then close the FD. Note that the **mode** parameter of **fs.openSync()** must be **fs.OpenMode.READ_ONLY**.
 
-   ```ts
-   let file = fs.openSync(URI, fs.OpenMode.READ_ONLY);
-   console.info('file fd: ' + file.fd);
    ```
-
-6. Use [fs.readSync()](../reference/apis/js-apis-file-fs.md#readsync) to read the file based on the FD, and then use **fs.closeSync** to close the FD.
-
-   ```ts
+   import fs from '@ohos.file.fs';
+   
+   let uri: string = '';
+   let file = fs.openSync(uri, fs.OpenMode.READ_ONLY);
+   console.info('file fd: ' + file.fd);
    let buffer = new ArrayBuffer(4096);
    let readLen = fs.readSync(file.fd, buffer);
    console.info('readSync data to file succeed and buffer size is:' + readLen);
    fs.closeSync(file);
    ```
+   
+6. Use the [<Image>](../ui/arkts-graphics-display.md) component to display the image based on the URI.
+
+   ```
+   ForEach(URI, item => {
+       GridItem() {
+           Image(item)
+               .width(200)
+       }
+   }, item => JSON.stringify(item))
+   ```
+
 
 ## Selecting Documents
 
@@ -140,18 +149,16 @@ The **FilePicker** provides the following interfaces by file type:
    const audioSelectOptions = new picker.AudioSelectOptions();
    ```
 
-3. Create an **audioViewPicker** instance, and call [**select()**](../reference/apis/js-apis-file-picker.md#select-6) to open the **FilePicker** page for the user to select audio clips. After the files are selected, a result set containing the URIs of the audio clips selected is returned.<br>
-   
-   The permission on the URIs returned by **select()** is read-only. Further file operations can be performed based on the URI. Note that the URI cannot be directly used in the **picker** callback to open a file. You need to define a global variable to save the URI and use a button to trigger the operation for opening the file.<br>
+3. Create an **audioViewPicker** instance, and call [select()](../reference/apis/js-apis-file-picker.md#select-6) to open the **FilePicker** page for the user to select audio clips. After the files are selected, a result set containing the URIs of the audio clips selected is returned.<br>The permission on the URIs returned by **select()** is read-only. Further file operations can be performed based on the URIs in the result set. Note that the URI cannot be directly used in the **picker** callback to open a file. You need to define a global variable to save the URI and use a button to trigger file opening.
    
    For example, use the [@ohos.file.fs](../reference/apis/js-apis-file-fs.md) API to obtain the FD of the audio clip based on the URI, and then develop the audio playback function based on the media service. For details, see [Audio Playback Development](../media/audio-playback-overview.md).
-
+   
    > **NOTE**
-   >
+>
    > Currently, **AudioSelectOptions** is not configurable. By default, all types of user files are selected.
-
+   
    ```ts
-   let URI = null;
+let URI = null;
    const audioViewPicker = new picker.AudioViewPicker();
    audioViewPicker.select(audioSelectOptions).then((audioSelectResult: Array<string>) => {
      URI = audioSelectResult[0];
