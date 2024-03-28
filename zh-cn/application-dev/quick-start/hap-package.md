@@ -38,7 +38,7 @@ HAP（Harmony Ability Package）是应用安装和运行的基本单元。HAP包
 
 ## 开发
 
-- HAP中支持添加UIAbility组件或ExtensionAbility组件，添加pages页面。具体操作可参考[应用/服务开发](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-add-new-ability-0000001053183674)。
+- HAP中支持添加UIAbility组件或ExtensionAbility组件，添加pages页面。具体操作可参考[应用/服务开发](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/add_new_ability-0000001053183674-V3)。
 
 - HAP中支持引用HAR或HSP共享包，详见[HAR的使用](./har-package.md#使用)、[HSP的使用](./in-app-hsp.md#使用)。
 
@@ -48,7 +48,7 @@ HAP（Harmony Ability Package）是应用安装和运行的基本单元。HAP包
 
 开发者可以采用DevEco Studio或者hdc工具进行调试：
 
-- **方法一：** 使用DevEco Studio进行调试，详见[应用程序包调试方法](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-run-debug-configurations-0000001760344518)。
+- **方法一：** 使用DevEco Studio进行调试，详见[应用程序包调试方法](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/ide_debug_device-0000001053822404-V3?catalogVersion=V3#section10491183521520)。
 
 - **方法二：** 使用[hdc工具](../../device-dev/subsystems/subsys-toolchain-hdc-guide.md)(可通过OpenHarmony SDK获取，在SDK的toolchains目录下)进行调试。
 
