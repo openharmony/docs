@@ -182,3 +182,4 @@ OpenHarmony的Node-API组件对Node-API的接口进行了重新实现，底层�
 |FUNC|napi_destroy_ark_runtime|销毁基础运行时环境。|12|
 |FUNC|napi_run_event_loop|触发底层的事件循环。|12|
 |FUNC|napi_stop_event_loop|停止底层的事件循环。|12|
+|FUNC|napi_load_module_with_info|将abc文件作为模块加载，返回模块的命名空间。可在新创建的线程中使用|12|
