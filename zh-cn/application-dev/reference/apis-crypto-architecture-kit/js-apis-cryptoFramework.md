@@ -698,7 +698,7 @@ getEncodedDer(format: string): DataBlob
 
 | 参数名 | 类型                  | 必填 | 说明                 |
 | ---- | --------------------- | ---- | -------------------- |
-| format  | string | 是   | format当前仅支持"X509\|COMPRESSED"和"X509\|UNCOMPRESSED"，其中X509和是否压缩均需要显式指定。 |
+| format  | string | 是   | 用于指定当前密钥格式，取值仅支持"X509\|COMPRESSED"和"X509\|UNCOMPRESSED"。 |
 
 **返回值：**
 
