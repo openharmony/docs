@@ -41,34 +41,40 @@ attributesToUpdate的参数列表：
 
 更新别名是demo_alias的关键资产，将关键资产明文更新为demo_pwd_new，附属信息更新成demo_label_new。
 
-```c
-#include <string.h>
+1. 在CMake脚本中链接相关动态库
+   ```txt
+   target_link_libraries(entry PUBLIC libasset_ndk.z.so)
+   ```
 
-#include "asset/asset_api.h"
+2. 参考如下示例代码，进行业务功能开发
+   ```c
+   #include <string.h>
 
-void UpdateAsset() {
-    static const char *ALIAS = "demo_alias";
-    static const char *SECRET = "demo_pwd_new";
-    static const char *LABEL = "demo_label_new";
+   #include "asset/asset_api.h"
 
-    Asset_Blob alias = { (uint32_t)(strlen(ALIAS)), (uint8_t *)ALIAS };
-    Asset_Blob new_secret = { (uint32_t)(strlen(SECRET)), (uint8_t *)SECRET };
-    Asset_Blob new_label = { (uint32_t)(strlen(LABEL)), (uint8_t *)LABEL };
-    Asset_Attr query[] = { { .tag = ASSET_TAG_ALIAS, .value.blob = alias } };
-    Asset_Attr attributesToUpdate[] = {
-        { .tag = ASSET_TAG_SECRET, .value.blob = new_secret },
-        { .tag = ASSET_TAG_DATA_LABEL_NORMAL_1, .value.blob = new_label },
-    };
+   void UpdateAsset() {
+      static const char *ALIAS = "demo_alias";
+      static const char *SECRET = "demo_pwd_new";
+      static const char *LABEL = "demo_label_new";
 
-    int32_t ret = OH_Asset_Update(query, sizeof(query) / sizeof(query[0]), attributesToUpdate,
-                                  sizeof(attributesToUpdate) / sizeof(attributesToUpdate[0]));
-    if (ret == ASSET_SUCCESS) {
-        // Asset updated successfully.
-    } else {
-        // Failed to update Asset.
-    }
-}
-```
+      Asset_Blob alias = { (uint32_t)(strlen(ALIAS)), (uint8_t *)ALIAS };
+      Asset_Blob new_secret = { (uint32_t)(strlen(SECRET)), (uint8_t *)SECRET };
+      Asset_Blob new_label = { (uint32_t)(strlen(LABEL)), (uint8_t *)LABEL };
+      Asset_Attr query[] = { { .tag = ASSET_TAG_ALIAS, .value.blob = alias } };
+      Asset_Attr attributesToUpdate[] = {
+         { .tag = ASSET_TAG_SECRET, .value.blob = new_secret },
+         { .tag = ASSET_TAG_DATA_LABEL_NORMAL_1, .value.blob = new_label },
+      };
+
+      int32_t ret = OH_Asset_Update(query, sizeof(query) / sizeof(query[0]), attributesToUpdate,
+                                    sizeof(attributesToUpdate) / sizeof(attributesToUpdate[0]));
+      if (ret == ASSET_SUCCESS) {
+         // Asset updated successfully.
+      } else {
+         // Failed to update Asset.
+      }
+   }
+   ```
 
 ## 约束和限制
 

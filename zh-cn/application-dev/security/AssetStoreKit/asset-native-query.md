@@ -35,95 +35,113 @@
 
 查询别名是demo_alias的关键资产明文。
 
-```c
-#include <string.h>
+1. 在CMake脚本中链接相关动态库
+   ```txt
+   target_link_libraries(entry PUBLIC libasset_ndk.z.so)
+   ```
 
-#include "asset/asset_api.h"
+2. 参考如下示例代码，进行业务功能开发
+   ```c
+   #include <string.h>
 
-void QueryAsset() {
-    static const char *ALIAS = "demo_alias";
-    Asset_Blob alias = { (uint32_t)(strlen(ALIAS)), (uint8_t *)ALIAS };
-    Asset_Attr attr[] = {
-        { .tag = ASSET_TAG_ALIAS, .value.blob = alias },  // 指定了关键资产别名，最多查询到一条满足条件的关键资产
-        { .tag = ASSET_TAG_RETURN_TYPE, .value.u32 = ASSET_RETURN_ALL },  // 此处表示需要返回关键资产的所有信息，即属性+明文
-    };
+   #include "asset/asset_api.h"
 
-    Asset_ResultSet resultSet = {0};
-    int32_t ret = OH_Asset_Query(attr, sizeof(attr) / sizeof(attr[0]), &resultSet);
-    if (ret == ASSET_SUCCESS) {
-        // Parse the resultSet.
-        for (uint32_t i = 0; i < resultSet.count; i++) {
-            // Parse the secret: the data is secret->blob.data, the size is secret->blob.size.
-            Asset_Attr *secret = OH_Asset_ParseAttr(resultSet.results + i, ASSET_TAG_SECRET);
-        }
-    }
-    OH_Asset_FreeResultSet(&resultSet);
-}
+   void QueryAsset() {
+      static const char *ALIAS = "demo_alias";
+      Asset_Blob alias = { (uint32_t)(strlen(ALIAS)), (uint8_t *)ALIAS };
+      Asset_Attr attr[] = {
+         { .tag = ASSET_TAG_ALIAS, .value.blob = alias },  // 指定了关键资产别名，最多查询到一条满足条件的关键资产
+         { .tag = ASSET_TAG_RETURN_TYPE, .value.u32 = ASSET_RETURN_ALL },  // 此处表示需要返回关键资产的所有信息，即属性+明文
+      };
+
+      Asset_ResultSet resultSet = {0};
+      int32_t ret = OH_Asset_Query(attr, sizeof(attr) / sizeof(attr[0]), &resultSet);
+      if (ret == ASSET_SUCCESS) {
+         // Parse the resultSet.
+         for (uint32_t i = 0; i < resultSet.count; i++) {
+               // Parse the secret: the data is secret->blob.data, the size is secret->blob.size.
+               Asset_Attr *secret = OH_Asset_ParseAttr(resultSet.results + i, ASSET_TAG_SECRET);
+         }
+      }
+      OH_Asset_FreeResultSet(&resultSet);
+   }
 ```
 
 ### 查询单条关键资产属性
 
 查询别名是demo_alias的关键资产属性。
 
-```c
-#include <string.h>
+1. 在CMake脚本中链接相关动态库
+   ```txt
+   target_link_libraries(entry PUBLIC libasset_ndk.z.so)
+   ```
 
-#include "asset/asset_api.h"
+2. 参考如下示例代码，进行业务功能开发
+   ```c
+   #include <string.h>
 
-void QueryAttributes() {
-    static const char *ALIAS = "demo_alias";
-    Asset_Blob alias = { (uint32_t)(strlen(ALIAS)), (uint8_t *)ALIAS };
-    Asset_Attr attr[] = {
-        { .tag = ASSET_TAG_ALIAS, .value.blob = alias }, // 指定了关键资产别名，最多查询到一条满足条件的关键资产
-        { .tag = ASSET_TAG_RETURN_TYPE, .value.u32 = ASSET_RETURN_ATTRIBUTES }, // 此处表示仅返回关键资产属性，不包含关键资产明文
-    };
+   #include "asset/asset_api.h"
 
-    Asset_ResultSet resultSet = {0};
-    int32_t ret = OH_Asset_Query(attr, sizeof(attr) / sizeof(attr[0]), &resultSet);
-    if (ret == ASSET_SUCCESS) {
-        // Parse the result.
-        for (uint32_t i = 0; i < resultSet.count; i++) {
-        // Parse the data label: the data is label->blob.data, the size is label->blob.size.
-            Asset_Attr *label = OH_Asset_ParseAttr(resultSet.results + i, ASSET_TAG_DATA_LABEL_NORMAL_1);
-        }
-    }
-    OH_Asset_FreeResultSet(&resultSet);
-}
-```
+   void QueryAttributes() {
+      static const char *ALIAS = "demo_alias";
+      Asset_Blob alias = { (uint32_t)(strlen(ALIAS)), (uint8_t *)ALIAS };
+      Asset_Attr attr[] = {
+         { .tag = ASSET_TAG_ALIAS, .value.blob = alias }, // 指定了关键资产别名，最多查询到一条满足条件的关键资产
+         { .tag = ASSET_TAG_RETURN_TYPE, .value.u32 = ASSET_RETURN_ATTRIBUTES }, // 此处表示仅返回关键资产属性，不包含关键资产明文
+      };
+
+      Asset_ResultSet resultSet = {0};
+      int32_t ret = OH_Asset_Query(attr, sizeof(attr) / sizeof(attr[0]), &resultSet);
+      if (ret == ASSET_SUCCESS) {
+         // Parse the result.
+         for (uint32_t i = 0; i < resultSet.count; i++) {
+         // Parse the data label: the data is label->blob.data, the size is label->blob.size.
+               Asset_Attr *label = OH_Asset_ParseAttr(resultSet.results + i, ASSET_TAG_DATA_LABEL_NORMAL_1);
+         }
+      }
+      OH_Asset_FreeResultSet(&resultSet);
+   }
+   ```
 
 ### 批量查询关键资产属性
 
 批量查询附属信息是demo_label的关键资产属性，从第5条满足条件的结果开始返回，一共返回10条，且返回结果以DATA_LABEL_NORMAL_1属性内容排序。
 
-```c
-#include <string.h>
+1. 在CMake脚本中链接相关动态库
+   ```txt
+   target_link_libraries(entry PUBLIC libasset_ndk.z.so)
+   ```
 
-#include "asset/asset_api.h"
+2. 参考如下示例代码，进行业务功能开发
+   ```c
+   #include <string.h>
 
-void BatchQuery() {
-    static const char *LABEL = "demo_label";
-    Asset_Blob label = { (uint32_t)(strlen(LABEL)), (uint8_t *)LABEL };
+   #include "asset/asset_api.h"
 
-    Asset_Attr attr[] = {
-        { .tag = ASSET_TAG_RETURN_TYPE, .value.u32 = ASSET_RETURN_ATTRIBUTES },
-        { .tag = ASSET_TAG_DATA_LABEL_NORMAL_1, .value.blob = label },
-        { .tag = ASSET_TAG_RETURN_OFFSET, .value.u32 = 5 },
-        { .tag = ASSET_TAG_RETURN_LIMIT, .value.u32 = 10 },
-        { .tag = ASSET_TAG_RETURN_ORDERED_BY, .value.u32 = ASSET_TAG_DATA_LABEL_NORMAL_1 },
-    };
+   void BatchQuery() {
+      static const char *LABEL = "demo_label";
+      Asset_Blob label = { (uint32_t)(strlen(LABEL)), (uint8_t *)LABEL };
 
-    Asset_ResultSet resultSet = { 0 };
-    int32_t ret = OH_Asset_Query(attr, sizeof(attr) / sizeof(attr[0]), &resultSet);
-    if (ret == ASSET_SUCCESS) {
-        // Parse the result.
-        for (uint32_t i = 0; i < resultSet.count; i++) {
-            // Parse the data alias: the data is alias->blob.data, the size is alias->blob.size..
-            Asset_Attr *alias = OH_Asset_ParseAttr(resultSet.results + i, ASSET_TAG_ALIAS);
-        }
-    }
-    OH_Asset_FreeResultSet(&resultSet);
-}
-```
+      Asset_Attr attr[] = {
+         { .tag = ASSET_TAG_RETURN_TYPE, .value.u32 = ASSET_RETURN_ATTRIBUTES },
+         { .tag = ASSET_TAG_DATA_LABEL_NORMAL_1, .value.blob = label },
+         { .tag = ASSET_TAG_RETURN_OFFSET, .value.u32 = 5 },
+         { .tag = ASSET_TAG_RETURN_LIMIT, .value.u32 = 10 },
+         { .tag = ASSET_TAG_RETURN_ORDERED_BY, .value.u32 = ASSET_TAG_DATA_LABEL_NORMAL_1 },
+      };
+
+      Asset_ResultSet resultSet = { 0 };
+      int32_t ret = OH_Asset_Query(attr, sizeof(attr) / sizeof(attr[0]), &resultSet);
+      if (ret == ASSET_SUCCESS) {
+         // Parse the result.
+         for (uint32_t i = 0; i < resultSet.count; i++) {
+               // Parse the data alias: the data is alias->blob.data, the size is alias->blob.size..
+               Asset_Attr *alias = OH_Asset_ParseAttr(resultSet.results + i, ASSET_TAG_ALIAS);
+         }
+      }
+      OH_Asset_FreeResultSet(&resultSet);
+   }
+   ```
 
 ## 约束和限制
 
