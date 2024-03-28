@@ -1,4 +1,4 @@
-# DFX Change Log
+# DFX Changelog
 
 ## cl.hiviewdfx.1 Event Verification Specification Change for the write Method of the HiAppEvent Module
 

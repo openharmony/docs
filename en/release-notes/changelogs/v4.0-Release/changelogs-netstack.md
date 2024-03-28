@@ -1,4 +1,4 @@
-# Network Management Change Log
+# Network Management Changelog
 
 ## request2 API Name Change
 

@@ -1,4 +1,4 @@
-# USB Change Log
+# USB Changelog
 
 ## cl.usb.1 Security Permission Change of the USB Driver API
 
