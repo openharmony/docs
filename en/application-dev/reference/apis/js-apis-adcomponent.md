@@ -5,7 +5,7 @@ The AdComponent module provides the capability of displaying non-full-screen ads
 
 
 > **NOTE**
->
+> 
 > The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -30,11 +30,11 @@ Shows a non-full-screen ad.
 **Parameters**
 
 
-| Name| Type| Mandatory| Description|
+| Name| Type| Mandatory| Description| 
 | -------- | -------- | -------- | -------- |
-| ads | Array&lt;advertising.[Advertisement](js-apis-advertising.md#advertisement)&gt; | Yes| Array of ad objects.|
-| displayOptions | advertising.[AdDisplayOptions](js-apis-advertising.md#addisplayoptions) | Yes| Ad display parameters.|
-| interactionListener | advertising.[AdInteractionListener](js-apis-advertising.md#adinteractionlistener) | Yes| Ad status change callback.|
+| ads | Array&lt;advertising.[Advertisement](js-apis-advertising.md#advertisement)&gt; | Yes| Array of ad objects.| 
+| displayOptions | advertising.[AdDisplayOptions](js-apis-advertising.md#addisplayoptions) | Yes| Ad display parameters.| 
+| interactionListener | advertising.[AdInteractionListener](js-apis-advertising.md#adinteractionlistener) | Yes| Ad status change callback.| 
 
 **Example**
 
@@ -43,6 +43,7 @@ import advertising from '@ohos.advertising';
 import { AdComponent } from '@ohos.advertising.AdComponent';
 import hilog from '@ohos.hilog';
 
+@Entry
 @Component
 export struct ShowNonFullScreenAd {
   // Requested ad content.

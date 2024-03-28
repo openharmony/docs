@@ -29,11 +29,11 @@ Called when the media application starts to load an ad. The device vendor needs 
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name| Type| Mandatory| Description| 
 | -------- | -------- | -------- | -------- |
-| adParam | advertising.[AdRequestParams](js-apis-advertising.md#adrequestparams) | Yes| Ad request parameters.|
-| adOptions | advertising.[AdOptions](js-apis-advertising.md#adoptions) | Yes| Ad configuration.|
-| respCallback | [RespCallback](#adsserviceextensionabilityrespcallback) | Yes| Ad request callback.|
+| adParam | advertising.[AdRequestParams](js-apis-advertising.md#adrequestparams) | Yes| Ad request parameters.| 
+| adOptions | advertising.[AdOptions](js-apis-advertising.md#adoptions) | Yes| Ad configuration.| 
+| respCallback | [RespCallback](#adsserviceextensionabilityrespcallback) | Yes| Ad request callback.| 
 
 **Example**
 ```ts
@@ -45,8 +45,9 @@ export default class AdsExtensionAbility extends AdsServiceExtensionAbility {
   onLoadAd(adParam: advertising.AdRequestParams, adOptions: advertising.AdOptions, respCallback: RespCallback) {
     const adType: number = adParam.adType;
     const ads: Array<advertising.Advertisement> = [];
-    ads.push({adType: adType, uniqueId: '111111', rewardVerifyConfig: null, rewarded: false, shown: false,  clicked: false});
-    ads.push({adType: adType, uniqueId: '222222', rewardVerifyConfig: null, rewarded: false, shown: false,  clicked: false});
+    const rewardVerifyConfig: Map<string, string> = new Map();
+    ads.push({adType: adType, uniqueId: '111111', rewardVerifyConfig: rewardVerifyConfig, rewarded: false, shown: false,  clicked: false});
+    ads.push({adType: adType, uniqueId: '222222', rewardVerifyConfig: rewardVerifyConfig, rewarded: false, shown: false,  clicked: false});
     const slot: string = 'test';
     const resMap: Map<string, Array<advertising.Advertisement>> = new Map();
     resMap.set(slot, ads);
@@ -68,13 +69,13 @@ Called when the media application starts to load multiple ads. The device vendor
 
 **Since**: 11
 
-Parameters
+**Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name| Type| Mandatory| Description| 
 | -------- | -------- | -------- | -------- |
-| adParams | advertising.[AdRequestParams](js-apis-advertising.md#adrequestparams)[] | Yes| Ad request parameters.|
-| adOptions | advertising.[AdOptions](js-apis-advertising.md#adoptions) | Yes| Ad configuration.|
-| respCallback | [RespCallback](#adsserviceextensionabilityrespcallback) | Yes| Ad request callback.|
+| adParams | advertising.[AdRequestParams](js-apis-advertising.md#adrequestparams)[] | Yes| Ad request parameters.| 
+| adOptions | advertising.[AdOptions](js-apis-advertising.md#adoptions) | Yes| Ad configuration.| 
+| respCallback | [RespCallback](#adsserviceextensionabilityrespcallback) | Yes| Ad request callback.| 
 
 **Example**
 ```ts
@@ -86,13 +87,14 @@ export default class AdsExtensionAbility extends AdsServiceExtensionAbility {
   onLoadAdWithMultiSlots(adParams: advertising.AdRequestParams[], adOptions: advertising.AdOptions, respCallback: RespCallback) {
     const adType1: number = adParams[0].adType; 
     const ads1: Array<advertising.Advertisement> = [];
-    ads1.push({adType: adType1, uniqueId: '111111', rewardVerifyConfig: null, rewarded: false, shown: false,  clicked: false});
-    ads1.push({adType: adType1, uniqueId: '222222', rewardVerifyConfig: null, rewarded: false, shown: false,  clicked: false});
+    const rewardVerifyConfig: Map<string, string> = new Map();
+    ads1.push({adType: adType1, uniqueId: '111111', rewardVerifyConfig: rewardVerifyConfig, rewarded: false, shown: false,  clicked: false});
+    ads1.push({adType: adType1, uniqueId: '222222', rewardVerifyConfig: rewardVerifyConfig, rewarded: false, shown: false,  clicked: false});
     const slot1: string = 'test1';
     const adType2: number = adParams[1].adType; 
     const ads2: Array<advertising.Advertisement> = [];
-    ads2.push({adType: adType2, uniqueId: '333333', rewardVerifyConfig: null, rewarded: false, shown: false,  clicked: false});
-    ads2.push({adType: adType2, uniqueId: '444444', rewardVerifyConfig: null, rewarded: false, shown: false,  clicked: false});
+    ads2.push({adType: adType2, uniqueId: '333333', rewardVerifyConfig: rewardVerifyConfig, rewarded: false, shown: false,  clicked: false});
+    ads2.push({adType: adType2, uniqueId: '444444', rewardVerifyConfig: rewardVerifyConfig, rewarded: false, shown: false,  clicked: false});
     const slot2: string = 'test2';
     const resMap: Map<string, Array<advertising.Advertisement>> = new Map();
     resMap.set(slot1, ads1);
@@ -113,12 +115,12 @@ Defines the ad request callback.
 
 **Since**: 11
 
-Parameters
+**Parameters**
 
 
-| Name| Type| Mandatory| Description|
+| Name| Type| Mandatory| Description| 
 | -------- | -------- | -------- | -------- |
-| respData | Map&lt;string, Array&lt;advertising.[Advertisement](js-apis-advertising.md#advertisement)&gt;&gt; | Yes| Data in the ad request callback.|
+| respData | Map&lt;string, Array&lt;advertising.[Advertisement](js-apis-advertising.md#advertisement)&gt;&gt; | Yes| Data in the ad request callback.| 
 
 
 **Example**
@@ -128,7 +130,8 @@ import { RespCallback } from '@ohos.advertising.AdsServiceExtensionAbility';
 
 function respDemo(respCallback: RespCallback) {
   const ads: Array<advertising.Advertisement> = [];
-  ads.push({adType: 7, uniqueId: '111111', rewardVerifyConfig: null, rewarded: false, shown: false,  clicked: false})
+  const rewardVerifyConfig: Map<string, string> = new Map();
+  ads.push({adType: 7, uniqueId: '111111', rewardVerifyConfig: rewardVerifyConfig, rewarded: false, shown: false,  clicked: false})
   const slot: string = "test";
   const resMap: Map<string, Array<advertising.Advertisement>> = new Map();
   resMap.set(slot, ads);
