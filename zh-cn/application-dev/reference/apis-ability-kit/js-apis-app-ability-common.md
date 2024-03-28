@@ -1,6 +1,6 @@
 # @ohos.app.ability.common (应用上下文Context)
 
-Common模块将二级模块API组织在一起方便开发者进行导出。
+开发者可以通过该模块引用Ability公共模块类。
 
 > **说明：**
 > 
@@ -51,5 +51,4 @@ let pacMap: common.PacMap;
 let abilityResult: common.AbilityResult;
 let abilityStartCallback: common.AbilityStartCallback;
 let connectOptions: common.ConnectOptions;
-let autoFillExtensionContext: common.AutoFillExtensionContext;
 ```
