@@ -44,7 +44,7 @@
     fs.copy(srcUri, destUri).then(()=>{
       console.info("Succeeded in copying---. ");
       console.info("src: " + srcUri + "dest: " + destUri);
-    }).catch((error)=>{
+    }).catch((error: BusinessError)=>{
       let err: BusinessError = error as BusinessError;
       console.info(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
     })
@@ -87,7 +87,7 @@
     fs.copy(srcUri, destUri, options).then(()=>{
       console.info("Succeeded in copying of paste. ");
       console.info("src: " + srcUri + "dest: " + destUri); // file://com.example.myapplication/data/storage/el2/distributedfiles/src.txt
-    }).catch((error)=>{
+    }).catch((error: BusinessError)=>{
       let err: BusinessError = error as BusinessError;
       console.info(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
     })
