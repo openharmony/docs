@@ -26,6 +26,9 @@
       - [使用扩展的Node-API接口在异步线程中运行和停止事件循环](use-napi-event-loop.md)
       - [使用Node-API接口在C++新创建的线程中进行模块加载](use-napi-load-module-with-info.md)
     - [Node-API常见问题](use-napi-faqs.md)
+  - 使用JSVM-API实现JS与C/C++语言交互
+    - [JSVM-API支持的数据类型和接口](jsvm-data-types-interfaces.md)
+    - [JSVM-API开发规范](jsvm-guidelines.md)
   - 资源管理
     - [Rawfile开发指导](rawfile-guidelines.md)
   - 资源调度
