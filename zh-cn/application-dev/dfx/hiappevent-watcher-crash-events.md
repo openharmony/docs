@@ -1,7 +1,7 @@
 # 崩溃事件
 
 HiAppEvent提供接口用于订阅系统崩溃事件。
-- [订阅崩溃事件（ArkTS）](hiappevent-watcher-crash-events-napi.md#订阅崩溃事件arkts)
+- [订阅崩溃事件（ArkTS）](hiappevent-watcher-crash-events-arkts)
 
 > **说明：**
 > 若应用崩溃导致应用退出，需要再次点击设备桌面的“应用图标”运行应用工程，等待一分钟左右获取到崩溃事件。
