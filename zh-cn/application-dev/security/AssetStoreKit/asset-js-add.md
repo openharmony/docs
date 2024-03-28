@@ -34,6 +34,7 @@
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
@@ -48,11 +49,11 @@ attr.set(asset.Tag.DATA_LABEL_NORMAL_1, stringToArray('demo_label'));
 try {
   asset.add(attr).then(() => {
     console.info(`Asset added successfully.`);
-  }).catch(() => {
-    console.error(`Failed to add Asset.`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to add Asset. Code is ${err.code}, message is ${err.message}`);
   })
-} catch (error) {
-  console.error(`Failed to add Asset.`);
+} catch (err) {
+  console.error(`Failed to add Asset. Code is ${err.code}, message is ${err.message}`);
 }
 ```
 
