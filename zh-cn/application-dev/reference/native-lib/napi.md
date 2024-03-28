@@ -180,4 +180,4 @@ OpenHarmony的Node-API组件对Node-API的接口进行了重新实现，底层�
 |FUNC|napi_coerce_to_native_binding_object|强制将js `Object`和Native对象绑定。|11|
 |FUNC|napi_create_ark_runtime|创建基础运行时环境。|12|
 |FUNC|napi_destroy_ark_runtime|销毁基础运行时环境。|12|
-|FUNC|napi_load_module_with_info|将abc文件作为模块加载，返回模块的命名空间。可在新创建的线程中使用|12|
+|FUNC|napi_load_module_with_info|将abc文件作为模块加载，返回模块的命名空间。可在新创建的ArkTs基础运行时环境中使用。|12|
