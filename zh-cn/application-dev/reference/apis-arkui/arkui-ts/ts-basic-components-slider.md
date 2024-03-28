@@ -75,9 +75,11 @@ blockColor(value: ResourceColor)
 
 ### trackColor
 
-trackColor(value: ResourceColor)
+trackColor(value: ResourceColor | LinearGradient)
 
 设置滑轨的背景颜色。
+
+从API version 12开始支持利用LinearGradient设置滑轨的渐变色。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -87,7 +89,7 @@ trackColor(value: ResourceColor)
 
 | 参数名 | 类型                                       | 必填 | 说明                                      |
 | ------ | ------------------------------------------ | ---- | ----------------------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 滑轨的背景颜色。 <br/>默认值：'#19182431' |
+| value  | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[LinearGradient<sup>12+</sup>](ts-basic-components-datapanel.md#lineargradient10对象说明) | 是   | 滑轨的背景颜色。<br/>**说明：** 设置渐变色时，若颜色断点颜色值为非法值或者渐变色断点为空时，渐变色不起效果。<br/>默认值：'#19182431' |
 
 ### selectedColor
 
