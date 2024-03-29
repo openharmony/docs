@@ -397,7 +397,7 @@ openCustomDialog(options: CustomDialogOptions): Promise&lt;number&gt;
 
 打开自定义弹窗。
 
-不支持在[ServiceExtension](../../application-models/serviceextensionability.md)中使用。
+不支持在ServiceExtension中使用。
 
 暂不支持isModal = true与showInSubWindow = true同时使用。
 
