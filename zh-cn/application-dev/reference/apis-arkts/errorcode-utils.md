@@ -512,3 +512,39 @@ Can not set an arraybuffer to both transferList and cloneList.
 **处理步骤**
 
 调用时，确保同一个ArrayBuffer只被设置为transferList或cloneList中的一种。无法保证时，需要捕获异常。
+
+## 10200030 锁不存在
+
+**错误信息**
+
+No such lock.
+
+**描述**
+
+请求的锁不存在。
+
+**可能的原因**
+
+某个异步锁函数使用了一个不正确的锁名称作为参数。
+
+**处理步骤**
+
+确保在调用接口时，使用正确的锁名称。
+
+## 10200031 lockAsync超时
+
+**错误信息**
+
+Timeout exceeded.
+
+**描述**
+
+[lockAsync](js-apis-arkts-utils.md#lockasync)函数在指定时间内无法获取锁。
+
+**可能的原因**
+
+某处存在死锁。
+
+**处理步骤**
+
+检查锁之间是否存在循环依赖。尝试在[lockAsync](js-apis-arkts-utils.md#lockasync)调用中添加catch语句，并查看错误信息。错误信息将包含有关现有异步锁实例和可能的死锁警告的信息。
