@@ -225,6 +225,59 @@ plural.json文件的内容如下：
 
   ![create-resource-file-3](figures/create-resource-file-3.png)
 
+## 资源可翻译特性
+### 功能介绍
+资源需要翻译时，可使用attr属性标记字符串翻译范围和翻译状态。attr属性不参与资源编译，只标记字符串是否翻译。
+
+未配置attr属性，默认需要翻译。
+```
+"attr": {
+  "translatable": false|true
+  "priority": "code|translate|LT|customer"
+}
+```
+**attr支持属性**
+
+| 名称        | 类型                    |  说明   |
+| --------- | ----------------------- |  ---- |
+| translatable |  boolean |  标记字符串是否需要翻译。 <br>  true：需要翻译。 <br> false：不需要翻译。|
+| priority    | string   |  标记字符串翻译状态。<br>code：未翻译。<br>translate：翻译未验证。<br>LT：翻译已验证。<br>customer：用户定制字符串。   |
+
+### 使用约束
+可翻译特性使能范围：base目录下string、strarray、plural类型资源。
+```
+resources
+|---base
+|   |---element
+|   |   |---string.json
+|   |   |---strarray.json
+|   |   |---plural.json
+```
+### 示例
+string资源配置attr属性示例如下：
+
+```json
+{
+  "string": [
+    {
+      "name": "string1",
+      "value": "1",
+      "attr": {
+        "translatable": false
+      }
+    },
+    {
+      "name": "string2",
+      "value": "Hello world!",
+      "attr": {
+        "translatable": true,
+        "priority": "LT"
+      }
+    }
+  ]
+}
+```
+
 ## 资源访问
 
 ### 单HAP包应用资源
