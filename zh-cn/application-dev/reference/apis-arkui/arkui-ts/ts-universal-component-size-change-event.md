@@ -8,7 +8,7 @@
 
 ## onSizeChange
 
-onSizeChange(event: SizeChangeCallback)
+onSizeChange(event: SizeChangeCallback): T
 
 组件区域变化时触发该回调。仅会响应由布局变化所导致的组件尺寸发生变化时的回调。由绘制变化所导致的渲染属性变化不会响应回调，如translate、offset。
 
@@ -19,6 +19,12 @@ onSizeChange(event: SizeChangeCallback)
 | 参数名   | 类型                      | 必填 | 说明                                                         |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | event | [SizeChangeCallback](#sizechangecallback) | 是   | 目标元素变化前后的尺寸。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
 
 ## SizeChangeCallback
 

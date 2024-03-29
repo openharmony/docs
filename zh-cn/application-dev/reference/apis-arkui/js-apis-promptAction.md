@@ -259,7 +259,7 @@ try {
 | buttons  | Array&lt;[Button](#button)&gt;    | 否   | 对话框中按钮的数组，结构为：{text:'button',&nbsp;color:&nbsp;'\#666666'}，支持大于1个按钮。
 | alignment<sup>10+</sup>  | [DialogAlignment](arkui-ts/ts-methods-alert-dialog-box.md#dialogalignment枚举说明) | 否   | 弹窗在竖直方向上的对齐方式。<br>默认值：DialogAlignment.Default |
 | offset<sup>10+</sup>     | [Offset](arkui-ts/ts-types.md#offset) | 否     | 弹窗相对alignment所在位置的偏移量。<br/>默认值：{&nbsp;dx:&nbsp;0&nbsp;,&nbsp;dy:&nbsp;0&nbsp;} |
-| maskRect<sup>10+</sup>| [Rectangle](arkui-ts/ts-methods-alert-dialog-box.md#rectangle8类型说明) | 否     | 弹窗遮蔽层区域，在遮蔽层区域内的事件不透传，在遮蔽层区域外的事件透传。<br/>默认值：{ x: 0, y: 0, width: '100%', height: '100%' } |
+| maskRect<sup>10+</sup>| [Rectangle](arkui-ts/ts-methods-alert-dialog-box.md#rectangle8类型说明) | 否     | 弹窗遮蔽层区域，在遮蔽层区域内的事件不透传，在遮蔽层区域外的事件透传。<br/>默认值：{ x: 0, y: 0, width: '100%', height: '100%' } <br/>**说明：**<br/>showInSubWindow为true时，maskRect不生效。|
 | showInSubWindow<sup>11+</sup> | boolean | 否 | 某弹框需要显示在主窗口之外时，是否在子窗口显示此弹窗。<br/>默认值：false，弹窗显示在应用内，而非独立子窗口。<br/>**说明**：showInSubWindow为true的弹窗无法触发显示另一个showInSubWindow为true的弹窗。 |
 | isModal<sup>11+</sup> | boolean | 否 | 弹窗是否为模态窗口，模态窗口有蒙层，非模态窗口无蒙层。<br/>默认值：true，此时弹窗有蒙层。 |
 
@@ -398,7 +398,7 @@ openCustomDialog(options: CustomDialogOptions): Promise&lt;number&gt;
 
 打开自定义弹窗。
 
-不支持在[ServiceExtension](../../application-models/serviceextensionability.md)中使用。
+不支持在ServiceExtension中使用。
 
 暂不支持isModal = true与showInSubWindow = true同时使用。
 
@@ -411,20 +411,6 @@ openCustomDialog(options: CustomDialogOptions): Promise&lt;number&gt;
 | 参数名  | 类型                                          | 必填 | 说明               |
 | ------- | --------------------------------------------- | ---- | ------------------ |
 | options | [CustomDialogOptions](#customdialogoptions11) | 是   | 自定义弹窗的内容。 |
-
-## CustomDialogOptions<sup>12+</sup>对象说明
-
-| 名称                           | 参数类型                                     | 必填   | 描述                                     |
-| ----------------------------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| backgroundColor | [ResourceColor](arkui-ts/ts-types.md#resourcecolor)  | 否 | 设置弹窗背板颜色。 |
-| cornerRadius | [BorderRadiuses](arkui-ts/ts-types.md#borderradiuses9) \| [Dimension](arkui-ts/ts-types.md#dimension10)  | 否 | 设置背板的圆角半径。<br />可分别设置4个圆角的半径。<br />默认值：{ topLeft: '24vp', topRight: '24vp', bottomLeft: '24vp', bottomRight: '24vp' } |
-| borderWidth | [Dimension](arkui-ts/ts-types.md#dimension10)&nbsp;\|&nbsp;[EdgeWidths](arkui-ts/ts-types.md#edgewidths9)  | 否 | 设置弹窗背板的边框宽度。 |
-| borderColor | [ResourceColor](arkui-ts/ts-types.md#resourcecolor)&nbsp;\|&nbsp;[EdgeColors](arkui-ts/ts-types.md#edgecolors9)  | 否 | 设置弹窗背板的边框颜色。<br/>默认值：Color.Black<br/> 如果使用borderColor属性，需要和borderWidth属性一起使用。 |
-| borderStyle | [BorderStyle](arkui-ts/ts-appendix-enums.md#borderstyle)&nbsp;\|&nbsp;[EdgeStyles](arkui-ts/ts-types.md#edgestyles9)  | 否 | 设置弹窗背板的边框样式。<br/>默认值：BorderStyle.Solid<br/> 如果使用borderStyle属性，需要和borderWidth属性一起使用。 |
-| width | [Dimension](arkui-ts/ts-types.md#dimension10)   | 否 | 设置弹窗背板的宽度。<br>width和gridCount同时设置时，width优先。 |
-| height | [Dimension](arkui-ts/ts-types.md#dimension10)   | 否 | 设置弹窗背板的高度。|
-| shadow | [ShadowOptions](arkui-ts/ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;[ShadowStyle](arkui-ts/ts-universal-attributes-image-effect.md#shadowstyle10枚举说明)   | 否 | 设置弹窗背板的阴影。 |
-
 
 **返回值：**
 
@@ -474,7 +460,7 @@ struct Index {
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
             promptAction.openCustomDialog({
-              builder: customDialogBuilder.bind(this)
+              builder: customDialogBuilder.bind(this),
               onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
                 console.info("reason" + JSON.stringify(dismissDialogAction.reason))
                 console.log("dialog onWillDismiss")
@@ -545,6 +531,14 @@ closeCustomDialog(dialogId: number): void
 | 名称    | 类型                                                    | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | builder | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) | 否   | 设置自定义弹窗的内容。<br/>**说明：** <br/>builder需要使用bind(this)。<br/>builder根节点宽高百分比相对弹框容器大小。<br/>builder非根节点宽高百分比相对父节点大小。 |
+| backgroundColor <sup>12+</sup>| [ResourceColor](arkui-ts/ts-types.md#resourcecolor)  | 否 | 设置弹窗背板颜色。 |
+| cornerRadius<sup>12+</sup>| [BorderRadiuses](arkui-ts/ts-types.md#borderradiuses9) \| [Dimension](arkui-ts/ts-types.md#dimension10)  | 否 | 设置背板的圆角半径。<br />可分别设置4个圆角的半径。<br />默认值：{ topLeft: '24vp', topRight: '24vp', bottomLeft: '24vp', bottomRight: '24vp' }。<br /> 圆角大小受组件尺寸限制，最大值为组件宽或高的一半，若值为负，则按照0处理。 <br /> 百分比参数方式：以父元素弹窗宽和高的百分比来设置弹窗的圆角。|
+| borderWidth<sup>12+</sup>| [Dimension](arkui-ts/ts-types.md#dimension10)&nbsp;\|&nbsp;[EdgeWidths](arkui-ts/ts-types.md#edgewidths9)  | 否 | 设置弹窗背板的边框宽度。<br />可分别设置4个边框宽度。<br />默认值：0。<br /> 百分比参数方式：以父元素弹窗宽的百分比来设置弹窗的边框宽度。<br />当弹窗左边框和右边框大于弹窗宽度，弹窗上边框和下边框大于弹窗高度，显示可能不符合预期。|
+| borderColor<sup>12+</sup> | [ResourceColor](arkui-ts/ts-types.md#resourcecolor)&nbsp;\|&nbsp;[EdgeColors](arkui-ts/ts-types.md#edgecolors9)  | 否 | 设置弹窗背板的边框颜色。<br/>默认值：Color.Black。<br/> 如果使用borderColor属性，需要和borderWidth属性一起使用。 |
+| borderStyle<sup>12+</sup> | [BorderStyle](arkui-ts/ts-appendix-enums.md#borderstyle)&nbsp;\|&nbsp;[EdgeStyles](arkui-ts/ts-types.md#edgestyles9)  | 否 | 设置弹窗背板的边框样式。<br/>默认值：BorderStyle.Solid。<br/> 如果使用borderStyle属性，需要和borderWidth属性一起使用。 |
+| width<sup>12+</sup>| [Dimension](arkui-ts/ts-types.md#dimension10)   | 否 | 设置弹窗背板的宽度。<br /> 百分比参数方式：以父元素宽的百分比来设置弹窗的宽度。|
+| height<sup>12+</sup>| [Dimension](arkui-ts/ts-types.md#dimension10)   | 否 | 设置弹窗背板的高度。<br /> 百分比参数方式：以父元素高的百分比来设置弹窗的高度。|
+| shadow<sup>12+</sup>| [ShadowOptions](arkui-ts/ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;[ShadowStyle](arkui-ts/ts-universal-attributes-image-effect.md#shadowstyle10枚举说明)   | 否 | 设置弹窗背板的阴影。 |
 
 ## BaseDialogOptions<sup>11+</sup>
 
@@ -554,7 +548,7 @@ closeCustomDialog(dialogId: number): void
 
 | 名称            | 类型                                                         | 必填 | 说明                                                         |
 | --------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| maskRect        | [Rectangle](arkui-ts/ts-methods-alert-dialog-box.md#rectangle8类型说明) | 否   | 弹窗遮蔽层区域。                                             |
+| maskRect        | [Rectangle](arkui-ts/ts-methods-alert-dialog-box.md#rectangle8类型说明) | 否   | 弹窗遮蔽层区域。<br/>**说明：**<br/>showInSubWindow为true时，maskRect不生效。                                        |
 | alignment       | [DialogAlignment](arkui-ts/ts-methods-alert-dialog-box.md#dialogalignment枚举说明) | 否   | 弹窗在竖直方向上的对齐方式。                                 |
 | offset          | [Offset](arkui-ts/ts-types.md#offset)                     | 否   | 弹窗相对alignment所在位置的偏移量。                          |
 | isModal         | boolean                                                      | 否   | 弹窗是否为模态窗口，模态窗口有蒙层，非模态窗口无蒙层。<br/>默认值：true，此时弹窗有蒙层。 |

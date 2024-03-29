@@ -8,7 +8,7 @@
 用于设置基础事件回调。方法入参为undefied的时候，重置对应的事件回调。
 ### setOnClick
 
-setOnClick(callback: Callback\<ClickEvent> | undefined): void;
+setOnClick(callback: Callback\<ClickEvent> | undefined): void
 
 设置[点击事件](./ts-universal-events-click.md#点击事件)的回调。
 
@@ -20,7 +20,7 @@ setOnClick(callback: Callback\<ClickEvent> | undefined): void;
 
 ### setOnTouch
 
-setOnTouch(callback: Callback\<TouchEvent> | undefined): void;
+setOnTouch(callback: Callback\<TouchEvent> | undefined): void
 
 设置[触摸事件](./ts-universal-events-touch.md#触摸事件)的回调。
 
@@ -33,7 +33,7 @@ setOnTouch(callback: Callback\<TouchEvent> | undefined): void;
 
 ### setOnAppear
 
-setOnAppear(callback: Callback\<void> | undefined): void;
+setOnAppear(callback: Callback\<void> | undefined): void
 
 设置[onAppear](./ts-universal-events-show-hide.md#onappear)事件的回调。
 
@@ -46,7 +46,7 @@ setOnAppear(callback: Callback\<void> | undefined): void;
 
 ### setOnDisappear
 
-setOnDisappear(callback: Callback\<void> | undefined): void;
+setOnDisappear(callback: Callback\<void> | undefined): void
 
 设置[onDisappear](./ts-universal-events-show-hide.md#ondisappear)事件的回调。
 
@@ -58,7 +58,7 @@ setOnDisappear(callback: Callback\<void> | undefined): void;
 
 ### setOnKeyEvent
 
-setOnKeyEvent(callback: Callback\<KeyEvent> | undefined): void;
+setOnKeyEvent(callback: Callback\<KeyEvent> | undefined): void
 
 设置[按键事件](./ts-universal-events-key.md#按键事件)的回调。
 
@@ -70,7 +70,7 @@ setOnKeyEvent(callback: Callback\<KeyEvent> | undefined): void;
 
 ### setOnFocus
 
-setOnFocus(callback:  Callback\<void> | undefined): void;
+setOnFocus(callback:  Callback\<void> | undefined): void
 
 设置[onFocus](./ts-universal-focus-event.md#onfocus)事件的回调。
 
@@ -82,7 +82,7 @@ setOnFocus(callback:  Callback\<void> | undefined): void;
 
 ### setOnBlur
 
-setOnBlur(callback: Callback\<void> | undefined): void;
+setOnBlur(callback: Callback\<void> | undefined): void
 
 设置[onBlur](./ts-universal-focus-event.md#onblur)事件的回调。
 
@@ -94,7 +94,7 @@ setOnBlur(callback: Callback\<void> | undefined): void;
 
 ### setOnHover
 
-setOnHover(callback: HoverCallback | undefined): void;
+setOnHover(callback: HoverCallback | undefined): void
 
 设置[onHover](./ts-universal-mouse-key.md#onhover)事件的回调。
 
@@ -106,7 +106,7 @@ setOnHover(callback: HoverCallback | undefined): void;
 
 ### setOnMouse
 
-setOnMouse(callback: Callback\<MouseEvent> | undefined): void;
+setOnMouse(callback: Callback\<MouseEvent> | undefined): void
 
 设置[onMouse](./ts-universal-mouse-key.md#onmouse)事件的回调。
 
@@ -115,3 +115,15 @@ setOnMouse(callback: Callback\<MouseEvent> | undefined): void;
 | 参数名 | 类型   | 必填 | 说明                       |
 | ------ | ------ | ---- | -------------------------- |
 | callback  |  [Callback](./ts-types.md#callback12)<[MouseEvent](./ts-universal-mouse-key.md#mouseevent对象说明)>   \| undefined | 是   | onMouse事件的回调函数。 |
+
+### setOnSizeChange
+
+setOnSizeChange(callback: Callback\<MouseEvent> | undefined): void
+
+设置[onSizeChange](./ts-universal-component-size-change-event.md#onsizechange)事件的回调。
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                       |
+| ------ | ------ | ---- | -------------------------- |
+| callback  | [SizeChangeCallback](./ts-universal-component-size-change-event.md#sizechangecallback)   \| undefined | 是   | onSizeChange事件的回调函数。 |

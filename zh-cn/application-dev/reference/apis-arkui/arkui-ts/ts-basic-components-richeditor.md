@@ -357,8 +357,8 @@ Span类型信息。
 | fontWeight | number                                   | 是    | 字体粗细。        |
 | fontFamily | string                                   | 是    | 字体列表。        |
 | decoration | {<br/>type:&nbsp;[TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br/>color:&nbsp;[ResourceColor](ts-types.md#resourcecolor)<br/>} | 是    | 文本装饰线样式及其颜色。 |
-| lineHeight<sup>12+</sup> | number       | 是    | 文本行高。          |
-| letterSpacing<sup>12+</sup>| number       | 是    | 文本字符间距。    |
+| lineHeight<sup>12+</sup> | number       | 否    | 文本行高。          |
+| letterSpacing<sup>12+</sup>| number       | 否    | 文本字符间距。    |
 
 ## RichEditorImageSpanResult
 
@@ -775,7 +775,7 @@ SymbolSpan样式选项。
 
 ## LeadingMarginPlaceholder<sup>11+</sup>
 
-前导边距占位符，用于表示文本段落左侧与页面边缘之间的距离。
+前导边距占位符，用于表示文本段落左侧与组件边缘之间的距离。
 
 | 名称       | 类型                                       | 必填   | 描述             |
 | -------- | ---------------------------------------- | ---- | -------------- |
@@ -815,8 +815,8 @@ SymbolSpan样式选项。
 | fontFamily               | [ResourceStr](ts-types.md#resourcestr) | 否    | 设置字体列表。默认字体'HarmonyOS Sans'，当前支持'HarmonyOS Sans'字体和[注册自定义字体](../js-apis-font.md)。 <br/>默认字体:'HarmonyOS Sans'。 |
 | decoration               | {<br/>type:&nbsp;[TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br/>color?:&nbsp;[ResourceColor](ts-types.md#resourcecolor)<br/>} | 否    | 设置文本装饰线样式及其颜色。<br />默认值：{<br/>type:&nbsp;TextDecorationType.None,<br/>color：Color.Black<br/>}。 |
 | textShadow<sup>11+</sup> | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;Array&lt;[ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)> | 否    | 设置文字阴影效果。该接口支持以数组形式入参，实现多重文字阴影。<br/>**说明：**<br/>不支持fill字段, 不支持智能取色模式。 |
-| lineHeight<sup>12+</sup>    | number \| string \| Resource | 否     |设置文本的文本行高，设置值不大于0时，不限制文本行高，自适应字体大小，number类型时单位为fp。 | 
-| letterSpacing<sup>12+</sup> | number \| string             | 否     | 设置文本字符间距。设置该值为百分比时，按默认值显示。当取值为负值时，文字会发生压缩，负值过小时会将组件内容区大小压缩为0，导致无内容显示。|
+| lineHeight<sup>12+</sup>    | number \| string \| Resource | 否     |设置文本的文本行高，设置值不大于0时，不限制文本行高，自适应字体大小，number类型时单位为fp，不支持设置百分比字符串。 | 
+| letterSpacing<sup>12+</sup> | number \| string             | 否     | 设置文本字符间距。设置该值为百分比时，按默认值显示。当取值为负值时，文字会发生压缩，负值过小时会将组件内容区大小压缩为0，导致无内容显示，不支持设置百分比字符串。|
 ## PlaceholderStyle<sup>12+</sup>
 
 添加提示文本的字体样式。
@@ -900,7 +900,7 @@ SymbolSpan样式选项。
 
 | 名称             | 类型          | 必填   | 描述                            |
 | -------------- | ----------- | ---- | ----------------------------- |
-| preventDefault | () => void | 否    | 用户自定义粘贴事件。<br/> 存在时会覆盖系统粘贴事件。 |
+| preventDefault | () => void | 否    | 阻止系统默认粘贴事件。 |
 
 ## RichEditorGesture<sup>11+</sup>
 
@@ -1082,6 +1082,15 @@ struct Index {
           })
           .onDeleteComplete(() => {
             console.log("---------------------- onDeleteComplete ------------------------")
+          })
+          .placeholder("input...", {
+            fontColor: Color.Gray,
+            font: {
+              size: 16,
+              weight: FontWeight.Normal,
+              family: "HarmonyOS Sans",
+              style: FontStyle.Normal
+            }
           })
           .borderWidth(1)
           .borderColor(Color.Green)
@@ -2801,3 +2810,154 @@ struct RichEditorDemo {
 }
 ```
 ![SetCaretAndSelectedBackgroundColorExample](figures/rich_editor_caret_color.gif)
+
+### 示例12
+lineHeight和letterSpacing使用示例
+```ts
+@Entry
+@Component
+struct RichEditorDemo03 {
+  controller: RichEditorController = new RichEditorController();
+  options: RichEditorOptions = { controller: this.controller };
+  @State start: number = -1;
+  @State end: number = -1;
+  @State LH:number = 50
+  @State LS:number = 20
+
+  build() {
+    Column() {
+      Scroll(){
+        Column(){
+          Row() {
+            Button("行高++").onClick(()=>{
+              this.LH = this.LH + 5
+              this.controller.updateSpanStyle({
+                start: this.start,
+                end: this.end,
+                textStyle:
+                {
+                  lineHeight: this.LH
+                }
+              })
+            })
+            Button("行高--").onClick(()=>{
+              this.LH = this.LH - 5
+              this.controller.updateSpanStyle({
+                start: this.start,
+                end: this.end,
+                textStyle:
+                {
+                  lineHeight: this.LH
+                }
+              })
+            })
+            Button("字符间距++").onClick(()=>{
+              this.LS = this.LS + 5
+              this.controller.updateSpanStyle({
+                start: this.start,
+                end: this.end,
+                textStyle:
+                {
+                  letterSpacing: this.LS
+                }
+              })
+            })
+            Button("字符间距--").onClick(()=>{
+              this.LS = this.LS - 5
+              this.controller.updateSpanStyle({
+                start: this.start,
+                end: this.end,
+                textStyle:
+                {
+                  letterSpacing: this.LS
+                }
+              })
+            })
+          }
+        }
+      }.borderWidth(1)
+      .borderColor(Color.Red)
+      .width("100%")
+      .height("20%")
+      .margin({top: 20})
+
+      Scroll(){
+        Column() {
+          Text("LineHeight:" + this.LH).width("100%")
+          Text("LetterSpacing:" + this.LS).width("100%")
+        }
+      }
+      .borderWidth(1)
+      .borderColor(Color.Red)
+      .width("100%")
+      .height("20%")
+      .margin({bottom: 20})
+
+      Column() {
+        RichEditor(this.options).clip(true).padding(10)
+          .onReady(() => {
+            this.controller.addTextSpan("012345",
+              {
+                style:
+                {
+                  fontColor: Color.Orange,
+                  fontSize: 30,
+                  lineHeight: this.LH,
+                  letterSpacing: this.LS
+                }
+              })
+            this.controller.addTextSpan("6789",
+              {
+                style:
+                {
+                  fontColor: Color.Black,
+                  fontSize: 30,
+                  lineHeight: this.LH,
+                  letterSpacing: this.LS
+                }
+              })
+          })
+          .borderWidth(1)
+          .borderColor(Color.Green)
+          .width(400)
+          .height(400)
+      }
+      .borderWidth(1)
+      .borderColor(Color.Red)
+      .width("100%")
+      .height("60%")
+    }
+  }
+}
+```
+![AddBuilderSpanExample](figures/richEditorLineHeightAndLetterSpacing.png)
+
+### 示例13
+preventDefault使用示例
+```ts
+@Entry
+@Component
+struct RichEditorDemo {
+  controller: RichEditorController = new RichEditorController();
+  options: RichEditorOptions = { controller: this.controller };
+
+  build() {
+    Column({ space: 2 }) {
+      RichEditor(this.options)
+        .onReady(() => {
+          this.controller.addTextSpan('RichEditor preventDefault')
+        })
+        .onPaste((event?: PasteEvent) => {
+          if (event != undefined && event.preventDefault) {
+            event.preventDefault();
+          }
+        })
+        .borderWidth(1)
+        .borderColor(Color.Green)
+        .width('100%')
+        .height('40%')
+    }
+  }
+}
+```
+![PreventDefaultExample](figures/richEditorPreventDefault.gif)

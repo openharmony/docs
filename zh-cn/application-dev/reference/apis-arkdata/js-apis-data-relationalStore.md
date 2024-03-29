@@ -579,6 +579,7 @@ class EntryAbility extends UIAbility {
 | Uint8Array<sup>10+</sup>           | 表示值类型为Uint8类型的数组。            |
 | Asset<sup>10+</sup>  | 表示值类型为附件[Asset](#asset10)。     |
 | Assets<sup>10+</sup> | 表示值类型为附件数组[Assets](#assets10)。 |
+| Float32Array<sup>12+</sup> | 表示值类型为浮点数组。 |
 
 ## ValuesBucket
 
@@ -3138,6 +3139,58 @@ if(store != undefined) {
 }
 ```
 
+### execute<sup>12+</sup>
+
+execute(sql: string, txId: number, args?: Array<ValueType>): Promise&lt;ValueType&gt;
+
+执行包含指定参数的SQL语句，使用Promise异步回调。
+该接口仅支持[向量数据库](js-apis-data-relationalStore-sys.md#storeconfig)使用。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名   | 类型                                 | 必填 | 说明                                                         |
+| -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
+| sql      | string                               | 是   | 指定要执行的SQL语句。                                        |
+| txId      | number                               | 是   | 通过[beginTrans](#begintrans12)获取的事务ID，如果传0，该语句默认在单独事务内。                                      |
+| args | Array&lt;[ValueType](#valuetype)&gt; | 否   | SQL语句中参数的值。该值与sql参数语句中的占位符相对应。该参数不填，或者填null或undefined，都认为是sql参数语句完整。 |
+
+**返回值**：
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;[ValueType](#valuetype)&gt; | Promise对象，返回null。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800011     | Database corrupted.
+| 14800047     | The WAL file size exceeds the default limit. |
+| 14800000     | Inner error.                                 |
+
+**示例：**
+
+```ts
+import { BusinessError } from "@ohos.base";
+if(store != null) {
+  let txId : number;
+  (store as relationalStore.RdbStore).beginTrans().then((txId : number) => {
+    (store as relationalStore.RdbStore).execute("DELETE FROM TEST WHERE age = ? OR age = ?", txId, ["18", "20"])
+      .then(() => {
+        (store as relationalStore.RdbStore).commit(txId);
+    })
+    .catch((err: BusinessError) => {
+      (store as relationalStore.RdbStore).rollback(txId)
+      console.error(`execute sql failed, code is ${err.code},message is ${err.message}`);
+    });
+  });
+}
+```
+
 ### getModifyTime<sup>10+</sup>
 
 getModifyTime(table: string, columnName: string, primaryKeys: PRIKeyType[], callback: AsyncCallback&lt;ModifyTime&gt;): void
@@ -3265,6 +3318,51 @@ store.insert("test", valueBucket);
 store.commit();
 ```
 
+### beginTrans<sup>12+</sup>
+
+beginTrans(): Promise&lt;number&gt;
+
+在开始执行SQL语句之前，开始事务，使用Promise异步回调。
+与[beginTransaction](#begintransaction)的区别在于：该接口会返回事务ID，[execute](#execute12-1)可以指定不同事务ID达到事务隔离目的。
+该接口仅支持[向量数据库](js-apis-data-relationalStore-sys.md#storeconfig)使用。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**返回值**：
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;number&gt; | Promise对象，返回事务ID。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800047     | The WAL file size exceeds the default limit. |
+| 14800000     | Inner error.                                 |
+| 14800011     | Failed to open database by database corrupted.                                 |
+
+**示例：**
+
+```ts
+import { BusinessError } from "@ohos.base";
+if(store != null) {
+  let txId : number;
+  (store as relationalStore.RdbStore).beginTrans().then((txId : number) => {
+    (store as relationalStore.RdbStore).execute("DELETE FROM TEST WHERE age = ? OR age = ?", txId, ["18", "20"])
+      .then(() => {
+        (store as relationalStore.RdbStore).commit(txId);
+    })
+    .catch((err: BusinessError) => {
+      (store as relationalStore.RdbStore).rollback(txId)
+      console.error(`execute sql failed, code is ${err.code},message is ${err.message}`);
+    });
+  });
+}
+```
+
 ### commit
 
 commit():void
@@ -3293,6 +3391,54 @@ const valueBucket: ValuesBucket = {
 };
 store.insert("test", valueBucket);
 store.commit();
+```
+
+### commit<sup>12+</sup>
+
+commit(txId : number):Promise&lt;void&gt;
+
+提交已执行的SQL语句，跟[beginTrans](#begintrans12)配合使用。
+该接口仅支持[向量数据库](js-apis-data-relationalStore-sys.md#storeconfig)使用。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名   | 类型                                 | 必填 | 说明                                                         |
+| -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
+| txId      | number                               | 是   | 通过[beginTrans](#begintrans12)获取的事务ID。                                        |
+
+**返回值**：
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800011     | Failed to open database by database corrupted.                                 |
+
+**示例：**
+
+```ts
+import { BusinessError } from "@ohos.base";
+if(store != null) {
+  let txId : number;
+  (store as relationalStore.RdbStore).beginTrans().then((txId : number) => {
+    (store as relationalStore.RdbStore).execute("DELETE FROM TEST WHERE age = ? OR age = ?", txId, ["18", "20"])
+      .then(() => {
+        (store as relationalStore.RdbStore).commit(txId);
+    })
+    .catch((err: BusinessError) => {
+      (store as relationalStore.RdbStore).rollback(txId)
+      console.error(`execute sql failed, code is ${err.code},message is ${err.message}`);
+    });
+  });
+}
 ```
 
 ### rollBack
@@ -3329,6 +3475,54 @@ try {
   let message = (err as BusinessError).message
   console.error(`Transaction failed, code is ${code},message is ${message}`);
   store.rollBack();
+}
+```
+
+### rollback<sup>12+</sup>
+
+rollback(txId : number):Promise&lt;void&gt;
+
+回滚已经执行的SQL语句，跟[beginTrans](#begintrans12)配合使用。
+该接口仅支持[向量数据库](js-apis-data-relationalStore-sys.md#storeconfig)使用。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名   | 类型                                 | 必填 | 说明                                                         |
+| -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
+| txId      | number                               | 是   | 通过[beginTrans](#begintrans12)获取的事务ID。                                        |
+
+**返回值**：
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800011     | Failed to open database by database corrupted.                                 |
+
+**示例：**
+
+```ts
+import { BusinessError } from "@ohos.base";
+if(store != null) {
+  let txId : number;
+  (store as relationalStore.RdbStore).beginTrans().then((txId : number) => {
+    (store as relationalStore.RdbStore).execute("DELETE FROM TEST WHERE age = ? OR age = ?", txId, ["18", "20"])
+      .then(() => {
+        (store as relationalStore.RdbStore).commit(txId);
+    })
+    .catch((err: BusinessError) => {
+      (store as relationalStore.RdbStore).rollback(txId)
+      console.error(`execute sql failed, code is ${err.code},message is ${err.message}`);
+    });
+  });
 }
 ```
 

@@ -80,7 +80,7 @@ TextPicker布局绘制逻辑与DatePicker、TimePicker不一致, 当组件高度
 
 **适配指导**
 
-无
+默认行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生问题。
 
 ## cl.arkui.3  Dialog在页面路由跳转时关闭行为变更
 
@@ -94,7 +94,7 @@ TextPicker布局绘制逻辑与DatePicker、TimePicker不一致, 当组件高度
 
 **变更影响**
 
-该变更为兼容性变更。
+该变更为非兼容性变更。
 
 变更前，若页面存在弹窗时进行路由跳转，页面内容会切换，同时也会自动关闭最后一个弹窗。
 
@@ -106,7 +106,7 @@ TextPicker布局绘制逻辑与DatePicker、TimePicker不一致, 当组件高度
 
 **变更发生版本**
 
-从OpenHarmony SDK 5.0.0.17 开始。
+从OpenHarmony SDK 5.0.0.17 开始, API 12及后续版本生效。
 
 **变更的接口/组件**
 
@@ -115,3 +115,49 @@ TextPicker布局绘制逻辑与DatePicker、TimePicker不一致, 当组件高度
 **适配指导**
 
 若开发者在页面路由跳转时要关闭当前页面所有弹窗，可在路由跳转前调用弹窗的close方法进行手动关闭。
+
+示例代码如下:
+```ts
+import router from '@ohos.router';
+// 记录当前页面所有弹窗
+const dialogs: Map<string, CustomDialogController> = new Map();
+
+@CustomDialog
+struct CustomDialogExample {
+  controllerTwo?: CustomDialogController
+  build() {
+    Column() {
+      Button('点击进行路由跳转')
+        .onClick(() => {
+          // 关闭当前页面所有弹窗
+          dialogs.forEach((controller, name) => {
+            controller.close();
+          })
+          // 路由跳转
+          router.pushUrl({url: 'pages/Index'})
+        })
+    }
+  }
+}
+
+@Entry
+@Component
+struct CustomDialogUser {
+  dialogController: CustomDialogController | null = new CustomDialogController({
+    builder: CustomDialogExample(),
+  })
+  build() {
+    Column() {
+      Button('点击打开弹窗')
+        .onClick(() => {
+          if (this.dialogController != null) {
+            // 打开弹窗
+            this.dialogController.open()
+            // 记录当前弹窗
+            dialogs.set('first', this.dialogController)
+          }
+        })
+    }
+  }
+}
+```

@@ -47,9 +47,13 @@ import UDC from '@ohos.data.unifiedDataChannel';
 @Entry
 @Component
 struct DragControllerPage {
+  @State text: string = ''
+
   @Builder DraggingBuilder() {
     Column() {
       Text("DraggingBuilder")
+        .fontColor(Color.White)
+        .fontSize(12)
     }
     .width(100)
     .height(100)
@@ -59,10 +63,13 @@ struct DragControllerPage {
   build() {
     Column() {
       Button('touch to execute drag')
+        .margin(10)
         .onTouch((event?:TouchEvent) => {
           if(event){
             if (event.type == TouchType.Down) {
-              let text = new UDC.Text()
+              let text = new UDC.PlainText()
+              text.textContent = 'drag text'
+              text.abstract = 'abstract'
               let unifiedData = new UDC.UnifiedData(text)
 
               let dragInfo: dragController.DragInfo = {
@@ -78,20 +85,34 @@ struct DragControllerPage {
               dragController.executeDrag(()=>{this.DraggingBuilder()}, dragInfo, (err, eve) => {
                 if(eve.event){
                   if (eve.event.getResult() == DragResult.DRAG_SUCCESSFUL) {
-                  // ...
+                    // ...
                   } else if (eve.event.getResult() == DragResult.DRAG_FAILED) {
-                  // ...
+                    // ...
                   }
                 }
               })
             }
           }
         })
+      Text(this.text)
+        .height(100)
+        .width(150)
+        .margin({top:20})
+        .border({color:Color.Black,width:1})
+        .onDrop((dragEvent?:DragEvent)=>{
+          if(dragEvent){
+            let records: Array<UDC.UnifiedRecord> = dragEvent.getData().getRecords();
+            let plainText: UDC.PlainText = records[0] as UDC.PlainText;
+            this.text = plainText.textContent;
+          }
+        })
     }
+    .width('100%')
+    .height('100%')
   }
 }
 ```
-
+  ![zh-cn_executeDrag1](figures/executeDrag1.gif)
 ## dragController.executeDrag
 
 executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo): Promise&lt;{event: DragEvent, extraParams: string}&gt;
@@ -131,11 +152,13 @@ import UDC from '@ohos.data.unifiedDataChannel';
 @Entry
 @Component
 struct DragControllerPage {
-  @State pixmap: image.PixelMap|null = null
+  @State pixmap: image.PixelMap|undefined = undefined
+  @State text: string = ''
 
   @Builder DraggingBuilder() {
     Column() {
       Text("DraggingBuilder")
+        .fontColor(Color.White)
     }
     .width(100)
     .height(100)
@@ -145,19 +168,33 @@ struct DragControllerPage {
   @Builder PixmapBuilder() {
     Column() {
       Text("PixmapBuilder")
+        .fontColor(Color.White)
+        .fontSize(15)
     }
     .width(100)
     .height(100)
     .backgroundColor(Color.Blue)
   }
 
+  aboutToAppear() {
+    let pb: CustomBuilder = (): void => {
+      this.PixmapBuilder()
+    }
+    componentSnapshot.createFromBuilder(pb).then((pix: image.PixelMap) => {
+      this.pixmap = pix;
+    })
+  }
+
   build() {
     Column() {
       Button('touch to execute drag')
+        .margin(10)
         .onTouch((event?:TouchEvent) => {
           if(event){
             if (event.type == TouchType.Down) {
-              let text = new UDC.Text()
+              let text = new UDC.PlainText()
+              text.textContent = 'drag text'
+              text.abstract = 'abstract'
               let unifiedData = new UDC.UnifiedData(text)
 
               let dragInfo: dragController.DragInfo = {
@@ -165,32 +202,40 @@ struct DragControllerPage {
                 data: unifiedData,
                 extraParams: ''
               }
-              let pb:CustomBuilder = ():void=>{this.PixmapBuilder()}
-              componentSnapshot.createFromBuilder(pb).then((pix: image.PixelMap) => {
-                this.pixmap = pix;
-                let dragItemInfo: DragItemInfo = {
-                  pixelMap: this.pixmap,
-                  builder: ()=>{this.DraggingBuilder()},
-                  extraInfo: "DragItemInfoTest"
-                }
+              let dragItemInfo: DragItemInfo = {
+                pixelMap: this.pixmap,
+                builder: ()=>{this.DraggingBuilder()},
+                extraInfo: "DragItemInfoTest"
+              }
 
-                class tmp{
-                  event:DragResult|undefined = undefined
-                  extraParams:string = ''
-                }
-                let eve:tmp = new tmp()
-                dragController.executeDrag(dragItemInfo, dragInfo)
-                  .then((eve) => {
-                    if (eve.event.getResult() == DragResult.DRAG_SUCCESSFUL) {
-                      // ...
-                    } else if (eve.event.getResult() == DragResult.DRAG_FAILED) {
-                      // ...
-                    }
-                  })
-                  .catch((err:Error) => {
-                  })
-              })
+              class tmp{
+                event:DragResult|undefined = undefined
+                extraParams:string = ''
+              }
+              let eve:tmp = new tmp()
+              dragController.executeDrag(dragItemInfo, dragInfo)
+                .then((eve) => {
+                  if (eve.event.getResult() == DragResult.DRAG_SUCCESSFUL) {
+                    // ...
+                  } else if (eve.event.getResult() == DragResult.DRAG_FAILED) {
+                    // ...
+                  }
+                })
+                .catch((err:Error) => {
+                })
             }
+          }
+        })
+      Text(this.text)
+        .height(100)
+        .width(150)
+        .margin({top:20})
+        .border({color:Color.Black,width:1})
+        .onDrop((dragEvent?:DragEvent)=>{
+          if(dragEvent){
+            let records: Array<UDC.UnifiedRecord> = dragEvent.getData().getRecords();
+            let plainText: UDC.PlainText = records[0] as UDC.PlainText;
+            this.text = plainText.textContent;
           }
         })
     }
@@ -199,7 +244,7 @@ struct DragControllerPage {
   }
 }
 ```
-
+  ![zh-cn_executeDrag2](figures/executeDrag2.gif)
 ## DragInfo
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -256,11 +301,14 @@ import UDC from '@ohos.data.unifiedDataChannel';
 @Component
 struct DragControllerPage {
   @State pixmap: image.PixelMap | null = null
+  @State text: string = ''
   private dragAction: dragController.DragAction | null = null;
   customBuilders:Array<CustomBuilder | DragItemInfo> = new Array<CustomBuilder | DragItemInfo>();
   @Builder DraggingBuilder() {
     Column() {
       Text("DraggingBuilder")
+        .fontColor(Color.White)
+        .fontSize(12)
     }
     .width(100)
     .height(100)
@@ -271,11 +319,23 @@ struct DragControllerPage {
     Column() {
 
       Column() {
-        Text("测试")
+        Text(this.text)
+          .width('100%')
+          .height('100%')
+          .fontColor(Color.White)
+          .fontSize(18)
+          .onDrop((dragEvent?:DragEvent)=>{
+            if(dragEvent){
+              let records: Array<UDC.UnifiedRecord> = dragEvent.getData().getRecords();
+              let plainText: UDC.PlainText = records[0] as UDC.PlainText;
+              this.text = plainText.textContent;
+            }
+          })
       }
       .width(100)
       .height(100)
       .backgroundColor(Color.Red)
+      .margin(10)
 
       Button('多对象dragAction customBuilder拖拽').onTouch((event?:TouchEvent) => {
         if(event){
@@ -285,7 +345,8 @@ struct DragControllerPage {
             this.customBuilders.push(()=>{this.DraggingBuilder()});
             this.customBuilders.push(()=>{this.DraggingBuilder()});
             this.customBuilders.push(()=>{this.DraggingBuilder()});
-            let text = new UDC.Text()
+            let text = new UDC.PlainText()
+            text.textContent = 'drag text'
             let unifiedData = new UDC.UnifiedData(text)
             let dragInfo: dragController.DragInfo = {
               pointerId: 0,
@@ -294,24 +355,24 @@ struct DragControllerPage {
             }
             try{
               this.dragAction = dragController.createDragAction(this.customBuilders, dragInfo)
-            if(!this.dragAction){
-              console.log("listener dragAction is null");
-              return
-            }
-            this.dragAction.on('statusChange', (dragAndDropInfo: dragController.DragAndDropInfo)=>{
-              if (dragAndDropInfo.status == dragController.DragStatus.STARTED) {
-                console.log("drag has start");
-              } else if (dragAndDropInfo.status == dragController.DragStatus.ENDED){
-                console.log("drag has end");
-                if (!this.dragAction) {
-                  return
-                }
-                this.dragAction.off('statusChange')
+              if(!this.dragAction){
+                console.log("listener dragAction is null");
+                return
               }
-            })
-            this.dragAction.startDrag().then(()=>{}).catch((err:Error)=>{
-              console.log("start drag Error:" + err.message);
-            })
+              this.dragAction.on('statusChange', (dragAndDropInfo: dragController.DragAndDropInfo)=>{
+                if (dragAndDropInfo.status == dragController.DragStatus.STARTED) {
+                  console.log("drag has start");
+                } else if (dragAndDropInfo.status == dragController.DragStatus.ENDED){
+                  console.log("drag has end");
+                  if (!this.dragAction) {
+                    return
+                  }
+                  this.dragAction.off('statusChange')
+                }
+              })
+              this.dragAction.startDrag().then(()=>{}).catch((err:Error)=>{
+                console.log("start drag Error:" + err.message);
+              })
             } catch(err) {
               console.log("create dragAction Error:" + err.message);
             }
@@ -322,7 +383,7 @@ struct DragControllerPage {
   }
 }
 ```
-
+  ![zh-cn_executeDrag3](figures/executeDrag3.gif)
 ## DragAction<sup>11+</sup>
 
 监听状态改变，启动拖拽服务的对象。
@@ -634,6 +695,7 @@ import image from '@ohos.multimedia.image';
 import curves from '@ohos.curves';
 import { BusinessError } from '@ohos.base';
 import { UIContext } from '@ohos.arkui.UIContext';
+import promptAction from '@ohos.promptAction';
 
 
 let storages = LocalStorage.getShared();
@@ -646,6 +708,8 @@ struct DragControllerPage {
   @Builder DraggingBuilder() {
     Column() {
       Text("DraggingBuilder")
+        .fontColor(Color.White)
+        .fontSize(12)
     }
     .width(100)
     .height(100)
@@ -663,27 +727,29 @@ struct DragControllerPage {
 
   build() {
     Column() {
-      Button('拖拽至此处').onDragEnter(() => {
-          try {
-            let uiContext: UIContext = storages.get<UIContext>('uiContext') as UIContext;
-            let previewObj: dragController.DragPreview = uiContext.getDragController().getDragPreview();
-            let foregroundColor: ResourceColor = Color.Green;
+      Button('拖拽至此处')
+        .margin(10)
+        .onDragEnter(() => {
+        try {
+          let uiContext: UIContext = storages.get<UIContext>('uiContext') as UIContext;
+          let previewObj: dragController.DragPreview = uiContext.getDragController().getDragPreview();
+          let foregroundColor: ResourceColor = Color.Green;
 
-            let previewAnimation: dragController.AnimationOptions = {
-              curve: curves.cubicBezierCurve(0.2,0,0,1),
-            }
-            previewObj.animate(previewAnimation, () => {
-              previewObj.setForegroundColor(foregroundColor);
-            });
-          } catch (error) {
-            let msg = (error as BusinessError).message;
-            let code = (error as BusinessError).code;
-            hilog.error(0x0000, `show error code is ${code}, message is ${msg}`, '');
+          let previewAnimation: dragController.AnimationOptions = {
+            curve: curves.cubicBezierCurve(0.2,0,0,1),
           }
+          previewObj.animate(previewAnimation, () => {
+            previewObj.setForegroundColor(foregroundColor);
+          });
+        } catch (error) {
+          let msg = (error as BusinessError).message;
+          let code = (error as BusinessError).code;
+          hilog.error(0x0000, `show error code is ${code}, message is ${msg}`, '');
+        }
       })
-      .onDrop(() => {
-
-      })
+        .onDrop(() => {
+          promptAction.showToast({duration: 100, message: 'Drag Success', bottom: 400})
+        })
       Button('拖起').onTouch((event?:TouchEvent) => {
         if(event){
           if (event.type == TouchType.Down) {
@@ -694,22 +760,22 @@ struct DragControllerPage {
               data: unifiedData,
               extraParams: ''
             }
-              class tmp{
-                event:DragEvent|undefined = undefined
-                extraParams:string = ''
-              }
-              let eve:tmp = new tmp()
-              dragController.executeDrag(() => {
-                this.DraggingBuilder()
-              }, dragInfo, (err , eve) => {
-                hilog.info(0x0000, `ljx ${JSON.stringify(err)}`, '')
-                if (eve && eve.event) {
-                  if (eve.event.getResult() == DragResult.DRAG_SUCCESSFUL) {
-                    hilog.info(0x0000, 'success', '');
-                  } else if (eve.event.getResult() == DragResult.DRAG_FAILED) {
-                    hilog.info(0x0000, 'failed', '');
-                  }
+            class tmp{
+              event:DragEvent|undefined = undefined
+              extraParams:string = ''
+            }
+            let eve:tmp = new tmp()
+            dragController.executeDrag(() => {
+              this.DraggingBuilder()
+            }, dragInfo, (err , eve) => {
+              hilog.info(0x0000, `ljx ${JSON.stringify(err)}`, '')
+              if (eve && eve.event) {
+                if (eve.event.getResult() == DragResult.DRAG_SUCCESSFUL) {
+                  hilog.info(0x0000, 'success', '');
+                } else if (eve.event.getResult() == DragResult.DRAG_FAILED) {
+                  hilog.info(0x0000, 'failed', '');
                 }
+              }
             })
           }
         }
@@ -719,4 +785,5 @@ struct DragControllerPage {
     .height('100%')
   }
 }
-
+```
+  ![zh-cn_executeDrag5](figures/executeDrag5.gif)

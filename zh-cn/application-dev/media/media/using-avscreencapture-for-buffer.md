@@ -170,7 +170,14 @@ void OnError(OH_AVScreenCapture *capture, int32_t errorCode, void *userData) {
 
 void OnStateChange(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureStateCode stateCode, void *userData) {
     (void)capture;
-    if (stateCode == OH_SCREEN_CAPTURE_STATE_INTERRUPT_BY_OTHER) {
+    
+    if (stateCode == OH_SCREEN_CAPTURE_STATE_STARTED) {
+        // 处理状态变更
+        //可选 配置录屏旋转
+        int32_t retRotation = OH_AVScreenCapture_SetCanvasRotation(capture, true);
+    }
+
+    if (stateCode == OH_SCREEN_CAPTURE_STATE_INTERRUPTED_BY_OTHER) {
         // 处理状态变更
     }
     (void)userData;
@@ -238,8 +245,7 @@ int main() {
     OH_AVScreenCapture_StartScreenCapture(capture);
     // mic开关设置
     OH_AVScreenCapture_SetMicrophoneEnabled(capture, true);
-    //可选 配置录屏旋转
-    int32_t retRotation = OH_AVScreenCapture_SetCanvasRotation(capture, true);
+
     sleep(10); // 录制10s
     // 结束录屏
     OH_AVScreenCapture_StopScreenCapture(capture);

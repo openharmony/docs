@@ -842,7 +842,7 @@ Observe the following when using this API:
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md)  | Yes| Want information about the target ability.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the ability is started, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the ability is started, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -869,10 +869,10 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 **Example**
 
 ```ts
-import extension from '@ohos.app.ability.ServiceExtensionAbility';
+import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
 import Want from '@ohos.app.ability.Want';
 
-export default class EntryAbility extends extension {
+export default class EntryAbility extends ServiceExtensionAbility {
   onCreate(want: Want) {
     // want contains the information about the caller who starts the application.
     let localWant: Want = want;
@@ -914,7 +914,7 @@ Observe the following when using this API:
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md)  | Yes| Want information about the target ability.|
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | Yes| Parameters used for starting the ability.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the ability is started, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the ability is started, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -939,11 +939,11 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 **Example**
 
 ```ts
-import extension from '@ohos.app.ability.ServiceExtensionAbility';
+import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
 import Want from '@ohos.app.ability.Want';
 import StartOptions from '@ohos.app.ability.StartOptions';
 
-export default class EntryAbility extends extension {
+export default class EntryAbility extends ServiceExtensionAbility {
   onCreate(want: Want) {
     // want contains the information about the caller who starts the application.
     let localWant: Want = want;
@@ -1021,12 +1021,12 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 **Example**
 
 ```ts
-import extension from '@ohos.app.ability.ServiceExtensionAbility';
+import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
 import Want from '@ohos.app.ability.Want';
 import StartOptions from '@ohos.app.ability.StartOptions';
 import { BusinessError } from '@ohos.base';
 
-export default class EntryAbility extends extension {
+export default class EntryAbility extends ServiceExtensionAbility {
   onCreate(want: Want) {
     // want contains the information about the caller who starts the application.
     let localWant: Want = want;
@@ -1534,7 +1534,7 @@ Uses the **AbilityInfo.AbilityType.SERVICE** template and account ID to connect 
 
 | Type| Description|
 | -------- | -------- |
-| number | Result code of the ability connection.|
+| number | Result code of the connection.|
 
 **Error codes**
 

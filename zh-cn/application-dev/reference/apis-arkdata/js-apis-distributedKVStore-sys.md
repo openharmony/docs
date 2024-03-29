@@ -70,14 +70,14 @@ import { BusinessError } from '@ohos.base';
 try {
   let v8Arr: distributedKVStore.Entry[] = [];
   let arr = new Uint8Array([4, 5, 6, 7]);
-  let vb1: distributedKVStore.Entry = { key: "name_1", value: 32 }
-  let vb2: distributedKVStore.Entry = { key: "name_2", value: arr };
-  let vb3: distributedKVStore.Entry = { key: "name_3", value: "lisi" };
+  let vb1: distributedKVStore.Entry = { key: "name_1", value: {type: distributedKVStore.ValueType.INTEGER, value: 32} }
+  let vb2: distributedKVStore.Entry = { key: "name_2", value: {type: distributedKVStore.ValueType.BYTE_ARRAY, value: arr} };
+  let vb3: distributedKVStore.Entry = { key: "name_3", value: {type: distributedKVStore.ValueType.STRING, value: "lisi"} };
 
   v8Arr.push(vb1);
   v8Arr.push(vb2);
   v8Arr.push(vb3);
-  kvStore.putBatch(v8Arr, async (err) => {
+  kvStore.putBatch(v8Arr, async (err: BusinessError) => {
     if (err != undefined) {
       console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
       return;
@@ -137,9 +137,9 @@ import { BusinessError } from '@ohos.base';
 try {
   let v8Arr: distributedKVStore.Entry[] = [];
   let arr = new Uint8Array([4, 5, 6, 7]);
-  let vb1: distributedKVStore.Entry = { key: "name_1", value: 32 }
-  let vb2: distributedKVStore.Entry = { key: "name_2", value: arr };
-  let vb3: distributedKVStore.Entry = { key: "name_3", value: "lisi" };
+  let vb1: distributedKVStore.Entry = { key: "name_1", value: {type: distributedKVStore.ValueType.INTEGER, value: 32} }
+  let vb2: distributedKVStore.Entry = { key: "name_2", value: {type: distributedKVStore.ValueType.BYTE_ARRAY, value: arr} };
+  let vb3: distributedKVStore.Entry = { key: "name_3", value: {type: distributedKVStore.ValueType.STRING, value: "lisi"} };
 
   v8Arr.push(vb1);
   v8Arr.push(vb2);
@@ -199,14 +199,14 @@ try {
   let predicates = new dataSharePredicates.DataSharePredicates();
   let arr = ["name"];
   predicates.inKeys(arr);
-  kvStore.put("name", "bob", (err) => {
+  kvStore.put("name", "bob", (err:BusinessError) => {
     if (err != undefined) {
       console.error(`Failed to put.code is ${err.code},message is ${err.message}`);
       return;
     }
     console.info("Succeeded in putting");
     if (kvStore != null) {
-      kvStore.delete(predicates, (err) => {
+      kvStore.delete(predicates, (err:BusinessError) => {
         if (err == undefined) {
           console.info('Succeeded in deleting');
         } else {
@@ -327,7 +327,7 @@ try {
   let resultSet: distributedKVStore.KVStoreResultSet;
   let predicates = new dataSharePredicates.DataSharePredicates();
   predicates.prefixKey("batch_test_string_key");
-  kvStore.getResultSet(predicates, async (err, result) => {
+  kvStore.getResultSet(predicates, async (err: BusinessError, result: distributedKVStore.KVStoreResultSet) => {
     if (err != undefined) {
       console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
       return;
@@ -335,7 +335,7 @@ try {
     console.info('Succeeded in getting result set');
     resultSet = result;
     if (kvStore != null) {
-      kvStore.closeResultSet(resultSet, (err) => {
+      kvStore.closeResultSet(resultSet, (err: BusinessError) => {
         if (err != undefined) {
           console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
           return;
@@ -394,7 +394,7 @@ try {
   let resultSet: distributedKVStore.KVStoreResultSet;
   let predicates = new dataSharePredicates.DataSharePredicates();
   predicates.prefixKey("batch_test_string_key");
-  kvStore.getResultSet(predicates).then((result) => {
+  kvStore.getResultSet(predicates).then((result: distributedKVStore.KVStoreResultSet) => {
     console.info('Succeeded in getting result set');
     resultSet = result;
     if (kvStore != null) {
@@ -463,7 +463,7 @@ try {
   let resultSet: distributedKVStore.KVStoreResultSet;
   let predicates = new dataSharePredicates.DataSharePredicates();
   predicates.prefixKey("batch_test_string_key");
-  kvStore.getResultSet(predicates, async (err, result) => {
+  kvStore.getResultSet(predicates, async (err: BusinessError, result: distributedKVStore.KVStoreResultSet) => {
     if (err != undefined) {
       console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
       return;
@@ -471,7 +471,7 @@ try {
     console.info('Succeeded in getting result set');
     resultSet = result;
     if (kvStore != null) {
-      kvStore.closeResultSet(resultSet, (err) => {
+      kvStore.closeResultSet(resultSet, (err: BusinessError) => {
         if (err != undefined) {
           console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
           return;
@@ -530,7 +530,7 @@ try {
   let resultSet: distributedKVStore.KVStoreResultSet;
   let predicates = new dataSharePredicates.DataSharePredicates();
   predicates.prefixKey("batch_test_string_key");
-  kvStore.getResultSet(predicates).then((result) => {
+  kvStore.getResultSet(predicates).then((result: distributedKVStore.KVStoreResultSet) => {
     console.info('Succeeded in getting result set');
     resultSet = result;
     if (kvStore != null) {
@@ -593,7 +593,7 @@ try {
   let resultSet: distributedKVStore.KVStoreResultSet;
   let predicates = new dataSharePredicates.DataSharePredicates();
   predicates.prefixKey("batch_test_string_key");
-  kvStore.getResultSet('localDeviceId', predicates, async (err, result) => {
+  kvStore.getResultSet('localDeviceId', predicates, async (err: BusinessError, result: distributedKVStore.KVStoreResultSet) => {
     if (err != undefined) {
       console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
       return;
@@ -601,7 +601,7 @@ try {
     console.info('Succeeded in getting result set');
     resultSet = result;
     if (kvStore != null) {
-      kvStore.closeResultSet(resultSet, (err) => {
+      kvStore.closeResultSet(resultSet, (err: BusinessError) => {
         if (err != undefined) {
           console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
           return;
@@ -665,7 +665,7 @@ try {
   let resultSet: distributedKVStore.KVStoreResultSet;
   let predicates = new dataSharePredicates.DataSharePredicates();
   predicates.prefixKey("batch_test_string_key");
-  kvStore.getResultSet('localDeviceId', predicates).then((result) => {
+  kvStore.getResultSet('localDeviceId', predicates).then((result: distributedKVStore.KVStoreResultSet) => {
     console.info('Succeeded in getting result set');
     resultSet = result;
     if (kvStore != null) {

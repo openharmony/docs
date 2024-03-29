@@ -2,7 +2,7 @@
 
 # @ohos.web.webview (Webview)
 
-@ohos.web.webview提供web控制能力，[web](../arkui-ts/ts-basic-components-web.md)组件提供网页显示的能力。
+@ohos.web.webview提供web控制能力，[web](../apis-arkweb/ts-basic-components-web.md)组件提供网页显示的能力。
 
 > **说明：**
 >
@@ -78,7 +78,7 @@ postMessageEvent(message: WebMessage): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
@@ -132,7 +132,7 @@ onMessageEvent(callback: (result: WebMessage) => void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                        |
 | -------- | ----------------------------------------------- |
@@ -205,7 +205,7 @@ postMessageEventExt(message: WebMessageExt): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
@@ -227,7 +227,7 @@ onMessageEventExt(callback: (result: WebMessageExt) => void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                        |
 | -------- | ----------------------------------------------- |
@@ -710,7 +710,7 @@ loadUrl(url: string | Resource, headers?: Array\<WebHeader>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -836,7 +836,7 @@ struct WebComponent {
 }
 ```
 
-3.通过沙箱路径加载本地文件，可以参考[web](../arkui-ts/ts-basic-components-web.md#web)加载沙箱路径的示例代码。
+3.通过沙箱路径加载本地文件，可以参考[web](../apis-arkweb/ts-basic-components-web.md#web)加载沙箱路径的示例代码。
 
 加载的html文件。
 ```html
@@ -874,7 +874,7 @@ loadData(data: string, mimeType: string, encoding: string, baseUrl?: string, his
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -958,7 +958,7 @@ accessForward(): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1004,7 +1004,7 @@ forward(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1055,7 +1055,7 @@ accessBackward(): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1101,7 +1101,7 @@ backward(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1146,7 +1146,7 @@ onActive(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1191,7 +1191,7 @@ onInactive(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1235,7 +1235,7 @@ refresh(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1292,7 +1292,7 @@ accessStep(step: number): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1339,7 +1339,7 @@ clearHistory(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1390,7 +1390,7 @@ getHitTest(): WebHitTestType
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1444,7 +1444,7 @@ registerJavaScriptProxy(object: object, name: string, methodList: Array\<string>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1576,7 +1576,7 @@ runJavaScript(script: string, callback : AsyncCallback\<string>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1666,7 +1666,7 @@ runJavaScript(script: string): Promise\<string>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1745,7 +1745,7 @@ runJavaScriptExt(script: string, callback : AsyncCallback\<JsMessageExt>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1871,7 +1871,7 @@ runJavaScriptExt(script: string): Promise\<JsMessageExt>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1982,7 +1982,7 @@ deleteJavaScriptRegister(name: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2075,7 +2075,7 @@ struct WebComponent {
 
 zoom(factor: number): void
 
-调整当前网页的缩放比例，[zoomAccess](../arkui-ts/ts-basic-components-web.md#zoomaccess)需为true。
+调整当前网页的缩放比例，[zoomAccess](../apis-arkweb/ts-basic-components-web.md#zoomaccess)需为true。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -2087,7 +2087,7 @@ zoom(factor: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2129,7 +2129,7 @@ struct WebComponent {
 
 searchAllAsync(searchString: string): void
 
-异步查找网页中所有匹配关键字'searchString'的内容并高亮，结果通过[onSearchResultReceive](../arkui-ts/ts-basic-components-web.md#onsearchresultreceive9)异步返回。
+异步查找网页中所有匹配关键字'searchString'的内容并高亮，结果通过[onSearchResultReceive](../apis-arkweb/ts-basic-components-web.md#onsearchresultreceive9)异步返回。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -2141,7 +2141,7 @@ searchAllAsync(searchString: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2204,7 +2204,7 @@ clearMatches(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2257,7 +2257,7 @@ searchNext(forward: boolean): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2304,7 +2304,7 @@ clearSslCache(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2349,7 +2349,7 @@ clearClientAuthenticationCache(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2406,7 +2406,7 @@ createWebMessagePorts(isExtentionType?: boolean): Array\<WebMessagePort>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2461,7 +2461,7 @@ postMessage(name: string, ports: Array\<WebMessagePort>, uri: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2616,7 +2616,7 @@ requestFocus(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2661,7 +2661,7 @@ zoomIn(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2707,7 +2707,7 @@ zoomOut(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2759,7 +2759,7 @@ getHitTestValue(): HitTestValue
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2812,7 +2812,7 @@ getWebId(): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2864,7 +2864,7 @@ getUserAgent(): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2949,7 +2949,7 @@ getTitle(): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3001,7 +3001,7 @@ getPageHeight(): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3055,7 +3055,7 @@ storeWebArchive(baseName: string, autoName: boolean, callback: AsyncCallback\<st
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3122,7 +3122,7 @@ storeWebArchive(baseName: string, autoName: boolean): Promise\<string>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3182,7 +3182,7 @@ getUrl(): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3228,7 +3228,7 @@ stop(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3281,7 +3281,7 @@ backOrForward(step: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3334,7 +3334,7 @@ scrollTo(x:number, y:number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3409,7 +3409,7 @@ scrollBy(deltaX:number, deltaY:number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3484,7 +3484,7 @@ slideScroll(vx:number, vy:number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3558,7 +3558,7 @@ getOriginalUrl(): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3610,7 +3610,7 @@ getFavicon(): image.PixelMap
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3663,7 +3663,7 @@ setNetworkAvailable(enable: boolean): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3736,7 +3736,7 @@ hasImage(callback: AsyncCallback\<boolean>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3793,7 +3793,7 @@ hasImage(): Promise\<boolean>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3849,7 +3849,7 @@ removeCache(clearRom: boolean): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3900,7 +3900,7 @@ pageUp(top: boolean): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3951,7 +3951,7 @@ pageDown(bottom: boolean): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -4002,7 +4002,7 @@ getBackForwardEntries(): BackForwardList
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -4053,7 +4053,7 @@ serializeWebState(): Uint8Array
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -4130,7 +4130,7 @@ restoreWebState(state: Uint8Array): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -4273,7 +4273,7 @@ setAudioMuted(mute: boolean): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -4320,7 +4320,7 @@ prefetchPage(url: string, additionalHeaders?: Array\<WebHeader>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md).
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md).
 
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |
@@ -4358,6 +4358,58 @@ struct WebComponent {
 }
 ```
 
+### prefetchResource<sup>12+</sup>
+
+static prefetchResource(request: RequestInfo, additionalHeaders?: Array\<WebHeader>, cacheKey?: string, cacheValidTime?: number): void
+
+根据指定的请求信息和附加的http请求头去预获取资源请求，存入内存缓存，并指定其缓存key和有效期，以加快加载速度。目前仅支持Content-Type为application/x-www-form-urlencoded的post请求。最多可以预获取6个post请求。如果要预获取第7个，请清除不需要的post请求缓存，否则会自动清除最早预获取的post缓存。
+
+**系统能力：**  SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名             | 类型                             |  必填  | 说明                                                              |
+| ------------------| ------------------------------- | ---- | ------------------------------------------------------------------ |
+| request           | [RequestInfo](#requestinfo12)   | 是   | 预获取请求的信息。                                                      |
+| additionalHeaders | Array\<[WebHeader](#webheader)> | 否   | 预获取请求的附加HTTP请求头。                                             |
+| cacheKey          | string                          | 否   | 预获取请求的内存缓存key。默认取url作为key。                                |
+| cacheValidTime    | number                          | 否   | 预获取请求的内存缓存有效期。取值范围：(0, 2147483647]。单位：秒。默认值：300秒。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md).
+
+| 错误码ID  | 错误信息                                                      |
+| -------- | ------------------------------------------------------------ |
+| 17100002 | Invalid url.                                                 |
+
+**示例：**
+
+```ts
+// xxx.ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import web_webview from '@ohos.web.webview';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import Want from '@ohos.app.ability.Want';
+
+export default class EntryAbility extends UIAbility {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+        console.log("EntryAbility onCreate");
+        web_webview.WebviewController.initializeWebEngine();
+        // 预获取时，需要將"https://www.example1.com/post?e=f&g=h"替换成真实要访问的网站地址。
+        web_webview.WebviewController.prefetchResource(
+          {url:"https://www.example1.com/post?e=f&g=h",
+          method:"POST",
+          formData:"a=x&b=y",},
+          [{headerKey:"c",
+            headerValue:"z",},],
+          "KeyX", 500);
+        AppStorage.setOrCreate("abilityWant", want);
+        console.log("EntryAbility onCreate done");
+    }
+}
+```
+
 ### prepareForPageLoad<sup>10+</sup>
 
 static prepareForPageLoad(url: string, preconnectable: boolean, numSockets: number): void
@@ -4376,7 +4428,7 @@ static prepareForPageLoad(url: string, preconnectable: boolean, numSockets: numb
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md).
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md).
 
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |
@@ -4420,7 +4472,7 @@ setCustomUserAgent(userAgent: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md).
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md).
 
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |
@@ -4473,7 +4525,7 @@ setDownloadDelegate(delegate: WebDownloadDelegate): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md).
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md).
 
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |
@@ -4525,7 +4577,7 @@ startDownload(url: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md).
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md).
 
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |
@@ -4587,7 +4639,7 @@ getCustomUserAgent(): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md).
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md).
 
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |
@@ -4690,7 +4742,7 @@ enableSafeBrowsing(enable: boolean): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
@@ -4781,7 +4833,7 @@ postUrl(url: string, postData: ArrayBuffer): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -4851,7 +4903,7 @@ isIncognitoMode(): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                                    |
 | -------- | -------------------------------------------------------------------------- |
@@ -4899,11 +4951,11 @@ getSecurityLevel(): SecurityLevel
 
 | 类型                                | 说明                        |
 | ----------------------------------- | --------------------------- |
-| [SecurityLevel](#securitylevel) | 当前网页的安全级别，具体值为NONE、SECURE、WARNING、DANGEROUS。 |
+| SecurityLevel | 当前网页的安全级别，具体值为NONE、SECURE、WARNING、DANGEROUS。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -4965,7 +5017,7 @@ static fetchCookieSync(url: string, incognito?: boolean): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
@@ -5018,7 +5070,7 @@ static fetchCookie(url: string, callback: AsyncCallback\<string>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
@@ -5084,7 +5136,7 @@ static fetchCookie(url: string): Promise\<string>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
@@ -5144,7 +5196,7 @@ static configCookieSync(url: string, value: string, incognito?: boolean): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
@@ -5198,7 +5250,7 @@ static configCookie(url: string, value: string, callback: AsyncCallback\<void>):
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
@@ -5262,7 +5314,7 @@ static configCookie(url: string, value: string): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------ |
@@ -5891,7 +5943,7 @@ static deleteOrigin(origin: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
@@ -5989,7 +6041,7 @@ static getOrigins(callback: AsyncCallback\<Array\<WebStorageOrigin>>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
@@ -6054,7 +6106,7 @@ static getOrigins(): Promise\<Array\<WebStorageOrigin>>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
@@ -6120,7 +6172,7 @@ static getOriginQuota(origin: string, callback: AsyncCallback\<number>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
@@ -6188,7 +6240,7 @@ static getOriginQuota(origin: string): Promise\<number>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
@@ -6251,7 +6303,7 @@ static getOriginUsage(origin: string, callback: AsyncCallback\<number>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
@@ -6319,7 +6371,7 @@ static getOriginUsage(origin: string): Promise\<number>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                              |
 | -------- | ----------------------------------------------------- |
@@ -6630,7 +6682,7 @@ static allowGeolocation(origin: string, incognito?: boolean): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
@@ -6683,7 +6735,7 @@ static deleteGeolocation(origin: string, incognito?: boolean): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
@@ -6737,7 +6789,7 @@ static getAccessibleGeolocation(origin: string, callback: AsyncCallback\<boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
@@ -6802,7 +6854,7 @@ static getAccessibleGeolocation(origin: string, incognito?: boolean): Promise\<b
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
@@ -7002,6 +7054,18 @@ Web组件返回的请求/响应头对象。
 | headerKey   | string | 是 | 是 | 请求/响应头的key。   |
 | headerValue | string | 是 | 是 | 请求/响应头的value。 |
 
+## RequestInfo<sup>12+</sup>
+
+Web组件发送的资源请求信息。
+
+**系统能力：**: SystemCapability.Web.Webview.Core
+
+| 名称      | 类型   | 可读 | 可写 |说明        |
+| ---------| ------ | -----|------|--------  |
+| url      | string | 是 | 是 | 请求的链接。    |
+| method   | string | 是 | 是 | 请求的方法。    |
+| formData | string | 是 | 是 | 请求的表单数据。 |
+
 ## WebHitTestType
 
 [getHitTest](#gethittest)接口用于指示游标节点。
@@ -7119,7 +7183,7 @@ getString(): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
@@ -7141,7 +7205,7 @@ getNumber(): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
@@ -7163,7 +7227,7 @@ getBoolean(): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
@@ -7185,7 +7249,7 @@ getArrayBuffer(): ArrayBuffer
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
@@ -7207,7 +7271,7 @@ getArray(): Array\<string | number | boolean\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
@@ -7247,7 +7311,7 @@ getString(): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
@@ -7269,7 +7333,7 @@ getNumber(): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
@@ -7291,7 +7355,7 @@ getBoolean(): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
@@ -7313,7 +7377,7 @@ getArrayBuffer(): ArrayBuffer
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
@@ -7335,7 +7399,7 @@ getArray(): Array\<string | number | boolean\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
@@ -7357,7 +7421,7 @@ getError(): Error
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
@@ -7459,7 +7523,7 @@ setArrayBuffer(message: ArrayBuffer): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
@@ -7481,7 +7545,7 @@ setArray(message: Array\<string | number | boolean\>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
@@ -7503,7 +7567,7 @@ setError(message: Error): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
@@ -8819,7 +8883,7 @@ pause(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md).
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md).
 
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |
@@ -8920,7 +8984,7 @@ resume(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md).
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md).
 
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |
@@ -9560,7 +9624,7 @@ static resumeDownload(webDownloadItem: WebDownloadItem): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+以下错误码的详细介绍请参见[webview错误码](../apis-arkweb/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |

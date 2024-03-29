@@ -1085,8 +1085,6 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_Init (struct OH_AVScreenCapture *
 
 初始化[OH_AVScreenCapture](#oh_avscreencapture)相关参数，包括下发的音频麦克风采样信息参数，音频内录相关参数(可选)，视频分辨率相关参数。
 
-调用此函数，需要申请麦克风权限（ohos.permission.MICROPHONE）和截屏权限（ohos.permission.CAPTURE_SCREEN）,否则会初始化失败导致无法正常录屏。
-
 **系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
 **起始版本：** 10
@@ -1385,7 +1383,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StartScreenCapture (struct OH_AVS
 
 **描述**
 
-开始录屏，采集原始码流。调用后可以通过回调的监听([OH_AVScreenCaptureOnAudioBufferAvailable](#oh_avscreencaptureonaudiobufferavailable)，[OH_AVScreenCaptureOnVideoBufferAvailable](#oh_avscreencaptureonvideobufferavailable))来监听当前是否有码流的产生。
+开始录屏，采集原始码流。调用后可以通过回调的监听([OH_AVScreenCapture_OnBufferAvailable](#oh_avscreencapture_onbufferavailable))来监听当前是否有码流的产生,通过回调的监听([OH_AVScreenCapture_OnStateChange](#oh_avscreencapture_onstatechange))来监听启动状态。
 
 通过调用获取音频buffer([OH_AVScreenCapture_AcquireAudioBuffer](#oh_avscreencapture_acquireaudiobuffer))和视频buffer([OH_AVScreenCapture_ReleaseVideoBuffer](#oh_avscreencapture_releasevideobuffer))的接口来获取录屏的原始码流。
 

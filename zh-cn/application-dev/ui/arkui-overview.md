@@ -34,7 +34,7 @@ ArkUI（方舟UI框架）为应用的UI开发提供了完整的基础设施，�
 
 ## 不同应用类型支持的开发范式
 
-根据所选用[应用模型](../application-models/application-model-description.md)（Stage模型、FA模型）和页面形态（应用或服务的普通页面、卡片）的不同，对应支持的UI开发范式也有所差异，详见下表。
+根据所选用[应用模型](../application-models/application-models.md)（Stage模型、FA模型）和页面形态（应用或服务的普通页面、卡片）的不同，对应支持的UI开发范式也有所差异，详见下表。
 
   **表1** 支持的UI开发范式
 

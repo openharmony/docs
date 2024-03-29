@@ -112,6 +112,7 @@ formObserver.off('formAdd', bundleName, callback);
 
 ```
 > **NOTE**
+>
 > **on('formAdd', callback)** and **off('formAdd', callback)** must be used in pairs.
 > **on('formAdd', bundleName, callback)** and **off('formAdd', bundleName, callback)** must be used in pairs.
 > To cancel the subscription with a given callback or for a given bundle name, the **callback** or **bundleName** parameter in **off()** must be set to the same value as that in **on()**.
@@ -212,6 +213,7 @@ let callback = (data: formInfo.RunningFormInfo) => {
 formObserver.off('formRemove', bundleName, callback);
 ```
 > **NOTE**
+>
 > **on('formRemove', callback)** and **off('formRemove', callback)** must be used in pairs.
 > **on('formRemove', bundleName, callback)** and **off('formRemove', bundleName, callback)** must be used in pairs.
 > To cancel the subscription with a given callback or for a given bundle name, the **callback** or **bundleName** parameter in **off()** must be set to the same value as that in **on()**.
@@ -320,6 +322,7 @@ formObserver.off('notifyVisible', bundleName, callback);
 ```
 
 > **NOTE**
+>
 > **on('notifyVisible', callback)** and **off('notifyVisible', callback)** must be used in pairs.
 > **on('notifyVisible', bundleName, callback)** and **off('notifyVisible', bundleName, callback)** must be used in pairs.
 > To cancel the subscription with a given callback or for a given bundle name, the **callback** or **bundleName** parameter in **off()** must be set to the same value as that in **on()**.
@@ -426,6 +429,7 @@ formObserver.off('notifyInvisible', bundleName, callback);
 ```
 
 > **NOTE**
+>
 > **on('notifyInvisible', callback)** and **off('notifyInvisible', callback)** must be used in pairs.
 > **on('notifyInvisible', bundleName, callback)** and **off('notifyInvisible', bundleName, callback)** must be used in pairs.
 > To cancel the subscription with a given callback or for a given bundle name, the **callback** or **bundleName** parameter in **off()** must be set to the same value as that in **on()**.

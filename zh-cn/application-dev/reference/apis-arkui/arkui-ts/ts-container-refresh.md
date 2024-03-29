@@ -36,7 +36,36 @@ Refresh(value: RefreshOptions)
 
 ## 属性
 
-支持[通用属性](ts-universal-attributes-size.md)。
+支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+
+### refreshOffset<sup>12+</sup>
+
+refreshOffset(value: number)
+
+设置触发刷新的下拉偏移量。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                        | 必填 | 说明                                                       |
+| ------ | ------------------------------------------- | ---- | ---------------------------------------------------------- |
+| value  | number |  否 | 下拉偏移量，单位vp。<br/>默认值：64vp |
+
+### pullToRefresh<sup>12+</sup>
+
+pullToRefresh(value: boolean)
+
+设置当下拉距离超过refreshOffset时是否触发刷新。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                        | 必填 | 说明                                                       |
+| ------ | ------------------------------------------- | ---- | ---------------------------------------------------------- |
+| value  | boolean |  否 | 是否触发刷新。<br/>默认值：true |
+
 
 ## 事件
 
@@ -64,33 +93,6 @@ onRefreshing(callback: () => void)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-### refreshOffset<sup>12+</sup>
-
-refreshOffset(value: number)
-
-触发刷新的下拉偏移量。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名 | 类型   | 必填 | 说明                 |
-| ------ | ------ | ---- | -------------------- |
-| value  | number | 是   | 下拉偏移量，单位vp。 |
-
-### pullToRefresh<sup>12+</sup>
-
-pullToRefresh(value: boolean)
-
-设置当下拉距离超过refreshOffset时是否触发刷新。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名 | 类型    | 必填 | 说明           |
-| ------ | ------- | ---- | -------------- |
-| value  | boolean | 是   | 是否触发刷新。 |
 
 ## RefreshStatus枚举说明
 

@@ -160,9 +160,42 @@ struct TestPage {
 }
 ```
 
-**API Level**
+**变更涉及接口**
 
-12 
+AppStorage：set，setOrCreate，setAndLink，setAndProp
+
+LocalStorage：set，setOrCreate，setAndLink，setAndProp
+
+PersistentStorage：persistProp
+
+
+**起始API Level**
+
+该变更从API12开始生效，API11及之前不受影响。
+
+AppStorage
+
+set：API10，
+
+setOrCreate：API10，
+
+setAndLink：API10，
+
+setAndProp：API10
+
+LocalStorage
+
+set：API9，
+
+setOrCreate：API9，
+
+setAndLink：API9，
+
+setAndProp：API9
+
+PersistentStorage
+
+persistProp：API10
 
 **变更发生版本**
 
