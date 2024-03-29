@@ -770,17 +770,21 @@ queryContacts(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 | 参数名   | 类型                                                  | 必填 | 说明                                   |
 | -------- | ----------------------------------------------------- | ---- | -------------------------------------- |
+| context | Context | 是   | 应用上下文Context，Stage模型的应用Context定义见Context。 |
 | callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回查询到的联系人对象数组。 |
 
 **示例：**
 
   ```js
-  contact.queryContacts((err, data) => {
-      if (err) {
-          console.log(`queryContacts callback: err->${JSON.stringify(err)}`);
-          return;
-      }
-      console.log(`queryContacts callback: success data->${JSON.stringify(data)}`);
+  import { BusinessError } from '@ohos.base';
+  // 获取context
+  let context = getContext(this) as Context;
+  contact.queryContacts(context, (err: BusinessError, data) => {
+    if (err) {
+        console.log(`queryContacts callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`queryContacts callback: success data->${JSON.stringify(data)}`);
   });
   ```
 
