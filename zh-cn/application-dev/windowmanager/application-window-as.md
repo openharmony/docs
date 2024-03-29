@@ -37,6 +37,8 @@
 
 ### 开发步骤
 
+**前提条件：** `setWindowPrivacyMode` 即设置窗口隐私模式，仅在API12后才支持，且需要申请`ohos.permission.PRIVACY_WINDOW`权限，配置方式请参见[申请应用权限](../../application-dev/quick-start/module-configuration-file.md#requestpermissions标签)。
+
 1. 获取应用主窗口。
 
    通过`getMainWindow`接口获取应用主窗口。
