@@ -22,6 +22,7 @@
       - [使用Node-API接口在C++新创建的线程中进行模块加载](use-napi-load-module-with-info.md)
     - [Node-API常见问题](use-napi-faqs.md)
   - 使用JSVM-API实现JS与C/C++语言交互
+    - [Node-API简介](jsvm-introduction.md)
     - [JSVM-API支持的数据类型和接口](jsvm-data-types-interfaces.md)
     - [JSVM-API开发规范](jsvm-guidelines.md)
   - 资源管理
