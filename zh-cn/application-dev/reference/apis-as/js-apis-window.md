@@ -1751,7 +1751,7 @@ try {
 }
 ```
 
-### setWindowPrivacyMode<sup>9+</sup>
+### setWindowPrivacyMode<sup>12+</sup>
 
 setWindowPrivacyMode(isPrivacyMode: boolean, callback: AsyncCallback&lt;void&gt;): void
 
@@ -1796,7 +1796,7 @@ try {
 }
 ```
 
-### setWindowPrivacyMode<sup>9+</sup>
+### setWindowPrivacyMode<sup>12+</sup>
 
 setWindowPrivacyMode(isPrivacyMode: boolean): Promise&lt;void&gt;
 

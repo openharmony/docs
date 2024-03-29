@@ -2,7 +2,7 @@
 
 ## 场景介绍
 
-在`Stage`模型下，管理应用窗口的典型场景有：
+在`原子化服务`下，管理应用窗口的典型场景有：
 
 - 设置应用主窗口属性及目标页面
 
@@ -33,7 +33,7 @@
 
 ## 设置应用主窗口
 
-在`Stage`模型下，应用主窗口由`UIAbility`创建并维护生命周期。在`UIAbility`的`onWindowStageCreate`回调中，通过`WindowStage`获取应用主窗口，即可对其进行属性设置等操作。还可以在应用配置文件中设置应用主窗口的属性，如最大窗口宽度maxWindowWidth等，详见[module.json5配置文件](../quick-start/module-configuration-file.md#abilities标签)。
+在`原子化服务下`下，应用主窗口由`UIAbility`创建并维护生命周期。在`UIAbility`的`onWindowStageCreate`回调中，通过`WindowStage`获取应用主窗口，即可对其进行属性设置等操作。还可以在应用配置文件中设置应用主窗口的属性，如最大窗口宽度maxWindowWidth等，详见[module.json5配置文件](../quick-start/module-configuration-file.md#abilities标签)。
 
 ### 开发步骤
 
