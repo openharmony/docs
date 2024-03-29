@@ -5,7 +5,7 @@
 表示用户已添加到系统中的公共事件的动作。
 
 - 值： usual.event.USER_ADDED
-- 订阅者所需权限： ohos.permission.MANAGE_LOCAL_ACCOUNTS
+- 订阅者所需权限： ohos.permission.MANAGE_LOCAL_ACCOUNTS，该权限仅系统应用可申请。
 
 创建系统帐号将会触发事件通知服务发布该系统公共事件，事件携带系统帐号ID。
 
@@ -15,7 +15,7 @@
 表示用户已从系统中删除的公共事件的动作。
 
 - 值： usual.event.USER_REMOVED
-- 订阅者所需权限： ohos.permission.MANAGE_LOCAL_ACCOUNTS
+- 订阅者所需权限： ohos.permission.MANAGE_LOCAL_ACCOUNTS，该权限仅系统应用可申请。
 
 删除系统帐号将会触发事件通知服务发布该系统公共事件，事件携带系统帐号ID。
 
@@ -25,7 +25,7 @@
 表示域帐号状态发生变化。
 
 - 值：usual.event.DOMAIN_ACCOUNT_STATUS_CHANGED
-- 订阅者所需权限： ohos.permission.GET_LOCAL_ACCOUNTS
+- 订阅者所需权限： ohos.permission.GET_LOCAL_ACCOUNTS，该权限仅系统应用可申请。
 
 域帐号认证、删除、令牌更新、令牌失效将会触发事件通知服务发布该系统公共事件，事件携带域帐号名、域名、域帐号状态等信息。
 
@@ -35,7 +35,7 @@
 表示用户切换正在发生的公共事件的动作。
 
 - 值： usual.event.USER_SWITCHED
-- 订阅者所需权限： ohos.permission.MANAGE_LOCAL_ACCOUNTS
+- 订阅者所需权限： ohos.permission.MANAGE_LOCAL_ACCOUNTS，该权限仅系统应用可申请。
 
 切换帐号将会触发事件通知服务发布该系统公共事件，事件携带系统帐号ID。
 
