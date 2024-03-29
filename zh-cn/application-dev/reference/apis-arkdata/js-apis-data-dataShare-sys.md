@@ -436,7 +436,7 @@ if (dataShareHelper !== undefined) {
 
 on(event: 'dataChange', type:SubscriptionType, uri: string, callback: AsyncCallback&lt;ChangeInfo&gt;): void
 
-订阅指定URI对应数据的数据变更事件。若用户（订阅者）已注册了观察者，当有其他用户触发了变更通知时（调用了下文中的notifyChange方法），订阅者将会接收到callback通知，通知携带数据变更类型、变化的uri、变更的数据内容。使用callback回调。仅支持非静默访问。
+订阅指定URI对应数据的数据变更事件。若用户（订阅者）已注册变更通知，当有其他用户触发了变更通知时（调用了下文中的notifyChange方法），订阅者将会接收到callback通知，通知携带数据变更类型、变化的uri、变更的数据内容。使用callback回调。仅支持非静默访问。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -444,7 +444,7 @@ on(event: 'dataChange', type:SubscriptionType, uri: string, callback: AsyncCallb
 
 | 参数名     | 类型                 | 必填 | 说明                    |
 | -------- | -------------------- | ---- | ------------------------ |
-| event     | string               | 是   | 订阅的事件/回调类型，支持的事件为'dataChange'，当数据更改时，触发该事件。 |
+| event     | string               | 是   | 订阅的事件/回调类型，支持的事件为'dataChange'，当有其他用户触发了变更通知时，触发该事件。 |
 | type     | [SubscriptionType](#subscriptiontype12)| 是   | 表示数据更改时按指定数据路径通知变更。 |
 | uri      | string               | 是   | 表示指定的数据路径。 |
 | callback | AsyncCallback&lt;[ChangeInfo](#changeinfo12)&gt; | 是   | 回调函数。当有其他用户触发了变更通知时会回调该函数。|
@@ -516,8 +516,8 @@ export function callback(error,ChangeInfo) {
     console.info(' **** Observer callback **** ChangeInfo:' + JSON.stringify(ChangeInfo));
 }
 if (dataShareHelper !== undefined) {
-  (dataShareHelper as dataShare.DataShareHelper).on("dataChange", SubscriptionType.SUBSCRIPTION_TYPE_EXACT_URI, uri, callback);
-  (dataShareHelper as dataShare.DataShareHelper).off("dataChange", SubscriptionType.SUBSCRIPTION_TYPE_EXACT_URI, uri, callback);
+  (dataShareHelper as dataShare.DataShareHelper).on("dataChange", dataShare.SubscriptionType.SUBSCRIPTION_TYPE_EXACT_URI, uri, callback);
+  (dataShareHelper as dataShare.DataShareHelper).off("dataChange", dataShare.SubscriptionType.SUBSCRIPTION_TYPE_EXACT_URI, uri, callback);
 }
 ```
 
