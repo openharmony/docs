@@ -1,8 +1,8 @@
-# 管理应用窗口（原子化服务）
+# 管理应用窗口（元服务）
 
 ## 场景介绍
 
-在`原子化服务`下，管理应用窗口的典型场景有：
+管理应用窗口的典型场景有：
 
 - 设置应用主窗口属性及目标页面
 
@@ -14,7 +14,7 @@
 
 ## 接口说明
 
-上述场景涉及的常用接口如下表所示。更多API说明请参见[原子化服务API参考](../reference/apis-as/js-apis-window.md)。
+上述场景涉及的常用接口如下表所示。更多API说明请参见[@ohos.window (窗口)](../reference/apis-as/js-apis-window.md)。
 
 | 实例名         | 接口名                                                       | 描述                                                         |
 | -------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -23,29 +23,28 @@
 | WindowStage    | createSubWindow(name: string, callback: AsyncCallback&lt;Window&gt;): void | 创建子窗口。<br/>此接口仅可在`Stage`模型下使用。             |
 | WindowStage    | on(type: 'windowStageEvent', callback: Callback&lt;WindowStageEventType&gt;): void | 开启WindowStage生命周期变化的监听。<br/>此接口仅可在`Stage`模型下使用。 |
 | Window         | setUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void | 根据当前工程中某个页面的路径为窗口加载具体的页面内容。<br>其中path为要加载到窗口中的页面内容的路径，在Stage模型下该路径需添加到工程的main_pages.json文件中。                                     |
-| Window         | setWindowBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void | 设置屏幕亮度值。                                             |
+| Window         | setWindowPrivacyMode(isPrivacyMode: boolean, callback: AsyncCallback&lt;void&gt;): void | 设置窗口是否为隐私模式。                                             |
 | Window         | moveWindowTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void | 移动当前窗口位置。                                           |
 | Window         | resize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): void | 改变当前窗口大小。                                           |
 | Window         | showWindow(callback: AsyncCallback\<void>): void             | 显示当前窗口。                                               |
-| Window         | on(type: 'touchOutside', callback: Callback&lt;void&gt;): void | 开启本窗口区域外的点击事件的监听。                           |
 | Window         | destroyWindow(callback: AsyncCallback&lt;void&gt;): void     | 销毁当前窗口。                                               |
 
 
 ## 设置应用主窗口
 
-在`原子化服务下`下，应用主窗口由`UIAbility`创建并维护生命周期。在`UIAbility`的`onWindowStageCreate`回调中，通过`WindowStage`获取应用主窗口，即可对其进行属性设置等操作。还可以在应用配置文件中设置应用主窗口的属性，如最大窗口宽度maxWindowWidth等，详见[module.json5配置文件](../quick-start/module-configuration-file.md#abilities标签)。
+应用主窗口由`UIAbility`创建并维护生命周期。在`UIAbility`的`onWindowStageCreate`回调中，通过`WindowStage`获取应用主窗口，即可对其进行属性设置等操作。还可以在应用配置文件中设置应用主窗口的属性，如最大窗口宽度maxWindowWidth等，详见[module.json5配置文件](../quick-start/module-configuration-file.md#abilities标签)。
 
 ### 开发步骤
 
-**前提条件：** `setWindowPrivacyMode` 即设置窗口隐私模式，仅在API12后才支持，且需要申请`ohos.permission.PRIVACY_WINDOW`权限，配置方式请参见[申请应用权限](../../application-dev/quick-start/module-configuration-file.md#requestpermissions标签)。
+**前提条件：** `setWindowPrivacyMode` 即设置窗口隐私模式，适用于禁止截屏/录屏的场景。该接口使用时需要申请`ohos.permission.PRIVACY_WINDOW`权限，配置方式请参见[申请应用权限](../../application-dev/quick-start/module-configuration-file.md#requestpermissions标签)。
 
 1. 获取应用主窗口。
 
    通过`getMainWindow`接口获取应用主窗口。
 
-2. 设置为隐私模式的窗口。
+2. 设置窗口隐私模式属性。
 
-   通过`setWindowPrivacyMode`接口设置主窗口为隐私模式的窗口。
+   通过`setWindowPrivacyMode`接口设置主窗口为隐私模式的窗口，窗口内容将无法被截屏或录屏。此接口可用于禁止截屏/录屏的场景。
 
 3. 为主窗口加载对应的目标页面。
 
