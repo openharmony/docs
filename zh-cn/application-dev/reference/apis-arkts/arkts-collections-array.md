@@ -9,7 +9,7 @@ Array是一种线性数据结构，底层基于数组实现，可以在ArkTS上�
 **推荐使用场景：** 当需要在ArkTS上并发实例间传递Array时，可以通过传递Array引用提升传递性能。
 
 文档中存在泛型的使用，涉及以下泛型标记符：<br>
-- T：Type，支持Sendable的数据类型。(TODO: link to sendable spec.)
+- T：Type，支持[Sendable的数据类型](../../arkts-utils/arkts-sendable.md)。
 
 > **说明：**
 >
