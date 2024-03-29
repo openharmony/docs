@@ -35,8 +35,8 @@
 2. 传入需要发布的事件名称和回调函数，发布事件。
    
    ```ts
-   // 发布公共事件
-   commonEventManager.publish('usual.event.SCREEN_OFF', (err: Base.BusinessError) => {
+   // 发布公共事件，其中的event字段需要替换为实际的事件名称。
+   commonEventManager.publish('event', (err: Base.BusinessError) => {
      if (err) {
        console.info(`PublishCallBack err = ${JSON.stringify(err)}`);
      } else {
@@ -60,7 +60,7 @@
    const TAG: string = 'ProcessModel';
    ```
 
-2. 传入需要发布的事件名称和回调函数，发布事件。
+2. 构建需要发布的公共事件信息。
    
    ```ts
    // 公共事件相关信息
@@ -73,8 +73,8 @@
 3. 传入需要发布的事件名称、需要发布的指定信息和回调函数，发布事件。
    
    ```ts
-   // 发布公共事件
-   commonEventManager.publish('usual.event.SCREEN_OFF', options, (err: Base.BusinessError) => {
+   // 发布公共事件，其中的event字段需要替换为实际的事件名称。
+   commonEventManager.publish('event', options, (err: Base.BusinessError) => {
      if (err) {
        console.error('PublishCallBack err = ' + JSON.stringify(err));
      } else {
