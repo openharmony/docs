@@ -619,6 +619,19 @@ SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单�
   >
   >- 该命令需单独采集，采集结果不写入data.csv
 
+  5.21 导出csv文件到指定路径
+
+  ``` 
+  #SP_daemon -OUT data/1
+  command exec finished!
+  #
+  ```
+  >**说明**
+  >
+  >- cd 到data路径下，ls查看导出的文件：1.csv
+  >
+  >- 该命令需单独采集  
+
 6.输出采集结果和查看采集结果。
 
   - 采集结果默认输出路径：/data/local/tmp/data.csv
@@ -670,11 +683,13 @@ SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单�
     | voltageNow        | 当前读到的电压值       |单位μV(微伏)| 
     | fps               | 屏幕刷新帧率          |单位fps|
     | fpsJitters        | 每一帧绘制间隔        |单位ns|
-    | networkDown       | 下行速率              |byte/s|
-    | networkUp         | 上行速率              |byte/s|
-    | shell_front       | 前壳温度              |单位℃|
-    | shell_frame       | 边框温度              |单位℃|
-    | shell_back        | 后壳温度              |单位℃|
+    | refreshrate       | 屏幕刷新率            |单位Hz|
+    | networkDown       | 下行速率              |单位byte/s|
+    | networkUp         | 上行速率              |单位byte/s|
+    | ddrFrequency      | DDR频率               |单位Hz|
+    | shell_front       | 前壳温度              |单位°C|
+    | shell_frame       | 边框温度              |单位°C|
+    | shell_back        | 后壳温度              |单位°C|
     | soc_thermal       | 系统芯片温度          |单位°C|
     | system_h          | 系统温度             |单位°C|
     | Battery           | 电池温度             |单位°C|
