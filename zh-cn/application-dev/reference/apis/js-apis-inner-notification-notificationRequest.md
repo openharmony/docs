@@ -33,8 +33,8 @@
 | badgeIconStyle                | number                                                   |   否  | 否  | 通知角标类型。预留能力，暂未支持。                                                     |
 | showDeliveryTime              | boolean                                                  |   否  | 否  | 是否显示分发时间。                                                             |
 | actionButtons                 | Array\<[NotificationActionButton](js-apis-inner-notification-notificationActionButton.md)\>             |   否  | 否  | 通知按钮，最多三个按钮。                                                          |
-| smallIcon                     | [image.PixelMap](js-apis-image.md#pixelmap7)             |   否  | 否  | 通知小图标。可选字段，大小不超过30KB。                                                 |
-| largeIcon                     | [image.PixelMap](js-apis-image.md#pixelmap7)             |   否  | 否  | 通知大图标。可选字段，大小不超过30KB。                                                 |
+| smallIcon                     | [image.PixelMap](js-apis-image.md#pixelmap7)             |   否  | 否  | 通知小图标。可选字段，大小不超过30KB。 实际显示效果依赖于设备能力和通知中心UI样式。                                                |
+| largeIcon                     | [image.PixelMap](js-apis-image.md#pixelmap7)             |   否  | 否  | 通知大图标。可选字段，大小不超过30KB。实际显示效果依赖于设备能力和通知中心UI样式。                                                 |
 | overlayIcon<sup>11+<sup>      | [image.PixelMap](js-apis-image.md#pixelmap7)             |   否  | 否  | 通知重叠图标。可选字段，大小不超过30KB。<br>**系统接口**: 此接口为系统接口。                                                 |
 | creatorBundleName             | string                                                   |   是  | 否  | 创建通知的包名。                                                              |
 | creatorUid                    | number                                                   |   是  | 否  | 创建通知的UID。                                                             |
