@@ -210,7 +210,7 @@ popupPosition(value: Position)
 
 | 参数名 | 类型                              | 必填 | 说明                                                         |
 | ------ | --------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Position](ts-types.md#position8) | 是   | 弹出窗口相对于索引器条上边框中点的位置。<br/>默认值：{x:60.0, y:48.0} |
+| value  | [Position](ts-types.md#position) | 是   | 弹出窗口相对于索引器条上边框中点的位置。<br/>默认值：{x:60.0, y:48.0} |
 
 ### popupSelectedColor<sup>10+</sup>
 
@@ -601,6 +601,7 @@ struct AlphabetIndexerSample {
               .popupFont({ size: 30, weight: FontWeight.Bolder })// 弹出框内容的字体样式
               .itemSize(28)// 每一项的尺寸大小
               .alignStyle(IndexerAlign.Right)// 弹出框在索引条右侧弹出
+              .popupTitleBackground("#D2B48C") // 弹出框首个索引项背板颜色
               .popupSelectedColor(0x00FF00)
               .popupUnselectedColor(0x0000FF)
               .popupItemFont({ size: 30, style: FontStyle.Normal })
