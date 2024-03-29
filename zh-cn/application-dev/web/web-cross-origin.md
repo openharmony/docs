@@ -10,7 +10,7 @@ Access to script at 'xxx' from origin 'xxx' has been blocked by CORS policy: Cro
 ## 本地资源跨域问题解决方法
 如果Web组件要成功访问这些跨域资源，开发者需要使用http或者https等协议替代原本使用的file协议或者resource协议进行加载。其中替代的url的域名为自己构造的仅供个人或者组织使用的域名，尽量不要和网络上真实存在的域名冲突。同时需要开发者使用Web组件的[onInterceptRequest](../reference/apis-arkweb/ts-basic-components-web.md#oninterceptrequest9)对本地资源进行拦截替换。
 
-以下结合示例说明如何解决本地资源跨域访问失败的问题。其中index.html和js/script.js置于工程中rawfile目录下。如果使用resource协议访问index.html，js/script.js将被跨域拦截无法加载。示例中使用https://www.example.com/域名替换原本的resource协议，同时使用[onInterceptRequest](../reference/apis-arkweb/ts-basic-components-web.md#oninterceptrequest9)接口替换资源，使得js/script.js可以成功加载，解决了跨域拦截的问题。
+以下结合示例说明如何解决本地资源跨域访问失败的问题。其中index.html和js/script.js置于工程中rawfile目录下。如果使用resource协议访问index.html，js/script.js将被跨域拦截无法加载。示例中使用https:\//www\.example.com/域名替换原本的resource协议，同时使用[onInterceptRequest](../reference/apis-arkweb/ts-basic-components-web.md#oninterceptrequest9)接口替换资源，使得js/script.js可以成功加载，解决了跨域拦截的问题。
 
 ```ts
 // main/ets/pages/index.ets
