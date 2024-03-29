@@ -241,6 +241,8 @@ enum AVPlaybackSpeed
 | AV_SPEED_FORWARD_1_25_X | 1.25倍速播放 | 
 | AV_SPEED_FORWARD_1_75_X | 1.75倍速播放 | 
 | AV_SPEED_FORWARD_2_00_X | 2.0倍速播放 | 
+| AV_SPEED_FORWARD_0_50_X | 0.5倍速播放<br>**起始版本：** 12 | 
+| AV_SPEED_FORWARD_1_50_X | 1.5倍速播放<br>**起始版本：** 12 | 
 
 
 ### AVPlayerOnInfoType
