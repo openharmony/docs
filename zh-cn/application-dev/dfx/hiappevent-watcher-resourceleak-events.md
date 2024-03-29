@@ -2,7 +2,7 @@
 
 HiAppEvent提供接口用于订阅系统资源泄漏事件。
 
-- [订阅资源泄漏事件（ArkTS）](hiappevent-watcher-resourceleak-events-napi.md)
+- [订阅资源泄漏事件（ArkTS）](hiappevent-watcher-resourceleak-events-arkts.md)
 
 资源泄漏事件信息中params属性的详细描述如下：
 
