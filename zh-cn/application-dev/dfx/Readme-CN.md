@@ -9,17 +9,17 @@
   - 事件订阅
     - 应用事件
       - [应用事件介绍](hiappevent-watcher-app-events.md)
-      - [订阅应用事件（ArkTS）](hiappevent-watcher-app-events-arkts)
+      - [订阅应用事件（ArkTS）](hiappevent-watcher-app-events-arkts.md)
     - 系统事件
       - 崩溃事件
         - [崩溃事件介绍](hiappevent-watcher-crash-events.md)
-        - [订阅崩溃事件（ArkTS）](hiappevent-watcher-crash-events-arkts)
+        - [订阅崩溃事件（ArkTS）](hiappevent-watcher-crash-events-arkts.md)
       - 卡死时间
         - [卡死事件介绍](hiappevent-watcher-freeze-events.md)
-        - [订阅卡死事件（ArkTS）](hiappevent-watcher-freeze-events-arkts)
+        - [订阅卡死事件（ArkTS）](hiappevent-watcher-freeze-events-arkts.md)
       - 资源泄漏事件
         - [资源泄漏事件介绍](hiappevent-watcher-resourceleak-events.md)
-        - [订阅资源泄漏事件（ArkTS）](hiappevent-watcher-resourceleak-events-napi.md)
+        - [订阅资源泄漏事件（ArkTS）](hiappevent-watcher-resourceleak-events-arkts.md)
   - [事件上报](hiappevent-event-reporting.md)
 - HiTraceMeter使用指导
   - [使用HiTraceMeter跟踪性能（ArkTS/JS）](hitracemeter-guidelines-arkts.md)
