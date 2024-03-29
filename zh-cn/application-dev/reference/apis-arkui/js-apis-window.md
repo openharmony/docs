@@ -2802,9 +2802,9 @@ try {
 }
 ```
 
-### on('noInteractionDetected')<sup>12+</sup>
+### on('noInteractionDetect')<sup>12+</sup>
 
-on(type: 'noInteractionDetected', timeout: number, callback: Callback&lt;void&gt;): void
+on(type: 'noInteractionDetect', timeout: number, callback: Callback&lt;void&gt;): void
 
 开启本窗口在指定超时时间内无交互事件的监听。
 
@@ -2814,7 +2814,7 @@ on(type: 'noInteractionDetected', timeout: number, callback: Callback&lt;void&gt
 
 | 参数名   | 类型                       | 必填 | 说明                                                         |
 | -------- | --------------------------| ---- | ------------------------------------------------------------ |
-| type     | string                    | 是   | 监听事件，固定为'noInteractionDetected'，即本窗口在指定超时时间内无交互的事件。 |
+| type     | string                    | 是   | 监听事件，固定为'noInteractionDetect'，即本窗口在指定超时时间内无交互的事件。 |
 | timeout     | number                    | 是   | 指定本窗口在多长时间内无交互即回调，单位为秒(s)。 |
 | callback | Callback&lt;void&gt;      | 是   | 回调函数。当本窗口在指定超时时间内无交互事件时的回调。  |
 
@@ -2830,27 +2830,18 @@ on(type: 'noInteractionDetected', timeout: number, callback: Callback&lt;void&gt
 **示例：**
 
 ```ts
-callback: () => void = (): void => {
-  console.info('no interaction in 60s');
-}
-
-onWindowStageCreate(windowStage: window.WindowStage) {
-  windowStage.getMainWindow().then((win: window.Window) => {
-    let windowClass = win;
-    if (canIUse("SystemCapability.Window.SessionManager")) {
-      try {
-        windowClass.on('noInteractionDetected', 60, this.callback);
-      } catch (exception) {
-        console.error('Failed to register callback. Cause: ' + JSON.stringify(exception));
-      }
-    }
+try {
+  windowClass.on('noInteractionDetect', 60, () => {
+    console.info('no interaction in 60s');
   });
+} catch (exception) {
+  console.error('Failed to register callback. Cause: ' + JSON.stringify(exception));
 }
 ```
 
-### off('noInteractionDetected')<sup>12+</sup>
+### off('noInteractionDetect')<sup>12+</sup>
 
-off(type: 'noInteractionDetected', callback?: Callback&lt;void&gt;): void
+off(type: 'noInteractionDetect', callback?: Callback&lt;void&gt;): void
 
 关闭本窗口在指定超时时间内无交互事件的监听。
 
@@ -2860,7 +2851,7 @@ off(type: 'noInteractionDetected', callback?: Callback&lt;void&gt;): void
 
 | 参数名   | 类型                        | 必填 | 说明                                   |
 | -------- |----------------------------| ---- |--------------------------------------|
-| type     | string                     | 是   | 监听事件，固定为'noInteractionDetected'，即本窗口在指定超时时间内无交互的事件。 |
+| type     | string                     | 是   | 监听事件，固定为'noInteractionDetect'，即本窗口在指定超时时间内无交互的事件。 |
 | callback | Callback&lt;void&gt;    | 否   | 回调函数，当本窗口在指定超时时间内无交互事件时的回调。如果传入参数，则关闭该监听。如果未传入参数，则关闭所有本窗口在指定超时时间内无交互事件的监听。 |
 
 **错误码：**
@@ -2875,21 +2866,10 @@ off(type: 'noInteractionDetected', callback?: Callback&lt;void&gt;): void
 **示例：**
 
 ```ts
-callback: () => void = (): void => {
-  console.info('no interaction in 60s');
-}
-
-onWindowStageCreate(windowStage: window.WindowStage) {
-  windowStage.getMainWindow().then((win: window.Window) => {
-    let windowClass = win;
-    if (canIUse("SystemCapability.Window.SessionManager")) {
-      try {
-        windowClass.off('noInteractionDetected', this.callback);
-      } catch (exception) {
-        console.error('Failed to unregister callback. Cause: ' + JSON.stringify(exception));
-      }
-    }
-  });
+try {
+  windowClass.off('noInteractionDetect');
+} catch (exception) {
+  console.error('Failed to unregister callback. Cause: ' + JSON.stringify(exception));
 }
 ```
 
