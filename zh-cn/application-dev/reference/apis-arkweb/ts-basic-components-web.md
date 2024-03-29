@@ -2307,19 +2307,38 @@ onConsole(callback: (event?: { message: ConsoleMessage }) => boolean)
 
     build() {
       Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
+        Button('onconsole message')
+          .onClick(() => {
+            this.controller.runJavaScript('myFunction()');
+          })
+        Web({ src: $rawfile('index.html'), controller: this.controller })
           .onConsole((event) => {
             if (event) {
-              console.log('getMessage:' + event.message.getMessage())
-              console.log('getSourceId:' + event.message.getSourceId())
-              console.log('getLineNumber:' + event.message.getLineNumber())
-              console.log('getMessageLevel:' + event.message.getMessageLevel())
+              console.log('getMessage:' + event.message.getMessage());
+              console.log('getSourceId:' + event.message.getSourceId());
+              console.log('getLineNumber:' + event.message.getLineNumber());
+              console.log('getMessageLevel:' + event.message.getMessageLevel());
             }
-            return false
+            return false;
           })
       }
     }
   }
+  ```
+
+  加载的html文件。
+  ```html
+  <!-- index.html -->
+  <!DOCTYPE html>
+  <html>
+  <body>
+  <script>
+      function myFunction() {
+          console.log("onconsole printf");
+      }
+  </script>
+  </body>
+  </html>
   ```
 
 ### onDownloadStart
@@ -5691,7 +5710,7 @@ WebContextMenuParam有图片内容则复制图片。
 
 copy(): void
 
-执行与此上下文菜单相关的拷贝操作。
+执行与此上下文菜单相关的拷贝文本操作。
 
 ### paste<sup>9+</sup>
 
