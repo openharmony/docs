@@ -647,7 +647,7 @@ setMediaSource(src:MediaSource, strategy?: PlaybackStrategy): Promise\<void>
 
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
-| src | MediaSource | 是   | 流媒体预下载媒体来源。 |
+| src | [MediaSource](#mediasource12) | 是   | 流媒体预下载媒体来源。 |
 | strategy | [PlaybackStrategy](#playbackstrategy12) | 否   | 流媒体预下载播放策略。 |
 
 **返回值：**
@@ -6034,7 +6034,7 @@ createMediaSourceWithUrl(url: string, header?: Record\<string, string>): MediaSo
 
 | 类型           | 说明                                       |
 | -------------- | ------------------------------------------ |
-| MediaSource | MediaSource返回值。 |
+| [MediaSource](#mediasource12) | MediaSource返回值。 |
 
 **错误码：**
 
@@ -6056,8 +6056,7 @@ let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx
 
 ## MediaSource<sup>12+</sup>
 
-媒体数据信息。来源自[createMediaSourceWithUrl](#mediacreatemediasourcewithurl12)
-
+媒体数据信息。来源自[createMediaSourceWithUrl](#mediacreatemediasourcewithurl12)。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
@@ -6069,7 +6068,7 @@ let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx
 
 | 名称  | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
-| preferredWidth| number | 否   | 播放策略首选宽度。 |
-| preferredHeight | number | 否   | 播放策略首选高度。 |
+| preferredWidth| number | 否   | 播放策略首选宽度，int类型，如1080。 |
+| preferredHeight | number | 否   | 播放策略首选高度，int类型，如1920。 |
 | preferredBufferDuration | number | 否  | 播放策略首选缓冲持续时间，单位s，取值范围1-20。 |
-| preferredHdr | boolean | 否   | 播放策略首选HDR，true是hdr，false不是hdr。 |
+| preferredHdr | boolean | 否   | 播放策略首选hdr，true是hdr，false不是hdr。 |
