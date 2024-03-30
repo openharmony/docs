@@ -146,6 +146,26 @@ linearGradient、sweepGradient、radialGradient通用属性的起始支持版本
 
 如果需要定义linearGradient、sweepGradient、radialGradient接口中使用的变量，colors参数的类型应准确定义为与Array&lt;[ResourceColor, number]&gt;兼容的类型。
 
+例如：
+```ts
+@Entry
+@Component
+struct Test {
+  colors: Array<any> = [[0xff0000, 0.0], [0x0000ff, 0.3], [0xffff00, 1.0]];
+  build() {
+    Row()
+      .width('90%')
+      .height(50)
+      .linearGradient({
+        angle: 90,
+        // colors定义为了Array<any>类型，与需要的类型Array<[ResourceColor, number]>不兼容，将产生编译报错
+        colors: this.colors
+      })
+  }
+}
+```
+应将定义colors改为与api定义兼容的类型，如colors: Array&lt;[ResourceColor, number]&gt; = [[0xff0000, 0.0], [0x0000ff, 0.3], [0xffff00, 1.0]].
+
 ## cl.arkui.3 sweepGradient、radialGradient通用属性的center参数类型从Array&lt;any&gt;变更为[Length, Length]
 
 **访问级别**
@@ -175,6 +195,28 @@ any类型过于宽泛，从api上没有引导开发者使用正确的参数类�
 **适配指导**
 
 如果需要定义sweepGradient、radialGradient接口中使用的变量，center参数的类型应准确定义为与[Length, Length]兼容的类型。
+
+例如：
+```ts
+@Entry
+@Component
+struct Test {
+  myCenter: Array<number> = [50, 50];
+  build() {
+    Row()
+      .width(100)
+      .height(100)
+      .sweepGradient({
+        // Array<number>与需要的类型[Length, Length]不兼容，将产生编译报错
+        center: this.myCenter,
+        start: 0,
+        end: 359,
+        colors: [[0xff0000, 0.0], [0x0000ff, 0.3], [0xffff00, 1.0]]
+      })
+  }
+}
+```
+应将myCenter定义为与api定义兼容的类型，可改为myCenter: [number, number] = [50, 50].
 
 ## cl.arkui.4 快捷键接口keyboardShortcut匹配规则变更为严格匹配，匹配成功后拦截后续按键事件处理
 
