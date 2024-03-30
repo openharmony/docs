@@ -1349,7 +1349,7 @@ getFileSyncState(uri: string): FileSyncState
 
 | 类型                  | 说明             |
 | --------------------- | ---------------- |
-| [FileSyncState](#filesyncstate12) | 返回给定文件的同步状态。 |
+| [FileSyncState](#filesyncstate11) | 返回给定文件的同步状态。 |
 
 **错误码：**
 
