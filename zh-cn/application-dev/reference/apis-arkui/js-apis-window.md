@@ -183,7 +183,7 @@ import window from '@ohos.window';
 
 ## WindowLimits<sup>11+</sup>
 
-窗口尺寸限制参数。
+窗口尺寸限制参数。可以通过[setWindowLimits](#setwindowlimits11)设置窗口尺寸限制，并且可以通过[getWindowLimits](#getwindowlimits11)获得当前的窗口尺寸限制。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -3760,7 +3760,7 @@ setAspectRatio(ratio: number): Promise&lt;void&gt;
 
 | 参数名             | 类型    | 必填 | 说明                                        |
 | ------------------ | ------- | ---- |-------------------------------------------|
-| ratio | number | 是   | 除边框装饰之外的窗口内容布局的宽高比。该参数为浮点数，取值范围为(0.0, +∞)。 |
+| ratio | number | 是   | 除边框装饰之外的窗口内容布局的宽高比。该参数为浮点数，受窗口最大最小尺寸限制，比例值下限为最小宽度/最大高度，上限为最大宽度/最大高度。窗口最大最小尺寸由[WindowLimits](#windowlimits11)和系统限制的交集决定，系统限制优先级高于[WindowLimits](#windowlimits11)。 |
 
 **返回值：**
 
@@ -4188,6 +4188,56 @@ try {
   console.error('Failed to change the window limits. Cause:' + JSON.stringify(exception));
 }
 ```
+###  setWindowMask<sup>12+</sup>
+
+setWindowMask(windowMask: Array&lt;Array&lt;number&gt;&gt;): Promise&lt;void&gt;;
+
+设置异形窗口的掩码，使用Promise异步回调。异形窗口为非常规形状的窗口，掩码用于描述异形窗口的形状。此接口仅限子窗和全局悬浮窗可用，仅2in1设备可用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名       | 类型                          | 必填 | 说明                           |
+| :----------- | :---------------------------- | :--- | :----------------------------- |
+| windowMask | Array&lt;Array&lt;number&gt;&gt; | 是   | 异形窗口的掩码，该参数仅支持宽高为窗口宽高、取值为整数0和整数1的二维数组输入，整数0代表所在像素透明，整数1代表所在像素不透明，宽高不符合的二维数组或二维数组取值不为整数0和整数1的二维数组为非法参数。 |
+
+**返回值：**
+
+| 类型                                         | 说明                                |
+| :------------------------------------------- | :---------------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息                                      |
+| :------- | :-------------------------------------------- |
+| 1300002  | This window state is abnormal.                |
+| 1300003  | This window manager service works abnormally. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+try {
+  let windowMask: Array<Array<number>> = [
+      [0, 0, 0, 1, 0, 0, 0],
+      [0, 0, 1, 1, 1, 0, 0],
+      [0, 1, 1, 0, 1, 1, 0],
+      [1, 1, 0, 0, 0, 1, 1]
+    ];
+  let promise = windowClass.setWindowMask(windowMask);
+    promise.then(() => {
+    console.info('Succeeded in setting the window mask.');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to set the window mask. Cause: ' + JSON.stringify(err));
+  });
+} catch (exception) {
+  console.error('Failed to set the window mask. Cause:' + JSON.stringify(exception));
+}
+```
 
 ### keepKeyboardOnFocus<sup>11+</sup>
 
@@ -4433,7 +4483,7 @@ try {
 
 enableLandscapeMultiWindow(): Promise&lt;void&gt;
 
-在开启多窗动态布局下，配置支持横屏悬浮窗。
+在开启多窗动态布局下，配置支持横向悬浮窗。
 
 此接口只有在module.json5配置文件中[abilities](../../quick-start/module-configuration-file.md#abilities标签)标签中的preferMultiWindowOrientation属性为landscape_auto时才生效。
 
@@ -4471,7 +4521,7 @@ promise.then(() => {
 
 disableLandscapeMultiWindow(): Promise&lt;void&gt;
 
-在开启多窗动态布局下，配置支持竖屏悬浮窗。
+在开启多窗动态布局下，配置支持竖向悬浮窗。
 
 此接口只有在module.json5配置文件中[abilities](../../quick-start/module-configuration-file.md#abilities标签)标签中的preferMultiWindowOrientation属性为landscape_auto时才生效。
 

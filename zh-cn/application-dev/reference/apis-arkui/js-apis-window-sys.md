@@ -45,6 +45,7 @@ import window from '@ohos.window';
 | TYPE_SYSTEM_TOAST<sup>11+</sup>     | 18      | 表示顶层提示窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。                        |
 | TYPE_DIVIDER<sup>11+</sup>          | 19      | 表示分屏条。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。                 |
 | TYPE_GLOBAL_SEARCH<sup>11+</sup>    | 20      | 表示全局搜索窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。                        |
+| TYPE_HANDWRITE<sup>12+</sup>        | 21      | 表示手写笔窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。                        |
 
 ## WindowMode<sup>7+</sup>
 
@@ -2244,6 +2245,56 @@ try {
   console.error('Failed to set water mark flag of window. Cause: ' + JSON.stringify(exception));
 }
 ```
+
+### setHandwritingFlag<sup>12+</sup>
+
+setHandwritingFlag(enable: boolean): Promise&lt;void&gt;
+
+为当前窗口添加或移除手写标志，添加该标志后窗口只响应手写笔事件，不响应触屏事件。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名 | 类型     | 必填 | 说明                                            |
+| ------ | ------- | --- | ------------------------------------------------ |
+| enable | boolean | 是   | 是否对窗口添加标志位。true表示添加，false表示移除。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 1300002 | This window state is abnormal.                 |
+| 1300003 | This window manager service works abnormally.  |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  let enable = true;
+  let promise = windowClass.setHandwritingFlag(enable);
+  promise.then(() => {
+    console.info('Succeeded in setting handwriting flag of window.');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to set handwriting flag of window. Cause:' + JSON.stringify(err));
+  });
+} catch (exception) {
+  console.error('Failed to set handwriting flag of window. Cause: ' + JSON.stringify(exception));
+}
+```
+
 ### raiseAboveTarget<sup>10+</sup>
 
 raiseAboveTarget(windowId: number, callback: AsyncCallback&lt;void&gt;): void
@@ -2749,6 +2800,65 @@ promise.then(()=> {
 }).catch((err: BusinessError)=>{
     console.error('Failed to enable the single-frame-composer function. code:${err.code}, message:${err.message}.');
 });
+```
+
+###  setTitleButtonVisible<sup>12+</sup>
+
+setTitleButtonVisible(isMaximizeVisible: boolean, isMinimizeVisible: boolean, isSplitVisible: boolean): void
+
+设置主窗标题栏上的最大化、最小化、分屏按钮是否可见。
+
+此接口仅支持2in1设备且仅对在当前场景下可见的标题栏按钮（最大化、最小化、分屏）生效。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名    | 类型    | 必填 | 说明                                          |
+| --------- | ------- | ---- | --------------------------------------------- |
+| isMaximizeVisible | boolean | 是   | 设置最大化按钮是否可见，true为可见，false为隐藏。 |
+| isMinimizeVisible | boolean | 是   | 设置最小化按钮是否可见，true为可见，false为隐藏。 |
+| isSplitVisible | boolean | 是   | 设置分屏按钮是否可见，true为可见，false为隐藏。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 1300002  | This window state is abnormal. |
+| 1300004  | Unauthorized operation. |
+
+**示例：**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
+
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    // 加载主窗口对应的页面
+    windowStage.loadContent('pages/Index', (err) => {
+      let mainWindow: window.Window | undefined = undefined;
+      // 获取应用主窗口。
+      windowStage.getMainWindow().then(
+        data => {
+          mainWindow = data;
+          console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+          // 调用setTitleButtonVisible接口，隐藏主窗标题栏最大化、最小化、分屏按钮。
+          mainWindow.setTitleButtonVisible(false, false, false);
+        }
+      ).catch((err: BusinessError) => {
+          if(err.code){
+            console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+          }
+      });
+    });
+  }
+}
 ```
 
 ### setWindowType<sup>(deprecated)</sup>

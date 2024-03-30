@@ -27,7 +27,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | -------- | -------- |
 | struct&nbsp;&nbsp;[OH_AVCodecAsyncCallback](_o_h___a_v_codec_async_callback.md) | OH_AVCodec中所有异步回调函数指针的集合。 | 
 | struct&nbsp;&nbsp;[OH_AVCodecCallback](_o_h___a_v_codec_callback.md) | OH_AVCodec中所有异步回调函数指针的集合。 | 
-
+| struct&nbsp;&nbsp;[OH_AVDataSource](_o_h___a_v_data_source.md) | 用户自定义数据源。  | 
 
 ### 类型定义
 
@@ -43,6 +43,8 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | typedef void(\* [OH_AVCodecOnNewOutputBuffer](#oh_avcodeconnewoutputbuffer)) ([OH_AVCodec](#oh_avcodec) \*codec, uint32_t index, [OH_AVBuffer](_core.md#oh_avbuffer) \*buffer, void \*userData) | 当OH_AVCodec运行过程中生成新的输出数据时，将调用此函数指针，并携带包含新输出数据的缓冲区。 | 
 | typedef struct [OH_AVCodecAsyncCallback](_o_h___a_v_codec_async_callback.md) [OH_AVCodecAsyncCallback](#oh_avcodecasynccallback) | OH_AVCodec中所有异步回调函数指针的集合。 | 
 | typedef struct [OH_AVCodecCallback](_o_h___a_v_codec_callback.md) [OH_AVCodecCallback](#oh_avcodeccallback) | OH_AVCodec中所有异步回调函数指针的集合。 | 
+| typedef int32_t(\* [OH_AVDataSourceReadAt](#oh_avdatasourcereadat)) (OH_AVBuffer \*data, int32_t length, int64_t offset) | 函数指针定义，用于提供获取用户自定义媒体数据的能力。  | 
+| typedef struct [OH_AVDataSource](_o_h___a_v_data_source.md) [OH_AVDataSource](#oh_avdatasource) | 用户自定义数据源。  | 
 | typedef enum [OH_MediaType](#oh_mediatype-1) [OH_MediaType](#oh_mediatype) | 媒体类型。 | 
 | typedef enum [OH_AACProfile](#oh_aacprofile-1) [OH_AACProfile](#oh_aacprofile) | AAC配置。 | 
 | typedef enum [OH_AVCProfile](#oh_avcprofile-1) [OH_AVCProfile](#oh_avcprofile) | AVC配置。 | 
@@ -393,6 +395,44 @@ AVC配置。
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
 **起始版本：** 9
+
+
+### OH_AVDataSource
+
+```
+typedef struct OH_AVDataSource OH_AVDataSource
+```
+**描述**
+用户自定义数据源。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 12
+
+
+### OH_AVDataSourceReadAt
+
+```
+typedef int32_t(* OH_AVDataSourceReadAt) (OH_AVBuffer *data, int32_t length, int64_t offset)
+```
+**描述**
+函数指针定义，用于提供获取用户自定义媒体数据的能力。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| data | 要填充的缓冲区。  | 
+| length | 要读取的数据长度。  | 
+| offset | 从偏移量位置读取。  | 
+
+**返回：**
+
+读取到缓冲区的数据的实际长度。
 
 
 ### OH_AVOutputFormat

@@ -635,6 +635,48 @@ off(type: 'error'): void
 avPlayer.off('error')
 ```
 
+### setMediaSource<sup>12+</sup>
+
+setMediaSource(src:MediaSource, strategy?: PlaybackStrategy): Promise\<void>
+
+流媒体预下载资源设置，下载url对应的流媒体数据，并暂存在内存中。[视频播放开发指导](../../media/media/video-playback.md)。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                 |
+| -------- | -------- | ---- | -------------------- |
+| src | [MediaSource](#mediasource12) | 是   | 流媒体预下载媒体来源。 |
+| strategy | [PlaybackStrategy](#playbackstrategy12) | 否   | 流媒体预下载播放策略。 |
+
+**返回值：**
+
+| 类型           | 说明                                       |
+| -------------- | ------------------------------------------ |
+| Promise\<void> | Promise返回值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 401      | Parameter error. Return by callback.       |
+| 5400102  | Operation not allowed. Return by callback. |
+
+**示例：**
+
+```ts
+import media from '@ohos.multimedia.media'
+
+let player = await media.createAVPlayer()
+let header: Record<string, string> = {"aa" : "bb", "cc" : "dd"};
+let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx",  header);
+let playStrategy : media.PlaybackStrategy = {preferredWidth: 1, preferredHeight: 2, preferredBufferDuration: 3, preferredHdr: false};
+player.setMediaSource(mediaSource, playStrategy)
+```
+
 ### prepare<sup>9+</sup>
 
 prepare(callback: AsyncCallback\<void>): void
@@ -1953,6 +1995,7 @@ avPlayer.off('audioOutputDeviceChangeWithInfo');
 | -------------- | ---- | ------------------------------------------------------------ |
 | SEEK_NEXT_SYNC | 0    | 表示跳转到指定时间点的下一个关键帧，建议向后快进的时候用这个枚举值。 |
 | SEEK_PREV_SYNC | 1    | 表示跳转到指定时间点的上一个关键帧，建议向前快进的时候用这个枚举值。 |
+| SEEK_CLOSEST<sup>12+</sup> | 2    | 表示跳转到距离指定时间点最近的帧，建议精准跳转进度的时候用这个枚举值。 |
 
 ## PlaybackSpeed<sup>8+</sup>
 
@@ -1967,6 +2010,8 @@ avPlayer.off('audioOutputDeviceChangeWithInfo');
 | SPEED_FORWARD_1_25_X | 2    | 表示视频播放正常播速的1.25倍。 |
 | SPEED_FORWARD_1_75_X | 3    | 表示视频播放正常播速的1.75倍。 |
 | SPEED_FORWARD_2_00_X | 4    | 表示视频播放正常播速的2.00倍。 |
+| SPEED_FORWARD_0_50_X<sup>12+</sup> | 5    | 表示视频播放正常播速的0.50倍。 |
+| SPEED_FORWARD_1_50_X<sup>12+</sup> | 6    | 表示视频播放正常播速的1.50倍。 |
 
 ## VideoScaleType<sup>9+</sup>
 
@@ -5971,3 +6016,61 @@ media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenera
 | -------- | ------ |   ------| ------ | ---------------------- |
 | width     | number |  是   |  是   |  输出的缩略图宽度。         |
 | height | number |  是   |  是   | 输出的缩略图高度。 |
+
+## media.createMediaSourceWithUrl<sup>12+</sup>
+
+createMediaSourceWithUrl(url: string, header?: Record\<string, string>): MediaSource
+
+创建流媒体预下载媒体来源实例方法。
+
+**系统能力：** SystemCapability.Multimedia.Media.Core
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                 |
+| -------- | -------- | ---- | -------------------- |
+| url | string | 是   | 流媒体预下载媒体来源url，支持的流媒体格式：HLS、Dash、Https。  |
+| header | Record\<string, string> | 是   | 流媒体预下载媒体来源header。 |
+
+**返回值：**
+
+| 类型           | 说明                                       |
+| -------------- | ------------------------------------------ |
+| [MediaSource](#mediasource12) | MediaSource返回值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 401      | Parameter error. Return by callback.       |
+| 5400101  | No memory. Return by callback. |
+
+**示例：**
+
+```ts
+import media from '@ohos.multimedia.media'
+
+let header: Record<string, string> = {"aa" : "bb", "cc" : "dd"};
+let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx",  header);
+```
+
+## MediaSource<sup>12+</sup>
+
+媒体数据信息。来源自[createMediaSourceWithUrl](#mediacreatemediasourcewithurl12)。
+
+**系统能力：** SystemCapability.Multimedia.Media.Core
+
+## PlaybackStrategy<sup>12+</sup>
+
+播放策略。
+
+**系统能力：** SystemCapability.Multimedia.Media.Core
+
+| 名称  | 类型     | 必填 | 说明                 |
+| -------- | -------- | ---- | -------------------- |
+| preferredWidth| number | 否   | 播放策略首选宽度，int类型，如1080。 |
+| preferredHeight | number | 否   | 播放策略首选高度，int类型，如1920。 |
+| preferredBufferDuration | number | 否  | 播放策略首选缓冲持续时间，单位s，取值范围1-20。 |
+| preferredHdr | boolean | 否   | 播放策略首选hdr，true是hdr，false不是hdr。 |

@@ -189,10 +189,10 @@
 | -------------- | ---------------------- | ------------------------------ |
 | width          | [Length](#length)      | 目标元素的宽度，作为返回值时，类型为number，单位vp。 |
 | height         | [Length](#length)      | 目标元素的高度，作为返回值时，类型为number，单位vp。 |
-| position       | [Position](#position8) | 目标元素左上角相对父元素左上角的位置。            |
-| globalPosition | [Position](#position8) | 目标元素左上角相对页面左上角的位置。             |
+| position       | [Position](#position) | 目标元素左上角相对父元素左上角的位置。            |
+| globalPosition | [Position](#position) | 目标元素左上角相对页面左上角的位置。             |
 
-## Position<sup>8+</sup>
+## Position
 
 位置类型，用于表示一个坐标点。
 
@@ -259,7 +259,7 @@
 
 | 名称            | 类型定义                   | 描述                                       |
 | ------------- | ---------------------- | ---------------------------------------- |
-| CustomBuilder | ()&nbsp;=&gt;&nbsp;any | 生成用户自定义组件，在使用时结合@Builder使用。具体用法见[@Builder](../../../quick-start/arkts-builder.md#builder)。 |
+| CustomBuilder | ()&nbsp;=&gt;&nbsp;any \| void | 生成用户自定义组件，在使用时结合@Builder使用。具体用法见[@Builder](../../../quick-start/arkts-builder.md#builder)。 |
 
 ## PixelStretchEffectOptions<sup>10+</sup>
 

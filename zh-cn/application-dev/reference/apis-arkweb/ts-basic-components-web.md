@@ -1447,7 +1447,7 @@ allowWindowOpenMethod(flag: boolean)
 
 设置网页是否可以通过JavaScript自动打开新窗口。
 
-该属性为true时，可通过JavaScript自动打开新窗口。该属性为false时，用户行为仍可通过JavaScript自动打开新窗口，但非用户行为不能通过JavaScript自动打开新窗口。此处的用户行为是指用户在5秒内请求打开新窗口（window.open）。
+该属性为true时，可通过JavaScript自动打开新窗口。该属性为false时，用户行为仍可通过JavaScript自动打开新窗口，但非用户行为不能通过JavaScript自动打开新窗口。此处的用户行为是指，在用户对Web组件进行点击等操作后，同时在5秒内请求打开新窗口（window.open）的行为。
 
 该属性仅在[javaScriptAccess](#javascriptaccess)开启时生效。
 
@@ -1737,7 +1737,8 @@ nestedScroll(value: NestedScrollOptions)
 > - 设置向前向后两个方向上的嵌套滚动模式，实现与父组件的滚动联动。
 > - 支持设置不同的向前向后两个方向上的嵌套滚动模式。
 > - 默认scrollForward和scrollBackward模式为NestedScrollMode.SELF_FIRST。
-> - 目前支持嵌套滚动的容器为：Grid、List、Scroll、Swiper、Tabs、WaterFlow。
+> - 支持嵌套滚动的容器：Grid、List、Scroll、Swiper、Tabs、WaterFlow。
+> - 支持嵌套滚动的输入事件：使用手势、鼠标、触控板。
 
 **参数：**
 
@@ -2307,19 +2308,38 @@ onConsole(callback: (event?: { message: ConsoleMessage }) => boolean)
 
     build() {
       Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
+        Button('onconsole message')
+          .onClick(() => {
+            this.controller.runJavaScript('myFunction()');
+          })
+        Web({ src: $rawfile('index.html'), controller: this.controller })
           .onConsole((event) => {
             if (event) {
-              console.log('getMessage:' + event.message.getMessage())
-              console.log('getSourceId:' + event.message.getSourceId())
-              console.log('getLineNumber:' + event.message.getLineNumber())
-              console.log('getMessageLevel:' + event.message.getMessageLevel())
+              console.log('getMessage:' + event.message.getMessage());
+              console.log('getSourceId:' + event.message.getSourceId());
+              console.log('getLineNumber:' + event.message.getLineNumber());
+              console.log('getMessageLevel:' + event.message.getMessageLevel());
             }
-            return false
+            return false;
           })
       }
     }
   }
+  ```
+
+  加载的html文件。
+  ```html
+  <!-- index.html -->
+  <!DOCTYPE html>
+  <html>
+  <body>
+  <script>
+      function myFunction() {
+          console.log("onconsole printf");
+      }
+  </script>
+  </body>
+  </html>
   ```
 
 ### onDownloadStart
@@ -4806,7 +4826,7 @@ onOverrideUrlLoading(callback: OnOverrideUrlLoadingCallback)
 
 POST请求不会触发该回调。
 
-子frame和非HTTP(s)协议的跳转也会触发该回调。但是调用loadUrl(String)主动触发的跳转不会触发该回调。
+子frame且非HTTP(s)协议的跳转也会触发该回调。但是调用loadUrl(String)主动触发的跳转不会触发该回调。
 
 不要使用相同的URL调用loadUrl(String)方法，然后返回true。这样做会不必要地取消当前的加载并重新使用相同的URL开始新的加载。继续加载给定URL的正确方式是直接返回false，而不是调用loadUrl(String)。
 
@@ -5691,7 +5711,7 @@ WebContextMenuParam有图片内容则复制图片。
 
 copy(): void
 
-执行与此上下文菜单相关的拷贝操作。
+执行与此上下文菜单相关的拷贝文本操作。
 
 ### paste<sup>9+</sup>
 

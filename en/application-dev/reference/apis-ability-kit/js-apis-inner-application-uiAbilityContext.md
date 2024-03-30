@@ -23,10 +23,11 @@ import common from '@ohos.app.ability.common';
 | abilityInfo | [AbilityInfo](js-apis-bundleManager-abilityInfo.md) | Yes| No| UIAbility information.|
 | currentHapModuleInfo | [HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md) | Yes| No| HAP information.|
 | config | [Configuration](js-apis-app-ability-configuration.md) | Yes| No| UIAbility configuration, such as the language and color mode.|
+| windowStage<sup>12+</sup> | [window.WindowStage](../apis-arkui/js-apis-window.md#windowstage9) | Yes| No| **WindowStage** object.|
 
 > **NOTE**
 >
-> In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+> In the sample code provided in this topic, **this.context** is used to obtain the UIAbilityContext, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 
 ## UIAbilityContext.startAbility
 
@@ -145,7 +146,10 @@ Observe the following when using this API:
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
+| 16000067 | Start options check failed. |
+| 16000068 | Ability already running. |
 | 16200001 | The caller has been released. |
+| 16300003 | The target application is not self application. |
 
 For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
@@ -233,7 +237,10 @@ Observe the following when using this API:
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
+| 16000067 | Start options check failed. |
+| 16000068 | Ability already running. |
 | 16200001 | The caller has been released. |
+| 16300003 | The target application is not self application. |
 
 For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
@@ -281,7 +288,7 @@ export default class EntryAbility extends UIAbility {
 startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;): void
 
 Starts an ability. This API uses an asynchronous callback to return the result when the ability is terminated. The following situations may be possible for a started ability:
- - Normally, you can call [terminateSelfWithResult](../apis/#uiabilitycontextterminateselfwithresult) to terminate the UIAbility. The result is returned to the initiator UIAbility.
+ - Normally, you can call [terminateSelfWithResult](../apis/#uiabilitycontextterminateselfwithresult) to terminate the ability. The result is returned to the caller.
  - If an exception occurs, for example, the ability is killed, an error message, in which **resultCode** is **-1**, is returned to the caller.
  - If different applications call this API to start an ability that uses the singleton mode and then call [terminateSelfWithResult](../apis/#uiabilitycontextterminateselfwithresult) to terminate the ability, the normal result is returned to the last caller, and an error message, in which **resultCode** is **-1**, is returned to others.
 
@@ -363,7 +370,7 @@ export default class EntryAbility extends UIAbility {
 startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback&lt;AbilityResult&gt;): void
 
 Starts an ability with the start options specified. This API uses an asynchronous callback to return the result when the ability is terminated. The following situations may be possible for a started ability:
- - Normally, you can call [terminateSelfWithResult](../apis/#uiabilitycontextterminateselfwithresult) to terminate the UIAbility. The result is returned to the initiator UIAbility.
+ - Normally, you can call [terminateSelfWithResult](../apis/#uiabilitycontextterminateselfwithresult) to terminate the ability. The result is returned to the caller.
  - If an exception occurs, for example, the ability is killed, an error message, in which **resultCode** is **-1**, is returned to the caller.
  - If different applications call this API to start an ability that uses the singleton mode and then call [terminateSelfWithResult](../apis/#uiabilitycontextterminateselfwithresult) to terminate the ability, the normal result is returned to the last caller, and an error message, in which **resultCode** is **-1**, is returned to others.
 
@@ -451,7 +458,7 @@ export default class EntryAbility extends UIAbility {
 startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityResult&gt;
 
 Starts an ability. This API uses a promise to return the result when the ability is terminated. The following situations may be possible for a started ability:
- - Normally, you can call [terminateSelfWithResult](../apis/#uiabilitycontextterminateselfwithresult) to terminate the UIAbility. The result is returned to the initiator UIAbility.
+ - Normally, you can call [terminateSelfWithResult](../apis/#uiabilitycontextterminateselfwithresult) to terminate the ability. The result is returned to the caller.
  - If an exception occurs, for example, the ability is killed, an error message, in which **resultCode** is **-1**, is returned to the caller.
  - If different applications call this API to start an ability that uses the singleton mode and then call [terminateSelfWithResult](../apis/#uiabilitycontextterminateselfwithresult) to terminate the ability, the normal result is returned to the last caller, and an error message, in which **resultCode** is **-1**, is returned to others.
 
@@ -802,7 +809,7 @@ export default class EntryAbility extends UIAbility {
 
 connectServiceExtensionAbility(want: Want, options: ConnectOptions): number
 
-Connects this ability to an ability that uses the **AbilityInfo.AbilityType.SERVICE** template.
+Connects this ability to a ServiceExtensionAbility.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -817,7 +824,7 @@ Connects this ability to an ability that uses the **AbilityInfo.AbilityType.SERV
 
 | Type| Description|
 | -------- | -------- |
-| number | Result code of the ability connection.|
+| number | Result code of the connection.|
 
 **Error codes**
 
@@ -1141,7 +1148,7 @@ export default class EntryAbility extends UIAbility {
 
 setMissionLabel(label: string, callback: AsyncCallback&lt;void&gt;): void
 
-Sets a label for this UIAbility in the mission. This API uses an asynchronous callback to return the result.
+Sets a label for this ability in the mission. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1183,7 +1190,7 @@ export default class EntryAbility extends UIAbility {
 
 setMissionLabel(label: string): Promise&lt;void&gt;
 
-Sets a label for this UIAbility in the mission. This API uses a promise to return the result.
+Sets a label for this ability in the mission. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1234,7 +1241,7 @@ export default class EntryAbility extends UIAbility {
 
 setMissionContinueState(state: AbilityConstant.ContinueState, callback: AsyncCallback&lt;void&gt;): void
 
-Sets the mission continuation state of this UIAbility. This API uses an asynchronous callback to return the result.
+Sets the mission continuation state of this ability. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1274,7 +1281,7 @@ export default class EntryAbility extends UIAbility {
 
 setMissionContinueState(state: AbilityConstant.ContinueState): Promise&lt;void&gt;
 
-Sets the mission continuation state of this UIAbility. This API uses a promise to return the result.
+Sets the mission continuation state of this ability. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1321,7 +1328,7 @@ export default class EntryAbility extends UIAbility {
 
 restoreWindowStage(localStorage: LocalStorage): void
 
-Restores the WindowStage data in the UIAbility.
+Restores the WindowStage data in the ability.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1357,7 +1364,7 @@ export default class EntryAbility extends UIAbility {
 
 isTerminating(): boolean
 
-Checks whether this UIAbility is in the terminating state.
+Checks whether this ability is in the terminating state.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1365,7 +1372,7 @@ Checks whether this UIAbility is in the terminating state.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | The value **true** means that the UIAbility is in the terminating state, and **false** means the opposite.|
+| boolean | The value **true** means that the ability is in the terminating state, and **false** means the opposite.|
 
 **Error codes**
 
@@ -1405,7 +1412,7 @@ Observe the following when using this API:
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want |[Want](js-apis-app-ability-want.md) | Yes| Want information about the target ServiceExtensionAbility.|
+| want |[Want](js-apis-app-ability-want.md) | Yes| Want information for starting the ServiceExtensionAbility.|
 | result | AsyncCallback&lt;[dialogRequest.RequestResult](js-apis-app-ability-dialogRequest.md#requestresult)&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -1483,7 +1490,7 @@ Observe the following when using this API:
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ServiceExtensionAbility.|
+| want | [Want](js-apis-app-ability-want.md) | Yes| Want information for starting the ServiceExtensionAbility.|
 
 
 **Return value**
@@ -1555,7 +1562,8 @@ export default class EntryAbility extends UIAbility {
 reportDrawnCompleted(callback: AsyncCallback\<void>): void
 
 Reports an event indicating that page loading is complete (**loadContent()** is successfully called). This API uses an asynchronous callback to return the result.
- **System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
 
@@ -1714,3 +1722,136 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
     console.error(`startAbilityByType fail, err: ${JSON.stringify(err)}`);
   })
   ```
+
+## UIAbilityContext.showAbility<sup>12+</sup>
+
+showAbility() : Promise\<void>
+
+Shows the current ability. This API uses a promise to return the result. It takes effect only on tablets.
+
+To call this API, the current ability must be started through [UIAbilityContext.startAbility](#uiabilitycontextstartability-1), in which [options.processMode](js-apis-app-ability-contextConstant.md#contextconstantprocessmode12) must be set to **NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM**.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 16000050 | Internal error. |
+| 16000067 | Start options check failed. |
+
+For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+
+**Example**
+
+  ```ts
+  import common from '@ohos.app.ability.common';
+  import { BusinessError } from '@ohos.base';
+  let context = getContext(this) as common.UIAbilityContext;
+  context.showAbility().then(() => {
+    console.log(`showAbility success`);
+  }).catch((err: BusinessError) => {
+    console.error(`showAbility fail, err: ${JSON.stringify(err)}`);
+  })
+  ```
+## UIAbilityContext.hideAbility<sup>12+</sup>
+
+hideAbility() : Promise\<void>
+
+Hides the current ability. This API uses a promise to return the result. It takes effect only on tablets.
+
+To call this API, the current ability must be started through [UIAbilityContext.startAbility](#uiabilitycontextstartability-1), in which [options.processMode](js-apis-app-ability-contextConstant.md#contextconstantprocessmode12) must be set to **NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM**.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 16000050 | Internal error. |
+| 16000067 | Start options check failed. |
+
+For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+
+**Example**
+
+  ```ts
+  import common from '@ohos.app.ability.common';
+  import { BusinessError } from '@ohos.base';
+  let context = getContext(this) as common.UIAbilityContext;
+  context.hideAbility().then(() => {
+    console.log(`hideAbility success`);
+  }).catch((err: BusinessError) => {
+    console.error(`hideAbility fail, err: ${JSON.stringify(err)}`);
+  })
+  ```
+
+## UIAbilityContext.moveAbilityToBackground<sup>12+<sup>
+moveAbilityToBackground(): Promise\<void>
+
+Moves this ability from the foreground to the background. This API uses a promise to return the result.
+ 
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+| 16000061 | Operation not supported. |
+| 16000065 | The interface can be called only when ability is foreground. |
+| 16000066 | An ability cannot move to foreground or background in Wukong mode. |
+
+For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+
+**Example**
+
+```ts
+import common from '@ohos.app.ability.common';
+import { BusinessError } from '@ohos.base';
+
+@Entry
+@Component
+struct Index {
+  @State moveAbilityToBackground: string = 'Move To Background'
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.moveAbilityToBackground)
+          .fontSize(30)
+          .fontWeight(FontWeight.Bold)
+          .onClick(() => {
+            let context = getContext(this) as common.UIAbilityContext;
+            context.moveAbilityToBackground().then(() => {
+              console.log(`moveAbilityToBackground success.`);
+            }).catch((err: BusinessError) => {
+              console.log(`moveAbilityToBackground error: ${JSON.stringify(err)}.`)
+            });
+          });
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```

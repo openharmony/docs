@@ -66,7 +66,7 @@ ArkWeb的网络协议栈错误列表
 |ERR_NO_SSL_VERSIONS_ENABLED | -112 | 不支持SSL协议的任何版本。|
 |ERR_SSL_VERSION_OR_CIPHER_MISMATCH | -113 | 客户端和服务器不支持通用的SSL协议版本或密码套件。|
 |ERR_SSL_RENEGOTIATION_REQUESTED | -114 | 服务器请求重新协商（rehandshake）。|
-|ERR_PROXY_AUTH_UNSUPPORTED | -115 | 代理请求身份验证（隧道连接使用不支持的方法。|
+|ERR_PROXY_AUTH_UNSUPPORTED | -115 | 代理请求身份验证（隧道连接使用不支持的方法）。|
 |ERR_BAD_SSL_CLIENT_AUTH_CERT | -117 | SSL 客户端证书错误。|
 |ERR_CONNECTION_TIMED_OUT | -118 | 连接超时。 |
 |ERR_HOST_RESOLVER_QUEUE_TOO_LARGE | -119 | 挂起的DNS解析太多，因此队列中的请求被中止。|
