@@ -28,6 +28,6 @@
 | void [OH_ResourceManager_ReleaseNativeResourceManager](rawfile.md#oh_resourcemanager_releasenativeresourcemanager) ([NativeResourceManager](rawfile.md#nativeresourcemanager) \*resMgr) | 释放native侧ResourceManager。  | 
 | [RawDir](rawfile.md#rawdir) \* [OH_ResourceManager_OpenRawDir](rawfile.md#oh_resourcemanager_openrawdir) (const [NativeResourceManager](rawfile.md#nativeresourcemanager) \*mgr, const char \*dirName) | 打开rawfile目录，打开后可以遍历对应目录下的rawfile文件。  | 
 | [RawFile](rawfile.md#rawfile) \* [OH_ResourceManager_OpenRawFile](rawfile.md#oh_resourcemanager_openrawfile) (const [NativeResourceManager](rawfile.md#nativeresourcemanager) \*mgr, const char \*fileName) | 打开rawfile文件，打开后可以读取它的数据。  | 
-| [RawFile64](rawfile.md#rawfile64) \* [OH_ResourceManager_OpenRawFile64](rawfile.md#oh_resourcemanager_openrawfile64) (const [NativeResourceManager](rawfile.md#nativeresourcemanager) \*mgr, const char \*fileName) | 打开较大的rawfile文件，打开后可以读取它的数据。说明：RawFile64是新增接口，新接口支持打开更大的rawfile文件（文件超过2G建议使用）。| 
+| [RawFile64](rawfile.md#rawfile64) \* [OH_ResourceManager_OpenRawFile64](rawfile.md#oh_resourcemanager_openrawfile64) (const [NativeResourceManager](rawfile.md#nativeresourcemanager) \*mgr, const char \*fileName) | 打开较大的rawfile文件，打开后可以读取它的数据。<br>说明：RawFile64是新增接口，新接口支持打开更大的rawfile文件（文件超过2G建议使用）。| 
 | bool [OH_ResourceManager_IsRawDir](rawfile.md#oh_resourcemanager_israwdir) (const [NativeResourceManager](rawfile.md#nativeresourcemanager) \*mgr, const char \*path) | 判断路径是否是rawfile下的目录。  | 
 
