@@ -90,6 +90,41 @@ ArkTS Array的构造函数，通过开发者提供的元素进行初始化。
 let array = new collections.Array<number>(1, 2, 3, 4);
 ```
 
+### create
+
+static create\<T>(arrayLength: number, initialValue: T): Array\<T>
+
+生成一个固定长度的Array，其中，每个元素的初始值为initialValue。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名    | 类型          | 必填 | 说明                            |
+| --------- | ------------- | ---- | ------------------------------- |
+| arrayLength | number | 是   | 用于构造ArkTS Array的长度。 |
+| initialValue | T | 是   | 用于填充ArkTS Array的值。 |
+
+**返回值：**
+
+| 类型      | 说明                    |
+| --------- | ----------------------- |
+| Array\<T> | 新创建的ArkTS Array实例。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息                         |
+| -------- | -------------------------------- |
+| 10200011 | The create method cannot be bound. |
+
+**示例：**
+
+```ts
+let array = collections.Array.create<number>(3, 10); // [10, 10, 10]
+```
+
 ### from
 
 static from\<T>(arrayLike: ArrayLike\<T>): Array\<T>
@@ -864,6 +899,66 @@ let array = new collections.Array(1, 2, 3, 4, 5);
 array.fill(0, 1, 3); // 返回[1, 0, 0, 4, 5]，因为1到3的索引范围内的元素被替换为0
 ```
 
+### shrinkTo
+
+shrinkTo(arrayLength: number): void
+
+使Array收缩到arrayLenth大小
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                   |
+| ------ | ------ | ---- | ------------------------------------------------------ |
+| arrayLength  | number  | 是   | Array的新长度。如果arrayLength >= array.length，则Array不变。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息                         |
+| -------- | -------------------------------- |
+| 10200011 | The shrinkTo method cannot be bound. |
+| 10200201 | Concurrent modification error.   |
+
+**示例：**
+
+```ts
+let array = new collections.Array(1, 2, 3, 4, 5);
+array.shrinkTo(1); // array内容变为：[1]
+```
+
+### extendTo
+
+extendTo(arrayLength: number, initialValue: T): void
+
+使Array扩展到arrayLenth大小，扩展的部分使用initialValue填充
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                   |
+| ------ | ------ | ---- | ------------------------------------------------------ |
+| arrayLength  | number  | 是   | Array的新长度。如果arrayLength <= array.length，则Array不变。 |
+| initialValue  | T  | 是   | 扩展的部分的填充值 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息                         |
+| -------- | -------------------------------- |
+| 10200011 | The extendTo method cannot be bound. |
+| 10200201 | Concurrent modification error.   |
+
+**示例：**
+
+```ts
+let array = new collections.Array(1, 2, 3);
+array.extendTo(5, 10); // array内容变为：[1, 2, 3, 10, 10]
+```
 
 ## collections.Map
 
