@@ -46,6 +46,7 @@
 ### 在 CMake 脚本中链接动态库
 
 ``` cmake
+target_link_libraries(sample PUBLIC libnative_media_codecbase.so)
 target_link_libraries(sample PUBLIC libnative_media_avdemuxer.so)
 target_link_libraries(sample PUBLIC libnative_media_avsource.so)
 target_link_libraries(sample PUBLIC libnative_media_core.so)
@@ -63,8 +64,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    #include <multimedia/player_framework/native_avbuffer.h>
    ```
 
-2. 创建解封装器实例对象。
-
+2. 创建资源管理实例对象。
    ```c++
    // 创建文件操作符 fd，打开时对文件句柄必须有读权限(filePath 为待解封装文件路径，需预置文件，保证路径指向的文件存在)
    std::string filePath = "test.mp4";
@@ -86,7 +86,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    // 为 uri 资源文件创建 source 资源对象(可选)
    // OH_AVSource *source = OH_AVSource_CreateWithURI(uri);
    ```
-
+3. 创建解封装器实例对象。
    ```c++
    // 为资源对象创建对应的解封装器
    OH_AVDemuxer *demuxer = OH_AVDemuxer_CreateWithSource(source);
@@ -95,7 +95,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
       return;
    }
    ```
-3. 注册[DRM信息监听函数](../../reference/apis-drm-kit/_drm.md#drm_mediakeysysteminfocallback)（可选，若非DRM码流或已获得[DRM信息](../../reference/apis-drm-kit/_drm.md#drm_mediakeysysteminfo)，可跳过此步）。
+4. 注册[DRM信息监听函数](../../reference/apis-drm-kit/_drm.md#drm_mediakeysysteminfocallback)（可选，若非DRM码流或已获得[DRM信息](../../reference/apis-drm-kit/_drm.md#drm_mediakeysysteminfo)，可跳过此步）。
 
    加入头文件
    ```c++
@@ -124,7 +124,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    OH_AVDemuxer_GetMediaKeySystemInfo(demuxer, &mediaKeySystemInfo);
    ```
 
-4. 获取文件轨道数（可选，若用户已知轨道信息，可跳过此步）。
+5. 获取文件轨道数（可选，若用户已知轨道信息，可跳过此步）。
 
    ```c++
    // 从文件 source 信息获取文件轨道数
@@ -138,7 +138,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    OH_AVFormat_Destroy(sourceFormat);
    ```
 
-5. 获取轨道index及信息（可选，若用户已知轨道信息，可跳过此步）。
+6. 获取轨道index及信息（可选，若用户已知轨道信息，可跳过此步）。
 
    ```c++
    uint32_t audioTrackIndex = 0;
@@ -164,7 +164,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    }
    ```
 
-6. 添加解封装轨道。
+7. 添加解封装轨道。
 
    ```c++
    if(OH_AVDemuxer_SelectTrackByID(demuxer, audioTrackIndex) != AV_ERR_OK){
@@ -179,7 +179,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    // OH_AVDemuxer_UnselectTrackByID(demuxer, audioTrackIndex);
    ```
 
-7. 调整轨道到指定时间点(可选)。
+8. 调整轨道到指定时间点(可选)。
 
    ```c++
    // 调整轨道到指定时间点，后续从该时间点进行解封装
@@ -189,7 +189,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    OH_AVDemuxer_SeekToTime(demuxer, 0, OH_AVSeekMode::SEEK_MODE_CLOSEST_SYNC);
    ```
 
-8. 开始解封装，循环获取帧数据(以含音频、视频两轨的文件为例)。
+9. 开始解封装，循环获取帧数据(以含音频、视频两轨的文件为例)。
 
    ```c++
    // 创建 buffer，用与保存用户解封装得到的数据
@@ -231,7 +231,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    OH_AVBuffer_Destroy(buffer);
    ```
 
-9. 销毁解封装实例。
+10. 销毁解封装实例。
 
    ```c++
    // 需要用户调用 OH_AVSource_Destroy 接口成功后，手动将对象置为 NULL，对同一对象重复调用 OH_AVSource_Destroy 会导致程序错误
