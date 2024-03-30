@@ -35,6 +35,7 @@
     - [ArkTS语法适配背景](arkts-migration-background.md)
     - [从TypeScript到ArkTS的适配规则](typescript-to-arkts-migration-guide.md)
     - [适配指导案例](arkts-more-cases.md)
+  - [ArkTS高性能编程实践](arkts-high-performance-programming.md)
   - UI范式
     - 基本语法
       - [基本语法概述](arkts-basic-syntax-overview.md)
